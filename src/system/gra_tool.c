@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	gra_tool.c
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒc[ƒ‹
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ„ãƒ¼ãƒ«
  * @author	goto
  * @date	2005.11.16
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -25,23 +25,23 @@
 // =============================================================================
 //
 //
-//	¡‰æ‘œ•ÏŠ·
+//	â– ç”»åƒå¤‰æ›
 //
 //
 // =============================================================================
-// 1Char‚ğ2D¨1D•ÏŠ·
+// 1Charã‚’2Dâ†’1Då¤‰æ›
 static void CharCopy1_1D_from_2D(const u8* src, u8* dst, int* ofs, int* bofs, int cs, int len);
 
 //--------------------------------------------------------------
 /**
- * @brief	2D¨1D‚É1ƒLƒƒƒ‰•ÏŠ·
+ * @brief	2Dâ†’1Dã«1ã‚­ãƒ£ãƒ©å¤‰æ›
  *
- * @param	src			Œ³ƒf[ƒ^
- * @param	dst			“WŠJæ
- * @param	ofs			Œ³ƒf[ƒ^‚ÌƒRƒs[ŠJnˆÊ’u
- * @param	bofs		“WŠJæƒoƒbƒtƒ@‚Ì‘‚«‚İˆÊ’u
- * @param	cs			ƒRƒs[ƒTƒCƒY
- * @param	len			2Dƒf[ƒ^‚Ì•
+ * @param	src			å…ƒãƒ‡ãƒ¼ã‚¿
+ * @param	dst			å±•é–‹å…ˆ
+ * @param	ofs			å…ƒãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼é–‹å§‹ä½ç½®
+ * @param	bofs		å±•é–‹å…ˆãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿ä½ç½®
+ * @param	cs			ã‚³ãƒ”ãƒ¼ã‚µã‚¤ã‚º
+ * @param	len			2Dãƒ‡ãƒ¼ã‚¿ã®å¹…
  *
  * @retval	none	
  *
@@ -62,7 +62,7 @@ static void CharCopy1_1D_from_2D(const u8* src, u8* dst, int* ofs, int* bofs, in
 
 //--------------------------------------------------------------
 /**
- * @brief	‘f‚ÌƒLƒƒƒ‰ƒf[ƒ^æ‚èo‚µ
+ * @brief	ç´ ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿å–ã‚Šå‡ºã—
  *
  * @param	arc_id	
  * @param	index_no	
@@ -82,7 +82,7 @@ static void UnpackCharData(int arc_id, int index_no, int heap_id, NNSG2dCharacte
 	
 	GF_ASSERT(aw != NULL);
 	
-	///< ƒLƒƒƒ‰ƒf[ƒ^‚Ìæ“¾
+	///< ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 	res = NNS_G2dGetUnpackedCharacterData(aw, &(*ch_data));
 	
 	GF_ASSERT(ch_data != NULL);
@@ -94,7 +94,7 @@ static void UnpackCharData(int arc_id, int index_no, int heap_id, NNSG2dCharacte
 
 //--------------------------------------------------------------
 /**
- * @brief	“n‚³‚ê‚½ƒLƒƒƒ‰ƒf[ƒ^‚ğ•ÏŠ·
+ * @brief	æ¸¡ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›
  *
  * @param	x	
  * @param	y	
@@ -117,27 +117,27 @@ static void CI_1D_from_2D(int x, int y, int w, int h, NNSG2dCharacterData* ch_da
 	int bofs;
 	int len;
 
-	GF_ASSERT(ch_data->W >= (x + w));		///< ƒTƒCƒYƒ`ƒFƒbƒN
+	GF_ASSERT(ch_data->W >= (x + w));		///< ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	GF_ASSERT(ch_data->H >= (y + h));
 	
-	///< €”õ
-	cs     = (sizeof(u8) * 4);				///< ƒRƒs[ƒTƒCƒY 8dot = 4Byte
-	p_data = ch_data->pRawData;				///< ƒLƒƒƒ‰ƒf[ƒ^
-	p_buff = (u8*)buff;						///< “WŠJƒoƒbƒtƒ@
+	///< æº–å‚™
+	cs     = (sizeof(u8) * 4);				///< ã‚³ãƒ”ãƒ¼ã‚µã‚¤ã‚º 8dot = 4Byte
+	p_data = ch_data->pRawData;				///< ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
+	p_buff = (u8*)buff;						///< å±•é–‹ãƒãƒƒãƒ•ã‚¡
 	
-	len = (ch_data->W * cs);				///< ’·‚³(Œ³‰æ‘œ‚Ì•)
-	ofs = (x * cs) + (y * len);				///< ŠJnˆÊ’u
-	bofs = 0;								///< ƒoƒbƒtƒ@‚Ì‘‚«‚İˆÊ’u
+	len = (ch_data->W * cs);				///< é•·ã•(å…ƒç”»åƒã®å¹…)
+	ofs = (x * cs) + (y * len);				///< é–‹å§‹ä½ç½®
+	bofs = 0;								///< ãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿ä½ç½®
 	
-	//‘S‘ÌºËß°
+	//å…¨ä½“ã‚³ãƒ”ãƒ¼
 	{
 		int i;
 		int j;
 
 		for (j = y; j < (y + h); j++){
 			for (i = x; i < (x + w); i++){
-				ofs = (i * cs) + (j * len * CHAR_DOT_Y);			///< ŠJnˆÊ’u
-				CharCopy1_1D_from_2D(p_data, p_buff, &ofs, &bofs, cs, len);	///< 1ƒLƒƒƒ‰ƒRƒs[
+				ofs = (i * cs) + (j * len * CHAR_DOT_Y);			///< é–‹å§‹ä½ç½®
+				CharCopy1_1D_from_2D(p_data, p_buff, &ofs, &bofs, cs, len);	///< 1ã‚­ãƒ£ãƒ©ã‚³ãƒ”ãƒ¼
 			}
 		}
 	}
@@ -146,11 +146,11 @@ static void CI_1D_from_2D(int x, int y, int w, int h, NNSG2dCharacterData* ch_da
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ªA‚Ô‚¿‘ÎÛ‚©‚Ç‚¤‚©
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãŒã€ã¶ã¡å¯¾è±¡ã‹ã©ã†ã‹
  *
  * @param	monsno	
  *
- * @retval	static BOOL	TRUE = ‚Ô‚¿
+ * @retval	static BOOL	TRUE = ã¶ã¡
  *
  */
 //--------------------------------------------------------------
@@ -161,7 +161,7 @@ static BOOL IsStrikeMonsNo(int monsno)
 	
 	const int monsno_tbl[] = {
 		MONSNO_PATTIIRU,
-		MONSNO_MAX,				///< ‚¨‚í‚è
+		MONSNO_MAX,				///< ãŠã‚ã‚Š
 	};
 	
 	for (i = 0; i < MONSNO_MAX; i++){
@@ -181,7 +181,7 @@ static BOOL IsStrikeMonsNo(int monsno)
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Ô‚¿‚ğ‰Á‚¦‚½•ÏŠ·
+ * @brief	ã¶ã¡ã‚’åŠ ãˆãŸå¤‰æ›
  *
  * @param	arc_id	
  * @param	index_no	
@@ -205,7 +205,7 @@ static void Ex_ChangesInto_1D_from_2D(int arc_id, int index_no, int heap_id, int
 	
 	UnpackCharData(arc_id, index_no, heap_id, &ch_data);
 	
-	SoftSpriteChrMask_ArcID(ch_data->pRawData, arc_id);				///< •œ†
+	SoftSpriteChrMask_ArcID(ch_data->pRawData, arc_id);				///< å¾©å·
 	
 	bStrike = IsStrikeMonsNo(monsno);
 	
@@ -218,7 +218,7 @@ static void Ex_ChangesInto_1D_from_2D(int arc_id, int index_no, int heap_id, int
 	CI_1D_from_2D(x, y, w, h, ch_data, buff);
 }
 
-///< ƒƒ‚ƒŠ“à•”æ“¾
+///< ãƒ¡ãƒ¢ãƒªå†…éƒ¨å–å¾—
 static void* Ex_ChangesInto_1D_from_2D_Alloc(int arc_id, int index_no, int heap_id, int x, int y, int w, int h, u32 rnd, BOOL anime, int dir, int monsno)
 {
 	
@@ -237,16 +237,16 @@ static void* Ex_ChangesInto_1D_from_2D_Alloc(int arc_id, int index_no, int heap_
 
 //--------------------------------------------------------------
 /**
- * @brief	2D¨1D‚É•ÏŠ·‚·‚é
+ * @brief	2Dâ†’1Dã«å¤‰æ›ã™ã‚‹
  *
- * @param	arc_id				ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @param	index_no			ƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id				ƒq[ƒvID
- * @param	x					•ÏŠ·‘ÎÛ‹éŒ`:x
- * @param	y					•ÏŠ·‘ÎÛ‹éŒ`:y
- * @param	w					•ÏŠ·‘ÎÛ‹éŒ`:w
- * @param	h					•ÏŠ·‘ÎÛ‹éŒ`:h
- * @param	buff				“WŠJæƒoƒbƒtƒ@
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	index_no			ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id				ãƒ’ãƒ¼ãƒ—ID
+ * @param	x					å¤‰æ›å¯¾è±¡çŸ©å½¢:x
+ * @param	y					å¤‰æ›å¯¾è±¡çŸ©å½¢:y
+ * @param	w					å¤‰æ›å¯¾è±¡çŸ©å½¢:w
+ * @param	h					å¤‰æ›å¯¾è±¡çŸ©å½¢:h
+ * @param	buff				å±•é–‹å…ˆãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none	
  *
@@ -266,40 +266,40 @@ void ChangesInto_1D_from_2D(int arc_id, int index_no, int heap_id, int x, int y,
 	int len;
 	BOOL res;
 	
-	///< ƒf[ƒ^‚Ì“WŠJ
+	///< ãƒ‡ãƒ¼ã‚¿ã®å±•é–‹
 	aw = ArchiveDataLoadMalloc(arc_id, index_no, heap_id);
 	
 	GF_ASSERT(aw != NULL);
 	
-	///< ƒLƒƒƒ‰ƒf[ƒ^‚Ìæ“¾
+	///< ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 	res = NNS_G2dGetUnpackedCharacterData(aw, &ch_data);
 	
 	GF_ASSERT(res != FALSE);
 
-	GF_ASSERT(ch_data->W >= (x + w));		///< ƒTƒCƒYƒ`ƒFƒbƒN
+	GF_ASSERT(ch_data->W >= (x + w));		///< ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	GF_ASSERT(ch_data->H >= (y + h));
 	
-	///< €”õ
-	cs     = (sizeof(u8) * 4);				///< ƒRƒs[ƒTƒCƒY 8dot = 4Byte
-	p_data = ch_data->pRawData;				///< ƒLƒƒƒ‰ƒf[ƒ^
+	///< æº–å‚™
+	cs     = (sizeof(u8) * 4);				///< ã‚³ãƒ”ãƒ¼ã‚µã‚¤ã‚º 8dot = 4Byte
+	p_data = ch_data->pRawData;				///< ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
 	
-	SoftSpriteChrMask_ArcID(p_data, arc_id);				///< •œ†
+	SoftSpriteChrMask_ArcID(p_data, arc_id);				///< å¾©å·
 	
-	p_buff = (u8*)buff;						///< “WŠJƒoƒbƒtƒ@
+	p_buff = (u8*)buff;						///< å±•é–‹ãƒãƒƒãƒ•ã‚¡
 	
-	len = (ch_data->W * cs);				///< ’·‚³(Œ³‰æ‘œ‚Ì•)
-	ofs = (x * cs) + (y * len);				///< ŠJnˆÊ’u
-	bofs = 0;								///< ƒoƒbƒtƒ@‚Ì‘‚«‚İˆÊ’u
+	len = (ch_data->W * cs);				///< é•·ã•(å…ƒç”»åƒã®å¹…)
+	ofs = (x * cs) + (y * len);				///< é–‹å§‹ä½ç½®
+	bofs = 0;								///< ãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿ä½ç½®
 	
-	//‘S‘ÌºËß°
+	//å…¨ä½“ã‚³ãƒ”ãƒ¼
 	{
 		int i;
 		int j;
 
 		for (j = y; j < (y + h); j++){
 			for (i = x; i < (x + w); i++){
-				ofs = (i * cs) + (j * len * CHAR_DOT_Y);			///< ŠJnˆÊ’u
-				CharCopy1_1D_from_2D(p_data, p_buff, &ofs, &bofs, cs, len);	///< 1ƒLƒƒƒ‰ƒRƒs[
+				ofs = (i * cs) + (j * len * CHAR_DOT_Y);			///< é–‹å§‹ä½ç½®
+				CharCopy1_1D_from_2D(p_data, p_buff, &ofs, &bofs, cs, len);	///< 1ã‚­ãƒ£ãƒ©ã‚³ãƒ”ãƒ¼
 			}
 		}
 	}
@@ -310,13 +310,13 @@ void ChangesInto_1D_from_2D(int arc_id, int index_no, int heap_id, int x, int y,
 
 //--------------------------------------------------------------
 /**
- * @brief	2D¨1D‚É•ÏŠ·‚·‚é
+ * @brief	2Dâ†’1Dã«å¤‰æ›ã™ã‚‹
  *
- * @param	arc_id				ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @param	index_no			ƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id				ƒq[ƒvID
- * @param	rc					‹éŒ`
- * @param	buff				ƒoƒbƒtƒ@
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	index_no			ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id				ãƒ’ãƒ¼ãƒ—ID
+ * @param	rc					çŸ©å½¢
+ * @param	buff				ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none	
  *
@@ -330,17 +330,17 @@ void  ChangesInto_1D_from_2D_RC(int arc_id, int index_no, int heap_id, const CHA
 
 //--------------------------------------------------------------
 /**
- * @brief	2D¨1D‚É“WŠJƒoƒbƒtƒ@‚ğAlloc‚µ‚Ä•ÏŠ·‚·‚é
+ * @brief	2Dâ†’1Dã«å±•é–‹ãƒãƒƒãƒ•ã‚¡ã‚’Allocã—ã¦å¤‰æ›ã™ã‚‹
  *
- * @param	arc_id				ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @param	index_no			ƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id				ƒq[ƒvID
- * @param	x					•ÏŠ·‘ÎÛ‹éŒ`:x
- * @param	y					•ÏŠ·‘ÎÛ‹éŒ`:y
- * @param	w					•ÏŠ·‘ÎÛ‹éŒ`:w
- * @param	h					•ÏŠ·‘ÎÛ‹éŒ`:h
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	index_no			ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id				ãƒ’ãƒ¼ãƒ—ID
+ * @param	x					å¤‰æ›å¯¾è±¡çŸ©å½¢:x
+ * @param	y					å¤‰æ›å¯¾è±¡çŸ©å½¢:y
+ * @param	w					å¤‰æ›å¯¾è±¡çŸ©å½¢:w
+ * @param	h					å¤‰æ›å¯¾è±¡çŸ©å½¢:h
  *
- * @retval	void*				“WŠJ‚µ‚½ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	void*				å±•é–‹ã—ãŸãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -362,14 +362,14 @@ void* ChangesInto_1D_from_2D_Alloc(int arc_id, int index_no, int heap_id, int x,
 
 //--------------------------------------------------------------
 /**
- * @brief	2D¨1D‚É“WŠJƒoƒbƒtƒ@‚ğAlloc‚µ‚Ä•ÏŠ·‚·‚é
+ * @brief	2Dâ†’1Dã«å±•é–‹ãƒãƒƒãƒ•ã‚¡ã‚’Allocã—ã¦å¤‰æ›ã™ã‚‹
  *
- * @param	arc_id				ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @param	index_no			ƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id				ƒq[ƒvID
- * @param	rc					‹éŒ`
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	index_no			ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id				ãƒ’ãƒ¼ãƒ—ID
+ * @param	rc					çŸ©å½¢
  *
- * @retval	void*				“WŠJ‚µ‚½ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	void*				å±•é–‹ã—ãŸãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -381,17 +381,17 @@ void* ChangesInto_1D_from_2D_Alloc_RC(int arc_id, int index_no, int heap_id, con
 
 //--------------------------------------------------------------
 /**
- * @brief	1D¨OAMŒ`ó‚É•ÏŠ·
+ * @brief	1Dâ†’OAMå½¢çŠ¶ã«å¤‰æ›
  *
- * @param	sx				•ÏŠ·‘ÎÛƒf[ƒ^‚ÌƒTƒCƒY X	
- * @param	sy				•ÏŠ·‘ÎÛƒf[ƒ^‚ÌƒTƒCƒY Y
- * @param	x				Ø‚è”²‚«ŠJn X
- * @param	y				Ø‚è”²‚«ŠJn Y
- * @param	w				Ø‚è”²‚«ƒTƒCƒY W
- * @param	h				Ø‚è”²‚«ƒTƒCƒY H
- * @param	bofs			ƒIƒtƒZƒbƒg
- * @param	src				Œ³ƒf[ƒ^
- * @param	dst				“WŠJæ
+ * @param	sx				å¤‰æ›å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º X	
+ * @param	sy				å¤‰æ›å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º Y
+ * @param	x				åˆ‡ã‚ŠæŠœãé–‹å§‹ X
+ * @param	y				åˆ‡ã‚ŠæŠœãé–‹å§‹ Y
+ * @param	w				åˆ‡ã‚ŠæŠœãã‚µã‚¤ã‚º W
+ * @param	h				åˆ‡ã‚ŠæŠœãã‚µã‚¤ã‚º H
+ * @param	bofs			ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	src				å…ƒãƒ‡ãƒ¼ã‚¿
+ * @param	dst				å±•é–‹å…ˆ
  *
  * @retval	none	
  *
@@ -425,14 +425,14 @@ void ChangesInto_OAM_from_1D(int sx, int sy, int x, int y, int w, int h, int* bo
 
 //--------------------------------------------------------------
 /**
- * @brief	1D¨OAMŒ`ó‚É•ÏŠ· ‹éŒ`‚ÅƒTƒCƒYw’è
+ * @brief	1Dâ†’OAMå½¢çŠ¶ã«å¤‰æ› çŸ©å½¢ã§ã‚µã‚¤ã‚ºæŒ‡å®š
  *
- * @param	sx				•ÏŠ·‘ÎÛƒf[ƒ^‚ÌƒTƒCƒY X	
- * @param	sy				•ÏŠ·‘ÎÛƒf[ƒ^‚ÌƒTƒCƒY Y
- * @param	rc				‹éŒ`
- * @param	bofs			ƒIƒtƒZƒbƒg
- * @param	src				ƒf[ƒ^
- * @param	dst				“WŠJæ
+ * @param	sx				å¤‰æ›å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º X	
+ * @param	sy				å¤‰æ›å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º Y
+ * @param	rc				çŸ©å½¢
+ * @param	bofs			ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	src				ãƒ‡ãƒ¼ã‚¿
+ * @param	dst				å±•é–‹å…ˆ
  *
  * @retval	none	
  *
@@ -446,16 +446,16 @@ void  ChangesInto_OAM_from_1D_RC(int sx, int sy, const CHANGES_INTO_DATA_RECT* r
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚ğ2D¨1D¨OAM‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’2Dâ†’1Dâ†’OAMã«å¤‰æ›
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒCƒ“ƒfƒbƒNƒX”Ô†
- * @param	heap_id			ƒq[ƒvID
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—ID
  * @param	x
  * @param	y
  * @param	w
  * @param	h
- * @param	buff			“WŠJæƒoƒbƒtƒ@
+ * @param	buff			å±•é–‹å…ˆãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none	
  *
@@ -480,7 +480,7 @@ void ChangesInto_OAM_from_PokeTex(int arc_id, int index_no, int heap_id, int x, 
 	num = NELEMS(rc);
 	ofs = 0;
 	
-	temp = ChangesInto_1D_from_2D_Alloc(arc_id, index_no, heap_id, x, y, w, h);		///< 1D‚©‚ç2D‚Ö•ÏŠ·
+	temp = ChangesInto_1D_from_2D_Alloc(arc_id, index_no, heap_id, x, y, w, h);		///< 1Dã‹ã‚‰2Dã¸å¤‰æ›
 
 	for (i = 0; i < num; i++){
 		ChangesInto_OAM_from_1D_RC(w, h, &rc[i], &ofs, temp, buff);
@@ -492,13 +492,13 @@ void ChangesInto_OAM_from_PokeTex(int arc_id, int index_no, int heap_id, int x, 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚ğ2D¨1D¨OAM‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’2Dâ†’1Dâ†’OAMã«å¤‰æ›
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒCƒ“ƒfƒbƒNƒX”Ô†
- * @param	heap_id			ƒq[ƒvID
- * @param	rc				‹éŒ`
- * @param	buff			ƒoƒbƒtƒ@
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—ID
+ * @param	rc				çŸ©å½¢
+ * @param	buff			ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none	
  *
@@ -512,11 +512,11 @@ void  ChangesInto_OAM_from_PokeTex_RC(int arc_id, int index_no, int heap_id, con
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚ğ2D¨1D¨OAM‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’2Dâ†’1Dâ†’OAMã«å¤‰æ›
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒCƒ“ƒfƒbƒNƒX”Ô†
- * @param	heap_id			ƒq[ƒvID
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—ID
  * @param	x
  * @param	y
  * @param	w
@@ -544,14 +544,14 @@ void* ChangesInto_OAM_from_PokeTex_Alloc(int arc_id, int index_no, int heap_id, 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚ğ2D¨1D¨OAM‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’2Dâ†’1Dâ†’OAMã«å¤‰æ›
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒCƒ“ƒfƒbƒNƒX”Ô†
- * @param	heap_id			ƒq[ƒvID
- * @param	rc				‹éŒ`
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—ID
+ * @param	rc				çŸ©å½¢
  *
- * @retval	void*			“WŠJ‚³‚ê‚½ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+ * @retval	void*			å±•é–‹ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -563,12 +563,12 @@ void* ChangesInto_OAM_from_PokeTex_Alloc_RC(int arc_id, int index_no, int heap_i
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğí“¬—p‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æˆ¦é—˜ç”¨ã«å¤‰æ›
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id			ƒq[ƒv—Ìˆæ
- * @param	buff			ƒoƒbƒtƒ@
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—é ˜åŸŸ
+ * @param	buff			ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none	
  *
@@ -589,13 +589,13 @@ void  ChangesInto_BattlePokeData(int arc_id, int index_no, int heap_id, void* bu
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğí“¬—p‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æˆ¦é—˜ç”¨ã«å¤‰æ›
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id			ƒq[ƒvID
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	void*			ƒoƒbƒtƒ@
+ * @retval	void*			ãƒãƒƒãƒ•ã‚¡
  *
  */
 //--------------------------------------------------------------
@@ -616,13 +616,13 @@ void* ChangesInto_BattlePokeData_Alloc(int arc_id, int index_no, int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief	‘f‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğæ‚èo‚µ
+ * @brief	ç´ ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id			ƒq[ƒvID
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	void*			ƒoƒbƒtƒ@
+ * @retval	void*			ãƒãƒƒãƒ•ã‚¡
  *
  */
 //--------------------------------------------------------------
@@ -634,7 +634,7 @@ void* ChangesInto_BattlePokePalData_Alloc(int arc_id, int index_no, int heap_id)
 	int					i;
 	BOOL				ret;
 
-	//ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	col=sys_AllocMemory(heap_id,0x20);
 	buf=ArchiveDataLoadMalloc(arc_id,index_no,heap_id);
 	ret=NNS_G2dGetUnpackedPaletteData(buf,&pd);
@@ -652,7 +652,7 @@ void* ChangesInto_BattlePokePalData_Alloc(int arc_id, int index_no, int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Ô‚¿‚ğl—¶‚µ‚½ƒ|ƒPƒ‚ƒ“ƒf[ƒ^•ÏŠ·
+ * @brief	ã¶ã¡ã‚’è€ƒæ…®ã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å¤‰æ›
  *
  * @param	arc_id	
  * @param	index_no	
@@ -662,9 +662,9 @@ void* ChangesInto_BattlePokePalData_Alloc(int arc_id, int index_no, int heap_id)
  * @param	w	
  * @param	h	
  * @param	buff	
- * @param	rnd				ŒÂ«—”
- * @param	anime			ƒAƒjƒƒtƒ‰ƒO
- * @param	dir				Œü‚«
+ * @param	rnd				å€‹æ€§ä¹±æ•°
+ * @param	anime			ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
+ * @param	dir				å‘ã
  *
  * @retval	none	
  *
@@ -689,7 +689,7 @@ void  Ex_ChangesInto_OAM_from_PokeTex(int arc_id, int index_no, int heap_id, int
 	num = NELEMS(rc);
 	ofs = 0;
 	
-	temp = Ex_ChangesInto_1D_from_2D_Alloc(arc_id, index_no, heap_id, x, y, w, h, rnd, anime, dir, monsno);		///< 1D‚©‚ç2D‚Ö•ÏŠ·
+	temp = Ex_ChangesInto_1D_from_2D_Alloc(arc_id, index_no, heap_id, x, y, w, h, rnd, anime, dir, monsno);		///< 1Dã‹ã‚‰2Dã¸å¤‰æ›
 
 	for (i = 0; i < num; i++){
 		ChangesInto_OAM_from_1D_RC(w, h, &rc[i], &ofs, temp, buff);
@@ -700,16 +700,16 @@ void  Ex_ChangesInto_OAM_from_PokeTex(int arc_id, int index_no, int heap_id, int
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Ô‚¿l—¶ƒ|ƒPƒ‚ƒ“•ÏŠ·
+ * @brief	ã¶ã¡è€ƒæ…®ãƒã‚±ãƒ¢ãƒ³å¤‰æ›
  *
  * @param	arc_id	
  * @param	index_no	
  * @param	heap_id	
  * @param	rc	
  * @param	buff	
- * @param	rnd				ŒÂ«—”
- * @param	anime			ƒAƒjƒƒtƒ‰ƒO
- * @param	dir				Œü‚«
+ * @param	rnd				å€‹æ€§ä¹±æ•°
+ * @param	anime			ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
+ * @param	dir				å‘ã
  *
  * @retval	none	
  *
@@ -723,15 +723,15 @@ void  Ex_ChangesInto_OAM_from_PokeTex_RC(int arc_id, int index_no, int heap_id, 
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Ô‚¿‚ğl—¶‚µ‚½ƒ|ƒPƒ‚ƒ“•ÏŠ·
+ * @brief	ã¶ã¡ã‚’è€ƒæ…®ã—ãŸãƒã‚±ãƒ¢ãƒ³å¤‰æ›
  *
  * @param	arc_id	
  * @param	index_no	
  * @param	heap_id	
  * @param	buff	
- * @param	rnd				ŒÂ«—”
- * @param	anime			ƒAƒjƒƒtƒ‰ƒO
- * @param	dir				Œü‚«
+ * @param	rnd				å€‹æ€§ä¹±æ•°
+ * @param	anime			ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
+ * @param	dir				å‘ã
  *
  * @retval	none	
  *
@@ -751,14 +751,14 @@ void  Ex_ChangesInto_BattlePokeData(int arc_id, int index_no, int heap_id, void*
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Ô‚¿‚ğl—¶‚µ‚½ƒ|ƒPƒ‚ƒ“•ÏŠ·
+ * @brief	ã¶ã¡ã‚’è€ƒæ…®ã—ãŸãƒã‚±ãƒ¢ãƒ³å¤‰æ›
  *
  * @param	arc_id	
  * @param	index_no	
  * @param	heap_id	
- * @param	rnd				ŒÂ«—”
- * @param	anime			ƒAƒjƒƒtƒ‰ƒO
- * @param	dir				Œü‚«
+ * @param	rnd				å€‹æ€§ä¹±æ•°
+ * @param	anime			ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
+ * @param	dir				å‘ã
  *
  * @retval	void*	
  *

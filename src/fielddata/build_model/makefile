@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  Cƒ\[ƒX->ƒoƒCƒiƒŠ[
+# Project:  Cã‚½ãƒ¼ã‚¹->ãƒã‚¤ãƒŠãƒªãƒ¼
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -23,12 +23,12 @@ ROOT_DIR = ../../../../pokemon_dp
 ##include	sourcefile.lst
 
 #----------------------------------------------------------------------------
-#	‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚ð‰Â”\‚É‚·‚é‚½‚ß‚ÌÝ’è
+#	ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã‚’å¯èƒ½ã«ã™ã‚‹ãŸã‚ã®è¨­å®š
 #----------------------------------------------------------------------------
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#‹¤’Ê•Ï”’è‹`
+#å…±é€šå¤‰æ•°å®šç¾©
 include $(DP_ROOT)/commondefs.GF
 
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
@@ -38,7 +38,7 @@ include g3_build
 #----------------------------------------------------------------------------
 #
 #----------------------------------------------------------------------------
-#ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚ðmake clean‘ÎÛ‚ÉÝ’è
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’make cleanå¯¾è±¡ã«è¨­å®š
 LDIRT_CLEAN	= $(TARGET_ARC) $(TARGET_ARC:.narc=.naix) $(MSD_DATA)
 
 LINCLUDES		= $(NITROSDK_ROOT)/include
@@ -50,7 +50,7 @@ IMDCHECKER = $(DP_ROOT)/chkimdver.rb
 CHKIMDTMP = imdchk_log.txt
 CHKIMDVER = 1.6.0.20051121
 #----------------------------------------------------------------------------
-#	ƒc[ƒ‹‚Ö‚ÌƒpƒXŽw’è
+#	ãƒ„ãƒ¼ãƒ«ã¸ã®ãƒ‘ã‚¹æŒ‡å®š
 #----------------------------------------------------------------------------
 LISTMK		= ruby listmk.rb
 MSCONVERTER	= $(DP_ROOT)/convert/imd2mat/imd2mat.exe
@@ -63,37 +63,37 @@ CSVCVTR	= $(DP_ROOT)/convert/exceltool/excelcommaconv.exe
 
 #----------------------------------------------------------------------------
 #
-#	ƒ‹[ƒ‹’è‹`
+#	ãƒ«ãƒ¼ãƒ«å®šç¾©
 #
 #----------------------------------------------------------------------------
 do-build: $(MSD_DATA) $(TARGET_ARC)
 
 $(MSD_DATA): $(BMXLS_DATA)
-	$(MAKE) csvconvert			#build_model.xls‚ðcsvƒRƒ“ƒo[ƒg
+	$(MAKE) csvconvert			#build_model.xlsã‚’csvã‚³ãƒ³ãƒãƒ¼ãƒˆ
 	
 $(TARGET_ARC): $(G3D_IMD) $(BMXLS_DATA)
-	$(MAKE) convert				#ƒ}ƒbƒgƒVƒFƒCƒvƒRƒ“ƒo[ƒg
-	$(MAKE) mklst				#ƒŠƒXƒgì¬
+	$(MAKE) convert				#ãƒžãƒƒãƒˆã‚·ã‚§ã‚¤ãƒ—ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+	$(MAKE) mklst				#ãƒªã‚¹ãƒˆä½œæˆ
 	$(MAKE) imdconv				#IMD TO NSBMD
-	$(MAKE) makearc				#ƒA[ƒJƒCƒu
+	$(MAKE) makearc				#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 	$(MAKE) -C $(AREA_BUILD_MODEL_DIR)
 
-#ƒRƒ“ƒo[ƒ^ŒÄ‚Ño‚µ
+#ã‚³ãƒ³ãƒãƒ¼ã‚¿å‘¼ã³å‡ºã—
 convert:
 	$(MSCONVERTER) $(MSD_DATA) -i $(DATASRC)/
 	
-#IMD‚ðMSBND‚É•ÏŠ·
+#IMDã‚’MSBNDã«å¤‰æ›
 imdconv: $(G3D_IMD:.imd=.nsbmd) 	
 
-#ƒ^[ƒQƒbƒgxls‚ðcsvƒtƒ@ƒCƒ‹‚É•ÏŠ·
+#ã‚¿ãƒ¼ã‚²ãƒƒãƒˆxlsã‚’csvãƒ•ã‚¡ã‚¤ãƒ«ã«å¤‰æ›
 csvconvert:
 	$(CSVCVTR) $(BMXLS_DATA)
 
-#‘ÎÛƒ\[ƒXˆê——ì¬
+#å¯¾è±¡ã‚½ãƒ¼ã‚¹ä¸€è¦§ä½œæˆ
 mklst:
 	$(LISTMK) $(MSD_DATA)
 
-#ƒA[ƒJƒCƒuì¬
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 makearc:
 	nnsarc -i -c -l -n $(TARGET_ARC) -S nsbmd.txt > arc_result.txt
 

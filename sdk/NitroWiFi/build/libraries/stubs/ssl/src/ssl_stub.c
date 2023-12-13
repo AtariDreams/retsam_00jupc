@@ -18,7 +18,7 @@
   CPSi_SslGetCount -> CPSi_SslGetLength
 
   Revision 1.1  2005/09/13 08:40:27  yasu
-  ssl ‚Ì stub ‚ğì¬
+  ssl ã® stub ã‚’ä½œæˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

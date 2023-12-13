@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	vs_demo.h
- * @brief	’ÊM‘Îíƒfƒ‚
+ * @brief	é€šä¿¡å¯¾æˆ¦ãƒ‡ãƒ¢
  * @author	Hiroyuki Nakamura
  * @date	06.04.26
  */
@@ -17,66 +17,66 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 
-// •\Ž¦ˆÊ’u
+// è¡¨ç¤ºä½ç½®
 enum {
-	VSD_PARTY_LEFT1 = 0,	// ¶‘¤ƒp[ƒeƒB‚ÌƒvƒŒƒCƒ„[‚P
-	VSD_PARTY_RIGHT1,		// ‰E‘¤ƒp[ƒeƒB‚ÌƒvƒŒƒCƒ„[‚Q
-	VSD_PARTY_LEFT2,		// ¶‘¤ƒp[ƒeƒB‚ÌƒvƒŒƒCƒ„[‚P
-	VSD_PARTY_RIGHT2,		// ‰E‘¤ƒp[ƒeƒB‚ÌƒvƒŒƒCƒ„[‚Q
+	VSD_PARTY_LEFT1 = 0,	// å·¦å´ãƒ‘ãƒ¼ãƒ†ã‚£ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼‘
+	VSD_PARTY_RIGHT1,		// å³å´ãƒ‘ãƒ¼ãƒ†ã‚£ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼’
+	VSD_PARTY_LEFT2,		// å·¦å´ãƒ‘ãƒ¼ãƒ†ã‚£ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼‘
+	VSD_PARTY_RIGHT2,		// å³å´ãƒ‘ãƒ¼ãƒ†ã‚£ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼’
 	VSD_PARTY_MAX
 };
 
-// ŠO•”ì¬ƒf[ƒ^
+// å¤–éƒ¨ä½œæˆãƒ‡ãƒ¼ã‚¿
 typedef struct {
-	BATTLE_PARAM * bp;				// í“¬ƒpƒ‰ƒ[ƒ^
-	POKEPARTY * pp[VSD_PARTY_MAX];	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	STRBUF * name[VSD_PARTY_MAX];	// ƒvƒŒ[ƒ„[–¼
-	u32	heap;		// ƒq[ƒvID
-	u8	mode;		// ƒfƒ‚ƒ‚[ƒh
-	u8	type;		// ƒfƒ‚ƒ^ƒCƒv
-	u8	result;		// ‘ÎíŒ‹‰Ê
-	u8	end_flg;	// I—¹ŠÄŽ‹ƒtƒ‰ƒO
+	BATTLE_PARAM * bp;				// æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	POKEPARTY * pp[VSD_PARTY_MAX];	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	STRBUF * name[VSD_PARTY_MAX];	// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼å
+	u32	heap;		// ãƒ’ãƒ¼ãƒ—ID
+	u8	mode;		// ãƒ‡ãƒ¢ãƒ¢ãƒ¼ãƒ‰
+	u8	type;		// ãƒ‡ãƒ¢ã‚¿ã‚¤ãƒ—
+	u8	result;		// å¯¾æˆ¦çµæžœ
+	u8	end_flg;	// çµ‚äº†ç›£è¦–ãƒ•ãƒ©ã‚°
 	
-	u8 rec_mode;	// ˜^‰æƒ‚[ƒh
+	u8 rec_mode;	// éŒ²ç”»ãƒ¢ãƒ¼ãƒ‰
 	u8 dummy[3];
 }VS_DEMO_DATA;
 
-// •\Ž¦ƒ‚[ƒh
+// è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰
 enum {
-	VSD_MODE_MULTI = 0,		// ŽQ‰Áƒ|ƒPƒ‚ƒ“Šm”F
-	VSD_MODE_IN,			// ‘ÎíŠJŽn
-	VSD_MODE_END			// ‘ÎíŒ‹‰Ê
+	VSD_MODE_MULTI = 0,		// å‚åŠ ãƒã‚±ãƒ¢ãƒ³ç¢ºèª
+	VSD_MODE_IN,			// å¯¾æˆ¦é–‹å§‹
+	VSD_MODE_END			// å¯¾æˆ¦çµæžœ
 };
 
-// ƒfƒ‚ƒ^ƒCƒv
+// ãƒ‡ãƒ¢ã‚¿ã‚¤ãƒ—
 enum {
-	VSD_TYPE_NORMAL = 0,	// ‘Îíi’Êíj
-	VSD_TYPE_MULTI,			// ‘Îíiƒ}ƒ‹ƒ`j
+	VSD_TYPE_NORMAL = 0,	// å¯¾æˆ¦ï¼ˆé€šå¸¸ï¼‰
+	VSD_TYPE_MULTI,			// å¯¾æˆ¦ï¼ˆãƒžãƒ«ãƒï¼‰
 
-	VSD_TYPE_LEFT = 0,		// ŽQ‰ÁŠm”FE¶iŽ©•ªj
-	VSD_TYPE_RIGHT			// ŽQ‰ÁŠm”FE‰EiŽ©•ªj
+	VSD_TYPE_LEFT = 0,		// å‚åŠ ç¢ºèªãƒ»å·¦ï¼ˆè‡ªåˆ†ï¼‰
+	VSD_TYPE_RIGHT			// å‚åŠ ç¢ºèªãƒ»å³ï¼ˆè‡ªåˆ†ï¼‰
 };
 
-// Œ‹‰Ê
+// çµæžœ
 enum {
-	VSD_RESULT_WIN = 1,		// Ÿ‚¿
-	VSD_RESULT_LOSE,		// •‰‚¯
-	VSD_RESULT_DRAW,		// ˆø‚«•ª‚¯
+	VSD_RESULT_WIN = 1,		// å‹ã¡
+	VSD_RESULT_LOSE,		// è² ã‘
+	VSD_RESULT_DRAW,		// å¼•ãåˆ†ã‘
 };
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒXƒN’Ç‰Á
+ * ã‚¿ã‚¹ã‚¯è¿½åŠ 
  *
- * @param	dat		ƒoƒbƒOƒf[ƒ^
+ * @param	dat		ãƒãƒƒã‚°ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */

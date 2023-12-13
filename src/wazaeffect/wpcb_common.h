@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	wpcb_common.h
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	goto
- * @date	2006.02.12(“ú)
+ * @date	2006.02.12(æ—¥)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -15,7 +15,7 @@
 //--------------------------------------------------------------
 /**
  *
- * @brief	wpcb_xxx.c ‚ª include ‚·‚é‚×‚«ƒwƒbƒ_[ŒQ
+ * @brief	wpcb_xxx.c ãŒ include ã™ã‚‹ã¹ããƒ˜ãƒƒãƒ€ãƒ¼ç¾¤
  *
  */
 //--------------------------------------------------------------
@@ -25,17 +25,17 @@
 
 // -----------------------------------------
 //
-//	 ƒfƒoƒbƒO’è‹` [ éŒ¾Žž‚É—LŒø ]
+//	â–¡ãƒ‡ãƒãƒƒã‚°å®šç¾© [ å®£è¨€æ™‚ã«æœ‰åŠ¹ ]
 //
 // -----------------------------------------
 #ifdef PM_DEBUG
 
-#define WPCB_FLD_POS_MESSAGE		///< ƒtƒB[ƒ‹ƒh‚ÆÀ•W‚ð•\Ž¦‚·‚é
+#define WPCB_FLD_POS_MESSAGE		///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨åº§æ¨™ã‚’è¡¨ç¤ºã™ã‚‹
 
-#define WPCB_AXIS_POS_MSG			///< Ž²•ûŒüˆÊ’u‚Ì•\Ž¦
-#define WPCB_AXIS_CLIENT_TYPE_MSG	///< ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv•\Ž¦
+#define WPCB_AXIS_POS_MSG			///< è»¸æ–¹å‘ä½ç½®ã®è¡¨ç¤º
+#define WPCB_AXIS_CLIENT_TYPE_MSG	///< ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—è¡¨ç¤º
 
-#define WPCB_NONE_DATA_MSG			///< –¢ŽÀ‘•ƒƒbƒZ[ƒW
+#define WPCB_NONE_DATA_MSG			///< æœªå®Ÿè£…ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
 #endif
 

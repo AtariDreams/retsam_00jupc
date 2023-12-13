@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	regulation.h
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒAƒNƒZƒX—pƒwƒbƒ_
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ˜ãƒƒãƒ€
  * @author	k.ohno
  * @date	2006.5.24
  */
@@ -13,31 +13,31 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“No
+///ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³No
 enum{
-	REGULATION_NO_STANDARD,		///<ƒXƒ^ƒ“ƒ_[ƒhƒJƒbƒv
-	REGULATION_NO_FANCY,		///<ƒtƒ@ƒ“ƒV[ƒJƒbƒv
-	REGULATION_NO_LITTLE,		///<ƒŠƒgƒ‹ƒJƒbƒv
-	REGULATION_NO_LIGHT,		///<ƒ‰ƒCƒgƒJƒbƒv
-	REGULATION_NO_DOUBLE,		///<ƒ_ƒuƒ‹ƒJƒbƒv
-	REGULATION_NO_ETC,			///<ƒJƒXƒ^ƒ€ƒJƒbƒv(‚»‚Ì‘¼)
+	REGULATION_NO_STANDARD,		///<ã‚¹ã‚¿ãƒ³ãƒ€ãƒ¼ãƒ‰ã‚«ãƒƒãƒ—
+	REGULATION_NO_FANCY,		///<ãƒ•ã‚¡ãƒ³ã‚·ãƒ¼ã‚«ãƒƒãƒ—
+	REGULATION_NO_LITTLE,		///<ãƒªãƒˆãƒ«ã‚«ãƒƒãƒ—
+	REGULATION_NO_LIGHT,		///<ãƒ©ã‚¤ãƒˆã‚«ãƒƒãƒ—
+	REGULATION_NO_DOUBLE,		///<ãƒ€ãƒ–ãƒ«ã‚«ãƒƒãƒ—
+	REGULATION_NO_ETC,			///<ã‚«ã‚¹ã‚¿ãƒ ã‚«ãƒƒãƒ—(ãã®ä»–)
 	
-	REGULATION_NO_NULL = 0xff,	///<ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“–³‚µ
+	REGULATION_NO_NULL = 0xff,	///<ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç„¡ã—
 };
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
-// * @brief	ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^Žæ“¾
+// * @brief	ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 extern const REGULATION* Data_GetRegulation(SAVEDATA* pSave, int regNo);
-// * @brief	ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ì–¼‘OŽæ“¾
+// * @brief	ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®åå‰å–å¾—
 extern void Data_GetRegulationName(SAVEDATA* pSave, int regNo, STRBUF* pStrBuff, int HeapID);
-//§ŒÀ–³‚µ‚ÌƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^Žæ“¾
+//åˆ¶é™ç„¡ã—ã®ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 extern const REGULATION* Data_GetNoLimitRegulation(void);
-//ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚©‚çƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“NO‚ðŽæ“¾
+//ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³NOã‚’å–å¾—
 extern int Data_GetRegulationNo(const REGULATION *reg);
 
 

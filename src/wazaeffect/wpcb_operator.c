@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	wpcd_operator.c
- * @brief	ÉRÅ[ÉãÉoÉbÉNìùàÍä÷êî
+ * @brief	„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÁµ±‰∏ÄÈñ¢Êï∞
  * @author	goto
- * @date	2006.02.10(ã‡)
+ * @date	2006.02.10(Èáë)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -23,12 +23,12 @@
 
 //#define LOOP_EMIT_DEBUG
 
-static void ECB_Operator_Common(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);				///< ñ{ëÃÇ©ÇÁíºê⁄åƒÇŒÇÍÇÈ
-static void ECB_Operator_Position(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);			///< ç¿ïWëÄçÏ
-static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);				///< ï˚å¸ëÄçÏ
-static void ECB_Operator_Field(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);				///< ÉtÉBÅ[ÉãÉhëÄçÏ
-static void ECB_Operator_Camera(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);				///< ÉJÉÅÉâëÄçÏ
-static void ECB_Operator_Priority(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);			///< óDêÊìxêÿÇËë÷Ç¶
+static void ECB_Operator_Common(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);				///< Êú¨‰Ωì„Åã„ÇâÁõ¥Êé•Âëº„Å∞„Çå„Çã
+static void ECB_Operator_Position(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);			///< Â∫ßÊ®ôÊìç‰Ωú
+static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);				///< ÊñπÂêëÊìç‰Ωú
+static void ECB_Operator_Field(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);				///< „Éï„Ç£„Éº„É´„ÉâÊìç‰Ωú
+static void ECB_Operator_Camera(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);				///< „Ç´„É°„É©Êìç‰Ωú
+static void ECB_Operator_Priority(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);			///< ÂÑ™ÂÖàÂ∫¶Âàá„ÇäÊõø„Åà
 
 static void ECB_Tool_ExDataCheckSet(ECB_OPERATOR_DATA* odp, int client_no, VecFx32* vec);
 static void ECB_Tool_ExDataSet(ECB_OPERATOR_DATA* odp, VecFx32* vec);
@@ -36,13 +36,13 @@ static void ECB_Tool_ExDataSet(ECB_OPERATOR_DATA* odp, VecFx32* vec);
 // =============================================================================
 //
 //
-//	Å° private
+//	‚ñ† private
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ÉRÅ[ÉãÉoÉbÉNëÄçÏä÷êî - Common
+ * @brief	„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÊìç‰ΩúÈñ¢Êï∞ - Common
  *
  * @param	wsp	
  * @param	emit
@@ -54,7 +54,7 @@ static void ECB_Tool_ExDataSet(ECB_OPERATOR_DATA* odp, VecFx32* vec);
 //--------------------------------------------------------------
 static void ECB_Operator_Common(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 {
-	///< ç¿ïWëÄçÏ
+	///< Â∫ßÊ®ôÊìç‰Ωú
 	{
 		if (odp->mode[ ECB_MODE_POS ] != OPERATOR_POS_NONE){
 			
@@ -63,7 +63,7 @@ static void ECB_Operator_Common(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		}
 	}
 	
-	///< ï˚å¸ëÄçÏ
+	///< ÊñπÂêëÊìç‰Ωú
 	{
 		if (odp->mode[ ECB_MODE_AXIS ] != OPERATOR_AXIS_NONE){
 		
@@ -72,7 +72,7 @@ static void ECB_Operator_Common(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		}
 	}
 	
-	///< ÉtÉBÅ[ÉãÉhëÄçÏ
+	///< „Éï„Ç£„Éº„É´„ÉâÊìç‰Ωú
 	{
 		if (odp->mode[ ECB_MODE_FIELD ] != OPERATOR_FLD_NONE){
 			
@@ -81,7 +81,7 @@ static void ECB_Operator_Common(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		}		
 	}
 	
-	///< ÉJÉÅÉâëÄçÏ
+	///< „Ç´„É°„É©Êìç‰Ωú
 	{
 	#if 1
 		
@@ -96,7 +96,7 @@ static void ECB_Operator_Common(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	#endif		
 	}
 	
-	///< óDêÊèáà ëÄçÏ
+	///< ÂÑ™ÂÖàÈ†Ü‰ΩçÊìç‰Ωú
 	{
 		if (odp->mode[ ECB_MODE_PRI ] != OPERATOR_PRI_NONE){
 
@@ -110,7 +110,7 @@ static void ECB_Operator_Common(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 //	DebugParticle_EmitMove2(odp->ptc, emit, odp->wsp);
 }
 
-///< ñhå‰ë§ÇÃíÜêS(BBÇÃà íu)
+///< Èò≤Âæ°ÂÅ¥„ÅÆ‰∏≠ÂøÉ(BB„ÅÆ‰ΩçÁΩÆ)
 static void DFsidePos(EMIT_PTR emit, ECB_OPERATOR_DATA* odp, VecFx32* vec)
 {
 	WE_SYS_PTR wsp;
@@ -137,7 +137,7 @@ static void DFsidePos(EMIT_PTR emit, ECB_OPERATOR_DATA* odp, VecFx32* vec)
 	WET_PokeParticlePosGet_ClientType(client_type, vec, WES_ContestFlag_Get(wsp), camera_type);
 }
 
-///< çUåÇë§ÇÃíÜêS(AAÇÃà íu)
+///< ÊîªÊíÉÂÅ¥„ÅÆ‰∏≠ÂøÉ(AA„ÅÆ‰ΩçÁΩÆ)
 static void ATsidePos(EMIT_PTR emit, ECB_OPERATOR_DATA* odp, VecFx32* vec)
 {
 	WE_SYS_PTR wsp;
@@ -167,7 +167,7 @@ static void ATsidePos(EMIT_PTR emit, ECB_OPERATOR_DATA* odp, VecFx32* vec)
 
 //--------------------------------------------------------------
 /**
- * @brief	ç¿ïWëÄçÏä÷êî
+ * @brief	Â∫ßÊ®ôÊìç‰ΩúÈñ¢Êï∞
  *
  * @param	emit	
  * @param	odp	
@@ -182,46 +182,46 @@ static void ECB_Operator_Position(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 	switch(odp->mode[ ECB_MODE_POS ]){
 	case OPERATOR_POS_NONE:
-		///< ç¿ïWéwíËñ≥Çµ Ç∆ÇËÇ†Ç¶Ç∏ÅAâΩÇ‡ÇµÇ»Ç¢
+		///< Â∫ßÊ®ôÊåáÂÆöÁÑ°„Åó „Å®„Çä„ÅÇ„Åà„Åö„ÄÅ‰Ωï„ÇÇ„Åó„Å™„ÅÑ
 		break;
 	
 	case OPERATOR_POS_SP:
-		///< äJénë§ÇÃç¿ïWÇéwíË
+		///< ÈñãÂßãÂÅ¥„ÅÆÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticlePosGet(odp->wsp, odp->s_client, &vec);
 		break;
 	
 	case OPERATOR_POS_EP:
-		///< èIóπë§ÇÃç¿ïWÇéwíË
+		///< ÁµÇ‰∫ÜÂÅ¥„ÅÆÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticlePosGet(odp->wsp, odp->e_client, &vec);
 		break;
 	
 	case OPERATOR_POS_LSP:
-		///< äJénë§ÇÃÉåÅ[ÉUÅ[ç¿ïWÇéwíË
+		///< ÈñãÂßãÂÅ¥„ÅÆ„É¨„Éº„Ç∂„ÉºÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticleLaserPosGet(odp->wsp, odp->s_client, &vec);
 		break;
 	
 	case OPERATOR_POS_LEP:
-		///< èIóπë§ÇÃÉåÅ[ÉUÅ[ç¿ïWÇéwíË
+		///< ÁµÇ‰∫ÜÂÅ¥„ÅÆ„É¨„Éº„Ç∂„ÉºÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticleLaserPosGet(odp->wsp, odp->e_client, &vec);
 		break;
 				
 	case OPERATOR_POS_L2SP:
-		///< äJénë§ÇÃÉåÅ[ÉUÅ[ç¿ïWÇéwíË
+		///< ÈñãÂßãÂÅ¥„ÅÆ„É¨„Éº„Ç∂„ÉºÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticleLaser2PosGet(odp->wsp, odp->s_client, &vec);
 		break;
 	
 	case OPERATOR_POS_L2EP:
-		///< èIóπë§ÇÃÉåÅ[ÉUÅ[ç¿ïWÇéwíË
+		///< ÁµÇ‰∫ÜÂÅ¥„ÅÆ„É¨„Éº„Ç∂„ÉºÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticleLaser2PosGet(odp->wsp, odp->e_client, &vec);
 		break;
 				
 	case OPERATOR_POS_L3SP:
-		///< äJénë§ÇÃÉåÅ[ÉUÅ[ç¿ïWÇéwíË
+		///< ÈñãÂßãÂÅ¥„ÅÆ„É¨„Éº„Ç∂„ÉºÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticleLaser3PosGet(odp->wsp, odp->s_client, &vec);
 		break;
 	
 	case OPERATOR_POS_L3EP:
-		///< èIóπë§ÇÃÉåÅ[ÉUÅ[ç¿ïWÇéwíË
+		///< ÁµÇ‰∫ÜÂÅ¥„ÅÆ„É¨„Éº„Ç∂„ÉºÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticleLaser3PosGet(odp->wsp, odp->e_client, &vec);
 		break;
 	
@@ -274,17 +274,17 @@ static void ECB_Operator_Position(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		break;
 		
 	case OPERATOR_POS_RSP:
-		///< äJénë§ÇÃÉäÉìÉOç¿ïWÇéwíË
+		///< ÈñãÂßãÂÅ¥„ÅÆ„É™„É≥„Ç∞Â∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticleRingPosGet(odp->wsp, odp->s_client, &vec);
 		break;
 	
 	case OPERATOR_POS_REP:
-		///< èIóπë§ÇÃÉäÉìÉOç¿ïWÇéwíË
+		///< ÁµÇ‰∫ÜÂÅ¥„ÅÆ„É™„É≥„Ç∞Â∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticleRingPosGet(odp->wsp, odp->e_client, &vec);
 		break;
 		
 	case OPERATOR_POS_SET:
-		///< ÉÜÅ[ÉUÅ[éwíËç¿ïWÇê›íË
+		///< „É¶„Éº„Ç∂„ÉºÊåáÂÆöÂ∫ßÊ®ô„ÇíË®≠ÂÆö
 		{
 			int pos[ OPERATOR_POS_PARAM_MAX + 1];
 
@@ -292,42 +292,42 @@ static void ECB_Operator_Position(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 			odp->reverce_flag = ECB_Operator_ReverceFlag(odp);			
 			VEC_Set(&vec, pos[1],pos[2],pos[3]);
 			
-			if (pos[0] == OPERATOR_EX_REVERCE_OFF){				///< îΩì]ÇµÇ»Ç¢
+			if (pos[0] == OPERATOR_EX_REVERCE_OFF){				///< ÂèçËª¢„Åó„Å™„ÅÑ
 				odp->reverce_flag = OPERATOR_REVERCE_FLAG_OFF;
 			}
 
 			vec.x *= odp->reverce_flag;
 			vec.y *= odp->reverce_flag;
-			//vec.z *= odp->reverce_flag;						///< âúçsÇ´Ç™ïœÇÌÇÈÇÃÇ≈îΩì]ñ≥Çµ
+			//vec.z *= odp->reverce_flag;						///< Â••Ë°å„Åç„ÅåÂ§â„Çè„Çã„ÅÆ„ÅßÂèçËª¢ÁÑ°„Åó
 		}
 		break;
 
 	case OPERATOR_POS_SP_OFS:
-		///< äJénë§ÇÃç¿ïWÇéwíË
+		///< ÈñãÂßãÂÅ¥„ÅÆÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticlePosGet(odp->wsp, odp->s_client, &vec);
 		ECB_Tool_ExDataSet(odp, &vec);
 		break;
 	
 	case OPERATOR_POS_EP_OFS:
-		///< èIóπë§ÇÃç¿ïWÇéwíË
+		///< ÁµÇ‰∫ÜÂÅ¥„ÅÆÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		WET_PokeParticlePosGet(odp->wsp, odp->e_client, &vec);
 		ECB_Tool_ExDataSet(odp, &vec);
 		break;
 	
 	case OPERATOR_POS_SP_OFS_ALL:
-		///< äJénë§ÇÃÉfÅ[É^éÊìæÅ{ÉIÉtÉZÉbÉg
+		///< ÈñãÂßãÂÅ¥„ÅÆ„Éá„Éº„ÇøÂèñÂæóÔºã„Ç™„Éï„Çª„ÉÉ„Éà
 		WET_PokeParticlePosGet(odp->wsp, odp->s_client, &vec);
 		ECB_Tool_ExDataCheckSet(odp, odp->s_client, &vec);
 		break;
 	
 	case OPERATOR_POS_EP_OFS_ALL:
-		///< èIóπë§ÇÃÉfÅ[É^éÊìæÅ{ÉIÉtÉZÉbÉg
+		///< ÁµÇ‰∫ÜÂÅ¥„ÅÆ„Éá„Éº„ÇøÂèñÂæóÔºã„Ç™„Éï„Çª„ÉÉ„Éà
 		WET_PokeParticlePosGet(odp->wsp, odp->e_client, &vec);
 		ECB_Tool_ExDataCheckSet(odp, odp->e_client, &vec);
 		break;
 		
 	case OPERATOR_POS_AT_SIDE_OFS:
-		///< äJénë§ÇÃç¿ïWÇéwíË
+		///< ÈñãÂßãÂÅ¥„ÅÆÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		{
 		//	WET_PokeParticlePosGet(odp->wsp, odp->s_client, &vec);
 			ATsidePos(emit, odp, &vec);
@@ -336,7 +336,7 @@ static void ECB_Operator_Position(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		break;
 	
 	case OPERATOR_POS_DF_SIDE_OFS:
-		///< èIóπë§ÇÃç¿ïWÇéwíË
+		///< ÁµÇ‰∫ÜÂÅ¥„ÅÆÂ∫ßÊ®ô„ÇíÊåáÂÆö
 		{
 		//	WET_PokeParticlePosGet(odp->wsp, odp->e_client, &vec);
 			DFsidePos(emit, odp, &vec);
@@ -345,14 +345,14 @@ static void ECB_Operator_Position(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		break;
 		
 	case OPERATOR_POS_145_CON:
-		///< ÉÜÅ[ÉUÅ[éwíËç¿ïWÇê›íË
+		///< „É¶„Éº„Ç∂„ÉºÊåáÂÆöÂ∫ßÊ®ô„ÇíË®≠ÂÆö
 		{
 			VEC_Set(&vec, 11488, 0, 0);
 		}
 		break;
 			
 	case OPERATOR_POS_389_CON:
-		///< ÉÜÅ[ÉUÅ[éwíËç¿ïWÇê›íË
+		///< „É¶„Éº„Ç∂„ÉºÊåáÂÆöÂ∫ßÊ®ô„ÇíË®≠ÂÆö
 		{
 			VEC_Set(&vec, -5000, -6000, 0);
 		}
@@ -429,8 +429,8 @@ static void ECB_Operator_Position(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		break;
 	}
 	
-	odp->pos = vec;												///< é¿ç€ÇÃç¿ïWÇï€ë∂
-	SPL_SetEmitterPositionX(emit, vec.x);						///< ç¿ïWîΩâf
+	odp->pos = vec;												///< ÂÆüÈöõ„ÅÆÂ∫ßÊ®ô„Çí‰øùÂ≠ò
+	SPL_SetEmitterPositionX(emit, vec.x);						///< Â∫ßÊ®ôÂèçÊò†
 	SPL_SetEmitterPositionY(emit, vec.y);
 	SPL_SetEmitterPositionZ(emit, vec.z);
 }
@@ -457,7 +457,7 @@ static const TAXIS_DATA	AxisPosTable406[ 6 ][ 6 ];
 
 //--------------------------------------------------------------
 /**
- * @brief	é≤ï˚å¸ëÄçÏä÷êî
+ * @brief	Ëª∏ÊñπÂêëÊìç‰ΩúÈñ¢Êï∞
  *
  * @param	emit	
  * @param	odp	
@@ -472,18 +472,18 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	int df_type;
 	VecFx16 axis;
 	
-	at_type = WET_ClientTypeGet(odp->wsp, odp->s_client);	///< çUåÇë§É^ÉCÉv
-	df_type = WET_ClientTypeGet(odp->wsp, odp->e_client);	///< ëŒè€ë§É^ÉCÉv
+	at_type = WET_ClientTypeGet(odp->wsp, odp->s_client);	///< ÊîªÊíÉÂÅ¥„Çø„Ç§„Éó
+	df_type = WET_ClientTypeGet(odp->wsp, odp->e_client);	///< ÂØæË±°ÂÅ¥„Çø„Ç§„Éó
 
 	switch(odp->mode[ ECB_MODE_AXIS ]){
 	case OPERATOR_AXIS_NONE:
-		///< ï˚å¸é≤éwíËñ≥Çµ
+		///< ÊñπÂêëËª∏ÊåáÂÆöÁÑ°„Åó
 		VEC_Fx16Set(&axis, 0, 0, 0);
 		break;
 
 	case OPERATOR_AXIS_AT:
 	case OPERATOR_AXIS_DF:
-		///< çUåÇÅAñhå‰ë§äÓñ{é≤ê›íË			
+		///< ÊîªÊíÉ„ÄÅÈò≤Âæ°ÂÅ¥Âü∫Êú¨Ëª∏Ë®≠ÂÆö			
 		if(WES_ContestFlag_Get(odp->wsp) == TRUE){
 			
 			if (odp->mode[ ECB_MODE_TARGET ] == OPERATOR_TARGET_DF){
@@ -535,7 +535,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		
 	case OPERATOR_AXIS_AT_3:
 	case OPERATOR_AXIS_DF_3:
-		///< çUåÇÅAñhå‰ë§äÓñ{é≤ê›íË			
+		///< ÊîªÊíÉ„ÄÅÈò≤Âæ°ÂÅ¥Âü∫Êú¨Ëª∏Ë®≠ÂÆö			
 		if(WES_ContestFlag_Get(odp->wsp) == TRUE){
 			
 			if (odp->mode[ ECB_MODE_TARGET ] == OPERATOR_TARGET_DF){
@@ -552,7 +552,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 	case OPERATOR_AXIS_AT_095:
 	case OPERATOR_AXIS_DF_095:
-		///< çUåÇÅAñhå‰ë§äÓñ{é≤ê›íË			
+		///< ÊîªÊíÉ„ÄÅÈò≤Âæ°ÂÅ¥Âü∫Êú¨Ëª∏Ë®≠ÂÆö			
 		if(WES_ContestFlag_Get(odp->wsp) == TRUE){
 			VEC_Fx16Set(&axis, -2336, +1440, 736);
 		}
@@ -563,7 +563,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		
 	case OPERATOR_AXIS_AT_161:
 	case OPERATOR_AXIS_DF_161:
-		///< çUåÇÅAñhå‰ë§äÓñ{é≤ê›íË			
+		///< ÊîªÊíÉ„ÄÅÈò≤Âæ°ÂÅ¥Âü∫Êú¨Ëª∏Ë®≠ÂÆö			
 		if(WES_ContestFlag_Get(odp->wsp) == TRUE){
 			VEC_Fx16Set(&axis, -2936, +1440, 736);
 		}
@@ -574,7 +574,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		
 	case OPERATOR_AXIS_AT_308:
 	case OPERATOR_AXIS_DF_308:
-		///< çUåÇÅAñhå‰ë§äÓñ{é≤ê›íË			
+		///< ÊîªÊíÉ„ÄÅÈò≤Âæ°ÂÅ¥Âü∫Êú¨Ëª∏Ë®≠ÂÆö			
 		if(WES_ContestFlag_Get(odp->wsp) == TRUE){
 			VEC_Fx16Set(&axis, -2336, +1440, 736);
 		}
@@ -585,7 +585,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 				
 	case OPERATOR_AXIS_AT_304:
 	case OPERATOR_AXIS_DF_304:
-		///< çUåÇÅAñhå‰ë§äÓñ{é≤ê›íË			
+		///< ÊîªÊíÉ„ÄÅÈò≤Âæ°ÂÅ¥Âü∫Êú¨Ëª∏Ë®≠ÂÆö			
 		if(WES_ContestFlag_Get(odp->wsp) == TRUE){
 			VEC_Fx16Set(&axis, -2336, +1440, 736);
 		}
@@ -596,7 +596,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		
 	case OPERATOR_AXIS_AT_320:
 	case OPERATOR_AXIS_DF_320:
-		///< çUåÇÅAñhå‰ë§äÓñ{é≤ê›íË			
+		///< ÊîªÊíÉ„ÄÅÈò≤Âæ°ÂÅ¥Âü∫Êú¨Ëª∏Ë®≠ÂÆö			
 		if(WES_ContestFlag_Get(odp->wsp) == TRUE){
 			VEC_Fx16Set(&axis, -2336, +1440, 736);
 		}
@@ -607,7 +607,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		
 	case OPERATOR_AXIS_AT_406:
 	case OPERATOR_AXIS_DF_406:
-		///< çUåÇÅAñhå‰ë§äÓñ{é≤ê›íË			
+		///< ÊîªÊíÉ„ÄÅÈò≤Âæ°ÂÅ¥Âü∫Êú¨Ëª∏Ë®≠ÂÆö			
 		if(WES_ContestFlag_Get(odp->wsp) == TRUE){
 			VEC_Fx16Set(&axis, -4336, +1440, 736);
 		}
@@ -649,7 +649,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 				c_b[i] = def[5][i];
 				c_d[i] = def[6][i];
 			}
-			///< ÉRÉìÉeÉXÉg
+			///< „Ç≥„É≥„ÉÜ„Çπ„Éà
 			if(WES_ContestFlag_Get(odp->wsp) == TRUE){
 				for (i = 0; i < 4; i++){
 					aa_bb[i] = con_def[i];
@@ -668,7 +668,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 				break;
 				
 			case CLIENT_TYPE_BB:
-				if (aa_bb[3] == OPERATOR_EX_REVERCE_OFF){			///< îΩì]ñ≥Çµ
+				if (aa_bb[3] == OPERATOR_EX_REVERCE_OFF){			///< ÂèçËª¢ÁÑ°„Åó
 					VEC_Fx16Set(&axis, aa_bb[0], aa_bb[1], aa_bb[2]);
 				}
 				else {
@@ -690,7 +690,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 				
 			case CLIENT_TYPE_B:
 				if(df_type == CLIENT_TYPE_A){
-					if (a_b[3] == OPERATOR_EX_REVERCE_OFF){			///< îΩì]ñ≥Çµ
+					if (a_b[3] == OPERATOR_EX_REVERCE_OFF){			///< ÂèçËª¢ÁÑ°„Åó
 						VEC_Fx16Set(&axis, a_b[0], a_b[1], a_b[2]);
 					}
 					else {
@@ -698,7 +698,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 					}
 				}
 				else if(df_type == CLIENT_TYPE_D){
-					if (a_c[3] == OPERATOR_EX_REVERCE_OFF){			///< îΩì]ñ≥Çµ
+					if (a_c[3] == OPERATOR_EX_REVERCE_OFF){			///< ÂèçËª¢ÁÑ°„Åó
 						VEC_Fx16Set(&axis, -c_a[0], -c_a[1], -c_a[2]);
 					}
 					else {
@@ -706,7 +706,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 					}
 				}
 				else{	//CLIENT_TYPE_C
-					if (c_b[3] == OPERATOR_EX_REVERCE_OFF){			///< îΩì]ñ≥Çµ
+					if (c_b[3] == OPERATOR_EX_REVERCE_OFF){			///< ÂèçËª¢ÁÑ°„Åó
 						VEC_Fx16Set(&axis, c_b[0], c_b[1], c_b[2]);
 					}
 					else {
@@ -729,7 +729,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 				
 			case CLIENT_TYPE_D:
 				if(df_type == CLIENT_TYPE_B){
-					if (a_b[3] == OPERATOR_EX_REVERCE_OFF){			///< îΩì]ñ≥Çµ
+					if (a_b[3] == OPERATOR_EX_REVERCE_OFF){			///< ÂèçËª¢ÁÑ°„Åó
 						VEC_Fx16Set(&axis, c_a[0], c_a[1], c_a[2]);
 					}
 					else {
@@ -737,7 +737,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 					}
 				}
 				else if(df_type == CLIENT_TYPE_A){
-					if (a_b[3] == OPERATOR_EX_REVERCE_OFF){			///< îΩì]ñ≥Çµ
+					if (a_b[3] == OPERATOR_EX_REVERCE_OFF){			///< ÂèçËª¢ÁÑ°„Åó
 						VEC_Fx16Set(&axis, a_d[0], a_d[1], a_d[2]);
 					}
 					else {
@@ -745,7 +745,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 					}
 				}
 				else{	//CLIENT_TYPE_C
-					if (a_b[3] == OPERATOR_EX_REVERCE_OFF){			///< îΩì]ñ≥Çµ
+					if (a_b[3] == OPERATOR_EX_REVERCE_OFF){			///< ÂèçËª¢ÁÑ°„Åó
 						VEC_Fx16Set(&axis, c_d[0], c_d[1], c_d[2]);
 					}
 					else {
@@ -758,22 +758,22 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		break;
 	
 	case OPERATOR_AXIS_SET:
-		///< ÉÜÅ[ÉUÅ[éwíËé≤ê›íË
+		///< „É¶„Éº„Ç∂„ÉºÊåáÂÆöËª∏Ë®≠ÂÆö
 		VEC_Fx16Set(&axis, -800, 1200, 500);
 		break;
 		
 	case OPERATOR_AXIS_145_CON:
-		///< ÉÜÅ[ÉUÅ[éwíËé≤ê›íË
+		///< „É¶„Éº„Ç∂„ÉºÊåáÂÆöËª∏Ë®≠ÂÆö
 		VEC_Fx16Set(&axis, -3410, -2644, 0);
 		break;
 		
 	case OPERATOR_AXIS_389_CON:
-		///< ÉÜÅ[ÉUÅ[éwíËé≤ê›íË
+		///< „É¶„Éº„Ç∂„ÉºÊåáÂÆöËª∏Ë®≠ÂÆö
 		VEC_Fx16Set(&axis, -3440, 1952, 0);
 		break;
 	
 	case OPERATOR_AXIS_194:
-		///< Ç›ÇøÇ∏ÇÍ
+		///< „Åø„Å°„Åö„Çå
 		if (WET_SideCheck(odp->wsp, odp->s_client) == SIDE_MINE){
 			VEC_Fx16Set(&axis, 3776, 2112, 0);
 		}
@@ -821,7 +821,7 @@ static void ECB_Operator_Axiss(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉtÉBÅ[ÉãÉhëÄçÏ
+ * @brief	„Éï„Ç£„Éº„É´„ÉâÊìç‰Ωú
  *
  * @param	emit	
  * @param	odp	
@@ -852,7 +852,7 @@ static void ECB_Operator_Field(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉJÉÅÉâëÄçÏ
+ * @brief	„Ç´„É°„É©Êìç‰Ωú
  *
  * @param	emit	
  * @param	odp	
@@ -866,7 +866,7 @@ static void ECB_Operator_Camera(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	#if 0
 	/* ---
 	
-		à¯êîÇ≈Ç‡ÇÁÇ§ÉÇÅ[ÉhÇ™ÇªÇÃÇ‹Ç‹ìÆçÏä÷êîÇ…Ç»ÇÈ
+		ÂºïÊï∞„Åß„ÇÇ„Çâ„ÅÜ„É¢„Éº„Éâ„Åå„Åù„ÅÆ„Åæ„ÅæÂãï‰ΩúÈñ¢Êï∞„Å´„Å™„Çã
 		
 	--- */
 	#endif
@@ -878,7 +878,7 @@ static void ECB_Operator_Camera(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 //--------------------------------------------------------------
 /**
- * @brief	óDêÊìxêÿÇËë÷Ç¶
+ * @brief	ÂÑ™ÂÖàÂ∫¶Âàá„ÇäÊõø„Åà
  *
  * @param	emit	
  * @param	odp	
@@ -893,8 +893,8 @@ static void ECB_Operator_Priority(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	#if 0
 	/* ---
 	
-		ç¿ïWê›íËå„Ç…ÅAZÇÃÇ›éwíËóDêÊìxêÿÇËë÷Ç¶Ç≈êÿÇËë÷Ç¶ÇÈ
-		ÉJÉÅÉâÇÕìßéãéÀâe[GF_CAMERA_PERSPECTIV]ÇÃÇ›óLå¯
+		Â∫ßÊ®ôË®≠ÂÆöÂæå„Å´„ÄÅZ„ÅÆ„ÅøÊåáÂÆöÂÑ™ÂÖàÂ∫¶Âàá„ÇäÊõø„Åà„ÅßÂàá„ÇäÊõø„Åà„Çã
+		„Ç´„É°„É©„ÅØÈÄèË¶ñÂ∞ÑÂΩ±[GF_CAMERA_PERSPECTIV]„ÅÆ„ÅøÊúâÂäπ
 	
 	--- */
 	#endif
@@ -904,8 +904,8 @@ static void ECB_Operator_Priority(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	int df_type;
 	int fb_check = 0;
 	
-	at_type = WET_ClientTypeGet(odp->wsp, odp->s_client);	///< çUåÇë§É^ÉCÉv
-	df_type = WET_ClientTypeGet(odp->wsp, odp->e_client);	///< ëŒè€ë§É^ÉCÉv
+	at_type = WET_ClientTypeGet(odp->wsp, odp->s_client);	///< ÊîªÊíÉÂÅ¥„Çø„Ç§„Éó
+	df_type = WET_ClientTypeGet(odp->wsp, odp->e_client);	///< ÂØæË±°ÂÅ¥„Çø„Ç§„Éó
 	
 	switch(df_type){
 	case CLIENT_TYPE_AA:
@@ -948,7 +948,7 @@ static void ECB_Operator_Priority(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
     // MatchComment: dummied out
 	//if (Particle_CameraTypeGet(odp->ptc) != GF_CAMERA_PERSPECTIV){
-	//	OS_Printf("operator pri ê≥éÀâeÇ≈óDêÊìxëÄçÏÇ™çsÇ»ÇÌÇÍÇ‹ÇµÇΩ -- îΩâfÇ≥ÇÍÇ‹ÇπÇÒÅB\n");
+	//	OS_Printf("operator pri Ê≠£Â∞ÑÂΩ±„ÅßÂÑ™ÂÖàÂ∫¶Êìç‰Ωú„ÅåË°å„Å™„Çè„Çå„Åæ„Åó„Åü -- ÂèçÊò†„Åï„Çå„Åæ„Åõ„Çì„ÄÇ\n");
 	//}
 
 	SPL_SetEmitterPositionZ(emit, z);
@@ -958,19 +958,19 @@ static void ECB_Operator_Priority(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 // =============================================================================
 //
 //
-//	Å° public 
+//	‚ñ† public 
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ÉRÅ[ÉãÉoÉbÉNëÄçÏä÷êî
+ * @brief	„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÊìç‰ΩúÈñ¢Êï∞
  *
  * @param	emit	
  *
  * @retval	none	
  *
- *	ä÷êîÇéwíËÇ∑ÇÈÇ±Ç∆Ç≈Ç∑Ç◊ÇƒÇÃëÄçÏÇà¯Ç´éÛÇØÇÈÇ±Ç∆Ç™â¬î\
+ *	Èñ¢Êï∞„ÇíÊåáÂÆö„Åô„Çã„Åì„Å®„Åß„Åô„Åπ„Å¶„ÅÆÊìç‰Ωú„ÇíÂºï„ÅçÂèó„Åë„Çã„Åì„Å®„ÅåÂèØËÉΩ
  *
  */
 //--------------------------------------------------------------
@@ -985,39 +985,39 @@ void ECB_Operator(EMIT_PTR emit)
 	odp->wsp = wsp;
 	odp->ptc = WeSysPTCPointerGet(odp->wsp);
 
-	///< ëÄçÏÇ∑ÇÈÉÇÅ[ÉhÇéÊìæÇ∑ÇÈ
+	///< Êìç‰Ωú„Åô„Çã„É¢„Éº„Éâ„ÇíÂèñÂæó„Åô„Çã
 	WeSysExDataGet(odp->wsp, odp->mode, ECB_MODE_NUM);
 
-	///< É^Å[ÉQÉbÉgéÊìæ
+	///< „Çø„Éº„Ç≤„ÉÉ„ÉàÂèñÂæó
 	{
 		switch(odp->mode[ ECB_MODE_TARGET ]){
 		case OPERATOR_TARGET_NONE:
 		default:
-			///< ëŒè€éwíËÇ™ñ≥Ç¢èÍçá
+			///< ÂØæË±°ÊåáÂÆö„ÅåÁÑ°„ÅÑÂ†¥Âêà
 			odp->s_client	= WeSysATNoGet(odp->wsp);
 			odp->e_client	= WeSysDFNoGet(odp->wsp);
 			break;
 
 		case OPERATOR_TARGET_AT:
-			///< ëŒè€Ç™é©ï™ÇÃèÍçá
+			///< ÂØæË±°„ÅåËá™ÂàÜ„ÅÆÂ†¥Âêà
 			odp->s_client	= WeSysDFNoGet(odp->wsp);
 			odp->e_client	= WeSysATNoGet(odp->wsp);
 			break;
 
 		case OPERATOR_TARGET_DF:
-			///< ëŒè€Ç™ëäéËÇÃèÍçá
+			///< ÂØæË±°„ÅåÁõ∏Êâã„ÅÆÂ†¥Âêà
 			odp->s_client	= WeSysATNoGet(odp->wsp);
 			odp->e_client	= WeSysDFNoGet(odp->wsp);
 			break;
 		
 		case OPERATOR_TARGET_AT_SIDE:
-			///< ëŒè€Ç™é©ï™ÇÃèÍçá
+			///< ÂØæË±°„ÅåËá™ÂàÜ„ÅÆÂ†¥Âêà
 			odp->s_client	= WeSysDFNoGet(odp->wsp);
 			odp->e_client	= WeSysATNoGet(odp->wsp);
 			break;
 
 		case OPERATOR_TARGET_DF_SIDE:
-			///< ëŒè€Ç™ëäéËÇÃèÍçá
+			///< ÂØæË±°„ÅåÁõ∏Êâã„ÅÆÂ†¥Âêà
 			odp->s_client	= WeSysATNoGet(odp->wsp);
 			odp->e_client	= WeSysDFNoGet(odp->wsp);
 			break;
@@ -1038,7 +1038,7 @@ void ECB_Operator(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief	îΩì]ÉtÉâÉOéÊìæä÷êî
+ * @brief	ÂèçËª¢„Éï„É©„Ç∞ÂèñÂæóÈñ¢Êï∞
  *
  * @param	we_sys	
  * @param	odp	
@@ -1113,7 +1113,7 @@ static void ECB_Tool_ExDataCheckSet(ECB_OPERATOR_DATA* odp, int client_no, VecFx
 	odp->reverce_flag = ECB_Operator_ReverceFlag(odp);			
 	VEC_Set(&ofs, pos[1],pos[2],pos[3]);
 	
-	if (pos[0] == OPERATOR_EX_REVERCE_OFF){				///< îΩì]ÇµÇ»Ç¢
+	if (pos[0] == OPERATOR_EX_REVERCE_OFF){				///< ÂèçËª¢„Åó„Å™„ÅÑ
 		odp->reverce_flag = OPERATOR_REVERCE_FLAG_OFF;
 	}
 	ofs.x *= odp->reverce_flag;
@@ -1134,7 +1134,7 @@ static void ECB_Tool_ExDataSet(ECB_OPERATOR_DATA* odp, VecFx32* vec)
 	odp->reverce_flag = ECB_Operator_ReverceFlag(odp);			
 	VEC_Set(&ofs, pos[1],pos[2],pos[3]);
 	
-	if (pos[0] == OPERATOR_EX_REVERCE_OFF){				///< îΩì]ÇµÇ»Ç¢
+	if (pos[0] == OPERATOR_EX_REVERCE_OFF){				///< ÂèçËª¢„Åó„Å™„ÅÑ
 		odp->reverce_flag = OPERATOR_REVERCE_FLAG_OFF;
 	}
 	ofs.x *= odp->reverce_flag;

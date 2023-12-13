@@ -15,25 +15,25 @@
   do-indent
 
   Revision 1.8  2005/04/14 06:52:03  ida
-  SND_COMMAND_PREPARE_SEQコマンドの追加
+  SND_COMMAND_PREPARE_SEQ繧ｳ繝槭Φ繝峨�ｮ霑ｽ蜉
 
   Revision 1.7  2005/03/24 04:35:33  ida
   sound patch for NITRO-System 2005/03/28
 
   Revision 1.15  2005/03/17 02:11:01  ida
-  SND_COMMAND_SKIP_SEQコマンドの追加
+  SND_COMMAND_SKIP_SEQ繧ｳ繝槭Φ繝峨�ｮ霑ｽ蜉
 
   Revision 1.14  2005/03/01 02:14:22  ida
-  SND_COMMAND_IMMEDIATEフラグ追加
+  SND_COMMAND_IMMEDIATE繝輔Λ繧ｰ霑ｽ蜉
 
   Revision 1.13  2005/02/16 07:47:40  ida
-  ドライバ情報取得関数追加
+  繝峨Λ繧､繝先ュ蝣ｱ蜿門ｾ鈴未謨ｰ霑ｽ蜉
 
   Revision 1.12  2005/01/06 04:07:49  ida
-  著作権年次表記を更新
+  闡嶺ｽ懈ｨｩ蟷ｴ谺｡陦ｨ險倥ｒ譖ｴ譁ｰ
 
   Revision 1.11  2005/01/05 07:09:29  ida
-  SND_COMMAND_COPY_REGISTERコマンド追加
+  SND_COMMAND_COPY_REGISTER繧ｳ繝槭Φ繝芽ｿｽ蜉
 
   Revision 1.10  2004/10/05 06:21:16  ida
   add SND_SetMasterPan

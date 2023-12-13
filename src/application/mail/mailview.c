@@ -1,6 +1,6 @@
 /**
  *	@file	mailview.c
- *	@brief	ƒ[ƒ‹‰æ–Ê•`‰æƒ‹[ƒ`ƒ“
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢æç”»ãƒ«ãƒ¼ãƒãƒ³
  *	@author	MiyukiIwasawa
  *	@date	06.02.08
  */
@@ -85,34 +85,34 @@ enum{
 #define VIEW_TALK_FCOL	(GF_PRINTCOLOR_MAKE(FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_WHITE))
 #define VIEW_NRM_FCOL	(GF_PRINTCOLOR_MAKE(FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL))
 
-///ƒ[ƒ‹•`‰æƒƒCƒ“ƒ[ƒN
+///ãƒ¡ãƒ¼ãƒ«æç”»ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 typedef struct _MAIL_VIEW_DATA{
 	int	heapID;
-	int	seq;		///<ƒƒCƒ“ƒV[ƒPƒ“ƒXNo
-	u16	sub_seq;	///<ƒTƒuƒV[ƒPƒ“ƒXNo
-	u16	win_type;	///<ƒEƒBƒ“ƒhƒEƒ^ƒCƒv
-	u8	mode;	///<“®ìƒ^ƒCƒv
-	u8	inMode;	///<“®ìƒ^ƒCƒv
+	int	seq;		///<ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹No
+	u16	sub_seq;	///<ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹No
+	u16	win_type;	///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—
+	u8	mode;	///<å‹•ä½œã‚¿ã‚¤ãƒ—
+	u8	inMode;	///<å‹•ä½œã‚¿ã‚¤ãƒ—
 	u8	cntNo;
 	u8	msgIdx;
 
 	u8	msg_spd;
-	u8	line;	///<‘I‘ğƒ‰ƒCƒ“
-	u8	side;	///<ƒTƒCƒh‘I‘ğ
-	u8	canm_f;	///<ƒAƒjƒƒtƒbƒNƒtƒ‰ƒO
+	u8	line;	///<é¸æŠãƒ©ã‚¤ãƒ³
+	u8	side;	///<ã‚µã‚¤ãƒ‰é¸æŠ
+	u8	canm_f;	///<ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒƒã‚¯ãƒ•ãƒ©ã‚°
 	u8	colEvy;
 	u8	colDir;
 	u8	nowCol;
 	u8	oldCol;
 
-	GF_BGL_INI *bgl;	///<BGLƒf[ƒ^
+	GF_BGL_INI *bgl;	///<BGLãƒ‡ãƒ¼ã‚¿
 
 	MAIL_TMP_DATA	*dat;
 	MSGDATA_MANAGER*	pMsgMan;
 	STRBUF	*pMsg[MAILDAT_MSGMAX];
 	PALETTE_FADE_PTR	palAnm;
 
-	///ƒOƒ‰ƒtƒBƒbƒNƒŠƒ\[ƒX
+	///ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒªã‚½ãƒ¼ã‚¹
 	void*	pScrBuf01;
 	void*	pScrBuf02;
 	NNSG2dScreenData*	pScr01;
@@ -120,16 +120,16 @@ typedef struct _MAIL_VIEW_DATA{
 	GF_BGL_BMPWIN	win[WIN_MAX];
 	BMPMENU_WORK*	ynmenu_wk;
 	
-	CATS_SYS_PTR	pActSys;	///<ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€
-	CATS_RES_PTR	pActRes;	///<ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX
-	CATS_ACT_PTR	pAct[MAILDAT_ICONMAX];		///<ƒAƒNƒ^[
+	CATS_SYS_PTR	pActSys;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+	CATS_RES_PTR	pActRes;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹
+	CATS_ACT_PTR	pAct[MAILDAT_ICONMAX];		///<ã‚¢ã‚¯ã‚¿ãƒ¼
 }MAIL_VIEW_DAT;
 
-///ƒTƒuƒvƒƒZƒX’è‹`—pŠÖ”Œ^
+///ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ç”¨é–¢æ•°å‹
 typedef int (*MailKeyIn)(MAIL_VIEW_DAT* wk);
 
 //=================================================
-//ƒvƒƒgƒ^ƒCƒv
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //=================================================
 static int MailViewMain(MAIL_VIEW_DAT* wk);
 
@@ -155,34 +155,34 @@ static void MailView_PokeIconInit(MAIL_VIEW_DAT* wk);
 static void MailView_PokeIconRelease(MAIL_VIEW_DAT* wk);
 
 //====================================================================
-//ƒvƒƒZƒX’è‹`
+//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©
 //====================================================================
 PROC_RESULT MailViewProc_Init( PROC *proc,int *seq);
 PROC_RESULT MailViewProc_Main( PROC *proc,int *seq);
 PROC_RESULT MailViewProc_End( PROC *proc,int *seq);
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æŒÄ‚Ño‚µ@‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»å‘¼ã³å‡ºã—ã€€åˆæœŸåŒ–
  */
 PROC_RESULT MailViewProc_Init(PROC* proc,int* seq)
 {
 	MAIL_TMP_DATA* tp;
 	MAIL_VIEW_DAT* wk = (MAIL_VIEW_DAT*)PROC_GetWork(proc);
 
-	//ƒ[ƒNƒGƒŠƒAæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢å–å¾—
 	HeapStatePush();
 
-	//ƒq[ƒvì¬
+	//ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_MAILVIEW,0x20000);
 	wk = PROC_AllocWork(proc,sizeof(MAIL_VIEW_DAT),HEAPID_MAILVIEW);
 	memset(wk,0,sizeof(MAIL_VIEW_DAT));
 
-	//ƒq[ƒvID•Û‘¶
+	//ãƒ’ãƒ¼ãƒ—IDä¿å­˜
 	wk->heapID = HEAPID_MAILVIEW;
 
-	//ƒpƒ‰ƒ[ƒ^ˆøŒp‚¬
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¼•ç¶™ã
 	wk->dat = (MAIL_TMP_DATA*)PROC_GetParentWork(proc);
-	wk->inMode = wk->mode = wk->dat->val;	//•`‰æƒ^ƒCƒv
+	wk->inMode = wk->mode = wk->dat->val;	//æç”»ã‚¿ã‚¤ãƒ—
 	wk->line = wk->dat->cntNo;
 	wk->side = wk->dat->flags;
 	wk->oldCol = wk->nowCol = wk->line;
@@ -196,7 +196,7 @@ PROC_RESULT MailViewProc_Init(PROC* proc,int* seq)
 
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æŒÄ‚Ño‚µ@ƒƒCƒ“
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»å‘¼ã³å‡ºã—ã€€ãƒ¡ã‚¤ãƒ³
  */
 PROC_RESULT MailViewProc_Main(PROC* proc,int* seq)
 {
@@ -209,7 +209,7 @@ PROC_RESULT MailViewProc_Main(PROC* proc,int* seq)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æŒÄ‚Ño‚µ	I—¹@
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»å‘¼ã³å‡ºã—	çµ‚äº†ã€€
  */
 PROC_RESULT MailViewProc_End(PROC* proc,int* seq)
 {
@@ -217,10 +217,10 @@ PROC_RESULT MailViewProc_End(PROC* proc,int* seq)
 	int heap;
 	
     MsgPrintSkipFlagSet( MSG_SKIP_OFF ); // MatchComment: add this function call
-	//I—¹ƒpƒ‰ƒ[ƒ^Ši”[
+	//çµ‚äº†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´
 	heap = wk->heapID;
 	
-	//ƒ[ƒNƒGƒŠƒA‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢è§£æ”¾
 	PROC_FreeWork(proc);
 	
 	HeapStatePop();
@@ -233,14 +233,14 @@ PROC_RESULT MailViewProc_End(PROC* proc,int* seq)
 
 
 //====================================================================
-//ƒ[ƒJƒ‹ŠÖ”’è‹`
+//ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°å®šç¾©
 //====================================================================
 //
 /**
- *	@brief	‰ï˜b•¶‚ª‘S•¶‹ó‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ *	@brief	ä¼šè©±æ–‡ãŒå…¨æ–‡ç©ºã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	TRUE	‘S•¶‹ó
- *	@retval FALSE	“ü—Í—L‚è
+ *	@retval	TRUE	å…¨æ–‡ç©º
+ *	@retval FALSE	å…¥åŠ›æœ‰ã‚Š
  */
 static BOOL MailView_IsWordNull(MAIL_VIEW_DAT* wk)
 {
@@ -255,7 +255,7 @@ static BOOL MailView_IsWordNull(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ@ƒL[æ“¾(Viewƒ‚[ƒh)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã€€ã‚­ãƒ¼å–å¾—(Viewãƒ¢ãƒ¼ãƒ‰)
  */
 static int MailView_KeyInView(MAIL_VIEW_DAT* wk)
 {
@@ -266,7 +266,7 @@ static int MailView_KeyInView(MAIL_VIEW_DAT* wk)
 	return 0;
 }
 /**
- *	@brief	ƒ[ƒ‹•`‰æ@ƒL[æ“¾(Createƒ‚[ƒh)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã€€ã‚­ãƒ¼å–å¾—(Createãƒ¢ãƒ¼ãƒ‰)
  */
 static int MailView_KeyInCreate(MAIL_VIEW_DAT* wk)
 {
@@ -275,7 +275,7 @@ static int MailView_KeyInCreate(MAIL_VIEW_DAT* wk)
 	if(sys.trg & (PAD_BUTTON_DECIDE)){
 		if(wk->line == VIEW_END_DECIDE){
 			if(wk->side == VIEW_SIDE_DECIDE){
-				//‰ï˜b•¶‚ª‹ó‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+				//ä¼šè©±æ–‡ãŒç©ºã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 				if(MailView_IsWordNull(wk)){
 					Snd_SePlay(SND_MAIL_CANCEL);
 					wk->mode = KEYIN_NOMSG;
@@ -302,9 +302,9 @@ static int MailView_KeyInCreate(MAIL_VIEW_DAT* wk)
 		return FALSE;
 	}
 
-	//‘I‘ğ€–Ú•ÏX
+	//é¸æŠé …ç›®å¤‰æ›´
 	if(sys.trg & (PAD_BUTTON_START)){
-		//ˆê”­‚ÅuŒˆ’èv‚Ö
+		//ä¸€ç™ºã§ã€Œæ±ºå®šã€ã¸
 		wk->line = VIEW_END_DECIDE;
 		wk->side = VIEW_SIDE_DECIDE;
 //		wk->nowCol = wk->line+wk->side;
@@ -330,7 +330,7 @@ static int MailView_KeyInCreate(MAIL_VIEW_DAT* wk)
 	if(!se_play){
 		return FALSE;
 	}
-	//‘I‘ğƒ‰ƒCƒ“•`‰æ•ÏX
+	//é¸æŠãƒ©ã‚¤ãƒ³æç”»å¤‰æ›´
 	Snd_SePlay(SND_MAIL_SELECT);
 
 	if(wk->line == VIEW_LINE_END){
@@ -342,7 +342,7 @@ static int MailView_KeyInCreate(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æƒL[æ“¾@ƒƒbƒZ[ƒW‘Ò‚¿ƒ‚[ƒh
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã‚­ãƒ¼å–å¾—ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡ãƒ¢ãƒ¼ãƒ‰
  */
 static int MailView_KeyInMsg(MAIL_VIEW_DAT* wk)
 {
@@ -350,7 +350,7 @@ static int MailView_KeyInMsg(MAIL_VIEW_DAT* wk)
 	
 	switch(wk->sub_seq){
 	case 0:
-		//‹ó‚Íƒ_ƒƒƒbƒZ[ƒW•`‰æŠJn
+		//ç©ºã¯ãƒ€ãƒ¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»é–‹å§‹
 		BmpTalkWinWrite( &wk->win[WIN_TALK], WINDOW_TRANS_OFF, BMPL_TALK_WIN_CGX, BMPL_TALK_WIN_PAL	);
 		
 		GF_BGL_BmpWinDataFill(&(wk->win[WIN_TALK]),WINCLR_COL(FBMP_COL_WHITE));
@@ -363,7 +363,7 @@ static int MailView_KeyInMsg(MAIL_VIEW_DAT* wk)
 		STRBUF_Delete(str);
 		break;
 	case 1:
-		//ƒL[‘Ò‚¿
+		//ã‚­ãƒ¼å¾…ã¡
 		if(!(sys.trg & (PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL))){
 			return FALSE;
 		}
@@ -371,7 +371,7 @@ static int MailView_KeyInMsg(MAIL_VIEW_DAT* wk)
 		GF_BGL_BmpWinOff(&(wk->win[WIN_TALK]));
 
 		wk->sub_seq = 0;
-		wk->mode = wk->inMode;	//ƒ‚[ƒh‚ğŒ³‚É–ß‚· 
+		wk->mode = wk->inMode;	//ãƒ¢ãƒ¼ãƒ‰ã‚’å…ƒã«æˆ»ã™ 
 		return FALSE;
 	}
 	wk->sub_seq++;
@@ -379,7 +379,7 @@ static int MailView_KeyInMsg(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	YNƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	YNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  */
 static void yesNoInit(MAIL_VIEW_DAT* wk)
 {
@@ -392,15 +392,15 @@ static void yesNoInit(MAIL_VIEW_DAT* wk)
 				wk->bgl, &YesNoBmpWin, BMPL_MENU_WIN_CGX, BMPL_MENU_WIN_PAL, wk->heapID);
 }
 /**
- *	@brief	YNƒEƒBƒ“ƒhƒE‘I‘ğ‘Ò‚¿
+ *	@brief	YNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¸æŠå¾…ã¡
  */
 static int yesNoWait(MAIL_VIEW_DAT* wk)
 {
 	switch( BmpYesNoSelectMain( wk->ynmenu_wk, wk->heapID) ){
-	case 0:	//‚Í‚¢
+	case 0:	//ã¯ã„
 //		Snd_SePlay(PORUC_SE_DECIDE);
 		return TRUE;
-	case BMPMENU_CANCEL: //‚¢‚¢‚¦
+	case BMPMENU_CANCEL: //ã„ã„ãˆ
 //		Snd_SePlay(PORUC_SE_DECIDE);
 		return FALSE;
 	}
@@ -415,7 +415,7 @@ static int MailView_KeyInCancel(MAIL_VIEW_DAT* wk)
 	switch(wk->sub_seq){
 	case 0:
 		wk->canm_f = 1;
-		//‚â‚ß‚Ü‚·‚©ƒƒbƒZ[ƒW•`‰æŠJn
+		//ã‚„ã‚ã¾ã™ã‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»é–‹å§‹
 		BmpTalkWinWrite( &wk->win[WIN_TALK], WINDOW_TRANS_OFF, BMPL_TALK_WIN_CGX, BMPL_TALK_WIN_PAL	);
 		GF_BGL_BmpWinDataFill(&(wk->win[WIN_TALK]),WINCLR_COL(FBMP_COL_WHITE));
 
@@ -426,22 +426,22 @@ static int MailView_KeyInCancel(MAIL_VIEW_DAT* wk)
 			0,0,wk->msg_spd,VIEW_TALK_FCOL,NULL);
 		STRBUF_Delete(str);
 
-		//ƒJƒ‰[ƒAƒjƒ‚ğˆê’U‚à‚Æ‚ÌF‚É–ß‚·
+		//ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ã‚’ä¸€æ—¦ã‚‚ã¨ã®è‰²ã«æˆ»ã™
 		SoftFadePfd(wk->palAnm,FADE_MAIN_BG,PALANM_STARTPAL+wk->oldCol,1,0,0x7FFF);
 		wk->oldCol = wk->nowCol;
 		wk->colDir = 0;
 		wk->colEvy = 0;
 		break;
 	case 1:
-		//•`‰æI—¹‘Ò‚¿
+		//æç”»çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msgIdx )){
 			return FALSE;
 		}
-		//YNƒEƒBƒ“ƒhƒE‰Šú‰»
+		//YNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 		yesNoInit(wk);
 		break;
 	case 2:
-		//‘I‘ğ‘Ò‚¿
+		//é¸æŠå¾…ã¡
 		ret = yesNoWait(wk);
 		if(ret < 0){
 			return FALSE;
@@ -451,11 +451,11 @@ static int MailView_KeyInCancel(MAIL_VIEW_DAT* wk)
 		wk->sub_seq = 0;
 
 		if(ret){
-			//ƒ‚ƒWƒ…[ƒ‹I—¹
+			//ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«çµ‚äº†
 			wk->dat->val = VIEW_END_CANCEL;
 			return TRUE;
 		}else{
-			wk->mode = wk->inMode;	//ƒ‚[ƒh‚ğŒ³‚É–ß‚· 
+			wk->mode = wk->inMode;	//ãƒ¢ãƒ¼ãƒ‰ã‚’å…ƒã«æˆ»ã™ 
 			wk->canm_f = 0;
 			return FALSE;
 		}
@@ -464,15 +464,15 @@ static int MailView_KeyInCancel(MAIL_VIEW_DAT* wk)
 	return FALSE;
 }
 /**
- *	@brief	ƒ[ƒ‹•`‰æƒƒCƒ“
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ãƒ¡ã‚¤ãƒ³
  */
 static int MailViewMain(MAIL_VIEW_DAT* wk)
 {
 	switch(wk->seq){
 	case MAILVIEW_BLACKSET:
-		//BlankŠÖ”ƒŠƒZƒbƒg
+		//Blanké–¢æ•°ãƒªã‚»ãƒƒãƒˆ
 		sys_VBlankFuncChange(NULL, NULL);
-		sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -496,7 +496,7 @@ static int MailViewMain(MAIL_VIEW_DAT* wk)
 			GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,VISIBLE_ON);
 //		}
 	
-		//ƒuƒŒƒ“ƒhİ’è
+		//ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®š
 		WIPE_ResetBrightness(WIPE_DISP_MAIN);
 		G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2,GX_BLEND_PLANEMASK_BG3,ALPHA_SECOND,ALPHA_FIRST);
 
@@ -554,46 +554,46 @@ static int MailViewMain(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹‰æ–ÊVBlank
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢VBlank
  */
 static void MailVBlank(void * work)
 {
 	MAIL_VIEW_DAT* wk = (MAIL_VIEW_DAT*)work;
 
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	if( wk->palAnm != NULL ){
 		PaletteFadeTrans( wk->palAnm );
 	}
 
-	//ƒAƒNƒ^[“]‘—
+	//ã‚¢ã‚¯ã‚¿ãƒ¼è»¢é€
 	if(wk->pActSys != NULL){
 		CATS_RenderOamTrans();
 	}
 
-	NNS_GfdDoVramTransfer();	//VRam“]‘—ƒ}ƒl[ƒWƒƒÀs
+	NNS_GfdDoVramTransfer();	//VRamè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿè¡Œ
 	GF_BGL_VBlankFunc( wk->bgl );
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK);
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æƒpƒŒƒbƒgƒAƒjƒ
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
  */
 static void MailView_PltAnime(TCB_PTR tcb,void* work)
 {
 	MAIL_VIEW_DAT* wk = (MAIL_VIEW_DAT*)work;
 
-	//ƒpƒŒƒbƒgƒAƒjƒ‚ªíœ‚³‚ê‚½‚çƒ^ƒXƒN‚àíœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãŒå‰Šé™¤ã•ã‚ŒãŸã‚‰ã‚¿ã‚¹ã‚¯ã‚‚å‰Šé™¤
 	if(wk->palAnm == NULL){
 		TCB_Delete(tcb);
 		return;
 	}
-	//ƒAƒjƒƒtƒbƒNƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚Íˆê’â~
+	//ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒƒã‚¯ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹æ™‚ã¯ä¸€æ™‚åœæ­¢
 	if(wk->canm_f){
 		return;
 	}
 
 	if(wk->oldCol != wk->nowCol){
-		//Œ³‚ÌF‚É–ß‚·
+		//å…ƒã®è‰²ã«æˆ»ã™
 		SoftFadePfd(wk->palAnm,FADE_MAIN_BG,PALANM_STARTPAL+wk->oldCol,1,0,0x7FFF);
 		wk->oldCol = wk->nowCol;
 		wk->colDir = 0;
@@ -612,7 +612,7 @@ static void MailView_PltAnime(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static int MailViewResInit(MAIL_VIEW_DAT* wk)
 {
@@ -629,7 +629,7 @@ static int MailViewResInit(MAIL_VIEW_DAT* wk)
 #if 0
 		if(wk->mode == MAIL_MODE_CREATE){
 			wk->sub_seq = 0;
-			return TRUE;	//ì¬ƒ‚[ƒh‚ÍƒAƒCƒRƒ“•`‰æƒiƒV
+			return TRUE;	//ä½œæˆãƒ¢ãƒ¼ãƒ‰ã¯ã‚¢ã‚¤ã‚³ãƒ³æç”»ãƒŠã‚·
 		}
 #endif
 		break;
@@ -643,7 +643,7 @@ static int MailViewResInit(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æƒŠƒ\[ƒX‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 static int MailViewResRelease(MAIL_VIEW_DAT* wk)
 {
@@ -660,36 +660,36 @@ static int MailViewResRelease(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æVramƒoƒ“ƒN‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»Vramãƒãƒ³ã‚¯åˆæœŸåŒ–
  */
 static void MailView_VBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ@BGL‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã€€BGLåˆæœŸåŒ–
  */
 static void MailView_BGLInit(MAIL_VIEW_DAT* wk)
 {
 	int i,frame;
 	
-	//VramBankƒZƒbƒg
+	//VramBankã‚»ãƒƒãƒˆ
 	MailView_VBankSet();
 
-	//BGL‰Šú‰»
+	//BGLåˆæœŸåŒ–
 	wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 	
 	{	//BG SYSTEM
@@ -741,7 +741,7 @@ static void MailView_BGLInit(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ@BGL‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã€€BGLè§£æ”¾
  */
 static void MailView_BGLRelease(MAIL_VIEW_DAT* wk)
 {
@@ -755,7 +755,7 @@ static void MailView_BGLRelease(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ@BGƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã€€BGãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static void MailView_2DGraInit(MAIL_VIEW_DAT* wk)
 {
@@ -767,22 +767,22 @@ static void MailView_2DGraInit(MAIL_VIEW_DAT* wk)
 	ARCHANDLE* handle;
 	int	charID,scrnID,plttID;
 
-	//ƒfƒUƒCƒ“No‚©‚çƒOƒ‰ƒtƒBƒbƒNƒŠƒ\[ƒXIDæ“¾
+	//ãƒ‡ã‚¶ã‚¤ãƒ³Noã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒªã‚½ãƒ¼ã‚¹IDå–å¾—
 	charID = MAILD_CHAR_S+wk->dat->design;
 	scrnID = MAILD_SCRN_S+wk->dat->design;
 	plttID = MAILD_PLTT_S+wk->dat->design;
 
-	//ƒA[ƒJƒCƒu‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
 	handle = ArchiveDataHandleOpen(ARC_MAIL_GRA,wk->heapID);
 
-	//ƒEƒBƒ“ƒhƒE—pƒLƒƒƒ‰ƒNƒ^“]‘—
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	MenuWinGraphicSet(wk->bgl, BMPL_WIN_FRM,
 		BMPL_MENU_WIN_CGX, BMPL_MENU_WIN_PAL, MENU_TYPE_SYSTEM, wk->heapID);
 
 	TalkWinGraphicSet(wk->bgl,BMPL_WIN_FRM,
 		BMPL_TALK_WIN_CGX, BMPL_TALK_WIN_PAL, wk->win_type, wk->heapID);
 
-	//ƒLƒƒƒ‰ƒNƒ^“]‘—
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	size = ArchiveDataSizeGetByHandle(handle,charID);
 	pSrc = sys_AllocMemoryLo(wk->heapID,size);
 	ArchiveDataLoadByHandle(handle,charID,(void*)pSrc);
@@ -794,7 +794,7 @@ static void MailView_2DGraInit(MAIL_VIEW_DAT* wk)
 			pChar->pRawData,pChar->szByte,0);
 	sys_FreeMemoryEz(pSrc);
 
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	size = ArchiveDataSizeGetByHandle(handle,plttID);
 	pSrc = sys_AllocMemoryLo(wk->heapID,size);
 	ArchiveDataLoadByHandle(handle,plttID,(void*)pSrc);
@@ -803,21 +803,21 @@ static void MailView_2DGraInit(MAIL_VIEW_DAT* wk)
 //	GF_BGL_PaletteSet(GF_BGL_FRAME0_M,pPal->pRawData,pPal->szByte,0);
 	GF_BGL_PaletteSet(GF_BGL_FRAME0_S,pPal->pRawData,pPal->szByte,0);
 	
-	//ƒpƒŒƒbƒgƒAƒjƒƒRƒ“ƒgƒ[ƒ‰[Šm•Û
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ç¢ºä¿
 	wk->palAnm = PaletteFadeInit(wk->heapID);
-	//ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğmalloc‚µ‚ÄƒZƒbƒg
+	//ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’mallocã—ã¦ã‚»ãƒƒãƒˆ
 	PaletteFadeWorkAllocSet( wk->palAnm, FADE_MAIN_BG, FADE_PAL_ONE_SIZE*MAILVIEW_PALMAX,wk->heapID);
 	PaletteFadeWorkAllocSet( wk->palAnm, FADE_MAIN_OBJ, FADE_PAL_ONE_SIZE*3,wk->heapID);
 	PaletteWorkSet(wk->palAnm,pPal->pRawData,FADE_MAIN_BG,0,FADE_PAL_ONE_SIZE*3);
 
 	if(wk->mode == MAIL_MODE_CREATE){
-		//ƒEƒBƒ“ƒhƒEƒtƒHƒ“ƒgƒpƒŒƒbƒg‚ğ“ü‚ê‘Ö‚¦
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã‚’å…¥ã‚Œæ›¿ãˆ
 		PaletteWorkSet(wk->palAnm,&(((u16*)pPal->pRawData)[16*3]),FADE_MAIN_BG,16,FADE_PAL_ONE_SIZE);
 	}
 	PaletteWorkSet_Arc(wk->palAnm,ARC_POKEICON,0,wk->heapID, 
 		FADE_MAIN_OBJ,FADE_PAL_ONE_SIZE*3,0);
 
-	//ƒtƒHƒ“ƒg•ƒEƒBƒ“ƒhƒE—pƒpƒŒƒbƒgƒZƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆï¼†ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	PaletteWorkSet_Arc(wk->palAnm,ARC_FONT,NARC_font_system_ncrl,wk->heapID, 
 		FADE_MAIN_BG,FADE_PAL_ONE_SIZE,16*MENU_FONT_PAL);
 	PaletteWorkSet_Arc(wk->palAnm,ARC_FONT,NARC_font_talk_ncrl,wk->heapID, 
@@ -833,7 +833,7 @@ static void MailView_2DGraInit(MAIL_VIEW_DAT* wk)
 			FADE_MAIN_BG,FADE_PAL_ONE_SIZE,16*FONT_PAL);
 	}
 #endif
-	//‰ŠúƒpƒŒƒbƒg‚ğ“h‚è‚Â‚Ô‚·
+	//åˆæœŸãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¡—ã‚Šã¤ã¶ã™
 	SoftFadePfd(wk->palAnm,FADE_MAIN_BG,0,16*MAILVIEW_PALMAX,16,0x0000);
 	SoftFadePfd(wk->palAnm,FADE_MAIN_OBJ,0,16*3,16,0x0000);
 	PaletteTrans_AutoSet(wk->palAnm,TRUE);
@@ -841,22 +841,22 @@ static void MailView_2DGraInit(MAIL_VIEW_DAT* wk)
 
 	sys_FreeMemoryEz(pSrc);
 
-	//ƒXƒNƒŠ[ƒ“æ“¾
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å–å¾—
 	size = ArchiveDataSizeGetByHandle(handle,scrnID);
 	wk->pScrBuf01 = sys_AllocMemory(wk->heapID,size);
 	ArchiveDataLoadByHandle(handle,scrnID,(void*)wk->pScrBuf01);
 	NNS_G2dGetUnpackedScreenData(wk->pScrBuf01,&(wk->pScr01)); 
 	
-	//ƒXƒNƒŠ[ƒ“æ“¾
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å–å¾—
 	size = ArchiveDataSizeGetByHandle(handle,MAILD_SCRN_FIL);
 	wk->pScrBuf02 = sys_AllocMemory(wk->heapID,size);
 	ArchiveDataLoadByHandle(handle,MAILD_SCRN_FIL,(void*)wk->pScrBuf02);
 	NNS_G2dGetUnpackedScreenData(wk->pScrBuf02,&(wk->pScr02)); 
 
-	//ƒnƒ“ƒhƒ‹‰ğ•ú
+	//ãƒãƒ³ãƒ‰ãƒ«è§£æ”¾
 	ArchiveDataHandleClose( handle );
 
-	//‰ŠúƒXƒNƒŠ[ƒ““]‘—
+	//åˆæœŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	GF_BGL_ScrFill(wk->bgl,GF_BGL_FRAME0_S,0x2001,0,0,32,32,GF_BGL_SCRWRT_PALIN );
 	
 	GF_BGL_ScrWriteExpand(wk->bgl,GF_BGL_FRAME3_M,
@@ -876,7 +876,7 @@ static void MailView_2DGraInit(MAIL_VIEW_DAT* wk)
 				wk->pScr02->screenWidth/8,wk->pScr02->screenHeight/8);
 		GF_BGL_LoadScreenV_Req(wk->bgl,GF_BGL_FRAME2_M);
 	
-		//ƒpƒŒƒbƒgƒAƒjƒİ’è	
+		//ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡è¨­å®š	
 		wk->colEvy = 0;
 		wk->colDir = 0;
 		TCB_Add(MailView_PltAnime,wk,0);
@@ -884,18 +884,18 @@ static void MailView_2DGraInit(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ@BGƒŠƒ\[ƒX‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã€€BGãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 static void MailView_2DGraRelease(MAIL_VIEW_DAT* wk)
 {
 	sys_FreeMemoryEz(wk->pScrBuf02);
 	sys_FreeMemoryEz(wk->pScrBuf01);
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒhŠJ•ú
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰é–‹æ”¾
 	PaletteFadeWorkAllocFree( wk->palAnm, FADE_MAIN_OBJ );
 	PaletteFadeWorkAllocFree( wk->palAnm, FADE_MAIN_BG );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ŠJ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ é–‹æ”¾
 	PaletteFadeFree( wk->palAnm );
 	wk->palAnm = NULL;
 	
@@ -903,7 +903,7 @@ static void MailView_2DGraRelease(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ@BMPWin‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã€€BMPWinåˆæœŸåŒ–
  */
 static void MailView_BmpWinInit(MAIL_VIEW_DAT* wk)
 {
@@ -939,7 +939,7 @@ static void MailView_BmpWinInit(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ	BmpWin‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»	BmpWinè§£æ”¾
  */
 static void MailView_BmpWinRelease(MAIL_VIEW_DAT* wk)
 {
@@ -952,14 +952,14 @@ static void MailView_BmpWinRelease(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ@ŠÈˆÕ•¶•`‰æ
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã€€ç°¡æ˜“æ–‡æç”»
  */
 static void MailView_MsgWrite(MAIL_VIEW_DAT* wk)
 {
 	int i = 0;
 	STRBUF* str;
 	
-	//ƒƒbƒZ[ƒW•`‰æ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 	for(i = 0;i < MAILDAT_MSGMAX;i++){
 		if(!PMSDAT_IsEnabled(&wk->dat->msg[i])){
 			continue;
@@ -972,7 +972,7 @@ static void MailView_MsgWrite(MAIL_VIEW_DAT* wk)
 
 		GF_BGL_BmpWinOn(&wk->win[WIN_M01+i]);
 	}
-	if(wk->mode == MAIL_MODE_CREATE){	//ƒ[ƒ‹ì¬
+	if(wk->mode == MAIL_MODE_CREATE){	//ãƒ¡ãƒ¼ãƒ«ä½œæˆ
 		STRBUF	*buf;
 		int size;
 		
@@ -993,8 +993,8 @@ static void MailView_MsgWrite(MAIL_VIEW_DAT* wk)
 			GF_BGL_BmpWinOn(&wk->win[WIN_YN01+i]);
 		}
 		STRBUF_Delete(buf);
-	}else{	//ƒ[ƒ‹•`‰æ
-		//ƒ‰ƒCƒ^[–¼•\¦
+	}else{	//ãƒ¡ãƒ¼ãƒ«æç”»
+		//ãƒ©ã‚¤ã‚¿ãƒ¼åè¡¨ç¤º
 		GF_STR_PrintColor(	&wk->win[WIN_YN01],FONT_TALK,
 							wk->dat->name,0,2,
 							MSG_ALLPUT,VIEW_NRM_FCOL,	NULL );
@@ -1004,49 +1004,49 @@ static void MailView_MsgWrite(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ@ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ 
  */
 static void MailView_PokeIconInit(MAIL_VIEW_DAT* wk)
 {
 	int i = 0,ct = 0;
 	TCATS_OBJECT_ADD_PARAM_S	prm;
 
-	//’ÊM’†‚È‚ç’ÊMƒAƒCƒRƒ“•œ‹A
-	// óM‹­“xƒAƒCƒRƒ“‚ğ’ÊMÚ‘±’†‚È‚ç•\¦‚·‚é‚µA
-	// ƒ†ƒjƒIƒ“‚Ì‚æ‚¤‚É’ÊM‰ñ˜H‚Í“®ì‚µ‚Ä‚¢‚é‚ªÚ‘±‚Í‚µ‚Ä‚¢‚È‚¢ó‘Ô‚È‚ço‚³‚È‚¢
+	//é€šä¿¡ä¸­ãªã‚‰é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å¾©å¸°
+	// å—ä¿¡å¼·åº¦ã‚¢ã‚¤ã‚³ãƒ³ã‚’é€šä¿¡æ¥ç¶šä¸­ãªã‚‰è¡¨ç¤ºã™ã‚‹ã—ã€
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ã®ã‚ˆã†ã«é€šä¿¡å›è·¯ã¯å‹•ä½œã—ã¦ã„ã‚‹ãŒæ¥ç¶šã¯ã—ã¦ã„ãªã„çŠ¶æ…‹ãªã‚‰å‡ºã•ãªã„
 	// Change by Mori 2006/07/19
 	WirelessIconEasyUnion();
 	
 	if(wk->mode == MAIL_MODE_CREATE){
-		return;	//ì¬ƒ‚[ƒh’†‚ÍƒAƒCƒRƒ“•`‰æ‚Í‚È‚µ
+		return;	//ä½œæˆãƒ¢ãƒ¼ãƒ‰ä¸­ã¯ã‚¢ã‚¤ã‚³ãƒ³æç”»ã¯ãªã—
 	}
 	initVramTransferManagerHeap(32,wk->heapID);
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€‰Šú‰»
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	wk->pActSys = CATS_AllocMemory(wk->heapID);
 	wk->pActRes = CATS_ResourceCreate(wk->pActSys);
 
 	{
 		TCATS_OAM_INIT	coi = {
-			0,7,		///< ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJn/I—¹
-			1,1,		///< ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn/I—¹
-			0,1,		///< ƒTƒu	OAMŠÇ——ÌˆæEŠJn/I—¹
-			1,1,		///< ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn/I—¹
+			0,7,		///< ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			1,1,		///< ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,1,		///< ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			1,1,		///< ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
 		};
 		TCATS_CHAR_MANAGER_MAKE ccmm = {
-			MAILDAT_ICONMAX,	//ID§Œä”
-			1024,	//ƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-			0,		//ƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-			GX_OBJVRAMMODE_CHAR_1D_32K,	//ƒƒCƒ“OBJƒ‚[ƒhw’è
-			GX_OBJVRAMMODE_CHAR_1D_32K,	//ƒTƒuOBJƒ‚[ƒhw’è
+			MAILDAT_ICONMAX,	//IDåˆ¶å¾¡æ•°
+			1024,	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+			0,		//ã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+			GX_OBJVRAMMODE_CHAR_1D_32K,	//ãƒ¡ã‚¤ãƒ³OBJãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
+			GX_OBJVRAMMODE_CHAR_1D_32K,	//ã‚µãƒ–OBJãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
 		};
 		const TCATS_RESOURCE_NUM_LIST resNum = {
-			MAILDAT_ICONMAX,	///< ƒLƒƒƒ‰‚Ì”
-			1,					///< ƒpƒŒƒbƒg‚Ì”
-			1,					///< ƒZƒ‹‚Ì”
-			1,					///< ƒZƒ‹ƒAƒjƒ‚Ì”
-			0,					///< ƒ}ƒ‹ƒ`ƒZƒ‹‚Ì”
-			0,					///< ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚Ì”
+			MAILDAT_ICONMAX,	///< ã‚­ãƒ£ãƒ©ã®æ•°
+			1,					///< ãƒ‘ãƒ¬ãƒƒãƒˆã®æ•°
+			1,					///< ã‚»ãƒ«ã®æ•°
+			1,					///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®æ•°
+			0,					///< ãƒãƒ«ãƒã‚»ãƒ«ã®æ•°
+			0,					///< ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®æ•°
 		};	
 
 		CATS_SystemInit( wk->pActSys, &coi, &ccmm, 32 );
@@ -1055,7 +1055,7 @@ static void MailView_PokeIconInit(MAIL_VIEW_DAT* wk)
 		REND_OAM_UtilOamRamClear_Main(wk->heapID);
 	}
 
-	//ƒŠƒ\[ƒX’Ç‰Á
+	//ãƒªã‚½ãƒ¼ã‚¹è¿½åŠ 
 	CATS_LoadResourcePlttArc(
 		wk->pActSys,wk->pActRes,ARC_POKEICON,
 		PokeIconPalArcIndexGet(),0,3,NNS_G2D_VRAM_TYPE_2DMAIN,0);
@@ -1078,15 +1078,15 @@ static void MailView_PokeIconInit(MAIL_VIEW_DAT* wk)
 	
 		MI_CpuClear8(&prm,sizeof(TCATS_OBJECT_ADD_PARAM_S));
 
-		prm.x = ICONVIEW_PX-(ICONVIEW_WIDTH*i);	///< [ X ] À•W
-		prm.y = ICONVIEW_PY;				///< [ Y ] À•W
-		prm.z = 0;				///< [ Z ] À•W
+		prm.x = ICONVIEW_PX-(ICONVIEW_WIDTH*i);	///< [ X ] åº§æ¨™
+		prm.y = ICONVIEW_PY;				///< [ Y ] åº§æ¨™
+		prm.z = 0;				///< [ Z ] åº§æ¨™
 
-		prm.anm = 0;									///< ƒAƒjƒ”Ô†
-		prm.bg_pri = MAILVIEW_ICON_PRI;					///< —Dæ‡ˆÊ
-		prm.pal = wk->dat->icon[i].palID;				///< ƒpƒŒƒbƒg”Ô†
-		prm.vram_trans = 0;	///< •`‰æƒGƒŠƒA
-		prm.d_area = NNS_G2D_VRAM_TYPE_2DMAIN;	///< •`‰æƒGƒŠƒA
+		prm.anm = 0;									///< ã‚¢ãƒ‹ãƒ¡ç•ªå·
+		prm.bg_pri = MAILVIEW_ICON_PRI;					///< å„ªå…ˆé †ä½
+		prm.pal = wk->dat->icon[i].palID;				///< ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		prm.vram_trans = 0;	///< æç”»ã‚¨ãƒªã‚¢
+		prm.d_area = NNS_G2D_VRAM_TYPE_2DMAIN;	///< æç”»ã‚¨ãƒªã‚¢
 
 		prm.id[0] = i;	//char
 		prm.id[1] = 0;	//Pal
@@ -1104,7 +1104,7 @@ static void MailView_PokeIconInit(MAIL_VIEW_DAT* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ@ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è§£æ”¾
  */
 static void MailView_PokeIconRelease(MAIL_VIEW_DAT* wk)
 {

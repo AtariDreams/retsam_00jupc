@@ -12,37 +12,37 @@
 
   $Log: gx.h,v $
   Revision 1.107  2007/11/26 08:14:56  okubata_ryoma
-  GX_SetVCount ŠÖ”‚Ì§ŒÀ‚ğ‹­‰»
+  GX_SetVCount é–¢æ•°ã®åˆ¶é™ã‚’å¼·åŒ–
 
   Revision 1.106  2007/10/19 05:11:01  yosizaki
   fix warning in GX_SetVCount().
 
   Revision 1.105  2007/10/18 12:16:14  seiki_masashi
-  GX_SetVCount ŠÖ”‚ÌğŒƒ`ƒFƒbƒN‚ğ‹­‰»
+  GX_SetVCount é–¢æ•°ã®æ¡ä»¶ãƒã‚§ãƒƒã‚¯ã‚’å¼·åŒ–
 
   Revision 1.104  2007/02/23 04:34:45  okubata_ryoma
-  GX_SetVCount ŠÖ”‚É§ŒÀ‚ğ’Ç‰Á
+  GX_SetVCount é–¢æ•°ã«åˆ¶é™ã‚’è¿½åŠ 
 
   Revision 1.103  2006/01/18 02:11:21  kitase_hirotake
   do-indent
 
   Revision 1.102  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL ‚Ì”»’è•”•ª‚É SDK_WIN32 ‚Å‚Ì”»’è‚à’Ç‰Á
+  SDK_FROM_TOOL ã®åˆ¤å®šéƒ¨åˆ†ã« SDK_WIN32 ã§ã®åˆ¤å®šã‚‚è¿½åŠ 
 
   Revision 1.101  2005/02/28 05:26:13  yosizaki
   do-indent.
 
   Revision 1.100  2005/02/03 00:43:41  takano_makoto
-  GX_GetOBJVRamModeBmpŠÖ”‚Ì–ß‚è’l‚ÌŒ^Œë‚èC³
+  GX_GetOBJVRamModeBmpé–¢æ•°ã®æˆ»ã‚Šå€¤ã®å‹èª¤ã‚Šä¿®æ­£
 
   Revision 1.99  2005/01/11 07:53:17  takano_makoto
   fix copyright header.
 
   Revision 1.98  2005/01/05 23:58:30  takano_makoto
-  warning‚Ìœ‹
+  warningã®é™¤å»
 
   Revision 1.97  2004/12/27 04:45:05  takano_makoto
-  ƒŒƒWƒXƒ^‚ÌGetterŠÖ”‚ğ’Ç‰Á
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®Getteré–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.96  2004/11/02 14:43:33  takano_makoto
   fix comments.
@@ -91,16 +91,16 @@
   modify not to include nitro/mi.h if SDK_FROM_TOOL defined.
 
   Revision 1.82  2004/07/28 12:29:15  takano_makoto
-  GX_InitEx‚ÌASSERT•¶C³
+  GX_InitExã®ASSERTæ–‡ä¿®æ­£
 
   Revision 1.81  2004/07/28 12:23:16  takano_makoto
-  ASSERT‚Ì’Ç‰Á
+  ASSERTã®è¿½åŠ 
 
   Revision 1.79  2004/07/27 10:32:16  takano_makoto
   Fix bugs in GX_PowerGeometry() and GX_Power3D().
 
   Revision 1.78  2004/06/02 11:00:08  takano_makoto
-  ƒƒCƒ“LCDAƒTƒuLCD‚Ì˜_—‚ğ‹t‚ÉC³
+  ãƒ¡ã‚¤ãƒ³LCDã€ã‚µãƒ–LCDã®è«–ç†ã‚’é€†ã«ä¿®æ­£
 
   Revision 1.77  2004/05/21 09:35:28  kitani_toshikazu
   fix GXOBJVRamModeChar definition to avoid VC7 warning.

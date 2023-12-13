@@ -27,8 +27,8 @@ extern "C" {
 #endif
 
 //
-// ‰ü–¼‚ğs‚Á‚½ŠÖ”‚Ì•Ê–¼
-// ŒİŠ·«ˆÛ‚Ì‚½‚ß•Ê–¼‚Æ‚µ‚ÄˆÈ‘O‚ÌŠÖ”‚ğéŒ¾‚µ‚Ü‚·B
+// æ”¹åã‚’è¡Œã£ãŸé–¢æ•°ã®åˆ¥å
+// äº’æ›æ€§ç¶­æŒã®ãŸã‚åˆ¥åã¨ã—ã¦ä»¥å‰ã®é–¢æ•°ã‚’å®£è¨€ã—ã¾ã™ã€‚
 // 
 #define NNS_G2dSetCurrentPolygonID      NNS_G2dSetSpriteCurrentPolygonID
 #define NNS_G2dSetDefaultAttr           NNS_G2dSetSpriteDefaultAttr
@@ -40,7 +40,7 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dSpriteAttr
 
-  Description:  ƒXƒvƒ‰ƒCƒg‘®«
+  Description:  ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå±æ€§
  *---------------------------------------------------------------------------*/
 typedef enum NNSG2dSpriteAttr
 {
@@ -57,16 +57,16 @@ typedef enum NNSG2dSpriteAttr
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dSimpleSprite
 
-  Description:  ƒXƒvƒ‰ƒCƒgÀ‘Ì
+  Description:  ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå®Ÿä½“
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dSimpleSprite
 {
-    NNSG2dSVec2        pos;        // ˆÊ’u   
-    NNSG2dSVec2        size;       // ƒTƒCƒY
+    NNSG2dSVec2        pos;        // ä½ç½®   
+    NNSG2dSVec2        size;       // ã‚µã‚¤ã‚º
     
-    u16                rotZ;       // ‰ñ“]Šp( unit = 360 / 65535 )
-    u8                 priority;   // •\¦—Dæ“x
-    u8                 alpha;      // ƒ¿( 0 - 31 )
+    u16                rotZ;       // å›è»¢è§’( unit = 360 / 65535 )
+    u8                 priority;   // è¡¨ç¤ºå„ªå…ˆåº¦
+    u8                 alpha;      // Î±( 0 - 31 )
     
 }
 NNSG2dSimpleSprite;
@@ -75,11 +75,11 @@ NNSG2dSimpleSprite;
 typedef struct NNSG2dBasicSprite
 {
     NNSG2dSimpleSprite        simpleParams;   // NNSG2dSimpleSprite
-    NNSG2dImageAttr*          pTextureAttr;   // Texture ‘®«
-    u32                       texAddr;        // ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒX
-    u32                       plttAddr;       // ƒpƒŒƒbƒgƒAƒhƒŒƒX
-    u16                       plttOffset;     // ƒpƒŒƒbƒgƒeƒNƒXƒ`ƒƒg—p‚Ì‚İ
-    GXRgb                     color;          // ƒJƒ‰[
+    NNSG2dImageAttr*          pTextureAttr;   // Texture å±æ€§
+    u32                       texAddr;        // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹
+    u32                       plttAddr;       // ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
+    u16                       plttOffset;     // ãƒ‘ãƒ¬ãƒƒãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ä½¿ç”¨æ™‚ã®ã¿
+    GXRgb                     color;          // ã‚«ãƒ©ãƒ¼
 }
 NNSG2dBasicSprite;
 
@@ -87,13 +87,13 @@ NNSG2dBasicSprite;
 typedef struct NNSG2dExtendedSprite
 {
     NNSG2dBasicSprite         basicParams;// NNSG2dBasicSprite
-    NNSG2dFVec2               uvUL;       // UV (lŠpF¶ã)
-    NNSG2dFVec2               uvLR;       // UV (lŠpF‰E‰º)
-    BOOL                      flipH;      // …•½ƒtƒŠƒbƒv           
-    BOOL                      flipV;      // ‚’¼ƒtƒŠƒbƒv
-    NNSG2dSVec2               rotO;       // ‰ñ“]’†S
-    u16                       rotX;       // X‰ñ“]
-    u16                       rotY;       // Y‰ñ“]
+    NNSG2dFVec2               uvUL;       // UV (å››è§’ï¼šå·¦ä¸Š)
+    NNSG2dFVec2               uvLR;       // UV (å››è§’ï¼šå³ä¸‹)
+    BOOL                      flipH;      // æ°´å¹³ãƒ•ãƒªãƒƒãƒ—           
+    BOOL                      flipV;      // å‚ç›´ãƒ•ãƒªãƒƒãƒ—
+    NNSG2dSVec2               rotO;       // å›è»¢ä¸­å¿ƒ
+    u16                       rotX;       // Xå›è»¢
+    u16                       rotY;       // Yå›è»¢
 }
 NNSG2dExtendedSprite;
 
@@ -101,12 +101,12 @@ NNSG2dExtendedSprite;
 
 
 //------------------------------------------------------------------------------
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void NNS_G2dSetupSoftwareSpriteCamera();
 void NNS_G2dSetupSoftwareSpriteMaterial();
 
 //------------------------------------------------------------------------------
-// ‘®«İ’è
+// å±æ€§è¨­å®š
 void NNS_G2dSetSpriteAttrEnable( u32 attr );
 BOOL NNS_G2dIsSpriteAttrEnable( NNSG2dSpriteAttr attr );
 void NNS_G2dSetSpriteCurrentPolygonID( u16 id );
@@ -115,7 +115,7 @@ void                          NNS_G2dSetSpriteDefaultAttr( const NNSG2dExtendedS
 const NNSG2dExtendedSprite*   NNS_G2dGetSpriteDefaultAttr( );
 
 //------------------------------------------------------------------------------
-// •`‰æ
+// æç”»
 void NNS_G2dDrawSpriteSimpleFast( const NNSG2dSimpleSprite* pS );
 void NNS_G2dDrawSpriteBasicFast( const NNSG2dBasicSprite* pB );
 void NNS_G2dDrawSpriteExtendedFast( const NNSG2dExtendedSprite* pE );
@@ -123,7 +123,7 @@ void NNS_G2dDrawSpriteExtendedFast( const NNSG2dExtendedSprite* pE );
 
 //------------------------------------------------------------------------------
 //
-// ’¼Úƒpƒ‰ƒ[ƒ^‚ğ‘ã“ü‚·‚éAPI
+// ç›´æ¥ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä»£å…¥ã™ã‚‹API
 //
 //------------------------------------------------------------------------------
 void NNS_G2dDrawSpriteFast
@@ -134,18 +134,18 @@ void NNS_G2dDrawSpriteFast
 );
 
 //------------------------------------------------------------------------------
-// ƒCƒ“ƒ‰ƒCƒ“ŠÖ”
+// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°
 //------------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dDrawSpriteSimple ... NNS_G2dDrawSprite
 
-  Description:  ƒXƒvƒ‰ƒCƒg‚ğ•`‰æ‚µ‚Ü‚·
-                ŠÖ”ŒÄ‚Ño‚µ‚Ì‘OŒã‚ÅƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‚ÌƒJƒŒƒ“ƒgs—ñ‚Ì“à—e‚ª•Û‘¶‚³‚ê‚Ü‚·B
+  Description:  ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’æç”»ã—ã¾ã™
+                é–¢æ•°å‘¼ã³å‡ºã—ã®å‰å¾Œã§ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³ã®ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ã®å†…å®¹ãŒä¿å­˜ã•ã‚Œã¾ã™ã€‚
                 
                 
-  Arguments:    È—ª
+  Arguments:    çœç•¥
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dDrawSpriteSimple( const NNSG2dSimpleSprite* pS )
@@ -182,11 +182,11 @@ NNS_G2D_INLINE void NNS_G2dDrawSprite
 
 
 //------------------------------------------------------------------------------
-// ƒ‰ƒCƒuƒ‰ƒŠ“à•”ŒöŠJ
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨å…¬é–‹
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// NNS_G2dDrawSpriteFast ‚Æ”äŠr‚µ‚ÄAZ’lAUV’l‚ÌŒ^‚ªˆÙ‚È‚é“_‚É’ˆÓ
+// NNS_G2dDrawSpriteFast ã¨æ¯”è¼ƒã—ã¦ã€Zå€¤ã€UVå€¤ã®å‹ãŒç•°ãªã‚‹ç‚¹ã«æ³¨æ„
 void NNSi_G2dDrawSpriteFast
 ( 
     s16 px, s16 py, fx32 pz, 

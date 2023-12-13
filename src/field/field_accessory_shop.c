@@ -2,7 +2,7 @@
 /**
  *
  *	@file		field_accessory_shop.c
- *	@brief		ƒAƒNƒZƒTƒŠ[ŒğŠ·Š
+ *	@brief		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼äº¤æ›æ‰€
  *	@author		tomoya takahashi
  *	@data		2006.06.06
  *
@@ -36,11 +36,11 @@
 #include "system/snd_play.h"
 #include "system/snd_tool.h"
 
-// ƒŠƒXƒgã‰ºƒAƒCƒRƒ“—p
+// ãƒªã‚¹ãƒˆä¸Šä¸‹ã‚¢ã‚¤ã‚³ãƒ³ç”¨
 #include "shop_gra.naix"
 
 
-//////// accessoryƒVƒ‡ƒbƒvƒf[ƒ^
+//////// accessoryã‚·ãƒ§ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
 #include "acce_shop.dat"
 
 
@@ -49,35 +49,35 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒZƒ‹ƒAƒNƒ^[
+//	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //=====================================
 #define ACCE_SHOP_CLACT_WORK_NUM	( 2 )
 
 
 
 //-------------------------------------
-//	í’“ƒLƒƒƒ‰ƒNƒ^@ƒpƒŒƒbƒgˆÊ’u
+//	å¸¸é§ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€€ãƒ‘ãƒ¬ãƒƒãƒˆä½ç½®
 //=====================================
 #define ACCE_SHOP_TALK_CHAROFS		( 1 )
 #define ACCE_SHOP_TALK_PLTT			( 10 )
@@ -91,7 +91,7 @@
 
 
 //-------------------------------------
-//	ƒƒCƒ“ƒƒbƒZ[ƒW\‘¢‘Ì’è”
+//	ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ§‹é€ ä½“å®šæ•°
 //=====================================
 #define ACCE_SHOP_MAIN_MSGWIN_X		( 2 )
 #define ACCE_SHOP_MAIN_MSGWIN_Y		( 19 )
@@ -101,7 +101,7 @@
 #define ACCE_SHOP_MAIN_MSGWIN_PLTT	( ACCE_SHOP_TALKFONT_PLTT )
 
 //-------------------------------------
-//	ƒf[ƒ^‰æ–Ê\‘¢‘Ì’è”
+//	ãƒ‡ãƒ¼ã‚¿ç”»é¢æ§‹é€ ä½“å®šæ•°
 //=====================================
 #define ACCE_SHOP_DATA_WINWIN_X		( 1 )
 #define ACCE_SHOP_DATA_WINWIN_Y		( 11 )
@@ -119,7 +119,7 @@ enum{
 
 
 //-------------------------------------
-//	accessoryƒŠƒXƒg\‘¢‘Ì’è”
+//	accessoryãƒªã‚¹ãƒˆæ§‹é€ ä½“å®šæ•°
 //=====================================
 #define ACCE_SHOP_LIST_WINWIN_X		( 17 )
 #define ACCE_SHOP_LIST_WINWIN_Y		( 1 )
@@ -128,21 +128,21 @@ enum{
 #define ACCE_SHOP_LIST_WINWIN_CHAR	( ACCE_SHOP_DATA_WINWIN_CHAR + (ACCE_SHOP_DATA_WINWIN_SX*ACCE_SHOP_DATA_WINWIN_SY) )
 #define ACCE_SHOP_LIST_WINWIN_PLTT	( ACCE_SHOP_SYSTEMFONT_PLTT )
 
-#define ACCE_SHOP_LIST_WIN_DRAWLINE		( 7 )	// •\¦ƒ‰ƒCƒ“
-#define ACCE_SHOP_LIST_WIN_DATA_X		( 16 )	// €–Ú•\¦ˆÊ’u
-#define ACCE_SHOP_LIST_WIN_CURSOR_X		( 0 )	// ƒJ[ƒ\ƒ‹•\¦ˆÊ’u
-#define ACCE_SHOP_LIST_WIN_DRAW_Y		( 8 )	// •\¦ŠJnYÀ•W
-#define ACCE_SHOP_LIST_WIN_FONT_COL_F	( 1 )	// •¶šF
-#define ACCE_SHOP_LIST_WIN_FONT_COL_B	( 15 )	// ”wŒiF
-#define ACCE_SHOP_LIST_WIN_FONT_COL_S	( 2 )	// ‰eF
-#define ACCE_SHOP_LIST_WIN_MSG_SPC		( 0 )	// •¶šŠÔŠu
-#define ACCE_SHOP_LIST_WIN_LINE_SPC		( 0 )	// ƒ‰ƒCƒ“ŠÔŠu
-#define ACCE_SHOP_LIST_WIN_PAGE_SKIP	( FALSE )	// ƒXƒLƒbƒv
-#define ACCE_SHOP_LIST_WIN_FONT			( FONT_SYSTEM )	// •¶šƒ^ƒCƒv
+#define ACCE_SHOP_LIST_WIN_DRAWLINE		( 7 )	// è¡¨ç¤ºãƒ©ã‚¤ãƒ³
+#define ACCE_SHOP_LIST_WIN_DATA_X		( 16 )	// é …ç›®è¡¨ç¤ºä½ç½®
+#define ACCE_SHOP_LIST_WIN_CURSOR_X		( 0 )	// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºä½ç½®
+#define ACCE_SHOP_LIST_WIN_DRAW_Y		( 8 )	// è¡¨ç¤ºé–‹å§‹Yåº§æ¨™
+#define ACCE_SHOP_LIST_WIN_FONT_COL_F	( 1 )	// æ–‡å­—è‰²
+#define ACCE_SHOP_LIST_WIN_FONT_COL_B	( 15 )	// èƒŒæ™¯è‰²
+#define ACCE_SHOP_LIST_WIN_FONT_COL_S	( 2 )	// å½±è‰²
+#define ACCE_SHOP_LIST_WIN_MSG_SPC		( 0 )	// æ–‡å­—é–“éš”
+#define ACCE_SHOP_LIST_WIN_LINE_SPC		( 0 )	// ãƒ©ã‚¤ãƒ³é–“éš”
+#define ACCE_SHOP_LIST_WIN_PAGE_SKIP	( FALSE )	// ã‚¹ã‚­ãƒƒãƒ—
+#define ACCE_SHOP_LIST_WIN_FONT			( FONT_SYSTEM )	// æ–‡å­—ã‚¿ã‚¤ãƒ—
 #define ACCE_SHOP_LIST_WIN_DISP			( 0 )
 
-#define ACCE_SHOP_LIST_WIN_CLACT_RESNUM	( 4 )	// ƒLƒƒƒ‰@ƒpƒŒƒbƒg@ƒZƒ‹@ƒZƒ‹ƒAƒjƒ
-#define ACCE_SHOP_LIST_WIN_CLACT_RESMAN_WORKNUM	( 1 )	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ[ƒN
+#define ACCE_SHOP_LIST_WIN_CLACT_RESNUM	( 4 )	// ã‚­ãƒ£ãƒ©ã€€ãƒ‘ãƒ¬ãƒƒãƒˆã€€ã‚»ãƒ«ã€€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+#define ACCE_SHOP_LIST_WIN_CLACT_RESMAN_WORKNUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¯ãƒ¼ã‚¯
 #define ACCE_SHOP_LIST_WIN_CLACT_RESCONT_ID	( 5000 )
 #define ACCE_SHOP_LIST_WIN_CLACT_OBJNUM	( 2 )
 
@@ -152,12 +152,12 @@ enum{
 
 
 //-------------------------------------
-//	YESNOƒEƒBƒ“ƒhƒE
+//	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
-#define ACCE_SHOP_YESNO_WIN_X	( 24 )		// ‚˜ˆÊ’u
-#define ACCE_SHOP_YESNO_WIN_Y	( 13 )		// ‚™ˆÊ’u
-#define ACCE_SHOP_YESNO_WIN_SX	( 7 )		// ‚˜ƒTƒCƒY
-#define ACCE_SHOP_YESNO_WIN_SY	( 4 )		// yƒTƒCƒY
+#define ACCE_SHOP_YESNO_WIN_X	( 24 )		// ï½˜ä½ç½®
+#define ACCE_SHOP_YESNO_WIN_Y	( 13 )		// ï½™ä½ç½®
+#define ACCE_SHOP_YESNO_WIN_SX	( 7 )		// ï½˜ã‚µã‚¤ã‚º
+#define ACCE_SHOP_YESNO_WIN_SY	( 4 )		// yã‚µã‚¤ã‚º
 #define ACCE_SHOP_YESNO_WIN_CHAR	( ACCE_SHOP_LIST_WINWIN_CHAR + (ACCE_SHOP_LIST_WINWIN_SX*ACCE_SHOP_LIST_WINWIN_SY) )
 #define ACCE_SHOP_YESNO_WIN_PLTT	( ACCE_SHOP_SYSTEMFONT_PLTT )
 
@@ -165,48 +165,48 @@ enum{
 
 
 //-------------------------------------
-//	‘S‘ÌƒV[ƒPƒ“ƒX
+//	å…¨ä½“ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
-	ACCE_SHOP_SEQ_STARTMSG,			// ‚±‚ñ‚É‚¿‚ÍI
-	ACCE_SHOP_SEQ_FULLHAVE_CHECK,	// ‘S‚Ä‚ÌƒAƒNƒZƒTƒŠ[‚ğ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
-	ACCE_SHOP_SEQ_LIST_START,		// ƒŠƒXƒg‰æ–Ê‚ÌŠJn
-	ACCE_SHOP_SEQ_LIST_RESTART,		// ƒŠƒXƒg‰æ–Ê‚ÌÄŠJn
-	ACCE_SHOP_SEQ_LIST_MAIN,		// ƒŠƒXƒgˆ—ƒƒCƒ“
+	ACCE_SHOP_SEQ_STARTMSG,			// ã“ã‚“ã«ã¡ã¯ï¼
+	ACCE_SHOP_SEQ_FULLHAVE_CHECK,	// å…¨ã¦ã®ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+	ACCE_SHOP_SEQ_LIST_START,		// ãƒªã‚¹ãƒˆç”»é¢ã®é–‹å§‹
+	ACCE_SHOP_SEQ_LIST_RESTART,		// ãƒªã‚¹ãƒˆç”»é¢ã®å†é–‹å§‹
+	ACCE_SHOP_SEQ_LIST_MAIN,		// ãƒªã‚¹ãƒˆå‡¦ç†ãƒ¡ã‚¤ãƒ³
 
-	ACCE_SHOP_SEQ_YESNO_START,		// ƒnƒCƒCƒCƒG
-	ACCE_SHOP_SEQ_YESNO_MAIN,		// ƒnƒCƒCƒCƒG
+	ACCE_SHOP_SEQ_YESNO_START,		// ãƒã‚¤ã‚¤ã‚¤ã‚¨
+	ACCE_SHOP_SEQ_YESNO_MAIN,		// ãƒã‚¤ã‚¤ã‚¤ã‚¨
 
-	ACCE_SHOP_SEQ_GET_ACCE,			// ƒAƒNƒZƒTƒŠŒğŠ·ˆ—
-	ACCE_SHOP_SEQ_GET_ACCE_FULL,	// ƒAƒNƒZƒTƒŠ‘S•”‚ ‚Â‚Ü‚Á‚½
-	ACCE_SHOP_SEQ_GET_ACCE_FULL2,	// ƒAƒNƒZƒTƒŠ‘S•”‚ ‚Â‚Ü‚Á‚½
+	ACCE_SHOP_SEQ_GET_ACCE,			// ã‚¢ã‚¯ã‚»ã‚µãƒªäº¤æ›å‡¦ç†
+	ACCE_SHOP_SEQ_GET_ACCE_FULL,	// ã‚¢ã‚¯ã‚»ã‚µãƒªå…¨éƒ¨ã‚ã¤ã¾ã£ãŸ
+	ACCE_SHOP_SEQ_GET_ACCE_FULL2,	// ã‚¢ã‚¯ã‚»ã‚µãƒªå…¨éƒ¨ã‚ã¤ã¾ã£ãŸ
 
-	ACCE_SHOP_SEQ_MSG_WAIT,	// ƒƒbƒZ[ƒW‘Ò‚¿
-	ACCE_SHOP_SEQ_KEY_WAIT,	// ƒL[‘Ò‚¿
-	ACCE_SHOP_SEQ_END,		// I‚í‚è
+	ACCE_SHOP_SEQ_MSG_WAIT,	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
+	ACCE_SHOP_SEQ_KEY_WAIT,	// ã‚­ãƒ¼å¾…ã¡
+	ACCE_SHOP_SEQ_END,		// çµ‚ã‚ã‚Š
 };
 
 
 
 //-------------------------------------
-//	‰¹’è‹`
+//	éŸ³å®šç¾©
 //=====================================
-#define ACCE_SHOP_SND_KEY_ON	( SEQ_SE_DP_SELECT )		// ƒL[‘Ò‚¿‚Å‰Ÿ‚³‚ê‚½‚Æ‚«‚Ì‰¹
-#define ACCE_SHOP_SND_LIST_MOVE	( SEQ_SE_DP_SELECT )		// ƒŠƒXƒg“®‚³‰¹
-#define ACCE_SHOP_SND_LIST_SELECT	( SEQ_SE_DP_SELECT )	// ƒŠƒXƒgŒˆ’è
+#define ACCE_SHOP_SND_KEY_ON	( SEQ_SE_DP_SELECT )		// ã‚­ãƒ¼å¾…ã¡ã§æŠ¼ã•ã‚ŒãŸã¨ãã®éŸ³
+#define ACCE_SHOP_SND_LIST_MOVE	( SEQ_SE_DP_SELECT )		// ãƒªã‚¹ãƒˆå‹•ã•éŸ³
+#define ACCE_SHOP_SND_LIST_SELECT	( SEQ_SE_DP_SELECT )	// ãƒªã‚¹ãƒˆæ±ºå®š
 #define ACCE_SHOP_SND_LIST_CANCEL	( SEQ_SE_DP_SELECT )	// CANCEL
 
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/23
-// ƒƒbƒZ[ƒW—pƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğŠg‘å
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’æ‹¡å¤§
 #define ACCE_SHOP_BUFFER_SIZE	(200)
 // ----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
@@ -214,18 +214,18 @@ enum{
 
 
 //-------------------------------------
-//	ƒƒCƒ“ƒƒbƒZ[ƒW\‘¢‘Ì
+//	ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ§‹é€ ä½“
 //=====================================
 typedef struct {
 	u32 init;
 	GF_BGL_BMPWIN* p_bmp;
 	u32 msg_speed;
 	u32 msg_idx;
-	STRBUF* p_str;	// •\¦’†‚Ì•¶š—ñƒoƒbƒtƒ@
+	STRBUF* p_str;	// è¡¨ç¤ºä¸­ã®æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
 } ACCE_SHOP_MAIN_MSG;
 
 //-------------------------------------
-//	ŒğŠ·ƒf[ƒ^ƒEƒBƒ“ƒhƒE
+//	äº¤æ›ãƒ‡ãƒ¼ã‚¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 typedef struct {
 	u32 init;
@@ -237,7 +237,7 @@ typedef struct {
 
 #define ACCE_SHOP_DATA_LIST_NUM	( ACCE_SHOP_DATA_NUM + 1 )
 //-------------------------------------
-//	ƒŠƒXƒgƒEƒBƒ“ƒhƒE
+//	ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 typedef struct {
 	u32 init;
@@ -250,43 +250,43 @@ typedef struct {
 	STRBUF* p_drawstr;
 	u16 now_pos;
 	u16 now_pos_param;
-	void* p_work;		// ƒŠƒXƒg‚ª“®‚¢‚½‚Æ‚«‚ÉŒÄ‚ÔƒR[ƒ‹ƒoƒbƒNƒ[ƒN
-	void (*callback)( void* p_work, u32 listnum );	// ƒR[ƒ‹ƒoƒbƒNŠÖ”
+	void* p_work;		// ãƒªã‚¹ãƒˆãŒå‹•ã„ãŸã¨ãã«å‘¼ã¶ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+	void (*callback)( void* p_work, u32 listnum );	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
 
-	// ƒZƒ‹ƒAƒNƒ^[
-	CLACT_U_RES_MANAGER_PTR	resMan[ACCE_SHOP_LIST_WIN_CLACT_RESNUM];	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR		resObj[ACCE_SHOP_LIST_WIN_CLACT_RESNUM];	// ‚»‚ê‚¼‚ê‚ÌƒŠƒ\[ƒXƒIƒuƒWƒF”
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	CLACT_U_RES_MANAGER_PTR	resMan[ACCE_SHOP_LIST_WIN_CLACT_RESNUM];	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR		resObj[ACCE_SHOP_LIST_WIN_CLACT_RESNUM];	// ãã‚Œãã‚Œã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§æ•°
 	CLACT_WORK_PTR clact[ ACCE_SHOP_LIST_WIN_CLACT_OBJNUM ];
 } ACCE_SHOP_LIST_WIN;
 typedef void (*pAcceListMoveFunc)( void* p_work, u32 listnum );
 
 //-------------------------------------
-//	YES NO ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
+//	YES NO ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
 //=====================================
 typedef struct {
 	u32 init;
-	BMPMENU_WORK* p_yesno;	// YESNOƒƒjƒ…[
-	u32 heapID;				// ƒq[ƒv
+	BMPMENU_WORK* p_yesno;	// YESNOãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	u32 heapID;				// ãƒ’ãƒ¼ãƒ—
 } ACCE_SHOP_YESNO_MENU;
 
 
 //-------------------------------------
-//	ƒŠƒXƒg“®ì
-//	ƒf[ƒ^ƒEƒBƒ“ƒhƒE•ÏX	ˆ—ƒ[ƒN
+//	ãƒªã‚¹ãƒˆå‹•ä½œæ™‚
+//	ãƒ‡ãƒ¼ã‚¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰æ›´	å‡¦ç†ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	u32 heapID;
 	GF_BGL_INI* p_bgl;
-	ACCE_SHOP_DATA_WIN* p_data_wnd;	// ƒf[ƒ^ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
-	const ACCE_SHOP_DATA* cp_data;	// ƒf[ƒ^
-	MYITEM* p_myitem;		// ƒAƒCƒeƒ€
+	ACCE_SHOP_DATA_WIN* p_data_wnd;	// ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	const ACCE_SHOP_DATA* cp_data;	// ãƒ‡ãƒ¼ã‚¿
+	MYITEM* p_myitem;		// ã‚¢ã‚¤ãƒ†ãƒ 
 } ACCE_SHOP_DATA_WIN_CHG;
 
 
 
 //-------------------------------------
-//	accessoryŒğŠ·Š
+//	accessoryäº¤æ›æ‰€
 //=====================================
 typedef struct _FIELD_ACCE_SHOP{
 	u32 seq;
@@ -296,29 +296,29 @@ typedef struct _FIELD_ACCE_SHOP{
 	MYITEM* p_myitem;
 	GF_BGL_INI* p_bgl;
 	u32 heapID;
-	CLACT_SET_PTR			clactSet;	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	renddata;	// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
+	CLACT_SET_PTR			clactSet;	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	renddata;	// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£
 	MSGDATA_MANAGER* p_msgman;
 
-	// ƒRƒ“ƒtƒBƒOƒf[ƒ^
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
 	u32 win_type;
 	u32 msg_speed;
 	
-	// Še•`‰æŠÇ—ƒIƒuƒWƒF
-	ACCE_SHOP_MAIN_MSG main_msgwnd;	// ƒƒCƒ“ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
-	ACCE_SHOP_DATA_WIN data_msgwnd;	// ƒf[ƒ^ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
-	ACCE_SHOP_LIST_WIN list_wnd;	// ƒŠƒXƒgƒEƒBƒ“ƒhƒE
-	ACCE_SHOP_YESNO_MENU yes_no;	// ‚Í‚¢@‚¢‚¢‚¦@ƒƒjƒ…[
+	// å„æç”»ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§
+	ACCE_SHOP_MAIN_MSG main_msgwnd;	// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	ACCE_SHOP_DATA_WIN data_msgwnd;	// ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	ACCE_SHOP_LIST_WIN list_wnd;	// ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	ACCE_SHOP_YESNO_MENU yes_no;	// ã¯ã„ã€€ã„ã„ãˆã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 	
-	// •\¦•ÏXƒIƒuƒWƒF
-	ACCE_SHOP_DATA_WIN_CHG data_msgwnd_chg;	// ƒf[ƒ^ƒEƒBƒ“ƒhƒE•ÏX
+	// è¡¨ç¤ºå¤‰æ›´ã‚ªãƒ–ã‚¸ã‚§
+	ACCE_SHOP_DATA_WIN_CHG data_msgwnd_chg;	// ãƒ‡ãƒ¼ã‚¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰æ›´
 } ;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void AcceShop_BGL_Init( FIELD_ACCE_SHOP* p_acce_shop );
@@ -357,7 +357,7 @@ static void AcceShop_YesNoWinDelete( ACCE_SHOP_YESNO_MENU* p_win );
 static u32 AcceShop_YesNoWinMain( ACCE_SHOP_YESNO_MENU* p_win );
 
 
-// ƒŠƒXƒg‚ÌƒR[ƒ‹ƒoƒbƒN‚ÅAƒf[ƒ^ƒEƒBƒ“ƒhƒE‚ğ•ÏX‚·‚é
+// ãƒªã‚¹ãƒˆã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§ã€ãƒ‡ãƒ¼ã‚¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å¤‰æ›´ã™ã‚‹
 static void AcceShop_DataWinChgDataInit( ACCE_SHOP_DATA_WIN_CHG* p_obj, ACCE_SHOP_DATA_WIN* data_win, const ACCE_SHOP_DATA* cp_data, MYITEM* p_save, u32 heapID, GF_BGL_INI* p_bgl );
 static void AcceShop_DataWinChgCallBack( void* p_work, u32 listnum );
 
@@ -365,7 +365,7 @@ static BOOL AcceShop_FullAcceCheck( const IMC_ITEM_SAVEDATA* cp_item, const ACCE
 static BOOL AcceShop_NutsOkCheck( MYITEM* p_save, const ACCE_SHOP_DATA* cp_data, u32 data_idx, u32 heapID );
 static BOOL AcceShop_AcceHaveOkCheck( const IMC_ITEM_SAVEDATA* cp_item, const ACCE_SHOP_DATA* cp_data, u32 data_idx );
 
-// ƒAƒCƒeƒ€ŒğŠ·ˆ—
+// ã‚¢ã‚¤ãƒ†ãƒ äº¤æ›å‡¦ç†
 static void AcceShop_AcceChange( IMC_ITEM_SAVEDATA* p_acceitem, MYITEM* p_myitem, const ACCE_SHOP_DATA* cp_data, u32 data_idx, u32 heapID );
 
 
@@ -373,13 +373,13 @@ static void AcceShop_AcceChange( IMC_ITEM_SAVEDATA* p_acceitem, MYITEM* p_myitem
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒVƒ‡ƒbƒvì¬
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚·ãƒ§ãƒƒãƒ—ä½œæˆ
  *
- *	@param	heapID		ƒq[ƒvID
- *	@param	p_save		ƒZ[ƒuƒf[ƒ^
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	p_save		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *	@param	p_bgl		BGL
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FIELD_ACCE_SHOP* FIELD_AcceShop_Alloc( u32 heapID, SAVEDATA* p_save, GF_BGL_INI* p_bgl )
@@ -391,22 +391,22 @@ FIELD_ACCE_SHOP* FIELD_AcceShop_Alloc( u32 heapID, SAVEDATA* p_save, GF_BGL_INI*
 	p_acce_shop->p_bgl = p_bgl;
 	p_acce_shop->p_savedata = p_save;
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒAƒNƒZƒTƒŠƒf[ƒ^
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
 	p_acce_shop->p_item = ImcSaveData_GetItemSaveData( SaveData_GetImcSaveData( p_acce_shop->p_savedata ) );
 
 	// myitem
 	p_acce_shop->p_myitem = SaveData_GetMyItem( p_save );
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_acce_shop->p_msgman = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_t03r0101_dat, p_acce_shop->heapID );
 
-	// ƒRƒ“ƒtƒBƒO‰Šú‰»
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚°åˆæœŸåŒ–
 	AcceShop_ConfigGet( p_acce_shop );
 
-	// BGL‰Šú‰»
+	// BGLåˆæœŸåŒ–
 	AcceShop_BGL_Init( p_acce_shop );
 
-	// ƒZƒ‹ƒAƒNƒ^[
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 	AcceShop_CLACT_Init( p_acce_shop );
 
 	return p_acce_shop;
@@ -414,20 +414,20 @@ FIELD_ACCE_SHOP* FIELD_AcceShop_Alloc( u32 heapID, SAVEDATA* p_save, GF_BGL_INI*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒVƒ‡ƒbƒv”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚·ãƒ§ãƒƒãƒ—ç ´æ£„
  *
- *	@param	p_acce_shop		ƒ[ƒN
+ *	@param	p_acce_shop		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void FIELD_AcceShop_Free( FIELD_ACCE_SHOP* p_acce_shop )
 {
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	MSGMAN_Delete( p_acce_shop->p_msgman );
 	
-	// BGL”jŠü
+	// BGLç ´æ£„
 	AcceShop_BGL_Delete( p_acce_shop );
 
-	// ƒZƒ‹ƒAƒNƒ^-
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿-
 	AcceShop_CLACT_Delete( p_acce_shop );
 
 	memset( p_acce_shop, 0, sizeof(FIELD_ACCE_SHOP) );
@@ -436,12 +436,12 @@ void FIELD_AcceShop_Free( FIELD_ACCE_SHOP* p_acce_shop )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒVƒ‡ƒbƒv@ƒƒCƒ“
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚·ãƒ§ãƒƒãƒ—ã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_acce_shop		ƒ[ƒN
+ *	@param	p_acce_shop		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL FIELD_AcceShop_Main( FIELD_ACCE_SHOP* p_acce_shop )
@@ -450,7 +450,7 @@ BOOL FIELD_AcceShop_Main( FIELD_ACCE_SHOP* p_acce_shop )
 	BOOL result;
 	
 	switch( p_acce_shop->seq ){
-	case ACCE_SHOP_SEQ_STARTMSG:			// ‚±‚ñ‚É‚¿‚ÍI
+	case ACCE_SHOP_SEQ_STARTMSG:			// ã“ã‚“ã«ã¡ã¯ï¼
 		AcceShop_MainMsgInit( &p_acce_shop->main_msgwnd, 
 				p_acce_shop->p_bgl, p_acce_shop->heapID, p_acce_shop->msg_speed );
 
@@ -461,23 +461,23 @@ BOOL FIELD_AcceShop_Main( FIELD_ACCE_SHOP* p_acce_shop )
 		p_acce_shop->seq_sub = ACCE_SHOP_SEQ_FULLHAVE_CHECK;
 		break;
 
-	case ACCE_SHOP_SEQ_FULLHAVE_CHECK:	// ‘S‚Ä‚ÌƒAƒNƒZƒTƒŠ[‚ğ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
-		// ƒAƒNƒZƒTƒŠƒtƒ‹‚É‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	case ACCE_SHOP_SEQ_FULLHAVE_CHECK:	// å…¨ã¦ã®ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ•ãƒ«ã«æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( AcceShop_FullAcceCheck( p_acce_shop->p_item, AcceShopData, ACCE_SHOP_DATA_NUM ) ){
 
-			// ƒtƒ‹‚É‚Á‚Ä‚¢‚é
+			// ãƒ•ãƒ«ã«æŒã£ã¦ã„ã‚‹
 			p_str = MSGMAN_AllocString( p_acce_shop->p_msgman, mes_accessory_01_02 );
 			AcceShop_MainMsgSet( &p_acce_shop->main_msgwnd, p_str, p_acce_shop->heapID );
 			STRBUF_Delete( p_str );
-			p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// I—¹‚Ö
+			p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// çµ‚äº†ã¸
 			p_acce_shop->seq_sub = ACCE_SHOP_SEQ_END;
 		}else{
-			// ƒtƒ‹‚É‚Á‚Ä‚¢‚È‚¢
+			// ãƒ•ãƒ«ã«æŒã£ã¦ã„ãªã„
 			p_acce_shop->seq = ACCE_SHOP_SEQ_LIST_START;
 		}
 		break;
 		
-	case ACCE_SHOP_SEQ_LIST_START:		// ƒŠƒXƒg‰æ–Ê‚ÌŠJn
+	case ACCE_SHOP_SEQ_LIST_START:		// ãƒªã‚¹ãƒˆç”»é¢ã®é–‹å§‹
 		AcceShop_DataMsgInit( &p_acce_shop->data_msgwnd, 
 				p_acce_shop->p_bgl, p_acce_shop->p_msgman, 
 				p_acce_shop->heapID );
@@ -489,11 +489,11 @@ BOOL FIELD_AcceShop_Main( FIELD_ACCE_SHOP* p_acce_shop )
 				p_acce_shop->p_bgl, p_acce_shop->heapID,
 				AcceShopData, ACCE_SHOP_DATA_NUM, p_acce_shop->p_msgman,
 				&p_acce_shop->data_msgwnd_chg, AcceShop_DataWinChgCallBack, p_acce_shop->clactSet );
-		// ˆø‚«‘±‚««
-	case ACCE_SHOP_SEQ_LIST_RESTART:		// ƒŠƒXƒg‰æ–Ê‚ÌÄŠJn
+		// å¼•ãç¶šãâ†“
+	case ACCE_SHOP_SEQ_LIST_RESTART:		// ãƒªã‚¹ãƒˆç”»é¢ã®å†é–‹å§‹
 		AcceShop_ListWinReTrans( &p_acce_shop->list_wnd );
 
-		// ‚Ç‚ÌƒAƒNƒZƒTƒŠ‚ª‚Ù‚µ‚¢H
+		// ã©ã®ã‚¢ã‚¯ã‚»ã‚µãƒªãŒã»ã—ã„ï¼Ÿ
 		p_str = MSGMAN_AllocString( p_acce_shop->p_msgman, mes_accessory_01_03 );
 		AcceShop_MainMsgSet( &p_acce_shop->main_msgwnd, p_str, p_acce_shop->heapID );
 		STRBUF_Delete( p_str );
@@ -501,19 +501,19 @@ BOOL FIELD_AcceShop_Main( FIELD_ACCE_SHOP* p_acce_shop )
 		p_acce_shop->seq_sub = ACCE_SHOP_SEQ_LIST_MAIN;
 		break;
 		
-	case ACCE_SHOP_SEQ_LIST_MAIN:		// ƒŠƒXƒgˆ—ƒƒCƒ“
+	case ACCE_SHOP_SEQ_LIST_MAIN:		// ãƒªã‚¹ãƒˆå‡¦ç†ãƒ¡ã‚¤ãƒ³
 		result = AcceShop_ListWinMain( &p_acce_shop->list_wnd );
 		
 		if( (result != BMPLIST_NULL) && (result != BMPLIST_CANCEL) ){
 
-			// ƒŠƒXƒg•\¦—Ìˆæ‚ÌƒXƒNƒŠ[ƒ“‚ğ‰Šú‰»
+			// ãƒªã‚¹ãƒˆè¡¨ç¤ºé ˜åŸŸã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’åˆæœŸåŒ–
 			GF_BGL_ScrFill( p_acce_shop->p_bgl, FLD_MBGFRM_FONT,
 				0, 0, 0, 32, 18, GF_BGL_SCRWRT_PALIN );
 
 			// OAMOFF
 			AcceShop_ListWinDrawClean( &p_acce_shop->list_wnd );
 
-			// ƒƒCƒ“ƒEƒBƒ“ƒhƒE•ÏX
+			// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰æ›´
 			AcceShop_MainMsgChangeStrSet( &p_acce_shop->main_msgwnd, p_acce_shop->p_msgman, p_acce_shop->heapID, AcceShopData, p_acce_shop->list_wnd.now_pos );	
 
 			p_acce_shop->seq = ACCE_SHOP_SEQ_MSG_WAIT;
@@ -522,115 +522,115 @@ BOOL FIELD_AcceShop_Main( FIELD_ACCE_SHOP* p_acce_shop )
 			Snd_SePlay( ACCE_SHOP_SND_LIST_SELECT );
 			
 		}else if( result == BMPLIST_CANCEL ){
-			// ‚Ü‚½‚Ç‚¤‚¼
+			// ã¾ãŸã©ã†ã
 			p_str = MSGMAN_AllocString( p_acce_shop->p_msgman, mes_accessory_01_08 );
 			AcceShop_MainMsgSet( &p_acce_shop->main_msgwnd, p_str, p_acce_shop->heapID );
 			STRBUF_Delete( p_str );
-			p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// I—¹‚Ö
+			p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// çµ‚äº†ã¸
 			p_acce_shop->seq_sub = ACCE_SHOP_SEQ_END;
 			
 			Snd_SePlay( ACCE_SHOP_SND_LIST_CANCEL );
 		}
 		break;
 		
-	case ACCE_SHOP_SEQ_YESNO_START:		// ƒnƒCƒCƒCƒG
-		// ‚Í‚¢A‚¢‚¢‚¦@ƒEƒBƒ“ƒhƒE•\¦
+	case ACCE_SHOP_SEQ_YESNO_START:		// ãƒã‚¤ã‚¤ã‚¤ã‚¨
+		// ã¯ã„ã€ã„ã„ãˆã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		AcceShop_YesNoWinInit( &p_acce_shop->yes_no, p_acce_shop->p_bgl, p_acce_shop->heapID );
 
 		p_acce_shop->seq = ACCE_SHOP_SEQ_YESNO_MAIN;
 		break;
 		
-	case ACCE_SHOP_SEQ_YESNO_MAIN:		// ƒnƒCƒCƒCƒG
+	case ACCE_SHOP_SEQ_YESNO_MAIN:		// ãƒã‚¤ã‚¤ã‚¤ã‚¨
 		result = AcceShop_YesNoWinMain( &p_acce_shop->yes_no );
 		if( result == 0 ){
-			// ƒnƒC‘I‘ğ
-			// –Ø‚ÌÀ‘«‚è‚Ä‚é‚©ƒ`ƒFƒbƒN
+			// ãƒã‚¤é¸æŠ
+			// æœ¨ã®å®Ÿè¶³ã‚Šã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( AcceShop_NutsOkCheck( p_acce_shop->p_myitem, AcceShopData, p_acce_shop->list_wnd.now_pos, p_acce_shop->heapID ) == FALSE ){
 				
-				// –Ø‚ÌÀ‚ª‚½‚è‚È‚¢‚æI
+				// æœ¨ã®å®ŸãŒãŸã‚Šãªã„ã‚ˆï¼
 				p_str = MSGMAN_AllocString( p_acce_shop->p_msgman, mes_accessory_01_06 );
 				AcceShop_MainMsgSet( &p_acce_shop->main_msgwnd, p_str, p_acce_shop->heapID );
 				STRBUF_Delete( p_str );
-				p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// ƒƒCƒ“‚Ö‚Ö
+				p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// ãƒ¡ã‚¤ãƒ³ã¸ã¸
 				p_acce_shop->seq_sub = ACCE_SHOP_SEQ_LIST_RESTART;
 				AcceShop_YesNoWinDelete( &p_acce_shop->yes_no );
 				break;
 			}
 
-			// ‚»‚êˆÈãƒAƒNƒZƒTƒŠ‚Â‚¢‚©o—ˆ‚é‚©ƒ`ƒFƒbƒN
+			// ãã‚Œä»¥ä¸Šã‚¢ã‚¯ã‚»ã‚µãƒªã¤ã„ã‹å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( AcceShop_AcceHaveOkCheck( p_acce_shop->p_item, AcceShopData, p_acce_shop->list_wnd.now_pos ) == FALSE ){
 
-				// ‚»‚êˆÈã‚à‚Ä‚È‚¢
+				// ãã‚Œä»¥ä¸Šã‚‚ã¦ãªã„
 				p_str = MSGMAN_AllocString( p_acce_shop->p_msgman, mes_accessory_01_07 );
 				AcceShop_MainMsgSet( &p_acce_shop->main_msgwnd, p_str, p_acce_shop->heapID );
 				STRBUF_Delete( p_str );
 
 				AcceShop_YesNoWinDelete( &p_acce_shop->yes_no );
-				p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// ƒƒCƒ“‚Ö
+				p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// ãƒ¡ã‚¤ãƒ³ã¸
 				p_acce_shop->seq_sub = ACCE_SHOP_SEQ_LIST_RESTART;
 				break;
 			}
 
-			// ‚Ç‚¤‚à‚ ‚è‚ª‚Æ‚¤
+			// ã©ã†ã‚‚ã‚ã‚ŠãŒã¨ã†
 			p_str = MSGMAN_AllocString( p_acce_shop->p_msgman, mes_accessory_01_05 );
 			AcceShop_MainMsgSet( &p_acce_shop->main_msgwnd, p_str, p_acce_shop->heapID );
 			STRBUF_Delete( p_str );
 
 			AcceShop_YesNoWinDelete( &p_acce_shop->yes_no );
 
-			p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// ƒAƒNƒZƒTƒŠŒğŠ·‚Ö
+			p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// ã‚¢ã‚¯ã‚»ã‚µãƒªäº¤æ›ã¸
 			p_acce_shop->seq_sub = ACCE_SHOP_SEQ_GET_ACCE;
 
 		}else if( result == BMPMENU_CANCEL ){
-			// ƒCƒCƒG‘I‘ğ
+			// ã‚¤ã‚¤ã‚¨é¸æŠ
 			AcceShop_YesNoWinDelete( &p_acce_shop->yes_no );
 			p_acce_shop->seq = ACCE_SHOP_SEQ_LIST_RESTART;
 		}
 		break;
 		
-	case ACCE_SHOP_SEQ_GET_ACCE:			// ƒAƒNƒZƒTƒŠŒğŠ·ˆ—
-		// ƒAƒNƒZƒTƒŠ‚ÆƒAƒCƒeƒ€İ’è
+	case ACCE_SHOP_SEQ_GET_ACCE:			// ã‚¢ã‚¯ã‚»ã‚µãƒªäº¤æ›å‡¦ç†
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªã¨ã‚¢ã‚¤ãƒ†ãƒ è¨­å®š
 		AcceShop_AcceChange( p_acce_shop->p_item, p_acce_shop->p_myitem, AcceShopData, p_acce_shop->list_wnd.now_pos, p_acce_shop->heapID );
 
-		// ŒğŠ·ƒƒbƒZ[ƒW•\¦
+		// äº¤æ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		AcceShop_MainMsgChangeEndStrSet( &p_acce_shop->main_msgwnd, p_acce_shop->p_msgman, p_acce_shop->heapID, AcceShopData, p_acce_shop->list_wnd.now_pos );
 
-		// ‘S•”W‚Ü‚Á‚½‚©
+		// å…¨éƒ¨é›†ã¾ã£ãŸã‹
 		if( AcceShop_FullAcceCheck( p_acce_shop->p_item, AcceShopData, ACCE_SHOP_DATA_NUM ) ){
-			p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// ‘S•”W‚Ü‚Á‚½ˆ—‚Ö
+			p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// å…¨éƒ¨é›†ã¾ã£ãŸå‡¦ç†ã¸
 			p_acce_shop->seq_sub = ACCE_SHOP_SEQ_GET_ACCE_FULL;
 		}else{
-			p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// ‚à‚¤ˆê“x
+			p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// ã‚‚ã†ä¸€åº¦
 			p_acce_shop->seq_sub = ACCE_SHOP_SEQ_LIST_RESTART;
 		}
 		break;
 
-	case ACCE_SHOP_SEQ_GET_ACCE_FULL:	// ƒAƒNƒZƒTƒŠ‘S•”‚ ‚Â‚Ü‚Á‚½
-		// ‘S•”W‚ß‚Ä‚­‚ê‚Ä‚ ‚è‚ª‚Æ‚¤
+	case ACCE_SHOP_SEQ_GET_ACCE_FULL:	// ã‚¢ã‚¯ã‚»ã‚µãƒªå…¨éƒ¨ã‚ã¤ã¾ã£ãŸ
+		// å…¨éƒ¨é›†ã‚ã¦ãã‚Œã¦ã‚ã‚ŠãŒã¨ã†
 		p_str = MSGMAN_AllocString( p_acce_shop->p_msgman, mes_accessory_01_10 );
 		AcceShop_MainMsgSet( &p_acce_shop->main_msgwnd, p_str, p_acce_shop->heapID );
 		STRBUF_Delete( p_str );
-		p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// ‘S•”W‚Ü‚Á‚½ˆ—‚Ö
+		p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// å…¨éƒ¨é›†ã¾ã£ãŸå‡¦ç†ã¸
 		p_acce_shop->seq_sub = ACCE_SHOP_SEQ_GET_ACCE_FULL2;
 		break;
 
-	case ACCE_SHOP_SEQ_GET_ACCE_FULL2:	// ƒAƒNƒZƒTƒŠ‘S•”‚ ‚Â‚Ü‚Á‚½
-		// ‘S•”W‚ß‚Ä‚­‚ê‚Ä‚ ‚è‚ª‚Æ‚¤
+	case ACCE_SHOP_SEQ_GET_ACCE_FULL2:	// ã‚¢ã‚¯ã‚»ã‚µãƒªå…¨éƒ¨ã‚ã¤ã¾ã£ãŸ
+		// å…¨éƒ¨é›†ã‚ã¦ãã‚Œã¦ã‚ã‚ŠãŒã¨ã†
 		p_str = MSGMAN_AllocString( p_acce_shop->p_msgman, mes_accessory_01_02 );
 		AcceShop_MainMsgSet( &p_acce_shop->main_msgwnd, p_str, p_acce_shop->heapID );
 		STRBUF_Delete( p_str );
-		p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// I—¹‚Ö
+		p_acce_shop->seq = ACCE_SHOP_SEQ_KEY_WAIT;	// çµ‚äº†ã¸
 		p_acce_shop->seq_sub = ACCE_SHOP_SEQ_END;
 		break;
 
 
-	case ACCE_SHOP_SEQ_MSG_WAIT:	// ƒƒbƒZ[ƒW‘Ò‚¿
+	case ACCE_SHOP_SEQ_MSG_WAIT:	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( AcceShop_MainMsgWait( &p_acce_shop->main_msgwnd ) ){
 			p_acce_shop->seq = p_acce_shop->seq_sub;
 		}
 		break;
 		
-	case ACCE_SHOP_SEQ_KEY_WAIT:// ƒL[‘Ò‚¿
+	case ACCE_SHOP_SEQ_KEY_WAIT:// ã‚­ãƒ¼å¾…ã¡
 		if( AcceShop_MainMsgWait( &p_acce_shop->main_msgwnd ) ){
 			if( sys.trg & (PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL)  ){
 				p_acce_shop->seq = p_acce_shop->seq_sub;
@@ -638,8 +638,8 @@ BOOL FIELD_AcceShop_Main( FIELD_ACCE_SHOP* p_acce_shop )
 		}
 		break;
 		
-	case ACCE_SHOP_SEQ_END:		// I‚í‚è
-		// I—¹ˆ—
+	case ACCE_SHOP_SEQ_END:		// çµ‚ã‚ã‚Š
+		// çµ‚äº†å‡¦ç†
 		AcceShop_MainMsgDelete( &p_acce_shop->main_msgwnd );	
 		AcceShop_DataMsgDelete( &p_acce_shop->data_msgwnd );	
 		AcceShop_ListWinDelete( &p_acce_shop->list_wnd );	
@@ -661,15 +661,15 @@ BOOL FIELD_AcceShop_Main( FIELD_ACCE_SHOP* p_acce_shop )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒtƒBƒOƒf[ƒ^æ“¾
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	p_acce_shop		ƒ[ƒN
+ *	@param	p_acce_shop		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_ConfigGet( FIELD_ACCE_SHOP* p_acce_shop )
@@ -681,16 +681,16 @@ static void AcceShop_ConfigGet( FIELD_ACCE_SHOP* p_acce_shop )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGL‰Šú‰»@ƒƒbƒZ[ƒW—p–Ê‚Ì@BG‚R‚ğg—p
+ *	@brief	BGLåˆæœŸåŒ–ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨é¢ã®ã€€BGï¼“ã‚’ä½¿ç”¨
  *
  *	@param	p_acce_shop 
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_BGL_Init( FIELD_ACCE_SHOP* p_acce_shop )
 {
-	// ƒg[ƒNƒEƒBƒ“ƒhƒE
-	// ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE
-	// ‰Šú‰»
+	// ãƒˆãƒ¼ã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	// ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	// åˆæœŸåŒ–
 	TalkWinGraphicSet( p_acce_shop->p_bgl, FLD_MBGFRM_FONT,
 			ACCE_SHOP_TALK_CHAROFS,
 			ACCE_SHOP_TALK_PLTT,
@@ -702,14 +702,14 @@ static void AcceShop_BGL_Init( FIELD_ACCE_SHOP* p_acce_shop )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/24
-// ƒAƒNƒZƒTƒŠ[ƒVƒ‡ƒbƒv‚ÌƒEƒBƒ“ƒhƒE‚ÌF‚ª•Ï‚í‚Á‚Ä‚µ‚Ü‚¤•s‹ï‡‚ğC³
+// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚·ãƒ§ãƒƒãƒ—ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è‰²ãŒå¤‰ã‚ã£ã¦ã—ã¾ã†ä¸å…·åˆã‚’ä¿®æ­£
 
-	/* ƒtƒ‰ƒ[ƒVƒ‡ƒbƒv‚ÌƒEƒBƒ“ƒhƒE‚ªƒEƒBƒ“ƒhƒEƒ^ƒCƒv‚Å•Ï‚í‚Á‚Ä‚µ‚Ü‚¤ƒoƒO‚Ì‘Îˆ */
+	/* ãƒ•ãƒ©ãƒ¯ãƒ¼ã‚·ãƒ§ãƒƒãƒ—ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—ã§å¤‰ã‚ã£ã¦ã—ã¾ã†ãƒã‚°ã®å¯¾å‡¦ */
 #if AFTERMASTER_070122_ACCESSORYSHOP_WND_FIX
 	MenuWinGraphicSet( p_acce_shop->p_bgl, FLD_MBGFRM_FONT,
 			ACCE_SHOP_SYSTEM_CHAROFS,
 			ACCE_SHOP_SYSTEM_PLTT,
-			MENU_TYPE_SYSTEM,	// ‚±‚±‚ğƒVƒXƒeƒ€ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÅŒÅ’è‚·‚é
+			MENU_TYPE_SYSTEM,	// ã“ã“ã‚’ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å›ºå®šã™ã‚‹
 			p_acce_shop->heapID );
 #else
 	MenuWinGraphicSet( p_acce_shop->p_bgl, FLD_MBGFRM_FONT,
@@ -725,22 +725,22 @@ static void AcceShop_BGL_Init( FIELD_ACCE_SHOP* p_acce_shop )
 			ACCE_SHOP_SYSTEMFONT_PLTT * 32, 
 			p_acce_shop->heapID );
 	
-	// ƒXƒNƒŠ[ƒ“ƒNƒŠ[ƒ“	
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªãƒ¼ãƒ³	
 	GF_BGL_ScrClear( p_acce_shop->p_bgl, FLD_MBGFRM_FONT );
 }
 
 static void AcceShop_BGL_Delete( FIELD_ACCE_SHOP* p_acce_shop )
 {
-	// ƒXƒNƒŠ[ƒ“ƒNƒŠ[ƒ“	
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªãƒ¼ãƒ³	
 	GF_BGL_ScrClear( p_acce_shop->p_bgl, FLD_MBGFRM_FONT );
 
-	// ƒtƒB[ƒ‹ƒhí’“ƒLƒƒƒ‰ƒNƒ^•œ‹A
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¸¸é§ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¾©å¸°
 	FieldMsgPrintInit( PALTYPE_MAIN_BG, MSG_PRINT_INIT_ON );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[İ’è
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®š
  *
  *	@param	p_acce_shop 
  */
@@ -758,12 +758,12 @@ static void AcceShop_CLACT_Delete( FIELD_ACCE_SHOP* p_acce_shop )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE@ƒIƒuƒWƒF@‰Šú‰»
+ *	@brief	ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ã‚ªãƒ–ã‚¸ã‚§ã€€åˆæœŸåŒ–
  *
- *	@param	p_win		ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
+ *	@param	p_win		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
  *	@param	p_bgl		BGL
- *	@param	heapID		ƒq[ƒvID
- *	@param	msg_speed	ƒƒbƒZ[ƒWƒXƒs[ƒh
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	msg_speed	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_MainMsgInit( ACCE_SHOP_MAIN_MSG* p_win, GF_BGL_INI* p_bgl, u32 heapID, u32 msg_speed )
@@ -776,7 +776,7 @@ static void AcceShop_MainMsgInit( ACCE_SHOP_MAIN_MSG* p_win, GF_BGL_INI* p_bgl, 
 	
 	p_win->p_bmp = GF_BGL_BmpWinAllocGet( heapID, 1 );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEŠm•Û
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd( p_bgl, p_win->p_bmp, FLD_MBGFRM_FONT,
 			ACCE_SHOP_MAIN_MSGWIN_X, ACCE_SHOP_MAIN_MSGWIN_Y,
 			ACCE_SHOP_MAIN_MSGWIN_SX, ACCE_SHOP_MAIN_MSGWIN_SY,
@@ -784,7 +784,7 @@ static void AcceShop_MainMsgInit( ACCE_SHOP_MAIN_MSG* p_win, GF_BGL_INI* p_bgl, 
 
 	GF_BGL_BmpWinDataFill( p_win->p_bmp, 15 );
 
-	// ˜g•`‰æ
+	// æ æç”»
 	BmpTalkWinWrite( p_win->p_bmp, WINDOW_TRANS_ON, ACCE_SHOP_TALK_CHAROFS, ACCE_SHOP_TALK_PLTT );
 
 	p_win->init = 1;
@@ -792,9 +792,9 @@ static void AcceShop_MainMsgInit( ACCE_SHOP_MAIN_MSG* p_win, GF_BGL_INI* p_bgl, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒƒbƒZ[ƒWƒIƒuƒWƒF@”jŠü
+ *	@brief	ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ–ã‚¸ã‚§ã€€ç ´æ£„
  *
- *	@param	p_win	ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
+ *	@param	p_win	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_MainMsgDelete( ACCE_SHOP_MAIN_MSG* p_win )
@@ -812,10 +812,10 @@ static void AcceShop_MainMsgDelete( ACCE_SHOP_MAIN_MSG* p_win )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒƒbƒZ[ƒWİ’è
+ *	@brief	ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¨­å®š
  *
- *	@param	p_win		ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
- *	@param	p_str		•¶š—ñ
+ *	@param	p_win		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	p_str		æ–‡å­—åˆ—
  *	@param	heapID
  */
 //-----------------------------------------------------------------------------
@@ -834,10 +834,10 @@ static void AcceShop_MainMsgSet( ACCE_SHOP_MAIN_MSG* p_win, STRBUF* p_str, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWƒEƒGƒCƒg‚È‚µ
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¨ã‚¤ãƒˆãªã—
  *
- *	@param	p_win	ƒEƒBƒ“ƒhƒE
- *	@param	p_str	•¶š—ñ
+ *	@param	p_win	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	p_str	æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_MainMsgSet_noWait( ACCE_SHOP_MAIN_MSG* p_win, STRBUF* p_str )
@@ -850,19 +850,19 @@ static void AcceShop_MainMsgSet_noWait( ACCE_SHOP_MAIN_MSG* p_win, STRBUF* p_str
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
  *	
- *	@param	p_win	ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
+ *	@param	p_win	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL AcceShop_MainMsgWait( ACCE_SHOP_MAIN_MSG* p_win )
 {
 	if( GF_MSG_PrintEndCheck( p_win->msg_idx ) == 0 ){
 
-		// •Û‚µ‚Ä‚¢‚½•¶š—ñƒoƒbƒtƒ@”jŠü
+		// ä¿æŒã—ã¦ã„ãŸæ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 		if( p_win->p_str != NULL ){
 			STRBUF_Delete( p_win->p_str );
 			p_win->p_str = NULL;
@@ -874,13 +874,13 @@ static BOOL AcceShop_MainMsgWait( ACCE_SHOP_MAIN_MSG* p_win )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“‰æ–Ê‚É@`‚Æ`‚ğŒğŠ·‚µ‚Ü‚·‚©H@ƒeƒLƒXƒg‚ğo‚·
+ *	@brief	ãƒ¡ã‚¤ãƒ³ç”»é¢ã«ã€€ã€œã¨ã€œã‚’äº¤æ›ã—ã¾ã™ã‹ï¼Ÿã€€ãƒ†ã‚­ã‚¹ãƒˆã‚’å‡ºã™
  *
- *	@param	p_win		ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
- *	@param	p_msgman	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- *	@param	heapID		ƒq[ƒv
- *	@param	cp_data		ƒVƒ‡ƒbƒvƒf[ƒ^
- *	@param	data_idx	•\¦ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_win		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	p_msgman	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
+ *	@param	cp_data		ã‚·ãƒ§ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+ *	@param	data_idx	è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_MainMsgChangeStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_MANAGER* p_msgman, u32 heapID, const ACCE_SHOP_DATA* cp_data, u32 data_idx )
@@ -889,20 +889,20 @@ static void AcceShop_MainMsgChangeStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_MAN
 	STRBUF* p_drawstr;
 	WORDSET* p_wordset;
 	
-	// ŠÈˆÕ‰ï˜bì¬
+	// ç°¡æ˜“ä¼šè©±ä½œæˆ
 	p_wordset = WORDSET_Create( heapID );
 
-	// “WŠJæ•¶š—ñì¬
+	// å±•é–‹å…ˆæ–‡å­—åˆ—ä½œæˆ
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/23
-	// ƒƒbƒZ[ƒW—pƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğŠg‘å
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’æ‹¡å¤§
 	p_drawstr = STRBUF_Create( ACCE_SHOP_BUFFER_SIZE, heapID );
 	// ----------------------------------------------------------------------------
 	p_str = MSGMAN_AllocString( p_msgman, mes_accessory_01_04 );
 	
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-	// ‚«‚Ì‚İ–¼‚ğ•¡”Œ`‚ÉiŒ»İ‚Ìd—l‚Å‚ÍA’P”‚Ì‚«‚Ì‚İ‚ª‚­‚é‚±‚Æ‚Í‚È‚¢j
+	// ãã®ã¿åã‚’è¤‡æ•°å½¢ã«ï¼ˆç¾åœ¨ã®ä»•æ§˜ã§ã¯ã€å˜æ•°ã®ãã®ã¿ãŒãã‚‹ã“ã¨ã¯ãªã„ï¼‰
     // MatchComment: if statement added, before was only call to Plural func
     if (cp_data[ data_idx ].need_num == 1) {
         WORDSET_RegisterItemName( p_wordset, 0, cp_data[ data_idx ].item_no + NUTS_START_ITEMNUM );
@@ -912,14 +912,14 @@ static void AcceShop_MainMsgChangeStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_MAN
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/23
-	// ”š‚Ì¶‘¤‚ÌƒXƒy[ƒX‚ğœ‹
+	// æ•°å­—ã®å·¦å´ã®ã‚¹ãƒšãƒ¼ã‚¹ã‚’é™¤å»
 	WORDSET_RegisterNumber( p_wordset, 1, cp_data[ data_idx ].need_num,
 			3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	// ----------------------------------------------------------------------------
 	WORDSET_RegisterAccessoryName( p_wordset, 2, cp_data[ data_idx ].acce_no );
 	WORDSET_ExpandStr( p_wordset, p_drawstr, p_str );
 
-	// ƒeƒLƒXƒgİ’è
+	// ãƒ†ã‚­ã‚¹ãƒˆè¨­å®š
 	AcceShop_MainMsgSet( p_win, p_drawstr, heapID );
 	
 	WORDSET_Delete( p_wordset );
@@ -930,13 +930,13 @@ static void AcceShop_MainMsgChangeStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_MAN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒğŠ·I—¹	•¶š—ñ•\¦
+ *	@brief	äº¤æ›çµ‚äº†	æ–‡å­—åˆ—è¡¨ç¤º
  *
- *	@param	p_win		ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
- *	@param	p_msgman	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- *	@param	heapID		ƒq[ƒvID
- *	@param	cp_data		ƒf[ƒ^
- *	@param	data_idx	ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_win		ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	p_msgman	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	data_idx	ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_MainMsgChangeEndStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_MANAGER* p_msgman, u32 heapID, const ACCE_SHOP_DATA* cp_data, u32 data_idx )
@@ -945,20 +945,20 @@ static void AcceShop_MainMsgChangeEndStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_
 	STRBUF* p_drawstr;
 	WORDSET* p_wordset;
 	
-	// ŠÈˆÕ‰ï˜bì¬
+	// ç°¡æ˜“ä¼šè©±ä½œæˆ
 	p_wordset = WORDSET_Create( heapID );
 
-	// “WŠJæ•¶š—ñì¬
+	// å±•é–‹å…ˆæ–‡å­—åˆ—ä½œæˆ
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/23
-	// ƒƒbƒZ[ƒW—pƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğ’è”ƒ}ƒNƒ‚É’uŠ·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å®šæ•°ãƒã‚¯ãƒ­ã«ç½®æ›
 	p_drawstr = STRBUF_Create( ACCE_SHOP_BUFFER_SIZE, heapID );
 	// ----------------------------------------------------------------------------
 	p_str = MSGMAN_AllocString( p_msgman, mes_accessory_01_09 );
 	
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-	// ‚«‚Ì‚İ–¼‚ğ•¡”Œ`‚ÉiŒ»İ‚Ìd—l‚Å‚ÍA’P”‚Ì‚«‚Ì‚İ‚ª‚­‚é‚±‚Æ‚Í‚È‚¢j
+	// ãã®ã¿åã‚’è¤‡æ•°å½¢ã«ï¼ˆç¾åœ¨ã®ä»•æ§˜ã§ã¯ã€å˜æ•°ã®ãã®ã¿ãŒãã‚‹ã“ã¨ã¯ãªã„ï¼‰
     // MatchComment: add if statement for option to call WORDSET_RegisterItemName instead of
     // calling WORDSET_RegisterItemNamePlural exclusively
     if (cp_data[ data_idx ].need_num == 1) {
@@ -969,14 +969,14 @@ static void AcceShop_MainMsgChangeEndStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/23
-	// ”š‚Ì¶‘¤‚ÌƒXƒy[ƒX‚ğœ‹
+	// æ•°å­—ã®å·¦å´ã®ã‚¹ãƒšãƒ¼ã‚¹ã‚’é™¤å»
 	WORDSET_RegisterNumber( p_wordset, 1, cp_data[ data_idx ].need_num,
 			3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	// ----------------------------------------------------------------------------
 	WORDSET_RegisterAccessoryName( p_wordset, 2, cp_data[ data_idx ].acce_no );
 	WORDSET_ExpandStr( p_wordset, p_drawstr, p_str );
 
-	// ƒeƒLƒXƒgİ’è
+	// ãƒ†ã‚­ã‚¹ãƒˆè¨­å®š
 	AcceShop_MainMsgSet( p_win, p_drawstr, heapID );
 	
 	WORDSET_Delete( p_wordset );
@@ -986,11 +986,11 @@ static void AcceShop_MainMsgChangeEndStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒf[ƒ^‰æ–Ê‰Šú‰»
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ç”»é¢åˆæœŸåŒ–
  *
- *	@param	p_win		ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
+ *	@param	p_win		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
  *	@param	p_bgl		BGL
- *	@param	heapID		ƒq[ƒv
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_DataMsgInit( ACCE_SHOP_DATA_WIN* p_win, GF_BGL_INI* p_bgl, MSGDATA_MANAGER* p_msgman, u32 heapID )
@@ -1003,20 +1003,20 @@ static void AcceShop_DataMsgInit( ACCE_SHOP_DATA_WIN* p_win, GF_BGL_INI* p_bgl, 
 	
 	p_win->p_bmp = GF_BGL_BmpWinAllocGet( heapID, 1 );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEŠm•Û
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd( p_bgl, p_win->p_bmp, FLD_MBGFRM_FONT,
 			ACCE_SHOP_DATA_WINWIN_X, ACCE_SHOP_DATA_WINWIN_Y,
 			ACCE_SHOP_DATA_WINWIN_SX, ACCE_SHOP_DATA_WINWIN_SY,
 			ACCE_SHOP_DATA_WINWIN_PLTT, ACCE_SHOP_DATA_WINWIN_CHAR );
 
 
-	// ŠÈˆÕ‰ï˜bì¬
+	// ç°¡æ˜“ä¼šè©±ä½œæˆ
 	p_win->p_wordset = WORDSET_Create( heapID );
 	for( i=0; i<ACCE_SHOP_DATA_WIN_NUM; i++ ){
 		p_win->p_wordstr[i] = MSGMAN_AllocString( p_msgman, mes_accessory_03_01+i );
 	}
 
-	// “WŠJæ•¶š—ñì¬
+	// å±•é–‹å…ˆæ–‡å­—åˆ—ä½œæˆ
 	p_win->p_drawstr = STRBUF_Create( WORDSET_DEFAULT_BUFLEN, heapID );
 
 
@@ -1027,9 +1027,9 @@ static void AcceShop_DataMsgInit( ACCE_SHOP_DATA_WIN* p_win, GF_BGL_INI* p_bgl, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒf[ƒ^‰æ–Ê”jŠü
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ç”»é¢ç ´æ£„
  *	
- *	@param	p_win	ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
+ *	@param	p_win	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_DataMsgDelete( ACCE_SHOP_DATA_WIN* p_win )
@@ -1041,7 +1041,7 @@ static void AcceShop_DataMsgDelete( ACCE_SHOP_DATA_WIN* p_win )
 	}
 	
 	for( i=0; i<ACCE_SHOP_DATA_WIN_NUM; i++ ){
-		// •¶š—ñ”jŠü
+		// æ–‡å­—åˆ—ç ´æ£„
 		STRBUF_Delete( p_win->p_wordstr[i] );
 	}
 	STRBUF_Delete( p_win->p_drawstr );
@@ -1057,19 +1057,19 @@ static void AcceShop_DataMsgDelete( ACCE_SHOP_DATA_WIN* p_win )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒf[ƒ^ƒEƒBƒ“ƒhƒEİ’è
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
  *
- *	@param	p_win		ƒEƒBƒ“ƒhƒE
- *	@param	nut			–Ø‚ÌÀ	i“¹‹ïƒiƒ“ƒo[j
- *	@param	nut_need_num–Ø‚ÌÀŒğŠ·‚É•K—v‚È”
- *	@param	nut_get_num	–Ø‚ÌÀ•Û”
+ *	@param	p_win		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	nut			æœ¨ã®å®Ÿ	ï¼ˆé“å…·ãƒŠãƒ³ãƒãƒ¼ï¼‰
+ *	@param	nut_need_numæœ¨ã®å®Ÿäº¤æ›ã«å¿…è¦ãªæ•°
+ *	@param	nut_get_num	æœ¨ã®å®Ÿä¿æŒæ•°
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_DataMsgSet( ACCE_SHOP_DATA_WIN* p_win, u32 nut, u32 nut_need_num, u32 nut_get_num )
 {
 	int i;
 
-	// ƒ[ƒhƒZƒbƒg
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 	WORDSET_RegisterItemName( p_win->p_wordset, ACCE_SHOP_DATA_WIN_NUTS_NAME, nut + NUTS_START_ITEMNUM );
 	WORDSET_RegisterNumber( p_win->p_wordset, ACCE_SHOP_DATA_WIN_NUTS_NEED,
 			nut_need_num, 3, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
@@ -1078,7 +1078,7 @@ static void AcceShop_DataMsgSet( ACCE_SHOP_DATA_WIN* p_win, u32 nut, u32 nut_nee
 
 	GF_BGL_BmpWinDataFill( p_win->p_bmp, 15 );
 
-	// •¶š—ñ“WŠJ
+	// æ–‡å­—åˆ—å±•é–‹
 	for( i=0; i<ACCE_SHOP_DATA_WIN_NUM; i++ ){
 		WORDSET_ExpandStr( p_win->p_wordset, p_win->p_drawstr, p_win->p_wordstr[ i ] );
 
@@ -1088,21 +1088,21 @@ static void AcceShop_DataMsgSet( ACCE_SHOP_DATA_WIN* p_win, u32 nut, u32 nut_nee
 				MSG_NO_PUT, ACCE_SHOP_FONTBMP_SYS_COLOR, NULL );
 	}
 
-	// ˜g‚Ì•`‰æ
+	// æ ã®æç”»
 	BmpMenuWinWrite( p_win->p_bmp, WINDOW_TRANS_ON, ACCE_SHOP_SYSTEM_CHAROFS, ACCE_SHOP_SYSTEM_PLTT );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  *
- *	@param	p_win		ƒ[ƒN
+ *	@param	p_win		ãƒ¯ãƒ¼ã‚¯
  *	@param	p_bgl		BGL
- *	@param	heapID		ƒq[ƒv
- *	@param	cp_data		ƒf[ƒ^ƒe[ƒuƒ‹
- *	@param	data_num	ƒf[ƒ^”
- *	@param	p_msgman	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- *	@param	clact_set	ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	data_num	ãƒ‡ãƒ¼ã‚¿æ•°
+ *	@param	p_msgman	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	clact_set	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_ListWinInit( ACCE_SHOP_LIST_WIN* p_win, GF_BGL_INI* p_bgl, u32 heapID, const ACCE_SHOP_DATA* cp_data, u32 data_num, MSGDATA_MANAGER* p_msgman, void* p_work, pAcceListMoveFunc callback, CLACT_SET_PTR clact_set )
@@ -1151,20 +1151,20 @@ static void AcceShop_ListWinInit( ACCE_SHOP_LIST_WIN* p_win, GF_BGL_INI* p_bgl, 
 	p_win->callback = callback;
 	p_win->p_bmp = GF_BGL_BmpWinAllocGet( heapID, 1 );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEŠm•Û
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd( p_bgl, p_win->p_bmp, FLD_MBGFRM_FONT,
 			ACCE_SHOP_LIST_WINWIN_X, ACCE_SHOP_LIST_WINWIN_Y,
 			ACCE_SHOP_LIST_WINWIN_SX, ACCE_SHOP_LIST_WINWIN_SY,
 			ACCE_SHOP_LIST_WINWIN_PLTT, ACCE_SHOP_LIST_WINWIN_CHAR );
 
-	// ŠÈˆÕ‰ï˜bì¬
+	// ç°¡æ˜“ä¼šè©±ä½œæˆ
 	p_win->p_wordset = WORDSET_Create( heapID );
 
-	// “WŠJæ•¶š—ñì¬
+	// å±•é–‹å…ˆæ–‡å­—åˆ—ä½œæˆ
 	p_win->p_drawstr = STRBUF_Create( WORDSET_DEFAULT_BUFLEN, heapID );
 	p_str = MSGMAN_AllocString( p_msgman, mes_accessory_03_01 );
 	
-	// ƒŠƒXƒgƒf[ƒ^ì¬
+	// ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<data_num; i++ ){
 		WORDSET_RegisterAccessoryName( p_win->p_wordset, 0, cp_data[ i ].acce_no );
 		WORDSET_ExpandStr( p_win->p_wordset, p_win->p_drawstr, p_str );
@@ -1173,7 +1173,7 @@ static void AcceShop_ListWinInit( ACCE_SHOP_LIST_WIN* p_win, GF_BGL_INI* p_bgl, 
 		p_win->list[ i ].param = i;
 	}
 	
-	// I‚í‚é
+	// çµ‚ã‚ã‚‹
 	p_win->p_list_str[ data_num ] = MSGMAN_AllocString( p_msgman, mes_accessory_04_01 );
 	p_win->list[ data_num ].str = p_win->p_list_str[ data_num ];
 	p_win->list[ data_num ].param = data_num;
@@ -1182,25 +1182,25 @@ static void AcceShop_ListWinInit( ACCE_SHOP_LIST_WIN* p_win, GF_BGL_INI* p_bgl, 
 	STRBUF_Delete( p_win->p_drawstr );
 	STRBUF_Delete( p_str );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg‚Éİ’è
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆã«è¨­å®š
 	BmpListHeader.win = p_win->p_bmp;
 	BmpListHeader.count = p_win->data_num;
 	BmpListHeader.list = p_win->list;
 	p_win->p_bmplist = BmpListSet( &BmpListHeader, 0, 0, heapID );
 
-	// ˜g‚Ì•`‰æ
+	// æ ã®æç”»
 	BmpMenuWinWrite( p_win->p_bmp, WINDOW_TRANS_ON, ACCE_SHOP_SYSTEM_CHAROFS, ACCE_SHOP_SYSTEM_PLTT );
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	for( i=0; i<ACCE_SHOP_LIST_WIN_CLACT_RESNUM; i++ ){
 		p_win->resMan[ i ] = CLACT_U_ResManagerInit( ACCE_SHOP_LIST_WIN_CLACT_RESMAN_WORKNUM,
 				i, heapID );
 	}
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	AcceShop_ListWinClactResLoad( &head, p_win, heapID );
 
-	// ƒAƒNƒ^[‚Ì“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç™»éŒ²
 	add.ClActSet = clact_set;
 	add.ClActHeader = &head;
 	add.pri		= 0;
@@ -1217,9 +1217,9 @@ static void AcceShop_ListWinInit( ACCE_SHOP_LIST_WIN* p_win, GF_BGL_INI* p_bgl, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	p_win	ƒ[ƒN
+ *	@param	p_win	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_ListWinDelete( ACCE_SHOP_LIST_WIN* p_win )
@@ -1230,21 +1230,21 @@ static void AcceShop_ListWinDelete( ACCE_SHOP_LIST_WIN* p_win )
 		return ;
 	}
 
-	// ƒAƒNƒ^[”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	for( i=0; i<ACCE_SHOP_LIST_WIN_CLACT_OBJNUM; i++ ){
 
 		CLACT_Delete( p_win->clact[ i ] );
 	}
 
-	// ƒAƒNƒ^[ƒŠƒ\[ƒX”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	AcceShop_ListWinClactResDelete( p_win );
 
-	// ƒŠƒXƒg‚È‚¢•¶š”jŠü
+	// ãƒªã‚¹ãƒˆãªã„æ–‡å­—ç ´æ£„
 	for( i=0; i<p_win->data_num; i++ ){
 		STRBUF_Delete( p_win->p_list_str[ i ] );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆç ´æ£„
 	BmpListExit( p_win->p_bmplist, NULL, NULL );
 	GF_BGL_BmpWinOff( p_win->p_bmp );
 	GF_BGL_BmpWinDel( p_win->p_bmp );
@@ -1255,13 +1255,13 @@ static void AcceShop_ListWinDelete( ACCE_SHOP_LIST_WIN* p_win )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒEƒBƒ“ƒhƒE@ƒƒCƒ“
+ *	@brief	ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_win	ƒEƒBƒ“ƒhƒE
+ *	@param	p_win	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	@retval	"param = ‘I‘ğƒpƒ‰ƒ[ƒ^"
- *	@retval	"BMPLIST_NULL = ‘I‘ğ’†"
- *	@retval	"BMPLIST_CANCEL	= ƒLƒƒƒ“ƒZƒ‹(‚aƒ{ƒ^ƒ“)"
+ *	@retval	"param = é¸æŠãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿"
+ *	@retval	"BMPLIST_NULL = é¸æŠä¸­"
+ *	@retval	"BMPLIST_CANCEL	= ã‚­ãƒ£ãƒ³ã‚»ãƒ«(ï¼¢ãƒœã‚¿ãƒ³)"
  */
 //-----------------------------------------------------------------------------
 static u32 AcceShop_ListWinMain( ACCE_SHOP_LIST_WIN* p_win )
@@ -1271,7 +1271,7 @@ static u32 AcceShop_ListWinMain( ACCE_SHOP_LIST_WIN* p_win )
 	
 	result = BmpListMain( p_win->p_bmplist );
 
-	// ‘I‘ğ‚âBƒ{ƒ^ƒ“ˆÈŠO‚È‚çŒ»İƒ|ƒWƒVƒ‡ƒ“İ’è
+	// é¸æŠã‚„Bãƒœã‚¿ãƒ³ä»¥å¤–ãªã‚‰ç¾åœ¨ãƒã‚¸ã‚·ãƒ§ãƒ³è¨­å®š
 	if( result == BMPLIST_NULL ){
 		BmpListDirectPosGet( p_win->p_bmplist, &now_pos );
 		if( p_win->now_pos != now_pos ){
@@ -1285,7 +1285,7 @@ static u32 AcceShop_ListWinMain( ACCE_SHOP_LIST_WIN* p_win )
 		}
 	}else if( result != BMPLIST_CANCEL ){
 
-		// ÅI€–Ú‚ğ‘I‘ğ‚µ‚½‚ç‚â‚ß‚é@‚È‚Ì‚ÅCANCEL‚ğ•Ô‚·
+		// æœ€çµ‚é …ç›®ã‚’é¸æŠã—ãŸã‚‰ã‚„ã‚ã‚‹ã€€ãªã®ã§CANCELã‚’è¿”ã™
 		if( p_win->now_pos == (p_win->data_num - 1) ){
 			result = BMPLIST_CANCEL;
 		}
@@ -1296,9 +1296,9 @@ static u32 AcceShop_ListWinMain( ACCE_SHOP_LIST_WIN* p_win )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ä“]‘—
+ *	@brief	å†è»¢é€
  *
- *	@param	p_win	ƒ[ƒN
+ *	@param	p_win	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_ListWinReTrans( ACCE_SHOP_LIST_WIN* p_win )
@@ -1306,16 +1306,16 @@ static void AcceShop_ListWinReTrans( ACCE_SHOP_LIST_WIN* p_win )
 //	BmpListRewrite( p_win->p_bmplist );
 	p_win->callback( p_win->p_work, p_win->now_pos );
 
-	// ˜g‚Ì•`‰æ
+	// æ ã®æç”»
 	BmpMenuWinWrite( p_win->p_bmp, WINDOW_TRANS_ON, ACCE_SHOP_SYSTEM_CHAROFS, ACCE_SHOP_SYSTEM_PLTT );
 
-	// OAM•`‰æİ’è	
+	// OAMæç”»è¨­å®š	
 	AcceShop_ListWinClactDrawSet( p_win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒE•`‰æOFF
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»OFF
  *
  *	@param	p_win 
  */
@@ -1328,16 +1328,16 @@ static void AcceShop_ListWinDrawClean( ACCE_SHOP_LIST_WIN* p_win )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[ƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *	
- *	@param	p_head	ƒwƒbƒ_[
+ *	@param	p_head	ãƒ˜ãƒƒãƒ€ãƒ¼
  *	@param	p_win	
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_ListWinClactResLoad( CLACT_HEADER* p_head, ACCE_SHOP_LIST_WIN* p_win, u32 heapID )
 {
 	ARCHANDLE* p_handle = ArchiveDataHandleOpen( ARC_SHOP_GRA, heapID );
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	p_win->resObj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_win->resMan[ CLACT_U_CHAR_RES ],
 			p_handle, NARC_shop_gra_shop_arw_NCGR, 
@@ -1368,7 +1368,7 @@ static void AcceShop_ListWinClactResLoad( CLACT_HEADER* p_head, ACCE_SHOP_LIST_W
 	CLACT_U_CharManagerSetAreaCont( p_win->resObj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerSetCleanArea( p_win->resObj[ CLACT_U_PLTT_RES ] );
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader(
 			p_head,
 			ACCE_SHOP_LIST_WIN_CLACT_RESCONT_ID,
@@ -1387,7 +1387,7 @@ static void AcceShop_ListWinClactResLoad( CLACT_HEADER* p_head, ACCE_SHOP_LIST_W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[ƒŠƒ\[ƒX”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
  *	@param	p_win 
  */
@@ -1405,7 +1405,7 @@ static void AcceShop_ListWinClactResDelete( ACCE_SHOP_LIST_WIN* p_win )
 
 //----------------------------------------------------------------------------
 /**
-*	@brief	•`‰æİ’è
+*	@brief	æç”»è¨­å®š
  *
  *	@param	* p_win 
  */
@@ -1414,7 +1414,7 @@ static void AcceShop_ListWinClactDrawSet( ACCE_SHOP_LIST_WIN* p_win )
 {
 	u16 list_pos;
 	
-	// ƒŠƒXƒgˆÊ’uæ“¾
+	// ãƒªã‚¹ãƒˆä½ç½®å–å¾—
 	BmpListPosGet( p_win->p_bmplist, &list_pos, NULL );
 	
 	if( (list_pos <= 0) ){
@@ -1433,13 +1433,13 @@ static void AcceShop_ListWinClactDrawSet( ACCE_SHOP_LIST_WIN* p_win )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒf[ƒ^ƒEƒBƒ“ƒhƒE•ÏX@ƒIƒuƒWƒF
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰æ›´ã€€ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@param	p_obj			ƒIƒuƒWƒF
- *	@param	data_win		ƒf[ƒ^ƒEƒBƒ“ƒhƒE
- *	@param	cp_data			ƒAƒNƒZƒTƒŠ[ƒf[ƒ^
- *	@param	p_save			ƒZ[ƒuƒf[ƒ^
- *	@param	heapID			ƒq[ƒv
+ *	@param	p_obj			ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	data_win		ãƒ‡ãƒ¼ã‚¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	cp_data			ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_save			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—
  *	@param	p_bgl			BGL
  */
 //-----------------------------------------------------------------------------
@@ -1454,7 +1454,7 @@ static void AcceShop_DataWinChgDataInit( ACCE_SHOP_DATA_WIN_CHG* p_obj, ACCE_SHO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒg‚ÉŒÄ‚ñ‚Å‚à‚ç‚¤@ƒf[ƒ^ƒEƒBƒ“ƒhƒEXVƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒªã‚¹ãƒˆã«å‘¼ã‚“ã§ã‚‚ã‚‰ã†ã€€ãƒ‡ãƒ¼ã‚¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›´æ–°ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  *	@param	p_work
  *	@param	listnum 
@@ -1465,7 +1465,7 @@ static void AcceShop_DataWinChgCallBack( void* p_work, u32 listnum )
 	ACCE_SHOP_DATA_WIN_CHG* p_obj = p_work;
 	u32 have_item;
 	
-	// ƒVƒ‡ƒbƒvƒf[ƒ^€–Ú”ˆÈ‰º‚È‚ç@ƒf[ƒ^XV
+	// ã‚·ãƒ§ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿é …ç›®æ•°ä»¥ä¸‹ãªã‚‰ã€€ãƒ‡ãƒ¼ã‚¿æ›´æ–°
 	if( listnum < ACCE_SHOP_DATA_NUM ){
 		
 		have_item = MyItem_GetItemNum( p_obj->p_myitem, p_obj->cp_data[ listnum ].item_no + NUTS_START_ITEMNUM, p_obj->heapID );
@@ -1474,7 +1474,7 @@ static void AcceShop_DataWinChgCallBack( void* p_work, u32 listnum )
 				p_obj->cp_data[ listnum ].need_num, 
 				have_item );
 	}else{
-		// ƒXƒNƒŠ[ƒ“‰Šú‰»		
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆæœŸåŒ–		
 		GF_BGL_ScrFill( p_obj->p_bgl, FLD_MBGFRM_FONT,
 				0,
 				ACCE_SHOP_DATA_WINWIN_X-1, ACCE_SHOP_DATA_WINWIN_Y-1,
@@ -1486,11 +1486,11 @@ static void AcceShop_DataWinChgCallBack( void* p_work, u32 listnum )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  *
- *	@param	p_win	ƒEƒBƒ“ƒhƒEƒ[ƒN
+ *	@param	p_win	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
  *	@param	p_bgl	BGL
- *	@param	heapID	ƒq[ƒv
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_YesNoWinInit( ACCE_SHOP_YESNO_MENU* p_win, GF_BGL_INI* p_bgl, u32 heapID )
@@ -1517,9 +1517,9 @@ static void AcceShop_YesNoWinInit( ACCE_SHOP_YESNO_MENU* p_win, GF_BGL_INI* p_bg
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	p_win	ƒEƒBƒ“ƒhƒEƒ[ƒN
+ *	@param	p_win	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_YesNoWinDelete( ACCE_SHOP_YESNO_MENU* p_win )
@@ -1528,7 +1528,7 @@ static void AcceShop_YesNoWinDelete( ACCE_SHOP_YESNO_MENU* p_win )
 		return ;
 	}
 	
-	// Ÿè‚É”jŠü‚³‚ê‚é‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg
+	// å‹æ‰‹ã«ç ´æ£„ã•ã‚Œã‚‹ã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 //	BmpYesNoWinDel( p_win->p_yesno, p_win->heapID );
 
 	p_win->init = 0;
@@ -1536,13 +1536,13 @@ static void AcceShop_YesNoWinDelete( ACCE_SHOP_YESNO_MENU* p_win )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒEƒƒCƒ“
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_win	ƒ[ƒN
+ *	@param	p_win	ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"BMPMENU_NULL	‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢"
- * @retval	"0				‚Í‚¢‚ğ‘I‘ğ"
- * @retval	"BMPMENU_CANCEL	‚¢‚¢‚¦orƒLƒƒƒ“ƒZƒ‹"
+ * @retval	"BMPMENU_NULL	é¸æŠã•ã‚Œã¦ã„ãªã„"
+ * @retval	"0				ã¯ã„ã‚’é¸æŠ"
+ * @retval	"BMPMENU_CANCEL	ã„ã„ãˆorã‚­ãƒ£ãƒ³ã‚»ãƒ«"
  */
 //-----------------------------------------------------------------------------
 static u32 AcceShop_YesNoWinMain( ACCE_SHOP_YESNO_MENU* p_win )
@@ -1555,21 +1555,21 @@ static u32 AcceShop_YesNoWinMain( ACCE_SHOP_YESNO_MENU* p_win )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒ‡ƒbƒv‚ÌƒAƒNƒZƒTƒŠ‚ğƒtƒ‹‚É‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚·ãƒ§ãƒƒãƒ—ã®ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’ãƒ•ãƒ«ã«æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_item		ƒZ[ƒuƒf[ƒ^
- *	@param	cp_data		ƒVƒ‡ƒbƒvƒf[ƒ^
- *	@param	data_num	ƒf[ƒ^”
+ *	@param	cp_item		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_data		ã‚·ãƒ§ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+ *	@param	data_num	ãƒ‡ãƒ¼ã‚¿æ•°
  *
- *	@retval	TRUE	ƒtƒ‹‚É‚Á‚Ä‚¢‚é
- *	@retval	FALSE	ƒtƒ‹‚É‚à‚Á‚Ä—Ç‚¢‚È‚¢
+ *	@retval	TRUE	ãƒ•ãƒ«ã«æŒã£ã¦ã„ã‚‹
+ *	@retval	FALSE	ãƒ•ãƒ«ã«ã‚‚ã£ã¦è‰¯ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL AcceShop_FullAcceCheck( const IMC_ITEM_SAVEDATA* cp_item, const ACCE_SHOP_DATA* cp_data, u32 data_num )
 {
 	int i;
 
-	// ‘Sƒf[ƒ^ƒAƒNƒZƒTƒŠ‚ğ’Ç‰Á‚Å‚«‚é‚©ƒ`ƒFƒbƒN‚·‚é
+	// å…¨ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’è¿½åŠ ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	for( i=0; i<data_num; i++ ){
 		if( ImcSaveData_CheckAcceAdd( cp_item, cp_data[i].acce_no, 1 ) == TRUE ){
 			return FALSE;
@@ -1581,14 +1581,14 @@ static BOOL AcceShop_FullAcceCheck( const IMC_ITEM_SAVEDATA* cp_item, const ACCE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌÀ‘«‚è‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	æœ¨ã®å®Ÿè¶³ã‚Šã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_save		ƒZ[ƒu
- *	@param	cp_data		ƒf[ƒ^
- *	@param	data_idx	ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_save		ã‚»ãƒ¼ãƒ–
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	data_idx	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	‘«‚è‚Ä‚¢‚é
- *	@retval	FALSE	‚½‚è‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	è¶³ã‚Šã¦ã„ã‚‹
+ *	@retval	FALSE	ãŸã‚Šã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL AcceShop_NutsOkCheck( MYITEM* p_save, const ACCE_SHOP_DATA* cp_data, u32 data_idx, u32 heapID )
@@ -1605,11 +1605,11 @@ static BOOL AcceShop_NutsOkCheck( MYITEM* p_save, const ACCE_SHOP_DATA* cp_data,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ‚ğ‚à‚Ä‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’ã‚‚ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_item		ƒ[ƒN	
- *	@param	cp_data		ƒf[ƒ^
- *	@param	data_idx	ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_item		ãƒ¯ãƒ¼ã‚¯	
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	data_idx	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static BOOL AcceShop_AcceHaveOkCheck( const IMC_ITEM_SAVEDATA* cp_item, const ACCE_SHOP_DATA* cp_data, u32 data_idx )
@@ -1619,12 +1619,12 @@ static BOOL AcceShop_AcceHaveOkCheck( const IMC_ITEM_SAVEDATA* cp_item, const AC
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•ÏX@ˆ—
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªå¤‰æ›´ã€€å‡¦ç†
  *
- *	@param	p_acceitem		ƒAƒNƒZƒTƒŠƒZ[ƒuƒf[ƒ^
- *	@param	p_myitem		©•ªƒAƒCƒeƒ€
- *	@param	cp_data			ƒVƒ‡ƒbƒvƒf[ƒ^
- *	@param	data_idx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_acceitem		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_myitem		è‡ªåˆ†ã‚¢ã‚¤ãƒ†ãƒ 
+ *	@param	cp_data			ã‚·ãƒ§ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+ *	@param	data_idx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void AcceShop_AcceChange( IMC_ITEM_SAVEDATA* p_acceitem, MYITEM* p_myitem, const ACCE_SHOP_DATA* cp_data, u32 data_idx, u32 heapID )

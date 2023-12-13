@@ -13,25 +13,25 @@
 #
 # $Log: Makefile,v $
 # Revision 1.7  2005/05/13 09:23:09  seiki_masashi
-# FFT 関数の追加
+# FFT 髢｢謨ｰ縺ｮ霑ｽ蜉
 #
 # Revision 1.6  2005/04/12 11:12:27  seiki_masashi
-# checksum.h の追加
+# checksum.h 縺ｮ霑ｽ蜉
 #
 # Revision 1.5  2005/04/12 10:15:36  takano_makoto
 # Add qsort.c.
 #
 # Revision 1.4  2005/04/11 10:35:56  seiki_masashi
-# dgt.c の追加
+# dgt.c 縺ｮ霑ｽ蜉
 #
 # Revision 1.3  2005/04/11 01:48:53  seiki_masashi
-# crc.c の追加
+# crc.c 縺ｮ霑ｽ蜉
 #
 # Revision 1.2  2005/01/11 07:39:59  takano_makoto
 # fix copyright header.
 #
 # Revision 1.1  2005/01/06 06:25:50  seiki_masashi
-# ARM7用ライブラリも生成するように変更
+# ARM7逕ｨ繝ｩ繧､繝悶Λ繝ｪ繧ら函謌舌☆繧九ｈ縺�縺ｫ螟画峩
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

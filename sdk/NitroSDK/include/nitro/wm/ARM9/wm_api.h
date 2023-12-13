@@ -12,7 +12,7 @@
 
   $Log: wm_api.h,v $
   Revision 1.76  2007/11/09 13:08:09  seiki_masashi
-  �d�g�̎�M�̂݉\�ȏ�Ԃɖ���������������֐���ǉ�
+  電波の受信のみ可能な状態に無線を初期化する関数を追加
 
   Revision 1.75  2007/02/20 00:28:08  kitase_hirotake
   indent source
@@ -21,210 +21,210 @@
   undo
 
   Revision 1.72  2006/02/20 07:42:43  seiki_masashi
-  WM_SetGameInfo �֐��̈�������ύX
+  WM_SetGameInfo 関数の引数名を変更
 
   Revision 1.71  2006/02/20 06:48:19  seiki_masashi
-  WM_IsValidGameInfo �֐��� WM_IsValidGameBeacon �֐��̒ǉ�
+  WM_IsValidGameInfo 関数と WM_IsValidGameBeacon 関数の追加
 
   Revision 1.70  2006/01/18 02:12:39  kitase_hirotake
   do-indent
 
   Revision 1.69  2005/11/25 00:46:09  seiki_masashi
-  mask �� WMMPParam �\���̓��Ɉړ�
+  mask を WMMPParam 構造体内に移動
 
   Revision 1.68  2005/11/24 03:02:42  seiki_masashi
-  WM_SetMPParameter �֐��Ɗ֘A�����`��ǉ�
+  WM_SetMPParameter 関数と関連する定義を追加
 
   Revision 1.67  2005/11/02 01:32:23  ooe
-  WM_StartTestRxMode, WM_StopTestRxMode��ǉ��B
+  WM_StartTestRxMode, WM_StopTestRxModeを追加。
 
   Revision 1.66  2005/11/01 08:59:44  seiki_masashi
-  WM_IsMP, WM_GetMPReadyAIDs �̊e�֐������J�֐��ɕύX
+  WM_IsMP, WM_GetMPReadyAIDs の各関数を非公開関数に変更
 
   Revision 1.65  2005/10/28 11:18:55  seiki_masashi
-  WMStatus �\���̂ւ̃A�N�Z�T�̎���
+  WMStatus 構造体へのアクセサの実装
 
   Revision 1.64  2005/07/27 06:52:42  ooe
-  WM_SetPowerSaveMode��ǉ��B
+  WM_SetPowerSaveModeを追加。
 
   Revision 1.63  2005/06/07 05:44:48  seiki_masashi
-  Key Sharing �Ɋւ�����ʏ�����ጸ���邽�߂̕ύX
+  Key Sharing に関する特別処理を低減するための変更
 
   Revision 1.62  2005/04/11 08:51:18  yosizaki
   add WM_GetNextTgid().
 
   Revision 1.61  2005/04/11 01:16:32  seiki_masashi
-  WMi_StartParentEx �֐���ǉ�
+  WMi_StartParentEx 関数を追加
 
   Revision 1.60  2005/03/17 05:09:13  ooe
-  WM_GetOtherElements��ǉ��B
+  WM_GetOtherElementsを追加。
 
   Revision 1.59  2005/03/03 14:44:57  seiki_masashi
-  WM_DISABLE_KEYSHARING �X�C�b�`�̒ǉ�
+  WM_DISABLE_KEYSHARING スイッチの追加
 
   Revision 1.58  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.57  2005/02/14 11:48:18  terui
-  WM_StartScan[Ex]�Ɋւ���R�����gFIX�B
+  WM_StartScan[Ex]に関するコメントFIX。
 
   Revision 1.56  2005/02/14 06:35:08  terui
-  WMi_CheckMpPacketTimeRequired�֐���ǉ��B
+  WMi_CheckMpPacketTimeRequired関数を追加。
 
   Revision 1.55  2005/02/08 06:43:42  ooe
-  WM_StartScanEx�̈����̌^��ύX(WMScanExParam)
+  WM_StartScanExの引数の型を変更(WMScanExParam)
 
   Revision 1.54  2005/02/03 11:42:51  ooe
-  WM_SetWEPKeyEx��ǉ��B
+  WM_SetWEPKeyExを追加。
 
   Revision 1.53  2005/02/02 07:46:20  takano_makoto
-  WM_CopyBssid16, WM_IsBssidEqual16��ǉ�
+  WM_CopyBssid16, WM_IsBssidEqual16を追加
 
   Revision 1.52  2005/01/27 12:03:27  takano_makoto
-  typo�C��
+  typo修正
 
   Revision 1.51  2005/01/27 09:11:49  takano_makoto
-  WM_CopyBssId, WM_IsBssidEqual��u8�P�ʂŏ�������悤�ɏC���B
+  WM_CopyBssId, WM_IsBssidEqualをu8単位で処理するように修正。
 
   Revision 1.50  2005/01/27 08:06:21  takano_makoto
-  ASSERT��ǉ�
+  ASSERTを追加
 
   Revision 1.49  2005/01/17 01:04:09  ooe
-  WM_StartConnectEx��ǉ����AWM_StartConnect���C�����C�����B
-  DCF���M�o�b�t�@�T�C�Y�v�Z�p�ɁAWM_SIZE_DCF_CHILD_SEND_BUFFER��ǉ��B
+  WM_StartConnectExを追加し、WM_StartConnectをインライン化。
+  DCF送信バッファサイズ計算用に、WM_SIZE_DCF_CHILD_SEND_BUFFERを追加。
 
   Revision 1.48  2005/01/11 07:54:48  takano_makoto
   fix copyright header.
 
   Revision 1.47  2005/01/06 02:05:10  seiki_masashi
-  WM_StartMP, WM_SetMPData, WM_SetMPDataToPort �� inline ��
+  WM_StartMP, WM_SetMPData, WM_SetMPDataToPort の inline 化
 
   Revision 1.46  2004/12/22 02:29:53  terui
-  WM_IsExistAllowedChannel��ǉ��B
+  WM_IsExistAllowedChannelを追加。
 
   Revision 1.45  2004/11/17 07:31:04  terui
   Only fix comment.
 
   Revision 1.44  2004/11/10 05:41:49  takano_makoto
-  WM_CopyBssid, WM_IsBssidEqual�̈�����const�|�C���^�ɏC��
+  WM_CopyBssid, WM_IsBssidEqualの引数をconstポインタに修正
 
   Revision 1.43  2004/11/10 00:59:12  takano_makoto
-  WM_IsBssidEqual, WM_CopyBssid��ǉ�
+  WM_IsBssidEqual, WM_CopyBssidを追加
 
   Revision 1.42  2004/11/09 00:03:59  seiki_masashi
-  Null �����ɂ��^�C���A�E�g������
+  Null 応答によるタイムアウトを実装
 
   Revision 1.41  2004/11/02 07:27:38  terui
-  �R�����g�C���B
+  コメント修正。
 
   Revision 1.40  2004/10/29 02:53:37  terui
-  WM_StartScanEx���ꎞ�I�ɔ���J�֐��ɕύX�B
+  WM_StartScanExを一時的に非公開関数に変更。
 
   Revision 1.39  2004/10/26 08:22:09  ooe
-  WM_StartScanEx��ǉ�
+  WM_StartScanExを追加
 
   Revision 1.38  2004/10/22 04:36:47  terui
-  WMErrCode�Ƃ���int�^��Ԃ��Ă����֐��ɂ��āAWMErrCode�񋓌^��Ԃ��悤�ɕύX�B
+  WMErrCodeとしてint型を返していた関数について、WMErrCode列挙型を返すように変更。
 
   Revision 1.37  2004/10/18 11:08:54  terui
-  WM_SetBeaconPeriod�֐�����U����J�ɕύX�B
+  WM_SetBeaconPeriod関数を一旦非公開に変更。
 
   Revision 1.36  2004/10/18 04:21:00  terui
   Fix comment only.
 
   Revision 1.35  2004/10/18 04:17:46  terui
-  �r�[�R���Ԋu�A�X�L�����Ԋu���΂������d�l��ǉ��B
+  ビーコン間隔、スキャン間隔をばらつかせる仕様を追加。
 
   Revision 1.34  2004/10/15 14:09:16  terui
   Fix comment.
 
   Revision 1.33  2004/10/05 09:45:28  terui
-  MAC�A�h���X��u8�^�̔z��ɓ���B
+  MACアドレスをu8型の配列に統一。
 
   Revision 1.32  2004/10/04 13:40:25  terui
-  �Q�[���O���[�vID��u32�^�ɓ���B
+  ゲームグループIDをu32型に統一。
 
   Revision 1.31  2004/10/03 07:51:10  ooe
-  ipl_branch�ƃ}�[�W�B ignoreFatalError�t���O�ɑΉ��B
+  ipl_branchとマージ。 ignoreFatalErrorフラグに対応。
 
   Revision 1.30  2004/10/01 04:09:26  terui
-  WM_ENABLE_TESTMODE�X�C�b�`�ɂ��e�X�g���[�h����ɂ��Ă̋@�\�𐧌��B
+  WM_ENABLE_TESTMODEスイッチによりテストモード操作についての機能を制限。
 
   Revision 1.29  2004/09/20 10:30:21  ooe
-  WM_SetBeaconPeriod��ǉ��B
+  WM_SetBeaconPeriodを追加。
 
   Revision 1.28  2004/09/16 02:59:28  seiki_masashi
-  WM_GetMPReceiveBufferSize �̕s����C��
+  WM_GetMPReceiveBufferSize の不具合を修正
 
   Revision 1.27  2004/09/13 04:09:12  seiki_masashi
-  WM_SetMPFrequency �̒ǉ�
+  WM_SetMPFrequency の追加
 
   Revision 1.26  2004/09/11 04:09:38  terui
   Only fix comment.
 
   Revision 1.25  2004/09/10 12:04:37  seiki_masashi
-  �L�[�V�F�A�����O�̑��M�o�C�g�������C�u�������ŉB������悤�ɕύX
+  キーシェアリングの送信バイト数をライブラリ内で隠蔽するように変更
 
   Revision 1.24  2004/09/10 04:56:16  seiki_masashi
-  WM_SIZE_MP_*_BUFFER �𐳊m�Ȓl�ɕύX
+  WM_SIZE_MP_*_BUFFER を正確な値に変更
 
   Revision 1.23  2004/09/09 07:24:11  seiki_masashi
-  WM_SetMPDataToPortEx �̒ǉ�
+  WM_SetMPDataToPortEx の追加
 
   Revision 1.22  2004/09/09 01:58:20  terui
-  �������E�I�������̍ו����ɔ����A�v���g�^�C�v�錾��ǉ��B
+  初期化・終了処理の細分化に伴い、プロトタイプ宣言を追加。
 
   Revision 1.21  2004/09/02 09:26:49  seiki_masashi
   fix typo.
 
   Revision 1.20  2004/09/02 09:15:33  terui
-  WMi_GetStatusAddress�֐���ǉ��B
+  WMi_GetStatusAddress関数を追加。
 
   Revision 1.19  2004/08/30 00:53:09  terui
   Move definition about LinkLevel to wm.h
 
   Revision 1.18  2004/08/27 06:44:20  seiki_masashi
-  WM_StartMPEx �̈����� defaultRetryCount, fixFreqMode ��ǉ�
+  WM_StartMPEx の引数に defaultRetryCount, fixFreqMode を追加
 
   Revision 1.17  2004/08/27 02:16:00  terui
   Only fix comment.
 
   Revision 1.16  2004/08/25 08:20:38  seiki_masashi
-  WM_StatMPEx �̒ǉ�
+  WM_StatMPEx の追加
 
   Revision 1.15  2004/08/25 07:59:06  terui
   Add WM_ConvGgid*.
 
   Revision 1.14  2004/08/24 13:20:04  terui
-  �����N���x�擾�֐��y�ы��x�������񋓌^��ǉ��B
+  リンク強度取得関数及び強度を示す列挙型を追加。
 
   Revision 1.13  2004/08/23 04:39:10  ooe
-  WM_StartConnect()�̎d�l�ύX�B������ssid��ǉ��B
+  WM_StartConnect()の仕様変更。引数にssidを追加。
 
   Revision 1.12  2004/08/20 11:54:21  terui
   Childs -> Children
 
   Revision 1.11  2004/08/20 06:47:39  terui
-  WM_DisconnectChilds��ǉ��B
+  WM_DisconnectChildsを追加。
 
   Revision 1.10  2004/08/19 15:25:25  miya
   modified SetGameInfo function.
 
   Revision 1.9  2004/08/18 12:54:30  seiki_masashi
-  WM_SIZE_MP_*_*_BUFFER �֖��̕ύX
+  WM_SIZE_MP_*_*_BUFFER へ名称変更
 
   Revision 1.8  2004/08/18 06:47:28  terui
-  WM_GetAllowedChannel�֐���ǉ��B
-  WM_SetEntry�֐���ǉ��B
+  WM_GetAllowedChannel関数を追加。
+  WM_SetEntry関数を追加。
 
   Revision 1.7  2004/08/18 00:24:47  seiki_masashi
-  WM_StartMP �̈����̔�����
+  WM_StartMP の引数の微調整
 
   Revision 1.6  2004/08/17 12:49:45  seiki_masashi
-  WM_StartMP �̈����ɑ��M�o�b�t�@���w�肷��悤�ɕύX
+  WM_StartMP の引数に送信バッファを指定するように変更
 
   Revision 1.5  2004/08/11 04:27:09  seiki_masashi
-  StartDataSharing �̈����� doubleMode ��ǉ�
+  StartDataSharing の引数に doubleMode を追加
 
   Revision 1.4  2004/08/10 13:17:04  terui
   Fix comment.
@@ -245,7 +245,7 @@ extern "C" {
 /*===========================================================================*/
 
 /*---------------------------------------------------------------------------*
-    �萔��`
+    定数定義
  *---------------------------------------------------------------------------*/
 #define     WM_DEFAULT_BEACON_PERIOD    200     // ms
 #define     WM_DEFAULT_SCAN_PERIOD      30      // ms
@@ -253,359 +253,359 @@ extern "C" {
 
 
 /*---------------------------------------------------------------------------*
-    �֐���`
+    関数定義
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         WM_Init
 
-  Description:  WM���C�u�����̏������������s���B
-                ARM9���̏������݂̂��s�������֐��B
+  Description:  WMライブラリの初期化処理を行う。
+                ARM9側の初期化のみを行う同期関数。
 
-  Arguments:    wmSysBuf    -   �Ăяo�����ɂ���Ċm�ۂ��ꂽ�o�b�t�@�ւ̃|�C���^�B
-                                �o�b�t�@�̃T�C�Y��WM_SYSTEM_BUF_SIZE�����K�v�B
-                dmaNo       -   WM���g�p����DMA�ԍ��B
+  Arguments:    wmSysBuf    -   呼び出し元によって確保されたバッファへのポインタ。
+                                バッファのサイズはWM_SYSTEM_BUF_SIZEだけ必要。
+                dmaNo       -   WMが使用するDMA番号。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Init(void *wmSysBuf, u16 dmaNo);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_Finish
 
-  Description:  WM���C�u�����̏I���������s���B�����֐��B
-                WM_Init�֐����ĂԑO�̏�Ԃɖ߂�B
+  Description:  WMライブラリの終了処理を行う。同期関数。
+                WM_Init関数を呼ぶ前の状態に戻る。
 
   Arguments:    None.
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Finish(void);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_Enable
 
-  Description:  �����n�[�h�E�F�A���g�p�\�ȏ�Ԃɂ���B
-                ������Ԃ�READY��Ԃ���STOP��ԂɑJ�ڂ����B
+  Description:  無線ハードウェアを使用可能な状態にする。
+                内部状態はREADY状態からSTOP状態に遷移される。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Enable(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_EnableForListening
 
-  Description:  �����n�[�h�E�F�A���g�p�\�ȏ�Ԃɂ���B
-                ������Ԃ�READY��Ԃ���STOP��ԂɑJ�ڂ����B
-                �d�g�𑗏o����I�y���[�V�����͂ł��Ȃ��B
+  Description:  無線ハードウェアを使用可能な状態にする。
+                内部状態はREADY状態からSTOP状態に遷移される。
+                電波を送出するオペレーションはできない。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                blink       -   LED ��_�ł����邩
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                blink       -   LED を点滅させるか
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EnableForListening(WMCallbackFunc callback, BOOL blink);
 
 /*---------------------------------------------------------------------------*
   Name:         WMi_EnableEx
 
-  Description:  �����n�[�h�E�F�A���g�p�\�ȏ�Ԃɂ���B
-                ������Ԃ�READY��Ԃ���STOP��ԂɑJ�ڂ����B
+  Description:  無線ハードウェアを使用可能な状態にする。
+                内部状態はREADY状態からSTOP状態に遷移される。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                miscFlags   -   ���������̃t���O
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                miscFlags   -   初期化時のフラグ
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_EnableEx(WMCallbackFunc callback, u32 miscFlags);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_Disable
 
-  Description:  �����n�[�h�E�F�A���g�p�֎~��Ԃɂ���B
-                ������Ԃ�STOP��Ԃ���READY��ԂɑJ�ڂ����B
+  Description:  無線ハードウェアを使用禁止状態にする。
+                内部状態はSTOP状態からREADY状態に遷移される。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Disable(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_PowerOn
 
-  Description:  �����n�[�h�E�F�A���N������B
-                ������Ԃ�STOP��Ԃ���IDLE��ԂɑJ�ڂ����B
+  Description:  無線ハードウェアを起動する。
+                内部状態はSTOP状態からIDLE状態に遷移される。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_PowerOn(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_PowerOff
 
-  Description:  �����n�[�h�E�F�A���V���b�g�_�E������B
-                ������Ԃ�IDLE��Ԃ���STOP��ԂɑJ�ڂ����B
+  Description:  無線ハードウェアをシャットダウンする。
+                内部状態はIDLE状態からSTOP状態に遷移される。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_PowerOff(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_Initialize
 
-  Description:  WM�������������s���B
+  Description:  WM初期化処理を行う。
 
-  Arguments:    wmSysBuf    -   �Ăяo�����ɂ���Ċm�ۂ��ꂽ�o�b�t�@�ւ̃|�C���^�B
-                                �o�b�t�@�̃T�C�Y��WM_SYSTEM_BUF_SIZE�����K�v�B
-                callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                dmaNo       -   WM���g�p����DMA�ԍ��B
+  Arguments:    wmSysBuf    -   呼び出し元によって確保されたバッファへのポインタ。
+                                バッファのサイズはWM_SYSTEM_BUF_SIZEだけ必要。
+                callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                dmaNo       -   WMが使用するDMA番号。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Initialize(void *wmSysBuf, WMCallbackFunc callback, u16 dmaNo);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_InitializeForListening
 
-  Description:  WM�������������s���B
-                �X�L�����ȊO�̒ʐM�͂ł��Ȃ��B
+  Description:  WM初期化処理を行う。
+                スキャン以外の通信はできない。
 
-  Arguments:    wmSysBuf    -   �Ăяo�����ɂ���Ċm�ۂ��ꂽ�o�b�t�@�ւ̃|�C���^�B
-                                �o�b�t�@�̃T�C�Y��WM_SYSTEM_BUF_SIZE�����K�v�B
-                callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                dmaNo       -   WM���g�p����DMA�ԍ��B
-                blink       -   LED ��_�ł����邩�ǂ���
+  Arguments:    wmSysBuf    -   呼び出し元によって確保されたバッファへのポインタ。
+                                バッファのサイズはWM_SYSTEM_BUF_SIZEだけ必要。
+                callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                dmaNo       -   WMが使用するDMA番号。
+                blink       -   LED を点滅させるかどうか
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_InitializeForListening(void *wmSysBuf, WMCallbackFunc callback, u16 dmaNo, BOOL blink);
 
 /*---------------------------------------------------------------------------*
   Name:         WMi_InitializeEx
 
-  Description:  WM�������������s���B
+  Description:  WM初期化処理を行う。
 
-  Arguments:    wmSysBuf    -   �Ăяo�����ɂ���Ċm�ۂ��ꂽ�o�b�t�@�ւ̃|�C���^�B
-                                �o�b�t�@�̃T�C�Y��WM_SYSTEM_BUF_SIZE�����K�v�B
-                callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                dmaNo       -   WM���g�p����DMA�ԍ��B
-                miscFlags   -   ���������̃t���O
+  Arguments:    wmSysBuf    -   呼び出し元によって確保されたバッファへのポインタ。
+                                バッファのサイズはWM_SYSTEM_BUF_SIZEだけ必要。
+                callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                dmaNo       -   WMが使用するDMA番号。
+                miscFlags   -   初期化時のフラグ
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_InitializeEx(void *wmSysBuf, WMCallbackFunc callback, u16 dmaNo, u32 miscFlags);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetIndCallback
 
-  Description:  WM7����̏󋵒ʒm�ɑ΂��ČĂт������֐���ݒ肷��B
-                ���̊֐����͓̂����֐��B
+  Description:  WM7からの状況通知に対して呼びだされる関数を設定する。
+                この関数自体は同期関数。
 
-  Arguments:    callback    -   �����t�@�[���E�F�A����̏󋵒ʒm���ɌĂяo�����
-                                �R�[���o�b�N�֐����w��B
+  Arguments:    callback    -   無線ファームウェアからの状況通知時に呼び出される
+                                コールバック関数を指定。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetIndCallback(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetPortCallback
 
-  Description:  WM7����̒ʐM�t���[����M�ʒm�ɑ΂��ČĂт������֐���ݒ肷��B
+  Description:  WM7からの通信フレーム受信通知に対して呼びだされる関数を設定する。
 
-  Arguments:    port        -   �|�[�g�ԍ��B
-                callback    -   ��M�ʒm���ɌĂяo�����R�[���o�b�N�֐��B
-                arg         -   �R�[���o�b�N�֐��� WMPortRecvCallback.arg �Ƃ���
-                                �n���������B
+  Arguments:    port        -   ポート番号。
+                callback    -   受信通知時に呼び出されるコールバック関数。
+                arg         -   コールバック関数に WMPortRecvCallback.arg として
+                                渡される引数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetPortCallback(u16 port, WMCallbackFunc callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_Reset
 
-  Description:  �������C�u���������Z�b�g���A����������̏�Ԃɖ߂��B
+  Description:  無線ライブラリをリセットし、初期化直後の状態に戻す。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Reset(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_End
 
-  Description:  �������C�u�������I������B
+  Description:  無線ライブラリを終了する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_End(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_ReadStatus
 
-  Description:  �������C�u������Ԃ������\���̂��擾����B�����֐��B
+  Description:  無線ライブラリ状態を示す構造体を取得する。同期関数。
 
-  Arguments:    statusBuf   -   ��Ԃ��擾����ϐ��ւ̃|�C���^�B
+  Arguments:    statusBuf   -   状態を取得する変数へのポインタ。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_ReadStatus(WMStatus *statusBuf);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetParentParameter
 
-  Description:  �e�@����ݒ肷��B
+  Description:  親機情報を設定する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                pparaBuf    -   �e�@���������\���̂ւ̃|�C���^�B
-                                pparaBuf�y��pparaBuf->userGameInfo�̎��̂͋����I��
-                                �L���b�V���X�g�A�����_�ɒ��ӁB
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                pparaBuf    -   親機情報を示す構造体へのポインタ。
+                                pparaBuf及びpparaBuf->userGameInfoの実体は強制的に
+                                キャッシュストアされる点に注意。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetParentParameter(WMCallbackFunc callback, const WMParentParam *pparaBuf);
 
 /*---------------------------------------------------------------------------*
   Name:         WMi_StartParent
 
-  Description:  �e�@�Ƃ��ĒʐM���J�n����B
+  Description:  親機として通信を開始する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                powerSave   -   �ȓd�̓��[�h���g�p����ꍇ��TRUE�A���Ȃ��ꍇ��FALSE�B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                powerSave   -   省電力モードを使用する場合はTRUE、しない場合はFALSE。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_StartParentEx(WMCallbackFunc callback, BOOL powerSave);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StartParent
 
-  Description:  �e�@�Ƃ��ĒʐM���J�n����B
+  Description:  親機として通信を開始する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartParent(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_EndParent
 
-  Description:  �e�@�Ƃ��Ă̒ʐM���~����B
+  Description:  親機としての通信を停止する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndParent(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StartScan
 
-  Description:  �q�@�Ƃ��Đe�@�̃X�L�������J�n����B
-                ��x�̌Ăяo���ň��̐e�@�����擾����B
-                WM_EndScan���Ăяo�����ɘA�����ČĂяo���Ă��ǂ��B
+  Description:  子機として親機のスキャンを開始する。
+                一度の呼び出しで一台の親機情報を取得する。
+                WM_EndScanを呼び出さずに連続して呼び出しても良い。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                param       -   �X�L�������������\���̂ւ̃|�C���^�B
-                                �X�L�������ʂ̏���param->scanBuf��ARM7�����ڏ����o��
-                                �̂ŁA�L���b�V�����C���ɍ��킹�Ă����K�v������B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                param       -   スキャン情報を示す構造体へのポインタ。
+                                スキャン結果の情報はparam->scanBufにARM7が直接書き出す
+                                ので、キャッシュラインに合わせておく必要がある。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartScan(WMCallbackFunc callback, const WMScanParam *param);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StartScanEx
 
-  Description:  �q�@�Ƃ��Đe�@�̃X�L�������J�n����B
-                ��x�̌Ăяo���ŕ�����̐e�@�����擾����B
-                WM_EndScan���Ăяo�����ɘA�����ČĂяo���Ă��ǂ��B
+  Description:  子機として親機のスキャンを開始する。
+                一度の呼び出しで複数台の親機情報を取得する。
+                WM_EndScanを呼び出さずに連続して呼び出しても良い。
 
-  Arguments:    callback - �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                param    - �X�L�������������\���̂ւ̃|�C���^�B
-                           �X�L�������ʂ̏���param->scanBuf��ARM7�����ڏ����o��
-                           �̂ŁA�L���b�V�����C���ɍ��킹�Ă����K�v������B
+  Arguments:    callback - 非同期処理が完了した時に呼び出されるコールバック関数。
+                param    - スキャン情報を示す構造体へのポインタ。
+                           スキャン結果の情報はparam->scanBufにARM7が直接書き出す
+                           ので、キャッシュラインに合わせておく必要がある。
 
-  Returns:      int      - WM_ERRCODE_*�^�̏������ʂ�Ԃ��B
+  Returns:      int      - WM_ERRCODE_*型の処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartScanEx(WMCallbackFunc callback, const WMScanExParam *param);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_EndScan
 
-  Description:  �q�@�Ƃ��ẴX�L�����������~����B
+  Description:  子機としてのスキャン処理を停止する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndScan(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StartConnectEx
 
-  Description:  �q�@�Ƃ��Đe�@�ւ̐ڑ����J�n����B
+  Description:  子機として親機への接続を開始する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                pInfo       -   �ڑ�����e�@�̏��B
-                                WM_StartScan�ɂĎ擾�����\���̂��w�肷��B
-                                ���̍\���̂̎��̂͋����I�ɃL���b�V���X�g�A
-                                �����_�ɒ��ӁB
-                ssid        -   �e�@�ɒʒm����q�@���(24Byte(WM_SIZE_CHILD_SSID)�Œ�T�C�Y)
-                powerSave   -   �ȓd�̓��[�h���g�p����ꍇ��TRUE�A���Ȃ��ꍇ��FALSE�B
-                authMode    -   Authentication�̃��[�h�I���B
-                                  WM_AUTHMODE_OPEN_SYSTEM : OPEN SYSTEM���[�h
-                                  WM_AUTHMODE_SHARED_KEY  : SHARED KEY ���[�h
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                pInfo       -   接続する親機の情報。
+                                WM_StartScanにて取得した構造体を指定する。
+                                この構造体の実体は強制的にキャッシュストア
+                                される点に注意。
+                ssid        -   親機に通知する子機情報(24Byte(WM_SIZE_CHILD_SSID)固定サイズ)
+                powerSave   -   省電力モードを使用する場合はTRUE、しない場合はFALSE。
+                authMode    -   Authenticationのモード選択。
+                                  WM_AUTHMODE_OPEN_SYSTEM : OPEN SYSTEMモード
+                                  WM_AUTHMODE_SHARED_KEY  : SHARED KEY モード
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartConnectEx(WMCallbackFunc callback, const WMBssDesc *pInfo, const u8 *ssid,
                             BOOL powerSave, u16 authMode);
@@ -613,17 +613,17 @@ WMErrCode WM_StartConnectEx(WMCallbackFunc callback, const WMBssDesc *pInfo, con
 /*---------------------------------------------------------------------------*
   Name:         WM_StartConnect
 
-  Description:  �q�@�Ƃ��Đe�@�ւ̐ڑ����J�n����B
+  Description:  子機として親機への接続を開始する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                pInfo       -   �ڑ�����e�@�̏��BWM_StartScan�ɂĎ擾�����\���̂�
-                                �w�肷��B���̍\���̂̎��̂͋����I�ɃL���b�V���X�g�A
-                                �����_�ɒ��ӁB
-                ssid        -   �e�@�ɒʒm����q�@���(24Byte(WM_SIZE_CHILD_SSID)�Œ�T�C�Y)
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                pInfo       -   接続する親機の情報。WM_StartScanにて取得した構造体を
+                                指定する。この構造体の実体は強制的にキャッシュストア
+                                される点に注意。
+                ssid        -   親機に通知する子機情報(24Byte(WM_SIZE_CHILD_SSID)固定サイズ)
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 static inline WMErrCode
 WM_StartConnect(WMCallbackFunc callback, const WMBssDesc *pInfo, const u8 *ssid)
@@ -634,89 +634,89 @@ WM_StartConnect(WMCallbackFunc callback, const WMBssDesc *pInfo, const u8 *ssid)
 /*---------------------------------------------------------------------------*
   Name:         WM_Disconnect
 
-  Description:  �m������Ă���ڑ���ؒf����B
+  Description:  確立されている接続を切断する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                aid         -   �ؒf����ʐM�����AID�B
-                                �e�@�̏ꍇ�AID��1�`15�̎q�@���ʂɐؒf�B
-                                �q�@�̏ꍇ�AID��0�̐e�@�Ƃ̒ʐM���I���B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                aid         -   切断する通信相手のAID。
+                                親機の場合、IDが1〜15の子機を個別に切断。
+                                子機の場合、IDが0の親機との通信を終了。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Disconnect(WMCallbackFunc callback, u16 aid);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_DisconnectChildren
 
-  Description:  �ڑ��m������Ă���q�@�����ꂼ��ؒf����B�e�@��p�֐��B
+  Description:  接続確立されている子機をそれぞれ切断する。親機専用関数。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                aidBitmap   -   �ؒf����q�@��AID�r�b�g�t�B�[���h�B
-                                �ŉ��ʃr�b�g�͖�������Abit 1�`15 ��AID 1�`15 �̎q�@
-                                �����ꂼ�ꎦ���B
-                                �ڑ�����Ă��Ȃ��q�@�������r�b�g�͖��������̂ŁA
-                                �ڑ��󋵂Ɋւ�炸�S�q�@��ؒf����ꍇ��0xFFFF���w��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                aidBitmap   -   切断する子機のAIDビットフィールド。
+                                最下位ビットは無視され、bit 1〜15 がAID 1〜15 の子機
+                                をそれぞれ示す。
+                                接続されていない子機を示すビットは無視されるので、
+                                接続状況に関わらず全子機を切断する場合は0xFFFFを指定。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_DisconnectChildren(WMCallbackFunc callback, u16 aidBitmap);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetMPSendBufferSize
 
-  Description:  MP �ʐM�̑��M�o�b�t�@�̃T�C�Y�����݂� WM �̏�Ԃ���v�Z����B
+  Description:  MP 通信の送信バッファのサイズを現在の WM の状態から計算する。
 
   Arguments:    None.
 
-  Returns:      int     -   WM_StartMP �ɓn���K�v�����鑗�M�o�b�t�@�̃T�C�Y�B
+  Returns:      int     -   WM_StartMP に渡す必要がある送信バッファのサイズ。
  *---------------------------------------------------------------------------*/
 int     WM_GetMPSendBufferSize(void);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetMPReceiveBufferSize
 
-  Description:  MP �ʐM�̎�M�o�b�t�@�̃T�C�Y�����݂� WM �̏�Ԃ���v�Z����B
+  Description:  MP 通信の受信バッファのサイズを現在の WM の状態から計算する。
 
   Arguments:    None.
 
-  Returns:      int     -   WM_StartMP �ɓn���K�v�������M�o�b�t�@�̃T�C�Y�B
+  Returns:      int     -   WM_StartMP に渡す必要がある受信バッファのサイズ。
  *---------------------------------------------------------------------------*/
 int     WM_GetMPReceiveBufferSize(void);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StartMPEx
 
-  Description:  MP�ʐM���J�n����B�ڍׂȓ��샂�[�h���w��\�B�e�@�E�q�@���ʊ֐��B
+  Description:  MP通信を開始する。詳細な動作モードを指定可能。親機・子機共通関数。
 
-  Arguments:    callback        -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                recvBuf         -   ��M�f�[�^�i�[�o�b�t�@�B
-                                    ARM7�����ڃf�[�^�������o���̂ŁA�L���b�V���ɒ��ӁB
-                recvBufSize     -   ��M�f�[�^�i�[�o�b�t�@�̃T�C�Y�B
-                                    WM_GetReceiveBufferSize() �̕Ԃ�l�����傫���K�v������B
-                sendBuf         -   ���M�f�[�^�i�[�o�b�t�@�B
-                                    ARM7�����ڃf�[�^�������o���̂ŁA�L���b�V���ɒ��ӁB
-                sendBufSize     -   ���M�f�[�^�i�[�o�b�t�@�̃T�C�Y�B
-                                    WM_GetSendBufferSize() �̕Ԃ�l�����傫���K�v������B
-                mpFreq          -   1�t���[���ɉ��� MP �ʐM�����邩�B
-                                    0 �ŘA�����M���[�h�B�e�@�݈̂Ӗ������B
-                defaultRetryCount - 0�`7�ԃ|�[�g�̒ʐM�̍ۂɁA���M�Ɏ��s�����ꍇ��
-                                    ���g���C���s���W���̉񐔁B0 �Ń��g���C���s��Ȃ��B
-                minPollBmpMode  -   MP �ʐM���� pollBitmap �𑗐M���� packet �̈���ɉ�����
-                                    �Œ���̏W���ɗ}���铮�샂�[�h�B
-                singlePacketMode -  1 ��� MP �ɂ��Ĉ�� packet ��������Ȃ��Ȃ�
-                                    ����ȓ��샂�[�h�B
-                fixFreqMode     -   ���g���C�ɂ�� MP �ʐM�̑������֎~�������ȓ��샂�[�h�B
-                                    1�t���[������ MP �ʐM�̉񐔂����傤�� mpFreq ��ɌŒ�B
+  Arguments:    callback        -   非同期処理が完了した時に呼び出されるコールバック関数。
+                recvBuf         -   受信データ格納バッファ。
+                                    ARM7が直接データを書き出すので、キャッシュに注意。
+                recvBufSize     -   受信データ格納バッファのサイズ。
+                                    WM_GetReceiveBufferSize() の返り値よりも大きい必要がある。
+                sendBuf         -   送信データ格納バッファ。
+                                    ARM7が直接データを書き出すので、キャッシュに注意。
+                sendBufSize     -   送信データ格納バッファのサイズ。
+                                    WM_GetSendBufferSize() の返り値よりも大きい必要がある。
+                mpFreq          -   1フレームに何回 MP 通信をするか。
+                                    0 で連続送信モード。親機のみ意味を持つ。
+                defaultRetryCount - 0〜7番ポートの通信の際に、送信に失敗した場合に
+                                    リトライを行う標準の回数。0 でリトライを行わない。
+                minPollBmpMode  -   MP 通信時の pollBitmap を送信する packet の宛先に応じて
+                                    最低限の集合に抑える動作モード。
+                singlePacketMode -  1 回の MP について一つの packet しか送らなくなる
+                                    特殊な動作モード。
+                fixFreqMode     -   リトライによる MP 通信の増加を禁止する特殊な動作モード。
+                                    1フレーム中の MP 通信の回数をちょうど mpFreq 回に固定。
 
-                ignoreFatalError -  FatalError��������AutoDisconnect���s�Ȃ�Ȃ��Ȃ�B
+                ignoreFatalError -  FatalError発生時にAutoDisconnectを行なわなくなる。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartMPEx(WMCallbackFunc callback,
                        u16 *recvBuf,
@@ -731,23 +731,23 @@ WMErrCode WM_StartMPEx(WMCallbackFunc callback,
 /*---------------------------------------------------------------------------*
   Name:         WM_StartMP
 
-  Description:  MP�ʐM���J�n����B�e�@�E�q�@���ʊ֐��B
+  Description:  MP通信を開始する。親機・子機共通関数。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                recvBuf     -   ��M�f�[�^�i�[�o�b�t�@�B
-                                ARM7�����ڃf�[�^�������o���̂ŁA�L���b�V���ɒ��ӁB
-                recvBufSize -   ��M�f�[�^�i�[�o�b�t�@�̃T�C�Y�B
-                                WM_GetReceiveBufferSize() �̕Ԃ�l�����傫���K�v������B
-                sendBuf     -   ���M�f�[�^�i�[�o�b�t�@�B
-                                ARM7�����ڃf�[�^�������o���̂ŁA�L���b�V���ɒ��ӁB
-                sendBufSize -   ���M�f�[�^�i�[�o�b�t�@�̃T�C�Y�B
-                                WM_GetSendBufferSize() �̕Ԃ�l�����傫���K�v������B
-                mpFreq      -   1�t���[���ɉ��� MP �ʐM�����邩�B
-                                0 �ŘA�����M���[�h�B�e�@�݈̂Ӗ������B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                recvBuf     -   受信データ格納バッファ。
+                                ARM7が直接データを書き出すので、キャッシュに注意。
+                recvBufSize -   受信データ格納バッファのサイズ。
+                                WM_GetReceiveBufferSize() の返り値よりも大きい必要がある。
+                sendBuf     -   送信データ格納バッファ。
+                                ARM7が直接データを書き出すので、キャッシュに注意。
+                sendBufSize -   送信データ格納バッファのサイズ。
+                                WM_GetSendBufferSize() の返り値よりも大きい必要がある。
+                mpFreq      -   1フレームに何回 MP 通信をするか。
+                                0 で連続送信モード。親機のみ意味を持つ。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartMP(WMCallbackFunc callback,
                      u16 *recvBuf, u16 recvBufSize, u16 *sendBuf, u16 sendBufSize, u16 mpFreq);
@@ -755,107 +755,107 @@ WMErrCode WM_StartMP(WMCallbackFunc callback,
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPParameter
 
-  Description:  MP �ʐM�p�̊e��p�����[�^��ݒ肷��
+  Description:  MP 通信用の各種パラメータを設定する
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                param       -   MP �ʐM�p�̃p�����[�^���i�[�����\���̂ւ̃|�C���^
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                param       -   MP 通信用のパラメータを格納した構造体へのポインタ
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPParameter(WMCallbackFunc callback, const WMMPParam * param);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPChildSize
 
-  Description:  1���MP�ʐM�ł̎q�@�̑��M�o�C�g����ݒ肷��B
+  Description:  1回のMP通信での子機の送信バイト数を設定する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                childSize   -   �q�@�̑��M�o�C�g���B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                childSize   -   子機の送信バイト数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPChildSize(WMCallbackFunc callback, u16 childSize);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPParentSize
 
-  Description:  1���MP�ʐM�ł̐e�@�̑��M�o�C�g����ݒ肷��B
+  Description:  1回のMP通信での親機の送信バイト数を設定する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                childSize   -   �e�@�̑��M�o�C�g���B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                childSize   -   親機の送信バイト数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPParentSize(WMCallbackFunc callback, u16 parentSize);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPFrequency
 
-  Description:  1�t���[���ɉ��� MP �ʐM���邩��؂�ւ���B�e�@�p�֐��B
+  Description:  1フレームに何回 MP 通信するかを切り替える。親機用関数。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                mpFreq      -   1�t���[���ɉ��� MP �ʐM�����邩�B
-                                0 �ŘA�����M���[�h�B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                mpFreq      -   1フレームに何回 MP 通信をするか。
+                                0 で連続送信モード。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPFrequency(WMCallbackFunc callback, u16 mpFreq);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPInterval
 
-  Description:  1�t���[�����ɘA������ MP �ʐM���s���ꍇ�̊Ԋu��ݒ肷��B
+  Description:  1フレーム中に連続して MP 通信を行う場合の間隔を設定する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                parentInterval - 1�t���[�����ɘA�����čs���ꍇ�̐e�@�� MP �ʐM�Ԋu (ms)
-                childInterval  - 1�t���[�����ɘA�����čs���ꍇ�̎q�@�� MP �ʐM����������Ԋu (ms)
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                parentInterval - 1フレーム中に連続して行う場合の親機の MP 通信間隔 (ms)
+                childInterval  - 1フレーム中に連続して行う場合の子機が MP 通信を準備する間隔 (ms)
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPInterval(WMCallbackFunc callback, u16 parentInterval, u16 childInterval);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPTiming
 
-  Description:  �t���[�������ʐM���[�h���� MP �ʐM�̏������J�n����^�C�~���O��ݒ肷��B
+  Description:  フレーム同期通信モード時に MP 通信の準備を開始するタイミングを設定する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                parentVCount -  �t���[�������ʐM���̐e�@�����̊J�n V Count
-                childVCount  -  �t���[�������ʐM���̎q�@�����̊J�n V Count
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                parentVCount -  フレーム同期通信時の親機処理の開始 V Count
+                childVCount  -  フレーム同期通信時の子機処理の開始 V Count
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPTiming(WMCallbackFunc callback, u16 parentVCount, u16 childVCount);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPDataToPortEx
 
-  Description:  MP�ʐM�ɂđ��M����f�[�^��\�񂷂�B�e�@�E�q�@���ʊ֐��B
+  Description:  MP通信にて送信するデータを予約する。親機・子機共通関数。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                arg         -   callback �ɓn��������
-                sendData    -   ���M�\�񂷂�f�[�^�ւ̃|�C���^�B
-                                ���̃f�[�^�̎��̂͋����I�ɃL���b�V���X�g�A�����_�ɒ��ӁB
-                sendDataSize -  ���M�\�񂷂�f�[�^�̃T�C�Y�B
-                destBitmap  -   ���M��q�@������ aid �� bitmap ���w��B
-                port        -   ���M����|�[�g�ԍ��B
-                prio        -   �D��x (0:�ō��`3:�Œ�)
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                arg         -   callback に渡される引数
+                sendData    -   送信予約するデータへのポインタ。
+                                このデータの実体は強制的にキャッシュストアされる点に注意。
+                sendDataSize -  送信予約するデータのサイズ。
+                destBitmap  -   送信先子機を示す aid の bitmap を指定。
+                port        -   送信するポート番号。
+                prio        -   優先度 (0:最高〜3:最低)
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPDataToPortEx(WMCallbackFunc callback,
                                void *arg,
@@ -865,19 +865,19 @@ WMErrCode WM_SetMPDataToPortEx(WMCallbackFunc callback,
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPDataToPort
 
-  Description:  MP�ʐM�ɂđ��M����f�[�^��\�񂷂�B�e�@�E�q�@���ʊ֐��B
+  Description:  MP通信にて送信するデータを予約する。親機・子機共通関数。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                sendData    -   ���M�\�񂷂�f�[�^�ւ̃|�C���^�B
-                                ���̃f�[�^�̎��̂͋����I�ɃL���b�V���X�g�A�����_�ɒ��ӁB
-                sendDataSize -  ���M�\�񂷂�f�[�^�̃T�C�Y�B
-                destBitmap  -   ���M��q�@������ aid �� bitmap ���w��B
-                port        -   ���M����|�[�g�ԍ��B
-                prio        -   �D��x (0:�ō��`3:�Œ�)
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                sendData    -   送信予約するデータへのポインタ。
+                                このデータの実体は強制的にキャッシュストアされる点に注意。
+                sendDataSize -  送信予約するデータのサイズ。
+                destBitmap  -   送信先子機を示す aid の bitmap を指定。
+                port        -   送信するポート番号。
+                prio        -   優先度 (0:最高〜3:最低)
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 static inline WMErrCode
 WM_SetMPDataToPort(WMCallbackFunc callback, const u16 *sendData, u16 sendDataSize, u16 destBitmap,
@@ -889,19 +889,19 @@ WM_SetMPDataToPort(WMCallbackFunc callback, const u16 *sendData, u16 sendDataSiz
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPData
 
-  Description:  MP�ʐM�ɂđ��M����f�[�^��\�񂷂�B�e�@�E�q�@���ʊ֐��B
+  Description:  MP通信にて送信するデータを予約する。親機・子機共通関数。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                sendData    -   ���M�\�񂷂�f�[�^�ւ̃|�C���^�B
-                                ���̃f�[�^�̎��̂͋����I�ɃL���b�V���X�g�A�����_�ɒ��ӁB
-                sendDataSize -  ���M�\�񂷂�f�[�^�̃T�C�Y�B
-                tmptt       -   �A�����M���[�h�̏ꍇ�AMP�p�P�b�g���M���Ԃ�ݒ�B
-                                (�e�@�̂ݗL���B) (2004/07/26 ���݁E����)
-                pollbmp     -   �A�����M���[�h�̏ꍇ�A���M��q�@������Poll�}�b�v���w��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                sendData    -   送信予約するデータへのポインタ。
+                                このデータの実体は強制的にキャッシュストアされる点に注意。
+                sendDataSize -  送信予約するデータのサイズ。
+                tmptt       -   連続送信モードの場合、MPパケット送信時間を設定。
+                                (親機のみ有効。) (2004/07/26 現在・無視)
+                pollbmp     -   連続送信モードの場合、送信先子機を示すPollマップを指定。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 static inline WMErrCode
 WM_SetMPData(WMCallbackFunc callback, const u16 *sendData, u16 sendDataSize, u16 tmptt, u16 pollbmp)
@@ -914,47 +914,47 @@ WM_SetMPData(WMCallbackFunc callback, const u16 *sendData, u16 sendDataSize, u16
 /*---------------------------------------------------------------------------*
   Name:         WM_EndMP
 
-  Description:  MP�ʐM���~����B�e�@�E�q�@���ʊ֐��B
+  Description:  MP通信を停止する。親機・子機共通関数。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndMP(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StartDCF
 
-  Description:  �C���t���X�g���N�`�����[�h�ł̒ʐM���J�n����B
+  Description:  インフラストラクチャモードでの通信を開始する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                recvBuf     -   �f�[�^��M�o�b�t�@�ւ̃|�C���^�B
-                                ARM7�����ڃf�[�^�������o���̂ŁA�L���b�V���ɒ��ӁB
-                recvBufSize -   �f�[�^��M�o�b�t�@�̃T�C�Y�B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                recvBuf     -   データ受信バッファへのポインタ。
+                                ARM7が直接データを書き出すので、キャッシュに注意。
+                recvBufSize -   データ受信バッファのサイズ。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartDCF(WMCallbackFunc callback, WMDcfRecvBuf *recvBuf, u16 recvBufSize);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetDCFData
 
-  Description:  �C���t���X�g���N�`�����[�h�ʐM�ɂđ��M����f�[�^��\�񂷂�
+  Description:  インフラストラクチャモード通信にて送信するデータを予約する
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                destAdr     -   �ʐM�����MAC�A�h���X�������o�b�t�@�ւ̃|�C���^�B
-                sendData    -   ���M�\�񂷂�f�[�^�ւ̃|�C���^�B
-                                ���M�\�񂷂�f�[�^�̎��̂͋����I�ɃL���b�V���X�g�A
-                                �����_�ɒ��ӁB
-                sendDataSize -  ���M�\�񂷂�f�[�^�̃T�C�Y�B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                destAdr     -   通信相手のMACアドレスを示すバッファへのポインタ。
+                sendData    -   送信予約するデータへのポインタ。
+                                送信予約するデータの実体は強制的にキャッシュストア
+                                される点に注意。
+                sendDataSize -  送信予約するデータのサイズ。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetDCFData(WMCallbackFunc callback,
                         const u8 *destAdr, const u16 *sendData, u16 sendDataSize);
@@ -962,97 +962,97 @@ WMErrCode WM_SetDCFData(WMCallbackFunc callback,
 /*---------------------------------------------------------------------------*
   Name:         WM_EndDCF
 
-  Description:  �C���t���X�g���N�`�����[�h�ł̒ʐM���~����B
+  Description:  インフラストラクチャモードでの通信を停止する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndDCF(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetWEPKey
 
-  Description:  �Í��@�\�A�Í��L�[��ݒ肷��B
+  Description:  暗号機能、暗号キーを設定する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                wepmode     -   0: �Í��@�\�Ȃ�
-                                1: RC4(40bit)�Í����[�h
-                                2: RC4(104bit)�Í����[�h
-                                3: RC4(128bit)�Í����[�h
-                wepkey      -   �Í��L�[�f�[�^( 80�o�C�g )�ւ̃|�C���^�B
-                                �L�[�f�[�^��4�̃f�[�^�ō\������A���ꂼ��20�o�C�g�B
-                                �e20�o�C�g�̂����A
-                                 40�r�b�g���[�h�ł�  5 �o�C�g
-                                104�r�b�g���[�h�ł� 13 �o�C�g
-                                128�r�b�g���[�h�ł� 16 �o�C�g
-                                �̃f�[�^���g�p�����B
-                                �܂��A���̃f�[�^�̎��̂͋����I�ɃL���b�V���X�g�A�����B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                wepmode     -   0: 暗号機能なし
+                                1: RC4(40bit)暗号モード
+                                2: RC4(104bit)暗号モード
+                                3: RC4(128bit)暗号モード
+                wepkey      -   暗号キーデータ( 80バイト )へのポインタ。
+                                キーデータは4つのデータで構成され、それぞれ20バイト。
+                                各20バイトのうち、
+                                 40ビットモードでは  5 バイト
+                                104ビットモードでは 13 バイト
+                                128ビットモードでは 16 バイト
+                                のデータが使用される。
+                                また、このデータの実体は強制的にキャッシュストアされる。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetWEPKey(WMCallbackFunc callback, u16 wepmode, const u16 *wepkey);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetWEPKeyEx
 
-  Description:  �Í��@�\�A�Í��L�[�A�Í��L�[ID��ݒ肷��B
+  Description:  暗号機能、暗号キー、暗号キーIDを設定する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                wepmode     -   0: �Í��@�\�Ȃ�
-                                1: RC4(40bit)�Í����[�h
-                                2: RC4(104bit)�Í����[�h
-                                3: RC4(128bit)�Í����[�h
-                wepkeyid    -   4�w�肵��wepkey�̂ǂ���g�p���邩��I�����܂��B
-                                0�`3�Ŏw�肵�܂��B
-                wepkey      -   �Í��L�[�f�[�^( 80�o�C�g )�ւ̃|�C���^�B
-                                �L�[�f�[�^��4�̃f�[�^�ō\������A���ꂼ��20�o�C�g�B
-                                �e20�o�C�g�̂����A
-                                 40�r�b�g���[�h�ł�  5 �o�C�g
-                                104�r�b�g���[�h�ł� 13 �o�C�g
-                                128�r�b�g���[�h�ł� 16 �o�C�g
-                                �̃f�[�^���g�p�����B
-                                �܂��A���̃f�[�^�̎��̂͋����I�ɃL���b�V���X�g�A�����B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                wepmode     -   0: 暗号機能なし
+                                1: RC4(40bit)暗号モード
+                                2: RC4(104bit)暗号モード
+                                3: RC4(128bit)暗号モード
+                wepkeyid    -   4つ指定したwepkeyのどれを使用するかを選択します。
+                                0〜3で指定します。
+                wepkey      -   暗号キーデータ( 80バイト )へのポインタ。
+                                キーデータは4つのデータで構成され、それぞれ20バイト。
+                                各20バイトのうち、
+                                 40ビットモードでは  5 バイト
+                                104ビットモードでは 13 バイト
+                                128ビットモードでは 16 バイト
+                                のデータが使用される。
+                                また、このデータの実体は強制的にキャッシュストアされる。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetWEPKeyEx(WMCallbackFunc callback, u16 wepmode, u16 wepkeyid, const u8 *wepkey);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_ReadMPData
 
-  Description:  ��M�����f�[�^�S�̂���w��q�@�̃f�[�^�����𒊏o����B�����֐��B
+  Description:  受信したデータ全体から指定子機のデータだけを抽出する。同期関数。
 
-  Arguments:    header      -   ��M�f�[�^�S�̂������|�C���^�B
-                aid         -   �f�[�^�𒊏o����q�@��AID�B
+  Arguments:    header      -   受信データ全体を示すポインタ。
+                aid         -   データを抽出する子機のAID。
 
-  Returns:      WMMpRecvData* - �Y���q�@����̎�M�f�[�^�ւ̃|�C���^��Ԃ��B
-                                ���o�Ɏ��s�����ꍇ�ANULL��Ԃ��B
+  Returns:      WMMpRecvData* - 該当子機からの受信データへのポインタを返す。
+                                抽出に失敗した場合、NULLを返す。
  *---------------------------------------------------------------------------*/
 WMMpRecvData *WM_ReadMPData(const WMMpRecvHeader *header, u16 aid);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StartDataSharing
 
-  Description:  �f�[�^�V�F�A�����O�@�\��L���ɂ���B�����֐��B
-                �@�\��L���ɂ�����MP�ʐM���s�����ƂŁAMP�ʐM�ɕt������
-                �f�[�^�V�F�A�����O�ʐM���s����B
+  Description:  データシェアリング機能を有効にする。同期関数。
+                機能を有効にした後MP通信を行うことで、MP通信に付随して
+                データシェアリング通信が行われる。
 
-  Arguments:    dsInfo      -   WMDataSharingInfo �\���́B
-                port        -   �g�p���� port �ԍ��B
-                aidBitmap   -   �f�[�^�V�F�A���s������� AID�B
-                dataLength  -   ���L�������̃f�[�^���B (�����o�C�g���w�肷�邱��)
-                doubleMode  -   ���t���[�� WM_StepDataSharing ����ꍇ�� TRUE ���w��
+  Arguments:    dsInfo      -   WMDataSharingInfo 構造体。
+                port        -   使用する port 番号。
+                aidBitmap   -   データシェアを行う相手の AID。
+                dataLength  -   共有メモリのデータ長。 (偶数バイトを指定すること)
+                doubleMode  -   毎フレーム WM_StepDataSharing する場合は TRUE を指定
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartDataSharing(WMDataSharingInfo *dsInfo,
                               u16 port, u16 aidBitmap, u16 dataLength, BOOL doubleMode);
@@ -1060,26 +1060,26 @@ WMErrCode WM_StartDataSharing(WMDataSharingInfo *dsInfo,
 /*---------------------------------------------------------------------------*
   Name:         WM_EndDataSharing
 
-  Description:  �f�[�^�V�F�A�����O�@�\�𖳌��ɂ���B�����֐��B
+  Description:  データシェアリング機能を無効にする。同期関数。
 
-  Arguments:    dsInfo      -   WMDataSharingInfo �\���́B
+  Arguments:    dsInfo      -   WMDataSharingInfo 構造体。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndDataSharing(WMDataSharingInfo *dsInfo);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StepDataSharing
 
-  Description:  �f�[�^�V�F�A�����O�̓�������i�߂�B�����֐��B
+  Description:  データシェアリングの同期を一つ進める。同期関数。
 
-  Arguments:    dsInfo      -   WMDataSharingInfo �\���́B
-                sendData    -   ���L���������M�f�[�^�B
-                receiveData -   ��M�������L�f�[�^�B
+  Arguments:    dsInfo      -   WMDataSharingInfo 構造体。
+                sendData    -   共有したい送信データ。
+                receiveData -   受信した共有データ。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
-                         *_SUCCESS      : ���L�f�[�^����M����
-                         *_NO_DATASET   : �܂����L�f�[�^�����Ă��Ȃ�
+  Returns:      WMErrCode   -   処理結果を返す。
+                         *_SUCCESS      : 共有データ送受信成功
+                         *_NO_DATASET   : まだ共有データが来ていない
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo,
                              const u16 *sendData, WMDataSet *receiveData);
@@ -1087,80 +1087,80 @@ WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo,
 /*---------------------------------------------------------------------------*
   Name:         WM_GetSharedDataAddress
 
-  Description:  �f�[�^�V�F�A�����O�̎�M�f�[�^���̓���� AID �̃A�h���X�𓾂�B
-                �����֐��B
+  Description:  データシェアリングの受信データ中の特定の AID のアドレスを得る。
+                同期関数。
 
-  Arguments:    dsInfo      -   WMDataSharingInfo �\���́B
-                receiveData -   ��M�������L�f�[�^�B
-                aid         -   AID�B
+  Arguments:    dsInfo      -   WMDataSharingInfo 構造体。
+                receiveData -   受信した共有データ。
+                aid         -   AID。
 
-  Returns:      u16*        -   ��M�f�[�^�̃A�h���X�B���݂��Ȃ���� NULL ��Ԃ��B
+  Returns:      u16*        -   受信データのアドレス。存在しなければ NULL を返す。
  *---------------------------------------------------------------------------*/
 u16    *WM_GetSharedDataAddress(WMDataSharingInfo *dsInfo, WMDataSet *receiveData, u16 aid);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StartKeySharing
 
-  Description:  �L�[�V�F�A�����O�@�\��L���ɂ���B
-                �@�\��L���ɂ�����MP�ʐM���s�����ƂŁAMP�ʐM�ɕt������
-                �L�[�V�F�A�����O�ʐM���s����B
+  Description:  キーシェアリング機能を有効にする。
+                機能を有効にした後MP通信を行うことで、MP通信に付随して
+                キーシェアリング通信が行われる。
 
-  Arguments:    buf         -   �L�[�����i�[����o�b�t�@�ւ̃|�C���^�B
-                                ���̂� WMDataSharingInfo �\���̂ւ̃|�C���^�B
-                port        -   �g�p���� port �ԍ�
+  Arguments:    buf         -   キー情報を格納するバッファへのポインタ。
+                                実体は WMDataSharingInfo 構造体へのポインタ。
+                port        -   使用する port 番号
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartKeySharing(WMKeySetBuf *buf, u16 port);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_EndKeySharing
 
-  Description:  �L�[�V�F�A�����O�@�\�𖳌��ɂ���B
+  Description:  キーシェアリング機能を無効にする。
 
-  Arguments:    buf         -   �L�[�����i�[����o�b�t�@�ւ̃|�C���^�B
-                                ���̂� WMDataSharingInfo �\���̂ւ̃|�C���^�B
+  Arguments:    buf         -   キー情報を格納するバッファへのポインタ。
+                                実体は WMDataSharingInfo 構造体へのポインタ。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndKeySharing(WMKeySetBuf *buf);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetKeySet
 
-  Description:  �L�[�V�F�A�����O���ꂽ�L�[�Z�b�g�f�[�^���ЂƂǂݏo���B
+  Description:  キーシェアリングされたキーセットデータをひとつ読み出す。
 
-  Arguments:    buf         -   �L�[�����i�[����o�b�t�@�ւ̃|�C���^�B
-                                ���̂� WMDataSharingInfo �\���̂ւ̃|�C���^�B
-                keySet      -   �L�[�Z�b�g��ǂݏo���o�b�t�@�ւ̃|�C���^�B
-                                WM_StartKeySharing�ɂė^�����o�b�t�@�Ƃ�
-                                �ʂ̃o�b�t�@���w�肷��B
+  Arguments:    buf         -   キー情報を格納するバッファへのポインタ。
+                                実体は WMDataSharingInfo 構造体へのポインタ。
+                keySet      -   キーセットを読み出すバッファへのポインタ。
+                                WM_StartKeySharingにて与えたバッファとは
+                                別のバッファを指定する。
 
-  Returns:      MWErrCode   -   �������ʂ�Ԃ��B
+  Returns:      MWErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_GetKeySet(WMKeySetBuf *buf, WMKeySet *keySet);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetGameInfo
 
-  Description:  �Q�[������ݒ肷��BWM_SetParentParameter�ɂ�菉���l�̓Z�b�g
-                �����̂ŁA�����ύX����ꍇ�ɗp����B
+  Description:  ゲーム情報を設定する。WM_SetParentParameterにより初期値はセット
+                されるので、これを変更する場合に用いる。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                userGameInfo     - ���[�U�[�Q�[�����ւ̃|�C���^�B
-                userGameInfoSize - ���[�U�[�Q�[�����̃T�C�Y�B
-                ggid        -   �Q�[���O���[�vID
-                tgid        -   �e���|�����O���[�vID
-                attr        -   �t���O�Q�B�ȉ��̃t���O�̘_���a��ݒ�B
-                                    WM_ATTR_FLAG_ENTRY - �G���g���[����
-                                    WM_ATTR_FLAG_MB    - �}���`�u�[�g�󂯕t��
-                                    WM_ATTR_FLAG_KS    - �L�[�V�F�A�����O
-                                    WM_ATTR_FLAG_CS    - �A���]�����[�h
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                userGameInfo     - ユーザーゲーム情報へのポインタ。
+                userGameInfoSize - ユーザーゲーム情報のサイズ。
+                ggid        -   ゲームグループID
+                tgid        -   テンポラリグループID
+                attr        -   フラグ群。以下のフラグの論理和を設定。
+                                    WM_ATTR_FLAG_ENTRY - エントリー許可
+                                    WM_ATTR_FLAG_MB    - マルチブート受け付け
+                                    WM_ATTR_FLAG_KS    - キーシェアリング
+                                    WM_ATTR_FLAG_CS    - 連続転送モード
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetGameInfo(WMCallbackFunc callback,
                          const u16 *userGameInfo, u16 userGameInfoSize,
@@ -1169,15 +1169,15 @@ WMErrCode WM_SetGameInfo(WMCallbackFunc callback,
 /*---------------------------------------------------------------------------*
   Name:         WM_SetBeaconIndication
 
-  Description:  �r�[�R������Mindicate�̗L��/������؂�ւ���B
+  Description:  ビーコン送受信indicateの有効/無効を切り替える。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                flag        -   0: ����
-                                1: �L��
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                flag        -   0: 無効
+                                1: 有効
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetBeaconIndication(WMCallbackFunc callback, u16 flag);
 
@@ -1185,61 +1185,61 @@ WMErrCode WM_SetBeaconIndication(WMCallbackFunc callback, u16 flag);
 /*---------------------------------------------------------------------------*
   Name:         WM_StartTestMode
 
-  Description:  �e�X�g���[�h�ł̒ʐM���J�n����B
+  Description:  テストモードでの通信を開始する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                signal      -   0: ���ϒ�(data=0)
-                                1: ���ϒ�(data=1)
-                                2: PN15�i,
-                                3: 01�p�^�[��(�X�N�����u������)
-                                4: 01�p�^�[��(�X�N�����u���Ȃ�)
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                signal      -   0: 無変調(data=0)
+                                1: 無変調(data=1)
+                                2: PN15段,
+                                3: 01パターン(スクランブルあり)
+                                4: 01パターン(スクランブルなし)
                 rate        -   1: 1Mbps
                                 2: 2Mbps
-                channel     -   �f�[�^�𑗐M����`�����l�����w��(1�`14)�B
+                channel     -   データを送信するチャンネルを指定(1〜14)。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartTestMode(WMCallbackFunc callback, u16 signal, u16 rate, u16 channel);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StopTestMode
 
-  Description:  �e�X�g���[�h�ł̒ʐM���~����B
+  Description:  テストモードでの通信を停止する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StopTestMode(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StartTestRxMode
 
-  Description:  �e�X�g���[�h�ł̎�M���J�n����B
+  Description:  テストモードでの受信を開始する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                channel     -   �f�[�^����M����`�����l�����w��(1�`14)�B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                channel     -   データを受信するチャンネルを指定(1〜14)。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartTestRxMode(WMCallbackFunc callback, u16 channel);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StopTestRxMode
 
-  Description:  �e�X�g���[�h�ł̎�M���~����B
+  Description:  テストモードでの受信を停止する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StopTestRxMode(WMCallbackFunc callback);
 
@@ -1248,19 +1248,19 @@ WMErrCode WM_StopTestRxMode(WMCallbackFunc callback);
 /*---------------------------------------------------------------------------*
   Name:         WM_SetLifeTime
 
-  Description:  ���C�t�^�C����ݒ肷��B
+  Description:  ライフタイムを設定する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                tableNumber -   ���C�t�^�C����ݒ肷��CAM�e�[�u���ԍ��B
-                                ( 0xFFFF�ł��ׂẴe�[�u�� )
-                camLifeTime -   CAM�̃��C�t�^�C���B( 100ms�P�ʁF0xFFFF�Ŗ��� )
-                frameLifeTime - �ݒ肷��t���[���̃��C�t�^�C���̃r�[�R���Ԋu�B
-                                ( 100ms�P�ʁF0xFFFF�Ŗ��� )
-                camLifeTime -   MP �ʐM�̃��C�t�^�C���B( 100ms�P�ʁF0xFFFF�Ŗ��� )
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                tableNumber -   ライフタイムを設定するCAMテーブル番号。
+                                ( 0xFFFFですべてのテーブル )
+                camLifeTime -   CAMのライフタイム。( 100ms単位：0xFFFFで無効 )
+                frameLifeTime - 設定するフレームのライフタイムのビーコン間隔。
+                                ( 100ms単位：0xFFFFで無効 )
+                camLifeTime -   MP 通信のライフタイム。( 100ms単位：0xFFFFで無効 )
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetLifeTime(WMCallbackFunc callback,
                          u16 tableNumber, u16 camLifeTime, u16 frameLifeTime, u16 mpLifeTime);
@@ -1268,22 +1268,22 @@ WMErrCode WM_SetLifeTime(WMCallbackFunc callback,
 /*---------------------------------------------------------------------------*
   Name:         WM_MeasureChannel
 
-  Description:  �`�����l���̎g�p�󋵂𑪒肷��B
+  Description:  チャンネルの使用状況を測定する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                ccaMode     -   CCA���샂�[�h�B
-                                0: �L�����A�Z���X�̂݁BED臒l�͖����B
-                                1: ED臒l�̂ݗL���B
-                                2: �L�����A�Z���X��ED臒l�̘_���ρB
-                                3: �L�����A�Z���X��ED臒l�̘_���a�B
-                EDThreshold -   ED臒l�B(0�`61) -60dBm �` -80dBm
-                channel     -   ��������`�����l���B
-                                ( 1���MeasureChannel��1�̃`�����l���̂� )
-                measureTime -   �������鎞�ԁB
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                ccaMode     -   CCA動作モード。
+                                0: キャリアセンスのみ。ED閾値は無視。
+                                1: ED閾値のみ有効。
+                                2: キャリアセンスとED閾値の論理積。
+                                3: キャリアセンスとED閾値の論理和。
+                EDThreshold -   ED閾値。(0〜61) -60dBm 〜 -80dBm
+                channel     -   調査するチャンネル。
+                                ( 1回のMeasureChannelで1つのチャンネルのみ )
+                measureTime -   調査する時間。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_MeasureChannel(WMCallbackFunc callback,
                             u16 ccaMode, u16 edThreshold, u16 channel, u16 measureTime);
@@ -1291,43 +1291,43 @@ WMErrCode WM_MeasureChannel(WMCallbackFunc callback,
 /*---------------------------------------------------------------------------*
   Name:         WM_InitWirelessCounter
 
-  Description:  WirelessCounter������������B
+  Description:  WirelessCounterを初期化する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_InitWirelessCounter(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetWirelessCounter
 
-  Description:  Wireless NIC�̑���M�t���[�����A����M�G���[�t���[�������擾����B
+  Description:  Wireless NICの送受信フレーム数、送受信エラーフレーム数を取得する。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_GetWirelessCounter(WMCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetAllowedChannel
 
-  Description:  �ʐM���Ɏg�p�������ꂽ�`�����l�����擾����B�����֐��B
+  Description:  通信時に使用を許可されたチャンネルを取得する。同期関数。
 
   Arguments:    None.
 
-  Returns:      u16 -   �g�p���`�����l���̃r�b�g�t�B�[���h��Ԃ��B�ŉ��ʃr�b�g��
-                        1�`�����l���A�ŏ�ʃr�b�g��16�`�����l���������B�r�b�g��1��
-                        �`�����l�����g�p���A�r�b�g��0�̃`�����l���͎g�p�֎~�B
-                        �ʏ�� 1�`13 �`�����l���̓��������̃r�b�g��1�ɂȂ����l��
-                        �Ԃ����B0x0000���Ԃ��ꂽ�ꍇ�͎g�p�������ꂽ�`�����l����
-                        ���݂��Ȃ����߁A�����@�\���̂��̂��g�p�֎~�ł���B
-                        �܂��A�����������ȂǊ֐��Ɏ��s�����ꍇ��0x8000���Ԃ����B
+  Returns:      u16 -   使用許可チャンネルのビットフィールドを返す。最下位ビットが
+                        1チャンネル、最上位ビットが16チャンネルを示す。ビットが1の
+                        チャンネルが使用許可、ビットが0のチャンネルは使用禁止。
+                        通常は 1〜13 チャンネルの内いくつかのビットが1になった値が
+                        返される。0x0000が返された場合は使用を許可されたチャンネルが
+                        存在しないため、無線機能そのものを使用禁止である。
+                        また、未初期化時など関数に失敗した場合は0x8000が返される。
  *---------------------------------------------------------------------------*/
 u16     WM_GetAllowedChannel(void);
 
@@ -1335,13 +1335,13 @@ u16     WM_GetAllowedChannel(void);
 /*---------------------------------------------------------------------------*
   Name:         WM_IsExistAllowedChannel
 
-  Description:  �ʐM���Ɏg�p�������ꂽ�`�����l�������݂��邩�ǂ����m�F����B
-                WM���C�u�����𖢏������ł����Ă�����ɔ���\�B
+  Description:  通信時に使用を許可されたチャンネルが存在するかどうか確認する。
+                WMライブラリを未初期化であっても正常に判定可能。
 
   Arguments:    None.
 
-  Returns:      BOOL    -   �g�p�����ꂽ�`�����l�������݂���ꍇ��TRUE���A
-                            ���݂��Ȃ��ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL    -   使用許可されたチャンネルが存在する場合にTRUEを、
+                            存在しない場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL    WM_IsExistAllowedChannel(void);
 #endif
@@ -1349,25 +1349,25 @@ BOOL    WM_IsExistAllowedChannel(void);
 /*---------------------------------------------------------------------------*
   Name:         WM_SetEntry
 
-  Description:  �e�@�Ƃ��āA�q�@����̐ڑ��󂯕t���ۂ�؂�ւ���B
+  Description:  親機として、子機からの接続受け付け可否を切り替える。
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                enabled     -   �G���g���[����/�s���t���O�BTRUE:���AFALSE:�s���B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                enabled     -   エントリー許可/不許可フラグ。TRUE:許可、FALSE:不許可。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetEntry(WMCallbackFunc callback, BOOL enabled);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetLinkLevel
 
-  Description:  �ʐM���̃����N���x���擾����B�����֐��B
+  Description:  通信時のリンク強度を取得する。同期関数。
 
   Arguments:    None.
 
-  Returns:      WMLinkLevel -   4�i�K�ɕ]�����������N���x��Ԃ��B
+  Returns:      WMLinkLevel -   4段階に評価したリンク強度を返す。
  *---------------------------------------------------------------------------*/
 WMLinkLevel WM_GetLinkLevel(void);
 
@@ -1375,102 +1375,102 @@ WMLinkLevel WM_GetLinkLevel(void);
 /*---------------------------------------------------------------------------*
   Name:         WMi_SetBeaconPeriod
 
-  Description:  Beacon�̊Ԋu��ύX����
+  Description:  Beaconの間隔を変更する
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                beaconPeriod -  Beacon�Ԋu(10�`1000 TU(1024��s))
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                beaconPeriod -  Beacon間隔(10〜1000 TU(1024μs))
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_SetBeaconPeriod(WMCallbackFunc callback, u16 beaconPeriod);
-/* 2004/10/18���݁A�ʐM���Ƀr�[�R���Ԋu��ύX���邱�Ƃɂ���肪���o����
-   ���邽�߁A��U�g�p�֎~�֐��Ƃ���ׂɔ���J�Ƃ��܂��B */
+/* 2004/10/18現在、通信中にビーコン間隔を変更することによる問題が発覚して
+   いるため、一旦使用禁止関数とする為に非公開とします。 */
 
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetDispersionBeaconPeriod
 
-  Description:  �e�@�Ƃ��Ċ�������ۂɐݒ肷�ׂ��r�[�R���Ԋu�l���擾����B
-                �����֐��B
+  Description:  親機として活動する際に設定すべきビーコン間隔値を取得する。
+                同期関数。
 
   Arguments:    None.
 
-  Returns:      u16 -   �ݒ肷�ׂ��r�[�R���Ԋu�l(ms)�B
+  Returns:      u16 -   設定すべきビーコン間隔値(ms)。
  *---------------------------------------------------------------------------*/
 u16     WM_GetDispersionBeaconPeriod(void);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetDispersionScanPeriod
 
-  Description:  �q�@�Ƃ��Đe�@��T������ۂɐݒ肷�ׂ��T�����x���Ԃ��擾����B
-                �����֐��B
+  Description:  子機として親機を探索する際に設定すべき探索限度時間を取得する。
+                同期関数。
 
   Arguments:    None.
 
-  Returns:      u16 -   �ݒ肷�ׂ��T�����x����(ms)�B
+  Returns:      u16 -   設定すべき探索限度時間(ms)。
  *---------------------------------------------------------------------------*/
 u16     WM_GetDispersionScanPeriod(void);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetOtherElements
 
-  Description:  �r�[�R�����̊g���G�������g���擾����B
-                �����֐��B
+  Description:  ビーコン内の拡張エレメントを取得する。
+                同期関数。
 
-  Arguments:    bssDesc - �e�@���\���́B
-                          WM_StartScan(Ex)�ɂĎ擾�����\���̂��w�肷��B
+  Arguments:    bssDesc - 親機情報構造体。
+                          WM_StartScan(Ex)にて取得した構造体を指定する。
 
-  Returns:      WMOtherElements - �g���G�������g�\���́B
+  Returns:      WMOtherElements - 拡張エレメント構造体。
  *---------------------------------------------------------------------------*/
 WMOtherElements WM_GetOtherElements(WMBssDesc *bssDesc);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetNextTgid
 
-  Description:  �����������ꂽ��ӂ� TGID �l���擾����B
-                �����֐��B
-                ���̊֐��͓����� RTC_Init() ���Ăяo���B
+  Description:  自動生成された一意な TGID 値を取得する。
+                同期関数。
+                この関数は内部で RTC_Init() を呼び出す。
 
   Arguments:    None.
 
-  Returns:      ����Ăяo������ RTC �����Ƃɐ������ꂽ TGID���A
-                ����ȍ~�͑O��̕Ԃ�l�� 1 �������Z�����l��Ԃ��B
+  Returns:      初回呼び出し時は RTC をもとに生成された TGIDを、
+                次回以降は前回の返り値に 1 だけ加算した値を返す。
  *---------------------------------------------------------------------------*/
 u16     WM_GetNextTgid(void);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_SetPowerSaveMode
 
-  Description:  PowerSaveMode��ύX����
+  Description:  PowerSaveModeを変更する
 
-  Arguments:    callback    -   �񓯊������������������ɌĂяo�����R�[���o�b�N�֐��B
-                powerSave   -   �ȓd�̓��[�h���g�p����ꍇ��TRUE�A���Ȃ��ꍇ��FALSE�B
+  Arguments:    callback    -   非同期処理が完了した時に呼び出されるコールバック関数。
+                powerSave   -   省電力モードを使用する場合はTRUE、しない場合はFALSE。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B�񓯊�����������ɊJ�n���ꂽ�ꍇ��
-                                WM_ERRCODE_OPERATING���Ԃ���A���̌�R�[���o�b�N��
-                                �񓯊������̌��ʂ����߂ēn�����B
+  Returns:      WMErrCode   -   処理結果を返す。非同期処理が正常に開始された場合に
+                                WM_ERRCODE_OPERATINGが返され、その後コールバックに
+                                非同期処理の結果が改めて渡される。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetPowerSaveMode(WMCallbackFunc callback, BOOL powerSave);
 
 /*---------------------------------------------------------------------------*
   Name:         WMi_IsMP
 
-  Description:  ���݂� MP �ʐM��Ԃ��擾����B
+  Description:  現在の MP 通信状態を取得する。
 
   Arguments:    None.
 
-  Returns:      MP �ʐM��Ԃł���� TRUE
+  Returns:      MP 通信状態であれば TRUE
  *---------------------------------------------------------------------------*/
 BOOL    WMi_IsMP(void);
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetAID
 
-  Description:  ���݂� AID ���擾����B
-                ��Ԃ� PARENT, MP_PARENT, CHILD, MP_CHILD �̂����ꂩ�̎��̂�
-                �L���Ȓl��Ԃ��B
+  Description:  現在の AID を取得する。
+                状態が PARENT, MP_PARENT, CHILD, MP_CHILD のいずれかの時のみ
+                有効な値を返す。
 
   Arguments:    None.
 
@@ -1481,29 +1481,29 @@ u16     WM_GetAID(void);
 /*---------------------------------------------------------------------------*
   Name:         WM_GetConnectedAIDs
 
-  Description:  ���݂̐ڑ�������r�b�g�}�b�v�̌`�Ŏ擾����B
-                ��Ԃ� PARENT, MP_PARENT, CHILD, MP_CHILD �̂����ꂩ�̎��̂�
-                �L���Ȓl��Ԃ��B
-                �q�@�̏ꍇ�͐e�@�Ɛڑ����� 0x0001 ��Ԃ��B
+  Description:  現在の接続相手をビットマップの形で取得する。
+                状態が PARENT, MP_PARENT, CHILD, MP_CHILD のいずれかの時のみ
+                有効な値を返す。
+                子機の場合は親機と接続中は 0x0001 を返す。
 
   Arguments:    None.
 
-  Returns:      �ڑ����Ă��鑊��� AID �̃r�b�g�}�b�v
+  Returns:      接続している相手の AID のビットマップ
  *---------------------------------------------------------------------------*/
 u16     WM_GetConnectedAIDs(void);
 
 /*---------------------------------------------------------------------------*
   Name:         WMi_GetMPReadyAIDs
 
-  Description:  ���݂̐ڑ�����̂����AMP ����M�ł��鑊��� AID �̈ꗗ��
-                �r�b�g�}�b�v�̌`�Ŏ擾����B
-                ��Ԃ� PARENT, MP_PARENT, CHILD, MP_CHILD �̂����ꂩ�̎��̂�
-                �L���Ȓl��Ԃ��B
-                �q�@�̏ꍇ�͐e�@�Ɛڑ����� 0x0001 ��Ԃ��B
+  Description:  現在の接続相手のうち、MP を受信できる相手の AID の一覧を
+                ビットマップの形で取得する。
+                状態が PARENT, MP_PARENT, CHILD, MP_CHILD のいずれかの時のみ
+                有効な値を返す。
+                子機の場合は親機と接続中は 0x0001 を返す。
 
   Arguments:    None.
 
-  Returns:      MP ���J�n���Ă��鑊��� AID �̃r�b�g�}�b�v
+  Returns:      MP を開始している相手の AID のビットマップ
  *---------------------------------------------------------------------------*/
 u16     WMi_GetMPReadyAIDs(void);
 
@@ -1520,13 +1520,13 @@ BOOL    WMi_CheckMpPacketTimeRequired(u16 parentSize, u16 childSize, u8 childs);
 /*---------------------------------------------------------------------------*
   Name:         WM_SIZE_MP_PARENT_RECEIVE_BUFFER
 
-  Description:  �e�@�̎�M�o�b�t�@�̃T�C�Y���v�Z����B
+  Description:  親機の受信バッファのサイズを計算する。
 
-  Arguments:    childMaxSize - �q�@�����M�������f�[�^�̍ő�o�C�g��
-                maxEntry     - �ڑ��������q�@��
-                ksFlag       - Key Sharing ���s�����ǂ����̃u�[���l
+  Arguments:    childMaxSize - 子機から受信したいデータの最大バイト数
+                maxEntry     - 接続したい子機数
+                ksFlag       - Key Sharing を行うかどうかのブール値
 
-  Returns:      int      - WM_StartMP �ɓn���Ȃ��Ƃ����Ȃ���M�o�b�t�@�̃T�C�Y
+  Returns:      int      - WM_StartMP に渡さないといけない受信バッファのサイズ
  *---------------------------------------------------------------------------*/
 #define WM_SIZE_MP_PARENT_RECEIVE_BUFFER( childMaxSize, maxEntry, ksFlag ) \
             (((sizeof( WMMpRecvHeader ) - sizeof( WMMpRecvData ) + \
@@ -1536,12 +1536,12 @@ BOOL    WMi_CheckMpPacketTimeRequired(u16 parentSize, u16 childSize, u8 childs);
 /*---------------------------------------------------------------------------*
   Name:         WM_SIZE_MP_CHILD_RECEIVE_BUFFER
 
-  Description:  �q�@�̎�M�o�b�t�@�̃T�C�Y���v�Z����B
+  Description:  子機の受信バッファのサイズを計算する。
 
-  Arguments:    parentMaxSize - �e�@�����M�������f�[�^�̍ő�o�C�g��
-                ksFlag       - Key Sharing ���s�����ǂ����̃u�[���l
+  Arguments:    parentMaxSize - 親機から受信したいデータの最大バイト数
+                ksFlag       - Key Sharing を行うかどうかのブール値
 
-  Returns:      int      - WM_StartMP �ɓn���Ȃ��Ƃ����Ȃ���M�o�b�t�@�̃T�C�Y
+  Returns:      int      - WM_StartMP に渡さないといけない受信バッファのサイズ
  *---------------------------------------------------------------------------*/
 #define WM_SIZE_MP_CHILD_RECEIVE_BUFFER( parentMaxSize, ksFlag ) \
             (((sizeof( WMMpRecvBuf ) + (parentMaxSize) + WM_HEADER_PARENT_MAX_SIZE - 4 + ((ksFlag) ? WM_SIZE_KS_PARENT_DATA + WM_SIZE_MP_PARENT_PADDING : 0) + 31) & ~0x1f) * 2)
@@ -1549,12 +1549,12 @@ BOOL    WMi_CheckMpPacketTimeRequired(u16 parentSize, u16 childSize, u8 childs);
 /*---------------------------------------------------------------------------*
   Name:         WM_SIZE_MP_PARENT_SEND_BUFFER
 
-  Description:  �e�@�̑��M�o�b�t�@�̃T�C�Y���v�Z����B
+  Description:  親機の送信バッファのサイズを計算する。
 
-  Arguments:    parentMaxSize - ���M�������f�[�^�̍ő�o�C�g��
-                ksFlag       - Key Sharing ���s�����ǂ����̃u�[���l
+  Arguments:    parentMaxSize - 送信したいデータの最大バイト数
+                ksFlag       - Key Sharing を行うかどうかのブール値
 
-  Returns:      int      - WM_StartMP �ɓn���Ȃ��Ƃ����Ȃ����M�o�b�t�@�̃T�C�Y
+  Returns:      int      - WM_StartMP に渡さないといけない送信バッファのサイズ
  *---------------------------------------------------------------------------*/
 #define WM_SIZE_MP_PARENT_SEND_BUFFER( parentMaxSize, ksFlag ) \
             (((parentMaxSize) + WM_HEADER_PARENT_MAX_SIZE + ((ksFlag) ? WM_SIZE_KS_PARENT_DATA + WM_SIZE_MP_PARENT_PADDING : 0) + 31) & ~0x1f)
@@ -1562,12 +1562,12 @@ BOOL    WMi_CheckMpPacketTimeRequired(u16 parentSize, u16 childSize, u8 childs);
 /*---------------------------------------------------------------------------*
   Name:         WM_SIZE_MP_CHILD_SEND_BUFFER
 
-  Description:  �q�@�̑��M�o�b�t�@�̃T�C�Y���v�Z����B
+  Description:  子機の送信バッファのサイズを計算する。
 
-  Arguments:    childMaxSize - ���M�������f�[�^�̍ő�o�C�g��
-                ksFlag       - Key Sharing ���s�����ǂ����̃u�[���l
+  Arguments:    childMaxSize - 送信したいデータの最大バイト数
+                ksFlag       - Key Sharing を行うかどうかのブール値
 
-  Returns:      int      - WM_StartMP �ɓn���Ȃ��Ƃ����Ȃ����M�o�b�t�@�̃T�C�Y
+  Returns:      int      - WM_StartMP に渡さないといけない送信バッファのサイズ
  *---------------------------------------------------------------------------*/
 #define WM_SIZE_MP_CHILD_SEND_BUFFER( childMaxSize, ksFlag ) \
             (((childMaxSize) + WM_HEADER_CHILD_MAX_SIZE + ((ksFlag) ? WM_SIZE_KS_CHILD_DATA + WM_SIZE_MP_CHILD_PADDING : 0) + 31) & ~0x1f)
@@ -1575,11 +1575,11 @@ BOOL    WMi_CheckMpPacketTimeRequired(u16 parentSize, u16 childSize, u8 childs);
 /*---------------------------------------------------------------------------*
   Name:         WM_SIZE_DCF_CHILD_SEND_BUFFER
 
-  Description:  DCF�q�@�̑��M�o�b�t�@�̃T�C�Y���v�Z����B
+  Description:  DCF子機の送信バッファのサイズを計算する。
 
-  Arguments:    childMaxSize - ���M�������f�[�^�̍ő�o�C�g��
+  Arguments:    childMaxSize - 送信したいデータの最大バイト数
 
-  Returns:      int      - WM_StartDCF �ɓn���Ȃ��Ƃ����Ȃ����M�o�b�t�@�̃T�C�Y
+  Returns:      int      - WM_StartDCF に渡さないといけない送信バッファのサイズ
  *---------------------------------------------------------------------------*/
 #define WM_SIZE_DCF_CHILD_SEND_BUFFER( childMaxSize ) \
             (((childMaxSize) + WM_SIZE_MADATA_HEADER + 31) & ~0x1f)
@@ -1595,11 +1595,11 @@ BOOL    WMi_CheckMpPacketTimeRequired(u16 parentSize, u16 childSize, u8 childs);
 /*---------------------------------------------------------------------------*
   Name:         WM_ConvGgid32to16
 
-  Description:  �Q�[���O���[�vID��"32�r�b�g�̌`"����"16�r�b�g�~2�̌`"�ɕϊ�����B
+  Description:  ゲームグループIDを"32ビットの形"から"16ビット×2の形"に変換する。
 
-  Arguments:    src     -   32�r�b�g�ŕ\���ꂽ�ϊ���GGID�ւ̃|�C���^�B
-                dest    -   �ϊ����GGID���i�[����o�b�t�@�ւ̃|�C���^�B
-                            ���̃A�h���X��擪��4�o�C�g�f�[�^���������܂�܂��B
+  Arguments:    src     -   32ビットで表された変換元GGIDへのポインタ。
+                dest    -   変換後のGGIDを格納するバッファへのポインタ。
+                            このアドレスを先頭に4バイトデータが書き込まれます。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1612,11 +1612,11 @@ static inline void WM_ConvGgid32to16(u32 *src, u16 *dst)
 /*---------------------------------------------------------------------------*
   Name:         WM_ConvGgid16to32
 
-  Description:  �Q�[���O���[�vID��"16�r�b�g�~2�̌`"����"32�r�b�g�̌`"�ɕϊ�����B
+  Description:  ゲームグループIDを"16ビット×2の形"から"32ビットの形"に変換する。
 
-  Arguments:    src     -   16�r�b�g�z��ŕ\���ꂽ�ϊ���GGID�ւ̃|�C���^�B
-                dest    -   �ϊ����GGID���i�[����o�b�t�@�ւ̃|�C���^�B
-                            ���̃A�h���X��擪��4�o�C�g�f�[�^���������܂�܂��B
+  Arguments:    src     -   16ビット配列で表された変換元GGIDへのポインタ。
+                dest    -   変換後のGGIDを格納するバッファへのポインタ。
+                            このアドレスを先頭に4バイトデータが書き込まれます。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1628,13 +1628,13 @@ static inline void WM_ConvGgid16to32(u16 *src, u32 *dst)
 /*---------------------------------------------------------------------------*
   Name:         WM_IsBssidEqual
 
-  Description:  ���BSSID�����������ǂ������`�F�b�N����B
+  Description:  二つのBSSIDが等しいかどうかをチェックする。
 
-  Arguments:    idp1     -   ��r����BSSID�ւ̃|�C���^�B
-                idp2     -   ��r����BSSID�ւ̃|�C���^�B
+  Arguments:    idp1     -   比較するBSSIDへのポインタ。
+                idp2     -   比較するBSSIDへのポインタ。
 
-  Returns:      ��������� TRUE�A
-                �قȂ��Ă���� FALSE�B
+  Returns:      等しければ TRUE、
+                異なっていれば FALSE。
  *---------------------------------------------------------------------------*/
 static inline BOOL WM_IsBssidEqual(const u8 *idp1, const u8 *idp2)
 {
@@ -1649,13 +1649,13 @@ static inline BOOL WM_IsBssidEqual(const u8 *idp1, const u8 *idp2)
 /*---------------------------------------------------------------------------*
   Name:         WM_IsBssidEqual16
 
-  Description:  ���BSSID�����������ǂ�����2�o�C�g�P�ʂŃ`�F�b�N����B
+  Description:  二つのBSSIDが等しいかどうかを2バイト単位でチェックする。
 
-  Arguments:    idp1     -   ��r����BSSID�ւ̃|�C���^�B2�o�C�g�A���C�����K�v�B
-                idp2     -   ��r����BSSID�ւ̃|�C���^�B2�o�C�g�A���C�����K�v�B
+  Arguments:    idp1     -   比較するBSSIDへのポインタ。2バイトアラインが必要。
+                idp2     -   比較するBSSIDへのポインタ。2バイトアラインが必要。
 
-  Returns:      ��������� TRUE�A
-                �قȂ��Ă���� FALSE�B
+  Returns:      等しければ TRUE、
+                異なっていれば FALSE。
  *---------------------------------------------------------------------------*/
 static inline BOOL WM_IsBssidEqual16(const u8 *idp1, const u8 *idp2)
 {
@@ -1670,10 +1670,10 @@ static inline BOOL WM_IsBssidEqual16(const u8 *idp1, const u8 *idp2)
 /*---------------------------------------------------------------------------*
   Name:         WM_CopyBssid
 
-  Description:  BSSID���R�s�[����B
+  Description:  BSSIDをコピーする。
 
-  Arguments:    src     -   �R�s�[��BSSID�ւ̃|�C���^�B
-                dest    -   �R�s�[��BSSID�ւ̃|�C���^�B
+  Arguments:    src     -   コピー元BSSIDへのポインタ。
+                dest    -   コピー先BSSIDへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1690,10 +1690,10 @@ static inline void WM_CopyBssid(const u8 *src, u8 *dst)
 /*---------------------------------------------------------------------------*
   Name:         WM_CopyBssid16
 
-  Description:  BSSID��2�o�C�g�P�ʂŃR�s�[����B
+  Description:  BSSIDを2バイト単位でコピーする。
 
-  Arguments:    src     -   �R�s�[��BSSID�ւ̃|�C���^�B2�o�C�g�A���C�����K�v�B
-                dest    -   �R�s�[��BSSID�ւ̃|�C���^�B2�o�C�g�A���C�����K�v�B
+  Arguments:    src     -   コピー元BSSIDへのポインタ。2バイトアラインが必要。
+                dest    -   コピー先BSSIDへのポインタ。2バイトアラインが必要。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1710,12 +1710,12 @@ static inline void WM_CopyBssid16(const u8 *src, u8 *dst)
 /*---------------------------------------------------------------------------*
   Name:         WM_IsValidGameInfo
 
-  Description:  GameInfo ���Ή����Ă�����̂ł��邩�𒲂ׂ�
+  Description:  GameInfo が対応しているものであるかを調べる
 
-  Arguments:    gameInfo - WMGameInfo �\���̂ւ̃|�C���^
-                gameInfoLength - gameInfo �̎w����̃f�[�^�̒���
+  Arguments:    gameInfo - WMGameInfo 構造体へのポインタ
+                gameInfoLength - gameInfo の指す先のデータの長さ
 
-  Returns:      �Ή����Ă��� GameInfo �ł������ꍇ�� TRUE.
+  Returns:      対応している GameInfo であった場合は TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL WM_IsValidGameInfo(const WMGameInfo *gameInfo, u16 gameInfoLength)
 {
@@ -1726,11 +1726,11 @@ static inline BOOL WM_IsValidGameInfo(const WMGameInfo *gameInfo, u16 gameInfoLe
 /*---------------------------------------------------------------------------*
   Name:         WM_IsValidGameBeacon
 
-  Description:  �r�[�R����DS���C�����X�v���C�p�̐e�@����̂��̂ł��邩�𒲂ׂ�
+  Description:  ビーコンがDSワイヤレスプレイ用の親機からのものであるかを調べる
 
-  Arguments:    bssDesc - �r�[�R����񂪓����Ă��� WMBssDesc �\���̂ւ̃|�C���^
+  Arguments:    bssDesc - ビーコン情報が入っている WMBssDesc 構造体へのポインタ
 
-  Returns:      DS���C�����X�v���C�p�e�@����̃r�[�R���ł������ꍇ�� TRUE.
+  Returns:      DSワイヤレスプレイ用親機からのビーコンであった場合は TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL WM_IsValidGameBeacon(const WMBssDesc *bssDesc)
 {
@@ -1740,13 +1740,13 @@ static inline BOOL WM_IsValidGameBeacon(const WMBssDesc *bssDesc)
 /*---------------------------------------------------------------------------*
   Name:         WMi_IsDisconnectReasonFromMyself
 
-  Description:  WM_STATECODE_DISCONNECTED �� reason �l����������̐ؒf����
-                ���肷��
+  Description:  WM_STATECODE_DISCONNECTED の reason 値が自分からの切断かを
+                判定する
 
-  Arguments:    reason - WMStartParentCallback �� WMPortRecvCallback �� reason �����o
+  Arguments:    reason - WMStartParentCallback か WMPortRecvCallback の reason メンバ
 
-  Returns:      ������ WM �̊֐����Ăяo���Đؒf�����ꍇ�� TRUE,
-                ���肩��؂�ꂽ�A�܂��͒ʐM�G���[�Ő؂ꂽ�ꍇ�� FALSE
+  Returns:      自分で WM の関数を呼び出して切断した場合は TRUE,
+                相手から切られた、または通信エラーで切れた場合は FALSE
  *---------------------------------------------------------------------------*/
 static inline BOOL WMi_IsDisconnectReasonFromMyself(u16 reason)
 {

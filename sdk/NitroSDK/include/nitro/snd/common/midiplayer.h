@@ -12,22 +12,22 @@
 
   $Log: midiplayer.h,v $
   Revision 1.5  2007/05/17 10:04:44  okubata_ryoma
-  padding‚Ì’Ç‰Á
+  paddingã®è¿½åŠ 
 
   Revision 1.4  2007/05/10 02:57:32  ida
-  RPN0‘Î‰
+  RPN0å¯¾å¿œ
 
   Revision 1.3  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.2  2005/09/28 03:00:03  ida
-  SND_MidiPlayerProgramChange’Ç‰Á
+  SND_MidiPlayerProgramChangeè¿½åŠ 
 
   Revision 1.1  2005/04/12 06:15:07  ida
-  SND‚ğNITRO-SDK‚ÖˆÚİ
+  SNDã‚’NITRO-SDKã¸ç§»è¨­
 
   Revision 1.1  2005/04/12 00:52:55  ida
-  SNDMidiPlayer’Ç‰Á
+  SNDMidiPlayerè¿½åŠ 
 
   Revision 1.1  2004/08/19 06:40:44  ida
   initial version

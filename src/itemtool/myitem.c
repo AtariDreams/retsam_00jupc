@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	myitem.c
- * @brief	è‚¿ƒAƒCƒeƒ€‘€ì—p
+ * @brief	æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ“ä½œç”¨
  * @author	tamada
  * @author	hiroyuki nakamura
  * @date	2005.10.13
@@ -26,22 +26,22 @@
 //=============================================================================
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ì’è‹`
+ * @brief	æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã®å®šç¾©
  */
 //------------------------------------------------------------------
 struct _MYITEM {
-	MINEITEM MyNormalItem[ BAG_NORMAL_ITEM_MAX ];	// è‚¿‚Ì•’Ê‚Ì“¹‹ï
-	MINEITEM MyEventItem[ BAG_EVENT_ITEM_MAX ];		// è‚¿‚Ì‘åØ‚È“¹‹ï
-	MINEITEM MySkillItem[ BAG_WAZA_ITEM_MAX ];		// è‚¿‚Ì‹Zƒ}ƒVƒ“
-	MINEITEM MySealItem[ BAG_SEAL_ITEM_MAX ];		// è‚¿‚ÌƒV[ƒ‹
-	MINEITEM MyDrugItem[ BAG_DRUG_ITEM_MAX ];		// è‚¿‚Ì–ò
-	MINEITEM MyNutsItem[ BAG_NUTS_ITEM_MAX ];		// è‚¿‚Ì–Ø‚ÌÀ
-	MINEITEM MyBallItem[ BAG_BALL_ITEM_MAX ];		// è‚¿‚Ìƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
-	MINEITEM MyBattleItem[ BAG_BATTLE_ITEM_MAX ];	// è‚¿‚Ìí“¬—pƒAƒCƒeƒ€
-	u32	cnv_button;									// •Ö—˜ƒ{ƒ^ƒ“
+	MINEITEM MyNormalItem[ BAG_NORMAL_ITEM_MAX ];	// æ‰‹æŒã¡ã®æ™®é€šã®é“å…·
+	MINEITEM MyEventItem[ BAG_EVENT_ITEM_MAX ];		// æ‰‹æŒã¡ã®å¤§åˆ‡ãªé“å…·
+	MINEITEM MySkillItem[ BAG_WAZA_ITEM_MAX ];		// æ‰‹æŒã¡ã®æŠ€ãƒã‚·ãƒ³
+	MINEITEM MySealItem[ BAG_SEAL_ITEM_MAX ];		// æ‰‹æŒã¡ã®ã‚·ãƒ¼ãƒ«
+	MINEITEM MyDrugItem[ BAG_DRUG_ITEM_MAX ];		// æ‰‹æŒã¡ã®è–¬
+	MINEITEM MyNutsItem[ BAG_NUTS_ITEM_MAX ];		// æ‰‹æŒã¡ã®æœ¨ã®å®Ÿ
+	MINEITEM MyBallItem[ BAG_BALL_ITEM_MAX ];		// æ‰‹æŒã¡ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
+	MINEITEM MyBattleItem[ BAG_BATTLE_ITEM_MAX ];	// æ‰‹æŒã¡ã®æˆ¦é—˜ç”¨ã‚¢ã‚¤ãƒ†ãƒ 
+	u32	cnv_button;									// ä¾¿åˆ©ãƒœã‚¿ãƒ³
 };
 
-// ƒtƒB[ƒ‹ƒh‚ÌƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 typedef struct {
 	u8	scr[8];
 	u8	pos[8];
@@ -49,16 +49,16 @@ typedef struct {
 	u16	dummy;
 }FLDBAG_CURSOR;
 
-// í“¬‚ÌƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+// æˆ¦é—˜ã®ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 typedef struct {
 	u8	scr[5];
 	u8	pos[5];
 	u16	item;
 	u16	page;
-	u16	pocket;		// ƒ|ƒPƒbƒgƒy[ƒW‚ÌˆÊ’u
+	u16	pocket;		// ãƒã‚±ãƒƒãƒˆãƒšãƒ¼ã‚¸ã®ä½ç½®
 }BTLBAG_CURSOR;
 
-// ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’uƒf[ƒ^
+// ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒ‡ãƒ¼ã‚¿
 struct _BAG_CURSOR {
 	FLDBAG_CURSOR	fld;
 	BTLBAG_CURSOR	btl;
@@ -66,10 +66,10 @@ struct _BAG_CURSOR {
 
 
 
-#define	ITEM_CHECK_ERR	( 0xffffffff )		// ƒ`ƒFƒbƒNƒGƒ‰[
+#define	ITEM_CHECK_ERR	( 0xffffffff )		// ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼
 
-#define	ITEM_MAX_NORMAL			( 999 )		// ’Êí‚ÌƒAƒCƒeƒ€Š”Å‘å
-#define	ITEM_MAX_WAZAMACHINE	( 99 )		// ‹Zƒ}ƒVƒ“‚ÌŠ”Å‘å
+#define	ITEM_MAX_NORMAL			( 999 )		// é€šå¸¸ã®ã‚¢ã‚¤ãƒ†ãƒ æ‰€æŒæ•°æœ€å¤§
+#define	ITEM_MAX_WAZAMACHINE	( 99 )		// æŠ€ãƒã‚·ãƒ³ã®æ‰€æŒæ•°æœ€å¤§
 
 static u32 MyItemDataGet( MYITEM * myitem, u16 id, MINEITEM ** item, u32 * max, u32 heap );
 
@@ -86,9 +86,9 @@ int MyItem_GetWorkSize(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿ƒAƒCƒeƒ€ƒ[ƒN‚ğ¶¬‚·‚é
- * @param	myitem	è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	MYITEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
+ * @param	myitem	æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	MYITEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 MYITEM * MyItem_AllocWork(int heapID)
@@ -101,8 +101,8 @@ MYITEM * MyItem_AllocWork(int heapID)
 
 //------------------------------------------------------------------
 /**
- * @brief	‰Šú‰»ˆ—
- * @param	item	MYITEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åˆæœŸåŒ–å‡¦ç†
+ * @param	item	MYITEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void MyItem_Init(MYITEM * item)
@@ -115,9 +115,9 @@ void MyItem_Init(MYITEM * item)
 
 //------------------------------------------------------------------
 /**
- * @brief	MYITEM‚ÌƒRƒs[
- * @param	from	ƒRƒs[Œ³‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	to		ƒRƒs[æ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	MYITEMã®ã‚³ãƒ”ãƒ¼
+ * @param	from	ã‚³ãƒ”ãƒ¼å…ƒã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	to		ã‚³ãƒ”ãƒ¼å…ˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void MyItem_Copy(const MYITEM * from, MYITEM * to)
@@ -130,9 +130,9 @@ void MyItem_Copy(const MYITEM * from, MYITEM * to)
 
 //------------------------------------------------------------------
 /**
- * @brief	•Ö—˜ƒ{ƒ^ƒ“‚ÉŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚éƒAƒCƒeƒ€æ“¾
- * @param	myitem	MYITEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ƒAƒCƒeƒ€”Ô†
+ * @brief	ä¾¿åˆ©ãƒœã‚¿ãƒ³ã«å‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ã‚‹ã‚¢ã‚¤ãƒ†ãƒ å–å¾—
+ * @param	myitem	MYITEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  */
 //------------------------------------------------------------------
 u32 MyItem_CnvButtonItemGet( const MYITEM * myitem )
@@ -142,10 +142,10 @@ u32 MyItem_CnvButtonItemGet( const MYITEM * myitem )
 
 //------------------------------------------------------------------
 /**
- * @brief	•Ö—˜ƒ{ƒ^ƒ“‚ÉƒAƒCƒeƒ€ƒZƒbƒg
- * @param	myitem	MYITEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	setitem	ƒZƒbƒg‚·‚éƒAƒCƒeƒ€
- * @return	ƒAƒCƒeƒ€”Ô†
+ * @brief	ä¾¿åˆ©ãƒœã‚¿ãƒ³ã«ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒƒãƒˆ
+ * @param	myitem	MYITEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	setitem	ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ 
+ * @return	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  */
 //------------------------------------------------------------------
 void MyItem_CnvButtonItemSet( MYITEM * myitem, u32 setitem )
@@ -158,12 +158,12 @@ void MyItem_CnvButtonItemSet( MYITEM * myitem, u32 setitem )
 
 //------------------------------------------------------------------
 /**
- * @brief	MYITEM‚ÆÅ‘å”æ“¾
- * @param	id		ƒAƒCƒeƒ€”Ô†
- * @param	item	MYITEMæ“¾êŠ
- * @param	max		Å‘å”æ“¾êŠ
- * @param	heap		ƒq[ƒvID
- * @return	ƒ|ƒPƒbƒg”Ô†
+ * @brief	MYITEMã¨æœ€å¤§æ•°å–å¾—
+ * @param	id		ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	item	MYITEMå–å¾—å ´æ‰€
+ * @param	max		æœ€å¤§æ•°å–å¾—å ´æ‰€
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
+ * @return	ãƒã‚±ãƒƒãƒˆç•ªå·
  */
 //------------------------------------------------------------------
 static u32 MyItemDataGet( MYITEM * myitem, u16 id, MINEITEM ** item, u32 * max, u32 heap )
@@ -171,35 +171,35 @@ static u32 MyItemDataGet( MYITEM * myitem, u16 id, MINEITEM ** item, u32 * max, 
 	u32	pocket = ItemParamGet( id, ITEM_PRM_POCKET, heap );
 
 	switch( pocket ){
-	case BAG_POKE_EVENT:	// ‘åØ‚È•¨
+	case BAG_POKE_EVENT:	// å¤§åˆ‡ãªç‰©
 		*item = myitem->MyEventItem;
 		*max = BAG_EVENT_ITEM_MAX;
 		break;
-	case BAG_POKE_NORMAL:	// “¹‹ï
+	case BAG_POKE_NORMAL:	// é“å…·
 		*item = myitem->MyNormalItem;
 		*max = BAG_NORMAL_ITEM_MAX;
 		break;
-	case BAG_POKE_NUTS:		// –Ø‚ÌÀ
+	case BAG_POKE_NUTS:		// æœ¨ã®å®Ÿ
 		*item = myitem->MyNutsItem;
 		*max = BAG_NUTS_ITEM_MAX;
 		break;
-	case BAG_POKE_DRUG:		// –ò
+	case BAG_POKE_DRUG:		// è–¬
 		*item = myitem->MyDrugItem;
 		*max = BAG_DRUG_ITEM_MAX;
 		break;
-	case BAG_POKE_BALL:		// ƒ{[ƒ‹
+	case BAG_POKE_BALL:		// ãƒœãƒ¼ãƒ«
 		*item = myitem->MyBallItem;
 		*max = BAG_BALL_ITEM_MAX;
 		break;
-	case BAG_POKE_BATTLE:	// í“¬—p
+	case BAG_POKE_BATTLE:	// æˆ¦é—˜ç”¨
 		*item = myitem->MyBattleItem;
 		*max = BAG_BATTLE_ITEM_MAX;
 		break;
-	case BAG_POKE_SEAL:		// ƒV[ƒ‹
+	case BAG_POKE_SEAL:		// ã‚·ãƒ¼ãƒ«
 		*item = myitem->MySealItem;
 		*max = BAG_SEAL_ITEM_MAX;
 		break;
-	case BAG_POKE_WAZA:		// ‹Zƒ}ƒVƒ“
+	case BAG_POKE_WAZA:		// æŠ€ãƒã‚·ãƒ³
 		*item = myitem->MySkillItem;
 		*max = BAG_WAZA_ITEM_MAX;
 		break;
@@ -210,14 +210,14 @@ static u32 MyItemDataGet( MYITEM * myitem, u16 id, MINEITEM ** item, u32 * max, 
 
 //------------------------------------------------------------------
 /**
- * @brief	‰Á‚¦‚éƒAƒCƒeƒ€‚ğƒ`ƒFƒbƒN
- * @param	item		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	siz			è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚ÌƒTƒCƒYiŒÂ”j
- * @param	id			w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	num			‰Á‚¦‚éƒAƒCƒeƒ€‚ÌŒÂ”
- * @param	max			ƒAƒCƒeƒ€Å‘å”
- * @retval	¬Œ÷ = ƒAƒCƒeƒ€ˆÊ’u
- * @retval	¸”s = NULL
+ * @brief	åŠ ãˆã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒã‚§ãƒƒã‚¯
+ * @param	item		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	siz			æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã®ã‚µã‚¤ã‚ºï¼ˆå€‹æ•°ï¼‰
+ * @param	id			æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	num			åŠ ãˆã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
+ * @param	max			ã‚¢ã‚¤ãƒ†ãƒ æœ€å¤§æ•°
+ * @retval	æˆåŠŸ = ã‚¢ã‚¤ãƒ†ãƒ ä½ç½®
+ * @retval	å¤±æ•— = NULL
  */
 //------------------------------------------------------------------
 static MINEITEM * AddItemSearch( MINEITEM * item, u32 siz, u16 id, u16 num, u16 max )
@@ -247,13 +247,13 @@ static MINEITEM * AddItemSearch( MINEITEM * item, u32 siz, u16 id, u16 num, u16 
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€‚ğ‰Á‚¦‚éêŠ‚ğæ“¾
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_no		w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	num			ƒAƒCƒeƒ€‚ÌŒÂ”
- * @param	heap		ƒq[ƒvID
- * @retval	¬Œ÷ = ƒAƒCƒeƒ€ˆÊ’u
- * @retval	¸”s = NULL
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ã‚’åŠ ãˆã‚‹å ´æ‰€ã‚’å–å¾—
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_no		æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	num			ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
+ * @retval	æˆåŠŸ = ã‚¢ã‚¤ãƒ†ãƒ ä½ç½®
+ * @retval	å¤±æ•— = NULL
  */
 //------------------------------------------------------------------
 static MINEITEM * AddItemPosGet( MYITEM * myitem, u16 item_no, u16 num, u32 heap )
@@ -271,13 +271,13 @@ static MINEITEM * AddItemPosGet( MYITEM * myitem, u16 item_no, u16 num, u32 heap
 
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿‚ÉƒAƒCƒeƒ€‚ğ‰Á‚¦‚ç‚ê‚é‚©ƒ`ƒFƒbƒN
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_no		w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	num			ƒAƒCƒeƒ€‚ÌŒÂ”
- * @param	heap		ƒq[ƒvID
- * @retval	TRUE	¬Œ÷
- * @retval	FALSE	¸”s
+ * @brief	æ‰‹æŒã¡ã«ã‚¢ã‚¤ãƒ†ãƒ ã‚’åŠ ãˆã‚‰ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_no		æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	num			ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
+ * @retval	TRUE	æˆåŠŸ
+ * @retval	FALSE	å¤±æ•—
  */
 //------------------------------------------------------------------
 BOOL MyItem_AddCheck( MYITEM * myitem, u16 item_no, u16 num, u32 heap )
@@ -290,13 +290,13 @@ BOOL MyItem_AddCheck( MYITEM * myitem, u16 item_no, u16 num, u32 heap )
 
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿‚ÉƒAƒCƒeƒ€‚ğ‰Á‚¦‚é
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_no		w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	num			ƒAƒCƒeƒ€‚ÌŒÂ”
- * @param	heap		ƒq[ƒvID
- * @retval	TRUE	¬Œ÷
- * @retval	FALSE	¸”s
+ * @brief	æ‰‹æŒã¡ã«ã‚¢ã‚¤ãƒ†ãƒ ã‚’åŠ ãˆã‚‹
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_no		æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	num			ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
+ * @retval	TRUE	æˆåŠŸ
+ * @retval	FALSE	å¤±æ•—
  */
 //------------------------------------------------------------------
 BOOL MyItem_AddItem( MYITEM * myitem, u16 item_no, u16 num, u32 heap )
@@ -325,13 +325,13 @@ BOOL MyItem_AddItem( MYITEM * myitem, u16 item_no, u16 num, u32 heap )
 
 //------------------------------------------------------------------
 /**
- * @brief	æ‚èœ‚­ƒAƒCƒeƒ€‚ğƒ`ƒFƒbƒN
- * @param	item		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	siz			è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚ÌƒTƒCƒYiŒÂ”j
- * @param	id			w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	num			ƒAƒCƒeƒ€‚ÌŒÂ”
- * @retval	¬Œ÷ = ƒAƒCƒeƒ€ˆÊ’u
- * @retval	¸”s = NULL
+ * @brief	å–ã‚Šé™¤ãã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒã‚§ãƒƒã‚¯
+ * @param	item		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	siz			æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã®ã‚µã‚¤ã‚ºï¼ˆå€‹æ•°ï¼‰
+ * @param	id			æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	num			ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
+ * @retval	æˆåŠŸ = ã‚¢ã‚¤ãƒ†ãƒ ä½ç½®
+ * @retval	å¤±æ•— = NULL
  */
 //------------------------------------------------------------------
 static MINEITEM * SubItemSearch( MINEITEM * item, u32 siz, u16 id, u16 num )
@@ -352,13 +352,13 @@ static MINEITEM * SubItemSearch( MINEITEM * item, u32 siz, u16 id, u16 num )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€‚ğæ‚èœ‚­êŠ‚ğæ“¾
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_no		w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	num			ƒAƒCƒeƒ€‚ÌŒÂ”
- * @param	heap		ƒq[ƒvID
- * @retval	¬Œ÷ = ƒAƒCƒeƒ€ˆÊ’u
- * @retval	¸”s = NULL
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–ã‚Šé™¤ãå ´æ‰€ã‚’å–å¾—
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_no		æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	num			ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
+ * @retval	æˆåŠŸ = ã‚¢ã‚¤ãƒ†ãƒ ä½ç½®
+ * @retval	å¤±æ•— = NULL
  */
 //------------------------------------------------------------------
 static MINEITEM * SubItemPosGet( MYITEM * myitem, u16 item_no, u16 num, u32 heap )
@@ -371,28 +371,28 @@ static MINEITEM * SubItemPosGet( MYITEM * myitem, u16 item_no, u16 num, u32 heap
 
 /*
 	switch( ItemParamGet( item_no, ITEM_PRM_POCKET, heap ) ){
-	case BAG_POKE_EVENT:	// ‘åØ‚È•¨
+	case BAG_POKE_EVENT:	// å¤§åˆ‡ãªç‰©
 		sub = SubItemSearch( myitem->MyEventItem, BAG_EVENT_ITEM_MAX, item_no, num );
 		break;
-	case BAG_POKE_NORMAL:	// “¹‹ï
+	case BAG_POKE_NORMAL:	// é“å…·
 		sub = SubItemSearch( myitem->MyNormalItem, BAG_NORMAL_ITEM_MAX, item_no, num );
 		break;
-	case BAG_POKE_NUTS:		// –Ø‚ÌÀ
+	case BAG_POKE_NUTS:		// æœ¨ã®å®Ÿ
 		sub = SubItemSearch( myitem->MyNutsItem, BAG_NUTS_ITEM_MAX, item_no, num );
 		break;
-	case BAG_POKE_DRUG:		// –ò
+	case BAG_POKE_DRUG:		// è–¬
 		sub = SubItemSearch( myitem->MyDrugItem, BAG_DRUG_ITEM_MAX, item_no, num );
 		break;
-	case BAG_POKE_BALL:		// ƒ{[ƒ‹
+	case BAG_POKE_BALL:		// ãƒœãƒ¼ãƒ«
 		sub = SubItemSearch( myitem->MyBallItem, BAG_BALL_ITEM_MAX, item_no, num );
 		break;
-	case BAG_POKE_BATTLE:	// í“¬—p
+	case BAG_POKE_BATTLE:	// æˆ¦é—˜ç”¨
 		sub = SubItemSearch( myitem->MyBattleItem, BAG_BATTLE_ITEM_MAX, item_no, num );
 		break;
-	case BAG_POKE_SEAL:		// ƒV[ƒ‹
+	case BAG_POKE_SEAL:		// ã‚·ãƒ¼ãƒ«
 		sub = SubItemSearch( myitem->MySealItem, BAG_SEAL_ITEM_MAX, item_no, num );
 		break;
-	case BAG_POKE_WAZA:		// ‹Zƒ}ƒVƒ“
+	case BAG_POKE_WAZA:		// æŠ€ãƒã‚·ãƒ³
 		sub = SubItemSearch( myitem->MySkillItem, BAG_WAZA_ITEM_MAX, item_no, num );
 		break;
 	default:
@@ -406,13 +406,13 @@ static MINEITEM * SubItemPosGet( MYITEM * myitem, u16 item_no, u16 num, u32 heap
 
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿‚©‚çƒAƒCƒeƒ€‚ğæ‚èœ‚­
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_no		w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	num			ƒAƒCƒeƒ€‚ÌŒÂ”
- * @param	heap		ƒq[ƒvID
- * @retval	TRUE	¬Œ÷
- * @retval	FALSE	¸”s
+ * @brief	æ‰‹æŒã¡ã‹ã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–ã‚Šé™¤ã
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_no		æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	num			ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
+ * @retval	TRUE	æˆåŠŸ
+ * @retval	FALSE	å¤±æ•—
  */
 //------------------------------------------------------------------
 BOOL MyItem_SubItem( MYITEM * myitem, u16 item_no, u16 num, u32 heap )
@@ -441,14 +441,14 @@ BOOL MyItem_SubItem( MYITEM * myitem, u16 item_no, u16 num, u32 heap )
 
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿‚©‚çƒAƒCƒeƒ€‚ğæ‚èœ‚­iƒ|ƒPƒbƒgw’èj
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	max			ŒŸõ”
- * @param	item_no		w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	num			ƒAƒCƒeƒ€‚ÌŒÂ”
- * @param	heap		ƒq[ƒvID
- * @retval	TRUE	¬Œ÷
- * @retval	FALSE	¸”s
+ * @brief	æ‰‹æŒã¡ã‹ã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–ã‚Šé™¤ãï¼ˆãƒã‚±ãƒƒãƒˆæŒ‡å®šï¼‰
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	max			æ¤œç´¢æ•°
+ * @param	item_no		æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	num			ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
+ * @retval	TRUE	æˆåŠŸ
+ * @retval	FALSE	å¤±æ•—
  */
 //------------------------------------------------------------------
 BOOL MyItem_SubItemDirect( MINEITEM * myitem, u32 max, u16 item_no, u16 num, u32 heap )
@@ -472,13 +472,13 @@ BOOL MyItem_SubItemDirect( MINEITEM * myitem, u32 max, u16 item_no, u16 num, u32
 
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿ƒAƒCƒeƒ€“à‚Å‚Ì‘¶İƒ`ƒFƒbƒN
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_no		w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	num			ƒAƒCƒeƒ€‚ÌŒÂ”
- * @param	heap		ƒq[ƒvID
- * @retval	TRUE	‘¶İ‚·‚é
- * @retval	FALSE	‘¶İ‚µ‚È‚¢
+ * @brief	æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ å†…ã§ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_no		æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	num			ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
+ * @retval	TRUE	å­˜åœ¨ã™ã‚‹
+ * @retval	FALSE	å­˜åœ¨ã—ãªã„
  */
 //------------------------------------------------------------------
 BOOL MyItem_CheckItem( MYITEM * myitem, u16 item_no, u16 num, u32 heap )
@@ -491,11 +491,11 @@ BOOL MyItem_CheckItem( MYITEM * myitem, u16 item_no, u16 num, u32 heap )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒbƒg‚ÉƒAƒCƒeƒ€‚ª‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pocket		ƒ|ƒPƒbƒg”Ô†
- * @retval	TRUE	‘¶İ‚·‚é
- * @retval	FALSE	‘¶İ‚µ‚È‚¢
+ * @brief	ãƒã‚±ãƒƒãƒˆã«ã‚¢ã‚¤ãƒ†ãƒ ãŒå­˜åœ¨ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pocket		ãƒã‚±ãƒƒãƒˆç•ªå·
+ * @retval	TRUE	å­˜åœ¨ã™ã‚‹
+ * @retval	FALSE	å­˜åœ¨ã—ãªã„
  */
 //------------------------------------------------------------------
 BOOL MyItem_CheckItemPocket( MYITEM * myitem, u32 pocket )
@@ -505,35 +505,35 @@ BOOL MyItem_CheckItemPocket( MYITEM * myitem, u32 pocket )
 	u32	i;
 
 	switch( pocket ){
-	case BAG_POKE_EVENT:	// ‘åØ‚È•¨
+	case BAG_POKE_EVENT:	// å¤§åˆ‡ãªç‰©
 		item = myitem->MyEventItem;
 		max  = BAG_EVENT_ITEM_MAX;
 		break;
-	case BAG_POKE_NORMAL:	// “¹‹ï
+	case BAG_POKE_NORMAL:	// é“å…·
 		item = myitem->MyNormalItem;
 		max  = BAG_NORMAL_ITEM_MAX;
 		break;
-	case BAG_POKE_NUTS:		// –Ø‚ÌÀ
+	case BAG_POKE_NUTS:		// æœ¨ã®å®Ÿ
 		item = myitem->MyNutsItem;
 		max  = BAG_NUTS_ITEM_MAX;
 		break;
-	case BAG_POKE_DRUG:		// –ò
+	case BAG_POKE_DRUG:		// è–¬
 		item = myitem->MyDrugItem;
 		max  = BAG_DRUG_ITEM_MAX;
 		break;
-	case BAG_POKE_BALL:		// ƒ{[ƒ‹
+	case BAG_POKE_BALL:		// ãƒœãƒ¼ãƒ«
 		item = myitem->MyBallItem;
 		max  = BAG_BALL_ITEM_MAX;
 		break;
-	case BAG_POKE_BATTLE:	// í“¬—p
+	case BAG_POKE_BATTLE:	// æˆ¦é—˜ç”¨
 		item = myitem->MyBattleItem;
 		max  = BAG_BATTLE_ITEM_MAX;
 		break;
-	case BAG_POKE_SEAL:		// ƒV[ƒ‹
+	case BAG_POKE_SEAL:		// ã‚·ãƒ¼ãƒ«
 		item = myitem->MySealItem;
 		max  = BAG_SEAL_ITEM_MAX;
 		break;
-	case BAG_POKE_WAZA:		// ‹Zƒ}ƒVƒ“
+	case BAG_POKE_WAZA:		// æŠ€ãƒã‚·ãƒ³
 		item = myitem->MySkillItem;
 		max  = BAG_WAZA_ITEM_MAX;
 		break;
@@ -549,11 +549,11 @@ BOOL MyItem_CheckItemPocket( MYITEM * myitem, u32 pocket )
 
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿‚ÌŒÂ”ƒ`ƒFƒbƒN
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_no		w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	heap		ƒq[ƒvID
- * @return	è‚¿”
+ * @brief	æ‰‹æŒã¡ã®å€‹æ•°ãƒã‚§ãƒƒã‚¯
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_no		æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
+ * @return	æ‰‹æŒã¡æ•°
  */
 //------------------------------------------------------------------
 u16 MyItem_GetItemNum( MYITEM * myitem, u16 item_no, u32 heap )
@@ -568,14 +568,14 @@ u16 MyItem_GetItemNum( MYITEM * myitem, u16 item_no, u32 heap )
 
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿‚ÌŒÂ”ƒ`ƒFƒbƒNiƒ|ƒPƒbƒgw’èj
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	max			ŒŸõ”
- * @param	item_no		w’è‚·‚éƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
- * @param	num			ƒAƒCƒeƒ€‚ÌŒÂ”
- * @param	heap		ƒq[ƒvID
- * @retval	TRUE	¬Œ÷
- * @retval	FALSE	¸”s
+ * @brief	æ‰‹æŒã¡ã®å€‹æ•°ãƒã‚§ãƒƒã‚¯ï¼ˆãƒã‚±ãƒƒãƒˆæŒ‡å®šï¼‰
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	max			æ¤œç´¢æ•°
+ * @param	item_no		æŒ‡å®šã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	num			ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
+ * @retval	TRUE	æˆåŠŸ
+ * @retval	FALSE	å¤±æ•—
  */
 //------------------------------------------------------------------
 u16 MyItem_GetItemNumDirect( MINEITEM * myitem, u32 max, u16 item_no, u32 heap )
@@ -589,9 +589,9 @@ u16 MyItem_GetItemNumDirect( MINEITEM * myitem, u32 max, u16 item_no, u32 heap )
 
 //------------------------------------------------------------------
 /**
- * @brief	w’èŒÂŠ‚ÌƒAƒCƒeƒ€‚ğ“ü‚ê‘Ö‚¦
- * @param	p1		“ü‚ê‘Ö‚¦‚éƒf[ƒ^1
- * @param	p2		“ü‚ê‘Ö‚¦‚éƒf[ƒ^2
+ * @brief	æŒ‡å®šå€‹æ‰€ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’å…¥ã‚Œæ›¿ãˆ
+ * @param	p1		å…¥ã‚Œæ›¿ãˆã‚‹ãƒ‡ãƒ¼ã‚¿1
+ * @param	p2		å…¥ã‚Œæ›¿ãˆã‚‹ãƒ‡ãƒ¼ã‚¿2
  * @return	none
  */
 //------------------------------------------------------------------
@@ -606,9 +606,9 @@ static void ChengeItem( MINEITEM * p1, MINEITEM * p2 )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€ƒ\[ƒgiƒXƒy[ƒX‚ğ‚Â‚ß‚éj
- * @param	item	ƒAƒCƒeƒ€ƒf[ƒ^
- * @param	max		Å‘å’l
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ã‚½ãƒ¼ãƒˆï¼ˆã‚¹ãƒšãƒ¼ã‚¹ã‚’ã¤ã‚ã‚‹ï¼‰
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ * @param	max		æœ€å¤§å€¤
  * @return	none
  */
 //------------------------------------------------------------------
@@ -627,9 +627,9 @@ void MyItem_SortSpace( MINEITEM * item, const u32 max )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€ƒ\[ƒgi”Ô†‡j
- * @param	p	ƒ|ƒPƒbƒgƒf[ƒ^
- * @param	max		Å‘å’l
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ã‚½ãƒ¼ãƒˆï¼ˆç•ªå·é †ï¼‰
+ * @param	p	ãƒã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+ * @param	max		æœ€å¤§å€¤
  * @return	none
  */	
 //------------------------------------------------------------------
@@ -648,10 +648,10 @@ void MyItem_SortNumber( MINEITEM * item, const u32 max )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚Ìƒf[ƒ^ì¬
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	list		ƒ|ƒPƒbƒgƒŠƒXƒg
- * @param	heap		ƒq[ƒvID
+ * @brief	ãƒãƒƒã‚°ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆ
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	list		ãƒã‚±ãƒƒãƒˆãƒªã‚¹ãƒˆ
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  */
 //------------------------------------------------------------------
 void * MyItem_MakeBagData( MYITEM * myitem, const u8 * list, u32 heap )
@@ -694,11 +694,11 @@ void * MyItem_MakeBagData( MYITEM * myitem, const u8 * list, u32 heap )
 
 //------------------------------------------------------------------
 /**
- * @brief	w’èƒ|ƒPƒbƒg‚Ìw’èˆÊ’u‚ÌƒAƒCƒeƒ€‚ğæ“¾
- * @param	myitem		è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pocket		ƒ|ƒPƒbƒgID
- * @param	pos			ˆÊ’u
- * @return	ƒAƒCƒeƒ€ƒf[ƒ^
+ * @brief	æŒ‡å®šãƒã‚±ãƒƒãƒˆã®æŒ‡å®šä½ç½®ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—
+ * @param	myitem		æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pocket		ãƒã‚±ãƒƒãƒˆID
+ * @param	pos			ä½ç½®
+ * @return	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  */
 //------------------------------------------------------------------
 MINEITEM * MyItem_PosItemGet( MYITEM * myitem, u16 pocket, u16 pos )
@@ -707,35 +707,35 @@ MINEITEM * MyItem_PosItemGet( MYITEM * myitem, u16 pocket, u16 pos )
 	u16	max;
 
 	switch( pocket ){
-	case BAG_POKE_EVENT:	// ‘åØ‚È•¨
+	case BAG_POKE_EVENT:	// å¤§åˆ‡ãªç‰©
 		item = myitem->MyEventItem;
 		max  = BAG_EVENT_ITEM_MAX;
 		break;
-	case BAG_POKE_NORMAL:	// “¹‹ï
+	case BAG_POKE_NORMAL:	// é“å…·
 		item = myitem->MyNormalItem;
 		max  = BAG_NORMAL_ITEM_MAX;
 		break;
-	case BAG_POKE_NUTS:		// –Ø‚ÌÀ
+	case BAG_POKE_NUTS:		// æœ¨ã®å®Ÿ
 		item = myitem->MyNutsItem;
 		max  = BAG_NUTS_ITEM_MAX;
 		break;
-	case BAG_POKE_DRUG:		// –ò
+	case BAG_POKE_DRUG:		// è–¬
 		item = myitem->MyDrugItem;
 		max  = BAG_DRUG_ITEM_MAX;
 		break;
-	case BAG_POKE_BALL:		// ƒ{[ƒ‹
+	case BAG_POKE_BALL:		// ãƒœãƒ¼ãƒ«
 		item = myitem->MyBallItem;
 		max  = BAG_BALL_ITEM_MAX;
 		break;
-	case BAG_POKE_BATTLE:	// í“¬—p
+	case BAG_POKE_BATTLE:	// æˆ¦é—˜ç”¨
 		item = myitem->MyBattleItem;
 		max  = BAG_BATTLE_ITEM_MAX;
 		break;
-	case BAG_POKE_SEAL:		// ƒV[ƒ‹
+	case BAG_POKE_SEAL:		// ã‚·ãƒ¼ãƒ«
 		item = myitem->MySealItem;
 		max  = BAG_SEAL_ITEM_MAX;
 		break;
-	case BAG_POKE_WAZA:		// ‹Zƒ}ƒVƒ“
+	case BAG_POKE_WAZA:		// æŠ€ãƒã‚·ãƒ³
 		item = myitem->MySkillItem;
 		max  = BAG_WAZA_ITEM_MAX;
 		break;
@@ -749,9 +749,9 @@ MINEITEM * MyItem_PosItemGet( MYITEM * myitem, u16 pocket, u16 pos )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚©‚çè‚¿ƒAƒCƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
- * @param	sv	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ƒZ[ƒuƒf[ƒ^’†‚ÌMYITEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
+ * @param	sv	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¸­ã®MYITEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 MYITEM * SaveData_GetMyItem(SAVEDATA * sv)
@@ -766,8 +766,8 @@ MYITEM * SaveData_GetMyItem(SAVEDATA * sv)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—pF“K“–‚Éè‚¿‚ğ¶¬‚·‚é
- * @param	myitem	è‚¿ƒAƒCƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨ï¼šé©å½“ã«æ‰‹æŒã¡ã‚’ç”Ÿæˆã™ã‚‹
+ * @param	myitem	æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static const MINEITEM DebugItem[] = {
@@ -783,40 +783,40 @@ static const MINEITEM DebugItem[] = {
 	{ ITEM_GOOZYASUBOORU,	100 },
 	{ ITEM_KIZUGUSURI,		123 },
 	{ ITEM_NEMUKEZAMASI,	456 },
-	{ ITEM_BATORUREKOODAA,  1},  // ƒoƒgƒ‹ƒŒƒR[ƒ_[
+	{ ITEM_BATORUREKOODAA,  1},  // ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
 	{ ITEM_TAUNMAPPU,		1 },
 	{ ITEM_TANKENSETTO,		1 },
 	{ ITEM_ZITENSYA,		1 },
 	{ ITEM_NANDEMONAOSI,	18 },
 	{ ITEM_PIIPIIRIKABAA,	18 },
 	{ ITEM_PIIPIIMAKKUSU,	18 },
-	{ ITEM_DOKUKESI,		18 },		// ‚Ç‚­‚¯‚µ
-	{ ITEM_YAKEDONAOSI,		19 },		// ‚â‚¯‚Ç‚È‚¨‚µ
-	{ ITEM_KOORINAOSI,		20 },		// ‚±‚¨‚è‚È‚¨‚µ
-	{ ITEM_MAHINAOSI,		22 },		// ‚Ü‚Ğ‚È‚¨‚µ
-	{ ITEM_EFEKUTOGAADO,	54 },		// ƒGƒtƒFƒNƒgƒK[ƒh
-	{ ITEM_KURITHIKATTAA,	55 },		// ƒNƒŠƒeƒBƒJƒbƒ^[
-	{ ITEM_PURASUPAWAA,		56 },		// ƒvƒ‰ƒXƒpƒ[
-	{ ITEM_DHIFENDAA,		57 },		// ƒfƒBƒtƒFƒ“ƒ_[
-	{ ITEM_SUPIIDAA,		58 },		// ƒXƒs[ƒ_[
-	{ ITEM_YOKUATAARU,		59 },		// ƒˆƒNƒAƒ^[ƒ‹
-	{ ITEM_SUPESYARUAPPU,	60 },		// ƒXƒyƒVƒƒƒ‹ƒAƒbƒv
-	{ ITEM_SUPESYARUGAADO,	61 },		// ƒXƒyƒVƒƒƒ‹ƒK[ƒh
-	{ ITEM_PIPPININGYOU,	62 },		// ƒsƒbƒs‚É‚ñ‚¬‚å‚¤
-	{ ITEM_ENEKONOSIPPO,	63 },		// ƒGƒlƒR‚ÌƒVƒbƒ|
-	{ ITEM_GENKINOKAKERA,	28 },		// ‚°‚ñ‚«‚Ì‚©‚¯‚ç
-	{ ITEM_KAIHUKUNOKUSURI,	28 },		// ‚°‚ñ‚«‚Ì‚©‚¯‚ç
+	{ ITEM_DOKUKESI,		18 },		// ã©ãã‘ã—
+	{ ITEM_YAKEDONAOSI,		19 },		// ã‚„ã‘ã©ãªãŠã—
+	{ ITEM_KOORINAOSI,		20 },		// ã“ãŠã‚ŠãªãŠã—
+	{ ITEM_MAHINAOSI,		22 },		// ã¾ã²ãªãŠã—
+	{ ITEM_EFEKUTOGAADO,	54 },		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¬ãƒ¼ãƒ‰
+	{ ITEM_KURITHIKATTAA,	55 },		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒƒã‚¿ãƒ¼
+	{ ITEM_PURASUPAWAA,		56 },		// ãƒ—ãƒ©ã‚¹ãƒ‘ãƒ¯ãƒ¼
+	{ ITEM_DHIFENDAA,		57 },		// ãƒ‡ã‚£ãƒ•ã‚§ãƒ³ãƒ€ãƒ¼
+	{ ITEM_SUPIIDAA,		58 },		// ã‚¹ãƒ”ãƒ¼ãƒ€ãƒ¼
+	{ ITEM_YOKUATAARU,		59 },		// ãƒ¨ã‚¯ã‚¢ã‚¿ãƒ¼ãƒ«
+	{ ITEM_SUPESYARUAPPU,	60 },		// ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¢ãƒƒãƒ—
+	{ ITEM_SUPESYARUGAADO,	61 },		// ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¬ãƒ¼ãƒ‰
+	{ ITEM_PIPPININGYOU,	62 },		// ãƒ”ãƒƒãƒ”ã«ã‚“ãã‚‡ã†
+	{ ITEM_ENEKONOSIPPO,	63 },		// ã‚¨ãƒã‚³ã®ã‚·ãƒƒãƒ
+	{ ITEM_GENKINOKAKERA,	28 },		// ã’ã‚“ãã®ã‹ã‘ã‚‰
+	{ ITEM_KAIHUKUNOKUSURI,	28 },		// ã’ã‚“ãã®ã‹ã‘ã‚‰
 	{ ITEM_PIIPIIEIDO,	28 },
 	{ ITEM_PIIPIIEIDAA,	28 },
-	{ ITEM_DAAKUBOORU,	13 },		// ƒ_[ƒNƒ{[ƒ‹
-	{ ITEM_HIIRUBOORU,  14 },		// ƒq[ƒ‹ƒ{[ƒ‹
-	{ ITEM_KUIKKUBOORU,	15 },		// ƒNƒCƒbƒNƒ{[ƒ‹
-	{ ITEM_PURESYASUBOORU,	16 },	// ƒvƒŒƒVƒAƒ{[ƒ‹
-	{ ITEM_TOMODATITETYOU,  1},  // ‚Æ‚à‚¾‚¿è’ 
-	{ ITEM_POFINKEESU,  1},  // ƒ|ƒ‹ƒgƒP[ƒX
-	{ ITEM_MOKOSINOMI,	50},	//ƒ‚ƒRƒV‚Ì‚İ
-	{ ITEM_GOSUNOMI,	50},	//ƒSƒX‚Ì‚İ
-	{ ITEM_RABUTANOMI,	50},	//ƒ‰ƒuƒ^‚Ì‚İ
+	{ ITEM_DAAKUBOORU,	13 },		// ãƒ€ãƒ¼ã‚¯ãƒœãƒ¼ãƒ«
+	{ ITEM_HIIRUBOORU,  14 },		// ãƒ’ãƒ¼ãƒ«ãƒœãƒ¼ãƒ«
+	{ ITEM_KUIKKUBOORU,	15 },		// ã‚¯ã‚¤ãƒƒã‚¯ãƒœãƒ¼ãƒ«
+	{ ITEM_PURESYASUBOORU,	16 },	// ãƒ—ãƒ¬ã‚·ã‚¢ãƒœãƒ¼ãƒ«
+	{ ITEM_TOMODATITETYOU,  1},  // ã¨ã‚‚ã ã¡æ‰‹å¸³
+	{ ITEM_POFINKEESU,  1},  // ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹
+	{ ITEM_MOKOSINOMI,	50},	//ãƒ¢ã‚³ã‚·ã®ã¿
+	{ ITEM_GOSUNOMI,	50},	//ã‚´ã‚¹ã®ã¿
+	{ ITEM_RABUTANOMI,	50},	//ãƒ©ãƒ–ã‚¿ã®ã¿
 };
 
 void Debug_MyItem_MakeBag(MYITEM * myitem, int heapID)
@@ -840,9 +840,9 @@ void Debug_MyItem_MakeBag(MYITEM * myitem, int heapID)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’uƒf[ƒ^Šm•Û
- * @param	heapID	ƒq[ƒvID
- * @return	ƒJ[ƒ\ƒ‹ˆÊ’uƒf[ƒ^
+ * @brief	ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒ‡ãƒ¼ã‚¿ç¢ºä¿
+ * @param	heapID	ãƒ’ãƒ¼ãƒ—ID
+ * @return	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒ‡ãƒ¼ã‚¿
  */
 //------------------------------------------------------------------
 BAG_CURSOR * MyItem_BagCursorAlloc( u32 heapID )
@@ -856,11 +856,11 @@ BAG_CURSOR * MyItem_BagCursorAlloc( u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’uæ“¾
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
- * @param	pocket	ƒ|ƒPƒbƒgID
- * @param	pos		ƒJ[ƒ\ƒ‹ˆÊ’uæ“¾êŠ
- * @param	scr		ƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^æ“¾êŠ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @param	pocket	ãƒã‚±ãƒƒãƒˆID
+ * @param	pos		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—å ´æ‰€
+ * @param	scr		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿å–å¾—å ´æ‰€
  * @return	none
  */
 //------------------------------------------------------------------
@@ -872,8 +872,8 @@ void MyItem_FieldBagCursorGet( BAG_CURSOR * wk, u32 pocket, u8 * pos, u8 * scr )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒoƒbƒO‚Ìƒ|ƒPƒbƒgˆÊ’uæ“¾
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒã‚°ã®ãƒã‚±ãƒƒãƒˆä½ç½®å–å¾—
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
  * @return	none
  */
 //------------------------------------------------------------------
@@ -884,11 +884,11 @@ u16 MyItem_FieldBagPocketGet( BAG_CURSOR * wk )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’uƒZƒbƒg
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
- * @param	pocket	ƒ|ƒPƒbƒgID
- * @param	pos		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	scr		ƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚»ãƒƒãƒˆ
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @param	pocket	ãƒã‚±ãƒƒãƒˆID
+ * @param	pos		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	scr		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿
  * @return	none
  */
 //------------------------------------------------------------------
@@ -900,9 +900,9 @@ void MyItem_FieldBagCursorSet( BAG_CURSOR * wk, u32 pocket, u8 pos, u8 scr )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒoƒbƒO‚Ìƒ|ƒPƒbƒgˆÊ’uƒZƒbƒg
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
- * @param	pocket	ƒ|ƒPƒbƒgID
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒã‚°ã®ãƒã‚±ãƒƒãƒˆä½ç½®ã‚»ãƒƒãƒˆ
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @param	pocket	ãƒã‚±ãƒƒãƒˆID
  * @return	none
  */
 //------------------------------------------------------------------
@@ -913,11 +913,11 @@ void MyItem_FieldBagPocketSet( BAG_CURSOR * wk, u16 pocket )
 
 //------------------------------------------------------------------
 /**
- * @brief	í“¬ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’uæ“¾
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
- * @param	pocket	ƒ|ƒPƒbƒgID
- * @param	pos		ƒJ[ƒ\ƒ‹ˆÊ’uæ“¾êŠ
- * @param	scr		ƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^æ“¾êŠ
+ * @brief	æˆ¦é—˜ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @param	pocket	ãƒã‚±ãƒƒãƒˆID
+ * @param	pos		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—å ´æ‰€
+ * @param	scr		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿å–å¾—å ´æ‰€
  * @return	none
  */
 //------------------------------------------------------------------
@@ -929,9 +929,9 @@ void MyItem_BattleBagCursorGet( BAG_CURSOR * wk, u32 pocket, u8 * pos, u8 * scr 
 
 //------------------------------------------------------------------
 /**
- * @brief	í“¬ƒoƒbƒO‚ÌÅŒã‚Ég‚Á‚½“¹‹ïæ“¾
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
- * @return	ÅŒã‚Ég‚Á‚½“¹‹ï
+ * @brief	æˆ¦é—˜ãƒãƒƒã‚°ã®æœ€å¾Œã«ä½¿ã£ãŸé“å…·å–å¾—
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @return	æœ€å¾Œã«ä½¿ã£ãŸé“å…·
  */
 //------------------------------------------------------------------
 u16 MyItem_BattleBagLastItemGet( BAG_CURSOR * wk )
@@ -941,9 +941,9 @@ u16 MyItem_BattleBagLastItemGet( BAG_CURSOR * wk )
 
 //------------------------------------------------------------------
 /**
- * @brief	í“¬ƒoƒbƒO‚ÌÅŒã‚Ég‚Á‚½“¹‹ï‚Ìƒ|ƒPƒbƒgæ“¾
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
- * @return	ÅŒã‚Ég‚Á‚½“¹‹ï‚Ìƒ|ƒPƒbƒg
+ * @brief	æˆ¦é—˜ãƒãƒƒã‚°ã®æœ€å¾Œã«ä½¿ã£ãŸé“å…·ã®ãƒã‚±ãƒƒãƒˆå–å¾—
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @return	æœ€å¾Œã«ä½¿ã£ãŸé“å…·ã®ãƒã‚±ãƒƒãƒˆ
  */
 //------------------------------------------------------------------
 u16 MyItem_BattleBagLastPageGet( BAG_CURSOR * wk )
@@ -953,9 +953,9 @@ u16 MyItem_BattleBagLastPageGet( BAG_CURSOR * wk )
 
 //------------------------------------------------------------------
 /**
- * @brief	í“¬ƒoƒbƒO‚Ìƒ|ƒPƒbƒgƒy[ƒW‚ÌƒJ[ƒ\ƒ‹ˆÊ’uæ“¾
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
- * @return	ÅŒã‚Ég‚Á‚½“¹‹ï
+ * @brief	æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒã‚±ãƒƒãƒˆãƒšãƒ¼ã‚¸ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @return	æœ€å¾Œã«ä½¿ã£ãŸé“å…·
  */
 //------------------------------------------------------------------
 u16 MyItem_BattleBagPocketPagePosGet( BAG_CURSOR * wk )
@@ -965,11 +965,11 @@ u16 MyItem_BattleBagPocketPagePosGet( BAG_CURSOR * wk )
 
 //------------------------------------------------------------------
 /**
- * @brief	í“¬ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’uƒZƒbƒg
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
- * @param	pocket	ƒ|ƒPƒbƒgID
- * @param	pos		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	scr		ƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚»ãƒƒãƒˆ
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @param	pocket	ãƒã‚±ãƒƒãƒˆID
+ * @param	pos		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	scr		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿
  * @return	none
  */
 //------------------------------------------------------------------
@@ -981,8 +981,8 @@ void MyItem_BattleBagCursorSet( BAG_CURSOR * wk, u32 pocket, u8 pos, u8 scr )
 
 //------------------------------------------------------------------
 /**
- * @brief	í“¬ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‰Šú‰»
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
+ * @brief	æˆ¦é—˜ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®åˆæœŸåŒ–
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
  * @return	none
  */
 //------------------------------------------------------------------
@@ -998,10 +998,10 @@ void MyItem_BattleBagCursorPosInit( BAG_CURSOR * wk )
 
 //------------------------------------------------------------------
 /**
- * @brief	í“¬ƒoƒbƒO‚ÌÅŒã‚Ég‚Á‚½“¹‹ï‚ğƒZƒbƒg
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
- * @param	item	ÅŒã‚Ég‚Á‚½ƒAƒCƒeƒ€
- * @param	page	ÅŒã‚Ég‚Á‚½ƒAƒCƒeƒ€‚Ìƒy[ƒW
+ * @brief	æˆ¦é—˜ãƒãƒƒã‚°ã®æœ€å¾Œã«ä½¿ã£ãŸé“å…·ã‚’ã‚»ãƒƒãƒˆ
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @param	item	æœ€å¾Œã«ä½¿ã£ãŸã‚¢ã‚¤ãƒ†ãƒ 
+ * @param	page	æœ€å¾Œã«ä½¿ã£ãŸã‚¢ã‚¤ãƒ†ãƒ ã®ãƒšãƒ¼ã‚¸
  * @return	none
  */
 //------------------------------------------------------------------
@@ -1013,9 +1013,9 @@ void MyItem_BattleBagLastItemSet( BAG_CURSOR * wk, u16 item, u16 page )
 
 //------------------------------------------------------------------
 /**
- * @brief	í“¬ƒoƒbƒO‚Ìƒ|ƒPƒbƒgƒy[ƒW‚ÌƒJ[ƒ\ƒ‹ˆÊ’uƒZƒbƒg
- * @param	wk		ƒJ[ƒ\ƒ‹ƒf[ƒ^
- * @return	ÅŒã‚Ég‚Á‚½“¹‹ï
+ * @brief	æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒã‚±ãƒƒãƒˆãƒšãƒ¼ã‚¸ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚»ãƒƒãƒˆ
+ * @param	wk		ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @return	æœ€å¾Œã«ä½¿ã£ãŸé“å…·
  */
 //------------------------------------------------------------------
 void MyItem_BattleBagPocketPagePosSet( BAG_CURSOR * wk, u16 pocket )
@@ -1023,7 +1023,7 @@ void MyItem_BattleBagPocketPagePosSet( BAG_CURSOR * wk, u16 pocket )
 	wk->btl.pocket = pocket;
 }
 
-// ŠO•”QÆƒCƒ“ƒfƒbƒNƒX‚ğì‚é‚Ì‚İ—LŒø(ƒQ[ƒ€’†‚Í–³Œø)
+// å¤–éƒ¨å‚ç…§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œã‚‹æ™‚ã®ã¿æœ‰åŠ¹(ã‚²ãƒ¼ãƒ ä¸­ã¯ç„¡åŠ¹)
 #ifdef CREATE_INDEX
 void *Index_Get_Myitem_Offset(MYITEM *item, int type)
 {

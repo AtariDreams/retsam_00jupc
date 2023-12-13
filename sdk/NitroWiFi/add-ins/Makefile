@@ -13,27 +13,27 @@
 #
 # $Log: Makefile,v $
 # Revision 1.3  2005/09/17 12:46:12  terui
-# NitroDWC‚Ìmake‚ğs‚í‚È‚¢‚æ‚¤‚É•ÏXB
+# NitroDWCã®makeã‚’è¡Œã‚ãªã„ã‚ˆã†ã«å¤‰æ›´ã€‚
 #
 # Revision 1.2  2005/09/06 00:19:42  yasu
-# env ‚Ì NitroSDK ‚Ö‚ÌˆÚ“®‚É”º‚¢ƒRƒ“ƒpƒCƒ‹‚ğ’â~
+# env ã® NitroSDK ã¸ã®ç§»å‹•ã«ä¼´ã„ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’åœæ­¢
 #
 # Revision 1.1  2005/08/19 12:28:58  yasu
-# add-ins ‚ÌƒTƒ|[ƒg
+# add-ins ã®ã‚µãƒãƒ¼ãƒˆ
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs
 
-# <’ˆÓ!>
+# <æ³¨æ„!>
 #
-# ‚±‚ÌMakefile‚Í
+# ã“ã®Makefileã¯
 # NITRO_ONLY_SETUP
 # NITRO_ONLY_LIBS
 # NITRO_ONLY_DEMOS
 # NITRO_ONLY_CLEANUP
-# ‚Ì‡‚ÉƒVƒ“ƒ{ƒ‹‚ª export ‚³‚ê‚Ä 4‰ñ make ‚³‚ê‚Ü‚·B(Nightly Build‚Ì‚İ)
-# SUBDIRSˆÈ‰º‚ÌŠeMakefile‚Í‚»‚ê‚ğl—¶‚µ‚Äifdef‚É‚æ‚éê‡•ª‚¯‚ğs‚¤•K—v‚ª‚ ‚è‚Ü‚·B
+# ã®é †ã«ã‚·ãƒ³ãƒœãƒ«ãŒ export ã•ã‚Œã¦ 4å› make ã•ã‚Œã¾ã™ã€‚(Nightly Buildæ™‚ã®ã¿)
+# SUBDIRSä»¥ä¸‹ã®å„Makefileã¯ãã‚Œã‚’è€ƒæ…®ã—ã¦ifdefã«ã‚ˆã‚‹å ´åˆåˆ†ã‘ã‚’è¡Œã†å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 #
 
 SUBDIRS 	+= 

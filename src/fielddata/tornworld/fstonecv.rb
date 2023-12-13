@@ -1,12 +1,12 @@
 ##################################################################
 #	fstonecv.rb
-#	‚â‚Ô‚ê‚½‚¹‚©‚¢@”ò‚ÑÎƒf[ƒ^ƒRƒ“ƒo[ƒg
+#	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 ##################################################################
 
 $KCODE = "SJIS"
 
 #=================================================================
-#	ƒGƒ‰[I—¹
+#	ã‚¨ãƒ©ãƒ¼çµ‚äº†
 #=================================================================
 def	fstonecv_error_end( file0, file1, delfile )
 	file0.close
@@ -15,7 +15,7 @@ def	fstonecv_error_end( file0, file1, delfile )
 end
 
 #=================================================================
-#	”ò‚ÑÎ@”z’u”‘‚«‚İ
+#	é£›ã³çŸ³ã€€é…ç½®æ•°æ›¸ãè¾¼ã¿
 #=================================================================
 def fstonecv_write_putmax( wfile, count )
 	pos = wfile.pos
@@ -26,7 +26,7 @@ def fstonecv_write_putmax( wfile, count )
 end
 
 #=================================================================
-#	”ò‚ÑÎ@ƒtƒ‰ƒO‘€ìÀ•Wƒf[ƒ^”‘‚«‚İ
+#	é£›ã³çŸ³ã€€ãƒ•ãƒ©ã‚°æ“ä½œåº§æ¨™ãƒ‡ãƒ¼ã‚¿æ•°æ›¸ãè¾¼ã¿
 #=================================================================
 def fstonecv_write_flagposmax( wfile, count )
 	pos = wfile.pos
@@ -37,7 +37,7 @@ def fstonecv_write_flagposmax( wfile, count )
 end
 
 #=================================================================
-#	”ò‚ÑÎ@ƒtƒ‰ƒO‰Šúó‘Ô‘‚«‚İ
+#	é£›ã³çŸ³ã€€ãƒ•ãƒ©ã‚°åˆæœŸçŠ¶æ…‹æ›¸ãè¾¼ã¿
 #=================================================================
 def fstonecv_write_flaginit( wfile, flag )
 	pos = wfile.pos
@@ -48,15 +48,15 @@ def fstonecv_write_flaginit( wfile, flag )
 end
 
 #=================================================================
-#	”ò‚ÑÎ@ƒf[ƒ^—Ìˆææ“ªˆÊ’u‚ğ•Ô‚·
+#	é£›ã³çŸ³ã€€ãƒ‡ãƒ¼ã‚¿é ˜åŸŸå…ˆé ­ä½ç½®ã‚’è¿”ã™
 #=================================================================
 def fstonecv_seek_topdata()
 	return 12
 end
 
 #=================================================================
-#	”ò‚ÑÎƒtƒ‰ƒO‰Šúó‘ÔƒRƒ“ƒo[ƒg
-#	format 0-3 •\¦ƒtƒ‰ƒO
+#	é£›ã³çŸ³ãƒ•ãƒ©ã‚°åˆæœŸçŠ¶æ…‹ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	format 0-3 è¡¨ç¤ºãƒ•ãƒ©ã‚°
 #=================================================================
 def fstonecv_conv_initflag( rfile, wfile )
 	no = 0
@@ -64,29 +64,29 @@ def fstonecv_conv_initflag( rfile, wfile )
 	flag = 0
 	ary = Array.new
 	
-	rfile.gets			#"•\¦ƒtƒ‰ƒONo"”ò‚Î‚µ
-	line = rfile.gets	#•\¦ƒtƒ‰ƒO”Ô†ƒŠƒXƒg
+	rfile.gets			#"è¡¨ç¤ºãƒ•ãƒ©ã‚°No"é£›ã°ã—
+	line = rfile.gets	#è¡¨ç¤ºãƒ•ãƒ©ã‚°ç•ªå·ãƒªã‚¹ãƒˆ
 	
-	line.scan( /\d+/ ){ |match|		#”š”²‚«o‚µ
+	line.scan( /\d+/ ){ |match|		#æ•°å­—æŠœãå‡ºã—
 		flag = match.to_i
 		bit |= 1 << flag
 	}
 	
 	#	ary = Array( bit )
-	#	wfile.write( ary.pack("I*") )	#•\¦ƒrƒbƒg u32
+	#	wfile.write( ary.pack("I*") )	#è¡¨ç¤ºãƒ“ãƒƒãƒˆ u32
 	fstonecv_write_flaginit( wfile, bit )
 end
 
 #=================================================================
-#	”ò‚ÑÎ”z’u@ˆêsƒRƒ“ƒo[ƒg
+#	é£›ã³çŸ³é…ç½®ã€€ä¸€è¡Œã‚³ãƒ³ãƒãƒ¼ãƒˆ
 #	return 1 == ERROR
 #=================================================================
 def fstonecv_conv_put_line( str, wfile )
-	num = str[0].to_i				#QÆƒtƒ‰ƒO”Ô† u32
+	num = str[0].to_i				#å‚ç…§ãƒ•ãƒ©ã‚°ç•ªå· u32
 	ary = Array( num )
 	wfile.write( ary.pack("I*") )
 	
-	case str[1]						#”ò‚ÑÎí—Ş u16
+	case str[1]						#é£›ã³çŸ³ç¨®é¡ u16
 	when "STEP"
 		num = 0
 	when "PUT"
@@ -132,19 +132,19 @@ def fstonecv_conv_put_line( str, wfile )
 	when "LAND_ROCK"
 		num = 23
 	else
-		printf( "”ò‚ÑÎƒ^ƒCƒvˆÙí\n" )
+		printf( "é£›ã³çŸ³ã‚¿ã‚¤ãƒ—ç•°å¸¸\n" )
 		return 1
 	end
 	ary = Array( num )
 	wfile.write( ary.pack("S*") )
 	
-	num = str[2].to_i				#”ò‚ÑˆÊ’uÀ•W X s16
+	num = str[2].to_i				#é£›ã³ä½ç½®åº§æ¨™ X s16
 	ary = Array( num )
 	wfile.write( ary.pack("s*") )
-	num = str[3].to_i				#”ò‚ÑˆÊ’uÀ•W Y s16
+	num = str[3].to_i				#é£›ã³ä½ç½®åº§æ¨™ Y s16
 	ary = Array( num )
 	wfile.write( ary.pack("s*") )
-	num = str[4].to_i				#”ò‚ÑˆÊ’uÀ•W Z s16
+	num = str[4].to_i				#é£›ã³ä½ç½®åº§æ¨™ Z s16
 	ary = Array( num )
 	wfile.write( ary.pack("s*") )
 	
@@ -152,14 +152,14 @@ def fstonecv_conv_put_line( str, wfile )
 end
 
 #=================================================================
-#	”ò‚ÑÎ”z’u@ƒRƒ“ƒo[ƒg
-#	format 0-3 ”ò‚ÑÎ‚Ì” 4.. ”ò‚ÑÎƒf[ƒ^ŒQ
+#	é£›ã³çŸ³é…ç½®ã€€ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	format 0-3 é£›ã³çŸ³ã®æ•° 4.. é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ç¾¤
 #	return 1 == ERROR 2 == END
 #=================================================================
 def fstonecv_conv_put( rfile, wfile )
 	ret = 0
 	count = 0
-	rfile.gets						#€–Ús‚ğ”ò‚Î‚·
+	rfile.gets						#é …ç›®è¡Œã‚’é£›ã°ã™
 	
 	loop{
 		line = rfile.gets
@@ -188,16 +188,16 @@ def fstonecv_conv_put( rfile, wfile )
 end
 
 #=================================================================
-#	”ò‚ÑÎƒtƒ‰ƒO‘€ìÀ•Wƒf[ƒ^@ˆêsƒRƒ“ƒo[ƒg
+#	é£›ã³çŸ³ãƒ•ãƒ©ã‚°æ“ä½œåº§æ¨™ãƒ‡ãƒ¼ã‚¿ã€€ä¸€è¡Œã‚³ãƒ³ãƒãƒ¼ãƒˆ
 #	return 1 == ERROR
 #=================================================================
 def fstonecv_conv_flagpos_line( str, wfile )
-	num = str[0].to_i				#ƒtƒ‰ƒONo u32
+	num = str[0].to_i				#ãƒ•ãƒ©ã‚°No u32
 	ary = Array( num )
 	wfile.write( ary.pack("I*") )
 	
 	num = 0
-	case str[1]						#ˆÚ“®•ûŒü s16
+	case str[1]						#ç§»å‹•æ–¹å‘ s16
 	when "UP"
 		num = 0
 	when "DOWN"
@@ -207,7 +207,7 @@ def fstonecv_conv_flagpos_line( str, wfile )
 	when "RIGHT"
 		num = 3
 	else
-		printf( "•ûŒüˆÙí\n" )
+		printf( "æ–¹å‘ç•°å¸¸\n" )
 		return 1
 	end
 	ary = Array( num )
@@ -219,29 +219,29 @@ def fstonecv_conv_flagpos_line( str, wfile )
 	when "ON"
 		num = 1
 	else
-		printf( "‘€ìƒtƒ‰ƒOˆÙí\n" )
+		printf( "æ“ä½œãƒ•ãƒ©ã‚°ç•°å¸¸\n" )
 		return 1
 	end
 	ary = Array( num )
 	wfile.write( ary.pack("s*") )
 	
-	num = str[3].to_i				#XÀ•W s16
+	num = str[3].to_i				#Xåº§æ¨™ s16
 	ary = Array( num )
 	wfile.write( ary.pack("s*") )
-	num = str[4].to_i				#YÀ•W s16
+	num = str[4].to_i				#Yåº§æ¨™ s16
 		eflag_flagpos = 1
 	ary = Array( num )
 	wfile.write( ary.pack("s*") )
-	num = str[5].to_i				#ZÀ•W s16
+	num = str[5].to_i				#Zåº§æ¨™ s16
 	ary = Array( num )
 	wfile.write( ary.pack("s*") )
-	num = str[6].to_i				#X”ÍˆÍ s16
+	num = str[6].to_i				#Xç¯„å›² s16
 	ary = Array( num )
 	wfile.write( ary.pack("s*") )
-	num = str[7].to_i				#Y”ÍˆÍ s16
+	num = str[7].to_i				#Yç¯„å›² s16
 	ary = Array( num )
 	wfile.write( ary.pack("s*") )
-	num = str[8].to_i				#Z”ÍˆÍ s16
+	num = str[8].to_i				#Zç¯„å›² s16
 	ary = Array( num )
 	wfile.write( ary.pack("s*") )
 	
@@ -249,14 +249,14 @@ def fstonecv_conv_flagpos_line( str, wfile )
 end
 
 #=================================================================
-#	”ò‚ÑÎƒtƒ‰ƒO‘€ìÀ•W@ƒRƒ“ƒo[ƒg
-#	format 0-3 ƒf[ƒ^” 4.. ‘€ìÀ•Wƒf[ƒ^
+#	é£›ã³çŸ³ãƒ•ãƒ©ã‚°æ“ä½œåº§æ¨™ã€€ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	format 0-3 ãƒ‡ãƒ¼ã‚¿æ•° 4.. æ“ä½œåº§æ¨™ãƒ‡ãƒ¼ã‚¿
 #	return 1 == ERROR 2 == end
 #=================================================================
 def fstonecv_conv_flagpos( rfile, wfile )
 	ret = 0
 	count = 0
-	rfile.gets						#€–Ús‚ğ”ò‚Î‚·
+	rfile.gets						#é …ç›®è¡Œã‚’é£›ã°ã™
 	
 	loop{
 		line = rfile.gets
@@ -285,15 +285,15 @@ def fstonecv_conv_flagpos( rfile, wfile )
 end
 
 #=================================================================
-#	”ò‚ÑÎƒf[ƒ^ƒRƒ“ƒo[ƒg
-#	txtname ƒRƒ“ƒo[ƒg‚·‚é”ò‚ÑÎƒf[ƒ^ƒeƒLƒXƒgƒtƒ@ƒCƒ‹
-#	–ß‚è’l 0=³íI—¹ 1=ˆÙíI—¹
+#	é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	txtname ã‚³ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«
+#	æˆ»ã‚Šå€¤ 0=æ­£å¸¸çµ‚äº† 1=ç•°å¸¸çµ‚äº†
 #
-#	ƒtƒ@ƒCƒ‹ƒtƒH[ƒ}ƒbƒg
-#	0-3		”ò‚ÑÎ”z’u”
-#	4-7		”ò‚ÑÎ‘€ìÀ•Wƒf[ƒ^”
-#	8-11	”ò‚ÑÎƒtƒ‰ƒO‰Šúó‘Ô
-#	ˆÈ‰º‘”•ª@”ò‚ÑÎƒf[ƒ^A‘€ìÀ•Wƒf[ƒ^‚ª‘±‚­
+#	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#	0-3		é£›ã³çŸ³é…ç½®æ•°
+#	4-7		é£›ã³çŸ³æ“ä½œåº§æ¨™ãƒ‡ãƒ¼ã‚¿æ•°
+#	8-11	é£›ã³çŸ³ãƒ•ãƒ©ã‚°åˆæœŸçŠ¶æ…‹
+#	ä»¥ä¸‹ç·æ•°åˆ†ã€€é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€æ“ä½œåº§æ¨™ãƒ‡ãƒ¼ã‚¿ãŒç¶šã
 #=================================================================
 def fstonecv_conv( txtname )
 	if( txtname == @nil )
@@ -313,13 +313,13 @@ def fstonecv_conv( txtname )
 	eflag_put = 0
 	eflag_flagpos = 0
 	
-	fstonecv_write_putmax( wfile, 0 )				#ƒwƒbƒ_‰Šú‰»
+	fstonecv_write_putmax( wfile, 0 )				#ãƒ˜ãƒƒãƒ€åˆæœŸåŒ–
 	fstonecv_write_flagposmax( wfile, 0 )
 	fstonecv_write_flaginit( wfile, 0 )
 	
-	wfile.pos = fstonecv_seek_topdata()				#ƒf[ƒ^‘‚«‚İæ“ªˆÊ’u
+	wfile.pos = fstonecv_seek_topdata()				#ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿å…ˆé ­ä½ç½®
 	
-	loop{											#”ò‚ÑÎƒtƒ‰ƒO‰Šúó‘Ô
+	loop{											#é£›ã³çŸ³ãƒ•ãƒ©ã‚°åˆæœŸçŠ¶æ…‹
 		line = tfile.gets
 		str = line.split( "," )
 		
@@ -327,7 +327,7 @@ def fstonecv_conv( txtname )
 			break
 		end
 		
-		if( str[0] == "œ”ò‚ÑÎƒtƒ‰ƒO‰Šúó‘Ô" )
+		if( str[0] == "â—é£›ã³çŸ³ãƒ•ãƒ©ã‚°åˆæœŸçŠ¶æ…‹" )
 			eflag_flag = 1
 			fstonecv_conv_initflag( tfile, wfile )
 			break
@@ -340,9 +340,9 @@ def fstonecv_conv( txtname )
 		return 1
 	end
 	
-	tfile.pos = 0									#æ“ª‚É–ß‚·
+	tfile.pos = 0									#å…ˆé ­ã«æˆ»ã™
 
-	loop{											#”ò‚ÑÎ”z’uƒf[ƒ^
+	loop{											#é£›ã³çŸ³é…ç½®ãƒ‡ãƒ¼ã‚¿
 		line = tfile.gets
 		str = line.split( "," )
 		
@@ -350,7 +350,7 @@ def fstonecv_conv( txtname )
 			break
 		end
 	
-		if( str[0] == "œ”ò‚ÑÎ”z’u" )
+		if( str[0] == "â—é£›ã³çŸ³é…ç½®" )
 			eflag_put = 1
 			ret = fstonecv_conv_put( tfile, wfile )
 			case ret
@@ -369,9 +369,9 @@ def fstonecv_conv( txtname )
 		return 1
 	end
 	
-	tfile.pos = 0									#æ“ª‚É–ß‚·
+	tfile.pos = 0									#å…ˆé ­ã«æˆ»ã™
 	
-	loop{											#ƒtƒ‰ƒO‘€ìƒf[ƒ^
+	loop{											#ãƒ•ãƒ©ã‚°æ“ä½œãƒ‡ãƒ¼ã‚¿
 		line = tfile.gets
 		str = line.split( "," )
 		
@@ -379,7 +379,7 @@ def fstonecv_conv( txtname )
 			break
 		end
 		
-		if( str[0] == "œ”ò‚ÑÎƒtƒ‰ƒO‘€ìÀ•Wƒf[ƒ^" )
+		if( str[0] == "â—é£›ã³çŸ³ãƒ•ãƒ©ã‚°æ“ä½œåº§æ¨™ãƒ‡ãƒ¼ã‚¿" )
 			eflag_flagpos = 1
 			ret = fstonecv_conv_flagpos( tfile, wfile )
 			case ret

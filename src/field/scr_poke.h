@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_poke.h
- * @bfief	�X�N���v�g�R�}���h�F�|�P��������֘A
+ * @bfief	スクリプトコマンド：ポケモン操作関連
  * @author	Tomomichi Ohta
  * @date	06.06.26
  */
@@ -11,10 +11,10 @@
 
 //============================================================================================
 //
-//	�v���O�����ł̂ݎQ�Ƃ����`
+//	プログラムでのみ参照する定義
 //
 //============================================================================================
-//__ASM_NO_DEF_����`����Ă���ꍇ�A�A�Z���u���\�[�X�Ȃ̂ňȉ��͖����ɂ���
+//__ASM_NO_DEF_が定義されている場合、アセンブラソースなので以下は無効にする
 #ifndef	__ASM_NO_DEF_
 extern BOOL EvCmdAddPokemon(VM_MACHINE * core);
 extern BOOL EvCmdTemotiMonsNo(VM_MACHINE * core);
@@ -57,7 +57,7 @@ extern BOOL EvCmdDameTamagoChkAll(VM_MACHINE * core);
 extern BOOL EvCmdEventGetTemotiPokeChkGetPos( VM_MACHINE * core );
 extern BOOL EvCmdTemotiItemChk( VM_MACHINE * core );
 
-//���g�p
+//未使用
 extern  EvCmdGetTemotiPokeNum( VM_MACHINE * core );
 
 #endif	/* __ASM_NO_DEF_ */

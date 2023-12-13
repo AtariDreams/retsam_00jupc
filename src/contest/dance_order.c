@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	dance_order.c
- * @brief	ƒ_ƒ“ƒX•”–åF–½—ß‘—óM
+ * @brief	ãƒ€ãƒ³ã‚¹éƒ¨é–€ï¼šå‘½ä»¤é€å—ä¿¡
  * @author	matsuda
- * @date	2005.12.13(‰Î)
+ * @date	2005.12.13(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -52,48 +52,48 @@ extern u8 DmatsuWork_DanceRotationOff;
 #endif
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒ[ƒe[ƒVƒ‡ƒ“‚ÌˆÚ“®‚É‚©‚¯‚éƒtƒŒ[ƒ€”
+///ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã®ç§»å‹•ã«ã‹ã‘ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define ROTATION_SPEED_NORMAL		(90)
-///ƒ[ƒe[ƒVƒ‡ƒ“‚ÌˆÚ“®‚ÉArotation_frame‚Ì‰½%‚ÌƒtƒŒ[ƒ€”‚ÅˆÚ“®‚ğI‚¦‚é‚æ‚¤‚É‚·‚é‚©
-///(100‚¾‚Ærotation_frame‚ÌƒtƒŒ[ƒ€”‚«‚Á‚¿‚è‚Åƒ[ƒe[ƒVƒ‡ƒ“‚ğI‚¦‚é
+///ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã®ç§»å‹•ã«ã€rotation_frameã®ä½•%ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã§ç§»å‹•ã‚’çµ‚ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹ã‹
+///(100ã ã¨rotation_frameã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ãã£ã¡ã‚Šã§ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‚’çµ‚ãˆã‚‹
 #define ROTATION_FRAME_PERCENT		(40)	//(50)	//(70)
 
-///‚Ç‚ñ‚¿‚å‚¤‚Ìã¸‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ã©ã‚“ã¡ã‚‡ã†ã®ä¸Šæ˜‡é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define DONCHOU_UP_SPEED			(3 << 8)
-///‚Ç‚ñ‚¿‚å‚¤‚ª‚±‚ê‚¾‚¯ƒXƒNƒ[ƒ‹‚µ‚½‚ç’â~‚³‚¹‚é(‰ºˆÊ8ƒrƒbƒg¬”)
+///ã©ã‚“ã¡ã‚‡ã†ãŒã“ã‚Œã ã‘ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã—ãŸã‚‰åœæ­¢ã•ã›ã‚‹(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define DONCHOU_STOP_SCROLL			(200 << 8)
 
-///‚Ç‚ñ‚¿‚å‚¤ƒAƒjƒƒEƒFƒCƒg
+///ã©ã‚“ã¡ã‚‡ã†ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 #define DONCHOU_ANM_WAIT		(1)
-///‚Ç‚ñ‚¿‚å‚¤‚ğ1’i•ªƒAƒjƒI—¹‚·‚é–ˆ‚É‚à‚¤‚¯‚éƒAƒjƒƒEƒFƒCƒg
+///ã©ã‚“ã¡ã‚‡ã†ã‚’1æ®µåˆ†ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã™ã‚‹æ¯ã«ã‚‚ã†ã‘ã‚‹ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 #define DONCHOU_DANSA_ANM_WAIT		(0)
-///‚Ç‚ñ‚¿‚å‚¤‚ÌƒAƒjƒ“]‘——p‚ÌƒLƒƒƒ‰ƒNƒ^‚ª‰¡‚É‰½ƒLƒƒƒ‰“ü‚Á‚Ä‚¢‚é‚©
+///ã©ã‚“ã¡ã‚‡ã†ã®ã‚¢ãƒ‹ãƒ¡è»¢é€ç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒæ¨ªã«ä½•ã‚­ãƒ£ãƒ©å…¥ã£ã¦ã„ã‚‹ã‹
 #define DONCHOU_ANM_DATA_X_LEN	(8)
-///‚Ç‚ñ‚¿‚å‚¤‚ÌƒAƒjƒ“]‘——p‚ÌƒLƒƒƒ‰ƒNƒ^‚ªc‚É‰½ƒLƒƒƒ‰“ü‚Á‚Ä‚¢‚é‚©
+///ã©ã‚“ã¡ã‚‡ã†ã®ã‚¢ãƒ‹ãƒ¡è»¢é€ç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒç¸¦ã«ä½•ã‚­ãƒ£ãƒ©å…¥ã£ã¦ã„ã‚‹ã‹
 #define DONCHOU_ANM_DATA_Y_LEN	(4)
 
-///ƒƒCƒ“ƒe[ƒ}‹È‚ğ’â~‚·‚é‚ÌƒtƒF[ƒhƒAƒEƒg‚É‚©‚¯‚éƒtƒŒ[ƒ€
+///ãƒ¡ã‚¤ãƒ³ãƒ†ãƒ¼ãƒæ›²ã‚’åœæ­¢ã™ã‚‹æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã«ã‹ã‘ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define DANCE_MAINMUSIC_FADEOUT_FRAME	(30)
-///ƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒgI—¹Œã‚ÌƒEƒFƒCƒg
+///ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾Œã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define OPENING_EFFECT_END_WAIT			(30)	//(60)
 
-///ƒtƒF[ƒhFƒ[ƒe[ƒVƒ‡ƒ“‚ÌƒEƒFƒCƒg
+///ãƒ•ã‚§ãƒ¼ãƒ‰ï¼šãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³æ™‚ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define FADE_ROTATION_WAIT		(-2)
-///ƒtƒF[ƒhFƒ[ƒe[ƒVƒ‡ƒ“‚ÌƒJƒ‰[
+///ãƒ•ã‚§ãƒ¼ãƒ‰ï¼šãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³æ™‚ã®ã‚«ãƒ©ãƒ¼
 #define FADE_ROTATION_COLOR		(0x0000)
-///ƒtƒF[ƒhFƒ[ƒe[ƒVƒ‡ƒ“‚ÌEVY’l
+///ãƒ•ã‚§ãƒ¼ãƒ‰ï¼šãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³æ™‚ã®EVYå€¤
 #define FADE_ROTATION_EVY		(6)
 
-///ƒ_ƒ“ƒX‚Ì‹È‚ğ’â~‚·‚é‚ÌƒtƒF[ƒhƒAƒEƒg‚É‚©‚¯‚éƒtƒŒ[ƒ€”
+///ãƒ€ãƒ³ã‚¹ã®æ›²ã‚’åœæ­¢ã™ã‚‹æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã«ã‹ã‘ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define EE_DANCEMUSIC_FADEOUT_FRAME		(30)
-///ƒ‰ƒ“ƒLƒ“ƒO”­•\Œã‚Ì‘Ò‚¿ŠÔ
+///ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç™ºè¡¨å¾Œã®å¾…ã¡æ™‚é–“
 #define EE_RANKING_AFTER_WAIT			(60)
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static int Request_Sample(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work);
 static void Recieve_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data);
@@ -141,11 +141,11 @@ static void DOTCB_EndEffect(TCB_PTR tcb, void *work);
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///–½—ß‘—óM—pŠÖ”ƒ|ƒCƒ“ƒ^\‘¢‘Ìƒe[ƒuƒ‹	¦‚±‚±‚É’Ç‰Á‚µ‚½‚ç•K‚¸.h‚Ìenum‚É‚à’Ç‰Á‚·‚é–!!
+///å‘½ä»¤é€å—ä¿¡ç”¨é–¢æ•°ãƒã‚¤ãƒ³ã‚¿æ§‹é€ ä½“ãƒ†ãƒ¼ãƒ–ãƒ«	â€»ã“ã“ã«è¿½åŠ ã—ãŸã‚‰å¿…ãš.hã®enumã«ã‚‚è¿½åŠ ã™ã‚‹äº‹!!
 static const CON_ORDER_FUNC OrderFuncTbl[] = {
-	{//DORDER_NO_SAMPLE		ƒTƒ“ƒvƒ‹
+	{//DORDER_NO_SAMPLE		ã‚µãƒ³ãƒ—ãƒ«
 		Request_Sample, 
 		Recieve_Sample, 
 		Answer_Sample, 
@@ -219,18 +219,18 @@ static const CON_ORDER_FUNC OrderFuncTbl[] = {
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///‚Ç‚ñ‚¿‚å‚¤ƒAƒjƒ‚ÌƒXƒNƒŠ[ƒ“‘‚«Š·‚¦ƒx[ƒXˆÊ’u
+///ã©ã‚“ã¡ã‚‡ã†ã‚¢ãƒ‹ãƒ¡ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆãƒ™ãƒ¼ã‚¹ä½ç½®
 ALIGN4 static const s8 DonchouAnmLineData[] = {
 	15, 11, 7, 3, -1
 };
 
-///‚Ç‚ñ‚¿‚å‚¤‚ÌƒAƒjƒƒpƒ^[ƒ“–ˆ‚ÌƒLƒƒƒ‰ƒNƒ^NoŠJnˆÊ’u
+///ã©ã‚“ã¡ã‚‡ã†ã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ¯ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noé–‹å§‹ä½ç½®
 ALIGN4 static const u16 DonchouAnmPaternStartCharNo[] = {
 	0x20, 0x28, 0x30, 0x38,
 	0xa0, 0xa8, 0xb0, 0xb8,
 	0x120, 0x128, 0x130, 0x138,
 };
-///‚Ç‚ñ‚¿‚å‚¤‚Ì”²‚«‚È‚µ‚‚ê–‹Å‰º’i‚ÌƒLƒƒƒ‰ƒNƒ^No
+///ã©ã‚“ã¡ã‚‡ã†ã®æŠœããªã—å‚ã‚Œå¹•æœ€ä¸‹æ®µã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿No
 #define DONCHOU_NUKINASHI_MAKU		(0x200)
 
 
@@ -238,8 +238,8 @@ ALIGN4 static const u16 DonchouAnmPaternStartCharNo[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX•”–åFƒRƒ“ƒeƒXƒg‘—óMƒ[ƒN‰Šú‰»
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ€ãƒ³ã‚¹éƒ¨é–€ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€å—ä¿¡ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void DanceOrder_WorkInit(DANCE_PROC_WORK *dpw)
@@ -261,12 +261,12 @@ void DanceOrder_WorkInit(DANCE_PROC_WORK *dpw)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒTƒ“ƒvƒ‹
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚µãƒ³ãƒ—ãƒ«
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_Sample(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -280,36 +280,36 @@ static int Request_Sample(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, 
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒTƒ“ƒvƒ‹
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã‚µãƒ³ãƒ—ãƒ«
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
 {
 	DANCE_PROC_WORK *dpw = syswork;
 	
-	//•Ô–‚ğ•Ô‚·	ƒoƒbƒtƒ@‚Í“Á‚É“n‚·‚à‚Ì‚ª‚È‚¢‚Ì‚ÅNULLw’è
+	//è¿”äº‹ã‚’è¿”ã™	ãƒãƒƒãƒ•ã‚¡ã¯ç‰¹ã«æ¸¡ã™ã‚‚ã®ãŒãªã„ã®ã§NULLæŒ‡å®š
 	CO_ANSWER_TransmitBufferSet(cow, req_head, NULL, 0);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   •Ô–óM(‘—MŒ³)FƒTƒ“ƒvƒ‹
+ * @brief   è¿”äº‹å—ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚µãƒ³ãƒ—ãƒ«
  *
- * @param   dpw				ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   answer_head		•Ô–ƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   ansdat			óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   net_id			•Ô–‘—MÒ‚ÌƒlƒbƒgID
+ * @param   dpw				ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   answer_head		è¿”äº‹ãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   ansdat			å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   net_id			è¿”äº‹é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
  */
 //--------------------------------------------------------------
 static void Answer_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *answer_head, CO_ANSDAT *ansdat, int net_id)
 {
 	DANCE_PROC_WORK *dpw = syswork;
 	
-	//•Ô–‚ğó‚¯æ‚é‚¾‚¯‚È‚Ì‚Å“Á‚É‚·‚é–‚ª‚È‚¢
+	//è¿”äº‹ã‚’å—ã‘å–ã‚‹ã ã‘ãªã®ã§ç‰¹ã«ã™ã‚‹äº‹ãŒãªã„
 	return;
 }
 
@@ -319,12 +319,12 @@ static void Answer_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_H
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‚Ç‚ñ‚¿‚å‚¤ã‚°‚é
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã©ã‚“ã¡ã‚‡ã†ä¸Šã’ã‚‹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_DonchouUp(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -338,11 +338,11 @@ static int Request_DonchouUp(CONTEST_ORDER_WORK *cow, void *syswork, int order_n
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‚Ç‚ñ‚¿‚å‚¤ã‚°‚é
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã©ã‚“ã¡ã‚‡ã†ä¸Šã’ã‚‹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_DonchouUp(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -362,10 +362,10 @@ static void Recieve_DonchouUp(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚Ç‚ñ‚¿‚å‚¤‚ğã‚°‚é
+ * @brief   ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸Šã’ã‚‹
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DOLOCAL_DONCHOU_UP\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DOLOCAL_DONCHOU_UPæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DOTCB_DonchouUp(TCB_PTR tcb, void *work)
@@ -374,7 +374,7 @@ static void DOTCB_DonchouUp(TCB_PTR tcb, void *work)
 	
 	switch(du->seq){
 	case 0:
-		//ƒAƒjƒƒEƒFƒCƒg
+		//ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 		if(du->anm_dansa_wait > 0){
 			du->anm_dansa_wait--;
 			break;
@@ -385,7 +385,7 @@ static void DOTCB_DonchouUp(TCB_PTR tcb, void *work)
 		}
 		du->anm_wait = DONCHOU_ANM_WAIT;
 		
-		//ƒAƒjƒ‘‚«Š·‚¦
+		//ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆ
 		{
 			u16 *scrn_buf, *dest_scrn;
 			int x, y, pos_x, s, base_charno;
@@ -400,21 +400,21 @@ static void DOTCB_DonchouUp(TCB_PTR tcb, void *work)
 				pos_x = 0;
 				for(s = 0; s < 32 / DONCHOU_ANM_DATA_X_LEN; s++){
 					for(x = 0; x < DONCHOU_ANM_DATA_X_LEN; x++){
-						dest_scrn[pos_x + x] &= 0xfc00;		//ƒLƒƒƒ‰ƒNƒ^No‚Ì‚İƒNƒŠƒA
+						dest_scrn[pos_x + x] &= 0xfc00;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã®ã¿ã‚¯ãƒªã‚¢
 						dest_scrn[pos_x + x] |= base_charno + x;
 					}
 					pos_x += DONCHOU_ANM_DATA_X_LEN;
 				}
 			}
 			
-			//2’i–ÚˆÈ~‚Ì‚Ç‚ñ‚¿‚å‚¤‚Å‚ÍÅŒã‚ÌƒAƒjƒ‚ªˆêƒ‰ƒCƒ“c‚Á‚½‚â‚Â‚È‚Ì‚ÅA
-			//‘O‚Ì‚Ç‚ñ‚¿‚å‚¤‚Ìc‚Á‚½•”•ª‚ğƒNƒŠƒA‚µ‚Ä‚â‚é
-			//ˆÓ–¡‚ª‚í‚©‚ç‚È‚¢ê‡‚Í‚Æ‚è‚ ‚¦‚¸‚±‚±‚Ìop“à‚ğ‚Ü‚é‚²‚ÆƒRƒƒ“ƒgƒAƒEƒg‚µ‚Ä‚İ‚ê‚Î•ª‚©‚é
+			//2æ®µç›®ä»¥é™ã®ã©ã‚“ã¡ã‚‡ã†ã§ã¯æœ€å¾Œã®ã‚¢ãƒ‹ãƒ¡ãŒä¸€ãƒ©ã‚¤ãƒ³æ®‹ã£ãŸã‚„ã¤ãªã®ã§ã€
+			//å‰ã®ã©ã‚“ã¡ã‚‡ã†ã®æ®‹ã£ãŸéƒ¨åˆ†ã‚’ã‚¯ãƒªã‚¢ã—ã¦ã‚„ã‚‹
+			//æ„å‘³ãŒã‚ã‹ã‚‰ãªã„å ´åˆã¯ã¨ã‚Šã‚ãˆãšã“ã“ã®ï½›ï½å†…ã‚’ã¾ã‚‹ã”ã¨ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã¦ã¿ã‚Œã°åˆ†ã‹ã‚‹
 			{
 				if(du->anm_line > 0 && du->anm_no == 0){
 					dest_scrn = &scrn_buf[32 * DonchouAnmLineData[du->anm_line - 1]];
 					for(s = 0; s < 32; s++){
-						dest_scrn[s] &= 0xfc00;		//ƒLƒƒƒ‰ƒNƒ^No‚Ì‚İƒNƒŠƒA
+						dest_scrn[s] &= 0xfc00;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã®ã¿ã‚¯ãƒªã‚¢
 					}
 				}
 			}
@@ -447,12 +447,12 @@ static void DOTCB_DonchouUp(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‚Ç‚ñ‚¿‚å‚¤‰º‚°‚é
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã©ã‚“ã¡ã‚‡ã†ä¸‹ã’ã‚‹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_DonchouDown(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -466,11 +466,11 @@ static int Request_DonchouDown(CONTEST_ORDER_WORK *cow, void *syswork, int order
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‚Ç‚ñ‚¿‚å‚¤‰º‚°‚é
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã©ã‚“ã¡ã‚‡ã†ä¸‹ã’ã‚‹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_DonchouDown(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -493,10 +493,10 @@ static void Recieve_DonchouDown(CONTEST_ORDER_WORK *cow, void *syswork, const CO
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚Ç‚ñ‚¿‚å‚¤‚ğ‰º‚°‚é
+ * @brief   ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸‹ã’ã‚‹
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DOLOCAL_DONCHOU_DOWN\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DOLOCAL_DONCHOU_DOWNæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DOTCB_DonchouDown(TCB_PTR tcb, void *work)
@@ -505,7 +505,7 @@ static void DOTCB_DonchouDown(TCB_PTR tcb, void *work)
 	
 	switch(dd->seq){
 	case 0:
-		//ƒAƒjƒƒEƒFƒCƒg
+		//ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 		if(dd->anm_dansa_wait > 0){
 			dd->anm_dansa_wait--;
 			break;
@@ -516,7 +516,7 @@ static void DOTCB_DonchouDown(TCB_PTR tcb, void *work)
 		}
 		dd->anm_wait = DONCHOU_ANM_WAIT;
 		
-		//ƒAƒjƒ‘‚«Š·‚¦
+		//ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆ
 		{
 			u16 *scrn_buf, *dest_scrn;
 			int x, y, pos_x, s, base_charno;
@@ -533,23 +533,23 @@ static void DOTCB_DonchouDown(TCB_PTR tcb, void *work)
 				pos_x = 0;
 				for(s = 0; s < 32 / DONCHOU_ANM_DATA_X_LEN; s++){
 					for(x = 0; x < DONCHOU_ANM_DATA_X_LEN; x++){
-						dest_scrn[pos_x + x] &= 0xfc00;		//ƒLƒƒƒ‰ƒNƒ^No‚Ì‚İƒNƒŠƒA
+						dest_scrn[pos_x + x] &= 0xfc00;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã®ã¿ã‚¯ãƒªã‚¢
 						dest_scrn[pos_x + x] |= base_charno + x;
 					}
 					pos_x += DONCHOU_ANM_DATA_X_LEN;
 				}
 			}
 			
-			//ˆê”Ô‰º‚Ìƒ‰ƒCƒ“ˆÈŠO‚ÍÅŒã‚Ü‚Å‰º‚ª‚Á‚½•”•ª‚ÌƒAƒjƒ‚ª”²‚«‚Â‚«‚Ì‚‚ê–‹‚È‚Ì‚ÅA
-			//Ÿ‚Ì’i‚ÌƒAƒjƒ‚ªÀs‚³‚ê‚½ƒ^ƒCƒ~ƒ“ƒO‚Å”²‚«‚È‚µ‚ÌƒAƒjƒ‚É•Ï‚¦‚Ä‚â‚é
-			//ˆÓ–¡‚ª‚í‚©‚ç‚È‚¢ê‡‚Í‚Æ‚è‚ ‚¦‚¸‚±‚±‚Ìop“à‚ğ‚Ü‚é‚²‚ÆƒRƒƒ“ƒgƒAƒEƒg‚µ‚Ä‚İ‚ê‚Î•ª‚©‚é
+			//ä¸€ç•ªä¸‹ã®ãƒ©ã‚¤ãƒ³ä»¥å¤–ã¯æœ€å¾Œã¾ã§ä¸‹ãŒã£ãŸéƒ¨åˆ†ã®ã‚¢ãƒ‹ãƒ¡ãŒæŠœãã¤ãã®å‚ã‚Œå¹•ãªã®ã§ã€
+			//æ¬¡ã®æ®µã®ã‚¢ãƒ‹ãƒ¡ãŒå®Ÿè¡Œã•ã‚ŒãŸã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§æŠœããªã—ã®ã‚¢ãƒ‹ãƒ¡ã«å¤‰ãˆã¦ã‚„ã‚‹
+			//æ„å‘³ãŒã‚ã‹ã‚‰ãªã„å ´åˆã¯ã¨ã‚Šã‚ãˆãšã“ã“ã®ï½›ï½å†…ã‚’ã¾ã‚‹ã”ã¨ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã¦ã¿ã‚Œã°åˆ†ã‹ã‚‹
 			{
 				if(dd->anm_line > 0 && dd->anm_no == 0){
 					base_line = DonchouAnmLineData[NELEMS(DonchouAnmLineData) - 1 - dd->anm_line + 1];
 					base_line += DONCHOU_ANM_DATA_Y_LEN - 1;
 					dest_scrn = &scrn_buf[base_line * 32];
 					for(s = 0; s < 32; s++){
-						dest_scrn[s] &= 0xfc00;		//ƒLƒƒƒ‰ƒNƒ^No‚Ì‚İƒNƒŠƒA
+						dest_scrn[s] &= 0xfc00;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã®ã¿ã‚¯ãƒªã‚¢
 						dest_scrn[s] |= DONCHOU_NUKINASHI_MAKU + (s % DONCHOU_ANM_DATA_X_LEN);
 					}
 				}
@@ -583,12 +583,12 @@ static void DOTCB_DonchouDown(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒg
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_OpeningEff(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -602,11 +602,11 @@ static int Request_OpeningEff(CONTEST_ORDER_WORK *cow, void *syswork, int order_
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒg
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_OpeningEff(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -626,10 +626,10 @@ static void Recieve_OpeningEff(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒg
+ * @brief   ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DOLOCAL_OPENING_EFF\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DOLOCAL_OPENING_EFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DOTCB_OpeningEff(TCB_PTR tcb, void *work)
@@ -647,7 +647,7 @@ static void DOTCB_OpeningEff(TCB_PTR tcb, void *work)
 		}
 		break;
 	case 2:
-		G2_BlendNone();		//ƒn[ƒhƒtƒF[ƒhOFF
+		G2_BlendNone();		//ãƒãƒ¼ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰OFF
 		
 		DT_BGAlphaDefaultBlendModeSet();
 		DT_ShadowEnableSet(&oe->dpw->sys, CATS_ENABLE_TRUE);
@@ -661,7 +661,7 @@ static void DOTCB_OpeningEff(TCB_PTR tcb, void *work)
 			oe->seq++;
 		}
 		break;
-	case 4:		//©•ª‚Ìƒ|ƒPƒ‚ƒ“‚¾‚¯“®‚­
+	case 4:		//è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã ã‘å‹•ã
 		DT_PokeAppealMove(oe->dpw, oe->dpw->consys->c_game.my_breeder_no, &oe->end_flag);
 		oe->seq++;
 		break;
@@ -685,12 +685,12 @@ static void DOTCB_OpeningEff(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ_ƒ“ƒX•”–åI—¹
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€çµ‚äº†
  *
- * @param   vpw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_DanceExit(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -704,11 +704,11 @@ static int Request_DanceExit(CONTEST_ORDER_WORK *cow, void *syswork, int order_n
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ_ƒ“ƒX•”–åI—¹
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€çµ‚äº†
  *
- * @param   dpw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_DanceExit(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -722,7 +722,7 @@ static void Recieve_DanceExit(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 		dpw->consys->actin_sort[i] = dep->actin_sort[i];
 	}
 	
-	//•Ô–‚ğ•Ô‚·	ƒoƒbƒtƒ@‚Í“Á‚É“n‚·‚à‚Ì‚ª‚È‚¢‚Ì‚ÅNULLw’è
+	//è¿”äº‹ã‚’è¿”ã™	ãƒãƒƒãƒ•ã‚¡ã¯ç‰¹ã«æ¸¡ã™ã‚‚ã®ãŒãªã„ã®ã§NULLæŒ‡å®š
 	if(ConTool_ServerMineCheck(dpw->consys) == FALSE){
 		CO_ANSWER_TransmitBufferSet(cow, req_head, NULL, 0);
 	}
@@ -730,19 +730,19 @@ static void Recieve_DanceExit(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 
 
 //==============================================================================
-//	ƒƒCƒ“ƒ_ƒ“ƒX
+//	ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹
 //==============================================================================
 //==============================================================================
 //	
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒƒCƒ“ƒ_ƒ“ƒX
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_Dancing(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -757,11 +757,11 @@ static int Request_Dancing(CONTEST_ORDER_WORK *cow, void *syswork, int order_no,
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒƒCƒ“ƒ_ƒ“ƒX
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_Dancing(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -783,7 +783,7 @@ static void Recieve_Dancing(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER
 	
 #ifdef PM_DEBUG
 	if(DmatsuWork_DanceRotationOff == 2){
-		md->dap.musicdata.touch_count = 100;	//À¿ƒ^ƒbƒ`§ŒÀ‚È‚µ‚É‚·‚é
+		md->dap.musicdata.touch_count = 100;	//å®Ÿè³ªã‚¿ãƒƒãƒåˆ¶é™ãªã—ã«ã™ã‚‹
 	}
 #endif
 
@@ -797,7 +797,7 @@ static void Recieve_Dancing(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER
 		}
 	}
 
-	{//©•ª‚Ìƒ[ƒe[ƒVƒ‡ƒ“ˆÊ’uæ“¾
+	{//è‡ªåˆ†ã®ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä½ç½®å–å¾—
 		for(rotation_pos = 0; rotation_pos < BREEDER_MAX; rotation_pos++){
 			if(md->dap.breeder_rotation[rotation_pos] ==md->dpw->consys->c_game.my_breeder_no){
 				md->dpw->sys.my_dancing_rotation_pos = rotation_pos;
@@ -808,10 +808,10 @@ static void Recieve_Dancing(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER
 	
 	FumenCounterInit(dpw);
 	
-	//AIƒ^ƒXƒN¶¬(’ÊM‚Å‚Ì’x‰„‚ğl—¶‚µ‚ÄAI‚ÍAI”Ô†‚ÆAI—p‚Ìƒ‰ƒ“ƒ_ƒ€‚Ìí‚¾‚¯“¯Šú‚³‚¹‚Ä
-	//Šeƒ[ƒJƒ‹‚ÅŒvZ‚Ís‚¤)
+	//AIã‚¿ã‚¹ã‚¯ç”Ÿæˆ(é€šä¿¡ã§ã®é…å»¶ã‚’è€ƒæ…®ã—ã¦AIã¯AIç•ªå·ã¨AIç”¨ã®ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã ã‘åŒæœŸã•ã›ã¦
+	//å„ãƒ­ãƒ¼ã‚«ãƒ«ã§è¨ˆç®—ã¯è¡Œã†)
 	for(i = dpw->consys->c_game.player_num; i < BREEDER_MAX; i++){
-		{//ƒ[ƒe[ƒVƒ‡ƒ“ˆÊ’uæ“¾
+		{//ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä½ç½®å–å¾—
 			for(rotation_pos = 0; rotation_pos < BREEDER_MAX; rotation_pos++){
 				if(md->dap.breeder_rotation[rotation_pos] == i){
 					break;
@@ -823,16 +823,16 @@ static void Recieve_Dancing(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER
 	}
 }
 
-///ƒƒCƒ“ƒ_ƒ“ƒT[‚ÌƒtƒŒ[ƒ€“à‚©Šm”F(TRUE‚¾‚ÆƒƒCƒ“ƒ_ƒ“ƒT[ƒtƒŒ[ƒ€“à)
+///ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®ãƒ•ãƒ¬ãƒ¼ãƒ å†…ã‹ç¢ºèª(TRUEã ã¨ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ å†…)
 #define MAIN_DANCER_FRAME_CHECK(frame, all_tempo_frame)		(frame < (all_tempo_frame >> 1))
-///ƒoƒbƒNƒ_ƒ“ƒT[‚ÌƒtƒŒ[ƒ€“à‚©Šm”F(TRUE‚¾‚ÆƒoƒbƒNƒ_ƒ“ƒT[ƒtƒŒ[ƒ€“à)
+///ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®ãƒ•ãƒ¬ãƒ¼ãƒ å†…ã‹ç¢ºèª(TRUEã ã¨ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ å†…)
 #define BACK_DANCER_FRAME_CHECK(frame, all_tempo_frame)		(frame >= (all_tempo_frame >> 1))
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXÀsƒpƒ‰ƒ[ƒ^‘—Mƒ^ƒXƒN‚ğ¶¬‚µ‚Ü‚·
- * @param   ai			TRUE=AIAFALSE=ƒvƒŒƒCƒ„[‘€ì
- * @retval  ¶¬‚µ‚½‘—Mƒ^ƒXƒNƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ€ãƒ³ã‚¹å®Ÿè¡Œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€ä¿¡ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã—ã¾ã™
+ * @param   ai			TRUE=AIã€FALSE=ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ“ä½œ
+ * @retval  ç”Ÿæˆã—ãŸé€ä¿¡ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static DANCING_SEND_WORK * DancingParamSendTaskSet(DANCE_PROC_WORK *dpw, int ai)
@@ -844,8 +844,8 @@ static DANCING_SEND_WORK * DancingParamSendTaskSet(DANCE_PROC_WORK *dpw, int ai)
 	sendwork->dpw = dpw;
 	sendwork->ai = ai;
 	
-	//”ñ’ÊM‚Ì‚Å‚àAƒƒCƒ“ƒ_ƒ“ƒT[‚Ìƒ_ƒ“ƒX—š—ğXVƒ^ƒCƒ~ƒ“ƒO‚ğŒÂX‚ÌƒNƒ‰ƒCƒAƒ“ƒg‚Å‚à
-	//“¯‚¶‚É‚·‚é‚½‚ßAOrderŒn‚ª‘S‚ÄI‚í‚Á‚Ä‚©‚çÀs‚³‚ê‚éƒ^ƒXƒN‚Åƒpƒ‰ƒ[ƒ^‚Ì‘—M‚ğ‚·‚é
+	//éé€šä¿¡ã®æ™‚ã§ã‚‚ã€ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®ãƒ€ãƒ³ã‚¹å±¥æ­´æ›´æ–°ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’å€‹ã€…ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã§ã‚‚
+	//åŒã˜ã«ã™ã‚‹ãŸã‚ã€Orderç³»ãŒå…¨ã¦çµ‚ã‚ã£ã¦ã‹ã‚‰å®Ÿè¡Œã•ã‚Œã‚‹ã‚¿ã‚¹ã‚¯ã§ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®é€ä¿¡ã‚’ã™ã‚‹
 	sendwork->tcb = TCB_Add(DancingParamSendTaskMain, sendwork, TCBPRI_DANCE_DANCING_PARAM_SEND);
 	
 	return sendwork;
@@ -853,8 +853,8 @@ static DANCING_SEND_WORK * DancingParamSendTaskSet(DANCE_PROC_WORK *dpw, int ai)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXÀsƒpƒ‰ƒ[ƒ^‘—Mƒ^ƒXƒN‚ğíœ‚µ‚Ü‚·
- * @param   sendwork		‘—Mƒ^ƒXƒNƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ€ãƒ³ã‚¹å®Ÿè¡Œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€ä¿¡ã‚¿ã‚¹ã‚¯ã‚’å‰Šé™¤ã—ã¾ã™
+ * @param   sendwork		é€ä¿¡ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DancingParamSendTaskFree(DANCING_SEND_WORK *sendwork)
@@ -865,9 +865,9 @@ static void DancingParamSendTaskFree(DANCING_SEND_WORK *sendwork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXÀsƒpƒ‰ƒ[ƒ^‘—Mƒ^ƒXƒN‚ğ¶¬‚µ‚Ü‚·
- * @param   param		ƒ_ƒ“ƒXÀsƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  ¶¬‚µ‚½‘—Mƒ^ƒXƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ€ãƒ³ã‚¹å®Ÿè¡Œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€ä¿¡ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã—ã¾ã™
+ * @param   param		ãƒ€ãƒ³ã‚¹å®Ÿè¡Œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  ç”Ÿæˆã—ãŸé€ä¿¡ã‚¿ã‚¹ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void DancingParamSendReqSet(DANCING_SEND_WORK *sendwork, const DANCING_PARAM *param)
@@ -878,10 +878,10 @@ void DancingParamSendReqSet(DANCING_SEND_WORK *sendwork, const DANCING_PARAM *pa
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXÀsƒpƒ‰ƒ[ƒ^‘—Mƒ^ƒXƒNƒƒCƒ“ˆ—
+ * @brief   ãƒ€ãƒ³ã‚¹å®Ÿè¡Œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€ä¿¡ã‚¿ã‚¹ã‚¯ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DANCING_SEND_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DANCING_SEND_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DancingParamSendTaskMain(TCB_PTR tcb, void *work)
@@ -894,14 +894,14 @@ static void DancingParamSendTaskMain(TCB_PTR tcb, void *work)
 	
 	if(sendwork->dpw->consys->sio_flag == FALSE || sendwork->ai == TRUE){
 		DT_DancingParamRecieve(sendwork->dpw, &sendwork->dancing_param);
-		OS_TPrintf("ƒ_ƒ“ƒXÀs“®ìƒf[ƒ^‘—MF‘—MƒuƒŠ[ƒ_[=%d\n", 
+		OS_TPrintf("ãƒ€ãƒ³ã‚¹å®Ÿè¡Œå‹•ä½œãƒ‡ãƒ¼ã‚¿é€ä¿¡ï¼šé€ä¿¡ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼=%d\n", 
 			sendwork->dancing_param.breeder_no);
 		
 		sendwork->req = FALSE;
 	}
 	else{
 		if(CommSendFixSizeData(CC_DANCE_DATA, &sendwork->dancing_param) == TRUE){
-			OS_TPrintf("ƒ_ƒ“ƒXÀs“®ìƒf[ƒ^‘—MF‘—MƒuƒŠ[ƒ_[=%d\n", 
+			OS_TPrintf("ãƒ€ãƒ³ã‚¹å®Ÿè¡Œå‹•ä½œãƒ‡ãƒ¼ã‚¿é€ä¿¡ï¼šé€ä¿¡ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼=%d\n", 
 				sendwork->dancing_param.breeder_no);
 			
 			sendwork->req = FALSE;
@@ -911,10 +911,10 @@ static void DancingParamSendTaskMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ_ƒ“ƒX(©•ª‚ª—x‚éê‡)
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹(è‡ªåˆ†ãŒè¸Šã‚‹å ´åˆ)
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DOLOCAL_MAINDANCE\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DOLOCAL_MAINDANCEæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DOTCB_Dancing(TCB_PTR tcb, void *work)
@@ -958,7 +958,7 @@ static void DOTCB_Dancing(TCB_PTR tcb, void *work)
 		DT_BGAlphaEffectSet(md->dpw, DANCE_BGALPHA_TYPE_NULL);
 		DT_FumenFlashTaskSet(md->dpw);
 		
-		//‚Ç‚±‚Åƒ_ƒ“ƒX‚·‚é‚Ì‚©‚ğƒpƒlƒ‹ƒƒbƒZ[ƒW‚Å•\¦
+		//ã©ã“ã§ãƒ€ãƒ³ã‚¹ã™ã‚‹ã®ã‹ã‚’ãƒ‘ãƒãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã§è¡¨ç¤º
 		{
 			DTAG_PARAM tagpara;
 			tagpara.num = md->dap.musicdata.touch_count;
@@ -988,15 +988,15 @@ static void DOTCB_Dancing(TCB_PTR tcb, void *work)
 			
 			DT_DancerLightEffectSet(md->dpw, md->dap.now_breeder, DANCER_MAIN);
 			
-			OS_TPrintf("‚PT–Úcount = %d\n", md->dpw->music_vcount_start);
+			OS_TPrintf("ï¼‘é€±ç›®count = %d\n", md->dpw->music_vcount_start);
 			md->seq++;
 		}
 		else{
-			OS_TPrintf("ŠJn‚Ü‚Å‚Ìc‚èƒtƒŒ[ƒ€=%d\n", DT_DancingStartFrameCheck(md->dpw, &(md->dap.musicdata), md->dap.now_count));
+			OS_TPrintf("é–‹å§‹ã¾ã§ã®æ®‹ã‚Šãƒ•ãƒ¬ãƒ¼ãƒ =%d\n", DT_DancingStartFrameCheck(md->dpw, &(md->dap.musicdata), md->dap.now_count));
 		}
 		break;
 	case 2:
-		{//‹Èisƒo[XV
+		{//æ›²é€²è¡Œãƒãƒ¼æ›´æ–°
 			DT_MusicBarAnimeUpdateFrame(&md->dpw->sys, 
 				md->dpw->music_vcount - md->dpw->music_vcount_start, md->dap.all_tempo_frame,
 				md->dpw->d_game.rhythm_no);
@@ -1008,17 +1008,17 @@ static void DOTCB_Dancing(TCB_PTR tcb, void *work)
 				md->dpw->d_game.rhythm_no);
 		}
 		
-		{//‹Èisƒo[‚Ì“’B‚âƒ‹[ƒv‚ğŠm”F
+		{//æ›²é€²è¡Œãƒãƒ¼ã®åˆ°é”ã‚„ãƒ«ãƒ¼ãƒ—ã‚’ç¢ºèª
 			if(frame >= md->dap.all_tempo_frame){
 				md->loop++;
 				md->dpw->music_vcount_start = md->dpw->music_vcount;
 				md->flash_flag = 0;
 				md->back_dancer_light_flag = 0;
 				
-				//ƒJƒEƒ“ƒ^ƒNƒŠƒA
+				//ã‚«ã‚¦ãƒ³ã‚¿ã‚¯ãƒªã‚¢
 				FumenCounterInit(md->dpw);
 
-				//ƒ^ƒbƒ`‰ñ”ƒŠƒZƒbƒg
+				//ã‚¿ãƒƒãƒå›æ•°ãƒªã‚»ãƒƒãƒˆ
 				{
 					int i;
 
@@ -1028,7 +1028,7 @@ static void DOTCB_Dancing(TCB_PTR tcb, void *work)
 					}
 				}
 				
-				OS_TPrintf("2T–Úcount = %d\n", md->dpw->music_vcount_start);
+				OS_TPrintf("2é€±ç›®count = %d\n", md->dpw->music_vcount_start);
 				DT_OnpuActorDelAll(&md->dpw->sys);
 				DT_MainDancerRecordInit(md->dpw);
 				DancdAI_MainDancerCalc(md->dpw, &md->aiwork[md->dap.now_breeder], 
@@ -1054,11 +1054,11 @@ static void DOTCB_Dancing(TCB_PTR tcb, void *work)
 			}
 		}
 		
-		{//ƒ[ƒe[ƒVƒ‡ƒ“ˆÊ’uæ“¾
+		{//ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä½ç½®å–å¾—
 			rotation_pos = md->dpw->sys.my_dancing_rotation_pos;
 		}
 		
-		{//ƒ^ƒbƒ`ƒ`ƒFƒbƒN
+		{//ã‚¿ãƒƒãƒãƒã‚§ãƒƒã‚¯
 			DANCING_PARAM dancing_param;
 			int now_frame_dancer;
 			
@@ -1070,12 +1070,12 @@ static void DOTCB_Dancing(TCB_PTR tcb, void *work)
 			}
 			
 			if(dancer_type == DANCER_MAIN){
-				//ƒƒCƒ“ƒ_ƒ“ƒT[
+				//ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼
 				//if(frame < md->dap.all_tempo_frame / 2){
 				if(now_frame_dancer == DANCER_MAIN
 						&& md->touch_count < md->dap.musicdata.touch_count
 						&& (frame < md->dap.all_tempo_frame / 2 - (md->dap.one_tempo_frame / 2 / 2)/ONE_TEMPO_CALC_DECIMAL)){
-						   //ªƒ^ƒbƒ`‚µ‚½ƒoƒbƒNƒ_ƒ“ƒT[‚Ì•ˆ–Ê‚É’B‚·‚éƒ^ƒCƒ~ƒ“ƒO‚Å‚Íƒ^ƒbƒ`–³Œø
+						   //â†‘ã‚¿ãƒƒãƒã—ãŸæ™‚ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®è­œé¢ã«é”ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ã¯ã‚¿ãƒƒãƒç„¡åŠ¹
 					DanceTouchCheck(&md->dtw, &tp_ret, FALSE, FALSE);
 				}
 				else{
@@ -1093,12 +1093,12 @@ static void DOTCB_Dancing(TCB_PTR tcb, void *work)
 				}
 			}
 			else{
-				//ƒoƒbƒNƒ_ƒ“ƒT[
+				//ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼
 				//if(frame >= md->dap.all_tempo_frame / 2){
 				if(now_frame_dancer == DANCER_BACK
 						&& md->touch_count < md->dap.musicdata.touch_count
 						&& (frame < md->dap.all_tempo_frame - (md->dap.one_tempo_frame / 2 / 2)/ONE_TEMPO_CALC_DECIMAL)){
-						   //ªƒ^ƒbƒ`‚µ‚½ƒoƒbƒNƒ_ƒ“ƒT[‚Ì•ˆ–Ê‚É’B‚·‚éƒ^ƒCƒ~ƒ“ƒO‚Å‚Íƒ^ƒbƒ`–³Œø
+						   //â†‘ã‚¿ãƒƒãƒã—ãŸæ™‚ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®è­œé¢ã«é”ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ã¯ã‚¿ãƒƒãƒç„¡åŠ¹
 					DanceTouchCheck(&md->dtw, &tp_ret, FALSE, FALSE);
 					if(md->flash_flag == 0){
 						DT_FumenFlashEffectSet(md->dpw, dancer_type);
@@ -1121,7 +1121,7 @@ static void DOTCB_Dancing(TCB_PTR tcb, void *work)
 			}
 		}
 		
-		//AIŒvZ
+		//AIè¨ˆç®—
 		{
 			int i;
 			for(i = md->dpw->consys->c_game.player_num; i < BREEDER_MAX; i++){
@@ -1131,13 +1131,13 @@ static void DOTCB_Dancing(TCB_PTR tcb, void *work)
 			}
 		}
 
-		//ƒ‰ƒCƒgİ’è(ƒoƒbƒNƒ_ƒ“ƒT[)
+		//ãƒ©ã‚¤ãƒˆè¨­å®š(ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼)
 		if(now_frame_dancer == DANCER_BACK && md->back_dancer_light_flag == 0){
 			DT_DancerLightEffectSet(md->dpw, md->dap.now_breeder, DANCER_BACK);
 			md->back_dancer_light_flag++;
 		}
 		
-		//ƒoƒbƒNƒ_ƒ“ƒT[‚Ìê‡AƒƒCƒ“ƒ_ƒ“ƒT[‚Ì—š—ğ‚ğQÆ‚µ‚Ä”¼“§–¾BGƒZƒbƒg
+		//ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®å ´åˆã€ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®å±¥æ­´ã‚’å‚ç…§ã—ã¦åŠé€æ˜BGã‚»ãƒƒãƒˆ
 		//if(dancer_type == DANCER_BACK && now_frame_dancer == DANCER_BACK){
 		if(now_frame_dancer == DANCER_BACK){
 			DT_BGAlphaEffectSet_MainDancerHistory(md->dpw, frame);
@@ -1183,14 +1183,14 @@ static void DOTCB_Dancing(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX‘€ì‚Å‚Ìƒ^ƒbƒ`”½‰ƒ`ƒFƒbƒN
+ * @brief   ãƒ€ãƒ³ã‚¹æ“ä½œã§ã®ã‚¿ãƒƒãƒåå¿œãƒã‚§ãƒƒã‚¯
  *
  * @param   dtw			
- * @param   tp_ret		ƒ^ƒbƒ`”½‰Œ‹‰Ê‘ã“üæ
- * @param   check		TRUE:‘Ò‹@ó‘Ô‚©ƒ`ƒFƒbƒN‚·‚é(ƒ^ƒbƒ`‚É‚Í”½‰‚³‚¹‚È‚¢)
- * @param   no_touch_bg	TRUE:ƒ^ƒbƒ`o—ˆ‚È‚¢‚ÌBGó‘Ô‚É‚·‚é(‘Ò‹@ó‘Ô‚É‚È‚Á‚Ä‚¢‚é‚Ì‚İ—LŒø)
+ * @param   tp_ret		ã‚¿ãƒƒãƒåå¿œçµæœä»£å…¥å…ˆ
+ * @param   check		TRUE:å¾…æ©ŸçŠ¶æ…‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹(ã‚¿ãƒƒãƒã«ã¯åå¿œã•ã›ãªã„)
+ * @param   no_touch_bg	TRUE:ã‚¿ãƒƒãƒå‡ºæ¥ãªã„æ™‚ã®BGçŠ¶æ…‹ã«ã™ã‚‹(å¾…æ©ŸçŠ¶æ…‹ã«ãªã£ã¦ã„ã‚‹æ™‚ã®ã¿æœ‰åŠ¹)
  *
- * @retval  TRUE:‘Ò‹@’†B@FALSE:ˆ—’†(ƒGƒtƒFƒNƒg’†‚È‚Ç)
+ * @retval  TRUE:å¾…æ©Ÿä¸­ã€‚ã€€FALSE:å‡¦ç†ä¸­(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­ãªã©)
  */
 //--------------------------------------------------------------
 static int DanceTouchCheck(DANCE_TOUCH_WORK *dtw, int *tp_ret, int check, int no_touch_bg)
@@ -1222,7 +1222,7 @@ static int DanceTouchCheck(DANCE_TOUCH_WORK *dtw, int *tp_ret, int check, int no
 	case 1:
 		if(check == TRUE || dtw->touch_wait > 0){
 			taiki = TRUE;
-			break;		//ƒ`ƒFƒbƒN‚Ì‚Í‚ ‚ç‚½‚Èƒ^ƒbƒ`‚ğ‚³‚¹‚È‚¢
+			break;		//ãƒã‚§ãƒƒã‚¯ã®æ™‚ã¯ã‚ã‚‰ãŸãªã‚¿ãƒƒãƒã‚’ã•ã›ãªã„
 		}
 		
 		*tp_ret = DINPUT_TouchCheck(dtw->dpw->dip);
@@ -1259,7 +1259,7 @@ static int DanceTouchCheck(DANCE_TOUCH_WORK *dtw, int *tp_ret, int check, int no
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê‚ğƒ_ƒ“ƒXƒ^ƒCƒv‚É•ÏŠ·‚·‚é
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæœã‚’ãƒ€ãƒ³ã‚¹ã‚¿ã‚¤ãƒ—ã«å¤‰æ›ã™ã‚‹
  * @param   dance_tp		DANCE_TP_???
  * @retval  DANCE_STEP_???
  */
@@ -1282,7 +1282,7 @@ int DanceTP_to_DanceStep(int dance_tp)
 		dance_step = DANCE_STEP_RIGHT;
 		break;
 	default:
-		GF_ASSERT(0 && "–³Œø‚ÈƒŠƒAƒNƒVƒ‡ƒ“‚Å‚·\n");
+		GF_ASSERT(0 && "ç„¡åŠ¹ãªãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã§ã™\n");
 		return 0;
 	}
 	return dance_step;
@@ -1290,7 +1290,7 @@ int DanceTP_to_DanceStep(int dance_tp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê‚ğƒ_ƒ“ƒXƒ^ƒCƒv‚É•ÏŠ·‚·‚é
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæœã‚’ãƒ€ãƒ³ã‚¹ã‚¿ã‚¤ãƒ—ã«å¤‰æ›ã™ã‚‹
  * @param   dance_tp		DANCE_STEP_???
  * @retval  DANCE_TP_???
  */
@@ -1313,7 +1313,7 @@ int DanceStep_to_TP(int dance_step)
 		tp = DANCE_TP_RIGHT;
 		break;
 	default:
-		GF_ASSERT(0 && "–³Œø‚ÈƒŠƒAƒNƒVƒ‡ƒ“‚Å‚·\n");
+		GF_ASSERT(0 && "ç„¡åŠ¹ãªãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã§ã™\n");
 		return 0;
 	}
 	return tp;
@@ -1321,12 +1321,12 @@ int DanceStep_to_TP(int dance_step)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX‚Ì‚¸‚ê‚©‚ç•]‰¿‚ğæ“¾‚·‚é
+ * @brief   ãƒ€ãƒ³ã‚¹ã®ãšã‚Œã‹ã‚‰è©•ä¾¡ã‚’å–å¾—ã™ã‚‹
  *
- * @param   lag				ƒ_ƒ“ƒX‚Ì‚¸‚ê(”q‚©‚ç‰½ƒtƒŒ[ƒ€‚¸‚ê‚Ä‚¢‚é‚©)
- * @param   dld				‚¸‚ê”äŠrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   ret_review		•]‰¿ƒ^ƒCƒv‘ã“üæ
- * @param   ret_lag			ƒ‰ƒOƒ^ƒCƒv‘ã“üæ
+ * @param   lag				ãƒ€ãƒ³ã‚¹ã®ãšã‚Œ(æ‹å­ã‹ã‚‰ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ãšã‚Œã¦ã„ã‚‹ã‹)
+ * @param   dld				ãšã‚Œæ¯”è¼ƒãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   ret_review		è©•ä¾¡ã‚¿ã‚¤ãƒ—ä»£å…¥å…ˆ
+ * @param   ret_lag			ãƒ©ã‚°ã‚¿ã‚¤ãƒ—ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void DanceLagReviewTypeGet(int lag, const DANCE_LAG_DATA *dld, 
@@ -1356,13 +1356,13 @@ static void DanceLagReviewTypeGet(int lag, const DANCE_LAG_DATA *dld,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX‚µ‚½ƒtƒŒ[ƒ€‚©‚ç‘ÎÛ‚Æ‚È‚é¬ß‚ÆA
- *          ‚»‚Ì¬ß’š“x‚ÌƒtƒŒ[ƒ€‚©‚ç‰½ƒtƒŒ[ƒ€‚¸‚ê‚Ä‚¢‚é‚©æ“¾
+ * @brief   ãƒ€ãƒ³ã‚¹ã—ãŸãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰å¯¾è±¡ã¨ãªã‚‹å°ç¯€ã¨ã€
+ *          ãã®å°ç¯€ä¸åº¦ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ãšã‚Œã¦ã„ã‚‹ã‹å–å¾—
  *
- * @param   frame				ƒ_ƒ“ƒX‚ğÀs‚µ‚½uŠÔ‚ÌƒtƒŒ[ƒ€
- * @param   one_tempo_frame		1¬ß‚É‚©‚©‚éƒtƒŒ[ƒ€”
- * @param   ret_lag				‚¸‚ê‘ã“üæ(‰½ƒtƒŒ[ƒ€”q‚©‚ç‚¸‚ê‚Ä‚¢‚é‚©)
- * @param   ret_beat			‘ÎÛ‚Æ‚È‚Á‚½¬ß‘ã“üæ
+ * @param   frame				ãƒ€ãƒ³ã‚¹ã‚’å®Ÿè¡Œã—ãŸç¬é–“ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param   one_tempo_frame		1å°ç¯€ã«ã‹ã‹ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+ * @param   ret_lag				ãšã‚Œä»£å…¥å…ˆ(ä½•ãƒ•ãƒ¬ãƒ¼ãƒ æ‹å­ã‹ã‚‰ãšã‚Œã¦ã„ã‚‹ã‹)
+ * @param   ret_beat			å¯¾è±¡ã¨ãªã£ãŸå°ç¯€ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void DancerLagBeatCheck(u32 frame, u32 one_tempo_frame, u32 *ret_lag, u32 *ret_beat)
@@ -1374,7 +1374,7 @@ static void DancerLagBeatCheck(u32 frame, u32 one_tempo_frame, u32 *ret_lag, u32
 	s64 calc_frame;
 	
 	hit_frame = frame * ONE_TEMPO_CALC_DECIMAL;
-	half_tempo_frame = one_tempo_frame / 2;	//— ”‚àæ‚é‚½‚ßA1¬ß‚Ì”¼•ª‚É‚·‚é
+	half_tempo_frame = one_tempo_frame / 2;	//è£æ‹ã‚‚å–ã‚‹ãŸã‚ã€1å°ç¯€ã®åŠåˆ†ã«ã™ã‚‹
 	
 	min_frame = 0;
 	hit_beat = 0;
@@ -1384,13 +1384,13 @@ static void DancerLagBeatCheck(u32 frame, u32 one_tempo_frame, u32 *ret_lag, u32
 	}
 	big_frame = check_frame;
 	
-	//¬”‚ğlÌŒÜ“ü‚µ‚Ä³”‰»
+	//å°æ•°ã‚’å››æ¨äº”å…¥ã—ã¦æ­£æ•°åŒ–
 	min_frame = (min_frame + ONE_TEMPO_CALC_DECIMAL / 2) / ONE_TEMPO_CALC_DECIMAL;
 	big_frame = (big_frame + ONE_TEMPO_CALC_DECIMAL / 2) / ONE_TEMPO_CALC_DECIMAL;
 	hit_frame /= ONE_TEMPO_CALC_DECIMAL;
 	
-	//‚¸‚ê‚Ì­‚È‚¢•û‚ğŒvZ‚Ì‘ÎÛ‚Æ‚·‚é
-	calc_frame = hit_frame;	//u32‚Ì‚Ü‚ÜŒvZ‚·‚é‚Æƒ}ƒCƒiƒX‚ªæ‚ê‚È‚¢‚Ì‚Ås64‚ÉˆÚ‚·
+	//ãšã‚Œã®å°‘ãªã„æ–¹ã‚’è¨ˆç®—ã®å¯¾è±¡ã¨ã™ã‚‹
+	calc_frame = hit_frame;	//u32ã®ã¾ã¾è¨ˆç®—ã™ã‚‹ã¨ãƒã‚¤ãƒŠã‚¹ãŒå–ã‚Œãªã„ã®ã§s64ã«ç§»ã™
 	min_lag = MATH_IAbs(calc_frame - min_frame);
 	big_lag = MATH_IAbs(calc_frame - big_frame);
 	if(min_lag <= big_lag){
@@ -1409,20 +1409,20 @@ static void DancerLagBeatCheck(u32 frame, u32 one_tempo_frame, u32 *ret_lag, u32
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒT[‚ªƒ_ƒ“ƒXÀs‚ÌƒŠƒAƒNƒVƒ‡ƒ“ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * @brief   ãƒ€ãƒ³ã‚µãƒ¼ãŒãƒ€ãƒ³ã‚¹å®Ÿè¡Œæ™‚ã®ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param   breeder_no		©•ª‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   reaction		s‚Á‚½ƒ_ƒ“ƒX(DANCE_TP_???)
- * @param   frame			ƒ_ƒ“ƒX‚ğÀs‚µ‚½ƒtƒŒ[ƒ€
- * @param   one_tempo_frame	1¬ß‚É‚©‚©‚éƒtƒŒ[ƒ€”
- * @param   dld				‚¸‚ê”äŠrƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   param			ƒŠƒAƒNƒVƒ‡ƒ“ƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   maindancer_record	ƒ_ƒ“ƒX‚µ‚Ä‚¢‚é‚Ì‚ªƒƒCƒ“ƒ_ƒ“ƒT[‚Ìê‡‚ÍNULLw’è
- *                              ƒoƒbƒNƒ_ƒ“ƒT[‚Ìê‡‚ÍƒƒCƒ“ƒ_ƒ“ƒT[‚Ìƒ_ƒ“ƒX—š—ğ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   rotation_pos	ƒ[ƒe[ƒVƒ‡ƒ“ˆÊ’u
- * @param   touch_count		Œ»İ‚Ü‚Å‚Éƒ_ƒ“ƒX‚µ‚½‰ñ”
- * @param   max_touch		ƒ_ƒ“ƒXo—ˆ‚éÅ‘å”
- * @param   rhythm_no		‰½”q‚©
+ * @param   breeder_no		è‡ªåˆ†ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   reaction		è¡Œã£ãŸãƒ€ãƒ³ã‚¹(DANCE_TP_???)
+ * @param   frame			ãƒ€ãƒ³ã‚¹ã‚’å®Ÿè¡Œã—ãŸãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param   one_tempo_frame	1å°ç¯€ã«ã‹ã‹ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+ * @param   dld				ãšã‚Œæ¯”è¼ƒãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   param			ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   maindancer_record	ãƒ€ãƒ³ã‚¹ã—ã¦ã„ã‚‹ã®ãŒãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®å ´åˆã¯NULLæŒ‡å®š
+ *                              ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®å ´åˆã¯ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®ãƒ€ãƒ³ã‚¹å±¥æ­´ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   rotation_pos	ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä½ç½®
+ * @param   touch_count		ç¾åœ¨ã¾ã§ã«ãƒ€ãƒ³ã‚¹ã—ãŸå›æ•°
+ * @param   max_touch		ãƒ€ãƒ³ã‚¹å‡ºæ¥ã‚‹æœ€å¤§æ•°
+ * @param   rhythm_no		ä½•æ‹å­ã‹
  */
 //--------------------------------------------------------------
 void DancerReactionSet(int breeder_no, int reaction, u32 frame, u32 one_tempo_frame, 
@@ -1434,37 +1434,37 @@ void DancerReactionSet(int breeder_no, int reaction, u32 frame, u32 one_tempo_fr
 	u32 lag, hit_beat, check_beat;
 	u32 main_hit, button_failed = 0;
 	
-	//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê‚©‚çƒ_ƒ“ƒXƒ^ƒCƒv‚ğæ“¾
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæœã‹ã‚‰ãƒ€ãƒ³ã‚¹ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 	dance_step = DanceTP_to_DanceStep(reaction);
 	
-	//ƒ^ƒbƒ`‚µ‚½ƒtƒŒ[ƒ€‚©‚ç‘ÎÛ‚Æ‚È‚é¬ß‚ÆA‚»‚Ì¬ß’š“x‚ÌƒtƒŒ[ƒ€‚©‚ç‰½ƒtƒŒ[ƒ€‚¸‚ê‚Ä‚¢‚é‚©æ“¾
+	//ã‚¿ãƒƒãƒã—ãŸãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰å¯¾è±¡ã¨ãªã‚‹å°ç¯€ã¨ã€ãã®å°ç¯€ä¸åº¦ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ãšã‚Œã¦ã„ã‚‹ã‹å–å¾—
 	DancerLagBeatCheck(frame, one_tempo_frame, &lag, &hit_beat);
-	OS_TPrintf("‘ÎÛ¬ß=%d, ‚¸‚ê=%dƒtƒŒ[ƒ€\n", hit_beat, lag);
+	OS_TPrintf("å¯¾è±¡å°ç¯€=%d, ãšã‚Œ=%dãƒ•ãƒ¬ãƒ¼ãƒ \n", hit_beat, lag);
 	
 	if(maindancer_record != NULL){
 		check_beat = hit_beat - RhythmDataGet(rhythm_no, RHYTHM_IDX_BEAT) / 2;
-		//ƒoƒbƒNƒ_ƒ“ƒT[‚Ìê‡AƒƒCƒ“ƒ_ƒ“ƒT[‚Ìƒ_ƒ“ƒX—š—ğ‚Æ”äŠr‚ğs‚¤
+		//ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®å ´åˆã€ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®ãƒ€ãƒ³ã‚¹å±¥æ­´ã¨æ¯”è¼ƒã‚’è¡Œã†
 		for(main_hit = 0; main_hit < DANCING_RECORD_MAX; main_hit++){
 			if(maindancer_record[main_hit].occ == TRUE 
 					&& maindancer_record[main_hit].hit_beat == check_beat){
-				break;	//¬ß‚ÌƒƒCƒ“ƒ_ƒ“ƒT[‚Ì—š—ğ‚É‚ ‚Á‚½‚Ì‚Å¡‚Ì‚¸‚êƒf[ƒ^‚ğÌ—p
+				break;	//å°ç¯€ã®ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®å±¥æ­´ã«ã‚ã£ãŸã®ã§ä»Šã®ãšã‚Œãƒ‡ãƒ¼ã‚¿ã‚’æ¡ç”¨
 			}
 		}
 		if(main_hit == DANCING_RECORD_MAX){
-			lag = 0xff;	//ƒqƒbƒg‚µ‚½¬ß‚ª‚È‚©‚Á‚½‚Ì‚Å‚¸‚ê‚ğÅ‘å‚É‚·‚é(FAILED•]‰¿‚ğ“¾‚éˆ×)
-			OS_TPrintf("ƒƒCƒ“ƒ_ƒ“ƒT[‚Æƒqƒbƒg‚µ‚È‚©‚Á‚½‚Ì‚Å‚¸‚êÅ‘å\n");
+			lag = 0xff;	//ãƒ’ãƒƒãƒˆã—ãŸå°ç¯€ãŒãªã‹ã£ãŸã®ã§ãšã‚Œã‚’æœ€å¤§ã«ã™ã‚‹(FAILEDè©•ä¾¡ã‚’å¾—ã‚‹ç‚º)
+			OS_TPrintf("ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã¨ãƒ’ãƒƒãƒˆã—ãªã‹ã£ãŸã®ã§ãšã‚Œæœ€å¤§\n");
 		}
 	}
-	//‚¸‚ê‚©‚ç•]‰¿‚ğæ“¾‚·‚é
+	//ãšã‚Œã‹ã‚‰è©•ä¾¡ã‚’å–å¾—ã™ã‚‹
 	DanceLagReviewTypeGet(lag, dld, &review_type, &lag_type);
 	
-	//ƒoƒbƒNƒ_ƒ“ƒT[‚Ìê‡A‚³‚ç‚ÉƒƒCƒ“ƒ_ƒ“ƒT[‚Æ“¯‚¶ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚©ƒ`ƒFƒbƒN
+	//ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®å ´åˆã€ã•ã‚‰ã«ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã¨åŒã˜ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if(maindancer_record != NULL && main_hit != DANCING_RECORD_MAX){
 		switch(review_type){
 		case REVIEW_TYPE_EXCELLENT:
 		case REVIEW_TYPE_GOOD:
 			if(maindancer_record[main_hit].dance_step != dance_step){
-				lag = 0xff;		//ˆá‚¤ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Ì‚Å‚¸‚êÅ‘å
+				lag = 0xff;		//é•ã†ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã®ã§ãšã‚Œæœ€å¤§
 				lag_type = DANCE_LAG_FAILED;
 				review_type = REVIEW_TYPE_FAILED;
 				button_failed = TRUE;
@@ -1473,7 +1473,7 @@ void DancerReactionSet(int breeder_no, int reaction, u32 frame, u32 one_tempo_fr
 		}
 	}
 	
-	//ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	param->breeder_no = breeder_no;
 	param->frame = frame;
 	param->dance_step = dance_step;
@@ -1488,8 +1488,8 @@ void DancerReactionSet(int breeder_no, int reaction, u32 frame, u32 one_tempo_fr
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX‚ğn‚ß‚é‚ÌƒJƒEƒ“ƒ^‰Šú‰»ˆ—
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚’å§‹ã‚ã‚‹æ™‚ã®ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–å‡¦ç†
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void FumenCounterInit(DANCE_PROC_WORK *dpw)
@@ -1506,18 +1506,18 @@ static void FumenCounterInit(DANCE_PROC_WORK *dpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   •Ô–óM(‘—MŒ³)FƒƒCƒ“ƒ_ƒ“ƒX
+ * @brief   è¿”äº‹å—ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹
  *
- * @param   dpw				ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   answer_head		•Ô–ƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   ansdat			óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw				ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   answer_head		è¿”äº‹ãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   ansdat			å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Answer_Dancing(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *answer_head, CO_ANSDAT *ansdat, int net_id)
 {
 	DANCE_PROC_WORK *dpw = syswork;
 	
-	//•Ô–‚ğó‚¯æ‚é‚¾‚¯‚È‚Ì‚Å“Á‚É‚·‚é–‚ª‚È‚¢
+	//è¿”äº‹ã‚’å—ã‘å–ã‚‹ã ã‘ãªã®ã§ç‰¹ã«ã™ã‚‹äº‹ãŒãªã„
 	return;
 }
 
@@ -1527,12 +1527,12 @@ static void Answer_Dancing(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ[ƒe[ƒVƒ‡ƒ“
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_Rotation(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1540,7 +1540,7 @@ static int Request_Rotation(CONTEST_ORDER_WORK *cow, void *syswork, int order_no
 	DANCE_PROC_WORK *dpw = syswork;
 	int bit_no;
 	
-	OS_TPrintf("ƒ[ƒe[ƒVƒ‡ƒ“–½—ß—ˆ‚½\n");
+	OS_TPrintf("ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³å‘½ä»¤æ¥ãŸ\n");
 	bit_no = CO_REQUEST_TransmitBufferSet(cow, CSELECT_ALL, order_no, 
 		work, sizeof(DANCE_ADVANCE_PARAM));
 	return bit_no;
@@ -1548,11 +1548,11 @@ static int Request_Rotation(CONTEST_ORDER_WORK *cow, void *syswork, int order_no
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ[ƒe[ƒVƒ‡ƒ“
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_Rotation(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1574,10 +1574,10 @@ static void Recieve_Rotation(CONTEST_ORDER_WORK *cow, void *syswork, const CORDE
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒ[ƒe[ƒVƒ‡ƒ“
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DOLOCAL_ROTATION\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DOLOCAL_ROTATIONæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DOTCB_Rotation(TCB_PTR tcb, void *work)
@@ -1629,7 +1629,7 @@ static void DOTCB_Rotation(TCB_PTR tcb, void *work)
 		}
 
 	#if 0
-		//Ÿ‚Í©•ª‚ªƒƒCƒ“ƒ_ƒ“ƒT[‚È‚ç‚ÎƒƒbƒZ[ƒW•\¦
+		//æ¬¡ã¯è‡ªåˆ†ãŒãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ãªã‚‰ã°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		if(rt->dap.a_talk_id != A_TALK_DANCE_NULL
 				&& rt->dap.breeder_rotation[1] == rt->dpw->consys->c_game.my_breeder_no){
 			BmpTalkWinWrite(&rt->dpw->sys.win[DANCE_BMPWIN_TALK], WINDOW_TRANS_OFF,
@@ -1638,7 +1638,7 @@ static void DOTCB_Rotation(TCB_PTR tcb, void *work)
 			DT_A_TalkMessageSet(rt->dpw, rt->dap.a_talk_id, &rt->dap.a_talk_tagpara);
 		}
 	#endif
-		//‚Ç‚±‚Åƒ_ƒ“ƒX‚·‚é‚Ì‚©‚ğƒpƒlƒ‹ƒƒbƒZ[ƒW‚Å•\¦
+		//ã©ã“ã§ãƒ€ãƒ³ã‚¹ã™ã‚‹ã®ã‹ã‚’ãƒ‘ãƒãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã§è¡¨ç¤º
 		{
 			DTAG_PARAM tagpara;
 			tagpara.num = rt->dap.musicdata.touch_count;
@@ -1699,15 +1699,15 @@ static void DOTCB_Rotation(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒ[ƒe[ƒVƒ‡ƒ“FŠeƒuƒŠ[ƒ_[“®ì
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ï¼šå„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼å‹•ä½œ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DOLOCAL_ROTATION_BREEDER\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DOLOCAL_ROTATION_BREEDERæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
-///ƒ[ƒe[ƒVƒ‡ƒ“‚·‚éA‚Ç‚ê‚¾‚¯‰æ–ÊŠO‚Éo‚·‚©(ƒƒCƒ“ƒ_ƒ“ƒT[)
+///ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã™ã‚‹æ™‚ã€ã©ã‚Œã ã‘ç”»é¢å¤–ã«å‡ºã™ã‹(ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼)
 #define DANCE_ROTATION_OUT_X_MAIN		(100)
-///ƒ[ƒe[ƒVƒ‡ƒ“‚·‚éA‚Ç‚ê‚¾‚¯‰æ–ÊŠO‚Éo‚·‚©(ƒoƒbƒNƒ_ƒ“ƒT[)
+///ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã™ã‚‹æ™‚ã€ã©ã‚Œã ã‘ç”»é¢å¤–ã«å‡ºã™ã‹(ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼)
 #define DANCE_ROTATION_OUT_X_BACK		(80)
 static void DOTCB_RotationBreeder(TCB_PTR tcb, void *work)
 {
@@ -1787,10 +1787,10 @@ static void DOTCB_RotationBreeder(TCB_PTR tcb, void *work)
 			}
 		}
 		else if(rtb->x < DT_RotationPosGetX(rtb->next_rotation_pos) * 0x100){
-			//ƒvƒ‰ƒ`ƒi‚Åƒ[ƒe[ƒVƒ‡ƒ“ŠJn‘O‚Ìí’“ƒAƒjƒI—¹‘Ò‚¿‚ÅAŠgk‚ÌI—¹‚¾‚¯‘Ò‚Á‚ÄA
-			//À•WˆÚ“®‚Å‚Ì‘Ò‚¿‚Í‚µ‚È‚¢‚æ‚¤‚É‚µ‚½‚Ì‚Å(ƒ^ƒCƒ~ƒ“ƒO‚É‚æ‚Á‚ÄˆÚ“®I—¹‘Ò‚¿‚ÅŸ‚Ìƒ_ƒ“ƒX
-			//‚ªn‚Ü‚é‚Ü‚Å‘Ò‚Âê‡‚ª‚ ‚é)A‚±‚±‚Å‚»‚ÌƒIƒtƒZƒbƒg•ªƒ[ƒe[ƒVƒ‡ƒ“ˆÊ’u‚ğ’Ê‚è‰ß‚¬‚È‚¢
-			//‚æ‚¤‚É•â³‚ğ“ü‚ê‚Ä‚¢‚é 2007.09.26(…) matsuda
+			//ãƒ—ãƒ©ãƒãƒŠã§ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹å‰ã®å¸¸é§ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡ã§ã€æ‹¡ç¸®ã®çµ‚äº†ã ã‘å¾…ã£ã¦ã€
+			//åº§æ¨™ç§»å‹•ã§ã®å¾…ã¡ã¯ã—ãªã„ã‚ˆã†ã«ã—ãŸã®ã§(ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã«ã‚ˆã£ã¦ç§»å‹•çµ‚äº†å¾…ã¡ã§æ¬¡ã®ãƒ€ãƒ³ã‚¹
+			//ãŒå§‹ã¾ã‚‹ã¾ã§å¾…ã¤å ´åˆãŒã‚ã‚‹)ã€ã“ã“ã§ãã®ã‚ªãƒ•ã‚»ãƒƒãƒˆåˆ†ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä½ç½®ã‚’é€šã‚Šéããªã„
+			//ã‚ˆã†ã«è£œæ­£ã‚’å…¥ã‚Œã¦ã„ã‚‹ 2007.09.26(æ°´) matsuda
 			rtb->x = DT_RotationPosGetX(rtb->next_rotation_pos) * 0x100;
 		}
 		
@@ -1823,12 +1823,12 @@ static void DOTCB_RotationBreeder(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ_ƒ“ƒXŠJn‘O
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒ€ãƒ³ã‚¹é–‹å§‹å‰
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_Before(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1843,11 +1843,11 @@ static int Request_Before(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, 
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ_ƒ“ƒXŠJn‘O
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒ€ãƒ³ã‚¹é–‹å§‹å‰
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_Before(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1869,10 +1869,10 @@ static void Recieve_Before(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXŠJn‘O‚És‚¤ˆ—
+ * @brief   ãƒ€ãƒ³ã‚¹é–‹å§‹å‰ã«è¡Œã†å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DOLOCAL_BEFORE\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DOLOCAL_BEFOREæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DOTCB_Before(TCB_PTR tcb, void *work)
@@ -1906,12 +1906,12 @@ static void DOTCB_Before(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ_ƒ“ƒXI—¹Œã
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œ
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_After(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1926,11 +1926,11 @@ static int Request_After(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, v
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ_ƒ“ƒXI—¹Œã
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œ
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_After(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1952,10 +1952,10 @@ static void Recieve_After(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_H
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXI—¹Œã‚És‚¤ˆ—
+ * @brief   ãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œã«è¡Œã†å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DOLOCAL_AFTER\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DOLOCAL_AFTERæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DOTCB_After(TCB_PTR tcb, void *work)
@@ -2010,12 +2010,12 @@ static void DOTCB_After(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‰ï˜bƒƒbƒZ[ƒW‚Ì•\¦
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_Talk(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2030,11 +2030,11 @@ static int Request_Talk(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, vo
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‰ï˜bƒƒbƒZ[ƒW‚Ì•\¦
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_Talk(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2061,9 +2061,9 @@ static void Recieve_Talk(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HE
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒƒbƒZ[ƒW‚Ì•\¦
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DOLOCAL_TALK_PUT\‘¢‘Ì
+ * @brief   ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DOLOCAL_TALK_PUTæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DOTCB_TalkPut(TCB_PTR tcb, void *work)
@@ -2115,12 +2115,12 @@ static void DOTCB_TalkPut(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒQ[ƒ€ƒpƒ‰ƒ[ƒ^XV
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_GameParam(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2134,11 +2134,11 @@ static int Request_GameParam(CONTEST_ORDER_WORK *cow, void *syswork, int order_n
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒQ[ƒ€ƒpƒ‰ƒ[ƒ^XV
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_GameParam(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2147,7 +2147,7 @@ static void Recieve_GameParam(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 	
 	dpw->d_game = *((DANCE_GAME_PARAM *)data);
 	
-	//•Ô–‚ğ•Ô‚·	ƒoƒbƒtƒ@‚Í“Á‚É“n‚·‚à‚Ì‚ª‚È‚¢‚Ì‚ÅNULLw’è
+	//è¿”äº‹ã‚’è¿”ã™	ãƒãƒƒãƒ•ã‚¡ã¯ç‰¹ã«æ¸¡ã™ã‚‚ã®ãŒãªã„ã®ã§NULLæŒ‡å®š
 	CO_ANSWER_TransmitBufferSet(cow, req_head, NULL, 0);
 }
 
@@ -2157,12 +2157,12 @@ static void Recieve_GameParam(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‰¹ŠyŠJn
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šéŸ³æ¥½é–‹å§‹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_MusicStart(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2177,11 +2177,11 @@ static int Request_MusicStart(CONTEST_ORDER_WORK *cow, void *syswork, int order_
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‰¹ŠyŠJn
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šéŸ³æ¥½é–‹å§‹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_MusicStart(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2195,7 +2195,7 @@ static void Recieve_MusicStart(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 	dpw->music_vcount_flag = TRUE;
 	dpw->music_vcount_start = dpw->music_vcount;
 	
-	//•Ô–‚ğ•Ô‚·	ƒoƒbƒtƒ@‚Í“Á‚É“n‚·‚à‚Ì‚ª‚È‚¢‚Ì‚ÅNULLw’è
+	//è¿”äº‹ã‚’è¿”ã™	ãƒãƒƒãƒ•ã‚¡ã¯ç‰¹ã«æ¸¡ã™ã‚‚ã®ãŒãªã„ã®ã§NULLæŒ‡å®š
 	CO_ANSWER_TransmitBufferSet(cow, req_head, NULL, 0);
 }
 
@@ -2205,12 +2205,12 @@ static void Recieve_MusicStart(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‘Sˆõ‚Ìƒ_ƒ“ƒXI—¹Œã‚ÌƒGƒtƒFƒNƒg‚È‚Ç
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šå…¨å“¡ã®ãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãªã©
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_EndEffect(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2225,11 +2225,11 @@ static int Request_EndEffect(CONTEST_ORDER_WORK *cow, void *syswork, int order_n
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‘Sˆõ‚Ìƒ_ƒ“ƒXI—¹Œã‚ÌƒGƒtƒFƒNƒg‚È‚Ç
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šå…¨å“¡ã®ãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãªã©
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_EndEffect(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2252,9 +2252,9 @@ static void Recieve_EndEffect(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Sˆõ‚Ìƒ_ƒ“ƒXI—¹Œã‚ÌƒGƒtƒFƒNƒg‚È‚Ç
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DOLOCAL_END_EFFECT\‘¢‘Ì
+ * @brief   å…¨å“¡ã®ãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãªã©
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DOLOCAL_END_EFFECTæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DOTCB_EndEffect(TCB_PTR tcb, void *work)

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_258.s
- *@brief	�퓬�V�[�P���X
- *			�������Ƃ𕷂����Ɏ������U���V�[�P���X
+ *@brief	戦闘シーケンス
+ *			いうことを聞かずに自分を攻撃シーケンス
  *@author	HisashiSogabe
  *@data		2006.05.16
  *
@@ -21,6 +21,6 @@ SUB_258:
 	MESSAGE		KonranMsg2,TAG_NONE
 	SERVER_WAIT
 	WAIT		MSG_WAIT
-	//���ߌn�̃t���O�𗎂Ƃ�
+	//ため系のフラグを落とす
 	KEEP_OFF	SIDE_ATTACK
 	JUMP		SUB_SEQ_HP_CALC

@@ -2,7 +2,7 @@
 /**
  *
  *@file		weatheru_no.h
- *@brief	‚¨“V‹C	ƒiƒ“ƒo[
+ *@brief	ãŠå¤©æ°—	ãƒŠãƒ³ãƒãƒ¼
  *@author	tomoya takahashi
  *@data		2006.06.08
  */
@@ -14,109 +14,109 @@
 #define	__WEATHER_NO_H__
 
 //-------------------------------------
-//	“V‹Cƒf[ƒ^—ñ‹“	(no)
+//	å¤©æ°—ãƒ‡ãƒ¼ã‚¿åˆ—æŒ™	(no)
 //
-//	Šé‰æ@“VŒóƒiƒ“ƒo[‡
+//	ä¼ç”»ã€€å¤©å€™ãƒŠãƒ³ãƒãƒ¼é †
 //=====================================
 
-#define		WEATHER_SYS_SUNNY			(0)				// °‚ê
-#define		WEATHER_SYS_CLOUDINESS		(1)				// “Ü‚è		BG	
-#define		WEATHER_SYS_RAIN			(2)				// ‰J		OAM	FOG
-#define		WEATHER_SYS_STRAIN			(3)				// ‘å‰J		OAM FOG 
-#define		WEATHER_SYS_SPARK			(4)				// ‘å‰J		OAM FOG BG
-#define		WEATHER_SYS_SNOW			(5)				// á		OAM FOG
-#define		WEATHER_SYS_SNOWSTORM		(6)				// á		OAM FOG
-#define		WEATHER_SYS_SNOWSTORM_H		(7)				// –Òá	OAM FOG BG
-#define		WEATHER_SYS_FOG				(8)				// –¶‘å		FOG	
-#define		WEATHER_SYS_VOLCANO			(9)				// ‰ÎŽRŠD	OAM FOG BG
-#define		WEATHER_SYS_SANDSTORM		(10)			// BGŽg—p»—’	OAM FOG BG
-#define		WEATHER_SYS_DIAMONDDUST		(11)			// ƒXƒm[ƒ_ƒXƒg	OAM FOG
-#define		WEATHER_SYS_SPIRIT			(12)			// ‹C‡		OAM
-#define		WEATHER_SYS_MYSTIC			(13)			// _”é		OAM FOG
-#define		WEATHER_SYS_MIST1			(14)			// –¶•¥‚¢‚Ì–¶	FOG	BG
-#define		WEATHER_SYS_MIST2			(15)			// –¶•¥‚¢‚Ì–¶	FOG	BG
-#define		WEATHER_SYS_FLASH			(16)			// ƒtƒ‰ƒbƒVƒ…		BG
+#define		WEATHER_SYS_SUNNY			(0)				// æ™´ã‚Œ
+#define		WEATHER_SYS_CLOUDINESS		(1)				// æ›‡ã‚Š		BG	
+#define		WEATHER_SYS_RAIN			(2)				// é›¨		OAM	FOG
+#define		WEATHER_SYS_STRAIN			(3)				// å¤§é›¨		OAM FOG 
+#define		WEATHER_SYS_SPARK			(4)				// å¤§é›¨		OAM FOG BG
+#define		WEATHER_SYS_SNOW			(5)				// é›ª		OAM FOG
+#define		WEATHER_SYS_SNOWSTORM		(6)				// å¹é›ª		OAM FOG
+#define		WEATHER_SYS_SNOWSTORM_H		(7)				// çŒ›å¹é›ª	OAM FOG BG
+#define		WEATHER_SYS_FOG				(8)				// éœ§å¤§		FOG	
+#define		WEATHER_SYS_VOLCANO			(9)				// ç«å±±ç°	OAM FOG BG
+#define		WEATHER_SYS_SANDSTORM		(10)			// BGä½¿ç”¨ç ‚åµ	OAM FOG BG
+#define		WEATHER_SYS_DIAMONDDUST		(11)			// ã‚¹ãƒŽãƒ¼ãƒ€ã‚¹ãƒˆ	OAM FOG
+#define		WEATHER_SYS_SPIRIT			(12)			// æ°—åˆ		OAM
+#define		WEATHER_SYS_MYSTIC			(13)			// ç¥žç§˜		OAM FOG
+#define		WEATHER_SYS_MIST1			(14)			// éœ§æ‰•ã„ã®éœ§	FOG	BG
+#define		WEATHER_SYS_MIST2			(15)			// éœ§æ‰•ã„ã®éœ§	FOG	BG
+#define		WEATHER_SYS_FLASH			(16)			// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥		BG
 
-#define		WEATHER_SYS_SPARK_EFF		(17)			// —‹		BG
-#define		WEATHER_SYS_FOGS			(18)			// –¶		FOG
-#define		WEATHER_SYS_FOGM			(19)			// –¶’†		FOG
+#define		WEATHER_SYS_SPARK_EFF		(17)			// é›·		BG
+#define		WEATHER_SYS_FOGS			(18)			// éœ§		FOG
+#define		WEATHER_SYS_FOGM			(19)			// éœ§ä¸­		FOG
 
-#define		WEATHER_SYS_RAINBOW			(20)			// “ø		BG
-#define		WEATHER_SYS_SNOW_STORM_BG	(21)			// BGŽg—pá	OAM FOG BG
-#define		WEATHER_SYS_STORM			(22)			// »—’		OAM FOG
+#define		WEATHER_SYS_RAINBOW			(20)			// è™¹		BG
+#define		WEATHER_SYS_SNOW_STORM_BG	(21)			// BGä½¿ç”¨å¹é›ª	OAM FOG BG
+#define		WEATHER_SYS_STORM			(22)			// ç ‚åµ		OAM FOG
 
-#define		WEATHER_SYS_KOGOREBI		(23)			// ‹Ã‚ê”ü	BG
-#define		WEATHER_SYS_DOUKUTU00		(24)			// “´ŒA	FOG
-#define		WEATHER_SYS_DOUKUTU01		(25)			// “´ŒA	FOG
-#define		WEATHER_SYS_GINGA00			(26)			// ‹â‰Í’c‚ª‚¢‚Ä”–ˆÃ‚¢
-#define		WEATHER_SYS_LOSTTOWER00		(27)			// LostTower”–ˆÃ‚¢
-#define		WEATHER_SYS_HARDMOUNTAIN	(28)			// ƒn[ƒhƒ}ƒEƒ“ƒeƒ“
-#define		WEATHER_SYS_DOUKUTU02		(29)			// “´ŒA@FOG@Â
-#define		WEATHER_SYS_USUGURAI		(30)			// ”–ˆÃ‚¢@FOG
+#define		WEATHER_SYS_KOGOREBI		(23)			// å‡ã‚Œç¾Ž	BG
+#define		WEATHER_SYS_DOUKUTU00		(24)			// æ´žçªŸ	FOG
+#define		WEATHER_SYS_DOUKUTU01		(25)			// æ´žçªŸ	FOG
+#define		WEATHER_SYS_GINGA00			(26)			// éŠ€æ²³å›£ãŒã„ã¦è–„æš—ã„
+#define		WEATHER_SYS_LOSTTOWER00		(27)			// LostTowerè–„æš—ã„
+#define		WEATHER_SYS_HARDMOUNTAIN	(28)			// ãƒãƒ¼ãƒ‰ãƒžã‚¦ãƒ³ãƒ†ãƒ³
+#define		WEATHER_SYS_DOUKUTU02		(29)			// æ´žçªŸã€€FOGã€€é’
+#define		WEATHER_SYS_USUGURAI		(30)			// è–„æš—ã„ã€€FOG
 
-#define		WEATHER_SYS_NUM				(31)			// “V‹C”
+#define		WEATHER_SYS_NUM				(31)			// å¤©æ°—æ•°
 
-	// í“¬ƒtƒB[ƒ‹ƒhó‘Ô‚µ‚Ä‚¢‚æ‚¤
-	// ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[‚Ìƒ‹[ƒŒƒbƒgŽ{Ý‚Å
-	// ŽÀÛ‚ÌƒtƒB[ƒ‹ƒh‚¨‚«‚é“V‹CˆÈŠO‚Ìó‘Ô‚ð
-	// ƒoƒgƒ‹‚É“n‚³‚È‚­‚Ä‚Í‚¢‚¯‚È‚­‚È‚Á‚½‚½‚ßì¬B
+	// æˆ¦é—˜ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰çŠ¶æ…‹ã—ã¦ã„ã‚ˆã†
+	// ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã®ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆæ–½è¨­ã§
+	// å®Ÿéš›ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãŠãã‚‹å¤©æ°—ä»¥å¤–ã®çŠ¶æ…‹ã‚’
+	// ãƒãƒˆãƒ«ã«æ¸¡ã•ãªãã¦ã¯ã„ã‘ãªããªã£ãŸãŸã‚ä½œæˆã€‚
 	//
-	// PL‚ÆGS‚Ì’ÊM‚Å‚àŽg—p‚³‚ê‚é’è”‚È‚Ì‚ÅA
-	// ’l‚Íˆê’è‚É‚µ‚Ä‚­‚¾‚³‚¢B
-#define		WEATHER_SYS_BTONLYSTART (1000)	// ƒoƒgƒ‹ƒIƒ“ƒŠ[‚Ìó‘ÔŠJŽn’è”
-#define		WEATHER_SYS_HIGHSUNNY	(1001)	// “ú–{°‚ê
-#define		WEATHER_SYS_TRICKROOM	(1002)	// ƒgƒŠƒbƒNƒ‹[ƒ€
+	// PLã¨GSã®é€šä¿¡ã§ã‚‚ä½¿ç”¨ã•ã‚Œã‚‹å®šæ•°ãªã®ã§ã€
+	// å€¤ã¯ä¸€å®šã«ã—ã¦ãã ã•ã„ã€‚
+#define		WEATHER_SYS_BTONLYSTART (1000)	// ãƒãƒˆãƒ«ã‚ªãƒ³ãƒªãƒ¼ã®çŠ¶æ…‹é–‹å§‹å®šæ•°
+#define		WEATHER_SYS_HIGHSUNNY	(1001)	// æ—¥æœ¬æ™´ã‚Œ
+#define		WEATHER_SYS_TRICKROOM	(1002)	// ãƒˆãƒªãƒƒã‚¯ãƒ«ãƒ¼ãƒ 
 
 
 
 #if  0
 enum{
-	WEATHER_SYS_SUNNY,			// °‚ê
-	WEATHER_SYS_CLOUDINESS,		// “Ü‚è		BG	
-	WEATHER_SYS_RAIN,			// ‰J		OAM	FOG
-	WEATHER_SYS_STRAIN,			// ‘å‰J		OAM FOG 
-	WEATHER_SYS_SPARK,			// ‘å‰J		OAM FOG BG
-	WEATHER_SYS_SNOW,			// á		OAM FOG
-	WEATHER_SYS_SNOWSTORM,		// á		OAM FOG
-	WEATHER_SYS_SNOWSTORM_H,	// –Òá	OAM FOG BG
-	WEATHER_SYS_FOG,			// –¶‘å		FOG	
-	WEATHER_SYS_VOLCANO,		// ‰ÎŽRŠD	OAM FOG BG
-	WEATHER_SYS_SANDSTORM,		// BGŽg—p»—’	OAM FOG BG
-	WEATHER_SYS_DIAMONDDUST,	// ƒXƒm[ƒ_ƒXƒg	OAM FOG
-	WEATHER_SYS_SPIRIT,			// ‹C‡		OAM
-	WEATHER_SYS_MYSTIC,			// _”é		OAM FOG
-	WEATHER_SYS_MIST1,			// –¶•¥‚¢‚Ì–¶	FOG	BG
-	WEATHER_SYS_MIST2,			// –¶•¥‚¢‚Ì–¶	FOG	BG
-	WEATHER_SYS_FLASH,			// ƒtƒ‰ƒbƒVƒ…		BG
+	WEATHER_SYS_SUNNY,			// æ™´ã‚Œ
+	WEATHER_SYS_CLOUDINESS,		// æ›‡ã‚Š		BG	
+	WEATHER_SYS_RAIN,			// é›¨		OAM	FOG
+	WEATHER_SYS_STRAIN,			// å¤§é›¨		OAM FOG 
+	WEATHER_SYS_SPARK,			// å¤§é›¨		OAM FOG BG
+	WEATHER_SYS_SNOW,			// é›ª		OAM FOG
+	WEATHER_SYS_SNOWSTORM,		// å¹é›ª		OAM FOG
+	WEATHER_SYS_SNOWSTORM_H,	// çŒ›å¹é›ª	OAM FOG BG
+	WEATHER_SYS_FOG,			// éœ§å¤§		FOG	
+	WEATHER_SYS_VOLCANO,		// ç«å±±ç°	OAM FOG BG
+	WEATHER_SYS_SANDSTORM,		// BGä½¿ç”¨ç ‚åµ	OAM FOG BG
+	WEATHER_SYS_DIAMONDDUST,	// ã‚¹ãƒŽãƒ¼ãƒ€ã‚¹ãƒˆ	OAM FOG
+	WEATHER_SYS_SPIRIT,			// æ°—åˆ		OAM
+	WEATHER_SYS_MYSTIC,			// ç¥žç§˜		OAM FOG
+	WEATHER_SYS_MIST1,			// éœ§æ‰•ã„ã®éœ§	FOG	BG
+	WEATHER_SYS_MIST2,			// éœ§æ‰•ã„ã®éœ§	FOG	BG
+	WEATHER_SYS_FLASH,			// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥		BG
 
-	WEATHER_SYS_SPARK_EFF,		// —‹		BG
-	WEATHER_SYS_FOGS,			// –¶		FOG
-	WEATHER_SYS_FOGM,		// –¶’†		FOG
+	WEATHER_SYS_SPARK_EFF,		// é›·		BG
+	WEATHER_SYS_FOGS,			// éœ§		FOG
+	WEATHER_SYS_FOGM,		// éœ§ä¸­		FOG
 
-	WEATHER_SYS_RAINBOW,	// “ø		BG
-	WEATHER_SYS_SNOW_STORM_BG,// BGŽg—pá	OAM FOG BG
-	WEATHER_SYS_STORM,		// »—’		OAM FOG
-	WEATHER_SYS_KOGOREBI,		// ‹Ã‚ê”ü	BG
-	WEATHER_SYS_DOUKUTU00,		// “´ŒA	FOG
-	WEATHER_SYS_DOUKUTU01,		// “´ŒA	FOG
-	WEATHER_SYS_GINGA00,		// ‹â‰Í’c‚ª‚¢‚Ä”–ˆÃ‚¢
-	WEATHER_SYS_LOSTTOWER00,	// LostTower”–ˆÃ‚¢
-	WEATHER_SYS_HARDMOUNTAIN,	// ƒn[ƒhƒ}ƒEƒ“ƒeƒ“
-	WEATHER_SYS_DOUKUTU02,		// “´ŒA@FOG@Â
-	WEATHER_SYS_USUGURAI,		// ”–ˆÃ‚¢@FOG
+	WEATHER_SYS_RAINBOW,	// è™¹		BG
+	WEATHER_SYS_SNOW_STORM_BG,// BGä½¿ç”¨å¹é›ª	OAM FOG BG
+	WEATHER_SYS_STORM,		// ç ‚åµ		OAM FOG
+	WEATHER_SYS_KOGOREBI,		// å‡ã‚Œç¾Ž	BG
+	WEATHER_SYS_DOUKUTU00,		// æ´žçªŸ	FOG
+	WEATHER_SYS_DOUKUTU01,		// æ´žçªŸ	FOG
+	WEATHER_SYS_GINGA00,		// éŠ€æ²³å›£ãŒã„ã¦è–„æš—ã„
+	WEATHER_SYS_LOSTTOWER00,	// LostTowerè–„æš—ã„
+	WEATHER_SYS_HARDMOUNTAIN,	// ãƒãƒ¼ãƒ‰ãƒžã‚¦ãƒ³ãƒ†ãƒ³
+	WEATHER_SYS_DOUKUTU02,		// æ´žçªŸã€€FOGã€€é’
+	WEATHER_SYS_USUGURAI,		// è–„æš—ã„ã€€FOG
 
-	WEATHER_SYS_NUM,// “V‹C”
+	WEATHER_SYS_NUM,// å¤©æ°—æ•°
 
-	// í“¬ƒtƒB[ƒ‹ƒhó‘Ô‚µ‚Ä‚¢‚æ‚¤
-	// ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[‚Ìƒ‹[ƒŒƒbƒgŽ{Ý‚Å
-	// ŽÀÛ‚ÌƒtƒB[ƒ‹ƒh‚¨‚«‚é“V‹CˆÈŠO‚Ìó‘Ô‚ð
-	// ƒoƒgƒ‹‚É“n‚³‚È‚­‚Ä‚Í‚¢‚¯‚È‚­‚È‚Á‚½‚½‚ßì¬B
+	// æˆ¦é—˜ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰çŠ¶æ…‹ã—ã¦ã„ã‚ˆã†
+	// ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã®ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆæ–½è¨­ã§
+	// å®Ÿéš›ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãŠãã‚‹å¤©æ°—ä»¥å¤–ã®çŠ¶æ…‹ã‚’
+	// ãƒãƒˆãƒ«ã«æ¸¡ã•ãªãã¦ã¯ã„ã‘ãªããªã£ãŸãŸã‚ä½œæˆã€‚
 	//
-	// PL‚ÆGS‚Ì’ÊM‚Å‚àŽg—p‚³‚ê‚é’è”‚È‚Ì‚ÅA
-	// ’l‚Íˆê’è‚É‚µ‚Ä‚­‚¾‚³‚¢B
-	WEATHER_SYS_BTONLYSTART = 1000,	// ƒoƒgƒ‹ƒIƒ“ƒŠ[‚Ìó‘ÔŠJŽn’è”
-	WEATHER_SYS_HIGHSUNNY,	// “ú–{°‚ê
-	WEATHER_SYS_TRICKROOM,	// ƒgƒŠƒbƒNƒ‹[ƒ€
+	// PLã¨GSã®é€šä¿¡ã§ã‚‚ä½¿ç”¨ã•ã‚Œã‚‹å®šæ•°ãªã®ã§ã€
+	// å€¤ã¯ä¸€å®šã«ã—ã¦ãã ã•ã„ã€‚
+	WEATHER_SYS_BTONLYSTART = 1000,	// ãƒãƒˆãƒ«ã‚ªãƒ³ãƒªãƒ¼ã®çŠ¶æ…‹é–‹å§‹å®šæ•°
+	WEATHER_SYS_HIGHSUNNY,	// æ—¥æœ¬æ™´ã‚Œ
+	WEATHER_SYS_TRICKROOM,	// ãƒˆãƒªãƒƒã‚¯ãƒ«ãƒ¼ãƒ 
 };
 #endif
 

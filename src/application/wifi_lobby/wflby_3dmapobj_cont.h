@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_3dmapobj_cont.h
- *	@brief		�}�b�v�I�u�W�F�z�u�Ǘ�
+ *	@brief		マップオブジェ配置管理
  *	@author		tomoya takahashi
  *	@data		2007.11.14
  *
@@ -18,45 +18,45 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	�z�u�t���[�g�o�^�ő吔
+///	配置フロート登録最大数
 //=====================================
 #define WFLBY_3DMAPOBJ_CONT_MAPOBJFLOAT_MAX		( WFLBY_FLOAT_MAX )
 
 //-------------------------------------
-///	�t���[�g���ȍő吔
+///	フロート座席最大数
 //=====================================
 #define WFLBY_3DMAPOBJ_CONT_MAPOBJFLOAT_SHEET_MAX	( WFLBY_FLOAT_ON_NUM )
 
 //-------------------------------------
-///	�������v�A�j���萔
+///	床ランプアニメ定数
 //=====================================
 typedef enum {
-	WFLBY_3DMAPOBJ_CONT_LAMP_NONE,	// �����o�Ă��Ȃ����
-	WFLBY_3DMAPOBJ_CONT_LAMP_ON,	// NONE��������o����Ԃɂ���		���̌���A�j���ɂȂ�܂�
-	WFLBY_3DMAPOBJ_CONT_LAMP_OFF,	// �����o�Ă����Ԃ�����������B	���̌�NONE��ԂɂȂ�܂��B
-	WFLBY_3DMAPOBJ_CONT_LAMP_YURE,	// ���A�j��
+	WFLBY_3DMAPOBJ_CONT_LAMP_NONE,	// 何も出ていない状態
+	WFLBY_3DMAPOBJ_CONT_LAMP_ON,	// NONEから光を出す状態にする		その後ゆれアニメになります
+	WFLBY_3DMAPOBJ_CONT_LAMP_OFF,	// 光が出ている状態から光を消す。	その後NONE状態になります。
+	WFLBY_3DMAPOBJ_CONT_LAMP_YURE,	// ゆれアニメ
 } WFLBY_3DMAPOBJ_CONT_LAMP_ANM;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�V�X�e���\����
+///	システム構造体
 //=====================================
 typedef struct _WFLBY_3DMAPOBJ_CONT WFLBY_3DMAPOBJ_CONT;
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 extern WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_ROOM_TYPE room, const WFLBY_MAPCONT* cp_map, u32 heapID, u32 gheapID );
@@ -66,9 +66,9 @@ extern void WFLBY_3DMAPOBJCONT_Draw( WFLBY_3DMAPOBJ_CONT* p_sys );
 extern void WFLBY_3DMAPOBJCONT_VBlank( WFLBY_3DMAPOBJ_CONT* p_sys );
 
 
-// �p�\�R���A�t���[�g�Ȃǂɑ΂��鑀��֐���ǉ����Ă���
+// パソコン、フロートなどに対する操作関数を追加していく
 
-// �t���[�g
+// フロート
 extern void WFLBY_3DMAPOBJCONT_FLOAT_GetPos( const WFLBY_3DMAPOBJ_CONT* cp_sys, u32 idx, VecFx32* p_vec );
 extern void WFLBY_3DMAPOBJCONT_FLOAT_SetPos( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, fx32 x );
 extern void WFLBY_3DMAPOBJCONT_FLOAT_SetOfsPos( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, const VecFx32* cp_vec );
@@ -81,25 +81,25 @@ extern void WFLBY_3DMAPOBJCONT_FLOAT_SetRot( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx
 extern BOOL WFLBY_3DMAPOBJCONT_FLOAT_CheckAnmSound( const WFLBY_3DMAPOBJ_CONT* cp_sys, u32 idx );
 extern BOOL WFLBY_3DMAPOBJCONT_FLOAT_CheckAnmBody( const WFLBY_3DMAPOBJ_CONT* cp_sys, u32 idx );
 
-// �}�b�v
+// マップ
 extern void WFLBY_3DMAPOBJCONT_MAP_OnPoll( WFLBY_3DMAPOBJ_CONT* p_sys );
 extern void WFLBY_3DMAPOBJCONT_MAP_OffPoll( WFLBY_3DMAPOBJ_CONT* p_sys );
 
 
-// ����
+// 銅像
 extern void WFLBY_3DMAPOBJCONT_MAP_StartDouzouAnm( WFLBY_3DMAPOBJ_CONT* p_sys, u8 gridx, u8 gridy );
 extern void WFLBY_3DMAPOBJCONT_MAP_SetDouzouFire( WFLBY_3DMAPOBJ_CONT* p_sys, BOOL flag );
 extern void WFLBY_3DMAPOBJCONT_MAP_SetDouzouBigFire( WFLBY_3DMAPOBJ_CONT* p_sys, fx32 speed );
 extern void WFLBY_3DMAPOBJCONT_MAP_OffDouzouLight( WFLBY_3DMAPOBJ_CONT* p_sys );
 
-// �����C�g
+// 床ライト
 extern void WFLBY_3DMAPOBJCONT_MAP_SetFloorLight( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_3DMAPOBJ_CONT_LAMP_ANM anm );
 extern BOOL WFLBY_3DMAPOBJCONT_MAP_CheckFloorLightYure( const WFLBY_3DMAPOBJ_CONT* cp_sys );
 extern void WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFire( WFLBY_3DMAPOBJ_CONT* p_sys, BOOL  flag, fx32 speed );
 extern BOOL WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFireIdx( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, BOOL  flag,  fx32 speed );
 extern void WFLBY_3DMAPOBJCONT_MAP_SetFloorLightBigFire( WFLBY_3DMAPOBJ_CONT* p_sys, fx32 speed );
 
-// �~�j�Q�[���A�j��
+// ミニゲームアニメ
 extern void WFLBY_3DMAPOBJCONT_MAP_SetMGAnm( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_GAMETYPE game, u32 num, BOOL recruit, BOOL play, BOOL light );
 
 

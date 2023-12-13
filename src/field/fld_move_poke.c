@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fld_move_poke.c
- * @bfief	ƒtƒB[ƒ‹ƒhˆÚ“®ƒ|ƒPƒ‚ƒ“ŠÖ˜Aˆ—
+ * @bfief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç§»å‹•ãƒã‚±ãƒ¢ãƒ³é–¢é€£å‡¦ç†
  * @author	Nozomu Saito
  * @date	06.05.13
  */
@@ -23,7 +23,7 @@ static MPD_PTR GetMovePokeDataByMondNo(ENC_SV_PTR inEncData, const int inMonsNo)
 
 //-----------------------------------------------------------------------------
 /**
- * í“¬Œã‚Ìˆ—
+ * æˆ¦é—˜å¾Œã®å‡¦ç†
  *
  * @param	
  *
@@ -41,7 +41,7 @@ void FLD_MP_SetAfferBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM *inBattleParam)
 	POKEPARTY *poke_party;
 	POKEMON_PARAM *poke_param;
 	
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“‚Æí“¬‚µ‚½‚©‚ğƒ`ƒFƒbƒN
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã¨æˆ¦é—˜ã—ãŸã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	poke_party = inBattleParam->poke_party[POKEPARTY_ENEMY];
 	poke_param = PokeParty_GetMemberPointer(poke_party, 0);
 
@@ -49,45 +49,45 @@ void FLD_MP_SetAfferBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM *inBattleParam)
 	monsno = PokeParaGet(poke_param, ID_PARA_monsno, NULL);
 	mpd = GetMovePokeDataByMondNo(data, monsno);
 	
-	if(mpd != NULL){			//ˆÚ“®ƒ|ƒPƒ‚ƒ“‚ÆƒGƒ“ƒJƒEƒ“ƒg
+	if(mpd != NULL){			//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 		hp = (u16)(PokeParaGet(poke_param,ID_PARA_hp, NULL));
 		cond = (u8)(PokeParaGet(poke_param,ID_PARA_condition, NULL));
 
 #if 0
-		//Ÿ‚Á‚Ä‚g‚o‚ª0‚à‚µ‚­‚Í•ßŠl‚µ‚½‚©H
+		//å‹ã£ã¦ï¼¨ï¼°ãŒ0ã‚‚ã—ãã¯æ•ç²ã—ãŸã‹ï¼Ÿ
 		if ( ((inBattleParam->win_lose_flag==FIGHT_WIN)&&(hp == 0)) ||
 			 (inBattleParam->win_lose_flag==FIGHT_POKE_GET) ) {
-			//ƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒNƒŠƒA
+			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢
 			EncDataSave_ClearMovePokeData(&mpd);
 #else
-		//Ÿ‚Á‚Ä‚g‚o‚ª0
+		//å‹ã£ã¦ï¼¨ï¼°ãŒ0
 		if( ( (inBattleParam->win_lose_flag == FIGHT_WIN) && (hp == 0) ) ){
 
-			//ƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒNƒŠƒA
+			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢
 			EncDataSave_ClearMovePokeData(&mpd);
 
-			//“|‚µ‚½ƒZƒbƒg
+			//å€’ã—ãŸã‚»ãƒƒãƒˆ
 			SysWork_MovePokeWorkSet( SaveData_GetEventWork(fsys->savedata), monsno, 2 );
 
-		//•ßŠl‚µ‚½
+		//æ•ç²ã—ãŸ
 		}else if( inBattleParam->win_lose_flag == FIGHT_POKE_GET ) {
 
-			//ƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒNƒŠƒA
+			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢
 			EncDataSave_ClearMovePokeData(&mpd);
 
-			//•ßŠl‚µ‚½ƒZƒbƒg
+			//æ•ç²ã—ãŸã‚»ãƒƒãƒˆ
 			SysWork_MovePokeWorkSet( SaveData_GetEventWork(fsys->savedata), monsno, 1 );
 #endif
 		}else{
-			//ƒpƒ‰ƒ[ƒ^‚Ì”½‰f
+			//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åæ˜ 
 			EncDataSave_SetMovePokeDataParam(mpd, MP_PARAM_HP, hp);
 			EncDataSave_SetMovePokeDataParam(mpd, MP_PARAM_COND, cond);
 		}
-		//3•C‚ÌˆÚ“®ƒ|ƒPƒ‚ƒ“‚ÌƒWƒƒƒ“ƒv
+		//3åŒ¹ã®ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã®ã‚¸ãƒ£ãƒ³ãƒ—
 		JumpMovePokeAffterBattle(data, fsys->location->zone_id);
 
-	}else{			//’Êíƒ|ƒPƒ‚ƒ“‚ÆƒGƒ“ƒJƒEƒ“ƒg
-		//30“‚ÌŠm—¦‚ÅA3•C‚ÌˆÚ“®ƒ|ƒPƒ‚ƒ“‚ÌƒWƒƒƒ“ƒv
+	}else{			//é€šå¸¸ãƒã‚±ãƒ¢ãƒ³ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
+		//30ï¼…ã®ç¢ºç‡ã§ã€3åŒ¹ã®ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã®ã‚¸ãƒ£ãƒ³ãƒ—
 		if ( gf_p_rand(100)<30 ){
 			JumpMovePokeAffterBattle(data, fsys->location->zone_id);
 		}
@@ -96,7 +96,7 @@ void FLD_MP_SetAfferBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM *inBattleParam)
 
 //-----------------------------------------------------------------------------
 /**
- * í“¬Œã‚ÌˆÚ“®ƒ|ƒPƒ‚ƒ“ƒWƒƒƒ“ƒv
+ * æˆ¦é—˜å¾Œã®ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¸ãƒ£ãƒ³ãƒ—
  *
  * @param	
  *
@@ -108,11 +108,11 @@ static void JumpMovePokeAffterBattle(ENC_SV_PTR inEncData, const int inZoneID)
 	int zone;
 	u8 i;
 	for(i=0;i<MOVE_POKE_MAX;i++){
-		//ˆÚ“®’†‚ÅAŠ‚ÂAålŒö‚Æ“¯‚¶ƒ][ƒ“‚É‚¢‚é‚©H
+		//ç§»å‹•ä¸­ã§ã€ä¸”ã¤ã€ä¸»äººå…¬ã¨åŒã˜ã‚¾ãƒ¼ãƒ³ã«ã„ã‚‹ã‹ï¼Ÿ
 		if ( EncDataSave_IsMovePokeValid(inEncData, i) ){
 			zone = MP_GetMovePokeZone(EncDataSave_GetMovePokeZoneIdx(inEncData, i));
 			if (inZoneID == zone){
-				//ƒWƒƒƒ“ƒv
+				//ã‚¸ãƒ£ãƒ³ãƒ—
 				MP_JumpMovePokemon(inEncData, i);
 			}
 		}
@@ -121,11 +121,11 @@ static void JumpMovePokeAffterBattle(ENC_SV_PTR inEncData, const int inZoneID)
 
 //-----------------------------------------------------------------------------
 /**
- * ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©‚çˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğæ“¾
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	inMonsNo	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ * @param	inMonsNo	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	MPD_PTR		ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒ|ƒCƒ“ƒ^ ‚È‚¢ê‡‚ÍNULL‚ğ•Ô‚·
+ * @return	MPD_PTR		ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ ãªã„å ´åˆã¯NULLã‚’è¿”ã™
  *
 */ 
 //-----------------------------------------------------------------------------

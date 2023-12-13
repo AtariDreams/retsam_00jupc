@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	worldtrade_enter.c
- * @bfief	¢ŠEŒðŠ·“ü‚èŒûˆ—
+ * @bfief	ä¸–ç•Œäº¤æ›å…¥ã‚Šå£å‡¦ç†
  * @author	Akito Mori
  * @date	06.04.16
  */
@@ -41,16 +41,16 @@
 #include "application/connect_anm.h"
 
 
-#include "worldtrade.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
-#include "../wifi_p2pmatch/wifip2pmatch.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "worldtrade.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
+#include "../wifi_p2pmatch/wifip2pmatch.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 #include "savedata/email_savedata.h"
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void BgInit( GF_BGL_INI * ini );
 static void BgExit( GF_BGL_INI * ini );
 static void BgGraphicSet( WORLDTRADE_WORK * wk );
@@ -153,7 +153,7 @@ static int (*Functable[])( WORLDTRADE_WORK *wk ) = {
 };
 
 
-///Eƒ[ƒ‹”FØƒGƒ‰[‚ª”­¶‚µ‚½Û‚ÌƒGƒ‰[ƒƒbƒZ[ƒWƒR[ƒh
+///Eãƒ¡ãƒ¼ãƒ«èªè¨¼ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸéš›ã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ‰
 enum{
 	EMAIL_ERROR_SEND = -5000,
 	EMAIL_ERROR_SENDFAILURE = -5001,
@@ -163,16 +163,16 @@ enum{
 	EMAIL_ERROR_SERVERSTATE = -5005,
 };
 
-///‹­§ƒ^ƒCƒ€ƒAƒEƒg‚Ü‚Å‚ÌŽžŠÔ
-#define TIMEOUT_TIME			(30*60*2)	//2•ª
+///å¼·åˆ¶ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã¾ã§ã®æ™‚é–“
+#define TIMEOUT_TIME			(30*60*2)	//2åˆ†
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–Ê‰Šú‰»
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢åˆæœŸåŒ–
  *
  * @param   wk		
  * @param   seq		
@@ -182,40 +182,40 @@ enum{
 //==============================================================================
 int WorldTrade_Enter_Init(WORLDTRADE_WORK *wk, int seq)
 {
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	InitWork( wk );
 	
-	// ƒƒCƒvƒtƒF[ƒhŠJŽn
+	// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, WORLDTRADE_WIPE_SPPED, 1, HEAPID_WORLDTRADE );
 #ifdef GTS_FADE_OSP
 	OS_Printf( "******************** worldtrade_enter.c [172] MS ********************\n" );
 #endif
 
-	// BGÝ’è
+	// BGè¨­å®š
 	BgInit( wk->bgl );
 
-	// BGƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	BgGraphicSet( wk );
 
-	// BMPWINŠm•Û
+	// BMPWINç¢ºä¿
 	BmpWinInit( wk );
 
 
-	// BG–Ê•\Ž¦ON
+	// BGé¢è¡¨ç¤ºON
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG1, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 
-    // ’ÊMƒGƒ‰[ŠÇ—‚Ì‚½‚ß‚É’ÊMƒ‹[ƒ`ƒ“‚ðON
+    // é€šä¿¡ã‚¨ãƒ©ãƒ¼ç®¡ç†ã®ãŸã‚ã«é€šä¿¡ãƒ«ãƒ¼ãƒãƒ³ã‚’ON
     CommStateWifiDPWStart( wk->param->savedata );
-	// Wifi’ÊMƒAƒCƒRƒ“
+	// Wifié€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
 	WorldTrade_WifiIconAdd( wk );
 
 	if(!DWC_CheckInet()){
-		// ‰‰ñwifiÚ‘±‚ÌÛ‚Í–³ðŒ‚ÅÚ‘±‚É
+		// åˆå›žwifiæŽ¥ç¶šã®éš›ã¯ç„¡æ¡ä»¶ã§æŽ¥ç¶šã«
 		if(wk->param->connect){
-			// WIFI‚¹‚Â‚¼‚­‚ðŠJŽn
+			// WIFIã›ã¤ãžãã‚’é–‹å§‹
 			Enter_MessagePrint( wk, wk->LobbyMsgManager, msg_wifilobby_002, 1, 0x0f0f );
 			WorldTrade_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_INTERNET_CONNECT );
 			WorldTrade_TimeIconAdd(wk);
@@ -229,7 +229,7 @@ int WorldTrade_Enter_Init(WORLDTRADE_WORK *wk, int seq)
 }
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–ÊƒƒCƒ“
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  * @param   seq		
@@ -241,10 +241,10 @@ int WorldTrade_Enter_Main(WORLDTRADE_WORK *wk, int seq)
 {
 	int ret, temp_subprocess_seq;
 
-	// ’ÊMó‘Ô‚ðŠm”F‚µ‚ÄƒAƒCƒRƒ“‚Ì•\Ž¦‚ð•Ï‚¦‚é
+	// é€šä¿¡çŠ¶æ…‹ã‚’ç¢ºèªã—ã¦ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºã‚’å¤‰ãˆã‚‹
     WirelessIconEasy_SetLevel( WorldTrade_WifiLinkLevel());
 
-	// ƒV[ƒPƒ“ƒX‘JˆÚ‚ÅŽÀs
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é·ç§»ã§å®Ÿè¡Œ
 	temp_subprocess_seq = wk->subprocess_seq;
 	ret = (*Functable[wk->subprocess_seq])( wk );
 	if(temp_subprocess_seq != wk->subprocess_seq){
@@ -260,7 +260,7 @@ int WorldTrade_Enter_Main(WORLDTRADE_WORK *wk, int seq)
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–ÊI—¹
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -279,26 +279,26 @@ int WorldTrade_Enter_End(WORLDTRADE_WORK *wk, int seq)
 	BgExit( wk->bgl );
 	ConnectBGPalAnm_OccSet(&wk->cbp, FALSE);
 
-	// ŽŸ‚ÌƒTƒuƒvƒƒZƒX‚ðÝ’è‚·‚é
+	// æ¬¡ã®ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚’è¨­å®šã™ã‚‹
 	WorldTrade_SubProcessUpdate( wk );
 	
-	// ŽŸ‚ÌƒTƒuƒvƒƒZƒX‚ª“ü‚èŒû‚Ì‚Ü‚Ü‚¾‚Á‚½‚ç¢ŠEŒðŠ·I—¹
+	// æ¬¡ã®ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãŒå…¥ã‚Šå£ã®ã¾ã¾ã ã£ãŸã‚‰ä¸–ç•Œäº¤æ›çµ‚äº†
 	if(wk->sub_process==WORLDTRADE_ENTER){
-		OS_TPrintf("¢ŠEŒðŠ·I—¹\n");
+		OS_TPrintf("ä¸–ç•Œäº¤æ›çµ‚äº†\n");
 		return SEQ_OUT;
 	}
 	
 	OS_TPrintf("WorldTrade_Enter end\n");
-	// ŽŸ‚ªÝ’è‚³‚ê‚Ä‚¢‚½‚ç‰Šú‰»‚Ö
+	// æ¬¡ãŒè¨­å®šã•ã‚Œã¦ã„ãŸã‚‰åˆæœŸåŒ–ã¸
 	return SEQ_INIT;
 }
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGÝ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -306,7 +306,7 @@ int WorldTrade_Enter_End(WORLDTRADE_WORK *wk, int seq)
 static void BgInit( GF_BGL_INI * ini )
 {
 
-	// ƒƒCƒ“‰æ–ÊƒeƒLƒXƒg–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ†ã‚­ã‚¹ãƒˆé¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -318,7 +318,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME0_M );
 	}
 
-	// ƒƒCƒ“‰æ–Ê”wŒi–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯é¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -329,7 +329,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	}
 
-	// ƒTƒu‰æ–Ê•¶Žš”Å0
+	// ã‚µãƒ–ç”»é¢æ–‡å­—ç‰ˆ0
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -343,7 +343,7 @@ static void BgInit( GF_BGL_INI * ini )
 	}
 
 
-	// ƒTƒu‰æ–Ê”wŒi
+	// ã‚µãƒ–ç”»é¢èƒŒæ™¯
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -358,15 +358,15 @@ static void BgInit( GF_BGL_INI * ini )
 
 	GF_BGL_ClearCharSet( GF_BGL_FRAME0_M, 32, 0, HEAPID_WORLDTRADE );
 	GF_BGL_ClearCharSet( GF_BGL_FRAME0_S, 32, 0, HEAPID_WORLDTRADE );
-	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_OFF );	//ƒTƒu‰æ–ÊOBJ–Ê‚n‚m
+	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_OFF );	//ã‚µãƒ–ç”»é¢OBJé¢ï¼¯ï¼®
 
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -384,9 +384,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -398,15 +398,15 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 
 	p_handle = ArchiveDataHandleOpen( ARC_WIFIP2PMATCH_GRA, HEAPID_WORLDTRADE );
 
-	// ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_MAIN_BG, 0, 0,  HEAPID_WORLDTRADE);
 	ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_SUB_BG,  0, 0,  HEAPID_WORLDTRADE);
 	
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, WORLDTRADE_TALKFONT_PAL*0x20, HEAPID_WORLDTRADE );
 	TalkFontPaletteLoad( PALTYPE_SUB_BG,  WORLDTRADE_TALKFONT_PAL*0x20, HEAPID_WORLDTRADE );
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	TalkWinGraphicSet(	bgl, GF_BGL_FRAME0_M, WORLDTRADE_MESFRAME_CHR, 
 						WORLDTRADE_MESFRAME_PAL,  CONFIG_GetWindowType(wk->param->config), HEAPID_WORLDTRADE );
 
@@ -416,24 +416,24 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 
 
 
-	// ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_conect_NCGR, bgl, GF_BGL_FRAME1_M, 0, 0, 0, HEAPID_WORLDTRADE);
 
-	// ƒƒCƒ“‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_conect_01_NSCR, bgl, GF_BGL_FRAME1_M, 0, 32*24*2, 0, HEAPID_WORLDTRADE);
 
 
 
-	// ƒTƒu‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_conect_sub_NCGR, bgl, GF_BGL_FRAME1_S, 0, 0, 0, HEAPID_WORLDTRADE);
 
-	// ƒTƒu‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_conect_sub_NSCR, bgl, GF_BGL_FRAME1_S, 0, 32*24*2, 0, HEAPID_WORLDTRADE);
 
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0 );
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0 );
 
-	//WifiÚ‘±BGƒpƒŒƒbƒgƒAƒjƒƒVƒXƒeƒ€‰Šú‰»
+	//WifiæŽ¥ç¶šBGãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	ConnectBGPalAnm_Init(&wk->cbp, p_handle, 
 		NARC_wifip2pmatch_conect_anm_NCLR, HEAPID_WORLDTRADE);
 
@@ -463,7 +463,7 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 #define YESNO_OFFSET 		 ( TITLE_MESSAGE_OFFSET  + CONNECT_TEXT_SX*CONNECT_TEXT_SY )
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶Žšƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -472,23 +472,23 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 //------------------------------------------------------------------
 static void BmpWinInit( WORLDTRADE_WORK *wk )
 {
-	// ---------- ƒƒCƒ“‰æ–Ê ------------------
+	// ---------- ãƒ¡ã‚¤ãƒ³ç”»é¢ ------------------
 
-	// BG0–ÊBMPWIN(ƒGƒ‰[à–¾)ƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG0é¢BMPWIN(ã‚¨ãƒ©ãƒ¼èª¬æ˜Ž)ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->SubWin, GF_BGL_FRAME0_M,
 	SUB_TEXT_X, SUB_TEXT_Y, SUB_TEXT_SX, SUB_TEXT_SY, WORLDTRADE_TALKFONT_PAL,  ERROR_MESSAGE_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->SubWin, 0x0000 );
 
-	// BG0–ÊBMPWIN(ƒ^ƒCƒgƒ‹)ƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG0é¢BMPWIN(ã‚¿ã‚¤ãƒˆãƒ«)ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->TitleWin, GF_BGL_FRAME0_M,
 	CONNECT_TEXT_X, CONNECT_TEXT_Y, CONNECT_TEXT_SX, CONNECT_TEXT_SY, WORLDTRADE_TALKFONT_PAL, TITLE_MESSAGE_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->TitleWin, 0x0000 );
 	WorldTrade_TalkPrint( &wk->TitleWin, wk->TitleString, 0, 1, 1, GF_PRINTCOLOR_MAKE(15,14,0) );
 
-	// ----------- ƒTƒu‰æ–Ê–¼‘O•\Ž¦BMPŠm•Û ------------------
-	// BG0–ÊBMPi‰ï˜bƒEƒCƒ“ƒhƒEjŠm•Û
+	// ----------- ã‚µãƒ–ç”»é¢åå‰è¡¨ç¤ºBMPç¢ºä¿ ------------------
+	// BG0é¢BMPï¼ˆä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼‰ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		TALK_WIN_X, 
 		TALK_WIN_Y, 
@@ -500,7 +500,7 @@ static void BmpWinInit( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Šm•Û‚µ‚½BMPWIN‚ð‰ð•ú
+ * $brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   wk		
  *
@@ -519,7 +519,7 @@ static void BmpWinDelete( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * ¢ŠEŒðŠ·ƒ[ƒN‰Šú‰»
+ * ä¸–ç•Œäº¤æ›ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		WORLDTRADE_WORK*
  *
@@ -529,7 +529,7 @@ static void BmpWinDelete( WORLDTRADE_WORK *wk )
 static void InitWork( WORLDTRADE_WORK *wk )
 {
 
-	// •¶Žš—ñƒoƒbƒtƒ@ì¬
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->TalkString  = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_WORLDTRADE );
 	wk->ErrorString = STRBUF_Create( DWC_ERROR_BUF_NUM,    HEAPID_WORLDTRADE );
 	wk->TitleString = MSGMAN_AllocString( wk->MsgManager, msg_gtc_01_032 );
@@ -540,7 +540,7 @@ static void InitWork( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ[ƒN‰ð•ú
+ * $brief   ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   wk		
  *
@@ -568,7 +568,7 @@ static void FreeWork( WORLDTRADE_WORK *wk )
 //--------------------------------------------------------------------
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXƒXƒ^[ƒgˆ—
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¹ã‚¿ãƒ¼ãƒˆå‡¦ç†
  *
  * @param   wk		
  *
@@ -577,13 +577,13 @@ static void FreeWork( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_Start( WORLDTRADE_WORK *wk)
 {
-	// WIFIƒRƒlƒNƒVƒ‡ƒ“‚ÉÚ‘±‚µ‚Ü‚·‚©H
+	// WIFIã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã«æŽ¥ç¶šã—ã¾ã™ã‹ï¼Ÿ
 	Enter_MessagePrint( wk, wk->SystemMsgManager, dwc_message_0002, 1, 0x0f0f );
 	WorldTrade_SetNextSeq( wk, ENTER_MES_WAIT_YESNO_START, ENTER_CONNECT_YESNO_SELECT );
 
 	wk->boxSearchFlag = 1;
 
-	OS_TPrintf("Enter ŠJŽn\n");
+	OS_TPrintf("Enter é–‹å§‹\n");
 
 	return SEQ_MAIN;
 }
@@ -592,7 +592,7 @@ static int Enter_Start( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ðŠJŽn‚µ‚Ü‚·‚©H
+ * $brief   æŽ¥ç¶šã‚’é–‹å§‹ã—ã¾ã™ã‹ï¼Ÿ
  *
  * @param   wk		
  *
@@ -605,18 +605,18 @@ static int Enter_ConnectYesNoSelect( WORLDTRADE_WORK *wk )
 
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
-			// Ú‘±‚ðI—¹‚µ‚Ü‚·‚©H
+			// æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ
 //			Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_01_008, 1, 0, 0x0f0f );
 //			WorldTrade_SetNextSeq( wk, ENTER_MES_WAIT_YESNO_START, ENTER_END_YESNO_SELECT );
 //			wk->subprocess_seq = ENTER_END_START;
 
-			// I—¹
+			// çµ‚äº†
 		    CommStateWifiDPWEnd();
 			WorldTrade_SubProcessChange( wk, WORLDTRADE_ENTER, 0 );
 			wk->subprocess_seq  = ENTER_END;
 
 		}else{
-			// WIFI‚¹‚Â‚¼‚­‚ðŠJŽn
+			// WIFIã›ã¤ãžãã‚’é–‹å§‹
 			Enter_MessagePrint( wk, wk->LobbyMsgManager, msg_wifilobby_002, 1, 0x0f0f );
 			WorldTrade_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_INTERNET_CONNECT );
 			WorldTrade_TimeIconAdd(wk);
@@ -630,7 +630,7 @@ static int Enter_ConnectYesNoSelect( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ðI—¹‚µ‚Ü‚·‚©H
+ * $brief   æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ
  *
  * @param   wk		
  *
@@ -639,7 +639,7 @@ static int Enter_ConnectYesNoSelect( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_EndStart( WORLDTRADE_WORK *wk ) 
 {
-	// Ú‘±‚ðI—¹‚µ‚Ü‚·‚©H
+	// æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ
 	Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_01_008, 1, 0x0f0f );
 	WorldTrade_SetNextSeq( wk, ENTER_MES_WAIT_YESNO_START, ENTER_END_YESNO_SELECT );
 
@@ -648,7 +648,7 @@ static int Enter_EndStart( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ðI—¹‚µ‚Ü‚·‚©Hi¢ŠEŒðŠ·‚ÌI—¹j
+ * $brief   æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿï¼ˆä¸–ç•Œäº¤æ›ã®çµ‚äº†ï¼‰
  *
  * @param   wk		
  *
@@ -662,25 +662,25 @@ static int Enter_EndYesNoSelect( WORLDTRADE_WORK *wk )
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
 			if(!DWC_CheckInet()){		
-				// Ú‘±‚ðŠJŽn‚µ‚Ü‚·‚©H
+				// æŽ¥ç¶šã‚’é–‹å§‹ã—ã¾ã™ã‹ï¼Ÿ
 				wk->subprocess_seq  = ENTER_START;
 			}else{
 //				 WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 //				wk->subprocess_seq  = ENTER_END;
 
-				// Šù‚ÉÚ‘±Ï‚Ý‚È‚ç
-				// ƒT[ƒo[ƒ`ƒFƒbƒN‚ÌŒãƒ^ƒCƒgƒ‹ƒƒjƒ…[‚Ö
+				// æ—¢ã«æŽ¥ç¶šæ¸ˆã¿ãªã‚‰
+				// ã‚µãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯ã®å¾Œã‚¿ã‚¤ãƒˆãƒ«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
 				WorldTrade_SubProcessChange( wk, WORLDTRADE_UPLOAD, MODE_SERVER_CHECK );
 				wk->sub_returnprocess = WORLDTRADE_TITLE;
 				wk->subprocess_seq    = ENTER_END;
 
 			}
 		}else{
-			// WIFI‚¹‚Â‚¼‚­‚ðI—¹
+			// WIFIã›ã¤ãžãã‚’çµ‚äº†
 			if(DWC_CheckInet()){		
 			    DWC_CleanupInet();
 			}
-		    // ’ÊMƒGƒ‰[ŠÇ—‚Ì‚½‚ß‚É’ÊMƒ‹[ƒ`ƒ“‚ðOFF
+		    // é€šä¿¡ã‚¨ãƒ©ãƒ¼ç®¡ç†ã®ãŸã‚ã«é€šä¿¡ãƒ«ãƒ¼ãƒãƒ³ã‚’OFF
 		    CommStateWifiDPWEnd();
 			WorldTrade_SubProcessChange( wk, WORLDTRADE_ENTER, 0 );
 			wk->subprocess_seq  = ENTER_END;
@@ -696,7 +696,7 @@ static int Enter_EndYesNoSelect( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Šù‚É‘I‘ð‚ÍI‚í‚Á‚Ä‚¢‚é‚Ì‚ÅWIFI‚©‚çÚ‘±‚·‚é
+ * $brief   æ—¢ã«é¸æŠžã¯çµ‚ã‚ã£ã¦ã„ã‚‹ã®ã§WIFIã‹ã‚‰æŽ¥ç¶šã™ã‚‹
  *
  * @param   wk		
  *
@@ -705,7 +705,7 @@ static int Enter_EndYesNoSelect( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_ForceEndStart( WORLDTRADE_WORK *wk ) 
 {
-	// Ú‘±‚ðI—¹‚µ‚Ü‚·
+	// æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™
 	Enter_MessagePrint( wk, wk->SystemMsgManager, dwc_message_0011, 1, 0x0f0f );
 	WorldTrade_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_FORCE_END );
 
@@ -714,7 +714,7 @@ static int Enter_ForceEndStart( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±I—¹
+ * $brief   æŽ¥ç¶šçµ‚äº†
  *
  * @param   wk		
  *
@@ -723,9 +723,9 @@ static int Enter_ForceEndStart( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_ForceEnd( WORLDTRADE_WORK *wk )
 {
-    // ’ÊMƒGƒ‰[ŠÇ—‚Ì‚½‚ß‚É’ÊMƒ‹[ƒ`ƒ“‚ðOFF
+    // é€šä¿¡ã‚¨ãƒ©ãƒ¼ç®¡ç†ã®ãŸã‚ã«é€šä¿¡ãƒ«ãƒ¼ãƒãƒ³ã‚’OFF
     CommStateWifiDPWEnd();
-	// WIFI‚¹‚Â‚¼‚­‚ðI—¹
+	// WIFIã›ã¤ãžãã‚’çµ‚äº†
     DWC_CleanupInet();
 	WorldTrade_SubProcessChange( wk, WORLDTRADE_ENTER, 0 );
 	wk->subprocess_seq  = ENTER_FORCE_END_MESSAGE;
@@ -736,7 +736,7 @@ static int Enter_ForceEnd( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   Ú‘±I—¹ƒƒbƒZ[ƒW
+ * @brief   æŽ¥ç¶šçµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  *
  * @param   wk		
  *
@@ -754,7 +754,7 @@ static int Enter_ForceEndMessage( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±ŠJŽn
+ * $brief   ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæŽ¥ç¶šé–‹å§‹
  *
  * @param   wk		
  *
@@ -775,7 +775,7 @@ static int Enter_InternetConnect( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒlƒbƒgÚ‘±‘Ò‚¿
+ * $brief   ãƒãƒƒãƒˆæŽ¥ç¶šå¾…ã¡
  *
  * @param   wk		
  *
@@ -792,7 +792,7 @@ static int Enter_InternetConnectWait( WORLDTRADE_WORK *wk )
 		{
 		case DWC_CONNECTINET_STATE_ERROR:
 			{
-				// ƒGƒ‰[•\Ž¦
+				// ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 				DWCError err;
 				int errcode;
                 DWCErrorType errtype;
@@ -822,7 +822,7 @@ static int Enter_InternetConnectWait( WORLDTRADE_WORK *wk )
 			//break;
 		case DWC_CONNECTINET_STATE_FATAL_ERROR:
 			{
-				// ƒGƒ‰[•\Ž¦
+				// ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 				DWCError err;
 				int errcode;
 				err = DWC_GetLastError(&errcode);
@@ -835,7 +835,7 @@ static int Enter_InternetConnectWait( WORLDTRADE_WORK *wk )
 			break;
 
 		case DWC_CONNECTINET_STATE_CONNECTED:
-	        {	// Ú‘±æ‚ð•\Ž¦‚·‚éB“X•Ü‚Ìê‡‚Í“X•Üî•ñ‚à•\Ž¦‚·‚éB
+	        {	// æŽ¥ç¶šå…ˆã‚’è¡¨ç¤ºã™ã‚‹ã€‚åº—èˆ—ã®å ´åˆã¯åº—èˆ—æƒ…å ±ã‚‚è¡¨ç¤ºã™ã‚‹ã€‚
 				DWCApInfo apinfo;
 	
 				DWC_GetApInfo(&apinfo);
@@ -849,12 +849,12 @@ static int Enter_InternetConnectWait( WORLDTRADE_WORK *wk )
 	                OS_TPrintf("spotinfo : %s.\n", apinfo.spotinfo);
 	            }
 	        }
-	        // ƒRƒlƒNƒg¬Œ÷H
+	        // ã‚³ãƒã‚¯ãƒˆæˆåŠŸï¼Ÿ
 			wk->subprocess_seq = ENTER_WIFI_CONNECTION_LOGIN;
 			break;
 		}
 
-		// ŽžŠÔƒAƒCƒRƒ“Á‹Ž
+		// æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆåŽ»
 
 	}
 	
@@ -863,7 +863,7 @@ static int Enter_InternetConnectWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   GameSpyƒT[ƒo[ƒƒOƒCƒ“ŠJŽn
+ * @brief   GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³é–‹å§‹
  *
  * @param   wk		
  *
@@ -874,13 +874,13 @@ static int Enter_WifiConnectionLogin( WORLDTRADE_WORK *wk )
 {
 	DWC_NASLoginAsync();
 	wk->subprocess_seq = ENTER_WIFI_CONNECTION_LOGIN_WAIT;
-	OS_Printf("GameSpyƒT[ƒo[ƒƒOƒCƒ“ŠJŽn\n");
+	OS_Printf("GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³é–‹å§‹\n");
 
 	return SEQ_MAIN;
 }
 //------------------------------------------------------------------
 /**
- * @brief   GameSpyƒT[ƒo[ƒƒOƒCƒ“ˆ—‘Ò‚¿
+ * @brief   GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†å¾…ã¡
  *
  * @param   wk
  *
@@ -891,14 +891,14 @@ static int Enter_WifiConnectionLoginWait( WORLDTRADE_WORK *wk )
 {
 	switch(DWC_NASLoginProcess()){
 	case DWC_NASLOGIN_STATE_SUCCESS:
-		OS_Printf("GameSpyƒT[ƒo[ƒƒOƒCƒ“¬Œ÷\n");
+		OS_Printf("GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³æˆåŠŸ\n");
 		wk->subprocess_seq = ENTER_DPWTR_INIT;
 		break;
 	case DWC_NASLOGIN_STATE_ERROR:
 	case DWC_NASLOGIN_STATE_CANCELED:
 	case DWC_NASLOGIN_STATE_DIRTY:
 		WorldTrade_TimeIconDel(wk);
-		OS_Printf("GameSpyƒT[ƒo[ƒƒOƒCƒ“Ž¸”s\n");
+		OS_Printf("GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—\n");
 		{
 			int errCode;
 			DWCErrorType errType;
@@ -910,7 +910,7 @@ static int Enter_WifiConnectionLoginWait( WORLDTRADE_WORK *wk )
 			DWC_ClearError();
 			DWC_CleanupInet();
 
-			//‚ ‚è‚¦‚È‚¢‚Í‚¸‚¾‚ªA‚Ç‚ÌƒGƒ‰[‚É‚àˆø‚Á‚©‚©‚ç‚È‚¢‰Â”\«‚ðl—¶‚µA‰Šú’l‚Æ‚µ‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚ðæ‚ÉÝ’è‚µ‚Ä‚¨‚­
+			//ã‚ã‚Šãˆãªã„ã¯ãšã ãŒã€ã©ã®ã‚¨ãƒ©ãƒ¼ã«ã‚‚å¼•ã£ã‹ã‹ã‚‰ãªã„å¯èƒ½æ€§ã‚’è€ƒæ…®ã—ã€åˆæœŸå€¤ã¨ã—ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å…ˆã«è¨­å®šã—ã¦ãŠã
 			wk->subprocess_seq = ENTER_DWC_ERROR_PRINT;
 
 			switch(errType){
@@ -930,16 +930,16 @@ static int Enter_WifiConnectionLoginWait( WORLDTRADE_WORK *wk )
 				DWC_ShutdownFriendsMatch();
 				wk->subprocess_seq = ENTER_DWC_ERROR_PRINT;
 				break;
-			case DWC_ETYPE_SHUTDOWN_ND:	//‚±‚ÌƒV[ƒPƒ“ƒX‚Å‚Í‚ ‚è‚¦‚È‚¢‚Ì‚Åˆê‰ž‹­§‚Ó‚Á‚Æ‚Î‚µ‚É‚·‚é
+			case DWC_ETYPE_SHUTDOWN_ND:	//ã“ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã¯ã‚ã‚Šãˆãªã„ã®ã§ä¸€å¿œå¼·åˆ¶ãµã£ã¨ã°ã—ã«ã™ã‚‹
 				OS_TPrintf("DWC_ETYPE_SHUTDOWN_ND!\n");
 				//break;
 			case DWC_ETYPE_FATAL:
-				// ‹­§‚Ó‚Á‚Æ‚Î‚µ
+				// å¼·åˆ¶ãµã£ã¨ã°ã—
 				CommFatalErrorFunc_NoNumber();
 				break;
 			}
 
-			// 20000”Ô‘ä‚ðƒLƒƒƒbƒ`‚µ‚½‚çerrType‚ª‰½‚Å‚ ‚ë‚¤‚ÆƒŠƒZƒbƒgƒGƒ‰[‚Ö
+			// 20000ç•ªå°ã‚’ã‚­ãƒ£ãƒƒãƒã—ãŸã‚‰errTypeãŒä½•ã§ã‚ã‚ã†ã¨ãƒªã‚»ãƒƒãƒˆã‚¨ãƒ©ãƒ¼ã¸
 			if(errCode<-20000 && errCode >=-29999){
 //				CommSetErrorReset(COMM_ERROR_RESET_TITLE);
 				OS_Printf("dwcError = %d  errCode = %d, errType = %d\n", dwcError, errCode, errType);
@@ -957,7 +957,7 @@ static int Enter_WifiConnectionLoginWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ¢ŠEŒðŠ·ƒT[ƒo[Ú‘±ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+ * $brief   ä¸–ç•Œäº¤æ›ã‚µãƒ¼ãƒãƒ¼æŽ¥ç¶šãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
  *
  * @param   wk		
  *
@@ -966,32 +966,32 @@ static int Enter_WifiConnectionLoginWait( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_DpwTrInit( WORLDTRADE_WORK *wk )
 {
-	// ¢ŠEŒðŠ·Ú‘±‰Šú‰»
-	DWCUserData		*MyUserData;		// ”FØÏ‚Ý‚ÌDWCUSERƒf[ƒ^‚µ‚©‚±‚È‚¢‚Í‚¸
+	// ä¸–ç•Œäº¤æ›æŽ¥ç¶šåˆæœŸåŒ–
+	DWCUserData		*MyUserData;		// èªè¨¼æ¸ˆã¿ã®DWCUSERãƒ‡ãƒ¼ã‚¿ã—ã‹ã“ãªã„ã¯ãš
 	s32 profileId;
 
-	// DWCUser\‘¢‘ÌŽæ“¾
+	// DWCUseræ§‹é€ ä½“å–å¾—
 	MyUserData = WifiList_GetMyUserInfo(wk->param->wifilist);
 
 
-	// ‚±‚ÌFriendKey‚ÍƒvƒŒƒCƒ„[‚ªŽn‚ß‚ÄŽæ“¾‚µ‚½‚à‚Ì‚©H
+	// ã“ã®FriendKeyã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå§‹ã‚ã¦å–å¾—ã—ãŸã‚‚ã®ã‹ï¼Ÿ
 	profileId = SYSTEMDATA_GetDpwInfo( wk->param->systemdata );
 	if( profileId==0 ){
-		OS_TPrintf("‰‰ñŽæ“¾profileId‚È‚Ì‚ÅDpwInfo‚Æ‚µ‚Ä“o˜^‚µ‚½ %08x \n", wk->param->profileId);
+		OS_TPrintf("åˆå›žå–å¾—profileIdãªã®ã§DpwInfoã¨ã—ã¦ç™»éŒ²ã—ãŸ %08x \n", wk->param->profileId);
 
-		// ‰‰ñŽæ“¾FriendKey‚È‚Ì‚ÅADpwId‚Æ‚µ‚Ä•Û‘¶‚·‚é
+		// åˆå›žå–å¾—FriendKeyãªã®ã§ã€DpwIdã¨ã—ã¦ä¿å­˜ã™ã‚‹
 		SYSTEMDATA_SetDpwInfo( wk->param->systemdata, wk->param->profileId );
 	}
 
 	
-	// ³Ž®‚Èƒf[ƒ^‚ðŽæ“¾
+	// æ­£å¼ãªãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	profileId = SYSTEMDATA_GetDpwInfo( wk->param->systemdata );
-	OS_Printf("DpwƒT[ƒo[ƒƒOƒCƒ“î•ñ profileId=%08x\n", profileId);
+	OS_Printf("Dpwã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³æƒ…å ± profileId=%08x\n", profileId);
 
-	// DPW_TR‰Šú‰»
+	// DPW_TRåˆæœŸåŒ–
 	Dpw_Tr_Init( profileId, DWC_CreateFriendKey( MyUserData ) );
 
-	OS_TPrintf("Dpw Trade ‰Šú‰»\n");
+	OS_TPrintf("Dpw Trade åˆæœŸåŒ–\n");
 
 	wk->subprocess_seq = ENTER_SERVER_START;
 	
@@ -1000,7 +1000,7 @@ static int Enter_DpwTrInit( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ¢ŠEŒðŠ·ƒ‰ƒCƒuƒ‰ƒŠÚ‘±ó‹µŽæ“¾ŠJŽn
+ * $brief   ä¸–ç•Œäº¤æ›ãƒ©ã‚¤ãƒ–ãƒ©ãƒªæŽ¥ç¶šçŠ¶æ³å–å¾—é–‹å§‹
  *
  * @param   wk		
  *
@@ -1011,9 +1011,9 @@ static int Enter_ServerStart( WORLDTRADE_WORK *wk )
 {
 	Dpw_Tr_GetServerStateAsync();
 
-	OS_TPrintf("Dpw Trade ƒT[ƒo[ó‘ÔŽæ“¾ŠJŽn\n");
+	OS_TPrintf("Dpw Trade ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹å–å¾—é–‹å§‹\n");
 
-	// ƒT[ƒo[ó‘ÔŠm”F‘Ò‚¿‚Ö
+	// ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹ç¢ºèªå¾…ã¡ã¸
 	wk->subprocess_seq = ENTER_SERVER_RESULT;
 	wk->timeout_count = 0;
 	
@@ -1022,7 +1022,7 @@ static int Enter_ServerStart( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒT[ƒo[ó‘ÔŠm”F‘Ò‚¿
+ * $brief   ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹ç¢ºèªå¾…ã¡
  *
  * @param   wk		
  *
@@ -1035,24 +1035,24 @@ static int Enter_ServerResult( WORLDTRADE_WORK *wk )
 		s32 result = Dpw_Tr_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		case DPW_TR_STATUS_SERVER_OK:		// ³í‚É“®ì‚µ‚Ä‚¢‚é
+		case DPW_TR_STATUS_SERVER_OK:		// æ­£å¸¸ã«å‹•ä½œã—ã¦ã„ã‚‹
 			OS_TPrintf(" server is up!\n");
 		
 		#if 0
-			// ƒ|ƒPƒ‚ƒ“Šm”FƒTƒuƒvƒƒZƒX‚ÖˆÚs
+			// ãƒã‚±ãƒ¢ãƒ³ç¢ºèªã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã¸ç§»è¡Œ
 			WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 			wk->subprocess_seq  = ENTER_END;
 		#else
 			wk->subprocess_seq  = ENTER_PROFILE_START;
 		#endif
 			break;
-		case DPW_TR_STATUS_SERVER_STOP_SERVICE:	// ƒT[ƒrƒX’âŽ~’†
+		case DPW_TR_STATUS_SERVER_STOP_SERVICE:	// ã‚µãƒ¼ãƒ“ã‚¹åœæ­¢ä¸­
 			OS_TPrintf(" server stop service.\n");
 			WorldTrade_TimeIconDel(wk);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			break;
-		case DPW_TR_STATUS_SERVER_FULL:			// ƒT[ƒo[‚ª–ž”t
+		case DPW_TR_STATUS_SERVER_FULL:			// ã‚µãƒ¼ãƒãƒ¼ãŒæº€æ¯
 		case DPW_TR_ERROR_SERVER_FULL:
 			OS_TPrintf(" server full.\n");
 			WorldTrade_TimeIconDel(wk);
@@ -1062,7 +1062,7 @@ static int Enter_ServerResult( WORLDTRADE_WORK *wk )
 
 		case DPW_TR_ERROR_CANCEL :
 		case DPW_TR_ERROR_FAILURE :
-			// uGTS‚Ì‚©‚­‚É‚ñ‚É‚µ‚Á‚Ï‚¢‚µ‚Ü‚µ‚½v¨ƒ^ƒCƒgƒ‹‚Ö
+			// ã€ŒGTSã®ã‹ãã«ã‚“ã«ã—ã£ã±ã„ã—ã¾ã—ãŸã€â†’ã‚¿ã‚¤ãƒˆãƒ«ã¸
 			WorldTrade_TimeIconDel(wk);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1070,15 +1070,15 @@ static int Enter_ServerResult( WORLDTRADE_WORK *wk )
 
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
-			// ƒT[ƒo[‚Æ’ÊM‚Å‚«‚Ü‚¹‚ñ¨I—¹
+			// ã‚µãƒ¼ãƒãƒ¼ã¨é€šä¿¡ã§ãã¾ã›ã‚“â†’çµ‚äº†
 			OS_TPrintf(" upload error. %d \n", result);
 			WorldTrade_TimeIconDel(wk);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< ’ÊM’v–½“IƒGƒ‰[B“dŒ¹‚ÌÄ“Š“ü‚ª•K—v‚Å‚·
+		case DPW_TR_ERROR_FATAL:			//!< é€šä¿¡è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ã€‚é›»æºã®å†æŠ•å…¥ãŒå¿…è¦ã§ã™
 		default:
-			// ‘¦‚Ó‚Á‚Æ‚Î‚µ
+			// å³ãµã£ã¨ã°ã—
 			WorldTrade_TimeIconDel(wk);
 			CommFatalErrorFunc_NoNumber();
 			break;
@@ -1089,7 +1089,7 @@ static int Enter_ServerResult( WORLDTRADE_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//‹­§‚Ó‚Á‚Æ‚Î‚µ
+			CommFatalErrorFunc_NoNumber();	//å¼·åˆ¶ãµã£ã¨ã°ã—
 		}
 	}
 	return SEQ_MAIN;
@@ -1097,7 +1097,7 @@ static int Enter_ServerResult( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ¢ŠEŒðŠ·ƒ‰ƒCƒuƒ‰ƒŠFƒvƒƒtƒB[ƒ‹(Eƒ[ƒ‹)XVŠJŽn
+ * $brief   ä¸–ç•Œäº¤æ›ãƒ©ã‚¤ãƒ–ãƒ©ãƒªï¼šãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«(Eãƒ¡ãƒ¼ãƒ«)æ›´æ–°é–‹å§‹
  *
  * @param   wk		
  *
@@ -1109,9 +1109,9 @@ static int Enter_ProfileStart( WORLDTRADE_WORK *wk )
 	EMAILSAVE_DCProfileCreate_Update(wk->param->savedata, &wk->dc_profile);
 	Dpw_Tr_SetProfileAsync(&wk->dc_profile, &wk->dc_profile_result);
 
-	OS_TPrintf("Dpw Trade ƒvƒƒtƒB[ƒ‹(Eƒ[ƒ‹)‘—M\n");
+	OS_TPrintf("Dpw Trade ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«(Eãƒ¡ãƒ¼ãƒ«)é€ä¿¡\n");
 
-	// ƒT[ƒo[ó‘ÔŠm”F‘Ò‚¿‚Ö
+	// ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹ç¢ºèªå¾…ã¡ã¸
 	wk->subprocess_seq = ENTER_PROFILE_RESULT;
 	wk->timeout_count = 0;
 	
@@ -1120,7 +1120,7 @@ static int Enter_ProfileStart( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Eƒ[ƒ‹XVˆ—•ÔŽ–‘Ò‚¿
+ * $brief   Eãƒ¡ãƒ¼ãƒ«æ›´æ–°å‡¦ç†è¿”äº‹å¾…ã¡
  *
  * @param   wk		
  *
@@ -1133,67 +1133,67 @@ static int Enter_ProfileResult( WORLDTRADE_WORK *wk )
 		s32 result = Dpw_Tr_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		case DPW_TR_STATUS_SERVER_OK:		// ³í‚É“®ì‚µ‚Ä‚¢‚é
+		case DPW_TR_STATUS_SERVER_OK:		// æ­£å¸¸ã«å‹•ä½œã—ã¦ã„ã‚‹
 			OS_TPrintf(" profile is up!\n");
 
 			WorldTrade_TimeIconDel(wk);
 			switch(wk->dc_profile_result.code){
-			case DPW_PROFILE_RESULTCODE_SUCCESS:	//î•ñ‚Ì“o˜^‚É¬Œ÷
+			case DPW_PROFILE_RESULTCODE_SUCCESS:	//æƒ…å ±ã®ç™»éŒ²ã«æˆåŠŸ
 				OS_TPrintf("mailAddrAuthResult = %d\n", wk->dc_profile_result.mailAddrAuthResult);
 				switch(wk->dc_profile_result.mailAddrAuthResult){
-				case DPW_PROFILE_AUTHRESULT_SUCCESS:	//”FØ¬Œ÷
-					// ƒ|ƒPƒ‚ƒ“Šm”FƒTƒuƒvƒƒZƒX‚ÖˆÚs
+				case DPW_PROFILE_AUTHRESULT_SUCCESS:	//èªè¨¼æˆåŠŸ
+					// ãƒã‚±ãƒ¢ãƒ³ç¢ºèªã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã¸ç§»è¡Œ
 					WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 					wk->subprocess_seq  = ENTER_END;
 					break;
-				//ˆÈ‰º‚ÌƒGƒ‰[ˆ—‚Í‚±‚ÌƒV[ƒ“‚Å‚Í‘z’è‚µ‚Ä‚¢‚È‚¢ƒ[ƒ‹”FØ‚ÌŒ‹‰Ê‚ª•Ô‚Á‚½ê‡
-				// (Ž©•ª‚Ì—F’BƒR[ƒh‚ª•Ï‰»‚µ‚½‚Æ‚«‚ÉˆÈ‘O‚Æ“¯‚¶ƒ[ƒ‹ƒAƒhƒŒƒX‚ÆƒpƒXƒ[ƒh‚ð‘—
-				// M‚µ‚½‚Æ‚«‚É‚±‚Ì‚æ‚¤‚É‚È‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B’Êí‚Í‚ ‚è“¾‚Ü‚¹‚ñB)ƒ}ƒjƒ…ƒAƒ‹ˆø—p
-				case DPW_PROFILE_AUTHRESULT_FAILURE:	//”FØ‚ÉŽ¸”s
+				//ä»¥ä¸‹ã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã¯ã“ã®ã‚·ãƒ¼ãƒ³ã§ã¯æƒ³å®šã—ã¦ã„ãªã„ãƒ¡ãƒ¼ãƒ«èªè¨¼ã®çµæžœãŒè¿”ã£ãŸå ´åˆ
+				// (è‡ªåˆ†ã®å‹é”ã‚³ãƒ¼ãƒ‰ãŒå¤‰åŒ–ã—ãŸã¨ãã«ä»¥å‰ã¨åŒã˜ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’é€
+				// ä¿¡ã—ãŸã¨ãã«ã“ã®ã‚ˆã†ã«ãªã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚é€šå¸¸ã¯ã‚ã‚Šå¾—ã¾ã›ã‚“ã€‚)ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«å¼•ç”¨
+				case DPW_PROFILE_AUTHRESULT_FAILURE:	//èªè¨¼ã«å¤±æ•—
 					OS_TPrintf(" mail service error\n");
 					wk->ConnectErrorNo = EMAIL_ERROR_FAILURE;
 					wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 					break;
-				case DPW_PROFILE_AUTHRESULT_SEND:	//”FØƒ[ƒ‹‘—M‚µ‚½
+				case DPW_PROFILE_AUTHRESULT_SEND:	//èªè¨¼ãƒ¡ãƒ¼ãƒ«é€ä¿¡ã—ãŸ
 					OS_TPrintf(" mail service error\n");
 					wk->ConnectErrorNo = EMAIL_ERROR_SEND;
 					wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 					break;
-				case DPW_PROFILE_AUTHRESULT_SENDFAILURE:	//”FØƒ[ƒ‹‚Ì‘—M‚ÉŽ¸”s
+				case DPW_PROFILE_AUTHRESULT_SENDFAILURE:	//èªè¨¼ãƒ¡ãƒ¼ãƒ«ã®é€ä¿¡ã«å¤±æ•—
 					OS_TPrintf(" mail service error\n");
 					wk->ConnectErrorNo = EMAIL_ERROR_SENDFAILURE;
 					wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 					break;
-				default:	//‚ ‚è‚¦‚È‚¢‚¯‚Çˆê‰žB‹­§‚Ó‚Á‚Æ‚Î‚µ
+				default:	//ã‚ã‚Šãˆãªã„ã‘ã©ä¸€å¿œã€‚å¼·åˆ¶ãµã£ã¨ã°ã—
 					CommFatalErrorFunc_NoNumber();
 					break;
 				}
 				break;
-			case DPW_PROFILE_RESULTCODE_ERROR_INVALIDPARAM:	//ƒvƒƒtƒB[ƒ‹‚Ì‘—Mƒpƒ‰ƒ[ƒ^•s³
+			case DPW_PROFILE_RESULTCODE_ERROR_INVALIDPARAM:	//ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®é€ä¿¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¸æ­£
 				OS_TPrintf(" server stop service.\n");
 				wk->ConnectErrorNo = EMAIL_ERROR_INVALIDPARAM;
 				wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 				break;
-			case DPW_PROFILE_RESULTCODE_ERROR_SERVERSTATE:	//ƒT[ƒoƒƒ“ƒeƒiƒ“ƒXorˆêŽž’âŽ~’†
+			case DPW_PROFILE_RESULTCODE_ERROR_SERVERSTATE:	//ã‚µãƒ¼ãƒãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹orä¸€æ™‚åœæ­¢ä¸­
 				OS_TPrintf(" server stop service.\n");
 				wk->ConnectErrorNo = EMAIL_ERROR_SERVERSTATE;
 				wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 				break;
 			default:
-				// ‘¦‚Ó‚Á‚Æ‚Î‚µ
+				// å³ãµã£ã¨ã°ã—
 				OS_TPrintf("default error !\n");
 				WorldTrade_TimeIconDel(wk);
 				CommFatalErrorFunc_NoNumber();
 				break;
 			}
 			break;
-		case DPW_TR_STATUS_SERVER_STOP_SERVICE:	// ƒT[ƒrƒX’âŽ~’†
+		case DPW_TR_STATUS_SERVER_STOP_SERVICE:	// ã‚µãƒ¼ãƒ“ã‚¹åœæ­¢ä¸­
 			OS_TPrintf(" server stop service.\n");
 			WorldTrade_TimeIconDel(wk);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			break;
-		case DPW_TR_STATUS_SERVER_FULL:			// ƒT[ƒo[‚ª–ž”t
+		case DPW_TR_STATUS_SERVER_FULL:			// ã‚µãƒ¼ãƒãƒ¼ãŒæº€æ¯
 		case DPW_TR_ERROR_SERVER_FULL:
 			OS_TPrintf(" server full.\n");
 			WorldTrade_TimeIconDel(wk);
@@ -1203,7 +1203,7 @@ static int Enter_ProfileResult( WORLDTRADE_WORK *wk )
 
 		case DPW_TR_ERROR_CANCEL :
 		case DPW_TR_ERROR_FAILURE :
-			// uGTS‚Ì‚©‚­‚É‚ñ‚É‚µ‚Á‚Ï‚¢‚µ‚Ü‚µ‚½v¨ƒ^ƒCƒgƒ‹‚Ö
+			// ã€ŒGTSã®ã‹ãã«ã‚“ã«ã—ã£ã±ã„ã—ã¾ã—ãŸã€â†’ã‚¿ã‚¤ãƒˆãƒ«ã¸
 			WorldTrade_TimeIconDel(wk);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1211,15 +1211,15 @@ static int Enter_ProfileResult( WORLDTRADE_WORK *wk )
 
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
-			// ƒT[ƒo[‚Æ’ÊM‚Å‚«‚Ü‚¹‚ñ¨I—¹
+			// ã‚µãƒ¼ãƒãƒ¼ã¨é€šä¿¡ã§ãã¾ã›ã‚“â†’çµ‚äº†
 			OS_TPrintf(" upload error. %d \n", result);
 			WorldTrade_TimeIconDel(wk);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< ’ÊM’v–½“IƒGƒ‰[B“dŒ¹‚ÌÄ“Š“ü‚ª•K—v‚Å‚·
+		case DPW_TR_ERROR_FATAL:			//!< é€šä¿¡è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ã€‚é›»æºã®å†æŠ•å…¥ãŒå¿…è¦ã§ã™
 		default:
-			// ‘¦‚Ó‚Á‚Æ‚Î‚µ
+			// å³ãµã£ã¨ã°ã—
 			WorldTrade_TimeIconDel(wk);
 			CommFatalErrorFunc_NoNumber();
 			break;
@@ -1229,7 +1229,7 @@ static int Enter_ProfileResult( WORLDTRADE_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//‹­§‚Ó‚Á‚Æ‚Î‚µ
+			CommFatalErrorFunc_NoNumber();	//å¼·åˆ¶ãµã£ã¨ã°ã—
 		}
 	}
 	return SEQ_MAIN;
@@ -1240,7 +1240,7 @@ static int Enter_ProfileResult( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   WifiÚ‘±ƒGƒ‰[‚ð•\Ž¦
+ * @brief   WifiæŽ¥ç¶šã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1266,7 +1266,7 @@ static int Enter_DwcErrorPrint( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒvƒŠƒ“ƒgŒãƒL[‘Ò‚¿
+ * @brief   ãƒ—ãƒªãƒ³ãƒˆå¾Œã‚­ãƒ¼å¾…ã¡
  *
  * @param   wk		
  *
@@ -1285,7 +1285,7 @@ static int Enter_ErrorPadWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXI—¹ˆ—
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚äº†å‡¦ç†
  *
  * @param   wk		
  *
@@ -1296,7 +1296,7 @@ static int Enter_End( WORLDTRADE_WORK *wk)
 {
     WirelessIconEasyEnd();
 
-	// ŽžŠÔƒAƒCƒRƒ“Á‹Ž‚Qd‰ð•ú‚É‚È‚ç‚È‚¢‚æ‚¤‚ÉNULLƒ`ƒFƒbƒN‚µ‚Â‚Â
+	// æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆåŽ»ï¼’é‡è§£æ”¾ã«ãªã‚‰ãªã„ã‚ˆã†ã«NULLãƒã‚§ãƒƒã‚¯ã—ã¤ã¤
 	WorldTrade_TimeIconDel( wk );
 
 	
@@ -1312,7 +1312,7 @@ static int Enter_End( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚Í‚¢E‚¢‚¢‚¦
+ * $brief   ã¯ã„ãƒ»ã„ã„ãˆ
  *
  * @param   wk		
  *
@@ -1332,7 +1332,7 @@ static int Enter_YesNo( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚Í‚¢E‚¢‚¢‚¦‘I‘ð
+ * $brief   ã¯ã„ãƒ»ã„ã„ãˆé¸æŠž
  *
  * @param   wk		
  *
@@ -1345,10 +1345,10 @@ static int Enter_YesNoSelect( WORLDTRADE_WORK *wk)
 
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
-			// ‚à‚¤‚¢‚Á‚©‚¢ƒgƒ‰ƒC
+			// ã‚‚ã†ã„ã£ã‹ã„ãƒˆãƒ©ã‚¤
 			wk->subprocess_seq = ENTER_START;
 		}else{
-			// WIFI‚¹‚Â‚¼‚­‚ðI—¹
+			// WIFIã›ã¤ãžãã‚’çµ‚äº†
 			 WorldTrade_SubProcessChange( wk, WORLDTRADE_ENTER, 0 );
 			wk->subprocess_seq = ENTER_END;
 		}
@@ -1361,7 +1361,7 @@ static int Enter_YesNoSelect( WORLDTRADE_WORK *wk)
 
 //==============================================================================
 /**
- * $brief   ƒlƒbƒg‚É‚ÍŒq‚ª‚Á‚½‚¯‚ÇƒT[ƒo[ƒGƒ‰[‚¾‚Á‚½•\Ž¦
+ * $brief   ãƒãƒƒãƒˆã«ã¯ç¹‹ãŒã£ãŸã‘ã©ã‚µãƒ¼ãƒãƒ¼ã‚¨ãƒ©ãƒ¼ã ã£ãŸè¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1382,7 +1382,7 @@ static int Enter_ServerServiceError( WORLDTRADE_WORK *wk )
 		break;
 	case DPW_TR_ERROR_SERVER_TIMEOUT:
 	case DPW_TR_ERROR_DISCONNECTED:
-		// ‚f‚s‚r‚Æ‚Ì‚¹‚Â‚¼‚­‚ª‚«‚ê‚Ü‚µ‚½B‚¤‚¯‚Â‚¯‚É‚à‚Ç‚è‚Ü‚·
+		// ï¼§ï¼´ï¼³ã¨ã®ã›ã¤ãžããŒãã‚Œã¾ã—ãŸã€‚ã†ã‘ã¤ã‘ã«ã‚‚ã©ã‚Šã¾ã™
 		msgno = msg_gtc_error_006;
 		break;
 	case DPW_TR_ERROR_CANCEL  :
@@ -1390,7 +1390,7 @@ static int Enter_ServerServiceError( WORLDTRADE_WORK *wk )
 	case DPW_TR_ERROR_NO_DATA:
 	case DPW_TR_ERROR_ILLIGAL_REQUEST :
 	default:
-		//@‚Â‚¤‚µ‚ñƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
+		//ã€€ã¤ã†ã—ã‚“ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚
 		msgno = msg_gtc_error_005;
 		break;
 	case EMAIL_ERROR_FAILURE:
@@ -1409,18 +1409,18 @@ static int Enter_ServerServiceError( WORLDTRADE_WORK *wk )
 		msgno = msg_gtc_email_error_003;
 		break;
 	}
-	// ƒGƒ‰[•\Ž¦
+	// ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 	Enter_MessagePrint( wk, wk->MsgManager, msgno, 1, 0x0f0f );
 	WorldTrade_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_SERVER_SERVICE_END );
 
-	OS_TPrintf("Error”­¶\n");
+	OS_TPrintf("Errorç™ºç”Ÿ\n");
 
 	return SEQ_MAIN;
 }
 
 //==============================================================================
 /**
- * $brief   ƒT[ƒo[ƒT[ƒrƒX‚Ì–â‘è‚ÅI—¹
+ * $brief   ã‚µãƒ¼ãƒãƒ¼ã‚µãƒ¼ãƒ“ã‚¹ã®å•é¡Œã§çµ‚äº†
  *
  * @param   wk		
  *
@@ -1436,7 +1436,7 @@ static int Enter_ServerServiceEnd( WORLDTRADE_WORK *wk )
 		break;
 	case 1:
 		if( GF_MSG_PrintEndCheck( wk->MsgIndex )==0){
-		    // ’ÊMƒGƒ‰[ŠÇ—‚Ì‚½‚ß‚É’ÊMƒ‹[ƒ`ƒ“‚ðOFF
+		    // é€šä¿¡ã‚¨ãƒ©ãƒ¼ç®¡ç†ã®ãŸã‚ã«é€šä¿¡ãƒ«ãƒ¼ãƒãƒ³ã‚’OFF
 		    CommStateWifiDPWEnd();
 		    DWC_CleanupInet();
 			wk->local_seq++;
@@ -1465,7 +1465,7 @@ static int Enter_ServerServiceEnd( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bI—¹‚ð‘Ò‚Á‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+ * $brief   ä¼šè©±çµ‚äº†ã‚’å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
  *
  * @param   wk		
  *
@@ -1483,7 +1483,7 @@ static int Enter_MessageWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‰ï˜b•\Ž¦Œã1•b‘Ò‚Â
+ * @brief   ä¼šè©±è¡¨ç¤ºå¾Œ1ç§’å¾…ã¤
  *
  * @param   wk		
  *
@@ -1504,7 +1504,7 @@ static int Enter_MessageWait1Second( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜b•\Ž¦‚ð‘Ò‚Á‚½ã‚Åu‚Í‚¢E‚¢‚¢‚¦v‚ðŠJŽn‚·‚é
+ * $brief   ä¼šè©±è¡¨ç¤ºã‚’å¾…ã£ãŸä¸Šã§ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ã‚’é–‹å§‹ã™ã‚‹
  *
  * @param   wk		
  *
@@ -1523,7 +1523,7 @@ static int Enter_MessageWaitYesNoStart(WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦
+ * $brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1532,22 +1532,22 @@ static int Enter_MessageWaitYesNoStart(WORLDTRADE_WORK *wk)
 //------------------------------------------------------------------
 void Enter_MessagePrint( WORLDTRADE_WORK *wk, MSGDATA_MANAGER *msgman, int msgno, int wait, u16 dat )
 {
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	STRBUF *tempbuf;
 
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	tempbuf = MSGMAN_AllocString(  msgman, msgno );
 
-	// WORDSET“WŠJ
+	// WORDSETå±•é–‹
 	WORDSET_ExpandStr( wk->WordSet, wk->TalkString, tempbuf );
 
 	STRBUF_Delete(tempbuf);
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æž æç”»
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, WORLDTRADE_MESFRAME_CHR, WORLDTRADE_MESFRAME_PAL );
 
-	// •¶Žš—ñ•`‰æŠJŽn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, wait, NULL);
 
 	wk->wait = 0;
@@ -1564,9 +1564,9 @@ void Enter_MessagePrint( WORLDTRADE_WORK *wk, MSGDATA_MANAGER *msgman, int msgno
  *
  * @param   win		
  * @param   strbuf		
- * @param   flag		1‚¾‚ÆƒZƒ“ƒ^ƒŠƒ“ƒOA‚Q‚¾‚Æ‰E‚æ‚¹
+ * @param   flag		1ã ã¨ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã€ï¼’ã ã¨å³ã‚ˆã›
  * @param   color		
- * @param   font		ƒtƒHƒ“ƒgŽw’èiFONT_TALK‚©FONT_SYSTEM
+ * @param   font		ãƒ•ã‚©ãƒ³ãƒˆæŒ‡å®šï¼ˆFONT_TALKã‹FONT_SYSTEM
  *
  * @retval  int		
  */
@@ -1575,13 +1575,13 @@ static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag,
 {
 	int length=0,ground;
 	switch(flag){
-	// ƒZƒ“ƒ^ƒŠƒ“ƒO
+	// ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°
 	case 1:
 		length = FontProc_GetPrintStrWidth( font, strbuf, 0 );
 		x          = ((win->sizx*8)-length)/2;
 		break;
 
-	// ‰EŠñ‚¹
+	// å³å¯„ã›
 	case 2:
 		length = FontProc_GetPrintStrWidth( font, strbuf, 0 );
 		x          = (win->sizx*8)-length;
@@ -1593,14 +1593,14 @@ static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag,
 
 //------------------------------------------------------------------
 /**
- * $brief   BMPWIN“à‚Ì•\Ž¦ˆÊ’u‚ðŽw’è‚µ‚ÄFONT_TALK‚ÅƒvƒŠƒ“ƒg(•`‰æ‚Ì‚Ýj
+ * $brief   BMPWINå†…ã®è¡¨ç¤ºä½ç½®ã‚’æŒ‡å®šã—ã¦FONT_TALKã§ãƒ—ãƒªãƒ³ãƒˆ(æç”»ã®ã¿ï¼‰
  *
  * @param   win		GF_BGL_BMPWIN
  * @param   strbuf	
- * @param   x		XÀ•W‚¸‚ç‚·’l
- * @param   y		YÀ•W‚¸‚ç‚·’l
- * @param   flag	0‚¾‚Æ¶Šñ‚¹A1‚¾‚ÆƒZƒ“ƒ^ƒŠƒ“ƒOA2‚¾‚Æ‰EŠñ‚¹
- * @param   color	•¶ŽšFŽw’èi”wŒiF‚ÅBMP‚ð“h‚è‚Â‚Ô‚µ‚Ü‚·j
+ * @param   x		Xåº§æ¨™ãšã‚‰ã™å€¤
+ * @param   y		Yåº§æ¨™ãšã‚‰ã™å€¤
+ * @param   flag	0ã ã¨å·¦å¯„ã›ã€1ã ã¨ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã€2ã ã¨å³å¯„ã›
+ * @param   color	æ–‡å­—è‰²æŒ‡å®šï¼ˆèƒŒæ™¯è‰²ã§BMPã‚’å¡—ã‚Šã¤ã¶ã—ã¾ã™ï¼‰
  *
  * @retval  none
  */
@@ -1615,7 +1615,7 @@ void WorldTrade_TalkPrint( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int y, int
 
 //==============================================================================
 /**
- * @brief   BMPWIN“à‚Ì•\Ž¦ˆÊ’u‚ðŽw’è‚µ‚ÄFONT_SYSTEM‚ÅƒvƒŠƒ“ƒg(•`‰æ‚Ì‚Ýj
+ * @brief   BMPWINå†…ã®è¡¨ç¤ºä½ç½®ã‚’æŒ‡å®šã—ã¦FONT_SYSTEMã§ãƒ—ãƒªãƒ³ãƒˆ(æç”»ã®ã¿ï¼‰
  *
  * @param   win		
  * @param   strbuf		
@@ -1636,7 +1636,7 @@ void WorldTrade_SysPrint( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int y, int 
 
 //------------------------------------------------------------------
 /**
- * $brief   WIFIƒAƒCƒRƒ“‚ð•\Ž¦“o˜^‚·‚é
+ * $brief   WIFIã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºç™»éŒ²ã™ã‚‹
  *
  * @param   wk		
  *
@@ -1651,7 +1651,7 @@ void WorldTrade_WifiIconAdd( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚—‚‰‚†‚‰ƒGƒ‰[•\Ž¦
+ * @brief   ï½—ï½‰ï½†ï½‰ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
  *
  * @param   wk		
  * @param   msgno		
@@ -1665,10 +1665,10 @@ static void _systemMessagePrint( WORLDTRADE_WORK *wk, int msgno )
     MSGMAN_GetString(  wk->SystemMsgManager, msgno, tmpString );
     WORDSET_ExpandStr( wk->WordSet, wk->ErrorString, tmpString );
 
-    // ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+    // ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æž æç”»
     GF_BGL_BmpWinDataFill(&wk->SubWin, 15 );
     BmpMenuWinWrite(&wk->SubWin, WINDOW_TRANS_OFF, WORLDTRADE_MENUFRAME_CHR, WORLDTRADE_MENUFRAME_PAL );
-    // •¶Žš—ñ•`‰æŠJŽn
+    // æ–‡å­—åˆ—æç”»é–‹å§‹
     wk->MsgIndex = GF_STR_PrintSimple( &wk->SubWin, FONT_TALK,
                                        wk->ErrorString, 0, 0, MSG_ALLPUT, NULL);
 
@@ -1677,7 +1677,7 @@ static void _systemMessagePrint( WORLDTRADE_WORK *wk, int msgno )
 
 //------------------------------------------------------------------
 /**
- * @brief   WifiƒRƒlƒNƒVƒ‡ƒ“ƒGƒ‰[‚Ì•\Ž¦
+ * @brief   Wifiã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚¨ãƒ©ãƒ¼ã®è¡¨ç¤º
  *
  * @param   wk		
  * @param   type	
@@ -1707,23 +1707,23 @@ static void errorDisp(WORLDTRADE_WORK* wk, int type, int code)
       case 1:
       case 4:
       case 5:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // ÄÚ‘±‚©ƒtƒB[ƒ‹ƒh‚©
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // å†æŽ¥ç¶šã‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹
         break;
       case 6:
       case 7:
       case 8:
       case 9:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;//WIFIP2PMATCH_POWEROFF_INIT;  // “dŒ¹‚ðØ‚é‚©ƒtƒB[ƒ‹ƒh
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;//WIFIP2PMATCH_POWEROFF_INIT;  // é›»æºã‚’åˆ‡ã‚‹ã‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
         break;
       case 10:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // ƒƒjƒ…[ˆê——‚Ö
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä¸€è¦§ã¸
         break;
       case 0:
       case 2:
       case 3:
       case 11:
       default:
-        wk->seq = WIFIP2PMATCH_MODE_CHECK_AND_END;  // ƒtƒB[ƒ‹ƒh
+        wk->seq = WIFIP2PMATCH_MODE_CHECK_AND_END;  // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
         break;
     }
 #endif

@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_c07r0207evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c07r0207_middleman2
 _EVENT_DATA		ev_c07r0207_middlewoman2
@@ -33,42 +33,42 @@ _EVENT_DATA_END
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /*
- * ’ˆÓI(06.02.09Œ»Ý)
- * EV_SCRIPT_WORK‚ðŠm•Û‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA
- * SCWK_ANSWER‚È‚Ç‚Ìƒ[ƒN‚ÍŽg—p‚·‚é‚±‚Æ‚ªo—ˆ‚È‚¢I
- * LOCALWORK0‚È‚Ç‚ðŽg—p‚·‚é‚æ‚¤‚É‚·‚éI
+ * æ³¨æ„ï¼(06.02.09ç¾åœ¨)
+ * EV_SCRIPT_WORKã‚’ç¢ºä¿ã—ã¦ã„ãªã„ã®ã§ã€
+ * SCWK_ANSWERãªã©ã®ãƒ¯ãƒ¼ã‚¯ã¯ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã„ï¼
+ * LOCALWORK0ãªã©ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
  *
- * ‹¤’ÊƒXƒNƒŠƒvƒg‚É‚Â‚¢‚Ä‚ÍŒ»óŽg—p•s‰ÂI
- * ‘Î‰ž—\’è‚¾‚ªAƒ][ƒ“‚ð‚Ü‚½‚¢‚¾Žž‚Éˆ——Ž‚¿‚·‚é‚©‚àH
- * ‚ ‚Ü‚è‚Â‚©‚í‚È‚¢‚©‚àH
+ * å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ã¤ã„ã¦ã¯ç¾çŠ¶ä½¿ç”¨ä¸å¯ï¼
+ * å¯¾å¿œäºˆå®šã ãŒã€ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸã„ã æ™‚ã«å‡¦ç†è½ã¡ã™ã‚‹ã‹ã‚‚ï¼Ÿ
+ * ã‚ã¾ã‚Šã¤ã‹ã‚ãªã„ã‹ã‚‚ï¼Ÿ
  */
 /********************************************************************/
 //ev_c07r0207_flag_change:
 //	_END
 
 /********************************************************************/
-/*							aŽm									*/
+/*							ç´³å£«									*/
 /********************************************************************/
 ev_c07r0207_middleman2:
 	_EASY_OBJ_MSG	msg_c07r0207_middleman2_01
 	_END
 
 /********************************************************************/
-/*							i—1									*/
+/*							æ·‘å¥³1									*/
 /********************************************************************/
 ev_c07r0207_middlewoman2:
 	_EASY_OBJ_MSG	msg_c07r0207_middlewoman2_01
 	_END
 
 /********************************************************************/
-/*							i—2									*/
+/*							æ·‘å¥³2									*/
 /********************************************************************/
 ev_c07r0207_middlewoman2a:
 	_EASY_OBJ_MSG	msg_c07r0207_middlewoman2a_01
 	_END
 
 /********************************************************************/
-/*							Žó•t									*/
+/*							å—ä»˜									*/
 /********************************************************************/
 ev_c07r0207_depart:
 	_EASY_OBJ_MSG	msg_c07r0207_depart_01
@@ -76,7 +76,7 @@ ev_c07r0207_depart:
 
 
 /********************************************************************/
-/*							Žó•t‚P									*/
+/*							å—ä»˜ï¼‘									*/
 /********************************************************************/
 ev_c07r0207_depart1:
 	_EASY_OBJ_MSG	msg_c07r0207_depart1_01
@@ -84,7 +84,7 @@ ev_c07r0207_depart1:
 
 
 /********************************************************************/
-/*							Žó•t‚Q									*/
+/*							å—ä»˜ï¼’									*/
 /********************************************************************/
 ev_c07r0207_depart2:
 	_EASY_OBJ_MSG	msg_c07r0207_depart2_01
@@ -92,16 +92,16 @@ ev_c07r0207_depart2:
 
 
 /********************************************************************/
-/*							ƒiƒiƒJƒ}ƒh								*/
+/*							ãƒŠãƒŠã‚«ãƒžãƒ‰								*/
 /********************************************************************/
 ev_c07r0207_doctor:
 	_TALK_OBJ_START_TURN_NOT
 
-	/*‚·‚Å‚É‰ï˜b‚µ‚Ä‚¢‚é*/
+	/*ã™ã§ã«ä¼šè©±ã—ã¦ã„ã‚‹*/
 	_IF_FLAGON_JUMP	FE_C07R0207_DOCTOR_TALK,ev_c07r0207_doctor_02
 
 	_FLAG_SET		FE_C07R0207_DOCTOR_TALK
-	_FLAG_SET		FV_C07R0207_DOCTOR			/*ŽŸ‚Éƒ}ƒbƒv‚É“ü‚Á‚½Žž‚Í‚¢‚È‚¢*/
+	_FLAG_SET		FV_C07R0207_DOCTOR			/*æ¬¡ã«ãƒžãƒƒãƒ—ã«å…¥ã£ãŸæ™‚ã¯ã„ãªã„*/
 	_TALK_KEYWAIT	msg_c07r0207_doctor_01
 
 	_TURN_HERO_SITE
@@ -110,7 +110,7 @@ ev_c07r0207_doctor:
 	_JUMP			ev_c07r0207_doctor_end
 	_END
 
-/*‚·‚Å‚É‰ï˜b‚µ‚Ä‚¢‚é*/
+/*ã™ã§ã«ä¼šè©±ã—ã¦ã„ã‚‹*/
 ev_c07r0207_doctor_02:
 	_TURN_HERO_SITE
 	_PLAYER_NAME	0
@@ -118,7 +118,7 @@ ev_c07r0207_doctor_02:
 	_JUMP			ev_c07r0207_doctor_end
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_c07r0207_doctor_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -127,7 +127,7 @@ ev_c07r0207_doctor_end:
 
 
 /********************************************************************/
-//						•i•¨ŒÅ’è‚Ì“Xˆõ(OBJ–¼shopm)
+//						å“ç‰©å›ºå®šã®åº—å“¡(OBJåshopm)
 /********************************************************************/
 ev_c07r0207_fix_shop_01:
 	_TALK_OBJ_START
@@ -141,7 +141,7 @@ ev_c07r0207_fix_shop_01:
 
 
 /********************************************************************/
-//							‚¹‚ñ‚×‚¢‰®
+//							ã›ã‚“ã¹ã„å±‹
 /********************************************************************/
 ev_c07r0207_shop1:
 	_TALK_OBJ_START
@@ -149,28 +149,28 @@ ev_c07r0207_shop1:
 	_GOLD_WIN_WRITE		20,2
 
 	_TALK_KEYWAIT	msg_c07r0207_shop1_01
-	_BMPMENU_INIT_EX	24,11,0,1,SCWK_ANSWER		/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
-	_BMPMENU_MAKE_LIST	msg_c07r0207_senbai_01,0	/*‚P‚±*/
-	_BMPMENU_MAKE_LIST	msg_c07r0207_senbai_02,1	/*‚P‚O‚±*/
-	_BMPMENU_MAKE_LIST	msg_c07r0207_senbai_03,2	/*‚¢‚ç‚È‚¢*/
+	_BMPMENU_INIT_EX	24,11,0,1,SCWK_ANSWER		/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
+	_BMPMENU_MAKE_LIST	msg_c07r0207_senbai_01,0	/*ï¼‘ã“*/
+	_BMPMENU_MAKE_LIST	msg_c07r0207_senbai_02,1	/*ï¼‘ï¼ã“*/
+	_BMPMENU_MAKE_LIST	msg_c07r0207_senbai_03,2	/*ã„ã‚‰ãªã„*/
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_c07r0207_shop1_1			/*‚P‚±*/
-	_CASE_JUMP		1,ev_c07r0207_shop1_2			/*‚P‚O‚±*/
-	_JUMP			ev_c07r0207_shop1_yameru		/*‚¢‚ç‚È‚¢*/
+	_CASE_JUMP		0,ev_c07r0207_shop1_1			/*ï¼‘ã“*/
+	_CASE_JUMP		1,ev_c07r0207_shop1_2			/*ï¼‘ï¼ã“*/
+	_JUMP			ev_c07r0207_shop1_yameru		/*ã„ã‚‰ãªã„*/
 	_END
 
-/*‚P‚±*/
+/*ï¼‘ã“*/
 ev_c07r0207_shop1_1:
 	_LDVAL			SCWK_TEMP0,1
 	_LDVAL			SCWK_TEMP1,200
 
-	/*ƒoƒbƒN‚É‹ó‚«‚ª‚ ‚é‚©*/
+	/*ãƒãƒƒã‚¯ã«ç©ºããŒã‚ã‚‹ã‹*/
 	_ADD_ITEM_CHK	ITEM_HUENSENBEI,SCWK_TEMP0,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop1_bag_non
 
-	/*‚¨‹à‚ª‚ ‚é‚©*/
+	/*ãŠé‡‘ãŒã‚ã‚‹ã‹*/
 	_COMP_MY_GOLD	SCWK_ANSWER,200
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop1_gold_non
 
@@ -178,16 +178,16 @@ ev_c07r0207_shop1_1:
 	_JUMP			ev_c07r0207_shop1_common
 	_END
 
-/*‚P‚O‚±*/
+/*ï¼‘ï¼ã“*/
 ev_c07r0207_shop1_2:
 	_LDVAL			SCWK_TEMP0,10
 	_LDVAL			SCWK_TEMP1,2000
 
-	/*ƒoƒbƒN‚É‹ó‚«‚ª‚ ‚é‚©*/
+	/*ãƒãƒƒã‚¯ã«ç©ºããŒã‚ã‚‹ã‹*/
 	_ADD_ITEM_CHK	ITEM_HUENSENBEI,SCWK_TEMP0,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop1_bag_non
 
-	/*‚¨‹à‚ª‚ ‚é‚©*/
+	/*ãŠé‡‘ãŒã‚ã‚‹ã‹*/
 	_COMP_MY_GOLD	SCWK_ANSWER,2000
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop1_gold_non
 
@@ -195,7 +195,7 @@ ev_c07r0207_shop1_2:
 	_JUMP			ev_c07r0207_shop1_common
 	_END
 
-/*ŽÀÛ‚ÉƒAƒCƒeƒ€‚ð‰Á‚¦‚ÄAƒS[ƒ‹ƒh‚ðŒ¸‚ç‚·*/
+/*å®Ÿéš›ã«ã‚¢ã‚¤ãƒ†ãƒ ã‚’åŠ ãˆã¦ã€ã‚´ãƒ¼ãƒ«ãƒ‰ã‚’æ¸›ã‚‰ã™*/
 ev_c07r0207_shop1_common:
 	_ADD_ITEM		ITEM_HUENSENBEI,SCWK_TEMP0,SCWK_ANSWER
 	_SE_PLAY		SEQ_SE_DP_REGI
@@ -204,25 +204,25 @@ ev_c07r0207_shop1_common:
 	_GOLD_WRITE
 	_SE_WAIT		SEQ_SE_DP_REGI
 
-	/*ƒfƒp[ƒg”ƒ‚¢•¨ƒJƒEƒ“ƒg‚ð‘«‚·*/
+	/*ãƒ‡ãƒ‘ãƒ¼ãƒˆè²·ã„ç‰©ã‚«ã‚¦ãƒ³ãƒˆã‚’è¶³ã™*/
 	_IFVAL_CALL		SYS_WORK_DEPART_COUNT,LT,10000,ev_c07r0207_depart_count_add
 
 	_JUMP			ev_c07r0207_shop1_yameru_sub
 	_END
 
-/*ƒoƒbƒO‚É‹ó‚«‚ª‚È‚¢*/
+/*ãƒãƒƒã‚°ã«ç©ºããŒãªã„*/
 ev_c07r0207_shop1_bag_non:
 	_TALK_KEYWAIT	msg_c07r0207_shop1_04
 	_JUMP			ev_c07r0207_shop1_yameru_sub
 	_END
 
-/*‚¨‹à‚ª‘«‚è‚È‚¢*/
+/*ãŠé‡‘ãŒè¶³ã‚Šãªã„*/
 ev_c07r0207_shop1_gold_non:
 	_TALK_KEYWAIT	msg_c07r0207_shop1_05
 	_JUMP			ev_c07r0207_shop1_yameru_sub
 	_END
 
-/*‚¢‚ç‚È‚¢*/
+/*ã„ã‚‰ãªã„*/
 ev_c07r0207_shop1_yameru:
 	_TALK_KEYWAIT	msg_c07r0207_shop1_06
 	_JUMP			ev_c07r0207_shop1_yameru_sub
@@ -239,21 +239,21 @@ ev_c07r0207_shop1_yameru_sub:
 
 
 /********************************************************************/
-//							ƒ|ƒtƒBƒ“‰®(NORMAL)
+//							ãƒãƒ•ã‚£ãƒ³å±‹(NORMAL)
 //	
-//	SCWK_TEMP0	Ž|‚Ý
-//	SCWK_TEMP3	–¡1
-//	SCWK_PARAM0	–¡1
-//	SCWK_PARAM1	–¡1
-//	SCWK_PARAM2	–¡1
-//	SCWK_PARAM3	–¡1
+//	SCWK_TEMP0	æ—¨ã¿
+//	SCWK_TEMP3	å‘³1
+//	SCWK_PARAM0	å‘³1
+//	SCWK_PARAM1	å‘³1
+//	SCWK_PARAM2	å‘³1
+//	SCWK_PARAM3	å‘³1
 //
-//	SCWK_TEMP1	’Ç‰ÁŒÂ”
+//	SCWK_TEMP1	è¿½åŠ å€‹æ•°
 /********************************************************************/
 #define POFIN_NUM1			(1)
 #define POFIN_GOLD1_NORMAL	(6400)
-#define POFIN_STATUS_NORMAL	(32)				/*–¡*/
-#define POFIN_TASTE_NORMAL	(20)				/*Ž|‚Ý*/
+#define POFIN_STATUS_NORMAL	(32)				/*å‘³*/
+#define POFIN_TASTE_NORMAL	(20)				/*æ—¨ã¿*/
 
 ev_c07r0207_shop2:
 	_TALK_OBJ_START
@@ -266,10 +266,10 @@ ev_c07r0207_shop2:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c07r0207_shop2_01
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_c07r0207_shop2_01:
 
-	/*ƒ|ƒtƒBƒ“ƒP[ƒX‚à‚Á‚Ä‚¢‚é‚©*/
+	/*ãƒãƒ•ã‚£ãƒ³ã‚±ãƒ¼ã‚¹ã‚‚ã£ã¦ã„ã‚‹ã‹*/
 	_ITEM_CHK		ITEM_POFINKEESU,1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_case_non
 
@@ -286,11 +286,11 @@ yes_c07r0207_shop2_01:
 	_CASE_JUMP		7,ev_c07r0207_shop2_8
 	_CASE_JUMP		8,ev_c07r0207_shop2_9
 	_CASE_JUMP		9,ev_c07r0207_shop2_10
-	_JUMP			no_c07r0207_shop2_01								/*‚¢‚ç‚È‚¢*/
+	_JUMP			no_c07r0207_shop2_01								/*ã„ã‚‰ãªã„*/
 	_END
 
 //--------------------------------------------------------------------
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 //--------------------------------------------------------------------
 no_c07r0207_shop2_01:
 	_TALK_KEYWAIT	msg_c07r0207_shop2_07
@@ -307,11 +307,11 @@ no_c07r0207_shop2_01_sub:
 	_END
 
 //--------------------------------------------------------------------
-/*‚©‚ç‚µ‚Ôƒ|ƒtƒBƒ“@‚P‚±*/
+/*ã‹ã‚‰ã—ã¶ãƒãƒ•ã‚£ãƒ³ã€€ï¼‘ã“*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_1:
 	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*‚¨‹à‚ª‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*ãŠé‡‘ãŒãªã„*/
 
 	_LDVAL			SCWK_TEMP1,POFIN_NUM1
 	_CALL			ev_pofin_karashibu_normal
@@ -319,11 +319,11 @@ ev_c07r0207_shop2_1:
 	_END
 
 //--------------------------------------------------------------------
-/*‚©‚ç‚ ‚Üƒ|ƒtƒBƒ“@‚P‚±*/
+/*ã‹ã‚‰ã‚ã¾ãƒãƒ•ã‚£ãƒ³ã€€ï¼‘ã“*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_2:
 	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*‚¨‹à‚ª‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*ãŠé‡‘ãŒãªã„*/
 
 	_LDVAL			SCWK_TEMP1,POFIN_NUM1
 	_CALL			ev_pofin_karaama_normal
@@ -331,11 +331,11 @@ ev_c07r0207_shop2_2:
 	_END
 
 //--------------------------------------------------------------------
-/*‚©‚ç‚É‚ªƒ|ƒtƒBƒ“@‚P‚±*/
+/*ã‹ã‚‰ã«ãŒãƒãƒ•ã‚£ãƒ³ã€€ï¼‘ã“*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_3:
 	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*‚¨‹à‚ª‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*ãŠé‡‘ãŒãªã„*/
 
 	_LDVAL			SCWK_TEMP1,POFIN_NUM1
 	_CALL			ev_pofin_karaniga_normal
@@ -343,11 +343,11 @@ ev_c07r0207_shop2_3:
 	_END
 
 //--------------------------------------------------------------------
-/*‚©‚ç‚·‚Á‚Ïƒ|ƒtƒBƒ“@‚P‚±*/
+/*ã‹ã‚‰ã™ã£ã±ãƒãƒ•ã‚£ãƒ³ã€€ï¼‘ã“*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_4:
 	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*‚¨‹à‚ª‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*ãŠé‡‘ãŒãªã„*/
 
 	_LDVAL			SCWK_TEMP1,POFIN_NUM1
 	_CALL			ev_pofin_karasuupa_normal
@@ -355,11 +355,11 @@ ev_c07r0207_shop2_4:
 	_END
 
 //--------------------------------------------------------------------
-/*‚µ‚Ô‚ ‚Üƒ|ƒtƒBƒ“@‚P‚±*/
+/*ã—ã¶ã‚ã¾ãƒãƒ•ã‚£ãƒ³ã€€ï¼‘ã“*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_5:
 	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*‚¨‹à‚ª‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*ãŠé‡‘ãŒãªã„*/
 
 	_LDVAL			SCWK_TEMP1,POFIN_NUM1
 	_CALL			ev_pofin_shibuama_normal
@@ -367,11 +367,11 @@ ev_c07r0207_shop2_5:
 	_END
 
 //--------------------------------------------------------------------
-/*‚µ‚Ô‚É‚ªƒ|ƒtƒBƒ“@‚P‚±*/
+/*ã—ã¶ã«ãŒãƒãƒ•ã‚£ãƒ³ã€€ï¼‘ã“*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_6:
 	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*‚¨‹à‚ª‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*ãŠé‡‘ãŒãªã„*/
 
 	_LDVAL			SCWK_TEMP1,POFIN_NUM1
 	_CALL			ev_pofin_shibuniga_normal
@@ -379,11 +379,11 @@ ev_c07r0207_shop2_6:
 	_END
 
 //--------------------------------------------------------------------
-/*‚µ‚Ô‚·‚Á‚Ïƒ|ƒtƒBƒ“@‚P‚±*/
+/*ã—ã¶ã™ã£ã±ãƒãƒ•ã‚£ãƒ³ã€€ï¼‘ã“*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_7:
 	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*‚¨‹à‚ª‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*ãŠé‡‘ãŒãªã„*/
 
 	_LDVAL			SCWK_TEMP1,POFIN_NUM1
 	_CALL			ev_pofin_shibusuupa_normal
@@ -391,11 +391,11 @@ ev_c07r0207_shop2_7:
 	_END
 
 //--------------------------------------------------------------------
-/*‚ ‚Ü‚É‚ªƒ|ƒtƒBƒ“@‚P‚±*/
+/*ã‚ã¾ã«ãŒãƒãƒ•ã‚£ãƒ³ã€€ï¼‘ã“*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_8:
 	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*‚¨‹à‚ª‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*ãŠé‡‘ãŒãªã„*/
 
 	_LDVAL			SCWK_TEMP1,POFIN_NUM1
 	_CALL			ev_pofin_amaniga_normal
@@ -403,11 +403,11 @@ ev_c07r0207_shop2_8:
 	_END
 
 //--------------------------------------------------------------------
-/*‚ ‚Ü‚¸‚Á‚Ïƒ|ƒtƒBƒ“@‚P‚±*/
+/*ã‚ã¾ãšã£ã±ãƒãƒ•ã‚£ãƒ³ã€€ï¼‘ã“*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_9:
 	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*‚¨‹à‚ª‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*ãŠé‡‘ãŒãªã„*/
 
 	_LDVAL			SCWK_TEMP1,POFIN_NUM1
 	_CALL			ev_pofin_amazuupa_normal
@@ -415,31 +415,31 @@ ev_c07r0207_shop2_9:
 	_END
 
 //--------------------------------------------------------------------
-/*‚É‚ª‚¸‚Á‚Ïƒ|ƒtƒBƒ“@‚P‚±*/
+/*ã«ãŒãšã£ã±ãƒãƒ•ã‚£ãƒ³ã€€ï¼‘ã“*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_10:
 	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*‚¨‹à‚ª‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*ãŠé‡‘ãŒãªã„*/
 
 	_LDVAL			SCWK_TEMP1,POFIN_NUM1
 	_CALL			ev_pofin_nigasuupa_normal
 	_JUMP			ev_c07r0207_shop2_common
 	_END
 
-/*ŽÀÛ‚Éƒ|ƒtƒBƒ“‚ð‰Á‚¦‚ÄAƒS[ƒ‹ƒh‚ðŒ¸‚ç‚·*/
+/*å®Ÿéš›ã«ãƒãƒ•ã‚£ãƒ³ã‚’åŠ ãˆã¦ã€ã‚´ãƒ¼ãƒ«ãƒ‰ã‚’æ¸›ã‚‰ã™*/
 ev_c07r0207_shop2_common:
 
-	/*ƒ|ƒtƒBƒ“ƒP[ƒX‚É‹ó‚«‚ª‚È‚¢*/
+	/*ãƒãƒ•ã‚£ãƒ³ã‚±ãƒ¼ã‚¹ã«ç©ºããŒãªã„*/
 	_POFIN_AKI_COUNT_GET	SCWK_ANSWER
 	_IFWK_JUMP		SCWK_ANSWER,LT,SCWK_TEMP1,ev_c07r0207_shop2_pofin_non
 
 	_JUMP			ev_c07r0207_shop2_pofin_add
 	_END
 	
-/*w“üŒÂ”•ª‚Ìˆ—‚ð‚Ü‚í‚·*/
+/*è³¼å…¥å€‹æ•°åˆ†ã®å‡¦ç†ã‚’ã¾ã‚ã™*/
 ev_c07r0207_shop2_pofin_add:
 
-	/*‘S‚Ä’Ç‰Á‚µ‚¨‚¦‚½‚çI—¹*/
+	/*å…¨ã¦è¿½åŠ ã—ãŠãˆãŸã‚‰çµ‚äº†*/
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,0,ev_c07r0207_shop2_pofin_add_end
 
 	_POFIN_ADD	SCWK_ANSWER,SCWK_TEMP3,SCWK_PARAM0,SCWK_PARAM1,SCWK_PARAM2,SCWK_PARAM3,POFIN_TASTE_NORMAL
@@ -449,39 +449,39 @@ ev_c07r0207_shop2_pofin_add:
 	_JUMP			ev_c07r0207_shop2_pofin_add
 	_END
 
-/*‘S‚Ä’Ç‰Á‚µ‚¨‚¦‚½‚çI—¹*/
+/*å…¨ã¦è¿½åŠ ã—ãŠãˆãŸã‚‰çµ‚äº†*/
 ev_c07r0207_shop2_pofin_add_end:
 	_SE_PLAY		SEQ_SE_DP_REGI
 	_GOLD_WRITE
 
-	/*ƒfƒp[ƒg”ƒ‚¢•¨ƒJƒEƒ“ƒg‚ð‘«‚·*/
+	/*ãƒ‡ãƒ‘ãƒ¼ãƒˆè²·ã„ç‰©ã‚«ã‚¦ãƒ³ãƒˆã‚’è¶³ã™*/
 	_IFVAL_CALL		SYS_WORK_DEPART_COUNT,LT,10000,ev_c07r0207_depart_count_add
 
 	_TALK_KEYWAIT	msg_c07r0207_shop2_04
 	_JUMP			ev_c07r0207_shop2_yameru_sub
 	_END
 
-/*ƒ|ƒtƒBƒ“ƒP[ƒX‚É‹ó‚«‚ª‚È‚¢*/
+/*ãƒãƒ•ã‚£ãƒ³ã‚±ãƒ¼ã‚¹ã«ç©ºããŒãªã„*/
 ev_c07r0207_shop2_pofin_non:
 	_TALK_KEYWAIT	msg_c07r0207_shop2_06
 	_JUMP			ev_c07r0207_shop2_yameru_sub
 	_END
 
-/*‚¨‹à‚ª‘«‚è‚È‚¢*/
+/*ãŠé‡‘ãŒè¶³ã‚Šãªã„*/
 ev_c07r0207_shop2_gold_non:
 	_TALK_KEYWAIT	msg_c07r0207_shop2_05
 	_JUMP			ev_c07r0207_shop2_yameru_sub
 	_END
 
 //--------------------------------------------------------------------
-/*ƒ|ƒtƒBƒ“ƒP[ƒX‚ª‚È‚¢*/
+/*ãƒãƒ•ã‚£ãƒ³ã‚±ãƒ¼ã‚¹ãŒãªã„*/
 //--------------------------------------------------------------------
 ev_c07r0207_shop2_case_non:
 	_TALK_KEYWAIT	msg_c07r0207_shop2_08
 	_JUMP			ev_c07r0207_shop2_yameru_sub
 	_END
 
-/*‚¢‚ç‚È‚¢*/
+/*ã„ã‚‰ãªã„*/
 ev_c07r0207_shop2_yameru:
 	_TALK_KEYWAIT	msg_c07r0207_shop2_07
 	_JUMP			ev_c07r0207_shop2_yameru_sub
@@ -497,9 +497,9 @@ ev_c07r0207_shop2_yameru_sub:
 	_END
 
 //--------------------------------------------------------------------
-/*					ƒ|ƒtƒBƒ“ƒpƒ‰ƒ[ƒ^ƒZƒbƒg(NORMAL)				*/
+/*					ãƒãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ(NORMAL)				*/
 //--------------------------------------------------------------------
-/*‚©‚ç‚µ‚ÔƒZƒbƒg*/
+/*ã‹ã‚‰ã—ã¶ã‚»ãƒƒãƒˆ*/
 ev_pofin_karashibu_normal:
 	_LDVAL			SCWK_TEMP3,POFIN_STATUS_NORMAL
 	_LDVAL			SCWK_PARAM0,POFIN_STATUS_NORMAL
@@ -508,7 +508,7 @@ ev_pofin_karashibu_normal:
 	_LDVAL			SCWK_PARAM3,0
 	_RET
 
-/*‚©‚ç‚ ‚ÜƒZƒbƒg*/
+/*ã‹ã‚‰ã‚ã¾ã‚»ãƒƒãƒˆ*/
 ev_pofin_karaama_normal:
 	_LDVAL			SCWK_TEMP3,POFIN_STATUS_NORMAL
 	_LDVAL			SCWK_PARAM0,0
@@ -517,7 +517,7 @@ ev_pofin_karaama_normal:
 	_LDVAL			SCWK_PARAM3,0
 	_RET
 
-/*‚©‚ç‚É‚ªƒZƒbƒg*/
+/*ã‹ã‚‰ã«ãŒã‚»ãƒƒãƒˆ*/
 ev_pofin_karaniga_normal:
 	_LDVAL			SCWK_TEMP3,POFIN_STATUS_NORMAL
 	_LDVAL			SCWK_PARAM0,0
@@ -526,7 +526,7 @@ ev_pofin_karaniga_normal:
 	_LDVAL			SCWK_PARAM3,0
 	_RET
 
-/*‚©‚ç‚·‚Á‚ÏƒZƒbƒg*/
+/*ã‹ã‚‰ã™ã£ã±ã‚»ãƒƒãƒˆ*/
 ev_pofin_karasuupa_normal:
 	_LDVAL			SCWK_TEMP3,POFIN_STATUS_NORMAL
 	_LDVAL			SCWK_PARAM0,0
@@ -535,7 +535,7 @@ ev_pofin_karasuupa_normal:
 	_LDVAL			SCWK_PARAM3,POFIN_STATUS_NORMAL
 	_RET
 
-/*‚µ‚Ô‚ ‚ÜƒZƒbƒg*/
+/*ã—ã¶ã‚ã¾ã‚»ãƒƒãƒˆ*/
 ev_pofin_shibuama_normal:
 	_LDVAL			SCWK_TEMP3,0
 	_LDVAL			SCWK_PARAM0,POFIN_STATUS_NORMAL
@@ -544,7 +544,7 @@ ev_pofin_shibuama_normal:
 	_LDVAL			SCWK_PARAM3,0
 	_RET
 
-/*‚µ‚Ô‚É‚ªƒZƒbƒg*/
+/*ã—ã¶ã«ãŒã‚»ãƒƒãƒˆ*/
 ev_pofin_shibuniga_normal:
 	_LDVAL			SCWK_TEMP3,0
 	_LDVAL			SCWK_PARAM0,POFIN_STATUS_NORMAL
@@ -553,7 +553,7 @@ ev_pofin_shibuniga_normal:
 	_LDVAL			SCWK_PARAM3,0
 	_RET
 
-/*‚µ‚Ô‚·‚Á‚ÏƒZƒbƒg*/
+/*ã—ã¶ã™ã£ã±ã‚»ãƒƒãƒˆ*/
 ev_pofin_shibusuupa_normal:
 	_LDVAL			SCWK_TEMP3,0
 	_LDVAL			SCWK_PARAM0,POFIN_STATUS_NORMAL
@@ -562,7 +562,7 @@ ev_pofin_shibusuupa_normal:
 	_LDVAL			SCWK_PARAM3,POFIN_STATUS_NORMAL
 	_RET
 
-/*‚ ‚Ü‚É‚ªƒZƒbƒg*/
+/*ã‚ã¾ã«ãŒã‚»ãƒƒãƒˆ*/
 ev_pofin_amaniga_normal:
 	_LDVAL			SCWK_TEMP3,0
 	_LDVAL			SCWK_PARAM0,0
@@ -571,7 +571,7 @@ ev_pofin_amaniga_normal:
 	_LDVAL			SCWK_PARAM3,0
 	_RET
 
-/*‚ ‚Ü‚¸‚Á‚ÏƒZƒbƒg*/
+/*ã‚ã¾ãšã£ã±ã‚»ãƒƒãƒˆ*/
 ev_pofin_amazuupa_normal:
 	_LDVAL			SCWK_TEMP3,0
 	_LDVAL			SCWK_PARAM0,0
@@ -580,7 +580,7 @@ ev_pofin_amazuupa_normal:
 	_LDVAL			SCWK_PARAM3,POFIN_STATUS_NORMAL
 	_RET
 
-/*‚É‚ª‚·‚Á‚ÏƒZƒbƒg*/
+/*ã«ãŒã™ã£ã±ã‚»ãƒƒãƒˆ*/
 ev_pofin_nigasuupa_normal:
 	_LDVAL			SCWK_TEMP3,0
 	_LDVAL			SCWK_PARAM0,0
@@ -590,11 +590,11 @@ ev_pofin_nigasuupa_normal:
 	_RET
 
 //--------------------------------------------------------------------
-/*						ƒ|ƒtƒBƒ“ƒƒjƒ…[							*/
+/*						ãƒãƒ•ã‚£ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼							*/
 //--------------------------------------------------------------------
 ev_c07r0207_pofin_menu:
 	_TALK_KEYWAIT	msg_c07r0207_shop2_02
-	_BMPLIST_INIT_EX	1,1,0,1,SCWK_ANSWER									/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
+	_BMPLIST_INIT_EX	1,1,0,1,SCWK_ANSWER									/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
 	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_01,EV_WIN_TALK_MSG_NONE,0
 	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_02,EV_WIN_TALK_MSG_NONE,1
 	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_03,EV_WIN_TALK_MSG_NONE,2
@@ -605,20 +605,20 @@ ev_c07r0207_pofin_menu:
 	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_08,EV_WIN_TALK_MSG_NONE,7
 	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_09,EV_WIN_TALK_MSG_NONE,8
 	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_10,EV_WIN_TALK_MSG_NONE,9
-	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_11,EV_WIN_TALK_MSG_NONE,10		/*‚¢‚ç‚È‚¢*/
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_11,EV_WIN_TALK_MSG_NONE,10		/*ã„ã‚‰ãªã„*/
 	_BMPLIST_START
 	_RET
 
 
 /********************************************************************/
-//							ƒ|ƒtƒBƒ“‰®(GOOD)
+//							ãƒãƒ•ã‚£ãƒ³å±‹(GOOD)
 /********************************************************************/
 ev_c07r0207_shop3:
 	_END
 
 
 /********************************************************************/
-/*						ƒfƒp[ƒg”ƒ‚¢•¨ƒJƒEƒ“ƒg‚ð‘«‚·				*/
+/*						ãƒ‡ãƒ‘ãƒ¼ãƒˆè²·ã„ç‰©ã‚«ã‚¦ãƒ³ãƒˆã‚’è¶³ã™				*/
 /********************************************************************/
 ev_c07r0207_depart_count_add:
 	_ADD_WK		SYS_WORK_DEPART_COUNT,1
@@ -626,7 +626,7 @@ ev_c07r0207_depart_count_add:
 
 
 /********************************************************************/
-/*								ƒ|ƒXƒ^[							*/
+/*								ãƒã‚¹ã‚¿ãƒ¼							*/
 /********************************************************************/
 ev_c07r0207_poster:
 	_EASY_MSG		msg_c07r0207_poster_01

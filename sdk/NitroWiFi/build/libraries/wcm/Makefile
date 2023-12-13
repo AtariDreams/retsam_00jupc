@@ -16,13 +16,13 @@
 # Add util.c in SRCS
 #
 # Revision 1.3  2005/08/23 04:42:25  yasu
-# NITROWIFI_INSTALL_ROOT 関連の修正
+# NITROWIFI_INSTALL_ROOT 髢｢騾｣縺ｮ菫ｮ豁｣
 #
 # Revision 1.2  2005/07/08 07:43:54  yasu
-# commondefs/modulerules のインクルード方法を修正
+# commondefs/modulerules 縺ｮ繧､繝ｳ繧ｯ繝ｫ繝ｼ繝画婿豕輔ｒ菫ｮ豁｣
 #
 # Revision 1.1  2005/07/07 10:44:36  terui
-# 新規追加
+# 譁ｰ隕剰ｿｽ蜉
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

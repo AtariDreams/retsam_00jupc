@@ -12,7 +12,7 @@
 
   $Log: dma_red.h,v $
   Revision 1.4  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.3  2005/02/28 05:26:05  yosizaki
   do-indent.
@@ -21,7 +21,7 @@
   change SDK prefix iris -> nitro
 
   Revision 1.1  2003/12/18 07:20:07  yada
-  red-sdk �̒�`���c������
+  red-sdk の定義を残すため
 
 
   $NoKeywords: $
@@ -41,13 +41,13 @@ extern "C" {
 #include <nitro/mi/dma.h>
 
 //----------------------------------------------------------------
-//      �J���Z�p�쐬�����C���^�t�F�[�X
-//      �v�]�ɂ��c���Ă��܂��B
-//      nitro-sdk/include/nitro/mi/dma.h �ɓ��ꂸ�ɂ����ɁB
+//      開発技術作成したインタフェース
+//      要望により残しています。
+//      nitro-sdk/include/nitro/mi/dma.h に入れずにここに。
 //
 
 //----------------------------------------------------------------------
-//                      �c�l�` �Z�b�g
+//                      ＤＭＡ セット
 //----------------------------------------------------------------------
 //#define SIMULATOR
 #ifndef SIMULATOR
@@ -86,28 +86,28 @@ extern "C" {
         __MI_DmaSet(     dmaNo, srcp, destp, dmaCntData)
 #endif
 
-//�EDMA�R���g���[���Ƀp�����[�^���Z�b�g���܂��B
-//�ESIMULATER���`�����CPU�ŃV�~�����[�g���܂��B
-//  GDB�Ńf�o�b�O����ꍇ�ȂǂɗL���ł��B
-//�E�Ō��DMA�N���҂��̂��߂�"LDR"���߂��}������܂��B
+//・DMAコントローラにパラメータをセットします。
+//・SIMULATERを定義するとCPUでシミュレートします。
+//  GDBでデバッグする場合などに有効です。
+//・最後にDMA起動待ちのために"LDR"命令が挿入されます。
 //
-//�E�����F
-//  dmaNo       DMA�ԍ�
-//  srcp        �\�[�X�A�h���X
-//  destp       �f�X�e�B�l�[�V�����A�h���X
-//  dmaCntData  �p�����[�^�f�[�^
+//・引数：
+//  dmaNo       DMA番号
+//  srcp        ソースアドレス
+//  destp       デスティネーションアドレス
+//  dmaCntData  パラメータデータ
 //
-//��CPU����RAM��̃v���O�����ɂ�DMA���N�������
-//  ���̎��̖��߂���Ɏ��s����܂��B
-//  ����āADMA����ɓ]�����CPU�ɂĕύX���悤�Ƃ����ꍇ�A
-//  �ǂݍ��݁^�����߂��̊Ԃ�DMA���N������Ă��܂��܂��̂ŁA
-//  DMA�̓]����̃f�[�^���Ӑ}���Ă��Ȃ��l�ɂȂ�ꍇ������܂��B
-//  ���̏ꍇ�ɂ�WaitDma()�𒼌�ɑ}�����āADMA���I��������
-//  �ǂ������`�F�b�N����Ƒ����R�[�h�ւ̉e�����m���ɉ���ł��܂��B
+//※CPU内部RAM上のプログラムにてDMAを起動すると
+//  その次の命令が先に実行されます。
+//  よって、DMA直後に転送先をCPUにて変更しようとした場合、
+//  読み込み／書き戻しの間にDMAが起動されてしまいますので、
+//  DMAの転送先のデータが意図していない値になる場合があります。
+//  その場合にはWaitDma()を直後に挿入して、DMAが終了したか
+//  どうかをチェックすると続くコードへの影響を確実に回避できます。
 
 
 //----------------------------------------------------------------------
-//                      �c�l�` �N���A
+//                      ＤＭＡ クリア
 //----------------------------------------------------------------------
 
 #define __MI_DmaClear(dmaNo, data, destp, size, bit)             \
@@ -135,29 +135,29 @@ extern "C" {
 #define MI_DmaClearArrayIf(dmaNo, data, destp, bit)            \
     __MI_DmaClearIf(     dmaNo, data, destp, sizeof(destp), bit)
 
-//�EDMA��RAM�N���A���܂��B
-//�E�N���A�f�[�^�̓X�^�b�N�ɒu����A������f�X�e�B�l�[�V�����փR�s�[���܂��B
-//�EMI_DmaClearIf�^MI_DmaClearArrayIf�͏I�����Ɋ��荞�ݗv���𔭐����܂��B
-//�EMI_DmaClearArray�^MI_DmaClearArrayIf�̓f�X�e�B�l�[�V�����z��S�̂��N���A���܂��B
+//・DMAでRAMクリアします。
+//・クリアデータはスタックに置かれ、それをデスティネーションへコピーします。
+//・MI_DmaClearIf／MI_DmaClearArrayIfは終了時に割り込み要求を発生します。
+//・MI_DmaClearArray／MI_DmaClearArrayIfはデスティネーション配列全体をクリアします。
 //
-//�E�����F
-//  dmaNo       DMA�ԍ�
-//  data        �N���A�f�[�^
-//  destp       �f�X�e�B�l�[�V�����A�h���X
-//  size        �N���A�o�C�g��
-//  bit         �]���r�b�g���i16|32�j
+//・引数：
+//  dmaNo       DMA番号
+//  data        クリアデータ
+//  destp       デスティネーションアドレス
+//  size        クリアバイト数
+//  bit         転送ビット幅（16|32）
 //
 //
-//��CPU����RAM��̃v���O�����ɂ�DMA���N�������
-//  ���̎��̖��߂���Ɏ��s����܂��B
-//  ����āADMA����ɓ]�����CPU�ɂĕύX���悤�Ƃ����ꍇ�A
-//  �ǂݍ��݁^�����߂��̊Ԃ�DMA���N������Ă��܂��܂��̂ŁA
-//  DMA�̓]����̃f�[�^���Ӑ}���Ă��Ȃ��l�ɂȂ�ꍇ������܂��B
-//  ���̏ꍇ�ɂ�WaitDma()�𒼌�ɑ}�����āADMA���I��������
-//  �ǂ������`�F�b�N����Ƒ����R�[�h�ւ̉e�����m���ɉ���ł��܂��B
+//※CPU内部RAM上のプログラムにてDMAを起動すると
+//  その次の命令が先に実行されます。
+//  よって、DMA直後に転送先をCPUにて変更しようとした場合、
+//  読み込み／書き戻しの間にDMAが起動されてしまいますので、
+//  DMAの転送先のデータが意図していない値になる場合があります。
+//  その場合にはWaitDma()を直後に挿入して、DMAが終了したか
+//  どうかをチェックすると続くコードへの影響を確実に回避できます。
 
 //----------------------------------------------------------------------
-//                      �c�l�` �R�s�[
+//                      ＤＭＡ コピー
 //----------------------------------------------------------------------
 
 #define __MI_DmaCopy(dmaNo, srcp, destp, size, bit)              \
@@ -181,28 +181,28 @@ extern "C" {
 #define __MI_DmaCopyArrayIf(dmaNo, srcp, destp, bit)             \
     __MI_DmaCopyIf(     dmaNo, srcp, destp, sizeof(srcp), bit)
 
-//�EDMA�ŃR�s�[���܂��B
-//�EMI_DmaCopyIf�^MI_DmaCopyArrayIf�͏I�����Ɋ��荞�ݗv���𔭐����܂��B
-//�EMI_DmaCopyArray�^MI_DmaCopyArrayIf�̓\�[�X�z��S�̂��R�s�[���܂��B
+//・DMAでコピーします。
+//・MI_DmaCopyIf／MI_DmaCopyArrayIfは終了時に割り込み要求を発生します。
+//・MI_DmaCopyArray／MI_DmaCopyArrayIfはソース配列全体をコピーします。
 //
-//�E�����F
-//  dmaNo       DMA�ԍ�
-//  srcp        �\�[�X�A�h���X
-//  destp       �f�X�e�B�l�[�V�����A�h���X
-//  size        �]���o�C�g��
-//  bit         �]���r�b�g���i16|32�j
+//・引数：
+//  dmaNo       DMA番号
+//  srcp        ソースアドレス
+//  destp       デスティネーションアドレス
+//  size        転送バイト数
+//  bit         転送ビット幅（16|32）
 //
 //
-//��CPU����RAM��̃v���O�����ɂ�DMA���N�������
-//  ���̎��̖��߂���Ɏ��s����܂��B
-//  ����āADMA����ɓ]�����CPU�ɂĕύX���悤�Ƃ����ꍇ�A
-//  �ǂݍ��݁^�����߂��̊Ԃ�DMA���N������Ă��܂��܂��̂ŁA
-//  DMA�̓]����̃f�[�^���Ӑ}���Ă��Ȃ��l�ɂȂ�ꍇ������܂��B
-//  ���̏ꍇ�ɂ�WaitDma()�𒼌�ɑ}�����āADMA���I��������
-//  �ǂ������`�F�b�N����Ƒ����R�[�h�ւ̉e�����m���ɉ���ł��܂��B
+//※CPU内部RAM上のプログラムにてDMAを起動すると
+//  その次の命令が先に実行されます。
+//  よって、DMA直後に転送先をCPUにて変更しようとした場合、
+//  読み込み／書き戻しの間にDMAが起動されてしまいますので、
+//  DMAの転送先のデータが意図していない値になる場合があります。
+//  その場合にはWaitDma()を直後に挿入して、DMAが終了したか
+//  どうかをチェックすると続くコードへの影響を確実に回避できます。
 
 //----------------------------------------------------------------------
-//                  �g�u�����N�c�l�` �R�s�[
+//                  ＨブランクＤＭＡ コピー
 //----------------------------------------------------------------------
 
 #define __MI_H_DmaCopy(dmaNo, srcp, destp, size, bit)            \
@@ -228,19 +228,19 @@ extern "C" {
 #define __MI_H_DmaCopyArrayIf(dmaNo, srcp, destp, bit)           \
     __MI_H_DmaCopyIf(     dmaNo, srcp, destp, sizeof(srcp), bit)
 
-//�EH�u�����N�ɓ�������DMA�ŃR�s�[���܂��B
-//�EMI_H_DmaCopyIf�^MI_H_DmaCopyArrayIf�͏I�����Ɋ��荞�ݗv���𔭐����܂��B
-//�EMI_H_DmaCopyArray�^MI_H_DmaCopyArrayIf�̓\�[�X�z��S�̂��R�s�[���܂��B
+//・Hブランクに同期してDMAでコピーします。
+//・MI_H_DmaCopyIf／MI_H_DmaCopyArrayIfは終了時に割り込み要求を発生します。
+//・MI_H_DmaCopyArray／MI_H_DmaCopyArrayIfはソース配列全体をコピーします。
 //
-//�E�����F
-//  dmaNo       DMA�ԍ�
-//  srcp        �\�[�X�A�h���X
-//  destp       �f�X�e�B�l�[�V�����A�h���X
-//  size        �]���o�C�g��
-//  bit         �]���r�b�g���i16|32�j
+//・引数：
+//  dmaNo       DMA番号
+//  srcp        ソースアドレス
+//  destp       デスティネーションアドレス
+//  size        転送バイト数
+//  bit         転送ビット幅（16|32）
 
 //----------------------------------------------------------------------
-//                  �u�u�����N�c�l�` �R�s�[
+//                  ＶブランクＤＭＡ コピー
 //----------------------------------------------------------------------
 
 #define __MI_V_DmaCopy(dmaNo, srcp, destp, size, bit)            \
@@ -264,19 +264,19 @@ extern "C" {
 #define __MI_V_DmaCopyArrayIf(dmaNo, srcp, destp, bit)           \
     __MI_V_DmaCopyIf(     dmaNo, srcp, destp, sizeof(srcp), bit)
 
-//�EV�u�����N�ɓ�������DMA�ŃR�s�[���܂��B
-//�EMI_V_DmaCopyIf�^MI_V_DmaCopyArrayIf�͏I�����Ɋ��荞�ݗv���𔭐����܂��B
-//�EMI_V_DmaCopyArray�^MI_V_DmaCopyArrayIf�̓\�[�X�z��S�̂��R�s�[���܂��B
+//・Vブランクに同期してDMAでコピーします。
+//・MI_V_DmaCopyIf／MI_V_DmaCopyArrayIfは終了時に割り込み要求を発生します。
+//・MI_V_DmaCopyArray／MI_V_DmaCopyArrayIfはソース配列全体をコピーします。
 //
-//�E�����F
-//  dmaNo       DMA�ԍ�
-//  srcp        �\�[�X�A�h���X
-//  destp       �f�X�e�B�l�[�V�����A�h���X
-//  size        �]���o�C�g��
-//  bit         �]���r�b�g���i16|32�j
+//・引数：
+//  dmaNo       DMA番号
+//  srcp        ソースアドレス
+//  destp       デスティネーションアドレス
+//  size        転送バイト数
+//  bit         転送ビット幅（16|32）
 
 //----------------------------------------------------------------------
-//                  ���C���������\���c�l�`
+//                  メインメモリ表示ＤＭＡ
 //----------------------------------------------------------------------
 
 #define __MI_DmaDispMainmem(dmaNo, srcp)                         \
@@ -287,14 +287,14 @@ extern "C" {
 		MI_DMA_CONTINUOUS_ON  |								\
         MI_DMA_32BIT_BUS      | (4)))
 
-//�E���C����������̃C���[�W��\������DMA�]�����s���܂��B
+//・メインメモリ上のイメージを表示するDMA転送を行います。
 //
-//�E�����F
-//  dmaNo       DMA�ԍ�
-//  srcp        �\�[�X�A�h���X
+//・引数：
+//  dmaNo       DMA番号
+//  srcp        ソースアドレス
 
 //----------------------------------------------------------------------
-//                  �W�I���g���e�h�e�n�|�c�l�`
+//                  ジオメトリＦＩＦＯ−ＤＭＡ
 //----------------------------------------------------------------------
 
 #define __MI_GX_Dma(dmaNo, srcp, length)                         \
@@ -339,20 +339,20 @@ extern "C" {
 #define __MI_GX_DmaArrayFastIf(dmaNo, srcp, destp, bit)          \
     __MI_GX_DmaFastIf(dmaNo, srcp, destp, sizeof(srcp), bit)
 
-//�E�W�I���g��FIFO����̗v���ɂ����DMA�ŃR�s�[���܂��B
-//�EMI_GX_DmaIf�^MI_GX_DmaArrayIf�^MI_GX_DmaFastIf�^MI_GX_DmaArrayFastIf
-//  �͏I�����Ɋ��荞�ݗv���𔭐����܂��B
-//�EMI_GX_DmaArray�^MI_GX_DmaArrayIf�^MI_GX_DmaArrayFast�^MI_GX_DmaArrayFastIf
-//  �̓\�[�X�z��S�̂��R�s�[���܂��B
+//・ジオメトリFIFOからの要求によってDMAでコピーします。
+//・MI_GX_DmaIf／MI_GX_DmaArrayIf／MI_GX_DmaFastIf／MI_GX_DmaArrayFastIf
+//  は終了時に割り込み要求を発生します。
+//・MI_GX_DmaArray／MI_GX_DmaArrayIf／MI_GX_DmaArrayFast／MI_GX_DmaArrayFastIf
+//  はソース配列全体をコピーします。
 //
-//�E�����F
-//  dmaNo       DMA�ԍ�
-//  srcp        �\�[�X�A�h���X
-//  size        �]���o�C�g��
+//・引数：
+//  dmaNo       DMA番号
+//  srcp        ソースアドレス
+//  size        転送バイト数
 
 
 //----------------------------------------------------------------------
-//                      �c�l�` �I���҂�
+//                      ＤＭＡ 終了待ち
 //----------------------------------------------------------------------
 
 #define __MI_WaitDma(dmaNo)                                      \
@@ -361,14 +361,14 @@ extern "C" {
     while (dmaCntp[2] & MI_DMA_ENABLE) ;                       \
 }
 
-//�EDMA�̏I����҂��܂��B
+//・DMAの終了を待ちます。
 //
-//�E�����F
-//  dmaNo       DMA�ԍ�
+//・引数：
+//  dmaNo       DMA番号
 
 
 //----------------------------------------------------------------------
-//                      �c�l�` �X�g�b�v
+//                      ＤＭＡ ストップ
 //----------------------------------------------------------------------
 
 #define __MI_StopDma(dmaNo)                                      \
@@ -381,15 +381,15 @@ extern "C" {
     {u32 dummy = dmaCntp[5];}                               \
 }
 
-//�EDMA���~���܂��B
-//�E�A���A��������DMA�̎����N�����|�������ꍇ�͈�x����DMA�����s����܂��B
+//・DMAを停止します。
+//・但し、処理中にDMAの自動起動が掛かった場合は一度だけDMAが実行されます。
 //
-//�E�����F
-//  dmaNo       DMA�ԍ�
+//・引数：
+//  dmaNo       DMA番号
 
 
 //----------------------------------------------------------------------
-//                      �b�o�t �N���A
+//                      ＣＰＵ クリア
 //----------------------------------------------------------------------
 
 #define __MI_CpuClear(data, destp, size, bit)    UTL_CpuClear##bit(data, (void *)(destp), size)
@@ -397,18 +397,18 @@ extern "C" {
 #define __MI_CpuClearArray(data, destp, bit)                     \
     __MI_CpuClear(     data, destp, sizeof(destp), bit)
 
-//�ECPU��RAM�N���A����V�X�e���R�[�����Ăяo���܂��B
-//�E�N���A�f�[�^�̓X�^�b�N�ɒu����A������f�X�e�B�l�[�V�����փR�s�[���܂��B
-//�ECpuClearArray�̓f�X�e�B�l�[�V�����z��S�̂��N���A���܂��B
+//・CPUでRAMクリアするシステムコールを呼び出します。
+//・クリアデータはスタックに置かれ、それをデスティネーションへコピーします。
+//・CpuClearArrayはデスティネーション配列全体をクリアします。
 //
-//�E�����F
-//  data        �N���A�f�[�^
-//  destp       �f�X�e�B�l�[�V�����A�h���X
-//  size        �N���A�o�C�g��
-//  bit         �]���r�b�g���i16|32�j
+//・引数：
+//  data        クリアデータ
+//  destp       デスティネーションアドレス
+//  size        クリアバイト数
+//  bit         転送ビット幅（16|32）
 
 //----------------------------------------------------------------------
-//                      �b�o�t �R�s�[
+//                      ＣＰＵ コピー
 //----------------------------------------------------------------------
 
 #define __MI_CpuCopy(srcp, destp, size, bit)    UTL_CpuCopy##bit((void *)(srcp), (void *)(destp), size)
@@ -416,17 +416,17 @@ extern "C" {
 #define __MI_CpuCopyArray(srcp, destp, bit)                      \
     __MI_CpuCopy(     srcp, destp, sizeof(srcp), bit)
 
-//�ECPU�ŃR�s�[����V�X�e���R�[�����Ăяo���܂��B
-//�ECpuCopyArray�̓\�[�X�z��S�̂��R�s�[���܂��B
+//・CPUでコピーするシステムコールを呼び出します。
+//・CpuCopyArrayはソース配列全体をコピーします。
 //
-//�E�����F
-//  srcp        �\�[�X�A�h���X
-//  destp       �f�X�e�B�l�[�V�����A�h���X
-//  size        �]���o�C�g��
-//  bit         �]���r�b�g���i16|32�j
+//・引数：
+//  srcp        ソースアドレス
+//  destp       デスティネーションアドレス
+//  size        転送バイト数
+//  bit         転送ビット幅（16|32）
 
 //----------------------------------------------------------------------
-//                  �b�o�t �����N���A(32Byte�P��)
+//                  ＣＰＵ 高速クリア(32Byte単位)
 //----------------------------------------------------------------------
 
 #define __MI_CpuClearFast(data, destp, size)  UTL_CpuClearFast(data, (void *)(destp), size)
@@ -434,17 +434,17 @@ extern "C" {
 #define MI_CpuClearArrayFast(data, destp)                      \
     __MI_CpuClearFast(     data, destp, sizeof(destp))
 
-//�ECPU�ō�����RAM�N���A����V�X�e���R�[�����Ăяo���܂��B
-//�E�N���A�f�[�^�̓X�^�b�N�ɒu����A������f�X�e�B�l�[�V�����փR�s�[���܂��B
-//�ECpuClearArrayFast�̓f�X�e�B�l�[�V�����z��S�̂��N���A���܂��B
+//・CPUで高速にRAMクリアするシステムコールを呼び出します。
+//・クリアデータはスタックに置かれ、それをデスティネーションへコピーします。
+//・CpuClearArrayFastはデスティネーション配列全体をクリアします。
 //
-//�E�����F
-//  data        �N���A�f�[�^
-//  destp       �f�X�e�B�l�[�V�����A�h���X
-//  size        �N���A�o�C�g��
+//・引数：
+//  data        クリアデータ
+//  destp       デスティネーションアドレス
+//  size        クリアバイト数
 
 //----------------------------------------------------------------------
-//                  �b�o�t �����R�s�[(32Byte�P��)
+//                  ＣＰＵ 高速コピー(32Byte単位)
 //----------------------------------------------------------------------
 
 #define __MI_CpuCopyFast(srcp, destp, size)   UTL_CpuCopyFast((void *)(srcp), (void *)(destp), size)
@@ -453,13 +453,13 @@ extern "C" {
 #define MI_CpuCopyArrayFast(srcp, destp)                       \
     __MI_CpuCopyFast(     srcp, destp, sizeof(srcp))
 
-//�ECPU�ō����ɃR�s�[����V�X�e���R�[�����Ăяo���܂��B
-//�ECpuCopyArrayFast�̓\�[�X�z��S�̂��R�s�[���܂��B
+//・CPUで高速にコピーするシステムコールを呼び出します。
+//・CpuCopyArrayFastはソース配列全体をコピーします。
 //
-//�E�����F
-//  srcp        �\�[�X�A�h���X
-//  destp       �f�X�e�B�l�[�V�����A�h���X
-//  size        �]���o�C�g��
+//・引数：
+//  srcp        ソースアドレス
+//  destp       デスティネーションアドレス
+//  size        転送バイト数
 
 
 

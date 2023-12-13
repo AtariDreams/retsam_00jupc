@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_obj.c
- *	@brief		�I�u�W�F�N�g�f�[�^�Ǘ�
+ *	@brief		オブジェクトデータ管理
  *	@author		tomoya takahashi
  *	@data		2007.03.14
  *
@@ -16,54 +16,54 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�R�[�f�B���O�K��
- *		���֐���
- *				�P�����ڂ͑啶������ȍ~�͏������ɂ���
- *		���ϐ���
- *				�E�ϐ�����
- *						const�ɂ� c_ ��t����
- *						static�ɂ� s_ ��t����
- *						�|�C���^�ɂ� p_ ��t����
- *						�S�č��킳��� csp_ �ƂȂ�
- *				�E�O���[�o���ϐ�
- *						�P�����ڂ͑啶��
- *				�E�֐����ϐ�
- *						�������Ɓh�Q�h�Ɛ������g�p���� �֐��̈���������Ɠ���
+ *					コーディング規約
+ *		●関数名
+ *				１文字目は大文字それ以降は小文字にする
+ *		●変数名
+ *				・変数共通
+ *						constには c_ を付ける
+ *						staticには s_ を付ける
+ *						ポインタには p_ を付ける
+ *						全て合わさると csp_ となる
+ *				・グローバル変数
+ *						１文字目は大文字
+ *				・関数内変数
+ *						小文字と”＿”と数字を使用する 関数の引数もこれと同じ
 */
 //-----------------------------------------------------------------------------
-//#define DEBUG_STCHECK	// ����r������R�}���h���N�G�X�g����Ă��Ȃ����`�F�b�N����
+//#define DEBUG_STCHECK	// 動作途中からコマンドリクエストされていないかチェックする
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-///	�I�u�W�F�N�g���[�N
+///	オブジェクトワーク
 //=====================================
 typedef struct _WF2DMAP_OBJWK {
-	BOOL move;				// ����t���O
-	WF2DMAP_POS pos;		// ���ݍ��W
-	WF2DMAP_POS last_pos;	// �O���W
-	u16 playid;				// �v���C���[ID
-	u16 charaid;			// �L�����N�^ID
-	u16 frame;				// ����t���[��
-	u16 endframe;			// �I���t���[��
-	u8	way;				// ����
-	u8	status;				// ���
-	u16 st_frame;			// ���̏�ԂɂȂ��Ă���t���[����
+	BOOL move;				// 動作フラグ
+	WF2DMAP_POS pos;		// 現在座標
+	WF2DMAP_POS last_pos;	// 前座標
+	u16 playid;				// プレイヤーID
+	u16 charaid;			// キャラクタID
+	u16 frame;				// 動作フレーム
+	u16 endframe;			// 終了フレーム
+	u8	way;				// 方向
+	u8	status;				// 状態
+	u16 st_frame;			// この状態になっているフレーム数
 }WF2DMAP_OBJWK;
 
 //-------------------------------------
-///	�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e��
+///	オブジェクトデータ管理システム
 //=====================================
 typedef struct _WF2DMAP_OBJSYS {
 	WF2DMAP_OBJWK* p_buff;
@@ -72,7 +72,7 @@ typedef struct _WF2DMAP_OBJSYS {
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 static WF2DMAP_OBJWK* WF2DMAP_OBJSysCleanWkGet( WF2DMAP_OBJSYS* p_sys );
@@ -114,12 +114,12 @@ static BOOL WF2DMAP_OBJSysFrameCont( WF2DMAP_OBJWK* p_wk );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e��������
+ *	@brief	オブジェクトデータ管理システム初期化
  *
- *	@param	objnum	�I�u�W�F�N�g��
- *	@param	heapID	�q�[�vID
+ *	@param	objnum	オブジェクト数
+ *	@param	heapID	ヒープID
  *
- *	@return	�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e��
+ *	@return	オブジェクトデータ管理システム
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_OBJSYS* WF2DMAP_OBJSysInit( u32 objnum, u32 heapID )
@@ -140,9 +140,9 @@ WF2DMAP_OBJSYS* WF2DMAP_OBJSysInit( u32 objnum, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e���j��
+ *	@brief	オブジェクトデータ管理システム破棄
  *
- *	@param	p_obj	�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e��
+ *	@param	p_obj	オブジェクトデータ管理システム
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJSysExit( WF2DMAP_OBJSYS* p_sys )
@@ -154,10 +154,10 @@ void WF2DMAP_OBJSysExit( WF2DMAP_OBJSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�A�N�V�����R�}���h�̐ݒ�
+ *	@brief	アクションコマンドの設定
  *
- *	@param	p_objsys	�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e��
- *	@param	cp_cmd		�ݒ�A�N�V�����R�}���h
+ *	@param	p_objsys	オブジェクトデータ管理システム
+ *	@param	cp_cmd		設定アクションコマンド
  * 
  */
 //-----------------------------------------------------------------------------
@@ -165,16 +165,16 @@ void WF2DMAP_OBJSysCmdSet( WF2DMAP_OBJSYS* p_objsys, const WF2DMAP_ACTCMD* cp_cm
 {
 	WF2DMAP_OBJWK* p_wk;
 	
-	// �R�}���h���s
+	// コマンド実行
 	p_wk = WF2DMAP_OBJWkGet( p_objsys, cp_cmd->playid );
 	WF2DMAP_OBJSysWkMoveInit( p_wk, cp_cmd );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g�Ǘ�	�R�}���h���s
+ *	@brief	オブジェクト管理	コマンド実行
  *
- *	@param	p_objsys		�I�u�W�F�N�g�Ǘ����[�N
+ *	@param	p_objsys		オブジェクト管理ワーク
  *	
  */
 //-----------------------------------------------------------------------------
@@ -186,9 +186,9 @@ void WF2DMAP_OBJSysMain( WF2DMAP_OBJSYS* p_objsys )
 
 	objnum = WF2DMAP_OBJSysObjNumGet( p_objsys );
 	
-	// ������s
+	// 動作実行
 	for( i=0; i<objnum; i++ ){
-		p_wk = WF2DMAP_OBJWkIdxGet( p_objsys, i );	//buff�C���f�b�N�X�Ń��[�N�擾
+		p_wk = WF2DMAP_OBJWkIdxGet( p_objsys, i );	//buffインデックスでワーク取得
 		if( p_wk ){
 			WF2DMAP_OBJSysWkMoveMain( p_wk );
 		}
@@ -197,11 +197,11 @@ void WF2DMAP_OBJSysMain( WF2DMAP_OBJSYS* p_objsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e���@�Ǘ��I�u�W�F�N�g���擾
+ *	@brief	オブジェクトデータ管理システム　管理オブジェクト数取得
  *
- *	@param	cp_sys	�I�u�W�F�N�g�Ǘ��V�X�e��
+ *	@param	cp_sys	オブジェクト管理システム
  *
- *	@return	�I�u�W�F�N�g�̐�
+ *	@return	オブジェクトの数
  */
 //-----------------------------------------------------------------------------
 u32 WF2DMAP_OBJSysObjNumGet( const WF2DMAP_OBJSYS* cp_sys )
@@ -212,12 +212,12 @@ u32 WF2DMAP_OBJSysObjNumGet( const WF2DMAP_OBJSYS* cp_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g�f�[�^����
+ *	@brief	オブジェクトデータ生成
  *
- *	@param	p_obj		�I�u�W�F�N�g�Ǘ�
+ *	@param	p_obj		オブジェクト管理
  *	@param	cp_data 
  *
- *	@return	�I�u�W�F�N�g���[�N
+ *	@return	オブジェクトワーク
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_OBJWK* WF2DMAP_OBJWkNew( WF2DMAP_OBJSYS* p_sys, const WF2DMAP_OBJDATA* cp_data )
@@ -226,20 +226,20 @@ WF2DMAP_OBJWK* WF2DMAP_OBJWkNew( WF2DMAP_OBJSYS* p_sys, const WF2DMAP_OBJDATA* c
 	GF_ASSERT( p_sys );
 	GF_ASSERT( cp_data );
 	
-	// �󂫂�T��
+	// 空きを探す
 	p_wk = WF2DMAP_OBJSysCleanWkGet( p_sys );
 	
-	// �f�[�^�ݒ�
-	p_wk->pos.x = cp_data->x;		// x���W
-	p_wk->pos.y = cp_data->y;		// y���W
-	p_wk->last_pos.x = cp_data->x;		// �O��x���W
-	p_wk->last_pos.y = cp_data->y;		// �O��y���W
-	p_wk->playid = cp_data->playid;	// �v���C���[ID
-	p_wk->status = cp_data->status;	// ���
-	p_wk->way = cp_data->way;		// ����
-	p_wk->charaid = cp_data->charaid;// �L�����N�^�[
+	// データ設定
+	p_wk->pos.x = cp_data->x;		// x座標
+	p_wk->pos.y = cp_data->y;		// y座標
+	p_wk->last_pos.x = cp_data->x;		// 前のx座標
+	p_wk->last_pos.y = cp_data->y;		// 前のy座標
+	p_wk->playid = cp_data->playid;	// プレイヤーID
+	p_wk->status = cp_data->status;	// 状態
+	p_wk->way = cp_data->way;		// 方向
+	p_wk->charaid = cp_data->charaid;// キャラクター
 
-	// ����J�n
+	// 動作開始
 	p_wk->move = TRUE;
 
 	return p_wk;
@@ -247,9 +247,9 @@ WF2DMAP_OBJWK* WF2DMAP_OBJWkNew( WF2DMAP_OBJSYS* p_sys, const WF2DMAP_OBJDATA* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g���[�N�j��
+ *	@brief	オブジェクトワーク破棄
  *
- *	@param	p_wk	���[�N
+ *	@param	p_wk	ワーク
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJWkDel( WF2DMAP_OBJWK* p_wk )
@@ -259,13 +259,13 @@ void WF2DMAP_OBJWkDel( WF2DMAP_OBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g���[�N�擾
+ *	@brief	オブジェクトワーク取得
  *
- *	@param	p_sys		�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e��
- *	@param	playid		�v���C���[ID
+ *	@param	p_sys		オブジェクトデータ管理システム
+ *	@param	playid		プレイヤーID
  *	
- *	@retval	�I�u�W�F�N�g���[�N
- *	@retval	NULL	���̃I�u�W�F�N�g�͂��Ȃ�
+ *	@retval	オブジェクトワーク
+ *	@retval	NULL	そのオブジェクトはいない
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_OBJWK* WF2DMAP_OBJWkGet( WF2DMAP_OBJSYS* p_sys, u16 playid )
@@ -285,13 +285,13 @@ WF2DMAP_OBJWK* WF2DMAP_OBJWkGet( WF2DMAP_OBJSYS* p_sys, u16 playid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g���[�N���C���f�b�N�X�Ŏ擾����
+ *	@brief	オブジェクトワークをインデックスで取得する
  *
- *	@param	p_sys		�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e��
- *	@param	idx			�C���f�b�N�X
+ *	@param	p_sys		オブジェクトデータ管理システム
+ *	@param	idx			インデックス
  *
- *	@retval	�I�u�W�F�N�g���[�N
- *	pretval	NULL	���삿�イ�łȂ�
+ *	@retval	オブジェクトワーク
+ *	pretval	NULL	動作ちゅうでない
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_OBJWK* WF2DMAP_OBJWkIdxGet( WF2DMAP_OBJSYS* p_sys, u16 idx )
@@ -307,45 +307,45 @@ WF2DMAP_OBJWK* WF2DMAP_OBJWkIdxGet( WF2DMAP_OBJSYS* p_sys, u16 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�R���X�g���[�N�̎擾
+ *	@brief	コンストワークの取得
  *
- *	@param	cp_sys		�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e��
- *	@param	playid		�v���C���[ID
+ *	@param	cp_sys		オブジェクトデータ管理システム
+ *	@param	playid		プレイヤーID
  *
- *	@return	�R���X�g���[�N
+ *	@return	コンストワーク
  */
 //-----------------------------------------------------------------------------
 const WF2DMAP_OBJWK* WF2DMAP_OBJWkConstGet( const WF2DMAP_OBJSYS* cp_sys, u16 playid )
 {
-	// ����Ă邱�Ƃ͈ꏏ�Ȃ̂ōė��p����
+	// やってることは一緒なので再利用する
 	return WF2DMAP_OBJWkGet( (WF2DMAP_OBJSYS*)cp_sys, playid );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g���[�N���C���f�b�N�X�Ŏ擾����
+ *	@brief	オブジェクトワークをインデックスで取得する
  *
- *	@param	p_sys		�I�u�W�F�N�g�f�[�^�Ǘ��V�X�e��
- *	@param	idx			�C���f�b�N�X
+ *	@param	p_sys		オブジェクトデータ管理システム
+ *	@param	idx			インデックス
  *
- *	@retval	�I�u�W�F�N�g���[�N
- *	pretval	NULL	���삿�イ�łȂ�
+ *	@retval	オブジェクトワーク
+ *	pretval	NULL	動作ちゅうでない
  */
 //-----------------------------------------------------------------------------
 const WF2DMAP_OBJWK* WF2DMAP_OBJWkConstIdxGet( const WF2DMAP_OBJSYS* cp_sys, u16 idx )
 {
-	// ����Ă邱�Ƃ͈ꏏ�Ȃ̂ōė��p����
+	// やってることは一緒なので再利用する
 	return WF2DMAP_OBJWkIdxGet( (WF2DMAP_OBJSYS*)cp_sys, idx );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���[�N�̃f�[�^�擾
+ *	@brief	ワークのデータ取得
  *
- *	@param	cp_wk		���[�N
- *	@param	id			�擾�����f�[�^�萔
+ *	@param	cp_wk		ワーク
+ *	@param	id			取得したデータ定数
  *
- *	@return	�w�肵���f�[�^
+ *	@return	指定したデータ
  */
 //-----------------------------------------------------------------------------
 s32 WF2DMAP_OBJWkDataGet( const WF2DMAP_OBJWK* cp_wk, WF2DMAP_OBJPARAM id )
@@ -355,52 +355,52 @@ s32 WF2DMAP_OBJWkDataGet( const WF2DMAP_OBJWK* cp_wk, WF2DMAP_OBJPARAM id )
 	GF_ASSERT( cp_wk );
 	
 	switch( id ){
-	case WF2DMAP_OBJPM_X:		// x���W
+	case WF2DMAP_OBJPM_X:		// x座標
 		data = cp_wk->pos.x;
 		break;
 		
-	case WF2DMAP_OBJPM_Y:		// y���W
+	case WF2DMAP_OBJPM_Y:		// y座標
 		data = cp_wk->pos.y;
 		break;
 		
-	case WF2DMAP_OBJPM_LX:		// �O��x���W
+	case WF2DMAP_OBJPM_LX:		// 前のx座標
 		data = cp_wk->last_pos.x;
 		break;
 		
-	case WF2DMAP_OBJPM_LY:		// �O��y���W
+	case WF2DMAP_OBJPM_LY:		// 前のy座標
 		data = cp_wk->last_pos.y;
 		break;
 		
-	case WF2DMAP_OBJPM_PLID:		// �v���C���[ID
+	case WF2DMAP_OBJPM_PLID:		// プレイヤーID
 		data = cp_wk->playid;
 		break;
 		
-	case WF2DMAP_OBJPM_ST:		// ���
+	case WF2DMAP_OBJPM_ST:		// 状態
 		data = cp_wk->status;
 		break;
 		
-	case WF2DMAP_OBJPM_WAY:		// ����
+	case WF2DMAP_OBJPM_WAY:		// 方向
 		data = cp_wk->way;
 		break;
 		
-	case WF2DMAP_OBJPM_CHARA:	// �L�����N�^�[
+	case WF2DMAP_OBJPM_CHARA:	// キャラクター
 		data = cp_wk->charaid;
 		break;
 		
-	case WF2DMAP_OBJPM_FRAME:	// ����t���[��
+	case WF2DMAP_OBJPM_FRAME:	// 動作フレーム
 		data = cp_wk->frame;
 		break;
 		
-	case WF2DMAP_OBJPM_ENDFRAME:	// �I������t���[��
+	case WF2DMAP_OBJPM_ENDFRAME:	// 終了動作フレーム
 		data = cp_wk->endframe;
 		break;
 
 	case WF2DMAP_OBJPM_STFRAME:
-		data = cp_wk->st_frame;	// ���̏�ԂɂȂ��ĉ��t���[�������Ă��邩
+		data = cp_wk->st_frame;	// 今の状態になって何フレームたっているか
 		break;
 		
 	default:
-		// ����Ȓ萔�Ȃ�
+		// そんな定数ない
 		GF_ASSERT(0);
 		break;
 	}
@@ -409,65 +409,65 @@ s32 WF2DMAP_OBJWkDataGet( const WF2DMAP_OBJWK* cp_wk, WF2DMAP_OBJPARAM id )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���[�N�̃f�[�^�擾
+ *	@brief	ワークのデータ取得
  *
- *	@param	p_wk	���[�N
- *	@param	id		�ݒ肷��f�[�^�萔
- *	@param	data	�f�[�^
+ *	@param	p_wk	ワーク
+ *	@param	id		設定するデータ定数
+ *	@param	data	データ
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJWkDataSet( WF2DMAP_OBJWK* p_wk, WF2DMAP_OBJPARAM id, s32 data )
 {
 	GF_ASSERT( p_wk );
 	switch( id ){
-	case WF2DMAP_OBJPM_X:		// x���W
+	case WF2DMAP_OBJPM_X:		// x座標
 		p_wk->pos.x = data;
 		break;
 		
-	case WF2DMAP_OBJPM_Y:		// y���W
+	case WF2DMAP_OBJPM_Y:		// y座標
 		p_wk->pos.y = data;
 		break;
 		
-	case WF2DMAP_OBJPM_LX:		// �O��x���W
+	case WF2DMAP_OBJPM_LX:		// 前のx座標
 		p_wk->last_pos.x = data;
 		break;
 		
-	case WF2DMAP_OBJPM_LY:		// �O��y���W
+	case WF2DMAP_OBJPM_LY:		// 前のy座標
 		p_wk->last_pos.y = data;
 		break;
 		
-	case WF2DMAP_OBJPM_PLID:		// �v���C���[ID
+	case WF2DMAP_OBJPM_PLID:		// プレイヤーID
 		p_wk->playid = data;
 		break;
 		
-	case WF2DMAP_OBJPM_ST:		// ���
+	case WF2DMAP_OBJPM_ST:		// 状態
 		GF_ASSERT( data < WF2DMAP_OBJST_NUM );
 		p_wk->status = data;
 		break;
 		
-	case WF2DMAP_OBJPM_WAY:		// ����
+	case WF2DMAP_OBJPM_WAY:		// 方向
 		GF_ASSERT( data < WF2DMAP_WAY_NUM );
 		p_wk->way = data;
 		break;
 		
-	case WF2DMAP_OBJPM_CHARA:	// �L�����N�^�[
+	case WF2DMAP_OBJPM_CHARA:	// キャラクター
 		p_wk->charaid = data;
 		break;
 		
-	case WF2DMAP_OBJPM_FRAME:	// ����t���[��
+	case WF2DMAP_OBJPM_FRAME:	// 動作フレーム
 		p_wk->frame = data;
 		break;
 		
-	case WF2DMAP_OBJPM_ENDFRAME:	// �I������t���[��
+	case WF2DMAP_OBJPM_ENDFRAME:	// 終了動作フレーム
 		p_wk->endframe = data;
 		break;
 
-	case WF2DMAP_OBJPM_STFRAME:	// ���̏�ԂɂȂ��ĉ��t���[�������Ă��邩
+	case WF2DMAP_OBJPM_STFRAME:	// 今の状態になって何フレームたっているか
 		p_wk->st_frame = data;
 		break;
 		
 	default:
-		// ����Ȓ萔�Ȃ�
+		// そんな定数ない
 		GF_ASSERT(0);
 		break;
 	}
@@ -475,61 +475,61 @@ void WF2DMAP_OBJWkDataSet( WF2DMAP_OBJWK* p_wk, WF2DMAP_OBJPARAM id, s32 data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���[�N�̃f�[�^���Z
+ *	@brief	ワークのデータ加算
  *
- *	@param	p_wk	���[�N
- *	@param	id		���Z����f�[�^�萔
- *	@param	data	���Z�f�[�^
+ *	@param	p_wk	ワーク
+ *	@param	id		加算するデータ定数
+ *	@param	data	加算データ
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJWkDataAdd( WF2DMAP_OBJWK* p_wk, WF2DMAP_OBJPARAM id, s32 data )
 {
 	GF_ASSERT( p_wk );
 	switch( id ){
-	case WF2DMAP_OBJPM_X:		// x���W
+	case WF2DMAP_OBJPM_X:		// x座標
 		p_wk->pos.x += data;
 		break;
 		
-	case WF2DMAP_OBJPM_Y:		// y���W
+	case WF2DMAP_OBJPM_Y:		// y座標
 		p_wk->pos.y += data;
 		break;
 		
-	case WF2DMAP_OBJPM_LX:		// �O��x���W
+	case WF2DMAP_OBJPM_LX:		// 前のx座標
 		p_wk->last_pos.x += data;
 		break;
 		
-	case WF2DMAP_OBJPM_LY:		// �O��y���W
+	case WF2DMAP_OBJPM_LY:		// 前のy座標
 		p_wk->last_pos.y += data;
 		break;
 		
-	case WF2DMAP_OBJPM_PLID:		// �v���C���[ID
+	case WF2DMAP_OBJPM_PLID:		// プレイヤーID
 		p_wk->playid += data;
 		break;
 		
-	case WF2DMAP_OBJPM_ST:		// ���
+	case WF2DMAP_OBJPM_ST:		// 状態
 		GF_ASSERT( data < WF2DMAP_OBJST_NUM );
 		p_wk->status += data;
 		break;
 		
-	case WF2DMAP_OBJPM_WAY:		// ����
+	case WF2DMAP_OBJPM_WAY:		// 方向
 		GF_ASSERT( data < WF2DMAP_WAY_NUM );
 		p_wk->way += data;
 		break;
 		
-	case WF2DMAP_OBJPM_CHARA:	// �L�����N�^�[
+	case WF2DMAP_OBJPM_CHARA:	// キャラクター
 		p_wk->charaid += data;
 		break;
 		
-	case WF2DMAP_OBJPM_FRAME:	// ����t���[��
+	case WF2DMAP_OBJPM_FRAME:	// 動作フレーム
 		p_wk->frame += data;
 		break;
 		
-	case WF2DMAP_OBJPM_ENDFRAME:	// �I������t���[��
+	case WF2DMAP_OBJPM_ENDFRAME:	// 終了動作フレーム
 		p_wk->endframe += data;
 		break;
 		
 	default:
-		// ����Ȓ萔�Ȃ�
+		// そんな定数ない
 		GF_ASSERT(0);
 		break;
 	}
@@ -537,12 +537,12 @@ void WF2DMAP_OBJWkDataAdd( WF2DMAP_OBJWK* p_wk, WF2DMAP_OBJPARAM id, s32 data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	way�̕����ɂP�i�񂾍��W���擾����
+ *	@brief	wayの方向に１つ進んだ座標を取得する
  *
- *	@param	pos		���W
- *	@param	way		����
+ *	@param	pos		座標
+ *	@param	way		方向
  *
- *	@return	way�̕����ɂP�i�񂾍��W
+ *	@return	wayの方向に１つ進んだ座標
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_POS WF2DMAP_OBJToolWayPosGet( WF2DMAP_POS pos, WF2DMAP_WAY way )
@@ -562,11 +562,11 @@ WF2DMAP_POS WF2DMAP_OBJToolWayPosGet( WF2DMAP_POS pos, WF2DMAP_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����̋t���擾
+ *	@brief	方向の逆を取得
  *
- *	@param	way		����
+ *	@param	way		方向
  *
- *	@return	way�̋t����
+ *	@return	wayの逆方向
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_WAY WF2DMPA_OBJToolRetWayGet( WF2DMAP_WAY way )
@@ -585,17 +585,17 @@ WF2DMAP_WAY WF2DMPA_OBJToolRetWayGet( WF2DMAP_WAY way )
 
 //-----------------------------------------------------------------------------
 /**
- *		�v���C�x�[�g�֐�
+ *		プライベート関数
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	��̃��[�N���擾����
+ *	@brief	空のワークを取得する
  *
- *	@param	p_sys	�I�u�W�F�N�g�f�[�^�Ǘ����[�N
+ *	@param	p_sys	オブジェクトデータ管理ワーク
  *
- *	@return	��̃��[�N
+ *	@return	空のワーク
  */
 //-----------------------------------------------------------------------------
 static WF2DMAP_OBJWK* WF2DMAP_OBJSysCleanWkGet( WF2DMAP_OBJSYS* p_sys )
@@ -607,18 +607,18 @@ static WF2DMAP_OBJWK* WF2DMAP_OBJSysCleanWkGet( WF2DMAP_OBJSYS* p_sys )
 			return &p_sys->p_buff[i];
 		}
 	}
-	// �󂫂Ȃ�
+	// 空きなし
 	GF_ASSERT(0);
 	return NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���W�̎擾
+ *	@brief	座標の取得
  *
- *	@param	cp_wk	���[�N
+ *	@param	cp_wk	ワーク
  *
- *	@return	���W
+ *	@return	座標
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_POS WF2DMAP_OBJWkMatrixGet( const WF2DMAP_OBJWK* cp_wk )
@@ -628,11 +628,11 @@ WF2DMAP_POS WF2DMAP_OBJWkMatrixGet( const WF2DMAP_OBJWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�O���W�̎擾
+ *	@brief	前座標の取得
  *
- *	@param	cp_wk	���[�N
+ *	@param	cp_wk	ワーク
  *
- *	@return	�O���W
+ *	@return	前座標
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_POS WF2DMAP_OBJWkLastMatrixGet( const WF2DMAP_OBJWK* cp_wk )
@@ -642,11 +642,11 @@ WF2DMAP_POS WF2DMAP_OBJWkLastMatrixGet( const WF2DMAP_OBJWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[���ɑΉ��������W���擾
+ *	@brief	フレームに対応した座標を取得
  *
- *	@param	cp_wk	���[�N
+ *	@param	cp_wk	ワーク
  *
- *	@return	�t���[�����ɑΉ��������W
+ *	@return	フレーム数に対応した座標
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_POS WF2DMAP_OBJWkFrameMatrixGet( const WF2DMAP_OBJWK* cp_wk )
@@ -661,21 +661,21 @@ WF2DMAP_POS WF2DMAP_OBJWkFrameMatrixGet( const WF2DMAP_OBJWK* cp_wk )
 	pos = WF2DMAP_OBJWkMatrixGet( cp_wk );
 	last_pos = WF2DMAP_OBJWkLastMatrixGet( cp_wk );
 
-	// �����o��
+	// 差を出す
 	pos.x -= last_pos.x;
 	pos.y -= last_pos.y;
 
-	// �t���[�������獡�̍��W���o��
+	// フレーム数から今の座標を出す
 	if( frame > 0 ){
 		pos.x = (frame * pos.x) / framemax;
 		pos.y = (frame * pos.y) / framemax;
 	}else{
-		// 0�̂Ƃ��͌v�Z���s����Ȃ̂Ŏ�v�Z
+		// 0のときは計算が不安定なので手計算
 		pos.x = 0;
 		pos.y = 0;
 	}
 
-	// �O�̍��W�𑫂�
+	// 前の座標を足す
 	pos.x += last_pos.x;
 	pos.y += last_pos.y;
 
@@ -684,10 +684,10 @@ WF2DMAP_POS WF2DMAP_OBJWkFrameMatrixGet( const WF2DMAP_OBJWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���W�̐ݒ�
+ *	@brief	座標の設定
  *
- *	@param	p_wk	���[�N
- *	@param	pos		���W
+ *	@param	p_wk	ワーク
+ *	@param	pos		座標
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJWkMatrixSet( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos )
@@ -697,10 +697,10 @@ void WF2DMAP_OBJWkMatrixSet( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�O���W�̐ݒ�
+ *	@brief	前座標の設定
  *
- *	@param	p_wk	���[�N
- *	@param	pos		�O���W
+ *	@param	p_wk	ワーク
+ *	@param	pos		前座標
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJWkLastMatrixSet( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos )
@@ -711,14 +711,14 @@ void WF2DMAP_OBJWkLastMatrixSet( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����蔻����s��
+ *	@brief	当たり判定を行う
  *
- *	@param	cp_wk		���ׂ郏�[�N
- *	@param	cp_objsys	�I�u�W�F�N�g�V�X�e��
- *	@param	way			����
+ *	@param	cp_wk		調べるワーク
+ *	@param	cp_objsys	オブジェクトシステム
+ *	@param	way			方向
  *
- *	@retval	���������I�u�W�F�N�g
- *	@retval	NULL	������Ȃ�����
+ *	@retval	あたったオブジェクト
+ *	@retval	NULL	あたらなかった
  */
 //-----------------------------------------------------------------------------
 const WF2DMAP_OBJWK* WF2DMAP_OBJSysHitCheck( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP_OBJSYS* cp_objsys, WF2DMAP_WAY way )
@@ -729,54 +729,54 @@ const WF2DMAP_OBJWK* WF2DMAP_OBJSysHitCheck( const WF2DMAP_OBJWK* cp_wk, const W
 	u32 my_playid, ck_playid;
 	const WF2DMAP_OBJWK* cp_ckwk;
 
-	// �i�񂾐�̍��W���擾
+	// 進んだ先の座標を取得
 	pos = WF2DMAP_OBJWkMatrixGet( cp_wk );
 	pos = WF2DMAP_OBJToolWayPosGet( pos, way );
 
-	// �����̃v���C���[�h�c�擾
+	// 自分のプレイヤーＩＤ取得
 	my_playid = WF2DMAP_OBJWkDataGet( cp_wk, WF2DMAP_OBJPM_PLID );
 
-	// �Ǘ��I�u�W�F�N�g���擾
+	// 管理オブジェクト数取得
 	objnum = WF2DMAP_OBJSysObjNumGet( cp_objsys );
 	for(i=0; i<objnum; i++){
-		// �����蔻��`�F�b�N���郏�[�N�擾
+		// 当たり判定チェックするワーク取得
 		cp_ckwk = WF2DMAP_OBJWkConstIdxGet( cp_objsys, i );
 
-		// �f�[�^�������Ă��邩�`�F�b�N
+		// データが入っているかチェック
 		if( cp_ckwk == NULL ){
 			continue;
 		}
 		
-		// �v���C���[�h�c�擾
+		// プレイヤーＩＤ取得
 		ck_playid = WF2DMAP_OBJWkDataGet( cp_ckwk, WF2DMAP_OBJPM_PLID );
 
-		// �v���C���[�h�c�����Ԃ�Ȃ��I�u�W�F�N�g�Ƃ����`�F�b�N����
+		// プレイヤーＩＤがかぶらないオブジェクトとだけチェックする
 		if( ck_playid != my_playid ){
 
-			// ���ݍ��W
+			// 現在座標
 			ck_pos = WF2DMAP_OBJWkMatrixGet( cp_ckwk );
 			if( (ck_pos.x == pos.x) && (ck_pos.y == pos.y) ){
-				return cp_ckwk;	// ���������I
+				return cp_ckwk;	// あたった！
 			}
 
-			// �O���W
+			// 前座標
 			ck_pos = WF2DMAP_OBJWkLastMatrixGet( cp_ckwk );
 			if( (ck_pos.x == pos.x) && (ck_pos.y == pos.y) ){
-				return cp_ckwk;	// ���������I
+				return cp_ckwk;	// あたった！
 			}
 		}
 	}
 
-	// ������Ȃ��E�E�E
+	// あたらない・・・
 	return NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���̈ʒu�ɃI�u�W�F�N�g�����邩�`�F�b�N
+ *	@brief	その位置にオブジェクトがいるかチェック
  *
- *	@param	cp_objsys		�I�u�W�F�N�g�V�X�e��
- *	@param	pos				���W
+ *	@param	cp_objsys		オブジェクトシステム
+ *	@param	pos				座標
  */
 //-----------------------------------------------------------------------------
 const WF2DMAP_OBJWK* WF2DMAP_OBJSysPosHitCheck( const WF2DMAP_OBJSYS* cp_objsys, WF2DMAP_POS pos )
@@ -786,39 +786,39 @@ const WF2DMAP_OBJWK* WF2DMAP_OBJSysPosHitCheck( const WF2DMAP_OBJSYS* cp_objsys,
 	WF2DMAP_POS ck_pos;
 	const WF2DMAP_OBJWK* cp_ckwk;
 
-	// �Ǘ��I�u�W�F�N�g���擾
+	// 管理オブジェクト数取得
 	objnum = WF2DMAP_OBJSysObjNumGet( cp_objsys );
 	for(i=0; i<objnum; i++){
-		// �����蔻��`�F�b�N���郏�[�N�擾
+		// 当たり判定チェックするワーク取得
 		cp_ckwk = WF2DMAP_OBJWkConstIdxGet( cp_objsys, i );
 
 		if( cp_ckwk == NULL ){
 			continue;
 		}
 
-		// ���ݍ��W
+		// 現在座標
 		ck_pos = WF2DMAP_OBJWkMatrixGet( cp_ckwk );
 		if( (ck_pos.x == pos.x) && (ck_pos.y == pos.y) ){
-			return cp_ckwk;	// ���������I
+			return cp_ckwk;	// あたった！
 		}
 
-		// �O���W
+		// 前座標
 		ck_pos = WF2DMAP_OBJWkLastMatrixGet( cp_ckwk );
 		if( (ck_pos.x == pos.x) && (ck_pos.y == pos.y) ){
-			return cp_ckwk;	// ���������I
+			return cp_ckwk;	// あたった！
 		}
 	}
 
-	// ������Ȃ��E�E�E
+	// あたらない・・・
 	return NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g���쏉����
+ *	@brief	オブジェクト動作初期化
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	cp_cmd		�A�N�V�����R�}���h
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	cp_cmd		アクションコマンド
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkMoveInit( WF2DMAP_OBJWK* p_wk, const WF2DMAP_ACTCMD* cp_cmd )
@@ -845,9 +845,9 @@ static void WF2DMAP_OBJSysWkMoveInit( WF2DMAP_OBJWK* p_wk, const WF2DMAP_ACTCMD*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g���상�C��
+ *	@brief	オブジェクト動作メイン
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
+ *	@param	p_wk		オブジェクトワーク
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkMoveMain( WF2DMAP_OBJWK* p_wk )
@@ -873,7 +873,7 @@ static void WF2DMAP_OBJSysWkMoveMain( WF2DMAP_OBJWK* p_wk )
 	p_wk->st_frame ++;
 
 	if( result == TRUE ){
-		// ���ł͑ҋ@��ԂɑJ�ڂ����Ă���
+		// 中では待機状態に遷移させている
 		WF2DMAP_OBJSysWkMoveEnd( p_wk );
 		p_wk->st_frame = 0;
 	}
@@ -883,42 +883,42 @@ static void WF2DMAP_OBJSysWkMoveMain( WF2DMAP_OBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�ҋ@��Ԑݒ�
+ *	@brief	待機状態設定
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkNoneInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
 {
 	GF_ASSERT( p_wk );
 
-	// ���W��ݒ�
+	// 座標を設定
 	WF2DMAP_OBJWkMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_NONE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�U�������Ԑݒ�
+ *	@brief	振り向き状態設定
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkTurnInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
 {
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -928,28 +928,28 @@ static void WF2DMAP_OBJSysWkTurnInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2D
 	}
 #endif
 
-	// ���W��ݒ�
+	// 座標を設定
 	WF2DMAP_OBJWkMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 
-	// ������ݒ�	�f�[�^�I�ɂ͐�ɐU��������Ă��܂�
+	// 方向を設定	データ的には先に振り向かせてしまう
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_TURN );
 	
-	// �t���[��������
+	// フレーム初期化
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, 0 );
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ENDFRAME, WF2DMAP_FRAME_TURN );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	������Ԑݒ�
+ *	@brief	歩き状態設定
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkWalkInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
@@ -957,7 +957,7 @@ static void WF2DMAP_OBJSysWkWalkInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2D
 	WF2DMAP_POS next_pos;
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -967,29 +967,29 @@ static void WF2DMAP_OBJSysWkWalkInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2D
 	}
 #endif
 
-	// ���W��ݒ�
-	next_pos = WF2DMAP_OBJSysWayPosGet( pos, way );	// ���̍��W�擾
+	// 座標を設定
+	next_pos = WF2DMAP_OBJSysWayPosGet( pos, way );	// 次の座標取得
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkMatrixSet( p_wk, next_pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_WALK );
 	
-	// �t���[��������
+	// フレーム初期化
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, 0 );
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ENDFRAME, WF2DMAP_FRAME_WALK );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����Ԑݒ�
+ *	@brief	走り状態設定
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkRunInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
@@ -997,7 +997,7 @@ static void WF2DMAP_OBJSysWkRunInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DM
 	WF2DMAP_POS next_pos;
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -1007,36 +1007,36 @@ static void WF2DMAP_OBJSysWkRunInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DM
 	}
 #endif
 
-	// ���W��ݒ�
-	next_pos = WF2DMAP_OBJSysWayPosGet( pos, way );	// ���̍��W�擾
+	// 座標を設定
+	next_pos = WF2DMAP_OBJSysWayPosGet( pos, way );	// 次の座標取得
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkMatrixSet( p_wk, next_pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_RUN );
 	
-	// �t���[��������
+	// フレーム初期化
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, 0 );
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ENDFRAME, WF2DMAP_FRAME_RUN );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�Z������Ԑݒ�
+ *	@brief	忙しい状態設定
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkBusyInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
 {
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -1046,31 +1046,31 @@ static void WF2DMAP_OBJSysWkBusyInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2D
 	}
 #endif
 
-	// ���W��ݒ�
+	// 座標を設定
 	WF2DMAP_OBJWkMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_BUSY );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�Ǖ���������Ԑݒ�
+ *	@brief	壁方向歩き状態設定
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkWallWalkInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
 {
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -1080,28 +1080,28 @@ static void WF2DMAP_OBJSysWkWallWalkInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, 
 	}
 #endif
 
-	// ���W��ݒ�
+	// 座標を設定
 	WF2DMAP_OBJWkMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_WALLWALK );
 
-	// �t���[��������
+	// フレーム初期化
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, 0 );
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ENDFRAME, WF2DMAP_FRAME_WALLWALK );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	������������Ԑݒ�
+ *	@brief	ゆっくり歩き状態設定
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkSlowWalkInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
@@ -1109,7 +1109,7 @@ static void WF2DMAP_OBJSysWkSlowWalkInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, 
 	WF2DMAP_POS next_pos;
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -1119,29 +1119,29 @@ static void WF2DMAP_OBJSysWkSlowWalkInit( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, 
 	}
 #endif
 
-	// ���W��ݒ�
-	next_pos = WF2DMAP_OBJSysWayPosGet( pos, way );	// ���̍��W�擾
+	// 座標を設定
+	next_pos = WF2DMAP_OBJSysWayPosGet( pos, way );	// 次の座標取得
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkMatrixSet( p_wk, next_pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_SLOWWALK );
 	
-	// �t���[��������
+	// フレーム初期化
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, 0 );
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ENDFRAME, WF2DMAP_FRAME_SLOWWALK );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	4�V���N	����
+ *	@brief	4シンク	歩き
  *
- *	@param	p_wk		���[�N
- *	@param	pos			�ʒu
- *	@param	way			����
+ *	@param	p_wk		ワーク
+ *	@param	pos			位置
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkWalk4Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
@@ -1149,7 +1149,7 @@ static void WF2DMAP_OBJSysWkWalk4Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2
 	WF2DMAP_POS next_pos;
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -1159,36 +1159,36 @@ static void WF2DMAP_OBJSysWkWalk4Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2
 	}
 #endif
 
-	// ���W��ݒ�
-	next_pos = WF2DMAP_OBJSysWayPosGet( pos, way );	// ���̍��W�擾
+	// 座標を設定
+	next_pos = WF2DMAP_OBJSysWayPosGet( pos, way );	// 次の座標取得
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkMatrixSet( p_wk, next_pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_WALK4 );
 	
-	// �t���[��������
+	// フレーム初期化
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, 0 );
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ENDFRAME, WF2DMAP_FRAME_WALK4 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���̏�����Q�t���[��	������
+ *	@brief	その場歩き２フレーム	初期化
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkStayWalk2Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
 {
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -1198,35 +1198,35 @@ static void WF2DMAP_OBJSysWkStayWalk2Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos,
 	}
 #endif
 
-	// ���W��ݒ�
+	// 座標を設定
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkMatrixSet( p_wk, pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_STAYWALK2 );
 	
-	// �t���[��������
+	// フレーム初期化
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, 0 );
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ENDFRAME, WF2DMAP_FRAME_WALK2 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���̏�����S�t���[��	������
+ *	@brief	その場歩き４フレーム	初期化
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkStayWalk4Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
 {
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -1236,35 +1236,35 @@ static void WF2DMAP_OBJSysWkStayWalk4Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos,
 	}
 #endif
 
-	// ���W��ݒ�
+	// 座標を設定
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkMatrixSet( p_wk, pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_STAYWALK4 );
 	
-	// �t���[��������
+	// フレーム初期化
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, 0 );
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ENDFRAME, WF2DMAP_FRAME_WALK4 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���̏�����W�t���[��	������
+ *	@brief	その場歩き８フレーム	初期化
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkStayWalk8Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
 {
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -1274,35 +1274,35 @@ static void WF2DMAP_OBJSysWkStayWalk8Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos,
 	}
 #endif
 
-	// ���W��ݒ�
+	// 座標を設定
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkMatrixSet( p_wk, pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_STAYWALK8 );
 	
-	// �t���[��������
+	// フレーム初期化
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, 0 );
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ENDFRAME, WF2DMAP_FRAME_WALK );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���̏�����P�U�t���[��	������
+ *	@brief	その場歩き１６フレーム	初期化
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
- *	@param	pos			���W
- *	@param	way			����
+ *	@param	p_wk		オブジェクトワーク
+ *	@param	pos			座標
+ *	@param	way			方向
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkStayWalk16Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
 {
 	GF_ASSERT( p_wk );
 
-#ifdef DEBUG_STCHECK	// �ꉞ���쒆�ɋ�������ɐݒ肵�Ă��Ȃ����`�F�b�N
+#ifdef DEBUG_STCHECK	// 一応動作中に強制定期に設定していないかチェック
 	{
 		u32 st = WF2DMAP_OBJWkDataGet( p_wk, WF2DMAP_OBJPM_ST );
 		if( st != WF2DMAP_OBJST_NONE ){
@@ -1312,17 +1312,17 @@ static void WF2DMAP_OBJSysWkStayWalk16Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos
 	}
 #endif
 
-	// ���W��ݒ�
+	// 座標を設定
 	WF2DMAP_OBJWkLastMatrixSet( p_wk, pos );
 	WF2DMAP_OBJWkMatrixSet( p_wk, pos );
 
-	// ������ݒ�
+	// 方向を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_WAY, way );
 
-	// ��Ԃ�ݒ�
+	// 状態を設定
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ST, WF2DMAP_OBJST_STAYWALK16 );
 	
-	// �t���[��������
+	// フレーム初期化
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, 0 );
 	WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_ENDFRAME, WF2DMAP_FRAME_SLOWWALK );
 }
@@ -1330,28 +1330,28 @@ static void WF2DMAP_OBJSysWkStayWalk16Init( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�ҋ@��ԃ��C��
+ *	@brief	待機状態メイン
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
+ *	@param	p_wk		オブジェクトワーク
  *
- *	@retval	TRUE	���슮��
- *	@retval	TRUE	���쒆
+ *	@retval	TRUE	動作完了
+ *	@retval	TRUE	動作中
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_OBJSysWkNoneMain( WF2DMAP_OBJWK* p_wk )
 {
-	// �ҋ@�Ȃ̂ŉ������Ȃ�
+	// 待機なので何もしない
 	return FALSE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�U�������ԃ��C��
+ *	@brief	振り向き状態メイン
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
+ *	@param	p_wk		オブジェクトワーク
  *
- *	@retval	TRUE	���슮��
- *	@retval	TRUE	���쒆
+ *	@retval	TRUE	動作完了
+ *	@retval	TRUE	動作中
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_OBJSysWkTurnMain( WF2DMAP_OBJWK* p_wk )
@@ -1361,12 +1361,12 @@ static BOOL WF2DMAP_OBJSysWkTurnMain( WF2DMAP_OBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	������ԃ��C��
+ *	@brief	歩き状態メイン
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
+ *	@param	p_wk		オブジェクトワーク
  *
- *	@retval	TRUE	���슮��
- *	@retval	TRUE	���쒆
+ *	@retval	TRUE	動作完了
+ *	@retval	TRUE	動作中
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_OBJSysWkWalkMain( WF2DMAP_OBJWK* p_wk )
@@ -1383,12 +1383,12 @@ static BOOL WF2DMAP_OBJSysWkWalkMain( WF2DMAP_OBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����ԃ��C��
+ *	@brief	走り状態メイン
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
+ *	@param	p_wk		オブジェクトワーク
  *
- *	@retval	TRUE	���슮��
- *	@retval	TRUE	���쒆
+ *	@retval	TRUE	動作完了
+ *	@retval	TRUE	動作中
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_OBJSysWkRunMain( WF2DMAP_OBJWK* p_wk )
@@ -1405,12 +1405,12 @@ static BOOL WF2DMAP_OBJSysWkRunMain( WF2DMAP_OBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�Z������ԃ��C��
+ *	@brief	忙しい状態メイン
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
+ *	@param	p_wk		オブジェクトワーク
  *
- *	@retval	TRUE	���슮��
- *	@retval	TRUE	���쒆
+ *	@retval	TRUE	動作完了
+ *	@retval	TRUE	動作中
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_OBJSysWkBusyMain( WF2DMAP_OBJWK* p_wk )
@@ -1420,12 +1420,12 @@ static BOOL WF2DMAP_OBJSysWkBusyMain( WF2DMAP_OBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�Ǖ�����ԃ��C��
+ *	@brief	壁歩き状態メイン
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
+ *	@param	p_wk		オブジェクトワーク
  *
- *	@retval	TRUE	���슮��
- *	@retval	TRUE	���쒆
+ *	@retval	TRUE	動作完了
+ *	@retval	TRUE	動作中
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_OBJSysWkWallWalkMain( WF2DMAP_OBJWK* p_wk )
@@ -1435,12 +1435,12 @@ static BOOL WF2DMAP_OBJSysWkWallWalkMain( WF2DMAP_OBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���̏������ԃ��C��
+ *	@brief	その場歩き状態メイン
  *
- *	@param	p_wk		�I�u�W�F�N�g���[�N
+ *	@param	p_wk		オブジェクトワーク
  *
- *	@retval	TRUE	���슮��
- *	@retval	TRUE	���쒆
+ *	@retval	TRUE	動作完了
+ *	@retval	TRUE	動作中
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_OBJSysWkStayWalk2Main( WF2DMAP_OBJWK* p_wk )
@@ -1452,12 +1452,12 @@ static BOOL WF2DMAP_OBJSysWkStayWalk2Main( WF2DMAP_OBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	way�̕����ɂP�i�񂾍��W���擾����
+ *	@brief	wayの方向に１つ進んだ座標を取得する
  *
- *	@param	pos		���W
- *	@param	way		����
+ *	@param	pos		座標
+ *	@param	way		方向
  *
- *	@return	way�̕����ɂP�i�񂾍��W
+ *	@return	wayの方向に１つ進んだ座標
  */
 //-----------------------------------------------------------------------------
 static WF2DMAP_POS WF2DMAP_OBJSysWayPosGet( WF2DMAP_POS pos, WF2DMAP_WAY way )
@@ -1467,12 +1467,12 @@ static WF2DMAP_POS WF2DMAP_OBJSysWayPosGet( WF2DMAP_POS pos, WF2DMAP_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[���Ǘ�
+ *	@brief	フレーム管理
  *	
- *	@param	p_wk	�I�u�W�F�N�g���[�N
+ *	@param	p_wk	オブジェクトワーク
  *
- *	@retval	TRUE	�I���t���[���ɂȂ���
- *	@retval	FALSE	�܂��I��肶��Ȃ�
+ *	@retval	TRUE	終了フレームになった
+ *	@retval	FALSE	まだ終わりじゃない
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_OBJSysFrameCont( WF2DMAP_OBJWK* p_wk )
@@ -1487,7 +1487,7 @@ static BOOL WF2DMAP_OBJSysFrameCont( WF2DMAP_OBJWK* p_wk )
 		frame ++;
 		WF2DMAP_OBJWkDataSet( p_wk, WF2DMAP_OBJPM_FRAME, frame );
 
-		// frame��i�߂�endframe�ɂȂ����ꍇ��TRUE��Ԃ�
+		// frameを進めてendframeになった場合はTRUEを返す
 		if( frame < endframe ){
 			return FALSE;
 		}
@@ -1498,9 +1498,9 @@ static BOOL WF2DMAP_OBJSysFrameCont( WF2DMAP_OBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�ҋ@��Ԃɏ���������
+ *	@brief	待機状態に初期化する
  *
- *	@param	p_wk	�I�u�W�F�N�g���[�N
+ *	@param	p_wk	オブジェクトワーク
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJSysWkMoveEnd( WF2DMAP_OBJWK* p_wk )

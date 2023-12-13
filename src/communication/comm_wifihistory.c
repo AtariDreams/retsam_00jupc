@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	comm_wifihistory.c
- * @bfief	’n‹…‹V“o˜^ˆ—
+ * @bfief	åœ°çƒå„€ç™»éŒ²å‡¦ç†
  * @author	Akito Mori
  * @date	06.05.02
  */
@@ -13,7 +13,7 @@
 
 //==============================================================================
 /**
- * $brief   ’n‹…‹Vî•ñ‚ð“o˜^
+ * $brief   åœ°çƒå„€æƒ…å ±ã‚’ç™»éŒ²
  *
  * @param   wifiHistory		
  *
@@ -27,12 +27,12 @@ void Comm_WifiHistoryCheck( WIFI_HISTORY *wifiHistory )
 	MYSTATUS *status;
 	int num = CommGetConnectNum();
 
-	// ƒfƒoƒbƒOƒoƒgƒ‹‚ÌŽž‚¾‚ÆMYSTATUS‚ª“ü‚Á‚Ä‚¢‚È‚¢‚Ì‚Å“o˜^ˆ—‚Í‚·‚×‚Ä‚Æ‚Î‚·‚æ‚¤‚É‚·‚é
+	// ãƒ‡ãƒãƒƒã‚°ãƒãƒˆãƒ«ã®æ™‚ã ã¨MYSTATUSãŒå…¥ã£ã¦ã„ãªã„ã®ã§ç™»éŒ²å‡¦ç†ã¯ã™ã¹ã¦ã¨ã°ã™ã‚ˆã†ã«ã™ã‚‹
 	if(CommInfoGetMyStatus(0)==NULL){
 		return;
 	}
 
-	// Ú‘±‚µ‚Ä‚¢‚él”•ª‚Ü‚í‚·
+	// æŽ¥ç¶šã—ã¦ã„ã‚‹äººæ•°åˆ†ã¾ã‚ã™
 	for(i=0;i<num;i++){
 		if(CommGetCurrentID()!=i){
 			Nation = CommInfoGetMyNation(i);
@@ -40,7 +40,7 @@ void Comm_WifiHistoryCheck( WIFI_HISTORY *wifiHistory )
 			status = CommInfoGetMyStatus( i );
 			region = MyStatus_GetRegionCode( status );
 
-			// ‘E’nˆæƒR[ƒh‚ð“o˜^i‚½‚¾‚µ“ú–{ƒJ[ƒgƒŠƒbƒWê—pƒ`ƒFƒbƒN‚ ‚èj
+			// å›½ãƒ»åœ°åŸŸã‚³ãƒ¼ãƒ‰ã‚’ç™»éŒ²ï¼ˆãŸã ã—æ—¥æœ¬ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸å°‚ç”¨ãƒã‚§ãƒƒã‚¯ã‚ã‚Šï¼‰
 			Comm_WifiHistoryDataSet( wifiHistory, Nation, Area, region );
 		}
 	}
@@ -48,7 +48,7 @@ void Comm_WifiHistoryCheck( WIFI_HISTORY *wifiHistory )
 
 //==============================================================================
 /**
- * @brief   ‘ŠŽè‚ÌƒJ[ƒgƒŠƒbƒWƒŠ[ƒWƒ‡ƒ“E‘E’nˆæƒR[ƒh‚©‚ç’n‹…‹Vî•ñ‚ð“o˜^‚·‚é
+ * @brief   ç›¸æ‰‹ã®ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ãƒ»å›½ãƒ»åœ°åŸŸã‚³ãƒ¼ãƒ‰ã‹ã‚‰åœ°çƒå„€æƒ…å ±ã‚’ç™»éŒ²ã™ã‚‹
  *
  * @param   wifiHistory		
  * @param   Nation		
@@ -62,16 +62,16 @@ void Comm_WifiHistoryDataSet( WIFI_HISTORY *wifiHistory, int Nation, int Area, i
 {
 	
 #if (PM_LANG == LANG_JAPAN)
-	// ‘ŠŽè‚ÌƒJ[ƒgƒŠƒbƒW‚ª“ú–{‚È‚Ì‚É
+	// ç›¸æ‰‹ã®ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒæ—¥æœ¬ãªã®ã«
 	if(langCode==LANG_JAPAN){
-		// ˆá‚¤‘‚Ì’n‹…‹VƒR[ƒh‚ð“ü‚ê‚Ä‚«‚½‚ç“o˜^‚µ‚È‚¢
+		// é•ã†å›½ã®åœ°çƒå„€ã‚³ãƒ¼ãƒ‰ã‚’å…¥ã‚Œã¦ããŸã‚‰ç™»éŒ²ã—ãªã„
 		if(Nation!=WIFI_NATION_JAPAN){
 			return;
 		}
 	}
 #endif
 	
-	// ‘E’nˆæ‚ð“o˜^
+	// å›½ãƒ»åœ°åŸŸã‚’ç™»éŒ²
 //	OS_Printf("no=%d\n", WIFIHISTORY_GetStat(wifiHistory, Nation, Area ));
 	if(WIFIHISTORY_GetStat( wifiHistory, Nation, Area )==WIFIHIST_STAT_NODATA){
 		WIFIHISTORY_SetStat( wifiHistory, Nation, Area, WIFIHIST_STAT_NEW );

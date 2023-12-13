@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_160.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			160�@�����̓���h����P�i�K�グ��B�R��܂ł����킦�邱�Ƃ��ł���B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			160　自分の特殊防御を１段階上げる。３回までたくわえることができる。
  *
  *@author	HisashiSogabe
  *@data		2006.02.06

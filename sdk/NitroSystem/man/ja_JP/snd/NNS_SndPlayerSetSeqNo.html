@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerSetSeqNo</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerSetSeqNo</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetSeqNo( NNSSndHandle* <var>handle</var>, int <var>seqNo</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA0LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,51 +25,51 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�T�E���h�n���h���̃|�C���^�ł��B</td>
+<td>サウンドハンドルのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>seqNo</code></strong></em></td>
-<td>�V�[�P���X�ԍ��ł��B</td>
+<td>シーケンス番号です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAQMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAXMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       
       <p>
-�V�[�P���X�ԍ���ݒ肵�܂��B 
+シーケンス番号を設定します。 
 </p>
       <p>
-�T�E���h�n���h��<em><strong><code>handle</code></strong></em>�ɁA���т���ꂽ�V�[�P���X�̃V�[�P���X�ԍ���ݒ肵�܂��B�T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+サウンドハンドル<em><strong><code>handle</code></strong></em>に、結びつけられたシーケンスのシーケンス番号を設定します。サウンドハンドルが無効の場合は、何もしません。 
 </p>
       <p>
-�V�[�P���X�ԍ���ݒ肷��ƁA��ŁA�ݒ肵���V�[�P���X�ԍ����w�肵�āA�V�[�P���X���~�߂��肷�邱�Ƃ��ł���悤�ɂȂ�܂��B
-�ڂ����́A<tt class="function"><a href="NNS_SndPlayerStopSeq.html">NNS_SndPlayerStopSeqBySeqNo</a></tt>�֐���A
-<tt class="function"><a href="NNS_SndPlayerCountPlayingSeq.html">NNS_SndPlayerCountPlayingSeqBySeqNo</a></tt>�֐����Q�Ƃ��Ă��������B 
+シーケンス番号を設定すると、後で、設定したシーケンス番号を指定して、シーケンスを止めたりすることができるようになります。
+詳しくは、<tt class="function"><a href="NNS_SndPlayerStopSeq.html">NNS_SndPlayerStopSeqBySeqNo</a></tt>関数や、
+<tt class="function"><a href="NNS_SndPlayerCountPlayingSeq.html">NNS_SndPlayerCountPlayingSeqBySeqNo</a></tt>関数を参照してください。 
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-���̊֐��́A<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq*</a></tt>�֐����ŁA
-�Ăт�����Ă��܂��B�ēx�A���̊֐����Ăт����ƁA�ݒ肵���l���㏑������܂��B
+この関数は、<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq*</a></tt>関数内で、
+呼びだされています。再度、この関数を呼びだすと、設定した値が上書きされます。
 </p>
 <p>
-���̊֐��ƁA<tt class="function"><a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a></tt>�֐��́A
-�ǂ��炩����̂݌Ăт����܂��B�����Ăт����ƁA�ォ��ݒ肵�������L���ɂȂ�܂��B
+この関数と、<tt class="function"><a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a></tt>関数は、
+どちらか一方のみ呼びだします。両方呼びだすと、後から設定した方が有効になります。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndPlayerStopSeq.html">NNS_SndPlayerStopSeqBySeqNo</a>, <a href="NNS_SndPlayerCountPlayingSeq.html">NNS_SndPlayerCountPlayingSeqBySeqNo</a>, <a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq*</a>, <a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a></p>
-<h2>����</h2>
-<p>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

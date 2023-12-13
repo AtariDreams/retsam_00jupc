@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	contest_order.h
- * @brief	ƒRƒ“ƒeƒXƒg’ÊM‘—óM‚Ìƒwƒbƒ_
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€šä¿¡é€å—ä¿¡ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2005.12.13(‰Î)
+ * @date	2005.12.13(ç«)
  */
 //==============================================================================
 #ifndef __CONTEST_ORDER_H__
@@ -11,83 +11,83 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///select_breeder‚Ìƒpƒ‰ƒ[ƒ^
+///select_breederã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 enum{
-	CSELECT_ALL = 0xff,		///<‘Sˆõ‚ª‘ÎÛ
-	CSELECT_SERVER = 0xfe,	///<ƒT[ƒo[‚ª‘ÎÛ
+	CSELECT_ALL = 0xff,		///<å…¨å“¡ãŒå¯¾è±¡
+	CSELECT_SERVER = 0xfe,	///<ã‚µãƒ¼ãƒãƒ¼ãŒå¯¾è±¡
 };
 
-///‘—M—pƒoƒbƒtƒ@ƒTƒCƒY
+///é€ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define CO_TRANSMIT_BUF_SIZE		(512)
-///óM—pƒoƒbƒtƒ@ƒTƒCƒY
+///å—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define CO_RECEIVE_BUF_SIZE		(CO_TRANSMIT_BUF_SIZE)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒRƒ“ƒeƒXƒg‘—óM\‘¢‘Ì
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€å—ä¿¡æ§‹é€ ä½“
 typedef struct{
-	const struct _CON_ORDER_FUNC *func_tbl;		///<–½—ßƒf[ƒ^ƒe[ƒuƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u16 func_tbl_max;				///<func_tbl‚Ì”
+	const struct _CON_ORDER_FUNC *func_tbl;		///<å‘½ä»¤ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u16 func_tbl_max;				///<func_tblã®æ•°
 	
 	u8 my_breeder_no;
-	u8 sio_flag;					///<TRUEF’ÊM’†
-	u8 server_no;					///<ƒT[ƒo[‚ÌƒuƒŠ[ƒ_[”Ô†
+	u8 sio_flag;					///<TRUEï¼šé€šä¿¡ä¸­
+	u8 server_no;					///<ã‚µãƒ¼ãƒãƒ¼ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
 	
-	u32 request_bit;				///<–½—ß‚ğo‚µ‚Ä‚¢‚éƒrƒbƒg
-	u8 transmit_buf[CO_TRANSMIT_BUF_SIZE];	///<‘—M—pƒoƒbƒtƒ@
-	u8 receive_buf[CC_NETID_MAX][CO_RECEIVE_BUF_SIZE];	///<óM—pƒoƒbƒtƒ@
-	u8 transmit_flag;				///<TRUEF‘—M‘Ò‚¿B@FALSE:V‚½‚Èƒf[ƒ^ƒZƒbƒg‰Â”\ 
-	u8 receive_flag[CC_NETID_MAX];				///<TRUEFƒf[ƒ^óM‚µ‚½
-	u8 answer_count;				///<•Ô–‚ğó‚¯æ‚Á‚½”‚ğƒJƒEƒ“ƒg
+	u32 request_bit;				///<å‘½ä»¤ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ“ãƒƒãƒˆ
+	u8 transmit_buf[CO_TRANSMIT_BUF_SIZE];	///<é€ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡
+	u8 receive_buf[CC_NETID_MAX][CO_RECEIVE_BUF_SIZE];	///<å—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡
+	u8 transmit_flag;				///<TRUEï¼šé€ä¿¡å¾…ã¡ã€‚ã€€FALSE:æ–°ãŸãªãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå¯èƒ½ 
+	u8 receive_flag[CC_NETID_MAX];				///<TRUEï¼šãƒ‡ãƒ¼ã‚¿å—ä¿¡ã—ãŸ
+	u8 answer_count;				///<è¿”äº‹ã‚’å—ã‘å–ã£ãŸæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 }CONTEST_ORDER_WORK;
 
-///•Ô–óMƒoƒbƒtƒ@‚ğ‚Ü‚Æ‚ß‚½\‘¢‘Ì
+///è¿”äº‹å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’ã¾ã¨ã‚ãŸæ§‹é€ ä½“
 typedef struct{
 	void *data[BREEDER_MAX];
 }CO_ANSDAT;
 
 //--------------------------------------------------------------
 /**
- * ‘—M—pƒoƒbƒtƒ@‚Ìƒwƒbƒ_
+ * é€ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã®ãƒ˜ãƒƒãƒ€
  */
 //--------------------------------------------------------------
 typedef struct{
-	u16 data_size;			///<‘—Mƒf[ƒ^ƒTƒCƒY
-	u16 order_no;			///<–½—ß”Ô†
-	u8 select_breeder;		///<–½—ß‘ÎÛ‚ÌƒuƒŠ[ƒ_[”Ô† or ASELECT_???
-	u8 bit_no;				///<ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
-	u8 type;				///<‘—Mƒ^ƒCƒv(TRANSMIT_TYPE_???)
+	u16 data_size;			///<é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	u16 order_no;			///<å‘½ä»¤ç•ªå·
+	u8 select_breeder;		///<å‘½ä»¤å¯¾è±¡ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå· or ASELECT_???
+	u8 bit_no;				///<ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
+	u8 type;				///<é€ä¿¡ã‚¿ã‚¤ãƒ—(TRANSMIT_TYPE_???)
 	
 	u8 dummy[1];
 }CORDER_HEAD;
 
-///–½—ß‘—óM—pŠÖ”ƒ|ƒCƒ“ƒ^\‘¢‘Ì
+///å‘½ä»¤é€å—ä¿¡ç”¨é–¢æ•°ãƒã‚¤ãƒ³ã‚¿æ§‹é€ ä½“
 typedef struct _CON_ORDER_FUNC{
-	///–½—ß‘—MŠÖ”(‘—MŒ³)
+	///å‘½ä»¤é€ä¿¡é–¢æ•°(é€ä¿¡å…ƒ)
 	int (* request_func)(CONTEST_ORDER_WORK *, void *, int, void *);
-	///–½—ßóMŠÖ”(‘—Mæ)
+	///å‘½ä»¤å—ä¿¡é–¢æ•°(é€ä¿¡å…ˆ)
 	void (* receive_func)(CONTEST_ORDER_WORK *, void *, const CORDER_HEAD *, void *);
-	///•Ô–óMŠÖ”(‘—MŒ³) •Ô–‚ğó‚¯æ‚é‚¾‚¯‚Åƒf[ƒ^‚Ìó‚¯æ‚è‚ª‚È‚¢‚È‚çNULL‚ÅOK
+	///è¿”äº‹å—ä¿¡é–¢æ•°(é€ä¿¡å…ƒ) è¿”äº‹ã‚’å—ã‘å–ã‚‹ã ã‘ã§ãƒ‡ãƒ¼ã‚¿ã®å—ã‘å–ã‚ŠãŒãªã„ãªã‚‰NULLã§OK
 	void (* answer_func)(CONTEST_ORDER_WORK *, void *, const CORDER_HEAD *, CO_ANSDAT *, int);
 }CON_ORDER_FUNC;
 
-///‘—óMƒ[ƒN‰Šú‰»ƒf[ƒ^
+///é€å—ä¿¡ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	const struct _CON_ORDER_FUNC *func_tbl;		///<–½—ßƒf[ƒ^ƒe[ƒuƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u16 func_tbl_max;				///<func_tbl‚Ì”
+	const struct _CON_ORDER_FUNC *func_tbl;		///<å‘½ä»¤ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u16 func_tbl_max;				///<func_tblã®æ•°
 	
 	u8 my_breeder_no;
-	u8 sio_flag;					///<TRUEF’ÊM’†
-	u8 server_no;					///<ƒT[ƒo[‚ÌƒuƒŠ[ƒ_[”Ô†
+	u8 sio_flag;					///<TRUEï¼šé€šä¿¡ä¸­
+	u8 server_no;					///<ã‚µãƒ¼ãƒãƒ¼ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
 }CO_INIT_DATA;
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern u8 CO_RequestBitNumCheck(CONTEST_ORDER_WORK *cow);
 extern BOOL CO_RequestBitCheck(CONTEST_ORDER_WORK *cow, int bit_no);

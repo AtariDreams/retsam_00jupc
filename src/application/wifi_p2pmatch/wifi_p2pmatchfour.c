@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_p2pmatchfour.c
- *	@brief		wifi‚Slƒ}ƒbƒ`ƒ“ƒOê—p‰æ–Ê
+ *	@brief		wifiï¼”äººãƒãƒƒãƒãƒ³ã‚°å°‚ç”¨ç”»é¢
  *	@author		tomoya takahashi
  *	@data		2007.05.22
  *
@@ -50,52 +50,52 @@
 #include "wifi_p2pmatch_local.h"
 #include "wifi_p2pmatchfour_local.h"
 
-#include "wifip2pmatch.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "wifip2pmatch.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
-// WIFI2DMAPƒVƒXƒeƒ€ƒI[ƒo[ƒŒƒC
+// WIFI2DMAPã‚·ã‚¹ãƒ†ãƒ ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤
 FS_EXTERN_OVERLAY(wifi_2dmapsys);
 
-// ƒZƒ‹ƒAƒNƒ^[
-#define WIFI_P2PMATCH_RESNUM	(4)	// ƒŠƒ\[ƒX”
-#define WIFI_P2PMATCH_CLACTWK_NUM	(4)		// ƒAƒNƒ^[ƒ[ƒN”
-#define WIFI_P2PMATCH_LOADRESNUM	(4)		// “Ç‚İ‚ŞƒŠƒ\[ƒX”
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+#define WIFI_P2PMATCH_RESNUM	(4)	// ãƒªã‚½ãƒ¼ã‚¹æ•°
+#define WIFI_P2PMATCH_CLACTWK_NUM	(4)		// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯æ•°
+#define WIFI_P2PMATCH_LOADRESNUM	(4)		// èª­ã¿è¾¼ã‚€ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define WIFI_P2PMATCH_VRAMMAINSIZ	(128*1024)
 #define WIFI_P2PMATCH_VRAMSUBSIZ	(16*1024)
 #define WIFI_P2PMATCH_VRAMTRMAN_NUM	( 16 )
 
-// ƒƒbƒZ[ƒW•\¦ŠÔ
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ™‚é–“
 #define WIFI_P2PMATCH_MSG_WAIT	( 30 )
 
 
-#define _TIMING_GAME_CHECK  (13)// ‚Â‚È‚ª‚Á‚½’¼Œã
-#define _TIMING_GAME_CHECK2  (14)// ‚Â‚È‚ª‚Á‚½’¼Œã
-#define _TIMING_GAME_START  (15)// ƒ^ƒCƒ~ƒ“ƒO‚ğ‚»‚ë‚¦‚é
-#define _TIMING_GAME_START2  (18)// ƒ^ƒCƒ~ƒ“ƒO‚ğ‚»‚ë‚¦‚é
-#define _TIMING_BATTLE_END  (16)// ƒ^ƒCƒ~ƒ“ƒO‚ğ‚»‚ë‚¦‚é
+#define _TIMING_GAME_CHECK  (13)// ã¤ãªãŒã£ãŸç›´å¾Œ
+#define _TIMING_GAME_CHECK2  (14)// ã¤ãªãŒã£ãŸç›´å¾Œ
+#define _TIMING_GAME_START  (15)// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ãã‚ãˆã‚‹
+#define _TIMING_GAME_START2  (18)// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ãã‚ãˆã‚‹
+#define _TIMING_BATTLE_END  (16)// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ãã‚ãˆã‚‹
 
 
 #define RECONNECT_WAIT	(90)
@@ -105,7 +105,7 @@ FS_EXTERN_OVERLAY(wifi_2dmapsys);
 #define CONNECT_TIMEOUT		(60*30)
 
 //-------------------------------------
-///	ƒƒCƒ“•ªŠò
+///	ãƒ¡ã‚¤ãƒ³åˆ†å²
 //=====================================
 enum {
 	WFP2PMF_MAIN_WIPE_S,
@@ -117,84 +117,84 @@ enum {
 
 
 //-------------------------------------
-///	e•ªŠòSTATUS
+///	è¦ªåˆ†å²STATUS
 //=====================================
 enum {
-	WFP2PMF_OYA_STATUS_INIT,				// e‚Ì‰Šú‰»
-	WFP2PMF_OYA_STATUS_CONNECT_WAIT_INIT,	// CONNECT‘Ò‚¿‰Šú‰»
-	WFP2PMF_OYA_STATUS_CONNECT_WAIT,		// CONNECT‘Ò‚¿
-	WFP2PMF_OYA_STATUS_CONNECT_SELECT_INIT00,// CONNECT‘Ò‚¿
-	WFP2PMF_OYA_STATUS_CONNECT_SELECT_INIT01,// CONNECT‚µ‚½l‚ğ“ü‚ê‚é‚©‘I‘ğ‰Šú‰»
-	WFP2PMF_OYA_STATUS_CONNECT_SELECT,		// CONNECT‚µ‚½l‚ğ“ü‚ê‚é‚©‘I‘ğ
-	WFP2PMF_OYA_STATUS_CONNECT_MIN_INIT,	// ƒQ[ƒ€ŠJn‚µ‚½‚¢‚ªAl”‚ª‘«‚è‚È‚¢
-	WFP2PMF_OYA_STATUS_CONNECT_MIN,			// ƒQ[ƒ€ŠJn‚µ‚½‚¢‚ªAl”‚ª‘«‚è‚È‚¢
-	WFP2PMF_OYA_STATUS_START_INIT00,			// ƒQ[ƒ€ŠJnˆ—@ŠJn
-	WFP2PMF_OYA_STATUS_START_INIT01,			// ƒQ[ƒ€ŠJnˆ—@ŠJn
-	WFP2PMF_OYA_STATUS_START_SELECT,		// ƒQ[ƒ€ŠJnˆ—‚És‚­‚©‘I‘ğ
-	WFP2PMF_OYA_STATUS_START,				// ƒQ[ƒ€ŠJn‚Ö
-	WFP2PMF_OYA_STATUS_STARTNUMCHECK,		// ƒQ[ƒ€ŠJn@l”ƒ`ƒFƒbƒN
-	WFP2PMF_OYA_STATUS_STARTSYNC_INIT,		// ƒQ[ƒ€ŠJn“¯Šú
-	WFP2PMF_OYA_STATUS_STARTSYNC,			// ƒQ[ƒ€ŠJn“¯Šú
-	WFP2PMF_OYA_STATUS_STATE_SEND,			// ƒQ[ƒ€ŠJn	ƒXƒe[ƒ^ƒX‘—M
-	WFP2PMF_OYA_STATUS_STATE_CHECK,			// ƒQ[ƒ€ŠJn	ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
-	WFP2PMF_OYA_STATUS_MYSTATUS_WAIT,		// ƒQ[ƒ€ŠJn	ƒf[ƒ^‘Ò‚¿
-	WFP2PMF_OYA_STATUS_GAME_START,			// ŠJn
-	WFP2PMF_OYA_STATUS_END_INIT00,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚©@ŠJn
-	WFP2PMF_OYA_STATUS_END_INIT01,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚©@ŠJn
-	WFP2PMF_OYA_STATUS_END_SELECT,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚©@‘I‘ğ
-	WFP2PMF_OYA_STATUS_END2_INIT00,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚Æ@‰ğU@ŠJn
-	WFP2PMF_OYA_STATUS_END2_INIT01,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚Æ@‰ğU@ŠJn
-	WFP2PMF_OYA_STATUS_END2_SELECT,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚Æ@‰ğU@‘I‘ğ
-	WFP2PMF_OYA_STATUS_END3_INIT,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚Æ@‰ğU@ŠJn
-	WFP2PMF_OYA_STATUS_END,					// ‘Ò‹@ó‘ÔI—¹
-	WFP2PMF_OYA_STATUS_ERR_INIT,			// ’ÊMƒGƒ‰[‚É‚æ‚èI—¹ ŠJn
-	WFP2PMF_OYA_STATUS_ERR_INIT01,			// ’ÊMƒGƒ‰[‚É‚æ‚èI—¹ ŠJn
-	WFP2PMF_OYA_STATUS_ERR,					// ’ÊMƒGƒ‰[‚É‚æ‚èI—¹
-	WFP2PMF_OYA_STATUS_VCHAT_INIT00,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	ŠJn
-	WFP2PMF_OYA_STATUS_VCHAT_INIT01,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	ŠJn
-	WFP2PMF_OYA_STATUS_VCHAT_SELECT,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	‘I‘ğ
+	WFP2PMF_OYA_STATUS_INIT,				// è¦ªã®åˆæœŸåŒ–
+	WFP2PMF_OYA_STATUS_CONNECT_WAIT_INIT,	// CONNECTå¾…ã¡åˆæœŸåŒ–
+	WFP2PMF_OYA_STATUS_CONNECT_WAIT,		// CONNECTå¾…ã¡
+	WFP2PMF_OYA_STATUS_CONNECT_SELECT_INIT00,// CONNECTå¾…ã¡
+	WFP2PMF_OYA_STATUS_CONNECT_SELECT_INIT01,// CONNECTã—ãŸäººã‚’å…¥ã‚Œã‚‹ã‹é¸æŠåˆæœŸåŒ–
+	WFP2PMF_OYA_STATUS_CONNECT_SELECT,		// CONNECTã—ãŸäººã‚’å…¥ã‚Œã‚‹ã‹é¸æŠ
+	WFP2PMF_OYA_STATUS_CONNECT_MIN_INIT,	// ã‚²ãƒ¼ãƒ é–‹å§‹ã—ãŸã„ãŒã€äººæ•°ãŒè¶³ã‚Šãªã„
+	WFP2PMF_OYA_STATUS_CONNECT_MIN,			// ã‚²ãƒ¼ãƒ é–‹å§‹ã—ãŸã„ãŒã€äººæ•°ãŒè¶³ã‚Šãªã„
+	WFP2PMF_OYA_STATUS_START_INIT00,			// ã‚²ãƒ¼ãƒ é–‹å§‹å‡¦ç†ã€€é–‹å§‹
+	WFP2PMF_OYA_STATUS_START_INIT01,			// ã‚²ãƒ¼ãƒ é–‹å§‹å‡¦ç†ã€€é–‹å§‹
+	WFP2PMF_OYA_STATUS_START_SELECT,		// ã‚²ãƒ¼ãƒ é–‹å§‹å‡¦ç†ã«è¡Œãã‹é¸æŠ
+	WFP2PMF_OYA_STATUS_START,				// ã‚²ãƒ¼ãƒ é–‹å§‹ã¸
+	WFP2PMF_OYA_STATUS_STARTNUMCHECK,		// ã‚²ãƒ¼ãƒ é–‹å§‹ã€€äººæ•°ãƒã‚§ãƒƒã‚¯
+	WFP2PMF_OYA_STATUS_STARTSYNC_INIT,		// ã‚²ãƒ¼ãƒ é–‹å§‹åŒæœŸ
+	WFP2PMF_OYA_STATUS_STARTSYNC,			// ã‚²ãƒ¼ãƒ é–‹å§‹åŒæœŸ
+	WFP2PMF_OYA_STATUS_STATE_SEND,			// ã‚²ãƒ¼ãƒ é–‹å§‹	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é€ä¿¡
+	WFP2PMF_OYA_STATUS_STATE_CHECK,			// ã‚²ãƒ¼ãƒ é–‹å§‹	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
+	WFP2PMF_OYA_STATUS_MYSTATUS_WAIT,		// ã‚²ãƒ¼ãƒ é–‹å§‹	ãƒ‡ãƒ¼ã‚¿å¾…ã¡
+	WFP2PMF_OYA_STATUS_GAME_START,			// é–‹å§‹
+	WFP2PMF_OYA_STATUS_END_INIT00,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã‹ã€€é–‹å§‹
+	WFP2PMF_OYA_STATUS_END_INIT01,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã‹ã€€é–‹å§‹
+	WFP2PMF_OYA_STATUS_END_SELECT,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã‹ã€€é¸æŠ
+	WFP2PMF_OYA_STATUS_END2_INIT00,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã¨ã€€è§£æ•£ã€€é–‹å§‹
+	WFP2PMF_OYA_STATUS_END2_INIT01,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã¨ã€€è§£æ•£ã€€é–‹å§‹
+	WFP2PMF_OYA_STATUS_END2_SELECT,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã¨ã€€è§£æ•£ã€€é¸æŠ
+	WFP2PMF_OYA_STATUS_END3_INIT,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã¨ã€€è§£æ•£ã€€é–‹å§‹
+	WFP2PMF_OYA_STATUS_END,					// å¾…æ©ŸçŠ¶æ…‹çµ‚äº†
+	WFP2PMF_OYA_STATUS_ERR_INIT,			// é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã‚ˆã‚Šçµ‚äº† é–‹å§‹
+	WFP2PMF_OYA_STATUS_ERR_INIT01,			// é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã‚ˆã‚Šçµ‚äº† é–‹å§‹
+	WFP2PMF_OYA_STATUS_ERR,					// é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã‚ˆã‚Šçµ‚äº†
+	WFP2PMF_OYA_STATUS_VCHAT_INIT00,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é–‹å§‹
+	WFP2PMF_OYA_STATUS_VCHAT_INIT01,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é–‹å§‹
+	WFP2PMF_OYA_STATUS_VCHAT_SELECT,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é¸æŠ
 	WFP2PMF_OYA_STATUS_NUM
 } ;
 
 //-------------------------------------
-///	q•ªŠòó‘Ô
+///	å­åˆ†å²çŠ¶æ…‹
 //=====================================
 enum {
-	WFP2PMF_KO_STATUS_ENTRY_OYAWAITINIT,// e‚Ìî•ñæ“¾‘Ò‚¿
-	WFP2PMF_KO_STATUS_ENTRY_OYAWAIT,	// e‚Ìî•ñæ“¾‘Ò‚¿
-	WFP2PMF_KO_STATUS_ENTRY_INIT,		// ENTRYŠ®—¹‘Ò‚¿ŠJn
-	WFP2PMF_KO_STATUS_ENTRY_WAIT,		// ENTRYŠ®—¹‘Ò‚¿
-	WFP2PMF_KO_STATUS_ENTRY_OKINIT,		// ENTRYOK‰Šú‰»
+	WFP2PMF_KO_STATUS_ENTRY_OYAWAITINIT,// è¦ªã®æƒ…å ±å–å¾—å¾…ã¡
+	WFP2PMF_KO_STATUS_ENTRY_OYAWAIT,	// è¦ªã®æƒ…å ±å–å¾—å¾…ã¡
+	WFP2PMF_KO_STATUS_ENTRY_INIT,		// ENTRYå®Œäº†å¾…ã¡é–‹å§‹
+	WFP2PMF_KO_STATUS_ENTRY_WAIT,		// ENTRYå®Œäº†å¾…ã¡
+	WFP2PMF_KO_STATUS_ENTRY_OKINIT,		// ENTRYOKåˆæœŸåŒ–
 	WFP2PMF_KO_STATUS_ENTRY_OK,			// ENTRYOK
-	WFP2PMF_KO_STATUS_ENTRY_NGINIT,		// ENTRYNG‰Šú‰»
+	WFP2PMF_KO_STATUS_ENTRY_NGINIT,		// ENTRYNGåˆæœŸåŒ–
 	WFP2PMF_KO_STATUS_ENTRY_NG,			// ENTRYNG
-	WFP2PMF_KO_STATUS_CONNECT_INIT,		// CONNECTŠ®—¹‘Ò‚¿ŠJn
-	WFP2PMF_KO_STATUS_CONNECT_WAIT,		// CONNECTŠ®—¹‘Ò‚¿
-	WFP2PMF_KO_STATUS_START,			// ŠJn
-	WFP2PMF_KO_STATUS_STATE_SEND,			// ƒQ[ƒ€ŠJn	ƒXƒe[ƒ^ƒX‘—M
-	WFP2PMF_KO_STATUS_STATE_CHECK,			// ƒQ[ƒ€ŠJn	ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
-	WFP2PMF_KO_STATUS_MYSTATUS_WAIT,		// ƒQ[ƒ€ŠJn	ƒf[ƒ^‘Ò‚¿
-	WFP2PMF_KO_STATUS_GAME_START,			// ŠJn
-	WFP2PMF_KO_STATUS_ERR_INIT,			// ƒGƒ‰[I—¹	ŠJn
-	WFP2PMF_KO_STATUS_ERR_INIT01,		// ƒGƒ‰[I—¹	ŠJn
-	WFP2PMF_KO_STATUS_ERR,				// ƒGƒ‰[I—¹
-	WFP2PMF_KO_STATUS_VCHAT_INIT00,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	ŠJn
-	WFP2PMF_KO_STATUS_VCHAT_INIT01,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	ŠJn
-	WFP2PMF_KO_STATUS_VCHAT_SELECT,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	‘I‘ğ
-	WFP2PMF_KO_STATUS_CONLOCK_INIT00,		// ’ÊMLOCK’†‚È‚Ì‚ÅÄÚ‘±
-	WFP2PMF_KO_STATUS_CONLOCK_INIT01,		// ’ÊMLOCK’†‚È‚Ì‚ÅÄÚ‘±
-	WFP2PMF_KO_STATUS_CONLOCK_SELECT,		// ’ÊMLOCK’†‚È‚Ì‚ÅÄÚ‘±
-	WFP2PMF_KO_STATUS_CONLOCK_RECON,		// ’ÊMLOCK’†@ÄÚ‘±
-	WFP2PMF_KO_STATUS_CONLOCK_RECON01,		// ’ÊMLOCK’†@ÄÚ‘±‚O‚P
-	WFP2PMF_KO_STATUS_CONLOCK_RECONWAIT,	// ’ÊMLOCK’†@ÄÚ‘±‘Ò‚¿
-	WFP2PMF_KO_STATUS_CONLOCK_GRAPHIC_RESET00,	// ’ÊMLOCK’†@‰æ–Ê\’z
-	WFP2PMF_KO_STATUS_CONLOCK_GRAPHIC_RESET01,	// ’ÊMLOCK’†@‰æ–Ê\’z
-	WFP2PMF_KO_STATUS_CONLOCK_DECON,		// ’ÊMLOCK’†@Ø’f
+	WFP2PMF_KO_STATUS_CONNECT_INIT,		// CONNECTå®Œäº†å¾…ã¡é–‹å§‹
+	WFP2PMF_KO_STATUS_CONNECT_WAIT,		// CONNECTå®Œäº†å¾…ã¡
+	WFP2PMF_KO_STATUS_START,			// é–‹å§‹
+	WFP2PMF_KO_STATUS_STATE_SEND,			// ã‚²ãƒ¼ãƒ é–‹å§‹	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é€ä¿¡
+	WFP2PMF_KO_STATUS_STATE_CHECK,			// ã‚²ãƒ¼ãƒ é–‹å§‹	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
+	WFP2PMF_KO_STATUS_MYSTATUS_WAIT,		// ã‚²ãƒ¼ãƒ é–‹å§‹	ãƒ‡ãƒ¼ã‚¿å¾…ã¡
+	WFP2PMF_KO_STATUS_GAME_START,			// é–‹å§‹
+	WFP2PMF_KO_STATUS_ERR_INIT,			// ã‚¨ãƒ©ãƒ¼çµ‚äº†	é–‹å§‹
+	WFP2PMF_KO_STATUS_ERR_INIT01,		// ã‚¨ãƒ©ãƒ¼çµ‚äº†	é–‹å§‹
+	WFP2PMF_KO_STATUS_ERR,				// ã‚¨ãƒ©ãƒ¼çµ‚äº†
+	WFP2PMF_KO_STATUS_VCHAT_INIT00,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é–‹å§‹
+	WFP2PMF_KO_STATUS_VCHAT_INIT01,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é–‹å§‹
+	WFP2PMF_KO_STATUS_VCHAT_SELECT,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é¸æŠ
+	WFP2PMF_KO_STATUS_CONLOCK_INIT00,		// é€šä¿¡LOCKä¸­ãªã®ã§å†æ¥ç¶š
+	WFP2PMF_KO_STATUS_CONLOCK_INIT01,		// é€šä¿¡LOCKä¸­ãªã®ã§å†æ¥ç¶š
+	WFP2PMF_KO_STATUS_CONLOCK_SELECT,		// é€šä¿¡LOCKä¸­ãªã®ã§å†æ¥ç¶š
+	WFP2PMF_KO_STATUS_CONLOCK_RECON,		// é€šä¿¡LOCKä¸­ã€€å†æ¥ç¶š
+	WFP2PMF_KO_STATUS_CONLOCK_RECON01,		// é€šä¿¡LOCKä¸­ã€€å†æ¥ç¶šï¼ï¼‘
+	WFP2PMF_KO_STATUS_CONLOCK_RECONWAIT,	// é€šä¿¡LOCKä¸­ã€€å†æ¥ç¶šå¾…ã¡
+	WFP2PMF_KO_STATUS_CONLOCK_GRAPHIC_RESET00,	// é€šä¿¡LOCKä¸­ã€€ç”»é¢æ§‹ç¯‰
+	WFP2PMF_KO_STATUS_CONLOCK_GRAPHIC_RESET01,	// é€šä¿¡LOCKä¸­ã€€ç”»é¢æ§‹ç¯‰
+	WFP2PMF_KO_STATUS_CONLOCK_DECON,		// é€šä¿¡LOCKä¸­ã€€åˆ‡æ–­
 	WFP2PMF_KO_STATUS_NUM
 } ;
 
 //-------------------------------------
-///	•`‰æƒIƒuƒWƒFƒNƒg“®ìƒV[ƒPƒ“ƒX
+///	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
 	WFP2PMF_DRAWOBJ_MOVENONE,
@@ -203,8 +203,8 @@ enum {
 	WFP2PMF_DRAWOBJ_MOVENORMAL,
 	WFP2PMF_DRAWOBJ_MOVENUM,
 } ;
-#define WFP2PMF_DRAWOBJ_INTIME	( 16 )	// “üoƒGƒtƒFƒNƒgƒ^ƒCƒ€
-// Še•ûŒü‚ÌINTIME‚Ì·
+#define WFP2PMF_DRAWOBJ_INTIME	( 16 )	// å…¥å‡ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ 
+// å„æ–¹å‘ã®INTIMEã®å·®
 static const u8 WFP2PMF_DRAWOBJ_INTIME_DIV[ WF2DMAP_WAY_NUM ] = {
 	8,
 	0,
@@ -215,7 +215,7 @@ static const u8 WFP2PMF_DRAWOBJ_INTIME_DIV[ WF2DMAP_WAY_NUM ] = {
 
 
 //-------------------------------------
-///	ƒGƒ“ƒgƒŠ[ƒtƒ‰ƒO
+///	ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒ•ãƒ©ã‚°
 //=====================================
 enum {
 	WFP2PMF_ENTRY_WAIT,
@@ -226,7 +226,7 @@ enum {
 
 
 //-------------------------------------
-///	OAM•\¦ƒV[ƒPƒ“ƒX
+///	OAMè¡¨ç¤ºã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
 	WFP2PMF_OAM_SEQ_NONE,
@@ -239,11 +239,11 @@ enum {
 //-------------------------------------
 ///		BGL
 //=====================================
-#define WFP2PMF_BACK_PAL		(0)	// ”wŒiƒpƒŒƒbƒg
-#define WFP2PMF_BACK_PALNUM		(18)// ƒAƒjƒ‚Ì”
-#define WFP2PMF_BACK_PALANM	(3)// ƒAƒjƒƒtƒŒ[ƒ€
-#define WFP2PMF_TALK_PAL	(1)	// •¶šƒpƒŒƒbƒg
-// ƒpƒŒƒbƒgƒAƒjƒƒf[ƒ^
+#define WFP2PMF_BACK_PAL		(0)	// èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define WFP2PMF_BACK_PALNUM		(18)// ã‚¢ãƒ‹ãƒ¡ã®æ•°
+#define WFP2PMF_BACK_PALANM	(3)// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define WFP2PMF_TALK_PAL	(1)	// æ–‡å­—ãƒ‘ãƒ¬ãƒƒãƒˆ
+// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 static const u8 WFP2PMF_BACK_PAL_IDX[ WFP2PMF_BACK_PALNUM ] = {
 	5, 4, 3, 2, 1, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 5, 5, 5,
 };
@@ -274,7 +274,7 @@ enum{
 #define WFP2PMF_BG2_MENUWIN_CGX	( WFP2PMF_VCHAT_ICON_CG+WFP2PMF_VCHAT_ICON_CGSIZ )
 #define WFP2PMF_BG2_MENUWIN_PAL	( 4 )
 
-// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define WFP2PMF_MSGWIN_X		( 2 )
 #define WFP2PMF_MSGWIN_Y		( 19 )
 #define WFP2PMF_MSGWIN_SIZX		( 27 )
@@ -283,7 +283,7 @@ enum{
 #define WFP2PMF_MSGWIN_CGX		( WFP2PMF_BG1_MENUWIN_CGX + MENU_WIN_CGX_SIZ )
 #define WFP2PMF_MSGWIN_SIZ		( WFP2PMF_MSGWIN_SIZX*WFP2PMF_MSGWIN_SIZY )
 
-// ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE
+// ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define WFP2PMF_TITLEWIN_X		( 1 )
 #define WFP2PMF_TITLEWIN_Y		( 1 )
 #define WFP2PMF_TITLEWIN_SIZX	( 27 )
@@ -292,7 +292,7 @@ enum{
 #define WFP2PMF_TITLEWIN_CGX	( WFP2PMF_MSGWIN_CGX + WFP2PMF_MSGWIN_SIZ )
 #define WFP2PMF_TITLEWIN_SIZ	( WFP2PMF_TITLEWIN_SIZX*WFP2PMF_TITLEWIN_SIZY )
 
-// ƒ{ƒCƒXƒ`ƒƒƒbƒgƒEƒBƒ“ƒhƒE
+// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define WFP2PMF_VCHATWIN_X		( 2 )
 #define WFP2PMF_VCHATWIN_Y		( 16 )
 #define WFP2PMF_VCHATWIN_SIZX	( 28 )
@@ -301,7 +301,7 @@ enum{
 #define WFP2PMF_VCHATWIN_CGX	( WFP2PMF_TITLEWIN_CGX + WFP2PMF_TITLEWIN_SIZ )
 #define WFP2PMF_VCHATWIN_SIZ	( WFP2PMF_VCHATWIN_SIZX*WFP2PMF_VCHATWIN_SIZY )
 
-// CONNECTƒŠƒXƒgƒEƒBƒ“ƒhƒE
+// CONNECTãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define WFP2PMF_CONLISTWIN_X		( 1 )
 #define WFP2PMF_CONLISTWIN_Y		( 5 )
 #define WFP2PMF_CONLISTWIN_SIZX	( 20 )
@@ -312,7 +312,7 @@ enum{
 #define WFP2PMF_CONLISTWIN_ONELIST_Y	( 2 )
 #define WFP2PMF_CONLISTWIN_ID_X	( 72 )
 
-// NEWCONNECTƒŠƒXƒgƒEƒBƒ“ƒhƒE
+// NEWCONNECTãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define WFP2PMF_NEWCONWIN_X		( 23 )
 #define WFP2PMF_NEWCONWIN_Y		( 5 )
 #define WFP2PMF_NEWCONWIN_SIZX	( 7 )
@@ -337,21 +337,21 @@ static const BMPWIN_DAT WFP2PMF_YESNOBMPDAT = {
 	WFP2PMF_YESNOWIN_PAL, WFP2PMF_YESNOWIN_CGX
 };
 
-#define	_COL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
-#define	_COL_N_BLACK_C	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
+#define	_COL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+#define	_COL_N_BLACK_C	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
 
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒWƒf[ƒ^ msgdata
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ msgdata
 //=====================================
 #define WFP2PMF_MSGDATA_STRNUM	 ( 256 )
 #define WFP2PMF_MSGNO_NONE		(0xff)
-#define WFP2PMF_MSGENDWAIT		( 30 )		//  ƒƒbƒZ[ƒW•\¦Œã‘Ò‚ÂƒEƒGƒCƒg
+#define WFP2PMF_MSGENDWAIT		( 30 )		//  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾Œå¾…ã¤ã‚¦ã‚¨ã‚¤ãƒˆ
 
 
 
 //-------------------------------------
-///	ƒ^ƒCƒgƒ‹ƒf[ƒ^
+///	ã‚¿ã‚¤ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
 static u8 WFP2PMF_TITLE[ WFP2PMF_TYPE_NUM ] = {
 	msg_wifilobby_131,
@@ -362,10 +362,10 @@ static u8 WFP2PMF_TITLE[ WFP2PMF_TYPE_NUM ] = {
 
 
 //-------------------------------------
-///	ƒIƒuƒWƒFƒNƒg“o˜^ƒf[ƒ^
+///	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²ãƒ‡ãƒ¼ã‚¿
 //=====================================
 static const WF2DMAP_OBJDATA WFP2PMF_OBJData[ WIFI_P2PMATCH_NUM_MAX ] = {
-	{// e
+	{// è¦ª
 		208, 48, 0, WF2DMAP_OBJST_NONE, 
 		WF2DMAP_WAY_DOWN, 0
 	},
@@ -387,84 +387,84 @@ static const WF2DMAP_OBJDATA WFP2PMF_OBJData[ WIFI_P2PMATCH_NUM_MAX ] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒf[ƒ^
+///	ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	TEST_MATCH_WORK*	p_match;		// ƒT[ƒo[‚Æ‘—óM‚·‚é©•ª‚Æ—F’B‚Ìó‘Ô
-	u8					oya;			// e‚©‚Ç‚¤‚©
-	u8					status;			// ó‘Ô
-	u8					new_con;		// V‚µ‚¢ƒRƒlƒNƒg
-	u8					match_result;	// ã‚É•Ô‚·Œ‹‰Ê
-	s32					timer;			// ƒ^ƒCƒ}[
-	s32					timeout;		// ƒ^ƒCƒ€ƒAƒEƒg
-	u8					timeout_flag;	// ƒ^ƒCƒ€ƒAƒEƒg‚Ì—L–³
-	u8					vchat_flag;		// Vchatƒtƒ‰ƒO
-	u8					ko_newcon_flag;	// q—pV‹KÚ‘±‚ª‚ ‚Á‚½‚©ƒ`ƒFƒbƒN
-	u8					entry;			// ƒGƒ“ƒgƒŠ[ƒtƒ‰ƒO
-	u8					logout_in[WIFI_P2PMATCH_NUM_MAX];// LOGƒAƒEƒgŒŸ’m
-	u8					logout_id[WIFI_P2PMATCH_NUM_MAX];// LOGƒAƒEƒg‚µ‚½l‚ÌID
-	u8					vchat_tmp[WIFI_P2PMATCH_NUM_MAX];	// ‚P‚Â‘O‚ÌVCHAT
-	u8					vchat_now[WIFI_P2PMATCH_NUM_MAX];	// ‚P‚Â‘O‚ÌVCHAT
-	u8					conlist_rewrite;// conlist‚ğÄ•`‰æ
-	u8					last_netid;		// V‹KƒRƒlƒNƒgƒƒbƒNƒtƒ‰ƒO
-	u8					oya_friendid;	// e‚Ì—F’BƒR[ƒh
-	u8					err_check;		// ƒGƒ‰[ƒ`ƒFƒbƒN‚ª•K—v‚©
-	u8					entry_on[WIFI_P2PMATCH_NUM_MAX];// ƒGƒ“ƒgƒŠ[ƒtƒ‰ƒO
-	u8					oya_start;		// e‚©‚çƒQ[ƒ€ŠJn‚ğóM
-	u8					ng_msg_idx;		// NGƒƒbƒZ[ƒW
+	TEST_MATCH_WORK*	p_match;		// ã‚µãƒ¼ãƒãƒ¼ã¨é€å—ä¿¡ã™ã‚‹è‡ªåˆ†ã¨å‹é”ã®çŠ¶æ…‹
+	u8					oya;			// è¦ªã‹ã©ã†ã‹
+	u8					status;			// çŠ¶æ…‹
+	u8					new_con;		// æ–°ã—ã„ã‚³ãƒã‚¯ãƒˆ
+	u8					match_result;	// ä¸Šã«è¿”ã™çµæœ
+	s32					timer;			// ã‚¿ã‚¤ãƒãƒ¼
+	s32					timeout;		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+	u8					timeout_flag;	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã®æœ‰ç„¡
+	u8					vchat_flag;		// Vchatãƒ•ãƒ©ã‚°
+	u8					ko_newcon_flag;	// å­ç”¨æ–°è¦æ¥ç¶šãŒã‚ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
+	u8					entry;			// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒ•ãƒ©ã‚°
+	u8					logout_in[WIFI_P2PMATCH_NUM_MAX];// LOGã‚¢ã‚¦ãƒˆæ¤œçŸ¥
+	u8					logout_id[WIFI_P2PMATCH_NUM_MAX];// LOGã‚¢ã‚¦ãƒˆã—ãŸäººã®ID
+	u8					vchat_tmp[WIFI_P2PMATCH_NUM_MAX];	// ï¼‘ã¤å‰ã®VCHAT
+	u8					vchat_now[WIFI_P2PMATCH_NUM_MAX];	// ï¼‘ã¤å‰ã®VCHAT
+	u8					conlist_rewrite;// conlistã‚’å†æç”»
+	u8					last_netid;		// æ–°è¦ã‚³ãƒã‚¯ãƒˆãƒ­ãƒƒã‚¯ãƒ•ãƒ©ã‚°
+	u8					oya_friendid;	// è¦ªã®å‹é”ã‚³ãƒ¼ãƒ‰
+	u8					err_check;		// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ãŒå¿…è¦ã‹
+	u8					entry_on[WIFI_P2PMATCH_NUM_MAX];// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒ•ãƒ©ã‚°
+	u8					oya_start;		// è¦ªã‹ã‚‰ã‚²ãƒ¼ãƒ é–‹å§‹ã‚’å—ä¿¡
+	u8					ng_msg_idx;		// NGãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 } WFP2PMF_DATA;
 
 //-------------------------------------
-///	@•`‰æƒIƒuƒWƒFƒNƒgƒ[ƒN
+///	ã€€æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	WF2DMAP_OBJWK*		p_objwk;		// ƒIƒuƒWƒFƒNƒgƒVƒXƒeƒ€
-	WF2DMAP_OBJDRAWWK*	p_objdrawwk;	// ƒIƒuƒWƒFƒNƒg•`‰æƒ[ƒN
+	WF2DMAP_OBJWK*		p_objwk;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	WF2DMAP_OBJDRAWWK*	p_objdrawwk;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ãƒ¯ãƒ¼ã‚¯
 	u16 seq;
 	s16 count;
 } WFP2PMF_DRAWOBJ;
 
 
 //-------------------------------------
-///	•`‰æƒf[ƒ^
+///	æç”»ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	GF_BGL_INI*			p_bgl;				// GF_BGL_INI
-	WORDSET*			p_wordset;			// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER*	p_msgman;			// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	STRBUF*				p_msgstr;			// ƒƒbƒZ[ƒW—p•¶š—ñƒoƒbƒtƒ@
-	STRBUF*				p_msgtmp;			// ƒƒbƒZ[ƒW—p•¶š—ñƒoƒbƒtƒ@
-	u8					msg_no;				// ƒƒbƒZ[ƒWŠ®—¹ŒŸ¸ƒiƒ“ƒo[
-	u8					msg_wait;			// ƒƒbƒZ[ƒWƒEƒGƒCƒg
-	u16					msg_speed;			// ƒƒbƒZ[ƒWƒXƒs[ƒh
+	WORDSET*			p_wordset;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER*	p_msgman;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	STRBUF*				p_msgstr;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+	STRBUF*				p_msgtmp;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+	u8					msg_no;				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å®Œäº†æ¤œæŸ»ãƒŠãƒ³ãƒãƒ¼
+	u8					msg_wait;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¨ã‚¤ãƒˆ
+	u16					msg_speed;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰
 
-	CLACT_SET_PTR 			clactSet;						// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	renddata;						// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	resMan[WIFI_P2PMATCH_RESNUM];	// ƒLƒƒƒ‰EƒpƒŒƒbƒgƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+	CLACT_SET_PTR 			clactSet;						// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	renddata;						// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	resMan[WIFI_P2PMATCH_RESNUM];	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
 
-	WF2DMAP_OBJSYS*		p_objsys;			// ƒIƒuƒWƒFƒNƒgƒVƒXƒeƒ€
-	WF2DMAP_OBJDRAWSYS* p_objdraw;			// ƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€
-	WFP2PMF_DRAWOBJ		objdata[WIFI_P2PMATCH_CLACTWK_NUM];	// ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+	WF2DMAP_OBJSYS*		p_objsys;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	WF2DMAP_OBJDRAWSYS* p_objdraw;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 
+	WFP2PMF_DRAWOBJ		objdata[WIFI_P2PMATCH_CLACTWK_NUM];	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 
 
-	GF_BGL_BMPWIN		msgwin;				// ‰ï˜bƒEƒCƒ“ƒhƒE
-	GF_BGL_BMPWIN		titlewin;			// ©•ª‚Ìó‘Ô•\¦
-	GF_BGL_BMPWIN		vchatwin;			// ƒ{ƒCƒXƒ`ƒƒƒbƒgƒEƒBƒ“ƒhƒE
-	GF_BGL_BMPWIN		conlistwin;			// ƒRƒlƒNƒgƒŠƒXƒgƒEƒBƒ“ƒhƒE
-	GF_BGL_BMPWIN		newconwin;			// V‹KƒRƒlƒNƒgƒEƒBƒ“ƒhƒE
-	BMPMENU_WORK*		p_yesnowin;			// yes noƒEƒBƒ“ƒhƒE
+	GF_BGL_BMPWIN		msgwin;				// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN		titlewin;			// è‡ªåˆ†ã®çŠ¶æ…‹è¡¨ç¤º
+	GF_BGL_BMPWIN		vchatwin;			// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN		conlistwin;			// ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN		newconwin;			// æ–°è¦ã‚³ãƒã‚¯ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	BMPMENU_WORK*		p_yesnowin;			// yes noã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
 	void* p_vchatscrnbuf;
-	NNSG2dScreenData*  p_vchatscrn;			// ƒ{ƒCƒXƒ`ƒƒƒbƒgƒAƒCƒRƒ“
+	NNSG2dScreenData*  p_vchatscrn;			// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³
 
 	void* p_timewaiticon;
 
-	// ”wŒiƒAƒjƒ
+	// èƒŒæ™¯ã‚¢ãƒ‹ãƒ¡
 	void*				p_plttbuff;
 	NNSG2dPaletteData*	p_pltt;
 	s16					pltt_count;
@@ -473,7 +473,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	‚Slƒ}ƒbƒ`ƒ“ƒO‰æ–Êƒ[ƒN
+///	ï¼”äººãƒãƒƒãƒãƒ³ã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WFP2P_WK{
 	WFP2PMF_DATA	data;
@@ -482,7 +482,7 @@ typedef struct _WFP2P_WK{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void VBlankFunc( void * work );
@@ -583,7 +583,7 @@ static void WFP2PMF_TimeOut_Stop( WFP2PMF_WK* p_wk );
 static BOOL WFP2PMF_TimeOut_Main( WFP2PMF_WK* p_wk );
 
 //-------------------------------------
-/// e•ªŠòƒf[ƒ^
+/// è¦ªåˆ†å²ãƒ‡ãƒ¼ã‚¿
 //=====================================
 static BOOL WFP2PMF_OyaInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID );
 static BOOL WFP2PMF_OyaConnectWaitInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID );
@@ -623,7 +623,7 @@ static BOOL WFP2PMF_OyaVchatSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 
 //-------------------------------------
-/// q•ªŠòƒf[ƒ^
+/// å­åˆ†å²ãƒ‡ãƒ¼ã‚¿
 //=====================================
 static BOOL WFP2PMF_KoEntryOyaWaitInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID );
 static BOOL WFP2PMF_KoEntryOyaWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID );
@@ -658,82 +658,82 @@ static BOOL WFP2PMF_KoConLockDeCon( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 
 //-------------------------------------
-///	eŠÖ”ƒe[ƒuƒ‹
+///	è¦ªé–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 //=====================================
 static BOOL (* const pOyaFunc[ WFP2PMF_OYA_STATUS_NUM ])( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID ) = {
-	WFP2PMF_OyaInit,								// WFP2PMF_OYA_STATUS_INIT,				// e‚Ì‰Šú‰»
-	WFP2PMF_OyaConnectWaitInit,                     // WFP2PMF_OYA_STATUS_CONNECT_WAIT_INIT,	// CONNECT‘Ò‚¿‰Šú‰»
-	WFP2PMF_OyaConnectWait,                         // WFP2PMF_OYA_STATUS_CONNECT_WAIT,		// CONNECT‘Ò‚¿
-	WFP2PMF_OyaConnectSelectInit00,                 // WFP2PMF_OYA_STATUS_CONNECT_SELECT_INIT00,// CONNECT‘Ò‚¿
-	WFP2PMF_OyaConnectSelectInit01,                 // WFP2PMF_OYA_STATUS_CONNECT_SELECT_INIT01,// CONNECT‚µ‚½l‚ğ“ü‚ê‚é‚©‘I‘ğ‰Šú‰»
-	WFP2PMF_OyaConnectSelect,                       // WFP2PMF_OYA_STATUS_CONNECT_SELECT,		// CONNECT‚µ‚½l‚ğ“ü‚ê‚é‚©‘I‘ğ
-	WFP2PMF_OyaConnectMinInit,                      // WFP2PMF_OYA_STATUS_CONNECT_MIN_INIT,	// ƒQ[ƒ€ŠJn‚µ‚½‚¢‚ªAl”‚ª‘«‚è‚È‚¢
-	WFP2PMF_OyaConnectMin,                          // WFP2PMF_OYA_STATUS_CONNECT_MIN,			// ƒQ[ƒ€ŠJn‚µ‚½‚¢‚ªAl”‚ª‘«‚è‚È‚¢
-	WFP2PMF_OyaStartInit00,                         // WFP2PMF_OYA_STATUS_START_INIT00,			// ƒQ[ƒ€ŠJnˆ—@ŠJn
-	WFP2PMF_OyaStartInit01,                         // WFP2PMF_OYA_STATUS_START_INIT01,			// ƒQ[ƒ€ŠJnˆ—@ŠJn
-	WFP2PMF_OyaStartSelect,                         // WFP2PMF_OYA_STATUS_START_SELECT,		// ƒQ[ƒ€ŠJnˆ—‚És‚­‚©‘I‘ğ
-	WFP2PMF_OyaStart,                               // WFP2PMF_OYA_STATUS_START,				// ƒQ[ƒ€ŠJn‚Ö
-	WFP2PMF_OyaStartNumCheck,                       // WFP2PMF_OYA_STATUS_STARTNUMCHECK,		// ƒQ[ƒ€ŠJn@l”ƒ`ƒFƒbƒN
-	WFP2PMF_OyaStartSyncInit,                       // WFP2PMF_OYA_STATUS_STARTSYNC_INIT,		// ƒQ[ƒ€ŠJn“¯Šú
-	WFP2PMF_OyaStartSync,                           // WFP2PMF_OYA_STATUS_STARTSYNC,			// ƒQ[ƒ€ŠJn“¯Šú
-	WFP2PMF_OyaStateSend,                           // WFP2PMF_OYA_STATUS_STATE_SEND,			// ƒQ[ƒ€ŠJn	ƒXƒe[ƒ^ƒX‘—M
-	WFP2PMF_OyaStateCheck,                          // WFP2PMF_OYA_STATUS_STATE_CHECK,			// ƒQ[ƒ€ŠJn	ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
-	WFP2PMF_OyaMyStatusWait,                        // WFP2PMF_OYA_STATUS_MYSTATUS_WAIT,		// ƒQ[ƒ€ŠJn	ƒf[ƒ^‘Ò‚¿
-	WFP2PMF_OyaGameStart,	                        // WFP2PMF_OYA_STATUS_GAME_START,			// ŠJn
-	WFP2PMF_OyaEndInit00,                           // WFP2PMF_OYA_STATUS_END_INIT00,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚©@ŠJn
-	WFP2PMF_OyaEndInit01,                           // WFP2PMF_OYA_STATUS_END_INIT01,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚©@ŠJn
-	WFP2PMF_OyaEndSelect,                           // WFP2PMF_OYA_STATUS_END_SELECT,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚©@‘I‘ğ
-	WFP2PMF_OyaEnd2Init00,                          // WFP2PMF_OYA_STATUS_END2_INIT00,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚Æ@‰ğU@ŠJn
-	WFP2PMF_OyaEnd2Init01,                          // WFP2PMF_OYA_STATUS_END2_INIT01,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚Æ@‰ğU@ŠJn
-	WFP2PMF_OyaEnd2Select,                          // WFP2PMF_OYA_STATUS_END2_SELECT,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚Æ@‰ğU@‘I‘ğ
-	WFP2PMF_OyaEnd3Init,                            // WFP2PMF_OYA_STATUS_END3_INIT,			// ‘Ò‹@ó‘Ô‚ğ‚â‚ß‚é‚Æ@‰ğU@ŠJn
-	WFP2PMF_OyaEnd,                                 // WFP2PMF_OYA_STATUS_END,					// ‘Ò‹@ó‘ÔI—¹
-	WFP2PMF_OyaErrInit,                             // WFP2PMF_OYA_STATUS_ERR_INIT,			// ’ÊMƒGƒ‰[‚É‚æ‚èI—¹ ŠJn
-	WFP2PMF_OyaErrInit01,                           // WFP2PMF_OYA_STATUS_ERR_INIT01,			// ’ÊMƒGƒ‰[‚É‚æ‚èI—¹ ŠJn
-	WFP2PMF_OyaErr,                                 // WFP2PMF_OYA_STATUS_ERR,					// ’ÊMƒGƒ‰[‚É‚æ‚èI—¹
-	WFP2PMF_OyaVchatInit00,                         // WFP2PMF_OYA_STATUS_VCHAT_INIT00,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	ŠJn
-	WFP2PMF_OyaVchatInit01,                         // WFP2PMF_OYA_STATUS_VCHAT_INIT01,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	ŠJn
-	WFP2PMF_OyaVchatSelect,                         // WFP2PMF_OYA_STATUS_VCHAT_SELECT,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	‘I‘ğ
+	WFP2PMF_OyaInit,								// WFP2PMF_OYA_STATUS_INIT,				// è¦ªã®åˆæœŸåŒ–
+	WFP2PMF_OyaConnectWaitInit,                     // WFP2PMF_OYA_STATUS_CONNECT_WAIT_INIT,	// CONNECTå¾…ã¡åˆæœŸåŒ–
+	WFP2PMF_OyaConnectWait,                         // WFP2PMF_OYA_STATUS_CONNECT_WAIT,		// CONNECTå¾…ã¡
+	WFP2PMF_OyaConnectSelectInit00,                 // WFP2PMF_OYA_STATUS_CONNECT_SELECT_INIT00,// CONNECTå¾…ã¡
+	WFP2PMF_OyaConnectSelectInit01,                 // WFP2PMF_OYA_STATUS_CONNECT_SELECT_INIT01,// CONNECTã—ãŸäººã‚’å…¥ã‚Œã‚‹ã‹é¸æŠåˆæœŸåŒ–
+	WFP2PMF_OyaConnectSelect,                       // WFP2PMF_OYA_STATUS_CONNECT_SELECT,		// CONNECTã—ãŸäººã‚’å…¥ã‚Œã‚‹ã‹é¸æŠ
+	WFP2PMF_OyaConnectMinInit,                      // WFP2PMF_OYA_STATUS_CONNECT_MIN_INIT,	// ã‚²ãƒ¼ãƒ é–‹å§‹ã—ãŸã„ãŒã€äººæ•°ãŒè¶³ã‚Šãªã„
+	WFP2PMF_OyaConnectMin,                          // WFP2PMF_OYA_STATUS_CONNECT_MIN,			// ã‚²ãƒ¼ãƒ é–‹å§‹ã—ãŸã„ãŒã€äººæ•°ãŒè¶³ã‚Šãªã„
+	WFP2PMF_OyaStartInit00,                         // WFP2PMF_OYA_STATUS_START_INIT00,			// ã‚²ãƒ¼ãƒ é–‹å§‹å‡¦ç†ã€€é–‹å§‹
+	WFP2PMF_OyaStartInit01,                         // WFP2PMF_OYA_STATUS_START_INIT01,			// ã‚²ãƒ¼ãƒ é–‹å§‹å‡¦ç†ã€€é–‹å§‹
+	WFP2PMF_OyaStartSelect,                         // WFP2PMF_OYA_STATUS_START_SELECT,		// ã‚²ãƒ¼ãƒ é–‹å§‹å‡¦ç†ã«è¡Œãã‹é¸æŠ
+	WFP2PMF_OyaStart,                               // WFP2PMF_OYA_STATUS_START,				// ã‚²ãƒ¼ãƒ é–‹å§‹ã¸
+	WFP2PMF_OyaStartNumCheck,                       // WFP2PMF_OYA_STATUS_STARTNUMCHECK,		// ã‚²ãƒ¼ãƒ é–‹å§‹ã€€äººæ•°ãƒã‚§ãƒƒã‚¯
+	WFP2PMF_OyaStartSyncInit,                       // WFP2PMF_OYA_STATUS_STARTSYNC_INIT,		// ã‚²ãƒ¼ãƒ é–‹å§‹åŒæœŸ
+	WFP2PMF_OyaStartSync,                           // WFP2PMF_OYA_STATUS_STARTSYNC,			// ã‚²ãƒ¼ãƒ é–‹å§‹åŒæœŸ
+	WFP2PMF_OyaStateSend,                           // WFP2PMF_OYA_STATUS_STATE_SEND,			// ã‚²ãƒ¼ãƒ é–‹å§‹	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é€ä¿¡
+	WFP2PMF_OyaStateCheck,                          // WFP2PMF_OYA_STATUS_STATE_CHECK,			// ã‚²ãƒ¼ãƒ é–‹å§‹	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
+	WFP2PMF_OyaMyStatusWait,                        // WFP2PMF_OYA_STATUS_MYSTATUS_WAIT,		// ã‚²ãƒ¼ãƒ é–‹å§‹	ãƒ‡ãƒ¼ã‚¿å¾…ã¡
+	WFP2PMF_OyaGameStart,	                        // WFP2PMF_OYA_STATUS_GAME_START,			// é–‹å§‹
+	WFP2PMF_OyaEndInit00,                           // WFP2PMF_OYA_STATUS_END_INIT00,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã‹ã€€é–‹å§‹
+	WFP2PMF_OyaEndInit01,                           // WFP2PMF_OYA_STATUS_END_INIT01,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã‹ã€€é–‹å§‹
+	WFP2PMF_OyaEndSelect,                           // WFP2PMF_OYA_STATUS_END_SELECT,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã‹ã€€é¸æŠ
+	WFP2PMF_OyaEnd2Init00,                          // WFP2PMF_OYA_STATUS_END2_INIT00,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã¨ã€€è§£æ•£ã€€é–‹å§‹
+	WFP2PMF_OyaEnd2Init01,                          // WFP2PMF_OYA_STATUS_END2_INIT01,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã¨ã€€è§£æ•£ã€€é–‹å§‹
+	WFP2PMF_OyaEnd2Select,                          // WFP2PMF_OYA_STATUS_END2_SELECT,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã¨ã€€è§£æ•£ã€€é¸æŠ
+	WFP2PMF_OyaEnd3Init,                            // WFP2PMF_OYA_STATUS_END3_INIT,			// å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚„ã‚ã‚‹ã¨ã€€è§£æ•£ã€€é–‹å§‹
+	WFP2PMF_OyaEnd,                                 // WFP2PMF_OYA_STATUS_END,					// å¾…æ©ŸçŠ¶æ…‹çµ‚äº†
+	WFP2PMF_OyaErrInit,                             // WFP2PMF_OYA_STATUS_ERR_INIT,			// é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã‚ˆã‚Šçµ‚äº† é–‹å§‹
+	WFP2PMF_OyaErrInit01,                           // WFP2PMF_OYA_STATUS_ERR_INIT01,			// é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã‚ˆã‚Šçµ‚äº† é–‹å§‹
+	WFP2PMF_OyaErr,                                 // WFP2PMF_OYA_STATUS_ERR,					// é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã‚ˆã‚Šçµ‚äº†
+	WFP2PMF_OyaVchatInit00,                         // WFP2PMF_OYA_STATUS_VCHAT_INIT00,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é–‹å§‹
+	WFP2PMF_OyaVchatInit01,                         // WFP2PMF_OYA_STATUS_VCHAT_INIT01,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é–‹å§‹
+	WFP2PMF_OyaVchatSelect,                         // WFP2PMF_OYA_STATUS_VCHAT_SELECT,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é¸æŠ
 };
 
 //-------------------------------------
-///	qŠÖ”ƒe[ƒuƒ‹
+///	å­é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 //=====================================
 static BOOL (* const pKoFunc[ WFP2PMF_KO_STATUS_NUM ])( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID ) = {
-	WFP2PMF_KoEntryOyaWaitInit,					// WFP2PMF_KO_STATUS_ENTRY_OYAWAITINIT,// e‚Ìî•ñæ“¾‘Ò‚¿
-	WFP2PMF_KoEntryOyaWait,                     // WFP2PMF_KO_STATUS_ENTRY_OYAWAIT,	// e‚Ìî•ñæ“¾‘Ò‚¿
-	WFP2PMF_KoEntryInit,                        // WFP2PMF_KO_STATUS_ENTRY_INIT,		// ENTRYŠ®—¹‘Ò‚¿ŠJn
-	WFP2PMF_KoEntryWait,                        // WFP2PMF_KO_STATUS_ENTRY_WAIT,		// ENTRYŠ®—¹‘Ò‚¿
-	WFP2PMF_KoEntryOkInit,                      // WFP2PMF_KO_STATUS_ENTRY_OKINIT,		// ENTRYOK‰Šú‰»
+	WFP2PMF_KoEntryOyaWaitInit,					// WFP2PMF_KO_STATUS_ENTRY_OYAWAITINIT,// è¦ªã®æƒ…å ±å–å¾—å¾…ã¡
+	WFP2PMF_KoEntryOyaWait,                     // WFP2PMF_KO_STATUS_ENTRY_OYAWAIT,	// è¦ªã®æƒ…å ±å–å¾—å¾…ã¡
+	WFP2PMF_KoEntryInit,                        // WFP2PMF_KO_STATUS_ENTRY_INIT,		// ENTRYå®Œäº†å¾…ã¡é–‹å§‹
+	WFP2PMF_KoEntryWait,                        // WFP2PMF_KO_STATUS_ENTRY_WAIT,		// ENTRYå®Œäº†å¾…ã¡
+	WFP2PMF_KoEntryOkInit,                      // WFP2PMF_KO_STATUS_ENTRY_OKINIT,		// ENTRYOKåˆæœŸåŒ–
 	WFP2PMF_KoEntryOk,                          // WFP2PMF_KO_STATUS_ENTRY_OK,			// ENTRYOK
-	WFP2PMF_KoEntryNgInit,                      // WFP2PMF_KO_STATUS_ENTRY_NGINIT,		// ENTRYNG‰Šú‰»
+	WFP2PMF_KoEntryNgInit,                      // WFP2PMF_KO_STATUS_ENTRY_NGINIT,		// ENTRYNGåˆæœŸåŒ–
 	WFP2PMF_KoEntryNg,                          // WFP2PMF_KO_STATUS_ENTRY_NG,			// ENTRYNG
-	WFP2PMF_KoConnectInit,                      // WFP2PMF_KO_STATUS_CONNECT_INIT,		// CONNECTŠ®—¹‘Ò‚¿ŠJn
-	WFP2PMF_KoConnectWait,                      // WFP2PMF_KO_STATUS_CONNECT_WAIT,		// CONNECTŠ®—¹‘Ò‚¿
-	WFP2PMF_KoStart,                            // WFP2PMF_KO_STATUS_START,			// ŠJn
-	WFP2PMF_KoStateSend,                        // WFP2PMF_KO_STATUS_STATE_SEND,			// ƒQ[ƒ€ŠJn	ƒXƒe[ƒ^ƒX‘—M
-	WFP2PMF_KoStateCheck,                       // WFP2PMF_KO_STATUS_STATE_CHECK,			// ƒQ[ƒ€ŠJn	ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
-	WFP2PMF_KoMyStatusWait,                     // WFP2PMF_KO_STATUS_MYSTATUS_WAIT,		// ƒQ[ƒ€ŠJn	ƒf[ƒ^‘Ò‚¿
-	WFP2PMF_KoGameStart,	                    // WFP2PMF_KO_STATUS_GAME_START,			// ŠJn
-	WFP2PMF_KoErrInit,                          // WFP2PMF_KO_STATUS_ERR_INIT,			// ƒGƒ‰[I—¹	ŠJn
-	WFP2PMF_KoErrInit01,                        // WFP2PMF_KO_STATUS_ERR_INIT01,		// ƒGƒ‰[I—¹	ŠJn
-	WFP2PMF_KoErr,                              // WFP2PMF_KO_STATUS_ERR,				// ƒGƒ‰[I—¹
-	WFP2PMF_KoVchatInit00,                      // WFP2PMF_KO_STATUS_VCHAT_INIT00,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	ŠJn
-	WFP2PMF_KoVchatInit01,                      // WFP2PMF_KO_STATUS_VCHAT_INIT01,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	ŠJn
-	WFP2PMF_KoVchatSelect,                      // WFP2PMF_KO_STATUS_VCHAT_SELECT,		// ƒ{ƒCƒXƒ`ƒƒƒbƒg•ÏX	‘I‘ğ
-	WFP2PMF_KoConLockInit00,                    // WFP2PMF_KO_STATUS_CONLOCK_INIT00,		// ’ÊMLOCK’†‚È‚Ì‚ÅÄÚ‘±
-	WFP2PMF_KoConLockInit01,                    // WFP2PMF_KO_STATUS_CONLOCK_INIT01,		// ’ÊMLOCK’†‚È‚Ì‚ÅÄÚ‘±
-	WFP2PMF_KoConLockSelect,                    // WFP2PMF_KO_STATUS_CONLOCK_SELECT,		// ’ÊMLOCK’†‚È‚Ì‚ÅÄÚ‘±
-	WFP2PMF_KoConLockReCon,                     // WFP2PMF_KO_STATUS_CONLOCK_RECON,		// ’ÊMLOCK’†@ÄÚ‘±
-	WFP2PMF_KoConLockReCon01,                   // WFP2PMF_KO_STATUS_CONLOCK_RECON01,		// ’ÊMLOCK’†@ÄÚ‘±‚O‚P
-	WFP2PMF_KoConLockReConWait,                 // WFP2PMF_KO_STATUS_CONLOCK_RECONWAIT,	// ’ÊMLOCK’†@ÄÚ‘±‘Ò‚¿
-	WFP2PMF_KoConLockReConGraphicReset00,       // WFP2PMF_KO_STATUS_CONLOCK_GRAPHIC_RESET00,	// ’ÊMLOCK’†@‰æ–Ê\’z
-	WFP2PMF_KoConLockReConGraphicReset01,       // WFP2PMF_KO_STATUS_CONLOCK_GRAPHIC_RESET01,	// ’ÊMLOCK’†@‰æ–Ê\’z
-	WFP2PMF_KoConLockDeCon,                     // WFP2PMF_KO_STATUS_CONLOCK_DECON,		// ’ÊMLOCK’†@Ø’f
+	WFP2PMF_KoConnectInit,                      // WFP2PMF_KO_STATUS_CONNECT_INIT,		// CONNECTå®Œäº†å¾…ã¡é–‹å§‹
+	WFP2PMF_KoConnectWait,                      // WFP2PMF_KO_STATUS_CONNECT_WAIT,		// CONNECTå®Œäº†å¾…ã¡
+	WFP2PMF_KoStart,                            // WFP2PMF_KO_STATUS_START,			// é–‹å§‹
+	WFP2PMF_KoStateSend,                        // WFP2PMF_KO_STATUS_STATE_SEND,			// ã‚²ãƒ¼ãƒ é–‹å§‹	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é€ä¿¡
+	WFP2PMF_KoStateCheck,                       // WFP2PMF_KO_STATUS_STATE_CHECK,			// ã‚²ãƒ¼ãƒ é–‹å§‹	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
+	WFP2PMF_KoMyStatusWait,                     // WFP2PMF_KO_STATUS_MYSTATUS_WAIT,		// ã‚²ãƒ¼ãƒ é–‹å§‹	ãƒ‡ãƒ¼ã‚¿å¾…ã¡
+	WFP2PMF_KoGameStart,	                    // WFP2PMF_KO_STATUS_GAME_START,			// é–‹å§‹
+	WFP2PMF_KoErrInit,                          // WFP2PMF_KO_STATUS_ERR_INIT,			// ã‚¨ãƒ©ãƒ¼çµ‚äº†	é–‹å§‹
+	WFP2PMF_KoErrInit01,                        // WFP2PMF_KO_STATUS_ERR_INIT01,		// ã‚¨ãƒ©ãƒ¼çµ‚äº†	é–‹å§‹
+	WFP2PMF_KoErr,                              // WFP2PMF_KO_STATUS_ERR,				// ã‚¨ãƒ©ãƒ¼çµ‚äº†
+	WFP2PMF_KoVchatInit00,                      // WFP2PMF_KO_STATUS_VCHAT_INIT00,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é–‹å§‹
+	WFP2PMF_KoVchatInit01,                      // WFP2PMF_KO_STATUS_VCHAT_INIT01,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é–‹å§‹
+	WFP2PMF_KoVchatSelect,                      // WFP2PMF_KO_STATUS_VCHAT_SELECT,		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆå¤‰æ›´	é¸æŠ
+	WFP2PMF_KoConLockInit00,                    // WFP2PMF_KO_STATUS_CONLOCK_INIT00,		// é€šä¿¡LOCKä¸­ãªã®ã§å†æ¥ç¶š
+	WFP2PMF_KoConLockInit01,                    // WFP2PMF_KO_STATUS_CONLOCK_INIT01,		// é€šä¿¡LOCKä¸­ãªã®ã§å†æ¥ç¶š
+	WFP2PMF_KoConLockSelect,                    // WFP2PMF_KO_STATUS_CONLOCK_SELECT,		// é€šä¿¡LOCKä¸­ãªã®ã§å†æ¥ç¶š
+	WFP2PMF_KoConLockReCon,                     // WFP2PMF_KO_STATUS_CONLOCK_RECON,		// é€šä¿¡LOCKä¸­ã€€å†æ¥ç¶š
+	WFP2PMF_KoConLockReCon01,                   // WFP2PMF_KO_STATUS_CONLOCK_RECON01,		// é€šä¿¡LOCKä¸­ã€€å†æ¥ç¶šï¼ï¼‘
+	WFP2PMF_KoConLockReConWait,                 // WFP2PMF_KO_STATUS_CONLOCK_RECONWAIT,	// é€šä¿¡LOCKä¸­ã€€å†æ¥ç¶šå¾…ã¡
+	WFP2PMF_KoConLockReConGraphicReset00,       // WFP2PMF_KO_STATUS_CONLOCK_GRAPHIC_RESET00,	// é€šä¿¡LOCKä¸­ã€€ç”»é¢æ§‹ç¯‰
+	WFP2PMF_KoConLockReConGraphicReset01,       // WFP2PMF_KO_STATUS_CONLOCK_GRAPHIC_RESET01,	// é€šä¿¡LOCKä¸­ã€€ç”»é¢æ§‹ç¯‰
+	WFP2PMF_KoConLockDeCon,                     // WFP2PMF_KO_STATUS_CONLOCK_DECON,		// é€šä¿¡LOCKä¸­ã€€åˆ‡æ–­
 };
 
 
-// •`‰æƒIƒuƒWƒFƒNƒg“®ì
+// æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
 static void (* const pDrawObjMoveFunc[ WFP2PMF_DRAWOBJ_MOVENUM ])( WFP2PMF_WK* p_wk, WFP2PMF_DRAWOBJ* p_obj ) = {
 	WFP2PMF_DrawObjMoveNone,
 	WFP2PMF_DrawObjMoveInit,
@@ -744,12 +744,12 @@ static void (* const pDrawObjMoveFunc[ WFP2PMF_DRAWOBJ_MOVENUM ])( WFP2PMF_WK* p
 
 //----------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WifiP2PMatchFourProc_Init( PROC * proc, int * seq )
@@ -758,58 +758,58 @@ PROC_RESULT WifiP2PMatchFourProc_Init( PROC * proc, int * seq )
 	WFP2PMF_INIT* p_init = PROC_GetParentWork(proc);
 	BOOL result;
 
-	// wifi_2dmapƒI[ƒo[ƒŒƒC“Ç‚İ
+	// wifi_2dmapã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤èª­è¾¼ã¿
 	Overlay_Load( FS_OVERLAY_ID(wifi_2dmapsys), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
-	// ’ÊM’†‚©ƒ`ƒFƒbƒN
+	// é€šä¿¡ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	result = CommStateIsWifiConnect();
 	GF_ASSERT( result == TRUE );
 
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
     sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WIFI_FOURMATCH, 0x18000 );
     sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WIFI_FOURMATCHVCHAT, 0xa000 );
 
-	// ƒvƒƒZƒXƒ[ƒNì¬
+	// ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk = PROC_AllocWork( proc, sizeof(WFP2PMF_WK), HEAPID_WIFI_FOURMATCH );
 	MI_CpuFill8( p_wk, 0, sizeof(WFP2PMF_WK) );
 
 
-	// VCHATƒ[ƒN‚Ì‰Šú‰»
-	MI_CpuFill8( p_wk->data.vchat_tmp, TRUE, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// ‚P‚Â‘O‚ÌVCHAT
-	MI_CpuFill8( p_wk->data.vchat_now, TRUE, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// ‚P‚Â‘O‚ÌVCHAT
+	// VCHATãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
+	MI_CpuFill8( p_wk->data.vchat_tmp, TRUE, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// ï¼‘ã¤å‰ã®VCHAT
+	MI_CpuFill8( p_wk->data.vchat_now, TRUE, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// ï¼‘ã¤å‰ã®VCHAT
 
 
 
-	// VRAM“]‘—ƒ}ƒl[ƒWƒƒ‰Šú‰»
+	// VRAMè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 	initVramTransferManagerHeap( WIFI_P2PMATCH_VRAMTRMAN_NUM, HEAPID_WIFI_FOURMATCH );
 
 
-	// ’ÊMƒf[ƒ^æ“¾
+	// é€šä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_wk->data.p_match = CommStateGetMatchWork();
 	p_wk->data.p_match->myMatchStatus.vchat = p_wk->data.p_match->myMatchStatus.vchat_org;
 
-	// ©•ª‚ªe‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ãŒè¦ªã‹ãƒã‚§ãƒƒã‚¯
 	p_wk->data.oya = WFP2PMF_MyDataOyaCheck( &p_wk->data );
 
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	p_wk->data.new_con = INVALID_NETID;
 
-	// ’ÊMƒRƒ}ƒ“ƒhİ’è
+	// é€šä¿¡ã‚³ãƒãƒ³ãƒ‰è¨­å®š
 	CommCommandWFP2PMFInitialize( p_wk );
 
-	// Ø’fƒ`ƒFƒbƒNŠJn
+	// åˆ‡æ–­ãƒã‚§ãƒƒã‚¯é–‹å§‹
 	WFP2PMF_LogOutCheckStart( p_wk );
 
 
-	// •`‰æƒf[ƒ^‰Šú‰»
+	// æç”»ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	WFP2PMF_GraphicInit( p_wk, p_init, HEAPID_WIFI_FOURMATCH );
 
-    // VBlankŠÖ”ƒZƒbƒg
+    // VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
     sys_VBlankFuncChange( VBlankFunc, p_wk );
 
-	WirelessIconEasy();  // Ú‘±’†‚È‚Ì‚ÅƒAƒCƒRƒ“•\¦
+	WirelessIconEasy();  // æ¥ç¶šä¸­ãªã®ã§ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN@ŠJn
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã€€é–‹å§‹
 	p_wk->data.err_check = TRUE;
 
 
@@ -818,12 +818,12 @@ PROC_RESULT WifiP2PMatchFourProc_Init( PROC * proc, int * seq )
 
 //----------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“ƒ‹[ƒv
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WifiP2PMatchFourProc_Main( PROC * proc, int * seq )
@@ -832,10 +832,10 @@ PROC_RESULT WifiP2PMatchFourProc_Main( PROC * proc, int * seq )
 	WFP2PMF_INIT* p_init = PROC_GetParentWork(proc);
 	BOOL result;
 
-	// ƒƒCƒ“ˆ—
+	// ãƒ¡ã‚¤ãƒ³å‡¦ç†
 	switch( *seq ){
 	case WFP2PMF_MAIN_WIPE_S:
-        // ƒƒCƒvƒtƒF[ƒhŠJn
+        // ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
         WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK,
                         COMM_BRIGHTNESS_SYNC, 1, HEAPID_WIFI_FOURMATCH);
 		(*seq)++;
@@ -849,7 +849,7 @@ PROC_RESULT WifiP2PMatchFourProc_Main( PROC * proc, int * seq )
 
 	case WFP2PMF_MAIN_MATCHWAIT:
 
-		// ƒGƒ‰[ƒ`ƒFƒbƒN
+		// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		if( p_wk->data.err_check ){
 			
 			WFP2PMF_ErrCheck( p_wk, p_init, HEAPID_WIFI_FOURMATCH );
@@ -857,48 +857,48 @@ PROC_RESULT WifiP2PMatchFourProc_Main( PROC * proc, int * seq )
 
 		if( p_wk->data.oya ){
 
-			// CommInfo‚ª‚ ‚é‚©‚ğƒ`ƒFƒbƒN
+			// CommInfoãŒã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 			if( CommInfoIsInitialize() == TRUE ){
 				
-				// ‚İ‚ñ‚È‚ÌVCHATƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN‚µ‚Ä‘—M
+				// ã¿ã‚“ãªã®VCHATãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦é€ä¿¡
 				WFP2PMF_VchatCommSend( p_wk );	
 
-				// V‹KPOKEDATA‚ğóM‚µ‚½‚ç‚İ‚ñ‚È‚É‘—M
-				CommInfoSendArray_ServerSide();	// ‚İ‚ñ‚È‚©‚ç‚à‚ç‚Á‚½POKEDATA‚ğ‘—M
+				// æ–°è¦POKEDATAã‚’å—ä¿¡ã—ãŸã‚‰ã¿ã‚“ãªã«é€ä¿¡
+				CommInfoSendArray_ServerSide();	// ã¿ã‚“ãªã‹ã‚‰ã‚‚ã‚‰ã£ãŸPOKEDATAã‚’é€ä¿¡
 
-				// last_netID‚ªENTRY‚É‚È‚é‘O‚É‚»‚ê‚æ‚è‘å‚«‚¢NETID‚Ìl‚ªNEWENTRY‚É
-				// ‚È‚Á‚½‚çÄÚ‘±‚µ‚Ä‚à‚ç‚¤
+				// last_netIDãŒENTRYã«ãªã‚‹å‰ã«ãã‚Œã‚ˆã‚Šå¤§ãã„NETIDã®äººãŒNEWENTRYã«
+				// ãªã£ãŸã‚‰å†æ¥ç¶šã—ã¦ã‚‚ã‚‰ã†
 				WFP2PMF_NewConLockNewCon( p_wk );
 			}
 
 			
-			// e‚Ì“®ì
+			// è¦ªã®å‹•ä½œ
 			result = pOyaFunc[ p_wk->data.status ]( p_wk, p_init, HEAPID_WIFI_FOURMATCH );
 		}else{
 
 
 			result = pKoFunc[ p_wk->data.status ]( p_wk, p_init, HEAPID_WIFI_FOURMATCH );
 
-			// CommInfo‚ª‚ ‚é‚©‚ğƒ`ƒFƒbƒN
+			// CommInfoãŒã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 			if( CommInfoIsInitialize() == TRUE ){
-				//  ©•ªˆÈŠO‚Ìl‚ÌƒGƒ“ƒgƒŠ[ˆ—
+				//  è‡ªåˆ†ä»¥å¤–ã®äººã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼å‡¦ç†
 				WFP2PMF_KoRecvEntry( p_wk, HEAPID_WIFI_FOURMATCH );
 			}
 		}
 
-		// ƒŠƒXƒg‚Ì•`‰æƒ`ƒFƒbƒN
+		// ãƒªã‚¹ãƒˆã®æç”»ãƒã‚§ãƒƒã‚¯
 		if( WFP2PMF_ConListWriteCheck( p_wk ) ){
-			// ƒŠƒXƒg‚Ì•`‰æ
+			// ãƒªã‚¹ãƒˆã®æç”»
 			WFP2PMF_GraphicConlistStrPutAll( p_wk, p_init, HEAPID_WIFI_FOURMATCH );
 		}
 
-		// OAMƒƒCƒ“ˆ—
+		// OAMãƒ¡ã‚¤ãƒ³å‡¦ç†
 		WFP2PMF_DrawOamMain( p_wk );
 
-		// I—¹
+		// çµ‚äº†
 		if( result == TRUE ){
 
-			// ƒ}ƒbƒ`ƒ“ƒOŒ‹‰ÊŠi”[
+			// ãƒãƒƒãƒãƒ³ã‚°çµæœæ ¼ç´
 			p_init->result = p_wk->data.match_result;
 			p_init->vchat = p_wk->data.vchat_flag;
 
@@ -907,7 +907,7 @@ PROC_RESULT WifiP2PMatchFourProc_Main( PROC * proc, int * seq )
 		break;
 
 	case WFP2PMF_MAIN_EWIPE_S:
-		// ƒƒCƒvƒtƒF[ƒhŠJn
+		// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK,
 						COMM_BRIGHTNESS_SYNC, 1, HEAPID_WIFI_FOURMATCH);
 		(*seq)++;
@@ -919,11 +919,11 @@ PROC_RESULT WifiP2PMatchFourProc_Main( PROC * proc, int * seq )
 		break;
 	}
 
-	// ƒpƒŒƒbƒgƒAƒjƒ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 	WFP2PMF_PlttAnm( &p_wk->draw );
 
 
-	// OAM•`‰æˆ—
+	// OAMæç”»å‡¦ç†
 	CLACT_Draw( p_wk->draw.clactSet );
 	
     return PROC_RES_CONTINUE;
@@ -931,12 +931,12 @@ PROC_RESULT WifiP2PMatchFourProc_Main( PROC * proc, int * seq )
 
 //----------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹ˆ—
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†å‡¦ç†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WifiP2PMatchFourProc_End( PROC * proc, int * seq )
@@ -947,28 +947,28 @@ PROC_RESULT WifiP2PMatchFourProc_End( PROC * proc, int * seq )
 
     sys_VBlankFuncChange( NULL, NULL );	// VBlankReset
 
-	// LOGOUTƒ`ƒFƒbƒNI—¹
+	// LOGOUTãƒã‚§ãƒƒã‚¯çµ‚äº†
 	WFP2PMF_LogOutCheckEnd( p_wk );
 
-	// OAM”jŠüˆ—
+	// OAMç ´æ£„å‡¦ç†
 	WFP2PMF_DrawOamDelete( p_wk );
 
-	// VCHAT‚ğ‚Æ‚ß‚é
+	// VCHATã‚’ã¨ã‚ã‚‹
 	WFP2PMF_StatusVChatOff( p_wk );
 
-	// •`‰æƒf[ƒ^”jŠü
+	// æç”»ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	WFP2PMF_GraphicDelete( p_wk, HEAPID_WIFI_FOURMATCH );
 
 	// VRAMTRMAN
 	DellVramTransferManager();
 	
-	// ƒvƒƒZƒXƒ[ƒN”jŠü
-    PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	// ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯ç ´æ£„
+    PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
     sys_DeleteHeap( HEAPID_WIFI_FOURMATCHVCHAT );
     sys_DeleteHeap( HEAPID_WIFI_FOURMATCH );
 
-	// ƒI[ƒo[ƒŒƒC”jŠü
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ç ´æ£„
 	Overlay_UnloadID( FS_OVERLAY_ID(wifi_2dmapsys) );
 
     return PROC_RES_FINISH;
@@ -976,13 +976,13 @@ PROC_RESULT WifiP2PMatchFourProc_End( PROC * proc, int * seq )
 
 
 
-// ’ÊMƒf[ƒ^óM
+// é€šä¿¡ãƒ‡ãƒ¼ã‚¿å—ä¿¡
 //----------------------------------------------------------------------------
 /**	
- *	@brief	’ÊMƒf[ƒ^óM
+ *	@brief	é€šä¿¡ãƒ‡ãƒ¼ã‚¿å—ä¿¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFP2PMF_CommResultRecv( WFP2P_WK* p_wk, const WFP2PMF_COMM_RESULT* cp_data )
@@ -1027,17 +1027,17 @@ void WFP2PMF_CommResultRecv( WFP2P_WK* p_wk, const WFP2PMF_COMM_RESULT* cp_data 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ŠJn@“¯ŠúŠJn
+ *	@brief	ã‚²ãƒ¼ãƒ é–‹å§‹ã€€åŒæœŸé–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFP2PMF_CommStartRecv( WFP2P_WK* p_wk )
 {
-	// 1‰ñ‚µ‚©‚¨‚­‚ç‚È‚¢‚æ‚¤‚É
+	// 1å›ã—ã‹ãŠãã‚‰ãªã„ã‚ˆã†ã«
 	if( p_wk->data.oya_start == FALSE ){
 		p_wk->data.oya_start = TRUE;
-		// “¯ŠúŠJn
+		// åŒæœŸé–‹å§‹
 		CommTimingSyncStart(_TIMING_GAME_CHECK);
 	}
 	OS_TPrintf( "sync start \n" );
@@ -1045,14 +1045,14 @@ void WFP2PMF_CommStartRecv( WFP2P_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€VCHATƒf[ƒ^@æ“¾
+ *	@brief	ã‚²ãƒ¼ãƒ VCHATãƒ‡ãƒ¼ã‚¿ã€€å–å¾—
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFP2PMF_CommVchatRecv( WFP2P_WK* p_wk, const WFP2PMF_COMM_VCHAT* cp_data )
 {
-	if( p_wk->data.oya != TRUE ){	// e‚¶‚á‚È‚¢‚Æ‚«‚¾‚¯
+	if( p_wk->data.oya != TRUE ){	// è¦ªã˜ã‚ƒãªã„ã¨ãã ã‘
 		memcpy( p_wk->data.vchat_now, cp_data->vchat_now, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );
 	}
 }
@@ -1061,134 +1061,134 @@ void WFP2PMF_CommVchatRecv( WFP2P_WK* p_wk, const WFP2PMF_COMM_VCHAT* cp_data )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
-// @VBLANK
+// ã€€VBLANK
 static void VBlankFunc( void * work )
 {
 	WFP2PMF_WK* p_wk = work;
 
-    // BG‘‚«Š·‚¦
+    // BGæ›¸ãæ›ãˆ
 	GF_BGL_VBlankFunc( p_wk->draw.p_bgl );
 
-    // Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+    // Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
     DoVramTransferManager();
 
-    // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+    // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
     REND_OAMTrans();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚Ìƒf[ƒ^‚ªe‚©q‚©ƒ`ƒFƒbƒN
+ *	@brief	è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ãŒè¦ªã‹å­ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_data			ƒ[ƒN
+ *	@param	cp_data			ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	e
- *	@retval	FALSE	q
+ *	@retval	TRUE	è¦ª
+ *	@retval	FALSE	å­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_MyDataOyaCheck( const WFP2PMF_DATA* cp_data )
 {
 	if( (CommGetCurrentID() == COMM_PARENT_ID) ){
-		// ‘Ò‹@‚È‚çe
+		// å¾…æ©Ÿãªã‚‰è¦ª
 		return TRUE;
 	}
-	// ‚»‚êˆÈŠO‚Íq
+	// ãã‚Œä»¥å¤–ã¯å­
 	return FALSE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰Šú‰»
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN	
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯	
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicInit( WFP2PMF_WK* p_wk, const WFP2PMF_INIT* cp_init, u32 heapID )
 {
-	// ƒoƒ“ƒNİ’è
+	// ãƒãƒ³ã‚¯è¨­å®š
 	WFP2PMF_GraphicBankSet();
 	
-	// BGLì¬
+	// BGLä½œæˆ
 	WFP2PMF_GraphicBGLInit( &p_wk->draw, heapID );
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^ì¬
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	WFP2PMF_GraphicBmpInit( &p_wk->draw, cp_init, heapID );
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^‰Šú‰»
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	WFP2PMF_GraphicMsgInit( &p_wk->draw, cp_init, heapID );
 
-	// ƒrƒbƒgƒ}ƒbƒv‚ÉƒƒbƒZ[ƒW‚ğ‘‚«‚Ş
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ›¸ãè¾¼ã‚€
 	WFP2PMF_GraphicBmpMsgInit( &p_wk->draw, cp_init, heapID );
 
-	// ƒŠƒXƒg
-	// ©•ª‚Ì–¼‘O‚ÆID‚ğİ’è‚·‚é
+	// ãƒªã‚¹ãƒˆ
+	// è‡ªåˆ†ã®åå‰ã¨IDã‚’è¨­å®šã™ã‚‹
 	WFP2PMF_GraphicConlistStrPutAll( p_wk, cp_init, heapID );
 
-	// ƒZƒ‹ƒAƒNƒ^[
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 	WFP2PMF_GraphicClactInit( &p_wk->draw, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^”jŠü
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicDelete( WFP2PMF_WK* p_wk, u32 heapID )
 {
-	// ƒZƒ‹ƒAƒNƒ^[
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 	WFP2PMF_GraphicClactDelete( &p_wk->draw );
 	
-	// ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	WFP2PMF_GraphicMsgDelete( &p_wk->draw );
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	WFP2PMF_GraphicBmpDelete( &p_wk->draw, heapID );
 	
-	// BGL”jŠü
+	// BGLç ´æ£„
 	WFP2PMF_GraphicBGLDelete( &p_wk->draw );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒ“ƒNİ’è
+ *	@brief	ãƒãƒ³ã‚¯è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicBankSet( void )
 {
     GF_BGL_DISPVRAM tbl = {
-        GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-        GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+        GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+        GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-        GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-        GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+        GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+        GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-//        GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-        GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+//        GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+        GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-        GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-        GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+        GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+        GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-        GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-        GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+        GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+        GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
     };
     GF_Disp_SetBank( &tbl );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGL‰Šú‰»
+ *	@brief	BGLåˆæœŸåŒ–
  *		
- *	@param	p_draw		ƒ[ƒN
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicBGLInit( WFP2PMF_DRAW* p_draw, u32 heapID )
@@ -1205,7 +1205,7 @@ static void WFP2PMF_GraphicBGLInit( WFP2PMF_DRAW* p_draw, u32 heapID )
         GF_BGL_InitBG( &BGsys_data );
     }
 
-    // ”wŒi–Ê
+    // èƒŒæ™¯é¢
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1219,7 +1219,7 @@ static void WFP2PMF_GraphicBGLInit( WFP2PMF_DRAW* p_draw, u32 heapID )
 
     }
 
-    // ƒƒCƒ“‰æ–Ê1
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢1
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1231,7 +1231,7 @@ static void WFP2PMF_GraphicBGLInit( WFP2PMF_DRAW* p_draw, u32 heapID )
         GF_BGL_ScrClear( p_draw->p_bgl, GF_BGL_FRAME1_M );
     }
 
-    // YesNoƒŠƒXƒg
+    // YesNoãƒªã‚¹ãƒˆ
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1246,7 +1246,7 @@ static void WFP2PMF_GraphicBGLInit( WFP2PMF_DRAW* p_draw, u32 heapID )
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-	// ƒTƒu–Ê‚Í•\¦OFF
+	// ã‚µãƒ–é¢ã¯è¡¨ç¤ºOFF
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
@@ -1256,7 +1256,7 @@ static void WFP2PMF_GraphicBGLInit( WFP2PMF_DRAW* p_draw, u32 heapID )
 
 	p_handle = ArchiveDataHandleOpen( ARC_WIFIP2PMATCH_GRA, heapID );
 
-	// VCHATƒAƒCƒRƒ“—pƒLƒƒƒ‰ƒNƒ^‚Ì“Ç‚İ
+	// VCHATã‚¢ã‚¤ã‚³ãƒ³ç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®èª­è¾¼ã¿
     ArcUtil_HDL_PalSet( p_handle, NARC_wifip2pmatch_wf_match_all_icon_NCLR, 
 			PALTYPE_MAIN_BG,  WFP2PMF_VCHAT_ICON_PAL*32,
 			WFP2PMF_VCHAT_ICON_PALNUM*32, heapID );
@@ -1266,7 +1266,7 @@ static void WFP2PMF_GraphicBGLInit( WFP2PMF_DRAW* p_draw, u32 heapID )
 			NARC_wifip2pmatch_wf_match_all_icon_NSCR, FALSE,
 			&p_draw->p_vchatscrn, heapID );
 
-	// ”wŒi“Ç‚İ‚İ
+	// èƒŒæ™¯èª­ã¿è¾¼ã¿
 	{
 		p_draw->p_plttbuff = ArcUtil_HDL_PalDataGet( p_handle, NARC_wifip2pmatch_wifi_check_bg_NCLR, 
 				&p_draw->p_pltt, heapID );
@@ -1275,8 +1275,8 @@ static void WFP2PMF_GraphicBGLInit( WFP2PMF_DRAW* p_draw, u32 heapID )
 		ArcUtil_HDL_ScrnSet( p_handle, NARC_wifip2pmatch_wifi_check_bg_NSCR,
 				p_draw->p_bgl, GF_BGL_FRAME0_M, 0, 0, FALSE, heapID );
 
-		// ƒpƒŒƒbƒgƒAƒjƒ‰Šú‰»
-		// ‚Æ‚è‚ ‚¦‚¸A‚OƒtƒŒ[ƒ€–Ú‚ğ‘—M
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
+		// ã¨ã‚Šã‚ãˆãšã€ï¼ãƒ•ãƒ¬ãƒ¼ãƒ ç›®ã‚’é€ä¿¡
 		WFP2PMF_PlttAnm_Trans( p_draw, 0 );
 		p_draw->pltt_count	= WFP2PMF_BACK_PALANM;
 		p_draw->pltt_idx	= 1;
@@ -1287,9 +1287,9 @@ static void WFP2PMF_GraphicBGLInit( WFP2PMF_DRAW* p_draw, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGL”jŠü
+ *	@brief	BGLç ´æ£„
  *
- *	@param	p_draw	ƒ[ƒN
+ *	@param	p_draw	ãƒ¯ãƒ¼ã‚¯
  *
  */
 //-----------------------------------------------------------------------------
@@ -1307,18 +1307,18 @@ static void WFP2PMF_GraphicBGLDelete( WFP2PMF_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—åˆæœŸåŒ–
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicBmpInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, u32 heapID )
 {
 	int wintype;
 	
-	// ƒpƒŒƒbƒgAƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
     TalkFontPaletteLoad( PALTYPE_MAIN_BG, WFP2PMF_TALK_PAL*0x20, heapID );
 	wintype = CONFIG_GetWindowType(SaveData_GetConfig(cp_init->p_savedata)); 
 	TalkWinGraphicSet(
@@ -1328,8 +1328,8 @@ static void WFP2PMF_GraphicBmpInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp
 	MenuWinGraphicSet(
 		p_draw->p_bgl, GF_BGL_FRAME2_M, WFP2PMF_BG2_MENUWIN_CGX, WFP2PMF_BG2_MENUWIN_PAL, 0, heapID );
 
-	// ƒrƒbƒgƒ}ƒbƒvì¬
-	// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ä½œæˆ
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
     GF_BGL_BmpWinAdd( p_draw->p_bgl , &p_draw->msgwin, GF_BGL_FRAME1_M,
 			WFP2PMF_MSGWIN_X, WFP2PMF_MSGWIN_Y,
 			WFP2PMF_MSGWIN_SIZX, WFP2PMF_MSGWIN_SIZY, 
@@ -1339,7 +1339,7 @@ static void WFP2PMF_GraphicBmpInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp
 		WFP2PMF_BG1_TALKWIN_CGX, WFP2PMF_BG1_TALKWIN_PAL );
 
 
-	// ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE
+	// ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
     GF_BGL_BmpWinAdd( p_draw->p_bgl , &p_draw->titlewin, GF_BGL_FRAME1_M,
 			WFP2PMF_TITLEWIN_X, WFP2PMF_TITLEWIN_Y,
 			WFP2PMF_TITLEWIN_SIZX, WFP2PMF_TITLEWIN_SIZY, 
@@ -1349,14 +1349,14 @@ static void WFP2PMF_GraphicBmpInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp
 			WFP2PMF_BG1_MENUWIN_CGX, WFP2PMF_BG1_MENUWIN_PAL );
 
 
-	// ƒ{ƒCƒXƒ`ƒƒƒbƒgƒEƒBƒ“ƒhƒE
+	// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
     GF_BGL_BmpWinAdd( p_draw->p_bgl , &p_draw->vchatwin, GF_BGL_FRAME1_M,
 			WFP2PMF_VCHATWIN_X, WFP2PMF_VCHATWIN_Y,
 			WFP2PMF_VCHATWIN_SIZX, WFP2PMF_VCHATWIN_SIZY, 
 			WFP2PMF_VCHATWIN_PAL, WFP2PMF_VCHATWIN_CGX );
     GF_BGL_BmpWinDataFill( &p_draw->vchatwin, 0 );
 
-	// CONNECTƒŠƒXƒg
+	// CONNECTãƒªã‚¹ãƒˆ
     GF_BGL_BmpWinAdd( p_draw->p_bgl , &p_draw->conlistwin, GF_BGL_FRAME1_M,
 			WFP2PMF_CONLISTWIN_X, WFP2PMF_CONLISTWIN_Y,
 			WFP2PMF_CONLISTWIN_SIZX, WFP2PMF_CONLISTWIN_SIZY, 
@@ -1365,7 +1365,7 @@ static void WFP2PMF_GraphicBmpInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp
 	BmpMenuWinWrite( &p_draw->conlistwin, WINDOW_TRANS_OFF, 
 			WFP2PMF_BG1_MENUWIN_CGX, WFP2PMF_BG1_MENUWIN_PAL );
 
-	// NEWCONƒEƒBƒ“ƒhƒE
+	// NEWCONã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
     GF_BGL_BmpWinAdd( p_draw->p_bgl , &p_draw->newconwin, GF_BGL_FRAME1_M,
 			WFP2PMF_NEWCONWIN_X, WFP2PMF_NEWCONWIN_Y,
 			WFP2PMF_NEWCONWIN_SIZX, WFP2PMF_NEWCONWIN_SIZY, 
@@ -1376,37 +1376,37 @@ static void WFP2PMF_GraphicBmpInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒv”jŠü
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç ´æ£„
  *
- *	@param	p_draw	ƒ[ƒN 
+ *	@param	p_draw	ãƒ¯ãƒ¼ã‚¯ 
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicBmpDelete( WFP2PMF_DRAW* p_draw, u32 heapID )
 {
-	// ƒƒbƒZ[ƒW‚ğÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ¶ˆã™
 	WFP2PMF_GraphicMsgBmpStrOff( p_draw );
 	
-	// ƒrƒbƒgƒ}ƒbƒv‚Ì”jŠü
-	// ƒƒbƒZ[ƒW
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ç ´æ£„
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	BmpTalkWinClear( &p_draw->msgwin, WINDOW_TRANS_ON );
 	GF_BGL_BmpWinDel( &p_draw->msgwin );
 
-	// ƒ^ƒCƒgƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«
 	BmpMenuWinClear( &p_draw->titlewin, WINDOW_TRANS_ON );
 	GF_BGL_BmpWinDel( &p_draw->titlewin );
 
-	// ƒ{ƒCƒXƒ`ƒƒƒbƒg
+	// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆ
 	GF_BGL_BmpWinDel( &p_draw->vchatwin );
 
-	// CONNECTƒŠƒXƒg
+	// CONNECTãƒªã‚¹ãƒˆ
 	BmpMenuWinClear( &p_draw->conlistwin, WINDOW_TRANS_ON );
 	GF_BGL_BmpWinDel( &p_draw->conlistwin );
 
-	// VƒRƒlƒNƒgƒŠƒXƒg
+	// æ–°ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆ
 	BmpMenuWinClear( &p_draw->newconwin, WINDOW_TRANS_ON );
 	GF_BGL_BmpWinDel( &p_draw->newconwin );
 	
-	// YesNo‚Ìƒ[ƒN‚ª‚ ‚Á‚½‚ç”jŠü
+	// YesNoã®ãƒ¯ãƒ¼ã‚¯ãŒã‚ã£ãŸã‚‰ç ´æ£„
 	if( p_draw->p_yesnowin != NULL ){
 		BmpYesNoWinDel( p_draw->p_yesnowin, heapID );
 	}
@@ -1414,11 +1414,11 @@ static void WFP2PMF_GraphicBmpDelete( WFP2PMF_DRAW* p_draw, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWƒf[ƒ^‰Šú‰»
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicMsgInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, u32 heapID )
@@ -1433,9 +1433,9 @@ static void WFP2PMF_GraphicMsgInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_draw		ƒ[ƒN
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicMsgDelete( WFP2PMF_DRAW* p_draw )
@@ -1448,29 +1448,29 @@ static void WFP2PMF_GraphicMsgDelete( WFP2PMF_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒƒbƒZ[ƒW‰Šú‰»
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆæœŸåŒ–
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	cp_ini		‰Šú‰»ƒf[ƒ^t
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_ini		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿t
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicBmpMsgInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, u32 heapID )
 {
-	// ƒ^ƒCƒgƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«
 	switch( cp_init->type ){
-	case WFP2PMF_TYPE_POFIN:				// ƒ|ƒtƒBƒ“
+	case WFP2PMF_TYPE_POFIN:				// ãƒãƒ•ã‚£ãƒ³
 		break;
 		
-	case WFP2PMF_TYPE_BUCKET:			// ‚½‚Ü‚¢‚ê
+	case WFP2PMF_TYPE_BUCKET:			// ãŸã¾ã„ã‚Œ
 		WORDSET_RegisterWiFiLobbyGameName( p_draw->p_wordset, 0, WFLBY_GAME_BALLSLOW );
 		break;
 		
-	case WFP2PMF_TYPE_BALANCE_BALL:		// ‚½‚Ü‚Ì‚è	
+	case WFP2PMF_TYPE_BALANCE_BALL:		// ãŸã¾ã®ã‚Š	
 		WORDSET_RegisterWiFiLobbyGameName( p_draw->p_wordset, 0, WFLBY_GAME_BALANCEBALL );
 		break;
 		
-	case WFP2PMF_TYPE_BALLOON:			// ‚Ó‚¤‚¹‚ñ‚í‚è
+	case WFP2PMF_TYPE_BALLOON:			// ãµã†ã›ã‚“ã‚ã‚Š
 		WORDSET_RegisterWiFiLobbyGameName( p_draw->p_wordset, 0, WFLBY_GAME_BALLOON );
 		break;
 	}
@@ -1479,7 +1479,7 @@ static void WFP2PMF_GraphicBmpMsgInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT*
 	GF_STR_PrintColor( &p_draw->titlewin, FONT_SYSTEM, p_draw->p_msgstr, 0, 0, MSG_NO_PUT, _COL_N_BLACK, NULL);
 	GF_BGL_BmpWinOnVReq( &p_draw->titlewin );
 	
-	// ƒŠƒXƒg
+	// ãƒªã‚¹ãƒˆ
 	GF_BGL_BmpWinOnVReq( &p_draw->conlistwin );
 	
 	
@@ -1488,37 +1488,37 @@ static void WFP2PMF_GraphicBmpMsgInit( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT*
     GF_STR_PrintColor( &p_draw->vchatwin, FONT_SYSTEM, p_draw->p_msgstr, 0, 0, MSG_NO_PUT, _COL_N_BLACK_C, NULL);
     GF_BGL_BmpWinOnVReq( &p_draw->vchatwin );
 	
-	// ƒƒbƒZ[ƒW
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
     GF_BGL_BmpWinOnVReq( &p_draw->msgwin );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *	
- *	@param	p_draw		ƒ[ƒN
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicClactInit( WFP2PMF_DRAW* p_draw, u32 heapID )
 {
 	int i;
 
-    // OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+    // OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
     NNS_G2dInitOamManagerModule();
 
-    // ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-    // ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-    // ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+    // å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
     REND_OAMInit(
-        0, 126,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-        0, 126,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+        0, 126,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+        0, 126,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
         heapID);
 
 
-    // ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     {
         CHAR_MANAGER_MAKE cm = {
             WIFI_P2PMATCH_LOADRESNUM,
@@ -1529,27 +1529,27 @@ static void WFP2PMF_GraphicClactInit( WFP2PMF_DRAW* p_draw, u32 heapID )
 		cm.heap = heapID;
         InitCharManagerReg(&cm, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K );
     }
-    // ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     InitPlttManager(WIFI_P2PMATCH_LOADRESNUM, heapID);
 
-    // “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+    // èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
     CharLoadStartAll();
     PlttLoadStartAll();
 
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 	
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 	p_draw->clactSet = CLACT_U_SetEasyInit( WIFI_P2PMATCH_CLACTWK_NUM, &p_draw->renddata, heapID );
-	// ƒLƒƒƒ‰‚ÆƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+	// ã‚­ãƒ£ãƒ©ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	for( i=0; i<WIFI_P2PMATCH_RESNUM; i++ ){
 		p_draw->resMan[i] = CLACT_U_ResManagerInit(WIFI_P2PMATCH_LOADRESNUM, i, heapID);
 	}
 
 
-	// ƒIƒuƒWƒFƒNƒgƒVƒXƒeƒ€‰Šú‰»
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	p_draw->p_objsys = WF2DMAP_OBJSysInit( WIFI_P2PMATCH_CLACTWK_NUM, heapID );
 	p_draw->p_objdraw = WF2DMAP_OBJDrawSysInit( p_draw->clactSet, NULL, WIFI_P2PMATCH_CLACTWK_NUM, NNS_G2D_VRAM_TYPE_2DMAIN, heapID );
 
@@ -1557,42 +1557,42 @@ static void WFP2PMF_GraphicClactInit( WFP2PMF_DRAW* p_draw, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_draw		ƒ[ƒN
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicClactDelete( WFP2PMF_DRAW* p_draw )
 {
 	int i;
 
-	// ƒIƒuƒWƒFƒNƒgƒ[ƒN”jŠü
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	WF2DMAP_OBJDrawSysExit( p_draw->p_objdraw );	
 	WF2DMAP_OBJSysExit( p_draw->p_objsys );	
 
-	// ƒAƒNƒ^[‚Ì”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç ´æ£„
 	CLACT_DestSet( p_draw->clactSet );
 
 	for( i=0; i<WIFI_P2PMATCH_RESNUM; i++ ){
 		CLACT_U_ResManagerDelete( p_draw->resMan[i] );
 	}
 
-    // ƒŠƒ\[ƒX‰ğ•ú
+    // ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
     DeleteCharManager();
     DeletePlttManager();
 
-    //OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+    //OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
     REND_OAM_Delete();
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWƒf[ƒ^•\¦
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	msg_idx		ƒƒbƒZ[ƒWIDX
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	msg_idx		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicMsgBmpStrPut( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, u32 msg_idx, u32 heapID )
@@ -1602,12 +1602,12 @@ static void WFP2PMF_GraphicMsgBmpStrPut( WFP2PMF_DRAW* p_draw, const WFP2PMF_INI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•\¦	ƒƒbƒZ[ƒWI—¹Œã‚ÌWAITİ’èƒo[ƒWƒ‡ƒ“
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾Œã®WAITè¨­å®šãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	msg_idx		ƒƒbƒZ[ƒWIDX
- *	@param	wait		‘Ò‚¿ŠÔ
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	msg_idx		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
+ *	@param	wait		å¾…ã¡æ™‚é–“
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicMsgBmpStrPutEx( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, u32 msg_idx, u8 wait, u32 heapID )
@@ -1615,7 +1615,7 @@ static void WFP2PMF_GraphicMsgBmpStrPutEx( WFP2PMF_DRAW* p_draw, const WFP2PMF_I
 	STRBUF* p_expand;
 	int wintype;
 	
-	// ‚P‚Â‘O‚Ì•¨‚ªI‚í‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç‚Æ‚ß‚é
+	// ï¼‘ã¤å‰ã®ç‰©ãŒçµ‚ã‚ã£ã¦ã„ãªã‹ã£ãŸã‚‰ã¨ã‚ã‚‹
     if( p_draw->msg_no != WFP2PMF_MSGNO_NONE){
         if(GF_MSG_PrintEndCheck( p_draw->msg_no )!=0){
 			TOMOYA_PRINT( "msg stop\n" );
@@ -1626,7 +1626,7 @@ static void WFP2PMF_GraphicMsgBmpStrPutEx( WFP2PMF_DRAW* p_draw, const WFP2PMF_I
 
 
 	
-	// ‘‚«‚İ
+	// æ›¸ãè¾¼ã¿
     GF_BGL_BmpWinDataFill( &p_draw->msgwin, 15 );
 	p_expand = STRBUF_Create( WFP2PMF_MSGDATA_STRNUM, heapID );
 	MSGMAN_GetString(  p_draw->p_msgman, msg_idx, p_expand );
@@ -1636,7 +1636,7 @@ static void WFP2PMF_GraphicMsgBmpStrPutEx( WFP2PMF_DRAW* p_draw, const WFP2PMF_I
 	STRBUF_Delete( p_expand );
 
 
-	// ƒEƒBƒ“ƒhƒEƒf[ƒ^Ä“]‘—
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿å†è»¢é€
 	wintype = CONFIG_GetWindowType(SaveData_GetConfig(cp_init->p_savedata)); 
 	TalkWinGraphicSet(
 		p_draw->p_bgl, GF_BGL_FRAME1_M, WFP2PMF_BG1_TALKWIN_CGX, WFP2PMF_BG1_TALKWIN_PAL,  wintype, heapID );
@@ -1646,18 +1646,18 @@ static void WFP2PMF_GraphicMsgBmpStrPutEx( WFP2PMF_DRAW* p_draw, const WFP2PMF_I
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW‚ğˆê‹C‚É•\¦
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¸€æ°—ã«è¡¨ç¤º
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	msg_idx		ƒƒbƒZ[ƒWIDX
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	msg_idx		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicMsgBmpStrPutAll( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, u32 msg_idx, u32 heapID )
 {
 	int wintype;
 
-	// ‚P‚Â‘O‚Ì•¨‚ªI‚í‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç‚Æ‚ß‚é
+	// ï¼‘ã¤å‰ã®ç‰©ãŒçµ‚ã‚ã£ã¦ã„ãªã‹ã£ãŸã‚‰ã¨ã‚ã‚‹
     if( p_draw->msg_no != WFP2PMF_MSGNO_NONE ){
         if(GF_MSG_PrintEndCheck( p_draw->msg_no )!=0){
             GF_STR_PrintForceStop( p_draw->msg_no );
@@ -1670,7 +1670,7 @@ static void WFP2PMF_GraphicMsgBmpStrPutAll( WFP2PMF_DRAW* p_draw, const WFP2PMF_
     GF_STR_PrintColor( &p_draw->msgwin, FONT_TALK, p_draw->p_msgstr, 0, 0, MSG_NO_PUT, _COL_N_BLACK, NULL);
     GF_BGL_BmpWinOnVReq( &p_draw->msgwin );
 
-	// ƒEƒBƒ“ƒhƒEƒf[ƒ^Ä“]‘—
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿å†è»¢é€
 	wintype = CONFIG_GetWindowType(SaveData_GetConfig(cp_init->p_savedata)); 
 	TalkWinGraphicSet(
 		p_draw->p_bgl, GF_BGL_FRAME1_M, WFP2PMF_BG1_TALKWIN_CGX, WFP2PMF_BG1_TALKWIN_PAL,  wintype, heapID );
@@ -1680,12 +1680,12 @@ static void WFP2PMF_GraphicMsgBmpStrPutAll( WFP2PMF_DRAW* p_draw, const WFP2PMF_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•\¦Š®—¹ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå®Œäº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_draw		ƒ[ƒN
+ *	@param	cp_draw		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	‚Ü‚¾‚¨‚í‚Á‚Ä‚È‚¢
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	ã¾ã ãŠã‚ã£ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_GraphicMsgBmpStrMain( WFP2PMF_DRAW* p_draw )
@@ -1714,14 +1714,14 @@ static BOOL WFP2PMF_GraphicMsgBmpStrMain( WFP2PMF_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•\¦OFFˆ—
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºOFFå‡¦ç†
  *
- *	@param	p_draw	ƒ[ƒN
+ *	@param	p_draw	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicMsgBmpStrOff( WFP2PMF_DRAW* p_draw )
 {
-	// ‚P‚Â‘O‚Ì•¨‚ªI‚í‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç‚Æ‚ß‚é
+	// ï¼‘ã¤å‰ã®ç‰©ãŒçµ‚ã‚ã£ã¦ã„ãªã‹ã£ãŸã‚‰ã¨ã‚ã‚‹
     if( p_draw->msg_no != WFP2PMF_MSGNO_NONE ){
         if(GF_MSG_PrintEndCheck( p_draw->msg_no )!=0){
             GF_STR_PrintForceStop( p_draw->msg_no );
@@ -1735,12 +1735,12 @@ static void WFP2PMF_GraphicMsgBmpStrOff( WFP2PMF_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	V‹KƒRƒlƒNƒgƒvƒŒƒCƒ„[‚Ì•\¦
+ *	@brief	æ–°è¦ã‚³ãƒã‚¯ãƒˆãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¡¨ç¤º
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
- *	@param	netid	—F’Bƒiƒ“ƒo[
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	netid	å‹é”ãƒŠãƒ³ãƒãƒ¼
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicNewConStrPut( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, int netid, u32 heapID )
@@ -1756,7 +1756,7 @@ static void WFP2PMF_GraphicNewConStrPut( WFP2PMF_DRAW* p_draw, const WFP2PMF_INI
 	MSGMAN_GetString(  p_draw->p_msgman, msg_wifilobby_135, p_expand );
 	WORDSET_ExpandStr( p_draw->p_wordset, p_setstr, p_expand );
 
-	// ‘‚«‚Ş
+	// æ›¸ãè¾¼ã‚€
     GF_BGL_BmpWinDataFill( &p_draw->newconwin, 15 );
     GF_STR_PrintColor( &p_draw->newconwin, FONT_SYSTEM, p_setstr, 0, 0, MSG_NO_PUT, _COL_N_BLACK, NULL);
 	BmpMenuWinWrite( &p_draw->newconwin, WINDOW_TRANS_OFF, 
@@ -1769,25 +1769,25 @@ static void WFP2PMF_GraphicNewConStrPut( WFP2PMF_DRAW* p_draw, const WFP2PMF_INI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	V‹KƒRƒlƒNƒg•\¦OFF
+ *	@brief	æ–°è¦ã‚³ãƒã‚¯ãƒˆè¡¨ç¤ºOFF
  *	
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicNewConStrOff( WFP2PMF_DRAW* p_draw )
 {
-	// VƒRƒlƒNƒgƒŠƒXƒg
+	// æ–°ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆ
 	BmpMenuWinClear( &p_draw->newconwin, WINDOW_TRANS_OFF );
 	GF_BGL_BmpWinOffVReq( &p_draw->newconwin );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒg‚Ì‘S•`‰æ
+ *	@brief	ãƒªã‚¹ãƒˆã®å…¨æç”»
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_init		ƒf[ƒ^
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_init		ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicConlistStrPutAll( WFP2PMF_WK* p_wk, const WFP2PMF_INIT* cp_init, u32 heapID )
@@ -1796,21 +1796,21 @@ static void WFP2PMF_GraphicConlistStrPutAll( WFP2PMF_WK* p_wk, const WFP2PMF_INI
 	int connum = WIFI_P2PMATCH_NUM_MAX;
 
 
-	// COMMINFO@‰Šú‰»‚Ã‚İƒ`ƒFƒbƒN
+	// COMMINFOã€€åˆæœŸåŒ–ã¥ã¿ãƒã‚§ãƒƒã‚¯
 	if( CommInfoIsInitialize() == FALSE ){
 		return ;
 	}
 	
-	// ƒGƒ“ƒgƒŠ[l”•ª•\¦
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼äººæ•°åˆ†è¡¨ç¤º
 	for( i=0; i<connum; i++ ){
 		
-		if( (i == COMM_PARENT_ID) && (CommInfoIsNewName(i) == TRUE) ){	// e‚ÍŠmÀ‚É
+		if( (i == COMM_PARENT_ID) && (CommInfoIsNewName(i) == TRUE) ){	// è¦ªã¯ç¢ºå®Ÿã«
 			WFP2PMF_GraphicConlistStrPut( p_wk, &p_wk->draw, cp_init, i, heapID );
 		}else{
-			if( (CommInfoGetEntry(i) == TRUE) ){	// ‚»‚Ì‘¼‚ÍENTRYó‘Ô‚È‚ç•\¦
+			if( (CommInfoGetEntry(i) == TRUE) ){	// ãã®ä»–ã¯ENTRYçŠ¶æ…‹ãªã‚‰è¡¨ç¤º
 				WFP2PMF_GraphicConlistStrPut( p_wk, &p_wk->draw, cp_init, i, heapID );
 			}else{
-				// Á‚·
+				// æ¶ˆã™
 				WFP2PMF_GraphicConlistStrOff( &p_wk->draw, cp_init, i, heapID );
 			}
 		}
@@ -1819,12 +1819,12 @@ static void WFP2PMF_GraphicConlistStrPutAll( WFP2PMF_WK* p_wk, const WFP2PMF_INI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒlƒNƒgƒŠƒXƒg@ƒƒbƒZ[ƒW•\¦
+ *	@brief	ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	cp_init		ƒf[ƒ^
- *	@param	netid	—F’Bƒiƒ“ƒo[
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_init		ãƒ‡ãƒ¼ã‚¿
+ *	@param	netid	å‹é”ãƒŠãƒ³ãƒãƒ¼
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicConlistStrPut( WFP2PMF_WK* p_wk, WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, int netid, u32 heapID )
@@ -1841,7 +1841,7 @@ static void WFP2PMF_GraphicConlistStrPut( WFP2PMF_WK* p_wk, WFP2PMF_DRAW* p_draw
     MSGMAN_GetString(  p_draw->p_msgman, msg_wifilobby_133, p_expand );
     WORDSET_ExpandStr( p_draw->p_wordset, p_setstr, p_expand );
 
-	// ‘‚«‚Ş
+	// æ›¸ãè¾¼ã‚€
     GF_BGL_BmpWinFill( &p_draw->conlistwin, 15, 
 			0, netid * (WFP2PMF_CONLISTWIN_ONELIST_Y*8), 
 			(WFP2PMF_CONLISTWIN_SIZX*8), (WFP2PMF_CONLISTWIN_ONELIST_Y*8) );
@@ -1862,7 +1862,7 @@ static void WFP2PMF_GraphicConlistStrPut( WFP2PMF_WK* p_wk, WFP2PMF_DRAW* p_draw
 	
     GF_BGL_BmpWinOnVReq( &p_draw->conlistwin );
 
-	// VCHATƒf[ƒ^•`‰æ
+	// VCHATãƒ‡ãƒ¼ã‚¿æç”»
 	if( netid == CommGetCurrentID() ){
 		if( p_wk->data.p_match->myMatchStatus.vchat ){
 			vchat = WFP2PMF_VCHATICON_ON;
@@ -1877,7 +1877,7 @@ static void WFP2PMF_GraphicConlistStrPut( WFP2PMF_WK* p_wk, WFP2PMF_DRAW* p_draw
 			vchat = WFP2PMF_VCHATICON_OFF;
 		}
 	}
-	// —F’Bƒiƒ“ƒo‚ª‹A‚Á‚Ä‚«‚Ä‚¢‚È‚¢‚È‚ç•`‰æ‚µ‚È‚¢
+	// å‹é”ãƒŠãƒ³ãƒãŒå¸°ã£ã¦ãã¦ã„ãªã„ãªã‚‰æç”»ã—ãªã„
 	GF_BGL_ScrWriteExpand( p_draw->p_bgl, WFP2PMF_VCHAT_ICON_FRM_NUM,
 			WFP2PMF_VCHAT_ICON_WX, 
 			WFP2PMF_VCHAT_ICON_WY+(netid*WFP2PMF_CONLISTWIN_ONELIST_Y), 
@@ -1898,17 +1898,17 @@ static void WFP2PMF_GraphicConlistStrPut( WFP2PMF_WK* p_wk, WFP2PMF_DRAW* p_draw
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒlƒNƒgƒŠƒXƒg•\¦”ñ•\¦
+ *	@brief	ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆè¡¨ç¤ºéè¡¨ç¤º
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	cp_init		ƒf[ƒ^
- *	@param	netid	—F’Bƒiƒ“ƒo[
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_init		ãƒ‡ãƒ¼ã‚¿
+ *	@param	netid	å‹é”ãƒŠãƒ³ãƒãƒ¼
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_GraphicConlistStrOff( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, int netid, u32 heapID )
 {
-	// ‘‚«‚Ş
+	// æ›¸ãè¾¼ã‚€
     GF_BGL_BmpWinFill( &p_draw->conlistwin, 15, 
 			0, netid * (WFP2PMF_CONLISTWIN_ONELIST_Y*8), 
 			(WFP2PMF_CONLISTWIN_SIZX*8), (WFP2PMF_CONLISTWIN_ONELIST_Y*8) );
@@ -1928,13 +1928,13 @@ static void WFP2PMF_GraphicConlistStrOff( WFP2PMF_DRAW* p_draw, const WFP2PMF_IN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚ÉƒvƒŒƒCƒ„[–¼‚ğİ’è‚·‚é
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	cp_init		ƒf[ƒ^
- *	@param	netid	—F’B”Ô†
- *	@param	set_no		ƒ[ƒhƒZƒbƒg‚Ö‚Ìİ’èêŠ
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_init		ãƒ‡ãƒ¼ã‚¿
+ *	@param	netid	å‹é”ç•ªå·
+ *	@param	set_no		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã¸ã®è¨­å®šå ´æ‰€
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_WordSetPlayerNameSet( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, int netid, int set_no, u32 heapID )
@@ -1947,13 +1947,13 @@ static void WFP2PMF_WordSetPlayerNameSet( WFP2PMF_DRAW* p_draw, const WFP2PMF_IN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚ÉƒvƒŒƒCƒ„[ID‚ğİ’è‚·‚é
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼IDã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_draw		ƒ[ƒN
- *	@param	cp_init		ƒf[ƒ^
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_init		ãƒ‡ãƒ¼ã‚¿
  *	@param	netid		NETID
- *	@param	set_no		ƒ[ƒhƒZƒbƒg‚Ö‚Ìİ’èêŠ
- *	@param	heapID		ƒq[ƒvID
+ *	@param	set_no		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã¸ã®è¨­å®šå ´æ‰€
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_WordSetPlayerIDSet( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT* cp_init, int netid, int set_no, u32 heapID )
@@ -1967,15 +1967,15 @@ static void WFP2PMF_WordSetPlayerIDSet( WFP2PMF_DRAW* p_draw, const WFP2PMF_INIT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒAƒjƒƒƒCƒ“
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw		ƒ[ƒN
+ *	@param	p_draw		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_PlttAnm( WFP2PMF_DRAW* p_draw )
 {
 	if( p_draw->pltt_count <= 0 ){
-		//  “]‘—
+		//  è»¢é€
 		WFP2PMF_PlttAnm_Trans( p_draw, p_draw->pltt_idx );
 
 		p_draw->pltt_count	= WFP2PMF_BACK_PALANM;
@@ -1987,10 +1987,10 @@ static void WFP2PMF_PlttAnm( WFP2PMF_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒg“]‘—
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_PlttAnm_Trans( WFP2PMF_DRAW* p_draw, u32 idx )
@@ -2009,12 +2009,12 @@ static void WFP2PMF_PlttAnm_Trans( WFP2PMF_DRAW* p_draw, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒCƒXƒ`ƒƒƒbƒg@ƒXƒCƒbƒ`‚ğØ‚è‘Ö‚¦‚é
+ *	@brief	ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã€€ã‚¹ã‚¤ãƒƒãƒã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒXƒCƒbƒ`@ON
- *	@retval	FALSE	ƒXƒCƒbƒ`@OFF
+ *	@retval	TRUE	ã‚¹ã‚¤ãƒƒãƒã€€ON
+ *	@retval	FALSE	ã‚¹ã‚¤ãƒƒãƒã€€OFF
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_VchatSwitch( WFP2PMF_WK* p_wk, u32 heapID )
@@ -2037,9 +2037,9 @@ static BOOL WFP2PMF_VchatSwitch( WFP2PMF_WK* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	@ƒGƒ‰[ƒ`ƒFƒbƒNˆ—
+ *	@brief	ã€€ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_ErrCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_param, u32 heapID )
@@ -2049,7 +2049,7 @@ static void WFP2PMF_ErrCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_param, u32 heapI
 	BOOL timeout;
 //	BOOL parent_status_check;
 	
-	// ƒGƒ‰[‚É‚¢‚Á‚Ä‚¢‚½‚ç”²‚¯‚é
+	// ã‚¨ãƒ©ãƒ¼ã«ã„ã£ã¦ã„ãŸã‚‰æŠœã‘ã‚‹
 	if( p_wk->data.oya ){
 		if( (p_wk->data.status == WFP2PMF_OYA_STATUS_ERR_INIT) ||
 			(p_wk->data.status == WFP2PMF_OYA_STATUS_ERR_INIT01) ||
@@ -2057,20 +2057,20 @@ static void WFP2PMF_ErrCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_param, u32 heapI
 			return ;
 		}
 
-		// ƒGƒ“ƒgƒŠ[”‚ª‚PˆÈ‰º‚Åƒ}ƒbƒ`‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚Í‰½‚à‚µ‚È‚­‚Ä‚æ‚¢
-		// ‚½‚¾‚µAƒGƒ“ƒgƒŠ[”‚ª‚QˆÈã‚É‚È‚Á‚½‚ç‰½‚ç‚©‚Ìƒ`ƒFƒbƒN‚ğs‚¤•K—v‚ª‚ ‚é
-		// ƒGƒ“ƒgƒŠ[”‚P‚Æ‚¢‚¤‚Ì‚Í©•ª‚ªƒGƒ“ƒgƒŠ[‚µ‚Ä‚¢‚éó‘Ô‚Æ‚¢‚¤‚±‚Æ‚Å‚·
-		if( CommWifiIsMatched() <= 2 ){	// ƒ}ƒbƒ`ƒXƒe[ƒg“I‚É‚¨‚©‚µ‚­‚È‚Á‚Ä‚¢‚½‚çAƒGƒ‰[ƒ`ƒFƒbƒN‚·‚é
+		// ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ãŒï¼‘ä»¥ä¸‹ã§ãƒãƒƒãƒã—ã¦ã„ãªã„ã¨ãã¯ä½•ã‚‚ã—ãªãã¦ã‚ˆã„
+		// ãŸã ã—ã€ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ãŒï¼’ä»¥ä¸Šã«ãªã£ãŸã‚‰ä½•ã‚‰ã‹ã®ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†å¿…è¦ãŒã‚ã‚‹
+		// ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ï¼‘ã¨ã„ã†ã®ã¯è‡ªåˆ†ãŒã‚¨ãƒ³ãƒˆãƒªãƒ¼ã—ã¦ã„ã‚‹çŠ¶æ…‹ã¨ã„ã†ã“ã¨ã§ã™
+		if( CommWifiIsMatched() <= 2 ){	// ãƒãƒƒãƒã‚¹ãƒ†ãƒ¼ãƒˆçš„ã«ãŠã‹ã—ããªã£ã¦ã„ãŸã‚‰ã€ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 			if( (WFP2PMF_GetEntryNum( p_wk ) <= 1) && (WFP2PMF_MatchCheck( p_wk ) == FALSE) ){
 				return ;
 			}
 		}
 
 
-		/*WIFIP2PModeCheck‚ğ‚¢‚ê‚é‚Ì‚Å‚¢‚ç‚È‚¢	tomoya 
-		// statusƒ`ƒFƒbƒNØ’fˆ—
+		/*WIFIP2PModeCheckã‚’ã„ã‚Œã‚‹ã®ã§ã„ã‚‰ãªã„	tomoya 
+		// statusãƒã‚§ãƒƒã‚¯åˆ‡æ–­å‡¦ç†
 //		result = WFP2PMF_Oya_CheckConnectPlayer( p_wk, p_param );
-		// status‚ª•s³‚È‚Ğ‚Æ‚ª‚¢‚½‚çI—¹‚Ö
+		// statusãŒä¸æ­£ãªã²ã¨ãŒã„ãŸã‚‰çµ‚äº†ã¸
 	
 //		parent_status_check = TRUE;
 //		//*/
@@ -2086,34 +2086,34 @@ static void WFP2PMF_ErrCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_param, u32 heapI
 
 	}
 
-	// ƒ^ƒCƒ€ƒAƒEƒgƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒã‚§ãƒƒã‚¯
 	timeout = WFP2PMF_TimeOut_Main( p_wk );
 
-	// Ø’fƒ`ƒFƒbƒN
+	// åˆ‡æ–­ãƒã‚§ãƒƒã‚¯
 	result = WFP2PMF_LogOutCheck( p_wk );
 
-	//  ƒGƒ“ƒgƒŠ[”‚æ‚è’ÊMl”‚ªŒ¸‚Á‚½‚çƒGƒ‰[‚Ö
+	//  ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ã‚ˆã‚Šé€šä¿¡äººæ•°ãŒæ¸›ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã¸
 	if( WFP2PMF_GetEntryNum( p_wk ) > CommGetConnectNum() ){
 		connect_num_errror = TRUE;		
 	}else{
 		connect_num_errror = FALSE;		
 	}
 	
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 /*
     if( (CommWifiIsMatched() == 3) || 
-		(CommWifiIsMatched() > 4) ||		// Ø’fƒ`ƒFƒbƒN‚Í‘¼‚Å‚â‚é
+		(CommWifiIsMatched() > 4) ||		// åˆ‡æ–­ãƒã‚§ãƒƒã‚¯ã¯ä»–ã§ã‚„ã‚‹
 */
 	// 080704	tomoya takahashi
-    if( (CommWifiIsMatched() >= 3) ||	// Disconnect‚à‚İ‚é
+    if( (CommWifiIsMatched() >= 3) ||	// Disconnectã‚‚ã¿ã‚‹
 		(CommStateIsWifiError()) || 
 		CommStateIsWifiDisconnect() || 
-		(CommIsConnect(COMM_PARENT_ID) == FALSE) ||	// e‚ÆØ’f‚µ‚½
-		(WFP2PMF_MatchCheck( p_wk ) == FALSE) ||	// ’N‚©‚Æ‚Â‚È‚ª‚Á‚Ä‚¢‚é‚Ì‚ÉA’ÊM‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚Í‚¾‚ß
-		(connect_num_errror == TRUE) ||		// ƒGƒ“ƒgƒŠ[”‚æ‚è’ÊMl”‚ª‚Ö‚Á‚½
-		(timeout == TRUE) ||		// Ú‘±ƒ^ƒCƒ€ƒAƒEƒg
-//		(parent_status_check == FALSE) ||	// e‚Æ’ÊMƒXƒe[ƒ^ƒX‚ªˆê‚©ƒ`ƒFƒbƒNi_WIFI_MACH_STATUSj
-		(result == TRUE) ){			// Ø’f
+		(CommIsConnect(COMM_PARENT_ID) == FALSE) ||	// è¦ªã¨åˆ‡æ–­ã—ãŸ
+		(WFP2PMF_MatchCheck( p_wk ) == FALSE) ||	// èª°ã‹ã¨ã¤ãªãŒã£ã¦ã„ã‚‹ã®ã«ã€é€šä¿¡ã—ã¦ã„ãªã„ã¨ãã¯ã ã‚
+		(connect_num_errror == TRUE) ||		// ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ã‚ˆã‚Šé€šä¿¡äººæ•°ãŒã¸ã£ãŸ
+		(timeout == TRUE) ||		// æ¥ç¶šã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+//		(parent_status_check == FALSE) ||	// è¦ªã¨é€šä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒä¸€ç·’ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆ_WIFI_MACH_STATUSï¼‰
+		(result == TRUE) ){			// åˆ‡æ–­
 
 #ifdef WFP2P_DEBUG
 		if( (CommWifiIsMatched() >= 3) ){
@@ -2139,7 +2139,7 @@ static void WFP2PMF_ErrCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_param, u32 heapI
 		}
 #endif
 
-		// CommWifiIsMatched() == 4‚ÌØ’fˆ—‚Í–³‹‚·‚é
+		// CommWifiIsMatched() == 4ã®åˆ‡æ–­å‡¦ç†ã¯ç„¡è¦–ã™ã‚‹
 		if( p_wk->data.oya ){
 			p_wk->data.status = WFP2PMF_OYA_STATUS_ERR_INIT;
 		}else{
@@ -2150,22 +2150,22 @@ static void WFP2PMF_ErrCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_param, u32 heapI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÄÚ‘±“Æ©‚ÌƒGƒ‰[ƒ`ƒFƒbƒN
+ *	@brief	å†æ¥ç¶šæ™‚ç‹¬è‡ªã®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
  *
  *	@param	p_wk 
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_ReConErrCheck( WFP2PMF_WK* p_wk )
 {
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 #if 0
     if( (CommWifiIsMatched() == 3) || 
-		(CommWifiIsMatched() > 4) ||		// Ø’fƒ`ƒFƒbƒN‚Í‘¼‚Å‚â‚é
-		(CommStateIsWifiError())  ){	// Ø’f
+		(CommWifiIsMatched() > 4) ||		// åˆ‡æ–­ãƒã‚§ãƒƒã‚¯ã¯ä»–ã§ã‚„ã‚‹
+		(CommStateIsWifiError())  ){	// åˆ‡æ–­
 #endif
     if( (CommWifiIsMatched() > 3) || 
 		CommStateIsWifiDisconnect() ||
-		(CommStateIsWifiError())  ){	// Ø’f
+		(CommStateIsWifiError())  ){	// åˆ‡æ–­
 
 #ifdef WFP2P_DEBUG
 		if( (CommWifiIsMatched() >= 3) ){
@@ -2182,12 +2182,12 @@ static void WFP2PMF_ReConErrCheck( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’N‚©‚Æ‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	èª°ã‹ã¨ã¤ãªãŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN 
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯ 
  *
- *	@retval	TRUE	‚Â‚È‚ª‚Á‚Ä‚¢‚é
- *	@retval	FALSE	‚Â‚È‚ª‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ã¤ãªãŒã£ã¦ã„ã‚‹
+ *	@retval	FALSE	ã¤ãªãŒã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_MatchCheck( const WFP2PMF_WK* cp_wk )
@@ -2200,13 +2200,13 @@ static BOOL WFP2PMF_MatchCheck( const WFP2PMF_WK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒ`ƒ“ƒOŠJn
+ *	@brief	ãƒãƒƒãƒãƒ³ã‚°é–‹å§‹
  *
- *	@param	friendno		—F’B”Ô†
- *	@param	type			ƒ}ƒbƒ`ƒ“ƒOƒ^ƒCƒv
+ *	@param	friendno		å‹é”ç•ªå·
+ *	@param	type			ãƒãƒƒãƒãƒ³ã‚°ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	¸”s
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_CommWiFiMatchStart( u32 friendno, u32 type )
@@ -2216,13 +2216,13 @@ static BOOL WFP2PMF_CommWiFiMatchStart( u32 friendno, u32 type )
 	ret = CommWifiBattleStart( friendno );
 	if( ret == TRUE ){
 		switch( type ){
-		case WFP2PMF_TYPE_POFIN:				// ƒ|ƒtƒBƒ“
+		case WFP2PMF_TYPE_POFIN:				// ãƒãƒ•ã‚£ãƒ³
 			CommStateChangeWiFiPofin();
 			break;
 			
-		case WFP2PMF_TYPE_BUCKET:			// ‚½‚Ü‚¢‚ê
-		case WFP2PMF_TYPE_BALANCE_BALL:		// ‚½‚Ü‚Ì‚è	
-		case WFP2PMF_TYPE_BALLOON:			// ‚Ó‚¤‚¹‚ñ‚í‚è
+		case WFP2PMF_TYPE_BUCKET:			// ãŸã¾ã„ã‚Œ
+		case WFP2PMF_TYPE_BALANCE_BALL:		// ãŸã¾ã®ã‚Š	
+		case WFP2PMF_TYPE_BALLOON:			// ãµã†ã›ã‚“ã‚ã‚Š
 			CommStateChangeWiFiClub();	
 			break;
 		}
@@ -2232,12 +2232,12 @@ static BOOL WFP2PMF_CommWiFiMatchStart( u32 friendno, u32 type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e‚ÌƒXƒe[ƒ^ƒX‚Æ©•ª‚ÌƒXƒe[ƒ^ƒX‚ªˆê’v‚·‚é‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	è¦ªã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¨è‡ªåˆ†ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒä¸€è‡´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ˆê’v
- *	@retval	FALSE	ˆê’v‚µ‚È‚¢
+ *	@retval	TRUE	ä¸€è‡´
+ *	@retval	FALSE	ä¸€è‡´ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_CheckP2PMatchFriendStatus( const WFP2PMF_WK* cp_wk, const WFP2PMF_INIT* cp_param, int friend )
@@ -2281,10 +2281,10 @@ static BOOL WFP2PMF_CheckP2PMatchFriendStatus( const WFP2PMF_WK* cp_wk, const WF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ó‘Ô‚ğA•åWó‘Ô‚ğÀsó‘Ô‚É•ÏX‚·‚é
+ *	@brief	çŠ¶æ…‹ã‚’ã€å‹Ÿé›†çŠ¶æ…‹ã‚’å®Ÿè¡ŒçŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_init		ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_init		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_StatusChange( WFP2PMF_WK* p_wk, const WFP2PMF_INIT* cp_init )
@@ -2311,19 +2311,19 @@ static void WFP2PMF_StatusChange( WFP2PMF_WK* p_wk, const WFP2PMF_INIT* cp_init 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒCƒXƒ`ƒƒƒbƒg	ON
+ *	@brief	ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆ	ON
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_StatusVChatOn( WFP2PMF_WK* p_wk )
 {
 	if( p_wk->data.vchat_flag == TRUE ){
-		// ‚à‚¤“®‚¢‚Ä‚¢‚é
+		// ã‚‚ã†å‹•ã„ã¦ã„ã‚‹
 		return FALSE;
 	}
 	
-	// ƒ}ƒbƒ`ƒ“ƒO‚µ‚Ä‚¢‚½‚çƒ{ƒCƒXƒ`ƒƒƒbƒg‚ğ“®‚©‚·
+	// ãƒãƒƒãƒãƒ³ã‚°ã—ã¦ã„ãŸã‚‰ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã‚’å‹•ã‹ã™
 	if( WFP2PMF_MatchCheck( p_wk ) == TRUE ){
 		mydwc_startvchat( HEAPID_WIFI_FOURMATCHVCHAT );
 		p_wk->data.vchat_flag = TRUE;
@@ -2336,7 +2336,7 @@ static BOOL WFP2PMF_StatusVChatOn( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒCƒXƒ`ƒƒƒbƒgOFF
+ *	@brief	ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆOFF
  *
  *	@param	p_wk 
  */
@@ -2344,7 +2344,7 @@ static BOOL WFP2PMF_StatusVChatOn( WFP2PMF_WK* p_wk )
 static BOOL WFP2PMF_StatusVChatOff( WFP2PMF_WK* p_wk )
 {
 	if( p_wk->data.vchat_flag == FALSE ){
-		// ‚à‚¤‚Æ‚Ü‚Á‚Ä‚é
+		// ã‚‚ã†ã¨ã¾ã£ã¦ã‚‹
 		return FALSE;
 	}
 
@@ -2358,24 +2358,24 @@ static BOOL WFP2PMF_StatusVChatOff( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VCHT‚Ìİ’è‚ÆBGM‚ÌƒtƒF[ƒh
+ *	@brief	VCHTã®è¨­å®šã¨BGMã®ãƒ•ã‚§ãƒ¼ãƒ‰
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_StatusVChatOnBmpFade( WFP2PMF_WK* p_wk )
 {
 	if( WFP2PMF_StatusVChatOn( p_wk ) ){
-		// BGM‚Ì‰¹—Ê‚ğ—‚Æ‚·
+		// BGMã®éŸ³é‡ã‚’è½ã¨ã™
 		Snd_VChatVolSetBySeqNo( Snd_NowBgmNoGet() );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VCHT‚Ìİ’è‚ÆBGM‚ÌƒtƒF[ƒh
+ *	@brief	VCHTã®è¨­å®šã¨BGMã®ãƒ•ã‚§ãƒ¼ãƒ‰
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_StatusVChatOffBmpFade( WFP2PMF_WK* p_wk )
@@ -2388,7 +2388,7 @@ static void WFP2PMF_StatusVChatOffBmpFade( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ“ƒgƒŠ[”‚ğæ“¾
+ *	@brief	ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 static int WFP2PMF_GetEntryNum( WFP2PMF_WK* p_wk )
@@ -2402,7 +2402,7 @@ static int WFP2PMF_GetEntryNum( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e‚Æ©•ª‚æ‚è¬‚³‚¢NETID‚Ìl‚ÍENTRYó‘Ô‚É‚·‚é
+ *	@brief	è¦ªã¨è‡ªåˆ†ã‚ˆã‚Šå°ã•ã„NETIDã®äººã¯ENTRYçŠ¶æ…‹ã«ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_SetEntryOya( WFP2PMF_WK* p_wk, u32 heapID )
@@ -2412,7 +2412,7 @@ static BOOL WFP2PMF_SetEntryOya( WFP2PMF_WK* p_wk, u32 heapID )
 	BOOL result = TRUE;
 
 
-	// e‚Æ©•ª‚ÌAID‚æ‚è¬‚³‚¢AID‚Ìq‚ÍƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è¦ªã¨è‡ªåˆ†ã®AIDã‚ˆã‚Šå°ã•ã„AIDã®å­ã¯ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	currentid = CommGetCurrentID();
 	currentid --;
 
@@ -2425,8 +2425,8 @@ static BOOL WFP2PMF_SetEntryOya( WFP2PMF_WK* p_wk, u32 heapID )
 			TOMOYA_PRINT( "entry id = %d\n", i );
 			
 		}else if( CommInfoGetEntry( i ) == FALSE ) {
-			// NEWENTRY‚Å‚à‚È‚­ENTRY‚Å‚à‚È‚¢‚Æ‚«‚ÍA
-			// ‚Ü‚¾ó‚¯æ‚Á‚Ä‚¢‚È‚¢l‚Ìƒf[ƒ^‚ª‚ ‚é
+			// NEWENTRYã§ã‚‚ãªãENTRYã§ã‚‚ãªã„ã¨ãã¯ã€
+			// ã¾ã å—ã‘å–ã£ã¦ã„ãªã„äººã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹
 			result = FALSE;
 		}
 	}
@@ -2436,9 +2436,9 @@ static BOOL WFP2PMF_SetEntryOya( WFP2PMF_WK* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NEWƒGƒ“ƒgƒŠ[‚Ìl‚É’ÊMNG‚ğ‘—M
+ *	@brief	NEWã‚¨ãƒ³ãƒˆãƒªãƒ¼ã®äººã«é€šä¿¡NGã‚’é€ä¿¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_CommSendNewEntryNg( WFP2PMF_WK* p_wk )
@@ -2454,16 +2454,16 @@ static void WFP2PMF_CommSendNewEntryNg( WFP2PMF_WK* p_wk )
 			result.netID  = i;
 			send_result = CommSendData( CNM_WFP2PMF_RESULT, &result, sizeof(WFP2PMF_COMM_RESULT) );
 			GF_ASSERT( send_result == TRUE );
-			CommInfoDeletePlayer( i );	// ‚¢‚È‚¢‚±‚Æ‚É‚·‚é
+			CommInfoDeletePlayer( i );	// ã„ãªã„ã“ã¨ã«ã™ã‚‹
 		}
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Â‚È‚ª‚Á‚Ä‚¢‚é‚·‚×‚Ä‚ÌƒvƒŒƒCƒ„[‚ÉØ’f‚ğ’Ê’m
+ *	@brief	ã¤ãªãŒã£ã¦ã„ã‚‹ã™ã¹ã¦ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«åˆ‡æ–­ã‚’é€šçŸ¥
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */	
 //-----------------------------------------------------------------------------
 static void WFP2PMF_CommSendAllEntryNg( WFP2PMF_WK* p_wk )
@@ -2479,16 +2479,16 @@ static void WFP2PMF_CommSendAllEntryNg( WFP2PMF_WK* p_wk )
 			result.netID  = i;
 			send_result = CommSendData( CNM_WFP2PMF_RESULT, &result, sizeof(WFP2PMF_COMM_RESULT) );
 			GF_ASSERT( send_result == TRUE );
-			CommInfoDeletePlayer( i );	// ‚¢‚È‚¢‚±‚Æ‚É‚·‚é
+			CommInfoDeletePlayer( i );	// ã„ãªã„ã“ã¨ã«ã™ã‚‹
 		}
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	LOG Outƒ`ƒFƒbƒNŠJn
+ *	@brief	LOG Outãƒã‚§ãƒƒã‚¯é–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_LogOutCheckStart( WFP2PMF_WK* p_wk )
@@ -2498,9 +2498,9 @@ static void WFP2PMF_LogOutCheckStart( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	LOG out@ƒ`ƒFƒbƒNI—¹
+ *	@brief	LOG outã€€ãƒã‚§ãƒƒã‚¯çµ‚äº†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_LogOutCheckEnd( WFP2PMF_WK* p_wk )
@@ -2510,12 +2510,12 @@ static void WFP2PMF_LogOutCheckEnd( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	LOGOUTƒ`ƒFƒbƒN
+ *	@brief	LOGOUTãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	LOGƒAƒEƒgŒŸ’m		ERRˆ—‚Ö
- *	@retval	FALSE	LOGƒAƒEƒg‚È‚µ@‚Ü‚½‚ÍŠÖŒW‚È‚¢l‚ªLOGƒAƒEƒg‚µ‚½
+ *	@retval	TRUE	LOGã‚¢ã‚¦ãƒˆæ¤œçŸ¥		ERRå‡¦ç†ã¸
+ *	@retval	FALSE	LOGã‚¢ã‚¦ãƒˆãªã—ã€€ã¾ãŸã¯é–¢ä¿‚ãªã„äººãŒLOGã‚¢ã‚¦ãƒˆã—ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_LogOutCheck( WFP2PMF_WK* p_wk )
@@ -2527,12 +2527,12 @@ static BOOL WFP2PMF_LogOutCheck( WFP2PMF_WK* p_wk )
 		
 		if( p_wk->data.logout_in[i] == TRUE ){
 
-			// ‚»‚Ìl‚ªENTER‚¶‚å‚¤‚½‚¢‚©ƒ`ƒFƒbƒN
+			// ãã®äººãŒENTERã˜ã‚‡ã†ãŸã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( CommInfoGetEntry( p_wk->data.logout_id[i] ) == TRUE ){
 				result = TRUE;
 			}
 
-			// ƒ[ƒN‰Šú‰»
+			// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 			p_wk->data.logout_in[i] = FALSE;
 			p_wk->data.logout_id[i] = 0;
 		}
@@ -2543,10 +2543,10 @@ static BOOL WFP2PMF_LogOutCheck( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	LOGOUTƒR[ƒ‹ƒoƒbƒN	Ø’f‚ÉŒÄ‚Î‚ê‚é
+ *	@brief	LOGOUTã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯	åˆ‡æ–­æ™‚ã«å‘¼ã°ã‚Œã‚‹
  *
- *	@param	aid			Ø’f‚µ‚½AID
- *	@param	pWork		ƒ[ƒN
+ *	@param	aid			åˆ‡æ–­ã—ãŸAID
+ *	@param	pWork		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_LogOutCallBack( u16 aid, void* pWork )
@@ -2559,12 +2559,12 @@ static void WFP2PMF_LogOutCallBack( u16 aid, void* pWork )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒlƒNƒgƒŠƒXƒg‚ğÄ•`‰æ‚·‚é•K—v‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆã‚’å†æç”»ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Ä•`‰æ
- *	@retval FALSE	Ä•`‰æ‚Ì•K—v‚È‚µ
+ *	@retval	TRUE	å†æç”»
+ *	@retval FALSE	å†æç”»ã®å¿…è¦ãªã—
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_ConListWriteCheck( WFP2PMF_WK* p_wk )
@@ -2572,7 +2572,7 @@ static BOOL WFP2PMF_ConListWriteCheck( WFP2PMF_WK* p_wk )
 	int i;
 	BOOL result = FALSE;
 	
-	// ’N‚©‚ÌVCHATƒtƒ‰ƒO‚ª•Ï‚í‚Á‚Ä‚¢‚é
+	// èª°ã‹ã®VCHATãƒ•ãƒ©ã‚°ãŒå¤‰ã‚ã£ã¦ã„ã‚‹
 	for( i=0; i<WIFI_P2PMATCH_NUM_MAX; i++ ){
 		if( p_wk->data.vchat_tmp[i] != p_wk->data.vchat_now[i] ){
 			result = TRUE;
@@ -2580,7 +2580,7 @@ static BOOL WFP2PMF_ConListWriteCheck( WFP2PMF_WK* p_wk )
 		p_wk->data.vchat_tmp[i] = p_wk->data.vchat_now[i];
 	}
 	
-	// Ä•`‰æƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é
+	// å†æç”»ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹
 	if( p_wk->data.conlist_rewrite ){
 		p_wk->data.conlist_rewrite = FALSE;
 		result = TRUE;
@@ -2591,7 +2591,7 @@ static BOOL WFP2PMF_ConListWriteCheck( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒlƒNƒgƒŠƒXƒgÄ•`‰æƒtƒ‰ƒO‚Ìİ’è
+ *	@brief	ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆå†æç”»ãƒ•ãƒ©ã‚°ã®è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_ConListWriteReq( WFP2PMF_WK* p_wk )
@@ -2601,36 +2601,36 @@ static void WFP2PMF_ConListWriteReq( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	COMMINFO‚Ìƒ[ƒN‚ÉƒGƒ“ƒgƒŠ[‚ğİ’è
+ *	@brief	COMMINFOã®ãƒ¯ãƒ¼ã‚¯ã«ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *	@param	aid		AID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_CommInfoSetEntry( WFP2PMF_WK* p_wk, u32 aid, u32 heapID )
 {
-	// ENTRY‚¶‚á‚È‚©‚Á‚½‚çENTRY
+	// ENTRYã˜ã‚ƒãªã‹ã£ãŸã‚‰ENTRY
 	if( CommInfoGetEntry( aid ) == FALSE ){
 		CommInfoSetEntry( aid );
 
-		// ‘O‚ÌNETID‚ğŠi”[
+		// å‰ã®NETIDã‚’æ ¼ç´
 		p_wk->data.last_netid = aid;
 	
-		// OAM•`‰æŠJn
+		// OAMæç”»é–‹å§‹
 		WFP2PMF_DrawOamInit( p_wk, aid, heapID );
 
-		// ƒRƒlƒNƒgƒŠƒXƒgÄ•`‰æ
+		// ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆå†æç”»
 		WFP2PMF_ConListWriteReq( p_wk );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM•`‰æŠJn
+ *	@brief	OAMæç”»é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *	@param	aid			AID
- *	@param	heapID		ƒq[ƒvID
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_DrawOamInit( WFP2PMF_WK* p_wk, u32 aid, u32 heapID )
@@ -2638,12 +2638,12 @@ static void WFP2PMF_DrawOamInit( WFP2PMF_WK* p_wk, u32 aid, u32 heapID )
 	WF2DMAP_OBJDATA objdata;
 	MYSTATUS* p_status;
 
-	// ‚à‚¤ì‚Á‚Ä‚ ‚é‚©‚ç‰½‚à‚µ‚È‚¢
+	// ã‚‚ã†ä½œã£ã¦ã‚ã‚‹ã‹ã‚‰ä½•ã‚‚ã—ãªã„
 	if( p_wk->draw.objdata[aid].p_objwk != NULL ){
 		return ;
 	}
  
-	// ‰Šú‰»ƒf[ƒ^ƒRƒs[
+	// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	objdata = WFP2PMF_OBJData[ aid ];
 	if( aid != CommGetCurrentID() ){
 		p_status = CommInfoGetMyStatus( aid );
@@ -2657,73 +2657,73 @@ static void WFP2PMF_DrawOamInit( WFP2PMF_WK* p_wk, u32 aid, u32 heapID )
 		}
 	}
 	
-	// ƒIƒuƒWƒFƒNƒg‰Šú‰»
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
 	p_wk->draw.objdata[aid].p_objwk = WF2DMAP_OBJWkNew( p_wk->draw.p_objsys, &objdata );
 
 
-	// •`‰æƒŠƒ\[ƒX‚Ì“Ç‚İ
+	// æç”»ãƒªã‚½ãƒ¼ã‚¹ã®èª­è¾¼ã¿
 	if( WF2DMAP_OBJDrawSysResCheck( p_wk->draw.p_objdraw, objdata.charaid ) == FALSE ){
 		WF2DMAP_OBJDrawSysResSet( p_wk->draw.p_objdraw, objdata.charaid, 
 				WF_2DC_MOVETURN, heapID );
 	}
 
 
-	// •`‰æƒ[ƒNì¬
+	// æç”»ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk->draw.objdata[aid].p_objdrawwk = WF2DMAP_OBJDrawWkNew( 
 			p_wk->draw.p_objdraw, p_wk->draw.objdata[aid].p_objwk,
 			FALSE, heapID );
 
-	// Å‰‚Í”ñ•\¦
+	// æœ€åˆã¯éè¡¨ç¤º
 	WF2DMAP_OBJDrawWkDrawFlagSet( p_wk->draw.objdata[aid].p_objdrawwk, FALSE );
 
-	// “®ìŠJn
+	// å‹•ä½œé–‹å§‹
 	p_wk->draw.objdata[aid].seq++;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM•`‰æƒƒCƒ“ˆ—
+ *	@brief	OAMæç”»ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_DrawOamMain( WFP2PMF_WK* p_wk )
 {
 	int i;
 
-	// •`‰æƒIƒuƒWƒFƒNƒg“®ì
+	// æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
 	for( i=0; i<WIFI_P2PMATCH_NUM_MAX; i++ ){
 		pDrawObjMoveFunc[p_wk->draw.objdata[i].seq]( p_wk, &p_wk->draw.objdata[i] );
 	}
 
-	// ƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg“®ì
+	// ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
 	WF2DMAP_OBJSysMain( p_wk->draw.p_objsys );
 	
-	// •`‰æXV
+	// æç”»æ›´æ–°
 	WF2DMAP_OBJDrawSysUpdata( p_wk->draw.p_objdraw );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM•`‰æ”jŠüˆ—
+ *	@brief	OAMæç”»ç ´æ£„å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_DrawOamDelete( WFP2PMF_WK* p_wk )
 {
-	// ‘SƒŠƒ\[ƒX”jŠü
+	// å…¨ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	WF2DMAP_OBJDrawSysAllResDel( p_wk->draw.p_objdraw );
 
-	// •`‰æƒIƒuƒWƒFƒf[ƒ^”jŠü
+	// æç”»ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	memset( p_wk->draw.objdata, 0, sizeof( WFP2PMF_DRAWOBJ )*WIFI_P2PMATCH_CLACTWK_NUM );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‹@‚É’ÊMLOCK‚ğ‘—M
+ *	@brief	å­æ©Ÿã«é€šä¿¡LOCKã‚’é€ä¿¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_NewConLockSend( WFP2PMF_WK* p_wk, u32 aid )
@@ -2739,10 +2739,10 @@ static void WFP2PMF_NewConLockSend( WFP2PMF_WK* p_wk, u32 aid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	last_netID‚ªENTRY‚É‚È‚é‘O‚É‚»‚ê‚æ‚è‘å‚«‚¢NETID‚Ìl‚ªNEWENTRY‚É
- *          ‚È‚Á‚½‚çÄÚ‘±‚µ‚Ä‚à‚ç‚¤
+ *	@brief	last_netIDãŒENTRYã«ãªã‚‹å‰ã«ãã‚Œã‚ˆã‚Šå¤§ãã„NETIDã®äººãŒNEWENTRYã«
+ *          ãªã£ãŸã‚‰å†æ¥ç¶šã—ã¦ã‚‚ã‚‰ã†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_NewConLockNewCon( WFP2PMF_WK* p_wk )
@@ -2750,12 +2750,12 @@ static void WFP2PMF_NewConLockNewCon( WFP2PMF_WK* p_wk )
 	int i;
 	
 	for( i=0; i<WIFI_P2PMATCH_NUM_MAX; i++ ){
-		if( p_wk->data.last_netid+1 < i ){	// ÅŒã‚ÉENTRY‚µ‚½NETID‚æ‚è‘å‚«‚¢
+		if( p_wk->data.last_netid+1 < i ){	// æœ€å¾Œã«ENTRYã—ãŸNETIDã‚ˆã‚Šå¤§ãã„
 
 			if( CommInfoIsBattleNewName( i ) == TRUE ){
-				// Ø’fŠè‚¢‚ğ‘—M
+				// åˆ‡æ–­é¡˜ã„ã‚’é€ä¿¡
 				WFP2PMF_NewConLockSend( p_wk, i );
-				// ƒ†[ƒU[ƒf[ƒ^”jŠü
+				// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 				CommInfoDeletePlayer( i );
 			}
 		}
@@ -2764,9 +2764,9 @@ static void WFP2PMF_NewConLockNewCon( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‚ÌóM‚µ‚½l‚ÌENTRYˆ—
+ *	@brief	å­ã®å—ä¿¡ã—ãŸäººã®ENTRYå‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_KoRecvEntry( WFP2PMF_WK* p_wk, u32 heapID )
@@ -2781,7 +2781,7 @@ static void WFP2PMF_KoRecvEntry( WFP2PMF_WK* p_wk, u32 heapID )
 
 				p_wk->data.entry_on[ i ] = FALSE;
 
-				// V‹KƒRƒlƒNƒg‚ª‚ ‚Á‚½
+				// æ–°è¦ã‚³ãƒã‚¯ãƒˆãŒã‚ã£ãŸ
 				p_wk->data.ko_newcon_flag = TRUE;
 			}
 		}
@@ -2790,9 +2790,9 @@ static void WFP2PMF_KoRecvEntry( WFP2PMF_WK* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	TimeWaitIcon•\¦
+ *	@brief	TimeWaitIconè¡¨ç¤º
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_TimeWaitIconOn( WFP2PMF_WK* p_wk )
@@ -2803,9 +2803,9 @@ static void WFP2PMF_TimeWaitIconOn( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	TimeWaitIcon@”ñ•\¦
+ *	@brief	TimeWaitIconã€€éè¡¨ç¤º
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_TimeWaitIconOff( WFP2PMF_WK* p_wk, const WFP2PMF_INIT* cp_init, u32 heapID )
@@ -2816,10 +2816,10 @@ static void WFP2PMF_TimeWaitIconOff( WFP2PMF_WK* p_wk, const WFP2PMF_INIT* cp_in
 		return ;
 	}
 
-	TimeWaitIconDel(p_wk->draw.p_timewaiticon);  // ƒ^ƒCƒ}[~‚ß
+	TimeWaitIconDel(p_wk->draw.p_timewaiticon);  // ã‚¿ã‚¤ãƒãƒ¼æ­¢ã‚
 	p_wk->draw.p_timewaiticon = NULL;
 	
-	// ƒEƒBƒ“ƒhƒEƒf[ƒ^Ä“]‘—
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿å†è»¢é€
 	wintype = CONFIG_GetWindowType(SaveData_GetConfig(cp_init->p_savedata)); 
 	TalkWinGraphicSet(
 		p_wk->draw.p_bgl, GF_BGL_FRAME1_M, WFP2PMF_BG1_TALKWIN_CGX, WFP2PMF_BG1_TALKWIN_PAL,  wintype, heapID );
@@ -2828,10 +2828,10 @@ static void WFP2PMF_TimeWaitIconOff( WFP2PMF_WK* p_wk, const WFP2PMF_INIT* cp_in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒF	“®ì‚È‚µ
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§	å‹•ä½œãªã—
  *	
- *	@param	p_wk		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+ *	@param	p_wk		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_DrawObjMoveNone( WFP2PMF_WK* p_wk, WFP2PMF_DRAWOBJ* p_obj )
@@ -2840,78 +2840,78 @@ static void WFP2PMF_DrawObjMoveNone( WFP2PMF_WK* p_wk, WFP2PMF_DRAWOBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒFƒNƒg@“®ì‰Šú‰»
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€€å‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_wk		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+ *	@param	p_wk		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_DrawObjMoveInit( WFP2PMF_WK* p_wk, WFP2PMF_DRAWOBJ* p_obj )
 {
 	u32 way;
 	
-	// •`‰æXV’â~
+	// æç”»æ›´æ–°åœæ­¢
 	WF2DMAP_OBJDrawWkUpdataFlagSet( p_obj->p_objdrawwk, FALSE );
 
-	// ‚­‚é‚­‚éƒAƒjƒİ’è
+	// ãã‚‹ãã‚‹ã‚¢ãƒ‹ãƒ¡è¨­å®š
 	WF2DMAP_OBJDrawWkKuruAnimeStart( p_obj->p_objdrawwk );
 
-	// •`‰æŠJn
+	// æç”»é–‹å§‹
 	WF2DMAP_OBJDrawWkDrawFlagSet( p_obj->p_objdrawwk, TRUE );
 
-	// “üo“®ì‚Ö
+	// å…¥å‡ºå‹•ä½œã¸
 	p_obj->seq = WFP2PMF_DRAWOBJ_MOVEIN;
 
-	// “üo“®ìƒGƒtƒFƒNƒgƒ^ƒCƒ€
+	// å…¥å‡ºå‹•ä½œã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ 
 	way = WF2DMAP_OBJWkDataGet( p_obj->p_objwk, WF2DMAP_OBJPM_WAY );
 	p_obj->count = WFP2PMF_DRAWOBJ_INTIME + WFP2PMF_DRAWOBJ_INTIME_DIV[way];
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒFƒNƒg	“üº
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ	å…¥å®¤
  *
- *	@param	p_wk		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+ *	@param	p_wk		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_DrawObjMoveIn( WFP2PMF_WK* p_wk, WFP2PMF_DRAWOBJ* p_obj )
 {
-	// ‚­‚é‚­‚éƒAƒjƒƒƒCƒ“
+	// ãã‚‹ãã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 	WF2DMAP_OBJDrawWkKuruAnimeMain( p_obj->p_objdrawwk );
 
-	// ƒ^ƒCƒ€ŒvZ
+	// ã‚¿ã‚¤ãƒ è¨ˆç®—
 	p_obj->count --;
 	if( p_obj->count <= 0 ){
-		// “üoƒGƒtƒFƒNƒgI—¹
+		// å…¥å‡ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 		WF2DMAP_OBJDrawWkKuruAnimeEnd( p_obj->p_objdrawwk );
 
-		// •`‰æƒAƒbƒvƒf[ƒgŠJn
+		// æç”»ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆé–‹å§‹
 		WF2DMAP_OBJDrawWkUpdataFlagSet( p_obj->p_objdrawwk, TRUE );
 
-		// ’Êí•`‰æ‚Ö
+		// é€šå¸¸æç”»ã¸
 		p_obj->seq = WFP2PMF_DRAWOBJ_MOVENORMAL;
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒFƒNƒg	’Êí
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ	é€šå¸¸æ™‚
  *
- *	@param	p_wk		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+ *	@param	p_wk		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_DrawObjMoveNormal( WFP2PMF_WK* p_wk, WFP2PMF_DRAWOBJ* p_obj )
 {
-	// “Á‚É‰½‚à‚µ‚È‚¢
+	// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VChatƒtƒ‰ƒO‚ğ‘—M
+ *	@brief	VChatãƒ•ãƒ©ã‚°ã‚’é€ä¿¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_VchatCommSend( WFP2PMF_WK* p_wk )
@@ -2923,23 +2923,23 @@ static void WFP2PMF_VchatCommSend( WFP2PMF_WK* p_wk )
 	int vchat;
 	WFP2PMF_COMM_VCHAT comm_vchat;
 
-	// Info‚ª‚È‚­‚È‚Á‚½‚çŒÄ‚Î‚È‚¢
+	// InfoãŒãªããªã£ãŸã‚‰å‘¼ã°ãªã„
 	if( CommInfoIsInitialize() == FALSE ){
 		
 		return ;
 	}
 
-	// ƒGƒ“ƒgƒŠ[Ï‚İ‚Ìl‚Ì”‚ğæ“¾
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ¸ˆã¿ã®äººã®æ•°ã‚’å–å¾—
 	roop_num = CommInfoGetEntryNum();
 	
-	// V‚µ‚¢l‚ª“ü‚Á‚Ä‚«‚½‚çA¡‚Ìƒ{ƒCƒXƒ`ƒƒƒbƒgó‘Ô‚Í‘—M‚·‚é
+	// æ–°ã—ã„äººãŒå…¥ã£ã¦ããŸã‚‰ã€ä»Šã®ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆçŠ¶æ…‹ã¯é€ä¿¡ã™ã‚‹
     if(CommInfoIsNewInfoData()){
 		if(!CommIsSendCommand_ServerSize(CS_COMM_INFO_END)){
 			result = TRUE;
 		}
     }
 	
-	// ’N‚©‚ÌVCHATƒtƒ‰ƒO‚ª•Ï‚í‚Á‚Ä‚¢‚é
+	// èª°ã‹ã®VCHATãƒ•ãƒ©ã‚°ãŒå¤‰ã‚ã£ã¦ã„ã‚‹
 	for( i=0; i<roop_num; i++ ){
 		if( i==COMM_PARENT_ID ){
 			vchat = p_wk->data.p_match->myMatchStatus.vchat;
@@ -2954,7 +2954,7 @@ static void WFP2PMF_VchatCommSend( WFP2PMF_WK* p_wk )
 		p_wk->data.vchat_now[i] =vchat;
 	}
 
-	// ƒtƒ‰ƒO‚ª•Ï‚í‚Á‚Ä‚¢‚½‚ç‘—M‚·‚é
+	// ãƒ•ãƒ©ã‚°ãŒå¤‰ã‚ã£ã¦ã„ãŸã‚‰é€ä¿¡ã™ã‚‹
 	if( result == TRUE ){
 		BOOL send_result;
 		memcpy( comm_vchat.vchat_now, p_wk->data.vchat_now, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );
@@ -2966,12 +2966,12 @@ static void WFP2PMF_VchatCommSend( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒ`ƒ“ƒO‚ªŠ®—¹‚µ‚Äƒ~ƒjƒQ[ƒ€‚ÌŠJn‚Öi‚Ş‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒãƒƒãƒãƒ³ã‚°ãŒå®Œäº†ã—ã¦ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®é–‹å§‹ã¸é€²ã‚€ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOŠ®—¹[„ƒ~ƒjƒQ[ƒ€ŠJn‚Ö
- *	@retval	FALSE	‚Ü‚¾•åW’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°å®Œäº†ãƒ¼ï¼ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é–‹å§‹ã¸
+ *	@retval	FALSE	ã¾ã å‹Ÿé›†ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_MatchOkCheck( WFP2PMF_WK* p_wk )
@@ -2984,7 +2984,7 @@ static BOOL WFP2PMF_MatchOkCheck( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒEƒPƒ“ƒm[ƒg	ƒf[ƒ^İ’è
+ *	@brief	ãƒœã‚¦ã‚±ãƒ³ãƒãƒ¼ãƒˆ	ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
  *	@param	p_param 
  */
@@ -3003,12 +3003,12 @@ static void WFP2PMF_FNOTE_Set( WFP2PMF_INIT* p_param, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ú‘±‚µ‚Ä‚«‚½ƒvƒŒƒCƒ„[‚Ìó‘Ô‚ğƒ`ƒFƒbƒN‚·‚é
+ *	@brief	æ¥ç¶šã—ã¦ããŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®çŠ¶æ…‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	³í
- *	@retval	FALSE	•s³
+ *	@retval	TRUE	æ­£å¸¸
+ *	@retval	FALSE	ä¸æ­£
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_Oya_CheckConnectPlayer( const WFP2PMF_WK* cp_wk, const WFP2PMF_INIT* cp_param )
@@ -3020,28 +3020,28 @@ static BOOL WFP2PMF_Oya_CheckConnectPlayer( const WFP2PMF_WK* cp_wk, const WFP2P
 
 	ret = TRUE;
 	
-	// ’ÊMÚ‘±‚µ‚½l‘Sˆõ‚ÌSTATUS‚ğƒ`ƒFƒbƒN‚µA
-	// •s³‚Èl‚ª‚¢‚½‚çAØ’f‚·‚éB
+	// é€šä¿¡æ¥ç¶šã—ãŸäººå…¨å“¡ã®STATUSã‚’ãƒã‚§ãƒƒã‚¯ã—ã€
+	// ä¸æ­£ãªäººãŒã„ãŸã‚‰ã€åˆ‡æ–­ã™ã‚‹ã€‚
 	for( i=0; i<WIFI_P2PMATCH_NUM_MAX; i++ ){
 		if( i != CommGetCurrentID() ){
 			if( CommIsConnect(i) == TRUE ){
 
-				// STATUSƒ`ƒFƒbƒN
+				// STATUSãƒã‚§ãƒƒã‚¯
 				friend = CommInfoSearchWifiListIndex( i );
 				if( friend != WIFILIST_FRIEND_MAX ){
 					result = WFP2PMF_CheckP2PMatchFriendStatus( cp_wk, cp_param, friend );
 				}else{
 
-					// ‚»‚à‚»‚à‚±‚±‚É‚Í‚±‚È‚¢‚Í‚¸‚¾‚ªA
-					// ‚»‚Ìl‚ğØ’f
+					// ãã‚‚ãã‚‚ã“ã“ã«ã¯ã“ãªã„ã¯ãšã ãŒã€
+					// ãã®äººã‚’åˆ‡æ–­
 					result = FALSE;
 				}
 
-				// Ø’fˆ—
+				// åˆ‡æ–­å‡¦ç†
 				if( result == FALSE ){
 					ret = FALSE;
 
-					// ‚»‚Ìl‚ğØ’f
+					// ãã®äººã‚’åˆ‡æ–­
 					DWC_CloseConnectionHard(i);
 				}
 				
@@ -3055,9 +3055,9 @@ static BOOL WFP2PMF_Oya_CheckConnectPlayer( const WFP2PMF_WK* cp_wk, const WFP2P
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒAƒEƒg	ƒXƒ^[ƒg
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ	ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_TimeOut_Start( WFP2PMF_WK* p_wk )
@@ -3069,9 +3069,9 @@ static void WFP2PMF_TimeOut_Start( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒAƒEƒg	ƒXƒgƒbƒv
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ	ã‚¹ãƒˆãƒƒãƒ—
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFP2PMF_TimeOut_Stop( WFP2PMF_WK* p_wk )
@@ -3081,17 +3081,17 @@ static void WFP2PMF_TimeOut_Stop( WFP2PMF_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒAƒEƒg	ƒƒCƒ“
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒGƒ‰[ó‘Ô
- *	@retval	FALSE	’Êí
+ *	@retval	TRUE	ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹
+ *	@retval	FALSE	é€šå¸¸
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_TimeOut_Main( WFP2PMF_WK* p_wk )
 {
-	// ƒ^ƒCƒ€ƒEƒGƒCƒgƒ`ƒFƒbƒN’†‚©H
+	// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆãƒã‚§ãƒƒã‚¯ä¸­ã‹ï¼Ÿ
 	if( p_wk->data.timeout_flag == FALSE ){
 		return FALSE;
 	}
@@ -3108,19 +3108,19 @@ static BOOL WFP2PMF_TimeOut_Main( WFP2PMF_WK* p_wk )
 
 //-----------------------------------------------------------------------------
 /**
- *		e@ó‘Ô@ŠÖ”
+ *		è¦ªã€€çŠ¶æ…‹ã€€é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	e		‰Šú‰»
+ *	@brief	è¦ª		åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3131,12 +3131,12 @@ static BOOL WFP2PMF_OyaInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID 
 		WFP2PMF_StatusVChatOnBmpFade( p_wk );
 	}
 
-	// •åW’†‚ÍAClosedCallback‚ª—ˆ‚Ä‚àAØ’fˆ—‚É‘JˆÚ‚µ‚È‚¢‚æ‚¤‚ÉƒƒbƒN‚·‚é
+	// å‹Ÿé›†ä¸­ã¯ã€ClosedCallbackãŒæ¥ã¦ã‚‚ã€åˆ‡æ–­å‡¦ç†ã«é·ç§»ã—ãªã„ã‚ˆã†ã«ãƒ­ãƒƒã‚¯ã™ã‚‹
 	mydwc_SetClosedDisconnectFlag( FALSE );
 
-	CommStateSetErrorCheck(FALSE,TRUE);	// Ø’f‚ÍƒGƒ‰[‚¶‚á‚È‚¢
+	CommStateSetErrorCheck(FALSE,TRUE);	// åˆ‡æ–­ã¯ã‚¨ãƒ©ãƒ¼ã˜ã‚ƒãªã„
 
-	// OAM•`‰æŠJn
+	// OAMæç”»é–‹å§‹
 	WFP2PMF_DrawOamInit( p_wk, CommGetCurrentID(), heapID );
 
 	p_wk->data.status = WFP2PMF_OYA_STATUS_CONNECT_WAIT_INIT;
@@ -3146,19 +3146,19 @@ static BOOL WFP2PMF_OyaInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e		ƒRƒlƒNƒg‘Ò‚¿ó‘Ô‰Šú‰»
+ *	@brief	è¦ª		ã‚³ãƒã‚¯ãƒˆå¾…ã¡çŠ¶æ…‹åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaConnectWaitInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// ƒƒbƒZ[ƒW
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_107, heapID );
 
 	p_wk->data.status = WFP2PMF_OYA_STATUS_CONNECT_WAIT;
@@ -3168,14 +3168,14 @@ static BOOL WFP2PMF_OyaConnectWaitInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e		ƒRƒlƒNƒg‘Ò‚¿ó‘Ô
+ *	@brief	è¦ª		ã‚³ãƒã‚¯ãƒˆå¾…ã¡çŠ¶æ…‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaConnectWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3184,13 +3184,13 @@ static BOOL WFP2PMF_OyaConnectWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 	
-	// V‹KƒRƒlƒNƒg‘Ò‚¿
-	// ’ÊM’†‚©ƒ`ƒFƒbƒN
+	// æ–°è¦ã‚³ãƒã‚¯ãƒˆå¾…ã¡
+	// é€šä¿¡ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( WFP2PMF_MatchCheck( p_wk ) == TRUE ){
 		int new_con_netid;
 		WFP2PMF_COMM_RESULT result;
@@ -3201,18 +3201,18 @@ static BOOL WFP2PMF_OyaConnectWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 		if( new_con_netid != INVALID_NETID ){
 
-			// ©•ª‚¾‚Á‚½‚ç‚È‚É‚à‚µ‚È‚¢
+			// è‡ªåˆ†ã ã£ãŸã‚‰ãªã«ã‚‚ã—ãªã„
 			if( p_wk->data.new_con != COMM_PARENT_ID ){
-				// ‚»‚Ìl‚ğ’m‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+				// ãã®äººã‚’çŸ¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if( CommInfoSearchWifiListIndex( new_con_netid ) == WIFILIST_FRIEND_MAX ){
-					// ’m‚ç‚È‚¢‚Ì‚ÅA‹‘”Û‚·‚é
+					// çŸ¥ã‚‰ãªã„ã®ã§ã€æ‹’å¦ã™ã‚‹
 					result.netID	= new_con_netid;
 					result.flag		= WFP2PMF_CON_NG;		
 
-					// Ø’f‚ğ–½—ß‚·‚é
+					// åˆ‡æ–­ã‚’å‘½ä»¤ã™ã‚‹
 					CommInfoDeletePlayer( new_con_netid );
 
-					// q‹@‚É’ÊMØ’f‚ğ’Ê’m
+					// å­æ©Ÿã«é€šä¿¡åˆ‡æ–­ã‚’é€šçŸ¥
 					send_result = CommSendData( CNM_WFP2PMF_RESULT, &result, sizeof(WFP2PMF_COMM_RESULT) );
 					GF_ASSERT( send_result == TRUE );
 
@@ -3224,37 +3224,37 @@ static BOOL WFP2PMF_OyaConnectWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 	}
 
 	do{
-		// i‚Şƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½
+		// é€²ã‚€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸ
 		if( sys.trg & PAD_BUTTON_DECIDE ){
 			Snd_SePlay( _SE_DESIDE );
 
-			// ’ÊM’†‚©ƒ`ƒFƒbƒN
+			// é€šä¿¡ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 			if( WFP2PMF_MatchCheck( p_wk ) == FALSE ){
-				// ’N‚Æ‚àƒ}ƒbƒ`ƒ“ƒO‚µ‚Ä‚¢‚È‚¢
+				// èª°ã¨ã‚‚ãƒãƒƒãƒãƒ³ã‚°ã—ã¦ã„ãªã„
 				p_wk->data.status = WFP2PMF_OYA_STATUS_CONNECT_MIN_INIT;
 				break;
 			}else{
 			
-				// ƒGƒ“ƒgƒŠ[”‚ª‘«‚è‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+				// ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ãŒè¶³ã‚Šã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if( p_init->comm_min <= WFP2PMF_GetEntryNum( p_wk ) ){
 					p_wk->data.status = WFP2PMF_OYA_STATUS_START_INIT00;
 					break;
 				}else{
-					// ‘«‚è‚Ä‚¢‚È‚¢‚Ì‚ÅA—V‚Ô‚Ì‚ğ‚â‚ß‚é‚Ì‚©•·‚«‚É‚¢‚­
+					// è¶³ã‚Šã¦ã„ãªã„ã®ã§ã€éŠã¶ã®ã‚’ã‚„ã‚ã‚‹ã®ã‹èãã«ã„ã
 					p_wk->data.status = WFP2PMF_OYA_STATUS_CONNECT_MIN_INIT;
 					break;
 				}
 			}
 		}
-		// ƒLƒƒƒ“ƒZƒ‹‰Ÿ‚µƒ`ƒFƒbƒN
+		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«æŠ¼ã—ãƒã‚§ãƒƒã‚¯
 		if( sys.trg & PAD_BUTTON_CANCEL ){
 			Snd_SePlay( _SE_DESIDE );
-//			p_wk->data.status = WFP2PMF_OYA_STATUS_END_INIT00;	// I—¹ƒ`ƒFƒbƒN‚ğ‚Q‚©‚çs‚¤
-			p_wk->data.status = WFP2PMF_OYA_STATUS_END2_INIT00;	// I—¹ƒ`ƒFƒbƒN‚ğ‚Q‚©‚çs‚¤
+//			p_wk->data.status = WFP2PMF_OYA_STATUS_END_INIT00;	// çµ‚äº†ãƒã‚§ãƒƒã‚¯ã‚’ï¼’ã‹ã‚‰è¡Œã†
+			p_wk->data.status = WFP2PMF_OYA_STATUS_END2_INIT00;	// çµ‚äº†ãƒã‚§ãƒƒã‚¯ã‚’ï¼’ã‹ã‚‰è¡Œã†
 			break;
 		}
 		
-		// VƒRƒlƒNƒg‚ª‚«‚½I
+		// æ–°ã‚³ãƒã‚¯ãƒˆãŒããŸï¼
 		if( p_wk->data.new_con != INVALID_NETID ){
 
 			Snd_SePlay( _SE_DESIDE );
@@ -3263,7 +3263,7 @@ static BOOL WFP2PMF_OyaConnectWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 			break;
 		}
 
-		// ƒ{ƒCƒXƒ`ƒƒƒbƒgƒ`ƒFƒbƒN
+		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 		if( sys.trg & PAD_BUTTON_X ){
 			p_wk->data.status = WFP2PMF_OYA_STATUS_VCHAT_INIT00;
 			Snd_SePlay( _SE_DESIDE );
@@ -3277,23 +3277,23 @@ static BOOL WFP2PMF_OyaConnectWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e			VƒRƒlƒNƒg‘I‘ğ@‰Šú‰»00
+ *	@brief	è¦ª			æ–°ã‚³ãƒã‚¯ãƒˆé¸æŠã€€åˆæœŸåŒ–00
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaConnectSelectInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 
-	// ‚»‚Ìl‚Ìî•ñ•\¦
+	// ãã®äººã®æƒ…å ±è¡¨ç¤º
 	WFP2PMF_GraphicNewConStrPut( &p_wk->draw, p_init, p_wk->data.new_con, heapID );
 
-	// ƒƒbƒZ[ƒW‚Ì•\¦
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_108, heapID );
 
 	p_wk->data.status = WFP2PMF_OYA_STATUS_CONNECT_SELECT_INIT01;
@@ -3303,27 +3303,27 @@ static BOOL WFP2PMF_OyaConnectSelectInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e			VƒRƒlƒNƒg‘I‘ğ@‰Šú‰»01
+ *	@brief	è¦ª			æ–°ã‚³ãƒã‚¯ãƒˆé¸æŠã€€åˆæœŸåŒ–01
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaConnectSelectInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	BOOL result;
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
 
-	// YESNOƒEƒBƒ“ƒhƒE‚ğo‚·
+	// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
 	p_wk->draw.p_yesnowin = BmpYesNoSelectInit( p_wk->draw.p_bgl,
 							&WFP2PMF_YESNOBMPDAT,
 							WFP2PMF_BG2_MENUWIN_CGX, WFP2PMF_BG2_MENUWIN_PAL,
@@ -3335,14 +3335,14 @@ static BOOL WFP2PMF_OyaConnectSelectInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@VƒRƒlƒNƒg‘I‘ğ
+ *	@brief	è¦ªã€€æ–°ã‚³ãƒã‚¯ãƒˆé¸æŠ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaConnectSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3351,54 +3351,54 @@ static BOOL WFP2PMF_OyaConnectSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u3
 	WFP2PMF_COMM_RESULT result;
 	BOOL send_result;
 	
-	// YES‚È‚çƒRƒlƒNƒg@No‚È‚çØ’f
+	// YESãªã‚‰ã‚³ãƒã‚¯ãƒˆã€€Noãªã‚‰åˆ‡æ–­
 	yesno_ret = BmpYesNoSelectMain( p_wk->draw.p_yesnowin, heapID );
 
 	
 	if( yesno_ret != BMPMENU_NULL ){
 		result.netID = p_wk->data.new_con;
 	
-		if( yesno_ret == 0 ){	// ‚Í‚¢‚ğ‘I‘ğ
+		if( yesno_ret == 0 ){	// ã¯ã„ã‚’é¸æŠ
 			result.flag = WFP2PMF_CON_OK;		
 
-			// ƒGƒ“ƒgƒŠ[
+			// ã‚¨ãƒ³ãƒˆãƒªãƒ¼
 			WFP2PMF_CommInfoSetEntry( p_wk, p_wk->data.new_con, heapID );
 
 			
-			// Vchat’†‚È‚ç
+			// Vchatä¸­ãªã‚‰
 			if( p_wk->data.p_match->myMatchStatus.vchat == TRUE ){
-				// ƒ{ƒCƒXƒ`ƒƒƒbƒgOFF
+				// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆOFF
 				WFP2PMF_StatusVChatOff( p_wk );
 			
-				// ƒ{ƒCƒXƒ`ƒƒƒbƒgON
+				// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆON
 				WFP2PMF_StatusVChatOnBmpFade( p_wk );
 			}
 
 
-			// l”‚ªMAX‚É‚È‚Á‚½‚çƒQ[ƒ€ŠJn‚Ö
+			// äººæ•°ãŒMAXã«ãªã£ãŸã‚‰ã‚²ãƒ¼ãƒ é–‹å§‹ã¸
 			if( p_init->comm_max <= WFP2PMF_GetEntryNum( p_wk ) ){
 				p_wk->data.status = WFP2PMF_OYA_STATUS_START_INIT00;
 			}else{
-				// MAX‚É‚È‚Á‚Ä‚¢‚È‚¢‚È‚ç‘Ò‚¿ó‘Ô‚É–ß‚·
+				// MAXã«ãªã£ã¦ã„ãªã„ãªã‚‰å¾…ã¡çŠ¶æ…‹ã«æˆ»ã™
 				p_wk->data.status = WFP2PMF_OYA_STATUS_CONNECT_WAIT_INIT;
 			}
 
 		}else{
 
 			result.flag = WFP2PMF_CON_NG;		
-			// ƒLƒƒƒ“ƒZƒ‹‚È‚çØ’f
-			// Ø’f‚ğ–½—ß‚·‚é
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãªã‚‰åˆ‡æ–­
+			// åˆ‡æ–­ã‚’å‘½ä»¤ã™ã‚‹
 			CommInfoDeletePlayer( p_wk->data.new_con );
 
-			// ‘Ò‚¿ó‘Ô‚É–ß‚é
+			// å¾…ã¡çŠ¶æ…‹ã«æˆ»ã‚‹
 			p_wk->data.status = WFP2PMF_OYA_STATUS_CONNECT_WAIT_INIT;
 		}
 
-		// q‹@‚É’ÊMOK‚ğ’Ê’m
+		// å­æ©Ÿã«é€šä¿¡OKã‚’é€šçŸ¥
 		send_result = CommSendData( CNM_WFP2PMF_RESULT, &result, sizeof(WFP2PMF_COMM_RESULT) );
 		GF_ASSERT( send_result == TRUE );
 
-		// V‹KƒRƒlƒNƒgI—¹
+		// æ–°è¦ã‚³ãƒã‚¯ãƒˆçµ‚äº†
 		p_wk->data.new_con = INVALID_NETID;
 		WFP2PMF_GraphicNewConStrOff( &p_wk->draw );
 		p_wk->draw.p_yesnowin = NULL;
@@ -3408,19 +3408,19 @@ static BOOL WFP2PMF_OyaConnectSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ŠJn‚µ‚½‚¢‚¯‚ÇAl”‚ª‘«‚è‚È‚©‚Á‚½‚Æ‚«	‰Šú‰»
+ *	@brief	è¦ªã€€é–‹å§‹ã—ãŸã„ã‘ã©ã€äººæ•°ãŒè¶³ã‚Šãªã‹ã£ãŸã¨ã	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaConnectMinInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// ƒƒbƒZ[ƒW•\¦
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_122, heapID );
 
 	p_wk->data.status = WFP2PMF_OYA_STATUS_CONNECT_MIN;
@@ -3429,14 +3429,14 @@ static BOOL WFP2PMF_OyaConnectMinInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ŠJn‚µ‚½‚¢‚¯‚ÇAl”‚ª‘«‚è‚È‚©‚Á‚½‚Æ‚«
+ *	@brief	è¦ªã€€é–‹å§‹ã—ãŸã„ã‘ã©ã€äººæ•°ãŒè¶³ã‚Šãªã‹ã£ãŸã¨ã
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaConnectMin( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3444,31 +3444,31 @@ static BOOL WFP2PMF_OyaConnectMin( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 	BOOL result;
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// ‚â‚ß‚é‚©•·‚­ƒV[ƒPƒ“ƒX‚Ö
+	// ã‚„ã‚ã‚‹ã‹èãã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 	p_wk->data.status = WFP2PMF_OYA_STATUS_END_INIT00;
 	return FALSE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ŠJn	‰Šú‰»
+ *	@brief	è¦ªã€€é–‹å§‹	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaStartInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// ƒƒbƒZ[ƒW•\¦	‚±‚Ìƒƒ“ƒo[‚Å‚æ‚ë‚µ‚¢‚Å‚·‚ªH
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ã“ã®ãƒ¡ãƒ³ãƒãƒ¼ã§ã‚ˆã‚ã—ã„ã§ã™ãŒï¼Ÿ
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_111, heapID );
 
 	p_wk->data.status = WFP2PMF_OYA_STATUS_START_INIT01;
@@ -3477,14 +3477,14 @@ static BOOL WFP2PMF_OyaStartInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ŠJn	‰Šú‰»
+ *	@brief	è¦ªã€€é–‹å§‹	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaStartInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3492,12 +3492,12 @@ static BOOL WFP2PMF_OyaStartInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 	BOOL result;
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// YESNOƒEƒBƒ“ƒhƒE‚ğo‚·
+	// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
 	p_wk->draw.p_yesnowin = BmpYesNoSelectInit( p_wk->draw.p_bgl,
 							&WFP2PMF_YESNOBMPDAT,
 							WFP2PMF_BG2_MENUWIN_CGX, WFP2PMF_BG2_MENUWIN_PAL,
@@ -3509,29 +3509,29 @@ static BOOL WFP2PMF_OyaStartInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ŠJn	‘I‘ğ
+ *	@brief	è¦ªã€€é–‹å§‹	é¸æŠ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaStartSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	int yesno_ret;
 	
-	// YES‚È‚çƒRƒlƒNƒg@No‚È‚çØ’f
+	// YESãªã‚‰ã‚³ãƒã‚¯ãƒˆã€€Noãªã‚‰åˆ‡æ–­
 	yesno_ret = BmpYesNoSelectMain( p_wk->draw.p_yesnowin, heapID );
 	if( yesno_ret != BMPMENU_NULL ){
-		if( yesno_ret == 0 ){	// ‚Í‚¢‚ğ‘I‘ğ
+		if( yesno_ret == 0 ){	// ã¯ã„ã‚’é¸æŠ
 
 			p_wk->data.status = WFP2PMF_OYA_STATUS_START;
 		}else{
 
-			// l”‚ªMAX‚É‚È‚Á‚½‚çƒQ[ƒ€I—¹‚Ö
+			// äººæ•°ãŒMAXã«ãªã£ãŸã‚‰ã‚²ãƒ¼ãƒ çµ‚äº†ã¸
 			if( p_init->comm_max <= WFP2PMF_GetEntryNum( p_wk ) ){
 				p_wk->data.status = WFP2PMF_OYA_STATUS_END_INIT00;
 			}else{
@@ -3539,7 +3539,7 @@ static BOOL WFP2PMF_OyaStartSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 			}
 		}
 
-		// I—¹
+		// çµ‚äº†
 		p_wk->draw.p_yesnowin = NULL;
 	}
 	
@@ -3548,37 +3548,37 @@ static BOOL WFP2PMF_OyaStartSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ÀÛ‚ÉŠJn
+ *	@brief	è¦ªã€€å®Ÿéš›ã«é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaStart( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// “¯ŠúŠJnƒ^ƒCƒ}[ƒZƒbƒg
+	// åŒæœŸé–‹å§‹ã‚¿ã‚¤ãƒãƒ¼ã‚»ãƒƒãƒˆ
 	p_wk->data.timer = 30;
 
-	// ENTRYˆÈŠO‚Ìl‚ğØ’f‚·‚é
+	// ENTRYä»¥å¤–ã®äººã‚’åˆ‡æ–­ã™ã‚‹
 	WFP2PMF_CommSendNewEntryNg( p_wk );
 
-	// ’ÊM‘Ò‹@’†ƒƒbƒZ[ƒW•\¦
+	// é€šä¿¡å¾…æ©Ÿä¸­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_066, heapID );
 
-	// ‘Ò‚¿ƒAƒCƒRƒ“•\¦
+	// å¾…ã¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 	WFP2PMF_TimeWaitIconOn( p_wk );
 
-	// ƒ^ƒCƒ€ƒEƒGƒCƒgŠJn
+	// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆé–‹å§‹
 	WFP2PMF_TimeOut_Start( p_wk );
 
-	// l”ƒ`ƒFƒbƒN‚Ö
+	// äººæ•°ãƒã‚§ãƒƒã‚¯ã¸
 	p_wk->data.status = WFP2PMF_OYA_STATUS_STARTNUMCHECK;
 
-	// ƒNƒ‰ƒCƒAƒ“ƒgƒƒbƒN‚ğˆê‰‰ğœ
+	// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ­ãƒƒã‚¯ã‚’ä¸€å¿œè§£é™¤
 	mydwc_ResetClientBlock();
 	
 	return FALSE;
@@ -3586,14 +3586,14 @@ static BOOL WFP2PMF_OyaStart( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ŠJn‘O‚É@’ÊMl”ƒ`ƒFƒbƒN
+ *	@brief	è¦ªã€€é–‹å§‹å‰ã«ã€€é€šä¿¡äººæ•°ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaStartNumCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3601,24 +3601,24 @@ static BOOL WFP2PMF_OyaStartNumCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u3
 	int result;
 	
 	
-	// ENTRYl”‚Æ’ÊM’†‚Ìl”‚ªˆê‚É‚È‚Á‚½‚çI‚í‚é
+	// ENTRYäººæ•°ã¨é€šä¿¡ä¸­ã®äººæ•°ãŒä¸€ç·’ã«ãªã£ãŸã‚‰çµ‚ã‚ã‚‹
 	if( CommGetConnectNum() != CommInfoGetEntryNum() ){
 		TOMOYA_PRINT( "connectnum notmatch\n" );
-		// ENTRYˆÈŠO‚Ìl‚ğØ’f‚·‚é
+		// ENTRYä»¥å¤–ã®äººã‚’åˆ‡æ–­ã™ã‚‹
 		WFP2PMF_CommSendNewEntryNg( p_wk );
 		return FALSE;
 	}
 
-	// V‹KƒRƒlƒNƒgƒƒbƒN
+	// æ–°è¦ã‚³ãƒã‚¯ãƒˆãƒ­ãƒƒã‚¯
 	result = mydwc_SetClientBlock();
 	if( result == FALSE ){
 		TOMOYA_PRINT( "mydwc_SetClientBlock false  %d  \n", result );
 		return FALSE;
 	}
 
-	// ClosedCallback‚ª‚«‚½‚çØ’fˆ—‚Ö‘JˆÚ‚·‚é
+	// ClosedCallbackãŒããŸã‚‰åˆ‡æ–­å‡¦ç†ã¸é·ç§»ã™ã‚‹
 	mydwc_SetClosedDisconnectFlag( TRUE );
-	// “¯ŠúŠJn‚Ö
+	// åŒæœŸé–‹å§‹ã¸
 	p_wk->data.status = WFP2PMF_OYA_STATUS_STARTSYNC_INIT;
 
 	return FALSE;
@@ -3626,14 +3626,14 @@ static BOOL WFP2PMF_OyaStartNumCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@“¯ŠúŠJn
+ *	@brief	è¦ªã€€åŒæœŸé–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaStartSyncInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3641,7 +3641,7 @@ static BOOL WFP2PMF_OyaStartSyncInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u3
 	BOOL result;	
 
 	if(p_wk->data.timer == 0){
-		result = CommSendData( CNM_WFP2PMF_START, NULL, 0 );	// ƒQ[ƒ€ŠJn
+		result = CommSendData( CNM_WFP2PMF_START, NULL, 0 );	// ã‚²ãƒ¼ãƒ é–‹å§‹
 		if( result ){
 			p_wk->data.status = WFP2PMF_OYA_STATUS_STARTSYNC;
 		}
@@ -3654,21 +3654,21 @@ static BOOL WFP2PMF_OyaStartSyncInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@“¯Šú‘Ò‚¿
+ *	@brief	è¦ªã€€åŒæœŸå¾…ã¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaStartSync( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	if(CommIsTimingSync(_TIMING_GAME_CHECK)){
 
-		// ƒXƒe[ƒ^ƒX‘‚«Š·‚¦
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›¸ãæ›ãˆ
 		WFP2PMF_StatusChange( p_wk, p_init );
 
 		CommToolTempDataReset();
@@ -3680,14 +3680,14 @@ static BOOL WFP2PMF_OyaStartSync( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 he
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ƒXƒe[ƒ^ƒX‘—M
+ *	@brief	è¦ªã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é€ä¿¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaStateSend( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3705,14 +3705,14 @@ static BOOL WFP2PMF_OyaStateSend( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 he
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
+ *	@brief	è¦ªã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaStateCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3723,7 +3723,7 @@ static BOOL WFP2PMF_OyaStateCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 	const u16* cp_data;
 	int ok_num;
 
-	// ƒGƒ“ƒgƒŠ[”‚ğæ“¾
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ã‚’å–å¾—
 	con_num = WFP2PMF_GetEntryNum( p_wk );
 
 	current_id = CommGetCurrentID();
@@ -3734,10 +3734,10 @@ static BOOL WFP2PMF_OyaStateCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 		if( current_id != i ){
 
-			// ƒXƒe[ƒ^ƒX‚ªˆê‚©ƒ`ƒFƒbƒN
+			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒä¸€ç·’ã‹ãƒã‚§ãƒƒã‚¯
 			cp_data = CommToolGetTempData( i );	
 
-			// ƒXƒe[ƒ^ƒX‚ÌóM‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å—ä¿¡ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( cp_data != NULL ){
 				if( cp_data[ 0 ] == p_wk->data.p_match->myMatchStatus.status ){
 					ok_num ++;
@@ -3746,12 +3746,12 @@ static BOOL WFP2PMF_OyaStateCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 				}
 			}
 		}else{
-			// ©•ª‚ÍOK
+			// è‡ªåˆ†ã¯OK
 			ok_num ++;
 		}
 	}
 
-	// ‘Sˆõ‚ÌƒXƒe[ƒ^ƒX‚ğóM‚µ‚Äƒ`ƒFƒbƒNŒ‹‰Ê‚ªOK‚È‚çŸ‚Ìˆ—‚Ö
+	// å…¨å“¡ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å—ä¿¡ã—ã¦ãƒã‚§ãƒƒã‚¯çµæœãŒOKãªã‚‰æ¬¡ã®å‡¦ç†ã¸
 	if( ok_num == con_num ){
 		p_wk->data.status = WFP2PMF_OYA_STATUS_MYSTATUS_WAIT;
 	}
@@ -3760,14 +3760,14 @@ static BOOL WFP2PMF_OyaStateCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
+ *	@brief	è¦ªã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaMyStatusWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3782,26 +3782,26 @@ static BOOL WFP2PMF_OyaMyStatusWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@	ƒQ[ƒ€ŠJn
+ *	@brief	è¦ªã€€	ã‚²ãƒ¼ãƒ é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaGameStart( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	if(CommIsTimingSync(_TIMING_GAME_START2)){
-		// “¯ŠúŠJn‚È‚Ç
+		// åŒæœŸé–‹å§‹ãªã©
 		p_wk->data.match_result = TRUE;
 
-		// ƒ{ƒEƒPƒ“ƒm[ƒgİ’è
+		// ãƒœã‚¦ã‚±ãƒ³ãƒãƒ¼ãƒˆè¨­å®š
 		WFP2PMF_FNOTE_Set( p_init, heapID );
 		
-		// WaitIcon‚ğÁ‚·
+		// WaitIconã‚’æ¶ˆã™
 		WFP2PMF_TimeWaitIconOff( p_wk, p_init, heapID );
 
 		return TRUE;
@@ -3811,19 +3811,19 @@ static BOOL WFP2PMF_OyaGameStart( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 he
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@I—¹ƒ`ƒFƒbƒN@‰Šú‰»
+ *	@brief	è¦ªã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯ã€€åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaEndInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// ƒƒbƒZ[ƒW‚Ì•\¦
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_123, heapID );
 
 	p_wk->data.status = WFP2PMF_OYA_STATUS_END_INIT01;
@@ -3833,26 +3833,26 @@ static BOOL WFP2PMF_OyaEndInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 he
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@I—¹ƒ`ƒFƒbƒN@‰Šú‰»
+ *	@brief	è¦ªã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯ã€€åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaEndInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	BOOL result;
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// YESNOƒEƒBƒ“ƒhƒE‚ğo‚·
+	// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
 	p_wk->draw.p_yesnowin = BmpYesNoSelectInitEx( p_wk->draw.p_bgl,
 							&WFP2PMF_YESNOBMPDAT,
 							WFP2PMF_BG2_MENUWIN_CGX, WFP2PMF_BG2_MENUWIN_PAL,
@@ -3864,30 +3864,30 @@ static BOOL WFP2PMF_OyaEndInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 he
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@I—¹ƒ`ƒFƒbƒN
+ *	@brief	è¦ªã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaEndSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	int yesno_ret;
 	
-	// YES‚È‚çƒRƒlƒNƒg@No‚È‚çØ’f
+	// YESãªã‚‰ã‚³ãƒã‚¯ãƒˆã€€Noãªã‚‰åˆ‡æ–­
 	yesno_ret = BmpYesNoSelectMain( p_wk->draw.p_yesnowin, heapID );
 	if( yesno_ret != BMPMENU_NULL ){
-		if( yesno_ret == 0 ){	// ‚Í‚¢‚ğ‘I‘ğ
+		if( yesno_ret == 0 ){	// ã¯ã„ã‚’é¸æŠ
 			p_wk->data.status = WFP2PMF_OYA_STATUS_END2_INIT00;
 		}else{
 
-			// ’ÊM‚µ‚Ä‚é‚©ƒ`ƒFƒbƒN
+			// é€šä¿¡ã—ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( WFP2PMF_MatchCheck( p_wk ) ){
-				// l”‚ªMAX‚É‚È‚Á‚½‚çƒQ[ƒ€I—¹‚Ö
+				// äººæ•°ãŒMAXã«ãªã£ãŸã‚‰ã‚²ãƒ¼ãƒ çµ‚äº†ã¸
 				if( p_init->comm_max <= WFP2PMF_GetEntryNum( p_wk ) ){
 					p_wk->data.status = WFP2PMF_OYA_STATUS_START_INIT00;
 				}else{
@@ -3905,19 +3905,19 @@ static BOOL WFP2PMF_OyaEndSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 he
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@I—¹ƒ`ƒFƒbƒN2
+ *	@brief	è¦ªã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯2
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaEnd2Init00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// ƒƒbƒZ[ƒW•\¦	‚±‚Ìƒƒ“ƒo[‚Å‚æ‚ë‚µ‚¢‚Å‚·‚ªH
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ã“ã®ãƒ¡ãƒ³ãƒãƒ¼ã§ã‚ˆã‚ã—ã„ã§ã™ãŒï¼Ÿ
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_124, heapID );
 
 	p_wk->data.status = WFP2PMF_OYA_STATUS_END2_INIT01;
@@ -3926,14 +3926,14 @@ static BOOL WFP2PMF_OyaEnd2Init00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@I—¹ƒ`ƒFƒbƒN2
+ *	@brief	è¦ªã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯2
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaEnd2Init01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -3941,12 +3941,12 @@ static BOOL WFP2PMF_OyaEnd2Init01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 	BOOL result;
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// YESNOƒEƒBƒ“ƒhƒE‚ğo‚·
+	// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
 	p_wk->draw.p_yesnowin = BmpYesNoSelectInitEx( p_wk->draw.p_bgl,
 							&WFP2PMF_YESNOBMPDAT,
 							WFP2PMF_BG2_MENUWIN_CGX, WFP2PMF_BG2_MENUWIN_PAL,
@@ -3957,31 +3957,31 @@ static BOOL WFP2PMF_OyaEnd2Init01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@I—¹ƒ`ƒFƒbƒN2
+ *	@brief	è¦ªã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯2
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaEnd2Select( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	int yesno_ret;
 	
-	// YES‚È‚çƒRƒlƒNƒg@No‚È‚çØ’f
+	// YESãªã‚‰ã‚³ãƒã‚¯ãƒˆã€€Noãªã‚‰åˆ‡æ–­
 	yesno_ret = BmpYesNoSelectMain( p_wk->draw.p_yesnowin, heapID );
 	if( yesno_ret != BMPMENU_NULL ){
-		if( yesno_ret == 0 ){	// ‚Í‚¢‚ğ‘I‘ğ
+		if( yesno_ret == 0 ){	// ã¯ã„ã‚’é¸æŠ
 
 			p_wk->data.status = WFP2PMF_OYA_STATUS_END3_INIT;
 		}else{
 
-			// ’ÊM‚µ‚Ä‚é‚©ƒ`ƒFƒbƒN
+			// é€šä¿¡ã—ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( WFP2PMF_MatchCheck( p_wk ) ){
-				// l”‚ªMAX‚É‚È‚Á‚½‚çƒQ[ƒ€I—¹‚Ö
+				// äººæ•°ãŒMAXã«ãªã£ãŸã‚‰ã‚²ãƒ¼ãƒ çµ‚äº†ã¸
 				if( p_init->comm_max <= WFP2PMF_GetEntryNum( p_wk ) ){
 					p_wk->data.status = WFP2PMF_OYA_STATUS_START_INIT00;
 				}else{
@@ -3992,7 +3992,7 @@ static BOOL WFP2PMF_OyaEnd2Select( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 			}
 		}
 
-		// I—¹
+		// çµ‚äº†
 		p_wk->draw.p_yesnowin = NULL;
 	}
 	
@@ -4001,21 +4001,21 @@ static BOOL WFP2PMF_OyaEnd2Select( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@I—¹ƒ`ƒFƒbƒN3
+ *	@brief	è¦ªã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯3
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaEnd3Init( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_125, heapID );
 
-	// ƒƒbƒZ[ƒW•\¦ŠÔŠu
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–“éš”
 	p_wk->data.timer = WIFI_P2PMATCH_MSG_WAIT;
 
 	p_wk->data.status = WFP2PMF_OYA_STATUS_END;
@@ -4024,14 +4024,14 @@ static BOOL WFP2PMF_OyaEnd3Init( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 hea
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@I—¹ˆ—
+ *	@brief	è¦ªã€€çµ‚äº†å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaEnd( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -4039,12 +4039,12 @@ static BOOL WFP2PMF_OyaEnd( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 	BOOL result;
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// ƒƒbƒZ[ƒW•\¦ŠÔ‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ™‚é–“ãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	p_wk->data.timer --;
 	if( p_wk->data.timer > 0 ){
 		return FALSE;
@@ -4053,45 +4053,45 @@ static BOOL WFP2PMF_OyaEnd( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 	
 	p_wk->data.match_result = FALSE;
 
-	// ƒ}ƒbƒ`ƒ“ƒO’†‚È‚çƒ}ƒbƒ`ƒ“ƒO‚ğ‰ğœ
-//	if( WFP2PMF_MatchCheck(p_wk) ){  //Ä“x‚Â‚È‚¬’¼‚·ˆ—‚ÖˆÚs‚·‚é 080525/k.o/0193
+	// ãƒãƒƒãƒãƒ³ã‚°ä¸­ãªã‚‰ãƒãƒƒãƒãƒ³ã‚°ã‚’è§£é™¤
+//	if( WFP2PMF_MatchCheck(p_wk) ){  //å†åº¦ã¤ãªãç›´ã™å‡¦ç†ã¸ç§»è¡Œã™ã‚‹ 080525/k.o/0193
         CommStateWifiMatchEnd();
 //	}
 
-	// ‚İ‚ñ‚ÈØ’f‚·‚é
+	// ã¿ã‚“ãªåˆ‡æ–­ã™ã‚‹
 	WFP2PMF_CommSendAllEntryNg( p_wk );
 
-	// ’ÊMó‘Ô‚ğŒ³‚É–ß‚·
+	// é€šä¿¡çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 	CommStateChangeWiFiLogin();
 
 
-	CommStateSetErrorCheck(FALSE,TRUE);  // ƒGƒ‰[‚ª‚ ‚Á‚½‚ç”½‰‚·‚é 080525/k.o/0193
+	CommStateSetErrorCheck(FALSE,TRUE);  // ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸã‚‰åå¿œã™ã‚‹ 080525/k.o/0193
 	
 	return TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ƒGƒ‰[ˆ—	‰Šú‰»
+ *	@brief	è¦ªã€€ã‚¨ãƒ©ãƒ¼å‡¦ç†	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaErrInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// YesNo‚Ìƒ[ƒN‚ª‚ ‚Á‚½‚ç”jŠü
+	// YesNoã®ãƒ¯ãƒ¼ã‚¯ãŒã‚ã£ãŸã‚‰ç ´æ£„
 	if( p_wk->draw.p_yesnowin != NULL ){
 		BmpYesNoWinDel( p_wk->draw.p_yesnowin, heapID );
 		p_wk->draw.p_yesnowin = NULL;
 	}
 	WFP2PMF_GraphicNewConStrOff( &p_wk->draw );
 
-	// ‘Ò‚¿ƒAƒCƒRƒ“”ñ•\¦
+	// å¾…ã¡ã‚¢ã‚¤ã‚³ãƒ³éè¡¨ç¤º
 	WFP2PMF_TimeWaitIconOff( p_wk, p_init, heapID );
 
 
@@ -4101,24 +4101,24 @@ static BOOL WFP2PMF_OyaErrInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heap
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ƒGƒ‰[ˆ—	‰Šú‰»
+ *	@brief	è¦ªã€€ã‚¨ãƒ©ãƒ¼å‡¦ç†	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaErrInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// ƒƒbƒZ[ƒW•\¦	‚±‚Ìƒƒ“ƒo[‚Å‚æ‚ë‚µ‚¢‚Å‚·‚ªH
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ã“ã®ãƒ¡ãƒ³ãƒãƒ¼ã§ã‚ˆã‚ã—ã„ã§ã™ãŒï¼Ÿ
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_120, heapID );
 
 	p_wk->data.status = WFP2PMF_OYA_STATUS_ERR;
 
-	// ‚İ‚ñ‚ÈØ’f‚·‚é
+	// ã¿ã‚“ãªåˆ‡æ–­ã™ã‚‹
 	WFP2PMF_CommSendAllEntryNg( p_wk );
 
 	return FALSE;
@@ -4126,14 +4126,14 @@ static BOOL WFP2PMF_OyaErrInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 he
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@ƒGƒ‰[ˆ—
+ *	@brief	è¦ªã€€ã‚¨ãƒ©ãƒ¼å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaErr( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -4141,23 +4141,23 @@ static BOOL WFP2PMF_OyaErr( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 	BOOL result;
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// ƒ}ƒbƒ`ƒ“ƒO‚ğ‰ğœ
+	// ãƒãƒƒãƒãƒ³ã‚°ã‚’è§£é™¤
     CommStateWifiMatchEnd();
 
 
-	// ’ÊMó‘Ô‚ğŒ³‚É–ß‚·
+	// é€šä¿¡çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 	CommStateChangeWiFiLogin();
 
-	// ‚İ‚ñ‚ÈØ’f‚·‚é
+	// ã¿ã‚“ãªåˆ‡æ–­ã™ã‚‹
 	WFP2PMF_CommSendAllEntryNg( p_wk );
 
 
-	// I—¹ˆ—
+	// çµ‚äº†å‡¦ç†
 	p_wk->data.match_result = FALSE;
 
 	CommStateSetErrorCheck(FALSE,TRUE);
@@ -4167,14 +4167,14 @@ static BOOL WFP2PMF_OyaErr( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@vchatˆ—	‰Šú‰»
+ *	@brief	è¦ªã€€vchatå‡¦ç†	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaVchatInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -4187,7 +4187,7 @@ static BOOL WFP2PMF_OyaVchatInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 		idx = msg_wifilobby_127;
 	}
 	
-	// ƒƒbƒZ[ƒW•\¦	‚±‚Ìƒƒ“ƒo[‚Å‚æ‚ë‚µ‚¢‚Å‚·‚ªH
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ã“ã®ãƒ¡ãƒ³ãƒãƒ¼ã§ã‚ˆã‚ã—ã„ã§ã™ãŒï¼Ÿ
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, idx, heapID );
 
 	p_wk->data.status = WFP2PMF_OYA_STATUS_VCHAT_INIT01;
@@ -4196,14 +4196,14 @@ static BOOL WFP2PMF_OyaVchatInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@vchatˆ—	‰Šú‰»
+ *	@brief	è¦ªã€€vchatå‡¦ç†	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaVchatInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -4211,12 +4211,12 @@ static BOOL WFP2PMF_OyaVchatInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 	BOOL result;
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// YESNOƒEƒBƒ“ƒhƒE‚ğo‚·
+	// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
 	p_wk->draw.p_yesnowin = BmpYesNoSelectInit( p_wk->draw.p_bgl,
 							&WFP2PMF_YESNOBMPDAT,
 							WFP2PMF_BG2_MENUWIN_CGX, WFP2PMF_BG2_MENUWIN_PAL,
@@ -4228,34 +4228,34 @@ static BOOL WFP2PMF_OyaVchatInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e@vchatˆ—
+ *	@brief	è¦ªã€€vchatå‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_OyaVchatSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	int yesno_ret;
 	
-	// YES‚È‚çƒRƒlƒNƒg@No‚È‚çØ’f
+	// YESãªã‚‰ã‚³ãƒã‚¯ãƒˆã€€Noãªã‚‰åˆ‡æ–­
 	yesno_ret = BmpYesNoSelectMain( p_wk->draw.p_yesnowin, heapID );
 	if( yesno_ret != BMPMENU_NULL ){
-		if( yesno_ret == 0 ){	// ‚Í‚¢‚ğ‘I‘ğ
+		if( yesno_ret == 0 ){	// ã¯ã„ã‚’é¸æŠ
 			
 			WFP2PMF_VchatSwitch( p_wk, heapID );
 
-			// ƒRƒlƒNƒgƒŠƒXƒgÄ•`‰æ
+			// ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆå†æç”»
 			WFP2PMF_ConListWriteReq( p_wk );
 
 		}
 		p_wk->data.status = WFP2PMF_OYA_STATUS_CONNECT_WAIT_INIT;
 
-		// I—¹
+		// çµ‚äº†
 		p_wk->draw.p_yesnowin = NULL;
 	}
 	
@@ -4266,28 +4266,28 @@ static BOOL WFP2PMF_OyaVchatSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 //-----------------------------------------------------------------------------
 /**
- *		q@ó‘Ô@ŠÖ”
+ *		å­ã€€çŠ¶æ…‹ã€€é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@e‚Ìî•ñ‚ª“Í‚­‚Ü‚Å‘Ò‚Â
+ *	@brief	å­ã€€è¦ªã®æƒ…å ±ãŒå±Šãã¾ã§å¾…ã¤
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoEntryOyaWaitInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	CommInfoSendPokeData();	// Infoƒf[ƒ^‘—M
+	CommInfoSendPokeData();	// Infoãƒ‡ãƒ¼ã‚¿é€ä¿¡
 
-	TOMOYA_PRINT( "q@’ÊMƒf[ƒ^‘—M\n" );
+	TOMOYA_PRINT( "å­ã€€é€šä¿¡ãƒ‡ãƒ¼ã‚¿é€ä¿¡\n" );
 
-	CommStateSetErrorCheck(FALSE,TRUE);	// Ø’f‚ÍƒGƒ‰[‚¶‚á‚È‚¢
+	CommStateSetErrorCheck(FALSE,TRUE);	// åˆ‡æ–­ã¯ã‚¨ãƒ©ãƒ¼ã˜ã‚ƒãªã„
 
 	p_wk->data.status = WFP2PMF_KO_STATUS_ENTRY_OYAWAIT;
 	return FALSE;
@@ -4295,30 +4295,30 @@ static BOOL WFP2PMF_KoEntryOyaWaitInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@e‚Ìî•ñ‚ª“Í‚­‚Ü‚Å‘Ò‚Â
+ *	@brief	å­ã€€è¦ªã®æƒ…å ±ãŒå±Šãã¾ã§å¾…ã¤
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoEntryOyaWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 
 
-	// ©•ª‚æ‚èá‚¢NETID‚Ìl‚Ìƒf[ƒ^‚ğóM‚µ‚½‚ç
-	// ƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è‡ªåˆ†ã‚ˆã‚Šè‹¥ã„NETIDã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	WFP2PMF_SetEntryOya( p_wk, heapID );
 
-	// e‚©‚çØ’f‚³‚ê‚½‚ç‚¦‚ç[ˆ—‚Ö
+	// è¦ªã‹ã‚‰åˆ‡æ–­ã•ã‚ŒãŸã‚‰ãˆã‚‰ãƒ¼å‡¦ç†ã¸
 	if( CommIsConnect(COMM_PARENT_ID) == FALSE ){
 		p_wk->data.status = WFP2PMF_KO_STATUS_ERR_INIT;
 	}else{
 		
-		// e‚Ìƒf[ƒ^‚ª”ò‚ñ‚Å‚­‚é‚Ì‚Í‘Ò‚Â
+		// è¦ªã®ãƒ‡ãƒ¼ã‚¿ãŒé£›ã‚“ã§ãã‚‹ã®ã¯å¾…ã¤
 		if( CommInfoGetEntry( COMM_PARENT_ID ) ){
 			p_wk->data.status = WFP2PMF_KO_STATUS_ENTRY_INIT;
 		}
@@ -4329,28 +4329,28 @@ static BOOL WFP2PMF_KoEntryOyaWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒGƒ“ƒgƒŠ[‘Ò‚¿@‰Šú‰»
+ *	@brief	å­ã€€ã‚¨ãƒ³ãƒˆãƒªãƒ¼å¾…ã¡ã€€åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoEntryInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 
-	// ©•ª‚æ‚èá‚¢NETID‚Ìl‚Ìƒf[ƒ^‚ğóM‚µ‚½‚ç
-	// ƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è‡ªåˆ†ã‚ˆã‚Šè‹¥ã„NETIDã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	WFP2PMF_SetEntryOya( p_wk, heapID );
 
-	// ƒƒbƒZ[ƒW
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	WFP2PMF_WordSetPlayerNameSet( &p_wk->draw, p_init, COMM_PARENT_ID, 0, heapID );
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_118, heapID );
 
-	// ‘Ò‚¿ƒAƒCƒRƒ“•\¦
+	// å¾…ã¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 	WFP2PMF_TimeWaitIconOn( p_wk );
 
 	p_wk->data.status = WFP2PMF_KO_STATUS_ENTRY_WAIT;
@@ -4360,33 +4360,33 @@ static BOOL WFP2PMF_KoEntryInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 hea
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒGƒ“ƒgƒŠ[‘Ò‚¿
+ *	@brief	å­ã€€ã‚¨ãƒ³ãƒˆãƒªãƒ¼å¾…ã¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoEntryWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	BOOL result;
 
-	// ©•ª‚æ‚èá‚¢NETID‚Ìl‚Ìƒf[ƒ^‚ğóM‚µ‚½‚ç
-	// ƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è‡ªåˆ†ã‚ˆã‚Šè‹¥ã„NETIDã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	WFP2PMF_SetEntryOya( p_wk, heapID );
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
 	if( p_wk->data.entry != WFP2PMF_ENTRY_WAIT ){
 
-		// WaitIcon‚ğÁ‚·
+		// WaitIconã‚’æ¶ˆã™
 		WFP2PMF_TimeWaitIconOff( p_wk, p_init, heapID );
 
 		switch( p_wk->data.entry ){
@@ -4402,7 +4402,7 @@ static BOOL WFP2PMF_KoEntryWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 hea
 			p_wk->data.ng_msg_idx	= msg_wifilobby_136;
 
 			// 080707	tomoya
-			// ÄÚ‘±‚ÍA‚¢‚Á‚½‚ñƒNƒ‰ƒu‰æ–Ê‚É‚à‚Ç‚Á‚Ä‚©‚ç‚Æ‚È‚è‚Ü‚µ‚½B
+			// å†æ¥ç¶šã¯ã€ã„ã£ãŸã‚“ã‚¯ãƒ©ãƒ–ç”»é¢ã«ã‚‚ã©ã£ã¦ã‹ã‚‰ã¨ãªã‚Šã¾ã—ãŸã€‚
 //			p_wk->data.status = WFP2PMF_KO_STATUS_CONLOCK_INIT00;
 			break;
 		}
@@ -4413,25 +4413,25 @@ static BOOL WFP2PMF_KoEntryWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 hea
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒGƒ“ƒgƒŠ[‹–‰Â‚¨‚è‚ª‚Æ‚«
+ *	@brief	å­ã€€ã‚¨ãƒ³ãƒˆãƒªãƒ¼è¨±å¯ãŠã‚ŠãŒã¨ã
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoEntryOkInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// ƒƒbƒZ[ƒW
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	WFP2PMF_WordSetPlayerNameSet( &p_wk->draw, p_init, COMM_PARENT_ID, 0, heapID );
 	WFP2PMF_GraphicMsgBmpStrPutEx( &p_wk->draw, p_init, msg_wifilobby_129, WFP2PMF_MSGENDWAIT, heapID );
 
 	p_wk->data.status = WFP2PMF_KO_STATUS_ENTRY_OK;
 
-	// ©•ª‚ğƒGƒ“ƒgƒŠ[‚É‚·‚é
+	// è‡ªåˆ†ã‚’ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã«ã™ã‚‹
 	WFP2PMF_CommInfoSetEntry( p_wk, CommGetCurrentID(), HEAPID_WIFI_FOURMATCH );
 
 	return FALSE;
@@ -4439,26 +4439,26 @@ static BOOL WFP2PMF_KoEntryOkInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒGƒ“ƒgƒŠ[‹–‰Â‚¨‚è‚ª‚Æ‚«
+ *	@brief	å­ã€€ã‚¨ãƒ³ãƒˆãƒªãƒ¼è¨±å¯ãŠã‚ŠãŒã¨ã
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoEntryOk( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	BOOL result;
 
-	// ©•ª‚æ‚èá‚¢NETID‚Ìl‚Ìƒf[ƒ^‚ğóM‚µ‚½‚ç
-	// ƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è‡ªåˆ†ã‚ˆã‚Šè‹¥ã„NETIDã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	WFP2PMF_SetEntryOya( p_wk, heapID );
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
@@ -4470,29 +4470,29 @@ static BOOL WFP2PMF_KoEntryOk( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒGƒ“ƒgƒŠ[‹–‰Â~‚è‚È‚©‚Á‚½‚Æ‚«
+ *	@brief	å­ã€€ã‚¨ãƒ³ãƒˆãƒªãƒ¼è¨±å¯é™ã‚Šãªã‹ã£ãŸã¨ã
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoEntryNgInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// ƒƒbƒZ[ƒW
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	WFP2PMF_WordSetPlayerNameSet( &p_wk->draw, p_init, COMM_PARENT_ID, 0, heapID );
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, p_wk->data.ng_msg_idx, heapID );
 
 	p_wk->data.status = WFP2PMF_KO_STATUS_ENTRY_NG;
 
-	// 080703	tomoya	’ÊMI—¹‚ÍAƒƒbƒZ[ƒW•\¦‚És‚¤
-	// ƒ}ƒbƒ`ƒ“ƒO‚ğ‰ğœ
+	// 080703	tomoya	é€šä¿¡çµ‚äº†ã¯ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ™‚ã«è¡Œã†
+	// ãƒãƒƒãƒãƒ³ã‚°ã‚’è§£é™¤
 	CommStateWifiMatchEnd();
 
-	// ’ÊMó‘Ô‚ğŒ³‚É–ß‚·
+	// é€šä¿¡çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 	CommStateChangeWiFiLogin();
 
 	return FALSE;
@@ -4500,14 +4500,14 @@ static BOOL WFP2PMF_KoEntryNgInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒGƒ“ƒgƒŠ[‹–‰Â~‚è‚È‚©‚Á‚½‚Æ‚«
+ *	@brief	å­ã€€ã‚¨ãƒ³ãƒˆãƒªãƒ¼è¨±å¯é™ã‚Šãªã‹ã£ãŸã¨ã
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoEntryNg( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -4515,21 +4515,21 @@ static BOOL WFP2PMF_KoEntryNg( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapI
 	BOOL result;
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// 080703	tomoya	’ÊMI—¹‚ÍAƒƒbƒZ[ƒW•\¦‚És‚¤
+	// 080703	tomoya	é€šä¿¡çµ‚äº†ã¯ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ™‚ã«è¡Œã†
 #if 0
-	// ƒ}ƒbƒ`ƒ“ƒO‚ğ‰ğœ
+	// ãƒãƒƒãƒãƒ³ã‚°ã‚’è§£é™¤
 	CommStateWifiMatchEnd();
 
-	// ’ÊMó‘Ô‚ğŒ³‚É–ß‚·
+	// é€šä¿¡çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 	CommStateChangeWiFiLogin();
 #endif
 
-	// I—¹ˆ—
+	// çµ‚äº†å‡¦ç†
 	p_wk->data.match_result = FALSE;
 
 	CommStateSetErrorCheck(FALSE,TRUE);
@@ -4541,27 +4541,27 @@ static BOOL WFP2PMF_KoEntryNg( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒRƒlƒNƒgŠJn
+ *	@brief	å­ã€€ã‚³ãƒã‚¯ãƒˆé–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConnectInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 
-	// ©•ª‚æ‚èá‚¢NETID‚Ìl‚Ìƒf[ƒ^‚ğóM‚µ‚½‚ç
-	// ƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è‡ªåˆ†ã‚ˆã‚Šè‹¥ã„NETIDã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	WFP2PMF_SetEntryOya( p_wk, heapID );
 
-	// ƒƒbƒZ[ƒW
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_126, heapID );
 
-	// ‘Ò‚¿ƒAƒCƒRƒ“•\¦
+	// å¾…ã¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 	WFP2PMF_TimeWaitIconOn( p_wk );
 
 	p_wk->data.status = WFP2PMF_KO_STATUS_CONNECT_WAIT;
@@ -4578,26 +4578,26 @@ static BOOL WFP2PMF_KoConnectInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+ *	@brief	å­ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConnectWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	BOOL result;
 
-	// ©•ª‚æ‚èá‚¢NETID‚Ìl‚Ìƒf[ƒ^‚ğóM‚µ‚½‚ç
-	// ƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è‡ªåˆ†ã‚ˆã‚Šè‹¥ã„NETIDã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	WFP2PMF_SetEntryOya( p_wk, heapID );
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
@@ -4611,39 +4611,39 @@ static BOOL WFP2PMF_KoConnectWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@“¯Šú‘Ò‚¿
+ *	@brief	å­ã€€åŒæœŸå¾…ã¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoStart( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 
-	// ©•ª‚æ‚èá‚¢NETID‚Ìl‚Ìƒf[ƒ^‚ğóM‚µ‚½‚ç
-	// ƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è‡ªåˆ†ã‚ˆã‚Šè‹¥ã„NETIDã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	WFP2PMF_SetEntryOya( p_wk, heapID );
 
 	OS_TPrintf( "Ko start \n" );
     
-	// V‚µ‚¢l‚ª‚Â‚È‚ª‚Á‚½‚çVCHATƒŠƒZƒbƒg
+	// æ–°ã—ã„äººãŒã¤ãªãŒã£ãŸã‚‰VCHATãƒªã‚»ãƒƒãƒˆ
 	if( p_wk->data.ko_newcon_flag ){
 		p_wk->data.ko_newcon_flag = FALSE;
 
-		// Vchat’†‚È‚ç
+		// Vchatä¸­ãªã‚‰
 		if( p_wk->data.p_match->myMatchStatus.vchat == TRUE ){
-			// ƒ{ƒCƒXƒ`ƒƒƒbƒgOFF
+			// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆOFF
 			WFP2PMF_StatusVChatOff( p_wk );
 			
-			// ƒ{ƒCƒXƒ`ƒƒƒbƒgOPOFIN_WAITN
+			// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆOPOFIN_WAITN
 			WFP2PMF_StatusVChatOnBmpFade( p_wk );
 		}
 
-		// ƒRƒlƒNƒgƒŠƒXƒgÄ•`‰æ
+		// ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆå†æç”»
 		WFP2PMF_ConListWriteReq( p_wk );
 	}
 
@@ -4653,16 +4653,16 @@ static BOOL WFP2PMF_KoStart( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID 
 
 		WFP2PMF_TimeWaitIconOff( p_wk, p_init, heapID );
 
-		// ’ÊM‘Ò‹@ƒƒbƒZ[ƒW•\¦
+		// é€šä¿¡å¾…æ©Ÿãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_066, heapID );
 
-		// ƒ^ƒCƒ€ƒEƒGƒCƒgŠJn
+		// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆé–‹å§‹
 		WFP2PMF_TimeOut_Start( p_wk );
 
-		// q‹@‘¤‚Ìl”ƒ`ƒFƒbƒNƒEƒGƒCƒg
+		// å­æ©Ÿå´ã®äººæ•°ãƒã‚§ãƒƒã‚¯ã‚¦ã‚¨ã‚¤ãƒˆ
 		p_wk->data.timer = KO_ENTRYNUM_CHECK_WAIT;
 
-		// ‘Ò‚¿ƒAƒCƒRƒ“•\¦
+		// å¾…ã¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 		WFP2PMF_TimeWaitIconOn( p_wk );
 		
 		p_wk->data.status = WFP2PMF_KO_STATUS_STATE_SEND;
@@ -4672,7 +4672,7 @@ static BOOL WFP2PMF_KoStart( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID 
 		// VChatOnOff
 		if( sys.trg & PAD_BUTTON_X ){
 
-			// ‘Ò‚¿ƒAƒCƒRƒ“”ñ•\¦
+			// å¾…ã¡ã‚¢ã‚¤ã‚³ãƒ³éè¡¨ç¤º
 			WFP2PMF_TimeWaitIconOff( p_wk, p_init, heapID );
 			p_wk->data.status = WFP2PMF_KO_STATUS_VCHAT_INIT00;
 		}
@@ -4683,14 +4683,14 @@ static BOOL WFP2PMF_KoStart( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒXƒe[ƒ^ƒX‘—M
+ *	@brief	å­ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é€ä¿¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoStateSend( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -4701,13 +4701,13 @@ static BOOL WFP2PMF_KoStateSend( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 hea
         u16 status = p_wk->data.p_match->myMatchStatus.status;
 		BOOL result;
 
-        // ƒGƒ“ƒgƒŠ[”‚ğæ“¾
+        // ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ã‚’å–å¾—
         con_num = WFP2PMF_GetEntryNum( p_wk );
 
         if(CommGetConnectNum()!=con_num){
 			p_wk->data.timer--;
 			if( p_wk->data.timer <= 0 ){
-	            // ˆá‚Á‚½‚çØ’fˆ—‚Ö
+	            // é•ã£ãŸã‚‰åˆ‡æ–­å‡¦ç†ã¸
 		        p_wk->data.status = WFP2PMF_KO_STATUS_ERR_INIT;
 			}
 			return FALSE;
@@ -4725,14 +4725,14 @@ static BOOL WFP2PMF_KoStateSend( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 hea
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
+ *	@brief	å­ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoStateCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -4743,7 +4743,7 @@ static BOOL WFP2PMF_KoStateCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 he
 	const u16* cp_data;
 	int ok_num;
 
-	// ƒGƒ“ƒgƒŠ[”‚ğæ“¾
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ã‚’å–å¾—
 	con_num = WFP2PMF_GetEntryNum( p_wk );
 
 	current_id = CommGetCurrentID();
@@ -4754,25 +4754,25 @@ static BOOL WFP2PMF_KoStateCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 he
 
 		if( current_id != i ){
 
-			// ƒXƒe[ƒ^ƒX‚ªˆê‚©ƒ`ƒFƒbƒN
+			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒä¸€ç·’ã‹ãƒã‚§ãƒƒã‚¯
 			cp_data = CommToolGetTempData( i );	
 
-			// ƒXƒe[ƒ^ƒX‚ÌóM‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å—ä¿¡ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( cp_data != NULL ){
 				if( cp_data[ 0 ] == p_wk->data.p_match->myMatchStatus.status ){
 					ok_num ++;
 				}else{
-					// ˆá‚Á‚½‚çØ’fˆ—‚Ö
+					// é•ã£ãŸã‚‰åˆ‡æ–­å‡¦ç†ã¸
 					p_wk->data.status = WFP2PMF_KO_STATUS_ERR_INIT;
 				}
 			}
 		}else{
-			// ©•ª‚ÍOK
+			// è‡ªåˆ†ã¯OK
 			ok_num ++;
 		}
 	}
 
-	// ‘Sˆõ‚ÌƒXƒe[ƒ^ƒX‚ğóM‚µ‚Äƒ`ƒFƒbƒNŒ‹‰Ê‚ªOK‚È‚çŸ‚Ìˆ—‚Ö
+	// å…¨å“¡ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å—ä¿¡ã—ã¦ãƒã‚§ãƒƒã‚¯çµæœãŒOKãªã‚‰æ¬¡ã®å‡¦ç†ã¸
 	if( ok_num == con_num ){
 		p_wk->data.status = WFP2PMF_KO_STATUS_MYSTATUS_WAIT;
 	}
@@ -4781,14 +4781,14 @@ static BOOL WFP2PMF_KoStateCheck( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 he
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒXƒe[ƒ^ƒXŒn‘—M
+ *	@brief	å­ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç³»é€ä¿¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoMyStatusWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -4803,27 +4803,27 @@ static BOOL WFP2PMF_KoMyStatusWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@	ƒQ[ƒ€ŠJn
+ *	@brief	å­ã€€	ã‚²ãƒ¼ãƒ é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoGameStart( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	if(CommIsTimingSync(_TIMING_GAME_START2)){
 
-		// ‘Ò‚¿ƒAƒCƒRƒ“”ñ•\¦
+		// å¾…ã¡ã‚¢ã‚¤ã‚³ãƒ³éè¡¨ç¤º
 		WFP2PMF_TimeWaitIconOff( p_wk, p_init, heapID );
 
-		// “¯ŠúŠJn‚È‚Ç
+		// åŒæœŸé–‹å§‹ãªã©
 		p_wk->data.match_result = TRUE;
 
-		// ƒ{ƒEƒPƒ“ƒm[ƒgİ’è
+		// ãƒœã‚¦ã‚±ãƒ³ãƒãƒ¼ãƒˆè¨­å®š
 		WFP2PMF_FNOTE_Set( p_init, heapID );
 
 		return TRUE;
@@ -4833,27 +4833,27 @@ static BOOL WFP2PMF_KoGameStart( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 hea
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒGƒ‰[ˆ—	‰Šú‰»
+ *	@brief	å­ã€€ã‚¨ãƒ©ãƒ¼å‡¦ç†	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoErrInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 
-	// YesNo‚Ìƒ[ƒN‚ª‚ ‚Á‚½‚ç”jŠü
+	// YesNoã®ãƒ¯ãƒ¼ã‚¯ãŒã‚ã£ãŸã‚‰ç ´æ£„
 	if( p_wk->draw.p_yesnowin != NULL ){
 		BmpYesNoWinDel( p_wk->draw.p_yesnowin, heapID );
 		p_wk->draw.p_yesnowin = NULL;
 	}
 	WFP2PMF_GraphicNewConStrOff( &p_wk->draw );
 
-	// ‘Ò‚¿ƒAƒCƒRƒ“•\¦
+	// å¾…ã¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 	WFP2PMF_TimeWaitIconOff( p_wk, p_init, heapID );
 
 
@@ -4863,20 +4863,20 @@ static BOOL WFP2PMF_KoErrInit( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒGƒ‰[ˆ—	‰Šú‰»
+ *	@brief	å­ã€€ã‚¨ãƒ©ãƒ¼å‡¦ç†	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoErrInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 
-	// ƒƒbƒZ[ƒW•\¦	‚±‚Ìƒƒ“ƒo[‚Å‚æ‚ë‚µ‚¢‚Å‚·‚ªH
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ã“ã®ãƒ¡ãƒ³ãƒãƒ¼ã§ã‚ˆã‚ã—ã„ã§ã™ãŒï¼Ÿ
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_120, heapID );
 
 	p_wk->data.status = WFP2PMF_KO_STATUS_ERR;
@@ -4886,14 +4886,14 @@ static BOOL WFP2PMF_KoErrInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 hea
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒGƒ‰[ˆ—
+ *	@brief	å­ã€€ã‚¨ãƒ©ãƒ¼å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoErr( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -4901,19 +4901,19 @@ static BOOL WFP2PMF_KoErr( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 	BOOL result;
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// ƒ}ƒbƒ`ƒ“ƒO‚ğ‰ğœ
+	// ãƒãƒƒãƒãƒ³ã‚°ã‚’è§£é™¤
     CommStateWifiMatchEnd();
 
 
-	// ’ÊMó‘Ô‚ğŒ³‚É–ß‚·
+	// é€šä¿¡çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 	CommStateChangeWiFiLogin();
 
-	// I—¹ˆ—
+	// çµ‚äº†å‡¦ç†
 	p_wk->data.match_result = FALSE;
 
 	CommStateSetErrorCheck(FALSE,TRUE);
@@ -4923,22 +4923,22 @@ static BOOL WFP2PMF_KoErr( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒ{ƒCƒXƒ`ƒƒƒbƒgONOFF
+ *	@brief	å­ã€€ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆONOFF
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoVchatInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	u32 idx;
 
-	// ©•ª‚æ‚èá‚¢NETID‚Ìl‚Ìƒf[ƒ^‚ğóM‚µ‚½‚ç
-	// ƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è‡ªåˆ†ã‚ˆã‚Šè‹¥ã„NETIDã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	WFP2PMF_SetEntryOya( p_wk, heapID );
 
 
@@ -4948,7 +4948,7 @@ static BOOL WFP2PMF_KoVchatInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 		idx = msg_wifilobby_127;
 	}
 	
-	// ƒƒbƒZ[ƒW•\¦	‚±‚Ìƒƒ“ƒo[‚Å‚æ‚ë‚µ‚¢‚Å‚·‚ªH
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ã“ã®ãƒ¡ãƒ³ãƒãƒ¼ã§ã‚ˆã‚ã—ã„ã§ã™ãŒï¼Ÿ
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, idx, heapID );
 
 	p_wk->data.status = WFP2PMF_KO_STATUS_VCHAT_INIT01;
@@ -4957,14 +4957,14 @@ static BOOL WFP2PMF_KoVchatInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒ{ƒCƒXƒ`ƒƒƒbƒgONOFF
+ *	@brief	å­ã€€ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆONOFF
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoVchatInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -4972,26 +4972,26 @@ static BOOL WFP2PMF_KoVchatInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 	BOOL result;
 
 
-	// ©•ª‚æ‚èá‚¢NETID‚Ìl‚Ìƒf[ƒ^‚ğóM‚µ‚½‚ç
-	// ƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è‡ªåˆ†ã‚ˆã‚Šè‹¥ã„NETIDã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	WFP2PMF_SetEntryOya( p_wk, heapID );
 
 
-	// •åW‚ªI‚í‚Á‚½‚çVCHAT•ÏXˆ—‚ÍCANCEL
+	// å‹Ÿé›†ãŒçµ‚ã‚ã£ãŸã‚‰VCHATå¤‰æ›´å‡¦ç†ã¯CANCEL
 	if( WFP2PMF_MatchOkCheck( p_wk ) == TRUE ){
 		p_wk->data.status = WFP2PMF_KO_STATUS_START;
-		// ƒƒbƒZ[ƒW•\¦OFF
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºOFF
 		WFP2PMF_GraphicMsgBmpStrOff( &p_wk->draw );
 		return FALSE;
 	}
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// YESNOƒEƒBƒ“ƒhƒE‚ğo‚·
+	// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
 	p_wk->draw.p_yesnowin = BmpYesNoSelectInit( p_wk->draw.p_bgl,
 							&WFP2PMF_YESNOBMPDAT,
 							WFP2PMF_BG2_MENUWIN_CGX, WFP2PMF_BG2_MENUWIN_PAL,
@@ -5003,48 +5003,48 @@ static BOOL WFP2PMF_KoVchatInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q@ƒ{ƒCƒXƒ`ƒƒƒbƒgONOFF
+ *	@brief	å­ã€€ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆONOFF
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoVchatSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	int yesno_ret;
 
-	// ©•ª‚æ‚èá‚¢NETID‚Ìl‚Ìƒf[ƒ^‚ğóM‚µ‚½‚ç
-	// ƒGƒ“ƒgƒŠ[ó‘Ô‚É‚·‚é
+	// è‡ªåˆ†ã‚ˆã‚Šè‹¥ã„NETIDã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼çŠ¶æ…‹ã«ã™ã‚‹
 	WFP2PMF_SetEntryOya( p_wk, heapID );
 
-	// •åW‚ªI‚í‚Á‚½‚çVCHAT•ÏXˆ—‚ÍCANCEL
+	// å‹Ÿé›†ãŒçµ‚ã‚ã£ãŸã‚‰VCHATå¤‰æ›´å‡¦ç†ã¯CANCEL
 	if( WFP2PMF_MatchOkCheck( p_wk ) == TRUE ){
 		p_wk->data.status = WFP2PMF_KO_STATUS_START;
-		// ƒƒbƒZ[ƒW•\¦OFF
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºOFF
 		WFP2PMF_GraphicMsgBmpStrOff( &p_wk->draw );
 		BmpYesNoWinDel( p_wk->draw.p_yesnowin, heapID );
 		p_wk->draw.p_yesnowin = NULL;
 		return FALSE;
 	}
 	
-	// YES‚È‚çƒRƒlƒNƒg@No‚È‚çØ’f
+	// YESãªã‚‰ã‚³ãƒã‚¯ãƒˆã€€Noãªã‚‰åˆ‡æ–­
 	yesno_ret = BmpYesNoSelectMain( p_wk->draw.p_yesnowin, heapID );
 	if( yesno_ret != BMPMENU_NULL ){
-		if( yesno_ret == 0 ){	// ‚Í‚¢‚ğ‘I‘ğ
+		if( yesno_ret == 0 ){	// ã¯ã„ã‚’é¸æŠ
 			
 			WFP2PMF_VchatSwitch( p_wk, heapID );
 
-			// ƒRƒlƒNƒgƒŠƒXƒgÄ•`‰æ
+			// ã‚³ãƒã‚¯ãƒˆãƒªã‚¹ãƒˆå†æç”»
 			WFP2PMF_ConListWriteReq( p_wk );
 
 		}
 		p_wk->data.status = WFP2PMF_KO_STATUS_CONNECT_INIT;
 
-		// I—¹
+		// çµ‚äº†
 		p_wk->draw.p_yesnowin = NULL;
 	}
 	
@@ -5053,33 +5053,33 @@ static BOOL WFP2PMF_KoVchatSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒƒbƒN’†‚Ì‚½‚ß@ÄÚ‘±@‰Šú‰»‚O‚O
+ *	@brief	é€šä¿¡ãƒ­ãƒƒã‚¯ä¸­ã®ãŸã‚ã€€å†æ¥ç¶šã€€åˆæœŸåŒ–ï¼ï¼
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConLockInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 
-	// e‚Ì—F’Bnumber‚ğæ“¾
+	// è¦ªã®å‹é”numberã‚’å–å¾—
 	p_wk->data.oya_friendid = CommInfoSearchWifiListIndex( COMM_PARENT_ID );
 	GF_ASSERT( p_wk->data.oya_friendid != WIFILIST_FRIEND_MAX );
 
-	// ƒ[ƒhƒZƒbƒg‚É–¼‘O‚ğ‚¹‚Á‚Ä‚¢‚µ‚Æ‚­
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«åå‰ã‚’ã›ã£ã¦ã„ã—ã¨ã
 	WFP2PMF_WordSetPlayerNameSet( &p_wk->draw, p_init, COMM_PARENT_ID, 0, heapID );
 
 
 	CommStateWifiMatchEnd();
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN@OFF
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã€€OFF
 	p_wk->data.err_check = FALSE;
 	
-	// ƒƒbƒZ[ƒW•\¦	‚±‚Ìƒƒ“ƒo[‚Å‚æ‚ë‚µ‚¢‚Å‚·‚ªH
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ã“ã®ãƒ¡ãƒ³ãƒãƒ¼ã§ã‚ˆã‚ã—ã„ã§ã™ãŒï¼Ÿ
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_136, heapID );
 
 	p_wk->data.status = WFP2PMF_KO_STATUS_CONLOCK_INIT01;
@@ -5088,14 +5088,14 @@ static BOOL WFP2PMF_KoConLockInit00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒƒbƒN’†‚Ì‚½‚ß@ÄÚ‘±@‰Šú‰»‚O‚P
+ *	@brief	é€šä¿¡ãƒ­ãƒƒã‚¯ä¸­ã®ãŸã‚ã€€å†æ¥ç¶šã€€åˆæœŸåŒ–ï¼ï¼‘
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConLockInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -5103,12 +5103,12 @@ static BOOL WFP2PMF_KoConLockInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32
 	BOOL result;
 
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	// YESNOƒEƒBƒ“ƒhƒE‚ğo‚·
+	// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
 	p_wk->draw.p_yesnowin = BmpYesNoSelectInit( p_wk->draw.p_bgl,
 							&WFP2PMF_YESNOBMPDAT,
 							WFP2PMF_BG2_MENUWIN_CGX, WFP2PMF_BG2_MENUWIN_PAL,
@@ -5120,14 +5120,14 @@ static BOOL WFP2PMF_KoConLockInit01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒƒbƒN’†‚Ì‚½‚ß@ÄÚ‘±@‘I‘ğ
+ *	@brief	é€šä¿¡ãƒ­ãƒƒã‚¯ä¸­ã®ãŸã‚ã€€å†æ¥ç¶šã€€é¸æŠ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConLockSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -5135,15 +5135,15 @@ static BOOL WFP2PMF_KoConLockSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32
 	int yesno_ret;
 
 	
-	// YES‚È‚çƒRƒlƒNƒg@No‚È‚çØ’f
+	// YESãªã‚‰ã‚³ãƒã‚¯ãƒˆã€€Noãªã‚‰åˆ‡æ–­
 	yesno_ret = BmpYesNoSelectMain( p_wk->draw.p_yesnowin, heapID );
 	if( yesno_ret != BMPMENU_NULL ){
-		if( yesno_ret == 0 ){	// ‚Í‚¢‚ğ‘I‘ğ
+		if( yesno_ret == 0 ){	// ã¯ã„ã‚’é¸æŠ
 			p_wk->data.status = WFP2PMF_KO_STATUS_CONLOCK_RECON;
 		}else{
 			p_wk->data.status = WFP2PMF_KO_STATUS_CONLOCK_DECON;
 		}
-		// I—¹
+		// çµ‚äº†
 		p_wk->draw.p_yesnowin = NULL;
 	}
 	
@@ -5152,26 +5152,26 @@ static BOOL WFP2PMF_KoConLockSelect( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒƒbƒN’†‚Ì‚½‚ß@ÄÚ‘±@ÄÚ‘±
+ *	@brief	é€šä¿¡ãƒ­ãƒƒã‚¯ä¸­ã®ãŸã‚ã€€å†æ¥ç¶šã€€å†æ¥ç¶š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConLockReCon( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 
-	// ƒƒbƒZ[ƒW•\¦	`‚³‚ñ‚É‚à‚¤‚µ‚±‚İ‚¿‚ã‚¤‚Å‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ã€œã•ã‚“ã«ã‚‚ã†ã—ã“ã¿ã¡ã‚…ã†ã§ã™
 	WFP2PMF_GraphicMsgBmpStrPut( &p_wk->draw, p_init, msg_wifilobby_014, heapID );
 
-	// ‘Ò‚¿ƒAƒCƒRƒ“•\¦
+	// å¾…ã¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 	WFP2PMF_TimeWaitIconOn( p_wk );
 
-	// ƒEƒGƒCƒg
+	// ã‚¦ã‚¨ã‚¤ãƒˆ
 	p_wk->data.timer = RECONNECT_WAIT;
 
 	p_wk->data.status = WFP2PMF_KO_STATUS_CONLOCK_RECON01;
@@ -5181,14 +5181,14 @@ static BOOL WFP2PMF_KoConLockReCon( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒƒbƒN’†‚Ì‚½‚ß@ÄÚ‘±@ÄÚ‘±
+ *	@brief	é€šä¿¡ãƒ­ãƒƒã‚¯ä¸­ã®ãŸã‚ã€€å†æ¥ç¶šã€€å†æ¥ç¶š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConLockReCon01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
@@ -5196,20 +5196,20 @@ static BOOL WFP2PMF_KoConLockReCon01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u3
 	BOOL result;
 
 
-	// ƒEƒGƒCƒg
+	// ã‚¦ã‚¨ã‚¤ãƒˆ
 	if( p_wk->data.timer > 0 ){
 		p_wk->data.timer--;
 		return FALSE;
 	}
 	result = WFP2PMF_GraphicMsgBmpStrMain( &p_wk->draw );
-	// ƒƒbƒZ[ƒW•\¦‚ªI‚í‚é‚Ü‚Å‚Ü‚Â
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºãŒçµ‚ã‚ã‚‹ã¾ã§ã¾ã¤
 	if( result == FALSE ){
 		return FALSE;
 	}
 
-	TOMOYA_PRINT( "wifiÚ‘±æ %d\n", p_wk->data.oya_friendid );
+	TOMOYA_PRINT( "wifiæ¥ç¶šå…ˆ %d\n", p_wk->data.oya_friendid );
 
-	// ÄÚ‘±
+	// å†æ¥ç¶š
 	if( WFP2PMF_CommWiFiMatchStart( p_wk->data.oya_friendid, p_init->type ) ){
 
         p_wk->data.status = WFP2PMF_KO_STATUS_CONLOCK_RECONWAIT;
@@ -5219,32 +5219,32 @@ static BOOL WFP2PMF_KoConLockReCon01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒƒbƒN’†‚Ì‚½‚ß@ÄÚ‘±@ÄÚ‘±‘Ò‚¿
+ *	@brief	é€šä¿¡ãƒ­ãƒƒã‚¯ä¸­ã®ãŸã‚ã€€å†æ¥ç¶šã€€å†æ¥ç¶šå¾…ã¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConLockReConWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// ‚±‚±‚Å‚Í“Æ©‚ÌERRƒ`ƒFƒbƒN‚ğs‚¤
+	// ã“ã“ã§ã¯ç‹¬è‡ªã®ERRãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
 	WFP2PMF_ReConErrCheck( p_wk );
 	
-	// ‘Ò‹@
+	// å¾…æ©Ÿ
 	if( (CommWifiIsMatched()==1) && (
 		CommIsConnect(COMM_PARENT_ID) == TRUE) ){
 
 		//
 		CommSetWifiBothNet(FALSE);
 			
-		// ‘Ò‚¿ƒAƒCƒRƒ“•\¦
+		// å¾…ã¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 		WFP2PMF_TimeWaitIconOff( p_wk, p_init, heapID );
 
-		// ƒƒCƒvƒtƒF[ƒhŠJn
+		// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK,
 						COMM_BRIGHTNESS_SYNC, 1, heapID);
 
@@ -5256,59 +5256,59 @@ static BOOL WFP2PMF_KoConLockReConWait( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒƒbƒN’†‚Ì‚½‚ß@ÄÚ‘±@‰æ–ÊÄ\’z
+ *	@brief	é€šä¿¡ãƒ­ãƒƒã‚¯ä¸­ã®ãŸã‚ã€€å†æ¥ç¶šã€€ç”»é¢å†æ§‹ç¯‰
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConLockReConGraphicReset00( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	if( WIPE_SYS_EndCheck() ){
 
-		// ‚Ü‚¸‚Í’ÊM‚ÌŠJ’Ê
-		CommInfoInitialize(p_init->p_savedata,NULL);   //Info‰Šú‰»
+		// ã¾ãšã¯é€šä¿¡ã®é–‹é€š
+		CommInfoInitialize(p_init->p_savedata,NULL);   //InfoåˆæœŸåŒ–
 
-		// ƒGƒ‰[ƒ`ƒFƒbƒN@ON
+		// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã€€ON
 		p_wk->data.err_check = TRUE;
 
-		// ‰æ–ÊÄ\’z
+		// ç”»é¢å†æ§‹ç¯‰
 		{
-			// OAM”jŠüˆ—
+			// OAMç ´æ£„å‡¦ç†
 			WFP2PMF_DrawOamDelete( p_wk );
-			// •`‰æƒf[ƒ^”jŠü
+			// æç”»ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 			WFP2PMF_GraphicDelete( p_wk, heapID );
 
-			// •`‰æƒ[ƒN‚ğƒNƒŠ[ƒ“
+			// æç”»ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªãƒ¼ãƒ³
 			memset( &p_wk->draw, 0, sizeof(WFP2PMF_DRAW) );
 
-			// Ø’fƒ`ƒFƒbƒNŠJn
+			// åˆ‡æ–­ãƒã‚§ãƒƒã‚¯é–‹å§‹
 			WFP2PMF_LogOutCheckStart( p_wk );
 
-			// •`‰æƒf[ƒ^‰Šú‰»
+			// æç”»ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 			WFP2PMF_GraphicInit( p_wk, p_init, heapID );
 			
-			WirelessIconEasy();  // Ú‘±’†‚È‚Ì‚ÅƒAƒCƒRƒ“•\¦
+			WirelessIconEasy();  // æ¥ç¶šä¸­ãªã®ã§ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 		}
 
-		// ƒ[ƒN‚ÌƒNƒŠƒA
+		// ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
 		{
 			p_wk->data.ko_newcon_flag = 0;
 			p_wk->data.entry = 0;
-			memset( p_wk->data.logout_in, 0, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// LOGƒAƒEƒgŒŸ’m
-			memset( p_wk->data.logout_id, 0, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// LOGƒAƒEƒgŒŸ’m
-			MI_CpuFill8( p_wk->data.vchat_tmp, TRUE, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// ‚P‚Â‘O‚ÌVCHAT
-			MI_CpuFill8( p_wk->data.vchat_now, TRUE, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// ‚P‚Â‘O‚ÌVCHAT
-			p_wk->data.conlist_rewrite = 0;	// conlist‚ğÄ•`‰æ
-			p_wk->data.oya_friendid = 0;	// e‚Ì—F’BƒR[ƒh
-			memset( p_wk->data.entry_on, 0, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// ƒGƒ“ƒgƒŠ[ƒtƒ‰ƒO
+			memset( p_wk->data.logout_in, 0, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// LOGã‚¢ã‚¦ãƒˆæ¤œçŸ¥
+			memset( p_wk->data.logout_id, 0, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// LOGã‚¢ã‚¦ãƒˆæ¤œçŸ¥
+			MI_CpuFill8( p_wk->data.vchat_tmp, TRUE, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// ï¼‘ã¤å‰ã®VCHAT
+			MI_CpuFill8( p_wk->data.vchat_now, TRUE, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// ï¼‘ã¤å‰ã®VCHAT
+			p_wk->data.conlist_rewrite = 0;	// conlistã‚’å†æç”»
+			p_wk->data.oya_friendid = 0;	// è¦ªã®å‹é”ã‚³ãƒ¼ãƒ‰
+			memset( p_wk->data.entry_on, 0, sizeof(u8)*WIFI_P2PMATCH_NUM_MAX );// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒ•ãƒ©ã‚°
 		}
 
-		// ƒƒCƒvƒtƒF[ƒhŠJn
+		// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
         WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK,
                         COMM_BRIGHTNESS_SYNC, 1, heapID);
 
@@ -5320,20 +5320,20 @@ static BOOL WFP2PMF_KoConLockReConGraphicReset00( WFP2PMF_WK* p_wk, WFP2PMF_INIT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒƒbƒN’†‚Ì‚½‚ß@ÄÚ‘±@‰æ–ÊÄ\’z
+ *	@brief	é€šä¿¡ãƒ­ãƒƒã‚¯ä¸­ã®ãŸã‚ã€€å†æ¥ç¶šã€€ç”»é¢å†æ§‹ç¯‰
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConLockReConGraphicReset01( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
 	if( WIPE_SYS_EndCheck() ){
-		// Ú‘±ŠJn
+		// æ¥ç¶šé–‹å§‹
 		p_wk->data.status = WFP2PMF_KO_STATUS_ENTRY_OYAWAITINIT;
 	}
 	return FALSE;
@@ -5341,26 +5341,26 @@ static BOOL WFP2PMF_KoConLockReConGraphicReset01( WFP2PMF_WK* p_wk, WFP2PMF_INIT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒƒbƒN’†‚Ì‚½‚ß@ÄÚ‘±@I—¹ˆ—
+ *	@brief	é€šä¿¡ãƒ­ãƒƒã‚¯ä¸­ã®ãŸã‚ã€€å†æ¥ç¶šã€€çµ‚äº†å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_init		ã‚ÌƒAƒvƒŠ‚©‚ç‚Ìƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_init		ä¸Šã®ã‚¢ãƒ—ãƒªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒOI—¹
- *	@retval	FALSE	ƒ}ƒbƒ`ƒ“ƒO’†
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°çµ‚äº†
+ *	@retval	FALSE	ãƒãƒƒãƒãƒ³ã‚°ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFP2PMF_KoConLockDeCon( WFP2PMF_WK* p_wk, WFP2PMF_INIT* p_init, u32 heapID )
 {
-	// ƒ}ƒbƒ`ƒ“ƒO‚ğ‰ğœ
+	// ãƒãƒƒãƒãƒ³ã‚°ã‚’è§£é™¤
     CommStateWifiMatchEnd();
 
 
-	// ’ÊMó‘Ô‚ğŒ³‚É–ß‚·
+	// é€šä¿¡çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 	CommStateChangeWiFiLogin();
 
-	// I—¹ˆ—
+	// çµ‚äº†å‡¦ç†
 	p_wk->data.match_result = FALSE;
 
 	CommStateSetErrorCheck(FALSE,TRUE);

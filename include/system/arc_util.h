@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	arc_util.h
- * @bfief	�A�[�J�C�u�f�[�^��֗��Ɏg�����߂̃��[�e�B���e�B�֐��Q
+ * @bfief	アーカイブデータを便利に使うためのユーティリティ関数群
  * @author	taya
  * @date	05.08.30
  */
@@ -15,33 +15,33 @@
 
 //------------------------------------------------------------------
 /**
- *  �L�����f�[�^�}�b�s���O�^�C�v
+ *  キャラデータマッピングタイプ
  */
 //------------------------------------------------------------------
 typedef enum {
-	ALLOC_TOP = 0,			///< �q�[�v�̐擪����
-	ALLOC_BOTTOM = 1,		///< �q�[�v�̏I�[����
+	ALLOC_TOP = 0,			///< ヒープの先頭から
+	ALLOC_BOTTOM = 1,		///< ヒープの終端から
 }ALLOC_TYPE;
 
 //------------------------------------------------------------------
 /**
- *  �p���b�g�]����^�C�v�w��
+ *  パレット転送先タイプ指定
  */
 //------------------------------------------------------------------
 typedef enum {
-	PALTYPE_MAIN_BG,			// ���C��BG
-	PALTYPE_MAIN_OBJ,			// ���C��OBJ
-	PALTYPE_MAIN_BG_EX,			// ���C���g��BG
-	PALTYPE_MAIN_OBJ_EX,		// ���C���g��OBJ
-	PALTYPE_SUB_BG,				// �T�uBG
-	PALTYPE_SUB_OBJ,			// �T�uOBJ
-	PALTYPE_SUB_BG_EX,			// �T�u�g��BG
-	PALTYPE_SUB_OBJ_EX,			// �T�u�g��OBJ
+	PALTYPE_MAIN_BG,			// メインBG
+	PALTYPE_MAIN_OBJ,			// メインOBJ
+	PALTYPE_MAIN_BG_EX,			// メイン拡張BG
+	PALTYPE_MAIN_OBJ_EX,		// メイン拡張OBJ
+	PALTYPE_SUB_BG,				// サブBG
+	PALTYPE_SUB_OBJ,			// サブOBJ
+	PALTYPE_SUB_BG_EX,			// サブ拡張BG
+	PALTYPE_SUB_OBJ_EX,			// サブ拡張OBJ
 }PALTYPE;
 
 //------------------------------------------------------------------
 /**
- *  OBJ�L�����f�[�^�]����^�C�v�w��
+ *  OBJキャラデータ転送先タイプ指定
  */
 //------------------------------------------------------------------
 typedef enum {
@@ -51,7 +51,7 @@ typedef enum {
 
 //------------------------------------------------------------------
 /**
- *  �L�����f�[�^�}�b�s���O�^�C�v
+ *  キャラデータマッピングタイプ
  */
 //------------------------------------------------------------------
 typedef enum {
@@ -62,18 +62,18 @@ typedef enum {
 
 //------------------------------------------------------------------
 /**
- * BG����ް��� VRAM �]��
+ * BGキャラデータの VRAM 転送
  *
- * @param   arcFile			�A�[�J�C�u�t�@�C���C���f�b�N�X
- * @param   arcIndex		�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   bgl				BGL�ް�
- * @param   frm				�]�����ڰ�����
- * @param   offs			�]���̾�āi��גP�ʁj
- * @param	transSize		�]�����黲�ށi�޲ĒP�� ==0�őS�]���j
- * @param   compressedFlag	���k����Ă����ް����H
- * @param   heapID			�ް��ǂݍ��݁E�������؂Ƃ��Ďg��˰��ID
+ * @param   arcFile			アーカイブファイルインデックス
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   bgl				BGLデータ
+ * @param   frm				転送先フレームナンバ
+ * @param   offs			転送オフセット（キャラ単位）
+ * @param	transSize		転送するサイズ（バイト単位 ==0で全転送）
+ * @param   compressedFlag	圧縮されているデータか？
+ * @param   heapID			データ読み込み・解凍テンポラリとして使うヒープID
  *
- * @return  �]�������f�[�^�T�C�Y�i�o�C�g�j
+ * @return  転送したデータサイズ（バイト）
  */
 //------------------------------------------------------------------
 extern u32 ArcUtil_BgCharSet(u32 arcFile, u32 dataIdx, GF_BGL_INI* bgl, u32 frm, u32 offs, u32 transSize, BOOL compressedFlag, u32 heapID);
@@ -81,17 +81,17 @@ extern u32 ArcUtil_BgCharSet(u32 arcFile, u32 dataIdx, GF_BGL_INI* bgl, u32 frm,
 
 //------------------------------------------------------------------
 /**
- * OBJ ����ް� �� VRAM �]��
+ * OBJ キャラデータ の VRAM 転送
  *
- * @param   fileIdx				�A�[�J�C�u�t�@�C���C���f�b�N�X
- * @param   dataIdx				�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   objType				OBJ����
- * @param   offs				�̾�āi�޲ĒP�ʁj
- * @param   transSize			�]�����ށi�޲ĒP�� : 0 �őS�]���j
- * @param   compressedFlag		���k���ꂽ�ް����H
- * @param   heapID				�ǂݍ��݁E�������؂Ƃ��Ďg��˰��ID
+ * @param   fileIdx				アーカイブファイルインデックス
+ * @param   dataIdx				アーカイブデータインデックス
+ * @param   objType				OBJタイプ
+ * @param   offs				オフセット（バイト単位）
+ * @param   transSize			転送サイズ（バイト単位 : 0 で全転送）
+ * @param   compressedFlag		圧縮されたデータか？
+ * @param   heapID				読み込み・解凍テンポラリとして使うヒープID
  *
- * @return  �]�������f�[�^�T�C�Y�i�o�C�g�j
+ * @return  転送したデータサイズ（バイト）
  */
 //------------------------------------------------------------------
 extern u32 ArcUtil_ObjCharSet( u32 fileIdx, u32 dataIdx, OBJTYPE objType, u32 offs, u32 transSize, BOOL compressedFlag, u32 heapID );
@@ -99,17 +99,17 @@ extern u32 ArcUtil_ObjCharSet( u32 fileIdx, u32 dataIdx, OBJTYPE objType, u32 of
 
 //--------------------------------------------------------------------------------------------
 /**
- * ��ذ��ް��� VRAM �]��
- * �� BGL���� ��ذ��ޯ̧ ���p�ӂ���Ă���΁A��ذ��ޯ̧ �ւ̓]�����s��
+ * スクリーンデータの VRAM 転送
+ * ※ BGL側に スクリーンバッファ が用意されていれば、スクリーンバッファ への転送も行う
  *
- * @param   arcFile			�A�[�J�C�u�t�@�C���C���f�b�N�X
- * @param   arcIndex		�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   bgl				BGL�ް�
- * @param   frm				�]�����ڰ�����
- * @param   offs			�]���̾�āi��גP�ʁj
- * @param	transSize		�]�����黲�ށi�޲ĒP�� ==0�őS�]���j
- * @param   compressedFlag	���k����Ă����ް����H
- * @param   heapID			�ް��ǂݍ��݁E�������؂Ƃ��Ďg��˰��ID
+ * @param   arcFile			アーカイブファイルインデックス
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   bgl				BGLデータ
+ * @param   frm				転送先フレームナンバ
+ * @param   offs			転送オフセット（キャラ単位）
+ * @param	transSize		転送するサイズ（バイト単位 ==0で全転送）
+ * @param   compressedFlag	圧縮されているデータか？
+ * @param   heapID			データ読み込み・解凍テンポラリとして使うヒープID
  *
  */
 //--------------------------------------------------------------------------------------------
@@ -118,14 +118,14 @@ extern void ArcUtil_ScrnSet(u32 arcFile, u32 dataIdx, GF_BGL_INI* bgl, u32 frm, 
 
 //------------------------------------------------------------------
 /**
- * ��گ��ް� �� VRAM �]��
+ * パレットデータ の VRAM 転送
  *
- * @param   arcFile		�A�[�J�C�u�t�@�C���C���f�b�N�X
- * @param   dataIdx		�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   palType		��گē]��������
- * @param   offs		��گē]����̾��
- * @param   transSize	��گē]�����ށi0 �őS�]���j
- * @param   heapID		�ް��ǂݍ��������؂Ƃ��Ďg��˰��ID
+ * @param   arcFile		アーカイブファイルインデックス
+ * @param   dataIdx		アーカイブデータインデックス
+ * @param   palType		パレット転送先タイプ
+ * @param   offs		パレット転送先オフセット
+ * @param   transSize	パレット転送サイズ（0 で全転送）
+ * @param   heapID		データ読み込みテンポラリとして使うヒープID
  *
  */
 //------------------------------------------------------------------
@@ -134,15 +134,15 @@ extern void ArcUtil_PalSet( u32 arcFile, u32 dataIdx, PALTYPE palType, u32 offs,
 
 //------------------------------------------------------------------
 /**
- * ��گ��ް� �� VRAM �]���i�]�����̓ǂݍ��݊J�n�̾�Ďw��Łj
+ * パレットデータ の VRAM 転送（転送元の読み込み開始オフセット指定版）
  *
- * @param   fileIdx		������̧�ٲ��ޯ��
- * @param   dataIdx		�������ް����ޯ��
- * @param   palType		��گē]��������
- * @param   srcOfs		��گē]�����ǂݍ��݊J�n�̾��
- * @param   dstOfs		��گē]����̾��
- * @param   transSize	��گē]�����ށi0 �őS�]���j
- * @param   heapID		�ް��ǂݍ��������؂Ƃ��Ďg��˰��ID
+ * @param   fileIdx		アーカイブファイルインデックス
+ * @param   dataIdx		アーカイブデータインデックス
+ * @param   palType		パレット転送先タイプ
+ * @param   srcOfs		パレット転送元読み込み開始オフセット
+ * @param   dstOfs		パレット転送先オフセット
+ * @param   transSize	パレット転送サイズ（0 で全転送）
+ * @param   heapID		データ読み込みテンポラリとして使うヒープID
  *
  */
 //------------------------------------------------------------------
@@ -150,15 +150,15 @@ extern void ArcUtil_PalSetEx( u32 fileIdx, u32 dataIdx, PALTYPE palType, u32 src
 
 //------------------------------------------------------------------
 /**
- * ��گ��ް� �� VRAM �]���� NITRO System ��گ���۷� ���쐬
- *�i3D, OBJ �p�ɂ̂ݑΉ��BBG �ɂ͎g���܂���j
+ * パレットデータ の VRAM 転送＆ NITRO System パレットプロキシ を作成
+ *（3D, OBJ 用にのみ対応。BG には使いません）
  *
- * @param   fileIdx		������̧�ٲ��ޯ��
- * @param   dataIdx		�������ް����ޯ��
- * @param   type		�]��������
- * @param   offs		�]���̾��
- * @param   heapID		˰��ID
- * @param   proxy		�쐬������۷��̱��ڽ
+ * @param   fileIdx		アーカイブファイルインデックス
+ * @param   dataIdx		アーカイブデータインデックス
+ * @param   type		転送先タイプ
+ * @param   offs		転送オフセット
+ * @param   heapID		ヒープID
+ * @param   proxy		作成するプロキシのアドレス
  *
  *	[ type ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -171,27 +171,27 @@ extern void ArcUtil_PalSysLoad( u32 fileIdx, u32 dataIdx, NNS_G2D_VRAM_TYPE type
 
 //------------------------------------------------------------------
 /**
- * ����ް� �� VRAM �]���� NITRO System �Ұ����۷� ���쐬
- *�i3D, OBJ �p�ɂ̂ݑΉ��BBG �ɂ͎g���܂���j
+ * キャラデータ の VRAM 転送＆ NITRO System イメージプロキシ を作成
+ *（3D, OBJ 用にのみ対応。BG には使いません）
  *
  *
- * @param   fileIdx			������̧�ٲ��ޯ��
- * @param   dataIdx			�������ް����ޯ��
- * @param   compressedFlag	���k����Ă��邩
- * @param   mapType			ϯ��ݸ�����
- * @param   transSize		�]�����ށi0�Ȃ�S�]���j
- * @param   vramType		�]��������
- * @param   offs			�]���̾��
- * @param   heapID			�����؂Ɏg��˰��ID
- * @param   proxy			�쐬������۷��̱��ڽ
+ * @param   fileIdx			アーカイブファイルインデックス
+ * @param   dataIdx			アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているか
+ * @param   mapType			マッピングタイプ
+ * @param   transSize		転送サイズ（0なら全転送）
+ * @param   vramType		転送先タイプ
+ * @param   offs			転送オフセット
+ * @param   heapID			テンポラリに使うヒープID
+ * @param   proxy			作成するプロキシのアドレス
  *
- * @retval  �]�����ꂽ�ް����ށi�޲ĒP�ʁj
+ * @retval  転送されたデータサイズ（バイト単位）
  *
  *	[ mapType ]
  *		MAP_TYPE_1D = 0,
  *		MAP_TYPE_2D = 1,
  *
- *	�� VRAM�]���^�͕ʊ֐� ArcUtil_TranCharSysLoad ���g��
+ *	※ VRAM転送型は別関数 ArcUtil_TranCharSysLoad を使う
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -206,27 +206,27 @@ extern u32 ArcUtil_CharSysLoad( u32 fileIdx, u32 dataIdx, BOOL compressedFlag, C
 
 //------------------------------------------------------------------
 /**
- * ����ް� �� VRAM �]���� NITRO System �Ұ����۷� ���쐬
- *�i3D, OBJ �p�ɂ̂ݑΉ��BBG �ɂ͎g���܂���j
+ * キャラデータ の VRAM 転送＆ NITRO System イメージプロキシ を作成
+ *（3D, OBJ 用にのみ対応。BG には使いません）
  *
- * ����ް���ϯ��ݸ�Ӱ�ޒl���A���݂�ڼ޽��ݒ�ɍ��킹�ď��������܂�
+ * キャラデータのマッピングモード値を、現在のレジスタ設定に合わせて書き換えます
  *
- * @param   fileIdx			������̧�ٲ��ޯ��
- * @param   dataIdx			�������ް����ޯ��
- * @param   compressedFlag	���k����Ă��邩
- * @param   mapType			ϯ��ݸ�����
- * @param   transSize		�]���T�C�Y�B�O�Ȃ�S�]���B
- * @param   vramType		�]��������
- * @param   offs			�]���̾��
- * @param   heapID			�����؂Ɏg��˰��ID
- * @param   proxy			�쐬������۷����ڽ
+ * @param   fileIdx			アーカイブファイルインデックス
+ * @param   dataIdx			アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているか
+ * @param   mapType			マッピングタイプ
+ * @param   transSize		転送サイズ。０なら全転送。
+ * @param   vramType		転送先タイプ
+ * @param   offs			転送オフセット
+ * @param   heapID			テンポラリに使うヒープID
+ * @param   proxy			作成するプロキシアドレス
  *
  *
  *	[ mapType ]
  *		CHAR_MAP_1D = 0,
  *		CHAR_MAP_2D = 1,
  *
- *	�� VRAM�]���^�͕ʊ֐� ArcUtil_TranCharSysLoad ���g��
+ *	※ VRAM転送型は別関数 ArcUtil_TranCharSysLoad を使う
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -240,22 +240,22 @@ extern void ArcUtil_CharSysLoadSyncroMappingMode( u32 fileIdx, u32 dataIdx, BOOL
 
 //------------------------------------------------------------------
 /**
- * ����ް� �� VRAM �]���� NITRO System �Ұ����۷� ���쐬�BVRAM�]���^�̉摜�f�ޗp�B
+ * キャラデータ の VRAM 転送＆ NITRO System イメージプロキシ を作成。VRAM転送型の画像素材用。
  *
- * �� ���̊֐����g���Ă��AVRAM�ɉ摜�͓]������܂���
- *    ���̊֐���۰�ނ����ް��͉������܂���B�߂�l��const void*���Ǘ����āA
- *    �s�v�ɂȂ��������������s���Ă��������B
+ * ※ この関数を使っても、VRAMに画像は転送されません
+ *    この関数でロードしたデータは解放されません。戻り値のconst void*を管理して、
+ *    不要になったら解放処理を行ってください。
  *
- * @param   fileIdx			������̧�ٲ��ޯ��
- * @param   dataIdx			�������ް����ޯ��
- * @param   compressedFlag	���k����Ă��邩
- * @param   vramType		�]��������
- * @param   offs			�]���̾��
- * @param   heapID			�����؂Ɏg��˰��ID
- * @param   proxy			�쐬������۷��̱��ڽ
- * @param   charData		����ް����ڽ��ێ������߲���̱��ڽ
+ * @param   fileIdx			アーカイブファイルインデックス
+ * @param   dataIdx			アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているか
+ * @param   vramType		転送先タイプ
+ * @param   offs			転送オフセット
+ * @param   heapID			テンポラリに使うヒープID
+ * @param   proxy			作成するプロキシのアドレス
+ * @param   charData		キャラデータアドレスを保持するポインタのアドレス
  *
- * @retval  const void*		۰�ނ����ް��̱��ڽ
+ * @retval  const void*		ロードしたデータのアドレス
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -270,74 +270,74 @@ extern const void* ArcUtil_TransTypeCharSysLoad( u32 fileIdx, u32 dataIdx, BOOL 
 
 //------------------------------------------------------------------
 /**
- * ����ް��� ۰�ނ��� Unpack ���邾���ł��B����͊e���ŁB
+ * キャラデータを ロードして Unpack するだけです。解放は各自で。
  *
- * @param   fileIdx				������̧�ٲ��ޯ��
- * @param   dataIdx				�ް����ޯ��
- * @param   compressedFlag		���k����Ă��邩
- * @param   charData			����ް����ڽ��ێ������߲���̱��ڽ
- * @param   heapID				˰��ID
+ * @param   fileIdx				アーカイブファイルインデックス
+ * @param   dataIdx				データインデックス
+ * @param   compressedFlag		圧縮されているか
+ * @param   charData			キャラデータアドレスを保持するポインタのアドレス
+ * @param   heapID				ヒープID
  *
- * @retval  void*		۰�ނ����ް��̐擪�߲��
+ * @retval  void*		ロードしたデータの先頭ポインタ
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_CharDataGet( u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2dCharacterData** charData, u32 heapID );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ��ذ��ް��� ۰�ނ��� Unpack ���邾���ł��B����͊e���ŁB
+ * スクリーンデータを ロードして Unpack するだけです。解放は各自で。
  *
- * @param   fileIdx			������̧�ٲ��ޯ��
- * @param   arcIndex		�������ް����ޯ��
- * @param   compressedFlag	���k����Ă����ް����H
- * @param   scrnData		��ذ��ް����ڽ��ێ������߲���̱��ڽ
- * @param   heapID			�ް��ǂݍ��݁E�������؂Ƃ��Ďg��˰��ID
+ * @param   fileIdx			アーカイブファイルインデックス
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているデータか？
+ * @param   scrnData		スクリーンデータアドレスを保持するポインタのアドレス
+ * @param   heapID			データ読み込み・解凍テンポラリとして使うヒープID
  *
- * @retval  void*		۰�ނ����ް��̐擪�߲��
+ * @retval  void*		ロードしたデータの先頭ポインタ
  */
 //--------------------------------------------------------------------------------------------
 extern void* ArcUtil_ScrnDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2dScreenData** scrnData, u32 heapID);
 
 //------------------------------------------------------------------
 /**
- * ��گ��ް���۰�ނ��� Unpack ���邾���ł��B����͊e���ŁB
+ * パレットデータをロードして Unpack するだけです。解放は各自で。
  *
- * @param   fileIdx			������̧�ٲ��ޯ��
- * @param   arcIndex		�������ް����ޯ��
- * @param   palData			��گ��ް����ڽ��ێ������߲���̱��ڽ
- * @param   heapID			˰��ID
+ * @param   fileIdx			アーカイブファイルインデックス
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   palData			パレットデータアドレスを保持するポインタのアドレス
+ * @param   heapID			ヒープID
  *
- * @retval  void*		۰�ނ����ް��̐擪�߲��
+ * @retval  void*		ロードしたデータの先頭ポインタ
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_PalDataGet( u32 fileIdx, u32 dataIdx, NNSG2dPaletteData** palData, u32 heapID );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ����ݸ�ް��� ۰�ނ��� Unpack ���邾���ł��B����͊e���ŁB
+ * セルバンクデータを ロードして Unpack するだけです。解放は各自で。
  *
- * @param   fileIdx			������̧�ٲ��ޯ��
- * @param   arcIndex		�������ް����ޯ��
- * @param   compressedFlag	���k����Ă����ް����H
- * @param   cellBank		����ݸ�ް����ڽ��ێ������߲���̱��ڽ
- * @param   heapID			˰��ID
+ * @param   fileIdx			アーカイブファイルインデックス
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているデータか？
+ * @param   cellBank		セルバンクデータアドレスを保持するポインタのアドレス
+ * @param   heapID			ヒープID
  *
- * @retval  void*		۰�ނ����ް��̐擪�߲��
+ * @retval  void*		ロードしたデータの先頭ポインタ
  */
 //--------------------------------------------------------------------------------------------
 extern void* ArcUtil_CellBankDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2dCellDataBank** cellBank, u32 heapID );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �����ݸ�ް��� ۰�ނ��� Unpack ���邾���ł��B����͊e���ŁB
+ * アニメバンクデータを ロードして Unpack するだけです。解放は各自で。
  *
- * @param   fileIdx			������̧�ٲ��ޯ��
- * @param   arcIndex		�������ް����ޯ��
- * @param   compressedFlag	���k����Ă����ް����H
- * @param   anmBank			�����ݸ�ް����ڽ��ێ������߲���̱��ڽ
- * @param   heapID			˰��ID
+ * @param   fileIdx			アーカイブファイルインデックス
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているデータか？
+ * @param   anmBank			アニメバンクデータアドレスを保持するポインタのアドレス
+ * @param   heapID			ヒープID
  *
- * @retval  void*		۰�ނ����ް��̐擪�߲��
+ * @retval  void*		ロードしたデータの先頭ポインタ
  */
 //--------------------------------------------------------------------------------------------
 extern void* ArcUtil_AnimBankDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2dAnimBankData** anmBank, u32 heapID);
@@ -345,13 +345,13 @@ extern void* ArcUtil_AnimBankDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFl
 
 //------------------------------------------------------------------
 /**
- * LZ���k��A�[�J�C�u����Ă���f�[�^��ǂݏo���A�𓀂��ĕԂ�
+ * LZ圧縮後アーカイブされているデータを読み出し、解凍して返す
  *
- * @param   fileIdx		�A�[�J�C�u�t�@�C���C���f�b�N�X
- * @param   dataIdx		�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   heapID		�ǂݏo���E�𓀂Ɏg���q�[�v�h�c
+ * @param   fileIdx		アーカイブファイルインデックス
+ * @param   dataIdx		アーカイブデータインデックス
+ * @param   heapID		読み出し・解凍に使うヒープＩＤ
  *
- * @retval  void*		�𓀌�̃f�[�^�ۑ���A�h���X
+ * @retval  void*		解凍後のデータ保存先アドレス
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_UnCompress(u32 fileIdx, u32 dataIdx, u32 heapID);
@@ -359,39 +359,39 @@ extern void* ArcUtil_UnCompress(u32 fileIdx, u32 dataIdx, u32 heapID);
 
 //------------------------------------------------------------------
 /**
- * �A�[�J�C�u�f�[�^�̓ǂݏo��
+ * アーカイブデータの読み出し
  *
- * @param   fileIdx			�A�[�J�C�u�t�@�C���C���f�b�N�X
- * @param   dataIdx			�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   compressedFlag	���k����Ă��邩�H
- * @param   heapID			�������m�ۂɎg���q�[�v�h�c
- * @param   allocType		�q�[�v�̂ǂ̈ʒu���烁�����m�ۂ��邩
+ * @param   fileIdx			アーカイブファイルインデックス
+ * @param   dataIdx			アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているか？
+ * @param   heapID			メモリ確保に使うヒープＩＤ
+ * @param   allocType		ヒープのどの位置からメモリ確保するか
  *
  * [allocType]
- *		ALLOC_TOP		�q�[�v�擪����m��
- *		ALLOC_BOTTOM	�q�[�v�������m��
+ *		ALLOC_TOP		ヒープ先頭から確保
+ *		ALLOC_BOTTOM	ヒープ後方から確保
  *
- * @retval  void*			�ǂݏo���̈�|�C���^
+ * @retval  void*			読み出し領域ポインタ
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_Load(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, u32 heapID, ALLOC_TYPE allocType);
 
 //------------------------------------------------------------------
 /**
- * �A�[�J�C�u�f�[�^�̓ǂݏo�����f�[�^�T�C�Y�擾�i���k����Ă�����𓀌�̃T�C�Y���擾����j
+ * アーカイブデータの読み出し＆データサイズ取得（圧縮されていたら解凍後のサイズを取得する）
  *
- * @param   fileIdx			�A�[�J�C�u�t�@�C���C���f�b�N�X
- * @param   dataIdx			�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   compressedFlag	���k����Ă��邩�H
- * @param   heapID			�������m�ۂɎg���q�[�v�h�c
- * @param   allocType		�q�[�v�̂ǂ̈ʒu���烁�����m�ۂ��邩
- * @param   pSize			���f�[�^�̃o�C�g�T�C�Y���󂯎��ϐ��̃|�C���^
+ * @param   fileIdx			アーカイブファイルインデックス
+ * @param   dataIdx			アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているか？
+ * @param   heapID			メモリ確保に使うヒープＩＤ
+ * @param   allocType		ヒープのどの位置からメモリ確保するか
+ * @param   pSize			実データのバイトサイズを受け取る変数のポインタ
  *
  * [allocType]
- *		ALLOC_TOP		�q�[�v�擪����m��
- *		ALLOC_BOTTOM	�q�[�v�������m��
+ *		ALLOC_TOP		ヒープ先頭から確保
+ *		ALLOC_BOTTOM	ヒープ後方から確保
  *
- * @retval  void*			�ǂݏo���̈�|�C���^
+ * @retval  void*			読み出し領域ポインタ
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_LoadEx(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, u32 heapID, ALLOC_TYPE allocType, u32* pSize);
@@ -399,23 +399,23 @@ extern void* ArcUtil_LoadEx(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, u32 h
 
 //-----------------------------------------------------------------------------
 /**
- *			ARCHANDLE�o�[�W����
+ *			ARCHANDLEバージョン
  */
 //-----------------------------------------------------------------------------
 //------------------------------------------------------------------
 /**
- * BG����ް��� VRAM �]��
+ * BGキャラデータの VRAM 転送
  *
- * @param   handle			�n���h��
- * @param   arcIndex		�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   bgl				BGL�ް�
- * @param   frm				�]�����ڰ�����
- * @param   offs			�]���̾�āi��גP�ʁj
- * @param	transSize		�]�����黲�ށi�޲ĒP�� ==0�őS�]���j
- * @param   compressedFlag	���k����Ă����ް����H
- * @param   heapID			�ް��ǂݍ��݁E�������؂Ƃ��Ďg��˰��ID
+ * @param   handle			ハンドル
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   bgl				BGLデータ
+ * @param   frm				転送先フレームナンバ
+ * @param   offs			転送オフセット（キャラ単位）
+ * @param	transSize		転送するサイズ（バイト単位 ==0で全転送）
+ * @param   compressedFlag	圧縮されているデータか？
+ * @param   heapID			データ読み込み・解凍テンポラリとして使うヒープID
  *
- * @return  �]�������f�[�^�T�C�Y�i�o�C�g�j
+ * @return  転送したデータサイズ（バイト）
  */
 //------------------------------------------------------------------
 extern u32 ArcUtil_HDL_BgCharSet(ARCHANDLE* handle, u32 dataIdx, GF_BGL_INI* bgl, u32 frm, u32 offs, u32 transSize, BOOL compressedFlag, u32 heapID);
@@ -423,17 +423,17 @@ extern u32 ArcUtil_HDL_BgCharSet(ARCHANDLE* handle, u32 dataIdx, GF_BGL_INI* bgl
 
 //------------------------------------------------------------------
 /**
- * OBJ ����ް� �� VRAM �]��
+ * OBJ キャラデータ の VRAM 転送
  *
- * @param   handle				�n���h��
- * @param   dataIdx				�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   objType				OBJ����
- * @param   offs				�̾�āi�޲ĒP�ʁj
- * @param   transSize			�]�����ށi�޲ĒP�� : 0 �őS�]���j
- * @param   compressedFlag		���k���ꂽ�ް����H
- * @param   heapID				�ǂݍ��݁E�������؂Ƃ��Ďg��˰��ID
+ * @param   handle				ハンドル
+ * @param   dataIdx				アーカイブデータインデックス
+ * @param   objType				OBJタイプ
+ * @param   offs				オフセット（バイト単位）
+ * @param   transSize			転送サイズ（バイト単位 : 0 で全転送）
+ * @param   compressedFlag		圧縮されたデータか？
+ * @param   heapID				読み込み・解凍テンポラリとして使うヒープID
  *
- * @return  �]�������f�[�^�T�C�Y�i�o�C�g�j
+ * @return  転送したデータサイズ（バイト）
  */
 //------------------------------------------------------------------
 extern u32 ArcUtil_HDL_ObjCharSet( ARCHANDLE* handle, u32 dataIdx, OBJTYPE objType, u32 offs, u32 transSize, BOOL compressedFlag, u32 heapID );
@@ -441,17 +441,17 @@ extern u32 ArcUtil_HDL_ObjCharSet( ARCHANDLE* handle, u32 dataIdx, OBJTYPE objTy
 
 //--------------------------------------------------------------------------------------------
 /**
- * ��ذ��ް��� VRAM �]��
- * �� BGL���� ��ذ��ޯ̧ ���p�ӂ���Ă���΁A��ذ��ޯ̧ �ւ̓]�����s��
+ * スクリーンデータの VRAM 転送
+ * ※ BGL側に スクリーンバッファ が用意されていれば、スクリーンバッファ への転送も行う
  *
- * @param   handle			�n���h��
- * @param   arcIndex		�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   bgl				BGL�ް�
- * @param   frm				�]�����ڰ�����
- * @param   offs			�]���̾�āi��גP�ʁj
- * @param	transSize		�]�����黲�ށi�޲ĒP�� ==0�őS�]���j
- * @param   compressedFlag	���k����Ă����ް����H
- * @param   heapID			�ް��ǂݍ��݁E�������؂Ƃ��Ďg��˰��ID
+ * @param   handle			ハンドル
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   bgl				BGLデータ
+ * @param   frm				転送先フレームナンバ
+ * @param   offs			転送オフセット（キャラ単位）
+ * @param	transSize		転送するサイズ（バイト単位 ==0で全転送）
+ * @param   compressedFlag	圧縮されているデータか？
+ * @param   heapID			データ読み込み・解凍テンポラリとして使うヒープID
  *
  */
 //--------------------------------------------------------------------------------------------
@@ -460,14 +460,14 @@ extern void ArcUtil_HDL_ScrnSet(ARCHANDLE* handle, u32 dataIdx, GF_BGL_INI* bgl,
 
 //------------------------------------------------------------------
 /**
- * ��گ��ް� �� VRAM �]��
+ * パレットデータ の VRAM 転送
  *
- * @param   handle		�n���h��
- * @param   dataIdx		�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   palType		��گē]��������
- * @param   offs		��گē]����̾��
- * @param   transSize	��گē]�����ށi0 �őS�]���j
- * @param   heapID		�ް��ǂݍ��������؂Ƃ��Ďg��˰��ID
+ * @param   handle		ハンドル
+ * @param   dataIdx		アーカイブデータインデックス
+ * @param   palType		パレット転送先タイプ
+ * @param   offs		パレット転送先オフセット
+ * @param   transSize	パレット転送サイズ（0 で全転送）
+ * @param   heapID		データ読み込みテンポラリとして使うヒープID
  *
  */
 //------------------------------------------------------------------
@@ -476,15 +476,15 @@ extern void ArcUtil_HDL_PalSet( ARCHANDLE* handle, u32 dataIdx, PALTYPE palType,
 
 //------------------------------------------------------------------
 /**
- * ��گ��ް� �� VRAM �]���i�]�����̓ǂݍ��݊J�n�̾�Ďw��Łj
+ * パレットデータ の VRAM 転送（転送元の読み込み開始オフセット指定版）
  *
- * @param   handle		�n���h��
- * @param   dataIdx		�������ް����ޯ��
- * @param   palType		��گē]��������
- * @param   srcOfs		��گē]�����ǂݍ��݊J�n�̾��
- * @param   dstOfs		��گē]����̾��
- * @param   transSize	��گē]�����ށi0 �őS�]���j
- * @param   heapID		�ް��ǂݍ��������؂Ƃ��Ďg��˰��ID
+ * @param   handle		ハンドル
+ * @param   dataIdx		アーカイブデータインデックス
+ * @param   palType		パレット転送先タイプ
+ * @param   srcOfs		パレット転送元読み込み開始オフセット
+ * @param   dstOfs		パレット転送先オフセット
+ * @param   transSize	パレット転送サイズ（0 で全転送）
+ * @param   heapID		データ読み込みテンポラリとして使うヒープID
  *
  */
 //------------------------------------------------------------------
@@ -492,15 +492,15 @@ extern void ArcUtil_HDL_PalSetEx( ARCHANDLE* handle, u32 dataIdx, PALTYPE palTyp
 
 //------------------------------------------------------------------
 /**
- * ��گ��ް� �� VRAM �]���� NITRO System ��گ���۷� ���쐬
- *�i3D, OBJ �p�ɂ̂ݑΉ��BBG �ɂ͎g���܂���j
+ * パレットデータ の VRAM 転送＆ NITRO System パレットプロキシ を作成
+ *（3D, OBJ 用にのみ対応。BG には使いません）
  *
- * @param   handle		�n���h��
- * @param   dataIdx		�������ް����ޯ��
- * @param   type		�]��������
- * @param   offs		�]���̾��
- * @param   heapID		˰��ID
- * @param   proxy		�쐬������۷��̱��ڽ
+ * @param   handle		ハンドル
+ * @param   dataIdx		アーカイブデータインデックス
+ * @param   type		転送先タイプ
+ * @param   offs		転送オフセット
+ * @param   heapID		ヒープID
+ * @param   proxy		作成するプロキシのアドレス
  *
  *	[ type ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -513,27 +513,27 @@ extern void ArcUtil_HDL_PalSysLoad( ARCHANDLE* handle, u32 dataIdx, NNS_G2D_VRAM
 
 //------------------------------------------------------------------
 /**
- * ����ް� �� VRAM �]���� NITRO System �Ұ����۷� ���쐬
- *�i3D, OBJ �p�ɂ̂ݑΉ��BBG �ɂ͎g���܂���j
+ * キャラデータ の VRAM 転送＆ NITRO System イメージプロキシ を作成
+ *（3D, OBJ 用にのみ対応。BG には使いません）
  *
  *
- * @param   handle			�n���h��
- * @param   dataIdx			�������ް����ޯ��
- * @param   compressedFlag	���k����Ă��邩
- * @param   mapType			ϯ��ݸ�����
- * @param   transSize		�]�����ށi0�Ȃ�S�]���j
- * @param   vramType		�]��������
- * @param   offs			�]���̾��
- * @param   heapID			�����؂Ɏg��˰��ID
- * @param   proxy			�쐬������۷��̱��ڽ
+ * @param   handle			ハンドル
+ * @param   dataIdx			アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているか
+ * @param   mapType			マッピングタイプ
+ * @param   transSize		転送サイズ（0なら全転送）
+ * @param   vramType		転送先タイプ
+ * @param   offs			転送オフセット
+ * @param   heapID			テンポラリに使うヒープID
+ * @param   proxy			作成するプロキシのアドレス
  *
- * @retval  �]�����ꂽ�ް����ށi�޲ĒP�ʁj
+ * @retval  転送されたデータサイズ（バイト単位）
  *
  *	[ mapType ]
  *		MAP_TYPE_1D = 0,
  *		MAP_TYPE_2D = 1,
  *
- *	�� VRAM�]���^�͕ʊ֐� ArcUtil_TranCharSysLoad ���g��
+ *	※ VRAM転送型は別関数 ArcUtil_TranCharSysLoad を使う
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -548,27 +548,27 @@ extern u32 ArcUtil_HDL_CharSysLoad( ARCHANDLE* handle, u32 dataIdx, BOOL compres
 
 //------------------------------------------------------------------
 /**
- * ����ް� �� VRAM �]���� NITRO System �Ұ����۷� ���쐬
- *�i3D, OBJ �p�ɂ̂ݑΉ��BBG �ɂ͎g���܂���j
+ * キャラデータ の VRAM 転送＆ NITRO System イメージプロキシ を作成
+ *（3D, OBJ 用にのみ対応。BG には使いません）
  *
- * ����ް���ϯ��ݸ�Ӱ�ޒl���A���݂�ڼ޽��ݒ�ɍ��킹�ď��������܂�
+ * キャラデータのマッピングモード値を、現在のレジスタ設定に合わせて書き換えます
  *
- * @param   handle			�n���h��
- * @param   dataIdx			�������ް����ޯ��
- * @param   compressedFlag	���k����Ă��邩
- * @param   mapType			ϯ��ݸ�����
- * @param   transSize		�]���T�C�Y�B�O�Ȃ�S�]���B
- * @param   vramType		�]��������
- * @param   offs			�]���̾��
- * @param   heapID			�����؂Ɏg��˰��ID
- * @param   proxy			�쐬������۷����ڽ
+ * @param   handle			ハンドル
+ * @param   dataIdx			アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているか
+ * @param   mapType			マッピングタイプ
+ * @param   transSize		転送サイズ。０なら全転送。
+ * @param   vramType		転送先タイプ
+ * @param   offs			転送オフセット
+ * @param   heapID			テンポラリに使うヒープID
+ * @param   proxy			作成するプロキシアドレス
  *
  *
  *	[ mapType ]
  *		CHAR_MAP_1D = 0,
  *		CHAR_MAP_2D = 1,
  *
- *	�� VRAM�]���^�͕ʊ֐� ArcUtil_TranCharSysLoad ���g��
+ *	※ VRAM転送型は別関数 ArcUtil_TranCharSysLoad を使う
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -582,22 +582,22 @@ extern void ArcUtil_HDL_CharSysLoadSyncroMappingMode( ARCHANDLE* handle, u32 dat
 
 //------------------------------------------------------------------
 /**
- * ����ް� �� VRAM �]���� NITRO System �Ұ����۷� ���쐬�BVRAM�]���^�̉摜�f�ޗp�B
+ * キャラデータ の VRAM 転送＆ NITRO System イメージプロキシ を作成。VRAM転送型の画像素材用。
  *
- * �� ���̊֐����g���Ă��AVRAM�ɉ摜�͓]������܂���
- *    ���̊֐���۰�ނ����ް��͉������܂���B�߂�l��const void*���Ǘ����āA
- *    �s�v�ɂȂ��������������s���Ă��������B
+ * ※ この関数を使っても、VRAMに画像は転送されません
+ *    この関数でロードしたデータは解放されません。戻り値のconst void*を管理して、
+ *    不要になったら解放処理を行ってください。
  *
- * @param   handle			�n���h��
- * @param   dataIdx			�������ް����ޯ��
- * @param   compressedFlag	���k����Ă��邩
- * @param   vramType		�]��������
- * @param   offs			�]���̾��
- * @param   heapID			�����؂Ɏg��˰��ID
- * @param   proxy			�쐬������۷��̱��ڽ
- * @param   charData		����ް����ڽ��ێ������߲���̱��ڽ
+ * @param   handle			ハンドル
+ * @param   dataIdx			アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているか
+ * @param   vramType		転送先タイプ
+ * @param   offs			転送オフセット
+ * @param   heapID			テンポラリに使うヒープID
+ * @param   proxy			作成するプロキシのアドレス
+ * @param   charData		キャラデータアドレスを保持するポインタのアドレス
  *
- * @retval  const void*		۰�ނ����ް��̱��ڽ
+ * @retval  const void*		ロードしたデータのアドレス
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -612,74 +612,74 @@ extern const void* ArcUtil_HDL_TransTypeCharSysLoad( ARCHANDLE* handle, u32 data
 
 //------------------------------------------------------------------
 /**
- * ����ް��� ۰�ނ��� Unpack ���邾���ł��B����͊e���ŁB
+ * キャラデータを ロードして Unpack するだけです。解放は各自で。
  *
- * @param   handle				�n���h��
- * @param   dataIdx				�ް����ޯ��
- * @param   compressedFlag		���k����Ă��邩
- * @param   charData			����ް����ڽ��ێ������߲���̱��ڽ
- * @param   heapID				˰��ID
+ * @param   handle				ハンドル
+ * @param   dataIdx				データインデックス
+ * @param   compressedFlag		圧縮されているか
+ * @param   charData			キャラデータアドレスを保持するポインタのアドレス
+ * @param   heapID				ヒープID
  *
- * @retval  void*		۰�ނ����ް��̐擪�߲��
+ * @retval  void*		ロードしたデータの先頭ポインタ
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_HDL_CharDataGet( ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, NNSG2dCharacterData** charData, u32 heapID );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ��ذ��ް��� ۰�ނ��� Unpack ���邾���ł��B����͊e���ŁB
+ * スクリーンデータを ロードして Unpack するだけです。解放は各自で。
  *
- * @param   handle			�n���h��
- * @param   arcIndex		�������ް����ޯ��
- * @param   compressedFlag	���k����Ă����ް����H
- * @param   scrnData		��ذ��ް����ڽ��ێ������߲���̱��ڽ
- * @param   heapID			�ް��ǂݍ��݁E�������؂Ƃ��Ďg��˰��ID
+ * @param   handle			ハンドル
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているデータか？
+ * @param   scrnData		スクリーンデータアドレスを保持するポインタのアドレス
+ * @param   heapID			データ読み込み・解凍テンポラリとして使うヒープID
  *
- * @retval  void*		۰�ނ����ް��̐擪�߲��
+ * @retval  void*		ロードしたデータの先頭ポインタ
  */
 //--------------------------------------------------------------------------------------------
 extern void* ArcUtil_HDL_ScrnDataGet(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, NNSG2dScreenData** scrnData, u32 heapID);
 
 //------------------------------------------------------------------
 /**
- * ��گ��ް���۰�ނ��� Unpack ���邾���ł��B����͊e���ŁB
+ * パレットデータをロードして Unpack するだけです。解放は各自で。
  *
- * @param   handle			�n���h��
- * @param   arcIndex		�������ް����ޯ��
- * @param   palData			��گ��ް����ڽ��ێ������߲���̱��ڽ
- * @param   heapID			˰��ID
+ * @param   handle			ハンドル
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   palData			パレットデータアドレスを保持するポインタのアドレス
+ * @param   heapID			ヒープID
  *
- * @retval  void*		۰�ނ����ް��̐擪�߲��
+ * @retval  void*		ロードしたデータの先頭ポインタ
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_HDL_PalDataGet( ARCHANDLE* handle, u32 dataIdx, NNSG2dPaletteData** palData, u32 heapID );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ����ݸ�ް��� ۰�ނ��� Unpack ���邾���ł��B����͊e���ŁB
+ * セルバンクデータを ロードして Unpack するだけです。解放は各自で。
  *
- * @param   handle			�n���h��
- * @param   arcIndex		�������ް����ޯ��
- * @param   compressedFlag	���k����Ă����ް����H
- * @param   cellBank		����ݸ�ް����ڽ��ێ������߲���̱��ڽ
- * @param   heapID			˰��ID
+ * @param   handle			ハンドル
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているデータか？
+ * @param   cellBank		セルバンクデータアドレスを保持するポインタのアドレス
+ * @param   heapID			ヒープID
  *
- * @retval  void*		۰�ނ����ް��̐擪�߲��
+ * @retval  void*		ロードしたデータの先頭ポインタ
  */
 //--------------------------------------------------------------------------------------------
 extern void* ArcUtil_HDL_CellBankDataGet(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, NNSG2dCellDataBank** cellBank, u32 heapID );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �����ݸ�ް��� ۰�ނ��� Unpack ���邾���ł��B����͊e���ŁB
+ * アニメバンクデータを ロードして Unpack するだけです。解放は各自で。
  *
- * @param   handle			�n���h��
- * @param   arcIndex		�������ް����ޯ��
- * @param   compressedFlag	���k����Ă����ް����H
- * @param   anmBank			�����ݸ�ް����ڽ��ێ������߲���̱��ڽ
- * @param   heapID			˰��ID
+ * @param   handle			ハンドル
+ * @param   arcIndex		アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているデータか？
+ * @param   anmBank			アニメバンクデータアドレスを保持するポインタのアドレス
+ * @param   heapID			ヒープID
  *
- * @retval  void*		۰�ނ����ް��̐擪�߲��
+ * @retval  void*		ロードしたデータの先頭ポインタ
  */
 //--------------------------------------------------------------------------------------------
 extern void* ArcUtil_HDL_AnimBankDataGet(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, NNSG2dAnimBankData** anmBank, u32 heapID);
@@ -687,13 +687,13 @@ extern void* ArcUtil_HDL_AnimBankDataGet(ARCHANDLE* handle, u32 dataIdx, BOOL co
 
 //------------------------------------------------------------------
 /**
- * LZ���k��A�[�J�C�u����Ă���f�[�^��ǂݏo���A�𓀂��ĕԂ�
+ * LZ圧縮後アーカイブされているデータを読み出し、解凍して返す
  *
- * @param   handle		�n���h��
- * @param   dataIdx		�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   heapID		�ǂݏo���E�𓀂Ɏg���q�[�v�h�c
+ * @param   handle		ハンドル
+ * @param   dataIdx		アーカイブデータインデックス
+ * @param   heapID		読み出し・解凍に使うヒープＩＤ
  *
- * @retval  void*		�𓀌�̃f�[�^�ۑ���A�h���X
+ * @retval  void*		解凍後のデータ保存先アドレス
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_HDL_UnCompress(ARCHANDLE* handle, u32 dataIdx, u32 heapID);
@@ -701,39 +701,39 @@ extern void* ArcUtil_HDL_UnCompress(ARCHANDLE* handle, u32 dataIdx, u32 heapID);
 
 //------------------------------------------------------------------
 /**
- * �A�[�J�C�u�f�[�^�̓ǂݏo��
+ * アーカイブデータの読み出し
  *
- * @param   handle			�n���h��
- * @param   dataIdx			�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   compressedFlag	���k����Ă��邩�H
- * @param   heapID			�������m�ۂɎg���q�[�v�h�c
- * @param   allocType		�q�[�v�̂ǂ̈ʒu���烁�����m�ۂ��邩
+ * @param   handle			ハンドル
+ * @param   dataIdx			アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているか？
+ * @param   heapID			メモリ確保に使うヒープＩＤ
+ * @param   allocType		ヒープのどの位置からメモリ確保するか
  *
  * [allocType]
- *		ALLOC_TOP		�q�[�v�擪����m��
- *		ALLOC_BOTTOM	�q�[�v�������m��
+ *		ALLOC_TOP		ヒープ先頭から確保
+ *		ALLOC_BOTTOM	ヒープ後方から確保
  *
- * @retval  void*			�ǂݏo���̈�|�C���^
+ * @retval  void*			読み出し領域ポインタ
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_HDL_Load(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, u32 heapID, ALLOC_TYPE allocType);
 
 //------------------------------------------------------------------
 /**
- * �A�[�J�C�u�f�[�^�̓ǂݏo�����f�[�^�T�C�Y�擾�i���k����Ă�����𓀌�̃T�C�Y���擾����j
+ * アーカイブデータの読み出し＆データサイズ取得（圧縮されていたら解凍後のサイズを取得する）
  *
- * @param   handle			�n���h��
- * @param   dataIdx			�A�[�J�C�u�f�[�^�C���f�b�N�X
- * @param   compressedFlag	���k����Ă��邩�H
- * @param   heapID			�������m�ۂɎg���q�[�v�h�c
- * @param   allocType		�q�[�v�̂ǂ̈ʒu���烁�����m�ۂ��邩
- * @param   pSize			���f�[�^�̃o�C�g�T�C�Y���󂯎��ϐ��̃|�C���^
+ * @param   handle			ハンドル
+ * @param   dataIdx			アーカイブデータインデックス
+ * @param   compressedFlag	圧縮されているか？
+ * @param   heapID			メモリ確保に使うヒープＩＤ
+ * @param   allocType		ヒープのどの位置からメモリ確保するか
+ * @param   pSize			実データのバイトサイズを受け取る変数のポインタ
  *
  * [allocType]
- *		ALLOC_TOP		�q�[�v�擪����m��
- *		ALLOC_BOTTOM	�q�[�v�������m��
+ *		ALLOC_TOP		ヒープ先頭から確保
+ *		ALLOC_BOTTOM	ヒープ後方から確保
  *
- * @retval  void*			�ǂݏo���̈�|�C���^
+ * @retval  void*			読み出し領域ポインタ
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_HDL_LoadEx(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, u32 heapID, ALLOC_TYPE allocType, u32* pSize);

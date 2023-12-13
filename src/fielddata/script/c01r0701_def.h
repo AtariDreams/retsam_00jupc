@@ -1,7 +1,7 @@
 #ifndef _C01R0701_DEF_H_
 #define _C01R0701_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C01R0701_RIVAL		(1)
 #define	SCRID_C01R0701_WOMAN3		(2)
 #define	SCRID_C01R0701_BABYGIRL1		(3)
@@ -14,6 +14,6 @@
 #define	SCRID_C01R0701_TRAINER_GIRL3		(10)
 #define	SCRID_C01R0701_BOARD		(11)
 #define	SCRID_C01R0701_NOTEBOOK		(12)
-#define	SCRID_C01R0701_DATA_MAX		(12)		//最大数
+#define	SCRID_C01R0701_DATA_MAX		(12)		//譛螟ｧ謨ｰ
 
 #endif //_C01R0701_DEF_H_

@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	stage.dat
- * @brief	ƒoƒgƒ‹ƒXƒe[ƒWƒf[ƒ^
+ * @brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
  * @author	nohara
  * @date	2007.06.07
  */
@@ -10,38 +10,38 @@
 
 //==============================================================================
 //
-//	ƒgƒŒ[ƒi[‘Ioƒe[ƒuƒ‹1
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é¸å‡ºãƒ†ãƒ¼ãƒ–ãƒ«1
 //
 //==============================================================================
 static const u16 rank_tr1_list[STAGE_TYPE_LEVEL_MAX][STAGE_RANK_TR1_NUM] = {
-	//ƒ‰ƒ“ƒN‚P
+	//ãƒ©ãƒ³ã‚¯ï¼‘
 	{ TRTYPE_TANPAN,		TRTYPE_MINI,		TRTYPE_DAISUKIM,		TRTYPE_DAISUKIW, 
 	  TRTYPE_COLLECTOR,		TRTYPE_SISTER,		TRTYPE_POKEGIRL,		TRTYPE_SHINOBI },
-	//ƒ‰ƒ“ƒN‚Q
+	//ãƒ©ãƒ³ã‚¯ï¼’
 	{ TRTYPE_TANPAN,		TRTYPE_MINI,		TRTYPE_WAITER,			TRTYPE_WAITRESS, 
 	  TRTYPE_JOGGER,		TRTYPE_PARASOL,		TRTYPE_POKEGIRL,		TRTYPE_SHINOBI },
-	//ƒ‰ƒ“ƒN‚R
+	//ãƒ©ãƒ³ã‚¯ï¼“
 	{ TRTYPE_PRINCE,		TRTYPE_PRINCESS,	TRTYPE_DAISUKIM,		TRTYPE_DAISUKIW,	
 	  TRTYPE_COLLECTOR,		TRTYPE_SISTER,		TRTYPE_PIERROT,			TRTYPE_IDOL },
-	//ƒ‰ƒ“ƒN‚S
+	//ãƒ©ãƒ³ã‚¯ï¼”
 	{ TRTYPE_PRINCE,		TRTYPE_PRINCESS,	TRTYPE_WAITER,			TRTYPE_WAITRESS, 
    	  TRTYPE_JOGGER,		TRTYPE_PARASOL,		TRTYPE_PIERROT,			TRTYPE_IDOL },
-	//ƒ‰ƒ“ƒN‚T
+	//ãƒ©ãƒ³ã‚¯ï¼•
 	{ TRTYPE_CAMPB,			TRTYPE_PICNICG,		TRTYPE_FARMER,			TRTYPE_COWGIRL, 
 	  TRTYPE_GENTLE,		TRTYPE_MADAM,		TRTYPE_COLLECTOR,		TRTYPE_SISTER },
-	//ƒ‰ƒ“ƒN‚U
+	//ãƒ©ãƒ³ã‚¯ï¼–
 	{ TRTYPE_CAMPB,			TRTYPE_PICNICG,		TRTYPE_BREEDERM,		TRTYPE_BREEDERW, 
 	  TRTYPE_GENTLE,		TRTYPE_MADAM,		TRTYPE_HEADS,			TRTYPE_GUITARIST },
-	//ƒ‰ƒ“ƒN‚V
+	//ãƒ©ãƒ³ã‚¯ï¼—
 	{ TRTYPE_SCHOOLB,		TRTYPE_SCHOOLG,		TRTYPE_FARMER,			TRTYPE_COWGIRL, 
 	  TRTYPE_DAISUKIM,		TRTYPE_DAISUKIW,	TRTYPE_JOGGER,			TRTYPE_PARASOL },
-	//ƒ‰ƒ“ƒN‚W
+	//ãƒ©ãƒ³ã‚¯ï¼˜
 	{ TRTYPE_SCHOOLB,		TRTYPE_SCHOOLG,		TRTYPE_BREEDERM,		TRTYPE_BREEDERW, 
 	  TRTYPE_DAISUKIM,		TRTYPE_DAISUKIW,	TRTYPE_HEADS,			TRTYPE_GUITARIST },
-	//ƒ‰ƒ“ƒN‚X
+	//ãƒ©ãƒ³ã‚¯ï¼™
 	{ TRTYPE_ELITEM,		TRTYPE_ELITEW,		TRTYPE_FARMER,			TRTYPE_COWGIRL, 
 	  TRTYPE_RANGERM,		TRTYPE_RANGERW,		TRTYPE_GAMBLER,			TRTYPE_VETERAN },
-	//ƒ‰ƒ“ƒN‚P‚O
+	//ãƒ©ãƒ³ã‚¯ï¼‘ï¼
 	 { TRTYPE_ELITEM,		TRTYPE_ELITEW,		TRTYPE_BREEDERM,		TRTYPE_BREEDERW, 
 	   TRTYPE_RANGERM,		TRTYPE_RANGERW,		TRTYPE_GAMBLER,			TRTYPE_VETERAN },
 };
@@ -49,45 +49,45 @@ static const u16 rank_tr1_list[STAGE_TYPE_LEVEL_MAX][STAGE_RANK_TR1_NUM] = {
 
 //==============================================================================
 //
-//	ƒgƒŒ[ƒi[‘Ioƒe[ƒuƒ‹2
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é¸å‡ºãƒ†ãƒ¼ãƒ–ãƒ«2
 //
 //==============================================================================
 static const u16 rank_tr2_list[STAGE_TR_TYPE_MAX][STAGE_RANK_TR2_NUM] = {
-	{ TRTYPE_DAISUKIM,	TRTYPE_DAISUKIW,	TRTYPE_TANPAN,		TRTYPE_MINI },		//ƒm[ƒ}ƒ‹
-	{ TRTYPE_VETERAN,	TRTYPE_VETERAN,		TRTYPE_POLICE,		TRTYPE_POLICE },	//‚Ù‚Ì‚¨
-	{ TRTYPE_UKIWAB,	TRTYPE_UKIWAG,		TRTYPE_SAILOR,		TRTYPE_FISHING },	//‚Ý‚¸
-	{ TRTYPE_POKEGIRL,	TRTYPE_POKEGIRL,	TRTYPE_WORKER,		TRTYPE_WORKER },	//‚Å‚ñ‚«
-	{ TRTYPE_AROMA,		TRTYPE_AROMA,		TRTYPE_CAMPB,		TRTYPE_PICNICG },	//‚­‚³
-	{ TRTYPE_COLDELITEM,TRTYPE_COLDELITEM,	TRTYPE_COLDELITEW,	TRTYPE_COLDELITEW },//‚±‚¨‚è
-	{ TRTYPE_KARATE,	TRTYPE_KARATE,		TRTYPE_BATTLEG,		TRTYPE_BATTLEG },	//‚©‚­‚Æ‚¤
-	{ TRTYPE_SHINOBI,	TRTYPE_SHINOBI,		TRTYPE_SCIENTIST,	TRTYPE_SCIENTIST },	//‚Ç‚­
-	{ TRTYPE_MOUNT,		TRTYPE_MOUNT,		TRTYPE_ISEKI,		TRTYPE_ISEKI },		//‚¶‚ß‚ñ
-	{ TRTYPE_BIRD,		TRTYPE_BIRD,		TRTYPE_BIRD,		TRTYPE_BIRD },		//‚Ð‚±‚¤
+	{ TRTYPE_DAISUKIM,	TRTYPE_DAISUKIW,	TRTYPE_TANPAN,		TRTYPE_MINI },		//ãƒŽãƒ¼ãƒžãƒ«
+	{ TRTYPE_VETERAN,	TRTYPE_VETERAN,		TRTYPE_POLICE,		TRTYPE_POLICE },	//ã»ã®ãŠ
+	{ TRTYPE_UKIWAB,	TRTYPE_UKIWAG,		TRTYPE_SAILOR,		TRTYPE_FISHING },	//ã¿ãš
+	{ TRTYPE_POKEGIRL,	TRTYPE_POKEGIRL,	TRTYPE_WORKER,		TRTYPE_WORKER },	//ã§ã‚“ã
+	{ TRTYPE_AROMA,		TRTYPE_AROMA,		TRTYPE_CAMPB,		TRTYPE_PICNICG },	//ãã•
+	{ TRTYPE_COLDELITEM,TRTYPE_COLDELITEM,	TRTYPE_COLDELITEW,	TRTYPE_COLDELITEW },//ã“ãŠã‚Š
+	{ TRTYPE_KARATE,	TRTYPE_KARATE,		TRTYPE_BATTLEG,		TRTYPE_BATTLEG },	//ã‹ãã¨ã†
+	{ TRTYPE_SHINOBI,	TRTYPE_SHINOBI,		TRTYPE_SCIENTIST,	TRTYPE_SCIENTIST },	//ã©ã
+	{ TRTYPE_MOUNT,		TRTYPE_MOUNT,		TRTYPE_ISEKI,		TRTYPE_ISEKI },		//ã˜ã‚ã‚“
+	{ TRTYPE_BIRD,		TRTYPE_BIRD,		TRTYPE_BIRD,		TRTYPE_BIRD },		//ã²ã“ã†
   // MatchComment: TRTYPE_ESPW in 2nd (1-indexed) column -> TRTYPE_ESPM
   // TRTYPE_MUSHI in 3rd and 4th column -> TRTYPE_ESPW
-	{ TRTYPE_ESPM,		TRTYPE_ESPM,		TRTYPE_ESPW,		TRTYPE_ESPW },		//ƒGƒXƒp[
-	{ TRTYPE_MUSHI,		TRTYPE_MUSHI,		TRTYPE_MUSHI,		TRTYPE_MUSHI },		//‚Þ‚µ
-	{ TRTYPE_MOUNT,		TRTYPE_MOUNT,		TRTYPE_ISEKI,		TRTYPE_ISEKI },		//‚¢‚í
-	{ TRTYPE_ESPM,		TRTYPE_ESPM,		TRTYPE_ESPW,		TRTYPE_ESPW },		//ƒS[ƒXƒg
-	{ TRTYPE_DRAGON,	TRTYPE_DRAGON,		TRTYPE_DRAGON,		TRTYPE_DRAGON },	//ƒhƒ‰ƒSƒ“
-	{ TRTYPE_HEADS,		TRTYPE_HEADS,		TRTYPE_GUITARIST,	TRTYPE_GUITARIST },	//‚ ‚­
-	{ TRTYPE_REPORTER,	TRTYPE_CAMERAMAN,	TRTYPE_CYCLINGM,	TRTYPE_CYCLINGW },	//‚Í‚ª‚Ë
-	{ TRTYPE_IDOL,		TRTYPE_PIERROT,		TRTYPE_WAITER,		TRTYPE_WAITRESS },	//HHH	
+	{ TRTYPE_ESPM,		TRTYPE_ESPM,		TRTYPE_ESPW,		TRTYPE_ESPW },		//ã‚¨ã‚¹ãƒ‘ãƒ¼
+	{ TRTYPE_MUSHI,		TRTYPE_MUSHI,		TRTYPE_MUSHI,		TRTYPE_MUSHI },		//ã‚€ã—
+	{ TRTYPE_MOUNT,		TRTYPE_MOUNT,		TRTYPE_ISEKI,		TRTYPE_ISEKI },		//ã„ã‚
+	{ TRTYPE_ESPM,		TRTYPE_ESPM,		TRTYPE_ESPW,		TRTYPE_ESPW },		//ã‚´ãƒ¼ã‚¹ãƒˆ
+	{ TRTYPE_DRAGON,	TRTYPE_DRAGON,		TRTYPE_DRAGON,		TRTYPE_DRAGON },	//ãƒ‰ãƒ©ã‚´ãƒ³
+	{ TRTYPE_HEADS,		TRTYPE_HEADS,		TRTYPE_GUITARIST,	TRTYPE_GUITARIST },	//ã‚ã
+	{ TRTYPE_REPORTER,	TRTYPE_CAMERAMAN,	TRTYPE_CYCLINGM,	TRTYPE_CYCLINGW },	//ã¯ãŒã­
+	{ TRTYPE_IDOL,		TRTYPE_PIERROT,		TRTYPE_WAITER,		TRTYPE_WAITRESS },	//ï¼Ÿï¼Ÿï¼Ÿ	
 };
 
 
 //==============================================================================
 //
-//	ƒ^ƒ[ƒgƒŒ[ƒi[ƒf[ƒ^‚ÌƒgƒŒ[ƒi[ƒ^ƒCƒv‚ð”²‚«o‚µ‚½ƒe[ƒuƒ‹
+//	ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‚’æŠœãå‡ºã—ãŸãƒ†ãƒ¼ãƒ–ãƒ«
 //
-//	‚±‚Ìƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚Ì’l‚ªƒ^ƒ[ƒf[ƒ^‚ÌƒgƒŒ[ƒi[ƒCƒ“ƒfƒbƒNƒX‚Æ‚È‚é
+//	ã“ã®ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å€¤ãŒã‚¿ãƒ¯ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ãªã‚‹
 //
-//	šstage_tool.c‚ÌˆÈ‰º‚à‘Î‰ž‚µ‚È‚¢‚Æƒ_ƒI
+//	â˜…stage_tool.cã®ä»¥ä¸‹ã‚‚å¯¾å¿œã—ãªã„ã¨ãƒ€ãƒ¡ï¼
 //	#define STAGE_POKE_INDEX_START	( 1 )
 //	static const STAGE_POKE_RANGE stage_poke_range[] = {
 //
 //==============================================================================
-//ƒ^ƒ[ƒf[ƒ^\‘¢060725.xls‚ðŒ³‚Éì¬(ŽÀÛ‚Ìƒf[ƒ^‚Æˆá‚¢‚ª‚ ‚é‚Æ‚Ü‚¸‚¢)
+//ã‚¿ãƒ¯ãƒ¼ãƒ‡ãƒ¼ã‚¿æ§‹é€ 060725.xlsã‚’å…ƒã«ä½œæˆ(å®Ÿéš›ã®ãƒ‡ãƒ¼ã‚¿ã¨é•ã„ãŒã‚ã‚‹ã¨ã¾ãšã„)
 static const u16 tower_trtype_list[] = {
 	TRTYPE_TANPAN,	
 	TRTYPE_TANPAN,	
@@ -395,7 +395,7 @@ static const u16 tower_trtype_list[] = {
 
 //==============================================================================
 //
-//	ƒXƒe[ƒWê—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ìƒ^ƒCƒv1,2‚ð”²‚«o‚µ‚½ƒe[ƒuƒ‹
+//	ã‚¹ãƒ†ãƒ¼ã‚¸å°‚ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ—1,2ã‚’æŠœãå‡ºã—ãŸãƒ†ãƒ¼ãƒ–ãƒ«
 //
 //==============================================================================
 static const u16 stage_poke_type[][2] = {
@@ -881,9 +881,9 @@ static const u16 stage_poke_type[][2] = {
 
 //==============================================================================
 //
-//	ƒXƒe[ƒWê—p‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ìƒ‰ƒ“ƒN‚²‚Æ‚Ìƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ð”²‚«o‚µ
+//	ã‚¹ãƒ†ãƒ¼ã‚¸å°‚ç”¨ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ãƒ©ãƒ³ã‚¯ã”ã¨ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’æŠœãå‡ºã—
 //
-//	stage_tool.c stage_poke_range‚Ìƒ|ƒPƒ‚ƒ“‘I‘ð”ÍˆÍ‚à‘Î‰ž‚µ‚È‚¢‚Æƒ_ƒI
+//	stage_tool.c stage_poke_rangeã®ãƒã‚±ãƒ¢ãƒ³é¸æŠžç¯„å›²ã‚‚å¯¾å¿œã—ãªã„ã¨ãƒ€ãƒ¡ï¼
 //
 //==============================================================================
 static const u16 stage_poke_no[] = {

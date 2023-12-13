@@ -1,7 +1,7 @@
 #ifndef _D31R0101_DEF_H_
 #define _D31R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D31R0101_BPGIFT_01		(1)
 #define	SCRID_D31R0101_BPGIFT_02		(2)
 #define	SCRID_D31R0101_GENTLEMAN_01		(3)
@@ -11,6 +11,6 @@
 #define	SCRID_D31R0101_CLOWN_01		(7)
 #define	SCRID_D31R0101_BABYGIRL_01		(8)
 #define	SCRID_D31R0101_OLDWOMAN_01		(9)
-#define	SCRID_D31R0101_DATA_MAX		(9)		//最大数
+#define	SCRID_D31R0101_DATA_MAX		(9)		//譛螟ｧ謨ｰ
 
 #endif //_D31R0101_DEF_H_

@@ -13,16 +13,16 @@
 #
 # $Log: Makefile,v $
 # Revision 1.4  2006/04/27 11:17:33  takayama
-# NITRODWC_NOGS�I�v�V�������u���E�U��������ʏ�̂��̂ɏC���B
+# NITRODWC_NOGSオプションをブラウザ向けから通常のものに修正。
 #
 # Revision 1.3  2006/04/21 01:33:43  takayama
-# NITORDWC_NOGS�ł̃r���h���̒����B
+# NITORDWC_NOGSでのビルド環境の調整。
 #
 # Revision 1.2  2005/08/31 11:24:38  sasakit
-# dwc_report��account���W���[���Ɉړ�
+# dwc_reportをaccountモジュールに移動
 #
 # Revision 1.1  2005/08/31 02:29:44  sasakit
-# �������p�̃R�[�h��overlay�ŕ�������悤�ɁA���W���[���𕪂����B
+# 初期化用のコードがoverlayで分けられるように、モジュールを分けた。
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

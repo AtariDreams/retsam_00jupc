@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_gyoe.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ‚¬‚å‚¦[
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãã‚‡ãˆãƒ¼
  * @author	kagaya
  * @data	05.07.13
  *
@@ -19,22 +19,22 @@
 //==============================================================================
 //	define
 //==============================================================================
-#define GYOE_FLDOBJ_Y_OFFSET ((FX32_ONE*32))				///<ƒtƒB[ƒ‹ƒhOBJ‚©‚ç‚ÌYƒIƒtƒZƒbƒg
-#define GYOE_FLDOBJ_Z_OFFSET ((FX32_ONE*1))					///<ƒtƒB[ƒ‹ƒhOBJ‚©‚ç‚ÌZƒIƒtƒZƒbƒg
-#define GYOE_FLDOBJ_Y_MOVE_START ((FX32_ONE*6))				///<ƒMƒ‡ƒG[‰‘¬
+#define GYOE_FLDOBJ_Y_OFFSET ((FX32_ONE*32))				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define GYOE_FLDOBJ_Z_OFFSET ((FX32_ONE*1))					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ã®Zã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define GYOE_FLDOBJ_Y_MOVE_START ((FX32_ONE*6))				///<ã‚®ãƒ§ã‚¨ãƒ¼åˆé€Ÿ
 
-#define GYOE_END_FRAME (30)									///<ƒMƒ‡ƒG[I—¹ƒtƒŒ[ƒ€	
+#define GYOE_END_FRAME (30)									///<ã‚®ãƒ§ã‚¨ãƒ¼çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 	
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_GYOEŒ^
+///	FE_GYOEå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GYOE * FE_GYOE_PTR;
 
 //--------------------------------------------------------------
-///	FE_GYOE\‘¢‘Ì
+///	FE_GYOEæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GYOE
 {
@@ -47,42 +47,42 @@ typedef struct _TAG_FE_GYOE
 	FE_SYS *fes;
 }FE_GYOE;
 
-#define FE_GYOE_SIZE (sizeof(FE_GYOE)) ///<FE_GYOEƒTƒCƒY
+#define FE_GYOE_SIZE (sizeof(FE_GYOE)) ///<FE_GYOEã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	GYOE_ADD_H\‘¢‘Ì
+///	GYOE_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	GYOE_TYPE type;								///<GYOE_TYPE
 	FE_SYS *fes;								///<FE_SYS_PTR
 	FE_GYOE_PTR gyoe;							///<FE_GYOE_PTR
-	FIELD_OBJ_PTR fldobj;						///<‚¬‚å‚¦[‚Ì‘ÎÛFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<ãã‚‡ãˆãƒ¼ã®å¯¾è±¡FIELD_OBJ_PTR
 }GYOE_ADD_H;
 
-#define GYOE_ADD_H_SIZE (sizeof(GYOE_ADD_H)) ///<GYOE_ADD_HƒTƒCƒY
+#define GYOE_ADD_H_SIZE (sizeof(GYOE_ADD_H)) ///<GYOE_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	GYOE_WORK\‘¢‘Ì
+///	GYOE_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int seq_no;									///<“®ì”Ô†
-	int frame;									///<ƒtƒŒ[ƒ€
-	int obj_id;									///<‚¬‚å‚¦[‘ÎÛOBJID
-	int zone_id;								///<‚¬‚å‚¦[‘ÎÛƒ][ƒ“ID
-	int vanish_sw;								///<”ñ•\¦SW
-	int end_sw;									///<I—¹SW
-	VecFx32 offset;								///<ƒIƒtƒZƒbƒg
-	VecFx32 move;								///<ˆÚ“®—Ê
-	GYOE_ADD_H head;							///<’Ç‰Á‚ÌGYOE_ADD_H
-	BLACT_WORK_PTR act;							///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
+	int seq_no;									///<å‹•ä½œç•ªå·
+	int frame;									///<ãƒ•ãƒ¬ãƒ¼ãƒ 
+	int obj_id;									///<ãã‚‡ãˆãƒ¼å¯¾è±¡OBJID
+	int zone_id;								///<ãã‚‡ãˆãƒ¼å¯¾è±¡ã‚¾ãƒ¼ãƒ³ID
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	int end_sw;									///<çµ‚äº†SW
+	VecFx32 offset;								///<ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	VecFx32 move;								///<ç§»å‹•é‡
+	GYOE_ADD_H head;							///<è¿½åŠ æ™‚ã®GYOE_ADD_H
+	BLACT_WORK_PTR act;							///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
 }GYOE_WORK;
 
-#define GYOE_WORK_SIZE (sizeof(GYOE_WORK))	///<GYOE_WORKƒTƒCƒY
+#define GYOE_WORK_SIZE (sizeof(GYOE_WORK))	///<GYOE_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Gyoe_AddCountUp( FE_GYOE_PTR gyoe );
 static void Gyoe_AddCountDown( FE_GYOE_PTR gyoe );
@@ -112,11 +112,11 @@ const BLACT_ANIME_TBL DATA_BlActAnmTbl_Gyoe[];
 //SEQ_FANFA4
 
 //==============================================================================
-//	‚¬‚å‚¦[@ƒVƒXƒeƒ€
+//	ãã‚‡ãˆãƒ¼ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚¬‚å‚¦[‰Šú‰»
+ * ãã‚‡ãˆãƒ¼åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_GYOE_PTR	FE_GYOE_PTR
  */
@@ -133,7 +133,7 @@ void * FE_Gyoe_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ‚¬‚å‚¦[íœ
+ * ãã‚‡ãˆãƒ¼å‰Šé™¤
  * @param	gyoe		FE_GYOE_PTR
  * @retval	nothing
  */
@@ -146,11 +146,11 @@ void FE_Gyoe_Delete( void *work )
 }
 
 //==============================================================================
-//	‚¬‚å‚¦[	ƒp[ƒc
+//	ãã‚‡ãˆãƒ¼	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒMƒ‡ƒG[”ƒJƒEƒ“ƒg
+ * ã‚®ãƒ§ã‚¨ãƒ¼æ•°ã‚«ã‚¦ãƒ³ãƒˆ
  * @param	gyoe	FE_GYOE_PTR
  * @retval	nothing
  */
@@ -162,7 +162,7 @@ static void Gyoe_AddCountUp( FE_GYOE_PTR gyoe )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‡ƒG[”ƒfƒNƒŠƒƒ“ƒg
+ * ã‚®ãƒ§ã‚¨ãƒ¼æ•°ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  * @param	gyoe	FE_GYOE_PTR
  * @retval	nothing
  */
@@ -172,12 +172,12 @@ static void Gyoe_AddCountDown( FE_GYOE_PTR gyoe )
 	gyoe->add_count_gyoe--;
 	
 	GF_ASSERT( gyoe->add_count_gyoe >= 0 &&
-		"Gyoe_AddCountDown()@ƒMƒ‡ƒG[‚Ì’Ç‰Á‚Æíœ‚Ì‰ñ”‚ª‡‚í‚È‚¢" );
+		"Gyoe_AddCountDown()ã€€ã‚®ãƒ§ã‚¨ãƒ¼ã®è¿½åŠ ã¨å‰Šé™¤ã®å›æ•°ãŒåˆã‚ãªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * Äí‚¬‚å‚¦[”ƒJƒEƒ“ƒg
+ * å†æˆ¦ãã‚‡ãˆãƒ¼æ•°ã‚«ã‚¦ãƒ³ãƒˆ
  * @param	gyoe	FE_GYOE_PTR
  * @retval	nothing
  */
@@ -189,7 +189,7 @@ static void Saisen_AddCountUp( FE_GYOE_PTR gyoe )
 
 //--------------------------------------------------------------
 /**
- * Äí‚¬‚å‚¦[”ƒfƒNƒŠƒƒ“ƒg
+ * å†æˆ¦ãã‚‡ãˆãƒ¼æ•°ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  * @param	gyoe	FE_GYOE_PTR
  * @retval	nothing
  */
@@ -199,12 +199,12 @@ static void Saisen_AddCountDown( FE_GYOE_PTR gyoe )
 	gyoe->add_count_saisen--;
 	
 	GF_ASSERT( gyoe->add_count_saisen >= 0 &&
-		"Gyoe_AddCountDown()@ÄíƒMƒ‡ƒG[‚Ì’Ç‰Á‚Æíœ‚Ì‰ñ”‚ª‡‚í‚È‚¢" );
+		"Gyoe_AddCountDown()ã€€å†æˆ¦ã‚®ãƒ§ã‚¨ãƒ¼ã®è¿½åŠ ã¨å‰Šé™¤ã®å›æ•°ãŒåˆã‚ãªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‡ƒG[ƒ^ƒCƒv@ƒJƒEƒ“ƒg 
+ * ã‚®ãƒ§ã‚¨ãƒ¼ã‚¿ã‚¤ãƒ—ã€€ã‚«ã‚¦ãƒ³ãƒˆ 
  * @param	gyoe	FE_GYOE_TYPE
  * @param	type	GYOE_TYPE
  * @retval	nothing
@@ -221,7 +221,7 @@ static void GyoeType_AddCountUp( FE_GYOE_PTR gyoe, GYOE_TYPE type )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‡ƒG[ƒ^ƒCƒv@ƒfƒNƒŠƒƒ“ƒg
+ * ã‚®ãƒ§ã‚¨ãƒ¼ã‚¿ã‚¤ãƒ—ã€€ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  * @param	gyoe	FE_GYOE_TYPE
  * @param	type	GYOE_TYPE
  * @retval	nothing
@@ -238,9 +238,9 @@ static void GyoeType_AddCountDown( FE_GYOE_PTR gyoe, GYOE_TYPE type )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‡ƒG[@ƒtƒHƒO‚ğ–³Œø‚É
+ * ã‚®ãƒ§ã‚¨ãƒ¼ã€€ãƒ•ã‚©ã‚°ã‚’ç„¡åŠ¹ã«
  * @param	fsys	FIELDSYS_WORK
- * @param	flag	TRUE=–³Œø FALSE=—LŒø
+ * @param	flag	TRUE=ç„¡åŠ¹ FALSE=æœ‰åŠ¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -251,11 +251,11 @@ void FE_Gyoe_NotFogSet( FIELDSYS_WORK *fsys, BOOL flag )
 }
 
 //==============================================================================
-//	‚¬‚å‚¦[@ƒOƒ‰ƒtƒBƒbƒN
+//	ãã‚‡ãˆãƒ¼ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚¬‚å‚¦[ ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ãã‚‡ãˆãƒ¼ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	gyoe	FE_GYOE_PTR
  * @retval	nothing
  */
@@ -281,7 +281,7 @@ static void Gyoe_GraphicInit( FE_GYOE_PTR gyoe )
 
 //--------------------------------------------------------------
 /**
- * ÄíƒMƒ‡ƒG[ ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * å†æˆ¦ã‚®ãƒ§ã‚¨ãƒ¼ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	gyoe	FE_GYOE_PTR
  * @retval	nothing
  */
@@ -306,7 +306,7 @@ static void Saisen_GraphicInit( FE_GYOE_PTR gyoe )
 
 //--------------------------------------------------------------
 /**
- * ‚¬‚å‚¦[ ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ãã‚‡ãˆãƒ¼ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	gyoe	FE_GYOE_PTR
  * @retval	nothing
  */
@@ -325,7 +325,7 @@ static void Gyoe_GraphicDelete( FE_GYOE_PTR gyoe )
 
 //--------------------------------------------------------------
 /**
- * ÄíƒMƒ‡ƒG[ ƒOƒ‰ƒtƒBƒbƒNíœ
+ * å†æˆ¦ã‚®ãƒ§ã‚¨ãƒ¼ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	gyoe	FE_GYOE_PTR
  * @retval	nothing
  */
@@ -344,7 +344,7 @@ static void Saisen_GraphicDelete( FE_GYOE_PTR gyoe )
 
 //--------------------------------------------------------------
 /**
- * ”»’è‚Â‚«ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * åˆ¤å®šã¤ãã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	gyoe FE_GYOE_PTR
  * @retval	nothing
  */
@@ -358,7 +358,7 @@ static void Gyoe_GraphicCheckInit( FE_GYOE_PTR gyoe )
 
 //--------------------------------------------------------------
 /**
- * ”»’è‚Â‚«ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»@ÄíƒMƒ‡ƒG[
+ * åˆ¤å®šã¤ãã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–ã€€å†æˆ¦ã‚®ãƒ§ã‚¨ãƒ¼
  * @param	gyoe FE_GYOE_PTR
  * @retval	nothing
  */
@@ -372,7 +372,7 @@ static void Saisen_GraphicCheckInit( FE_GYOE_PTR gyoe )
 
 //--------------------------------------------------------------
 /**
- * ”»’è‚Â‚«ƒOƒ‰ƒtƒBƒbƒNíœ
+ * åˆ¤å®šã¤ãã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	gyoe FE_GYOE_PTR
  * @retval	nothing
  */
@@ -386,7 +386,7 @@ static void Gyoe_GraphicCheckDelete( FE_GYOE_PTR gyoe )
 
 //--------------------------------------------------------------
 /**
- * ”»’è‚Â‚«ƒOƒ‰ƒtƒBƒbƒNíœ@ÄíƒMƒ‡ƒG[
+ * åˆ¤å®šã¤ãã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤ã€€å†æˆ¦ã‚®ãƒ§ã‚¨ãƒ¼
  * @param	gyoe FE_GYOE_PTR
  * @retval	nothing
  */
@@ -400,7 +400,7 @@ static void Saisen_GraphicCheckDelete( FE_GYOE_PTR gyoe )
 
 //--------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»@í—Ş
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–ã€€ç¨®é¡
  * @param	FE_GYOE_PTR gyoe
  * @param	type GYOE_TYPE
  * @retval	nothing
@@ -417,7 +417,7 @@ static void GyoeType_GraphicInit( FE_GYOE_PTR gyoe, GYOE_TYPE type )
 
 //--------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNíœ@í—Ş
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤ã€€ç¨®é¡
  * @param	FE_GYOE_PTR gyoe
  * @param	type GYOE_TYPE
  * @retval	nothing
@@ -434,11 +434,11 @@ static void GyoeType_GraphicDelete( FE_GYOE_PTR gyoe, GYOE_TYPE type )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‡ƒG[@ƒrƒ‹ƒ{[ƒh’Ç‰Á
+ * ã‚®ãƒ§ã‚¨ãƒ¼ã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰è¿½åŠ 
  * @param	fes			FE_SYS_PTR
  * @param	type		GYOE_TYPE
- * @param	vec			À•W
- * @param	not_fog		TRUE=ƒtƒHƒO–³Œø
+ * @param	vec			åº§æ¨™
+ * @param	not_fog		TRUE=ãƒ•ã‚©ã‚°ç„¡åŠ¹
  * @retval	BLACT_WORK_PTR	BLACT_WORK_PTR
  */
 //--------------------------------------------------------------
@@ -455,15 +455,15 @@ static BLACT_WORK_PTR GyoeType_BlActAdd(
 }
 
 //==============================================================================
-//	‚¬‚å‚¦[@EOA@ƒtƒB[ƒ‹ƒhOBJ—p
+//	ãã‚‡ãˆãƒ¼ã€€EOAã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚¬‚å‚¦[’Ç‰Á
+ * ãã‚‡ãˆãƒ¼è¿½åŠ 
  * @param	fes			FE_SYS *
- * @param	mtx			•\¦ˆÊ’u
- * @param	se_play		TRUE=SEÄ¶
- * @retval	EOA_PTR		’Ç‰ÁEOA_PTR
+ * @param	mtx			è¡¨ç¤ºä½ç½®
+ * @param	se_play		TRUE=SEå†ç”Ÿ
+ * @retval	EOA_PTR		è¿½åŠ EOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_Gyoe_Add( FE_SYS *fes, const VecFx32 *mtx, int se_play )
@@ -481,9 +481,9 @@ EOA_PTR FE_Gyoe_Add( FE_SYS *fes, const VecFx32 *mtx, int se_play )
 
 //--------------------------------------------------------------
 /**
- * ‚¬‚å‚¦[I—¹ƒ`ƒFƒbƒN
- * @param	eoa		ƒMƒ‡ƒG[EOA
- * @retval	int		TRUE=I—¹
+ * ãã‚‡ãˆãƒ¼çµ‚äº†ãƒã‚§ãƒƒã‚¯
+ * @param	eoa		ã‚®ãƒ§ã‚¨ãƒ¼EOA
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 int FE_Gyoe_EndCheck( EOA_PTR eoa )
@@ -496,7 +496,7 @@ int FE_Gyoe_EndCheck( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ‚¬‚å‚¦[@”ñ•\¦
+ * EOA ãã‚‡ãˆãƒ¼ã€€éè¡¨ç¤º
  * @param	eoa		EOA_PTR
  * @retval	nothing
  */
@@ -513,10 +513,10 @@ void FE_Gyoe_Vanish( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ‚¬‚å‚¦[@‰Šú‰»
+ * EOA ãã‚‡ãˆãƒ¼ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaGyoe_Init( EOA_PTR eoa, void *wk )
@@ -531,12 +531,12 @@ static int EoaGyoe_Init( EOA_PTR eoa, void *wk )
 	work->head = *head;
 	work->move.y = GYOE_FLDOBJ_Y_MOVE_START;
 	
-	GyoeType_GraphicInit( work->head.gyoe, work->head.type );			//ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+	GyoeType_GraphicInit( work->head.gyoe, work->head.type );			//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 	
 	EOA_MatrixGet( eoa, &vec );
 	work->act = GyoeType_BlActAdd( work->head.fes,
 		work->head.type, &vec, work->head.gyoe->draw_not_fog );
-	GyoeType_AddCountUp( work->head.gyoe, work->head.type );			//ƒJƒEƒ“ƒgƒAƒbƒv
+	GyoeType_AddCountUp( work->head.gyoe, work->head.type );			//ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 	
 	if( EOA_AddParamGet(eoa) == TRUE ){
 		Snd_SePlay( SE_MARK_GYOE );
@@ -547,7 +547,7 @@ static int EoaGyoe_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‚¬‚å‚¦[@“®ì
+ * EOA ãã‚‡ãˆãƒ¼ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -591,7 +591,7 @@ static void EoaGyoe_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‚¬‚å‚¦[@íœ
+ * EOA ãã‚‡ãˆãƒ¼ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -603,14 +603,14 @@ static void EoaGyoe_Delete( EOA_PTR eoa, void *wk )
 	
 	work = wk;
 	
-	BLACT_Delete( work->act );									//ƒAƒNƒ^[íœ
-	GyoeType_AddCountDown( work->head.gyoe, work->head.type );	//ƒJƒEƒ“ƒgƒ_ƒEƒ“
-	GyoeType_GraphicDelete( work->head.gyoe, work->head.type );	//ƒOƒ‰ƒtƒBƒbƒNíœ
+	BLACT_Delete( work->act );									//ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
+	GyoeType_AddCountDown( work->head.gyoe, work->head.type );	//ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
+	GyoeType_GraphicDelete( work->head.gyoe, work->head.type );	//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
 }
 
 //--------------------------------------------------------------
 /**
- * EOA ‚¬‚å‚¦[@•`‰æ
+ * EOA ãã‚‡ãˆãƒ¼ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -637,15 +637,15 @@ static void EoaGyoe_Draw( EOA_PTR eoa, void *wk )
 }
 
 //==============================================================================
-//	‚¬‚å‚¦[@EOA@ƒtƒB[ƒ‹ƒhOBJ—p
+//	ãã‚‡ãˆãƒ¼ã€€EOAã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ—p‚¬‚å‚¦[’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨ãã‚‡ãˆãƒ¼è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
- * @param	se_play		TRUE=SEÄ¶
- * @param	trans_wait	TRUE=ƒOƒ‰ƒtƒBƒbƒN“]‘—‘Ò‚¿”Å
- * @retval	EOA_PTR		’Ç‰ÁEOA_PTR
+ * @param	se_play		TRUE=SEå†ç”Ÿ
+ * @param	trans_wait	TRUE=ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€å¾…ã¡ç‰ˆ
+ * @retval	EOA_PTR		è¿½åŠ EOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_FldOBJGyoe_Add(
@@ -666,7 +666,7 @@ EOA_PTR FE_FldOBJGyoe_Add(
 	head.fldobj = fldobj;
 	
 	FieldOBJ_VecPosGet( fldobj, &mtx );
-	pri = FieldOBJ_TCBStandardPriorityGet( fldobj ) + 1; //OBJ‚æ‚è‚àˆ—‚ğŒã
+	pri = FieldOBJ_TCBStandardPriorityGet( fldobj ) + 1; //OBJã‚ˆã‚Šã‚‚å‡¦ç†ã‚’å¾Œ
 	
 	if( trans_wait == TRUE ){
 		eoa_head = &DATA_EoaH_FldOBJGyoeTransWait;
@@ -680,10 +680,10 @@ EOA_PTR FE_FldOBJGyoe_Add(
 
 //--------------------------------------------------------------
 /**
- * EOA ‚¬‚å‚¦[@‰Šú‰»@ƒtƒB[ƒ‹ƒhOBJ—p
+ * EOA ãã‚‡ãˆãƒ¼ã€€åˆæœŸåŒ–ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaGyoeFldOBJ_Init( EOA_PTR eoa, void *wk )
@@ -700,12 +700,12 @@ static int EoaGyoeFldOBJ_Init( EOA_PTR eoa, void *wk )
 	work->zone_id = FieldOBJ_ZoneIDGet( work->head.fldobj );
 	work->move.y = GYOE_FLDOBJ_Y_MOVE_START;
 	
-	GyoeType_GraphicInit( work->head.gyoe, work->head.type );	//ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+	GyoeType_GraphicInit( work->head.gyoe, work->head.type );	//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 	
 	EOA_MatrixGet( eoa, &vec );
 	work->act = GyoeType_BlActAdd( work->head.fes,
 			work->head.type, &vec, work->head.gyoe->draw_not_fog );
-	GyoeType_AddCountUp( work->head.gyoe, work->head.type );	//ƒJƒEƒ“ƒgƒAƒbƒv
+	GyoeType_AddCountUp( work->head.gyoe, work->head.type );	//ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 	if( EOA_AddParamGet(eoa) == TRUE ){
 		Snd_SePlay( SE_MARK_GYOE );
 	}
@@ -715,7 +715,7 @@ static int EoaGyoeFldOBJ_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‚¬‚å‚¦[@“®ì@ƒtƒB[ƒ‹ƒhOBJ—p
+ * EOA ãã‚‡ãˆãƒ¼ã€€å‹•ä½œã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -731,7 +731,7 @@ static void EoaGyoeFldOBJ_Move( EOA_PTR eoa, void *wk )
 	fldobj = work->head.fldobj;
 	
 	GF_ASSERT( FieldOBJ_CheckSameID(fldobj,work->obj_id,work->zone_id) != FALSE &&
-		"ƒMƒ‡ƒG[“®ì’†‚É‘ÎÛ‚ÌƒtƒB[ƒ‹ƒhOBJ‚ªíœ‚³‚ê‚Ü‚µ‚½" );
+		"ã‚®ãƒ§ã‚¨ãƒ¼å‹•ä½œä¸­ã«å¯¾è±¡ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒå‰Šé™¤ã•ã‚Œã¾ã—ãŸ" );
 	
 	FieldOBJ_DrawVecPosTotalGet( fldobj, &vec );
 	vec.y += GYOE_FLDOBJ_Y_OFFSET;
@@ -767,15 +767,15 @@ static void EoaGyoeFldOBJ_Move( EOA_PTR eoa, void *wk )
 }
 
 //==============================================================================
-//	‚¬‚å‚¦[@EOA ƒtƒB[ƒ‹ƒhOBJ—p ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^•ªŠ„“]‘—”Å
+//	ãã‚‡ãˆãƒ¼ã€€EOA ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿åˆ†å‰²è»¢é€ç‰ˆ
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * EOA ‚¬‚å‚¦[@‰Šú‰»@ƒtƒB[ƒ‹ƒhOBJ—p
+ * EOA ãã‚‡ãˆãƒ¼ã€€åˆæœŸåŒ–ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaGyoeTransWaitFldOBJ_Init( EOA_PTR eoa, void *wk )
@@ -793,7 +793,7 @@ static int EoaGyoeTransWaitFldOBJ_Init( EOA_PTR eoa, void *wk )
 	work->move.y = GYOE_FLDOBJ_Y_MOVE_START;
 	work->vanish_sw = TRUE;
 	
-	GyoeType_GraphicInit(	//ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+	GyoeType_GraphicInit(	//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 		work->head.gyoe, work->head.type );
 	GyoeType_AddCountUp( work->head.gyoe, work->head.type );
 	
@@ -802,7 +802,7 @@ static int EoaGyoeTransWaitFldOBJ_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‚¬‚å‚¦[@“®ì@ƒtƒB[ƒ‹ƒhOBJ—p
+ * EOA ãã‚‡ãˆãƒ¼ã€€å‹•ä½œã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -817,7 +817,7 @@ static void EoaGyoeTransWaitFldOBJ_Move( EOA_PTR eoa, void *wk )
 	work = wk;
 	fldobj = work->head.fldobj;
 	
-	GF_ASSERT( FieldOBJ_CheckSameID(fldobj,work->obj_id,work->zone_id) != FALSE && "ƒMƒ‡ƒG[“®ì’†‚É‘ÎÛ‚ÌƒtƒB[ƒ‹ƒhOBJ‚ªíœ‚³‚ê‚Ü‚µ‚½" );
+	GF_ASSERT( FieldOBJ_CheckSameID(fldobj,work->obj_id,work->zone_id) != FALSE && "ã‚®ãƒ§ã‚¨ãƒ¼å‹•ä½œä¸­ã«å¯¾è±¡ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒå‰Šé™¤ã•ã‚Œã¾ã—ãŸ" );
 	
 	FieldOBJ_DrawVecPosTotalGet( fldobj, &vec );
 	vec.y += GYOE_FLDOBJ_Y_OFFSET;
@@ -826,7 +826,7 @@ static void EoaGyoeTransWaitFldOBJ_Move( EOA_PTR eoa, void *wk )
 	switch( work->seq_no ){
 	case 0:
 	case 1:
-		work->seq_no++;	//“]‘—‘Ò‚¿
+		work->seq_no++;	//è»¢é€å¾…ã¡
 		break;
 	case 2:	
 		work->act = GyoeType_BlActAdd( work->head.fes,
@@ -875,7 +875,7 @@ static void EoaGyoeTransWaitFldOBJ_Move( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	‚¬‚å‚¦[EOA_H
+///	ãã‚‡ãˆãƒ¼EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Gyoe =
 {
@@ -887,7 +887,7 @@ static const EOA_H_NPP DATA_EoaH_Gyoe =
 };
 
 //--------------------------------------------------------------
-///	‚¬‚å‚¦[EOA_H@ƒtƒB[ƒ‹ƒhOBJ—p
+///	ãã‚‡ãˆãƒ¼EOA_Hã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_FldOBJGyoe =
 {
@@ -899,7 +899,7 @@ static const EOA_H_NPP DATA_EoaH_FldOBJGyoe =
 };
 
 //--------------------------------------------------------------
-///	‚¬‚å‚¦[EOA_H@ƒtƒB[ƒ‹ƒhOBJ—p ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^•ªŠ„“]‘—”Å
+///	ãã‚‡ãˆãƒ¼EOA_Hã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿åˆ†å‰²è»¢é€ç‰ˆ
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_FldOBJGyoeTransWait =
 {
@@ -911,7 +911,7 @@ static const EOA_H_NPP DATA_EoaH_FldOBJGyoeTransWait =
 };
 
 //--------------------------------------------------------------
-///	ƒMƒ‡ƒG[ƒAƒjƒ
+///	ã‚®ãƒ§ã‚¨ãƒ¼ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_BlActAnmTbl_Gyoe[] =
 {

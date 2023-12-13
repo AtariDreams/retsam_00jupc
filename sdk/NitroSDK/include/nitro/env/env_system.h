@@ -12,7 +12,7 @@
 
   $Log: env_system.h,v $
   Revision 1.5  2006/12/18 01:30:35  kitase_hirotake
-  ƒLƒƒƒXƒg‚Ì’Ç‰Á
+  ã‚­ãƒ£ã‚¹ãƒˆã®è¿½åŠ 
 
   Revision 1.4  2006/01/18 02:11:20  kitase_hirotake
   do-indent
@@ -21,7 +21,7 @@
   add ENV_SetResoruceSetArray
 
   Revision 1.2  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL ‚Ì”»’è•”•ª‚É SDK_WIN32 ‚Å‚Ì”»’è‚à’Ç‰Á
+  SDK_FROM_TOOL ã®åˆ¤å®šéƒ¨åˆ†ã« SDK_WIN32 ã§ã®åˆ¤å®šã‚‚è¿½åŠ 
 
   Revision 1.1  2005/09/05 01:19:10  yada
   initial release

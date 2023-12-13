@@ -1,6 +1,6 @@
 //====================================================================
-//					ƒtƒB[ƒ‹ƒhEƒVƒeƒB‚O‚W
-//						ƒiƒMƒTƒVƒeƒB
+//					ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ã‚·ãƒ†ã‚£ï¼ï¼˜
+//						ãƒŠã‚®ã‚µã‚·ãƒ†ã‚£
 //====================================================================
 
 	.text
@@ -10,11 +10,11 @@
 	.include	"../eventdata/zone_c08evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c08_leader
 _EVENT_DATA		ev_c08_boy1
@@ -35,7 +35,7 @@ _EVENT_DATA		ev_c08_sign7
 _EVENT_DATA		ev_c08_fix_shop_01
 _EVENT_DATA		ev_c08_bigfour3
 _EVENT_DATA		ev_c08_flag_change
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
@@ -48,9 +48,9 @@ ev_c08_flag_change:
 	_IFVAL_JUMP		WK_SCENE_C08,EQ,0,ev_c08_flag_change_pos
 	_END
 
-/*d17r0101Œã‚ÌŒ¤‹†ŠƒCƒxƒ“ƒg‚ðI—¹‚³‚¹‚é*/
+/*d17r0101å¾Œã®ç ”ç©¶æ‰€ã‚¤ãƒ™ãƒ³ãƒˆã‚’çµ‚äº†ã•ã›ã‚‹*/
 ev_c08_flag_change_doctor:
-	_FLAG_SET		FV_T02R0101_SUPPORT		/*ƒTƒ|[ƒg‚ðÁ‚·*/
+	_FLAG_SET		FV_T02R0101_SUPPORT		/*ã‚µãƒãƒ¼ãƒˆã‚’æ¶ˆã™*/
 	_LDVAL			WK_SCENE_T02R0101,4
 	_RET
 
@@ -62,7 +62,7 @@ ev_c08_flag_change_pos:
 
 
 /********************************************************************/
-/*							ƒ‰ƒCƒoƒ‹(POS)							*/
+/*							ãƒ©ã‚¤ãƒãƒ«(POS)							*/
 /********************************************************************/
 #define POS_C08_RIVAL_X1	(853)
 #define POS_C08_RIVAL_X2	(854)
@@ -73,7 +73,7 @@ ev_c08_flag_change_pos:
 pos_c08_rival:
 	_EVENT_START
 
-	/*‚Ð‚»‚©‚Éƒ~ƒJƒ“‚ð“®‚©‚·*/
+	/*ã²ãã‹ã«ãƒŸã‚«ãƒ³ã‚’å‹•ã‹ã™*/
 	_OBJ_ANIME		C08_MIKAN,anm_c08_mikan_01
 	_OBJ_ANIME_WAIT
 
@@ -90,7 +90,7 @@ pos_c08_rival:
 	_END
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	‹ß‚Ã‚­
+//ãƒ©ã‚¤ãƒãƒ«	è¿‘ã¥ã
 //--------------------------------------------------------------------
 pos_c08_rival_01:
 	_OBJ_ANIME		C08_RIVAL,anm_c08_rival_01
@@ -128,20 +128,20 @@ pos_c08_rival_05:
 	_END
 
 //--------------------------------------------------------------------
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 //--------------------------------------------------------------------
 pos_c08_rival_common:
 	_RIVAL_NAME		0
 	_PLAYER_NAME	1
 	_TALK_KEYWAIT	msg_c08_rival_01
 
-	/*‰º‚ðŒü‚­*/
+	/*ä¸‹ã‚’å‘ã*/
 	_OBJ_ANIME		C08_RIVAL,anm_c08_rival_00
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_c08_rival_02
 
-	/*ŽålŒö‚ÆŒü‚«‡‚¤*/
+	/*ä¸»äººå…¬ã¨å‘ãåˆã†*/
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X1,pos_c08_rival_31
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X2,pos_c08_rival_32
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X3,pos_c08_rival_33
@@ -151,7 +151,7 @@ pos_c08_rival_common:
 	_TALK_KEYWAIT	msg_c08_rival_03
 	_TALK_CLOSE
 
-	/*‰æ–Ê‰º‚ÉÁ‚¦‚é*/
+	/*ç”»é¢ä¸‹ã«æ¶ˆãˆã‚‹*/
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X1,pos_c08_rival_11
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X2,pos_c08_rival_12
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X3,pos_c08_rival_13
@@ -159,7 +159,7 @@ pos_c08_rival_common:
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X5,pos_c08_rival_15
 	_OBJ_DEL		C08_RIVAL
 
-	/*ƒ~ƒJƒ“‹ß‚Ã‚¢‚Ä‚­‚é*/
+	/*ãƒŸã‚«ãƒ³è¿‘ã¥ã„ã¦ãã‚‹*/
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X1,pos_c08_mikan_51
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X2,pos_c08_mikan_52
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X3,pos_c08_mikan_53
@@ -170,12 +170,12 @@ pos_c08_rival_common:
 	_OBJ_ANIME_WAIT
 	_TALK_KEYWAIT	msg_c08_mikan_07
 
-	/*”é“`“üŽè‹¤’Êˆ—*/
+	/*ç§˜ä¼å…¥æ‰‹å…±é€šå‡¦ç†*/
 	_CALL			c08_mikan_hiden_get
 
 	_TALK_CLOSE
 
-	/*ƒ~ƒJƒ“Œ³‚ÌˆÊ’u‚É–ß‚·*/
+	/*ãƒŸã‚«ãƒ³å…ƒã®ä½ç½®ã«æˆ»ã™*/
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X1,pos_c08_mikan_61
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X2,pos_c08_mikan_62
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_C08_RIVAL_X3,pos_c08_mikan_63
@@ -241,7 +241,7 @@ pos_c08_rival_15:
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*ƒ~ƒJƒ“‹ß‚Ã‚¢‚Ä‚­‚é*/
+/*ãƒŸã‚«ãƒ³è¿‘ã¥ã„ã¦ãã‚‹*/
 pos_c08_mikan_51:
 	_OBJ_ANIME		C08_MIKAN,anm_c08_mikan_10
 	_OBJ_ANIME_WAIT
@@ -267,7 +267,7 @@ pos_c08_mikan_55:
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*ƒ~ƒJƒ“Œ³‚ÌˆÊ’u‚É–ß‚·*/
+/*ãƒŸã‚«ãƒ³å…ƒã®ä½ç½®ã«æˆ»ã™*/
 pos_c08_mikan_61:
 	_OBJ_ANIME		C08_MIKAN,anm_c08_mikan_20
 	_OBJ_ANIME_WAIT
@@ -294,7 +294,7 @@ pos_c08_mikan_65:
 	_RET
 
 //--------------------------------------------------------------------
-//ƒ~ƒJƒ“	—×Ú‚µ‚Ä‚­‚é
+//ãƒŸã‚«ãƒ³	éš£æŽ¥ã—ã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_mikan_10
 	_ANIME_DATA	AC_WALK_L_8F,4
@@ -321,7 +321,7 @@ _ANIME_LABEL	anm_c08_mikan_14
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ~ƒJƒ“	Œ³‚ÌˆÊ’u‚É–ß‚·
+//ãƒŸã‚«ãƒ³	å…ƒã®ä½ç½®ã«æˆ»ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_mikan_20
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -353,7 +353,7 @@ _ANIME_LABEL	anm_c08_mikan_24
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	—×Ú‚µ‚Ä‚­‚é
+//ãƒ©ã‚¤ãƒãƒ«	éš£æŽ¥ã—ã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_rival_01
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -385,14 +385,14 @@ _ANIME_LABEL	anm_c08_rival_05
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	‰º‚ðŒü‚­
+//ãƒ©ã‚¤ãƒãƒ«	ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_rival_00
 	_ANIME_DATA	AC_STAY_WALK_D_4F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	ŽålŒö‚ÆŒü‚«‡‚¤
+//ãƒ©ã‚¤ãƒãƒ«	ä¸»äººå…¬ã¨å‘ãåˆã†
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_rival_10
 	_ANIME_DATA	AC_STAY_WALK_L_4F,1
@@ -407,7 +407,7 @@ _ANIME_LABEL	anm_c08_rival_10_3
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	—§‚¿‹Ž‚é
+//ãƒ©ã‚¤ãƒãƒ«	ç«‹ã¡åŽ»ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_rival_21
 	_ANIME_DATA	AC_WALK_D_4F,8
@@ -430,7 +430,7 @@ _ANIME_LABEL	anm_c08_rival_25
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ~ƒJƒ“	‰ï˜b‚É”½‰ž‚·‚é
+//ãƒŸã‚«ãƒ³	ä¼šè©±ã«åå¿œã™ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_mikan_01
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -438,7 +438,7 @@ _ANIME_LABEL	anm_c08_mikan_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒ‰ƒCƒoƒ‹‚ðŒ©‚é
+//ä¸»äººå…¬	ãƒ©ã‚¤ãƒãƒ«ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_player_11
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -457,7 +457,7 @@ _ANIME_LABEL	anm_c08_player_13
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒ‰ƒCƒoƒ‹‚ðŒ©‘—‚é
+//ä¸»äººå…¬	ãƒ©ã‚¤ãƒãƒ«ã‚’è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_player_21
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -465,7 +465,7 @@ _ANIME_LABEL	anm_c08_player_21
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒ~ƒJƒ“‚ðŒ©‚é
+//ä¸»äººå…¬	ãƒŸã‚«ãƒ³ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_player_530
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
@@ -473,25 +473,25 @@ _ANIME_LABEL	anm_c08_player_530
 
 
 /********************************************************************/
-/*							ƒ~ƒJƒ“(‰ï˜b)							*/
+/*							ãƒŸã‚«ãƒ³(ä¼šè©±)							*/
 /********************************************************************/
 ev_c08_mikan:
 	_TALK_OBJ_START
 
-	/*”é“`ƒ}ƒVƒ“‚ð“üŽè‚µ‚Ä‚¢‚½‚ç*/
+	/*ç§˜ä¼ãƒžã‚·ãƒ³ã‚’å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_HIDEN_08_GET,ev_c08_mikan_hiden_get
 
 	_TALK_KEYWAIT	msg_c08_mikan_05
 
-	//ƒiƒMƒTƒoƒbƒ`Žæ“¾‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç
+	//ãƒŠã‚®ã‚µãƒãƒƒãƒå–å¾—ã—ã¦ã„ãªã‹ã£ãŸã‚‰
 	_SYS_FLAG_BADGE_GET	BADGE_ID_C08,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c08_mikan_badge_nothing
 
-	/*ƒiƒMƒTƒoƒbƒ`‚ð“üŽè‚µ‚Ä‚¢‚½‚çAƒ~ƒJƒ“‚ÌŽè‘O‚Å•K‚¸”é“`ƒ}ƒVƒ“‚ð–á‚¦‚éPOS‚ª”­“®‚µ‚Ä‚¢‚é*/
+	/*ãƒŠã‚®ã‚µãƒãƒƒãƒã‚’å…¥æ‰‹ã—ã¦ã„ãŸã‚‰ã€ãƒŸã‚«ãƒ³ã®æ‰‹å‰ã§å¿…ãšç§˜ä¼ãƒžã‚·ãƒ³ã‚’è²°ãˆã‚‹POSãŒç™ºå‹•ã—ã¦ã„ã‚‹*/
 	_JUMP			ev_c08_mikan_hiden_get
 	_END
 
-/*ƒiƒMƒTƒoƒbƒ`Žæ“¾‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç*/
+/*ãƒŠã‚®ã‚µãƒãƒƒãƒå–å¾—ã—ã¦ã„ãªã‹ã£ãŸã‚‰*/
 ev_c08_mikan_badge_nothing:
 	_TALKMSG		msg_c08_mikan_02
 	_LAST_KEYWAIT
@@ -499,7 +499,7 @@ ev_c08_mikan_badge_nothing:
 	_TALK_OBJ_END
 	_END
 
-/*”é“`ƒ}ƒVƒ“‚ð“üŽè‚µ‚Ä‚¢‚½‚ç*/
+/*ç§˜ä¼ãƒžã‚·ãƒ³ã‚’å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 ev_c08_mikan_hiden_get:
 	_TALKMSG		msg_c08_mikan_06
 	_LAST_KEYWAIT
@@ -507,16 +507,16 @@ ev_c08_mikan_hiden_get:
 	_TALK_OBJ_END
 	_END
 	
-/*”é“`“üŽè‹¤’Êˆ—*/
+/*ç§˜ä¼å…¥æ‰‹å…±é€šå‡¦ç†*/
 c08_mikan_hiden_get:
 	_TALK_KEYWAIT	msg_c08_mikan_03
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_HIDENMASIN07
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_FLAG_SET		FE_HIDEN_08_GET
 
@@ -525,7 +525,7 @@ c08_mikan_hiden_get:
 
 
 /********************************************************************/
-/*							ƒWƒ€ƒŠ[ƒ_[							*/
+/*							ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼							*/
 /********************************************************************/
 #define POS_C08_LEADER_Z1	(790)
 #define POS_C08_LEADER_Z2	(791)
@@ -538,7 +538,7 @@ ev_c08_leader:
 	_IFVAL_JUMP	SCWK_TEMP1,EQ,POS_C08_LEADER_Z2,pos_c08_leader_02
 	_END
 
-/*‹ß‚Ã‚­*/
+/*è¿‘ã¥ã*/
 pos_c08_leader_01:
 	_OBJ_ANIME		C08_LEADER,anm_c08_leader_01
 	_OBJ_ANIME_WAIT
@@ -553,13 +553,13 @@ common_c08_leader:
 	_TALK_KEYWAIT	msg_c08_bigfour3_01
 	_TALK_CLOSE
 
-	/*‰º‚ðŒü‚­*/
+	/*ä¸‹ã‚’å‘ã*/
 	_OBJ_ANIME		C08_LEADER,anm_c08_leader_10
 	_OBJ_ANIME_WAIT
 
 	_TIME_WAIT		15,SCWK_ANSWER
 
-	/*¶‚ðŒü‚­*/
+	/*å·¦ã‚’å‘ã*/
 	_OBJ_ANIME		C08_LEADER,anm_c08_leader_20
 	_OBJ_ANIME_WAIT
 
@@ -568,13 +568,13 @@ common_c08_leader:
 
 	_TIME_WAIT		15,SCWK_ANSWER
 
-	/*‹Ž‚Á‚Ä‚¢‚­*/
+	/*åŽ»ã£ã¦ã„ã*/
 	_OBJ_ANIME		C08_LEADER,anm_c08_leader_30
 	_OBJ_ANIME_WAIT
 	_OBJ_DEL		C08_LEADER
 	_TIME_WAIT		1,SCWK_ANSWER
 
-	/*Ä”z’u*/
+	/*å†é…ç½®*/
 	_SXY_POS_CHANGE	C08_LEADER,845,748
 	_SXY_MV_CHANGE	C08_LEADER,MV_DOWN
 	_SXY_DIR_CHANGE	C08_LEADER,DIR_DOWN
@@ -587,7 +587,7 @@ common_c08_leader:
 	_END
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	‹ß‚Ã‚­
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_leader_01
 	_ANIME_DATA	AC_WALK_L_8F,3
@@ -605,21 +605,21 @@ _ANIME_LABEL	anm_c08_leader_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	‰º‚ðŒü‚­
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_leader_10
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	¶‚ðŒü‚­
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	å·¦ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_leader_20
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	‹Ž‚Á‚Ä‚¢‚­
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_leader_30
 	_ANIME_DATA	AC_WALK_R_8F,9
@@ -627,98 +627,98 @@ _ANIME_LABEL	anm_c08_leader_30
 
 
 /********************************************************************/
-/*							­”N									*/
+/*							å°‘å¹´									*/
 /********************************************************************/
 ev_c08_boy1:
 	_EASY_OBJ_MSG	msg_c08_boy1_01
 	_END
 
 /********************************************************************/
-/*							‘Dæ‚è									*/
+/*							èˆ¹ä¹—ã‚Š									*/
 /********************************************************************/
 ev_c08_seaman1a:
 	_EASY_OBJ_MSG	msg_c08_seaman1a_01
 	_END
 
 /********************************************************************/
-/*							‘Dæ‚è									*/
+/*							èˆ¹ä¹—ã‚Š									*/
 /********************************************************************/
 ev_c08_seaman1b:
 	_EASY_OBJ_MSG	msg_c08_seaman1_01
 	_END
 
 /********************************************************************/
-/*							“­‚­‚¨‚¶‚³‚ñ							*/
+/*							åƒããŠã˜ã•ã‚“							*/
 /********************************************************************/
 ev_c08_workman:
 	_EASY_OBJ_MSG	msg_c08_workman_01
 	_END
 
 /********************************************************************/
-/*							‚¨‚Î‚³‚ñ								*/
+/*							ãŠã°ã•ã‚“								*/
 /********************************************************************/
 ev_c08_middlewoman1:
 	_EASY_OBJ_MSG	msg_c08_middlewoman1_01
 	_END
 
 /********************************************************************/
-/*							Žo‚³‚ñ									*/
+/*							å§‰ã•ã‚“									*/
 /********************************************************************/
 ev_c08_woman1:
 	_EASY_OBJ_MSG	msg_c08_woman1_01
 	_END
 
 /********************************************************************/
-/*							ƒ^ƒEƒ“ƒ}ƒbƒv							*/
+/*							ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—							*/
 /********************************************************************/
 ev_c08_sign1:
 	_EASY_BOARD_MSG	msg_c08_sign1_01,BOARD_TYPE_TOWN,0
 	_END
 
 /********************************************************************/
-/*							ŒfŽ¦”Â(ƒWƒ€)							*/
+/*							æŽ²ç¤ºæ¿(ã‚¸ãƒ )							*/
 /********************************************************************/
 ev_c08_sign2:
 	_EASY_INFOBOARD_MSG	msg_c08_sign2_01,BOARD_TYPE_INFO,0
 	_END
 
 /********************************************************************/
-/*							Ž{ÝŠÅ”Â								*/
+/*							æ–½è¨­çœ‹æ¿								*/
 /********************************************************************/
 ev_c08_sign3:
 	_EASY_BOARD_MSG	msg_c08_sign3_01,BOARD_TYPE_POST,0
 	_END
 
 /********************************************************************/
-/*							Ž{ÝŠÅ”Â								*/
+/*							æ–½è¨­çœ‹æ¿								*/
 /********************************************************************/
 ev_c08_sign4:
 	_EASY_BOARD_MSG	msg_c08_sign4_01,BOARD_TYPE_POST,0
 	_END
 
 /********************************************************************/
-/*							Ž{ÝŠÅ”Â								*/
+/*							æ–½è¨­çœ‹æ¿								*/
 /********************************************************************/
 ev_c08_sign5:
 	_EASY_BOARD_MSG	msg_c08_sign5_01,BOARD_TYPE_POST,0
 	_END
 
 /********************************************************************/
-/*							Ž{ÝŠÅ”Â								*/
+/*							æ–½è¨­çœ‹æ¿								*/
 /********************************************************************/
 ev_c08_sign6:
 	_EASY_BOARD_MSG	msg_c08_sign6_01,BOARD_TYPE_POST,0
 	_END
 
 /********************************************************************/
-/*							Ž{ÝŠÅ”Â								*/
+/*							æ–½è¨­çœ‹æ¿								*/
 /********************************************************************/
 ev_c08_sign7:
 	_EASY_BOARD_MSG	msg_c08_sign7_01,BOARD_TYPE_POST,0
 	_END
 
 /********************************************************************/
-//					ƒV[ƒ‹	•i•¨ŒÅ’è‚Ì“Xˆõ(OBJ–¼shopm)
+//					ã‚·ãƒ¼ãƒ«	å“ç‰©å›ºå®šã®åº—å“¡(OBJåshopm)
 /********************************************************************/
 ev_c08_fix_shop_01:
 	_TALK_OBJ_START
@@ -726,7 +726,7 @@ ev_c08_fix_shop_01:
 	_CHG_COMMON_SCR		SCRID_SHOP_START_TALK
 	_TALK_CLOSE_NO_CLEAR
 
-	/*—j“ú‚²‚Æ‚É•i•¨‚ª‚©‚í‚é*/
+	/*æ›œæ—¥ã”ã¨ã«å“ç‰©ãŒã‹ã‚ã‚‹*/
 	_CHK_WEEK		SCWK_ANSWER
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP		RTC_WEEK_SUNDAY,ev_c08_fix_shop_01_0
@@ -772,12 +772,12 @@ common_ev_c08_fix_shop_01:
 
 
 /********************************************************************/
-/*							Žl“V‰¤(‰ï˜b)							*/
+/*							å››å¤©çŽ‹(ä¼šè©±)							*/
 /********************************************************************/
 ev_c08_bigfour3:
 	_TALK_OBJ_START
 	
-	/*“”‘ä‚ÅƒWƒ€ƒŠ[ƒ_[‚Æ‰ï˜b‚µ‚Ä‚¢‚½‚ç*/
+	/*ç¯å°ã§ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã¨ä¼šè©±ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP		FE_C08R0801_TALK,ev_c08_bigfour3_02
 
 	_TALKMSG		msg_c08_bigfour3_03
@@ -786,14 +786,14 @@ ev_c08_bigfour3:
 	_TALK_OBJ_END
 	_END
 
-/*“”‘ä‚ÅƒWƒ€ƒŠ[ƒ_[‚Æ‰ï˜b‚µ‚Ä‚¢‚½‚ç*/
+/*ç¯å°ã§ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã¨ä¼šè©±ã—ã¦ã„ãŸã‚‰*/
 ev_c08_bigfour3_02:
 	_TALK_KEYWAIT	msg_c08_bigfour3_04
 	_TALK_CLOSE
 
 	_TIME_WAIT		15,SCWK_ANSWER
 
-	/*Œü‚«‚É‚æ‚Á‚ÄƒAƒjƒ‚ð‚©‚¦‚é*/
+	/*å‘ãã«ã‚ˆã£ã¦ã‚¢ãƒ‹ãƒ¡ã‚’ã‹ãˆã‚‹*/
 	_PLAYER_DIR_GET	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_UP,ev_c08_bigfour3_dir_up
 	//_IFVAL_JUMP	SCWK_ANSWER,EQ,DIR_DOWN,ev_c08_bigfour3_dir_down
@@ -801,7 +801,7 @@ ev_c08_bigfour3_02:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_RIGHT,ev_c08_bigfour3_dir_right
 	_END
 
-/*‹Ž‚Á‚Ä‚¢‚­*/
+/*åŽ»ã£ã¦ã„ã*/
 ev_c08_bigfour3_dir_up:
 	_OBJ_ANIME		C08_LEADER,anm_c08_bigfour3_03
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c08_player_03
@@ -826,7 +826,7 @@ common_c08_bigfour3_01:
 	_END
 
 //--------------------------------------------------------------------
-//Žl“V‰¤	‹Ž‚Á‚Ä‚¢‚­
+//å››å¤©çŽ‹	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_bigfour3_03
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -840,7 +840,7 @@ _ANIME_LABEL	anm_c08_bigfour3_04
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	Œ©‘—‚é
+//ä¸»äººå…¬	è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08_player_03
 	_ANIME_DATA	AC_WAIT_8F,1

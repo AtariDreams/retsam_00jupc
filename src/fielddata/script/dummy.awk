@@ -1,6 +1,6 @@
 #===================================================================
 #
-#	¡.ev‚Æsp_¡.ev‚Ì—Œ`ƒtƒ@ƒCƒ‹‚ğì¬‚·‚é
+#	â– .evã¨sp_â– .evã®é››å½¢ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã™ã‚‹
 #
 #	06.03.06 Satoshi Nohara
 #
@@ -8,7 +8,7 @@
 BEGIN{
 	flag = 0
 
-	print "ƒtƒ@ƒCƒ‹–¼‚ğ“ü—Í‚µ‚Ä‰º‚³‚¢"
+	print "ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„"
 	getline name < "/dev/stdin"
 }
 
@@ -16,16 +16,16 @@ BEGIN{
 	tmp = $0
 	sub( "dummy", name, tmp )
 
-	#o—Íæ‚ğ•ÏX‚·‚é
+	#å‡ºåŠ›å…ˆã‚’å¤‰æ›´ã™ã‚‹
 	if( $0 == "<<CHANGE_SP_DUMMY>>" ){
 		flag = 1
 		next
 	}
 
 	if( flag == 0 ){
-		print tmp >> name ".ev"				#¡.ev
+		print tmp >> name ".ev"				#â– .ev
 	}else{
-		print tmp >> "sp_" name ".ev"		#sp_¡.ev
+		print tmp >> "sp_" name ".ev"		#sp_â– .ev
 	}
 }
 

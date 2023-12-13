@@ -1,53 +1,53 @@
 //==============================================================================
 /**
  * @file	dance_tcb_pri.h
- * @brief	ƒrƒWƒ…ƒAƒ‹•”–å‚ÌTCBƒvƒ‰ƒCƒIƒŠƒeƒB’è‹`
+ * @brief	ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã®TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å®šç¾©
  * @author	matsuda
- * @date	2005.12.10(“y)
+ * @date	2005.12.10(åœŸ)
  */
 //==============================================================================
 #ifndef __DANCE_TCB_PRI_H__
 #define __DANCE_TCB_PRI_H__
 
 
-///FightUpdate(ƒAƒNƒ^[Update“™ŽÀs‚µ‚Ä‚¢‚é)	ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚ÅŽÀs
+///FightUpdate(ã‚¢ã‚¯ã‚¿ãƒ¼Updateç­‰å®Ÿè¡Œã—ã¦ã„ã‚‹)	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã§å®Ÿè¡Œ
 #define TCBPRI_DANCE_UPDATE		(80000)
 
-///–½—ßŽÀsƒTƒuƒ^ƒXƒN‚Ì”Ä—pƒvƒ‰ƒCƒIƒŠƒeƒB
+///å‘½ä»¤å®Ÿè¡Œã‚µãƒ–ã‚¿ã‚¹ã‚¯ã®æ±Žç”¨ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_DANCE_ORDERSUB	(30000)
 
-///AIŽÀs‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB(ˆê‰žƒvƒŒƒCƒ„[‘€ì‚æ‚è‚àŒã‚ÉŽÀs‚³‚¹‚é)
+///AIå®Ÿè¡Œã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£(ä¸€å¿œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ“ä½œã‚ˆã‚Šã‚‚å¾Œã«å®Ÿè¡Œã•ã›ã‚‹)
 #define TCBPRI_DANCE_AI_CALC	(TCBPRI_DANCE_ORDERSUB + 10)
-///ƒ_ƒ“ƒX‚µ‚½Žž‚Ìƒpƒ‰ƒ[ƒ^‘—Mƒ^ƒXƒN‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ€ãƒ³ã‚¹ã—ãŸæ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€ä¿¡ã‚¿ã‚¹ã‚¯ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_DANCE_DANCING_PARAM_SEND		(TCBPRI_DANCE_ORDERSUB + 100)
 
-///ƒ|ƒPƒ‚ƒ“í’“ƒAƒjƒ[ƒVƒ‡ƒ“ŽÀsƒ^ƒXƒN‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒã‚±ãƒ¢ãƒ³å¸¸é§ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿè¡Œã‚¿ã‚¹ã‚¯ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_DANCE_DEFANM				(TCBPRI_DANCE_ORDERSUB + 9000)
-///ƒ|ƒPƒ‚ƒ“ƒ_ƒ“ƒXƒAƒjƒ[ƒVƒ‡ƒ“ŽÀsƒ^ƒXƒN‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒã‚±ãƒ¢ãƒ³ãƒ€ãƒ³ã‚¹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿè¡Œã‚¿ã‚¹ã‚¯ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_DANCE_MOVE				(TCBPRI_DANCE_DEFANM + 10)
 
-///ƒGƒtƒFƒNƒg—p‚ÌŠî–{ƒvƒ‰ƒCƒIƒŠƒeƒB(‚±‚ê‚æ‚èã‚ÍŠî–{“I‚ÉƒVƒXƒeƒ€Œn)
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã®åŸºæœ¬ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£(ã“ã‚Œã‚ˆã‚Šä¸Šã¯åŸºæœ¬çš„ã«ã‚·ã‚¹ãƒ†ãƒ ç³»)
 #define TCBPRI_DANCE_EFFECT_BASE_PRI	(TCBPRI_DANCE_ORDERSUB + 10000)
 
-///ƒ[ƒe[ƒVƒ‡ƒ“Žž‚ÌŠeƒuƒŠ[ƒ_[“®ìƒ^ƒXƒN‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³æ™‚ã®å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼å‹•ä½œã‚¿ã‚¹ã‚¯ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_DANCE_ROTATION	(TCBPRI_DANCE_EFFECT_BASE_PRI + 100)
-///Ž©•ª‚ðŽw‚·ƒJ[ƒ\ƒ‹‚Ì“®ìƒ^ƒXƒNƒvƒ‰ƒCƒIƒŠƒeƒB
+///è‡ªåˆ†ã‚’æŒ‡ã™ã‚«ãƒ¼ã‚½ãƒ«ã®å‹•ä½œã‚¿ã‚¹ã‚¯ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_DANCE_MY_CURSOR	(TCBPRI_DANCE_ROTATION + 10)
 
-///‰e‚Ì“®ìƒvƒ‰ƒCƒIƒŠƒeƒB(ƒ|ƒPƒ‚ƒ“‚Ìí’“ƒAƒjƒAƒ[ƒe[ƒVƒ‡ƒ“‚æ‚è‚àŒã‚ÉÝ’è)
+///å½±ã®å‹•ä½œãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£(ãƒã‚±ãƒ¢ãƒ³ã®å¸¸é§ã‚¢ãƒ‹ãƒ¡ã€ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‚ˆã‚Šã‚‚å¾Œã«è¨­å®š)
 #define TCBPRI_DANCE_SHADOW		(TCBPRI_DANCE_ROTATION + 1000)
 
-///•]‰¿ƒpƒlƒ‹ƒGƒtƒFƒNƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///è©•ä¾¡ãƒ‘ãƒãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_DANCE_REVIEWPANEL	(TCBPRI_DANCE_EFFECT_BASE_PRI + 200)
 
-///ƒvƒŠƒ““®ìƒ^ƒXƒN
+///ãƒ—ãƒªãƒ³å‹•ä½œã‚¿ã‚¹ã‚¯
 #define TCBPRI_PRIN_MAIN			(TCBPRI_DANCE_EFFECT_BASE_PRI + 15)
 
 
 //--------------------------------------------------------------
-//	ƒTƒu‰æ–Ê
+//	ã‚µãƒ–ç”»é¢
 //--------------------------------------------------------------
-///“ü—Í‰æ–ÊƒGƒtƒFƒNƒgTCB
+///å…¥åŠ›ç”»é¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCB
 #define TCBPRI_DINPUT_EFFECT	(1300)
 
 

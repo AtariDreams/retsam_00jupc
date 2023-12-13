@@ -33,10 +33,10 @@ extern "C" {
 
 
 /*****************************************************************************
- * “d”g‚Éæ‚é’ÊMƒtƒH[ƒ}ƒbƒg.
+ * é›»æ³¢ã«ä¹—ã‚‹é€šä¿¡ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ.
  *****************************************************************************/
 
-/* REQ_SYNC ƒRƒ}ƒ“ƒhˆø”ƒtƒH[ƒ}ƒbƒg\‘¢‘Ì */
+/* REQ_SYNC ã‚³ãƒãƒ³ãƒ‰å¼•æ•°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ§‹é€ ä½“ */
 typedef struct WBTPacketRequestSyncFormat
 {
     PLATFORM_LE16 peer_packet;
@@ -44,7 +44,7 @@ typedef struct WBTPacketRequestSyncFormat
 }
 PLATFORM_STRUCT_PADDING_FOOTER WBTPacketRequestSyncFormat;
 
-/* RES_SYNC ƒRƒ}ƒ“ƒhˆø”ƒtƒH[ƒ}ƒbƒg\‘¢‘Ì */
+/* RES_SYNC ã‚³ãƒãƒ³ãƒ‰å¼•æ•°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ§‹é€ ä½“ */
 typedef struct WBTPacketResponseSyncFormat
 {
     PLATFORM_LE16 block_total;
@@ -53,7 +53,7 @@ typedef struct WBTPacketResponseSyncFormat
 }
 PLATFORM_STRUCT_PADDING_FOOTER WBTPacketResponseSyncFormat;
 
-/* REQ_USERDATA ƒRƒ}ƒ“ƒhˆø”ƒtƒH[ƒ}ƒbƒg\‘¢‘Ì */
+/* REQ_USERDATA ã‚³ãƒãƒ³ãƒ‰å¼•æ•°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ§‹é€ ä½“ */
 typedef struct WBTPacketRequestUserDataFormat
 {
     PLATFORM_LE8 length;
@@ -61,21 +61,21 @@ typedef struct WBTPacketRequestUserDataFormat
 }
 WBTPacketRequestUserDataFormat;
 
-/* REQ_GETBLOCK_DONE ƒRƒ}ƒ“ƒhˆø”ƒtƒH[ƒ}ƒbƒg\‘¢‘Ì */
+/* REQ_GETBLOCK_DONE ã‚³ãƒãƒ³ãƒ‰å¼•æ•°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ§‹é€ ä½“ */
 typedef struct WBTPacketRequestGetBlockDoneFormat
 {
     PLATFORM_LE32 id;
 }
 WBTPacketRequestGetBlockDoneFormat;
 
-/* RES_GETBLOCK_DONE ƒRƒ}ƒ“ƒhˆø”ƒtƒH[ƒ}ƒbƒg\‘¢‘Ì */
+/* RES_GETBLOCK_DONE ã‚³ãƒãƒ³ãƒ‰å¼•æ•°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ§‹é€ ä½“ */
 typedef struct WBTPacketResponseGetBlockDoneFormat
 {
     PLATFORM_LE32 id;
 }
 WBTPacketResponseGetBlockDoneFormat;
 
-/* REQ_GETBLOCK ƒRƒ}ƒ“ƒhˆø”ƒtƒH[ƒ}ƒbƒg\‘¢‘Ì */
+/* REQ_GETBLOCK ã‚³ãƒãƒ³ãƒ‰å¼•æ•°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ§‹é€ ä½“ */
 typedef struct WBTPacketRequestGetBlockFormat
 {
     PLATFORM_LE32 id;
@@ -83,7 +83,7 @@ typedef struct WBTPacketRequestGetBlockFormat
 }
 WBTPacketRequestGetBlockFormat;
 
-/* RES_GETBLOCK ƒRƒ}ƒ“ƒhˆø”ƒtƒH[ƒ}ƒbƒg\‘¢‘Ì */
+/* RES_GETBLOCK ã‚³ãƒãƒ³ãƒ‰å¼•æ•°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ§‹é€ ä½“ */
 typedef struct WBTPacketResponseGetBlockFormat
 {
     PLATFORM_LE32 id;
@@ -91,7 +91,7 @@ typedef struct WBTPacketResponseGetBlockFormat
 }
 WBTPacketResponseGetBlockFormat;
 
-/* ƒpƒPƒbƒgƒwƒbƒ_ƒtƒH[ƒ}ƒbƒg\‘¢‘Ì */
+/* ãƒ‘ã‚±ãƒƒãƒˆãƒ˜ãƒƒãƒ€ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ§‹é€ ä½“ */
 typedef struct WBTPacketHeaderFormat
 {
     PLATFORM_LE8 command;
@@ -100,12 +100,12 @@ typedef struct WBTPacketHeaderFormat
 }
 PLATFORM_STRUCT_PADDING_FOOTER WBTPacketHeaderFormat;
 
-/* ƒpƒPƒbƒgƒtƒH[ƒ}ƒbƒg\‘¢‘Ì */
+/* ãƒ‘ã‚±ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæ§‹é€ ä½“ */
 typedef struct WBTPacketFormat
 {
-    /* ƒpƒPƒbƒgƒwƒbƒ_ */
+    /* ãƒ‘ã‚±ãƒƒãƒˆãƒ˜ãƒƒãƒ€ */
     WBTPacketHeaderFormat header;
-    /* ƒRƒ}ƒ“ƒh‚É‚æ‚Á‚Ä‚ÍŒã‘±‚Ìˆø”‚ª‘¶İ‚·‚é */
+    /* ã‚³ãƒãƒ³ãƒ‰ã«ã‚ˆã£ã¦ã¯å¾Œç¶šã®å¼•æ•°ãŒå­˜åœ¨ã™ã‚‹ */
     union
     {
         u8      argument[10];
@@ -118,7 +118,7 @@ typedef struct WBTPacketFormat
         WBTPacketResponseGetBlockFormat res_getblock;
         u8      for_compiler[10];
     } PLATFORM_STRUCT_PADDING_FOOTER /* unnamed */ ;
-    /* ƒRƒ}ƒ“ƒh‚É‚æ‚Á‚Ä‚Í‚³‚ç‚É‰Â•Ï’·‚ÌŒã‘±ˆø”‚ª‘¶İ‚·‚é */
+    /* ã‚³ãƒãƒ³ãƒ‰ã«ã‚ˆã£ã¦ã¯ã•ã‚‰ã«å¯å¤‰é•·ã®å¾Œç¶šå¼•æ•°ãŒå­˜åœ¨ã™ã‚‹ */
 }
 PLATFORM_STRUCT_PADDING_FOOTER WBTPacketFormat;
 
@@ -134,16 +134,16 @@ PLATFORM_COMPILER_ASSERT(sizeof(WBTPacketFormat) == 14);
 
 
 /*****************************************************************************
- * ƒ[ƒJƒ‹\‘¢‘Ì.
+ * ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“.
  *****************************************************************************/
 
 struct WBTContext;
 struct WBTCommandList;
 
-/* ƒRƒ}ƒ“ƒhƒR[ƒ‹ƒoƒbƒNƒvƒƒgƒ^ƒCƒv */
+/* ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— */
 typedef void (*WBTEventCallback)(void*, WBTCommand*);
 
-/* ƒRƒ}ƒ“ƒhƒŠƒXƒg\‘¢‘Ì */
+/* ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆæ§‹é€ ä½“ */
 typedef struct WBTCommandList
 {
     struct WBTCommandList  *next;
@@ -153,7 +153,7 @@ typedef struct WBTCommandList
 WBTCommandList;
 
 
-/* e‹@‚ªŠeAID‚²‚Æ‚É•Û‚µ‚Ä‚¨‚­ÅV‚ÌóMó‹µ */
+/* è¦ªæ©ŸãŒå„AIDã”ã¨ã«ä¿æŒã—ã¦ãŠãæœ€æ–°ã®å—ä¿¡çŠ¶æ³ */
 typedef struct WBTRecvToken
 {
     u8      token_command;
@@ -163,15 +163,15 @@ typedef struct WBTRecvToken
     u8      dummy[1];
 
     /*
-     * ‚±‚ê‚ç‚Í WBT_CMD_REQ_GET_BLOCK* Œn‚Å‚µ‚©‘ã“ü‚³‚ê‚Ä‚¢‚È‚¢.
-     * ‰“š‚ÉQÆ‚·‚é.
+     * ã“ã‚Œã‚‰ã¯ WBT_CMD_REQ_GET_BLOCK* ç³»ã§ã—ã‹ä»£å…¥ã•ã‚Œã¦ã„ãªã„.
+     * å¿œç­”æ™‚ã«å‚ç…§ã™ã‚‹.
      */
     u32     token_block_id;
     s32     token_block_seq_no;
 }
 WBTRecvToken;
 
-/* e‹@‚ªŠeAID‚²‚Æ‚É•Û‚µ‚Ä‚¨‚­Šeíƒ[ƒN•Ï” */
+/* è¦ªæ©ŸãŒå„AIDã”ã¨ã«ä¿æŒã—ã¦ãŠãå„ç¨®ãƒ¯ãƒ¼ã‚¯å¤‰æ•° */
 typedef struct WBTPacketBitmap
 {
     s32     length;
@@ -183,24 +183,24 @@ typedef struct WBTPacketBitmap
 }
 WBTPacketBitmap;
 
-/* wbt_data.c ‚Åg—p‚·‚éƒRƒ}ƒ“ƒhŠÇ—\‘¢‘Ì */
+/* wbt_data.c ã§ä½¿ç”¨ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ç®¡ç†æ§‹é€ ä½“ */
 typedef struct WBTContext
 {
-    /* ˆ—’†‚ÌƒRƒ}ƒ“ƒhƒŠƒXƒg‚Æ‹ó‚«‚ÌƒRƒ}ƒ“ƒhƒv[ƒ‹ */
+    /* å‡¦ç†ä¸­ã®ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã¨ç©ºãã®ã‚³ãƒãƒ³ãƒ‰ãƒ—ãƒ¼ãƒ« */
     WBTCommandList *command;
     WBTCommandList *command_pool;
 
-    /* ”CˆÓ‚Ìƒ†[ƒU’è‹`’l */
+    /* ä»»æ„ã®ãƒ¦ãƒ¼ã‚¶å®šç¾©å€¤ */
     void               *userdata;
     WBTEventCallback    callback;
 
     /*
-     * ƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒN—pƒoƒbƒtƒ@.
-     * ˆê“I‚É‚µ‚©g—p‚µ‚È‚¢‚ª, 156 BYTE ‚à‚ ‚é‚Ì‚ÅƒRƒ“ƒeƒLƒXƒg‚É•Û.
+     * ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒãƒƒãƒ•ã‚¡.
+     * ä¸€æ™‚çš„ã«ã—ã‹ä½¿ç”¨ã—ãªã„ãŒ, 156 BYTE ã‚‚ã‚ã‚‹ã®ã§ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã«ä¿æŒ.
      */
     WBTCommand system_cmd;
 
-    /* Še AID ‚Ìó‘Ô */
+    /* å„ AID ã®çŠ¶æ…‹ */
     struct
     {
         WBTRecvToken recv_token;
@@ -208,24 +208,24 @@ typedef struct WBTContext
     }
     peer_param[16];
 
-    /* ©g‚Ì’ÊMó‘Ô */
-    int     my_aid;                    /* ©‹Ç‚ÌAID */
-    s16     peer_data_packet_size;     /* ‘Šè‹Ç‚ÌƒpƒPƒbƒgƒf[ƒ^•”‚ÌƒTƒCƒY */
-    s16     my_data_packet_size;       /* ©‹Ç‚ÌƒpƒPƒbƒgƒf[ƒ^•”‚ÌƒTƒCƒY */
-    WBTBlockInfoList *list;            /* “o˜^Ï‚İƒf[ƒ^ƒuƒƒbƒNƒŠƒXƒg */
-    u8      my_command_counter;        /* ƒ†[ƒU[ƒRƒ}ƒ“ƒh”­sƒJƒEƒ“ƒ^ */
+    /* è‡ªèº«ã®é€šä¿¡çŠ¶æ…‹ */
+    int     my_aid;                    /* è‡ªå±€ã®AID */
+    s16     peer_data_packet_size;     /* ç›¸æ‰‹å±€ã®ãƒ‘ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿éƒ¨ã®ã‚µã‚¤ã‚º */
+    s16     my_data_packet_size;       /* è‡ªå±€ã®ãƒ‘ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿éƒ¨ã®ã‚µã‚¤ã‚º */
+    WBTBlockInfoList *list;            /* ç™»éŒ²æ¸ˆã¿ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆ */
+    u8      my_command_counter;        /* ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œã‚«ã‚¦ãƒ³ã‚¿ */
     u8      padding[3];
     int     last_target_aid;
 
-    /* ƒuƒƒbƒN”Ô†‚Ì‘—M—š—ğ */
+    /* ãƒ–ãƒ­ãƒƒã‚¯ç•ªå·ã®é€ä¿¡å±¥æ­´ */
     u32     last_block_id;
     s32     last_seq_no_1;
     s32     last_seq_no_2;
 
-    /* Œ»İ—v‹‚ğóM‚µ‚Ä‚¢‚éƒrƒbƒgƒ}ƒbƒv */
+    /* ç¾åœ¨è¦æ±‚ã‚’å—ä¿¡ã—ã¦ã„ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ— */
     int     req_bitmap;
 
-    /* GetBlockInfo —p‚Ìƒrƒbƒgƒ}ƒbƒv */
+    /* GetBlockInfo ç”¨ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ— */
     u32     binfo_bitmap[16][MATH_ROUNDUP(sizeof(WBTBlockInfo), sizeof(u32)) / sizeof(u32)];
 }
 WBTContext;
@@ -237,11 +237,11 @@ WBTContext;
 /*---------------------------------------------------------------------------*
   Name:         WBT_InitContext
 
-  Description:  WBT\‘¢‘Ì‚ğ‰Šú‰».
+  Description:  WBTæ§‹é€ ä½“ã‚’åˆæœŸåŒ–.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                userdata          ”CˆÓ‚Ìƒ†[ƒU’è‹`’l.
-                callback          ƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒN.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                userdata          ä»»æ„ã®ãƒ¦ãƒ¼ã‚¶å®šç¾©å€¤.
+                callback          ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -250,11 +250,11 @@ void    WBT_InitContext(WBTContext *work, void *userdata, WBTEventCallback callb
 /*---------------------------------------------------------------------------*
   Name:         WBT_StartParent
 
-  Description:  WBT‚ğe‹@‚Æ‚µ‚ÄŠJn.
+  Description:  WBTã‚’è¦ªæ©Ÿã¨ã—ã¦é–‹å§‹.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                own               ©g‚ÌMP‘—MƒpƒPƒbƒgƒTƒCƒY.
-                peer              ‘Šè‚ÌMP‘—MƒpƒPƒbƒgƒTƒCƒY.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                own               è‡ªèº«ã®MPé€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
+                peer              ç›¸æ‰‹ã®MPé€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -271,10 +271,10 @@ void    WBT_StartParent(WBTContext *work, int own, int peer)
 /*---------------------------------------------------------------------------*
   Name:         WBT_StartChild
 
-  Description:  WBT‚ğq‹@‚Æ‚µ‚ÄŠJn.
+  Description:  WBTã‚’å­æ©Ÿã¨ã—ã¦é–‹å§‹.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                aid               ©g‚ÌAID.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                aid               è‡ªèº«ã®AID.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -289,10 +289,10 @@ void    WBT_StartChild(WBTContext *work, int aid)
 /*---------------------------------------------------------------------------*
   Name:         WBT_ResetContext
 
-  Description:  WBT‚ğÄ‰Šú‰».
+  Description:  WBTã‚’å†åˆæœŸåŒ–.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                callback          ƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒN.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                callback          ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -301,25 +301,25 @@ void    WBT_ResetContext(WBTContext *work, WBTEventCallback callback);
 /*---------------------------------------------------------------------------*
   Name:         WBT_CallPacketSendHook
 
-  Description:  ‘—MƒpƒPƒbƒgƒf[ƒ^‚ğ¶¬‚·‚é‚½‚ß‚ÌƒtƒbƒNŠÖ”.
+  Description:  é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹ãŸã‚ã®ãƒ•ãƒƒã‚¯é–¢æ•°.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                buffer            ƒf[ƒ^Ši”[ƒoƒbƒtƒ@.
-                length            ƒoƒbƒtƒ@ƒTƒCƒY.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                buffer            ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡.
+                length            ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º.
 
-  Returns:      ¶¬‚³‚ê‚½ƒpƒPƒbƒgƒTƒCƒY.
+  Returns:      ç”Ÿæˆã•ã‚ŒãŸãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 int     WBT_CallPacketSendHook(WBTContext *work, void *buffer, int length, BOOL is_parent);
 
 /*---------------------------------------------------------------------------*
   Name:         WBT_CallPacketRecvHook
 
-  Description:  óMƒpƒPƒbƒgƒf[ƒ^‚ğ‰ğÍ.
+  Description:  å—ä¿¡ãƒ‘ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è§£æ.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                aid               ƒf[ƒ^‘—MŒ³‚ÌAID
-                buffer            óMƒf[ƒ^ƒoƒbƒtƒ@.
-                length            óMƒf[ƒ^’·.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                aid               ãƒ‡ãƒ¼ã‚¿é€ä¿¡å…ƒã®AID
+                buffer            å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡.
+                length            å—ä¿¡ãƒ‡ãƒ¼ã‚¿é•·.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -328,11 +328,11 @@ void    WBT_CallPacketRecvHook(WBTContext *work, int aid, const void *buffer, in
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetUserData
 
-  Description:  ƒRƒ“ƒeƒLƒXƒg‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒ†[ƒU’è‹`’l‚ğæ“¾.
+  Description:  ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸãƒ¦ãƒ¼ã‚¶å®šç¾©å€¤ã‚’å–å¾—.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
 
-  Returns:      Œ»İˆ—’†‚ÌƒRƒ}ƒ“ƒh‚©‚Ü‚½‚Í NULL.
+  Returns:      ç¾åœ¨å‡¦ç†ä¸­ã®ã‚³ãƒãƒ³ãƒ‰ã‹ã¾ãŸã¯ NULL.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 void   *WBT_GetUserData(const WBTContext *work)
@@ -343,11 +343,11 @@ void   *WBT_GetUserData(const WBTContext *work)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetAid
 
-  Description:  İ’è‚³‚ê‚½AID’l‚ğæ“¾.
+  Description:  è¨­å®šã•ã‚ŒãŸAIDå€¤ã‚’å–å¾—.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
 
-  Returns:      İ’è‚³‚ê‚½AID’l.
+  Returns:      è¨­å®šã•ã‚ŒãŸAIDå€¤.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 int WBT_GetAid(const WBTContext *work)
@@ -358,11 +358,11 @@ int WBT_GetAid(const WBTContext *work)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetOwnPacketLength
 
-  Description:  Œ»İ‚Ì©g‚Ì‘—MƒpƒPƒbƒgƒTƒCƒY‚ğæ“¾.
+  Description:  ç¾åœ¨ã®è‡ªèº«ã®é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’å–å¾—.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
 
-  Returns:      Œ»İ‚Ì©g‚Ì‘—MƒpƒPƒbƒgƒTƒCƒY.
+  Returns:      ç¾åœ¨ã®è‡ªèº«ã®é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 int WBT_GetOwnPacketLength(const WBTContext *work)
@@ -373,11 +373,11 @@ int WBT_GetOwnPacketLength(const WBTContext *work)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetPeerPacketLength
 
-  Description:  Œ»İ‚Ì‘Šè‚Ì‘—MƒpƒPƒbƒgƒTƒCƒY‚ğæ“¾.
+  Description:  ç¾åœ¨ã®ç›¸æ‰‹ã®é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’å–å¾—.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
 
-  Returns:      Œ»İ‚Ì‘Šè‚Ì‘—MƒpƒPƒbƒgƒTƒCƒY.
+  Returns:      ç¾åœ¨ã®ç›¸æ‰‹ã®é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 int WBT_GetPeerPacketLength(const WBTContext *work)
@@ -388,11 +388,11 @@ int WBT_GetPeerPacketLength(const WBTContext *work)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetParentPacketLength
 
-  Description:  Œ»İ‚Ìe‹@‘—MƒpƒPƒbƒgƒTƒCƒY‚ğæ“¾.
+  Description:  ç¾åœ¨ã®è¦ªæ©Ÿé€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’å–å¾—.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
 
-  Returns:      Œ»İ‚Ìe‹@‘—MƒpƒPƒbƒgƒTƒCƒY.
+  Returns:      ç¾åœ¨ã®è¦ªæ©Ÿé€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 int WBT_GetParentPacketLength(const WBTContext *work)
@@ -403,22 +403,22 @@ int WBT_GetParentPacketLength(const WBTContext *work)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetRegisteredCount
 
-  Description:  “o˜^Ï‚İ‚Ìƒf[ƒ^ƒuƒƒbƒN‘”‚ğæ“¾.
+  Description:  ç™»éŒ²æ¸ˆã¿ã®ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ç·æ•°ã‚’å–å¾—.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
 
-  Returns:      “o˜^Ï‚İ‚Ìƒf[ƒ^ƒuƒƒbƒN‘”.
+  Returns:      ç™»éŒ²æ¸ˆã¿ã®ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ç·æ•°.
  *---------------------------------------------------------------------------*/
 int     WBT_GetRegisteredCount(const WBTContext * work);
 
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetCurrentCommandList
 
-  Description:  Œ»İˆ—’†‚ÌƒRƒ}ƒ“ƒh‚ğæ“¾.
+  Description:  ç¾åœ¨å‡¦ç†ä¸­ã®ã‚³ãƒãƒ³ãƒ‰ã‚’å–å¾—.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
 
-  Returns:      Œ»İˆ—’†‚ÌƒRƒ}ƒ“ƒh‚©‚Ü‚½‚Í NULL.
+  Returns:      ç¾åœ¨å‡¦ç†ä¸­ã®ã‚³ãƒãƒ³ãƒ‰ã‹ã¾ãŸã¯ NULL.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 WBTCommandList *WBT_GetCurrentCommandList(const WBTContext *work)
@@ -429,11 +429,11 @@ WBTCommandList *WBT_GetCurrentCommandList(const WBTContext *work)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetCurrentCommand
 
-  Description:  Œ»İˆ—’†‚ÌƒRƒ}ƒ“ƒh‚ğæ“¾.
+  Description:  ç¾åœ¨å‡¦ç†ä¸­ã®ã‚³ãƒãƒ³ãƒ‰ã‚’å–å¾—.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
 
-  Returns:      Œ»İˆ—’†‚ÌƒRƒ}ƒ“ƒh‚©‚Ü‚½‚Í NULL.
+  Returns:      ç¾åœ¨å‡¦ç†ä¸­ã®ã‚³ãƒãƒ³ãƒ‰ã‹ã¾ãŸã¯ NULL.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 WBTCommand *WBT_GetCurrentCommand(const WBTContext *work)
@@ -445,23 +445,23 @@ WBTCommand *WBT_GetCurrentCommand(const WBTContext *work)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetBitmapLength
 
-  Description:  ƒuƒƒbƒN“]‘—‚Ì§Œä‚É•K—v‚Èƒrƒbƒgƒ}ƒbƒvƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾.
+  Description:  ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ã®åˆ¶å¾¡ã«å¿…è¦ãªãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                length            “]‘—‚·‚éƒuƒƒbƒN‚ÌÅ‘åƒTƒCƒY.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                length            è»¢é€ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®æœ€å¤§ã‚µã‚¤ã‚º.
 
-  Returns:      •K—v‚Èƒrƒbƒgƒ}ƒbƒvƒoƒbƒtƒ@‚ÌƒTƒCƒY.
+  Returns:      å¿…è¦ãªãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 int WBT_GetBitmapLength(const WBTContext *work, int length);
 
 /*---------------------------------------------------------------------------*
   Name:         WBT_AddCommandPool
 
-  Description:  ƒRƒ}ƒ“ƒhƒv[ƒ‹‚ÉV‹K‚ÌƒŠƒXƒg‚ğ’Ç‰Á.
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒ—ãƒ¼ãƒ«ã«æ–°è¦ã®ãƒªã‚¹ãƒˆã‚’è¿½åŠ .
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                list              ƒRƒ}ƒ“ƒhƒŠƒXƒg\‘¢‘Ì‚Ì”z—ñ.
-                count             ”z—ñ‚Ì—v‘f”.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                list              ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆæ§‹é€ ä½“ã®é…åˆ—.
+                count             é…åˆ—ã®è¦ç´ æ•°.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -478,11 +478,11 @@ void    WBT_AddCommandPool(WBTContext *work, WBTCommandList *list, int count)
 /*---------------------------------------------------------------------------*
   Name:         WBT_AllocCommandList
 
-  Description:  ƒRƒ}ƒ“ƒhƒv[ƒ‹‚©‚ç1ŒÂ‚ÌƒŠƒXƒg‚ğV‹KŠm•Û.
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒ—ãƒ¼ãƒ«ã‹ã‚‰1å€‹ã®ãƒªã‚¹ãƒˆã‚’æ–°è¦ç¢ºä¿.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
 
-  Returns:      Šm•Û‚³‚ê‚½V‹K‚ÌƒRƒ}ƒ“ƒhƒŠƒXƒg‚©‚Ü‚½‚Í NULL.
+  Returns:      ç¢ºä¿ã•ã‚ŒãŸæ–°è¦ã®ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‹ã¾ãŸã¯ NULL.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 WBTCommandList *WBT_AllocCommandList(WBTContext *work)
@@ -499,24 +499,24 @@ WBTCommandList *WBT_AllocCommandList(WBTContext *work)
 /*---------------------------------------------------------------------------*
   Name:         WBT_SetPacketLength
 
-  Description:  ƒpƒPƒbƒgƒTƒCƒY‚ğ•ÏX.
-                e‹@‚Ì‚İg—p‰Â”\.
+  Description:  ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’å¤‰æ›´.
+                è¦ªæ©Ÿã®ã¿ä½¿ç”¨å¯èƒ½.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                own               ©g‚ÌMP‘—MƒpƒPƒbƒgƒTƒCƒY.
-                peer              ‘Šè‚ÌMP‘—MƒpƒPƒbƒgƒTƒCƒY.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                own               è‡ªèº«ã®MPé€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
+                peer              ç›¸æ‰‹ã®MPé€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
 
-  Returns:      İ’è‚É¬Œ÷‚·‚ê‚Î TRUE.
+  Returns:      è¨­å®šã«æˆåŠŸã™ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    WBT_SetPacketLength(WBTContext *work, int own, int peer);
 
 /*---------------------------------------------------------------------------*
   Name:         WBT_CreateCommandSYNC
 
-  Description:  "SYNC" ƒRƒ}ƒ“ƒhî•ñ‚ğ¶¬‚·‚é.
+  Description:  "SYNC" ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’ç”Ÿæˆã™ã‚‹.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                list              ƒRƒ}ƒ“ƒhî•ñ‚ğŠi”[‚·‚é‚½‚ß‚É—pˆÓ‚³‚ê‚½ƒŠƒXƒg.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                list              ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã«ç”¨æ„ã•ã‚ŒãŸãƒªã‚¹ãƒˆ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -530,14 +530,14 @@ void WBT_CreateCommandSYNC(WBTContext *work, WBTCommandList *list)
 /*---------------------------------------------------------------------------*
   Name:         WBT_CreateCommandINFO
 
-  Description:  "INFO" ƒRƒ}ƒ“ƒhî•ñ‚ğƒŠƒXƒg‚Éİ’è‚·‚é.
+  Description:  "INFO" ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’ãƒªã‚¹ãƒˆã«è¨­å®šã™ã‚‹.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                list              ƒRƒ}ƒ“ƒhî•ñ‚ğŠi”[‚·‚é‚½‚ß‚É—pˆÓ‚³‚ê‚½ƒŠƒXƒg.
-                index             æ“¾‚·‚éƒuƒƒbƒNî•ñ‚ğ¦‚·
-                                  “o˜^ƒŠƒXƒgæ“ª‚©‚ç‚ÌƒCƒ“ƒfƒbƒNƒX.
-                buffer_table      æ“¾‚µ‚½ƒuƒƒbƒNî•ñ‚ğŠi”[‚·‚é
-                                  WBTBlockInfoTable ƒ|ƒCƒ“ƒ^‚Ìƒe[ƒuƒ‹.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                list              ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã«ç”¨æ„ã•ã‚ŒãŸãƒªã‚¹ãƒˆ.
+                index             å–å¾—ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ã‚’ç¤ºã™
+                                  ç™»éŒ²ãƒªã‚¹ãƒˆå…ˆé ­ã‹ã‚‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹.
+                buffer_table      å–å¾—ã—ãŸãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹
+                                  WBTBlockInfoTable ãƒã‚¤ãƒ³ã‚¿ã®ãƒ†ãƒ¼ãƒ–ãƒ«.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -562,16 +562,16 @@ void WBT_CreateCommandINFO(WBTContext *work, WBTCommandList *list,
 /*---------------------------------------------------------------------------*
   Name:         WBT_CreateCommandGET
 
-  Description:  "GET" ƒRƒ}ƒ“ƒhî•ñ‚ğƒŠƒXƒg‚Éİ’è‚·‚é.
+  Description:  "GET" ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’ãƒªã‚¹ãƒˆã«è¨­å®šã™ã‚‹.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                list              ƒRƒ}ƒ“ƒhî•ñ‚ğŠi”[‚·‚é‚½‚ß‚É—pˆÓ‚³‚ê‚½ƒŠƒXƒg.
-                id                æ“¾‚·‚éƒuƒƒbƒN‚ÌID.
-                length            æ“¾‚·‚éƒuƒƒbƒNƒf[ƒ^’·.
-                buffer_table      æ“¾‚µ‚½ƒuƒƒbƒNƒf[ƒ^‚ğŠi”[‚·‚é
-                                  WBTRecvBufTable ƒ|ƒCƒ“ƒ^‚Ìƒe[ƒuƒ‹.
-                bitmap_table      “à•”‚Å‚ÌƒuƒƒbƒN“]‘—§Œä‚Ì‚½‚ß‚É•K—v‚È
-                                  óMó‹µŠÇ—ƒoƒbƒtƒ@‚Ìƒe[ƒuƒ‹.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                list              ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã«ç”¨æ„ã•ã‚ŒãŸãƒªã‚¹ãƒˆ.
+                id                å–å¾—ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®ID.
+                length            å–å¾—ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿é•·.
+                buffer_table      å–å¾—ã—ãŸãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
+                                  WBTRecvBufTable ãƒã‚¤ãƒ³ã‚¿ã®ãƒ†ãƒ¼ãƒ–ãƒ«.
+                bitmap_table      å†…éƒ¨ã§ã®ãƒ–ãƒ­ãƒƒã‚¯è»¢é€åˆ¶å¾¡ã®ãŸã‚ã«å¿…è¦ãª
+                                  å—ä¿¡çŠ¶æ³ç®¡ç†ãƒãƒƒãƒ•ã‚¡ã®ãƒ†ãƒ¼ãƒ–ãƒ«.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -593,14 +593,14 @@ void WBT_CreateCommandGET(WBTContext *work, WBTCommandList * list,
 /*---------------------------------------------------------------------------*
   Name:         WBT_CreateCommandMSG
 
-  Description:  "MSG" ƒRƒ}ƒ“ƒhî•ñ‚ğƒŠƒXƒg‚Éİ’è‚·‚é.
+  Description:  "MSG" ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’ãƒªã‚¹ãƒˆã«è¨­å®šã™ã‚‹.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                list              ƒRƒ}ƒ“ƒhî•ñ‚ğŠi”[‚·‚é‚½‚ß‚É—pˆÓ‚³‚ê‚½ƒŠƒXƒg.
-                buffer            ‘—Mƒf[ƒ^‚ªŠi”[‚³‚ê‚½ƒoƒbƒtƒ@.
-                                  ƒoƒbƒtƒ@‚Ì“à—e‚Í‚±‚ÌŠÖ”“à‚Å‚Ì‚İQÆ‚³‚ê‚é.
-                length            ‘—Mƒf[ƒ^’·.
-                                  WBT_SIZE_USER_DATA ˆÈ‰º‚Å‚ ‚é•K—v‚ª‚ ‚é.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                list              ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã«ç”¨æ„ã•ã‚ŒãŸãƒªã‚¹ãƒˆ.
+                buffer            é€ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡.
+                                  ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã¯ã“ã®é–¢æ•°å†…ã§ã®ã¿å‚ç…§ã•ã‚Œã‚‹.
+                length            é€ä¿¡ãƒ‡ãƒ¼ã‚¿é•·.
+                                  WBT_SIZE_USER_DATA ä»¥ä¸‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -619,13 +619,13 @@ void    WBT_CreateCommandMSG(WBTContext *work, WBTCommandList *list,
 /*---------------------------------------------------------------------------*
   Name:         WBT_PostCommand
 
-  Description:  ƒRƒ}ƒ“ƒh‚ğ”­s‚µ‚ÄƒRƒ}ƒ“ƒhƒLƒ…[‚É’Ç‰Á.
+  Description:  ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã—ã¦ã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã«è¿½åŠ .
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                list              ƒRƒ}ƒ“ƒhî•ñ‚ªŠi”[‚³‚ê‚½\‘¢‘Ì.
-                                  ƒRƒ}ƒ“ƒhŠ®—¹‚Ü‚Åƒ‰ƒCƒuƒ‰ƒŠ“à•”‚ÅŠÇ—‚³‚ê‚é.
-                bitmap            ƒRƒ}ƒ“ƒh”­s‘ÎÛ‚ÌAIDƒrƒbƒgƒ}ƒbƒv.
-                callback          ƒRƒ}ƒ“ƒhŠ®—¹ƒR[ƒ‹ƒoƒbƒN. •s—v‚È‚ç NULL.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                list              ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ãŒæ ¼ç´ã•ã‚ŒãŸæ§‹é€ ä½“.
+                                  ã‚³ãƒãƒ³ãƒ‰å®Œäº†ã¾ã§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ç®¡ç†ã•ã‚Œã‚‹.
+                bitmap            ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œå¯¾è±¡ã®AIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—.
+                callback          ã‚³ãƒãƒ³ãƒ‰å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯. ä¸è¦ãªã‚‰ NULL.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -635,13 +635,13 @@ void    WBT_PostCommand(WBTContext *work, WBTCommandList *list, u16 bitmap,
 /*---------------------------------------------------------------------------*
   Name:         WBT_PostCommandSYNC
 
-  Description:  "SYNC" ƒRƒ}ƒ“ƒhî•ñ‚ğ”­s‚·‚é.
+  Description:  "SYNC" ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’ç™ºè¡Œã™ã‚‹.
 
-  Arguments:    context           WBTContext\‘¢‘Ì.
-                bitmap            ƒRƒ}ƒ“ƒh”­s‘ÎÛ‚ÌAIDƒrƒbƒgƒ}ƒbƒv.
-                callback          ƒRƒ}ƒ“ƒhŠ®—¹ƒR[ƒ‹ƒoƒbƒN. •s—v‚È‚ç NULL.
+  Arguments:    context           WBTContextæ§‹é€ ä½“.
+                bitmap            ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œå¯¾è±¡ã®AIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—.
+                callback          ã‚³ãƒãƒ³ãƒ‰å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯. ä¸è¦ãªã‚‰ NULL.
 
-  Returns:      ‹ó‚«‚ÌƒRƒ}ƒ“ƒhƒŠƒXƒg‚ª‘¶İ‚µ‚ÄƒRƒ}ƒ“ƒh”­s‚É¬Œ÷‚µ‚½‚çTRUE.
+  Returns:      ç©ºãã®ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆãŒå­˜åœ¨ã—ã¦ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œã«æˆåŠŸã—ãŸã‚‰TRUE.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 BOOL    WBT_PostCommandSYNC(WBTContext *context, int bitmap, WBTEventCallback callback)
@@ -658,17 +658,17 @@ BOOL    WBT_PostCommandSYNC(WBTContext *context, int bitmap, WBTEventCallback ca
 /*---------------------------------------------------------------------------*
   Name:         WBT_PostCommandINFO
 
-  Description:  "INFO" ƒRƒ}ƒ“ƒhî•ñ‚ğ”­s‚·‚é.
+  Description:  "INFO" ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’ç™ºè¡Œã™ã‚‹.
 
-  Arguments:    context           WBTContext\‘¢‘Ì.
-                bitmap            ƒRƒ}ƒ“ƒh”­s‘ÎÛ‚ÌAIDƒrƒbƒgƒ}ƒbƒv.
-                callback          ƒRƒ}ƒ“ƒhŠ®—¹ƒR[ƒ‹ƒoƒbƒN. •s—v‚È‚ç NULL.
-                index             æ“¾‚·‚éƒuƒƒbƒNî•ñ‚ğ¦‚·
-                                  “o˜^ƒŠƒXƒgæ“ª‚©‚ç‚ÌƒCƒ“ƒfƒbƒNƒX.
-                buffer_table      æ“¾‚µ‚½ƒuƒƒbƒNî•ñ‚ğŠi”[‚·‚é
-                                  WBTBlockInfoTable ƒ|ƒCƒ“ƒ^‚Ìƒe[ƒuƒ‹.
+  Arguments:    context           WBTContextæ§‹é€ ä½“.
+                bitmap            ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œå¯¾è±¡ã®AIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—.
+                callback          ã‚³ãƒãƒ³ãƒ‰å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯. ä¸è¦ãªã‚‰ NULL.
+                index             å–å¾—ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ã‚’ç¤ºã™
+                                  ç™»éŒ²ãƒªã‚¹ãƒˆå…ˆé ­ã‹ã‚‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹.
+                buffer_table      å–å¾—ã—ãŸãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹
+                                  WBTBlockInfoTable ãƒã‚¤ãƒ³ã‚¿ã®ãƒ†ãƒ¼ãƒ–ãƒ«.
 
-  Returns:      ‹ó‚«‚ÌƒRƒ}ƒ“ƒhƒŠƒXƒg‚ª‘¶İ‚µ‚ÄƒRƒ}ƒ“ƒh”­s‚É¬Œ÷‚µ‚½‚çTRUE.
+  Returns:      ç©ºãã®ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆãŒå­˜åœ¨ã—ã¦ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œã«æˆåŠŸã—ãŸã‚‰TRUE.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 BOOL    WBT_PostCommandINFO(WBTContext *context, int bitmap, WBTEventCallback callback,
@@ -686,19 +686,19 @@ BOOL    WBT_PostCommandINFO(WBTContext *context, int bitmap, WBTEventCallback ca
 /*---------------------------------------------------------------------------*
   Name:         WBT_PostCommandGET
 
-  Description:  "GET" ƒRƒ}ƒ“ƒhî•ñ‚ğ”­s‚·‚é.
+  Description:  "GET" ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’ç™ºè¡Œã™ã‚‹.
 
-  Arguments:    context           WBTContext\‘¢‘Ì.
-                bitmap            ƒRƒ}ƒ“ƒh”­s‘ÎÛ‚ÌAIDƒrƒbƒgƒ}ƒbƒv.
-                callback          ƒRƒ}ƒ“ƒhŠ®—¹ƒR[ƒ‹ƒoƒbƒN. •s—v‚È‚ç NULL.
-                id                æ“¾‚·‚éƒuƒƒbƒN‚ÌID.
-                length            æ“¾‚·‚éƒuƒƒbƒNƒf[ƒ^’·.
-                buffer_table      æ“¾‚µ‚½ƒuƒƒbƒNƒf[ƒ^‚ğŠi”[‚·‚é
-                                  WBTRecvBufTable ƒ|ƒCƒ“ƒ^‚Ìƒe[ƒuƒ‹.
-                bitmap_table      “à•”‚Å‚ÌƒuƒƒbƒN“]‘—§Œä‚Ì‚½‚ß‚É•K—v‚È
-                                  óMó‹µŠÇ—ƒoƒbƒtƒ@‚Ìƒe[ƒuƒ‹.
+  Arguments:    context           WBTContextæ§‹é€ ä½“.
+                bitmap            ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œå¯¾è±¡ã®AIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—.
+                callback          ã‚³ãƒãƒ³ãƒ‰å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯. ä¸è¦ãªã‚‰ NULL.
+                id                å–å¾—ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®ID.
+                length            å–å¾—ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿é•·.
+                buffer_table      å–å¾—ã—ãŸãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
+                                  WBTRecvBufTable ãƒã‚¤ãƒ³ã‚¿ã®ãƒ†ãƒ¼ãƒ–ãƒ«.
+                bitmap_table      å†…éƒ¨ã§ã®ãƒ–ãƒ­ãƒƒã‚¯è»¢é€åˆ¶å¾¡ã®ãŸã‚ã«å¿…è¦ãª
+                                  å—ä¿¡çŠ¶æ³ç®¡ç†ãƒãƒƒãƒ•ã‚¡ã®ãƒ†ãƒ¼ãƒ–ãƒ«.
 
-  Returns:      ‹ó‚«‚ÌƒRƒ}ƒ“ƒhƒŠƒXƒg‚ª‘¶İ‚µ‚ÄƒRƒ}ƒ“ƒh”­s‚É¬Œ÷‚µ‚½‚çTRUE.
+  Returns:      ç©ºãã®ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆãŒå­˜åœ¨ã—ã¦ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œã«æˆåŠŸã—ãŸã‚‰TRUE.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 BOOL    WBT_PostCommandGET(WBTContext *context, int bitmap, WBTEventCallback callback,
@@ -717,17 +717,17 @@ BOOL    WBT_PostCommandGET(WBTContext *context, int bitmap, WBTEventCallback cal
 /*---------------------------------------------------------------------------*
   Name:         WBT_PostCommandMSG
 
-  Description:  "MSG" ƒRƒ}ƒ“ƒhî•ñ‚ğ”­s‚·‚é.
+  Description:  "MSG" ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’ç™ºè¡Œã™ã‚‹.
 
-  Arguments:    context           WBTContext\‘¢‘Ì.
-                bitmap            ƒRƒ}ƒ“ƒh”­s‘ÎÛ‚ÌAIDƒrƒbƒgƒ}ƒbƒv.
-                callback          ƒRƒ}ƒ“ƒhŠ®—¹ƒR[ƒ‹ƒoƒbƒN. •s—v‚È‚ç NULL.
-                buffer            ‘—Mƒf[ƒ^‚ªŠi”[‚³‚ê‚½ƒoƒbƒtƒ@.
-                                  ƒoƒbƒtƒ@‚Ì“à—e‚Í‚±‚ÌŠÖ”“à‚Å‚Ì‚İQÆ‚³‚ê‚é.
-                length            ‘—Mƒf[ƒ^’·.
-                                  WBT_SIZE_USER_DATA ˆÈ‰º‚Å‚ ‚é•K—v‚ª‚ ‚é.
+  Arguments:    context           WBTContextæ§‹é€ ä½“.
+                bitmap            ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œå¯¾è±¡ã®AIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—.
+                callback          ã‚³ãƒãƒ³ãƒ‰å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯. ä¸è¦ãªã‚‰ NULL.
+                buffer            é€ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡.
+                                  ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã¯ã“ã®é–¢æ•°å†…ã§ã®ã¿å‚ç…§ã•ã‚Œã‚‹.
+                length            é€ä¿¡ãƒ‡ãƒ¼ã‚¿é•·.
+                                  WBT_SIZE_USER_DATA ä»¥ä¸‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹.
 
-  Returns:      ‹ó‚«‚ÌƒRƒ}ƒ“ƒhƒŠƒXƒg‚ª‘¶İ‚µ‚ÄƒRƒ}ƒ“ƒh”­s‚É¬Œ÷‚µ‚½‚çTRUE.
+  Returns:      ç©ºãã®ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆãŒå­˜åœ¨ã—ã¦ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œã«æˆåŠŸã—ãŸã‚‰TRUE.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 BOOL    WBT_PostCommandMSG(WBTContext *context, int bitmap, WBTEventCallback callback,
@@ -745,49 +745,49 @@ BOOL    WBT_PostCommandMSG(WBTContext *context, int bitmap, WBTEventCallback cal
 /*---------------------------------------------------------------------------*
   Name:         WBT_CancelCommand
 
-  Description:  Œ»İˆ—’†‚ÌƒRƒ}ƒ“ƒh‚ğ’†~.
+  Description:  ç¾åœ¨å‡¦ç†ä¸­ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ä¸­æ­¢.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                bitmap            ƒRƒ}ƒ“ƒh‚ğ’†~‚·‚é‘Šè.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                bitmap            ã‚³ãƒãƒ³ãƒ‰ã‚’ä¸­æ­¢ã™ã‚‹ç›¸æ‰‹.
 
-  Returns:      ÀÛ‚É’†~‚³‚ê‚½‘Šè‚ğ¦‚·ƒrƒbƒgƒ}ƒbƒv.
+  Returns:      å®Ÿéš›ã«ä¸­æ­¢ã•ã‚ŒãŸç›¸æ‰‹ã‚’ç¤ºã™ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—.
  *---------------------------------------------------------------------------*/
 int     WBT_CancelCommand(WBTContext * work, int bitmap);
 
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetDownloadProgress
 
-  Description:  ƒuƒƒbƒN“]‘—‚Ìi’»ó‹µ‚ğæ“¾.
+  Description:  ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ã®é€²æ—çŠ¶æ³ã‚’å–å¾—.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                id                óMƒuƒƒbƒNID.
-                aid               óMæAID.
-                current           óMÏ‚İƒpƒPƒbƒg”‚ÌŠi”[æ.
-                total             ƒpƒPƒbƒg‘”‚ÌŠi”[æ.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                id                å—ä¿¡ãƒ–ãƒ­ãƒƒã‚¯ID.
+                aid               å—ä¿¡å…ˆAID.
+                current           å—ä¿¡æ¸ˆã¿ãƒ‘ã‚±ãƒƒãƒˆæ•°ã®æ ¼ç´å…ˆ.
+                total             ãƒ‘ã‚±ãƒƒãƒˆç·æ•°ã®æ ¼ç´å…ˆ.
 
   Returns:      None.
-                ƒuƒƒbƒN“]‘—ó‘Ô‚É‚È‚¯‚ê‚Î current, total ‚Æ‚à 0 ‚ğ•Ô‚·.
+                ãƒ–ãƒ­ãƒƒã‚¯è»¢é€çŠ¶æ…‹ã«ãªã‘ã‚Œã° current, total ã¨ã‚‚ 0 ã‚’è¿”ã™.
  *---------------------------------------------------------------------------*/
 void    WBT_GetDownloadProgress(const WBTContext * work, u32 id, int aid, int *current, int *total);
 
 /*---------------------------------------------------------------------------*
   Name:         WBT_RegisterBlockInfo
 
-  Description:  V‹K‚Éƒf[ƒ^ƒuƒƒbƒN‚ğ“o˜^‚·‚é.
+  Description:  æ–°è¦ã«ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç™»éŒ²ã™ã‚‹.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                list              “o˜^‚Ég—p‚·‚éƒŠƒXƒg\‘¢‘Ì.
-                                  Unregister ‚Å‰ğ•ú‚·‚é‚Ü‚Åƒ‰ƒCƒuƒ‰ƒŠ‚ªg—p‚·‚é.
-                id                ƒf[ƒ^ƒuƒƒbƒN‚ÉŠÖ˜A•t‚¯‚éˆêˆÓ‚ÈID.
-                userinfo          ƒf[ƒ^ƒuƒƒbƒN‚ÉŠÖ˜A•t‚¯‚éƒ†[ƒU’è‹`î•ñ.
-                                  ‚±‚Ìƒ|ƒCƒ“ƒ^‚ªw‚·æ‚Í‚±‚ÌŠÖ”“à‚Å‚Ì‚İQÆ‚·‚é.
-                                  •s—v‚Èê‡‚Í NULL ‚ğw’è‚·‚é‚±‚Æ‚à‚Å‚«‚é.
-                buffer            ƒuƒƒbƒNƒf[ƒ^‚ğŠi”[‚µ‚½ƒoƒbƒtƒ@.
-                                  NULL ‚ğw’è‚·‚é‚Æ, •K—v‚É‰‚¶‚Äƒ‰ƒCƒuƒ‰ƒŠ‚©‚ç
-                                  WBT_CMD_PREPARE_SEND_DATA ƒR[ƒ‹ƒoƒbƒN‚ª’Ê’m‚³‚ê‚é.
-                length            ƒuƒƒbƒNƒf[ƒ^‚ÌƒTƒCƒY.
-                                  buffer ‚É NULL ‚ğw’è‚·‚éê‡‚Å‚ ‚Á‚Ä‚à
-                                  ‚±‚Ì’l‚Í³‚µ‚­w’è‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚é.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                list              ç™»éŒ²ã«ä½¿ç”¨ã™ã‚‹ãƒªã‚¹ãƒˆæ§‹é€ ä½“.
+                                  Unregister ã§è§£æ”¾ã™ã‚‹ã¾ã§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä½¿ç”¨ã™ã‚‹.
+                id                ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã«é–¢é€£ä»˜ã‘ã‚‹ä¸€æ„ãªID.
+                userinfo          ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã«é–¢é€£ä»˜ã‘ã‚‹ãƒ¦ãƒ¼ã‚¶å®šç¾©æƒ…å ±.
+                                  ã“ã®ãƒã‚¤ãƒ³ã‚¿ãŒæŒ‡ã™å…ˆã¯ã“ã®é–¢æ•°å†…ã§ã®ã¿å‚ç…§ã™ã‚‹.
+                                  ä¸è¦ãªå ´åˆã¯ NULL ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã‚‚ã§ãã‚‹.
+                buffer            ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ•ã‚¡.
+                                  NULL ã‚’æŒ‡å®šã™ã‚‹ã¨, å¿…è¦ã«å¿œã˜ã¦ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‹ã‚‰
+                                  WBT_CMD_PREPARE_SEND_DATA ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒé€šçŸ¥ã•ã‚Œã‚‹.
+                length            ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º.
+                                  buffer ã« NULL ã‚’æŒ‡å®šã™ã‚‹å ´åˆã§ã‚ã£ã¦ã‚‚
+                                  ã“ã®å€¤ã¯æ­£ã—ãæŒ‡å®šã—ã¦ãŠãå¿…è¦ãŒã‚ã‚‹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -797,12 +797,12 @@ void    WBT_RegisterBlockInfo(WBTContext * work, WBTBlockInfoList *list, u32 id,
 /*---------------------------------------------------------------------------*
   Name:         WBT_UnregisterBlockInfo
 
-  Description:  “o˜^Ï‚İ‚Ìƒf[ƒ^ƒuƒƒbƒN‚ğ‰ğ•ú‚·‚é.
+  Description:  ç™»éŒ²æ¸ˆã¿ã®ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾ã™ã‚‹.
 
-  Arguments:    work              WBTContext\‘¢‘Ì.
-                id                ‰ğ•ú‚·‚éƒf[ƒ^ƒuƒƒbƒN‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ˆêˆÓ‚ÈID.
+  Arguments:    work              WBTContextæ§‹é€ ä½“.
+                id                è§£æ”¾ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸä¸€æ„ãªID.
 
-  Returns:      ‰ğ•ú‚µ‚½ƒŠƒXƒg\‘¢‘Ì‚Ü‚½‚Í NULL.
+  Returns:      è§£æ”¾ã—ãŸãƒªã‚¹ãƒˆæ§‹é€ ä½“ã¾ãŸã¯ NULL.
  *---------------------------------------------------------------------------*/
 WBTBlockInfoList *WBT_UnregisterBlockInfo(WBTContext * work, u32 id);
 

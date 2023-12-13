@@ -15,10 +15,10 @@
 #
 # $Log: header_generator_ioreg.pl,v $
 # Revision 1.10  2004/05/18 01:48:11  takano_makoto
-# ğŒ”»’è‚É‚æ‚éÅ“K‰»ƒ‹[ƒ`ƒ“‚Ì‘g‚İ‚İ.
+# æ¡ä»¶åˆ¤å®šã«ã‚ˆã‚‹æœ€é©åŒ–ãƒ«ãƒ¼ãƒãƒ³ã®çµ„ã¿è¾¼ã¿.
 #
 # Revision 1.9  2004/05/17 02:01:54  takano_makoto
-# ƒXƒy[ƒX”’²®
+# ã‚¹ãƒšãƒ¼ã‚¹æ•°èª¿æ•´
 #
 # Revision 1.8  2004/05/14 09:56:46  takano_makoto
 # Add Condition Field.
@@ -30,50 +30,50 @@
 # change SDK prefix iris -> nitro
 #
 # Revision 1.5  2003/12/16 09:45:31  yasu
-# nitro_sp ‚Ö‚Ì‘Î‰
+# nitro_sp ã¸ã®å¯¾å¿œ
 #
 # Revision 1.4  2003/12/08 12:25:55  yada
-# SDK_ASM ‚ª’è‹`‚³‚ê‚Ä‚¢‚È‚¢ê‡Atypes.h ‚ğinclude‚µ‚È‚¢‚æ‚¤‚É
+# SDK_ASM ãŒå®šç¾©ã•ã‚Œã¦ã„ãªã„å ´åˆã€types.h ã‚’includeã—ãªã„ã‚ˆã†ã«
 #
 # Revision 1.3  2003/12/08 12:19:12  yada
-# ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹‚ğMemoryMap.h‚©‚ç mmap_global.h‚É•ÏX
+# ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’MemoryMap.hã‹ã‚‰ mmap_global.hã«å¤‰æ›´
 #
 # Revision 1.2  2003/12/08 08:05:51  nishida_kenji
 # generate only English
 #
 # Revision 1.1  2003/11/17 01:54:50  yasu
-# ioreg ¶¬ƒXƒNƒŠƒvƒg‚ğ ioreg/ ˆÈ‰º‚ÖˆÚ“®
+# ioreg ç”Ÿæˆã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ ioreg/ ä»¥ä¸‹ã¸ç§»å‹•
 #
 # Revision 1.17  2003/11/14 06:16:08  nishida_kenji
-# ƒŒƒWƒXƒ^•Ï”–¼‚Ìæ“ªREG_Œ`®‚ğ”p~
+# ãƒ¬ã‚¸ã‚¹ã‚¿å¤‰æ•°åã®å…ˆé ­REG_å½¢å¼ã‚’å»ƒæ­¢
 #
 # Revision 1.16  2003/11/14 06:11:31  yasu
-# include <nitro/hw/memoryMap.h> ‚Ì’Ç‰Á
-# ©“®¶¬ƒtƒ@ƒCƒ‹‚Å‚ ‚é‚±‚Æ‚ÌŒx•¶’Ç‰Á
+# include <nitro/hw/memoryMap.h> ã®è¿½åŠ 
+# è‡ªå‹•ç”Ÿæˆãƒ•ã‚¡ã‚¤ãƒ«ã§ã‚ã‚‹ã“ã¨ã®è­¦å‘Šæ–‡è¿½åŠ 
 #
 # Revision 1.15  2003/11/13 23:57:31  nishida_kenji
-# ƒŒƒWƒXƒ^•Ï”‚Åreg_*‚ğo—Í‚·‚é‚æ‚¤‚É‚µ‚½B
+# ãƒ¬ã‚¸ã‚¹ã‚¿å¤‰æ•°ã§reg_*ã‚’å‡ºåŠ›ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 #
 # $NoKeywords: $
 ##############################################################################
 
 #
-# ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚Ìƒ}ƒNƒ¶¬ƒXƒNƒŠƒvƒg
+# ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¯ãƒ­ç”Ÿæˆã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 # 
-# g—p–@:
+# ä½¿ç”¨æ³•:
 # conv.pl [-v] [-dup] filename1.csv [filename2.csv ...]
 #
-# CSVƒtƒ@ƒCƒ‹‚©‚çƒ}ƒNƒ‚Ì’è‹`‚ª‘‚©‚ê‚Ä‚¢‚éƒwƒbƒ_ƒtƒ@ƒCƒ‹
-# filename1.h (filename2.h...)‚ğo—Í‚µ‚Ü‚·B
+# CSVãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒã‚¯ãƒ­ã®å®šç¾©ãŒæ›¸ã‹ã‚Œã¦ã„ã‚‹ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+# filename1.h (filename2.h...)ã‚’å‡ºåŠ›ã—ã¾ã™ã€‚
 #
-# CSVƒtƒ@ƒCƒ‹‚ÌƒtƒH[ƒ}ƒbƒg‚É‚Â‚¢‚Ä‚Í(SDKRoot)/docs/private/how-to-make-headers.txt
-# ‚ğ‚²——‰º‚³‚¢B
+# CSVãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«ã¤ã„ã¦ã¯(SDKRoot)/docs/private/how-to-make-headers.txt
+# ã‚’ã”è¦§ä¸‹ã•ã„ã€‚
 #
 
 use Text::ParseWords;
 
 #
-# ƒOƒ[ƒoƒ‹•Ï”
+# ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 #
 $line_no = 0;
 %name_hash = ();
@@ -83,7 +83,7 @@ $line_no = 0;
 
 
 #
-# verboseo—Í
+# verboseå‡ºåŠ›
 #
 sub verbose {
   if ($verbose_mode == 1) {
@@ -95,7 +95,7 @@ sub verbose {
 
 
 #
-# ƒtƒB[ƒ‹ƒh‚ÌÅ‰‚ÆÅŒã‚Ì‹ó”’‚ğæ‚èœ‚­
+# ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æœ€åˆã¨æœ€å¾Œã®ç©ºç™½ã‚’å–ã‚Šé™¤ã
 #
 sub trim {
   my @out = @_;
@@ -110,14 +110,14 @@ sub trim {
 
 
 #
-# CSV‰ğÍƒ‹[ƒ`ƒ“
+# CSVè§£æãƒ«ãƒ¼ãƒãƒ³
 #
 sub parse_csv {
   my @fields = quotewords(",", 0, shift @_);
   @fields = trim(@fields);
   
   my $tmp;
-  # s––‚Ì,,,,‚ğæ‚èœ‚­
+  # è¡Œæœ«ã®,,,,ã‚’å–ã‚Šé™¤ã
   while(defined($tmp = pop @fields) && $tmp =~ /^$/ ) {
        ;
   }
@@ -130,7 +130,7 @@ sub parse_csv {
 
 
 #
-# ƒvƒŠƒvƒƒZƒbƒT
+# ãƒ—ãƒªãƒ—ãƒ­ã‚»ãƒƒã‚µ
 #
 sub preprocess {
   return parse_csv(shift @_);
@@ -140,7 +140,7 @@ sub preprocess {
 
 
 #
-# ƒ}ƒNƒ–¼‚Ìd•¡ƒ`ƒFƒbƒN
+# ãƒã‚¯ãƒ­åã®é‡è¤‡ãƒã‚§ãƒƒã‚¯
 #
 
 sub check_macro_duplicate {
@@ -168,7 +168,7 @@ sub check_macro_duplicate {
 
 
 #
-# ‰ğÍ
+# è§£æ
 #
 sub analyze {
   my @fields = @_;
@@ -237,18 +237,18 @@ sub analyze {
 
 
 #
-# ”z—ñ‚Ö—v‘f‚ğ’Ç‰Á
-# d•¡‚ª‚ ‚ê‚ÎüŒ`ƒŠƒXƒg‚Æ‚µ‚Ä‚Â‚È‚°‚é
+# é…åˆ—ã¸è¦ç´ ã‚’è¿½åŠ 
+# é‡è¤‡ãŒã‚ã‚Œã°ç·šå½¢ãƒªã‚¹ãƒˆã¨ã—ã¦ã¤ãªã’ã‚‹
 #
 sub push_fields {
     my $hash = shift @_;
     my $array_num;
     my $tmp_hash;
     
-    # Šù‚É“¯‚¶–¼‘O‚Ì‚à‚Ì‚ª“o˜^‚³‚ê‚Ä‚¢‚éê‡‚ÍƒnƒbƒVƒ…ƒe[ƒuƒ‹‚ÖüŒ`ƒŠƒXƒg‚Æ‚µ‚Ä’Ç‰Á
+    # æ—¢ã«åŒã˜åå‰ã®ã‚‚ã®ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ãƒãƒƒã‚·ãƒ¥ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ç·šå½¢ãƒªã‚¹ãƒˆã¨ã—ã¦è¿½åŠ 
     if ( exists($index_name_hash{ $hash->{"name"} }) ) {
-        $array_num = $index_name_hash{ $hash->{"name"} };  # ‘Î‰‚·‚é”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
-        # (condition eq "")‚Ì‚à‚Ì‚ªüŒ`ƒŠƒXƒg‚ÌÅŒã‚É‚È‚é‚æ‚¤’Ç‰Á
+        $array_num = $index_name_hash{ $hash->{"name"} };  # å¯¾å¿œã™ã‚‹é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
+        # (condition eq "")ã®ã‚‚ã®ãŒç·šå½¢ãƒªã‚¹ãƒˆã®æœ€å¾Œã«ãªã‚‹ã‚ˆã†è¿½åŠ 
         $tmp_hash = $hash_array[ $array_num ];
         if ( $tmp_hash->{"condition"} eq "") {
             $hash->{"next"} = $tmp_hash;
@@ -274,7 +274,7 @@ sub push_fields {
 
 
 #
-# ƒJƒeƒSƒŠî•ñûW
+# ã‚«ãƒ†ã‚´ãƒªæƒ…å ±åé›†
 #
 sub collect_category {
   my %cat_hash;
@@ -286,7 +286,7 @@ sub collect_category {
 }
 
 #
-# ğŒ‚Ìƒ}[ƒW
+# æ¡ä»¶ã®ãƒãƒ¼ã‚¸
 #
 sub merge_condition {
     my $cond1 = shift @_;
@@ -311,7 +311,7 @@ sub merge_condition {
 
 
 #
-# ƒŒƒWƒXƒ^‚ÌƒIƒtƒZƒbƒg’è‹`æ“¾
+# ãƒ¬ã‚¸ã‚¹ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå®šç¾©å–å¾—
 #
 sub cull_register_offset_def {
     my $hash = shift @_;
@@ -328,7 +328,7 @@ sub cull_register_offset_def {
             $offset_name = "REG_$hash->{'name'}_OFFSET";
             $hash->{"offset_def"} = $offset_name;
             $hash->{"address_def"} = "REG_$hash->{'name'}_ADDR";
-            # ‚±‚Ì•Ï”‚Ì’è‹`‚ÍŒã‚Åg—p‚·‚é‚Ì‚Åc‚µ‚Ä‚¨‚­
+            # ã“ã®å¤‰æ•°ã®å®šç¾©ã¯å¾Œã§ä½¿ç”¨ã™ã‚‹ã®ã§æ®‹ã—ã¦ãŠã
             $hash->{"valname_def"} = "REG_$hash->{'category'}_$hash->{'name'}";
             $hash->{"valname_def_new"} = "reg_$hash->{'category'}_$hash->{'name'}";
         }
@@ -347,10 +347,10 @@ sub cull_register_offset_def {
         
         my $find_flg = 0;
         
-        #reg_type‚Æoffset‚ª“¯‚¶‚È‚çcondition‚ğƒ}[ƒW
+        #reg_typeã¨offsetãŒåŒã˜ãªã‚‰conditionã‚’ãƒãƒ¼ã‚¸
         foreach $k (@def_array) {
             if ( $k->{'condition'} eq "" ) {
-                # ğŒ–³‚µ‚ÌƒtƒB[ƒ‹ƒh‚ÍÅŒã‚É—ˆ‚é‚Í‚¸‚ÅAæ‚ÉŠù‚É‘¶İ‚·‚éê‡‚ÍğŒİ’è‚ª‚¨‚©‚µ‚¢
+                # æ¡ä»¶ç„¡ã—ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¯æœ€å¾Œã«æ¥ã‚‹ã¯ãšã§ã€å…ˆã«æ—¢ã«å­˜åœ¨ã™ã‚‹å ´åˆã¯æ¡ä»¶è¨­å®šãŒãŠã‹ã—ã„
                 print STDERR "WARNING: illegal condition in \'$k->{'name'}\'\n";
             }
             
@@ -366,7 +366,7 @@ sub cull_register_offset_def {
             $i++;
         }
         
-        # ƒŠƒXƒg‚É‚Ü‚¾c‚Á‚Ä‚¢‚é‚È‚çŸ‚ğˆ—
+        # ãƒªã‚¹ãƒˆã«ã¾ã æ®‹ã£ã¦ã„ã‚‹ãªã‚‰æ¬¡ã‚’å‡¦ç†
         if (exists($hash->{"next"})) {
             $hash = $hash->{"next"};
         } else {
@@ -379,13 +379,13 @@ sub cull_register_offset_def {
 
 
 #
-# ƒAƒEƒgƒvƒbƒg
+# ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆ
 #
 sub output {
   my $output_filename = shift @_;
   my $category = shift @_;
   
-  # o—Íƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“
+  # å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³
 
   open OUT, ">$output_filename" or die "ERROR: Cannot create file \'$output_filename\'\n";
   my $handle = OUT;
@@ -396,7 +396,7 @@ sub output {
   $include_guard = uc($include_guard). "_";
   
   #
-  # o—Í
+  # å‡ºåŠ›
   #
   print $handle <<ENDDOC;
 /*---------------------------------------------------------------------------*
@@ -440,7 +440,7 @@ ENDDOC
       
         print $handle "/* $hash->{'name'} */\n\n";
       
-        my @reg_array = cull_register_offset_def($hash);  # d•¡‚µ‚½€–Ú‚ğÅ“K‰»
+        my @reg_array = cull_register_offset_def($hash);  # é‡è¤‡ã—ãŸé …ç›®ã‚’æœ€é©åŒ–
         my $nest_state = 0;
         
         foreach $tmp_hash (@reg_array) 
@@ -518,7 +518,7 @@ ENDDOC
             
             print $handle "\n";
             
-            # REG_XXX_XXXXX_SHIFT‚Ìo—Í
+            # REG_XXX_XXXXX_SHIFTã®å‡ºåŠ›
             {
                 my $name = "$hash->{'valname_def'}_" . $fieldname . "_SHIFT";
                 check_macro_duplicate($name, $hash->{'condition'}, $no);
@@ -526,14 +526,14 @@ ENDDOC
                 printf $handle "#define %-50s %s\n", $name, $fieldshift;
             }
             
-            # REG_XXX_XXXXX_SIZE‚Ìo—Í
+            # REG_XXX_XXXXX_SIZEã®å‡ºåŠ›
             {
                 my $name = "$hash->{'valname_def'}_" . $fieldname . "_SIZE";
                 check_macro_duplicate($name, $hash->{'condition'}, $no);
                 printf $handle "#define %-50s %s\n", $name, $fieldsize;
             }
             
-            # REG_XXX_XXXXX_MASK‚Ìo—Í
+            # REG_XXX_XXXXX_MASKã®å‡ºåŠ›
             {
                 my $width = $hash->{"bitwidth"};
                 my $mask_val = 1 << $fieldshift;
@@ -548,7 +548,7 @@ ENDDOC
                 printf $handle "#define %-50s $hash->{'mask_format'}\n", $name, $mask_val;
             }
             
-            # REG_XXX_XXXXX_FIELD‚Ì’è‹`‚Ìˆês•ª‚ğì¬
+            # REG_XXX_XXXXX_FIELDã®å®šç¾©ã®ä¸€è¡Œåˆ†ã‚’ä½œæˆ
             my $fn = lc($fieldname);
             if ($field_macro_flag == 1) {
                 $field_macro_func = $field_macro_func . ", " . $fn;
@@ -561,7 +561,7 @@ ENDDOC
         }
         
         if ($field_macro_flag == 1) {
-            # REG_XXX_XXXXX_FIELD‚Ìo—Í
+            # REG_XXX_XXXXX_FIELDã®å‡ºåŠ›
             $field_macro_func .= " ) \\\n";
             $field_macro_func .= $field_macro_body;
             print $handle "\n#ifndef SDK_ASM\n";
@@ -576,7 +576,7 @@ ENDDOC
             }
         }
         
-        # ƒŠƒXƒg‚É‚Ü‚¾c‚Á‚Ä‚¢‚é‚È‚çŸ‚ğ•\¦
+        # ãƒªã‚¹ãƒˆã«ã¾ã æ®‹ã£ã¦ã„ã‚‹ãªã‚‰æ¬¡ã‚’è¡¨ç¤º
         if (exists($hash->{'next'})) {
             $hash = $hash->{'next'};
         } else {
@@ -599,11 +599,11 @@ ENDDOC
 }
 
 #
-# ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ƒIƒvƒVƒ‡ƒ“‚Ìİ’è
+# ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¨­å®š
 #
 
 
-# -v‚©-verbose‚ªw’è‚³‚ê‚Ä‚¢‚é‚Æverboseƒ‚[ƒh
+# -vã‹-verboseãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã¨verboseãƒ¢ãƒ¼ãƒ‰
 if ($v == 1 || $verbose == 1) {
   $verbose_mode = 1;
   verbose("verbose mode on\n");
@@ -611,7 +611,7 @@ if ($v == 1 || $verbose == 1) {
   $verbose_mode = 0;
 }
 
-# -nodup‚ªw’è‚³‚ê‚Ä‚¢‚é‚Æƒ}ƒNƒ–¼‚Ìd•¡‚ğ‹–‚³‚È‚¢
+# -nodupãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã¨ãƒã‚¯ãƒ­åã®é‡è¤‡ã‚’è¨±ã•ãªã„
 if ($nodup == 1) {
   $duplicate_ok = 0;
 } else {
@@ -622,7 +622,7 @@ if ($nodup == 1) {
 
 
 #
-# ƒƒCƒ“ƒ‹[ƒ`ƒ“
+# ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
 #
 foreach $filename (@ARGV) {
   $line_no = 0;

@@ -24,43 +24,43 @@
   only fix comment
 
   Revision 1.10  2004/03/12 08:41:14  yada
-  OS_PeepMessage()¨OS_ReadMessage() ‚É‰ü–¼
+  OS_PeepMessage()â†’OS_ReadMessage() ã«æ”¹å
 
   Revision 1.9  2004/03/12 02:38:51  yada
-  OS_PeepMessage() ’Ç‰Á
+  OS_PeepMessage() è¿½åŠ 
 
   Revision 1.8  2004/03/01 11:56:47  yada
-  ‰pŒê‚ÌŠÖ”commentì¬
+  è‹±èªã®é–¢æ•°commentä½œæˆ
 
   Revision 1.7  2004/02/12 11:08:30  yada
-  ARM9/ARM7 U‚è•ª‚¯ì‹Æ
+  ARM9/ARM7 æŒ¯ã‚Šåˆ†ã‘ä½œæ¥­
 
   Revision 1.6  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.5  2004/01/18 02:25:37  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.4  2003/12/25 07:31:26  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.3  2003/12/11 11:53:36  yada
-  OS_CreateThreadQueue() ¨ OS_InitThreadQueue() ‚Ì‰ü–¼‚É‚æ‚éC³
+  OS_CreateThreadQueue() â†’ OS_InitThreadQueue() ã®æ”¹åã«ã‚ˆã‚‹ä¿®æ­£
 
   Revision 1.2  2003/11/30 04:19:25  yasu
-  OS_EnableInterrupt/DisableInterrupt ‚Ì–ß‚è’l‚ÌŒ^‚Ì•ÏX
+  OS_EnableInterrupt/DisableInterrupt ã®æˆ»ã‚Šå€¤ã®å‹ã®å¤‰æ›´
 
   Revision 1.1  2003/11/29 01:25:46  yada
-  ƒtƒ@ƒCƒ‹–¼Ì•ÏX
+  ãƒ•ã‚¡ã‚¤ãƒ«åç§°å¤‰æ›´
 
   Revision 1.3  2003/11/26 04:18:14  yada
   (none)
 
   Revision 1.2  2003/11/26 01:50:27  yada
-  ŠÖ”‚Ì’†g‚ğÀ‘•
+  é–¢æ•°ã®ä¸­èº«ã‚’å®Ÿè£…
 
   Revision 1.1  2003/11/25 12:36:36  yada
-  ‰”ÅBŠÖ”–¼‚Ì‚İ
+  åˆç‰ˆã€‚é–¢æ•°åã®ã¿
 
 
   $NoKeywords: $

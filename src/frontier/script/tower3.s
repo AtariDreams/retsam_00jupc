@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	tower3.s
- * @brief	uƒoƒgƒ‹ƒ^ƒ[ƒVƒ“ƒOƒ‹’Ê˜Hvƒtƒƒ“ƒeƒBƒAƒXƒNƒŠƒvƒg(d31r0203,sp_d31r0203)
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚·ãƒ³ã‚°ãƒ«é€šè·¯ã€ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¹ã‚¯ãƒªãƒ—ãƒˆ(d31r0203,sp_d31r0203)
  * @author	nohara
  * @date	2007.05.30
  */
@@ -18,17 +18,17 @@
 
 //--------------------------------------------------------------------
 //
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //
-//	FSW_LOCAL1		WK_SCENE_D31R0203‚ðŠi”[
+//	FSW_LOCAL1		WK_SCENE_D31R0203ã‚’æ ¼ç´
 //
 //--------------------------------------------------------------------
-_EVENT_DATA		fss_tower_single_way_start	//ˆê”Ôã‚ÌEVENT_DATA‚ÍŽ©“®ŽÀs
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA		fss_tower_single_way_start	//ä¸€ç•ªä¸Šã®EVENT_DATAã¯è‡ªå‹•å®Ÿè¡Œ
+_EVENT_DATA_END						//çµ‚äº†
 
 
 //--------------------------------------------------------------------
-//							À•W’è‹`
+//							åº§æ¨™å®šç¾©
 //--------------------------------------------------------------------
 #define PLAYER_X		(8*7)
 #define PLAYER_Y		(8*4)
@@ -37,43 +37,43 @@ _EVENT_DATA_END						//I—¹
 
 /********************************************************************/
 //
-//		SCENE_TOWER:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//		SCENE_TOWER:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	single_way_set_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA			FSW_PARAM6,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_TOWER:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_TOWER:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 #define OBJID_PLAYER				(0)
 #define OBJID_PCWOMAN2				(1)
 
-//ƒXƒNƒŠƒvƒgID(¡Œã‘Î‰ž—\’è)
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(ä»Šå¾Œå¯¾å¿œäºˆå®š)
 #define EVENTID_TEST_SCR_OBJ1		(1)
 
 _ACTOR_LABEL	single_way_set_actor
 	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_DOWN, \
-							PLAYER_X,PLAYER_Y,ON				/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+							PLAYER_X,PLAYER_Y,ON				/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_ACTOR_DATA				OBJID_PCWOMAN2,FSW_PARAM6,WF2DMAP_WAY_C_DOWN, \
 							PCWOMAN2_X,PCWOMAN2_Y,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
 
 //====================================================================
-//	”z’u•¨ƒAƒNƒ^[
+//	é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼
 //====================================================================
 //--------------------------------------------------------------
-//	”z’u•¨ƒŠƒ\[ƒXƒ‰ƒxƒ‹
+//	é…ç½®ç‰©ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«
 //--------------------------------------------------------------
 _ARTICLE_RESOURCE_LABEL	article_door_resource
 	_ARTICLE_RESOURCE_DATA	ACTID_TOWER_DOOR
 	_ARTICLE_RESOURCE_DATA_END
 
 //--------------------------------------------------------------
-//	”z’u•¨ƒAƒNƒ^[
+//	é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------
 _ARTICLE_ACTOR_LABEL	article_door_actor
 	//id,x,y,visible,anm_start,act_work
@@ -82,11 +82,11 @@ _ARTICLE_ACTOR_LABEL	article_door_actor
 
 
 /********************************************************************/
-/*							ƒAƒjƒ									*/
+/*							ã‚¢ãƒ‹ãƒ¡									*/
 /********************************************************************/
 
 //--------------------------------------------------------------------
-//Žó‚¯•t‚¯ì@In
+//å—ã‘ä»˜ã‘å¬¢ã€€In
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0203_pcwoman2_in
 	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1
@@ -95,7 +95,7 @@ _ANIME_LABEL	anm_d31r0203_pcwoman2_in
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Ž©‹@@In
+//è‡ªæ©Ÿã€€In
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0203_player_in01
 	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1
@@ -103,7 +103,7 @@ _ANIME_LABEL	anm_d31r0203_player_in01
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//‹¤—L@Move01
+//å…±æœ‰ã€€Move01
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0203_pcwoman2_move01
 	_ANIME_DATA	FC_WALK_R_8F,4
@@ -119,7 +119,7 @@ _ANIME_LABEL	anm_d31r0203_player_move01
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//‹¤—L@Move02
+//å…±æœ‰ã€€Move02
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0203_pcwoman2_move02
 	_ANIME_DATA	FC_WALK_R_8F,8
@@ -135,7 +135,7 @@ _ANIME_LABEL	anm_d31r0203_player_move02
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//‹¤—L@Move03
+//å…±æœ‰ã€€Move03
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0203_pcwoman2_move03
 	_ANIME_DATA	FC_WALK_R_8F,12
@@ -151,7 +151,7 @@ _ANIME_LABEL	anm_d31r0203_player_move03
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//‹¤—L@Move04
+//å…±æœ‰ã€€Move04
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0203_pcwoman2_move04
 	_ANIME_DATA	FC_WALK_R_8F,16
@@ -168,11 +168,11 @@ _ANIME_LABEL	anm_d31r0203_player_move04
 
 
 /********************************************************************/
-/*							ŠJŽn									*/
+/*							é–‹å§‹									*/
 /********************************************************************/
 fss_tower_single_way_start:
 
-	/*‰E‘¤‚ÌWIFIƒQ[ƒg*/
+	/*å³å´ã®WIFIã‚²ãƒ¼ãƒˆ*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_WIFI,comm_tower_6_char_set_wifi
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_RETRY,comm_tower_6_char_set_wifi
@@ -180,10 +180,10 @@ fss_tower_single_way_start:
 	_END
 
 fss_tower_single_way_start_sub:
-	_CHAR_RESOURCE_SET	single_way_set_resource					/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			single_way_set_actor					/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	single_way_set_resource					/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			single_way_set_actor					/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
-	/*ƒŠƒ\[ƒX•ƒAƒNƒ^[“o˜^*/
+	/*ãƒªã‚½ãƒ¼ã‚¹ï¼†ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_ARTICLE_RESOURCE_SET	article_door_resource
 	_ARTICLE_ACTOR_SET		article_door_actor
 	
@@ -192,12 +192,12 @@ fss_tower_single_way_start_sub:
 
 	_SAVE_EVENT_WORK_GET	WK_SCENE_D31R0203,FSW_LOCAL1
 
-	//ƒ}ƒbƒvØ‚è‘Ö‚¦‘O‚ÉŽålŒö‚ðƒoƒjƒbƒVƒ…‚µ‚Ä‚¨‚­
+	//ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆå‰ã«ä¸»äººå…¬ã‚’ãƒãƒ‹ãƒƒã‚·ãƒ¥ã—ã¦ãŠã
 
 	/********************/
 	//SCENE_CHANGE_LABEL
 	/********************/
-	_IFVAL_JUMP			FSW_LOCAL1,EQ,1,ev_tower_single_way		/*ƒVƒ“ƒOƒ‹’Ê˜H*/
+	_IFVAL_JUMP			FSW_LOCAL1,EQ,1,ev_tower_single_way		/*ã‚·ãƒ³ã‚°ãƒ«é€šè·¯*/
 	_END
 
 comm_tower_6_char_set_wifi:
@@ -212,12 +212,12 @@ comm_tower_6_char_set_single:
 
 
 /********************************************************************/
-/*						ƒVƒ“ƒOƒ‹’Ê˜H								*/
+/*						ã‚·ãƒ³ã‚°ãƒ«é€šè·¯								*/
 /********************************************************************/
 ev_tower_single_way:
 	_CALL				ev_tower_ways_comanm_in
 
-	/*‚Ç‚ÌƒQ[ƒg‚É“ü‚é‚©ƒ‰ƒ“ƒ_ƒ€*/
+	/*ã©ã®ã‚²ãƒ¼ãƒˆã«å…¥ã‚‹ã‹ãƒ©ãƒ³ãƒ€ãƒ */
 	_GET_RND			FSW_ANSWER,4
 
 	_SWITCH				FSW_ANSWER
@@ -229,21 +229,21 @@ ev_tower_single_way:
 
 
 /********************************************************************/
-/*						ƒVƒ“ƒOƒ‹’Ê˜HƒAƒjƒ							*/
+/*						ã‚·ãƒ³ã‚°ãƒ«é€šè·¯ã‚¢ãƒ‹ãƒ¡							*/
 /********************************************************************/
 ev_tower_ways_comanm_in:
 #if 0
-	/*ƒGƒŒƒx[ƒ^ƒhƒA*/
+	/*ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒ‰ã‚¢*/
 	_SET_UP_DOOR_ANIME	0,0,2,2,77
 	_SEQ_OPEN_DOOR		77
 	_WAIT_3D_ANIME		77
 #endif
 
-	/*ƒAƒjƒ“®ìƒeƒXƒg*/
+	/*ã‚¢ãƒ‹ãƒ¡å‹•ä½œãƒ†ã‚¹ãƒˆ*/
 	_SE_PLAY			SEQ_SE_DP_DOOR10
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_0, 0	//0”Ô‚ÌƒAƒjƒŽÀs
-	_ARTICLE_ACTOR_ANIME_WAIT	ACTWORK_0		//ƒAƒjƒI—¹‘Ò‚¿
-	_ARTICLE_ACTOR_ANIME_STOP	ACTWORK_0		//ƒAƒjƒ’âŽ~
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_0, 0	//0ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
+	_ARTICLE_ACTOR_ANIME_WAIT	ACTWORK_0		//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
+	_ARTICLE_ACTOR_ANIME_STOP	ACTWORK_0		//ã‚¢ãƒ‹ãƒ¡åœæ­¢
 
 	_OBJ_ANIME			OBJID_PCWOMAN2,anm_d31r0203_pcwoman2_in
 	_OBJ_ANIME_WAIT
@@ -253,15 +253,15 @@ ev_tower_ways_comanm_in:
 	_OBJ_ANIME_WAIT
 
 #if 0
-	_SEQ_CLOSE_DOOR		77	/*ƒhƒA•Â‚ß‚é*/
-	_WAIT_3D_ANIME		77	/*ƒAƒjƒI—¹‘Ò‚¿*/
-	_FREE_3D_ANIME		77	/*ƒhƒAƒAƒjƒ‰ð•ú*/
+	_SEQ_CLOSE_DOOR		77	/*ãƒ‰ã‚¢é–‰ã‚ã‚‹*/
+	_WAIT_3D_ANIME		77	/*ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡*/
+	_FREE_3D_ANIME		77	/*ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡è§£æ”¾*/
 #endif
 	_RET
 
 
 /********************************************************************/
-/*					(ƒ‰ƒ“ƒ_ƒ€)ƒQ[ƒg‚É“ü‚é							*/
+/*					(ãƒ©ãƒ³ãƒ€ãƒ )ã‚²ãƒ¼ãƒˆã«å…¥ã‚‹							*/
 /********************************************************************/
 ev_tower_ways_comanm_move01:
 	_OBJ_ANIME			OBJID_PCWOMAN2,anm_d31r0203_pcwoman2_move01
@@ -293,16 +293,16 @@ ev_tower_ways_comanm_move04:
 
 
 /********************************************************************/
-/*					ƒVƒ“ƒOƒ‹ƒoƒgƒ‹ƒ‹[ƒ€‚Ö							*/
+/*					ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¸							*/
 /********************************************************************/
 ev_tower_ways_common_out:
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ŽŸX‚ÆƒAƒNƒ^[íœ*/
+	/*æ¬¡ã€…ã¨ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤*/
 	_ARTICLE_ACTOR_FREE		ACTWORK_0
 	
-	/*ƒŠƒ\[ƒX‰ð•ú(ƒAƒNƒ^[‚Íƒ[ƒN”Ô†AƒŠƒ\[ƒX‚ÍACTID‚Å‰ð•ú‚·‚éŽ–‚É’ˆÓ)*/
+	/*ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾(ã‚¢ã‚¯ã‚¿ãƒ¼ã¯ãƒ¯ãƒ¼ã‚¯ç•ªå·ã€ãƒªã‚½ãƒ¼ã‚¹ã¯ACTIDã§è§£æ”¾ã™ã‚‹äº‹ã«æ³¨æ„)*/
 	_ARTICLE_RESOURCE_FREE	ACTID_TOWER_DOOR
 
 	_ACTOR_FREE			OBJID_PLAYER

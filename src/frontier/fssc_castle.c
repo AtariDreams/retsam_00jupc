@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fssc_castle.c
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒLƒƒƒbƒXƒ‹
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«
  * @author	Satoshi Nohara
  * @date	07.07.04
  */
@@ -31,7 +31,7 @@
 #include "field/scr_tool.h"
 #include "field/eventflag.h"
 #include "field/evwkdef.h"
-#include "gflib/strbuf_family.h"				//‹–‰Â§
+#include "gflib/strbuf_family.h"				//è¨±å¯åˆ¶
 
 #include "../field/field_battle.h"				//BattleParam_IsWinResult
 #include "../field/field_subproc.h"				//TestBattleProcData
@@ -59,7 +59,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL FSSC_CastleWorkAlloc( FSS_TASK * core );
@@ -88,21 +88,21 @@ BOOL FSSC_CastleSubCP( FSS_TASK * core );
 BOOL FSSC_CastleAddCP( FSS_TASK * core );
 BOOL FSSC_CastleTalkMsgAppear(FSS_TASK* core);
 
-//“n‚µ‚½ƒ[ƒN‚Ì‰ğ•úˆ—
+//æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†
 static void CastleFreeMemory( void *parent_work );
 
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒbƒXƒ‹ƒ[ƒNŠm•Û
+ * @brief	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -123,15 +123,15 @@ BOOL FSSC_CastleWorkAlloc( FSS_TASK * core )
 	wk = CastleScr_WorkAlloc( ex_param->savedata, init, type, pos1, pos2, pos3, work );
 	Frontier_SysWorkSet( core->fss->fmain, wk );
 
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒLƒƒƒbƒXƒ‹ƒ[ƒNŠm•Û\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯ç¢ºä¿\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒbƒXƒ‹ƒ[ƒN‰Šú‰»
+ * @brief	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -145,15 +145,15 @@ BOOL FSSC_CastleWorkInit( FSS_TASK * core )
 
 	CastleScr_WorkInit( bc_scr_wk, init );
 
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒLƒƒƒbƒXƒ‹ƒ[ƒN‰Šú‰»\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒbƒXƒ‹ƒ[ƒNíœ
+ * @brief	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -163,15 +163,15 @@ BOOL FSSC_CastleWorkFree( FSS_TASK * core )
 	CASTLE_SCRWORK* bc_scr_wk;
 	bc_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	CastleScr_WorkRelease( bc_scr_wk );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒLƒƒƒbƒXƒ‹ƒ[ƒNŠJ•ú\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯é–‹æ”¾\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒLƒƒƒbƒXƒ‹è‚¿‰æ–ÊŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«æ‰‹æŒã¡ç”»é¢å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -183,10 +183,10 @@ BOOL FSSC_CastleMineCall( FSS_TASK * core)
 	CASTLE_CALL_WORK* castle_call;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
 
-	//ƒI[ƒo[ƒŒƒCIDéŒ¾
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY( castle );
 	
-	//ƒLƒƒƒbƒXƒ‹ƒvƒƒZƒXƒf[ƒ^
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA CastleProc = {	
 		CastleMineProc_Init,
 		CastleMineProc_Main,
@@ -196,7 +196,7 @@ BOOL FSSC_CastleMineCall( FSS_TASK * core)
 
 	bc_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	OS_Printf( "ƒLƒƒƒbƒXƒ‹è‚¿‰æ–ÊŒÄ‚Ño‚µ\n" );
+	OS_Printf( "ã‚­ãƒ£ãƒƒã‚¹ãƒ«æ‰‹æŒã¡ç”»é¢å‘¼ã³å‡ºã—\n" );
 
 	castle_call = sys_AllocMemory( HEAPID_WORLD, sizeof(CASTLE_CALL_WORK) );
 	MI_CpuClear8( castle_call, sizeof(CASTLE_CALL_WORK) );
@@ -209,9 +209,9 @@ BOOL FSSC_CastleMineCall( FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒLƒƒƒbƒXƒ‹ƒ‰ƒ“ƒNƒAƒbƒv‰æ–ÊŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ç”»é¢å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -223,10 +223,10 @@ BOOL FSSC_CastleRankUpCall( FSS_TASK * core)
 	CASTLE_CALL_WORK* castle_call;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
 
-	//ƒI[ƒo[ƒŒƒCIDéŒ¾
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY( castle );
 	
-	//ƒLƒƒƒbƒXƒ‹ƒvƒƒZƒXƒf[ƒ^
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA CastleProc = {	
 		NULL,
 		NULL,
@@ -236,7 +236,7 @@ BOOL FSSC_CastleRankUpCall( FSS_TASK * core)
 
 	bc_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	OS_Printf( "ƒLƒƒƒbƒXƒ‹ƒ‰ƒ“ƒNƒAƒbƒv‰æ–ÊŒÄ‚Ño‚µ\n" );
+	OS_Printf( "ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ç”»é¢å‘¼ã³å‡ºã—\n" );
 
 	castle_call = sys_AllocMemory( HEAPID_WORLD, sizeof(CASTLE_CALL_WORK) );
 	MI_CpuClear8( castle_call, sizeof(CASTLE_CALL_WORK) );
@@ -249,9 +249,9 @@ BOOL FSSC_CastleRankUpCall( FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒLƒƒƒbƒXƒ‹í“¬Œ‹‰Êæ“¾‚µ‚ÄŠJ•ú
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«æˆ¦é—˜çµæœå–å¾—ã—ã¦é–‹æ”¾
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -266,9 +266,9 @@ BOOL FSSC_CastleCallGetResult( FSS_TASK * core)
 	bc_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	param = bc_scr_wk->p_work;
 
-	//ƒp[ƒeƒBî•ñFí“¬Œ‹‰Ê‚ğ”½‰f
+	//ãƒ‘ãƒ¼ãƒ†ã‚£æƒ…å ±ï¼šæˆ¦é—˜çµæœã‚’åæ˜ 
 	
-	//ƒZƒbƒg‚·‚éˆÊ’u‚ÍA”ñ’ÊM(0,1,2)A’ÊM(0,1,2,3)
+	//ã‚»ãƒƒãƒˆã™ã‚‹ä½ç½®ã¯ã€éé€šä¿¡(0,1,2)ã€é€šä¿¡(0,1,2,3)
 	pp = PokeParty_GetMemberPointer( param->poke_party[POKEPARTY_MINE], 0 );
 	PokeParty_SetMemberData( bc_scr_wk->p_m_party, 0, pp );
 
@@ -291,16 +291,16 @@ BOOL FSSC_CastleCallGetResult( FSS_TASK * core)
 	bc_scr_wk->winlose_flag = BattleParam_IsWinResult( param->win_lose_flag );
 	OS_Printf( "bc_scr_wk->winlose_flag = %d\n", bc_scr_wk->winlose_flag );
 
-	//BATTLE_PARAM‚ÌŠJ•ú
+	//BATTLE_PARAMã®é–‹æ”¾
 	BattleParam_Delete( param );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFí“¬ŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šæˆ¦é—˜å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -313,22 +313,22 @@ BOOL FSSC_CastleBattleCall( FSS_TASK * core)
 
 	bc_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	//ƒoƒgƒ‹ƒf[ƒ^‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	param = BtlCastle_CreateBattleParam( bc_scr_wk, ex_param );
 	bc_scr_wk->p_work = param;
 
-	//í“¬Ø‚è‘Ö‚¦
-//	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ƒoƒgƒ‹‹ÈÄ¶
+	//æˆ¦é—˜åˆ‡ã‚Šæ›¿ãˆ
+//	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
     Frontier_SubProcSet(core->fss->fmain, &TestBattleProcData, param, FALSE, NULL );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒLƒƒƒbƒXƒ‹í“¬ŒÄ‚Ño‚µ\n" );			//field_encount.c
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ£ãƒƒã‚¹ãƒ«æˆ¦é—˜å‘¼ã³å‡ºã—\n" );			//field_encount.c
 	return 1;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒLƒƒƒbƒXƒ‹“GƒgƒŒ[ƒi[‰æ–ÊŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -340,10 +340,10 @@ BOOL FSSC_CastleEnemyCall( FSS_TASK * core )
 	CASTLE_CALL_WORK* castle_call;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
 
-	//ƒI[ƒo[ƒŒƒCIDéŒ¾
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY( castle );
 	
-	//ƒLƒƒƒbƒXƒ‹ƒvƒƒZƒXƒf[ƒ^
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA CastleProc = {	
 		CastleEnemyProc_Init,
 		CastleEnemyProc_Main,
@@ -353,7 +353,7 @@ BOOL FSSC_CastleEnemyCall( FSS_TASK * core )
 
 	bc_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	OS_Printf( "ƒLƒƒƒbƒXƒ‹“GƒgƒŒ[ƒi[‰æ–ÊŒÄ‚Ño‚µ\n" );
+	OS_Printf( "ã‚­ãƒ£ãƒƒã‚¹ãƒ«æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢å‘¼ã³å‡ºã—\n" );
 
 	castle_call = sys_AllocMemory( HEAPID_WORLD, sizeof(CASTLE_CALL_WORK) );
 	MI_CpuClear8( castle_call, sizeof(CASTLE_CALL_WORK) );
@@ -376,7 +376,7 @@ static void CastleCallWorkSet( CASTLE_CALL_WORK* castle_call, CASTLE_SCRWORK* bc
 	castle_call->p_work			= bc_scr_wk;
 	castle_call->pair_cp		= bc_scr_wk->pair_cp;
 
-	//î•ñ‚ªŒöŠJ‚³‚ê‚½‚©ƒtƒ‰ƒO
+	//æƒ…å ±ãŒå…¬é–‹ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
 		castle_call->enemy_temoti_flag[i]	= bc_scr_wk->enemy_temoti_flag[i];
 		castle_call->enemy_level_flag[i]	= bc_scr_wk->enemy_level_flag[i];
@@ -388,25 +388,25 @@ static void CastleCallWorkSet( CASTLE_CALL_WORK* castle_call, CASTLE_SCRWORK* bc
 }
 
 
-//ƒLƒƒƒbƒXƒ‹‰æ–Ê‚Å“n‚µ‚½ƒ[ƒN‚Ì‰ğ•úˆ—
+//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ç”»é¢ã§æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†
 static void CastleFreeMemory( void *parent_work )
 {
 	int i;
 	CASTLE_CALL_WORK* castle_call = parent_work;
 
-	//Œ‹‰Ê‚ğæ“¾
+	//çµæœã‚’å–å¾—
 	CastleScr_GetResult( castle_call->p_work, parent_work );
 
-	//CASTLE_CALL_WORK‚Ìíœ
+	//CASTLE_CALL_WORKã®å‰Šé™¤
 	sys_FreeMemoryEz( parent_work );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹‘O‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«å‰ã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -421,9 +421,9 @@ BOOL FSSC_CastleBtlBeforePokePartySet( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -438,9 +438,9 @@ BOOL FSSC_CastleBtlAfterPokePartySet( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFCASTLE_SCR_WORK‚ÌƒZƒbƒgAƒQƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šCASTLE_SCR_WORKã®ã‚»ãƒƒãƒˆã€ã‚²ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -469,42 +469,42 @@ BOOL FSSC_CastleScrWork( FSS_TASK * core )
 
 	switch( code ){
 
-	//ƒ^ƒCƒv(ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`)‚ÌƒZƒbƒg
+	//ã‚¿ã‚¤ãƒ—(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã€wifiãƒãƒ«ãƒ)ã®ã‚»ãƒƒãƒˆ
 	case FC_ID_SET_TYPE:
 		bc_scr_wk->type = param1;
 		break;
 
-	//ret_work‚Ìæ“¾
+	//ret_workã®å–å¾—
 	case FC_ID_GET_RET_WORK:
 		*work = bc_scr_wk->ret_work[param1];
 		break;
 
-	//˜AŸ”‚Ìæ“¾
+	//é€£å‹æ•°ã®å–å¾—
 	case FC_ID_GET_RENSYOU:
 		*work = bc_scr_wk->rensyou;
 		break;
 
-	//˜AŸ”‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+	//é€£å‹æ•°ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	case FC_ID_INC_RENSYOU:
 		if( bc_scr_wk->rensyou < CASTLE_RENSYOU_MAX ){
 			bc_scr_wk->rensyou++;
 		}
 		break;
 
-	//ƒŠƒZƒbƒg‚µ‚Äƒ^ƒCƒgƒ‹‚É–ß‚é
+	//ãƒªã‚»ãƒƒãƒˆã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
 	case FC_ID_SYSTEM_RESET:
 		OS_ResetSystem( 0 );
 		break;
 
 	//------------------------------------
-	//	CASTLEDATA‚ÉƒAƒNƒZƒX
+	//	CASTLEDATAã«ã‚¢ã‚¯ã‚»ã‚¹
 	//------------------------------------
-	//ƒZ[ƒuƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©•Ô‚·
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹è¿”ã™
 	case FC_ID_IS_SAVE_DATA_ENABLE:
 		*work = CASTLEDATA_GetSaveFlag( bc_scr_wk->castle_savedata );
 		break;
 
-	//‹x‚Ş‚ÉŒ»İ‚ÌƒvƒŒƒCó‹µ‚ğƒZ[ƒu‚É‘‚«o‚·
+	//ä¼‘ã‚€æ™‚ã«ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤çŠ¶æ³ã‚’ã‚»ãƒ¼ãƒ–ã«æ›¸ãå‡ºã™
 	case FC_ID_SAVE_REST_PLAY_DATA:
 		CastleScr_SaveRestPlayData( bc_scr_wk, FR_MODE_REST );
 		break;
@@ -512,118 +512,118 @@ BOOL FSSC_CastleScrWork( FSS_TASK * core )
 	//------------------------------------
 	//	
 	//------------------------------------
-	//ƒ‰ƒEƒ“ƒh”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+	//ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	case FC_ID_INC_ROUND:
 		*work = CastleScr_IncRound( bc_scr_wk );
 		break;
 
-	//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ğæ“¾
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	case FC_ID_GET_MONSNO:
 		*work = bc_scr_wk->enemy_poke[param1].mons_no;
 		break;
 
-	//‹Zƒiƒ“ƒo[‚ğæ“¾
+	//æŠ€ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	case FC_ID_GET_WAZANO:
 		*work = bc_scr_wk->enemy_poke[param1].waza[param2];
 		break;
 
-	//•Û‘¶‚µ‚Ä‚¨‚¢‚½ƒAƒCƒeƒ€ƒiƒ“ƒo[‚ğƒZƒbƒg‚·‚é
+	//ä¿å­˜ã—ã¦ãŠã„ãŸã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	case FC_ID_SET_TEMP_ITEM:
-		party = SaveData_GetTemotiPokemon( ex_param->savedata );	//è‚¿ƒp[ƒeƒBæ“¾
+		party = SaveData_GetTemotiPokemon( ex_param->savedata );	//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 		for( i=0; i < 3 ;i++ ){
 			pp = PokeParty_GetMemberPointer( party, bc_scr_wk->mine_poke_pos[i] );
 			PokeParaPut( pp, ID_PARA_item, &bc_scr_wk->itemno[i] );
 		}
 		break;
 
-	//ü‰ñ”‚ğæ“¾
+	//å‘¨å›æ•°ã‚’å–å¾—
 	case FC_ID_GET_LAP:
 		*work = CastleScr_CommGetLap( bc_scr_wk );
 		break;
 
-	//“GƒgƒŒ[ƒi[‚ÌOBJƒR[ƒh‚ğæ“¾
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®OBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	case FC_ID_GET_TR_OBJ_CODE:
 		*work = CastleScr_GetEnemyObjCode( bc_scr_wk, param1 );
 		break;
 
-	//”sí‚µ‚½‚Ìˆ—
+	//æ•—æˆ¦ã—ãŸæ™‚ã®å‡¦ç†
 	case FC_ID_SET_LOSE:
 		CastleScr_SetLose( bc_scr_wk );
 		break;
 
-	//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚Ìˆ—
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸæ™‚ã®å‡¦ç†
 	case FC_ID_SET_CLEAR:
 		CastleScr_SetClear( bc_scr_wk );
 		break;
 
-	//ƒ‰ƒEƒ“ƒh”‚ğæ“¾
+	//ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’å–å¾—
 	case FC_ID_GET_ROUND:
 		*work = CastleScr_GetRound( bc_scr_wk );
 		break;
 
-	//ƒŠƒ^ƒCƒ„ƒtƒ‰ƒO‚ğæ“¾
+	//ãƒªã‚¿ã‚¤ãƒ¤ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	case FC_ID_GET_RETIRE_FLAG:
 		OS_Printf( "bc_scr_wk->pair_retire_flag = %d\n", bc_scr_wk->pair_retire_flag );
 		*work = bc_scr_wk->pair_retire_flag;
 		break;
 
-	//ŒğŠ·‚µ‚½‚¢‚©ƒtƒ‰ƒO‚ğæ“¾
+	//äº¤æ›ã—ãŸã„ã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	case FC_ID_GET_TRADE_YESNO_FLAG:
 		*work = bc_scr_wk->pair_trade_yesno_flag;
 		break;
 
-	//–á‚¦‚éCPƒ|ƒCƒ“ƒg‚ğæ“¾ACP‚ğ‘«‚·
+	//è²°ãˆã‚‹CPãƒã‚¤ãƒ³ãƒˆã‚’å–å¾—ã€CPã‚’è¶³ã™
 	case FC_ID_BTL_WIN_CP_POINT:
 		*work = CastleScr_GetBtlWinCpPoint( bc_scr_wk );
 		CastleScr_AddCP( bc_scr_wk->sv, bc_scr_wk->type, *work );
 		break;
 
-	//PP‚È‚Ç‚Ìƒf[ƒ^‚ğXV
+	//PPãªã©ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°
 	case FC_ID_BTL_WIN_POKE_DATA:
 		CastleScr_BtlWinPokeData( bc_scr_wk );
 		break;
 
-	//’ÊMİ’è
+	//é€šä¿¡è¨­å®š
 	case FC_ID_COMM_COMMAND_INITIALIZE:
 		CommCommandFrontierInitialize( bc_scr_wk );
 		break;
 
-	//e‚ÌŒˆ’è‚ğæ“¾
+	//è¦ªã®æ±ºå®šã‚’å–å¾—
 	case FC_ID_GET_PARENT_CHECK_FLAG:
 		if( bc_scr_wk->parent_check_flag >= CASTLE_SCR_MENU_MAX ){
-			*work = (bc_scr_wk->parent_check_flag - CASTLE_SCR_MENU_MAX);	//q‘I‘ğ‚ªÌ—p
-			OS_Printf( "qÌ—p@Œˆ’è = %d\n", *work );
+			*work = (bc_scr_wk->parent_check_flag - CASTLE_SCR_MENU_MAX);	//å­é¸æŠãŒæ¡ç”¨
+			OS_Printf( "å­æ¡ç”¨ã€€æ±ºå®š = %d\n", *work );
 		}else{
-			*work = bc_scr_wk->parent_check_flag;							//e‘I‘ğ‚ªÌ—p
-			OS_Printf( "eÌ—p@Œˆ’è = %d\n", *work );
+			*work = bc_scr_wk->parent_check_flag;							//è¦ªé¸æŠãŒæ¡ç”¨
+			OS_Printf( "è¦ªæ¡ç”¨ã€€æ±ºå®š = %d\n", *work );
 		}
 		break;
 
-	//e‚ÌŒˆ’è‚ğƒNƒŠƒAAƒyƒA‚Ì‘I‘ğ‚ğƒNƒŠƒAA©•ª‚Ì‘I‘ğ‚ğƒNƒŠƒA
+	//è¦ªã®æ±ºå®šã‚’ã‚¯ãƒªã‚¢ã€ãƒšã‚¢ã®é¸æŠã‚’ã‚¯ãƒªã‚¢ã€è‡ªåˆ†ã®é¸æŠã‚’ã‚¯ãƒªã‚¢
 	case FC_ID_CLEAR_PARENT_CHECK_FLAG:
 		bc_scr_wk->parent_check_flag = 0;
-		bc_scr_wk->pair_sel_type = 0;										//08.07.05’Ç‰Á
-		bc_scr_wk->sel_type = 0;											//08.07.05’Ç‰Á
+		bc_scr_wk->pair_sel_type = 0;										//08.07.05è¿½åŠ 
+		bc_scr_wk->sel_type = 0;											//08.07.05è¿½åŠ 
 		break;
 
-	//ƒ‰ƒ“ƒNA”²‚¯“¹‚È‚Ç‘I‘ğ‚µ‚½’l‚ğ•Û‘¶
+	//ãƒ©ãƒ³ã‚¯ã€æŠœã‘é“ãªã©é¸æŠã—ãŸå€¤ã‚’ä¿å­˜
 	case FC_ID_SET_SEL_TYPE:
 		bc_scr_wk->sel_type = param1;
 		break;
 
-	//eq‚Ì‚Ç‚¿‚ç‚ÌŒˆ’è‚ªÌ—p‚³‚ê‚½‚©æ“¾‚µ‚ÄCPíœ
+	//è¦ªå­ã®ã©ã¡ã‚‰ã®æ±ºå®šãŒæ¡ç”¨ã•ã‚ŒãŸã‹å–å¾—ã—ã¦CPå‰Šé™¤
 	case FC_ID_NUKEMITI_CP_SUB:
 		flag = 0;
 		OS_Printf( "bc_scr_wk->parent_check_flag = %d\n", bc_scr_wk->parent_check_flag );
 
 		if( bc_scr_wk->parent_check_flag >= CASTLE_SCR_MENU_MAX ){
-			//*work = 1;													//q‘I‘ğ‚ªÌ—p
-			if( CommGetCurrentID() != COMM_PARENT_ID ){						//©•ª=q
+			//*work = 1;													//å­é¸æŠãŒæ¡ç”¨
+			if( CommGetCurrentID() != COMM_PARENT_ID ){						//è‡ªåˆ†=å­
 				flag = 1;
 			}
 		}else{
-			//*work = 0;													//e‘I‘ğ‚ªÌ—p
-			if( CommGetCurrentID() == COMM_PARENT_ID ){						//©•ª=e
+			//*work = 0;													//è¦ªé¸æŠãŒæ¡ç”¨
+			if( CommGetCurrentID() == COMM_PARENT_ID ){						//è‡ªåˆ†=è¦ª
 				flag = 1;
 			}
 		}
@@ -637,47 +637,47 @@ BOOL FSSC_CastleScrWork( FSS_TASK * core )
 
 		break;
 
-	//‘Šè‚ÌŒˆ’è‚ªÌ—p‚³‚ê‚½‚©æ“¾
+	//ç›¸æ‰‹ã®æ±ºå®šãŒæ¡ç”¨ã•ã‚ŒãŸã‹å–å¾—
 	case FC_ID_GET_PAIR_DECIDE_CHECK:
 		*work = 0;
 
 		if( Castle_CommCheck(bc_scr_wk->type) == TRUE ){
 			if( bc_scr_wk->parent_check_flag >= CASTLE_SCR_MENU_MAX ){
-				//*work = 1;												//q‘I‘ğ‚ªÌ—p
-				if( CommGetCurrentID() == COMM_PARENT_ID ){					//©•ª=e
+				//*work = 1;												//å­é¸æŠãŒæ¡ç”¨
+				if( CommGetCurrentID() == COMM_PARENT_ID ){					//è‡ªåˆ†=è¦ª
 					*work = 1;
 				}
 			}else{
-				//*work = 0;												//e‘I‘ğ‚ªÌ—p
-				if( CommGetCurrentID() != COMM_PARENT_ID ){					//©•ª=q
+				//*work = 0;												//è¦ªé¸æŠãŒæ¡ç”¨
+				if( CommGetCurrentID() != COMM_PARENT_ID ){					//è‡ªåˆ†=å­
 					*work = 1;
 				}
 			}
 		}
 		break;
 
-	//’ÊMƒ^ƒCƒv‚©ƒ`ƒFƒbƒN
+	//é€šä¿¡ã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯
 	case FC_ID_CHECK_COMM_TYPE:
 		*work = Castle_CommCheck( bc_scr_wk->type );
 		break;
 
-	//ƒ^ƒCƒvæ“¾
+	//ã‚¿ã‚¤ãƒ—å–å¾—
 	case FC_ID_GET_TYPE:
 		*work = bc_scr_wk->type;
 		break;
 
-	//•m€‚Ìƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©æ“¾
+	//ç€•æ­»ã®ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹å–å¾—
 	case FC_ID_GET_HINSI_FLAG:
 		*work = bc_scr_wk->hinsi_flag;
 		break;
 
-	//ü‰ñ”‚É‚æ‚Á‚Ä”wŒi‚Ìˆê•”‚ğ‘‚«Š·‚¦‚é
+	//å‘¨å›æ•°ã«ã‚ˆã£ã¦èƒŒæ™¯ã®ä¸€éƒ¨ã‚’æ›¸ãæ›ãˆã‚‹
 	case FC_ID_LAP_NUM_WRITE:
 		fmap = FSS_GetFMapAdrs( core->fss );
 		Castle_LapNumWrite( fmap->bgl, bc_scr_wk, GF_BGL_FRAME3_M );
 		break;
 
-	//í“¬‘O‰ï˜b‚Ì‚½‚ß‚ÉB_TOWER_PARTNER_DATA‚ÌƒZƒbƒg
+	//æˆ¦é—˜å‰ä¼šè©±ã®ãŸã‚ã«B_TOWER_PARTNER_DATAã®ã‚»ãƒƒãƒˆ
 	case FC_ID_SET_B_TOWER_PARTNER_DATA:
 		FSRomBattleTowerTrainerDataMake2( &(bc_scr_wk->tr_data[0]), 
 						bc_scr_wk->tr_index[bc_scr_wk->round], HEAPID_WORLD, ARC_PL_BTD_TR );
@@ -686,12 +686,12 @@ BOOL FSSC_CastleScrWork( FSS_TASK * core )
 						ARC_PL_BTD_TR );
 		break;
 
-	//–á‚¦‚éƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğæ“¾
+	//è²°ãˆã‚‹ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’å–å¾—
 	case FC_ID_GET_BP_POINT:
 		*work = CastleScr_GetAddBtlPoint( bc_scr_wk );
 		break;
 
-	//à–¾‚ğó‚¯‚½‚©æ“¾(æ“¾Œã‚ÉƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//èª¬æ˜ã‚’å—ã‘ãŸã‹å–å¾—(å–å¾—å¾Œã«ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	case FC_ID_GET_GUIDE_FLAG:
 		*work = (u16)CASTLESCORE_GetScoreData(	SaveData_GetCastleScore(ex_param->savedata),
 												CASTLESCORE_ID_GUIDE_FLAG, 
@@ -702,11 +702,11 @@ BOOL FSSC_CastleScrWork( FSS_TASK * core )
 									CASTLESCORE_ID_GUIDE_FLAG, 0, 0, buf8 );
 		break;
 
-	//ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN(0=‚È‚µA1=‰“oêA2=2‰ñ–Ú)
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯(0=ãªã—ã€1=åˆç™»å ´ã€2=2å›ç›®)
 	case FC_ID_CHECK_BRAIN:
 		*work = 0;
 
-		//ƒVƒ“ƒOƒ‹‚Ì‚İ
+		//ã‚·ãƒ³ã‚°ãƒ«ã®ã¿
 		if( bc_scr_wk->type == CASTLE_TYPE_SINGLE ){
 
 			if( (bc_scr_wk->rensyou+1) == CASTLE_LEADER_SET_1ST ){
@@ -717,52 +717,52 @@ BOOL FSSC_CastleScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ğ¶¬
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ç”Ÿæˆ
 	case FC_ID_ENEMY_POKE_CREATE:
-		//“Gƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É¶¬
+		//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ
 		Frontier_PokemonParamCreateAll(	bc_scr_wk->enemy_poke, bc_scr_wk->enemy_poke_index, 
 										bc_scr_wk->enemy_pow_rnd, bc_scr_wk->enemy_personal_rnd, 
 										NULL, 
 										CASTLE_ENEMY_POKE_MAX, HEAPID_WORLD, ARC_PL_BTD_PM );
 		break;
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ğ¶¬2
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ç”Ÿæˆ2
 	case FC_ID_ENEMY_POKE_CREATE_2:
-		//“Gƒp[ƒeƒB‚ÌƒZƒbƒg
+		//æ•µãƒ‘ãƒ¼ãƒ†ã‚£ã®ã‚»ãƒƒãƒˆ
 		Castle_EnemyPartySet( bc_scr_wk );
 		break;
 
-	//ƒuƒŒ[ƒ“‚ª“oê‚·‚éƒƒbƒZ[ƒW‚ğ•\¦‚µ‚½‚©
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒç™»å ´ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ãŸã‹
 	case FC_ID_BRAIN_APPEAR_MSG_CHK:
 		*work = bc_scr_wk->brain_appear_msg_flag;
 		bc_scr_wk->brain_appear_msg_flag = 1;
 		break;
 
-	//WIFIƒ}ƒ‹ƒ`‚Å˜^‰æƒZ[ƒu‚ÅŒ»İ‚ÌCP‚ª”½‰f‚µ‚È‚¢‚½‚ß‚Ì‘Îˆ
+	//WIFIãƒãƒ«ãƒã§éŒ²ç”»ã‚»ãƒ¼ãƒ–ã§ç¾åœ¨ã®CPãŒåæ˜ ã—ãªã„ãŸã‚ã®å¯¾å‡¦
 	case FC_ID_WIFI_MULTI_CP_TEMP:
 
-		//fssc_castle_sub.c‚Å’§íŠJn‚ÌCP‚ğ‘Ş”ğ‚µ‚Ä‚¢‚é
+		//fssc_castle_sub.cã§æŒ‘æˆ¦é–‹å§‹æ™‚ã®CPã‚’é€€é¿ã—ã¦ã„ã‚‹
 
-		//WIFIƒ}ƒ‹ƒ`ˆÈŠO‚Í•s³‚ÈI—¹ƒNƒŠƒA‚ª“ü‚é‚Ì‚Å–â‘è‚È‚µ
+		//WIFIãƒãƒ«ãƒä»¥å¤–ã¯ä¸æ­£ãªçµ‚äº†ã‚¯ãƒªã‚¢ãŒå…¥ã‚‹ã®ã§å•é¡Œãªã—
 		if( bc_scr_wk->type == CASTLE_TYPE_WIFI_MULTI ){
 
-			//˜^‰æƒZ[ƒu‘O‚ÉŒÄ‚Ô
+			//éŒ²ç”»ã‚»ãƒ¼ãƒ–å‰ã«å‘¼ã¶
 			if( param1 == 0 ){
-				//Œ»İ‚ÌCP‘Ş”ğ
+				//ç¾åœ¨ã®CPé€€é¿
 				bc_scr_wk->temp_now_cp = 
 						FrontierRecord_Get(SaveData_GetFrontier(ex_param->savedata),
 						CastleScr_GetCPRecordID(bc_scr_wk->type),
 						Frontier_GetFriendIndex(CastleScr_GetCPRecordID(bc_scr_wk->type)) );
 
-				//‘Ş”ğ‚µ‚Ä‚¢‚½’§í‚ÌCP‚Åã‘‚«
+				//é€€é¿ã—ã¦ã„ãŸæŒ‘æˆ¦æ™‚ã®CPã§ä¸Šæ›¸ã
 				FrontierRecord_Set(SaveData_GetFrontier(ex_param->savedata),
 						CastleScr_GetCPRecordID(bc_scr_wk->type),
 						Frontier_GetFriendIndex(CastleScr_GetCPRecordID(bc_scr_wk->type)),
 						bc_scr_wk->temp_start_cp );
 
-			//˜^‰æƒZ[ƒuŒã‚ÉŒÄ‚Ô
+			//éŒ²ç”»ã‚»ãƒ¼ãƒ–å¾Œã«å‘¼ã¶
 			}else{
-				//‘Ş”ğ‚µ‚Ä‚¢‚½Œ»İ‚ÌCP‚Åã‘‚«
+				//é€€é¿ã—ã¦ã„ãŸç¾åœ¨ã®CPã§ä¸Šæ›¸ã
 				FrontierRecord_Set(SaveData_GetFrontier(ex_param->savedata),
 						CastleScr_GetCPRecordID(bc_scr_wk->type),
 						Frontier_GetFriendIndex(CastleScr_GetCPRecordID(bc_scr_wk->type)),
@@ -778,9 +778,9 @@ BOOL FSSC_CastleScrWork( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[”s–kƒ`ƒFƒbƒN
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ•—åŒ—ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -793,22 +793,22 @@ BOOL FSSC_CastleLoseCheck( FSS_TASK * core )
 	bc_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
 	*work = bc_scr_wk->winlose_flag;
-	OS_Printf( "”s–kƒ`ƒFƒbƒN*work TRUEŸ—˜ FALSE”s–k = %d\n", *work );
+	OS_Printf( "æ•—åŒ—ãƒã‚§ãƒƒã‚¯*work TRUEå‹åˆ© FALSEæ•—åŒ— = %d\n", *work );
 	return 0;
 }
 
 
 //==============================================================================================
 //
-//	‘—MAóM‚ÌŒÄ‚Ño‚µ
+//	é€ä¿¡ã€å—ä¿¡ã®å‘¼ã³å‡ºã—
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * ‘—M
+ * é€ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -828,9 +828,9 @@ BOOL FSSC_CastleSendBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * óM
+ * å—ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -839,18 +839,18 @@ BOOL FSSC_CastleRecvBuf( FSS_TASK * core )
 {
 	u16 wk_id = FSSTGetU16( core );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	FSST_SetWait( core, WaitCastleRecvBuf );
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitCastleRecvBuf( FSS_TASK * core )
 {
 	CASTLE_SCRWORK* bc_scr_wk;
-	u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//’ˆÓI
+	u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//æ³¨æ„ï¼
 
 	bc_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
@@ -865,9 +865,9 @@ static BOOL WaitCastleRecvBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒ“ƒNA”²‚¯“¹‚È‚ÇA‚Ç‚ê‚ğÀs‚·‚é‚©‘Ò‚¿
+ * ãƒ©ãƒ³ã‚¯ã€æŠœã‘é“ãªã©ã€ã©ã‚Œã‚’å®Ÿè¡Œã™ã‚‹ã‹å¾…ã¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -876,18 +876,18 @@ BOOL FSSC_CastleParentCheckWait( FSS_TASK * core )
 {
 	u16 wk_id = FSSTGetU16( core );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	FSST_SetWait( core, WaitCastleParentCheckWait );
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitCastleParentCheckWait( FSS_TASK * core )
 {
 	CASTLE_SCRWORK* bc_scr_wk;
-	u16* ret_wk = FSS_GetEventWorkAdrs( core, core->reg[0] );	//’ˆÓI
+	u16* ret_wk = FSS_GetEventWorkAdrs( core, core->reg[0] );	//æ³¨æ„ï¼
 
 	bc_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
@@ -902,12 +902,12 @@ static BOOL WaitCastleParentCheckWait( FSS_TASK * core )
 
 #if 1
 //==============================================================================
-//	CPƒEƒBƒ“ƒhƒE
+//	CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	CPƒEƒBƒ“ƒhƒE•\¦
+ * @brief	CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param	none
  *
@@ -924,7 +924,7 @@ BOOL FSSC_CPWinWrite( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	CPƒEƒBƒ“ƒhƒEíœ
+ * @brief	CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
  * @param	none
  *
@@ -941,7 +941,7 @@ BOOL FSSC_CPWinDel( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	CP•\¦
+ * @brief	CPè¡¨ç¤º
  *
  * @param	none
  *
@@ -960,9 +960,9 @@ BOOL FSSC_CPWrite( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFCPæ“¾
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šCPå–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -983,9 +983,9 @@ BOOL FSSC_CastleGetCP( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFCPŒ¸‚ç‚·
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šCPæ¸›ã‚‰ã™
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1004,9 +1004,9 @@ BOOL FSSC_CastleSubCP( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFCP‘‚â‚·
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šCPå¢—ã‚„ã™
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1026,7 +1026,7 @@ BOOL FSSC_CastleAddCP( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹‘Îí‘OƒƒbƒZ[ƒWê—p•\¦
+ *	@brief	ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«å¯¾æˆ¦å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å°‚ç”¨è¡¨ç¤º
  */
 //--------------------------------------------------------------
 BOOL FSSC_CastleTalkMsgAppear(FSS_TASK* core)
@@ -1034,7 +1034,7 @@ BOOL FSSC_CastleTalkMsgAppear(FSS_TASK* core)
 	u16	*msg;
 	CASTLE_SCRWORK*	bc_scr_wk;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
-	u16	tr_idx = FSSTGetU8(core);	//ˆêl–Ú‚©“ñl–Ú‚©H
+	u16	tr_idx = FSSTGetU8(core);	//ä¸€äººç›®ã‹äºŒäººç›®ã‹ï¼Ÿ
 
 	bc_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	if(bc_scr_wk == NULL){

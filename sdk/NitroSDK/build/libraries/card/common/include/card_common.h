@@ -18,7 +18,7 @@
   add test commands.
 
   Revision 1.28  2007/06/06 01:43:30  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.27  2007/05/28 23:31:52  yosizaki
   add CARD_SetCacheFlushThreshold.
@@ -33,10 +33,10 @@
   do-indent
 
   Revision 1.23  2005/11/07 01:09:47  okubata_ryoma
-  SDK_ASSERT_ON_COMPILE‚©‚çSDK_COMPILER_ASSERT‚É•ÏX
+  SDK_ASSERT_ON_COMPILEã‹ã‚‰SDK_COMPILER_ASSERTã«å¤‰æ›´
 
   Revision 1.22  2005/11/01 06:14:25  okubata_ryoma
-  SDK_ASSERT_ON_COMPILE‚ğ‹¤—p‚É
+  SDK_ASSERT_ON_COMPILEã‚’å…±ç”¨ã«
 
   Revision 1.21  2005/10/13 01:14:40  yosizaki
   add initial_status.
@@ -61,13 +61,13 @@
   do-indent.
 
   Revision 1.14  2005/01/24 06:35:09  yosizaki
-  copyright ”N•\‹LC³.
+  copyright å¹´è¡¨è¨˜ä¿®æ­£.
 
   Revision 1.13  2005/01/19 12:17:55  yosizaki
   delete pragma `pack'.
 
   Revision 1.12  2004/12/15 09:44:45  yasu
-  CARD ƒAƒNƒZƒXƒCƒl[ƒuƒ‰‹@\‚Ì’Ç‰Á
+  CARD ã‚¢ã‚¯ã‚»ã‚¹ã‚¤ãƒãƒ¼ãƒ–ãƒ©æ©Ÿæ§‹ã®è¿½åŠ 
 
   Revision 1.11  2004/12/08 12:39:18  yosizaki
   add device-spec members.
@@ -117,10 +117,10 @@
 /*****************************************************************************/
 /* macro */
 
-/* ”z—ñ‚Ì—v‘f”æ“¾ */
+/* é…åˆ—ã®è¦ç´ æ•°å–å¾— */
 #define	COUNT_OF_(array)	(sizeof(array) / sizeof(*array))
 
-/* ƒrƒbƒg‰‰Zƒ}ƒNƒ */
+/* ãƒ“ãƒƒãƒˆæ¼”ç®—ãƒã‚¯ãƒ­ */
 #define	BIT_MASK(n)	((1 << (n)) - 1)
 #define	ALIGN_MASK(a)	((a) - 1)
 #define	ALIGN_BYTE(n, a)	(((u32)(n) + ALIGN_MASK(a)) & ~ALIGN_MASK(a))
@@ -131,16 +131,16 @@
 /*****************************************************************************/
 /* constant */
 
-/* CARD “à•”ó‘Ô */
+/* CARD å†…éƒ¨çŠ¶æ…‹ */
 enum
 {
-    CARD_STAT_INIT = (1 << 0),         /* ‰Šú‰»Ï‚İ */
-    CARD_STAT_INIT_CMD = (1 << 1),     /* ƒRƒ}ƒ“ƒhPXI‰Šú‰»Ï‚İ */
-    CARD_STAT_BUSY = (1 << 2),         /* ƒŠ[ƒhŠÖ”©‘Ì‚Ìˆ—’† */
-    CARD_STAT_TASK = (1 << 3),         /* ƒ^ƒXƒNƒXƒŒƒbƒh‚ÖˆÚŠÇ’† */
-    CARD_STAT_RECV = (1 << 4),         /* PXI Œo—RƒŠƒNƒGƒXƒg‚ğóM’† */
-    CARD_STAT_REQ = (1 << 5),          /* ƒ^ƒXƒNˆ—“à‚Å PXI Œo—R‚ÌˆË—Š’† */
-    CARD_STAT_CANCEL = (1 << 6)        /* ƒLƒƒƒ“ƒZƒ‹—v‹’† */
+    CARD_STAT_INIT = (1 << 0),         /* åˆæœŸåŒ–æ¸ˆã¿ */
+    CARD_STAT_INIT_CMD = (1 << 1),     /* ã‚³ãƒãƒ³ãƒ‰PXIåˆæœŸåŒ–æ¸ˆã¿ */
+    CARD_STAT_BUSY = (1 << 2),         /* ãƒªãƒ¼ãƒ‰é–¢æ•°è‡ªä½“ã®å‡¦ç†ä¸­ */
+    CARD_STAT_TASK = (1 << 3),         /* ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ç§»ç®¡ä¸­ */
+    CARD_STAT_RECV = (1 << 4),         /* PXI çµŒç”±ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å—ä¿¡ä¸­ */
+    CARD_STAT_REQ = (1 << 5),          /* ã‚¿ã‚¹ã‚¯å‡¦ç†å†…ã§ PXI çµŒç”±ã®ä¾é ¼ä¸­ */
+    CARD_STAT_CANCEL = (1 << 6)        /* ã‚­ãƒ£ãƒ³ã‚»ãƒ«è¦æ±‚ä¸­ */
 };
 
 typedef enum
@@ -151,7 +151,7 @@ typedef enum
 }
 CARDTargetMode;
 
-/* ƒoƒbƒNƒAƒbƒvƒfƒoƒCƒX‹@”\ (“à•”g—p) */
+/* ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ‡ãƒã‚¤ã‚¹æ©Ÿèƒ½ (å†…éƒ¨ä½¿ç”¨) */
 #define CARD_BACKUP_CAPS_AVAILABLE      (u32)(CARD_BACKUP_CAPS_READ - 1)
 #define CARD_BACKUP_CAPS_READ           (u32)(1 << CARD_REQ_READ_BACKUP)
 #define CARD_BACKUP_CAPS_WRITE          (u32)(1 << CARD_REQ_WRITE_BACKUP)
@@ -172,16 +172,16 @@ typedef s32 CARDiOwner;                // s32 for error status
 
 
 /*
- * PXI ƒRƒ}ƒ“ƒhƒŠƒNƒGƒXƒg‘—óMƒpƒ‰ƒ[ƒ^.
+ * PXI ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€å—ä¿¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿.
  */
 typedef struct CARDiCommandArg
 {
-    CARDResult result;                 /* –ß‚è’l */
-    CARDBackupType type;               /* ƒfƒoƒCƒXƒ^ƒCƒv */
-    u32     id;                        /* ƒJ[ƒh ID */
-    u32     src;                       /* “]‘—Œ³ */
-    u32     dst;                       /* “]‘—æ */
-    u32     len;                       /* “]‘—’· */
+    CARDResult result;                 /* æˆ»ã‚Šå€¤ */
+    CARDBackupType type;               /* ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ— */
+    u32     id;                        /* ã‚«ãƒ¼ãƒ‰ ID */
+    u32     src;                       /* è»¢é€å…ƒ */
+    u32     dst;                       /* è»¢é€å…ˆ */
+    u32     len;                       /* è»¢é€é•· */
 
     struct
     {
@@ -214,24 +214,24 @@ typedef struct CARDiCommandArg
 CARDiCommandArg;
 
 
-/* CARD ‹¤’Êƒpƒ‰ƒ[ƒ^ */
+/* CARD å…±é€šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ */
 typedef struct CARDiCommon
 {
-    /* ƒRƒ}ƒ“ƒhˆø”—p‹¤—Lƒƒ‚ƒŠ */
+    /* ã‚³ãƒãƒ³ãƒ‰å¼•æ•°ç”¨å…±æœ‰ãƒ¡ãƒ¢ãƒª */
     CARDiCommandArg *cmd;
 
-    int     command;                   /* Œ»İ‚ÌƒRƒ}ƒ“ƒh */
+    int     command;                   /* ç¾åœ¨ã®ã‚³ãƒãƒ³ãƒ‰ */
 #if	defined(SDK_ARM7)
-    u32     recv_step;                 /* óMƒXƒeƒbƒv” */
+    u32     recv_step;                 /* å—ä¿¡ã‚¹ãƒ†ãƒƒãƒ—æ•° */
 #endif
 
     /*
-     * ƒJ[ƒhƒAƒNƒZƒXŒ ŠÇ—.
-     * ƒvƒƒZƒbƒT“à‚ÌƒJ[ƒh/ƒoƒbƒNƒAƒbƒv”r‘¼‚ğæ‚é.
-     * ‚±‚ê‚Í, CARD ƒAƒNƒZƒX‚ğg—p‚·‚é•¡”‚Ì”ñ“¯ŠúŠÖ”(Rom&Backup)‚ª
-     * “¯ˆêƒXƒŒƒbƒh‚©‚çŒÄ‚Ño‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ß‚É•K—v.
+     * ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¯ã‚»ã‚¹æ¨©ç®¡ç†.
+     * ãƒ—ãƒ­ã‚»ãƒƒã‚µå†…ã®ã‚«ãƒ¼ãƒ‰/ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—æ’ä»–ã‚’å–ã‚‹.
+     * ã“ã‚Œã¯, CARD ã‚¢ã‚¯ã‚»ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹è¤‡æ•°ã®éåŒæœŸé–¢æ•°(Rom&Backup)ãŒ
+     * åŒä¸€ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã«å¿…è¦.
      *
-     * OSMutex ‚ªƒXƒŒƒbƒh‚É•t‚¢‚Ä‰ñ‚é‚Ì‚É‘Î‚µ, ‚±‚ê‚Í lock-ID ‚É•t‚¢‚Ä‰ñ‚é.
+     * OSMutex ãŒã‚¹ãƒ¬ãƒƒãƒ‰ã«ä»˜ã„ã¦å›ã‚‹ã®ã«å¯¾ã—, ã“ã‚Œã¯ lock-ID ã«ä»˜ã„ã¦å›ã‚‹.
      */
     volatile CARDiOwner lock_owner;    // ==s32 with Error status
     volatile int lock_ref;
@@ -242,35 +242,35 @@ typedef struct CARDiCommon
 #endif
     CARDTargetMode lock_target;
 
-    /* API ƒ^ƒXƒNƒpƒ‰ƒ[ƒ^ */
-    u32     src;                       /* “]‘—Œ³ */
-    u32     dst;                       /* “]‘—æ */
-    u32     len;                       /* “]‘—ƒTƒCƒY */
-    u32     dma;                       /* DMA ƒ`ƒƒƒ“ƒlƒ‹ */
-    CARDRequest req_type;              /* ƒŠƒNƒGƒXƒgƒ^ƒCƒv */
-    int     req_retry;                 /* ƒŠƒNƒGƒXƒg‚ÌƒŠƒgƒ‰ƒC‰ñ” */
-    CARDRequestMode req_mode;          /* ƒŠƒNƒGƒXƒg‚Ì“®ìƒ‚[ƒh */
-    MIDmaCallback callback;            /* ƒR[ƒ‹ƒoƒbƒN */
-    void   *callback_arg;              /* ƒR[ƒ‹ƒoƒbƒNˆø” */
-    void    (*task_func) (struct CARDiCommon *);        /* ƒ^ƒXƒN */
+    /* API ã‚¿ã‚¹ã‚¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ */
+    u32     src;                       /* è»¢é€å…ƒ */
+    u32     dst;                       /* è»¢é€å…ˆ */
+    u32     len;                       /* è»¢é€ã‚µã‚¤ã‚º */
+    u32     dma;                       /* DMA ãƒãƒ£ãƒ³ãƒãƒ« */
+    CARDRequest req_type;              /* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¿ã‚¤ãƒ— */
+    int     req_retry;                 /* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ãƒªãƒˆãƒ©ã‚¤å›æ•° */
+    CARDRequestMode req_mode;          /* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰ */
+    MIDmaCallback callback;            /* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ */
+    void   *callback_arg;              /* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•° */
+    void    (*task_func) (struct CARDiCommon *);        /* ã‚¿ã‚¹ã‚¯ */
 
-    /* ƒ^ƒXƒNƒXƒŒƒbƒh */
-    OSThread thread[1];                /* ƒXƒŒƒbƒh–{‘Ì */
-    OSThread *cur_th;                  /* ƒ^ƒXƒNˆ—’†‚ÌƒXƒŒƒbƒh.
-                                          ƒ†[ƒUƒXƒŒƒbƒh‚Ì‚±‚Æ‚à‚ ‚é */
+    /* ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ */
+    OSThread thread[1];                /* ã‚¹ãƒ¬ãƒƒãƒ‰æœ¬ä½“ */
+    OSThread *cur_th;                  /* ã‚¿ã‚¹ã‚¯å‡¦ç†ä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰.
+                                          ãƒ¦ãƒ¼ã‚¶ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã“ã¨ã‚‚ã‚ã‚‹ */
     u32     priority;
 #ifndef SDK_THREAD_INFINITY
-    OSThreadQueue busy_q[4 / sizeof(OSThreadQueue)];    /* ƒ^ƒXƒNŠ®—¹‘Ò‚¿ƒXƒŒƒbƒh */
+    OSThreadQueue busy_q[4 / sizeof(OSThreadQueue)];    /* ã‚¿ã‚¹ã‚¯å®Œäº†å¾…ã¡ã‚¹ãƒ¬ãƒƒãƒ‰ */
 #else
-    OSThreadQueue busy_q[1];           /* ƒ^ƒXƒNŠ®—¹‘Ò‚¿ƒXƒŒƒbƒh */
+    OSThreadQueue busy_q[1];           /* ã‚¿ã‚¹ã‚¯å®Œäº†å¾…ã¡ã‚¹ãƒ¬ãƒƒãƒ‰ */
 #endif
 
-    /* ó‘Ôƒtƒ‰ƒO */
+    /* çŠ¶æ…‹ãƒ•ãƒ©ã‚° */
     volatile u32 flag;
 
 #if	defined(SDK_ARM9)
-    u32     flush_threshold_ic;        /* –½—ßƒLƒƒƒbƒVƒ…‘S‘Ì–³Œø‰»è‡’l */
-    u32     flush_threshold_dc;        /* ƒf[ƒ^ƒLƒƒƒbƒVƒ…‘S‘Ì–³Œø‰»è‡’l */
+    u32     flush_threshold_ic;        /* å‘½ä»¤ã‚­ãƒ£ãƒƒã‚·ãƒ¥å…¨ä½“ç„¡åŠ¹åŒ–é–¾å€¤ */
+    u32     flush_threshold_dc;        /* ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥å…¨ä½“ç„¡åŠ¹åŒ–é–¾å€¤ */
 #endif
 
     /* padding */
@@ -278,7 +278,7 @@ typedef struct CARDiCommon
     u8      dummy[20];
 #endif
 
-    /* ÅŒã‚É“]‘—‚µ‚½ƒoƒbƒNƒAƒbƒvƒy[ƒW‚ÌƒLƒƒƒbƒVƒ… */
+    /* æœ€å¾Œã«è»¢é€ã—ãŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒšãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ */
     u8      backup_cache_page_buf[256] ATTRIBUTE_ALIGN(32);
 
 }
@@ -302,9 +302,9 @@ extern CARDiCommon cardi_common;
 /*---------------------------------------------------------------------------*
   Name:         CARDi_SendPxi
 
-  Description:  PXI FIFO ƒ[ƒh‘—M.
+  Description:  PXI FIFO ãƒ¯ãƒ¼ãƒ‰é€ä¿¡.
 
-  Arguments:    data       ‘—Mƒf[ƒ^
+  Arguments:    data       é€ä¿¡ãƒ‡ãƒ¼ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -317,11 +317,11 @@ static inline void CARDi_SendPxi(u32 data)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_OnFifoRecv
 
-  Description:  PXI FIFO ƒ[ƒhóMƒR[ƒ‹ƒoƒbƒN.
+  Description:  PXI FIFO ãƒ¯ãƒ¼ãƒ‰å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
-  Arguments:    tag        PXI ƒ^ƒO (í‚É PXI_FIFO_TAG_FS)
-                data       óMƒf[ƒ^
-                err        ƒGƒ‰[ƒrƒbƒg (‹Œd—l‚É‚æ‚é‚à‚Ì)
+  Arguments:    tag        PXI ã‚¿ã‚° (å¸¸ã« PXI_FIFO_TAG_FS)
+                data       å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+                err        ã‚¨ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆ (æ—§ä»•æ§˜ã«ã‚ˆã‚‹ã‚‚ã®)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -330,11 +330,11 @@ void    CARDi_OnFifoRecv(PXIFifoTag tag, u32 data, BOOL err);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_GetTargetMode
 
-  Description:  CARD ƒoƒX‚ÌŒ»İ‚ÌƒƒbƒNƒ^[ƒQƒbƒg‚ğæ“¾.
+  Description:  CARD ãƒã‚¹ã®ç¾åœ¨ã®ãƒ­ãƒƒã‚¯ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’å–å¾—.
 
   Arguments:    None.
 
-  Returns:      CARDTargetMode ‚Å¦‚³‚ê‚é 3 ‚Â‚Ìó‘Ô‚Ì‚¢‚¸‚ê‚©.
+  Returns:      CARDTargetMode ã§ç¤ºã•ã‚Œã‚‹ 3 ã¤ã®çŠ¶æ…‹ã®ã„ãšã‚Œã‹.
  *---------------------------------------------------------------------------*/
 static inline CARDTargetMode CARDi_GetTargetMode(void)
 {
@@ -344,22 +344,22 @@ static inline CARDTargetMode CARDi_GetTargetMode(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WaitAsync
 
-  Description:  ”ñ“¯ŠúŠ®—¹‚ğ‘Ò‚Â.
+  Description:  éåŒæœŸå®Œäº†ã‚’å¾…ã¤.
 
   Arguments:    None.
 
-  Returns:      ÅV‚Ìˆ—Œ‹‰Ê‚ª CARD_RESULT_SUCCESS ‚Å‚ ‚ê‚Î TRUE.
+  Returns:      æœ€æ–°ã®å‡¦ç†çµæœãŒ CARD_RESULT_SUCCESS ã§ã‚ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    CARDi_WaitAsync(void);
 
 /*---------------------------------------------------------------------------*
   Name:         CARDi_TryWaitAsync
 
-  Description:  ”ñ“¯ŠúŠ®—¹‘Ò‹@‚ğs‚µ, ¬”Û‚ÉŠÖ‚í‚ç‚¸‚½‚¾‚¿‚É§Œä‚ğ•Ô‚·.
+  Description:  éåŒæœŸå®Œäº†å¾…æ©Ÿã‚’è©¦è¡Œã—, æˆå¦ã«é–¢ã‚ã‚‰ãšãŸã ã¡ã«åˆ¶å¾¡ã‚’è¿”ã™.
 
   Arguments:    None.
 
-  Returns:      ÅV‚Ì”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚Ä‚¢‚ê‚Î TRUE.
+  Returns:      æœ€æ–°ã®éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ã¦ã„ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    CARDi_TryWaitAsync(void);
 
@@ -367,12 +367,12 @@ BOOL    CARDi_TryWaitAsync(void);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WaitTask
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚Ìg—pŒ —˜‚ğæ“¾‚Å‚«‚é‚Ü‚Å‘Ò‚Â.
-                (Š’è‚ÌƒoƒX‚ÌƒƒbƒN‚Í, ‚±‚ÌŠÖ”‚ÌŒÄ‚Ño‚µŒ³‚Å•ÛØ‚·‚é)
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½¿ç”¨æ¨©åˆ©ã‚’å–å¾—ã§ãã‚‹ã¾ã§å¾…ã¤.
+                (æ‰€å®šã®ãƒã‚¹ã®ãƒ­ãƒƒã‚¯ã¯, ã“ã®é–¢æ•°ã®å‘¼ã³å‡ºã—å…ƒã§ä¿è¨¼ã™ã‚‹)
 
-  Arguments:    p            ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ[ƒNƒoƒbƒtƒ@ (Œø—¦‚Ì‚½‚ß‚Éˆø”“n‚µ)
-                callback     ƒAƒNƒZƒXI—¹Œã‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-                callback_arg ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìˆø”
+  Arguments:    p            ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ (åŠ¹ç‡ã®ãŸã‚ã«å¼•æ•°æ¸¡ã—)
+                callback     ã‚¢ã‚¯ã‚»ã‚¹çµ‚äº†å¾Œã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                callback_arg ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -392,11 +392,11 @@ static inline void CARDi_WaitTask(CARDiCommon * p, MIDmaCallback callback, void 
 /*---------------------------------------------------------------------------*
   Name:         CARDi_SetTask
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚Éƒ^ƒXƒN‚ğİ’è.
-                (‚·‚Å‚Éƒ^ƒXƒNƒXƒŒƒbƒh‚ª CARDi_WaitTask() ‚É‚æ‚Á‚Ä”r‘¼§Œä
-                 ‚³‚ê‚Ä‚¢‚é‚±‚Æ‚Í, ‚±‚ÌŠÖ”‚ÌŒÄ‚Ño‚µŒ³‚Å•ÛØ‚·‚é)
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚¿ã‚¹ã‚¯ã‚’è¨­å®š.
+                (ã™ã§ã«ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ãŒ CARDi_WaitTask() ã«ã‚ˆã£ã¦æ’ä»–åˆ¶å¾¡
+                 ã•ã‚Œã¦ã„ã‚‹ã“ã¨ã¯, ã“ã®é–¢æ•°ã®å‘¼ã³å‡ºã—å…ƒã§ä¿è¨¼ã™ã‚‹)
 
-  Arguments:    task       İ’è‚·‚éƒ^ƒXƒNŠÖ”
+  Arguments:    task       è¨­å®šã™ã‚‹ã‚¿ã‚¹ã‚¯é–¢æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -405,11 +405,11 @@ void    CARDi_SetTask(void (*task) (CARDiCommon *));
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EndTask
 
-  Description:  ƒ^ƒXƒNI—¹‚ğ’Ê’m‚µ‚Äƒ^ƒXƒNƒXƒŒƒbƒh‚Ìg—pŒ —˜‚ğ‰ğ•ú.
+  Description:  ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’é€šçŸ¥ã—ã¦ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½¿ç”¨æ¨©åˆ©ã‚’è§£æ”¾.
 
-  Arguments:    p            ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ[ƒNƒoƒbƒtƒ@ (Œø—¦‚Ì‚½‚ß‚Éˆø”“n‚µ)
-                is_own_task  ©g‚ÌƒvƒƒZƒbƒT‚Å‚Ìƒ^ƒXƒN‚È‚ç TRUE
-                             (ARM7 ‚É‚æ‚é ARM9 ƒ^ƒXƒNˆ—‚ÌŠ®—¹‚È‚ç FALSE)
+  Arguments:    p            ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ (åŠ¹ç‡ã®ãŸã‚ã«å¼•æ•°æ¸¡ã—)
+                is_own_task  è‡ªèº«ã®ãƒ—ãƒ­ã‚»ãƒƒã‚µã§ã®ã‚¿ã‚¹ã‚¯ãªã‚‰ TRUE
+                             (ARM7 ã«ã‚ˆã‚‹ ARM9 ã‚¿ã‚¹ã‚¯å‡¦ç†ã®å®Œäº†ãªã‚‰ FALSE)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -439,9 +439,9 @@ static inline void CARDi_EndTask(CARDiCommon * p, BOOL is_own_task)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_TaskThread
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚ÌƒƒCƒ“ŠÖ”.
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ¡ã‚¤ãƒ³é–¢æ•°.
 
-  Arguments:    arg          •sg—p
+  Arguments:    arg          ä¸ä½¿ç”¨
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -450,7 +450,7 @@ void    CARDi_TaskThread(void *arg);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_InitCommon
 
-  Description:  CARD ƒ‰ƒCƒuƒ‰ƒŠ‹¤’Ê•”•ª‚Ì‰Šú‰».
+  Description:  CARD ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå…±é€šéƒ¨åˆ†ã®åˆæœŸåŒ–.
 
   Arguments:    None.
 
@@ -464,16 +464,16 @@ void    CARDi_InitCommon(void);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_Request
 
-  Description:  ARM9 ‚©‚ç ARM7 ‚ÖƒŠƒNƒGƒXƒg‘—M‚µ, Š®—¹‚ğƒuƒƒbƒLƒ“ƒO.
-                Œ‹‰Ê‚ª CARD_RESULT_SUCCESS ‚Å‚È‚¢‚È‚çw’è‰ñ”‚Ü‚Å‚ÍÄs‚·‚é.
-                (Š’è‚ÌƒoƒX‚ÌƒƒbƒN‚¨‚æ‚Ñƒ^ƒXƒNƒXƒŒƒbƒh‚Ì”r‘¼§Œä‚Í,
-                 ‚±‚ÌŠÖ”‚ÌŒÄ‚Ño‚µŒ³‚Å•ÛØ‚·‚é)
+  Description:  ARM9 ã‹ã‚‰ ARM7 ã¸ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡ã—, å®Œäº†ã‚’ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°.
+                çµæœãŒ CARD_RESULT_SUCCESS ã§ãªã„ãªã‚‰æŒ‡å®šå›æ•°ã¾ã§ã¯å†è©¦è¡Œã™ã‚‹.
+                (æ‰€å®šã®ãƒã‚¹ã®ãƒ­ãƒƒã‚¯ãŠã‚ˆã³ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ’ä»–åˆ¶å¾¡ã¯,
+                 ã“ã®é–¢æ•°ã®å‘¼ã³å‡ºã—å…ƒã§ä¿è¨¼ã™ã‚‹)
 
-  Arguments:    p            ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ[ƒNƒoƒbƒtƒ@ (Œø—¦‚Ì‚½‚ß‚Éˆø”“n‚µ)
-                req_type     ƒRƒ}ƒ“ƒhƒŠƒNƒGƒXƒg‚Ìí—Ş
-                retry_max    ƒŠƒgƒ‰ƒCÅ‘å‰ñ”
+  Arguments:    p            ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ (åŠ¹ç‡ã®ãŸã‚ã«å¼•æ•°æ¸¡ã—)
+                req_type     ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ç¨®é¡
+                retry_max    ãƒªãƒˆãƒ©ã‚¤æœ€å¤§å›æ•°
 
-  Returns:      Œ‹‰Ê‚ª CARD_RESULT_SUCCESS ‚Å‚ ‚ê‚Î TRUE.
+  Returns:      çµæœãŒ CARD_RESULT_SUCCESS ã§ã‚ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    CARDi_Request(CARDiCommon * p, int req_type, int retry_max);
 

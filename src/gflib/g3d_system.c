@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	g3d_system.c                                                  
- * @brief	‚R‚c•`‰æŠÇ—ƒVƒXƒeƒ€ƒvƒƒOƒ‰ƒ€
+ * @brief	ï¼“ï¼¤æç”»ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @date	2006/4/26
  */
 //=============================================================================================
@@ -17,7 +17,7 @@
 #endif	//PM_DEBUG
 
 //=============================================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //=============================================================================================
 #define TEX_BLOCKNUM	(128)
 #define PLT_BLOCKNUM	(256)
@@ -25,21 +25,21 @@
 #define TEX_SLOTSIZ		(0x20000)
 #define PLT_SLOTSIZ		(0x2000)
 //=============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //=============================================================================================
 static void		GF_G3D_DefaultSetUp( void );
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒXƒeƒ€ƒ}ƒl[ƒWƒƒİ’è
+ * ã‚·ã‚¹ãƒ†ãƒ ãƒãƒãƒ¼ã‚¸ãƒ£è¨­å®š
  *
- * @param	heapID			ƒƒ‚ƒŠæ“¾—pƒq[ƒvƒGƒŠƒA
- * @param	texmanMode		ƒeƒNƒXƒ`ƒƒƒ}ƒl[ƒWƒƒg—pƒ‚[ƒh
- * @param	texmanSize		ƒeƒNƒXƒ`ƒƒƒ}ƒl[ƒWƒƒg—p—ÌˆæƒTƒCƒYibytej
- * @param	palmanMode		ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒg—pƒ‚[ƒh
- * @param	palmanSize		ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒg—p—ÌˆæƒTƒCƒYibytej
- * @param	setUp			ƒZƒbƒgƒAƒbƒvŠÖ”(NULL‚Ì‚ÍDefaultSetUp)
+ * @param	heapID			ãƒ¡ãƒ¢ãƒªå–å¾—ç”¨ãƒ’ãƒ¼ãƒ—ã‚¨ãƒªã‚¢
+ * @param	texmanMode		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒãƒ¼ã‚¸ãƒ£ä½¿ç”¨ãƒ¢ãƒ¼ãƒ‰
+ * @param	texmanSize		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒãƒ¼ã‚¸ãƒ£ä½¿ç”¨é ˜åŸŸã‚µã‚¤ã‚ºï¼ˆbyteï¼‰
+ * @param	palmanMode		ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ä½¿ç”¨ãƒ¢ãƒ¼ãƒ‰
+ * @param	palmanSize		ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ä½¿ç”¨é ˜åŸŸã‚µã‚¤ã‚ºï¼ˆbyteï¼‰
+ * @param	setUp			ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—é–¢æ•°(NULLã®æ™‚ã¯DefaultSetUp)
  *
- * @return	ƒ}ƒl[ƒWƒƒƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @return	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 GF_G3DMAN*  GF_G3DMAN_Init(	u32 heapID, 
@@ -52,37 +52,37 @@ GF_G3DMAN*  GF_G3DMAN_Init(	u32 heapID,
 
 	man->heapID = heapID;
 
-	// NitroSystem:‚R‚cƒGƒ“ƒWƒ“‚Ì‰Šú‰»
+	// NitroSystem:ï¼“ï¼¤ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–
 	NNS_G3dInit();
-	// ƒ}ƒgƒŠƒNƒXƒXƒ^ƒbƒN‚Ì‰Šú‰»
+	// ãƒãƒˆãƒªã‚¯ã‚¹ã‚¹ã‚¿ãƒƒã‚¯ã®åˆæœŸåŒ–
     G3X_InitMtxStack();
 
-	// ƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‹N“®Œã•K‚¸ŒÄ‚Î‚ê‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³èµ·å‹•å¾Œå¿…ãšå‘¼ã°ã‚Œãªã‘ã‚Œã°ãªã‚‰ãªã„
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 
-	//‚u‚q‚`‚lƒeƒNƒXƒ`ƒƒƒ}ƒl[ƒWƒƒ‚Ìİ’è
+	//ï¼¶ï¼²ï¼¡ï¼­ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒãƒ¼ã‚¸ãƒ£ã®è¨­å®š
 	if( texmanMode == GF_G3DMAN_LNK ){
-		//ƒŠƒ“ƒNƒhƒ‚[ƒh‚Ìİ’è
+		//ãƒªãƒ³ã‚¯ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 		tex_size = NNS_GfdGetLnkTexVramManagerWorkSize( TEX_BLOCKNUM * texmanSize );
 		man->tex_memory = sys_AllocMemory( man->heapID, tex_size );
 
-		// ƒ}ƒl[ƒWƒƒ‚ªƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ğw’èƒXƒƒbƒg•ªŠÇ—‚Å‚«‚é‚æ‚¤‚É‚·‚é
+		// ãƒãƒãƒ¼ã‚¸ãƒ£ãŒãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã‚’æŒ‡å®šã‚¹ãƒ­ãƒƒãƒˆåˆ†ç®¡ç†ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 		NNS_GfdInitLnkTexVramManager( TEX_SLOTSIZ*texmanSize, 0, man->tex_memory, tex_size, TRUE);
 	} else {
-		//ƒtƒŒ[ƒ€ƒ‚[ƒh‚Ìİ’è
+		//ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 		NNS_GfdInitFrmTexVramManager( texmanSize, TRUE);
 	}
 
-	//‚u‚q‚`‚lƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ‚Ìİ’è
+	//ï¼¶ï¼²ï¼¡ï¼­ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã®è¨­å®š
 	if( pltmanMode == GF_G3DMAN_LNK ){
-		//ƒŠƒ“ƒNƒhƒ‚[ƒh‚Ìİ’è
+		//ãƒªãƒ³ã‚¯ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 		plt_size = NNS_GfdGetLnkPlttVramManagerWorkSize( PLT_BLOCKNUM * pltmanSize );
 		man->plt_memory = sys_AllocMemory( man->heapID, plt_size );
 
-		// ƒ}ƒl[ƒWƒƒ‚ªƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ğw’èƒTƒCƒY•ªŠÇ—‚Å‚«‚é‚æ‚¤‚É‚·‚é
+		// ãƒãƒãƒ¼ã‚¸ãƒ£ãŒãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã‚’æŒ‡å®šã‚µã‚¤ã‚ºåˆ†ç®¡ç†ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 		NNS_GfdInitLnkPlttVramManager( PLT_SLOTSIZ * pltmanSize, man->plt_memory, plt_size, TRUE);
 	} else {
-		//ƒtƒŒ[ƒ€ƒ‚[ƒh‚Ìİ’è
+		//ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 		NNS_GfdInitFrmTexVramManager( PLT_SLOTSIZ * pltmanSize, TRUE);
 	}
 
@@ -96,9 +96,9 @@ GF_G3DMAN*  GF_G3DMAN_Init(	u32 heapID,
 
 //--------------------------------------------------------------------------------------------
 /**
- * I—¹
+ * çµ‚äº†
  *
- * @param	man		ƒ}ƒl[ƒWƒƒƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	man		ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -114,7 +114,7 @@ void		GF_G3D_Exit( GF_G3DMAN*  man )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šeíƒ‚[ƒhƒfƒtƒHƒ‹ƒgƒZƒbƒgƒAƒbƒv
+ * å„ç¨®ãƒ¢ãƒ¼ãƒ‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  * @param	none
  * @return	none
@@ -123,32 +123,32 @@ void		GF_G3D_Exit( GF_G3DMAN*  man )
 //--------------------------------------------------------------------------------------------
 static void		GF_G3D_DefaultSetUp( void )
 {
-	// ‚R‚cg—p–Ê‚Ìİ’è(•\¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(0);
 
-	// Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( FALSE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( FALSE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( FALSE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //------------------------------------------------------------------
-//  ‚‘¬‚R‚c‚a‚f•`‰æŠÖ”
+//  é«˜é€Ÿï¼“ï¼¤ï¼¢ï¼§æç”»é–¢æ•°
 //  
-//  @param		object_p		ƒŒƒ“ƒ_[‚n‚a‚i
-//  @param		trans_p			ƒgƒ‰ƒ“ƒXƒŒ[ƒg
-//  @param		rot_p			ƒ[ƒe[ƒVƒ‡ƒ“
-//  @param		scale_p			ƒXƒP[ƒ‹
+//  @param		object_p		ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ª
+//  @param		trans_p			ãƒˆãƒ©ãƒ³ã‚¹ãƒ¬ãƒ¼ãƒˆ
+//  @param		rot_p			ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³
+//  @param		scale_p			ã‚¹ã‚±ãƒ¼ãƒ«
 //
 //  @return		none
 //  
@@ -162,11 +162,11 @@ void GF_G3D_Draw_1mat1shape(NNSG3dRenderObj* object_p,
 	D_3D_DC_CountNum(object_p);
 #endif// DEBUG_3DDRAW_COUNT
 
-	// ˆÊ’uİ’è
+	// ä½ç½®è¨­å®š
 	NNS_G3dGlbSetBaseTrans(trans_p);
-	// Šp“xİ’è
+	// è§’åº¦è¨­å®š
 	NNS_G3dGlbSetBaseRot(rot_p);
-	// ƒXƒP[ƒ‹İ’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
 	NNS_G3dGlbSetBaseScale(scale_p);
 
 	NNS_G3dGlbFlush();

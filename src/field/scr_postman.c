@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_postman.c
- * @brief	‚Ó‚µ‚¬”z’BˆõƒXƒNƒŠƒvƒg•ˆ—
+ * @brief	ãµã—ãé…é”å“¡ã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼†å‡¦ç†
  * @author	tamada GAME FREAK inc. -> k.ohno
  * @date	2006.05.26
  */
@@ -50,7 +50,7 @@
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW¶¬‚É•K—v‚Èƒ[ƒN
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”Ÿæˆã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 typedef struct {
@@ -60,35 +60,35 @@ typedef struct {
 }MSG_WORK;
 
 //-----------------------------------------------------------------------------
-///ó‚¯æ‚èƒ`ƒFƒbƒNŠÖ”‚ÌŒ^’è‹`
+///å—ã‘å–ã‚Šãƒã‚§ãƒƒã‚¯é–¢æ•°ã®å‹å®šç¾©
 //-----------------------------------------------------------------------------
 typedef BOOL (*RECEIVE_CHECK_FUNC)(FIELDSYS_WORK * fsys, void *);
 
 //-----------------------------------------------------------------------------
-///ó‚¯æ‚èˆ—ŠÖ”‚ÌŒ^’è‹`
+///å—ã‘å–ã‚Šå‡¦ç†é–¢æ•°ã®å‹å®šç¾©
 //-----------------------------------------------------------------------------
 typedef void (*RECEIVE_FUNC)(FIELDSYS_WORK * , void *);
 
 //-----------------------------------------------------------------------------
-///ó‚¯æ‚èOKƒƒbƒZ[ƒW¶¬ŠÖ”‚ÌŒ^’è‹`
+///å—ã‘å–ã‚ŠOKãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”Ÿæˆé–¢æ•°ã®å‹å®šç¾©
 //-----------------------------------------------------------------------------
 typedef void (*GET_OK_MSG)(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id);
 
 //-----------------------------------------------------------------------------
-///ó‚¯æ‚èNGƒƒbƒZ[ƒW¶¬ŠÖ”‚ÌŒ^’è‹`
+///å—ã‘å–ã‚ŠNGãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”Ÿæˆé–¢æ•°ã®å‹å®šç¾©
 //-----------------------------------------------------------------------------
 typedef void (*GET_NG_MSG)(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id);
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ìí—Ş‚²‚Æ‚Ì”z’Bˆõ‚ÌU‚é•‘‚¢ŠÖ”‚Ü‚Æ‚ß
+ * @brief	ãµã—ããªãŠãã‚Šã‚‚ã®ç¨®é¡ã”ã¨ã®é…é”å“¡ã®æŒ¯ã‚‹èˆã„é–¢æ•°ã¾ã¨ã‚
  */
 //-----------------------------------------------------------------------------
 typedef struct {
-	RECEIVE_CHECK_FUNC	check_func;		///<ó‚¯æ‚èƒ`ƒFƒbƒNŠÖ”
-	RECEIVE_FUNC		receive_func;	///<ó‚¯æ‚èˆ—ŠÖ”
-	GET_OK_MSG			ok_msg_func;	///<ó‚¯æ‚èOKƒƒbƒZ[ƒW¶¬ŠÖ”
-	GET_NG_MSG			ng_msg_func;	///<ó‚¯æ‚èNGƒƒbƒZ[ƒW¶¬ŠÖ”
+	RECEIVE_CHECK_FUNC	check_func;		///<å—ã‘å–ã‚Šãƒã‚§ãƒƒã‚¯é–¢æ•°
+	RECEIVE_FUNC		receive_func;	///<å—ã‘å–ã‚Šå‡¦ç†é–¢æ•°
+	GET_OK_MSG			ok_msg_func;	///<å—ã‘å–ã‚ŠOKãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”Ÿæˆé–¢æ•°
+	GET_NG_MSG			ng_msg_func;	///<å—ã‘å–ã‚ŠNGãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”Ÿæˆé–¢æ•°
 }MP_ACTION;
 
 
@@ -100,7 +100,7 @@ static const MP_ACTION MPActionTable[13];
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW¶¬‚É•K—v‚Èƒ[ƒN‚ğ¶¬
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”Ÿæˆã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã‚’ç”Ÿæˆ
  */
 //-----------------------------------------------------------------------------
 static void MakeMsgWork(MSG_WORK * msgwk, FIELDSYS_WORK * fsys, WORDSET * wordset, void * slot)
@@ -112,7 +112,7 @@ static void MakeMsgWork(MSG_WORK * msgwk, FIELDSYS_WORK * fsys, WORDSET * wordse
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚¨‚­‚è‚à‚Ì‚ÌID‚ğæ“¾‚·‚é
+ * @brief	ãŠãã‚Šã‚‚ã®ã®IDã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 static int MP_GetGiftID(FIELDSYS_WORK * fsys)
@@ -122,7 +122,7 @@ static int MP_GetGiftID(FIELDSYS_WORK * fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚¨‚­‚è‚à‚Ì‚Ìƒf[ƒ^‚ğæ“¾‚·‚é
+ * @brief	ãŠãã‚Šã‚‚ã®ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void * MP_GetSlotWork(FIELDSYS_WORK * fsys)
@@ -131,7 +131,7 @@ static void * MP_GetSlotWork(FIELDSYS_WORK * fsys)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚¨‚­‚è‚à‚Ì‚Ìƒf[ƒ^‚ğíœ‚·‚é
+ * @brief	ãŠãã‚Šã‚‚ã®ã®ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void MP_EraseSlotData(FIELDSYS_WORK * fsys)
@@ -143,26 +143,26 @@ static void MP_EraseSlotData(FIELDSYS_WORK * fsys)
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚Ó‚µ‚¬”z’Bˆõ
+ * @brief	ãµã—ãé…é”å“¡
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdMysteryPostMan(VM_MACHINE * core)
 {
     switch (VMGetU16(core)) {
       case POSTMAN_CMD_INIT:
-        // ‰Šú‰»
+        // åˆæœŸåŒ–
         FUSHIGIDATA_InitSlot(core->fsys->savedata, HEAPID_EVENT);
         break;
       case POSTMAN_CMD_END:
-        // I—¹ˆ—
+        // çµ‚äº†å‡¦ç†
         FUSHIGIDATA_FinishSlot(core->fsys->savedata, FALSE);
         break;
       case POSTMAN_CMD_SAVE_END:
-        // ƒZ[ƒu‚µ‚ÄI—¹
+        // ã‚»ãƒ¼ãƒ–ã—ã¦çµ‚äº†
         FUSHIGIDATA_FinishSlot(core->fsys->savedata, TRUE);
         break;
       case POSTMAN_CMD_PRESENT_CHECK:
-        //‘¡‚è•¨‚Ì‘¶İƒ`ƒFƒbƒN
+        //è´ˆã‚Šç‰©ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 		{
             u16 * ret_wk = VMGetWork(core);
 			if (MP_GetGiftID(core->fsys) != 0) {
@@ -173,14 +173,14 @@ BOOL EvCmdMysteryPostMan(VM_MACHINE * core)
 		}
 		break;
       case POSTMAN_CMD_GET_PRESENT_ID:
-		//‘¡‚è•¨‚Ìí—ŞIDæ“¾
+		//è´ˆã‚Šç‰©ã®ç¨®é¡IDå–å¾—
 		{
 			u16 * ret_wk = VMGetWork(core);
 			*ret_wk = MP_GetGiftID(core->fsys);
 		}
 		break;
 	case POSTMAN_CMD_RECEIVE_CHECK:
-		//ŒÂ•Ê‚Ìó‚¯æ‚è‰Â”\ƒ`ƒFƒbƒN
+		//å€‹åˆ¥ã®å—ã‘å–ã‚Šå¯èƒ½ãƒã‚§ãƒƒã‚¯
 		{
 			u16 * ret_wk = VMGetWork(core);
 			const MP_ACTION * mpact = &MPActionTable[MP_GetGiftID(core->fsys) - 1];
@@ -188,7 +188,7 @@ BOOL EvCmdMysteryPostMan(VM_MACHINE * core)
 		}
 		break;
 	case POSTMAN_CMD_RECEIVE_PRESENT:
-		//ŒÂ•Ê‚Ìó‚¯æ‚èˆ—
+		//å€‹åˆ¥ã®å—ã‘å–ã‚Šå‡¦ç†
 		{
 			const MP_ACTION * mpact = &MPActionTable[MP_GetGiftID(core->fsys) - 1];
 			mpact->receive_func(core->fsys, MP_GetSlotWork(core->fsys));
@@ -196,7 +196,7 @@ BOOL EvCmdMysteryPostMan(VM_MACHINE * core)
 		}
 		break;
 	case POSTMAN_CMD_ENABLE_MSG:
-		//ó‚¯æ‚èƒƒbƒZ[ƒWID‚ğæ“¾
+		//å—ã‘å–ã‚Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—
 		{
 			MSG_WORK msgwk;
 			const MP_ACTION * mpact = &MPActionTable[MP_GetGiftID(core->fsys) - 1];
@@ -208,7 +208,7 @@ BOOL EvCmdMysteryPostMan(VM_MACHINE * core)
 		}
 		break;
 	case POSTMAN_CMD_DISABLE_MSG:
-		//ó‚¯æ‚ê‚È‚¢ƒƒbƒZ[ƒWID‚ğæ“¾
+		//å—ã‘å–ã‚Œãªã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—
 		{
 			MSG_WORK msgwk;
 			const MP_ACTION * mpact = &MPActionTable[MP_GetGiftID(core->fsys) - 1];
@@ -225,7 +225,7 @@ BOOL EvCmdMysteryPostMan(VM_MACHINE * core)
 
 //============================================================================================
 //
-//		ƒ}ƒiƒtƒB[
+//		ãƒãƒŠãƒ•ã‚£ãƒ¼
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
@@ -257,7 +257,7 @@ static void Manafi_OKMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 }
 
 //============================================================================================
-// ƒ|ƒPƒ‚ƒ“
+// ãƒã‚±ãƒ¢ãƒ³
 //============================================================================================
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -280,48 +280,48 @@ static void Pokemon_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
     ribbon = (u8 *)&pGift->pokemon.ribbon;
     placeID = PokeParaGet(pPP, ID_PARA_get_place, NULL);
 
-    // ŒÂ‘Ì—”‚ÌÄİ’èˆ—
+    // å€‹ä½“ä¹±æ•°ã®å†è¨­å®šå‡¦ç†
     rnd = PokeParaGet(pPP, ID_PARA_personal_rnd, NULL);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-    OS_TPrintf("İ’è‚³‚ê‚Ä‚¢‚½ŒÅ‘Ì—” = %08X\n", rnd);
+    OS_TPrintf("è¨­å®šã•ã‚Œã¦ã„ãŸå›ºä½“ä¹±æ•° = %08X\n", rnd);
 #endif
     id = PokeParaGet(pPP, ID_PARA_id_no, NULL);
     new_rnd = gf_fix_rand((u32)OS_GetTick());
-    if(rnd == POKEMON_RND_FULL_RANDOM){		// Š®‘S‚È‚é—”
+    if(rnd == POKEMON_RND_FULL_RANDOM){		// å®Œå…¨ãªã‚‹ä¹±æ•°
       ;
-    } else if(rnd == POKEMON_RND_EXCEPT_RARE){	// ƒŒƒA‚ğœ‚­—”
+    } else if(rnd == POKEMON_RND_EXCEPT_RARE){	// ãƒ¬ã‚¢ã‚’é™¤ãä¹±æ•°
       while(PokeRareGetPara(id, new_rnd)){
 	new_rnd = gf_fix_rand( new_rnd );
       }
     } else {
       new_rnd = rnd;
     }
-    // ŒÅ‘Ì—”‚ğV‚µ‚­İ’è‚·‚é
+    // å›ºä½“ä¹±æ•°ã‚’æ–°ã—ãè¨­å®šã™ã‚‹
     PokeParaPersonalRndChange(pPP, new_rnd);
 
 #if MYSTERY_POKEMON_SEX_FIX
 #if 0
     if(PokeSexGet(pPP) != PokeParaGet(pPP, ID_PARA_sex, NULL))
-      OS_TPrintf("¡¡«•Ê‚ªH‚¢ˆá‚Á‚Ä‚¢‚Ü‚·II\n");
+      OS_TPrintf("â– â– æ€§åˆ¥ãŒé£Ÿã„é•ã£ã¦ã„ã¾ã™ï¼ï¼\n");
 #endif
-    // ŒÅ‘Ì—”‚ÉŠî‚Ã‚««•Ê‚ğİ’è
+    // å›ºä½“ä¹±æ•°ã«åŸºã¥ãæ€§åˆ¥ã‚’è¨­å®š
     sum = PokeSexGet(pPP);
     PokeParaPut(pPP, ID_PARA_sex, (u8 *)&sum);
-    // “Á«‚ğƒZƒbƒg(‚±‚ê‚Í“K—p‚µ‚È‚¢–‚É‚È‚è‚Ü‚µ‚½B”C“V“°‹gŒ´‚³‚ñ‚æ‚è)
+    // ç‰¹æ€§ã‚’ã‚»ãƒƒãƒˆ(ã“ã‚Œã¯é©ç”¨ã—ãªã„äº‹ã«ãªã‚Šã¾ã—ãŸã€‚ä»»å¤©å ‚å‰åŸã•ã‚“ã‚ˆã‚Š)
     //    PokeParaSpeabiSet(pPP);
 #if 0
     if(PokeSexGet(pPP) != PokeParaGet(pPP, ID_PARA_sex, NULL))
-      OS_TPrintf("¡¡«•Ê‚ªH‚¢ˆá‚Á‚Ä‚¢‚Ü‚·II\n");
+      OS_TPrintf("â– â– æ€§åˆ¥ãŒé£Ÿã„é•ã£ã¦ã„ã¾ã™ï¼ï¼\n");
     else
-      OS_TPrintf("ôôC³‚³‚ê‚Ü‚µ‚½ôô\n");
+      OS_TPrintf("â™ªâ™ªä¿®æ­£ã•ã‚Œã¾ã—ãŸâ™ªâ™ª\n");
 #endif
 #endif
 
 #if 0//def DEBUG_ONLY_FOR_mituhara
-    OS_TPrintf("V‚µ‚¢ŒÅ‘Ì—” = %08X\n", new_rnd);
+    OS_TPrintf("æ–°ã—ã„å›ºä½“ä¹±æ•° = %08X\n", new_rnd);
 #endif
     
-    // ƒpƒ[—”‚ÌÄİ’è
+    // ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã®å†è¨­å®š
     sum =
       PokeParaGet(pPP, ID_PARA_hp_rnd, 0)     + PokeParaGet(pPP, ID_PARA_pow_rnd, 0) +
       PokeParaGet(pPP, ID_PARA_def_rnd, 0)    + PokeParaGet(pPP, ID_PARA_agi_rnd, 0) +
@@ -343,7 +343,7 @@ static void Pokemon_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
       PokeParaPut(pPP, ID_PARA_spedef_rnd,(u8 *)&new_rnd);
     }
 
-    // ƒŠƒ{ƒ“ˆ—
+    // ãƒªãƒœãƒ³å‡¦ç†
     buf = SaveData_GetSpRibbon(fsys->savedata);
     if(PokeParaGet(pPP, ID_PARA_sinou_red_ribbon, 0))
       buf[RIBBON_SaveIndexGet(RIBBON_ID_SINOU_RED)] = ribbon[0];
@@ -366,62 +366,62 @@ static void Pokemon_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
     if(PokeParaGet(pPP, ID_PARA_sky_ribbon, 0))
       buf[RIBBON_SaveIndexGet(RIBBON_ID_SKY)] = ribbon[9];
 
-    // e–¼‚ğ•ÏXu‚µ‚È‚¢vê‡‚Í¡‚Ìe–¼‚ğŠo‚¦‚Ä‚¨‚¢‚ÄAŒã‚Åã‘‚«‚·‚é
+    // è¦ªåã‚’å¤‰æ›´ã€Œã—ãªã„ã€å ´åˆã¯ä»Šã®è¦ªåã‚’è¦šãˆã¦ãŠã„ã¦ã€å¾Œã§ä¸Šæ›¸ãã™ã‚‹
     if(pGift->pokemon.parentType == MYSTERYPOKE_PARENTNAME_THROW){
         STRBUF* pName = MyStatus_CreateNameString(pMy, HEAPID_EVENT);
         u32 id = MyStatus_GetID(pMy);
         u32 sex = MyStatus_GetMySex(pMy);
         pPPTemp = PokemonParam_AllocWork( HEAPID_EVENT );
         PokeCopyPPtoPP(pPP,pPPTemp);
-        // e–¼‚ğ•ÏX‚·‚éê‡
+        // è¦ªåã‚’å¤‰æ›´ã™ã‚‹å ´åˆ
         PokeParaPut(pPPTemp,ID_PARA_oyaname_buf, pName);
-	// e‚ÌID‚ğƒRƒs[
+	// è¦ªã®IDã‚’ã‚³ãƒ”ãƒ¼
         PokeParaPut(pPPTemp,ID_PARA_id_no,       &id);
-	// e‚Ì«•Ê‚ğƒRƒs[
+	// è¦ªã®æ€§åˆ¥ã‚’ã‚³ãƒ”ãƒ¼
         PokeParaPut(pPPTemp,ID_PARA_oyasex,      &sex);
         pPP = pPPTemp;
         STRBUF_Delete(pName);
     }
     
 #if 0//def DEBUG_ONLY_FOR_mituhara
-    OS_TPrintf("•ß‚Ü‚¦‚½“ú•t: %d.%d.%d\n",
+    OS_TPrintf("æ•ã¾ãˆãŸæ—¥ä»˜: %d.%d.%d\n",
 	       PokeParaGet(pPP,ID_PARA_get_year, 0),
 	       PokeParaGet(pPP,ID_PARA_get_month, 0),
 	       PokeParaGet(pPP,ID_PARA_get_day, 0));
-    OS_TPrintf("•ß‚Ü‚¦‚½êŠ: %d\n", PokeParaGet(pPP,ID_PARA_get_place, 0));
-    OS_TPrintf("¶‚Ü‚ê‚½“ú•t: %d.%d.%d\n",
+    OS_TPrintf("æ•ã¾ãˆãŸå ´æ‰€: %d\n", PokeParaGet(pPP,ID_PARA_get_place, 0));
+    OS_TPrintf("ç”Ÿã¾ã‚ŒãŸæ—¥ä»˜: %d.%d.%d\n",
 	       PokeParaGet(pPP,ID_PARA_birth_year, 0),
 	       PokeParaGet(pPP,ID_PARA_birth_month, 0),
 	       PokeParaGet(pPP,ID_PARA_birth_day, 0));
-    OS_TPrintf("¶‚Ü‚ê‚½êŠ: %d\n\n", PokeParaGet(pPP,ID_PARA_birth_place, 0));
+    OS_TPrintf("ç”Ÿã¾ã‚ŒãŸå ´æ‰€: %d\n\n", PokeParaGet(pPP,ID_PARA_birth_place, 0));
 #endif
     
-    // ƒgƒŒ[ƒi[ƒƒ‚‚Ìİ’è
+    // ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã®è¨­å®š
     TrainerMemoSetPP(pPP, pMy, TRMEMO_FUSHIGI_PLACESET, 
 		     PlaceName_IndexToParamNumber( PLACENAME_TYPE_EXT_EVENT, placeID), 
 		     HEAPID_EVENT);
 
 #if 0//def DEBUG_ONLY_FOR_mituhara
-    OS_TPrintf("•ß‚Ü‚¦‚½“ú•t: %d.%d.%d\n",
+    OS_TPrintf("æ•ã¾ãˆãŸæ—¥ä»˜: %d.%d.%d\n",
 	       PokeParaGet(pPP,ID_PARA_get_year, 0),
 	       PokeParaGet(pPP,ID_PARA_get_month, 0),
 	       PokeParaGet(pPP,ID_PARA_get_day, 0));
-    OS_TPrintf("•ß‚Ü‚¦‚½êŠ: %d\n", PokeParaGet(pPP,ID_PARA_get_place, 0));
-    OS_TPrintf("¶‚Ü‚ê‚½“ú•t: %d.%d.%d\n",
+    OS_TPrintf("æ•ã¾ãˆãŸå ´æ‰€: %d\n", PokeParaGet(pPP,ID_PARA_get_place, 0));
+    OS_TPrintf("ç”Ÿã¾ã‚ŒãŸæ—¥ä»˜: %d.%d.%d\n",
 	       PokeParaGet(pPP,ID_PARA_birth_year, 0),
 	       PokeParaGet(pPP,ID_PARA_birth_month, 0),
 	       PokeParaGet(pPP,ID_PARA_birth_day, 0));
-    OS_TPrintf("¶‚Ü‚ê‚½êŠ: %d\n", PokeParaGet(pPP,ID_PARA_birth_place, 0));
+    OS_TPrintf("ç”Ÿã¾ã‚ŒãŸå ´æ‰€: %d\n", PokeParaGet(pPP,ID_PARA_birth_place, 0));
 #endif
     
-#if 1	//08.04.10 ƒvƒ‰ƒ`ƒi’Ç‰Á
+#if 1	//08.04.10 ãƒ—ãƒ©ãƒãƒŠè¿½åŠ 
     if( PokeParaGet(pPP,ID_PARA_monsno,NULL) == MONSNO_AUSU ){
 	
-		//ƒAƒ‹ƒZƒEƒX‚ÍADP‚Ì”gæ‚èƒoƒO‚Ì‰e‹¿‚ª‚È‚¢‚½‚ß•K—v‚È‚µI(08.04.22)
-		//”z•z‚·‚é‚Í•K‚¸”z•zƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚Ì‚Å•K—vI(08.05.28)
+		//ã‚¢ãƒ«ã‚»ã‚¦ã‚¹ã¯ã€DPã®æ³¢ä¹—ã‚Šãƒã‚°ã®å½±éŸ¿ãŒãªã„ãŸã‚å¿…è¦ãªã—ï¼(08.04.22)
+		//é…å¸ƒã™ã‚‹æ™‚ã¯å¿…ãšé…å¸ƒãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã®ã§å¿…è¦ï¼(08.05.28)
 		if( PokeParaGet(pPP,ID_PARA_event_get_flag,NULL) == 1 ){
 
-			//‚Ü‚¾ƒAƒ‹ƒZƒEƒXƒCƒxƒ“ƒg‹N“®‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç
+			//ã¾ã ã‚¢ãƒ«ã‚»ã‚¦ã‚¹ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ã—ã¦ã„ãªã‹ã£ãŸã‚‰
 			if( SysWork_AruseusuEventGet(ev) == 0 ){
 				SysWork_AruseusuEventSet( ev, 1 );
 			}
@@ -429,14 +429,14 @@ static void Pokemon_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
 	}
 #endif
 
-    // ÅŒã‚ÅÄŒvZ‚·‚é
+    // æœ€å¾Œã§å†è¨ˆç®—ã™ã‚‹
     PokeParaCalc(pPP);
 
-    // ƒZ[ƒuƒGƒŠƒA‚Ö’u‚­
+    // ã‚»ãƒ¼ãƒ–ã‚¨ãƒªã‚¢ã¸ç½®ã
     party = SaveData_GetTemotiPokemon(fsys->savedata);
     bResult = PokeParty_Add(party, pPP);
     if (bResult) {
-		// ƒ|ƒPƒ‚ƒ“‚ğè‚É“ü‚ê‚½‚çŒÄ‚Ño‚·I
+		// ãƒã‚±ãƒ¢ãƒ³ã‚’æ‰‹ã«å…¥ã‚ŒãŸã‚‰å‘¼ã³å‡ºã™ï¼
 		SaveData_GetPokeRegister( fsys->savedata, pPP );
     }
     if(pPPTemp){
@@ -458,7 +458,7 @@ static void Pokemon_OKMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
     WORDSET_RegisterPlayerName(msgwk->wordset, 0, SaveData_GetMyStatus(msgwk->fsys->savedata));
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/11
-	// ˆø‚¢‚Ä‚­‚éƒ|ƒPƒ‚ƒ“–¼‚ğ•s’èŠ¥Œ•t‚«‚É•ÏX
+	// å¼•ã„ã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³åã‚’ä¸å®šå† è©ä»˜ãã«å¤‰æ›´
 	WORDSET_RegisterPokeMonsNameIndefinate(msgwk->wordset, 1, PPPPointerGet(pPP));
 	// ----------------------------------------------------------------------------
 
@@ -473,14 +473,14 @@ static void Pokemon_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 }
 
 //============================================================================================
-// ‚½‚Ü‚² 
+// ãŸã¾ã” 
 //============================================================================================
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 static void Tamago_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
 {
 #if 1
-  // ˆ—‚Í‘S‚Äƒ|ƒPƒ‚ƒ“‚Æ“¯‚¶
+  // å‡¦ç†ã¯å…¨ã¦ãƒã‚±ãƒ¢ãƒ³ã¨åŒã˜
   Pokemon_ReceiveFunc(fsys, slot);
 #else
     GIFT_PRESENT* pGift = MP_GetSlotWork(fsys);
@@ -492,7 +492,7 @@ static void Tamago_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
 
     pPP = (POKEMON_PARAM*)pGift->egg.data;
     if(pGift->pokemon.parentType == MYSTERYPOKE_PARENTNAME_MY){
-        // e–¼‚ğ•ÏX‚·‚éê‡
+        // è¦ªåã‚’å¤‰æ›´ã™ã‚‹å ´åˆ
         STRBUF* pName = MyStatus_CreateNameString(pMy, HEAPID_EVENT);
         u32 id = MyStatus_GetID(pMy);
         pPPTemp = PokemonParam_AllocWork( HEAPID_EVENT );
@@ -504,7 +504,7 @@ static void Tamago_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
     }
 	party = SaveData_GetTemotiPokemon(fsys->savedata);
 	bResult = PokeParty_Add(party, pPP);
-//  if (bResult) {  //—‘‚É}ŠÓ•K—v‚È‚µ
+//  if (bResult) {  //åµã«å›³é‘‘å¿…è¦ãªã—
 //  	ZUKAN_WORK * zw = SaveData_GetZukanWork(fsys->savedata);
 //  	ZukanWork_SetPokeGet(zw, pPP);
 //  }
@@ -530,7 +530,7 @@ static void Tamago_OKMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 }
 
 //============================================================================================
-// ƒAƒCƒeƒ€
+// ã‚¢ã‚¤ãƒ†ãƒ 
 //============================================================================================
 //-----------------------------------------------------------------------------
 static BOOL Item_ReceiveCheckFunc(FIELDSYS_WORK * fsys, void * slot)
@@ -578,9 +578,9 @@ static void Item_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 	*msg_id = msg_haitatu_06;
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/09
-// ‘ã“üæ‚ÌWORDSET‚ÌƒCƒ“ƒfƒbƒNƒX‚ğAƒƒbƒZ[ƒW‘¤‚Åw’è‚³‚ê‚Ä‚¢‚é‚à‚Ì‚ÉC³
+// ä»£å…¥å…ˆã®WORDSETã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å´ã§æŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã«ä¿®æ­£
 // localize_spec_mark(LANG_ALL) imatake 2007/02/15
-// bugfix.h ‚ÌƒXƒCƒbƒ`‚É‚æ‚èC³‚ªØ‚èŠ·‚¦‚ç‚ê‚é‚æ‚¤‚É•ÏX
+// bugfix.h ã®ã‚¹ã‚¤ãƒƒãƒã«ã‚ˆã‚Šä¿®æ­£ãŒåˆ‡ã‚Šæ›ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«å¤‰æ›´
 #if AFTERMASTER_070213_POSTMAN_ITEMFULL_FIX
     WORDSET_RegisterItemName(msgwk->wordset, 0, item_no);
 #else
@@ -590,12 +590,12 @@ static void Item_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 }
 
 //============================================================================================
-// ƒ‹[ƒ‹
+// ãƒ«ãƒ¼ãƒ«
 //============================================================================================
 //-----------------------------------------------------------------------------
 static BOOL Regulation_ReceiveCheckFunc(FIELDSYS_WORK * fsys, void * slot)
 {
-    return TRUE;   // ã‘‚«‚·‚é‚Ì‚İ‚È‚Ì‚ÅOK
+    return TRUE;   // ä¸Šæ›¸ãã™ã‚‹ã®ã¿ãªã®ã§OK
 }
 
 //-----------------------------------------------------------------------------
@@ -628,13 +628,13 @@ static void Regulation_OKMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 //-----------------------------------------------------------------------------
 static void Regulation_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 {
-    // ŒÄ‚Î‚ê‚é‚±‚Æ‚ª–³‚¢‚ªˆê‰
+    // å‘¼ã°ã‚Œã‚‹ã“ã¨ãŒç„¡ã„ãŒä¸€å¿œ
     *arc_id = NARC_msg_haitatu_dat;
 	*msg_id = msg_haitatu_07;
 }
 
 //============================================================================================
-// ”é–§Šî’nƒOƒbƒY
+// ç§˜å¯†åŸºåœ°ã‚°ãƒƒã‚º
 //============================================================================================
 //-----------------------------------------------------------------------------
 static BOOL UGGoods_ReceiveCheckFunc(FIELDSYS_WORK * fsys, void * slot)
@@ -678,7 +678,7 @@ static void UGGoods_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 }
 
 //============================================================================================
-// ƒAƒNƒZƒTƒŠ
+// ã‚¢ã‚¯ã‚»ã‚µãƒª
 //============================================================================================
 //-----------------------------------------------------------------------------
 static BOOL Accessory_ReceiveCheckFunc(FIELDSYS_WORK * fsys, void * slot)
@@ -753,7 +753,7 @@ static void Accessory_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 }
 
 //============================================================================================
-// ƒƒ“ƒo[ƒYƒJ[ƒh
+// ãƒ¡ãƒ³ãƒãƒ¼ã‚ºã‚«ãƒ¼ãƒ‰
 //============================================================================================
 //-----------------------------------------------------------------------------
 static BOOL Card_ReceiveCheckFunc(FIELDSYS_WORK * fsys, void * slot)
@@ -774,7 +774,7 @@ static void Card_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
     u16 item_no =  ITEM_MENBAAZUKAADO;
 
     MyItem_AddItem( myitem, item_no, 1, HEAPID_EVENT );
-	//ƒ_[ƒN‚ÌƒCƒxƒ“ƒg‹–‰ÂI
+	//ãƒ€ãƒ¼ã‚¯ã®ã‚¤ãƒ™ãƒ³ãƒˆè¨±å¯ï¼
 	SysWork_HaihuEventWorkSet(ev, HAIHUEVENT_ID_D30);
 }
 
@@ -804,13 +804,13 @@ static void Card_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 	*msg_id = msg_haitatu_06;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/09
-	// ‘ã“üæ‚ÌWORDSET‚ÌƒCƒ“ƒfƒbƒNƒX‚ğAƒƒbƒZ[ƒW‘¤‚Åw’è‚³‚ê‚Ä‚¢‚é‚à‚Ì‚ÉC³
+	// ä»£å…¥å…ˆã®WORDSETã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å´ã§æŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã«ä¿®æ­£
 	WORDSET_RegisterItemName(msgwk->wordset, 0, item_no);
 	// ----------------------------------------------------------------------------
 }
 
 //============================================================================================
-// ƒI[ƒLƒh‚Ìè†
+// ã‚ªãƒ¼ã‚­ãƒ‰ã®æ‰‹ç´™
 //============================================================================================
 //-----------------------------------------------------------------------------
 static BOOL Ookido_ReceiveCheckFunc(FIELDSYS_WORK * fsys, void * slot)
@@ -832,11 +832,11 @@ static void Ookido_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
 
     MyItem_AddItem( myitem, item_no, 1, HEAPID_EVENT );
 
-	//ƒGƒEƒŠƒX‚ÌƒCƒxƒ“ƒg‹–‰ÂI
+	//ã‚¨ã‚¦ãƒªã‚¹ã®ã‚¤ãƒ™ãƒ³ãƒˆè¨±å¯ï¼
 	SysWork_HaihuEventWorkSet(ev, HAIHUEVENT_ID_D18);
 
-#if 1	//08.04.10 ƒvƒ‰ƒ`ƒi’Ç‰Á
-	//‚Ü‚¾ƒVƒFƒCƒ~ƒCƒxƒ“ƒg‹N“®‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç
+#if 1	//08.04.10 ãƒ—ãƒ©ãƒãƒŠè¿½åŠ 
+	//ã¾ã ã‚·ã‚§ã‚¤ãƒŸã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ã—ã¦ã„ãªã‹ã£ãŸã‚‰
 	if( SysWork_SyeimiEventGet(ev) == 0 ){
 		SysWork_SyeimiEventSet( ev, 1 );
 	}
@@ -869,13 +869,13 @@ static void Ookido_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 	*msg_id = msg_haitatu_06;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/09
-	// ‘ã“üæ‚ÌWORDSET‚ÌƒCƒ“ƒfƒbƒNƒX‚ğAƒƒbƒZ[ƒW‘¤‚Åw’è‚³‚ê‚Ä‚¢‚é‚à‚Ì‚ÉC³
+	// ä»£å…¥å…ˆã®WORDSETã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å´ã§æŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã«ä¿®æ­£
 	WORDSET_RegisterItemName(msgwk->wordset, 0, item_no);
 	// ----------------------------------------------------------------------------
 }
 
 //============================================================================================
-// ‚Ğ‚İ‚Â‚Ì‚©‚¬
+// ã²ã¿ã¤ã®ã‹ã
 //============================================================================================
 //-----------------------------------------------------------------------------
 static BOOL Key_ReceiveCheckFunc(FIELDSYS_WORK * fsys, void * slot)
@@ -896,7 +896,7 @@ static void Key_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
     u16 item_no =  ITEM_HIMITUNOKAGI;
 
     MyItem_AddItem( myitem, item_no, 1, HEAPID_EVENT );
-	//ƒƒgƒ€‚ÌƒCƒxƒ“ƒg‹–‰ÂI
+	//ãƒ­ãƒˆãƒ ã®ã‚¤ãƒ™ãƒ³ãƒˆè¨±å¯ï¼
 	SysWork_HaihuEventWorkSet(ev, HAIHUEVENT_ID_C04);
 }
 
@@ -908,7 +908,7 @@ static void Key_OKMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
     u16 item_no =  ITEM_HIMITUNOKAGI;
 
     *arc_id = NARC_msg_haitatu_dat;
-	*msg_id = msg_haitatu_22;			//š‚Ğ‚İ‚Â‚Ì‚©‚¬@³®‚È–¼‘O‚È‚Ì‚©Šm”F
+	*msg_id = msg_haitatu_22;			//â˜…ã²ã¿ã¤ã®ã‹ãã€€æ­£å¼ãªåå‰ãªã®ã‹ç¢ºèª
 
     WORDSET_RegisterPlayerName(msgwk->wordset, 0, SaveData_GetMyStatus(msgwk->fsys->savedata));
 	WORDSET_RegisterItemName(msgwk->wordset, 1, item_no);
@@ -929,7 +929,7 @@ static void Key_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 }
 
 //============================================================================================
-// ‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦
+// ã¦ã‚“ã‹ã„ã®ãµãˆ
 //============================================================================================
 //-----------------------------------------------------------------------------
 static BOOL Whistle_ReceiveCheckFunc(FIELDSYS_WORK * fsys, void * slot)
@@ -950,7 +950,7 @@ static void Whistle_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
     u16 item_no =  ITEM_TENKAINOHUE;
 
     MyItem_AddItem( myitem, item_no, 1, HEAPID_EVENT );
-	//ƒAƒEƒX‚ÌƒCƒxƒ“ƒg‹–‰ÂI
+	//ã‚¢ã‚¦ã‚¹ã®ã‚¤ãƒ™ãƒ³ãƒˆè¨±å¯ï¼
 	SysWork_HaihuEventWorkSet(ev, HAIHUEVENT_ID_D05);
 }
 
@@ -980,13 +980,13 @@ static void Whistle_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 	*msg_id = msg_haitatu_06;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/09
-	// ‘ã“üæ‚ÌWORDSET‚ÌƒCƒ“ƒfƒbƒNƒX‚ğAƒƒbƒZ[ƒW‘¤‚Åw’è‚³‚ê‚Ä‚¢‚é‚à‚Ì‚ÉC³
+	// ä»£å…¥å…ˆã®WORDSETã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å´ã§æŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã«ä¿®æ­£
 	WORDSET_RegisterItemName(msgwk->wordset, 0, item_no);
 	// ----------------------------------------------------------------------------
 }
 
 //============================================================================================
-// ‚Û‚¯‚Á‚¿
+// ã½ã‘ã£ã¡
 //============================================================================================
 //-----------------------------------------------------------------------------
 static BOOL Poketch_ReceiveCheckFunc(FIELDSYS_WORK * fsys, void * slot)
@@ -1037,83 +1037,83 @@ static void Poketch_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 
 //============================================================================================
 //
-//		‚Ó‚µ‚¬”z’BˆõƒAƒNƒVƒ‡ƒ“ƒe[ƒuƒ‹
+//		ãµã—ãé…é”å“¡ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 //============================================================================================
 static const MP_ACTION MPActionTable[] = {
-	{   // ƒ|ƒPƒ‚ƒ“
+	{   // ãƒã‚±ãƒ¢ãƒ³
 		Pokemon_ReceiveCheckFunc,
 		Pokemon_ReceiveFunc,
 		Pokemon_OKMsgFunc,
 		Pokemon_NGMsgFunc,
 	},
-	{   //‚½‚Ü‚²
+	{   //ãŸã¾ã”
 		Pokemon_ReceiveCheckFunc,
 		Tamago_ReceiveFunc,
 		Tamago_OKMsgFunc,
 		Pokemon_NGMsgFunc,
 	},
-	{   //‚Ç‚¤‚®
+	{   //ã©ã†ã
 		Item_ReceiveCheckFunc,
 		Item_ReceiveFunc,
 		Item_OKMsgFunc,
 		Item_NGMsgFunc,
 	},
-	{   //ƒ‹[ƒ‹
+	{   //ãƒ«ãƒ¼ãƒ«
 		Regulation_ReceiveCheckFunc,
 		Regulation_ReceiveFunc,
 		Regulation_OKMsgFunc,
 		Regulation_NGMsgFunc,
 	},
-	{   //”é–§Šî’nƒOƒbƒY
+	{   //ç§˜å¯†åŸºåœ°ã‚°ãƒƒã‚º
 		UGGoods_ReceiveCheckFunc,
 		UGGoods_ReceiveFunc,
 		UGGoods_OKMsgFunc,
 		UGGoods_NGMsgFunc,
 	},
-	{   //ƒAƒNƒZƒTƒŠ[
+	{   //ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼
 		Accessory_ReceiveCheckFunc,
 		Accessory_ReceiveFunc,
 		Accessory_OKMsgFunc,
 		Accessory_NGMsgFunc,
 	},
-	{   //ƒ}ƒiƒtƒB[
+	{   //ãƒãƒŠãƒ•ã‚£ãƒ¼
 		Pokemon_ReceiveCheckFunc,
 		Manafi_ReceiveFunc,
 		Manafi_OKMsgFunc,
 		Pokemon_NGMsgFunc,
 	},
-	{   //ƒƒ“ƒo[ƒYƒJ[ƒh
+	{   //ãƒ¡ãƒ³ãƒãƒ¼ã‚ºã‚«ãƒ¼ãƒ‰
 		Card_ReceiveCheckFunc,
 		Card_ReceiveFunc,
 		Card_OKMsgFunc,
 		Card_NGMsgFunc,
 	},
-	{   //ƒI[ƒLƒh‚Ìè†
+	{   //ã‚ªãƒ¼ã‚­ãƒ‰ã®æ‰‹ç´™
 		Ookido_ReceiveCheckFunc,
 		Ookido_ReceiveFunc,
 		Ookido_OKMsgFunc,
 		Ookido_NGMsgFunc,
 	},
-	{   //‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦
+	{   //ã¦ã‚“ã‹ã„ã®ãµãˆ
 		Whistle_ReceiveCheckFunc,
 		Whistle_ReceiveFunc,
 		Whistle_OKMsgFunc,
 		Whistle_NGMsgFunc,
 	},
-	{   //‚Û‚¯‚Á‚¿
+	{   //ã½ã‘ã£ã¡
 		Poketch_ReceiveCheckFunc,
 		Poketch_ReceiveFunc,
 		Poketch_OKMsgFunc,
 		Poketch_NGMsgFunc,
 	},
-	{   //‚Ğ‚İ‚Â‚ÌƒJƒM
+	{   //ã²ã¿ã¤ã®ã‚«ã‚®
 		Key_ReceiveCheckFunc,
 		Key_ReceiveFunc,
 		Key_OKMsgFunc,
 		Key_NGMsgFunc,
 	},
-	{   //‰f‰æ”z•z
+	{   //æ˜ ç”»é…å¸ƒ
 		Pokemon_ReceiveCheckFunc,
 		Pokemon_ReceiveFunc,
 		Pokemon_OKMsgFunc,

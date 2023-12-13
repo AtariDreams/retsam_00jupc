@@ -21,7 +21,7 @@
 #define NNS_GFD_BARPLTT_FREE_ERROR_INVALID_SIZE 1
 
 //
-// ƒ}ƒl[ƒWƒƒ
+// ãƒãƒãƒ¼ã‚¸ãƒ£
 //
 typedef struct NNS_GfdLnkPlttVramManager
 {
@@ -29,7 +29,7 @@ typedef struct NNS_GfdLnkPlttVramManager
     NNSiGfdLnkVramBlock*    pBlockPoolList;
     
     //
-    // ƒŠƒZƒbƒg‚Ég—p‚·‚éƒƒ“ƒo
+    // ãƒªã‚»ãƒƒãƒˆæ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ³ãƒ
     //
     u32                     szByte;
     NNSiGfdLnkVramBlock*    pWorkHead;
@@ -43,19 +43,19 @@ static NNS_GfdLnkPlttVramManager         mgr_;
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdDumpLnkPlttVramManager
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚Ì“à•”ó‘Ô‚ğƒfƒoƒbƒNo—Í‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®å†…éƒ¨çŠ¶æ…‹ã‚’ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã—ã¾ã™ã€‚
 
-  Arguments:    ‚È‚µ            
-  Returns:      ‚È‚µ
+  Arguments:    ãªã—            
+  Returns:      ãªã—
 
  *---------------------------------------------------------------------------*/
 void NNS_GfdDumpLnkPlttVramManager()
 {
     OS_Printf("=== NNS_Gfd LnkPlttVramManager Dump ===\n");
-    OS_Printf("   address:        size    \n");   // ƒwƒbƒ_[s
+    OS_Printf("   address:        size    \n");   // ãƒ˜ãƒƒãƒ€ãƒ¼è¡Œ
     OS_Printf("=======================================\n");
     //
-    // ’ÊíƒeƒNƒXƒ`ƒƒ‚ÌƒtƒŠ[ƒŠƒXƒg‚ğ‚·‚×‚Ä•\¦‚µAg—p—Ê‚Ì‘˜a‚ğŒvZ‚µ‚Ü‚·B
+    // é€šå¸¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ãƒªãƒ¼ãƒªã‚¹ãƒˆã‚’ã™ã¹ã¦è¡¨ç¤ºã—ã€ä½¿ç”¨é‡ã®ç·å’Œã‚’è¨ˆç®—ã—ã¾ã™ã€‚
     //
     OS_Printf("------ Free Blocks                -----\n");   
     
@@ -67,13 +67,13 @@ void NNS_GfdDumpLnkPlttVramManager()
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdDumpLnkPlttVramManagerEx
 
-  Description:  ƒfƒoƒbƒNo—Íˆ—ŠÖ”‚ğw’è‚µ‚ÄA
-                ƒ}ƒl[ƒWƒƒ‚Ì“à•”ó‘Ô‚ğƒfƒoƒbƒNo—Í‚µ‚Ü‚·B
+  Description:  ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›å‡¦ç†é–¢æ•°ã‚’æŒ‡å®šã—ã¦ã€
+                ãƒãƒãƒ¼ã‚¸ãƒ£ã®å†…éƒ¨çŠ¶æ…‹ã‚’ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã—ã¾ã™ã€‚
 
-  Arguments:    pFunc               ƒfƒoƒbƒNo—Íˆ—ŠÖ”
-                pUserData           ƒfƒoƒbƒNo—Íˆ—ŠÖ”‚Éˆø”‚Æ‚µ‚Ä“n‚³‚ê‚éƒf[ƒ^
+  Arguments:    pFunc               ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›å‡¦ç†é–¢æ•°
+                pUserData           ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›å‡¦ç†é–¢æ•°ã«å¼•æ•°ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ãƒ‡ãƒ¼ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
 
  *---------------------------------------------------------------------------*/
 
@@ -88,17 +88,17 @@ void NNS_GfdDumpLnkPlttVramManagerEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdGetLnkPlttVramManagerWorkSize
 
-  Description:  VRAMƒ}ƒl[ƒWƒƒ‚ªŠÇ—î•ñ‚Ì‚½‚ß‚É•K—v‚Æ‚·‚éƒƒ‚ƒŠ‚ÌƒoƒCƒgƒTƒCƒY‚ğæ“¾‚µ‚Ü‚·B
-                –{ŠÖ”‚Ì•Ô’l‚ğ—˜—p‚µ‚ÄAƒ}ƒl[ƒWƒƒ‚Ì‰Šú‰»ƒpƒ‰ƒ[ƒ^‚Å‚ ‚éA
-                ŠÇ——Ìˆæ‚Ì‰Šú‰»‚ğs‚Á‚Ä‚­‚¾‚³‚¢B 
+  Description:  VRAMãƒãƒãƒ¼ã‚¸ãƒ£ãŒç®¡ç†æƒ…å ±ã®ãŸã‚ã«å¿…è¦ã¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™ã€‚
+                æœ¬é–¢æ•°ã®è¿”å€¤ã‚’åˆ©ç”¨ã—ã¦ã€ãƒãƒãƒ¼ã‚¸ãƒ£ã®åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ã‚ã‚‹ã€
+                ç®¡ç†é ˜åŸŸã®åˆæœŸåŒ–ã‚’è¡Œã£ã¦ãã ã•ã„ã€‚ 
 
 
                 
                 
-  Arguments:    numMemBlk   Šm•Û‚³‚ê‚éŠÇ—ƒuƒƒbƒN”BŠÇ—‚·‚é‹ó‚«—Ìˆæ‚ÌÅ‘å×•ª‰»”‚Æ‚È‚éB 
+  Arguments:    numMemBlk   ç¢ºä¿ã•ã‚Œã‚‹ç®¡ç†ãƒ–ãƒ­ãƒƒã‚¯æ•°ã€‚ç®¡ç†ã™ã‚‹ç©ºãé ˜åŸŸã®æœ€å¤§ç´°åˆ†åŒ–æ•°ã¨ãªã‚‹ã€‚ 
 
                 
-  Returns:      ŠÇ——Ìˆæ‚É•K—v‚ÈƒoƒCƒgƒTƒCƒY
+  Returns:      ç®¡ç†é ˜åŸŸã«å¿…è¦ãªãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 
  *---------------------------------------------------------------------------*/
 u32 NNS_GfdGetLnkPlttVramManagerWorkSize( u32 numMemBlk )
@@ -109,18 +109,18 @@ u32 NNS_GfdGetLnkPlttVramManagerWorkSize( u32 numMemBlk )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdInitLnkPlttVramManager
 
-  Description:  ƒtƒŒ[ƒ€ƒpƒŒƒbƒgVRAMƒ}ƒl[ƒWƒƒ‚ğ‰Šú‰»‚µ‚Ü‚·B
-                ƒtƒŒ[ƒ€ƒpƒŒƒbƒgVRAMƒ}ƒl[ƒWƒƒ‚ÍAƒpƒŒƒbƒgRAM‚Ìæ“ª‚©‚çszByte
-                ‚Åw’è‚³‚ê‚½ƒTƒCƒY•ª‚Ì—Ìˆæ‚ğŠÇ—‚·‚é‚æ‚¤‚É‰Šú‰»‚³‚ê‚Ü‚·B 
+  Description:  ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‘ãƒ¬ãƒƒãƒˆVRAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
+                ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‘ãƒ¬ãƒƒãƒˆVRAMãƒãƒãƒ¼ã‚¸ãƒ£ã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆRAMã®å…ˆé ­ã‹ã‚‰szByte
+                ã§æŒ‡å®šã•ã‚ŒãŸã‚µã‚¤ã‚ºåˆ†ã®é ˜åŸŸã‚’ç®¡ç†ã™ã‚‹ã‚ˆã†ã«åˆæœŸåŒ–ã•ã‚Œã¾ã™ã€‚ 
                 
                 
-  Arguments:    szByte                  ŠÇ—‚·‚é—Ìˆæ‚ÌƒoƒCƒgƒTƒCƒYB(Å‘å 0x18000)
-                pManagementWork         ŠÇ—î•ñ‚Æ‚µ‚Äg—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^B 
-                szByteManagementWork    ŠÇ—î•ñ—Ìˆæ‚ÌƒTƒCƒYB 
-                useAsDefault            ƒŠƒ“ƒNƒhƒŠƒXƒgƒpƒŒƒbƒgVRAMƒ}ƒl[ƒWƒƒ‚ğƒJƒŒƒ“ƒg‚Ìƒ}ƒl[ƒWƒƒ‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©B 
+  Arguments:    szByte                  ç®¡ç†ã™ã‚‹é ˜åŸŸã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã€‚(æœ€å¤§ 0x18000)
+                pManagementWork         ç®¡ç†æƒ…å ±ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚ 
+                szByteManagementWork    ç®¡ç†æƒ…å ±é ˜åŸŸã®ã‚µã‚¤ã‚ºã€‚ 
+                useAsDefault            ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆVRAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã‚«ãƒ¬ãƒ³ãƒˆã®ãƒãƒãƒ¼ã‚¸ãƒ£ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã€‚ 
 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
 
  *---------------------------------------------------------------------------*/
 void NNS_GfdInitLnkPlttVramManager
@@ -144,7 +144,7 @@ void NNS_GfdInitLnkPlttVramManager
         NNS_GfdResetLnkPlttVramState();
         
         //
-        // ƒfƒtƒHƒ‹ƒg‚ÌƒAƒƒP[ƒ^‚Æ‚µ‚Äg—p
+        // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã¨ã—ã¦ä½¿ç”¨
         //
         if( useAsDefault )
         {
@@ -157,15 +157,15 @@ void NNS_GfdInitLnkPlttVramManager
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdAllocLnkPlttVram
 
-  Description:  ƒŠƒ“ƒNƒhƒŠƒXƒgƒpƒŒƒbƒgVRAMƒ}ƒl[ƒWƒƒ‚©‚çƒpƒŒƒbƒg—pƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ü‚·B
+  Description:  ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆVRAMãƒãƒãƒ¼ã‚¸ãƒ£ã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¾ã™ã€‚
                 
-  Arguments:    szByteF     Šm•Û‚µ‚½‚¢—Ìˆæ‚ÌƒoƒCƒgƒTƒCƒY 
-                b4PlttF     4FƒpƒŒƒbƒg‚©B4FƒpƒŒƒbƒg‚È‚çTRUEB 
-                opt F       ƒIƒvƒVƒ‡ƒ“BŒ»İ‚Íg—p‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB 
+  Arguments:    szByteï¼š     ç¢ºä¿ã—ãŸã„é ˜åŸŸã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º 
+                b4Plttï¼š     4è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã‹ã€‚4è‰²ãƒ‘ãƒ¬ãƒƒãƒˆãªã‚‰TRUEã€‚ 
+                opt ï¼š       ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã€‚ç¾åœ¨ã¯ä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚ 
                 
-  Returns:      Šm•Û‚µ‚½VRAM—Ìˆæ‚ğ•\‚·ƒpƒŒƒbƒgƒL[‚ğ•Ô‚µ‚Ü‚·B
-                Šm•Û‚É¸”s‚µ‚½ê‡‚ÍAƒGƒ‰[‚ğ¦‚·ƒL[‚Å‚ ‚é
-                NNS_GFD_ALLOC_ERROR_PLTTKEY‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ç¢ºä¿ã—ãŸVRAMé ˜åŸŸã‚’è¡¨ã™ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ã‚’è¿”ã—ã¾ã™ã€‚
+                ç¢ºä¿ã«å¤±æ•—ã—ãŸå ´åˆã¯ã€ã‚¨ãƒ©ãƒ¼ã‚’ç¤ºã™ã‚­ãƒ¼ã§ã‚ã‚‹
+                NNS_GFD_ALLOC_ERROR_PLTTKEYã‚’è¿”ã—ã¾ã™ã€‚
 
  *---------------------------------------------------------------------------*/
 NNSGfdPlttKey    NNS_GfdAllocLnkPlttVram( u32 szByte, BOOL b4Pltt, u32 opt )
@@ -176,11 +176,11 @@ NNSGfdPlttKey    NNS_GfdAllocLnkPlttVram( u32 szByte, BOOL b4Pltt, u32 opt )
     
     {
         //
-        // ƒpƒŒƒbƒgƒL[‚Å•\Œ»‚Å‚«‚È‚¢¬‚³‚ÈƒTƒCƒY‚ÌŠm•Û‚Ìê‡AƒTƒCƒY‚ğØ‚èã‚°‚ÄŠm•Û‚µ‚Ü‚·B
+        // ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ã§è¡¨ç¾ã§ããªã„å°ã•ãªã‚µã‚¤ã‚ºã®ç¢ºä¿ã®å ´åˆã€ã‚µã‚¤ã‚ºã‚’åˆ‡ã‚Šä¸Šã’ã¦ç¢ºä¿ã—ã¾ã™ã€‚
         //
         szByte = NNSi_GfdGetPlttKeyRoundupSize( szByte );
         //
-        // ƒpƒŒƒbƒgƒL[‚ª•\Œ»‚Å‚«‚È‚¢‚Ù‚Ç‘å‚«‚ÈƒTƒCƒY‚ÌŠm•Û‚Ìê‡AƒGƒ‰[ƒL[‚ğ•Ô‚µ‚Ü‚·B
+        // ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ãŒè¡¨ç¾ã§ããªã„ã»ã©å¤§ããªã‚µã‚¤ã‚ºã®ç¢ºä¿ã®å ´åˆã€ã‚¨ãƒ©ãƒ¼ã‚­ãƒ¼ã‚’è¿”ã—ã¾ã™ã€‚
         //
         if( szByte >= NNS_GFD_PLTTSIZE_MAX )
         {
@@ -192,7 +192,7 @@ NNSGfdPlttKey    NNS_GfdAllocLnkPlttVram( u32 szByte, BOOL b4Pltt, u32 opt )
     }
     
     //
-    // ƒpƒŒƒbƒgƒtƒH[ƒ}ƒbƒg ‚©‚ç ƒAƒ‰ƒCƒ“ƒƒ“ƒg‚ğİ’è‚µ‚Ü‚·
+    // ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ ã‹ã‚‰ ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆã‚’è¨­å®šã—ã¾ã™
     //
     if( b4Pltt )
     {
@@ -201,7 +201,7 @@ NNSGfdPlttKey    NNS_GfdAllocLnkPlttVram( u32 szByte, BOOL b4Pltt, u32 opt )
                                               &addr, 
                                               szByte, 
                                               0x08 );
-        // QÆ•s”\—Ìˆæ‚©ƒ`ƒFƒbƒN‚·‚é
+        // å‚ç…§ä¸èƒ½é ˜åŸŸã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
         if( addr + szByte > NNS_GFD_4PLTT_MAX_ADDR )
         {
             // NG
@@ -210,7 +210,7 @@ NNSGfdPlttKey    NNS_GfdAllocLnkPlttVram( u32 szByte, BOOL b4Pltt, u32 opt )
                                       addr, 
                                       szByte ) )
             {
-                // Œx‚ğ•\¦‚·‚é
+                // è­¦å‘Šã‚’è¡¨ç¤ºã™ã‚‹
             }
                                  
             return NNS_GFD_ALLOC_ERROR_PLTTKEY;
@@ -235,15 +235,15 @@ NNSGfdPlttKey    NNS_GfdAllocLnkPlttVram( u32 szByte, BOOL b4Pltt, u32 opt )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdFreeLnkPlttVram
 
-  Description:  ƒŠƒ“ƒNƒhƒŠƒXƒgƒpƒŒƒbƒgVRAMƒ}ƒl[ƒWƒƒ‚©‚çŠm•Û‚µ‚½
-                ƒpƒŒƒbƒg—pƒƒ‚ƒŠ‚ğ‰ğ•ú‚µ‚Ü‚·B
+  Description:  ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆVRAMãƒãƒãƒ¼ã‚¸ãƒ£ã‹ã‚‰ç¢ºä¿ã—ãŸ
+                ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã—ã¾ã™ã€‚
                 
-  Arguments:    plttKeyF    ŠJ•ú‚·‚éVRAM—Ìˆæ‚ğ•\‚·ƒpƒŒƒbƒgƒL[
+  Arguments:    plttKeyï¼š    é–‹æ”¾ã™ã‚‹VRAMé ˜åŸŸã‚’è¡¨ã™ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
                 
-  Returns:      ŠJ•ú‚Ì¬”Û‚ğ•Ô‚µ‚Ü‚·B
-                ŠJ•ú‚É¬Œ÷‚µ‚½ê‡‚Í0‚ğ•Ô‚µ‚Ü‚·B
-                ƒTƒCƒYƒ[ƒ‚È‚Ç‚Ì•s³‚ÈƒTƒCƒY‚ğ‚ ‚ç‚í‚·ƒpƒŒƒbƒgƒL[‚ÌŠJ•ú
-                ‚ª‚ ‚Á‚½ê‡‚Í1‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      é–‹æ”¾ã®æˆå¦ã‚’è¿”ã—ã¾ã™ã€‚
+                é–‹æ”¾ã«æˆåŠŸã—ãŸå ´åˆã¯0ã‚’è¿”ã—ã¾ã™ã€‚
+                ã‚µã‚¤ã‚ºã‚¼ãƒ­ãªã©ã®ä¸æ­£ãªã‚µã‚¤ã‚ºã‚’ã‚ã‚‰ã‚ã™ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ã®é–‹æ”¾
+                ãŒã‚ã£ãŸå ´åˆã¯1ã‚’è¿”ã—ã¾ã™ã€‚
 
  *---------------------------------------------------------------------------*/
 int             NNS_GfdFreeLnkPlttVram( NNSGfdPlttKey plttKey )
@@ -268,18 +268,18 @@ int             NNS_GfdFreeLnkPlttVram( NNSGfdPlttKey plttKey )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdResetLnkPlttVramState
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚ğ‰Šúó‘Ô‚ÉƒŠƒZƒbƒg‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’åˆæœŸçŠ¶æ…‹ã«ãƒªã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
                 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void            NNS_GfdResetLnkPlttVramState( void )
 {
     
     //
-    // ‹¤—LŠÇ—ƒuƒƒbƒN‚ğ‰Šú‰»
+    // å…±æœ‰ç®¡ç†ãƒ–ãƒ­ãƒƒã‚¯ã‚’åˆæœŸåŒ–
     //
     mgr_.pBlockPoolList 
         = NNSi_GfdInitLnkVramBlockPool( 
@@ -287,7 +287,7 @@ void            NNS_GfdResetLnkPlttVramState( void )
             mgr_.szByteManagementWork / sizeof( NNSiGfdLnkVramBlock ) );
     
     //
-    // ƒtƒŠ[ƒŠƒXƒg‚Ì‰Šú‰»
+    // ãƒ•ãƒªãƒ¼ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
     //
     {
         BOOL    result;
@@ -301,7 +301,7 @@ void            NNS_GfdResetLnkPlttVramState( void )
     }
     
     //
-    // ƒtƒŠ[ƒŠƒXƒg‚ÌŒ‹‡
+    // ãƒ•ãƒªãƒ¼ãƒªã‚¹ãƒˆã®çµåˆ
     // 
     NNSi_GfdMergeAllFreeBlocks( &mgr_.mgr, &mgr_.pBlockPoolList );
     

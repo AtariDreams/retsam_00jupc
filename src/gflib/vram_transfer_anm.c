@@ -1,25 +1,25 @@
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
 /**
  *@file		vram_transfer_anm.c
- *@brief	ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚ğVram“]‘—ƒAƒjƒ[ƒVƒ‡ƒ“‚Ås‚¤
- *																ƒVƒXƒeƒ€
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã§è¡Œã†
+ *																ã‚·ã‚¹ãƒ†ãƒ 
  *@author	tomoya takahashi
  *@data		2004.11.08
  *
  *	
  *
- *	—˜—p‚·‚é‚Æ‚«‚Ì’ˆÓ
- *	‚±‚ÌƒVƒXƒeƒ€‚ÍVram“]‘—ƒ}ƒl[ƒWƒƒ[‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅA
- *	‚±‚ÌƒVƒXƒeƒ€‚ğg—p‚·‚é‘O‚ÉVram“]‘—ƒ}ƒl[ƒWƒƒ[‚ğ‰Šú‰»‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢B
+ *	åˆ©ç”¨ã™ã‚‹ã¨ãã®æ³¨æ„
+ *	ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã¯Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã€
+ *	ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½¿ç”¨ã™ã‚‹å‰ã«Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’åˆæœŸåŒ–ã—ã¦ãŠã„ã¦ãã ã•ã„ã€‚
  *
  *	
- *	ƒŠƒXƒg‚ÉƒZƒbƒg‚·‚éƒf[ƒ^‚É‚Â‚¢‚Ä
- *		NNSG3dAnmObjFƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Æ‚±‚ÌƒAƒjƒ[ƒVƒ‡ƒ“g‚¤ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ğƒZƒbƒg‚µ‚½ó‘Ô
- *					@‚ÅƒZƒbƒg‚µ‚Ü‚·BiƒeƒNƒXƒ`ƒƒ‚ğVram‚É“]‘—‚µ‚È‚¢‚æ‚¤‚Éj
- *					@TexKey‚É‚Í0x00‚ğƒZƒbƒg‚µ‚Ä‚¨‚«‚Ü‚·B
+ *	ãƒªã‚¹ãƒˆã«ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã«ã¤ã„ã¦
+ *		NNSG3dAnmObjï¼šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¨ã“ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä½¿ã†ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ãŸçŠ¶æ…‹
+ *					ã€€ã§ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’Vramã«è»¢é€ã—ãªã„ã‚ˆã†ã«ï¼‰
+ *					ã€€TexKeyã«ã¯0x00ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠãã¾ã™ã€‚
  *
- *		NNSG3dResTexFƒfƒtƒHƒ‹ƒg‚Ìƒrƒ‹ƒ{[ƒh‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚P–‡‚ÌŠG‚ÌƒŠƒ\[ƒX‚Å‚·B
- *					@Vram‚ÉŠG‚Ìƒf[ƒ^‚ğ“]‘—‚³‚¹‚Ä‚µ‚Á‚©‚èTexKey‚ğŠi”[‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢B
+ *		NNSG3dResTexï¼šãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã«ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ï¼‘æšã®çµµã®ãƒªã‚½ãƒ¼ã‚¹ã§ã™ã€‚
+ *					ã€€Vramã«çµµã®ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã•ã›ã¦ã—ã£ã‹ã‚ŠTexKeyã‚’æ ¼ç´ã—ã¦ãŠã„ã¦ãã ã•ã„ã€‚
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 #include "vram_transfer_anm.h"
@@ -32,65 +32,65 @@
 
 //-------------------------------------
 //
-///@VramƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒXƒg\‘¢‘Ì
+///ã€€Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒˆæ§‹é€ ä½“
 //
 //-------------------------------------
 typedef struct _ITP_VRAM_ANM
 {
-	const TEXANM_DATATBL* cp_anmtbl;// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
-	const NNSG3dResTex*	cp_tex;		// “]‘—ƒeƒNƒXƒ`ƒƒƒf[ƒ^
-	NNSGfdTexKey  texKey;			// ƒeƒNƒXƒ`ƒƒVramKey
-	NNSGfdPlttKey plttKey;			// ƒpƒŒƒbƒgVramKey
+	const TEXANM_DATATBL* cp_anmtbl;// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+	const NNSG3dResTex*	cp_tex;		// è»¢é€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿
+	NNSGfdTexKey  texKey;			// ãƒ†ã‚¯ã‚¹ãƒãƒ£VramKey
+	NNSGfdPlttKey plttKey;			// ãƒ‘ãƒ¬ãƒƒãƒˆVramKey
 	
-	u8			  oldTexNum;		// ‚P‚Â‘O‚É“]‘—‚µ‚½ƒeƒNƒXƒ`ƒƒƒiƒ“ƒo[
-	u8			  oldPlttNum;		// ‚P‚Â‘O‚É“]‘—‚µ‚½ƒpƒŒƒbƒgƒiƒ“ƒo[
+	u8			  oldTexNum;		// ï¼‘ã¤å‰ã«è»¢é€ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒŠãƒ³ãƒãƒ¼
+	u8			  oldPlttNum;		// ï¼‘ã¤å‰ã«è»¢é€ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 	
 } ITP_VRAM_ANM;
 
 
 //-------------------------------------
 //
-//	VramƒAƒjƒ[ƒVƒ‡ƒ“ƒVƒXƒeƒ€\‘¢‘Ì
+//	Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
 //
 //=====================================
 typedef struct _ITP_VRAM_SYS{
-	ITP_VRAM_ANM*	pWork;		// VramƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒXƒg
-	int				WorkNum;	// ƒŠƒXƒg”
+	ITP_VRAM_ANM*	pWork;		// Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒˆ
+	int				WorkNum;	// ãƒªã‚¹ãƒˆæ•°
 } ITP_VRAM_SYS;
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
-// ƒƒCƒ“‚ÅŒÄ‚Î‚ê‚éŠeƒŠƒXƒg‚Ìƒf[ƒ^‚©‚çÀÛ‚ÉŠG‚ğ“]‘—‚·‚éŠÖ”
+// ãƒ¡ã‚¤ãƒ³ã§å‘¼ã°ã‚Œã‚‹å„ãƒªã‚¹ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å®Ÿéš›ã«çµµã‚’è»¢é€ã™ã‚‹é–¢æ•°
 static void ItpVramAnmMainApp( ITP_VRAM_ANM* pItpData, const u16 c_frame );
-// “]‘—‚·‚éŠG‚Ìƒf[ƒ^‚ğæ“¾
+// è»¢é€ã™ã‚‹çµµã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 static void* getGraphicData( ITP_VRAM_ANM* pItpData, const TEXANM_DATA* cp_texdata );
-// “]‘—‚·‚éƒpƒŒƒbƒg‚Ìƒf[ƒ^‚ğæ“¾
+// è»¢é€ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 static void* getPalletData( ITP_VRAM_ANM* pItpData, const TEXANM_DATA* cp_texdata );
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğæ“¾
-// ƒ[ƒN‚Ì‰Šú‰»
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+// ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
 static void cleanItpWork(ITP_VRAM_ANM* work);
-// ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€
 static void trans_tex(ITP_VRAM_ANM* pItpData, const TEXANM_DATA* cp_texdata);
-// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 static void trans_pltt(ITP_VRAM_ANM* pItpData, const TEXANM_DATA* cp_texdata);
 
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	VramƒAƒjƒ[ƒVƒ‡ƒ“ƒVƒXƒeƒ€ƒIƒuƒWƒFƒNƒg‚Ìì¬
+ *@brief	Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
  *
- *@param	WorkNum		ì¬ƒ[ƒN”
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	WorkNum		ä½œæˆãƒ¯ãƒ¼ã‚¯æ•°
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
- *@return	ITP_VRAM_SYS_PTR		VramƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+ *@return	ITP_VRAM_SYS_PTR		Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 ITP_VRAM_SYS_PTR initItpVramAnm(int WorkNum, int heap)
@@ -98,10 +98,10 @@ ITP_VRAM_SYS_PTR initItpVramAnm(int WorkNum, int heap)
 	ITP_VRAM_SYS_PTR vl_sys;
 	int i;
 
-	// VramƒAƒjƒ[ƒVƒ‡ƒ“ƒVƒXƒeƒ€ƒf[ƒ^ì¬
+	// Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	vl_sys = sys_AllocMemory(heap, sizeof(ITP_VRAM_SYS));
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	vl_sys->pWork = sys_AllocMemory(heap, sizeof(ITP_VRAM_ANM)*WorkNum);
 	vl_sys->WorkNum = WorkNum;
 	for(i=0;i<vl_sys->WorkNum;i++){
@@ -114,16 +114,16 @@ ITP_VRAM_SYS_PTR initItpVramAnm(int WorkNum, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	VramƒAƒjƒ[ƒVƒ‡ƒ“ƒVƒXƒeƒ€ƒIƒuƒWƒFƒNƒg‚Ì”jŠü
+ *@brief	Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç ´æ£„
  *
- *@param	pDat		VramƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+ *@param	pDat		Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  */
 //-----------------------------------------------------------------------------
 void destItpVramAnm(ITP_VRAM_SYS_PTR pDat)
 {
-	// ‘S”jŠü
+	// å…¨ç ´æ£„
 	remItpVramAnmAll(pDat);
 
 	sys_FreeMemoryEz(pDat->pWork);
@@ -133,26 +133,26 @@ void destItpVramAnm(ITP_VRAM_SYS_PTR pDat)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	VramƒAƒjƒ[ƒVƒ‡ƒ“‚ğ’Ç‰Á
+ *@brief	Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ 
  *
- *@param	pDat		VramƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
- *@param	cp_anmtbl	ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
- *@param	cp_tex		“]‘—ƒeƒNƒXƒ`ƒƒƒf[ƒ^
- *@param	texKey		ƒeƒNƒXƒ`ƒƒƒL[
- *@param	plttKey		ƒpƒŒƒbƒgƒL[
- *@param	c_frame		Œ»İƒtƒŒ[ƒ€’l
+ *@param	pDat		Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *@param	cp_anmtbl	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+ *@param	cp_tex		è»¢é€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿
+ *@param	texKey		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *@param	plttKey		ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
+ *@param	c_frame		ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ å€¤
  *
- *@return	ITP_VRAM_ANM_PTR	VramƒAƒjƒƒIƒuƒWƒF
+ *@return	ITP_VRAM_ANM_PTR	Vramã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 ITP_VRAM_ANM_PTR addItpVramAnm( ITP_VRAM_SYS_PTR pDat, const TEXANM_DATATBL* cp_anmtbl, const NNSG3dResTex* cp_tex, NNSGfdTexKey texKey, NNSGfdPlttKey plttKey, const fx32 c_frame )
 {
-	ITP_VRAM_ANM_PTR	p_itp_anm;			// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
-	u32					pltt_size;			// ƒpƒŒƒbƒg“]‘—‚ğs‚¤‚©‚Ìƒ`ƒFƒbƒN
-	int					i;					// ƒ‹[ƒv—p
+	ITP_VRAM_ANM_PTR	p_itp_anm;			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u32					pltt_size;			// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚’è¡Œã†ã‹ã®ãƒã‚§ãƒƒã‚¯
+	int					i;					// ãƒ«ãƒ¼ãƒ—ç”¨
 	p_itp_anm = NULL;
 	//
-	// ƒf[ƒ^‘‚«‚İ—Ìˆæ’Tõ
+	// ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿é ˜åŸŸæ¢ç´¢
 	//
 	for(i=0;i<pDat->WorkNum;i++){
 		if(pDat->pWork[i].cp_anmtbl == NULL){
@@ -165,15 +165,15 @@ ITP_VRAM_ANM_PTR addItpVramAnm( ITP_VRAM_SYS_PTR pDat, const TEXANM_DATATBL* cp_
 		return NULL;
 	}
 	
-	// Šeƒf[ƒ^‚ğƒZƒbƒg
-	p_itp_anm->cp_anmtbl= cp_anmtbl;		// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_itp_anm->cp_tex	= cp_tex;			// “]‘—ƒeƒNƒXƒ`ƒƒƒf[ƒ^
-	p_itp_anm->texKey	= texKey;			// Vram“]‘—‚Å’†g‚ğ‘‚«Š·‚¦‚éƒeƒNƒXƒ`ƒƒƒL[
-	p_itp_anm->plttKey	= plttKey;			// Vram“]‘—‚Å’†g‚ğ‘‚«Š·‚¦‚éƒpƒŒƒbƒgƒL[
-	p_itp_anm->oldTexNum  = -1;				// ‚P‚Â‘O‚É“]‘—‚µ‚½ƒeƒNƒXƒ`ƒƒƒiƒ“ƒo[
-	p_itp_anm->oldPlttNum = -1;				// ‚P‚Â‘O‚É“]‘—‚µ‚½ƒpƒŒƒbƒgƒiƒ“ƒo[
-	// ‚P‰ñ“]‘—
-	// (‚±‚±‚Å‚ÍAƒpƒŒƒbƒg‚ÆƒeƒNƒXƒ`ƒƒ—¼•û“]‘—)
+	// å„ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
+	p_itp_anm->cp_anmtbl= cp_anmtbl;		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_itp_anm->cp_tex	= cp_tex;			// è»¢é€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿
+	p_itp_anm->texKey	= texKey;			// Vramè»¢é€ã§ä¸­èº«ã‚’æ›¸ãæ›ãˆã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+	p_itp_anm->plttKey	= plttKey;			// Vramè»¢é€ã§ä¸­èº«ã‚’æ›¸ãæ›ãˆã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
+	p_itp_anm->oldTexNum  = -1;				// ï¼‘ã¤å‰ã«è»¢é€ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒŠãƒ³ãƒãƒ¼
+	p_itp_anm->oldPlttNum = -1;				// ï¼‘ã¤å‰ã«è»¢é€ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+	// ï¼‘å›è»¢é€
+	// (ã“ã“ã§ã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆã¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ä¸¡æ–¹è»¢é€)
 	ItpVramAnmMainApp(p_itp_anm, c_frame >> FX32_SHIFT );
 
 	return p_itp_anm;
@@ -182,26 +182,26 @@ ITP_VRAM_ANM_PTR addItpVramAnm( ITP_VRAM_SYS_PTR pDat, const TEXANM_DATATBL* cp_
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	VramƒAƒjƒ[ƒVƒ‡ƒ“‚ğíœ
+ *@brief	Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å‰Šé™¤
  *
- *@param	pDat	VramƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
- *@param	pAnmObj	íœ‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒF
+ *@param	pDat	Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *@param	pAnmObj	å‰Šé™¤ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§
  *	
  *@return	none	
  */
 //-----------------------------------------------------------------------------
 void remItpVramAnm( ITP_VRAM_ANM_PTR pAnmObj )
 {
-	// —Ìˆæ‚ğíœ
+	// é ˜åŸŸã‚’å‰Šé™¤
 	cleanItpWork(pAnmObj);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‘SVramƒAƒjƒ[ƒVƒ‡ƒ“‚ğíœ
+ *@brief	å…¨Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å‰Šé™¤
  *
- *@param	pDat	VramƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+ *@param	pDat	Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *	
  *@return	none
  *	
@@ -211,7 +211,7 @@ void remItpVramAnmAll( ITP_VRAM_SYS_PTR pDat )
 {
 	int i;	
 
-	// ‘SVramƒAƒjƒ[ƒVƒ‡ƒ“‚ğ”jŠü
+	// å…¨Vramã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ç ´æ£„
 	for(i=0;i<pDat->WorkNum;i++){
 		cleanItpWork( (pDat->pWork + i) );
 	}
@@ -220,10 +220,10 @@ void remItpVramAnmAll( ITP_VRAM_SYS_PTR pDat )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“]‘—‚ğÀs‚·‚é
+ *@brief	è»¢é€ã‚’å®Ÿè¡Œã™ã‚‹
  *
- *@param	obj		“]‘—‚·‚éƒf[ƒ^
- *@param	c_frame	Œ»İƒtƒŒ[ƒ€”
+ *@param	obj		è»¢é€ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ *@param	c_frame	ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
  *@return	none
  *
@@ -232,20 +232,20 @@ void remItpVramAnmAll( ITP_VRAM_SYS_PTR pDat )
 //-----------------------------------------------------------------------------
 void transItpVramAnm( ITP_VRAM_ANM_PTR obj, const fx32 c_frame )
 {
-	u16	frame_16;		// u16Œ^‚É‚µ‚½‚Æ‚«‚ÌƒtƒŒ[ƒ€”
+	u16	frame_16;		// u16å‹ã«ã—ãŸã¨ãã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
-	// ¬”“_ˆÈ‰º‚ğØ‚èÌ‚Ä‚½
-	// u16Œ^‚ÌƒtƒŒ[ƒ€’l‚ğæ“¾
+	// å°æ•°ç‚¹ä»¥ä¸‹ã‚’åˆ‡ã‚Šæ¨ã¦ãŸ
+	// u16å‹ã®ãƒ•ãƒ¬ãƒ¼ãƒ å€¤ã‚’å–å¾—
 	frame_16 = c_frame >> FX32_SHIFT;	
 		
-	// “]‘—ˆ—
+	// è»¢é€å‡¦ç†
 	ItpVramAnmMainApp( obj, frame_16 );
 }
 
 /*-----------------------------------------------------------------------------
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”‚ÌÀ‘Ô•”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°ã®å®Ÿæ…‹éƒ¨
  ----------------------------------------------------------------------------*/
-// ƒ[ƒN‚Ì‰Šú‰»
+// ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
 static void cleanItpWork(ITP_VRAM_ANM* work)
 {
 	work->cp_anmtbl		= NULL;
@@ -260,13 +260,13 @@ static void cleanItpWork(ITP_VRAM_ANM* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief		ÀÛ‚É“]‘—ˆ—‚ğs‚¤
- *			VramKey‚ÌˆÊ’u‚É¡‚ÌŠG‚Ìƒf[ƒ^‚ğ“]‘—‚·‚é
- *		@	AnmObj‚©‚ç¡‚ÌŠG‚Ìƒiƒ“ƒo[‚ğæ“¾
- *		@	Vram“]‘—ƒ^ƒXƒN‚ğ“o˜^‚·‚é
+ *@brief		å®Ÿéš›ã«è»¢é€å‡¦ç†ã‚’è¡Œã†
+ *			VramKeyã®ä½ç½®ã«ä»Šã®çµµã®ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
+ *		ã€€	AnmObjã‹ã‚‰ä»Šã®çµµã®ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
+ *		ã€€	Vramè»¢é€ã‚¿ã‚¹ã‚¯ã‚’ç™»éŒ²ã™ã‚‹
  *
- *@param	pItpDataFVram“]‘—ƒAƒjƒ[ƒVƒ‡ƒ“‚ğs‚¤ƒAƒjƒƒf[ƒ^
- *@param	c_frame	Œ»İƒtƒŒ[ƒ€
+ *@param	pItpDataï¼šVramè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¡Œã†ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
+ *@param	c_frame	ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  *@return	none
  *
@@ -274,19 +274,19 @@ static void cleanItpWork(ITP_VRAM_ANM* work)
 //-----------------------------------------------------------------------------
 static void ItpVramAnmMainApp( ITP_VRAM_ANM* pItpData, const u16 c_frame )
 {	
-	TEXANM_DATA	texdata;	// ¡‚ÌƒtƒŒ[ƒ€‚ÌƒeƒNƒXƒ`ƒƒID‚ÆƒpƒŒƒbƒgID
+	TEXANM_DATA	texdata;	// ä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£IDã¨ãƒ‘ãƒ¬ãƒƒãƒˆID
 
 
-	// ¡‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğæ“¾
+	// ä»Šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	texdata = TEXANM_GetFrameData( pItpData->cp_anmtbl, c_frame );
 	
-	// ‚Ğ‚Æ‚Â‘O‚É“]‘—‚µ‚½ƒeƒNƒXƒ`ƒƒƒiƒ“ƒo[‚Æˆá‚¤‚©ƒ`ƒFƒbƒN
+	// ã²ã¨ã¤å‰ã«è»¢é€ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒŠãƒ³ãƒãƒ¼ã¨é•ã†ã‹ãƒã‚§ãƒƒã‚¯
 	if( pItpData->oldTexNum != texdata.tex_idx )
 	{
 		trans_tex(pItpData, &texdata);
 	}
 
-	// ‚P‚Â‘O‚É“]‘—‚µ‚½ƒpƒŒƒbƒgƒiƒ“ƒo[‚Æˆá‚¤‚©ƒ`ƒFƒbƒN
+	// ï¼‘ã¤å‰ã«è»¢é€ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã¨é•ã†ã‹ãƒã‚§ãƒƒã‚¯
 	if( pItpData->oldPlttNum != texdata.pltt_idx )
 	{
 		trans_pltt(pItpData, &texdata);
@@ -296,10 +296,10 @@ static void ItpVramAnmMainApp( ITP_VRAM_ANM* pItpData, const u16 c_frame )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€
  *
- *@param	pItpData	“]‘—ƒf[ƒ^
- *@param	cp_texdata	¡‚ÌƒeƒNƒXƒ`ƒƒno
+ *@param	pItpData	è»¢é€ãƒ‡ãƒ¼ã‚¿
+ *@param	cp_texdata	ä»Šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£no
  *
  *@return	none
  *
@@ -308,34 +308,34 @@ static void ItpVramAnmMainApp( ITP_VRAM_ANM* pItpData, const u16 c_frame )
 //-----------------------------------------------------------------------------
 static void trans_tex(ITP_VRAM_ANM* pItpData, const TEXANM_DATA* cp_texdata)
 {
-	void*		p_buff;				// ŠG‚Ìƒf[ƒ^‚Ìƒoƒbƒtƒ@
+	void*		p_buff;				// çµµã®ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ•ã‚¡
 	//
-	// ¡‚ÌŠG‚Ìƒiƒ“ƒo[AŠG‚ÌƒTƒCƒY‚ğæ“¾
+	// ä»Šã®çµµã®ãƒŠãƒ³ãƒãƒ¼ã€çµµã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	//
 	p_buff = getGraphicData( pItpData, cp_texdata );
 
 
 	//
-	// “]‘—ƒ^ƒXƒN‚ğƒZƒbƒg
+	// è»¢é€ã‚¿ã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	//
 	AddVramTransferManager(
-			NNS_GFD_DST_3D_TEX_VRAM,					// ƒeƒNƒXƒ`ƒƒ‚ğ“]‘—
-			NNS_GfdGetTexKeyAddr( pItpData->texKey ),	// “]‘—æ
-			p_buff,										// “]‘—ƒf[ƒ^
-			NNS_GfdGetTexKeySize( pItpData->texKey )	// “]‘—ƒTƒCƒY
+			NNS_GFD_DST_3D_TEX_VRAM,					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è»¢é€
+			NNS_GfdGetTexKeyAddr( pItpData->texKey ),	// è»¢é€å…ˆ
+			p_buff,										// è»¢é€ãƒ‡ãƒ¼ã‚¿
+			NNS_GfdGetTexKeySize( pItpData->texKey )	// è»¢é€ã‚µã‚¤ã‚º
 			);
 
-	// “]‘—‚µ‚½ƒeƒNƒXƒ`ƒƒƒiƒ“ƒo[•Û‘¶
+	// è»¢é€ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒŠãƒ³ãƒãƒ¼ä¿å­˜
 	pItpData->oldTexNum = cp_texdata->tex_idx;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
  *
- *@param	pItpData	“]‘—ƒf[ƒ^
- *@param	cp_texdata	¡‚ÌƒpƒŒƒbƒgno
+ *@param	pItpData	è»¢é€ãƒ‡ãƒ¼ã‚¿
+ *@param	cp_texdata	ä»Šã®ãƒ‘ãƒ¬ãƒƒãƒˆno
  *
  *@return	none
  *
@@ -344,32 +344,32 @@ static void trans_tex(ITP_VRAM_ANM* pItpData, const TEXANM_DATA* cp_texdata)
 //-----------------------------------------------------------------------------
 static void trans_pltt(ITP_VRAM_ANM* pItpData, const TEXANM_DATA* cp_texdata)
 {
-	void*		p_buff;				// ŠG‚Ìƒf[ƒ^‚Ìƒoƒbƒtƒ@
+	void*		p_buff;				// çµµã®ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ•ã‚¡
 	
-	// ¡‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğæ“¾
+	// ä»Šã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	p_buff = getPalletData( pItpData, cp_texdata );
 
-	// “]‘—ƒ^ƒXƒN‚ğƒZƒbƒg
+	// è»¢é€ã‚¿ã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	AddVramTransferManager(
-			NNS_GFD_DST_3D_TEX_PLTT,					// ƒpƒŒƒbƒg‚ğ“]‘—
-			NNS_GfdGetPlttKeyAddr( pItpData->plttKey ),	// “]‘—æ
-			p_buff,										// “]‘—ƒf[ƒ^
-			NNS_GfdGetPlttKeySize( pItpData->plttKey )	// “]‘—ƒTƒCƒY
+			NNS_GFD_DST_3D_TEX_PLTT,					// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€
+			NNS_GfdGetPlttKeyAddr( pItpData->plttKey ),	// è»¢é€å…ˆ
+			p_buff,										// è»¢é€ãƒ‡ãƒ¼ã‚¿
+			NNS_GfdGetPlttKeySize( pItpData->plttKey )	// è»¢é€ã‚µã‚¤ã‚º
 			);
 
-	// “]‘—‚µ‚½ƒpƒŒƒbƒgƒiƒ“ƒo[•Û‘¶
+	// è»¢é€ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ä¿å­˜
 	pItpData->oldPlttNum = cp_texdata->pltt_idx;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	¡‚ÌƒtƒŒ[ƒ€‚ÌŠG‚Ìƒf[ƒ^‚ğæ“¾
+ *@brief	ä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®çµµã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *@param	pItpDataFƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
- *@param	cp_texdata	¡‚ÌƒtƒŒ[ƒ€‚ÌƒeƒNƒXƒ`ƒƒID‚ÆƒpƒŒƒbƒgID
+ *@param	pItpDataï¼šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *@param	cp_texdata	ä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£IDã¨ãƒ‘ãƒ¬ãƒƒãƒˆID
  *
- *@return	“]‘—‚·‚éƒf[ƒ^‚Ìƒoƒbƒtƒ@
+ *@return	è»¢é€ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ•ã‚¡
  *
  */
 //-----------------------------------------------------------------------------
@@ -377,38 +377,38 @@ static void* getGraphicData( ITP_VRAM_ANM* pItpData, const TEXANM_DATA* cp_texda
 {
 	/*
 	//
-	// ¡‚ÌƒtƒŒ[ƒ€‚ÌŠG‚ª‰½”Ô–Ú‚©‚ğæ“¾‚µAŠG‚Ì‘å‚«‚³‚©‚ç
-	// ŠG‚Ìƒf[ƒ^‚Ìæ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg‚ğŒvZ‚µƒoƒbƒtƒ@‚É
-	// ‚»‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg‚·‚é
+	// ä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®çµµãŒä½•ç•ªç›®ã‹ã‚’å–å¾—ã—ã€çµµã®å¤§ãã•ã‹ã‚‰
+	// çµµã®ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨ˆç®—ã—ãƒãƒƒãƒ•ã‚¡ã«
+	// ãã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	//
 	
 	//
-	// ¡‚ÌƒtƒŒ[ƒ€‚ÌŠG‚Ìƒiƒ“ƒo[‚ÆŠG‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+	// ä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®çµµã®ãƒŠãƒ³ãƒãƒ¼ã¨çµµã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 	//
-	// ‚±‚ÌƒeƒNƒXƒ`ƒƒID‚ÌŠG‚Ìƒf[ƒ^‚ğæ“¾
+	// ã“ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£IDã®çµµã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	const NNSG3dResDictTexData* pData = NNS_G3dGetTexDataByIdx( pItpData->cp_tex, cp_texdata->tex_idx );
 
-	// ƒIƒtƒZƒbƒg’l
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 	u32 offset = (pData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK);
 //	u32 offset = (pData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK) + pItpData->pAnmObj->resTex->texInfo.vramKey;
 		
 	
-	// ‘‚«‚Şƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğ‚©‚¦‚·
+	// æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‹ãˆã™
 	return (void*)((u8*)pItpData->cp_tex + pItpData->cp_tex->texInfo.ofsTex + (offset << 3) );//*/
 
-	// ƒRƒ“ƒXƒg‚ª‚½‚ÌƒŠƒ\[ƒX‚Å‚·‚ªAƒƒ‚ƒŠ—LŒø—˜—p‚Ì‚½‚ß‚±‚ÌŠÖ”‚ğ‚µ‚æ‚¤
+	// ã‚³ãƒ³ã‚¹ãƒˆãŒãŸã®ãƒªã‚½ãƒ¼ã‚¹ã§ã™ãŒã€ãƒ¡ãƒ¢ãƒªæœ‰åŠ¹åˆ©ç”¨ã®ãŸã‚ã“ã®é–¢æ•°ã‚’ã—ã‚ˆã†
 	return GetTexStartAdr( (NNSG3dResTex*)pItpData->cp_tex, cp_texdata->tex_idx );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	¡‚ÌƒtƒŒ[ƒ€‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğæ“¾
+ *@brief	ä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *@param	pItpDataFƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
- *@param	cp_texdata	¡‚ÌƒtƒŒ[ƒ€‚ÌƒeƒNƒXƒ`ƒƒID‚ÆƒpƒŒƒbƒgID
+ *@param	pItpDataï¼šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *@param	cp_texdata	ä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£IDã¨ãƒ‘ãƒ¬ãƒƒãƒˆID
  *
- *@return	‘‚«‚Şƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ *@return	æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //-----------------------------------------------------------------------------
@@ -416,35 +416,35 @@ static void* getPalletData( ITP_VRAM_ANM* pItpData, const TEXANM_DATA* cp_texdat
 {
 /*
 	//
-	// ¡‚ÌƒtƒŒ[ƒ€‚ÌƒpƒŒƒbƒg‚ª‰½”Ô–Ú‚©‚ğæ“¾‚µAƒpƒŒƒbƒg‚Ì‘å‚«‚³‚©‚ç
-	// ƒpƒŒƒbƒg‚Ìƒf[ƒ^‚Ìæ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg‚ğŒvZ‚µƒoƒbƒtƒ@‚É
-	// ‚»‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg‚·‚é
+	// ä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ‘ãƒ¬ãƒƒãƒˆãŒä½•ç•ªç›®ã‹ã‚’å–å¾—ã—ã€ãƒ‘ãƒ¬ãƒƒãƒˆã®å¤§ãã•ã‹ã‚‰
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨ˆç®—ã—ãƒãƒƒãƒ•ã‚¡ã«
+	// ãã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	//
 	
 	//
-	// ¡‚ÌƒtƒŒ[ƒ€‚ÌƒpƒŒƒbƒg‚Ìƒiƒ“ƒo[‚ğæ“¾‚·‚é
+	// ä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹
 	//
 	const NNSG3dResDictPlttData* pPlttData = NNS_G3dGetPlttDataByIdx( pItpData->cp_tex, cp_texdata->pltt_idx );
 	
 	
 	//
-	// ƒIƒtƒZƒbƒg’l‚ÌˆÊ’u‚©‚ç‚Ìƒf[ƒ^‚ğ“]‘—
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã®ä½ç½®ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 	//
 	return (void*)((u8*)pItpData->cp_tex + pItpData->cp_tex->plttInfo.ofsPlttData + (pPlttData->offset << 3));
 //*/
-	// ƒRƒ“ƒXƒg‚ª‚½‚ÌƒŠƒ\[ƒX‚Å‚·‚ªAƒƒ‚ƒŠ—LŒø—˜—p‚Ì‚½‚ß‚±‚ÌŠÖ”‚ğ‚µ‚æ‚¤
+	// ã‚³ãƒ³ã‚¹ãƒˆãŒãŸã®ãƒªã‚½ãƒ¼ã‚¹ã§ã™ãŒã€ãƒ¡ãƒ¢ãƒªæœ‰åŠ¹åˆ©ç”¨ã®ãŸã‚ã“ã®é–¢æ•°ã‚’ã—ã‚ˆã†
 	return GetPlttStartAdr( (NNSG3dResTex*)pItpData->cp_tex, cp_texdata->pltt_idx );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ÆƒeƒNƒXƒ`ƒƒ‚h‚c‚©‚çƒeƒNƒZƒ‹ŠJnƒAƒhƒŒƒX‚ğŠm’è‚·‚é
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ï¼©ï¼¤ã‹ã‚‰ãƒ†ã‚¯ã‚»ãƒ«é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç¢ºå®šã™ã‚‹
  *
- *@param	inResTexFƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *@param	inIndex FƒeƒNƒXƒ`ƒƒ‚h‚c
+ *@param	inResTexï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *@param	inIndex ï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ï¼©ï¼¤
  *
- *@return	void*	: ƒAƒhƒŒƒX
+ *@return	void*	: ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //-----------------------------------------------------------------------------
@@ -457,7 +457,7 @@ void* GetTexStartAdr(NNSG3dResTex *inResTex, const u8 inIndex)
 		return NULL;
 	}
 
-	// ƒIƒtƒZƒbƒg’l
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 	offset = (pData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK) + inResTex->texInfo.vramKey;
 
 	return (void*)((u8*)inResTex + inResTex->texInfo.ofsTex + (offset << 3) );
@@ -466,12 +466,12 @@ void* GetTexStartAdr(NNSG3dResTex *inResTex, const u8 inIndex)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ÆƒpƒŒƒbƒg‚h‚c‚©‚çƒpƒŒƒbƒgŠJnƒAƒhƒŒƒX‚ğŠm’è‚·‚é
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¨ãƒ‘ãƒ¬ãƒƒãƒˆï¼©ï¼¤ã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆé–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç¢ºå®šã™ã‚‹
  *
- *@param	inResTexFƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *@param	inIndex FƒpƒŒƒbƒg‚h‚c
+ *@param	inResTexï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *@param	inIndex ï¼šãƒ‘ãƒ¬ãƒƒãƒˆï¼©ï¼¤
  *
- *@return	void*	: ƒAƒhƒŒƒX
+ *@return	void*	: ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //-----------------------------------------------------------------------------
@@ -483,23 +483,23 @@ void* GetPlttStartAdr(NNSG3dResTex *inResTex, const u8 inIndex)
 		return NULL;
 	}
 	
-	// ƒIƒtƒZƒbƒg’l‚ÌˆÊ’u‚©‚ç‚Ìƒf[ƒ^‚ğ“]‘—
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã®ä½ç½®ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 	return (void*)((u8*)inResTex + inResTex->plttInfo.ofsPlttData + (pPlttData->offset << 3));
 }
 
 
 //------------------------------------------------------------------
 /**
- * ƒeƒNƒZƒ‹ŠJnVRAMƒAƒhƒŒƒX‚ğŠm’è‚·‚é‚½‚ß‚ÌZoŠÖ”
+ * ãƒ†ã‚¯ã‚»ãƒ«é–‹å§‹VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç¢ºå®šã™ã‚‹ãŸã‚ã®ç®—å‡ºé–¢æ•°
  *
- * @param   pData		ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒX‰ğŒˆ‚Ì‚½‚ß‚Ìî•ñ
+ * @param   pData		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹è§£æ±ºã®ãŸã‚ã®æƒ…å ±
  *
- * @retval  void*		ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒX
+ * @retval  void*		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //------------------------------------------------------------------
 static void* GetTexStartVRAMAdrSub(NNSG3dResTex *inResTex,const NNSG3dResDictTexData* pData)
 {
-	// ƒIƒtƒZƒbƒg’l
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 	u32 offset = (pData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK)<<3;
 	offset += NNS_GfdGetTexKeyAddr( inResTex->texInfo.vramKey );
 	return (void*)(offset);
@@ -508,12 +508,12 @@ static void* GetTexStartVRAMAdrSub(NNSG3dResTex *inResTex,const NNSG3dResDictTex
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ÆƒeƒNƒXƒ`ƒƒ–¼‚©‚çƒeƒNƒZƒ‹ŠJnVRAMƒAƒhƒŒƒX‚ğŠm’è‚·‚é
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¨ãƒ†ã‚¯ã‚¹ãƒãƒ£åã‹ã‚‰ãƒ†ã‚¯ã‚»ãƒ«é–‹å§‹VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç¢ºå®šã™ã‚‹
  *
- *@param	inResTexFƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *@param	name    FƒeƒNƒXƒ`ƒƒ–¼
+ *@param	inResTexï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *@param	name    ï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£å
  *
- *@return	void*	: ƒAƒhƒŒƒX
+ *@return	void*	: ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //-----------------------------------------------------------------------------
@@ -522,15 +522,15 @@ void* GetTexStartVRAMAdrByName(NNSG3dResTex *inResTex, const char *name)
 	NNSG3dResName tmpResName;
 	const NNSG3dResDictTexData* pData;
 
-	//ƒeƒNƒXƒ`ƒƒ‚ÌÀ‘Ì‚ğƒT[ƒ`
-	SetResName(&tmpResName,name);	//•¶š—ñ‚ğNNSG3dResName‚É•ÏŠ·
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å®Ÿä½“ã‚’ã‚µãƒ¼ãƒ
+	SetResName(&tmpResName,name);	//æ–‡å­—åˆ—ã‚’NNSG3dResNameã«å¤‰æ›
 	pData = NNS_G3dGetTexDataByName( inResTex, &tmpResName );
 
 	if (pData == NULL){
 		return NULL;
 	}
 
-	//ƒAƒhƒŒƒX‚ğZo
+	//ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 	return GetTexStartVRAMAdrSub(inResTex, pData);
 }
 
@@ -538,23 +538,23 @@ void* GetTexStartVRAMAdrByName(NNSG3dResTex *inResTex, const char *name)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ÆƒeƒNƒXƒ`ƒƒ‚h‚c‚©‚çƒeƒNƒZƒ‹ŠJnVRAMƒAƒhƒŒƒX‚ğŠm’è‚·‚é
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ï¼©ï¼¤ã‹ã‚‰ãƒ†ã‚¯ã‚»ãƒ«é–‹å§‹VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç¢ºå®šã™ã‚‹
  *
- *@param	inResTexFƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *@param	inIndex FƒeƒNƒXƒ`ƒƒ‚h‚c
+ *@param	inResTexï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *@param	inIndex ï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ï¼©ï¼¤
  *
- *@return	void*	: ƒAƒhƒŒƒX
+ *@return	void*	: ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //-----------------------------------------------------------------------------
 void* GetTexStartVRAMAdr(NNSG3dResTex *inResTex, const u8 inIndex)
 {
-	//ƒeƒNƒXƒ`ƒƒ‚ÌÀ‘Ì‚ğƒT[ƒ`
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å®Ÿä½“ã‚’ã‚µãƒ¼ãƒ
 	const NNSG3dResDictTexData* pData = NNS_G3dGetTexDataByIdx( inResTex, inIndex );
 	if (pData == NULL){
 		return NULL;
 	}
-	//ƒAƒhƒŒƒX‚ğZo
+	//ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 	return GetTexStartVRAMAdrSub(inResTex, pData);
 }
 
@@ -563,12 +563,12 @@ void* GetTexStartVRAMAdr(NNSG3dResTex *inResTex, const u8 inIndex)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒTƒCƒY‚ğŠm’è‚·‚éZoŠÖ”
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºã‚’ç¢ºå®šã™ã‚‹ç®—å‡ºé–¢æ•°
  *
- *@param	inResTexFƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *@param	inIndex FGetTexByteSize & GetTexByteSizeByName‚©‚ç“n‚³‚ê‚éƒ|ƒCƒ“ƒ^
+ *@param	inResTexï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *@param	inIndex ï¼šGetTexByteSize & GetTexByteSizeByNameã‹ã‚‰æ¸¡ã•ã‚Œã‚‹ãƒã‚¤ãƒ³ã‚¿
  *
- *@return	int	: ƒeƒNƒXƒ`ƒƒƒTƒCƒY
+ *@return	int	: ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
  *
  */
 //-----------------------------------------------------------------------------
@@ -579,32 +579,32 @@ static int GetTexByteSizeSub(NNSG3dResTex *inResTex, const NNSG3dResDictTexData*
 	u32 t_size,s_size;
 	u32 texel_size;
 	
-	//ƒtƒH[ƒ}ƒbƒg‚ğ’²‚×‚é
+	//ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’èª¿ã¹ã‚‹
 	format = (pData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEXFMT_MASK)>>NNS_G3D_TEXIMAGE_PARAM_TEXFMT_SHIFT;
 #ifdef VRAM_TRANSFER_ANM_OS_PRINT_ON
 	OS_Printf("TEX_FORMAT_IS:%d\n",format);	
 #endif
 	
-	//ƒtƒH[ƒ}ƒbƒg‚É]‚¢A1ƒeƒNƒZƒ‹•ª‚Ìƒf[ƒ^—Ê‚ğŒˆ’è
+	//ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¾“ã„ã€1ãƒ†ã‚¯ã‚»ãƒ«åˆ†ã®ãƒ‡ãƒ¼ã‚¿é‡ã‚’æ±ºå®š
 	switch(format){
 	case GX_TEXFMT_PLTT4:
-		//4ƒeƒNƒZƒ‹1ƒoƒCƒg
+		//4ãƒ†ã‚¯ã‚»ãƒ«1ãƒã‚¤ãƒˆ
 		texel_size = 4;
 		break;
 	case GX_TEXFMT_PLTT16:
-		//2ƒeƒNƒZƒ‹1ƒoƒCƒg
+		//2ãƒ†ã‚¯ã‚»ãƒ«1ãƒã‚¤ãƒˆ
 		texel_size = 2;
 		break;
 	case GX_TEXFMT_PLTT256:
-		//1ƒeƒNƒZƒ‹1ƒoƒCƒg
+		//1ãƒ†ã‚¯ã‚»ãƒ«1ãƒã‚¤ãƒˆ
 		texel_size = 1;
 		break;
 	case GX_TEXFMT_A3I5:
-		//1ƒeƒNƒZƒ‹1ƒoƒCƒg
+		//1ãƒ†ã‚¯ã‚»ãƒ«1ãƒã‚¤ãƒˆ
 		texel_size = 1;
 		break;
 	case GX_TEXFMT_A5I3:
-		//1ƒeƒNƒZƒ‹1ƒoƒCƒg
+		//1ãƒ†ã‚¯ã‚»ãƒ«1ãƒã‚¤ãƒˆ
 		texel_size = 1;
 		break;
 	default:
@@ -614,19 +614,19 @@ static int GetTexByteSizeSub(NNSG3dResTex *inResTex, const NNSG3dResDictTexData*
 		return 0;
 	}
 	
-	//ƒeƒNƒXƒ`ƒƒ‚Ì‰¡ƒTƒCƒY‚ğæ“¾
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ¨ªã‚µã‚¤ã‚ºã‚’å–å¾—
 	s_size = (pData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_S_SIZE_MASK)>>NNS_G3D_TEXIMAGE_PARAM_S_SIZE_SHIFT;
 	s_size <<= 4;
 #ifdef VRAM_TRANSFER_ANM_OS_PRINT_ON
 	OS_Printf("TEX_S_SIZE_IS:%d\n",s_size);
 #endif
-	//ƒeƒNƒXƒ`ƒƒ‚ÌcƒTƒCƒY‚ğæ“¾
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç¸¦ã‚µã‚¤ã‚ºã‚’å–å¾—
 	t_size = (pData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_T_SIZE_MASK)>>NNS_G3D_TEXIMAGE_PARAM_T_SIZE_SHIFT;
 	t_size <<= 4;
 #ifdef VRAM_TRANSFER_ANM_OS_PRINT_ON
 	OS_Printf("TEX_T_SIZE_IS:%d\n",t_size);
 #endif
-	//ƒoƒCƒgƒTƒCƒY‚ğŒvZ
+	//ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’è¨ˆç®—
 	byte_size = (s_size*t_size)/texel_size;
 #ifdef VRAM_TRANSFER_ANM_OS_PRINT_ON
 	OS_Printf("TEX_BYTE_SIZE_IS:%d\n",byte_size);
@@ -640,33 +640,33 @@ static int GetTexByteSizeSub(NNSG3dResTex *inResTex, const NNSG3dResDictTexData*
 
 //==============================================================================
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ÆƒeƒNƒXƒ`ƒƒ‚h‚c‚©‚çŠm’è‚·‚é
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ï¼©ï¼¤ã‹ã‚‰ç¢ºå®šã™ã‚‹
  *
- * @param   inResTex	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- * @param   inIndex		ƒeƒNƒXƒ`ƒƒ‚h‚c
+ * @param   inResTex	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ * @param   inIndex		ãƒ†ã‚¯ã‚¹ãƒãƒ£ï¼©ï¼¤
  *
- * @retval  int			ƒeƒNƒXƒ`ƒƒƒTƒCƒY
+ * @retval  int			ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
  */
 //==============================================================================
 int GetTexByteSize(NNSG3dResTex *inResTex, const u8 inIndex)
 {
 	
-	//ƒeƒNƒXƒ`ƒƒ‚ÌÀ‘Ì‚ğƒT[ƒ`
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å®Ÿä½“ã‚’ã‚µãƒ¼ãƒ
 	const NNSG3dResDictTexData* pData = NNS_G3dGetTexDataByIdx( inResTex, inIndex );
 
-	//ƒTƒCƒY‚ğZo
+	//ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 	return GetTexByteSizeSub(inResTex, pData);
 
 }
 
 //==============================================================================
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ÆƒeƒNƒXƒ`ƒƒ–¼‚©‚çŠm’è‚·‚é
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¨ãƒ†ã‚¯ã‚¹ãƒãƒ£åã‹ã‚‰ç¢ºå®šã™ã‚‹
  *
- * @param   inResTex	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX	
- * @param   name		ƒeƒNƒXƒ`ƒƒ–¼
+ * @param   inResTex	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹	
+ * @param   name		ãƒ†ã‚¯ã‚¹ãƒãƒ£å
  *
- * @retval  int			ƒeƒNƒXƒ`ƒƒƒTƒCƒY
+ * @retval  int			ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
  */
 //==============================================================================
 int GetTexByteSizeByName(NNSG3dResTex *inResTex, const char *name)
@@ -674,12 +674,12 @@ int GetTexByteSizeByName(NNSG3dResTex *inResTex, const char *name)
 	const NNSG3dResDictTexData* pData;
 	NNSG3dResName tmpResName;		
 	
-	SetResName(&tmpResName,name);		//•¶š—ñ‚ğNNSG3dResName‚É•ÏŠ·
+	SetResName(&tmpResName,name);		//æ–‡å­—åˆ—ã‚’NNSG3dResNameã«å¤‰æ›
 
-	//ƒeƒNƒXƒ`ƒƒ‚ÌÀ‘Ì‚ğƒT[ƒ`
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å®Ÿä½“ã‚’ã‚µãƒ¼ãƒ
 	pData = NNS_G3dGetTexDataByName( inResTex, &tmpResName );
 
-	//ƒTƒCƒY‚ğZo
+	//ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 	return GetTexByteSizeSub(inResTex, pData);
 
 }

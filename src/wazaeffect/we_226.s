@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_226.s
- * @brief	ƒoƒgƒ“ƒ^ƒbƒ`			226
+ * @brief	ãƒãƒˆãƒ³ã‚¿ãƒƒãƒ			226
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡ƒoƒgƒ“ƒ^ƒbƒ`			226
+//	â– ãƒãƒˆãƒ³ã‚¿ãƒƒãƒ			226
 //
 //
 // =============================================================================
@@ -30,14 +30,14 @@ WEST_BATONTATTI:
 
 	LOAD_PARTICLE_DROP	0,W_226_SPA
 	
-	///<‰Šú‰»ˆ—@“Ç‚Ýž‚Ýˆ—
+	///<åˆæœŸåŒ–å‡¦ç†ã€€èª­ã¿è¾¼ã¿å‡¦ç†
 	CATS_RES_INIT		BATONTATTI_RES_NO, BATONTATTI_ACT_NUM, BATONTATTI_RES_NUM, BATONTATTI_RES_NUM, BATONTATTI_RES_NUM, BATONTATTI_RES_NUM, 0, 0
 	CATS_CAHR_RES_LOAD	BATONTATTI_RES_NO, EFFECT_226_NCGR_BIN
 	CATS_PLTT_RES_LOAD	BATONTATTI_RES_NO, EFFECT_226_NCLR, 1
 	CATS_CELL_RES_LOAD	BATONTATTI_RES_NO, EFFECT_226_NCER_BIN
 	CATS_CELL_ANM_RES_LOAD	BATONTATTI_RES_NO, EFFECT_226_NANR_BIN
 	
-	///<“®ì
+	///<å‹•ä½œ
 	CATS_ACT_ADD		BATONTATTI_RES_NO, WEST_CSP_WE_226, EFFECT_226_NCGR_BIN, EFFECT_226_NCLR, EFFECT_226_NCER_BIN, EFFECT_226_NANR_BIN, 0, 0, 0,0,
 	
 	SE_L				SEQ_SE_DP_SUIKOMU
@@ -55,7 +55,7 @@ WEST_BATONTATTI:
 
 	WAIT_FLAG
 
-	///<”jŠüˆ—
+	///<ç ´æ£„å‡¦ç†
 	CATS_RES_FREE		BATONTATTI_RES_NO
 	
 	SEQEND

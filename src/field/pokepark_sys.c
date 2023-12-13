@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pokepark_sys.c
- * @brief	ƒ|ƒPƒp[ƒN§Œä
+ * @brief	ãƒã‚±ãƒ‘ãƒ¼ã‚¯åˆ¶å¾¡
  * @date	2006.06.08
  * @author	tamada GAME FREAK inc.
  */
@@ -52,8 +52,8 @@ typedef enum {
 typedef struct {
 	u16 monsno;
 	u8 enc_type;		///<PPENCTYPE
-	u8 enc_rate;		///<ƒGƒ“ƒJƒEƒ“ƒg—¦
-	u16 score;			///<•ß‚Ü‚¦‚½‚Æ‚«‚Ìƒ|ƒCƒ“ƒg
+	u8 enc_rate;		///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡
+	u16 score;			///<æ•ã¾ãˆãŸã¨ãã®ãƒã‚¤ãƒ³ãƒˆ
 	u8 type1;			///<
 	u8 type2;			///<
 }POKE_ENC_DATA;
@@ -98,12 +98,12 @@ static u32 GetCaptureScore(POKEPARK_CONTROL * ctrl);
 static u32 GetTimeScore(POKEPARK_CONTROL * ctrl);
 //============================================================================================
 //
-//			ŠO•”ŒöŠJŠÖ”
+//			å¤–éƒ¨å…¬é–‹é–¢æ•°
 //
 //============================================================================================
 //-------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒp[ƒNFƒQ[ƒ€ŠJnI
+ * @brief	ãƒã‚±ãƒ‘ãƒ¼ã‚¯ï¼šã‚²ãƒ¼ãƒ é–‹å§‹ï¼
  */
 //-------------------------------------------------------------
 void PokeParkSys_Init(FIELDSYS_WORK * fsys)
@@ -119,7 +119,7 @@ void PokeParkSys_Init(FIELDSYS_WORK * fsys)
 
 //-------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒp[ƒNFƒQ[ƒ€I—¹I
+ * @brief	ãƒã‚±ãƒ‘ãƒ¼ã‚¯ï¼šã‚²ãƒ¼ãƒ çµ‚äº†ï¼
  */
 //-------------------------------------------------------------
 void PokeParkSys_Finish(FIELDSYS_WORK * fsys)
@@ -145,7 +145,7 @@ void PokeParkSys_Finish(FIELDSYS_WORK * fsys)
 
 //-------------------------------------------------------------
 /**
- * @brief	ƒGƒ“ƒJƒEƒ“ƒg”»’è
+ * @brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆåˆ¤å®š
  */
 //-------------------------------------------------------------
 BOOL PokeParkSys_CheckEncount(FIELDSYS_WORK * fsys, int x, int z)
@@ -159,7 +159,7 @@ BOOL PokeParkSys_CheckEncount(FIELDSYS_WORK * fsys, int x, int z)
 
 //-------------------------------------------------------------
 /**
- * @brief	í“¬ŠJnİ’è
+ * @brief	æˆ¦é—˜é–‹å§‹è¨­å®š
  */
 //-------------------------------------------------------------
 BATTLE_PARAM * PokeParkSys_SetBattleParam(FIELDSYS_WORK * fsys)
@@ -169,7 +169,7 @@ BATTLE_PARAM * PokeParkSys_SetBattleParam(FIELDSYS_WORK * fsys)
 
 //-------------------------------------------------------------
 /**
- * @brief	í“¬Œ‹‰Ê‚ğ”½‰f‚·‚é
+ * @brief	æˆ¦é—˜çµæœã‚’åæ˜ ã™ã‚‹
  */
 //-------------------------------------------------------------
 void PokeParkSys_ReflectBattleResult(FIELDSYS_WORK * fsys, BATTLE_PARAM * bp)
@@ -179,7 +179,7 @@ void PokeParkSys_ReflectBattleResult(FIELDSYS_WORK * fsys, BATTLE_PARAM * bp)
 
 //-------------------------------------------------------------
 /**
- * @brief	Œ»İ‚Ìƒ{[ƒ‹‚Ì”‚ğæ“¾‚·‚é
+ * @brief	ç¾åœ¨ã®ãƒœãƒ¼ãƒ«ã®æ•°ã‚’å–å¾—ã™ã‚‹
  */
 //-------------------------------------------------------------
 int PokeParkSys_GetBallCount(FIELDSYS_WORK * fsys)
@@ -189,7 +189,7 @@ int PokeParkSys_GetBallCount(FIELDSYS_WORK * fsys)
 
 //-------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚²‚Æ‚ÉŒÅ—L‚Ì“¾“_‚ğæ“¾
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã”ã¨ã«å›ºæœ‰ã®å¾—ç‚¹ã‚’å–å¾—
  */
 //-------------------------------------------------------------
 int PokeParkSys_GetCaptureScore(FIELDSYS_WORK * fsys)
@@ -198,7 +198,7 @@ int PokeParkSys_GetCaptureScore(FIELDSYS_WORK * fsys)
 }
 //-------------------------------------------------------------
 /**
- * @brief	ŠÔ‚É‚æ‚é“¾“_‚ğæ“¾
+ * @brief	æ™‚é–“ã«ã‚ˆã‚‹å¾—ç‚¹ã‚’å–å¾—
  */
 //-------------------------------------------------------------
 int PokeParkSys_GetTimeScore(FIELDSYS_WORK * fsys)
@@ -208,7 +208,7 @@ int PokeParkSys_GetTimeScore(FIELDSYS_WORK * fsys)
 
 //-------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒCƒv‚É‚æ‚é“¾“_‚ğæ“¾
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ã‚¤ãƒ—ã«ã‚ˆã‚‹å¾—ç‚¹ã‚’å–å¾—
  */
 //-------------------------------------------------------------
 int PokeParkSys_GetTypeScore(FIELDSYS_WORK * fsys)
@@ -273,7 +273,7 @@ static void SetUpEncData(FIELDSYS_WORK * fsys, POKEPARK_CONTROL * ctrl)
 
 //-------------------------------------------------------------
 /**
- * @brief	•ß‚Ü‚¦‚½”‚ğ”‚¦‚é
+ * @brief	æ•ã¾ãˆãŸæ•°ã‚’æ•°ãˆã‚‹
  */
 //-------------------------------------------------------------
 static CountCaptured(POKEPARK_CONTROL * ctrl)
@@ -290,7 +290,7 @@ static CountCaptured(POKEPARK_CONTROL * ctrl)
 
 //============================================================================================
 //
-//		ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN•í“¬İ’è
+//		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ï¼†æˆ¦é—˜è¨­å®š
 //
 //============================================================================================
 //-------------------------------------------------------------
@@ -333,7 +333,7 @@ static PPENCTYPE GetPokeParkEncType(FIELDSYS_WORK * fsys, int x, int z)
 
 //-------------------------------------------------------------
 /**
- * @brief	ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN
+ * @brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
  */
 //-------------------------------------------------------------
 static BOOL GetPokeParkEncount(FIELDSYS_WORK * fsys, POKEPARK_CONTROL * ctrl, int x, int z)
@@ -371,13 +371,13 @@ static BOOL GetPokeParkEncount(FIELDSYS_WORK * fsys, POKEPARK_CONTROL * ctrl, in
 			}
 		}
 	}
-	GF_ASSERT(0);	//‚±‚±‚É‚­‚é‚±‚Æ‚Í‚ ‚è‚¦‚È‚¢‚Í‚¸
+	GF_ASSERT(0);	//ã“ã“ã«ãã‚‹ã“ã¨ã¯ã‚ã‚Šãˆãªã„ã¯ãš
 	return FALSE;
 }
 
 //-------------------------------------------------------------
 /**
- * @brief	í“¬Œ‹‰Ê‚ğ”½‰f‚·‚é
+ * @brief	æˆ¦é—˜çµæœã‚’åæ˜ ã™ã‚‹
  */
 //-------------------------------------------------------------
 static void ReflectBattleResult(FIELDSYS_WORK * fsys, BATTLE_PARAM * bp, POKEPARK_CONTROL * ctrl)
@@ -411,7 +411,7 @@ static void ReflectBattleResult(FIELDSYS_WORK * fsys, BATTLE_PARAM * bp, POKEPAR
 
 //-------------------------------------------------------------
 /**
- * @brief	í“¬ŠJnİ’è
+ * @brief	æˆ¦é—˜é–‹å§‹è¨­å®š
  */
 //-------------------------------------------------------------
 static BATTLE_PARAM * SetBattleParam(FIELDSYS_WORK * fsys, POKEPARK_CONTROL * ctrl)
@@ -434,12 +434,12 @@ static BATTLE_PARAM * SetBattleParam(FIELDSYS_WORK * fsys, POKEPARK_CONTROL * ct
 
 //============================================================================================
 //
-//		ƒXƒRƒA”»’è
+//		ã‚¹ã‚³ã‚¢åˆ¤å®š
 //
 //============================================================================================
 enum {
-	POINT_EACH_TYPE = 50,			///<ƒ^ƒCƒv–ˆ‚Ì“¾“_
-	POINT_DIFFERENT_TYPE = 200,		///<‘O‚Æˆá‚¤ƒ^ƒCƒv‚Ì‚Æ‚«‚Ì“¾“_
+	POINT_EACH_TYPE = 50,			///<ã‚¿ã‚¤ãƒ—æ¯ã®å¾—ç‚¹
+	POINT_DIFFERENT_TYPE = 200,		///<å‰ã¨é•ã†ã‚¿ã‚¤ãƒ—ã®ã¨ãã®å¾—ç‚¹
 };
 //-------------------------------------------------------------
 //-------------------------------------------------------------
@@ -455,7 +455,7 @@ static u32 GetCaptureScore(POKEPARK_CONTROL * ctrl)
 
 //-------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒCƒv‚É‚æ‚é“¾“_ŒvZ
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ã‚¤ãƒ—ã«ã‚ˆã‚‹å¾—ç‚¹è¨ˆç®—
  */
 //-------------------------------------------------------------
 static u32 GetTypeScore(POKEPARK_CONTROL * ctrl)
@@ -470,7 +470,7 @@ static u32 GetTypeScore(POKEPARK_CONTROL * ctrl)
 			if (ctrl->get_work[j] == i) {
 				new_type1 = ctrl->EncData[j].type1;
 				new_type2 = ctrl->EncData[j].type2;
-				if (i != 1	/* ˆê•C–Ú‚Í‘ÎÛ‚É‚È‚ç‚È‚¢ */
+				if (i != 1	/* ä¸€åŒ¹ç›®ã¯å¯¾è±¡ã«ãªã‚‰ãªã„ */
 						&& type1 != new_type1
 						&& type1 != new_type2
 						&& type2 != new_type1

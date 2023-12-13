@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_c07r0801evc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c07r0801_woman
 _EVENT_DATA		ev_c07r0801_boy
@@ -29,12 +29,12 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*	���������o����													*/
+/*	お洒落お姉さん													*/
 /********************************************************************/
 ev_c07r0801_woman:
 	_TALK_OBJ_START
 
-	//�тÂ��낢�����Ɏ󂯂�
+	//毛づくろいを既に受けた
 	_IF_FLAGON_JUMP		TMFLG_C07R0801_DRESSING,ev_c07r0801_woman_after_dressing
 
 	_TALKMSG		msg_c07r0801_woman2_01
@@ -44,7 +44,7 @@ ev_c07r0801_woman:
 	_TALKMSG		msg_c07r0801_woman2_02
 	_TALK_CLOSE
 
-	//�t�F�[�h�A�E�g���ă|�P�������X�g�Ăяo��
+	//フェードアウトしてポケモンリスト呼び出し
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	_POKELIST_SET_PROC
@@ -53,11 +53,11 @@ ev_c07r0801_woman:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//�L�����Z�����ꂽ�H
+	//キャンセルされた？
 	_IFVAL_JUMP		LOCALWORK0,EQ,0xff,ev_c07r0801_woman_cancel
-	//�^�}�S�`�F�b�N
+	//タマゴチェック
 	_TEMOTI_MONSNO	LOCALWORK0,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c07r0801_woman_tamago	//�^�}�S
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c07r0801_woman_tamago	//タマゴ
 
 	_TALKMSG		msg_c07r0801_woman2_04
 	_TALK_CLOSE
@@ -73,23 +73,23 @@ ev_c07r0801_woman:
 	_NICK_NAME		0,LOCALWORK0
 	_TALKMSG		msg_c07r0801_woman2_05
 	
-	_FLAG_SET		TMFLG_C07R0801_DRESSING	//1���t���O�Z�b�g
+	_FLAG_SET		TMFLG_C07R0801_DRESSING	//1日フラグセット
 
-	//�Ȃ��x�A�b�v
+	//なつき度アップ
 	_ADD_NATSUKI	3,LOCALWORK0
 	
-	//�A�N�Z�T���[�Q�b�g
+	//アクセサリーゲット
 	_DRESSING_IMC_ACCE_CHECK	SCWK_TEMP0
-	_IFVAL_JUMP		SCWK_TEMP0,EQ,0xffff,ev_c07r0801_woman_dressing_end	//�S�Ď擾�ς�
+	_IFVAL_JUMP		SCWK_TEMP0,EQ,0xffff,ev_c07r0801_woman_dressing_end	//全て取得済み
 	_TALKMSG		msg_c07r0801_woman2_08
-	//�A�N�Z�T���[�擾�����C�x���g(SCWK_TEMP0=�A�C�e���i���o�[�ASCWK_TEMP1=���������Ă���)
+	//アクセサリー取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
 	_LDVAL			SCWK_TEMP1,1
 	_CHG_COMMON_SCR	SCRID_ACCE_EVENT_KEYWAIT
 
 	_JUMP			ev_c07r0801_woman_dressing_end
 
 
-//�тÂ��낢�����Ɏ󂯂�
+//毛づくろいを既に受けた
 ev_c07r0801_woman_after_dressing:
 	_TALKMSG		msg_c07r0801_woman2_09
 	_LAST_KEYWAIT
@@ -97,7 +97,7 @@ ev_c07r0801_woman_after_dressing:
 	_TALK_OBJ_END
 	_END
 
-//�^�}�S��I������
+//タマゴを選択した
 ev_c07r0801_woman_tamago:
 	_TALKMSG		msg_c07r0801_woman2_07
 	_LAST_KEYWAIT
@@ -105,7 +105,7 @@ ev_c07r0801_woman_tamago:
 	_TALK_OBJ_END
 	_END
 
-//�тÂ��낢��f����
+//毛づくろいを断った
 ev_c07r0801_woman_cancel:
 	_TALKMSG		msg_c07r0801_woman2_03
 	_LAST_KEYWAIT
@@ -113,7 +113,7 @@ ev_c07r0801_woman_cancel:
 	_TALK_OBJ_END
 	_END
 
-//�тÂ��낢�C�x���g����I��
+//毛づくろいイベント正常終了
 ev_c07r0801_woman_dressing_end:
 	_TALKMSG		msg_c07r0801_woman2_06
 	_LAST_KEYWAIT
@@ -122,14 +122,14 @@ ev_c07r0801_woman_dressing_end:
 	_END
 
 /********************************************************************/
-/*	�������N														*/
+/*	活発少年														*/
 /********************************************************************/
 ev_c07r0801_boy:
 	_EASY_OBJ_MSG	msg_c07r0801_boy2_01
 	_END
 
 /********************************************************************/
-/*	�p�`���X														*/
+/*	パチリス														*/
 /********************************************************************/
 ev_c07r0801_poke:
 	_EASY_VOICE_MSG	msg_c07r0801_patiritusu_01,MONSNO_PATIRISSU,0

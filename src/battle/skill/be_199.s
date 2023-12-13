@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_199.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			199@‚·‚×‚Ä‚Ìƒ|ƒPƒ‚ƒ“‚ª¬—ó‘Ô‚É‚È‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			199ã€€ã™ã¹ã¦ã®ãƒã‚±ãƒ¢ãƒ³ãŒæ··ä¹±çŠ¶æ…‹ã«ãªã‚‹
  *
  *@author	HisashiSogabe
  *@data		2006.02.09

@@ -13,7 +13,7 @@
 #
 # $Log: Makefile,v $
 # Revision 1.2  2005/08/23 04:42:25  yasu
-# NITROWIFI_INSTALL_ROOT ŠÖ˜A‚ÌC³
+# NITROWIFI_INSTALL_ROOT é–¢é€£ã®ä¿®æ­£
 #
 # Revision 1.1  2005/08/04 08:17:23  yada
 # stub added

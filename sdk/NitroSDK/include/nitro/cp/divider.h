@@ -12,7 +12,7 @@
 
   $Log: divider.h,v $
   Revision 1.27  2006/09/21 08:38:19  okubata_ryoma
-  os.h‚ğƒCƒ“ƒNƒ‹[ƒh‚µ‚Ä‚¢‚½‚Ì‚ğioreg.h‚É•ÏX
+  os.hã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã—ã¦ã„ãŸã®ã‚’ioreg.hã«å¤‰æ›´
 
   Revision 1.26  2006/08/09 06:50:53  takano_makoto
   delete unused macro SDK_CP_NO_SAFE
@@ -21,7 +21,7 @@
   do-indent
 
   Revision 1.24  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.23  2005/02/28 05:26:03  yosizaki
   do-indent.
@@ -66,31 +66,31 @@
   convert INLINE to inline
 
   Revision 1.9  2003/12/08 12:09:48  yada
-  ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹•ÏX
+  ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å¤‰æ›´
 
   Revision 1.8  2003/11/18 10:43:27  nishida_kenji
-  ¬ƒoƒO‚ÌC³
+  å°ãƒã‚°ã®ä¿®æ­£
 
   Revision 1.7  2003/11/14 04:02:16  yada
-  ƒŒƒWƒXƒ^‚ÌƒAƒNƒZƒXƒ}ƒNƒ REG_XXX ¨ reg_XXX ‚Æ‚µ‚½B
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®ã‚¢ã‚¯ã‚»ã‚¹ãƒã‚¯ãƒ­ REG_XXX â†’ reg_XXX ã¨ã—ãŸã€‚
 
   Revision 1.6  2003/11/05 00:58:16  yada
-  ƒLƒƒƒXƒg‚ğŒµ‚µ‚­B
+  ã‚­ãƒ£ã‚¹ãƒˆã‚’å³ã—ãã€‚
 
   Revision 1.5  2003/11/04 11:06:42  yada
-  CP_GetDivRemainderImm_8 ‚Ì inline ‚ğ–Y‚ê‚Ä‚¢‚½‚Ì‚ÅC³B
+  CP_GetDivRemainderImm_8 ã® inline ã‚’å¿˜ã‚Œã¦ã„ãŸã®ã§ä¿®æ­£ã€‚
 
   Revision 1.4  2003/11/04 09:19:42  yada
-  ˆê•”‚Ì’è”‚É(u32)‚ğ‚Â‚¯‚½
+  ä¸€éƒ¨ã®å®šæ•°ã«(u32)ã‚’ã¤ã‘ãŸ
 
   Revision 1.3  2003/10/30 11:42:45  yada
-  ƒŒƒWƒXƒ^‚ÌŒ^‚ÉREGTypexx ‚ğg‚¤‚æ‚¤‚É‚µ‚½B
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®å‹ã«REGTypexx ã‚’ä½¿ã†ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.2  2003/10/30 04:59:49  yasu
-  ƒŒƒWƒXƒ^’è‹`ƒtƒ@ƒCƒ‹‚Ì•ÏX $IrisSDK/include/iris/hw ‰º
+  ãƒ¬ã‚¸ã‚¹ã‚¿å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®å¤‰æ›´ $IrisSDK/include/iris/hw ä¸‹
 
   Revision 1.1  2003/10/30 00:37:52  yada
-  ‰”Åì¬
+  åˆç‰ˆä½œæˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

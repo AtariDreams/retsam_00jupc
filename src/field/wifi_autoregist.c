@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wifi_autoregist.c
- * @bfief	WIFI—F’Bè’ “o˜^   ->  íœ‚Íƒm[ƒgapp‚Ö
+ * @bfief	WIFIå‹é”æ‰‹å¸³ç™»éŒ²   ->  å‰Šé™¤ã¯ãƒãƒ¼ãƒˆappã¸
  * @author	k.ohno
  * @date	06.04.16
  */
@@ -40,11 +40,11 @@
 #include "savedata/frontier_savedata.h"
 
 
-// ‰ï˜bƒEƒBƒ“ƒhƒE
-#define COMM_MESFRAME_PAL     ( 10 )         //  ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE
-#define COMM_MENUFRAME_PAL    ( 11 )         //  ƒƒjƒ…[ƒEƒCƒ“ƒhƒE
-#define COMM_MESFONT_PAL      ( 12 )         //  ƒƒbƒZ[ƒWƒtƒHƒ“ƒg
-#define COMM_SYSFONT_PAL	  ( 13 )         //  ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define COMM_MESFRAME_PAL     ( 10 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define COMM_MENUFRAME_PAL    ( 11 )         //  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define COMM_MESFONT_PAL      ( 12 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆ
+#define COMM_SYSFONT_PAL	  ( 13 )         //  ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
 #define	COMM_TALK_WIN_CGX_SIZE	( 18+12 )
 #define	COMM_TALK_WIN_CGX_NUM	( 512 - COMM_TALK_WIN_CGX_SIZE)
 #define	COMM_MSG_WIN_PX		( 2 )
@@ -55,7 +55,7 @@
 #define	COMM_MSG_WIN_CGX		( (COMM_TALK_WIN_CGX_NUM - 73) - ( COMM_MSG_WIN_SX * COMM_MSG_WIN_SY ) )
 #define TALK_MESSAGE_BUF_NUM (110)
 
-enum {    // ©“®“o˜^
+enum {    // è‡ªå‹•ç™»éŒ²
     WIFINOTE_MODE_AUTOINPUT_CHECK,
     WIFINOTE_MODE_AUTOINPUT_INIT,
     WIFINOTE_MODE_AUTOINPUT_YESNO,
@@ -76,16 +76,16 @@ enum {    // ©“®“o˜^
 
 typedef struct{
 	BMPLIST_DATA*   menulist;
-    BMPLIST_WORK* lw;		// BMPƒƒjƒ…[ƒ[ƒN
+    BMPLIST_WORK* lw;		// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
     STRBUF*         pExpStrBuf;
-	STRBUF			*TalkString;							// ‰ï˜bƒƒbƒZ[ƒW—p
-	GF_BGL_BMPWIN			MsgWin;									// ‰ï˜bƒEƒCƒ“ƒhƒE
-	GF_BGL_BMPWIN			listWin;									// ‰ï˜bƒEƒCƒ“ƒhƒE
+	STRBUF			*TalkString;							// ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
+	GF_BGL_BMPWIN			MsgWin;									// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN			listWin;									// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
     FIELDSYS_WORK* pFSys;
     SAVEDATA*  pSaveData;
-	WORDSET			*WordSet;					// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *MsgManager;				// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	int	MsgIndex;								// I—¹ŒŸo—pƒ[ƒN
+	WORDSET			*WordSet;					// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *MsgManager;				// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	int	MsgIndex;								// çµ‚äº†æ¤œå‡ºç”¨ãƒ¯ãƒ¼ã‚¯
     BMPMENU_WORK* pYesNoWork;
     int seq;
     int checkFriend[COMM_MACHINE_MAX];
@@ -103,7 +103,7 @@ static void BmpListMoveSeCall(BMPLIST_WORK * wk,u32 param,u8 mode);
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚µ‚Ä‚¢‚él‚ÌƒtƒŒƒ“ƒhƒR[ƒhŒŸ¸  “o˜^‚·‚él‚ªŒ©‚Â‚©‚Á‚½‚ç“o˜^
+ * $brief   æ¥ç¶šã—ã¦ã„ã‚‹äººã®ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰æ¤œæŸ»  ç™»éŒ²ã™ã‚‹äººãŒè¦‹ã¤ã‹ã£ãŸã‚‰ç™»éŒ²
             WIFINOTE_MODE_AUTOINPUT_CHECK
  * @param   wk		
  * @param   seq		
@@ -120,7 +120,7 @@ static BOOL _friendAutoInputCheck( EV_WIFIAUTOREG_WORK* wk)
     if(FALSE == dwc_friendAutoInputCheck(wk->pSaveData, wk->checkFriend, HEAPID_FIELD)){
         return TRUE;
     }
-    wk->addFriendNo = 0;  // “o˜^ŠJn
+    wk->addFriendNo = 0;  // ç™»éŒ²é–‹å§‹
     TalkWinGraphicSet(
         wk->pFSys->bgl, GF_BGL_FRAME3_M, COMM_TALK_WIN_CGX_NUM,
         COMM_MESFRAME_PAL, CONFIG_GetWindowType(SaveData_GetConfig(wk->pSaveData)), HEAPID_FIELD );
@@ -133,7 +133,7 @@ static BOOL _friendAutoInputCheck( EV_WIFIAUTOREG_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ˆêl‚¸‚Â“o˜^‚·‚é‚©‚Ç‚¤‚©–â‚¢‡‚í‚¹‚é
+ * $brief   ä¸€äººãšã¤ç™»éŒ²ã™ã‚‹ã‹ã©ã†ã‹å•ã„åˆã‚ã›ã‚‹
             WIFINOTE_MODE_AUTOINPUT_INIT
  * @param   wk		
  * @param   seq		
@@ -154,12 +154,12 @@ static BOOL _friendAutoInputInit( EV_WIFIAUTOREG_WORK* wk )
             break;
         }
     }
-    if(wk->addFriendNo == -1){  // “o˜^Š®—¹
+    if(wk->addFriendNo == -1){  // ç™»éŒ²å®Œäº†
         return TRUE;
     }
 
 
-	//è’ ‚ğ‚Á‚Ä‚¢‚½‚ç
+	//æ‰‹å¸³ã‚’æŒã£ã¦ã„ãŸã‚‰
 	if( MyItem_CheckItem( SaveData_GetMyItem(wk->pSaveData),
 							ITEM_TOMODATITETYOU,1,HEAPID_FIELD) == TRUE ){
         pMyStatus = CommInfoGetMyStatus(wk->addFriendNo);
@@ -168,7 +168,7 @@ static BOOL _friendAutoInputInit( EV_WIFIAUTOREG_WORK* wk )
         wk->seq = WIFINOTE_MODE_AUTOINPUT_YESNO;
         return FALSE;
     }
-    // ‚Á‚Ä‚È‚¢‚È‚çAUTO
+    // æŒã£ã¦ãªã„ãªã‚‰AUTO
     {
         WIFI_LIST* pList = SaveData_GetWifiListData(wk->pSaveData);
         for(i = 0; i < WIFILIST_FRIEND_MAX;i++){
@@ -185,7 +185,7 @@ static BOOL _friendAutoInputInit( EV_WIFIAUTOREG_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   “o˜^‚ÌYESNOŒÄ‚Ño‚µ
+ * $brief   ç™»éŒ²ã®YESNOå‘¼ã³å‡ºã—
             WIFINOTE_MODE_AUTOINPUT_CHECK
  * @param   wk		
  * @param   seq		
@@ -214,7 +214,7 @@ static BOOL _friendAutoInputYesNo( EV_WIFIAUTOREG_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   “o˜^YESNO‘Ò‚¿
+ * $brief   ç™»éŒ²YESNOå¾…ã¡
  * @param   wk		
  * @param   seq		
  * @retval  int 			
@@ -228,10 +228,10 @@ static BOOL _friendAutoInputWait( EV_WIFIAUTOREG_WORK* wk )
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_FIELD);
 
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return FALSE;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
-        //‘‚«‚İ
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
+        //æ›¸ãè¾¼ã¿
         WIFI_LIST* pList = SaveData_GetWifiListData(wk->pSaveData);
         for(i = 0; i < WIFILIST_FRIEND_MAX;i++){
             if( !WifiList_IsFriendData( pList, i ) ){
@@ -241,7 +241,7 @@ static BOOL _friendAutoInputWait( EV_WIFIAUTOREG_WORK* wk )
             }
         }
         if(i == WIFILIST_FRIEND_MAX){
-            // ‘‚«‚ß‚È‚¢ê‡
+            // æ›¸ãè¾¼ã‚ãªã„å ´åˆ
             _messagePrint(wk, msg_wifi_note_add_02);
             wk->seq = WIFINOTE_MODE_DEL_YESNO;
             return FALSE;
@@ -253,7 +253,7 @@ static BOOL _friendAutoInputWait( EV_WIFIAUTOREG_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   íœ‚·‚é‚©‚Ç‚¤‚©YESNO‘Ò‚¿  WIFINOTE_MODE_DEL_YESNO
+ * $brief   å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹YESNOå¾…ã¡  WIFINOTE_MODE_DEL_YESNO
  * @param   wk		
  * @param   seq		
  * @retval  int 			
@@ -275,7 +275,7 @@ static BOOL _anyOneDeleteYesNo( EV_WIFIAUTOREG_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   íœ‚·‚é‚©‚Ç‚¤‚©YESNO‘Ò‚¿  WIFINOTE_MODE_DEL_YESNO
+ * $brief   å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹YESNOå¾…ã¡  WIFINOTE_MODE_DEL_YESNO
  * @param   wk		
  * @param   seq		
  * @retval  int 			
@@ -290,13 +290,13 @@ static BOOL _anyOneDeleteWait( EV_WIFIAUTOREG_WORK* wk )
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_FIELD);
 
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return FALSE;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
         wk->seq = WIFINOTE_MODE_DELMENU_INIT;
-        // íœƒƒjƒ…
+        // å‰Šé™¤ãƒ¡ãƒ‹ãƒ¥
     }
-    else{  // ‚¢‚¢‚¦‚Ìê‡
+    else{  // ã„ã„ãˆã®å ´åˆ
         pMyStatus = CommInfoGetMyStatus(wk->addFriendNo);
         WORDSET_RegisterPlayerName(wk->WordSet, 0, pMyStatus);
         _messagePrint(wk, msg_wifi_note_add_03);
@@ -307,7 +307,7 @@ static BOOL _anyOneDeleteWait( EV_WIFIAUTOREG_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚ ‚«‚ç‚ß‚é‚©‚Ç‚¤‚©YESNO‘Ò‚¿  WIFINOTE_MODE_END_YESNO
+ * $brief   ã‚ãã‚‰ã‚ã‚‹ã‹ã©ã†ã‹YESNOå¾…ã¡  WIFINOTE_MODE_END_YESNO
  * @param   wk		
  * @param   seq		
  * @retval  int 			
@@ -329,7 +329,7 @@ static BOOL _exitYesNo( EV_WIFIAUTOREG_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚ ‚«‚ç‚ß‚é‚©‚Ç‚¤‚©‚ÌYESNOWAIT  WIFINOTE_MODE_END_WAIT
+ * $brief   ã‚ãã‚‰ã‚ã‚‹ã‹ã©ã†ã‹ã®YESNOWAIT  WIFINOTE_MODE_END_WAIT
  * @param   wk		
  * @param   seq		
  * @retval  int 			
@@ -344,12 +344,12 @@ static BOOL _exitWait( EV_WIFIAUTOREG_WORK* wk )
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_FIELD);
 
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return FALSE;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
         wk->seq = WIFINOTE_MODE_END;
     }
-    else{  // ‚¢‚¢‚¦‚Ìê‡
+    else{  // ã„ã„ãˆã®å ´åˆ
         _messagePrint(wk, msg_wifi_note_add_02);
         wk->seq = WIFINOTE_MODE_DEL_YESNO;
     }
@@ -358,7 +358,7 @@ static BOOL _exitWait( EV_WIFIAUTOREG_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   íœ‚·‚éƒŠƒXƒg•\¦
+ * $brief   å‰Šé™¤ã™ã‚‹ãƒªã‚¹ãƒˆè¡¨ç¤º
  * @param   wk		
  * @param   seq		
  * @retval  int 			
@@ -367,29 +367,29 @@ static BOOL _exitWait( EV_WIFIAUTOREG_WORK* wk )
 #define _TREASUREMENU_POSX    (19)
 #define _TREASUREMENU_POSY    (1)
 #define _TREASUREMENU_SIZE_X  (12)
-#define FLD_SYSFONT_PAL	     ( 13 )         //  ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
+#define FLD_SYSFONT_PAL	     ( 13 )         //  ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
 
-///”Ä—p‘I‘ğƒƒjƒ…[‚ÌƒŠƒXƒg
+///æ±ç”¨é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER MenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,					// 
-    WIFILIST_FRIEND_MAX,	// ƒŠƒXƒg€–Ú”
-    WIFILIST_FRIEND_MAX,	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,			// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
-    NULL,                   // ƒ[ƒN
+    WIFILIST_FRIEND_MAX,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    WIFILIST_FRIEND_MAX,	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,			// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+    NULL,                   // ãƒ¯ãƒ¼ã‚¯
 };
 
 
@@ -400,7 +400,7 @@ static BOOL _delMenuInit( EV_WIFIAUTOREG_WORK* wk )
     int count = WifiList_GetFriendDataNum(pList);
     int line = 5;
 
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     wk->menulist = BMP_MENULIST_Create( count+1, HEAPID_FIELD );
     GF_BGL_BmpWinAdd(wk->pFSys->bgl, &wk->listWin,
                      GF_BGL_FRAME3_M, _TREASUREMENU_POSX, _TREASUREMENU_POSY,
@@ -478,7 +478,7 @@ static BOOL _delMenuWait( EV_WIFIAUTOREG_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   íœ‚·‚é‚©‚Ç‚¤‚©YESNO‘Ò‚¿  WIFINOTE_MODE_END_YESNO
+ * $brief   å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹YESNOå¾…ã¡  WIFINOTE_MODE_END_YESNO
  * @param   wk		
  * @param   seq		
  * @retval  int 			
@@ -500,7 +500,7 @@ static BOOL _eraseYesNo( EV_WIFIAUTOREG_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   íœ‚·‚é‚©‚Ç‚¤‚©‚ÌYESNOWAIT  WIFINOTE_MODE_DELMENU_INIT
+ * $brief   å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã®YESNOWAIT  WIFINOTE_MODE_DELMENU_INIT
  * @param   wk		
  * @param   seq		
  * @retval  int 			
@@ -515,17 +515,17 @@ static BOOL _eraseWait( EV_WIFIAUTOREG_WORK* wk )
     STRBUF* pBuf;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_FIELD);
 
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return FALSE;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
-		//ƒtƒŒƒ“ƒh–ˆ‚É‚Âƒtƒƒ“ƒeƒBƒAƒf[ƒ^‚àíœ 2008.05.24(“y) matsuda
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
+		//ãƒ•ãƒ¬ãƒ³ãƒ‰æ¯ã«æŒã¤ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ‡ãƒ¼ã‚¿ã‚‚å‰Šé™¤ 2008.05.24(åœŸ) matsuda
 		FrontierRecord_ResetData(SaveData_GetFrontier(wk->pSaveData), wk->erasePos);
-        WifiList_ResetData(pList, wk->erasePos);  //Á‚·
-        // ÅŒã‚É’Ç‰Á
+        WifiList_ResetData(pList, wk->erasePos);  //æ¶ˆã™
+        // æœ€å¾Œã«è¿½åŠ 
         dwc_friendWrite(wk->pSaveData, wk->addFriendNo, WIFILIST_FRIEND_MAX-1, HEAPID_FIELD, FALSE);
         wk->seq = WIFINOTE_MODE_AUTOINPUT_INIT;
     }
-    else{  // ‚¢‚¢‚¦‚Ìê‡
+    else{  // ã„ã„ãˆã®å ´åˆ
         pMyStatus = CommInfoGetMyStatus(wk->addFriendNo);
         WORDSET_RegisterPlayerName(wk->WordSet, 0, pMyStatus);
         _messagePrint(wk, msg_wifi_note_add_03);
@@ -542,10 +542,10 @@ static BOOL _eraseWait( EV_WIFIAUTOREG_WORK* wk )
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	WIFIí“¬ƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX    k.ohnoì¬
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	WIFIæˆ¦é—˜ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹    k.ohnoä½œæˆ
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_WifiAutoReg(GMEVENT_CONTROL * event)
@@ -607,7 +607,7 @@ static BOOL GMEVENT_WifiAutoReg(GMEVENT_CONTROL * event)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\¦
+ * $brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -620,7 +620,7 @@ static void _messagePrint( EV_WIFIAUTOREG_WORK *wk, int msgno )
 {
 //    u8 speed = CONFIG_GetMsgPrintSpeed(SaveData_GetConfig(wk->pFSys->savedata));
 
-    // •¶š—ñæ“¾
+    // æ–‡å­—åˆ—å–å¾—
     if(GF_BGL_BmpWinAddCheck(&wk->MsgWin)){
         GF_BGL_BmpWinDel(&wk->MsgWin);
     }
@@ -634,12 +634,12 @@ static void _messagePrint( EV_WIFIAUTOREG_WORK *wk, int msgno )
 	WORDSET_ExpandStr( wk->WordSet, wk->TalkString, wk->pExpStrBuf );
 
     FldTalkBmpAdd( wk->pFSys->bgl, &wk->MsgWin, FLD_MBGFRM_FONT );
-	// ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ æç”»
 //    GF_BGL_BmpWinDataFill(&wk->MsgWin, 15 );
 //    BmpTalkWinWrite(&wk->MsgWin, WINDOW_TRANS_ON, COMM_TALK_WIN_CGX_NUM, COMM_MESFRAME_PAL );
 
     FieldTalkWinPut( &wk->MsgWin,SaveData_GetConfig(wk->pFSys->savedata) );
-	// •¶š—ñ•`‰æŠJn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	wk->MsgIndex = FieldTalkMsgStart( &wk->MsgWin, wk->TalkString,
                                       SaveData_GetConfig(wk->pFSys->savedata), 1);
 
@@ -688,10 +688,10 @@ void EventSet_WifiAutoReg(FIELDSYS_WORK* pFSys)
     }
 }
 
-//ƒŠƒXƒg•\¦—pƒR[ƒ‹ƒoƒbƒN
+//ãƒªã‚¹ãƒˆè¡¨ç¤ºç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 static void BmpListMoveSeCall(BMPLIST_WORK * wk,u32 param,u8 mode)
 {
-	if( mode == 0 ){	//‰Šú‰»
+	if( mode == 0 ){	//åˆæœŸåŒ–æ™‚
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
 }

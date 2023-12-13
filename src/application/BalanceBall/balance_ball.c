@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	balance_ball.c
- * @brief	ä»íPÇ»ê‡ñæÇèëÇ≠
+ * @brief	Á∞°Âçò„Å™Ë™¨Êòé„ÇíÊõ∏„Åè
  * @author	goto
- * @date	2007.09.25(âŒ)
+ * @date	2007.09.25(ÁÅ´)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -24,9 +24,9 @@
 #define BB_COMM_END_CMD	( 999 )
 
 enum{
-	BB_DIS_ERROR_NONE,			// ÉGÉâÅ[Ç»Çµ
-	BB_DIS_ERROR_CLOSEING,		// êÿífÉGÉâÅ[	èIóπíÜ
-	BB_DIS_ERROR_CLOSED,		// êÿífÉGÉâÅ[	èIóπ
+	BB_DIS_ERROR_NONE,			// „Ç®„É©„Éº„Å™„Åó
+	BB_DIS_ERROR_CLOSEING,		// ÂàáÊñ≠„Ç®„É©„Éº	ÁµÇ‰∫Ü‰∏≠
+	BB_DIS_ERROR_CLOSED,		// ÂàáÊñ≠„Ç®„É©„Éº	ÁµÇ‰∫Ü
 };
 
 //==============================================================
@@ -86,7 +86,7 @@ static void BalanceBall_MainInit( BB_WORK* wk )
 //	BB_WORK* wk = PROC_AllocWork( proc, sizeof( BB_WORK ), HEAPID_BB );
 //	memset( wk, 0, sizeof( BB_WORK ) );
 
-	wk->seed_tmp = gf_get_seed();		///< óêêîÇÃÉ^Élëﬁî
+	wk->seed_tmp = gf_get_seed();		///< ‰π±Êï∞„ÅÆ„Çø„ÉçÈÄÄÈÅø
 
 	BB_SystemInit( wk );
 	
@@ -95,7 +95,7 @@ static void BalanceBall_MainInit( BB_WORK* wk )
 
 	initVramTransferManagerHeap( BB_TRANSFER_NUM, HEAPID_BB );	
 
-	///< wi-fi ÉAÉCÉRÉì( ÉpÉåÉbÉgÇpalette_fade Ç…ìnÇ∑ )
+	///< wi-fi „Ç¢„Ç§„Ç≥„É≥( „Éë„É¨„ÉÉ„Éà„Çípalette_fade „Å´Ê∏°„Åô )
     CLACT_U_WmIcon_SetReserveAreaCharManager( NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K );
     CLACT_U_WmIcon_SetReserveAreaPlttManager( NNS_G2D_VRAM_TYPE_2DMAIN );
 	WirelessIconEasy();
@@ -110,7 +110,7 @@ static void BalanceBall_MainInit( BB_WORK* wk )
 		sys_FreeMemoryEz( dat );
 	}
 
-	///< í êMïîï™
+	///< ÈÄö‰ø°ÈÉ®ÂàÜ
 	{
 		int comm_num = CommInfoGetEntryNum();		
 		wk->netid = CommGetCurrentID();		
@@ -131,7 +131,7 @@ static void BalanceBall_MainInit( BB_WORK* wk )
 	//	wk->sys.btn = BMN_Create( ball_hit_tbl, BB_TOUCH_HIT_NUM, BB_Client_TouchPanel_CallBack, wk, HEAPID_BB );
 	}
 	
-	///< 2D ÉäÉ\Å[ÉXì«Ç›çûÇ›
+	///< 2D „É™„ÇΩ„Éº„ÇπË™≠„ÅøËæº„Åø
 	BB_disp_BG_Load( wk );
 	BB_disp_ResourceLoad( wk );
 	BB_disp_Manene_Add( wk, wk->p_client );
@@ -141,9 +141,9 @@ static void BalanceBall_MainInit( BB_WORK* wk )
 	BB_disp_Pen_Add( wk->p_client );
 	BR_ColorChange( wk, NetID_To_PlayerNo( wk, wk->netid ) );
 	
-	///< 3D ÉäÉ\Å[ÉX
+	///< 3D „É™„ÇΩ„Éº„Çπ
 	{		
-		///< êVãKìoò^ÇµÇΩÉÇÉfÉãÇÕÅAÉNÉHÅ[É^ÉjÉIÉìÇÃçsóÒèâä˙âªÇ BB_Client_3D_PosInit Ç≈Ç∑ÇÈÇ±Ç∆
+		///< Êñ∞Ë¶èÁôªÈå≤„Åó„Åü„É¢„Éá„É´„ÅØ„ÄÅ„ÇØ„Ç©„Éº„Çø„Éã„Ç™„É≥„ÅÆË°åÂàóÂàùÊúüÂåñ„Çí BB_Client_3D_PosInit „Åß„Åô„Çã„Åì„Å®
 		{	
 			int i;
 			int data[][2] = {
@@ -219,39 +219,39 @@ static void BalanceBall_MainInit( BB_WORK* wk )
 			BB_disp_Model_Init( &wk->p_client->bb3d_mane[ 1 ], wk->rule.ball_type );
 			BB_disp_Model_Init( &wk->p_client->bb3d_mane[ 2 ], wk->rule.ball_type );
 
-			///< ÉAÉjÉÅê›íË
+			///< „Ç¢„Éã„É°Ë®≠ÂÆö
 			{
 				
 				BB_3D_MODEL* b3d;
 				int anime;
 				
-				///< í èÌÉAÉjÉÅ
+				///< ÈÄöÂ∏∏„Ç¢„Éã„É°
 				b3d = &wk->p_client->bb3d_mane[ 0 ];
 				
-				///< ï‡Ç≠
+				///< Ê≠©„Åè
 				anime = NARC_manene_manene_aruku_nsbca;
 				D3DOBJ_AnmLoadH( &b3d->anm[ 0 ], &b3d->mdl, wk->sys.p_handle_bb, anime, HEAPID_BB, &wk->sys.allocator );
 				D3DOBJ_AddAnm( &b3d->obj, &b3d->anm[ 0 ] );
 				D3DOBJ_AnmSet( &b3d->anm[ 0 ], 0 );
 				
-				///< Ç†ÇÁÇÁ
+				///< „ÅÇ„Çâ„Çâ
 				anime = NARC_manene_manene_arara_nsbca;
 				D3DOBJ_AnmLoadH( &b3d->anm[ 1 ], &b3d->mdl, wk->sys.p_handle_bb, anime, HEAPID_BB, &wk->sys.allocator );
 				D3DOBJ_AnmSet( &b3d->anm[ 1 ], 0 );
 				
-				///< Ç®Ç¡Ç∆Ç¡Ç∆
+				///< „Åä„Å£„Å®„Å£„Å®
 				anime = NARC_manene_manene_ottoto_nsbca;
 				D3DOBJ_AnmLoadH( &b3d->anm[ 2 ], &b3d->mdl, wk->sys.p_handle_bb, anime, HEAPID_BB, &wk->sys.allocator );
 				D3DOBJ_AnmSet( &b3d->anm[ 2 ], 0 );
 				
-				///< óéÇøÇÈÉAÉjÉÅ
+				///< ËêΩ„Å°„Çã„Ç¢„Éã„É°
 				b3d = &wk->p_client->bb3d_mane[ 1 ];
 				anime = NARC_manene_manene_ochita_nsbca;			
 				D3DOBJ_AnmLoadH( &b3d->anm[ 0 ], &b3d->mdl, wk->sys.p_handle_bb, anime, HEAPID_BB, &wk->sys.allocator );
 				D3DOBJ_AddAnm( &b3d->obj, &b3d->anm[ 0 ] );
 				D3DOBJ_AnmSet( &b3d->anm[ 0 ], 0 );
 				
-				///< ïúãAÉAÉjÉÅ
+				///< Âæ©Â∏∞„Ç¢„Éã„É°
 				b3d = &wk->p_client->bb3d_mane[ 2 ];
 				anime = NARC_manene_manene_fukki_nsbca;			
 				D3DOBJ_AnmLoadH( &b3d->anm[ 0 ], &b3d->mdl, wk->sys.p_handle_bb, anime, HEAPID_BB, &wk->sys.allocator );
@@ -348,7 +348,7 @@ static void BB_PenDemo( BB_CLIENT* wk, u32 x, u32 y )
 	else {
 		f32 py = BB_COEFFICIENT_PEN( wk->mane_pos.y ); //100 - ( wk->mane_pos.y >> FX32_SHIFT ) ) / 40;
 		
-		if ( ( wk->mane_pos.y >> FX32_SHIFT ) >= 95 ){			///< äpìx 5%Ç‹Ç≈ÇÕ Ç‰ÇÈÇ¢ï‚ê≥
+		if ( ( wk->mane_pos.y >> FX32_SHIFT ) >= 95 ){			///< ËßíÂ∫¶ 5%„Åæ„Åß„ÅØ „ÇÜ„Çã„ÅÑË£úÊ≠£
 			py = 0.1f;
 		}		
 		if ( wk->control.old_x == 0 ){
@@ -363,7 +363,7 @@ static void BB_PenDemo( BB_CLIENT* wk, u32 x, u32 y )
 			MTX_MultVec43( &vec, &wk->bb3d_mane[ 0 ].tmp43, &wk->mane_pos );
 		}		
 		if ( Snd_SePlayCheck( BB_SND_KIRAKIRA ) == 0 ){
-			Snd_SePlay( BB_SND_KIRAKIRA );			///< Ç´ÇÁÇ´ÇÁ
+			Snd_SePlay( BB_SND_KIRAKIRA );			///< „Åç„Çâ„Åç„Çâ
 		}	
 		wk->control.old_x = x;
 		wk->control.old_y = y;
@@ -450,16 +450,16 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 	BOOL bEnd = FALSE;
 	u32 dis_error;
 
-	// êÿífÉGÉâÅ[É`ÉFÉbÉN
+	// ÂàáÊñ≠„Ç®„É©„Éº„ÉÅ„Çß„ÉÉ„ÇØ
 	dis_error = BB_DIS_ERROR_Check( wk );
 	switch( dis_error ){
-	case BB_DIS_ERROR_CLOSEING:		// êÿífÉGÉâÅ[	èIóπíÜ
+	case BB_DIS_ERROR_CLOSEING:		// ÂàáÊñ≠„Ç®„É©„Éº	ÁµÇ‰∫Ü‰∏≠
 		return PROC_RES_CONTINUE;
 
-	case BB_DIS_ERROR_CLOSED:		// êÿífÉGÉâÅ[	èIóπ
+	case BB_DIS_ERROR_CLOSED:		// ÂàáÊñ≠„Ç®„É©„Éº	ÁµÇ‰∫Ü
 		return PROC_RES_FINISH;
 
-	case BB_DIS_ERROR_NONE:			// ÉGÉâÅ[Ç»Çµ
+	case BB_DIS_ERROR_NONE:			// „Ç®„É©„Éº„Å™„Åó
 	default:
 		break;
 	}
@@ -468,20 +468,20 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 	switch ( *seq ){
 	
 	case eBB_SEQ_ENTRY_INIT:
-		///< ÉGÉìÉgÉäÅ[èâä˙âª
+		///< „Ç®„É≥„Éà„É™„ÉºÂàùÊúüÂåñ
 		bEnd = TRUE;
 		wk->entry_work = MNGM_ENTRY_InitBalanceBall( &wk->entry_param, HEAPID_BB );
 		BB_MainSeq_Change( wk, bEnd, eBB_SEQ_ENTRY_MAIN, seq );
 		break;
 
 	case eBB_SEQ_ENTRY_MAIN:
-		///< ÉGÉìÉgÉäÅ[íÜ
+		///< „Ç®„É≥„Éà„É™„Éº‰∏≠
 		bEnd = MNGM_ENTRY_Wait( wk->entry_work );
 		BB_MainSeq_Change( wk, bEnd, eBB_SEQ_ENTRY_EXIT, seq );
 		break;
 
 	case eBB_SEQ_ENTRY_EXIT:
-		///< ÉGÉìÉgÉäÅ[èIóπ
+		///< „Ç®„É≥„Éà„É™„ÉºÁµÇ‰∫Ü
 		bEnd = TRUE;
 		wk->rule.ball_type = MNGM_ENTRY_GetRareGame( wk->entry_work );
 		MNGM_ENTRY_Exit( wk->entry_work );
@@ -496,7 +496,7 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 		break;
 	
 	case eBB_SEQ_FADE_IN:
-		///< âÊñ ÉtÉFÅ[ÉhÉCÉìäJén
+		///< ÁîªÈù¢„Éï„Çß„Éº„Éâ„Ç§„É≥ÈñãÂßã
 		bEnd = BB_WipeStart( WIPE_TYPE_DOORIN );
 		BB_disp_NameWinAdd( wk, wk->p_client );
 		BB_MainSeq_Change( wk, bEnd, eBB_SEQ_FADE_IN_WAIT, seq );
@@ -504,7 +504,7 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 	
 	
 	case eBB_SEQ_FADE_IN_WAIT:
-		///< âÊñ ÉtÉFÅ[ÉhÉCÉìíÜ
+		///< ÁîªÈù¢„Éï„Çß„Éº„Éâ„Ç§„É≥‰∏≠
 		bEnd = WIPE_SYS_EndCheck();
 		
 	#ifdef PM_DEBUG
@@ -522,7 +522,7 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 		break;
 		
 	case eBB_SEQ_START:
-		///< ÉXÉ^Å[ÉgÉäÉNÉGÉXÉg
+		///< „Çπ„Çø„Éº„Éà„É™„ÇØ„Ç®„Çπ„Éà
 		bEnd = TRUE;//BB_Client_JumpOnToBall( wk->p_client );
 		if ( bEnd == FALSE ){ break; }		
 	//	BB_disp_NameWinDel( wk->p_client );
@@ -533,7 +533,7 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 		break;
 
 	case eBB_SEQ_PEN_DEMO:
-		///< ÉyÉìÉfÉÇ
+		///< „Éö„É≥„Éá„É¢
 		bEnd = PenDemo( wk->p_client );
 		if ( bEnd ){
 			if ( IsParentID( wk ) == TRUE ){
@@ -545,14 +545,14 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 		break;	
 	
 	case eBB_SEQ_START_WAIT:
-		///< ÉXÉ^Å[Égë“Çø
+		///< „Çπ„Çø„Éº„ÉàÂæÖ„Å°
 		bEnd = wk->bStart;	
 		BB_MainSeq_Change( wk, bEnd, eBB_SEQ_COUNT_DOWN, seq );
 		break;
 	
 	
 	case eBB_SEQ_COUNT_DOWN:
-		///< ÉJÉEÉìÉgÉ_ÉEÉì
+		///< „Ç´„Ç¶„É≥„Éà„ÉÄ„Ç¶„É≥
 		bEnd = TRUE;		
 		MNGM_COUNT_StartStart( wk->count_down );		
 		BB_MainSeq_Change( wk, bEnd, eBB_SEQ_COUNT_DOWN_WAIT, seq );
@@ -560,7 +560,7 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 	
 		
 	case eBB_SEQ_COUNT_DOWN_WAIT:
-		///< ÉJÉEÉìÉgÉ_ÉEÉìíÜ
+		///< „Ç´„Ç¶„É≥„Éà„ÉÄ„Ç¶„É≥‰∏≠
 		bEnd = TRUE;
 		bEnd = MNGM_COUNT_Wait( wk->count_down );		
 		if ( bEnd ){
@@ -576,7 +576,7 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 		if ( wk->bEnd ){
 			if ( wk->p_client->game_sys.game_timer < BB_GAME_TIMER ){
 				bEnd = FALSE;
-				OS_Printf( " êeã@Ç™èIóπÇµÇƒÅAéqã@ÇÕÇ‹ÇæèIÇÌÇ¡ÇƒÇ»Ç¢\n" );
+				OS_Printf( " Ë¶™Ê©ü„ÅåÁµÇ‰∫Ü„Åó„Å¶„ÄÅÂ≠êÊ©ü„ÅØ„Åæ„Å†ÁµÇ„Çè„Å£„Å¶„Å™„ÅÑ\n" );
 			}
 		}				
 		if ( bEnd == FALSE ){			
@@ -601,8 +601,8 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 	
 	case eBB_SEQ_MAIN_END_INIT:
 		bEnd = TRUE;
-		Snd_SeStopBySeqNo( BB_SND_HANABI, 0 );			///< â‘âŒÇ«Ç™Å[ÇÒí‚é~
-		Snd_SeStopBySeqNo( BB_SND_HAND, 0 );			///< îèéËÇ‡í‚é~
+		Snd_SeStopBySeqNo( BB_SND_HANABI, 0 );			///< Ëä±ÁÅ´„Å©„Åå„Éº„ÇìÂÅúÊ≠¢
+		Snd_SeStopBySeqNo( BB_SND_HAND, 0 );			///< ÊãçÊâã„ÇÇÂÅúÊ≠¢
 		MNGM_COUNT_StartTimeUp( wk->count_down );	
 		BB_MainSeq_Change( wk, bEnd, eBB_SEQ_MAIN_END, seq );
 		break;
@@ -621,7 +621,7 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 		if ( wk->p_client->game_sys.bFirstTouch == FALSE ){
 			 wk->result.score = BB_SCORE_MIN_CHK;
 		}
-//		OS_Printf( "êGÇ¡ÇΩÅH = %d\n", wk->p_client->game_sys.bFirstTouch ); 
+//		OS_Printf( "Ëß¶„Å£„ÅüÔºü = %d\n", wk->p_client->game_sys.bFirstTouch ); 
 //		OS_Printf( "point    = %d\n", wk->p_client->game_sys.point ); 
 //		OS_Printf( "score    = %d\n", wk->result.score ); 
 		CommSendData( CCMD_BB_RESULT, &wk->result, sizeof( BB_RESULT_COMM ) );
@@ -678,8 +678,8 @@ PROC_RESULT BalanceBallProc_Main( PROC* proc, int* seq )
 					wk->result_param.score[ id ] = BB_SCORE_SET_MIN;
 				}
 			}
-			// ÉâÉìÉLÉìÉOåvéZ
-//			wk->result_param.p_gadget = &wk->parent_wk->gadget;	// GADGETÇ»Ç≠ÇµÇ‹ÇµÇΩÅ@tomoya
+			// „É©„É≥„Ç≠„É≥„Ç∞Ë®àÁÆó
+//			wk->result_param.p_gadget = &wk->parent_wk->gadget;	// GADGET„Å™„Åè„Åó„Åæ„Åó„Åü„ÄÄtomoya
 			MNGM_RESULT_CalcRank( &wk->result_param, wk->entry_param.num );
 		}
 		wk->result_work = MNGM_RESULT_InitBalanceBall( &wk->entry_param, &wk->result_param, HEAPID_BB );
@@ -753,19 +753,19 @@ static void MainResource_Delete( BB_WORK* wk )
 	//	BMN_Delete( wk->sys.btn );
 	}
 	
-	///< óêêîÇÃÉ^ÉlñﬂÇ∑
+	///< ‰π±Êï∞„ÅÆ„Çø„ÉçÊàª„Åô
 	gf_srand( wk->seed_tmp );
 
 	///<
 
-	///< OAM ÉäÉ\Å[ÉXâï˙
+	///< OAM „É™„ÇΩ„Éº„ÇπËß£Êîæ
 	BB_disp_Manene_OAM_Del( wk->p_client );
 	BB_disp_Hand_Del( wk->p_client );
 	BB_disp_Hanabi_OAM_Del( wk->p_client );
 	BB_disp_Light_Del( wk->p_client );
 	BB_disp_Pen_Del( wk->p_client );
 	
-	///< 3D âï˙	
+	///< 3D Ëß£Êîæ	
 	BB_disp_Model_Delete( &wk->p_client->bb3d_ball );
 	BB_disp_Model_Delete( &wk->p_client->bb3d_mane[ 0 ] );
 	BB_disp_Model_Delete( &wk->p_client->bb3d_mane[ 1 ] );
@@ -792,7 +792,7 @@ static void MainResource_Delete( BB_WORK* wk )
 
 	BB_SystemExit( wk );
 
-	///< ÉèÅ[ÉNâï˙
+	///< „ÉØ„Éº„ÇØËß£Êîæ
 	if ( IsParentID( wk ) == TRUE ){
 		
 		BB_Server_FreeMemory( wk->p_server );
@@ -806,7 +806,7 @@ static void MainResource_Delete( BB_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉQÅ[ÉÄÉäÉZÉbÉgÇµÇ»Ç≠ÇøÇ·Ç¢ÇØÇ»Ç¢ïîï™
+ * @brief	„Ç≤„Éº„É†„É™„Çª„ÉÉ„Éà„Åó„Å™„Åè„Å°„ÇÉ„ÅÑ„Åë„Å™„ÅÑÈÉ®ÂàÜ
  *
  * @param	wk	
  *
@@ -843,7 +843,7 @@ PROC_RESULT BalanceBallProc_Exit( PROC* proc, int* seq )
 		{
 			u32 dis_error;
 			BB_WORK* wk = PROC_GetWork( proc );
-			dis_error = BB_DIS_ERROR_Check( wk );	// êÿífÉGÉâÅ[É`ÉFÉbÉN
+			dis_error = BB_DIS_ERROR_Check( wk );	// ÂàáÊñ≠„Ç®„É©„Éº„ÉÅ„Çß„ÉÉ„ÇØ
 	
 			PROC_FreeWork( proc );
 			sys_DeleteHeap( HEAPID_BB );
@@ -860,7 +860,7 @@ PROC_RESULT BalanceBallProc_Exit( PROC* proc, int* seq )
 
 	default:
 		if( (CommIsTimingSync( BB_COMM_END_CMD ) == TRUE) || 
-			(CommGetConnectNum() < CommInfoGetEntryNum()) ){	// êlêîÇ™è≠Ç»Ç≠Ç»Ç¡ÇΩÇÁÇªÇÃÇ‹Ç‹î≤ÇØÇÈ
+			(CommGetConnectNum() < CommInfoGetEntryNum()) ){	// ‰∫∫Êï∞„ÅåÂ∞ë„Å™„Åè„Å™„Å£„Åü„Çâ„Åù„ÅÆ„Åæ„ÅæÊäú„Åë„Çã
 			return PROC_RES_FINISH;
 		}
 		break;
@@ -878,7 +878,7 @@ PROC_RESULT BalanceBallProc_Exit( PROC* proc, int* seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	SYSTEM èâä˙âª
+ * @brief	SYSTEM ÂàùÊúüÂåñ
  *
  * @param	wk	
  *
@@ -923,7 +923,7 @@ static void BB_SystemInit( BB_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	SYSTEM âï˙
+ * @brief	SYSTEM Ëß£Êîæ
  *
  * @param	wk	
  *
@@ -975,7 +975,7 @@ void BB_SystemExit( BB_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	VRAM ê›íË
+ * @brief	VRAM Ë®≠ÂÆö
  *
  * @param	bgl	
  *
@@ -994,51 +994,51 @@ static void BB_VramBankSet( GF_BGL_INI* bgl )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 	
-	//VRAMê›íË
+	//VRAMË®≠ÂÆö
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃBGägí£ÉpÉåÉbÉg
-			GX_VRAM_SUB_BG_128_C,			// ÉTÉu2DÉGÉìÉWÉìÇÃBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ÉTÉu2DÉGÉìÉWÉìÇÃBGägí£ÉpÉåÉbÉg
-			GX_VRAM_OBJ_64_E,				// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃOBJägí£ÉpÉåÉbÉg
-			GX_VRAM_SUB_OBJ_16_I,			// ÉTÉu2DÉGÉìÉWÉìÇÃOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ÉTÉu2DÉGÉìÉWÉìÇÃOBJägí£ÉpÉåÉbÉg
-			GX_VRAM_TEX_0_B,				// ÉeÉNÉXÉ`ÉÉÉCÉÅÅ[ÉWÉXÉçÉbÉg
-			GX_VRAM_TEXPLTT_01_FG			// ÉeÉNÉXÉ`ÉÉÉpÉåÉbÉgÉXÉçÉbÉg
+			GX_VRAM_BG_128_A,				// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆBG
+			GX_VRAM_BGEXTPLTT_NONE,			// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆBGÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_SUB_BG_128_C,			// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆBG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆBGÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_OBJ_64_E,				// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_SUB_OBJ_16_I,			// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_TEX_0_B,				// „ÉÜ„ÇØ„Çπ„ÉÅ„É£„Ç§„É°„Éº„Ç∏„Çπ„É≠„ÉÉ„Éà
+			GX_VRAM_TEXPLTT_01_FG			// „ÉÜ„ÇØ„Çπ„ÉÅ„É£„Éë„É¨„ÉÉ„Éà„Çπ„É≠„ÉÉ„Éà
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMÉNÉäÉA
+		//VRAM„ÇØ„É™„Ç¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 	}
 	
-	//ÉÅÉCÉìâÊñ ÉtÉåÅ[ÉÄê›íË
+	//„É°„Ç§„É≥ÁîªÈù¢„Éï„É¨„Éº„É†Ë®≠ÂÆö
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME0_MÅ@
+			///<FRAME0_M„ÄÄ
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
 				3, 0, 0, FALSE
 			},
-			///<FRAME1_MÅ@ç∂ñã
+			///<FRAME1_M„ÄÄÂ∑¶Âπï
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x2800, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
 				2, 0, 0, FALSE
 			},
-			///<FRAME2_MÅ@âEñã
+			///<FRAME2_M„ÄÄÂè≥Âπï
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x3800, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
 				2, 0, 0, FALSE
 			},
-			///<FRAME3_MÅ@îwåi
+			///<FRAME3_M„ÄÄËÉåÊôØ
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x4800, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
@@ -1058,28 +1058,28 @@ static void BB_VramBankSet( GF_BGL_INI* bgl )
 		GF_BGL_ScrClear( bgl, GF_BGL_FRAME2_M );
 		GF_BGL_ScrClear( bgl, GF_BGL_FRAME3_M );
 	}
-	///< ÉTÉuâÊñ ÉtÉåÅ[ÉÄê›íË
+	///< „Çµ„ÉñÁîªÈù¢„Éï„É¨„Éº„É†Ë®≠ÂÆö
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME0_SÅ@îwåi
+			///<FRAME0_S„ÄÄËÉåÊôØ
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xb000, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
 				3, 0, 0, FALSE
 			},
-			///<FRAME1_SÅ@Å©ñã
+			///<FRAME1_S„ÄÄ‚ÜêÂπï
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xb800, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
 				1, 0, 0, FALSE
 			},
-			///<FRAME2_SÅ@Å®ñã
+			///<FRAME2_S„ÄÄ‚ÜíÂπï
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xc800, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
 				1, 0, 0, FALSE
 			},
-			///<FRAME3_SÅ@Å™ñã
+			///<FRAME3_S„ÄÄ‚ÜëÂπï
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_256x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xd800, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -1116,7 +1116,7 @@ static void BB_VramBankSet( GF_BGL_INI* bgl )
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 	
-	///< SUBâÊñ ÇÉÅÉCÉìâÊñ Ç…Ç∑ÇÈÇΩÇﬂ
+	///< SUBÁîªÈù¢„Çí„É°„Ç§„É≥ÁîªÈù¢„Å´„Åô„Çã„Åü„ÇÅ
 	sys.disp3DSW = DISP_3D_TO_SUB;
 	GF_Disp_DispSelect();	
 	
@@ -1126,7 +1126,7 @@ static void BB_VramBankSet( GF_BGL_INI* bgl )
 
 //--------------------------------------------------------------
 /**
- * @brief	CATS ÇÃ èâä˙âª
+ * @brief	CATS „ÅÆ ÂàùÊúüÂåñ
  *
  * @param	wk	
  *
@@ -1143,7 +1143,7 @@ static void BB_CATS_Init( BB_WORK* wk )
 			0, 128, 0, 32,
 		};
 		const TCATS_CHAR_MANAGER_MAKE Ccmm = {
-			64 + 64,			///< IDä«óù main + sub
+			64 + 64,			///< IDÁÆ°ÁêÜ main + sub
 			1024 * 0x40,		///< 64k
 			 512 * 0x20,		///< 32k
 			GX_OBJVRAMMODE_CHAR_1D_128K,
@@ -1155,12 +1155,12 @@ static void BB_CATS_Init( BB_WORK* wk )
 	{
 		BOOL active;
 		const TCATS_RESOURCE_NUM_LIST ResourceList = {
-			64 + 64,	///< ÉLÉÉÉâìoò^êî 	main + sub
-			16 + 16,	///< ÉpÉåÉbÉgìoò^êî	main + sub
-			128,		///< ÉZÉã
-			128,		///< ÉZÉãÉAÉjÉÅ
-			16,			///< É}ÉãÉ`ÉZÉã
-			16,			///< É}ÉãÉ`ÉZÉãÉAÉjÉÅ
+			64 + 64,	///< „Ç≠„É£„É©ÁôªÈå≤Êï∞ 	main + sub
+			16 + 16,	///< „Éë„É¨„ÉÉ„ÉàÁôªÈå≤Êï∞	main + sub
+			128,		///< „Çª„É´
+			128,		///< „Çª„É´„Ç¢„Éã„É°
+			16,			///< „Éû„É´„ÉÅ„Çª„É´
+			16,			///< „Éû„É´„ÉÅ„Çª„É´„Ç¢„Éã„É°
 		};
 		
 		wk->sys.crp = CATS_ResourceCreate( wk->sys.csp );
@@ -1176,7 +1176,7 @@ static void BB_CATS_Init( BB_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉèÉCÉvèàóù
+ * @brief	„ÉØ„Ç§„ÉóÂá¶ÁêÜ
  *
  * @param	type	
  *
@@ -1195,12 +1195,12 @@ static BOOL BB_WipeStart( int type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉVÅ[ÉPÉìÉXêÿÇËë÷Ç¶
+ * @brief	„Ç∑„Éº„Ç±„É≥„ÇπÂàá„ÇäÊõø„Åà
  *
- * @param	wk			èàóùÇ∑ÇÈÉèÅ[ÉN
- * @param	bEnd		èIóπÉtÉâÉO
- * @param	next_seq	éüÇÃÉVÅ[ÉPÉìÉX
- * @param	seq			ÉVÅ[ÉPÉìÉX
+ * @param	wk			Âá¶ÁêÜ„Åô„Çã„ÉØ„Éº„ÇØ
+ * @param	bEnd		ÁµÇ‰∫Ü„Éï„É©„Ç∞
+ * @param	next_seq	Ê¨°„ÅÆ„Ç∑„Éº„Ç±„É≥„Çπ
+ * @param	seq			„Ç∑„Éº„Ç±„É≥„Çπ
  *
  * @retval	none	
  *
@@ -1217,7 +1217,7 @@ static void BB_MainSeq_Change( BB_WORK* wk, BOOL bEnd, int next_seq, int* seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	VBlank ä÷êî
+ * @brief	VBlank Èñ¢Êï∞
  *
  * @param	work	
  *
@@ -1258,17 +1258,17 @@ static void BB_VBlank( void* work )
 
 
 
-/// ÉRÉ}ÉìÉhån
+/// „Ç≥„Éû„É≥„ÉâÁ≥ª
 
 /// public
 
 //--------------------------------------------------------------
 /**
- * @brief	êeã@Ç©ÅH
+ * @brief	Ë¶™Ê©ü„ÅãÔºü
  *
  * @param	wk	
  *
- * @retval	BOOL	TRUE=êe
+ * @retval	BOOL	TRUE=Ë¶™
  *
  */
 //--------------------------------------------------------------
@@ -1280,7 +1280,7 @@ BOOL IsParentID( BB_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	äJénÉRÉ}ÉìÉh
+ * @brief	ÈñãÂßã„Ç≥„Éû„É≥„Éâ
  *
  * @param	wk	
  *
@@ -1296,7 +1296,7 @@ void BB_cmd_StartSet( BB_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	èIóπÉRÉ}ÉìÉh
+ * @brief	ÁµÇ‰∫Ü„Ç≥„Éû„É≥„Éâ
  *
  * @param	wk	
  *
@@ -1313,39 +1313,39 @@ void BB_cmd_EndSet( BB_WORK* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	êÿífÉGÉâÅ[É`ÉFÉbÉNÅ@èIóπä«óùä÷êî
+ *	@brief	ÂàáÊñ≠„Ç®„É©„Éº„ÉÅ„Çß„ÉÉ„ÇØ„ÄÄÁµÇ‰∫ÜÁÆ°ÁêÜÈñ¢Êï∞
  *
- *	@param	wk		ÉèÅ[ÉN
+ *	@param	wk		„ÉØ„Éº„ÇØ
  *
- *	@retval	BB_DIS_ERROR_NONE,			// ÉGÉâÅ[Ç»Çµ
- *	@retval	BB_DIS_ERROR_CLOSEING,		// êÿífÉGÉâÅ[	èIóπíÜ
- *	@retval	BB_DIS_ERROR_CLOSED,		// êÿífÉGÉâÅ[	èIóπ
+ *	@retval	BB_DIS_ERROR_NONE,			// „Ç®„É©„Éº„Å™„Åó
+ *	@retval	BB_DIS_ERROR_CLOSEING,		// ÂàáÊñ≠„Ç®„É©„Éº	ÁµÇ‰∫Ü‰∏≠
+ *	@retval	BB_DIS_ERROR_CLOSED,		// ÂàáÊñ≠„Ç®„É©„Éº	ÁµÇ‰∫Ü
  */
 //-----------------------------------------------------------------------------
 static u32 BB_DIS_ERROR_Check( BB_WORK* wk )
 {
-	// í êMêÿífÉ`ÉFÉbÉN
+	// ÈÄö‰ø°ÂàáÊñ≠„ÉÅ„Çß„ÉÉ„ÇØ
 	if( MNGM_ERROR_CheckDisconnect( &wk->entry_param ) == TRUE ){
 
 		if( wk->sys.comm_err_data.dis_err == FALSE ){
-			// ê^Ç¡çïÇ…Ç∑ÇÈ
+			// Áúü„Å£Èªí„Å´„Åô„Çã
 			if( WIPE_SYS_EndCheck() == TRUE ){
 				WIPE_SYS_ExeEnd();
 			}
 			WIPE_SetBrightnessFadeOut(WIPE_FADE_BLACK);
 
-			// èIóπêÈåæ
+			// ÁµÇ‰∫ÜÂÆ£Ë®Ä
 			wk->sys.comm_err_data.dis_err = TRUE;
 
 			return BB_DIS_ERROR_CLOSEING;
 		}else{
 
-			// Ç‹Ç√ÇÕí êMêÿíf
+			// „Åæ„Å•„ÅØÈÄö‰ø°ÂàáÊñ≠
 			if( MNGM_ERROR_DisconnectWait( &wk->entry_param ) == FALSE ){
 				return BB_DIS_ERROR_CLOSEING;
 			}
 
-			// ëSÉäÉ\Å[ÉXîjä¸
+			// ÂÖ®„É™„ÇΩ„Éº„ÇπÁ†¥Ê£Ñ
 			if( wk->p_client != NULL ){
 				BB_disp_NameWinDel( wk->p_client );
 				BB_disp_InfoWinDel( wk->p_client );

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_sys.c
- *	@brief		ƒCƒ[ƒWƒNƒŠƒbƒvƒƒCƒ“ƒVƒXƒeƒ€
+ *	@brief		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¡ã‚¤ãƒ³ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2005.09.21
  *
@@ -62,13 +62,13 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒƒCƒ“ƒvƒƒbƒN
-//	ƒV[ƒPƒ“ƒXÝ’è
+//	ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ãƒƒã‚¯
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹è¨­å®š
 //	
 //=====================================
 enum{
@@ -78,10 +78,10 @@ enum{
 	IMC_SYS_SEQ_REFERENCE_ON,
 	IMC_SYS_SEQ_REFARENCE_WAIT,
 	IMC_SYS_SEQ_KET_WAIT,
-	IMC_SYS_SEQ_MAIN,			// ƒCƒ[ƒWƒNƒŠƒbƒvì¬ƒƒCƒ“
+	IMC_SYS_SEQ_MAIN,			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ä½œæˆãƒ¡ã‚¤ãƒ³
 	IMC_SYS_SEQ_END_CHECK_WAIT,
-	IMC_SYS_SEQ_END_CHECK,		// I—¹ƒ`ƒFƒbƒN
-	IMC_SYS_SEQ_SAVE_CHECK,		// ƒZ[ƒuƒ`ƒFƒbƒN
+	IMC_SYS_SEQ_END_CHECK,		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
+	IMC_SYS_SEQ_SAVE_CHECK,		// ã‚»ãƒ¼ãƒ–ãƒã‚§ãƒƒã‚¯
 	IMC_SYS_SEQ_MAIN_WAIT,
 	IMC_SYS_SEQ_FADE_OUT,
 	IMC_SYS_SEQ_FADE_OUT_WAIT,
@@ -89,9 +89,9 @@ enum{
 
 //-------------------------------------
 //	
-//	ƒƒCƒ“ƒvƒƒbƒN
-//	ƒV[ƒPƒ“ƒXÝ’è
-//	ƒRƒ“ƒeƒXƒg
+//	ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ãƒƒã‚¯
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹è¨­å®š
+//	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 //	
 //=====================================
 enum{
@@ -108,11 +108,11 @@ enum{
 	IMC_SYS_CON_SEQ_CON_TEXT_END,
 	IMC_SYS_CON_SEQ_FADE_IN,
 	IMC_SYS_CON_SEQ_FADE_IN_WAIT,
-	IMC_SYS_CON_SEQ_MAIN,			// ƒCƒ[ƒWƒNƒŠƒbƒvì¬ƒƒCƒ“
-	IMC_SYS_CON_SEQ_EX_END_WAIT,	// ‹­§I—¹‘Ò‚¿
+	IMC_SYS_CON_SEQ_MAIN,			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ä½œæˆãƒ¡ã‚¤ãƒ³
+	IMC_SYS_CON_SEQ_EX_END_WAIT,	// å¼·åˆ¶çµ‚äº†å¾…ã¡
 	IMC_SYS_CON_SEQ_END_CHECK_WAIT,
-	IMC_SYS_CON_SEQ_END_CHECK,		// I—¹ƒ`ƒFƒbƒN
-	IMC_SYS_CON_SEQ_SAVE_CHECK,		// ƒZ[ƒuƒ`ƒFƒbƒN
+	IMC_SYS_CON_SEQ_END_CHECK,		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
+	IMC_SYS_CON_SEQ_SAVE_CHECK,		// ã‚»ãƒ¼ãƒ–ãƒã‚§ãƒƒã‚¯
 	IMC_SYS_CON_SEQ_MAIN_WAIT,
 	IMC_SYS_CON_SEQ_FADE_OUT,
 	IMC_SYS_CON_SEQ_FADE_OUT_WAIT,
@@ -120,26 +120,26 @@ enum{
 
 //-------------------------------------
 //	
-//	ŽÀsó‘Ô
+//	å®Ÿè¡ŒçŠ¶æ…‹
 //	
 //=====================================
 enum{
-	IMC_SYS_ACCE,		// ƒAƒNƒZƒTƒŠ•ÏX
-	IMC_SYS_BG,			// BG•ÏX
-	IMC_SYS_SND,		// ƒTƒEƒ“ƒh•ÏX
-	IMC_SYS_END_CHECK_REQ,// I—¹ƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg
-	IMC_SYS_END_CHECK,	// I—¹ƒ`ƒFƒbƒN
-	IMC_SYS_SAVE_CHECK_REQ,	// ƒZ[ƒuƒ`ƒFƒbƒN
-	IMC_SYS_SAVE,		// ƒZ[ƒuƒ`ƒFƒbƒN
-	IMC_SYS_SAVE_CAN,	// ƒZ[ƒuCANCEL
-	IMC_SYS_END_REQ,	// I—¹ƒŠƒNƒGƒXƒg
-	IMC_SYS_END_CANCEL_REQ,	// I—¹ƒLƒƒƒ“ƒZƒ‹ƒŠƒNƒGƒXƒg
-	IMC_SYS_END,		// I—¹
+	IMC_SYS_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªå¤‰æ›´
+	IMC_SYS_BG,			// BGå¤‰æ›´
+	IMC_SYS_SND,		// ã‚µã‚¦ãƒ³ãƒ‰å¤‰æ›´
+	IMC_SYS_END_CHECK_REQ,// çµ‚äº†ãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	IMC_SYS_END_CHECK,	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
+	IMC_SYS_SAVE_CHECK_REQ,	// ã‚»ãƒ¼ãƒ–ãƒã‚§ãƒƒã‚¯
+	IMC_SYS_SAVE,		// ã‚»ãƒ¼ãƒ–ãƒã‚§ãƒƒã‚¯
+	IMC_SYS_SAVE_CAN,	// ã‚»ãƒ¼ãƒ–CANCEL
+	IMC_SYS_END_REQ,	// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	IMC_SYS_END_CANCEL_REQ,	// çµ‚äº†ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	IMC_SYS_END,		// çµ‚äº†
 };
 
 //-------------------------------------
 //	
-//	I—¹Šm”F‰æ–Ê‚Ö‚ÌƒtƒF[ƒh
+//	çµ‚äº†ç¢ºèªç”»é¢ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰
 //	
 //=====================================
 enum
@@ -174,126 +174,126 @@ enum
 };
 
 //-------------------------------------
-//	ƒAƒNƒZƒTƒŠ‚ª‚Â‚È‚ª‚Á‚Äƒ|ƒPƒ‚ƒ“‚Æ‚­‚Á‚Â‚¢‚Ä‚¢‚é‚©
-//	ƒ`ƒFƒbƒN‚·‚éƒVƒXƒeƒ€‚ÌƒIƒuƒWƒFƒNƒg”
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªãŒã¤ãªãŒã£ã¦ãƒã‚±ãƒ¢ãƒ³ã¨ãã£ã¤ã„ã¦ã„ã‚‹ã‹
+//	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
 //=====================================
 #define IMC_POKEON_ACCE_CHECK_OBJNUM	( IMC_RBOX_OBJ_CONTEST_MAX )
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^\‘¢‘Ì
+//	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	// •`‰æŠÖŒW
+	// æç”»é–¢ä¿‚
 	IMC_DRAW_DATA drawSys;
 
-	// ƒAƒCƒeƒ€ƒoƒbƒtƒ@
+	// ã‚¢ã‚¤ãƒ†ãƒ ãƒãƒƒãƒ•ã‚¡
 	IMC_ITEM_BUFF item_buff;
 
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒf[ƒ^
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 	IMC_OBJLIST_TBL	objListTbl;
 
-	// ƒAƒNƒZƒTƒŠƒf[ƒ^
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
 	IMC_ACCESSORIE_OBJ_TBL* acce;
 
-	// ¶‰æ–Êƒf[ƒ^
+	// å·¦ç”»é¢ãƒ‡ãƒ¼ã‚¿
 	IMC_LEFT_BOX lbox;
 	
-	// ‰E‰æ–Êƒf[ƒ^
+	// å³ç”»é¢ãƒ‡ãƒ¼ã‚¿
 	IMC_RIGHT_BOX rbox;
-	IMC_RBOX_PLAYER rbox_player;		// ‰Eƒ{ƒbƒNƒXƒvƒŒƒCƒ„[
+	IMC_RBOX_PLAYER rbox_player;		// å³ãƒœãƒƒã‚¯ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 	
-	// ƒnƒ“ƒhƒf[ƒ^
+	// ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
 	IMC_HAND hand;
 
-	// ƒtƒŒ[ƒ€BG
+	// ãƒ•ãƒ¬ãƒ¼ãƒ BG
 	IMC_BG	frame_bg;
 	
-	// ƒ{ƒ^ƒ“ƒf[ƒ^
-	IMC_BUTTON_DATA bttn;				// ì¬Žž
+	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
+	IMC_BUTTON_DATA bttn;				// ä½œæˆæ™‚
 		
-	// ƒTƒuƒEƒBƒ“ƒhƒE
+	// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	IMC_SUBWIN	subwin;
 
-	int state;		// ¡‚ÌŽÀsó‘Ô
+	int state;		// ä»Šã®å®Ÿè¡ŒçŠ¶æ…‹
 
-	int effect;		// ƒGƒtƒFƒNƒgˆ——p
+	int effect;		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‡¦ç†ç”¨
 
-	// ƒnƒCƒCƒCƒG@ƒEƒBƒ“ƒhƒE
+	// ãƒã‚¤ã‚¤ã‚¤ã‚¨ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	TOUCH_SW_SYS* p_tsw;
-	GF_BGL_BMPWIN* p_tsw_bmp;	// I—¹Šm”FƒEƒBƒ“ƒhƒE
+	GF_BGL_BMPWIN* p_tsw_bmp;	// çµ‚äº†ç¢ºèªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-	// ƒZ[ƒuƒtƒ‰ƒO
+	// ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ã‚°
 	BOOL save_flag;
 
-	// ƒAƒNƒZƒTƒŠÅ‘å”
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°
 	int acce_max;
 
-	//@ƒRƒ“ƒeƒXƒg—p
-	int rank;			// ƒ‰ƒ“ƒN
-	int mode;			// ƒ‚[ƒh
-	int type;			// À²Ìß
-	int theme;			// ‚Ä[‚Ü
-	CON_IMC_LOCAL* p_comm_data;	// ’ÊMƒf[ƒ^	
+	//ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨
+	int rank;			// ãƒ©ãƒ³ã‚¯
+	int mode;			// ãƒ¢ãƒ¼ãƒ‰
+	int type;			// ã‚¿ã‚¤ãƒ—
+	int theme;			// ã¦ãƒ¼ã¾
+	CON_IMC_LOCAL* p_comm_data;	// é€šä¿¡ãƒ‡ãƒ¼ã‚¿	
 
-	const CONFIG* cp_config;	// ƒRƒ“ƒtƒBƒOƒf[ƒ^
+	const CONFIG* cp_config;	// ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
 	u32 msg_idx;
-	STRBUF* p_glb_str;		// ƒOƒ[ƒoƒ‹•¶Žš—ñƒoƒbƒtƒ@
-	WORDSET* p_wordset;		// ƒ[ƒhƒZƒbƒg
+	STRBUF* p_glb_str;		// ã‚°ãƒ­ãƒ¼ãƒãƒ«æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+	WORDSET* p_wordset;		// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 	
 } IMC_SYS_WORK;
 
 //-------------------------------------
 //	
-//	ƒtƒF[ƒhˆ——pƒ[ƒN
+//	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯
 //	
 //=====================================
 typedef struct {
-	IMC_SYS_WORK* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	BOOL*	end;			// I—¹ŒŸ’mƒtƒ‰ƒO
-	int		work;			// ƒ[ƒNƒtƒ‰ƒO
-	int		seq;			// ƒV[ƒPƒ“ƒX
+	IMC_SYS_WORK* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	BOOL*	end;			// çµ‚äº†æ¤œçŸ¥ãƒ•ãƒ©ã‚°
+	int		work;			// ãƒ¯ãƒ¼ã‚¯ãƒ•ãƒ©ã‚°
+	int		seq;			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 } IMC_SYS_FADE_WORK;
 
 
 //-------------------------------------
-//	ƒAƒNƒZƒTƒŠ‚ª‚Â‚È‚ª‚Á‚Äƒ|ƒPƒ‚ƒ“‚Æ‚­‚Á‚Â‚¢‚Ä‚¢‚é‚©
-//	ƒ`ƒFƒbƒN‚·‚é‚PƒIƒuƒWƒFƒNƒgƒf[ƒ^
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªãŒã¤ãªãŒã£ã¦ãƒã‚±ãƒ¢ãƒ³ã¨ãã£ã¤ã„ã¦ã„ã‚‹ã‹
+//	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼‘ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	IMC_OBJLIST* obj;
-	u32 pokemon_data;	// ƒ|ƒPƒ‚ƒ“‚É‚­‚Á‚Â‚¢‚Ä‚¢‚È‚¢:0  ƒ|ƒPƒ‚ƒ“‚É‚­‚Á‚Â‚¢‚Ä‚¢‚é:‚»‚êˆÈŠO
+	u32 pokemon_data;	// ãƒã‚±ãƒ¢ãƒ³ã«ãã£ã¤ã„ã¦ã„ãªã„:0  ãƒã‚±ãƒ¢ãƒ³ã«ãã£ã¤ã„ã¦ã„ã‚‹:ãã‚Œä»¥å¤–
 } IMC_POKE_ON_ACCEOBJ;
 
 //-------------------------------------
-//	ƒAƒNƒZƒTƒŠ‚ª‚Â‚È‚ª‚Á‚Äƒ|ƒPƒ‚ƒ“‚Æ‚­‚Á‚Â‚¢‚Ä‚¢‚é‚©
-//	ƒ`ƒFƒbƒN‚·‚éƒVƒXƒeƒ€
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªãŒã¤ãªãŒã£ã¦ãƒã‚±ãƒ¢ãƒ³ã¨ãã£ã¤ã„ã¦ã„ã‚‹ã‹
+//	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
 	IMC_POKE_ON_ACCEOBJ	obj[ IMC_RBOX_OBJ_CONTEST_MAX ];
 	int set_num;
 } IMC_POKE_ON_ACCESYS;
 //-------------------------------------
-//	ƒAƒNƒZƒTƒŠ‚ª‚Â‚È‚ª‚Á‚Äƒ|ƒPƒ‚ƒ“‚Æ‚­‚Á‚Â‚¢‚Ä‚¢‚é‚©
-//	ƒ`ƒFƒbƒN’è”
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªãŒã¤ãªãŒã£ã¦ãƒã‚±ãƒ¢ãƒ³ã¨ãã£ã¤ã„ã¦ã„ã‚‹ã‹
+//	ãƒã‚§ãƒƒã‚¯å®šæ•°
 //=====================================
 enum{
-	IMC_POKEON_ACCE_NONE,		// ‚Â‚È‚ª‚Á‚Ä‚¢‚È‚¢
-	IMC_POKEON_ACCE_ON,			// ‚Â‚È‚ª‚Á‚Ä‚¢‚é
-	IMC_POKEON_ACCE_SEARCHEND	// ‚Â‚È‚ª‚Á‚Ä‚¢‚é•SEARCHÏ‚Ý
+	IMC_POKEON_ACCE_NONE,		// ã¤ãªãŒã£ã¦ã„ãªã„
+	IMC_POKEON_ACCE_ON,			// ã¤ãªãŒã£ã¦ã„ã‚‹
+	IMC_POKEON_ACCE_SEARCHEND	// ã¤ãªãŒã£ã¦ã„ã‚‹ï¼†SEARCHæ¸ˆã¿
 };
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void imageClipVBlankFunc( void* work );
@@ -383,23 +383,23 @@ static void Imc_OyaExEndCheck( IMC_SYS_WORK* imc_w );
 
 //-----------------------------------------------------------------------------
 /**
- *					’Êí
+ *					é€šå¸¸
  * [JAMP_NORMAL]
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒN¶¬
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ç”Ÿæˆ
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -407,31 +407,31 @@ static void Imc_OyaExEndCheck( IMC_SYS_WORK* imc_w );
 //-----------------------------------------------------------------------------
 PROC_RESULT IMC_ProcInit( PROC* proc, int* seq )
 {
-	IMC_SYS_WORK*	imc_w;			// ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
-	u32				check;			// Áª¯¸—p
-	IMC_PROC_WORK*  p_imc_pr_w;		// ŠO•”‚©‚çŽó‚¯Žæ‚éƒf[ƒ^
+	IMC_SYS_WORK*	imc_w;			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+	u32				check;			// ãƒã‚§ãƒƒã‚¯ç”¨
+	IMC_PROC_WORK*  p_imc_pr_w;		// å¤–éƒ¨ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿
 
 
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_IMAGECLIP_DATA, 0x20000 );
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_IMAGECLIP_DRAW, 0x40000 );
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒNì¬
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	imc_w = PROC_AllocWork( proc, sizeof( IMC_SYS_WORK ), HEAPID_IMAGECLIP_DATA );
 	memset( imc_w, 0, sizeof( IMC_SYS_WORK ) );
 
-	// Vƒuƒ‰ƒ“ƒNHƒuƒ‰ƒ“ƒNŠÖ”Ý’è
-	sys_VBlankFuncChange( imageClipVBlankFunc, imc_w );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	// Vãƒ–ãƒ©ãƒ³ã‚¯Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°è¨­å®š
+	sys_VBlankFuncChange( imageClipVBlankFunc, imc_w );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 
-	// ŠO•”‚©‚ç‚Ìƒf[ƒ^‚ðŽæ“¾
+	// å¤–éƒ¨ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	p_imc_pr_w = PROC_GetParentWork( proc );
 
-	// ŠO•”‚©‚ç‚Ìƒf[ƒ^Ý’è
+	// å¤–éƒ¨ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	imc_w->cp_config = p_imc_pr_w->cp_config;
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒOŠJŽn
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹
 	InitTPSystem();
 	check = InitTPNoBuff( 4 );
 //	GF_ASSERT( check == TP_OK );
@@ -440,45 +440,45 @@ PROC_RESULT IMC_ProcInit( PROC* proc, int* seq )
 	}
 //	while( InitTPNoBuff( 4 ) != TP_OK ){};
 
-	// ƒAƒCƒeƒ€ƒoƒbƒtƒ@ì¬
+	// ã‚¢ã‚¤ãƒ†ãƒ ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	IMC_ITEM_BUFF_Make( p_imc_pr_w->cp_imc_item, &imc_w->item_buff );
 
-	// •\Ž¦Ý’è
+	// è¡¨ç¤ºè¨­å®š
 	initDrawSys( imc_w );
 
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	IMC_OBJLIST_TblInit( &imc_w->objListTbl, IMC_OBJLIST_MAX, HEAPID_IMAGECLIP_DATA );
 	
-	// ƒAƒNƒZƒTƒŠŠi”[ƒf[ƒ^ì¬
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ ¼ç´ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	imc_w->acce = IMC_ACCE_ObjTblInit( IMC_SYS_ACCESSORIE_MAX, HEAPID_IMAGECLIP_DATA );
 
-	// ‰Eƒ{ƒbƒNƒXƒf[ƒ^ì¬
+	// å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	initRightBox( imc_w, p_imc_pr_w->p_poke_para, IMC_RBOX_ACCE_TELEVISION_MAX, FALSE );
 	
-	// ¶ƒ{ƒbƒNƒXƒf[ƒ^ì¬
+	// å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	initLeftBox( imc_w );
 
-	// ƒtƒŒ[ƒ€BG‚ð•\Ž¦
+	// ãƒ•ãƒ¬ãƒ¼ãƒ BGã‚’è¡¨ç¤º
 	setFrameBG( imc_w, IMC_BG_FRAME_00 );
 	
-	// ƒ{ƒ^ƒ“ƒf[ƒ^ì¬
+	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	initBttn( imc_w );
 
-	// ƒTƒuƒEƒBƒ“ƒhƒE‰Šú‰»
+	// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	initSubWin( imc_w, p_imc_pr_w->cp_config );
 
-	// ƒnƒ“ƒhƒf[ƒ^‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	IMC_ACCE_HAND_Init( &imc_w->hand, &imc_w->rbox, &imc_w->lbox, &imc_w->drawSys, &imc_w->subwin, TRUE );
 
-	// ‚Í‚¢@‚¢‚¢‚¦@ƒEƒBƒ“ƒhƒEƒƒ‚ƒŠŠm•Û
+	// ã¯ã„ã€€ã„ã„ãˆã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	imc_w->p_tsw = TOUCH_SW_AllocWork( HEAPID_IMAGECLIP_DATA );
 	imc_w->p_tsw_bmp = GF_BGL_BmpWinAllocGet( HEAPID_IMAGECLIP_DATA, 1 );
 
-	// ó‘ÔÝ’è
-	// ó‘Ô	•’Ê
+	// çŠ¶æ…‹è¨­å®š
+	// çŠ¶æ…‹	æ™®é€š
 	imc_w->state = IMC_SYS_ACCE;
 
-	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒCƒ[ƒWƒNƒŠƒbƒv)(BGMˆøŒp‚¬)
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—)(BGMå¼•ç¶™ãŽ)
 	Snd_DataSetByScene( SND_SCENE_SUB_IMAGE, 0, 0 );
 	
 	return PROC_RES_FINISH;
@@ -491,16 +491,16 @@ extern void IMC_POKE_DEBUG_ChangePoke( IMC_POKE* poke, int heap, IMC_DRAW_DATA* 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒNƒƒCƒ“
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -510,7 +510,7 @@ PROC_RESULT IMC_ProcMain( PROC* proc, int* seq )
 {
 	IMC_SYS_WORK* imc_w = PROC_GetWork( proc );
 	PROC_RESULT	ret = PROC_RES_CONTINUE;
-	IMC_PROC_WORK* p_pr_w = PROC_GetParentWork( proc );	// ƒf[ƒ^ƒZ[ƒu
+	IMC_PROC_WORK* p_pr_w = PROC_GetParentWork( proc );	// ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 
 	switch( (*seq) ){
 	case IMC_SYS_SEQ_START_TIMING_WAIT:
@@ -561,73 +561,73 @@ PROC_RESULT IMC_ProcMain( PROC* proc, int* seq )
 
 	//-------------------------------------
 	//	
-	//	ƒƒCƒ“ˆ—
+	//	ãƒ¡ã‚¤ãƒ³å‡¦ç†
 	//	
 	//=====================================
 	case IMC_SYS_SEQ_MAIN:
 
 		if(imc_w->state == IMC_SYS_END_CHECK_REQ){
-			// ƒtƒF[ƒhŠJŽn
+			// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 			endSeenFadeIn( imc_w, &imc_w->effect );
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			(*seq) = IMC_SYS_SEQ_END_CHECK_WAIT;
 		}
 
-		// ƒnƒ“ƒhˆ—
+		// ãƒãƒ³ãƒ‰å‡¦ç†
 		IMC_HAND_Main( &imc_w->hand );
 
-		// ‰Eƒ{ƒbƒNƒX‚ÌƒAƒNƒZƒTƒŠ”‚ðÝ’è
+		// å³ãƒœãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°ã‚’è¨­å®š
 		setAcceNumSubWin( imc_w );
 
 #ifdef IMC_DEBUG
 		IMC_POKE_DEBUG_ChangePoke( &imc_w->rbox.boxDraw.poke, HEAPID_IMAGECLIP_DRAW, &imc_w->drawSys );
 #endif
 
-		// ƒTƒuƒEƒBƒ“ƒhƒEƒƒCƒ“
+		// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
 		IMC_SUBWIN_Main( &imc_w->subwin );
 		
-		// ƒ{ƒ^ƒ“ˆ—
+		// ãƒœã‚¿ãƒ³å‡¦ç†
 		mainBttn( imc_w );
 		break;
 
-	case IMC_SYS_SEQ_END_CHECK_WAIT:	// I—¹ƒ`ƒFƒbƒNƒtƒF[ƒh‘Ò‚¿
+	case IMC_SYS_SEQ_END_CHECK_WAIT:	// çµ‚äº†ãƒã‚§ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		if( imc_w->effect ){
 			imc_w->effect = FALSE;
 			(*seq) = IMC_SYS_SEQ_END_CHECK;
 			imc_w->state = IMC_SYS_END_CHECK;
 
-			// ‰Eƒ{ƒbƒNƒXƒvƒŒƒCƒ„[ì¬
+			// å³ãƒœãƒƒã‚¯ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½œæˆ
 			IMC_RBOX_PLAYER_Init( &imc_w->rbox_player, &imc_w->rbox, HEAPID_IMAGECLIP_DRAW );
 		}
 		break;
 
-	case IMC_SYS_SEQ_END_CHECK:			// I—¹ƒ`ƒFƒbƒN“®ì
+	case IMC_SYS_SEQ_END_CHECK:			// çµ‚äº†ãƒã‚§ãƒƒã‚¯å‹•ä½œ
 		
-		// ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN
+		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯
 		if( imc_w->state == IMC_SYS_END_CANCEL_REQ ){
-			// ƒtƒF[ƒhŠJŽn
+			// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 			endSeenFadeOut( imc_w, &imc_w->effect );
 			(*seq) = IMC_SYS_SEQ_MAIN_WAIT;
 			break;
 		}
 
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( imc_w->state == IMC_SYS_END_REQ ){
 			(*seq) = IMC_SYS_SEQ_SAVE_CHECK;
 			imc_w->state = IMC_SYS_SAVE_CHECK_REQ;
 			
-			initTouchSaveCheckSWSys( imc_w );	// ƒZ[ƒuƒ`ƒFƒbƒNƒ{ƒ^ƒ“ì¬
+			initTouchSaveCheckSWSys( imc_w );	// ã‚»ãƒ¼ãƒ–ãƒã‚§ãƒƒã‚¯ãƒœã‚¿ãƒ³ä½œæˆ
 			break;
 		}
 		
-		// ƒ{ƒ^ƒ“ˆ—
+		// ãƒœã‚¿ãƒ³å‡¦ç†
 		imc_w->state = mainTouchSWSys( imc_w );
 
-		// ‰Eƒ{ƒbƒNƒXƒvƒŒƒCƒ„[
+		// å³ãƒœãƒƒã‚¯ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 		IMC_RBOX_PLAYER_Main( &imc_w->rbox_player );
 		break;
 
-	case IMC_SYS_SEQ_SAVE_CHECK:	// ƒZ[ƒuƒ`ƒFƒbƒN
+	case IMC_SYS_SEQ_SAVE_CHECK:	// ã‚»ãƒ¼ãƒ–ãƒã‚§ãƒƒã‚¯
 		if( imc_w->state == IMC_SYS_SAVE ){
 			imc_w->save_flag = TRUE;
 			(*seq) = IMC_SYS_SEQ_FADE_OUT;
@@ -639,20 +639,20 @@ PROC_RESULT IMC_ProcMain( PROC* proc, int* seq )
 			break;
 		}
 
-		// ƒ{ƒ^ƒ“ˆ—
+		// ãƒœã‚¿ãƒ³å‡¦ç†
 		imc_w->state = mainTouchSaveCheckSWSys( imc_w );
 
-		// ‰Eƒ{ƒbƒNƒXƒvƒŒƒCƒ„[
+		// å³ãƒœãƒƒã‚¯ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 		IMC_RBOX_PLAYER_Main( &imc_w->rbox_player );
 		break;
 
-	case IMC_SYS_SEQ_MAIN_WAIT:			// ƒƒCƒ“‰æ–ÊƒtƒF[ƒh‘Ò‚¿
+	case IMC_SYS_SEQ_MAIN_WAIT:			// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		if( imc_w->effect ){
 			imc_w->effect = FALSE;
 			(*seq) = IMC_SYS_SEQ_MAIN;
-			imc_w->state = IMC_SYS_ACCE;		// ƒAƒNƒZƒTƒŠ•ÏX‚Å‚Í‚¶‚ß‚é
+			imc_w->state = IMC_SYS_ACCE;		// ã‚¢ã‚¯ã‚»ã‚µãƒªå¤‰æ›´ã§ã¯ã˜ã‚ã‚‹
 
-			// ‰Eƒ{ƒbƒNƒXƒvƒŒƒCƒ„[I—¹
+			// å³ãƒœãƒƒã‚¯ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼çµ‚äº†
 			IMC_RBOX_PLAYER_Delete( &imc_w->rbox_player );
 		}
 		break;
@@ -674,7 +674,7 @@ PROC_RESULT IMC_ProcMain( PROC* proc, int* seq )
 			imc_w->state = IMC_SYS_END;
 			ret = PROC_RES_FINISH;
 
-			// ‰Eƒ{ƒbƒNƒXƒvƒŒƒCƒ„[I—¹
+			// å³ãƒœãƒƒã‚¯ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼çµ‚äº†
 			IMC_RBOX_PLAYER_Delete( &imc_w->rbox_player );
 		}
 		break;
@@ -682,10 +682,10 @@ PROC_RESULT IMC_ProcMain( PROC* proc, int* seq )
 
 	///////////////////////////////////////////////
 	//
-	//	‚±‚±‚Í‹¤’Êˆ—
+	//	ã“ã“ã¯å…±é€šå‡¦ç†
 	//
 	//////////////////////////////////////////////
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	mainDrawSys( imc_w );
 	
 
@@ -695,16 +695,16 @@ PROC_RESULT IMC_ProcMain( PROC* proc, int* seq )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒNI—¹
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -713,18 +713,18 @@ PROC_RESULT IMC_ProcMain( PROC* proc, int* seq )
 PROC_RESULT IMC_ProcEnd( PROC* proc, int* seq )
 {
 	IMC_SYS_WORK* imc_w = PROC_GetWork( proc );
-	u32	check;	// Áª¯¸—p
-	IMC_PROC_WORK* p_pr_w = PROC_GetParentWork( proc );	// ƒf[ƒ^ƒZ[ƒu
+	u32	check;	// ãƒã‚§ãƒƒã‚¯ç”¨
+	IMC_PROC_WORK* p_pr_w = PROC_GetParentWork( proc );	// ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 
-	// ƒf[ƒ^‚ðƒZ[ƒu
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–
 	if( imc_w->save_flag == TRUE ){
-		// ƒŒƒR[ƒhƒf[ƒ^@ƒXƒRƒA‘«‚µŽZˆ—
+		// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã€€ã‚¹ã‚³ã‚¢è¶³ã—ç®—å‡¦ç†
 		RECORD_Score_Add( p_pr_w->p_record, SCORE_ID_MAKE_CLIP );
 		
 		dataSave( p_pr_w->p_imc_one_data, &imc_w->rbox, p_pr_w->cp_tr );	
 	}
 
-	// ƒZ[ƒu—L–³Ý’è
+	// ã‚»ãƒ¼ãƒ–æœ‰ç„¡è¨­å®š
 	if( p_pr_w->p_save_flg != NULL ){
 		if( imc_w->save_flag == TRUE ){
 			*p_pr_w->p_save_flg = TRUE;
@@ -733,48 +733,48 @@ PROC_RESULT IMC_ProcEnd( PROC* proc, int* seq )
 		}
 	}
 
-	// ƒnƒCƒCƒCƒGƒEƒBƒ“ƒhƒEƒƒ‚ƒŠ”jŠü
+	// ãƒã‚¤ã‚¤ã‚¤ã‚¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒ¢ãƒªç ´æ£„
 	TOUCH_SW_FreeWork( imc_w->p_tsw );	
 	GF_BGL_BmpWinFree( imc_w->p_tsw_bmp, 1 );
 	
-	// ƒTƒuƒEƒBƒ“ƒhƒE”jŠü
+	// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	deleteSubWin( imc_w );
 	
-	// ƒnƒ“ƒhî•ñ”jŠü
+	// ãƒãƒ³ãƒ‰æƒ…å ±ç ´æ£„
 	IMC_ACCE_HAND_Delete( &imc_w->hand );
 
-	// ƒ{ƒ^ƒ“”jŠü
+	// ãƒœã‚¿ãƒ³ç ´æ£„
 	deleteBttn( imc_w );
 	
-	// ƒtƒŒ[ƒ€BG‚ð”jŠü
+	// ãƒ•ãƒ¬ãƒ¼ãƒ BGã‚’ç ´æ£„
 	delFrameBG( imc_w );
 	
-	// ‰Eƒ{ƒbƒNƒX”jŠü
+	// å³ãƒœãƒƒã‚¯ã‚¹ç ´æ£„
 	deleteRightBox( imc_w );
 	
-	// ¶ƒ{ƒbƒNƒX”jŠü
+	// å·¦ãƒœãƒƒã‚¯ã‚¹ç ´æ£„
 	deleteLeftBox( imc_w );
 	
-	// ƒAƒNƒZƒTƒŠŠi”[ƒf[ƒ^”jŠü
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ ¼ç´ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_ACCE_ObjTblDelete( imc_w->acce );
 	imc_w->acce = NULL;
 	
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹”jŠü
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
 	IMC_OBJLIST_TblDelete( &imc_w->objListTbl );
 	
 	deleteDrawSys( imc_w );
 	
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒTƒ“ƒvƒŠƒ“ƒOI—¹
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°çµ‚äº†
 	check = StopTP();
 	GF_ASSERT( check == TP_OK );
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	PROC_FreeWork( proc );
 
-	// ƒq[ƒv”jŠü
+	// ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_IMAGECLIP_DATA );
 	sys_DeleteHeap( HEAPID_IMAGECLIP_DRAW );
 	
@@ -787,23 +787,23 @@ PROC_RESULT IMC_ProcEnd( PROC* proc, int* seq )
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒRƒ“ƒeƒXƒg—p
+ *					ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨
  * [JAMP_CONTEST]
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒN¶¬
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ç”Ÿæˆ
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -811,37 +811,37 @@ PROC_RESULT IMC_ProcEnd( PROC* proc, int* seq )
 //-----------------------------------------------------------------------------
 PROC_RESULT IMC_ProcContestInit( PROC* proc, int* seq )
 {
-	IMC_SYS_WORK*	imc_w;			// ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
-	u32				check;			// Áª¯¸—p
-	IMC_CONTEST_PROC_WORK*  p_imc_pr_w;		// ŠO•”‚©‚çŽó‚¯Žæ‚éƒf[ƒ^
+	IMC_SYS_WORK*	imc_w;			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+	u32				check;			// ãƒã‚§ãƒƒã‚¯ç”¨
+	IMC_CONTEST_PROC_WORK*  p_imc_pr_w;		// å¤–éƒ¨ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿
 
 
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_IMAGECLIP_DATA, 0x20000 );
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_IMAGECLIP_DRAW, 0x40000 );
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒNì¬
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	imc_w = PROC_AllocWork( proc, sizeof( IMC_SYS_WORK ), HEAPID_IMAGECLIP_DATA );
 	memset( imc_w, 0, sizeof( IMC_SYS_WORK ) );
 
-	// Vƒuƒ‰ƒ“ƒNHƒuƒ‰ƒ“ƒNŠÖ”Ý’è
-	sys_VBlankFuncChange( imageClipVBlankFunc, imc_w );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	// Vãƒ–ãƒ©ãƒ³ã‚¯Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°è¨­å®š
+	sys_VBlankFuncChange( imageClipVBlankFunc, imc_w );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 
-	// ŠO•”‚©‚ç‚Ìƒf[ƒ^‚ðŽæ“¾
+	// å¤–éƒ¨ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	p_imc_pr_w = PROC_GetParentWork( proc );
 
-	// ƒRƒ“ƒeƒXƒgî•ñŽæ“¾
+	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæƒ…å ±å–å¾—
 	imc_w->rank = p_imc_pr_w->rank;
 	imc_w->mode = p_imc_pr_w->mode;
 	imc_w->type = p_imc_pr_w->type;
 	imc_w->theme = p_imc_pr_w->theme;
 	imc_w->p_comm_data = p_imc_pr_w->p_comm_data;
 
-	OS_Printf( "ƒRƒ“ƒeƒXƒgƒe[ƒ}@%d ƒ‰ƒ“ƒN %d \n", p_imc_pr_w->theme, p_imc_pr_w->rank );
+	OS_Printf( "ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ†ãƒ¼ãƒžã€€%d ãƒ©ãƒ³ã‚¯ %d \n", p_imc_pr_w->theme, p_imc_pr_w->rank );
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒOŠJŽn
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹
 	InitTPSystem();
 	check = InitTPNoBuff( 4 );
 //	GF_ASSERT( check == TP_OK );
@@ -851,34 +851,34 @@ PROC_RESULT IMC_ProcContestInit( PROC* proc, int* seq )
 //	while( InitTPNoBuff( 4 ) != TP_OK ){};
 
 
-	// ƒAƒCƒeƒ€ƒoƒbƒtƒ@ì¬
+	// ã‚¢ã‚¤ãƒ†ãƒ ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	IMC_ITEM_BUFF_Make( p_imc_pr_w->cp_imc_item, &imc_w->item_buff );
 
 	
-	// •\Ž¦Ý’è
+	// è¡¨ç¤ºè¨­å®š
 	initDrawSys( imc_w );
 
-	// Å‰ƒAƒNƒ^[ƒZƒbƒg”ñ•\Ž¦
+	// æœ€åˆã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆéžè¡¨ç¤º
 	CLACT_DrawFlagSet( imc_w->drawSys.clactSet, 0 );
 
-	// COMM_ICONÝ’è
+	// COMM_ICONè¨­å®š
 	WirelessIconEasy();	
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ‚ÉƒLƒƒƒ‰ƒNƒ^—Ìˆæ‚ð—\–ñ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é ˜åŸŸã‚’äºˆç´„
 	CLACT_U_WmIcon_SetReserveAreaCharManager( NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K );
 	CLACT_U_WmIcon_SetReserveAreaPlttManager( NNS_G2D_VRAM_TYPE_2DMAIN );
 
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	IMC_OBJLIST_TblInit( &imc_w->objListTbl, IMC_OBJLIST_MAX, HEAPID_IMAGECLIP_DATA );
 	
-	// ƒAƒNƒZƒTƒŠŠi”[ƒf[ƒ^ì¬
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ ¼ç´ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	imc_w->acce = IMC_ACCE_ObjTblInit( IMC_SYS_ACCESSORIE_MAX, HEAPID_IMAGECLIP_DATA );
 
-	// ŠO•”‚©‚ç‚Ìƒf[ƒ^Ý’è
+	// å¤–éƒ¨ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	imc_w->cp_config = p_imc_pr_w->cp_config;
 
 
-	// ‰Eƒ{ƒbƒNƒXƒf[ƒ^ì¬
+	// å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	if( imc_w->p_comm_data->sio_flag == 0 ){
 		imc_w->acce_max = getRightAcceMax_contest( p_imc_pr_w->rank );	
 	}else{
@@ -887,30 +887,30 @@ PROC_RESULT IMC_ProcContestInit( PROC* proc, int* seq )
 	initRightBox_Contest( imc_w, p_imc_pr_w->p_poke_para, imc_w->acce_max );
 		
 	
-	// ¶ƒ{ƒbƒNƒXƒf[ƒ^ì¬
+	// å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	initLeftBox( imc_w );
 
-	// ƒtƒŒ[ƒ€BG‚ð•\Ž¦
+	// ãƒ•ãƒ¬ãƒ¼ãƒ BGã‚’è¡¨ç¤º
 	setFrameBG( imc_w, IMC_BG_FRAME_00 );
 	
-	// ƒ{ƒ^ƒ“ƒf[ƒ^ì¬
+	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	initBttn_Contest( imc_w );
 
-	// ƒTƒuƒEƒBƒ“ƒhƒE‰Šú‰»
+	// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	initSubWin_Contest( imc_w, imc_w->acce_max, p_imc_pr_w->theme, p_imc_pr_w->p_comm_data, p_imc_pr_w->cp_config );
 
-	// ƒnƒ“ƒhƒf[ƒ^‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	IMC_ACCE_HAND_Init( &imc_w->hand, &imc_w->rbox, &imc_w->lbox, &imc_w->drawSys, &imc_w->subwin, FALSE );
 
-	// ‚Í‚¢@‚¢‚¢‚¦@ƒEƒBƒ“ƒhƒEƒƒ‚ƒŠŠm•Û
+	// ã¯ã„ã€€ã„ã„ãˆã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	imc_w->p_tsw = TOUCH_SW_AllocWork( HEAPID_IMAGECLIP_DATA );
 	imc_w->p_tsw_bmp = GF_BGL_BmpWinAllocGet( HEAPID_IMAGECLIP_DATA, 1 );
 
-	// ó‘ÔÝ’è
-	// ó‘Ô	•’Ê
+	// çŠ¶æ…‹è¨­å®š
+	// çŠ¶æ…‹	æ™®é€š
 	imc_w->state = IMC_SYS_ACCE;
 
-	// ƒƒbƒZ[ƒWÝ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¨­å®š
 	ConTool_MsgPrintFlagSet( imc_w->p_comm_data->sio_flag );
 	
 	return PROC_RES_FINISH;
@@ -919,16 +919,16 @@ PROC_RESULT IMC_ProcContestInit( PROC* proc, int* seq )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒNƒƒCƒ“
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -955,21 +955,21 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 	case IMC_SYS_CON_SEQ_CON_TEXT_ON:
 		initConTextSys( imc_w );
 
-		// Šeƒ‰ƒ“ƒN‚ÌƒAƒNƒZƒTƒŠ”‚ðƒ[ƒhƒZƒbƒg‚ÉÝ’è
+		// å„ãƒ©ãƒ³ã‚¯ã®ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°ã‚’ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«è¨­å®š
 		setContestWordSet( imc_w, 0, imc_w->acce_max );
 		
 		if( imc_w->mode != CONMODE_VISUAL_PRACTICE ){
-			// –{”ÔƒeƒLƒXƒg
+			// æœ¬ç•ªãƒ†ã‚­ã‚¹ãƒˆ
 			imc_w->msg_idx = setContestTextBmpWin( imc_w, msg_con_v_du_b_01 );
 		}else{
-			// —ûKƒeƒLƒXƒg
+			// ç·´ç¿’ãƒ†ã‚­ã‚¹ãƒˆ
 			imc_w->msg_idx = setContestTextBmpWin( imc_w, msg_con_v_prac_01 );
 		}
 		(*seq)++;
 		break;
 		
 	case IMC_SYS_CON_SEQ_CON_TEXT_WAIT:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( imc_w->msg_idx ) == 0 ){
 			endContestTextBmpWin( imc_w );
 			(*seq)++;
@@ -978,13 +978,13 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 
 
 	case IMC_SYS_CON_SEQ_CON_TEXT_THEME_ON:
-		// THEME”­•\ 
+		// THEMEç™ºè¡¨ 
 		imc_w->msg_idx = setContestTextBmpWin( imc_w, msg_con_theme_01 + imc_w->theme );
 		(*seq)++;
 		break;
 		
 	case IMC_SYS_CON_SEQ_CON_TEXT_THEME_WAIT:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( imc_w->msg_idx ) == 0 ){
 			endContestTextBmpWin( imc_w );
 			(*seq)++;
@@ -992,7 +992,7 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 		break;
 
 	case IMC_SYS_CON_SEQ_CON_TEXT_LAST_ON:
-		// ÅŒã‚ÌŠJŽnII‚Æ‚¢‚¤Œ¾—t
+		// æœ€å¾Œã®é–‹å§‹ï¼ï¼ã¨ã„ã†è¨€è‘‰
 		if( imc_w->mode != CONMODE_VISUAL_PRACTICE ){
 			imc_w->msg_idx = setContestTextBmpWin( imc_w, msg_con_v_after_theme_02 );
 		}else{
@@ -1002,7 +1002,7 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 		break;
 		
 	case IMC_SYS_CON_SEQ_CON_TEXT_LAST_WAIT:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( imc_w->msg_idx ) == 0 ){
 			endContestTextBmpWin( imc_w );
 			(*seq)++;
@@ -1011,16 +1011,16 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 
 
 	case IMC_SYS_CON_SEQ_CON_TEXT_LAST_DOUKI:
-		// “¯ŠúƒRƒ}ƒ“ƒh‚ð“]‘—
+		// åŒæœŸã‚³ãƒžãƒ³ãƒ‰ã‚’è»¢é€
 		if( imc_w->p_comm_data->sio_flag ){
 			CommTimingSyncStart( CONSIO_TIMING_CALL_IN_IMCPROC );
 		}
 		(*seq)++;
 		break;
 
-	case IMC_SYS_CON_SEQ_START_TIMING_WAIT:	// “¯Šú‘Ò‚¿
-		// ’ÊM‚µ‚Ä‚¢‚é‚Æ‚«‚Í
-		// “¯Šú‘Ò‚¿
+	case IMC_SYS_CON_SEQ_START_TIMING_WAIT:	// åŒæœŸå¾…ã¡
+		// é€šä¿¡ã—ã¦ã„ã‚‹ã¨ãã¯
+		// åŒæœŸå¾…ã¡
 		if( imc_w->p_comm_data->sio_flag ){
 			if( CommIsTimingSync( CONSIO_TIMING_CALL_IN_IMCPROC ) ){
 				(*seq)++;
@@ -1033,7 +1033,7 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 		
 	case IMC_SYS_CON_SEQ_CON_TEXT_END:
 		deleteConTextSys( imc_w );
-		// ‰¹‚ð–Â‚ç‚·
+		// éŸ³ã‚’é³´ã‚‰ã™
 		Snd_SePlay( IMC_SE_CON_START );
 		(*seq)++;
 		break;
@@ -1055,7 +1055,7 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 	case IMC_SYS_CON_SEQ_FADE_IN_WAIT:
 		if( WIPE_SYS_EndCheck() ){
 
-			// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒRƒ“ƒeƒXƒgƒCƒ[ƒWƒNƒŠƒbƒv)(BGMØ‚è‘Ö‚¦)
+			// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—)(BGMåˆ‡ã‚Šæ›¿ãˆ)
 			//Snd_DataSetByScene( SND_SCENE_SUB_IMAGE, 0, 0 );
 			Snd_DataSetByScene( SND_SCENE_CON_IMAGE, SEQ_CO_DRESS, 0 );
 
@@ -1065,17 +1065,17 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 
 	//-------------------------------------
 	//	
-	//	ƒƒCƒ“ˆ—
+	//	ãƒ¡ã‚¤ãƒ³å‡¦ç†
 	//	
 	//=====================================
 	case IMC_SYS_CON_SEQ_MAIN:
 
-		// I—¹ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
+		// çµ‚äº†ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
 		if(imc_w->state == IMC_SYS_END_CHECK_REQ){
-			// e‚ÉI—¹‚ðƒR[ƒ‹
+			// è¦ªã«çµ‚äº†ã‚’ã‚³ãƒ¼ãƒ«
 			CommContestSendImcForceEnd( imc_w->p_comm_data, TRUE );
 
-			// ’ÊM‚µ‚Ä‚¢‚é‚Æ‚«‚Íã‚É‘Ò‚Á‚Ä‚Ì•¶Žš‚ðo‚·
+			// é€šä¿¡ã—ã¦ã„ã‚‹ã¨ãã¯ä¸Šã«å¾…ã£ã¦ã®æ–‡å­—ã‚’å‡ºã™
 			if( imc_w->p_comm_data->sio_flag ){
 				IMC_SUBWIN_SetBmpWin( &imc_w->subwin, ARC_MSG, NARC_msg_imageclip_dat, msg_con_caution_01 );
 			}
@@ -1091,77 +1091,77 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 				COUNTER_END_FLG ^= 1;
 			}
 			
-			// ƒJƒEƒ“ƒ^[‚ª‚O‚É‚È‚Á‚½‚çI‚í‚è
+			// ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãŒï¼ã«ãªã£ãŸã‚‰çµ‚ã‚ã‚Š
 			count = IMC_SUBWIN_GetCounterNowNum( &imc_w->subwin );
 			if(0 == count){
 				(*seq)  = IMC_SYS_CON_SEQ_END_CHECK_WAIT;
-				// ‰¹‚ð–Â‚ç‚·
+				// éŸ³ã‚’é³´ã‚‰ã™
 				Snd_SePlay( IMC_SE_CON_FINISH );
 			}
 
-			// ƒnƒ“ƒhˆ—
+			// ãƒãƒ³ãƒ‰å‡¦ç†
 			IMC_HAND_Main( &imc_w->hand );
 
-			// ‰Eƒ{ƒbƒNƒX‚ÌƒAƒNƒZƒTƒŠ”‚ðÝ’è
+			// å³ãƒœãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°ã‚’è¨­å®š
 			setAcceNumSubWin( imc_w );
 
-			// FALSE‚È‚çI‚í‚ç‚È‚¢
+			// FALSEãªã‚‰çµ‚ã‚ã‚‰ãªã„
 			if( COUNTER_END_FLG == TRUE ){
-				// ƒTƒuƒEƒBƒ“ƒhƒEƒƒCƒ“
+				// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
 				IMC_SUBWIN_Main( &imc_w->subwin );
 			}
 			
-			// ƒ{ƒ^ƒ“ˆ—
+			// ãƒœã‚¿ãƒ³å‡¦ç†
 			mainBttn( imc_w );
 
 		}
 #else
-		// ƒJƒEƒ“ƒ^[‚ª‚O‚É‚È‚Á‚½‚çI‚í‚è
+		// ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãŒï¼ã«ãªã£ãŸã‚‰çµ‚ã‚ã‚Š
 		count = IMC_SUBWIN_GetCounterNowNum( &imc_w->subwin );
 		if(0 == count){
 			(*seq)  = IMC_SYS_CON_SEQ_END_CHECK_WAIT;
-			// ‰¹‚ð–Â‚ç‚·
+			// éŸ³ã‚’é³´ã‚‰ã™
 			Snd_SePlay( IMC_SE_CON_FINISH );
 		}
 
-		// ƒnƒ“ƒhˆ—
+		// ãƒãƒ³ãƒ‰å‡¦ç†
 		IMC_HAND_Main( &imc_w->hand );
 
-		// ‰Eƒ{ƒbƒNƒX‚ÌƒAƒNƒZƒTƒŠ”‚ðÝ’è
+		// å³ãƒœãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°ã‚’è¨­å®š
 		setAcceNumSubWin( imc_w );
 
-		// ƒTƒuƒEƒBƒ“ƒhƒEƒƒCƒ“
+		// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
 		IMC_SUBWIN_Main( &imc_w->subwin );
 		
-		// ƒ{ƒ^ƒ“ˆ—
+		// ãƒœã‚¿ãƒ³å‡¦ç†
 		mainBttn( imc_w );
 #endif
 		break;
 
-	case IMC_SYS_CON_SEQ_EX_END_WAIT:	// I‚í‚é‚ð‰Ÿ‚µ‚Ä‚Ì‹­§I—¹‘Ò‚¿
-		// ƒJƒEƒ“ƒ^[‚ª‚O‚É‚È‚Á‚½‚çI‚í‚è
+	case IMC_SYS_CON_SEQ_EX_END_WAIT:	// çµ‚ã‚ã‚‹ã‚’æŠ¼ã—ã¦ã®å¼·åˆ¶çµ‚äº†å¾…ã¡
+		// ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãŒï¼ã«ãªã£ãŸã‚‰çµ‚ã‚ã‚Š
 		count = IMC_SUBWIN_GetCounterNowNum( &imc_w->subwin );
 		if(0 == count){
 			(*seq)  = IMC_SYS_CON_SEQ_END_CHECK_WAIT;
-			// ‰¹‚ð–Â‚ç‚·
+			// éŸ³ã‚’é³´ã‚‰ã™
 			Snd_SePlay( IMC_SE_CON_FINISH );
 		}
 
-		// ‰Eƒ{ƒbƒNƒX‚ÌƒAƒNƒZƒTƒŠ”‚ðÝ’è
+		// å³ãƒœãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°ã‚’è¨­å®š
 		setAcceNumSubWin( imc_w );
 
-		// ƒTƒuƒEƒBƒ“ƒhƒEƒƒCƒ“
+		// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
 		IMC_SUBWIN_Main( &imc_w->subwin );
 
-		// ‹­§I—¹ƒ`ƒFƒbƒN
+		// å¼·åˆ¶çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		Imc_OyaExEndCheck( imc_w );
 		
 		break;
 
 	case IMC_SYS_CON_SEQ_END_CHECK_WAIT:
-		// ƒTƒuƒEƒBƒ“ƒhƒEƒƒCƒ“
+		// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
 		IMC_SUBWIN_Main( &imc_w->subwin );
-		// ‚¿‚á‚ñ‚ÆƒJƒEƒ“ƒ^[‚Ì´Ìª¸Ä‚ªI‚í‚Á‚½‚çI—¹
+		// ã¡ã‚ƒã‚“ã¨ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚ã‚ã£ãŸã‚‰çµ‚äº†
 		if( IMC_SUBWIN_GetCounterEffectEnd( &imc_w->subwin ) ){
 			(*seq) = IMC_SYS_CON_SEQ_FADE_OUT;
 		}
@@ -1169,7 +1169,7 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 		
 	case IMC_SYS_CON_SEQ_FADE_OUT:
 
-		// ‰¹‚ªI‚í‚é‚Ì‚ð‘Ò‚Â
+		// éŸ³ãŒçµ‚ã‚ã‚‹ã®ã‚’å¾…ã¤
 		if( Snd_SePlayCheck( IMC_SE_CON_FINISH ) == TRUE ){
 			break;
 		}
@@ -1192,10 +1192,10 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 			imc_w->state = IMC_SYS_END;
 			ret = PROC_RES_FINISH;
 
-			// ƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
 			GX_SetVisibleWnd( GX_WNDMASK_NONE );
 			
-			// ‰Eƒ{ƒbƒNƒX‚Ìƒf[ƒ^‚ðI—¹À•W‚Ü‚Å“®‚©‚µ‚Ä‚¨‚­
+			// å³ãƒœãƒƒã‚¯ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ã‚’çµ‚äº†åº§æ¨™ã¾ã§å‹•ã‹ã—ã¦ãŠã
 			IMC_RBOX_ListMove( &imc_w->rbox, -(IMC_SEENFADE_MOVE_ADD_X*IMC_SEENFADE_MOVE_COUNT), (IMC_SEENFADE_MOVE_ADD_Y*IMC_SEENFADE_MOVE_COUNT) );
 		}
 		break;
@@ -1203,10 +1203,10 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 
 	///////////////////////////////////////////////
 	//
-	//	‚±‚±‚Í‹¤’Êˆ—
+	//	ã“ã“ã¯å…±é€šå‡¦ç†
 	//
 	//////////////////////////////////////////////
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	mainDrawSys( imc_w );
 	
 
@@ -1216,16 +1216,16 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒNI—¹
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -1234,60 +1234,60 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 PROC_RESULT IMC_ProcContestEnd( PROC* proc, int* seq )
 {
 	IMC_SYS_WORK* imc_w = PROC_GetWork( proc );
-	u32	check;	// Áª¯¸—p
-	IMC_CONTEST_PROC_WORK* p_pr_w = PROC_GetParentWork( proc );	// ƒf[ƒ^ƒZ[ƒu
+	u32	check;	// ãƒã‚§ãƒƒã‚¯ç”¨
+	IMC_CONTEST_PROC_WORK* p_pr_w = PROC_GetParentWork( proc );	// ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 
-	OS_Printf( "ƒRƒ“ƒeƒXƒgƒe[ƒ}@%d ƒ‰ƒ“ƒN %d \n", imc_w->theme, imc_w->rank );
+	OS_Printf( "ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ†ãƒ¼ãƒžã€€%d ãƒ©ãƒ³ã‚¯ %d \n", imc_w->theme, imc_w->rank );
 
-	// ƒf[ƒ^‚ðƒZ[ƒu
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–
 	dataSave_Contest( p_pr_w->p_imc_one_data, &imc_w->rbox, imc_w->rank, p_pr_w->cp_tr );	
 
-	// ƒnƒCƒCƒCƒGƒEƒBƒ“ƒhƒEƒƒ‚ƒŠ”jŠü
+	// ãƒã‚¤ã‚¤ã‚¤ã‚¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒ¢ãƒªç ´æ£„
 	TOUCH_SW_FreeWork( imc_w->p_tsw );	
 	GF_BGL_BmpWinFree( imc_w->p_tsw_bmp, 1 );
 	
-	// ƒTƒuƒEƒBƒ“ƒhƒE”jŠü
+	// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	deleteSubWin( imc_w );
 	
-	// ƒnƒ“ƒhî•ñ”jŠü
+	// ãƒãƒ³ãƒ‰æƒ…å ±ç ´æ£„
 	IMC_ACCE_HAND_Delete( &imc_w->hand );
 
-	// ƒ{ƒ^ƒ“”jŠü
+	// ãƒœã‚¿ãƒ³ç ´æ£„
 	deleteBttn( imc_w );
 	
-	// ƒtƒŒ[ƒ€BG‚ð”jŠü
+	// ãƒ•ãƒ¬ãƒ¼ãƒ BGã‚’ç ´æ£„
 	delFrameBG( imc_w );
 	
-	// ‰Eƒ{ƒbƒNƒX”jŠü
+	// å³ãƒœãƒƒã‚¯ã‚¹ç ´æ£„
 	deleteRightBox( imc_w );
 	
-	// ¶ƒ{ƒbƒNƒX”jŠü
+	// å·¦ãƒœãƒƒã‚¯ã‚¹ç ´æ£„
 	deleteLeftBox( imc_w );
 	
-	// ƒAƒNƒZƒTƒŠŠi”[ƒf[ƒ^”jŠü
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ ¼ç´ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_ACCE_ObjTblDelete( imc_w->acce );
 	imc_w->acce = NULL;
 	
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹”jŠü
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
 	IMC_OBJLIST_TblDelete( &imc_w->objListTbl );
 	
 	deleteDrawSys( imc_w );
 	
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒTƒ“ƒvƒŠƒ“ƒOI—¹
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°çµ‚äº†
 	check = StopTP();
 	GF_ASSERT( check == TP_OK );
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	PROC_FreeWork( proc );
 
-	// ƒq[ƒv”jŠü
+	// ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_IMAGECLIP_DATA );
 	sys_DeleteHeap( HEAPID_IMAGECLIP_DRAW );
 
-	// ƒƒbƒZ[ƒWÝ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¨­å®š
 	ConTool_MsgPrintFlagReset();
 
 	WirelessIconEasyEnd();
@@ -1301,15 +1301,15 @@ PROC_RESULT IMC_ProcContestEnd( PROC* proc, int* seq )
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+*		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	imc_w	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	imc_w	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1318,30 +1318,30 @@ PROC_RESULT IMC_ProcContestEnd( PROC* proc, int* seq )
 //-----------------------------------------------------------------------------
 static void initDrawSys( IMC_SYS_WORK* imc_w )
 {
-	IMC_DRAW_LOADRES_DATA loadData;	// ‰æ‘œƒf[ƒ^“Ç‚Ýž‚Ýƒf[ƒ^
+	IMC_DRAW_LOADRES_DATA loadData;	// ç”»åƒãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿
 
-	// ‰æ–Êƒf[ƒ^Ý’è
+	// ç”»é¢ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	IMC_DRAW_SetUp();
 
-	// •`‰æƒVƒXƒeƒ€ì¬
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	IMC_DRAW_InitSys( &imc_w->drawSys );
 	
-	// •`‰æƒf[ƒ^ì¬
+	// æç”»ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	IMC_DRAW_MakeLoadSWSP_samp( &imc_w->drawSys, &loadData );
 
-	// •`‰æƒf[ƒ^Vram“]‘—
+	// æç”»ãƒ‡ãƒ¼ã‚¿Vramè»¢é€
 	IMC_DRAW_LoadResource( &imc_w->drawSys, &loadData );
 
-	// •`‰æƒf[ƒ^”jŠü
+	// æç”»ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_DRAW_DestLoadSWSP( &loadData );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€ƒƒCƒ“
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ã‚¤ãƒ³
  *
- *	@param	imc_w	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	imc_w	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1356,9 +1356,9 @@ static void mainDrawSys( IMC_SYS_WORK* imc_w )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€”jŠü
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	imc_w	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	imc_w	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1367,24 +1367,24 @@ static void mainDrawSys( IMC_SYS_WORK* imc_w )
 //-----------------------------------------------------------------------------
 static void deleteDrawSys( IMC_SYS_WORK* imc_w )
 {
-	// •`‰æƒf[ƒ^”jŠü
+	// æç”»ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_DRAW_DeleteResource( &imc_w->drawSys );
 
-	// •`‰æƒVƒXƒeƒ€”jŠü
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	IMC_DRAW_DeleteSys( &imc_w->drawSys );
 
-	// •`‰æ–ÊÝ’è”jŠü
+	// æç”»é¢è¨­å®šç ´æ£„
 	IMC_DRAW_PutBack();
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Eƒ{ƒbƒNƒXƒf[ƒ^ì¬
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	imc_w	ƒCƒ[ƒWƒNƒŠƒbƒvƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	acce_max	ƒAƒNƒZƒTƒŠ“o˜^”Å‘å”
+ *	@param	imc_w	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	acce_max	ã‚¢ã‚¯ã‚»ã‚µãƒªç™»éŒ²æ•°æœ€å¤§æ•°
  *
  *	@return	none
  *
@@ -1393,10 +1393,10 @@ static void deleteDrawSys( IMC_SYS_WORK* imc_w )
 //-----------------------------------------------------------------------------
 static void initRightBox( IMC_SYS_WORK* imc_w, POKEMON_PARAM* pp, int acce_max, BOOL contest )
 {
-	IMC_RIGHT_BOX_INIT	rbox_init;	// ‰Eƒ{ƒbƒNƒX‰Šú‰»ƒf[ƒ^
+	IMC_RIGHT_BOX_INIT	rbox_init;	// å³ãƒœãƒƒã‚¯ã‚¹åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 
-	// ‰Eƒ{ƒbƒNƒXƒf[ƒ^ì¬
-	// •`‰æƒf[ƒ^
+	// å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	rbox_init.SWSP_drawSys		= imc_w->drawSys.SWSP_drawSys;
 	rbox_init.SWSP_charData		= imc_w->drawSys.SWSP_charData;
 	rbox_init.SWSP_plttData		= imc_w->drawSys.SWSP_plttData;
@@ -1405,11 +1405,11 @@ static void initRightBox( IMC_SYS_WORK* imc_w, POKEMON_PARAM* pp, int acce_max, 
 	rbox_init.BG_Ini			= imc_w->drawSys.BG_Ini;
 	rbox_init.acce_count_max	= acce_max;
 
-	rbox_init.acce		= imc_w->acce;			// ƒAƒNƒZƒTƒŠƒf[ƒ^
-	rbox_init.objListTbl= &imc_w->objListTbl;	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹
+	rbox_init.acce		= imc_w->acce;			// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
+	rbox_init.objListTbl= &imc_w->objListTbl;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 	IMC_RBOX_InitSys( &imc_w->rbox, &rbox_init );
 	
-	// ƒ|ƒPƒ‚ƒ“‚ð“o˜^
+	// ãƒã‚±ãƒ¢ãƒ³ã‚’ç™»éŒ²
 	{
 		SOFT_SPRITE_ARC	arc;
 		if( contest == FALSE ){
@@ -1418,11 +1418,11 @@ static void initRightBox( IMC_SYS_WORK* imc_w, POKEMON_PARAM* pp, int acce_max, 
 			IMC_RBOX_AddPoke_Contest( &imc_w->rbox, pp, &arc, HEAPID_IMAGECLIP_DRAW );
 		}
 
-		// ƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“o˜^
+		// ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 		IMC_POKE_CharSet( &imc_w->drawSys, &arc );
 	}
 /*
-	// ‰Eƒ{ƒbƒNƒX‚É”z’u‚·‚éƒf[ƒ^‚ðì¬
+	// å³ãƒœãƒƒã‚¯ã‚¹ã«é…ç½®ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 	{
 		int i;
 		for(i=0;i<IMC_ACCE_MAX; i++){
@@ -1437,13 +1437,13 @@ static void initRightBox( IMC_SYS_WORK* imc_w, POKEMON_PARAM* pp, int acce_max, 
 	}//*/
 	IMC_RBOX_SetObjPriority( &imc_w->rbox );
 
-	// BG‚ð•\Ž¦
+	// BGã‚’è¡¨ç¤º
 	IMC_RBOX_BGSet( &imc_w->rbox, IMC_BG_RIGHT_00, HEAPID_IMAGECLIP_DRAW );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p@‰Eƒ{ƒbƒNƒX‰Šú‰»
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã€€å³ãƒœãƒƒã‚¯ã‚¹åˆæœŸåŒ–
  *
  *	@param	imc_w
  *	@param	pp
@@ -1463,19 +1463,19 @@ static void initRightBox_Contest( IMC_SYS_WORK* imc_w, POKEMON_PARAM* pp, int ac
 	
 	initRightBox( imc_w, pp, acce_max, TRUE );
 
-	// ƒ|ƒPƒ‚ƒ“ƒTƒCƒYŽæ“¾
+	// ãƒã‚±ãƒ¢ãƒ³ã‚µã‚¤ã‚ºå–å¾—
 	IMC_POKE_SizeGet( &imc_w->rbox.boxDraw.poke, &size_x, &size_y );
 	
 #if PLFIX_S2407
 	IMC_POKE_InSizeGet( &imc_w->rbox.boxDraw.poke, &rect );
 	
-	// ƒRƒ“ƒeƒXƒg—pÀ•WÝ’è
+	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨åº§æ¨™è¨­å®š
 	IMC_POKE_MatrixSet( &imc_w->rbox.boxDraw.poke, IMC_POKE_INIT_X, (IMC_RBOX_AREA_Y + IMC_RBOX_AREA_HEIGHT) - ((size_y/2) - rect.bottom) + IMC_POKE_MAT_CONTEST_Y_OFS );
 
 #else
 	IMC_POKE_InSizeGet( &imc_w->rbox.boxDraw.poke, &in_size_x, &in_size_y );
 
-	// ƒRƒ“ƒeƒXƒg—pÀ•WÝ’è
+	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨åº§æ¨™è¨­å®š
 	IMC_POKE_MatrixSet( &imc_w->rbox.boxDraw.poke, IMC_POKE_INIT_X, (IMC_RBOX_AREA_Y + IMC_RBOX_AREA_HEIGHT) - ((size_y/2) - in_size_y) + IMC_POKE_MAT_CONTEST_Y_OFS );
 
 #endif
@@ -1484,9 +1484,9 @@ static void initRightBox_Contest( IMC_SYS_WORK* imc_w, POKEMON_PARAM* pp, int ac
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Eƒ{ƒbƒNƒXƒf[ƒ^”jŠü
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	imc_w	ƒCƒ[ƒWƒNƒŠƒbƒvƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	imc_w	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -1495,13 +1495,13 @@ static void initRightBox_Contest( IMC_SYS_WORK* imc_w, POKEMON_PARAM* pp, int ac
 //-----------------------------------------------------------------------------
 static void deleteRightBox( IMC_SYS_WORK* imc_w )
 {
-	// BG‚ðƒNƒŠ[ƒ“
+	// BGã‚’ã‚¯ãƒªãƒ¼ãƒ³
 	IMC_RBOX_BGClean( &imc_w->rbox );
 	
-	// ‰Eƒ{ƒbƒNƒX”z’uƒf[ƒ^”jŠü
+	// å³ãƒœãƒƒã‚¯ã‚¹é…ç½®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_RBOX_DeleteAccessorieAll( &imc_w->rbox );
 	
-	// ‰Eƒ{ƒbƒNƒXƒf[ƒ^”jŠü
+	// å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_RBOX_DeleteSys( &imc_w->rbox );
 	
 }
@@ -1509,9 +1509,9 @@ static void deleteRightBox( IMC_SYS_WORK* imc_w )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒ{ƒbƒNƒXƒf[ƒ^ì¬
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	imc_w	ƒCƒ[ƒWƒNƒŠƒbƒvƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	imc_w	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -1520,31 +1520,31 @@ static void deleteRightBox( IMC_SYS_WORK* imc_w )
 //-----------------------------------------------------------------------------
 static void initLeftBox( IMC_SYS_WORK* imc_w )
 {
-	IMC_LEFT_BOX_INIT	lbox_init;	// ‰Eƒ{ƒbƒNƒX‰Šú‰»ƒf[ƒ^
+	IMC_LEFT_BOX_INIT	lbox_init;	// å³ãƒœãƒƒã‚¯ã‚¹åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 
-	// ¶ƒ{ƒbƒNƒXƒf[ƒ^ì¬
-	// •`‰æƒf[ƒ^
+	// å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	lbox_init.SWSP_drawSys		= imc_w->drawSys.SWSP_drawSys;
 	lbox_init.SWSP_charData		= imc_w->drawSys.SWSP_charData;
 	lbox_init.SWSP_plttData		= imc_w->drawSys.SWSP_plttData;
 	lbox_init.accePlttOfsTbl	= imc_w->drawSys.accePlttOfsTbl;
 	lbox_init.BG_Ini			= imc_w->drawSys.BG_Ini;
 	lbox_init.p_item_buff		= &imc_w->item_buff;
-	lbox_init.acce			= imc_w->acce;			// ƒAƒNƒZƒTƒŠƒf[ƒ^
-	lbox_init.objListTbl	= &imc_w->objListTbl;	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹
-	lbox_init.accelist_num	= IMC_LBOX_ACCE_NEAD_LIST_NUM;	// ƒŠƒXƒg”
-	lbox_init.bglist_num	= IMC_LBOX_BG_NEAD_LIST_NUM;	// ƒŠƒXƒg”
-	lbox_init.sndlist_num	= IMC_LBOX_SND_NEAD_LIST_NUM;	// ƒŠƒXƒg”
+	lbox_init.acce			= imc_w->acce;			// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
+	lbox_init.objListTbl	= &imc_w->objListTbl;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+	lbox_init.accelist_num	= IMC_LBOX_ACCE_NEAD_LIST_NUM;	// ãƒªã‚¹ãƒˆæ•°
+	lbox_init.bglist_num	= IMC_LBOX_BG_NEAD_LIST_NUM;	// ãƒªã‚¹ãƒˆæ•°
+	lbox_init.sndlist_num	= IMC_LBOX_SND_NEAD_LIST_NUM;	// ãƒªã‚¹ãƒˆæ•°
 	IMC_LBOX_InitSys( &imc_w->lbox, &lbox_init );
 
-	// ƒJƒŒƒ“ƒgæ“ªƒ_ƒ~[ƒf[ƒ^ì¬
+	// ã‚«ãƒ¬ãƒ³ãƒˆå…ˆé ­ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	IMC_LBOX_SetCurrentAccessorie( 
 			&imc_w->lbox, 
 			IMC_OBJLIST_ACCE,
 			0 );
 
 
-	// ¶ƒ{ƒbƒNƒX‚É”z’u‚·‚éƒf[ƒ^‚ðì¬
+	// å·¦ãƒœãƒƒã‚¯ã‚¹ã«é…ç½®ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 	{
 		int i, j;
 		int add_num;
@@ -1552,21 +1552,21 @@ static void initLeftBox( IMC_SYS_WORK* imc_w )
 		for(i=0;i<IMC_ACCE_MAX; i++){
 			add_num = IMC_ITEM_BUFF_AcceGetNum( &imc_w->item_buff, i );
 			for( j=0; j<add_num; j++ ){
-				// ¶ƒ{ƒbƒNƒXƒAƒNƒZƒTƒŠ”z’u
+				// å·¦ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚»ã‚µãƒªé…ç½®
 				IMC_LBOX_AddAccessorie( &imc_w->lbox, IMC_OBJLIST_ACCE, i );
 			}
 		}
-		// BGƒTƒ€ƒlƒCƒ‹‚ðì¬
+		// BGã‚µãƒ ãƒã‚¤ãƒ«ã‚’ä½œæˆ
 		for( i=0; i<IMC_BG_RIGHT_MAX; i++ ){
 
 			add_num = IMC_ITEM_BUFF_TurnBgNoGet( &imc_w->item_buff, i );
 			if( add_num < IMC_BG_RIGHT_MAX ){
-				// ¶ƒ{ƒbƒNƒXƒAƒNƒZƒTƒŠ”z’u
+				// å·¦ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚»ã‚µãƒªé…ç½®
 				IMC_LBOX_AddAccessorie( &imc_w->lbox, IMC_OBJLIST_BG, add_num );
 			}
 		}
 
-		// •\Ž¦—Dæ‡ˆÊÝ’è
+		// è¡¨ç¤ºå„ªå…ˆé †ä½è¨­å®š
 		IMC_LBOX_SetAccessoriePriority( &imc_w->lbox );
 	}
 }
@@ -1574,9 +1574,9 @@ static void initLeftBox( IMC_SYS_WORK* imc_w )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒ{ƒbƒNƒXƒf[ƒ^ì¬
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	imc_w	ƒCƒ[ƒWƒNƒŠƒbƒvƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	imc_w	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -1585,38 +1585,38 @@ static void initLeftBox( IMC_SYS_WORK* imc_w )
 //-----------------------------------------------------------------------------
 static void deleteLeftBox( IMC_SYS_WORK* imc_w )
 {
-	// BG‚ðƒNƒŠ[ƒ“
+	// BGã‚’ã‚¯ãƒªãƒ¼ãƒ³
 	IMC_LBOX_BGClean( &imc_w->lbox );
 	
-	// ‰Eƒ{ƒbƒNƒX”z’uƒf[ƒ^”jŠü
+	// å³ãƒœãƒƒã‚¯ã‚¹é…ç½®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_LBOX_DeleteAccessorieAll( &imc_w->lbox );
 	
-	// ‰Eƒ{ƒbƒNƒXƒf[ƒ^”jŠü
+	// å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_LBOX_DeleteSys( &imc_w->lbox );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¶ƒ{ƒbƒNƒXBG‚ÌƒZƒbƒgƒAƒbƒv
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹BGã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void setLeftBoxBg( IMC_SYS_WORK* imc_w )
 {
-	// •\Ž¦—Dæ‡ˆÊÝ’è
+	// è¡¨ç¤ºå„ªå…ˆé †ä½è¨­å®š
 	G2_SetBG0Priority( 1 );
 	G2_SetBG1Priority( 0 );//*/
 	G2_SetBG2Priority( 2 );
 	G2_SetBG3Priority( 3 );
 
-	// ƒXƒNƒ[ƒ‹À•W‚ðÝ’è
-	// ‚È‚º‚©‚±‚ê‚Å‚¤‚Ü‚­‚¢‚­@‰½‚Å‚¾HH
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‚’è¨­å®š
+	// ãªãœã‹ã“ã‚Œã§ã†ã¾ãã„ãã€€ä½•ã§ã ï¼Ÿï¼Ÿ
 	GF_BGL_ScrollSet( imc_w->drawSys.BG_Ini, GF_BGL_FRAME3_M, GF_BGL_SCROLL_Y_SET, -16 );
 	
-	// ”wŒiƒiƒ“ƒo
+	// èƒŒæ™¯ãƒŠãƒ³ãƒ
 	IMC_LBOX_BGSet( &imc_w->lbox, 0 );
 	IMC_LBOX_BGChange( &imc_w->lbox, 0, IMC_LBOX_FADE_Y, 0, NULL );
 }
@@ -1625,7 +1625,7 @@ static void setLeftBoxBg( IMC_SYS_WORK* imc_w )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Vƒuƒ‰ƒ“ƒNŠÖ”
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
  *
  *	@param	void* work 
  *
@@ -1638,16 +1638,16 @@ static void imageClipVBlankFunc( void* work )
 {
 	IMC_SYS_WORK* sys = work;
 
-	// •`‰æŠÖŒWVƒuƒ‰ƒ“ƒNŠÖ”
+	// æç”»é–¢ä¿‚Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
 	IMC_DRAW_VBlank( &sys->drawSys );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒtƒŒ[ƒ€BG‚ð•\Ž¦
+ *	@brief	ãƒ•ãƒ¬ãƒ¼ãƒ BGã‚’è¡¨ç¤º
  *
- *	@param	imc_w	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	imc_w	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *	@param	no		BGno
  *
  *	@return	none
@@ -1659,7 +1659,7 @@ static void setFrameBG( IMC_SYS_WORK* imc_w, int no )
 {
 	IMC_BG_ADD add;
 	
-	// “o˜^ƒf[ƒ^Ý’è
+	// ç™»éŒ²ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	add.bg_ini		= imc_w->drawSys.BG_Ini;
 	add.arc_file	= ARC_IMAGECLIP_GRA;
 	add.char_arc	= IMC_BG_FRAME_CG_ARC_GET(no);
@@ -1679,9 +1679,9 @@ static void setFrameBG( IMC_SYS_WORK* imc_w, int no )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒtƒŒ[ƒ€BG”ñ•\Ž¦
+ *	@brief	ãƒ•ãƒ¬ãƒ¼ãƒ BGéžè¡¨ç¤º
  *
- *	@param	imc_w	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	imc_w	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1696,9 +1696,9 @@ static void delFrameBG( IMC_SYS_WORK* imc_w )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ{ƒ^ƒ“ƒf[ƒ^ì¬
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	imc_w	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	imc_w	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1709,30 +1709,30 @@ static void initBttn( IMC_SYS_WORK* imc_w )
 {
 	IMC_IMCBTTN_Init( &imc_w->bttn, &imc_w->drawSys );
 
-	// ¶ƒpƒŒƒbƒg•ÏXŠÖ”‚ðÝ’è
+	// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´é–¢æ•°ã‚’è¨­å®š
 	IMC_IMCBTTN_FuncSet( &imc_w->bttn, IMC_BTTN_RET, retBttn, imc_w, IMC_BTTN_PUSH_F );
 
-	// ¶ƒpƒŒƒbƒg•ÏX–ß‚éŠÖ”‚ðÝ’è
+	// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´æˆ»ã‚‹é–¢æ•°ã‚’è¨­å®š
 	IMC_IMCBTTN_FuncSet( &imc_w->bttn, IMC_BTTN_RETB, retbBttn, imc_w, IMC_BTTN_PUSH_F );
 	
-	// ƒAƒNƒZƒTƒŠƒpƒŒƒbƒg•ÏXŠÖ”‚ðÝ’è
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´é–¢æ•°ã‚’è¨­å®š
 	IMC_IMCBTTN_FuncSet( &imc_w->bttn, IMC_BTTN_ACE, acceBttn, imc_w, IMC_BTTN_PUSH_F );
-	// ƒAƒNƒZƒTƒŠƒpƒŒƒbƒg•ÏXƒ{ƒ^ƒ“‚ðƒIƒ“ó‘Ô‚É‚·‚é
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ãƒœã‚¿ãƒ³ã‚’ã‚ªãƒ³çŠ¶æ…‹ã«ã™ã‚‹
 	
 	
-	// BGƒpƒŒƒbƒg•ÏXŠÖ”‚ðÝ’è
+	// BGãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´é–¢æ•°ã‚’è¨­å®š
 	IMC_IMCBTTN_FuncSet( &imc_w->bttn, IMC_BTTN_BG, bgBttn, imc_w, IMC_BTTN_PUSH_F );
 	
-	// I—¹ƒ{ƒ^ƒ“ŠÖ”‚ðÝ’è
+	// çµ‚äº†ãƒœã‚¿ãƒ³é–¢æ•°ã‚’è¨­å®š
 	IMC_IMCBTTN_FuncSet( &imc_w->bttn, IMC_BTTN_END, endBttn, imc_w, IMC_BTTN_PUSH_F );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ{ƒ^ƒ“ƒf[ƒ^ì¬		ƒRƒ“ƒeƒXƒg—p
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨
  *
- *	@param	imc_w	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	imc_w	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1743,30 +1743,30 @@ static void initBttn_Contest( IMC_SYS_WORK* imc_w )
 {
 	IMC_IMCBTTN_Init( &imc_w->bttn, &imc_w->drawSys );
 
-	// ¶ƒpƒŒƒbƒg•ÏXŠÖ”‚ðÝ’è
+	// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´é–¢æ•°ã‚’è¨­å®š
 	IMC_IMCBTTN_FuncSet( &imc_w->bttn, IMC_BTTN_RET, retBttn, imc_w, IMC_BTTN_PUSH_F );
 
-	// ¶ƒpƒŒƒbƒg•ÏX–ß‚éŠÖ”‚ðÝ’è
+	// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´æˆ»ã‚‹é–¢æ•°ã‚’è¨­å®š
 	IMC_IMCBTTN_FuncSet( &imc_w->bttn, IMC_BTTN_RETB, retbBttn, imc_w, IMC_BTTN_PUSH_F );
 	
-	// ƒAƒNƒZƒTƒŠƒpƒŒƒbƒg•ÏXŠÖ”‚ðÝ’è
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´é–¢æ•°ã‚’è¨­å®š
 	IMC_IMCBTTN_FuncSet( &imc_w->bttn, IMC_BTTN_ACE, acceBttn, imc_w, IMC_BTTN_PUSH_F );
-	// ƒAƒNƒZƒTƒŠƒpƒŒƒbƒg•ÏXƒ{ƒ^ƒ“‚ðƒIƒ“ó‘Ô‚É‚·‚é
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ãƒœã‚¿ãƒ³ã‚’ã‚ªãƒ³çŠ¶æ…‹ã«ã™ã‚‹
 	
 	
-	// BGƒpƒŒƒbƒg•ÏXŠÖ”‚ðÝ’è
+	// BGãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´é–¢æ•°ã‚’è¨­å®š
 	IMC_IMCBTTN_FuncSet( &imc_w->bttn, IMC_BTTN_BG, bgBttn, imc_w, IMC_BTTN_PUSH_F );
 
-	// I—¹ƒ{ƒ^ƒ“ŠÖ”‚ðÝ’è
+	// çµ‚äº†ãƒœã‚¿ãƒ³é–¢æ•°ã‚’è¨­å®š
 	IMC_IMCBTTN_FuncSet( &imc_w->bttn, IMC_BTTN_END, endBttn, imc_w, IMC_BTTN_PUSH_F );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ{ƒ^ƒ“ƒf[ƒ^”jŠü
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	imc_w	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	imc_w	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1781,9 +1781,9 @@ static void deleteBttn( IMC_SYS_WORK* imc_w )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ{ƒ^ƒ“ƒƒCƒ“ŠÖ”
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	imc_w	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	imc_w	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1797,7 +1797,7 @@ static void mainBttn( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒAƒjƒó‹µ‚ÌƒŠƒZƒbƒg
+ *	@brief	ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡çŠ¶æ³ã®ãƒªã‚»ãƒƒãƒˆ
  *
  *	@param	imc_w 
  *
@@ -1812,10 +1812,10 @@ static void resetBttn( IMC_SYS_WORK* imc_w )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒv‚ðI—¹‚³‚¹‚éŠÖ”
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚’çµ‚äº†ã•ã›ã‚‹é–¢æ•°
  *
- *	@param	bttn	ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	work	ƒ[ƒN
+ *	@param	bttn	ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1826,23 +1826,23 @@ static void endBttn( IMC_BUTTON* bttn, void* work )
 {
 	IMC_SYS_WORK* imc_w = work;
 
-	// I—¹‚µ‚Ä—Ç‚¢í‘Ô‰»ƒ`ƒFƒbƒN
+	// çµ‚äº†ã—ã¦è‰¯ã„å¸¸æ…‹åŒ–ãƒã‚§ãƒƒã‚¯
 	if( IMC_LBOX_ENDCheck( &imc_w->lbox ) == FALSE ){
 		return ;
 	}
 	
-	// ó‘ÔÝ’è
-	// ó‘Ô	I—¹ƒŠƒNƒGƒXƒg
+	// çŠ¶æ…‹è¨­å®š
+	// çŠ¶æ…‹	çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	imc_w->state = IMC_SYS_END_CHECK_REQ;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒpƒŒƒbƒg‚ð•ÏX
+ *	@brief	å·¦ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´
  *
- *	@param	bttn	ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	work	ƒ[ƒN
+ *	@param	bttn	ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1862,7 +1862,7 @@ static void retBttn( IMC_BUTTON* bttn, void* work )
 	
 	list_num = (list_num + 1) % list_max;
 
-	// ¶ƒpƒŒƒbƒg‚Ì’†g‚ð•ÏX
+	// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆã®ä¸­èº«ã‚’å¤‰æ›´
 	IMC_LBOX_ChangeCurrentAccessorie( 
 			&imc_w->lbox, mode, list_num );//*/
 	mode		= IMC_LBOX_GetMode( &imc_w->lbox );
@@ -1874,10 +1874,10 @@ static void retBttn( IMC_BUTTON* bttn, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒpƒŒƒbƒg‚ð–ß‚·
+ *	@brief	å·¦ãƒ‘ãƒ¬ãƒƒãƒˆã‚’æˆ»ã™
  *
- *	@param	bttn	ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	work	ƒ[ƒN
+ *	@param	bttn	ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1900,7 +1900,7 @@ static void retbBttn( IMC_BUTTON* bttn, void* work )
 		list_num += list_max;
 	}
 
-	// ¶ƒpƒŒƒbƒg‚Ì’†g‚ð•ÏX
+	// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆã®ä¸­èº«ã‚’å¤‰æ›´
 	IMC_LBOX_ChangeCurrentAccessorie( 
 			&imc_w->lbox, mode, list_num );
 //*/
@@ -1914,10 +1914,10 @@ static void retbBttn( IMC_BUTTON* bttn, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒpƒŒƒbƒg‚É•ÏX
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‘ãƒ¬ãƒƒãƒˆã«å¤‰æ›´
  *
- *	@param	bttn	ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	work	ƒ[ƒN
+ *	@param	bttn	ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1934,11 +1934,11 @@ static void	acceBttn( IMC_BUTTON* bttn, void* work )
 		list_num	= IMC_LBOX_GetCurrentNo( &imc_w->lbox, IMC_OBJLIST_ACCE );
 		
 
-		// ¶ƒpƒŒƒbƒg‚Ì’†g‚ð•ÏX
+		// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆã®ä¸­èº«ã‚’å¤‰æ›´
 		IMC_LBOX_SetCurrentAccessorie( 
 				&imc_w->lbox, IMC_OBJLIST_ACCE, list_num );
 
-		// ó‘ÔÝ’è
+		// çŠ¶æ…‹è¨­å®š
 		imc_w->state = IMC_SYS_ACCE;
 	}
 }
@@ -1946,10 +1946,10 @@ static void	acceBttn( IMC_BUTTON* bttn, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BGƒpƒŒƒbƒg‚É•ÏX
+ *	@brief	BGãƒ‘ãƒ¬ãƒƒãƒˆã«å¤‰æ›´
  *
- *	@param	bttn	ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	work	ƒ[ƒN
+ *	@param	bttn	ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1966,11 +1966,11 @@ static void	bgBttn( IMC_BUTTON* bttn, void* work )
 
 		list_num	= IMC_LBOX_GetCurrentNo( &imc_w->lbox, IMC_OBJLIST_BG );
 		
-		// ¶ƒpƒŒƒbƒg‚Ì’†g‚ð•ÏX
+		// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆã®ä¸­èº«ã‚’å¤‰æ›´
 		IMC_LBOX_SetCurrentAccessorie( 
 				&imc_w->lbox, IMC_OBJLIST_BG, list_num );
 
-		// ó‘ÔÝ’è
+		// çŠ¶æ…‹è¨­å®š
 		imc_w->state = IMC_SYS_BG;
 
 	}
@@ -1979,10 +1979,10 @@ static void	bgBttn( IMC_BUTTON* bttn, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  *
- *	@param	imc_w		ƒTƒuƒEƒBƒ“ƒhƒE
- *	@param	cp_config	ƒRƒ“ƒtƒBƒOƒf[ƒ^
+ *	@param	imc_w		ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	cp_config	ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -2007,13 +2007,13 @@ static void initSubWin( IMC_SYS_WORK* imc_w, const CONFIG* cp_config )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒTƒuƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  *
- *	@param	imc_w		ƒ[ƒN
- *	@param	acce_num	ƒAƒNƒZƒTƒŠÅ‘å”
- *	@param	thema		ƒe[ƒ}
- *	@param	p_comm_data	’ÊMƒf[ƒ^
- *	@param	cp_config	ƒRƒ“ƒtƒBƒOƒf[ƒ^
+ *	@param	imc_w		ãƒ¯ãƒ¼ã‚¯
+ *	@param	acce_num	ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°
+ *	@param	thema		ãƒ†ãƒ¼ãƒž
+ *	@param	p_comm_data	é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_config	ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -2040,9 +2040,9 @@ static void initSubWin_Contest( IMC_SYS_WORK* imc_w, int acce_num, int thema, CO
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	imc_w	ƒTƒuƒEƒBƒ“ƒhƒE
+ *	@param	imc_w	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  *	@return	none
  *
@@ -2058,10 +2058,10 @@ static void deleteSubWin( IMC_SYS_WORK* imc_w )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	I—¹‰æ–Ê‚ÖƒtƒF[ƒhƒCƒ“ŠJŽn
+ *	@brief	çµ‚äº†ç”»é¢ã¸ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹
  *
- *	@param	imc_w	ƒVƒXƒeƒ€ƒ[ƒN	
- *	@param	end		I—¹ŒŸ’mƒtƒ‰ƒO
+ *	@param	imc_w	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯	
+ *	@param	end		çµ‚äº†æ¤œçŸ¥ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  *
@@ -2073,10 +2073,10 @@ static void endSeenFadeIn( IMC_SYS_WORK* imc_w, BOOL* end )
 	TCB_PTR tcb;
 	IMC_SYS_FADE_WORK* fade_w;
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	tcb = PMDS_taskAdd( endSeenFadeInTask, sizeof( IMC_SYS_FADE_WORK ), 10, HEAPID_IMAGECLIP_DATA );
 
-	// ƒ[ƒN‚Éƒf[ƒ^Ý’è
+	// ãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	fade_w = TCB_GetWork( tcb );
 	fade_w->sys_w	= imc_w;
 	fade_w->end		= end;
@@ -2087,10 +2087,10 @@ static void endSeenFadeIn( IMC_SYS_WORK* imc_w, BOOL* end )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	I—¹‰æ–ÊƒtƒF[ƒhƒ^ƒXƒN
+ *	@brief	çµ‚äº†ç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		ƒ^ƒXƒNƒIƒuƒWƒF
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2108,7 +2108,7 @@ static void endSeenFadeInTask( TCB_PTR tcb, void* work )
 				&fade_w->sys_w->lbox,
 				IMC_LBOX_FADELIST_MODE,
 				0);
-		GF_ASSERT( check );	// ‚¨‚©‚µ‚¢
+		GF_ASSERT( check );	// ãŠã‹ã—ã„
 
 		
 		fade_w->seq++;
@@ -2159,11 +2159,11 @@ static void endSeenFadeInTask( TCB_PTR tcb, void* work )
 		break;
 
 	case IMC_SEENFADEIN_MOVE_BGINIT:
-		// BG 1–Ê‚ÌBG•ÏX
+		// BG 1é¢ã®BGå¤‰æ›´
 		setFrameBG( fade_w->sys_w, IMC_BG_FRAME_01 );
 		GF_BGL_ScrollReq( fade_w->sys_w->drawSys.BG_Ini, GF_BGL_FRAME1_M, GF_BGL_SCROLL_Y_SET, 0 );
 
-		// ƒnƒCƒCƒCƒGƒEƒBƒ“ƒhƒEƒZƒbƒgƒAƒbƒv
+		// ãƒã‚¤ã‚¤ã‚¤ã‚¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		initTouchSWSys( fade_w->sys_w );
 		fade_w->seq++;
 		break;
@@ -2202,10 +2202,10 @@ static void endSeenFadeInTask( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvì¬‰æ–ÊƒtƒF[ƒhŠJŽn
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ä½œæˆç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
  *
- *	@param	imc_w	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	end		I—¹ŒŸ’mƒtƒ‰ƒO
+ *	@param	imc_w	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	end		çµ‚äº†æ¤œçŸ¥ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  *
@@ -2217,10 +2217,10 @@ static void endSeenFadeOut( IMC_SYS_WORK* imc_w, BOOL* end )
 	TCB_PTR tcb;
 	IMC_SYS_FADE_WORK* fade_w;
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	tcb = PMDS_taskAdd( endSeenFadeOutTask, sizeof( IMC_SYS_FADE_WORK ), 10, HEAPID_IMAGECLIP_DATA );
 
-	// ƒ[ƒN‚Éƒf[ƒ^Ý’è
+	// ãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	fade_w = TCB_GetWork( tcb );
 	fade_w->sys_w	= imc_w;
 	fade_w->end		= end;
@@ -2231,10 +2231,10 @@ static void endSeenFadeOut( IMC_SYS_WORK* imc_w, BOOL* end )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvì¬‰æ–ÊƒtƒF[ƒhƒ^ƒXƒN
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ä½œæˆç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		ƒ^ƒXƒNƒIƒuƒWƒF
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return
  *
@@ -2268,11 +2268,11 @@ static void endSeenFadeOutTask( TCB_PTR tcb, void* work )
 
 
 	case IMC_SEENFADEOUT_MOVE_BG_SET:
-		// ƒnƒCƒCƒCƒGƒEƒBƒ“ƒhƒE”jŠü
+		// ãƒã‚¤ã‚¤ã‚¤ã‚¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		deleteTouchSWSys( fade_w->sys_w );
-		// ¶ƒ{ƒbƒNƒXƒEƒBƒ“ƒhƒEÝ’è
+		// å·¦ãƒœãƒƒã‚¯ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 		setLeftBoxBg( fade_w->sys_w );
-		// ƒ{ƒ^ƒ“‚ÌƒAƒjƒƒŠƒZƒbƒg
+		// ãƒœã‚¿ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒªã‚»ãƒƒãƒˆ
 		resetBttn( fade_w->sys_w );
 		
 		setFrameBG( fade_w->sys_w, IMC_BG_FRAME_00 );
@@ -2321,7 +2321,7 @@ static void endSeenFadeOutTask( TCB_PTR tcb, void* work )
 				&fade_w->sys_w->lbox,
 				IMC_OBJLIST_ACCE,
 				0);
-		GF_ASSERT( check );	// ‚¨‚©‚µ‚¢
+		GF_ASSERT( check );	// ãŠã‹ã—ã„
 
 		fade_w->seq++;
 		break;
@@ -2347,10 +2347,10 @@ static void endSeenFadeOutTask( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	I—¹ƒ`ƒFƒbƒNƒV[ƒPƒ“ƒX@I—¹ƒ{ƒ^ƒ“
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã€€çµ‚äº†ãƒœã‚¿ãƒ³
  *
- *	@param	bttn		ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	work		ƒ[ƒN
+ *	@param	bttn		ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	work		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2361,18 +2361,18 @@ static void endCkEndBttn( IMC_BUTTON* bttn, void* work )
 {
 	IMC_SYS_WORK* imc_w = work;
 
-	// ó‘ÔÝ’è
-	// ó‘Ô	I—¹ƒŠƒNƒGƒXƒg
+	// çŠ¶æ…‹è¨­å®š
+	// çŠ¶æ…‹	çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	imc_w->state = IMC_SYS_END_REQ;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	I—¹ƒ`ƒFƒbƒNƒV[ƒPƒ“ƒX@CANCELƒ{ƒ^ƒ“
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã€€CANCELãƒœã‚¿ãƒ³
  *
- *	@param	bttn		ƒ{ƒ^ƒ“\‘¢‘Ì
- *	@param	work		ƒ[ƒN
+ *	@param	bttn		ãƒœã‚¿ãƒ³æ§‹é€ ä½“
+ *	@param	work		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2383,17 +2383,17 @@ static void endCkCancelBttn( IMC_BUTTON* bttn, void* work )
 {
 	IMC_SYS_WORK* imc_w = work;
 
-	// ó‘ÔÝ’è
-	// ó‘Ô	I—¹ƒŠƒNƒGƒXƒg
+	// çŠ¶æ…‹è¨­å®š
+	// çŠ¶æ…‹	çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	imc_w->state = IMC_SYS_END_CANCEL_REQ;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒf[ƒ^ƒZ[ƒu
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
  *
- *	@param	save_data	ƒZ[ƒuƒf[ƒ^
- *	@param	rbox		‰Eƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	save_data	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -2405,14 +2405,14 @@ static void dataSave( IMC_TELEVISION_SAVEDATA* save_data, IMC_RIGHT_BOX* rbox, c
 	STRBUF* p_str;
 	int sex;
 
-	ImcSaveData_ClaenTelevisionData( save_data );		// •ÒW‚·‚éƒ[ƒN‚ð‰Šú‰»
+	ImcSaveData_ClaenTelevisionData( save_data );		// ç·¨é›†ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
 	
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^•Û‘¶
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	ImcSaveData_SetTelevisionPokeData( save_data, 
 			rbox->boxDraw.poke.poke_para,
 			&rbox->boxDraw.poke );
 
-	// ƒgƒŒ[ƒi[ƒf[ƒ^Ý’è
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	if( cp_tr ){
 		p_str = MyStatus_CreateNameString( cp_tr, HEAPID_IMAGECLIP_DATA );
 		sex = MyStatus_GetMySex( cp_tr );
@@ -2420,11 +2420,11 @@ static void dataSave( IMC_TELEVISION_SAVEDATA* save_data, IMC_RIGHT_BOX* rbox, c
 		STRBUF_Delete( p_str );
 	}
 
-	// ƒAƒNƒZƒTƒŠƒf[ƒ^•Û‘¶
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	count = 0;
 	p_work = rbox->boxData.dummy_poke.next;
 	while( p_work != &rbox->boxData.dummy_poke ){
-		// ƒAƒNƒZƒTƒŠƒf[ƒ^‚È‚ç•Û‘¶‚·‚é	
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ãªã‚‰ä¿å­˜ã™ã‚‹	
 		if( p_work->flag == IMC_OBJLIST_ACCE ){
 			ImcSaveData_SetTelevisionAcceData( save_data, p_work->obj_data, count );
 			count ++;
@@ -2433,7 +2433,7 @@ static void dataSave( IMC_TELEVISION_SAVEDATA* save_data, IMC_RIGHT_BOX* rbox, c
 	}
 	p_work = rbox->boxData.dummy.next;
 	while( p_work != &rbox->boxData.dummy ){
-		// ƒAƒNƒZƒTƒŠƒf[ƒ^‚È‚ç•Û‘¶‚·‚é	
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ãªã‚‰ä¿å­˜ã™ã‚‹	
 		if( p_work->flag == IMC_OBJLIST_ACCE ){
 			ImcSaveData_SetTelevisionAcceData( save_data, p_work->obj_data, count );
 			count ++;
@@ -2444,16 +2444,16 @@ static void dataSave( IMC_TELEVISION_SAVEDATA* save_data, IMC_RIGHT_BOX* rbox, c
 	// BGID
 	ImcSaveData_SetTelevisionBgId( save_data, rbox->boxDraw.bg_no );	
 
-	// ƒZ[ƒuŠ®—¹
+	// ã‚»ãƒ¼ãƒ–å®Œäº†
 	ImcSaveData_SetComplateFlagTelevisionData( save_data );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒZ[ƒuƒf[ƒ^•Û‘¶
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿å­˜
  *
- *	@param	save_data	ƒRƒ“ƒeƒXƒgƒZ[ƒuƒf[ƒ^•Û‘¶æ
- *	@param	rbox		‰Eƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	save_data	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿å­˜å…ˆ
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -2467,17 +2467,17 @@ static void dataSave_Contest( IMC_CONTEST_SAVEDATA* save_data, IMC_RIGHT_BOX* rb
 	STRBUF* p_str;
 	int sex;
 
-	// ƒVƒXƒeƒ€
+	// ã‚·ã‚¹ãƒ†ãƒ 
 	p_sys = sys_AllocMemory( HEAPID_IMAGECLIP_DATA, sizeof(IMC_POKE_ON_ACCESYS) );
 	initPokeOnAcceCheckSys( p_sys );
 	
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^•Û‘¶
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	ImcSaveData_SetContestPokeData( save_data, 
 			rbox->boxDraw.poke.poke_para,
 			&rbox->boxDraw.poke );
 
 
-	// ƒgƒŒ[ƒi[ƒf[ƒ^Ý’è
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	if( cp_tr ){
 		p_str = MyStatus_CreateNameString( cp_tr, HEAPID_IMAGECLIP_DATA );
 		sex = MyStatus_GetMySex( cp_tr );
@@ -2485,14 +2485,14 @@ static void dataSave_Contest( IMC_CONTEST_SAVEDATA* save_data, IMC_RIGHT_BOX* rb
 		STRBUF_Delete( p_str );
 	}
 
-	// ‚Ü‚¸‘SƒAƒNƒZƒTƒŠƒf[ƒ^‚ðƒ[ƒN‚ÉÝ’è‚·‚é
+	// ã¾ãšå…¨ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¯ãƒ¼ã‚¯ã«è¨­å®šã™ã‚‹
 	setPokeOnAcceCheckObjList( p_sys, &rbox->boxData.dummy_poke, IMC_POKEON_ACCE_ON );
 	setPokeOnAcceCheckObjList( p_sys, &rbox->boxData.dummy, IMC_POKEON_ACCE_NONE );
 
-	// ƒ|ƒPƒ‚ƒ“‚É‚Â‚¢‚Ä‚¢‚éƒAƒNƒZƒTƒŠƒ`ƒFƒbƒN
+	// ãƒã‚±ãƒ¢ãƒ³ã«ã¤ã„ã¦ã„ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒã‚§ãƒƒã‚¯
 	mainPokeOnAcceCheckSys( p_sys );
 
-	// ƒAƒNƒZƒTƒŠƒf[ƒ^•Û‘¶
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	count = 0;
 	for( i=0; i<IMC_POKEON_ACCE_CHECK_OBJNUM; i++ ){
 
@@ -2505,10 +2505,10 @@ static void dataSave_Contest( IMC_CONTEST_SAVEDATA* save_data, IMC_RIGHT_BOX* rb
 
 	// BGID
 	ImcSaveData_SetContestBgId( save_data, rbox->boxDraw.bg_no );	
-	// ƒ‰ƒ“ƒN‚Ì•Û‘¶
+	// ãƒ©ãƒ³ã‚¯ã®ä¿å­˜
 	ImcSaveData_SetContestRank( save_data, rank );
 
-	// ƒZ[ƒuŠ®—¹
+	// ã‚»ãƒ¼ãƒ–å®Œäº†
 	ImcSaveData_SetComplateFlagContestData( save_data );
 
 
@@ -2517,25 +2517,25 @@ static void dataSave_Contest( IMC_CONTEST_SAVEDATA* save_data, IMC_RIGHT_BOX* rb
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒ“ƒtƒF[ƒh@BG‚Æƒ|ƒPƒ‚ƒ“ƒAƒNƒZƒTƒŠ“¯ŽžˆÚ“®ŠÖ”
+ *	@brief	ã‚·ãƒ¼ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰ã€€BGã¨ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚»ã‚µãƒªåŒæ™‚ç§»å‹•é–¢æ•°
  *
- *	@param	fade_w				ƒtƒF[ƒhƒ[ƒN
- *	@param	move_x				X•ÏX’l			(ƒ|ƒPƒ‚ƒ“ƒIƒuƒWƒFƒNƒg‚É‚ ‚í‚¹‚é)
- *	@param	move_y				Y•ÏX’l			(ƒ|ƒPƒ‚ƒ“ƒIƒuƒWƒFƒNƒg‚É‚ ‚í‚¹‚é)
- *	@param	move_count_num		¶³ÝÀÅ‘å’l
+ *	@param	fade_w				ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	move_x				Xå¤‰æ›´å€¤			(ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚ã‚ã›ã‚‹)
+ *	@param	move_y				Yå¤‰æ›´å€¤			(ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚ã‚ã›ã‚‹)
+ *	@param	move_count_num		ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§å€¤
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	‘±s
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	ç¶šè¡Œ
  */
 //-----------------------------------------------------------------------------
 static BOOL endSeenFadeMoveBg( IMC_SYS_FADE_WORK* fade_w, int move_x, int move_y, int move_count_num )
 {
-	// 3D‚ÌƒIƒuƒWƒFƒNƒg‚Í•`‰æƒ^ƒCƒ~ƒ“ƒO‚Ì‰e‹¿‚ÅA”½‰f‚ª1ƒVƒ“ƒN’x‚­‚È‚Á‚Ä‚µ‚Ü‚¤‚Ì‚ÅA‚P‰ñæ‚É•ÏX‚·‚é
+	// 3Dã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯æç”»ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®å½±éŸ¿ã§ã€åæ˜ ãŒ1ã‚·ãƒ³ã‚¯é…ããªã£ã¦ã—ã¾ã†ã®ã§ã€ï¼‘å›žå…ˆã«å¤‰æ›´ã™ã‚‹
 	if( fade_w->work < IMC_SEENFADE_MOVE_COUNT ){
 		IMC_RBOX_ListMove( &fade_w->sys_w->rbox, move_x, move_y );
 	}
 
-	// ‚QDƒIƒuƒWƒFƒNƒg‚Í‚P‰ñ’x‚¢ƒ^ƒCƒ~ƒ“ƒO‚Å•ÏX‚·‚é
+	// ï¼’Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ï¼‘å›žé…ã„ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§å¤‰æ›´ã™ã‚‹
 	if( fade_w->work >= 1 ){
 		GF_BGL_ScrollReq( fade_w->sys_w->drawSys.BG_Ini, GF_BGL_FRAME2_M, GF_BGL_SCROLL_X_DEC, move_x );
 		GF_BGL_ScrollReq( fade_w->sys_w->drawSys.BG_Ini, GF_BGL_FRAME1_M, GF_BGL_SCROLL_X_DEC, move_x );
@@ -2553,63 +2553,63 @@ static BOOL endSeenFadeMoveBg( IMC_SYS_FADE_WORK* fade_w, int move_x, int move_y
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg@à–¾ŠJŽn
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã€€èª¬æ˜Žé–‹å§‹
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void initConTextSys( IMC_SYS_WORK* imc_w )
 {
-	// ƒXƒNƒŠ[ƒ“ƒNƒŠ[ƒ“
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_ScrClear( imc_w->drawSys.BG_Ini, GF_BGL_FRAME3_M );
 	GF_BGL_ScrollSet( imc_w->drawSys.BG_Ini, GF_BGL_FRAME3_M, GF_BGL_SCROLL_X_SET, 0 );
 	GF_BGL_ScrollSet( imc_w->drawSys.BG_Ini, GF_BGL_FRAME3_M, GF_BGL_SCROLL_Y_SET, 0 );
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE•`‰æ
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 	initContestTextBmpWin( imc_w, 0 );
 
-	// •\Ž¦—Dæ‡ˆÊÝ’è
+	// è¡¨ç¤ºå„ªå…ˆé †ä½è¨­å®š
 	G2_SetBG0Priority( 2 );
 	G2_SetBG1Priority( 1 );
 	G2_SetBG2Priority( 3 );
 	G2_SetBG3Priority( 0 );
 
-	//FRAME3‚¾‚¯•\Ž¦‚³‚¹‚é
+	//FRAME3ã ã‘è¡¨ç¤ºã•ã›ã‚‹
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-	// WIPE”jŠü
+	// WIPEç ´æ£„
 	WIPE_ResetBrightness( WIPE_DISP_MAIN );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg@à–¾I—¹
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã€€èª¬æ˜Žçµ‚äº†
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void deleteConTextSys( IMC_SYS_WORK* imc_w )
 {
-	// ƒrƒbƒgƒ}ƒbƒv”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç ´æ£„
 	deleteContestTextBmpWin( imc_w );
 
-	// ƒXƒNƒŠ[ƒ“‚ð‰Šú‰»
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’åˆæœŸåŒ–
 	GF_BGL_ScrClear( imc_w->drawSys.BG_Ini, GF_BGL_FRAME3_M );
 
-	// ¶ƒ{ƒbƒNƒXƒOƒ‰ƒtƒBƒbƒNÄÝ’è
+	// å·¦ãƒœãƒƒã‚¯ã‚¹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å†è¨­å®š
 	setLeftBoxBg( imc_w );
 
-	// WIPEÝ’è
+	// WIPEè¨­å®š
 	WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
 
-	// Å‰ƒAƒNƒ^[ƒZƒbƒg•\Ž¦
+	// æœ€åˆã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆè¡¨ç¤º
 	CLACT_DrawFlagSet( imc_w->drawSys.clactSet, 1 );
 
-	//‘S‚Ä•\Ž¦‚³‚¹‚é
+	//å…¨ã¦è¡¨ç¤ºã•ã›ã‚‹
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
@@ -2619,9 +2619,9 @@ static void deleteConTextSys( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–Ê@G‚ê‚éƒEƒBƒ“ƒhƒE@‰Šú‰»
+ *	@brief	ã‚µãƒ–ç”»é¢ã€€è§¦ã‚Œã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€åˆæœŸåŒ–
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2630,12 +2630,12 @@ static void initTouchSWSys( IMC_SYS_WORK* imc_w )
 {
 	TOUCH_SW_PARAM touch_prm;
 
-	// ƒXƒNƒŠ[ƒ“ƒNƒŠ[ƒ“
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_ScrClear( imc_w->drawSys.BG_Ini, GF_BGL_FRAME3_M );
 	GF_BGL_ScrollSet( imc_w->drawSys.BG_Ini, GF_BGL_FRAME3_M, GF_BGL_SCROLL_X_SET, 0 );
 	GF_BGL_ScrollSet( imc_w->drawSys.BG_Ini, GF_BGL_FRAME3_M, GF_BGL_SCROLL_Y_SET, 0 );
 	
-	// YES NO ƒEƒBƒ“ƒhƒEƒ{ƒ^ƒ“‚Ì•\Ž¦
+	// YES NO ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒœã‚¿ãƒ³ã®è¡¨ç¤º
 	touch_prm.p_bgl		= imc_w->drawSys.BG_Ini;
 	touch_prm.bg_frame	= GF_BGL_FRAME3_M;
 	touch_prm.char_offs	= IMC_ENDCHECK_YESNO_CHAR_OFFS;
@@ -2644,10 +2644,10 @@ static void initTouchSWSys( IMC_SYS_WORK* imc_w )
 	touch_prm.y			= IMC_ENDCHECK_YESNO_Y;
 	TOUCH_SW_Init( imc_w->p_tsw, &touch_prm );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE•`‰æ
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 	initTouchSWBmpWin( imc_w, imgclip_ok );
 
-	// •\Ž¦—Dæ‡ˆÊÝ’è
+	// è¡¨ç¤ºå„ªå…ˆé †ä½è¨­å®š
 	G2_SetBG0Priority( 2 );
 	G2_SetBG1Priority( 1 );
 	G2_SetBG2Priority( 3 );
@@ -2656,9 +2656,9 @@ static void initTouchSWSys( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–Ê@G‚ê‚éƒEƒBƒ“ƒhƒE@”jŠü
+ *	@brief	ã‚µãƒ–ç”»é¢ã€€è§¦ã‚Œã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ç ´æ£„
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2667,22 +2667,22 @@ static void deleteTouchSWSys( IMC_SYS_WORK* imc_w )
 {
 	TOUCH_SW_Reset( imc_w->p_tsw );
 
-	// ƒrƒbƒgƒ}ƒbƒv”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç ´æ£„
 	deleteTouchSWBmpWin( imc_w );
 
-	// ƒXƒNƒŠ[ƒ“‚ð‰Šú‰»
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’åˆæœŸåŒ–
 	GF_BGL_ScrClear( imc_w->drawSys.BG_Ini, GF_BGL_FRAME3_M );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–Ê@G‚ê‚éƒEƒBƒ“ƒhƒE@ƒƒCƒ““®ì
+ *	@brief	ã‚µãƒ–ç”»é¢ã€€è§¦ã‚Œã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	IMC_SYS_END_CHECK			// ‰½‚à‚È‚µ
- *	@retval	IMC_SYS_END_REQ				// ‚Í‚¢
- *	@retval	IMC_SYS_END_CANCEL_REQ		// ‚¢‚¢‚¦
+ *	@retval	IMC_SYS_END_CHECK			// ä½•ã‚‚ãªã—
+ *	@retval	IMC_SYS_END_REQ				// ã¯ã„
+ *	@retval	IMC_SYS_END_CANCEL_REQ		// ã„ã„ãˆ
  */
 //-----------------------------------------------------------------------------
 static u32 mainTouchSWSys( IMC_SYS_WORK* imc_w )
@@ -2691,15 +2691,15 @@ static u32 mainTouchSWSys( IMC_SYS_WORK* imc_w )
 	ret = TOUCH_SW_Main( imc_w->p_tsw );
 
 	switch( ret ){
-	case TOUCH_SW_RET_NORMAL:	// ‰½‚à‚È‚µ
+	case TOUCH_SW_RET_NORMAL:	// ä½•ã‚‚ãªã—
 		ret = IMC_SYS_END_CHECK;
 		break;
 		
-	case TOUCH_SW_RET_YES:	// ‚Í‚¢
+	case TOUCH_SW_RET_YES:	// ã¯ã„
 		ret = IMC_SYS_END_REQ;
 		break;
 		
-	case TOUCH_SW_RET_NO:		// ‚¢‚¢‚¦
+	case TOUCH_SW_RET_NO:		// ã„ã„ãˆ
 		ret = IMC_SYS_END_CANCEL_REQ;
 		break;
 	}
@@ -2710,14 +2710,14 @@ static u32 mainTouchSWSys( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
  *
  *	@param	imc_w 
- *	@param	str_idx		•¶Žš—ñID
- *	@param	cx			‚˜ƒLƒƒƒ‰ƒNƒ^ˆÊ’u
- *	@param	cy			‚™ƒLƒƒƒ‰ƒNƒ^ˆÊ’u
- *	@param	csx			‚˜ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
- *	@param	csy			‚™ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
+ *	@param	str_idx		æ–‡å­—åˆ—ID
+ *	@param	cx			ï½˜ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ä½ç½®
+ *	@param	cy			ï½™ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ä½ç½®
+ *	@param	csx			ï½˜ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
+ *	@param	csy			ï½™ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static void initMsgBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx, u8 cx, u8 cy, u8 csx, u8 csy )
@@ -2727,40 +2727,40 @@ static void initMsgBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx, u8 cx, u8 cy, u8 cs
 	WINTYPE wnd_no = CONFIG_GetWindowType( imc_w->cp_config );
 	
 	
-	// •¶ŽšƒtƒHƒ“ƒgƒJƒ‰[ƒpƒŒƒbƒg“]‘—
+	// æ–‡å­—ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, IMC_ENDCHECK_WND_PAL*32, HEAPID_IMAGECLIP_DRAW );
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	GF_BGL_BmpWinAdd( imc_w->drawSys.BG_Ini,
 			imc_w->p_tsw_bmp, GF_BGL_FRAME3_M,
 			cx, cy,
 			csx, csy,
 			IMC_ENDCHECK_WND_PAL, IMC_ENDCHECK_WND_CHROFS );
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( imc_w->p_tsw_bmp, 15 );
 
-	// ˜g•`‰æ
+	// æž æç”»
 	TalkWinGraphicSet( imc_w->drawSys.BG_Ini, GF_BGL_FRAME3_M, IMC_ENDCHECK_WNDWAKU_CHROFS, IMC_ENDCHECK_WNDWAKU_PAL, wnd_no, HEAPID_IMAGECLIP_DRAW );
 	BmpTalkWinWrite( imc_w->p_tsw_bmp, WINDOW_TRANS_ON, IMC_ENDCHECK_WNDWAKU_CHROFS, IMC_ENDCHECK_WNDWAKU_PAL );
 
-	// •¶Žš•`‰æ
+	// æ–‡å­—æç”»
 	msg_data = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_imageclip_dat, HEAPID_IMAGECLIP_DATA );
 	str = MSGMAN_AllocString( msg_data, str_idx );
 	GF_STR_PrintColor( imc_w->p_tsw_bmp, FONT_TALK, str, 0, 0, 0, IMC_ENDCHECK_WND_PRICOLOR, NULL );
-	// ƒƒ‚ƒŠ”jŠü
+	// ãƒ¡ãƒ¢ãƒªç ´æ£„
 	STRBUF_Delete( str );
 	MSGMAN_Delete( msg_data );
 
-	// “]‘—
+	// è»¢é€
 	GF_BGL_BmpWinOn( imc_w->p_tsw_bmp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‚É•¶Žš—ñ‚ð•`‰æ
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«æ–‡å­—åˆ—ã‚’æç”»
  *
- *	@param	imc_w		ƒ[ƒN
- *	@param	str_idx		•¶Žš—ñID
+ *	@param	imc_w		ãƒ¯ãƒ¼ã‚¯
+ *	@param	str_idx		æ–‡å­—åˆ—ID
  */
 //-----------------------------------------------------------------------------
 static void setMsgBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx )
@@ -2769,10 +2769,10 @@ static void setMsgBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx )
 	STRBUF* str;
 	STRBUF* p_exstr;
 	
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( imc_w->p_tsw_bmp, 15 );
 
-	// •¶Žš•`‰æ
+	// æ–‡å­—æç”»
 	msg_data = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_imageclip_dat, HEAPID_IMAGECLIP_DATA );
 	p_exstr = MSGMAN_AllocString( msg_data, str_idx );
 	str = STRBUF_Create( 256, HEAPID_IMAGECLIP_DATA );
@@ -2781,23 +2781,23 @@ static void setMsgBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx )
 	
 	GF_STR_PrintColor( imc_w->p_tsw_bmp, FONT_TALK, str, 0, 0, 0, IMC_ENDCHECK_WND_PRICOLOR, NULL );
 
-	// ƒƒ‚ƒŠ”jŠü
+	// ãƒ¡ãƒ¢ãƒªç ´æ£„
 	STRBUF_Delete( str );
 	STRBUF_Delete( p_exstr );
 	MSGMAN_Delete( msg_data );
 
-	// “]‘—
+	// è»¢é€
 	GF_BGL_BmpWinOn( imc_w->p_tsw_bmp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW‘—‚è•`‰æ
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ã‚Šæç”»
  *
- *	@param	imc_w		ƒ[ƒN
- *	@param	str_idx		•¶Žš—ñID
+ *	@param	imc_w		ãƒ¯ãƒ¼ã‚¯
+ *	@param	str_idx		æ–‡å­—åˆ—ID
  *
- *	@return	ƒƒbƒZ[ƒWIDX
+ *	@return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
  */
 //-----------------------------------------------------------------------------
 static u32 setMsgBmpWin_okuri( IMC_SYS_WORK* imc_w, u32 str_idx )
@@ -2809,10 +2809,10 @@ static u32 setMsgBmpWin_okuri( IMC_SYS_WORK* imc_w, u32 str_idx )
 
 	GF_ASSERT( imc_w->p_glb_str == NULL );
 	
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( imc_w->p_tsw_bmp, 15 );
 
-	// •¶Žš•`‰æ
+	// æ–‡å­—æç”»
 	msg_data = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_imageclip_dat, HEAPID_IMAGECLIP_DATA );
 	p_exstr = MSGMAN_AllocString( msg_data, str_idx );
 	imc_w->p_glb_str = STRBUF_Create( 256, HEAPID_IMAGECLIP_DATA );
@@ -2828,10 +2828,10 @@ static u32 setMsgBmpWin_okuri( IMC_SYS_WORK* imc_w, u32 str_idx )
 	msg_index = GF_STR_PrintColor( imc_w->p_tsw_bmp, FONT_TALK, imc_w->p_glb_str, 0, 0, speed, IMC_ENDCHECK_WND_PRICOLOR, NULL );
 
 	STRBUF_Delete( p_exstr );
-	// ƒƒ‚ƒŠ”jŠü
+	// ãƒ¡ãƒ¢ãƒªç ´æ£„
 	MSGMAN_Delete( msg_data );
 
-	// “]‘—
+	// è»¢é€
 	GF_BGL_BmpWinOn( imc_w->p_tsw_bmp );
 
 	return msg_index;
@@ -2839,7 +2839,7 @@ static u32 setMsgBmpWin_okuri( IMC_SYS_WORK* imc_w, u32 str_idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘—‚è‚æ‚¤ƒ[ƒN”jŠü
+ *	@brief	é€ã‚Šã‚ˆã†ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
  *	@param	imc_w 
  */
@@ -2852,14 +2852,14 @@ static void endMsgBmpWin_okuri( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‚Ì”jŠü
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç ´æ£„
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void deleteMsgBmpWin( IMC_SYS_WORK* imc_w )
 {
-	// “]‘—
+	// è»¢é€
 	GF_BGL_BmpWinOff( imc_w->p_tsw_bmp );
 	GF_BGL_BmpWinDel( imc_w->p_tsw_bmp );
 }
@@ -2867,10 +2867,10 @@ static void deleteMsgBmpWin( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ`ƒFƒbƒNƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
  *
  *	@param	imc_w 
- *	@param	str_idx		•¶Žš—ñID
+ *	@param	str_idx		æ–‡å­—åˆ—ID
  *
  *	@return
  */
@@ -2884,10 +2884,10 @@ static void initTouchSWBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ`ƒFƒbƒNƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE•¶Žš—ñÝ’è
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ–‡å­—åˆ—è¨­å®š
  *
  *	@param	imc_w 
- *	@param	str_idx		•¶Žš—ñID
+ *	@param	str_idx		æ–‡å­—åˆ—ID
  *
  *	@return
  */
@@ -2899,7 +2899,7 @@ static void setTouchSWBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹Áª¯¸—pƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯ç”¨ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
  *	@param	imc_w	
  *
@@ -2913,10 +2913,10 @@ static void deleteTouchSWBmpWin( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒgƒeƒLƒXƒg	à–¾BMPì¬
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆ	èª¬æ˜ŽBMPä½œæˆ
  *
- *	@param	imc_w	ƒ[ƒN
- *	@param	str_idx ƒƒbƒZ[ƒW
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
+ *	@param	str_idx ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  *
  *	@return	none
  */
@@ -2927,18 +2927,18 @@ static void initContestTextBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx )
 			IMC_CONTESTTEXT_WND_X, IMC_CONTESTTEXT_WND_Y,
 			IMC_CONTESTTEXT_WND_SIZX, IMC_CONTESTTEXT_WND_SIZY );
 
-	// ƒ[ƒhƒZƒbƒgì¬
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆä½œæˆ
 	imc_w->p_wordset = WORDSET_Create( HEAPID_IMAGECLIP_DATA );	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒgƒeƒLƒXƒg@
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆã€€
  *
- *	@param	imc_w		ƒ[ƒN
- *	@param	str_idx		•¶Žš—ñID
+ *	@param	imc_w		ãƒ¯ãƒ¼ã‚¯
+ *	@param	str_idx		æ–‡å­—åˆ—ID
  *
- *	@return	ƒƒbƒZ[ƒWIDX
+ *	@return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
  */
 //-----------------------------------------------------------------------------
 static u32 setContestTextBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx )
@@ -2948,25 +2948,25 @@ static u32 setContestTextBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚ÉÝ’è
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«è¨­å®š
  *
- *	@param	imc_w	ƒ[ƒN
- *	@param	buff_id	ƒoƒbƒtƒ@ID
- *	@param	no		”Žš
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
+ *	@param	buff_id	ãƒãƒƒãƒ•ã‚¡ID
+ *	@param	no		æ•°å­—
  */
 //-----------------------------------------------------------------------------
 static void setContestWordSet( IMC_SYS_WORK* imc_w, int buff_id, int no )
 {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/23
-	// ”Žš‚Ì¶‘¤‚ÌƒXƒy[ƒX‚ðœ‹Ž
+	// æ•°å­—ã®å·¦å´ã®ã‚¹ãƒšãƒ¼ã‚¹ã‚’é™¤åŽ»
 	WORDSET_RegisterNumber( imc_w->p_wordset, buff_id, no, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	// ----------------------------------------------------------------------------
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•¶Žš—ñ”jŠü
+ *	@brief	æ–‡å­—åˆ—ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void endContestTextBmpWin( IMC_SYS_WORK* imc_w )
@@ -2976,16 +2976,16 @@ static void endContestTextBmpWin( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒgƒeƒLƒXƒgBMP”jŠü
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆBMPç ´æ£„
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void deleteContestTextBmpWin( IMC_SYS_WORK* imc_w )
 {
 	deleteMsgBmpWin( imc_w );
 
-	// ƒ[ƒhƒZƒbƒg”jŠü
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆç ´æ£„
 	WORDSET_Delete( imc_w->p_wordset );
 	imc_w->p_wordset = NULL;
 }
@@ -2994,9 +2994,9 @@ static void deleteContestTextBmpWin( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Eƒ{ƒbƒNƒX‚ÌƒAƒNƒZƒTƒŠ“o˜^”‚ðÝ’è
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚»ã‚µãƒªç™»éŒ²æ•°ã‚’è¨­å®š
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -3007,17 +3007,17 @@ static void setAcceNumSubWin( IMC_SYS_WORK* imc_w )
 
 	acce_num = IMC_RBOX_GetNowHaveAcceNum( &imc_w->rbox );
 	
-	// ‰Eƒ{ƒbƒNƒX‚Ì”z’uƒAƒNƒZƒTƒŠƒf[ƒ^‚ðÝ’è
+	// å³ãƒœãƒƒã‚¯ã‚¹ã®é…ç½®ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	IMC_SUBWIN_SetAcceIcon( &imc_w->subwin, acce_num );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒN‚É‚æ‚èAƒAƒNƒZƒTƒŠÅ‘å”‚ðŽæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯ã«ã‚ˆã‚Šã€ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ã‚’å–å¾—
  *
- *	@param	rank	ƒ‰ƒ“ƒN”
+ *	@param	rank	ãƒ©ãƒ³ã‚¯æ•°
  *
- *	@return	ƒAƒNƒZƒTƒŠ”
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
  */
 //-----------------------------------------------------------------------------
 static int getRightAcceMax_contest( int rank )
@@ -3042,7 +3042,7 @@ static int getRightAcceMax_contest( int rank )
 		break;
 
 	default:
-		// ƒ‰ƒ“ƒN•s³
+		// ãƒ©ãƒ³ã‚¯ä¸æ­£
 		GF_ASSERT(0);
 		break;
 	}
@@ -3052,20 +3052,20 @@ static int getRightAcceMax_contest( int rank )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZ[ƒu‚·‚é‚©Áª¯¸—pƒCƒGƒXƒm[ƒ{ƒ^ƒ“‰Šú‰»
+ *	@brief	ã‚»ãƒ¼ãƒ–ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ç”¨ã‚¤ã‚¨ã‚¹ãƒŽãƒ¼ãƒœã‚¿ãƒ³åˆæœŸåŒ–
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- *	I—¹ƒ`ƒFƒbƒN‚ÌƒnƒCƒCƒCƒG‚ðˆø‚«Œp‚¬‚Ü‚·
+ *	çµ‚äº†ãƒã‚§ãƒƒã‚¯ã®ãƒã‚¤ã‚¤ã‚¤ã‚¨ã‚’å¼•ãç¶™ãŽã¾ã™
  */
 //-----------------------------------------------------------------------------
 static void initTouchSaveCheckSWSys( IMC_SYS_WORK* imc_w )
 {
 	TOUCH_SW_PARAM touch_prm;
 
-	// YES NO ƒEƒBƒ“ƒhƒEƒ{ƒ^ƒ“‚Ì•\Ž¦
+	// YES NO ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒœã‚¿ãƒ³ã®è¡¨ç¤º
 	touch_prm.p_bgl		= imc_w->drawSys.BG_Ini;
 	touch_prm.bg_frame	= GF_BGL_FRAME3_M;
 	touch_prm.char_offs	= IMC_ENDCHECK_YESNO_CHAR_OFFS;
@@ -3075,10 +3075,10 @@ static void initTouchSaveCheckSWSys( IMC_SYS_WORK* imc_w )
 	TOUCH_SW_Reset( imc_w->p_tsw );
 	TOUCH_SW_Init( imc_w->p_tsw, &touch_prm );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE•`‰æ
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 	setTouchSWBmpWin( imc_w, imgclip_ng );
 
-	// •\Ž¦—Dæ‡ˆÊÝ’è
+	// è¡¨ç¤ºå„ªå…ˆé †ä½è¨­å®š
 	G2_SetBG0Priority( 2 );
 	G2_SetBG1Priority( 1 );
 	G2_SetBG2Priority( 3 );
@@ -3087,9 +3087,9 @@ static void initTouchSaveCheckSWSys( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZ[ƒuƒf[ƒ^ƒ`ƒFƒbƒN YESNO ƒƒCƒ“ˆ—
+ *	@brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯ YESNO ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	imc_w	ƒ[ƒN
+ *	@param	imc_w	ãƒ¯ãƒ¼ã‚¯
  *
  *	@retval	
  */
@@ -3100,15 +3100,15 @@ static u32 mainTouchSaveCheckSWSys( IMC_SYS_WORK* imc_w )
 	ret = TOUCH_SW_Main( imc_w->p_tsw );
 
 	switch( ret ){
-	case TOUCH_SW_RET_NORMAL:	// ‰½‚à‚È‚µ
+	case TOUCH_SW_RET_NORMAL:	// ä½•ã‚‚ãªã—
 		ret = IMC_SYS_SAVE_CHECK_REQ;
 		break;
 		
-	case TOUCH_SW_RET_YES:	// ‚Í‚¢
+	case TOUCH_SW_RET_YES:	// ã¯ã„
 		ret = IMC_SYS_SAVE;
 		break;
 		
-	case TOUCH_SW_RET_NO:		// ‚¢‚¢‚¦
+	case TOUCH_SW_RET_NO:		// ã„ã„ãˆ
 		ret = IMC_SYS_SAVE_CAN;
 		break;
 	}
@@ -3118,9 +3118,9 @@ static u32 mainTouchSaveCheckSWSys( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ÉƒAƒNƒZƒTƒŠ“`‚¢‚Å‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚éƒVƒXƒeƒ€@‰Šú‰»	iƒ[ƒN‚ð‚OƒNƒŠƒAj
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã«ã‚¢ã‚¯ã‚»ã‚µãƒªä¼ã„ã§ã¤ãªãŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ã€€åˆæœŸåŒ–	ï¼ˆãƒ¯ãƒ¼ã‚¯ã‚’ï¼ã‚¯ãƒªã‚¢ï¼‰
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -3132,23 +3132,23 @@ static void initPokeOnAcceCheckSys( IMC_POKE_ON_ACCESYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ÉƒAƒNƒZƒTƒŠ“`‚¢‚Å‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚éƒVƒXƒeƒ€@ƒIƒuƒWƒFƒNƒgƒŠƒXƒgÝ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã«ã‚¢ã‚¯ã‚»ã‚µãƒªä¼ã„ã§ã¤ãªãŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ã€€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆè¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	obj			ƒIƒuƒWƒFƒNƒg
- *	@param	init_data	ƒ|ƒPƒ‚ƒ“‚É‚­‚Á‚Â‚¢‚Ä‚¢‚é‚©‚Ì‰Šú’l
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	obj			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	init_data	ãƒã‚±ãƒ¢ãƒ³ã«ãã£ã¤ã„ã¦ã„ã‚‹ã‹ã®åˆæœŸå€¤
  *
  *	@return	none
  *
  *	init_data	
- *		Å‰‚©‚çƒ|ƒPƒ‚ƒ“‚É‚­‚Á‚Â‚¢‚Ä‚¢‚é‚Æ‚í‚©‚Á‚Ä‚¢‚é‚à‚Ì‚É‚Í1‚ð“n‚µ‚Ä‚¨‚­
- *		IMC_POKEON_ACCE_NONE	ƒ|ƒPƒ‚ƒ“‚É‚­‚Á‚Â‚¢‚Ä‚¢‚È‚¢
- *		IMC_POKEON_ACCE_ON		ƒ|ƒPƒ‚ƒ“‚É‚­‚Á‚Â‚¢‚Ä‚¢‚é
+ *		æœ€åˆã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã«ãã£ã¤ã„ã¦ã„ã‚‹ã¨ã‚ã‹ã£ã¦ã„ã‚‹ã‚‚ã®ã«ã¯1ã‚’æ¸¡ã—ã¦ãŠã
+ *		IMC_POKEON_ACCE_NONE	ãƒã‚±ãƒ¢ãƒ³ã«ãã£ã¤ã„ã¦ã„ãªã„
+ *		IMC_POKEON_ACCE_ON		ãƒã‚±ãƒ¢ãƒ³ã«ãã£ã¤ã„ã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void setPokeOnAcceCheckObj( IMC_POKE_ON_ACCESYS* p_sys, IMC_OBJLIST* obj, u32 init_data )
 {
-	//@NULL‚Í‚¾‚ß
+	//ã€€NULLã¯ã ã‚
 	GF_ASSERT( obj );
 	p_sys->obj[ p_sys->set_num ].obj			= obj;
 	p_sys->obj[ p_sys->set_num ].pokemon_data	= init_data;
@@ -3157,14 +3157,14 @@ static void setPokeOnAcceCheckObj( IMC_POKE_ON_ACCESYS* p_sys, IMC_OBJLIST* obj,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ÉƒAƒNƒZƒTƒŠ“`‚¢‚Å‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚éƒVƒXƒeƒ€@ƒ`ƒFƒbƒNŠÖ”
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã«ã‚¢ã‚¯ã‚»ã‚µãƒªä¼ã„ã§ã¤ãªãŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ã€€ãƒã‚§ãƒƒã‚¯é–¢æ•°
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- *	‚±‚ÌŠÖ”‚ðs‚Á‚½Œã@getPokeOnAcceCheckObjOnPoke‚Å
- *	‚¿‚¥‚Á‚­‚·‚é‚ÆƒAƒNƒZƒTƒŠ“`‚¢‚Å‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©‚ª‚í‚©‚é
+ *	ã“ã®é–¢æ•°ã‚’è¡Œã£ãŸå¾Œã€€getPokeOnAcceCheckObjOnPokeã§
+ *	ã¡ã‡ã£ãã™ã‚‹ã¨ã‚¢ã‚¯ã‚»ã‚µãƒªä¼ã„ã§ã¤ãªãŒã£ã¦ã„ã‚‹ã‹ãŒã‚ã‹ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void mainPokeOnAcceCheckSys( IMC_POKE_ON_ACCESYS* p_sys )
@@ -3172,18 +3172,18 @@ static void mainPokeOnAcceCheckSys( IMC_POKE_ON_ACCESYS* p_sys )
 	int i, j;
 	BOOL result;
 
-	// ƒ|ƒPƒ‚ƒ“‚É‚­‚Á‚Â‚¢‚Ä‚¢‚éƒAƒNƒZƒTƒŠ‚©‚ç
-	// ”»’è‚µ‚Ä‚¢‚­A”ÍˆÍ“à‚ÌƒAƒNƒZƒTƒŠ‚ª‚ ‚Á‚½‚çA
-	// Ž©•ª‚Ì’l‚ð“ü‚ê‚éA‘S•””»’è‚µ‚½‚çŽ©•ª‚É‚Q‚ð“ü‚ê‚é
-	// ŽŸ‚Ì[IMC_POKEON_ACCE_ON]‚ÌƒAƒNƒZƒTƒŠ‚ð¡“x‚ÍA
-	// ‚Í‚ñ‚Ä‚¢‚·‚é
-	// ‚±‚ê‚ðŒJ‚è•Ô‚·
+	// ãƒã‚±ãƒ¢ãƒ³ã«ãã£ã¤ã„ã¦ã„ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªã‹ã‚‰
+	// åˆ¤å®šã—ã¦ã„ãã€ç¯„å›²å†…ã®ã‚¢ã‚¯ã‚»ã‚µãƒªãŒã‚ã£ãŸã‚‰ã€
+	// è‡ªåˆ†ã®å€¤ã‚’å…¥ã‚Œã‚‹ã€å…¨éƒ¨åˆ¤å®šã—ãŸã‚‰è‡ªåˆ†ã«ï¼’ã‚’å…¥ã‚Œã‚‹
+	// æ¬¡ã®[IMC_POKEON_ACCE_ON]ã®ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’ä»Šåº¦ã¯ã€
+	// ã¯ã‚“ã¦ã„ã™ã‚‹
+	// ã“ã‚Œã‚’ç¹°ã‚Šè¿”ã™
 	i=0;
 	while( i<p_sys->set_num ){
 
 		if( p_sys->obj[ i ].pokemon_data == IMC_POKEON_ACCE_ON ){
 
-			// “–‚½‚è”»’è‚È‚¢‚È‚çƒ`ƒFƒbƒN‘ÎÛ‚ÌƒAƒNƒZƒTƒŠ‚àƒ|ƒPƒ‚ƒ“‚Æ‚Â‚È‚ª‚Á‚Ä‚¢‚é
+			// å½“ãŸã‚Šåˆ¤å®šãªã„ãªã‚‰ãƒã‚§ãƒƒã‚¯å¯¾è±¡ã®ã‚¢ã‚¯ã‚»ã‚µãƒªã‚‚ãƒã‚±ãƒ¢ãƒ³ã¨ã¤ãªãŒã£ã¦ã„ã‚‹
 			for( j=0; j<p_sys->set_num; j++ ){
 
 				if( p_sys->obj[ j ].pokemon_data == IMC_POKEON_ACCE_NONE ){
@@ -3194,9 +3194,9 @@ static void mainPokeOnAcceCheckSys( IMC_POKE_ON_ACCESYS* p_sys )
 					}
 				}
 			}
-			// SEARCHŠ®—¹
+			// SEARCHå®Œäº†
 			p_sys->obj[ i ].pokemon_data = IMC_POKEON_ACCE_SEARCHEND;
-			// ‚à‚¤ˆê“xæ“ª‚©‚çƒ`ƒFƒbƒN
+			// ã‚‚ã†ä¸€åº¦å…ˆé ­ã‹ã‚‰ãƒã‚§ãƒƒã‚¯
 			i = 0;
 		}else{
 			i++;
@@ -3206,12 +3206,12 @@ static void mainPokeOnAcceCheckSys( IMC_POKE_ON_ACCESYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒiƒ“ƒo[‚ÌƒIƒuƒWƒFƒNƒgƒŠƒXƒg‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒŠãƒ³ãƒãƒ¼ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	no			”z—ñƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	no			é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒIƒuƒWƒFƒNƒgƒŠƒXƒg
+ *	@return	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static IMC_OBJLIST* getPokeOnAcceCheckObjList( IMC_POKE_ON_ACCESYS* p_sys, u32 no )
@@ -3223,13 +3223,13 @@ static IMC_OBJLIST* getPokeOnAcceCheckObjList( IMC_POKE_ON_ACCESYS* p_sys, u32 n
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ÉƒAƒNƒZƒTƒŠ“`‚¢‚Å‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚éƒVƒXƒeƒ€@‚»‚ÌƒAƒNƒZƒTƒŠ‚ª‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©‚ð•Ô‚·
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã«ã‚¢ã‚¯ã‚»ã‚µãƒªä¼ã„ã§ã¤ãªãŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ã€€ãã®ã‚¢ã‚¯ã‚»ã‚µãƒªãŒã¤ãªãŒã£ã¦ã„ã‚‹ã‹ã‚’è¿”ã™
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	no			”z—ñƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	no			é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	
- *	@retval	TRUE	‚Â‚È‚ª‚Á‚Ä‚¢‚é
- *	@retval	FALSE	‚Â‚È‚ª‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ã¤ãªãŒã£ã¦ã„ã‚‹
+ *	@retval	FALSE	ã¤ãªãŒã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL getPokeOnAcceCheckObjOnPoke( IMC_POKE_ON_ACCESYS* p_sys, u32 no )
@@ -3244,13 +3244,13 @@ static BOOL getPokeOnAcceCheckObjOnPoke( IMC_POKE_ON_ACCESYS* p_sys, u32 no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“–‚½‚è”»’è
+ *	@brief	å½“ãŸã‚Šåˆ¤å®š
  *
- *	@param	p_obj		¡‰½‚©‚Æ‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg
- *	@param	p_check_obj	ƒ`ƒFƒbƒN‚³‚ê‚éƒIƒuƒWƒFƒNƒg
+ *	@param	p_obj		ä»Šä½•ã‹ã¨ã¤ãªãŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	p_check_obj	ãƒã‚§ãƒƒã‚¯ã•ã‚Œã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
- *	@retval	TRUE	‚ ‚½‚Á‚Ä‚¢‚é
- *	@retval	FLASE	‚ ‚½‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ã‚ãŸã£ã¦ã„ã‚‹
+ *	@retval	FLASE	ã‚ãŸã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 enum{
@@ -3269,9 +3269,9 @@ static BOOL checkPokeOnAcceCalc( IMC_POKE_ON_ACCEOBJ* p_obj, IMC_POKE_ON_ACCEOBJ
 	int i;
 	int x, y;
 	
-	// 16“_ƒ`ƒFƒbƒN‚·‚é
-	// ã‰º¶‰E@^‚ñ’†
-	// ^‚ñ’†
+	// 16ç‚¹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+	// ä¸Šä¸‹å·¦å³ã€€çœŸã‚“ä¸­
+	// çœŸã‚“ä¸­
 	IMC_OBJLIST_GetObjCenterMat( p_obj->obj, &pos[IMC_POKEON_ACCE_XHALF], &pos[IMC_POKEON_ACCE_YHALF] );
 	IMC_OBJLIST_GetObjRectSubInSize( p_obj->obj,
 			&pos[IMC_POKEON_ACCE_TOP], &pos[IMC_POKEON_ACCE_BOTTOM], 
@@ -3282,39 +3282,39 @@ static BOOL checkPokeOnAcceCalc( IMC_POKE_ON_ACCEOBJ* p_obj, IMC_POKE_ON_ACCEOBJ
 				pos[IMC_POKEON_ACCE_LEFT], pos[IMC_POKEON_ACCE_RIGHT], i,
 				&x, &y );	
 /*		switch( i ){
-		case 0:	// ¶ã
+		case 0:	// å·¦ä¸Š
 			x = pos[IMC_POKEON_ACCE_LEFT];
 			y = pos[IMC_POKEON_ACCE_TOP];
 			break;
-		case 1:	// ‰Eã
+		case 1:	// å³ä¸Š
 			x = pos[IMC_POKEON_ACCE_RIGHT];
 			y = pos[IMC_POKEON_ACCE_TOP];
 			break;
-		case 2:	// ¶‰º
+		case 2:	// å·¦ä¸‹
 			x = pos[IMC_POKEON_ACCE_RIGHT];
 			y = pos[IMC_POKEON_ACCE_TOP];
 			break;
-		case 3:	// ‰E‰º
+		case 3:	// å³ä¸‹
 			x = pos[IMC_POKEON_ACCE_RIGHT];
 			y = pos[IMC_POKEON_ACCE_TOP];
 			break;
-		case 4:	// ¶^‚ñ’†
+		case 4:	// å·¦çœŸã‚“ä¸­
 			x = pos[IMC_POKEON_ACCE_LEFT];
 			y = pos[IMC_POKEON_ACCE_YHALF];
 			break;
-		case 5:	// ‰E^‚ñ’†
+		case 5:	// å³çœŸã‚“ä¸­
 			x = pos[IMC_POKEON_ACCE_RIGHT];
 			y = pos[IMC_POKEON_ACCE_YHALF];
 			break;
-		case 6:	// ^‚ñ’†ã
+		case 6:	// çœŸã‚“ä¸­ä¸Š
 			x = pos[IMC_POKEON_ACCE_XHALF];
 			y = pos[IMC_POKEON_ACCE_TOP];
 			break;
-		case 7:	// ^‚ñ’†‰º
+		case 7:	// çœŸã‚“ä¸­ä¸‹
 			x = pos[IMC_POKEON_ACCE_XHALF];
 			y = pos[IMC_POKEON_ACCE_BOTTOM];
 			break;
-		case 8:	// ^‚ñ’†
+		case 8:	// çœŸã‚“ä¸­
 			x = pos[IMC_POKEON_ACCE_XHALF];
 			y = pos[IMC_POKEON_ACCE_YHALF];
 			break;
@@ -3324,7 +3324,7 @@ static BOOL checkPokeOnAcceCalc( IMC_POKE_ON_ACCEOBJ* p_obj, IMC_POKE_ON_ACCEOBJ
 		}//*/
 
 		result = IMC_OBJLIST_ACCEPOKE_Hit( p_check_obj->obj, x, y );
-		if( result == TRUE ){	// ‚ ‚½‚Á‚½‚ç”²‚¯‚é
+		if( result == TRUE ){	// ã‚ãŸã£ãŸã‚‰æŠœã‘ã‚‹
 			return TRUE;
 		}
 	}
@@ -3333,11 +3333,11 @@ static BOOL checkPokeOnAcceCalc( IMC_POKE_ON_ACCEOBJ* p_obj, IMC_POKE_ON_ACCEOBJ
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒŠƒXƒg“à‚ÌƒAƒNƒZƒTƒŠ‚ð‘S•”@ƒ`ƒFƒbƒN—pƒe[ƒuƒ‹‚É“ü‚ê‚é
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆå†…ã®ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’å…¨éƒ¨ã€€ãƒã‚§ãƒƒã‚¯ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ã«å…¥ã‚Œã‚‹
  *
- *	@param	p_sys		ƒ[ƒN
- *	@param	dummy		ƒ_ƒ~[ƒf[ƒ^
- *	@param	init_data	‰Šú‰»ƒf[ƒ^
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	dummy		ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *	@param	init_data	åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *	
  *	@return	none
  */
@@ -3346,9 +3346,9 @@ static void setPokeOnAcceCheckObjList( IMC_POKE_ON_ACCESYS* p_sys, IMC_OBJLIST* 
 {
 	IMC_OBJLIST* p_work;
 
-	p_work = dummy->next;	// ƒ|ƒPƒ‚ƒ“‚Ìã‚ÌƒAƒNƒZƒTƒŠ
+	p_work = dummy->next;	// ãƒã‚±ãƒ¢ãƒ³ã®ä¸Šã®ã‚¢ã‚¯ã‚»ã‚µãƒª
 	while( p_work != dummy ){
-		// ƒAƒNƒZƒTƒŠƒf[ƒ^‚È‚ç•Û‘¶‚·‚é	
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ãªã‚‰ä¿å­˜ã™ã‚‹	
 		if( p_work->flag == IMC_OBJLIST_ACCE ){
 			setPokeOnAcceCheckObj( p_sys, p_work, init_data );
 		}
@@ -3358,7 +3358,7 @@ static void setPokeOnAcceCheckObjList( IMC_POKE_ON_ACCESYS* p_sys, IMC_OBJLIST* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹­§I—¹ƒ`ƒFƒbƒN
+ *	@brief	å¼·åˆ¶çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
  *	@param	imc_w 
  */
@@ -3368,13 +3368,13 @@ static void Imc_OyaExEndCheck( IMC_SYS_WORK* imc_w )
 	int i;
 	int count = 0;
 	
-	// ‚à‚µ’ÊM‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚Í–³ðŒ‚Å0‚É‚·‚é
+	// ã‚‚ã—é€šä¿¡ã—ã¦ã„ãªã„ã¨ãã¯ç„¡æ¡ä»¶ã§0ã«ã™ã‚‹
 	if( imc_w->p_comm_data->sio_flag == 0 ){
 		IMC_SUBWIN_SetCounterNowNum( &imc_w->subwin, 0 );
 		return ;
 	}
 
-	// ‚à‚µe‚È‚çŠF‚©‚çI—¹ƒtƒ‰ƒO‚ð’²‚×‚é
+	// ã‚‚ã—è¦ªãªã‚‰çš†ã‹ã‚‰çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’èª¿ã¹ã‚‹
 	if( imc_w->p_comm_data->server_no == imc_w->p_comm_data->my_net_id ){
 		for( i=0; i<BREEDER_MAX; i++ ){
 			if( imc_w->p_comm_data->recieve_force_end[i] == TRUE ){
@@ -3382,7 +3382,7 @@ static void Imc_OyaExEndCheck( IMC_SYS_WORK* imc_w )
 			}
 		}
 		
-		// ‘Sˆõ‚©‚çI—¹‚ª‚«‚½‚Ì‚ÅƒJƒEƒ“ƒg’l‚ð‚O‚É‚·‚é
+		// å…¨å“¡ã‹ã‚‰çµ‚äº†ãŒããŸã®ã§ã‚«ã‚¦ãƒ³ãƒˆå€¤ã‚’ï¼ã«ã™ã‚‹
 		if( imc_w->p_comm_data->player_num  <= count ){
 			IMC_SUBWIN_SetCounterNowNum( &imc_w->subwin, 0 );
 		}
@@ -3394,15 +3394,15 @@ static void Imc_OyaExEndCheck( IMC_SYS_WORK* imc_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒv‚ ‚½‚è”»’èƒ|ƒCƒ“ƒgŽæ“¾ŠÖ”
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚ãŸã‚Šåˆ¤å®šãƒã‚¤ãƒ³ãƒˆå–å¾—é–¢æ•°
  *
- *	@param	top			ƒgƒbƒv
- *	@param	bottom		ƒ{ƒgƒ€
- *	@param	left		ƒŒƒtƒg
- *	@param	right		ƒ‰ƒCƒg
- *	@param	no			“–‚½‚è”»’èƒ|ƒCƒ“ƒgƒiƒ“ƒo[(‚O`‚P‚T)
- *	@param	p_x			XÀ•WŠi”[æ
- *	@param	p_y			YÀ•WŠi”[æ
+ *	@param	top			ãƒˆãƒƒãƒ—
+ *	@param	bottom		ãƒœãƒˆãƒ 
+ *	@param	left		ãƒ¬ãƒ•ãƒˆ
+ *	@param	right		ãƒ©ã‚¤ãƒˆ
+ *	@param	no			å½“ãŸã‚Šåˆ¤å®šãƒã‚¤ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼(ï¼ã€œï¼‘ï¼•)
+ *	@param	p_x			Xåº§æ¨™æ ¼ç´å…ˆ
+ *	@param	p_y			Yåº§æ¨™æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void IMC_CALC_HitPoint16Get( u32 top, u32 bottom, u32 left, u32 right, u32 no, int* p_x, int* p_y )
@@ -3417,82 +3417,82 @@ void IMC_CALC_HitPoint16Get( u32 top, u32 bottom, u32 left, u32 right, u32 no, i
 	halfy_1 = top + ((bottom - top) / 3)*2;
 	
 	switch( no ){
-	case 0:	// ¶ã
+	case 0:	// å·¦ä¸Š
 		*p_x = left;
 		*p_y = top;
 		break;
 
-	case 1:	// ¶@’†ŠÔ‚O
+	case 1:	// å·¦ã€€ä¸­é–“ï¼
 		*p_x = left;
 		*p_y = halfy_0;
 		break;
 
-	case 2:	// ¶@’†ŠÔ‚P
+	case 2:	// å·¦ã€€ä¸­é–“ï¼‘
 		*p_x = left;
 		*p_y = halfy_1;
 		break;
 
-	case 3:	// ¶‰º
+	case 3:	// å·¦ä¸‹
 		*p_x = left;
 		*p_y = bottom;
 		break;
 
-	case 4:	// ’†ŠÔ‚O@ã
+	case 4:	// ä¸­é–“ï¼ã€€ä¸Š
 		*p_x = halfx_0;
 		*p_y = top;
 		break;
 
-	case 5:	// ’†ŠÔ‚O@’†ŠÔ‚O
+	case 5:	// ä¸­é–“ï¼ã€€ä¸­é–“ï¼
 		*p_x = halfx_0;
 		*p_y = halfy_0;
 		break;
 
-	case 6:	// ’†ŠÔ‚O@’†ŠÔ‚P
+	case 6:	// ä¸­é–“ï¼ã€€ä¸­é–“ï¼‘
 		*p_x = halfx_0;
 		*p_y = halfy_1;
 		break;
 
-	case 7:	// ’†ŠÔ‚O@‰º
+	case 7:	// ä¸­é–“ï¼ã€€ä¸‹
 		*p_x = halfx_0;
 		*p_y = bottom;
 		break;
 
-	case 8:	// ’†ŠÔ‚P@ã
+	case 8:	// ä¸­é–“ï¼‘ã€€ä¸Š
 		*p_x = halfx_1;
 		*p_y = top;
 		break;
 
-	case 9:	// ’†ŠÔ‚P@’†ŠÔ‚O
+	case 9:	// ä¸­é–“ï¼‘ã€€ä¸­é–“ï¼
 		*p_x = halfx_1;
 		*p_y = halfy_0;
 		break;
 
-	case 10:	// ’†ŠÔ‚P@’†ŠÔ‚P
+	case 10:	// ä¸­é–“ï¼‘ã€€ä¸­é–“ï¼‘
 		*p_x = halfx_1;
 		*p_y = halfy_1;
 		break;
 
-	case 11:	// ’†ŠÔ‚P@‰º
+	case 11:	// ä¸­é–“ï¼‘ã€€ä¸‹
 		*p_x = halfx_1;
 		*p_y = bottom;
 		break;
 
-	case 12:	// ‰E@ã
+	case 12:	// å³ã€€ä¸Š
 		*p_x = right;
 		*p_y = top;
 		break;
 
-	case 13:	// ‰E@’†ŠÔ‚O
+	case 13:	// å³ã€€ä¸­é–“ï¼
 		*p_x = right;
 		*p_y = halfy_0;
 		break;
 
-	case 14:	// ‰E@’†ŠÔ‚P
+	case 14:	// å³ã€€ä¸­é–“ï¼‘
 		*p_x = right;
 		*p_y = halfy_1;
 		break;
 
-	case 15:	// ‰E@‰º
+	case 15:	// å³ã€€ä¸‹
 		*p_x = right;
 		*p_y = bottom;
 		break;

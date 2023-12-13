@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	con_record.c
- * @brief	ƒRƒ“ƒeƒXƒg’ÊM‘Îí¬Ñ‰æ–Ê
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€šä¿¡å¯¾æˆ¦æˆç¸¾ç”»é¢
  * @author	matsuda
- * @date	2006.06.05(Œ)
+ * @date	2006.06.05(æœˆ)
  */
 //==============================================================================
 #include "common.h"
@@ -31,7 +31,7 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 #define RECORD_WINDOW_CGX_START	(1)
 
@@ -46,94 +46,94 @@
 #define RECORD_BMPWIN_SIZE_X	(30)
 #define RECORD_BMPWIN_SIZE_Y	(17)
 
-///À•Wİ’èƒ^ƒCƒv
+///åº§æ¨™è¨­å®šã‚¿ã‚¤ãƒ—
 enum{
-	POSTYPE_LEFT,			///<¶’[À•W
-	POSTYPE_CENTER,			///<’†SÀ•W
-	POSTYPE_RIGHT,			///<‰E’[À•W
+	POSTYPE_LEFT,			///<å·¦ç«¯åº§æ¨™
+	POSTYPE_CENTER,			///<ä¸­å¿ƒåº§æ¨™
+	POSTYPE_RIGHT,			///<å³ç«¯åº§æ¨™
 };
 
 //--------------------------------------------------------------
-//	ƒƒbƒZ[ƒW•\¦À•W
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºåº§æ¨™
 //--------------------------------------------------------------
-#define CR_MY_NAME_X		(15*8)		//’†‰›Šñ‚¹
+#define CR_MY_NAME_X		(15*8)		//ä¸­å¤®å¯„ã›
 #define CR_MY_NAME_Y		(8 * 0)
 
-#define CR_TITLE_X			(CR_MY_NAME_X)		//’†‰›Šñ‚¹
+#define CR_TITLE_X			(CR_MY_NAME_X)		//ä¸­å¤®å¯„ã›
 #define CR_TITLE_Y			(8 * 2)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒRƒ“ƒeƒXƒg’ÊM‘Îí¬Ñ‰æ–ÊƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€šä¿¡å¯¾æˆ¦æˆç¸¾ç”»é¢ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct {
 	GF_BGL_BMPWIN	win;
-	MSGDATA_MANAGER * mman;	// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
-	WORDSET * wset;			// ’PŒêƒZƒbƒg
+	MSGDATA_MANAGER * mman;	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£
+	WORDSET * wset;			// å˜èªã‚»ãƒƒãƒˆ
 }CON_RECORD_WORK;
 
-///ƒƒbƒZ[ƒWƒf[ƒ^ID•À•Wİ’è
+///ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿IDï¼†åº§æ¨™è¨­å®š
 typedef struct{
-	u32 msg_id;		///<ƒƒbƒZ[ƒWID
-	s16 x;			///<À•WX(BMPWIN“à‚Ì)
-	s16 y;			///<À•WY(BMPWIN“à‚Ì)
+	u32 msg_id;		///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+	s16 x;			///<åº§æ¨™X(BMPWINå†…ã®)
+	s16 y;			///<åº§æ¨™Y(BMPWINå†…ã®)
 }CR_MSG_DATA;
 
-///’ÊM‘Îí¬Ñ‰æ–ÊƒCƒxƒ“ƒg§Œäƒ^ƒXƒN‚Åg—p‚·‚éƒ[ƒN
+///é€šä¿¡å¯¾æˆ¦æˆç¸¾ç”»é¢ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	void *sys;			///<’ÊM‘Îí¬Ñ‰æ–ÊƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int seq;			///<ƒV[ƒPƒ“ƒX”Ô†
+	void *sys;			///<é€šä¿¡å¯¾æˆ¦æˆç¸¾ç”»é¢ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int seq;			///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 }CON_RECORD_SEQ_WORK;
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒv‚Ì•\¦ƒƒbƒZ[ƒWID‚ÆÀ•Wƒf[ƒ^
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã®è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã¨åº§æ¨™ãƒ‡ãƒ¼ã‚¿
 static const CR_MSG_DATA MsgData_ConType[] = {
-	{msg_con_link_result_03, 8*1, 8*7},		//X:¶Šñ‚¹
+	{msg_con_link_result_03, 8*1, 8*7},		//X:å·¦å¯„ã›
 	{msg_con_link_result_04, 8*1, 8*9},
 	{msg_con_link_result_05, 8*1, 8*11},
 	{msg_con_link_result_06, 8*1, 8*13},
 	{msg_con_link_result_07, 8*1, 8*15},
 };
 
-///‡ˆÊ‚Ì•\¦ƒƒbƒZ[ƒWID‚ÆÀ•Wƒf[ƒ^
+///é †ä½ã®è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã¨åº§æ¨™ãƒ‡ãƒ¼ã‚¿
 static const CR_MSG_DATA MsgData_Ranking[] = {
-	{msg_con_link_result_08, 8*14, 8*5},		//X:‰EŠñ‚¹
+	{msg_con_link_result_08, 8*14, 8*5},		//X:å³å¯„ã›
 	{msg_con_link_result_09, 8*19, 8*5},
 	{msg_con_link_result_10, 8*24, 8*5},
 	{msg_con_link_result_11, 8*29, 8*5},
 };
 
-///Ÿ—˜”‚Ì•\¦ƒƒbƒZ[ƒWID‚ÆÀ•Wƒf[ƒ^
-static const CR_MSG_DATA MsgData_Num[][BREEDER_MAX] = {	//X:‰EŠñ‚¹
-	{//‚©‚Á‚±‚æ‚³
+///å‹åˆ©æ•°ã®è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã¨åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+static const CR_MSG_DATA MsgData_Num[][BREEDER_MAX] = {	//X:å³å¯„ã›
+	{//ã‹ã£ã“ã‚ˆã•
 		{msg_con_link_result_12, 8*14, 8*7},
 		{msg_con_link_result_13, 8*19, 8*7},
 		{msg_con_link_result_14, 8*24, 8*7},
 		{msg_con_link_result_15, 8*29, 8*7},
 	},
-	{//‚¤‚Â‚­‚µ‚³
+	{//ã†ã¤ãã—ã•
 		{msg_con_link_result_16, 8*14, 8*9},
 		{msg_con_link_result_17, 8*19, 8*9},
 		{msg_con_link_result_18, 8*24, 8*9},
 		{msg_con_link_result_19, 8*29, 8*9},
 	},
-	{//‚©‚í‚¢‚³
+	{//ã‹ã‚ã„ã•
 		{msg_con_link_result_20, 8*14, 8*11},
 		{msg_con_link_result_21, 8*19, 8*11},
 		{msg_con_link_result_22, 8*24, 8*11},
 		{msg_con_link_result_23, 8*29, 8*11},
 	},
-	{//‚©‚µ‚±‚³
+	{//ã‹ã—ã“ã•
 		{msg_con_link_result_24, 8*14, 8*13},
 		{msg_con_link_result_25, 8*19, 8*13},
 		{msg_con_link_result_26, 8*24, 8*13},
 		{msg_con_link_result_27, 8*29, 8*13},
 	},
-	{//‚½‚­‚Ü‚µ‚³
+	{//ãŸãã¾ã—ã•
 		{msg_con_link_result_28, 8*14, 8*15},
 		{msg_con_link_result_29, 8*19, 8*15},
 		{msg_con_link_result_30, 8*24, 8*15},
@@ -143,7 +143,7 @@ static const CR_MSG_DATA MsgData_Num[][BREEDER_MAX] = {	//X:‰EŠñ‚¹
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static int FontPosXGet(const STRBUF *strbuf, FONT_TYPE font_type, int pos_type, int x);
 static BOOL GMEVENT_Sub_ConRecord(GMEVENT_CONTROL * event);
@@ -152,9 +152,9 @@ static BOOL GMEVENT_Sub_ConRecord(GMEVENT_CONTROL * event);
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒRƒ“ƒeƒXƒg’ÊM‘Îí¬Ñ‰æ–Ê
+ * @brief   ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€šä¿¡å¯¾æˆ¦æˆç¸¾ç”»é¢
  *
- * @param   event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void EventCmd_ConRecordDisp(GMEVENT_CONTROL *event)
@@ -169,9 +169,9 @@ void EventCmd_ConRecordDisp(GMEVENT_CONTROL *event)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg’ÊM‘Îí¬Ñ‰æ–ÊƒCƒxƒ“ƒgisƒ^ƒXƒN
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€šä¿¡å¯¾æˆ¦æˆç¸¾ç”»é¢ã‚¤ãƒ™ãƒ³ãƒˆé€²è¡Œã‚¿ã‚¹ã‚¯
  *
- * @param   event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static BOOL GMEVENT_Sub_ConRecord(GMEVENT_CONTROL * event)
@@ -200,11 +200,11 @@ static BOOL GMEVENT_Sub_ConRecord(GMEVENT_CONTROL * event)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg’ÊM‘Îí¬Ñ‰æ–Êì¬
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€šä¿¡å¯¾æˆ¦æˆç¸¾ç”»é¢ä½œæˆ
  *
  * @param   fsys		
  *
- * @retval  ’ÊM‘Îí¬Ñ‰æ–ÊƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  é€šä¿¡å¯¾æˆ¦æˆç¸¾ç”»é¢ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void * ContestSioRecord_Create( void * fsys )
@@ -235,9 +235,9 @@ void * ContestSioRecord_Create( void * fsys )
 
 	GF_BGL_BmpWinDataFill(&rec->win, 15);
 	
-	//-- ƒƒbƒZ[ƒW•`‰æ --//
+	//-- ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”» --//
 	dest_strbuf = STRBUF_Create(100, HEAPID_WORLD);
-	//‚¶‚Ô‚ñ‚Ì
+	//ã˜ã¶ã‚“ã®
 	strbuf = MSGMAN_AllocString(rec->mman, msg_con_link_result_01);
 	WORDSET_RegisterPlayerName(rec->wset, 0, SaveData_GetMyStatus(sv));
 	WORDSET_ExpandStr(rec->wset, dest_strbuf, strbuf);
@@ -246,14 +246,14 @@ void * ContestSioRecord_Create( void * fsys )
 		set_x, CR_MY_NAME_Y, MSG_NO_PUT, NULL);
 	STRBUF_Delete(strbuf);
 	
-	//‚Â‚¤‚µ‚ñ@ƒRƒ“ƒeƒXƒg@‚¹‚¢‚¹‚«
+	//ã¤ã†ã—ã‚“ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã€€ã›ã„ã›ã
 	strbuf = MSGMAN_AllocString(rec->mman, msg_con_link_result_02);
 	set_x = FontPosXGet(strbuf, FONT_SYSTEM, POSTYPE_CENTER, CR_TITLE_X);
 	GF_STR_PrintSimple(&rec->win, FONT_SYSTEM, strbuf, 
 		set_x, CR_TITLE_Y, MSG_NO_PUT, NULL);
 	STRBUF_Delete(strbuf);
 	
-	//‚©‚Á‚±‚æ‚³@‚¤‚Â‚­‚µ‚³EEE
+	//ã‹ã£ã“ã‚ˆã•ã€€ã†ã¤ãã—ã•ãƒ»ãƒ»ãƒ»
 	for(i = 0; i < CONTYPE_MAX; i++){
 		strbuf = MSGMAN_AllocString(rec->mman, MsgData_ConType[i].msg_id);
 		set_x = FontPosXGet(strbuf, FONT_SYSTEM, POSTYPE_LEFT, MsgData_ConType[i].x);
@@ -262,7 +262,7 @@ void * ContestSioRecord_Create( void * fsys )
 		STRBUF_Delete(strbuf);
 	}
 	
-	//‚P‚¢@‚Q‚¢@‚R‚¢@‚S‚¢
+	//ï¼‘ã„ã€€ï¼’ã„ã€€ï¼“ã„ã€€ï¼”ã„
 	for(i = 0; i < BREEDER_MAX; i++){
 		strbuf = MSGMAN_AllocString(rec->mman, MsgData_Ranking[i].msg_id);
 		set_x = FontPosXGet(strbuf, FONT_SYSTEM, POSTYPE_RIGHT, MsgData_Ranking[i].x);
@@ -288,7 +288,7 @@ void * ContestSioRecord_Create( void * fsys )
 	STRBUF_Delete(dest_strbuf);
 	
 	
-	//-- •`‰æON --//
+	//-- æç”»ON --//
 	GF_BGL_BmpWinOn( &rec->win );
 	
 	return rec;
@@ -296,9 +296,9 @@ void * ContestSioRecord_Create( void * fsys )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg’ÊM‘Îí¬Ñ‰æ–Êíœ
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€šä¿¡å¯¾æˆ¦æˆç¸¾ç”»é¢å‰Šé™¤
  *
- * @param   rec		’ÊM‘Îí¬Ñ‰æ–ÊƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rec		é€šä¿¡å¯¾æˆ¦æˆç¸¾ç”»é¢ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ContestSioRecord_Delete(void *con_rec)
@@ -318,14 +318,14 @@ void ContestSioRecord_Delete(void *con_rec)
 
 //--------------------------------------------------------------
 /**
- * @brief   •¶š—ñ‚©‚ç•\¦‚·‚éXÀ•W‚ğæ“¾‚·‚é
+ * @brief   æ–‡å­—åˆ—ã‹ã‚‰è¡¨ç¤ºã™ã‚‹Xåº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- * @param   strbuf			•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_type		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   pos_type		À•Wƒ^ƒCƒv
- * @param   x				XÀ•W(À•Wƒ^ƒCƒv‚Åİ’è‚µ‚½‚ÌXÀ•W)
+ * @param   strbuf			æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_type		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   pos_type		åº§æ¨™ã‚¿ã‚¤ãƒ—
+ * @param   x				Xåº§æ¨™(åº§æ¨™ã‚¿ã‚¤ãƒ—ã§è¨­å®šã—ãŸæ™‚ã®Xåº§æ¨™)
  *
- * @retval  XÀ•W
+ * @retval  Xåº§æ¨™
  */
 //--------------------------------------------------------------
 static int FontPosXGet(const STRBUF *strbuf, FONT_TYPE font_type, int pos_type, int x)
@@ -336,7 +336,7 @@ static int FontPosXGet(const STRBUF *strbuf, FONT_TYPE font_type, int pos_type, 
 		return x;
 	}
 	
-	//•¶š—ñ‚Ìƒhƒbƒg•‚©‚çAg—p‚·‚éƒLƒƒƒ‰”‚ğZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	dot_len = FontProc_GetPrintStrWidth(font_type, strbuf, 0);
 	switch(pos_type){
 	case POSTYPE_CENTER:
@@ -344,7 +344,7 @@ static int FontPosXGet(const STRBUF *strbuf, FONT_TYPE font_type, int pos_type, 
 	case POSTYPE_RIGHT:
 		return x - dot_len;
 	}
-	GF_ASSERT(0 && "•s–¾‚Èpos_type");
+	GF_ASSERT(0 && "ä¸æ˜ãªpos_type");
 	return x;
 }
 

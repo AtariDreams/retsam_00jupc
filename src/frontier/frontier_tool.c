@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_tool.c
- * @brief	ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒA{İ‚Å‹¤’Ê‚Åg‚¦‚é‚æ‚¤‚Èƒc[ƒ‹
+ * @brief	ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ã§å…±é€šã§ä½¿ãˆã‚‹ã‚ˆã†ãªãƒ„ãƒ¼ãƒ«
  * @author	matsuda
- * @date	2007.03.20(‰Î)
+ * @date	2007.03.20(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -34,79 +34,79 @@
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ƒ^ƒ[‚ÉoŒ»‚·‚éƒgƒŒ[ƒi[ƒ^ƒCƒv©¨OBJƒR[ƒh
+///ã‚¿ãƒ¯ãƒ¼ã«å‡ºç¾ã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—â†â†’OBJã‚³ãƒ¼ãƒ‰
 static const u16 btower_trtype2objcode[][2] = {
-	{TRTYPE_BTFIVE1,SEVEN1},	///<ŒÜlO1
-	{TRTYPE_BTFIVE2,SEVEN2},	///<ŒÜlO1
-	{TRTYPE_BTFIVE3,SEVEN3},	///<ŒÜlO1
-	{TRTYPE_BTFIVE4,SEVEN4},	///<ŒÜlO1
-	{TRTYPE_BTFIVE5,SEVEN5},	///<ŒÜlO1
-	{TRTYPE_TANPAN,	BOY2},	///<‚½‚ñƒpƒ“‚±‚¼‚¤
-	{TRTYPE_MINI,	GIRL1},	///<ƒ~ƒjƒXƒJ[ƒg
-	{TRTYPE_SCHOOLB,	BOY1},	///<‚¶‚ã‚­‚ª‚¦‚è
-	{TRTYPE_SCHOOLG,	GIRL3},	///<‚¶‚ã‚­‚ª‚¦‚è
-	{TRTYPE_PRINCE,	GORGGEOUSM},	///<‚¨‚Ú‚Á‚¿‚á‚Ü
-	{TRTYPE_PRINCESS,	GORGGEOUSW},	///<‚¨‚¶‚å‚¤‚³‚Ü
-	{TRTYPE_CAMPB,	CAMPBOY},	///<ƒLƒƒƒ“ƒvƒ{[ƒC
-	{TRTYPE_PICNICG,	PICNICGIRL},	///<ƒsƒNƒjƒbƒNƒK[ƒ‹
-	{TRTYPE_UKIWAB,	BABYBOY1},	///<‚¤‚«‚íƒ{[ƒC
-	{TRTYPE_UKIWAG,	BABYGIRL1},	///<‚¤‚«‚íƒK[ƒ‹
-	{TRTYPE_DAISUKIM,	MIDDLEMAN1},	///<‚¾‚¢‚·‚«ƒNƒ‰ƒu
-	{TRTYPE_DAISUKIW,	MIDDLEWOMAN1},	///<‚¾‚¢‚·‚«ƒNƒ‰ƒu
-	{TRTYPE_WAITER,	WAITER},	///<ƒEƒG[ƒ^[
-	{TRTYPE_WAITRESS,	WAITRESS},	///<ƒEƒG[ƒgƒŒƒX
-	{TRTYPE_BREEDERM,	MAN1},	///<ƒ|ƒPƒ‚ƒ“ƒuƒŠ[ƒ_[
-	{TRTYPE_BREEDERW,	WOMAN1},	///<ƒ|ƒPƒ‚ƒ“ƒuƒŠ[ƒ_[
-	{TRTYPE_CAMERAMAN,	CAMERAMAN},	///<ƒJƒƒ‰ƒ}ƒ“
-	{TRTYPE_REPORTER,	REPORTER},	///<ƒŒƒ|[ƒ^[
-	{TRTYPE_FARMER,	FARMER},	///<‚Ú‚­‚¶‚å‚¤‚¨‚¶‚³‚ñ
-	{TRTYPE_COWGIRL,	COWGIRL},	///<ƒJƒEƒK[ƒ‹
-	{TRTYPE_CYCLINGM,	CYCLEM},	///<ƒTƒCƒNƒŠƒ“ƒO‰
-	{TRTYPE_CYCLINGW,	CYCLEW},	///<ƒTƒCƒNƒŠƒ“ƒOŠ
-	{TRTYPE_KARATE,	FIGHTER},	///<‚©‚ç‚Ä‚¨‚¤
-	{TRTYPE_BATTLEG,	GIRL2},	///<ƒoƒgƒ‹ƒK[ƒ‹
-	{TRTYPE_VETERAN,	OLDMAN1},	///<ƒxƒeƒ‰ƒ“ƒgƒŒ[ƒi[
-	{TRTYPE_MADAM,	LADY},	///<ƒ}ƒ_ƒ€
-	{TRTYPE_ESPM,	MYSTERY},	///<ƒTƒCƒLƒbƒJ[
-	{TRTYPE_ESPW,	MYSTERY},	///<ƒTƒCƒLƒbƒJ[
-	{TRTYPE_RANGERM,	MAN3},	///<ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[
-	{TRTYPE_RANGERW,	WOMAN3},	///<ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[
-	{TRTYPE_ELITEM,	MAN3},	///<ƒGƒŠ[ƒgƒgƒŒ[ƒi[
-	{TRTYPE_ELITEW,	WOMAN3},	///<ƒGƒŠ[ƒgƒgƒŒ[ƒi[
-	{TRTYPE_COLDELITEM,	MAN5},	///<ƒGƒŠ[ƒgƒgƒŒ[ƒi[‰iŒú’…j
-	{TRTYPE_COLDELITEW,	WOMAN5},	///<ƒGƒŠ[ƒgƒgƒŒ[ƒi[ŠiŒú’…j
-	{TRTYPE_DRAGON,	MAN3},	///<ƒhƒ‰ƒSƒ“‚Â‚©‚¢
-	{TRTYPE_MUSHI,	BOY3},	///<‚Ş‚µ‚Æ‚è‚µ‚å‚¤‚Ë‚ñ
-	{TRTYPE_SHINOBI,	BABYBOY1},	///<‚É‚ñ‚¶‚á‚²‚Á‚±
-	{TRTYPE_JOGGER,	SPORTSMAN},	///<ƒWƒ‡ƒMƒ“ƒO‰
-	{TRTYPE_FISHING,	FISHING},	///<‚Â‚è‚Ñ‚Æ
-	{TRTYPE_SAILOR,	SEAMAN},	///<‚Ó‚È‚Ì‚è
-	{TRTYPE_MOUNT,	MOUNT},	///<‚â‚Ü‚¨‚Æ‚±
-	{TRTYPE_ISEKI,	EXPLORE},	///<‚¢‚¹‚«ƒ}ƒjƒA
-	{TRTYPE_GUITARIST,	MAN2},	///<ƒMƒ^ƒŠƒXƒg
-	{TRTYPE_COLLECTOR,	BIGMAN},	///<ƒ|ƒPƒ‚ƒ“ƒRƒŒƒNƒ^[
-	{TRTYPE_HEADS,	BADMAN},	///<ƒXƒLƒ“ƒwƒbƒY
-	{TRTYPE_SCIENTIST,	ASSISTANTM},	///<‚¯‚ñ‚«‚ã‚¤‚¢‚ñ‰
-	{TRTYPE_GENTLE,	GENTLEMAN},	///<ƒWƒFƒ“ƒgƒ‹ƒ}ƒ“
-	{TRTYPE_WORKER,	WORKMAN},	///<‚³‚¬‚å‚¤‚¢‚ñ
-	{TRTYPE_PIERROT,	CLOWN},	///<ƒsƒGƒ
-	{TRTYPE_POLICE,	POLICEMAN},	///<‚¨‚Ü‚í‚è‚³‚ñ
-	{TRTYPE_GAMBLER,	GORGGEOUSM},	///<ƒMƒƒƒ“ƒuƒ‰[
-	{TRTYPE_BIRD,	WOMAN3},	///<‚Æ‚è‚Â‚©‚¢
-	{TRTYPE_PARASOL,	AMBRELLA},	///<ƒpƒ‰ƒ\ƒ‹‚¨‚Ë‚¦‚³‚ñ
-	{TRTYPE_SISTER,	WOMAN2},	///<‚¨‚Æ‚È‚Ì‚¨‚Ë‚¦‚³‚ñ
-	{TRTYPE_AROMA,	WOMAN1},	///<ƒAƒƒ}‚È‚¨‚Ë‚¦‚³‚ñ
-	{TRTYPE_IDOL,	IDOL},	///<ƒAƒCƒhƒ‹
-	{TRTYPE_ARTIST,	ARTIST},	///<‚°‚¢‚¶‚ã‚Â‚©
-	{TRTYPE_POKEGIRL,	PIKACHU},	///<ƒ|ƒPƒ‚ƒ“‚²‚Á‚±Š
+	{TRTYPE_BTFIVE1,SEVEN1},	///<äº”äººè¡†1
+	{TRTYPE_BTFIVE2,SEVEN2},	///<äº”äººè¡†1
+	{TRTYPE_BTFIVE3,SEVEN3},	///<äº”äººè¡†1
+	{TRTYPE_BTFIVE4,SEVEN4},	///<äº”äººè¡†1
+	{TRTYPE_BTFIVE5,SEVEN5},	///<äº”äººè¡†1
+	{TRTYPE_TANPAN,	BOY2},	///<ãŸã‚“ãƒ‘ãƒ³ã“ãã†
+	{TRTYPE_MINI,	GIRL1},	///<ãƒŸãƒ‹ã‚¹ã‚«ãƒ¼ãƒˆ
+	{TRTYPE_SCHOOLB,	BOY1},	///<ã˜ã‚…ããŒãˆã‚Š
+	{TRTYPE_SCHOOLG,	GIRL3},	///<ã˜ã‚…ããŒãˆã‚Š
+	{TRTYPE_PRINCE,	GORGGEOUSM},	///<ãŠã¼ã£ã¡ã‚ƒã¾
+	{TRTYPE_PRINCESS,	GORGGEOUSW},	///<ãŠã˜ã‚‡ã†ã•ã¾
+	{TRTYPE_CAMPB,	CAMPBOY},	///<ã‚­ãƒ£ãƒ³ãƒ—ãƒœãƒ¼ã‚¤
+	{TRTYPE_PICNICG,	PICNICGIRL},	///<ãƒ”ã‚¯ãƒ‹ãƒƒã‚¯ã‚¬ãƒ¼ãƒ«
+	{TRTYPE_UKIWAB,	BABYBOY1},	///<ã†ãã‚ãƒœãƒ¼ã‚¤
+	{TRTYPE_UKIWAG,	BABYGIRL1},	///<ã†ãã‚ã‚¬ãƒ¼ãƒ«
+	{TRTYPE_DAISUKIM,	MIDDLEMAN1},	///<ã ã„ã™ãã‚¯ãƒ©ãƒ–
+	{TRTYPE_DAISUKIW,	MIDDLEWOMAN1},	///<ã ã„ã™ãã‚¯ãƒ©ãƒ–
+	{TRTYPE_WAITER,	WAITER},	///<ã‚¦ã‚¨ãƒ¼ã‚¿ãƒ¼
+	{TRTYPE_WAITRESS,	WAITRESS},	///<ã‚¦ã‚¨ãƒ¼ãƒˆãƒ¬ã‚¹
+	{TRTYPE_BREEDERM,	MAN1},	///<ãƒã‚±ãƒ¢ãƒ³ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
+	{TRTYPE_BREEDERW,	WOMAN1},	///<ãƒã‚±ãƒ¢ãƒ³ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
+	{TRTYPE_CAMERAMAN,	CAMERAMAN},	///<ã‚«ãƒ¡ãƒ©ãƒãƒ³
+	{TRTYPE_REPORTER,	REPORTER},	///<ãƒ¬ãƒãƒ¼ã‚¿ãƒ¼
+	{TRTYPE_FARMER,	FARMER},	///<ã¼ãã˜ã‚‡ã†ãŠã˜ã•ã‚“
+	{TRTYPE_COWGIRL,	COWGIRL},	///<ã‚«ã‚¦ã‚¬ãƒ¼ãƒ«
+	{TRTYPE_CYCLINGM,	CYCLEM},	///<ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°â™‚
+	{TRTYPE_CYCLINGW,	CYCLEW},	///<ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°â™€
+	{TRTYPE_KARATE,	FIGHTER},	///<ã‹ã‚‰ã¦ãŠã†
+	{TRTYPE_BATTLEG,	GIRL2},	///<ãƒãƒˆãƒ«ã‚¬ãƒ¼ãƒ«
+	{TRTYPE_VETERAN,	OLDMAN1},	///<ãƒ™ãƒ†ãƒ©ãƒ³ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+	{TRTYPE_MADAM,	LADY},	///<ãƒãƒ€ãƒ 
+	{TRTYPE_ESPM,	MYSTERY},	///<ã‚µã‚¤ã‚­ãƒƒã‚«ãƒ¼
+	{TRTYPE_ESPW,	MYSTERY},	///<ã‚µã‚¤ã‚­ãƒƒã‚«ãƒ¼
+	{TRTYPE_RANGERM,	MAN3},	///<ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼
+	{TRTYPE_RANGERW,	WOMAN3},	///<ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼
+	{TRTYPE_ELITEM,	MAN3},	///<ã‚¨ãƒªãƒ¼ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+	{TRTYPE_ELITEW,	WOMAN3},	///<ã‚¨ãƒªãƒ¼ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+	{TRTYPE_COLDELITEM,	MAN5},	///<ã‚¨ãƒªãƒ¼ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼â™‚ï¼ˆåšç€ï¼‰
+	{TRTYPE_COLDELITEW,	WOMAN5},	///<ã‚¨ãƒªãƒ¼ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼â™€ï¼ˆåšç€ï¼‰
+	{TRTYPE_DRAGON,	MAN3},	///<ãƒ‰ãƒ©ã‚´ãƒ³ã¤ã‹ã„
+	{TRTYPE_MUSHI,	BOY3},	///<ã‚€ã—ã¨ã‚Šã—ã‚‡ã†ã­ã‚“
+	{TRTYPE_SHINOBI,	BABYBOY1},	///<ã«ã‚“ã˜ã‚ƒã”ã£ã“
+	{TRTYPE_JOGGER,	SPORTSMAN},	///<ã‚¸ãƒ§ã‚®ãƒ³ã‚°â™‚
+	{TRTYPE_FISHING,	FISHING},	///<ã¤ã‚Šã³ã¨
+	{TRTYPE_SAILOR,	SEAMAN},	///<ãµãªã®ã‚Š
+	{TRTYPE_MOUNT,	MOUNT},	///<ã‚„ã¾ãŠã¨ã“
+	{TRTYPE_ISEKI,	EXPLORE},	///<ã„ã›ããƒãƒ‹ã‚¢
+	{TRTYPE_GUITARIST,	MAN2},	///<ã‚®ã‚¿ãƒªã‚¹ãƒˆ
+	{TRTYPE_COLLECTOR,	BIGMAN},	///<ãƒã‚±ãƒ¢ãƒ³ã‚³ãƒ¬ã‚¯ã‚¿ãƒ¼
+	{TRTYPE_HEADS,	BADMAN},	///<ã‚¹ã‚­ãƒ³ãƒ˜ãƒƒã‚º
+	{TRTYPE_SCIENTIST,	ASSISTANTM},	///<ã‘ã‚“ãã‚…ã†ã„ã‚“â™‚
+	{TRTYPE_GENTLE,	GENTLEMAN},	///<ã‚¸ã‚§ãƒ³ãƒˆãƒ«ãƒãƒ³
+	{TRTYPE_WORKER,	WORKMAN},	///<ã•ãã‚‡ã†ã„ã‚“
+	{TRTYPE_PIERROT,	CLOWN},	///<ãƒ”ã‚¨ãƒ­
+	{TRTYPE_POLICE,	POLICEMAN},	///<ãŠã¾ã‚ã‚Šã•ã‚“
+	{TRTYPE_GAMBLER,	GORGGEOUSM},	///<ã‚®ãƒ£ãƒ³ãƒ–ãƒ©ãƒ¼
+	{TRTYPE_BIRD,	WOMAN3},	///<ã¨ã‚Šã¤ã‹ã„
+	{TRTYPE_PARASOL,	AMBRELLA},	///<ãƒ‘ãƒ©ã‚½ãƒ«ãŠã­ãˆã•ã‚“
+	{TRTYPE_SISTER,	WOMAN2},	///<ãŠã¨ãªã®ãŠã­ãˆã•ã‚“
+	{TRTYPE_AROMA,	WOMAN1},	///<ã‚¢ãƒ­ãƒãªãŠã­ãˆã•ã‚“
+	{TRTYPE_IDOL,	IDOL},	///<ã‚¢ã‚¤ãƒ‰ãƒ«
+	{TRTYPE_ARTIST,	ARTIST},	///<ã’ã„ã˜ã‚…ã¤ã‹
+	{TRTYPE_POKEGIRL,	PIKACHU},	///<ãƒã‚±ãƒ¢ãƒ³ã”ã£ã“â™€
 };
 #define TRTYPE2OBJCODE_MAX	(NELEMS(btower_trtype2objcode))
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 u8 Frontier_PowRndGet(u16 tr_no);
 BOOL Frontier_PokemonIndexCreate( B_TOWER_TRAINER_ROM_DATA* trd, const u16 check_pokeno[], const u16 check_itemno[], int check_num, int get_count, u16 get_pokeindex[], int heap_id );
@@ -120,17 +120,17 @@ void Frontier_EnemyPokeMake( u8 set_num, u16 tr_index, u16 tr_index2, u16* enemy
 //==============================================================================
 //---------------------------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi[ƒƒ€ƒf[ƒ^‚Ì“Ç‚İo‚µ
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—
  *
- * @param[in]	trainer_index	ƒgƒŒ[ƒi[ƒiƒ“ƒo[
- * @param[in]	heap_id	ƒƒ‚ƒŠŠm•Û‚·‚é‚½‚ß‚Ìƒq[ƒvID
+ * @param[in]	trainer_index	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	heap_id	ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ãŸã‚ã®ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval		æ“¾‚µ‚½ƒgƒŒ[ƒi[ƒƒ€ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval		å–å¾—ã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒgƒŒ[ƒi[ƒf[ƒ^‚ª‰Â•Ï’·‚Èˆ×A’†‚Åƒƒ‚ƒŠŠm•Û
- * I—¹‚ÍŒÄ‚Ño‚µ‘¤‚ªƒƒ‚ƒŠŠJ•ú‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ãŒå¯å¤‰é•·ãªç‚ºã€ä¸­ã§ãƒ¡ãƒ¢ãƒªç¢ºä¿
+ * çµ‚äº†æ™‚ã¯å‘¼ã³å‡ºã—å´ãŒãƒ¡ãƒ¢ãƒªé–‹æ”¾ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  *
- * š—‚½ˆ— b_tower_fld.c BattleTowerTrainerRomDataGet
+ * â˜…ä¼¼ãŸå‡¦ç† b_tower_fld.c BattleTowerTrainerRomDataGet
  */
 //---------------------------------------------------------------------------------------------
 B_TOWER_TRAINER_ROM_DATA * Frontier_TrainerRomDataGet(u16 trainer_index,int heap_id,int arcTR)
@@ -140,14 +140,14 @@ B_TOWER_TRAINER_ROM_DATA * Frontier_TrainerRomDataGet(u16 trainer_index,int heap
 
 //---------------------------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ƒ|ƒPƒ‚ƒ“ƒƒ€ƒf[ƒ^‚Ì“Ç‚İo‚µ
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—
  *
- * @param[in]	prd		“Ç‚İo‚µ‚½ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌŠi”[æ
- * @param[in]	index	“Ç‚İo‚·ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @param[in]	prd		èª­ã¿å‡ºã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆ
+ * @param[in]	index	èª­ã¿å‡ºã™ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * ƒgƒŒ[ƒi[ƒf[ƒ^‚Æˆá‚¢ŒÅ’è’·‚Ìˆ×AŠO‘¤‚©‚çŠi”[æƒƒ‚ƒŠ‚ğ“n‚·
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã¨é•ã„å›ºå®šé•·ã®ç‚ºã€å¤–å´ã‹ã‚‰æ ¼ç´å…ˆãƒ¡ãƒ¢ãƒªã‚’æ¸¡ã™
  *
- * š—‚½ˆ— b_tower_fld.c BattleTowerPokemonRomDataGet
+ * â˜…ä¼¼ãŸå‡¦ç† b_tower_fld.c BattleTowerPokemonRomDataGet
  */
 //---------------------------------------------------------------------------------------------
 void Frontier_PokemonRomDataGet(B_TOWER_POKEMON_ROM_DATA *prd,int index,int arcID)
@@ -157,18 +157,18 @@ void Frontier_PokemonRomDataGet(B_TOWER_POKEMON_ROM_DATA *prd,int index,int arcI
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi[ƒƒ€ƒf[ƒ^‚ğƒoƒbƒtƒ@‚Ö“WŠJ
+ * @brief   ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã¸å±•é–‹
  *
- * @param   bt_trd				ƒgƒŒ[ƒi[ƒf[ƒ^Ši”[æ
- * @param   trainer_index		ƒgƒŒ[ƒi[Index
- * @param   heap_id				ƒq[ƒvID
+ * @param   bt_trd				ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ * @param   trainer_index		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Index
+ * @param   heap_id				ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  ƒgƒŒ[ƒi[ROMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ROMãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	B_TOWER_TRAINER_ROM_DATAŒ^‚ğƒƒ‚ƒŠŠm•Û‚µ‚Ä•Ô‚·‚Ì‚ÅA
- *	ŒÄ‚Ño‚µ‘¤‚ª–¾¦“I‚É‰ğ•ú‚·‚é‚±‚Æ
+ *	B_TOWER_TRAINER_ROM_DATAå‹ã‚’ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ã¦è¿”ã™ã®ã§ã€
+ *	å‘¼ã³å‡ºã—å´ãŒæ˜ç¤ºçš„ã«è§£æ”¾ã™ã‚‹ã“ã¨
  *
- * š—‚½ˆ— b_tower_fld.c RomTrainerDataAlloc
+ * â˜…ä¼¼ãŸå‡¦ç† b_tower_fld.c RomTrainerDataAlloc
  */
 //--------------------------------------------------------------
 B_TOWER_TRAINER_ROM_DATA * Frontier_TrainerDataGet(B_TOWER_TRAINER *bt_trd, int trainer_index, int heap_id, int arcTR)
@@ -181,13 +181,13 @@ B_TOWER_TRAINER_ROM_DATA * Frontier_TrainerDataGet(B_TOWER_TRAINER *bt_trd, int 
 	
 	trd = Frontier_TrainerRomDataGet(trainer_index, heap_id, arcTR);
 
-	//ƒgƒŒ[ƒi[ID‚ğƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’ã‚»ãƒƒãƒˆ
 	bt_trd->player_id=trainer_index;
 
-	//ƒgƒŒ[ƒi[oŒ»ƒƒbƒZ[ƒW
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å‡ºç¾ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	bt_trd->appear_word[0] = 0xFFFF;
 	bt_trd->appear_word[1] = trainer_index*3;
-	//ƒgƒŒ[ƒi[ƒf[ƒ^‚ğƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	bt_trd->tr_type=trd->tr_type;
 	name=MSGMAN_AllocString(man,trainer_index);
 	STRBUF_GetStringCode(name,&bt_trd->name[0],BUFLEN_PERSON_NAME);
@@ -198,9 +198,9 @@ B_TOWER_TRAINER_ROM_DATA * Frontier_TrainerDataGet(B_TOWER_TRAINER *bt_trd, int 
 	return trd;
 }
 
-//‚¿ƒ|ƒPƒ‚ƒ“Œˆ’è‚Íƒ‰ƒ“ƒ_ƒ€‚Å‚µ‚Ä‚¢‚é‚ª–³ŒÀƒ‹[ƒv–h~‚Ì‚½‚ßA
-//‚ ‚é’ö“x‚Ü‚í‚µ‚½‚çAƒ|ƒPƒ‚ƒ“‚Ì•sˆê’v‚Ì‚İ‚ğƒ`ƒFƒbƒN‚µ‚ÄA
-//ƒAƒCƒeƒ€‚ğŒÅ’è‚Å‚½‚¹‚é‚½‚ß‚ÌƒAƒCƒeƒ€ƒe[ƒuƒ‹
+//æŒã¡ãƒã‚±ãƒ¢ãƒ³æ±ºå®šã¯ãƒ©ãƒ³ãƒ€ãƒ ã§ã—ã¦ã„ã‚‹ãŒç„¡é™ãƒ«ãƒ¼ãƒ—é˜²æ­¢ã®ãŸã‚ã€
+//ã‚ã‚‹ç¨‹åº¦ã¾ã‚ã—ãŸã‚‰ã€ãƒã‚±ãƒ¢ãƒ³ã®ä¸ä¸€è‡´ã®ã¿ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã€
+//ã‚¢ã‚¤ãƒ†ãƒ ã‚’å›ºå®šã§æŒãŸã›ã‚‹ãŸã‚ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u16 FrontierPokemonItem[]={
 	ITEM_HIKARINOKONA,
 	ITEM_RAMUNOMI,
@@ -209,20 +209,20 @@ static const u16 FrontierPokemonItem[]={
 };
 //============================================================================================
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^¶¬
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç”Ÿæˆ
  *
- *	@param[in/out]	pwd	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚Ì“WŠJêŠ
- *	@param[in]		poke_index	ƒ^ƒ[romƒf[ƒ^ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- *	@param[in]		poke_id	ƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg‚·‚éid
- *	@param[in]		poke_rnd	ƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg‚·‚éŒÂ«—”(0‚ªˆø‚«“n‚³‚ê‚½‚çŠÖ”“à‚Å¶¬)
- *	@param[in]		pow_rnd	ƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg‚·‚épow_rnd’l
- *	@param[in]		mem_idx	ƒƒ“ƒo[indexB‰½‘Ì–Ú‚©(itemfix‚ğTRUE‚É‚µ‚½ê‡ŒÅ’èƒAƒCƒeƒ€æ“¾‚Ég—p)
- *	@param[in]		itemfix	TRUE‚È‚çŒÅ’èƒAƒCƒeƒ€BFALSE‚È‚çromƒf[ƒ^‚ÌƒAƒCƒeƒ€
- *	@param[in]		heapID	ƒeƒ“ƒ|ƒ‰ƒŠƒƒ‚ƒŠ‚ğŠm•Û‚·‚éƒq[ƒvID
+ *	@param[in/out]	pwd	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å±•é–‹å ´æ‰€
+ *	@param[in]		poke_index	ã‚¿ãƒ¯ãƒ¼romãƒ‡ãƒ¼ã‚¿ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param[in]		poke_id	ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆã™ã‚‹id
+ *	@param[in]		poke_rnd	ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆã™ã‚‹å€‹æ€§ä¹±æ•°(0ãŒå¼•ãæ¸¡ã•ã‚ŒãŸã‚‰é–¢æ•°å†…ã§ç”Ÿæˆ)
+ *	@param[in]		pow_rnd	ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆã™ã‚‹pow_rndå€¤
+ *	@param[in]		mem_idx	ãƒ¡ãƒ³ãƒãƒ¼indexã€‚ä½•ä½“ç›®ã‹(itemfixã‚’TRUEã«ã—ãŸå ´åˆå›ºå®šã‚¢ã‚¤ãƒ†ãƒ å–å¾—ã«ä½¿ç”¨)
+ *	@param[in]		itemfix	TRUEãªã‚‰å›ºå®šã‚¢ã‚¤ãƒ†ãƒ ã€‚FALSEãªã‚‰romãƒ‡ãƒ¼ã‚¿ã®ã‚¢ã‚¤ãƒ†ãƒ 
+ *	@param[in]		heapID	ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	personal_rnd:¶¬‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”’l
+ *	@return	personal_rnd:ç”Ÿæˆã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°å€¤
  *
- * š—‚½ˆ— tower_tool.c BattleTowerPokemonParamMake
+ * â˜…ä¼¼ãŸå‡¦ç† tower_tool.c BattleTowerPokemonParamMake
  */
 //============================================================================================
 u32 Frontier_PokemonParamMake(B_TOWER_POKEMON* pwd,
@@ -236,32 +236,32 @@ u32 Frontier_PokemonParamMake(B_TOWER_POKEMON* pwd,
 	
 	MI_CpuClear8(pwd,sizeof(B_TOWER_POKEMON));
 	
-	//ƒƒ€ƒf[ƒ^ƒ[ƒh
+	//ãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	Frontier_PokemonRomDataGet(&prd_s,poke_index,arcID);
 	
-	//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
 	pwd->mons_no=prd_s.mons_no;
 	
-	//ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[(08.04.04)
+	//ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼(08.04.04)
 	pwd->form_no=prd_s.form_no;
 
-	//‘•”õ“¹‹ï
+	//è£…å‚™é“å…·
 	if(itemfix){
-		//50‰ñˆÈã‚Ü‚í‚µ‚Ä‚¢‚½ƒtƒ‰ƒO‚ªTURE‚È‚çA‘•”õƒAƒCƒeƒ€‚ÍŒÅ’è‚Ì‚à‚Ì‚ğ‚½‚¹‚é
+		//50å›ä»¥ä¸Šã¾ã‚ã—ã¦ã„ãŸãƒ•ãƒ©ã‚°ãŒTUREãªã‚‰ã€è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã¯å›ºå®šã®ã‚‚ã®ã‚’æŒãŸã›ã‚‹
 		if(mem_idx >= NELEMS(FrontierPokemonItem)){
-			mem_idx %= NELEMS(FrontierPokemonItem);	//ˆê‰
+			mem_idx %= NELEMS(FrontierPokemonItem);	//ä¸€å¿œ
 		}
 		pwd->item_no=FrontierPokemonItem[mem_idx];
 	}else{
-		//romƒf[ƒ^‚É“o˜^‚³‚ê‚½ƒAƒCƒeƒ€‚ğ‚½‚¹‚é
+		//romãƒ‡ãƒ¼ã‚¿ã«ç™»éŒ²ã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒãŸã›ã‚‹
 		pwd->item_no=prd_s.item_no;
 	}
 
-	//‚È‚Â‚«“x‚Í255‚ªƒfƒtƒHƒ‹ƒg
+	//ãªã¤ãåº¦ã¯255ãŒãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
 	friend=255;
 	for(i=0;i<WAZA_TEMOTI_MAX;i++){
 		pwd->waza[i]=prd_s.waza[i];
-		//‚â‚Â‚ ‚½‚è‚ğ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍA‚È‚Â‚«“x‚ğ0‚É‚·‚é
+		//ã‚„ã¤ã‚ãŸã‚Šã‚’æŒã£ã¦ã„ã‚‹ã¨ãã¯ã€ãªã¤ãåº¦ã‚’0ã«ã™ã‚‹
 		if(prd_s.waza[i]==WAZANO_YATUATARI){
 			friend=0;
 		}
@@ -269,40 +269,40 @@ u32 Frontier_PokemonParamMake(B_TOWER_POKEMON* pwd,
 
 	//IDNo
 	pwd->id_no=poke_id;
-	//OS_Printf( "«Ši = %d\n", prd_s.chr );
+	//OS_Printf( "æ€§æ ¼ = %d\n", prd_s.chr );
 
 	if(poke_rnd == 0){
-		//ŒÂ«—”
+		//å€‹æ€§ä¹±æ•°
 		do{
 			personal_rnd=(gf_rand()|gf_rand()<<16);
 #if 0
 		}while((prd_s.chr!=PokeSeikakuGetRnd(personal_rnd))&&(PokeRareGetPara(poke_id,personal_rnd)==TRUE));
 #else
-		//ƒvƒ‰ƒ`ƒi‚Íƒ^ƒ[‚àC³‚·‚é(08.03.17)(‚±‚ÌŠÖ”‚Å‚Í‚È‚¢‚Ì‚Å’ˆÓI)
-		//ƒf[ƒ^‚Ì«Ši‚Æˆê’v‚µ‚Ä‚¢‚È‚¢"‚à‚µ‚­‚Í"ƒŒƒA‚Ì‚ÍAƒ‹[ƒv‚ğ‰ñ‚·
+		//ãƒ—ãƒ©ãƒãƒŠã¯ã‚¿ãƒ¯ãƒ¼ã‚‚ä¿®æ­£ã™ã‚‹(08.03.17)(ã“ã®é–¢æ•°ã§ã¯ãªã„ã®ã§æ³¨æ„ï¼)
+		//ãƒ‡ãƒ¼ã‚¿ã®æ€§æ ¼ã¨ä¸€è‡´ã—ã¦ã„ãªã„"ã‚‚ã—ãã¯"ãƒ¬ã‚¢ã®æ™‚ã¯ã€ãƒ«ãƒ¼ãƒ—ã‚’å›ã™
 		}while((prd_s.chr!=PokeSeikakuGetRnd(personal_rnd))||(PokeRareGetPara(poke_id,personal_rnd)==TRUE));
 #endif
 
-		//OS_Printf( "Œˆ’è‚µ‚½personal_rnd = %d\n", personal_rnd );
+		//OS_Printf( "æ±ºå®šã—ãŸpersonal_rnd = %d\n", personal_rnd );
 		//OS_Printf( "PokeSeikakuGetRnd = %d\n", PokeSeikakuGetRnd(personal_rnd) );
-		//OS_Printf( "ƒŒƒA‚¶‚á‚È‚¢‚© = %d\n", PokeRareGetPara(poke_id,personal_rnd) );
+		//OS_Printf( "ãƒ¬ã‚¢ã˜ã‚ƒãªã„ã‹ = %d\n", PokeRareGetPara(poke_id,personal_rnd) );
 		pwd->personal_rnd=personal_rnd;
 	}else{
-		pwd->personal_rnd = poke_rnd;	//0‚Å‚È‚¯‚ê‚Îˆø”‚Ì’l‚ğg—p
+		pwd->personal_rnd = poke_rnd;	//0ã§ãªã‘ã‚Œã°å¼•æ•°ã®å€¤ã‚’ä½¿ç”¨
 		personal_rnd = poke_rnd;
 	}
 	
 		
-	//ƒpƒ[—”(0-31)
+	//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°(0-31)
 	pwd->hp_rnd=pow_rnd;
 	pwd->pow_rnd=pow_rnd;
 	pwd->def_rnd=pow_rnd;
 	pwd->agi_rnd=pow_rnd;
 	pwd->spepow_rnd=pow_rnd;
 	pwd->spedef_rnd=pow_rnd;
-	OS_Printf( "€”õ\npower_rnd = %d\n\n", pwd->power_rnd );
+	OS_Printf( "æº–å‚™\npower_rnd = %d\n\n", pwd->power_rnd );
 
-	//“w—Í’l
+	//åŠªåŠ›å€¤
 	exp=0;
 	for(i=0;i<6;i++){
 		if(prd_s.exp_bit&No2Bit(i)){
@@ -320,13 +320,13 @@ u32 Frontier_PokemonParamMake(B_TOWER_POKEMON* pwd,
 		}
 	}
 
-	//‹Zƒ|ƒCƒ“ƒg
+	//æŠ€ãƒã‚¤ãƒ³ãƒˆ
 	pwd->pp_count=0;
 
-	//‘ƒR[ƒh
+	//å›½ã‚³ãƒ¼ãƒ‰
 	pwd->country_code=CasetteLanguage;
 
-	//“Á«
+	//ç‰¹æ€§
 	i=PokePersonalParaGet(pwd->mons_no,ID_PER_speabi2);
 	if(i){
 		if(pwd->personal_rnd&1){
@@ -338,10 +338,10 @@ u32 Frontier_PokemonParamMake(B_TOWER_POKEMON* pwd,
 		pwd->tokusei=PokePersonalParaGet(pwd->mons_no,ID_PER_speabi1);
 	}
 
-	//‚È‚Â‚«“x
+	//ãªã¤ãåº¦
 	pwd->natuki=friend;
 
-	//ƒjƒbƒNƒl[ƒ€
+	//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
 	MSGDAT_MonsNameGet(pwd->mons_no,heapID,&(pwd->nickname[0]));
 
 	return personal_rnd;
@@ -349,19 +349,19 @@ u32 Frontier_PokemonParamMake(B_TOWER_POKEMON* pwd,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒ^ƒ[—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çPOKEMON_PARAM‚ğ¶¬
+ * @brief   ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰POKEMON_PARAMã‚’ç”Ÿæˆ
  *
- * @param   src			ƒoƒgƒ‹ƒ^ƒ[—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- * @param   dest		POKEMON_PARAM‘ã“üæ
- * @param   level		FRONTIER_LEVEL_50 = LV50AFRONTIER_LEVEL_OPEN = LV100A‚»‚êˆÈŠO‚Í“n‚³‚ê‚½’l
+ * @param   src			ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @param   dest		POKEMON_PARAMä»£å…¥å…ˆ
+ * @param   level		FRONTIER_LEVEL_50 = LV50ã€FRONTIER_LEVEL_OPEN = LV100ã€ãã‚Œä»¥å¤–ã¯æ¸¡ã•ã‚ŒãŸå€¤
  *
- * š—‚½ˆ— b_tower_fld.c BtlTower_PokeParaMake
+ * â˜…ä¼¼ãŸå‡¦ç† b_tower_fld.c BtlTower_PokeParaMake
  */
 //--------------------------------------------------------------
 void Frontier_PokeParaMake(const B_TOWER_POKEMON* src,POKEMON_PARAM* dest, u8 level)
 {
 	int i;
-	u32 power_rnd;						//’ˆÓIu32•K—v
+	u32 power_rnd;						//æ³¨æ„ï¼u32å¿…è¦
 	u8	buf8,waza_pp,poke_level;
 	u16	buf16;
 	u32	buf32;
@@ -386,20 +386,20 @@ void Frontier_PokeParaMake(const B_TOWER_POKEMON* src,POKEMON_PARAM* dest, u8 le
 	//OS_Printf( "agi_rnd = %d\n", PokeParaGet(dest,ID_PARA_agi_rnd,NULL) );
 
 #if 0
-	//‚±‚ÌŠÖ”‚Íu32‚Åpower_rnd“n‚·
+	//ã“ã®é–¢æ•°ã¯u32ã§power_rndæ¸¡ã™
 	PokeParaSetPowRnd(dest,src->mons_no,poke_level,(src->power_rnd & 0x3FFFFFFF),src->personal_rnd);
 #else
-	//ƒŒƒA‚ªo‚È‚¢‚æ‚¤‚É•ÏX(07.08.08)
+	//ãƒ¬ã‚¢ãŒå‡ºãªã„ã‚ˆã†ã«å¤‰æ›´(07.08.08)
 	power_rnd = (src->power_rnd & 0x3FFFFFFF);
-	OS_Printf( "\nƒZƒbƒg power_rnd = %d\n\n", power_rnd );
+	OS_Printf( "\nã‚»ãƒƒãƒˆ power_rnd = %d\n\n", power_rnd );
 
-	//š‚±‚ÌŠÖ”‚Íu8(0-31)‚Ìpow_rnd“n‚·(‚ ‚Æ‚Åpower_rnd‚ÉÄ“xPut‚·‚é‚æ‚¤‚É‚µ‚½)
+	//â˜…ã“ã®é–¢æ•°ã¯u8(0-31)ã®pow_rndæ¸¡ã™(ã‚ã¨ã§power_rndã«å†åº¦Putã™ã‚‹ã‚ˆã†ã«ã—ãŸ)
 	PokeParaSet(dest, src->mons_no, poke_level, power_rnd, 
 				RND_SET, src->personal_rnd, ID_NO_RARE, 0 );
 
 	//PokeParaSet( dest, src->mons_no, poke_level, 0, RND_SET, src->personal_rnd, ID_NO_RARE, 0 );
 	
-	//š‚±‚±‚Åu32‚Ìpower_rnd‚ğÄƒZƒbƒgI
+	//â˜…ã“ã“ã§u32ã®power_rndã‚’å†ã‚»ãƒƒãƒˆï¼
 	PokeParaPut( dest, ID_PARA_power_rnd, &power_rnd );
 
 	PokeParaCalc( dest );
@@ -415,26 +415,26 @@ void Frontier_PokeParaMake(const B_TOWER_POKEMON* src,POKEMON_PARAM* dest, u8 le
 	buf8 = src->form_no;
 	PokeParaPut(dest,ID_PARA_form_no,&buf8);
 	
-	//‘•”õƒAƒCƒeƒ€İ’è
+	//è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ è¨­å®š
 	PokeParaPut(dest,ID_PARA_item,&src->item_no);
 	
-	//‹Zİ’è
+	//æŠ€è¨­å®š
 	for(i = 0;i < 4;i++){
 		buf16 = src->waza[i];
 		PokeParaPut(dest,ID_PARA_waza1+i,&buf16);
 		buf8 = (src->pp_count >> (i*2))&0x03;
 		PokeParaPut(dest,ID_PARA_pp_count1+i,&buf8);
 
-		//ppÄİ’è
+		//ppå†è¨­å®š
 		waza_pp = (u8)PokeParaGet(dest,ID_PARA_pp_max1+i,NULL);
 		PokeParaPut(dest,ID_PARA_pp1+i,&waza_pp);
 	}
 	
-	//IDİ’è
+	//IDè¨­å®š
 	buf32 = src->id_no;	
 	PokeParaPut(dest,ID_PARA_id_no,&buf32);
 
-	//ŒoŒ±’lİ’è
+	//çµŒé¨“å€¤è¨­å®š
 	buf8 = src->hp_exp;
 	PokeParaPut(dest,ID_PARA_hp_exp,&buf8);
 	buf8 = src->pow_exp;
@@ -448,15 +448,15 @@ void Frontier_PokeParaMake(const B_TOWER_POKEMON* src,POKEMON_PARAM* dest, u8 le
 	buf8 = src->spedef_exp;
 	PokeParaPut(dest,ID_PARA_spedef_exp,&buf8);
 
-	//“Á«İ’è
+	//ç‰¹æ€§è¨­å®š
 	PokeParaPut(dest,ID_PARA_speabino,&src->tokusei);
 	
-	//‚È‚Â‚«‚Çİ’è
+	//ãªã¤ãã©è¨­å®š
 	PokeParaPut(dest,ID_PARA_friend,&src->natuki);
 	
-	//NGƒl[ƒ€ƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+	//NGãƒãƒ¼ãƒ ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 	if(src->ngname_f){
-		//ƒfƒtƒHƒ‹ƒgƒl[ƒ€‚ğ“WŠJ‚·‚é
+		//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ¼ãƒ ã‚’å±•é–‹ã™ã‚‹
 		MSGDATA_MANAGER* man;
 		STRBUF* def_name;
 	
@@ -468,19 +468,19 @@ void Frontier_PokeParaMake(const B_TOWER_POKEMON* src,POKEMON_PARAM* dest, u8 le
 		STRBUF_Delete(def_name);
 		MSGMAN_Delete(man);
 	}else{
-		//ƒjƒbƒNƒl[ƒ€
+		//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
 		PokeParaPut(dest,ID_PARA_nickname,src->nickname);
 	}
 
-	//ƒJƒ“ƒgƒŠ[ƒR[ƒh
+	//ã‚«ãƒ³ãƒˆãƒªãƒ¼ã‚³ãƒ¼ãƒ‰
 	PokeParaPut(dest,ID_PARA_country_code,&src->country_code);
-	//ƒpƒ‰ƒ[ƒ^ÄŒvZ
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å†è¨ˆç®—
 	PokeParaCalc(dest);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[ƒ^ƒCƒv‚©‚çl•¨OBJƒR[ƒh‚ğ•Ô‚·
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã‚‰äººç‰©OBJã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
  *
  * @param   tr_type		
  *
@@ -503,14 +503,14 @@ u16 Frontier_TrType2ObjCode(u8 tr_type)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“›z‰»î•ñ‚ğŠi”[
+ * @brief	ãƒã‚±ãƒ¢ãƒ³å­µåŒ–æƒ…å ±ã‚’æ ¼ç´
  *
- * @param	wk			FACTORY_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	poke		POKEMON_PARAMŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FACTORY_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	poke		POKEMON_PARAMå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * e–¼‚Æ‚©ƒZƒbƒg‚µ‚È‚¢‚ÆAƒXƒe[ƒ^ƒX‰æ–Ê‚Ì•\¦‚ª‚¤‚Ü‚­‚¢‚©‚È‚¢‚Ì‚ÅƒZƒbƒg
+ * è¦ªåã¨ã‹ã‚»ãƒƒãƒˆã—ãªã„ã¨ã€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã®è¡¨ç¤ºãŒã†ã¾ãã„ã‹ãªã„ã®ã§ã‚»ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 void Frontier_BirthInfoSet( SAVEDATA* sv, POKEMON_PARAM* poke );
@@ -521,27 +521,27 @@ void Frontier_BirthInfoSet( SAVEDATA* sv, POKEMON_PARAM* poke )
 	MSGDATA_MANAGER* msgman;
 	int placeID;
 	//TRMEMO_SETID setID	= TRMEMO_EGGBIRTH_PLACESET;
-	TRMEMO_SETID setID		= TRMEMO_POKE_PLACESET;					//’Êíæ“¾(•ßŠl“™)
+	TRMEMO_SETID setID		= TRMEMO_POKE_PLACESET;					//é€šå¸¸å–å¾—(æ•ç²ç­‰)
 	MYSTATUS* my			= SaveData_GetMyStatus( sv );
 
-	//Frontier_PokeParaMake‚ÅƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚Ì‚Å‘Ş”ğ
+	//Frontier_PokeParaMakeã§ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã®ã§é€€é¿
 	id_no = PokeParaGet( poke, ID_PARA_id_no, NULL );
 
 	PokeParaBirthInfoSet(	poke, SaveData_GetMyStatus(sv),
 							//ball,        place,  ground_id,  heapID
 							ITEM_MONSUTAABOORU, 0, 0, HEAPID_WORLD );
 
-	placeID	= ZoneData_GetPlaceNameID( ZONE_ID_D32R0301 );			//uƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[vŒÅ’è
+	placeID	= ZoneData_GetPlaceNameID( ZONE_ID_D32R0301 );			//ã€Œãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€å›ºå®š
 
-	//š‚±‚±‚Ìmy‚Í©•ª‚Ìƒf[ƒ^‚ğ“n‚µ‚Ä‚µ‚Ü‚Á‚Ä‚æ‚¢‚Ì‚©H
-	//IDNo,e‚Ì«•ÊAe‚Ì–¼‘O‚ªƒZƒbƒg‚³‚ê‚é
+	//â˜…ã“ã“ã®myã¯è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã—ã¦ã—ã¾ã£ã¦ã‚ˆã„ã®ã‹ï¼Ÿ
+	//IDNo,è¦ªã®æ€§åˆ¥ã€è¦ªã®åå‰ãŒã‚»ãƒƒãƒˆã•ã‚Œã‚‹
 	TrainerMemoSetPP( poke, my, setID, placeID, HEAPID_WORLD );
 
 	msgman = MSGMAN_Create(	MSGMAN_TYPE_NORMAL, ARC_MSG, 
 							NARC_msg_factory_oyaname_dat, HEAPID_WORLD );
 	str = MSGMAN_AllocString( msgman, 0 );
-	PokeParaPut( poke, ID_PARA_oyaname_buf, str );					//uHHHHHvŒÅ’è
-	PokeParaPut( poke, ID_PARA_id_no, &id_no );						//‘Ş”ğ‚µ‚Ä‚¨‚¢‚½IDNoƒZƒbƒg
+	PokeParaPut( poke, ID_PARA_oyaname_buf, str );					//ã€Œï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿã€å›ºå®š
+	PokeParaPut( poke, ID_PARA_id_no, &id_no );						//é€€é¿ã—ã¦ãŠã„ãŸIDNoã‚»ãƒƒãƒˆ
 	STRBUF_Delete(str);
 	MSGMAN_Delete( msgman );
 	return;
@@ -549,11 +549,11 @@ void Frontier_BirthInfoSet( SAVEDATA* sv, POKEMON_PARAM* poke )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Éƒ|ƒPƒ‚ƒ“‚ğ’Ç‰Á
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã«ãƒã‚±ãƒ¢ãƒ³ã‚’è¿½åŠ 
  *
- * @param	wk			FACTORY_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	party		POKEPARTYŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	poke		POKEMON_PARAMŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FACTORY_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	party		POKEPARTYå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	poke		POKEMON_PARAMå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -561,7 +561,7 @@ void Frontier_BirthInfoSet( SAVEDATA* sv, POKEMON_PARAM* poke )
 void Frontier_PokePartyAdd( SAVEDATA* sv, POKEPARTY* party, POKEMON_PARAM* poke );
 void Frontier_PokePartyAdd( SAVEDATA* sv, POKEPARTY* party, POKEMON_PARAM* poke )
 {
-	Frontier_BirthInfoSet( sv, poke );	//e–¼‚Æ‚©ƒZƒbƒg
+	Frontier_BirthInfoSet( sv, poke );	//è¦ªåã¨ã‹ã‚»ãƒƒãƒˆ
 	PokeParty_Add( party, poke );
 	return;
 }
@@ -569,9 +569,9 @@ void Frontier_PokePartyAdd( SAVEDATA* sv, POKEPARTY* party, POKEMON_PARAM* poke 
 #if 0
 //--------------------------------------------------------------
 /**
- * @brief	—F’B”Ô†æ“¾
+ * @brief	å‹é”ç•ªå·å–å¾—
  *
- * @param	wk			FACTORY_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FACTORY_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -579,9 +579,9 @@ void Frontier_PokePartyAdd( SAVEDATA* sv, POKEPARTY* party, POKEMON_PARAM* poke 
 int Frontier_GetFriendIndex( u32 record_no );
 int Frontier_GetFriendIndex( u32 record_no )
 {
-	//ƒŒƒR[ƒhƒiƒ“ƒo[‚É‚æ‚Á‚Ä•ªŠò
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒŠãƒ³ãƒãƒ¼ã«ã‚ˆã£ã¦åˆ†å²
 	//
-	//’ÊMó‘Ô‚ğƒ`ƒFƒbƒN‚È‚Ç‚ª•K—v‚©‚àB
+	//é€šä¿¡çŠ¶æ…‹ã‚’ãƒã‚§ãƒƒã‚¯ãªã©ãŒå¿…è¦ã‹ã‚‚ã€‚
 	
 	if( record_no < FRID_MAX ){
 		return FRONTIER_RECORD_NOT_FRIEND;
@@ -595,7 +595,7 @@ int Frontier_GetFriendIndex( u32 record_no )
 
 //==============================================================================
 //
-//	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒ
+//	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡
 //
 //==============================================================================
 #include "application/app_tool.h"
@@ -607,10 +607,10 @@ u8 Frontier_PokeIconAnmNoGet( u16 hp, u16 hp_max );
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒØ‚è‘Ö‚¦
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	awk		ƒAƒNƒ^[ƒ[ƒN
- * @param	anm		ƒAƒjƒ”Ô†
+ * @param	awk		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	anm		ã‚¢ãƒ‹ãƒ¡ç•ªå·
  *
  * @return	none
  */
@@ -629,10 +629,10 @@ void Frontier_PokeIconAnmChg( CLACT_WORK_PTR awp, u8 anm )
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒÀ•WƒZƒbƒg
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡åº§æ¨™ã‚»ãƒƒãƒˆ
  *
- * @param	awk		ƒAƒNƒ^[ƒ[ƒN
- * @param	flag	1=‘I‘ğ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“
+ * @param	awk		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	flag	1=é¸æŠã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³
  *
  * @return	none
  */
@@ -659,10 +659,10 @@ void Frontier_PokeIconPosSet( CLACT_WORK_PTR awp, s16 init_x, s16 init_y, u8 fla
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒNoæ“¾
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡Noå–å¾—
  *
- * @param	awk		ƒAƒNƒ^[ƒ[ƒN
- * @param	flag	1=‘I‘ğ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“
+ * @param	awk		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	flag	1=é¸æŠã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³
  *
  * @return	none
  */
@@ -672,15 +672,15 @@ u8 Frontier_PokeIconAnmNoGet( u16 hp, u16 hp_max )
 	switch( GetHPGaugeDottoColor(hp,hp_max,48) ){
 	case HP_DOTTO_MAX:
 		return POKEICON_ANM_HPMAX;
-	case HP_DOTTO_GREEN:	// —Î
+	case HP_DOTTO_GREEN:	// ç·‘
 		return POKEICON_ANM_HPGREEN;
-	case HP_DOTTO_YELLOW:	// ‰©
+	case HP_DOTTO_YELLOW:	// é»„
 		return POKEICON_ANM_HPYERROW;
-	case HP_DOTTO_RED:		// Ô
+	case HP_DOTTO_RED:		// èµ¤
 		return POKEICON_ANM_HPRED;
 	};
 
-#if 0	//ƒfƒoƒbƒN//////////////////////////////////////////////////////////
+#if 0	//ãƒ‡ãƒãƒƒã‚¯//////////////////////////////////////////////////////////
 		if( sys.cont & PAD_BUTTON_L ){
 			return POKEICON_ANM_HPMAX;
 		}else if( sys.cont & PAD_BUTTON_R ){
@@ -698,7 +698,7 @@ u8 Frontier_PokeIconAnmNoGet( u16 hp, u16 hp_max )
 
 //==============================================================================
 //
-//	ƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi[ƒf[ƒ^¶¬(tower_tool.c‚©‚çˆÚ“®)
+//	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ(tower_tool.cã‹ã‚‰ç§»å‹•)
 //
 //==============================================================================
 void FSRomBattleTowerTrainerDataMake2( B_TOWER_PARTNER_DATA *tr_data, u16 tr_no, int heapID, int arcTR );
@@ -708,12 +708,12 @@ u32 Frontier_PokemonParamCreateStage( B_TOWER_POKEMON *pwd, u16 poke_index, int 
 
 //------------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi["‚Ì‚İ"ƒf[ƒ^¶¬iƒƒ€ƒf[ƒ^‚ğB_TOWER_PARTNER_DATA\‘¢‘Ì‚É“WŠJj
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼"ã®ã¿"ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’B_TOWER_PARTNER_DATAæ§‹é€ ä½“ã«å±•é–‹ï¼‰
  *
- * @param[in/out]	tr_data		¶¬‚·‚éB_TOWER_PARTNAER_DATA\‘¢‘Ì
- * @param[in]		tr_no		¶¬Œ³‚É‚È‚éƒgƒŒ[ƒi[ID
- *								iNULL‚¾‚Æƒ`ƒFƒbƒN‚È‚µj
- * @param[in]		heapID		ƒq[ƒvID
+ * @param[in/out]	tr_data		ç”Ÿæˆã™ã‚‹B_TOWER_PARTNAER_DATAæ§‹é€ ä½“
+ * @param[in]		tr_no		ç”Ÿæˆå…ƒã«ãªã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ *								ï¼ˆNULLã ã¨ãƒã‚§ãƒƒã‚¯ãªã—ï¼‰
+ * @param[in]		heapID		ãƒ’ãƒ¼ãƒ—ID
  *
  * @retval	none
  */
@@ -722,7 +722,7 @@ void FSRomBattleTowerTrainerDataMake2( B_TOWER_PARTNER_DATA *tr_data, u16 tr_no,
 {
 	B_TOWER_TRAINER_ROM_DATA* trd;
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^ƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	trd = Frontier_TrainerDataGet( &tr_data->bt_trd, tr_no, heapID, arcTR );
 
 	sys_FreeMemoryEz(trd);
@@ -731,13 +731,13 @@ void FSRomBattleTowerTrainerDataMake2( B_TOWER_PARTNER_DATA *tr_data, u16 tr_no,
 
 //--------------------------------------------------------------
 /**
- *	BATTLE_PARAM‚ÉƒgƒŒ[ƒi[ƒf[ƒ^ƒZƒbƒg
+ *	BATTLE_PARAMã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param[in/out]	bp			¶¬‚·‚éBATTLE_PARAM\‘¢‘Ì
- * @param[in]		tr_data		¶¬Œ³‚É‚È‚éƒgƒŒ[ƒi[ƒf[ƒ^
- * @param[in]		cnt			ƒgƒŒ[ƒi[‚Ì‚¿ƒ|ƒPƒ‚ƒ“”
- * @param[in]		client_no	¶¬‚·‚éclient_no
- * @param[in]		heapID		ƒq[ƒvIDiPOKEMON_PARAM‚Ì¶¬‚É•K—vj
+ * @param[in/out]	bp			ç”Ÿæˆã™ã‚‹BATTLE_PARAMæ§‹é€ ä½“
+ * @param[in]		tr_data		ç”Ÿæˆå…ƒã«ãªã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+ * @param[in]		cnt			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³æ•°
+ * @param[in]		client_no	ç”Ÿæˆã™ã‚‹client_no
+ * @param[in]		heapID		ãƒ’ãƒ¼ãƒ—IDï¼ˆPOKEMON_PARAMã®ç”Ÿæˆã«å¿…è¦ï¼‰
  */
 //--------------------------------------------------------------
 void BattleParamTrainerDataSet( BATTLE_PARAM* bp, B_TOWER_TRAINER* bt_trd, int cnt, int client_no, int heapID )
@@ -745,10 +745,10 @@ void BattleParamTrainerDataSet( BATTLE_PARAM* bp, B_TOWER_TRAINER* bt_trd, int c
 	PMS_DATA		*pd;
 	POKEMON_PARAM	*pp;
 
-	//ƒgƒŒ[ƒi[ID‚ğƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’ã‚»ãƒƒãƒˆ
 	bp->trainer_id[client_no]				= bt_trd->player_id;
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^‚ğƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	bp->trainer_data[client_no].tr_type		= bt_trd->tr_type;
 	PM_strcpy( &bp->trainer_data[client_no].name[0], &bt_trd->name[0] );
 
@@ -762,16 +762,16 @@ void BattleParamTrainerDataSet( BATTLE_PARAM* bp, B_TOWER_TRAINER* bt_trd, int c
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“¶¬
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ
  *
- * @param   pwd				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚Ì“WŠJêŠ
- * @param   poke_index		ƒ|ƒPƒ‚ƒ“Index
- * @param   position		è‚¿ˆÊ’u
- * @param   pow_rnd			ƒpƒ[—”
- * @param   personal_rnd	ŒÂ«—”(0‚Ìê‡‚Í“à•”‚Å©“®¶¬)
- * @param   heap_id			ƒq[ƒvID
+ * @param   pwd				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å±•é–‹å ´æ‰€
+ * @param   poke_index		ãƒã‚±ãƒ¢ãƒ³Index
+ * @param   position		æ‰‹æŒã¡ä½ç½®
+ * @param   pow_rnd			ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+ * @param   personal_rnd	å€‹æ€§ä¹±æ•°(0ã®å ´åˆã¯å†…éƒ¨ã§è‡ªå‹•ç”Ÿæˆ)
+ * @param   heap_id			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  ¶¬‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”’l
+ * @retval  ç”Ÿæˆã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°å€¤
  */
 //--------------------------------------------------------------
 u32 Frontier_PokemonParamCreate( B_TOWER_POKEMON *pwd, u16 poke_index, int position, u8 pow_rnd, u32 personal_rnd, int heap_id, int arcPM )
@@ -789,15 +789,15 @@ u32 Frontier_PokemonParamCreate( B_TOWER_POKEMON *pwd, u16 poke_index, int posit
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒA‚Åg—p‚·‚éƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É•¡”•C¶¬(07.12.04ƒXƒe[ƒWˆÈŠO)
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä½¿ç”¨ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«è¤‡æ•°åŒ¹ç”Ÿæˆ(07.12.04ã‚¹ãƒ†ãƒ¼ã‚¸ä»¥å¤–)
  *
- * @param   pwd					ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^“WŠJêŠ(set_num•ª‚Ì—v‘f”‚ª‚ ‚é”z—ñ‚Å‚ ‚é–)
- * @param   range				ƒ|ƒPƒ‚ƒ“ƒf[ƒ^’Šo”ÍˆÍƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^(ƒpƒ[—”æ“¾‚Ég—p)
- * @param   poke_index[]		ƒ|ƒPƒ‚ƒ“Index‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   personal_rnd[]		ŒÂ«—”‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^(NULL‚Ìê‡‚Í“à•”‚Å©“®¶¬)
- * @param   ret_personal_rnd[]	ŒÂ«—”‚ğ“à•”‚Å©“®¶¬‚µ‚½ê‡‚Ìó‚¯æ‚èêŠ(•s—v‚È‚çNULL)
- * @param   set_num				‰½‘Ì‚Ìƒ|ƒPƒ‚ƒ“‚ğ¶¬‚·‚é‚©
- * @param   heap_id				ƒq[ƒvID
+ * @param   pwd					ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å±•é–‹å ´æ‰€(set_numåˆ†ã®è¦ç´ æ•°ãŒã‚ã‚‹é…åˆ—ã§ã‚ã‚‹äº‹)
+ * @param   range				ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æŠ½å‡ºç¯„å›²ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿(ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°å–å¾—ã«ä½¿ç”¨)
+ * @param   poke_index[]		ãƒã‚±ãƒ¢ãƒ³Indexã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   personal_rnd[]		å€‹æ€§ä¹±æ•°ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿(NULLã®å ´åˆã¯å†…éƒ¨ã§è‡ªå‹•ç”Ÿæˆ)
+ * @param   ret_personal_rnd[]	å€‹æ€§ä¹±æ•°ã‚’å†…éƒ¨ã§è‡ªå‹•ç”Ÿæˆã—ãŸå ´åˆã®å—ã‘å–ã‚Šå ´æ‰€(ä¸è¦ãªã‚‰NULL)
+ * @param   set_num				ä½•ä½“ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ç”Ÿæˆã™ã‚‹ã‹
+ * @param   heap_id				ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 void Frontier_PokemonParamCreateAll(B_TOWER_POKEMON *pwd, u16 poke_index[], 
@@ -827,13 +827,13 @@ void Frontier_PokemonParamCreateAll(B_TOWER_POKEMON *pwd, u16 poke_index[],
 
 //---------------------------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi[‚Ì‚¿ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”‚ğŒˆ’è‚·‚é
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã‚’æ±ºå®šã™ã‚‹
  *
- * @param	tr_no	ƒgƒŒ[ƒi[ƒiƒ“ƒo[
+ * @param	tr_no	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	ƒpƒ[—”
+ * @return	ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
  *
- * src/field/b_tower_fld.c‚Æ“¯‚¶
+ * src/field/b_tower_fld.cã¨åŒã˜
  */
 //---------------------------------------------------------------------------------------------
 u8 Frontier_PowRndGet(u16 tr_no)
@@ -869,21 +869,21 @@ u8 Frontier_PowRndGet(u16 tr_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒA‚Åg—p‚·‚éƒ|ƒPƒ‚ƒ“‚ÌIndex‚ğŒˆ‚ß‚é
- *			“¯‚¶ƒ|ƒPƒ‚ƒ“A‘•”õ“¹‹ï‚É‚È‚ç‚È‚¢‚æ‚¤‚ÉIndex‚ğæ“¾‚µ‚Ü‚·
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä½¿ç”¨ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®Indexã‚’æ±ºã‚ã‚‹
+ *			åŒã˜ãƒã‚±ãƒ¢ãƒ³ã€è£…å‚™é“å…·ã«ãªã‚‰ãªã„ã‚ˆã†ã«Indexã‚’å–å¾—ã—ã¾ã™
  *
- * @param   trd					B_TOWER_TRAINER_ROM_DATAŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param   check_pokeno[]		”í‚è–h~‚Åƒ`ƒFƒbƒN‚·‚éƒ|ƒPƒ‚ƒ“”Ô†(Index‚Å‚Í‚È‚¢–‚É’ˆÓ)
- * @param   check_itemno[]		”í‚è–h~‚Åƒ`ƒFƒbƒN‚·‚éƒAƒCƒeƒ€”Ô†
- * @param   check_num			check_pokeno‚Æcheck_itemno‚Ìƒf[ƒ^”
- * @param   get_count			‰½‘Ì‚Ìƒ|ƒPƒ‚ƒ“Index‚ğæ“¾‚·‚é‚©
- * @param   ret_pokeindex[]		Œˆ‚Ü‚Á‚½ƒ|ƒPƒ‚ƒ“Index‚ÌŒ‹‰Ê‘ã“üæ(get_count•ª‚Ì”z—ñ”‚ª‚ ‚é–!)
- * @param   heap_id				ƒq[ƒvID
+ * @param   trd					B_TOWER_TRAINER_ROM_DATAå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   check_pokeno[]		è¢«ã‚Šé˜²æ­¢ã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·(Indexã§ã¯ãªã„äº‹ã«æ³¨æ„)
+ * @param   check_itemno[]		è¢«ã‚Šé˜²æ­¢ã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param   check_num			check_pokenoã¨check_itemnoã®ãƒ‡ãƒ¼ã‚¿æ•°
+ * @param   get_count			ä½•ä½“ã®ãƒã‚±ãƒ¢ãƒ³Indexã‚’å–å¾—ã™ã‚‹ã‹
+ * @param   ret_pokeindex[]		æ±ºã¾ã£ãŸãƒã‚±ãƒ¢ãƒ³Indexã®çµæœä»£å…¥å…ˆ(get_countåˆ†ã®é…åˆ—æ•°ãŒã‚ã‚‹äº‹!)
+ * @param   heap_id				ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	FALSE	’Š‘Iƒ‹[ƒv‚ª50‰ñˆÈ“à‚ÅI‚í‚Á‚½
- * @retval	TRUE	’Š‘Iƒ‹[ƒv‚ª50‰ñˆÈ“à‚ÅI‚í‚ç‚È‚©‚Á‚½
+ * @retval	FALSE	æŠ½é¸ãƒ«ãƒ¼ãƒ—ãŒ50å›ä»¥å†…ã§çµ‚ã‚ã£ãŸ
+ * @retval	TRUE	æŠ½é¸ãƒ«ãƒ¼ãƒ—ãŒ50å›ä»¥å†…ã§çµ‚ã‚ã‚‰ãªã‹ã£ãŸ
  *
- * ”í‚è–h~‚ğg—p‚µ‚È‚¢ê‡‚Ícheck_num‚ğ0‚É‚µ‚Ä‚­‚¾‚³‚¢B(check_pokeno, check_itemno‚ÍNULL)
+ * è¢«ã‚Šé˜²æ­¢ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã¯check_numã‚’0ã«ã—ã¦ãã ã•ã„ã€‚(check_pokeno, check_itemnoã¯NULL)
  */
 //--------------------------------------------------------------
 BOOL Frontier_PokemonIndexCreate( B_TOWER_TRAINER_ROM_DATA* trd, const u16 check_pokeno[], const u16 check_itemno[], int check_num, int get_count, u16 get_pokeindex[], int heap_id )
@@ -892,7 +892,7 @@ BOOL Frontier_PokemonIndexCreate( B_TOWER_TRAINER_ROM_DATA* trd, const u16 check
 	B_TOWER_POKEMON_ROM_DATA prd_d[6];
 	int i,poke_index;
 	
-	GF_ASSERT(get_count <= 6);	//prd_d‚Ì”z—ñ”‚ğ’´‚¦‚Ä‚¢‚ê‚ÎASSERT
+	GF_ASSERT(get_count <= 6);	//prd_dã®é…åˆ—æ•°ã‚’è¶…ãˆã¦ã„ã‚Œã°ASSERT
 	
 	set_count	= 0;
 	loop_count	= 0;
@@ -901,7 +901,7 @@ BOOL Frontier_PokemonIndexCreate( B_TOWER_TRAINER_ROM_DATA* trd, const u16 check
 
 	while( set_count != get_count ){
 
-		//šƒ‰ƒ“ƒ_ƒ€—vŠm”F
+		//â˜…ãƒ©ãƒ³ãƒ€ãƒ è¦ç¢ºèª
 		poke_index = ( gf_rand() % trd->use_poke_cnt );
 		//OS_Printf( "poke_index = %d\n", poke_index );
 		//poke_index = btower_rand(wk)%trd->use_poke_cnt;
@@ -910,11 +910,11 @@ BOOL Frontier_PokemonIndexCreate( B_TOWER_TRAINER_ROM_DATA* trd, const u16 check
 		Frontier_PokemonRomDataGet( &prd_d[set_count], set_index, ARC_PL_BTD_PM );
 		OS_Printf( "set_index = %d\n", set_index );
 		
-		//¡‚Ü‚Å¶¬‚µ‚Ä‚«‚½ƒ|ƒPƒ‚ƒ“‚Æ”í‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+		//ä»Šã¾ã§ç”Ÿæˆã—ã¦ããŸãƒã‚±ãƒ¢ãƒ³ã¨è¢«ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		for(i = 0; i < set_count; i++){
 			if(prd_d[i].mons_no == prd_d[set_count].mons_no 
 					|| prd_d[i].item_no == prd_d[set_count].item_no){
-				break;	//”í‚Á‚½
+				break;	//è¢«ã£ãŸ
 			}
 		}
 
@@ -927,11 +927,11 @@ BOOL Frontier_PokemonIndexCreate( B_TOWER_TRAINER_ROM_DATA* trd, const u16 check
 		}
 		
 		if( loop_count < 50 ){
-			//ƒ`ƒFƒbƒN—p‚É“n‚³‚ê‚Ä‚¢‚éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[A‘•”õƒAƒCƒeƒ€‚Ì”í‚èƒ`ƒFƒbƒN
+			//ãƒã‚§ãƒƒã‚¯ç”¨ã«æ¸¡ã•ã‚Œã¦ã„ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã€è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã®è¢«ã‚Šãƒã‚§ãƒƒã‚¯
 			for(i = 0; i < check_num; i++){
 				if(prd_d[set_count].mons_no == check_pokeno[i] 
 						|| prd_d[set_count].item_no ==  check_itemno[i]){
-					break;	//”í‚Á‚½
+					break;	//è¢«ã£ãŸ
 				}
 			}
 			if(i != check_num){
@@ -953,21 +953,21 @@ BOOL Frontier_PokemonIndexCreate( B_TOWER_TRAINER_ROM_DATA* trd, const u16 check
 
 //--------------------------------------------------------------
 /**
- * @brief	“G‚ªo‚·Å‰‚Ìƒ|ƒPƒ‚ƒ“3(4)•C‚ğŒˆ‚ß‚é
+ * @brief	æ•µãŒå‡ºã™æœ€åˆã®ãƒã‚±ãƒ¢ãƒ³3(4)åŒ¹ã‚’æ±ºã‚ã‚‹
  *
  * @param	set_num
  * @param	tr_index
- * @param	tr_index2			ƒyƒA
+ * @param	tr_index2			ãƒšã‚¢
  * @param	enemy_poke_index
  * @param	enemy_poke
  * @param	personal_rnd
  *
  * @return	
  *
- * ˆÈ‰º‚Ì‡‚Åˆ—‚µ‚Ä‚¢‚­
- * ƒŒƒ“ƒ^ƒ‹6
- * (”í‚èƒ`ƒFƒbƒN:ƒŒƒ“ƒ^ƒ‹6) “G3
- * (”í‚èƒ`ƒFƒbƒN:è‚¿3)(”í‚èƒ`ƒFƒbƒN:‘O‚Ì“G3) “G3
+ * ä»¥ä¸‹ã®é †ã§å‡¦ç†ã—ã¦ã„ã
+ * ãƒ¬ãƒ³ã‚¿ãƒ«6
+ * (è¢«ã‚Šãƒã‚§ãƒƒã‚¯:ãƒ¬ãƒ³ã‚¿ãƒ«6) æ•µ3
+ * (è¢«ã‚Šãƒã‚§ãƒƒã‚¯:æ‰‹æŒã¡3)(è¢«ã‚Šãƒã‚§ãƒƒã‚¯:å‰ã®æ•µ3) æ•µ3
  * ...
  */
 //--------------------------------------------------------------
@@ -981,52 +981,52 @@ void Frontier_EnemyPokeMake( u8 set_num, u16 tr_index, u16 tr_index2, u16* enemy
 	B_TOWER_TRAINER_ROM_DATA* trd;
 	B_TOWER_POKEMON_ROM_DATA prd_d;
 
-	//ROM‚©‚çƒgƒŒ[ƒi[ƒf[ƒ^‚ğŠm•Û
+	//ROMã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 	trd = Frontier_TrainerDataGet( &bt_trd, tr_index, HEAPID_WORLD, ARC_PL_BTD_TR );
 
 	///////////////////////////////////////////////////////////////
-	//Å‰‚ÍAˆêl–Ú‚ÌƒgƒŒ[ƒi[‚ğ”í‚è‚È‚µ‚Å‘Io
+	//æœ€åˆã¯ã€ä¸€äººç›®ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚’è¢«ã‚Šãªã—ã§é¸å‡º
 	//
-	//‚»‚ÌŒãA“ñl–Ú‚ÌƒgƒŒ[ƒi[‚ğ”í‚èƒe[ƒuƒ‹‚ğ‘ã“ü‚µ‚½‚ ‚Æ‚É‘Io
+	//ãã®å¾Œã€äºŒäººç›®ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚’è¢«ã‚Šãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä»£å…¥ã—ãŸã‚ã¨ã«é¸å‡º
 	//
-	//ƒgƒŒ[ƒi[ƒf[ƒ^‚ğŒ³‚É‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«ã—ãªã„ã¨ã„ã‘ãªã„
 	///////////////////////////////////////////////////////////////
 
-	//ƒpƒ[—”‘ã“ü
+	//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ä»£å…¥
 	for( i=0; i < set_num; i++ ){
 		pow_rnd[i] = Frontier_PowRndGet( tr_index );
 	}
 
-	//ƒVƒ“ƒOƒ‹‚Ì
+	//ã‚·ãƒ³ã‚°ãƒ«ã®æ™‚
 	if( flag == 0  ){
 
-		//“Gƒ|ƒPƒ‚ƒ“‚ÌƒCƒ“ƒfƒbƒNƒXæ“¾(”í‚èƒ|ƒPAƒAƒCƒeƒ€Aƒf[ƒ^”Aæ“¾‚·‚é”A‘ã“üæ)
+		//æ•µãƒã‚±ãƒ¢ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—(è¢«ã‚Šãƒã‚±ã€ã‚¢ã‚¤ãƒ†ãƒ ã€ãƒ‡ãƒ¼ã‚¿æ•°ã€å–å¾—ã™ã‚‹æ•°ã€ä»£å…¥å…ˆ)
 		Frontier_PokemonIndexCreate(trd, poke_check_tbl, item_check_tbl, 0,
 									set_num, enemy_poke_index, HEAPID_WORLD );
 
-	//ƒ}ƒ‹ƒ`‚Ì
+	//ãƒãƒ«ãƒã®æ™‚
 	}else{
 
-		//“Gƒ|ƒPƒ‚ƒ“‚ÌƒCƒ“ƒfƒbƒNƒXæ“¾(”í‚èƒ|ƒPAƒAƒCƒeƒ€Aƒf[ƒ^”Aæ“¾‚·‚é”A‘ã“üæ)
+		//æ•µãƒã‚±ãƒ¢ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—(è¢«ã‚Šãƒã‚±ã€ã‚¢ã‚¤ãƒ†ãƒ ã€ãƒ‡ãƒ¼ã‚¿æ•°ã€å–å¾—ã™ã‚‹æ•°ã€ä»£å…¥å…ˆ)
 		Frontier_PokemonIndexCreate(trd, poke_check_tbl, item_check_tbl, 0,
 									(set_num / 2), enemy_poke_index, HEAPID_WORLD );
 
-		//”í‚èƒf[ƒ^ì¬
+		//è¢«ã‚Šãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		for( i=0; i < (set_num / 2) ;i++ ){
 			Frontier_PokemonRomDataGet( &prd_d, enemy_poke_index[i], ARC_PL_BTD_PM );
 			poke_check_tbl[i] = prd_d.mons_no;
 			item_check_tbl[i] = prd_d.item_no;
 		}
 
-		//ROM‚©‚çƒgƒŒ[ƒi[ƒf[ƒ^‚ğŠm•Û
+		//ROMã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 		sys_FreeMemoryEz( trd );
 		trd = Frontier_TrainerDataGet( &bt_trd, tr_index2, HEAPID_WORLD, ARC_PL_BTD_TR );
 
-		//“Gƒ|ƒPƒ‚ƒ“‚ÌƒCƒ“ƒfƒbƒNƒXæ“¾(”í‚èƒ|ƒPAƒAƒCƒeƒ€Aƒf[ƒ^”Aæ“¾‚·‚é”A‘ã“üæ)
+		//æ•µãƒã‚±ãƒ¢ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—(è¢«ã‚Šãƒã‚±ã€ã‚¢ã‚¤ãƒ†ãƒ ã€ãƒ‡ãƒ¼ã‚¿æ•°ã€å–å¾—ã™ã‚‹æ•°ã€ä»£å…¥å…ˆ)
 		Frontier_PokemonIndexCreate(trd, poke_check_tbl, item_check_tbl, (set_num / 2),
 									(set_num / 2), &enemy_poke_index[set_num / 2], HEAPID_WORLD );
 
-		//ƒpƒ[—”‘ã“ü
+		//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ä»£å…¥
 		for( i=0; i < (set_num / 2) ;i++ ){
 			pow_rnd[i+(set_num / 2)] = Frontier_PowRndGet( tr_index2 );
 		}
@@ -1034,7 +1034,7 @@ void Frontier_EnemyPokeMake( u8 set_num, u16 tr_index, u16 tr_index2, u16* enemy
 
 	sys_FreeMemoryEz( trd );
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É¶¬(personal‚È‚µ)
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ(personalãªã—)
 	Frontier_PokemonParamCreateAll(	enemy_poke, enemy_poke_index, 
 									pow_rnd, NULL, personal_rnd, set_num, HEAPID_WORLD,
 									ARC_PL_BTD_PM );
@@ -1043,10 +1043,10 @@ void Frontier_EnemyPokeMake( u8 set_num, u16 tr_index, u16 tr_index2, u16* enemy
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒgƒi[‚Ì–¼‘O‚ğbuf‚ÉƒZƒbƒg
+ * @brief	ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®åå‰ã‚’bufã«ã‚»ãƒƒãƒˆ
  *
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID		ƒoƒbƒtƒ@ID
+ * @param	wordset		WORDSETå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID		ãƒãƒƒãƒ•ã‚¡ID
  *
  * @retval	none
  */
@@ -1055,14 +1055,14 @@ void Frontier_EnemyPokeMake( u8 set_num, u16 tr_index, u16 tr_index2, u16* enemy
 void Frontier_PairNameSet( WORDSET* wordset, u16 bufID )
 {
 	STRBUF* strbuf;
-	MYSTATUS* my;						//ƒp[ƒgƒi[‚ÌMyStatus
+	MYSTATUS* my;						//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®MyStatus
 
 	strbuf = STRBUF_Create( (PERSON_NAME_SIZE + EOM_SIZE), HEAPID_WORLD );
 
-	//ƒp[ƒgƒi[‚ÌMyStatus‚ğæ“¾
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®MyStatusã‚’å–å¾—
 	my = CommInfoGetMyStatus( 1 - CommGetCurrentID() );
 
-	//–¼‘Oæ“¾(STRBUF‚ÉƒRƒs[)
+	//åå‰å–å¾—(STRBUFã«ã‚³ãƒ”ãƒ¼)
 	MyStatus_CopyNameString( my, strbuf );
 
 	WORDSET_RegisterWord(	wordset, bufID, strbuf, 
@@ -1075,10 +1075,10 @@ void Frontier_PairNameSet( WORDSET* wordset, u16 bufID )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒgƒi[‚Ì–¼‘O‚ğƒoƒbƒtƒ@‚ÉƒZƒbƒg
+ * @brief	ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®åå‰ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆ
  *
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID		ƒoƒbƒtƒ@ID
+ * @param	wordset		WORDSETå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID		ãƒãƒƒãƒ•ã‚¡ID
  *
  * @return	none
  */
@@ -1092,8 +1092,8 @@ void Frontier_PairNameWordSet( WORDSET* wordset, u32 bufID )
 
 //--------------------------------------------------------------
 /**
- * @brief   MYSTATUS‚©‚çg—p‚·‚éOBJCODE‚ğŒˆ’è‚·‚é
- * @param   my_status		MYSTATUS‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   MYSTATUSã‹ã‚‰ä½¿ç”¨ã™ã‚‹OBJCODEã‚’æ±ºå®šã™ã‚‹
+ * @param   my_status		MYSTATUSã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  OBJCODE
  */
 //--------------------------------------------------------------
@@ -1106,13 +1106,13 @@ int FrontierTool_MyObjCodeGet(const MYSTATUS *my_status)
 	rom_code = MyStatus_GetRomCode(my_status);
 	switch(rom_code){
 	case VERSION_PLATINUM:
-	case VERSION_GOLD:	//¦check ‹à‹â‚àb’è‚Åƒvƒ‰ƒ`ƒi‚Æ“¯‚¶ålŒöƒLƒƒƒ‰‚ğo‚·
+	case VERSION_GOLD:	//â€»check é‡‘éŠ€ã‚‚æš«å®šã§ãƒ—ãƒ©ãƒãƒŠã¨åŒã˜ä¸»äººå…¬ã‚­ãƒ£ãƒ©ã‚’å‡ºã™
 	case VERSION_SILVER:
 	default:
 		objcode = (my_sex == PM_MALE) ? HERO : HEROINE;
 		break;
-	case POKEMON_DP_ROM_CODE:	//ƒ_ƒCƒ„•ƒp[ƒ‹
-		//¦check DP—p‚ÌålŒöƒLƒƒƒ‰‚ÌOBJCODE‚ğİ’è‚·‚é—\’è
+	case POKEMON_DP_ROM_CODE:	//ãƒ€ã‚¤ãƒ¤ï¼†ãƒ‘ãƒ¼ãƒ«
+		//â€»check DPç”¨ã®ä¸»äººå…¬ã‚­ãƒ£ãƒ©ã®OBJCODEã‚’è¨­å®šã™ã‚‹äºˆå®š
 		objcode = (my_sex == PM_MALE) ? DPHERO : DPHEROINE;
 		break;
 	}
@@ -1122,7 +1122,7 @@ int FrontierTool_MyObjCodeGet(const MYSTATUS *my_status)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n‹…‹V“o˜^
+ * @brief   åœ°çƒå„€ç™»éŒ²
  *
  * @param   SAVEDATA	savedata
  *

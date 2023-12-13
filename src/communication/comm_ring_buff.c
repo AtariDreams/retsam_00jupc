@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_ring_buff.c
- * @bfief	�����O�o�b�t�@�̎d�g�݂��Ǘ�����֐�
+ * @bfief	リングバッファの仕組みを管理する関数
  * @author	katsumi ohno
  * @date	05/09/16
  */
@@ -19,10 +19,10 @@ static int _backupRingDataRestSize(RingBuffWork* pRing);
 
 //==============================================================================
 /**
- * �����O�o�b�t�@�Ǘ��\���̏�����
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
- * @param   pDataArea    �����O�o�b�t�@�������[
- * @param   size         �����O�o�b�t�@�������[�T�C�Y
+ * リングバッファ管理構造体初期化
+ * @param   pRing        リングバッファ管理ポインタ
+ * @param   pDataArea    リングバッファメモリー
+ * @param   size         リングバッファメモリーサイズ
  * @retval  none
  */
 //==============================================================================
@@ -72,10 +72,10 @@ static void _errring(RingBuffWork* pRing)
 
 //==============================================================================
 /**
- * �����O�o�b�t�@�ɏ�������
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
- * @param   pDataArea    �������ރf�[�^
- * @param   size         �������݃T�C�Y
+ * リングバッファに書き込む
+ * @param   pRing        リングバッファ管理ポインタ
+ * @param   pDataArea    書き込むデータ
+ * @param   size         書き込みサイズ
  * @retval  none
  */
 //==============================================================================
@@ -88,11 +88,11 @@ void CommRingPuts(RingBuffWork* pRing, u8* pDataArea, int size,int line)
         return;
     }
 #endif //PL_T0856_080710_FIX
-    // ������ASSERT�Ɉ���������Ƃ������Ƃ�
-    // �������x�����Ă���̂ɁA�ʐM�͖�sync����̂�
-    // �X�g�b�N����o�b�t�@���܂ł��ӂ��ƁA�����Ŏ~�܂�܂��B
-    // �ʐM�̃o�b�t�@�𑝂₷���A���̕����̏����𕪒f���邩�A�Ώ����K�v�ł��B
-    // �ŏI�I�ɂ͂��̃G���[������ƒʐM��ؒf���܂��B
+    // ここのASSERTに引っかかるということは
+    // 処理が遅延しているのに、通信は毎syncくるので
+    // ストックするバッファ分まであふれると、ここで止まります。
+    // 通信のバッファを増やすか、今の部分の処理を分断するか、対処が必要です。
+    // 最終的にはこのエラーがあると通信を切断します。
     
     if(_backupRingDataRestSize(pRing) <= size){
 //    if(sys.trg == PAD_BUTTON_SELECT){
@@ -120,11 +120,11 @@ void CommRingPuts(RingBuffWork* pRing, u8* pDataArea, int size,int line)
 
 //==============================================================================
 /**
- * �����O�o�b�t�@����f�[�^�𓾂�
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
- * @param   pDataArea    �ǂݍ��݃o�b�t�@
- * @param   size         �ǂݍ��݃o�b�t�@�T�C�Y
- * @retval  ���ۂɓǂݍ��񂾃f�[�^
+ * リングバッファからデータを得る
+ * @param   pRing        リングバッファ管理ポインタ
+ * @param   pDataArea    読み込みバッファ
+ * @param   size         読み込みバッファサイズ
+ * @retval  実際に読み込んだデータ
  */
 //==============================================================================
 int CommRingGets(RingBuffWork* pRing, u8* pDataArea, int size)
@@ -138,15 +138,15 @@ int CommRingGets(RingBuffWork* pRing, u8* pDataArea, int size)
 #endif //PL_T0856_080710_FIX
     i = CommRingChecks(pRing, pDataArea, size);
     pRing->startPos = _ringPos( pRing, pRing->startPos + i);
-//    OHNO_PRINT("++++++ �o�b�t�@���炾���� %d %d  %d byte\n", pRing->startPos, pRing->endPos, i);
+//    OHNO_PRINT("++++++ バッファからだした %d %d  %d byte\n", pRing->startPos, pRing->endPos, i);
     return i;
 }
 
 //==============================================================================
 /**
- * �����O�o�b�t�@����1byte�f�[�^�𓾂�
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
- * @retval  1byte�̃f�[�^ �����O�Ƀf�[�^���Ȃ��Ƃ���0(�s��)
+ * リングバッファから1byteデータを得る
+ * @param   pRing        リングバッファ管理ポインタ
+ * @retval  1byteのデータ リングにデータがないときは0(不定)
  */
 //==============================================================================
 u8 CommRingGetByte(RingBuffWork* pRing)
@@ -159,11 +159,11 @@ u8 CommRingGetByte(RingBuffWork* pRing)
 
 //==============================================================================
 /**
- * �����O�o�b�t�@�̃f�[�^����  �ǂݍ��ނ����ňʒu��i�߂Ȃ�
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
- * @param   pDataArea    �ǂݍ��݃o�b�t�@
- * @param   size         �ǂݍ��݃o�b�t�@�T�C�Y
- * @retval  ���ۂɓǂݍ��񂾃f�[�^
+ * リングバッファのデータ検査  読み込むだけで位置を進めない
+ * @param   pRing        リングバッファ管理ポインタ
+ * @param   pDataArea    読み込みバッファ
+ * @param   size         読み込みバッファサイズ
+ * @retval  実際に読み込んだデータ
  */
 //==============================================================================
 int CommRingChecks(RingBuffWork* pRing, u8* pDataArea, int size)
@@ -187,9 +187,9 @@ int CommRingChecks(RingBuffWork* pRing, u8* pDataArea, int size)
 
 //==============================================================================
 /**
- * �����O�o�b�t�@�̃f�[�^�����������Ă��邩����
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
- * @retval  �f�[�^�T�C�Y
+ * リングバッファのデータがいくつ入っているか得る
+ * @param   pRing        リングバッファ管理ポインタ
+ * @retval  データサイズ
  */
 //==============================================================================
 int CommRingDataSize(RingBuffWork* pRing)
@@ -207,9 +207,9 @@ int CommRingDataSize(RingBuffWork* pRing)
 
 //==============================================================================
 /**
- * �����O�o�b�t�@�̃f�[�^���ǂ̂��炢���܂��Ă��邩����
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
- * @retval  ���ۂɓǂݍ��񂾃f�[�^
+ * リングバッファのデータがどのくらいあまっているか検査
+ * @param   pRing        リングバッファ管理ポインタ
+ * @retval  実際に読み込んだデータ
  */
 //==============================================================================
 int CommRingDataRestSize(RingBuffWork* pRing)
@@ -224,8 +224,8 @@ int CommRingDataRestSize(RingBuffWork* pRing)
 
 //==============================================================================
 /**
- * �J�E���^�[���o�b�N�A�b�v����
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
+ * カウンターをバックアップする
+ * @param   pRing        リングバッファ管理ポインタ
  * @retval  nono
  */
 //==============================================================================
@@ -236,8 +236,8 @@ int CommRingDataRestSize(RingBuffWork* pRing)
 
 //==============================================================================
 /**
- * �J�E���^�[���o�b�N�A�b�v����
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
+ * カウンターをバックアップする
+ * @param   pRing        リングバッファ管理ポインタ
  * @retval  nono
  */
 //==============================================================================
@@ -248,9 +248,9 @@ int CommRingDataRestSize(RingBuffWork* pRing)
 
 //==============================================================================
 /**
- * �����O�o�b�t�@�̃f�[�^�����������Ă��邩����
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
- * @retval  �f�[�^�T�C�Y
+ * リングバッファのデータがいくつ入っているか得る
+ * @param   pRing        リングバッファ管理ポインタ
+ * @retval  データサイズ
  */
 //==============================================================================
 static int _backupRingDataRestSize(RingBuffWork* pRing)
@@ -263,8 +263,8 @@ static int _backupRingDataRestSize(RingBuffWork* pRing)
 
 //==============================================================================
 /**
- * ring�T�C�Y�̏ꏊ
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
+ * ringサイズの場所
+ * @param   pRing        リングバッファ管理ポインタ
  * @retval  
  */
 //==============================================================================
@@ -276,8 +276,8 @@ int _ringPos(RingBuffWork* pRing,int i)
 
 //==============================================================================
 /**
- * �J�E���^�[�ꏊ�����肩����
- * @param   pRing        �����O�o�b�t�@�Ǘ��|�C���^
+ * カウンター場所をすりかえる
+ * @param   pRing        リングバッファ管理ポインタ
  * @retval  nono
  */
 //==============================================================================

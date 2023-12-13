@@ -1,73 +1,73 @@
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
-¡                                                                          ¡
-¡  Readme-NitroSDK-4_2-patch-plus-080118.txt                               ¡
-¡                                                                          ¡
-¡  Plus Patch for NITRO-SDK 4.2                                            ¡
-¡                                                                          ¡
-¡  Jan. 18, 2008                                                           ¡
-¡                                                                          ¡
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
+â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– 
+â–                                                                           â– 
+â–   Readme-NitroSDK-4_2-patch-plus-080118.txt                               â– 
+â–                                                                           â– 
+â–   Plus Patch for NITRO-SDK 4.2                                            â– 
+â–                                                                           â– 
+â–   Jan. 18, 2008                                                           â– 
+â–                                                                           â– 
+â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– 
 
 
-y ‚Í‚¶‚ß‚É z
+ã€ ã¯ã˜ã‚ã« ã€‘
 
-    ‚±‚Ìƒpƒbƒ`‚ÍANITRO-SDK 4.2 ‚ÌƒŠƒŠ[ƒXˆÈ~‚É”­Œ©‚³‚ê‚½•s‹ï‡‚ðC³‚·‚é
-    ‚½‚ß‚Ì‚à‚Ì‚Å‚·BƒCƒ“ƒXƒg[ƒ‹‚·‚é‚½‚ß‚É‚ÍA“¯«‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ð
-    NITRO-SDK 4.2 (071210)‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚éƒfƒBƒŒƒNƒgƒŠ‚Éã‘‚«ƒRƒs[
-    ‚µ‚Ä‚­‚¾‚³‚¢B
+    ã“ã®ãƒ‘ãƒƒãƒã¯ã€NITRO-SDK 4.2 ã®ãƒªãƒªãƒ¼ã‚¹ä»¥é™ã«ç™ºè¦‹ã•ã‚ŒãŸä¸å…·åˆã‚’ä¿®æ­£ã™ã‚‹
+    ãŸã‚ã®ã‚‚ã®ã§ã™ã€‚ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ãŸã‚ã«ã¯ã€åŒæ¢±ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’
+    NITRO-SDK 4.2 (071210)ãŒã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ä¸Šæ›¸ãã‚³ãƒ”ãƒ¼
+    ã—ã¦ãã ã•ã„ã€‚
 
-y ’ˆÓ z
+ã€ æ³¨æ„ ã€‘
 
-@@@NitroSDK ‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ðƒrƒ‹ƒh‚µ‚½Ž–‚ª‚ ‚éê‡A–{ƒpƒbƒ`‚ð“–‚Ä‚½‚¾‚¯‚¾‚Æ
-@@ƒLƒƒƒbƒVƒ…‚Ì‰e‹¿‚ÅƒvƒƒOƒ‰ƒ€‚ðƒrƒ‹ƒh‚·‚é‚Æ‚«‚ÉƒGƒ‰[‚ª”­¶‚·‚é‰Â”\«‚ª
-@@‚ ‚è‚Ü‚·B
-@@@‚à‚µƒrƒ‹ƒhŽž‚ÉƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚ÍANitroSDK ‚Ìƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ‚Å
-@@umake clobberv‚ðŽÀs‚·‚é‚±‚Æ‚ÅƒLƒƒƒbƒVƒ…‚ªíœ‚³‚ê‚Ü‚·B
-@@‚»‚ÌŒãA“¯‚¶ NitroSDK ‚Ìƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ‚Åumakev‚·‚é‚±‚Æ‚ÅA
-@@‚±‚ÌÇó‚Í‰ü‘P‚³‚ê‚Ü‚·B
+ã€€ã€€ã€€NitroSDK ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ãƒ“ãƒ«ãƒ‰ã—ãŸäº‹ãŒã‚ã‚‹å ´åˆã€æœ¬ãƒ‘ãƒƒãƒã‚’å½“ã¦ãŸã ã‘ã ã¨
+ã€€ã€€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®å½±éŸ¿ã§ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ãƒ“ãƒ«ãƒ‰ã™ã‚‹ã¨ãã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ãŒ
+ã€€ã€€ã‚ã‚Šã¾ã™ã€‚
+ã€€ã€€ã€€ã‚‚ã—ãƒ“ãƒ«ãƒ‰æ™‚ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã¯ã€NitroSDK ã®ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§
+ã€€ã€€ã€Œmake clobberã€ã‚’å®Ÿè¡Œã™ã‚‹ã“ã¨ã§ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒå‰Šé™¤ã•ã‚Œã¾ã™ã€‚
+ã€€ã€€ãã®å¾Œã€åŒã˜ NitroSDK ã®ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã€Œmakeã€ã™ã‚‹ã“ã¨ã§ã€
+ã€€ã€€ã“ã®ç—‡çŠ¶ã¯æ”¹å–„ã•ã‚Œã¾ã™ã€‚
 
-y C³“à—e z 
+ã€ ä¿®æ­£å†…å®¹ ã€‘ 
     
-    4_2-patch-plus-080118 ‚ÅC³‚³‚ê‚½“à—e
+    4_2-patch-plus-080118 ã§ä¿®æ­£ã•ã‚ŒãŸå†…å®¹
     --------------------------------------------------------------------------
 
-    E(OS) OS ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒŠƒtƒ@ƒŒƒ“ƒX‚ÉŠÜ‚Ü‚ê‚éƒXƒŒƒbƒhŠT—v‚ÌXV
+    ãƒ»(OS) OS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã«å«ã¾ã‚Œã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰æ¦‚è¦ã®æ›´æ–°
 
-    OS ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒŠƒtƒ@ƒŒƒ“ƒX’†‚ÌƒXƒŒƒbƒhŠT—v‚ÉA
-    uƒXƒŒƒbƒhó‘Ô‚ðŠO•”‚©‚ç•Ï‰»‚³‚¹‚éê‡‚Ì’ˆÓv‚ð’Ç‹L‚µ‚Ü‚µ‚½B
+    OS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰æ¦‚è¦ã«ã€
+    ã€Œã‚¹ãƒ¬ãƒƒãƒ‰çŠ¶æ…‹ã‚’å¤–éƒ¨ã‹ã‚‰å¤‰åŒ–ã•ã›ã‚‹å ´åˆã®æ³¨æ„ã€ã‚’è¿½è¨˜ã—ã¾ã—ãŸã€‚
 
-    E(TP) TP_WaitRawResultATP_WaitCalibratedResult ŠÖ”‚ÌC³
+    ãƒ»(TP) TP_WaitRawResultã€TP_WaitCalibratedResult é–¢æ•°ã®ä¿®æ­£
 
-    TP_WaitRawResultATP_WaitCalibratedResult ŠÖ”‚ÍƒTƒ“ƒvƒŠƒ“ƒO“®ì‚ÌŠ®—¹‚ð‘Ò‚Á‚Ä
-    ƒf[ƒ^‚ðŽæ“¾‚·‚éŠÖ”‚Å‚·‚ªAŠù‚ÉƒTƒ“ƒvƒŠƒ“ƒO“®ì‚ªŠ®—¹‚µ‚Ä‚¢‚éê‡‚ÉŒÀ‚Á‚Ä
-    Š„ž‚Ý‚ð‹ÖŽ~‚µ‚½ó‘Ô‚Å‚ÌŒÄ‚Ño‚µ‚ðƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚·B
-    ‚µ‚©‚µƒfƒoƒbƒOƒrƒ‹ƒh‚Å‚ÍˆÓ}’Ê‚è“®ì‚µ‚È‚¢‚Æ‚¢‚¤•s‹ï‡‚ª‚ ‚è‚Ü‚µ‚½B
-    ‚±‚Ì•s‹ï‡‚ðC³‚µ‚Ü‚µ‚½B
+    TP_WaitRawResultã€TP_WaitCalibratedResult é–¢æ•°ã¯ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‹•ä½œã®å®Œäº†ã‚’å¾…ã£ã¦
+    ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹é–¢æ•°ã§ã™ãŒã€æ—¢ã«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‹•ä½œãŒå®Œäº†ã—ã¦ã„ã‚‹å ´åˆã«é™ã£ã¦
+    å‰²è¾¼ã¿ã‚’ç¦æ­¢ã—ãŸçŠ¶æ…‹ã§ã®å‘¼ã³å‡ºã—ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã™ã€‚
+    ã—ã‹ã—ãƒ‡ãƒãƒƒã‚°ãƒ“ãƒ«ãƒ‰ã§ã¯æ„å›³é€šã‚Šå‹•ä½œã—ãªã„ã¨ã„ã†ä¸å…·åˆãŒã‚ã‚Šã¾ã—ãŸã€‚
+    ã“ã®ä¸å…·åˆã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
-    E(WM) WM_EnableForListening ŠÖ”‚Ì blink ˆø”‚Ì‰ðŽß‚ÌC³
+    ãƒ»(WM) WM_EnableForListening é–¢æ•°ã® blink å¼•æ•°ã®è§£é‡ˆã®ä¿®æ­£
 
-    WM_EnableForListening ŠÖ”‚Ì blink ˆø”‚Ì^‹U’l‚ð‹t‚É‰ðŽß‚·‚é•s‹ï‡‚ª
-    ‚ ‚è‚Ü‚µ‚½‚Ì‚ÅA‚±‚ê‚ðC³‚µ‚Ü‚µ‚½B
+    WM_EnableForListening é–¢æ•°ã® blink å¼•æ•°ã®çœŸå½å€¤ã‚’é€†ã«è§£é‡ˆã™ã‚‹ä¸å…·åˆãŒ
+    ã‚ã‚Šã¾ã—ãŸã®ã§ã€ã“ã‚Œã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
-    E(WM) ‘—MƒTƒCƒYƒ`ƒFƒbƒN‚Ì•s‹ï‡C³
+    ãƒ»(WM) é€ä¿¡ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯ã®ä¸å…·åˆä¿®æ­£
 
-    uNote 50-16: (WM) Žq‹@‘—M—e—Ê‚Ì§ŒÀ‚ÌŠÉ˜av‚Ì•ÏX‚É‹Nˆö‚µ‚ÄA
-    MP ’ÊM‚Åe‹@‘—M—e—Ê‚ð510ƒoƒCƒgˆÈã‚ÉÝ’è‚·‚éA‚à‚µ‚­‚Í
-    Žq‹@‘—M—e—Ê‚ð512ƒoƒCƒg‚ÉÝ’è‚µ‚½ê‡‚ÉAê‡‚É‚æ‚Á‚Äƒf[ƒ^‚ð
-    ‘—M‚Å‚«‚È‚­‚È‚é•s‹ï‡‚ª¬“ü‚µ‚Ä‚µ‚Ü‚Á‚Ä‚¢‚Ü‚µ‚½B
-    ‚±‚ê‚ðC³‚µ‚Ü‚µ‚½B
+    ã€ŒNote 50-16: (WM) å­æ©Ÿé€ä¿¡å®¹é‡ã®åˆ¶é™ã®ç·©å’Œã€ã®å¤‰æ›´ã«èµ·å› ã—ã¦ã€
+    MP é€šä¿¡ã§è¦ªæ©Ÿé€ä¿¡å®¹é‡ã‚’510ãƒã‚¤ãƒˆä»¥ä¸Šã«è¨­å®šã™ã‚‹ã€ã‚‚ã—ãã¯
+    å­æ©Ÿé€ä¿¡å®¹é‡ã‚’512ãƒã‚¤ãƒˆã«è¨­å®šã—ãŸå ´åˆã«ã€å ´åˆã«ã‚ˆã£ã¦ãƒ‡ãƒ¼ã‚¿ã‚’
+    é€ä¿¡ã§ããªããªã‚‹ä¸å…·åˆãŒæ··å…¥ã—ã¦ã—ã¾ã£ã¦ã„ã¾ã—ãŸã€‚
+    ã“ã‚Œã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
 
-y ƒtƒ@ƒCƒ‹ƒŠƒXƒg z
+ã€ ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆ ã€‘
 
-¡ƒ\[ƒXƒtƒ@ƒCƒ‹
+â– ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 	/NitroSDK/build/libraries/spi/ARM9/src/tp.c
 	/NitroSDK/build/libraries/wm/ARM9/src/wm_standard.c
 
-¡ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+â– ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 	/NitroSDK/include/nitro/version.h
 
-¡ƒ‰ƒCƒuƒ‰ƒŠƒtƒ@ƒCƒ‹
+â– ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«
 	/NitroSDK/lib/ARM9-TS/Debug/crt0.o
 	/NitroSDK/lib/ARM9-TS/Debug/libspi.a
 	/NitroSDK/lib/ARM9-TS/Debug/libspi.thumb.a
@@ -94,7 +94,7 @@
 	/NitroSDK/lib/ARM9-TS/Rom/libwm.a
 	/NitroSDK/lib/ARM9-TS/Rom/libwm.thumb.a
 
-¡ƒRƒ“ƒ|[ƒlƒ“ƒgƒtƒ@ƒCƒ‹
+â– ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«
 	/NitroSDK/components/ichneumon/ARM7-TS/Debug/ichneumon_sub.nef
 	/NitroSDK/components/ichneumon/ARM7-TS/Debug/ichneumon_sub_TS0.nef
 	/NitroSDK/components/ichneumon/ARM7-TS/Debug/ichneumon_sub_TS100.nef
@@ -208,7 +208,7 @@
 	/NitroSDK/components/mongoose/ARM7-TS.thumb/Rom/mongoose_sub_TS100.sbin
 	/NitroSDK/components/mongoose/ARM7-TS.thumb/Rom/mongoose_sub_TS200.sbin
 
-¡ƒhƒLƒ…ƒƒ“ƒgE‚»‚Ì‘¼
+â– ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆãƒ»ãã®ä»–
 	/NitroSDK/man/ja_JP/os/thread/about_Thread.html
 
-ˆÈã
+ä»¥ä¸Š

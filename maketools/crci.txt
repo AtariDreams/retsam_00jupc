@@ -92,7 +92,7 @@ Set static inline void setnum_bit2(u8 * array, u8 num, u16 flag_id)
 Set static inline void SetZukanRandom(ZUKAN_WORK * zw, u16 monsno, u32 rand)
 Set static void SetZukanUnknownTurn( ZUKAN_WORK * zw, int form)
 Set static void setDeokisisuFormNoCore( u32* p_arry, u8 no, u8 num )
-#ˆç‚Ä‚âƒZ[ƒuƒf[ƒ^‚Íƒtƒ‰ƒbƒg\‘¢‚ð‚µ‚Ä‚¢‚È‚¢ˆ×
+#è‚²ã¦ã‚„ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¯ãƒ•ãƒ©ãƒƒãƒˆæ§‹é€ ã‚’ã—ã¦ã„ãªã„ç‚º
 #File /src/savedata/sodateyadata.c
 #Label GMDATA_ID_SODATEYA
 #Set sw void SodateyaWork_Init(SODATEYA_WORK * sw)
@@ -397,7 +397,7 @@ Set void EncDataSave_ClearMovePokeData(MPD_PTR *outMPData)
 Set void EncDataSave_SetMovePokeDataParam(MPD_PTR outMPData, const u8 inParamID, const u32 inVal)
 Set void EncDataSave_SetVidro(ENC_SV_PTR outEncData, const u8 inType)
 Set void EncDataSave_SetHillBackPokeIdx(SAVEDATA *sv, const u16 inIndex)
-## chk‚Ísavedata.c
+## chkã¯savedata.c
 File /src/savedata/tv_work.c
 Label GMDATA_ID_TVWORK
 Set void TVWORK_Init(TV_WORK * tv)
@@ -429,7 +429,7 @@ Set void WIFIHISTORY_SetMyNationArea(WIFI_HISTORY * wh, int nation, int area)
 Set void WIFIHISTORY_SetStat(WIFI_HISTORY * wh, int nation, int area, WIFIHIST_STAT stat)
 Set void WIFIHISTORY_SetWorldFlag(WIFI_HISTORY * wh, BOOL flag)
 Set void WIFIHISTORY_Update(WIFI_HISTORY * wh)
-## chk‚Ísavedata.c
+## chkã¯savedata.c
 File /src/savedata/fushigi_data.c
 Label GMDATA_ID_FUSHIGIDATA
 Set void FUSHIGIDATA_Init(FUSHIGI_DATA * fd)

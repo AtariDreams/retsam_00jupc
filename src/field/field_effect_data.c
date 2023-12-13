@@ -2,7 +2,7 @@
 /**
  * 
  * @file	field_effect_data.c
- * @brief	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒf[ƒ^’è‹`
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿å®šç¾©
  * @author	kagaya
  * @data	05.07.13
  *
@@ -13,10 +13,10 @@
 #include "field_effect.h"
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ŠÖ”“o˜^
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€é–¢æ•°ç™»éŒ²
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@‰Šú‰»AíœŠÖ”“o˜^@•À‚Ñ‚Í•s‡
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€åˆæœŸåŒ–ã€å‰Šé™¤é–¢æ•°ç™»éŒ²ã€€ä¸¦ã³ã¯ä¸é †
 //--------------------------------------------------------------
 const FE_SUBPROC_DATA DATA_FE_SubProcDataTbl[FE_PROC_MAX+1] =
 {
@@ -58,11 +58,11 @@ const FE_SUBPROC_DATA DATA_FE_SubProcDataTbl[FE_PROC_MAX+1] =
 	{FE_FLD_GYM05EFF,FE_Gym05Eff_Init,FE_Gym05Eff_Delete},
 	{FE_FLD_NAMIPOKER,FE_NamiPokeR_Init,FE_NamiPokeR_Delete},
 	
-	{FE_PROC_MAX,NULL,NULL},	///< I’[
+	{FE_PROC_MAX,NULL,NULL},	///< çµ‚ç«¯
 };
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@‘SƒGƒtƒFƒNƒg“o˜^—pƒf[ƒ^ƒe[ƒuƒ‹i’nã—pj
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€å…¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™»éŒ²ç”¨ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆåœ°ä¸Šç”¨ï¼‰
 //--------------------------------------------------------------
 const u32 DATA_FE_GroundProcRegistTbl[FE_PROC_MAX+1] =
 {
@@ -93,11 +93,11 @@ const u32 DATA_FE_GroundProcRegistTbl[FE_PROC_MAX+1] =
 	FE_FLD_REFLECT,
 	FE_FLD_SEED_EFF,
 	
-	FE_PROC_MAX, //I’[
+	FE_PROC_MAX, //çµ‚ç«¯
 };
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@’n‰ºƒGƒtƒFƒNƒg“o˜^—pƒf[ƒ^ƒe[ƒuƒ‹
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€åœ°ä¸‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™»éŒ²ç”¨ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 const u32 DATA_FE_UnderProcRegistTbl[FE_PROC_MAX+1] =
 {
@@ -116,11 +116,11 @@ const u32 DATA_FE_UnderProcRegistTbl[FE_PROC_MAX+1] =
 	
 	FE_FLD_GYOE,
 	
-	FE_PROC_MAX, //I’[
+	FE_PROC_MAX, //çµ‚ç«¯
 };
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@‚â‚Ô‚ê‚½¢ŠE“o˜^—pƒf[ƒ^ƒe[ƒuƒ‹
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚„ã¶ã‚ŒãŸä¸–ç•Œç™»éŒ²ç”¨ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 const u32 DATA_FE_TornWorldRegistTbl[FE_PROC_MAX+1] =
 {
@@ -130,5 +130,5 @@ const u32 DATA_FE_TornWorldRegistTbl[FE_PROC_MAX+1] =
 	FE_FLD_KEMURI,
 	FE_FLD_ARROW,
 	
-	FE_PROC_MAX, //I’[
+	FE_PROC_MAX, //çµ‚ç«¯
 };

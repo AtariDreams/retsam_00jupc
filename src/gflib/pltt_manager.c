@@ -1,7 +1,7 @@
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
 /**
  *	@file		pltt_manager.c
- *	@brief		ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚ÌÀ‘Ô•”
+ *	@brief		ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å®Ÿæ…‹éƒ¨
  *	@author		tomoya takahashi
  *	@data		2004.11.22
  */
@@ -18,79 +18,79 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
-#define		PLTT_ONE_SIZE	(32)			// ‚P‚UFƒpƒŒƒbƒg‚P‚Â‚ÌƒTƒCƒY
-#define		PLTT_AREA_NONE	(0xffffffff)	// ƒpƒŒƒbƒg—pƒGƒŠƒA‚È‚µ
+#define		PLTT_ONE_SIZE	(32)			// ï¼‘ï¼–è‰²ãƒ‘ãƒ¬ãƒƒãƒˆï¼‘ã¤ã®ã‚µã‚¤ã‚º
+#define		PLTT_AREA_NONE	(0xffffffff)	// ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ã‚¨ãƒªã‚¢ãªã—
 
-#define		PLTT_EX_SIZE	(32*16*16)		// Šg’£ƒpƒŒƒbƒgƒTƒCƒY
-#define		PLTT_NORMAL_SIZE (32*16)		// •W€ƒpƒŒƒbƒgƒTƒCƒY
+#define		PLTT_EX_SIZE	(32*16*16)		// æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚º
+#define		PLTT_NORMAL_SIZE (32*16)		// æ¨™æº–ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚º
 
 #define		PLT_DATA_ID_NONE	(0xffffffff)
 
 //----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒpƒŒƒbƒgƒf[ƒ^ƒe[ƒuƒ‹
+///	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 typedef struct
 {
-	NNSG2dPaletteData*	pPlttData;			// ƒpƒŒƒbƒgƒf[ƒ^\‘¢‘Ì(‘å–{ƒf[ƒ^‚Ì•Û)
+	NNSG2dPaletteData*	pPlttData;			// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“(å¤§æœ¬ãƒ‡ãƒ¼ã‚¿ã®ä¿æŒ)
 	NNS_G2D_VRAM_TYPE	type;				// VramType
-											// main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN = 1
-											// sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB = 2
-											// —¼•û‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAX = 3
-	u32			load_size;					// “Ç‚İ‚İƒTƒCƒY
-	u32			act_num;					// “o˜^@¯•ÊID
-	NNSG2dImagePaletteProxy	PaletteProxy;	// ƒCƒ[ƒWƒvƒƒNƒV	
-	u32			offset;						// ©•ª‚Ìƒx[ƒXƒAƒhƒŒƒX
-	u32			sub_offset;					// ©•ª‚Ìƒx[ƒXƒAƒhƒŒƒX
-	u8			flag;						// g—p‚µ‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO
+											// mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN = 1
+											// subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB = 2
+											// ä¸¡æ–¹ã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAX = 3
+	u32			load_size;					// èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º
+	u32			act_num;					// ç™»éŒ²ã€€è­˜åˆ¥ID
+	NNSG2dImagePaletteProxy	PaletteProxy;	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·	
+	u32			offset;						// è‡ªåˆ†ã®ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+	u32			sub_offset;					// è‡ªåˆ†ã®ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+	u8			flag;						// ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
 } PLTT_DATA_TBL;
 
 
 //-------------------------------------
 //
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[\‘¢‘Ì	
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼æ§‹é€ ä½“	
 //
 //=====================================
 typedef struct{
-	PLTT_DATA_TBL*	plttDataTbl;					// ƒpƒŒƒbƒgƒf[ƒ^ƒe[ƒuƒ‹
-	int				plttDataNum;					// ƒpƒŒƒbƒgƒf[ƒ^”
-	int				plttDataNow;					// ¡‚ÌƒpƒŒƒbƒg“Ç‚İ‚İ”
-	u32				Offset;							// “Ç‚İ‚İ‚ÌƒIƒtƒZƒbƒg
-	u32				SubOffset;						// ƒTƒuVram‚ÌƒIƒtƒZƒbƒg
-	u32				OffsetEx;						// Šg’£ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
-	u32				SubOffsetEx;					// ƒTƒu‚ÌŠg’£ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
-	u32				MainExPlttVramSize;				// ƒƒCƒ“‚ÌŠg’£ƒpƒŒƒbƒgVramƒTƒCƒY
-	u32				SubExPlttVramSize;				// ƒTƒu‚ÌŠg’£ƒpƒŒƒbƒgVramƒTƒCƒY
-	u16				main16VramArea;					// ƒƒCƒ“‚Ì‚P‚UFVramƒGƒŠƒA
-	u16				sub16VramArea;					// ƒTƒu‚Ì‚P‚UFVramƒGƒŠƒA
+	PLTT_DATA_TBL*	plttDataTbl;					// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+	int				plttDataNum;					// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿æ•°
+	int				plttDataNow;					// ä»Šã®ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°
+	u32				Offset;							// èª­ã¿è¾¼ã¿æ™‚ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32				SubOffset;						// ã‚µãƒ–Vramã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32				OffsetEx;						// æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32				SubOffsetEx;					// ã‚µãƒ–ã®æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32				MainExPlttVramSize;				// ãƒ¡ã‚¤ãƒ³ã®æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆVramã‚µã‚¤ã‚º
+	u32				SubExPlttVramSize;				// ã‚µãƒ–ã®æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆVramã‚µã‚¤ã‚º
+	u16				main16VramArea;					// ãƒ¡ã‚¤ãƒ³ã®ï¼‘ï¼–è‰²Vramã‚¨ãƒªã‚¢
+	u16				sub16VramArea;					// ã‚µãƒ–ã®ï¼‘ï¼–è‰²Vramã‚¨ãƒªã‚¢
 }PLTT_MANAGER_DATA;
 
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
-static void cleanPlttData(PLTT_DATA_TBL* data);						// ƒpƒŒƒbƒgƒf[ƒ^‰Šú‰»
-static BOOL TransPlttData(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* tbl);							// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
-static BOOL TransPlttDataCleanVram(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* tbl);							// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
-static BOOL LoadPlttData(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* tbl);		// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+static void cleanPlttData(PLTT_DATA_TBL* data);						// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
+static BOOL TransPlttData(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* tbl);							// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
+static BOOL TransPlttDataCleanVram(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* tbl);							// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
+static BOOL LoadPlttData(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* tbl);		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 static void setTransPltt( PLTT_DATA_TBL* pPlttData );
-static void transVramPltt( void* p_data );		// ƒpƒŒƒbƒg
-static void setVramPlttSize( void );			// Vram‚ÌƒTƒCƒY‚ğƒZƒbƒg
-static void dellPlttData( PLTT_DATA_TBL* pPlttData );	// ƒpƒŒƒbƒgƒf[ƒ^‚ğ”jŠü‚·‚é
-static PLTT_DATA_TBL* getPlttDataPtr( int id );	// ID‚ÌƒpƒŒƒbƒgƒf[ƒ^æ“¾
-static PLTT_DATA_TBL* getPlttDataClean( void );	// ‹ó‚¢‚Ä‚¢‚éƒpƒŒƒbƒgƒf[ƒ^æ“¾
+static void transVramPltt( void* p_data );		// ãƒ‘ãƒ¬ãƒƒãƒˆ
+static void setVramPlttSize( void );			// Vramã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
+static void dellPlttData( PLTT_DATA_TBL* pPlttData );	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
+static PLTT_DATA_TBL* getPlttDataPtr( int id );	// IDã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
+static PLTT_DATA_TBL* getPlttDataClean( void );	// ç©ºã„ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 
-// “]‘—ƒGƒŠƒA‚Ìİ’è
+// è»¢é€ã‚¨ãƒªã‚¢ã®è¨­å®š
 static void transAreaSet( u16* data, int num, int start );
 static void transAreaClean( u16* data, int num, int start );
 static int transAreaCheck( u16 data, int num );
@@ -98,23 +98,23 @@ static void transAreaInit( PLTT_MANAGER_DATA* data );
 static void transAreaSetTbl( PLTT_DATA_TBL* data );
 static void transAreaCleanTbl( PLTT_DATA_TBL* data );
 
-// ƒIƒtƒZƒbƒgˆÚ“®‚Ì‚Ì“]‘—ƒGƒŠƒAæ“¾
+// ã‚ªãƒ•ã‚»ãƒƒãƒˆç§»å‹•ã®æ™‚ã®è»¢é€ã‚¨ãƒªã‚¢å–å¾—
 static BOOL transAreaCheckOffset( PLTT_DATA_TBL* data, u32 m_offs, u32 s_offs, u32 m_limit, u32 s_limit );
 static void transAreaSetOffset( PLTT_DATA_TBL* data, u32* m_offs, u32* s_offs );
 
 
-// ƒOƒ[ƒoƒ‹•Ï”
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 static PLTT_MANAGER_DATA* PlttManagerData = NULL;
-// ŒãX‘SŠÖ”‚Í‚±‚Ìƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğˆø”‚É‚·‚é‚æ‚¤‚É•ÏX‚ğs‚¤
-// ¡‚Í‚±‚Ìƒf[ƒ^‚ğ‚Ç‚±‚Å•Û‚·‚ê‚Î‚æ‚¢‚Ì‚©‚í‚©‚ç‚È‚¢‚½‚ßA
-// ©•ª‚Å‚Â
+// å¾Œã€…å…¨é–¢æ•°ã¯ã“ã®ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¼•æ•°ã«ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ã‚’è¡Œã†
+// ä»Šã¯ã“ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã©ã“ã§ä¿æŒã™ã‚Œã°ã‚ˆã„ã®ã‹ã‚ã‹ã‚‰ãªã„ãŸã‚ã€
+// è‡ªåˆ†ã§æŒã¤
 
 
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
  *
  *@param	none
  *
@@ -127,14 +127,14 @@ void InitPlttManager(int PlttDataNum, int heap)
 {
 	int i;
 	
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[ƒVƒXƒeƒ€‚Ìƒf[ƒ^‚ğì¬
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 	if(PlttManagerData == NULL){
 		PlttManagerData = sys_AllocMemory(heap, sizeof(PLTT_MANAGER_DATA));
 		MI_CpuClear32(PlttManagerData, sizeof(PLTT_MANAGER_DATA));
 		
-		PlttManagerData->plttDataNum = PlttDataNum;	// ŠÇ—ƒpƒŒƒbƒg”‚ğ‘ã“ü
+		PlttManagerData->plttDataNum = PlttDataNum;	// ç®¡ç†ãƒ‘ãƒ¬ãƒƒãƒˆæ•°ã‚’ä»£å…¥
 
-		// ƒpƒŒƒbƒgŠÇ—”•ª‚ÌŠÇ——Ìˆæ‚ğì¬
+		// ãƒ‘ãƒ¬ãƒƒãƒˆç®¡ç†æ•°åˆ†ã®ç®¡ç†é ˜åŸŸã‚’ä½œæˆ
 		PlttManagerData->plttDataTbl = sys_AllocMemory(heap, sizeof(PLTT_DATA_TBL)*PlttDataNum);
 		
 		for(i=0;i<PlttDataNum;i++){	
@@ -146,19 +146,19 @@ void InitPlttManager(int PlttDataNum, int heap)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CleanAreaŠÖ”g—p‹Ö~ƒpƒŒƒbƒgİ’è
+ *	@brief	CleanAreaé–¢æ•°ä½¿ç”¨ç¦æ­¢ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
- *	@param	msk		g—p‹Ö~ƒpƒŒƒbƒgƒ}ƒXƒN
- *	@param	disp	‰æ–Ê
+ *	@param	msk		ä½¿ç”¨ç¦æ­¢ãƒ‘ãƒ¬ãƒƒãƒˆãƒã‚¹ã‚¯
+ *	@param	disp	ç”»é¢
  *
  *	@return	none
  *
  *	disp
- *		main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN = 1
- *		sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB = 2
+ *		mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN = 1
+ *		subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB = 2
  *
- *	ƒ}ƒXƒN’è”
-	// ƒpƒŒƒbƒgVRAM—\–ñƒ}ƒXƒN
+ *	ãƒã‚¹ã‚¯å®šæ•°
+	// ãƒ‘ãƒ¬ãƒƒãƒˆVRAMäºˆç´„ãƒã‚¹ã‚¯
 	PLTTMAN_RESERVE_PLT0  =1 << 0,	
 	PLTTMAN_RESERVE_PLT1  =1 << 1,	
 	PLTTMAN_RESERVE_PLT2  =1 << 2,	
@@ -177,16 +177,16 @@ void InitPlttManager(int PlttDataNum, int heap)
 	PLTTMAN_RESERVE_PLT15  =1 << 15,	
 
 
- *	’ÊM—pOAM•\¦—pƒpƒŒƒbƒg—Ìˆæ‚ÌŠm•Û‚È‚Ç‚Ég—p‚µ‚Ä‚­‚¾‚³‚¢B
+ *	é€šä¿¡ç”¨OAMè¡¨ç¤ºç”¨ãƒ‘ãƒ¬ãƒƒãƒˆé ˜åŸŸã®ç¢ºä¿ãªã©ã«ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚
  *
- *	–g—pã’ˆÓ
+ *	ï¼Šä½¿ç”¨ä¸Šæ³¨æ„
 	GLOBAL void PlttLoadStartAll( void );
 	GLOBAL void PlttLoadStart( u32 start_offset );
 	GLOBAL void PlttLoadStartSub( u32 start_offset );
 	GLOBAL void PlttLoadStartEx( u32 start_offset );
 	GLOBAL void PlttLoadStartSubEx( u32 start_offset );
- *	‚ğg—p‚µ‚½Œã‚É‚±‚Ìİ’è‚ğ‚µ‚Ä‚­‚¾‚³‚¢B
- *	ã‚Ì‚T‚Â‚ÌŠÖ”‚Ì’†‚ÅA‹Ö~—Ìˆæ‚Ì‰Šú‰»‚ğs‚Á‚Ä‚µ‚Ü‚¢‚Ü‚·
+ *	ã‚’ä½¿ç”¨ã—ãŸå¾Œã«ã“ã®è¨­å®šã‚’ã—ã¦ãã ã•ã„ã€‚
+ *	ä¸Šã®ï¼•ã¤ã®é–¢æ•°ã®ä¸­ã§ã€ç¦æ­¢é ˜åŸŸã®åˆæœŸåŒ–ã‚’è¡Œã£ã¦ã—ã¾ã„ã¾ã™
  */
 //-----------------------------------------------------------------------------
 void SetReserveCleanAreaPlttManager( u16 msk, u32 disp )
@@ -202,7 +202,7 @@ void SetReserveCleanAreaPlttManager( u16 msk, u32 disp )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[”jŠü
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
  *
  *@param	none
  *
@@ -214,9 +214,9 @@ void SetReserveCleanAreaPlttManager( u16 msk, u32 disp )
 void DeletePlttManager(void)
 {
 	if(PlttManagerData != NULL){
-		DelPlttAll();		// ‘SƒpƒŒƒbƒgƒf[ƒ^‚ğ”jŠü
-		sys_FreeMemoryEz(PlttManagerData->plttDataTbl);	// ƒpƒŒƒbƒgŠÇ——Ìˆæ‚ğ”jŠü
-		sys_FreeMemoryEz(PlttManagerData);				// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[ƒVƒXƒeƒ€—Ìˆæ‚ğ”jŠü
+		DelPlttAll();		// å…¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
+		sys_FreeMemoryEz(PlttManagerData->plttDataTbl);	// ãƒ‘ãƒ¬ãƒƒãƒˆç®¡ç†é ˜åŸŸã‚’ç ´æ£„
+		sys_FreeMemoryEz(PlttManagerData);				// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚·ã‚¹ãƒ†ãƒ é ˜åŸŸã‚’ç ´æ£„
 		PlttManagerData = NULL;
 	}
 }
@@ -225,10 +225,10 @@ void DeletePlttManager(void)
  *
  *					
  *
- *	ˆø”
+ *	å¼•æ•°
  *		
  *
- *	–ß‚è’l
+ *	æˆ»ã‚Šå€¤
  *		
  *					
  *
@@ -236,23 +236,23 @@ void DeletePlttManager(void)
 static void now_debug_draw( void )
 {
 #ifdef PLTT_MANAGER_OS_PRINTF_ON
-	OS_Printf( "¡‚ÌƒIƒtƒZƒbƒg\n" );
-	OS_Printf( "ƒƒCƒ“[%d] ƒTƒu[%d]\n", PlttManagerData->Offset, PlttManagerData->SubOffset );
-	OS_Printf( "Šg’£ƒƒCƒ“[%d] Šg’£ƒTƒu[%d]\n", PlttManagerData->OffsetEx, PlttManagerData->SubOffsetEx );
+	OS_Printf( "ä»Šã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ\n" );
+	OS_Printf( "ãƒ¡ã‚¤ãƒ³[%d] ã‚µãƒ–[%d]\n", PlttManagerData->Offset, PlttManagerData->SubOffset );
+	OS_Printf( "æ‹¡å¼µãƒ¡ã‚¤ãƒ³[%d] æ‹¡å¼µã‚µãƒ–[%d]\n", PlttManagerData->OffsetEx, PlttManagerData->SubOffsetEx );
 #endif
 }
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ[ƒh‚ğŠJn‚·‚éŠÖ”
+ *@brief	ãƒ­ãƒ¼ãƒ‰ã‚’é–‹å§‹ã™ã‚‹é–¢æ•°
  *
- *@param	start_offsetF“Ç‚İ‚İŠJnoffset
+ *@param	start_offsetï¼šèª­ã¿è¾¼ã¿é–‹å§‹offset
  *
  *@return	none
- *	(“à•”ŠÇ—‚ÌƒIƒtƒZƒbƒg‚ğ‰Šú‰»)
+ *	(å†…éƒ¨ç®¡ç†ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’åˆæœŸåŒ–)
  */
 //-----------------------------------------------------------------------------
-/// ƒƒCƒ“‰æ–Ê@•W€ƒpƒŒƒbƒg
+/// ãƒ¡ã‚¤ãƒ³ç”»é¢ã€€æ¨™æº–ãƒ‘ãƒ¬ãƒƒãƒˆ
 void PlttLoadStart( u32 start_offset )
 {
 	PlttManagerData->Offset = start_offset;
@@ -260,7 +260,7 @@ void PlttLoadStart( u32 start_offset )
 
 	transAreaInit( PlttManagerData );
 }
-/// ƒTƒu‰æ–Ê@•W€ƒpƒŒƒbƒg
+/// ã‚µãƒ–ç”»é¢ã€€æ¨™æº–ãƒ‘ãƒ¬ãƒƒãƒˆ
 void PlttLoadStartSub( u32 start_offset )
 {
 	PlttManagerData->SubOffset = start_offset;
@@ -268,7 +268,7 @@ void PlttLoadStartSub( u32 start_offset )
 	transAreaInit( PlttManagerData );
 }
 
-/// ƒƒCƒ“‰æ–Ê@Šg’£ƒpƒŒƒbƒg
+/// ãƒ¡ã‚¤ãƒ³ç”»é¢ã€€æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 void PlttLoadStartEx( u32 start_offset )
 {
 	PlttManagerData->OffsetEx = start_offset;
@@ -276,7 +276,7 @@ void PlttLoadStartEx( u32 start_offset )
 	transAreaInit( PlttManagerData );
 }
 
-/// ƒTƒu‰æ–Ê@Šg’£ƒpƒŒƒbƒg
+/// ã‚µãƒ–ç”»é¢ã€€æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 void PlttLoadStartSubEx( u32 start_offset )
 {
 	PlttManagerData->SubOffsetEx = start_offset;
@@ -288,33 +288,33 @@ void PlttLoadStartSubEx( u32 start_offset )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒg‚ªŠÇ—‚µ‚Ä‚¢‚é“à•”ƒIƒtƒZƒbƒg’l‚ğæ“¾‚·‚é
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãŒç®¡ç†ã—ã¦ã„ã‚‹å†…éƒ¨ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’å–å¾—ã™ã‚‹
  *
  *	@param	none 
  *
- *	@return	int		ƒIƒtƒZƒbƒg’l
+ *	@return	int		ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
  *
  *
  */
 //-----------------------------------------------------------------------------
-/// ƒƒCƒ“‰æ–Ê@•W€ƒpƒŒƒbƒg
+/// ãƒ¡ã‚¤ãƒ³ç”»é¢ã€€æ¨™æº–ãƒ‘ãƒ¬ãƒƒãƒˆ
 int PlttLoadOffsetGetMain( void )
 {
 	return PlttManagerData->Offset;
 }
-/// ƒTƒu‰æ–Ê@•W€ƒpƒŒƒbƒg
+/// ã‚µãƒ–ç”»é¢ã€€æ¨™æº–ãƒ‘ãƒ¬ãƒƒãƒˆ
 int PlttLoadOffsetGetSub( void )
 {
 	return PlttManagerData->SubOffset;
 }
 
-/// ƒƒCƒ“‰æ–Ê@Šg’£ƒpƒŒƒbƒg
+/// ãƒ¡ã‚¤ãƒ³ç”»é¢ã€€æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 int PlttLoadOffsetGetMainEx( void )
 {
 	return PlttManagerData->OffsetEx;
 }
 
-/// ƒTƒu‰æ–Ê@Šg’£ƒpƒŒƒbƒg
+/// ã‚µãƒ–ç”»é¢ã€€æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 int PlttLoadOffsetGetSubEx( void )
 {
 	return PlttManagerData->SubOffsetEx;
@@ -323,35 +323,35 @@ int PlttLoadOffsetGetSubEx( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ[ƒh‚ğŠJn‚·‚éŠÖ”
- *							‘S‚Ä‚ğ‚O‚Å‰Šú‰»‚·‚é
+ *@brief	ãƒ­ãƒ¼ãƒ‰ã‚’é–‹å§‹ã™ã‚‹é–¢æ•°
+ *							å…¨ã¦ã‚’ï¼ã§åˆæœŸåŒ–ã™ã‚‹
  *
  *@param	none	
  *
  *@return	none
- *					(“à•”ŠÇ—‚ÌƒIƒtƒZƒbƒg‚ğ‰Šú‰»)
+ *					(å†…éƒ¨ç®¡ç†ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’åˆæœŸåŒ–)
  *
  */
 //-----------------------------------------------------------------------------
 void PlttLoadStartAll( void )
 {
-	PlttManagerData->Offset			= 0;					// “Ç‚İ‚İ‚ÌƒIƒtƒZƒbƒg
-	PlttManagerData->SubOffset		= 0;					// ƒTƒuVram‚ÌƒIƒtƒZƒbƒg
-	PlttManagerData->OffsetEx		= 0;					// Šg’£ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
-	PlttManagerData->SubOffsetEx	= 0;					// ƒTƒu‚ÌŠg’£ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
-	setVramPlttSize();										// VramBank‚ÌŠ„‚è“–‚Ä‚©‚çVram‚ğg—p‚Å‚«‚é—Ê‚ğŒvZ
+	PlttManagerData->Offset			= 0;					// èª­ã¿è¾¼ã¿æ™‚ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	PlttManagerData->SubOffset		= 0;					// ã‚µãƒ–Vramã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	PlttManagerData->OffsetEx		= 0;					// æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	PlttManagerData->SubOffsetEx	= 0;					// ã‚µãƒ–ã®æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	setVramPlttSize();										// VramBankã®å‰²ã‚Šå½“ã¦ã‹ã‚‰Vramã‚’ä½¿ç”¨ã§ãã‚‹é‡ã‚’è¨ˆç®—
 	transAreaInit( PlttManagerData );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^’P‘Ì‚ğƒZƒbƒg‚µ‚Äƒ[ƒh
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å˜ä½“ã‚’ã‚»ãƒƒãƒˆã—ã¦ãƒ­ãƒ¼ãƒ‰
  *
- *@param	pPlttDataFƒpƒŒƒbƒgƒf[ƒ^
+ *@param	pPlttDataï¼šãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
- *@retval	TRUE FƒZƒbƒg‚Å‚«‚½
- *@retval	FALSEFƒZƒbƒg‚Å‚«‚È‚©‚Á‚½
+ *@retval	TRUE ï¼šã‚»ãƒƒãƒˆã§ããŸ
+ *@retval	FALSEï¼šã‚»ãƒƒãƒˆã§ããªã‹ã£ãŸ
  *
  */
 //-----------------------------------------------------------------------------
@@ -359,30 +359,30 @@ BOOL PlttSet( const PLTT_MANAGER_HEADER* pPlttData )
 {
 	PLTT_DATA_TBL* tbl;
 
-	// ‹ó‚¢‚Ä‚¢‚éƒe[ƒuƒ‹‚ğæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
 	tbl = getPlttDataClean();
 
-	// ƒe[ƒuƒ‹”‚ª‘«‚è‚½‚©ƒ`ƒFƒbƒN
+	// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ãŒè¶³ã‚ŠãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tbl == NULL ){
-		GF_ASSERT(0&&("ƒe[ƒuƒ‹‚ªˆê”t‚Å“o˜^‚Å‚«‚Ü‚¹‚ñ"))
-		return FALSE;		// “o˜^•s‰Â”\ 
+		GF_ASSERT(0&&("ãƒ†ãƒ¼ãƒ–ãƒ«ãŒä¸€æ¯ã§ç™»éŒ²ã§ãã¾ã›ã‚“"))
+		return FALSE;		// ç™»éŒ²ä¸å¯èƒ½ 
 	}
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	if(LoadPlttData(pPlttData, tbl) == FALSE){
 		return FALSE;
 	}
 		
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 	if( TransPlttData(pPlttData, tbl) == FALSE ){
-		//¸”s‚µ‚½‚Æ‚«‚Í”jŠü
-		//¸”s‚µ‚½‚Æ‚«Vram‚É‚ ‚Ü‚è‚ÌƒTƒCƒY‚ª‚È‚¢
+		//å¤±æ•—ã—ãŸã¨ãã¯ç ´æ£„
+		//å¤±æ•—ã—ãŸã¨ãï¼Vramã«ã‚ã¾ã‚Šã®ã‚µã‚¤ã‚ºãŒãªã„
 		DelPltt( pPlttData->id );
 		return FALSE;
 	}
 
-	// VramƒGƒŠƒAİ’è
+	// Vramã‚¨ãƒªã‚¢è¨­å®š
 	transAreaSetTbl( tbl );
 
 	return TRUE;
@@ -393,26 +393,26 @@ BOOL PlttSet( const PLTT_MANAGER_HEADER* pPlttData )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ğ•¡”ƒZƒbƒg
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¤‡æ•°ã‚»ãƒƒãƒˆ
  *
- *@param	pPlttDataFƒpƒŒƒbƒgƒf[ƒ^
- *@param	num			ƒZƒbƒg”
+ *@param	pPlttDataï¼šãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+ *@param	num			ã‚»ãƒƒãƒˆæ•°
  *
- *@return	‚¢‚­‚Â“o˜^¬Œ÷‚µ‚½‚©
+ *@return	ã„ãã¤ç™»éŒ²æˆåŠŸã—ãŸã‹
  *
  */
 //-----------------------------------------------------------------------------
 u16 PlttSets( const PLTT_MANAGER_HEADER* pPlttData, int num )
 {
-	int i;			// ƒ‹[ƒv—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	//
-	// PLTT_END‚ª‚­‚é‚Ü‚Å“Ç‚İ‚Ş
+	// PLTT_ENDãŒãã‚‹ã¾ã§èª­ã¿è¾¼ã‚€
 	//
 	for(i=0;i<num;i++){
-		// “Ç‚İ‚İ•ƒZƒbƒgˆ—
+		// èª­ã¿è¾¼ã¿ï¼†ã‚»ãƒƒãƒˆå‡¦ç†
 		if( PlttSet( pPlttData + i ) == FALSE ){
-			// ¸”s
+			// å¤±æ•—
 			break;
 		}
 	}
@@ -421,42 +421,42 @@ u16 PlttSets( const PLTT_MANAGER_HEADER* pPlttData, int num )
 }
 
 
-// ƒrƒbƒg‚ğƒ`ƒFƒbƒN‚µ‚Ä
-// ¡‹ó‚¢‚Ä‚¢‚éêŠ‚É“]‘—‚µ‚Ü‚·B
-// OFFSETw’è‚µ‚Ä“]‘—‚µ‚½‚¢‚Æ‚«‚Íã‚Ì“]‘—ŠÖ”‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢
+// ãƒ“ãƒƒãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦
+// ä»Šç©ºã„ã¦ã„ã‚‹å ´æ‰€ã«è»¢é€ã—ã¾ã™ã€‚
+// OFFSETæŒ‡å®šã—ã¦è»¢é€ã—ãŸã„ã¨ãã¯ä¸Šã®è»¢é€é–¢æ•°ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„
 //----------------------------------------------------------------------------
 /**
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^’P‘Ì‚ğƒZƒbƒg‚µ‚Äƒ[ƒh
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å˜ä½“ã‚’ã‚»ãƒƒãƒˆã—ã¦ãƒ­ãƒ¼ãƒ‰
  *
- *@param	pPlttDataFƒpƒŒƒbƒgƒf[ƒ^
+ *@param	pPlttDataï¼šãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
- *@retval	TRUE FƒZƒbƒg‚Å‚«‚½
- *			FALSEFƒZƒbƒg‚Å‚«‚È‚©‚Á‚½
+ *@retval	TRUE ï¼šã‚»ãƒƒãƒˆã§ããŸ
+ *			FALSEï¼šã‚»ãƒƒãƒˆã§ããªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 BOOL PlttSetCleanArea( const PLTT_MANAGER_HEADER* pPlttData )
 {
 	PLTT_DATA_TBL* tbl;
 
-	// ‹ó‚¢‚Ä‚¢‚éƒe[ƒuƒ‹‚ğæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
 	tbl = getPlttDataClean();
 
-	// ƒe[ƒuƒ‹”‚ª‘«‚è‚½‚©ƒ`ƒFƒbƒN
+	// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ãŒè¶³ã‚ŠãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tbl == NULL ){
-		GF_ASSERT(0&&("ƒe[ƒuƒ‹‚ªˆê”t‚Å“o˜^‚Å‚«‚Ü‚¹‚ñ"))
-		return FALSE;		// “o˜^•s‰Â”\ 
+		GF_ASSERT(0&&("ãƒ†ãƒ¼ãƒ–ãƒ«ãŒä¸€æ¯ã§ç™»éŒ²ã§ãã¾ã›ã‚“"))
+		return FALSE;		// ç™»éŒ²ä¸å¯èƒ½ 
 	}
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	if(LoadPlttData(pPlttData, tbl) == FALSE){
 		return FALSE;
 	}
 		
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 	if( TransPlttDataCleanVram(pPlttData, tbl) == FALSE ){
-		//¸”s‚µ‚½‚Æ‚«‚Í”jŠü
-		//¸”s‚µ‚½‚Æ‚«Vram‚É‚ ‚Ü‚è‚ÌƒTƒCƒY‚ª‚È‚¢
+		//å¤±æ•—ã—ãŸã¨ãã¯ç ´æ£„
+		//å¤±æ•—ã—ãŸã¨ãï¼Vramã«ã‚ã¾ã‚Šã®ã‚µã‚¤ã‚ºãŒãªã„
 		DelPltt( pPlttData->id );
 		return FALSE;
 	}
@@ -467,25 +467,25 @@ BOOL PlttSetCleanArea( const PLTT_MANAGER_HEADER* pPlttData )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ğ•¡”ƒZƒbƒg
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¤‡æ•°ã‚»ãƒƒãƒˆ
  *
- *@param	pPlttData	ƒpƒŒƒbƒgƒf[ƒ^
- *@param	num			ƒZƒbƒg‚·‚é”
+ *@param	pPlttData	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+ *@param	num			ã‚»ãƒƒãƒˆã™ã‚‹æ•°
  *
- *@return	‚¢‚­‚Â“o˜^¬Œ÷‚µ‚½‚©
+ *@return	ã„ãã¤ç™»éŒ²æˆåŠŸã—ãŸã‹
  */
 //-----------------------------------------------------------------------------
 u16 PlttSetsCleanArea( const PLTT_MANAGER_HEADER* pPlttData, int num )
 {
-	int i;			// ƒ‹[ƒv—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	//
-	// PLTT_END‚ª‚­‚é‚Ü‚Å“Ç‚İ‚Ş
+	// PLTT_ENDãŒãã‚‹ã¾ã§èª­ã¿è¾¼ã‚€
 	//
 	for(i=0;i<num;i++){
-		// “Ç‚İ‚İ•ƒZƒbƒgˆ—
+		// èª­ã¿è¾¼ã¿ï¼†ã‚»ãƒƒãƒˆå‡¦ç†
 		if( PlttSetCleanArea( pPlttData + i ) == FALSE ){
-			// ¸”s
+			// å¤±æ•—
 			break;
 		}
 	}
@@ -496,10 +496,10 @@ u16 PlttSetsCleanArea( const PLTT_MANAGER_HEADER* pPlttData, int num )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
  *
- *	@param	id			“]‘—æ‚ÌƒpƒŒƒbƒgID
- *	@param	pPlttData	ƒpƒŒƒbƒgƒf[ƒ^
+ *	@param	id			è»¢é€å…ˆã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+ *	@param	pPlttData	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -512,7 +512,7 @@ void PlttDataChg( int id, NNSG2dPaletteData* pPlttData )
 	
 	GF_ASSERT( pPlttData );
 
-	// id‚Ìƒf[ƒ^æ“¾
+	// idã®ãƒ‡ãƒ¼ã‚¿å–å¾—
 	tbl = getPlttDataPtr(id);
 	GF_ASSERT( tbl );
 	
@@ -521,7 +521,7 @@ void PlttDataChg( int id, NNSG2dPaletteData* pPlttData )
 	
 	if( tbl->type & NNS_G2D_VRAM_TYPE_2DMAIN ){
 		// Vram
-		// “]‘—ƒ}ƒl[ƒWƒƒ‚Å“]‘—
+		// è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã§è»¢é€
 		AddVramTransferManager(
 			NNS_GFD_DST_2D_OBJ_PLTT_MAIN,
 			tbl->offset,
@@ -531,7 +531,7 @@ void PlttDataChg( int id, NNSG2dPaletteData* pPlttData )
 	}
 	if( tbl->type & NNS_G2D_VRAM_TYPE_2DSUB ){
 		// Vram
-		// “]‘—ƒ}ƒl[ƒWƒƒ‚Å“]‘—
+		// è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã§è»¢é€
 		AddVramTransferManager(
 			NNS_GFD_DST_2D_OBJ_PLTT_SUB,
 			tbl->sub_offset,
@@ -544,12 +544,12 @@ void PlttDataChg( int id, NNSG2dPaletteData* pPlttData )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	id‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ª‚à‚¤“o˜^‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *@brief	idã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãŒã‚‚ã†ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *@param	id		ƒ`ƒFƒbƒN‚·‚éid
+ *@param	id		ãƒã‚§ãƒƒã‚¯ã™ã‚‹id
  *
- *@retval	TRUE	“o˜^‚³‚ê‚Ä‚¢‚é
- *@retval	FALSE	“o˜^‚³‚ê‚Ä‚¢‚È‚¢
+ *@retval	TRUE	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹
+ *@retval	FALSE	ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
  *
  *
  */
@@ -559,7 +559,7 @@ BOOL CheckPlttID(int id)
 	PLTT_DATA_TBL* tbl;
 
 	tbl = getPlttDataPtr(id);
-	if(tbl){		// “o˜^Ï‚İ
+	if(tbl){		// ç™»éŒ²æ¸ˆã¿
 		return TRUE;
 	}
 
@@ -569,11 +569,11 @@ BOOL CheckPlttID(int id)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚ ‚Æ‚¢‚­‚Â“o˜^‚Å‚«‚é‚Ì‚©‚ğ•Ô‚·
+ *@brief	ã‚ã¨ã„ãã¤ç™»éŒ²ã§ãã‚‹ã®ã‹ã‚’è¿”ã™
  *
  *@param	none
  *
- *@return	int		c‚è“o˜^‰Â”\”
+ *@return	int		æ®‹ã‚Šç™»éŒ²å¯èƒ½æ•°
  *
  *
  */
@@ -586,9 +586,9 @@ int CheckPlttRest(void)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ğ”j
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´
  *
- *@param	p_strFƒpƒŒƒbƒgƒtƒ@ƒCƒ‹–¼
+ *@param	p_strï¼šãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚¡ã‚¤ãƒ«å
  *	
  *@return	none
  *
@@ -596,20 +596,20 @@ int CheckPlttRest(void)
 //-----------------------------------------------------------------------------
 void DelPltt( int id )
 {
-	PLTT_DATA_TBL* tbl;			// —v‘f”æ“¾—p
+	PLTT_DATA_TBL* tbl;			// è¦ç´ æ•°å–å¾—ç”¨
 
-	// —v‘f”‚ğæ“¾
+	// è¦ç´ æ•°ã‚’å–å¾—
 	tbl = getPlttDataPtr(id);
 	
-	// Å‘å”‚©ƒ`ƒFƒbƒN
+	// æœ€å¤§æ•°ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT(tbl);
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ”jŠü‚·‚é
-	// ‰Ò“®’†‚©ƒ`ƒFƒbƒN
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
+	// ç¨¼å‹•ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( tbl->flag == 1 ){
-		// VramƒGƒŠƒA”jŠü
+		// Vramã‚¨ãƒªã‚¢ç ´æ£„
 		transAreaCleanTbl( tbl );
-		// ƒf[ƒ^”jŠü
+		// ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		dellPlttData( tbl );	
 	}
 }
@@ -617,7 +617,7 @@ void DelPltt( int id )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‘SƒpƒŒƒbƒgƒf[ƒ^‚ğ”jŠü
+ *@brief	å…¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
  *@param	none
  *
@@ -630,15 +630,15 @@ void DelPlttAll( void )
 	int i;
 
 	//
-	// ‘SƒpƒŒƒbƒgƒf[ƒ^‚ğ”jŠü
+	// å…¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
 	//
-	// ƒpƒŒƒbƒgID‚Ìƒe[ƒuƒ‹‚ğ’T‚·
+	// ãƒ‘ãƒ¬ãƒƒãƒˆIDã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¢ã™
 	for( i = 0; i < PlttManagerData->plttDataNum; i++ ){
-		// ‰Ò“®’†‚©ƒ`ƒFƒbƒN
+		// ç¨¼å‹•ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 		if( PlttManagerData->plttDataTbl[ i ].flag == 1 ){
-			// VramƒGƒŠƒA”jŠü
+			// Vramã‚¨ãƒªã‚¢ç ´æ£„
 			transAreaCleanTbl( &PlttManagerData->plttDataTbl[ i ] );
-			// ƒf[ƒ^”jŠü
+			// ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 			dellPlttData( &PlttManagerData->plttDataTbl[ i ] );
 
 		}
@@ -648,26 +648,26 @@ void DelPlttAll( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID‚ÌƒpƒŒƒbƒgƒvƒƒNƒV‚ğæ“¾
+ *@brief	IDã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·ã‚’å–å¾—
  *
- *@param	id		ƒpƒŒƒbƒgID
+ *@param	id		ãƒ‘ãƒ¬ãƒƒãƒˆID
  *
- *@return	ID‚ÌƒvƒƒNƒV
+ *@return	IDã®ãƒ—ãƒ­ã‚¯ã‚·
  *
  */
 //-----------------------------------------------------------------------------
 NNSG2dImagePaletteProxy* GetPlttIDProxy( int id )
 {
-	PLTT_DATA_TBL* tbl;			// —v‘fƒf[ƒ^
+	PLTT_DATA_TBL* tbl;			// è¦ç´ ãƒ‡ãƒ¼ã‚¿
 
-	// —v‘f”‚ğæ“¾
+	// è¦ç´ æ•°ã‚’å–å¾—
 	tbl = getPlttDataPtr(id);
 	if( tbl == NULL ){
 		GF_ASSERT(tbl);
 		return NULL;
 	}
 
-	// ‰Ò“®’†‚È‚ç•Ô‚·
+	// ç¨¼å‹•ä¸­ãªã‚‰è¿”ã™
 	if(tbl->flag == 1){
 		return &tbl->PaletteProxy;
 	}
@@ -678,35 +678,35 @@ NNSG2dImagePaletteProxy* GetPlttIDProxy( int id )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒvƒƒNƒV‚Ìæ“¾
- *			ƒpƒŒƒbƒg‚Ìƒ‚[ƒhiŠg’£ƒpƒŒƒbƒgj‚ÉƒCƒ[ƒWƒvƒƒNƒV‚ğÅ“K‰»‚·‚é
- *					ƒpƒŒƒbƒgƒvƒƒNƒVæ“¾ŠÖ”
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·ã®å–å¾—
+ *			ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ¢ãƒ¼ãƒ‰ï¼ˆæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆï¼‰ã«ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·ã‚’æœ€é©åŒ–ã™ã‚‹
+ *					ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·å–å¾—é–¢æ•°
  *
- *@param	id		ƒpƒŒƒbƒgID
- *@param	pImageFƒCƒ[ƒWƒvƒƒNƒV
+ *@param	id		ãƒ‘ãƒ¬ãƒƒãƒˆID
+ *@param	pImageï¼šã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
  *
- *@return	ƒpƒŒƒbƒgƒvƒƒNƒV
+ *@return	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·
  *
  */
 //-----------------------------------------------------------------------------
 NNSG2dImagePaletteProxy* GetPlttIDProxyJoin( int id, NNSG2dImageProxy* pImage )
 {
-	PLTT_DATA_TBL* tbl;			// —v‘fƒf[ƒ^
+	PLTT_DATA_TBL* tbl;			// è¦ç´ ãƒ‡ãƒ¼ã‚¿
 
-	// —v‘f”‚ğæ“¾
+	// è¦ç´ æ•°ã‚’å–å¾—
 	tbl = getPlttDataPtr(id);
 	if( tbl == NULL ){
 		GF_ASSERT(tbl);
 		return NULL;
 	}
-	// ‰Ò“®’†‚©ƒ`ƒFƒbƒN
+	// ç¨¼å‹•ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( tbl->flag != 1 ){
 		return NULL;
 	}
 
-	// Šg’£ƒpƒŒƒbƒg‚©ƒ`ƒFƒbƒN
+	// æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‹ãƒã‚§ãƒƒã‚¯
 	if( tbl->pPlttData->bExtendedPlt ){
-		// ƒCƒ[ƒWƒvƒƒNƒV‚ÉŠg’£ƒpƒŒƒbƒg‚ğ‚µ‚æ‚¤‚·‚é‚æ‚¤‚Éİ’è
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·ã«æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã—ã‚ˆã†ã™ã‚‹ã‚ˆã†ã«è¨­å®š
 		NNS_G2dSetImageExtPaletteFlag( pImage, TRUE );
 	}
 	
@@ -717,38 +717,38 @@ NNSG2dImagePaletteProxy* GetPlttIDProxyJoin( int id, NNSG2dImageProxy* pImage )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒvƒƒNƒV‚Ì‚ ‚éƒpƒŒƒbƒgƒiƒ“ƒo[‚ğæ“¾‚·‚é
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·ã®ã‚ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹
  *
- *@param	pPlttFƒpƒŒƒbƒgƒiƒ“ƒo[‚ğæ“¾‚·‚éƒpƒŒƒbƒgƒvƒƒNƒV
- *@param	vramTypeFƒƒCƒ“–Ê‚©ƒTƒu–Ê‚©
+ *@param	pPlttï¼šãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·
+ *@param	vramTypeï¼šãƒ¡ã‚¤ãƒ³é¢ã‹ã‚µãƒ–é¢ã‹
  *
- *@return	ƒpƒŒƒbƒgƒiƒ“ƒo[
+ *@return	ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
  *
  */
 //-----------------------------------------------------------------------------
 u32 GetPlttProxyOffset( const NNSG2dImagePaletteProxy* pPltt, u32 vramType )
 {
-	u32 size;			// ‚PƒpƒŒƒbƒgƒTƒCƒY
-	u32 pltt_offset;	// ƒpƒŒƒbƒgƒiƒ“ƒo[ŒvZˆ——p
+	u32 size;			// ï¼‘ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚º
+	u32 pltt_offset;	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼è¨ˆç®—å‡¦ç†ç”¨
 	
-	// Šg’£ƒpƒŒƒbƒg‚©ƒ`ƒFƒbƒN
+	// æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‹ãƒã‚§ãƒƒã‚¯
 	if( pPltt->bExtendedPlt ){
 		size = PLTT_ONE_SIZE * 16;
 	}else{
-		// •W€‚Å256‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+		// æ¨™æº–ã§256ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if( pPltt->fmt == GX_TEXFMT_PLTT256 ){
-			// 256‚Ì‚ÍƒTƒCƒY‚ğ‚O‚É‚µ‚ÄŒvZ‚µ‚È‚¢
+			// 256ã®æ™‚ã¯ã‚µã‚¤ã‚ºã‚’ï¼ã«ã—ã¦è¨ˆç®—ã—ãªã„
 			size = 0;
 		}else{
 			size = PLTT_ONE_SIZE;
 		}
 	}
 
-	// •W€‚Q‚T‚UFˆÈŠO‚©ƒ`ƒFƒbƒN
+	// æ¨™æº–ï¼’ï¼•ï¼–è‰²ä»¥å¤–ã‹ãƒã‚§ãƒƒã‚¯
 	if( size != 0 ){
-		// ‚¸‚ç‚·’læ“¾
+		// ãšã‚‰ã™å€¤å–å¾—
 		pltt_offset = NNS_G2dGetImagePaletteLocation( pPltt, vramType );
-		pltt_offset /= size;			// ‚¸‚ç‚·’l‚É‚·‚é(‰½ƒpƒŒƒbƒg‚¸‚ç‚·‚©)
+		pltt_offset /= size;			// ãšã‚‰ã™å€¤ã«ã™ã‚‹(ä½•ãƒ‘ãƒ¬ãƒƒãƒˆãšã‚‰ã™ã‹)
 	}else{
 		pltt_offset = 0;
 	}
@@ -759,57 +759,57 @@ u32 GetPlttProxyOffset( const NNSG2dImagePaletteProxy* pPltt, u32 vramType )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒiƒ“ƒo[‚ÌƒvƒƒNƒV‚ğæ“¾‚·‚é
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã®ãƒ—ãƒ­ã‚¯ã‚·ã‚’å–å¾—ã™ã‚‹
  *
- *@param	pltt_offsetF‚±‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[‚ÌƒvƒƒNƒV‚ª‚ ‚Á‚½‚ç•Ô‚·
- *@param	typeF‚P‚UFAŠg’£ƒpƒŒƒbƒg‚©‚Ìƒtƒ‰ƒO()
- *@param	vramTypeFƒpƒŒƒbƒgƒiƒ“ƒo[‚ğ‚ ‚í‚¹‚éVram‚Ìƒ^ƒCƒv		‚PFƒƒCƒ“@‚QFƒTƒu
+ *@param	pltt_offsetï¼šã“ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã®ãƒ—ãƒ­ã‚¯ã‚·ãŒã‚ã£ãŸã‚‰è¿”ã™
+ *@param	typeï¼šï¼‘ï¼–è‰²ã€æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‹ã®ãƒ•ãƒ©ã‚°()
+ *@param	vramTypeï¼šãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’ã‚ã‚ã›ã‚‹Vramã®ã‚¿ã‚¤ãƒ—		ï¼‘ï¼šãƒ¡ã‚¤ãƒ³ã€€ï¼’ï¼šã‚µãƒ–
  *
- *@return	Œ©‚Â‚©‚Á‚½ƒvƒƒNƒV
- *@retval	Œ©‚Â‚©‚ç‚È‚¢‚Æ‚«‚ÍNULL
+ *@return	è¦‹ã¤ã‹ã£ãŸãƒ—ãƒ­ã‚¯ã‚·
+ *@retval	è¦‹ã¤ã‹ã‚‰ãªã„ã¨ãã¯NULL
  *
  */
 //-----------------------------------------------------------------------------
 NNSG2dImagePaletteProxy* GetPlttNumProxy( u32 pltt_offset, u32 type, u32 vramType )
 {
-	int i;			// ƒ‹[ƒv—p
-	u32	now_idx;	// ¡‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[
-	u32 end_idx;	// I—¹ƒpƒŒƒbƒgƒiƒ“ƒo[
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	u32	now_idx;	// ä»Šã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+	u32 end_idx;	// çµ‚äº†ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 	
 	
 	//
-	// “o˜^‚³‚ê‚Ä‚¢‚éAƒpƒŒƒbƒg‚©‚çpltt_offset‚ÌƒpƒŒƒbƒg‚ª
-	// “o˜^‚³‚ê‚Ä‚¢‚éƒpƒŒƒbƒgƒvƒƒNƒV‚ğ•Ô‚·
+	// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‹ã‚‰pltt_offsetã®ãƒ‘ãƒ¬ãƒƒãƒˆãŒ
+	// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·ã‚’è¿”ã™
 	//
 	for( i = 0; i < PlttManagerData->plttDataNum; i++ ){
-		// ‰Ò“®’†‚©ƒ`ƒFƒbƒN
+		// ç¨¼å‹•ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 		if( PlttManagerData->plttDataTbl[ i ].flag == 1 ){
-			// Type‚ªˆê‚©ƒ`ƒFƒbƒN
+			// TypeãŒä¸€ç·’ã‹ãƒã‚§ãƒƒã‚¯
 			if( ((type == 1) && (PlttManagerData->plttDataTbl[ i ].pPlttData->bExtendedPlt > 0 )) ||
 				((type == 0) && (PlttManagerData->plttDataTbl[ i ].pPlttData->bExtendedPlt == 0 )) ){
 				
-				// VramƒIƒtƒZƒbƒgæ“¾
+				// Vramã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 				now_idx = NNS_G2dGetImagePaletteLocation( &PlttManagerData->plttDataTbl[ i ].PaletteProxy, vramType );
 
-				// ƒTƒCƒY‚©‚çI—¹ƒIƒtƒZƒbƒg‚ğŒvZ
+				// ã‚µã‚¤ã‚ºã‹ã‚‰çµ‚äº†ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨ˆç®—
 				end_idx = now_idx + (PlttManagerData->plttDataTbl[ i ].load_size * PLTT_ONE_SIZE);
 		
-				// ƒeƒNƒXƒ`ƒƒType‚ÌƒTƒCƒY‚ÅŠ„‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£Typeã®ã‚µã‚¤ã‚ºã§å‰²ã‚‹
 				if(type == 1){
-					now_idx /= PLTT_ONE_SIZE * 16;		// Šg’£
-					end_idx /= PLTT_ONE_SIZE * 16;		// Šg’£
+					now_idx /= PLTT_ONE_SIZE * 16;		// æ‹¡å¼µ
+					end_idx /= PLTT_ONE_SIZE * 16;		// æ‹¡å¼µ
 				}else{	
-					now_idx /= PLTT_ONE_SIZE;			// •W€ ‚P‚UF
-					end_idx /= PLTT_ONE_SIZE;			// •W€ ‚P‚UF
+					now_idx /= PLTT_ONE_SIZE;			// æ¨™æº– ï¼‘ï¼–è‰²
+					end_idx /= PLTT_ONE_SIZE;			// æ¨™æº– ï¼‘ï¼–è‰²
 				}
 
-				// now_idx‚Æend_idx‚Ì’†‚Épltt_offset‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+				// now_idxã¨end_idxã®ä¸­ã«pltt_offsetãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if( (now_idx <= pltt_offset) && (end_idx >= pltt_offset) ){
-					break;		// ‚±‚ÌƒpƒŒƒbƒgƒvƒƒNƒV‚Ìƒf[ƒ^“à‚É‚ ‚é
+					break;		// ã“ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·ã®ãƒ‡ãƒ¼ã‚¿å†…ã«ã‚ã‚‹
 				}
 
-				// ‚à‚µnow_idx‚æ‚è‚àpltt_offset‚ª¬‚³‚­‚È‚Á‚½‚ç‚à‚¤
-				// ‚»‚ÌˆÊ’u‚É‘Î‰‚·‚éƒpƒŒƒbƒgƒf[ƒ^‚Í‚È‚¢‚±‚Æ‚É‚È‚é
+				// ã‚‚ã—now_idxã‚ˆã‚Šã‚‚pltt_offsetãŒå°ã•ããªã£ãŸã‚‰ã‚‚ã†
+				// ãã®ä½ç½®ã«å¯¾å¿œã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã¯ãªã„ã“ã¨ã«ãªã‚‹
 				if( now_idx > pltt_offset ){
 					return NULL;
 				}
@@ -817,7 +817,7 @@ NNSG2dImagePaletteProxy* GetPlttNumProxy( u32 pltt_offset, u32 type, u32 vramTyp
 		}
 	}
 
-	// ÅŒã‚Ü‚Ås‚Á‚½‚çNULL‚ğ•Ô‚·
+	// æœ€å¾Œã¾ã§è¡Œã£ãŸã‚‰NULLã‚’è¿”ã™
 	if(i == PlttManagerData->plttDataNum){
 		return NULL;
 	}
@@ -828,11 +828,11 @@ NNSG2dImagePaletteProxy* GetPlttNumProxy( u32 pltt_offset, u32 type, u32 vramTyp
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	¡“®ì‚³‚ê‚Ä‚¢‚éƒpƒŒƒbƒgƒvƒƒNƒV‚Ì’†‚Éˆø”‚ÌƒvƒƒNƒV‚ª‚ ‚é‚©ŒŸõ‚·‚é
+ *@brief	ä»Šå‹•ä½œã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·ã®ä¸­ã«å¼•æ•°ã®ãƒ—ãƒ­ã‚¯ã‚·ãŒã‚ã‚‹ã‹æ¤œç´¢ã™ã‚‹
  *
- *@param	pPltt	ŒŸõ‚·‚éƒvƒƒNƒV
+ *@param	pPltt	æ¤œç´¢ã™ã‚‹ãƒ—ãƒ­ã‚¯ã‚·
  *
- *@return	BOOL	TRUE	‚ ‚é	FALSE	‚È‚¢
+ *@return	BOOL	TRUE	ã‚ã‚‹	FALSE	ãªã„
  *
  *
  */
@@ -843,9 +843,9 @@ BOOL SearchPlttProxy( const  NNSG2dImagePaletteProxy* pPltt)
 	BOOL ret = FALSE;
 
 	for(i=0;i<PlttManagerData->plttDataNum;i++){
-		// ‰Ò“®’†‚©ƒ`ƒFƒbƒN
+		// ç¨¼å‹•ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 		if( PlttManagerData->plttDataTbl[ i ].flag == 1 ){
-			// ID‚ğƒ`ƒFƒbƒN
+			// IDã‚’ãƒã‚§ãƒƒã‚¯
 			if( &PlttManagerData->plttDataTbl[ i ].PaletteProxy == pPltt ){
 				ret = TRUE;
 				break;
@@ -857,14 +857,14 @@ BOOL SearchPlttProxy( const  NNSG2dImagePaletteProxy* pPltt)
 }
 
 //
-// ƒvƒ‰ƒCƒx[ƒgŠÖ”
+// ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 //
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ğ”jŠü‚·‚é
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
  *
- *@param	pPlttDataF”jŠü‚·‚éƒpƒŒƒbƒgƒf[ƒ^
+ *@param	pPlttDataï¼šç ´æ£„ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -872,41 +872,41 @@ BOOL SearchPlttProxy( const  NNSG2dImagePaletteProxy* pPltt)
 //-----------------------------------------------------------------------------
 static void dellPlttData( PLTT_DATA_TBL* pPlttData )
 {
-	// ”jŠü‚·‚é
+	// ç ´æ£„ã™ã‚‹
 	cleanPlttData(pPlttData);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚Ì“Ç‚İ‚İ
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
  *
- *@param	pPlttData	ƒpƒŒƒbƒgENTRYƒf[ƒ^
- *@param	tbl			“Ç‚İ‚Şƒe[ƒuƒ‹ƒ|ƒCƒ“ƒ^
+ *@param	pPlttData	ãƒ‘ãƒ¬ãƒƒãƒˆENTRYãƒ‡ãƒ¼ã‚¿
+ *@param	tbl			èª­ã¿è¾¼ã‚€ãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚¤ãƒ³ã‚¿
  *
- *@return	BOOL	“Ç‚İ‚İ¬Œ÷:TRUE	“Ç‚İ‚İ¸”s:FALSE
+ *@return	BOOL	èª­ã¿è¾¼ã¿æˆåŠŸ:TRUE	èª­ã¿è¾¼ã¿å¤±æ•—:FALSE
  *
  *
  */
 //-----------------------------------------------------------------------------
 static BOOL LoadPlttData(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* tbl)
 {
-	// ƒpƒŒƒbƒgƒf[ƒ^İ’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è¨­å®š
 	tbl->pPlttData = pPlttData->res_file;
 	
-	// ID‚ªd•¡‚µ‚È‚¢‚©ƒ`ƒFƒbƒN
+	// IDãŒé‡è¤‡ã—ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if(CheckPlttID(pPlttData->id) == TRUE){
 		GF_ASSERT(0);
 		return FALSE;
 	}
 	
-	// ID‚ğƒtƒ@ƒCƒ‹–¼‚©‚çæ“¾
+	// IDã‚’ãƒ•ã‚¡ã‚¤ãƒ«åã‹ã‚‰å–å¾—
 	tbl->act_num = pPlttData->id;
 	
-	// ƒe[ƒuƒ‹ƒZƒbƒg
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚»ãƒƒãƒˆ
 	tbl->type	= pPlttData->type;			// Vramtype
-	tbl->flag			= 1;						// g—p’†
-	tbl->load_size = pPlttData->pltt_num;	// “Ç‚İ‚ŞƒpƒŒƒbƒg”	
+	tbl->flag			= 1;						// ä½¿ç”¨ä¸­
+	tbl->load_size = pPlttData->pltt_num;	// èª­ã¿è¾¼ã‚€ãƒ‘ãƒ¬ãƒƒãƒˆæ•°	
 
 	return TRUE;
 }
@@ -914,9 +914,9 @@ static BOOL LoadPlttData(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* tb
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‰Šú‰»
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *@param	data		ƒpƒŒƒbƒgƒf[ƒ^
+ *@param	data		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -933,11 +933,11 @@ static void cleanPlttData(PLTT_DATA_TBL* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€
  *
- *@param	tbl	“]‘—‚·‚éƒpƒŒƒbƒgƒf[ƒ^
+ *@param	tbl	è»¢é€ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
- *@return	BOOL	“]‘—¬Œ÷:TRUE	“]‘—¸”s:FALSE
+ *@return	BOOL	è»¢é€æˆåŠŸ:TRUE	è»¢é€å¤±æ•—:FALSE
  *
  *
  */
@@ -946,32 +946,32 @@ static BOOL TransPlttData(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* t
 {
 	u32* p_offset;
 	u32* p_offset_sub;
-	BOOL dell_flag = TRUE;		// —ÌˆæƒI[ƒo[‚Ì‚Æ‚«FALSE‚É‚È‚éƒtƒ‰ƒO
-	u32 vram_limit;				// ƒƒCƒ“‚ÌVram—Ìˆæ‚Ìlimit
-	u32 vram_limit_sub;			// ƒTƒu‚ÌVram—Ìˆæ‚Ìlimit
+	BOOL dell_flag = TRUE;		// é ˜åŸŸã‚ªãƒ¼ãƒãƒ¼ã®ã¨ãFALSEã«ãªã‚‹ãƒ•ãƒ©ã‚°
+	u32 vram_limit;				// ãƒ¡ã‚¤ãƒ³ã®Vramé ˜åŸŸã®limit
+	u32 vram_limit_sub;			// ã‚µãƒ–ã®Vramé ˜åŸŸã®limit
 	
-	// Šg’£ƒpƒŒƒbƒg‚©ƒ`ƒFƒbƒN
+	// æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‹ãƒã‚§ãƒƒã‚¯
 	if( tbl->pPlttData->bExtendedPlt ){
-		// ƒIƒtƒZƒbƒg’l‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg
+		// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		p_offset		= &PlttManagerData->OffsetEx;
 		p_offset_sub	= &PlttManagerData->SubOffsetEx; 
-		vram_limit = PlttManagerData->MainExPlttVramSize;			// Vram‚Ì—Ìˆæ‚ÌƒTƒCƒY
-		vram_limit_sub = PlttManagerData->SubExPlttVramSize;			// Vram‚Ì—Ìˆæ‚ÌƒTƒCƒY
+		vram_limit = PlttManagerData->MainExPlttVramSize;			// Vramã®é ˜åŸŸã®ã‚µã‚¤ã‚º
+		vram_limit_sub = PlttManagerData->SubExPlttVramSize;			// Vramã®é ˜åŸŸã®ã‚µã‚¤ã‚º
 	}else{	
-		// ƒIƒtƒZƒbƒg’l‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg
+		// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		p_offset		= &PlttManagerData->Offset;
 		p_offset_sub	= &PlttManagerData->SubOffset;
-		vram_limit = PLTT_NORMAL_SIZE;		// Vram‚Ì—Ìˆæ‚ÌƒTƒCƒY
-		vram_limit_sub = PLTT_NORMAL_SIZE;	// Vram‚Ì—Ìˆæ‚ÌƒTƒCƒY
+		vram_limit = PLTT_NORMAL_SIZE;		// Vramã®é ˜åŸŸã®ã‚µã‚¤ã‚º
+		vram_limit_sub = PLTT_NORMAL_SIZE;	// Vramã®é ˜åŸŸã®ã‚µã‚¤ã‚º
 	}
 	
-	// “]‘—æ‚ğİ’è
+	// è»¢é€å…ˆã‚’è¨­å®š
 	transAreaCheckOffset( tbl, *p_offset, *p_offset_sub, vram_limit, vram_limit_sub );
 
-	// offsetˆÊ’u‚Éƒ[ƒh
+	// offsetä½ç½®ã«ãƒ­ãƒ¼ãƒ‰
 	setTransPltt( tbl );
 
-	// ƒIƒtƒZƒbƒg‚ğ‚¸‚ç‚·
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ãšã‚‰ã™
 	transAreaSetOffset( tbl, p_offset, p_offset_sub );
 
 	return dell_flag;
@@ -980,10 +980,10 @@ static BOOL TransPlttData(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* t
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ó‚¢‚Ä‚¢‚é—Ìˆæ‚ğ’T‚µ‚ÄƒpƒŒƒbƒgƒf[ƒ^‚ğ“]‘—‚·‚é
+ *	@brief	ç©ºã„ã¦ã„ã‚‹é ˜åŸŸã‚’æ¢ã—ã¦ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
  *
- *	@param	pPlttData		ƒpƒŒƒbƒgENTRYƒf[ƒ^
- *	@param	tbl				ƒe[ƒuƒ‹
+ *	@param	pPlttData		ãƒ‘ãƒ¬ãƒƒãƒˆENTRYãƒ‡ãƒ¼ã‚¿
+ *	@param	tbl				ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *	@return
  *
@@ -992,15 +992,15 @@ static BOOL TransPlttData(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* t
 //-----------------------------------------------------------------------------
 static BOOL TransPlttDataCleanVram(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DATA_TBL* tbl)
 {
-	int offset_m, offset_s;		// ƒƒCƒ“‚ÆƒTƒu‚ÌƒIƒtƒZƒbƒg
+	int offset_m, offset_s;		// ãƒ¡ã‚¤ãƒ³ã¨ã‚µãƒ–ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	
-	// Šg’£ƒpƒŒƒbƒg‚©ƒ`ƒFƒbƒN
+	// æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‹ãƒã‚§ãƒƒã‚¯
 	if( tbl->pPlttData->bExtendedPlt ){
-		// Šg’£ƒpƒŒƒbƒg‚Í–³—‚Å‚·
+		// æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã¯ç„¡ç†ã§ã™
 		GF_ASSERT(0);
 	}
 
-	// ƒGƒŠƒA’Tõ
+	// ã‚¨ãƒªã‚¢æ¢ç´¢
 	if( tbl->type & NNS_G2D_VRAM_TYPE_2DMAIN ){
 		offset_m = transAreaCheck( PlttManagerData->main16VramArea, tbl->load_size );
 
@@ -1016,7 +1016,7 @@ static BOOL TransPlttDataCleanVram(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DA
 		}
 	}
 
-	// ƒIƒtƒZƒbƒg‚ğİ’è
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨­å®š
 	if( tbl->type & NNS_G2D_VRAM_TYPE_2DMAIN ){
 		tbl->offset = offset_m;
 	}
@@ -1024,13 +1024,13 @@ static BOOL TransPlttDataCleanVram(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DA
 		tbl->sub_offset = offset_s;
 	}
 
-	// ƒpƒŒƒbƒgƒTƒCƒYİ’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚ºè¨­å®š
 	tbl->pPlttData->szByte = tbl->load_size * PLTT_ONE_SIZE;
 	
-	// “]‘—
+	// è»¢é€
 	transVramPltt( tbl );
 
-	// VramƒGƒŠƒAİ’è
+	// Vramã‚¨ãƒªã‚¢è¨­å®š
 	transAreaSetTbl( tbl );
 	
 
@@ -1040,23 +1040,23 @@ static BOOL TransPlttDataCleanVram(const PLTT_MANAGER_HEADER* pPlttData, PLTT_DA
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒX‚ÌƒpƒŒƒbƒgƒf[ƒ^‚Ì—v‘f”‚ğæ“¾‚·‚é
+ *@brief	ãƒ‘ã‚¹ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è¦ç´ æ•°ã‚’å–å¾—ã™ã‚‹
  *
- *@param	id		ƒpƒŒƒbƒgID
+ *@param	id		ãƒ‘ãƒ¬ãƒƒãƒˆID
  *
- *@return	PLTT_DATA_TBL*	ƒpƒŒƒbƒgƒf[ƒ^ƒe[ƒuƒ‹ƒ|ƒCƒ“ƒ^
+ *@return	PLTT_DATA_TBL*	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //-----------------------------------------------------------------------------
 static PLTT_DATA_TBL*	getPlttDataPtr( int id )
 {
-	int i;			// ƒ‹[ƒv—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	
 	
-	// ID‚Ìƒf[ƒ^‚ğŒŸõ‚µ‚ÄƒvƒƒNƒV‚ğ•Ô‚·
+	// IDã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¤œç´¢ã—ã¦ãƒ—ãƒ­ã‚¯ã‚·ã‚’è¿”ã™
 	for( i = 0; i < PlttManagerData->plttDataNum; i++ ){
-		// ID‚ğƒ`ƒFƒbƒN
+		// IDã‚’ãƒã‚§ãƒƒã‚¯
 		if( PlttManagerData->plttDataTbl[ i ].act_num == id ){
 			return PlttManagerData->plttDataTbl + i;
 		}	
@@ -1068,11 +1068,11 @@ static PLTT_DATA_TBL*	getPlttDataPtr( int id )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‹ó‚¢‚Ä‚¢‚éƒe[ƒuƒ‹‚ğæ“¾
+ *@brief	ç©ºã„ã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
  *
  *@param	none
  *
- *@return	PLTT_DATA_TBL* ‹ó‚¢‚Ä‚¢‚éƒe[ƒuƒ‹
+ *@return	PLTT_DATA_TBL* ç©ºã„ã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *
  */
@@ -1081,9 +1081,9 @@ static PLTT_DATA_TBL* getPlttDataClean( void )
 {
 	int i;
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^‚ğƒe[ƒuƒ‹‚ÉƒZƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã‚»ãƒƒãƒˆ
 	for( i = 0; i < PlttManagerData->plttDataNum; i++ ){
-		// ‚ ‚¢‚Ä‚¢‚é‚Æ‚±‚ë‚ğƒT[ƒ`
+		// ã‚ã„ã¦ã„ã‚‹ã¨ã“ã‚ã‚’ã‚µãƒ¼ãƒ
 		if( PlttManagerData->plttDataTbl[ i ].flag == 0 ){
 			return PlttManagerData->plttDataTbl + i;
 		}
@@ -1094,7 +1094,7 @@ static PLTT_DATA_TBL* getPlttDataClean( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒg‚ÌVramƒTƒCƒY‚ğƒZƒbƒg
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã®Vramã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
  *
  *@param	none
  *
@@ -1104,18 +1104,18 @@ static PLTT_DATA_TBL* getPlttDataClean( void )
 //-----------------------------------------------------------------------------
 static void setVramPlttSize( void )
 {
-	GXVRamOBJExtPltt	vram_bank;		// ƒƒCƒ“Vramƒoƒ“ƒNæ“¾—p
-	GXVRamSubOBJExtPltt	sub_vram_bank;	// ƒTƒuVramƒoƒ“ƒNæ“¾—p
+	GXVRamOBJExtPltt	vram_bank;		// ãƒ¡ã‚¤ãƒ³Vramãƒãƒ³ã‚¯å–å¾—ç”¨
+	GXVRamSubOBJExtPltt	sub_vram_bank;	// ã‚µãƒ–Vramãƒãƒ³ã‚¯å–å¾—ç”¨
 	
 	
 	//
-	// Vram‚ÌƒpƒŒƒbƒgƒTƒCƒY‚ğƒZƒbƒg
+	// Vramã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	//
-	// ƒƒCƒ“‰æ–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢
 	vram_bank = GX_GetBankForOBJExtPltt();
 	switch( vram_bank ){
-	case GX_VRAM_OBJEXTPLTT_0_F:	// ƒƒCƒ“‰æ–ÊŠg’£ƒpƒŒƒbƒgg—p
-	case GX_VRAM_OBJEXTPLTT_0_G:	// ƒƒCƒ“‰æ–ÊŠg’£ƒpƒŒƒbƒgg—p
+	case GX_VRAM_OBJEXTPLTT_0_F:	// ãƒ¡ã‚¤ãƒ³ç”»é¢æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨
+	case GX_VRAM_OBJEXTPLTT_0_G:	// ãƒ¡ã‚¤ãƒ³ç”»é¢æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨
 		PlttManagerData->MainExPlttVramSize = PLTT_EX_SIZE;
 		break;
 
@@ -1124,10 +1124,10 @@ static void setVramPlttSize( void )
 		break;
 	}
 
-	// ƒTƒu‰æ–Ê
+	// ã‚µãƒ–ç”»é¢
 	sub_vram_bank = GX_GetBankForSubOBJExtPltt();
 	switch( sub_vram_bank ){
-	case GX_VRAM_SUB_OBJEXTPLTT_0_I:	// ƒƒCƒ“‰æ–ÊŠg’£ƒpƒŒƒbƒgg—p
+	case GX_VRAM_SUB_OBJEXTPLTT_0_I:	// ãƒ¡ã‚¤ãƒ³ç”»é¢æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨
 		PlttManagerData->SubExPlttVramSize = PLTT_EX_SIZE;
 		break;
 
@@ -1140,9 +1140,9 @@ static void setVramPlttSize( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^“]‘—ˆ—‚ğVƒuƒ‰ƒ“ƒNˆ—ƒ^ƒXƒN‚ÉƒZƒbƒg
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€å‡¦ç†ã‚’Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†ã‚¿ã‚¹ã‚¯ã«ã‚»ãƒƒãƒˆ
  *
- *@param	pPlttDataFƒpƒŒƒbƒgƒf[ƒ^
+ *@param	pPlttDataï¼šãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1151,7 +1151,7 @@ static void setVramPlttSize( void )
 static void setTransPltt( PLTT_DATA_TBL* pPlttData )
 {
 
-	// ƒŠƒ\[ƒX‚ÌƒTƒCƒY‚à•ÏX
+	// ãƒªã‚½ãƒ¼ã‚¹ã®ã‚µã‚¤ã‚ºã‚‚å¤‰æ›´
 	pPlttData->pPlttData->szByte = pPlttData->load_size * PLTT_ONE_SIZE;
 	
 	transVramPltt( pPlttData);
@@ -1161,9 +1161,9 @@ static void setTransPltt( PLTT_DATA_TBL* pPlttData )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Vblank“à‚Ås‚¤ƒpƒŒƒbƒgƒf[ƒ^‚ÌVram‚Ö‚Ì“]‘—
+ *@brief	Vblankå†…ã§è¡Œã†ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®Vramã¸ã®è»¢é€
  *
- *@param	p_dataF“]‘—‚·‚éƒpƒŒƒbƒgƒf[ƒ^
+ *@param	p_dataï¼šè»¢é€ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1171,35 +1171,35 @@ static void setTransPltt( PLTT_DATA_TBL* pPlttData )
 //-----------------------------------------------------------------------------
 static void transVramPltt( void* p_data )
 {
-	PLTT_DATA_TBL* p_pltt_data = (PLTT_DATA_TBL*)p_data;		// ƒLƒƒƒXƒg‚µ‚Äƒf[ƒ^æ“¾
+	PLTT_DATA_TBL* p_pltt_data = (PLTT_DATA_TBL*)p_data;		// ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãƒ‡ãƒ¼ã‚¿å–å¾—
 
 	NNS_G2dInitImagePaletteProxy(&p_pltt_data->PaletteProxy);
 	
-	// Vram‚Ö“Ç‚İ‚Ş
+	// Vramã¸èª­ã¿è¾¼ã‚€
 	if(p_pltt_data->type & NNS_G2D_VRAM_TYPE_2DMAIN){
-		// —¼•û‚É“o˜^
+		// ä¸¡æ–¹ã«ç™»éŒ²
 		NNS_G2dLoadPalette(
-				p_pltt_data->pPlttData,// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-				p_pltt_data->offset,			// ƒLƒƒƒ‰ƒNƒ^ƒx[ƒXƒAƒhƒŒƒX
+				p_pltt_data->pPlttData,// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+				p_pltt_data->offset,			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
 				NNS_G2D_VRAM_TYPE_2DMAIN,		// VramType
-				&p_pltt_data->PaletteProxy );	// ƒCƒ[ƒWƒvƒƒNƒV
+				&p_pltt_data->PaletteProxy );	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
 	}
 
 	if(p_pltt_data->type & NNS_G2D_VRAM_TYPE_2DSUB){
 		NNS_G2dLoadPalette(
-				p_pltt_data->pPlttData,// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-				p_pltt_data->sub_offset,		// ƒLƒƒƒ‰ƒNƒ^ƒx[ƒXƒAƒhƒŒƒX
+				p_pltt_data->pPlttData,// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+				p_pltt_data->sub_offset,		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
 				NNS_G2D_VRAM_TYPE_2DSUB,		// VramType
-				&p_pltt_data->PaletteProxy );	// ƒCƒ[ƒWƒvƒƒNƒV
+				&p_pltt_data->PaletteProxy );	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
 	}
 }
 
 
 
-// “]‘—ƒGƒŠƒA‚Ìİ’è
+// è»¢é€ã‚¨ãƒªã‚¢ã®è¨­å®š
 static void transAreaSet( u16* data, int num, int start )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	for(i=0;i<num;i++){
 
@@ -1209,7 +1209,7 @@ static void transAreaSet( u16* data, int num, int start )
 
 static void transAreaClean( u16* data, int num, int start )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	for(i=0;i<num;i++){
 
@@ -1219,15 +1219,15 @@ static void transAreaClean( u16* data, int num, int start )
 
 static int transAreaCheck( u16 data, int num )
 {
-	int i, j;		// ƒ‹[ƒv—p
+	int i, j;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	for(i = 0; i < 16; i++ ){
 		
 		j = 0;
-		// ƒrƒbƒg‚ª‚½‚Á‚Ä‚¢‚È‚­‚Ä@ƒJƒEƒ“ƒ^‚ªnum‚æ‚è¬‚³‚¢‚Æ‚«
+		// ãƒ“ãƒƒãƒˆãŒãŸã£ã¦ã„ãªãã¦ã€€ã‚«ã‚¦ãƒ³ã‚¿ãŒnumã‚ˆã‚Šå°ã•ã„ã¨ã
 		while( ( (data & (1 << ( i + j))) == 0 ) && (j < num) ){
 
-			// ƒTƒCƒYƒI[ƒo[‚µ‚½‚çI‚í‚è
+			// ã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼ã—ãŸã‚‰çµ‚ã‚ã‚Š
 			if( (i + j) >= 16 ){
 				break;
 			}
@@ -1235,15 +1235,15 @@ static int transAreaCheck( u16 data, int num )
 			j++;
 		}
 	
-		// ƒTƒCƒY•ª‚Ì—Ìˆæ‚ª‚ ‚Á‚½‚©ƒ`ƒFƒbƒN
+		// ã‚µã‚¤ã‚ºåˆ†ã®é ˜åŸŸãŒã‚ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
 		if(j >= num){
 			break;
 		}
 
-		i += j;		// ‚¾‚ß‚¾‚Á‚½‹óŠÔ‚ğ”ò‚Î‚·
+		i += j;		// ã ã‚ã ã£ãŸç©ºé–“ã‚’é£›ã°ã™
 	}
 
-	// ÅŒã‚Ü‚Åfor•ª‚ª‰ñ‚Á‚Ä‚¢‚½‚ç“ü‚ç‚È‚¢‚Ì‚Åerr‚ğ•Ô‚·
+	// æœ€å¾Œã¾ã§foråˆ†ãŒå›ã£ã¦ã„ãŸã‚‰å…¥ã‚‰ãªã„ã®ã§errã‚’è¿”ã™
 	if( i >= 16 )
 	{
 		return PLTT_AREA_NONE;
@@ -1281,14 +1281,14 @@ static void transAreaCleanTbl( PLTT_DATA_TBL* data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒIƒtƒZƒbƒgƒ‚[ƒh‚Ì“]‘—ƒGƒŠƒAÁª¯¸
+ *	@brief	ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ¢ãƒ¼ãƒ‰ã®è»¢é€ã‚¨ãƒªã‚¢ãƒã‚§ãƒƒã‚¯
  *
- *	@param	data	ƒpƒŒƒbƒgƒf[ƒ^
- *	@param	m_offs	¡‚ÌƒIƒtƒZƒbƒgˆÊ’u
- *	@param	s_offs	¡‚ÌƒIƒtƒZƒbƒgˆÊ’u
+ *	@param	data	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	m_offs	ä»Šã®ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
+ *	@param	s_offs	ä»Šã®ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
  *
- *	@retval	TRUE		æ“¾¬Œ÷
- *	@retval	FALSE		æ“¾¸”s
+ *	@retval	TRUE		å–å¾—æˆåŠŸ
+ *	@retval	FALSE		å–å¾—å¤±æ•—
  *
  *
  */
@@ -1297,15 +1297,15 @@ static BOOL transAreaCheckOffset( PLTT_DATA_TBL* data, u32 m_offs, u32 s_offs, u
 {
 	BOOL dell_flag = TRUE;
 	
-	// ƒƒCƒ“‰æ–Ê‚É“Ç‚İ‚Ş‚©ƒ`ƒFƒbƒN
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã«èª­ã¿è¾¼ã‚€ã‹ãƒã‚§ãƒƒã‚¯
 	if( data->type & NNS_G2D_VRAM_TYPE_2DMAIN ){
 
-		// ƒTƒCƒYƒI[ƒo[ƒ`ƒFƒbƒN
+		// ã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 		if( (m_offs + (data->load_size * PLTT_ONE_SIZE) > m_limit) ){
 
-			// “o˜^‚µ‚È‚¢
-			GF_ASSERT(0&&("ƒTƒCƒYƒI[ƒo["));
-			now_debug_draw();		// ¡‚Ìó‹µ‚ğ•`‰æ
+			// ç™»éŒ²ã—ãªã„
+			GF_ASSERT(0&&("ã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼"));
+			now_debug_draw();		// ä»Šã®çŠ¶æ³ã‚’æç”»
 			dell_flag = FALSE;
 		}else{
 			data->offset = m_offs;	
@@ -1313,15 +1313,15 @@ static BOOL transAreaCheckOffset( PLTT_DATA_TBL* data, u32 m_offs, u32 s_offs, u
 		
 	}
 
-	// ƒTƒu‰æ–Ê‚É“Ç‚İ‚Ş‚©ƒ`ƒFƒbƒN
+	// ã‚µãƒ–ç”»é¢ã«èª­ã¿è¾¼ã‚€ã‹ãƒã‚§ãƒƒã‚¯
 	if( data->type & NNS_G2D_VRAM_TYPE_2DSUB ){
 
-		// ƒTƒCƒYƒI[ƒo[ƒ`ƒFƒbƒN
+		// ã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 		if( (s_offs + (data->load_size * PLTT_ONE_SIZE) > s_limit) ){
 
-			// “o˜^‚µ‚È‚¢
-			GF_ASSERT(0&&("ƒTƒCƒYƒI[ƒo["));
-			now_debug_draw();		// ¡‚Ìó‹µ‚ğ•`‰æ
+			// ç™»éŒ²ã—ãªã„
+			GF_ASSERT(0&&("ã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼"));
+			now_debug_draw();		// ä»Šã®çŠ¶æ³ã‚’æç”»
 			dell_flag = FALSE;
 		}else{
 			data->sub_offset = s_offs;
@@ -1334,11 +1334,11 @@ static BOOL transAreaCheckOffset( PLTT_DATA_TBL* data, u32 m_offs, u32 s_offs, u
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒIƒtƒZƒbƒg‚ğˆÚ“®‚³‚¹‚é
+ *	@brief	ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ç§»å‹•ã•ã›ã‚‹
  *
- *	@param	data		ƒpƒŒƒbƒgƒf[ƒ^
- *	@param	m_offs		ƒƒCƒ“ƒIƒtƒZƒbƒg‚Ìƒ|ƒCƒ“ƒ^
- *	@param	s_offs		ƒTƒuƒIƒtƒZƒbƒg‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	data		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	m_offs		ãƒ¡ã‚¤ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	s_offs		ã‚µãƒ–ã‚ªãƒ•ã‚»ãƒƒãƒˆã®ãƒã‚¤ãƒ³ã‚¿
  *
  *	@return	none
  *
@@ -1347,7 +1347,7 @@ static BOOL transAreaCheckOffset( PLTT_DATA_TBL* data, u32 m_offs, u32 s_offs, u
 //-----------------------------------------------------------------------------
 static void transAreaSetOffset( PLTT_DATA_TBL* data, u32* m_offs, u32* s_offs )
 {
-	// ‚¸‚ç‚·
+	// ãšã‚‰ã™
 	if( data->type & NNS_G2D_VRAM_TYPE_2DMAIN ){
 		*m_offs		+= data->load_size * PLTT_ONE_SIZE;
 	}

@@ -21,10 +21,10 @@ typedef struct SEEDSYS_WORK SEEDSYS_WORK;
 
 //============================================================================================
 //============================================================================================
-#define SEEDITEMCHK_NOUSE			0x00		///< ‚È‚É‚àŽg‚¦‚È‚¢
-#define	SEEDITEMCHK_USE_SEED		0x01		///<‚«‚Ì‚Ý‚ð‚¤‚¦‚é‚±‚Æ‚ª‚Å‚«‚é
-#define	SEEDITEMCHK_USE_COMPOST		0x02		///<‚±‚â‚µ‚ð‚¤‚¦‚é‚±‚Æ‚ª‚Å‚«‚é
-#define SEEDITEMCHK_USE_ZYOURO		0x04		///<‚¶‚å‚¤‚ë‚Å…‚â‚è‚ª‚Å‚«‚é
+#define SEEDITEMCHK_NOUSE			0x00		///< ãªã«ã‚‚ä½¿ãˆãªã„
+#define	SEEDITEMCHK_USE_SEED		0x01		///<ãã®ã¿ã‚’ã†ãˆã‚‹ã“ã¨ãŒã§ãã‚‹
+#define	SEEDITEMCHK_USE_COMPOST		0x02		///<ã“ã‚„ã—ã‚’ã†ãˆã‚‹ã“ã¨ãŒã§ãã‚‹
+#define SEEDITEMCHK_USE_ZYOURO		0x04		///<ã˜ã‚‡ã†ã‚ã§æ°´ã‚„ã‚ŠãŒã§ãã‚‹
 
 
 //============================================================================================
@@ -47,15 +47,15 @@ extern u16 SeedSys_GetCompost(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fl
 extern SEEDGROUND SeedSys_GetGroundStatus(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj);
 
 
-//‚«‚Ì‚Ý‚ª‚¤‚¦‚ç‚ê‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+//ãã®ã¿ãŒã†ãˆã‚‰ã‚Œã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
 extern BOOL SeedSys_EnableSetKinomi(FIELDSYS_WORK * fsys, FIELD_OBJ_PTR fldobj);
 
-//…‚â‚èƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+//æ°´ã‚„ã‚Šã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
 extern void EventCall_SeedWater(FIELDSYS_WORK * fsys);
-//…‚â‚èƒCƒxƒ“ƒgI—¹iŽ©‹@ƒtƒH[ƒ€‚ð’Êí‚É–ß‚·j
+//æ°´ã‚„ã‚Šã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ï¼ˆè‡ªæ©Ÿãƒ•ã‚©ãƒ¼ãƒ ã‚’é€šå¸¸ã«æˆ»ã™ï¼‰
 extern void SeedSys_ResetPlayerForm(FIELDSYS_WORK * fsys);
 
-//‚Â‚©‚¦‚é‚Ç‚¤‚®‚ÌŽí—Þƒ`ƒFƒbƒNiSEEDITEMCHK_`‚ÌŽw’è‚ðŽQÆj
+//ã¤ã‹ãˆã‚‹ã©ã†ãã®ç¨®é¡žãƒã‚§ãƒƒã‚¯ï¼ˆSEEDITEMCHK_ã€œã®æŒ‡å®šã‚’å‚ç…§ï¼‰
 extern u32 SeedSys_ItemUseCheck(const FIELDSYS_WORK * fsys, CONST_FIELD_OBJ_PTR fldobj);
 
 #endif	/* __SEEDSYS_H__ */

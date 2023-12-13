@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_tool.h
- * @brief	’ÊMƒVƒXƒeƒ€‚ğg‚Á‚½’ÊMƒc[ƒ‹
+ * @brief	é€šä¿¡ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½¿ã£ãŸé€šä¿¡ãƒ„ãƒ¼ãƒ«
  * @author	Katsumi Ohno
  * @date    2006.03.14
  */
@@ -29,15 +29,15 @@ extern void CommListSet(u8 no,u8 listNo);
 extern int CommListGet(int netID, u8 no);
 extern void CommListReset(void);
 
-// ‰Šú‰»‚·‚é
+// åˆæœŸåŒ–ã™ã‚‹
 extern void CommToolTempDataReset(void);
-// ‘Šè‚É‘—‚è‚½‚¢ƒf[ƒ^‚ğ“ü‚ê‚é  10byte
+// ç›¸æ‰‹ã«é€ã‚ŠãŸã„ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹  10byte
 extern BOOL CommToolSetTempData(int netID,const void* pData);
-// * ‘Šè‚É‘—‚Á‚½ƒf[ƒ^‚ğ“¾‚é  10byte
+// * ç›¸æ‰‹ã«é€ã£ãŸãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹  10byte
 extern const void* CommToolGetTempData(int netID);
-// * ƒeƒ“ƒ|ƒ‰ƒŠ[ƒf[ƒ^‚ğóM‚·‚é
+// * ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹
 void CommToolRecvTempData(int netID, int size, void* pData, void* pWork);
-// ƒeƒ“ƒ|ƒ‰ƒŠ[ƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚·
+// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™
 int CommToolGetTempDataSize(void);
 
 

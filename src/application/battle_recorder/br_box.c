@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_box.c
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2007.12.17(Œ)
+ * @date	2007.12.17(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -39,10 +39,10 @@
 //BOXDAT_GetDaisukiKabegamiFlag
 
 /*
-	ã‰æ–Ê‚ğƒƒCƒ“
-	‰º‰æ–Ê‚ğƒTƒu
+	ä¸Šç”»é¢ã‚’ãƒ¡ã‚¤ãƒ³
+	ä¸‹ç”»é¢ã‚’ã‚µãƒ–
 	
-	‚É“ü‚ê‘Ö‚¦‚Äg—p‚µ‚Ä‚¢‚Ü‚·B
+	ã«å…¥ã‚Œæ›¿ãˆã¦ä½¿ç”¨ã—ã¦ã„ã¾ã™ã€‚
 */
 
 #define BOX_SHOT_RECV_DATA_NUM	( 20 )
@@ -58,12 +58,12 @@ typedef struct {
 } PREVIEW;
 
 
-// ƒ{ƒbƒNƒX‚Ìƒ[ƒN
+// ãƒœãƒƒã‚¯ã‚¹ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct {
 
 	BOX_DATA*		box_data;	///< box data
 	GT_BOX_SHOT		box_shot;	///< box shot
-	int				now_tray;	///< Œ»İ‚ÌƒgƒŒƒC
+	int				now_tray;	///< ç¾åœ¨ã®ãƒˆãƒ¬ã‚¤
 	
 	int				eva;
 	int				evb;
@@ -78,18 +78,18 @@ typedef struct {
 	
 	BUTTON_MAN*		btn_man[ 5 ];
 	BUTTON_MAN*		btn;
-	OAM_BUTTON		obtn[ 2 ];		///< ‘—‚é@–ß‚é
+	OAM_BUTTON		obtn[ 2 ];		///< é€ã‚‹ã€€æˆ»ã‚‹
 	
 	PREVIEW			prev;
 	
-	GT_BOX_SHOT_RECV*	recv_data[ BOX_SHOT_RECV_DATA_NUM ];		///< 0”Ô‚Í‘—Mƒf[ƒ^‚É‚àg‚¤
+	GT_BOX_SHOT_RECV*	recv_data[ BOX_SHOT_RECV_DATA_NUM ];		///< 0ç•ªã¯é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã«ã‚‚ä½¿ã†
 	GT_BOX_SHOT_RECV	recv_data_tmp[ BOX_SHOT_RECV_DATA_NUM ];
-	STRBUF*				box_str[ BOX_SHOT_RECV_DATA_NUM ][ 2 ];		///< ƒƒ‚ƒŠ“I‚É‘åä•v‚©H@ƒ{ƒbƒNƒX–¼@–¼‘O
+	STRBUF*				box_str[ BOX_SHOT_RECV_DATA_NUM ][ 2 ];		///< ãƒ¡ãƒ¢ãƒªçš„ã«å¤§ä¸ˆå¤«ã‹ï¼Ÿã€€ãƒœãƒƒã‚¯ã‚¹åã€€åå‰
 	TOUCH_LIST_HEADER	tl_box_shot_head;
 	
 	GPP_WORK		gpp_work;
 	
-	///< ƒJ[ƒ\ƒ‹‚ÌˆÊ’u
+	///< ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®
 	int				view_mode;
 	int				poke_x;
 	int				poke_y;
@@ -215,7 +215,7 @@ static void BoxShot_GppDataDelete( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—M‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+ * @brief	é€ä¿¡ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param	data	
  *
@@ -241,7 +241,7 @@ static BOOL BoxShot_SendCheck( GT_BOX_SHOT* data )
 
 //--------------------------------------------------------------
 /**
- * @brief	Ÿ‚Ìƒ|ƒPƒ‚ƒ“‚Ü‚ÅˆÚ“®
+ * @brief	æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ã¾ã§ç§»å‹•
  *
  * @param	bwk	
  *
@@ -277,7 +277,7 @@ static void BoxShot_BoxCurPosSetNext( BOX_WORK* bwk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—M‚Å‚«‚é‚©‚·‚×‚Äƒ`ƒFƒbƒN
+ * @brief	é€ä¿¡ã§ãã‚‹ã‹ã™ã¹ã¦ãƒã‚§ãƒƒã‚¯
  *
  * @param	wk	
  *
@@ -290,7 +290,7 @@ static BOOL BoxShot_FirstSendCheck( BR_WORK* wk )
 	return ExParam2_Get( wk );
 }
 
-///< ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg
+///< ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ
 static const RECT_HIT_TBL hit_table_01[] = {	
 	{ DTC( 4 ), DTC( 8 ), DTC(  3 ), DTC(  9 ) },
 	{ DTC( 4 ), DTC( 8 ), DTC( 23 ), DTC( 28 ) },	
@@ -298,27 +298,27 @@ static const RECT_HIT_TBL hit_table_01[] = {
 	{ 152, 152 + 32, 128, 128 + 96 },
 };
 
-///< ƒJƒeƒSƒŠ‘I‘ğ
+///< ã‚«ãƒ†ã‚´ãƒªé¸æŠ
 static const RECT_HIT_TBL hit_table_02[] = {
 	{ DTC( 3 ), DTC( 5 ), DTC(  3 ), DTC( 13 ) },{ DTC( 3 ), DTC( 5 ), DTC( 18 ), DTC( 26 ) },
 	{ DTC( 8 ), DTC(10 ), DTC(  3 ), DTC( 13 ) },{ DTC( 8 ), DTC(10 ), DTC( 18 ), DTC( 26 ) },
 	{ DTC(13 ), DTC(15 ), DTC(  3 ), DTC( 13 ) },{ DTC(13 ), DTC(15 ), DTC( 18 ), DTC( 26 ) },
 
-	{ 152, 184, 80, 176 },	///< –ß‚é
+	{ 152, 184, 80, 176 },	///< æˆ»ã‚‹
 };
 
-///< ‚³‚¢‚µ‚ñ‚Q‚OŒ
+///< ã•ã„ã—ã‚“ï¼’ï¼ä»¶
 static const RECT_HIT_TBL hit_table_04[] = {
-	{ DTC( 2 ), DTC(  6 ), DTC( 11 ), DTC( 21 ) },	///< ƒvƒƒtƒB[ƒ‹Œ©‚é
-	{ DTC( 8 ), DTC( 14 ), DTC( 11 ), DTC( 21 ) },	///< ‚İ‚é
-	{ 152, 184, 80, 176 },	///< –ß‚é
+	{ DTC( 2 ), DTC(  6 ), DTC( 11 ), DTC( 21 ) },	///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«è¦‹ã‚‹
+	{ DTC( 8 ), DTC( 14 ), DTC( 11 ), DTC( 21 ) },	///< ã¿ã‚‹
+	{ 152, 184, 80, 176 },	///< æˆ»ã‚‹
 };
 
 static const RECT_HIT_TBL hit_table_05[] = {
-//	{ DTC( 4 ), DTC( 8 ), DTC(  3 ), DTC(  9 ) },	///< ©
-	{ DTC( 4 ), DTC( 12 ), DTC( 9 ), DTC( 23 ) },	///< ‚­‚í‚µ‚­
-//	{ DTC( 4 ), DTC( 8 ), DTC( 23 ), DTC( 29 ) },	///< ¨
-	{ 152, 184, 80, 176 },	///< –ß‚é
+//	{ DTC( 4 ), DTC( 8 ), DTC(  3 ), DTC(  9 ) },	///< â†
+	{ DTC( 4 ), DTC( 12 ), DTC( 9 ), DTC( 23 ) },	///< ãã‚ã—ã
+//	{ DTC( 4 ), DTC( 8 ), DTC( 23 ), DTC( 29 ) },	///< â†’
+	{ 152, 184, 80, 176 },	///< æˆ»ã‚‹
 };
 
 static void Btn_CallBack_01( u32 button, u32 event, void* work )
@@ -365,7 +365,7 @@ static void Btn_CallBack_01( u32 button, u32 event, void* work )
 				BR_Main_SeqChange( wk, eBOX_CATEGORY_IN );
 			}
 			#endif
-			BR_Main_SeqChange( wk, eBOX_CATEGORY_IN );	///< ‚Æ‚è‚ ‚¦‚¸‘—‚é
+			BR_Main_SeqChange( wk, eBOX_CATEGORY_IN );	///< ã¨ã‚Šã‚ãˆãšé€ã‚‹
 		}
 		else {
 			BoxShot_InfoMessage( wk, msg_info_002 );
@@ -418,7 +418,7 @@ static void Btn_CallBack_03( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒtƒB[ƒ‹@ƒ{ƒbƒNƒXŒ©‚é@‚à‚Ç‚é@‚Ì“–‚½‚è”»’è
+ * @brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã€€ãƒœãƒƒã‚¯ã‚¹è¦‹ã‚‹ã€€ã‚‚ã©ã‚‹ã€€ã®å½“ãŸã‚Šåˆ¤å®š
  *
  * @param	button	
  * @param	event	
@@ -477,7 +477,7 @@ static void Btn_CallBack_05( u32 button, u32 event, void* work )
 		bwk->poke_y = bwk->box_cur_pos / 6;
 		Cursor_PosSet( wk->cur_wk, 110 + ( bwk->poke_x * 24 ), 52 + ( bwk->poke_y * 22 ) );
 		
-		///< ƒ|ƒPƒ‚ƒ“Ø‚è‘Ö‚¦
+		///< ãƒã‚±ãƒ¢ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 		CATS_SystemActiveSet( wk, TRUE );
 		BoxShot_PokeSoftSpriteDel( wk );
 		BoxShot_PokeSoftSpriteAdd( wk );
@@ -500,7 +500,7 @@ static void Btn_CallBack_05( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒ^ƒ“ì¬
+ * @brief	ãƒœã‚¿ãƒ³ä½œæˆ
  *
  * @param	wk	
  *
@@ -519,7 +519,7 @@ static void BoxShot_FontButton_Create( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒ^ƒ“íœ
+ * @brief	ãƒœã‚¿ãƒ³å‰Šé™¤
  *
  * @param	wk	
  *
@@ -540,7 +540,7 @@ static void BoxShot_FontButton_Delete( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ğŒˆ‚ß‚é ( ƒ|ƒPƒ‚ƒ“‚ªÅ‰‚ÉŒ©‚Â‚©‚Á‚½êŠ)
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’æ±ºã‚ã‚‹ ( ãƒã‚±ãƒ¢ãƒ³ãŒæœ€åˆã«è¦‹ã¤ã‹ã£ãŸå ´æ‰€)
  *
  * @param	bwk	
  *
@@ -565,7 +565,7 @@ static void BoxShot_BoxCurPosSet( BOX_WORK* bwk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—Mƒf[ƒ^ì¬ ( •`‰æ‚É‚àg‚¤ )
+ * @brief	é€ä¿¡ãƒ‡ãƒ¼ã‚¿ä½œæˆ ( æç”»ã«ã‚‚ä½¿ã† )
  *
  * @param	boxdata	
  * @param	tray	
@@ -579,18 +579,18 @@ static void BoxShot_BoxCurPosSet( BOX_WORK* bwk )
 //--------------------------------------------------------------
 static void BoxShot_SendDataMake( SAVEDATA *sv, const BOX_DATA* box_data, int tray_no, GT_BOX_SHOT* box_shot )
 {
-	memset( box_shot, 0, sizeof( GT_BOX_SHOT ) );	///< TAMAGO‚ÌBIT‚ÌONOFF‚ªAƒ^ƒ}ƒS‚Ì‚Æ‚«‚¾‚¯ON‚É‚È‚Á‚Ä‚¢‚é‚Ì‚Å‰Šú‰»
+	memset( box_shot, 0, sizeof( GT_BOX_SHOT ) );	///< TAMAGOã®BITã®ONOFFãŒã€ã‚¿ãƒã‚´ã®ã¨ãã ã‘ONã«ãªã£ã¦ã„ã‚‹ã®ã§åˆæœŸåŒ–
 	GDS_CONV_Box_to_GTBox( sv, box_data, tray_no, box_shot, HEAPID_BR );
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê‚Ì‰Šú‰»ˆ—
+ * @brief	å…±é€šã®åˆæœŸåŒ–å‡¦ç†
  *
  * @param	wk	
  *
- * @retval	BOOL	‚È‚ñ‚Å‚à	
+ * @retval	BOOL	ãªã‚“ã§ã‚‚	
  *
  */
 //--------------------------------------------------------------
@@ -602,7 +602,7 @@ static BOOL BoxShot_CommonInit( BR_WORK* wk )
 	
 	wk->sub_work = bwk;
 	
-	///< BG2 3 ‚ğ‚Ü‚³‚ç‚É‚·‚é‚æ
+	///< BG2 3 ã‚’ã¾ã•ã‚‰ã«ã™ã‚‹ã‚ˆ
 	GF_BGL_ScrClear( wk->sys.bgl, GF_BGL_FRAME2_M );
 	GF_BGL_ScrClear( wk->sys.bgl, GF_BGL_FRAME3_M );
 	GF_BGL_ScrClear( wk->sys.bgl, GF_BGL_FRAME2_S );
@@ -623,7 +623,7 @@ static BOOL BoxShot_CommonInit( BR_WORK* wk )
 	bwk->btn_man[ 3 ] = BMN_Create( hit_table_04, NELEMS( hit_table_04 ), Btn_CallBack_04, wk, HEAPID_BR );
 	bwk->btn_man[ 4 ] = BMN_Create( hit_table_05, NELEMS( hit_table_05 ), Btn_CallBack_05, wk, HEAPID_BR );
 	
-	///< ‘—M—pƒvƒƒtƒB[ƒ‹
+	///< é€ä¿¡ç”¨ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 	bwk->prev.gds_profile_ptr = GDS_Profile_AllocMemory( HEAPID_BR );
 	GDS_Profile_MyDataSet( bwk->prev.gds_profile_ptr, wk->save );
 	
@@ -683,7 +683,7 @@ static BOOL BoxShot_SetUp( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒgƒŒƒCØ‚è‘Ö‚¦
+ * @brief	ãƒˆãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  *
@@ -753,13 +753,13 @@ static void ButtonOAM_PosSet( BR_WORK* wk, int mode )
 	BOX_WORK* bwk = wk->sub_work;
 	
 	if ( mode == 0 ){
-		///< 2ŒÂ
+		///< 2å€‹
 		CATS_ObjectEnableCap( bwk->obtn[ 1 ].cap, TRUE );
 		FONTOAM_SetDrawFlag( bwk->obtn[ 1 ].font_obj, TRUE );
 		CATS_ObjectPosSetCap( bwk->obtn[ 0 ].cap, 32, 232 );
 	}
 	else {
-		///< 1ŒÂ
+		///< 1å€‹
 		CATS_ObjectEnableCap( bwk->obtn[ 1 ].cap, FALSE );
 		FONTOAM_SetDrawFlag( bwk->obtn[ 1 ].font_obj, FALSE );
 		CATS_ObjectPosSetCap( bwk->obtn[ 0 ].cap, 80, 232 );
@@ -813,7 +813,7 @@ static BOOL BoxShot_CategoryMain( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—M•”•ªH
+ * @brief	é€ä¿¡éƒ¨åˆ†ï¼Ÿ
  *
  * @param	wk	
  *
@@ -872,7 +872,7 @@ static BOOL BoxShot_SendOut( BR_WORK* wk )
 		break;
 		
 	case 5:
-		///< ‘—M
+		///< é€ä¿¡
 		if( GDSRAP_Tool_Send_BoxshotUpload( BR_GDSRAP_WorkGet( wk ), 
 											bwk->prev.category,
 											bwk->prev.gds_profile_ptr,
@@ -882,12 +882,12 @@ static BOOL BoxShot_SendOut( BR_WORK* wk )
 		break;
 		
 	case 6:
-		///< ‘—M check
+		///< é€ä¿¡ check
 		Tool_InfoMessageMainDel( wk );
 		if( GDSRAP_ErrorInfoGet( BR_GDSRAP_WorkGet( wk ), &error_info ) == TRUE ){
-			//ƒGƒ‰[”­¶‚Ìˆ—
-			//ƒGƒ‰[ƒƒbƒZ[ƒW‚Ì•\¦“™‚ÍƒR[ƒ‹ƒoƒbƒN‚Ås‚í‚ê‚é‚Ì‚ÅA
-			//‚±‚±‚Å‚Í•\¦Œã‚Ìˆ—B(ƒAƒvƒŠI—¹‚Æ‚©“Á’è‚Ìƒƒjƒ…[‚É–ß‚·‚Æ‚©)
+			//ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿæ™‚ã®å‡¦ç†
+			//ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤ºç­‰ã¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§è¡Œã‚ã‚Œã‚‹ã®ã§ã€
+			//ã“ã“ã§ã¯è¡¨ç¤ºå¾Œã®å‡¦ç†ã€‚(ã‚¢ãƒ—ãƒªçµ‚äº†ã¨ã‹ç‰¹å®šã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«æˆ»ã™ã¨ã‹)
 			Snd_SeStopBySeqNo( eBR_SND_SEARCH, 0 );
 			BR_ErrorSet( wk, eERR_BOX_SEND, error_info->result, error_info->type );
 			wk->sub_seq++;
@@ -952,7 +952,7 @@ static BOOL BoxShot_CategoryOut( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹—pƒtƒF[ƒh
+ * @brief	çµ‚äº†ç”¨ãƒ•ã‚§ãƒ¼ãƒ‰
  *
  * @param	wk	
  *
@@ -1003,7 +1003,7 @@ static BOOL BoxShot_EndFade( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹—pƒtƒF[ƒh
+ * @brief	çµ‚äº†ç”¨ãƒ•ã‚§ãƒ¼ãƒ‰
  *
  * @param	wk	
  *
@@ -1046,7 +1046,7 @@ static BOOL BoxShot_R_EndFade( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê‚ÌI—¹ˆ—
+ * @brief	å…±é€šã®çµ‚äº†å‡¦ç†
  *
  * @param	wk	
  *
@@ -1062,7 +1062,7 @@ static void BoxShot_CommonExit( BR_WORK* wk )
 
 // -----------------------------------------
 //
-//	‘—M—pƒ{ƒbƒNƒX
+//	é€ä¿¡ç”¨ãƒœãƒƒã‚¯ã‚¹
 //
 // -----------------------------------------
 static BOOL BR_BoxS_Init( BR_WORK* wk );
@@ -1085,7 +1085,7 @@ BOOL (* const BR_BoxS_MainTable[])( BR_WORK* wk ) = {
 
 // -----------------------------------------
 //
-//	óM—pƒ{ƒbƒNƒX
+//	å—ä¿¡ç”¨ãƒœãƒƒã‚¯ã‚¹
 //
 // -----------------------------------------
 static BOOL BR_BoxR_Init( BR_WORK* wk );
@@ -1138,7 +1138,7 @@ static const u32 col_c[] = { 0x00, 0x00, BR_MSG_CLEAR_CODE };
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒbƒNƒXƒrƒ…[‚Ì‰Šú‰»
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ãƒ“ãƒ¥ãƒ¼ã®åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -1167,7 +1167,7 @@ static void BoxShot_BoxView_Init( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒbƒNƒXƒrƒ…[‚Ì‰Šú‰»
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ãƒ“ãƒ¥ãƒ¼ã®åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -1227,7 +1227,7 @@ static void BoxShot_CategoryWin_Del( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒbƒNƒXƒrƒ…[‚Ìíœ
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ãƒ“ãƒ¥ãƒ¼ã®å‰Šé™¤
  *
  * @param	wk	
  *
@@ -1249,7 +1249,7 @@ static void BoxShot_BoxView_Delete( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW‚Ì•\¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *
  * @param	wk	
  * @param	no	
@@ -1276,7 +1276,7 @@ static void BoxShot_InfoMessage( BR_WORK* wk, int no )
 	STRBUF_Delete( str1 );
 }
 
-///< ›››‚Ì››››ƒ{ƒbƒNƒX
+///< â—‹â—‹â—‹ã®â—‹â—‹â—‹â—‹ãƒœãƒƒã‚¯ã‚¹
 static void BoxShot_InfoMessageEx( BR_WORK* wk, int no )
 {
 	BOX_WORK* bwk = wk->sub_work;
@@ -1315,7 +1315,7 @@ static void BoxShot_InfoMessageEx( BR_WORK* wk, int no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒbƒNƒX‚Ì–¼‘O•\¦
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ã®åå‰è¡¨ç¤º
  *
  * @param	wk	
  *
@@ -1362,7 +1362,7 @@ static void BoxShot_PokeName_BoxName_OFF( BR_WORK* wk )
 	GF_BGL_BMPWIN* win;
 	BOX_WORK* bwk = wk->sub_work;
 	
-	///< info ‚ÍÁ‚³‚È‚¢
+	///< info ã¯æ¶ˆã•ãªã„
 	for ( i = 0; i < 2; i++ ){
 		win  = &bwk->win_m[ i ];
 		GF_BGL_BmpWinDataFill( win, col_c[ i ] );
@@ -1373,7 +1373,7 @@ static void BoxShot_PokeName_BoxName_OFF( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚½‚Ü‚²ƒ`ƒFƒbƒN
+ * @brief	ãŸã¾ã”ãƒã‚§ãƒƒã‚¯
  *
  * @param	bit	
  * @param	check	
@@ -1390,7 +1390,7 @@ static BOOL IsEggCheck( int bit, int check )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ì–¼‘O•\¦
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®åå‰è¡¨ç¤º
  *
  * @param	wk	
  * @param	pos	
@@ -1439,7 +1439,7 @@ static void BoxShot_PokemonName( BR_WORK* wk, int pos )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ““o˜^
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç™»éŒ²
  *
  * @param	wk	
  *
@@ -1511,7 +1511,7 @@ static void BoxShot_PokeIconAdd( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì•\¦Ø‘Ö
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºåˆ‡æ›¿
  *
  * @param	wk	
  * @param	flag	
@@ -1540,7 +1540,7 @@ static void BoxShot_PokeIconEnable( BR_WORK* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“íœ
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
  *
  * @param	wk	
  *
@@ -1575,7 +1575,7 @@ static void BoxShot_PokeIconDel( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ì“o˜^
+ * @brief	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ç™»éŒ²
  *
  * @param	wk	
  *
@@ -1617,7 +1617,7 @@ static void BoxShot_PokeSoftSpriteAdd( BR_WORK* wk )
 //	id  = PokeFormNoPersonalParaGet( monsno, form, ID_PARA_id_no );
 	rea = PokeRareGetPara( id, p_rand );
 	height = PokeHeightGet( monsno, sex, dir, form, p_rand );
-	height = 0;	///< box ‚Åg‚Á‚Ä‚È‚¢‚©‚ç 0 ‰Šú‰» g‚¤‚Æ‚«‚Ì‚½‚ß‚É‚Ì‚±‚·
+	height = 0;	///< box ã§ä½¿ã£ã¦ãªã„ã‹ã‚‰ 0 åˆæœŸåŒ– ä½¿ã†ã¨ãã®ãŸã‚ã«ã®ã“ã™
 	
 	PokeGraArcDataGet( &ssa, monsno, sex, dir, rea, form, p_rand );
 	
@@ -1628,7 +1628,7 @@ static void BoxShot_PokeSoftSpriteAdd( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ì”jŠü
+ * @brief	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ç ´æ£„
  *
  * @param	wk	
  *
@@ -1647,7 +1647,7 @@ static void BoxShot_PokeSoftSpriteEnable( BR_WORK* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ì”jŠü
+ * @brief	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ç ´æ£„
  *
  * @param	wk	
  *
@@ -1667,7 +1667,7 @@ static void BoxShot_PokeSoftSpriteDel( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒbƒNƒXƒrƒ…[
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ãƒ“ãƒ¥ãƒ¼
  *
  * @param	wk	
  *
@@ -1682,13 +1682,13 @@ static void BoxShot_BoxView( BR_WORK* wk )
 	{
 		BOX_DATA* boxdata = SaveData_GetBoxData( wk->save );
 		
-		///< ƒ_ƒCƒ„Eƒp[ƒ‹‚Ì•Ç†‚Í‚O”Ô
+		///< ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ã®å£ç´™ã¯ï¼ç•ª
 		if ( bwk->box_shot.wallPaper >= BOX_NORMAL_WALLPAPER_MAX
 		&&   bwk->box_shot.wallPaper < ( BOX_NORMAL_WALLPAPER_MAX + BOX_EX_WALLPAPER_MAX ) ){
 			bwk->box_shot.wallPaper = 0;
 		}
 		
-		///< ƒvƒ‰ƒ`ƒi‚Ì•Ç†‚Å‚àA‚à‚Á‚Ä–³‚¢ê‡‚Í‚O”Ô
+		///< ãƒ—ãƒ©ãƒãƒŠã®å£ç´™ã§ã‚‚ã€ã‚‚ã£ã¦ç„¡ã„å ´åˆã¯ï¼ç•ª
 		if ( bwk->box_shot.wallPaper >= ( BOX_NORMAL_WALLPAPER_MAX + BOX_EX_WALLPAPER_MAX )
 		&&	 bwk->box_shot.wallPaper < BOX_TOTAL_WALLPAPER_MAX_PL ){			
 			if( BOXDAT_GetDaisukiKabegamiFlag( boxdata, bwk->box_shot.wallPaper - BOX_TOTAL_WALLPAPER_MAX ) == FALSE ){
@@ -1729,13 +1729,13 @@ static void BoxShot_BoxView_NoMessage( BR_WORK* wk )
 	{
 		BOX_DATA* boxdata = SaveData_GetBoxData( wk->save );
 		
-		///< ƒ_ƒCƒ„Eƒp[ƒ‹‚Ì•Ç†‚Í‚O”Ô
+		///< ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ã®å£ç´™ã¯ï¼ç•ª
 		if ( bwk->box_shot.wallPaper >= BOX_NORMAL_WALLPAPER_MAX
 		&&   bwk->box_shot.wallPaper < ( BOX_NORMAL_WALLPAPER_MAX + BOX_EX_WALLPAPER_MAX ) ){
 			bwk->box_shot.wallPaper = 0;
 		}
 		
-		///< ƒvƒ‰ƒ`ƒi‚Ì•Ç†‚Å‚àA‚à‚Á‚Ä–³‚¢ê‡‚Í‚O”Ô
+		///< ãƒ—ãƒ©ãƒãƒŠã®å£ç´™ã§ã‚‚ã€ã‚‚ã£ã¦ç„¡ã„å ´åˆã¯ï¼ç•ª
 		if ( bwk->box_shot.wallPaper >= ( BOX_NORMAL_WALLPAPER_MAX + BOX_EX_WALLPAPER_MAX )
 		&&	 bwk->box_shot.wallPaper < BOX_TOTAL_WALLPAPER_MAX_PL ){
 			
@@ -1756,10 +1756,10 @@ static void BoxShot_BoxView_NoMessage( BR_WORK* wk )
 }
 
 
-///< ----- ‘—Mƒ{ƒbƒNƒX -----
+///< ----- é€ä¿¡ãƒœãƒƒã‚¯ã‚¹ -----
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -1773,9 +1773,9 @@ static BOOL BR_BoxS_Init( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:
-		///< ã‰º‰æ–Ê‚Ì“]‘—
+		///< ä¸Šä¸‹ç”»é¢ã®è»¢é€
 		{
-			///< ã
+			///< ä¸Š
 			BR_disp_BG_InfoWindowLoad_Single( wk, GF_BGL_FRAME2_M );
 			CATS_SystemActiveSet( wk, TRUE );
 			BoxShot_BoxView_Init( wk );
@@ -1784,7 +1784,7 @@ static BOOL BR_BoxS_Init( BR_WORK* wk )
 			BoxShot_PokeIconEnable( wk, FALSE );
 			CATS_SystemActiveSet( wk, FALSE );
 
-			///< ‰º
+			///< ä¸‹
 			ArcUtil_HDL_BgCharSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_data_NCGR, wk->sys.bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BR );
 			ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_box3_NSCR, wk->sys.bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BR );
 		}
@@ -1806,7 +1806,7 @@ static BOOL BR_BoxS_Init( BR_WORK* wk )
 		break;
 	
 	case 2:
-		///< ƒtƒF[ƒh		
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰		
 		if ( BR_PaletteFade( &bwk->color, eFADE_MODE_IN ) ){
 			bwk->btn = bwk->btn_man[ 0 ];
 			BR_Main_SeqChange( wk, eBOX_MAIN );
@@ -1822,7 +1822,7 @@ static BOOL BR_BoxS_Init( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
  * @param	wk	
  *
@@ -1842,7 +1842,7 @@ static BOOL BR_BoxS_Main( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	wk	
  *
@@ -1905,22 +1905,22 @@ static BOOL BR_BoxS_Exit( BR_WORK* wk )
 }
 
 
-///< ----- óMƒ{ƒbƒNƒX -----
+///< ----- å—ä¿¡ãƒœãƒƒã‚¯ã‚¹ -----
 static BOOL BR_BoxR_Init( BR_WORK* wk )
 {
 	BOX_WORK* bwk = wk->sub_work;
 	
 	switch ( wk->sub_seq ){
 	case 0:
-		///< ã‰º‰æ–Ê‚Ì“]‘—
+		///< ä¸Šä¸‹ç”»é¢ã®è»¢é€
 		{
-			///< ã
+			///< ä¸Š
 			CATS_SystemActiveSet( wk, TRUE );
 			BR_disp_BG_InfoWindowLoad_Single( wk, GF_BGL_FRAME2_M );
 			BoxShot_BoxView_Init( wk );
 			BoxShot_InfoMessage( wk, msg_info_006 );
 
-			///< ‰º
+			///< ä¸‹
 			ArcUtil_HDL_BgCharSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_data_NCGR, wk->sys.bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BR );
 			ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_box1_NSCR, wk->sys.bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BR );
 			BoxShot_CategoryWin_Add( wk );
@@ -1946,7 +1946,7 @@ static BOOL BR_BoxR_Init( BR_WORK* wk )
 		break;
 	
 	case 2:
-		///< ƒtƒF[ƒh		
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰		
 		if ( BR_PaletteFade( &bwk->color, eFADE_MODE_IN ) ){
 			bwk->btn = bwk->btn_man[ 2 ];
 			BR_Main_SeqChange( wk, eBOX_MAIN );
@@ -2071,7 +2071,7 @@ static void BoxShot_SelectWinDel( BR_WORK* wk )
 }
 
 static const u8 win_data_new20[][ 4 ] = {
-	{  4, 3, 24, 2 },	///< ‚½‚¢‚Æ‚é
+	{  4, 3, 24, 2 },	///< ãŸã„ã¨ã‚‹
 };
 
 static void BoxShot_New20_WinAdd( BR_WORK* wk )
@@ -2124,15 +2124,15 @@ static void BoxShot_New20_WinDel( BR_WORK* wk )
 static const TOUCH_LIST_HEADER tl_head_boxshot = {
 	NULL,
 	0,
-	3,					///< 1s• = 2
+	3,					///< 1è¡Œå¹… = 2
 	
 	 3, 7,
 	26,15,
-	64,					///< Œ©o‚µl—¶
+	64,					///< è¦‹å‡ºã—è€ƒæ…®
 	GF_BGL_FRAME2_M,
 	
-	5,					///< •\¦Œ”
-	NULL,				///< “–‚½‚è”»’è
+	5,					///< è¡¨ç¤ºä»¶æ•°
+	NULL,				///< å½“ãŸã‚Šåˆ¤å®š
 };
 
 static BOOL BoxShot_SelectIn( BR_WORK* wk )
@@ -2164,7 +2164,7 @@ static BOOL BoxShot_SelectIn( BR_WORK* wk )
 		break;
 		
 	case 2:
-		///< óM
+		///< å—ä¿¡
 		HormingCursor_Init( wk, wk->cur_wk, COMM_HORMING_CUR_CX, COMM_HORMING_CUR_CY );
 		Cursor_Visible( wk->cur_wk, TRUE );
 		Cursor_R_Set( wk->cur_wk, COMM_HORMING_R, COMM_HORMING_R );
@@ -2183,9 +2183,9 @@ static BOOL BoxShot_SelectIn( BR_WORK* wk )
 	//	Tool_InfoMessageMainSet( wk, msg_915 );
 		Tool_InfoMessageMainDel( wk );
 		if( GDSRAP_ErrorInfoGet( BR_GDSRAP_WorkGet( wk ), &error_info ) == TRUE ){
-			//ƒGƒ‰[”­¶‚Ìˆ—
-			//ƒGƒ‰[ƒƒbƒZ[ƒW‚Ì•\¦“™‚ÍƒR[ƒ‹ƒoƒbƒN‚Ås‚í‚ê‚é‚Ì‚ÅA
-			//‚±‚±‚Å‚Í•\¦Œã‚Ìˆ—B(ƒAƒvƒŠI—¹‚Æ‚©“Á’è‚Ìƒƒjƒ…[‚É–ß‚·‚Æ‚©)
+			//ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿæ™‚ã®å‡¦ç†
+			//ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤ºç­‰ã¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§è¡Œã‚ã‚Œã‚‹ã®ã§ã€
+			//ã“ã“ã§ã¯è¡¨ç¤ºå¾Œã®å‡¦ç†ã€‚(ã‚¢ãƒ—ãƒªçµ‚äº†ã¨ã‹ç‰¹å®šã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«æˆ»ã™ã¨ã‹)
 			Snd_SeStopBySeqNo( eBR_SND_SEARCH, 0 );
 			BR_ErrorSet( wk, eERR_BOX_RECV, error_info->result, error_info->type );
 			bwk->prev.download_max = 0;
@@ -2224,7 +2224,7 @@ static BOOL BoxShot_SelectIn( BR_WORK* wk )
 		break;
 	
 	case 6:
-		///< 0Œ‚Ìˆ—		
+		///< 0ä»¶ã®å‡¦ç†		
 		if ( (++wk->wait) >= BB_INFO_WAIT 
 		||	 GF_TP_GetTrg() == TRUE ){			
 			wk->wait = 0;
@@ -2270,19 +2270,19 @@ static BOOL BoxShot_SelectIn( BR_WORK* wk )
 	default:
 		BR_PaletteFade( &bwk->color, eFADE_MODE_IN );
 		if ( Plate_AlphaFade( &bwk->eva, &bwk->evb, eFADE_MODE_IN, ePLANE_ALL ) ){
-			///< ÅV20Œ‚Ìƒ{ƒbƒNƒX•`‰æˆ—
+			///< æœ€æ–°20ä»¶ã®ãƒœãƒƒã‚¯ã‚¹æç”»å‡¦ç†
 			BoxShot_New20_WinAdd( wk );
 			BoxName_and_PlayerName_Create( wk );
 			{
 				CATS_SystemActiveSet( wk, TRUE );
 				bwk->tl_box_shot_head = tl_head_boxshot;
-				bwk->tl_box_shot_head.data_max = bwk->prev.download_max;			///< ƒwƒbƒ_[XV
-				Slider_InitEx( &wk->sys.slider, wk, eTAG_EX_BOX_SLIDER );			///< ƒXƒ‰ƒCƒ_[‚Ì‰Šú‰»
-				TouchList_WorkClear( &wk->sys.touch_list );							///< ƒŠƒXƒgƒ[ƒN‚Ì‰Šú‰»
-				TouchList_InitBoxShot( &wk->sys.touch_list, wk, &bwk->tl_box_shot_head, &bwk->box_str[ 0 ]  );	///< ƒŠƒXƒg‚Ì‰Šú‰»
-				Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ƒAƒjƒƒ`ƒFƒbƒN
-				TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_MAIN );	///< ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹“o˜^
-				TouchList_CursorPosSet( &wk->sys.touch_list, 56, 176 );				///< ƒJ[ƒ\ƒ‹‚ÌˆÊ’u•ÏX
+				bwk->tl_box_shot_head.data_max = bwk->prev.download_max;			///< ãƒ˜ãƒƒãƒ€ãƒ¼æ›´æ–°
+				Slider_InitEx( &wk->sys.slider, wk, eTAG_EX_BOX_SLIDER );			///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®åˆæœŸåŒ–
+				TouchList_WorkClear( &wk->sys.touch_list );							///< ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
+				TouchList_InitBoxShot( &wk->sys.touch_list, wk, &bwk->tl_box_shot_head, &bwk->box_str[ 0 ]  );	///< ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
+				Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ã‚¢ãƒ‹ãƒ¡ãƒã‚§ãƒƒã‚¯
+				TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_MAIN );	///< ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ç™»éŒ²
+				TouchList_CursorPosSet( &wk->sys.touch_list, 56, 176 );				///< ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®å¤‰æ›´
 				CATS_SystemActiveSet( wk, FALSE );
 			}
 			BoxShot_SelectWinAdd( wk );
@@ -2296,7 +2296,7 @@ static BOOL BoxShot_SelectIn( BR_WORK* wk )
 			BR_Main_SeqChange( wk, eBOX2_SELECT );
 		}
 		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_OBJ,	LINE_OTHER_SUB_PALETTE, bwk->color, wk->sys.logo_color );
-		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, bwk->color, wk->sys.logo_color );		///< ã‰ºƒJ[ƒ\ƒ‹‚ªƒ^ƒOƒpƒŒƒbƒg‚È‚Ì‚Å
+		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, bwk->color, wk->sys.logo_color );		///< ä¸Šä¸‹ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚¿ã‚°ãƒ‘ãƒ¬ãƒƒãƒˆãªã®ã§
 		break;
 	}	
 	return FALSE;
@@ -2305,7 +2305,7 @@ static BOOL BoxShot_SelectIn( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ„[‚Æƒ{ƒbƒNƒX–¼‚ğƒƒ‚ƒŠŠm•Û‚·‚é
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ãƒœãƒƒã‚¯ã‚¹åã‚’ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹
  *
  * @param	wk	
  *
@@ -2330,7 +2330,7 @@ static void BoxName_and_PlayerName_Create( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ„[‚Æƒ{ƒbƒNƒX–¼‚ğ”jŠü‚·‚é
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ãƒœãƒƒã‚¯ã‚¹åã‚’ç ´æ£„ã™ã‚‹
  *
  * @param	wk	
  *
@@ -2383,9 +2383,9 @@ static BOOL BoxShot_SelectOut( BR_WORK* wk )
 			BoxShot_New20_WinDel( wk );
 			
 			CATS_SystemActiveSet( wk, TRUE );
-			Slider_Exit( &wk->sys.slider );					///< ƒXƒ‰ƒCƒ_[‚Ì”jŠü
-			TouchList_Exit( &wk->sys.touch_list );			///< ƒŠƒXƒg‚Ì”jŠü
-			TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹”jŠü
+			Slider_Exit( &wk->sys.slider );					///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®ç ´æ£„
+			TouchList_Exit( &wk->sys.touch_list );			///< ãƒªã‚¹ãƒˆã®ç ´æ£„
+			TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ç ´æ£„
 			CATS_SystemActiveSet( wk, FALSE );
 		}
 		else {
@@ -2441,9 +2441,9 @@ static BOOL BoxShot_BoxIn( BR_WORK* wk )
 		if ( bwk->view_mode == 0 ){
 			BoxShot_New20_WinDel( wk );
 			CATS_SystemActiveSet( wk, TRUE );
-			Slider_Exit( &wk->sys.slider );					///< ƒXƒ‰ƒCƒ_[‚Ì”jŠü
-			TouchList_Exit( &wk->sys.touch_list );			///< ƒŠƒXƒg‚Ì”jŠü
-			TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹”jŠü
+			Slider_Exit( &wk->sys.slider );					///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®ç ´æ£„
+			TouchList_Exit( &wk->sys.touch_list );			///< ãƒªã‚¹ãƒˆã®ç ´æ£„
+			TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ç ´æ£„
 			CATS_SystemActiveSet( wk, FALSE );
 		}
 		else {
@@ -2467,9 +2467,9 @@ static BOOL BoxShot_BoxIn( BR_WORK* wk )
 		break;
 	
 	case 2:
-		///< ã‰º‰æ–Ê‚Ì“]‘—
+		///< ä¸Šä¸‹ç”»é¢ã®è»¢é€
 		{
-			///< ã
+			///< ä¸Š
 			CATS_SystemActiveSet( wk, TRUE );
 			bwk->box_shot = bwk->recv_data[ wk->sys.touch_list.view.this ]->box_shot;
 			BoxShot_BoxCurPosSet( bwk );
@@ -2484,7 +2484,7 @@ static BOOL BoxShot_BoxIn( BR_WORK* wk )
 			CATS_SystemActiveSet( wk, FALSE );
 			GF_Disp_GXS_VisibleControl(  GX_PLANEMASK_BG2, VISIBLE_OFF );
 
-			///< ‰º
+			///< ä¸‹
 			ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_box5_NSCR, wk->sys.bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BR );
 		}
 		GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG3, VISIBLE_ON );
@@ -2507,7 +2507,7 @@ static BOOL BoxShot_BoxIn( BR_WORK* wk )
 		break;
 	
 	default:
-		///< ƒtƒF[ƒh		
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰		
 		if ( BR_PaletteFade( &bwk->color, eFADE_MODE_IN ) ){
 			bwk->btn = bwk->btn_man[ 0 ];
 			BoxShot_BoxCurPosSet( bwk );		
@@ -2574,11 +2574,11 @@ static BOOL BoxShot_BoxOut( BR_WORK* wk )
 			BoxShot_New20_WinAdd( wk );
 			BoxShot_SelectWinAdd( wk );
 			{
-				Slider_InitEx( &wk->sys.slider, wk, eTAG_EX_BOX_SLIDER );			///< ƒXƒ‰ƒCƒ_[‚Ì‰Šú‰»
-				TouchList_InitBoxShot( &wk->sys.touch_list, wk, &bwk->tl_box_shot_head, &bwk->box_str[ 0 ]  );	///< ƒŠƒXƒg‚Ì‰Šú‰»
-				Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ƒAƒjƒƒ`ƒFƒbƒN
-				TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_MAIN );	///< ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹“o˜^
-				TouchList_CursorPosSet( &wk->sys.touch_list, 56, 176 );				///< ƒJ[ƒ\ƒ‹‚ÌˆÊ’u•ÏX
+				Slider_InitEx( &wk->sys.slider, wk, eTAG_EX_BOX_SLIDER );			///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®åˆæœŸåŒ–
+				TouchList_InitBoxShot( &wk->sys.touch_list, wk, &bwk->tl_box_shot_head, &bwk->box_str[ 0 ]  );	///< ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
+				Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ã‚¢ãƒ‹ãƒ¡ãƒã‚§ãƒƒã‚¯
+				TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_MAIN );	///< ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ç™»éŒ²
+				TouchList_CursorPosSet( &wk->sys.touch_list, 56, 176 );				///< ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®å¤‰æ›´
 			}
 			{
 				HormingCursor_Init( wk, wk->cur_wk, 16, 68 + ( wk->sys.touch_list.view.l_pos * 24 ) );
@@ -2612,9 +2612,9 @@ static BOOL BoxShot_ProfileIn( BR_WORK* wk )
 			BoxShot_New20_WinDel( wk );
 		}
 		{
-			Slider_Exit( &wk->sys.slider );					///< ƒXƒ‰ƒCƒ_[‚Ì”jŠü
-			TouchList_Exit( &wk->sys.touch_list );			///< ƒŠƒXƒg‚Ì”jŠü
-			TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹”jŠü
+			Slider_Exit( &wk->sys.slider );					///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®ç ´æ£„
+			TouchList_Exit( &wk->sys.touch_list );			///< ãƒªã‚¹ãƒˆã®ç ´æ£„
+			TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ç ´æ£„
 		}
 		bwk->view_mode = 1;
 		GF_BGL_ScrClear( wk->sys.bgl, GF_BGL_FRAME2_M );
@@ -2686,11 +2686,11 @@ static BOOL BoxShot_ProfileOut( BR_WORK* wk )
 			BoxShot_New20_WinAdd( wk );
 //			BoxShot_SelectWinAdd( wk );
 			{
-				Slider_InitEx( &wk->sys.slider, wk, eTAG_EX_BOX_SLIDER );			///< ƒXƒ‰ƒCƒ_[‚Ì‰Šú‰»
-				TouchList_InitBoxShot( &wk->sys.touch_list, wk, &bwk->tl_box_shot_head, &bwk->box_str[ 0 ]  );	///< ƒŠƒXƒg‚Ì‰Šú‰»
-				Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ƒAƒjƒƒ`ƒFƒbƒN
-				TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_MAIN );	///< ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹“o˜^
-				TouchList_CursorPosSet( &wk->sys.touch_list, 56, 176 );				///< ƒJ[ƒ\ƒ‹‚ÌˆÊ’u•ÏX
+				Slider_InitEx( &wk->sys.slider, wk, eTAG_EX_BOX_SLIDER );			///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®åˆæœŸåŒ–
+				TouchList_InitBoxShot( &wk->sys.touch_list, wk, &bwk->tl_box_shot_head, &bwk->box_str[ 0 ]  );	///< ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
+				Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ã‚¢ãƒ‹ãƒ¡ãƒã‚§ãƒƒã‚¯
+				TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_MAIN );	///< ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ç™»éŒ²
+				TouchList_CursorPosSet( &wk->sys.touch_list, 56, 176 );				///< ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®å¤‰æ›´
 			}
 			if ( bwk->view_mode == 0 ){
 				Slider_HitCheck_Main( &wk->sys.slider );
@@ -2770,7 +2770,7 @@ static BOOL BR_BoxR_Exit( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	¡’ÊMü‚è
+//	â– é€šä¿¡å‘¨ã‚Š
 //
 //
 // =============================================================================
@@ -2778,13 +2778,13 @@ void BR_Response_BoxRegist( void *work, const GDS_RAP_ERROR_INFO *error_info )
 {
 	BOX_WORK *bwk = work;
 	
-	OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg‚ÌƒAƒbƒvƒ[ƒhƒŒƒXƒ|ƒ“ƒXæ“¾\n");
+	OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆã®ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ¬ã‚¹ãƒãƒ³ã‚¹å–å¾—\n");
 	if( error_info->occ == TRUE ){
-		//TRUE‚È‚ç‚ÎƒGƒ‰[”­¶‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚±‚Åƒƒjƒ…[‚ğ–ß‚·‚Æ‚©ƒAƒvƒŠI—¹ƒ‚[ƒh‚ÖˆÚs‚Æ‚©‚·‚é
+		//TRUEãªã‚‰ã°ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã—ã¦ã„ã‚‹ã®ã§ã€ã“ã“ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æˆ»ã™ã¨ã‹ã‚¢ãƒ—ãƒªçµ‚äº†ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œã¨ã‹ã™ã‚‹
 	}
 	else{
-		//³í‚È‚ç‚ÎóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^æ“¾‚È‚Ç‚ğs‚¤
-		//ƒAƒbƒvƒ[ƒh‚Ìê‡‚Í“Á‚É•K—v‚È‚µ
+		//æ­£å¸¸æ™‚ãªã‚‰ã°å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿å–å¾—ãªã©ã‚’è¡Œã†
+		//ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã®å ´åˆã¯ç‰¹ã«å¿…è¦ãªã—
 	}
 }
 
@@ -2793,15 +2793,15 @@ void BR_Response_BoxGet( void *work, const GDS_RAP_ERROR_INFO *error_info )
 	BR_WORK* wk = work;
 	BOX_WORK* bwk = wk->sub_work;
 	
-	OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg‚Ìƒ_ƒEƒ“ƒ[ƒhƒŒƒXƒ|ƒ“ƒXæ“¾\n");
+	OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ¬ã‚¹ãƒãƒ³ã‚¹å–å¾—\n");
 
 	if( error_info->occ == TRUE ){
-		//TRUE‚È‚ç‚ÎƒGƒ‰[”­¶‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚±‚Åƒƒjƒ…[‚ğ–ß‚·‚Æ‚©ƒAƒvƒŠI—¹ƒ‚[ƒh‚ÖˆÚs‚Æ‚©‚·‚é
+		//TRUEãªã‚‰ã°ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã—ã¦ã„ã‚‹ã®ã§ã€ã“ã“ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æˆ»ã™ã¨ã‹ã‚¢ãƒ—ãƒªçµ‚äº†ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œã¨ã‹ã™ã‚‹
 		bwk->prev.download_max = 0;
 	}
 	else{
-		//³í‚È‚ç‚ÎóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^æ“¾‚È‚Ç‚ğs‚¤
-		//ƒAƒbƒvƒ[ƒh‚Ìê‡‚Í“Á‚É•K—v‚È‚µ
+		//æ­£å¸¸æ™‚ãªã‚‰ã°å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿å–å¾—ãªã©ã‚’è¡Œã†
+		//ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã®å ´åˆã¯ç‰¹ã«å¿…è¦ãªã—
 
 		bwk->prev.download_max = GDS_RAP_RESPONSE_Boxshot_Download_RecvPtr_Set( BR_GDSRAP_WorkGet( wk ), bwk->recv_data, BOX_SHOT_RECV_DATA_NUM );
 		MI_CpuCopy8( bwk->recv_data, &bwk->recv_data_tmp, sizeof( GT_BOX_SHOT_RECV ) * BOX_SHOT_RECV_DATA_NUM );	

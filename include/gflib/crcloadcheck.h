@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	crc_loadcheck.h
- * @brief	CRC�ɂ��A�Z�[�u�f�[�^��ʐM�̌������Ǘ�����w�b�_�[
+ * @brief	CRCによる、セーブデータや通信の検査を管理するヘッダー
  * @author	k.ohno
  * @date	2007.12.3
  *
@@ -16,7 +16,7 @@
 #define CRCLOADCHECK_GMDATA_ID_PLAYER_DATA  (0)
 #define CRCLOADCHECK_GMDATA_ID_TEMOTI_POKE  (0)
 #define CRCLOADCHECK_GMDATA_ID_TEMOTI_ITEM  (0)
-#define CRCLOADCHECK_GMDATA_ID_EVENT_WORK  (0)   //�����s�\���̈�
+#define CRCLOADCHECK_GMDATA_ID_EVENT_WORK  (0)   //検査不十分の為
 #define CRCLOADCHECK_GMDATA_ID_POKETCH_DATA  (0)
 #define CRCLOADCHECK_GMDATA_ID_SITUATION  (0)
 #define CRCLOADCHECK_GMDATA_ID_ZUKANWORK  (0)

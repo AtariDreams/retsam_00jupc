@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ev_mapchange.c
- * @brief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvØ‘Ö‚ÌƒCƒxƒ“ƒg‚Æ‚»‚Ì¶¬ƒ`ƒFƒbƒN
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—åˆ‡æ›¿ã®ã‚¤ãƒ™ãƒ³ãƒˆã¨ãã®ç”Ÿæˆãƒã‚§ãƒƒã‚¯
  * @date	2005.08.01
  * @author	tamada / saito
  */
@@ -21,13 +21,13 @@
 
 #include "zonedata.h"
 #include "mapdefine.h"
-#include "eventdata.h"		//ƒ][ƒ“–ˆ‚ÌƒCƒxƒ“ƒgƒf[ƒ^QÆ‚Ì‚½‚ß
+#include "eventdata.h"		//ã‚¾ãƒ¼ãƒ³æ¯ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å‚ç…§ã®ãŸã‚
 
 #include "system/snd_tool.h"
 #include "fld_bgm.h"
 #include "system/brightness.h"
-#include "system/pm_overlay.h"  // ’n‰ºÚ‘±‚Ì‚½‚ß
-#include "comm_player.h"  // ’n‰ºÚ‘±‚Ì‚½‚ß
+#include "system/pm_overlay.h"  // åœ°ä¸‹æ¥ç¶šã®ãŸã‚
+#include "comm_player.h"  // åœ°ä¸‹æ¥ç¶šã®ãŸã‚
 #include "communication/communication.h"
 #include "../fielddata/script/common_scr_def.h"		//SCRID_REPORT
 
@@ -40,10 +40,10 @@
 #include "field_ananuke.h"
 #include "effect_warppoint.h"
 
-//«’n‰º
+//â†“åœ°ä¸‹
 #include "effect_uground.h"
-#include "comm_field_state.h"  // ’n‰º’ÊM—p
-#include "underground/ug_manager.h"  // ’n‰º—p
+#include "comm_field_state.h"  // åœ°ä¸‹é€šä¿¡ç”¨
+#include "underground/ug_manager.h"  // åœ°ä¸‹ç”¨
 //
 #include "script.h"
 
@@ -100,93 +100,93 @@ static void FNoteStartDataSet_SioError( FIELDSYS_WORK * fsys );
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg—p§Œäƒ[ƒN
+ * @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆç”¨åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 typedef struct {
-	int seq;							///<ƒV[ƒPƒ“ƒX•Ûƒ[ƒN
-	LOCATION_WORK next;					///<ƒ}ƒbƒv‘JˆÚæw’è—pƒ[ƒN
+	int seq;							///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿æŒãƒ¯ãƒ¼ã‚¯
+	LOCATION_WORK next;					///<ãƒãƒƒãƒ—é·ç§»å…ˆæŒ‡å®šç”¨ãƒ¯ãƒ¼ã‚¯
 	FLD_3D_ANIME_WORK_PTR DoorAnimeWork;
 }EVENT_MAPCHG_WORK;
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvƒVƒXƒeƒ€‚Ì‰Šú‰»ƒpƒ‰ƒ[ƒ^
+ * @brief	ãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const MAP_MODE_DATA MapModeData[] = {
-	///MAP_MODE_GROUND		’ÊíƒtƒB[ƒ‹ƒh
+	///MAP_MODE_GROUND		é€šå¸¸ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 	{
-		FIELD_SUBSCRN_POKETCH,		//ƒTƒu‰æ–ÊFƒ|ƒPƒbƒ`
-		DIV_MAP_MODE_GROUND,		//ƒ}ƒbƒv•ªŠ„“]‘—ƒVƒXƒeƒ€w’èF’Êí
-		MAP_TOOL_MODE_GROUND,		//ƒ}ƒbƒvƒc[ƒ‹w’èF’Êí
-		DISP_3D_TO_MAIN,			//ã‰æ–Ê‚ª3D
-		FALSE,						//“ÁêƒAƒgƒŠƒrƒ…[ƒgƒVƒXƒeƒ€Fg‚í‚È‚¢
-		TRUE,						//ƒTƒuƒI[ƒo[ƒŒƒCF©“®“Ç‚İ‚İ
-		0,							//“ÁêƒAƒgƒŠƒrƒ…[ƒg—p‚É•Û‚·‚éƒf[ƒ^”
-		0xc4000,					//ƒtƒB[ƒ‹ƒh‚ÅŠm•Û‚·‚éƒq[ƒv‚ÌƒTƒCƒY
+		FIELD_SUBSCRN_POKETCH,		//ã‚µãƒ–ç”»é¢ï¼šãƒã‚±ãƒƒãƒ
+		DIV_MAP_MODE_GROUND,		//ãƒãƒƒãƒ—åˆ†å‰²è»¢é€ã‚·ã‚¹ãƒ†ãƒ æŒ‡å®šï¼šé€šå¸¸
+		MAP_TOOL_MODE_GROUND,		//ãƒãƒƒãƒ—ãƒ„ãƒ¼ãƒ«æŒ‡å®šï¼šé€šå¸¸
+		DISP_3D_TO_MAIN,			//ä¸Šç”»é¢ãŒ3D
+		FALSE,						//ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚·ã‚¹ãƒ†ãƒ ï¼šä½¿ã‚ãªã„
+		TRUE,						//ã‚µãƒ–ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ï¼šè‡ªå‹•èª­ã¿è¾¼ã¿
+		0,							//ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç”¨ã«ä¿æŒã™ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°
+		0xc4000,					//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ã‚µã‚¤ã‚º
 	},
-	///MAP_MODE_UNDER		’Yz
+	///MAP_MODE_UNDER		ç‚­é‰±
 	{
-		FIELD_SUBSCRN_UNDER,		//ƒTƒu‰æ–ÊFƒŒ[ƒ_[
-		DIV_MAP_MODE_UNDER,			//ƒ}ƒbƒv•ªŠ„“]‘—ƒVƒXƒeƒ€w’èF’n‰º—p
-		MAP_TOOL_MODE_UNDER,		//ƒ}ƒbƒvƒc[ƒ‹w’èF’n‰º—p
-		DISP_3D_TO_SUB,				//‰º‰æ–Ê‚ª3D
-		TRUE,						//“ÁêƒAƒgƒŠƒrƒ…[ƒgƒVƒXƒeƒ€Fg‚¤
-		FALSE,						//ƒTƒuƒI[ƒo[ƒŒƒCF“Ç‚İ‚Ü‚È‚¢
-		16,							//“ÁêƒAƒgƒŠƒrƒ…[ƒg—p‚É•Û‚·‚éƒf[ƒ^”
-		0xc4000,					//ƒtƒB[ƒ‹ƒh‚ÅŠm•Û‚·‚éƒq[ƒv‚ÌƒTƒCƒY
+		FIELD_SUBSCRN_UNDER,		//ã‚µãƒ–ç”»é¢ï¼šãƒ¬ãƒ¼ãƒ€ãƒ¼
+		DIV_MAP_MODE_UNDER,			//ãƒãƒƒãƒ—åˆ†å‰²è»¢é€ã‚·ã‚¹ãƒ†ãƒ æŒ‡å®šï¼šåœ°ä¸‹ç”¨
+		MAP_TOOL_MODE_UNDER,		//ãƒãƒƒãƒ—ãƒ„ãƒ¼ãƒ«æŒ‡å®šï¼šåœ°ä¸‹ç”¨
+		DISP_3D_TO_SUB,				//ä¸‹ç”»é¢ãŒ3D
+		TRUE,						//ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚·ã‚¹ãƒ†ãƒ ï¼šä½¿ã†
+		FALSE,						//ã‚µãƒ–ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ï¼šèª­ã¿è¾¼ã¾ãªã„
+		16,							//ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç”¨ã«ä¿æŒã™ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°
+		0xc4000,					//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ã‚µã‚¤ã‚º
 	},
-	///MAP_MODE_UNION		ƒ†ƒjƒIƒ“ƒ‹[ƒ€
+	///MAP_MODE_UNION		ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ 
 	{
-		FIELD_SUBSCRN_UNION,		//ƒTƒu‰æ–ÊFƒ†ƒjƒIƒ“ƒ{[ƒh
-		DIV_MAP_MODE_GROUND,		//ƒ}ƒbƒv•ªŠ„“]‘—ƒVƒXƒeƒ€w’èF’Êí
-		MAP_TOOL_MODE_GROUND,		//ƒ}ƒbƒvƒc[ƒ‹w’èF’Êí
-		DISP_3D_TO_MAIN,			//ã‰æ–Ê‚ª3D
-		FALSE,						//“ÁêƒAƒgƒŠƒrƒ…[ƒgƒVƒXƒeƒ€Fg‚í‚È‚¢
-		TRUE,						//ƒTƒuƒI[ƒo[ƒŒƒCF©“®“Ç‚İ‚İ
-		0,							//“ÁêƒAƒgƒŠƒrƒ…[ƒg—p‚É•Û‚·‚éƒf[ƒ^”
-		0xc4000,					//ƒtƒB[ƒ‹ƒh‚ÅŠm•Û‚·‚éƒq[ƒv‚ÌƒTƒCƒY
+		FIELD_SUBSCRN_UNION,		//ã‚µãƒ–ç”»é¢ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒœãƒ¼ãƒ‰
+		DIV_MAP_MODE_GROUND,		//ãƒãƒƒãƒ—åˆ†å‰²è»¢é€ã‚·ã‚¹ãƒ†ãƒ æŒ‡å®šï¼šé€šå¸¸
+		MAP_TOOL_MODE_GROUND,		//ãƒãƒƒãƒ—ãƒ„ãƒ¼ãƒ«æŒ‡å®šï¼šé€šå¸¸
+		DISP_3D_TO_MAIN,			//ä¸Šç”»é¢ãŒ3D
+		FALSE,						//ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚·ã‚¹ãƒ†ãƒ ï¼šä½¿ã‚ãªã„
+		TRUE,						//ã‚µãƒ–ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ï¼šè‡ªå‹•èª­ã¿è¾¼ã¿
+		0,							//ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç”¨ã«ä¿æŒã™ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°
+		0xc4000,					//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ã‚µã‚¤ã‚º
 	},
-	///MAP_MODE_COLOSSEUM	’ÊM‘Îí•”‰®
+	///MAP_MODE_COLOSSEUM	é€šä¿¡å¯¾æˆ¦éƒ¨å±‹
 	{
-		FIELD_SUBSCRN_NO_POKETCH,	//ƒTƒu‰æ–ÊFƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹•\¦‚¾‚¯
-		DIV_MAP_MODE_UNDER,			//ƒ}ƒbƒv•ªŠ„“]‘—ƒVƒXƒeƒ€w’èF’n‰º—p
-		MAP_TOOL_MODE_UNDER,		//ƒ}ƒbƒvƒc[ƒ‹w’èF’n‰º—p
-		DISP_3D_TO_MAIN,			//ã‰æ–Ê‚ª3D
-		TRUE,						//“ÁêƒAƒgƒŠƒrƒ…[ƒgƒVƒXƒeƒ€Fg‚¤
-		TRUE,						//ƒTƒuƒI[ƒo[ƒŒƒCF©“®“Ç‚İ‚İ
-		1,							//“ÁêƒAƒgƒŠƒrƒ…[ƒg—p‚É•Û‚·‚éƒf[ƒ^”
-		0xc4000,					//ƒtƒB[ƒ‹ƒh‚ÅŠm•Û‚·‚éƒq[ƒv‚ÌƒTƒCƒY
+		FIELD_SUBSCRN_NO_POKETCH,	//ã‚µãƒ–ç”»é¢ï¼šãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«è¡¨ç¤ºã ã‘
+		DIV_MAP_MODE_UNDER,			//ãƒãƒƒãƒ—åˆ†å‰²è»¢é€ã‚·ã‚¹ãƒ†ãƒ æŒ‡å®šï¼šåœ°ä¸‹ç”¨
+		MAP_TOOL_MODE_UNDER,		//ãƒãƒƒãƒ—ãƒ„ãƒ¼ãƒ«æŒ‡å®šï¼šåœ°ä¸‹ç”¨
+		DISP_3D_TO_MAIN,			//ä¸Šç”»é¢ãŒ3D
+		TRUE,						//ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚·ã‚¹ãƒ†ãƒ ï¼šä½¿ã†
+		TRUE,						//ã‚µãƒ–ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ï¼šè‡ªå‹•èª­ã¿è¾¼ã¿
+		1,							//ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç”¨ã«ä¿æŒã™ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°
+		0xc4000,					//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ã‚µã‚¤ã‚º
 	},
-	///MAP_MODE_BTOWER		ƒoƒgƒ‹ƒ^ƒ[
+	///MAP_MODE_BTOWER		ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 	{
-		FIELD_SUBSCRN_POKETCH,		//ƒTƒu‰æ–ÊFƒ|ƒPƒbƒ`
-		DIV_MAP_MODE_UNDER,			//ƒ}ƒbƒv•ªŠ„“]‘—ƒVƒXƒeƒ€w’èF’n‰º—p
-		MAP_TOOL_MODE_UNDER,		//ƒ}ƒbƒvƒc[ƒ‹w’èF’n‰º—p
-		DISP_3D_TO_MAIN,			//ã‰æ–Ê‚ª3D
-		TRUE,						//“ÁêƒAƒgƒŠƒrƒ…[ƒgƒVƒXƒeƒ€Fg‚¤
-		TRUE,						//ƒTƒuƒI[ƒo[ƒŒƒCF©“®“Ç‚İ‚İ
-		1,							//“ÁêƒAƒgƒŠƒrƒ…[ƒg—p‚É•Û‚·‚éƒf[ƒ^”
-		0xc4000 - FIELD_HEIGHT_DATA_SIZE * 4,	//ƒtƒB[ƒ‹ƒh‚ÅŠm•Û‚·‚éƒq[ƒv‚ÌƒTƒCƒY
+		FIELD_SUBSCRN_POKETCH,		//ã‚µãƒ–ç”»é¢ï¼šãƒã‚±ãƒƒãƒ
+		DIV_MAP_MODE_UNDER,			//ãƒãƒƒãƒ—åˆ†å‰²è»¢é€ã‚·ã‚¹ãƒ†ãƒ æŒ‡å®šï¼šåœ°ä¸‹ç”¨
+		MAP_TOOL_MODE_UNDER,		//ãƒãƒƒãƒ—ãƒ„ãƒ¼ãƒ«æŒ‡å®šï¼šåœ°ä¸‹ç”¨
+		DISP_3D_TO_MAIN,			//ä¸Šç”»é¢ãŒ3D
+		TRUE,						//ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚·ã‚¹ãƒ†ãƒ ï¼šä½¿ã†
+		TRUE,						//ã‚µãƒ–ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ï¼šè‡ªå‹•èª­ã¿è¾¼ã¿
+		1,							//ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç”¨ã«ä¿æŒã™ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°
+		0xc4000 - FIELD_HEIGHT_DATA_SIZE * 4,	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ã‚µã‚¤ã‚º
 	},
 };
 
 //============================================================================================
 //
 //
-//	ƒc[ƒ‹ŠÖ”
+//	ãƒ„ãƒ¼ãƒ«é–¢æ•°
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvƒ‚[ƒhC³ˆ—
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰ä¿®æ­£å‡¦ç†
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒoƒgƒ‹ƒ^ƒ[‚Å‚Í’ÊM‚ğ‚¨‚±‚È‚¤‚Æƒƒ‚ƒŠ‚ª•s‘«‚·‚é‚½‚ß‚ÉA“ÁêƒAƒgƒŠƒrƒ…[ƒg‚ğ
- * g—p‚·‚éB–{—ˆ‚Íƒoƒgƒ‹ƒ^ƒ[‚Ìo“ü‚è‚Å–¾¦“I‚ÉMapMode‚Ìw’è‚ğs‚¤‚×‚«‚Å‚ ‚é‚ª
- * Šú“I‚È”»’f‚©‚çA“Áêˆ—‚ÅMapMode‚ÌØ‘Ö‚ğs‚¤B06.05.16 tamada
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã§ã¯é€šä¿¡ã‚’ãŠã“ãªã†ã¨ãƒ¡ãƒ¢ãƒªãŒä¸è¶³ã™ã‚‹ãŸã‚ã«ã€ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’
+ * ä½¿ç”¨ã™ã‚‹ã€‚æœ¬æ¥ã¯ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®å‡ºå…¥ã‚Šã§æ˜ç¤ºçš„ã«MapModeã®æŒ‡å®šã‚’è¡Œã†ã¹ãã§ã‚ã‚‹ãŒ
+ * æ™‚æœŸçš„ãªåˆ¤æ–­ã‹ã‚‰ã€ç‰¹æ®Šå‡¦ç†ã§MapModeã®åˆ‡æ›¿ã‚’è¡Œã†ã€‚06.05.16 tamada
  */
 //-----------------------------------------------------------------------------
 static void MapChg_MapModeControl(FIELDSYS_WORK * fsys)
@@ -207,20 +207,20 @@ static void MapChg_MapModeControl(FIELDSYS_WORK * fsys)
 		IsBtower = FALSE;
 	}
 	if (!IsBtower && fsys->MapMode == MAP_MODE_BTOWER) {
-	//ƒoƒgƒ‹ƒ^ƒ[ˆÈŠO‚Åƒ}ƒbƒvƒ‚[ƒh‚ªBTOWER‚Ì‚Æ‚«A’Êíƒ‚[ƒh‚ÉC³‚·‚é
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ä»¥å¤–ã§ãƒãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰ãŒBTOWERã®ã¨ãã€é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã«ä¿®æ­£ã™ã‚‹
 		fsys->MapMode = MAP_MODE_GROUND;
 	} 
 	if (IsBtower) {
-	//ƒoƒgƒ‹ƒ^ƒ[‚Ì‚Æ‚«Aƒ}ƒbƒvƒ‚[ƒh‚ğBTOWER‚É‚·‚é
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ã¨ãã€ãƒãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰ã‚’BTOWERã«ã™ã‚‹
 		fsys->MapMode = MAP_MODE_BTOWER;
 	}
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvw’èXV
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	next		Ÿ‚Ì‘JˆÚæ‚ğw‚·LOCATION_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒãƒƒãƒ—æŒ‡å®šæ›´æ–°
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	next		æ¬¡ã®é·ç§»å…ˆã‚’æŒ‡ã™LOCATION_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void MapChg_SetNewLocation(FIELDSYS_WORK * fsys, const LOCATION_WORK * next)
@@ -228,21 +228,21 @@ static void MapChg_SetNewLocation(FIELDSYS_WORK * fsys, const LOCATION_WORK * ne
 	SITUATION * sit = SaveData_GetSituation(fsys->savedata);
 	LOCATION_WORK * before = Situation_GetBeforeLocation(sit);
 ///	LOCATION_WORK * escape = Situation_GetEscapeLocation(sit);
-	//ƒƒP[ƒVƒ‡ƒ“XV
+	//ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³æ›´æ–°
 	if (next != NULL) {
 		*before = *fsys->location;
 		*(fsys->location) = *next;
 	}
-	//ƒ][ƒ“•Êƒf[ƒ^‚Ì“Ç‚İ‚İ
+	//ã‚¾ãƒ¼ãƒ³åˆ¥ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 	EventData_LoadZoneData(fsys, fsys->location->zone_id);
 
 	if (fsys->location->door_id != DOOR_ID_JUMP_CODE){
-		//o“üŒûÚ‘±‚Ìê‡‚Ìˆ—
+		//å‡ºå…¥å£æ¥ç¶šã®å ´åˆã®å‡¦ç†
 		const CONNECT_DATA* connect;
 		connect = EventData_GetNowConnectDataByID(fsys, fsys->location->door_id);
 		fsys->location->grid_x = connect->x;
 		fsys->location->grid_z = connect->z;
-		//“ÁêÚ‘±æ‚Éo‚½ê‡‚ÍA“ÁêÚ‘±æ‚ğ•Û‚·‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
+		//ç‰¹æ®Šæ¥ç¶šå…ˆã«å‡ºãŸå ´åˆã¯ã€ç‰¹æ®Šæ¥ç¶šå…ˆã‚’ä¿æŒã™ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã
 		if (connect->link_door_id == SPECIAL_SPEXIT01) {
 			LOCATION_WORK *sp, *ent;
 			sp = Situation_GetSpecialLocation(sit);
@@ -258,8 +258,8 @@ static void MapChg_SetNewLocation(FIELDSYS_WORK * fsys, const LOCATION_WORK * ne
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€ƒtƒ‰ƒO‚ğŒ©‚Ä3D–Ê‚ğƒZƒbƒg
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°ã‚’è¦‹ã¦3Dé¢ã‚’ã‚»ãƒƒãƒˆ
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void MapChg_Set3DDisplay(FIELDSYS_WORK *fsys)
@@ -270,10 +270,10 @@ void MapChg_Set3DDisplay(FIELDSYS_WORK *fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv‘JˆÚ‚Ìƒf[ƒ^XVˆ—
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	walk_flag	TRUE‚Ì‚Æ‚«A‚ ‚é‚¢‚ÄÚ‘±
- *						FALSE‚Ì‚Æ‚«Aƒ}ƒbƒvØ‘Ö‚ÅÚ‘±
+ * @brief	ãƒãƒƒãƒ—é·ç§»æ™‚ã®ãƒ‡ãƒ¼ã‚¿æ›´æ–°å‡¦ç†
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	walk_flag	TRUEã®ã¨ãã€ã‚ã‚‹ã„ã¦æ¥ç¶š
+ *						FALSEã®ã¨ãã€ãƒãƒƒãƒ—åˆ‡æ›¿ã§æ¥ç¶š
  */
 //-----------------------------------------------------------------------------
 void MapChg_UpdateGameData(FIELDSYS_WORK * fsys, BOOL walk_flag)
@@ -281,34 +281,34 @@ void MapChg_UpdateGameData(FIELDSYS_WORK * fsys, BOOL walk_flag)
 	int zone_id = fsys->location->zone_id;
 	SITUATION * sit = SaveData_GetSituation(fsys->savedata);
 
-	//--ƒ}ƒbƒv“àŒÀ’èBGMw’è‚ğƒNƒŠƒA
+	//--ãƒãƒƒãƒ—å†…é™å®šBGMæŒ‡å®šã‚’ã‚¯ãƒªã‚¢
 	Snd_FieldBgmClearSpecial( fsys );
 
-	//--ƒXƒNƒŠƒvƒg‚Ìƒ}ƒbƒv“àŒÀ’èƒtƒ‰ƒO•ƒ[ƒN‚ÌƒNƒŠƒA
+	//--ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒãƒƒãƒ—å†…é™å®šãƒ•ãƒ©ã‚°ï¼†ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
 	LocalEventFlagClear(fsys);
 
-	//--ƒtƒ‰ƒOƒNƒŠƒA
+	//--ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 	if (!walk_flag) {
-		FldFlgInit_MapJump(fsys);	//ƒ}ƒbƒvƒWƒƒƒ“ƒv‚Å‚Ìƒtƒ‰ƒO—‚Æ‚µˆ—
+		FldFlgInit_MapJump(fsys);	//ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã§ã®ãƒ•ãƒ©ã‚°è½ã¨ã—å‡¦ç†
 	}else{
-		FldFlgInit_Walk(fsys);		//’n‘±‚«‚Å‚Ìƒ][ƒ“‚Ü‚½‚¬ƒtƒ‰ƒO—‚Æ‚µˆ—
+		FldFlgInit_Walk(fsys);		//åœ°ç¶šãã§ã®ã‚¾ãƒ¼ãƒ³ã¾ãŸããƒ•ãƒ©ã‚°è½ã¨ã—å‡¦ç†
 	}
 	
-	//--ƒoƒgƒ‹ƒT[ƒ`ƒƒ[ƒŠƒZƒbƒg
+	//--ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ãƒªã‚»ãƒƒãƒˆ
 	Sys_BtlSearcherReset( SaveData_GetEventWork(fsys->savedata) );
 
-	//--ŠÔƒCƒxƒ“ƒgXVˆ—
+	//--æ™‚é–“ã‚¤ãƒ™ãƒ³ãƒˆæ›´æ–°å‡¦ç†
 	if (!walk_flag) {
 		EVTIME_Update(fsys);
 	}
 
-	//--ƒ}ƒbƒvŒÀ’è‚ÌdŠ|‚¯—pƒ[ƒN‚ÌƒNƒŠƒA
+	//--ãƒãƒƒãƒ—é™å®šã®ä»•æ›ã‘ç”¨ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
 	if (!walk_flag){
-		//ƒ}ƒbƒvƒWƒƒƒ“ƒv‚Ì‚Æ‚«‚Ì‚İ‰Šú‰»‚·‚éi•à‚¢‚Äƒ][ƒ“‚ªØ‚è‘Ö‚í‚Á‚½ê‡‚Í‰Šú‰»‚µ‚È‚¢j
+		//ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã®ã¨ãã®ã¿åˆæœŸåŒ–ã™ã‚‹ï¼ˆæ­©ã„ã¦ã‚¾ãƒ¼ãƒ³ãŒåˆ‡ã‚Šæ›¿ã‚ã£ãŸå ´åˆã¯åˆæœŸåŒ–ã—ãªã„ï¼‰
 		GIMMICKWORK_Init(SaveData_GetGimmickWork(fsys->savedata));
 	}
 	
-	//--“VŒóî•ñ‚ğXV
+	//--å¤©å€™æƒ…å ±ã‚’æ›´æ–°
 	{
 		EVENTWORK * ev = SaveData_GetEventWork(fsys->savedata);
 		u16 id = WeatherData_Get(fsys, zone_id);
@@ -320,44 +320,44 @@ void MapChg_UpdateGameData(FIELDSYS_WORK * fsys, BOOL walk_flag)
 		Situation_SetWeatherID(sit, id);
 	}
 
-	//--ƒJƒƒ‰
+	//--ã‚«ãƒ¡ãƒ©
 	if (walk_flag) {
 		int old_camera = Situation_GetCameraID(sit);
 		int new_camera = ZoneData_GetCameraID(zone_id);
-		//•à‚¢‚Äƒ][ƒ“‚ªØ‚è‘Ö‚í‚Á‚½‚Ì‚ÉƒJƒƒ‰‚ª•Ï‚í‚Á‚Ä‚Í‚Ü‚¸‚¢
+		//æ­©ã„ã¦ã‚¾ãƒ¼ãƒ³ãŒåˆ‡ã‚Šæ›¿ã‚ã£ãŸã®ã«ã‚«ãƒ¡ãƒ©ãŒå¤‰ã‚ã£ã¦ã¯ã¾ãšã„
 		GF_ASSERT(old_camera == new_camera);
 	} else {
-		//ƒJƒƒ‰w’è‚ğXV
+		//ã‚«ãƒ¡ãƒ©æŒ‡å®šã‚’æ›´æ–°
 		Situation_SetCameraID(sit, ZoneData_GetCameraID(zone_id));
 	}
 
-	//--ƒ[ƒvæ“o˜^
+	//--ãƒ¯ãƒ¼ãƒ—å…ˆç™»éŒ²
 	if (!walk_flag){
 		u16 warp_id;
-		//ƒ[ƒvƒf[ƒ^‚É“o˜^‚³‚ê‚Ä‚¢‚éƒ}ƒbƒv‚È‚ç‚ÎA–ß‚èæ‚Æ‚µ‚Ä“o˜^‚µ‚Ä‚¨‚­
+		//ãƒ¯ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ãªã‚‰ã°ã€æˆ»ã‚Šå…ˆã¨ã—ã¦ç™»éŒ²ã—ã¦ãŠã
 		warp_id = WARPDATA_SearchByRoomID(zone_id);
 		if (warp_id != 0) {
 			Situation_SetWarpID(sit, warp_id);
 		}
 	}
 
-	//--“ÁêƒXƒNƒŠƒvƒg
+	//--ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 	SpScriptSearch(fsys, SP_SCRID_FLAG_CHANGE);
 
 
-	//ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜A‰Šú‰»
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£åˆæœŸåŒ–
 	fsys->encount.walk_count = 0;
 	fsys->encount.WinPokeCount = 0;
 #if 0
-	//ƒTƒtƒ@ƒŠ‚É‚¢‚È‚¢‚Æ‚«‚Ìˆ—
+	//ã‚µãƒ•ã‚¡ãƒªã«ã„ãªã„ã¨ãã®å‡¦ç†
 	if ( !SysFlag_SafariCheck(SaveData_GetEventWork(fsys->savedata)) ){
-		//ƒ][ƒ“•ÏX‚ª‚ ‚Á‚½ê‡‚ÍAƒ][ƒ“—š—ğ‚ğXV
+		//ã‚¾ãƒ¼ãƒ³å¤‰æ›´ãŒã‚ã£ãŸå ´åˆã¯ã€ã‚¾ãƒ¼ãƒ³å±¥æ­´ã‚’æ›´æ–°
 		ENC_SV_PTR data;
 		data = EncDataSave_GetSaveDataPtr(fsys->savedata);
 		MP_UpdatePlayerZoneHist(data, fsys->location->zone_id);		
-		//•à‚¢‚ÄˆÚ“®‚µ‚½ê‡‚ÍˆÚ“®ƒ|ƒPƒ‚ƒ“‚ÌˆÚ“®ˆ—
+		//æ­©ã„ã¦ç§»å‹•ã—ãŸå ´åˆã¯ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã®ç§»å‹•å‡¦ç†
 		if (walk_flag){
-			//ˆÚ“®ƒ|ƒPƒ‚ƒ“—×ÚˆÚ“®
+			//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³éš£æ¥ç§»å‹•
 			MP_MovePokemonNeighboring(data);
 		}
 	}
@@ -366,10 +366,10 @@ void MapChg_UpdateGameData(FIELDSYS_WORK * fsys, BOOL walk_flag)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	”j‚ê‚½¢ŠE@ƒ}ƒbƒv‘JˆÚ‚Ìƒf[ƒ^XVˆ—
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	walk_flag	TRUE‚Ì‚Æ‚«A‚ ‚é‚¢‚ÄÚ‘±
- *						FALSE‚Ì‚Æ‚«Aƒ}ƒbƒvØ‘Ö‚ÅÚ‘±
+ * @brief	ç ´ã‚ŒãŸä¸–ç•Œã€€ãƒãƒƒãƒ—é·ç§»æ™‚ã®ãƒ‡ãƒ¼ã‚¿æ›´æ–°å‡¦ç†
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	walk_flag	TRUEã®ã¨ãã€ã‚ã‚‹ã„ã¦æ¥ç¶š
+ *						FALSEã®ã¨ãã€ãƒãƒƒãƒ—åˆ‡æ›¿ã§æ¥ç¶š
  */
 //-----------------------------------------------------------------------------
 void MapChg_UpdateGameDataTornWorld(FIELDSYS_WORK * fsys, BOOL walk_flag)
@@ -377,35 +377,35 @@ void MapChg_UpdateGameDataTornWorld(FIELDSYS_WORK * fsys, BOOL walk_flag)
 	int zone_id = fsys->location->zone_id;
 	SITUATION * sit = SaveData_GetSituation(fsys->savedata);
 
-	//--ƒ}ƒbƒv“àŒÀ’èBGMw’è‚ğƒNƒŠƒA
+	//--ãƒãƒƒãƒ—å†…é™å®šBGMæŒ‡å®šã‚’ã‚¯ãƒªã‚¢
 	Snd_FieldBgmClearSpecial( fsys );
 	
-	//--ƒXƒNƒŠƒvƒg‚Ìƒ}ƒbƒv“àŒÀ’èƒtƒ‰ƒO•ƒ[ƒN‚ÌƒNƒŠƒA
+	//--ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒãƒƒãƒ—å†…é™å®šãƒ•ãƒ©ã‚°ï¼†ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
 	LocalEventFlagClear(fsys);
 	
-	//--ƒtƒ‰ƒOƒNƒŠƒA
+	//--ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 	if (!walk_flag) {
-		FldFlgInit_MapJump(fsys);	//ƒ}ƒbƒvƒWƒƒƒ“ƒv‚Å‚Ìƒtƒ‰ƒO—‚Æ‚µˆ—
+		FldFlgInit_MapJump(fsys);	//ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã§ã®ãƒ•ãƒ©ã‚°è½ã¨ã—å‡¦ç†
 	}else{
-		FldFlgInit_Walk(fsys);		//’n‘±‚«‚Å‚Ìƒ][ƒ“‚Ü‚½‚¬ƒtƒ‰ƒO—‚Æ‚µˆ—
+		FldFlgInit_Walk(fsys);		//åœ°ç¶šãã§ã®ã‚¾ãƒ¼ãƒ³ã¾ãŸããƒ•ãƒ©ã‚°è½ã¨ã—å‡¦ç†
 	}
 	
-	//--ƒoƒgƒ‹ƒT[ƒ`ƒƒ[ƒŠƒZƒbƒg
+	//--ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ãƒªã‚»ãƒƒãƒˆ
 	Sys_BtlSearcherReset( SaveData_GetEventWork(fsys->savedata) );
 	
-	//--ŠÔƒCƒxƒ“ƒgXVˆ—
+	//--æ™‚é–“ã‚¤ãƒ™ãƒ³ãƒˆæ›´æ–°å‡¦ç†
 	if (!walk_flag) {
 		EVTIME_Update(fsys);
 	}
 	
-	//--ƒ}ƒbƒvŒÀ’è‚ÌdŠ|‚¯—pƒ[ƒN‚ÌƒNƒŠƒA
+	//--ãƒãƒƒãƒ—é™å®šã®ä»•æ›ã‘ç”¨ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
 	if (!walk_flag){
-		//ƒ}ƒbƒvƒWƒƒƒ“ƒv‚Ì‚Æ‚«‚Ì‚İ‰Šú‰»‚·‚éi•à‚¢‚Äƒ][ƒ“‚ªØ‚è‘Ö‚í‚Á‚½ê‡‚Í‰Šú‰»‚µ‚È‚¢j
+		//ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã®ã¨ãã®ã¿åˆæœŸåŒ–ã™ã‚‹ï¼ˆæ­©ã„ã¦ã‚¾ãƒ¼ãƒ³ãŒåˆ‡ã‚Šæ›¿ã‚ã£ãŸå ´åˆã¯åˆæœŸåŒ–ã—ãªã„ï¼‰
 		GIMMICKWORK_Init(SaveData_GetGimmickWork(fsys->savedata));
 	}
 
 	#if 0
-	//--“VŒóî•ñ‚ğXV
+	//--å¤©å€™æƒ…å ±ã‚’æ›´æ–°
 	{
 		EVENTWORK * ev = SaveData_GetEventWork(fsys->savedata);
 		u16 id = WeatherData_Get(fsys, zone_id);
@@ -419,47 +419,47 @@ void MapChg_UpdateGameDataTornWorld(FIELDSYS_WORK * fsys, BOOL walk_flag)
 	#endif
 	
 	#if 0
-	//--ƒJƒƒ‰
+	//--ã‚«ãƒ¡ãƒ©
 	if (walk_flag) {
 		int old_camera = Situation_GetCameraID(sit);
 		int new_camera = ZoneData_GetCameraID(zone_id);
-		//•à‚¢‚Äƒ][ƒ“‚ªØ‚è‘Ö‚í‚Á‚½‚Ì‚ÉƒJƒƒ‰‚ª•Ï‚í‚Á‚Ä‚Í‚Ü‚¸‚¢
+		//æ­©ã„ã¦ã‚¾ãƒ¼ãƒ³ãŒåˆ‡ã‚Šæ›¿ã‚ã£ãŸã®ã«ã‚«ãƒ¡ãƒ©ãŒå¤‰ã‚ã£ã¦ã¯ã¾ãšã„
 		GF_ASSERT(old_camera == new_camera);
 	} else {
-		//ƒJƒƒ‰w’è‚ğXV
+		//ã‚«ãƒ¡ãƒ©æŒ‡å®šã‚’æ›´æ–°
 		Situation_SetCameraID(sit, ZoneData_GetCameraID(zone_id));
 	}
 	#endif
 	
-	//--ƒ[ƒvæ“o˜^
+	//--ãƒ¯ãƒ¼ãƒ—å…ˆç™»éŒ²
 	if (!walk_flag){
 		u16 warp_id;
-		//ƒ[ƒvƒf[ƒ^‚É“o˜^‚³‚ê‚Ä‚¢‚éƒ}ƒbƒv‚È‚ç‚ÎA–ß‚èæ‚Æ‚µ‚Ä“o˜^‚µ‚Ä‚¨‚­
+		//ãƒ¯ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ—ãªã‚‰ã°ã€æˆ»ã‚Šå…ˆã¨ã—ã¦ç™»éŒ²ã—ã¦ãŠã
 		warp_id = WARPDATA_SearchByRoomID(zone_id);
 		if (warp_id != 0) {
 			Situation_SetWarpID(sit, warp_id);
 		}
 	}
 	
-	#if 0	//•s—v
-	//--“ÁêƒXƒNƒŠƒvƒg
+	#if 0	//ä¸è¦
+	//--ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 	SpScriptSearch(fsys, SP_SCRID_FLAG_CHANGE);
 	#endif
 
-	//ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜A‰Šú‰»
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£åˆæœŸåŒ–
 	fsys->encount.walk_count = 0;
 	fsys->encount.WinPokeCount = 0;
 	
 #if 0
-	//ƒTƒtƒ@ƒŠ‚É‚¢‚È‚¢‚Æ‚«‚Ìˆ—
+	//ã‚µãƒ•ã‚¡ãƒªã«ã„ãªã„ã¨ãã®å‡¦ç†
 	if ( !SysFlag_SafariCheck(SaveData_GetEventWork(fsys->savedata)) ){
-		//ƒ][ƒ“•ÏX‚ª‚ ‚Á‚½ê‡‚ÍAƒ][ƒ“—š—ğ‚ğXV
+		//ã‚¾ãƒ¼ãƒ³å¤‰æ›´ãŒã‚ã£ãŸå ´åˆã¯ã€ã‚¾ãƒ¼ãƒ³å±¥æ­´ã‚’æ›´æ–°
 		ENC_SV_PTR data;
 		data = EncDataSave_GetSaveDataPtr(fsys->savedata);
 		MP_UpdatePlayerZoneHist(data, fsys->location->zone_id);		
-		//•à‚¢‚ÄˆÚ“®‚µ‚½ê‡‚ÍˆÚ“®ƒ|ƒPƒ‚ƒ“‚ÌˆÚ“®ˆ—
+		//æ­©ã„ã¦ç§»å‹•ã—ãŸå ´åˆã¯ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã®ç§»å‹•å‡¦ç†
 		if (walk_flag){
-			//ˆÚ“®ƒ|ƒPƒ‚ƒ“—×ÚˆÚ“®
+			//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³éš£æ¥ç§»å‹•
 			MP_MovePokemonNeighboring(data);
 		}
 	}
@@ -468,8 +468,8 @@ void MapChg_UpdateGameDataTornWorld(FIELDSYS_WORK * fsys, BOOL walk_flag)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvŠJn‚ÌƒtƒB[ƒ‹ƒhOBJŠÖ˜Aˆ—
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒãƒƒãƒ—é–‹å§‹æ™‚ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé–¢é€£å‡¦ç†
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void MapChg_FieldOBJ_Create(FIELDSYS_WORK * fsys)
@@ -479,10 +479,10 @@ static void MapChg_FieldOBJ_Create(FIELDSYS_WORK * fsys)
 	SITUATION *situ;
 	PLAYER_SAVE_DATA *jikisave;
 	
-	//ƒtƒB[ƒ‹ƒhOBJ‰Šú‰» Œ»ó,’l‚Í“K“–
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJåˆæœŸåŒ– ç¾çŠ¶,å€¤ã¯é©å½“
 	fsys->fldobjsys = FieldOBJSys_Init( fsys, FLDOBJ_ENTRY_MAX, FLDMAP_PRI_OBJSYS );
 	
-	//©‹@’Ç‰Áˆ—
+	//è‡ªæ©Ÿè¿½åŠ å‡¦ç†
 	sex = MyStatus_GetMySex(SaveData_GetMyStatus(fsys->savedata));
 	situ = SaveData_GetSituation( fsys->savedata );
 	jikisave = Situation_GetPlayerSaveData( situ );
@@ -492,36 +492,36 @@ static void MapChg_FieldOBJ_Create(FIELDSYS_WORK * fsys)
 			fsys->location->dir,
 			jikisave->form, sex, HEROVER_PL, jikisave );
 	
-	//Å‰‚Ìƒ][ƒ“‘SƒtƒB[ƒ‹ƒhOBJ’Ç‰Á
+	//æœ€åˆã®ã‚¾ãƒ¼ãƒ³å…¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ 
 	EventData_SetFieldOBJ( fsys );
 
-	//ƒtƒB[ƒ‹ƒhOBJ“®ìˆ—ƒ|[ƒY
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‹•ä½œå‡¦ç†ãƒãƒ¼ã‚º
 	FieldOBJSys_MoveStopAll( fsys->fldobjsys );
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvI—¹‚ÌƒtƒB[ƒ‹ƒhOBJŠÖ˜Aˆ—
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒãƒƒãƒ—çµ‚äº†æ™‚ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé–¢é€£å‡¦ç†
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void MapChg_FieldOBJ_Delete(FIELDSYS_WORK * fsys)
 {
-//    CommPlayerManagerReset();               // ’ÊM‘Šè©‹@‰ğ•ú
-    Player_Delete( fsys->player );			// ©‹@‰ğ•ú
-	FieldOBJ_DeleteAll(fsys->fldobjsys);	// FieldOBJ‘S‰ğ•ú
-	FieldOBJSys_Delete(fsys->fldobjsys);	// FieldOBJƒVƒXƒeƒ€‰ğ•ú
+//    CommPlayerManagerReset();               // é€šä¿¡ç›¸æ‰‹è‡ªæ©Ÿè§£æ”¾
+    Player_Delete( fsys->player );			// è‡ªæ©Ÿè§£æ”¾
+	FieldOBJ_DeleteAll(fsys->fldobjsys);	// FieldOBJå…¨è§£æ”¾
+	FieldOBJSys_Delete(fsys->fldobjsys);	// FieldOBJã‚·ã‚¹ãƒ†ãƒ è§£æ”¾
 }
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 static void MapChg_FieldOBJ_Continue(FIELDSYS_WORK * fsys)
 {
-	//ƒtƒB[ƒ‹ƒhOBJ‰Šú‰» Œ»ó,’l‚Í“K“–
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJåˆæœŸåŒ– ç¾çŠ¶,å€¤ã¯é©å½“
 	fsys->fldobjsys = FieldOBJSys_Init( fsys, FLDOBJ_ENTRY_MAX, FLDMAP_PRI_OBJSYS );
 	
 
 	Field_LoadFieldObj(fsys);
-	//©‹@’Ç‰Áˆ—
+	//è‡ªæ©Ÿè¿½åŠ å‡¦ç†
 	
 	{
 		SITUATION *situ = SaveData_GetSituation( fsys->savedata );
@@ -530,30 +530,30 @@ static void MapChg_FieldOBJ_Continue(FIELDSYS_WORK * fsys)
 		fsys->player = Player_FieldOBJUseRecover(fsys->fldobjsys,jikisave,sex);
 	}
 
-	//ƒtƒB[ƒ‹ƒhOBJ“®ìˆ—ƒ|[ƒY
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‹•ä½œå‡¦ç†ãƒãƒ¼ã‚º
 	FieldOBJSys_MoveStopAll( fsys->fldobjsys );
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvƒc[ƒ‹i‚‚³AƒAƒgƒŠƒrƒ…[ƒgAetc.j‚Ìİ’è
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	type		ƒc[ƒ‹‚Ìƒ^ƒCƒvw’è
+ * @brief	ãƒãƒƒãƒ—ãƒ„ãƒ¼ãƒ«ï¼ˆé«˜ã•ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€etc.ï¼‰ã®è¨­å®š
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type		ãƒ„ãƒ¼ãƒ«ã®ã‚¿ã‚¤ãƒ—æŒ‡å®š
  */
 //-----------------------------------------------------------------------------
 static void MapChg_SetupMapTools(FIELDSYS_WORK * fsys)
 {
-	//ƒoƒgƒ‹ƒ^ƒ[‚Ì‚½‚ß‚Éƒ}ƒbƒvƒ‚[ƒh‚ÌC³‚ğs‚Á‚Ä‚¢‚é
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ãŸã‚ã«ãƒãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰ã®ä¿®æ­£ã‚’è¡Œã£ã¦ã„ã‚‹
 	MapChg_MapModeControl(fsys);
 
 	GF_ASSERT(fsys->map_tool_list == NULL);
-	//ƒ[ƒ‹ƒhƒZƒbƒgƒAƒbƒv
+	//ãƒ¯ãƒ¼ãƒ«ãƒ‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	SetUpWorldMatrix( fsys->location->zone_id, fsys->World );
-	//ƒ}ƒbƒvƒ}ƒgƒŠƒNƒX‚ğã‘‚«FR224
+	//ãƒãƒƒãƒ—ãƒãƒˆãƒªã‚¯ã‚¹ã‚’ä¸Šæ›¸ãï¼šR224
 	if (SysWork_HideMapWorkCheck(SaveData_GetEventWork(fsys->savedata),HIDEMAP_ID_D18)) {
 		World_Overwrite_R224(fsys->World);
 	}
-	//ƒ}ƒbƒvƒ}ƒgƒŠƒNƒX‚ğã‘‚«FL04
+	//ãƒãƒƒãƒ—ãƒãƒˆãƒªã‚¯ã‚¹ã‚’ä¸Šæ›¸ãï¼šL04
 	if (!SysWork_HideMapWorkCheck(SaveData_GetEventWork(fsys->savedata),HIDEMAP_ID_L04)) {
 		World_Overwrite_L04(fsys->World);
 	}
@@ -565,7 +565,7 @@ static void MapChg_SetupMapTools(FIELDSYS_WORK * fsys)
 	SetUpMapToolList(&fsys->map_tool_list, fsys->MapModeData->MapToolMode);
 
 	if (fsys->MapModeData->SpecialAttrFlag) {
-		//ƒAƒgƒŠƒrƒ…[ƒg“Ç‚İ‚İ
+		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆèª­ã¿è¾¼ã¿
 		SPATTR_SetUpGroundAttr(fsys, fsys->MapModeData->SpecialAttrNum);
 	}
 	
@@ -573,9 +573,9 @@ static void MapChg_SetupMapTools(FIELDSYS_WORK * fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvƒc[ƒ‹i‚‚³AƒAƒgƒŠƒrƒ…[ƒgAetc.j‚Ì”pŠü
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	type		ƒc[ƒ‹‚Ìƒ^ƒCƒvw’è
+ * @brief	ãƒãƒƒãƒ—ãƒ„ãƒ¼ãƒ«ï¼ˆé«˜ã•ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€etc.ï¼‰ã®å»ƒæ£„
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type		ãƒ„ãƒ¼ãƒ«ã®ã‚¿ã‚¤ãƒ—æŒ‡å®š
  */
 //-----------------------------------------------------------------------------
 static void MapChg_RemoveMapTools(FIELDSYS_WORK * fsys)
@@ -585,7 +585,7 @@ static void MapChg_RemoveMapTools(FIELDSYS_WORK * fsys)
 	fsys->subscreen = FIELD_SUBSCRN_MAX;
 
 	if (fsys->MapModeData->SpecialAttrFlag) {
-		//’n‰ºƒAƒgƒŠƒrƒ…[ƒg”jŠü
+		//åœ°ä¸‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç ´æ£„
 		SPATTR_FreeGroundAttr(fsys);
 	}
 	fsys->MapModeData = NULL;
@@ -593,8 +593,8 @@ static void MapChg_RemoveMapTools(FIELDSYS_WORK * fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	–`Œ¯ƒm[ƒg‚ÌŠJnƒf[ƒ^ì¬
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å†’é™ºãƒãƒ¼ãƒˆã®é–‹å§‹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void FNoteStartDataSet( FIELDSYS_WORK * fsys )
@@ -610,8 +610,8 @@ void FNoteStartDataSet( FIELDSYS_WORK * fsys )
 #if S2424_060818_FIX
 //-----------------------------------------------------------------------------
 /**
- * @brief	–`Œ¯ƒm[ƒg‚ÌŠJnƒf[ƒ^ì¬i’ÊMƒGƒ‰[‚Ìê‡j
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å†’é™ºãƒãƒ¼ãƒˆã®é–‹å§‹ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆé€šä¿¡ã‚¨ãƒ©ãƒ¼ã®å ´åˆï¼‰
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void FNoteStartDataSet_SioError( FIELDSYS_WORK * fsys )
@@ -628,9 +628,9 @@ static void FNoteStartDataSet_SioError( FIELDSYS_WORK * fsys )
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	Œ»İˆÊ’u‚ğLOCATION_WORK‚ÉƒZƒbƒg‚·‚é
- * @param	loc			LOCATION_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ç¾åœ¨ä½ç½®ã‚’LOCATION_WORKã«ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param	loc			LOCATION_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void SetLocationHere(LOCATION_WORK * loc, const FIELDSYS_WORK * fsys)
@@ -656,7 +656,7 @@ static BOOL IsUnionRoomSave(const FIELDSYS_WORK * fsys)
 //-----------------------------------------------------------------------------
 static void SetUnionExit(FIELDSYS_WORK * fsys)
 {
-	//ƒ|ƒPƒZƒ“‚QF‚©‚çŠJn‚Ìê‡‚Í“ÁêÚ‘±æ‚ğİ’è
+	//ãƒã‚±ã‚»ãƒ³ï¼’Fã‹ã‚‰é–‹å§‹ã®å ´åˆã¯ç‰¹æ®Šæ¥ç¶šå…ˆã‚’è¨­å®š
 	LOCATION_WORK * sp = Situation_GetSpecialLocation(SaveData_GetSituation(fsys->savedata));
 	EVENTWORK * ev = SaveData_GetEventWork(fsys->savedata);
 	SetLocation(sp, fsys->location->zone_id, DOOR_ID_JUMP_CODE, 8, 2, DIR_DOWN);
@@ -664,13 +664,13 @@ static void SetUnionExit(FIELDSYS_WORK * fsys)
 //============================================================================================
 //
 //
-//							ƒQ[ƒ€ŠJn
+//							ã‚²ãƒ¼ãƒ é–‹å§‹
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFƒQ[ƒ€ŠJn
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šã‚²ãƒ¼ãƒ é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_FirstMapIn(GMEVENT_CONTROL * event)
@@ -682,7 +682,7 @@ static BOOL GMEVENT_FirstMapIn(GMEVENT_CONTROL * event)
 	case 0:
 		MapChg_SetNewLocation(fsys, fsys->location);
 
-		//‚‚³AƒAƒgƒŠƒrƒ…[ƒgAƒ}ƒbƒvƒ[ƒh‚Ì•û–@‚ğŒˆ’è
+		//é«˜ã•ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã®æ–¹æ³•ã‚’æ±ºå®š
 		MapChg_SetupMapTools(fsys);
 
 		MapChg_UpdateGameData(fsys, FALSE);
@@ -702,22 +702,22 @@ static BOOL GMEVENT_FirstMapIn(GMEVENT_CONTROL * event)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ŠJnƒCƒxƒ“ƒgƒZƒbƒg
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ é–‹å§‹ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventSet_FirstMapIn(FIELDSYS_WORK * fsys)
 {
 	GMEVENT_CONTROL * event;
 
-	fsys->MapMode = MAP_MODE_GROUND;	//n‚ß‚Í’nã‚©‚çƒXƒ^[ƒg
-	GameStartScriptInit(fsys);				//ƒQ[ƒ€ŠJn‚Ì“ÁêƒXƒNƒŠƒvƒg“®ì
+	fsys->MapMode = MAP_MODE_GROUND;	//å§‹ã‚ã¯åœ°ä¸Šã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆ
+	GameStartScriptInit(fsys);				//ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆå‹•ä½œ
 	event = FieldEvent_Set(fsys, GMEVENT_FirstMapIn, NULL);
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFƒRƒ“ƒeƒBƒjƒ…[
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_ContinueMapIn(GMEVENT_CONTROL * event)
@@ -728,9 +728,9 @@ static BOOL GMEVENT_ContinueMapIn(GMEVENT_CONTROL * event)
 
 	switch (*seq) {
 	case 0:
-        //ƒ[ƒh’¼Œã‚ÉŒÄ‚Ô’n‰ºƒf[ƒ^ˆ—
+        //ãƒ­ãƒ¼ãƒ‰ç›´å¾Œã«å‘¼ã¶åœ°ä¸‹ãƒ‡ãƒ¼ã‚¿å‡¦ç†
         UnderGroundDataLoadUpdate(fsys->savedata);
-        // –`Œ¯ƒm[ƒg•\¦ƒ`ƒFƒbƒN
+        // å†’é™ºãƒãƒ¼ãƒˆè¡¨ç¤ºãƒã‚§ãƒƒã‚¯
 		if( FNOTE_GameStartOpenCheck(SaveData_GetFNote(fsys->savedata),SysFlag_FNoteCheck(ev)) ){
 			FieldFantasyNote_SetProc( fsys, NULL );
 			(*seq) = 4;
@@ -738,49 +738,49 @@ static BOOL GMEVENT_ContinueMapIn(GMEVENT_CONTROL * event)
 		}
 		OS_Printf( "FNOTE_FLAG : %d\n", SysFlag_FNoteCheck(ev) );
 
-	case 1:		// ƒtƒB[ƒ‹ƒhˆ—
+	case 1:		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç†
 		fsys->fnote = FNOTE_SavePageGet(SaveData_GetFNote(fsys->savedata),
-				SysFlag_FNoteCheck(ev));//–`Œ¯ƒm[ƒgƒy[ƒW‰Šú‰»
+				SysFlag_FNoteCheck(ev));//å†’é™ºãƒãƒ¼ãƒˆãƒšãƒ¼ã‚¸åˆæœŸåŒ–
 
 		if (SysFlag_CommCounterCheck(ev)) {
-		//“Áê‚Èó‹µ‚©‚ç‚Ì•œ‹A‚ğs‚¤ƒRƒ“ƒeƒBƒjƒ…[
+		//ç‰¹æ®ŠãªçŠ¶æ³ã‹ã‚‰ã®å¾©å¸°ã‚’è¡Œã†ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
 			SITUATION * sit = SaveData_GetSituation(fsys->savedata);
-			//ƒ|ƒPƒZƒ“‚QF‚©‚çŠJn‚Ìê‡‚Í“ÁêÚ‘±æ‚ğİ’è
+			//ãƒã‚±ã‚»ãƒ³ï¼’Fã‹ã‚‰é–‹å§‹ã®å ´åˆã¯ç‰¹æ®Šæ¥ç¶šå…ˆã‚’è¨­å®š
 			if (IsUnionRoomSave(fsys)) {
 				SetUnionExit(fsys);
 			}
 			SysFlag_CommCounterReset(ev);
 			MapChg_SetNewLocation(fsys, Situation_GetSpecialLocation(sit));
-			//‚‚³AƒAƒgƒŠƒrƒ…[ƒgAƒ}ƒbƒvƒ[ƒh‚Ì•û–@‚ğŒˆ’è
+			//é«˜ã•ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã®æ–¹æ³•ã‚’æ±ºå®š
 			MapChg_SetupMapTools(fsys);
 			MapChg_UpdateGameData(fsys, FALSE);
 			MapChg_FieldOBJ_Create(fsys);
 		} else {
-		//’Êí‚ÌƒRƒ“ƒeƒBƒjƒ…[
+		//é€šå¸¸ã®ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
 			MapChg_SetNewLocation(fsys, NULL);
-			//‚‚³AƒAƒgƒŠƒrƒ…[ƒgAƒ}ƒbƒvƒ[ƒh‚Ì•û–@‚ğŒˆ’è
+			//é«˜ã•ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã®æ–¹æ³•ã‚’æ±ºå®š
 			MapChg_SetupMapTools(fsys);
-			//MapChg_UpdateGameData(fsys, FALSE);	ƒRƒ“ƒeƒBƒjƒ…[‚Å‚Í‚±‚ê‚ÍŒÄ‚Î‚È‚¢
+			//MapChg_UpdateGameData(fsys, FALSE);	ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼ã§ã¯ã“ã‚Œã¯å‘¼ã°ãªã„
 			EVTIME_Update(fsys);
 			MapChg_FieldOBJ_Continue(fsys);
 		}
 
-		FNoteStartDataSet( fsys );		//–`Œ¯ƒm[ƒg‚ÌŠJnƒf[ƒ^ì¬
+		FNoteStartDataSet( fsys );		//å†’é™ºãƒãƒ¼ãƒˆã®é–‹å§‹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 
-		FldFlgInit_Continue(fsys);		//ƒRƒ“ƒeƒBƒjƒ…[ŒÅ—Lƒtƒ‰ƒO—‚Æ‚µˆ—
+		FldFlgInit_Continue(fsys);		//ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼æ™‚å›ºæœ‰ãƒ•ãƒ©ã‚°è½ã¨ã—å‡¦ç†
 
 		(*seq) = 2;
 		break;
 
-	case 2:		// ƒtƒF[ƒhƒZƒbƒg
+	case 2:		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		EventCmd_StartField_FadeIn(event);
 		(*seq) = 3;
 		break;
 
-	case 3:		// I—¹
+	case 3:		// çµ‚äº†
 		return TRUE;
 
-	case 4:		// –`Œ¯ƒm[ƒgI—¹‘Ò‚¿
+	case 4:		// å†’é™ºãƒãƒ¼ãƒˆçµ‚äº†å¾…ã¡
 		if( !( FieldEvent_Cmd_WaitSubProcEnd(fsys) ) ) {
 			(*seq) = 1;
 		}
@@ -791,15 +791,15 @@ static BOOL GMEVENT_ContinueMapIn(GMEVENT_CONTROL * event)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ŠJnƒCƒxƒ“ƒgƒZƒbƒg
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ é–‹å§‹ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventSet_ContinueMapIn(FIELDSYS_WORK * fsys)
 {
 	GMEVENT_CONTROL * event;
 
-	fsys->MapMode = MAP_MODE_GROUND;	//n‚ß‚Í’nã‚©‚çƒXƒ^[ƒg
+	fsys->MapMode = MAP_MODE_GROUND;	//å§‹ã‚ã¯åœ°ä¸Šã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆ
 	event = FieldEvent_Set(fsys, GMEVENT_ContinueMapIn, NULL);
 }
 
@@ -833,31 +833,31 @@ static BOOL GMEVENT_ErrorContinueMapIn(GMEVENT_CONTROL * event)
 		WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 
-        //ƒ[ƒh’¼Œã‚ÉŒÄ‚Ô’n‰ºƒf[ƒ^ˆ—
+        //ãƒ­ãƒ¼ãƒ‰ç›´å¾Œã«å‘¼ã¶åœ°ä¸‹ãƒ‡ãƒ¼ã‚¿å‡¦ç†
         UnderGroundDataLoadUpdate(fsys->savedata);
 
 		fsys->fnote = FNOTE_SavePageGet(SaveData_GetFNote(fsys->savedata),
-				SysFlag_FNoteCheck(ev));//–`Œ¯ƒm[ƒgƒy[ƒW‰Šú‰»
+				SysFlag_FNoteCheck(ev));//å†’é™ºãƒãƒ¼ãƒˆãƒšãƒ¼ã‚¸åˆæœŸåŒ–
 
 		(*seq) ++;
 		break;
 
 	case 1:
 		MapChg_SetNewLocation(fsys, &ecw->union_loc);
-		//‚‚³AƒAƒgƒŠƒrƒ…[ƒgAƒ}ƒbƒvƒ[ƒh‚Ì•û–@‚ğŒˆ’è
+		//é«˜ã•ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã®æ–¹æ³•ã‚’æ±ºå®š
 		MapChg_SetupMapTools(fsys);
 		MapChg_UpdateGameData(fsys, FALSE);
 		MapChg_FieldOBJ_Create(fsys);
 #if S2424_060818_FIX
-		FNoteStartDataSet_SioError( fsys );		//–`Œ¯ƒm[ƒg‚ÌŠJnƒf[ƒ^ì¬
+		FNoteStartDataSet_SioError( fsys );		//å†’é™ºãƒãƒ¼ãƒˆã®é–‹å§‹ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 #endif
 		(*seq) ++;
 		break;
 
 	case 2:
-		// ƒ†ƒjƒIƒ“ƒ‹[ƒ€’ÊMŠJn
+		// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ é€šä¿¡é–‹å§‹
 		fsys->union_work = Comm_UnionRoomInit(fsys);
-		// ƒ†ƒjƒIƒ“ƒ‹[ƒ€OBJ§Œäƒ^ƒXƒN‹N“®
+		// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ OBJåˆ¶å¾¡ã‚¿ã‚¹ã‚¯èµ·å‹•
 		fsys->union_view = Comm_UnionRoomViewInit(fsys->union_work);
 
 		EventCmd_StartFieldMap(event);
@@ -884,8 +884,8 @@ static BOOL GMEVENT_ErrorContinueMapIn(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ŠJnƒCƒxƒ“ƒgƒZƒbƒg
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ é–‹å§‹ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventSet_ErrorContinueMapIn(FIELDSYS_WORK * fsys)
@@ -894,16 +894,16 @@ void EventSet_ErrorContinueMapIn(FIELDSYS_WORK * fsys)
 	ERROR_CONTINUE_WORK * ecw;
 
 	if (ZoneData_IsUnionRoom(fsys->location->zone_id)) {
-		/* ê—pˆ—‚È‚µ */
+		/* å°‚ç”¨å‡¦ç†ãªã— */
 	} else if (IsUnionRoomSave(fsys)) {
-		//ƒ|ƒPƒZƒ“‚QF‚©‚çŠJn‚Ìê‡‚Í“ÁêÚ‘±æ‚ğİ’è
+		//ãƒã‚±ã‚»ãƒ³ï¼’Fã‹ã‚‰é–‹å§‹ã®å ´åˆã¯ç‰¹æ®Šæ¥ç¶šå…ˆã‚’è¨­å®š
 		EVENTWORK * ev = SaveData_GetEventWork(fsys->savedata);
 		SetUnionExit(fsys);
 		SysFlag_CommCounterSet(ev);
 
 	} else {
 
-		//’ÊMƒGƒ‰[‚Å‚àƒ†ƒjƒIƒ“ˆÈŠO‚Ìê‡‚Í’ÊíƒRƒ“ƒeƒBƒjƒ…[ˆ—‚Ö•ªŠò
+		//é€šä¿¡ã‚¨ãƒ©ãƒ¼ã§ã‚‚ãƒ¦ãƒ‹ã‚ªãƒ³ä»¥å¤–ã®å ´åˆã¯é€šå¸¸ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼å‡¦ç†ã¸åˆ†å²
 		EventSet_ContinueMapIn(fsys);
 		return;
 	}
@@ -920,13 +920,13 @@ void EventSet_ErrorContinueMapIn(FIELDSYS_WORK * fsys)
 //============================================================================================
 //
 //
-//							ƒQ[ƒ€I—¹
+//							ã‚²ãƒ¼ãƒ çµ‚äº†
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFƒQ[ƒ€I—¹
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šã‚²ãƒ¼ãƒ çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_GameEnd(GMEVENT_CONTROL * event)
@@ -958,12 +958,12 @@ static BOOL GMEVENT_GameEnd(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€I—¹ˆ—
+ * @brief	ã‚²ãƒ¼ãƒ çµ‚äº†å‡¦ç†
  *
- * ƒQ[ƒ€ƒƒCƒ“ˆ—‚ğI—¹‚³‚¹‚éB
- * ƒfƒoƒbƒO—p‚Åƒƒ‚ƒŠƒŠ[ƒNƒ`ƒFƒbƒN‚Ì‚½‚ßì¬‚µ‚½B
- * ƒ|ƒPƒ‚ƒ“‚Å‚Íƒ†[ƒU[‘€ì‚ÅƒQ[ƒ€I—¹‚³‚¹‚é‚±‚Æ‚ª‚È‚¢‚Ì‚ÅA»•i”Å‚Å‚Í
- * g—p‚³‚ê‚È‚¢‚Í‚¸B
+ * ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚’çµ‚äº†ã•ã›ã‚‹ã€‚
+ * ãƒ‡ãƒãƒƒã‚°ç”¨ã§ãƒ¡ãƒ¢ãƒªãƒªãƒ¼ã‚¯ãƒã‚§ãƒƒã‚¯ã®ãŸã‚ä½œæˆã—ãŸã€‚
+ * ãƒã‚±ãƒ¢ãƒ³ã§ã¯ãƒ¦ãƒ¼ã‚¶ãƒ¼æ“ä½œã§ã‚²ãƒ¼ãƒ çµ‚äº†ã•ã›ã‚‹ã“ã¨ãŒãªã„ã®ã§ã€è£½å“ç‰ˆã§ã¯
+ * ä½¿ç”¨ã•ã‚Œãªã„ã¯ãšã€‚
  */
 //-----------------------------------------------------------------------------
 void EventSet_ReturnToTitle(FIELDSYS_WORK * fsys)
@@ -976,7 +976,7 @@ void EventSet_ReturnToTitle(FIELDSYS_WORK * fsys)
 //============================================================================================
 //============================================================================================
 //-----------------------------------------------------------------------------
-// @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(ƒAƒjƒ–³‚µ‘¦ƒWƒƒƒ“ƒv)
+// @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¢ãƒ‹ãƒ¡ç„¡ã—å³ã‚¸ãƒ£ãƒ³ãƒ—)
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_MapChange(GMEVENT_CONTROL * event)
 {
@@ -987,21 +987,21 @@ static BOOL GMEVENT_MapChange(GMEVENT_CONTROL * event)
 	switch (mcw->seq) {
 	case 0:
 		Snd_SePlay( SEQ_SE_DP_KAIDAN2 );
-		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ƒtƒB[ƒ‹ƒhBGMƒtƒF[ƒhƒAƒEƒg
-		EventCmd_FadeOut_FinishField(event);	//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+		EventCmd_FadeOut_FinishField(event);	//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
 		(mcw->seq) ++;
 		break;
 	case 1:
-		//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
 		EventCmd_MapChangeByLocation(event, &mcw->next);
 		(mcw->seq) ++;
 		break;
 	case 2:
-		if( Snd_FadeCheck() != 0 ){								//ƒTƒEƒ“ƒhƒtƒF[ƒh’†
+		if( Snd_FadeCheck() != 0 ){								//ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 			break;
 		}
-		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ƒtƒB[ƒ‹ƒhBGMÄ¶
-		EventCmd_StartField_FadeIn(event);	//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMå†ç”Ÿ
+		EventCmd_StartField_FadeIn(event);	//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
 		(mcw->seq) ++;
 		break;
 	case 3:
@@ -1013,9 +1013,9 @@ static BOOL GMEVENT_MapChange(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgƒZƒbƒg
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	next		‘JˆÚæƒ}ƒbƒvw’è
+ * @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	next		é·ç§»å…ˆãƒãƒƒãƒ—æŒ‡å®š
  */
 //-----------------------------------------------------------------------------
 void EventSet_EasyMapChangeByLocation(FIELDSYS_WORK * fsys, const LOCATION_WORK * next)
@@ -1028,17 +1028,17 @@ void EventSet_EasyMapChangeByLocation(FIELDSYS_WORK * fsys, const LOCATION_WORK 
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgƒZƒbƒg
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone		‘JˆÚæƒ}ƒbƒv‚Ìƒ][ƒ“w’è
- * @param	door_id		‘JˆÚæƒ}ƒbƒv‚Å‚ÌoŒ»o“üŒûw’è
- * @param	x			‘JˆÚæƒ}ƒbƒv‚Å‚ÌXƒOƒŠƒbƒhˆÊ’u
- * @param	z			‘JˆÚæƒ}ƒbƒv‚Å‚ÌYƒOƒŠƒbƒhˆÊ’u
- * @param	dir			‘JˆÚæƒ}ƒbƒv‚Å‚Ì‰Šú•ûŒü
+ * @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone		é·ç§»å…ˆãƒãƒƒãƒ—ã®ã‚¾ãƒ¼ãƒ³æŒ‡å®š
+ * @param	door_id		é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®å‡ºç¾å‡ºå…¥å£æŒ‡å®š
+ * @param	x			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Xã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	z			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Yã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	dir			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®åˆæœŸæ–¹å‘
  *
- * ‘JˆÚæƒ}ƒbƒv‚Ì‚Ç‚±‚ÉoŒ»‚·‚é‚©‚Ìî•ñ‚ÍŸ‚Ìƒ}ƒbƒv‚ğ“Ç‚İ‚Ş‚Ü‚Å‚Í‚í‚©‚ç‚È‚¢‚Í‚¸‚È‚Ì‚Å
- * –{“–‚ÍÀ•Ww’è‚Í–³‘Ê‚©‚à‚µ‚ê‚È‚¢‚¯‚ÇA”O‚Ì‚½‚ßB‚Ü‚½ƒGƒŠƒA‚Æƒ][ƒ“‚ÌŠÖŒW‚ÍÄl‚³‚ê‚é‚Ì‚Å
- * ƒGƒŠƒAw’è‚à‚¢‚ç‚È‚­‚È‚é‰Â”\«‚ª‚ ‚éB
+ * é·ç§»å…ˆãƒãƒƒãƒ—ã®ã©ã“ã«å‡ºç¾ã™ã‚‹ã‹ã®æƒ…å ±ã¯æ¬¡ã®ãƒãƒƒãƒ—ã‚’èª­ã¿è¾¼ã‚€ã¾ã§ã¯ã‚ã‹ã‚‰ãªã„ã¯ãšãªã®ã§
+ * æœ¬å½“ã¯åº§æ¨™æŒ‡å®šã¯ç„¡é§„ã‹ã‚‚ã—ã‚Œãªã„ã‘ã©ã€å¿µã®ãŸã‚ã€‚ã¾ãŸã‚¨ãƒªã‚¢ã¨ã‚¾ãƒ¼ãƒ³ã®é–¢ä¿‚ã¯å†è€ƒã•ã‚Œã‚‹ã®ã§
+ * ã‚¨ãƒªã‚¢æŒ‡å®šã‚‚ã„ã‚‰ãªããªã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã€‚
  */
 //-----------------------------------------------------------------------------
 void EventSet_EasyMapChange(FIELDSYS_WORK * fsys, int zone, int door_id, int x, int z, int dir )
@@ -1050,9 +1050,9 @@ void EventSet_EasyMapChange(FIELDSYS_WORK * fsys, int zone, int door_id, int x, 
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgƒRƒ}ƒ“ƒh
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	next		‘JˆÚæƒ}ƒbƒvw’è
+ * @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	next		é·ç§»å…ˆãƒãƒƒãƒ—æŒ‡å®š
  */
 //-----------------------------------------------------------------------------
 void EventCmd_EasyMapChangeByLocation(GMEVENT_CONTROL * event, const LOCATION_WORK * next)
@@ -1064,13 +1064,13 @@ void EventCmd_EasyMapChangeByLocation(GMEVENT_CONTROL * event, const LOCATION_WO
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgƒRƒ}ƒ“ƒh
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone		‘JˆÚæƒ}ƒbƒv‚Ìƒ][ƒ“w’è
- * @param	door_id		‘JˆÚæƒ}ƒbƒv‚Å‚ÌoŒ»o“üŒûw’è
- * @param	x			‘JˆÚæƒ}ƒbƒv‚Å‚ÌXƒOƒŠƒbƒhˆÊ’u
- * @param	z			‘JˆÚæƒ}ƒbƒv‚Å‚ÌYƒOƒŠƒbƒhˆÊ’u
- * @param	dir			‘JˆÚæƒ}ƒbƒv‚Å‚Ì‰Šú•ûŒü
+ * @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone		é·ç§»å…ˆãƒãƒƒãƒ—ã®ã‚¾ãƒ¼ãƒ³æŒ‡å®š
+ * @param	door_id		é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®å‡ºç¾å‡ºå…¥å£æŒ‡å®š
+ * @param	x			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Xã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	z			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Yã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	dir			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®åˆæœŸæ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void EventCmd_EasyMapChange(GMEVENT_CONTROL * event, int zone, int door_id, int x, int z, int dir )
@@ -1083,19 +1083,19 @@ void EventCmd_EasyMapChange(GMEVENT_CONTROL * event, int zone, int door_id, int 
 //============================================================================================
 //
 //
-//	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒ}ƒbƒv‘JˆÚŠÖ˜A
+//	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒƒãƒ—é·ç§»é–¢é€£
 //
-//	ƒTƒuƒCƒxƒ“ƒg‚ÍFieldEvent_Call‚ÅŒÄ‚Ño‚·‚±‚Æ‚Åg—p‚·‚éB
-//	Œ»İ‚ÌƒCƒxƒ“ƒg‚ğ’â~‚µ‚ÄA‘ã‚í‚è‚ÉƒTƒuƒCƒxƒ“ƒg‚ğ‚æ‚Ñ‚¾‚·B
-//	ƒTƒuƒCƒxƒ“ƒg‚ªI—¹‚·‚é‚ÆŒ»İ‚ÌƒCƒxƒ“ƒg‚ªŒÄ‚Ño‚³‚ê‚éB
+//	ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆã¯FieldEvent_Callã§å‘¼ã³å‡ºã™ã“ã¨ã§ä½¿ç”¨ã™ã‚‹ã€‚
+//	ç¾åœ¨ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’åœæ­¢ã—ã¦ã€ä»£ã‚ã‚Šã«ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚ˆã³ã ã™ã€‚
+//	ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã™ã‚‹ã¨ç¾åœ¨ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒå‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
 //
-//	“à•”“I‚É‚ÍFieldEvent_Call‚ğŒÄ‚Ño‚µ‚ÄƒTƒuƒCƒxƒ“ƒgÀs‚ğs‚Á‚Ä‚¢‚é‚ªA
-//	ƒCƒxƒ“ƒg‘¤‚©‚ç‚Í’Pƒ‚ÈƒRƒ}ƒ“ƒhŒÄ‚Ño‚µ‚ÅÀs‚Å‚«‚é‚æ‚¤‚ÈŒ`‚É®‚¦‚Ä‚¢‚­—\’èB
+//	å†…éƒ¨çš„ã«ã¯FieldEvent_Callã‚’å‘¼ã³å‡ºã—ã¦ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œã‚’è¡Œã£ã¦ã„ã‚‹ãŒã€
+//	ã‚¤ãƒ™ãƒ³ãƒˆå´ã‹ã‚‰ã¯å˜ç´”ãªã‚³ãƒãƒ³ãƒ‰å‘¼ã³å‡ºã—ã§å®Ÿè¡Œã§ãã‚‹ã‚ˆã†ãªå½¢ã«æ•´ãˆã¦ã„ãäºˆå®šã€‚
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	‹[—ƒRƒ}ƒ“ƒh—pƒ[ƒN’è‹`
+ * @brief	æ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ç”¨ãƒ¯ãƒ¼ã‚¯å®šç¾©
  */
 //-----------------------------------------------------------------------------
 typedef struct {
@@ -1105,14 +1105,14 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒCƒxƒ“ƒgFƒ}ƒbƒv‘JˆÚ
- * @param	event	ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE	ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE	ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆï¼šãƒãƒƒãƒ—é·ç§»
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE	ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE	ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  *
- * ƒTƒuƒCƒxƒ“ƒg‚ÍFieldEvent_Call‚ÅŒÄ‚Ño‚·‚±‚Æ‚Åg—p‚·‚éB
- * Œ»İ‚ÌƒCƒxƒ“ƒg‚ğ’â~‚µ‚ÄA‘ã‚í‚è‚ÉƒTƒuƒCƒxƒ“ƒg‚ğ‚æ‚Ñ‚¾‚·B
- * ƒTƒuƒCƒxƒ“ƒg‚ªI—¹‚·‚é‚ÆŒ»İ‚ÌƒCƒxƒ“ƒg‚ªŒÄ‚Ño‚³‚ê‚éB
+ * ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆã¯FieldEvent_Callã§å‘¼ã³å‡ºã™ã“ã¨ã§ä½¿ç”¨ã™ã‚‹ã€‚
+ * ç¾åœ¨ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’åœæ­¢ã—ã¦ã€ä»£ã‚ã‚Šã«ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚ˆã³ã ã™ã€‚
+ * ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã™ã‚‹ã¨ç¾åœ¨ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒå‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_Sub_MapChange(GMEVENT_CONTROL * event)
@@ -1123,22 +1123,22 @@ static BOOL GMEVENT_Sub_MapChange(GMEVENT_CONTROL * event)
 
 	switch (smw->seq) {
 	case 0:
-		//--------I—¹ˆ—--------
+		//--------çµ‚äº†å‡¦ç†--------
 		MapChg_FieldOBJ_Delete(fsys);
 		MapChg_RemoveMapTools(fsys);
 		(smw->seq) ++;
 		break;
 		
 	case 1:
-		//--------ŠJnˆ—--------
+		//--------é–‹å§‹å‡¦ç†--------
 		MapChg_SetNewLocation(fsys, &smw->next);
 
-		//‚‚³AƒAƒgƒŠƒrƒ…[ƒgAƒ}ƒbƒvƒ[ƒh‚Ì•û–@‚ğŒˆ’è
+		//é«˜ã•ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã®æ–¹æ³•ã‚’æ±ºå®š
 		MapChg_SetupMapTools(fsys);
 
 		MapChg_UpdateGameData(fsys, FALSE);
 
-		SwayGrass_InitSwayGrass(fsys->SwayGrass);	//—h‚ê‘‰Šú‰»
+		SwayGrass_InitSwayGrass(fsys->SwayGrass);	//æºã‚Œè‰åˆæœŸåŒ–
 		(smw->seq) ++;
 		break;
 		
@@ -1152,9 +1152,9 @@ static BOOL GMEVENT_Sub_MapChange(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒ}ƒbƒv‘JˆÚ
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	next		‘JˆÚæ‚ğw’è‚·‚éLOCATION_WORKŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒƒãƒ—é·ç§»
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	next		é·ç§»å…ˆã‚’æŒ‡å®šã™ã‚‹LOCATION_WORKå‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_MapChangeByLocation(GMEVENT_CONTROL * event, const LOCATION_WORK * next)
@@ -1162,7 +1162,7 @@ void EventCmd_MapChangeByLocation(GMEVENT_CONTROL * event, const LOCATION_WORK *
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	SIMPLE_MAPCHG_WORK * smw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(SIMPLE_MAPCHG_WORK));
 	if (GameSystem_CheckFieldProcExists(fsys)) {
-		GF_ASSERT("mainproc‚ª‚ ‚é‚Ì‚Éƒ}ƒbƒv‘JˆÚˆ—\n" && 0);
+		GF_ASSERT("mainprocãŒã‚ã‚‹ã®ã«ãƒãƒƒãƒ—é·ç§»å‡¦ç†\n" && 0);
 		return;
 	}
 	smw->seq = 0;
@@ -1172,13 +1172,13 @@ void EventCmd_MapChangeByLocation(GMEVENT_CONTROL * event, const LOCATION_WORK *
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒ}ƒbƒv‘JˆÚ
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone_id		‘JˆÚæƒ][ƒ“IDw’è
- * @param	door_id		‘JˆÚæo“üŒûw’è
- * @param	x			‘JˆÚæXÀ•Ww’èidoor_id == DOOR_ID_JUMP_CODE‚Ì‚Æ‚«‚Ì‚İ—LŒøj
- * @param	z			‘JˆÚæZÀ•Ww’èidoor_id == DOOR_ID_JUMP_CODE‚Ì‚Æ‚«‚Ì‚İ—LŒøj
- * @param	dir			oŒ»æ‚Å‚Ì•ûŒüw’è
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒƒãƒ—é·ç§»
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone_id		é·ç§»å…ˆã‚¾ãƒ¼ãƒ³IDæŒ‡å®š
+ * @param	door_id		é·ç§»å…ˆå‡ºå…¥å£æŒ‡å®š
+ * @param	x			é·ç§»å…ˆXåº§æ¨™æŒ‡å®šï¼ˆdoor_id == DOOR_ID_JUMP_CODEã®ã¨ãã®ã¿æœ‰åŠ¹ï¼‰
+ * @param	z			é·ç§»å…ˆZåº§æ¨™æŒ‡å®šï¼ˆdoor_id == DOOR_ID_JUMP_CODEã®ã¨ãã®ã¿æœ‰åŠ¹ï¼‰
+ * @param	dir			å‡ºç¾å…ˆã§ã®æ–¹å‘æŒ‡å®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -1199,7 +1199,7 @@ static BOOL GMEVENT_Sub_MapChangeFull(GMEVENT_CONTROL * event)
 
 	switch (mcw->seq) {
 	case 0:
-		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ƒtƒB[ƒ‹ƒhBGMƒtƒF[ƒhƒAƒEƒg
+		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		EventCmd_FinishFieldMap(event);
 		(mcw->seq) ++;
 		break;
@@ -1208,10 +1208,10 @@ static BOOL GMEVENT_Sub_MapChangeFull(GMEVENT_CONTROL * event)
 		(mcw->seq) ++;
 		break;
 	case 2:
-		if( Snd_FadeCheck() != 0 ){								//ƒTƒEƒ“ƒhƒtƒF[ƒh’†
+		if( Snd_FadeCheck() != 0 ){								//ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 			break;
 		}
-		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ƒtƒB[ƒ‹ƒhBGMÄ¶
+		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMå†ç”Ÿ
 		EventCmd_StartFieldMap(event);
 		(mcw->seq) ++;
 		break;
@@ -1223,15 +1223,15 @@ static BOOL GMEVENT_Sub_MapChangeFull(GMEVENT_CONTROL * event)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒ}ƒbƒvØ‘Ö
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone_id		‘JˆÚæƒ][ƒ“IDw’è
- * @param	door_id		‘JˆÚæo“üŒûw’è
- * @param	x			‘JˆÚæXÀ•Ww’èidoor_id == DOOR_ID_JUMP_CODE‚Ì‚Æ‚«‚Ì‚İ—LŒøj
- * @param	z			‘JˆÚæZÀ•Ww’èidoor_id == DOOR_ID_JUMP_CODE‚Ì‚Æ‚«‚Ì‚İ—LŒøj
- * @param	dir			oŒ»æ‚Å‚Ì•ûŒüw’è
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒƒãƒ—åˆ‡æ›¿
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone_id		é·ç§»å…ˆã‚¾ãƒ¼ãƒ³IDæŒ‡å®š
+ * @param	door_id		é·ç§»å…ˆå‡ºå…¥å£æŒ‡å®š
+ * @param	x			é·ç§»å…ˆXåº§æ¨™æŒ‡å®šï¼ˆdoor_id == DOOR_ID_JUMP_CODEã®ã¨ãã®ã¿æœ‰åŠ¹ï¼‰
+ * @param	z			é·ç§»å…ˆZåº§æ¨™æŒ‡å®šï¼ˆdoor_id == DOOR_ID_JUMP_CODEã®ã¨ãã®ã¿æœ‰åŠ¹ï¼‰
+ * @param	dir			å‡ºç¾å…ˆã§ã®æ–¹å‘æŒ‡å®š
  *
- * ƒtƒB[ƒ‹ƒhƒ}ƒbƒvI—¹¨ƒ}ƒbƒvØ‘Öˆ—¨ƒtƒB[ƒ‹ƒhƒ}ƒbƒvÄŠJ‚Ü‚Å‚Ìˆ—‚ğˆê˜A‚Ås‚¤
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—çµ‚äº†â†’ãƒãƒƒãƒ—åˆ‡æ›¿å‡¦ç†â†’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—å†é–‹ã¾ã§ã®å‡¦ç†ã‚’ä¸€é€£ã§è¡Œã†
  */
 //-----------------------------------------------------------------------------
 void EventCmd_MapChangeFull(GMEVENT_CONTROL * event,
@@ -1246,19 +1246,19 @@ void EventCmd_MapChangeFull(GMEVENT_CONTROL * event,
 //============================================================================================
 //
 //
-//			‚Ğ‚Å‚ñ‚í‚´@‚»‚ç‚ğ‚Æ‚Ô—pƒ}ƒbƒvˆÚ“®
+//			ã²ã§ã‚“ã‚ã–ã€€ãã‚‰ã‚’ã¨ã¶ç”¨ãƒãƒƒãƒ—ç§»å‹•
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	‹ó‚ğ”ò‚Ôê—pƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg—p§Œäƒ[ƒN
+ * @brief	ç©ºã‚’é£›ã¶å°‚ç”¨ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆç”¨åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 typedef struct {
-	int seq;							///<ƒV[ƒPƒ“ƒX•Ûƒ[ƒN
-	TCB_PTR tcb_sky;					///<‹ó‚ğ”ò‚Ô“®ìTCB_PTR
-	LOCATION_WORK next;					///<ƒ}ƒbƒv‘JˆÚæw’è—pƒ[ƒN
+	int seq;							///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿æŒãƒ¯ãƒ¼ã‚¯
+	TCB_PTR tcb_sky;					///<ç©ºã‚’é£›ã¶å‹•ä½œTCB_PTR
+	LOCATION_WORK next;					///<ãƒãƒƒãƒ—é·ç§»å…ˆæŒ‡å®šç”¨ãƒ¯ãƒ¼ã‚¯
 	FLD_3D_ANIME_WORK_PTR DoorAnimeWork;
 }EVENT_MAPCHG_WORK_SKY;
 
@@ -1272,13 +1272,13 @@ static BOOL GMEVENT_Sub_WaitFadeSky(GMEVENT_CONTROL * event);
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚»‚ç‚ğ”ò‚Ô—pƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgƒZƒbƒg
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone		‘JˆÚæƒ}ƒbƒv‚Ìƒ][ƒ“w’è
- * @param	door_id		‘JˆÚæƒ}ƒbƒv‚Å‚ÌoŒ»o“üŒûw’è
- * @param	x			‘JˆÚæƒ}ƒbƒv‚Å‚ÌXƒOƒŠƒbƒhˆÊ’u
- * @param	z			‘JˆÚæƒ}ƒbƒv‚Å‚ÌYƒOƒŠƒbƒhˆÊ’u
- * @param	dir			‘JˆÚæƒ}ƒbƒv‚Å‚Ì‰Šú•ûŒü
+ * @brief	ãã‚‰ã‚’é£›ã¶ç”¨ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone		é·ç§»å…ˆãƒãƒƒãƒ—ã®ã‚¾ãƒ¼ãƒ³æŒ‡å®š
+ * @param	door_id		é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®å‡ºç¾å‡ºå…¥å£æŒ‡å®š
+ * @param	x			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Xã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	z			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Yã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	dir			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®åˆæœŸæ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void EventSet_MapChangeBySky(
@@ -1299,13 +1299,13 @@ void EventSet_MapChangeBySky(
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚»‚ç‚ğ”ò‚Ô—pƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgƒZƒbƒg@ƒCƒxƒ“ƒgƒ`ƒFƒ“ƒWŒ^
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone		‘JˆÚæƒ}ƒbƒv‚Ìƒ][ƒ“w’è
- * @param	door_id		‘JˆÚæƒ}ƒbƒv‚Å‚ÌoŒ»o“üŒûw’è
- * @param	x			‘JˆÚæƒ}ƒbƒv‚Å‚ÌXƒOƒŠƒbƒhˆÊ’u
- * @param	z			‘JˆÚæƒ}ƒbƒv‚Å‚ÌYƒOƒŠƒbƒhˆÊ’u
- * @param	dir			‘JˆÚæƒ}ƒbƒv‚Å‚Ì‰Šú•ûŒü
+ * @brief	ãã‚‰ã‚’é£›ã¶ç”¨ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒ³ã‚¸å‹
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone		é·ç§»å…ˆãƒãƒƒãƒ—ã®ã‚¾ãƒ¼ãƒ³æŒ‡å®š
+ * @param	door_id		é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®å‡ºç¾å‡ºå…¥å£æŒ‡å®š
+ * @param	x			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Xã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	z			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®Yã‚°ãƒªãƒƒãƒ‰ä½ç½®
+ * @param	dir			é·ç§»å…ˆãƒãƒƒãƒ—ã§ã®åˆæœŸæ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void EventChange_MapChangeBySky(
@@ -1325,7 +1325,7 @@ void EventChange_MapChangeBySky(
 }
 
 //-----------------------------------------------------------------------------
-// @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(‚»‚ç‚ğ‚Æ‚Ô)
+// @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ãã‚‰ã‚’ã¨ã¶)
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_MapChangeBySky(GMEVENT_CONTROL * event)
 {
@@ -1335,27 +1335,27 @@ static BOOL GMEVENT_MapChangeBySky(GMEVENT_CONTROL * event)
 	
 	switch (mcw->seq) {
 	case 0:
-		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ƒtƒB[ƒ‹ƒhBGMƒtƒF[ƒhƒAƒEƒg
-		EventCmd_Sky_FinishField(event);	//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+		EventCmd_Sky_FinishField(event);	//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
 		(mcw->seq) ++;
 		break;
 	case 1:
-		//©‹@ó‘Ô‚ğ“ñ‘«•às‚É‚·‚é
+		//è‡ªæ©ŸçŠ¶æ…‹ã‚’äºŒè¶³æ­©è¡Œã«ã™ã‚‹
 		Player_FormSet(fsys->player, HERO_FORM_NORMAL);
-		//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
 		EventCmd_MapChangeByLocation(event, &mcw->next);
 		(mcw->seq) ++;
 		break;
 	case 2:
-		if( Snd_FadeCheck() != 0 ){								//ƒTƒEƒ“ƒhƒtƒF[ƒh’†
+		if( Snd_FadeCheck() != 0 ){								//ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 			break;
 		}
-		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ƒtƒB[ƒ‹ƒhBGMÄ¶
+		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMå†ç”Ÿ
 
-		//‹ó‚ğ”ò‚ÔŒÅ—Lƒtƒ‰ƒO—‚Æ‚µˆ—
+		//ç©ºã‚’é£›ã¶å›ºæœ‰ãƒ•ãƒ©ã‚°è½ã¨ã—å‡¦ç†
 		FldFlgInit_FlySky(fsys);
 
-		EventCmd_StartField_FadeInSky(event);	//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		EventCmd_StartField_FadeInSky(event);	//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
 		(mcw->seq) ++;
 		break;
 	case 3:
@@ -1367,8 +1367,8 @@ static BOOL GMEVENT_MapChangeBySky(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒvƒƒZƒXI—¹@‚»‚ç‚ğ‚Æ‚Ô
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†ã€€ãã‚‰ã‚’ã¨ã¶
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void EventCmd_Sky_FinishField(GMEVENT_CONTROL * event)
@@ -1377,7 +1377,7 @@ static void EventCmd_Sky_FinishField(GMEVENT_CONTROL * event)
 }
 
 //-----------------------------------------------------------------------------
-// @brief	ƒtƒB[ƒ‹ƒhI—¹(‚»‚ç‚ğ‚Æ‚Ô)
+// @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰çµ‚äº†(ãã‚‰ã‚’ã¨ã¶)
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_Sub_Sky_FinishField(GMEVENT_CONTROL * event)
 {
@@ -1395,8 +1395,8 @@ static BOOL GMEVENT_Sub_Sky_FinishField(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJn¨ƒtƒF[ƒhƒCƒ“@‚»‚ç‚ğ‚Æ‚Ô
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹â†’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ãã‚‰ã‚’ã¨ã¶
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void EventCmd_StartField_FadeInSky(GMEVENT_CONTROL * event)
@@ -1406,7 +1406,7 @@ static void EventCmd_StartField_FadeInSky(GMEVENT_CONTROL * event)
 }
 
 //-----------------------------------------------------------------------------
-// @brief	ƒtƒB[ƒ‹ƒhƒtƒF[ƒhƒCƒ“@‚»‚ç‚ğ‚Æ‚Ô
+// @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ãã‚‰ã‚’ã¨ã¶
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_Sub_StartField_FadeInSky(GMEVENT_CONTROL * event)
 {
@@ -1418,7 +1418,7 @@ static BOOL GMEVENT_Sub_StartField_FadeInSky(GMEVENT_CONTROL * event)
 		(*seq) ++;
 		break;
 	case 1:
-		//’n–¼•\¦
+		//åœ°åè¡¨ç¤º
 		PlaceNameRequestByFsys(fsys);
 		
 		EventCmd_FieldFadeInSky(event);
@@ -1432,8 +1432,8 @@ static BOOL GMEVENT_Sub_StartField_FadeInSky(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒCƒ“@‚»‚ç‚ğ‚Æ‚Ô
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ãã‚‰ã‚’ã¨ã¶
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void EventCmd_FieldFadeInSky(GMEVENT_CONTROL * event)
@@ -1442,11 +1442,11 @@ static void EventCmd_FieldFadeInSky(GMEVENT_CONTROL * event)
 	EVENT_MAPCHG_WORK_SKY * mcw = FieldEvent_GetSpecialWork(event);
 	
 	if (!GameSystem_CheckFieldProcExists(fsys)) {
-		GF_ASSERT("mainproc‚ª‚È‚¢‚Ì‚ÉƒtƒF[ƒh‚ğÀs\n" && 0);
+		GF_ASSERT("mainprocãŒãªã„ã®ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å®Ÿè¡Œ\n" && 0);
 		return;
 	}
 	
-	//‚±‚±‚ÉƒJƒbƒgƒCƒ“ê—p‚Ì‚à‚Ì‚ğ‚ ‚Ä‚é@ƒtƒF[ƒhƒCƒ“‚Í‚»‚Ì’†‚Å
+	//ã“ã“ã«ã‚«ãƒƒãƒˆã‚¤ãƒ³å°‚ç”¨ã®ã‚‚ã®ã‚’ã‚ã¦ã‚‹ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã¯ãã®ä¸­ã§
 	{
 #if 0
 		WIPE_SYS_Start(
@@ -1460,8 +1460,8 @@ static void EventCmd_FieldFadeInSky(GMEVENT_CONTROL * event)
 }
 
 //-----------------------------------------------------------------------------
-// @brief	ƒtƒB[ƒ‹ƒhƒtƒF[ƒhƒCƒ“‘Ò‚¿@‚»‚ç‚ğ‚Æ‚ÔB
-// ‚±‚±‚É‹ó‚ğ”ò‚ÔI—¹ƒGƒtƒFƒNƒg‘Ò‚¿‚ğ“–‚Ä‚é
+// @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡ã€€ãã‚‰ã‚’ã¨ã¶ã€‚
+// ã“ã“ã«ç©ºã‚’é£›ã¶çµ‚äº†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡ã‚’å½“ã¦ã‚‹
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_Sub_WaitFadeSky(GMEVENT_CONTROL * event)
 {
@@ -1478,20 +1478,20 @@ static BOOL GMEVENT_Sub_WaitFadeSky(GMEVENT_CONTROL * event)
 //============================================================================================
 //
 //
-//			‚ ‚È‚Ê‚¯‚Ì‚Ğ‚àA‚ ‚È‚ğ‚Ù‚éAƒeƒŒƒ|[ƒg—pƒ}ƒbƒvˆÚ“®
+//			ã‚ãªã¬ã‘ã®ã²ã‚‚ã€ã‚ãªã‚’ã»ã‚‹ã€ãƒ†ãƒ¬ãƒãƒ¼ãƒˆç”¨ãƒãƒƒãƒ—ç§»å‹•
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ ‚È‚Ê‚¯ê—pƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg—p§Œäƒ[ƒN
+ * @brief	ã‚ãªã¬ã‘å°‚ç”¨ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆç”¨åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 typedef struct {
-	int seq;							///<ƒV[ƒPƒ“ƒX•Ûƒ[ƒN
+	int seq;							///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿æŒãƒ¯ãƒ¼ã‚¯
 	ANATYPE ana_type;					///<ANATYPE
-	TCB_PTR tcb_jiki;					///<“®ìTCB_PTR
-	LOCATION_WORK next;					///<ƒ}ƒbƒv‘JˆÚæw’è—pƒ[ƒN
+	TCB_PTR tcb_jiki;					///<å‹•ä½œTCB_PTR
+	LOCATION_WORK next;					///<ãƒãƒƒãƒ—é·ç§»å…ˆæŒ‡å®šç”¨ãƒ¯ãƒ¼ã‚¯
 }EVENT_MAPCHG_WORK_ANANUKE;
 
 static BOOL GMEVENT_MapChangeByAnanuke(GMEVENT_CONTROL * event);
@@ -1504,9 +1504,9 @@ static BOOL GMEVENT_Sub_WaitFadeAnanuke(GMEVENT_CONTROL * event);
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ŒŠ”²‚¯AŒŠŒ@‚èAƒeƒŒƒ|[ƒgƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgƒ`ƒFƒ“ƒW
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	escape		‘JˆÚæ
+ * @brief	ç©´æŠœã‘ã€ç©´æ˜ã‚Šã€ãƒ†ãƒ¬ãƒãƒ¼ãƒˆãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒ³ã‚¸
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	escape		é·ç§»å…ˆ
  * @param	type		ANATYPE
  */
 //-----------------------------------------------------------------------------
@@ -1523,7 +1523,7 @@ void EventChange_MapChangeByAnanuke(
 }
 
 //-----------------------------------------------------------------------------
-// @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(‚ ‚È‚Ê‚¯‚Ì‚Ğ‚à)
+// @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚ãªã¬ã‘ã®ã²ã‚‚)
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_MapChangeByAnanuke(GMEVENT_CONTROL * event)
 {
@@ -1533,34 +1533,34 @@ static BOOL GMEVENT_MapChangeByAnanuke(GMEVENT_CONTROL * event)
 	
 	switch (mcw->seq) {
 	case 0:
-		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ƒtƒB[ƒ‹ƒhBGMƒtƒF[ƒhƒAƒEƒg
-		EventCmd_Ananuke_FinishField(event);	//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+		EventCmd_Ananuke_FinishField(event);	//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
 		(mcw->seq) ++;
 		break;
 	case 1:
-		//©‹@ó‘Ô‚ğ“ñ‘«•às‚É‚·‚é
+		//è‡ªæ©ŸçŠ¶æ…‹ã‚’äºŒè¶³æ­©è¡Œã«ã™ã‚‹
 		Player_FormSet(fsys->player, HERO_FORM_NORMAL);
-		//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
 		EventCmd_MapChangeByLocation(event, &mcw->next);
 		(mcw->seq) ++;
 		break;
 	case 2:
-		if( Snd_FadeCheck() != 0 ){								//ƒTƒEƒ“ƒhƒtƒF[ƒh’†
+		if( Snd_FadeCheck() != 0 ){								//ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 			break;
 		}
-		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ƒtƒB[ƒ‹ƒhBGMÄ¶
+		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMå†ç”Ÿ
 
-		//ƒeƒŒƒ|[ƒgEŒŠ”²‚¯EŒŠŒ@‚èŒÅ—Lƒtƒ‰ƒO—‚Æ‚µˆ—
+		//ãƒ†ãƒ¬ãƒãƒ¼ãƒˆãƒ»ç©´æŠœã‘ãƒ»ç©´æ˜ã‚Šå›ºæœ‰ãƒ•ãƒ©ã‚°è½ã¨ã—å‡¦ç†
 		if (mcw->ana_type == ANATYPE_TEL){
 			FldFlgInit_Teleport(fsys);
 		}else if( (mcw->ana_type == ANATYPE_ANA)||
 					(mcw->ana_type == ANATYPE_ANAHORI) ){
 			FldFlgInit_Escape(fsys);
 		}else{
-			GF_ASSERT(0&&"’Eo•û–@‚ª•s–¾");
+			GF_ASSERT(0&&"è„±å‡ºæ–¹æ³•ãŒä¸æ˜");
 		}
 
-		EventCmd_StartField_FadeInAnanuke(event);	//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+		EventCmd_StartField_FadeInAnanuke(event);	//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
 		(mcw->seq) ++;
 		break;
 	case 3:
@@ -1572,8 +1572,8 @@ static BOOL GMEVENT_MapChangeByAnanuke(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒvƒƒZƒXI—¹@‚ ‚È‚Ê‚¯‚Ì‚Ğ‚à
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†ã€€ã‚ãªã¬ã‘ã®ã²ã‚‚
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void EventCmd_Ananuke_FinishField(GMEVENT_CONTROL * event)
@@ -1582,7 +1582,7 @@ static void EventCmd_Ananuke_FinishField(GMEVENT_CONTROL * event)
 }
 
 //-----------------------------------------------------------------------------
-// @brief	ƒtƒB[ƒ‹ƒhI—¹(‚ ‚È‚Ê‚¯‚Ì‚Ğ‚à)
+// @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰çµ‚äº†(ã‚ãªã¬ã‘ã®ã²ã‚‚)
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_Sub_Ananuke_FinishField(GMEVENT_CONTROL * event)
 {
@@ -1600,8 +1600,8 @@ static BOOL GMEVENT_Sub_Ananuke_FinishField(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJn¨ƒtƒF[ƒhƒCƒ“@‚ ‚È‚Ê‚¯‚Ì‚Ğ‚à
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹â†’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ã‚ãªã¬ã‘ã®ã²ã‚‚
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void EventCmd_StartField_FadeInAnanuke(GMEVENT_CONTROL * event)
@@ -1611,7 +1611,7 @@ static void EventCmd_StartField_FadeInAnanuke(GMEVENT_CONTROL * event)
 }
 
 //-----------------------------------------------------------------------------
-// @brief	ƒtƒB[ƒ‹ƒhƒtƒF[ƒhƒCƒ“@‚ ‚È‚Ê‚¯‚Ì‚Ğ‚à
+// @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ã‚ãªã¬ã‘ã®ã²ã‚‚
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_Sub_StartField_FadeInAnanuke(GMEVENT_CONTROL * event)
 {
@@ -1624,7 +1624,7 @@ static BOOL GMEVENT_Sub_StartField_FadeInAnanuke(GMEVENT_CONTROL * event)
 		(*seq) ++;
 		break;
 	case 1:
-		//’n–¼•\¦
+		//åœ°åè¡¨ç¤º
 		PlaceNameRequestByFsys(fsys);
 		
 		EventCmd_FieldFadeInAnanuke(event);
@@ -1638,8 +1638,8 @@ static BOOL GMEVENT_Sub_StartField_FadeInAnanuke(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒCƒ“@‚ ‚È‚Ê‚¯‚Ì‚Ğ‚à
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ã‚ãªã¬ã‘ã®ã²ã‚‚
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void EventCmd_FieldFadeInAnanuke(GMEVENT_CONTROL * event)
@@ -1648,11 +1648,11 @@ static void EventCmd_FieldFadeInAnanuke(GMEVENT_CONTROL * event)
 	EVENT_MAPCHG_WORK_ANANUKE * mcw = FieldEvent_GetSpecialWork(event);
 	
 	if (!GameSystem_CheckFieldProcExists(fsys)) {
-		GF_ASSERT("mainproc‚ª‚È‚¢‚Ì‚ÉƒtƒF[ƒh‚ğÀs\n" && 0);
+		GF_ASSERT("mainprocãŒãªã„ã®ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å®Ÿè¡Œ\n" && 0);
 		return;
 	}
 	
-	//‚±‚±‚ÉƒJƒbƒgƒCƒ“ê—p‚Ì‚à‚Ì‚ğ‚ ‚Ä‚é@ƒtƒF[ƒhƒCƒ“‚Í‚»‚Ì’†‚Å
+	//ã“ã“ã«ã‚«ãƒƒãƒˆã‚¤ãƒ³å°‚ç”¨ã®ã‚‚ã®ã‚’ã‚ã¦ã‚‹ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã¯ãã®ä¸­ã§
 	{
 		void *wk = EventWorkSet_AnanukeMapIn( fsys, HEAPID_FIELD, mcw->ana_type );
 		FieldEvent_Call( event, GMEVENT_AnanukeMapIn, wk );
@@ -1660,21 +1660,21 @@ static void EventCmd_FieldFadeInAnanuke(GMEVENT_CONTROL * event)
 }
 
 //============================================================================================
-//			ƒ[ƒvƒ|ƒCƒ“ƒg
+//			ãƒ¯ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆ
 //============================================================================================
 //-----------------------------------------------------------------------------
-//          ƒ[ƒvƒ|ƒCƒ“ƒgê—pƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg—p§Œäƒ[ƒN
+//          ãƒ¯ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆå°‚ç”¨ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆç”¨åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 //-----------------------------------------------------------------------------
 typedef struct {
-	int seq;							///<ƒV[ƒPƒ“ƒX•Ûƒ[ƒN
+	int seq;							///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿æŒãƒ¯ãƒ¼ã‚¯
     BOOL bEnd;
-	LOCATION_WORK next;					///<ƒ}ƒbƒv‘JˆÚæw’è—pƒ[ƒN
+	LOCATION_WORK next;					///<ãƒãƒƒãƒ—é·ç§»å…ˆæŒ‡å®šç”¨ãƒ¯ãƒ¼ã‚¯
 } EVENT_MAPCHG_WARP_WORK;
 
 
 
 //-----------------------------------------------------------------------------
-// @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg
+// @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_MapChangeWorpPoint(GMEVENT_CONTROL * event)
 {
@@ -1689,21 +1689,21 @@ static BOOL GMEVENT_MapChangeWorpPoint(GMEVENT_CONTROL * event)
 		break;
       case 1:
         if(mcw->bEnd){
-			Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ƒtƒB[ƒ‹ƒhBGMƒtƒF[ƒhƒAƒEƒg
+			Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
             EventCmd_FinishFieldMap(event);
             mcw->seq++;
         }
         break;
       case 2:
-		//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
         EventCmd_MapChangeByLocation(event, &mcw->next);
         mcw->seq++;
         break;
       case 3:
-		if( Snd_FadeCheck() != 0 ){									//ƒTƒEƒ“ƒhƒtƒF[ƒh’†
+		if( Snd_FadeCheck() != 0 ){									//ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 			break;
 		}
-		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );			//ƒtƒB[ƒ‹ƒhBGMÄ¶
+		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );			//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMå†ç”Ÿ
 		EventCmd_StartFieldMap(event);
         mcw->seq++;
 		break;
@@ -1725,7 +1725,7 @@ static BOOL GMEVENT_MapChangeWorpPoint(GMEVENT_CONTROL * event)
 }
 
 //-----------------------------------------------------------------------------
-// @brief	ƒ[ƒvƒ|ƒCƒ“ƒg
+// @brief	ãƒ¯ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆ
 //-----------------------------------------------------------------------------
 void EventCmd_WarpPoint(FIELDSYS_WORK * fsys, int zone, int door_id)
 {
@@ -1742,14 +1742,14 @@ void EventCmd_WarpPoint(FIELDSYS_WORK * fsys, int zone, int door_id)
 
 ///*************************************************************************************
 //
-//		ªªªªªªªªªªªªªªª
-//		’nã‚Ìƒ}ƒbƒvˆÚ“®ˆ—
+//		â†‘â†‘â†‘â†‘â†‘â†‘â†‘â†‘â†‘â†‘â†‘â†‘â†‘â†‘â†‘
+//		åœ°ä¸Šã®ãƒãƒƒãƒ—ç§»å‹•å‡¦ç†
 //
 //
 //
 //
-//		’n‰º‚Ìƒ}ƒbƒvˆÚ“®ˆ—
-//		«««««««««««««««
+//		åœ°ä¸‹ã®ãƒãƒƒãƒ—ç§»å‹•å‡¦ç†
+//		â†“â†“â†“â†“â†“â†“â†“â†“â†“â†“â†“â†“â†“â†“â†“
 //
 ///*************************************************************************************
 
@@ -1757,11 +1757,11 @@ void EventCmd_WarpPoint(FIELDSYS_WORK * fsys, int zone, int door_id)
 //============================================================================================
 //
 //
-//			’n‰ºƒWƒƒƒ“ƒv
+//			åœ°ä¸‹ã‚¸ãƒ£ãƒ³ãƒ—
 //
 //
 //============================================================================================
-static BOOL GMEVENT_UgJump(GMEVENT_CONTROL * event);	//’n‰ºƒ„’n‰º
+static BOOL GMEVENT_UgJump(GMEVENT_CONTROL * event);	//åœ°ä¸‹ï¼œï¼åœ°ä¸‹
 static BOOL UgChg_SubCall(GMEVENT_CONTROL * event, int no);
 
 //-----------------------------------------------------------------------------
@@ -1775,17 +1775,17 @@ typedef struct {
 	int next_z;
 	BOOL brightness;
     u16 saveResult;
-	void * infowin;			// ƒZ[ƒuî•ñƒEƒBƒ“ƒhƒE—pƒ|ƒCƒ“ƒ^
-	GF_BGL_BMPWIN	win;	// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
-	STRBUF * str;			// ’ÊMŠJnƒƒbƒZ[ƒWƒoƒbƒtƒ@
-	u8	midx;				// ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
-	BMPMENU_WORK * mw;		// ‚Í‚¢E‚¢‚¢‚¦ƒƒjƒ…[ƒ[ƒN
+	void * infowin;			// ã‚»ãƒ¼ãƒ–æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”¨ãƒã‚¤ãƒ³ã‚¿
+	GF_BGL_BMPWIN	win;	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	STRBUF * str;			// é€šä¿¡é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡
+	u8	midx;				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	BMPMENU_WORK * mw;		// ã¯ã„ãƒ»ã„ã„ãˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
 }EVENT_UGCHG_WORK;
 
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	’n‰º‚Æ’nã‚ğs‚«—ˆ‚·‚éƒCƒxƒ“ƒg—pƒ[ƒN‚Ì¶¬
+ * @brief	åœ°ä¸‹ã¨åœ°ä¸Šã‚’è¡Œãæ¥ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ã®ç”Ÿæˆ
  */
 //-----------------------------------------------------------------------------
 void * MakeUGChangeWork(FIELDSYS_WORK * fsys)
@@ -1793,38 +1793,38 @@ void * MakeUGChangeWork(FIELDSYS_WORK * fsys)
 	EVENT_UGCHG_WORK * mcw;
 	LOCATION_WORK * sp = Situation_GetSpecialLocation(SaveData_GetSituation(fsys->savedata));
 
-	//ƒCƒxƒ“ƒg¶¬
+	//ã‚¤ãƒ™ãƒ³ãƒˆç”Ÿæˆ
 	mcw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(EVENT_UGCHG_WORK));
 	mcw->seq = 0;
 	mcw->subseq = 0;
 	
-	if (fsys->MapMode == MAP_MODE_UNDER){	//Œ»İ’n‰º‚Ìê‡
-		//’nã‚ÖƒWƒƒƒ“ƒv
+	if (fsys->MapMode == MAP_MODE_UNDER){	//ç¾åœ¨åœ°ä¸‹ã®å ´åˆ
+		//åœ°ä¸Šã¸ã‚¸ãƒ£ãƒ³ãƒ—
 		mcw->next_zone_id = sp->zone_id;
 		mcw->next_door_id = DOOR_ID_JUMP_CODE;
 		mcw->next_x = sp->grid_x;
 		mcw->next_z = sp->grid_z;
 	}else{
-		SetLocationHere(sp, fsys);			//Ø‚è‘Ö‚í‚é‘O‚ÌêŠ‚ğŠo‚¦‚Ä‚¨‚­
+		SetLocationHere(sp, fsys);			//åˆ‡ã‚Šæ›¿ã‚ã‚‹å‰ã®å ´æ‰€ã‚’è¦šãˆã¦ãŠã
 		mcw->next_zone_id = ZONE_ID_UG;
 		mcw->next_door_id = DOOR_ID_JUMP_CODE;
-		//--ƒWƒƒƒ“ƒvæ‚Ì‘Io•û–@--
-		//ƒuƒƒbƒN“àÀ•W8,8‚ÌêŠ‚ÉƒWƒƒƒ“ƒv‚·‚é‚æ‚¤‚É‚·‚é
-		//(’YzƒTƒCƒY‚Í’nã‚Ì1/4)<<Šm‚©‚É‚»‚¤‚¾‚ªƒWƒƒƒ“ƒv‚Å‚«‚é•”•ª‚¾‚¯‚ğl‚¦‚é‚Æ‘åƒEƒ\ 
+		//--ã‚¸ãƒ£ãƒ³ãƒ—å…ˆã®é¸å‡ºæ–¹æ³•--
+		//ãƒ–ãƒ­ãƒƒã‚¯å†…åº§æ¨™8,8ã®å ´æ‰€ã«ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
+		//(ç‚­é‰±ã‚µã‚¤ã‚ºã¯åœ°ä¸Šã®1/4)<<ç¢ºã‹ã«ãã†ã ãŒã‚¸ãƒ£ãƒ³ãƒ—ã§ãã‚‹éƒ¨åˆ†ã ã‘ã‚’è€ƒãˆã‚‹ã¨å¤§ã‚¦ã‚½ 
 		
-		//30‚˜30’nã‚Ì’YzƒWƒƒƒ“ƒv—LŒøƒuƒƒbƒN‚Íc23ƒuƒƒbƒNA‰¡28ƒuƒƒbƒN
-		//icŠJn6ƒuƒƒbƒN‚ÆÅ‰º1ƒuƒƒbƒN‚Í”ÍˆÍŠOB‰¡‚Í—¼ƒTƒCƒh1ƒuƒƒbƒN‚¸‚Â‚ª”ÍˆÍŠOj
-		//15‚˜15’n‰º‚ÌƒtƒŠ[ƒ€[ƒu—LŒøƒuƒƒbƒN‚Íc13ƒuƒƒbƒNA‰¡14ƒuƒƒbƒN
-		//icŠJn2ƒuƒƒbƒN‚Í”é–§Šî’nA‰¡‚ÍA¶1ƒuƒƒbƒN‘¤–Ê‚ª”é–§Šî’nj
-		//Šé‰æˆÓ}‚Å’n‰ºƒtƒŠ[ƒ€[ƒuã1ƒuƒƒbƒN‚É‚ÍƒWƒƒƒ“ƒv‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é‚Æc12ƒuƒƒbƒN
-		//’nãc23ƒuƒƒbƒN‚Å‚ÍAŒvZŒë·‚ªo‚é‚Ì‚ÅAÅ‰º”ÍˆÍŠO1ƒuƒƒbƒN‚àƒWƒƒƒ“ƒv‘ÎÛ‚Æ‚·‚é‚Æc24ƒuƒƒbƒN
-		//‚æ‚Á‚ÄA’n‰ºƒWƒƒƒ“ƒvæ‚ÌƒuƒƒbƒN‚ÍA
-		//c‚ÉŠÖ‚µ‚Ä‚ÍA
-		//(Œ»İ‚Ì’nãƒuƒƒbƒN-cƒIƒtƒZƒbƒg6ƒuƒƒbƒN)/2+”é–§Šî’nƒIƒtƒZƒbƒg2ƒuƒƒbƒN+ƒWƒƒƒ“ƒv‹‘”Û1ƒuƒƒbƒN
-		//‰¡‚ÉŠÖ‚µ‚Ä‚ÍA
-		//(Œ»İ‚Ì’nãƒuƒƒbƒN-‰¡ƒIƒtƒZƒbƒg1ƒuƒƒbƒN)/2+”é–§Šî’nƒIƒtƒZƒbƒg1ƒuƒƒbƒN
+		//30ï½˜30åœ°ä¸Šã®ç‚­é‰±ã‚¸ãƒ£ãƒ³ãƒ—æœ‰åŠ¹ãƒ–ãƒ­ãƒƒã‚¯ã¯ç¸¦23ãƒ–ãƒ­ãƒƒã‚¯ã€æ¨ª28ãƒ–ãƒ­ãƒƒã‚¯
+		//ï¼ˆç¸¦é–‹å§‹6ãƒ–ãƒ­ãƒƒã‚¯ã¨æœ€ä¸‹1ãƒ–ãƒ­ãƒƒã‚¯ã¯ç¯„å›²å¤–ã€‚æ¨ªã¯ä¸¡ã‚µã‚¤ãƒ‰1ãƒ–ãƒ­ãƒƒã‚¯ãšã¤ãŒç¯„å›²å¤–ï¼‰
+		//15ï½˜15åœ°ä¸‹ã®ãƒ•ãƒªãƒ¼ãƒ ãƒ¼ãƒ–æœ‰åŠ¹ãƒ–ãƒ­ãƒƒã‚¯ã¯ç¸¦13ãƒ–ãƒ­ãƒƒã‚¯ã€æ¨ª14ãƒ–ãƒ­ãƒƒã‚¯
+		//ï¼ˆç¸¦é–‹å§‹2ãƒ–ãƒ­ãƒƒã‚¯ã¯ç§˜å¯†åŸºåœ°ã€æ¨ªã¯ã€å·¦1ãƒ–ãƒ­ãƒƒã‚¯å´é¢ãŒç§˜å¯†åŸºåœ°ï¼‰
+		//ä¼ç”»æ„å›³ã§åœ°ä¸‹ãƒ•ãƒªãƒ¼ãƒ ãƒ¼ãƒ–ä¸Š1ãƒ–ãƒ­ãƒƒã‚¯ã«ã¯ã‚¸ãƒ£ãƒ³ãƒ—ã§ããªã„ã‚ˆã†ã«ã™ã‚‹ã¨ç¸¦12ãƒ–ãƒ­ãƒƒã‚¯
+		//åœ°ä¸Šç¸¦23ãƒ–ãƒ­ãƒƒã‚¯ã§ã¯ã€è¨ˆç®—èª¤å·®ãŒå‡ºã‚‹ã®ã§ã€æœ€ä¸‹ç¯„å›²å¤–1ãƒ–ãƒ­ãƒƒã‚¯ã‚‚ã‚¸ãƒ£ãƒ³ãƒ—å¯¾è±¡ã¨ã™ã‚‹ã¨ç¸¦24ãƒ–ãƒ­ãƒƒã‚¯
+		//ã‚ˆã£ã¦ã€åœ°ä¸‹ã‚¸ãƒ£ãƒ³ãƒ—å…ˆã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€
+		//ç¸¦ã«é–¢ã—ã¦ã¯ã€
+		//(ç¾åœ¨ã®åœ°ä¸Šãƒ–ãƒ­ãƒƒã‚¯-ç¸¦ã‚ªãƒ•ã‚»ãƒƒãƒˆ6ãƒ–ãƒ­ãƒƒã‚¯)/2+ç§˜å¯†åŸºåœ°ã‚ªãƒ•ã‚»ãƒƒãƒˆ2ãƒ–ãƒ­ãƒƒã‚¯+ã‚¸ãƒ£ãƒ³ãƒ—æ‹’å¦1ãƒ–ãƒ­ãƒƒã‚¯
+		//æ¨ªã«é–¢ã—ã¦ã¯ã€
+		//(ç¾åœ¨ã®åœ°ä¸Šãƒ–ãƒ­ãƒƒã‚¯-æ¨ªã‚ªãƒ•ã‚»ãƒƒãƒˆ1ãƒ–ãƒ­ãƒƒã‚¯)/2+ç§˜å¯†åŸºåœ°ã‚ªãƒ•ã‚»ãƒƒãƒˆ1ãƒ–ãƒ­ãƒƒã‚¯
 		//
-		//ƒWƒƒƒ“ƒvêŠ‚ÍA1ƒuƒƒbƒNi32‚˜32j‚Ì“à‘¤‚ÉŒü‚©‚Á‚ÄAã‰º¶‰E8ƒOƒŠƒbƒhi‚ñ‚¾Š
+		//ã‚¸ãƒ£ãƒ³ãƒ—å ´æ‰€ã¯ã€1ãƒ–ãƒ­ãƒƒã‚¯ï¼ˆ32ï½˜32ï¼‰ã®å†…å´ã«å‘ã‹ã£ã¦ã€ä¸Šä¸‹å·¦å³8ã‚°ãƒªãƒƒãƒ‰é€²ã‚“ã æ‰€
 		{
 			int x_ofs,z_ofs;
 			int block_x,block_z;
@@ -1867,20 +1867,20 @@ void ChangeUnderGroundDirect(FIELDSYS_WORK * fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF’nã‚©‚ç’n‰º‚Ö
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šåœ°ä¸Šã‹ã‚‰åœ°ä¸‹ã¸
  */
 //-----------------------------------------------------------------------------
 enum {
-	UGCHG_SEQ_SIO_INIT = 0,		// ’ÊMŠJnƒƒbƒZ[ƒWƒZƒbƒg
-	UGCHG_SEQ_SIO_YNINIT,		// ƒƒbƒZ[ƒW‘Ò‚¿•‚Í‚¢E‚¢‚¢‚¦‰Šú‰»
-	UGCHG_SEQ_SIO_YNWAIT,		// ‚Í‚¢E‚¢‚¢‚¦‘Ò‚¿
+	UGCHG_SEQ_SIO_INIT = 0,		// é€šä¿¡é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
+	UGCHG_SEQ_SIO_YNINIT,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡ï¼†ã¯ã„ãƒ»ã„ã„ãˆåˆæœŸåŒ–
+	UGCHG_SEQ_SIO_YNWAIT,		// ã¯ã„ãƒ»ã„ã„ãˆå¾…ã¡
 
-	UGCHG_SEQ_REPORT_INIT,		// ƒŒƒ|[ƒg‰Šú‰»
-	UGCHG_SEQ_REPORT_WAIT,		// ƒŒƒ|[ƒgI—¹‘Ò‚¿
+	UGCHG_SEQ_REPORT_INIT,		// ãƒ¬ãƒãƒ¼ãƒˆåˆæœŸåŒ–
+	UGCHG_SEQ_REPORT_WAIT,		// ãƒ¬ãƒãƒ¼ãƒˆçµ‚äº†å¾…ã¡
 
-	UGCHG_SEQ_CANCEL,			// ƒCƒxƒ“ƒgƒLƒƒƒ“ƒZƒ‹
+	UGCHG_SEQ_CANCEL,			// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
-	// «ƒGƒtƒFƒNƒg
+	// â†“ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	UGCHG_SEQ_0,
 	UGCHG_SEQ_1,
 	UGCHG_SEQ_2,
@@ -1890,7 +1890,7 @@ enum {
 	UGCHG_SEQ_6,
 };
 
-// ‚Í‚¢E‚¢‚¢‚¦ƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT YesNoBmpDat = {
 	FLD_MBGFRM_FONT, FLD_YESNO_WIN_PX, FLD_YESNO_WIN_PY,
 	FLD_YESNO_WIN_SX, FLD_YESNO_WIN_SY, FLD_YESNO_WIN_PAL, FLD_YESNO_WIN_CGX
@@ -1944,30 +1944,30 @@ BOOL GMEVENT_GroundToUnderGround(GMEVENT_CONTROL * event)
 		break;
 
 
-	case UGCHG_SEQ_REPORT_INIT:		// ƒŒƒ|[ƒgŒÄ‚Ño‚µ
+	case UGCHG_SEQ_REPORT_INIT:		// ãƒ¬ãƒãƒ¼ãƒˆå‘¼ã³å‡ºã—
 		if( SaveData_IsOverwritingOtherData(fsys->savedata) ) {
 			EventCall_Script( event, SCRID_REPORT_NG, NULL, NULL );
 		}else{
-            // ’n‰º‚É“ü‚é‘O‚Ìƒtƒ‰ƒO§Œä
+            // åœ°ä¸‹ã«å…¥ã‚‹å‰ã®ãƒ•ãƒ©ã‚°åˆ¶å¾¡
             UnderGroundDataBeforeUGSave(fsys->savedata);
-			//ƒŒƒ|[ƒgî•ñ¶¬
+			//ãƒ¬ãƒãƒ¼ãƒˆæƒ…å ±ç”Ÿæˆ
 			mcw->infowin = ReportInfo_Create( fsys, HEAPID_WORLD, FLD_MBGFRM_FONT );
 			ReportInfo_WriteWindow( mcw->infowin );
-			mcw->saveResult = FALSE;	// Œ‹‰Êó‚¯æ‚è—pƒ[ƒN‰Šú‰»
+			mcw->saveResult = FALSE;	// çµæœå—ã‘å–ã‚Šç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 			EventCall_Script( event, SCRID_REPORT, NULL, &mcw->saveResult );
 		}
 		mcw->seq = UGCHG_SEQ_REPORT_WAIT;
 		break;
 
-	case UGCHG_SEQ_REPORT_WAIT:		// ƒŒƒ|[ƒg‘Ò‚¿
+	case UGCHG_SEQ_REPORT_WAIT:		// ãƒ¬ãƒãƒ¼ãƒˆå¾…ã¡
 		if( SaveData_IsOverwritingOtherData(fsys->savedata) ){
 			mcw->seq = UGCHG_SEQ_CANCEL;
 		}else{
 			ReportInfo_EraseWindow( mcw->infowin );
 			ReportInfo_Delete( mcw->infowin );
-			if( mcw->saveResult == FALSE ){		//ƒZ[ƒu‚µ‚Ä‚¢‚È‚¢
+			if( mcw->saveResult == FALSE ){		//ã‚»ãƒ¼ãƒ–ã—ã¦ã„ãªã„
 				mcw->seq = UGCHG_SEQ_CANCEL;
-			}else{								//ƒZ[ƒu‚µ‚½
+			}else{								//ã‚»ãƒ¼ãƒ–ã—ãŸ
 				mcw->seq = UGCHG_SEQ_0;
 			}
 		}
@@ -1982,7 +1982,7 @@ BOOL GMEVENT_GroundToUnderGround(GMEVENT_CONTROL * event)
 		return TRUE;
 
 	case UGCHG_SEQ_0:
-		Snd_BgmFadeOut( 0, BGM_FADE_UG_TIME );	//BGMƒtƒF[ƒhƒAƒEƒg
+		Snd_BgmFadeOut( 0, BGM_FADE_UG_TIME );	//BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		(mcw->seq) ++;
 		break;
 
@@ -2001,8 +2001,8 @@ BOOL GMEVENT_GroundToUnderGround(GMEVENT_CONTROL * event)
 		fsys->MapMode = MAP_MODE_UNDER;
         Overlay_Load( FS_OVERLAY_ID( ol_underground ), OVERLAY_LOAD_NOT_SYNCHRONIZE );
 		//fsys->DivMapMode = DIV_MAP_MODE_UNDER;
-		// ’ÊMŠJnˆ—‚Ö
-		CommFieldStateEnterUnderGround(fsys); // ’ÊMƒXƒe[ƒg‚ğ’n‰ºŠJn‚É•ÏX
+		// é€šä¿¡é–‹å§‹å‡¦ç†ã¸
+		CommFieldStateEnterUnderGround(fsys); // é€šä¿¡ã‚¹ãƒ†ãƒ¼ãƒˆã‚’åœ°ä¸‹é–‹å§‹ã«å¤‰æ›´
 		EventCmd_MapChange(event,
 								mcw->next_zone_id,
 								DOOR_ID_JUMP_CODE,
@@ -2014,11 +2014,11 @@ BOOL GMEVENT_GroundToUnderGround(GMEVENT_CONTROL * event)
 		break;
 
 	case UGCHG_SEQ_4:
-		if( Snd_FadeCheck() != 0 ){				//BGMƒtƒF[ƒh‘Ò‚¿
+		if( Snd_FadeCheck() != 0 ){				//BGMãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 			break;
 		}
-		Snd_SceneSet( SND_SCENE_DUMMY );		//ƒTƒEƒ“ƒhƒV[ƒ“ƒNƒŠƒA
-		Snd_FieldBgmClearSpecial( fsys );		//ƒ}ƒbƒv“àŒÀ’è‚ÌBGMw’èƒNƒŠƒA
+		Snd_SceneSet( SND_SCENE_DUMMY );		//ã‚µã‚¦ãƒ³ãƒ‰ã‚·ãƒ¼ãƒ³ã‚¯ãƒªã‚¢
+		Snd_FieldBgmClearSpecial( fsys );		//ãƒãƒƒãƒ—å†…é™å®šã®BGMæŒ‡å®šã‚¯ãƒªã‚¢
 
 		EventCmd_StartFieldMap(event);
 		(mcw->seq) ++;
@@ -2026,8 +2026,8 @@ BOOL GMEVENT_GroundToUnderGround(GMEVENT_CONTROL * event)
 
 	case UGCHG_SEQ_5:
 		if (UgChg_SubCall(event, EFCT_UG_DOWN01)) {
-			CommFieldStateArrivalUnderGround(); // ’n‰º‚É“’…
-			fsys->UnderGroundRadar = UnderGround_RadarInit(fsys);		//’YzƒŒ[ƒ_[‰æ–Ê‚n‚m
+			CommFieldStateArrivalUnderGround(); // åœ°ä¸‹ã«åˆ°ç€
+			fsys->UnderGroundRadar = UnderGround_RadarInit(fsys);		//ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ï¼¯ï¼®
             ChangeBrightnessRequest(30,BRIGHTNESS_NORMAL,BRIGHTNESS_BLACK,
                                     PLANEMASK_BG0|PLANEMASK_BG3|PLANEMASK_OBJ,MASK_SUB_DISPLAY);
             (mcw->seq) ++;
@@ -2035,7 +2035,7 @@ BOOL GMEVENT_GroundToUnderGround(GMEVENT_CONTROL * event)
 		break;
 	case UGCHG_SEQ_6:
 		if (IsFinishedBrightnessChg(MASK_SUB_DISPLAY)) {
-            UgSecretBaseBootOn(TRUE); // ”é–§Šî’n‚Ì“®ì‚ğON
+            UgSecretBaseBootOn(TRUE); // ç§˜å¯†åŸºåœ°ã®å‹•ä½œã‚’ON
             sys_FreeMemoryEz(mcw);
 			return TRUE;
 		}
@@ -2046,7 +2046,7 @@ BOOL GMEVENT_GroundToUnderGround(GMEVENT_CONTROL * event)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF’n‰º‚©‚ç’nã‚Ö
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šåœ°ä¸‹ã‹ã‚‰åœ°ä¸Šã¸
  */
 //-----------------------------------------------------------------------------
 BOOL GMEVENT_UnderGroundToGround(GMEVENT_CONTROL * event)
@@ -2058,10 +2058,10 @@ BOOL GMEVENT_UnderGroundToGround(GMEVENT_CONTROL * event)
 	
 	switch (mcw->seq) {
 	case 0:
-        // ’ÊMI—¹ˆ—‚Ö
-        UgSecretBaseBootOn(FALSE); // ”é–§Šî’n‚Ì“®ì‚ğOFF
-        CommFieldStateExitUnderGround();  // ’ÊMƒXƒe[ƒg‚ğ’n‰ºI—¹‚É•ÏX
-		//’n‰º‚Ì‚ÍƒŒ[ƒ_[‚ğæ‚É‰ğ•ú‚·‚é
+        // é€šä¿¡çµ‚äº†å‡¦ç†ã¸
+        UgSecretBaseBootOn(FALSE); // ç§˜å¯†åŸºåœ°ã®å‹•ä½œã‚’OFF
+        CommFieldStateExitUnderGround();  // é€šä¿¡ã‚¹ãƒ†ãƒ¼ãƒˆã‚’åœ°ä¸‹çµ‚äº†ã«å¤‰æ›´
+		//åœ°ä¸‹ã®æ™‚ã¯ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚’å…ˆã«è§£æ”¾ã™ã‚‹
 		UnderGround_RadarEnd(fsys->UnderGroundRadar);
 		ChangeBrightnessRequest(30,BRIGHTNESS_BLACK,BRIGHTNESS_NORMAL,PLANEMASK_BG0,MASK_SUB_DISPLAY);
 		mcw->seq++;
@@ -2069,7 +2069,7 @@ BOOL GMEVENT_UnderGroundToGround(GMEVENT_CONTROL * event)
 	case 1:
 		if(IsFinishedBrightnessChg(MASK_SUB_DISPLAY)){
             if((fsys->UnderGroundRadar==NULL) && !CommIsInitialize()){
-				Snd_BgmFadeOut( 0, BGM_FADE_UG_TIME );	//BGMƒtƒF[ƒhƒAƒEƒg
+				Snd_BgmFadeOut( 0, BGM_FADE_UG_TIME );	//BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
                 mcw->seq++;
             }
         }
@@ -2098,11 +2098,11 @@ BOOL GMEVENT_UnderGroundToGround(GMEVENT_CONTROL * event)
 		(mcw->seq) ++;
 		break;
 	case 5:
-		if( Snd_FadeCheck() != 0 ){				//BGMƒtƒF[ƒh‘Ò‚¿
+		if( Snd_FadeCheck() != 0 ){				//BGMãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 			break;
 		}
-		Snd_SceneSet( SND_SCENE_DUMMY );		//ƒTƒEƒ“ƒhƒV[ƒ“ƒNƒŠƒA
-		Snd_FieldBgmClearSpecial( fsys );		//ƒ}ƒbƒv“àŒÀ’è‚ÌBGMw’èƒNƒŠƒA
+		Snd_SceneSet( SND_SCENE_DUMMY );		//ã‚µã‚¦ãƒ³ãƒ‰ã‚·ãƒ¼ãƒ³ã‚¯ãƒªã‚¢
+		Snd_FieldBgmClearSpecial( fsys );		//ãƒãƒƒãƒ—å†…é™å®šã®BGMæŒ‡å®šã‚¯ãƒªã‚¢
 
 		EventCmd_StartFieldMap(event);
 		(mcw->seq) ++;
@@ -2145,12 +2145,12 @@ static BOOL UgChg_SubCall(GMEVENT_CONTROL * event, int no)
 	BOOL	ret = FALSE;
 
 	switch(mcw->subseq){
-	case 0:		// ƒXƒ^[ƒg
+	case 0:		// ã‚¹ã‚¿ãƒ¼ãƒˆ
 		mcw->brightness = 0;
 		StartUnderGroundEffect(fsys, no, &mcw->brightness);
 		mcw->subseq++;
 		break;
-	case 1:		// I—¹‘Ò‚¿
+	case 1:		// çµ‚äº†å¾…ã¡
 		if(mcw->brightness){
 			mcw->subseq = 0;
 			ret = TRUE;
@@ -2164,7 +2164,7 @@ static BOOL UgChg_SubCall(GMEVENT_CONTROL * event, int no)
 //============================================================================================
 //
 //
-//			ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhF’n‰º`’n‰º‚Ìƒ}ƒbƒvˆÚ“®
+//			ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šåœ°ä¸‹ã€œåœ°ä¸‹ã®ãƒãƒƒãƒ—ç§»å‹•
 //
 //
 //============================================================================================
@@ -2181,9 +2181,9 @@ static BOOL GMEVENT_UgJump(GMEVENT_CONTROL * event)
 	switch (mcw->seq) {
 	case 0:
         UgSecretBaseBootOn(FALSE);
-            //ƒŒ[ƒ_[‚ğæ‚É‰ğ•ú‚·‚é
+            //ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚’å…ˆã«è§£æ”¾ã™ã‚‹
 		UnderGround_RadarEnd(fsys->UnderGroundRadar);
-		CommStateJumpUnderGround();   // ˆÚ“®‚·‚éê‡‚Ì’ÊMŠÖ˜Aˆ—
+		CommStateJumpUnderGround();   // ç§»å‹•ã™ã‚‹å ´åˆã®é€šä¿¡é–¢é€£å‡¦ç†
 		mcw->seq++;
 		break;
 
@@ -2216,8 +2216,8 @@ static BOOL GMEVENT_UgJump(GMEVENT_CONTROL * event)
 		break;
 	case 6:
         UgSecretBaseBootOn(TRUE);
-		CommStateJumpEndUnderGround(); // ˆÚ“®I—¹‚·‚éê‡‚Ì’ÊMŠÖ˜Aˆ—
-		fsys->UnderGroundRadar = UnderGround_RadarInit(fsys);		//’YzƒŒ[ƒ_[‰æ–Ê‚n‚m
+		CommStateJumpEndUnderGround(); // ç§»å‹•çµ‚äº†ã™ã‚‹å ´åˆã®é€šä¿¡é–¢é€£å‡¦ç†
+		fsys->UnderGroundRadar = UnderGround_RadarInit(fsys);		//ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ï¼¯ï¼®
 		sys_FreeMemoryEz(mcw);
 		return TRUE;
 	}
@@ -2230,13 +2230,13 @@ void JumpUnderGroundDirect(FIELDSYS_WORK * fsys, const int inX, const int inZ)
 {
 	EVENT_UGCHG_WORK * mcw;
 	
-	//ƒCƒxƒ“ƒg¶¬
+	//ã‚¤ãƒ™ãƒ³ãƒˆç”Ÿæˆ
 	mcw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(EVENT_UGCHG_WORK));
 	mcw->seq = 0;
 	mcw->subseq = 0;
 	mcw->next_zone_id = ZONE_ID_UG;
 	mcw->next_door_id = DOOR_ID_JUMP_CODE;
-	//‚±‚±‚ÅAƒWƒƒƒ“ƒvæ‚ğŒˆ’è‚µ‚Ü‚·
+	//ã“ã“ã§ã€ã‚¸ãƒ£ãƒ³ãƒ—å…ˆã‚’æ±ºå®šã—ã¾ã™
 	mcw->next_x = inX;
 	mcw->next_z  = inZ;
 	
@@ -2247,14 +2247,14 @@ void JumpUnderGroundDirect(FIELDSYS_WORK * fsys, const int inX, const int inZ)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒCƒxƒ“ƒgFƒ}ƒbƒv‘JˆÚ(’n‰º`’n‰º)
- * @param	event	ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE	ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE	ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆï¼šãƒãƒƒãƒ—é·ç§»(åœ°ä¸‹ã€œåœ°ä¸‹)
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE	ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE	ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  *
- * ƒTƒuƒCƒxƒ“ƒg‚ÍFieldEvent_Call‚ÅŒÄ‚Ño‚·‚±‚Æ‚Åg—p‚·‚éB
- * Œ»İ‚ÌƒCƒxƒ“ƒg‚ğ’â~‚µ‚ÄA‘ã‚í‚è‚ÉƒTƒuƒCƒxƒ“ƒg‚ğ‚æ‚Ñ‚¾‚·B
- * ƒTƒuƒCƒxƒ“ƒg‚ªI—¹‚·‚é‚ÆŒ»İ‚ÌƒCƒxƒ“ƒg‚ªŒÄ‚Ño‚³‚ê‚éB
+ * ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆã¯FieldEvent_Callã§å‘¼ã³å‡ºã™ã“ã¨ã§ä½¿ç”¨ã™ã‚‹ã€‚
+ * ç¾åœ¨ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’åœæ­¢ã—ã¦ã€ä»£ã‚ã‚Šã«ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚ˆã³ã ã™ã€‚
+ * ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã™ã‚‹ã¨ç¾åœ¨ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒå‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_Sub_UgJump(GMEVENT_CONTROL * event)
@@ -2264,15 +2264,15 @@ static BOOL GMEVENT_Sub_UgJump(GMEVENT_CONTROL * event)
 
 	switch (smw->seq) {
 	case 0:
-		//--------I—¹ˆ—--------
+		//--------çµ‚äº†å‡¦ç†--------
 		MapChg_FieldOBJ_Delete(fsys);
 		(smw->seq) ++;
 		break;
 		
 	case 1:
-		//--------ŠJnˆ—--------
+		//--------é–‹å§‹å‡¦ç†--------
 		MapChg_SetNewLocation(fsys, &smw->next);
-        //--“ÁêƒXƒNƒŠƒvƒg‚Ì‚İÀs  k.ohno & saito
+        //--ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ã¿å®Ÿè¡Œ  k.ohno & saito
         SpScriptSearch(fsys, SP_SCRID_FLAG_CHANGE);
         
 		(smw->seq) ++;
@@ -2288,9 +2288,9 @@ static BOOL GMEVENT_Sub_UgJump(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒ}ƒbƒv‘JˆÚ(’n‰º`’n‰º)
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	next		‘JˆÚæ‚ğw’è‚·‚éLOCATION_WORKŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒƒãƒ—é·ç§»(åœ°ä¸‹ã€œåœ°ä¸‹)
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	next		é·ç§»å…ˆã‚’æŒ‡å®šã™ã‚‹LOCATION_WORKå‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_UgJumpByLocation(GMEVENT_CONTROL * event, const LOCATION_WORK * next)
@@ -2298,7 +2298,7 @@ void EventCmd_UgJumpByLocation(GMEVENT_CONTROL * event, const LOCATION_WORK * ne
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	SIMPLE_MAPCHG_WORK * smw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(SIMPLE_MAPCHG_WORK));
 	if (GameSystem_CheckFieldProcExists(fsys)) {
-		GF_ASSERT("mainproc‚ª‚ ‚é‚Ì‚Éƒ}ƒbƒv‘JˆÚˆ—\n" && 0);
+		GF_ASSERT("mainprocãŒã‚ã‚‹ã®ã«ãƒãƒƒãƒ—é·ç§»å‡¦ç†\n" && 0);
 		return;
 	}
 	smw->seq = 0;
@@ -2308,13 +2308,13 @@ void EventCmd_UgJumpByLocation(GMEVENT_CONTROL * event, const LOCATION_WORK * ne
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒ}ƒbƒv‘JˆÚ(’n‰º`’n‰º)
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone_id		‘JˆÚæƒ][ƒ“IDw’è
- * @param	door_id		‘JˆÚæo“üŒûw’è
- * @param	x			‘JˆÚæXÀ•Ww’èidoor_id == DOOR_ID_JUMP_CODE‚Ì‚Æ‚«‚Ì‚İ—LŒøj
- * @param	z			‘JˆÚæZÀ•Ww’èidoor_id == DOOR_ID_JUMP_CODE‚Ì‚Æ‚«‚Ì‚İ—LŒøj
- * @param	dir			oŒ»æ‚Å‚Ì•ûŒüw’è
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒƒãƒ—é·ç§»(åœ°ä¸‹ã€œåœ°ä¸‹)
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone_id		é·ç§»å…ˆã‚¾ãƒ¼ãƒ³IDæŒ‡å®š
+ * @param	door_id		é·ç§»å…ˆå‡ºå…¥å£æŒ‡å®š
+ * @param	x			é·ç§»å…ˆXåº§æ¨™æŒ‡å®šï¼ˆdoor_id == DOOR_ID_JUMP_CODEã®ã¨ãã®ã¿æœ‰åŠ¹ï¼‰
+ * @param	z			é·ç§»å…ˆZåº§æ¨™æŒ‡å®šï¼ˆdoor_id == DOOR_ID_JUMP_CODEã®ã¨ãã®ã¿æœ‰åŠ¹ï¼‰
+ * @param	dir			å‡ºç¾å…ˆã§ã®æ–¹å‘æŒ‡å®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -2330,23 +2330,23 @@ static void EventCmd_UgJump(GMEVENT_CONTROL * event, int zone_id, int door_id, i
 //============================================================================================
 //
 //
-//			ƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒ}ƒbƒvˆÚ“®
+//			ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒãƒƒãƒ—ç§»å‹•
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
-//          ƒ†ƒjƒIƒ“ê—pƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg—p§Œäƒ[ƒN
+//          ãƒ¦ãƒ‹ã‚ªãƒ³å°‚ç”¨ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆç”¨åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 //-----------------------------------------------------------------------------
 typedef struct {
-	int seq;							///<ƒV[ƒPƒ“ƒX•Ûƒ[ƒN
+	int seq;							///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿æŒãƒ¯ãƒ¼ã‚¯
     BOOL bEnd;
-	LOCATION_WORK next;					///<ƒ}ƒbƒv‘JˆÚæw’è—pƒ[ƒN
+	LOCATION_WORK next;					///<ãƒãƒƒãƒ—é·ç§»å…ˆæŒ‡å®šç”¨ãƒ¯ãƒ¼ã‚¯
 }EVENT_MAPCHG_UNION_WORK;
 
 
 
 //-----------------------------------------------------------------------------
-// @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg
+// @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_UnionRoomOut(GMEVENT_CONTROL * event)
 {
@@ -2357,12 +2357,12 @@ static BOOL GMEVENT_UnionRoomOut(GMEVENT_CONTROL * event)
 	
 	switch (*seq) {
       case 0:
-        //"ƒ}ƒbƒv‘JˆÚê—p"ƒtƒF[ƒhƒAƒEƒg ¨ BGMÄ¶
+        //"ãƒãƒƒãƒ—é·ç§»å°‚ç”¨"ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ BGMå†ç”Ÿ
 		{
 #ifdef SND_UNION_070215
-			Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ƒtƒB[ƒ‹ƒhBGMƒtƒF[ƒhƒAƒEƒg
+			Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 #else
-			//ƒ|ƒPƒZƒ“‚QŠK‚Æƒ†ƒjƒIƒ“‚Í“¯‚¶BGM‚È‚Ì‚ÅƒTƒEƒ“ƒhƒ[ƒhˆ—‚Í‰½‚à‚µ‚Ä‚¢‚È‚¢I
+			//ãƒã‚±ã‚»ãƒ³ï¼’éšã¨ãƒ¦ãƒ‹ã‚ªãƒ³ã¯åŒã˜BGMãªã®ã§ã‚µã‚¦ãƒ³ãƒ‰ãƒ­ãƒ¼ãƒ‰å‡¦ç†ã¯ä½•ã‚‚ã—ã¦ã„ãªã„ï¼
 			LOCATION_WORK* location = &emuw->next;
 			Snd_MapChangeFadeOutNextPlaySub( fsys, location->zone_id, BGM_FADE_ROOM_MODE );
 #endif
@@ -2377,16 +2377,16 @@ static BOOL GMEVENT_UnionRoomOut(GMEVENT_CONTROL * event)
         }
         break;
       case 2:
-		//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
         EventCmd_MapChangeByLocation(event, &emuw->next);
         (*seq)++;
         break;
       case 3:
 #ifdef SND_UNION_070215
-		if( Snd_FadeCheck() != 0 ){								//ƒTƒEƒ“ƒhƒtƒF[ƒh’†
+		if( Snd_FadeCheck() != 0 ){								//ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 			break;
 		}
-		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ƒtƒB[ƒ‹ƒhBGMÄ¶
+		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMå†ç”Ÿ
 #endif
 		EventCmd_StartFieldMap(event);
         (*seq)++;
@@ -2403,7 +2403,7 @@ static BOOL GMEVENT_UnionRoomOut(GMEVENT_CONTROL * event)
 }
 
 //-----------------------------------------------------------------------------
-// ƒCƒxƒ“ƒgƒZƒbƒgFƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒ}ƒbƒv‘JˆÚF”²‚¯‚é
+// ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒãƒƒãƒ—é·ç§»ï¼šæŠœã‘ã‚‹
 //-----------------------------------------------------------------------------
 void EventSet_UnionRoomMapChangeOut(FIELDSYS_WORK * fsys)
 {
@@ -2413,9 +2413,9 @@ void EventSet_UnionRoomMapChangeOut(FIELDSYS_WORK * fsys)
     
 	emuw->next = *sp;
 	
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€’ÊM‰ğ•ú
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ é€šä¿¡è§£æ”¾
 	Comm_UnionFinalize(fsys);
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€•\¦ˆ——pƒ[ƒN‰ğ•ú
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ è¡¨ç¤ºå‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	Comm_UnionRoomViewEnd(fsys->union_view);
 
 	fsys->MapMode = MAP_MODE_GROUND;
@@ -2425,7 +2425,7 @@ void EventSet_UnionRoomMapChangeOut(FIELDSYS_WORK * fsys)
 }
 
 //-----------------------------------------------------------------------------
-// @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg
+// @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_UnionRoomIn(GMEVENT_CONTROL * event)
 {
@@ -2436,12 +2436,12 @@ static BOOL GMEVENT_UnionRoomIn(GMEVENT_CONTROL * event)
 	
 	switch (*seq) {
       case 0:
-        //"ƒ}ƒbƒv‘JˆÚê—p"ƒtƒF[ƒhƒAƒEƒg ¨ BGMÄ¶
+        //"ãƒãƒƒãƒ—é·ç§»å°‚ç”¨"ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ BGMå†ç”Ÿ
 		{
 #ifdef SND_UNION_070215
-			Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ƒtƒB[ƒ‹ƒhBGMƒtƒF[ƒhƒAƒEƒg
+			Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 #else
-			//ƒ|ƒPƒZƒ“‚QŠK‚Æƒ†ƒjƒIƒ“‚Í“¯‚¶BGM‚È‚Ì‚ÅƒTƒEƒ“ƒhƒ[ƒhˆ—‚Í‰½‚à‚µ‚Ä‚¢‚È‚¢I
+			//ãƒã‚±ã‚»ãƒ³ï¼’éšã¨ãƒ¦ãƒ‹ã‚ªãƒ³ã¯åŒã˜BGMãªã®ã§ã‚µã‚¦ãƒ³ãƒ‰ãƒ­ãƒ¼ãƒ‰å‡¦ç†ã¯ä½•ã‚‚ã—ã¦ã„ãªã„ï¼
 			LOCATION_WORK* location = &emuw->next;
 			Snd_MapChangeFadeOutNextPlaySub( fsys, location->zone_id, BGM_FADE_ROOM_MODE );
 #endif
@@ -2454,16 +2454,16 @@ static BOOL GMEVENT_UnionRoomIn(GMEVENT_CONTROL * event)
 		(*seq)++;
         break;
       case 2:
-		//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
         EventCmd_MapChangeByLocation(event, &emuw->next);
         (*seq)++;
         break;
       case 3:
 #ifdef SND_UNION_070215
-		if( Snd_FadeCheck() != 0 ){								//ƒTƒEƒ“ƒhƒtƒF[ƒh’†
+		if( Snd_FadeCheck() != 0 ){								//ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 			break;
 		}
-		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ƒtƒB[ƒ‹ƒhBGMÄ¶
+		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMå†ç”Ÿ
 #endif
 		EventCmd_StartFieldMap(event);
         (*seq)++;
@@ -2486,17 +2486,17 @@ static BOOL GMEVENT_UnionRoomIn(GMEVENT_CONTROL * event)
 }
 
 //-----------------------------------------------------------------------------
-// ƒCƒxƒ“ƒgƒZƒbƒgFƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒ}ƒbƒv‘JˆÚF“ü‚é
+// ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒãƒƒãƒ—é·ç§»ï¼šå…¥ã‚‹
 //-----------------------------------------------------------------------------
 void EventSet_UnionRoomMapChangeIn(FIELDSYS_WORK * fsys)
 {
 	LOCATION_WORK * sp = Situation_GetSpecialLocation(SaveData_GetSituation(fsys->savedata));
 
-	SetLocationHere(sp, fsys);			//Ø‚è‘Ö‚í‚é‘O‚ÌêŠ‚ğŠo‚¦‚Ä‚¨‚­
+	SetLocationHere(sp, fsys);			//åˆ‡ã‚Šæ›¿ã‚ã‚‹å‰ã®å ´æ‰€ã‚’è¦šãˆã¦ãŠã
 
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€’ÊMŠJn
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ é€šä¿¡é–‹å§‹
 	fsys->union_work = Comm_UnionRoomInit(fsys);
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€OBJ§Œäƒ^ƒXƒN‹N“®
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ OBJåˆ¶å¾¡ã‚¿ã‚¹ã‚¯èµ·å‹•
 	fsys->union_view = Comm_UnionRoomViewInit(fsys->union_work);
 
 	fsys->MapMode = MAP_MODE_UNION;
@@ -2504,17 +2504,17 @@ void EventSet_UnionRoomMapChangeIn(FIELDSYS_WORK * fsys)
 }
 
 //-----------------------------------------------------------------------------
-// ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒ}ƒbƒv‘JˆÚFo“ü‚è—¼•ûiƒfƒoƒbƒO—pj
+// ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒãƒƒãƒ—é·ç§»ï¼šå‡ºå…¥ã‚Šä¸¡æ–¹ï¼ˆãƒ‡ãƒãƒƒã‚°ç”¨ï¼‰
 //-----------------------------------------------------------------------------
 void EventSet_UnionRoomMapChange(FIELDSYS_WORK * fsys)
 {
 	if (fsys->location->zone_id == ZONE_ID_UNION) {
 		EventSet_UnionRoomMapChangeOut(fsys);
 
-		// ’ÊMƒZ[ƒu‚Ì‘O‚Ì‚¨‚Ü‚¶‚È‚¢‰ğœ
+		// é€šä¿¡ã‚»ãƒ¼ãƒ–ã®å‰ã®ãŠã¾ã˜ãªã„è§£é™¤
 		SysFlag_CommCounterReset( SaveData_GetEventWork(fsys->savedata) );
 	} else {
-		// ’ÊMƒZ[ƒu‚Ì‘O‚Ì‚¨‚Ü‚¶‚È‚¢
+		// é€šä¿¡ã‚»ãƒ¼ãƒ–ã®å‰ã®ãŠã¾ã˜ãªã„
 		SysFlag_CommCounterSet( SaveData_GetEventWork(fsys->savedata) );
 
 		EventSet_UnionRoomMapChangeIn(fsys);
@@ -2523,18 +2523,18 @@ void EventSet_UnionRoomMapChange(FIELDSYS_WORK * fsys)
 
 #if 0
 //-----------------------------------------------------------------------------
-/// ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒ}ƒbƒv‘JˆÚF”²‚¯‚é
+/// ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒãƒƒãƒ—é·ç§»ï¼šæŠœã‘ã‚‹
 //-----------------------------------------------------------------------------
 void EventCmd_UnionRoomMapChangeOut(GMEVENT_CONTROL * event)
 {
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	LOCATION_WORK * sp = Situation_GetSpecialLocation(SaveData_GetSituation(fsys->savedata));
 
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€’ÊM‰ğ•ú
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ é€šä¿¡è§£æ”¾
 	Comm_UnionFinalize(fsys);
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€•\¦ˆ——pƒ[ƒN‰ğ•ú
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ è¡¨ç¤ºå‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	Comm_UnionRoomViewEnd(fsys->union_view);
-	// UnionBoard‚ªŠÄ‹‚µ‚Ä‚é‚©‚çNULL‚É‚µ‚È‚¢‚ÆŒë“®ì‚·‚é
+	// UnionBoardãŒç›£è¦–ã—ã¦ã‚‹ã‹ã‚‰NULLã«ã—ãªã„ã¨èª¤å‹•ä½œã™ã‚‹
 	fsys->union_view = NULL;
 
 	fsys->MapMode = MAP_MODE_GROUND;
@@ -2543,7 +2543,7 @@ void EventCmd_UnionRoomMapChangeOut(GMEVENT_CONTROL * event)
 }
 #endif
 //-----------------------------------------------------------------------------
-/// ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒ}ƒbƒv‘JˆÚF“ü‚é
+/// ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒãƒƒãƒ—é·ç§»ï¼šå…¥ã‚‹
 //-----------------------------------------------------------------------------
 void EventCmd_UnionRoomMapChangeIn(GMEVENT_CONTROL * event)
 {
@@ -2552,13 +2552,13 @@ void EventCmd_UnionRoomMapChangeIn(GMEVENT_CONTROL * event)
 	EVENT_MAPCHG_UNION_WORK* emuw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(EVENT_MAPCHG_UNION_WORK));
     MI_CpuClear8(emuw, sizeof(EVENT_MAPCHG_UNION_WORK));
 
-	SetLocationHere(sp, fsys);			//Ø‚è‘Ö‚í‚é‘O‚ÌêŠ‚ğŠo‚¦‚Ä‚¨‚­
+	SetLocationHere(sp, fsys);			//åˆ‡ã‚Šæ›¿ã‚ã‚‹å‰ã®å ´æ‰€ã‚’è¦šãˆã¦ãŠã
 
 	SetLocation(&emuw->next, ZONE_ID_UNION, DOOR_ID_JUMP_CODE, 8, 14, DIR_UP);
 
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€’ÊMŠJn
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ é€šä¿¡é–‹å§‹
 	fsys->union_work = Comm_UnionRoomInit(fsys);
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€OBJ§Œäƒ^ƒXƒN‹N“®
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ OBJåˆ¶å¾¡ã‚¿ã‚¹ã‚¯èµ·å‹•
 	fsys->union_view = Comm_UnionRoomViewInit(fsys->union_work);
 
 	fsys->MapMode = MAP_MODE_UNION;
@@ -2570,12 +2570,12 @@ void EventCmd_UnionRoomMapChangeIn(GMEVENT_CONTROL * event)
 //============================================================================================
 //
 //
-//		’ÊM‘Îí•”‰®—pƒ}ƒbƒvˆÚ“®
+//		é€šä¿¡å¯¾æˆ¦éƒ¨å±‹ç”¨ãƒãƒƒãƒ—ç§»å‹•
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
-// @brief	ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒg(‘Îí•”‰®‚É“ü‚éê—p)
+// @brief	ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆ(å¯¾æˆ¦éƒ¨å±‹ã«å…¥ã‚‹å°‚ç”¨)
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_MapChangeColosseum(GMEVENT_CONTROL * event)
 {
@@ -2586,20 +2586,20 @@ static BOOL GMEVENT_MapChangeColosseum(GMEVENT_CONTROL * event)
 	switch (mcw->seq) {
 	case 0:
 		Snd_SePlay( SEQ_SE_DP_KAIDAN2 );
-		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ƒtƒB[ƒ‹ƒhBGMƒtƒF[ƒhƒAƒEƒg
-		EventCmd_FadeOut_FinishField(event);	//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		Snd_EvMapChangeBgmFadeCheck( fsys, location->zone_id );	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+		EventCmd_FadeOut_FinishField(event);	//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
 		(mcw->seq) ++;
 		break;
 	case 1:
-		//ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ•‚±‚ÌƒCƒxƒ“ƒg‚ÍƒEƒFƒCƒg
+		//ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼†ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã¯ã‚¦ã‚§ã‚¤ãƒˆ
 		EventCmd_MapChangeByLocation(event, &mcw->next);
 		(mcw->seq) ++;
 		break;
 	case 2:
-		if( Snd_FadeCheck() != 0 ){								//ƒTƒEƒ“ƒhƒtƒF[ƒh’†
+		if( Snd_FadeCheck() != 0 ){								//ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 			break;
 		}
-		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ƒtƒB[ƒ‹ƒhBGMÄ¶
+		Snd_EvMapChangeBgmPlay( fsys, location->zone_id );		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMå†ç”Ÿ
 		EventCmd_StartFieldMap(event);
 		(mcw->seq) ++;
 		break;
@@ -2612,7 +2612,7 @@ static BOOL GMEVENT_MapChangeColosseum(GMEVENT_CONTROL * event)
 
 
 //-----------------------------------------------------------------------------
-///	ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhF’ÊM‘Îí•”‰®—pƒ}ƒbƒv‘JˆÚF“ü‚é
+///	ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šé€šä¿¡å¯¾æˆ¦éƒ¨å±‹ç”¨ãƒãƒƒãƒ—é·ç§»ï¼šå…¥ã‚‹
 //-----------------------------------------------------------------------------
 void EventCmd_ColosseumMapChangeIn(GMEVENT_CONTROL * event,
 		int zone_id, int door_id, int x, int z, int dir)
@@ -2621,9 +2621,9 @@ void EventCmd_ColosseumMapChangeIn(GMEVENT_CONTROL * event,
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	LOCATION_WORK * sp = Situation_GetSpecialLocation(SaveData_GetSituation(fsys->savedata));
 
-	SetLocationHere(sp, fsys);			//Ø‚è‘Ö‚í‚é‘O‚ÌêŠ‚ğŠo‚¦‚Ä‚¨‚­
+	SetLocationHere(sp, fsys);			//åˆ‡ã‚Šæ›¿ã‚ã‚‹å‰ã®å ´æ‰€ã‚’è¦šãˆã¦ãŠã
 
-	fsys->MapMode = MAP_MODE_COLOSSEUM;	//ƒ}ƒbƒvƒ‚[ƒh‚ğ’ÊM‘Îí•”‰®—p‚É
+	fsys->MapMode = MAP_MODE_COLOSSEUM;	//ãƒãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰ã‚’é€šä¿¡å¯¾æˆ¦éƒ¨å±‹ç”¨ã«
 
     {
         EVENT_MAPCHG_WORK * mcw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(EVENT_MAPCHG_WORK));
@@ -2637,18 +2637,18 @@ void EventCmd_ColosseumMapChangeIn(GMEVENT_CONTROL * event,
 
 
 //-----------------------------------------------------------------------------
-///	ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhF’ÊM‘Îí•”‰®—pƒ}ƒbƒv‘JˆÚF”²‚¯‚é
+///	ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šé€šä¿¡å¯¾æˆ¦éƒ¨å±‹ç”¨ãƒãƒƒãƒ—é·ç§»ï¼šæŠœã‘ã‚‹
 //-----------------------------------------------------------------------------
 void EventCmd_ColosseumMapChangeOut(GMEVENT_CONTROL * event)
 {
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	LOCATION_WORK * sp = Situation_GetSpecialLocation(SaveData_GetSituation(fsys->savedata));
-	fsys->MapMode = MAP_MODE_GROUND;		//ƒ}ƒbƒvƒ‚[ƒh‚ğ’Êí‚É
+	fsys->MapMode = MAP_MODE_GROUND;		//ãƒãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰ã‚’é€šå¸¸ã«
 	EventCmd_EasyMapChangeByLocation(fsys->event, sp);
 }
 
 //-----------------------------------------------------------------------------
-// ƒCƒxƒ“ƒgƒZƒbƒgF’ÊM‘Îí•”‰®—pƒ}ƒbƒv‘JˆÚF”²‚¯‚é
+// ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆï¼šé€šä¿¡å¯¾æˆ¦éƒ¨å±‹ç”¨ãƒãƒƒãƒ—é·ç§»ï¼šæŠœã‘ã‚‹
 //-----------------------------------------------------------------------------
 void EventSet_ColosseumMapChangeOut(FIELDSYS_WORK * fsys)
 {
@@ -2660,7 +2660,7 @@ void EventSet_ColosseumMapChangeOut(FIELDSYS_WORK * fsys)
 
 #ifdef PM_DEBUG
 //-----------------------------------------------------------------------------
-//  ’n‰º‚É”CˆÓ‚ÌˆÊ’u‚É~‚è‚éˆ×‚Éì¬ ƒfƒoƒbƒO—p 2006.02.08
+//  åœ°ä¸‹ã«ä»»æ„ã®ä½ç½®ã«é™ã‚Šã‚‹ç‚ºã«ä½œæˆ ãƒ‡ãƒãƒƒã‚°ç”¨ 2006.02.08
 //-----------------------------------------------------------------------------
 void Debug_ChangeUnderGroundDirect(FIELDSYS_WORK * fsys, int x, int z)
 {

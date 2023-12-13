@@ -18,19 +18,19 @@
 
 //============================================================================================
 //
-//	RECORD‚ğ‘€ì‚·‚é‚Ì‚É•K—v‚È’è‹`
+//	RECORDã‚’æ“ä½œã™ã‚‹ã®ã«å¿…è¦ãªå®šç¾©
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	RECORD‚Ö‚Ì•sŠ®‘SŒ^’è‹`
+ * @brief	RECORDã¸ã®ä¸å®Œå…¨å‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct RECORD RECORD;
 
 //----------------------------------------------------------
 //----------------------------------------------------------
-//ƒŒƒR[ƒhƒf[ƒ^‚Ìæ“¾
+//ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 extern RECORD * SaveData_GetRecord(SAVEDATA * sv);
 
 extern void RECORD_Init(RECORD * rec);
@@ -38,29 +38,29 @@ extern int RECORD_GetWorkSize(void);
 
 //----------------------------------------------------------
 //----------------------------------------------------------
-//’l‚ğƒZƒbƒg‚·‚é
+//å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern u32 RECORD_Set(RECORD * rec, int id, u32 value);
-//Œ»İ‚Ì’l‚Æ”äŠrA‘å‚«‚¯‚ê‚Î’l‚ğƒZƒbƒg‚·‚é
+//ç¾åœ¨ã®å€¤ã¨æ¯”è¼ƒã€å¤§ãã‘ã‚Œã°å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern u32 RECORD_SetIfLarge(RECORD * rec, int id, u32 value);
-//’l‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é
+//å€¤ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
 extern u32 RECORD_Inc(RECORD * rec, int id);
-//’l‚ğæ“¾‚·‚é
+//å€¤ã‚’å–å¾—ã™ã‚‹
 extern u32 RECORD_Get(RECORD * rec, int id);
-//’l‚ğ‘«‚·
+//å€¤ã‚’è¶³ã™
 extern u32 RECORD_Add(RECORD * rec, int id, u32 add_value);
 
 #ifdef PM_DEBUG
-//ƒXƒRƒA‚ÌƒZƒbƒg
+//ã‚¹ã‚³ã‚¢ã®ã‚»ãƒƒãƒˆ
 extern void RECORD_Score_DebugSet(RECORD * rec, const u32 inScore);
 #endif
 
 //----------------------------------------------------------
 //----------------------------------------------------------
-//ƒXƒRƒA‚Ì‰ÁZˆ—
+//ã‚¹ã‚³ã‚¢ã®åŠ ç®—å‡¦ç†
 extern void RECORD_Score_Add(RECORD * rec, int id);
-//ƒXƒRƒA‚ğæ“¾‚·‚é
+//ã‚¹ã‚³ã‚¢ã‚’å–å¾—ã™ã‚‹
 extern u32 RECORD_Score_Get(RECORD * rec);
-//}ŠÓƒXƒRƒA‰ÁZ
+//å›³é‘‘ã‚¹ã‚³ã‚¢åŠ ç®—
 extern void RECORD_Score_AddZukanScore(RECORD * rec, const ZUKAN_WORK * zw, u16 const inMonsno);
 
 #endif	//__ASM_NO_DEF_
@@ -68,173 +68,173 @@ extern void RECORD_Score_AddZukanScore(RECORD * rec, const ZUKAN_WORK * zw, u16 
 
 //============================================================================================
 //
-//	RECORDŠe€–Ú‚Ì’è‹`
+//	RECORDå„é …ç›®ã®å®šç¾©
 //
 //============================================================================================
 //----------------------------------------------------------
 //----------------------------------------------------------
 #define	REC_FIRST		0
 
-//ˆÃ†‰»‚©‚çŠO‚·ˆ×A•à”ƒJƒEƒ“ƒ^‚ğæ“ª‚É‚Á‚Ä‚­‚é
-#define RECID_WALK_COUNT				(REC_FIRST+0)	///<•à”
+//æš—å·åŒ–ã‹ã‚‰å¤–ã™ç‚ºã€æ­©æ•°ã‚«ã‚¦ãƒ³ã‚¿ã‚’å…ˆé ­ã«æŒã£ã¦ãã‚‹
+#define RECID_WALK_COUNT				(REC_FIRST+0)	///<æ­©æ•°
 
 /**
- *	@brief	ƒXƒRƒAæ“¾w’èID(4byte)
+ *	@brief	ã‚¹ã‚³ã‚¢å–å¾—æŒ‡å®šID(4byte)
  *
- *	’l‚Ì‰ÁZ‚É‚Í•K‚¸RECORD_Score_Add()ŠÖ”
- *	’l‚ÌQÆ‚É‚Í•K‚¸RECORD_Score_Get()ŠÖ”‚ğg—p‚·‚é‚±‚Æ
+ *	å€¤ã®åŠ ç®—ã«ã¯å¿…ãšRECORD_Score_Add()é–¢æ•°
+ *	å€¤ã®å‚ç…§ã«ã¯å¿…ãšRECORD_Score_Get()é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨
  *
- *	RECORD_Add()/RECORD_Get()‚É’¼Úw’è‚µ‚Ä’l‚ğXV/QÆ‚·‚é‚±‚Æ‚Í‹Ö~‚Å‚·
+ *	RECORD_Add()/RECORD_Get()ã«ç›´æ¥æŒ‡å®šã—ã¦å€¤ã‚’æ›´æ–°/å‚ç…§ã™ã‚‹ã“ã¨ã¯ç¦æ­¢ã§ã™
 */
-#define RECID_SCORE						(REC_FIRST+1)	///<ƒXƒRƒA
+#define RECID_SCORE						(REC_FIRST+1)	///<ã‚¹ã‚³ã‚¢
 
 #define	LARGE_REC_START		1
 
-//ˆÈ‰º‚ÍA4ƒoƒCƒg‚ÌƒJƒEƒ“ƒ^‚ğ‚Â
-#define RECID_REPORT_COUNT				(LARGE_REC_START+1)	///<ƒŒƒ|[ƒg‰ñ”
-#define RECID_CLEAR_TIME				(LARGE_REC_START+2)	///<ƒNƒŠƒAƒ^ƒCƒ€
-#define RECID_NUTS_PLANT				(LARGE_REC_START+3)	///<–Ø‚ÌÀ‚ğA‚¦‚½‰ñ”
-#define RECID_RIDE_CYCLE				(LARGE_REC_START+4)	///<©“]Ô‚Éæ‚Á‚½‰ñ”
-#define RECID_BATTLE_COUNT				(LARGE_REC_START+5)	///<‘Sí“¬‰ñ”
-#define RECID_BTL_ENCOUNT				(LARGE_REC_START+6)	///<ƒGƒ“ƒJƒEƒ“ƒgí“¬‰ñ”
-#define RECID_BTL_TRAINER				(LARGE_REC_START+7)	///<ƒgƒŒ[ƒi[í“¬‰ñ”
+//ä»¥ä¸‹ã¯ã€4ãƒã‚¤ãƒˆã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’æŒã¤
+#define RECID_REPORT_COUNT				(LARGE_REC_START+1)	///<ãƒ¬ãƒãƒ¼ãƒˆå›æ•°
+#define RECID_CLEAR_TIME				(LARGE_REC_START+2)	///<ã‚¯ãƒªã‚¢ã‚¿ã‚¤ãƒ 
+#define RECID_NUTS_PLANT				(LARGE_REC_START+3)	///<æœ¨ã®å®Ÿã‚’æ¤ãˆãŸå›æ•°
+#define RECID_RIDE_CYCLE				(LARGE_REC_START+4)	///<è‡ªè»¢è»Šã«ä¹—ã£ãŸå›æ•°
+#define RECID_BATTLE_COUNT				(LARGE_REC_START+5)	///<å…¨æˆ¦é—˜å›æ•°
+#define RECID_BTL_ENCOUNT				(LARGE_REC_START+6)	///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæˆ¦é—˜å›æ•°
+#define RECID_BTL_TRAINER				(LARGE_REC_START+7)	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦é—˜å›æ•°
 
-#define	RECID_CAPTURE_POKE				(LARGE_REC_START+8)	///<Šé‰æ08:•ßŠl‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”
-#define RECID_FISHING_SUCCESS			(LARGE_REC_START+9)	///<’Ş‚è‚ ‚°‚½ƒ|ƒPƒ‚ƒ“‚Ì‰ñ”
-#define	RECID_TAMAGO_HATCHING			(LARGE_REC_START+10)	///<Šé‰æ12:ƒ^ƒ}ƒS‚ğ›z‚µ‚½‰ñ”
-#define	RECID_POKE_EVOLUTION			(LARGE_REC_START+11)	///<i‰»‚³‚¹‚½ƒ|ƒPƒ‚ƒ“‚Ìˆø”
-#define RECID_RECOVERY_PC				(LARGE_REC_START+12)	///<ƒ|ƒPƒZƒ“‚Å‹x‚ñ‚¾‰ñ”
-#define RECID_SLOT_FEAVER				(LARGE_REC_START+13)	///<ƒXƒƒbƒg‚Å‘å“–‚½‚è‚³‚¹‚½‰ñ”
-#define RECID_BTOWER_CHALLENGE			(LARGE_REC_START+14)	///<ƒoƒgƒ‹ƒ^ƒ[‚É’§‚ñ‚¾‰ñ”
-#define RECID_ENTER_MARSHLAND			(LARGE_REC_START+15)	///<¼Œ´‚É“ü‚Á‚½‰ñ”
-#define RECID_WAZA_IAIGIRI				(LARGE_REC_START+16)	///<‹‡‚¢Ø‚è‚ğg‚Á‚½‰ñ”
-#define RECID_WAZA_IWAKUDAKI			(LARGE_REC_START+17)	///<‚¢‚í‚­‚¾‚«‚ğg‚Á‚½‰ñ”
+#define	RECID_CAPTURE_POKE				(LARGE_REC_START+8)	///<ä¼ç”»08:æ•ç²ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ•°
+#define RECID_FISHING_SUCCESS			(LARGE_REC_START+9)	///<é‡£ã‚Šã‚ã’ãŸãƒã‚±ãƒ¢ãƒ³ã®å›æ•°
+#define	RECID_TAMAGO_HATCHING			(LARGE_REC_START+10)	///<ä¼ç”»12:ã‚¿ãƒã‚´ã‚’å­µã—ãŸå›æ•°
+#define	RECID_POKE_EVOLUTION			(LARGE_REC_START+11)	///<é€²åŒ–ã•ã›ãŸãƒã‚±ãƒ¢ãƒ³ã®å¼•æ•°
+#define RECID_RECOVERY_PC				(LARGE_REC_START+12)	///<ãƒã‚±ã‚»ãƒ³ã§ä¼‘ã‚“ã å›æ•°
+#define RECID_SLOT_FEAVER				(LARGE_REC_START+13)	///<ã‚¹ãƒ­ãƒƒãƒˆã§å¤§å½“ãŸã‚Šã•ã›ãŸå›æ•°
+#define RECID_BTOWER_CHALLENGE			(LARGE_REC_START+14)	///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã«æŒ‘ã‚“ã å›æ•°
+#define RECID_ENTER_MARSHLAND			(LARGE_REC_START+15)	///<æ¹¿åŸã«å…¥ã£ãŸå›æ•°
+#define RECID_WAZA_IAIGIRI				(LARGE_REC_START+16)	///<å±…åˆã„åˆ‡ã‚Šã‚’ä½¿ã£ãŸå›æ•°
+#define RECID_WAZA_IWAKUDAKI			(LARGE_REC_START+17)	///<ã„ã‚ãã ãã‚’ä½¿ã£ãŸå›æ•°
 
-#define RECID_COMM_TRADE				(LARGE_REC_START+18)	///<ƒƒCƒ„ƒŒƒX’ÊMŒğŠ·‚ğ‚µ‚½‰ñ”
-#define RECID_COMM_BATTLE				(LARGE_REC_START+19)	///<ƒƒCƒ„ƒŒƒX’ÊM‘Îí‚ğ‚µ‚½‰ñ”
-#define RECID_COMM_BTL_WIN				(LARGE_REC_START+20)	///<ƒƒCƒ„ƒŒƒX’ÊM‘Îí‚ÌŸ—˜”
-#define RECID_COMM_BTL_LOSE				(LARGE_REC_START+21)	///<ƒƒCƒ„ƒŒƒX’ÊM‘Îí‚Ì”s–k”
-#define RECID_COMM_BTL_DRAW				(LARGE_REC_START+22)	///<ƒƒCƒ„ƒŒƒX’ÊM‘Îí‚Ìˆø‚«•ª‚¯”
+#define RECID_COMM_TRADE				(LARGE_REC_START+18)	///<ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡äº¤æ›ã‚’ã—ãŸå›æ•°
+#define RECID_COMM_BATTLE				(LARGE_REC_START+19)	///<ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡å¯¾æˆ¦ã‚’ã—ãŸå›æ•°
+#define RECID_COMM_BTL_WIN				(LARGE_REC_START+20)	///<ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡å¯¾æˆ¦ã®å‹åˆ©æ•°
+#define RECID_COMM_BTL_LOSE				(LARGE_REC_START+21)	///<ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡å¯¾æˆ¦ã®æ•—åŒ—æ•°
+#define RECID_COMM_BTL_DRAW				(LARGE_REC_START+22)	///<ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡å¯¾æˆ¦ã®å¼•ãåˆ†ã‘æ•°
 
-#define RECID_WIFI_TRADE				(LARGE_REC_START+23)	///<WiFi’ÊMŒğŠ·‚ğ‚µ‚½‰ñ”
-#define RECID_WIFI_BATTLE				(LARGE_REC_START+24)	///<WiFi’ÊM‘Îí‚ğ‚µ‚½‰ñ”
-#define RECID_WIFI_BTL_WIN				(LARGE_REC_START+25)	///<WiFi’ÊM‘Îí‚ÌŸ—˜”
-#define RECID_WIFI_BTL_LOSE				(LARGE_REC_START+26)	///<WiFi’ÊM‘Îí‚Ì”s–k”
-#define RECID_WIFI_BTL_DRAW				(LARGE_REC_START+27)	///<WiFi’ÊM‘Îí‚Ìˆø‚«•ª‚¯”
+#define RECID_WIFI_TRADE				(LARGE_REC_START+23)	///<WiFié€šä¿¡äº¤æ›ã‚’ã—ãŸå›æ•°
+#define RECID_WIFI_BATTLE				(LARGE_REC_START+24)	///<WiFié€šä¿¡å¯¾æˆ¦ã‚’ã—ãŸå›æ•°
+#define RECID_WIFI_BTL_WIN				(LARGE_REC_START+25)	///<WiFié€šä¿¡å¯¾æˆ¦ã®å‹åˆ©æ•°
+#define RECID_WIFI_BTL_LOSE				(LARGE_REC_START+26)	///<WiFié€šä¿¡å¯¾æˆ¦ã®æ•—åŒ—æ•°
+#define RECID_WIFI_BTL_DRAW				(LARGE_REC_START+27)	///<WiFié€šä¿¡å¯¾æˆ¦ã®å¼•ãåˆ†ã‘æ•°
 
-#define RECID_BTOWER_WIN				(LARGE_REC_START+28)	///<ƒoƒgƒ‹ƒ^ƒ[‚Å‚Ì‘Ÿ—˜”(ƒŠƒgƒ‰ƒCƒ‚[ƒhˆÈŠO‘S‚Ä)
-#define RECID_NMIXER_PLAY				(LARGE_REC_START+29)	///<‚Ü‚º‚Ü‚º—¿—‚ğs‚Á‚½‰ñ”
-#define RECID_NMUSU_PLAY				(LARGE_REC_START+30)	///<‚Ş‚·‚Ş‚·—¿—‚ğs‚Á‚½‰ñ”
-#define RECID_PORUTO_COMM				(LARGE_REC_START+31)	///<ƒ|ƒ‹ƒg‚ğƒƒCƒ„ƒŒƒX’ÊM‚Åì‚Á‚½‰ñ”
-#define RECID_PORUTO_EAT				(LARGE_REC_START+32)	///<ƒ|ƒPƒ‚ƒ“‚ÉH‚×‚³‚¹‚½ƒ|ƒ‹ƒg‚ÌŒÂ”
+#define RECID_BTOWER_WIN				(LARGE_REC_START+28)	///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã§ã®ç·å‹åˆ©æ•°(ãƒªãƒˆãƒ©ã‚¤ãƒ¢ãƒ¼ãƒ‰ä»¥å¤–å…¨ã¦)
+#define RECID_NMIXER_PLAY				(LARGE_REC_START+29)	///<ã¾ãœã¾ãœæ–™ç†ã‚’è¡Œã£ãŸå›æ•°
+#define RECID_NMUSU_PLAY				(LARGE_REC_START+30)	///<ã‚€ã™ã‚€ã™æ–™ç†ã‚’è¡Œã£ãŸå›æ•°
+#define RECID_PORUTO_COMM				(LARGE_REC_START+31)	///<ãƒãƒ«ãƒˆã‚’ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã§ä½œã£ãŸå›æ•°
+#define RECID_PORUTO_EAT				(LARGE_REC_START+32)	///<ãƒã‚±ãƒ¢ãƒ³ã«é£Ÿã¹ã•ã›ãŸãƒãƒ«ãƒˆã®å€‹æ•°
 
-#define RECID_SHOPPING_CNT				(LARGE_REC_START+33)	///<”ƒ‚¢•¨‚ğ‚µ‚½‰ñ”
-#define RECID_SHOPPING_MONEY			(LARGE_REC_START+34)	///<”ƒ‚¢•¨‚ğ‚µ‚½‡Œv‹àŠz
-#define RECID_POKETCH_CHANGE			(LARGE_REC_START+35)	///<ƒ|ƒPƒbƒ`‚Ì‹@”\‚ğØ‚è‘Ö‚¦‚½‰ñ”
-#define RECID_ZUKAN_OPEN				(LARGE_REC_START+36)	///<ƒ|ƒPƒ‚ƒ“}ŠÓ‚ğŠJ‚¢‚½‰ñ”
-#define RECID_WATCH_TV					(LARGE_REC_START+37)	///<ƒeƒŒƒr‚ğŒ©‚½‰ñ”
-#define RECID_DANSA_JUMP				(LARGE_REC_START+38)	///<’i·‚ğ”ò‚Ñ~‚è‚½‰ñ”
-#define RECID_SODATEYA_CNT				(LARGE_REC_START+39)	///<ˆç‚Ä‰®‚Éƒ|ƒPƒ‚ƒ“‚ğ—a‚¯‚½‰ñ”
+#define RECID_SHOPPING_CNT				(LARGE_REC_START+33)	///<è²·ã„ç‰©ã‚’ã—ãŸå›æ•°
+#define RECID_SHOPPING_MONEY			(LARGE_REC_START+34)	///<è²·ã„ç‰©ã‚’ã—ãŸåˆè¨ˆé‡‘é¡
+#define RECID_POKETCH_CHANGE			(LARGE_REC_START+35)	///<ãƒã‚±ãƒƒãƒã®æ©Ÿèƒ½ã‚’åˆ‡ã‚Šæ›¿ãˆãŸå›æ•°
+#define RECID_ZUKAN_OPEN				(LARGE_REC_START+36)	///<ãƒã‚±ãƒ¢ãƒ³å›³é‘‘ã‚’é–‹ã„ãŸå›æ•°
+#define RECID_WATCH_TV					(LARGE_REC_START+37)	///<ãƒ†ãƒ¬ãƒ“ã‚’è¦‹ãŸå›æ•°
+#define RECID_DANSA_JUMP				(LARGE_REC_START+38)	///<æ®µå·®ã‚’é£›ã³é™ã‚ŠãŸå›æ•°
+#define RECID_SODATEYA_CNT				(LARGE_REC_START+39)	///<è‚²ã¦å±‹ã«ãƒã‚±ãƒ¢ãƒ³ã‚’é ã‘ãŸå›æ•°
 
-#define	RECID_KILL_POKE					(LARGE_REC_START+40)	///<Šé‰æ07:“|‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”
-#define	RECID_DAYMAX_EXP				(LARGE_REC_START+41)	///<Šé‰æ24:1“ú‚É‰Ò‚¢‚¾ŒoŒ±’l
-#define	RECID_DAYCNT_EXP				(LARGE_REC_START+42)	///<Šé‰æ24:1“ú‚É‰Ò‚¢‚¾ŒoŒ±’l
+#define	RECID_KILL_POKE					(LARGE_REC_START+40)	///<ä¼ç”»07:å€’ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ•°
+#define	RECID_DAYMAX_EXP				(LARGE_REC_START+41)	///<ä¼ç”»24:1æ—¥ã«ç¨¼ã„ã çµŒé¨“å€¤
+#define	RECID_DAYCNT_EXP				(LARGE_REC_START+42)	///<ä¼ç”»24:1æ—¥ã«ç¨¼ã„ã çµŒé¨“å€¤
 
-//4byte:ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á
-#define RECID_GTS_PUT					(LARGE_REC_START+43)	///<GTS‚Éƒ|ƒPƒ‚ƒ“‚ğ—a‚¯‚½‰ñ”
-#define RECID_MAIL_WRITE				(LARGE_REC_START+44)	///<ƒ[ƒ‹‚ğ‘‚¢‚½‰ñ”
-#define RECID_LOBBY_CHAT				(LARGE_REC_START+45)	///<WIFILê‚Å˜b‚µ‚©‚¯‚½‰ñ”
-#define RECID_UG_BALL					(LARGE_REC_START+46)	///<’n‰º’Ê˜H‚Å‹…‚ğ–„‚ß‚½”
-#define RECID_TV_COUNT					(LARGE_REC_START+47)	///<ƒeƒŒƒr‚ğŒ©‚½‰ñ”
-#define RECID_NICKNAME					(LARGE_REC_START+48)///<ƒ|ƒPƒ‚ƒ“‚ÉƒjƒbƒNƒl[ƒ€‚ğ•t‚¯‚½‰ñ”
-#define RECID_PREMIUM_BALL				(LARGE_REC_START+49)	///<‚à‚ç‚Á‚½ƒvƒŒƒ~ƒAƒ{[ƒ‹‚Ì”
-#define RECID_FUREAI_ITEM		(LARGE_REC_START+50)///<‚Ó‚ê‚ ‚¢Lê‚Åƒ|ƒPƒ‚ƒ“‚É‰½‚©‚à‚ç‚Á‚½‰ñ”
-#define RECID_COOKING_SINGLE			(LARGE_REC_START+51)	///<ˆêl‚Åƒ|ƒtƒBƒ“‚ğì‚Á‚½‰ñ”
-#define RECID_COOKING_FRIENDS			(LARGE_REC_START+52)	///<—F’B‚Æƒ|ƒtƒBƒ“‚ğì‚Á‚½‰ñ”
-#define RECID_DRESS_COUNT			(LARGE_REC_START+53)///<ƒ|ƒPƒ‚ƒ“‚ÌƒhƒŒƒXƒAƒbƒvÊ^‚ğì‚Á‚½‰ñ”
-#define RECID_KAIRIKI_COUNT			(LARGE_REC_START+54)	///<”é“`‹Z‚©‚¢‚è‚«‚ÅŠâ‚ğ‰Ÿ‚µ‚½‰ñ”
-#define RECID_MARSH_COUNT			(LARGE_REC_START+55)	///<À‚É‚Í‚Ü‚Á‚½‰ñ”
-#define RECID_LEADERHOUSE_BATTLE	(LARGE_REC_START+56)	///<ƒŠ[ƒ_[ƒnƒEƒX‚Åí‚Á‚½‰ñ”
-#define RECID_FRONTIER_COUNT		(LARGE_REC_START+57)	///<ƒtƒƒ“ƒeƒBƒA{İ‚É’§í‚µ‚½‰ñ”
-#define RECID_FRONTIER_BRAIN		(LARGE_REC_START+58)	///<ƒtƒƒ“ƒeƒBƒAƒuƒŒ[ƒ“‚É‰ï‚Á‚½‰ñ”
-#define RECID_FACTORY_WIN			(LARGE_REC_START+59)	///<ƒtƒ@ƒNƒgƒŠ[‚ÅŸ‚Á‚½‰ñ”
-#define RECID_CASTLE_WIN			(LARGE_REC_START+60)	///<ƒLƒƒƒbƒXƒ‹‚ÅŸ‚Á‚½‰ñ”
-#define RECID_STAGE_WIN				(LARGE_REC_START+61)	///<ƒXƒe[ƒW‚ÅŸ‚Á‚½‰ñ”
-#define RECID_ROULETTE				(LARGE_REC_START+62)	///<ƒ‹[ƒŒƒbƒg‚ÅŸ‚Á‚½‰ñ”
-#define RECID_FACTORY_POKE_CHANGE	(LARGE_REC_START+63)///<ƒtƒ@ƒNƒgƒŠ[‚Åƒ|ƒPƒ‚ƒ“‚ğŒğŠ·‚µ‚½‰ñ”
-#define RECID_CASTLE_POINT			(LARGE_REC_START+64)	///<‰Ò‚¢‚¾ƒLƒƒƒbƒXƒ‹ƒ|ƒCƒ“ƒg
-#define RECID_STAGE_RANK10_WIN	(LARGE_REC_START+65)///<ƒXƒe[ƒW‚Åƒ‰ƒ“ƒN10‚Ìƒ|ƒPƒ‚ƒ“‚ÉŸ‚Á‚½‰ñ”
-#define RECID_ROULETTE_BP			(LARGE_REC_START+66)	///<ƒ‹[ƒŒƒbƒg‚Ì–Ú‚Å‚à‚ç‚Á‚½BP
-#define RECID_WIN_BP				(LARGE_REC_START+67)	///<Ÿ‚¿æ‚Á‚½BP
-#define RECID_USE_BP				(LARGE_REC_START+68)	///<g‚Á‚½BP
-#define RECID_CHANGE_HOSHINOKAKERA	(LARGE_REC_START+69)	///<ƒ^ƒ^ƒ‰»“SŠ‚ÅŒğŠ·‚µ‚½‚Ù‚µ‚Ì‚©‚¯‚ç‚Ì”
+//4byte:ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ 
+#define RECID_GTS_PUT					(LARGE_REC_START+43)	///<GTSã«ãƒã‚±ãƒ¢ãƒ³ã‚’é ã‘ãŸå›æ•°
+#define RECID_MAIL_WRITE				(LARGE_REC_START+44)	///<ãƒ¡ãƒ¼ãƒ«ã‚’æ›¸ã„ãŸå›æ•°
+#define RECID_LOBBY_CHAT				(LARGE_REC_START+45)	///<WIFIåºƒå ´ã§è©±ã—ã‹ã‘ãŸå›æ•°
+#define RECID_UG_BALL					(LARGE_REC_START+46)	///<åœ°ä¸‹é€šè·¯ã§çƒã‚’åŸ‹ã‚ãŸæ•°
+#define RECID_TV_COUNT					(LARGE_REC_START+47)	///<ãƒ†ãƒ¬ãƒ“ã‚’è¦‹ãŸå›æ•°
+#define RECID_NICKNAME					(LARGE_REC_START+48)///<ãƒã‚±ãƒ¢ãƒ³ã«ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ä»˜ã‘ãŸå›æ•°
+#define RECID_PREMIUM_BALL				(LARGE_REC_START+49)	///<ã‚‚ã‚‰ã£ãŸãƒ—ãƒ¬ãƒŸã‚¢ãƒœãƒ¼ãƒ«ã®æ•°
+#define RECID_FUREAI_ITEM		(LARGE_REC_START+50)///<ãµã‚Œã‚ã„åºƒå ´ã§ãƒã‚±ãƒ¢ãƒ³ã«ä½•ã‹ã‚‚ã‚‰ã£ãŸå›æ•°
+#define RECID_COOKING_SINGLE			(LARGE_REC_START+51)	///<ä¸€äººã§ãƒãƒ•ã‚£ãƒ³ã‚’ä½œã£ãŸå›æ•°
+#define RECID_COOKING_FRIENDS			(LARGE_REC_START+52)	///<å‹é”ã¨ãƒãƒ•ã‚£ãƒ³ã‚’ä½œã£ãŸå›æ•°
+#define RECID_DRESS_COUNT			(LARGE_REC_START+53)///<ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—å†™çœŸã‚’ä½œã£ãŸå›æ•°
+#define RECID_KAIRIKI_COUNT			(LARGE_REC_START+54)	///<ç§˜ä¼æŠ€ã‹ã„ã‚Šãã§å²©ã‚’æŠ¼ã—ãŸå›æ•°
+#define RECID_MARSH_COUNT			(LARGE_REC_START+55)	///<æ²¼ã«ã¯ã¾ã£ãŸå›æ•°
+#define RECID_LEADERHOUSE_BATTLE	(LARGE_REC_START+56)	///<ãƒªãƒ¼ãƒ€ãƒ¼ãƒã‚¦ã‚¹ã§æˆ¦ã£ãŸå›æ•°
+#define RECID_FRONTIER_COUNT		(LARGE_REC_START+57)	///<ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ã«æŒ‘æˆ¦ã—ãŸå›æ•°
+#define RECID_FRONTIER_BRAIN		(LARGE_REC_START+58)	///<ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ãƒ¼ãƒ³ã«ä¼šã£ãŸå›æ•°
+#define RECID_FACTORY_WIN			(LARGE_REC_START+59)	///<ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã§å‹ã£ãŸå›æ•°
+#define RECID_CASTLE_WIN			(LARGE_REC_START+60)	///<ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã§å‹ã£ãŸå›æ•°
+#define RECID_STAGE_WIN				(LARGE_REC_START+61)	///<ã‚¹ãƒ†ãƒ¼ã‚¸ã§å‹ã£ãŸå›æ•°
+#define RECID_ROULETTE				(LARGE_REC_START+62)	///<ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã§å‹ã£ãŸå›æ•°
+#define RECID_FACTORY_POKE_CHANGE	(LARGE_REC_START+63)///<ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã§ãƒã‚±ãƒ¢ãƒ³ã‚’äº¤æ›ã—ãŸå›æ•°
+#define RECID_CASTLE_POINT			(LARGE_REC_START+64)	///<ç¨¼ã„ã ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒã‚¤ãƒ³ãƒˆ
+#define RECID_STAGE_RANK10_WIN	(LARGE_REC_START+65)///<ã‚¹ãƒ†ãƒ¼ã‚¸ã§ãƒ©ãƒ³ã‚¯10ã®ãƒã‚±ãƒ¢ãƒ³ã«å‹ã£ãŸå›æ•°
+#define RECID_ROULETTE_BP			(LARGE_REC_START+66)	///<ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã®ç›®ã§ã‚‚ã‚‰ã£ãŸBP
+#define RECID_WIN_BP				(LARGE_REC_START+67)	///<å‹ã¡å–ã£ãŸBP
+#define RECID_USE_BP				(LARGE_REC_START+68)	///<ä½¿ã£ãŸBP
+#define RECID_CHANGE_HOSHINOKAKERA	(LARGE_REC_START+69)	///<ã‚¿ã‚¿ãƒ©è£½é‰„æ‰€ã§äº¤æ›ã—ãŸã»ã—ã®ã‹ã‘ã‚‰ã®æ•°
 
 #define	LARGE_REC_NUM	(70+LARGE_REC_START)
 #define	LARGE_REC_MAX	(LARGE_REC_NUM)	
 
-//ˆÈ‰º‚ÍA2ƒoƒCƒg‚µ‚©ƒJƒEƒ“ƒ^‚ğ‚½‚È‚¢
+//ä»¥ä¸‹ã¯ã€2ãƒã‚¤ãƒˆã—ã‹ã‚«ã‚¦ãƒ³ã‚¿ã‚’æŒãŸãªã„
 #define	SMALL_REC_START		LARGE_REC_MAX
 
-#define RECID_MAKE_TRAND_CNT			(SMALL_REC_START+0)	///<—¬s‚ğì‚Á‚½‰ñ”
-#define RECID_INTERVIEW_CNT				(SMALL_REC_START+1)	///<ƒCƒ“ƒ^ƒrƒ…[‚É“š‚¦‚½‰ñ”
-#define RECID_DENDOU_CNT				(SMALL_REC_START+2)	///<“a“°“ü‚è‚µ‚½‰ñ”
-#define RECID_RECOVERY_HOME				(SMALL_REC_START+3)	///<©•ª‚Ì‰Æ‚Å‹x‚ñ‚¾‰ñ”
-#define RECID_MOVE_MYBASE				(SMALL_REC_START+4)	///<”é–§Šî’n‚ğˆÚ“®‚µ‚½‰ñ”
+#define RECID_MAKE_TRAND_CNT			(SMALL_REC_START+0)	///<æµè¡Œã‚’ä½œã£ãŸå›æ•°
+#define RECID_INTERVIEW_CNT				(SMALL_REC_START+1)	///<ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã«ç­”ãˆãŸå›æ•°
+#define RECID_DENDOU_CNT				(SMALL_REC_START+2)	///<æ®¿å ‚å…¥ã‚Šã—ãŸå›æ•°
+#define RECID_RECOVERY_HOME				(SMALL_REC_START+3)	///<è‡ªåˆ†ã®å®¶ã§ä¼‘ã‚“ã å›æ•°
+#define RECID_MOVE_MYBASE				(SMALL_REC_START+4)	///<ç§˜å¯†åŸºåœ°ã‚’ç§»å‹•ã—ãŸå›æ•°
 
-#define RECID_WAZA_HANERU				(SMALL_REC_START+5)	///<u‚Í‚Ë‚év‚ğg‚Á‚½‰ñ”
-#define RECID_WAZA_WARUAGAKI			(SMALL_REC_START+6)	///<u‚í‚é‚ ‚ª‚«v‚ğg‚Á‚½‰ñ”
-#define RECID_WAZA_ZIBAKU				(SMALL_REC_START+7)	///<u‚¶‚Î‚­v‚ğg‚Á‚½‰ñ”
-#define RECID_WAZA_DAIBAKUHATU			(SMALL_REC_START+8)	///<u‚¾‚¢‚Î‚­‚Í‚Âv‚ğg‚Á‚½‰ñ”
+#define RECID_WAZA_HANERU				(SMALL_REC_START+5)	///<ã€Œã¯ã­ã‚‹ã€ã‚’ä½¿ã£ãŸå›æ•°
+#define RECID_WAZA_WARUAGAKI			(SMALL_REC_START+6)	///<ã€Œã‚ã‚‹ã‚ãŒãã€ã‚’ä½¿ã£ãŸå›æ•°
+#define RECID_WAZA_ZIBAKU				(SMALL_REC_START+7)	///<ã€Œã˜ã°ãã€ã‚’ä½¿ã£ãŸå›æ•°
+#define RECID_WAZA_DAIBAKUHATU			(SMALL_REC_START+8)	///<ã€Œã ã„ã°ãã¯ã¤ã€ã‚’ä½¿ã£ãŸå›æ•°
 
-#define	RECID_RENSHOU_SINGLE			(SMALL_REC_START+9)	///<ƒ^ƒ[:ƒVƒ“ƒOƒ‹ƒoƒgƒ‹˜AŸ”
-#define	RECID_RENSHOU_SINGLE_CNT		(SMALL_REC_START+10)///<ƒ^ƒ[:ƒVƒ“ƒOƒ‹ƒoƒgƒ‹˜AŸ”
-#define	RECID_RENSHOU_DOUBLE			(SMALL_REC_START+11)	///<ƒ^ƒ[:ƒ_ƒuƒ‹ƒoƒgƒ‹˜AŸ”
-#define	RECID_RENSHOU_DOUBLE_CNT		(SMALL_REC_START+12)	///<ƒ^ƒ[:ƒ_ƒuƒ‹ƒoƒgƒ‹˜AŸ”
-#define	RECID_RENSHOU_MULTI				(SMALL_REC_START+13)	///<ƒ^ƒ[:ƒ}ƒ‹ƒ`ƒoƒgƒ‹˜AŸ”
-#define	RECID_RENSHOU_MULTI_CNT			(SMALL_REC_START+14)	///<ƒ^ƒ[:ƒ}ƒ‹ƒ`ƒoƒgƒ‹˜AŸ”
-#define	RECID_RENSHOU_COMM_MULTI		(SMALL_REC_START+15)	///<ƒ^ƒ[:ƒ}ƒ‹ƒ`ƒoƒgƒ‹i’ÊMj˜AŸ”
-#define	RECID_RENSHOU_COMM_MULTI_CNT	(SMALL_REC_START+16)	///<ƒ^ƒ[:ƒ}ƒ‹ƒ`ƒoƒgƒ‹i’ÊMj˜AŸ”
-#define	RECID_RENSHOU_WIFI				(SMALL_REC_START+17)	///<ƒ^ƒ[:Wi-Fiƒoƒgƒ‹˜AŸ”
-#define	RECID_RENSHOU_WIFI_CNT			(SMALL_REC_START+18)	///<ƒ^ƒ[:Wi-Fiƒoƒgƒ‹˜AŸ”
+#define	RECID_RENSHOU_SINGLE			(SMALL_REC_START+9)	///<ã‚¿ãƒ¯ãƒ¼:ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«é€£å‹æ•°
+#define	RECID_RENSHOU_SINGLE_CNT		(SMALL_REC_START+10)///<ã‚¿ãƒ¯ãƒ¼:ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«é€£å‹æ•°
+#define	RECID_RENSHOU_DOUBLE			(SMALL_REC_START+11)	///<ã‚¿ãƒ¯ãƒ¼:ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«é€£å‹æ•°
+#define	RECID_RENSHOU_DOUBLE_CNT		(SMALL_REC_START+12)	///<ã‚¿ãƒ¯ãƒ¼:ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«é€£å‹æ•°
+#define	RECID_RENSHOU_MULTI				(SMALL_REC_START+13)	///<ã‚¿ãƒ¯ãƒ¼:ãƒãƒ«ãƒãƒãƒˆãƒ«é€£å‹æ•°
+#define	RECID_RENSHOU_MULTI_CNT			(SMALL_REC_START+14)	///<ã‚¿ãƒ¯ãƒ¼:ãƒãƒ«ãƒãƒãƒˆãƒ«é€£å‹æ•°
+#define	RECID_RENSHOU_COMM_MULTI		(SMALL_REC_START+15)	///<ã‚¿ãƒ¯ãƒ¼:ãƒãƒ«ãƒãƒãƒˆãƒ«ï¼ˆé€šä¿¡ï¼‰é€£å‹æ•°
+#define	RECID_RENSHOU_COMM_MULTI_CNT	(SMALL_REC_START+16)	///<ã‚¿ãƒ¯ãƒ¼:ãƒãƒ«ãƒãƒãƒˆãƒ«ï¼ˆé€šä¿¡ï¼‰é€£å‹æ•°
+#define	RECID_RENSHOU_WIFI				(SMALL_REC_START+17)	///<ã‚¿ãƒ¯ãƒ¼:Wi-Fiãƒãƒˆãƒ«é€£å‹æ•°
+#define	RECID_RENSHOU_WIFI_CNT			(SMALL_REC_START+18)	///<ã‚¿ãƒ¯ãƒ¼:Wi-Fiãƒãƒˆãƒ«é€£å‹æ•°
 
-#define RECID_CONTEST_ENTRY				(SMALL_REC_START+19)	///<ƒRƒ“ƒeƒXƒg‚ÉQ‰Á‚µ‚½‰ñ”
-#define RECID_CONTEST_COMM_ENTRY		(SMALL_REC_START+20)	///<ƒRƒ“ƒeƒXƒg(’ÊM)‚ÉQ‰Á‚µ‚½‰ñ”
-#define RECID_CONTEST_GPX				(SMALL_REC_START+21)	///<ƒRƒ“ƒeƒXƒg‚Å—DŸ‚µ‚½‰ñ”
-#define RECID_CONTEST_COMM_GPX			(SMALL_REC_START+22)	///<ƒRƒ“ƒeƒXƒg(’ÊM)‚Å—DŸ‚µ‚½‰ñ”
-#define RECID_CONTEST_RIBBON_GET		(SMALL_REC_START+23)	///<–á‚Á‚½ƒŠƒ{ƒ“‚ÌŒÂ”(ƒRƒ“ƒeƒXƒgŒÀ’è)
+#define RECID_CONTEST_ENTRY				(SMALL_REC_START+19)	///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«å‚åŠ ã—ãŸå›æ•°
+#define RECID_CONTEST_COMM_ENTRY		(SMALL_REC_START+20)	///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ(é€šä¿¡)ã«å‚åŠ ã—ãŸå›æ•°
+#define RECID_CONTEST_GPX				(SMALL_REC_START+21)	///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã§å„ªå‹ã—ãŸå›æ•°
+#define RECID_CONTEST_COMM_GPX			(SMALL_REC_START+22)	///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ(é€šä¿¡)ã§å„ªå‹ã—ãŸå›æ•°
+#define RECID_CONTEST_RIBBON_GET		(SMALL_REC_START+23)	///<è²°ã£ãŸãƒªãƒœãƒ³ã®å€‹æ•°(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé™å®š)
 
-#define	RECID_WAZA_MUKOU				(SMALL_REC_START+24)	///<Šé‰æ14:–³Œø‰Ê‚í‚´‚ğo‚µ‚½‰ñ”
-#define	RECID_TEMOTI_KIZETU				(SMALL_REC_START+25)	///<Šé‰æ15:‹Câ‚³‚¹‚½è‚¿‚Ìˆø”
-#define	RECID_TEMOTI_MAKIZOE			(SMALL_REC_START+26)	///<Šé‰æ16:–¡•û‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚½‰ñ”
-#define	RECID_NIGERU_SIPPAI				(SMALL_REC_START+27)	///<Šé‰æ17:“¦‚°‚»‚±‚È‚Á‚½‰ñ”
-#define	RECID_NIGERARETA				(SMALL_REC_START+28)	///<Šé‰æ18F“¦‚°‚ç‚ê‚½ƒ|ƒPƒ‚ƒ“‚Ì”
-#define	RECID_FISHING_FAILURE			(SMALL_REC_START+29)	///<Šé‰æ22:‚Â‚è‘¹‚È‚Á‚½‰ñ”
-#define	RECID_DAYMAX_PORUTO				(SMALL_REC_START+30)	///<Šé‰æ23:1“ú‚Éƒ|ƒ‹ƒg‚ğH‚×‚³‚¹‚½”
-#define	RECID_DAYCNT_PORUTO				(SMALL_REC_START+31)	///<Šé‰æ23:1“ú‚Éƒ|ƒ‹ƒg‚ğH‚×‚³‚¹‚½”
-#define	RECID_DAYMAX_KILL				(SMALL_REC_START+32)	///<Šé‰æ25:1“ú‚É“|‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”
-#define	RECID_DAYCNT_KILL				(SMALL_REC_START+33)	///<Šé‰æ25:1“ú‚É“|‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”
-#define	RECID_DAYMAX_CAPTURE			(SMALL_REC_START+34)	///<Šé‰æ26:1“ú‚É•ßŠl‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”
-#define	RECID_DAYCNT_CAPTURE			(SMALL_REC_START+35)	///<Šé‰æ26:1“ú‚É•ßŠl‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”
-#define	RECID_DAYMAX_TRAINER_BATTLE		(SMALL_REC_START+36)	///<Šé‰æ27:1“ú‚ÉƒgƒŒ[ƒi[í‚µ‚½‰ñ”
-#define	RECID_DAYCNT_TRAINER_BATTLE		(SMALL_REC_START+37)	///<Šé‰æ27:1“ú‚ÉƒgƒŒ[ƒi[í‚µ‚½‰ñ”
-#define	RECID_DAYMAX_EVOLUTION			(SMALL_REC_START+38)	///<Šé‰æ28:1“ú‚Éƒ|ƒPƒ‚ƒ“i‰»‚³‚¹‚½‰ñ”
-#define	RECID_DAYCNT_EVOLUTION			(SMALL_REC_START+39)	///<Šé‰æ28:1“ú‚Éƒ|ƒPƒ‚ƒ“i‰»‚³‚¹‚½‰ñ”
+#define	RECID_WAZA_MUKOU				(SMALL_REC_START+24)	///<ä¼ç”»14:ç„¡åŠ¹æœã‚ã–ã‚’å‡ºã—ãŸå›æ•°
+#define	RECID_TEMOTI_KIZETU				(SMALL_REC_START+25)	///<ä¼ç”»15:æ°—çµ¶ã•ã›ãŸæ‰‹æŒã¡ã®å¼•æ•°
+#define	RECID_TEMOTI_MAKIZOE			(SMALL_REC_START+26)	///<ä¼ç”»16:å‘³æ–¹ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆãŸå›æ•°
+#define	RECID_NIGERU_SIPPAI				(SMALL_REC_START+27)	///<ä¼ç”»17:é€ƒã’ãã“ãªã£ãŸå›æ•°
+#define	RECID_NIGERARETA				(SMALL_REC_START+28)	///<ä¼ç”»18ï¼šé€ƒã’ã‚‰ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã®æ•°
+#define	RECID_FISHING_FAILURE			(SMALL_REC_START+29)	///<ä¼ç”»22:ã¤ã‚Šæãªã£ãŸå›æ•°
+#define	RECID_DAYMAX_PORUTO				(SMALL_REC_START+30)	///<ä¼ç”»23:1æ—¥ã«ãƒãƒ«ãƒˆã‚’é£Ÿã¹ã•ã›ãŸæ•°
+#define	RECID_DAYCNT_PORUTO				(SMALL_REC_START+31)	///<ä¼ç”»23:1æ—¥ã«ãƒãƒ«ãƒˆã‚’é£Ÿã¹ã•ã›ãŸæ•°
+#define	RECID_DAYMAX_KILL				(SMALL_REC_START+32)	///<ä¼ç”»25:1æ—¥ã«å€’ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ•°
+#define	RECID_DAYCNT_KILL				(SMALL_REC_START+33)	///<ä¼ç”»25:1æ—¥ã«å€’ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ•°
+#define	RECID_DAYMAX_CAPTURE			(SMALL_REC_START+34)	///<ä¼ç”»26:1æ—¥ã«æ•ç²ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ•°
+#define	RECID_DAYCNT_CAPTURE			(SMALL_REC_START+35)	///<ä¼ç”»26:1æ—¥ã«æ•ç²ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ•°
+#define	RECID_DAYMAX_TRAINER_BATTLE		(SMALL_REC_START+36)	///<ä¼ç”»27:1æ—¥ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ã—ãŸå›æ•°
+#define	RECID_DAYCNT_TRAINER_BATTLE		(SMALL_REC_START+37)	///<ä¼ç”»27:1æ—¥ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ã—ãŸå›æ•°
+#define	RECID_DAYMAX_EVOLUTION			(SMALL_REC_START+38)	///<ä¼ç”»28:1æ—¥ã«ãƒã‚±ãƒ¢ãƒ³é€²åŒ–ã•ã›ãŸå›æ•°
+#define	RECID_DAYCNT_EVOLUTION			(SMALL_REC_START+39)	///<ä¼ç”»28:1æ—¥ã«ãƒã‚±ãƒ¢ãƒ³é€²åŒ–ã•ã›ãŸå›æ•°
 
-#define RECID_COMM_SURETIGAI			(SMALL_REC_START+40)	///<‚·‚êˆá‚¢’ÊM‚ğ‚µ‚½‰ñ”
-#define RECID_NMIXER_TEAMWORK			(SMALL_REC_START+41) ///<‚Ü‚º‚Ü‚º—¿—ƒ`[ƒ€ƒ[ƒNÅ‚“¾“_
+#define RECID_COMM_SURETIGAI			(SMALL_REC_START+40)	///<ã™ã‚Œé•ã„é€šä¿¡ã‚’ã—ãŸå›æ•°
+#define RECID_NMIXER_TEAMWORK			(SMALL_REC_START+41) ///<ã¾ãœã¾ãœæ–™ç†ãƒãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯æœ€é«˜å¾—ç‚¹
 
-//2byte:ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á
-#define RECID_WIFICLUB_TRADE	(SMALL_REC_START+42)	///<WIFIƒNƒ‰ƒu‚Åƒ|ƒPƒ‚ƒ“ŒğŠ·‚µ‚½‰ñ”
-#define RECID_MYSIGN_WRITE		(SMALL_REC_START+43)	///<ƒgƒŒ[ƒi[ƒJ[ƒh‚ÉƒTƒCƒ“‚ğ‘‚¢‚½‰ñ”
-#define RECID_FOSSIL_RESTORE	(SMALL_REC_START+44)	///<ƒ|ƒPƒ‚ƒ“‚Ì‰»Î‚ğ•œŒ³‚µ‚½‰ñ”
-#define RECID_FOOTMARK_LOOK		(SMALL_REC_START+45)	///<ƒtƒgƒ}ƒL”m‚É‘«Õ‚ğŒ©‚Ä‚à‚ç‚Á‚½‰ñ”
-#define RECID_MITSU_ENC			(SMALL_REC_START+46)	///<ŠÃ‚¢–¨‚Å–ì¶‚Ìƒ|ƒPƒ‚ƒ“‚Æo‰ï‚Á‚½‰ñ”
-#define RECID_LOBBY_GAME_COUNT	(SMALL_REC_START+47)	///<WIFILê‚ÌƒQ[ƒ€‚ÉQ‰Á‚µ‚½‰ñ”
-#define RECID_GURUGURU_COUNT	(SMALL_REC_START+48)	///<‚®‚é‚®‚éŒğŠ·‚ÅŒğŠ·‚µ‚½ƒ^ƒ}ƒS‚Ì”
+//2byte:ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ 
+#define RECID_WIFICLUB_TRADE	(SMALL_REC_START+42)	///<WIFIã‚¯ãƒ©ãƒ–ã§ãƒã‚±ãƒ¢ãƒ³äº¤æ›ã—ãŸå›æ•°
+#define RECID_MYSIGN_WRITE		(SMALL_REC_START+43)	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã«ã‚µã‚¤ãƒ³ã‚’æ›¸ã„ãŸå›æ•°
+#define RECID_FOSSIL_RESTORE	(SMALL_REC_START+44)	///<ãƒã‚±ãƒ¢ãƒ³ã®åŒ–çŸ³ã‚’å¾©å…ƒã—ãŸå›æ•°
+#define RECID_FOOTMARK_LOOK		(SMALL_REC_START+45)	///<ãƒ•ãƒˆãƒã‚­åšå£«ã«è¶³è·¡ã‚’è¦‹ã¦ã‚‚ã‚‰ã£ãŸå›æ•°
+#define RECID_MITSU_ENC			(SMALL_REC_START+46)	///<ç”˜ã„èœœã§é‡ç”Ÿã®ãƒã‚±ãƒ¢ãƒ³ã¨å‡ºä¼šã£ãŸå›æ•°
+#define RECID_LOBBY_GAME_COUNT	(SMALL_REC_START+47)	///<WIFIåºƒå ´ã®ã‚²ãƒ¼ãƒ ã«å‚åŠ ã—ãŸå›æ•°
+#define RECID_GURUGURU_COUNT	(SMALL_REC_START+48)	///<ãã‚‹ãã‚‹äº¤æ›ã§äº¤æ›ã—ãŸã‚¿ãƒã‚´ã®æ•°
 
 
 
-#define	SMALL_REC_NUM	(49+28)	//28‰ÓŠ•ª—]‚è
+#define	SMALL_REC_NUM	(49+28)	//28ç®‡æ‰€åˆ†ä½™ã‚Š
 #define	SMALL_REC_MAX	(SMALL_REC_NUM+LARGE_REC_MAX)
 
 

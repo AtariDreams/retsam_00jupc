@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	stage.c
- * @brief	uƒoƒgƒ‹ƒXƒe[ƒWvƒƒCƒ“ƒ\[ƒX
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€ãƒ¡ã‚¤ãƒ³ã‚½ãƒ¼ã‚¹
  * @author	Satoshi Nohara
  * @date	07.06.08
  */
@@ -60,66 +60,66 @@ FS_EXTERN_OVERLAY(frontier_common);
 
 //==============================================================================================
 //
-//	ƒfƒoƒbƒN—p
+//	ãƒ‡ãƒãƒƒã‚¯ç”¨
 //
 //==============================================================================================
 #ifdef PM_DEBUG
 //PROC_DATA* p_proc;
-//#define DEBUG_BRAIN_SET							//—LŒø‚ÅAƒuƒŒ[ƒ““oê‚É‚·‚é
+//#define DEBUG_BRAIN_SET							//æœ‰åŠ¹ã§ã€ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã«ã™ã‚‹
 #endif
 
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒV[ƒPƒ“ƒX’è‹`
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
 enum {
-	SEQ_GAME_INIT,											//‰Šú‰»
-	SEQ_GAME_PSD,											//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXˆ—
+	SEQ_GAME_INIT,											//åˆæœŸåŒ–
+	SEQ_GAME_PSD,											//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‡¦ç†
 
-	SEQ_GAME_TYPE_SEL,										//ƒ^ƒCƒv‘I‘ğ’†
+	SEQ_GAME_TYPE_SEL,										//ã‚¿ã‚¤ãƒ—é¸æŠä¸­
 
-	SEQ_GAME_SEND_RECV,										//‘—óM
+	SEQ_GAME_SEND_RECV,										//é€å—ä¿¡
 
-	SEQ_GAME_END_MULTI,										//(’ÊM)I—¹
-	SEQ_GAME_END,											//I—¹
+	SEQ_GAME_END_MULTI,										//(é€šä¿¡)çµ‚äº†
+	SEQ_GAME_END,											//çµ‚äº†
 
-	SEQ_GAME_PAIR_END,										//ƒp[ƒgƒi[‚ªŒˆ’è‚µ‚½‚Ì‚Å‹­§I—¹
+	SEQ_GAME_PAIR_END,										//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒæ±ºå®šã—ãŸã®ã§å¼·åˆ¶çµ‚äº†
 };
 
-//ƒtƒHƒ“ƒgƒJƒ‰[
-#define	COL_BLUE	( GF_PRINTCOLOR_MAKE(FBMP_COL_BLUE,FBMP_COL_BLU_SDW,FBMP_COL_NULL) )//Â
-#define	COL_RED		( GF_PRINTCOLOR_MAKE(FBMP_COL_RED,FBMP_COL_RED_SDW,FBMP_COL_NULL) )	//Ô
+//ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+#define	COL_BLUE	( GF_PRINTCOLOR_MAKE(FBMP_COL_BLUE,FBMP_COL_BLU_SDW,FBMP_COL_NULL) )//é’
+#define	COL_RED		( GF_PRINTCOLOR_MAKE(FBMP_COL_RED,FBMP_COL_RED_SDW,FBMP_COL_NULL) )	//èµ¤
 
-//ƒ^ƒCƒv•\¦ˆÊ’u
-#define TYPE_START_X	(1)				//ŠJn‚w
-#define TYPE_START_Y	(16)			//ŠJn‚x
-#define TYPE_X			(64)			//ŠÔŠu‚w
-#define TYPE_Y			(36)			//ŠÔŠu‚x
+//ã‚¿ã‚¤ãƒ—è¡¨ç¤ºä½ç½®
+#define TYPE_START_X	(1)				//é–‹å§‹ï¼¸
+#define TYPE_START_Y	(16)			//é–‹å§‹ï¼¹
+#define TYPE_X			(64)			//é–“éš”ï¼¸
+#define TYPE_Y			(36)			//é–“éš”ï¼¹
 
-//ƒ‰ƒ“ƒN•\¦ˆÊ’u
-//#define RANK_START_X	(12)			//ŠJn‚w
-//#define RANK_START_X	(14)			//ŠJn‚w
-#define RANK_START_X	(18)			//ŠJn‚w
-#define RANK_START_Y	(4)				//ŠJn‚x
-#define RANK_X			(64)			//ŠÔŠu‚w
-#define RANK_Y			(36)			//ŠÔŠu‚x
+//ãƒ©ãƒ³ã‚¯è¡¨ç¤ºä½ç½®
+//#define RANK_START_X	(12)			//é–‹å§‹ï¼¸
+//#define RANK_START_X	(14)			//é–‹å§‹ï¼¸
+#define RANK_START_X	(18)			//é–‹å§‹ï¼¸
+#define RANK_START_Y	(4)				//é–‹å§‹ï¼¹
+#define RANK_X			(64)			//é–“éš”ï¼¸
+#define RANK_Y			(36)			//é–“éš”ï¼¹
 
-//ƒJ[ƒ\ƒ‹•\¦ˆÊ’u
-#define CSR_START_X		(32)//(16)		//ŠJn‚w
-#define CSR_START_Y		(16)			//ŠJn‚x
-#define CSR_X			(64)			//ŠÔŠu‚w
-#define CSR_Y			(36)			//ŠÔŠu‚x
+//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºä½ç½®
+#define CSR_START_X		(32)//(16)		//é–‹å§‹ï¼¸
+#define CSR_START_Y		(16)			//é–‹å§‹ï¼¹
+#define CSR_X			(64)			//é–“éš”ï¼¸
+#define CSR_Y			(36)			//é–“éš”ï¼¹
 
-//ƒ|ƒPƒ‚ƒ“–¼‚Ì•\¦ˆÊ’u
+//ãƒã‚±ãƒ¢ãƒ³åã®è¡¨ç¤ºä½ç½®
 #define POKE_NAME_PX	(10*8)
 #define POKE_NAME_PY	(21*8)
 #define POKE_NAME_SX	(9*8)
 #define POKE_NAME_SY	(2*8)
 
-//‘I‘ğ‚µ‚½‚ÌƒJƒ‰[
+//é¸æŠã—ãŸæ™‚ã®ã‚«ãƒ©ãƒ¼
 #define DECIDE_BG_PL_DAT	( 0x3f00 )
 
 enum{
@@ -129,161 +129,161 @@ enum{
 	MAX_PAL_CHG,
 };
 
-#define NORMAL_PAL		(0)				//’ÊíƒpƒŒƒbƒg”Ô†
-#define NORMAL_PAL2		(1)				//’ÊíƒpƒŒƒbƒg”Ô†(2–{g—p‚µ‚Ä‚¢‚é)(‘O”¼‚Ìƒ^ƒCƒv)
-#define NORMAL_PAL3		(2)				//’ÊíƒpƒŒƒbƒg”Ô†(2–{g—p‚µ‚Ä‚¢‚é)(Œã”¼‚Ìƒ^ƒCƒv)
-#define DECIDE_PAL		(5)				//ƒvƒŒƒCƒ„[Œˆ’èƒpƒŒƒbƒg”Ô†
-#define PAIR_PAL		(4)				//ƒp[ƒgƒi[Œˆ’èƒpƒŒƒbƒg”Ô†
-#define MAX_PAL			(3)				//ƒŒƒxƒ‹Å‚ƒpƒŒƒbƒg”Ô†
+#define NORMAL_PAL		(0)				//é€šå¸¸ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+#define NORMAL_PAL2		(1)				//é€šå¸¸ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·(2æœ¬ä½¿ç”¨ã—ã¦ã„ã‚‹)(å‰åŠã®ã‚¿ã‚¤ãƒ—)
+#define NORMAL_PAL3		(2)				//é€šå¸¸ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·(2æœ¬ä½¿ç”¨ã—ã¦ã„ã‚‹)(å¾ŒåŠã®ã‚¿ã‚¤ãƒ—)
+#define DECIDE_PAL		(5)				//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ±ºå®šãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+#define PAIR_PAL		(4)				//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼æ±ºå®šãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+#define MAX_PAL			(3)				//ãƒ¬ãƒ™ãƒ«æœ€é«˜ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 
-//‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚É‘Î‚µ‚Ä‚Ì‰ñ“š
+//é¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã«å¯¾ã—ã¦ã®å›ç­”
 enum{
-	FINAL_ANSWER_NONE = 0,				//‰½‚à‚È‚µ
-	FINAL_ANSWER_YES,					//‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚Åi‚Ş
-	FINAL_ANSWER_NO,					//‚â‚Á‚Ï‚è‘I‚Ñ’¼‚·
+	FINAL_ANSWER_NONE = 0,				//ä½•ã‚‚ãªã—
+	FINAL_ANSWER_YES,					//é¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã§é€²ã‚€
+	FINAL_ANSWER_NO,					//ã‚„ã£ã±ã‚Šé¸ã³ç›´ã™
 };
 
-#define CSR_POS_NONE	(0xff)			//ƒJ[ƒ\ƒ‹‰½‚à‘I‚ñ‚Å‚¢‚È‚¢
+#define CSR_POS_NONE	(0xff)			//ã‚«ãƒ¼ã‚½ãƒ«ä½•ã‚‚é¸ã‚“ã§ã„ãªã„
 
-//ƒp[ƒgƒi[‚ªI—¹‚µ‚½‚±‚Æ‚ğ’m‚ç‚¹‚éƒƒbƒZ[ƒWƒEƒFƒCƒg
+//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒçµ‚äº†ã—ãŸã“ã¨ã‚’çŸ¥ã‚‰ã›ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
 //#define STAGE_PAIR_END_WAIT		(30)
 
-//ƒAƒCƒRƒ“‚ÌˆÊ’u
+//ã‚¢ã‚¤ã‚³ãƒ³ã®ä½ç½®
 #define ICON_X			(160)
 #define ICON_Y			(160)//(168)
 
-//ƒJ[ƒ\ƒ‹‚ªƒ|ƒPƒ‚ƒ“‚ğ‘I‘ğ‚µ‚Ä‚¢‚é‚ÌˆÊ’u
+//ã‚«ãƒ¼ã‚½ãƒ«ãŒãƒã‚±ãƒ¢ãƒ³ã‚’é¸æŠã—ã¦ã„ã‚‹æ™‚ã®ä½ç½®
 #define CSR_POKE_X		(128)
 #define CSR_POKE_Y		(168)//(169)
 
-//‘I‘ğ‚µ‚Äƒƒjƒ…[‚ªo‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+//é¸æŠã—ã¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒå‡ºã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define STAGE_MENU_WAIT	(8)//(15)
 
 #define STAGE_DECIDE_NONE	(0xff)
 
-#define STAGE_END_WAIT		(10)				//I—¹‚·‚é‚Ü‚Å‚Ì•\¦ƒEƒFƒCƒg
-#define STAGE_MSG_WAIT		(10)				//—F’B‚ª‘I‚ñ‚Å‚¢‚é‚Ì•\¦ƒEƒFƒCƒg
+#define STAGE_END_WAIT		(10)				//çµ‚äº†ã™ã‚‹ã¾ã§ã®è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+#define STAGE_MSG_WAIT		(10)				//å‹é”ãŒé¸ã‚“ã§ã„ã‚‹ã®è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
 
-#define STAGE_BRAIN_CSR_POS_NONE	(0x75)		//ƒuƒŒ[ƒ“‚ğ‘I‚Ô‘O‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚Ì‰Šú’l
-
-
-//==============================================================================================
-//
-//	ƒƒbƒZ[ƒWŠÖ˜A‚Ì’è‹`
-//
-//==============================================================================================
-#define STAGE_MENU_BUF_MAX		(2)						//ƒƒjƒ…[ƒoƒbƒtƒ@‚ÌÅ‘å”
-#define BS_FONT					(FONT_SYSTEM)			//ƒtƒHƒ“ƒgí—Ş
-#define STAGE_MSG_BUF_SIZE		(600)//(800)//(1024)			//‰ï˜b‚ÌƒƒbƒZ[ƒWsize
-#define STAGE_MENU_BUF_SIZE		(32)					//ƒƒjƒ…[‚ÌƒƒbƒZ[ƒWsize
-#define PLAYER_NAME_BUF_SIZE	(PERSON_NAME_SIZE + EOM_SIZE)	//ƒvƒŒƒCƒ„[–¼‚ÌƒƒbƒZ[ƒWsize
-#define POKE_NAME_BUF_SIZE		(MONS_NAME_SIZE + EOM_SIZE)		//ƒ|ƒPƒ‚ƒ“–¼‚ÌƒƒbƒZ[ƒWsize
+#define STAGE_BRAIN_CSR_POS_NONE	(0x75)		//ãƒ–ãƒ¬ãƒ¼ãƒ³ã‚’é¸ã¶å‰ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®åˆæœŸå€¤
 
 
 //==============================================================================================
 //
-//	(ƒtƒ@ƒNƒgƒŠ[)’Êí‚ÌƒXƒe[ƒ^ƒX‰æ–Êƒy[ƒW
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ã®å®šç¾©
+//
+//==============================================================================================
+#define STAGE_MENU_BUF_MAX		(2)						//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ•°
+#define BS_FONT					(FONT_SYSTEM)			//ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
+#define STAGE_MSG_BUF_SIZE		(600)//(800)//(1024)			//ä¼šè©±ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸size
+#define STAGE_MENU_BUF_SIZE		(32)					//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸size
+#define PLAYER_NAME_BUF_SIZE	(PERSON_NAME_SIZE + EOM_SIZE)	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸size
+#define POKE_NAME_BUF_SIZE		(MONS_NAME_SIZE + EOM_SIZE)		//ãƒã‚±ãƒ¢ãƒ³åã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸size
+
+
+//==============================================================================================
+//
+//	(ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼)é€šå¸¸ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒšãƒ¼ã‚¸
 //
 //==============================================================================================
 static const u8 PST_PageTbl_Normal[] = {
-	PST_PAGE_INFO,			// uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-	PST_PAGE_MEMO,			// uƒgƒŒ[ƒi[ƒƒ‚v
-	PST_PAGE_PARAM,			// uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-	PST_PAGE_CONDITION,		// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-	PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-	PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
-	PST_PAGE_RIBBON,		// u‚«‚Ë‚ñƒŠƒ{ƒ“v
-	PST_PAGE_RET,			// u‚à‚Ç‚év
+	PST_PAGE_INFO,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+	PST_PAGE_MEMO,			// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
+	PST_PAGE_PARAM,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+	PST_PAGE_CONDITION,		// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+	PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+	PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+	PST_PAGE_RIBBON,		// ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+	PST_PAGE_RET,			// ã€Œã‚‚ã©ã‚‹ã€
 	PST_PAGE_MAX
 };
 
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 struct _STAGE_WORK{
 
-	PROC* proc;										//PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	PROC* child_proc;								//PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	PROC* proc;										//PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	PROC* child_proc;								//PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	u8	sub_seq;									//ƒV[ƒPƒ“ƒX
-	u8	type;										//ˆø”‚Æ‚µ‚Ä“n‚³‚ê‚½ƒoƒgƒ‹ƒ^ƒCƒv
-	u8	msg_index;									//ƒƒbƒZ[ƒWindex
-	u8	recover;									//•œ‹Aƒtƒ‰ƒO
+	u8	sub_seq;									//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	type;										//å¼•æ•°ã¨ã—ã¦æ¸¡ã•ã‚ŒãŸãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—
+	u8	msg_index;									//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸index
+	u8	recover;									//å¾©å¸°ãƒ•ãƒ©ã‚°
 
-	u8	tmp_csr_pos;								//‘Ş”ğ‚µ‚Ä‚ ‚éƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	csr_pos;									//Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	master_flag;								//‘S‚ÄƒŒƒxƒ‹10
-	u8	menu_flag;									//ƒƒjƒ…[•\¦’†‚©ƒtƒ‰ƒO
+	u8	tmp_csr_pos;								//é€€é¿ã—ã¦ã‚ã‚‹ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	csr_pos;									//ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	master_flag;								//å…¨ã¦ãƒ¬ãƒ™ãƒ«10
+	u8	menu_flag;									//ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºä¸­ã‹ãƒ•ãƒ©ã‚°
 
-	u16	psd_flag;									//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX’†ƒtƒ‰ƒO
-	u16 init_flag;									//‰‰ñƒtƒ‰ƒO
+	u16	psd_flag;									//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ä¸­ãƒ•ãƒ©ã‚°
+	u16 init_flag;									//åˆå›ãƒ•ãƒ©ã‚°
 
 	u16	counter;
-	u8	typesel_recieve_count;						//óMƒJƒEƒ“ƒg
-	u8	send_req;									//ƒ^ƒCƒvŒˆ’è‚Ì‘—MƒŠƒNƒGƒXƒg
+	u8	typesel_recieve_count;						//å—ä¿¡ã‚«ã‚¦ãƒ³ãƒˆ
+	u8	send_req;									//ã‚¿ã‚¤ãƒ—æ±ºå®šã®é€ä¿¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 
 	u8	parent_decide_pos;
-	u8	type_sel_return_flag;						//TYPE_SELƒV[ƒPƒ“ƒX‚É–ß‚éƒtƒ‰ƒO
-	u8	decide_csr_pos;								//Œˆ’è‚µ‚½ƒJ[ƒ\ƒ‹ˆÊ’u
+	u8	type_sel_return_flag;						//TYPE_SELã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«æˆ»ã‚‹ãƒ•ãƒ©ã‚°
+	u8	decide_csr_pos;								//æ±ºå®šã—ãŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	u8	wait;
 
-	u16 btl_count;									//¡‰½í–Ú‚©
-	u8	brain_appear;								//ƒuƒŒ[ƒ““oê‚©ƒtƒ‰ƒO
-	u8	brain_before_csr_pos;						//ƒuƒŒ[ƒ“‚ğ‘I‚Ô‘O‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+	u16 btl_count;									//ä»Šä½•æˆ¦ç›®ã‹
+	u8	brain_appear;								//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒ•ãƒ©ã‚°
+	u8	brain_before_csr_pos;						//ãƒ–ãƒ¬ãƒ¼ãƒ³ã‚’é¸ã¶å‰ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 
-	MSGDATA_MANAGER* msgman;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;								//’PŒêƒZƒbƒg
-	STRBUF* msg_buf;								//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	STRBUF* tmp_buf;								//ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	MSGDATA_MANAGER* msgman;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;								//å˜èªã‚»ãƒƒãƒˆ
+	STRBUF* msg_buf;								//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	STRBUF* tmp_buf;								//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
-	STRBUF* menu_buf[STAGE_MENU_BUF_MAX];			//ƒƒjƒ…[ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	STRCODE str[PERSON_NAME_SIZE + EOM_SIZE];		//ƒƒjƒ…[‚ÌƒƒbƒZ[ƒW
+	STRBUF* menu_buf[STAGE_MENU_BUF_MAX];			//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	STRCODE str[PERSON_NAME_SIZE + EOM_SIZE];		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
-	GF_BGL_INI*	bgl;								//BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	GF_BGL_BMPWIN bmpwin[STAGE_BMPWIN_MAX];			//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_INI*	bgl;								//BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	GF_BGL_BMPWIN bmpwin[STAGE_BMPWIN_MAX];			//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	//BMPƒƒjƒ…[(bmp_menu.h)
-	BMPMENU_HEADER MenuH;							//BMPƒƒjƒ…[ƒwƒbƒ_[
-	BMPMENU_WORK* mw;								//BMPƒƒjƒ…[ƒ[ƒN
-	BMPMENU_DATA Data[STAGE_MENU_BUF_MAX];			//BMPƒƒjƒ…[ƒf[ƒ^
+	//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼(bmp_menu.h)
+	BMPMENU_HEADER MenuH;							//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	BMPMENU_WORK* mw;								//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	BMPMENU_DATA Data[STAGE_MENU_BUF_MAX];			//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	PALETTE_FADE_PTR pfd;							//ƒpƒŒƒbƒgƒtƒF[ƒh
+	PALETTE_FADE_PTR pfd;							//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 
-	NUMFONT* num_font;								//8x8ƒtƒHƒ“ƒg
+	NUMFONT* num_font;								//8x8ãƒ•ã‚©ãƒ³ãƒˆ
 
-	//const CONFIG* config;							//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^
-	CONFIG* config;									//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^
-	SAVEDATA* sv;									//ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	//const CONFIG* config;							//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿
+	CONFIG* config;									//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿
+	SAVEDATA* sv;									//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
-	PSTATUS_DATA* psd;								//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX
+	PSTATUS_DATA* psd;								//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 
-	STAGE_CLACT stage_clact;						//ƒZƒ‹ƒAƒNƒ^ƒf[ƒ^
-	STAGE_OBJ* p_csr;								//ƒJ[ƒ\ƒ‹OBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
-	STAGE_OBJ* p_icon;								//ƒAƒCƒRƒ“OBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
+	STAGE_CLACT stage_clact;						//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	STAGE_OBJ* p_csr;								//ã‚«ãƒ¼ã‚½ãƒ«OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	STAGE_OBJ* p_icon;								//ã‚¢ã‚¤ã‚³ãƒ³OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
 
-	int psd_pos;									//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚Ì‘I‘ğŒ‹‰Êæ“¾
+	int psd_pos;									//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®é¸æŠçµæœå–å¾—
 
-	u16* p_ret_work;								//STAGE_CALL_WORK‚Ì–ß‚è’lƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	u16* p_ret_work;								//STAGE_CALL_WORKã®æˆ»ã‚Šå€¤ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	//ƒoƒgƒ‹ƒXƒe[ƒW—p
+	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ç”¨
 	POKEPARTY* p_party;
-	u8* p_rank;										//ƒ‰ƒ“ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^(0-9,10‚Å“n‚³‚ê‚é)
-	u16* p_pair_poke_level;							//‘Šè‚Ìƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
+	u8* p_rank;										//ãƒ©ãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿(0-9,10ã§æ¸¡ã•ã‚Œã‚‹)
+	u16* p_pair_poke_level;							//ç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
 
 	ARCHANDLE* hdl;
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	//STAGE_COMM stage_comm;
 #if 1
-	//’ÊM—pFƒf[ƒ^ƒoƒbƒtƒ@
+	//é€šä¿¡ç”¨ï¼šãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
 	u16	send_buf[STAGE_COMM_BUF_LEN];
 
-	//’ÊM—p
-	u8	pair_csr_pos;								//ƒp[ƒgƒi[‚ª‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv(ƒJ[ƒ\ƒ‹ˆÊ’u)
-	u8	pair_final_answer;							//0=‰½‚à‚È‚µA1=ÅIŒˆ’èA2=ƒLƒƒƒ“ƒZƒ‹
+	//é€šä¿¡ç”¨
+	u8	pair_csr_pos;								//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒé¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—(ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®)
+	u8	pair_final_answer;							//0=ä½•ã‚‚ãªã—ã€1=æœ€çµ‚æ±ºå®šã€2=ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	u8	pair_dummy;
 #endif
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -294,7 +294,7 @@ struct _STAGE_WORK{
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 //PROC
@@ -302,7 +302,7 @@ PROC_RESULT StageProc_Init( PROC * proc, int * seq );
 PROC_RESULT StageProc_Main( PROC * proc, int * seq );
 PROC_RESULT StageProc_End( PROC * proc, int * seq );
 
-//ƒV[ƒPƒ“ƒX
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 static BOOL Seq_GameInit( STAGE_WORK* wk );
 static BOOL Seq_GamePsd( STAGE_WORK* wk );
 static void TypeSelInit( STAGE_WORK* wk );
@@ -312,38 +312,38 @@ static BOOL Seq_GameEndMulti( STAGE_WORK* wk );
 static BOOL Seq_GameEnd( STAGE_WORK* wk );
 static BOOL Seq_GamePairEnd( STAGE_WORK* wk );
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 static void StageCommon_Delete( STAGE_WORK* wk );
 static void Stage_Recover( STAGE_WORK* wk );
 static void Stage_InitSub1( void );
 static void Stage_InitSub2( STAGE_WORK* wk );
 
-//‹¤’Ê‰Šú‰»AI—¹
+//å…±é€šåˆæœŸåŒ–ã€çµ‚äº†
 static void Stage_ObjInit( STAGE_WORK* wk );
 static void Stage_BgInit( STAGE_WORK* wk );
 static void Stage_BgExit( GF_BGL_INI * ini );
 
-//İ’è
+//è¨­å®š
 static void VBlankFunc( void * work );
 static void SetVramBank(void);
 static void SetBgHeader( GF_BGL_INI * ini );
 
-//BGƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+//BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 static void Stage_SetMainBgGraphic( STAGE_WORK * wk, u32 frm  );
 static void Stage_SetMainBgPalette( void );
 static void Stage_SetSubBgGraphic( STAGE_WORK * wk, u32 frm  );
 
-//ƒƒbƒZ[ƒW
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 static u8 StageWriteMsg( STAGE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 static u8 StageWriteMsgSimple( STAGE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 static u8 Stage_EasyMsg( STAGE_WORK* wk, int msg_id, u8 font );
 
-//ƒƒjƒ…[
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 static void StageInitMenu( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u8 y_max );
 static void StageSetMenuData( STAGE_WORK* wk, u8 no, u8 param, int msg_id );
 static void Stage_SetMenu2( STAGE_WORK* wk );
 
-//•¶š—ñ
+//æ–‡å­—åˆ—
 static void Stage_SetNumber( STAGE_WORK* wk, u32 bufID, s32 number );
 static void Stage_SetPokeName( STAGE_WORK* wk, u32 bufID, POKEMON_PASO_PARAM* ppp );
 static void Stage_SetPlayerName( STAGE_WORK* wk, u32 bufID );
@@ -355,10 +355,10 @@ static void TypeWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u8 f_col, u8 s_col, u
 static void RankWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u8 num, u32 x, u32 y );
 static void RankWriteAll( STAGE_WORK* wk, GF_BGL_BMPWIN* win );
 
-//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX
+//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 static void Stage_SetPSD( STAGE_WORK* wk );
 
-//ƒc[ƒ‹
+//ãƒ„ãƒ¼ãƒ«
 static BOOL Stage_CheckType( STAGE_WORK* wk, u8 type );
 static void NextSeq( STAGE_WORK* wk, int* seq, int next );
 static int KeyCheck( int key );
@@ -373,7 +373,7 @@ static u8 Stage_GetCsrPos( u8 csr_pos );
 static BOOL Stage_BtlCountLeaderCheck( STAGE_WORK* wk );
 static BOOL Stage_BrainAppearCheck( STAGE_WORK* wk );
 
-//’ÊM
+//é€šä¿¡
 BOOL Stage_CommSetSendBuf( STAGE_WORK* wk, u16 type, u16 param );
 //BOOL Stage_CommWaitRecvBuf( STAGE_WORK* wk, u16 type );
 void Stage_CommSendBufBasicData( STAGE_WORK* wk, u16 type );
@@ -383,7 +383,7 @@ void Stage_CommRecvBufPokeTypeData(int id_no,int size,void *pData,void *work);
 void Stage_CommSendBufFinalAnswerData( STAGE_WORK* wk, u16 type, u16 param );
 void Stage_CommRecvBufFinalAnswerData(int id_no,int size,void *pData,void *work);
 
-//ƒTƒuƒV[ƒPƒ“ƒX
+//ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 static void Stage_SeqSubMenuWinClear( STAGE_WORK* wk );
 static void Stage_SeqSubTypeSelYesNo( STAGE_WORK* wk );
 static void Stage_SeqSubTypeSelNo( STAGE_WORK* wk );
@@ -398,12 +398,12 @@ static void Stage_SeqSubWinRet( STAGE_WORK* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT StageProc_Init( PROC * proc, int * seq )
@@ -427,18 +427,18 @@ PROC_RESULT StageProc_Init( PROC * proc, int * seq )
 	wk->sv				= stage_call->sv;
 	wk->type			= stage_call->type;
 	wk->p_ret_work		= &stage_call->ret_work;
-	wk->config			= SaveData_GetConfig( wk->sv );			//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^‚ğæ“¾
+	wk->config			= SaveData_GetConfig( wk->sv );			//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 	wk->p_party			= stage_call->p_party;
-	wk->p_rank			= stage_call->p_rank;					//0ƒIƒŠƒWƒ“
+	wk->p_rank			= stage_call->p_rank;					//0ã‚ªãƒªã‚¸ãƒ³
 	wk->p_pair_poke_level = stage_call->p_pair_poke_level;		//
-	wk->btl_count		= (stage_call->btl_count + 1);			//¡‰½í–Ú‚©
-	wk->csr_pos			= stage_call->csr_pos;					//‰ŠúƒJ[ƒ\ƒ‹ˆÊ’u
+	wk->btl_count		= (stage_call->btl_count + 1);			//ä»Šä½•æˆ¦ç›®ã‹
+	wk->csr_pos			= stage_call->csr_pos;					//åˆæœŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 
 	wk->pair_csr_pos	= CSR_POS_NONE;
 
 	wk->parent_decide_pos = STAGE_DECIDE_NONE;
 
-	wk->brain_before_csr_pos = STAGE_BRAIN_CSR_POS_NONE;		//ƒuƒŒ[ƒ“‚ğ‘I‚Ô‘O‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+	wk->brain_before_csr_pos = STAGE_BRAIN_CSR_POS_NONE;		//ãƒ–ãƒ¬ãƒ¼ãƒ³ã‚’é¸ã¶å‰ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 
 	Stage_InitSub2( wk );
 
@@ -454,12 +454,12 @@ PROC_RESULT StageProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT StageProc_Main( PROC * proc, int * seq )
@@ -475,10 +475,10 @@ PROC_RESULT StageProc_Main( PROC * proc, int * seq )
 	if( wk->parent_decide_pos != STAGE_DECIDE_NONE ){
 		switch( *seq ){
 
-		//‘—óM‚Ö‹­§ˆÚ“®
+		//é€å—ä¿¡ã¸å¼·åˆ¶ç§»å‹•
 		case SEQ_GAME_TYPE_SEL:
 
-			//ƒXƒe[ƒ^ƒX‚ÉØ‚è‘Ö‚¦‚éˆÈŠO
+			//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«åˆ‡ã‚Šæ›¿ãˆã‚‹æ™‚ä»¥å¤–
 			if( wk->psd_flag == 0 ){
 				Stage_SeqSubMenuWinClear( wk );
 				//BmpTalkWinClear( &wk->bmpwin[BMPWIN_TALK], WINDOW_TRANS_ON );
@@ -486,9 +486,9 @@ PROC_RESULT StageProc_Main( PROC * proc, int * seq )
 			}
 			break;
 
-		//‰½‚à‚µ‚È‚¢
+		//ä½•ã‚‚ã—ãªã„
 		//case SEQ_GAME_INIT:
-		//case SEQ_GAME_PSD:					//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXˆ—
+		//case SEQ_GAME_PSD:					//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‡¦ç†
 		//case SEQ_GAME_SEND_RECV:
 		//case SEQ_GAME_END_MULTI:
 		//case SEQ_GAME_END:
@@ -501,18 +501,18 @@ PROC_RESULT StageProc_Main( PROC * proc, int * seq )
 
 #if 1
 	//-----------------------------------
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXˆ—
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‡¦ç†
 	case SEQ_GAME_PSD:
 		if( Seq_GamePsd(wk) == TRUE ){
 			NextSeq( wk, seq, SEQ_GAME_INIT );
 		}else{
-			return PROC_RES_CONTINUE;	//’ˆÓI]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+			return PROC_RES_CONTINUE;	//æ³¨æ„ï¼]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 		}
-		//break;	//’ˆÓI]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+		//break;	//æ³¨æ„ï¼]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 #endif
 
 	//-----------------------------------
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	case SEQ_GAME_INIT:
 		if( Seq_GameInit(wk) == TRUE ){
 			NextSeq( wk, seq, SEQ_GAME_TYPE_SEL );
@@ -520,24 +520,24 @@ PROC_RESULT StageProc_Main( PROC * proc, int * seq )
 		break;
 
 	//-----------------------------------
-	//ƒ^ƒCƒv‘I‘ğ’†
+	//ã‚¿ã‚¤ãƒ—é¸æŠä¸­
 	case SEQ_GAME_TYPE_SEL:
 		if( Seq_GameTypeSel(wk) == TRUE ){
 
 			if( wk->send_req == 1 ){
-				NextSeq( wk, seq, SEQ_GAME_SEND_RECV );					//‘—óM‚Ö
+				NextSeq( wk, seq, SEQ_GAME_SEND_RECV );					//é€å—ä¿¡ã¸
 			}else{
 
 				if( wk->recover == 1 ){
-					NextSeq( wk, seq, SEQ_GAME_PSD );					//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX
-					return PROC_RES_CONTINUE;	//’ˆÓI]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+					NextSeq( wk, seq, SEQ_GAME_PSD );					//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+					return PROC_RES_CONTINUE;	//æ³¨æ„ï¼]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 				}else{
 
-					//’ÊMƒ^ƒCƒv‚Ì
+					//é€šä¿¡ã‚¿ã‚¤ãƒ—ã®æ™‚
 					if( Stage_CommCheck(wk->type) == TRUE ){
-						NextSeq( wk, seq, SEQ_GAME_END_MULTI );			//(’ÊM)I—¹‚Ö
+						NextSeq( wk, seq, SEQ_GAME_END_MULTI );			//(é€šä¿¡)çµ‚äº†ã¸
 					}else{
-						NextSeq( wk, seq, SEQ_GAME_END );				//I—¹‚Ö
+						NextSeq( wk, seq, SEQ_GAME_END );				//çµ‚äº†ã¸
 					}
 				}
 			}
@@ -545,35 +545,35 @@ PROC_RESULT StageProc_Main( PROC * proc, int * seq )
 		break;
 
 	//-----------------------------------
-	//‘—óM
+	//é€å—ä¿¡
 	case SEQ_GAME_SEND_RECV:
 		if( Seq_GameSendRecv(wk) == TRUE ){
 
 			if( wk->type_sel_return_flag == 1 ){
 				wk->type_sel_return_flag = 0;
-				NextSeq( wk, seq, SEQ_GAME_TYPE_SEL );						//ƒ^ƒCƒv‘I‘ğ’†‚Ö
+				NextSeq( wk, seq, SEQ_GAME_TYPE_SEL );						//ã‚¿ã‚¤ãƒ—é¸æŠä¸­ã¸
 			}else{
 
-				//’ÊMƒ^ƒCƒv‚Ì
+				//é€šä¿¡ã‚¿ã‚¤ãƒ—ã®æ™‚
 				if( Stage_CommCheck(wk->type) == TRUE ){
-					NextSeq( wk, seq, SEQ_GAME_END_MULTI );					//(’ÊM)I—¹‚Ö
+					NextSeq( wk, seq, SEQ_GAME_END_MULTI );					//(é€šä¿¡)çµ‚äº†ã¸
 				}else{
-					NextSeq( wk, seq, SEQ_GAME_END );						//I—¹‚Ö
+					NextSeq( wk, seq, SEQ_GAME_END );						//çµ‚äº†ã¸
 				}
 			}
 		}
 		break;
 
 	//-----------------------------------
-	//’ÊMŒğŠ·I—¹
+	//é€šä¿¡äº¤æ›çµ‚äº†
 	case SEQ_GAME_END_MULTI:
 		if( Seq_GameEndMulti(wk) == TRUE ){
-			NextSeq( wk, seq, SEQ_GAME_END );							//I—¹‚Ö
+			NextSeq( wk, seq, SEQ_GAME_END );							//çµ‚äº†ã¸
 		}
 		break;
 
 	//-----------------------------------
-	//I—¹
+	//çµ‚äº†
 	case SEQ_GAME_END:
 		if( Seq_GameEnd(wk) == TRUE ){
 			return PROC_RES_FINISH;
@@ -581,27 +581,27 @@ PROC_RESULT StageProc_Main( PROC * proc, int * seq )
 		break;
 
 	//-----------------------------------
-	//ƒp[ƒgƒi[‚ªƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğŒˆ’è‚µ‚½‚Ì‚Å‹­§I—¹‚Ö
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’æ±ºå®šã—ãŸã®ã§å¼·åˆ¶çµ‚äº†ã¸
 	case SEQ_GAME_PAIR_END:
 		if( Seq_GamePairEnd(wk) == TRUE ){
-			NextSeq( wk, seq, SEQ_GAME_END_MULTI );						//(’ÊM)I—¹‚Ö
+			NextSeq( wk, seq, SEQ_GAME_END_MULTI );						//(é€šä¿¡)çµ‚äº†ã¸
 		}
 		break;
 	}
 
-	CLACT_Draw( wk->stage_clact.ClactSet );		//ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+	CLACT_Draw( wk->stage_clact.ClactSet );		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 
 	return PROC_RES_CONTINUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT StageProc_End( PROC * proc, int * seq )
@@ -609,15 +609,15 @@ PROC_RESULT StageProc_End( PROC * proc, int * seq )
 	int i;
 	STAGE_WORK* wk = PROC_GetWork( proc );
 
-	*(wk->p_ret_work) = wk->csr_pos;					//–ß‚è’lŠi”[ƒ[ƒN‚Ö‘ã“ü(ƒJ[ƒ\ƒ‹ˆÊ’u)
+	*(wk->p_ret_work) = wk->csr_pos;					//æˆ»ã‚Šå€¤æ ¼ç´ãƒ¯ãƒ¼ã‚¯ã¸ä»£å…¥(ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®)
 
 	OS_Printf( "*(wk->p_ret_work) = %d\n", *(wk->p_ret_work) );
 
-	StageCommon_Delete( wk );							//íœˆ—
+	StageCommon_Delete( wk );							//å‰Šé™¤å‡¦ç†
 
-	PROC_FreeWork( proc );								//ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );								//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );					//VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );					//VBlankã‚»ãƒƒãƒˆ
 	sys_DeleteHeap( HEAPID_STAGE );
 
 	Overlay_UnloadID( FS_OVERLAY_ID(frontier_common) );
@@ -628,24 +628,24 @@ PROC_RESULT StageProc_End( PROC * proc, int * seq )
 
 //==============================================================================================
 //
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFƒQ[ƒ€‰Šú‰»
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚²ãƒ¼ãƒ åˆæœŸåŒ–
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameInit( STAGE_WORK* wk )
 {
 	switch( wk->sub_seq ){
 
-	//ƒRƒ}ƒ“ƒhİ’èŒã‚Ì“¯Šú
+	//ã‚³ãƒãƒ³ãƒ‰è¨­å®šå¾Œã®åŒæœŸ
 	case 0:
 		if( (wk->init_flag == 0) && (Stage_CommCheck(wk->type) == TRUE) ){
 			CommToolTempDataReset();
@@ -654,7 +654,7 @@ static BOOL Seq_GameInit( STAGE_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ª“Í‚¢‚½‚©Šm”F
+	//ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ãŒå±Šã„ãŸã‹ç¢ºèª
 	case 1:
 		if( (wk->init_flag == 0) && (Stage_CommCheck(wk->type) == TRUE) ){
 			if( CommIsTimingSync(DBC_TIM_STAGE_TYPE_INIT) == TRUE ){
@@ -667,7 +667,7 @@ static BOOL Seq_GameInit( STAGE_WORK* wk )
 		}
 		break;
 
-	//ƒuƒ‰ƒbƒNƒCƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
 	case 2:
 		TypeSelInit( wk );
 
@@ -677,7 +677,7 @@ static BOOL Seq_GameInit( STAGE_WORK* wk )
 		wk->sub_seq++;
 		break;
 		
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 3:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			return TRUE;
@@ -690,29 +690,29 @@ static BOOL Seq_GameInit( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static void TypeSelInit( STAGE_WORK* wk )
 {
 	int i;
 
-	//ƒ^ƒCƒv•\¦
+	//ã‚¿ã‚¤ãƒ—è¡¨ç¤º
 	TypeWrite(	wk, &wk->bmpwin[BMPWIN_TYPE], FBMP_COL_BLACK, FBMP_COL_BLK_SDW, 
 				FBMP_COL_NULL, BS_FONT );
 
-	//ƒ‰ƒ“ƒN•\¦
+	//ãƒ©ãƒ³ã‚¯è¡¨ç¤º
 	RankWriteAll( wk, &wk->bmpwin[BMPWIN_TYPE] );
 
-	//ƒ|ƒPƒ‚ƒ“–¼‚ğ•\¦
+	//ãƒã‚±ãƒ¢ãƒ³åã‚’è¡¨ç¤º
 	PokeNameWrite(	wk, &wk->bmpwin[BMPWIN_POKE1], 0, 0,
 					FBMP_COL_BLACK, FBMP_COL_BLK_SDW, FBMP_COL_NULL, BS_FONT );
 
-	//‰æ–Ê•œ‹A
+	//ç”»é¢å¾©å¸°æ™‚
 	if( wk->recover == 1 ){
 	}
 
@@ -721,11 +721,11 @@ static void TypeSelInit( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXˆ—
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‡¦ç†
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GamePsd( STAGE_WORK* wk )
@@ -733,10 +733,10 @@ static BOOL Seq_GamePsd( STAGE_WORK* wk )
 	switch( wk->sub_seq ){
 
 	case 0:
-		SDK_ASSERTMSG( wk->child_proc != NULL, "child_proc‚ªNULL‚Å‚·I" );
+		SDK_ASSERTMSG( wk->child_proc != NULL, "child_procãŒNULLã§ã™ï¼" );
 
 		if( ProcMain(wk->child_proc) == TRUE ){
-			wk->psd_pos = wk->psd->pos;									//Œ‹‰Êæ“¾
+			wk->psd_pos = wk->psd->pos;									//çµæœå–å¾—
 			OS_Printf( "wk->psd_pos = %d\n", wk->psd_pos );
 			sys_FreeMemoryEz( wk->psd );
 			sys_FreeMemoryEz( wk->child_proc );
@@ -753,11 +753,11 @@ static BOOL Seq_GamePsd( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒ^ƒCƒv‘I‘ğ’†
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—é¸æŠä¸­
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 enum{
@@ -783,48 +783,48 @@ static BOOL Seq_GameTypeSel( STAGE_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒ^ƒCƒv‚ğ‘I‘ğ’†
+	//ã‚¿ã‚¤ãƒ—ã‚’é¸æŠä¸­
 	case SEQ_SUB_TYPE_SEL:
 		CsrMove( wk, sys.trg );
 
-		//Œˆ’èƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½
+		//æ±ºå®šãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚
 		if( sys.trg & PAD_BUTTON_A ){
 
 #if 0
-			//‘S‚Ä‚Ìƒ‰ƒ“ƒN‚ª10‚Å‚Í‚È‚¢
+			//å…¨ã¦ã®ãƒ©ãƒ³ã‚¯ãŒ10ã§ã¯ãªã„æ™‚
 			if( wk->master_flag == 0 ){
-				//ƒ‰ƒ“ƒN‚ªƒ}ƒbƒNƒX‚¾‚Á‚½‚ç‘I‘ğo—ˆ‚È‚¢(0-9,10)
+				//ãƒ©ãƒ³ã‚¯ãŒãƒãƒƒã‚¯ã‚¹ã ã£ãŸã‚‰é¸æŠå‡ºæ¥ãªã„(0-9,10)
 				if( Stage_GetTypeLevel(Stage_GetCsrPos(wk->csr_pos),wk->p_rank) >= 
 																		STAGE_TYPE_LEVEL_MAX ){
 
 					Snd_SePlay( SEQ_SE_DP_BOX03 );
-					return FALSE;					//’ˆÓI]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+					return FALSE;					//æ³¨æ„ï¼]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 				}
 			}
 #endif
 
-			//ƒ_ƒ~[ƒ^ƒCƒv‚Ì
+			//ãƒ€ãƒŸãƒ¼ã‚¿ã‚¤ãƒ—ã®æ™‚
 			if( Stage_GetPokeType(wk->csr_pos) == DUMMY_TYPE ){
 				Snd_SePlay( SEQ_SE_DP_DECIDE );
 				WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
 								WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_STAGE );
 
 				wk->psd_flag = 1;
-				wk->sub_seq = SEQ_SUB_PSD_CALL;					//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚Ö
+				wk->sub_seq = SEQ_SUB_PSD_CALL;					//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¸
 			}else{
 
-				//ƒuƒŒ[ƒ“‚ª“oê‚·‚éí“¬‰ñ”‚¾‚Á‚½‚ç
+				//ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒç™»å ´ã™ã‚‹æˆ¦é—˜å›æ•°ã ã£ãŸã‚‰
 				//if( Stage_BtlCountLeaderCheck(wk->btl_count) == TRUE ){
 				if( Stage_BrainAppearCheck(wk) == TRUE ){
 
-					//u???vˆÈŠO‚Í‘I‚×‚È‚¢
+					//ã€Œ???ã€ä»¥å¤–ã¯é¸ã¹ãªã„
 					if( Stage_GetPokeType(wk->csr_pos) != HATE_TYPE ){
 						Snd_SePlay( SEQ_SE_DP_BOX03 );
-						return FALSE;					//’ˆÓI]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+						return FALSE;					//æ³¨æ„ï¼]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 					}
 				}else{
 
-					//ƒ‰ƒ“ƒN‚ªƒ}ƒbƒNƒX‚¾‚Á‚½‚ç‘I‘ğo—ˆ‚È‚¢(0-9,10)
+					//ãƒ©ãƒ³ã‚¯ãŒãƒãƒƒã‚¯ã‚¹ã ã£ãŸã‚‰é¸æŠå‡ºæ¥ãªã„(0-9,10)
 					if( Stage_GetTypeLevel(Stage_GetCsrPos(wk->csr_pos),wk->p_rank) >= 
 																		STAGE_TYPE_LEVEL_MAX ){
 						Snd_SePlay( SEQ_SE_DP_BOX03 );
@@ -834,42 +834,42 @@ static BOOL Seq_GameTypeSel( STAGE_WORK* wk )
 						StageObj_SetObjPos( wk->p_csr, GetCsrX(wk), GetCsrY(wk) );
 #endif	//DEBUG_FRONTIER_LOOP
 
-						return FALSE;					//’ˆÓI]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+						return FALSE;					//æ³¨æ„ï¼]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 					}
 
-					//’Êí‚Íu???v‚Í‘I‚×‚È‚¢
+					//é€šå¸¸ã¯ã€Œ???ã€ã¯é¸ã¹ãªã„
 					if( Stage_GetPokeType(wk->csr_pos) == HATE_TYPE ){
 						Snd_SePlay( SEQ_SE_DP_BOX03 );
-						return FALSE;					//’ˆÓI]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+						return FALSE;					//æ³¨æ„ï¼]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 					}
 				}
 
 				Snd_SePlay( SEQ_SE_DP_DECIDE );
 
-				//ƒ^ƒCƒv‚ª‰ï˜bƒEƒBƒ“ƒhƒE‚Å‰B‚³‚ê‚Ä‚µ‚Ü‚¤‚±‚Æ‚ª‚ ‚é‚Ì‚ÅA
-				//æ‚É‘I‘ğ‚µ‚½ƒ^ƒCƒv‚ğF‘Ö‚¦‚µ‚ÄƒEƒFƒCƒg‚ğ“ü‚ê‚é
+				//ã‚¿ã‚¤ãƒ—ãŒä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§éš ã•ã‚Œã¦ã—ã¾ã†ã“ã¨ãŒã‚ã‚‹ã®ã§ã€
+				//å…ˆã«é¸æŠã—ãŸã‚¿ã‚¤ãƒ—ã‚’è‰²æ›¿ãˆã—ã¦ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹
 				if( Stage_CommCheck(wk->type) == FALSE ){
-					//w’èƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“‚Ìw’èˆÊ’u‚ÌƒpƒŒƒbƒg‚ğ•ÏX‚·‚é
+					//æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æŒ‡å®šä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹
 					ScrnPalChg( wk->bgl, wk->csr_pos, DECIDE_PAL_CHG );
-					GF_BGL_LoadScreenV_Req( wk->bgl, BS_FRAME_BG );	//ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+					GF_BGL_LoadScreenV_Req( wk->bgl, BS_FRAME_BG );	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 				}
 
 				wk->counter = STAGE_MENU_WAIT;
-				wk->sub_seq = SEQ_SUB_MENU_WAIT;				//ƒƒjƒ…[ƒEƒFƒCƒg‚Ö
+				wk->sub_seq = SEQ_SUB_MENU_WAIT;				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚§ã‚¤ãƒˆã¸
 			}
 		}
 
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒƒjƒ…[ƒEƒFƒCƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚§ã‚¤ãƒˆ
 	case SEQ_SUB_MENU_WAIT:
 		wk->counter--;
 		if( wk->counter == 0 ){
 
 			if( Stage_CommCheck(wk->type) == FALSE ){
 				Stage_SeqSubTypeSelYesNo( wk );
-				wk->sub_seq = SEQ_SUB_MENU_MAIN;				//ƒƒjƒ…[‚Ö
+				wk->sub_seq = SEQ_SUB_MENU_MAIN;				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
 				break;
 			}else{
 
@@ -886,7 +886,7 @@ static BOOL Seq_GameTypeSel( STAGE_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒƒjƒ…[ˆ—
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 	case SEQ_SUB_MENU_MAIN:
 		ret = BmpMenuMain( wk->mw );
 
@@ -895,46 +895,46 @@ static BOOL Seq_GameTypeSel( STAGE_WORK* wk )
 		case BMPMENU_NULL:
 			break;
 
-		//u‚Í‚¢v
+		//ã€Œã¯ã„ã€
 		case 0:
 			Stage_SeqSubMenuWinClear( wk );
 
-			//ƒuƒŒ[ƒ“‚ª“oê‚·‚éí“¬‰ñ”‚ÅA‚Ü‚¾“oêƒƒbƒZ[ƒW‚ğ•\¦‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç
+			//ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒç™»å ´ã™ã‚‹æˆ¦é—˜å›æ•°ã§ã€ã¾ã ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ã¦ã„ãªã‹ã£ãŸã‚‰
 			if( (Stage_BtlCountLeaderCheck(wk) == TRUE) &&
 				(Stage_BrainAppearCheck(wk) == FALSE) ){
 
-				//‘S‚Ä‚Ìƒ^ƒCƒv‚ªLV10‚©ƒ`ƒFƒbƒN‚µ‚Äƒtƒ‰ƒO‚ğƒZƒbƒg
+				//å…¨ã¦ã®ã‚¿ã‚¤ãƒ—ãŒLV10ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 				//StageMasterFlagSet( wk );
 
-				wk->brain_before_csr_pos = wk->csr_pos;		//ƒuƒŒ[ƒ“‚ğ‘I‚Ô‘O‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+				wk->brain_before_csr_pos = wk->csr_pos;		//ãƒ–ãƒ¬ãƒ¼ãƒ³ã‚’é¸ã¶å‰ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 				wk->sub_seq = SEQ_SUB_BRAIN_MSG;
 			}else{
 				Snd_SeStopBySeqNo( SEQ_SE_DP_SELECT, 0 );
-				Snd_SePlay( SEQ_SE_DP_UG_020 );		//Œˆ’èSE
+				Snd_SePlay( SEQ_SE_DP_UG_020 );		//æ±ºå®šSE
 
 				if( wk->brain_before_csr_pos != STAGE_BRAIN_CSR_POS_NONE ){
-					wk->csr_pos = wk->brain_before_csr_pos;	//ƒuƒŒ[ƒ“‚ğ‘I‚Ô‘O‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚É–ß‚·
+					wk->csr_pos = wk->brain_before_csr_pos;	//ãƒ–ãƒ¬ãƒ¼ãƒ³ã‚’é¸ã¶å‰ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã«æˆ»ã™
 				}
-				return TRUE;						//’ˆÓI]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+				return TRUE;						//æ³¨æ„ï¼]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 			}
 			break;
 			
-		//u‚¢‚¢‚¦v
+		//ã€Œã„ã„ãˆã€
 		case 1:
 		case BMPMENU_CANCEL:
 			Stage_SeqSubMenuWinClear( wk );
 			Stage_SeqSubTypeSelNo( wk );
 			wk->sub_seq = SEQ_SUB_TYPE_SEL;
 			break;
-			//return TRUE;						//’ˆÓI]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+			//return TRUE;						//æ³¨æ„ï¼]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 		};
 
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒuƒŒ[ƒ““oêƒƒbƒZ[ƒW
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case SEQ_SUB_BRAIN_MSG:
-		//‰ï˜bƒEƒBƒ“ƒhƒE•\¦
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		StageTalkWinPut( &wk->bmpwin[BMPWIN_TALK], CONFIG_GetWindowType(wk->config) );
 		//wk->msg_index = Stage_EasyMsg( wk, msg_stage_room_boss_01, FONT_SYSTEM );
 		wk->msg_index = StageWriteMsg(	wk, &wk->bmpwin[BMPWIN_TALK], msg_stage_room_boss_01, 
@@ -947,22 +947,22 @@ static BOOL Seq_GameTypeSel( STAGE_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒuƒŒ[ƒ““oêƒƒbƒZ[ƒW‘Ò‚¿
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 	case SEQ_SUB_BRAIN_MSG_WAIT:
 		if( GF_MSG_PrintEndCheck(wk->msg_index) == 0 ){
 			wk->brain_appear = 1;
 			Stage_SeqSubWinRet( wk );
 
-			//ƒAƒjƒ•ÏX
+			//ã‚¢ãƒ‹ãƒ¡å¤‰æ›´
 			StageObj_AnmChg( wk->p_csr, ANM_CSR_MOVE );
 
-			//???ƒXƒNƒŠ[ƒ“‚ÌƒpƒŒƒbƒg‚ğŒ³‚É–ß‚·
+			//???ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å…ƒã«æˆ»ã™
 			ScrnPalChg( wk->bgl, (TYPE_XY_MAX-1), NORMAL_PAL_CHG );
 
-			//ƒ^ƒCƒv‚ÌƒpƒŒƒbƒg”Ô†‚ğ•Ï‚¦‚é
+			//ã‚¿ã‚¤ãƒ—ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’å¤‰ãˆã‚‹
 			GameStartTypeScrnPalChg( wk, wk->bgl );
 
-			//ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ???‚É‡‚í‚¹‚é
+			//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’???ã«åˆã‚ã›ã‚‹
 			wk->csr_pos = (TYPE_XY_MAX - 1);
 			StageObj_SetObjPos( wk->p_csr, GetCsrX(wk), GetCsrY(wk) );
 
@@ -972,15 +972,15 @@ static BOOL Seq_GameTypeSel( STAGE_WORK* wk )
 
 	//////////////////////////////////////////////////////////////////////////////////////
 	case SEQ_SUB_PSD_CALL:
-		//ƒtƒF[ƒhI—¹‘Ò‚¿
+		//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			Stage_SetPSD( wk );
-			StageCommon_Delete( wk );			//íœˆ—
+			StageCommon_Delete( wk );			//å‰Šé™¤å‡¦ç†
 			wk->child_proc = PROC_Create( &PokeStatusProcData, wk->psd, HEAPID_STAGE );
 			//p_proc = (PROC_DATA*)wk->child_proc;
 			wk->recover = 1;
 			//wk->sub_seq++;
-			return TRUE;						//’ˆÓI]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+			return TRUE;						//æ³¨æ„ï¼]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 		}
 		break;
 
@@ -991,11 +991,11 @@ static BOOL Seq_GameTypeSel( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—óM
+ * @brief	é€å—ä¿¡
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 enum{
@@ -1019,15 +1019,15 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 	switch( wk->sub_seq ){
 
 	///////////////////////////////////////////
-	//‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğ‘—M
+	//é¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’é€ä¿¡
 	///////////////////////////////////////////
 	case SEQ_SEND_RECV_START:
 		get_csr_pos = Stage_GetCsrPos( wk->decide_csr_pos );
 		if(Stage_CommSetSendBuf(wk,STAGE_COMM_PAIR_POKETYPE,get_csr_pos) ==	TRUE ){
 
-#if 0		//08.03.26@ˆÚ“®
-			//‰ï˜bƒEƒBƒ“ƒhƒE•\¦
-			StageObj_Vanish( wk->p_icon, STAGE_VANISH_ON );	//”ñ•\¦
+#if 0		//08.03.26ã€€ç§»å‹•
+			//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
+			StageObj_Vanish( wk->p_icon, STAGE_VANISH_ON );	//éè¡¨ç¤º
 			StageTalkWinPut( &wk->bmpwin[BMPWIN_TALK], CONFIG_GetWindowType(wk->config) );
 			Frontier_PairNameWordSet( wk->wordset, 0 );
 			wk->msg_index = Stage_EasyMsg( wk, msg_stage_room_10, FONT_TALK );
@@ -1043,7 +1043,7 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 		break;
 
 	///////////////////////////////////////////
-	//óM‘Ò‚¿
+	//å—ä¿¡å¾…ã¡
 	///////////////////////////////////////////
 	case SEQ_SEND_RECV_WAIT:
 		if( wk->wait > 0 ){
@@ -1051,8 +1051,8 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 			break;
 		}
 
-		//e‚ÌŒˆ’è‚ªæ‚Ì‚Ì‚İAparent_decide_pos‚É’l‚ªæ‚É“ü‚Á‚Ä‚µ‚Ü‚¤‚Ì‚ÅA
-		//—¼•û‚ªóM‚µ‚½‚çæ‚Éi‚Ş‚æ‚¤‚É‚·‚é
+		//è¦ªã®æ±ºå®šãŒå…ˆã®æ™‚ã®ã¿ã€parent_decide_posã«å€¤ãŒå…ˆã«å…¥ã£ã¦ã—ã¾ã†ã®ã§ã€
+		//ä¸¡æ–¹ãŒå—ä¿¡ã—ãŸã‚‰å…ˆã«é€²ã‚€ã‚ˆã†ã«ã™ã‚‹
 		if( wk->typesel_recieve_count < STAGE_COMM_PLAYER_NUM ){
 		//if( wk->parent_decide_pos == STAGE_DECIDE_NONE ){
 			break;
@@ -1060,7 +1060,7 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 
 		wk->typesel_recieve_count = 0;
 
-		//e‚ÌŒˆ’è‚ª—LŒø
+		//è¦ªã®æ±ºå®šãŒæœ‰åŠ¹
 		if( wk->parent_decide_pos < TYPE_XY_MAX ){
 			if( CommGetCurrentID() == COMM_PARENT_ID ){
 				wk->sub_seq = SEQ_SEND_RECV_DECIDE_MINE;
@@ -1068,7 +1068,7 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 				wk->sub_seq = SEQ_SEND_RECV_DECIDE_PAIR;
 			}
 
-		//q‚ÌŒˆ’è‚ª—LŒø
+		//å­ã®æ±ºå®šãŒæœ‰åŠ¹
 		}else{
 			if( CommGetCurrentID() == COMM_PARENT_ID ){
 				wk->sub_seq = SEQ_SEND_RECV_DECIDE_PAIR;
@@ -1079,13 +1079,13 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 		break;
 
 	///////////////////////////////////////////
-	//‘Šè‚ªŒˆ’è(€”õ)
+	//ç›¸æ‰‹ãŒæ±ºå®š(æº–å‚™)
 	///////////////////////////////////////////
 	case SEQ_SEND_RECV_DECIDE_PAIR:
 
-#if 1	//08.03.26@ˆÚ“®
-		//‰ï˜bƒEƒBƒ“ƒhƒE•\¦
-		StageObj_Vanish( wk->p_icon, STAGE_VANISH_ON );	//”ñ•\¦
+#if 1	//08.03.26ã€€ç§»å‹•
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
+		StageObj_Vanish( wk->p_icon, STAGE_VANISH_ON );	//éè¡¨ç¤º
 		StageTalkWinPut( &wk->bmpwin[BMPWIN_TALK], CONFIG_GetWindowType(wk->config) );
 		Frontier_PairNameWordSet( wk->wordset, 0 );
 		wk->msg_index = Stage_EasyMsg( wk, msg_stage_room_10, FONT_TALK );
@@ -1093,15 +1093,15 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 #endif
 
 #if 1
-		//w’èƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“‚Ìw’èˆÊ’u‚ÌƒpƒŒƒbƒg‚ğ•ÏX‚·‚é
+		//æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æŒ‡å®šä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹
 		ScrnPalChg( wk->bgl, wk->pair_csr_pos, PAIR_PAL_CHG );
-		GF_BGL_LoadScreenV_Req( wk->bgl, BS_FRAME_BG );	//ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+		GF_BGL_LoadScreenV_Req( wk->bgl, BS_FRAME_BG );	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 
-		//‰ï˜bƒEƒBƒ“ƒhƒE•\¦
-		//StageObj_Vanish( wk->p_icon, STAGE_VANISH_ON );	//”ñ•\¦
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
+		//StageObj_Vanish( wk->p_icon, STAGE_VANISH_ON );	//éè¡¨ç¤º
 		//StageTalkWinPut( &wk->bmpwin[BMPWIN_TALK], CONFIG_GetWindowType(wk->config) );
 
-		//u›‚³‚ñ‚ª‘I‚ñ‚Å‚¢‚Ü‚·@‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v
+		//ã€Œâ—‹ã•ã‚“ãŒé¸ã‚“ã§ã„ã¾ã™ã€€ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€
 		//Frontier_PairNameWordSet( wk->wordset, 0 );
 		//wk->msg_index = Stage_EasyMsg( wk, msg_stage_room_10, FONT_TALK );
 #endif
@@ -1109,31 +1109,31 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 		break;
 
 	///////////////////////////////////////////
-	//‘Šè‚ªŒˆ’è(‘Ò‚¿)
+	//ç›¸æ‰‹ãŒæ±ºå®š(å¾…ã¡)
 	///////////////////////////////////////////
 	case SEQ_SEND_RECV_DECIDE_PAIR2:
 
-		//‘Šè‚ÌÅIŠm”F‚ğóM
+		//ç›¸æ‰‹ã®æœ€çµ‚ç¢ºèªã‚’å—ä¿¡
 		if( wk->pair_final_answer == FINAL_ANSWER_NONE ){
 			break;
 		}
 
-		//ƒ^ƒCƒv‚ğÅIŒˆ’è
+		//ã‚¿ã‚¤ãƒ—ã‚’æœ€çµ‚æ±ºå®š
 		if( wk->pair_final_answer == FINAL_ANSWER_YES ){
 
-			//‹­§I—¹‚Ö
+			//å¼·åˆ¶çµ‚äº†ã¸
 			wk->csr_pos = wk->pair_csr_pos;
 			return TRUE;
 
-		//ƒ^ƒCƒv‚ğƒLƒƒƒ“ƒZƒ‹
+		//ã‚¿ã‚¤ãƒ—ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		}else{
 			Stage_SeqSubWinRet( wk );
 
-			//w’èƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“‚Ìw’èˆÊ’u‚ÌƒpƒŒƒbƒg‚ğ•ÏX‚·‚é
+			//æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æŒ‡å®šä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹
 			ScrnPalChg( wk->bgl, wk->pair_csr_pos, NORMAL_PAL_CHG );
-			GF_BGL_LoadScreenV_Req( wk->bgl, BS_FRAME_BG );	//ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+			GF_BGL_LoadScreenV_Req( wk->bgl, BS_FRAME_BG );	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 
-			//ƒNƒŠƒA‚µ‚ÄŒp‘±
+			//ã‚¯ãƒªã‚¢ã—ã¦ç¶™ç¶š
 			wk->pair_csr_pos		= CSR_POS_NONE;
 			wk->pair_final_answer	= FINAL_ANSWER_NONE;
 			wk->parent_decide_pos	= STAGE_DECIDE_NONE;
@@ -1144,18 +1144,18 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 		break;
 
 	///////////////////////////////////////////
-	//©•ª‚ªŒˆ’è
+	//è‡ªåˆ†ãŒæ±ºå®š
 	///////////////////////////////////////////
 	case SEQ_SEND_RECV_DECIDE_MINE:
-		//w’èƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“‚Ìw’èˆÊ’u‚ÌƒpƒŒƒbƒg‚ğ•ÏX‚·‚é
+		//æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æŒ‡å®šä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹
 		ScrnPalChg( wk->bgl, wk->csr_pos, DECIDE_PAL_CHG );
-		GF_BGL_LoadScreenV_Req( wk->bgl, BS_FRAME_BG );	//ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+		GF_BGL_LoadScreenV_Req( wk->bgl, BS_FRAME_BG );	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 		Stage_SeqSubTypeSelYesNo( wk );
 		wk->sub_seq = SEQ_SEND_RECV_MINE_MENU_WAIT;
 		break;
 
 	///////////////////////////////////////////
-	//ƒƒjƒ…[‘Ò‚¿
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¾…ã¡
 	///////////////////////////////////////////
 	case SEQ_SEND_RECV_MINE_MENU_WAIT:
 		ret = BmpMenuMain( wk->mw );
@@ -1165,15 +1165,15 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 		case BMPMENU_NULL:
 			break;
 
-		//u‚Í‚¢v
+		//ã€Œã¯ã„ã€
 		case 0:
 			Snd_SeStopBySeqNo( SEQ_SE_DP_SELECT, 0 );
-			Snd_SePlay( SEQ_SE_DP_UG_020 );		//Œˆ’èSE
+			Snd_SePlay( SEQ_SE_DP_UG_020 );		//æ±ºå®šSE
 			Stage_SeqSubMenuWinClear( wk );
 			wk->sub_seq = SEQ_SEND_RECV_MINE_MENU_YES;
 			break;
 
-		//u‚¢‚¢‚¦v
+		//ã€Œã„ã„ãˆã€
 		case 1:
 		case BMPMENU_CANCEL:
 			Stage_SeqSubMenuWinClear( wk );
@@ -1184,20 +1184,20 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 		break;
 		
 	///////////////////////////////////////////
-	//u‚Í‚¢v
+	//ã€Œã¯ã„ã€
 	///////////////////////////////////////////
 	case SEQ_SEND_RECV_MINE_MENU_YES:
-		//ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğÅIŒˆ’è‚Å‘—M
+		//ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’æœ€çµ‚æ±ºå®šã§é€ä¿¡
 		if( Stage_CommSetSendBuf(wk,STAGE_COMM_PAIR_FINAL_ANSWER,FINAL_ANSWER_YES) == TRUE ){
 			return TRUE;
 		}
 		break;
 
 	///////////////////////////////////////////
-	//u‚¢‚¢‚¦v
+	//ã€Œã„ã„ãˆã€
 	///////////////////////////////////////////
 	case SEQ_SEND_RECV_MINE_MENU_NO:
-		//ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğƒLƒƒƒ“ƒZƒ‹‚Å‘—M
+		//ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã§é€ä¿¡
 		if( Stage_CommSetSendBuf(wk,STAGE_COMM_PAIR_FINAL_ANSWER,FINAL_ANSWER_NO) == TRUE ){
 			Stage_SeqSubTypeSelNo( wk );
 			wk->pair_csr_pos = CSR_POS_NONE;
@@ -1208,20 +1208,20 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 		break;
 
 	///////////////////////////////////////////
-	//ÅIŒˆ’è‚µ‚½
+	//æœ€çµ‚æ±ºå®šã—ãŸ
 	///////////////////////////////////////////
 	case SEQ_SEND_RECV_MINE_MENU_DECIDE:
-		//“¯ŠúŠJn
+		//åŒæœŸé–‹å§‹
 		CommToolTempDataReset();
 		CommTimingSyncStart( DBC_TIM_STAGE_END );
 		wk->sub_seq = SEQ_SEND_RECV_MINE_MENU_DECIDE_WAIT;
 		break;
 
 	///////////////////////////////////////////
-	//“¯Šú
+	//åŒæœŸ
 	///////////////////////////////////////////
 	case SEQ_SEND_RECV_MINE_MENU_DECIDE_WAIT:
-		//ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ª“Í‚¢‚½‚©Šm”F
+		//ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ãŒå±Šã„ãŸã‹ç¢ºèª
 		if( CommIsTimingSync(DBC_TIM_STAGE_END) == TRUE ){
 			CommToolTempDataReset();
 			CommToolInitialize( HEAPID_STAGE );	//timingSyncEnd=0xff
@@ -1237,11 +1237,11 @@ static BOOL Seq_GameSendRecv( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFƒ}ƒ‹ƒ`I—¹‚Ö
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒãƒ«ãƒçµ‚äº†ã¸
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameEndMulti( STAGE_WORK* wk )
@@ -1251,16 +1251,16 @@ static BOOL Seq_GameEndMulti( STAGE_WORK* wk )
 	switch( wk->sub_seq ){
 
 	case 0:
-		//“¯ŠúŠJn
+		//åŒæœŸé–‹å§‹
 		CommToolTempDataReset();
 		CommTimingSyncStart( DBC_TIM_STAGE_END );
 		
 		wk->sub_seq++;
 		break;
 
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	case 1:
-		//ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ª“Í‚¢‚½‚©Šm”F
+		//ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ãŒå±Šã„ãŸã‹ç¢ºèª
 		if( CommIsTimingSync(DBC_TIM_STAGE_END) == TRUE ){
 			CommToolTempDataReset();
 			return TRUE;
@@ -1273,11 +1273,11 @@ static BOOL Seq_GameEndMulti( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFI—¹‚Ö
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†ã¸
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameEnd( STAGE_WORK* wk )
@@ -1291,7 +1291,7 @@ static BOOL Seq_GameEnd( STAGE_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhƒAƒEƒg
+	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case 1:
 		wk->wait--;
 		if( wk->wait == 0 ){
@@ -1302,7 +1302,7 @@ static BOOL Seq_GameEnd( STAGE_WORK* wk )
 		}
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 2:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			return TRUE;
@@ -1315,11 +1315,11 @@ static BOOL Seq_GameEnd( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFƒp[ƒgƒi[‚ªƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğŒˆ’è‚µ‚½‚Ì‚Å‹­§I—¹‚Ö
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’æ±ºå®šã—ãŸã®ã§å¼·åˆ¶çµ‚äº†ã¸
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GamePairEnd( STAGE_WORK* wk )
@@ -1330,7 +1330,7 @@ static BOOL Seq_GamePairEnd( STAGE_WORK* wk )
 
 	case 0:
 		Stage_SeqSubMenuWinClear( wk );
-		StageObj_Vanish( wk->p_icon, STAGE_VANISH_OFF );	//•\¦
+		StageObj_Vanish( wk->p_icon, STAGE_VANISH_OFF );	//è¡¨ç¤º
 		BmpTalkWinClear( &wk->bmpwin[BMPWIN_TALK], WINDOW_TRANS_ON );
 
 		//wk->wait_count = STAGE_PAIR_END_WAIT;
@@ -1338,7 +1338,7 @@ static BOOL Seq_GamePairEnd( STAGE_WORK* wk )
 		break;
 
 	case 1:
-		//­‚µƒEƒFƒCƒg‚ğ“ü‚ê‚é
+		//å°‘ã—ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹
 		//wk->wait_count--;
 		//if( wk->wait_count == 0 ){
 			return TRUE;
@@ -1352,15 +1352,15 @@ static BOOL Seq_GamePairEnd( STAGE_WORK* wk )
 
 //==============================================================================================
 //
-//	‹¤’Êˆ—
+//	å…±é€šå‡¦ç†
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê íœ
+ * @brief	å…±é€š å‰Šé™¤
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1377,40 +1377,40 @@ static void StageCommon_Delete( STAGE_WORK* wk )
 		StageObj_Delete( wk->p_icon );
 	}
 
-	//’ÊMƒAƒCƒRƒ“íœ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
 	WirelessIconEasyEnd();
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhŠJ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰é–‹æ”¾
 	PaletteFadeWorkAllocFree( wk->pfd, FADE_MAIN_OBJ );
 	PaletteFadeWorkAllocFree( wk->pfd, FADE_MAIN_BG );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ŠJ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ é–‹æ”¾
 	PaletteFadeFree( wk->pfd );
 	wk->pfd = NULL;
 
-	StageClact_DeleteCellObject(&wk->stage_clact);		//2DƒIƒuƒWƒFƒNƒgŠÖ˜A—ÌˆæŠJ•ú
+	StageClact_DeleteCellObject(&wk->stage_clact);		//2Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–¢é€£é ˜åŸŸé–‹æ”¾
 
-	MSGMAN_Delete( wk->msgman );						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠJ•ú
+	MSGMAN_Delete( wk->msgman );						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–‹æ”¾
 	WORDSET_Delete( wk->wordset );
-	STRBUF_Delete( wk->msg_buf );						//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
-	STRBUF_Delete( wk->tmp_buf );						//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
+	STRBUF_Delete( wk->msg_buf );						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
+	STRBUF_Delete( wk->tmp_buf );						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 	NUMFONT_Delete( wk->num_font );
 
 	for( i=0; i < STAGE_MENU_BUF_MAX ;i++ ){
-		STRBUF_Delete( wk->menu_buf[i] );				//ƒƒjƒ…[ƒoƒbƒtƒ@ŠJ•ú
+		STRBUF_Delete( wk->menu_buf[i] );				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 	}
 
-	StageExitBmpWin( wk->bmpwin );						//BMPƒEƒBƒ“ƒhƒEŠJ•ú
-	Stage_BgExit( wk->bgl );							//BGLíœ
+	StageExitBmpWin( wk->bmpwin );						//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
+	Stage_BgExit( wk->bgl );							//BGLå‰Šé™¤
 	ArchiveDataHandleClose( wk->hdl );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	•œ‹A
+ * @brief	å¾©å¸°
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1425,9 +1425,9 @@ static void Stage_Recover( STAGE_WORK* wk )
 
 	Stage_InitSub2( wk );
 
-	//Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ªƒ_ƒ~[ƒ^ƒCƒv‚©‚ÅƒAƒjƒ‚ğ•ÏX‚·‚é
+	//ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãŒãƒ€ãƒŸãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã§ã‚¢ãƒ‹ãƒ¡ã‚’å¤‰æ›´ã™ã‚‹
 	if( Stage_GetPokeType(wk->csr_pos) == DUMMY_TYPE ){
-		StageObj_AnmChg( wk->p_csr, ANM_CSR_POKE );			//ƒAƒjƒ•ÏX
+		StageObj_AnmChg( wk->p_csr, ANM_CSR_POKE );			//ã‚¢ãƒ‹ãƒ¡å¤‰æ›´
 		StageObj_SetObjPos( wk->p_csr, CSR_POKE_X, CSR_POKE_Y );
 	}
 
@@ -1436,17 +1436,17 @@ static void Stage_Recover( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê ‰Šú‰»1
+ * @brief	å…±é€š åˆæœŸåŒ–1
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void Stage_InitSub1( void )
 {
-	sys_VBlankFuncChange( NULL, NULL );					//VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );						//HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );					//VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );						//HBlankã‚»ãƒƒãƒˆ
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
@@ -1456,9 +1456,9 @@ static void Stage_InitSub1( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê ‰Šú‰»2
+ * @brief	å…±é€š åˆæœŸåŒ–2
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1468,10 +1468,10 @@ static void Stage_InitSub2( STAGE_WORK* wk )
 	int i,flip;
 
 	wk->hdl = ArchiveDataHandleOpen( ARC_FRONTIER_BG, HEAPID_STAGE );
-	Stage_BgInit( wk );								//BG‰Šú‰»
-	Stage_ObjInit( wk );								//OBJ‰Šú‰»
+	Stage_BgInit( wk );								//BGåˆæœŸåŒ–
+	Stage_ObjInit( wk );								//OBJåˆæœŸåŒ–
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	wk->msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, 
 								NARC_msg_stage_room_dat, HEAPID_STAGE );
 
@@ -1479,38 +1479,38 @@ static void Stage_InitSub2( STAGE_WORK* wk )
 	wk->msg_buf = STRBUF_Create( STAGE_MSG_BUF_SIZE, HEAPID_STAGE );
 	wk->tmp_buf = STRBUF_Create( STAGE_MSG_BUF_SIZE, HEAPID_STAGE );
 
-	//•¶š—ñƒoƒbƒtƒ@ì¬
+	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	for( i=0; i < STAGE_MENU_BUF_MAX ;i++ ){
 		wk->menu_buf[i] = STRBUF_Create( STAGE_MENU_BUF_SIZE, HEAPID_STAGE );
 	}
 
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, BS_FONT_PAL * 32, HEAPID_STAGE );
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, BS_MSGFONT_PAL * 32, HEAPID_STAGE );
 
-	//8x8ƒtƒHƒ“ƒgì¬(g—pbmpwin[BMPWIN_TYPE]‚ÌƒpƒŒƒbƒg(BS_FONT_PAL)‚ğg—p
+	//8x8ãƒ•ã‚©ãƒ³ãƒˆä½œæˆ(ä½¿ç”¨bmpwin[BMPWIN_TYPE]ã®ãƒ‘ãƒ¬ãƒƒãƒˆ(BS_FONT_PAL)ã‚’ä½¿ç”¨
 	wk->num_font = NUMFONT_Create( 15, 14, FBMP_COL_NULL, HEAPID_STAGE );
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 	StageAddBmpWin( wk->bgl, wk->bmpwin );
 
-	//ƒ^ƒCƒv‚ÌƒpƒŒƒbƒg”Ô†‚ğ•Ï‚¦‚é
+	//ã‚¿ã‚¤ãƒ—ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’å¤‰ãˆã‚‹
 	GameStartTypeScrnPalChg( wk, wk->bgl );
 
 	GF_Disp_DispOn();
 
-	//ƒJ[ƒ\ƒ‹OBJ’Ç‰Á
+	//ã‚«ãƒ¼ã‚½ãƒ«OBJè¿½åŠ 
 	wk->p_csr = StageObj_Create(	&wk->stage_clact, STAGE_ID_OBJ_CSR, ANM_CSR_MOVE, 
 									GetCsrX(wk), GetCsrY(wk), NULL );
 
-	//ƒAƒCƒRƒ“OBJ’Ç‰Á
+	//ã‚¢ã‚¤ã‚³ãƒ³OBJè¿½åŠ 
 	wk->p_icon = StageObj_Create(	&wk->stage_clact, STAGE_ID_OBJ_ICON, POKEICON_ANM_HPMAX,
 									ICON_X, ICON_Y, NULL );
 
-	//ƒpƒŒƒbƒgØ‚è‘Ö‚¦
+	//ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
 	StageObj_IconPalChg( wk->p_icon, PokeParty_GetMemberPointer(wk->p_party,0) );
 
-	//’ÊMƒAƒCƒRƒ“ƒZƒbƒg
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚»ãƒƒãƒˆ
 	if( CommIsInitialize() ){
 //CLACT_U_WmIcon_SetReserveAreaCharManager( NNS_G2D_VRAM_TYPE_2DMAIN,GX_OBJVRAMMODE_CHAR_1D_64K );
 		CLACT_U_WmIcon_SetReserveAreaCharManager( NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1519,22 +1519,22 @@ static void Stage_InitSub2( STAGE_WORK* wk )
 		WirelessIconEasy();
 	}
 
-	sys_VBlankFuncChange( VBlankFunc, (void*)wk );		//VBlankƒZƒbƒg
+	sys_VBlankFuncChange( VBlankFunc, (void*)wk );		//VBlankã‚»ãƒƒãƒˆ
 	return;
 }
 
 
 //==============================================================================================
 //
-//	‹¤’Ê‰Šú‰»AI—¹
+//	å…±é€šåˆæœŸåŒ–ã€çµ‚äº†
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BGŠÖ˜A‰Šú‰»
+ * @brief	BGé–¢é€£åˆæœŸåŒ–
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1544,28 +1544,28 @@ static void Stage_BgInit( STAGE_WORK* wk )
 	SetVramBank();
 	SetBgHeader( wk->bgl );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ƒ[ƒNì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	wk->pfd = PaletteFadeInit( HEAPID_STAGE );
 
-	//ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğmalloc‚µ‚ÄƒZƒbƒg
+	//ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’mallocã—ã¦ã‚»ãƒƒãƒˆ
 	PaletteFadeWorkAllocSet( wk->pfd, FADE_MAIN_OBJ, FADE_PAL_ALL_SIZE, HEAPID_STAGE );
 	PaletteFadeWorkAllocSet( wk->pfd, FADE_MAIN_BG, FADE_PAL_ALL_SIZE, HEAPID_STAGE );
 
-	//ã‰æ–Ê”wŒi
+	//ä¸Šç”»é¢èƒŒæ™¯
 	Stage_SetMainBgGraphic( wk, BS_FRAME_BG );
 	Stage_SetMainBgPalette();
-	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BG”ñ•\¦
+	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BGéè¡¨ç¤º
 
-	//‰º‰æ–Ê”wŒiAƒpƒŒƒbƒgƒZƒbƒg
+	//ä¸‹ç”»é¢èƒŒæ™¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	Stage_SetSubBgGraphic( wk, BS_FRAME_SUB );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJŠÖ˜A‰Šú‰»
+ * @brief	OBJé–¢é€£åˆæœŸåŒ–
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1579,16 +1579,16 @@ static void Stage_ObjInit( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BG‰ğ•ú
+ * @brief	BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void Stage_BgExit( GF_BGL_INI * ini )
 {
-	//ƒƒCƒ“‰æ–Ê‚ÌŠe–Ê‚Ì•\¦ƒRƒ“ƒgƒ[ƒ‹(•\¦OFF)
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«(è¡¨ç¤ºOFF)
 	GF_Disp_GX_VisibleControl(	GX_PLANEMASK_BG0 | 
 								GX_PLANEMASK_BG1 | 
 								GX_PLANEMASK_BG2 |
@@ -1596,7 +1596,7 @@ static void Stage_BgExit( GF_BGL_INI * ini )
 								GX_PLANEMASK_OBJ, 
 								VISIBLE_OFF );
 
-	//ƒTƒu‰æ–Ê‚ÌŠe–Ê‚Ì•\¦ƒRƒ“ƒgƒ[ƒ‹(•\¦OFF)
+	//ã‚µãƒ–ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«(è¡¨ç¤ºOFF)
 	GF_Disp_GXS_VisibleControl(	GX_PLANEMASK_BG0 | 
 								GX_PLANEMASK_BG1 | 
 								GX_PLANEMASK_BG2 | 
@@ -1604,7 +1604,7 @@ static void Stage_BgExit( GF_BGL_INI * ini )
 								GX_PLANEMASK_OBJ, 
 								VISIBLE_OFF );
 
-	//GF_BGL_BGControlSet‚Åæ“¾‚µ‚½ƒƒ‚ƒŠ‚ğŠJ•ú
+	//GF_BGL_BGControlSetã§å–å¾—ã—ãŸãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾
 	GF_BGL_BGControlExit( ini, BS_FRAME_BG );			//3
 	GF_BGL_BGControlExit( ini, BS_FRAME_TYPE );
 	GF_BGL_BGControlExit( ini, BS_FRAME_WIN );
@@ -1617,15 +1617,15 @@ static void Stage_BgExit( GF_BGL_INI * ini )
 
 //==============================================================================================
 //
-//	İ’è
+//	è¨­å®š
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	VBlankŠÖ”
+ * @brief	VBlanké–¢æ•°
  *
- * @param	work	ƒ[ƒN
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1634,23 +1634,23 @@ static void VBlankFunc( void * work )
 {
 	STAGE_WORK* wk = work;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX•\¦’†
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºä¸­
 	if( wk->child_proc != NULL ){
 		return;
 	}
 
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	if( wk->pfd != NULL ){
 		PaletteFadeTrans( wk->pfd );
 	}
 
 	GF_BGL_VBlankFunc( wk->bgl );
 
-	//ƒZƒ‹ƒAƒNƒ^[
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	//Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	//ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	//ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -1658,32 +1658,32 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	VRAMİ’è
+ * @brief	VRAMè¨­å®š
  *
  * @param	none
  *
  * @return	none
  *
- * ×‚©‚­İ’è‚µ‚Ä‚¢‚È‚¢‚Ì‚Å’ˆÓI
+ * ç´°ã‹ãè¨­å®šã—ã¦ã„ãªã„ã®ã§æ³¨æ„ï¼
  */
 //--------------------------------------------------------------
 static void SetVramBank(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_C,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_C,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_32_H,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_32_H,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_64_E,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_64_E,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_01_AB,				//ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			//ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_01_AB,				//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	GF_Disp_SetBank( &tbl );
@@ -1692,9 +1692,9 @@ static void SetVramBank(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	BGİ’è
+ * @brief	BGè¨­å®š
  *
- * @param	init	BGLƒf[ƒ^
+ * @param	init	BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1708,7 +1708,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	{	//BG(ƒtƒHƒ“ƒg)(‰ï˜bAƒƒjƒ…[)
+	{	//BG(ãƒ•ã‚©ãƒ³ãƒˆ)(ä¼šè©±ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -1719,7 +1719,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, BS_FRAME_WIN );
 	}
 
-	{	//BG(ƒtƒHƒ“ƒg)(ƒ^ƒCƒv•\¦)
+	{	//BG(ãƒ•ã‚©ãƒ³ãƒˆ)(ã‚¿ã‚¤ãƒ—è¡¨ç¤º)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			//GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
@@ -1731,7 +1731,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, BS_FRAME_TYPE );
 	}
 
-	{	//ã‰æ–Ê(”wŒi)
+	{	//ä¸Šç”»é¢(èƒŒæ™¯)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01,
@@ -1742,7 +1742,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 	}
 
 	//--------------------------------------------------------------------------------
-	{	//‰º‰æ–Ê(ƒ{[ƒ‹)
+	{	//ä¸‹ç”»é¢(ãƒœãƒ¼ãƒ«)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
@@ -1760,16 +1760,16 @@ static void SetBgHeader( GF_BGL_INI * ini )
 
 //==============================================================================================
 //
-//	BGƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+//	BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFã‰æ–Ê”wŒi
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸Šç”»é¢èƒŒæ™¯
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -1786,7 +1786,7 @@ static void Stage_SetMainBgGraphic( STAGE_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ã‰æ–Ê”wŒiƒpƒŒƒbƒgİ’è
+ * @brief	ä¸Šç”»é¢èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -1801,7 +1801,7 @@ static void Stage_SetMainBgPalette( void )
 	buf = ArcUtil_PalDataGet( ARC_FRONTIER_BG, BS_SELECT_NCLR, &dat, HEAPID_STAGE );
 
 	DC_FlushRange( dat->pRawData, (sizeof(u16)*16*6) );
-	GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*6) );		//ƒƒCƒ“
+	GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*6) );		//ãƒ¡ã‚¤ãƒ³
 
 	sys_FreeMemoryEz(buf);
 	return;
@@ -1809,10 +1809,10 @@ static void Stage_SetMainBgPalette( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF‰º‰æ–Ê”wŒiAƒpƒŒƒbƒgƒZƒbƒg
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸‹ç”»é¢èƒŒæ™¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -1833,34 +1833,34 @@ static void Stage_SetSubBgGraphic( STAGE_WORK * wk, u32 frm  )
 
 //==============================================================================================
 //
-//	ƒƒbƒZ[ƒWŠÖ˜A
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	wait	•¶š•\¦ƒEƒFƒCƒg
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	wait	æ–‡å­—è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
- * @return	"•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
+ * @return	"æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  */
 //--------------------------------------------------------------
 static u8 StageWriteMsg( STAGE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
-	GF_BGL_BmpWinDataFill( win, b_col );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );			//å¡—ã‚Šã¤ã¶ã—
 	MSGMAN_GetString( wk->msgman, msg_id, wk->tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
 	return GF_STR_PrintColor( win, font, wk->msg_buf, x, y, wait, 
@@ -1869,29 +1869,29 @@ static u8 StageWriteMsg( STAGE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦(“h‚è‚Â‚Ô‚µ‚È‚µ)
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º(å¡—ã‚Šã¤ã¶ã—ãªã—)
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	wait	•¶š•\¦ƒEƒFƒCƒg
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	wait	æ–‡å­—è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
- * @return	"•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
+ * @return	"æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  *
- * “h‚è‚Â‚Ô‚µ‚È‚µ
+ * å¡—ã‚Šã¤ã¶ã—ãªã—
  */
 //--------------------------------------------------------------
 static u8 StageWriteMsgSimple( STAGE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	MSGMAN_GetString( wk->msgman, msg_id, wk->tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
 	return GF_STR_PrintColor( win, font, wk->msg_buf, x, y, wait, 
@@ -1900,10 +1900,10 @@ static u8 StageWriteMsgSimple( STAGE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠÈ’PƒƒbƒZ[ƒW•\¦
+ * @brief	ç°¡å˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id	ƒƒbƒZ[ƒWID
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
  * @return	"msg_index"
  */
@@ -1924,17 +1924,17 @@ static u8 Stage_EasyMsg( STAGE_WORK* wk, int msg_id, u8 font )
 
 //==============================================================================================
 //
-//	ƒƒjƒ…[ŠÖ˜A
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒwƒbƒ_[‰Šúİ’è
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		GF_BGL_BMPWINŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	y_max	€–ÚÅ‘å”
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		GF_BGL_BMPWINå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	y_max	é …ç›®æœ€å¤§æ•°
  *
  * @retval	none
  */
@@ -1955,20 +1955,20 @@ static void StageInitMenu( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u8 y_max )
 	wk->MenuH.y_max		= y_max;
 	wk->MenuH.line_spc	= 0;
 	wk->MenuH.c_disp_f	= 0;
-	//wk->MenuH.c_disp_f	= 1;			//ƒJ[ƒ\ƒ‹‚È‚µ
-	//wk->MenuH.loop_f	= 0;			//ƒ‹[ƒv–³‚µ
-	wk->MenuH.loop_f	= 1;			//ƒ‹[ƒv—L‚è
+	//wk->MenuH.c_disp_f	= 1;			//ã‚«ãƒ¼ã‚½ãƒ«ãªã—
+	//wk->MenuH.loop_f	= 0;			//ãƒ«ãƒ¼ãƒ—ç„¡ã—
+	wk->MenuH.loop_f	= 1;			//ãƒ«ãƒ¼ãƒ—æœ‰ã‚Š
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒf[ƒ^ƒZƒbƒg
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		ƒZƒbƒg‚·‚éêŠ(–ß‚è’l)
- * @param	param	–ß‚è’l
- * @param	msg_id	ƒƒbƒZ[ƒWID
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		ã‚»ãƒƒãƒˆã™ã‚‹å ´æ‰€(æˆ»ã‚Šå€¤)
+ * @param	param	æˆ»ã‚Šå€¤
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
  * @retval	none
  */
@@ -1978,7 +1978,7 @@ static void StageSetMenuData( STAGE_WORK* wk, u8 no, u8 param, int msg_id )
 	int i;
 	void* msg;
 
-	SDK_ASSERTMSG( no < STAGE_MENU_BUF_MAX, "ƒƒjƒ…[€–Ú”ƒI[ƒo[I" );
+	SDK_ASSERTMSG( no < STAGE_MENU_BUF_MAX, "ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®æ•°ã‚ªãƒ¼ãƒãƒ¼ï¼" );
 
 	MSGMAN_GetString( wk->msgman, msg_id, wk->menu_buf[no] );
 
@@ -1989,9 +1989,9 @@ static void StageSetMenuData( STAGE_WORK* wk, u8 no, u8 param, int msg_id )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê ƒƒjƒ…[ƒZƒbƒg2u‚Í‚¢A‚¢‚¢‚¦v
+ * @brief	å…±é€š ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚»ãƒƒãƒˆ2ã€Œã¯ã„ã€ã„ã„ãˆã€
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2001,8 +2001,8 @@ static void Stage_SetMenu2( STAGE_WORK* wk )
 	wk->menu_flag = 1;
 	StageWriteMenuWin( wk->bgl, &wk->bmpwin[BMPWIN_YESNO] );
 	StageInitMenu( wk, &wk->bmpwin[BMPWIN_YESNO], 2 );
-	StageSetMenuData( wk, 0, 0, msg_stage_room_choice_05 );				//‚Í‚¢
-	StageSetMenuData( wk, 1, 1, msg_stage_room_choice_06 );				//‚¢‚¢‚¦
+	StageSetMenuData( wk, 0, 0, msg_stage_room_choice_05 );				//ã¯ã„
+	StageSetMenuData( wk, 1, 1, msg_stage_room_choice_06 );				//ã„ã„ãˆ
 	wk->mw = BmpMenuAddEx( &wk->MenuH, 8, 0, 0, HEAPID_STAGE, PAD_BUTTON_CANCEL );
 	return;
 }
@@ -2010,21 +2010,21 @@ static void Stage_SetMenu2( STAGE_WORK* wk )
 
 //==============================================================================================
 //
-//	•¶š—ñƒZƒbƒg
+//	æ–‡å­—åˆ—ã‚»ãƒƒãƒˆ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	”’l‚ğƒZƒbƒg
+ * @brief	æ•°å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID	ƒoƒbƒtƒ@ID
- * @param	number	ƒZƒbƒg‚·‚é”’l
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID	ãƒãƒƒãƒ•ã‚¡ID
+ * @param	number	ã‚»ãƒƒãƒˆã™ã‚‹æ•°å€¤
  *
  * @retval	none
  *
- * Œ…‚ğŒÅ’è‚É‚µ‚Ä‚¢‚é
+ * æ¡ã‚’å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static void Stage_SetNumber( STAGE_WORK* wk, u32 bufID, s32 number )
@@ -2036,10 +2036,10 @@ static void Stage_SetNumber( STAGE_WORK* wk, u32 bufID, s32 number )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“–¼‚ğƒZƒbƒg
+ * @brief	ãƒã‚±ãƒ¢ãƒ³åã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID	ƒoƒbƒtƒ@ID
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID	ãƒãƒƒãƒ•ã‚¡ID
  * @param	ppp		POKEMON_PASO_PARAM
  *
  * @retval	none
@@ -2053,10 +2053,10 @@ static void Stage_SetPokeName( STAGE_WORK* wk, u32 bufID, POKEMON_PASO_PARAM* pp
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ„[–¼‚ğƒZƒbƒg
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID	ƒoƒbƒtƒ@ID
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID	ãƒãƒƒãƒ•ã‚¡ID
  *
  * @retval	none
  */
@@ -2069,16 +2069,16 @@ static void Stage_SetPlayerName( STAGE_WORK* wk, u32 bufID )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ„[–¼‚ğ•\¦
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¡¨ç¤º
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
  * @return	none
  */
@@ -2087,12 +2087,12 @@ static void PlayerNameWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u
 {
 	u32 col;
 	const MYSTATUS* my;
-	STRBUF* player_buf;								//ƒvƒŒƒCƒ„[–¼ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	STRBUF* player_buf;								//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
 	my = SaveData_GetMyStatus( wk->sv );
 	player_buf = STRBUF_Create( PLAYER_NAME_BUF_SIZE, HEAPID_STAGE );
 	
-	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
 	STRBUF_SetStringCode( player_buf, MyStatus_GetMyName(my) );
 
@@ -2104,7 +2104,7 @@ static void PlayerNameWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u
 
 	GF_STR_PrintColor( win, font, player_buf, x, y, MSG_ALLPUT, col, NULL );
 
-	STRBUF_Delete( player_buf );					//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
+	STRBUF_Delete( player_buf );					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 
 	GF_BGL_BmpWinOn( win );
 	return;
@@ -2112,16 +2112,16 @@ static void PlayerNameWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒgƒi[–¼‚ğ•\¦
+ * @brief	ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
  * @return	none
  */
@@ -2129,17 +2129,17 @@ static void PlayerNameWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u
 static void PairNameWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u8 font )
 {
 	u32 col;
-	STRBUF* player_buf;								//ƒvƒŒƒCƒ„[–¼ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	MYSTATUS* my;									//ƒp[ƒgƒi[‚ÌMyStatus
+	STRBUF* player_buf;								//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	MYSTATUS* my;									//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®MyStatus
 
-	//ƒp[ƒgƒi[‚ÌMyStatus‚ğæ“¾
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®MyStatusã‚’å–å¾—
 	my = CommInfoGetMyStatus( 1 - CommGetCurrentID() );
 
 	player_buf = STRBUF_Create( PLAYER_NAME_BUF_SIZE, HEAPID_STAGE );
 	
-	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
-	//–¼‘Oæ“¾(STRBUF‚ÉƒRƒs[)
+	//åå‰å–å¾—(STRBUFã«ã‚³ãƒ”ãƒ¼)
 	MyStatus_CopyNameString( my, player_buf );
 
 	if( MyStatus_GetMySex(my) == PM_MALE ){
@@ -2150,7 +2150,7 @@ static void PairNameWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u8 
 
 	GF_STR_PrintColor( win, font, player_buf, x, y, MSG_ALLPUT, col, NULL );
 
-	STRBUF_Delete( player_buf );					//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
+	STRBUF_Delete( player_buf );					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 
 	GF_BGL_BmpWinOn( win );
 	return;
@@ -2158,16 +2158,16 @@ static void PairNameWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“–¼‚ğ•\¦
+ * @brief	ãƒã‚±ãƒ¢ãƒ³åã‚’è¡¨ç¤º
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
  * @return	none
  */
@@ -2178,15 +2178,15 @@ static void PokeNameWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u8 
 	u32 sex,msg_id,col;
 	STRBUF* buf;
 	POKEMON_PARAM* poke;
-	STRCODE sel_poke_buf[POKE_NAME_BUF_SIZE];					//ƒ|ƒPƒ‚ƒ“–¼ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	STRCODE sel_poke_buf[POKE_NAME_BUF_SIZE];					//ãƒã‚±ãƒ¢ãƒ³åãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
 	poke =  PokeParty_GetMemberPointer( wk->p_party, 0 );
-	PokeParaGet( poke, ID_PARA_default_name, sel_poke_buf );	//ƒ|ƒPƒ‚ƒ“‚ÌƒfƒtƒHƒ‹ƒg–¼‚ğæ“¾
+	PokeParaGet( poke, ID_PARA_default_name, sel_poke_buf );	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåã‚’å–å¾—
 
-	GF_BGL_BmpWinDataFill( win, b_col );						//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );						//å¡—ã‚Šã¤ã¶ã—
 
-	buf = STRBUF_Create( POKE_NAME_BUF_SIZE, HEAPID_STAGE );	//STRBUF¶¬
-	STRBUF_SetStringCode( buf, sel_poke_buf );					//STRCODE¨STRBUF
+	buf = STRBUF_Create( POKE_NAME_BUF_SIZE, HEAPID_STAGE );	//STRBUFç”Ÿæˆ
+	STRBUF_SetStringCode( buf, sel_poke_buf );					//STRCODEâ†’STRBUF
 
 	GF_STR_PrintColor( win, font, buf, x, y, MSG_ALLPUT, 
 								GF_PRINTCOLOR_MAKE(f_col,s_col,b_col), NULL );
@@ -2199,18 +2199,18 @@ static void PokeNameWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“–¼‚ğ•\¦(«•Êw’è)
+ * @brief	ãƒã‚±ãƒ¢ãƒ³åã‚’è¡¨ç¤º(æ€§åˆ¥æŒ‡å®š)
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
- * @param	monsno	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	sex		«•Ê
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
+ * @param	monsno	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	sex		æ€§åˆ¥
  *
  * @return	none
  */
@@ -2222,11 +2222,11 @@ static void PokeNameWriteEx( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u
 	MSGDATA_MANAGER* man;
 	STRBUF* buf;
 	POKEMON_PARAM* poke;
-	STRCODE sel_poke_buf[POKE_NAME_BUF_SIZE];					//ƒ|ƒPƒ‚ƒ“–¼ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	STRCODE sel_poke_buf[POKE_NAME_BUF_SIZE];					//ãƒã‚±ãƒ¢ãƒ³åãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
-	GF_BGL_BmpWinDataFill( win, b_col );						//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );						//å¡—ã‚Šã¤ã¶ã—
 
-	//ƒ|ƒPƒ‚ƒ“–¼‚ğæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³åã‚’å–å¾—
 	man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_monsname_dat, HEAPID_STAGE );
 	buf = MSGMAN_AllocString( man, monsno );
 	MSGMAN_Delete( man );
@@ -2234,7 +2234,7 @@ static void PokeNameWriteEx( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u
 	GF_STR_PrintColor( win, font, buf, x, y, MSG_ALLPUT, 
 								GF_PRINTCOLOR_MAKE(f_col,s_col,b_col), NULL );
 
-	//‰E’[‚É«•ÊƒR[ƒh‚ğ•\¦
+	//å³ç«¯ã«æ€§åˆ¥ã‚³ãƒ¼ãƒ‰ã‚’è¡¨ç¤º
 	x_pos = GF_BGL_BmpWinGet_SizeX(win) - 1;
 
 	msg_id = (sex == PARA_MALE) ? msg_stage_male : msg_stage_female;
@@ -2252,14 +2252,14 @@ static void PokeNameWriteEx( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒv‚ğ•\¦
+ * @brief	ã‚¿ã‚¤ãƒ—ã‚’è¡¨ç¤º
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
  * @return	none
  */
@@ -2270,15 +2270,15 @@ static void TypeWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u8 f_col, u8 s_col, u
 	STRBUF* buf;
 	MSGDATA_MANAGER* man;
 
-	GF_BGL_BmpWinDataFill( win, b_col );						//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );						//å¡—ã‚Šã¤ã¶ã—
 
 	man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_typename_dat, HEAPID_STAGE );
-	buf = STRBUF_Create( POKE_NAME_BUF_SIZE, HEAPID_STAGE );	//STRBUF¶¬
+	buf = STRBUF_Create( POKE_NAME_BUF_SIZE, HEAPID_STAGE );	//STRBUFç”Ÿæˆ
 
 	for( i=0; i < TYPE_Y_MAX ;i++ ){
 		for( j=0; j < TYPE_X_MAX ;j++ ){
 
-			//ƒ_ƒ~[ƒ^ƒCƒv‚Í–³‹‚·‚é
+			//ãƒ€ãƒŸãƒ¼ã‚¿ã‚¤ãƒ—ã¯ç„¡è¦–ã™ã‚‹
 			if( Stage_GetPokeType(i*TYPE_X_MAX+j) != DUMMY_TYPE ){
 
 				STRBUF_Clear( buf );
@@ -2300,9 +2300,9 @@ static void TypeWrite( STAGE_WORK* wk, GF_BGL_BMPWIN* win, u8 f_col, u8 s_col, u
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒN•\¦
+ * @brief	ãƒ©ãƒ³ã‚¯è¡¨ç¤º
  *
- * @param	wk			STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2324,16 +2324,16 @@ static void RankWriteAll( STAGE_WORK* wk, GF_BGL_BMPWIN* win )
 
 			type = Stage_GetPokeType( i * TYPE_X_MAX + j );
 
-			//ƒ_ƒ~[ƒ^ƒCƒv‚Í–³‹‚·‚é(???‚àƒŒƒxƒ‹‚¢‚ç‚È‚¢‚ÅŠO‚·)
+			//ãƒ€ãƒŸãƒ¼ã‚¿ã‚¤ãƒ—ã¯ç„¡è¦–ã™ã‚‹(???ã‚‚ãƒ¬ãƒ™ãƒ«ã„ã‚‰ãªã„ã§å¤–ã™)
 			if( (type != DUMMY_TYPE) && (type != HATE_TYPE ) ){
 
 				pos = ( i * TYPE_X_MAX + j );
 				rank = Stage_GetTypeLevel( Stage_GetCsrPos(pos), wk->p_rank );
 
-				//0ƒIƒŠƒWƒ“‚È‚Ì‚Å
+				//0ã‚ªãƒªã‚¸ãƒ³ãªã®ã§
 				rank++; 
 				if( rank > STAGE_TYPE_LEVEL_MAX ){
-					rank = STAGE_TYPE_LEVEL_MAX;		//•\¦‚Í10‚ªÅ‘å
+					rank = STAGE_TYPE_LEVEL_MAX;		//è¡¨ç¤ºã¯10ãŒæœ€å¤§
 				}
 				
 				RankWrite(	wk, win, rank, 
@@ -2349,15 +2349,15 @@ static void RankWriteAll( STAGE_WORK* wk, GF_BGL_BMPWIN* win )
 
 //==============================================================================================
 //
-//	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µŠÖ˜A
+//	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—é–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	psd‚ÌƒZƒbƒg
+ * @brief	psdã®ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2368,23 +2368,23 @@ static void Stage_SetPSD( STAGE_WORK* wk )
 	memset( wk->psd, 0, sizeof(PSTATUS_DATA) );
 
 	wk->psd->ppd	= wk->p_party;
-	wk->psd->ppt	= PST_PP_TYPE_POKEPARTY;		//ƒpƒ‰ƒ[ƒ^ƒ^ƒCƒv
+	wk->psd->ppt	= PST_PP_TYPE_POKEPARTY;		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
 
 	wk->psd->cfg	= wk->config;
 
-	//‚ ‚Æ‚ÅŠm”F
+	//ã‚ã¨ã§ç¢ºèª
 	//wk->psd->mode = PST_MODE_NORMAL;
 	wk->psd->mode = PST_MODE_NO_WAZACHG;
 
 	wk->psd->max	= PokeParty_GetPokeCount( wk->p_party );
 	wk->psd->pos	= 0;
 
-	//‚ ‚Æ‚ÅŠm”F
+	//ã‚ã¨ã§ç¢ºèª
 	wk->psd->waza	= 0;
 	wk->psd->zukan_mode = PMNumber_GetMode( wk->sv );
 	wk->psd->ev_contest = PokeStatus_ContestFlagGet( wk->sv );
 
-	//[[[[[[ƒXƒe[ƒ^ƒX‚Ìƒy[ƒW‚Í‚±‚ê‚Å‚æ‚¢‚Ì‚©H]]]]]]]
+	//[[[[[[ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒšãƒ¼ã‚¸ã¯ã“ã‚Œã§ã‚ˆã„ã®ã‹ï¼Ÿ]]]]]]]
 	PokeStatus_PageSet( wk->psd, PST_PageTbl_Normal );
 	PokeStatus_PlayerSet( wk->psd, SaveData_GetMyStatus(wk->sv) );
 	return;
@@ -2393,18 +2393,18 @@ static void Stage_SetPSD( STAGE_WORK* wk )
 
 //==============================================================================================
 //
-//	ƒc[ƒ‹
+//	ãƒ„ãƒ¼ãƒ«
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ»İ‚Ìtypeƒ`ƒFƒbƒNŠÖ”
+ * @brief	ç¾åœ¨ã®typeãƒã‚§ãƒƒã‚¯é–¢æ•°
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	type	ƒ`ƒFƒbƒN‚·‚éƒ^ƒCƒv
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¿ã‚¤ãƒ—
  *
- * @return	"TRUE = type‚ª“¯‚¶AFALSE = type‚ªˆá‚¤"
+ * @return	"TRUE = typeãŒåŒã˜ã€FALSE = typeãŒé•ã†"
  */
 //--------------------------------------------------------------
 static BOOL Stage_CheckType( STAGE_WORK* wk, u8 type )
@@ -2418,11 +2418,11 @@ static BOOL Stage_CheckType( STAGE_WORK* wk, u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒX•ÏX
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
- * @param	next	Ÿ‚ÌƒV[ƒPƒ“ƒX’è‹`
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	next	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
  *
  * @return	none
  */
@@ -2436,11 +2436,11 @@ static void NextSeq( STAGE_WORK* wk, int* seq, int next )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒL[ƒ`ƒFƒbƒN
+ * @brief	ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
  *
- * @param	key		ƒ`ƒFƒbƒN‚·‚éƒL[
+ * @param	key		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚­ãƒ¼
  *
- * @return	"Œ‹‰Ê"
+ * @return	"çµæœ"
  */
 //--------------------------------------------------------------
 static int KeyCheck( int key )
@@ -2450,9 +2450,9 @@ static int KeyCheck( int key )
 
 //--------------------------------------------------------------
 /**
- * @brief	BGƒ`ƒFƒbƒN
+ * @brief	BGãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2498,9 +2498,9 @@ static void BgCheck( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	\šƒL[‘€ì
+ * @brief	åå­—ã‚­ãƒ¼æ“ä½œ
  *
- * @param	key		ƒ`ƒFƒbƒN‚·‚éƒL[
+ * @param	key		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚­ãƒ¼
  *
  * @return	none
  */
@@ -2513,17 +2513,17 @@ static void CsrMove( STAGE_WORK* wk, int key )
 	///////////////////////////////////////////////////////////////////////////////////////////
 	if( sys.trg & PAD_KEY_LEFT ){
 
-		//Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ªƒ_ƒ~[ƒ^ƒCƒv‚Å‚È‚¢‚ÍA
-		//ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+		//ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãŒãƒ€ãƒŸãƒ¼ã‚¿ã‚¤ãƒ—ã§ãªã„æ™‚ã¯ã€
+		//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ä¿å­˜ã—ã¦ãŠã
 		if( Stage_GetPokeType(wk->csr_pos) != DUMMY_TYPE ){
 			wk->tmp_csr_pos = wk->csr_pos;
 		}else{
 		}
 
 		if( (wk->csr_pos % TYPE_X_MAX) == 0 ){					//0,4,8,12,16
-			wk->csr_pos+=(TYPE_X_MAX-1);						//0¨3
+			wk->csr_pos+=(TYPE_X_MAX-1);						//0â†’3
 		}else if( Stage_GetPokeType(wk->csr_pos) == DUMMY_TYPE ){
-			wk->csr_pos = 16;									//16(’¼’l‚È‚Ì‚Å’ˆÓI)
+			wk->csr_pos = 16;									//16(ç›´å€¤ãªã®ã§æ³¨æ„ï¼)
 		}else{
 			wk->csr_pos--;
 		}
@@ -2534,17 +2534,17 @@ static void CsrMove( STAGE_WORK* wk, int key )
 	///////////////////////////////////////////////////////////////////////////////////////////
 	if( sys.trg & PAD_KEY_RIGHT ){
 
-		//Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ªƒ_ƒ~[ƒ^ƒCƒv‚Å‚È‚¢‚ÍA
-		//ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+		//ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãŒãƒ€ãƒŸãƒ¼ã‚¿ã‚¤ãƒ—ã§ãªã„æ™‚ã¯ã€
+		//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ä¿å­˜ã—ã¦ãŠã
 		if( Stage_GetPokeType(wk->csr_pos) != DUMMY_TYPE ){
 			wk->tmp_csr_pos = wk->csr_pos;
 		}else{
 		}
 
 		if( (wk->csr_pos % TYPE_X_MAX) == (TYPE_X_MAX-1) ){		//3,7,11,15,19
-			wk->csr_pos-=(TYPE_X_MAX-1);						//0©3
+			wk->csr_pos-=(TYPE_X_MAX-1);						//0â†3
 		}else if( Stage_GetPokeType(wk->csr_pos) == DUMMY_TYPE ){
-			wk->csr_pos = 19;									//19(’¼’l‚È‚Ì‚Å’ˆÓI)
+			wk->csr_pos = 19;									//19(ç›´å€¤ãªã®ã§æ³¨æ„ï¼)
 		}else{
 			wk->csr_pos++;
 		}
@@ -2555,23 +2555,23 @@ static void CsrMove( STAGE_WORK* wk, int key )
 	///////////////////////////////////////////////////////////////////////////////////////////
 	if( sys.trg & PAD_KEY_UP ){
 
-		//Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ªƒ_ƒ~[ƒ^ƒCƒv‚Å‚È‚¢‚ÍA
-		//ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+		//ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãŒãƒ€ãƒŸãƒ¼ã‚¿ã‚¤ãƒ—ã§ãªã„æ™‚ã¯ã€
+		//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ä¿å­˜ã—ã¦ãŠã
 		if( Stage_GetPokeType(wk->csr_pos) != DUMMY_TYPE ){
 			wk->tmp_csr_pos = wk->csr_pos;
 		}else{
 		}
 
 		if( wk->csr_pos < TYPE_X_MAX ){							//0,1,2,3
-			wk->csr_pos+=(TYPE_X_MAX*(TYPE_Y_MAX-1));			//0¨16
+			wk->csr_pos+=(TYPE_X_MAX*(TYPE_Y_MAX-1));			//0â†’16
 		}else if( Stage_GetPokeType(wk->csr_pos) == DUMMY_TYPE ){
-			if( wk->tmp_csr_pos == 16 ){										//¶‚É‚¢‚½
+			if( wk->tmp_csr_pos == 16 ){										//å·¦ã«ã„ãŸ
 				wk->csr_pos = 13;
-			}else if( wk->tmp_csr_pos == 19 ){									//‰E‚É‚¢‚½
+			}else if( wk->tmp_csr_pos == 19 ){									//å³ã«ã„ãŸ
 				wk->csr_pos = 14;
-			}else if( (wk->tmp_csr_pos == 13) || (wk->tmp_csr_pos == 1 ) ){		//¶ã‚É‚¢‚½
+			}else if( (wk->tmp_csr_pos == 13) || (wk->tmp_csr_pos == 1 ) ){		//å·¦ä¸Šã«ã„ãŸ
 				wk->csr_pos = 13;
-			}else if( (wk->tmp_csr_pos == 14) || (wk->tmp_csr_pos == 2 ) ){		//‰Eã‚É‚¢‚½
+			}else if( (wk->tmp_csr_pos == 14) || (wk->tmp_csr_pos == 2 ) ){		//å³ä¸Šã«ã„ãŸ
 				wk->csr_pos = 14;
 			}
 		}else{
@@ -2584,23 +2584,23 @@ static void CsrMove( STAGE_WORK* wk, int key )
 	///////////////////////////////////////////////////////////////////////////////////////////
 	if( sys.trg & PAD_KEY_DOWN ){
 
-		//Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ªƒ_ƒ~[ƒ^ƒCƒv‚Å‚È‚¢‚ÍA
-		//ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+		//ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãŒãƒ€ãƒŸãƒ¼ã‚¿ã‚¤ãƒ—ã§ãªã„æ™‚ã¯ã€
+		//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ä¿å­˜ã—ã¦ãŠã
 		if( Stage_GetPokeType(wk->csr_pos) != DUMMY_TYPE ){
 			wk->tmp_csr_pos = wk->csr_pos;
 		}else{
 		}
 
 		if( wk->csr_pos >= TYPE_X_MAX*(TYPE_Y_MAX-1) ){							//16,17,18,19
-			wk->csr_pos-=(TYPE_X_MAX*(TYPE_Y_MAX-1));							//16¨0
+			wk->csr_pos-=(TYPE_X_MAX*(TYPE_Y_MAX-1));							//16â†’0
 		}else if( Stage_GetPokeType(wk->csr_pos) == DUMMY_TYPE ){
-			if( wk->tmp_csr_pos == 16 ){										//¶‚É‚¢‚½
+			if( wk->tmp_csr_pos == 16 ){										//å·¦ã«ã„ãŸ
 				wk->csr_pos = 1;
-			}else if( wk->tmp_csr_pos == 19 ){									//‰E‚É‚¢‚½
+			}else if( wk->tmp_csr_pos == 19 ){									//å³ã«ã„ãŸ
 				wk->csr_pos = 2;
-			}else if( (wk->tmp_csr_pos == 13) || (wk->tmp_csr_pos == 1 ) ){		//¶ã‚É‚¢‚½
+			}else if( (wk->tmp_csr_pos == 13) || (wk->tmp_csr_pos == 1 ) ){		//å·¦ä¸Šã«ã„ãŸ
 				wk->csr_pos = 1;
-			}else if( (wk->tmp_csr_pos == 14) || (wk->tmp_csr_pos == 2 ) ){		//‰Eã‚É‚¢‚½
+			}else if( (wk->tmp_csr_pos == 14) || (wk->tmp_csr_pos == 2 ) ){		//å³ä¸Šã«ã„ãŸ
 				wk->csr_pos = 2;
 			}
 		}else{
@@ -2615,12 +2615,12 @@ static void CsrMove( STAGE_WORK* wk, int key )
 		StageObj_SetObjPos( wk->p_csr, GetCsrX(wk), GetCsrY(wk) );
 	}
 
-	//Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ªƒ_ƒ~[ƒ^ƒCƒv‚©‚ÅƒAƒjƒ‚ğ•ÏX‚·‚é
+	//ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãŒãƒ€ãƒŸãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã§ã‚¢ãƒ‹ãƒ¡ã‚’å¤‰æ›´ã™ã‚‹
 	if( Stage_GetPokeType(wk->csr_pos) == DUMMY_TYPE ){
-		StageObj_AnmChg( wk->p_csr, ANM_CSR_POKE );			//ƒAƒjƒ•ÏX
+		StageObj_AnmChg( wk->p_csr, ANM_CSR_POKE );			//ã‚¢ãƒ‹ãƒ¡å¤‰æ›´
 		StageObj_SetObjPos( wk->p_csr, CSR_POKE_X, CSR_POKE_Y );
 	}else{
-		StageObj_AnmChg( wk->p_csr, ANM_CSR_MOVE );			//ƒAƒjƒ•ÏX
+		StageObj_AnmChg( wk->p_csr, ANM_CSR_MOVE );			//ã‚¢ãƒ‹ãƒ¡å¤‰æ›´
 	}
 
 	return;
@@ -2628,9 +2628,9 @@ static void CsrMove( STAGE_WORK* wk, int key )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚wæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ï¼¸å–å¾—
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"X"
  */
@@ -2645,9 +2645,9 @@ static u16 GetCsrX( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚xæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ï¼¹å–å¾—
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"Y"
  */
@@ -2659,9 +2659,9 @@ static u16 GetCsrY( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒv‚ÌƒpƒŒƒbƒg”Ô†‚ğ•ÏX
+ * @brief	ã‚¿ã‚¤ãƒ—ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’å¤‰æ›´
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2670,41 +2670,41 @@ static void GameStartTypeScrnPalChg( STAGE_WORK* wk, GF_BGL_INI* ini )
 {
 	int i;
 
-	//ƒuƒŒ[ƒ“‚ª“oê‚·‚éí“¬‰ñ”‚¾‚Á‚½‚çAu???vˆÈŠO‚ÍƒpƒŒƒbƒg•ÏX
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒç™»å ´ã™ã‚‹æˆ¦é—˜å›æ•°ã ã£ãŸã‚‰ã€ã€Œ???ã€ä»¥å¤–ã¯ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 	//if( Stage_BtlCountLeaderCheck(wk->btl_count) == TRUE ){
 	if( Stage_BrainAppearCheck(wk) == TRUE ){
 
-		//u???v‚ÍŠÜ‚Ü‚¸
+		//ã€Œ???ã€ã¯å«ã¾ãš
 		//for( i=0; i < (STAGE_TR_TYPE_MAX-1) ;i++ ){
-		for( i=0; i < (TYPE_XY_MAX-3) ;i++ ){			//status¶Astatus‰EA???‚Ì3‚Â‚ğ”²‚©‚·
+		for( i=0; i < (TYPE_XY_MAX-3) ;i++ ){			//statuså·¦ã€statuså³ã€???ã®3ã¤ã‚’æŠœã‹ã™
 			ScrnPalChg( ini, i, MAX_PAL_CHG );
 		}
 
 	}else{
 
-		//ŠJn‚ÉƒŒƒxƒ‹‚ªƒ}ƒbƒNƒX‚É‚È‚Á‚Ä‚¢‚é‚à‚Ì‚ÍƒpƒŒƒbƒg”Ô†‚ğ•ÏX
+		//é–‹å§‹æ™‚ã«ãƒ¬ãƒ™ãƒ«ãŒãƒãƒƒã‚¯ã‚¹ã«ãªã£ã¦ã„ã‚‹ã‚‚ã®ã¯ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’å¤‰æ›´
 		//for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
 		for( i=0; i < (STAGE_TR_TYPE_MAX-1) ;i++ ){
 			if( Stage_GetTypeLevel(i,wk->p_rank) >= STAGE_TYPE_LEVEL_MAX ){		//0-9,10
-				//w’èƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“‚Ìw’èˆÊ’u‚ÌƒpƒŒƒbƒg‚ğ•ÏX‚·‚é
+				//æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æŒ‡å®šä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹
 				ScrnPalChg( ini, i, MAX_PAL_CHG );
 			}
 		}
 
-		//u???v‚ğƒpƒŒƒbƒg•ÏX
+		//ã€Œ???ã€ã‚’ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 		ScrnPalChg( ini, (TYPE_XY_MAX - 1), MAX_PAL_CHG );
 	}
 
-	//ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req( ini, BS_FRAME_BG );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	w’èƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“‚Ìw’èˆÊ’u‚ÌƒpƒŒƒbƒg‚ğ•ÏX
+ * @brief	æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æŒ‡å®šä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2714,19 +2714,19 @@ static void ScrnPalChg( GF_BGL_INI* ini, u8 csr_pos, u8 flag )
 	u8 px,py,sx,sy,pal;
 
 	if( flag == NORMAL_PAL_CHG ){
-		pal = NORMAL_PAL;					//’ÊíƒpƒŒƒbƒg
+		pal = NORMAL_PAL;					//é€šå¸¸ãƒ‘ãƒ¬ãƒƒãƒˆ
 	}else if( flag == DECIDE_PAL_CHG ){
-		pal = DECIDE_PAL;					//ƒvƒŒƒCƒ„[Œˆ’èƒpƒŒƒbƒg
+		pal = DECIDE_PAL;					//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ±ºå®šãƒ‘ãƒ¬ãƒƒãƒˆ
 	}else if( flag == PAIR_PAL_CHG ){
-		pal = PAIR_PAL;						//ƒp[ƒgƒi[Œˆ’èƒpƒŒƒbƒg
+		pal = PAIR_PAL;						//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼æ±ºå®šãƒ‘ãƒ¬ãƒƒãƒˆ
 	}else{
-		pal = MAX_PAL;						//ƒŒƒxƒ‹Å‚ƒpƒŒƒbƒg
+		pal = MAX_PAL;						//ãƒ¬ãƒ™ãƒ«æœ€é«˜ãƒ‘ãƒ¬ãƒƒãƒˆ
 	}
 
 	sx = 8;
 	px = (csr_pos % TYPE_X_MAX) * sx;
 
-	//ƒXƒNƒŠ[ƒ“‚Ì‚xƒTƒCƒY‚ªêŠ‚É‚æ‚Á‚Äˆá‚¤‚Ì‚Å’²®
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ï¼¹ã‚µã‚¤ã‚ºãŒå ´æ‰€ã«ã‚ˆã£ã¦é•ã†ã®ã§èª¿æ•´
 	if( (csr_pos % 8) < 4 ){
 		sy = 5;
 	}else{
@@ -2753,14 +2753,14 @@ static void ScrnPalChg( GF_BGL_INI* ini, u8 csr_pos, u8 flag )
 	GF_BGL_ScrPalChange( ini, BS_FRAME_BG, px, py, sx, sy, pal );
 
 	/////////////////////////////////////////////////////////////////////////
-	//’ÊíƒpƒŒƒbƒg‚Í2–{g‚í‚ê‚Ä‚¢‚é‚Ì‚Å‚³‚ç‚Éã‘‚«
+	//é€šå¸¸ãƒ‘ãƒ¬ãƒƒãƒˆã¯2æœ¬ä½¿ã‚ã‚Œã¦ã„ã‚‹ã®ã§ã•ã‚‰ã«ä¸Šæ›¸ã
 	if( flag == NORMAL_PAL_CHG ){
 		pal = NORMAL_PAL;
 
 		sx = 1;
 		px = (csr_pos % TYPE_X_MAX) * 8;
 
-		//ƒXƒNƒŠ[ƒ“‚Ì‚xƒTƒCƒY‚ªêŠ‚É‚æ‚Á‚Äˆá‚¤‚Ì‚Å’²®
+		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ï¼¹ã‚µã‚¤ã‚ºãŒå ´æ‰€ã«ã‚ˆã£ã¦é•ã†ã®ã§èª¿æ•´
 		if( (csr_pos % 8) < 4 ){
 			sy = 2;
 		}else{
@@ -2784,11 +2784,11 @@ static void ScrnPalChg( GF_BGL_INI* ini, u8 csr_pos, u8 flag )
 		//OS_Printf( "sx = %d\n", sx );
 		//OS_Printf( "sy = %d\n", sy );
 		
-		//‘‚«Š·‚¦‚éƒpƒŒƒbƒg‚ªˆá‚¤
+		//æ›¸ãæ›ãˆã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãŒé•ã†
 		if( csr_pos < 9 ){
-			GF_BGL_ScrPalChange( ini, BS_FRAME_BG, px, py, sx, sy, NORMAL_PAL2 );	//‘O”¼
+			GF_BGL_ScrPalChange( ini, BS_FRAME_BG, px, py, sx, sy, NORMAL_PAL2 );	//å‰åŠ
 		}else{
-			GF_BGL_ScrPalChange( ini, BS_FRAME_BG, px, py, sx, sy, NORMAL_PAL3 );	//Œã”¼
+			GF_BGL_ScrPalChange( ini, BS_FRAME_BG, px, py, sx, sy, NORMAL_PAL3 );	//å¾ŒåŠ
 		}
 	}
 
@@ -2797,9 +2797,9 @@ static void ScrnPalChg( GF_BGL_INI* ini, u8 csr_pos, u8 flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘S‚Ä‚Ìƒ^ƒCƒv‚ªLV10‚©ƒ`ƒFƒbƒN‚µ‚Äƒtƒ‰ƒO‚ğƒZƒbƒg
+ * @brief	å…¨ã¦ã®ã‚¿ã‚¤ãƒ—ãŒLV10ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2808,7 +2808,7 @@ static void StageMasterFlagSet( STAGE_WORK* wk )
 {
 	int i;
 
-	//u???v‚ÍŠÜ‚Ü‚¸
+	//ã€Œ???ã€ã¯å«ã¾ãš
 	//for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
 	for( i=0; i < (STAGE_TR_TYPE_MAX-1) ;i++ ){
 		if( Stage_GetTypeLevel(i,wk->p_rank) < STAGE_TYPE_LEVEL_MAX ){
@@ -2823,11 +2823,11 @@ static void StageMasterFlagSet( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒf[ƒ^‚ğQÆ‚·‚é‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ğ’²®‚µ‚½’l‚ğæ“¾
+ * @brief	ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã™ã‚‹æ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’èª¿æ•´ã—ãŸå€¤ã‚’å–å¾—
  *
- * @param	csr_pos		ƒJ[ƒ\ƒ‹ˆÊ’u
+ * @param	csr_pos		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
  *
- * @return	"’²®‚µ‚½ƒJ[ƒ\ƒ‹ˆÊ’u"
+ * @return	"èª¿æ•´ã—ãŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®"
  */
 //--------------------------------------------------------------
 static u8 Stage_GetCsrPos( u8 csr_pos )
@@ -2841,11 +2841,11 @@ static u8 Stage_GetCsrPos( u8 csr_pos )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒuƒŒ[ƒ“‚ª“oê‚·‚éí“¬‰ñ”‚©‚ğæ“¾
+ * @brief	ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒç™»å ´ã™ã‚‹æˆ¦é—˜å›æ•°ã‹ã‚’å–å¾—
  *
- * @param	btl_count	í“¬‰ñ”
+ * @param	btl_count	æˆ¦é—˜å›æ•°
  *
- * @return	"TRUE = ƒuƒŒ[ƒ““oêAFALSE = ‚µ‚È‚¢"
+ * @return	"TRUE = ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã€FALSE = ã—ãªã„"
  */
 //--------------------------------------------------------------
 static BOOL Stage_BtlCountLeaderCheck( STAGE_WORK* wk )
@@ -2854,10 +2854,10 @@ static BOOL Stage_BtlCountLeaderCheck( STAGE_WORK* wk )
 	return TRUE;
 #endif
 
-	//ƒVƒ“ƒOƒ‹‚Ì‚İ
+	//ã‚·ãƒ³ã‚°ãƒ«ã®ã¿
 	if( wk->type == STAGE_TYPE_SINGLE ){
 
-		//ƒuƒŒ[ƒ“‚ª“oê‚·‚éí“¬‰ñ”‚¾‚Á‚½‚çAu???vˆÈŠO‚ÍƒpƒŒƒbƒg•ÏX
+		//ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒç™»å ´ã™ã‚‹æˆ¦é—˜å›æ•°ã ã£ãŸã‚‰ã€ã€Œ???ã€ä»¥å¤–ã¯ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 		if( (wk->btl_count == STAGE_LEADER_SET_1ST) || (wk->btl_count == STAGE_LEADER_SET_2ND) ){
 			return TRUE;
 		}
@@ -2868,11 +2868,11 @@ static BOOL Stage_BtlCountLeaderCheck( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒuƒŒ[ƒ“‚ª“oê‚·‚éƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN‚ğæ“¾
+ * @brief	ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒç™»å ´ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯ã‚’å–å¾—
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = ƒuƒŒ[ƒ““oêAFALSE = ‚µ‚È‚¢"
+ * @return	"TRUE = ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã€FALSE = ã—ãªã„"
  */
 //--------------------------------------------------------------
 static BOOL Stage_BrainAppearCheck( STAGE_WORK* wk )
@@ -2883,16 +2883,16 @@ static BOOL Stage_BrainAppearCheck( STAGE_WORK* wk )
 
 //==============================================================================================
 //
-//	’ÊM(CommStart)
+//	é€šä¿¡(CommStart)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—MƒEƒFƒCƒg@
+ * @brief	é€ä¿¡ã‚¦ã‚§ã‚¤ãƒˆã€€
  *
- * @param	wk			STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	type		‘—Mƒ^ƒCƒv
+ * @param	wk			STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type		é€ä¿¡ã‚¿ã‚¤ãƒ—
  *
  * @retval	none
  */
@@ -2901,26 +2901,26 @@ BOOL Stage_CommSetSendBuf( STAGE_WORK* wk, u16 type, u16 param )
 {
 	int ret,command;
 
-	//’ÊMƒ^ƒCƒv‚Å‚È‚¢
+	//é€šä¿¡ã‚¿ã‚¤ãƒ—ã§ãªã„æ™‚
 	if( Stage_CommCheck(wk->type) == FALSE ){
 		return FALSE;
 	}
 
 	switch( type ){
 
-	//–¼‘O
+	//åå‰
 	case STAGE_COMM_PAIR:
 		command = FC_STAGE_PAIR;
 		Stage_CommSendBufBasicData( wk, type );
 		break;
 
-	//ƒ^ƒCƒv‘I‘ğ‰æ–Ê‚ÅŒˆ’è‚µ‚½ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv
+	//ã‚¿ã‚¤ãƒ—é¸æŠç”»é¢ã§æ±ºå®šã—ãŸãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—
 	case STAGE_COMM_PAIR_POKETYPE:
 		command = FC_STAGE_PAIR_POKETYPE;
 		Stage_CommSendBufPokeTypeData( wk, type, param );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğÅIŒˆ’è‚©ƒLƒƒƒ“ƒZƒ‹‚©
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’æœ€çµ‚æ±ºå®šã‹ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã‹
 	case STAGE_COMM_PAIR_FINAL_ANSWER:
 		command = FC_STAGE_PAIR_FINAL_ANSWER;
 		Stage_CommSendBufFinalAnswerData( wk, type, param );
@@ -2938,9 +2938,9 @@ BOOL Stage_CommSetSendBuf( STAGE_WORK* wk, u16 type, u16 param )
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉŠî–{î•ñ‚ğƒZƒbƒg
+ * @brief	send_bufã«åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2952,18 +2952,18 @@ void Stage_CommSendBufBasicData( STAGE_WORK* wk, u16 type )
 	my	= SaveData_GetMyStatus( wk->sv );
 
 	wk->send_buf[0] = type;
-	OS_Printf( "‘—MFtype = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼štype = %d\n", wk->send_buf[0] );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Šî–{î•ñ ’ÊMóMˆ—
+ * @brief   åŸºæœ¬æƒ…å ± é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Stage_CommRecvBufBasicData(int id_no,int size,void *pData,void *work)
@@ -2972,12 +2972,12 @@ void Stage_CommRecvBufBasicData(int id_no,int size,void *pData,void *work)
 	STAGE_WORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒXƒe[ƒW****** Šî–{î•ñóM\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** åŸºæœ¬æƒ…å ±å—ä¿¡\n" );
 
 	num = 0;
 	//wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -2995,9 +2995,9 @@ void Stage_CommRecvBufBasicData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éƒ^ƒCƒv‘I‘ğ‰æ–Ê‚ÅŒˆ’è‚µ‚½ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğƒZƒbƒg
+ * @brief	send_bufã«ã‚¿ã‚¤ãƒ—é¸æŠç”»é¢ã§æ±ºå®šã—ãŸãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3010,39 +3010,39 @@ void Stage_CommSendBufPokeTypeData( STAGE_WORK* wk, u16 type, u16 param )
 	
 	num = 0;
 
-	//ƒRƒ}ƒ“ƒh
+	//ã‚³ãƒãƒ³ãƒ‰
 	wk->send_buf[0] = type;
-	OS_Printf( "‘—MFtype = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼štype = %d\n", wk->send_buf[0] );
 
-	//‘I‘ğ‚µ‚Ä‚¢‚éˆÊ’u
+	//é¸æŠã—ã¦ã„ã‚‹ä½ç½®
 	wk->send_buf[1] = param;
-	OS_Printf( "‘—MFcsr_pos = %d\n", wk->send_buf[1] );
+	OS_Printf( "é€ä¿¡ï¼šcsr_pos = %d\n", wk->send_buf[1] );
 
-	//æ‚Éq‚Ì‘I‘ğ‚ª‚«‚Ä‚¢‚È‚­‚ÄA‚Ü‚¾’l‚ª“ü‚Á‚Ä‚¢‚È‚¢‚ÍAe‚ÌŒˆ’è‚ÍƒZƒbƒg‚µ‚Ä‚µ‚Ü‚¤
+	//å…ˆã«å­ã®é¸æŠãŒãã¦ã„ãªãã¦ã€ã¾ã å€¤ãŒå…¥ã£ã¦ã„ãªã„æ™‚ã¯ã€è¦ªã®æ±ºå®šã¯ã‚»ãƒƒãƒˆã—ã¦ã—ã¾ã†
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		if( wk->parent_decide_pos == STAGE_DECIDE_NONE ){
 			wk->parent_decide_pos = param;
 		}
 	}
 
-	//e‚ÌŒˆ’èƒ^ƒCƒv
+	//è¦ªã®æ±ºå®šã‚¿ã‚¤ãƒ—
 	wk->send_buf[2] = wk->parent_decide_pos;
-	OS_Printf( "‘—MFparent_decide_pos = %d\n", wk->send_buf[2] );
+	OS_Printf( "é€ä¿¡ï¼šparent_decide_pos = %d\n", wk->send_buf[2] );
 
 	poke =  PokeParty_GetMemberPointer( wk->p_party, 0 );
 	wk->send_buf[3] = PokeParaGet( poke, ID_PARA_level, NULL );
-	OS_Printf( "‘—MFpoke level = %d\n", wk->send_buf[3] );
+	OS_Printf( "é€ä¿¡ï¼špoke level = %d\n", wk->send_buf[3] );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   recv_buf‚Ìƒ^ƒCƒv‘I‘ğ‰æ–Ê‚ÅŒˆ’è‚µ‚½ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv ’ÊMóMˆ—
+ * @brief   recv_bufã®ã‚¿ã‚¤ãƒ—é¸æŠç”»é¢ã§æ±ºå®šã—ãŸãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ— é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Stage_CommRecvBufPokeTypeData(int id_no,int size,void *pData,void *work)
@@ -3051,54 +3051,54 @@ void Stage_CommRecvBufPokeTypeData(int id_no,int size,void *pData,void *work)
 	STAGE_WORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒXƒe[ƒW****** Šî–{î•ñóM\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** åŸºæœ¬æƒ…å ±å—ä¿¡\n" );
 
 	num = 0;
 	wk->typesel_recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	//type = recv_buf[0];
 	
-	wk->pair_csr_pos = recv_buf[1];	//ƒp[ƒgƒi[‚ª‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv(ƒJ[ƒ\ƒ‹ˆÊ’u)
-	OS_Printf( "óMFwk->pair_csr_pos = %d\n", wk->pair_csr_pos );
+	wk->pair_csr_pos = recv_buf[1];	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒé¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—(ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®)
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_csr_pos = %d\n", wk->pair_csr_pos );
 
 	////////////////////////////////////////////////////////////////////////
-	//e
+	//è¦ª
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 
-		//e‚ÌŒˆ’è‚ª‚·‚Å‚ÉŒˆ‚Ü‚Á‚Ä‚¢‚½‚çAq‚Ì‘I‘ğ‚Í–³Œø
+		//è¦ªã®æ±ºå®šãŒã™ã§ã«æ±ºã¾ã£ã¦ã„ãŸã‚‰ã€å­ã®é¸æŠã¯ç„¡åŠ¹
 		if( wk->parent_decide_pos != STAGE_DECIDE_NONE ){
 			wk->pair_csr_pos = 0;
 		}else{
 
-			//q‚Ì‘I‘ğ‚ªÌ—p‚³‚ê‚½‚±‚Æ‚ª‚í‚©‚é‚æ‚¤‚ÉƒIƒtƒZƒbƒg(TYPE_XY_MAX)‚ğ‰Á‚¦‚é
+			//å­ã®é¸æŠãŒæ¡ç”¨ã•ã‚ŒãŸã“ã¨ãŒã‚ã‹ã‚‹ã‚ˆã†ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆ(TYPE_XY_MAX)ã‚’åŠ ãˆã‚‹
 			wk->parent_decide_pos	= wk->pair_csr_pos + TYPE_XY_MAX;
 		}
 	////////////////////////////////////////////////////////////////////////
-	//q
+	//å­
 	}else{
-		//e‚ÌŒˆ’èƒ^ƒCƒv
+		//è¦ªã®æ±ºå®šã‚¿ã‚¤ãƒ—
 		wk->parent_decide_pos = recv_buf[2];
 	}
 
-	OS_Printf( "óMFwk->parent_decide_pos = %d\n", wk->parent_decide_pos );
+	OS_Printf( "å—ä¿¡ï¼šwk->parent_decide_pos = %d\n", wk->parent_decide_pos );
 
 	//////////////////////////////////////////////////////////////////////////////////////
 	
 	*(wk->p_pair_poke_level) = recv_buf[3];
-	OS_Printf( "óMFwk->p_pair_poke_level = %d\n", *(wk->p_pair_poke_level) );
+	OS_Printf( "å—ä¿¡ï¼šwk->p_pair_poke_level = %d\n", *(wk->p_pair_poke_level) );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğÅIŒˆ’è‚©ƒLƒƒƒ“ƒZƒ‹‚©‚ğƒZƒbƒg
+ * @brief	send_bufã«ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’æœ€çµ‚æ±ºå®šã‹ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã‹ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3106,21 +3106,21 @@ void Stage_CommRecvBufPokeTypeData(int id_no,int size,void *pData,void *work)
 void Stage_CommSendBufFinalAnswerData( STAGE_WORK* wk, u16 type, u16 param )
 {
 	wk->send_buf[0] = type;
-	OS_Printf( "‘—MFtype = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼štype = %d\n", wk->send_buf[0] );
 
 	wk->send_buf[1] = param;
-	OS_Printf( "‘—MFpair_final_answer = %d\n", wk->send_buf[1] );
+	OS_Printf( "é€ä¿¡ï¼špair_final_answer = %d\n", wk->send_buf[1] );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   recv_buf‚Ìƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğÅIŒˆ’è‚©ƒLƒƒƒ“ƒZƒ‹‚© ’ÊMóMˆ—
+ * @brief   recv_bufã®ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’æœ€çµ‚æ±ºå®šã‹ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã‹ é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Stage_CommRecvBufFinalAnswerData(int id_no,int size,void *pData,void *work)
@@ -3129,12 +3129,12 @@ void Stage_CommRecvBufFinalAnswerData(int id_no,int size,void *pData,void *work)
 	STAGE_WORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒXƒe[ƒW****** Šî–{î•ñóM\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** åŸºæœ¬æƒ…å ±å—ä¿¡\n" );
 
 	num = 0;
 	//wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -3144,26 +3144,26 @@ void Stage_CommRecvBufFinalAnswerData(int id_no,int size,void *pData,void *work)
 	//OS_Printf( "pData[0] = %d\n", ((u8*)pData)[0] );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//‰½‚à‚È‚µ‚Í‚»‚Ì‚Ü‚Ü
+	//ä½•ã‚‚ãªã—ã¯ãã®ã¾ã¾
 	if( recv_buf[1] == FINAL_ANSWER_NONE ){
 		return;
 	}
 	
-	wk->pair_final_answer = recv_buf[1];		//0=‰½‚à‚È‚µA1=ÅIŒˆ’èA2=ƒLƒƒƒ“ƒZƒ‹
-	OS_Printf( "óMFwk->pair_final_answer = %d\n", wk->pair_final_answer );
+	wk->pair_final_answer = recv_buf[1];		//0=ä½•ã‚‚ãªã—ã€1=æœ€çµ‚æ±ºå®šã€2=ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_final_answer = %d\n", wk->pair_final_answer );
 	return;
 }
 
 
 //==============================================================================================
 //
-//	ƒTƒuƒV[ƒPƒ“ƒX
+//	ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒNƒŠƒA
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
  *
  * @param	
  *
@@ -3182,7 +3182,7 @@ static void Stage_SeqSubMenuWinClear( STAGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒv‚ğ‘I‚ñ‚Åu‚Í‚¢A‚¢‚¢‚¦v’†
+ * @brief	ã‚¿ã‚¤ãƒ—ã‚’é¸ã‚“ã§ã€Œã¯ã„ã€ã„ã„ãˆã€ä¸­
  *
  * @param	
  *
@@ -3194,40 +3194,40 @@ static void Stage_SeqSubTypeSelYesNo( STAGE_WORK* wk )
 	u8 num;
 	int msg_id;
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE•\¦
-	StageObj_Vanish( wk->p_icon, STAGE_VANISH_ON );	//”ñ•\¦
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
+	StageObj_Vanish( wk->p_icon, STAGE_VANISH_ON );	//éè¡¨ç¤º
 	StageTalkWinPut( &wk->bmpwin[BMPWIN_TALK], CONFIG_GetWindowType(wk->config) );
 
-	//u›ƒ^ƒCƒv‚Ì›ƒ‰ƒ“ƒN‚Æƒoƒgƒ‹‚µ‚Ü‚·‚©Hv
+	//ã€Œâ—‹ã‚¿ã‚¤ãƒ—ã®â—‹ãƒ©ãƒ³ã‚¯ã¨ãƒãƒˆãƒ«ã—ã¾ã™ã‹ï¼Ÿã€
 	WORDSET_RegisterPokeTypeName( wk->wordset, 0, Stage_GetPokeType(wk->csr_pos) );
 
 	num = Stage_GetTypeLevel( Stage_GetCsrPos(wk->csr_pos),wk->p_rank );	//0-9,10
 	num++;
 	if( num > STAGE_TYPE_LEVEL_MAX ){
-		num = STAGE_TYPE_LEVEL_MAX;		//•\¦‚Í10‚ªÅ‘å
+		num = STAGE_TYPE_LEVEL_MAX;		//è¡¨ç¤ºã¯10ãŒæœ€å¤§
 	}
 
 	Stage_SetNumber(wk, 1, num );
 
 	if( Stage_BrainAppearCheck(wk) == TRUE ){
-		msg_id = msg_stage_room_44;		//ƒuƒŒ[ƒ“
+		msg_id = msg_stage_room_44;		//ãƒ–ãƒ¬ãƒ¼ãƒ³
 	}else{
-		msg_id = msg_stage_room_41;		//’Êí
+		msg_id = msg_stage_room_41;		//é€šå¸¸
 	}
 
 	wk->msg_index = Stage_EasyMsg( wk, msg_id, FONT_TALK );
 
-	//ƒAƒjƒ•ÏX
+	//ã‚¢ãƒ‹ãƒ¡å¤‰æ›´
 	StageObj_AnmChg( wk->p_csr, ANM_CSR_STOP );
 
-	//u‚Í‚¢E‚¢‚¢‚¦v
+	//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 	Stage_SetMenu2( wk );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒv‚ğ‘I‚ñ‚Åu‚¢‚¢‚¦v
+ * @brief	ã‚¿ã‚¤ãƒ—ã‚’é¸ã‚“ã§ã€Œã„ã„ãˆã€
  *
  * @param	
  *
@@ -3238,18 +3238,18 @@ static void Stage_SeqSubTypeSelNo( STAGE_WORK* wk )
 {
 	Stage_SeqSubWinRet( wk );
 
-	//w’èƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“‚Ìw’èˆÊ’u‚ÌƒpƒŒƒbƒg‚ğ•ÏX‚·‚é
+	//æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æŒ‡å®šä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹
 	ScrnPalChg( wk->bgl, wk->csr_pos, NORMAL_PAL_CHG );
-	GF_BGL_LoadScreenV_Req( wk->bgl, BS_FRAME_BG );	//ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	GF_BGL_LoadScreenV_Req( wk->bgl, BS_FRAME_BG );	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 
-	//ƒAƒjƒ•ÏX
+	//ã‚¢ãƒ‹ãƒ¡å¤‰æ›´
 	StageObj_AnmChg( wk->p_csr, ANM_CSR_MOVE );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒEƒBƒ“ƒhƒE‚ğŒ³‚É–ß‚·
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å…ƒã«æˆ»ã™
  *
  * @param	
  *
@@ -3258,9 +3258,9 @@ static void Stage_SeqSubTypeSelNo( STAGE_WORK* wk )
 //--------------------------------------------------------------
 static void Stage_SeqSubWinRet( STAGE_WORK* wk )
 {
-	StageObj_Vanish( wk->p_icon, STAGE_VANISH_OFF );					//ƒ|ƒPƒ‚ƒ“•\¦
-	BmpTalkWinClear( &wk->bmpwin[BMPWIN_TALK], WINDOW_TRANS_ON );		//‰ï˜bƒEƒBƒ“ƒhƒEíœ
-	PokeNameWrite(	wk, &wk->bmpwin[BMPWIN_POKE1], 0, 0,				//ƒ|ƒPƒ‚ƒ“–¼‚ğ•\¦
+	StageObj_Vanish( wk->p_icon, STAGE_VANISH_OFF );					//ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤º
+	BmpTalkWinClear( &wk->bmpwin[BMPWIN_TALK], WINDOW_TRANS_ON );		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
+	PokeNameWrite(	wk, &wk->bmpwin[BMPWIN_POKE1], 0, 0,				//ãƒã‚±ãƒ¢ãƒ³åã‚’è¡¨ç¤º
 					FBMP_COL_BLACK, FBMP_COL_BLK_SDW, FBMP_COL_NULL, BS_FONT );
 	return;
 }

@@ -16,25 +16,25 @@
 #  Copyright fix
 #
 #  Revision 1.20  2007/07/09 12:18:07  yasu
-#  TARGET_NAME ‚ÌƒTƒ|[ƒg
+#  TARGET_NAME ã®ã‚µãƒãƒ¼ãƒˆ
 #
 #  Revision 1.19  2006/05/11 12:55:47  yasu
-#  ’˜ì”N“x‚Ì•ÏX
+#  è‘—ä½œå¹´åº¦ã®å¤‰æ›´
 #
 #  Revision 1.18  2006/05/10 03:18:56  yasu
-#  IF-ELSE-ENDIF ‚ÌğŒ”»’è‚Ìƒ`ƒFƒbƒN‚¨‚æ‚Ñ searchsymbol •¶‚ÌƒeƒXƒg
+#  IF-ELSE-ENDIF ã®æ¡ä»¶åˆ¤å®šã®ãƒã‚§ãƒƒã‚¯ãŠã‚ˆã³ searchsymbol æ–‡ã®ãƒ†ã‚¹ãƒˆ
 #
 #  Revision 1.17  2005/08/29 00:17:13  yasu
-#  ’˜ì”N“xC³
+#  è‘—ä½œå¹´åº¦ä¿®æ­£
 #
 #  Revision 1.16  2005/08/29 00:12:29  yasu
-#  -d ƒIƒvƒVƒ‡ƒ“‚ğ‚Í‚¸‚·
+#  -d ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ã¯ãšã™
 #
 #  Revision 1.15  2005/08/26 11:23:38  yasu
-#  ITCM/DTCM ‚Ö‚Ì overlay ‚Ì‘Î‰
+#  ITCM/DTCM ã¸ã® overlay ã®å¯¾å¿œ
 #
 #  Revision 1.14  2005/08/26 04:35:19  yasu
-#  DTCM overlay ‚ÌƒAƒŠ[ƒi‚ª‚¨‚©‚µ‚­‚È‚é‚Ì‚ğC³
+#  DTCM overlay æ™‚ã®ã‚¢ãƒªãƒ¼ãƒŠãŒãŠã‹ã—ããªã‚‹ã®ã‚’ä¿®æ­£
 #
 #  Revision 1.13  2004/08/05 13:37:28  yasu
 #  Add test code for -M option

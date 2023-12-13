@@ -1,13 +1,13 @@
 #ifndef _SEISEKI_DEF_H_
 #define _SEISEKI_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_SEISEKI_TOWER		(10450)
 #define	SCRID_SEISEKI_TOWER_MULTI		(10451)
 #define	SCRID_SEISEKI_FACTORY		(10452)
 #define	SCRID_SEISEKI_STAGE		(10453)
 #define	SCRID_SEISEKI_CASTLE		(10454)
 #define	SCRID_SEISEKI_ROULETTE		(10455)
-#define	SCRID_SEISEKI_DATA_MAX		(6)		//最大数
+#define	SCRID_SEISEKI_DATA_MAX		(6)		//譛螟ｧ謨ｰ
 
 #endif //_SEISEKI_DEF_H_

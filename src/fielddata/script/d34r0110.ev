@@ -11,11 +11,11 @@
 	.include	"../../../include/battle/battle_common.h"
 	
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d34r0110_flag_change
 _EVENT_DATA		ev_d34r0110_init_change
@@ -30,14 +30,14 @@ _EVENT_DATA_END
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /*
- * ’ˆÓI(06.02.09Œ»Ý)
- * EV_SCRIPT_WORK‚ðŠm•Û‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA
- * SCWK_ANSWER‚È‚Ç‚Ìƒ[ƒN‚ÍŽg—p‚·‚é‚±‚Æ‚ªo—ˆ‚È‚¢I
- * LOCALWORK0‚È‚Ç‚ðŽg—p‚·‚é‚æ‚¤‚É‚·‚éI
+ * æ³¨æ„ï¼(06.02.09ç¾åœ¨)
+ * EV_SCRIPT_WORKã‚’ç¢ºä¿ã—ã¦ã„ãªã„ã®ã§ã€
+ * SCWK_ANSWERãªã©ã®ãƒ¯ãƒ¼ã‚¯ã¯ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã„ï¼
+ * LOCALWORK0ãªã©ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
  *
- * ‹¤’ÊƒXƒNƒŠƒvƒg‚É‚Â‚¢‚Ä‚ÍŒ»óŽg—p•s‰ÂI
- * ‘Î‰ž—\’è‚¾‚ªAƒ][ƒ“‚ð‚Ü‚½‚¢‚¾Žž‚Éˆ——Ž‚¿‚·‚é‚©‚àH
- * ‚ ‚Ü‚è‚Â‚©‚í‚È‚¢‚©‚àH
+ * å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ã¤ã„ã¦ã¯ç¾çŠ¶ä½¿ç”¨ä¸å¯ï¼
+ * å¯¾å¿œäºˆå®šã ãŒã€ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸã„ã æ™‚ã«å‡¦ç†è½ã¡ã™ã‚‹ã‹ã‚‚ï¼Ÿ
+ * ã‚ã¾ã‚Šã¤ã‹ã‚ãªã„ã‹ã‚‚ï¼Ÿ
  */
 /********************************************************************/
 ev_d34r0110_flag_change:
@@ -58,7 +58,7 @@ ev_d34r0110_init_change_obj_del:
 	_END
 	
 /********************************************************************/
-/*	ƒMƒ‰ŒŠ															*/
+/*	ã‚®ãƒ©ç©´															*/
 /********************************************************************/
 ev_d34r0110_hole_talk:
 	_TALK_START
@@ -76,24 +76,24 @@ ev_d34r0110_hole_talk_yes:
 	_TALKMSG		msg_d34r0110_hole_02
 	_TALK_CLOSE
 
-	/*L04ƒ}ƒbƒv‚ªƒI[ƒvƒ“‚·‚é*/
+	/*L04ãƒžãƒƒãƒ—ãŒã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹*/
 	_HIDEMAP_STATE_CHG		HIDEMAP_ID_L04,1
 
-	/*‚¨‚­‚è‚ÌŒÎ‚É‚à‚Ç‚µ‚ÄAƒVƒƒiƒCƒxƒ“ƒg‚É‚Â‚È‚°‚é*/
+	/*ãŠãã‚Šã®æ¹–ã«ã‚‚ã©ã—ã¦ã€ã‚·ãƒ­ãƒŠã‚¤ãƒ™ãƒ³ãƒˆã«ã¤ãªã’ã‚‹*/
 	_LDVAL			WK_SCENE_D17R0101,1
 	_SE_PLAY		SEQ_SE_PL_SYUWA
 	_MAP_CHANGE		ZONE_ID_D17R0101,0,32,17,DIR_DOWN
 	_END
 	
 /********************************************************************/
-/*	”ª‘wŽè‘O‚ÉˆÚ“®													*/
+/*	å…«å±¤æ‰‹å‰ã«ç§»å‹•													*/
 /********************************************************************/
 ev_d34r0110_08_warp:
 	_MAP_CHANGE		ZONE_ID_D34R0109,0,89,57,DIR_DOWN
 	_END
 
 /********************************************************************/
-/*	ƒMƒ‰ƒeƒBƒi˜b‚µ‚©‚¯í“¬‚Æ‚»‚ÌŒã									*/
+/*	ã‚®ãƒ©ãƒ†ã‚£ãƒŠè©±ã—ã‹ã‘æˆ¦é—˜ã¨ãã®å¾Œ									*/
 /********************************************************************/
 ev_d34r0110_gira_talk00:
 	_TALK_START
@@ -115,7 +115,7 @@ ev_d34r0110_gira_talk00:
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,FIGHT_ENEMY_ESCAPE,ev_d34r1010_gira_escape
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,FIGHT_POKE_GET,ev_d34r0110_gira_get
 	
-	//“|‚µ‚½
+	//å€’ã—ãŸ
 	_TW_OBJ_ADD			TW_OBJID_0110_AKAGI
 	_TW_OBJ_ADD			TW_OBJID_0110_SIRONA
 	_OBJ_ANIME			TW_OBJID_0110_SIRONA,anm_d34r0110_sirona00
@@ -124,10 +124,10 @@ ev_d34r0110_gira_talk00:
 	_TALK_KEYWAIT		msg_d34r0110_champion_01
 	_TALK_CLOSE
 	
-	_TALK_KEYWAIT		msg_d34r0110_gingaboss_01	//u‚½‚¨‚µ‚½‚¾‚Æ
+	_TALK_KEYWAIT		msg_d34r0110_gingaboss_01	//ã€ŒãŸãŠã—ãŸã ã¨
 	_JUMP				ev_d34r0110_gira_talk01
 
-/* “¦‚°‚½ */
+/* é€ƒã’ãŸ */
 ev_d34r1010_gira_escape:
 	_TW_OBJ_ADD			TW_OBJID_0110_AKAGI
 	_TW_OBJ_ADD			TW_OBJID_0110_SIRONA
@@ -137,17 +137,17 @@ ev_d34r1010_gira_escape:
 	_TALK_KEYWAIT		msg_d34r0110_champion_01
 	_TALK_CLOSE
 	
-	_TALK_KEYWAIT		msg_d34r0110_gingaboss_06	//u‚½‚½‚©‚í‚È‚¢‚±‚Æ‚Å
+	_TALK_KEYWAIT		msg_d34r0110_gingaboss_06	//ã€ŒãŸãŸã‹ã‚ãªã„ã“ã¨ã§
 	_JUMP				ev_d34r0110_gira_talk01
 
-/*•ß‚Ü‚¦‚½*/
+/*æ•ã¾ãˆãŸ*/
 ev_d34r0110_gira_get:
 
 	///////////////////////////////////////////////////////////
-	/*•ß‚Ü‚¦‚½Žž‚Ìƒtƒ‰ƒOƒZƒbƒg*/
+	/*æ•ã¾ãˆãŸæ™‚ã®ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ*/
 	_FLAG_SET		FE_D17R0104_LEGEND_CLEAR
 	_FLAG_SET		FV_D17R0104_LEGEND
-	/*ŽŸ—ˆ‚½‚ç‚²–J”üƒAƒCƒeƒ€‚ª‚ ‚é*/
+	/*æ¬¡æ¥ãŸã‚‰ã”è¤’ç¾Žã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚‹*/
 	_FLAG_RESET		FV_D17R0104_ITEM
 	///////////////////////////////////////////////////////////
 
@@ -159,7 +159,7 @@ ev_d34r0110_gira_get:
 	_TALK_KEYWAIT		msg_d34r0110_champion_01
 	_TALK_CLOSE
 	
-	_TALK_KEYWAIT		msg_d34r0110_gingaboss_02	//u‚Â‚©‚Ü‚¦‚½‚¾‚Æ
+	_TALK_KEYWAIT		msg_d34r0110_gingaboss_02	//ã€Œã¤ã‹ã¾ãˆãŸã ã¨
 	
 ev_d34r0110_gira_talk01:
 	_TALK_CLOSE
@@ -197,14 +197,14 @@ ev_d34r0110_gira_talk01:
 	_EVENT_END
 	_END
 
-//‘S–Å
+//å…¨æ»…
 ev_d34r0110_gira_lose:
 	_NORMAL_LOSE
 	_TALK_OBJ_END
 	_END
 
 /********************************************************************/
-/*		ƒVƒƒi˜b‚µ‚©‚¯												*/
+/*		ã‚·ãƒ­ãƒŠè©±ã—ã‹ã‘												*/
 /********************************************************************/
 ev_d34r0110_sirona_talk00:
 	_TALK_OBJ_START
@@ -217,7 +217,7 @@ ev_d34r0110_sirona_talk00:
 	_END
 	
 /********************************************************************/
-/*		ƒMƒ‰ƒeƒBƒi–i‚¦‚é											*/
+/*		ã‚®ãƒ©ãƒ†ã‚£ãƒŠå ãˆã‚‹											*/
 /********************************************************************/
 ev_d34r0110_gira_bark:
 	_EVENT_START
@@ -232,7 +232,7 @@ ev_d34r0110_gira_bark:
 	_END
 	
 /********************************************************************/
-/*		ƒMƒ‰ƒeƒBƒi“oêƒƒbƒZ[ƒW									*/
+/*		ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸									*/
 /********************************************************************/
 ev_d34r0110_gira_enter_finish_msg:
 	_EVENT_START
@@ -246,48 +246,48 @@ ev_d34r0110_gira_enter_finish_msg:
 	_END
 	
 //-------------------------------------------------------------
-//	Ž©‹@ƒAƒjƒ
+//	è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡
 //-------------------------------------------------------------
-_ANIME_LABEL		anm_d34r0110_jiki00		//Ž©‹@U‚èŒü‚«•ƒMƒ‡ƒG[
+_ANIME_LABEL		anm_d34r0110_jiki00		//è‡ªæ©ŸæŒ¯ã‚Šå‘ãï¼†ã‚®ãƒ§ã‚¨ãƒ¼
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA AC_MARK_GYOE,1
 	_ANIME_DATA ACMD_END,0
 
 //-------------------------------------------------------------
-//	ƒVƒƒiƒAƒjƒ
+//	ã‚·ãƒ­ãƒŠã‚¢ãƒ‹ãƒ¡
 //-------------------------------------------------------------
-_ANIME_LABEL		anm_d34r0110_sirona00	//ƒVƒƒi“oê
+_ANIME_LABEL		anm_d34r0110_sirona00	//ã‚·ãƒ­ãƒŠç™»å ´
 	_ANIME_DATA AC_JUMP_U_3G_24F,2
 	_ANIME_DATA ACMD_END,0
 	
-_ANIME_LABEL		anm_d34r0110_sirona01	//U‚èŒü‚«•ƒMƒ‡ƒG[
+_ANIME_LABEL		anm_d34r0110_sirona01	//æŒ¯ã‚Šå‘ãï¼†ã‚®ãƒ§ã‚¨ãƒ¼
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA AC_MARK_GYOE,1
 	_ANIME_DATA ACMD_END,0
 	
-_ANIME_LABEL		anm_d34r0110_sirona02	//Ž©‹@‚ÖŒü‚­
+_ANIME_LABEL		anm_d34r0110_sirona02	//è‡ªæ©Ÿã¸å‘ã
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA ACMD_END,0
 	
 //-------------------------------------------------------------
-//	ƒAƒJƒMƒAƒjƒ
+//	ã‚¢ã‚«ã‚®ã‚¢ãƒ‹ãƒ¡
 //-------------------------------------------------------------
-_ANIME_LABEL		anm_d34r0110_akagi00 	//ƒAƒJƒM“oê
+_ANIME_LABEL		anm_d34r0110_akagi00 	//ã‚¢ã‚«ã‚®ç™»å ´
 	_ANIME_DATA AC_JUMP_U_3G_24F,1
 	_ANIME_DATA ACMD_END,0
 	
-_ANIME_LABEL		anm_d34r0110_akagi01 	//ƒAƒJƒM‘Þê
+_ANIME_LABEL		anm_d34r0110_akagi01 	//ã‚¢ã‚«ã‚®é€€å ´
 	_ANIME_DATA AC_JUMP_D_3G_24F,1
 	_ANIME_DATA AC_WALK_D_8F,5
 	_ANIME_DATA ACMD_END,0
 	
 //-------------------------------------------------------------
-//	ƒ_ƒ~[ƒAƒjƒ
+//	ãƒ€ãƒŸãƒ¼ã‚¢ãƒ‹ãƒ¡
 //-------------------------------------------------------------
-_ANIME_LABEL		anm_d34r0110_dummy00	//ƒJƒƒ‰ˆÚ“®
+_ANIME_LABEL		anm_d34r0110_dummy00	//ã‚«ãƒ¡ãƒ©ç§»å‹•
 	_ANIME_DATA AC_WALK_D_8F,5
 	_ANIME_DATA ACMD_END,0
 	
-_ANIME_LABEL		anm_d34r0110_dummy01	//ƒJƒƒ‰–ß‚é
+_ANIME_LABEL		anm_d34r0110_dummy01	//ã‚«ãƒ¡ãƒ©æˆ»ã‚‹
 	_ANIME_DATA AC_WALK_U_8F,5
 	_ANIME_DATA ACMD_END,0

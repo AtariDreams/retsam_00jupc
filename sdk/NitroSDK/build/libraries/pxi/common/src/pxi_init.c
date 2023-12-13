@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.3  2005/08/22 02:48:45  kitase_hirotake
-  .versionƒZƒNƒVƒ‡ƒ“‚ÉAƒrƒ‹ƒh‚ªSDK_FINALROM‚Å‚È‚¯‚ê‚Î–³ğŒ‚É•¶š—ñ‚ğ–„‚ß‚Ş
+  .versionã‚»ã‚¯ã‚·ãƒ§ãƒ³ã«ã€ãƒ“ãƒ«ãƒ‰ãŒSDK_FINALROMã§ãªã‘ã‚Œã°ç„¡æ¡ä»¶ã«æ–‡å­—åˆ—ã‚’åŸ‹ã‚è¾¼ã‚€
 
   Revision 1.2  2005/02/28 05:26:29  yosizaki
   do-indent.
@@ -27,10 +27,10 @@
  *---------------------------------------------------------------------------*/
 #include  <nitro/pxi.h>
 
-#include  <nitro/misc.h>               // .version–„‚ß‚İ—p
+#include  <nitro/misc.h>               // .versionåŸ‹ã‚è¾¼ã¿ç”¨
 
 /*
- * SDK_FINALROM‚Å‚È‚¯‚ê‚Î.version‚É•¶š—ñ‚ğ–„‚ß‚Ş
+ * SDK_FINALROMã§ãªã‘ã‚Œã°.versionã«æ–‡å­—åˆ—ã‚’åŸ‹ã‚è¾¼ã‚€
  */
 #ifndef SDK_FINALROM
 #ifdef SDK_ARM9

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>GX_GetVisiblePlane</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">GX*_GetVisiblePlane</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,44 +20,44 @@
   <BR>
   <CODE>int GX_GetVisiblePlane( void );</CODE><BR>
   <CODE>int GXS_GetVisiblePlane( void );</CODE></dd>
-</dl><h2>����</h2>
-<P>�Ȃ��B</P>
-<h2>�Ԃ�l</h2>
-<p><CODE>GXPlaneMask</CODE>�^�̘_���a�ŕ\���ʂ�Ԃ��܂��B</p>
-<H2>����</H2>
-<P>�\������ʂ��擾���܂��B<CODE>GXPlaneMask</CODE>�^�̒l�Ř_���a���Ƃ������̂��Ԃ�l�ƂȂ�܂��B<BR>
-GX_GetVisiblePlane�֐��ł̓��C���O���t�B�b�N�X�G���W���́AGXS_GetVisiblePlane�֐��ł̓T�u�O���t�B�b�N�X�G���W���̐ݒ���擾���邱�Ƃ��ł��܂��B<BR>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p><CODE>GXPlaneMask</CODE>型の論理和で表示面を返します。</p>
+<H2>説明</H2>
+<P>表示する面を取得します。<CODE>GXPlaneMask</CODE>型の値で論理和をとったものが返り値となります。<BR>
+GX_GetVisiblePlane関数ではメイングラフィックスエンジンの、GXS_GetVisiblePlane関数ではサブグラフィックスエンジンの設定を取得することができます。<BR>
 </P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD width="30%"><CODE>GX_PLANEMASK_NONE</CODE></TD>
-      <TD width="70%">�����w�肵�܂���B</TD>
+      <TD width="70%">何も指定しません。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_PLANEMASK_BG0</CODE></TD>
-      <TD>BG0���w�肵�܂��B</TD>
+      <TD>BG0を指定します。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_PLANEMASK_BG1</CODE></TD>
-      <TD>BG1���w�肵�܂��B</TD>
+      <TD>BG1を指定します。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_PLANEMASK_BG2</CODE></TD>
-      <TD>BG2���w�肵�܂��B</TD>
+      <TD>BG2を指定します。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_PLANEMASK_BG3</CODE></TD>
-      <TD>BG3���w�肵�܂��B</TD>
+      <TD>BG3を指定します。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_PLANEMASK_OBJ</CODE></TD>
-      <TD>OBJ���w�肵�܂��B</TD>
+      <TD>OBJを指定します。</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-�ȉ���<CODE>GXPlaneMask</CODE>�^�̌^��`�������Ă����܂��B</P>
+以下に<CODE>GXPlaneMask</CODE>型の型定義を示しておきます。</P>
 <PRE><CODE>typedef enum
 {
     GX_PLANEMASK_NONE = 0x00,
@@ -68,9 +68,9 @@ GX_GetVisiblePlane�֐��ł̓��C���O���t�B�b�N�X�G���W���́AGXS_GetVisiblePlane�֐
     GX_PLANEMASK_OBJ = 0x10
 }
 GXPlaneMask;</CODE></PRE>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><A href="GX_GetVisibleWnd.html">GX_GetVisibleWnd</A>, <A href="GX_SetVisiblePlane.html">GX_SetVisiblePlane</A>, <A href="GXS_SetVisiblePlane.html">GXS_SetVisiblePlane</A></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>Ver. 2004/12/24</P>
 </body>
 </html>

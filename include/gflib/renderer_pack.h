@@ -2,15 +2,15 @@
 /**
  *
  *@file		renderer_pack.h
- *@brief	ƒŒƒ“ƒ_ƒ‰[ƒpƒbƒNŠÖ”
+ *@brief	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ‘ãƒƒã‚¯é–¢æ•°
  *@author	tomoya takahashi
  *@data		2005.09.01
  *
- * ƒŒƒ“ƒ_ƒ‰‚ÍƒR[ƒ‹ƒoƒbƒN‚ðŽg—p‚µ‚Ä‚¢‚é‚½‚ßAƒOƒ[ƒoƒ‹—Ìˆæ‚ª•K—v‚É
- * ‚È‚Á‚Ä‚«‚Ä‚µ‚Ü‚¢‚Ü‚·B
+ * ãƒ¬ãƒ³ãƒ€ãƒ©ã¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ãŸã‚ã€ã‚°ãƒ­ãƒ¼ãƒãƒ«é ˜åŸŸãŒå¿…è¦ã«
+ * ãªã£ã¦ãã¦ã—ã¾ã„ã¾ã™ã€‚
  *
- * •K—v‚ÈƒOƒ[ƒoƒ‹ƒf[ƒ^‚Ísystem/render_oam‚É‚Ü‚Æ‚ß‚Ä‚ ‚è‚Ü‚·B
- *@ƒŒƒ“ƒ_ƒ‰‚ðŽg—p‚·‚é‚Æ‚«‚ÍAsystem/render_oam‚àŽg—p‚µ‚Ä‚­‚¾‚³‚¢B
+ * å¿…è¦ãªã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã¯system/render_oamã«ã¾ã¨ã‚ã¦ã‚ã‚Šã¾ã™ã€‚
+ *ã€€ãƒ¬ãƒ³ãƒ€ãƒ©ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã¯ã€system/render_oamã‚‚ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚
  * 
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -28,28 +28,28 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŒƒ“ƒ_ƒ‰[Žg—p€”õ‚ðs‚¢‚Ü‚·B
+ *@brief	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ä½¿ç”¨æº–å‚™ã‚’è¡Œã„ã¾ã™ã€‚
  *
- *@param	p_renderer	ƒŒƒ“ƒ_ƒ‰[‚ÌŽÀ‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *@param	Zoffs		ZƒIƒtƒZƒbƒg‚Ì‘•ª
+ *@param	p_renderer	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã®å®Ÿä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	Zoffs		Zã‚ªãƒ•ã‚»ãƒƒãƒˆã®å¢—åˆ†
  *
  *@return	none
  *
@@ -61,27 +61,27 @@ GLOBAL void RNDP_InitRenderer(NNSG2dRendererInstance* p_renderer, fx32 Zoffs);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒT[ƒtƒF[ƒX‚ð‰Šú‰»
+ *@brief	ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’åˆæœŸåŒ–
  *
- *@param	pSurface		‰Šú‰»‚·‚éƒT[ƒtƒF[ƒX‚ÌŽÀ‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *@param	pRect			ƒT[ƒtƒF[ƒX‚Ì‹éŒ`
- *@param	OamSetFunc		OAMÝ’èƒR[ƒ‹ƒoƒbƒNŠÖ”				ì¬—ái@CallBackAddOamMain@‚ª‰º‚É‚ ‚è‚Ü‚·j
- *@param	AffineSetFunc	ƒAƒtƒBƒ“s—ñÝ’èƒR[ƒ‹ƒoƒbƒNŠÖ”	ì¬—ái@CallBackAddAffineMain@‚ª‚µ‚½‚É‚ ‚è‚Ü‚·j
- *@param	cullFunc		ƒJƒŠƒ“ƒOƒR[ƒ‹ƒoƒbƒNŠÖ”
- *@param	type			ƒT[ƒtƒF[ƒXƒ^ƒCƒv
- *@param	pSetRenderer	‚±‚ÌƒT[ƒtƒF[ƒX‚ðÝ’è‚·‚éƒŒƒ“ƒ_ƒ‰[iÝ’è‚µ‚È‚¢‚Æ‚«‚Í@NULLj
+ *@param	pSurface		åˆæœŸåŒ–ã™ã‚‹ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å®Ÿä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	pRect			ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®çŸ©å½¢
+ *@param	OamSetFunc		OAMè¨­å®šã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°				ä½œæˆä¾‹ï¼ˆã€€CallBackAddOamMainã€€ãŒä¸‹ã«ã‚ã‚Šã¾ã™ï¼‰
+ *@param	AffineSetFunc	ã‚¢ãƒ•ã‚£ãƒ³è¡Œåˆ—è¨­å®šã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°	ä½œæˆä¾‹ï¼ˆã€€CallBackAddAffineMainã€€ãŒã—ãŸã«ã‚ã‚Šã¾ã™ï¼‰
+ *@param	cullFunc		ã‚«ãƒªãƒ³ã‚°ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+ *@param	type			ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	pSetRenderer	ã“ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’è¨­å®šã™ã‚‹ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ï¼ˆè¨­å®šã—ãªã„ã¨ãã¯ã€€NULLï¼‰
  *
  *@return	none
  *
  * 
- * NNSG2dViewRect\‘¢‘Ì
+ * NNSG2dViewRectæ§‹é€ ä½“
  *	typedef struct NNSG2dViewRect
 	{
-		NNSG2dFVec2            posTopLeft;      // ‰ÂŽ‹—Ìˆæ ¶ãˆÊ’u
-		NNSG2dFVec2            sizeView;        // ƒrƒ…[‚ÌƒTƒCƒY
+		NNSG2dFVec2            posTopLeft;      // å¯è¦–é ˜åŸŸ å·¦ä¸Šä½ç½®
+		NNSG2dFVec2            sizeView;        // ãƒ“ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚º
 	}NNSG2dViewRect;
  *
- * NNSG2dFVec2\‘¢‘Ì
+ * NNSG2dFVec2æ§‹é€ ä½“
 	typedef struct NNSG2dFVec2
 	{
 		fx32     x;        
@@ -90,12 +90,12 @@ GLOBAL void RNDP_InitRenderer(NNSG2dRendererInstance* p_renderer, fx32 Zoffs);
 	}NNSG2dFVec2;
  * 
  *
- * ƒT[ƒtƒF[ƒXƒ^ƒCƒv
+ * ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
 	typedef enum NNSG2dSurfaceType
 	{
-		NNS_G2D_SURFACETYPE_MAIN3D = 0x00,  // 3D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“   ‚ðŽg—p
-		NNS_G2D_SURFACETYPE_MAIN2D = 0x01,  // 2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“ A ‚ðŽg—p
-		NNS_G2D_SURFACETYPE_SUB2D  = 0x02,  // 2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“ B ‚ðŽg—p
+		NNS_G2D_SURFACETYPE_MAIN3D = 0x00,  // 3D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³   ã‚’ä½¿ç”¨
+		NNS_G2D_SURFACETYPE_MAIN2D = 0x01,  // 2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ A ã‚’ä½¿ç”¨
+		NNS_G2D_SURFACETYPE_SUB2D  = 0x02,  // 2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ B ã‚’ä½¿ç”¨
 		NNS_G2D_SURFACETYPE_MAX    = 0x03
 		
 	}NNSG2dSurfaceType;
@@ -113,21 +113,21 @@ GLOBAL void RNDP_InitSurface(NNSG2dRenderSurface* pSurface,
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒT[ƒtƒF[ƒX‚É‹éŒ`ƒf[ƒ^‚ðÝ’è‚·‚é
+ *@brief	ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã«çŸ©å½¢ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
  *
- *@param	pSurface		ƒT[ƒtƒF[ƒX
- *@param	pRect			Ý’è‚·‚é‹éŒ`ƒf[ƒ^	
+ *@param	pSurface		ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+ *@param	pRect			è¨­å®šã™ã‚‹çŸ©å½¢ãƒ‡ãƒ¼ã‚¿	
  *
  *@return	none
  *
- * NNSG2dViewRect\‘¢‘Ì
+ * NNSG2dViewRectæ§‹é€ ä½“
  *	typedef struct NNSG2dViewRect
 	{
-		NNSG2dFVec2            posTopLeft;      // ‰ÂŽ‹—Ìˆæ ¶ãˆÊ’u
-		NNSG2dFVec2            sizeView;        // ƒrƒ…[‚ÌƒTƒCƒY
+		NNSG2dFVec2            posTopLeft;      // å¯è¦–é ˜åŸŸ å·¦ä¸Šä½ç½®
+		NNSG2dFVec2            sizeView;        // ãƒ“ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚º
 	}NNSG2dViewRect;
  *
- * NNSG2dFVec2\‘¢‘Ì
+ * NNSG2dFVec2æ§‹é€ ä½“
 	typedef struct NNSG2dFVec2
 	{
 		fx32     x;        
@@ -145,10 +145,10 @@ GLOBAL void RNDP_GetSurfaceRect(NNSG2dRenderSurface* pSurface, NNSG2dViewRect* p
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒT[ƒtƒF[ƒX‚ÉOAM‚ÌÝ’èŠÖ”‚ðÝ’è
+ *@brief	ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã«OAMã®è¨­å®šé–¢æ•°ã‚’è¨­å®š
  *
- *@param	pSurface		ƒT[ƒtƒF[ƒX
- *@param	OamSetFunc		OAMÝ’èŠÖ”			ì¬—ái@CallBackAddOamMain@‚ª‰º‚É‚ ‚è‚Ü‚·j
+ *@param	pSurface		ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+ *@param	OamSetFunc		OAMè¨­å®šé–¢æ•°			ä½œæˆä¾‹ï¼ˆã€€CallBackAddOamMainã€€ãŒä¸‹ã«ã‚ã‚Šã¾ã™ï¼‰
  *
  *@return
  *
@@ -160,10 +160,10 @@ GLOBAL void RNDP_SetSurfaceOamSetFunc(NNSG2dRenderSurface* pSurface, NNSG2dOamRe
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒT[ƒtƒF[ƒX‚ÉƒAƒtƒBƒ“s—ñ‚ÌÝ’èŠÖ”‚ðÝ’è
+ *@brief	ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã«ã‚¢ãƒ•ã‚£ãƒ³è¡Œåˆ—ã®è¨­å®šé–¢æ•°ã‚’è¨­å®š
  *
- *@param	pSurface		ƒT[ƒtƒF[ƒX
- *@param	AffineSetFunc		ƒAƒtƒBƒ“s—ñÝ’èŠÖ”		ì¬—ái@CallBackAddAffineMain@‚ª‰º‚É‚ ‚è‚Ü‚·j
+ *@param	pSurface		ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+ *@param	AffineSetFunc		ã‚¢ãƒ•ã‚£ãƒ³è¡Œåˆ—è¨­å®šé–¢æ•°		ä½œæˆä¾‹ï¼ˆã€€CallBackAddAffineMainã€€ãŒä¸‹ã«ã‚ã‚Šã¾ã™ï¼‰
  *
  *@return	none
  *
@@ -175,10 +175,10 @@ GLOBAL void RNDP_SetSurfaceAffineSetFunc(NNSG2dRenderSurface* pSurface, NNSG2dAf
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒT[ƒtƒF[ƒX‚ÉƒJƒŠƒ“ƒOŠÖ”‚ðÝ’è
+ *@brief	ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã«ã‚«ãƒªãƒ³ã‚°é–¢æ•°ã‚’è¨­å®š
  *
- *@param	pSurface		ƒT[ƒtƒF[ƒX
- *@param	CullFunc		ƒJƒŠƒ“ƒOŠÖ”
+ *@param	pSurface		ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+ *@param	CullFunc		ã‚«ãƒªãƒ³ã‚°é–¢æ•°
  *
  *@return	none
  *
@@ -190,18 +190,18 @@ GLOBAL void RNDP_SetSurfaceCullingFunc(NNSG2dRenderSurface* pSurface, NNSG2dRndC
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒT[ƒtƒF[ƒXƒ^ƒCƒv‚ðÝ’è
+ *@brief	ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ã‚’è¨­å®š
  *
- *@param	pSurface		ƒT[ƒtƒF[ƒX
- *@param	type			ƒT[ƒtƒF[ƒXƒ^ƒCƒv
+ *@param	pSurface		ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+ *@param	type			ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
  *
  *@return	none
  *
 	typedef enum NNSG2dSurfaceType
 	{
-		NNS_G2D_SURFACETYPE_MAIN3D = 0x00,  // 3D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“   ‚ðŽg—p
-		NNS_G2D_SURFACETYPE_MAIN2D = 0x01,  // 2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“ A ‚ðŽg—p
-		NNS_G2D_SURFACETYPE_SUB2D  = 0x02,  // 2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“ B ‚ðŽg—p
+		NNS_G2D_SURFACETYPE_MAIN3D = 0x00,  // 3D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³   ã‚’ä½¿ç”¨
+		NNS_G2D_SURFACETYPE_MAIN2D = 0x01,  // 2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ A ã‚’ä½¿ç”¨
+		NNS_G2D_SURFACETYPE_SUB2D  = 0x02,  // 2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ B ã‚’ä½¿ç”¨
 		NNS_G2D_SURFACETYPE_MAX    = 0x03
 		
 	}NNSG2dSurfaceType;
@@ -215,10 +215,10 @@ GLOBAL void RNDP_SetSurfaceType(NNSG2dRenderSurface* pSurface, NNSG2dSurfaceType
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒT[ƒtƒF[ƒX‚ðƒŒƒ“ƒ_ƒ‰[‚ÉÝ’è
+ *@brief	ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã«è¨­å®š
  *
- *@param	pSurface		ƒT[ƒtƒF[ƒX
- *@param	pSetRenderer	Ý’è‚·‚éƒŒƒ“ƒ_ƒ‰[
+ *@param	pSurface		ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+ *@param	pSetRenderer	è¨­å®šã™ã‚‹ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼
  *
  *@return	none
  *
@@ -230,15 +230,15 @@ GLOBAL void RNDP_SetSurfaceRenderer(NNSG2dRenderSurface* pSurface, NNSG2dRendere
 
 //-----------------------------------------------------------------------------
 /**
- *@brief	ƒT[ƒtƒFƒCƒX“à‚ÉƒZƒ‹‚ª‚¢‚é‚©‚ðƒ`ƒFƒbƒN‚µAƒJƒŠƒ“ƒO‚·‚é
- *			ƒJƒŠƒ“ƒO‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚Í‹¤’Ê‚ÅOK‚È‚Ì‚Åì¬
+ *@brief	ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹å†…ã«ã‚»ãƒ«ãŒã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã—ã€ã‚«ãƒªãƒ³ã‚°ã™ã‚‹
+ *			ã‚«ãƒªãƒ³ã‚°ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã¯å…±é€šã§OKãªã®ã§ä½œæˆ
  *
- *@param	pCellF”»’è‘ÎÛ‚ÌƒZƒ‹î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *@param	pMtxF”»’è‘ÎÛ‚ÌƒZƒ‹‚É“K—p‚³‚ê‚éÀ•W•ÏŠ·s—ñ
- *@param	pViewRectFo—ÍæƒT[ƒtƒFƒCƒX‚Ì•\Ž¦‹éŒ`
+ *@param	pCellï¼šåˆ¤å®šå¯¾è±¡ã®ã‚»ãƒ«æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	pMtxï¼šåˆ¤å®šå¯¾è±¡ã®ã‚»ãƒ«ã«é©ç”¨ã•ã‚Œã‚‹åº§æ¨™å¤‰æ›è¡Œåˆ—
+ *@param	pViewRectï¼šå‡ºåŠ›å…ˆã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®è¡¨ç¤ºçŸ©å½¢
  *
- *@retval	‘ÎÛƒZƒ‹‚ð•\Ž¦‚·‚éFTRUE
- *@retval	‘ÎÛƒZƒ‹‚ð•\Ž¦‚µ‚È‚¢FFALSE
+ *@retval	å¯¾è±¡ã‚»ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹ï¼šTRUE
+ *@retval	å¯¾è±¡ã‚»ãƒ«ã‚’è¡¨ç¤ºã—ãªã„ï¼šFALSE
  *
  */
  //----------------------------------------------------------------------------
@@ -247,61 +247,61 @@ BOOL RNDP_CallBackCulling( const NNSG2dCellData* pCell, const MtxFx32* pMtx, con
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒR[ƒ‹ƒoƒbƒNŠÖ”ì¬—á
+*		ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ä½œæˆä¾‹
 */
 //-----------------------------------------------------------------------------
 #if 0
-//	Oam Affine “o˜^ŠÖ”ì¬—á
+//	Oam Affine ç™»éŒ²é–¢æ•°ä½œæˆä¾‹
 //-----------------------------------------------------------------------------
 /**
- *@brief				OAM‚ð’Ç‰Á‚·‚é‚½‚ß‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *@brief				OAMã‚’è¿½åŠ ã™ã‚‹ãŸã‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- *@param	pOamF’Ç‰Á‚·‚×‚«OAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *@param	affineIndexF‚±‚ÌOAM‚ªŽg—p‚·‚éAffineƒCƒ“ƒfƒbƒNƒX
- *@param	BOOL F”{ŠpAffine‚©‚Ç‚¤‚©
+ *@param	pOamï¼šè¿½åŠ ã™ã¹ãOAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	affineIndexï¼šã“ã®OAMãŒä½¿ç”¨ã™ã‚‹Affineã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	BOOL ï¼šå€è§’Affineã‹ã©ã†ã‹
  *
- *@retval	¬Œ÷FTRUE
- *@retval	Ž¸”sFFALSE
+ *@retval	æˆåŠŸï¼šTRUE
+ *@retval	å¤±æ•—ï¼šFALSE
  *
  ----------------------------------------------------------------------------*/
-// ƒƒCƒ“‰æ–Ê—p
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨
 static BOOL CallBackAddOamMain( const GXOamAttr* pOam, u16 affineIndex, BOOL /*bDoubleAffine*/ )
 {
-	// OAMƒ}ƒl[ƒWƒƒ‚Éˆø”‚Å“n‚Á‚Ä‚«‚½OAMƒf[ƒ^‚ð“o˜^‚µ‚Ü‚·B
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£ã«å¼•æ•°ã§æ¸¡ã£ã¦ããŸOAMãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
 	
 	return NNS_G2dEntryOamManagerOamWithAffineIdx( &RendOam->MainMan, pOam, affineIndex );
-										//			ªƒƒCƒ“‰æ–Ê—pOAMƒ}ƒl[ƒWƒƒ
+										//			â†‘ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£
 }
 
-// ƒTƒu‰æ–Ê—p
+// ã‚µãƒ–ç”»é¢ç”¨
 static BOOL CallBackAddOamSub( const GXOamAttr* pOam, u16 affineIndex, BOOL /*bDoubleAffine*/ )
 {
-	// OAMƒ}ƒl[ƒWƒƒ‚Éˆø”‚Å“n‚Á‚Ä‚«‚½OAMƒf[ƒ^‚ð“o˜^‚µ‚Ü‚·B
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£ã«å¼•æ•°ã§æ¸¡ã£ã¦ããŸOAMãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
     return NNS_G2dEntryOamManagerOamWithAffineIdx( &RendOam->SubMan, pOam, affineIndex );
-										//			ªƒTƒu‰æ–Ê—pOAMƒ}ƒl[ƒWƒƒ
+										//			â†‘ã‚µãƒ–ç”»é¢ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£
 }
 
 //-----------------------------------------------------------------------------
 /**
- *@brief	Affineƒpƒ‰ƒ[ƒ^‚ð’Ç‰Á‚·‚é‚½‚ß‚ÉŒÄ‚Î‚ê‚éŠÖ”‚Å‚·B
+ *@brief	Affineãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹ãŸã‚ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã§ã™ã€‚
  *
- *@param	mtxF’Ç‰Á‚·‚×‚«Affine•ÏŠ·s—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *@param	mtxï¼šè¿½åŠ ã™ã¹ãAffineå¤‰æ›è¡Œåˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *@return	’Ç‰Á‚µ‚½Affineƒpƒ‰ƒ[ƒ^‚ÌIndex
+ *@return	è¿½åŠ ã—ãŸAffineãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®Index
  *
  */
  //----------------------------------------------------------------------------
-// ƒƒCƒ“‰æ–Ê—p
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨
 static u16 CallBackAddAffineMain( const MtxFx22* mtx )
 {
-	// OAMƒ}ƒl[ƒWƒƒ‚Éˆø”‚Å“n‚Á‚Ä‚«‚½ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚ð“o˜^‚µ‚Ü‚·B
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£ã«å¼•æ•°ã§æ¸¡ã£ã¦ããŸã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
     return NNS_G2dEntryOamManagerAffine( &RendOam->MainMan, mtx );
 }
 
-// ƒTƒu‰æ–Ê—p
+// ã‚µãƒ–ç”»é¢ç”¨
 static u16 CallBackAddAffineSub( const MtxFx22* mtx )
 {
-	// OAMƒ}ƒl[ƒWƒƒ‚Éˆø”‚Å“n‚Á‚Ä‚«‚½ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚ð“o˜^‚µ‚Ü‚·B
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£ã«å¼•æ•°ã§æ¸¡ã£ã¦ããŸã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
     return NNS_G2dEntryOamManagerAffine( &RendOam->SubMan, mtx );
 }
 

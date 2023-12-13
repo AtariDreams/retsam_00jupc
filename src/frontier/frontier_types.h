@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_types.h
- * @brief	ƒtƒƒ“ƒeƒBƒAŠÖ˜A‚Ì•s’èŒ`ƒ|ƒCƒ“ƒ^‚È‚ÇA‚Ç‚±‚Å‚àŽg—p‚·‚é‚æ‚¤‚È‚à‚Ì‚Ì’è‹`
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢é–¢é€£ã®ä¸å®šå½¢ãƒã‚¤ãƒ³ã‚¿ãªã©ã€ã©ã“ã§ã‚‚ä½¿ç”¨ã™ã‚‹ã‚ˆã†ãªã‚‚ã®ã®å®šç¾©
  * @author	matsuda
- * @date	2007.04.06(‹à)
+ * @date	2007.04.06(é‡‘)
  */
 //==============================================================================
 #ifndef __FRONTIER_TYPES_H__
@@ -14,57 +14,57 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///	‚a‚fƒpƒŒƒbƒg’è‹` 2007.04.06(‹à)
+///	ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾© 2007.04.06(é‡‘)
 //
-//	0 ` 10  : ƒtƒB[ƒ‹ƒhƒ}ƒbƒv‚a‚f—p
-//  11      : ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE
-//  12      : ƒƒjƒ…[ƒEƒCƒ“ƒhƒE
-//  13      : ƒƒbƒZ[ƒWƒtƒHƒ“ƒg
-//  14      : ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
-//	15		: –¢Žg—piƒ[ƒJƒ‰ƒCƒY—pj
-#define FFD_FIELD_PAL_START  (0)			//  ƒtƒB[ƒ‹ƒhƒ}ƒbƒvBGƒpƒŒƒbƒgŠJŽn
-#define FFD_FIELD_PAL_END    (10)			//  ƒtƒB[ƒ‹ƒhƒ}ƒbƒvBGƒpƒŒƒbƒgI—¹
-#define FFD_MESFRAME_PAL     ( 11 )         //  ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE
-#define FFD_MENUFRAME_PAL    ( 12 )         //  ƒƒjƒ…[ƒEƒCƒ“ƒhƒE
-#define FFD_MESFONT_PAL      ( 13 )         //  ƒƒbƒZ[ƒWƒtƒHƒ“ƒg
-#define FFD_SYSFONT_PAL	     ( 14 )         //  ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
-#define FFD_LOCALIZE_PAL     ( 15 )         //	–¢Žg—piƒ[ƒJƒ‰ƒCƒY—pj
+//	0 ã€œ 10  : ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ï¼¢ï¼§ç”¨
+//  11      : ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+//  12      : ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+//  13      : ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆ
+//  14      : ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
+//	15		: æœªä½¿ç”¨ï¼ˆãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ï¼‰
+#define FFD_FIELD_PAL_START  (0)			//  ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—BGãƒ‘ãƒ¬ãƒƒãƒˆé–‹å§‹
+#define FFD_FIELD_PAL_END    (10)			//  ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—BGãƒ‘ãƒ¬ãƒƒãƒˆçµ‚äº†
+#define FFD_MESFRAME_PAL     ( 11 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define FFD_MENUFRAME_PAL    ( 12 )         //  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define FFD_MESFONT_PAL      ( 13 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆ
+#define FFD_SYSFONT_PAL	     ( 14 )         //  ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
+#define FFD_LOCALIZE_PAL     ( 15 )         //	æœªä½¿ç”¨ï¼ˆãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ï¼‰
 
 #define FFD_FIELD_PAL_SIZE	((FFD_FIELD_PAL_END - FFD_FIELD_PAL_START + 1) * 0x20)
 
 /*********************************************************************************************
-	ƒƒCƒ“‰æ–Ê‚ÌCGXŠ„‚èU‚è		2007.04.06(‹à)
+	ãƒ¡ã‚¤ãƒ³ç”»é¢ã®CGXå‰²ã‚ŠæŒ¯ã‚Š		2007.04.06(é‡‘)
 
-		ƒEƒBƒ“ƒhƒE˜g	F	409 - 511
-			‰ï˜bAƒƒjƒ…[A’n–¼AŠÅ”Â
+		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æž 	ï¼š	409 - 511
+			ä¼šè©±ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€åœ°åã€çœ‹æ¿
 
-		BMPƒEƒBƒ“ƒhƒE‚P	F	297 - 408
-			‰ï˜b
+		BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼‘	ï¼š	297 - 408
+			ä¼šè©±
 
-		BMPƒEƒBƒ“ƒhƒE‚Q	F	0 - 296
-			ƒƒjƒ…[iÅ‘åjA‚Í‚¢/‚¢‚¢‚¦
+		BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼’	ï¼š	0 - 296
+			ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ˆæœ€å¤§ï¼‰ã€ã¯ã„/ã„ã„ãˆ
 
 *********************************************************************************************/
 
 /*********************************************************************************************
-	ƒEƒBƒ“ƒhƒE˜g
+	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æž 
 *********************************************************************************************/
-// ‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	FR_TALK_WIN_CGX_SIZE	( 18+12 )
 #define	FR_TALK_WIN_CGX_NUM		( 1024 - FR_TALK_WIN_CGX_SIZE )
 #define	FR_TALK_WIN_PAL			( FFD_MESFRAME_PAL )
 
-// ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	FR_MENU_WIN_CGX_SIZE	( 9 )
 #define	FR_MENU_WIN_CGX_NUM	( FR_TALK_WIN_CGX_NUM - FR_MENU_WIN_CGX_SIZE )
 #define	FR_MENU_WIN_PAL		( FFD_MENUFRAME_PAL )
 
 /*********************************************************************************************
-	BMPƒEƒBƒ“ƒhƒE
+	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 *********************************************************************************************/
-// ‰ï˜bƒEƒBƒ“ƒhƒEiƒƒCƒ“j
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰
 #define	FFD_MSG_WIN_PX		( 2 )
 #define	FFD_MSG_WIN_PY		( 19 )
 #define	FFD_MSG_WIN_SX		( 27 )
@@ -72,7 +72,7 @@
 #define	FFD_MSG_WIN_PAL		( FFD_MESFONT_PAL )
 #define	FFD_MSG_WIN_CGX		( FR_MENU_WIN_CGX_NUM - ( FFD_MSG_WIN_SX * FFD_MSG_WIN_SY ) )
 
-// ƒƒjƒ…[ƒEƒBƒ“ƒhƒEiƒƒCƒ“j
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰
 #define	FFD_MENU_WIN_PX		( 20 )
 #define	FFD_MENU_WIN_PY		( 1 )
 #define	FFD_MENU_WIN_SX		( 11 )
@@ -80,7 +80,7 @@
 #define	FFD_MENU_WIN_PAL	( FFD_SYSFONT_PAL )
 #define	FFD_MENU_WIN_CGX	( FFD_MSG_WIN_CGX - ( FFD_MENU_WIN_SX * FFD_MENU_WIN_SY ) )
 
-// ‚Í‚¢/‚¢‚¢‚¦ƒEƒBƒ“ƒhƒEiƒƒCƒ“jiƒƒjƒ…[‚Æ“¯‚¶ˆÊ’uiƒƒjƒ…[‚æ‚è¬‚³‚¢jj
+// ã¯ã„/ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰ï¼ˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨åŒã˜ä½ç½®ï¼ˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚ˆã‚Šå°ã•ã„ï¼‰ï¼‰
 #define	FFD_YESNO_WIN_PX	( 25 )
 #define	FFD_YESNO_WIN_PY	( 13 )
 #define	FFD_YESNO_WIN_SX	( 6 )
@@ -88,7 +88,7 @@
 #define	FFD_YESNO_WIN_PAL	( FFD_SYSFONT_PAL )
 #define	FFD_YESNO_WIN_CGX	( FFD_MSG_WIN_CGX - ( FFD_YESNO_WIN_SX * FFD_YESNO_WIN_SY ) )
 
-// –¼‘O{CPƒEƒBƒ“ƒhƒE(ƒvƒŒƒCƒ„[—p)
+// åå‰ï¼‹CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”¨)
 #define	FFD_CP_WIN_PX		( 1 )
 #define	FFD_CP_WIN_PY		( 1 )
 #define	FFD_CP_WIN_SX		( 10 )
@@ -96,7 +96,7 @@
 #define	FFD_CP_WIN_PAL		( FFD_SYSFONT_PAL )
 #define	FFD_CP_WIN_CGX		( FFD_MENU_WIN_CGX - ( FFD_CP_WIN_SX * FFD_CP_WIN_SY ) )
 
-// –¼‘O{CPƒEƒBƒ“ƒhƒE(ƒp[ƒgƒi[—p)
+// åå‰ï¼‹CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦(ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ç”¨)
 #define	FFD_CP2_WIN_PX		( 21 )
 #define	FFD_CP2_WIN_PY		( 1 )
 #define	FFD_CP2_WIN_SX		( FFD_CP_WIN_SX )
@@ -104,53 +104,53 @@
 #define	FFD_CP2_WIN_PAL		( FFD_SYSFONT_PAL )
 #define	FFD_CP2_WIN_CGX		( FFD_CP_WIN_CGX - ( FFD_CP2_WIN_SX * FFD_CP2_WIN_SY ) )
 
-// BMPƒEƒBƒ“ƒhƒE ƒtƒŠ[ŠJŽnˆÊ’u
+// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ ãƒ•ãƒªãƒ¼é–‹å§‹ä½ç½®
 #define FFD_FREE_CGX		(1)
 
 
 //==============================================================================
-//	Œ^’è‹`
+//	åž‹å®šç¾©
 //==============================================================================
-///FS_SYSTEM‚Ì•s’èŒ`ƒ|ƒCƒ“ƒ^
+///FS_SYSTEMã®ä¸å®šå½¢ãƒã‚¤ãƒ³ã‚¿
 typedef struct _FRONTIERMAP_PROC_WORK * FMAP_PTR;
 
-///FRONTIER_MAIN_WORK‚Ì•s’èŒ`ƒ|ƒCƒ“ƒ^
+///FRONTIER_MAIN_WORKã®ä¸å®šå½¢ãƒã‚¤ãƒ³ã‚¿
 typedef struct _FRONTIER_MAIN_WORK * FMAIN_PTR;
 
 //typedef struct _TAG_FIELD_OBJ * TARGET_OBJ_PTR;
-typedef u32 * TARGET_OBJ_PTR;	//ƒ^[ƒQƒbƒgOBJ‚ÌŒ^‚ª‚Ü‚¾–¢’è‚È‚Ì‚Å‚Æ‚è‚ ‚¦‚¸u32‚Å’è‹`‚µ‚Ä‚¨‚­
+typedef u32 * TARGET_OBJ_PTR;	//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆOBJã®åž‹ãŒã¾ã æœªå®šãªã®ã§ã¨ã‚Šã‚ãˆãšu32ã§å®šç¾©ã—ã¦ãŠã
 
-///FS_SYSTEM‚Ì•s’èŒ`ƒ|ƒCƒ“ƒ^
+///FS_SYSTEMã®ä¸å®šå½¢ãƒã‚¤ãƒ³ã‚¿
 typedef struct _FS_SYSTEM * FSS_PTR;
 
-///FS_SYSTEM‚Ì•s’èŒ`ƒ|ƒCƒ“ƒ^
+///FS_SYSTEMã®ä¸å®šå½¢ãƒã‚¤ãƒ³ã‚¿
 typedef struct _FSEV_WIN * FSEVWIN_PTR;
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///”z’u•¨ƒAƒNƒ^[‚ÌƒVƒXƒeƒ€“à•”‚ÅŽg‚¤ƒTƒu\‘¢‘ÌBƒAƒNƒ^[ƒpƒ‰ƒ[ƒ^ŠÖ˜A
+///é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚·ã‚¹ãƒ†ãƒ å†…éƒ¨ã§ä½¿ã†ã‚µãƒ–æ§‹é€ ä½“ã€‚ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é–¢é€£
 typedef struct{
-	s16 x;				///<XÀ•W
-	s16 y;				///<YÀ•W
+	s16 x;				///<Xåº§æ¨™
+	s16 y;				///<Yåº§æ¨™
 
-	u8 act_id;			///<ƒAƒNƒ^[ID
-	u8 anm_seq;			///<Œ»Ý‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒXNo
+	u8 act_id;			///<ã‚¢ã‚¯ã‚¿ãƒ¼ID
+	u8 anm_seq;			///<ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹No
 	
-	u16 anm_frame:13;	///<Œ»Ý‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”
-	u16 anm_stop:1;		///<ƒAƒjƒ’âŽ~ƒtƒ‰ƒO
-	u16 visible:1;		///<•\Ž¦E”ñ•\Ž¦Ý’è
-	u16 occ:1;			///<‚±‚Ì—Ìˆæ‚Ìƒpƒ‰ƒ[ƒ^‚Ì—LŒøE–³Œøƒtƒ‰ƒO(FALSEŽg‚í‚ê‚Ä‚¢‚È‚¢)
+	u16 anm_frame:13;	///<ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	u16 anm_stop:1;		///<ã‚¢ãƒ‹ãƒ¡åœæ­¢ãƒ•ãƒ©ã‚°
+	u16 visible:1;		///<è¡¨ç¤ºãƒ»éžè¡¨ç¤ºè¨­å®š
+	u16 occ:1;			///<ã“ã®é ˜åŸŸã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ãƒ•ãƒ©ã‚°(FALSEï¼ä½¿ã‚ã‚Œã¦ã„ãªã„)
 }PUSH_ARTICLE_ACT_PARAM;
 
-///”z’u•¨ƒAƒNƒ^[‚ÌƒVƒXƒeƒ€\‘¢‘Ì
+///é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
 typedef struct{
-	u16 resource_id[ACTWORK_RESOURCE_MAX];	///<ƒXƒNƒŠƒvƒgã‚Å¶¬‚µ‚½ƒAƒNƒ^[ƒŠƒ\[ƒX‚ÌID•Û‘¶êŠ
-//	u32 anmbit;				///<ƒAƒjƒ“®ì‚Ì—L–³(1ƒrƒbƒg’PˆÊ‚ÅŠÇ—)
+	u16 resource_id[ACTWORK_RESOURCE_MAX];	///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆä¸Šã§ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã®IDä¿å­˜å ´æ‰€
+//	u32 anmbit;				///<ã‚¢ãƒ‹ãƒ¡å‹•ä½œã®æœ‰ç„¡(1ãƒ“ãƒƒãƒˆå˜ä½ã§ç®¡ç†)
 
-	PUSH_ARTICLE_ACT_PARAM act_param[ACTWORK_MAX];	///<ƒAƒNƒ^[ƒpƒ‰ƒ[ƒ^
-	//CATS_ACT_PTR act[ACTWORK_MAX];///<ƒXƒNƒŠƒvƒgã‚Å¶¬‚µ‚ÄŠÇ—‚·‚éê‡‚Ìƒ|ƒCƒ“ƒ^•Û‘¶êŠ
+	PUSH_ARTICLE_ACT_PARAM act_param[ACTWORK_MAX];	///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	//CATS_ACT_PTR act[ACTWORK_MAX];///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆä¸Šã§ç”Ÿæˆã—ã¦ç®¡ç†ã™ã‚‹å ´åˆã®ãƒã‚¤ãƒ³ã‚¿ä¿å­˜å ´æ‰€
 }PUSH_ARTICLE_WORK;
 
 

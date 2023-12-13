@@ -2,7 +2,7 @@
 /**
  *
  * @file	field_villa.c
- * @brief	ƒtƒB[ƒ‹ƒh@•Ê‘‘ˆ—
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€åˆ¥è˜å‡¦ç†
  * @author	kagaya
  * @data	05.07.13
  *
@@ -34,15 +34,15 @@
 //==============================================================================
 //	define
 //==============================================================================
-#define GDFX(a) (GRID_SIZE_FX32(a))					///<ƒOƒŠƒbƒhÀ”•ÏŠ·
-#define GCFX(a) (GRID_SIZE_FX32(a)+GRID_HALF_FX32)	///<ƒOƒŠƒbƒh’†SÀ”•ÏŠ·
+#define GDFX(a) (GRID_SIZE_FX32(a))					///<ã‚°ãƒªãƒƒãƒ‰å®Ÿæ•°å¤‰æ›
+#define GCFX(a) (GRID_SIZE_FX32(a)+GRID_HALF_FX32)	///<ã‚°ãƒªãƒƒãƒ‰ä¸­å¿ƒå®Ÿæ•°å¤‰æ›
 
 #define VILLA_GX_MAX (32)
 #define VILLA_GZ_MAX (32)
 #define VILLA_GRID_SIZE_MAX (VILLA_GX_MAX*VILLA_GZ_MAX)
 
 //--------------------------------------------------------------
-///	‰Æ‹ïí—Ş”Ô†
+///	å®¶å…·ç¨®é¡ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -69,7 +69,7 @@ enum
 	FTURE_MAX,
 };
 
-#define FTURE_PUT_MAX (23)	///<‰Æ‹ï”z’uÅ‘å”
+#define FTURE_PUT_MAX (23)	///<å®¶å…·é…ç½®æœ€å¤§æ•°
 
 //==============================================================================
 //	typedef
@@ -81,7 +81,7 @@ typedef struct _VILLA_WORK VILLA_WORK;
 //--------------------------------------------------------------
 typedef struct
 {
-	s16 left;				///<‰Æ‹ï‚ª’u‚©‚ê‚éƒOƒŠƒbƒhn“_
+	s16 left;				///<å®¶å…·ãŒç½®ã‹ã‚Œã‚‹ã‚°ãƒªãƒƒãƒ‰å§‹ç‚¹
 	s16 top;
 	s16 right;
 	s16 bottom;
@@ -92,10 +92,10 @@ typedef struct
 //--------------------------------------------------------------
 typedef struct
 {
-	u16 no;				///<‰Æ‹ïí—Ş
-	u16 hit_flag;		///<‰Æ‹ï“–‚½‚è”»’è TRUE=Hit
-	VecFx32 draw_pos;	///<‰Æ‹ï•\¦À•W
-	FTURE_RECT rect;	///<‰Æ‹ï“–‚½‚è”»’è
+	u16 no;				///<å®¶å…·ç¨®é¡
+	u16 hit_flag;		///<å®¶å…·å½“ãŸã‚Šåˆ¤å®š TRUE=Hit
+	VecFx32 draw_pos;	///<å®¶å…·è¡¨ç¤ºåº§æ¨™
+	FTURE_RECT rect;	///<å®¶å…·å½“ãŸã‚Šåˆ¤å®š
 }FTURE_DATA;
 
 //--------------------------------------------------------------
@@ -131,10 +131,10 @@ struct _VILLA_WORK
 //	proto
 //==============================================================================
 
-//ƒ‚ƒfƒ‹
+//ãƒ¢ãƒ‡ãƒ«
 static void Villa_MdlSet( VILLA_WORK *work, const u32 no );
 
-//ƒp[ƒc
+//ãƒ‘ãƒ¼ãƒ„
 static BOOL Villa_EvFlagCheck( FIELDSYS_WORK *fsys, u32 no );
 static BOOL Villa_FTureHitCheck(
 	int gx, int gz, const FTURE_DATA *fdata, FIELDSYS_WORK *fsys );
@@ -145,11 +145,11 @@ static const u32 DATA_FTureBMIDTbl[FTURE_MAX];
 static const FTURE_TALKDATA DATA_FTureTalkEventDataTbl[FTURE_MAX];
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒh@ƒMƒ~ƒbƒN@•Ê‘‘ˆ—
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ã‚®ãƒŸãƒƒã‚¯ã€€åˆ¥è˜å‡¦ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •Ê‘‘@ƒZƒbƒgƒAƒbƒv
+ * åˆ¥è˜ã€€ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -170,7 +170,7 @@ void FldVilla_Setup( FIELDSYS_WORK *fsys )
 	work->gmc_villa = gmc_villa;
 	fsys->fldmap->Work = work;
 	
-	//ˆÈ‰º‰Šú‰»
+	//ä»¥ä¸‹åˆæœŸåŒ–
 	{
 		int i;
 		
@@ -184,7 +184,7 @@ void FldVilla_Setup( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * •Ê‘‘@I—¹
+ * åˆ¥è˜ã€€çµ‚äº†
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -193,24 +193,24 @@ void FldVilla_End( FIELDSYS_WORK *fsys )
 {
 	VILLA_WORK *work = fsys->fldmap->Work;
 	
-	//I—¹ˆ—
+	//çµ‚äº†å‡¦ç†
 	
 	sys_FreeMemoryEz( work );
 	fsys->fldmap->Work = NULL;
 }
 
 //==============================================================================
-//	•Ê‘‘@“–‚½‚è”»’è
+//	åˆ¥è˜ã€€å½“ãŸã‚Šåˆ¤å®š
 //==============================================================================
 //---------------------------------------------------------------------------
 /**
- * •Ê‘‘@“–‚½‚è”»’è
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @param	inHeight	‚‚³
- * @param	outHit		”»’èŒ‹‰Ê	TRUE:ƒqƒbƒg	FALSE:ƒqƒbƒg‚µ‚Ä‚È‚¢
- * @return	BOOL		TRUE:‚±‚Ì‚ ‚Æ’Êí“–‚½‚è”»’è‚ğs‚í‚È‚¢	FALSE:’Êí“–‚½‚è”»’è‚ğs‚¤
+ * åˆ¥è˜ã€€å½“ãŸã‚Šåˆ¤å®š
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inHeight	é«˜ã•
+ * @param	outHit		åˆ¤å®šçµæœ	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒ’ãƒƒãƒˆã—ã¦ãªã„
+ * @return	BOOL		TRUE:ã“ã®ã‚ã¨é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã‚ãªã„	FALSE:é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  */
 //---------------------------------------------------------------------------
 BOOL FldVilla_HitCheck( FIELDSYS_WORK *fsys,
@@ -234,11 +234,11 @@ BOOL FldVilla_HitCheck( FIELDSYS_WORK *fsys,
 
 //---------------------------------------------------------------------------
 /**
- * •Ê‘‘@˜b‚µ‚©‚¯ƒ`ƒFƒbƒN
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @return	BOOL		”»’èŒ‹‰Ê TRUE=˜b‚µ‚©‚¯ƒCƒxƒ“ƒg—L‚è
+ * åˆ¥è˜ã€€è©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @return	BOOL		åˆ¤å®šçµæœ TRUE=è©±ã—ã‹ã‘ã‚¤ãƒ™ãƒ³ãƒˆæœ‰ã‚Š
  */
 //---------------------------------------------------------------------------
 BOOL FldVilla_TalkCheck( FIELDSYS_WORK *fsys,
@@ -255,7 +255,7 @@ BOOL FldVilla_TalkCheck( FIELDSYS_WORK *fsys,
 				const FTURE_TALKDATA *id =
 					&DATA_FTureTalkEventDataTbl[fdata->no];
 				
-				if( id->scr_id == SCRID_TV ){	//TVŒÀ’è˜b‚µ‚©‚¯•ûŒüƒ`ƒFƒbƒN
+				if( id->scr_id == SCRID_TV ){	//TVé™å®šè©±ã—ã‹ã‘æ–¹å‘ãƒã‚§ãƒƒã‚¯
 					if( dir != DIR_UP ){
 						continue;
 					}
@@ -271,13 +271,13 @@ BOOL FldVilla_TalkCheck( FIELDSYS_WORK *fsys,
 }
 
 //==============================================================================
-//	•Ê‘‘@”z’uƒ‚ƒfƒ‹
+//	åˆ¥è˜ã€€é…ç½®ãƒ¢ãƒ‡ãƒ«
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½‰Æ‹ï‚ğ”z’u
+ * æŒ‡å®šã•ã‚ŒãŸå®¶å…·ã‚’é…ç½®
  * @param	work	VILLA_WORK
- * @param	no		‰Æ‹ï”Ô†
+ * @param	no		å®¶å…·ç•ªå·
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -290,7 +290,7 @@ static void Villa_MdlSet( VILLA_WORK *work, const u32 no )
 	const FTURE_DATA *fdata = DATA_FTureDataTbl;
 	FIELDSYS_WORK *fsys = work->fsys;
 	
-	//no‚Å”z’u‚·‚é”•ªAƒ[ƒN‚Ì‹ó‚«‚ÉƒZƒbƒg
+	//noã§é…ç½®ã™ã‚‹æ•°åˆ†ã€ãƒ¯ãƒ¼ã‚¯ã®ç©ºãã«ã‚»ãƒƒãƒˆ
 	for( pi = 0; pi < FTURE_PUT_MAX; pi++, fdata++ ){
 		if( fdata->no == no ){
 			i = 0;
@@ -315,13 +315,13 @@ static void Villa_MdlSet( VILLA_WORK *work, const u32 no )
 }
 
 //==============================================================================
-//	•Ê‘‘@ƒp[ƒc
+//	åˆ¥è˜ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰Æ‹ï”Ô†‘Î‰ƒCƒxƒ“ƒgƒtƒ‰ƒOƒ`ƒFƒbƒN
+ * å®¶å…·ç•ªå·å¯¾å¿œã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK
- * @param	no		‰Æ‹ï”Ô†
+ * @param	no		å®¶å…·ç•ªå·
  * @retval	BOOL	TRUE=ON
  */
 //--------------------------------------------------------------
@@ -333,12 +333,12 @@ static BOOL Villa_EvFlagCheck( FIELDSYS_WORK *fsys, u32 no )
 
 //--------------------------------------------------------------
 /**
- * •Ê‘‘@‰Æ‹ï“–‚½‚è”»’èƒ`ƒFƒbƒN
- * @param	gx		ƒOƒŠƒbƒhX
- * @param	gz		ƒOƒŠƒbƒhZ
+ * åˆ¥è˜ã€€å®¶å…·å½“ãŸã‚Šåˆ¤å®šãƒã‚§ãƒƒã‚¯
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰Z
  * @param	fdata	FTURE_DATA
  * @param	fsys	FIELDSYS_WORK
- * @retval	BOOL	TRUE=ƒqƒbƒg
+ * @retval	BOOL	TRUE=ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static BOOL Villa_FTureHitCheck(
@@ -361,7 +361,7 @@ static BOOL Villa_FTureHitCheck(
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	‰Æ‹ïÀ•Wƒf[ƒ^ƒe[ƒuƒ‹
+///	å®¶å…·åº§æ¨™ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const FTURE_DATA DATA_FTureDataTbl[FTURE_PUT_MAX] =
 {
@@ -420,7 +420,7 @@ static const FTURE_DATA DATA_FTureDataTbl[FTURE_PUT_MAX] =
 #endif
 
 //--------------------------------------------------------------
-///	‰Æ‹ï”Ô†•Ê”z’uƒ‚ƒfƒ‹ID
+///	å®¶å…·ç•ªå·åˆ¥é…ç½®ãƒ¢ãƒ‡ãƒ«ID
 //--------------------------------------------------------------
 static const u32 DATA_FTureBMIDTbl[FTURE_MAX] =
 {
@@ -447,7 +447,7 @@ static const u32 DATA_FTureBMIDTbl[FTURE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	‰Æ‹ï”Ô†•Ê˜b‚µ‚©‚¯ƒCƒxƒ“ƒgƒf[ƒ^
+///	å®¶å…·ç•ªå·åˆ¥è©±ã—ã‹ã‘ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 static const FTURE_TALKDATA DATA_FTureTalkEventDataTbl[FTURE_MAX] =
 {
@@ -457,7 +457,7 @@ static const FTURE_TALKDATA DATA_FTureTalkEventDataTbl[FTURE_MAX] =
 	{SCRID_T07R0201_FURNITURE_04},
 	{SCRID_T07R0201_FURNITURE_05},
 	//{SCRID_T07R0201_FURNITURE_06},
-	{SCRID_TV},							//’Êí‚ÌTV‚ğ‹N“®‚³‚¹‚é‚ç‚µ‚¢‚Å‚· 08.04.15
+	{SCRID_TV},							//é€šå¸¸ã®TVã‚’èµ·å‹•ã•ã›ã‚‹ã‚‰ã—ã„ã§ã™ 08.04.15
 	{SCRID_T07R0201_FURNITURE_07},
 	{SCRID_T07R0201_FURNITURE_08},
 	{SCRID_T07R0201_FURNITURE_09},

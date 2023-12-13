@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_sortsearch.c
- *	@brief		ŒŸõƒ\[ƒgƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+ *	@brief		æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  *	@author		tomoya takahashi
  *	@data		2006.01.20
  *
@@ -35,34 +35,34 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_SORTSEARCH_EVENT_NUM ( 1 )	// ƒCƒxƒ“ƒg”
-#define ZKN_SORTSEARCH_CHANGE_POKELIST	( 0x1 << 1 )	// ƒ|ƒPƒŠƒXƒg‚ÖˆÚ“®
+#define ZKN_SORTSEARCH_EVENT_NUM ( 1 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
+#define ZKN_SORTSEARCH_CHANGE_POKELIST	( 0x1 << 1 )	// ãƒã‚±ãƒªã‚¹ãƒˆã¸ç§»å‹•
 
 #define ZKN_SORTSEARCH_OAM_BG_PRI	( 2 )
 #define ZKN_SORTSEARCH_OAM_PRI		( 31 )
 
 //-------------------------------------
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_SORTSEARCH_SEQINIT_ALLOC,
@@ -91,7 +91,7 @@ enum{
 #define ZKN_SORTSEARCH_STR_NUM			( 64 )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/19
-// ŒŸõðŒ‚Ì•\Ž¦‚ð’†‰›Šñ‚¹
+// æ¤œç´¢æ¡ä»¶ã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›
 #define ZKN_SORTSEARCH_FONT_BG_X		( 88 )
 #define ZKN_SORTSEARCH_FONT_BG_SORT_Y	( 52 )
 #define ZKN_SORTSEARCH_FONT_BG_NAME_Y	( 77 )
@@ -103,7 +103,7 @@ enum{
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/19
-// à–¾‚Ì•\Ž¦‚ð’†‰›Šñ‚¹
+// èª¬æ˜Žã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›
 #define ZKN_SORTSEARCH_FONT_BG_SELECT_X	( 24 )
 #define ZKN_SORTSEARCH_FONT_BG_SELECT_Y	( 8 )
 #define ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_X	( 208 )
@@ -114,7 +114,7 @@ enum{
 #define ZKN_SORTSEARCH_FONT_BG_TYPE_BOU_NUM	( 4 ) 
 #define ZKN_SORTSEARCH_FONT_BG_BOU_SIZE_X	( 16 )
 
-// FORM@OAM
+// FORMã€€OAM
 #define ZKN_SORTSEARCH_FORM_OAM_X	( 128 )
 #define ZKN_SORTSEARCH_FORM_OAM_Y	( 164 )
 #define ZKN_SORTSEARCH_FORM_OAM_ANM	( 3 )
@@ -135,11 +135,11 @@ enum{
 	ZKN_SORTSEARCH_FORM_OAM_COMP,
 };
 
-// ¿°ÄŽ¸”sƒeƒLƒXƒg•`‰æƒJƒEƒ“ƒg
+// ã‚½ãƒ¼ãƒˆå¤±æ•—ãƒ†ã‚­ã‚¹ãƒˆæç”»ã‚«ã‚¦ãƒ³ãƒˆ
 #define ZKN_SORTSEARCH_ERR_DRAW_COUNT	( 64 )
 
 
-// ¿°Ä´Ìª¸Ä
+// ã‚½ãƒ¼ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 #define ZKN_SORTSEARCH_EFECT_ACT_X		( 128 )
 #define ZKN_SORTSEARCH_EFECT_ACT_Y		( 96 )
 #define ZKN_SORTSEARCH_EFECT_ACT_ANM	( 17 )
@@ -147,7 +147,7 @@ enum{
 #define ZKN_SORTSEARCH_EFECT_FONT_Y		( 128 )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/10/26
-// u‚¯‚ñ‚³‚­‚¿‚ã‚¤v‚Ì•\Ž¦‚ð’†‰›Šñ‚¹
+// ã€Œã‘ã‚“ã•ãã¡ã‚…ã†ã€ã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›
 #define ZKN_SORTSEARCH_EFECT_FONT_AREA_X	( 256 )
 // ----------------------------------------------------------------------------
 
@@ -155,82 +155,82 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ŒŸõƒ\[ƒg‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	æ¤œç´¢ã‚½ãƒ¼ãƒˆç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	int*				p_event_key;		// ƒCƒxƒ“ƒgƒL[
-	ZKN_GLB_DATA*		p_glb;				// ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	ZKN_POKELIST_GLB_DATA* p_pokelist;		// ƒ|ƒPƒŠƒXƒg
+	int*				p_event_key;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
+	ZKN_GLB_DATA*		p_glb;				// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	ZKN_POKELIST_GLB_DATA* p_pokelist;		// ãƒã‚±ãƒªã‚¹ãƒˆ
 
-	int					now_select;			// Œ»Ý‚ÌƒZƒŒƒNƒgÀ²Ìß
-	int					sort_type;			// ¿°ÄÀ²Ìß
-	int					search_name;		// ‚È‚Ü‚¦ƒT[ƒ`À²Ìß
-	int					search_type1;		// À²ÌßƒT[ƒ`À²Ìß
-	int					search_type2;		// À²ÌßƒT[ƒ`À²Ìß
-	int					search_form;		// ‚©‚½‚¿ƒT[ƒ`À²Ìß
-	BOOL				list_chg_flag;// ƒŠƒXƒg‰æ–Ê‚Ö
-	BOOL				sort_flag;		// ¿°ÄŽÀsƒtƒ‰ƒO
-	BOOL				sort_err;		// ¿°ÄŽÀsŽ¸”s
+	int					now_select;			// ç¾åœ¨ã®ã‚»ãƒ¬ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
+	int					sort_type;			// ã‚½ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—
+	int					search_name;		// ãªã¾ãˆã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ—
+	int					search_type1;		// ã‚¿ã‚¤ãƒ—ã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ—
+	int					search_type2;		// ã‚¿ã‚¤ãƒ—ã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ—
+	int					search_form;		// ã‹ãŸã¡ã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ—
+	BOOL				list_chg_flag;// ãƒªã‚¹ãƒˆç”»é¢ã¸
+	BOOL				sort_flag;		// ã‚½ãƒ¼ãƒˆå®Ÿè¡Œãƒ•ãƒ©ã‚°
+	BOOL				sort_err;		// ã‚½ãƒ¼ãƒˆå®Ÿè¡Œå¤±æ•—
 
-	// ƒ‚[ƒh
-	int		fade_mode;			// ƒtƒF[ƒhƒ‚[ƒh
-	int		fade_count;			// ƒtƒF[ƒh“®ìƒJƒEƒ“ƒg	
-								// ‚±‚Ì¶³ÝÀ‚Å‘S“®ì‚·‚é
+	// ãƒ¢ãƒ¼ãƒ‰
+	int		fade_mode;			// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+	int		fade_count;			// ãƒ•ã‚§ãƒ¼ãƒ‰å‹•ä½œã‚«ã‚¦ãƒ³ãƒˆ	
+								// ã“ã®ã‚«ã‚¦ãƒ³ã‚¿ã§å…¨å‹•ä½œã™ã‚‹
 } ZKN_SORTSEARCH_GLB;
 
 //-------------------------------------
-//	ŒŸõƒ\[ƒg‰æ–Ê@•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	æ¤œç´¢ã‚½ãƒ¼ãƒˆç”»é¢ã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DRAWDATA*	p_drawglb;			// •`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DRAWDATA*	p_drawglb;			// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 } ZKN_SORTSEARCH_DRAWGLB;
 
 //-------------------------------------
-//	ŒŸõƒ\[ƒg‰æ–Ê@“à•”ƒ[ƒN
+//	æ¤œç´¢ã‚½ãƒ¼ãƒˆç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	int dummy;
 } ZKN_SORTSEARCH_WORK;
 
 //-------------------------------------
-//	ŒŸõƒ\[ƒg‰æ–Ê@•`‰æƒ[ƒN
+//	æ¤œç´¢ã‚½ãƒ¼ãƒˆç”»é¢ã€€æç”»ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	int		now_select;			// Œ»Ý‚ÌƒZƒŒƒNƒgÀ²Ìß
-	int		sort_type;			// ¿°ÄÀ²Ìß
-	int		search_name;		// ‚È‚Ü‚¦ƒT[ƒ`À²Ìß
-	int		search_type1;		// À²ÌßƒT[ƒ`À²Ìß
-	int		search_type2;		// À²ÌßƒT[ƒ`À²Ìß
-	int		search_form;		// ‚©‚½‚¿ƒT[ƒ`À²Ìß
+	int		now_select;			// ç¾åœ¨ã®ã‚»ãƒ¬ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
+	int		sort_type;			// ã‚½ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—
+	int		search_name;		// ãªã¾ãˆã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ—
+	int		search_type1;		// ã‚¿ã‚¤ãƒ—ã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ—
+	int		search_type2;		// ã‚¿ã‚¤ãƒ—ã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ—
+	int		search_form;		// ã‹ãŸã¡ã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ—
 
-	BOOL				sort_err;		// ¿°ÄŽÀsŽ¸”s
-	int					sort_err_draw_count;	// ¿°ÄŽÀsŽ¸”s•`‰æ¶³ÝÀ
+	BOOL				sort_err;		// ã‚½ãƒ¼ãƒˆå®Ÿè¡Œå¤±æ•—
+	int					sort_err_draw_count;	// ã‚½ãƒ¼ãƒˆå®Ÿè¡Œå¤±æ•—æç”»ã‚«ã‚¦ãƒ³ã‚¿
 
-	// ƒtƒH[ƒ€OAM
+	// ãƒ•ã‚©ãƒ¼ãƒ OAM
 	CLACT_WORK_PTR search_form_act;
-	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ResourceƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
-	// ƒVƒƒƒbƒ^[ƒtƒF[ƒh
+	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// Resourceã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
+	// ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ãƒ‰
 	ZKN_UTIL_BGSHTTER_DADE shutter;
 
-	// ŒŸõ’†ƒAƒjƒ—p
+	// æ¤œç´¢ä¸­ã‚¢ãƒ‹ãƒ¡ç”¨
 	CLACT_WORK_PTR sort_act;
 
 	void* p_scrn_buff;
-	NNSG2dScreenData* p_scrn;	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
+	NNSG2dScreenData* p_scrn;	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
 } ZKN_SORTSEARCH_DRAW;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_SORTSEARCH_GLB* MakeSortSearchGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -245,7 +245,7 @@ static int SortSearchEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknSortSearchProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -256,15 +256,15 @@ static int ZknSortSearchProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 static int ZknSortSearchProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
 
-// ƒtƒF[ƒhˆ—
+// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknSortSearchFadeSys( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DRAWGLB* p_drawglb, const ZKN_SORTSEARCH_GLB* cp_glb, int heap );
 
-// ŒŸõ’†ƒGƒtƒFƒNƒgˆ—
+// æ¤œç´¢ä¸­ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‡¦ç†
 static void ZknSortSearchSortEffSys( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DRAWGLB* p_drawglb, const ZKN_SORTSEARCH_GLB* cp_glb, int heap );
 static void ZknSortSearchSortEffFontSet( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int heap );
 static void ZknSortSearchSortEffFontReset( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, ZKN_SORTSEARCH_DRAW* p_draw, int heap );
 
-// Resource“Ç‚Ýž‚Ý
+// Resourceèª­ã¿è¾¼ã¿
 static void ZknSortSearchLoadRes( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DRAWGLB* p_drawglb, const ZKN_SORTSEARCH_GLB* cp_glb, const ZKN_SORTSEARCH_WORK* cp_datawork, int heap );
 static void ZknSortSearchDeleteRes( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DRAWGLB* p_drawglb );
 static void ZknSortSearchSetUpBg( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, const ZKN_SORTSEARCH_GLB* cp_glb, int heap );
@@ -277,7 +277,7 @@ static void ZknSortSearchUtilBgDelete( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEAR
 
 
 
-// •`‰æˆ—
+// æç”»å‡¦ç†
 static void ZknSortSearchSelectDraw( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DRAWGLB* p_drawglb, const ZKN_SORTSEARCH_GLB* cp_glb,  int heap );
 
 static void ZknSortSearchBgSelectType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int type, int heap );
@@ -296,11 +296,11 @@ static void ZknSortSearchPokeGraDrawOff( ZKN_SORTSEARCH_DRAWGLB* p_drawglb );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒAƒvƒŠì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		Žg—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -333,9 +333,9 @@ void ZKN_SortSearchAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	ƒTƒu‰æ–Ê@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã‚µãƒ–ç”»é¢ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -351,10 +351,10 @@ void ZKN_SortSearchAplDelete( ZKN_APL_DATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»Ý‘I‘ð‚µ‚Ä‚¢‚éÀ²Ìß‚ðÝ’è
+ *	@brief	ç¾åœ¨é¸æŠžã—ã¦ã„ã‚‹ã‚¿ã‚¤ãƒ—ã‚’è¨­å®š
  *
- *	@param	p_data	ƒAƒvƒŠÃÞ°À
- *	@param	type	À²Ìß
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	type	ã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  *	typoe
@@ -374,11 +374,11 @@ void ZKN_SortSearchAplSelectTypeSet( ZKN_APL_DATA* p_data, int type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»Ý‘I‘ð‚µ‚Ä‚¢‚éÀ²Ìß‚ðŽæ“¾
+ *	@brief	ç¾åœ¨é¸æŠžã—ã¦ã„ã‚‹ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- *	@param	cp_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ÃÞ°À
+ *	@param	cp_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	‘I‘ðÀ²Ìß
+ *	@return	é¸æŠžã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 int ZKN_SortSearchAplSelectTypeGet( const ZKN_APL_DATA* cp_data )
@@ -390,20 +390,20 @@ int ZKN_SortSearchAplSelectTypeGet( const ZKN_APL_DATA* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°ÄÀ²ÌßÝ’è
+ *	@brief	ã‚½ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—è¨­å®š
  *
- *	@param	p_data	ƒAƒvƒŠÃÞ°À
- *	@param	type	À²Ìß
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	type	ã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  *
  *	type
-	ZKN_POKELIST_SORT_NORMAL,		// ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-	ZKN_POKELIST_SORT_GOZYUUON,		// ŒÜ\‰¹
-	ZKN_POKELIST_SORT_GRAM_L,		// d‚¢
-	ZKN_POKELIST_SORT_GRAM_S,		// Œy‚¢
-	ZKN_POKELIST_SORT_HIGH_L,		// ‚‚¢
-	ZKN_POKELSIT_SOTT_HIGH_S,		// ’á‚¢
+	ZKN_POKELIST_SORT_NORMAL,		// ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+	ZKN_POKELIST_SORT_GOZYUUON,		// äº”åéŸ³
+	ZKN_POKELIST_SORT_GRAM_L,		// é‡ã„
+	ZKN_POKELIST_SORT_GRAM_S,		// è»½ã„
+	ZKN_POKELIST_SORT_HIGH_L,		// é«˜ã„
+	ZKN_POKELSIT_SOTT_HIGH_S,		// ä½Žã„
  *
  */
 //-----------------------------------------------------------------------------
@@ -417,11 +417,11 @@ void ZKN_SortSearchAplSortTypeSet( ZKN_APL_DATA* p_data, int type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°ÄÀ²Ìß‚ðŽæ“¾
+ *	@brief	ã‚½ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- *	@param	cp_data		ƒAƒvƒŠÃÞ°À
+ *	@param	cp_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@return	¿°ÄÀ²Ìß
+ *	@return	ã‚½ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 int ZKN_SortSearchAplSortTypeGet( const ZKN_APL_DATA* cp_data )
@@ -433,10 +433,10 @@ int ZKN_SortSearchAplSortTypeGet( const ZKN_APL_DATA* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚È‚Ü‚¦À²ÌßÝ’è
+ *	@brief	ãªã¾ãˆã‚¿ã‚¤ãƒ—è¨­å®š
  *
- *	@param	p_data	ƒAƒvƒŠÃÞ°À
- *	@param	type	–¼‘OÀ²Ìß
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	type	åå‰ã‚¿ã‚¤ãƒ—
  *
  * type
 	ZKN_POKELIST_SEARCH_NAME_NONE,
@@ -463,11 +463,11 @@ void ZKN_SortSearchAplNameTypeSet( ZKN_APL_DATA* p_data, int type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅÏ´À²ÌßŽæ“¾
+ *	@brief	ãƒŠãƒžã‚¨ã‚¿ã‚¤ãƒ—å–å¾—
  *
- *	@param	cp_data		ƒAƒvƒŠÃÞ°À
+ *	@param	cp_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ÅÏ´À²Ìß
+ *	@return	ãƒŠãƒžã‚¨ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 int ZKN_SortSearchAplNameTypeGet( const ZKN_APL_DATA* cp_data )
@@ -479,11 +479,11 @@ int ZKN_SortSearchAplNameTypeGet( const ZKN_APL_DATA* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²ÌßÀ²ÌßÝ’è
+ *	@brief	ã‚¿ã‚¤ãƒ—ã‚¿ã‚¤ãƒ—è¨­å®š
  *	
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
- *	@param	type		À²Ìß
- *	@param	no			À²ÌßÅÝÊÞ° 0or1
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	type		ã‚¿ã‚¤ãƒ—
+ *	@param	no			ã‚¿ã‚¤ãƒ—ãƒŠãƒ³ãƒãƒ¼ 0or1
  *
  * type
 	ZKN_POKELIST_SEARCH_TYPE_NONE,
@@ -527,12 +527,12 @@ void ZKN_SortSearchAplTypeTypeSet( ZKN_APL_DATA* p_data, int type, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²ÌßÀ²Ìß‚ÌŽæ“¾
+ *	@brief	ã‚¿ã‚¤ãƒ—ã‚¿ã‚¤ãƒ—ã®å–å¾—
  *
- *	@param	cp_data		ƒAƒvƒŠÃÞ°À
- *	@param	no			À²ÌßÅÝÊÞ°
+ *	@param	cp_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	no			ã‚¿ã‚¤ãƒ—ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	À²ÌßÀ²Ìß
+ *	@return	ã‚¿ã‚¤ãƒ—ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 int ZKN_SortSearchAplTypeTypeGet( const ZKN_APL_DATA* cp_data, int no )
@@ -548,10 +548,10 @@ int ZKN_SortSearchAplTypeTypeGet( const ZKN_APL_DATA* cp_data, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ`‘ÔÀ²Ìß‚ÌÝ’è
+ *	@brief	å½¢æ…‹ã‚¿ã‚¤ãƒ—ã®è¨­å®š
  *
- *	@param	p_data		ƒAƒvƒŠÃÞ°À
- *	@param	type		À²Ìß
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	type		ã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  *	type
@@ -582,11 +582,11 @@ void ZKN_SortSearchAplFormTypeSet( ZKN_APL_DATA* p_data, int type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ`‘ÔÀ²Ìß‚ÌŽæ“¾
+ *	@brief	å½¢æ…‹ã‚¿ã‚¤ãƒ—ã®å–å¾—
  *	
- *	@param	cp_data		ƒAƒvƒŠÃÞ°À
+ *	@param	cp_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@return	Œ`‘ÔÀ²Ìß
+ *	@return	å½¢æ…‹ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 int ZKN_SortSearchAplFormTypeGet( const ZKN_APL_DATA* cp_data )
@@ -598,10 +598,10 @@ int ZKN_SortSearchAplFormTypeGet( const ZKN_APL_DATA* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒg‰æ–Ê‚Ös‚­
+ *	@brief	ãƒªã‚¹ãƒˆç”»é¢ã¸è¡Œã
  *
  *	@param	p_data
- *	@param	do_sort	TRUE	¿°Ä‚ðs‚¤
+ *	@param	do_sort	TRUE	ã‚½ãƒ¼ãƒˆã‚’è¡Œã†
  *
  *	@return
  */
@@ -616,12 +616,12 @@ void ZKN_SortSearchAplReqListFade( ZKN_APL_DATA* p_data, BOOL do_sort )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°Äˆ—‚ðs‚¤‚©‚Ìƒtƒ‰ƒO
+ *	@brief	ã‚½ãƒ¼ãƒˆå‡¦ç†ã‚’è¡Œã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- *	@param	p_data	ƒAƒvƒŠÃÞ°À
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	s‚¤
- *	@retval	FALSE	s‚í‚È‚¢
+ *	@retval	TRUE	è¡Œã†
+ *	@retval	FALSE	è¡Œã‚ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_SortSearchAplSortDoFlagGet( const ZKN_APL_DATA* cp_data )
@@ -633,13 +633,13 @@ BOOL ZKN_SortSearchAplSortDoFlagGet( const ZKN_APL_DATA* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒ‚[ƒhŽæ“¾
+ *	@brief	å‹•ä½œãƒ¢ãƒ¼ãƒ‰å–å¾—
  *	
  *	@param	cp_data 
  *
- *	@return	“®ìƒ‚[ƒh
-	ZKN_SORTSEARCH_MOVE_MODE_SELECT,	ƒpƒ‰ƒ[ƒ^Ý’è’†
-	ZKN_SORTSEARCH_MOVE_MODE_DO_SORT,	ŒŸõ’†
+ *	@return	å‹•ä½œãƒ¢ãƒ¼ãƒ‰
+	ZKN_SORTSEARCH_MOVE_MODE_SELECT,	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šä¸­
+	ZKN_SORTSEARCH_MOVE_MODE_DO_SORT,	æ¤œç´¢ä¸­
  */
 //-----------------------------------------------------------------------------
 int ZKN_SortSearchAplFadeModeGet( const ZKN_APL_DATA* cp_data )
@@ -650,11 +650,11 @@ int ZKN_SortSearchAplFadeModeGet( const ZKN_APL_DATA* cp_data )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒJƒEƒ“ƒg’lŽæ“¾
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ãƒˆå€¤å–å¾—
  *
- *	@param	cp_data		ƒAƒvƒŠÃÞ°À
+ *	@param	cp_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒtƒF[ƒhƒJƒEƒ“ƒg’l
+ *	@return	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ãƒˆå€¤
  */
 //-----------------------------------------------------------------------------
 int ZKN_SortSearchAplFadeModeCountGet( const ZKN_APL_DATA* cp_data )
@@ -668,18 +668,18 @@ int ZKN_SortSearchAplFadeModeCountGet( const ZKN_APL_DATA* cp_data )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -693,13 +693,13 @@ static ZKN_SORTSEARCH_GLB* MakeSortSearchGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_SORTSEARCH_GLB) );
 
-	// main‰æ–Ê‚©‚ç‚ÌƒCƒxƒ“ƒgƒL[
+	// mainç”»é¢ã‹ã‚‰ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrMain( zkn_sys ); 
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
-	// ƒ|ƒPƒŠƒXƒg
+	// ãƒã‚±ãƒªã‚¹ãƒˆ
 	p_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_POKELIST );
 	p_glb->p_pokelist = p_apl->p_glb_data;
 
@@ -710,12 +710,12 @@ static ZKN_SORTSEARCH_GLB* MakeSortSearchGlb( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -729,7 +729,7 @@ static ZKN_SORTSEARCH_DRAWGLB* MakeSortSearchDrawGlb( int heap, ZKN_SYS_PTR zkn_
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_SORTSEARCH_DRAWGLB) );
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 	return p_glb;
@@ -738,12 +738,12 @@ static ZKN_SORTSEARCH_DRAWGLB* MakeSortSearchDrawGlb( int heap, ZKN_SYS_PTR zkn_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒCƒxƒ“ƒgì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		Žg—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -753,7 +753,7 @@ static ZKN_EVENT_DATA* MakeSortSearchEvent( int heap, ZKN_SYS_PTR zkn_sys )
 	ZKN_EVENT_DATA* p_event_tbl;
 	int event_num = SortSearchEventDataNumGet();
 
-	// ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_event_tbl = sys_AllocMemory( heap, sizeof(ZKN_EVENT_DATA) * event_num );
 	GF_ASSERT( p_event_tbl );
 	memset( p_event_tbl, 0, sizeof(ZKN_EVENT_DATA) * event_num );
@@ -766,9 +766,9 @@ static ZKN_EVENT_DATA* MakeSortSearchEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -784,9 +784,9 @@ static void DeleteSortSearchGlb( ZKN_SORTSEARCH_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -802,9 +802,9 @@ static void DeleteSortSearchDrawGlb( ZKN_SORTSEARCH_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -824,11 +824,11 @@ static void DeleteSortSearchEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒgƒAƒvƒŠ@ƒCƒxƒ“ƒg”Žæ“¾
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	ŒŸõƒ\[ƒgƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -841,19 +841,19 @@ static int SortSearchEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -863,14 +863,14 @@ static int ZknSortSearchProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 	ZKN_SORTSEARCH_GLB* p_glb = p_glbdata;
 	ZKN_SORTSEARCH_WORK* p_work;
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_SORTSEARCH_WORK) );
 	GF_ASSERT( p_work );
 	memset( p_work, 0, sizeof(ZKN_SORTSEARCH_WORK) );
 	p_dodata->p_work = p_work;
 
 
-	//@ƒOƒ[ƒoƒ‹ÃÞ°À‰Šú‰»
+	//ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	p_glb->now_select = ZKN_SORTSEARCH_SELECT_SORT;
 	p_glb->sort_type  = ZKN_POKELIST_SORT_NORMAL;
 	p_glb->search_name = ZKN_POKELIST_SEARCH_NAME_NONE;
@@ -889,14 +889,14 @@ static int ZknSortSearchProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -907,7 +907,7 @@ static int ZknSortSearchProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 	ZKN_SORTSEARCH_WORK*	p_work = p_dodata->p_work;
 	BOOL check;
 	
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -919,16 +919,16 @@ static int ZknSortSearchProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 
 	switch( p_dodata->seq ){
 	case 0:
-		// ¿°ÄŽ¸”s‰ðœ
+		// ã‚½ãƒ¼ãƒˆå¤±æ•—è§£é™¤
 		if( p_glb->sort_err ){
 			p_glb->sort_err = FALSE;
 		}
 
 		if( p_glb->list_chg_flag == TRUE ){
 
-			// ¿°ÄŒŸõŽÀsƒ`ƒFƒbƒN
+			// ã‚½ãƒ¼ãƒˆæ¤œç´¢å®Ÿè¡Œãƒã‚§ãƒƒã‚¯
 			if( p_glb->sort_flag == FALSE ){
-				// Bƒ{ƒ^ƒ“‚Åƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ö
+				// Bãƒœã‚¿ãƒ³ã§ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã¸
 				*p_glb->p_event_key |= ZKN_SORTSEARCH_CHANGE_POKELIST;
 				p_glb->fade_mode = ZKN_SORTSEARCH_END_FADE;	
 			}else{
@@ -940,7 +940,7 @@ static int ZknSortSearchProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 		break;
 
 	case 1:
-		// ƒtƒF[ƒhƒJƒEƒ“ƒg
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ãƒˆ
 		p_glb->fade_count --;
 		if( p_glb->fade_count < 0 ){
 			p_dodata->seq++;
@@ -954,40 +954,40 @@ static int ZknSortSearchProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 		break;
 
 	case 2:
-		// ŒŸõƒGƒtƒFƒNƒgƒJƒEƒ“ƒg
+		// æ¤œç´¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ãƒˆ
 		p_glb->fade_count --;
 		if( p_glb->fade_count < 0 ){
 			p_dodata->seq++;
 		}
 		break;
 		
-	case 3:			// ¿°Ä»°Áˆ—
+	case 3:			// ã‚½ãƒ¼ãƒˆã‚µãƒ¼ãƒå‡¦ç†
 		check = TRUE;
 	
-		// ¿°ÄŽÀs‚·‚é‚È‚ç‚·‚é
-		// Îß¹ÓÝØ½Ä•ÏX
+		// ã‚½ãƒ¼ãƒˆå®Ÿè¡Œã™ã‚‹ãªã‚‰ã™ã‚‹
+		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå¤‰æ›´
 		check = ZKN_GLBDATA_PokeListTblMake_DummyListCutFlg( p_glb->p_glb, p_glb->sort_type,
 				p_glb->search_name, p_glb->search_type1, 
 				p_glb->search_type2, p_glb->search_form, 
 				ZKN_GLBDATA_PokeZknModeGet( p_glb->p_glb ), p_dodata->heap, TRUE );
 
 		if( check == TRUE ){
-			// Bƒ{ƒ^ƒ“‚Åƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ö
+			// Bãƒœã‚¿ãƒ³ã§ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã¸
 			*p_glb->p_event_key |= ZKN_SORTSEARCH_CHANGE_POKELIST;
 
-			// ƒŠƒXƒgæ“ªˆÊ’u‚ðÝ’è
+			// ãƒªã‚¹ãƒˆå…ˆé ­ä½ç½®ã‚’è¨­å®š
 			ZKN_GLBDATA_PokeListDrawTblNoSet( p_glb->p_glb, 0 );
 
-			// ƒ|ƒPƒŠƒXƒg‚ð¿°Ä»°Áƒ‚[ƒh‚ÅŠJ‚­
+			// ãƒã‚±ãƒªã‚¹ãƒˆã‚’ã‚½ãƒ¼ãƒˆã‚µãƒ¼ãƒãƒ¢ãƒ¼ãƒ‰ã§é–‹ã
 			p_glb->p_glb->sort_search_flag = ZKN_SORTSEARCH_SORT;
 			p_glb->p_pokelist->fade_sort_data = TRUE;
 		}else{
 
 			p_glb->sort_flag = FALSE;
 			p_glb->list_chg_flag = FALSE;
-			// ¿°ÄŽ¸”s
+			// ã‚½ãƒ¼ãƒˆå¤±æ•—
 			p_glb->sort_err = TRUE;
-			// “®ì•û–@•ÏX
+			// å‹•ä½œæ–¹æ³•å¤‰æ›´
 			p_glb->fade_mode = ZKN_SORTSEARCH_FADEIN;
 			p_glb->fade_count = ZKN_SORTSEARCH_FADECOUNT_MAX;
 
@@ -996,9 +996,9 @@ static int ZknSortSearchProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 		}
 		break;
 		
-	// ƒtƒF[ƒhƒCƒ“
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	case 4:
-		// ƒtƒF[ƒhƒJƒEƒ“ƒg
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ãƒˆ
 		p_glb->fade_count --;
 		if( p_glb->fade_count < 0 ){
 			p_glb->fade_mode = ZKN_SORTSEARCH_FADENONE;
@@ -1018,14 +1018,14 @@ static int ZknSortSearchProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -1045,17 +1045,17 @@ static int ZknSortSearchProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_gl
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -1079,14 +1079,14 @@ static int ZknSortSearchProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 		ZknSortSearchLoadRes( p_drawwork, p_drawglb, cp_dataglb, cp_datawork, p_drawdata->heap );
 
 		
-		// ƒtƒF[ƒh‰Šú‰»
+		// ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
 		ChangeBrightnessRequest( ZKN_FADE_SYNC_COMMON,
 				BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, PLANEMASK_ALL, MASK_MAIN_DISPLAY );
 		p_drawdata->seq++;
 		break;
 		
 	case ZKN_SORTSEARCH_SEQINIT_FADEIN:
-		// ƒtƒF[ƒh
+		// ãƒ•ã‚§ãƒ¼ãƒ‰
 		if( IsFinishedBrightnessChg( MASK_MAIN_DISPLAY  ) ){
 			p_drawdata->seq++;
 		}
@@ -1101,17 +1101,17 @@ static int ZknSortSearchProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -1126,17 +1126,17 @@ static int ZknSortSearchProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 
 	if( cp_dataglb->fade_mode == ZKN_SORTSEARCH_FADENONE ){
 		
-		// ‘I‘ðˆ—Žž‚Ì“®‚«@
+		// é¸æŠžå‡¦ç†æ™‚ã®å‹•ãã€€
 		ZknSortSearchSelectDraw( p_drawwork, p_drawglb, cp_dataglb, p_drawdata->heap );
 		
 	}else if( (cp_dataglb->fade_mode == ZKN_SORTSEARCH_FADEOUT) || 
 			(cp_dataglb->fade_mode == ZKN_SORTSEARCH_FADEIN) ){
 
-		// ƒtƒF[ƒhˆ—
+		// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 		ZknSortSearchFadeSys( p_drawwork, p_drawglb, cp_dataglb, p_drawdata->heap );
 	}else if( cp_dataglb->fade_mode != ZKN_SORTSEARCH_END_FADE ){
   
-		// ŒŸõ’†ƒGƒtƒFƒNƒg
+		// æ¤œç´¢ä¸­ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		ZknSortSearchSortEffSys( p_drawwork, p_drawglb, cp_dataglb, p_drawdata->heap );
 	}
 
@@ -1146,17 +1146,17 @@ static int ZknSortSearchProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -1211,44 +1211,44 @@ static int ZknSortSearchProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource“Ç‚Ýž‚Ý•‰æ–Ê\’z
+ *	@brief	Resourceèª­ã¿è¾¼ã¿ï¼†ç”»é¢æ§‹ç¯‰
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_datawork	ƒf[ƒ^ƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_datawork	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchLoadRes( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DRAWGLB* p_drawglb, const ZKN_SORTSEARCH_GLB* cp_glb, const ZKN_SORTSEARCH_WORK* cp_datawork, int heap )
 {
-	// ƒ†[ƒeƒBƒŠƒeƒB–ÊƒXƒNƒŠ[ƒ“”jŠü
+	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç ´æ£„
 	GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_UTIL_M );
-	// ƒtƒHƒ“ƒg–ÊƒXƒNƒŠ[ƒ“”jŠü
+	// ãƒ•ã‚©ãƒ³ãƒˆé¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç ´æ£„
 	GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M );
 	GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
 
-	// ‚±‚Ì‰æ–Ê‚Å‚ÍFONTƒJƒ‰[‚ð7‚É‚·‚é
+	// ã“ã®ç”»é¢ã§ã¯FONTã‚«ãƒ©ãƒ¼ã‚’7ã«ã™ã‚‹
 	GF_BGL_BmpWinSet_Pal( &p_drawglb->p_drawglb->bmp_mfont, ZKN_SORTSEARCH_PLTT );
 
-	// ƒ|ƒPƒOƒ‰•\Ž¦OFF
+	// ãƒã‚±ã‚°ãƒ©è¡¨ç¤ºOFF
 	ZknSortSearchPokeGraDrawOff( p_drawglb );
 	
-	// BGÝ’è
+	// BGè¨­å®š
 	ZknSortSearchSetUpBg( p_drawglb, cp_glb, heap );
 
-	// ƒ†[ƒeƒBƒŠƒeƒB–Ê
+	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢
 	ZknSortSearchUtilBgLoad( p_draw, p_drawglb, cp_glb, heap, ZKN_GLBDATA_PokeZknModeGet( cp_glb->p_glb ) );
 
-	//OAM“Ç‚Ýž‚Ý
+	//OAMèª­ã¿è¾¼ã¿
 	ZknSortSearchOamResLoad( p_draw, p_drawglb, heap );
 
-	// OAM“o˜^
+	// OAMç™»éŒ²
 	ZknSortSearchOamInit( p_draw, p_drawglb, cp_glb, heap );
 
-	// •\Ž¦‚Ì‰ŠúÝ’è
+	// è¡¨ç¤ºã®åˆæœŸè¨­å®š
 	ZknSortSearchFontSelectType( p_drawglb, cp_glb->now_select, heap );
 	ZknSortSearchBgSelectType( p_drawglb, cp_glb->now_select, heap );
 	ZKnSortSearchFontSortType( p_drawglb, cp_glb->sort_type, heap );
@@ -1258,56 +1258,56 @@ static void ZknSortSearchLoadRes( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DR
 	ZKnSortSearchOamSearchForm( p_draw, cp_glb->search_form );
 
 
-	// •\Ž¦—Dæ‡ˆÊ‚ð•ÏX
+	// è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’å¤‰æ›´
 	GF_BGL_PrioritySet( ZKN_BG_FRM_FONT_M, 1 );
 	GF_BGL_PrioritySet( ZKN_BG_FRM_UTIL_M, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource”jŠü
+ *	@brief	Resourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchDeleteRes( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DRAWGLB* p_drawglb )
 {
-	// OAM”jŠü
+	// OAMç ´æ£„
 	ZknSortSearchOamDelete( p_draw );
 
-	// OAMƒŠƒ\[ƒX”jŠü
+	// OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	ZknSortSearchOamResDelete( p_draw, p_drawglb );
 
-	// ƒ†[ƒeƒBƒeƒB–Ê”jŠü
+	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒ†ã‚£é¢ç ´æ£„
 	ZknSortSearchUtilBgDelete( p_draw, p_drawglb );
 
 
-	// ƒtƒHƒ“ƒg–ÊƒXƒNƒŠ[ƒ“”jŠü
+	// ãƒ•ã‚©ãƒ³ãƒˆé¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç ´æ£„
 	GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M );
 	GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
 
-	// ‚±‚Ì‰æ–Ê‚Å‚ÍFONTƒJƒ‰[‚ð‚à‚Ç‚·
+	// ã“ã®ç”»é¢ã§ã¯FONTã‚«ãƒ©ãƒ¼ã‚’ã‚‚ã©ã™
 	GF_BGL_BmpWinSet_Pal( &p_drawglb->p_drawglb->bmp_mfont, ZKN_BG_FONT_COLOR );
 
-	// •\Ž¦—Dæ‡ˆÊ‚ð•ÏX
+	// è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’å¤‰æ›´
 	GF_BGL_PrioritySet( ZKN_BG_FRM_FONT_M, 0 );
 	GF_BGL_PrioritySet( ZKN_BG_FRM_UTIL_M, 1 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒi–ÊƒZƒbƒg	
+ *	@brief	èƒŒæ™¯é¢ã‚»ãƒƒãƒˆ	
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
- * [ƒCƒxƒ“ƒg‚Åo‚Ä‚­‚é“‡‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«Š·‚¦‚à‚±‚Ì’†]
+ * [ã‚¤ãƒ™ãƒ³ãƒˆã§å‡ºã¦ãã‚‹å³¶ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãæ›ãˆã‚‚ã“ã®ä¸­]
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSetUpBg( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, const ZKN_SORTSEARCH_GLB* cp_glb, int heap )
@@ -1315,23 +1315,23 @@ static void ZknSortSearchSetUpBg( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, const ZKN_S
 	void* p_buff;
 
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_list_main_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M, 0, 0, TRUE, heap );
 
 
-	// ƒJƒ‰[ƒpƒŒƒbƒg‚ð“]‘—
+	// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€
 	ZKN_GLBDATA_PalSet( p_drawglb->p_drawglb, NARC_zukan_zkn_sort2_NCLR, PALTYPE_MAIN_BG, 0, 32, heap );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒeƒBƒŠƒeƒB–Ê•`‰æÝ’è
+ *	@brief	ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢æç”»è¨­å®š
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_mode	}ŠÓƒ‚[ƒh
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_mode	å›³é‘‘ãƒ¢ãƒ¼ãƒ‰
  *
  *	@return	none
  */
@@ -1340,26 +1340,26 @@ static void ZknSortSearchUtilBgLoad( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH
 {
 	int dataidx;
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 //	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_list_main_lzh_NCGR, p_drawglb->p_bg, ZKN_BG_FRM_UTIL_M, 0, 0, TRUE, heap );
 
-	// ‘S‘‚ÆƒVƒ“ƒIƒE‚Åƒf[ƒ^idx‚ð•ÏX
+	// å…¨å›½ã¨ã‚·ãƒ³ã‚ªã‚¦ã§ãƒ‡ãƒ¼ã‚¿idxã‚’å¤‰æ›´
 	if( zkn_mode == ZKN_MODE_ZENKOKU ){
 		dataidx = NARC_zukan_zkn_list_bg_zen_lzh_NSCR;
 	}else{
 		dataidx = NARC_zukan_zkn_list_bg_sin_lzh_NSCR;
 	}
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->p_scrn_buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, dataidx, TRUE, &p_draw->p_scrn, heap );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒeƒBƒeƒBBG–Ê‚Í‚«
+ *	@brief	ãƒ¦ãƒ¼ãƒ†ã‚£ãƒ†ã‚£BGé¢ã¯ã
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *	
  *	@return	none
  */
@@ -1373,9 +1373,9 @@ static void ZknSortSearchUtilBgDelete( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEAR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\Ž¦OFF
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤ºOFF
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1384,20 +1384,20 @@ static void ZknSortSearchPokeGraDrawOff( ZKN_SORTSEARCH_DRAWGLB* p_drawglb )
 {
 	SOFT_SPRITE* p_pokegra = ZKN_GlbPokemonGraphicGet( p_drawglb->p_drawglb );
 
-	// •\Ž¦OFF
+	// è¡¨ç¤ºOFF
 	SoftSpriteParaSet( p_pokegra, SS_PARA_VANISH, TRUE );
 
-	// ƒ\ƒtƒgƒpƒŒƒbƒgƒtƒF[ƒh‚ª‚©‚©‚Á‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅOFF
+	// ã‚½ãƒ•ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãŒã‹ã‹ã£ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§OFF
 	SoftSpritePalFadeOff( p_pokegra );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResource“Ç‚Ýž‚Ý
+ *	@brief	OAMResourceèª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1407,38 +1407,38 @@ static void ZknSortSearchOamResLoad(  ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARC
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_draw_glb );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_list_oam_main_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_list_oam_main_lzh_NCGR + ZKN_SORTSEARCH_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			NARC_zukan_zkn_list_oam_NCLR, FALSE, 
 			NARC_zukan_zkn_list_oam_NCLR + ZKN_SORTSEARCH_RES_ID, 
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			ZKN_POKELIST_TBL_PLTT_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_draw->res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_list_oam_main_lzh_NCER, TRUE,
 			NARC_zukan_zkn_list_oam_main_lzh_NCER + ZKN_SORTSEARCH_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_list_oam_main_lzh_NANR, TRUE,
@@ -1448,11 +1448,11 @@ static void ZknSortSearchOamResLoad(  ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARC
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResource”jŠü
+ *	@brief	OAMResourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1465,7 +1465,7 @@ static void ZknSortSearchOamResDelete( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEAR
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -1482,11 +1482,11 @@ static void ZknSortSearchOamResDelete( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEAR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒAƒNƒ^[ƒoƒbƒtƒ@ì¬
+ *	@brief	OAMã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -1497,7 +1497,7 @@ static void ZknSortSearchOamInit( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DR
 	CLACT_ADD_SIMPLE	add;
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_drawglb;
 
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_list_oam_main_lzh_NCGR + ZKN_SORTSEARCH_RES_ID,
 			NARC_zukan_zkn_list_oam_NCLR + ZKN_SORTSEARCH_RES_ID, 
@@ -1510,7 +1510,7 @@ static void ZknSortSearchOamInit( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DR
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ðÝ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= ZKN_SORTSEARCH_OAM_PRI;
@@ -1524,7 +1524,7 @@ static void ZknSortSearchOamInit( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DR
 	CLACT_AnmChg( p_draw->search_form_act, ZKN_SORTSEARCH_FORM_OAM_ANM );
 
 
-	// ¿°Ä´Ìª¸Ä—pƒAƒNƒ^[
+	// ã‚½ãƒ¼ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚¢ã‚¯ã‚¿ãƒ¼
 	add.mat.x = ZKN_SORTSEARCH_EFECT_ACT_X << FX32_SHIFT;
 	add.mat.y = ZKN_SORTSEARCH_EFECT_ACT_Y << FX32_SHIFT;
 	p_draw->sort_act = CLACT_AddSimple( &add );
@@ -1536,9 +1536,9 @@ static void ZknSortSearchOamInit( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒAƒNƒ^[ƒoƒbƒtƒ@”jŠü
+ *	@brief	OAMã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1553,11 +1553,11 @@ static void ZknSortSearchOamDelete( ZKN_SORTSEARCH_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‘I‘ð’†‚Ì‰æ–Ê‚Ìà–¾
+ *	@brief	ä»Šé¸æŠžä¸­ã®ç”»é¢ã®èª¬æ˜Ž
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	type			À²Ìß
- *	@param	heap			Ë°Ìß
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	type			ã‚¿ã‚¤ãƒ—
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1568,12 +1568,12 @@ static void ZknSortSearchFontSelectType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 	STRBUF* str;
 	int msg_idx;
 	
-	// ‘‚«ž‚Þ—ÌˆæƒNƒŠ[ƒ“
+	// æ›¸ãè¾¼ã‚€é ˜åŸŸã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinFill( &p_draw_glb->bmp_mfont, 0, 
 			ZKN_SORTSEARCH_FONT_BG_SELECT_X, ZKN_SORTSEARCH_FONT_BG_SELECT_Y,
 			ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_X, ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_Y );
 
-	// •¶Žš—ñ
+	// æ–‡å­—åˆ—
 	switch( type ){
 	case ZKN_SORTSEARCH_SELECT_SORT:
 		msg_idx = ZNK_SORTSEARCH_TEXT_03;
@@ -1592,11 +1592,11 @@ static void ZknSortSearchFontSelectType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 	}
 
 
-	// •¶Žš—ñ‚ð‘‚«ž‚Þ
+	// æ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
 	str = ZKN_UTIL_ZknGmmGet( msg_idx, heap );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-	// à–¾‚Ì•\Ž¦‚ð’†‰›Šñ‚¹
+	// èª¬æ˜Žã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›
 	{
 		u32 xofs = ZKN_SORTSEARCH_FONT_BG_SELECT_X + (ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_X - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str, 0)) / 2;
 		u32 yofs = ZKN_SORTSEARCH_FONT_BG_SELECT_Y + (ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_Y - STRBUF_GetLines(str) * 16) / 2; // MatchComment: FontProc_GetPrintLineNum -> STRBUF_GetLines
@@ -1610,10 +1610,10 @@ static void ZknSortSearchFontSelectType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ý’è‚Éƒqƒbƒg‚µ‚½ƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚©‚Á‚½
+ *	@brief	è¨­å®šã«ãƒ’ãƒƒãƒˆã—ãŸãƒã‚±ãƒ¢ãƒ³ãŒã„ãªã‹ã£ãŸ
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap			ƒq[ƒv
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1623,17 +1623,17 @@ static void ZknSortSearchFontNotHitPokemon( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, i
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	STRBUF* str;
 	
-	// ‘‚«ž‚Þ—ÌˆæƒNƒŠ[ƒ“
+	// æ›¸ãè¾¼ã‚€é ˜åŸŸã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinFill( &p_draw_glb->bmp_mfont, 0, 
 			ZKN_SORTSEARCH_FONT_BG_SELECT_X, ZKN_SORTSEARCH_FONT_BG_SELECT_Y,
 			ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_X, ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_Y );
 
 
-	// •¶Žš—ñ‚ð‘‚«ž‚Þ
+	// æ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
 	str = ZKN_UTIL_ZknGmmGet( ZNK_SORTSEARCH_TEXT_06, heap );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-	// à–¾‚Ì•\Ž¦‚ð’†‰›Šñ‚¹
+	// èª¬æ˜Žã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›
 	{
 		u32 xofs = ZKN_SORTSEARCH_FONT_BG_SELECT_X + (ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_X - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str, 0)) / 2;
 		u32 yofs = ZKN_SORTSEARCH_FONT_BG_SELECT_Y + (ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_Y - STRBUF_GetLines(str) * 16) / 2; // MatchComment: FontProc_GetPrintLineNum -> STRBUF_GetLines
@@ -1647,7 +1647,7 @@ static void ZknSortSearchFontNotHitPokemon( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, i
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ðŽž‚Ì•`‰æƒƒCƒ“ŠÖ”
+ *	@brief	é¸æŠžæ™‚ã®æç”»ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
  *	@param	p_draw
  *	@param	p_drawglb
@@ -1659,7 +1659,7 @@ static void ZknSortSearchFontNotHitPokemon( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, i
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSelectDraw( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DRAWGLB* p_drawglb, const ZKN_SORTSEARCH_GLB* cp_glb,  int heap )
 {
-	// ŒŸõ¿°ÄƒGƒ‰[•`‰æ
+	// æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¨ãƒ©ãƒ¼æç”»
 	if( cp_glb->sort_err != p_draw->sort_err ){
 
 		p_draw->sort_err = cp_glb->sort_err;
@@ -1668,7 +1668,7 @@ static void ZknSortSearchSelectDraw( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH
 			ZknSortSearchFontNotHitPokemon( p_drawglb, heap );
 		}
 	}
-	if( p_draw->sort_err_draw_count > 0 ){		// ˆê’èŠÔŠu‚¾‚µ‚½‚çÁ‚·ˆ—
+	if( p_draw->sort_err_draw_count > 0 ){		// ä¸€å®šé–“éš”ã ã—ãŸã‚‰æ¶ˆã™å‡¦ç†
 		p_draw->sort_err_draw_count--;
 	}else if( p_draw->sort_err_draw_count == 0 ){
 		ZknSortSearchFontSelectType( p_drawglb, cp_glb->now_select, heap );
@@ -1710,11 +1710,11 @@ static void ZknSortSearchSelectDraw( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ð’†‚Ì€–Ú‚ÌBG‚ðÝ’è
+ *	@brief	é¸æŠžä¸­ã®é …ç›®ã®BGã‚’è¨­å®š
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	type		À²Ìß
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	type		ã‚¿ã‚¤ãƒ—
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1726,10 +1726,10 @@ static void ZknSortSearchBgSelectType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int ty
 	int x, y;
 	int data_idx;
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_sort_bg_main1_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«ž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
@@ -1758,10 +1758,10 @@ static void ZknSortSearchBgSelectType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int ty
 		break;
 	}
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, data_idx, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«ž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 			p_scrn->rawData, x, y,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
@@ -1769,17 +1769,17 @@ static void ZknSortSearchBgSelectType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int ty
 	sys_FreeMemoryEz( buff );
 
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°ÄÀ²Ìß‚Ì•¶ŽšÃÞ°À‘‚«ž‚Ý
+ *	@brief	ã‚½ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—ã®æ–‡å­—ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
  *
- *	@param	p_drawglb	•`‰æ
- *	@param	type		À²Ìß
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»
+ *	@param	type		ã‚¿ã‚¤ãƒ—
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1790,20 +1790,20 @@ static void ZKnSortSearchFontSortType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int ty
 	STRBUF* str;
 	int msg_idx;
 	
-	// ‘‚«ž‚Þ—ÌˆæƒNƒŠ[ƒ“
+	// æ›¸ãè¾¼ã‚€é ˜åŸŸã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinFill( &p_draw_glb->bmp_mfont, 0, 
 			ZKN_SORTSEARCH_FONT_BG_X, ZKN_SORTSEARCH_FONT_BG_SORT_Y,
 			ZKN_SORTSEARCH_FONT_BG_AREA_X, ZKN_SORTSEARCH_FONT_BG_AREA_Y );
 
-	// •¶Žš—ñ
+	// æ–‡å­—åˆ—
 	msg_idx = ZNK_SORTSEARCH_SORT_00 + type;
 
 
-	// •¶Žš—ñ‚ð‘‚«ž‚Þ
+	// æ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
 	str = ZKN_UTIL_ZknGmmGet( msg_idx, heap );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-	// ŒŸõðŒ‚Ì•\Ž¦‚ð’†‰›Šñ‚¹
+	// æ¤œç´¢æ¡ä»¶ã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›
 	{
 		u32 xofs = ZKN_SORTSEARCH_FONT_BG_X + FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, str, 0, ZKN_SORTSEARCH_FONT_BG_AREA_X );
 		GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
@@ -1817,11 +1817,11 @@ static void ZKnSortSearchFontSortType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int ty
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚È‚Ü‚¦ƒT[ƒ`À²Ìß•`‰æ
+ *	@brief	ãªã¾ãˆã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ—æç”»
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	type			ƒT[ƒ`À²Ìß
- *	@param	heap			ƒq[ƒv
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	type			ã‚µãƒ¼ãƒã‚¿ã‚¤ãƒ—
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -1833,16 +1833,16 @@ static void ZKnSortSearchFontSearchName( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 	int msg_idx;
 	int i;
 	
-	// ‘‚«ž‚Þ—ÌˆæƒNƒŠ[ƒ“
+	// æ›¸ãè¾¼ã‚€é ˜åŸŸã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinFill( &p_draw_glb->bmp_mfont, 0, 
 			ZKN_SORTSEARCH_FONT_BG_X, ZKN_SORTSEARCH_FONT_BG_NAME_Y,
 			ZKN_SORTSEARCH_FONT_BG_AREA_X, ZKN_SORTSEARCH_FONT_BG_AREA_Y );
 
-	// •¶Žš—ñ
+	// æ–‡å­—åˆ—
 	switch( type ){
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ\[ƒg‚ðŒÜ\‰¹‚©‚çƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚É
+	// ã‚½ãƒ¼ãƒˆã‚’äº”åéŸ³ã‹ã‚‰ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«
 	case ZKN_POKELIST_SEARCH_NAME_NONE:
 		msg_idx = ZNK_SORTSEARCH_NAME_NONE;
 		break;
@@ -1877,13 +1877,13 @@ static void ZKnSortSearchFontSearchName( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 	}
 
 
-	// •¶Žš—ñ‚ð‘‚«ž‚Þ
+	// æ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
 	str = ZKN_UTIL_ZknGmmGet( msg_idx, heap );
 
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-	// ŒŸõðŒ‚Ì•\Ž¦‚ð’†‰›Šñ‚¹
+	// æ¤œç´¢æ¡ä»¶ã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›
 	{
 		u32 xofs = ZKN_SORTSEARCH_FONT_BG_X + FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, str, 0, ZKN_SORTSEARCH_FONT_BG_AREA_X );
 		GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
@@ -1897,7 +1897,7 @@ static void ZKnSortSearchFontSearchName( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß@ŒŸõÀ²Ìß•`‰æ		‹¤’Ê•”•ª
+ *	@brief	ã‚¿ã‚¤ãƒ—ã€€æ¤œç´¢ã‚¿ã‚¤ãƒ—æç”»		å…±é€šéƒ¨åˆ†
  *
  *	@param	p_drawglb
  *	@param	type
@@ -1914,12 +1914,12 @@ static void ZKnSortSearchFontSearchType_Core( ZKN_SORTSEARCH_DRAWGLB* p_drawglb,
 	int msg_idx;
 	int i;
 	
-	// ‘‚«ž‚Þ—ÌˆæƒNƒŠ[ƒ“
+	// æ›¸ãè¾¼ã‚€é ˜åŸŸã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinFill( &p_draw_glb->bmp_mfont, 0, 
 			ZKN_SORTSEARCH_FONT_BG_X, y,
 			ZKN_SORTSEARCH_FONT_BG_AREA_X, ZKN_SORTSEARCH_FONT_BG_AREA_Y );
 
-	// •¶Žš—ñ
+	// æ–‡å­—åˆ—
 	switch( type ){
 	case ZKN_POKELIST_SEARCH_TYPE_NONE:
 		msg_idx = ZNK_SORTSEARCH_NAME_00;
@@ -1977,13 +1977,13 @@ static void ZKnSortSearchFontSearchType_Core( ZKN_SORTSEARCH_DRAWGLB* p_drawglb,
 		break;
 	}
 
-	// •¶Žš—ñ‚ð‘‚«ž‚Þ
+	// æ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
 	str = ZKN_UTIL_ZknGmmGet( msg_idx, heap );
 
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-	// ŒŸõðŒ‚Ì•\Ž¦‚ð’†‰›Šñ‚¹
+	// æ¤œç´¢æ¡ä»¶ã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›
 	{
 		u32 xofs = ZKN_SORTSEARCH_FONT_BG_X + FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, str, 0, ZKN_SORTSEARCH_FONT_BG_AREA_X );
 		GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
@@ -1998,11 +1998,11 @@ static void ZKnSortSearchFontSearchType_Core( ZKN_SORTSEARCH_DRAWGLB* p_drawglb,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß1@ŒŸõÀ²Ìß‚ð•\Ž¦
+ *	@brief	ã‚¿ã‚¤ãƒ—1ã€€æ¤œç´¢ã‚¿ã‚¤ãƒ—ã‚’è¡¨ç¤º
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	type		À²Ìß
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	type		ã‚¿ã‚¤ãƒ—
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -2014,11 +2014,11 @@ static void ZKnSortSearchFontSearchType1( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß1@ŒŸõÀ²Ìß‚ð•\Ž¦
+ *	@brief	ã‚¿ã‚¤ãƒ—1ã€€æ¤œç´¢ã‚¿ã‚¤ãƒ—ã‚’è¡¨ç¤º
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	type		À²Ìß
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	type		ã‚¿ã‚¤ãƒ—
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -2030,10 +2030,10 @@ static void ZKnSortSearchFontSearchType2( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚¯‚¢‚¶‚å‚¤@ŒŸõÀ²Ìß‚ð•\Ž¦
+ *	@brief	ã‘ã„ã˜ã‚‡ã†ã€€æ¤œç´¢ã‚¿ã‚¤ãƒ—ã‚’è¡¨ç¤º
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	type		À²Ìß
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	type		ã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  */
@@ -2097,18 +2097,18 @@ static void ZKnSortSearchOamSearchForm( ZKN_SORTSEARCH_DRAW* p_draw, int type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°Ä»°ÁƒtƒF[ƒhƒVƒXƒeƒ€
+ *	@brief	ã‚½ãƒ¼ãƒˆã‚µãƒ¼ãƒãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
  *	
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ÃÞ°À
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchFadeSys( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DRAWGLB* p_drawglb, const ZKN_SORTSEARCH_GLB* cp_glb, int heap )
 {
-	// ƒtƒF[ƒhˆ—‰Šú‰»
+	// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†åˆæœŸåŒ–
 	if( cp_glb->fade_count == ZKN_SORTSEARCH_FADECOUNT_MAX ){
 
 		if( cp_glb->fade_mode == ZKN_SORTSEARCH_FADEOUT ){
@@ -2119,7 +2119,7 @@ static void ZknSortSearchFadeSys( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DR
 					ZKN_POKELIST_BGSHUTTER_FADE00_BOTTOM_S, ZKN_POKELIST_BGSHUTTER_FADE01_BOTTOM_S, ZKN_SORTSEARCH_FADECOUNT_MAX );
 		}else{
 			
-			// ƒtƒF[ƒhƒCƒ“‚Ì‚Æ‚«‚ÍFONTBGÝ’è‚ð•ÏX
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®ã¨ãã¯FONTBGè¨­å®šã‚’å¤‰æ›´
 			ZknSortSearchSortEffFontReset( p_drawglb, p_draw, heap );
 			
 			ZKN_UTIL_BgShutterFadeInit( &p_draw->shutter,
@@ -2131,17 +2131,17 @@ static void ZknSortSearchFadeSys( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH_DR
 		
 	}
 
-	// “®ì
+	// å‹•ä½œ
 	ZKN_UTIL_BgShutterFade( &p_draw->shutter );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒŸõ’†ƒGƒtƒFƒNƒg“®ì
+ *	@brief	æ¤œç´¢ä¸­ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ÃÞ°ÀƒOƒ[ƒoƒ‹ 
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ« 
  *
  *	@return	none
  */
@@ -2151,32 +2151,32 @@ static void ZknSortSearchSortEffSys( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH
 	int set_rota;
 	int  count;
 	
-	// “®ìˆ—‰Šú‰»
+	// å‹•ä½œå‡¦ç†åˆæœŸåŒ–
 	if( cp_glb->fade_count == ZKN_SORTSEARCH_DO_MAIN_EFF_COUNT_MAX ){
 		
 		CLACT_SetDrawFlag( p_draw->sort_act, TRUE );
-		// ƒtƒHƒ“ƒgBGÝ’è
+		// ãƒ•ã‚©ãƒ³ãƒˆBGè¨­å®š
 		ZknSortSearchSortEffFontSet( p_drawglb, heap );
 		
-	}else if( cp_glb->fade_count == 0 ){		// ”jŠüˆ—
+	}else if( cp_glb->fade_count == 0 ){		// ç ´æ£„å‡¦ç†
 		
 		CLACT_SetDrawFlag( p_draw->sort_act, FALSE );
-		// ƒtƒHƒ“ƒgBG”jŠü
+		// ãƒ•ã‚©ãƒ³ãƒˆBGç ´æ£„
 		GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/16
-		// u‚¯‚ñ‚³‚­‚¿‚ã‚¤v‚Ì•¶Žš‚ªˆêuÄ•\Ž¦‚³‚ê‚é‚±‚Æ‚ª‚ ‚é•s‹ï‡‚ðC³
+		// ã€Œã‘ã‚“ã•ãã¡ã‚…ã†ã€ã®æ–‡å­—ãŒä¸€çž¬å†è¡¨ç¤ºã•ã‚Œã‚‹ã“ã¨ãŒã‚ã‚‹ä¸å…·åˆã‚’ä¿®æ­£
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/24
-		// include/bugfix.h ‚ÌƒXƒCƒbƒ`‚ÅØ‚èŠ·‚¦‚ç‚ê‚é‚æ‚¤‚É•ÏX
+		// include/bugfix.h ã®ã‚¹ã‚¤ãƒƒãƒã§åˆ‡ã‚Šæ›ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«å¤‰æ›´
 #if AFTERMASTER_070112_ZUKAN_SORTMSG_BUG_FIX
-		// ”½‰f
-		// 2007/01/09@OAM‚ªÁ‚¦‚éƒ^ƒCƒ~ƒ“ƒO‚Æ‚ ‚í‚¹‚é‚½‚ßC³
+		// åæ˜ 
+		// 2007/01/09ã€€OAMãŒæ¶ˆãˆã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã¨ã‚ã‚ã›ã‚‹ãŸã‚ä¿®æ­£
 		GF_BGL_BmpWinOnVReq( &p_drawglb->p_drawglb->bmp_mfont );
 #endif
 		// ----------------------------------------------------------------------------
 	}
 
-	// OAM‚ð‰ñ“]‚³‚¹‚é
+	// OAMã‚’å›žè»¢ã•ã›ã‚‹
 	count = ZKN_SORTSEARCH_FADECOUNT_MAX - cp_glb->fade_count;
 	set_rota = ZKN_SORTSEARCH_EFECT_OAM_ROTA * count;
 	set_rota = set_rota / ZKN_SORTSEARCH_FADECOUNT_MAX;
@@ -2186,9 +2186,9 @@ static void ZknSortSearchSortEffSys( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒŸõ’†•¶Žš‚ð•\Ž¦
+ *	@brief	æ¤œç´¢ä¸­æ–‡å­—ã‚’è¡¨ç¤º
  *	
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *	
  *	@return	none
  */
@@ -2202,11 +2202,11 @@ static void ZknSortSearchSortEffFontSet( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 	GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
 
 
-	// •¶Žš—ñ‚ð‘‚«ž‚Þ
+	// æ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
 	str = ZKN_UTIL_ZknGmmGet( ZNK_SORTSEARCH_MSG_00, heap );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/10/26
-	// u‚¯‚ñ‚³‚­‚¿‚ã‚¤v‚Ì•\Ž¦‚ð’†‰›Šñ‚¹
+	// ã€Œã‘ã‚“ã•ãã¡ã‚…ã†ã€ã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›
 	{
 		u32 xofs = (ZKN_SORTSEARCH_EFECT_FONT_AREA_X - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str, 0)) / 2;
 		GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
@@ -2217,16 +2217,16 @@ static void ZknSortSearchSortEffFontSet( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 
 	STRBUF_Delete(str);
 
-	// •\Ž¦—Dæ‡ˆÊ‚ð•ÏX
+	// è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’å¤‰æ›´
 	GF_BGL_PrioritySet( ZKN_BG_FRM_FONT_M, 0 );
 	GF_BGL_PrioritySet( ZKN_BG_FRM_UTIL_M, 1 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgBG‚ðŒ³‚É–ß‚·
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆBGã‚’å…ƒã«æˆ»ã™
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *	@param	cp_glb 
  *
  *	@return
@@ -2234,7 +2234,7 @@ static void ZknSortSearchSortEffFontSet( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSortEffFontReset( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, ZKN_SORTSEARCH_DRAW* p_draw, int heap )
 {
-	// •\Ž¦—Dæ‡ˆÊ‚ð•ÏX
+	// è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’å¤‰æ›´
 	GF_BGL_PrioritySet( ZKN_BG_FRM_FONT_M, 1 );
 	GF_BGL_PrioritySet( ZKN_BG_FRM_UTIL_M, 0 );
 

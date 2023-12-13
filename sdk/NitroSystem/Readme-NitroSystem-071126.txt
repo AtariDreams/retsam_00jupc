@@ -1,54 +1,54 @@
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
-¡                                                                        @¡
-¡  Readme-NitroSystem-071126.txt                                         @¡
-¡                                                                        @¡
-¡  NINTENDO NITRO-Systemƒ‰ƒCƒuƒ‰ƒŠ(2007/11/26”Å)                         @¡
-¡                                                                        @¡
-¡  Nov.26, 2007                                                          @¡
-¡                                                                        @¡
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
+â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– 
+â–                                                                         ã€€â– 
+â–   Readme-NitroSystem-071126.txt                                         ã€€â– 
+â–                                                                         ã€€â– 
+â–   NINTENDO NITRO-Systemãƒ©ã‚¤ãƒ–ãƒ©ãƒª(2007/11/26ç‰ˆ)                         ã€€â– 
+â–                                                                         ã€€â– 
+â–   Nov.26, 2007                                                          ã€€â– 
+â–                                                                         ã€€â– 
+â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– 
 
 
-–ÚŽŸ
+ç›®æ¬¡
 ==============================================================================
-@@1. ‚Í‚¶‚ß‚É
-@@2. ƒCƒ“ƒXƒg[ƒ‹•û–@
-@@3. ‘Î‰ž‚µ‚Ä‚¢‚éNITRO-SDK
+ã€€ã€€1. ã¯ã˜ã‚ã«
+ã€€ã€€2. ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æ–¹æ³•
+ã€€ã€€3. å¯¾å¿œã—ã¦ã„ã‚‹NITRO-SDK
 
 
-1. ‚Í‚¶‚ß‚É
-==============================================================================
-
-@@–{ƒpƒbƒP[ƒW‚ÍANINTENDO NITRO-System ƒ‰ƒCƒuƒ‰ƒŠ2007-11-26”Å‚Å‚·B
-
-@@NINTENDO NITRO-System‚ÍADS—pƒQ[ƒ€ƒ\ƒtƒg‚ÌƒOƒ‰ƒtƒBƒbƒNƒXA ƒTƒEƒ“ƒh‚ÌŠJ”­
-@@‚ÉŽg—p‚Å‚«‚éƒc[ƒ‹‚Æƒ‰ƒCƒuƒ‰ƒŠ‚Ì‘Ì‚Å‚·B‚±‚ÌƒpƒbƒP[ƒW‚ÍANITRO-System‚Ì
-@@ƒ‰ƒCƒuƒ‰ƒŠƒpƒbƒP[ƒW‚Å‚·B
-
-
-2. ƒCƒ“ƒXƒg[ƒ‹•û–@
+1. ã¯ã˜ã‚ã«
 ==============================================================================
 
-@@NINTENDO NITRO-System ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒpƒbƒP[ƒW‚ðƒ[ƒJƒ‹ƒfƒBƒXƒN‚Ì”CˆÓ‚ÌêŠ
-@@‚É“WŠJ‚µA‚»‚Ìƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ‚ðŠÂ‹«•Ï”NITROSYSTEM_ROOT‚ÉÝ’è‚µ‚Ä‚­‚¾‚³
-@@‚¢BƒCƒ“ƒXƒg[ƒ‹‚ÉŠÖ‚·‚éÚ×‚ÍA‰ð“€Œã‚É‚Å‚«‚Ü‚·‰º‹L‚ÌƒhƒLƒ…ƒƒ“ƒg‚ð‚²——‚­
-@@‚¾‚³‚¢B
+ã€€ã€€æœ¬ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã€NINTENDO NITRO-System ãƒ©ã‚¤ãƒ–ãƒ©ãƒª2007-11-26ç‰ˆã§ã™ã€‚
 
-@@@@NitroSystem/docs/Readme/BuildSystem.pdf 
-
-
-@@‚Ü‚½ANINTENDO NITRO-System ƒ‰ƒCƒuƒ‰ƒŠƒpƒbƒP[ƒW‚É‚Â‚¢‚Ä‚ÌŠT—v‚ÍA‰º‹L‚Ìƒh
-@@ƒLƒ…ƒƒ“ƒg‚ð‚²——‚­‚¾‚³‚¢B
-
-@@@@NitroSystem/docs/Readme/NITRO-System-Library_ReleaseNotes.pdf 
+ã€€ã€€NINTENDO NITRO-Systemã¯ã€DSç”¨ã‚²ãƒ¼ãƒ ã‚½ãƒ•ãƒˆã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã€ ã‚µã‚¦ãƒ³ãƒ‰ã®é–‹ç™º
+ã€€ã€€ã«ä½¿ç”¨ã§ãã‚‹ãƒ„ãƒ¼ãƒ«ã¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ç·ç§°ã§ã™ã€‚ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã€NITRO-Systemã®
+ã€€ã€€ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã§ã™ã€‚
 
 
-3. ‘Î‰ž‚µ‚Ä‚¢‚éNITRO-SDK
+2. ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æ–¹æ³•
 ==============================================================================
 
-@@–{NINTENDO NITRO-System ƒ‰ƒCƒuƒ‰ƒŠ‚ÍA‰º‹L‚Ìƒo[ƒWƒ‡ƒ“‚ÌNITRO-SDK ‚Åƒrƒ‹ƒh
-@@‚³‚êA“®ìŠm”F‚ªs‚í‚ê‚Ä‚¢‚Ü‚·B
+ã€€ã€€NINTENDO NITRO-System ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ãƒ­ãƒ¼ã‚«ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ã®ä»»æ„ã®å ´æ‰€
+ã€€ã€€ã«å±•é–‹ã—ã€ãã®ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ç’°å¢ƒå¤‰æ•°NITROSYSTEM_ROOTã«è¨­å®šã—ã¦ãã ã•
+ã€€ã€€ã„ã€‚ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã«é–¢ã™ã‚‹è©³ç´°ã¯ã€è§£å‡å¾Œã«ã§ãã¾ã™ä¸‹è¨˜ã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã‚’ã”è¦§ã
+ã€€ã€€ã ã•ã„ã€‚
 
-@@@@NITRO-SDK4.1("NitroSDK-4_1-070710.zip")
-@@@@  + plusƒpƒbƒ`("NitroSDK-4_1-patch-plus-070820.zip")
+ã€€ã€€ã€€ã€€NitroSystem/docs/Readme/BuildSystem.pdf 
+
+
+ã€€ã€€ã¾ãŸã€NINTENDO NITRO-System ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«ã¤ã„ã¦ã®æ¦‚è¦ã¯ã€ä¸‹è¨˜ã®ãƒ‰
+ã€€ã€€ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã‚’ã”è¦§ãã ã•ã„ã€‚
+
+ã€€ã€€ã€€ã€€NitroSystem/docs/Readme/NITRO-System-Library_ReleaseNotes.pdf 
+
+
+3. å¯¾å¿œã—ã¦ã„ã‚‹NITRO-SDK
+==============================================================================
+
+ã€€ã€€æœ¬NINTENDO NITRO-System ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¯ã€ä¸‹è¨˜ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®NITRO-SDK ã§ãƒ“ãƒ«ãƒ‰
+ã€€ã€€ã•ã‚Œã€å‹•ä½œç¢ºèªãŒè¡Œã‚ã‚Œã¦ã„ã¾ã™ã€‚
+
+ã€€ã€€ã€€ã€€NITRO-SDK4.1("NitroSDK-4_1-070710.zip")
+ã€€ã€€ã€€ã€€  + plusãƒ‘ãƒƒãƒ("NitroSDK-4_1-patch-plus-070820.zip")
 

@@ -6,40 +6,40 @@
 #include "savedata/savedata.h"
 #include "savedata/wifilist.h"
 
-// ���łɁA�����f�[�^�����X�g��ɂ���B���̏ꍇ�͉�������K�v�Ȃ��B
+// すでに、同じデータがリスト上にある。この場合は何もする必要なし。
 #define DWCFRIEND_INLIST 0
-// ���łɁA�����f�[�^�����X�g��ɂ��邪�A�㏑�����邱�Ƃ��]�܂����ꍇ�B
+// すでに、同じデータがリスト上にあるが、上書きすることが望ましい場合。
 #define DWCFRIEND_OVERWRITE 1
-// �����f�[�^�̓��X�g��ɂȂ��B
+// 同じデータはリスト上にない。
 #define DWCFRIEND_NODATA 2
-// �f�[�^���������Ȃ��B
+// データが正しくない。
 #define DWCFRIEND_INVALID 3
 
 //==============================================================================
 /**
- * ���łɓ����l���o�^����Ă��Ȃ����B
- * @param   pSaveData �t�����h�֌W���͂����Ă���Z�[�u�f�[�^
- * @param   index �����f�[�^�����������Ƃ��́A���̏ꏊ�B
- * @param         ������Ȃ��ꍇ�͋󂢂Ă���Ƃ����Ԃ�
- * @param         �ǂ����󂢂Ă��Ȃ��ꍇ�́A-1 
- * @retval  DWCFRIEND_INLIST �c ���łɁA�����f�[�^�����X�g��ɂ���B���̏ꍇ�͉�������K�v�Ȃ��B
- * @retval  DWCFRIEND_OVERWRITE �c ���łɁA�����f�[�^�����X�g��ɂ��邪�A�㏑�����邱�Ƃ��]�܂����ꍇ�B
- * @retval  DWCFRIEND_NODATA �c �����f�[�^�̓��X�g��ɂȂ��B
- * @retval  DWCFRIEND_INVALID �c �󂯎����DWCFriendData���ُ�B
+ * すでに同じ人が登録されていないか。
+ * @param   pSaveData フレンド関係がはいっているセーブデータ
+ * @param   index 同じデータが見つかったときの、その場所。
+ * @param         見つからない場合は空いているところを返す
+ * @param         どこも空いていない場合は、-1 
+ * @retval  DWCFRIEND_INLIST … すでに、同じデータがリスト上にある。この場合は何もする必要なし。
+ * @retval  DWCFRIEND_OVERWRITE … すでに、同じデータがリスト上にあるが、上書きすることが望ましい場合。
+ * @retval  DWCFRIEND_NODATA … 同じデータはリスト上にない。
+ * @retval  DWCFRIEND_INVALID … 受け取ったDWCFriendDataが異常。
  */
 //==============================================================================
 extern int dwc_checkfriendByToken(SAVEDATA* pSaveData, DWCFriendData *data, int *index);
 
 //==============================================================================
 /**
- * ���łɓ����l���o�^����Ă��Ȃ����B
- * @param   pSaveData �t�����h�֌W���͂����Ă���Z�[�u�f�[�^
- * @param   index �����f�[�^�����������Ƃ��́A���̏ꏊ�B
- * @param         ������Ȃ��ꍇ�͋󂢂Ă���Ƃ����Ԃ�
- * @param         �ǂ����󂢂Ă��Ȃ��ꍇ�́A-1 
- * @retval  DWCFRIEND_INLIST �c ���łɁA�����f�[�^�����X�g��ɂ���B
- * @retval  DWCFRIEND_NODATA �c �����f�[�^�̓��X�g��ɂȂ��B
- * @retval  DWCFRIEND_INVALID �c �󂯎����friend_keya���������Ȃ��B
+ * すでに同じ人が登録されていないか。
+ * @param   pSaveData フレンド関係がはいっているセーブデータ
+ * @param   index 同じデータが見つかったときの、その場所。
+ * @param         見つからない場合は空いているところを返す
+ * @param         どこも空いていない場合は、-1 
+ * @retval  DWCFRIEND_INLIST … すでに、同じデータがリスト上にある。
+ * @retval  DWCFRIEND_NODATA … 同じデータはリスト上にない。
+ * @retval  DWCFRIEND_INVALID … 受け取ったfriend_keyaが正しくない。
  */
 //==============================================================================
 extern int dwc_checkFriendCodeByToken(SAVEDATA* pSaveData, u64 friend_key, int *index);
@@ -51,7 +51,7 @@ extern BOOL dwc_friendAutoInputCheck( SAVEDATA* pSaveData, int* netIDList,
 extern void dwc_friendWrite(SAVEDATA* pSaveData, int netID, int addListIndex,
                             int heapID, int overWrite);
 
-// NetID����F�B�蒠INDEX��T��
+// NetIDから友達手帳INDEXを探す
 extern int dwc_SearchNetID2WifiListIndex(SAVEDATA* pSaveData,int netID);
 
 #endif

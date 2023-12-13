@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	elevator_anm.c
- * @bfief	ÉGÉåÉxÅ[É^Å[ÉAÉjÉÅ
+ * @bfief	„Ç®„É¨„Éô„Éº„Çø„Éº„Ç¢„Éã„É°
  * @author	Nozomu Saito
  *
  */
@@ -17,7 +17,7 @@
 
 #include "elevator_anm.h"
 
-#define ELE_ANM_CONT_CODE	(0x1)		//ÉGÉåÉxÅ[É^ÉAÉjÉÅéØï ÉRÅ[Éh ílÇÕìKìñ
+#define ELE_ANM_CONT_CODE	(0x1)		//„Ç®„É¨„Éô„Éº„Çø„Ç¢„Éã„É°Ë≠òÂà•„Ç≥„Éº„Éâ ÂÄ§„ÅØÈÅ©ÂΩì
 enum{
 	SEQ_SETUP,
 	SEQ_ANM_START,
@@ -28,9 +28,9 @@ enum{
 
 typedef struct ELEVATOR_ANM_tag
 {
-	u8 Loop;		//ÉAÉjÉÅÉãÅ[Évêî	
-	u8 Dir;			//ï˚å¸
-	u8 Seq;			//ÉVÅ[ÉPÉìÉT
+	u8 Loop;		//„Ç¢„Éã„É°„É´„Éº„ÉóÊï∞	
+	u8 Dir;			//ÊñπÂêë
+	u8 Seq;			//„Ç∑„Éº„Ç±„É≥„Çµ
 	u8 dummy;
 }ELEVATOR_ANM;
 
@@ -38,11 +38,11 @@ static BOOL ElevatorAnimeEvent(GMEVENT_CONTROL * event);
 
 //==============================================================================
 /**
- * ÉGÉXÉJÉåÅ[É^ÉAÉjÉÅÅ[ÉVÉáÉìÉZÉbÉg
+ * „Ç®„Çπ„Ç´„É¨„Éº„Çø„Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Çª„ÉÉ„Éà
  * 
- * @param	fsys		ÉtÉBÅ[ÉãÉhÉVÉXÉeÉÄÉ|ÉCÉìÉ^
- * @param	inDir		ï˚å¸Åiè„â∫Åj
- * @param	inLoop		ÉAÉjÉÅÉãÅ[Évêî
+ * @param	fsys		„Éï„Ç£„Éº„É´„Éâ„Ç∑„Çπ„ÉÜ„É†„Éù„Ç§„É≥„Çø
+ * @param	inDir		ÊñπÂêëÔºà‰∏ä‰∏ãÔºâ
+ * @param	inLoop		„Ç¢„Éã„É°„É´„Éº„ÉóÊï∞
  * 
  * @return	none
  */
@@ -54,26 +54,26 @@ void ElevatorAnm_StartAnm(FIELDSYS_WORK * fsys, const u8 inDir, const u8 inLoop)
 	rc = MPTL_CheckMap3DObj(fsys, BMID_EV_O01, NULL, NULL);
 			
 	if (rc){
-		//ÉGÉåÉxÅ[É^Å[Ç†Ç¡ÇΩ
-		//ÉfÅ[É^çÏê¨
+		//„Ç®„É¨„Éô„Éº„Çø„Éº„ÅÇ„Å£„Åü
+		//„Éá„Éº„Çø‰ΩúÊàê
 		ELEVATOR_ANM *work = sys_AllocMemoryLo(HEAPID_FIELD,sizeof(ELEVATOR_ANM));
 		work->Loop = inLoop;
 		work->Dir = inDir;
 		work->Seq = 0;
-		//ÉAÉjÉÅÉCÉxÉìÉgÉRÅ[Éã
+		//„Ç¢„Éã„É°„Ç§„Éô„É≥„Éà„Ç≥„Éº„É´
 		FieldEvent_Call(fsys->event, ElevatorAnimeEvent, work);
 	}else{
-		GF_ASSERT(0&&"ÉGÉåÉxÅ[É^Å[Ç†ÇËÇ‹ÇπÇÒ");
+		GF_ASSERT(0&&"„Ç®„É¨„Éô„Éº„Çø„Éº„ÅÇ„Çä„Åæ„Åõ„Çì");
 	}
 }
 
 //==============================================================================
 /**
- * ÉGÉåÉxÅ[É^ÉAÉjÉÅÉCÉxÉìÉg
+ * „Ç®„É¨„Éô„Éº„Çø„Ç¢„Éã„É°„Ç§„Éô„É≥„Éà
  * 
- * @param	event	ÉCÉxÉìÉgÉ|ÉCÉìÉ^
+ * @param	event	„Ç§„Éô„É≥„Éà„Éù„Ç§„É≥„Çø
  * 
- * @return	BOOL	TRUE:ÉCÉxÉìÉgèIóπÅ@FALSE:ÉCÉxÉìÉgåpë±
+ * @return	BOOL	TRUE:„Ç§„Éô„É≥„ÉàÁµÇ‰∫Ü„ÄÄFALSE:„Ç§„Éô„É≥„ÉàÁ∂ôÁ∂ö
  */
 //==============================================================================
 static BOOL ElevatorAnimeEvent(GMEVENT_CONTROL * event)
@@ -94,26 +94,26 @@ static BOOL ElevatorAnimeEvent(GMEVENT_CONTROL * event)
 			rc = MPTL_CheckMap3DObj(fsys, BMID_EV_O01, &obj_ptr,NULL);
 			GF_ASSERT(rc);
 			render_obj = M3DO_GetRenderObj(obj_ptr);
-			//ÉAÉjÉÅÅ[ÉVÉáÉìÉZÉbÉgÉAÉbÉv
+			//„Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Çª„ÉÉ„Éà„Ç¢„ÉÉ„Éó
 			F3DASub_SetUpAnimation( fsys->field_3d_anime,
 									fsys->AnimeContMng,
-									ELE_ANM_CONT_CODE,	//ÉGÉåÉxÅ[É^Å[ÉAÉjÉÅéØï ÉRÅ[Éh
+									ELE_ANM_CONT_CODE,	//„Ç®„É¨„Éô„Éº„Çø„Éº„Ç¢„Éã„É°Ë≠òÂà•„Ç≥„Éº„Éâ
 									BMID_EV_O01,
 									render_obj,
 									model,
 									GetMapResourceBmTexturePTR(fsys->MapResource),
-									2,				//ÉAÉjÉÅêî2
-									work->Loop,		//ÉãÅ[Év
-									FALSE			//îΩì]ÇµÇ»Ç¢
+									2,				//„Ç¢„Éã„É°Êï∞2
+									work->Loop,		//„É´„Éº„Éó
+									FALSE			//ÂèçËª¢„Åó„Å™„ÅÑ
 									);
 		}
 		(work->Seq)++;
 		break;
 	case SEQ_ANM_START:
-		GF_ASSERT( ((work->Dir==ELE_UP)||(work->Dir==ELE_DOWN))&&"ï˚å¸Ç™ïsê≥" );
-		//ÉAÉjÉÅÅ[ÉVÉáÉìÉXÉ^Å[Ég
+		GF_ASSERT( ((work->Dir==ELE_UP)||(work->Dir==ELE_DOWN))&&"ÊñπÂêë„Åå‰∏çÊ≠£" );
+		//„Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Çπ„Çø„Éº„Éà
 		F3DASub_StartAnimation(fsys->AnimeContMng, ELE_ANM_CONT_CODE, work->Dir);
-		//ÉGÉåÉxÅ[É^Å[âπ
+		//„Ç®„É¨„Éô„Éº„Çø„ÉºÈü≥
 		if (work->Dir==ELE_UP){	
 			Snd_SePlay( SE_ELEBETA_UP);
 		}else{	//work->Dir==ELE_DOWN
@@ -122,19 +122,19 @@ static BOOL ElevatorAnimeEvent(GMEVENT_CONTROL * event)
 		(work->Seq)++;
 		break;
 	case SEQ_ANM_WAIT:
-		//ÉAÉjÉÅë“Çø
+		//„Ç¢„Éã„É°ÂæÖ„Å°
 		if ( (F3DASub_WaitAnimation(fsys->AnimeContMng, ELE_ANM_CONT_CODE)) ){
-			//âπÉXÉgÉbÉv
+			//Èü≥„Çπ„Éà„ÉÉ„Éó
 			if (work->Dir==ELE_UP){
 				Snd_SeStopBySeqNo( SE_ELEBETA_UP, 0 );
 			}else{	//work->Dir==ELE_DOWN
 				Snd_SeStopBySeqNo( SE_ELEBETA_DOWN, 0 );
 			}
 
-			//ÉsÉìÉ|Å[Éì
+			//„Éî„É≥„Éù„Éº„É≥
 			Snd_SePlay( SE_ELEBETA_ARRIVAL );
 			
-			//ÉAÉjÉÅâï˙
+			//„Ç¢„Éã„É°Ëß£Êîæ
 			F3DASub_RereaseAnimation(fsys->field_3d_anime, fsys->AnimeContMng, ELE_ANM_CONT_CODE);
 			(work->Seq)++;
 		}
@@ -145,7 +145,7 @@ static BOOL ElevatorAnimeEvent(GMEVENT_CONTROL * event)
 		}
 		break;
 	case SEQ_END:
-		//èIÇË
+		//ÁµÇ„Çä
 		sys_FreeMemoryEz(work);
 		return TRUE;
 	}

@@ -12,7 +12,7 @@
 
   $Log: mi_wram.c,v $
   Revision 1.21  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.20  2005/02/28 05:26:25  yosizaki
   do-indent.
@@ -21,19 +21,19 @@
   only fix header comment
 
   Revision 1.18  2004/03/30 04:50:46  yada
-  ASSERT‚ğ.h ‚©‚ç.c ‚ÉˆÚ“®
+  ASSERTã‚’.h ã‹ã‚‰.c ã«ç§»å‹•
 
   Revision 1.17  2004/03/25 08:21:56  yada
-  MI_GetWramBank()C³
+  MI_GetWramBank()ä¿®æ­£
 
   Revision 1.16  2004/03/25 07:51:40  yada
-  MI_GetWramBank() •Ô‚è’l‚ÌƒLƒƒƒXƒg’Ç‰Á
+  MI_GetWramBank() è¿”ã‚Šå€¤ã®ã‚­ãƒ£ã‚¹ãƒˆè¿½åŠ 
 
   Revision 1.15  2004/03/25 05:22:52  yada
-  ARM9‚ÆARM7‚ÅVRAMCNT‚Ì–¼‘O‚ªˆÙ‚È‚é‚±‚Æ‚É‘Îˆ
+  ARM9ã¨ARM7ã§VRAMCNTã®åå‰ãŒç•°ãªã‚‹ã“ã¨ã«å¯¾å‡¦
 
   Revision 1.14  2004/03/25 02:53:32  yada
-  MI_GetWramBank() ‚ğ ARM9 ‘¤‚É‚àŒöŠJ‚µ‚½B
+  MI_GetWramBank() ã‚’ ARM9 å´ã«ã‚‚å…¬é–‹ã—ãŸã€‚
 
   Revision 1.13  2004/03/23 00:58:15  yada
   only fix comment
@@ -42,16 +42,16 @@
   force to turn byte access warning off
 
   Revision 1.11  2004/02/13 07:03:57  yada
-  MI_GetWramBank’Ç‰Á
+  MI_GetWramBankè¿½åŠ 
 
   Revision 1.10  2004/02/13 06:46:28  yada
-  common ‚É•œ‹A
+  common ã«å¾©å¸°
 
   Revision 1.9  2004/02/13 06:26:44  yada
-  common ‚©‚ç ARM9‚ÉˆÚ“®
+  common ã‹ã‚‰ ARM9ã«ç§»å‹•
 
   Revision 1.8  2004/02/13 04:37:13  yada
-  ARM9‚ÆARM7 ‚Ìê‡‚í‚¯l—¶
+  ARM9ã¨ARM7 ã®å ´åˆã‚ã‘è€ƒæ…®
 
   Revision 1.7  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
@@ -60,10 +60,10 @@
   (none)
 
   Revision 1.5  2003/12/26 05:52:44  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.4  2003/12/25 10:28:18  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏXBMI_WRAM¨ MIWram ‚ÉB
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´ã€‚MI_WRAMâ†’ MIWram ã«ã€‚
 
   Revision 1.3  2003/12/24 08:30:36  nishida_kenji
   change include file(do not need include gxstate.h)
@@ -72,7 +72,7 @@
   remove needless code(small fix)
 
   Revision 1.1  2003/12/24 07:52:24  yada
-  ‰”ÅF GX‚©‚çMI ‚É WRAMŠÖ˜AˆÚŠÇ
+  åˆç‰ˆï¼š GXã‹ã‚‰MI ã« WRAMé–¢é€£ç§»ç®¡
 
 
   $NoKeywords: $

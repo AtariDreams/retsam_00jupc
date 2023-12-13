@@ -2,7 +2,7 @@
 /**
  *
  *	@file		encount_effect_sub.c
- *	@brief		ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+ *	@brief		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *	@author		tomoya takahshi
  *	@data		2006.05.07
  *
@@ -34,31 +34,31 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *	ƒWƒƒƒ“ƒvI
+ *	ã‚¸ãƒ£ãƒ³ãƒ—ï¼
  *
- *	–ì¶		[ FIELD ]		
- *	ƒgƒŒ[ƒi[	[ TRAINER ]
- *	“Áê		[ SPECIAL ]
- *	‹â‰Í’c		[ GINGA ]
- *	“`àƒ|ƒPƒ‚ƒ“[ LEGEND ]
- *	“ÁêƒgƒŒ[ƒi[[ SP_TR ]
+ *	é‡ç”Ÿ		[ FIELD ]		
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼	[ TRAINER ]
+ *	ç‰¹æ®Š		[ SPECIAL ]
+ *	éŠ€æ²³å›£		[ GINGA ]
+ *	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³[ LEGEND ]
+ *	ç‰¹æ®Šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼[ SP_TR ]
  * 
  *
  */
@@ -71,26 +71,26 @@
 //-----------------------------------------------------------------------------
 /**
  * 
- *		ƒtƒB[ƒ‹ƒh@–ì¶ƒGƒ“ƒJƒEƒ“ƒg [ FIELD ]
+ *		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€é‡ç”Ÿã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ [ FIELD ]
  * 
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹@ƒ^ƒXƒN—Dæ‡ˆÊ
+//	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€€ã‚¿ã‚¹ã‚¯å„ªå…ˆé †ä½
 //=====================================
 #define ENCOUNT_EFF_LASTER_SCRLL_VWAIT_BUFF_SWITCH_TASK_PRI	( 1024 )
 #define ENCOUNT_EFF_LASTER_SCRLL_VINTR_DMA_SET_TASK_PRI	( 1024 )
 
 
 //-------------------------------------
-//	–ì¶@‘@ƒŒƒxƒ‹‚‚¢
+//	é‡ç”Ÿã€€è‰ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_GRASS_HIGH_START,
 	ENCOUNT_GRASS_HIGH_FLASH_INI,
@@ -99,24 +99,24 @@ enum{
 	ENCOUNT_GRASS_HIGH_MOVE01,
 	ENCOUNT_GRASS_HIGH_END,
 };
-#define ENCOUNT_GRASS_HIGH_MOVE00_SYNC	( 6 )		// ƒVƒ“ƒN”
+#define ENCOUNT_GRASS_HIGH_MOVE00_SYNC	( 6 )		// ã‚·ãƒ³ã‚¯æ•°
 #define ENCOUNT_GRASS_HIGH_MOVE01_SYNC	( 6 )
 
-#define ENCOUNT_GRASS_HIGH_MOVE00_CAMERA_MOVE	( FX32_ONE * 50 )	// ƒJƒƒ‰“®ì
-#define ENCOUNT_GRASS_HIGH_MOVE00_CAMERA_SS		( FX32_ONE * 30 )	// ƒJƒƒ‰“®ì
-#define ENCOUNT_GRASS_HIGH_MOVE00_BGSL_SS	( FX32_ONE * -12 )	// ‰‘¬“x
-#define ENCOUNT_GRASS_HIGH_MOVE00_BGSL_X	( -3 * FX32_ONE )	// “®‚³‚˜
+#define ENCOUNT_GRASS_HIGH_MOVE00_CAMERA_MOVE	( FX32_ONE * 50 )	// ã‚«ãƒ¡ãƒ©å‹•ä½œ
+#define ENCOUNT_GRASS_HIGH_MOVE00_CAMERA_SS		( FX32_ONE * 30 )	// ã‚«ãƒ¡ãƒ©å‹•ä½œ
+#define ENCOUNT_GRASS_HIGH_MOVE00_BGSL_SS	( FX32_ONE * -12 )	// åˆé€Ÿåº¦
+#define ENCOUNT_GRASS_HIGH_MOVE00_BGSL_X	( -3 * FX32_ONE )	// å‹•ã•ï½˜
 
 #define ENCOUNT_GRASS_HIGH_MOVE01_CAMERA_MOVE	( -FX32_ONE * 50 )
 #define ENCOUNT_GRASS_HIGH_MOVE01_CAMERA_SS	( -FX32_ONE * 255 )
-#define ENCOUNT_GRASS_HIGH_MOVE01_BGSL_SS	( FX32_ONE * 30 )		// ‰‘¬“x
-#define ENCOUNT_GRASS_HIGH_MOVE01_BGSL_X	( 255 * FX32_ONE )	// “®‚³‚˜
+#define ENCOUNT_GRASS_HIGH_MOVE01_BGSL_SS	( FX32_ONE * 30 )		// åˆé€Ÿåº¦
+#define ENCOUNT_GRASS_HIGH_MOVE01_BGSL_X	( 255 * FX32_ONE )	// å‹•ã•ï½˜
 #define ENCOUNT_GRASS_HIGH_DOT			( 2 )
 
 //-------------------------------------
-//	–ì¶@‘@ƒŒƒxƒ‹’á‚¢
+//	é‡ç”Ÿã€€è‰ã€€ãƒ¬ãƒ™ãƒ«ä½ã„
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_GRASS_LOW_START,
 	ENCOUNT_GRASS_LOW_FLASH_INI,
@@ -125,24 +125,24 @@ enum{
 	ENCOUNT_GRASS_LOW_MOVE01,
 	ENCOUNT_GRASS_LOW_END,
 };
-#define ENCOUNT_GRASS_LOW_MOVE00_SYNC	( 6 )		// ƒVƒ“ƒN”
+#define ENCOUNT_GRASS_LOW_MOVE00_SYNC	( 6 )		// ã‚·ãƒ³ã‚¯æ•°
 #define ENCOUNT_GRASS_LOW_MOVE01_SYNC	( 6 )
 
-#define ENCOUNT_GRASS_LOW_MOVE00_CAMERA_MOVE	( FX32_ONE * 50 )	// ƒJƒƒ‰“®ì
-#define ENCOUNT_GRASS_LOW_MOVE00_CAMERA_SS		( FX32_ONE * 30 )	// ƒJƒƒ‰“®ì
-#define ENCOUNT_GRASS_LOW_MOVE00_BGSL_SS	( FX32_ONE * -12 )	// ‰‘¬“x
-#define ENCOUNT_GRASS_LOW_MOVE00_BGSL_X	( -2 * FX32_ONE )	// “®‚³‚˜
+#define ENCOUNT_GRASS_LOW_MOVE00_CAMERA_MOVE	( FX32_ONE * 50 )	// ã‚«ãƒ¡ãƒ©å‹•ä½œ
+#define ENCOUNT_GRASS_LOW_MOVE00_CAMERA_SS		( FX32_ONE * 30 )	// ã‚«ãƒ¡ãƒ©å‹•ä½œ
+#define ENCOUNT_GRASS_LOW_MOVE00_BGSL_SS	( FX32_ONE * -12 )	// åˆé€Ÿåº¦
+#define ENCOUNT_GRASS_LOW_MOVE00_BGSL_X	( -2 * FX32_ONE )	// å‹•ã•ï½˜
 
 #define ENCOUNT_GRASS_LOW_MOVE01_CAMERA_MOVE	( -FX32_ONE * 30 )
 #define ENCOUNT_GRASS_LOW_MOVE01_CAMERA_SS	( -FX32_ONE * 100 )
-#define ENCOUNT_GRASS_LOW_MOVE01_BGSL_SS	( FX32_ONE *30 )		// ‰‘¬“x
-#define ENCOUNT_GRASS_LOW_MOVE01_BGSL_X	( 255 * FX32_ONE )	// “®‚³‚˜
+#define ENCOUNT_GRASS_LOW_MOVE01_BGSL_SS	( FX32_ONE *30 )		// åˆé€Ÿåº¦
+#define ENCOUNT_GRASS_LOW_MOVE01_BGSL_X	( 255 * FX32_ONE )	// å‹•ã•ï½˜
 #define ENCOUNT_GRASS_LOW_DOT			( 5 )
 
 //-------------------------------------
-//	–ì¶@…@ƒŒƒxƒ‹’á‚¢
+//	é‡ç”Ÿã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«ä½ã„
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_WATER_LOW_START,
 	ENCOUNT_WATER_LOW_FLASH_INI,
@@ -156,9 +156,9 @@ enum{
 #define ENCOUNT_WATER_LOW_FLASH_DO_WAIT	( 10 )
 #define ENCOUNT_WATER_LOW_MOVE_SYNC	( 9 )
 #define ENCOUNT_WATER_LOW_MOVE_WAIT	( 12 )
-#define ENCOUNT_WATER_LOW_SIN_R		( FX32_CONST( 12 ) )	// ”¼Œa
-#define ENCOUNT_WATER_LOW_LASTER_SP	( 800 )	// ƒ‰ƒXƒ^[ƒXƒs[ƒh
-#define ENCOUNT_WATER_LOW_SIN_ADDR	( (0xffff/192) * 2 )// ƒ‰ƒXƒ^[Šp“xƒXƒs[ƒh
+#define ENCOUNT_WATER_LOW_SIN_R		( FX32_CONST( 12 ) )	// åŠå¾„
+#define ENCOUNT_WATER_LOW_LASTER_SP	( 800 )	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define ENCOUNT_WATER_LOW_SIN_ADDR	( (0xffff/192) * 2 )// ãƒ©ã‚¹ã‚¿ãƒ¼è§’åº¦ã‚¹ãƒ”ãƒ¼ãƒ‰
 #define ENCOUNT_WATER_LOW_LASTER_TASK_PRI	( TCB_TSK_PRI - 1 )
 #define ENCOUNT_WATER_LOW_WIPE_SYNC	( 8 )
 
@@ -167,9 +167,9 @@ enum{
 
 
 //-------------------------------------
-//	–ì¶@…@ƒŒƒxƒ‹‚‚¢
+//	é‡ç”Ÿã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_WATER_HIGH_START,
 	ENCOUNT_WATER_HIGH_FLASH_INI,
@@ -183,9 +183,9 @@ enum{
 #define ENCOUNT_WATER_HIGH_FLASH_DO_WAIT	( 10  )
 #define ENCOUNT_WATER_HIGH_MOVE_SYNC	( 9 )
 #define ENCOUNT_WATER_HIGH_MOVE_WAIT	( 12 )
-#define ENCOUNT_WATER_HIGH_SIN_R		( FX32_CONST( 15 ) )	// ”¼Œa
-#define ENCOUNT_WATER_HIGH_LASTER_SP	( 800 )	// ƒ‰ƒXƒ^[ƒXƒs[ƒh
-#define ENCOUNT_WATER_HIGH_SIN_ADDR	( (0xffff/192) * 3 )// ƒ‰ƒXƒ^[Šp“xƒXƒs[ƒh
+#define ENCOUNT_WATER_HIGH_SIN_R		( FX32_CONST( 15 ) )	// åŠå¾„
+#define ENCOUNT_WATER_HIGH_LASTER_SP	( 800 )	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define ENCOUNT_WATER_HIGH_SIN_ADDR	( (0xffff/192) * 3 )// ãƒ©ã‚¹ã‚¿ãƒ¼è§’åº¦ã‚¹ãƒ”ãƒ¼ãƒ‰
 #define ENCOUNT_WATER_HIGH_WIPE_SYNC	( 8 )
 #define ENCOUNT_WATER_HIGH_LASTER_TASK_PRI	( TCB_TSK_PRI - 1 )
 
@@ -195,9 +195,9 @@ enum{
 #define ENCOUNT_WATER_HIGH_LASTER_Y_MUL	( 1 )
 
 //-------------------------------------
-//	–ì¶@ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹’á
+//	é‡ç”Ÿã€€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«ä½
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_DAN_LOW_START,
 	ENCOUNT_DAN_LOW_FLASH_INI,
@@ -208,13 +208,13 @@ enum{
 };
 
 #define ENCOUNT_DAN_LOW_MOVE_SYNC	( 12 )
-#define ENCOUNT_DAN_LOW_MOVE00_CAMERA_MOVE		( -FX32_ONE * 400 )	// ƒJƒƒ‰“®ì
-#define ENCOUNT_DAN_LOW_MOVE00_CAMERA_SS		( -FX32_ONE * 2 )	// ƒJƒƒ‰“®ì
+#define ENCOUNT_DAN_LOW_MOVE00_CAMERA_MOVE		( -FX32_ONE * 400 )	// ã‚«ãƒ¡ãƒ©å‹•ä½œ
+#define ENCOUNT_DAN_LOW_MOVE00_CAMERA_SS		( -FX32_ONE * 2 )	// ã‚«ãƒ¡ãƒ©å‹•ä½œ
 
 //-------------------------------------
-//	–ì¶@ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹‚
+//	é‡ç”Ÿã€€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«é«˜
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_DAN_HIGH_START,
 	ENCOUNT_DAN_HIGH_FLASH_INI,
@@ -225,37 +225,37 @@ enum{
 };
 
 #define ENCOUNT_DAN_HIGH_MOVE_SYNC	( 12 )
-#define ENCOUNT_DAN_HIGH_MOVE00_CAMERA_MOVE		( -FX32_ONE * 800 )	// ƒJƒƒ‰“®ì
-#define ENCOUNT_DAN_HIGH_MOVE00_CAMERA_SS		( -FX32_ONE * 5 )	// ƒJƒƒ‰“®ì
+#define ENCOUNT_DAN_HIGH_MOVE00_CAMERA_MOVE		( -FX32_ONE * 800 )	// ã‚«ãƒ¡ãƒ©å‹•ä½œ
+#define ENCOUNT_DAN_HIGH_MOVE00_CAMERA_SS		( -FX32_ONE * 5 )	// ã‚«ãƒ¡ãƒ©å‹•ä½œ
 
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	–ì¶@‘@ƒŒƒxƒ‹‚‚¢
+//	é‡ç”Ÿã€€è‰ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
 //=====================================
 typedef struct{
-	GF_CAMERA_PTR	camera;				// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;				// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_ADDMOVE_WORK_FX camera_dist;
 	ENC_HB_BG_SLICE* p_slice;
 } ENCOUNT_GRASS_HIGH;
 
 //-------------------------------------
-//	–ì¶@‘@ƒŒƒxƒ‹’á‚¢
+//	é‡ç”Ÿã€€è‰ã€€ãƒ¬ãƒ™ãƒ«ä½ã„
 //=====================================
 typedef struct{
-	GF_CAMERA_PTR	camera;				// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;				// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_ADDMOVE_WORK_FX camera_dist;
 	ENC_HB_BG_SLICE* p_slice;
 } ENCOUNT_GRASS_LOW;
 
 //-------------------------------------
-//	p_lasterƒXƒNƒ[ƒ‹ƒ[ƒN
+//	p_lasterã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	LASTER_SCROLL_PTR p_laster;
@@ -265,7 +265,7 @@ typedef struct {
 
 
 //-------------------------------------
-//	–ì¶@…@ƒŒƒxƒ‹’á‚¢
+//	é‡ç”Ÿã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«ä½ã„
 //=====================================
 typedef struct{
 	ENCOUNT_LASTER_SCROLL laster;
@@ -274,7 +274,7 @@ typedef struct{
 } ENCOUNT_WATER_LOW;
 
 //-------------------------------------
-//	–ì¶@…@ƒŒƒxƒ‹‚‚¢
+//	é‡ç”Ÿã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
 //=====================================
 typedef struct{
 	ENCOUNT_LASTER_SCROLL laster;
@@ -283,25 +283,25 @@ typedef struct{
 } ENCOUNT_WATER_HIGH;
 
 //-------------------------------------
-//	–ì¶@ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹’á‚¢
+//	é‡ç”Ÿã€€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«ä½ã„
 //=====================================
 typedef struct{
-	GF_CAMERA_PTR	camera;				// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;				// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_ADDMOVE_WORK_FX camera_dist;
 } ENCOUNT_DAN_LOW;
 
 //-------------------------------------
-//	–ì¶@ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹‚‚¢
+//	é‡ç”Ÿã€€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
 //=====================================
 typedef struct{
-	GF_CAMERA_PTR	camera;				// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;				// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_ADDMOVE_WORK_FX camera_dist;
 } ENCOUNT_DAN_HIGH;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static TCB_PTR EncountEffect_LasterScroll_VDmaTaskReq( ENCOUNT_LASTER_SCROLL* p_lstscr );
@@ -315,10 +315,10 @@ static void EF_Laster_BuffXFlip( ENCOUNT_LASTER_SCROLL* p_laster, u32 dot );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–ì¶@‘@ƒŒƒxƒ‹‚‚¢
+ *	@brief	é‡ç”Ÿã€€è‰ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -336,7 +336,7 @@ void EncountEffect_Field_GrassLevelHigh(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_GRASS_HIGH) );
 		task_w = eew->work;
 
-		// ƒXƒ‰ƒCƒXƒ[ƒNì¬
+		// ã‚¹ãƒ©ã‚¤ã‚¹ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 		task_w->p_slice = ENC_BG_Slice_Alloc();
 
 		eew->seq++;
@@ -353,13 +353,13 @@ void EncountEffect_Field_GrassLevelHigh(TCB_PTR tcb, void* work)
 			eew->wait = 0;
 			eew->seq++;
 
-			// “®ìŠJn
+			// å‹•ä½œé–‹å§‹
 			ENC_BG_Slice_Start( eew, task_w->p_slice, 
 					ENCOUNT_GRASS_HIGH_DOT,
 					ENCOUNT_GRASS_HIGH_MOVE00_SYNC + 1, 
 					0, ENCOUNT_GRASS_HIGH_MOVE00_BGSL_X,
 					ENCOUNT_GRASS_HIGH_MOVE00_BGSL_SS );
-			// “®ìƒ[ƒN‰Šú‰»
+			// å‹•ä½œãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 			task_w->camera = eew->fsw->camera_ptr;
 			distans = GFC_GetCameraDistance( task_w->camera );
 			ENC_AddMoveReqFx( &task_w->camera_dist, distans, distans + ENCOUNT_GRASS_HIGH_MOVE00_CAMERA_MOVE, ENCOUNT_GRASS_HIGH_MOVE00_CAMERA_SS, ENCOUNT_GRASS_HIGH_MOVE00_SYNC );
@@ -372,9 +372,9 @@ void EncountEffect_Field_GrassLevelHigh(TCB_PTR tcb, void* work)
 
 		if( result == TRUE ){
 			eew->seq++;
-			// “®ìŠJn
+			// å‹•ä½œé–‹å§‹
 			ENC_BG_Slice_Change( eew, task_w->p_slice, ENCOUNT_GRASS_HIGH_DOT, ENCOUNT_GRASS_HIGH_MOVE01_SYNC, ENCOUNT_GRASS_HIGH_MOVE00_BGSL_X, ENCOUNT_GRASS_HIGH_MOVE01_BGSL_X, ENCOUNT_GRASS_HIGH_MOVE01_BGSL_SS );
-			// “®ìƒ[ƒN‰Šú‰»
+			// å‹•ä½œãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 			task_w->camera = eew->fsw->camera_ptr;
 			distans = GFC_GetCameraDistance( task_w->camera );
 			ENC_AddMoveReqFx( &task_w->camera_dist, distans, distans + ENCOUNT_GRASS_HIGH_MOVE01_CAMERA_MOVE, ENCOUNT_GRASS_HIGH_MOVE01_CAMERA_SS, ENCOUNT_GRASS_HIGH_MOVE01_SYNC );
@@ -399,7 +399,7 @@ void EncountEffect_Field_GrassLevelHigh(TCB_PTR tcb, void* work)
 		G2_SetBG3Offset(0, 0);
 
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 		ENC_BG_Slice_Delete( task_w->p_slice );
 		ENC_End( eew, tcb );
@@ -413,10 +413,10 @@ void EncountEffect_Field_GrassLevelHigh(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–ì¶@‘@ƒŒƒxƒ‹’á‚¢
+ *	@brief	é‡ç”Ÿã€€è‰ã€€ãƒ¬ãƒ™ãƒ«ä½ã„
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -434,7 +434,7 @@ void EncountEffect_Field_GrassLevelLow(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_GRASS_LOW) );
 		task_w = eew->work;
 
-		// ƒXƒ‰ƒCƒXƒ[ƒNì¬
+		// ã‚¹ãƒ©ã‚¤ã‚¹ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 		task_w->p_slice = ENC_BG_Slice_Alloc();
 
 		eew->seq++;
@@ -451,13 +451,13 @@ void EncountEffect_Field_GrassLevelLow(TCB_PTR tcb, void* work)
 			eew->wait = 0;
 			eew->seq++;
 
-			// “®ìŠJn
+			// å‹•ä½œé–‹å§‹
 			ENC_BG_Slice_Start( eew, task_w->p_slice, 
 					ENCOUNT_GRASS_LOW_DOT,
-					ENCOUNT_GRASS_LOW_MOVE00_SYNC + 1,	///<‰º‚Å“®ì’†‚É’l•ÏX‚·‚é‚½‚ß
+					ENCOUNT_GRASS_LOW_MOVE00_SYNC + 1,	///<ä¸‹ã§å‹•ä½œä¸­ã«å€¤å¤‰æ›´ã™ã‚‹ãŸã‚
 					0, ENCOUNT_GRASS_LOW_MOVE00_BGSL_X,
 					ENCOUNT_GRASS_LOW_MOVE00_BGSL_SS );
-			// “®ìƒ[ƒN‰Šú‰»
+			// å‹•ä½œãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 			task_w->camera = eew->fsw->camera_ptr;
 			distans = GFC_GetCameraDistance( task_w->camera );
 			ENC_AddMoveReqFx( &task_w->camera_dist, distans, distans + ENCOUNT_GRASS_LOW_MOVE00_CAMERA_MOVE, ENCOUNT_GRASS_LOW_MOVE00_CAMERA_SS, ENCOUNT_GRASS_LOW_MOVE00_SYNC );
@@ -470,9 +470,9 @@ void EncountEffect_Field_GrassLevelLow(TCB_PTR tcb, void* work)
 
 		if( (result == TRUE) ){
 			eew->seq++;
-			// “®ìŠJn
+			// å‹•ä½œé–‹å§‹
 			ENC_BG_Slice_Change( eew, task_w->p_slice, ENCOUNT_GRASS_LOW_DOT, ENCOUNT_GRASS_LOW_MOVE01_SYNC, ENCOUNT_GRASS_LOW_MOVE00_BGSL_X, ENCOUNT_GRASS_LOW_MOVE01_BGSL_X, ENCOUNT_GRASS_LOW_MOVE01_BGSL_SS );
-			// “®ìƒ[ƒN‰Šú‰»
+			// å‹•ä½œãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 			task_w->camera = eew->fsw->camera_ptr;
 			distans = GFC_GetCameraDistance( task_w->camera );
 			ENC_AddMoveReqFx( &task_w->camera_dist, distans, distans + ENCOUNT_GRASS_LOW_MOVE01_CAMERA_MOVE, ENCOUNT_GRASS_LOW_MOVE01_CAMERA_SS, ENCOUNT_GRASS_LOW_MOVE01_SYNC );
@@ -497,7 +497,7 @@ void EncountEffect_Field_GrassLevelLow(TCB_PTR tcb, void* work)
 		G2_SetBG3Offset(0, 0);
 
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 		ENC_BG_Slice_Delete( task_w->p_slice );
 		ENC_End( eew, tcb );
@@ -510,10 +510,10 @@ void EncountEffect_Field_GrassLevelLow(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	…’†ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+ *	@brief	æ°´ä¸­ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -529,10 +529,10 @@ void EncountEffect_Field_WaterLevelLow(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_WATER_LOW) );
 		task_w = eew->work;
 
-		// ƒ‰ƒXƒ^[‰Šú‰»
+		// ãƒ©ã‚¹ã‚¿ãƒ¼åˆæœŸåŒ–
 		EF_Laster_Init( &task_w->laster, HEAPID_FIELD );
 		
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNOFF
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯OFF
 		FLDHBLANK_SYS_Stop( eew->fsw->fldmap->hblanksys );
 
 		eew->seq++;
@@ -571,7 +571,7 @@ void EncountEffect_Field_WaterLevelLow(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_WATER_LOW_WIPE:
-		//ƒuƒ‰ƒbƒNƒAƒEƒg
+		//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_BLINDOUT_H, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, ENCOUNT_WATER_LOW_WIPE_SYNC, 1, HEAPID_FIELD );
 		eew->seq++;
 		break;
@@ -584,14 +584,14 @@ void EncountEffect_Field_WaterLevelLow(TCB_PTR tcb, void* work)
 		
 	case ENCOUNT_WATER_LOW_END:
 
-		// ƒ‰ƒXƒ^[”jŠü
+		// ãƒ©ã‚¹ã‚¿ãƒ¼ç ´æ£„
 		EF_Laster_Delete( &task_w->laster );
 		
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 		FLDHBLANK_SYS_Start( eew->fsw->fldmap->hblanksys );
 
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 		ENC_End( eew, tcb );
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
@@ -601,10 +601,10 @@ void EncountEffect_Field_WaterLevelLow(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	…’†ƒGƒ“ƒJƒEƒ“ƒg
+ *	@brief	æ°´ä¸­ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return
  */
@@ -620,10 +620,10 @@ void EncountEffect_Field_WaterLevelHigh(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_WATER_HIGH) );
 		task_w = eew->work;
 
-		// ƒ‰ƒXƒ^[‰Šú‰»
+		// ãƒ©ã‚¹ã‚¿ãƒ¼åˆæœŸåŒ–
 		EF_Laster_Init( &task_w->laster, HEAPID_FIELD );
 
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNOFF
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯OFF
 		FLDHBLANK_SYS_Stop( eew->fsw->fldmap->hblanksys );
 
 		eew->seq++;
@@ -657,7 +657,7 @@ void EncountEffect_Field_WaterLevelHigh(TCB_PTR tcb, void* work)
 		
 	case ENCOUNT_WATER_HIGH_WIPE:
 
-		//ƒuƒ‰ƒbƒNƒAƒEƒg
+		//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_BLINDOUT_H, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, ENCOUNT_WATER_HIGH_WIPE_SYNC, 1, HEAPID_FIELD );
 		eew->seq++;
 		break;
@@ -670,14 +670,14 @@ void EncountEffect_Field_WaterLevelHigh(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_WATER_HIGH_END:
-		// ƒ‰ƒXƒ^[”jŠü
+		// ãƒ©ã‚¹ã‚¿ãƒ¼ç ´æ£„
 		EF_Laster_Delete( &task_w->laster );
 
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 		FLDHBLANK_SYS_Start( eew->fsw->fldmap->hblanksys );
 
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 		ENC_End( eew, tcb );
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
@@ -689,9 +689,9 @@ void EncountEffect_Field_WaterLevelHigh(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒVƒXƒeƒ€@Vƒuƒ‰ƒ“ƒNDMA“]‘—ƒŠƒNƒGƒXƒgƒ^ƒXƒN
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã€€Vãƒ–ãƒ©ãƒ³ã‚¯DMAè»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¿ã‚¹ã‚¯
  *
- *	@param	p_lstscr	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒVƒXƒeƒ€
+ *	@param	p_lstscr	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  */
@@ -704,10 +704,10 @@ static TCB_PTR EncountEffect_LasterScroll_VDmaTaskReq( ENCOUNT_LASTER_SCROLL* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	DMA“]‘—ƒ^ƒXƒN
+ *	@brief	DMAè»¢é€ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	p_work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return
  */
@@ -728,10 +728,10 @@ static void EncountEffect_LasterScroll_VDmaTCB( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[‰Šú‰»
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- *	@param	p_laster	ƒ‰ƒXƒ^[ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_laster	ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
  *	@return	none
  */
@@ -745,9 +745,9 @@ static void EF_Laster_Init( ENCOUNT_LASTER_SCROLL* p_laster, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[”jŠü
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_laster	ƒ‰ƒXƒ^[ƒ[ƒN
+ *	@param	p_laster	ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -761,17 +761,17 @@ static void EF_Laster_Delete( ENCOUNT_LASTER_SCROLL* p_laster )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[ŠJn
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼é–‹å§‹
  *
- *	@param	p_laster	ƒ[ƒN
- *	@param	start		ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹‚³‚¹‚éŠJn‚™À•W
- *	@param	end			ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹‚³‚¹‚éI—¹‚™À•W
- *	@param	add_r		sinƒJ[ƒuƒe[ƒuƒ‹ì¬‚ÌŠp“x‚ğ‘«‚µ‚Ä‚¢‚­’l(0`65535)
- *	@param	r_w			sinƒJ[ƒu‚Ì”¼Œa
- *	@param	scr_sp		ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒXƒs[ƒh	®”*100‚µ‚½’l	ƒ}ƒCƒiƒX—LŒø
- *	@param	bg_no		ƒ‰ƒXƒ^[‚ğ‚©‚¯‚éBG‚Ì”Ô†
- *	@param	init_num	ƒ[ƒN‚ğ‰Šú‰»‚·‚é’l
- *	@param	tsk_pri		ƒ^ƒXƒN—Dæ‡ˆÊ
+ *	@param	p_laster	ãƒ¯ãƒ¼ã‚¯
+ *	@param	start		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹é–‹å§‹ï½™åº§æ¨™
+ *	@param	end			ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹çµ‚äº†ï½™åº§æ¨™
+ *	@param	add_r		sinã‚«ãƒ¼ãƒ–ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆæ™‚ã®è§’åº¦ã‚’è¶³ã—ã¦ã„ãå€¤(0ã€œ65535)
+ *	@param	r_w			sinã‚«ãƒ¼ãƒ–ã®åŠå¾„
+ *	@param	scr_sp		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰	æ•´æ•°*100ã—ãŸå€¤	ãƒã‚¤ãƒŠã‚¹æœ‰åŠ¹
+ *	@param	bg_no		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚’ã‹ã‘ã‚‹BGã®ç•ªå·
+ *	@param	init_num	ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–ã™ã‚‹å€¤
+ *	@param	tsk_pri		ã‚¿ã‚¹ã‚¯å„ªå…ˆé †ä½
  *
  *	@return	none
  *
@@ -797,7 +797,7 @@ static void EF_Laster_Start( ENCOUNT_LASTER_SCROLL* p_laster, u8 start, u8 end, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[ŠJnYˆÊ’uİ’è
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼é–‹å§‹Yä½ç½®è¨­å®š
  *
  *	@param	p_laster
  *	@param	start_y 
@@ -834,10 +834,10 @@ static void EF_Laster_BuffYSet( ENCOUNT_LASTER_SCROLL* p_laster, s16 start_y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[‚Ì‰¡À•W‚ğdot‚²‚Æ‚É”½“]‚³‚¹‚é
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã®æ¨ªåº§æ¨™ã‚’dotã”ã¨ã«åè»¢ã•ã›ã‚‹
  *
- *	@param	p_laster	ƒ‰ƒXƒ^[ƒ[ƒN
- *	@param	dot			ƒhƒbƒg”
+ *	@param	p_laster	ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	dot			ãƒ‰ãƒƒãƒˆæ•°
  */
 //-----------------------------------------------------------------------------
 static void EF_Laster_BuffXFlip( ENCOUNT_LASTER_SCROLL* p_laster, u32 dot )
@@ -860,10 +860,10 @@ static void EF_Laster_BuffXFlip( ENCOUNT_LASTER_SCROLL* p_laster, u32 dot )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–ì¶@ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹’á
+ *	@brief	é‡ç”Ÿã€€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«ä½
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  */
@@ -894,10 +894,10 @@ void EncountEffect_Field_DanLevelLow(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_DAN_LOW_WIPE:
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 		FLDHBLANK_SYS_Stop( eew->fsw->fldmap->hblanksys );
 
-		// ƒJƒƒ‰‹ß‚Ã‚¯‚È‚ª‚çƒƒCƒv
+		// ã‚«ãƒ¡ãƒ©è¿‘ã¥ã‘ãªãŒã‚‰ãƒ¯ã‚¤ãƒ—
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_HOLEOUT, WIPE_TYPE_HOLEOUT, WIPE_FADE_BLACK, ENCOUNT_DAN_LOW_MOVE_SYNC, 1, HEAPID_FIELD );
 
 		task_w->camera = eew->fsw->camera_ptr;
@@ -917,11 +917,11 @@ void EncountEffect_Field_DanLevelLow(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_DAN_LOW_END:
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 		FLDHBLANK_SYS_Start( eew->fsw->fldmap->hblanksys );
 
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 		ENC_End( eew, tcb );
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
@@ -931,10 +931,10 @@ void EncountEffect_Field_DanLevelLow(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–ì¶	ƒ_ƒ“ƒWƒ‡ƒ“	ƒŒƒxƒ‹‚
+ *	@brief	é‡ç”Ÿ	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³	ãƒ¬ãƒ™ãƒ«é«˜
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -965,10 +965,10 @@ void EncountEffect_Field_DanLevelHigh(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_DAN_HIGH_WIPE:
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 		FLDHBLANK_SYS_Stop( eew->fsw->fldmap->hblanksys );
 
-		// ƒJƒƒ‰‹ß‚Ã‚¯‚È‚ª‚çƒƒCƒv
+		// ã‚«ãƒ¡ãƒ©è¿‘ã¥ã‘ãªãŒã‚‰ãƒ¯ã‚¤ãƒ—
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_HOLEOUT, WIPE_TYPE_HOLEOUT, WIPE_FADE_BLACK, ENCOUNT_DAN_HIGH_MOVE_SYNC, 1, HEAPID_FIELD );
 
 		task_w->camera = eew->fsw->camera_ptr;
@@ -988,11 +988,11 @@ void EncountEffect_Field_DanLevelHigh(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_DAN_HIGH_END:
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 		FLDHBLANK_SYS_Start( eew->fsw->fldmap->hblanksys );
 
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 		ENC_End( eew, tcb );
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
@@ -1006,19 +1006,19 @@ void EncountEffect_Field_DanLevelHigh(TCB_PTR tcb, void* work)
 //-----------------------------------------------------------------------------
 /**
  * 
- *		yƒtƒB[ƒ‹ƒh@ƒgƒŒ[ƒi[ƒGƒ“ƒJƒEƒ“ƒgz [ TRAINER ]
+ *		ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã€‘ [ TRAINER ]
  * 
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@‘@ƒŒƒxƒ‹’á
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€è‰ã€€ãƒ¬ãƒ™ãƒ«ä½
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_TR_GRASS_LOW_START,
 	ENCOUNT_TR_GRASS_LOW_FLASH_INI,
@@ -1029,41 +1029,41 @@ enum{
 	ENCOUNT_TR_GRASS_LOW_BGCUTWAIT,
 	ENCOUNT_TR_GRASS_LOW_END,
 };
-// OAMƒf[ƒ^
-// ƒAƒNƒ^[ƒf[ƒ^”
+// OAMãƒ‡ãƒ¼ã‚¿
+// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
 enum{
 	ENCOUNT_TR_GRASS_LOW_CELL_BIG,
 	ENCOUNT_TR_GRASS_LOW_CELL_BOTTOM,
 	ENCOUNT_TR_GRASS_LOW_CELL_NUM,
 };
-#define ENCOUNT_TR_GRASS_LOW_CELL_RES_NUM	( 1 )	// ƒŠƒ\[ƒX”
+#define ENCOUNT_TR_GRASS_LOW_CELL_RES_NUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_TR_GRASS_LOW_CELL_CONT_ID	( 600000 )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_TR_GRASS_LOW_BALL_MAT_X		( 128*FX32_ONE )	// ŠJnÀ•W
-#define ENCOUNT_TR_GRASS_LOW_BALL_MAT_Y		( 96*FX32_ONE )	// ŠJnÀ•W
-#define ENCOUNT_TR_GRASS_LOW_SCALE_SYNC		( 10 )		// Šg‘åƒVƒ“ƒN”
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_TR_GRASS_LOW_BALL_MAT_X		( 128*FX32_ONE )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_GRASS_LOW_BALL_MAT_Y		( 96*FX32_ONE )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_GRASS_LOW_SCALE_SYNC		( 10 )		// æ‹¡å¤§ã‚·ãƒ³ã‚¯æ•°
 
-#define ENCOUNT_TR_GRASS_LOW_SLICE_SYNC		( 6 )		// ‰æ–ÊŠ„‚èƒVƒ“ƒN”
+#define ENCOUNT_TR_GRASS_LOW_SLICE_SYNC		( 6 )		// ç”»é¢å‰²ã‚Šã‚·ãƒ³ã‚¯æ•°
 
-#define ENCOUNT_TR_GRASS_LOW_SCALE_S		( FX32_CONST(0.01f) )	// Šg‘åŠJn
-#define ENCOUNT_TR_GRASS_LOW_SCALE_E		( FX32_CONST(1.0f) )	// Šg‘åI—¹
-#define ENCOUNT_TR_GRASS_LOW_SCALE_SS		( 2 )		// ‰‘¬“x
+#define ENCOUNT_TR_GRASS_LOW_SCALE_S		( FX32_CONST(0.01f) )	// æ‹¡å¤§é–‹å§‹
+#define ENCOUNT_TR_GRASS_LOW_SCALE_E		( FX32_CONST(1.0f) )	// æ‹¡å¤§çµ‚äº†
+#define ENCOUNT_TR_GRASS_LOW_SCALE_SS		( 2 )		// åˆé€Ÿåº¦
 
-#define ENCOUNT_TR_GRASS_LOW_SLICE_BGSL_SS	( FX32_ONE * 10 )		// ‰‘¬“x
-#define ENCOUNT_TR_GRASS_LOW_SLICE_BGSL_X	( 255 * FX32_ONE )	// “®‚³‚˜
+#define ENCOUNT_TR_GRASS_LOW_SLICE_BGSL_SS	( FX32_ONE * 10 )		// åˆé€Ÿåº¦
+#define ENCOUNT_TR_GRASS_LOW_SLICE_BGSL_X	( 255 * FX32_ONE )	// å‹•ã•ï½˜
 #define ENCOUNT_TR_GRASS_LOW_DOT			( 96 )
 
-#define ENCOUNT_TR_GRASS_LOW_CAMERA_DIST	( -FX32_CONST( 500 ) )	// ƒJƒƒ‰ˆÚ“®‹——£
-#define ENCOUNT_TR_GRASS_LOW_CAMERA_SS		( -FX32_CONST( 10 ) )	// ƒJƒƒ‰‰‘¬“x
+#define ENCOUNT_TR_GRASS_LOW_CAMERA_DIST	( -FX32_CONST( 500 ) )	// ã‚«ãƒ¡ãƒ©ç§»å‹•è·é›¢
+#define ENCOUNT_TR_GRASS_LOW_CAMERA_SS		( -FX32_CONST( 10 ) )	// ã‚«ãƒ¡ãƒ©åˆé€Ÿåº¦
 
-#define ENCOUNT_TR_GRASS_LOW_ROTA_SCALE		( 0xffff * 1 )	// Šg‘å‚Ì‰ñ“]Šp
+#define ENCOUNT_TR_GRASS_LOW_ROTA_SCALE		( 0xffff * 1 )	// æ‹¡å¤§æ™‚ã®å›è»¢è§’
 
 
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@‘@ƒŒƒxƒ‹‚
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€è‰ã€€ãƒ¬ãƒ™ãƒ«é«˜
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_TR_GRASS_HIGH_START,
 	ENCOUNT_TR_GRASS_HIGH_FLASH_INI,
@@ -1074,40 +1074,40 @@ enum{
 	ENCOUNT_TR_GRASS_HIGH_BGCUTWAIT,
 	ENCOUNT_TR_GRASS_HIGH_END,
 };
-// OAMƒf[ƒ^
-// ƒAƒNƒ^[ƒf[ƒ^”
+// OAMãƒ‡ãƒ¼ã‚¿
+// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
 enum{
 	ENCOUNT_TR_GRASS_HIGH_CELL_UP,
 	ENCOUNT_TR_GRASS_HIGH_CELL_DOWN,
 	ENCOUNT_TR_GRASS_HIGH_CELL_NUM,
 };
-#define ENCOUNT_TR_GRASS_HIGH_CELL_RES_NUM	( 1 )	// ƒŠƒ\[ƒX”
+#define ENCOUNT_TR_GRASS_HIGH_CELL_RES_NUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_TR_GRASS_HIGH_CELL_CONT_ID	( 600000 )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_TR_GRASS_HIGH_BALL_MAT_X		( 128*FX32_ONE )// ŠJnÀ•W
-#define ENCOUNT_TR_GRASS_HIGH_BALL_MAT_Y_UP		( 64*FX32_ONE )	// ŠJnÀ•W
-#define ENCOUNT_TR_GRASS_HIGH_BALL_MAT_Y_DOWN	( 128*FX32_ONE )	// ŠJnÀ•W
-#define ENCOUNT_TR_GRASS_HIGH_MOVE_SYNC			( 8 )		// OAM“®‚³ƒVƒ“ƒN”
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_TR_GRASS_HIGH_BALL_MAT_X		( 128*FX32_ONE )// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_GRASS_HIGH_BALL_MAT_Y_UP		( 64*FX32_ONE )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_GRASS_HIGH_BALL_MAT_Y_DOWN	( 128*FX32_ONE )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_GRASS_HIGH_MOVE_SYNC			( 8 )		// OAMå‹•ã•ã‚·ãƒ³ã‚¯æ•°
 
-#define ENCOUNT_TR_GRASS_HIGH_SLICE_SYNC		( 8 )		// ‰æ–ÊŠ„‚èƒƒCƒvƒVƒ“ƒN”
+#define ENCOUNT_TR_GRASS_HIGH_SLICE_SYNC		( 8 )		// ç”»é¢å‰²ã‚Šãƒ¯ã‚¤ãƒ—ã‚·ãƒ³ã‚¯æ•°
 
-#define ENCOUNT_TR_GRASS_HIGH_BALLMOVE_S		( -192 * FX32_ONE )		// BALL“®‚³•
-#define ENCOUNT_TR_GRASS_HIGH_BALLMOVE_E		( 192 * FX32_ONE )		// BALL“®‚³•
+#define ENCOUNT_TR_GRASS_HIGH_BALLMOVE_S		( -192 * FX32_ONE )		// BALLå‹•ã•å¹…
+#define ENCOUNT_TR_GRASS_HIGH_BALLMOVE_E		( 192 * FX32_ONE )		// BALLå‹•ã•å¹…
 
-#define ENCOUNT_TR_GRASS_HIGH_SLICE_BGSL_SS_X	( FX32_ONE * 1 )	// ‰‘¬“x
-#define ENCOUNT_TR_GRASS_HIGH_SLICE_BGSL_SS_Y	( FX32_ONE * 1 )	// ‰‘¬“x
+#define ENCOUNT_TR_GRASS_HIGH_SLICE_BGSL_SS_X	( FX32_ONE * 1 )	// åˆé€Ÿåº¦
+#define ENCOUNT_TR_GRASS_HIGH_SLICE_BGSL_SS_Y	( FX32_ONE * 1 )	// åˆé€Ÿåº¦
 
-#define ENCOUNT_TR_GRASS_HIGH_CAMERA_DIST	( -FX32_CONST( 500 ) )	// ƒJƒƒ‰ˆÚ“®‹——£
-#define ENCOUNT_TR_GRASS_HIGH_CAMERA_SS		( -FX32_CONST( 10 ) )	// ƒJƒƒ‰‰‘¬“x
+#define ENCOUNT_TR_GRASS_HIGH_CAMERA_DIST	( -FX32_CONST( 500 ) )	// ã‚«ãƒ¡ãƒ©ç§»å‹•è·é›¢
+#define ENCOUNT_TR_GRASS_HIGH_CAMERA_SS		( -FX32_CONST( 10 ) )	// ã‚«ãƒ¡ãƒ©åˆé€Ÿåº¦
 
-#define ENCOUNT_TR_GRASS_HIGH_ROTA			( 0xffff *2)			// ‰ñ“]Šp
+#define ENCOUNT_TR_GRASS_HIGH_ROTA			( 0xffff *2)			// å›è»¢è§’
 
 
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@…@ƒŒƒxƒ‹’á
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«ä½
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_TR_WATER_LOW_START,
 	ENCOUNT_TR_WATER_LOW_FLASH_INI,
@@ -1118,45 +1118,45 @@ enum{
 	ENCOUNT_TR_WATER_LOW_OAM_SCALEWAIT,
 	ENCOUNT_TR_WATER_LOW_END,
 };
-// OAMƒf[ƒ^
+// OAMãƒ‡ãƒ¼ã‚¿
 #define ENCOUNT_TR_WATER_LOW_CELL_NUM		( 2 )
-#define ENCOUNT_TR_WATER_LOW_CELL_RES_NUM	( 1 )	// ƒŠƒ\[ƒX”
+#define ENCOUNT_TR_WATER_LOW_CELL_RES_NUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_TR_WATER_LOW_CELL_CONT_ID	( 600000 )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_TR_WATER_LOW_MOVE_WAIT	( 12 )			// ƒ‰ƒXƒ^[Š|‚¯‚éƒ^ƒCƒ~ƒ“ƒO
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_TR_WATER_LOW_MOVE_WAIT	( 12 )			// ãƒ©ã‚¹ã‚¿ãƒ¼æ›ã‘ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-#define ENCOUNT_TR_WATER_LOW_BALL_MAT_X		( 128*FX32_ONE )// ŠJnÀ•W
-#define ENCOUNT_TR_WATER_LOW_BALL_MAT_Y		( 96*FX32_ONE )	// ŠJnÀ•W
+#define ENCOUNT_TR_WATER_LOW_BALL_MAT_X		( 128*FX32_ONE )// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_WATER_LOW_BALL_MAT_Y		( 96*FX32_ONE )	// é–‹å§‹åº§æ¨™
 
-#define ENCOUNT_TR_WATER_LOW_ALPHA_SYNC		( 8 )		// OAM“®‚³ƒVƒ“ƒN”
+#define ENCOUNT_TR_WATER_LOW_ALPHA_SYNC		( 8 )		// OAMå‹•ã•ã‚·ãƒ³ã‚¯æ•°
 
-#define ENCOUNT_TR_WATER_LOW_SCALE_SYNC		( 8 )		// ŠgkƒVƒ“ƒN”
+#define ENCOUNT_TR_WATER_LOW_SCALE_SYNC		( 8 )		// æ‹¡ç¸®ã‚·ãƒ³ã‚¯æ•°
 
-#define ENCOUNT_TR_WATER_LOW_ALPHA_S		( 0 )	// ƒ¿ŠJn
-#define ENCOUNT_TR_WATER_LOW_ALPHA_E		( 16 )	// ƒ¿I—¹
+#define ENCOUNT_TR_WATER_LOW_ALPHA_S		( 0 )	// Î±é–‹å§‹
+#define ENCOUNT_TR_WATER_LOW_ALPHA_E		( 16 )	// Î±çµ‚äº†
 
-#define ENCOUNT_TR_WATER_LOW_SCALE_S		( FX32_CONST( 1.0f ) )	// ŠgkŠJn
-#define ENCOUNT_TR_WATER_LOW_SCALE_E		( FX32_CONST( 0.01f ) )	// ŠgkI—¹
+#define ENCOUNT_TR_WATER_LOW_SCALE_S		( FX32_CONST( 1.0f ) )	// æ‹¡ç¸®é–‹å§‹
+#define ENCOUNT_TR_WATER_LOW_SCALE_E		( FX32_CONST( 0.01f ) )	// æ‹¡ç¸®çµ‚äº†
 
-#define ENCOUNT_TR_WATER_LOW_SCALE_SS		( FX32_CONST( 0.1f ) )	// Šgk‰‘¬“x
-#define ENCOUNT_TR_WATER_LOW_SIN_R		( FX32_CONST( 12 ) )	// ”¼Œa
-#define ENCOUNT_TR_WATER_LOW_LASTER_SP	( 800 )	// ƒ‰ƒXƒ^[ƒXƒs[ƒh
-#define ENCOUNT_TR_WATER_LOW_SIN_ADDR	( (0xffff/192) * 2 )// ƒ‰ƒXƒ^[Šp“xƒXƒs[ƒh
+#define ENCOUNT_TR_WATER_LOW_SCALE_SS		( FX32_CONST( 0.1f ) )	// æ‹¡ç¸®åˆé€Ÿåº¦
+#define ENCOUNT_TR_WATER_LOW_SIN_R		( FX32_CONST( 12 ) )	// åŠå¾„
+#define ENCOUNT_TR_WATER_LOW_LASTER_SP	( 800 )	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define ENCOUNT_TR_WATER_LOW_SIN_ADDR	( (0xffff/192) * 2 )// ãƒ©ã‚¹ã‚¿ãƒ¼è§’åº¦ã‚¹ãƒ”ãƒ¼ãƒ‰
 
 #define ENCOUNT_TR_WATER_LOW_LASTER_TASK_PRI	( TCB_TSK_PRI - 1 )
 #define ENCOUNT_TR_WATER_LOW_LASTER_FLIP_DOT	( 2 )
 
-#define ENCOUNT_TR_WATER_LOW_CAMERA_DIST	( -FX32_CONST( 500 ) )	// ƒJƒƒ‰ˆÚ“®‹——£
-#define ENCOUNT_TR_WATER_LOW_CAMERA_SS		( -FX32_CONST( 10 ) )	// ƒJƒƒ‰‰‘¬“x
-#define ENCOUNT_TR_WATER_LOW_ROTA			( 0xffff )	// ‰ñ“]Šp
+#define ENCOUNT_TR_WATER_LOW_CAMERA_DIST	( -FX32_CONST( 500 ) )	// ã‚«ãƒ¡ãƒ©ç§»å‹•è·é›¢
+#define ENCOUNT_TR_WATER_LOW_CAMERA_SS		( -FX32_CONST( 10 ) )	// ã‚«ãƒ¡ãƒ©åˆé€Ÿåº¦
+#define ENCOUNT_TR_WATER_LOW_ROTA			( 0xffff )	// å›è»¢è§’
 
 
 
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@…@ƒŒƒxƒ‹‚
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«é«˜
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_TR_WATER_HIGH_START,
 	ENCOUNT_TR_WATER_HIGH_FLASH_INI,
@@ -1167,49 +1167,49 @@ enum{
 	ENCOUNT_TR_WATER_HIGH_OAM_WAIT,
 	ENCOUNT_TR_WATER_HIGH_END,
 };
-// OAMƒf[ƒ^
+// OAMãƒ‡ãƒ¼ã‚¿
 #define ENCOUNT_TR_WATER_HIGH_CELL_NUM		( 3 )
-#define ENCOUNT_TR_WATER_HIGH_CELL_RES_NUM	( 1 )	// ƒŠƒ\[ƒX”
+#define ENCOUNT_TR_WATER_HIGH_CELL_RES_NUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_TR_WATER_HIGH_CELL_CONT_ID	( 600000 )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_TR_WATER_HIGH_MOVE_WAIT		( 14 )		// ƒ‰ƒXƒ^[‚ª‚©‚©‚é‚Ü‚Å‚ÌƒEƒGƒCƒg
-#define ENCOUNT_TR_WATER_HIGH_CELLMOVE_SYNC	( 6 )		// “®‚³ƒVƒ“ƒN”
-#define ENCOUNT_TR_WATER_HIGH_CELL0_WAIT	( 6 )		// ƒZƒ‹“®‚³ƒEƒGƒCƒg
-#define ENCOUNT_TR_WATER_HIGH_CELL1_WAIT	( 4 )		// ƒZƒ‹“®‚³ƒEƒGƒCƒg
-#define ENCOUNT_TR_WATER_HIGH_CELL2_WAIT	( 2 )		// ƒZƒ‹“®‚³ƒEƒGƒCƒg
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_TR_WATER_HIGH_MOVE_WAIT		( 14 )		// ãƒ©ã‚¹ã‚¿ãƒ¼ãŒã‹ã‹ã‚‹ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
+#define ENCOUNT_TR_WATER_HIGH_CELLMOVE_SYNC	( 6 )		// å‹•ã•ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_TR_WATER_HIGH_CELL0_WAIT	( 6 )		// ã‚»ãƒ«å‹•ã•ã‚¦ã‚¨ã‚¤ãƒˆ
+#define ENCOUNT_TR_WATER_HIGH_CELL1_WAIT	( 4 )		// ã‚»ãƒ«å‹•ã•ã‚¦ã‚¨ã‚¤ãƒˆ
+#define ENCOUNT_TR_WATER_HIGH_CELL2_WAIT	( 2 )		// ã‚»ãƒ«å‹•ã•ã‚¦ã‚¨ã‚¤ãƒˆ
 #define ENCOUNT_TR_WATER_HIGH_CELL0_X		( 43 )
 #define ENCOUNT_TR_WATER_HIGH_CELL1_X		( 215 )
 #define ENCOUNT_TR_WATER_HIGH_CELL2_X		( 129 )
-#define ENCOUNT_TR_WATER_HIGH_CELL_Y		( 231 )		// OBJ“®‚³ŠJnÀ•W
-#define ENCOUNT_TR_WATER_HIGH_BMP_Y			( 312 )		// BMP“®‚³ŠJnÀ•W
-#define ENCOUNT_TR_WATER_HIGH_CELL_Y_E		( -32 )		// OBJ“®‚³I—¹À•W
-#define ENCOUNT_TR_WATER_HIGH_BMP_Y_E		( 0 )		// BMP“®‚³ŠJnÀ•W
+#define ENCOUNT_TR_WATER_HIGH_CELL_Y		( 231 )		// OBJå‹•ã•é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_WATER_HIGH_BMP_Y			( 312 )		// BMPå‹•ã•é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_WATER_HIGH_CELL_Y_E		( -32 )		// OBJå‹•ã•çµ‚äº†åº§æ¨™
+#define ENCOUNT_TR_WATER_HIGH_BMP_Y_E		( 0 )		// BMPå‹•ã•é–‹å§‹åº§æ¨™
 
-#define ENCOUNT_TR_WATER_HIGH_BMP_FILL_WIDTH	( 86 )	// “h‚è‚Â‚Ô‚µ•
-#define ENCOUNT_TR_WATER_HIGH_BMP_FILL_HEIGHT	( 64 )	// “h‚è‚Â‚Ô‚µ‚‚³
-#define ENCOUNT_TR_WATER_HIGH_BMP_FILL_PLTT		( 0 )	// ƒpƒŒƒbƒg‚O”Ô–Ú‚ğg—p‚·‚é
-#define ENCOUNT_TR_WATER_HIGH_BMP_FILL_COL		( 15 )	// “h‚è‚Â‚Ô‚µƒJƒ‰[
+#define ENCOUNT_TR_WATER_HIGH_BMP_FILL_WIDTH	( 86 )	// å¡—ã‚Šã¤ã¶ã—å¹…
+#define ENCOUNT_TR_WATER_HIGH_BMP_FILL_HEIGHT	( 64 )	// å¡—ã‚Šã¤ã¶ã—é«˜ã•
+#define ENCOUNT_TR_WATER_HIGH_BMP_FILL_PLTT		( 0 )	// ãƒ‘ãƒ¬ãƒƒãƒˆï¼ç•ªç›®ã‚’ä½¿ç”¨ã™ã‚‹
+#define ENCOUNT_TR_WATER_HIGH_BMP_FILL_COL		( 15 )	// å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼
 
-#define ENCOUNT_TR_WATER_HIGH_SIN_R		( FX32_CONST( 12 ) )	// ”¼Œa
-#define ENCOUNT_TR_WATER_HIGH_LASTER_SP	( 800 )	// ƒ‰ƒXƒ^[ƒXƒs[ƒh
-#define ENCOUNT_TR_WATER_HIGH_SIN_ADDR	( (0xffff/192) * 2 )// ƒ‰ƒXƒ^[Šp“xƒXƒs[ƒh
+#define ENCOUNT_TR_WATER_HIGH_SIN_R		( FX32_CONST( 12 ) )	// åŠå¾„
+#define ENCOUNT_TR_WATER_HIGH_LASTER_SP	( 800 )	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define ENCOUNT_TR_WATER_HIGH_SIN_ADDR	( (0xffff/192) * 2 )// ãƒ©ã‚¹ã‚¿ãƒ¼è§’åº¦ã‚¹ãƒ”ãƒ¼ãƒ‰
 #define ENCOUNT_TR_WATER_HIGH_LASTER_TASK_PRI	( TCB_TSK_PRI - 1 )
 #define ENCOUNT_TR_WATER_HIGH_LASTER_FLIP_DOT	( 2 )
 
-#define ENCOUNT_TR_WATER_HIGH_CAMERA_SYNC	( 16 )	// ƒJƒƒ‰ˆÚ“®‹——£
-#define ENCOUNT_TR_WATER_HIGH_CAMERA_DIST	( -FX32_CONST( 500 ) )	// ƒJƒƒ‰ˆÚ“®‹——£
-#define ENCOUNT_TR_WATER_HIGH_CAMERA_SS		( -FX32_CONST( 10 ) )	// ƒJƒƒ‰‰‘¬“x
+#define ENCOUNT_TR_WATER_HIGH_CAMERA_SYNC	( 16 )	// ã‚«ãƒ¡ãƒ©ç§»å‹•è·é›¢
+#define ENCOUNT_TR_WATER_HIGH_CAMERA_DIST	( -FX32_CONST( 500 ) )	// ã‚«ãƒ¡ãƒ©ç§»å‹•è·é›¢
+#define ENCOUNT_TR_WATER_HIGH_CAMERA_SS		( -FX32_CONST( 10 ) )	// ã‚«ãƒ¡ãƒ©åˆé€Ÿåº¦
 
-#define ENCOUNT_TR_WATER_LOW_CELL0_ROTA	( 0xffff * 1 )	// ‰ñ“]Šp
-#define ENCOUNT_TR_WATER_LOW_CELL1_ROTA	( 0xffff * -1 )	// ‰ñ“]Šp
-#define ENCOUNT_TR_WATER_LOW_CELL2_ROTA	( 0xffff * 1 )	// ‰ñ“]Šp
+#define ENCOUNT_TR_WATER_LOW_CELL0_ROTA	( 0xffff * 1 )	// å›è»¢è§’
+#define ENCOUNT_TR_WATER_LOW_CELL1_ROTA	( 0xffff * -1 )	// å›è»¢è§’
+#define ENCOUNT_TR_WATER_LOW_CELL2_ROTA	( 0xffff * 1 )	// å›è»¢è§’
 
 
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@ƒ_ƒ“@ƒŒƒxƒ‹’á
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€ãƒ€ãƒ³ã€€ãƒ¬ãƒ™ãƒ«ä½
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_TR_DAN_LOW_START,
 	ENCOUNT_TR_DAN_LOW_FLASH_INI,
@@ -1220,34 +1220,34 @@ enum{
 	ENCOUNT_TR_DAN_LOW_WIPEWAIT,
 	ENCOUNT_TR_DAN_LOW_END,
 };
-// OAMƒf[ƒ^
+// OAMãƒ‡ãƒ¼ã‚¿
 #define ENCOUNT_TR_DAN_LOW_CELL_NUM		( 1 )
-#define ENCOUNT_TR_DAN_LOW_CELL_RES_NUM	( 1 )	// ƒŠƒ\[ƒX”
+#define ENCOUNT_TR_DAN_LOW_CELL_RES_NUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_TR_DAN_LOW_CELL_CONT_ID	( 600000 )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_TR_DAN_LOW_BALL_MOVE_SYNC	( 12 )	// ˆÚ“®ƒVƒ“ƒN
-#define ENCOUNT_TR_DAN_LOW_BALL_WIPE_SYNC	( 8 )	// ƒƒCƒvƒVƒ“ƒN
-#define ENCOUNT_TR_DAN_LOW_BALL_MAT_X		( 128*FX32_ONE )// ŠJnÀ•W
-#define ENCOUNT_TR_DAN_LOW_BALL_MAT_Y		( -32*FX32_ONE )	// ŠJnÀ•W
-#define ENCOUNT_TR_DAN_LOW_BALL_MOVE_Y		( 256*FX32_ONE )	// ˆÚ“®‹——£
-#define ENCOUNT_TR_DAN_LOW_BALL_MOVE_Y_SS	( 2*FX32_ONE )	// ‰‘¬“x
-#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_X_S	( FX32_CONST(0.10f) )// Šg‘åŠJn
-#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_X_E	( FX32_CONST(2.0f) )// Šg‘åI—¹
-#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_X_SS	( FX32_CONST(0.0f) )// ‰Šg‘å—¦
-#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_Y_S	( FX32_CONST(0.10f) )// Šg‘åŠJn
-#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_Y_E	( FX32_CONST(2.0f) )// Šg‘åI—¹
-#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_Y_SS	( FX32_CONST(0.0f)	)// ‰Šg‘å—¦
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_TR_DAN_LOW_BALL_MOVE_SYNC	( 12 )	// ç§»å‹•ã‚·ãƒ³ã‚¯
+#define ENCOUNT_TR_DAN_LOW_BALL_WIPE_SYNC	( 8 )	// ãƒ¯ã‚¤ãƒ—ã‚·ãƒ³ã‚¯
+#define ENCOUNT_TR_DAN_LOW_BALL_MAT_X		( 128*FX32_ONE )// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_DAN_LOW_BALL_MAT_Y		( -32*FX32_ONE )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_DAN_LOW_BALL_MOVE_Y		( 256*FX32_ONE )	// ç§»å‹•è·é›¢
+#define ENCOUNT_TR_DAN_LOW_BALL_MOVE_Y_SS	( 2*FX32_ONE )	// åˆé€Ÿåº¦
+#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_X_S	( FX32_CONST(0.10f) )// æ‹¡å¤§é–‹å§‹
+#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_X_E	( FX32_CONST(2.0f) )// æ‹¡å¤§çµ‚äº†
+#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_X_SS	( FX32_CONST(0.0f) )// åˆæ‹¡å¤§ç‡
+#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_Y_S	( FX32_CONST(0.10f) )// æ‹¡å¤§é–‹å§‹
+#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_Y_E	( FX32_CONST(2.0f) )// æ‹¡å¤§çµ‚äº†
+#define ENCOUNT_TR_DAN_LOW_BALL_SCALE_Y_SS	( FX32_CONST(0.0f)	)// åˆæ‹¡å¤§ç‡
 
-#define ENCOUNT_TR_DAN_LOW_CAMERA_DIST	( -FX32_CONST( 1000 ) )	// ƒJƒƒ‰ˆÚ“®‹——£
-#define ENCOUNT_TR_DAN_LOW_CAMERA_SS		( FX32_CONST( 10 ) )	// ƒJƒƒ‰‰‘¬“x
+#define ENCOUNT_TR_DAN_LOW_CAMERA_DIST	( -FX32_CONST( 1000 ) )	// ã‚«ãƒ¡ãƒ©ç§»å‹•è·é›¢
+#define ENCOUNT_TR_DAN_LOW_CAMERA_SS		( FX32_CONST( 10 ) )	// ã‚«ãƒ¡ãƒ©åˆé€Ÿåº¦
 
-#define ENCOUNT_TR_DAN_LOW_ROTA		( 0xffff * 1 )	// ‰ñ“]Šp
+#define ENCOUNT_TR_DAN_LOW_ROTA		( 0xffff * 1 )	// å›è»¢è§’
 
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@ƒ_ƒ“@ƒŒƒxƒ‹‚
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€ãƒ€ãƒ³ã€€ãƒ¬ãƒ™ãƒ«é«˜
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_TR_DAN_HIGH_START,
 	ENCOUNT_TR_DAN_HIGH_FLASH_INI,
@@ -1260,31 +1260,31 @@ enum{
 	ENCOUNT_TR_DAN_HIGH_WIPE_WAIT,
 	ENCOUNT_TR_DAN_HIGH_END,
 };
-// OAMƒf[ƒ^
+// OAMãƒ‡ãƒ¼ã‚¿
 #define ENCOUNT_TR_DAN_HIGH_CELL_NUM		( 3 )
-#define ENCOUNT_TR_DAN_HIGH_CELL_RES_NUM	( 1 )	// ƒŠƒ\[ƒX”
+#define ENCOUNT_TR_DAN_HIGH_CELL_RES_NUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_TR_DAN_HIGH_CELL_CONT_ID	( 600000 )
 
-#define ENCOUNT_TR_DAN_HIGH_BLOCK_FILLCOLOR	( 15 )	// “h‚è‚Â‚Ô‚µ
+#define ENCOUNT_TR_DAN_HIGH_BLOCK_FILLCOLOR	( 15 )	// å¡—ã‚Šã¤ã¶ã—
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_TR_DAN_HIGH_BALL_MOVE_SYNC	( 5 )	// ˆÚ“®ƒVƒ“ƒN
-#define ENCOUNT_TR_DAN_HIGH_BLOCK_SYNC		( 1 )	// ƒƒCƒvƒVƒ“ƒN
-#define ENCOUNT_TR_DAN_HIGH_BLOCK_START_SYNC	( 1 )	// ƒƒCƒvƒVƒ“ƒN
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_TR_DAN_HIGH_BALL_MOVE_SYNC	( 5 )	// ç§»å‹•ã‚·ãƒ³ã‚¯
+#define ENCOUNT_TR_DAN_HIGH_BLOCK_SYNC		( 1 )	// ãƒ¯ã‚¤ãƒ—ã‚·ãƒ³ã‚¯
+#define ENCOUNT_TR_DAN_HIGH_BLOCK_START_SYNC	( 1 )	// ãƒ¯ã‚¤ãƒ—ã‚·ãƒ³ã‚¯
 
-#define ENCOUNT_TR_DAN_HIGH_BALL_WAIT_0		( 0 )// ŠJn‘Ò‚¿
-#define ENCOUNT_TR_DAN_HIGH_BALL_WAIT_1		( 1 )// ŠJn‘Ò‚¿
-#define ENCOUNT_TR_DAN_HIGH_BALL_WAIT_2		( 3 )// ŠJn‘Ò‚¿
+#define ENCOUNT_TR_DAN_HIGH_BALL_WAIT_0		( 0 )// é–‹å§‹å¾…ã¡
+#define ENCOUNT_TR_DAN_HIGH_BALL_WAIT_1		( 1 )// é–‹å§‹å¾…ã¡
+#define ENCOUNT_TR_DAN_HIGH_BALL_WAIT_2		( 3 )// é–‹å§‹å¾…ã¡
 
-#define ENCOUNT_TR_DAN_HIGH_BALL_MAT_0X		( 128 )// ŠJnÀ•W
-#define ENCOUNT_TR_DAN_HIGH_BALL_MAT_1X		( 208 )// ŠJnÀ•W
-#define ENCOUNT_TR_DAN_HIGH_BALL_MAT_2X		( 48 )// ŠJnÀ•W
-#define ENCOUNT_TR_DAN_HIGH_BALL_MAT_Y		( -32 )// ŠJnÀ•W
-#define ENCOUNT_TR_DAN_HIGH_BALL_MOVE_Y		( 224 )	// ˆÚ“®‹——£
+#define ENCOUNT_TR_DAN_HIGH_BALL_MAT_0X		( 128 )// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_DAN_HIGH_BALL_MAT_1X		( 208 )// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_DAN_HIGH_BALL_MAT_2X		( 48 )// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_DAN_HIGH_BALL_MAT_Y		( -32 )// é–‹å§‹åº§æ¨™
+#define ENCOUNT_TR_DAN_HIGH_BALL_MOVE_Y		( 224 )	// ç§»å‹•è·é›¢
 
-#define ENCOUNT_TR_DAN_HIGH_CAMERA_SYNC	( 64 )	// ƒJƒƒ‰ˆÚ“®ƒVƒ“ƒN”48
-#define ENCOUNT_TR_DAN_HIGH_CAMERA_DIST	( -FX32_CONST( 1000 ) )	// ƒJƒƒ‰ˆÚ“®‹——£
-#define ENCOUNT_TR_DAN_HIGH_CAMERA_SS		( FX32_CONST( 10 ) )	// ƒJƒƒ‰‰‘¬“x
+#define ENCOUNT_TR_DAN_HIGH_CAMERA_SYNC	( 64 )	// ã‚«ãƒ¡ãƒ©ç§»å‹•ã‚·ãƒ³ã‚¯æ•°48
+#define ENCOUNT_TR_DAN_HIGH_CAMERA_DIST	( -FX32_CONST( 1000 ) )	// ã‚«ãƒ¡ãƒ©ç§»å‹•è·é›¢
+#define ENCOUNT_TR_DAN_HIGH_CAMERA_SS		( FX32_CONST( 10 ) )	// ã‚«ãƒ¡ãƒ©åˆé€Ÿåº¦
 
 #define ENCOUNT_TR_DAN_HIGH_BALL0_ROTA	( 0xffff * 1 )
 #define ENCOUNT_TR_DAN_HIGH_BALL1_ROTA	( 0xffff * -1 )
@@ -1293,11 +1293,11 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@‘@ƒŒƒxƒ‹’á
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€è‰ã€€ãƒ¬ãƒ™ãƒ«ä½
 //=====================================
 typedef struct{
 	ENC_ADDMOVE_WORK_FX oam_scale;
@@ -1309,14 +1309,14 @@ typedef struct{
 	ENC_CLACT_RES_WORK clact_res;
 	CLACT_WORK_PTR clact[ ENCOUNT_TR_GRASS_LOW_CELL_NUM ];
 
-	GF_CAMERA_PTR	camera;				// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;				// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_ADDMOVE_WORK_FX camera_dist;
 
 	s32 wait;
 } ENCOUNT_TR_GRASS_LOW;
 
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@‘@ƒŒƒxƒ‹‚
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€è‰ã€€ãƒ¬ãƒ™ãƒ«é«˜
 //=====================================
 typedef struct{
 	ENC_MOVE_WORK_FX oam_slice;
@@ -1327,14 +1327,14 @@ typedef struct{
 	ENC_CLACT_RES_WORK clact_res;
 	CLACT_WORK_PTR clact[ ENCOUNT_TR_GRASS_HIGH_CELL_NUM ];
 
-	GF_CAMERA_PTR	camera;				// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;				// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_ADDMOVE_WORK_FX camera_dist;
 
 	s32 wait;
 } ENCOUNT_TR_GRASS_HIGH;
 
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@…@ƒŒƒxƒ‹’á
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«ä½
 //=====================================
 typedef struct{
 	ENC_ADDMOVE_WORK_FX oam_scale;
@@ -1348,14 +1348,14 @@ typedef struct{
 	ENC_CLACT_RES_WORK clact_res;
 	CLACT_WORK_PTR clact[ENCOUNT_TR_WATER_LOW_CELL_NUM];
 
-	GF_CAMERA_PTR	camera;				// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;				// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_ADDMOVE_WORK_FX camera_dist;
 
 	s32 wait;
 } ENCOUNT_TR_WATER_LOW;
 
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@…@ƒŒƒxƒ‹‚
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«é«˜
 //=====================================
 typedef struct{
 	ENC_CLACT_SYS	clact_sys;
@@ -1370,14 +1370,14 @@ typedef struct{
 	ENCOUNT_LASTER_SCROLL laster;
 	BOOL laster_flg;
 
-	GF_CAMERA_PTR	camera;				// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;				// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_ADDMOVE_WORK_FX camera_dist;
 
 	s32 wait;
 } ENCOUNT_TR_WATER_HIGH;
 
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@ƒ_ƒ“@ƒŒƒxƒ‹’á
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€ãƒ€ãƒ³ã€€ãƒ¬ãƒ™ãƒ«ä½
 //=====================================
 typedef struct{
 	ENC_ADDMOVE_WORK_FX		oam_move;
@@ -1389,14 +1389,14 @@ typedef struct{
 	ENC_CLACT_RES_WORK clact_res;
 	CLACT_WORK_PTR clact;
 
-	GF_CAMERA_PTR	camera;				// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;				// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_ADDMOVE_WORK_FX camera_dist;
 
 	s32 wait;
 } ENCOUNT_TR_DAN_LOW;
 
 //-------------------------------------
-//	ƒgƒŒ[ƒi[@ƒ_ƒ“@ƒŒƒxƒ‹‚
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€ãƒ€ãƒ³ã€€ãƒ¬ãƒ™ãƒ«é«˜
 //=====================================
 typedef struct{
 	ENC_CLACT_SYS	clact_sys;
@@ -1409,7 +1409,7 @@ typedef struct{
 	GF_BGL_BMPWIN* p_bmp;
 	ENC_BMP_FILL_BLOCK_MOVE* p_block;
 
-	GF_CAMERA_PTR	camera;				// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;				// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_ADDMOVE_WORK_FX camera_dist;
 
 	s16 wait;
@@ -1417,13 +1417,13 @@ typedef struct{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[@‘@ƒŒƒxƒ‹’á
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€è‰ã€€ãƒ¬ãƒ™ãƒ«ä½
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
@@ -1442,16 +1442,16 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_TR_GRASS_LOW) );
 		task_w = eew->work;
 
-		// ƒJƒƒ‰ƒ|ƒCƒ“ƒ^æ“¾
+		// ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		task_w->camera = eew->fsw->camera_ptr;
 
-		// ƒXƒ‰ƒCƒXƒ[ƒNì¬
+		// ã‚¹ãƒ©ã‚¤ã‚¹ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 		task_w->p_slice = ENC_BG_Slice_Alloc();
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_TR_GRASS_LOW_CELL_NUM, ENCOUNT_TR_GRASS_LOW_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -1463,7 +1463,7 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_GRASS_LOW_CELL_CONT_ID
 				);
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		for( i=0; i<ENCOUNT_TR_GRASS_LOW_CELL_NUM; i++ ){
 			task_w->clact[i] = ENC_CLACT_Add( 
 					&task_w->clact_sys, &task_w->clact_res,
@@ -1509,7 +1509,7 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 					task_w->clact[i], 
 					&scale );
 		}
-		// ‰ñ“]“®‚³
+		// å›è»¢å‹•ã•
 		ENC_MoveReq( &task_w->oam_rota, 
 				0,
 				ENCOUNT_TR_GRASS_LOW_ROTA_SCALE, 
@@ -1522,7 +1522,7 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 		scale = ENC_MakeVec( task_w->oam_scale.x, 
 					task_w->oam_scale.x, task_w->oam_scale.x );
 
-		// ‚P‚Â‘O‚Ì‰ñ“]Šp
+		// ï¼‘ã¤å‰ã®å›è»¢è§’
 		last_rota = task_w->oam_rota.x;
 		
 		ENC_MoveMain( &task_w->oam_rota );
@@ -1538,7 +1538,7 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 
 		CLACT_SetRotation( 
 				task_w->clact[ENCOUNT_TR_GRASS_LOW_CELL_BOTTOM],
-				0xffff & (task_w->oam_rota.x - 0x100) );	// •‚¢“_–h~‚Ìˆ×-0x100
+				0xffff & (task_w->oam_rota.x - 0x100) );	// é»’ã„ç‚¹é˜²æ­¢ã®ç‚º-0x100
   
 		if( result == TRUE ){
 			eew->seq ++;
@@ -1546,14 +1546,14 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_TR_GRASS_LOW_BGCUT:
-		// “®ìŠJn
+		// å‹•ä½œé–‹å§‹
 		ENC_BG_Slice_Start( eew, task_w->p_slice, 
 				ENCOUNT_TR_GRASS_LOW_DOT,
 				ENCOUNT_TR_GRASS_LOW_SLICE_SYNC, 
 				0, ENCOUNT_TR_GRASS_LOW_SLICE_BGSL_X,
 				ENCOUNT_TR_GRASS_LOW_SLICE_BGSL_SS );
 
-		// ƒJƒbƒgƒOƒ‰ƒtƒBƒbƒN‚ÉOAM‚ğ•ÏX
+		// ã‚«ãƒƒãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«OAMã‚’å¤‰æ›´
 		CLACT_AnmChg( 
 				task_w->clact[ENCOUNT_TR_GRASS_LOW_CELL_BIG], 
 				1 );
@@ -1561,14 +1561,14 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 				task_w->clact[ENCOUNT_TR_GRASS_LOW_CELL_BOTTOM], 
 				2 );
 
-		// OAMƒXƒ‰ƒCƒh“®‚³ƒpƒ‰ƒ[ƒ^ì¬
+		// OAMã‚¹ãƒ©ã‚¤ãƒ‰å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 		ENC_AddMoveReqFx( &task_w->oam_slice, 
 				0,
 				ENCOUNT_TR_GRASS_LOW_SLICE_BGSL_X,
 				ENCOUNT_TR_GRASS_LOW_SLICE_BGSL_SS,
 				ENCOUNT_TR_GRASS_LOW_SLICE_SYNC );
 		
-		// ƒJƒƒ‰“®‚³ì¬
+		// ã‚«ãƒ¡ãƒ©å‹•ã•ä½œæˆ
 		dist = GFC_GetCameraDistance( task_w->camera );
 		ENC_AddMoveReqFx( &task_w->camera_dist,
 				dist,
@@ -1587,7 +1587,7 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_TR_GRASS_LOW_BGCUTWAIT:
-		// OAM“®‚³
+		// OAMå‹•ã•
 		result = ENC_AddMoveMainFx( &task_w->oam_slice );
 		{
 			VecFx32 mat = ENC_MakeVec( ENCOUNT_TR_GRASS_LOW_BALL_MAT_X - task_w->oam_slice.x, 
@@ -1602,7 +1602,7 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 					&ret_mat );
 		}
 
-		// ƒJƒƒ‰“®‚³
+		// ã‚«ãƒ¡ãƒ©å‹•ã•
 		ENC_AddMoveMainFx( &task_w->camera_dist );
 		GFC_SetCameraDistance( task_w->camera_dist.x, task_w->camera );
 
@@ -1614,9 +1614,9 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 	case ENCOUNT_TR_GRASS_LOW_END:
 		WIPE_SetBrightnessFadeOut( WIPE_FADE_BLACK );
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
-		// OAM”jŠü
+		// OAMç ´æ£„
 		{
 			int i;
 			for( i=0; i<ENCOUNT_TR_GRASS_LOW_CELL_NUM; i++ ){
@@ -1637,7 +1637,7 @@ void EncountEffect_Trainer_GrassLevelLow(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[@‘@ƒŒƒxƒ‹‚
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€è‰ã€€ãƒ¬ãƒ™ãƒ«é«˜
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Trainer_GrassLevelHigh(TCB_PTR tcb, void* work)
@@ -1653,16 +1653,16 @@ void EncountEffect_Trainer_GrassLevelHigh(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_TR_GRASS_HIGH) );
 		task_w = eew->work;
 
-		// ƒJƒƒ‰ƒ|ƒCƒ“ƒ^æ“¾
+		// ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		task_w->camera = eew->fsw->camera_ptr;
 
-		// ƒXƒ‰ƒCƒXƒ[ƒNì¬
+		// ã‚¹ãƒ©ã‚¤ã‚¹ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 		task_w->p_slice = ENC_BG_WndSlant_Alloc();
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_TR_GRASS_HIGH_CELL_NUM, ENCOUNT_TR_GRASS_HIGH_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -1674,7 +1674,7 @@ void EncountEffect_Trainer_GrassLevelHigh(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_GRASS_HIGH_CELL_CONT_ID
 				);
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		{
 			int i;
 			for( i=0; i<ENCOUNT_TR_GRASS_HIGH_CELL_NUM; i++ ){
@@ -1728,7 +1728,7 @@ void EncountEffect_Trainer_GrassLevelHigh(TCB_PTR tcb, void* work)
 					&ret_mat );
 		}
 
-		// ‰ñ“]“®‚³
+		// å›è»¢å‹•ã•
 		ENC_MoveReq( &task_w->oam_rota,
 				0, ENCOUNT_TR_GRASS_HIGH_ROTA,
 				ENCOUNT_TR_GRASS_HIGH_MOVE_SYNC );
@@ -1766,13 +1766,13 @@ void EncountEffect_Trainer_GrassLevelHigh(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_TR_GRASS_HIGH_BGCUT:
-		// “®ìŠJn
+		// å‹•ä½œé–‹å§‹
 		ENC_BG_WndSlant_Start( eew, task_w->p_slice, 
 				 ENCOUNT_TR_GRASS_HIGH_SLICE_SYNC,
 				 ENCOUNT_TR_GRASS_HIGH_SLICE_BGSL_SS_X,
 				 ENCOUNT_TR_GRASS_HIGH_SLICE_BGSL_SS_Y);
 
-		// ƒJƒƒ‰“®‚³ì¬
+		// ã‚«ãƒ¡ãƒ©å‹•ã•ä½œæˆ
 		dist = GFC_GetCameraDistance( task_w->camera );
 		ENC_AddMoveReqFx( &task_w->camera_dist,
 				dist,
@@ -1785,7 +1785,7 @@ void EncountEffect_Trainer_GrassLevelHigh(TCB_PTR tcb, void* work)
 		
 	case ENCOUNT_TR_GRASS_HIGH_BGCUTWAIT:
 
-		// ƒJƒƒ‰“®‚³
+		// ã‚«ãƒ¡ãƒ©å‹•ã•
 		ENC_AddMoveMainFx( &task_w->camera_dist );
 		GFC_SetCameraDistance( task_w->camera_dist.x, task_w->camera );
 
@@ -1797,9 +1797,9 @@ void EncountEffect_Trainer_GrassLevelHigh(TCB_PTR tcb, void* work)
 	case ENCOUNT_TR_GRASS_HIGH_END:
 		WIPE_SetBrightnessFadeOut( WIPE_FADE_BLACK );
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
-		// OAM”jŠü
+		// OAMç ´æ£„
 		{
 			int i;
 			for( i=0; i<ENCOUNT_TR_GRASS_HIGH_CELL_NUM; i++ ){
@@ -1820,7 +1820,7 @@ void EncountEffect_Trainer_GrassLevelHigh(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[@…@ƒŒƒxƒ‹’á
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«ä½
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Trainer_WaterLevelLow(TCB_PTR tcb, void* work)
@@ -1840,17 +1840,17 @@ void EncountEffect_Trainer_WaterLevelLow(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_TR_WATER_LOW) );
 		task_w = eew->work;
 
-		// ƒJƒƒ‰ƒ|ƒCƒ“ƒ^æ“¾
+		// ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		task_w->camera = eew->fsw->camera_ptr;
 
-		// ƒ‰ƒXƒ^[‰Šú‰»
+		// ãƒ©ã‚¹ã‚¿ãƒ¼åˆæœŸåŒ–
 		EF_Laster_Init( &task_w->laster, HEAPID_FIELD );
 		task_w->wait = ENCOUNT_TR_WATER_LOW_MOVE_WAIT;
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_TR_WATER_LOW_CELL_NUM, ENCOUNT_TR_WATER_LOW_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -1862,7 +1862,7 @@ void EncountEffect_Trainer_WaterLevelLow(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_WATER_LOW_CELL_CONT_ID
 				);
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		for( i=0; i<ENCOUNT_TR_WATER_LOW_CELL_NUM; i++ ){
 			task_w->clact[i] = ENC_CLACT_Add( 
 					&task_w->clact_sys, &task_w->clact_res,
@@ -1915,7 +1915,7 @@ void EncountEffect_Trainer_WaterLevelLow(TCB_PTR tcb, void* work)
 			CLACT_ObjModeSet( task_w->clact[i], GX_OAM_MODE_XLU );
 		}
 
-		// ‰ñ“]
+		// å›è»¢
 		ENC_MoveReq( &task_w->oam_rota,
 				0,
 				ENCOUNT_TR_WATER_LOW_ROTA,
@@ -1967,7 +1967,7 @@ void EncountEffect_Trainer_WaterLevelLow(TCB_PTR tcb, void* work)
 		}
 
 
-		// ƒJƒƒ‰“®‚³ì¬
+		// ã‚«ãƒ¡ãƒ©å‹•ã•ä½œæˆ
 		dist = GFC_GetCameraDistance( task_w->camera );
 		ENC_AddMoveReqFx( &task_w->camera_dist,
 				dist,
@@ -1991,7 +1991,7 @@ void EncountEffect_Trainer_WaterLevelLow(TCB_PTR tcb, void* work)
 			}
 		}
 
-		// ƒJƒƒ‰“®‚³
+		// ã‚«ãƒ¡ãƒ©å‹•ã•
 		ENC_AddMoveMainFx( &task_w->camera_dist );
 		GFC_SetCameraDistance( task_w->camera_dist.x, task_w->camera );
 
@@ -2003,14 +2003,14 @@ void EncountEffect_Trainer_WaterLevelLow(TCB_PTR tcb, void* work)
 	case ENCOUNT_TR_WATER_LOW_END:
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 
-		// ƒ‰ƒXƒ^[”jŠü
+		// ãƒ©ã‚¹ã‚¿ãƒ¼ç ´æ£„
 		EF_Laster_Delete( &task_w->laster );
 		task_w->laster_flg = FALSE;
 		
-		// OAM”jŠü
+		// OAMç ´æ£„
 		for( i=0; i<ENCOUNT_TR_WATER_LOW_CELL_NUM; i++ ){
 			CLACT_Delete( task_w->clact[i] );
 		}
@@ -2020,7 +2020,7 @@ void EncountEffect_Trainer_WaterLevelLow(TCB_PTR tcb, void* work)
 		return ;
 	}
 
-	// ƒ‰ƒXƒ^[ƒtƒŠƒbƒv‹@”\ 
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ•ãƒªãƒƒãƒ—æ©Ÿèƒ½ 
 	if( task_w->laster_flg == TRUE ){
 		EF_Laster_BuffXFlip( &task_w->laster, ENCOUNT_TR_WATER_LOW_LASTER_FLIP_DOT );
 	}
@@ -2033,7 +2033,7 @@ void EncountEffect_Trainer_WaterLevelLow(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[@…@ƒŒƒxƒ‹‚
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«é«˜
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
@@ -2052,17 +2052,17 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_TR_WATER_HIGH) );
 		task_w = eew->work;
 
-		// ƒJƒƒ‰ƒ|ƒCƒ“ƒ^æ“¾
+		// ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		task_w->camera = eew->fsw->camera_ptr;
 
-		// ƒ‰ƒXƒ^[‰Šú‰»
+		// ãƒ©ã‚¹ã‚¿ãƒ¼åˆæœŸåŒ–
 		EF_Laster_Init( &task_w->laster, HEAPID_FIELD );
 		task_w->wait = ENCOUNT_TR_WATER_HIGH_MOVE_WAIT;
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_TR_WATER_HIGH_CELL_NUM, ENCOUNT_TR_WATER_HIGH_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -2074,7 +2074,7 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_WATER_HIGH_CELL_CONT_ID
 				);
 
-		// ƒAƒNƒ^[“o˜^‚ÆBMP“h‚è‚Â‚Ô‚µƒIƒuƒWƒF
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ã¨BMPå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§
 		for( i=0; i<ENCOUNT_TR_WATER_HIGH_CELL_NUM; i++ ){
 			task_w->clact[i] = ENC_CLACT_Add( 
 					&task_w->clact_sys, &task_w->clact_res,
@@ -2086,11 +2086,11 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 		}
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-		// ƒrƒbƒgƒ}ƒbƒvì¬
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ä½œæˆ
 		task_w->p_bmp = GF_BGL_BmpWinAllocGet( HEAPID_FIELD, 1 );
 		GF_BGL_BmpWinAdd( eew->fsw->bgl, task_w->p_bmp, GF_BGL_FRAME3_M, 0, 0, 32, 32, 0, 0 );
 
-		// ƒJƒ‰[ƒpƒŒƒbƒg“]‘—
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		{
 			GXRgb color = 0;
 			GF_BGL_PaletteSet( GF_BGL_FRAME3_M, &color, sizeof(short), 2*ENCOUNT_TR_WATER_HIGH_BMP_FILL_COL );
@@ -2126,11 +2126,11 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 	case ENCOUNT_TR_WATER_HIGH_OAM_0_S:
 		task_w->wait --;
 		if( task_w->wait >= 0 ){
-			// wait‚ªƒ}ƒCƒiƒX‚É‚È‚é‚Ì‚ğ‘Ò‚Â
+			// waitãŒãƒã‚¤ãƒŠã‚¹ã«ãªã‚‹ã®ã‚’å¾…ã¤
 			break;
 		}
 
-		// ƒJƒƒ‰“®‚³ì¬
+		// ã‚«ãƒ¡ãƒ©å‹•ã•ä½œæˆ
 		dist = GFC_GetCameraDistance( task_w->camera );
 		ENC_AddMoveReqFx( &task_w->camera_dist,
 				dist,
@@ -2138,7 +2138,7 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_WATER_HIGH_CAMERA_SS,
 				ENCOUNT_TR_WATER_HIGH_CAMERA_SYNC );
 
-		// ‰ñ“]“®‚³
+		// å›è»¢å‹•ã•
 		ENC_MoveReq( &task_w->oam_rota[0], 
 				0,
 				ENCOUNT_TR_WATER_LOW_CELL0_ROTA,
@@ -2168,13 +2168,13 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 	case ENCOUNT_TR_WATER_HIGH_OAM_1_S:
 		task_w->wait --;
 		if( task_w->wait >= 0 ){
-			// wait‚ªƒ}ƒCƒiƒX‚É‚È‚é‚Ì‚ğ‘Ò‚Â
+			// waitãŒãƒã‚¤ãƒŠã‚¹ã«ãªã‚‹ã®ã‚’å¾…ã¤
 			break;
 		}
 		
 		ENC_MoveReq( &task_w->obj_move[1], ENCOUNT_TR_WATER_HIGH_CELL_Y, ENCOUNT_TR_WATER_HIGH_CELL_Y_E, ENCOUNT_TR_WATER_HIGH_CELLMOVE_SYNC );
 
-		// ‰ñ“]“®‚³
+		// å›è»¢å‹•ã•
 		ENC_MoveReq( &task_w->oam_rota[1], 
 				0,
 				ENCOUNT_TR_WATER_LOW_CELL1_ROTA,
@@ -2201,13 +2201,13 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 	case ENCOUNT_TR_WATER_HIGH_OAM_2_S:
 		task_w->wait --;
 		if( task_w->wait >= 0 ){
-			// wait‚ªƒ}ƒCƒiƒX‚É‚È‚é‚Ì‚ğ‘Ò‚Â
+			// waitãŒãƒã‚¤ãƒŠã‚¹ã«ãªã‚‹ã®ã‚’å¾…ã¤
 			break;
 		}
 		
 		ENC_MoveReq( &task_w->obj_move[2], ENCOUNT_TR_WATER_HIGH_CELL_Y, ENCOUNT_TR_WATER_HIGH_CELL_Y_E, ENCOUNT_TR_WATER_HIGH_CELLMOVE_SYNC );
 
-		// ‰ñ“]“®‚³
+		// å›è»¢å‹•ã•
 		ENC_MoveReq( &task_w->oam_rota[2], 
 				0,
 				ENCOUNT_TR_WATER_LOW_CELL2_ROTA,
@@ -2233,11 +2233,11 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 		
 	case ENCOUNT_TR_WATER_HIGH_OAM_WAIT:
 
-		// ƒJƒƒ‰“®‚³
+		// ã‚«ãƒ¡ãƒ©å‹•ã•
 		ENC_AddMoveMainFx( &task_w->camera_dist );
 		GFC_SetCameraDistance( task_w->camera_dist.x, task_w->camera );
 		
-		// ‘S“®‚³Š®—¹ƒ`ƒFƒbƒN
+		// å…¨å‹•ã•å®Œäº†ãƒã‚§ãƒƒã‚¯
 		if( (task_w->obj_move_flg[0] == FALSE) &&
 			(task_w->obj_move_flg[1] == FALSE) &&
 			(task_w->obj_move_flg[2] == FALSE)	){
@@ -2248,14 +2248,14 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 	case ENCOUNT_TR_WATER_HIGH_END:
 		WIPE_SetBrightnessFadeOut( WIPE_FADE_BLACK );
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 
-		// ƒ‰ƒXƒ^[”jŠü
+		// ãƒ©ã‚¹ã‚¿ãƒ¼ç ´æ£„
 		EF_Laster_Delete( &task_w->laster );
 		task_w->laster_flg = FALSE;
 		
-		// OAM”jŠü	ƒrƒbƒgƒ}ƒbƒv“h‚è‚Â‚Ô‚µƒIƒuƒWƒF”jŠü
+		// OAMç ´æ£„	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
 		for( i=0; i<ENCOUNT_TR_WATER_HIGH_CELL_NUM; i++ ){
 			CLACT_Delete( task_w->clact[i] );
 			ENC_BMP_FillObjDelete( task_w->p_bmp_fill[i] );	
@@ -2263,12 +2263,12 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 		ENC_CLACT_ResDeleteEasy( &task_w->clact_sys, &task_w->clact_res );
 		ENC_CLACT_Delete( &task_w->clact_sys );
 
-		// ƒrƒbƒgƒ}ƒbƒv”jŠü
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç ´æ£„
 		GF_BGL_BmpWinOff( task_w->p_bmp );
 		GF_BGL_BmpWinDel( task_w->p_bmp );
 		GF_BGL_BmpWinFree( task_w->p_bmp, 1 );
 
-		// ƒXƒNƒŠ[ƒ“ƒNƒŠ[ƒ“
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªãƒ¼ãƒ³
 		GF_BGL_ClearCharSet( GF_BGL_FRAME3_M, 32, 0, HEAPID_FIELD );
 		GF_BGL_ScrClear( eew->fsw->bgl, GF_BGL_FRAME3_M );
 		
@@ -2276,12 +2276,12 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 		return ;
 	}
 
-	// ƒ‰ƒXƒ^[ƒtƒŠƒbƒv‹@”\ 
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ•ãƒªãƒƒãƒ—æ©Ÿèƒ½ 
 	if( task_w->laster_flg == TRUE ){
 		EF_Laster_BuffXFlip( &task_w->laster, ENCOUNT_TR_WATER_HIGH_LASTER_FLIP_DOT );
 	}
 
-	// ƒIƒuƒWƒFƒNƒg“®‚³
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ã•
 	for( i=0; i<ENCOUNT_TR_WATER_HIGH_CELL_NUM; i++ ){
 		
 		if( task_w->obj_move_flg[i] == TRUE ){
@@ -2303,7 +2303,7 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 			CLACT_SetMatrix( task_w->clact[i], &mat );
 		}
 	}
-	// “]‘—ƒŠƒNƒGƒXƒg
+	// è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	GF_BGL_BmpWinOnVReq( task_w->p_bmp );
 
 	if( eew->seq != ENCOUNT_TR_WATER_HIGH_END ){
@@ -2313,7 +2313,7 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[@ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹’á
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«ä½
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Trainer_DanLevelLow(TCB_PTR tcb, void* work)
@@ -2330,13 +2330,13 @@ void EncountEffect_Trainer_DanLevelLow(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_TR_DAN_LOW) );
 		task_w = eew->work;
 
-		// ƒJƒƒ‰ƒ|ƒCƒ“ƒ^æ“¾
+		// ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		task_w->camera = eew->fsw->camera_ptr;
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_TR_DAN_LOW_CELL_NUM, ENCOUNT_TR_DAN_LOW_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -2348,7 +2348,7 @@ void EncountEffect_Trainer_DanLevelLow(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_DAN_LOW_CELL_CONT_ID
 				);
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		task_w->clact = ENC_CLACT_Add( 
 				&task_w->clact_sys, &task_w->clact_res,
 				ENCOUNT_TR_DAN_LOW_BALL_MAT_X, 
@@ -2397,7 +2397,7 @@ void EncountEffect_Trainer_DanLevelLow(TCB_PTR tcb, void* work)
 					0 );
 		CLACT_SetScaleAffine( task_w->clact, &scale, CLACT_AFFINE_DOUBLE );
 
-		// ‰ñ“]
+		// å›è»¢
 		ENC_MoveReq( &task_w->oam_rota,
 				0, 
 				ENCOUNT_TR_DAN_LOW_ROTA,
@@ -2434,10 +2434,10 @@ void EncountEffect_Trainer_DanLevelLow(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_TR_DAN_LOW_WIPE:
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNOFF
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯OFF
 		FLDHBLANK_SYS_Stop( eew->fsw->fldmap->hblanksys );
 
-		// ƒJƒƒ‰“®‚³ì¬
+		// ã‚«ãƒ¡ãƒ©å‹•ã•ä½œæˆ
 		dist = GFC_GetCameraDistance( task_w->camera );
 		ENC_AddMoveReqFx( &task_w->camera_dist,
 				dist,
@@ -2450,7 +2450,7 @@ void EncountEffect_Trainer_DanLevelLow(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_TR_DAN_LOW_WIPEWAIT:
-		// ƒJƒƒ‰“®‚³
+		// ã‚«ãƒ¡ãƒ©å‹•ã•
 		ENC_AddMoveMainFx( &task_w->camera_dist );
 		GFC_SetCameraDistance( task_w->camera_dist.x, task_w->camera );
 		
@@ -2461,12 +2461,12 @@ void EncountEffect_Trainer_DanLevelLow(TCB_PTR tcb, void* work)
 		
 	case ENCOUNT_TR_DAN_LOW_END:
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 		FLDHBLANK_SYS_Start( eew->fsw->fldmap->hblanksys );
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
-		// OAM”jŠü
+		// OAMç ´æ£„
 		CLACT_Delete( task_w->clact );
 		ENC_CLACT_ResDeleteEasy( &task_w->clact_sys, &task_w->clact_res );
 		ENC_CLACT_Delete( &task_w->clact_sys );
@@ -2481,7 +2481,7 @@ void EncountEffect_Trainer_DanLevelLow(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[@ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹‚
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«é«˜
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
@@ -2499,13 +2499,13 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_TR_DAN_HIGH) );
 		task_w = eew->work;
 
-		// ƒJƒƒ‰ƒ|ƒCƒ“ƒ^æ“¾
+		// ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		task_w->camera = eew->fsw->camera_ptr;
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_TR_DAN_HIGH_CELL_NUM, ENCOUNT_TR_DAN_HIGH_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -2517,7 +2517,7 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_DAN_HIGH_CELL_CONT_ID
 				);
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		for( i=0; i<ENCOUNT_TR_DAN_HIGH_CELL_NUM; i++ ){
 			task_w->clact[i] = ENC_CLACT_Add( 
 					&task_w->clact_sys, &task_w->clact_res,
@@ -2528,11 +2528,11 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 		task_w->p_bmp = GF_BGL_BmpWinAllocGet( HEAPID_FIELD, 1 );
 		GF_BGL_BmpWinAdd( eew->fsw->bgl, task_w->p_bmp, GF_BGL_FRAME3_M, 0, 0, 32, 32, 0, 0 );
 
-		// ƒJƒ‰[ƒpƒŒƒbƒg“]‘—
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		{
 			GXRgb color = 0;
 			GF_BGL_PaletteSet( GF_BGL_FRAME3_M, &color, sizeof(short), 2*ENCOUNT_TR_DAN_HIGH_BLOCK_FILLCOLOR );
@@ -2541,7 +2541,7 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 		GF_BGL_BmpWinDataFill( task_w->p_bmp, 0 );
 		GF_BGL_BmpWinOnVReq( task_w->p_bmp );
 
-		// ƒuƒƒbƒNƒIƒuƒWƒFƒNƒgì¬
+		// ãƒ–ãƒ­ãƒƒã‚¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä½œæˆ
 		task_w->p_block = ENC_BMP_FillBlockMoveAlloc( HEAPID_FIELD );
 
 		eew->seq ++;
@@ -2578,7 +2578,7 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 				task_w->clact[0],
 				TRUE );
 
-		// ‰ñ“]
+		// å›è»¢
 		ENC_MoveReq( &task_w->oam_rota[0], 
 				0, 
 				ENCOUNT_TR_DAN_HIGH_BALL0_ROTA, 
@@ -2608,7 +2608,7 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 				task_w->clact[1],
 				TRUE );
 
-		// ‰ñ“]
+		// å›è»¢
 		ENC_MoveReq( &task_w->oam_rota[1], 
 				0, 
 				ENCOUNT_TR_DAN_HIGH_BALL1_ROTA, 
@@ -2638,7 +2638,7 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 				task_w->clact[2],
 				TRUE );
 
-		// ‰ñ“]
+		// å›è»¢
 		ENC_MoveReq( &task_w->oam_rota[2], 
 				0, 
 				ENCOUNT_TR_DAN_HIGH_BALL2_ROTA, 
@@ -2669,7 +2669,7 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_DAN_HIGH_BLOCK_START_SYNC,
 				task_w->p_bmp, ENCOUNT_TR_DAN_HIGH_BLOCK_FILLCOLOR );	
 
-		// ƒJƒƒ‰“®‚³ì¬
+		// ã‚«ãƒ¡ãƒ©å‹•ã•ä½œæˆ
 		dist = GFC_GetCameraDistance( task_w->camera );
 		ENC_AddMoveReqFx( &task_w->camera_dist,
 				dist,
@@ -2684,7 +2684,7 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 		result = ENC_BMP_FillBlockMoveMain( task_w->p_block );
 		GF_BGL_BmpWinOnVReq( task_w->p_bmp );
 
-		// ƒJƒƒ‰“®‚³
+		// ã‚«ãƒ¡ãƒ©å‹•ã•
 		ENC_AddMoveMainFx( &task_w->camera_dist );
 		GFC_SetCameraDistance( task_w->camera_dist.x, task_w->camera );
 		
@@ -2696,25 +2696,25 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 	case ENCOUNT_TR_DAN_HIGH_END:
 		WIPE_SetBrightnessFadeOut( WIPE_FADE_BLACK );
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 
-		// OAM”jŠü
+		// OAMç ´æ£„
 		for( i=0; i<ENCOUNT_TR_DAN_HIGH_CELL_NUM; i++ ){
 			CLACT_Delete( task_w->clact[i] );
 		}
 		ENC_CLACT_ResDeleteEasy( &task_w->clact_sys, &task_w->clact_res );
 		ENC_CLACT_Delete( &task_w->clact_sys );
 
-		// ƒuƒƒbƒNƒ[ƒN”jŠü
+		// ãƒ–ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		ENC_BMP_FillBlockMoveDelete( task_w->p_block );
 
-		// ƒrƒbƒgƒ}ƒbƒv”jŠü
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç ´æ£„
 		GF_BGL_BmpWinOff( task_w->p_bmp );
 		GF_BGL_BmpWinDel( task_w->p_bmp );
 		GF_BGL_BmpWinFree( task_w->p_bmp, 1 );
 
-		// ƒXƒNƒŠ[ƒ“ƒNƒŠ[ƒ“
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªãƒ¼ãƒ³
 		GF_BGL_ClearCharSet( GF_BGL_FRAME3_M, 32, 0, HEAPID_FIELD );
 		GF_BGL_ScrClear( eew->fsw->bgl, GF_BGL_FRAME3_M );
 		
@@ -2723,7 +2723,7 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 	}
 
 
-	// ƒIƒuƒWƒFƒNƒg“®‚³
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ã•
 	for( i=0; i<ENCOUNT_TR_DAN_HIGH_CELL_NUM; i++ ){
 		
 		if( task_w->oam_move_flg[i] == TRUE ){
@@ -2754,19 +2754,19 @@ void EncountEffect_Trainer_DanLevelHigh(TCB_PTR tcb, void* work)
 //-----------------------------------------------------------------------------
 /**
  * 
- *		y“Áêz [ SPECIAL ]
+ *		ã€ç‰¹æ®Šã€‘ [ SPECIAL ]
  * 
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒoƒgƒ‹ƒ^ƒ[@ƒtƒ@ƒNƒgƒŠ[
+//	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_SP_TOWER_START,
 	ENCOUNT_SP_TOWER_FLASH_INI,
@@ -2777,31 +2777,31 @@ enum{
 	ENCOUNT_SP_TOWER_WIPEWAIT,
 	ENCOUNT_SP_TOWER_END,
 };
-// OAMƒf[ƒ^
-// ƒAƒNƒ^[ƒf[ƒ^”
-#define ENCOUNT_SP_TOWER_CELL_NUM		( 1 )	// ƒ[ƒN”
-#define ENCOUNT_SP_TOWER_CELL_RES_NUM	( 1 )	// ƒŠƒ\[ƒX”
+// OAMãƒ‡ãƒ¼ã‚¿
+// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
+#define ENCOUNT_SP_TOWER_CELL_NUM		( 1 )	// ãƒ¯ãƒ¼ã‚¯æ•°
+#define ENCOUNT_SP_TOWER_CELL_RES_NUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_SP_TOWER_CELL_CONT_ID	( 600000 )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_SP_TOWER_BALL_MAT_X		( 128*FX32_ONE )	// ŠJnÀ•W
-#define ENCOUNT_SP_TOWER_BALL_MAT_Y		( 96*FX32_ONE )	// ŠJnÀ•W
-#define ENCOUNT_SP_TOWER_FADE_SYNC		( 12 )		// ƒtƒF[ƒhƒVƒ“ƒN”
-#define ENCOUNT_SP_TOWER_SCALE_SYNC		( 6 )		// Šg‘åƒVƒ“ƒN”
-#define ENCOUNT_SP_TOWER_SCALE_S		( FX32_CONST(1.0f) )	// Šg‘åŠJn
-#define ENCOUNT_SP_TOWER_SCALE_E		( FX32_CONST(0.1f) )	// Šg‘åI—¹
-#define ENCOUNT_SP_TOWER_SCALE_SS		( 1 )		// ‰‘¬“x
-#define ENCOUNT_SP_TOWER_FADE_S			( 0 )		// ƒtƒF[ƒhŠJn
-#define ENCOUNT_SP_TOWER_FADE_E			( 16 )		// ƒtƒF[ƒhI—¹
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_SP_TOWER_BALL_MAT_X		( 128*FX32_ONE )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_SP_TOWER_BALL_MAT_Y		( 96*FX32_ONE )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_SP_TOWER_FADE_SYNC		( 12 )		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SP_TOWER_SCALE_SYNC		( 6 )		// æ‹¡å¤§ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SP_TOWER_SCALE_S		( FX32_CONST(1.0f) )	// æ‹¡å¤§é–‹å§‹
+#define ENCOUNT_SP_TOWER_SCALE_E		( FX32_CONST(0.1f) )	// æ‹¡å¤§çµ‚äº†
+#define ENCOUNT_SP_TOWER_SCALE_SS		( 1 )		// åˆé€Ÿåº¦
+#define ENCOUNT_SP_TOWER_FADE_S			( 0 )		// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
+#define ENCOUNT_SP_TOWER_FADE_E			( 16 )		// ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
 
 
 
 
 
 //-------------------------------------
-//	ƒ_ƒuƒ‹ƒoƒgƒ‹
+//	ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_SP_DOUBLE_START,
 	ENCOUNT_SP_DOUBLE_FLASH_INI,
@@ -2812,29 +2812,29 @@ enum{
 	ENCOUNT_SP_DOUBLE_WIPEWAIT,
 	ENCOUNT_SP_DOUBLE_END,
 };
-// OAMƒf[ƒ^
-// ƒAƒNƒ^[ƒf[ƒ^”
-#define ENCOUNT_SP_DOUBLE_CELL_NUM		( 4 )	// ƒ[ƒN”
-#define ENCOUNT_SP_DOUBLE_CELL_RES_NUM	( 1 )	// ƒŠƒ\[ƒX”
+// OAMãƒ‡ãƒ¼ã‚¿
+// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
+#define ENCOUNT_SP_DOUBLE_CELL_NUM		( 4 )	// ãƒ¯ãƒ¼ã‚¯æ•°
+#define ENCOUNT_SP_DOUBLE_CELL_RES_NUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_SP_DOUBLE_CELL_CONT_ID	( 600000 )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_SP_DOUBLE_BALL_MAT_X		( 128*FX32_ONE )	// ŠJnÀ•W
-#define ENCOUNT_SP_DOUBLE_BALL_MAT_Y		( 96*FX32_ONE )	// ŠJnÀ•W
-#define ENCOUNT_SP_DOUBLE_MOVE_SYNC		( 4 )		// ‚S•ûŒü“®‚³ƒVƒ“ƒN”
-#define ENCOUNT_SP_DOUBLE_WIPE_SYNC		( 8 )		// ƒƒCƒvƒVƒ“ƒN”
-#define ENCOUNT_SP_DOUBLE_MOVE_X	( 160*FX32_ONE )	// “®‚­‹——£
-#define ENCOUNT_SP_DOUBLE_MOVE_Y	( 128*FX32_ONE )	// “®‚­‹——£
-#define ENCOUNT_SP_DOUBLE_MOVE_SS		(  FX32_CONST( 0.1f ) )	// ‰‘¬“x
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_SP_DOUBLE_BALL_MAT_X		( 128*FX32_ONE )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_SP_DOUBLE_BALL_MAT_Y		( 96*FX32_ONE )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_SP_DOUBLE_MOVE_SYNC		( 4 )		// ï¼”æ–¹å‘å‹•ã•ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SP_DOUBLE_WIPE_SYNC		( 8 )		// ãƒ¯ã‚¤ãƒ—ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SP_DOUBLE_MOVE_X	( 160*FX32_ONE )	// å‹•ãè·é›¢
+#define ENCOUNT_SP_DOUBLE_MOVE_Y	( 128*FX32_ONE )	// å‹•ãè·é›¢
+#define ENCOUNT_SP_DOUBLE_MOVE_SS		(  FX32_CONST( 0.1f ) )	// åˆé€Ÿåº¦
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒoƒgƒ‹ƒ^ƒ[@ƒtƒ@ƒNƒgƒŠ[
+//	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 //=====================================
 typedef struct {
 	ENC_MOVE_WORK	oam_alpha;
@@ -2848,7 +2848,7 @@ typedef struct {
 } ENCOUNT_SP_TOWER;
 
 //-------------------------------------
-//	ƒ_ƒuƒ‹ƒoƒgƒ‹
+//	ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
 //=====================================
 typedef struct {
 
@@ -2863,7 +2863,7 @@ typedef struct {
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹TOWER@ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
+ *	@brief	ãƒãƒˆãƒ«TOWERã€€ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Special_Tower(TCB_PTR tcb, void* work)
@@ -2878,10 +2878,10 @@ void EncountEffect_Special_Tower(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_SP_TOWER) );
 		task_w = eew->work;
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_SP_TOWER_CELL_NUM, ENCOUNT_SP_TOWER_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -2893,7 +2893,7 @@ void EncountEffect_Special_Tower(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_GRASS_LOW_CELL_CONT_ID
 				);
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		task_w->clact = ENC_CLACT_Add( 
 				&task_w->clact_sys, &task_w->clact_res,
 				ENCOUNT_SP_TOWER_BALL_MAT_X, 
@@ -2959,7 +2959,7 @@ void EncountEffect_Special_Tower(TCB_PTR tcb, void* work)
 					&scale );
 		}
 
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNOFF
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯OFF
 		FLDHBLANK_SYS_Stop( eew->fsw->fldmap->hblanksys );
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_HOLEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, ENCOUNT_SP_TOWER_SCALE_SYNC, 1, HEAPID_FIELD );
 		eew->seq++;
@@ -2982,13 +2982,13 @@ void EncountEffect_Special_Tower(TCB_PTR tcb, void* work)
 	case ENCOUNT_SP_TOWER_END:
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 		
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 		FLDHBLANK_SYS_Start( eew->fsw->fldmap->hblanksys );
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
-		// OAM”jŠü
+		// OAMç ´æ£„
 		CLACT_Delete( task_w->clact );
 		ENC_CLACT_ResDeleteEasy( &task_w->clact_sys, &task_w->clact_res );
 		ENC_CLACT_Delete( &task_w->clact_sys );
@@ -3003,7 +3003,7 @@ void EncountEffect_Special_Tower(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒuƒ‹ƒoƒgƒ‹
+ *	@brief	ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Special_Double(TCB_PTR tcb, void* work)
@@ -3020,10 +3020,10 @@ void EncountEffect_Special_Double(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_SP_DOUBLE) );
 		task_w = eew->work;
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_SP_DOUBLE_CELL_NUM, ENCOUNT_SP_DOUBLE_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -3035,7 +3035,7 @@ void EncountEffect_Special_Double(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_GRASS_LOW_CELL_CONT_ID
 				);
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		for( i=0; i<ENCOUNT_SP_DOUBLE_CELL_NUM; i++ ){
 			task_w->clact[i] = ENC_CLACT_Add( 
 					&task_w->clact_sys, &task_w->clact_res,
@@ -3078,21 +3078,21 @@ void EncountEffect_Special_Double(TCB_PTR tcb, void* work)
 		for( i=0; i<2; i++ ){
 			result = ENC_AddMoveMainFx( &task_w->oam_move[i] );
 		}
-		// ƒgƒbƒv
+		// ãƒˆãƒƒãƒ—
 		matrix = ENC_MakeVec( 
 				ENCOUNT_SP_DOUBLE_BALL_MAT_X,
 				ENCOUNT_SP_DOUBLE_BALL_MAT_Y - task_w->oam_move[0].x,
 				0 );
 		CLACT_SetMatrix( task_w->clact[0], &matrix );
 
-		// ƒ{ƒgƒ€
+		// ãƒœãƒˆãƒ 
 		matrix = ENC_MakeVec( 
 				ENCOUNT_SP_DOUBLE_BALL_MAT_X,
 				ENCOUNT_SP_DOUBLE_BALL_MAT_Y + task_w->oam_move[0].x,
 				0 );
 		CLACT_SetMatrix( task_w->clact[1], &matrix );
 
-		// ƒŒƒt‚Æ
+		// ãƒ¬ãƒ•ã¨
 		matrix = ENC_MakeVec( 
 				ENCOUNT_SP_DOUBLE_BALL_MAT_X - task_w->oam_move[1].x,
 				ENCOUNT_SP_DOUBLE_BALL_MAT_Y,
@@ -3112,7 +3112,7 @@ void EncountEffect_Special_Double(TCB_PTR tcb, void* work)
 		break;
 		
 	case ENCOUNT_SP_DOUBLE_WIPE:
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNOFF
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯OFF
 		FLDHBLANK_SYS_Stop( eew->fsw->fldmap->hblanksys );
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FLASHOUT_FOREWAY, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, ENCOUNT_SP_DOUBLE_WIPE_SYNC, 1, HEAPID_FIELD );
 		eew->seq++;
@@ -3127,13 +3127,13 @@ void EncountEffect_Special_Double(TCB_PTR tcb, void* work)
 	case ENCOUNT_SP_DOUBLE_END:
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 		
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 		FLDHBLANK_SYS_Start( eew->fsw->fldmap->hblanksys );
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
-		// OAM”jŠü
+		// OAMç ´æ£„
 		for( i=0; i<ENCOUNT_SP_DOUBLE_CELL_NUM; i++ ){
 			CLACT_Delete( task_w->clact[i] );
 		}
@@ -3153,19 +3153,19 @@ void EncountEffect_Special_Double(TCB_PTR tcb, void* work)
 //-----------------------------------------------------------------------------
 /**
  * 
- *		‹â‰Í’c	ƒGƒ“ƒJƒEƒ“ƒg [ GINGA ]
+ *		éŠ€æ²³å›£	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ [ GINGA ]
  * 
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	‹â‰Í’c’Êí
+//	éŠ€æ²³å›£é€šå¸¸
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_GINGA_NORMAL_START,
 	ENCOUNT_GINGA_NORMAL_FLASH_INI,
@@ -3176,19 +3176,19 @@ enum{
 	ENCOUNT_GINGA_NORMAL_FLASHOUT_WAIT,
 	ENCOUNT_GINGA_NORMAL_END,
 };
-// OAMƒf[ƒ^
-// ƒAƒNƒ^[ƒf[ƒ^”
-#define ENCOUNT_GINGA_NORMAL_CELL_NUM		( 6 )	// ƒ[ƒN”
-#define ENCOUNT_GINGA_NORMAL_CELL_RES_NUM	( 1 )	// ƒŠƒ\[ƒX”
+// OAMãƒ‡ãƒ¼ã‚¿
+// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
+#define ENCOUNT_GINGA_NORMAL_CELL_NUM		( 6 )	// ãƒ¯ãƒ¼ã‚¯æ•°
+#define ENCOUNT_GINGA_NORMAL_CELL_RES_NUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_GINGA_NORMAL_CELL_CONT_ID	( 600000 )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_GINGA_NORMAL_OAM_MOVE_SYNC	( 8 )	// OAM1‚Â“®‚³ƒVƒ“ƒN
-#define ENCOUNT_GINGA_NORMAL_FLASHOUT_SYNC	( 12 )	// ƒtƒ‰ƒbƒVƒ…ƒAƒEƒgƒVƒ“ƒN
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_GINGA_NORMAL_OAM_MOVE_SYNC	( 8 )	// OAM1ã¤å‹•ã•ã‚·ãƒ³ã‚¯
+#define ENCOUNT_GINGA_NORMAL_FLASHOUT_SYNC	( 12 )	// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã‚·ãƒ³ã‚¯
 
-#define ENCOUNT_GINGA_NORMAL_OAM_S_SCA	( FX32_CONST(2.0f) )	//	ŠJnƒXƒP[ƒ‹
-#define ENCOUNT_GINGA_NORMAL_OAM_E_SCA	( FX32_CONST(0.01f) )	//	I—¹ƒXƒP[ƒ‹
-#define ENCOUNT_GINGA_NORMAL_OAM_SS_SCA	( -FX32_CONST(0.40f) )	//	‰‘¬“xƒXƒP[ƒ‹
+#define ENCOUNT_GINGA_NORMAL_OAM_S_SCA	( FX32_CONST(2.0f) )	//	é–‹å§‹ã‚¹ã‚±ãƒ¼ãƒ«
+#define ENCOUNT_GINGA_NORMAL_OAM_E_SCA	( FX32_CONST(0.01f) )	//	çµ‚äº†ã‚¹ã‚±ãƒ¼ãƒ«
+#define ENCOUNT_GINGA_NORMAL_OAM_SS_SCA	( -FX32_CONST(0.40f) )	//	åˆé€Ÿåº¦ã‚¹ã‚±ãƒ¼ãƒ«
 
 enum{
 	ENCOUNT_GINGA_NORMAL_OAM_PARAM_SX,
@@ -3202,69 +3202,69 @@ enum{
 	ENCOUNT_GINGA_NORMAL_OAM_PARAM_NUM,
 };
 
-// ƒ{[ƒ‹“®‚³ƒpƒ‰ƒ[ƒ^
-// ENCOUNT_GINGA_NORMAL_CELL_NUM@‚Æ‰º‚Ìƒe[ƒuƒ‹”‚ªˆê‚È‚ç
-// ‰½ŒÂ‚É‚Å‚ào—ˆ‚Ü‚·
+// ãƒœãƒ¼ãƒ«å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+// ENCOUNT_GINGA_NORMAL_CELL_NUMã€€ã¨ä¸‹ã®ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ãŒä¸€ç·’ãªã‚‰
+// ä½•å€‹ã«ã§ã‚‚å‡ºæ¥ã¾ã™
 static const s32 ENCOUNT_GINGA_NORMAL_OAM_Param[ ENCOUNT_GINGA_NORMAL_CELL_NUM ][ ENCOUNT_GINGA_NORMAL_OAM_PARAM_NUM ] = {
 	{	// 0
-		FX32_CONST( 260 ),		// ŠJnXÀ•W
-        FX32_CONST( 128 ),		// I—¹XÀ•W
-        -FX32_CONST( 30 ),		// ‰‘¬“xX
-		FX32_CONST( 0 ),		// ŠJnYÀ•W
-		FX32_CONST( 100 ),		// I—¹YÀ•W
-		FX32_CONST( 20 ),		// ‰‘¬“xY
-		4,						// ŠJnƒEƒGƒCƒg
-		0xffff * 2				// ‰ñ“]—Ê
+		FX32_CONST( 260 ),		// é–‹å§‹Xåº§æ¨™
+        FX32_CONST( 128 ),		// çµ‚äº†Xåº§æ¨™
+        -FX32_CONST( 30 ),		// åˆé€Ÿåº¦X
+		FX32_CONST( 0 ),		// é–‹å§‹Yåº§æ¨™
+		FX32_CONST( 100 ),		// çµ‚äº†Yåº§æ¨™
+		FX32_CONST( 20 ),		// åˆé€Ÿåº¦Y
+		4,						// é–‹å§‹ã‚¦ã‚¨ã‚¤ãƒˆ
+		0xffff * 2				// å›è»¢é‡
 	},
 	{// 1
-		FX32_CONST( -16 ),		// ŠJnXÀ•W
-		FX32_CONST( 128 ),      // I—¹XÀ•W
-		FX32_CONST( 30 ),       // ‰‘¬“xX
-		FX32_CONST(160),        // ŠJnYÀ•W
-		FX32_CONST(100),        // I—¹YÀ•W
-		-FX32_CONST(20),		// ‰‘¬“xY
-		3,						// ŠJnƒEƒGƒCƒg
-		0xffff * 1				// ‰ñ“]—Ê
+		FX32_CONST( -16 ),		// é–‹å§‹Xåº§æ¨™
+		FX32_CONST( 128 ),      // çµ‚äº†Xåº§æ¨™
+		FX32_CONST( 30 ),       // åˆé€Ÿåº¦X
+		FX32_CONST(160),        // é–‹å§‹Yåº§æ¨™
+		FX32_CONST(100),        // çµ‚äº†Yåº§æ¨™
+		-FX32_CONST(20),		// åˆé€Ÿåº¦Y
+		3,						// é–‹å§‹ã‚¦ã‚¨ã‚¤ãƒˆ
+		0xffff * 1				// å›è»¢é‡
 	},                         
 	{// 2
-		FX32_CONST(0),			// ŠJnXÀ•W
-		FX32_CONST(128),         // I—¹XÀ•W
-		FX32_CONST(30),         // ‰‘¬“xX
-		FX32_CONST(-16),        // ŠJnYÀ•W
-		FX32_CONST(100),         // I—¹YÀ•W
-		FX32_CONST(20),         // ‰‘¬“xY
-		4,                       // ŠJnƒEƒGƒCƒg
-		-0xffff * 3				// ‰ñ“]—Ê
+		FX32_CONST(0),			// é–‹å§‹Xåº§æ¨™
+		FX32_CONST(128),         // çµ‚äº†Xåº§æ¨™
+		FX32_CONST(30),         // åˆé€Ÿåº¦X
+		FX32_CONST(-16),        // é–‹å§‹Yåº§æ¨™
+		FX32_CONST(100),         // çµ‚äº†Yåº§æ¨™
+		FX32_CONST(20),         // åˆé€Ÿåº¦Y
+		4,                       // é–‹å§‹ã‚¦ã‚¨ã‚¤ãƒˆ
+		-0xffff * 3				// å›è»¢é‡
 	},
 	{// 3
-		FX32_CONST(140),			// ŠJnXÀ•W
-		FX32_CONST(128),         // I—¹XÀ•W
-		-FX32_CONST(10),         // ‰‘¬“xX
-		FX32_CONST(160),        // ŠJnYÀ•W
-		FX32_CONST(100),         // I—¹YÀ•W
-		-FX32_CONST(20),         // ‰‘¬“xY
-		2,                       // ŠJnƒEƒGƒCƒg
-		-0xffff * 2				// ‰ñ“]—Ê
+		FX32_CONST(140),			// é–‹å§‹Xåº§æ¨™
+		FX32_CONST(128),         // çµ‚äº†Xåº§æ¨™
+		-FX32_CONST(10),         // åˆé€Ÿåº¦X
+		FX32_CONST(160),        // é–‹å§‹Yåº§æ¨™
+		FX32_CONST(100),         // çµ‚äº†Yåº§æ¨™
+		-FX32_CONST(20),         // åˆé€Ÿåº¦Y
+		2,                       // é–‹å§‹ã‚¦ã‚¨ã‚¤ãƒˆ
+		-0xffff * 2				// å›è»¢é‡
 	},
 	{// 4
-		FX32_CONST(260),			// ŠJnXÀ•W
-		FX32_CONST(128),         // I—¹XÀ•W
-		-FX32_CONST(30),         // ‰‘¬“xX
-		FX32_CONST(80),        // ŠJnYÀ•W
-		FX32_CONST(100),         // I—¹YÀ•W
-		FX32_CONST(1),         // ‰‘¬“xY
-		3,                       // ŠJnƒEƒGƒCƒg
-		-0xffff * 3				// ‰ñ“]—Ê
+		FX32_CONST(260),			// é–‹å§‹Xåº§æ¨™
+		FX32_CONST(128),         // çµ‚äº†Xåº§æ¨™
+		-FX32_CONST(30),         // åˆé€Ÿåº¦X
+		FX32_CONST(80),        // é–‹å§‹Yåº§æ¨™
+		FX32_CONST(100),         // çµ‚äº†Yåº§æ¨™
+		FX32_CONST(1),         // åˆé€Ÿåº¦Y
+		3,                       // é–‹å§‹ã‚¦ã‚¨ã‚¤ãƒˆ
+		-0xffff * 3				// å›è»¢é‡
 	},
 	{// 5
-		FX32_CONST(0),			// ŠJnXÀ•W
-		FX32_CONST(128),         // I—¹XÀ•W
-		FX32_CONST(30),         // ‰‘¬“xX
-		FX32_CONST(160),        // ŠJnYÀ•W
-		FX32_CONST(100),         // I—¹YÀ•W
-		-FX32_CONST(20),         // ‰‘¬“xY
-		3,                       // ŠJnƒEƒGƒCƒg
-		0xffff * 1				// ‰ñ“]—Ê
+		FX32_CONST(0),			// é–‹å§‹Xåº§æ¨™
+		FX32_CONST(128),         // çµ‚äº†Xåº§æ¨™
+		FX32_CONST(30),         // åˆé€Ÿåº¦X
+		FX32_CONST(160),        // é–‹å§‹Yåº§æ¨™
+		FX32_CONST(100),         // çµ‚äº†Yåº§æ¨™
+		-FX32_CONST(20),         // åˆé€Ÿåº¦Y
+		3,                       // é–‹å§‹ã‚¦ã‚¨ã‚¤ãƒˆ
+		0xffff * 1				// å›è»¢é‡
 	},
 };
 
@@ -3274,9 +3274,9 @@ static const s32 ENCOUNT_GINGA_NORMAL_OAM_Param[ ENCOUNT_GINGA_NORMAL_CELL_NUM ]
 
 
 //-------------------------------------
-//	‹â‰Í’c@Š²•”ƒNƒ‰ƒX
+//	éŠ€æ²³å›£ã€€å¹¹éƒ¨ã‚¯ãƒ©ã‚¹
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_GINGA_SPECIAL_START,
 	ENCOUNT_GINGA_SPECIAL_FLASH_INI,
@@ -3287,38 +3287,38 @@ enum{
 	ENCOUNT_GINGA_SPECIAL_FLASHOUT_WAIT,
 	ENCOUNT_GINGA_SPECIAL_END,
 };
-// OAMƒf[ƒ^
-// ƒAƒNƒ^[ƒf[ƒ^”
-#define ENCOUNT_GINGA_SPECIAL_CELL_NUM		( 1 )	// ƒ[ƒN”
-#define ENCOUNT_GINGA_SPECIAL_CELL_RES_NUM	( 1 )	// ƒŠƒ\[ƒX”
+// OAMãƒ‡ãƒ¼ã‚¿
+// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
+#define ENCOUNT_GINGA_SPECIAL_CELL_NUM		( 1 )	// ãƒ¯ãƒ¼ã‚¯æ•°
+#define ENCOUNT_GINGA_SPECIAL_CELL_RES_NUM	( 1 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_GINGA_SPECIAL_CELL_CONT_ID	( 600000 )
 
-// ƒrƒbƒgƒ}ƒbƒvŠÖŒW
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—é–¢ä¿‚
 #define ENCOUNT_GINGA_SPECIAL_BMP_COL	( 15 )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_GINGA_SPECIAL_MAT_X		( 128*FX32_ONE )	// ŠJnÀ•W
-#define ENCOUNT_GINGA_SPECIAL_MAT_Y		( 96*FX32_ONE )	// ŠJnÀ•W
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_GINGA_SPECIAL_MAT_X		( 128*FX32_ONE )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_GINGA_SPECIAL_MAT_Y		( 96*FX32_ONE )	// é–‹å§‹åº§æ¨™
 
-#define ENCOUNT_GINGA_SPECIAL_OAM_ALPHA_SYNC	( 15 )	// ƒ¿ƒVƒ“ƒN
-#define ENCOUNT_GINGA_SPECIAL_FLASHMOSAIC_WAIT		( 16 )	// ƒ‚ƒUƒCƒN‚Æƒtƒ‰ƒbƒVƒ…ƒAƒEƒg‚ÌŠJnƒEƒGƒCƒg
-#define ENCOUNT_GINGA_SPECIAL_OAM_MOSAIC_SYNC	( 16 )	// ƒ‚ƒUƒCƒNƒVƒ“ƒN”
+#define ENCOUNT_GINGA_SPECIAL_OAM_ALPHA_SYNC	( 15 )	// Î±ã‚·ãƒ³ã‚¯
+#define ENCOUNT_GINGA_SPECIAL_FLASHMOSAIC_WAIT		( 16 )	// ãƒ¢ã‚¶ã‚¤ã‚¯ã¨ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã®é–‹å§‹ã‚¦ã‚¨ã‚¤ãƒˆ
+#define ENCOUNT_GINGA_SPECIAL_OAM_MOSAIC_SYNC	( 16 )	// ãƒ¢ã‚¶ã‚¤ã‚¯ã‚·ãƒ³ã‚¯æ•°
 
-#define ENCOUNT_GINGA_SPECIAL_FLASHOUT_SYNC	( 16 )		// ƒtƒ‰ƒbƒVƒ…ƒAƒEƒgƒVƒ“ƒN
-#define ENCOUNT_GINGA_SPECIAL_ALPHA_S	( 0 )	// ƒ¿ŠJn
-#define ENCOUNT_GINGA_SPECIAL_ALPHA_E	( 16 )	// ƒ¿I—¹	(0`16)
+#define ENCOUNT_GINGA_SPECIAL_FLASHOUT_SYNC	( 16 )		// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã‚·ãƒ³ã‚¯
+#define ENCOUNT_GINGA_SPECIAL_ALPHA_S	( 0 )	// Î±é–‹å§‹
+#define ENCOUNT_GINGA_SPECIAL_ALPHA_E	( 16 )	// Î±çµ‚äº†	(0ã€œ16)
 
-#define ENCOUNT_GINGA_SPECIAL_MOSAIC_S	( 0 )	// ƒ‚ƒUƒCƒNŠJn
-#define ENCOUNT_GINGA_SPECIAL_MOSAIC_E	( 14 )	// ƒ‚ƒUƒCƒNI—¹(0`15)
+#define ENCOUNT_GINGA_SPECIAL_MOSAIC_S	( 0 )	// ãƒ¢ã‚¶ã‚¤ã‚¯é–‹å§‹
+#define ENCOUNT_GINGA_SPECIAL_MOSAIC_E	( 14 )	// ãƒ¢ã‚¶ã‚¤ã‚¯çµ‚äº†(0ã€œ15)
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	‹â‰Í’c’Êí
+//	éŠ€æ²³å›£é€šå¸¸
 //=====================================
 typedef struct {
 	ENC_CLACT_SYS	clact_sys;
@@ -3335,7 +3335,7 @@ typedef struct {
 } ENCOUNT_GINGA_NORMAL;
 
 //-------------------------------------
-//	‹â‰Í’c@Š²•”ƒNƒ‰ƒX
+//	éŠ€æ²³å›£ã€€å¹¹éƒ¨ã‚¯ãƒ©ã‚¹
 //=====================================
 typedef struct {
 	GF_BGL_BMPWIN* p_bmp;
@@ -3355,7 +3355,7 @@ typedef struct {
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹â‰Í’c@’Êí
+ *	@brief	éŠ€æ²³å›£ã€€é€šå¸¸
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Ginga_Normal(TCB_PTR tcb, void* work)
@@ -3373,10 +3373,10 @@ void EncountEffect_Ginga_Normal(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_GINGA_NORMAL) );
 		task_w = eew->work;
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_GINGA_NORMAL_CELL_NUM, ENCOUNT_GINGA_NORMAL_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -3388,7 +3388,7 @@ void EncountEffect_Ginga_Normal(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_GRASS_LOW_CELL_CONT_ID
 				);
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		for( i=0; i<ENCOUNT_GINGA_NORMAL_CELL_NUM; i++ ){
 			task_w->clact[i] = ENC_CLACT_Add( 
 					&task_w->clact_sys, &task_w->clact_res,
@@ -3464,14 +3464,14 @@ void EncountEffect_Ginga_Normal(TCB_PTR tcb, void* work)
 		break;
 
 	case ENCOUNT_GINGA_NORMAL_OAM_WAIT:
-		// ‘S“®‚³Š®—¹ƒ`ƒFƒbƒN
+		// å…¨å‹•ã•å®Œäº†ãƒã‚§ãƒƒã‚¯
 		if( task_w->oam_move_flg[ ENCOUNT_GINGA_NORMAL_CELL_NUM - 1 ] == FALSE ){
 			eew->seq ++;
 		}
 		break;
 
 	case ENCOUNT_GINGA_NORMAL_FLASHOUT:
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNOFF
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯OFF
 		FLDHBLANK_SYS_Stop( eew->fsw->fldmap->hblanksys );
 
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FLASHOUT_FOREWAY, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, ENCOUNT_GINGA_NORMAL_FLASHOUT_SYNC, 1, HEAPID_FIELD );
@@ -3487,13 +3487,13 @@ void EncountEffect_Ginga_Normal(TCB_PTR tcb, void* work)
 	case ENCOUNT_GINGA_NORMAL_END:
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 		FLDHBLANK_SYS_Start( eew->fsw->fldmap->hblanksys );
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
-		// OAM”jŠü
+		// OAMç ´æ£„
 		for( i=0; i<ENCOUNT_GINGA_NORMAL_CELL_NUM; i++ ){
 			CLACT_Delete( task_w->clact[i] );
 		}
@@ -3505,7 +3505,7 @@ void EncountEffect_Ginga_Normal(TCB_PTR tcb, void* work)
 	}
 
 
-	// ƒIƒuƒWƒFƒNƒg“®‚³
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ã•
 	for( i=0; i<ENCOUNT_GINGA_NORMAL_CELL_NUM; i++ ){
 		
 		if( task_w->oam_move_flg[i] == TRUE ){
@@ -3537,7 +3537,7 @@ void EncountEffect_Ginga_Normal(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹â‰Í’c@Š²•”ƒNƒ‰ƒX
+ *	@brief	éŠ€æ²³å›£ã€€å¹¹éƒ¨ã‚¯ãƒ©ã‚¹
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Ginga_Special(TCB_PTR tcb, void* work)
@@ -3552,10 +3552,10 @@ void EncountEffect_Ginga_Special(TCB_PTR tcb, void* work)
 		memset( eew->work, 0, sizeof(ENCOUNT_GINGA_SPECIAL) );
 		task_w = eew->work;
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_GINGA_SPECIAL_CELL_NUM, ENCOUNT_GINGA_SPECIAL_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -3567,7 +3567,7 @@ void EncountEffect_Ginga_Special(TCB_PTR tcb, void* work)
 				ENCOUNT_TR_GRASS_LOW_CELL_CONT_ID
 				);
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		task_w->clact = ENC_CLACT_Add( 
 				&task_w->clact_sys, &task_w->clact_res,
 				ENCOUNT_GINGA_SPECIAL_MAT_X, 
@@ -3577,14 +3577,14 @@ void EncountEffect_Ginga_Special(TCB_PTR tcb, void* work)
 		CLACT_BGPriorityChg( task_w->clact, 1 );
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-		// ƒtƒ‰ƒbƒVƒ…ƒAƒEƒgƒIƒuƒWƒFì¬
+		// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 		task_w->p_flashout = ENC_BMP_FlashOutAlloc( HEAPID_FIELD );
 
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 		task_w->p_bmp = GF_BGL_BmpWinAllocGet( HEAPID_FIELD, 1 );
 		GF_BGL_BmpWinAdd( eew->fsw->bgl, task_w->p_bmp, GF_BGL_FRAME3_M, 0, 0, 32, 32, 0, 0 );
 
-		// ƒJƒ‰[ƒpƒŒƒbƒg“]‘—
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		{
 			GXRgb color = 0;
 			GF_BGL_PaletteSet( GF_BGL_FRAME3_M, &color, sizeof(short), 2*ENCOUNT_GINGA_SPECIAL_BMP_COL );
@@ -3651,23 +3651,23 @@ void EncountEffect_Ginga_Special(TCB_PTR tcb, void* work)
 	case ENCOUNT_GINGA_SPECIAL_END:
 		WIPE_SetBrightnessFadeOut( WIPE_FADE_BLACK );
 		
-		// ƒtƒ‰ƒbƒVƒ…ƒAƒEƒgƒIƒuƒWƒF”jŠü
+		// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
 		ENC_BMP_FlashOutDelete( task_w->p_flashout );
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
-		// OAM”jŠü
+		// OAMç ´æ£„
 		CLACT_Delete( task_w->clact );
 		ENC_CLACT_ResDeleteEasy( &task_w->clact_sys, &task_w->clact_res );
 		ENC_CLACT_Delete( &task_w->clact_sys );
 
-		// ƒrƒbƒgƒ}ƒbƒv”jŠü
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç ´æ£„
 		GF_BGL_BmpWinOff( task_w->p_bmp );
 		GF_BGL_BmpWinDel( task_w->p_bmp );
 		GF_BGL_BmpWinFree( task_w->p_bmp, 1 );
 
-		// ƒXƒNƒŠ[ƒ“ƒNƒŠ[ƒ“
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªãƒ¼ãƒ³
 		GF_BGL_ClearCharSet( GF_BGL_FRAME3_M, 32, 0, HEAPID_FIELD );
 		GF_BGL_ScrClear( eew->fsw->bgl, GF_BGL_FRAME3_M );
 		
@@ -3687,19 +3687,19 @@ void EncountEffect_Ginga_Special(TCB_PTR tcb, void* work)
 //-----------------------------------------------------------------------------
 /**
  * 
- *		“`àƒ|ƒPƒ‚ƒ“@ƒGƒ“ƒJƒEƒ“ƒg [ LEGEND ]
+ *		ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã€€ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ [ LEGEND ]
  * 
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	“`àƒ|ƒPƒ‚ƒ“
+//	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_LEGEND_NORMAL_START,
 	ENCOUNT_LEGEND_NORMAL_FLASH_INI,
@@ -3711,143 +3711,143 @@ enum{
 	ENCOUNT_LEGEND_NORMAL_END,
 };
 
-// ƒJƒƒ‰ƒe[ƒuƒ‹
+// ã‚«ãƒ¡ãƒ©ãƒ†ãƒ¼ãƒ–ãƒ«
 typedef struct{
-	u32 dist;		// ‹——£
+	u32 dist;		// è·é›¢
 	u16 angle_x;	// Angle
 	u16 angle_y;
-	u16 purse;		// ƒp[ƒX
+	u16 purse;		// ãƒ‘ãƒ¼ã‚¹
 	u16 wait;
 } ENCOUNT_LEGEND_CAMERA_TBL;
 
 
-// ƒJƒƒ‰ƒe[ƒuƒ‹	(G‚Á‚Ä‚æ‚¢)
-#define ENCOUNT_LEGEND_CAMERA_TBL_NUM	( 16 )	// ‚±‚±‚ğ‘‚â‚µA‰º‚Ìƒe[ƒuƒ‹‚Ì”‚ğ‡‚í‚¹‚é‚ÆAƒe[ƒuƒ‹‚Ì”‚à•ÏX‚Å‚«‚Ü‚·B
+// ã‚«ãƒ¡ãƒ©ãƒ†ãƒ¼ãƒ–ãƒ«	(è§¦ã£ã¦ã‚ˆã„)
+#define ENCOUNT_LEGEND_CAMERA_TBL_NUM	( 16 )	// ã“ã“ã‚’å¢—ã‚„ã—ã€ä¸‹ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã®æ•°ã‚’åˆã‚ã›ã‚‹ã¨ã€ãƒ†ãƒ¼ãƒ–ãƒ«ã®æ•°ã‚‚å¤‰æ›´ã§ãã¾ã™ã€‚
 static const ENCOUNT_LEGEND_CAMERA_TBL EncLegendNormalCamera[ ENCOUNT_LEGEND_CAMERA_TBL_NUM ] = {
 	{	// 0
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xD602,			// AngleX
 		0x0,			// AngleY
-		0x5C1,			// ƒp[ƒX
-		4,				// ƒEƒGƒCƒg
+		0x5C1,			// ãƒ‘ãƒ¼ã‚¹
+		4,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 1
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xcf02,			// AngleX
 		0xff00,			// AngleY
-		0x601,			// ƒp[ƒX
-		4,				// ƒEƒGƒCƒg
+		0x601,			// ãƒ‘ãƒ¼ã‚¹
+		4,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 2
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xe602,			// AngleX
 		0x1000,			// AngleY
-		0x691,			// ƒp[ƒX
-		4,				// ƒEƒGƒCƒg
+		0x691,			// ãƒ‘ãƒ¼ã‚¹
+		4,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 3
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xD602,			// AngleX
 		0xa00,			// AngleY
-		0x711,			// ƒp[ƒX
-		3,				// ƒEƒGƒCƒg
+		0x711,			// ãƒ‘ãƒ¼ã‚¹
+		3,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 4
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xe102,			// AngleX
 		0xf000,			// AngleY
-		0x780,			// ƒp[ƒX
-		3,				// ƒEƒGƒCƒg
+		0x780,			// ãƒ‘ãƒ¼ã‚¹
+		3,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 5
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xc602,			// AngleX
 		0x0000,			// AngleY
-		0x751,			// ƒp[ƒX
-		3,				// ƒEƒGƒCƒg
+		0x751,			// ãƒ‘ãƒ¼ã‚¹
+		3,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 6
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xe002,			// AngleX
 		0xf000,			// AngleY
-		0x800,			// ƒp[ƒX
-		3,				// ƒEƒGƒCƒg
+		0x800,			// ãƒ‘ãƒ¼ã‚¹
+		3,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 7
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xD602,			// AngleX
 		0,				// AngleY
-		0x802,			// ƒp[ƒX
-		3,				// ƒEƒGƒCƒg
+		0x802,			// ãƒ‘ãƒ¼ã‚¹
+		3,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 8
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xD002,			// AngleX
 		0x1000,			// AngleY
-		0x800,			// ƒp[ƒX
-		3,				// ƒEƒGƒCƒg
+		0x800,			// ãƒ‘ãƒ¼ã‚¹
+		3,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 9
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xD902,			// AngleX
 		0xf500,			// AngleY
-		0x751,			// ƒp[ƒX
-		3,				// ƒEƒGƒCƒg
+		0x751,			// ãƒ‘ãƒ¼ã‚¹
+		3,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 10
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xD002,			// AngleX
 		0xa00,			// AngleY
-		0x4C1,			// ƒp[ƒX
-		2,				// ƒEƒGƒCƒg
+		0x4C1,			// ãƒ‘ãƒ¼ã‚¹
+		2,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 11
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xe002,			// AngleX
 		0xf000,			// AngleY
-		0x3C1,			// ƒp[ƒX
-		2,				// ƒEƒGƒCƒg
+		0x3C1,			// ãƒ‘ãƒ¼ã‚¹
+		2,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 12
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xD002,			// AngleX
 		0xf000,			// AngleY
-		0x650,			// ƒp[ƒX
-		1,				// ƒEƒGƒCƒg
+		0x650,			// ãƒ‘ãƒ¼ã‚¹
+		1,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 13
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xe002,			// AngleX
 		0xa000,			// AngleY
-		0x241,			// ƒp[ƒX
-		1,				// ƒEƒGƒCƒg
+		0x241,			// ãƒ‘ãƒ¼ã‚¹
+		1,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 14
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xe1a2,			// AngleX
 		0x500,			// AngleY
-		0x500,			// ƒp[ƒX
-		1,				// ƒEƒGƒCƒg
+		0x500,			// ãƒ‘ãƒ¼ã‚¹
+		1,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{	// 15
-		0x29AEC1,		// ‹——£
+		0x29AEC1,		// è·é›¢
 		0xD602,			// AngleX
 		0,				// AngleY
-		0x241,			// ƒp[ƒX
-		1,				// ƒEƒGƒCƒg
+		0x241,			// ãƒ‘ãƒ¼ã‚¹
+		1,				// ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 };
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_LEGEND_NORMAL_FADE_SYNC		( 10 )	// ƒtƒF[ƒhƒVƒ“ƒN
-#define ENCOUNT_LEGEND_NORMAL_MOTIONBL_EVA	( 3 )	// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ŒW”@V‚µ‚­ƒuƒŒƒ“ƒh‚³‚ê‚éŠG
-#define ENCOUNT_LEGEND_NORMAL_MOTIONBL_EAB	( 15 )	// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ŒW”@‚·‚Å‚Éƒoƒbƒtƒ@‚³‚ê‚Ä‚¢‚éŠG
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_LEGEND_NORMAL_FADE_SYNC		( 10 )	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ãƒ³ã‚¯
+#define ENCOUNT_LEGEND_NORMAL_MOTIONBL_EVA	( 3 )	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ä¿‚æ•°ã€€æ–°ã—ããƒ–ãƒ¬ãƒ³ãƒ‰ã•ã‚Œã‚‹çµµ
+#define ENCOUNT_LEGEND_NORMAL_MOTIONBL_EAB	( 15 )	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ä¿‚æ•°ã€€ã™ã§ã«ãƒãƒƒãƒ•ã‚¡ã•ã‚Œã¦ã„ã‚‹çµµ
 
 
 //-------------------------------------
-//	ƒpƒbƒP[ƒWƒ|ƒPƒ‚ƒ“
+//	ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒã‚±ãƒ¢ãƒ³
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_LEGEND_PACKAGE_START,
 	ENCOUNT_LEGEND_PACKAGE_FLASH_INI,
@@ -3861,45 +3861,45 @@ enum{
 	ENCOUNT_LEGEND_PACKAGE_END,
 };
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_LEGEND_PACKAGE_PURSE_SYNC	( 40 )		// ƒp[ƒXƒVƒ“ƒN
-#define ENCOUNT_LEGEND_PACKAGE_CAMERA_MOVE_WAIT		( 5 )	// ƒJƒƒ‰‘Ò‚¿ƒVƒ“ƒN
-#define ENCOUNT_LEGEND_PACKAGE_CAMERA_SYNC	( 8 )	// ƒJƒƒ‰ƒVƒ“ƒN
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_LEGEND_PACKAGE_PURSE_SYNC	( 40 )		// ãƒ‘ãƒ¼ã‚¹ã‚·ãƒ³ã‚¯
+#define ENCOUNT_LEGEND_PACKAGE_CAMERA_MOVE_WAIT		( 5 )	// ã‚«ãƒ¡ãƒ©å¾…ã¡ã‚·ãƒ³ã‚¯
+#define ENCOUNT_LEGEND_PACKAGE_CAMERA_SYNC	( 8 )	// ã‚«ãƒ¡ãƒ©ã‚·ãƒ³ã‚¯
 
-#define ENCOUNT_LEGEND_PACKAGE_FADE_SYNC	( 60 )	// ƒtƒF[ƒhƒVƒ“ƒN
+#define ENCOUNT_LEGEND_PACKAGE_FADE_SYNC	( 60 )	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ãƒ³ã‚¯
 
-#define ENCOUNT_LEGEND_PACKAGE_PURSE_MOVE	( 0x100 )	// ƒp[ƒX•Ï“®’l 0b0
+#define ENCOUNT_LEGEND_PACKAGE_PURSE_MOVE	( 0x100 )	// ãƒ‘ãƒ¼ã‚¹å¤‰å‹•å€¤ 0b0
 
-#define ENCOUNT_LEGEND_PACKAGE_CAMERA_MOVE	( -FX32_CONST( 2350 ) )	// ƒJƒƒ‰“®ì’l 200
+#define ENCOUNT_LEGEND_PACKAGE_CAMERA_MOVE	( -FX32_CONST( 2350 ) )	// ã‚«ãƒ¡ãƒ©å‹•ä½œå€¤ 200
 #define ENCOUNT_LEGEND_PACKAGE_CAMERA_SS	( FX32_CONST( 0.5 ) ) //0.0f
 
-#define ENCOUNT_LEGEND_PACKAGE_MOTIONBL_EVA	( 5 )	// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ŒW”@V‚µ‚­ƒuƒŒƒ“ƒh‚³‚ê‚éŠG
-#define ENCOUNT_LEGEND_PACKAGE_MOTIONBL_EAB	( 13 )	// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ŒW”@‚·‚Å‚Éƒoƒbƒtƒ@‚³‚ê‚Ä‚¢‚éŠG
+#define ENCOUNT_LEGEND_PACKAGE_MOTIONBL_EVA	( 5 )	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ä¿‚æ•°ã€€æ–°ã—ããƒ–ãƒ¬ãƒ³ãƒ‰ã•ã‚Œã‚‹çµµ
+#define ENCOUNT_LEGEND_PACKAGE_MOTIONBL_EAB	( 13 )	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ä¿‚æ•°ã€€ã™ã§ã«ãƒãƒƒãƒ•ã‚¡ã•ã‚Œã¦ã„ã‚‹çµµ
 
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	“`àƒ|ƒPƒ‚ƒ“
+//	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³
 //=====================================
 typedef struct {
 	FLD_MOTION_BL_DATA_PTR	motion;
-	GF_CAMERA_PTR	camera;		// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;		// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	u32 camera_count;
 	s32 wait;
 } ENCOUNT_LEGEND_NORMAL;
 
 //-------------------------------------
-//	PACKAGEƒ|ƒPƒ‚ƒ“
+//	PACKAGEãƒã‚±ãƒ¢ãƒ³
 //=====================================
 typedef struct {
 	FLD_MOTION_BL_DATA_PTR	motion;
-	GF_CAMERA_PTR	camera;		// ƒJƒƒ‰ƒf[ƒ^
+	GF_CAMERA_PTR	camera;		// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 	ENC_MOVE_WORK purse;
 	ENC_ADDMOVE_WORK_FX camra_zoom;
 	s32 wait;
@@ -3907,12 +3907,12 @@ typedef struct {
 
 
 
-// ƒJƒƒ‰ƒf[ƒ^İ’è
+// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿è¨­å®š
 static void ENC_LegendCameraSet( FIELDSYS_WORK* fsys, const ENCOUNT_LEGEND_CAMERA_TBL* cp_data )
 {
 	CAMERA_ANGLE angle;
 	
-	// ƒJƒƒ‰ƒpƒ‰ƒ[ƒ^İ’è
+	// ã‚«ãƒ¡ãƒ©ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 	GFC_SetCameraPerspWay( cp_data->purse, fsys->camera_ptr );	
 	GFC_SetCameraDistance( cp_data->dist, fsys->camera_ptr );
 	angle.x = cp_data->angle_x;
@@ -3924,7 +3924,7 @@ static void ENC_LegendCameraSet( FIELDSYS_WORK* fsys, const ENCOUNT_LEGEND_CAMER
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“`àƒ|ƒPƒ‚ƒ“@ƒGƒ“ƒJƒEƒ“ƒg
+ *	@brief	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã€€ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Legend_Normal(TCB_PTR tcb, void* work)
@@ -3933,7 +3933,7 @@ void EncountEffect_Legend_Normal(TCB_PTR tcb, void* work)
 	ENCOUNT_LEGEND_NORMAL* task_w = eew->work;
 
 	switch(eew->seq){
-	case ENCOUNT_LEGEND_NORMAL_START:	// ‰Šú‰»ˆ—
+	case ENCOUNT_LEGEND_NORMAL_START:	// åˆæœŸåŒ–å‡¦ç†
 		eew->work = sys_AllocMemory(HEAPID_FIELD, sizeof(ENCOUNT_LEGEND_NORMAL));
 		memset( eew->work, 0, sizeof(ENCOUNT_LEGEND_NORMAL) );
 		
@@ -3956,7 +3956,7 @@ void EncountEffect_Legend_Normal(TCB_PTR tcb, void* work)
 		}
 		break;
 
-	case ENCOUNT_LEGEND_NORMAL_MOTIONBL_S:	// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[‚ğg—p‚·‚é€”õ
+	case ENCOUNT_LEGEND_NORMAL_MOTIONBL_S:	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹æº–å‚™
 		task_w->motion = FLDMotionBl_Init(ENCOUNT_LEGEND_NORMAL_MOTIONBL_EVA, ENCOUNT_LEGEND_NORMAL_MOTIONBL_EAB);
 		task_w->camera_count = 0;
 		task_w->wait = EncLegendNormalCamera[ task_w->camera_count ].wait;
@@ -3967,7 +3967,7 @@ void EncountEffect_Legend_Normal(TCB_PTR tcb, void* work)
 		task_w->wait --;
 		if( task_w->wait < 0 ){
 
-			// ƒJƒƒ‰İ’è
+			// ã‚«ãƒ¡ãƒ©è¨­å®š
 			ENC_LegendCameraSet( eew->fsw, &EncLegendNormalCamera[ task_w->camera_count ] );	
 
 			task_w->camera_count++;
@@ -3993,17 +3993,17 @@ void EncountEffect_Legend_Normal(TCB_PTR tcb, void* work)
 		break;
 
 	
-	case ENCOUNT_LEGEND_NORMAL_END:		// Œãn––
+	case ENCOUNT_LEGEND_NORMAL_END:		// å¾Œå§‹æœ«
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_WHITE );
 
-		// Œ³‚É–ß‚·
+		// å…ƒã«æˆ»ã™
 		FLDMotionBl_Delete(&task_w->motion);
 
-		// ƒuƒ‰ƒCƒgƒlƒX‰ğœ
+		// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è§£é™¤
 		G2_BlendNone();
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 		ENC_End( eew, tcb );
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_WHITE );
@@ -4014,7 +4014,7 @@ void EncountEffect_Legend_Normal(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Êß¯¹°¼Şƒ|ƒPƒ‚ƒ“@ƒGƒ“ƒJƒEƒ“ƒg
+ *	@brief	ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒã‚±ãƒ¢ãƒ³ã€€ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_Legend_Package(TCB_PTR tcb, void* work)
@@ -4024,7 +4024,7 @@ void EncountEffect_Legend_Package(TCB_PTR tcb, void* work)
 	BOOL result;
 
 	switch(eew->seq){
-	case ENCOUNT_LEGEND_PACKAGE_START:	// ‰Šú‰»ˆ—
+	case ENCOUNT_LEGEND_PACKAGE_START:	// åˆæœŸåŒ–å‡¦ç†
 		eew->work = sys_AllocMemory(HEAPID_FIELD, sizeof(ENCOUNT_LEGEND_PACKAGE));
 		memset( eew->work, 0, sizeof(ENCOUNT_LEGEND_PACKAGE) );
 		
@@ -4047,10 +4047,10 @@ void EncountEffect_Legend_Package(TCB_PTR tcb, void* work)
 		}
 		break;
 
-	case ENCOUNT_LEGEND_PACKAGE_MOTIONBL_S:	// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[‚ğg—p‚·‚é€”õ
+	case ENCOUNT_LEGEND_PACKAGE_MOTIONBL_S:	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹æº–å‚™
 		task_w->motion = FLDMotionBl_Init(ENCOUNT_LEGEND_PACKAGE_MOTIONBL_EVA, ENCOUNT_LEGEND_PACKAGE_MOTIONBL_EAB);
 
-		// ƒp[ƒXİ’è
+		// ãƒ‘ãƒ¼ã‚¹è¨­å®š
 		{
 			u16 pers = GFC_GetCameraPerspWay( eew->fsw->camera_ptr );
 			ENC_MoveReq( &task_w->purse, pers, pers + ENCOUNT_LEGEND_PACKAGE_PURSE_MOVE, ENCOUNT_LEGEND_PACKAGE_PURSE_SYNC );
@@ -4104,17 +4104,17 @@ void EncountEffect_Legend_Package(TCB_PTR tcb, void* work)
 		break;
 
 	
-	case ENCOUNT_LEGEND_PACKAGE_END:		// Œãn––
+	case ENCOUNT_LEGEND_PACKAGE_END:		// å¾Œå§‹æœ«
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_WHITE );
 
-		// Œ³‚É–ß‚·
+		// å…ƒã«æˆ»ã™
 		FLDMotionBl_Delete(&task_w->motion);
 
-		// ƒuƒ‰ƒCƒgƒlƒX‰ğœ
+		// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è§£é™¤
 		G2_BlendNone();
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 		ENC_End( eew, tcb );
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_WHITE );
@@ -4125,19 +4125,19 @@ void EncountEffect_Legend_Package(TCB_PTR tcb, void* work)
 //-----------------------------------------------------------------------------
 /**
  * 
- *			“ÁêƒgƒŒ[ƒi[@ƒGƒ“ƒJƒEƒ“ƒg[ SP_TR ]
+ *			ç‰¹æ®Šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ[ SP_TR ]
  * 
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒWƒ€ƒŠ[ƒ_[
+//	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_SPTR_GYM_START,
 	ENCOUNT_SPTR_GYM_FLASH_INI,
@@ -4156,19 +4156,19 @@ enum{
 	ENCOUNT_SPTR_GYM_WIPEWAIT,
 	ENCOUNT_SPTR_GYM_END,
 };
-// OAMƒf[ƒ^
-// ƒAƒNƒ^[ƒf[ƒ^”
-#define ENCOUNT_SPTR_GYM_CELL_NUM		( 8 )	// ƒ[ƒN”
-#define ENCOUNT_SPTR_GYM_CELL_RES_NUM	( 3 )	// ƒŠƒ\[ƒX”
+// OAMãƒ‡ãƒ¼ã‚¿
+// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
+#define ENCOUNT_SPTR_GYM_CELL_NUM		( 8 )	// ãƒ¯ãƒ¼ã‚¯æ•°
+#define ENCOUNT_SPTR_GYM_CELL_RES_NUM	( 3 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_SPTR_GYM_CELL_CONT_ID	( 600000 )
-#define ENCOUNT_SPTR_GYM_LEADER_SCALE_DEF	( FX32_CONST( 1.0f ) )	// ƒŠ[ƒ_[‚ÌŠî–{‚ÌŠg‘å’l
-#define ENCOUNT_SPTR_GYM_LEADER_DRAW_BOTTOM	( 30 )	// ‰º‚Í‚±‚ÌƒTƒCƒY‚Ü‚Å•\¦‚·‚é
+#define ENCOUNT_SPTR_GYM_LEADER_SCALE_DEF	( FX32_CONST( 1.0f ) )	// ãƒªãƒ¼ãƒ€ãƒ¼ã®åŸºæœ¬ã®æ‹¡å¤§å€¤
+#define ENCOUNT_SPTR_GYM_LEADER_DRAW_BOTTOM	( 30 )	// ä¸‹ã¯ã“ã®ã‚µã‚¤ã‚ºã¾ã§è¡¨ç¤ºã™ã‚‹
 #define ENCOUNT_SPTR_GYM_LEADER_COLOR_FADE		( GX_RGB( 0,0,0 ) )
 #define ENCOUNT_SPTR_GYM_LEADER_COLOR_FADE_EVY	( 14 )
-#define ENCOUNT_SPTR_GYM_LEADER_CHAR_OFS_CX	(0)	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‘‚«o‚·‚ÌAXƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg’l
+#define ENCOUNT_SPTR_GYM_LEADER_CHAR_OFS_CX	(0)	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã™æ™‚ã®ã€Xã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 
-#define ENCOUNT_SPTR_GYM_ZIGUZAGU_IN_WND ( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_BG3|GX_WND_PLANEMASK_OBJ)				// ƒWƒOƒUƒO“®‚³ƒEƒBƒ“ƒhƒE’†
-#define ENCOUNT_SPTR_GYM_ZIGUZAGU_OUT_WND ( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_OBJ)				// ƒWƒOƒUƒO“®‚³ƒEƒBƒ“ƒhƒEŠO
+#define ENCOUNT_SPTR_GYM_ZIGUZAGU_IN_WND ( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_BG3|GX_WND_PLANEMASK_OBJ)				// ã‚¸ã‚°ã‚¶ã‚°å‹•ã•ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä¸­
+#define ENCOUNT_SPTR_GYM_ZIGUZAGU_OUT_WND ( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_OBJ)				// ã‚¸ã‚°ã‚¶ã‚°å‹•ã•ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤–
 enum{	//VSOAM
 	ENCOUNT_SPTR_GYM_VSOAM_ANM0,
 	ENCOUNT_SPTR_GYM_VSOAM_ANM1,
@@ -4176,41 +4176,41 @@ enum{	//VSOAM
 	ENCOUNT_SPTR_GYM_VSOAM,
 	ENCOUNT_SPTR_GYM_VSOAM_NUM,
 };
-#define ENCOUNT_SPTR_GYM_TRNAME_X		( 0 )	// ƒgƒŒ[ƒi[–¼XƒLƒƒƒ‰À•W
-#define ENCOUNT_SPTR_GYM_TRNAME_Y		( 10 )	// ƒgƒŒ[ƒi[–¼YƒLƒƒƒ‰À•W
-#define ENCOUNT_SPTR_GYM_TRNAME_SIZX	( 16 )	// ƒgƒŒ[ƒi[–¼BMPXƒLƒƒƒ‰ƒTƒCƒY
-#define ENCOUNT_SPTR_GYM_TRNAME_SIZY	( 2 )	// ƒgƒŒ[ƒi[–¼BMPYƒLƒƒƒ‰ƒTƒCƒY
+#define ENCOUNT_SPTR_GYM_TRNAME_X		( 0 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åXã‚­ãƒ£ãƒ©åº§æ¨™
+#define ENCOUNT_SPTR_GYM_TRNAME_Y		( 10 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åYã‚­ãƒ£ãƒ©åº§æ¨™
+#define ENCOUNT_SPTR_GYM_TRNAME_SIZX	( 16 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åBMPXã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+#define ENCOUNT_SPTR_GYM_TRNAME_SIZY	( 2 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åBMPYã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
 #define ENCOUNT_SPTR_GYM_TRNAME_CGX		( 1 )
 #define ENCOUNT_SPTR_GYM_TRNAME_PAL		( 2 )
 #define ENCOUNT_SPTR_GYM_TRNAME_COL		( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_SPTR_GYM_OAM_START_X	( 272*FX32_ONE )	// OAM“®‚³ŠJnX
-#define ENCOUNT_SPTR_GYM_OAM_X_SS		( -64*FX32_ONE )	// ‰Šú‘¬“x
-#define ENCOUNT_SPTR_GYM_OAM_START_Y	( 66*FX32_ONE )		// OAMYÀ•W
-#define ENCOUNT_SPTR_GYM_OAM_MOVE_SYNC	( 4 )				// OAM“®‚³ƒVƒ“ƒN
-#define ENCOUNT_SPTR_GYM_TRNAME_OFS_X	( -92 )				// OAM‚ÌˆÊ’u‚©‚çŒ©‚ÄTRNAME‚ğ‚Ç‚ÌˆÊ’u‚É•\¦‚·‚é‚©
-#define ENCOUNT_SPTR_GYM_ZIGUZAGU_DOT	( 8 )				// ƒWƒOƒUƒO‹æØ‚èYƒhƒbƒg”
-#define ENCOUNT_SPTR_GYM_ZIGUZAGU_WIDTH	( 16 )				// ƒWƒOƒUƒO•
-#define ENCOUNT_SPTR_GYM_ZIGUZAGU_SYNC	( 6 )				// ƒWƒOƒUƒO“®‚³ƒVƒ“ƒN
-#define ENCOUNT_SPTR_GYM_BG_CY			( 68 )	// BG‚Ì’†S
-#define ENCOUNT_SPTR_GYM_BG_AUTOMOVE_X	( 30 )	// AUTO“®‚³ƒXƒs[ƒh
-#define ENCOUNT_SPTR_GYM_BG_AFTER_WAIT	( 10 )				// BG“®‚³ŒãƒEƒGƒCƒg
-#define	ENCOUNT_SPTR_GYM_FLASHOUT_SYNC	( 3 )				// ƒtƒ‰ƒbƒVƒ…ƒAƒEƒgƒVƒ“ƒN”
-#define	ENCOUNT_SPTR_GYM_FLASHIN_SYNC	( 3 )				// ƒtƒ‰ƒbƒVƒ…ƒCƒ“ƒVƒ“ƒN”
-#define ENCOUNT_SPTR_GYM_FLASH_AFTER_WAIT	( 26 )			// ƒtƒ‰ƒbƒVƒ…Œã‚ÌƒEƒGƒCƒg
-#define ENCOUNT_SPTR_GYM_SCALE_S			( FX32_CONST(1.0f) )	// Šg‘åŠJn
-#define ENCOUNT_SPTR_GYM_SCALE_E			( FX32_CONST(1.0f) )	// Šg‘åŠJn
-#define ENCOUNT_SPTR_GYM_FADEOUT_SYNC		( 15 )			// ƒtƒF[ƒhƒAƒEƒgƒVƒ“ƒN
-#define ENCOUNT_SPTR_GYM_VSMARK_X		( FX32_CONST( 72 ) )	// VSMARK‚ÌˆÊ’u
-#define ENCOUNT_SPTR_GYM_VSMARK_Y		( FX32_CONST( 74 ) )	// VSMARK‚ÌˆÊ’u
-#define ENCOUNT_SPTR_GYM_VSANMSYNC		( 6 )	// ‚P‚Â‚ÌŠgkƒAƒjƒ‚ÌƒVƒ“ƒN”
-#define ENCOUNT_SPTR_GYM_VSANMTIMING	( 3 )	//	Ÿ‚ğo‚·ƒ^ƒCƒ~ƒ“ƒO
-#define ENCOUNT_SPTR_GYM_3DAREA_BRIGHTNESS	( -14 )// 3D–Ê‚ğˆÃ‚­‚·‚é’l
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_SPTR_GYM_OAM_START_X	( 272*FX32_ONE )	// OAMå‹•ã•é–‹å§‹X
+#define ENCOUNT_SPTR_GYM_OAM_X_SS		( -64*FX32_ONE )	// åˆæœŸé€Ÿåº¦
+#define ENCOUNT_SPTR_GYM_OAM_START_Y	( 66*FX32_ONE )		// OAMYåº§æ¨™
+#define ENCOUNT_SPTR_GYM_OAM_MOVE_SYNC	( 4 )				// OAMå‹•ã•ã‚·ãƒ³ã‚¯
+#define ENCOUNT_SPTR_GYM_TRNAME_OFS_X	( -92 )				// OAMã®ä½ç½®ã‹ã‚‰è¦‹ã¦TRNAMEã‚’ã©ã®ä½ç½®ã«è¡¨ç¤ºã™ã‚‹ã‹
+#define ENCOUNT_SPTR_GYM_ZIGUZAGU_DOT	( 8 )				// ã‚¸ã‚°ã‚¶ã‚°åŒºåˆ‡ã‚ŠYãƒ‰ãƒƒãƒˆæ•°
+#define ENCOUNT_SPTR_GYM_ZIGUZAGU_WIDTH	( 16 )				// ã‚¸ã‚°ã‚¶ã‚°å¹…
+#define ENCOUNT_SPTR_GYM_ZIGUZAGU_SYNC	( 6 )				// ã‚¸ã‚°ã‚¶ã‚°å‹•ã•ã‚·ãƒ³ã‚¯
+#define ENCOUNT_SPTR_GYM_BG_CY			( 68 )	// BGã®ä¸­å¿ƒ
+#define ENCOUNT_SPTR_GYM_BG_AUTOMOVE_X	( 30 )	// AUTOå‹•ã•ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define ENCOUNT_SPTR_GYM_BG_AFTER_WAIT	( 10 )				// BGå‹•ã•å¾Œã‚¦ã‚¨ã‚¤ãƒˆ
+#define	ENCOUNT_SPTR_GYM_FLASHOUT_SYNC	( 3 )				// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã‚·ãƒ³ã‚¯æ•°
+#define	ENCOUNT_SPTR_GYM_FLASHIN_SYNC	( 3 )				// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¤ãƒ³ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SPTR_GYM_FLASH_AFTER_WAIT	( 26 )			// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å¾Œã®ã‚¦ã‚¨ã‚¤ãƒˆ
+#define ENCOUNT_SPTR_GYM_SCALE_S			( FX32_CONST(1.0f) )	// æ‹¡å¤§é–‹å§‹
+#define ENCOUNT_SPTR_GYM_SCALE_E			( FX32_CONST(1.0f) )	// æ‹¡å¤§é–‹å§‹
+#define ENCOUNT_SPTR_GYM_FADEOUT_SYNC		( 15 )			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚·ãƒ³ã‚¯
+#define ENCOUNT_SPTR_GYM_VSMARK_X		( FX32_CONST( 72 ) )	// VSMARKã®ä½ç½®
+#define ENCOUNT_SPTR_GYM_VSMARK_Y		( FX32_CONST( 74 ) )	// VSMARKã®ä½ç½®
+#define ENCOUNT_SPTR_GYM_VSANMSYNC		( 6 )	// ï¼‘ã¤ã®æ‹¡ç¸®ã‚¢ãƒ‹ãƒ¡ã®ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SPTR_GYM_VSANMTIMING	( 3 )	//	æ¬¡ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define ENCOUNT_SPTR_GYM_3DAREA_BRIGHTNESS	( -14 )// 3Dé¢ã‚’æš—ãã™ã‚‹å€¤
 
 
 	
-// ‚»‚ê‚¼‚ê‚Å•Ï‚í‚é‚Æ‚±‚ë
+// ãã‚Œãã‚Œã§å¤‰ã‚ã‚‹ã¨ã“ã‚
 typedef struct {
 	fx32 end_x;
 	u32	trno;
@@ -4225,13 +4225,13 @@ typedef struct {
 	u8	bg_nscr;
 	u8	pad;
 } ENCOUNT_SPTR_GYM_PARAM;
-// ‚»‚ê‚¼‚ê‚Ì’è”
+// ãã‚Œãã‚Œã®å®šæ•°
 static const ENCOUNT_SPTR_GYM_PARAM ENCOUNT_SPTR_GymDef[ 8 ] = {
-	{	// Šâ
-		214*FX32_ONE,			// “®‚³Š®—¹XÀ•W
+	{	// å²©
+		214*FX32_ONE,			// å‹•ã•å®Œäº†Xåº§æ¨™
 		LEADER1_01,
-		TRTYPE_LEADER1,			// ƒŠ[ƒ_[ƒ^ƒCƒv
-		ENC_OAM_TR_CHAR_CUT_CX,	// OAMƒLƒƒƒ‰‚ÌƒIƒtƒZƒbƒg
+		TRTYPE_LEADER1,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
+		ENC_OAM_TR_CHAR_CUT_CX,	// OAMã‚­ãƒ£ãƒ©ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		NARC_field_encounteffect_trpl_face01_NCLR,
 		NARC_field_encounteffect_trpl_face01_NCGR,
 		NARC_field_encounteffect_trpl_face01_NCER,
@@ -4241,11 +4241,11 @@ static const ENCOUNT_SPTR_GYM_PARAM ENCOUNT_SPTR_GymDef[ 8 ] = {
 		NARC_field_encounteffect_cutin_gym01_NSCR,
 		0,
 	},
-	{	// ‘
-		214*FX32_ONE,			// “®‚³Š®—¹XÀ•W
+	{	// è‰
+		214*FX32_ONE,			// å‹•ã•å®Œäº†Xåº§æ¨™
 		LEADER2_01,
-		TRTYPE_LEADER2,			// ƒŠ[ƒ_[ƒ^ƒCƒv
-		ENC_OAM_TR_CHAR_CUT_CX,	// OAMƒLƒƒƒ‰‚ÌƒIƒtƒZƒbƒg
+		TRTYPE_LEADER2,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
+		ENC_OAM_TR_CHAR_CUT_CX,	// OAMã‚­ãƒ£ãƒ©ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		NARC_field_encounteffect_trpl_face02_NCLR,
 		NARC_field_encounteffect_trpl_face02_NCGR,
 		NARC_field_encounteffect_trpl_face02_NCER,
@@ -4255,11 +4255,11 @@ static const ENCOUNT_SPTR_GYM_PARAM ENCOUNT_SPTR_GymDef[ 8 ] = {
 		NARC_field_encounteffect_cutin_gym02_NSCR,
 		0,
 	},
-	{	// …
-		214*FX32_ONE,			// “®‚³Š®—¹XÀ•W
+	{	// æ°´
+		214*FX32_ONE,			// å‹•ã•å®Œäº†Xåº§æ¨™
 		LEADER3_01,
-		TRTYPE_LEADER3,			// ƒŠ[ƒ_[ƒ^ƒCƒv
-		ENCOUNT_SPTR_GYM_LEADER_CHAR_OFS_CX,// OAMƒLƒƒƒ‰‚ÌƒIƒtƒZƒbƒg’l	Šî–{“I‚É…‚¾‚¯‚ªAENCOUNT_SPTR_GYM_LEADER_CHAR_OFS_CX
+		TRTYPE_LEADER3,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
+		ENCOUNT_SPTR_GYM_LEADER_CHAR_OFS_CX,// OAMã‚­ãƒ£ãƒ©ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤	åŸºæœ¬çš„ã«æ°´ã ã‘ãŒã€ENCOUNT_SPTR_GYM_LEADER_CHAR_OFS_CX
 		NARC_field_encounteffect_trpl_face03_NCLR,
 		NARC_field_encounteffect_trpl_face03_NCGR,
 		NARC_field_encounteffect_trpl_face03_NCER,
@@ -4269,11 +4269,11 @@ static const ENCOUNT_SPTR_GYM_PARAM ENCOUNT_SPTR_GymDef[ 8 ] = {
 		NARC_field_encounteffect_cutin_gym03_NSCR,
 		0,
 	},
-	{	// Ši“¬
-		214*FX32_ONE,			// “®‚³Š®—¹XÀ•W
+	{	// æ ¼é—˜
+		214*FX32_ONE,			// å‹•ã•å®Œäº†Xåº§æ¨™
 		LEADER4_01,
-		TRTYPE_LEADER4,			// ƒŠ[ƒ_[ƒ^ƒCƒv
-		ENC_OAM_TR_CHAR_CUT_CX,	// OAMƒLƒƒƒ‰‚ÌƒIƒtƒZƒbƒg
+		TRTYPE_LEADER4,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
+		ENC_OAM_TR_CHAR_CUT_CX,	// OAMã‚­ãƒ£ãƒ©ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		NARC_field_encounteffect_trpl_face04_NCLR,
 		NARC_field_encounteffect_trpl_face04_NCGR,
 		NARC_field_encounteffect_trpl_face04_NCER,
@@ -4283,11 +4283,11 @@ static const ENCOUNT_SPTR_GYM_PARAM ENCOUNT_SPTR_GymDef[ 8 ] = {
 		NARC_field_encounteffect_cutin_gym04_NSCR,
 		0,
 	},
-	{	// ƒS[ƒXƒg
-		214*FX32_ONE,			// “®‚³Š®—¹XÀ•W
+	{	// ã‚´ãƒ¼ã‚¹ãƒˆ
+		214*FX32_ONE,			// å‹•ã•å®Œäº†Xåº§æ¨™
 		LEADER5_01,
-		TRTYPE_LEADER5,			// ƒŠ[ƒ_[ƒ^ƒCƒv
-		ENC_OAM_TR_CHAR_CUT_CX,	// OAMƒLƒƒƒ‰‚ÌƒIƒtƒZƒbƒg
+		TRTYPE_LEADER5,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
+		ENC_OAM_TR_CHAR_CUT_CX,	// OAMã‚­ãƒ£ãƒ©ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		NARC_field_encounteffect_trpl_face05_NCLR,
 		NARC_field_encounteffect_trpl_face05_NCGR,
 		NARC_field_encounteffect_trpl_face05_NCER,
@@ -4297,11 +4297,11 @@ static const ENCOUNT_SPTR_GYM_PARAM ENCOUNT_SPTR_GymDef[ 8 ] = {
 		NARC_field_encounteffect_cutin_gym05_NSCR,
 		0,
 	},
-	{	// •X
-		214*FX32_ONE,			// “®‚³Š®—¹XÀ•W
+	{	// æ°·
+		214*FX32_ONE,			// å‹•ã•å®Œäº†Xåº§æ¨™
 		LEADER6_01,
-		TRTYPE_LEADER6,			// ƒŠ[ƒ_[ƒ^ƒCƒv
-		ENC_OAM_TR_CHAR_CUT_CX,	// OAMƒLƒƒƒ‰‚ÌƒIƒtƒZƒbƒg
+		TRTYPE_LEADER6,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
+		ENC_OAM_TR_CHAR_CUT_CX,	// OAMã‚­ãƒ£ãƒ©ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		NARC_field_encounteffect_trpl_face06_NCLR,
 		NARC_field_encounteffect_trpl_face06_NCGR,
 		NARC_field_encounteffect_trpl_face06_NCER,
@@ -4311,11 +4311,11 @@ static const ENCOUNT_SPTR_GYM_PARAM ENCOUNT_SPTR_GymDef[ 8 ] = {
 		NARC_field_encounteffect_cutin_gym06_NSCR,
 		0,
 	},
-	{	// |
-		214*FX32_ONE,			// “®‚³Š®—¹XÀ•W
+	{	// é‹¼
+		214*FX32_ONE,			// å‹•ã•å®Œäº†Xåº§æ¨™
 		LEADER7_01,
-		TRTYPE_LEADER7,			// ƒŠ[ƒ_[ƒ^ƒCƒv
-		ENC_OAM_TR_CHAR_CUT_CX,	// OAMƒLƒƒƒ‰‚ÌƒIƒtƒZƒbƒg
+		TRTYPE_LEADER7,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
+		ENC_OAM_TR_CHAR_CUT_CX,	// OAMã‚­ãƒ£ãƒ©ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		NARC_field_encounteffect_trpl_face07_NCLR,
 		NARC_field_encounteffect_trpl_face07_NCGR,
 		NARC_field_encounteffect_trpl_face07_NCER,
@@ -4325,11 +4325,11 @@ static const ENCOUNT_SPTR_GYM_PARAM ENCOUNT_SPTR_GymDef[ 8 ] = {
 		NARC_field_encounteffect_cutin_gym07_NSCR,
 		0,
 	},
-	{	// “d‹C
-		214*FX32_ONE,			// “®‚³Š®—¹XÀ•W
+	{	// é›»æ°—
+		214*FX32_ONE,			// å‹•ã•å®Œäº†Xåº§æ¨™
 		LEADER8_01,
-		TRTYPE_LEADER8,			// ƒŠ[ƒ_[ƒ^ƒCƒv
-		ENC_OAM_TR_CHAR_CUT_CX,	// OAMƒLƒƒƒ‰‚ÌƒIƒtƒZƒbƒg
+		TRTYPE_LEADER8,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
+		ENC_OAM_TR_CHAR_CUT_CX,	// OAMã‚­ãƒ£ãƒ©ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		NARC_field_encounteffect_trpl_face08_NCLR,
 		NARC_field_encounteffect_trpl_face08_NCGR,
 		NARC_field_encounteffect_trpl_face08_NCER,
@@ -4343,9 +4343,9 @@ static const ENCOUNT_SPTR_GYM_PARAM ENCOUNT_SPTR_GymDef[ 8 ] = {
 
 
 //-------------------------------------
-//	l“V‰¤@ƒ`ƒƒƒ“ƒsƒIƒ“@ƒŠ[ƒ_[
+//	å››å¤©ç‹ã€€ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã€€ãƒªãƒ¼ãƒ€ãƒ¼
 //=====================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ENCOUNT_SPTR_CHANP_START,
 	ENCOUNT_SPTR_CHANP_START2,
@@ -4363,74 +4363,74 @@ enum{
 	ENCOUNT_SPTR_CHANP_WIPEWAIT,
 	ENCOUNT_SPTR_CHANP_END,
 };
-// OAMƒf[ƒ^
-// ƒAƒNƒ^[ƒf[ƒ^”
-#define ENCOUNT_SPTR_CHANP_CELLACT_NUM		( 10 )	// ƒ[ƒN”
-#define ENCOUNT_SPTR_CHANP_CELL_NUM		( 4 )	// ƒ[ƒN”
-#define ENCOUNT_SPTR_CHANP_CELL_RES_NUM	( 4 )	// ƒŠƒ\[ƒX”
+// OAMãƒ‡ãƒ¼ã‚¿
+// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
+#define ENCOUNT_SPTR_CHANP_CELLACT_NUM		( 10 )	// ãƒ¯ãƒ¼ã‚¯æ•°
+#define ENCOUNT_SPTR_CHANP_CELL_NUM		( 4 )	// ãƒ¯ãƒ¼ã‚¯æ•°
+#define ENCOUNT_SPTR_CHANP_CELL_RES_NUM	( 4 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_SPTR_CHANP_CELL_CONT_ID	( 600000 )
 #define ENCOUNT_SPTR_CHANP_CELL_SCALE	( FX32_CONST( 2.0f ) )
-#define ENCOUNT_SPTR_CHANP_LEADER_DRAW_BOTTOM	( 30 )	// ‰º‚Í‚±‚ÌƒTƒCƒY‚Ü‚Å•\¦‚·‚é
+#define ENCOUNT_SPTR_CHANP_LEADER_DRAW_BOTTOM	( 30 )	// ä¸‹ã¯ã“ã®ã‚µã‚¤ã‚ºã¾ã§è¡¨ç¤ºã™ã‚‹
 #define ENCOUNT_SPTR_CHANP_COLOR_FADE	( GX_RGB( 0,0,0 ) )
 #define ENCOUNT_SPTR_CHANP_COLOR_FADE_EVY	(14)
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-// ålŒö“®‚³
-#define ENCOUNT_SPTR_CHANP_HERO_MOVE_SX		( -128*FX32_ONE )	// ålŒö@“oêŠJnXÀ•W
-#define ENCOUNT_SPTR_CHANP_HERO_MOVE_SS		( 80*FX32_ONE )		// ålŒö@“oê‰‘¬“x
-#define ENCOUNT_SPTR_CHANP_HERO_MOVE_EX		( 56*FX32_ONE )		// ålŒö@“oêI—¹XÀ•W
-#define ENCOUNT_SPTR_CHANP_HERO_Y			( 92*FX32_ONE )		// ålŒö@YÀ•W
-#define ENCOUNT_SPTR_CHANP_HERO_Y_WAKU_OFS	( 4*FX32_ONE )		// ˜g‚ª—£‚ê‚éÀ•W
-#define ENCOUNT_SPTR_CHANP_HERO_X_WAKU_OFS	( 16*FX32_ONE )		// ˜g‚ª—£‚ê‚éÀ•W
-#define ENCOUNT_SPTR_CHANP_HERO_MOVE_SYNC	( 6 )				// ålŒö@“oêƒVƒ“ƒN”
-#define ENCOUNT_SPTR_CHANP_HERO_FLASHOUT_SYNC	( 3 )		// ålŒöƒtƒ‰ƒbƒVƒ…ƒAƒEƒg@ƒVƒ“ƒN”
-#define ENCOUNT_SPTR_CHANP_HERO_FLASHIN_SYNC	( 6 )		// ålŒöƒtƒ‰ƒbƒVƒ…ƒCƒ“@ƒVƒ“ƒN”
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+// ä¸»äººå…¬å‹•ã•
+#define ENCOUNT_SPTR_CHANP_HERO_MOVE_SX		( -128*FX32_ONE )	// ä¸»äººå…¬ã€€ç™»å ´é–‹å§‹Xåº§æ¨™
+#define ENCOUNT_SPTR_CHANP_HERO_MOVE_SS		( 80*FX32_ONE )		// ä¸»äººå…¬ã€€ç™»å ´åˆé€Ÿåº¦
+#define ENCOUNT_SPTR_CHANP_HERO_MOVE_EX		( 56*FX32_ONE )		// ä¸»äººå…¬ã€€ç™»å ´çµ‚äº†Xåº§æ¨™
+#define ENCOUNT_SPTR_CHANP_HERO_Y			( 92*FX32_ONE )		// ä¸»äººå…¬ã€€Yåº§æ¨™
+#define ENCOUNT_SPTR_CHANP_HERO_Y_WAKU_OFS	( 4*FX32_ONE )		// æ ãŒé›¢ã‚Œã‚‹åº§æ¨™
+#define ENCOUNT_SPTR_CHANP_HERO_X_WAKU_OFS	( 16*FX32_ONE )		// æ ãŒé›¢ã‚Œã‚‹åº§æ¨™
+#define ENCOUNT_SPTR_CHANP_HERO_MOVE_SYNC	( 6 )				// ä¸»äººå…¬ã€€ç™»å ´ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SPTR_CHANP_HERO_FLASHOUT_SYNC	( 3 )		// ä¸»äººå…¬ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã€€ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SPTR_CHANP_HERO_FLASHIN_SYNC	( 6 )		// ä¸»äººå…¬ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¤ãƒ³ã€€ã‚·ãƒ³ã‚¯æ•°
 #define ENCOUNT_SPTR_CHANP_HERO_EFFECT_WAIT		( 3 )
 
-// l“V‰¤@ƒ`ƒƒƒ“ƒsƒIƒ““®‚³
-#define ENCOUNT_SPTR_CHANP_ENEMY_MOVE_SX		( 384*FX32_ONE )	// ålŒö@“oêŠJnXÀ•W
-#define ENCOUNT_SPTR_CHANP_ENEMY_MOVE_SS		( -80*FX32_ONE )		// ålŒö@“oê‰‘¬“x
-#define ENCOUNT_SPTR_CHANP_ENEMY_MOVE_EX		( 200*FX32_ONE )		// ålŒö@“oêI—¹XÀ•W
-#define ENCOUNT_SPTR_CHANP_ENEMY_Y			( 92*FX32_ONE )	// ålŒö@YÀ•W
-#define ENCOUNT_SPTR_CHANP_ENEMY_Y_WAKU_OFS	( 4*FX32_ONE )		// ˜g‚ª—£‚ê‚éÀ•W
-#define ENCOUNT_SPTR_CHANP_ENEMY_X_WAKU_OFS	( -16*FX32_ONE )		// ˜g‚ª—£‚ê‚éÀ•W
-#define ENCOUNT_SPTR_CHANP_ENEMY_MOVE_SYNC	( 6 )				// ålŒö@“oêƒVƒ“ƒN”
+// å››å¤©ç‹ã€€ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³å‹•ã•
+#define ENCOUNT_SPTR_CHANP_ENEMY_MOVE_SX		( 384*FX32_ONE )	// ä¸»äººå…¬ã€€ç™»å ´é–‹å§‹Xåº§æ¨™
+#define ENCOUNT_SPTR_CHANP_ENEMY_MOVE_SS		( -80*FX32_ONE )		// ä¸»äººå…¬ã€€ç™»å ´åˆé€Ÿåº¦
+#define ENCOUNT_SPTR_CHANP_ENEMY_MOVE_EX		( 200*FX32_ONE )		// ä¸»äººå…¬ã€€ç™»å ´çµ‚äº†Xåº§æ¨™
+#define ENCOUNT_SPTR_CHANP_ENEMY_Y			( 92*FX32_ONE )	// ä¸»äººå…¬ã€€Yåº§æ¨™
+#define ENCOUNT_SPTR_CHANP_ENEMY_Y_WAKU_OFS	( 4*FX32_ONE )		// æ ãŒé›¢ã‚Œã‚‹åº§æ¨™
+#define ENCOUNT_SPTR_CHANP_ENEMY_X_WAKU_OFS	( -16*FX32_ONE )		// æ ãŒé›¢ã‚Œã‚‹åº§æ¨™
+#define ENCOUNT_SPTR_CHANP_ENEMY_MOVE_SYNC	( 6 )				// ä¸»äººå…¬ã€€ç™»å ´ã‚·ãƒ³ã‚¯æ•°
 
-//VSƒAƒjƒ
-#define ENCOUNT_SPTR_CHANP_VSMARK_X		( FX32_CONST( 128 ) )	// VSMARK‚ÌˆÊ’u
-#define ENCOUNT_SPTR_CHANP_VSMARK_Y		( FX32_CONST( 96 ) )	// VSMARK‚ÌˆÊ’u
+//VSã‚¢ãƒ‹ãƒ¡
+#define ENCOUNT_SPTR_CHANP_VSMARK_X		( FX32_CONST( 128 ) )	// VSMARKã®ä½ç½®
+#define ENCOUNT_SPTR_CHANP_VSMARK_Y		( FX32_CONST( 96 ) )	// VSMARKã®ä½ç½®
 
-// –¼‘O
-#define ENCOUNT_SPTR_CHANP_TRNAME_X		( 21 )	// ƒgƒŒ[ƒi[–¼XƒLƒƒƒ‰À•W
-#define ENCOUNT_SPTR_CHANP_TRNAME_Y		( 13 )	// ƒgƒŒ[ƒi[–¼YƒLƒƒƒ‰À•W
-#define ENCOUNT_SPTR_CHANP_TRNAME_SIZX	( 11 )	// ƒgƒŒ[ƒi[–¼BMPXƒLƒƒƒ‰ƒTƒCƒY
-#define ENCOUNT_SPTR_CHANP_TRNAME_SIZY	( 2 )	// ƒgƒŒ[ƒi[–¼BMPYƒLƒƒƒ‰ƒTƒCƒY
+// åå‰
+#define ENCOUNT_SPTR_CHANP_TRNAME_X		( 21 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åXã‚­ãƒ£ãƒ©åº§æ¨™
+#define ENCOUNT_SPTR_CHANP_TRNAME_Y		( 13 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åYã‚­ãƒ£ãƒ©åº§æ¨™
+#define ENCOUNT_SPTR_CHANP_TRNAME_SIZX	( 11 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åBMPXã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+#define ENCOUNT_SPTR_CHANP_TRNAME_SIZY	( 2 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åBMPYã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
 #define ENCOUNT_SPTR_CHANP_TRNAME_CGX	( 1 )
 #define ENCOUNT_SPTR_CHANP_TRNAME_PAL	( 2 )
 #define ENCOUNT_SPTR_CHANP_TRNAME_COL	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )
 
-// ‚³‚ç‚É‚Ô‚Â‚©‚è‡‚¤‚Æ‚±‚ë‚Ì“®ì
-#define ENCOUNT_SPTR_CHANP_BT_IN_WAIT			( 8 )	// “®ìŠJn‚Ü‚Å‚ÌƒEƒGƒCƒg
+// ã•ã‚‰ã«ã¶ã¤ã‹ã‚Šåˆã†ã¨ã“ã‚ã®å‹•ä½œ
+#define ENCOUNT_SPTR_CHANP_BT_IN_WAIT			( 8 )	// å‹•ä½œé–‹å§‹ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
 #define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SX		( 0 )	//
-#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_EX		( -FX32_CONST(2) )	// ˆÚ“®‚·‚é’l
-#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SSX		( 0 )	// ‰‘¬“x
+#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_EX		( -FX32_CONST(2) )	// ç§»å‹•ã™ã‚‹å€¤
+#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SSX		( 0 )	// åˆé€Ÿåº¦
 #define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SY		( 0 )	//
-#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_EY		( -FX32_CONST(2) )	// ˆÚ“®‚·‚é’l
-#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SSY		( 0 )	// ‰‘¬“x
+#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_EY		( -FX32_CONST(2) )	// ç§»å‹•ã™ã‚‹å€¤
+#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SSY		( 0 )	// åˆé€Ÿåº¦
 #define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SYNC		( 32 )
-#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SYNC_C	( 9 )	// ƒVƒƒi
-#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_CHG		( 2	)	// “®‚­•ûŒü‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
+#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SYNC_C	( 9 )	// ã‚·ãƒ­ãƒŠ
+#define ENCOUNT_SPTR_CHANP_BT_IN_MOVE_CHG		( 2	)	// å‹•ãæ–¹å‘ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-// ÅŒã‚Ì”’‚­‚È‚é‚Æ‚±
-#define ENCOUNT_SPTR_CHANP_WIPE_OUT_SYNC		( 16 )	// ƒƒCƒvƒAƒEƒgƒVƒ“ƒN”
-#define ENCOUNT_SPTR_CHANP_OMA_MOVE_X			( FX32_CONST( 192.0f ) )	// OAM“®‚³‹——£
-#define ENCOUNT_SPTR_CHANP_OMA_MOVE_Y			( FX32_CONST( 192.0f ) )	// OAM“®‚³‹——£
-#define ENCOUNT_SPTR_CHANP_OAM_MOVE_XSS			( FX32_CONST( 24.0f ) )	// OAM“®‚³‰‘¬“x
-#define ENCOUNT_SPTR_CHANP_OAM_MOVE_YSS			( FX32_CONST( 24.0f ) )	// OAM“®‚³‰‘¬“x
-#define ENCOUNT_SPTR_CHANP_WIPE_OUT_SYNC_WIPE	( 8 )	// ƒƒCƒvƒAƒEƒgƒVƒ“ƒN”
+// æœ€å¾Œã®ç™½ããªã‚‹ã¨ã“
+#define ENCOUNT_SPTR_CHANP_WIPE_OUT_SYNC		( 16 )	// ãƒ¯ã‚¤ãƒ—ã‚¢ã‚¦ãƒˆã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SPTR_CHANP_OMA_MOVE_X			( FX32_CONST( 192.0f ) )	// OAMå‹•ã•è·é›¢
+#define ENCOUNT_SPTR_CHANP_OMA_MOVE_Y			( FX32_CONST( 192.0f ) )	// OAMå‹•ã•è·é›¢
+#define ENCOUNT_SPTR_CHANP_OAM_MOVE_XSS			( FX32_CONST( 24.0f ) )	// OAMå‹•ã•åˆé€Ÿåº¦
+#define ENCOUNT_SPTR_CHANP_OAM_MOVE_YSS			( FX32_CONST( 24.0f ) )	// OAMå‹•ã•åˆé€Ÿåº¦
+#define ENCOUNT_SPTR_CHANP_WIPE_OUT_SYNC_WIPE	( 8 )	// ãƒ¯ã‚¤ãƒ—ã‚¢ã‚¦ãƒˆã‚·ãƒ³ã‚¯æ•°
   
 
-// ‚»‚ê‚¼‚ê‚Ì’è”
+// ãã‚Œãã‚Œã®å®šæ•°
 typedef struct{
 	u16 enemy_ncl;
 	u8	waku_oam_cl;
@@ -4440,35 +4440,35 @@ typedef struct{
 } ENCOUNT_SPTR_CHANP_PARAM;
 
 static const ENCOUNT_SPTR_CHANP_PARAM EncountSpTr_ChanpParam[ 5 ] = {
-	{	// l“V‰¤‚P
+	{	// å››å¤©ç‹ï¼‘
 		NARC_field_encounteffect_trpl_face_bigfour1_NCLR,
 		NARC_field_encounteffect_cutin_chanpion00_NCLR,
 		ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SYNC,
 		TRTYPE_BIGFOUR1,
 		BIGFOUR1_01
 	},
-	{	// l“V‰¤‚Q
+	{	// å››å¤©ç‹ï¼’
 		NARC_field_encounteffect_trpl_face_bigfour2_NCLR,
 		NARC_field_encounteffect_cutin_chanpion01_NCLR,
 		ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SYNC,
 		TRTYPE_BIGFOUR2,
 		BIGFOUR2_01
 	},
-	{	// l“V‰¤‚R
+	{	// å››å¤©ç‹ï¼“
 		NARC_field_encounteffect_trpl_face_bigfour3_NCLR,
 		NARC_field_encounteffect_cutin_chanpion02_NCLR,
 		ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SYNC,
 		TRTYPE_BIGFOUR3,
 		BIGFOUR3_01
 	},
-	{	// l“V‰¤‚S
+	{	// å››å¤©ç‹ï¼”
 		NARC_field_encounteffect_trpl_face_bigfour4_NCLR,
 		NARC_field_encounteffect_cutin_chanpion03_NCLR,
 		ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SYNC,
 		TRTYPE_BIGFOUR4,
 		BIGFOUR4_01
 	},
-	{	// ƒ`ƒƒƒ“ƒsƒIƒ“
+	{	// ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
 		NARC_field_encounteffect_trpl_face_champion_NCLR,
 		NARC_field_encounteffect_cutin_chanpion04_NCLR,
 		ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SYNC_C,
@@ -4480,11 +4480,11 @@ static const ENCOUNT_SPTR_CHANP_PARAM EncountSpTr_ChanpParam[ 5 ] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	VSƒAƒjƒ
+///	VSã‚¢ãƒ‹ãƒ¡
 //=====================================
 typedef struct {
 	s16 timing;
@@ -4494,7 +4494,7 @@ typedef struct {
 } ENCOUNT_SPTR_GYM_VSANM;
 //
 //-------------------------------------
-//	ƒWƒ€ƒŠ[ƒ_[
+//	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼
 //=====================================
 typedef struct {
 	ENC_ADDMOVE_WORK_FX oam_move_x;
@@ -4519,7 +4519,7 @@ typedef struct {
 } ENCOUNT_SPTR_GYM;
 
 //-------------------------------------
-//	l“V‰¤@ƒ`ƒƒƒ“ƒsƒIƒ“
+//	å››å¤©ç‹ã€€ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
 //=====================================
 typedef struct {
 	ENC_ADDMOVE_WORK_FX oam_move_x;
@@ -4533,13 +4533,13 @@ typedef struct {
 	VecFx32			pos_hero;
 	VecFx32			pos_enemy;
 
-	// VSƒAƒjƒ 
+	// VSã‚¢ãƒ‹ãƒ¡ 
 	ENCOUNT_SPTR_GYM_VSANM vsanm;
 
-	// ƒgƒŒ[ƒi–¼—pƒrƒbƒgƒ}ƒbƒv
+	// ãƒˆãƒ¬ãƒ¼ãƒŠåç”¨ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
 	GF_BGL_BMPWIN trnamewin;
 
-	u32 hero_type;	// ålŒöƒ^ƒCƒv
+	u32 hero_type;	// ä¸»äººå…¬ã‚¿ã‚¤ãƒ—
 
 	s32 wait;
 	s32 count;
@@ -4548,10 +4548,10 @@ typedef struct {
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VSƒAƒjƒ	‰Šú‰»
+ *	@brief	VSã‚¢ãƒ‹ãƒ¡	åˆæœŸåŒ–
  *	
- *	@param	task_w		ƒ^ƒXƒNƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	task_w		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_SpTr_VsAnmInit( ENCOUNT_SPTR_GYM_VSANM* p_wk, ENC_CLACT_SYS* p_clset, ENC_CLACT_RES_WORK* p_res, fx32 x, fx32 y, u32 heapID )
@@ -4567,16 +4567,16 @@ static void EncountEffect_SpTr_VsAnmInit( ENCOUNT_SPTR_GYM_VSANM* p_wk, ENC_CLAC
 				x, 
 				y,0, 0);
 		CLACT_SetDrawFlag( p_wk->vs[i], FALSE );
-		if( i!=ENCOUNT_SPTR_GYM_VSOAM ){	// ÅŒã‚Ì‚P‚Â‚ª•¶š
+		if( i!=ENCOUNT_SPTR_GYM_VSOAM ){	// æœ€å¾Œã®ï¼‘ã¤ãŒæ–‡å­—
 			CLACT_SetAffineParam( p_wk->vs[i], CLACT_AFFINE_DOUBLE );
 			CLACT_AnmChg( p_wk->vs[i], 1 );
-			// Šg‘åk¬ƒf[ƒ^ì¬
+			// æ‹¡å¤§ç¸®å°ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			ENC_MoveReqFx( &p_wk->vsscale[i],
 					FX32_CONST(2),
 					FX32_CONST(1),
 					ENCOUNT_SPTR_GYM_VSANMSYNC );
 		}else{
-			// Šg‘åk¬ƒf[ƒ^ì¬
+			// æ‹¡å¤§ç¸®å°ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			ENC_MoveReqFx( &p_wk->vsscale[i],
 					FX32_CONST(1),
 					FX32_CONST(1),
@@ -4595,12 +4595,12 @@ static void EncountEffect_SpTr_VsAnmExit( ENCOUNT_SPTR_GYM_VSANM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VSƒAƒjƒ	ƒƒCƒ“
+ *	@brief	VSã‚¢ãƒ‹ãƒ¡	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	task_w		ƒ^ƒXƒNƒ[ƒN
+ *	@param	task_w		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Š®—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	å®Œäº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL EncountEffect_SpTr_VsAnmMain( ENCOUNT_SPTR_GYM_VSANM* p_wk )
@@ -4610,9 +4610,9 @@ static BOOL EncountEffect_SpTr_VsAnmMain( ENCOUNT_SPTR_GYM_VSANM* p_wk )
 	BOOL ret = TRUE;
 	VecFx32 scale;
 		
-	// ‚İ‚ñ‚È‚ğ“®‚©‚·ƒ^ƒCƒ~ƒ“ƒO‚ğ§Œä
+	// ã¿ã‚“ãªã‚’å‹•ã‹ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’åˆ¶å¾¡
 	if( p_wk->movenum < ENCOUNT_SPTR_GYM_VSOAM_NUM ){
-		ret = FALSE;	// ‚Ü‚¾‘S•”“®‚«‚«‚Á‚Ä‚È‚¢
+		ret = FALSE;	// ã¾ã å…¨éƒ¨å‹•ããã£ã¦ãªã„
 		p_wk->timing--;
 		if( p_wk->timing <= 0 ){
 			p_wk->timing = ENCOUNT_SPTR_GYM_VSANMTIMING;
@@ -4620,7 +4620,7 @@ static BOOL EncountEffect_SpTr_VsAnmMain( ENCOUNT_SPTR_GYM_VSANM* p_wk )
 		}
 	}
 
-	// “®‚©‚µ‚Ä‚¢‚¢l”•ª“®‚©‚·
+	// å‹•ã‹ã—ã¦ã„ã„äººæ•°åˆ†å‹•ã‹ã™
 	for( i=0; i<p_wk->movenum; i++ ){
 		result = ENC_MoveMainFx( &p_wk->vsscale[i] );
 
@@ -4629,7 +4629,7 @@ static BOOL EncountEffect_SpTr_VsAnmMain( ENCOUNT_SPTR_GYM_VSANM* p_wk )
 				p_wk->vsscale[i].x, p_wk->vsscale[i].x );
 		CLACT_SetScale( p_wk->vs[i], &scale );
 		CLACT_SetDrawFlag( p_wk->vs[i], TRUE );
-		// 1‚Â‚Å‚à‚Ü‚¾“®‚«‚«‚Á‚Ä‚¢‚È‚¢‚Ì‚ª‚ ‚é‚È‚ç“r’†
+		// 1ã¤ã§ã‚‚ã¾ã å‹•ããã£ã¦ã„ãªã„ã®ãŒã‚ã‚‹ãªã‚‰é€”ä¸­
 		if( result == FALSE ){
 			ret = FALSE;
 		}
@@ -4640,12 +4640,12 @@ static BOOL EncountEffect_SpTr_VsAnmMain( ENCOUNT_SPTR_GYM_VSANM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒ^ƒCƒv‚©‚ç–¼‘O‚ğæ“¾‚·‚é
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã‚‰åå‰ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	type		ƒgƒŒ[ƒi[ƒ^ƒCƒv
- *	@param	heapID		ƒq[ƒvID
+ *	@param	type		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	–¼‘O	”jŠü‚ª•K—v@STRBUF_Delete()
+ *	@return	åå‰	ç ´æ£„ãŒå¿…è¦ã€€STRBUF_Delete()
  */
 //-----------------------------------------------------------------------------
 static STRBUF* EncountEffect_SpTr_Gym_TrTypeNameGet( u32 type, u32 heapID )
@@ -4671,14 +4671,14 @@ static STRBUF* EncountEffect_SpTr_Gym_TrTypeNameGet( u32 type, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒ€ê—pƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+ *	@brief	ã‚¸ãƒ å°‚ç”¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	eew		ƒGƒtƒFƒNƒgƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
- *	@param	cp_def	ƒfƒtƒ@ƒCƒ“’è‹`
+ *	@param	eew		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
+ *	@param	cp_def	ãƒ‡ãƒ•ã‚¡ã‚¤ãƒ³å®šç¾©
  *
- *	@retval	TRUE		I—¹
- *	@retval	FALSE		“r’†
+ *	@retval	TRUE		çµ‚äº†
+ *	@retval	FALSE		é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, const ENCOUNT_SPTR_GYM_PARAM* cp_def )
@@ -4698,12 +4698,12 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 		memset( eew->work, 0, sizeof(ENCOUNT_SPTR_GYM) );
 		task_w = eew->work;
 
-		// ƒpƒŒƒbƒg“Ç‚İ‚İ	
+		// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿	
 		ArcUtil_HDL_PalSet( eew->p_handle, 
 				NARC_field_encounteffect_cutin_gym_font_NCLR,
 				PALTYPE_MAIN_BG, ENCOUNT_SPTR_GYM_TRNAME_PAL*0x20, 0x20, heapID );
 
-		// ƒgƒŒ[ƒi[–¼•\¦—pƒrƒbƒgƒ}ƒbƒvì¬
+		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åè¡¨ç¤ºç”¨ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ä½œæˆ
 		GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG2, VISIBLE_OFF);
 		GF_BGL_BmpWinAdd( eew->fsw->bgl, &task_w->trnamewin, 
 				GF_BGL_FRAME2_M, ENCOUNT_SPTR_GYM_TRNAME_X, ENCOUNT_SPTR_GYM_TRNAME_Y,
@@ -4714,13 +4714,13 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 		GF_STR_PrintColor( &task_w->trnamewin, FONT_SYSTEM,
                                        p_str, 0, 0, MSG_ALLPUT, 
 									   ENCOUNT_SPTR_GYM_TRNAME_COL, NULL);
-		STRBUF_Delete( p_str );	// ”jŠü‚í‚·‚ê’ˆÓI
+		STRBUF_Delete( p_str );	// ç ´æ£„ã‚ã™ã‚Œæ³¨æ„ï¼
  
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_SPTR_GYM_CELL_NUM, ENCOUNT_SPTR_GYM_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -4732,7 +4732,7 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 				ENCOUNT_SPTR_GYM_CELL_CONT_ID
 				);
 
-		// VSƒOƒ‰ƒtƒBƒbƒN
+		// VSã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -4744,7 +4744,7 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 				ENCOUNT_SPTR_GYM_CELL_CONT_ID + 1
 				);
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		task_w->clact = ENC_CLACT_Add( 
 				&task_w->clact_sys, &task_w->clact_res[0],
 				ENCOUNT_SPTR_GYM_OAM_START_X, 
@@ -4753,15 +4753,15 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 		EncountEffect_SpTr_VsAnmInit( &task_w->vsanm, &task_w->clact_sys, &task_w->clact_res[1], ENCOUNT_SPTR_GYM_VSMARK_X, ENCOUNT_SPTR_GYM_VSMARK_Y, heapID );
 //		CLACT_SetAffineParam( task_w->clact, CLACT_AFFINE_DOUBLE );
 
-		// ƒJƒ‰[ƒpƒŒƒbƒg‚ğİ’è
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è¨­å®š
 		ENC_CLACT_ResColorChange( task_w->clact, heapID, cp_def->type, ENCOUNT_SPTR_GYM_LEADER_COLOR_FADE_EVY, ENCOUNT_SPTR_GYM_LEADER_COLOR_FADE );
-		// ƒWƒ€ƒŠ[ƒ_[ƒLƒƒƒ‰ƒNƒ^ƒpƒŒƒbƒg“]‘—
+		// ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 //		ENC_CLACT_ResSetSoftSpriteDataTrOam( task_w->clact, heapID, cp_def->type, ENCOUNT_SPTR_GYM_LEADER_COLOR_FADE_EVY, ENCOUNT_SPTR_GYM_LEADER_COLOR_FADE, cp_def->tr_oam_chr_ofs_cx );
 
-		// ƒAƒtƒBƒ“BGİ’è
+		// ã‚¢ãƒ•ã‚£ãƒ³BGè¨­å®š
 //		ENC_BG_SetAffineCont( eew->fsw->bgl );
 
-		// ƒWƒOƒUƒOƒEƒBƒ“ƒhƒE‰Šú‰»
+		// ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 		task_w->p_ziguzagu = ENC_BG_WndZiguzagu_Alloc();
 
 		eew->seq ++;
@@ -4781,7 +4781,7 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 
 	case ENCOUNT_SPTR_GYM_BG_IN:
 		
-		// BGİ’è
+		// BGè¨­å®š
 		ENC_BG_SetNormalBG(
 				eew->p_handle,
 				cp_def->bg_nscr,
@@ -4789,9 +4789,9 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 				cp_def->bg_nclr,
 				0, 1,
 				eew->fsw->bgl, GF_BGL_FRAME3_M );
-		task_w->bg_auto_move = TRUE;	// BGAUTO“®‚³
+		task_w->bg_auto_move = TRUE;	// BGAUTOå‹•ã•
 
-		// ƒWƒOƒUƒOƒEƒBƒ“ƒhƒEƒXƒ^[ƒg
+		// ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ãƒ¼ãƒˆ
 		ENC_BG_WndZiguzagu_Start( eew, task_w->p_ziguzagu, 
 				ENCOUNT_SPTR_GYM_ZIGUZAGU_SYNC,
 				ENCOUNT_SPTR_GYM_ZIGUZAGU_DOT,
@@ -4799,14 +4799,14 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 				ENCOUNT_SPTR_GYM_ZIGUZAGU_IN_WND,
 				ENCOUNT_SPTR_GYM_ZIGUZAGU_OUT_WND );
 /*
-		// BGAUTO“®‚³‚Ì‚½‚ß‚ÉŠg‘åƒpƒ‰ƒ[ƒ^‚ğ‚±‚±‚Åì¬
+		// BGAUTOå‹•ã•ã®ãŸã‚ã«æ‹¡å¤§ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã“ã“ã§ä½œæˆ
 		ENC_MoveReqFx( &task_w->scale,
 				ENCOUNT_SPTR_GYM_SCALE_S,
 				ENCOUNT_SPTR_GYM_SCALE_E,
 				ENCOUNT_SPTR_GYM_FADEOUT_SYNC );
 //*/
 		
-		// BG–Ê•\¦
+		// BGé¢è¡¨ç¤º
 		GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG3, VISIBLE_ON);
 		
 		eew->seq++;
@@ -4816,7 +4816,7 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 
 		if( ENC_HBlankEndCheck( eew ) ){
 			eew->seq++;
-			// ƒEƒBƒ“ƒhƒEƒGƒtƒFƒNƒg”jŠü
+			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
 			ENC_BG_WndZiguzagu_Delete( task_w->p_ziguzagu );
 		
 			task_w->wait = ENCOUNT_SPTR_GYM_BG_AFTER_WAIT;
@@ -4831,7 +4831,7 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 		}
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-		// VS‚ğo‚·
+		// VSã‚’å‡ºã™
 		result = EncountEffect_SpTr_VsAnmMain( &task_w->vsanm );
 		if( result == TRUE ){
 			eew->seq++;
@@ -4842,13 +4842,13 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 	case ENCOUNT_SPTR_GYM_OAM_IN:
 
 #if 0
-		// ƒWƒ€ƒŠ[ƒ_[Šî–{Šg‘å’lİ’è
+		// ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼åŸºæœ¬æ‹¡å¤§å€¤è¨­å®š
 		scale = ENC_MakeVec( 
 				ENCOUNT_SPTR_GYM_LEADER_SCALE_DEF, 
 				ENCOUNT_SPTR_GYM_LEADER_SCALE_DEF, 0 );
 		CLACT_SetScale( task_w->clact, &scale );
 		
-		// ˆÍ‚¢ƒEƒBƒ“ƒhƒEİ’è
+		// å›²ã„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 		ENC_WND_SetScaleWnd( 
 				ENCOUNT_SPTR_GYM_OAM_START_Y,
 				ENCOUNT_SPTR_GYM_BG_CY+ENCOUNT_SPTR_GYM_LEADER_DRAW_BOTTOM,
@@ -4884,7 +4884,7 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 		CLACT_SetMatrix( task_w->clact, &matrix );
 		
 #if 0
-		// ˆÍ‚¢ƒEƒBƒ“ƒhƒEİ’è	OAM‚Í”½‰f‚ª1ƒVƒ“ƒN’x‚¢
+		// å›²ã„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š	OAMã¯åæ˜ ãŒ1ã‚·ãƒ³ã‚¯é…ã„
 		cp_matrix = CLACT_GetMatrix( task_w->clact );
 		ENC_WND_SetScaleWnd( 
 				cp_matrix->y,
@@ -4913,14 +4913,14 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 		result = ENC_MoveMain( &task_w->flash );
 		ENC_SetMasterBrightnessVblank( &task_w->flash.x );
 		if( result == TRUE ){
-			// OAM‚ÌƒJƒ‰[ƒpƒŒƒbƒg•ÏX
+			// OAMã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 			ENC_CLACT_ResColorChange( task_w->clact, heapID, cp_def->type, 0, ENCOUNT_SPTR_GYM_LEADER_COLOR_FADE );
 
-			// ‚RD–Ê‚Éƒuƒ‰ƒCƒgƒlƒX‚ğƒJƒPƒ‹iGYM‚Å”¼“§–¾‚Íg‚Á‚Ä‚È‚¢‚¾‚ë‚¤‚Æ‚¢‚¤‚±‚Æ‚Å”¼“§–¾‚Â‚©‚Á‚¿‚á‚¢‚Ü‚·j
+			// ï¼“Dé¢ã«ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ã‚«ã‚±ãƒ«ï¼ˆGYMã§åŠé€æ˜ã¯ä½¿ã£ã¦ãªã„ã ã‚ã†ã¨ã„ã†ã“ã¨ã§åŠé€æ˜ã¤ã‹ã£ã¡ã‚ƒã„ã¾ã™ï¼‰
 			SetBrightness( ENCOUNT_SPTR_GYM_3DAREA_BRIGHTNESS,
 					PLANEMASK_BG0|PLANEMASK_BD, MASK_MAIN_DISPLAY );
 
-			//@•¶š‚ğo‚·	ƒWƒ€ƒŠ[ƒ_[OAM‚ÌˆÊ’u‚ğŠî€‚Éo‚·
+			//ã€€æ–‡å­—ã‚’å‡ºã™	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼OAMã®ä½ç½®ã‚’åŸºæº–ã«å‡ºã™
 			GF_BGL_ScrollReq( eew->fsw->bgl, GF_BGL_FRAME2_M, GF_BGL_SCROLL_X_SET, -((task_w->oam_move_x.x>>FX32_SHIFT) + ENCOUNT_SPTR_GYM_TRNAME_OFS_X) );
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 			GF_BGL_PrioritySet( GF_BGL_FRAME2_M, 0 );
@@ -4951,7 +4951,7 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 		
 	case ENCOUNT_SPTR_GYM_WIPE:
 
-		// ƒzƒƒCƒgƒAƒEƒg
+		// ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_WHITE, ENCOUNT_SPTR_GYM_FADEOUT_SYNC, 1, HEAPID_FIELD );
 		eew->seq ++;
 		break;
@@ -4959,7 +4959,7 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 	case ENCOUNT_SPTR_GYM_WIPEWAIT:
 #if 0
 		ENC_MoveMainFx( &task_w->scale );
-		// FX32_ONEˆø‚­‚Ì‚ÍAscale‚ÌŠJn‚ª1‚©‚ç‚¾‚©‚ç
+		// FX32_ONEå¼•ãã®ã¯ã€scaleã®é–‹å§‹ãŒ1ã‹ã‚‰ã ã‹ã‚‰
 		scale = ENC_MakeVec( 
 				ENCOUNT_SPTR_GYM_LEADER_SCALE_DEF + task_w->scale.x - FX32_ONE, 
 				ENCOUNT_SPTR_GYM_LEADER_SCALE_DEF + task_w->scale.x - FX32_ONE, 0 );
@@ -4967,9 +4967,9 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 
 		cp_matrix = CLACT_GetMatrix( task_w->clact );
 
-		// ’ê•Ó‚ÌÀ•W‚ğ‹‚ß‚é
+		// åº•è¾ºã®åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 		bottom_y = ENC_WND_SetScaleWndToolMakeBottomY( task_w->scale.x, ENCOUNT_SPTR_GYM_BG_CY, ENCOUNT_SPTR_GYM_LEADER_DRAW_BOTTOM );
-		// ˆÍ‚¢ƒEƒBƒ“ƒhƒEİ’è
+		// å›²ã„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 		ENC_WND_SetScaleWnd( 
 				cp_matrix->y,
 				bottom_y,
@@ -4985,9 +4985,9 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_WHITE );
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
-		// OAM”jŠü
+		// OAMç ´æ£„
 		CLACT_Delete( task_w->clact );
 		EncountEffect_SpTr_VsAnmExit( &task_w->vsanm );
 		ENC_CLACT_ResDeleteEasy( &task_w->clact_sys, &task_w->clact_res[0] );
@@ -4997,14 +4997,14 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 		// BMP
 		GF_BGL_BmpWinDel( &task_w->trnamewin );
 
-		// ƒEƒBƒ“ƒhƒE”jŠü
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
-		// ƒuƒ‰ƒCƒgƒlƒX‚Í‚«
+		// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã¯ã
 		SetBrightness( BRIGHTNESS_NORMAL,
 				PLANEMASK_NONE, MASK_MAIN_DISPLAY );
 
-		// ƒXƒNƒ[ƒ‹
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 		GF_BGL_ScrollSet( eew->fsw->bgl, GF_BGL_FRAME2_M, GF_BGL_SCROLL_X_SET, 0 );
 
 		return TRUE;
@@ -5026,7 +5026,7 @@ static BOOL EncountEffect_SpTr_GymMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, co
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ŠeƒWƒ€
+ *	@brief		å„ã‚¸ãƒ 
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_SPTR_IwaGym(TCB_PTR tcb, void* work)
@@ -5106,7 +5106,7 @@ void EncountEffect_SPTR_DenkiGym(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	«•Êæ“¾
+ *	@brief	æ€§åˆ¥å–å¾—
  */
 //-----------------------------------------------------------------------------
 static u32 EncountEffect_SPTR_ChanpSexCheck( FIELDSYS_WORK* p_fsys )
@@ -5116,14 +5116,14 @@ static u32 EncountEffect_SPTR_ChanpSexCheck( FIELDSYS_WORK* p_fsys )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	l“V‰¤@ƒ`ƒƒƒ“ƒsƒIƒ“ê—pƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+ *	@brief	å››å¤©ç‹ã€€ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³å°‚ç”¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	eew		ƒGƒtƒFƒNƒgƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
- *	@param	cp_def	ƒfƒtƒ@ƒCƒ“’è‹`
+ *	@param	eew		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
+ *	@param	cp_def	ãƒ‡ãƒ•ã‚¡ã‚¤ãƒ³å®šç¾©
  *
- *	@retval	TRUE		I—¹
- *	@retval	FALSE		“r’†
+ *	@retval	TRUE		çµ‚äº†
+ *	@retval	FALSE		é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, const ENCOUNT_SPTR_CHANP_PARAM* cp_def )
@@ -5143,13 +5143,13 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		memset( eew->work, 0, sizeof(ENCOUNT_SPTR_CHANP) );
 		task_w = eew->work;
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		ENC_CLACT_Init( &task_w->clact_sys, ENCOUNT_SPTR_CHANP_CELLACT_NUM, ENCOUNT_SPTR_CHANP_CELL_RES_NUM );
 
-		// ƒOƒ‰ƒtƒBƒbƒNİ’è
-		// ålŒö’j—ƒ`ƒFƒbƒN
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
+		// ä¸»äººå…¬ç”·å¥³ãƒã‚§ãƒƒã‚¯
 		if( EncountEffect_SPTR_ChanpSexCheck( eew->fsw ) == 0 ){
-			// ’j
+			// ç”·
 			ENC_CLACT_ResLoadEasy(
 					eew->p_handle,
 					&task_w->clact_sys,
@@ -5163,7 +5163,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 
 			task_w->hero_type  = TRTYPE_BOY;
 		}else{
-			// —
+			// å¥³
 			ENC_CLACT_ResLoadEasy(
 					eew->p_handle,
 					&task_w->clact_sys,
@@ -5176,7 +5176,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 					);
 			task_w->hero_type  = TRTYPE_GIRL;
 		}
-		// “G“Ç‚İ‚İ
+		// æ•µèª­ã¿è¾¼ã¿
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -5188,7 +5188,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 				ENCOUNT_TR_GRASS_LOW_CELL_CONT_ID + 1
 				);
 
-		// ”wŒi“Ç‚İ‚İ
+		// èƒŒæ™¯èª­ã¿è¾¼ã¿
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -5200,7 +5200,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 				ENCOUNT_TR_GRASS_LOW_CELL_CONT_ID + 2
 				);
 
-		// VSƒOƒ‰ƒtƒBƒbƒN
+		// VSã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 		ENC_CLACT_ResLoadEasy(
 				eew->p_handle,
 				&task_w->clact_sys,
@@ -5218,7 +5218,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 
 	case ENCOUNT_SPTR_CHANP_START2:
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		scale = ENC_MakeVec( 
 				ENCOUNT_SPTR_CHANP_CELL_SCALE, 
 				ENCOUNT_SPTR_CHANP_CELL_SCALE, 0 );
@@ -5239,30 +5239,30 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 			CLACT_BGPriorityChg( task_w->clact[i], 1 );
 		}
 
-		// ålŒöƒOƒ‰ƒtƒBƒbƒN“o˜^
+		// ä¸»äººå…¬ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç™»éŒ²
 		if( task_w->hero_type ){
-			// ’j
+			// ç”·
 			ENC_CLACT_ResColorChange( task_w->clact[0], heapID, TRTYPE_BOY, ENCOUNT_SPTR_CHANP_COLOR_FADE_EVY, ENCOUNT_SPTR_CHANP_COLOR_FADE );
 		}else{
-			// —
+			// å¥³
 			ENC_CLACT_ResColorChange( task_w->clact[0], heapID, TRTYPE_GIRL, ENCOUNT_SPTR_CHANP_COLOR_FADE_EVY, ENCOUNT_SPTR_CHANP_COLOR_FADE );
 		}
 //		CLACT_SetAffineParam( task_w->clact[0], CLACT_AFFINE_DOUBLE );
 //		CLACT_SetScale( task_w->clact[0], &scale );
 
-		// l“V‰¤ƒOƒ‰ƒtƒBƒbƒN“o˜^
+		// å››å¤©ç‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç™»éŒ²
 		ENC_CLACT_ResColorChange( task_w->clact[1], heapID, cp_def->enemy_tr_type, ENCOUNT_SPTR_CHANP_COLOR_FADE_EVY, ENCOUNT_SPTR_CHANP_COLOR_FADE );
 //		CLACT_SetAffineParam( task_w->clact[1], CLACT_AFFINE_DOUBLE );
 //		CLACT_SetScale( task_w->clact[1], &scale );
 
-		// BG–Ê•\¦
+		// BGé¢è¡¨ç¤º
 		GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 
-		// VSƒAƒjƒ‰Šú‰»
+		// VSã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
 		EncountEffect_SpTr_VsAnmInit( &task_w->vsanm, &task_w->clact_sys, &task_w->clact_res[3], ENCOUNT_SPTR_CHANP_VSMARK_X, ENCOUNT_SPTR_CHANP_VSMARK_Y, heapID );
 
 
-		// ‚RD–Ê‚ğ‚QD–Ê‚É‘‚«‚Ş
+		// ï¼“Dé¢ã‚’ï¼’Dé¢ã«æ›¸ãè¾¼ã‚€
 		ENC_GPrint_Init( eew->fsw );
 
 		eew->seq ++;
@@ -5278,7 +5278,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 	case ENCOUNT_SPTR_CHANP_FLASH_WAIT:
 		eew->count ++;
 		if( eew->count == 8 ){
-			ENC_GPrint_SwitchOn();	// 3D•\¦‚Æ‚QD•\¦‚ğØ‚è‘Ö‚¦‚é
+			ENC_GPrint_SwitchOn();	// 3Dè¡¨ç¤ºã¨ï¼’Dè¡¨ç¤ºã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 		}
 		if( eew->wait ){
 			eew->seq++;
@@ -5288,10 +5288,10 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 	case ENCOUNT_SPTR_CHANP_GPRINT_WAIT:
 		if( ENC_GPrint_Check() == TRUE ){
 
-			// ƒp[ƒeƒBƒNƒ‹‚ğ“Ç‚İ‚ñ‚Å‚¨‚­
+			// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§ãŠã
 			ENC_GPrint_PTC_Load( eew->p_handle, NARC_field_encounteffect_chanpion_spa );
 
-			// 3D–ÊƒAƒ‹ƒtƒ@İ’è
+			// 3Dé¢ã‚¢ãƒ«ãƒ•ã‚¡è¨­å®š
 			G2_SetBlendAlpha( GX_BLEND_PLANEMASK_BG0, 
 					GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG2|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_OBJ,
 					0, 8 );
@@ -5316,7 +5316,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		CLACT_SetDrawFlag( task_w->clact[2], TRUE );
 
 
-		// “G
+		// æ•µ
 		ENC_AddMoveReqFx( &task_w->enemy_oam_move_x,
 				ENCOUNT_SPTR_CHANP_ENEMY_MOVE_SX,
 				ENCOUNT_SPTR_CHANP_ENEMY_MOVE_EX,
@@ -5333,11 +5333,11 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		CLACT_SetDrawFlag( task_w->clact[3], TRUE );
 
 
-		// ƒgƒŒ[ƒi[–¼•\¦—pƒrƒbƒgƒ}ƒbƒvì¬
+		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åè¡¨ç¤ºç”¨ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ä½œæˆ
 		{
 			STRBUF* p_str;
 
-			// ƒpƒŒƒbƒg“Ç‚İ‚İ	
+			// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿	
 			ArcUtil_HDL_PalSet( eew->p_handle, 
 					NARC_field_encounteffect_cutin_gym_font_NCLR,
 					PALTYPE_MAIN_BG, ENCOUNT_SPTR_CHANP_TRNAME_PAL*0x20, 0x20, heapID );
@@ -5352,7 +5352,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 			GF_STR_PrintColor( &task_w->trnamewin, FONT_SYSTEM,
 										   p_str, 0, 0, MSG_ALLPUT, 
 										   ENCOUNT_SPTR_CHANP_TRNAME_COL, NULL);
-			STRBUF_Delete( p_str );	// ”jŠü‚í‚·‚ê’ˆÓI
+			STRBUF_Delete( p_str );	// ç ´æ£„ã‚ã™ã‚Œæ³¨æ„ï¼
 		}
 
 		eew->wait = ENCOUNT_SPTR_CHANP_HERO_EFFECT_WAIT;
@@ -5361,21 +5361,21 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		
 	case ENCOUNT_SPTR_CHANP_HERO_INWAIT:
 
-		// ƒp[ƒeƒBƒNƒ‹ŠJnƒ^ƒCƒ~ƒ“ƒO‚ğŒvZ
+		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«é–‹å§‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’è¨ˆç®—
 		if( eew->wait > 0 ){
 			eew->wait --;
 			if( eew->wait == 0 ){
-				// ƒp[ƒeƒBƒNƒ‹ŠJn
+				// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«é–‹å§‹
 				ENC_GPrint_PTC_Start( 3 );
 				GF_Disp_GX_VisibleControl(
 					GX_PLANEMASK_BG0, VISIBLE_ON );
 
-				// trainer–¼ON
+				// traineråON
 				GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG2, VISIBLE_ON);
 			}
 		}else{
 
-			// ‚»‚Ì‘¼‚È‚çVSƒAƒjƒ‚ğ—¬‚·
+			// ãã®ä»–ãªã‚‰VSã‚¢ãƒ‹ãƒ¡ã‚’æµã™
 			EncountEffect_SpTr_VsAnmMain( &task_w->vsanm );
 		}
 		
@@ -5383,18 +5383,18 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		matrix = ENC_MakeVec( 
 				task_w->oam_move_x.x, 
 				ENCOUNT_SPTR_CHANP_HERO_Y, 0 );
-		task_w->pos_hero = matrix;	// Šî€À•W
+		task_w->pos_hero = matrix;	// åŸºæº–åº§æ¨™
 		CLACT_SetMatrix( task_w->clact[0], &matrix );
 		matrix.y += ENCOUNT_SPTR_CHANP_HERO_Y_WAKU_OFS;
 		matrix.x += ENCOUNT_SPTR_CHANP_HERO_X_WAKU_OFS;
 		CLACT_SetMatrix( task_w->clact[2], &matrix );
 
-		// “G
+		// æ•µ
 		result = ENC_AddMoveMainFx( &task_w->enemy_oam_move_x );
 		matrix = ENC_MakeVec( 
 				task_w->enemy_oam_move_x.x, 
 				ENCOUNT_SPTR_CHANP_ENEMY_Y, 0 );
-		task_w->pos_enemy = matrix;	// Šî€À•W
+		task_w->pos_enemy = matrix;	// åŸºæº–åº§æ¨™
 		CLACT_SetMatrix( task_w->clact[1], &matrix );
 		matrix.y += ENCOUNT_SPTR_CHANP_ENEMY_Y_WAKU_OFS;
 		matrix.x += ENCOUNT_SPTR_CHANP_ENEMY_X_WAKU_OFS;
@@ -5416,7 +5416,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 				0, 16,
 				ENCOUNT_SPTR_CHANP_HERO_FLASHOUT_SYNC);
 
-		// ‚±‚Ìƒp[ƒeƒBƒNƒ‹‚ğ”jŠü
+		// ã“ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’ç ´æ£„
 		ENC_GPrint_PTC_Delete();
 
 		eew->seq ++;
@@ -5427,22 +5427,22 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		result = ENC_MoveMain( &task_w->flash );
 		ENC_SetMasterBrightnessVblank( &task_w->flash.x );
 		if( result == TRUE ){
-			// ålŒö‚ÌƒJƒ‰[ƒpƒŒƒbƒg•ÏX
-			// OAM‚ÌƒJƒ‰[ƒpƒŒƒbƒg•ÏX
+			// ä¸»äººå…¬ã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
+			// OAMã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 			ENC_CLACT_ResColorChange( task_w->clact[0], heapID, task_w->hero_type, 0, ENCOUNT_SPTR_CHANP_COLOR_FADE );
 
-			// “G
+			// æ•µ
 			ENC_CLACT_ResColorChange( task_w->clact[1], heapID, cp_def->enemy_tr_type, 0,ENCOUNT_SPTR_CHANP_COLOR_FADE );
 
-			// “y‘ä‚ÌƒAƒjƒŠJn
+			// åœŸå°ã®ã‚¢ãƒ‹ãƒ¡é–‹å§‹
 			CLACT_SetAnmFlag( task_w->clact[2], TRUE );
 			CLACT_SetAnmFrame( task_w->clact[2], FX32_ONE*2 );
 			CLACT_SetAnmFlag( task_w->clact[3], TRUE );
 			CLACT_SetAnmFrame( task_w->clact[3], FX32_ONE*2 );
 
 
-			//  Ÿ‚Ìƒp[ƒeƒBƒNƒ‹‚ğ“Ç‚İ‚Ş
-			//  “®‚«‚ª~‚Ü‚é‚Ì‚ª‚í‚©‚Á‚Ä‚à‚æ‚¢‚æ‚¤‚É^‚Á”’‚Ì‚Æ‚«‚És‚¤
+			//  æ¬¡ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’èª­ã¿è¾¼ã‚€
+			//  å‹•ããŒæ­¢ã¾ã‚‹ã®ãŒã‚ã‹ã£ã¦ã‚‚ã‚ˆã„ã‚ˆã†ã«çœŸã£ç™½ã®ã¨ãã«è¡Œã†
 			ENC_GPrint_PTC_Load( eew->p_handle, NARC_field_encounteffect_chanpion2_spa );
 
 			eew->seq++;
@@ -5454,7 +5454,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 				16,0,
 				ENCOUNT_SPTR_CHANP_HERO_FLASHIN_SYNC);
 
-		// ”w–Êƒp[ƒeƒBƒNƒ‹ŠJn
+		// èƒŒé¢ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«é–‹å§‹
 		ENC_GPrint_PTC_Start( 4 );
 		GF_BGL_PrioritySet( GF_BGL_FRAME0_M, 1 );	
 
@@ -5467,23 +5467,23 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		if( result == TRUE ){
 			eew->seq++;
 
-			// ålŒö‚ª‚±‚·‚ê‚é‚Ü‚Å‚ÌƒEƒGƒCƒg
+			// ä¸»äººå…¬ãŒã“ã™ã‚Œã‚‹ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
 			eew->wait = ENCOUNT_SPTR_CHANP_BT_IN_WAIT;
 
 		}
 		break;
 
-	// ‚±‚·‚ê‚éƒAƒjƒ
+	// ã“ã™ã‚Œã‚‹ã‚¢ãƒ‹ãƒ¡
 	case ENCOUNT_SPTR_CHANP_BT_IN:
 
-		// ƒEƒGƒCƒg
+		// ã‚¦ã‚¨ã‚¤ãƒˆ
 		if( eew->wait > 0 ){
 			eew->wait --;
 			break;
 		}
 
 
-		// “®ì‚·‚é’l
+		// å‹•ä½œã™ã‚‹å€¤
 		ENC_AddMoveReqFx( &task_w->oam_move_x,
 				ENCOUNT_SPTR_CHANP_BT_IN_MOVE_SX,
 				ENCOUNT_SPTR_CHANP_BT_IN_MOVE_EX,
@@ -5507,7 +5507,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		result = ENC_AddMoveMainFx( &task_w->oam_move_x );
 		ENC_AddMoveMainFx( &task_w->oam_move_y );
 		
-		// ålŒö
+		// ä¸»äººå…¬
 		if( ((eew->wait / ENCOUNT_SPTR_CHANP_BT_IN_MOVE_CHG)%2) == 0 ){
 			matrix = ENC_MakeVec( 
 					task_w->pos_hero.x + task_w->oam_move_x.x, 
@@ -5518,14 +5518,14 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 					task_w->pos_hero.y - task_w->oam_move_y.x, 0 );
 		}
 		if( result ){
-			task_w->pos_hero = matrix;	// Šî€À•W
+			task_w->pos_hero = matrix;	// åŸºæº–åº§æ¨™
 		}
 		CLACT_SetMatrix( task_w->clact[0], &matrix );
 		matrix.y += ENCOUNT_SPTR_CHANP_HERO_Y_WAKU_OFS;
 		matrix.x += ENCOUNT_SPTR_CHANP_HERO_X_WAKU_OFS;
 		CLACT_SetMatrix( task_w->clact[2], &matrix );
 
-		// “G
+		// æ•µ
 		if( ((eew->wait / ENCOUNT_SPTR_CHANP_BT_IN_MOVE_CHG)%2) == 0 ){
 			matrix = ENC_MakeVec( 
 					task_w->pos_enemy.x - task_w->oam_move_x.x, 
@@ -5536,7 +5536,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 					task_w->pos_enemy.y + task_w->oam_move_y.x, 0 );
 		}
 		if( result ){
-			task_w->pos_enemy = matrix;	// Šî€À•W
+			task_w->pos_enemy = matrix;	// åŸºæº–åº§æ¨™
 		}
 		CLACT_SetMatrix( task_w->clact[1], &matrix );
 		matrix.y += ENCOUNT_SPTR_CHANP_ENEMY_Y_WAKU_OFS;
@@ -5546,7 +5546,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		if( result ){
 			eew->seq ++;
 
-			// ƒgƒŒ[ƒi[–¼OFF
+			// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åOFF
 			GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG2, VISIBLE_OFF);
 
 			// OAM
@@ -5559,7 +5559,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 					ENCOUNT_SPTR_CHANP_OAM_MOVE_YSS,
 					ENCOUNT_SPTR_CHANP_WIPE_OUT_SYNC );	
 
-			// ƒzƒƒCƒgƒAƒEƒg
+			// ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
 			WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_WHITE, ENCOUNT_SPTR_CHANP_WIPE_OUT_SYNC_WIPE, 1, HEAPID_FIELD );
 		}
 		break;
@@ -5568,7 +5568,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		ENC_AddMoveMainFx( &task_w->oam_move_x );
 		ENC_AddMoveMainFx( &task_w->oam_move_y );
 
-		// ålŒö‘¤
+		// ä¸»äººå…¬å´
 		matrix = ENC_MakeVec( 
 				task_w->pos_hero.x - task_w->oam_move_x.x, 
 				task_w->pos_hero.y - task_w->oam_move_y.x, 0 );
@@ -5577,7 +5577,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		matrix.x += ENCOUNT_SPTR_CHANP_HERO_X_WAKU_OFS;
 		CLACT_SetMatrix( task_w->clact[2], &matrix );
 
-		// “GŒö‘¤
+		// æ•µå…¬å´
 		matrix = ENC_MakeVec( 
 				task_w->pos_enemy.x + task_w->oam_move_x.x, 
 				task_w->pos_enemy.y + task_w->oam_move_y.x, 0 );
@@ -5596,16 +5596,16 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_WHITE );
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 
-		// ”jŠü
+		// ç ´æ£„
 		EncountEffect_SpTr_VsAnmExit( &task_w->vsanm );
 
-		// trainer–¼BMP
+		// traineråBMP
 		GF_BGL_BmpWinDel( &task_w->trnamewin );
 		
-		// OAM”jŠü
+		// OAMç ´æ£„
 		for( i=0; i<ENCOUNT_SPTR_CHANP_CELL_NUM; i++ ){
 			CLACT_Delete( task_w->clact[i] );
 		}
@@ -5639,7 +5639,7 @@ static BOOL EncountEffect_SpTr_ChanpMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l“V‰¤@ƒ`ƒƒƒ“ƒsƒIƒ“
+ *	@brief	å››å¤©ç‹ã€€ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
  */
 //-----------------------------------------------------------------------------
 void EncountEffect_SPTR_Siten00(TCB_PTR tcb, void* work)
@@ -5664,12 +5664,12 @@ void EncountEffect_SPTR_Siten00(TCB_PTR tcb, void* work)
 	
 	case 2:
 		{
-			//  Ÿè‚É‚RD•`‰æˆ—
+			//  å‹æ‰‹ã«ï¼“Dæç”»å‡¦ç†
 			GF_G3X_Reset();
 
 			GFC_CameraLookAtZ();
 
-			/* ƒWƒIƒƒgƒŠ•ƒŒƒ“ƒ_ƒŠƒ“ƒOƒGƒ“ƒWƒ“ŠÖ˜Aƒƒ‚ƒŠ‚ÌƒXƒƒbƒv */
+			/* ã‚¸ã‚ªãƒ¡ãƒˆãƒªï¼†ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ãƒ¡ãƒ¢ãƒªã®ã‚¹ãƒ¯ãƒƒãƒ— */
 			GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO, SwapBuffMode);
 
 			ENC_End( eew, tcb );

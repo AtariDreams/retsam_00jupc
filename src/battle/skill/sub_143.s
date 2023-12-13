@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_143.s
- *@brief	�퓬�V�[�P���X
- *			�X�L���X���b�v�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			スキルスワップシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.09
  *
@@ -15,26 +15,26 @@
 	.include	"waza_seq_def.h"
 
 SUB_143:
-	//�������ŊO��Ă��鎞�́A���܂����܂��
+	//命中率で外れている時は、うまくきまらん
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
-	//�����ӂ����Ȃ܂���͎��s����
+	//特性ふしぎなまもりは失敗する
 	IF_PSP			IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_speabino,TOKUSYU_HUSIGINAMAMORI,Umakukimaran
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_speabino,TOKUSYU_HUSIGINAMAMORI,Umakukimaran
-	//�����}���`�^�C�v�́A���܂����܂��
+	//特性マルチタイプは、うまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_speabino,TOKUSYU_MARUTITAIPU,Umakukimaran
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_speabino,TOKUSYU_MARUTITAIPU,Umakukimaran
-	//�͂����񂾂܂������Ă���Ƃ��́A���܂����܂��
+	//はっきんだまを持っているときは、うまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_item,ITEM_HAKKINDAMA,Umakukimaran
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_item,ITEM_HAKKINDAMA,Umakukimaran
-	//Attack�ADefence���ɓ����������Ă��Ȃ��Ƃ��́A���s����
+	//Attack、Defence共に特性を持っていないときは、失敗する
 	IF_PSP			IF_FLAG_NE,SIDE_ATTACK,ID_PSP_speabino,0,SUB_143_NEXT
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_speabino,0,Umakukimaran
 SUB_143_NEXT:
 	GOSUB			SUB_SEQ_WAZA_OUT_EFF
 
-	//�Ȃ܂��r�b�g��������
+	//なまけビットを初期化
 	VALUE_WORK		VAL_SET,BUF_PARA_TEMP_WORK,BUF_PARA_TOTAL_TURN
-	//���̃^�[���Ȃ܂������邽�߂ɁA�C���N�������g�͂Ȃ�
+	//次のターンなまけさせるために、インクリメントはなし
 //	VALUE			VAL_ADD,BUF_PARA_TEMP_WORK,1
 	VALUE			VAL_AND,BUF_PARA_TEMP_WORK,1
 	PSP_VALUE_WORK	VAL_SET,SIDE_ATTACK,ID_PSP_wkw_namake_bit,BUF_PARA_TEMP_WORK

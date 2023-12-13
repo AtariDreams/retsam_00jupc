@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	fieldmap.h	
- * @bfief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒVƒXƒeƒ€
+ * @bfief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ 
  * @author	GAME FREAK inc.
  */
 //=============================================================================
@@ -12,22 +12,22 @@
 #include "system/brightness.h"
 #include "field_common.h"
 
-// ‹P“x’²®—pƒtƒ‰ƒO
+// è¼åº¦èª¿æ•´ç”¨ãƒ•ãƒ©ã‚°
 enum {
-	FLD_DISP_BRIGHT_BLACKOUT = 0,		// ˆÃ‚­‚·‚é
-	FLD_DISP_BRIGHT_BLACKIN			// Œ³‚É–ß‚·
+	FLD_DISP_BRIGHT_BLACKOUT = 0,		// æš—ãã™ã‚‹
+	FLD_DISP_BRIGHT_BLACKIN			// å…ƒã«æˆ»ã™
 };
 
-// BGƒtƒŒ[ƒ€
-#define	FLD_MBGFRM_MAP		( GF_BGL_FRAME0_M )		///<ƒ}ƒbƒv
-#define	FLD_MBGFRM_EFFECT1	( GF_BGL_FRAME1_M )		///<ƒGƒtƒFƒNƒg‚P
-#define	FLD_MBGFRM_EFFECT2	( GF_BGL_FRAME2_M )		///<ƒGƒtƒFƒNƒg‚Q
-#define	FLD_MBGFRM_FONT		( GF_BGL_FRAME3_M )		///<ƒƒbƒZ[ƒW
+// BGãƒ•ãƒ¬ãƒ¼ãƒ 
+#define	FLD_MBGFRM_MAP		( GF_BGL_FRAME0_M )		///<ãƒžãƒƒãƒ—
+#define	FLD_MBGFRM_EFFECT1	( GF_BGL_FRAME1_M )		///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼‘
+#define	FLD_MBGFRM_EFFECT2	( GF_BGL_FRAME2_M )		///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼’
+#define	FLD_MBGFRM_FONT		( GF_BGL_FRAME3_M )		///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
-#define	FLD_SBGFRM_MENU		( GF_BGL_FRAME0_S )		///<ƒƒjƒ…[
-#define	FLD_SBGFRM_EFFECT1	( GF_BGL_FRAME1_S )		///<ƒGƒtƒFƒNƒg‚P
-#define	FLD_SBGFRM_EFFECT2	( GF_BGL_FRAME2_S )		///<ƒGƒtƒFƒNƒg‚Q
-#define	FLD_SBGFRM_FONT		( GF_BGL_FRAME3_S )		///<ƒƒbƒZ[ƒW
+#define	FLD_SBGFRM_MENU		( GF_BGL_FRAME0_S )		///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+#define	FLD_SBGFRM_EFFECT1	( GF_BGL_FRAME1_S )		///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼‘
+#define	FLD_SBGFRM_EFFECT2	( GF_BGL_FRAME2_S )		///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼’
+#define	FLD_SBGFRM_FONT		( GF_BGL_FRAME3_S )		///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
 extern  void FieldFadeWipeSet(const u8 flg);
 
@@ -37,9 +37,9 @@ extern void Fieldmap_BgExit( GF_BGL_INI * ini );
 
 //-------------------------------------
 // fldmap_update_msk
-// ƒtƒB[ƒ‹ƒhƒAƒbƒvƒf[ƒgƒ}ƒXƒN‘€ì
+// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒžã‚¹ã‚¯æ“ä½œ
 //=====================================
-// 3D•`‰æXVÝ’è	TRUEFXV‚·‚é	FALSEFXV‚µ‚È‚¢
+// 3Dæç”»æ›´æ–°è¨­å®š	TRUEï¼šæ›´æ–°ã™ã‚‹	FALSEï¼šæ›´æ–°ã—ãªã„
 extern void Fieldmap_UpdateMsk_Set3Dwrite( FIELDSYS_WORK * fsys, BOOL flag );
 extern void Fieldmap_UpdateMsk_SetFieldAnime( FIELDSYS_WORK * fsys, BOOL flag );
 

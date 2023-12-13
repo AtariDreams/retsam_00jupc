@@ -1,9 +1,9 @@
 //=============================================================================
 /**
  * @file	comm_command_field.c
- * @brief	ƒf[ƒ^‚ğ‘—‚é‚½‚ß‚ÌƒRƒ}ƒ“ƒh‚ğƒe[ƒuƒ‹‰»‚µ‚Ä‚¢‚Ü‚·
- *          ƒtƒB[ƒ‹ƒh—p‚Å‚·
- *          comm_command_field.h ‚Ì enum ‚Æ“¯‚¶•À‚Ñ‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+ * @brief	ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹ãŸã‚ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«åŒ–ã—ã¦ã„ã¾ã™
+ *          ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ã§ã™
+ *          comm_command_field.h ã® enum ã¨åŒã˜ä¸¦ã³ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
  * @author	Katsumi Ohno
  * @date    2005.11.07
  */
@@ -20,7 +20,7 @@
 #include "savedata/trainercard_data.h"
 #include "application/trainer_card.h"
 
-// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ‘‚­‚½‚ß
+// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’æ›¸ããŸã‚
 #include "underground/ug_manager.h"
 #include "comm_union.h"
 #include "poketool/poke_tool.h"
@@ -29,21 +29,21 @@
 
 #include "d_ohno.h"
 
-// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ‘‚­‚½‚ß
+// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’æ›¸ããŸã‚
 #include "application/guru2/guru2_comm.h"
 
-//ƒtƒƒ“ƒeƒBƒAƒtƒB[ƒ‹ƒh
+//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 #include "../field/scr_stage_sub.h"
 #include "../field/scr_castle_sub.h"
 #include "../field/scr_roulette_sub.h"
 
 
 //==============================================================================
-//  ƒe[ƒuƒ‹‚É‘‚­ŠÖ”‚Ì’è‹`
+//  ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ›¸ãé–¢æ•°ã®å®šç¾©
 //==============================================================================
 
 //==============================================================================
-//  static’è‹`
+//  staticå®šç¾©
 //==============================================================================
 
 static int _getTrainerCardSize(void);
@@ -72,16 +72,16 @@ static int _getPokePartyOnceSize( void )
 
 
 //==============================================================================
-//	ƒe[ƒuƒ‹éŒ¾
-//  comm_shar.h ‚Ì enum ‚Æ“¯‚¶‚È‚ç‚Ñ‚É‚µ‚Ä‚­‚¾‚³‚¢
-//  CALLBACK‚ğŒÄ‚Î‚ê‚½‚­‚È‚¢ê‡‚ÍNULL‚ğ‘‚¢‚Ä‚­‚¾‚³‚¢
-//  ƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY‚ğ•Ô‚·ŠÖ”‚ğ‘‚¢‚Ä‚à‚ç‚¦‚é‚Æ’ÊM‚ªŒy‚­‚È‚è‚Ü‚·
-//  _getZero‚ÍƒTƒCƒY‚È‚µ‚ğ•Ô‚µ‚Ü‚·B_getVariable‚Í‰Â•Ïƒf[ƒ^g—p‚Ég‚¢‚Ü‚·
+//	ãƒ†ãƒ¼ãƒ–ãƒ«å®£è¨€
+//  comm_shar.h ã® enum ã¨åŒã˜ãªã‚‰ã³ã«ã—ã¦ãã ã•ã„
+//  CALLBACKã‚’å‘¼ã°ã‚ŒãŸããªã„å ´åˆã¯NULLã‚’æ›¸ã„ã¦ãã ã•ã„
+//  ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™é–¢æ•°ã‚’æ›¸ã„ã¦ã‚‚ã‚‰ãˆã‚‹ã¨é€šä¿¡ãŒè»½ããªã‚Šã¾ã™
+//  _getZeroã¯ã‚µã‚¤ã‚ºãªã—ã‚’è¿”ã—ã¾ã™ã€‚_getVariableã¯å¯å¤‰ãƒ‡ãƒ¼ã‚¿ä½¿ç”¨æ™‚ã«ä½¿ã„ã¾ã™
 //==============================================================================
 static const CommPacketTbl _CommPacketTbl[] = {
     {CommPlayerRecvPlace,         CommPlayerGetRecvPlaceSize ,  NULL},
     {CommPlayerRecvIDPlace,       CommPlayerGetRecvIDPlaceSize , NULL},
-    {UgMgrRecvNPCTalk,       _getOne , NULL},//  CF_NPC_TALK,                  ///<  NPC‚Æ‚Ì‰ï˜b
+    {UgMgrRecvNPCTalk,       _getOne , NULL},//  CF_NPC_TALK,                  ///<  NPCã¨ã®ä¼šè©±
     {CommPlayerRecvOtherTalk,             _getZero,  NULL},
     {CommPlayerRecvOtherTalk_ServerSide,  _getOne,  NULL},
     {CommPlayerRecvCheckFieldMenuOpen, _getZero,  NULL},
@@ -153,8 +153,8 @@ static const CommPacketTbl _CommPacketTbl[] = {
     {CommPlayerRecvNowFlagDataEnd, _getOne,  NULL},  //CF_FLAG_NOWARRAY_END,
     {CommPlayerRecvStartLineSet, _getOne, NULL}, //CF_DIRECT_START_SET,
     {CommDirectRecvStartPos, _getOne, NULL}, //CF_DIRECT_STARTPOS,
-    {UgSBRecvLVUPFlag, _getOne, NULL},  //CF_LVUP_FLAG,           ///< ƒpƒ\ƒRƒ“LVUP
-    {UgSBRecvLVUPFlagRet, UgSBGetLVUPFlagRetSize, NULL},  //CF_LVUP_FLAG_RET,       ///< ƒpƒ\ƒRƒ“LVUP
+    {UgSBRecvLVUPFlag, _getOne, NULL},  //CF_LVUP_FLAG,           ///< ãƒ‘ã‚½ã‚³ãƒ³LVUP
+    {UgSBRecvLVUPFlagRet, UgSBGetLVUPFlagRetSize, NULL},  //CF_LVUP_FLAG_RET,       ///< ãƒ‘ã‚½ã‚³ãƒ³LVUP
 
     {CommUnionRecvStatus,				MyStatus_GetWorkSize,	NULL},
     {CommUnionRecvSelect,  				_getOne,                NULL},
@@ -168,7 +168,7 @@ static const CommPacketTbl _CommPacketTbl[] = {
     { CommMixBattleRecv, CommMixBattleGetDataSize, CommMixBattleGetBuffer },
     { CommMixBattleTradeRecv, _getOne, NULL },
 
-	{ CommDummyCallBack, _getOne, NULL},// ƒŒƒR[ƒhƒR[ƒi[—p‚Ìƒe[ƒuƒ‹
+	{ CommDummyCallBack, _getOne, NULL},// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«
     { CommDummyCallBack, _getOne, NULL},
     { CommDummyCallBack, _getOne, NULL},
     { CommDummyCallBack, _getZero, NULL},
@@ -180,7 +180,7 @@ static const CommPacketTbl _CommPacketTbl[] = {
     { CommDummyCallBack, _getOne, NULL},
     
     
-    { CommDummyCallBack, _getPictureSize, NULL},// ‚¨‚¦‚©‚«—p‚Ìƒe[ƒuƒ‹
+    { CommDummyCallBack, _getPictureSize, NULL},// ãŠãˆã‹ãç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«
     { CommDummyCallBack, _getLinePosSize,    NULL},
     { CommDummyCallBack, _getLinePosServerSize, NULL},
     { CommDummyCallBack, _getOne,            NULL},
@@ -194,19 +194,19 @@ static const CommPacketTbl _CommPacketTbl[] = {
     { CommDummyCallBack, _getZero,			 NULL},
 
 	
-    { CommDummyCallBack, _getGuru2WideUseSendWorkSize,			 NULL},	//‚®‚é‚®‚éŒğŠ·—pƒe[ƒuƒ‹
+    { CommDummyCallBack, _getGuru2WideUseSendWorkSize,			 NULL},	//ãã‚‹ãã‚‹äº¤æ›ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
     { CommDummyCallBack, _getPokePartyOnceSize,			 NULL},
 
-	{CommFldStageRecvMonsNo,		_getVariable,	NULL},		//ƒXƒe[ƒW
-	{CommFldCastleRecvMonsNo,		_getVariable,	NULL},		//ƒLƒƒƒbƒXƒ‹
-	{CommFldRouletteRecvMonsNo,		_getVariable,	NULL},		//ƒ‹[ƒŒƒbƒg
+	{CommFldStageRecvMonsNo,		_getVariable,	NULL},		//ã‚¹ãƒ†ãƒ¼ã‚¸
+	{CommFldCastleRecvMonsNo,		_getVariable,	NULL},		//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+	{CommFldRouletteRecvMonsNo,		_getVariable,	NULL},		//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 
 };
 
 
 
 //--------------------------------------------------------------
-// ‰½‚à‚µ‚È‚¢ƒ_ƒ~[‚ÌƒR[ƒ‹ƒoƒbƒN
+// ä½•ã‚‚ã—ãªã„ãƒ€ãƒŸãƒ¼ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 //--------------------------------------------------------------
 void CommDummyCallBack( int netID, int size, void* pBuff, void* pWork )
 {
@@ -215,7 +215,7 @@ void CommDummyCallBack( int netID, int size, void* pBuff, void* pWork )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒB[ƒ‹ƒh—p‚ÌƒRƒ}ƒ“ƒh‘ÌŒn‚É‰Šú‰»‚µ‚Ü‚·
+ * @brief   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ã®ã‚³ãƒãƒ³ãƒ‰ä½“ç³»ã«åˆæœŸåŒ–ã—ã¾ã™
  * @param   none
  * @retval  none
  */
@@ -228,7 +228,7 @@ void CommCommandFieldInitialize(void* pWork)
 }
 
 //--------------------------------------------------------------------------------
-// ƒgƒŒ[ƒi[ƒJ[ƒh‚Ì‘å‚«‚³‚ğ•\‚·ŠÖ”
+// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã®å¤§ãã•ã‚’è¡¨ã™é–¢æ•°
 //--------------------------------------------------------------------------------
 static int _getTrainerCardSize(void)
 {
@@ -237,7 +237,7 @@ static int _getTrainerCardSize(void)
 }
 
 //--------------------------------------------------------------------------------
-// ƒŒƒR[ƒhƒf[ƒ^‚Ì‘å‚«‚³‚ğ•\‚·ŠÖ”
+// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å¤§ãã•ã‚’è¡¨ã™é–¢æ•°
 //--------------------------------------------------------------------------------
 int _getRecordSize(void)
 {
@@ -246,7 +246,7 @@ int _getRecordSize(void)
 
 
 //--------------------------------------------------------------------------------
-// •`‰æÏ‚İ‰æ‘œ‚ÌƒTƒCƒY‚ğ•\‚·i‘—M—ÊƒMƒŠƒMƒŠ‚ğ’è‹`j
+// æç”»æ¸ˆã¿ç”»åƒã®ã‚µã‚¤ã‚ºã‚’è¡¨ã™ï¼ˆé€ä¿¡é‡ã‚®ãƒªã‚®ãƒªã‚’å®šç¾©ï¼‰
 //--------------------------------------------------------------------------------
 int _getPictureSize(void)
 {
@@ -254,7 +254,7 @@ int _getPictureSize(void)
 }
 
 //--------------------------------------------------------------------------------
-// ‚TlÚ‘±‚Ì‚ÉAq‹@‚ª‘—M‚Å‚«‚éÅ‘åƒpƒPƒbƒgƒTƒCƒY
+// ï¼•äººæ¥ç¶šã®æ™‚ã«ã€å­æ©ŸãŒé€ä¿¡ã§ãã‚‹æœ€å¤§ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
 //--------------------------------------------------------------------------------
 
 #define COMM_SEND_5TH_PACKET_MAX	( 10 )
@@ -271,7 +271,7 @@ int _getLinePosServerSize(void)
 }
 
 //--------------------------------------------------------------------------------
-// ƒoƒCƒg‚ğ•\‚·ŠÖ”
+// ãƒã‚¤ãƒˆã‚’è¡¨ã™é–¢æ•°
 //--------------------------------------------------------------------------------
 static int _getCRECW(void)
 {
@@ -279,7 +279,7 @@ static int _getCRECW(void)
 }
 
 //--------------------------------------------------------------------------------
-// ƒoƒCƒg‚ğ•\‚·ŠÖ”
+// ãƒã‚¤ãƒˆã‚’è¡¨ã™é–¢æ•°
 //--------------------------------------------------------------------------------
 static int _getCOECW(void)
 {

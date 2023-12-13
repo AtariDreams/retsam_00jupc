@@ -1,7 +1,7 @@
 #ifndef _COMMON_SCR_DEF_H_
 #define _COMMON_SCR_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_COMMON_BOARD		(2000)
 #define	SCRID_POCKET_ME_SET		(2001)
 #define	SCRID_HEAL_P01		(2002)
@@ -60,6 +60,6 @@
 #define	SCRID_HANDSOME_PLAY		(2055)
 #define	SCRID_HANDSOME_STOP		(2056)
 #define	SCRID_GIRA_ITEM_NG		(2057)
-#define	SCRID_COMMON_SCR_DATA_MAX		(58)		//最大数
+#define	SCRID_COMMON_SCR_DATA_MAX		(58)		//譛螟ｧ謨ｰ
 
 #endif //_COMMON_SCR_DEF_H_

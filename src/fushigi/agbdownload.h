@@ -1,7 +1,7 @@
 //===================================================================
 /**
  * @file	agbdownload.h
- * @bfief	AGB�J�Z�b�g����̂ӂ����f�[�^�_�E�����[�h
+ * @bfief	AGBカセットからのふしぎデータダウンロード
  * @author	Satoshi Mitsuhara
  * @date	06.06.09
  *
@@ -12,22 +12,22 @@
 #define __AGBDOWNLOAD_H__
 
 
-// �f�[�^�T�C�Y���u����Ă���A�h���X
+// データサイズが置かれているアドレス
 #define AGBMISSIONDATASIZE	0x08100000
-// �r�[�R����񂪔z�u����Ă���A�h���X
+// ビーコン情報が配置されているアドレス
 #define AGBBEACONDATAPTR	0x08100010
-// �ӂ����f�[�^���z�u����Ă���A�h���X
+// ふしぎデータが配置されているアドレス
 #define AGBMISSIONDATAPTR	0x08100100
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/15
-// �d�q�����F�؂ɑΉ�
-#define AGB_SIGNEDDATA_PTR		((void *)AGBMISSIONDATASIZE)	// �F�ؑΏۗ̈�̐擪
-#define AGB_SIGNEDDATA_SIZE		(0x4A8)							// �F�ؑΏۗ̈�̃T�C�Y
-#define AGB_SIGNATURE_PTR		((void *)0x08020000)			// �d�q�������z�u����Ă���A�h���X
+// 電子署名認証に対応
+#define AGB_SIGNEDDATA_PTR		((void *)AGBMISSIONDATASIZE)	// 認証対象領域の先頭
+#define AGB_SIGNEDDATA_SIZE		(0x4A8)							// 認証対象領域のサイズ
+#define AGB_SIGNATURE_PTR		((void *)0x08020000)			// 電子署名が配置されているアドレス
 #define AGB_SIGNATURE_SIZE		(128)
 // ----------------------------------------------------------------------------
 
-#define AGB_MAKER_CODE		0x3130		// �C�V��
+#define AGB_MAKER_CODE		0x3130		// 任天堂
 
 extern int GetAgbCartridgeDataSize(void);
 extern BOOL GetAgbCartridgeBeaconData(void *dist, int size);
@@ -35,7 +35,7 @@ extern BOOL ReadAgbCartridgeData(void *dist, int size);
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/15
-// Crypto ���C�u�������Ń��������m�ۂ���q�[�v���w�肷�邽�߂̊֐�
+// Crypto ライブラリ内でメモリを確保するヒープを指定するための関数
 extern void SetAgbCartridgeHeapID(u32 heapID);
 // ----------------------------------------------------------------------------
 

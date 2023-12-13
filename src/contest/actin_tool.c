@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	actin_tool.c
- * @brief	‰‰‹Z—Í•”–å‚ÅŽg—p‚·‚éƒc[ƒ‹—Þ
+ * @brief	æ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹ãƒ„ãƒ¼ãƒ«é¡ž
  * @author	matsuda
- * @date	2005.11.24(–Ø)
+ * @date	2005.11.24(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -48,148 +48,148 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹‚Ìƒhƒbƒg•X
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã®ãƒ‰ãƒƒãƒˆå¹…X
 #define BREEDER_PANEL_DOT_LEN_X		(10 * 8)
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹‚Ìƒhƒbƒg•Y
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã®ãƒ‰ãƒƒãƒˆå¹…Y
 #define BREEDER_PANEL_DOT_LEN_Y		(BREEDER_PANEL_Y_LEN * 8)
 
 //--------------------------------------------------------------
-//	BMPƒEƒBƒ“ƒhƒE
+//	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
-///ƒpƒlƒ‹‚ÌBMPƒGƒŠƒA‚ð–„‚ßs‚­‚·ê‡‚ÉŽg—p‚·‚éƒJƒ‰[”Ô†
+///ãƒ‘ãƒãƒ«ã®BMPã‚¨ãƒªã‚¢ã‚’åŸ‹ã‚å°½ãã™å ´åˆã«ä½¿ç”¨ã™ã‚‹ã‚«ãƒ©ãƒ¼ç•ªå·
 #define BMPWIN_PANEL_FILL_COLOR			(2)
 
-///‰ï˜bƒEƒBƒ“ƒhƒEƒJƒo[‚ÌƒXƒNƒŠ[ƒ“ˆÊ’u(ƒXƒNƒ[ƒ‹‘O)
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚«ãƒãƒ¼ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½ç½®(ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‰)
 #define WINSLIDE_SCRN_POS_BEFORE		(32 * 0x12 + 0x15)
-///‰ï˜bƒEƒBƒ“ƒhƒEƒJƒo[‚ÌƒXƒNƒŠ[ƒ“ˆÊ’u(ƒXƒNƒ[ƒ‹Œã)
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚«ãƒãƒ¼ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½ç½®(ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¾Œ)
 #define WINSLIDE_SCRN_POS_AFTER			(32 * 0x12 + 0x1e)
-///‰ï˜bƒEƒBƒ“ƒhƒEƒXƒ‰ƒCƒh‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ãƒ©ã‚¤ãƒ‰é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define TALKWIN_SLIDE_SPEED		(0x0400)
-///‰ï˜bƒEƒBƒ“ƒhƒE‚ÌƒXƒ‰ƒCƒh‹——£(ƒhƒbƒg’PˆÊ)
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¹ãƒ©ã‚¤ãƒ‰è·é›¢(ãƒ‰ãƒƒãƒˆå˜ä½)
 #define TALKWIN_SLIDE_DOT_LEN	(9 * 8 + FRAME_WIN_DEFAULT_X)
 
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹‚Ìƒ¿ƒXƒs[ƒh(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã®Î±ã‚¹ãƒ”ãƒ¼ãƒ‰(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define BRDPANEL_ALPHA_SP		(0x0800)	//(0x0500)
 
-///ŠÏ‹qƒAƒjƒ‚ÌƒEƒFƒCƒg
+///è¦³å®¢ã‚¢ãƒ‹ãƒ¡ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define AUDIENCE_ANIME_WAIT		(2)
-///ŠÏ‹qƒAƒjƒ‚ÌŒJ‚è•Ô‚µ‰ñ”
+///è¦³å®¢ã‚¢ãƒ‹ãƒ¡ã®ç¹°ã‚Šè¿”ã—å›žæ•°
 #define AUDIENCE_ANIME_LOOP		2	//(8)
-///ŠÏ‹qƒtƒF[ƒh‚ÌEVYÅ‘å’l
+///è¦³å®¢ãƒ•ã‚§ãƒ¼ãƒ‰ã®EVYæœ€å¤§å€¤
 #define AUDIENCE_FADE_MAX_EVY		(EVY_MAX)
-///ŠÏ‹qƒtƒF[ƒh‚ÌEVY‰ÁŽZ’l
+///è¦³å®¢ãƒ•ã‚§ãƒ¼ãƒ‰ã®EVYåŠ ç®—å€¤
 #define AUDIENCE_FADE_ADD_EVY		(2)
-///ŠÏ‹qƒtƒF[ƒh‚ÌEVY‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+///è¦³å®¢ãƒ•ã‚§ãƒ¼ãƒ‰ã®EVYã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define AUDIENCE_FADE_COLOR_POS		(0 * 16 + 1)
-///ŠÏ‹qƒtƒF[ƒh‚ÌƒJƒ‰[ŠJŽnˆÊ’u‚©‚ç‚Ì•ÏXƒJƒ‰[”
+///è¦³å®¢ãƒ•ã‚§ãƒ¼ãƒ‰ã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®ã‹ã‚‰ã®å¤‰æ›´ã‚«ãƒ©ãƒ¼æ•°
 #define AUDIENCE_FADE_COLOR_NUM		(2)
-///ŠÏ‹qƒtƒF[ƒh‚Ì•ÏXŒã‚ÌƒJƒ‰[
+///è¦³å®¢ãƒ•ã‚§ãƒ¼ãƒ‰ã®å¤‰æ›´å¾Œã®ã‚«ãƒ©ãƒ¼
 #define AUDIENCE_FADE_RGB			(0x237e)
 
-///ƒAƒs[ƒ‹ƒAƒCƒRƒ“ƒGƒtƒFƒNƒgFŠgk—¦‚Ì‰Šú’l
+///ã‚¢ãƒ”ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šæ‹¡ç¸®çŽ‡ã®åˆæœŸå€¤
 #define APICON_EFF_INIT_SCALE		(0.1f)
-///ƒAƒs[ƒ‹ƒAƒCƒRƒ“ƒGƒtƒFƒNƒgFŠgk—¦‚ÌÅ‘å’l
+///ã‚¢ãƒ”ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šæ‹¡ç¸®çŽ‡ã®æœ€å¤§å€¤
 #define APICON_EFF_MAX_SCALE		(1.5f)
-///ƒAƒs[ƒ‹ƒAƒCƒRƒ“ƒGƒtƒFƒNƒgF’Êí‚ÌŠgk—¦
+///ã‚¢ãƒ”ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šé€šå¸¸ã®æ‹¡ç¸®çŽ‡
 #define APICON_EFF_NORMAL_SCALE		(1.0f)
-///ƒAƒs[ƒ‹ƒAƒCƒRƒ“ƒGƒtƒFƒNƒgF‰ÁŽZŠgk—¦
+///ã‚¢ãƒ”ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šåŠ ç®—æ‹¡ç¸®çŽ‡
 #define APICON_EFF_ADD_SCALE		(0.3f)
-///ƒAƒs[ƒ‹ƒAƒCƒRƒ“ƒGƒtƒFƒNƒgF‰ñ“]‘¬“x
+///ã‚¢ãƒ”ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šå›žè»¢é€Ÿåº¦
 #define APICON_EFF_ADD_ROTATION		(0)//(0x2000)
 
-///R”»“®ìAŽw–¼FˆÚ“®—Ê(‰ºˆÊ8ƒrƒbƒg¬”)
+///å¯©åˆ¤å‹•ä½œã€æŒ‡åï¼šç§»å‹•é‡(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define JUDGE_NOMINATION_ADD_Y		(0x0180)
-///R”»“®ìAŽw–¼FˆÚ“®ŒJ‚è•Ô‚µ‰ñ”
+///å¯©åˆ¤å‹•ä½œã€æŒ‡åï¼šç§»å‹•ç¹°ã‚Šè¿”ã—å›žæ•°
 #define JUDGE_NOMINATION_LOOP		(2)
 
-///R”»“®ìA”í‚èFˆÚ“®—ÊX(‰ºˆÊ8ƒrƒbƒg¬”)
+///å¯©åˆ¤å‹•ä½œã€è¢«ã‚Šï¼šç§»å‹•é‡X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define JUDGE_WEAR_ADD_X			(0x0200)
-///R”»“®ìA”í‚èFˆÚ“®ŒJ‚è•Ô‚µ‰ñ”
+///å¯©åˆ¤å‹•ä½œã€è¢«ã‚Šï¼šç§»å‹•ç¹°ã‚Šè¿”ã—å›žæ•°
 #define JUDGE_WEAR_LOOP				(4)
 
-///R”»“®ìAƒWƒƒƒ“ƒvFŽw–¼‚ÌƒWƒƒƒ“ƒv—Í
+///å¯©åˆ¤å‹•ä½œã€ã‚¸ãƒ£ãƒ³ãƒ—ï¼šæŒ‡åã®ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
 #define JUDGE_JUMP_NOMINATION_POWER			(0x0200)
-///R”»“®ìAƒWƒƒƒ“ƒvFƒ{ƒ‹ƒe[ƒWŽž‚ÌƒWƒƒƒ“ƒv—Í
+///å¯©åˆ¤å‹•ä½œã€ã‚¸ãƒ£ãƒ³ãƒ—ï¼šãƒœãƒ«ãƒ†ãƒ¼ã‚¸æ™‚ã®ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
 #define JUDGE_JUMP_VOLTAGE_UP_POWER			(0x0300)
-///R”»“®ìAƒWƒƒƒ“ƒvFƒ{ƒ‹ƒe[ƒWMAXŽž‚ÌƒWƒƒƒ“ƒv—Í
+///å¯©åˆ¤å‹•ä½œã€ã‚¸ãƒ£ãƒ³ãƒ—ï¼šãƒœãƒ«ãƒ†ãƒ¼ã‚¸MAXæ™‚ã®ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
 #define JUDGE_JUMP_VOLTAGE_MAX_UP_POWER		(0x0400)
-///R”»“®ìAƒWƒƒƒ“ƒvFR”»”í‚èA‚Å‚©‚¢
+///å¯©åˆ¤å‹•ä½œã€ã‚¸ãƒ£ãƒ³ãƒ—ï¼šå¯©åˆ¤è¢«ã‚Šã€ã§ã‹ã„
 #define JUDGE_JUMP_SUFFER_BIG				(0x0480)
-///R”»“®ìAƒWƒƒƒ“ƒvFR”»”í‚èA’†‚­‚ç‚¢
+///å¯©åˆ¤å‹•ä½œã€ã‚¸ãƒ£ãƒ³ãƒ—ï¼šå¯©åˆ¤è¢«ã‚Šã€ä¸­ãã‚‰ã„
 #define JUDGE_JUMP_SUFFER_MIDDLE			(0x0280)
-///R”»“®ìAƒWƒƒƒ“ƒvFR”»”í‚èA¬‚³‚¢
+///å¯©åˆ¤å‹•ä½œã€ã‚¸ãƒ£ãƒ³ãƒ—ï¼šå¯©åˆ¤è¢«ã‚Šã€å°ã•ã„
 #define JUDGE_JUMP_SUFFER_SMALL				(0x0100)
-///R”»“®ìAƒWƒƒƒ“ƒvFd—Í
+///å¯©åˆ¤å‹•ä½œã€ã‚¸ãƒ£ãƒ³ãƒ—ï¼šé‡åŠ›
 #define JUDGE_JUMP_GRAVITY			(0x0100 / 2)
 
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®FÅ‰‚ÌˆÚ“®‚É‚©‚¯‚éƒtƒŒ[ƒ€”
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šæœ€åˆã®ç§»å‹•ã«ã‹ã‘ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define VOLTAGE_MOVE_FIRST_FRAME		(10)//(15)
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®FÅŒã‚ÌˆÚ“®‚É‚©‚¯‚éƒtƒŒ[ƒ€”
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šæœ€å¾Œã®ç§»å‹•ã«ã‹ã‘ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define VOLTAGE_MOVE_END_FRAME			(6)	//(10)
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®FÅ‰‚ÌˆÚ“®‚ªI‚í‚Á‚½Œã‚É”­¶‚·‚éƒEƒFƒCƒg
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šæœ€åˆã®ç§»å‹•ãŒçµ‚ã‚ã£ãŸå¾Œã«ç™ºç”Ÿã™ã‚‹ã‚¦ã‚§ã‚¤ãƒˆ
 #define VOLTAGE_MOVE_FIRST_WAIT			(3)//(4)
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®FÅŒã‚ÌˆÚ“®‚ªI‚í‚Á‚½Œã‚É”­¶‚·‚éƒEƒFƒCƒg
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šæœ€å¾Œã®ç§»å‹•ãŒçµ‚ã‚ã£ãŸå¾Œã«ç™ºç”Ÿã™ã‚‹ã‚¦ã‚§ã‚¤ãƒˆ
 #define VOLTAGE_MOVE_END_WAIT			(2)//(4)
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®FƒAƒNƒ^[ƒAƒjƒ‚Ì‰ñ“]Šp‰ÁŽZ’l
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ã®å›žè»¢è§’åŠ ç®—å€¤
 #define VOLTAGE_MOVE_ADD_ROTATION		(0x2000)
 
-///APƒn[ƒg‚ª“®‚«o‚·‚Ü‚Å‚ÌƒEƒFƒCƒg(2ŒÂ–Ú‚ÌˆÈ~‚Ìƒn[ƒg‚ª‰¡‚ÉƒXƒ‰ƒCƒh‚·‚éƒXƒs[ƒh‚É‰e‹¿‚·‚é)
+///APãƒãƒ¼ãƒˆãŒå‹•ãå‡ºã™ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ(2å€‹ç›®ã®ä»¥é™ã®ãƒãƒ¼ãƒˆãŒæ¨ªã«ã‚¹ãƒ©ã‚¤ãƒ‰ã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰ã«å½±éŸ¿ã™ã‚‹)
 #define APHEART_START_WAIT			(3)
-///–ˆƒtƒŒ[ƒ€‚Ì‚Ó‚è•Œ¸ŽZ’l
+///æ¯Žãƒ•ãƒ¬ãƒ¼ãƒ ã®ãµã‚Šå¹…æ¸›ç®—å€¤
 #define APHEART_SUB_FURIHABA		(0x0300)//(0x0200)
-///‚Ó‚è•‚ª‚±‚Ì’lˆÈ‰º‚É‚È‚Á‚½‚çI—¹
+///ãµã‚Šå¹…ãŒã“ã®å€¤ä»¥ä¸‹ã«ãªã£ãŸã‚‰çµ‚äº†
 #define APHEART_END_FURIHABA		(0x0200)
-///‰ñ“]‘¬“x
+///å›žè»¢é€Ÿåº¦
 #define APHEART_ADD_ANGLE			(0x800)//(0xb00)
-///–ˆƒtƒŒ[ƒ€‚Ì‰ñ“]‘¬“x‰ÁŽZ’l
+///æ¯Žãƒ•ãƒ¬ãƒ¼ãƒ ã®å›žè»¢é€Ÿåº¦åŠ ç®—å€¤
 #define APHEART_ADD_FRAME_ANGLE		(0)
 
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®FƒGƒtƒFƒNƒgŠJŽn‚Ü‚Å‚ÌƒEƒFƒCƒg
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define VOLMOVE_START_WAIT		(12)
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®F‚Ó‚è•X
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šãµã‚Šå¹…X
 #define VOLMOVE_FURIHABA_X		(12 << FX32_SHIFT)
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®F‚Ó‚è•Y
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šãµã‚Šå¹…Y
 #define VOLMOVE_FURIHABA_Y		(6 << FX32_SHIFT)
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®FŠp“x‰ÁŽZ’l
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šè§’åº¦åŠ ç®—å€¤
 #define VOLMOVE_ADD_ANGLE		(0x800)
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®F’¼üˆÚ“®‘¬“xX(‰ºˆÊ8ƒrƒbƒg¬”)@‚±‚Ì‘¬“x‚ðŠî€‚ÉY‘¬“x‚àŒˆ’è‚³‚ê‚é
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šç›´ç·šç§»å‹•é€Ÿåº¦X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)ã€€ã“ã®é€Ÿåº¦ã‚’åŸºæº–ã«Yé€Ÿåº¦ã‚‚æ±ºå®šã•ã‚Œã‚‹
 #define VOLMOVE_STRAIGHT_SP_X	(0x0300)
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®F‰º~ˆÚ“®‚·‚éƒtƒŒ[ƒ€”
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šä¸‹é™ç§»å‹•ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define VOLMOVE_DOWNMOVE_FRAME	(80)
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®F‰º~Žž‚Ì‘¬“xY(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ï¼šä¸‹é™æ™‚ã®é€Ÿåº¦Y(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define VOLMOVE_DOWNMOVE_SP_Y	(0x0080)
 
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹Fƒtƒ‰ƒbƒVƒ…‚ÌŠJŽnEVY’l(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ï¼šãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®é–‹å§‹EVYå€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define PANEL_FLASH_START_EVY		(10 << 8)
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹Fƒtƒ‰ƒbƒVƒ…‚ÌEVYŒ¸ŽZ’l(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ï¼šãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®EVYæ¸›ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define PANEL_FLASH_SUB_EVY		(0x280)
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹Fƒtƒ‰ƒbƒVƒ…‚ÌƒJƒ‰[ƒR[ƒh
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ï¼šãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 #define PANEL_FLASH_RGB			(0x7fff)
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹Fƒtƒ‰ƒbƒVƒ…‚ÌŠJŽnƒJƒ‰[ˆÊ’u
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ï¼šãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®é–‹å§‹ã‚«ãƒ©ãƒ¼ä½ç½®
 #define PANEL_FLASH_START_POS	(1)
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹Fƒtƒ‰ƒbƒVƒ…‚Ì‘ÎÛƒJƒ‰[”
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ï¼šãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®å¯¾è±¡ã‚«ãƒ©ãƒ¼æ•°
 #define PANEL_FLASH_COLOR_NUM	(4)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///‰ï˜bƒEƒBƒ“ƒhƒEƒXƒ‰ƒCƒhƒ^ƒXƒN‚ÅŽg—p‚·‚éƒ[ƒN
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¿ã‚¹ã‚¯ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	ACTIN_SYSTEM_PARAM *sys;
-	u8 *end_flag;	///<I—¹ƒtƒ‰ƒO‚ðƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	u8 *end_flag;	///<çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	s32 x;		///<‰ºˆÊ8ƒrƒbƒg¬”
+	s32 x;		///<ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°
 	u8 seq;
-	u8 slide_dir;	///<ƒXƒ‰ƒCƒh•ûŒü
+	u8 slide_dir;	///<ã‚¹ãƒ©ã‚¤ãƒ‰æ–¹å‘
 }TALKWIN_SLIDE_WORK;
 
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹ƒ¿ƒGƒtƒFƒNƒgƒ^ƒXƒN‚ÅŽg—p‚·‚éƒ[ƒN
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«Î±ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	ACTIN_PROC_WORK *apw;
-	u8 *end_flag;	///<I—¹ƒtƒ‰ƒO‚ðƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	u8 *end_flag;	///<çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
 	s16 eva;
 	s16 evb;
@@ -197,22 +197,22 @@ typedef struct{
 	u8 eff_type;
 }BRDPANEL_ALPHA_WORK;
 
-///ŠÏ‹qƒAƒjƒƒ[ƒN
+///è¦³å®¢ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	ACTIN_PROC_WORK *apw;
-	int se_volume;		///<Š½ºSE‚Ìƒ{ƒŠƒ…[ƒ€
-	u8 seq;				///<ƒV[ƒPƒ“ƒX
-	u8 anm_no;			///<Œ»ÝŽÀs’†‚ÌƒAƒjƒƒpƒ^[ƒ“
-	u8 loop;			///<ƒAƒjƒŒJ‚è•Ô‚µ‰ñ”ƒJƒEƒ“ƒg
-	u8 voltage;			///<ƒ{ƒ‹ƒe[ƒW’l
-	u8 wait;			///<ƒAƒjƒƒEƒFƒCƒg
-	u8 start_wait;		///<ŠJŽn‚Ü‚Å‚ÌƒEƒFƒCƒg
-	u8 fade;			///<ƒtƒF[ƒh‚Ì—L–³
-	s8 evy;				///<ƒtƒF[ƒh‚ÌEVY’l
-	u8 *end_flag;		///<I—¹ŽžA‚±‚±‚ÉI—¹ƒtƒ‰ƒO(TRUE)‚ðƒZƒbƒg‚·‚é
+	int se_volume;		///<æ­“å£°SEã®ãƒœãƒªãƒ¥ãƒ¼ãƒ 
+	u8 seq;				///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8 anm_no;			///<ç¾åœ¨å®Ÿè¡Œä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³
+	u8 loop;			///<ã‚¢ãƒ‹ãƒ¡ç¹°ã‚Šè¿”ã—å›žæ•°ã‚«ã‚¦ãƒ³ãƒˆ
+	u8 voltage;			///<ãƒœãƒ«ãƒ†ãƒ¼ã‚¸å€¤
+	u8 wait;			///<ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
+	u8 start_wait;		///<é–‹å§‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+	u8 fade;			///<ãƒ•ã‚§ãƒ¼ãƒ‰ã®æœ‰ç„¡
+	s8 evy;				///<ãƒ•ã‚§ãƒ¼ãƒ‰ã®EVYå€¤
+	u8 *end_flag;		///<çµ‚äº†æ™‚ã€ã“ã“ã«çµ‚äº†ãƒ•ãƒ©ã‚°(TRUE)ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 }AUDIENCE_ANIME_WORK;
 
-///ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgƒAƒCƒRƒ““oêƒGƒtƒFƒNƒg—p‚Ìƒ[ƒN
+///ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	CATS_ACT_PTR cap;
 	f32 sx;
@@ -221,36 +221,36 @@ typedef struct{
 	u8 wait;
 }APPEAL_POINT_APPEAR_WORK;
 
-///APƒn[ƒg‰ñ“]ˆÚ“®“®ì—pƒ[ƒN
+///APãƒãƒ¼ãƒˆå›žè»¢ç§»å‹•å‹•ä½œç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	ACTIN_PROC_WORK *apw;	///<‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	PANEL_FLASH_WORK *panel_flash;	///<ƒpƒlƒ‹ƒtƒ‰ƒbƒVƒ…“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	CATS_ACT_PTR cap;		///<‘ÎÛ‚Æ‚È‚éƒn[ƒg‚ÌƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	u8 *effect_count;		///<ƒGƒtƒFƒNƒgƒJƒEƒ“ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u32 furihaba;			///<‚Ó‚è•(‰ºˆÊ8ƒrƒbƒg¬”)
-	u32 add_angle;			///<Šp“x‰ÁŽZ’l
-	s32 slide_x;			///<ƒXƒ‰ƒCƒhŽž‚ÌŒ»ÝÀ•WX(‰ºˆÊ8ƒrƒbƒg¬”)
-	u16 slide_add_x;		///<‰¡‚ÉƒXƒ‰ƒCƒh‚µ‚Ä‚¢‚­Žž‚Ì‘¬“xX(‰ºˆÊ8ƒrƒbƒg¬”)
-	u16 angle;				///<Œ»Ý‚ÌŠp“x(®”100”{)
-	u8 seq;					///<ƒV[ƒPƒ“ƒX”Ô†
-	u8 center_x;			///<SinƒJ[ƒu’†SÀ•WX
-	u8 center_y;			///<SinƒJ[ƒu’†SÀ•WY
-	u8 start_x;				///<SinƒJ[ƒuŠJŽnˆÊ’uX
-	u8 start_y;				///<SinƒJ[ƒuŠJŽnˆÊ’uY
+	ACTIN_PROC_WORK *apw;	///<æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	PANEL_FLASH_WORK *panel_flash;	///<ãƒ‘ãƒãƒ«ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	CATS_ACT_PTR cap;		///<å¯¾è±¡ã¨ãªã‚‹ãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	u8 *effect_count;		///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u32 furihaba;			///<ãµã‚Šå¹…(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	u32 add_angle;			///<è§’åº¦åŠ ç®—å€¤
+	s32 slide_x;			///<ã‚¹ãƒ©ã‚¤ãƒ‰æ™‚ã®ç¾åœ¨åº§æ¨™X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	u16 slide_add_x;		///<æ¨ªã«ã‚¹ãƒ©ã‚¤ãƒ‰ã—ã¦ã„ãæ™‚ã®é€Ÿåº¦X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	u16 angle;				///<ç¾åœ¨ã®è§’åº¦(æ•´æ•°100å€)
+	u8 seq;					///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u8 center_x;			///<Sinã‚«ãƒ¼ãƒ–ä¸­å¿ƒåº§æ¨™X
+	u8 center_y;			///<Sinã‚«ãƒ¼ãƒ–ä¸­å¿ƒåº§æ¨™Y
+	u8 start_x;				///<Sinã‚«ãƒ¼ãƒ–é–‹å§‹ä½ç½®X
+	u8 start_y;				///<Sinã‚«ãƒ¼ãƒ–é–‹å§‹ä½ç½®Y
 }APHEART_MOVE_WORK;
 
-///R”»ƒŠƒAƒNƒVƒ‡ƒ““®ì—pƒ[ƒN
+///å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‹•ä½œç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	ACTIN_PROC_WORK *apw;		///<‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 *end_flag;				///<ƒGƒtƒFƒNƒgI—¹Žž‚É‚±‚±‚ÉI—¹‚Ì•ÔŽ–‚Æ‚µ‚ÄTRUE‚ð“ü‚ê‚é
-	u8 judge_no;				///<R”»No
-	s8 wait;					///<”Ä—pƒEƒFƒCƒg
-	u8 seq;						///<ƒV[ƒPƒ“ƒXNo
+	ACTIN_PROC_WORK *apw;		///<æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 *end_flag;				///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†æ™‚ã«ã“ã“ã«çµ‚äº†ã®è¿”äº‹ã¨ã—ã¦TRUEã‚’å…¥ã‚Œã‚‹
+	u8 judge_no;				///<å¯©åˆ¤No
+	s8 wait;					///<æ±Žç”¨ã‚¦ã‚§ã‚¤ãƒˆ
+	u8 seq;						///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹No
 	
-	s16 start_x;				///<R”»‰ŠúÀ•WX
-	s16 start_y;				///<R”»‰ŠúÀ•WY
-	s32 x;						///<Œ»ÝÀ•WX(‰ºˆÊ8ƒrƒbƒg¬”)
-	s32 y;						///<Œ»ÝÀ•WY(‰ºˆÊ8ƒrƒbƒg¬”)
+	s16 start_x;				///<å¯©åˆ¤åˆæœŸåº§æ¨™X
+	s16 start_y;				///<å¯©åˆ¤åˆæœŸåº§æ¨™Y
+	s32 x;						///<ç¾åœ¨åº§æ¨™X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s32 y;						///<ç¾åœ¨åº§æ¨™Y(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 	u8 loop;
 	union{
 		struct{
@@ -262,215 +262,215 @@ typedef struct{
 		struct{
 			s32 x;
 			s32 y;
-			s16 up_power;		///<ƒWƒƒƒ“ƒv—Í
-			s16 backup_up_power;		///<ƒWƒƒƒ“ƒv—Í
+			s16 up_power;		///<ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
+			s16 backup_up_power;		///<ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
 		}jump;
 	};
 }JUDGE_REACTION_MOVE_WORK;
 
-///ƒ{ƒ‹ƒe[ƒWˆÚ“®ƒGƒtƒFƒNƒg—pƒ[ƒN
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	ACTIN_SYSTEM_PARAM *sys;
-	CATS_ACT_PTR cap;				///<ƒ{ƒ‹ƒe[ƒW‰‰o‚ÌƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	CATS_ACT_PTR voltage_cap;		///<ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒg‚ÌƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	fx32 theta;			///<Šp“x(‰ºˆÊ8ƒrƒbƒg¬”)
-	s32 x;				///<Œ»ÝÀ•WX(‰ºˆÊ8ƒrƒbƒg¬”)
-	s32 y;				///<Œ»ÝÀ•WY(‰ºˆÊ8ƒrƒbƒg¬”)
+	CATS_ACT_PTR cap;				///<ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æ¼”å‡ºã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	CATS_ACT_PTR voltage_cap;		///<ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	fx32 theta;			///<è§’åº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s32 x;				///<ç¾åœ¨åº§æ¨™X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s32 y;				///<ç¾åœ¨åº§æ¨™Y(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 	s32 temp_x;
 	s32 temp_y;
-	s32 move_end_x;		///<ˆÚ“®—p‚Ì“r’†’âŽ~ƒ|ƒCƒ“ƒgX
-	s32 move_end_y;		///<ˆÚ“®—p‚Ì“r’†’âŽ~ƒ|ƒCƒ“ƒgY
-	s16 add_x;			///<X‰ÁŽZ’l(‰ºˆÊ8ƒrƒbƒg¬”)
-	s16 add_y;			///<Y‰ÁŽZ’l(‰ºˆÊ8ƒrƒbƒg¬”)
+	s32 move_end_x;		///<ç§»å‹•ç”¨ã®é€”ä¸­åœæ­¢ãƒã‚¤ãƒ³ãƒˆX
+	s32 move_end_y;		///<ç§»å‹•ç”¨ã®é€”ä¸­åœæ­¢ãƒã‚¤ãƒ³ãƒˆY
+	s16 add_x;			///<XåŠ ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s16 add_y;			///<YåŠ ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 	
-	u8 end_x;			///<I“_À•WX
-	u8 end_y;			///<I“_À•WY
+	u8 end_x;			///<çµ‚ç‚¹åº§æ¨™X
+	u8 end_y;			///<çµ‚ç‚¹åº§æ¨™Y
 	
-	u8 seq;				///<ƒV[ƒPƒ“ƒX”Ô†
-	u8 wait;			///<ƒEƒFƒCƒgƒJƒEƒ“ƒg
+	u8 seq;				///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u8 wait;			///<ã‚¦ã‚§ã‚¤ãƒˆã‚«ã‚¦ãƒ³ãƒˆ
 	
-	//‚¢‚ç‚È‚¢‚©‚àA‚Èƒf[ƒ^
-	u8 judge_no;		///<R”»NO
-	u8 point;			///<ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒg
+	//ã„ã‚‰ãªã„ã‹ã‚‚ã€ãªãƒ‡ãƒ¼ã‚¿
+	u8 judge_no;		///<å¯©åˆ¤NO
+	u8 point;			///<ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆ
 }VOLTAGE_MOVE_WORK;
 
-///ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒg,ƒpƒlƒ‹ˆÚ“®—pƒ[ƒN
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆ,ãƒ‘ãƒãƒ«ç§»å‹•ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	ACTIN_PROC_WORK *apw;	///<‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	CATS_ACT_PTR cap;		///<‘ÎÛ‚Æ‚È‚éƒn[ƒg‚ÌƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	u8 *effect_count;		///<ƒGƒtƒFƒNƒgƒJƒEƒ“ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u16 angle;				///<Œ»Ý‚ÌŠp“x(®”100”{)
-	u8 seq;					///<ƒV[ƒPƒ“ƒX”Ô†
-	u8 center_x;			///<ƒpƒlƒ‹’†SÀ•WX
-	u8 center_y;			///<ƒpƒlƒ‹’†SÀ•WY
-	s32 add_x;				///<XˆÚ“®‰ÁŽZ’l
-	s32 add_y;				///<YˆÚ“®‰ÁŽZ’l
-	s32 x;					///<Œ»ÝXÀ•W(‰ºˆÊ8ƒrƒbƒg¬”)
-	s32 y;					///<Œ»ÝXÀ•W(‰ºˆÊ8ƒrƒbƒg¬”)
+	ACTIN_PROC_WORK *apw;	///<æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	CATS_ACT_PTR cap;		///<å¯¾è±¡ã¨ãªã‚‹ãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	u8 *effect_count;		///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u16 angle;				///<ç¾åœ¨ã®è§’åº¦(æ•´æ•°100å€)
+	u8 seq;					///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u8 center_x;			///<ãƒ‘ãƒãƒ«ä¸­å¿ƒåº§æ¨™X
+	u8 center_y;			///<ãƒ‘ãƒãƒ«ä¸­å¿ƒåº§æ¨™Y
+	s32 add_x;				///<Xç§»å‹•åŠ ç®—å€¤
+	s32 add_y;				///<Yç§»å‹•åŠ ç®—å€¤
+	s32 x;					///<ç¾åœ¨Xåº§æ¨™(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s32 y;					///<ç¾åœ¨Xåº§æ¨™(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 	s16 wait;
 }VOLPANEL_MOVE_WORK;
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///R”»ƒAƒNƒ^[ƒwƒbƒ_
+///å¯©åˆ¤ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S JudgeObjParam = {
 	JUDGE_POS_X_0, JUDGE_POS_Y_0, 0,		//x, y, z
-	0, ACTIN_SOFTPRI_JUDGE, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		0,	//ƒLƒƒƒ‰
-		0,	//ƒpƒŒƒbƒg
-		0,	//ƒZƒ‹
-		0,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTIN_SOFTPRI_JUDGE, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		0,	//ã‚­ãƒ£ãƒ©
+		0,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		0,	//ã‚»ãƒ«
+		0,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTIN_BGPRI_JUDGE,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTIN_BGPRI_JUDGE,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///R”»ƒ{ƒbƒNƒXƒAƒNƒ^[ƒwƒbƒ_
+///å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S JudgeBoxObjParam = {
 	JUDGE_BOX_POS_X_0, JUDGE_BOX_POS_Y_0, 0,		//x, y, z
-	0, ACTIN_SOFTPRI_JUDGE_BOX, PALOFS_JUDGE_BOX_LEFT,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_JUDGE_BOX,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_JUDGE_BOX,	//ƒZƒ‹
-		CELLANMID_JUDGE_BOX,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTIN_SOFTPRI_JUDGE_BOX, PALOFS_JUDGE_BOX_LEFT,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_JUDGE_BOX,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_JUDGE_BOX,	//ã‚»ãƒ«
+		CELLANMID_JUDGE_BOX,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTIN_BGPRI_JUDGE,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTIN_BGPRI_JUDGE,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///“Á•ÊR¸ˆõ‚É‚Â‚¯‚éƒn[ƒg‚ÌƒAƒNƒ^[ƒwƒbƒ_
+///ç‰¹åˆ¥å¯©æŸ»å“¡ã«ã¤ã‘ã‚‹ãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S SpecialHeartObjParam = {
 	0, 0, 0,		//x, y, z
-	0, ACTIN_SOFTPRI_SPECIAL_HEART, PALOFS_SPECIAL_HEART,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SPECIAL_HEART,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_SPECIAL_HEART,	//ƒZƒ‹
-		CELLANMID_SPECIAL_HEART,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTIN_SOFTPRI_SPECIAL_HEART, PALOFS_SPECIAL_HEART,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SPECIAL_HEART,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SPECIAL_HEART,	//ã‚»ãƒ«
+		CELLANMID_SPECIAL_HEART,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTIN_BGPRI_JUDGE,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTIN_BGPRI_JUDGE,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgƒn[ƒg‚ÌƒAƒNƒ^[ƒwƒbƒ_
+///ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S AppealPointObjParam = {
 	0, 0, 0,		//x, y, z
-	0, ACTIN_SOFTPRI_APPEAL_POINT, PALOFS_APPEAL_POINT,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_APPEAL_POINT,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_APPEAL_POINT,	//ƒZƒ‹
-		CELLANMID_APPEAL_POINT,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTIN_SOFTPRI_APPEAL_POINT, PALOFS_APPEAL_POINT,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_APPEAL_POINT,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_APPEAL_POINT,	//ã‚»ãƒ«
+		CELLANMID_APPEAL_POINT,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTINSUB_BGPRI_APPEAL_POINT,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTINSUB_BGPRI_APPEAL_POINT,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgƒn[ƒg‚ÌƒAƒNƒ^[ƒwƒbƒ_
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S VoltagePointObjParam = {
 	0, 0, 0,		//x, y, z
-	0, ACTIN_SOFTPRI_VOLTAGE_POINT, PALOFS_VOLTAGE_POINT,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_VOLTAGE_POINT,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_VOLTAGE_POINT,	//ƒZƒ‹
-		CELLANMID_VOLTAGE_POINT,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTIN_SOFTPRI_VOLTAGE_POINT, PALOFS_VOLTAGE_POINT,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_VOLTAGE_POINT,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_VOLTAGE_POINT,	//ã‚»ãƒ«
+		CELLANMID_VOLTAGE_POINT,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTINSUB_BGPRI_VOLTAGE_POINT,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTINSUB_BGPRI_VOLTAGE_POINT,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒ{ƒ‹ƒe[ƒW‰‰o‚ÌƒAƒNƒ^[ƒwƒbƒ_
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æ¼”å‡ºã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S VoltageEffectObjParam = {
 	0, 0, 0,		//x, y, z
-	0, ACTIN_SOFTPRI_VOLTAGE_EFF, PALOFS_VOLTAGE_EFF,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_VOLTAGE_EFF,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_VOLTAGE_EFF,	//ƒZƒ‹
-		CELLANMID_VOLTAGE_EFF,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTIN_SOFTPRI_VOLTAGE_EFF, PALOFS_VOLTAGE_EFF,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_VOLTAGE_EFF,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_VOLTAGE_EFF,	//ã‚»ãƒ«
+		CELLANMID_VOLTAGE_EFF,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTIN_BGPRI_VOLTAGE_EFF,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTIN_BGPRI_VOLTAGE_EFF,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ŽŸƒAƒCƒRƒ“‚ÌƒAƒNƒ^[ƒwƒbƒ_
+///æ¬¡ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S NextIconObjParam = {
 	0, 0, 0,		//x, y, z
-	0, ACTIN_SOFTPRI_NEXT_ICON, PALOFS_NEXT_ICON,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_NEXT_ICON,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_NEXT_ICON,	//ƒZƒ‹
-		CELLANMID_NEXT_ICON,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTIN_SOFTPRI_NEXT_ICON, PALOFS_NEXT_ICON,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_NEXT_ICON,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_NEXT_ICON,	//ã‚»ãƒ«
+		CELLANMID_NEXT_ICON,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTINSUB_BGPRI_NEXT_ICON,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTINSUB_BGPRI_NEXT_ICON,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///‰ï˜bƒEƒBƒ“ƒhƒEƒJƒo[‚ÌƒAƒNƒ^[ƒwƒbƒ_
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚«ãƒãƒ¼ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S WinCoverObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 10, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_WIN_COVER_0,	//ƒLƒƒƒ‰
-		PLTTID_WIN_COVER,	//ƒpƒŒƒbƒg
-		CELLID_WIN_COVER,	//ƒZƒ‹
-		CELLANMID_WIN_COVER,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 10, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_WIN_COVER_0,	//ã‚­ãƒ£ãƒ©
+		PLTTID_WIN_COVER,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_WIN_COVER,	//ã‚»ãƒ«
+		CELLANMID_WIN_COVER,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	0,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	0,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ“‚ÌƒAƒNƒ^[ƒwƒbƒ_
+///å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S JudgeReactionObjParam = {
 	0, 0, 0,		//x, y, z
-	0, ACTIN_SOFTPRI_JUDGE_REACTION, PALOFS_JUDGE_REACTION,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_JUDGE_REACTION,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_JUDGE_REACTION,	//ƒZƒ‹
-		CELLANMID_JUDGE_REACTION,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTIN_SOFTPRI_JUDGE_REACTION, PALOFS_JUDGE_REACTION,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_JUDGE_REACTION,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_JUDGE_REACTION,	//ã‚»ãƒ«
+		CELLANMID_JUDGE_REACTION,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTIN_BGPRI_JUDGE_REACTION,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTIN_BGPRI_JUDGE_REACTION,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgƒAƒCƒRƒ“‚ðo‚·À•W(ˆê”Ô¶‘¤‚ÌÀ•W)
+///ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’å‡ºã™åº§æ¨™(ä¸€ç•ªå·¦å´ã®åº§æ¨™)
 ALIGN4 static const s16 AppealPointPos[BREEDER_MAX][2] = {	//X, Y
 	{5, 5*8 + 3},
 	{5, 11*8 + 3},
@@ -478,16 +478,16 @@ ALIGN4 static const s16 AppealPointPos[BREEDER_MAX][2] = {	//X, Y
 	{5, 23*8 + 3},
 };
 
-///ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgƒAƒCƒRƒ“‚ðo‚·À•W(ˆê”Ô¶‘¤‚ÌÀ•W)
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’å‡ºã™åº§æ¨™(ä¸€ç•ªå·¦å´ã®åº§æ¨™)
 ALIGN4 static const s16 VoltagePointPos[JUDGE_MAX][2] = {	//X, Y
 	{10*8 + 8 + 32*0, 1*8 + 4},
 	{10*8 + 8 + 32*1, 1*8 + 4},
 	{10*8 + 8 + 32*2, 1*8 + 4},
 };
-///ƒ{ƒ‹ƒe[ƒW‚Æ—×‚Ìƒ{ƒ‹ƒe[ƒW‚ÌŒ„ŠÔX
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã¨éš£ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã®éš™é–“X
 #define VOLTAGE_SPACE_X		(5)
 
-///R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ“‚Ì•\Ž¦À•W
+///å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºåº§æ¨™
 static const struct{
 	s16 x;
 	s16 y;
@@ -500,16 +500,16 @@ static const struct{
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///‰‰‹Z—Í•”–åƒm[ƒ}ƒ‹‰ï˜bƒƒbƒZ[ƒWƒf[ƒ^	¦A_TALK_???‚Ì’è‹`‚Æ•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­Ž–II
+///æ¼”æŠ€åŠ›éƒ¨é–€ãƒŽãƒ¼ãƒžãƒ«ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿	â€»A_TALK_???ã®å®šç¾©ã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãäº‹ï¼ï¼
 static const ACTIN_MESSAGE_PARAM ActinTalkMsgData[] = {
-	{0,									ATAG_NONE,		FALSE},	//ƒ_ƒ~[
+	{0,									ATAG_NONE,		FALSE},	//ãƒ€ãƒŸãƒ¼
 
 	{CAMSG_TALK_SELECT_JUDGE,			ATAG_NUM,		TRUE},
 	{CAMSG_TALK_SELECT_WAZA,			ATAG_NUM,		TRUE},
 	{CAMSG_TALK_SELECT_WAZA0002,		ATAG_NUM,		TRUE},
 	{CAMSG_TALK_WAZA_APPEAL,			ATAG_MINE_JUDGE_WAZA,	FALSE},
-	{CAMSG_TALK_JUDGE_LOOK,				ATAG_NONE,		FALSE},		///<•\Ž¦ˆÊ’u•ÏX
-	{CAMSG_TALK_JUDGE_SUFFER,			ATAG_JUDGE,		FALSE},	//íœ
+	{CAMSG_TALK_JUDGE_LOOK,				ATAG_NONE,		FALSE},		///<è¡¨ç¤ºä½ç½®å¤‰æ›´
+	{CAMSG_TALK_JUDGE_SUFFER,			ATAG_JUDGE,		FALSE},	//å‰Šé™¤
 	{CAMSG_TALK_JUDGE_SUFFER0002,		ATAG_EXCODE_JUDGESUFFER,	FALSE},
 	{CAMSG_TALK_JUDGE_SUFFER0003,		ATAG_EXCODE_JUDGESUFFER,	FALSE},
 	{CAMSG_TALK_JUDGE_SUFFER0004,		ATAG_EXCODE_JUDGESUFFER,	FALSE},
@@ -549,25 +549,25 @@ static const ACTIN_MESSAGE_PARAM ActinTalkMsgData[] = {
 	{msg_con_a_explain_02,				ATAG_NONE,		FALSE},
 	{msg_con_a_prac_apreface,			ATAG_NONE,		FALSE},
 	{msg_con_a_prac_01,					ATAG_NONE,		FALSE},
-	{msg_con_a_caution_01,				ATAG_NONE,		TRUE},	//‚Â‚¤‚µ‚ñ@‚½‚¢‚«‚¿‚ã‚¤c
+	{msg_con_a_caution_01,				ATAG_NONE,		TRUE},	//ã¤ã†ã—ã‚“ã€€ãŸã„ãã¡ã‚…ã†â€¦
 };
 
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ŠÏ‹q‚ÌŠ½º‚Ìƒ{ƒŠƒ…[ƒ€
+///è¦³å®¢ã®æ­“å£°ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 ALIGN4 static const int AudienceVolume[] = {
 	0, ACTIN_AUDIENCE_VOLUME - 30, ACTIN_AUDIENCE_VOLUME, ACTIN_AUDIENCE_VOLUME + 30,
 };
-///ƒ{ƒŠƒ…[ƒ€ƒŒƒxƒ‹Å‘å
+///ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«æœ€å¤§
 #define AUDIENCE_VOLUME_LEVEL_MAX		(NELEMS(AudienceVolume))
-///‰½“_–ˆ‚Éƒ{ƒŠƒ…[ƒ€‚ÌƒŒƒxƒ‹‚ðã‚°‚Ä‚¢‚­‚©
+///ä½•ç‚¹æ¯Žã«ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®ãƒ¬ãƒ™ãƒ«ã‚’ä¸Šã’ã¦ã„ãã‹
 #define AUDIENCE_VOLUME_LEVEL_POINT		(50)
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void TalkWinSlideInOutMain(TCB_PTR tcb, void *work);
 void AT_BreederPanelFontOamCreate(ACTIN_PROC_WORK *apw, int breeder_no);
@@ -589,17 +589,17 @@ static void VoltageMoveTask(TCB_PTR tcb, void *work);
 static void BreederPanel_FlashMain(TCB_PTR tcb, void *work);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ŠeƒuƒŠ[ƒ_[‚Ìƒpƒlƒ‹ƒpƒŒƒbƒg”Ô†
+///å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ãƒ‘ãƒãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 ALIGN4 const u8 BreederPanelScreenPalNo[] = {6, 7, 0xa, 0xb};
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—Í‰æ–Ê‚ÌƒfƒtƒHƒ‹ƒgƒuƒŒƒ“ƒhÝ’è‚ðs‚¤
+ * @brief   æ¼”æŠ€åŠ›ç”»é¢ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã‚’è¡Œã†
  *
- * ‹ZƒGƒtƒFƒNƒg‘¤‚©‚ç‚àŒÄ‚Î‚ê‚éŠÖ”‚Å‚·
+ * æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå´ã‹ã‚‰ã‚‚å‘¼ã°ã‚Œã‚‹é–¢æ•°ã§ã™
  */
 //--------------------------------------------------------------
 void ActinExTool_DefaultBlendSet(void)
@@ -607,15 +607,15 @@ void ActinExTool_DefaultBlendSet(void)
 	G2_BlendNone();
 }
 
-#if 0	//ƒuƒŠ[ƒ_[î•ñ‚ÍOBJ‚Å•\Ž¦‚·‚é‚æ‚¤‚É‚È‚Á‚½
+#if 0	//ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼æƒ…å ±ã¯OBJã§è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ãªã£ãŸ
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[î•ñ‚ðƒpƒlƒ‹‚É•`‰æ‚·‚é
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼æƒ…å ±ã‚’ãƒ‘ãƒãƒ«ã«æç”»ã™ã‚‹
  *
- * @param   apw				‰‰‹Z—ÍŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		‘ÎÛ‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   put_pos			•`‰æ‚·‚éƒpƒlƒ‹‚ÌˆÊ’u
- * @param   bmp_pal			BMP‚ÌƒpƒŒƒbƒg”Ô†
+ * @param   apw				æ¼”æŠ€åŠ›ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		å¯¾è±¡ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   put_pos			æç”»ã™ã‚‹ãƒ‘ãƒãƒ«ã®ä½ç½®
+ * @param   bmp_pal			BMPã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 void BreederParamBmpWrite(ACTIN_PROC_WORK *apw, int breeder_no, int put_pos, int bmp_pal)
@@ -645,8 +645,8 @@ void BreederParamBmpWrite(ACTIN_PROC_WORK *apw, int breeder_no, int put_pos, int
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ÌƒuƒŠ[ƒ_[‚Ìî•ñ‚ðƒpƒlƒ‹‚É•`‰æ‚·‚é
- * @param   apw				‰‰‹Z—ÍŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨ã¦ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®æƒ…å ±ã‚’ãƒ‘ãƒãƒ«ã«æç”»ã™ã‚‹
+ * @param   apw				æ¼”æŠ€åŠ›ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BreederParamBmpWriteAll(ACTIN_PROC_WORK *apw)
@@ -662,7 +662,7 @@ void BreederParamBmpWriteAll(ACTIN_PROC_WORK *apw)
 		}
 		BreederParamBmpWrite(apw, apw->a_game.breeder_sort[i], i, pal);
 	}
-	//ª‘S‚Ä•`‰æ‚µ‚Ä‚©‚çƒEƒBƒ“ƒhƒEON«
+	//â†‘å…¨ã¦æç”»ã—ã¦ã‹ã‚‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ONâ†“
 	for(i = 0; i < BREEDER_MAX; i++){
 		GF_BGL_BmpWinOn(&apw->sys.win[ACTIN_BMPWIN_BREEDER_0 + i]);
 	}
@@ -671,11 +671,11 @@ void BreederParamBmpWriteAll(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒpƒlƒ‹‚ÌƒJƒ‰[(ƒXƒNƒŠ[ƒ“)‚ð•ÏX‚·‚é
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã®ã‚«ãƒ©ãƒ¼(ã‚¹ã‚¯ãƒªãƒ¼ãƒ³)ã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param   apw				‰‰‹Z—ÍŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_pos		‘‚«Š·‚¦‚éƒpƒlƒ‹‚ÌˆÊ’u
- * @param   pal_no			V‚½‚ÉƒZƒbƒg‚·‚éƒpƒŒƒbƒg”Ô†
+ * @param   apw				æ¼”æŠ€åŠ›ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_pos		æ›¸ãæ›ãˆã‚‹ãƒ‘ãƒãƒ«ã®ä½ç½®
+ * @param   pal_no			æ–°ãŸã«ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 void BreederPanelColorChange(ACTIN_PROC_WORK *apw, int breeder_pos, int pal_no)
@@ -694,10 +694,10 @@ void BreederPanelColorChange(ACTIN_PROC_WORK *apw, int breeder_pos, int pal_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘SƒuƒŠ[ƒ_[ƒpƒlƒ‹‚ÌƒJƒ‰[(ƒXƒNƒŠ[ƒ“)‚ð•ÏX‚·‚é
- * @param   apw		‰‰‹Z—ÍŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã®ã‚«ãƒ©ãƒ¼(ã‚¹ã‚¯ãƒªãƒ¼ãƒ³)ã‚’å¤‰æ›´ã™ã‚‹
+ * @param   apw		æ¼”æŠ€åŠ›ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * breeder_sort‚É]‚Á‚Ä‘‚«Š·‚¦‚ðs‚¢‚Ü‚·
+ * breeder_sortã«å¾“ã£ã¦æ›¸ãæ›ãˆã‚’è¡Œã„ã¾ã™
  */
 //--------------------------------------------------------------
 void BreederPanelColorChangeAll(ACTIN_PROC_WORK *apw)
@@ -712,12 +712,12 @@ void BreederPanelColorChangeAll(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒpƒlƒ‹‚Ìƒtƒ‰ƒbƒVƒ…“®ìƒ^ƒXƒN‚ð¶¬‚·‚é
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  *
- * @retval  ¶¬‚µ‚½ƒtƒ‰ƒbƒVƒ…“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 PANEL_FLASH_WORK * BreederPanel_FlashTaskSet(ACTIN_PROC_WORK *apw, int breeder_no)
@@ -735,8 +735,8 @@ PANEL_FLASH_WORK * BreederPanel_FlashTaskSet(ACTIN_PROC_WORK *apw, int breeder_n
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒpƒlƒ‹‚Ìƒtƒ‰ƒbƒVƒ…“®ìƒ^ƒXƒN‚ðíœ‚·‚é
- * @param   pfw		ƒtƒ‰ƒbƒVƒ…“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œã‚¿ã‚¹ã‚¯ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   pfw		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BreederPanel_FlashTaskDelete(PANEL_FLASH_WORK *pfw)
@@ -748,8 +748,8 @@ void BreederPanel_FlashTaskDelete(PANEL_FLASH_WORK *pfw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒpƒlƒ‹‚Ìƒtƒ‰ƒbƒVƒ…ƒŠƒNƒGƒXƒg‚ðÝ’è‚·‚é
- * @param   pfw		ƒtƒ‰ƒbƒVƒ…“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¨­å®šã™ã‚‹
+ * @param   pfw		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BreederPanel_FlashReqSet(PANEL_FLASH_WORK *pfw)
@@ -760,9 +760,9 @@ void BreederPanel_FlashReqSet(PANEL_FLASH_WORK *pfw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒpƒlƒ‹‚Éƒtƒ‰ƒbƒVƒ…ƒŠƒNƒGƒXƒg‚ª”­¶‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
- * @param   pfw		ƒtƒ‰ƒbƒVƒ…“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:ƒŠƒNƒGƒXƒg”­¶’†AFALSE:‘Ò‹@’†
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã«ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒç™ºç”Ÿã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+ * @param   pfw		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºç”Ÿä¸­ã€FALSE:å¾…æ©Ÿä¸­
  */
 //--------------------------------------------------------------
 BOOL BreederPanel_FlashReqCheck(PANEL_FLASH_WORK *pfw)
@@ -772,9 +772,9 @@ BOOL BreederPanel_FlashReqCheck(PANEL_FLASH_WORK *pfw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒpƒlƒ‹Fƒtƒ‰ƒbƒVƒ…“®ìƒƒCƒ“ƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒtƒ‰ƒbƒVƒ…“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ï¼šãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BreederPanel_FlashMain(TCB_PTR tcb, void *work)
@@ -800,10 +800,10 @@ static void BreederPanel_FlashMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   •Ïg‚È‚Ç‚Ì‹ZƒGƒtƒFƒNƒgŒãAƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ì•`‰æó‘Ô‚ð•œ‹A‚·‚éˆ×‚ÉAì‚è’¼‚·
+ * @brief   å¤‰èº«ãªã©ã®æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾Œã€ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æç”»çŠ¶æ…‹ã‚’å¾©å¸°ã™ã‚‹ç‚ºã«ã€ä½œã‚Šç›´ã™
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  */
 //--------------------------------------------------------------
 void AT_SoftSpriteHensinPop(ACTIN_SYSTEM_PARAM *sys, int breeder_no)
@@ -816,10 +816,10 @@ void AT_SoftSpriteHensinPop(ACTIN_SYSTEM_PARAM *sys, int breeder_no)
 	sys->ss[breeder_no] = ConTool_BreederPokemonAdd(sys->soft_sprite, breeder_no, 
 		sys->c_game->pp[breeder_no], PARA_BACK, &sys->exchr_param[breeder_no], HEAPID_ACTIN, 
 		ACTIN_POKEPOS_X-32*breeder_no, ACTIN_POKEPOS_Y-32*breeder_no, ACTIN_POKEPOS_Z);
-	//•\Ž¦OFF
+	//è¡¨ç¤ºOFF
 	SoftSpriteParaSet(sys->ss[breeder_no], SS_PARA_VANISH, TRUE);
 	SoftSpriteParaSet(sys->ss[breeder_no], SS_PARA_DRAW_STOP, TRUE);
-	//”½“]ƒZƒbƒg
+	//åè»¢ã‚»ãƒƒãƒˆ
 	{
 		u32 monsno, form_no;
 		monsno = PokeParaGet(sys->c_game->pp[breeder_no], ID_PARA_monsno, NULL);
@@ -832,10 +832,10 @@ void AT_SoftSpriteHensinPop(ACTIN_SYSTEM_PARAM *sys, int breeder_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ÌƒuƒŠ[ƒ_[‚Ìƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg(ƒ|ƒPƒ‚ƒ“)‚ð¶¬‚·‚é
+ * @brief   å…¨ã¦ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ(ãƒã‚±ãƒ¢ãƒ³)ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   sys		‰‰‹Z—ÍƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp		‘SƒuƒŠ[ƒ_[‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ª“ü‚Á‚Ä‚¢‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sys		æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp		å…¨ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_SoftSpriteAddAll(ACTIN_SYSTEM_PARAM *sys)
@@ -849,10 +849,10 @@ void AT_SoftSpriteAddAll(ACTIN_SYSTEM_PARAM *sys)
 		sys->ss[i] = ConTool_BreederPokemonAdd(sys->soft_sprite, i, sys->c_game->pp[i], 
 			PARA_BACK, &sys->exchr_param[i], HEAPID_ACTIN, 
 			ACTIN_POKEPOS_X-32*i, ACTIN_POKEPOS_Y-32*i, ACTIN_POKEPOS_Z);
-		//•\Ž¦OFF
+		//è¡¨ç¤ºOFF
 		SoftSpriteParaSet(sys->ss[i], SS_PARA_VANISH, TRUE);
 		SoftSpriteParaSet(sys->ss[i], SS_PARA_DRAW_STOP, TRUE);
-		//”½“]ƒZƒbƒg
+		//åè»¢ã‚»ãƒƒãƒˆ
 		{
 			u32 monsno, form_no;
 			monsno = PokeParaGet(sys->c_game->pp[i], ID_PARA_monsno, NULL);
@@ -865,16 +865,16 @@ void AT_SoftSpriteAddAll(ACTIN_SYSTEM_PARAM *sys)
 	
 	GF_ASSERT(sys->transparent_exchr_param.exchr_buffer == NULL);
 	sys->transparent_exchr_param.exchr_buffer = sys_AllocMemory(HEAPID_ACTIN, EXCHR_BUFFER_SIZE);
-	sys->transparent_exchr_param.pal_index = sys->exchr_param[0].pal_index;	//ƒ_ƒ~[
-	sys->transparent_exchr_param.arcID = sys->exchr_param[0].arcID;	//ƒ_ƒ~[
-	//ƒoƒbƒtƒ@ƒNƒŠƒA
+	sys->transparent_exchr_param.pal_index = sys->exchr_param[0].pal_index;	//ãƒ€ãƒŸãƒ¼
+	sys->transparent_exchr_param.arcID = sys->exchr_param[0].arcID;	//ãƒ€ãƒŸãƒ¼
+	//ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	MI_CpuClear32(sys->transparent_exchr_param.exchr_buffer, EXCHR_BUFFER_SIZE);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ÌƒuƒŠ[ƒ_[‚Ìƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg(ƒ|ƒPƒ‚ƒ“)‚ðíœ‚·‚é
- * @param   sys		‰‰‹Z—ÍƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨ã¦ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ(ãƒã‚±ãƒ¢ãƒ³)ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   sys		æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_SoftSpriteDelAll(ACTIN_SYSTEM_PARAM *sys)
@@ -892,15 +892,15 @@ void AT_SoftSpriteDelAll(ACTIN_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒAƒNƒ^[‚Ì¶¬‚ÆƒŠƒ\[ƒX“o˜^
+ * @brief   å¯©åˆ¤ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç”Ÿæˆã¨ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  *
- * @param   pfd			ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pfd			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   csp			csp
  * @param   crp			crp
- * @param   judge		R”»ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge_no	R”»NO
+ * @param   judge		å¯©åˆ¤ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge_no	å¯©åˆ¤NO
  *
- * @retval  ¶¬‚µ‚½R”»ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸå¯©åˆ¤ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CATS_ACT_PTR AT_JudgeAdd(PALETTE_FADE_PTR pfd, CATS_SYS_PTR csp, CATS_RES_PTR crp, 
@@ -909,7 +909,7 @@ static CATS_ACT_PTR AT_JudgeAdd(PALETTE_FADE_PTR pfd, CATS_SYS_PTR csp, CATS_RES
 	CATS_ACT_PTR judge_cap;
 	TCATS_OBJECT_ADD_PARAM_S judge_head;
 	
-#if WAIT_FIX	//OBJƒR[ƒh‚É‚æ‚Á‚ÄŽg—p‚·‚éŠG‚ð•ÏX‚·‚éH
+#if WAIT_FIX	//OBJã‚³ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦ä½¿ç”¨ã™ã‚‹çµµã‚’å¤‰æ›´ã™ã‚‹ï¼Ÿ
 	switch(judge->obj_code){
 	case 0:
 		break;
@@ -940,7 +940,7 @@ static CATS_ACT_PTR AT_JudgeAdd(PALETTE_FADE_PTR pfd, CATS_SYS_PTR csp, CATS_RES
 		break;
 	}
 	
-	//-- ƒŠƒ\[ƒXƒ[ƒh --//
+	//-- ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ --//
 	CATS_LoadResourceCharArcH(csp, crp, hdl_obj, char_id, 1, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_JUDGE_0 + judge_no);
 	CATS_LoadResourcePlttWorkArcH(pfd, FADE_MAIN_OBJ, csp, crp, 
@@ -951,7 +951,7 @@ static CATS_ACT_PTR AT_JudgeAdd(PALETTE_FADE_PTR pfd, CATS_SYS_PTR csp, CATS_RES
 	CATS_LoadResourceCellAnmArcH(csp, crp, hdl_obj, 
 		anm_id, 1, CELLANMID_JUDGE_0 + judge_no);
 	
-	//-- ƒAƒNƒ^[¶¬ --//
+	//-- ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ --//
 	judge_head = JudgeObjParam;
 	judge_head.id[CLACT_U_CHAR_RES] = CHARID_JUDGE_0 + judge_no;
 	judge_head.id[CLACT_U_PLTT_RES] = PLTTID_JUDGE_0 + judge_no;
@@ -968,22 +968,22 @@ static CATS_ACT_PTR AT_JudgeAdd(PALETTE_FADE_PTR pfd, CATS_SYS_PTR csp, CATS_RES
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒAƒNƒ^[•ƒŠƒ\[ƒXíœ
+ * @brief   å¯©åˆ¤ã‚¢ã‚¯ã‚¿ãƒ¼ï¼†ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
  *
  * @param   crp				crp
- * @param   judge_cap		R”»ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge_no		R”»No
+ * @param   judge_cap		å¯©åˆ¤ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge_no		å¯©åˆ¤No
  */
 //--------------------------------------------------------------
 static void AT_JudgeDel(CATS_RES_PTR crp, CATS_ACT_PTR judge_cap, int judge_no)
 {
-#if WAIT_FIX	//³‹K‚ÌADD•û–@‚ª‚Ü‚¾‚í‚©‚ç‚È‚¢‚Ì‚ÅAíœ‚à‚í‚©‚ç‚È‚¢
+#if WAIT_FIX	//æ­£è¦ã®ADDæ–¹æ³•ãŒã¾ã ã‚ã‹ã‚‰ãªã„ã®ã§ã€å‰Šé™¤ã‚‚ã‚ã‹ã‚‰ãªã„
 	;
 #else
-	//-- ƒAƒNƒ^[íœ --//
+	//-- ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ --//
 	CATS_ActorPointerDelete_S(judge_cap);
 
-	//-- ƒŠƒ\[ƒXíœ --//
+	//-- ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤ --//
 	CATS_FreeResourceChar(crp, CHARID_JUDGE_0 + judge_no);
 	CATS_FreeResourcePltt(crp, PLTTID_JUDGE_0 + judge_no);
 	CATS_FreeResourceCell(crp, CELLID_JUDGE_0 + judge_no);
@@ -993,13 +993,13 @@ static void AT_JudgeDel(CATS_RES_PTR crp, CATS_ACT_PTR judge_cap, int judge_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒ{ƒbƒNƒX‚ÌƒŠƒ\[ƒX“o˜^
+ * @brief   å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  *
- * @param   pfd			ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pfd			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   csp			csp
  * @param   crp			crp
  *
- * ‘S‚Ä‚ÌR”»ƒ{ƒbƒNƒX‚Å“¯‚¶ƒŠƒ\[ƒX‚ðŽg‚¢‚Ü‚í‚·‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+ * å…¨ã¦ã®å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã§åŒã˜ãƒªã‚½ãƒ¼ã‚¹ã‚’ä½¿ã„ã¾ã‚ã™ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 static void AT_JudgeBoxResourceLoad(PALETTE_FADE_PTR pfd, CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *hdl_obj)
@@ -1010,8 +1010,8 @@ static void AT_JudgeBoxResourceLoad(PALETTE_FADE_PTR pfd, CATS_SYS_PTR csp, CATS
 	cell_id = JUDGE_BOX_NCER_BIN;
 	anm_id = JUDGE_BOX_NANR_BIN;
 	
-	//-- ƒŠƒ\[ƒXƒ[ƒh --//
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚ðŽg—p‚·‚é‚Ì‚Åƒ[ƒh‚È‚µ
+	//-- ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ --//
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ãƒ­ãƒ¼ãƒ‰ãªã—
 	CATS_LoadResourceCharArcH(csp, crp, hdl_obj, char_id, 1, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_JUDGE_BOX);
 	CATS_LoadResourceCellArcH(csp, crp, hdl_obj, cell_id, 1, 
@@ -1022,13 +1022,13 @@ static void AT_JudgeBoxResourceLoad(PALETTE_FADE_PTR pfd, CATS_SYS_PTR csp, CATS
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒ{ƒbƒNƒXƒAƒNƒ^[‚Ì¶¬
+ * @brief   å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç”Ÿæˆ
  *
  * @param   csp			csp
  * @param   crp			crp
- * @param   judge_no	R”»NO
+ * @param   judge_no	å¯©åˆ¤NO
  *
- * @retval  ¶¬‚µ‚½R”»ƒ{ƒbƒNƒXƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸå¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CATS_ACT_PTR AT_JudgeBoxActorAdd(CATS_SYS_PTR csp, CATS_RES_PTR crp, int judge_no)
@@ -1039,7 +1039,7 @@ static CATS_ACT_PTR AT_JudgeBoxActorAdd(CATS_SYS_PTR csp, CATS_RES_PTR crp, int 
 		PALOFS_JUDGE_BOX_LEFT, PALOFS_JUDGE_BOX_CENTER, PALOFS_JUDGE_BOX_RIGHT,
 	};
 	
-	//-- ƒAƒNƒ^[¶¬ --//
+	//-- ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ --//
 	box_head = JudgeBoxObjParam;
 	box_head.x = JUDGE_BOX_POS_X_0 + JUDGE_BOX_POS_X_SPACE * judge_no;
 	box_head.y = JUDGE_BOX_POS_Y_0 + JUDGE_BOX_POS_Y_SPACE * judge_no;
@@ -1052,9 +1052,9 @@ static CATS_ACT_PTR AT_JudgeBoxActorAdd(CATS_SYS_PTR csp, CATS_RES_PTR crp, int 
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒ{ƒbƒNƒXƒAƒNƒ^[íœ
+ * @brief   å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  *
- * @param   box_cap			R”»ƒ{ƒbƒNƒXƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   box_cap			å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void AT_JudgeBoxActorDel(CATS_ACT_PTR box_cap)
@@ -1064,15 +1064,15 @@ static void AT_JudgeBoxActorDel(CATS_ACT_PTR box_cap)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒ{ƒbƒNƒXƒŠƒ\[ƒXíœ
+ * @brief   å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
  *
  * @param   crp				crp
  */
 //--------------------------------------------------------------
 static void AT_JudgeBoxResourceDel(CATS_RES_PTR crp)
 {
-	//-- ƒŠƒ\[ƒXíœ --//
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚È‚Ì‚Åíœ‚È‚µ
+	//-- ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤ --//
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆãªã®ã§å‰Šé™¤ãªã—
 	CATS_FreeResourceChar(crp, CHARID_JUDGE_BOX);
 	CATS_FreeResourceCell(crp, CELLID_JUDGE_BOX);
 	CATS_FreeResourceCellAnm(crp, CELLANMID_JUDGE_BOX);
@@ -1080,15 +1080,15 @@ static void AT_JudgeBoxResourceDel(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ÌR”»‚ÆR”»ƒ{ƒbƒNƒX‚ÌƒAƒNƒ^[‚ÆƒŠƒ\[ƒX‚ð“o˜^‚·‚é
- * @param   sys		‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨ã¦ã®å¯©åˆ¤ã¨å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã¨ãƒªã‚½ãƒ¼ã‚¹ã‚’ç™»éŒ²ã™ã‚‹
+ * @param   sys		æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_JudgeAddAll(ACTIN_SYSTEM_PARAM *sys, CONTEST_SYSTEM *consys, ARCHANDLE *hdl_obj)
 {
 	int i;
 	
-	//R”»ƒ{ƒbƒNƒX‚ÌƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	//å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	AT_JudgeBoxResourceLoad(sys->pfd, sys->csp, sys->crp, hdl_obj);
 
 	for(i = 0; i < JUDGE_MAX; i++){
@@ -1100,8 +1100,8 @@ void AT_JudgeAddAll(ACTIN_SYSTEM_PARAM *sys, CONTEST_SYSTEM *consys, ARCHANDLE *
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ÌR”»‚ÆR”»ƒ{ƒbƒNƒX‚ÌƒAƒNƒ^[‚ÆƒŠƒ\[ƒX‚Ìíœ‚ðs‚¤
- * @param   sys		‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨ã¦ã®å¯©åˆ¤ã¨å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã¨ãƒªã‚½ãƒ¼ã‚¹ã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   sys		æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_JudgeDelAll(ACTIN_SYSTEM_PARAM *sys)
@@ -1117,9 +1117,9 @@ void AT_JudgeDelAll(ACTIN_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒX“o˜^
+ * @brief   å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  *
- * @param   pfd			ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pfd			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   csp			csp
  * @param   crp			crp
  */
@@ -1132,8 +1132,8 @@ void AT_JudgeReactionIconResourceLoad(PALETTE_FADE_PTR pfd, CATS_SYS_PTR csp, CA
 	cell_id = EXCLAMATION_NCER_BIN;
 	anm_id = EXCLAMATION_NANR_BIN;
 	
-	//-- ƒŠƒ\[ƒXƒ[ƒh --//
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚ðŽg—p‚·‚é‚Ì‚Åƒ[ƒh‚È‚µ
+	//-- ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ --//
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ãƒ­ãƒ¼ãƒ‰ãªã—
 	CATS_LoadResourceCharArcH(csp, crp, hdl_obj, char_id, 1, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_JUDGE_REACTION);
 	CATS_LoadResourceCellArcH(csp, crp, hdl_obj, cell_id, 1, 
@@ -1144,15 +1144,15 @@ void AT_JudgeReactionIconResourceLoad(PALETTE_FADE_PTR pfd, CATS_SYS_PTR csp, CA
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ“ƒŠƒ\[ƒXíœ
+ * @brief   å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
  *
  * @param   crp				crp
  */
 //--------------------------------------------------------------
 void AT_JudgeReactionIconResourceDel(CATS_RES_PTR crp)
 {
-	//-- ƒŠƒ\[ƒXíœ --//
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚È‚Ì‚Åíœ‚È‚µ
+	//-- ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤ --//
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆãªã®ã§å‰Šé™¤ãªã—
 	CATS_FreeResourceChar(crp, CHARID_JUDGE_REACTION);
 	CATS_FreeResourceCell(crp, CELLID_JUDGE_REACTION);
 	CATS_FreeResourceCellAnm(crp, CELLANMID_JUDGE_REACTION);
@@ -1160,8 +1160,8 @@ void AT_JudgeReactionIconResourceDel(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[‚Ì¶¬
- * @param   sys			‰‰‹Z—ÍƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç”Ÿæˆ
+ * @param   sys			æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_JudgeReactionIconActorAdd(ACTIN_SYSTEM_PARAM *sys)
@@ -1169,7 +1169,7 @@ void AT_JudgeReactionIconActorAdd(ACTIN_SYSTEM_PARAM *sys)
 	CATS_ACT_PTR cap;
 	TCATS_OBJECT_ADD_PARAM_S act_head;
 	
-	//-- ƒAƒNƒ^[¶¬ --//
+	//-- ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ --//
 	act_head = JudgeReactionObjParam;
 	cap = CATS_ObjectAdd_S(sys->csp, sys->crp, &act_head);
 	
@@ -1182,9 +1182,9 @@ void AT_JudgeReactionIconActorAdd(ACTIN_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[íœ
+ * @brief   å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  *
- * @param   box_cap			R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   box_cap			å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_JudgeReactionIconActorDel(ACTIN_SYSTEM_PARAM *sys)
@@ -1197,11 +1197,11 @@ void AT_JudgeReactionIconActorDel(ACTIN_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ“‚ð•\Ž¦ON‚·‚é
+ * @brief   å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºONã™ã‚‹
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge_no		R”»No
- * @param   reaction_type	ƒŠƒAƒNƒVƒ‡ƒ“ƒ^ƒCƒv(JUDGE_REACTION_ICON_???)
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge_no		å¯©åˆ¤No
+ * @param   reaction_type	ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—(JUDGE_REACTION_ICON_???)
  */
 //--------------------------------------------------------------
 void AT_JudgeReactionIconON(ACTIN_SYSTEM_PARAM *sys, int judge_no, int reaction_type)
@@ -1231,8 +1231,8 @@ void AT_JudgeReactionIconON(ACTIN_SYSTEM_PARAM *sys, int judge_no, int reaction_
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ“‚ð•\Ž¦OFF‚·‚é
- * @param   sys		‰‰‹Z—ÍƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºOFFã™ã‚‹
+ * @param   sys		æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_JudgeReactionIconOFF(ACTIN_SYSTEM_PARAM *sys)
@@ -1244,12 +1244,12 @@ void AT_JudgeReactionIconOFF(ACTIN_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»‚ðƒŠƒAƒNƒVƒ‡ƒ““®ì‚³‚¹‚é
+ * @brief   å¯©åˆ¤ã‚’ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‹•ä½œã•ã›ã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge_no		R”»No
- * @param   reaction_type	ƒŠƒAƒNƒVƒ‡ƒ“ƒ^ƒCƒv(JUDGE_REACTION_ICON_???)
- * @param   end_flag		I—¹Žž‚±‚±‚ÉTRUE‚ª“ü‚é
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge_no		å¯©åˆ¤No
+ * @param   reaction_type	ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—(JUDGE_REACTION_ICON_???)
+ * @param   end_flag		çµ‚äº†æ™‚ã“ã“ã«TRUEãŒå…¥ã‚‹
  */
 //--------------------------------------------------------------
 void AT_JudgeReactionMoveTaskSet(ACTIN_PROC_WORK *apw, int judge_no, 
@@ -1304,9 +1304,9 @@ void AT_JudgeReactionMoveTaskSet(ACTIN_PROC_WORK *apw, int judge_no,
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒŠƒAƒNƒVƒ‡ƒ““®ìFŽw–¼
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		R”»ƒŠƒAƒNƒVƒ‡ƒ““®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‹•ä½œï¼šæŒ‡å
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void JudgeReactionMove_Nomination(TCB_PTR tcb, void *work)
@@ -1350,9 +1350,9 @@ static void JudgeReactionMove_Nomination(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒŠƒAƒNƒVƒ‡ƒ““®ìF”í‚è
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		R”»ƒŠƒAƒNƒVƒ‡ƒ““®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‹•ä½œï¼šè¢«ã‚Š
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void JudgeReactionMove_Wear(TCB_PTR tcb, void *work)
@@ -1399,9 +1399,9 @@ static void JudgeReactionMove_Wear(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒŠƒAƒNƒVƒ‡ƒ““®ìFƒWƒƒƒ“ƒv(ƒ{ƒ‹ƒe[ƒWAƒ{ƒ‹ƒe[ƒWMAX)
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		R”»ƒŠƒAƒNƒVƒ‡ƒ““®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‹•ä½œï¼šã‚¸ãƒ£ãƒ³ãƒ—(ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã€ãƒœãƒ«ãƒ†ãƒ¼ã‚¸MAX)
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void JudgeReactionMove_Jump(TCB_PTR tcb, void *work)
@@ -1441,18 +1441,18 @@ static void JudgeReactionMove_Jump(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   “Á•ÊR¸ˆõ‚É‚Â‚¯‚éƒn[ƒgƒAƒNƒ^[‚ð¶¬‚·‚é
+ * @brief   ç‰¹åˆ¥å¯©æŸ»å“¡ã«ã¤ã‘ã‚‹ãƒãƒ¼ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge_no		‚Â‚¯‚éR¸ˆõ‚ÌNO
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge_no		ã¤ã‘ã‚‹å¯©æŸ»å“¡ã®NO
  */
 //--------------------------------------------------------------
 void AT_SpecialHeartSet(ACTIN_SYSTEM_PARAM *sys, int judge_no, ARCHANDLE *hdl_obj)
 {
 	GF_ASSERT(sys->special_heart_cap == NULL);
 	
-	//ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚ðŽg—p‚·‚é‚Ì‚Åƒ[ƒh‚È‚µ
+	//ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ãƒ­ãƒ¼ãƒ‰ãªã—
 	CATS_LoadResourceCharArcH(sys->csp, sys->crp, hdl_obj, 
 		HEART16_NCGR_BIN, 1, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_SPECIAL_HEART);
@@ -1462,7 +1462,7 @@ void AT_SpecialHeartSet(ACTIN_SYSTEM_PARAM *sys, int judge_no, ARCHANDLE *hdl_ob
 	CATS_LoadResourceCellAnmArcH(sys->csp, sys->crp, hdl_obj, 
 		HEART16_NANR_BIN, 1, CELLANMID_SPECIAL_HEART);
 	
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	sys->special_heart_cap = CATS_ObjectAdd_S(sys->csp, sys->crp, &SpecialHeartObjParam);
 	CATS_ObjectUpdate(sys->special_heart_cap->act);
 	CATS_ObjectPosSetCap(sys->special_heart_cap, 
@@ -1471,27 +1471,27 @@ void AT_SpecialHeartSet(ACTIN_SYSTEM_PARAM *sys, int judge_no, ARCHANDLE *hdl_ob
 
 //--------------------------------------------------------------
 /**
- * @brief   “Á•ÊR¸ˆõ‚É‚Â‚¯‚éƒn[ƒg‚ðíœ‚·‚é
+ * @brief   ç‰¹åˆ¥å¯©æŸ»å“¡ã«ã¤ã‘ã‚‹ãƒãƒ¼ãƒˆã‚’å‰Šé™¤ã™ã‚‹
  *
- * @param   sys		‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sys		æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_SpecialHeartDel(ACTIN_SYSTEM_PARAM *sys)
 {
-	//-- ƒŠƒ\[ƒXíœ --//
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚È‚Ì‚Åíœ‚È‚µ
+	//-- ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤ --//
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆãªã®ã§å‰Šé™¤ãªã—
 	CATS_FreeResourceChar(sys->crp, CHARID_SPECIAL_HEART);
 	CATS_FreeResourceCell(sys->crp, CELLID_SPECIAL_HEART);
 	CATS_FreeResourceCellAnm(sys->crp, CELLANMID_SPECIAL_HEART);
 	
-	//-- ƒAƒNƒ^[íœ --//
+	//-- ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ --//
 	CATS_ActorPointerDelete_S(sys->special_heart_cap);
 	sys->special_heart_cap = NULL;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg‚ÌƒŠƒ\[ƒXƒ[ƒh‚·‚é
+ * @brief   ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param   csp
  * @param   crp
@@ -1499,7 +1499,7 @@ void AT_SpecialHeartDel(ACTIN_SYSTEM_PARAM *sys)
 //--------------------------------------------------------------
 void AT_AppealPointResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *hdl_obj)
 {
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚ðŽg—p‚·‚é‚Ì‚Åƒ[ƒh‚È‚µ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ãƒ­ãƒ¼ãƒ‰ãªã—
 	CATS_LoadResourceCharArcH(csp, crp, hdl_obj, 
 		HEART8_NCGR_BIN, 1, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_APPEAL_POINT);
@@ -1512,14 +1512,14 @@ void AT_AppealPointResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *h
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg‚ÌƒŠƒ\[ƒX‚ð‰ð•ú‚·‚é
+ * @brief   ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
  *
  * @param   crp		
  */
 //--------------------------------------------------------------
 void AT_AppealPointResourceFree(CATS_RES_PTR crp)
 {
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚È‚Ì‚Åíœ‚È‚µ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆãªã®ã§å‰Šé™¤ãªã—
 	CATS_FreeResourceChar(crp, CHARID_APPEAL_POINT);
 	CATS_FreeResourceCell(crp, CELLID_APPEAL_POINT);
 	CATS_FreeResourceCellAnm(crp, CELLANMID_APPEAL_POINT);
@@ -1527,11 +1527,11 @@ void AT_AppealPointResourceFree(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒs[ƒ‹ƒAƒCƒRƒ“‚ðíœ‚·‚é
+ * @brief   ã‚¢ãƒ”ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‰Šé™¤ã™ã‚‹
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[No
- * @param   act_pos			ƒAƒNƒ^[ƒ[ƒNˆÊ’u
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No
+ * @param   act_pos			ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ä½ç½®
  */
 //--------------------------------------------------------------
 static inline void AppealPointActorDel(ACTIN_SYSTEM_PARAM *sys, int breeder_no, int act_pos)
@@ -1544,10 +1544,10 @@ static inline void AppealPointActorDel(ACTIN_SYSTEM_PARAM *sys, int breeder_no, 
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’è‚µ‚½ƒuƒŠ[ƒ_[‚ªŽ‚ÂƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgƒAƒCƒRƒ“‚ð‘S‚Äíœ‚·‚é
+ * @brief   æŒ‡å®šã—ãŸãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãŒæŒã¤ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[NO
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼NO
  */
 //--------------------------------------------------------------
 static void AT_AppealPointActorBreederDel(ACTIN_SYSTEM_PARAM *sys, int breeder_no)
@@ -1561,8 +1561,8 @@ static void AT_AppealPointActorBreederDel(ACTIN_SYSTEM_PARAM *sys, int breeder_n
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ÌƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgƒAƒCƒRƒ“‚ðíœ‚·‚é
- * @param   sys		‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨ã¦ã®ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   sys		æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_AppealPointActorDelAll(ACTIN_SYSTEM_PARAM *sys)
@@ -1576,21 +1576,21 @@ void AT_AppealPointActorDelAll(ACTIN_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgƒAƒCƒRƒ“‚ð¶¬‚·‚é
+ * @brief   ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   csp		
  * @param   crp		
- * @param   x		•\Ž¦À•WX
- * @param   y		•\Ž¦À•WY
+ * @param   x		è¡¨ç¤ºåº§æ¨™X
+ * @param   y		è¡¨ç¤ºåº§æ¨™Y
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CATS_ACT_PTR AT_AppealPointActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, int x, int y)
 {
 	CATS_ACT_PTR app_cap;
 	
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	app_cap = CATS_ObjectAdd_S(csp, crp, &AppealPointObjParam);
 	CATS_ObjectUpdate(app_cap->act);
 	CATS_ObjectPosSetCap(app_cap, x, y);
@@ -1600,13 +1600,13 @@ static CATS_ACT_PTR AT_AppealPointActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, i
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚»‚ÌƒuƒŠ[ƒ_[‚ªŽ‚ÂƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgƒAƒCƒRƒ“‚ð‚¢‚Á‚½‚ñ‘S‚Äíœ‚µA
- *          Œ»ƒ|ƒCƒ“ƒg•ªƒAƒCƒRƒ“‚ðì‚è’¼‚·
+ * @brief   ãã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãŒæŒã¤ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’ã„ã£ãŸã‚“å…¨ã¦å‰Šé™¤ã—ã€
+ *          ç¾ãƒã‚¤ãƒ³ãƒˆåˆ†ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä½œã‚Šç›´ã™
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   breeder_pos		ƒuƒŠ[ƒ_[ˆÊ’u
- * @param   point			•\Ž¦‚·‚éƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   breeder_pos		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ä½ç½®
+ * @param   point			è¡¨ç¤ºã™ã‚‹ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ
  */
 //--------------------------------------------------------------
 void AT_AppealPointActorMadeOver(ACTIN_SYSTEM_PARAM *sys, int breeder_no, 
@@ -1618,15 +1618,15 @@ void AT_AppealPointActorMadeOver(ACTIN_SYSTEM_PARAM *sys, int breeder_no,
 //	GF_ASSERT(icon_num <= APPEAL_POINT_ICON_MAX);
 	if(icon_num > APPEAL_POINT_ICON_MAX * APPEAL_POINT_ICON_LOOP){
 		icon_num = APPEAL_POINT_ICON_MAX * APPEAL_POINT_ICON_LOOP;
-		OS_TPrintf("---ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgƒAƒCƒRƒ“‚Ì•\Ž¦”‚ªÅ‘å”‚ð’´‚¦‚Ä‚¢‚Ü‚·II---\n");
+		OS_TPrintf("---ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºæ•°ãŒæœ€å¤§æ•°ã‚’è¶…ãˆã¦ã„ã¾ã™ï¼ï¼---\n");
 	}
 	
-	//•K—v‚ÈƒAƒCƒRƒ“‚Ì”ˆÈã‚ÌƒAƒCƒRƒ“‚ªo‚Ä‚¢‚éê‡‚Í‚»‚ê‚ç‚ðíœ‚·‚é
+	//å¿…è¦ãªã‚¢ã‚¤ã‚³ãƒ³ã®æ•°ä»¥ä¸Šã®ã‚¢ã‚¤ã‚³ãƒ³ãŒå‡ºã¦ã„ã‚‹å ´åˆã¯ãã‚Œã‚‰ã‚’å‰Šé™¤ã™ã‚‹
 	for(i = icon_num; i < APPEAL_POINT_ICON_MAX; i++){
 		AppealPointActorDel(sys, breeder_no, i);
 	}
 	
-	//Œ»ƒ|ƒCƒ“ƒg•ª‚Ü‚Å‚ÌƒAƒCƒRƒ“‚ðì‚é
+	//ç¾ãƒã‚¤ãƒ³ãƒˆåˆ†ã¾ã§ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä½œã‚‹
 	for(i = icon_num-1; i > -1; i--){
 		icon_pos = i % APPEAL_POINT_ICON_MAX;
 		anm_seq = i / APPEAL_POINT_ICON_MAX;
@@ -1644,15 +1644,15 @@ void AT_AppealPointActorMadeOver(ACTIN_SYSTEM_PARAM *sys, int breeder_no,
 		}
 	}
 	
-	//SEÄ¶
+	//SEå†ç”Ÿ
 	Snd_SePlay(ASE_AP_UP);
 	Snd_PlayerSetTrackPitchBySeqNo(ASE_AP_UP, 0xffff, SND_HALF_PITCH * (icon_num - 1));
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒs[ƒ‹ƒAƒCƒRƒ““oêƒGƒtƒFƒNƒgƒ^ƒXƒN‚ð¶¬‚·‚é
- * @param   cap		ƒAƒs[ƒ‹ƒAƒCƒRƒ“‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¢ãƒ”ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
+ * @param   cap		ã‚¢ãƒ”ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void AppealPointAppearEffectSet(CATS_ACT_PTR cap)
@@ -1668,10 +1668,10 @@ static void AppealPointAppearEffectSet(CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒs[ƒ‹ƒAƒCƒRƒ““oêƒGƒtƒFƒNƒgƒƒCƒ“ƒ^ƒXƒN
+ * @brief   ã‚¢ãƒ”ãƒ¼ãƒ«ã‚¢ã‚¤ã‚³ãƒ³ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		APPEAL_POINT_APPEAR_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		APPEAL_POINT_APPEAR_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AppealPointAppear(TCB_PTR tcb, void *work)
@@ -1717,7 +1717,7 @@ static void AppealPointAppear(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒg‚ÌƒŠƒ\[ƒXƒ[ƒh‚·‚é
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param   csp
  * @param   crp
@@ -1725,7 +1725,7 @@ static void AppealPointAppear(TCB_PTR tcb, void *work)
 //--------------------------------------------------------------
 void AT_VoltagePointResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *hdl_obj)
 {
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚ðŽg—p‚·‚é‚Ì‚Åƒ[ƒh‚È‚µ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ãƒ­ãƒ¼ãƒ‰ãªã—
 	CATS_LoadResourceCharArcH(csp, crp, hdl_obj, 
 		VOLTAGE8_NCGR_BIN, 1, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_VOLTAGE_POINT);
@@ -1735,7 +1735,7 @@ void AT_VoltagePointResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *
 	CATS_LoadResourceCellAnmArcH(csp, crp, hdl_obj, 
 		VOLTAGE8_NANR_BIN, 1, CELLANMID_VOLTAGE_POINT);
 
-	//ƒ{ƒ‹ƒe[ƒW‰‰o
+	//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æ¼”å‡º
 	CATS_LoadResourceCharArcH(csp, crp, hdl_obj, 
 		STAR16_NCGR_BIN, 1, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_VOLTAGE_EFF);
@@ -1748,19 +1748,19 @@ void AT_VoltagePointResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒg‚ÌƒŠƒ\[ƒX‚ð‰ð•ú‚·‚é
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
  *
  * @param   crp		
  */
 //--------------------------------------------------------------
 void AT_VoltagePointResourceFree(CATS_RES_PTR crp)
 {
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚È‚Ì‚Åíœ‚È‚µ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆãªã®ã§å‰Šé™¤ãªã—
 	CATS_FreeResourceChar(crp, CHARID_VOLTAGE_POINT);
 	CATS_FreeResourceCell(crp, CELLID_VOLTAGE_POINT);
 	CATS_FreeResourceCellAnm(crp, CELLANMID_VOLTAGE_POINT);
 
-	//ƒ{ƒ‹ƒe[ƒW‰‰o
+	//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æ¼”å‡º
 	CATS_FreeResourceChar(crp, CHARID_VOLTAGE_EFF);
 	CATS_FreeResourceCell(crp, CELLID_VOLTAGE_EFF);
 	CATS_FreeResourceCellAnm(crp, CELLANMID_VOLTAGE_EFF);
@@ -1768,11 +1768,11 @@ void AT_VoltagePointResourceFree(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWƒAƒCƒRƒ“‚Ì’P“Æíœ
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚¢ã‚¤ã‚³ãƒ³ã®å˜ç‹¬å‰Šé™¤
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge_no		R”»No
- * @param   icon_pos		ƒAƒCƒRƒ“‚ÌˆÊ’u
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge_no		å¯©åˆ¤No
+ * @param   icon_pos		ã‚¢ã‚¤ã‚³ãƒ³ã®ä½ç½®
  */
 //--------------------------------------------------------------
 static inline void AT_VoltagePointActorDel(ACTIN_SYSTEM_PARAM *sys, int judge_no, int icon_pos)
@@ -1783,10 +1783,10 @@ static inline void AT_VoltagePointActorDel(ACTIN_SYSTEM_PARAM *sys, int judge_no
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’è‚µ‚½R”»‚ªŽ‚Âƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgƒAƒCƒRƒ“‚ð‘S‚Äíœ‚·‚é
+ * @brief   æŒ‡å®šã—ãŸå¯©åˆ¤ãŒæŒã¤ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge_no		R”»No
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge_no		å¯©åˆ¤No
  */
 //--------------------------------------------------------------
 static void AT_VoltagePointActorJudgeDel(ACTIN_SYSTEM_PARAM *sys, int judge_no)
@@ -1802,8 +1802,8 @@ static void AT_VoltagePointActorJudgeDel(ACTIN_SYSTEM_PARAM *sys, int judge_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚Ìƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgƒAƒCƒRƒ“‚ðíœ‚·‚é
- * @param   sys		‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨ã¦ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   sys		æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_VoltagePointActorDelAll(ACTIN_SYSTEM_PARAM *sys)
@@ -1817,21 +1817,21 @@ void AT_VoltagePointActorDelAll(ACTIN_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgƒAƒCƒRƒ“‚ð¶¬‚·‚é
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   csp		
  * @param   crp		
- * @param   x		•\Ž¦À•WX
- * @param   y		•\Ž¦À•WY
+ * @param   x		è¡¨ç¤ºåº§æ¨™X
+ * @param   y		è¡¨ç¤ºåº§æ¨™Y
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CATS_ACT_PTR AT_VoltagePointActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, int x, int y)
 {
 	CATS_ACT_PTR app_cap;
 	
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	app_cap = CATS_ObjectAdd_S(csp, crp, &VoltagePointObjParam);
 	CATS_ObjectUpdate(app_cap->act);
 	CATS_ObjectPosSetCap(app_cap, x, y);
@@ -1841,21 +1841,21 @@ static CATS_ACT_PTR AT_VoltagePointActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW‰‰oƒAƒCƒRƒ“‚ð¶¬‚·‚é
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æ¼”å‡ºã‚¢ã‚¤ã‚³ãƒ³ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   csp		
  * @param   crp		
- * @param   x		•\Ž¦À•WX
- * @param   y		•\Ž¦À•WY
+ * @param   x		è¡¨ç¤ºåº§æ¨™X
+ * @param   y		è¡¨ç¤ºåº§æ¨™Y
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CATS_ACT_PTR AT_VoltageEffectActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, int x, int y)
 {
 	CATS_ACT_PTR cap;
 	
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	cap = CATS_ObjectAdd_S(csp, crp, &VoltageEffectObjParam);
 	CATS_ObjectUpdate(cap->act);
 	CATS_ObjectPosSetCap(cap, x, y);
@@ -1865,9 +1865,9 @@ static CATS_ACT_PTR AT_VoltageEffectActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW‰‰oFƒƒCƒ“ƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLTAGE_MOVE_WORK\‘¢‘Ì
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æ¼”å‡ºï¼šãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLTAGE_MOVE_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VoltagePointActorMove(TCB_PTR tcb, void *work)
@@ -1941,12 +1941,12 @@ static void VoltagePointActorMove(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWˆÚ“®ƒGƒtƒFƒNƒg‚ªI—¹‚µ‚Ä‚¢‚é‚©Šm”F
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ç§»å‹•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ç¢ºèª
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge_no		R”»”Ô†
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge_no		å¯©åˆ¤ç•ªå·
  *
- * @retval  TRUE:I—¹B@FALSE:“®ì’†‚ÌƒGƒtƒFƒNƒg‚ª‚ ‚é
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:å‹•ä½œä¸­ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‚ã‚‹
  */
 //--------------------------------------------------------------
 BOOL AT_VoltageMoveEffectEndCheck(ACTIN_SYSTEM_PARAM *sys, int judge_no)
@@ -1965,13 +1965,13 @@ BOOL AT_VoltageMoveEffectEndCheck(ACTIN_SYSTEM_PARAM *sys, int judge_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»ƒ|ƒCƒ“ƒg•ª‚Ü‚Å‚Ìƒ{ƒ‹ƒe[ƒWƒAƒCƒRƒ“‚ðì¬‚·‚é
- * 			Šù‚É¶¬‚³‚ê‚Ä‚¢‚éƒAƒCƒRƒ“‚ªŒ»ƒ|ƒCƒ“ƒg•ª‚É’B‚µ‚Ä‚¢‚È‚¯‚ê‚Î’Ç‰Á‚Åì‚èA
- *          ‹t‚É‘½‚­¶¬‚³‚ê‚Ä‚¢‚é‚È‚ç‚ÎA‚»‚Ì•ª‚Ííœ‚·‚é
+ * @brief   ç¾ãƒã‚¤ãƒ³ãƒˆåˆ†ã¾ã§ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä½œæˆã™ã‚‹
+ * 			æ—¢ã«ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ãŒç¾ãƒã‚¤ãƒ³ãƒˆåˆ†ã«é”ã—ã¦ã„ãªã‘ã‚Œã°è¿½åŠ ã§ä½œã‚Šã€
+ *          é€†ã«å¤šãç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã°ã€ãã®åˆ†ã¯å‰Šé™¤ã™ã‚‹
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge_no		R”»”Ô†
- * @param   point			•\Ž¦‚·‚éƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒg
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge_no		å¯©åˆ¤ç•ªå·
+ * @param   point			è¡¨ç¤ºã™ã‚‹ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆ
  */
 //--------------------------------------------------------------
 void AT_VoltagePointActorMadeOver(ACTIN_SYSTEM_PARAM *sys, int judge_no, int point)
@@ -1982,7 +1982,7 @@ void AT_VoltagePointActorMadeOver(ACTIN_SYSTEM_PARAM *sys, int judge_no, int poi
 	icon_num = point / VOLTAGE_ONE_POINT;
 	GF_ASSERT(icon_num <= VOLTAGE_MAX);
 	
-	//Œ»ƒ|ƒCƒ“ƒg•ª‚ÌƒAƒCƒRƒ“‚ðì‚é
+	//ç¾ãƒã‚¤ãƒ³ãƒˆåˆ†ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä½œã‚‹
 	for(i = 0; i < icon_num; i++){
 		if(sys->voltage_point_cap[judge_no][i] == NULL){
 			sys->voltage_point_cap[judge_no][i] = AT_VoltagePointActorSet(sys->csp, sys->crp, 
@@ -1990,7 +1990,7 @@ void AT_VoltagePointActorMadeOver(ACTIN_SYSTEM_PARAM *sys, int judge_no, int poi
 				VoltagePointPos[judge_no][1]);
 			CATS_ObjectEnableCap(sys->voltage_point_cap[judge_no][i], CATS_ENABLE_FALSE);
 
-			//ƒ{ƒ‹ƒe[ƒW‰‰o¶¬
+			//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æ¼”å‡ºç”Ÿæˆ
 			vmw = sys_AllocMemory(HEAPID_ACTIN, sizeof(VOLTAGE_MOVE_WORK));
 			MI_CpuClear8(vmw, sizeof(VOLTAGE_MOVE_WORK));
 			vmw->sys = sys;
@@ -2006,7 +2006,7 @@ void AT_VoltagePointActorMadeOver(ACTIN_SYSTEM_PARAM *sys, int judge_no, int poi
 			TCB_Add(VoltagePointActorMove, vmw, TCBPRI_ACTIN_EFFECT);
 		}
 	}
-	//Œ»ƒ|ƒCƒ“ƒg•ª‚æ‚è‘½‚­ƒAƒCƒRƒ“‚ªì‚ç‚ê‚Ä‚¢‚éê‡‚Ííœ‚·‚é
+	//ç¾ãƒã‚¤ãƒ³ãƒˆåˆ†ã‚ˆã‚Šå¤šãã‚¢ã‚¤ã‚³ãƒ³ãŒä½œã‚‰ã‚Œã¦ã„ã‚‹å ´åˆã¯å‰Šé™¤ã™ã‚‹
 	for( ; i < VOLTAGE_MAX; i++){
 		if(sys->voltage_point_cap[judge_no][i] != NULL){
 			AT_VoltagePointActorDel(sys, judge_no, i);
@@ -2016,8 +2016,8 @@ void AT_VoltagePointActorMadeOver(ACTIN_SYSTEM_PARAM *sys, int judge_no, int poi
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒBƒ“ƒhƒEAƒXƒ‰ƒCƒhŽž‚ÌƒJƒo[OBJ‚ð¶¬
- * @param   sys		‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€ã‚¹ãƒ©ã‚¤ãƒ‰æ™‚ã®ã‚«ãƒãƒ¼OBJã‚’ç”Ÿæˆ
+ * @param   sys		æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_TalkWinSlideCoverOBJSet(ACTIN_SYSTEM_PARAM *sys)
@@ -2040,7 +2040,7 @@ void AT_TalkWinSlideCoverOBJSet(ACTIN_SYSTEM_PARAM *sys)
 		scrnbuf = &scrnbuf[WINSLIDE_SCRN_POS_AFTER];
 	}
 	
-	//ƒŠƒ\[ƒX“o˜^
+	//ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
 	CATS_LoadResourceCharArc(csp, crp, ARC_CONTEST_OBJ, SPACE_64K_8X16_NCGR_BIN, 1, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_WIN_COVER_0);
 	CATS_LoadResourceCharArc(csp, crp, ARC_CONTEST_OBJ, SPACE_64K_8X16_NCGR_BIN, 1, 
@@ -2055,7 +2055,7 @@ void AT_TalkWinSlideCoverOBJSet(ACTIN_SYSTEM_PARAM *sys)
 	CATS_LoadResourceCellAnmArc(csp, crp, ARC_CONTEST_OBJ, 
 		SPACE_64K_8X16_NANR_BIN, 1, CELLANMID_WIN_COVER);
 
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	{
 		TCATS_OBJECT_ADD_PARAM_S head;
 		
@@ -2068,7 +2068,7 @@ void AT_TalkWinSlideCoverOBJSet(ACTIN_SYSTEM_PARAM *sys)
 		}
 	}
 	
-	//ƒXƒNƒŠ[ƒ“‚ÅŽg—p‚µ‚Ä‚¢‚éƒLƒƒƒ‰ƒNƒ^‚ð“Ç‚ÝŽæ‚Á‚ÄOBJ‚ÌVRAM‚ÖƒRƒs[‚·‚é
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’èª­ã¿å–ã£ã¦OBJã®VRAMã¸ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	{
 		void *obj_vram;
 		NNSG2dImageProxy * image;
@@ -2093,7 +2093,7 @@ void AT_TalkWinSlideCoverOBJSet(ACTIN_SYSTEM_PARAM *sys)
 		}
 	}
 	
-	//ƒXƒNƒŠ[ƒ“‚ÅŽg—p‚µ‚Ä‚¢‚éƒpƒŒƒbƒg‚ð“Ç‚ÝŽæ‚Á‚ÄOBJƒpƒŒƒbƒg‚ÖƒRƒs[‚·‚é
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã‚’èª­ã¿å–ã£ã¦OBJãƒ‘ãƒ¬ãƒƒãƒˆã¸ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	{
 		int palno;
 		
@@ -2105,8 +2105,8 @@ void AT_TalkWinSlideCoverOBJSet(ACTIN_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒBƒ“ƒhƒEAƒXƒ‰ƒCƒhŽž‚ÌƒJƒo[OBJíœ
- * @param   sys		‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€ã‚¹ãƒ©ã‚¤ãƒ‰æ™‚ã®ã‚«ãƒãƒ¼OBJå‰Šé™¤
+ * @param   sys		æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_TalkWinSlideCoverOBJDelete(ACTIN_SYSTEM_PARAM *sys)
@@ -2116,13 +2116,13 @@ void AT_TalkWinSlideCoverOBJDelete(ACTIN_SYSTEM_PARAM *sys)
 	
 	crp = sys->crp;
 	
-	//ƒAƒNƒ^[íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 	for(i = 0; i < WINCOVER_ACT_MAX; i++){
 		CATS_ActorPointerDelete_S(sys->wincover_cap[i]);
 		sys->wincover_cap[i] = NULL;
 	}
 	
-	//ƒŠƒ\[ƒXíœ
+	//ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
 	CATS_FreeResourceChar(crp, CHARID_WIN_COVER_0);
 	CATS_FreeResourceChar(crp, CHARID_WIN_COVER_1);
 	CATS_FreeResourceChar(crp, CHARID_WIN_COVER_2);
@@ -2133,9 +2133,9 @@ void AT_TalkWinSlideCoverOBJDelete(ACTIN_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒBƒ“ƒhƒE‚ÌƒXƒNƒŠ[ƒ“‚ðƒXƒ‰ƒCƒh—p‚É•`‰æ
+ * @brief   ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨ã«æç”»
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   write_type		TALKWIN_SCREEN_WRITE_???
  */
 //--------------------------------------------------------------
@@ -2164,11 +2164,11 @@ void AT_TalkWinScreenWrite(ACTIN_SYSTEM_PARAM *sys, int write_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒBƒ“ƒhƒEƒXƒ‰ƒCƒh§Œäƒ^ƒXƒN‚ð¶¬‚·‚é
+ * @brief   ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ãƒ©ã‚¤ãƒ‰åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   slide_dir		ƒXƒ‰ƒCƒh•ûŒü(TALKWIN_SLIDE_DIR_???)
- * @param   end_flag		ƒXƒ‰ƒCƒh‚ÌI—¹‚ð’m‚ç‚¹‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^(I—¹ŽžTRUE‚ªƒZƒbƒg‚³‚ê‚Ü‚·)
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   slide_dir		ã‚¹ãƒ©ã‚¤ãƒ‰æ–¹å‘(TALKWIN_SLIDE_DIR_???)
+ * @param   end_flag		ã‚¹ãƒ©ã‚¤ãƒ‰ã®çµ‚äº†ã‚’çŸ¥ã‚‰ã›ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿(çµ‚äº†æ™‚TRUEãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™)
  */
 //--------------------------------------------------------------
 void AT_TalkWinSlideTaskSet(ACTIN_SYSTEM_PARAM *sys, u8 slide_dir, u8 *end_flag)
@@ -2197,10 +2197,10 @@ void AT_TalkWinSlideTaskSet(ACTIN_SYSTEM_PARAM *sys, u8 slide_dir, u8 *end_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒBƒ“ƒhƒEƒXƒ‰ƒCƒh§Œäƒ^ƒXƒN
+ * @brief   ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ãƒ©ã‚¤ãƒ‰åˆ¶å¾¡ã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		TALKWIN_SLIDE_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		TALKWIN_SLIDE_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void TalkWinSlideInOutMain(TCB_PTR tcb, void *work)
@@ -2239,11 +2239,11 @@ static void TalkWinSlideInOutMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒpƒlƒ‹‚Ìã‚Éæ‚Á‚©‚Á‚Ä‚¢‚éOBJ‚É‘Î‚µ‚ÄA”¼“§–¾OBJƒ‚[ƒh‚ðƒZƒbƒg‚·‚é
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã®ä¸Šã«ä¹—ã£ã‹ã£ã¦ã„ã‚‹OBJã«å¯¾ã—ã¦ã€åŠé€æ˜ŽOBJãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   on_off		ƒm[ƒ}ƒ‹FGX_OAM_MODE_NORMALA”¼“§–¾FGX_OAM_MODE_XLU
- * @param   enable		TRUE:•\Ž¦B@FALSE:”ñ•\Ž¦
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   on_off		ãƒŽãƒ¼ãƒžãƒ«ï¼šGX_OAM_MODE_NORMALã€åŠé€æ˜Žï¼šGX_OAM_MODE_XLU
+ * @param   enable		TRUE:è¡¨ç¤ºã€‚ã€€FALSE:éžè¡¨ç¤º
  */
 //--------------------------------------------------------------
 static void AT_PanelObjBrdModeSet(ACTIN_PROC_WORK *apw, GXOamMode obj_mode, int enable)
@@ -2261,19 +2261,19 @@ static void AT_PanelObjBrdModeSet(ACTIN_PROC_WORK *apw, GXOamMode obj_mode, int 
 	}
 	
 	for(i = 0; i < BREEDER_MAX; i++){
-		//ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg
+		//ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ
 		for(k = 0; k < APPEAL_POINT_ICON_MAX; k++){
 			if(apw->sys.appeal_point_cap[i][k] != NULL){
 				CATS_ObjectObjModeSetCap(apw->sys.appeal_point_cap[i][k], obj_mode);
 				CATS_ObjectEnableCap(apw->sys.appeal_point_cap[i][k], cap_enable);
 			}
 		}
-		//ŽŸƒAƒCƒRƒ“
+		//æ¬¡ã‚¢ã‚¤ã‚³ãƒ³
 		if(apw->sys.nexticon_cap[i] != NULL){
 			CATS_ObjectObjModeSetCap(apw->sys.nexticon_cap[i], obj_mode);
 			CATS_ObjectEnableCap(apw->sys.nexticon_cap[i], cap_enable);
 		}
-		//ƒjƒbƒNƒl[ƒ€‚ÆƒuƒŠ[ƒ_[–¼
+		//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã¨ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼å
 		FONTOAM_ObjModeSet(apw->sys.fontact_oya[i].fontoam, obj_mode);
 		FONTOAM_ObjModeSet(apw->sys.fontact_nickname[i].fontoam, obj_mode);
 		FONTOAM_SetDrawFlag(apw->sys.fontact_oya[i].fontoam, fontoam_enable);
@@ -2283,11 +2283,11 @@ static void AT_PanelObjBrdModeSet(ACTIN_PROC_WORK *apw, GXOamMode obj_mode, int 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒpƒlƒ‹ƒ¿ƒGƒtƒFƒNƒg‚ðŽÀs‚·‚é
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«Î±ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å®Ÿè¡Œã™ã‚‹
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   eff_type	ƒGƒtƒFƒNƒgƒ^ƒCƒv(BRDPANEL_ALPHA_TYPE_???)
- * @param   end_flag	ƒGƒtƒFƒNƒg‚ÌI—¹‚ð’m‚ç‚¹‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^(I—¹ŽžTRUE‚ªƒZƒbƒg‚³‚ê‚Ü‚·)
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   eff_type	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—(BRDPANEL_ALPHA_TYPE_???)
+ * @param   end_flag	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®çµ‚äº†ã‚’çŸ¥ã‚‰ã›ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿(çµ‚äº†æ™‚TRUEãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™)
  */
 //--------------------------------------------------------------
 void AT_BrdPanelAlphaEffectSet(ACTIN_PROC_WORK *apw, int eff_type, u8 *end_flag)
@@ -2308,10 +2308,10 @@ void AT_BrdPanelAlphaEffectSet(ACTIN_PROC_WORK *apw, int eff_type, u8 *end_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒpƒlƒ‹ƒ¿ƒGƒtƒFƒNƒgƒƒCƒ“ƒ^ƒXƒN
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«Î±ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BRDPANEL_ALPHA_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BRDPANEL_ALPHA_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void BrdPanelAlphaEffMain(TCB_PTR tcb, void *work)
@@ -2319,8 +2319,8 @@ static void BrdPanelAlphaEffMain(TCB_PTR tcb, void *work)
 	BRDPANEL_ALPHA_WORK *baw = work;
 	
 	switch(baw->seq){
-	case 0:	//OBJ‚Ì’¼Œã‚ª“¯‚¶‚­”¼“§–¾‘ÎÛ‚ÌƒuƒŠ[ƒ_[ƒpƒlƒ‹–Ê‚È‚Ì‚ÅA“¯Žž‚É”¼“§–¾‚·‚é‚Æ
-			//OBJ‚Ì•û‚ª•Ï‚Èˆ×A•ÊX‚É”¼“§–¾‚ÅÁ‚µ‚Ä‚¢‚­
+	case 0:	//OBJã®ç›´å¾ŒãŒåŒã˜ãåŠé€æ˜Žå¯¾è±¡ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«é¢ãªã®ã§ã€åŒæ™‚ã«åŠé€æ˜Žã™ã‚‹ã¨
+			//OBJã®æ–¹ãŒå¤‰ãªç‚ºã€åˆ¥ã€…ã«åŠé€æ˜Žã§æ¶ˆã—ã¦ã„ã
 		if(baw->eff_type == BRDPANEL_ALPHA_TYPE_RETIRE){
 			baw->eva = 16 << 8;
 			baw->evb = 0;
@@ -2350,7 +2350,7 @@ static void BrdPanelAlphaEffMain(TCB_PTR tcb, void *work)
 		}
 		break;
 
-	case 2:	//2’iŠK–Ú
+	case 2:	//2æ®µéšŽç›®
 		if(baw->eff_type == BRDPANEL_ALPHA_TYPE_RETIRE){
 			baw->eva = 16 << 8;
 			baw->evb = 0;
@@ -2392,10 +2392,10 @@ static void BrdPanelAlphaEffMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒpƒlƒ‹ƒ¿ƒGƒtƒFƒNƒg‚ÌVblank’†“]‘—ƒ^ƒXƒN
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«Î±ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®Vblankä¸­è»¢é€ã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BRDPANEL_ALPHA_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BRDPANEL_ALPHA_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void BrdPanelAlphaSet_VTask(TCB_PTR tcb, void *work)
@@ -2436,18 +2436,18 @@ static void BrdPanelAlphaSet_VTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒWƒ^ƒO“WŠJ
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚°å±•é–‹
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   msg_tag		ƒ^ƒOƒR[ƒh
- * @param   tagpara		ƒ^ƒO“WŠJ‚·‚éê‡AŽQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Þ
- *                      (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   msg_tag		ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰
+ * @param   tagpara		ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡ž
+ *                      (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
  */
 //--------------------------------------------------------------
 static void AT_MessageTagExpand(ACTIN_PROC_WORK *apw, int msg_tag, const ATAG_PARAM *tagpara,
 	const void *extagpara)
 {
-	GF_ASSERT(msg_tag < ATAG_MINE || tagpara != NULL);	//ATAG_MINEˆÈã‚Ìê‡‚Ítagpara•K{
+	GF_ASSERT(msg_tag < ATAG_MINE || tagpara != NULL);	//ATAG_MINEä»¥ä¸Šã®å ´åˆã¯tagparaå¿…é ˆ
 	
 	if(tagpara != NULL){
 		OS_TPrintf("mine=%d, enemy=%d, wazano=%d, num=%d, judge_no=%d\n",
@@ -2625,15 +2625,15 @@ static void AT_MessageTagExpand(ACTIN_PROC_WORK *apw, int msg_tag, const ATAG_PA
 		break;
 		
 	default:
-		GF_ASSERT(0 && "”FŽ¯‚Å‚«‚È‚¢ƒ^ƒO‚Å‚·\n");
+		GF_ASSERT(0 && "èªè­˜ã§ããªã„ã‚¿ã‚°ã§ã™\n");
 		break;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚ðƒNƒŠƒA‚·‚é
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_TalkMessageWinClear(ACTIN_PROC_WORK *apw)
@@ -2644,16 +2644,16 @@ void AT_TalkMessageWinClear(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒƒbƒZ[ƒWƒZƒbƒg
+ * @brief   ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   msg_id		ƒƒbƒZ[ƒWID
- * @param   msg_tag		ƒ^ƒOƒR[ƒh
- * @param   tagpara		ƒ^ƒO“WŠJ‚·‚éê‡AŽQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Þ
- *                      (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
- * @param   extagpara	ƒ^ƒO“WŠJ‚·‚éê‡AŽQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Þ
- *                      (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
- * @param   all_put		TRUE:ƒƒbƒZ[ƒWˆêŠ‡•\Ž¦
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param   msg_tag		ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰
+ * @param   tagpara		ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡ž
+ *                      (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
+ * @param   extagpara	ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡ž
+ *                      (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
+ * @param   all_put		TRUE:ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä¸€æ‹¬è¡¨ç¤º
  */
 //--------------------------------------------------------------
 static void AT_TalkMessageSet(ACTIN_PROC_WORK *apw, MSGDATA_MANAGER *msg_man, 
@@ -2690,7 +2690,7 @@ static void AT_TalkMessageSet(ACTIN_PROC_WORK *apw, MSGDATA_MANAGER *msg_man,
 	}
 	
 	if(GF_BGL_ScrollGetX(apw->sys.bgl, ACTIN_FRAME_WIN) == FRAME_WIN_DEFAULT_X){
-		//GF_BGL_BmpWinDataFill‚Å˜g‚Ü‚Å“h‚è‚Â‚Ô‚³‚ê‚é‚Ì‚ÅÄ•`‰æ
+		//GF_BGL_BmpWinDataFillã§æž ã¾ã§å¡—ã‚Šã¤ã¶ã•ã‚Œã‚‹ã®ã§å†æç”»
 //		AT_TalkWinScreenWrite(&apw->sys, TALKWIN_SCREEN_WRITE_AFTER);
 	}
 	
@@ -2699,12 +2699,12 @@ static void AT_TalkMessageSet(ACTIN_PROC_WORK *apw, MSGDATA_MANAGER *msg_man,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒm[ƒ}ƒ‹‰ï˜b—p‚ÌƒƒbƒZ[ƒWƒZƒbƒg
+ * @brief   ãƒŽãƒ¼ãƒžãƒ«ä¼šè©±ç”¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   a_talk_id		A_TALK_???
- * @param   tagpara		ƒ^ƒO“WŠJ‚·‚éê‡AŽQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Þ
- *                      (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
+ * @param   tagpara		ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡ž
+ *                      (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
  */
 //--------------------------------------------------------------
 void AT_A_TalkMessageSet(ACTIN_PROC_WORK *apw, u32 a_talk_id, const ATAG_PARAM *tagpara,
@@ -2722,13 +2722,13 @@ void AT_A_TalkMessageSet(ACTIN_PROC_WORK *apw, u32 a_talk_id, const ATAG_PARAM *
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZŒø‰Ê—p‚Ì‰ï˜bƒƒbƒZ[ƒWƒZƒbƒg
+ * @brief   æŠ€åŠ¹æžœç”¨ã®ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   apno		ƒAƒs[ƒ‹”Ô†
- * @param   msg_type	ƒƒbƒZ[ƒWƒ^ƒCƒv(KOUKA_MSGID_???)
- * @param   tagpara		ƒ^ƒO“WŠJ‚·‚éê‡AŽQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Þ
- *                      (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   apno		ã‚¢ãƒ”ãƒ¼ãƒ«ç•ªå·
+ * @param   msg_type	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—(KOUKA_MSGID_???)
+ * @param   tagpara		ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡ž
+ *                      (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
  */
 //--------------------------------------------------------------
 void AT_WazaKoukaTalkMessageSet(ACTIN_PROC_WORK *apw, int apno, int msg_type, 
@@ -2742,24 +2742,24 @@ void AT_WazaKoukaTalkMessageSet(ACTIN_PROC_WORK *apw, int apno, int msg_type,
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒƒbƒZ[ƒWƒtƒHƒ“ƒg‚ª•\Ž¦‚µ‚«‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  0=I—¹
+ * @brief   ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆãŒè¡¨ç¤ºã—ãã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  0=çµ‚äº†
  */
 //--------------------------------------------------------------
 int AT_TalkMessageEndCheck(ACTIN_PROC_WORK *apw)
 {
 	if(apw->sys.talk_msg_index == 0xff){
-		return 0;	//ˆêŠ‡•\Ž¦
+		return 0;	//ä¸€æ‹¬è¡¨ç¤º
 	}
 	return GF_MSG_PrintEndCheck(apw->sys.talk_msg_index);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[î•ñ‚ÌƒtƒHƒ“ƒgOAM‚ð¶¬‚·‚é
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼æƒ…å ±ã®ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’ç”Ÿæˆã™ã‚‹
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  */
 //--------------------------------------------------------------
 void AT_BreederPanelFontOamCreate(ACTIN_PROC_WORK *apw, int breeder_no)
@@ -2797,8 +2797,8 @@ void AT_BreederPanelFontOamCreate(ACTIN_PROC_WORK *apw, int breeder_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[î•ñ‚ÌƒtƒHƒ“ƒgOAM‚ð‘S‚Ä¶¬‚·‚é
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼æƒ…å ±ã®ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’å…¨ã¦ç”Ÿæˆã™ã‚‹
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_BreederPanelFontOamCreateAll(ACTIN_PROC_WORK *apw)
@@ -2813,8 +2813,8 @@ void AT_BreederPanelFontOamCreateAll(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[î•ñ‚ÌƒtƒHƒ“ƒgOAM‚ð‘S‚Äíœ‚·‚é
- * @param   sys		ƒ_ƒ“ƒXƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼æƒ…å ±ã®ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
+ * @param   sys		ãƒ€ãƒ³ã‚¹ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_BreederPanelFontOamDeleteAll(ACTIN_PROC_WORK *apw)
@@ -2829,8 +2829,8 @@ void AT_BreederPanelFontOamDeleteAll(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[î•ñ‚ÌƒtƒHƒ“ƒgOAM‚ÌÀ•W‚ðƒuƒŠ[ƒ_[ƒ\[ƒg‚É‡‚í‚¹‚ÄXV‚·‚é
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼æƒ…å ±ã®ãƒ•ã‚©ãƒ³ãƒˆOAMã®åº§æ¨™ã‚’ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ãƒˆã«åˆã‚ã›ã¦æ›´æ–°ã™ã‚‹
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_BreederPanelFontOamPosUpdate(ACTIN_PROC_WORK *apw)
@@ -2851,7 +2851,7 @@ void AT_BreederPanelFontOamPosUpdate(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽŸƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒXƒ[ƒh‚·‚é
+ * @brief   æ¬¡ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param   csp
  * @param   crp
@@ -2859,7 +2859,7 @@ void AT_BreederPanelFontOamPosUpdate(ACTIN_PROC_WORK *apw)
 //--------------------------------------------------------------
 void AT_NextIconResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *hdl_obj)
 {
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚ðŽg—p‚·‚é‚Ì‚Åƒ[ƒh‚È‚µ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ãƒ­ãƒ¼ãƒ‰ãªã—
 
 	CATS_LoadResourceCharArcH(csp, crp, hdl_obj, 
 		NEXT_ICON_NCGR_BIN, 1, NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_NEXT_ICON);
@@ -2870,14 +2870,14 @@ void AT_NextIconResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *hdl_
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽŸƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒX‚ð‰ð•ú‚·‚é
+ * @brief   æ¬¡ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
  *
  * @param   crp		
  */
 //--------------------------------------------------------------
 void AT_NextIconResourceFree(CATS_RES_PTR crp)
 {
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚È‚Ì‚Åíœ‚È‚µ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆãªã®ã§å‰Šé™¤ãªã—
 	CATS_FreeResourceChar(crp, CHARID_NEXT_ICON);
 	CATS_FreeResourceCell(crp, CELLID_NEXT_ICON);
 	CATS_FreeResourceCellAnm(crp, CELLANMID_NEXT_ICON);
@@ -2885,26 +2885,26 @@ void AT_NextIconResourceFree(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽŸƒAƒCƒRƒ“‚ÌƒAƒNƒ^[¶¬‚ÆƒAƒjƒÝ’è‚ðs‚¤
+ * @brief   æ¬¡ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆã¨ã‚¢ãƒ‹ãƒ¡è¨­å®šã‚’è¡Œã†
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_pos		•\Ž¦‚³‚¹‚éƒuƒŠ[ƒ_[ˆÊ’u
- * @param   next_pos		ŽŸ‚Ìƒ^[ƒ“‰½”Ô–ÚA‚Æ•\Ž¦‚³‚¹‚é‚©
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_pos		è¡¨ç¤ºã•ã›ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ä½ç½®
+ * @param   next_pos		æ¬¡ã®ã‚¿ãƒ¼ãƒ³ä½•ç•ªç›®ã€ã¨è¡¨ç¤ºã•ã›ã‚‹ã‹
  *
- * Šù‚Ébreeder_pos‚ÌˆÊ’u‚ÉƒAƒNƒ^[‚ª¶¬‚³‚ê‚Ä‚¢‚éê‡‚ÍƒAƒjƒ‚ÌÝ’è‚¾‚¯s‚¢‚Ü‚·
+ * æ—¢ã«breeder_posã®ä½ç½®ã«ã‚¢ã‚¯ã‚¿ãƒ¼ãŒç”Ÿæˆã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã‚¢ãƒ‹ãƒ¡ã®è¨­å®šã ã‘è¡Œã„ã¾ã™
  */
 //--------------------------------------------------------------
 void AT_NextIconActorAnimeSet(ACTIN_SYSTEM_PARAM *sys, int breeder_pos, int next_pos)
 {
-	//ƒAƒNƒ^[‚ª¶¬‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ãŒç”Ÿæˆã•ã‚Œã¦ã„ãªã„å ´åˆã¯ç”Ÿæˆ
 	if(sys->nexticon_cap[breeder_pos] == NULL){
 		sys->nexticon_cap[breeder_pos] = CATS_ObjectAdd_S(sys->csp, sys->crp, &NextIconObjParam);
 	}
 	
-	//ƒAƒjƒÝ’è
+	//ã‚¢ãƒ‹ãƒ¡è¨­å®š
 	CATS_ObjectAnimeSeqSetCap(sys->nexticon_cap[breeder_pos], next_pos);
 	
-	//À•WÝ’è
+	//åº§æ¨™è¨­å®š
 	CATS_ObjectPosSetCap(sys->nexticon_cap[breeder_pos], 
 		NEXT_ICON_POS_X, NEXT_ICON_POS_Y + breeder_pos * NEXT_ICON_POS_Y_SPACE);
 
@@ -2913,9 +2913,9 @@ void AT_NextIconActorAnimeSet(ACTIN_SYSTEM_PARAM *sys, int breeder_pos, int next
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»Ýê‚Éo‚Ä‚¢‚éŽŸƒAƒCƒRƒ“ƒAƒNƒ^[‚ð‘S‚Äíœ
+ * @brief   ç¾åœ¨å ´ã«å‡ºã¦ã„ã‚‹æ¬¡ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å…¨ã¦å‰Šé™¤
  *
- * @param   sys				‰‰‹Z—ÍƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sys				æ¼”æŠ€åŠ›ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_NextIconActorDelAll(ACTIN_SYSTEM_PARAM *sys)
@@ -2932,11 +2932,11 @@ void AT_NextIconActorDelAll(ACTIN_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒWƒ^ƒO“WŠJƒpƒ‰ƒ[ƒ^‚ÉŠeƒuƒŠ[ƒ_[–ˆ‚Ì‰Šú’lƒf[ƒ^‚ðƒZƒbƒg‚·‚é
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚°å±•é–‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼æ¯Žã®åˆæœŸå€¤ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tagpara			ƒ^ƒOƒpƒ‰ƒ[ƒ^‘ã“üæ
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tagpara			ã‚¿ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆ
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  */
 //--------------------------------------------------------------
 void AT_MsgTagParaInitDataSet(ACTIN_PROC_WORK *apw, ATAG_PARAM *tagpara, int breeder_no)
@@ -2949,11 +2949,11 @@ void AT_MsgTagParaInitDataSet(ACTIN_PROC_WORK *apw, ATAG_PARAM *tagpara, int bre
 
 //--------------------------------------------------------------
 /**
- * @brief   ‡ŒvAP’l‚©‚çR”»‚ÌƒRƒƒ“ƒgƒŒƒxƒ‹‚ÌƒƒbƒZ[ƒWID‚Æƒ^ƒO‚ðŽæ“¾‚·‚é
+ * @brief   åˆè¨ˆAPå€¤ã‹ã‚‰å¯©åˆ¤ã®ã‚³ãƒ¡ãƒ³ãƒˆãƒ¬ãƒ™ãƒ«ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã¨ã‚¿ã‚°ã‚’å–å¾—ã™ã‚‹
  *
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   app_total		‡ŒvAP
- * @param   tagpara			ƒ^ƒO‘ã“üæ
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   app_total		åˆè¨ˆAP
+ * @param   tagpara			ã‚¿ã‚°ä»£å…¥å…ˆ
  *
  * @retval  A_TALK_???
  */
@@ -2983,9 +2983,9 @@ u32 AT_MsgTagJudgeCommentCreate(int breeder_no, int app_total, ATAG_PARAM *tagpa
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»Ý‚Ü‚Å‚Ì“¾“_‚©‚çŠÏ‹q‚ÌŠ½º‚Ìƒ{ƒŠƒ…[ƒ€‚ðŽæ“¾‚·‚é
- * @param   app_total		Œ»Ý‚Ü‚Å‚Ì“¾“_
- * @retval  Š½º‚Ìƒ{ƒŠƒ…[ƒ€
+ * @brief   ç¾åœ¨ã¾ã§ã®å¾—ç‚¹ã‹ã‚‰è¦³å®¢ã®æ­“å£°ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹
+ * @param   app_total		ç¾åœ¨ã¾ã§ã®å¾—ç‚¹
+ * @retval  æ­“å£°ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ 
  */
 //--------------------------------------------------------------
 int AT_AudienceVolumeGet(int app_total)
@@ -3006,14 +3006,14 @@ int AT_AudienceVolumeGet(int app_total)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠÏ‹qƒAƒjƒ‚ðŽÀs‚·‚é
+ * @brief   è¦³å®¢ã‚¢ãƒ‹ãƒ¡ã‚’å®Ÿè¡Œã™ã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   voltage			ƒ{ƒ‹ƒe[ƒW’l
- * @param   start_wait		ŠJŽnƒEƒFƒCƒg
- * @param   se_volume		Š½ºSE‚Ìƒ{ƒŠƒ…[ƒ€
- * @param   fade			TRUE:ƒtƒF[ƒh‚ðs‚¤
- * @param   end_flag		ƒGƒtƒFƒNƒgI—¹Žž‚ÉAI—¹ƒtƒ‰ƒO‚ðƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   voltage			ãƒœãƒ«ãƒ†ãƒ¼ã‚¸å€¤
+ * @param   start_wait		é–‹å§‹ã‚¦ã‚§ã‚¤ãƒˆ
+ * @param   se_volume		æ­“å£°SEã®ãƒœãƒªãƒ¥ãƒ¼ãƒ 
+ * @param   fade			TRUE:ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’è¡Œã†
+ * @param   end_flag		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†æ™‚ã«ã€çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_AudienceAnimeSet(ACTIN_PROC_WORK *apw, int voltage, u8 start_wait, int se_volume, int fade,
@@ -3036,10 +3036,10 @@ void AT_AudienceAnimeSet(ACTIN_PROC_WORK *apw, int voltage, u8 start_wait, int s
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠÏ‹qƒAƒjƒŽÀsƒ^ƒXƒN
+ * @brief   è¦³å®¢ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		AUDIENCE_ANIME_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		AUDIENCE_ANIME_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void AudienceAnimeMain(TCB_PTR tcb, void *work)
@@ -3125,17 +3125,17 @@ static void AudienceAnimeMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠeƒuƒŠ[ƒ_[ƒpƒlƒ‹ã‚ÌAPƒn[ƒg‚ðƒpƒlƒ‹‚É‹z‚¢ž‚Ü‚ê‚Ä‚¢‚­ƒGƒtƒFƒNƒg‚ð‹N“®‚·‚é
+ * @brief   å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ä¸Šã®APãƒãƒ¼ãƒˆã‚’ãƒ‘ãƒãƒ«ã«å¸ã„è¾¼ã¾ã‚Œã¦ã„ãã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èµ·å‹•ã™ã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   breeder_pos		ƒuƒŠ[ƒ_[ˆÊ’u
- * @param   effect_count	ƒGƒtƒFƒNƒgƒJƒEƒ“ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   panel_flash		ƒuƒŠ[ƒ_[ƒpƒlƒ‹ƒtƒ‰ƒbƒVƒ…“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   breeder_pos		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ä½ç½®
+ * @param   effect_count	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   panel_flash		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * effect_count = ƒGƒtƒFƒNƒg‚ª¶¬‚³‚ê‚é–ˆ‚ÉƒCƒ“ƒNƒŠƒƒ“ƒg‚³‚êAƒGƒtƒFƒNƒg‚ªI—¹‚·‚é‚½‚Ñ‚É
- * ƒfƒNƒŠƒƒ“ƒg‚³‚ê‚Ü‚·B‚±‚ÌŠÖ”ŒÄo‚µŒãAƒGƒtƒFƒNƒgƒJƒEƒ“ƒ^‚ª0‚É‚È‚Á‚½‚ç‘S‚Ä‚ÌƒGƒtƒFƒNƒg‚ª
- * I—¹‚µ‚½A‚Æ”»’è‚·‚éŽ–‚ªo—ˆ‚Ü‚·B
+ * effect_count = ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒç”Ÿæˆã•ã‚Œã‚‹æ¯Žã«ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã•ã‚Œã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚äº†ã™ã‚‹ãŸã³ã«
+ * ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã•ã‚Œã¾ã™ã€‚ã“ã®é–¢æ•°å‘¼å‡ºã—å¾Œã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã«ãªã£ãŸã‚‰å…¨ã¦ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒ
+ * çµ‚äº†ã—ãŸã€ã¨åˆ¤å®šã™ã‚‹äº‹ãŒå‡ºæ¥ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void AT_APHeartMovePanel(ACTIN_PROC_WORK *apw, int breeder_no, int breeder_pos, u8 *effect_count,
@@ -3162,19 +3162,19 @@ void AT_APHeartMovePanel(ACTIN_PROC_WORK *apw, int breeder_no, int breeder_pos, 
 		}
 		
 		if(*effect_count == 0){
-			//‚Ó‚è•Žæ“¾
+			//ãµã‚Šå¹…å–å¾—
 			CATS_ObjectPosGetCap(apw->sys.appeal_point_cap[breeder_no][i], 
 				&start_x, &start_y);
 			furihaba = APP_StraightDistance(
 				MATH_IAbs(start_x - center_x), MATH_IAbs(start_y - center_y)) * 0x100;
 
-			//Šp“xŽæ“¾
+			//è§’åº¦å–å¾—
 			{
 				f32 len_x, len_start_y;
 				len_x = start_x - center_x;
 				len_start_y = start_y - center_y;
 				angle = FX_Atan2Idx(FX_F32_TO_FX32(len_start_y), FX_F32_TO_FX32(len_x));
-				//65535‚ªMAX‚ÌŠp“x‚ðA360“x*100”{‚µ‚½Šp“x‚ªMAX‚Ì‚à‚Ì‚É•ÏŠ·‚·‚é
+				//65535ãŒMAXã®è§’åº¦ã‚’ã€360åº¦*100å€ã—ãŸè§’åº¦ãŒMAXã®ã‚‚ã®ã«å¤‰æ›ã™ã‚‹
 				angle = (360*100) * angle / 65535;
 			}
 		}
@@ -3209,9 +3209,9 @@ void AT_APHeartMovePanel(ACTIN_PROC_WORK *apw, int breeder_no, int breeder_pos, 
 
 //--------------------------------------------------------------
 /**
- * @brief   APƒn[ƒg‰ñ“]ˆÚ“®ƒ^ƒXƒNƒƒCƒ“
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		APƒn[ƒg‰ñ“]ˆÚ“®—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   APãƒãƒ¼ãƒˆå›žè»¢ç§»å‹•ã‚¿ã‚¹ã‚¯ãƒ¡ã‚¤ãƒ³
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		APãƒãƒ¼ãƒˆå›žè»¢ç§»å‹•ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void APHeartMoveTask(TCB_PTR tcb, void *work)
@@ -3221,7 +3221,7 @@ static void APHeartMoveTask(TCB_PTR tcb, void *work)
 	s16 x, y;
 	
 	switch(heart_move->seq){
-	case 0:		//ŠJŽnˆÊ’u‚Ü‚ÅƒXƒ‰ƒCƒhˆÚ“®
+	case 0:		//é–‹å§‹ä½ç½®ã¾ã§ã‚¹ãƒ©ã‚¤ãƒ‰ç§»å‹•
 		heart_move->slide_x -= heart_move->slide_add_x;
 		if(heart_move->slide_x <= (heart_move->start_x << 8)){
 			heart_move->slide_x = heart_move->start_x << 8;
@@ -3232,7 +3232,7 @@ static void APHeartMoveTask(TCB_PTR tcb, void *work)
 		CATS_ObjectPosSetCap(heart_move->cap, x, y);
 		break;
 		
-	case 1:		//SinƒJ[ƒu
+	case 1:		//Sinã‚«ãƒ¼ãƒ–
 		heart_move->angle += heart_move->add_angle;
 		heart_move->add_angle += APHEART_ADD_FRAME_ANGLE;
 		if(heart_move->angle >= 360*100){
@@ -3269,12 +3269,12 @@ static void APHeartMoveTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒg‚ÌƒAƒjƒŽÀsƒ^ƒXƒN‚ð¶¬‚·‚é
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge_no		R”»NO
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge_no		å¯©åˆ¤NO
  *
- * @retval  ¶¬‚µ‚½ƒ{ƒ‹ƒe[ƒWƒAƒjƒƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 VOLTAGE_POINT_ANIME_WORK * AT_VoltageAnimeSet(ACTIN_PROC_WORK *apw, int judge_no)
@@ -3293,8 +3293,8 @@ VOLTAGE_POINT_ANIME_WORK * AT_VoltageAnimeSet(ACTIN_PROC_WORK *apw, int judge_no
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgƒAƒjƒƒ^ƒXƒN‚ðíœ‚·‚é
- * @param   vaw		ƒ{ƒ‹ƒe[ƒWƒAƒjƒƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   vaw		ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AT_VoltageAnimeDel(VOLTAGE_POINT_ANIME_WORK *vaw)
@@ -3305,9 +3305,9 @@ void AT_VoltageAnimeDel(VOLTAGE_POINT_ANIME_WORK *vaw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgƒAƒjƒŽÀsƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgƒAƒjƒƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VoltageAnimeUpdateTask(TCB_PTR tcb, void *work)
@@ -3325,17 +3325,17 @@ static void VoltageAnimeUpdateTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgAƒpƒlƒ‹ˆÚ“®ƒGƒtƒFƒNƒg‹N“®
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã€ãƒ‘ãƒãƒ«ç§»å‹•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆèµ·å‹•
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[No
- * @param   breeder_pos		ƒuƒŠ[ƒ_[ˆÊ’u
- * @param   judge_no		R”»NO
- * @param   effect_count	ƒGƒtƒFƒNƒgƒJƒEƒ“ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No
+ * @param   breeder_pos		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ä½ç½®
+ * @param   judge_no		å¯©åˆ¤NO
+ * @param   effect_count	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * effect_count = ƒGƒtƒFƒNƒg‚ª¶¬‚³‚ê‚é–ˆ‚ÉƒCƒ“ƒNƒŠƒƒ“ƒg‚³‚êAƒGƒtƒFƒNƒg‚ªI—¹‚·‚é‚½‚Ñ‚É
- * ƒfƒNƒŠƒƒ“ƒg‚³‚ê‚Ü‚·B‚±‚ÌŠÖ”ŒÄo‚µŒãAƒGƒtƒFƒNƒgƒJƒEƒ“ƒ^‚ª0‚É‚È‚Á‚½‚ç‘S‚Ä‚ÌƒGƒtƒFƒNƒg‚ª
- * I—¹‚µ‚½A‚Æ”»’è‚·‚éŽ–‚ªo—ˆ‚Ü‚·B
+ * effect_count = ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒç”Ÿæˆã•ã‚Œã‚‹æ¯Žã«ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã•ã‚Œã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚äº†ã™ã‚‹ãŸã³ã«
+ * ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã•ã‚Œã¾ã™ã€‚ã“ã®é–¢æ•°å‘¼å‡ºã—å¾Œã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã«ãªã£ãŸã‚‰å…¨ã¦ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒ
+ * çµ‚äº†ã—ãŸã€ã¨åˆ¤å®šã™ã‚‹äº‹ãŒå‡ºæ¥ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void AT_VoltageMovePanel(ACTIN_PROC_WORK *apw, int breeder_no, int breeder_pos, int judge_no, u8 *effect_count)
@@ -3374,10 +3374,10 @@ void AT_VoltageMovePanel(ACTIN_PROC_WORK *apw, int breeder_no, int breeder_pos, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgAƒpƒlƒ‹ˆÚ“®ŽÀsƒ^ƒXƒN
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã€ãƒ‘ãƒãƒ«ç§»å‹•å®Ÿè¡Œã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgAƒpƒlƒ‹ˆÚ“®—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã€ãƒ‘ãƒãƒ«ç§»å‹•ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VoltageMoveTask(TCB_PTR tcb, void *work)
@@ -3393,7 +3393,7 @@ static void VoltageMoveTask(TCB_PTR tcb, void *work)
 			break;
 		}
 
-		//‰ñ“]‚ÌŠJŽnˆÊ’u‚ªCos‚ÌMAXˆÊ’u‚É‡‚¤‚æ‚¤‚ÉÀ•W•â³
+		//å›žè»¢ã®é–‹å§‹ä½ç½®ãŒCosã®MAXä½ç½®ã«åˆã†ã‚ˆã†ã«åº§æ¨™è£œæ­£
 		CATS_ObjectPosGetCap(vol_move->cap, &x, &y);
 		y += VOLMOVE_FURIHABA_Y >> FX32_SHIFT;
 		vol_move->x = x << 8;
@@ -3421,7 +3421,7 @@ static void VoltageMoveTask(TCB_PTR tcb, void *work)
 			CATS_ObjectPosGetCap(vol_move->cap, &x, &y);
 			vol_move->x = x << 8;
 			vol_move->y = y << 8;
-			{//’¼iˆÚ“®‘¬“xŽæ“¾
+			{//ç›´é€²ç§»å‹•é€Ÿåº¦å–å¾—
 				s32 len_x, len_y, frame;
 				
 				len_x = (MATH_IAbs(x - vol_move->center_x) << 8);
@@ -3459,9 +3459,9 @@ static void VoltageMoveTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—Í•”–åŠJŽnŽž‚É•\Ž¦‚·‚éA_Talk—pƒƒbƒZ[ƒWID‚ðŽæ“¾‚·‚é
+ * @brief   æ¼”æŠ€åŠ›éƒ¨é–€é–‹å§‹æ™‚ã«è¡¨ç¤ºã™ã‚‹A_Talkç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—ã™ã‚‹
  * @param   con_type		CONTYPE_???
- * @retval  A_TALK—pƒƒbƒZ[ƒWID
+ * @retval  A_TALKç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //--------------------------------------------------------------
 u32 AT_A_TalkIDGet_Host01(int con_type)
@@ -3479,9 +3479,9 @@ u32 AT_A_TalkIDGet_Host01(int con_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒWã¸Žž‚É•\Ž¦‚·‚éA_Talk—pƒƒbƒZ[ƒWID‚ðŽæ“¾‚·‚é
- * @param   waza_con_type		‹Z‚ÌCONTYPE_???
- * @retval  A_TALK—pƒƒbƒZ[ƒWID
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ä¸Šæ˜‡æ™‚ã«è¡¨ç¤ºã™ã‚‹A_Talkç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—ã™ã‚‹
+ * @param   waza_con_type		æŠ€ã®CONTYPE_???
+ * @retval  A_TALKç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //--------------------------------------------------------------
 u32 AT_A_TalkIDGet_VoltageUp(int waza_con_type)
@@ -3499,9 +3499,9 @@ u32 AT_A_TalkIDGet_VoltageUp(int waza_con_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW‰º~Žž‚É•\Ž¦‚·‚éA_Talk—pƒƒbƒZ[ƒWID‚ðŽæ“¾‚·‚é
- * @param   waza_con_type		‹Z‚ÌCONTYPE_???
- * @retval  A_TALK—pƒƒbƒZ[ƒWID
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ä¸‹é™æ™‚ã«è¡¨ç¤ºã™ã‚‹A_Talkç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—ã™ã‚‹
+ * @param   waza_con_type		æŠ€ã®CONTYPE_???
+ * @retval  A_TALKç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //--------------------------------------------------------------
 u32 AT_A_TalkIDGet_VoltageSub(int waza_con_type)
@@ -3519,12 +3519,12 @@ u32 AT_A_TalkIDGet_VoltageSub(int waza_con_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZƒGƒtƒFƒNƒg”­“®‚Ìˆ×‚Ìƒpƒ‰ƒ[ƒ^Žæ“¾
+ * @brief   æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•ã®ç‚ºã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   wazano			‹Z”Ô†
- * @param   wazapara		ƒpƒ‰ƒ[ƒ^‘ã“üæ
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   wazano			æŠ€ç•ªå·
+ * @param   wazapara		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void AT_WazaEffParamSet(CONTEST_SYSTEM *consys, int breeder_no, int wazano, 
@@ -3542,12 +3542,12 @@ void AT_WazaEffParamSet(CONTEST_SYSTEM *consys, int breeder_no, int wazano,
 		wazapara->loop = 1;
 		break;
 	case WAZANO_ONGAESI:
-		wazapara->natukido = 255;	//ˆÐ—ÍMaxó‘Ô‚Ì‚ðo‚·
+		wazapara->natukido = 255;	//å¨åŠ›MaxçŠ¶æ…‹ã®ã‚’å‡ºã™
 		break;
 	case WAZANO_YATUATARI:
-		wazapara->natukido = 0;	//ˆÐ—ÍMaxó‘Ô‚Ì‚ðo‚·
+		wazapara->natukido = 0;	//å¨åŠ›MaxçŠ¶æ…‹ã®ã‚’å‡ºã™
 		break;
-	case WAZANO_NOROI:	//‚Ì‚ë‚¢
+	case WAZANO_NOROI:	//ã®ã‚ã„
 		{
 			int type1, type2;
 			
@@ -3579,14 +3579,14 @@ void AT_WazaEffParamSet(CONTEST_SYSTEM *consys, int breeder_no, int wazano,
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’è‹Z‚ð¡‚Ìƒ^[ƒ“‘I‘ðo—ˆ‚é‚©ƒ`ƒFƒbƒN(˜A‘±Žg—p‚ÌŠm”F)
+ * @brief   æŒ‡å®šæŠ€ã‚’ä»Šã®ã‚¿ãƒ¼ãƒ³é¸æŠžå‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯(é€£ç¶šä½¿ç”¨ã®ç¢ºèª)
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   wazano			ƒ`ƒFƒbƒN‚·‚é‹Z”Ô†
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   wazano			ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ç•ªå·
  *
- * @retval  TRUE:‹Z‚Ío‚¹‚é
- * @retval  FALSE:o‚¹‚È‚¢
+ * @retval  TRUE:æŠ€ã¯å‡ºã›ã‚‹
+ * @retval  FALSE:å‡ºã›ãªã„
  */
 //--------------------------------------------------------------
 int AT_WazaConsecutiveCheck(ACTIN_GAME_PARAM *a_game, int breeder_no, int wazano)

@@ -12,10 +12,10 @@
 
   $Log: spi.h,v $
   Revision 1.20  2007/04/12 00:08:39  yasu
-  ����N�x�C��
+  著作年度修正
 
   Revision 1.19  2007/04/03 07:33:07  terui
-  �p���[�_�E���R�}���h���g�p�֎~�ɕύX
+  パワーダウンコマンドを使用禁止に変更
 
   Revision 1.18  2006/01/18 02:12:29  kitase_hirotake
   do-indent
@@ -24,35 +24,35 @@
   do-indent.
 
   Revision 1.16  2004/12/29 02:05:04  takano_makoto
-  SetStability�֐���retry�p�����[�^��p�~
+  SetStability関数のretryパラメータを廃止
 
   Revision 1.15  2004/10/07 06:49:34  terui
-  NVRAM�ɂ��ĕʃ��[�J�[���̏ꍇ�̃R�}���h�ǉ��ɔ����C���B
+  NVRAMについて別メーカー製の場合のコマンド追加に伴う修正。
 
   Revision 1.14  2004/07/31 08:08:46  terui
-  �s�v�ȃR�[�h�̍폜
+  不要なコードの削除
 
   Revision 1.13  2004/06/01 04:45:59  terui
-  �}�C�N�P�̃T���v�����O��inline�֐�����buf�w����폜
+  マイク単体サンプリングのinline関数からbuf指定を削除
 
   Revision 1.12  2004/05/31 08:54:50  terui
-  �C�����C���֐��ȊO���O���[�o��include����type.h�Ɉړ��B
+  インライン関数以外をグローバルinclude内のtype.hに移動。
 
   Revision 1.11  2004/05/28 08:51:44  terui
-  nitro/include�ȉ��̃w�b�_�t�@�C���ɒ�`��؂�o���B
-  inline�֐���ARM9�����[�J���֐����ł���΃t�@�C�����̂��폜�\��B
+  nitro/include以下のヘッダファイルに定義を切り出し。
+  inline関数をARM9側ローカル関数化できればファイル自体を削除予定。
 
   Revision 1.10  2004/05/25 00:58:48  terui
-  SPI�e�f�o�C�X�p���C�u�����ו����ɔ����C��
+  SPI各デバイス用ライブラリ細分化に伴う修正
 
   Revision 1.8  2004/05/12 05:28:24  terui
-  SPI_Init�̐錾��ύX
+  SPI_Initの宣言を変更
 
   Revision 1.7  2004/04/29 10:28:43  terui
-  �f�o�C�X�^�C�v��ARM7����̔r���A�N�Z�X���l�������^�C�v��ǉ�
+  デバイスタイプにARM7からの排他アクセスを考慮したタイプを追加
 
   Revision 1.6  2004/04/27 12:05:59  terui
-  �}�C�N�T���v�����O�ŐV�ۑ��A�h���X�擾I/F��ǉ�
+  マイクサンプリング最新保存アドレス取得I/Fを追加
 
   Revision 1.5  2004/04/23 02:27:35  takano_makoto
   Change Default Stability Range
@@ -61,7 +61,7 @@
   Chang default stability parameter
 
   Revision 1.3  2004/04/14 06:26:46  terui
-  SPI���C�u�����̃\�[�X�����ɔ����X�V
+  SPIライブラリのソース整理に伴う更新
 
   Revision 1.2  2004/04/09 02:59:15  terui
   Correct misspell.
@@ -84,21 +84,21 @@ extern "C" {
 /*===========================================================================*/
 
 /*---------------------------------------------------------------------------*
-    �C�����C���֐���`
-    ARM9�p�Ɏb��I�ɒ�`�B
-    �{����ARM9�����C�u��������static�֐��Ƃ��Ē�`�����ׂ��B
+    インライン関数定義
+    ARM9用に暫定的に定義。
+    本来はARM9側ライブラリ内でstatic関数として定義されるべき。
  *---------------------------------------------------------------------------*/
 #ifdef  SDK_ARM9
 
 /*---------------------------------------------------------------------------*
   Name:         SPI_TpSamplingNow
 
-  Description:  �^�b�`�p�l�������T���v�����O����B
+  Description:  タッチパネルを一回サンプリングする。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_TpSamplingNow(void)
 {
@@ -117,15 +117,15 @@ static inline BOOL SPI_TpSamplingNow(void)
 /*---------------------------------------------------------------------------*
   Name:         SPI_TpAutoSamplingOn
 
-  Description:  �^�b�`�p�l���̎����T���v�����O���J�n����B
+  Description:  タッチパネルの自動サンプリングを開始する。
 
-  Arguments:    vCount -    �T���v�����O���s��V�J�E���g�B
-                            1�t���[���ɕ�����T���v�����O����ꍇ�A������
-                            �N�_��1�t���[���������������B
-                frequency - 1�t���[���ɉ���T���v�����O���邩�̕p�x�B
+  Arguments:    vCount -    サンプリングを行うVカウント。
+                            1フレームに複数回サンプリングする場合、ここを
+                            起点に1フレームが時分割される。
+                frequency - 1フレームに何回サンプリングするかの頻度。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_TpAutoSamplingOn(u16 vCount, u8 frequency)
 {
@@ -151,12 +151,12 @@ static inline BOOL SPI_TpAutoSamplingOn(u16 vCount, u8 frequency)
 /*---------------------------------------------------------------------------*
   Name:         SPI_TpAutoSamplingOff
 
-  Description:  �^�b�`�p�l���̎����T���v�����O���~����B
+  Description:  タッチパネルの自動サンプリングを停止する。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_TpAutoSamplingOff(void)
 {
@@ -175,13 +175,13 @@ static inline BOOL SPI_TpAutoSamplingOff(void)
 /*---------------------------------------------------------------------------*
   Name:         SPI_TpSetupStability
 
-  Description:  �T���v�����O�ɂ�������蔻��p�����[�^��ݒ肷��B
+  Description:  サンプリングにおける安定判定パラメータを設定する。
 
-  Arguments:    range - �A�������T���v�����O�ɂ����āA���o�d�������肵���Ƃ݂Ȃ��덷�B
-                        �Ȃ��A���o�l��12bit�� 0 �` 4095�B
+  Arguments:    range - 連続したサンプリングにおいて、検出電圧が安定したとみなす誤差。
+                        なお、検出値は12bitで 0 〜 4095。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_TpSetupStability(u16 range)
 {
@@ -201,12 +201,12 @@ static inline BOOL SPI_TpSetupStability(u16 range)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramWriteEnable
 
-  Description:  NVRAM�Ɂu�������݋��v���߂𔭍s����B
+  Description:  NVRAMに「書き込み許可」命令を発行する。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramWriteEnable(void)
 {
@@ -225,12 +225,12 @@ static inline BOOL SPI_NvramWriteEnable(void)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramWriteDisable
 
-  Description:  NVRAM�Ɂu�������݋֎~�v���߂𔭍s����B
+  Description:  NVRAMに「書き込み禁止」命令を発行する。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramWriteDisable(void)
 {
@@ -249,13 +249,13 @@ static inline BOOL SPI_NvramWriteDisable(void)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramReadStatusRegister
 
-  Description:  NVRAM�Ɂu�X�e�[�^�X���W�X�^�ǂݏo���v���߂𔭍s����B
+  Description:  NVRAMに「ステータスレジスタ読み出し」命令を発行する。
 
-  Arguments:    pData - �ǂݏo�����l���i�[����ϐ��ւ̃|�C���^�B
-                        �l��ARM7�����ڏ����o���̂ŃL���b�V���ɒ��ӁB
+  Arguments:    pData - 読み出した値を格納する変数へのポインタ。
+                        値はARM7が直接書き出すのでキャッシュに注意。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramReadStatusRegister(u8 *pData)
 {
@@ -289,15 +289,15 @@ static inline BOOL SPI_NvramReadStatusRegister(u8 *pData)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramReadDataBytes
 
-  Description:  NVRAM�Ɂu�ǂݏo���v���߂𔭍s����B
+  Description:  NVRAMに「読み出し」命令を発行する。
 
-  Arguments:    address - NVRAM��̓ǂݏo���J�n�A�h���X�B24bit�̂ݗL���B
-                size -    �A�����ēǂݏo���o�C�g���B
-                pData -   �ǂݏo�����l���i�[����z��B
-                          �l��ARM7�����ڏ����o���̂ŃL���b�V���ɒ��ӁB
+  Arguments:    address - NVRAM上の読み出し開始アドレス。24bitのみ有効。
+                size -    連続して読み出すバイト数。
+                pData -   読み出した値を格納する配列。
+                          値はARM7が直接書き出すのでキャッシュに注意。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramReadDataBytes(u32 address, u32 size, u8 *pData)
 {
@@ -352,21 +352,21 @@ static inline BOOL SPI_NvramReadDataBytes(u32 address, u32 size, u8 *pData)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramReadHigherSpeed
 
-  Description:  NVRAM�Ɂu�����ǂݏo���v���߂𔭍s����B
-                �u�����ǂݏo���v�͖��ߔ��s��A�f�[�^�ǂݏo���O��8bit�̃_�~�[��
-                �N���b�N�����ނ��Ƃ�25MHz�܂ł̃N���b�N�œǂݏo���\�Ƃ�������
-                �����ASPI�̃N���b�N�͍ō�4MHz�܂łȂ̂ŁA�g�p����Ӗ��͂Ȃ��B
-                ���Ȃ݂ɕ��ʂ́u�ǂݏo���v���߂͍ō�20MHz�܂ł̃N���b�N�ɑΉ��B
-                ��L�̓f�o�C�X��M45PE40�̏ꍇ�ŁALE25FW203T�̏ꍇ�́u�ǂݏo���v
-                �u�����ǂݏo���v����30MHz�B
+  Description:  NVRAMに「高速読み出し」命令を発行する。
+                「高速読み出し」は命令発行後、データ読み出し前に8bitのダミーの
+                クロックを刻むことで25MHzまでのクロックで読み出し可能という命令
+                だが、SPIのクロックは最高4MHzまでなので、使用する意味はない。
+                ちなみに普通の「読み出し」命令は最高20MHzまでのクロックに対応。
+                上記はデバイスがM45PE40の場合で、LE25FW203Tの場合は「読み出し」
+                「高速読み出し」共に30MHz。
 
-  Arguments:    address - NVRAM��̓ǂݏo���J�n�A�h���X�B24bit�̂ݗL���B
-                size -    �A�����ēǂݏo���o�C�g���B
-                pData -   �ǂݏo�����l���i�[����z��B
-                          �l��ARM7�����ڏ����o���̂ŃL���b�V���ɒ��ӁB
+  Arguments:    address - NVRAM上の読み出し開始アドレス。24bitのみ有効。
+                size -    連続して読み出すバイト数。
+                pData -   読み出した値を格納する配列。
+                          値はARM7が直接書き出すのでキャッシュに注意。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramReadHigherSpeed(u32 address, u32 size, u8 *pData)
 {
@@ -421,20 +421,20 @@ static inline BOOL SPI_NvramReadHigherSpeed(u32 address, u32 size, u8 *pData)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramPageWrite
 
-  Description:  NVRAM�Ɂu�y�[�W�������݁v���߂𔭍s����B
-                NVRAM�̓����ł́A�u�y�[�W�����v�Ɓu�y�[�W��������(�����t)�v��
-                �A�����čs����B
+  Description:  NVRAMに「ページ書き込み」命令を発行する。
+                NVRAMの内部では、「ページ消去」と「ページ書き込み(条件付)」が
+                連続して行われる。
 
-  Arguments:    address - NVRAM��̏������݊J�n�A�h���X�B24bit�̂ݗL���B
-                size -    �A�����ď������ރo�C�g���B
-                          address + size ���y�[�W���E(256�o�C�g)���z����Ɖz����
-                          ���̃f�[�^�͖��������B
-                pData -   �������ޒl���i�[����Ă���z��B
-                          ARM7�����ړǂݏo���̂ŁA�L���b�V�����烁�������̂�
-                          �m���ɏ����o���Ă����K�v������B
+  Arguments:    address - NVRAM上の書き込み開始アドレス。24bitのみ有効。
+                size -    連続して書き込むバイト数。
+                          address + size がページ境界(256バイト)を越えると越えた
+                          分のデータは無視される。
+                pData -   書き込む値が格納されている配列。
+                          ARM7が直接読み出すので、キャッシュからメモリ実体に
+                          確実に書き出しておく必要がある。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramPageWrite(u32 address, u16 size, const u8 *pData)
 {
@@ -481,20 +481,20 @@ static inline BOOL SPI_NvramPageWrite(u32 address, u16 size, const u8 *pData)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramPageWrite
 
-  Description:  NVRAM�Ɂu�y�[�W��������(�����t)�v���߂𔭍s����B
-                ���ʂ́u�y�[�W�������݁v��舳�|�I�ɑ����������߂邪�A�r�b�g��
-                �����鑀�삵���ł��Ȃ��B'0'�̃r�b�g��'1'����������ł�'0'�̂܂܁B
+  Description:  NVRAMに「ページ書き込み(条件付)」命令を発行する。
+                普通の「ページ書き込み」より圧倒的に早く書き込めるが、ビットを
+                下げる操作しかできない。'0'のビットに'1'を書き込んでも'0'のまま。
 
-  Arguments:    address - NVRAM��̏������݊J�n�A�h���X�B24bit�̂ݗL���B
-                size -    �A�����ď������ރo�C�g���B
-                          address + size ���y�[�W���E(256�o�C�g)���z����Ɖz����
-                          ���̃f�[�^�͖��������B
-                pData -   �������ޒl���i�[����Ă���z��B
-                          ARM7�����ړǂݏo���̂ŁA�L���b�V�����烁�������̂�
-                          �m���ɏ����o���Ă����K�v������B
+  Arguments:    address - NVRAM上の書き込み開始アドレス。24bitのみ有効。
+                size -    連続して書き込むバイト数。
+                          address + size がページ境界(256バイト)を越えると越えた
+                          分のデータは無視される。
+                pData -   書き込む値が格納されている配列。
+                          ARM7が直接読み出すので、キャッシュからメモリ実体に
+                          確実に書き出しておく必要がある。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramPageProgram(u32 address, u16 size, const u8 *pData)
 {
@@ -541,16 +541,16 @@ static inline BOOL SPI_NvramPageProgram(u32 address, u16 size, const u8 *pData)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramPageErase
 
-  Description:  NVRAM�Ɂu�y�[�W�����v���߂𔭍s����B
-                �������ꂽ�y�[�W�̓r�b�g���S��'1'�ɂȂ�B
+  Description:  NVRAMに「ページ消去」命令を発行する。
+                消去されたページはビットが全て'1'になる。
 
-  Arguments:    address - NVRAM��̏�������y�[�W�̃A�h���X�B24bit�̂ݗL���B
-                          ���̃A�h���X���܂܂��y�[�W��256byte���S�ď��������B
-                          NVRAM�����ł̓A�h���X�̉���8bit���N���A���ꂽ�A�h���X��
-                          �����ΏۃA�h���X�ƂȂ�A�Ǝv����B
+  Arguments:    address - NVRAM上の消去するページのアドレス。24bitのみ有効。
+                          このアドレスが含まれるページの256byteが全て消去される。
+                          NVRAM内部ではアドレスの下位8bitがクリアされたアドレスが
+                          消去対象アドレスとなる、と思われる。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramPageErase(u32 address)
 {
@@ -577,16 +577,16 @@ static inline BOOL SPI_NvramPageErase(u32 address)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramSectorErase
 
-  Description:  NVRAM�Ɂu�Z�N�^�����v���߂𔭍s����B
-                �������ꂽ�Z�N�^�̓r�b�g���S��'1'�ɂȂ�B
+  Description:  NVRAMに「セクタ消去」命令を発行する。
+                消去されたセクタはビットが全て'1'になる。
 
-  Arguments:    address - NVRAM��̏�������Z�N�^�̃A�h���X�B24bit�̂ݗL���B
-                          ���̃A�h���X���܂܂��Z�N�^��64Kbyte���S�ď��������B
-                          NVRAM�����ł̓A�h���X�̉���16bit���N���A���ꂽ�A�h���X��
-                          �����ΏۃA�h���X�ƂȂ�A�Ǝv����B
+  Arguments:    address - NVRAM上の消去するセクタのアドレス。24bitのみ有効。
+                          このアドレスが含まれるセクタの64Kbyteが全て消去される。
+                          NVRAM内部ではアドレスの下位16bitがクリアされたアドレスが
+                          消去対象アドレスとなる、と思われる。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramSectorErase(u32 address)
 {
@@ -610,18 +610,18 @@ static inline BOOL SPI_NvramSectorErase(u32 address)
     return TRUE;
 }
 
-/* �V�^�ԃf�o�C�X�����ɔ����g�p�֎~ (2007/4/3 terui@nintendo.co.jp) */
+/* 新型番デバイス導入に伴い使用禁止 (2007/4/3 terui@nintendo.co.jp) */
 #if 0
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramPowerDown
 
-  Description:  NVRAM�Ɂu�ȓd�́v���߂𔭍s����B
-                �u�ȓd�͂��畜�A�v���߈ȊO���󂯕t���Ȃ��Ȃ�B
+  Description:  NVRAMに「省電力」命令を発行する。
+                「省電力から復帰」命令以外を受け付けなくなる。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramPowerDown(void)
 {
@@ -640,13 +640,13 @@ static inline BOOL SPI_NvramPowerDown(void)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramReleasePowerDown
 
-  Description:  NVRAM�Ɂu�ȓd�͂��畜�A�v���߂𔭍s����B
-                �ȓd�̓��[�h�ɂȂ��Ă��Ȃ����͖��������B
+  Description:  NVRAMに「省電力から復帰」命令を発行する。
+                省電力モードになっていない時は無視される。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramReleasePowerDown(void)
 {
@@ -666,14 +666,14 @@ static inline BOOL SPI_NvramReleasePowerDown(void)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramChipErase
 
-  Description:  NVRAM�Ɂu�`�b�v�����v���߂𔭍s����B
-                �f�o�C�X��LE25FW203T�̏ꍇ�ɗL���B
-                �f�o�C�X��M45PE40�̏ꍇ�͖��������B
+  Description:  NVRAMに「チップ消去」命令を発行する。
+                デバイスがLE25FW203Tの場合に有効。
+                デバイスがM45PE40の場合は無視される。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramChipErase(void)
 {
@@ -692,15 +692,15 @@ static inline BOOL SPI_NvramChipErase(void)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramReadSiliconId
 
-  Description:  NVRAM�Ɂu�V���R��ID�ǂݏo���v���߂𔭍s����B
-                �f�o�C�X��LE25FW203T�̏ꍇ�ɗL���B
-                �f�o�C�X��M45PE40�̏ꍇ�͖��������B
+  Description:  NVRAMに「シリコンID読み出し」命令を発行する。
+                デバイスがLE25FW203Tの場合に有効。
+                デバイスがM45PE40の場合は無視される。
 
-  Arguments:    pData - �ǂݏo�����V���R��ID���i�[����2�o�C�g�̃o�b�t�@���w��
-                        ����B�l��ARM7�����ڏ����o���̂ŃL���b�V���ɒ��ӁB
+  Arguments:    pData - 読み出したシリコンIDを格納する2バイトのバッファを指定
+                        する。値はARM7が直接書き出すのでキャッシュに注意。
 
-  Returns:      BOOL  - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                        ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL  - 命令をPXI経由で正常に送信できた場合TRUE、
+                        失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramReadSiliconId(u8 *pData)
 {
@@ -734,14 +734,14 @@ static inline BOOL SPI_NvramReadSiliconId(u8 *pData)
 /*---------------------------------------------------------------------------*
   Name:         SPI_NvramSoftwareReset
 
-  Description:  NVRAM�Ɂu�\�t�g�E�F�A���Z�b�g�v���߂𔭍s����B
-                �f�o�C�X��LE25FW203T�̏ꍇ�ɗL���B
-                �f�o�C�X��M45PE40�̏ꍇ�͖��������B
+  Description:  NVRAMに「ソフトウェアリセット」命令を発行する。
+                デバイスがLE25FW203Tの場合に有効。
+                デバイスがM45PE40の場合は無視される。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_NvramSoftwareReset(void)
 {
@@ -760,14 +760,14 @@ static inline BOOL SPI_NvramSoftwareReset(void)
 /*---------------------------------------------------------------------------*
   Name:         SPI_MicSamplingNow
 
-  Description:  �}�C�N�����T���v�����O����B
+  Description:  マイクを一回サンプリングする。
 
-  Arguments:    type  - �T���v�����O�^�C�v( 0: 8�r�b�g , 1: 12�r�b�g )
-                pData - �T���v�����O���ʂ��i�[���郁�����̃A�h���X�B
-                   -> �폜
+  Arguments:    type  - サンプリングタイプ( 0: 8ビット , 1: 12ビット )
+                pData - サンプリング結果を格納するメモリのアドレス。
+                   -> 削除
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_MicSamplingNow(u8 type)
 {
@@ -786,21 +786,21 @@ static inline BOOL SPI_MicSamplingNow(u8 type)
 /*---------------------------------------------------------------------------*
   Name:         SPI_MicAutoSamplingOn
 
-  Description:  �}�C�N�̎����T���v�����O���J�n����B
+  Description:  マイクの自動サンプリングを開始する。
 
-  Arguments:    pData    - �T���v�����O�����f�[�^���i�[����o�b�t�@�̃A�h���X�B
-                size     - �o�b�t�@�̃T�C�Y�B�o�C�g�P�ʂŎw��B
-                span     - �T���v�����O�Ԋu(ARM7��CPU�N���b�N�Ŏw��)�B
-                           �^�C�}�[�̐�����A16�r�b�g�~1or64or256or1024 �̐���
-                           �������m�ɂ͐ݒ�ł��Ȃ��B�[���r�b�g�͐؂�̂Ă���B
-                middle   - �r��������Ԃ��T���v�����O�񐔁B
-                           -> �폜
-                adMode   - AD�ϊ��̃r�b�g��( 8 or 12 )���w��B
-                loopMode - �����T���v�����O�̃��[�v����ہB
-                correct  - �����T���v�����O����Tick�␳�ہB
+  Arguments:    pData    - サンプリングしたデータを格納するバッファのアドレス。
+                size     - バッファのサイズ。バイト単位で指定。
+                span     - サンプリング間隔(ARM7のCPUクロックで指定)。
+                           タイマーの性質上、16ビット×1or64or256or1024 の数字
+                           しか正確には設定できない。端数ビットは切り捨てられる。
+                middle   - 途中応答を返すサンプリング回数。
+                           -> 削除
+                adMode   - AD変換のビット幅( 8 or 12 )を指定。
+                loopMode - 自動サンプリングのループ制御可否。
+                correct  - 自動サンプリング時のTick補正可否。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_MicAutoSamplingOn(void *pData, u32 size, u32 span,
 //    u32     middle ,
@@ -808,8 +808,8 @@ static inline BOOL SPI_MicAutoSamplingOn(void *pData, u32 size, u32 span,
 {
     u8      temp;
 
-    // �t���O�ނ�"type"�ϐ��ɂ܂Ƃ߂�
-    switch (adMode)                    // AD�ϊ��r�b�g���w��
+    // フラグ類を"type"変数にまとめる
+    switch (adMode)                    // AD変換ビット幅指定
     {
     case SPI_MIC_SAMPLING_TYPE_8BIT:
     case SPI_MIC_SAMPLING_TYPE_12BIT:
@@ -818,11 +818,11 @@ static inline BOOL SPI_MicAutoSamplingOn(void *pData, u32 size, u32 span,
     default:
         return FALSE;
     }
-    if (loopMode)                      // �A���T���v�����O�̃��[�v�w��
+    if (loopMode)                      // 連続サンプリングのループ指定
     {
         temp |= (u8)SPI_MIC_SAMPLING_TYPE_LOOP_ON;
     }
-    if (correct)                       // Tick�덷�ɂ��␳���W�b�N�K�p�w��
+    if (correct)                       // Tick誤差による補正ロジック適用指定
     {
         temp |= (u8)SPI_MIC_SAMPLING_TYPE_CORRECT_ON;
     }
@@ -883,14 +883,14 @@ static inline BOOL SPI_MicAutoSamplingOn(void *pData, u32 size, u32 span,
 /*---------------------------------------------------------------------------*
   Name:         SPI_MicAutoSamplingOff
 
-  Description:  �}�C�N�̎����T���v�����O���~����B
-                �J�n���Ƀ��[�v�w�肵�Ȃ������ꍇ�̓o�b�t�@�����܂������_��
-                �����I�ɒ�~����B
+  Description:  マイクの自動サンプリングを停止する。
+                開始時にループ指定しなかった場合はバッファが埋まった時点で
+                自動的に停止する。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL SPI_MicAutoSamplingOff(void)
 {

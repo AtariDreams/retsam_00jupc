@@ -1,6 +1,6 @@
 #=============================================================================================
 #
-#	ŒÅ’èƒOƒbƒYƒAƒCƒeƒ€ŠÇ—•\ƒRƒ“ƒo[ƒ^
+#	å›ºå®šã‚°ãƒƒã‚ºã‚¢ã‚¤ãƒ†ãƒ ç®¡ç†è¡¨ã‚³ãƒ³ãƒãƒ¼ã‚¿
 #
 #	06.05.13 Satoshi Nohara
 #
@@ -9,13 +9,13 @@ BEGIN{
 
 	#=================================================================
 	#
-	#ƒAƒCƒeƒ€’è‹`ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+	#ã‚¢ã‚¤ãƒ†ãƒ å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 	#
 	#=================================================================
 	ITEMSYM_H = "../../src/fielddata/base_goods/goods_id_def.h"
 
-	#getline = ‚Ps“Ç‚İ‚İ
-	#‚P‚Í–ß‚è’l
+	#getline = ï¼‘è¡Œèª­ã¿è¾¼ã¿
+	#ï¼‘ã¯æˆ»ã‚Šå€¤
 	while ( 1 == getline < ITEMSYM_H ) {
 		if ( NF == 5 && $1 =="#define" ) {
 			ItemName[$5] = $2
@@ -26,44 +26,44 @@ BEGIN{
 	file1 = "fs_goods.dat"
 	file2 = "fs_goods_def.h"
 
-	#ƒf[ƒ^ƒtƒ@ƒCƒ‹
+	#ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«
 	print "//====================================================================" > file1
-	print "//						ŒÅ’èƒOƒbƒYƒAƒCƒeƒ€ƒf[ƒ^" >> file1
+	print "//						å›ºå®šã‚°ãƒƒã‚ºã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿" >> file1
 	print "//" >> file1
 	print "// 06.05.13 Satoshi Nohara" >> file1
 	print "//" >> file1
-	print "// œfs_goods.xls‚ğƒRƒ“ƒo[ƒg‚µ‚Äo—Í‚µ‚Ä‚¢‚Ü‚·" >> file1
+	print "// â—fs_goods.xlsã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦å‡ºåŠ›ã—ã¦ã„ã¾ã™" >> file1
 	print "//" >> file1
 	print "//====================================================================" >> file1
 	print "" >> file1
 	print "typedef u16 FS_GOODS_DATA;" >> file1
 	print "" >> file1
 
-	#’è‹`ƒtƒ@ƒCƒ‹
+	#å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
 	print "//====================================================================" > file2
-	print "//					ŒÅ’èƒOƒbƒYƒAƒCƒeƒ€ŒÄ‚Ño‚µƒiƒ“ƒo[" >> file2
+	print "//					å›ºå®šã‚°ãƒƒã‚ºã‚¢ã‚¤ãƒ†ãƒ å‘¼ã³å‡ºã—ãƒŠãƒ³ãƒãƒ¼" >> file2
 	print "//" >> file2
 	print "// 06.05.13 Satoshi Nohara" >> file2
 	print "//" >> file2
-	print "// œfs_goods.xls‚ğƒRƒ“ƒo[ƒg‚µ‚Äo—Í‚µ‚Ä‚¢‚Ü‚·" >> file2
+	print "// â—fs_goods.xlsã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦å‡ºåŠ›ã—ã¦ã„ã¾ã™" >> file2
 	print "//" >> file2
 	print "//====================================================================" >> file2
 	print "#ifndef FS_GOODS_DEF_H" >> file2
 	print "#define FS_GOODS_DEF_H" >> file2
 	print "" >> file2
 
-	label[256]	#ƒ][ƒ“IDŠi”[
-	count = 0	#ˆ—‚µ‚½ƒf[ƒ^”
+	label[256]	#ã‚¾ãƒ¼ãƒ³IDæ ¼ç´
+	count = 0	#å‡¦ç†ã—ãŸãƒ‡ãƒ¼ã‚¿æ•°
 }
 
 NR >= 4{
 
-	#€–Ú”ƒ`ƒFƒbƒN
+	#é …ç›®æ•°ãƒã‚§ãƒƒã‚¯
 	if( NF < 3 ) next
-	if( $1 == "ƒ}ƒbƒv–¼" )	next
-	if( $1 ~ "ƒAƒCƒeƒ€" )	next
+	if( $1 == "ãƒãƒƒãƒ—å" )	next
+	if( $1 ~ "ã‚¢ã‚¤ãƒ†ãƒ " )	next
 
-	#‰Šúİ’è
+	#åˆæœŸè¨­å®š
 	data = $0
 	max = NF
 	label[count] = $2
@@ -71,25 +71,25 @@ NR >= 4{
 	print "//"$1 >> file1
 	print "const FS_GOODS_DATA fs_goods_" $2 "[] = {" >> file1
 
-	#‚¢‚ç‚È‚¢ƒf[ƒ^‚ğíœ
-	sub( /^[^\t]*/, "", data )		#"\t"‚Æˆê’v‚·‚é‚Ü‚Åíœ
-	sub( /[\t]/, "", data )			#"\t"‚Æˆê’v‚µ‚½‚çíœ
-	sub( /^[^\t]*/, "", data )		#"\t"‚Æˆê’v‚·‚é‚Ü‚Åíœ
-	sub( /[\t]/, "", data )			#"\t"‚Æˆê’v‚µ‚½‚çíœ
+	#ã„ã‚‰ãªã„ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤
+	sub( /^[^\t]*/, "", data )		#"\t"ã¨ä¸€è‡´ã™ã‚‹ã¾ã§å‰Šé™¤
+	sub( /[\t]/, "", data )			#"\t"ã¨ä¸€è‡´ã—ãŸã‚‰å‰Šé™¤
+	sub( /^[^\t]*/, "", data )		#"\t"ã¨ä¸€è‡´ã™ã‚‹ã¾ã§å‰Šé™¤
+	sub( /[\t]/, "", data )			#"\t"ã¨ä¸€è‡´ã—ãŸã‚‰å‰Šé™¤
 
 	for( i=2; i < max ;i++ ){
 
-		#Ÿ‚ÌƒAƒCƒeƒ€ƒf[ƒ^‚ğ”²‚«o‚·
+		#æ¬¡ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’æŠœãå‡ºã™
 		tmp = data 
-		sub( /\t.*$/, "", tmp )	#"\t"ˆÈ~‚ğíœ
+		sub( /\t.*$/, "", tmp )	#"\t"ä»¥é™ã‚’å‰Šé™¤
 		print "\t" ItemName[tmp] "," >> file1
 		#printf( "%s, ", ItemName[tmp] ) >> file1
 		#print tmp
 		#print ItemName[tmp]
 
-		#ƒAƒCƒeƒ€ƒf[ƒ^‚ği‚ß‚é
-		sub( /^[^\t]*/, "", data )	#"\t"‚Æˆê’v‚·‚é‚Ü‚Åíœ
-		sub( /[\t]/, "", data )		#"\t"‚Æˆê’v‚µ‚½‚çíœ
+		#ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
+		sub( /^[^\t]*/, "", data )	#"\t"ã¨ä¸€è‡´ã™ã‚‹ã¾ã§å‰Šé™¤
+		sub( /[\t]/, "", data )		#"\t"ã¨ä¸€è‡´ã—ãŸã‚‰å‰Šé™¤
 	}
 	print "\t0xffff," >> file1
 	print "};" >> file1
@@ -100,8 +100,8 @@ NR >= 4{
 }
 
 END{
-	#ƒf[ƒ^ƒtƒ@ƒCƒ‹
-	print "//ƒf[ƒ^ƒe[ƒuƒ‹" >> file1
+	#ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«
+	print "//ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«" >> file1
 	print "const FS_GOODS_DATA* fs_goods_data[] = {" >> file1
 
 	for( i=0; i < count ;i++ ){
@@ -112,7 +112,7 @@ END{
 
 	print "#define FS_GOODS_DATA_MAX\t( NELEMS(fs_goods_data) )\n" >> file1
 
-	#’è‹`ƒtƒ@ƒCƒ‹
+	#å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
 	print "\n#endif /* FS_GOODS_DEF_H */" >> file2
 }
 

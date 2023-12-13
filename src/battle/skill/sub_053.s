@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_053.s
- *@brief	�퓬�V�[�P���X
- *			���ה������ʃV�[�P���X�i�Ђ���̂��ׁA���t���N�^�[�Ȃǁj
+ *@brief	戦闘シーケンス
+ *			かべ発現共通シーケンス（ひかりのかべ、リフレクターなど）
  *@author	HisashiSogabe
  *@data		2006.01.17
  *

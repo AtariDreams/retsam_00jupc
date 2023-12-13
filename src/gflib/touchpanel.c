@@ -2,7 +2,7 @@
 /**
  *
  *@file		touchpanel.c
- *@brief	��`�ƃ^�b�`�p�l���V�X�e�����Ƃ̓����蔻�菈��
+ *@brief	矩形とタッチパネルシステム情報との当たり判定処理
  *@author	taya
  *@data		2005.07.29
  *
@@ -26,14 +26,14 @@ static BOOL rect_hitcheck( const TP_HIT_TBL *tbl, u32 x, u32 y );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	��`�̓����蔻��	
+ *@brief	矩形の当たり判定	
  *
- *@param	pTbl		�����蔻��e�[�u��
- *@param	u32	x		�^�b�`�p�l��x���W
- *@param	u32 y		�^�b�`�p�l��y���W
+ *@param	pTbl		当たり判定テーブル
+ *@param	u32	x		タッチパネルx座標
+ *@param	u32 y		タッチパネルy座標
  *
- *@return	int	�q�b�g�����e�[�u���̃C���f�b�N�X�i���o�[
- *				�q�b�g����f�[�^�������Ƃ���RECT_HIT_NONE
+ *@return	int	ヒットしたテーブルのインデックスナンバー
+ *				ヒットするデータが無いときはRECT_HIT_NONE
  *
  */
 //-----------------------------------------------------------------------------
@@ -55,13 +55,13 @@ static int recthit( const RECT_HIT_TBL* pTbl, u32 x, u32 y )
 
 //------------------------------------------------------------------
 /**
- * �~�`�Ƃ��Ă̓����蔻��i�P���j
+ * 円形としての当たり判定（単発）
  *
- * @param   tbl		�����蔻��e�[�u��
- * @param   x		X���W
- * @param   y		Y���W
+ * @param   tbl		当たり判定テーブル
+ * @param   x		X座標
+ * @param   y		Y座標
  *
- * @retval  BOOL	TRUE�œ�����
+ * @retval  BOOL	TRUEで当たり
  */
 //------------------------------------------------------------------
 static BOOL circle_hitcheck( const TP_HIT_TBL *tbl, u32 x, u32 y )
@@ -78,13 +78,13 @@ static BOOL circle_hitcheck( const TP_HIT_TBL *tbl, u32 x, u32 y )
 }
 //------------------------------------------------------------------
 /**
- * ��`�Ƃ��Ă̓����蔻��i�P���j
+ * 矩形としての当たり判定（単発）
  *
- * @param   tbl		�����蔻��e�[�u��
- * @param   x		�w���W
- * @param   y		�x���W
+ * @param   tbl		当たり判定テーブル
+ * @param   x		Ｘ座標
+ * @param   y		Ｙ座標
  *
- * @retval  BOOL		TRUE�œ�����
+ * @retval  BOOL		TRUEで当たり
  */
 //------------------------------------------------------------------
 static BOOL rect_hitcheck( const TP_HIT_TBL *tbl, u32 x, u32 y )
@@ -99,12 +99,12 @@ static BOOL rect_hitcheck( const TP_HIT_TBL *tbl, u32 x, u32 y )
 
 //------------------------------------------------------------------
 /**
- * ��`�����蔻��i�e�[�u���g�p�A�x�^���́j
+ * 矩形当たり判定（テーブル使用、ベタ入力）
  *
- * @param   pRectTbl		�����蔻��e�[�u���i�I�[�R�[�h����j
+ * @param   pRectTbl		当たり判定テーブル（終端コードあり）
  *
- * @retval  int		�e�[�u�����A�q�b�g�����v�f�̃C���f�b�N�X�i���o�[
- *					�q�b�g���Ȃ���� RECT_HIT_NONE
+ * @retval  int		テーブル中、ヒットした要素のインデックスナンバー
+ *					ヒットがなければ RECT_HIT_NONE
  */
 //------------------------------------------------------------------
 int GF_TP_RectHitCont( const RECT_HIT_TBL* pRectTbl )
@@ -116,12 +116,12 @@ int GF_TP_RectHitCont( const RECT_HIT_TBL* pRectTbl )
 }
 //------------------------------------------------------------------
 /**
- * ��`�����蔻��i�e�[�u���g�p�A�g���K���́j
+ * 矩形当たり判定（テーブル使用、トリガ入力）
  *
- * @param   pRectTbl		�����蔻��e�[�u���i�I�[�R�[�h����j
+ * @param   pRectTbl		当たり判定テーブル（終端コードあり）
  *
- * @retval  int		�e�[�u�����A�q�b�g�����v�f�̃C���f�b�N�X�i���o�[
- *					�q�b�g���Ȃ���� RECT_HIT_NONE
+ * @retval  int		テーブル中、ヒットした要素のインデックスナンバー
+ *					ヒットがなければ RECT_HIT_NONE
  */
 //------------------------------------------------------------------
 int GF_TP_RectHitTrg( const RECT_HIT_TBL *pRectTbl )
@@ -133,11 +133,11 @@ int GF_TP_RectHitTrg( const RECT_HIT_TBL *pRectTbl )
 }
 //------------------------------------------------------------------
 /**
- * ���^�C�v�i��`�E�~�`�j�����Ȃ��画�肷��i�x�^���́j
+ * 両タイプ（矩形・円形）を見ながら判定する（ベタ入力）
  *
- * @param   tbl		�����蔻��e�[�u���i�I�[�R�[�h����j
+ * @param   tbl		当たり判定テーブル（終端コードあり）
  *
- * @retval  int		�����肪����΂��̗v�f�ԍ��A�Ȃ���� TP_HIT_NONE
+ * @retval  int		当たりがあればその要素番号、なければ TP_HIT_NONE
  */
 //------------------------------------------------------------------
 int GF_TP_HitCont( const TP_HIT_TBL *tbl )
@@ -165,11 +165,11 @@ int GF_TP_HitCont( const TP_HIT_TBL *tbl )
 }
 //------------------------------------------------------------------
 /**
- * ���^�C�v�i��`�E�~�`�j�����Ȃ��画�肷��i�g���K���́j
+ * 両タイプ（矩形・円形）を見ながら判定する（トリガ入力）
  *
- * @param   tbl		�����蔻��e�[�u���i�I�[�R�[�h����j
+ * @param   tbl		当たり判定テーブル（終端コードあり）
  *
- * @retval  int		�����肪����΂��̗v�f�ԍ��A�Ȃ���� TP_HIT_NONE
+ * @retval  int		当たりがあればその要素番号、なければ TP_HIT_NONE
  */
 //------------------------------------------------------------------
 int GF_TP_HitTrg( const TP_HIT_TBL *tbl )
@@ -198,11 +198,11 @@ int GF_TP_HitTrg( const TP_HIT_TBL *tbl )
 
 //------------------------------------------------------------------
 /**
- * ���^�C�v�i��`�E�~�`�j�����Ȃ��画�肷��i�x�^���́j
+ * 両タイプ（矩形・円形）を見ながら判定する（ベタ入力）
  *
- * @param   tbl		�����蔻��e�[�u���i�P���j
+ * @param   tbl		当たり判定テーブル（単発）
  *
- * @retval  BOOL	������Ȃ�TRUE
+ * @retval  BOOL	当たりならTRUE
  */
 //------------------------------------------------------------------
 BOOL GF_TP_SingleHitCont( const TP_HIT_TBL *tbl )
@@ -221,11 +221,11 @@ BOOL GF_TP_SingleHitCont( const TP_HIT_TBL *tbl )
 }
 //------------------------------------------------------------------
 /**
- * ���^�C�v�i��`�E�~�`�j�����Ȃ��画�肷��i�g���K���́j
+ * 両タイプ（矩形・円形）を見ながら判定する（トリガ入力）
  *
- * @param   tbl		�����蔻��e�[�u���i�P���j
+ * @param   tbl		当たり判定テーブル（単発）
  *
- * @retval  BOOL	������Ȃ�TRUE
+ * @retval  BOOL	当たりならTRUE
  */
 //------------------------------------------------------------------
 BOOL GF_TP_SingleHitTrg( const TP_HIT_TBL *tbl )
@@ -246,9 +246,9 @@ BOOL GF_TP_SingleHitTrg( const TP_HIT_TBL *tbl )
 
 //------------------------------------------------------------------
 /**
- * �^�b�`�p�l���ɐG��Ă��邩
+ * タッチパネルに触れているか
  *
- * @retval  BOOL		TRUE�ŐG��Ă���
+ * @retval  BOOL		TRUEで触れている
  */
 //------------------------------------------------------------------
 BOOL GF_TP_GetCont( void )
@@ -257,9 +257,9 @@ BOOL GF_TP_GetCont( void )
 }
 //------------------------------------------------------------------
 /**
- * �^�b�`�p�l���ɐG��Ă��邩�i�g���K�j
+ * タッチパネルに触れているか（トリガ）
  *
- * @retval  BOOL		TRUE�ŐG�ꂽ
+ * @retval  BOOL		TRUEで触れた
  */
 //------------------------------------------------------------------
 BOOL GF_TP_GetTrg( void )
@@ -269,12 +269,12 @@ BOOL GF_TP_GetTrg( void )
 
 //------------------------------------------------------------------
 /**
- * �^�b�`�p�l���ɐG��Ă���Ȃ炻�̍��W�擾�i�x�^���́j
+ * タッチパネルに触れているならその座標取得（ベタ入力）
  *
- * @param   x		�w���W�󂯎��ϐ��A�h���X
- * @param   y		�x���W�󂯎��ϐ��A�h���X
+ * @param   x		Ｘ座標受け取り変数アドレス
+ * @param   y		Ｙ座標受け取り変数アドレス
  *
- * @retval  BOOL	TRUE�ŐG��Ă���BFALSE���Ԃ����ꍇ�A�����ɂ͉������Ȃ��B
+ * @retval  BOOL	TRUEで触れている。FALSEが返った場合、引数には何もしない。
  */
 //------------------------------------------------------------------
 BOOL GF_TP_GetPointCont( u32* x, u32* y )
@@ -289,12 +289,12 @@ BOOL GF_TP_GetPointCont( u32* x, u32* y )
 }
 //------------------------------------------------------------------
 /**
- * �^�b�`�p�l���ɐG��Ă���Ȃ炻�̍��W�擾�i�g���K���́j
+ * タッチパネルに触れているならその座標取得（トリガ入力）
  *
- * @param   x		�w���W�󂯎��ϐ��A�h���X
- * @param   y		�x���W�󂯎��ϐ��A�h���X
+ * @param   x		Ｘ座標受け取り変数アドレス
+ * @param   y		Ｙ座標受け取り変数アドレス
  *
- * @retval  BOOL	TRUE�ŐG��Ă���BFALSE���Ԃ����ꍇ�A�����ɂ͉������Ȃ��B
+ * @retval  BOOL	TRUEで触れている。FALSEが返った場合、引数には何もしない。
  */
 //------------------------------------------------------------------
 BOOL GF_TP_GetPointTrg( u32* x, u32* y )
@@ -311,13 +311,13 @@ BOOL GF_TP_GetPointTrg( u32* x, u32* y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�w�肵�����W�ŁA�����蔻����s���܂��B	����
+ *	@brief	指定した座標で、当たり判定を行います。	複数
  *
- *	@param	tbl		�����蔻��e�[�u���i�z��j
- *	@param	x		���肘���W
- *	@param	y		���肙���W
+ *	@param	tbl		当たり判定テーブル（配列）
+ *	@param	x		判定ｘ座標
+ *	@param	y		判定ｙ座標
  *
- *	@retval  int		�����肪����΂��̗v�f�ԍ��A�Ȃ���� TP_HIT_NONE
+ *	@retval  int		当たりがあればその要素番号、なければ TP_HIT_NONE
  *
  *
  */
@@ -347,14 +347,14 @@ int GF_TP_HitSelf( const TP_HIT_TBL *tbl, u32 x, u32 y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�����Ŏw�肵�����W�œ����蔻����s���܂��B�@�P��
+ *	@brief	自分で指定した座標で当たり判定を行います。　単発
  *
- *	@param	tbl		�����蔻��e�[�u���i�P���j
- *	@param	x		�����蔻�肘���W
- *	@param	y		�����蔻�肙���W
+ *	@param	tbl		当たり判定テーブル（単発）
+ *	@param	x		当たり判定ｘ座標
+ *	@param	y		当たり判定ｙ座標
  *
- *	@retval	TURE	��������
- *	@retval	FALSE	������Ȃ�����
+ *	@retval	TURE	あたった
+ *	@retval	FALSE	あたらなかった
  *
  *
  */

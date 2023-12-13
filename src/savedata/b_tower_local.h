@@ -1,6 +1,6 @@
 /**
  *	@file	b_tower_local.h
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒZ[ƒuƒf[ƒ^\‘¢‘Ì’è‹`
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“å®šç¾©
  *	@author	Miyuki Iwasawa
  *	@date	06.04.18	
  */
@@ -16,150 +16,150 @@
 #include "battle/b_tower_data.h"
 
 /**
- * @brief	ƒoƒgƒ‹ƒ^ƒ[ƒvƒŒƒCisƒf[ƒ^
+ * @brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ—ãƒ¬ã‚¤é€²è¡Œãƒ‡ãƒ¼ã‚¿
  *
  * size=20byte
- * ’§íŠJn‚ÉƒNƒŠƒA‚³‚ê‚é
+ * æŒ‘æˆ¦é–‹å§‹æ™‚ã«ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹
 */
 struct _BTLTOWER_PLAYWORK{
-	u8	itemfix_f	:1;	///<ŒÅ’èƒAƒCƒeƒ€‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	u8	saved_f		:1;	///<ƒZ[ƒuÏ‚İ‚©‚Ç‚¤‚©
-	u8	play_mode	:3;	///<Œ»İ‚Ç‚±‚Éƒ`ƒƒƒŒƒ“ƒW’†‚©?
-	u8	partner		:3;	///<Œ»İ’N‚Æ‘g‚ñ‚Å‚¢‚é‚©?
-	u8	dummy;			///<4byte‹«ŠEƒ_ƒ~[
+	u8	itemfix_f	:1;	///<å›ºå®šã‚¢ã‚¤ãƒ†ãƒ ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	u8	saved_f		:1;	///<ã‚»ãƒ¼ãƒ–æ¸ˆã¿ã‹ã©ã†ã‹
+	u8	play_mode	:3;	///<ç¾åœ¨ã©ã“ã«ãƒãƒ£ãƒ¬ãƒ³ã‚¸ä¸­ã‹?
+	u8	partner		:3;	///<ç¾åœ¨èª°ã¨çµ„ã‚“ã§ã„ã‚‹ã‹?
+	u8	dummy;			///<4byteå¢ƒç•Œãƒ€ãƒŸãƒ¼
 
-	u8	tower_round;		///<ƒoƒgƒ‹ƒ^ƒ[¡‰½l–ÚH
+	u8	tower_round;		///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ä»Šä½•äººç›®ï¼Ÿ
 
-	u8	wifi_rec_down;		///<Ÿ‚¿”²‚«‚Ü‚Å‚É“|‚³‚ê‚½ƒ|ƒPƒ‚ƒ“”
-	u16	wifi_rec_turn;		///<Ÿ‚¿”²‚«‚É‚©‚©‚Á‚½ƒ^[ƒ“”
-	u16	wifi_rec_damage;	///<Ÿ‚¿”²‚«‚Ü‚Å‚Éó‚¯‚½ƒ_ƒ[ƒW”
+	u8	wifi_rec_down;		///<å‹ã¡æŠœãã¾ã§ã«å€’ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³æ•°
+	u16	wifi_rec_turn;		///<å‹ã¡æŠœãã«ã‹ã‹ã£ãŸã‚¿ãƒ¼ãƒ³æ•°
+	u16	wifi_rec_damage;	///<å‹ã¡æŠœãã¾ã§ã«å—ã‘ãŸãƒ€ãƒ¡ãƒ¼ã‚¸æ•°
 
-	u8	member_poke[BTOWER_STOCK_MEMBER_MAX];		///<‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u
-	u16	trainer_no[BTOWER_STOCK_TRAINER_MAX];		///<‘ÎíƒgƒŒ[ƒi[No•Û‘¶
+	u8	member_poke[BTOWER_STOCK_MEMBER_MAX];		///<é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®
+	u16	trainer_no[BTOWER_STOCK_TRAINER_MAX];		///<å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noä¿å­˜
 	
-	u32	play_rnd_seed;	///<ƒ^ƒ[ƒvƒŒƒC•Ï‰»ƒ‰ƒ“ƒ_ƒ€ƒV[ƒh•Û‘¶êŠ
+	u32	play_rnd_seed;	///<ã‚¿ãƒ¯ãƒ¼ãƒ—ãƒ¬ã‚¤å¤‰åŒ–ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰ä¿å­˜å ´æ‰€
 
-	struct	_B_TOWER_PAREPOKE_PARAM	pare_poke;	///<AIƒ}ƒ‹ƒ`‚ÌƒyƒA‚Ìƒ|ƒPƒ‚ƒ“Ä¶¬‚É•K—v‚Èƒpƒ‰ƒ[ƒ^
+	struct	_B_TOWER_PAREPOKE_PARAM	pare_poke;	///<AIãƒãƒ«ãƒã®ãƒšã‚¢ã®ãƒã‚±ãƒ¢ãƒ³å†ç”Ÿæˆã«å¿…è¦ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 };
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒXƒRƒAƒf[ƒ^
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿
  *
  *	size= 20+168+168=356byte
- *	ƒQ[ƒ€‚ğ’Ê‚µ‚Ä•Û‘¶&ŠÇ—‚µ‚Ä‚¨‚­AƒvƒŒƒCƒ„[¬Ñ
+ *	ã‚²ãƒ¼ãƒ ã‚’é€šã—ã¦ä¿å­˜&ç®¡ç†ã—ã¦ãŠãã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æˆç¸¾
  */
 struct _BTLTOWER_SCOREWORK{
-	u16	btl_point;	///<ƒoƒgƒ‹ƒ|ƒCƒ“ƒg
-	u8	wifi_lose;	///<˜A‘±”síƒJƒEƒ“ƒg
-	u8	wifi_rank;	///<WiFiƒ‰ƒ“ƒN
+	u16	btl_point;	///<ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆ
+	u8	wifi_lose;	///<é€£ç¶šæ•—æˆ¦ã‚«ã‚¦ãƒ³ãƒˆ
+	u8	wifi_rank;	///<WiFiãƒ©ãƒ³ã‚¯
 
-	u32	day_rnd_seed;	///<ƒ^ƒ[—p“ú•t•Ï‰»ƒ‰ƒ“ƒ_ƒ€ƒV[ƒh•Û‘¶êŠ
+	u32	day_rnd_seed;	///<ã‚¿ãƒ¯ãƒ¼ç”¨æ—¥ä»˜å¤‰åŒ–ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰ä¿å­˜å ´æ‰€
 	
 	union{
 		struct{
-		u16	silver_get:1;		///<ƒVƒ‹ƒo[ƒgƒƒtƒB[ƒQƒbƒg
-		u16	gold_get:1;			///<ƒS[ƒ‹ƒhƒgƒƒtƒB[ƒQƒbƒg
-		u16	silver_ready:1;		///<ƒVƒ‹ƒo[–á‚¦‚Ü‚·
-		u16	gold_ready:1;		///<ƒS[ƒ‹ƒh–á‚¦‚Ü‚·
-		u16	wifi_lose_f:1;		///<wifi˜A‘±”síƒtƒ‰ƒO
-		u16	wifi_update:1;		///<wifi¬ÑƒAƒbƒvƒ[ƒhƒtƒ‰ƒO
-		u16	wifi_poke_data:1;	///<wifiƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒXƒgƒbƒN—L‚èƒiƒVƒtƒ‰ƒO
-		u16	single_poke_data:1;	///<singleƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒXƒgƒbƒN—L‚èƒiƒVƒtƒ‰ƒO
-		u16	single_record:1;	///<ƒVƒ“ƒOƒ‹ƒŒƒR[ƒh’§í’†ƒtƒ‰ƒO
-		u16	double_record:1;	///<ƒ_ƒuƒ‹ƒŒƒR[ƒh’§í’†ƒtƒ‰ƒO
-		u16	multi_record:1;		///<ƒ}ƒ‹ƒ`ƒŒƒR[ƒh’§í’†ƒtƒ‰ƒO
-		u16	cmulti_record:1;	///<’ÊMƒ}ƒ‹ƒ`ƒŒƒR[ƒh’§í’†ƒtƒ‰ƒO
-		u16	wifi_record:1;		///<WifiƒŒƒR[ƒh’§í’†ƒtƒ‰ƒO
-		u16	copper_get:1;		///<ƒJƒbƒp[ƒgƒƒtƒB[ƒQƒbƒg
-		u16	copper_ready:1;		///<ƒJƒbƒp[–á‚¦‚Ü‚·
-		u16	:1;	///<‹«ŠEƒ_ƒ~[
+		u16	silver_get:1;		///<ã‚·ãƒ«ãƒãƒ¼ãƒˆãƒ­ãƒ•ã‚£ãƒ¼ã‚²ãƒƒãƒˆ
+		u16	gold_get:1;			///<ã‚´ãƒ¼ãƒ«ãƒ‰ãƒˆãƒ­ãƒ•ã‚£ãƒ¼ã‚²ãƒƒãƒˆ
+		u16	silver_ready:1;		///<ã‚·ãƒ«ãƒãƒ¼è²°ãˆã¾ã™
+		u16	gold_ready:1;		///<ã‚´ãƒ¼ãƒ«ãƒ‰è²°ãˆã¾ã™
+		u16	wifi_lose_f:1;		///<wifié€£ç¶šæ•—æˆ¦ãƒ•ãƒ©ã‚°
+		u16	wifi_update:1;		///<wifiæˆç¸¾ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+		u16	wifi_poke_data:1;	///<wifiãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¹ãƒˆãƒƒã‚¯æœ‰ã‚ŠãƒŠã‚·ãƒ•ãƒ©ã‚°
+		u16	single_poke_data:1;	///<singleãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¹ãƒˆãƒƒã‚¯æœ‰ã‚ŠãƒŠã‚·ãƒ•ãƒ©ã‚°
+		u16	single_record:1;	///<ã‚·ãƒ³ã‚°ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰æŒ‘æˆ¦ä¸­ãƒ•ãƒ©ã‚°
+		u16	double_record:1;	///<ãƒ€ãƒ–ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰æŒ‘æˆ¦ä¸­ãƒ•ãƒ©ã‚°
+		u16	multi_record:1;		///<ãƒãƒ«ãƒãƒ¬ã‚³ãƒ¼ãƒ‰æŒ‘æˆ¦ä¸­ãƒ•ãƒ©ã‚°
+		u16	cmulti_record:1;	///<é€šä¿¡ãƒãƒ«ãƒãƒ¬ã‚³ãƒ¼ãƒ‰æŒ‘æˆ¦ä¸­ãƒ•ãƒ©ã‚°
+		u16	wifi_record:1;		///<Wifiãƒ¬ã‚³ãƒ¼ãƒ‰æŒ‘æˆ¦ä¸­ãƒ•ãƒ©ã‚°
+		u16	copper_get:1;		///<ã‚«ãƒƒãƒ‘ãƒ¼ãƒˆãƒ­ãƒ•ã‚£ãƒ¼ã‚²ãƒƒãƒˆ
+		u16	copper_ready:1;		///<ã‚«ãƒƒãƒ‘ãƒ¼è²°ãˆã¾ã™
+		u16	:1;	///<å¢ƒç•Œãƒ€ãƒŸãƒ¼
 		};
 		u16	flags;
 	};
 #if 0
-	u16	padding;	///<4byte‹«ŠEƒ_ƒ~[
+	u16	padding;	///<4byteå¢ƒç•Œãƒ€ãƒŸãƒ¼
 	
-	u16	tower_stage[5];		///<ƒoƒgƒ‹ƒ^ƒ[ü‰ñ”
+	u16	tower_stage[5];		///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‘¨å›æ•°
 #else
-	//07.08.07 ƒvƒ‰ƒ`ƒi‚Å•ÏX
-	u16	tower_stage[6];		///<ƒoƒgƒ‹ƒ^ƒ[ü‰ñ”(padding‚ğWIFI_MULTI—p‚É‰Á‚¦‚½)
+	//07.08.07 ãƒ—ãƒ©ãƒãƒŠã§å¤‰æ›´
+	u16	tower_stage[6];		///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‘¨å›æ•°(paddingã‚’WIFI_MULTIç”¨ã«åŠ ãˆãŸ)
 #endif
 
-	//WiFiƒ`ƒƒƒŒƒ“ƒWƒf[ƒ^
-	u16	wifi_score;	///<WiFi¬Ñ
-	//WiFiƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒXƒgƒbƒN
+	//WiFiãƒãƒ£ãƒ¬ãƒ³ã‚¸ãƒ‡ãƒ¼ã‚¿
+	u16	wifi_score;	///<WiFiæˆç¸¾
+	//WiFiãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¹ãƒˆãƒƒã‚¯
 	struct _B_TOWER_POKEMON	wifi_poke[3];
-	//ƒgƒŒ[ƒi[ƒ[ƒh—pƒVƒ“ƒOƒ‹ƒf[ƒ^ƒXƒgƒbƒN
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ­ãƒ¼ãƒ‰ç”¨ã‚·ãƒ³ã‚°ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¹ãƒˆãƒƒã‚¯
 	struct _B_TOWER_POKEMON	single_poke[3];
 	
 };
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[ ƒvƒŒƒCƒ„[ƒƒbƒZ[ƒWƒf[ƒ^
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
  *
  *	8*4=32byte
  */
 struct _BTLTOWER_PLAYER_MSG{
-	PMS_DATA	msg[4];	///<©•ª—pƒƒbƒZ[ƒW
+	PMS_DATA	msg[4];	///<è‡ªåˆ†ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 };
 
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[ WIFI ƒvƒŒƒCƒ„[ƒf[ƒ^
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ WIFI ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
  *
  *	56*3+60=228byte
  */
 struct _BTLTOWER_WIFI_PLAYER{
 	struct _B_TOWER_POKEMON	poke[3];
 	
-	STRCODE	name[PERSON_NAME_SIZE+EOM_SIZE];	//ƒgƒŒ[ƒi[–¼((PERSON_NAME_SIZE:7)+(EOM_SIZE:1))*(STRCODE:u16)=16
+	STRCODE	name[PERSON_NAME_SIZE+EOM_SIZE];	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å((PERSON_NAME_SIZE:7)+(EOM_SIZE:1))*(STRCODE:u16)=16
 
-	u8	casette_version;					//ƒJƒZƒbƒgversion
-	u8	lang_version;						//Œ¾Œêƒo[ƒWƒ‡ƒ“
-	u8	country_code;						//‘ƒR[ƒh
-	u8	address;							//Z‚ñ‚Å‚¢‚é‚Æ‚±‚ë
+	u8	casette_version;					//ã‚«ã‚»ãƒƒãƒˆversion
+	u8	lang_version;						//è¨€èªãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	u8	country_code;						//å›½ã‚³ãƒ¼ãƒ‰
+	u8	address;							//ä½ã‚“ã§ã„ã‚‹ã¨ã“ã‚
 
 	u32	id_no;								//IDNo	
 
-	u16	leader_word[4];						//ƒŠ[ƒ_[ƒƒbƒZ[ƒW
+	u16	leader_word[4];						//ãƒªãƒ¼ãƒ€ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
 	union{
 		struct{
-		u8	ngname_f:1;						//NGƒl[ƒ€ƒtƒ‰ƒO
-		u8	gender:1;						//«•Ê
-		u8			:6;						//‚ ‚Ü‚è6bit
+		u8	ngname_f:1;						//NGãƒãƒ¼ãƒ ãƒ•ãƒ©ã‚°
+		u8	gender:1;						//æ€§åˆ¥
+		u8			:6;						//ã‚ã¾ã‚Š6bit
 		};
 		u8	flags;
 	};
-	u8	tr_type;							//ƒgƒŒ[ƒi[ƒ^ƒCƒv
-	u16	appear_word[4];						//“oêƒƒbƒZ[ƒW	
-	u16	win_word[4];						//Ÿ—˜ƒƒbƒZ[ƒW	
-	u16	lose_word[4];						//”s‘ŞƒƒbƒZ[ƒW	
+	u8	tr_type;							//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
+	u16	appear_word[4];						//ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸	
+	u16	win_word[4];						//å‹åˆ©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸	
+	u16	lose_word[4];						//æ•—é€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸	
 
-	u16	result;								//¬Ñ
+	u16	result;								//æˆç¸¾
 };
 
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[ WIFI DLƒf[ƒ^
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ WIFI DLãƒ‡ãƒ¼ã‚¿
  *
  *	280byte+1596(228*7)byte+1020(34*30)byte=2836byte
  */
 struct _BTLTOWER_WIFI_DATA{
-	GF_DATE	day;	///<DL‚µ‚½“ú•t4byte
-	u8		flags[BTOWER_ROOM_DATA_FLAGS_LEN];	///<DLÏ‚İƒtƒ‰ƒOƒGƒŠƒA(2000bit)
-	u8		player_data_f;	///<ƒvƒŒƒCƒ„[ƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©H
-	u8		leader_data_f;	///<ƒŠ[ƒ_[ƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©H
+	GF_DATE	day;	///<DLã—ãŸæ—¥ä»˜4byte
+	u8		flags[BTOWER_ROOM_DATA_FLAGS_LEN];	///<DLæ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚¨ãƒªã‚¢(2000bit)
+	u8		player_data_f;	///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ï¼Ÿ
+	u8		leader_data_f;	///<ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ï¼Ÿ
 
-	//DLƒf[ƒ^‚Ìƒ‹[ƒ€ID
-	u8	player_room;	///<ƒvƒŒƒCƒ„[ƒf[ƒ^ƒ‹[ƒ€No
-	u8	player_rank;	///<ƒvƒŒƒCƒ„[ƒf[ƒ^ƒ‹[ƒ€ƒ‰ƒ“ƒN
-	u8	leader_room;	///<ƒŠ[ƒ_[ƒf[ƒ^ƒ‹[ƒ€No
-	u8	leader_rank;	///<ƒŠ[ƒ_[ƒf[ƒ^ƒ‹[ƒ€ƒ‰ƒ“ƒN
+	//DLãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ ID
+	u8	player_room;	///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ«ãƒ¼ãƒ No
+	u8	player_rank;	///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ«ãƒ¼ãƒ ãƒ©ãƒ³ã‚¯
+	u8	leader_room;	///<ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ«ãƒ¼ãƒ No
+	u8	leader_rank;	///<ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ«ãƒ¼ãƒ ãƒ©ãƒ³ã‚¯
 
-	///ƒvƒŒƒCƒ„[ƒf[ƒ^
+	///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	struct _BTLTOWER_WIFI_PLAYER player[BTOWER_STOCK_WIFI_PLAYER_MAX];
-	///ƒŠ[ƒ_[ƒf[ƒ^
+	///ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	struct _B_TOWER_LEADER_DATA leader[BTOWER_STOCK_WIFI_LEADER_MAX];
 };
 

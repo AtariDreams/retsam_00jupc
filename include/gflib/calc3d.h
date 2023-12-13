@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	calc3D.h
- * @brief	‚a‚f•`‰æŒvŽZƒvƒƒOƒ‰ƒ€
+ * @brief	ï¼¢ï¼§æç”»è¨ˆç®—ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  */
 //=============================================================================================
 #undef GLOBAL
@@ -15,7 +15,7 @@
  *
  *
  *
- *			“–‚½‚è”»’è
+ *			å½“ãŸã‚Šåˆ¤å®š
  *
  *
  *
@@ -23,14 +23,14 @@
 ////////////////////////////
 GLOBAL fx32 Min(fx32 n1,fx32 n2);
 GLOBAL fx32 Max(fx32 n1,fx32 n2);
-// “–‚½‚è”»’è—p\‘¢‘ÌF‰~’Œ
+// å½“ãŸã‚Šåˆ¤å®šç”¨æ§‹é€ ä½“ï¼šå††æŸ±
 typedef struct {
-	VecFx32	global;	//ƒOƒ[ƒoƒ‹À•WƒxƒNƒgƒ‹
+	VecFx32	global;	//ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™ãƒ™ã‚¯ãƒˆãƒ«
 
-	fx32	vUp;		//’†S“_‚©‚ç‚Ì{‚x•ûŒüƒIƒtƒZƒbƒg
-	fx32	vDown;		//’†S“_‚©‚ç‚Ì|‚x•ûŒüƒIƒtƒZƒbƒg
+	fx32	vUp;		//ä¸­å¿ƒç‚¹ã‹ã‚‰ã®ï¼‹ï¼¹æ–¹å‘ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	fx32	vDown;		//ä¸­å¿ƒç‚¹ã‹ã‚‰ã®âˆ’ï¼¹æ–¹å‘ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-	fx32	radius;		//”¼Œa
+	fx32	radius;		//åŠå¾„
 }HIT_CHECK_ENTYUU;
 
 GLOBAL int  BG3D_CalcHitCheck_CylinderCylinder(HIT_CHECK_ENTYUU* object1,HIT_CHECK_ENTYUU* object2);
@@ -66,10 +66,10 @@ GLOBAL int GetHitPointPlaneToBox2(const VecFx32 *inBoxCore,
 
 #define	HITCHECK_TYPE_ENTYU		(1)
 
-#define NO_HIT				(0)		//ƒqƒbƒg‚µ‚Ä‚¢‚È‚¢
-#define SEG_SPH_HIT_SEG		(1)		//ü•ª‚Æ‹…‚ªƒqƒbƒg
-#define SEG_SPH_HIT_START	(2)		//ü•ª‚ÌŽn“_‚Æ‹…‚ªƒqƒbƒg
-#define SEG_SPH_HIT_END		(3)		//ü•ª‚ÌI“_‚Æ‹…‚ªƒqƒbƒg
+#define NO_HIT				(0)		//ãƒ’ãƒƒãƒˆã—ã¦ã„ãªã„
+#define SEG_SPH_HIT_SEG		(1)		//ç·šåˆ†ã¨çƒãŒãƒ’ãƒƒãƒˆ
+#define SEG_SPH_HIT_START	(2)		//ç·šåˆ†ã®å§‹ç‚¹ã¨çƒãŒãƒ’ãƒƒãƒˆ
+#define SEG_SPH_HIT_END		(3)		//ç·šåˆ†ã®çµ‚ç‚¹ã¨çƒãŒãƒ’ãƒƒãƒˆ
 
 typedef enum {
 	XY_PLANE,
@@ -78,7 +78,7 @@ typedef enum {
 }PLANE_TYPE;
 
 ////////////////////////////
-// “–‚½‚è”»’è\‘¢‘Ì
+// å½“ãŸã‚Šåˆ¤å®šæ§‹é€ ä½“
 typedef struct {
 	int			type;
 	const fx32*	data;
@@ -91,33 +91,33 @@ GLOBAL const  fx32	entyu2_hitcheck_data[];
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	is•ûŒüƒxƒNƒgƒ‹C³(•Ç‚¸‚èˆÚ“®)
- *	@param	*inMoveVec		ˆÚ“®—ÊiˆÚ“®•ûŒüj
- *	@param	*ioDirVec		C³ŒãˆÚ“®•ûŒü
+ *	é€²è¡Œæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ä¿®æ­£(å£ãšã‚Šç§»å‹•)
+ *	@param	*inMoveVec		ç§»å‹•é‡ï¼ˆç§»å‹•æ–¹å‘ï¼‰
+ *	@param	*ioDirVec		ä¿®æ­£å¾Œç§»å‹•æ–¹å‘
  *
- *	@retval	VecFx32			C³ŒãˆÚ“®—ÊiˆÚ“®•ûŒüj
+ *	@retval	VecFx32			ä¿®æ­£å¾Œç§»å‹•é‡ï¼ˆç§»å‹•æ–¹å‘ï¼‰
 */
 //---------------------------------------------------------------------------------------------------------
 GLOBAL	VecFx32 ChangeDirForWall(const VecFx32* inMoveVec, const VecFx32 *inDirVec);
 //---------------------------------------------------------------------------------------------------------
 /**
- *	•ûŒüƒxƒNƒgƒ‹‚©‚ç‰ñ“]Šp‚ðŒvŽZi‚y‚w•½–Ê‘Î‰žj
- *	@param	*inVec1		Šî€•ûŒüƒxƒNƒgƒ‹
- *	@param	*inVec2		Žw’è•ûŒüƒxƒNƒgƒ‹
+ *	æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‹ã‚‰å›žè»¢è§’ã‚’è¨ˆç®—ï¼ˆï¼ºï¼¸å¹³é¢å¯¾å¿œï¼‰
+ *	@param	*inVec1		åŸºæº–æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«
+ *	@param	*inVec2		æŒ‡å®šæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«
  *
- *	@retval	rad			‰ñ“]Šp
+ *	@retval	rad			å›žè»¢è§’
 */
 //---------------------------------------------------------------------------------------------------------
 GLOBAL	fx32 GetRad(const VecFx32 *inVec1, const VecFx32 *inVec2 );
 
 
-//•½–Ê‚Æƒ{ƒbƒNƒX‚ÌÕ“Ë”»’è
-//•½–Ê‚Æƒ{ƒbƒNƒX‚ÌŽÀŒø”¼Œa‚Ì‹——£‚ðŒ³‚ÉAÕ“Ë‚ðŒŸo‚·‚é
-//•K—vƒf[ƒ^F	ƒ{ƒbƒNƒX‚Ì’†SÀ•W
-//				ƒ{ƒbƒNƒX‚Ì•A‚‚³A‰œs‚«
-//				ƒ{ƒbƒNƒX‚Ì‰ñ“]s—ñ
-//				•½–Ê‚Ì–@üƒxƒNƒgƒ‹
-//				•½–Ê‚Ì•û’öŽ®‚É•K—v‚È‚c’u
+//å¹³é¢ã¨ãƒœãƒƒã‚¯ã‚¹ã®è¡çªåˆ¤å®š
+//å¹³é¢ã¨ãƒœãƒƒã‚¯ã‚¹ã®å®ŸåŠ¹åŠå¾„ã®è·é›¢ã‚’å…ƒã«ã€è¡çªã‚’æ¤œå‡ºã™ã‚‹
+//å¿…è¦ãƒ‡ãƒ¼ã‚¿ï¼š	ãƒœãƒƒã‚¯ã‚¹ã®ä¸­å¿ƒåº§æ¨™
+//				ãƒœãƒƒã‚¯ã‚¹ã®å¹…ã€é«˜ã•ã€å¥¥è¡Œã
+//				ãƒœãƒƒã‚¯ã‚¹ã®å›žè»¢è¡Œåˆ—
+//				å¹³é¢ã®æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«
+//				å¹³é¢ã®æ–¹ç¨‹å¼ã«å¿…è¦ãªï¼¤ç½®
 GLOBAL BOOL HitCheckPlaneToBox(const VecFx32 *inBoxCore, 
 						const VecFx32 *inBoxSize, 
 						const VecFx32 *inBoxRot, 
@@ -166,43 +166,43 @@ GLOBAL BOOL CheckHitPlaneToSegment2D(	const VecFx32 *inVtx1,
  *
  *
  *
- *			‰‰ŽZ
+ *			æ¼”ç®—
  *
  *
  *
  *--------------------------------------------------------------------*/
 /*---------------------------------------------------------------------
-  Name       :ƒxƒNƒgƒ‹¨‚R‚w‚Rs—ñ‚Ö‚Ì•ÏŠ· 
-  In	: dst = s—ñƒ|ƒCƒ“ƒ^,dst = ƒxƒNƒgƒ‹ƒ|ƒCƒ“ƒ^ 
-  Out	: ‚È‚µ
+  Name       :ãƒ™ã‚¯ãƒˆãƒ«â†’ï¼“ï¼¸ï¼“è¡Œåˆ—ã¸ã®å¤‰æ› 
+  In	: dst = è¡Œåˆ—ãƒã‚¤ãƒ³ã‚¿,dst = ãƒ™ã‚¯ãƒˆãƒ«ãƒã‚¤ãƒ³ã‚¿ 
+  Out	: ãªã—
  *--------------------------------------------------------------------*/
 GLOBAL void  VecFx32_to_MtxFx33( MtxFx33* dst, VecFx32* src );
 /*---------------------------------------------------------------------
-  Name       :ƒxƒNƒgƒ‹¨‚S‚w‚Rs—ñ‚Ö‚Ì•ÏŠ· 
-  In	: dst = s—ñƒ|ƒCƒ“ƒ^,dst = ƒxƒNƒgƒ‹ƒ|ƒCƒ“ƒ^ 
-  Out	: ‚È‚µ
+  Name       :ãƒ™ã‚¯ãƒˆãƒ«â†’ï¼”ï¼¸ï¼“è¡Œåˆ—ã¸ã®å¤‰æ› 
+  In	: dst = è¡Œåˆ—ãƒã‚¤ãƒ³ã‚¿,dst = ãƒ™ã‚¯ãƒˆãƒ«ãƒã‚¤ãƒ³ã‚¿ 
+  Out	: ãªã—
  *--------------------------------------------------------------------*/
 GLOBAL void  VecFx32_to_MtxFx43( MtxFx43* dst, VecFx32* src );
 
 /*---------------------------------------------------------------------
-  @brief	360“xXYZ‚Ì‰ñ“]Šp¨‚R‚w‚Rs—ñ‚Ö‚Ì•ÏŠ· 
+  @brief	360åº¦XYZã®å›žè»¢è§’â†’ï¼“ï¼¸ï¼“è¡Œåˆ—ã¸ã®å¤‰æ› 
 
-  @param	dst MtxFx33:‰‰ŽZŒ‹‰Ê‚ðŠi”[‚·‚éMtxFx33Œ^‚Ìƒ|ƒCƒ“ƒ^
-  @param	x	‰ñ“]ŠpX(360“x’PˆÊ,0-359‚ð’´‚¦‚È‚¢Ž–)
-  @param	y	‰ñ“]ŠpY(360“x’PˆÊ)
-  @param	z	‰ñ“]ŠpZ(360“x’PˆÊ)
+  @param	dst MtxFx33:æ¼”ç®—çµæžœã‚’æ ¼ç´ã™ã‚‹MtxFx33åž‹ã®ãƒã‚¤ãƒ³ã‚¿
+  @param	x	å›žè»¢è§’X(360åº¦å˜ä½,0-359ã‚’è¶…ãˆãªã„äº‹)
+  @param	y	å›žè»¢è§’Y(360åº¦å˜ä½)
+  @param	z	å›žè»¢è§’Z(360åº¦å˜ä½)
 
   @return none
  *--------------------------------------------------------------------*/
 GLOBAL void  Rot360_to_MtxFx33( MtxFx33* dst,u16 x,u16 y,u16 z);
 
 /*---------------------------------------------------------------------
-  @brief	360“xXYZ‚Ì‰ñ“]Šp¨4x3s—ñ‚Ö‚Ì•ÏŠ· 
+  @brief	360åº¦XYZã®å›žè»¢è§’â†’4x3è¡Œåˆ—ã¸ã®å¤‰æ› 
 
-  @param	dst MtxFx43:‰‰ŽZŒ‹‰Ê‚ðŠi”[‚·‚éMtxFx43Œ^‚Ìƒ|ƒCƒ“ƒ^
-  @param	x	‰ñ“]ŠpX(360“x’PˆÊ,0-359‚ð’´‚¦‚È‚¢Ž–)
-  @param	y	‰ñ“]ŠpY(360“x’PˆÊ,0-359)
-  @param	z	‰ñ“]ŠpZ(360“x’PˆÊ,0-359)
+  @param	dst MtxFx43:æ¼”ç®—çµæžœã‚’æ ¼ç´ã™ã‚‹MtxFx43åž‹ã®ãƒã‚¤ãƒ³ã‚¿
+  @param	x	å›žè»¢è§’X(360åº¦å˜ä½,0-359ã‚’è¶…ãˆãªã„äº‹)
+  @param	y	å›žè»¢è§’Y(360åº¦å˜ä½,0-359)
+  @param	z	å›žè»¢è§’Z(360åº¦å˜ä½,0-359)
 
   @return none
  *--------------------------------------------------------------------*/
@@ -211,13 +211,13 @@ GLOBAL void  Rot360_to_MtxFx43( MtxFx43* dst,u16 x,u16 y,u16 z);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ŽË‰es—ñ‚Ìƒf[ƒ^‚©‚ç¡‚Ì‚‚³‚Æ•‚ð•Ô‚·
+ *@brief	å°„å½±è¡Œåˆ—ã®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä»Šã®é«˜ã•ã¨å¹…ã‚’è¿”ã™
  *
- *@param	PerspWay	Ž‹–ìŠp
- *@param	Dist		ƒ^[ƒQƒbƒg‚Ü‚Å‚Ì‹——£
- *@param	Aspect		ƒAƒXƒyƒNƒg”ä	(•/‚‚³)
- *@param	pWidth		•Ši”[—p
- *@param	pHeight		‚‚³Ši”[—p
+ *@param	PerspWay	è¦–é‡Žè§’
+ *@param	Dist		ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¾ã§ã®è·é›¢
+ *@param	Aspect		ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”	(å¹…/é«˜ã•)
+ *@param	pWidth		å¹…æ ¼ç´ç”¨
+ *@param	pHeight		é«˜ã•æ ¼ç´ç”¨
  *
  *@return	none
  *

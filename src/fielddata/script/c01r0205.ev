@@ -1,12 +1,12 @@
 //====================================================================
 //								c01r0205
 //
-//	LOCALWORK1	ZONEØ‚è‘Ö‚í‚èƒtƒ‰ƒO	‰‚ß‚Ä‚ÌŒÄ‚Ño‚µ:0  ‚Q‰ñ–ÚˆÈ~:1
-//	LOCALWORK2	ŽèŽ‚¿‚Ìƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u
-//	SCWK_TEMP0	ƒeƒŒƒrƒNƒŠƒbƒv@ƒ^ƒCƒgƒ‹
-//	SCWK_TEMP1	ƒeƒŒƒrƒNƒŠƒbƒv@ƒZ[ƒu—L–³
-//	SCWK_TEMP2	ƒvƒŒƒCƒ„[‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü
-//	SCWK_TEMP3	ƒNƒŠƒbƒv@ŠJŽnŽž‚Ì@ƒŠƒtƒ@ƒŒƒ“ƒX‚Ì—L–³
+//	LOCALWORK1	ZONEåˆ‡ã‚Šæ›¿ã‚ã‚Šãƒ•ãƒ©ã‚°	åˆã‚ã¦ã®å‘¼ã³å‡ºã—:0  ï¼’å›žç›®ä»¥é™:1
+//	LOCALWORK2	æ‰‹æŒã¡ã®ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®
+//	SCWK_TEMP0	ãƒ†ãƒ¬ãƒ“ã‚¯ãƒªãƒƒãƒ—ã€€ã‚¿ã‚¤ãƒˆãƒ«
+//	SCWK_TEMP1	ãƒ†ãƒ¬ãƒ“ã‚¯ãƒªãƒƒãƒ—ã€€ã‚»ãƒ¼ãƒ–æœ‰ç„¡
+//	SCWK_TEMP2	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ã„ã¦ã„ã‚‹æ–¹å‘
+//	SCWK_TEMP3	ã‚¯ãƒªãƒƒãƒ—ã€€é–‹å§‹æ™‚ã®ã€€ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®æœ‰ç„¡
 //====================================================================
 
 	.text
@@ -16,11 +16,11 @@
 	.include	"../eventdata/zone_c01r0205evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c01r0205_clip
 _EVENT_DATA		ev_c01r0205_clip_prev_00
@@ -40,35 +40,35 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*							ŽR’j									*/
+/*							å±±ç”·									*/
 /********************************************************************/
 ev_c01r0205_clip:
 	_TALK_OBJ_START
 
-	// ƒŠƒtƒ@ƒŒƒ“ƒX‚È‚µ‚Å‰Šú‰»
+	// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãªã—ã§åˆæœŸåŒ–
 	_LDVAL			SCWK_TEMP3,0
 
-	//–{“–‚Ì‚P“x–Ú
+	//æœ¬å½“ã®ï¼‘åº¦ç›®
 	_IF_FLAGOFF_CALL	FE_IMAGE_CLIP,first_c01r0205_mount
 
-	// 1“x–Ú
+	// 1åº¦ç›®
 	_IFVAL_JUMP		LOCALWORK1,EQ,0,zone_first_c01r0205_mount
-	// ‚Q“x–ÚˆÈ~
+	// ï¼’åº¦ç›®ä»¥é™
 	_IFVAL_JUMP		LOCALWORK1,EQ,1,zone_second_c01r0205_mount
 	_END
 
-//ˆê“x–Ú
+//ä¸€åº¦ç›®
 first_c01r0205_mount:
-	// ƒŠƒtƒ@ƒŒƒ“ƒX‚ ‚è
+	// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚ã‚Š
 	_LDVAL			SCWK_TEMP3,1
 	_RET
 
-// ‚±‚Ìƒ][ƒ““à‰‚ß‚Ä
+// ã“ã®ã‚¾ãƒ¼ãƒ³å†…åˆã‚ã¦
 zone_first_c01r0205_mount:
 	_TALKMSG		msg_c01r0205_clip_01
 	_JUMP			ev_clip_menu01
 
-// ‚Q“x–Ú
+// ï¼’åº¦ç›®
 zone_second_c01r0205_mount:
 	_TALKMSG		msg_c01r0205_clip_09	
 	_JUMP			ev_clip_menu01
@@ -84,17 +84,17 @@ yes_c01r0205_mount:
 yes_c01r0205_010:
 	_TALKMSG		msg_c01r0205_clip_07
 
-	// Ž¿–â‚ðà–¾Œã‚Ì•ªŠò
+	// è³ªå•ã‚’èª¬æ˜Žå¾Œã®åˆ†å²
 	_JUMP ev_clip_menu02
 
-/*‹¤’Êƒƒjƒ…[*/
+/*å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼*/
 ev_clip_menu01:
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_c01r0205_mount
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c01r0205_mount
 	_END
 
-// ŽèŽ‚¿‚Ìƒ|ƒPƒ‚ƒ“”‚ðŒ©‚Ä@•ªŠò
+// æ‰‹æŒã¡ã®ãƒã‚±ãƒ¢ãƒ³æ•°ã‚’è¦‹ã¦ã€€åˆ†å²
 ev_clip_menu02:
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,no_c01r0205_010
@@ -103,7 +103,7 @@ ev_clip_menu02:
 
 
 /********************************************************************/
-//ŽèŽ‚¿‚Ì”‚Å•ªŠò
+//æ‰‹æŒã¡ã®æ•°ã§åˆ†å²
 /********************************************************************/
 no_c01r0205_010:
 	_GET_POKE_COUNT	SCWK_ANSWER
@@ -111,12 +111,12 @@ no_c01r0205_010:
 	_IFVAL_JUMP		SCWK_ANSWER,NE,1,c01r0205_poke_count_6
 	_END
 
-/*ŽèŽ‚¿‚P•C*/
+/*æ‰‹æŒã¡ï¼‘åŒ¹*/
 c01r0205_poke_count_1:
 	_LDVAL			LOCALWORK2,0
 	_JUMP			c01r0205_image_clip
 
-/*ŽèŽ‚¿‚P•CˆÈŠO*/
+/*æ‰‹æŒã¡ï¼‘åŒ¹ä»¥å¤–*/
 c01r0205_poke_count_6:
 	_TALKMSG	msg_c01r0205_clip_05
 	_TALK_CLOSE
@@ -126,19 +126,19 @@ c01r0205_poke_count_6:
 
 	_POKELIST_SET_PROC
 
-	//‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì•À‚Ñ”Ô†Žæ“¾
+	//é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ä¸¦ã³ç•ªå·å–å¾—
 	_POKELIST_GET_RESULT	LOCALWORK2
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN
+	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯
 	_IFVAL_JUMP		LOCALWORK2,EQ,0xff,no_c01r0205_mount
 
-	//ŽèŽ‚¿[„ƒ|ƒPƒ‚ƒ“”Ô†•ÏŠ·@“¯Žž‚Éƒ^ƒ}ƒSƒ`ƒFƒbƒN‚às‚Á‚Ä‚¢‚Ü‚·B
+	//æ‰‹æŒã¡ãƒ¼ï¼žãƒã‚±ãƒ¢ãƒ³ç•ªå·å¤‰æ›ã€€åŒæ™‚ã«ã‚¿ãƒžã‚´ãƒã‚§ãƒƒã‚¯ã‚‚è¡Œã£ã¦ã„ã¾ã™ã€‚
 	_TEMOTI_MONSNO	LOCALWORK2,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,tamago_c01r0205_mount	//ƒ^ƒ}ƒS
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,tamago_c01r0205_mount	//ã‚¿ãƒžã‚´
 
 	_JUMP			c01r0205_image_clip
 
@@ -146,14 +146,14 @@ c01r0205_image_clip:
 	_TALK_KEYWAIT	msg_c01r0205_clip_06
 	_TALK_CLOSE
 
-	// ˆÚ“®
+	// ç§»å‹•
 	_PLAYER_DIR_GET	SCWK_TEMP2
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,DIR_UP,ev_mvoe_player_dir_up
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,DIR_LEFT,ev_mvoe_player_dir_left
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,DIR_RIGHT,ev_mvoe_player_dir_right
 	_END
 
-// ã‚ðŒü‚¢‚Ä‚¢‚é‚Æ‚«
+// ä¸Šã‚’å‘ã„ã¦ã„ã‚‹ã¨ã
 ev_mvoe_player_dir_up:
 
 	_OBJ_ANIME		C01R0205_MOUNT,anm_yamaotoko_dir_up
@@ -162,10 +162,10 @@ ev_mvoe_player_dir_up:
 	_OBJ_ANIME_WAIT
 
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvŽÀs
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å®Ÿè¡Œ
 	_JUMP c01r0205_image_clip_do
 
-// ¶‚ðŒü‚¢‚Ä‚¢‚é‚Æ‚«
+// å·¦ã‚’å‘ã„ã¦ã„ã‚‹ã¨ã
 ev_mvoe_player_dir_left:
 
 	_OBJ_ANIME		C01R0205_MOUNT,anm_yamaotoko_dir_left
@@ -173,11 +173,11 @@ ev_mvoe_player_dir_left:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_dir_left
 	_OBJ_ANIME_WAIT
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvŽÀs
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å®Ÿè¡Œ
 	_JUMP c01r0205_image_clip_do
 
 
-// ‰E‚ðŒü‚¢‚Ä‚¢‚é‚Æ‚«
+// å³ã‚’å‘ã„ã¦ã„ã‚‹ã¨ã
 ev_mvoe_player_dir_right:
 
 	_OBJ_ANIME		C01R0205_MOUNT,anm_yamaotoko_dir_right
@@ -185,38 +185,38 @@ ev_mvoe_player_dir_right:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_dir_right
 	_OBJ_ANIME_WAIT
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvŽÀs
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å®Ÿè¡Œ
 	_JUMP c01r0205_image_clip_do
 
 
-// ƒCƒ[ƒWƒNƒŠƒbƒvŽÀs
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å®Ÿè¡Œ
 c01r0205_image_clip_do:
 
-	_FLAG_SET		FE_IMAGE_CLIP		// ŠmŽÀ‚ÉƒNƒŠƒbƒv‚ð‚µ‚½‚Ì‚ÅŽŸ‚©‚ç‚ÍƒŠƒtƒ@ƒŒƒ“ƒX‚Í‚¢‚ç‚È‚¢
+	_FLAG_SET		FE_IMAGE_CLIP		// ç¢ºå®Ÿã«ã‚¯ãƒªãƒƒãƒ—ã‚’ã—ãŸã®ã§æ¬¡ã‹ã‚‰ã¯ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã¯ã„ã‚‰ãªã„
 
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//ƒCƒ[ƒWƒNƒŠƒbƒv
+	//ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—
 	_IMAGE_CLIP_SET_PROC	LOCALWORK2,SCWK_TEMP1,SCWK_TEMP3
 	_SET_MAP_PROC
 
-	// I‚í‚Á‚Ä–ß‚Á‚Ä‚­‚éƒAƒjƒ‚Ì€”õ
+	// çµ‚ã‚ã£ã¦æˆ»ã£ã¦ãã‚‹ã‚¢ãƒ‹ãƒ¡ã®æº–å‚™
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_clip_after_init
 	_OBJ_ANIME_WAIT
 
-	// ŽÀsŒãˆ—‚Ö
-	// ƒtƒF[ƒhƒCƒ“
+	// å®Ÿè¡Œå¾Œå‡¦ç†ã¸
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	// ‚»‚ê‚¼‚ê‚ÌƒAƒjƒ
+	// ãã‚Œãžã‚Œã®ã‚¢ãƒ‹ãƒ¡
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,DIR_UP,	ev_remvoe_player_dir_up
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,DIR_LEFT,	ev_remvoe_player_dir_left
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,DIR_RIGHT,ev_remvoe_player_dir_right
 	_END
 
-// ã‚ðŒü‚¢‚Ä‚¢‚½‚Æ‚«
+// ä¸Šã‚’å‘ã„ã¦ã„ãŸã¨ã
 ev_remvoe_player_dir_up:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_clip_after_move
 	_OBJ_ANIME_WAIT
@@ -225,7 +225,7 @@ ev_remvoe_player_dir_up:
 
 	_JUMP c01r0205_image_clip_title
 	
-// ¶‚ðŒü‚¢‚Ä‚¢‚½‚Æ‚«
+// å·¦ã‚’å‘ã„ã¦ã„ãŸã¨ã
 ev_remvoe_player_dir_left:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_clip_after_move
 	_OBJ_ANIME_WAIT
@@ -234,7 +234,7 @@ ev_remvoe_player_dir_left:
 
 	_JUMP c01r0205_image_clip_title
 
-// ‰E‚ðŒü‚¢‚Ä‚¢‚½‚Æ‚«
+// å³ã‚’å‘ã„ã¦ã„ãŸã¨ã
 ev_remvoe_player_dir_right:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_clip_after_move
 	_OBJ_ANIME_WAIT
@@ -243,21 +243,21 @@ ev_remvoe_player_dir_right:
 
 	_JUMP c01r0205_image_clip_title
 
-// ƒ^ƒCƒgƒ‹“ü—Í
+// ã‚¿ã‚¤ãƒˆãƒ«å…¥åŠ›
 c01r0205_image_clip_title:
-	// ƒZ[ƒu‚µ‚½‚©ƒ`ƒFƒbƒN
-	// ƒZ[ƒu‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚Í•ªŠò
+	// ã‚»ãƒ¼ãƒ–ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
+	// ã‚»ãƒ¼ãƒ–ã—ã¦ã„ãªã„ã¨ãã¯åˆ†å²
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,0,c01r0205_image_clip_no_save
 
 
-	// 1‰ñƒhƒŒƒXƒAƒbƒv‚µ‚½
-	_LDVAL			LOCALWORK1,1	// ŽŸ‚©‚ç‚Q‰ñ–ÚˆÈ~
+	// 1å›žãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã—ãŸ
+	_LDVAL			LOCALWORK1,1	// æ¬¡ã‹ã‚‰ï¼’å›žç›®ä»¥é™
 
 	_TALKMSG		msg_c01r0205_clip_08
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	// ŠÈˆÕ‰ï˜b“ü—Í
+	// ç°¡æ˜“ä¼šè©±å…¥åŠ›
 	_JUMP			img_pms_input
 
 no_c01r0205_mount:
@@ -267,14 +267,14 @@ no_c01r0205_mount:
 	_TALK_OBJ_END
 	_END
 
-//‚½‚Ü‚²‚Ì‚Æ‚«
+//ãŸã¾ã”ã®ã¨ã
 tamago_c01r0205_mount:
 	_TALK_KEYWAIT		msg_c01r0205_clip_10
 	_JUMP			c01r0205_poke_count_6
 
 
-// ƒ^ƒCƒgƒ‹“ü—Í@ŠÈˆÕ‰ï˜b“ü—Í
-// SCWK_TEMP0‚ÉŠÈˆÕ‰ï˜b“ü—ÍŒ‹‰Ê‚ð“ü‚ê‚Ü‚·
+// ã‚¿ã‚¤ãƒˆãƒ«å…¥åŠ›ã€€ç°¡æ˜“ä¼šè©±å…¥åŠ›
+// SCWK_TEMP0ã«ç°¡æ˜“ä¼šè©±å…¥åŠ›çµæžœã‚’å…¥ã‚Œã¾ã™
 img_pms_input:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
@@ -285,20 +285,20 @@ img_pms_input:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	// ‹L“ü‚È‚µ
+	// è¨˜å…¥ãªã—
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,img_pms_input_err
 
-	// ƒZ[ƒu
+	// ã‚»ãƒ¼ãƒ–
 	_CLIP_TV_TITLE_SAVE	SCWK_TEMP0
 
 	_RECORD_INC		RECID_DRESS_COUNT
-	_IMAGE_CLIP_TV_SEND_FLAG_RESET		//GDSƒhƒŒƒX‘—MÏ‚Ýƒtƒ‰ƒO‚ðƒŠƒZƒbƒg
+	_IMAGE_CLIP_TV_SEND_FLAG_RESET		//GDSãƒ‰ãƒ¬ã‚¹é€ä¿¡æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆ
 
-	// ŠÈˆÕ‰ï˜bƒƒbƒZ[ƒW‚ðƒoƒbƒtƒ@‚ÉŠi”[
+	// ç°¡æ˜“ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
 	_PMS_BUF	0,SCWK_TEMP0	
 	_TALK_KEYWAIT	msg_c01r0205_clip_11
 
-	// ‰E‚ðŒü‚­
+	// å³ã‚’å‘ã
 	_OBJ_ANIME		C01R0205_MOUNT,anm_yamaotoko_clip_turn_right
 	_OBJ_ANIME_WAIT
 
@@ -307,22 +307,22 @@ img_pms_input:
 	
 	_TALK_CLOSE
 
-	// ‰º‚ðŒü‚­
+	// ä¸‹ã‚’å‘ã
 	_OBJ_ANIME		C01R0205_MOUNT,anm_yamaotoko_clip_turn_down
 	_OBJ_ANIME_WAIT
 	
 	_TALK_OBJ_END
 	_END
 
-// ƒ^ƒCƒgƒ‹“ü—ÍƒGƒ‰[
-// ƒƒbƒZ[ƒWŒã‚à‚¤ˆê“xŠÈˆÕ‰ï˜b“ü—Í
+// ã‚¿ã‚¤ãƒˆãƒ«å…¥åŠ›ã‚¨ãƒ©ãƒ¼
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾Œã‚‚ã†ä¸€åº¦ç°¡æ˜“ä¼šè©±å…¥åŠ›
 img_pms_input_err:
 	_TALKMSG		msg_c01r0205_clip_12
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_JUMP	img_pms_input
 
-// ƒCƒ[ƒWƒNƒŠƒbƒvƒZ[ƒu‚µ‚È‚©‚Á‚½‚Æ‚«
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚»ãƒ¼ãƒ–ã—ãªã‹ã£ãŸã¨ã
 c01r0205_image_clip_no_save:
 	_TALKMSG		msg_c01r0205_clip_13
 	_LAST_KEYWAIT
@@ -332,7 +332,7 @@ c01r0205_image_clip_no_save:
 	
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒhƒA‚Ì•û‚Ö
+//ä¸»äººå…¬	ãƒ‰ã‚¢ã®æ–¹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_dir_up
 	_ANIME_DATA	AC_WALK_U_16F,2
@@ -350,14 +350,14 @@ _ANIME_LABEL anm_player_dir_right
 
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒhƒA‚©‚ç–ß‚Á‚Ä‚­‚é	‰Šú‰»
+//ä¸»äººå…¬	ãƒ‰ã‚¢ã‹ã‚‰æˆ»ã£ã¦ãã‚‹	åˆæœŸåŒ–
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_clip_after_init
 	_ANIME_DATA	AC_DIR_D,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒhƒA‚©‚ç–ß‚Á‚Ä‚­‚é
+//ä¸»äººå…¬	ãƒ‰ã‚¢ã‹ã‚‰æˆ»ã£ã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_clip_after_move
 	_ANIME_DATA	AC_WALK_D_16F,2
@@ -366,7 +366,7 @@ _ANIME_LABEL anm_player_clip_after_move
 
 
 //--------------------------------------------------------------------
-//ŽR’j@‚Ç‚­
+//å±±ç”·ã€€ã©ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_yamaotoko_dir_up
 	_ANIME_DATA	AC_WALK_L_8F,1
@@ -384,7 +384,7 @@ _ANIME_LABEL anm_yamaotoko_dir_right
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽR’j Œ³‚ÌˆÊ’u‚É
+//å±±ç”· å…ƒã®ä½ç½®ã«
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_yamaotoko_clip_after_dir_up
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -403,7 +403,7 @@ _ANIME_LABEL anm_yamaotoko_clip_after_dir_right
 
 
 //--------------------------------------------------------------------
-//ŽR’j ‰EŒü‚¢‚ÄŒ³‚É–ß‚é
+//å±±ç”· å³å‘ã„ã¦å…ƒã«æˆ»ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_yamaotoko_clip_turn_right
 	_ANIME_DATA	AC_DIR_R,1
@@ -415,12 +415,12 @@ _ANIME_LABEL anm_yamaotoko_clip_turn_down
 
 //-----------------------------------------------------------------------------
 /**
- *		previewŒÄ‚Ño‚µ
+ *		previewå‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 ev_c01r0205_clip_prev_00:
 	_TALK_START
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	0,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -439,7 +439,7 @@ ev_c01r0205_clip_prev_00:
 ev_c01r0205_clip_prev_01:
 	_TALK_START
 
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -458,7 +458,7 @@ ev_c01r0205_clip_prev_01:
 ev_c01r0205_clip_prev_02:
 	_TALK_START
 
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	2,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -478,7 +478,7 @@ ev_c01r0205_clip_prev_02:
 ev_c01r0205_clip_prev_03:
 	_TALK_START
 	
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	3,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -497,7 +497,7 @@ ev_c01r0205_clip_prev_03:
 ev_c01r0205_clip_prev_04:
 	_TALK_START
 	
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	4,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -516,7 +516,7 @@ ev_c01r0205_clip_prev_04:
 ev_c01r0205_clip_prev_05:
 	_TALK_START
 	
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	5,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -535,7 +535,7 @@ ev_c01r0205_clip_prev_05:
 ev_c01r0205_clip_prev_06:
 	_TALK_START
 	
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	6,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -553,7 +553,7 @@ ev_c01r0205_clip_prev_06:
 
 ev_c01r0205_clip_prev_07:
 	_TALK_START
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	7,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -572,7 +572,7 @@ ev_c01r0205_clip_prev_07:
 
 ev_c01r0205_clip_prev_08:
 	_TALK_START
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	8,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -592,7 +592,7 @@ ev_c01r0205_clip_prev_08:
 ev_c01r0205_clip_prev_09:
 	_TALK_START
 	
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	9,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -611,7 +611,7 @@ ev_c01r0205_clip_prev_09:
 ev_c01r0205_clip_prev_10:
 	_TALK_START
 	
-	// ƒZ[ƒuƒf[ƒ^—L–³ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	_CLIP_TVSAVEDATA_CHECK	10,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,clip_prev_none
 
@@ -627,13 +627,13 @@ ev_c01r0205_clip_prev_10:
 	_TALK_END
 	_END
 
-// ƒhƒŒƒXƒAƒbƒvƒf[ƒ^‚ª–³‚¢‚Æ‚«
+// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãŒç„¡ã„ã¨ã
 clip_prev_none:
 	_TALKMSG		msg_c01r0205_clip_gaku
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	_TALK_END		// I‚í‚é
+	_TALK_END		// çµ‚ã‚ã‚‹
 	_END
 
 

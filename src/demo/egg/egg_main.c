@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	egg_main.c
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	goto
- * @date	2006.05.22(ŒŽ)
+ * @date	2006.05.22(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -63,7 +63,7 @@ static BOOL EggMain_DemoSP01(EGG_MAIN_WORK* emwk);
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒ‚ŽÀs
+ * @brief	ãƒ‡ãƒ¢å®Ÿè¡Œ
  *
  * @param	emwk	
  *
@@ -83,7 +83,7 @@ BOOL EggMain_Executed(EGG_MAIN_WORK* emwk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒ‚ƒƒCƒ“
+ * @brief	ãƒ‡ãƒ¢ãƒ¡ã‚¤ãƒ³
  *
  * @param	emwk	
  *
@@ -97,7 +97,7 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 	
 	switch(emwk->seq){
 	case EMD_SEQ_INIT:
-		///< ‰Šú‰»
+		///< åˆæœŸåŒ–
 		EggDisp_BG_ResourceLoad(emwk->sys.bgl, emwk->sys.pfd);
 		EggDisp_SubBG_ResourceLoad(emwk->sys.bgl, emwk->sys.pfd);
 		
@@ -115,7 +115,7 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 		EggPoke_Add(emwk);
 		EggPoke_Vanish(emwk, 1);
 		
-		///< ƒp[ƒeƒBƒNƒ‹
+		///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 		{
 			EGG_PARTICLE_PARAM param;
 			
@@ -127,21 +127,21 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 		break;
 		
 	case EMD_SEQ_FADE_IN:
-		///< ƒtƒF[ƒhƒCƒ“
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		EggDisp_WipeFadeIn();
 		emwk->seq++;
 	
 	case EMD_SEQ_FADE_IN_WAIT:
-		///< ƒtƒF[ƒh‘Ò‚¿
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		if (WIPE_SYS_EndCheck() == TRUE){
-			Snd_Stop();								// ‘S’âŽ~
-			Snd_DataSetByScene( SND_SCENE_EGG, SEQ_SHINKA, 1 );	///< ƒ^ƒ}ƒS›z‰»
+			Snd_Stop();								// å…¨åœæ­¢
+			Snd_DataSetByScene( SND_SCENE_EGG, SEQ_SHINKA, 1 );	///< ã‚¿ãƒžã‚´å­µåŒ–
 			emwk->seq++;
 		}
 		break;
 		
 	case EMD_SEQ_DEMO_1:
-		///< ƒfƒ‚
+		///< ãƒ‡ãƒ¢
 		{
 			BOOL end;
 			
@@ -154,7 +154,7 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 		break;
 		
 	case EMD_SEQ_DEMO_2:
-		///< ƒfƒ‚
+		///< ãƒ‡ãƒ¢
 		{
 			BOOL end;
 			
@@ -167,7 +167,7 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 		break;
 		
 	case EMD_SEQ_DEMO_3:
-		///< ƒfƒ‚
+		///< ãƒ‡ãƒ¢
 		{
 			BOOL end;
 			
@@ -180,7 +180,7 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 		break;
 		
 	case EMD_SEQ_DEMO_4:
-		///< ƒfƒ‚
+		///< ãƒ‡ãƒ¢
 		{
 			BOOL end;
 			
@@ -193,7 +193,7 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 		break;
 		
 	case EMD_SEQ_DEMO_5:
-		///< ƒfƒ‚
+		///< ãƒ‡ãƒ¢
 		{
 			BOOL end;
 			
@@ -217,7 +217,7 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 		break;
 		
 	case EMD_SEQ_DEMO_MSG_1:
-		///< ƒƒbƒZ[ƒW
+		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		if (Snd_PMVoicePlayCheck() != 0){ break; }
 	//	EggPoke_Anm(emwk);
 	//	emwk->sys.msg_index = EggDisp_BMP_MessageSet(&emwk->sys.win[0], 0,
@@ -227,12 +227,12 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 		emwk->seq++;
 			
 	case EMD_SEQ_DEMO_MSG_2:
-		///< ƒƒbƒZ[ƒW
+		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		if (Snd_MePlayCheckBgmPlay() != FALSE){ break; }
 		emwk->seq++;
 				
 	case EMD_SEQ_DEMO_MSG_2_2:
-		///< ƒƒbƒZ[ƒW
+		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		if (GF_MSG_PrintEndCheck(emwk->sys.msg_index) != 0){ break; }
 		
 		emwk->sys.msg_index = EggDisp_BMP_MessageSet(&emwk->sys.win[0], 1,
@@ -241,7 +241,7 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 		emwk->seq++;
 		
 	case EMD_SEQ_DEMO_MSG_3:
-		///< ƒƒbƒZ[ƒW
+		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		if (GF_MSG_PrintEndCheck(emwk->sys.msg_index) != 0){ break; }		
 		if (PokeAnm_IsFinished(emwk->sys.pas, 0) != TRUE){ break; }
 		if (SoftSpriteAnimeEndCheck(emwk->ssp_poke) != FALSE){ break; }
@@ -291,21 +291,21 @@ static BOOL EggMain_DemoMain(EGG_MAIN_WORK* emwk)
 		break;
 	
 	case EMD_SEQ_FADE_OUT:
-		///< ƒtƒF[ƒhƒAƒEƒg
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		EggDisp_WipeFadeOut();
 		emwk->seq++;
 	
 	case EMD_SEQ_FADE_OUT_WAIT:
-		///< ƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 		if (WIPE_SYS_EndCheck() == TRUE){
-			//Snd_BgmStop( SEQ_SHINKA, 0 );			///< ‚Ó‚©‹È‚ðŽ~‚ß‚é
+			//Snd_BgmStop( SEQ_SHINKA, 0 );			///< ãµã‹æ›²ã‚’æ­¢ã‚ã‚‹
 			emwk->seq++;
 		}
 		break;
 	
 	case EMD_SEQ_END:
 	default:
-		///< ‚¨‚µ‚Ü‚¢
+		///< ãŠã—ã¾ã„
 		EggPoke_Del(emwk);
 		EggOAM_Delete(emwk);
 		EggDisp_BMP_WindowDel(&emwk->sys.win[0]);
@@ -329,7 +329,7 @@ static BOOL EggMain_DemoSpMain(EGG_MAIN_WORK* emwk)
 	
 	switch(emwk->seq){
 	case EMD_SEQ_INIT:
-		///< ‰Šú‰»
+		///< åˆæœŸåŒ–
 		EggDisp_BG_ResourceLoad(emwk->sys.bgl, emwk->sys.pfd);
 		EggDisp_SubBG_ResourceLoad(emwk->sys.bgl, emwk->sys.pfd);
 		
@@ -348,7 +348,7 @@ static BOOL EggMain_DemoSpMain(EGG_MAIN_WORK* emwk)
 		EggPoke_Add(emwk);
 		EggPoke_Vanish(emwk, 1);
 		
-		///< ƒp[ƒeƒBƒNƒ‹
+		///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 		{
 			EGG_PARTICLE_PARAM param;
 			
@@ -360,20 +360,20 @@ static BOOL EggMain_DemoSpMain(EGG_MAIN_WORK* emwk)
 		break;
 		
 	case EMD_SEQ_FADE_IN:
-		///< ƒtƒF[ƒhƒCƒ“
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		EggDisp_WipeFadeIn();
 		emwk->seq++;
 	
 	case EMD_SEQ_FADE_IN_WAIT:
-		///< ƒtƒF[ƒh‘Ò‚¿
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		if (WIPE_SYS_EndCheck() == TRUE){
-			Snd_DataSetByScene( SND_SCENE_EGG, SEQ_SHINKA, 1 );	///< ƒ^ƒ}ƒS›z‰»
+			Snd_DataSetByScene( SND_SCENE_EGG, SEQ_SHINKA, 1 );	///< ã‚¿ãƒžã‚´å­µåŒ–
 			emwk->seq++;
 		}
 		break;
 		
 	case EMD_SEQ_DEMO_1:
-		///< ƒfƒ‚
+		///< ãƒ‡ãƒ¢
 		{
 			BOOL end;
 			
@@ -404,7 +404,7 @@ static BOOL EggMain_DemoSpMain(EGG_MAIN_WORK* emwk)
 		break;
 		
 	case EMD_SEQ_DEMO_MSG_1:
-		///< ƒƒbƒZ[ƒW
+		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		if (Snd_PMVoicePlayCheck() != 0){ break; }
 	//	EggPoke_Anm(emwk);
 	//	emwk->sys.msg_index = EggDisp_BMP_MessageSet(&emwk->sys.win[0], 0,
@@ -414,13 +414,13 @@ static BOOL EggMain_DemoSpMain(EGG_MAIN_WORK* emwk)
 		emwk->seq++;
 			
 	case EMD_SEQ_DEMO_MSG_2:
-		///< ƒƒbƒZ[ƒW
+		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		if (Snd_MePlayCheckBgmPlay() != FALSE){ break; }
 		
 		emwk->seq++;
 		
 	case EMD_SEQ_DEMO_MSG_2_2:
-		///< ƒƒbƒZ[ƒW
+		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		if (GF_MSG_PrintEndCheck(emwk->sys.msg_index) != 0){ break; }
 		
 		emwk->sys.msg_index = EggDisp_BMP_MessageSet(&emwk->sys.win[0], 1,
@@ -429,7 +429,7 @@ static BOOL EggMain_DemoSpMain(EGG_MAIN_WORK* emwk)
 		emwk->seq++;
 			
 	case EMD_SEQ_DEMO_MSG_3:
-		///< ƒƒbƒZ[ƒW
+		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		if (GF_MSG_PrintEndCheck(emwk->sys.msg_index) != 0){ break; }		
 		if (PokeAnm_IsFinished(emwk->sys.pas, 0) != TRUE){ break; }
 		if (SoftSpriteAnimeEndCheck(emwk->ssp_poke) != FALSE){ break; }
@@ -479,21 +479,21 @@ static BOOL EggMain_DemoSpMain(EGG_MAIN_WORK* emwk)
 		break;
 	
 	case EMD_SEQ_FADE_OUT:
-		///< ƒtƒF[ƒhƒAƒEƒg
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		EggDisp_WipeFadeOut();
 		emwk->seq++;
 	
 	case EMD_SEQ_FADE_OUT_WAIT:
-		///< ƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 		if (WIPE_SYS_EndCheck() == TRUE){
-			//Snd_BgmStop( SEQ_SHINKA, 0 );			// ‚Ó‚©‹È‚ðŽ~‚ß‚é
+			//Snd_BgmStop( SEQ_SHINKA, 0 );			// ãµã‹æ›²ã‚’æ­¢ã‚ã‚‹
 			emwk->seq++;
 		}
 		break;
 	
 	case EMD_SEQ_END:
 	default:
-		///< ‚¨‚µ‚Ü‚¢
+		///< ãŠã—ã¾ã„
 		EggPoke_Del(emwk);
 		EggOAM_Delete(emwk);
 		EggDisp_BMP_WindowDel(&emwk->sys.win[0]);
@@ -514,7 +514,7 @@ static BOOL EggMain_DemoSpMain(EGG_MAIN_WORK* emwk)
 
 
 
-///< ’Êí‚½‚Ü‚²
+///< é€šå¸¸ãŸã¾ã”
 static BOOL EggMain_Demo01(EGG_MAIN_WORK* emwk)
 {
 	switch(emwk->sub_seq){
@@ -541,7 +541,7 @@ static BOOL EggMain_Demo01(EGG_MAIN_WORK* emwk)
 	return TRUE;
 }
 
-///< ƒsƒLƒsƒL‚Ð‚ÑŠ„‚ê
+///< ãƒ”ã‚­ãƒ”ã‚­ã²ã³å‰²ã‚Œ
 static BOOL EggMain_Demo02(EGG_MAIN_WORK* emwk)
 {
 	switch(emwk->sub_seq){
@@ -590,7 +590,7 @@ static BOOL EggMain_Demo02(EGG_MAIN_WORK* emwk)
 	return TRUE;
 }
 
-///< Šk¬
+///< æ®»å°
 static BOOL EggMain_Demo03(EGG_MAIN_WORK* emwk)
 {
 	switch(emwk->sub_seq){
@@ -630,7 +630,7 @@ static BOOL EggMain_Demo03(EGG_MAIN_WORK* emwk)
 }
 
 
-///< Šk’†
+///< æ®»ä¸­
 static BOOL EggMain_Demo04(EGG_MAIN_WORK* emwk)
 {
 	switch(emwk->sub_seq){
@@ -671,7 +671,7 @@ static BOOL EggMain_Demo04(EGG_MAIN_WORK* emwk)
 	return TRUE;
 }
 
-///< ‚Ú‚¬‚á[‚ñ
+///< ã¼ãŽã‚ƒãƒ¼ã‚“
 static BOOL EggMain_Demo05(EGG_MAIN_WORK* emwk)
 {
 	switch(emwk->sub_seq){

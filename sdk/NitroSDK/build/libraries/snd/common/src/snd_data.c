@@ -12,10 +12,10 @@
 
   $Log: snd_data.c,v $
   Revision 1.2  2005/04/13 00:13:29  ida
-  著作権年次表記を更新
+  闡嶺ｽ懈ｨｩ蟷ｴ谺｡陦ｨ險倥ｒ譖ｴ譁ｰ
 
   Revision 1.1  2005/04/12 06:16:12  ida
-  SNDをNITRO-SDKへ移設
+  SND繧誰ITRO-SDK縺ｸ遘ｻ險ｭ
 
   Revision 1.3  2004/07/16 06:42:49  ida
   fix Project name

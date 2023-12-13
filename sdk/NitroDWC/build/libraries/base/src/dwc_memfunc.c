@@ -12,19 +12,19 @@
 
   $Log: dwc_memfunc.c,v $
   Revision 1.5  2007/08/24 10:05:07  takayama
-  ReallocŠÖ”‚ÅV‚µ‚­æ“¾‚µ‚½ƒTƒCƒY•ª“Ç‚İo‚µ‚Ä‚¢‚½–â‘è‚ğC³B
+  Reallocé–¢æ•°ã§æ–°ã—ãå–å¾—ã—ãŸã‚µã‚¤ã‚ºåˆ†èª­ã¿å‡ºã—ã¦ã„ãŸå•é¡Œã‚’ä¿®æ­£ã€‚
 
   Revision 1.4  2006/12/28 23:48:43  takayama
-  NULLƒ|ƒCƒ“ƒ^‚Ì‰ğ•ú‚ğªŒ³‚Å—}‚¦‚é‚æ‚¤‚É•ÏXBrealloc‚Ì•”•ª‚Í‚»‚Ì‚Ü‚ÜB
+  NULLãƒã‚¤ãƒ³ã‚¿ã®è§£æ”¾ã‚’æ ¹å…ƒã§æŠ‘ãˆã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚reallocã®éƒ¨åˆ†ã¯ãã®ã¾ã¾ã€‚
 
   Revision 1.3  2006/11/07 06:13:24  nakata
-  NULLƒ|ƒCƒ“ƒ^‚ğŠJ•ú‚µ‚æ‚¤‚Æ‚µ‚½ê‡‚ÍGameSpySDK‚©‚ç‚ÌFree‚ÉŒÀ‚Á‚Ä–³‹‚·‚é‚æ‚¤‚ÉC³
+  NULLãƒã‚¤ãƒ³ã‚¿ã‚’é–‹æ”¾ã—ã‚ˆã†ã¨ã—ãŸå ´åˆã¯GameSpySDKã‹ã‚‰ã®Freeã«é™ã£ã¦ç„¡è¦–ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.2  2005/09/17 07:42:15  sasakit
-  realloc‚Åƒƒ‚ƒŠƒTƒCƒY‚ğ¬‚³‚­‚·‚é‚Æ‚«‚Ì–â‘è‚ğC³B
+  reallocã§ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’å°ã•ãã™ã‚‹ã¨ãã®å•é¡Œã‚’ä¿®æ­£ã€‚
 
   Revision 1.1  2005/08/19 06:32:35  sasakit
-  ƒtƒ@ƒCƒ‹‚Ì’Ç‰ÁB
+  ãƒ•ã‚¡ã‚¤ãƒ«ã®è¿½åŠ ã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -35,15 +35,15 @@
   structs
   ----------------------------------------------------------------------*/
 
-// ƒƒ‚ƒŠ[Šm•Û‚µ‚½‚Æ‚«‚Ìƒwƒbƒ_
+// ãƒ¡ãƒ¢ãƒªãƒ¼ç¢ºä¿ã—ãŸã¨ãã®ãƒ˜ãƒƒãƒ€
 typedef struct _tagDWCiAllocHeader
 {
 
-    u32		signature;	// ¯•Êq
+    u32		signature;	// è­˜åˆ¥å­
 
-    u32		size;		// Šm•Û‚µ‚½ƒTƒCƒY
+    u32		size;		// ç¢ºä¿ã—ãŸã‚µã‚¤ã‚º
 
-    u32		dummy[6];	// ƒ_ƒ~[(ƒwƒbƒ_‚ÌƒTƒCƒY‚ğ32ƒoƒCƒg‚É‚·‚é‚½‚ß)
+    u32		dummy[6];	// ãƒ€ãƒŸãƒ¼(ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚ºã‚’32ãƒã‚¤ãƒˆã«ã™ã‚‹ãŸã‚)
 
 }
 DWCiAllocHeader;
@@ -138,7 +138,7 @@ DWC_Free( DWCAllocType name,
         return;
     }
 
-    // æ“ª‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+    // å…ˆé ­ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
     ptr = DWCi_GetAllocateHeader(ptr);
 
     s_free( name, ptr, ((DWCiAllocHeader*)ptr)->size + sizeof(DWCiAllocHeader) );
@@ -200,6 +200,6 @@ DWCi_GsFree    (void* ptr)
 void*
 DWCi_GsMemalign(size_t boundary, size_t size)
 {
-    // Š®‘S‚Å‚Í‚È‚¢‚ªA•K—v\•ª‚Èd—l‚Æl‚¦‚ç‚ê‚éB
+    // å®Œå…¨ã§ã¯ãªã„ãŒã€å¿…è¦ååˆ†ãªä»•æ§˜ã¨è€ƒãˆã‚‰ã‚Œã‚‹ã€‚
     return DWC_AllocEx( DWC_ALLOCTYPE_GS, (u32)size, (int)boundary );
 }

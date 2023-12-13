@@ -14,8 +14,8 @@
  *---------------------------------------------------------------------------*/
 
 //
-// –{ƒ‚ƒWƒ…[ƒ‹‚ÍAg2d_renderer.c “à‚Åg—p‚³‚ê‚é MtrixStack‚ğÀ‘•‚µ‚Ü‚·B
-// –{—ˆA“¯ˆêƒtƒ@ƒCƒ‹“à‚É‹Lq‚·‚é‚×‚«‚à‚Ì‚Å‚·‚ªAƒR[ƒh•Ûç«‚Ì‚½‚ß‚É•ªŠ„‚µ‚Ä‚¢‚Ü‚·B
+// æœ¬ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ã€g2d_renderer.c å†…ã§ä½¿ç”¨ã•ã‚Œã‚‹ MtrixStackã‚’å®Ÿè£…ã—ã¾ã™ã€‚
+// æœ¬æ¥ã€åŒä¸€ãƒ•ã‚¡ã‚¤ãƒ«å†…ã«è¨˜è¿°ã™ã‚‹ã¹ãã‚‚ã®ã§ã™ãŒã€ã‚³ãƒ¼ãƒ‰ä¿å®ˆæ€§ã®ãŸã‚ã«åˆ†å‰²ã—ã¦ã„ã¾ã™ã€‚
 // 
 //
 
@@ -49,12 +49,12 @@ static u16            firstSRTransformedMtxIdx_   = G2Di_RENDERER_MTX_SR_NONE;
 
 
 //------------------------------------------------------------------------------
-// SR •ÏŠ·‚ğg—p‚·‚é‚©H
-// SR •ÏŠ·‚ğg—p‚µ‚È‚¢ê‡‚Éˆ—‚ÌŒø—¦‰»‚ğs‚¢‚Ü‚·B
+// SR å¤‰æ›ã‚’ä½¿ç”¨ã™ã‚‹ã‹ï¼Ÿ
+// SR å¤‰æ›ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã«å‡¦ç†ã®åŠ¹ç‡åŒ–ã‚’è¡Œã„ã¾ã™ã€‚
 // 
-// SR •ÏŠ·‚ğg—p‚µ‚È‚¢ê‡‚ÍA•½sˆÚ“®•ÏŠ·‚ª‰ÁŒ¸Z‚Ì‚İ‚Å\•ª‚Å‚·B
-// ‚Ü‚½A2DHW—p‚Ìs—ñƒXƒ^ƒbƒN‚Ìl—¶‚à•K—v‚ ‚è‚Ü‚¹‚ñB
-//ibDonotUseSRTransform == TRUE‚Å‚ÍAmtxStackFor2DHW_‚ÍXV‚³‚ê‚Ü‚¹‚ñj
+// SR å¤‰æ›ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã¯ã€å¹³è¡Œç§»å‹•å¤‰æ›ãŒåŠ æ¸›ç®—ã®ã¿ã§ååˆ†ã§ã™ã€‚
+// ã¾ãŸã€2DHWç”¨ã®è¡Œåˆ—ã‚¹ã‚¿ãƒƒã‚¯ã®è€ƒæ…®ã‚‚å¿…è¦ã‚ã‚Šã¾ã›ã‚“ã€‚
+//ï¼ˆbDonotUseSRTransform == TRUEã§ã¯ã€mtxStackFor2DHW_ã¯æ›´æ–°ã•ã‚Œã¾ã›ã‚“ï¼‰
 //
 static BOOL           bDonotUseSRTransform = FALSE;
 static MtxFx32        mtxI_                = { FX32_ONE, 0, 0, FX32_ONE, 0, 0 };
@@ -83,13 +83,13 @@ static u16            NNSi_G2dGetMtxStackPos();
 static void           NNSi_G2dSetRndMtxStackSRTransformed();
 static BOOL           NNSi_G2dIsRndCurrentMtxSRTransformed();
 
-// ƒ‚ƒWƒ…[ƒ‹“à•”
-static void RestoreRndMtxStackStateNotSR_();// “à•”
+// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å†…éƒ¨
+static void RestoreRndMtxStackStateNotSR_();// å†…éƒ¨
 static void CheckIfRndCurrentMtxIsSRTransformed_();
 
 //------------------------------------------------------------------------------
-// Renderer“à•” ‚Ì ó‘Ô‚ğ SR affine •ÏŠ· ‚³‚ê‚Ä‚¢‚È‚¢ó‘Ô ‚É İ’è‚µ‚Ü‚·B
-// CheckIfRndCurrentMtxIsSRTransformed_() ‚É‚æ‚Á‚ÄŒÄ‚Î‚ê‚Ü‚·
+// Rendererå†…éƒ¨ ã® çŠ¶æ…‹ã‚’ SR affine å¤‰æ› ã•ã‚Œã¦ã„ãªã„çŠ¶æ…‹ ã« è¨­å®šã—ã¾ã™ã€‚
+// CheckIfRndCurrentMtxIsSRTransformed_() ã«ã‚ˆã£ã¦å‘¼ã°ã‚Œã¾ã™
 // 
 NNS_G2D_INLINE void RestoreRndMtxStackStateNotSR_()
 {
@@ -97,7 +97,7 @@ NNS_G2D_INLINE void RestoreRndMtxStackStateNotSR_()
 }
 
 //------------------------------------------------------------------------------
-// ƒXƒ^ƒbƒN‚Ì‰Šú‰»
+// ã‚¹ã‚¿ãƒƒã‚¯ã®åˆæœŸåŒ–
 NNS_G2D_INLINE void NNSi_G2dInitRndMtxStack( )
 {
     stackPos_                 = 0;
@@ -105,8 +105,8 @@ NNS_G2D_INLINE void NNSi_G2dInitRndMtxStack( )
 }
 
 //------------------------------------------------------------------------------
-// SR •ÏŠ·‚ğg—p‚·‚é‚©H
-// SR •ÏŠ·‚ğg—p‚µ‚È‚¢ê‡‚Éˆ—‚ÌŒø—¦‰»‚ğs‚¢‚Ü‚·B
+// SR å¤‰æ›ã‚’ä½¿ç”¨ã™ã‚‹ã‹ï¼Ÿ
+// SR å¤‰æ›ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã«å‡¦ç†ã®åŠ¹ç‡åŒ–ã‚’è¡Œã„ã¾ã™ã€‚
 // 
 NNS_G2D_INLINE void NNSi_G2dSetRndMtxStackSRTransformEnableFlag( BOOL bEnable )
 {
@@ -116,10 +116,10 @@ NNS_G2D_INLINE void NNSi_G2dSetRndMtxStackSRTransformEnableFlag( BOOL bEnable )
 
 
 //------------------------------------------------------------------------------
-// Renderer“à•” ‚Ì ó‘Ô‚ğ SR affine •ÏŠ· ‚³‚ê‚Ä‚¢‚éó‘Ô ‚É İ’è‚µ‚Ü‚·B
-// NNS_G2dScale() NNS_G2dRotZ() ‚©‚çŒÄ‚Î‚ê‚Ü‚·B
+// Rendererå†…éƒ¨ ã® çŠ¶æ…‹ã‚’ SR affine å¤‰æ› ã•ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ ã« è¨­å®šã—ã¾ã™ã€‚
+// NNS_G2dScale() NNS_G2dRotZ() ã‹ã‚‰å‘¼ã°ã‚Œã¾ã™ã€‚
 //
-// SR affine •ÏŠ· ‚³‚ê‚Ä‚¢‚éó‘Ô ‚ÉŒÄ‚Ño‚·‚±‚Æ‚Í•s³‚Å‚·
+// SR affine å¤‰æ› ã•ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ æ™‚ã«å‘¼ã³å‡ºã™ã“ã¨ã¯ä¸æ­£ã§ã™
 //
 NNS_G2D_INLINE void NNSi_G2dSetRndMtxStackSRTransformed()
 {
@@ -134,8 +134,8 @@ NNS_G2D_INLINE void NNSi_G2dSetRndMtxStackSRTransformed()
 }
 
 //------------------------------------------------------------------------------
-// ƒJƒŒƒ“ƒgs—ñ‚ª SR •ÏŠ·‚³‚ê‚Ä‚¢‚é‚©’²¸‚µ‚Ü‚·
-// SR •ÏŠ· ‚³‚ê‚Ä‚¢‚éê‡‚Í OBJ ‚ğ Affine •ÏŠ· ‚·‚é•K—v‚ª‚ ‚è‚Ü‚· ( 2D Graphics Engine )
+// ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ãŒ SR å¤‰æ›ã•ã‚Œã¦ã„ã‚‹ã‹èª¿æŸ»ã—ã¾ã™
+// SR å¤‰æ› ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ OBJ ã‚’ Affine å¤‰æ› ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ ( 2D Graphics Engine )
 //
 //
 NNS_G2D_INLINE BOOL NNSi_G2dIsRndCurrentMtxSRTransformed()
@@ -146,18 +146,18 @@ NNS_G2D_INLINE BOOL NNSi_G2dIsRndCurrentMtxSRTransformed()
 
 //------------------------------------------------------------------------------
 // 
-// NNS_G2dPopMtx() “à•”‚ÅŒÄ‚Ño‚³‚ê‚Ü‚·B
-// NNS_G2dPopMtx() Œã‚Ì ƒJƒŒƒ“ƒgs—ñ‚ª SR affine •ÏŠ· ‚³‚ê‚Ä‚¢‚é‚©’²¸‚µ‚Ü‚·B
-// SR affine •ÏŠ· ‚³‚ê‚Ä‚¢‚È‚¢ó‘Ô‚Æ”»’è‚³‚ê‚½ê‡‚Í Renderer“à•” ‚Ì ó‘Ô‚ğ XV‚µ‚Ü‚·B
+// NNS_G2dPopMtx() å†…éƒ¨ã§å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
+// NNS_G2dPopMtx() å¾Œã® ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ãŒ SR affine å¤‰æ› ã•ã‚Œã¦ã„ã‚‹ã‹èª¿æŸ»ã—ã¾ã™ã€‚
+// SR affine å¤‰æ› ã•ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã¨åˆ¤å®šã•ã‚ŒãŸå ´åˆã¯ Rendererå†…éƒ¨ ã® çŠ¶æ…‹ã‚’ æ›´æ–°ã—ã¾ã™ã€‚
 //
 NNS_G2D_INLINE void CheckIfRndCurrentMtxIsSRTransformed_()
 {
     if( NNSi_G2dIsRndCurrentMtxSRTransformed() )
     {
         //
-        // s—ñƒXƒ^ƒbƒN‚ÌŒ»İ‚ÌˆÊ’u‚ğæ“¾‚µ‚Ü‚·
-        // Œ»İ‚ÌˆÊ’u‚ªÅ‰‚É SR •ÏŠ·‚³‚ê‚½ˆÊ’u‚æ‚è‚à ‘O‚È‚ç‚ÎA
-        // NNS_G2dPopMtx() Œã‚Ì ƒJƒŒƒ“ƒgs—ñ ‚Í  SR •ÏŠ·‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚İ‚È‚¹‚Ü‚·
+        // è¡Œåˆ—ã‚¹ã‚¿ãƒƒã‚¯ã®ç¾åœ¨ã®ä½ç½®ã‚’å–å¾—ã—ã¾ã™
+        // ç¾åœ¨ã®ä½ç½®ãŒæœ€åˆã« SR å¤‰æ›ã•ã‚ŒãŸä½ç½®ã‚ˆã‚Šã‚‚ å‰ãªã‚‰ã°ã€
+        // NNS_G2dPopMtx() å¾Œã® ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ— ã¯  SR å¤‰æ›ã•ã‚Œã¦ã„ãªã„ã¨ã¿ãªã›ã¾ã™
         // 
         const u16 currentIdx = NNSi_G2dGetMtxStackPos();
         {
@@ -221,9 +221,9 @@ NNS_G2D_INLINE void NNSi_G2dMtxPop()
     {
         stackPos_--;
         //
-        // s—ñƒXƒ^ƒbƒN‚ÌŒ»İ‚ÌˆÊ’u‚ğæ“¾‚µ‚Ü‚·
-        // Œ»İ‚ÌˆÊ’u‚ªÅ‰‚É SR •ÏŠ·‚³‚ê‚½ˆÊ’u‚æ‚è‚à ‘O‚È‚ç‚ÎA
-        // NNS_G2dPopMtx() Œã‚Ì ƒJƒŒƒ“ƒgs—ñ ‚Í  SR •ÏŠ·‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚İ‚È‚¹‚Ü‚·
+        // è¡Œåˆ—ã‚¹ã‚¿ãƒƒã‚¯ã®ç¾åœ¨ã®ä½ç½®ã‚’å–å¾—ã—ã¾ã™
+        // ç¾åœ¨ã®ä½ç½®ãŒæœ€åˆã« SR å¤‰æ›ã•ã‚ŒãŸä½ç½®ã‚ˆã‚Šã‚‚ å‰ãªã‚‰ã°ã€
+        // NNS_G2dPopMtx() å¾Œã® ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ— ã¯  SR å¤‰æ›ã•ã‚Œã¦ã„ãªã„ã¨ã¿ãªã›ã¾ã™
         // 
         {
             if( firstSRTransformedMtxIdx_ > stackPos_ )
@@ -260,8 +260,8 @@ NNS_G2D_INLINE void NNSi_G2dTranslate( fx32 x, fx32 y, fx32 z )
 }
 
 //------------------------------------------------------------------------------
-// •½sˆÚ“®‚ğİ’è‚·‚é
-// push pop ‚Ì g—p‚ğ‰ñ”ğ‚·‚é‚±‚Æ‚ª‰Â”\‚Æ‚È‚é
+// å¹³è¡Œç§»å‹•ã‚’è¨­å®šã™ã‚‹
+// push pop ã® ä½¿ç”¨ã‚’å›é¿ã™ã‚‹ã“ã¨ãŒå¯èƒ½ã¨ãªã‚‹
 NNS_G2D_INLINE void NNSi_G2dSetTrans( fx32 x, fx32 y, fx32 z )
 {
     mtxStack_[stackPos_]._20 = x;
@@ -366,7 +366,7 @@ NNS_G2D_INLINE fx32 NNSi_G2dGetCurrentZ()
 }
 
 //------------------------------------------------------------------------------
-// Œ»İ‚ÌMtxStack‚ÌˆÊ’u‚ğŠ“¾‚µ‚Ü‚·
+// ç¾åœ¨ã®MtxStackã®ä½ç½®ã‚’æ‰€å¾—ã—ã¾ã™
 NNS_G2D_INLINE u16 NNSi_G2dGetMtxStackPos( )
 {
     // return (u16)(( (u32)pMtxCurr - (u32)&mtxStack_[0] ) / sizeof( MtxFx32 ) );

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_219.s
- *@brief	�퓬�V�[�P���X
- *			���΂ޒǉ����ʃV�[�P���X
+ *@brief	戦闘シーケンス
+ *			ついばむ追加効果シーケンス
  *@author	HisashiSogabe
  *@data		2006.03.02
  *
@@ -22,7 +22,7 @@ SUB_219:
 //	PSP_VALUE		VAL_SET,SIDE_DEFENCE,ID_PSP_item,0
 	KILL_ITEM		SIDE_DEFENCE
 	VALUE_WORK		VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_ATTACK_CLIENT
-	//���ʂ̂Ȃ��؂̎��́A���΂ނ����ŏI��
+	//効果のない木の実は、ついばむだけで終了
 	IF				IF_FLAG_EQ,BUF_PARA_TEMP_WORK,0,SUB_219_END
 	GOSUB_WORK		BUF_PARA_TEMP_WORK
 SUB_219_END:

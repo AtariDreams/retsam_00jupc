@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		comm_bct_command.c
- *	@brief		�o�P�b�g�~�j�Q�[���@�ʐM�R�}���h
+ *	@brief		バケットミニゲーム　通信コマンド
  *	@author		tomoya takahashi
  *	@data		2007.06.20
  *
@@ -18,57 +18,57 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�R�[�f�B���O�K��
- *		���֐���
- *				�P�����ڂ͑啶������ȍ~�͏������ɂ���
- *		���ϐ���
- *				�E�ϐ�����
- *						const�ɂ� c_ ��t����
- *						static�ɂ� s_ ��t����
- *						�|�C���^�ɂ� p_ ��t����
- *						�S�č��킳��� csp_ �ƂȂ�
- *				�E�O���[�o���ϐ�
- *						�P�����ڂ͑啶��
- *				�E�֐����ϐ�
- *						�������Ɓh�Q�h�Ɛ������g�p���� �֐��̈���������Ɠ���
+ *					コーディング規約
+ *		●関数名
+ *				１文字目は大文字それ以降は小文字にする
+ *		●変数名
+ *				・変数共通
+ *						constには c_ を付ける
+ *						staticには s_ を付ける
+ *						ポインタには p_ を付ける
+ *						全て合わさると csp_ となる
+ *				・グローバル変数
+ *						１文字目は大文字
+ *				・関数内変数
+ *						小文字と”＿”と数字を使用する 関数の引数もこれと同じ
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 
-// �Ή�����R�[���o�b�N�֐�
+// 対応するコールバック関数
 static const CommPacketTbl _CommBucketTbl[] = {
 	//-------------------------------------
-	//�@�Q�[���p
+	//　ゲーム用
 	//=====================================
-	{ CommBCTGameStart, CommBCTGetZeroSize, NULL },			///< �ʐM�J�n
-	{ CommBCTGameEnd, CommBCTGetZeroSize, NULL },			///< �ʐM�I��
-	{ CommBCTNuts, CommBCTGetNutsSize, NULL },				///< �؂̎��ʐM
-	{ CommBCTScore, CommBCTGetScoreSize, NULL },			///< ���_�ʐM
-	{ CommBCTAllScore, CommBCTGetAllScoreSize, NULL },		///< �݂�Ȃ̓��_�ʐM
-	{ CommBCTGameDataIdx, CommBCTGetGameDataIdxSize, NULL },///< �Q�[�����x���̑��M		�e�[���q
-	{ CommBCTMiddleScore, CommBCTGetScoreSize, NULL },		///< �r���̎����̓��_				�q�[���q
-	{ CommBCTMiddleScoreOk, CommBCTGetZeroSize, NULL },		///< �S���̓��_������		�e�[���q
+	{ CommBCTGameStart, CommBCTGetZeroSize, NULL },			///< 通信開始
+	{ CommBCTGameEnd, CommBCTGetZeroSize, NULL },			///< 通信終了
+	{ CommBCTNuts, CommBCTGetNutsSize, NULL },				///< 木の実通信
+	{ CommBCTScore, CommBCTGetScoreSize, NULL },			///< 得点通信
+	{ CommBCTAllScore, CommBCTGetAllScoreSize, NULL },		///< みんなの得点通信
+	{ CommBCTGameDataIdx, CommBCTGetGameDataIdxSize, NULL },///< ゲームレベルの送信		親ー＞子
+	{ CommBCTMiddleScore, CommBCTGetScoreSize, NULL },		///< 途中の自分の得点				子ー＞子
+	{ CommBCTMiddleScoreOk, CommBCTGetZeroSize, NULL },		///< 全員の得点がきた		親ー＞子
 };
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		�R�}���h�e�[�u�����擾
+ *	@brief		コマンドテーブルを取得
  */
 //-----------------------------------------------------------------------------
 const CommPacketTbl* BCT_CommCommandTclGet( void )
@@ -78,7 +78,7 @@ const CommPacketTbl* BCT_CommCommandTclGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�R�}���h�e�[�u���v�f�����擾
+ *	@brief	コマンドテーブル要素数を取得
  */
 //-----------------------------------------------------------------------------
 int BCT_CommCommandTblNumGet( void )

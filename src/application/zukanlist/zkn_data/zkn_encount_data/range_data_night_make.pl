@@ -1,14 +1,14 @@
 ##-----------------------------------------------------------------------------
 #
 #		
-#			}ŠÓƒf[ƒ^ƒRƒ“ƒo[ƒ^
+#			å›³é‘‘ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ã‚¿
 #
 #
 ##-----------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
 #
-#	’è”’è‹`
+#	å®šæ•°å®šç¾©
 #
 #------------------------------------------------------------------------------
 $DEF_FLD_GRID_SIZE_X = 30;
@@ -17,152 +17,152 @@ $DEF_FLD_AREA_DATA_ARRY_OUTSIZE	= 32;
 
 
 
-#ƒOƒ[ƒoƒ‹•Ï”’è‹`
+#ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®šç¾©
 $CONV_FILE_NAME = undef;
 #------------------------------------------------------------------------------
 #
-#	’è”ƒf[ƒ^
+#	å®šæ•°ãƒ‡ãƒ¼ã‚¿
 #
 #------------------------------------------------------------------------------
-$ZONE_ID[ 0 ] = undef;		#ƒ][ƒ“ID
-$MONS_ID[ 0 ] = undef;		#ƒ‚ƒ“ƒXƒ^[NO
+$ZONE_ID[ 0 ] = undef;		#ã‚¾ãƒ¼ãƒ³ID
+$MONS_ID[ 0 ] = undef;		#ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼NO
 
 #------------------------------------------------------------------------------
 #
-#			ƒtƒ@ƒCƒ‹ƒf[ƒ^
+#			ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
 #
 #------------------------------------------------------------------------------
-$DAN_FILE[ 0 ] = undef;		#ƒ_ƒ“ƒWƒ‡ƒ“ƒf[ƒ^ƒtƒ@ƒCƒ‹
-$FLD_FILE[ 0 ] = undef;		#ƒtƒB[ƒ‹ƒhƒf[ƒ^ƒtƒ@ƒCƒ‹
-$ENC_FILE[ 0 ] = undef;		#ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒtƒ@ƒCƒ‹
+$DAN_FILE[ 0 ] = undef;		#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«
+$FLD_FILE[ 0 ] = undef;		#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«
+$ENC_FILE[ 0 ] = undef;		#ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«
 
 #------------------------------------------------------------------------------
 #
-#			•ª•zƒf[ƒ^
+#			åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿
 #
-#			’©’‹”Ó
-#	(,,,‹æØ‚è‚Åƒf[ƒ^‚ğ“ü‚ê‚é)
+#			æœæ˜¼æ™©
+#	(,,,åŒºåˆ‡ã‚Šã§ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹)
 #------------------------------------------------------------------------------
-$RANGE_DAN_MO[ 0 ] = undef;	#Å‘å”‚Íƒ‚ƒ“ƒXƒ^[”			Â•\¦
-$RANGE_DAN_NU[ 0 ] = undef;	#Å‘å”‚Íƒ‚ƒ“ƒXƒ^[”		
-$RANGE_DAN_NI[ 0 ] = undef;	#Å‘å”‚Íƒ‚ƒ“ƒXƒ^[”		
-$RANGE_FLD_MO[ 0 ] = undef;	#Å‘å”‚Íƒ‚ƒ“ƒXƒ^[”
-$RANGE_FLD_NU[ 0 ] = undef;	#Å‘å”‚Íƒ‚ƒ“ƒXƒ^[”
-$RANGE_FLD_NI[ 0 ] = undef;	#Å‘å”‚Íƒ‚ƒ“ƒXƒ^[”
-$RANGE_DAN_SPECIAL[ 0 ] = undef;	#Å‘å”‚Íƒ‚ƒ“ƒXƒ^[”	Ô•\¦
-$RANGE_FLD_SPECIAL[ 0 ] = undef;	#Å‘å”‚Íƒ‚ƒ“ƒXƒ^[”
-
-#------------------------------------------------------------------------------
-#
-#			ƒ_ƒ“ƒWƒ‡ƒ“ƒf[ƒ^
-#			Å‘å”‚Íƒ_ƒ“ƒWƒ‡ƒ“•ª•zID”
-#------------------------------------------------------------------------------
-$DAN_ID[ 0 ] = undef;				#ƒ_ƒ“ƒWƒ‡ƒ“•ª•zIDidefine–¼j
-$DAN_ZONEID[ 0 ] = undef;			#‘Î‰‚·‚éƒ][ƒ“IDidefine–¼j
-$DAN_GRID_X[ 0 ] = undef;			#ƒOƒŠƒbƒhÀ•W			
-$DAN_GRID_Y[ 0 ] = undef;			#ƒOƒŠƒbƒhÀ•W
-$DAN_TOKUSYUOAM[ 0 ] = undef;		#“ÁêOAM‚ğg—p‚·‚é‚©
-
-@DAN_TOKUSYUOAM_ZONEID = ( "ZONE_ID_D05" );	#“ÁêOAM‚Ìƒ][ƒ“ID
-
+$RANGE_DAN_MO[ 0 ] = undef;	#æœ€å¤§æ•°ã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°			é’è¡¨ç¤º
+$RANGE_DAN_NU[ 0 ] = undef;	#æœ€å¤§æ•°ã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°		
+$RANGE_DAN_NI[ 0 ] = undef;	#æœ€å¤§æ•°ã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°		
+$RANGE_FLD_MO[ 0 ] = undef;	#æœ€å¤§æ•°ã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°
+$RANGE_FLD_NU[ 0 ] = undef;	#æœ€å¤§æ•°ã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°
+$RANGE_FLD_NI[ 0 ] = undef;	#æœ€å¤§æ•°ã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°
+$RANGE_DAN_SPECIAL[ 0 ] = undef;	#æœ€å¤§æ•°ã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°	èµ¤è¡¨ç¤º
+$RANGE_FLD_SPECIAL[ 0 ] = undef;	#æœ€å¤§æ•°ã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°
 
 #------------------------------------------------------------------------------
 #
-#			‰B‚µƒ}ƒbƒv‚²‚Æ‚Ì@•ª•zƒf[ƒ^
+#			ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+#			æœ€å¤§æ•°ã¯ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDæ•°
+#------------------------------------------------------------------------------
+$DAN_ID[ 0 ] = undef;				#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDï¼ˆdefineåï¼‰
+$DAN_ZONEID[ 0 ] = undef;			#å¯¾å¿œã™ã‚‹ã‚¾ãƒ¼ãƒ³IDï¼ˆdefineåï¼‰
+$DAN_GRID_X[ 0 ] = undef;			#ã‚°ãƒªãƒƒãƒ‰åº§æ¨™			
+$DAN_GRID_Y[ 0 ] = undef;			#ã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+$DAN_TOKUSYUOAM[ 0 ] = undef;		#ç‰¹æ®ŠOAMã‚’ä½¿ç”¨ã™ã‚‹ã‹
+
+@DAN_TOKUSYUOAM_ZONEID = ( "ZONE_ID_D05" );	#ç‰¹æ®ŠOAMã®ã‚¾ãƒ¼ãƒ³ID
+
+
+#------------------------------------------------------------------------------
+#
+#			éš ã—ãƒãƒƒãƒ—ã”ã¨ã®ã€€åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿
 #			
 #------------------------------------------------------------------------------
-@HIDEMAP_ZONEID = ( "ZONEID_D15", "ZONEID_D18", "ZONEID_D30", "ZONEID_L04" );	#‰B‚µƒ}ƒbƒv
+@HIDEMAP_ZONEID = ( "ZONEID_D15", "ZONEID_D18", "ZONEID_D30", "ZONEID_L04" );	#éš ã—ãƒãƒƒãƒ—
 
 #------------------------------------------------------------------------------
 #
-#			ƒtƒB[ƒ‹ƒhƒf[ƒ^
-#			Å‘å”‚ÍƒtƒB[ƒ‹ƒh•ª•zID”
+#			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+#			æœ€å¤§æ•°ã¯ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDæ•°
 #------------------------------------------------------------------------------
-$FLD_ID[ 0 ] = undef;				#ƒtƒB[ƒ‹ƒh•ª•zIDidefine–¼j
-$FLD_ZONEID[ 0 ] = undef;			#‘Î‰‚·‚éƒ][ƒ“IDidefine–¼j
-$FLD_GRID_X[ 0 ] = undef;			#¶ãƒOƒŠƒbƒhÀ•W
-$FLD_GRID_Y[ 0 ] = undef;			#¶ãƒOƒŠƒbƒhÀ•W
-$FLD_SIZE_X[ 0 ] = undef;			#ƒ}ƒbƒvƒOƒ‰ƒTƒCƒY‚˜
-$FLD_SIZE_Y[ 0 ] = undef;			#ƒ}ƒbƒvƒOƒ‰ƒTƒCƒY‚™
-$FLD_AREA_ARRY[ 0 ] = undef;		#ƒ}ƒbƒvƒOƒ‰ƒf[ƒ^	ã‚Ìx*yƒTƒCƒY‚Ì”z—ñ ƒf[ƒ^‚ğ,‚Å‹æØ‚Á‚Ä“ü‚ê‚é
+$FLD_ID[ 0 ] = undef;				#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDï¼ˆdefineåï¼‰
+$FLD_ZONEID[ 0 ] = undef;			#å¯¾å¿œã™ã‚‹ã‚¾ãƒ¼ãƒ³IDï¼ˆdefineåï¼‰
+$FLD_GRID_X[ 0 ] = undef;			#å·¦ä¸Šã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+$FLD_GRID_Y[ 0 ] = undef;			#å·¦ä¸Šã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+$FLD_SIZE_X[ 0 ] = undef;			#ãƒãƒƒãƒ—ã‚°ãƒ©ã‚µã‚¤ã‚ºï½˜
+$FLD_SIZE_Y[ 0 ] = undef;			#ãƒãƒƒãƒ—ã‚°ãƒ©ã‚µã‚¤ã‚ºï½™
+$FLD_AREA_ARRY[ 0 ] = undef;		#ãƒãƒƒãƒ—ã‚°ãƒ©ãƒ‡ãƒ¼ã‚¿	ä¸Šã®x*yã‚µã‚¤ã‚ºã®é…åˆ— ãƒ‡ãƒ¼ã‚¿ã‚’,ã§åŒºåˆ‡ã£ã¦å…¥ã‚Œã‚‹
 
 
 #------------------------------------------------------------------------------
 #
-#		ƒƒCƒ“ƒ‹[ƒ`ƒ“			
+#		ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³			
 #
 #------------------------------------------------------------------------------
-#‘æ1ˆø”‚ÉƒRƒ“ƒo[ƒg‘ÎÛ
+#ç¬¬1å¼•æ•°ã«ã‚³ãƒ³ãƒãƒ¼ãƒˆå¯¾è±¡
 $CONV_FILE_NAME = $ARGV[0];
 
 
-#CSVƒtƒ@ƒCƒ‹‚Ìì¬
-print( "CSVƒtƒ@ƒCƒ‹‚Ìì¬\n" );
+#CSVãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ
+print( "CSVãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ\n" );
 &csv_file_make();
 
-#ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
-print( "ƒtƒ@ƒCƒ‹“Ç‚İ‚İ\n" );
+#ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
+print( "ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿\n" );
 &file_load();
 
-#ƒ][ƒ“IDæ“¾
-print( "ƒ][ƒ“IDæ“¾\n" );
+#ã‚¾ãƒ¼ãƒ³IDå–å¾—
+print( "ã‚¾ãƒ¼ãƒ³IDå–å¾—\n" );
 &zone_id_get();
 
-#ƒ‚ƒ“ƒXƒ^[IDæ“¾
-print( "ƒ‚ƒ“ƒXƒ^[IDæ“¾\n" );
+#ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDå–å¾—
+print( "ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDå–å¾—\n" );
 &mons_no_get();
 
-#ƒfƒoƒbƒNƒf[ƒ^o—Í
-#&debug_array_print( "ƒ][ƒ“ƒf[ƒ^", \@ZONE_ID );
-#&debug_array_print( "ƒ‚ƒ“ƒXƒ^[ƒf[ƒ^", \@MONS_ID );
-#&debug_array_print( "ƒ_ƒ“ƒWƒ‡ƒ“ƒtƒ@ƒCƒ‹ƒf[ƒ^", \@DAN_FILE );
-#&debug_array_print( "ƒtƒB[ƒ‹ƒhƒf[ƒ^", \@FLD_FILE );
-#&debug_array_print( "ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^", \@ENC_FILE );
+#ãƒ‡ãƒãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å‡ºåŠ›
+#&debug_array_print( "ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿", \@ZONE_ID );
+#&debug_array_print( "ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿", \@MONS_ID );
+#&debug_array_print( "ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿", \@DAN_FILE );
+#&debug_array_print( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿", \@FLD_FILE );
+#&debug_array_print( "ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿", \@ENC_FILE );
 
 
-#ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚©‚ç•ª•zID‚Æƒ‚ƒ“ƒXƒ^[NO->•ª•zID—ñ‚ğì¬
-print( "ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚©‚ç•ª•zID‚Æƒ‚ƒ“ƒXƒ^[NO->•ª•zID—ñ‚ğì¬\n" );
+#ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å¸ƒIDã¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼NO->åˆ†å¸ƒIDåˆ—ã‚’ä½œæˆ
+print( "ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å¸ƒIDã¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼NO->åˆ†å¸ƒIDåˆ—ã‚’ä½œæˆ\n" );
 &enc_data_make();
 
-#î•ñ‚ğ‘‚«o‚·
-#ƒ|ƒPƒ‚ƒ“•ª•z‹tˆø‚«ƒf[ƒ^‘‚«o‚µ
-print( "ƒ|ƒPƒ‚ƒ“•ª•z‹tˆø‚«ƒf[ƒ^‘‚«o‚µŠJn\n" );
+#æƒ…å ±ã‚’æ›¸ãå‡ºã™
+#ãƒã‚±ãƒ¢ãƒ³åˆ†å¸ƒé€†å¼•ããƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
+print( "ãƒã‚±ãƒ¢ãƒ³åˆ†å¸ƒé€†å¼•ããƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—é–‹å§‹\n" );
 &make_pokerangedata();
-print( "ƒ|ƒPƒ‚ƒ“•ª•z‹tˆø‚«ƒf[ƒ^‘‚«o‚µŠ®—¹\n" );
+print( "ãƒã‚±ãƒ¢ãƒ³åˆ†å¸ƒé€†å¼•ããƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—å®Œäº†\n" );
 
 exit(0);
 
 
 #------------------------------------------------------------------------------
 #
-#			ƒtƒB[ƒ‹ƒhƒf[ƒ^
-#			CSVŒ`®ƒtƒ@ƒCƒ‹ì¬
+#			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+#			CSVå½¢å¼ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 #------------------------------------------------------------------------------
 sub csv_file_make{
-	#ƒtƒB[ƒ‹ƒhƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+	#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	system( "ExcelSeetConv.exe -o fld_data.txt -n field_zone -s csv map_matrix.xls" );
 
-	#ƒ_ƒ“ƒWƒ‡ƒ“•`‰æˆÊ’uƒf[ƒ^
+	#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æç”»ä½ç½®ãƒ‡ãƒ¼ã‚¿
 	system( "ExcelSeetConv.exe -o dan_data.txt -s csv poke_danzyon.xls" );
 }
 
 #------------------------------------------------------------------------------
 #
-#			ƒtƒ@ƒCƒ‹ƒf[ƒ^“Ç‚İ‚İ
+#			ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 #
 #------------------------------------------------------------------------------
 sub file_load{
-	#ƒtƒB[ƒ‹ƒh
+	#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 	open( FILEIN, "fld_data.txt" );
 	@FLD_FILE = <FILEIN>;
 	close( FILEIN );
 	
-	#ƒ_ƒ“ƒWƒ‡ƒ“
+	#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 	open( FILEIN, "dan_data.txt" );
 	@DAN_FILE = <FILEIN>;
 	close( FILEIN );
 	
-	#ƒGƒ“ƒJƒEƒ“ƒg
+	#ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 	open( FILEIN, $CONV_FILE_NAME );
 #	@ENC_FILE = split( "\r", <FILEIN> );
 	@ENC_FILE = <FILEIN>;
@@ -175,9 +175,9 @@ sub file_load{
 
 #------------------------------------------------------------------------------
 #
-#			”z—ñ‚Æ’l‚ğ“¾‚Ä@‚»‚Ì’l‚Ì‚ ‚é—v‘f”‚ğ•Ô‚·	
+#			é…åˆ—ã¨å€¤ã‚’å¾—ã¦ã€€ãã®å€¤ã®ã‚ã‚‹è¦ç´ æ•°ã‚’è¿”ã™	
 #
-#			-1‚È‚µ
+#			-1ãªã—
 #
 #------------------------------------------------------------------------------
 sub arry_no_num_get{
@@ -197,7 +197,7 @@ sub arry_no_num_get{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ][ƒ“IDƒf[ƒ^æ“¾	
+#			ã‚¾ãƒ¼ãƒ³IDãƒ‡ãƒ¼ã‚¿å–å¾—	
 #
 #------------------------------------------------------------------------------
 sub zone_id_get{
@@ -216,9 +216,9 @@ sub zone_id_get{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ][ƒ“ID->ƒ][ƒ“ƒiƒ“ƒo[ƒRƒ“ƒo[ƒg	
-#	param	zone_id	ƒ][ƒ“ID–¼
-#	return	ƒ][ƒ“ID‚Ìƒiƒ“ƒo[@-1=none
+#			ã‚¾ãƒ¼ãƒ³ID->ã‚¾ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚³ãƒ³ãƒãƒ¼ãƒˆ	
+#	param	zone_id	ã‚¾ãƒ¼ãƒ³IDå
+#	return	ã‚¾ãƒ¼ãƒ³IDã®ãƒŠãƒ³ãƒãƒ¼ã€€-1=none
 #
 #------------------------------------------------------------------------------
 sub zone_id_num_get{
@@ -229,16 +229,16 @@ sub zone_id_num_get{
 
 #------------------------------------------------------------------------------
 #
-#			•¶š—ñ->ƒ][ƒ“IDƒRƒ“ƒo[ƒg	
+#			æ–‡å­—åˆ—->ã‚¾ãƒ¼ãƒ³IDã‚³ãƒ³ãƒãƒ¼ãƒˆ	
 #
-#		param	ƒ][ƒ“ID‚É‚µ‚½‚¢•¶š—ñ
-#		return	ƒ][ƒ“ID–¼
+#		param	ã‚¾ãƒ¼ãƒ³IDã«ã—ãŸã„æ–‡å­—åˆ—
+#		return	ã‚¾ãƒ¼ãƒ³IDå
 #
 #------------------------------------------------------------------------------
 sub zone_id_make{
 	my( $zone_name ) = @_;
 
-	#‘å•¶š‚É‚·‚é
+	#å¤§æ–‡å­—ã«ã™ã‚‹
 	$zone_name = uc( $zone_name );
 	$zone_name = "ZONE_ID_$zone_name";
 
@@ -247,7 +247,7 @@ sub zone_id_make{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[æ“¾	
+#			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼å–å¾—	
 #
 #------------------------------------------------------------------------------
 sub mons_no_get{
@@ -266,9 +266,9 @@ sub mons_no_get{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ‚ƒ“ƒXƒ^[NOID->ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[ƒRƒ“ƒo[ƒg	
-#	param	mons_id	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[–¼
-#	return	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[@-1=none
+#			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼NOID->ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚³ãƒ³ãƒãƒ¼ãƒˆ	
+#	param	mons_id	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼å
+#	return	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã€€-1=none
 #
 #------------------------------------------------------------------------------
 sub monsno_num_get{
@@ -279,10 +279,10 @@ sub monsno_num_get{
 
 #------------------------------------------------------------------------------
 #
-#			•¶š—ñƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[IDƒRƒ“ƒo[ƒg	
+#			æ–‡å­—åˆ—ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼IDã‚³ãƒ³ãƒãƒ¼ãƒˆ	
 #
-#		param	ƒ‚ƒ“ƒXƒ^[–¼
-#		retrun	ƒ‚ƒ“ƒXƒ^[ID–¼
+#		param	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å
+#		retrun	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDå
 #
 #------------------------------------------------------------------------------
 sub mona_no_id_get{
@@ -315,9 +315,9 @@ sub mona_no_id_get{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID–¼->ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID
-#	param	range_dan		ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID–¼
-#	return	ƒ_ƒ“ƒWƒ‡ƒ“•ª•zIDƒiƒ“ƒo[		none=-1
+#			ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDå->ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒID
+#	param	range_dan		ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDå
+#	return	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDãƒŠãƒ³ãƒãƒ¼		none=-1
 #
 #------------------------------------------------------------------------------
 sub dan_range_num_get{
@@ -327,9 +327,9 @@ sub dan_range_num_get{
 
 #------------------------------------------------------------------------------
 #
-#			ƒtƒB[ƒ‹ƒh•ª•zID–¼->ƒtƒB[ƒ‹ƒh•ª•zID
-#	param	fld_dan		ƒtƒB[ƒ‹ƒh•ª•zID–¼
-#	return	ƒtƒB[ƒ‹ƒh•ª•zIDƒiƒ“ƒo[		none=-1
+#			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDå->ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒID
+#	param	fld_dan		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDå
+#	return	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDãƒŠãƒ³ãƒãƒ¼		none=-1
 #
 #------------------------------------------------------------------------------
 sub fld_range_num_get{
@@ -341,53 +341,53 @@ sub fld_range_num_get{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^“Ç‚İ‚İ
+#			ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 #
 #------------------------------------------------------------------------------
 sub enc_data_make{
 	my( $enc_localfile );
 	
-	#‘S‚Ä—v‘f”‚ÍƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^—v‘f”
-	#mons~Œn‚Í,‹æØ‚è‚Åƒf[ƒ^‚ğì¬
+	#å…¨ã¦è¦ç´ æ•°ã¯ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿è¦ç´ æ•°
+	#mons~ç³»ã¯,åŒºåˆ‡ã‚Šã§ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 	my( $zone_id );	
-	my( $encmons_normal, $encmons_morning, $encmons_night );	#’Êí
-	my( $encmons_special );	#“Áê
-	my( $work, $count );				#ì‹Æ—Ìˆæ
+	my( $encmons_normal, $encmons_morning, $encmons_night );	#é€šå¸¸
+	my( $encmons_special );	#ç‰¹æ®Š
+	my( $work, $count );				#ä½œæ¥­é ˜åŸŸ
 
 	foreach $one ( @ENC_FILE ){
-		$one =~ s/""/"dummy"/g;	#""‚ğƒ_ƒ~[‚É•ÏX•ÏX
-		$one =~ s/"//g;	#"‚ğƒJƒbƒg‚É•ÏX
-#		$one =~ s/\r/,\n/g;	#‰üsƒR[ƒh‚ğ,‚É•ÏX
+		$one =~ s/""/"dummy"/g;	#""ã‚’ãƒ€ãƒŸãƒ¼ã«å¤‰æ›´å¤‰æ›´
+		$one =~ s/"//g;	#"ã‚’ã‚«ãƒƒãƒˆã«å¤‰æ›´
+#		$one =~ s/\r/,\n/g;	#æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’,ã«å¤‰æ›´
 	}
 
-	#‘SƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^“Ç‚İ‚İiŒÂX‚Å‚Íƒ][ƒ“[„ƒ‚ƒ“ƒXƒ^[”z—ñ‚Æ‚¢‚¤ƒf[ƒ^j
+	#å…¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ï¼ˆå€‹ã€…ã§ã¯ã‚¾ãƒ¼ãƒ³ãƒ¼ï¼ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…åˆ—ã¨ã„ã†ãƒ‡ãƒ¼ã‚¿ï¼‰
 	$count = 0;
 	foreach $one ( @ENC_FILE ){
 		@enc_localfile = split( ",", $one );
 
-		print( "ƒ][ƒ“ID".$enc_localfile[ 0 ]."\n" );
+		print( "ã‚¾ãƒ¼ãƒ³ID".$enc_localfile[ 0 ]."\n" );
 
-		#ƒ][ƒ“ID–¼
+		#ã‚¾ãƒ¼ãƒ³IDå
 		$zone_id[ $count ] = &zone_id_make( $enc_localfile[ 0 ] );
 
-		#‚»‚Ìƒ][ƒ“‚ª–{“–‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+		#ãã®ã‚¾ãƒ¼ãƒ³ãŒæœ¬å½“ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( &zone_id_num_get($zone_id[ $count ]) != -1 ){
 			
-			#’ÊíƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
-			#‚Ì’†‚Ì’Êí
+			#é€šå¸¸ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+			#ã®ä¸­ã®é€šå¸¸
 			@work = ($enc_localfile[3], $enc_localfile[5], $enc_localfile[7], $enc_localfile[9], $enc_localfile[11], $enc_localfile[13], $enc_localfile[15], $enc_localfile[17], $enc_localfile[19], $enc_localfile[21], $enc_localfile[23], $enc_localfile[25] );
-			#…’†
+			#æ°´ä¸­
 			@work = (@work, $enc_localfile[55], $enc_localfile[58], $enc_localfile[61], $enc_localfile[64], $enc_localfile[67] );
-			#Šâ
+			#å²©
 #			@work = (@work,  $enc_localfile[71], $enc_localfile[74], $enc_localfile[77], $enc_localfile[80], $enc_localfile[83] );
-			#‚Â‚è‚P
+			#ã¤ã‚Šï¼‘
 			@work = ( @work, $enc_localfile[87], $enc_localfile[90], $enc_localfile[93], $enc_localfile[96], $enc_localfile[99] );
-			#‚Â‚è‚Q
+			#ã¤ã‚Šï¼’
 			@work = ( @work, $enc_localfile[103], $enc_localfile[106], $enc_localfile[109], $enc_localfile[112], $enc_localfile[115] );
-			#‚Â‚è‚R
+			#ã¤ã‚Šï¼“
 			@work = ( @work, $enc_localfile[119], $enc_localfile[122], $enc_localfile[125], $enc_localfile[128], $enc_localfile[131] );
 
-			#–é
+			#å¤œ
 			$work[ 2 ] = $enc_localfile[30];
 			$work[ 3 ] = $enc_localfile[31];
 			@work = &mons_name_arry_mons_no_chg(@work);
@@ -397,36 +397,36 @@ sub enc_data_make{
 		}
 	}
 
-	#ƒ][ƒ“ID‚©‚çƒ_ƒ“ƒWƒ‡ƒ“•ª•zID‚ÆƒtƒB[ƒ‹ƒh•ª•zID‚ğì¬
-	print( "ƒ][ƒ“ID‚©‚çƒ_ƒ“ƒWƒ‡ƒ“•ª•zID‚ÆƒtƒB[ƒ‹ƒh•ª•zID‚ğì¬" );
-	&make_range_id( \@zone_id );	#@zone_id‚Ì‚ª•ª•zID‚É•ÏX‚³‚ê‚é
+	#ã‚¾ãƒ¼ãƒ³IDã‹ã‚‰ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDã¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDã‚’ä½œæˆ
+	print( "ã‚¾ãƒ¼ãƒ³IDã‹ã‚‰ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDã¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDã‚’ä½œæˆ" );
+	&make_range_id( \@zone_id );	#@zone_idã®ãŒåˆ†å¸ƒIDã«å¤‰æ›´ã•ã‚Œã‚‹
 
-	#ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[->•ª•zID—ñƒf[ƒ^‚É•ÏX‚µ‚Ä‚¢‚­
+	#ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼->åˆ†å¸ƒIDåˆ—ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›´ã—ã¦ã„ã
 	for( $count=0; $count<@MONS_ID; $count++ ){
-		#–é
+		#å¤œ
 		&make_mons_range_data( $count, \@encmons_night, \@zone_id, \@RANGE_DAN_NI, \@RANGE_FLD_NI );
 	}
 }
 
-#ƒ[ƒN‚Ì’†g‚ğƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚É•ÏX‚·‚é
+#ãƒ¯ãƒ¼ã‚¯ã®ä¸­èº«ã‚’ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¤‰æ›´ã™ã‚‹
 sub mons_name_arry_mons_no_chg{
 	my( @mons_name ) = @_;
 	my( $i );
 
 	for( $i=0; $i<(@mons_name + 0); $i++ ){
-		$mons_name[$i] = &mona_no_id_get( $mons_name[$i], "dummy" );	#ƒ|ƒPƒ‚ƒ“–¼->ƒ‚ƒ“ƒXƒ^[ID
+		$mons_name[$i] = &mona_no_id_get( $mons_name[$i], "dummy" );	#ãƒã‚±ãƒ¢ãƒ³å->ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
 
-		$mons_name[$i] = &monsno_num_get( $mons_name[$i] );	#ƒ‚ƒ“ƒXƒ^[ID->ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+		$mons_name[$i] = &monsno_num_get( $mons_name[$i] );	#ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID->ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
 	}
 	return @mons_name;
 }
 
-#ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ªŠÜ‚Ü‚ê‚½ƒ][ƒ“‚ÌƒŠƒXƒg‚ğì¬
-#	param	mons_no		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-#	param	p_encdata	ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
-#	param	p_zone_id	•ª•zID
-#	param	p_out_dan	ƒ_ƒ“ƒWƒ‡ƒ“ƒ‚ƒ“ƒXƒ^[•ª•zƒf[ƒ^‘‚«o‚µæ
-#	param	p_out_fld	ƒtƒB[ƒ‹ƒhƒ‚ƒ“ƒXƒ^[•ª•zƒf[ƒ^‘‚«o‚µæ
+#ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ãŒå«ã¾ã‚ŒãŸã‚¾ãƒ¼ãƒ³ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆ
+#	param	mons_no		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+#	param	p_encdata	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+#	param	p_zone_id	åˆ†å¸ƒID
+#	param	p_out_dan	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—å…ˆ
+#	param	p_out_fld	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—å…ˆ
 sub make_mons_range_data{
 	my( $mons_no, $p_encdata, $p_zone_id, $p_out_dan, $p_out_fld ) = @_;
 	my( $one_enc_data, $enc_count, $enc_zone_id );
@@ -439,43 +439,43 @@ sub make_mons_range_data{
 
 	for( $enc_count = 0; $enc_count<@$p_encdata; $enc_count++ ){
 
-		#ƒtƒ‰ƒO‰Šú‰»@“¯‚¶ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ªƒe[ƒuƒ‹‚É‚ ‚Á‚½‚çİ’è
+		#ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ã€€åŒã˜ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ãŒãƒ†ãƒ¼ãƒ–ãƒ«ã«ã‚ã£ãŸã‚‰è¨­å®š
 		$out_dan_flg = 0;
 		$out_fld_flg = 0;
 		$enc_zone_id = 0;
 
-		#,‚Å‚«‚Á‚Ä”z—ñ‚É‚·‚é
+		#,ã§ãã£ã¦é…åˆ—ã«ã™ã‚‹
 		@one_enc_data = split( ",", $$p_encdata[ $enc_count ] );
 		
-		#“¯‚¶ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©ƒ`ƒFƒbƒN
+		#åŒã˜ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ãƒã‚§ãƒƒã‚¯
 		foreach $one ( @one_enc_data ){
 			if( $one == $mons_no ){
 
-				#‚»‚Ì•ª•zID‚ğæ“¾
+				#ãã®åˆ†å¸ƒIDã‚’å–å¾—
 				$enc_zone_id = $$p_zone_id[ $enc_count ];
 				
-				#‚»‚Ì•ª•zID‚ªƒ_ƒ“ƒWƒ‡ƒ“‚©ƒtƒB[ƒ‹ƒh‚©ƒ`ƒFƒbƒN
+				#ãã®åˆ†å¸ƒIDãŒãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ãƒã‚§ãƒƒã‚¯
 				if( $enc_zone_id =~ /ZKN_DAN/ ){
-					#ƒ_ƒ“ƒWƒ‡ƒ“
+					#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 					$out_dan_flg = 1;
 				}else{
-					#ƒtƒB[ƒ‹ƒh
+					#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 					$out_fld_flg = 1;
 				}
 				
 			}
 		}
 
-		#“¯‚¶‚Ì‚ ‚Á‚½ƒtƒ‰ƒO‚ª—§‚Á‚½‚çİ’è
+		#åŒã˜ã®ã‚ã£ãŸãƒ•ãƒ©ã‚°ãŒç«‹ã£ãŸã‚‰è¨­å®š
 		if( $out_dan_flg == 1 ){
-			#ˆÈ‘O‚É“¯‚¶ID‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+			#ä»¥å‰ã«åŒã˜IDãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( &arry_no_num_get( \@out_dan_l, $enc_zone_id ) == -1 ){
 				$out_dan_l[$out_dan_count] = $enc_zone_id;
 				$out_dan_count++;
 			}
 		}
 		if( $out_fld_flg == 1 ){
-			#ˆÈ‘O‚É“¯‚¶ID‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+			#ä»¥å‰ã«åŒã˜IDãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( &arry_no_num_get( \@out_fld_l, $enc_zone_id ) == -1 ){
 				$out_fld_l[$out_fld_count] = $enc_zone_id;
 				$out_fld_count++;
@@ -483,12 +483,12 @@ sub make_mons_range_data{
 		}
 	}
 
-	#ÅIs‚ÉNONEƒf[ƒ^’Ç‰Á
+	#æœ€çµ‚è¡Œã«NONEãƒ‡ãƒ¼ã‚¿è¿½åŠ 
 	$out_dan_l[$out_dan_count] = "ZKN_DAN_ID_NONE";
 	$out_fld_l[$out_fld_count] = "ZKN_FLD_ID_NONE";	
 	
 
-	#ì‚Á‚½ƒŠƒXƒg‚ğ,‹æØ‚è‚Ìƒf[ƒ^‚Æ‚µ‚Ä‘‚«o‚·
+	#ä½œã£ãŸãƒªã‚¹ãƒˆã‚’,åŒºåˆ‡ã‚Šã®ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦æ›¸ãå‡ºã™
 	$$p_out_dan[ $mons_no ] = join( ",", @out_dan_l );
 	$$p_out_fld[ $mons_no ] = join( ",", @out_fld_l );
 }
@@ -496,7 +496,7 @@ sub make_mons_range_data{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ][ƒ“ID‚©‚çƒ_ƒ“ƒWƒ‡ƒ“•ª•zID@‚Æ@ƒtƒB[ƒ‹ƒh•ª•zID‚ğì¬	
+#			ã‚¾ãƒ¼ãƒ³IDã‹ã‚‰ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDã€€ã¨ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDã‚’ä½œæˆ	
 #
 #------------------------------------------------------------------------------
 sub make_range_id{
@@ -506,7 +506,7 @@ sub make_range_id{
 	$zanid_num = 0;
 	$fldid_num = 0;
 
-	#0”Ô–Ú‚Íƒ_ƒ~[ƒf[ƒ^‚É‚·‚é
+	#0ç•ªç›®ã¯ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã«ã™ã‚‹
 	$DAN_ID[ 0 ] = "ZKN_DAN_ID_NONE";
 	$DAN_TOKUSYUOAM[ 0 ] = 0;
 	$FLD_ID[ 0 ] = "ZKN_FLD_ID_NONE";
@@ -514,16 +514,16 @@ sub make_range_id{
 	$fldid_num++;
 
 	for( $i=0; $i<@$p_zone_id; $i++ ){
-		#ƒ_ƒ“ƒWƒ‡ƒ“‚©ƒ`ƒFƒbƒN
+		#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
 		if( $$p_zone_id[ $i ] =~ /ZONE_ID_([A-Z][0-9]*)[R]/ ){
 
-			#¡‚Ü‚Å‚Éˆê‚Ìƒ_ƒ“ƒWƒ‡ƒ“ID‚ª–³‚¢‚©ƒ`ƒFƒbƒN
+			#ä»Šã¾ã§ã«ä¸€ç·’ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³IDãŒç„¡ã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( ($tmp_id = &dan_range_num_get( "ZKN_DAN_ID_$1" )) == -1 ){	
 
-				#ƒ_ƒ“ƒWƒ‡ƒ“
+				#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 				$DAN_ID[ $zanid_num ] = "ZKN_DAN_ID_$1";
 				$DAN_ZONEID[ $zanid_num ] = $$p_zone_id[ $i ];
-				#“ÁêOAM‚©‚Ç‚¤‚©
+				#ç‰¹æ®ŠOAMã‹ã©ã†ã‹
 				if( &make_dat_data_tokusyuoam($$p_zone_id[$i] ) == 1 ){
 					$DAN_TOKUSYUOAM[ $zanid_num ] = 1;
 				}else{
@@ -537,7 +537,7 @@ sub make_range_id{
 				$$p_zone_id[$i] = $DAN_ID[$tmp_id];
 			}
 		}else{
-			#ƒtƒB[ƒ‹ƒh
+			#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 			$$p_zone_id[ $i ] =~ /ZONE_ID_(.*)/;
 			$FLD_ID[ $fldid_num ] = "ZKN_FLD_ID_$1";
 			$FLD_ZONEID[ $fldid_num ] = $$p_zone_id[ $i ];
@@ -548,7 +548,7 @@ sub make_range_id{
 	}
 }
 
-#ƒ_ƒ“ƒWƒ‡ƒ“ƒf[ƒ^‚Æ‚­‚µ‚ãOAM‚©‚Ç‚¤‚©
+#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¨ãã—ã‚…OAMã‹ã©ã†ã‹
 sub make_dat_data_tokusyuoam{
 	my( $zone_id ) = @_;
 	my( $i );
@@ -564,7 +564,7 @@ sub make_dat_data_tokusyuoam{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ_ƒ“ƒWƒ‡ƒ“ƒOƒŠƒbƒhƒf[ƒ^“Ç‚İ‚İ
+#			ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 #
 #------------------------------------------------------------------------------
 sub load_dan_grid_data{
@@ -573,27 +573,27 @@ sub load_dan_grid_data{
 
 	$data_count = 0;
 	
-	#ƒf[ƒ^æ“¾
+	#ãƒ‡ãƒ¼ã‚¿å–å¾—
 	foreach $one ( @DAN_FILE ){
-		if( $one =~ /[DR][0-9]*/ ){	#ƒ_ƒ“ƒWƒ‡ƒ“ƒf[ƒ^€–Ú
+		if( $one =~ /[DR][0-9]*/ ){	#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿é …ç›®
 			@local_data = split( ",", $one );
-			$dan_id[ $data_count ] = "ZKN_DAN_ID_".$local_data[1];	#•ª•zID
-#			print( "localƒ_ƒ“ƒWƒ‡ƒ“ID $dan_id[ $data_count ]\n" );
-			$dan_gridx[ $data_count ] = $local_data[ 3 ];		#ƒOƒŠƒbƒhX
-			$dan_gridy[ $data_count ] = $local_data[ 4 ];		#ƒOƒŠƒbƒhY
+			$dan_id[ $data_count ] = "ZKN_DAN_ID_".$local_data[1];	#åˆ†å¸ƒID
+#			print( "localãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ID $dan_id[ $data_count ]\n" );
+			$dan_gridx[ $data_count ] = $local_data[ 3 ];		#ã‚°ãƒªãƒƒãƒ‰X
+			$dan_gridy[ $data_count ] = $local_data[ 4 ];		#ã‚°ãƒªãƒƒãƒ‰Y
 
 			$data_count ++;
 		}
 	}
 
-	#0‚Íƒ_ƒ~[ƒf[ƒ^
+	#0ã¯ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 	$DAN_GRID_X[ 0 ] = 0;
 	$DAN_GRID_Y[ 0 ] = 0;
 	
-	#ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID‚Ì‡”Ô‚ÉƒOƒŠƒbƒhÀ•W‚ğİ’è
-	for( $i = 1; $i<@DAN_ID; $i++ ){		#0‚Íƒ_ƒ~[ƒf[ƒ^
+	#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDã®é †ç•ªã«ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã‚’è¨­å®š
+	for( $i = 1; $i<@DAN_ID; $i++ ){		#0ã¯ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 		
-		#ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID‚Æˆê‚Ì•ª•zID‚Ì‚à‚Ì‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+		#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDã¨ä¸€ç·’ã®åˆ†å¸ƒIDã®ã‚‚ã®ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		for( $j=0; $j<$data_count; $j++ ){
 			
 			if( $DAN_ID[ $i ] eq $dan_id[ $j ] ){
@@ -603,9 +603,9 @@ sub load_dan_grid_data{
 			}
 		}
 
-		#–³‚©‚Á‚½‚çƒGƒ‰[‚ğ•Ô‚·
+		#ç„¡ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™
 		if( $j == $data_count ){
-			print( "ƒ_ƒ“ƒWƒ‡ƒ“ƒOƒŠƒbƒhÀ•W‚É‚Í–³‚¢ƒ][ƒ“ƒf[ƒ^‚ªƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚É‚ ‚è‚Ü‚·(".$DAN_ID[ $i ].")\n" );
+			print( "ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã«ã¯ç„¡ã„ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã«ã‚ã‚Šã¾ã™(".$DAN_ID[ $i ].")\n" );
 			exit(1);
 		}
 	}
@@ -614,25 +614,25 @@ sub load_dan_grid_data{
 
 #------------------------------------------------------------------------------
 #
-#			ƒtƒB[ƒ‹ƒh’nŒ`ƒf[ƒ^ƒRƒ“ƒo[ƒg	
+#			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ	
 #
-#			ƒOƒŠƒbƒh‚Í30*30‚Ì‘å‚«‚³
+#			ã‚°ãƒªãƒƒãƒ‰ã¯30*30ã®å¤§ãã•
 #
 #------------------------------------------------------------------------------
 sub load_fld_map_data{
 	my( $griddata, $split_data, $count, $skip );
 	my( $i, $j, $check_word );
 
-	#ƒOƒŠƒbƒhƒf[ƒ^“Ç‚İ‚İ
+	#ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	$count = 0;
 	$skip = 2;
 	foreach $one ( @FLD_FILE ){
 		@split_data = split( ",", $one );
 
-		#Å‰‚Ì‚QsƒXƒLƒbƒv
+		#æœ€åˆã®ï¼’è¡Œã‚¹ã‚­ãƒƒãƒ—
 		if( $skip > 0 ){
 			$skip --;
-			print( "ƒXƒLƒbƒv@$one\n" );
+			print( "ã‚¹ã‚­ãƒƒãƒ—ã€€$one\n" );
 		}else{
 
 			if( $count < $DEF_FLD_GRID_SIZE_Y ){
@@ -643,21 +643,21 @@ sub load_fld_map_data{
 	}
 
 
-	#0‚Íƒ_ƒ~[ƒf[ƒ^
+	#0ã¯ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 	$FLD_GRID_X[0] = 0;
 	$FLD_GRID_Y[0] = 0;
 	$FLD_SIZE_X[0] = 1;
 	$FLD_SIZE_Y[0] = 1;
 	$FLD_AREA_ARRY[0] = 1;
 	
-	#ƒOƒŠƒbƒhÀ•W“à‚©‚çƒtƒB[ƒ‹ƒh•ª•zID‚É‘Î‰‚·‚éƒrƒbƒg‚ÌŒ`‚ğ”²‚«o‚·
-	for( $i=1; $i<@FLD_ID; $i++ ){		#0‚Íƒ_ƒ~[ƒf[ƒ^
-		#‚Ü‚¸¶ãƒOƒŠƒbƒh‚Æ”ÍˆÍƒTƒCƒY‚ğæ“¾
+	#ã‚°ãƒªãƒƒãƒ‰åº§æ¨™å†…ã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDã«å¯¾å¿œã™ã‚‹ãƒ“ãƒƒãƒˆã®å½¢ã‚’æŠœãå‡ºã™
+	for( $i=1; $i<@FLD_ID; $i++ ){		#0ã¯ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
+		#ã¾ãšå·¦ä¸Šã‚°ãƒªãƒƒãƒ‰ã¨ç¯„å›²ã‚µã‚¤ã‚ºã‚’å–å¾—
 		$check_word = $FLD_ID[ $i ];
 		$check_word =~ s/ZKN_FLD_ID_//g;
 		($FLD_GRID_X[$i], $FLD_GRID_Y[$i], $FLD_SIZE_X[$i], $FLD_SIZE_Y[$i]) = &get_upleft_mat( \@griddata, $check_word );
 
-		#¶ãƒOƒŠƒbƒh‚©‚ç‰¡‚‚³•ª‚ÌƒGƒŠƒA‚Ìƒrƒbƒg”z—ñ‚ğì¬
+		#å·¦ä¸Šã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰æ¨ªé«˜ã•åˆ†ã®ã‚¨ãƒªã‚¢ã®ãƒ“ãƒƒãƒˆé…åˆ—ã‚’ä½œæˆ
 		$FLD_AREA_ARRY[$i] = &get_grid_arry( \@griddata, $FLD_GRID_X[$i], $FLD_GRID_Y[$i], $FLD_SIZE_X[$i], $FLD_SIZE_Y[$i], $check_word );
 	}
 }
@@ -665,7 +665,7 @@ sub load_fld_map_data{
 
 #------------------------------------------------------------------------------
 #
-#			ƒOƒŠƒbƒhƒf[ƒ^‚©‚ç¶ãƒOƒŠƒbƒh‚Æ”ÍˆÍƒTƒCƒY‚ğæ“¾	
+#			ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å·¦ä¸Šã‚°ãƒªãƒƒãƒ‰ã¨ç¯„å›²ã‚µã‚¤ã‚ºã‚’å–å¾—	
 #
 #------------------------------------------------------------------------------
 sub get_upleft_mat{
@@ -673,39 +673,39 @@ sub get_upleft_mat{
 	my( $gridx, $gridy, $ulgridy, $ulgridx, $drgridx, $drgridy, $xgirddata );
 	my( $ul_hit_flg, $sizex, $sizey, $work );
 
-	#¶ã‚Éƒqƒbƒg‚µ‚½‚©ƒtƒ‰ƒO
+	#å·¦ä¸Šã«ãƒ’ãƒƒãƒˆã—ãŸã‹ãƒ•ãƒ©ã‚°
 	$ul_hit_flg = 0;
 	
 
-	#Å‰‚Éƒqƒbƒg‚·‚éêŠ‚ª¶ã		ÅŒã‚Éƒqƒbƒg‚µ‚½ƒOƒŠƒbƒh‚ª‰E‰º
+	#æœ€åˆã«ãƒ’ãƒƒãƒˆã™ã‚‹å ´æ‰€ãŒå·¦ä¸Š		æœ€å¾Œã«ãƒ’ãƒƒãƒˆã—ãŸã‚°ãƒªãƒƒãƒ‰ãŒå³ä¸‹
 	for( $gridy=0; $gridy<@$p_griddata; $gridy++ ){
 		@xgriddata = split( ",", $$p_griddata[ $gridy ] );
 
-		#‰¡ƒT[ƒ`
+		#æ¨ªã‚µãƒ¼ãƒ
 		for( $gridx=0; $gridx<@xgriddata; $gridx++ ){
 
-			#“¯‚¶ID‚È‚ç¶ã‚©‰E‰ºƒOƒŠƒbƒhæ“¾
+			#åŒã˜IDãªã‚‰å·¦ä¸Šã‹å³ä¸‹ã‚°ãƒªãƒƒãƒ‰å–å¾—
 			if( $check_word eq uc( $xgriddata[ $gridx ] ) ){
 
 				if( $ul_hit_flg == 0 ){
-					($ulgridx, $ulgridy) = ($gridx, $gridy);	#¶ãÀ•Wæ“¾
-					($drgridx, $drgridy) = ($gridx, $gridy);	#‰E‰ºÀ•Wæ“¾
+					($ulgridx, $ulgridy) = ($gridx, $gridy);	#å·¦ä¸Šåº§æ¨™å–å¾—
+					($drgridx, $drgridy) = ($gridx, $gridy);	#å³ä¸‹åº§æ¨™å–å¾—
 					$ul_hit_flg = 1;
 				}else{
-					($drgridx, $drgridy) = ($gridx, $gridy);	#‰E‰ºÀ•Wæ“¾
+					($drgridx, $drgridy) = ($gridx, $gridy);	#å³ä¸‹åº§æ¨™å–å¾—
 				}
 			}
 		}
 	}
 
 	if( $ul_hit_flg < 1 ){
-		print( "ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚É‚ ‚éƒ][ƒ“î•ñ‚ªƒtƒB[ƒ‹ƒh’nŒ`ƒf[ƒ^‚É‚È‚¢".$check_word."\n" );
+		print( "ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã«ã‚ã‚‹ã‚¾ãƒ¼ãƒ³æƒ…å ±ãŒãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã«ãªã„".$check_word."\n" );
 		exit(1);
 	}
 
 	$sizey = (1 + $drgridy) - $ulgridy;
 
-	#¶‚ª‚Ç‚Á‚¿‚©ƒ`ƒFƒbƒN
+	#å·¦ãŒã©ã£ã¡ã‹ãƒã‚§ãƒƒã‚¯
 	if( $drgridx < $ulgridx ){
 		$work = $drgridx;
 		$drgridx = $ulgridx;
@@ -718,7 +718,7 @@ sub get_upleft_mat{
 
 #------------------------------------------------------------------------------
 #
-#			ƒOƒŠƒbƒh”ÍˆÍƒf[ƒ^ì¬	
+#			ã‚°ãƒªãƒƒãƒ‰ç¯„å›²ãƒ‡ãƒ¼ã‚¿ä½œæˆ	
 #
 #------------------------------------------------------------------------------
 sub get_grid_arry{
@@ -734,7 +734,7 @@ sub get_grid_arry{
 		
 		for( $j=$ulgridx; $j<$ulgridx+$sizex; $j++ ){
 
-			#ƒ`ƒFƒbƒNƒ[ƒh‚Æˆê‚ÌƒOƒŠƒbƒhƒiƒ“ƒo[‚Í1‚»‚êˆÈŠO‚Í0
+			#ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ãƒ‰ã¨ä¸€ç·’ã®ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼ã¯1ãã‚Œä»¥å¤–ã¯0
 			if( uc( $griddatax[ $j ] ) eq $check_word ){
 				$retdata[ $retcount ] = 1;
 			}else{
@@ -751,7 +751,7 @@ sub get_grid_arry{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID@ƒtƒB[ƒ‹ƒh•ª•zIDo—Í
+#			ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDå‡ºåŠ›
 #
 #------------------------------------------------------------------------------
 sub make_range_id_header{
@@ -764,22 +764,22 @@ sub make_range_id_header{
 	print(FILEOUT "#ifndef __ZKN_RANGEID_H__\r\n" );
 	print(FILEOUT "#define __ZKN_RANGEID_H_\r\n\r\n" );
 
-	print(FILEOUT "/* ƒtƒB[ƒ‹ƒh•ª•zID */\r\n" );
-	#ƒtƒB[ƒ‹ƒh•ª•zID
+	print(FILEOUT "/* ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒID */\r\n" );
+	#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒID
 	for( $i=0; $i<@FLD_ID; $i++ ){
 
 		print( FILEOUT "#define ".$FLD_ID[$i]." (".$i.")\r\n" );
 	}
-	#ÅŒã‚ÉÅ‘å”‚ğ‘‚«o‚·
+	#æœ€å¾Œã«æœ€å¤§æ•°ã‚’æ›¸ãå‡ºã™
 	print( FILEOUT "#define ZKN_FLD_ID_MAX (".$i.")\r\n" );
 
-	print(FILEOUT "/* ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID */\r\n" );
-	#ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID
+	print(FILEOUT "/* ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒID */\r\n" );
+	#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒID
 	for( $i=0; $i<@DAN_ID; $i++ ){
 
 		print( FILEOUT "#define ".$DAN_ID[$i]." (".$i.")\r\n" );
 	}
-	#ÅŒã‚ÉÅ‘å”‚ğ‘‚«o‚·
+	#æœ€å¾Œã«æœ€å¤§æ•°ã‚’æ›¸ãå‡ºã™
 	print( FILEOUT "#define ZKN_DAN_ID_MAX (".$i.")\r\n" );
 
 	print(FILEOUT "#endif //__ZKN_RANGEID_H__\r\n" );
@@ -789,9 +789,9 @@ sub make_range_id_header{
 
 #------------------------------------------------------------------------------
 #
-#			•ª•zID‚Æƒ][ƒ“ID‚Ì‘Î‰•\‚Ì‘‚«o‚µ
+#			åˆ†å¸ƒIDã¨ã‚¾ãƒ¼ãƒ³IDã®å¯¾å¿œè¡¨ã®æ›¸ãå‡ºã—
 #
-#			•ª•zID‚Ì‡‚ÉintƒTƒCƒY•ª‘‚«o‚·
+#			åˆ†å¸ƒIDã®é †ã«intã‚µã‚¤ã‚ºåˆ†æ›¸ãå‡ºã™
 #
 #------------------------------------------------------------------------------
 sub make_rangeid_zoneid_link{
@@ -804,13 +804,13 @@ sub make_rangeid_zoneid_link{
 	binmode( DATFILEOUT_FLD );
 
 
-	print( FILEOUT "/* ƒtƒB[ƒ‹ƒh•ª•zID‚Ì‘Î‰•\ */\n\n" );
+	print( FILEOUT "/* ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDã®å¯¾å¿œè¡¨ */\n\n" );
 	print( FILEOUT "struct const u16 ZKN_FLD_RANGEID_ZONEID[] = {\n" );
 
 	
-	#ƒtƒB[ƒ‹ƒh•ª•zID
+	#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒID
 	for( $i=0; $i<@FLD_ID; $i++ ){
-		#ƒ][ƒ“ID‚Ìƒiƒ“ƒo[æ“¾
+		#ã‚¾ãƒ¼ãƒ³IDã®ãƒŠãƒ³ãƒãƒ¼å–å¾—
 		$zoneid_no = &zone_id_num_get( $FLD_ZONEID[$i] );
 
 		print( DATFILEOUT_FLD pack("I", $zoneid_no) );
@@ -818,13 +818,13 @@ sub make_rangeid_zoneid_link{
 	}
 	print( FILEOUT "};\n" );
 
-	print( FILEOUT "/* ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID‚Ì‘Î‰•\ */ \n\n" );
+	print( FILEOUT "/* ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDã®å¯¾å¿œè¡¨ */ \n\n" );
 	print( FILEOUT "struct const u16 ZKN_DAN_RANGEID_ZONEID[] = {\n" );
 
 
-	#ƒ_ƒ“ƒWƒ‡ƒ“•ª•zID
+	#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒID
 	for( $i=0; $i<@DAN_ID; $i++ ){
-		#ƒ][ƒ“ID‚Ìƒiƒ“ƒo[æ“¾
+		#ã‚¾ãƒ¼ãƒ³IDã®ãƒŠãƒ³ãƒãƒ¼å–å¾—
 		$zoneid_no = &zone_id_num_get( $DAN_ZONEID[$i] );
 	
 		print( DATFILEOUT_DAN pack("I", $zoneid_no) );
@@ -839,7 +839,7 @@ sub make_rangeid_zoneid_link{
 
 #------------------------------------------------------------------------------
 #
-#			‰B‚µƒ}ƒbƒv@ƒ][ƒ“ID‚Æ•ª•zID‚Ì‘Î‰•\‚Ì‘‚«o‚µ
+#			éš ã—ãƒãƒƒãƒ—ã€€ã‚¾ãƒ¼ãƒ³IDã¨åˆ†å¸ƒIDã®å¯¾å¿œè¡¨ã®æ›¸ãå‡ºã—
 #	
 #------------------------------------------------------------------------------
 sub make_hidemap_file{
@@ -849,9 +849,9 @@ sub make_hidemap_file{
 	
 	open( FILEOUT, ">zkn_hidemap.dat" );
 
-	#‰B‚µƒ}ƒbƒv•ªƒ‹[ƒv
+	#éš ã—ãƒãƒƒãƒ—åˆ†ãƒ«ãƒ¼ãƒ—
 	for( $i=0; $i<@HIDEMAP_ZONEID; $i++ ){
-		print( FILEOUT "/* $HIDEMAP_ZONEID[$i] ‚ÌƒtƒB[ƒ‹ƒh•ª•zID */\n" );
+		print( FILEOUT "/* $HIDEMAP_ZONEID[$i] ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒID */\n" );
 		print( FILEOUT "static const u16 ZKN_FLD_$HIDEMAP_ZONEID[$i]_IDTBL[] = {\n" );
 		for( $j=0; $j<@FLD_ID; $j++ ){
 
@@ -863,7 +863,7 @@ sub make_hidemap_file{
 		print( FILEOUT "};\n" );
 
 
-		print( FILEOUT "/* $HIDEMAP_ZONEID[$i] ‚Ìƒ_ƒ“ƒWƒ‡ƒ“•ª•zID */\n" );
+		print( FILEOUT "/* $HIDEMAP_ZONEID[$i] ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒID */\n" );
 		print( FILEOUT "static const u16 ZKN_DAN_$HIDEMAP_ZONEID[$i]_IDTBL[] = {\n" );
 		$zoneid = $HIDEMAP_ZONEID[$i];
 		for( $j=0; $j<@DAN_ID; $j++ ){
@@ -880,19 +880,19 @@ sub make_hidemap_file{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ|ƒPƒ‚ƒ“•ª•zƒf[ƒ^‹tˆø‚«ƒf[ƒ^‘‚«o‚µ
+#			ãƒã‚±ãƒ¢ãƒ³åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿é€†å¼•ããƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 #
 #------------------------------------------------------------------------------
 sub make_pokerangedata{
-	#ƒ_ƒ“ƒWƒ‡ƒ“–é•ª•zƒtƒ@ƒCƒ‹
-	&make_mons_rang_out_file_dan( \@RANGE_DAN_NI, "zkn_dan_range_night_mons", "ƒ‚ƒ“ƒXƒ^[ƒ_ƒ“ƒWƒ‡ƒ“–é•ª•zID\r\n" );
+	#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å¤œåˆ†å¸ƒãƒ•ã‚¡ã‚¤ãƒ«
+	&make_mons_rang_out_file_dan( \@RANGE_DAN_NI, "zkn_dan_range_night_mons", "ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å¤œåˆ†å¸ƒID\r\n" );
 
-	#ƒtƒB[ƒ‹ƒh–é•ª•zƒtƒ@ƒCƒ‹
-	&make_mons_rang_out_file_fld( \@RANGE_FLD_NI, "zkn_fld_range_night_mons", "ƒ‚ƒ“ƒXƒ^[ƒtƒB[ƒ‹ƒh–é•ª•zID\r\n" );
+	#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¤œåˆ†å¸ƒãƒ•ã‚¡ã‚¤ãƒ«
+	&make_mons_rang_out_file_fld( \@RANGE_FLD_NI, "zkn_fld_range_night_mons", "ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¤œåˆ†å¸ƒID\r\n" );
 }
 
-#‘‚«o‚µƒƒCƒ“
-#ƒ_ƒ“ƒWƒ‡ƒ“—p
+#æ›¸ãå‡ºã—ãƒ¡ã‚¤ãƒ³
+#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç”¨
 sub make_mons_rang_out_file_dan{
 	my( $range_data, $output_file, $output_txt_header ) = @_;
 	my( $i, $j, $out_data, $range_id);
@@ -927,7 +927,7 @@ sub make_mons_rang_out_file_dan{
 		close( OUTFILETXT );
 	}
 }
-#ƒtƒB[ƒ‹ƒh—p
+#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨
 sub make_mons_rang_out_file_fld{
 	my( $range_data, $output_file, $output_txt_header ) = @_;
 	my( $i, $j, $out_data, $range_id);
@@ -966,8 +966,8 @@ sub make_mons_rang_out_file_fld{
 
 #------------------------------------------------------------------------------
 #
-#			ƒ_ƒ“ƒWƒ‡ƒ“ƒOƒŠƒbƒhƒf[ƒ^‘‚«o‚µ	
-#			GRIDX GRIDY  “ÁêOAM(0,1) dammy
+#			ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—	
+#			GRIDX GRIDY  ç‰¹æ®ŠOAM(0,1) dammy
 #			ucahr	uchar uchar			uchar
 #
 #------------------------------------------------------------------------------
@@ -978,11 +978,11 @@ sub make_dan_grid_data{
 	open( OUTFILE, ">zkn_dan_griddata.dangri" );
 	binmode( OUTFILE );
 	
-	print( OUTFILETXT "ƒ_ƒ“ƒWƒ‡ƒ“ƒOƒŠƒbƒhÀ•W“ÁêOAMƒf[ƒ^\r\n" );
-	#DAN_GRID_X‚ÆY‚Í“¯‚¶—v‘f”
+	print( OUTFILETXT "ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ç‰¹æ®ŠOAMãƒ‡ãƒ¼ã‚¿\r\n" );
+	#DAN_GRID_Xã¨Yã¯åŒã˜è¦ç´ æ•°
 	for( $i=0; $i<@DAN_GRID_X; $i++ ){
 		
-		print( OUTFILETXT "ƒ_ƒ“ƒWƒ‡ƒ“ID[".$i."] xƒOƒŠƒbƒh[".$DAN_GRID_X[$i]."] ‚™ƒOƒŠƒbƒh[".$DAN_GRID_Y[$i]."]“ÁêOAM[".$DAN_TOKUSYUOAM[$i]."]\r\n" );
+		print( OUTFILETXT "ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ID[".$i."] xã‚°ãƒªãƒƒãƒ‰[".$DAN_GRID_X[$i]."] ï½™ã‚°ãƒªãƒƒãƒ‰[".$DAN_GRID_Y[$i]."]ç‰¹æ®ŠOAM[".$DAN_TOKUSYUOAM[$i]."]\r\n" );
 		
 		print( OUTFILE pack( "C", $DAN_GRID_X[$i] ) );	
 		print( OUTFILE pack( "C", $DAN_GRID_Y[$i] ) );	
@@ -996,10 +996,10 @@ sub make_dan_grid_data{
 
 #------------------------------------------------------------------------------
 #
-#			ƒtƒB[ƒ‹ƒh’nŒ`ƒf[ƒ^	
+#			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åœ°å½¢ãƒ‡ãƒ¼ã‚¿	
 #		
-#		ƒOƒŠƒbƒhX@ƒOƒŠƒbƒhY@ƒTƒCƒYX@ƒTƒCƒYY@”z—ñi[$DEF_FLD_AREA_DATA_ARRY_OUTSIZE]—v‘fŒÅ’èj
-#		uchar		uchar		uchar	uchar	uchar(”z—ñ)
+#		ã‚°ãƒªãƒƒãƒ‰Xã€€ã‚°ãƒªãƒƒãƒ‰Yã€€ã‚µã‚¤ã‚ºXã€€ã‚µã‚¤ã‚ºYã€€é…åˆ—ï¼ˆ[$DEF_FLD_AREA_DATA_ARRY_OUTSIZE]è¦ç´ å›ºå®šï¼‰
+#		uchar		uchar		uchar	uchar	uchar(é…åˆ—)
 #------------------------------------------------------------------------------
 sub make_fld_grid_data{
 	my($i);
@@ -1007,14 +1007,14 @@ sub make_fld_grid_data{
 	open(OUTFILE, ">zkn_fld_griddata.fldgri");
 	binmode( OUTFILE );
 
-	#ƒtƒB[ƒ‹ƒhID‚ÆFLD‘S”z—ñ‚Í—v‘f”ˆê
+	#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰IDã¨FLDå…¨é…åˆ—ã¯è¦ç´ æ•°ä¸€ç·’
 	for( $i=0; $i<@FLD_ID; $i++ ){
-		&output_fld_fld_data( $i, $FLD_GRID_X[$i], $FLD_GRID_Y[$i], $FLD_SIZE_X[$i], $FLD_SIZE_Y[$i], $FLD_AREA_ARRY[$i], "zkn_fld_griddata", "ƒtƒB[ƒ‹ƒh’nŒ`ƒf[ƒ^\r\n" );
+		&output_fld_fld_data( $i, $FLD_GRID_X[$i], $FLD_GRID_Y[$i], $FLD_SIZE_X[$i], $FLD_SIZE_Y[$i], $FLD_AREA_ARRY[$i], "zkn_fld_griddata", "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åœ°å½¢ãƒ‡ãƒ¼ã‚¿\r\n" );
 	}
 
 	close( OUTFILE );
 }
-#‘‚«o‚µ
+#æ›¸ãå‡ºã—
 sub output_fld_fld_data{
 	my( $count, $gridx, $gridy, $sizex, $sizey, $arry, $output_file, $output_txt_header ) = @_;
 	my( $i, $j, $out_data);
@@ -1032,17 +1032,17 @@ sub output_fld_fld_data{
 	print( OUTFILETXT $output_txt_header."\r\n" );
 
 
-	print( OUTFILETXT "ƒOƒŠƒbƒh‚˜ [$gridx] " );
-	print( OUTFILETXT "ƒOƒŠƒbƒh‚˜ [$gridy] " );
-	print( OUTFILETXT "ƒTƒCƒY‚˜ [$sizex] " );
-	print( OUTFILETXT "ƒTƒCƒY‚˜ [$sizey]\r\n" );
+	print( OUTFILETXT "ã‚°ãƒªãƒƒãƒ‰ï½˜ [$gridx] " );
+	print( OUTFILETXT "ã‚°ãƒªãƒƒãƒ‰ï½˜ [$gridy] " );
+	print( OUTFILETXT "ã‚µã‚¤ã‚ºï½˜ [$sizex] " );
+	print( OUTFILETXT "ã‚µã‚¤ã‚ºï½˜ [$sizey]\r\n" );
 
 	print( OUTFILE pack("C", $gridx) );
 	print( OUTFILE pack("C", $gridy) );
 	print( OUTFILE pack("C", $sizex) );
 	print( OUTFILE pack("C", $sizey) );
 		
-	#”z—ñƒf[ƒ^
+	#é…åˆ—ãƒ‡ãƒ¼ã‚¿
 	@out_data = split( ",",$arry );	
 	for( $i=0; $i<$sizey; $i++ ){
 		
@@ -1052,7 +1052,7 @@ sub output_fld_fld_data{
 		}
 		print( OUTFILETXT "\r\n" );
 	}
-	#4ƒoƒCƒgƒAƒ‰ƒCƒƒ“ƒg
+	#4ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆ
 	for( $i = $DEF_FLD_AREA_DATA_ARRY_OUTSIZE - ($sizex*$sizey); $i>0; $i-- ){
 		print( OUTFILE pack("C", 0) );
 	}
@@ -1064,7 +1064,7 @@ sub output_fld_fld_data{
 
 #------------------------------------------------------------------------------
 #
-#			”z—ñƒf[ƒ^‘‚«o‚µ	
+#			é…åˆ—ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—	
 #
 #------------------------------------------------------------------------------
 sub debug_array_print{

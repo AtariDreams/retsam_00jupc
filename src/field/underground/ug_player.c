@@ -1,8 +1,8 @@
 //=============================================================================
 /**
  * @file	comm_player.c
- * @bfief	’ÊM‚Å‘Šè‘¤‚ÌƒvƒŒ[ƒ„[‚ğ•\¦‚·‚é
- *            ƒRƒ~ƒ…ƒjƒP[ƒVƒ‡ƒ“ƒvƒŒ[ƒ„[
+ * @bfief	é€šä¿¡ã§ç›¸æ‰‹å´ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
+ *            ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼
  * @author	katsumi ohno
  * @date	05/07/14
  */
@@ -20,7 +20,7 @@
 #include "system/bmp_menu.h"
 #include "field/worldmap.h"
 #include "field/fieldobj.h"
-#include "field/fieldobj_code.h" //AC_WALK...“™ ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh‚ª‚Ü‚Æ‚ß‚Ä‚ ‚è‚Ü‚·B
+#include "field/fieldobj_code.h" //AC_WALK...ç­‰ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ãŒã¾ã¨ã‚ã¦ã‚ã‚Šã¾ã™ã€‚
 #include "field/fieldsys.h"
 #include "field/fieldmap.h"
 #include "field/fld_bmp.h"
@@ -50,13 +50,13 @@
 #include "field/tv_topic.h"
 #include "field/sysflag.h"
 
-#include "field/d_ohno.h"  // ƒfƒoƒbƒO—p
+#include "field/d_ohno.h"  // ãƒ‡ãƒãƒƒã‚°ç”¨
 
 #include <nnsys/g3d/glbstate.h>
 
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 #include "field/comm_player_local.h"
 
@@ -64,7 +64,7 @@ extern CommPlayerWork* CommPlayerGetInstance(void);
 
 //==============================================================================
 /**
- * ”é–§Šî’n‚ÉŒŠ‚ğ•Â‚¶‚Ä‚¢‚­ê‡‚ÌÁ‹
+ * ç§˜å¯†åŸºåœ°ã«ç©´ã‚’é–‰ã˜ã¦ã„ãå ´åˆã®æ¶ˆå»
  * @param   none
  * @retval  none
  */
@@ -79,7 +79,7 @@ void CommPlayerManagerDeletePlayers(void)
     }
     for(i = 0; i < COMM_MACHINE_MAX; i++){
         CommPlayerDestroy( i, FALSE ,FALSE);
-        OHNO_SP_PRINT("‚ ‚È‚¯‚µ‚Ü‚· %d \n",i);
+        OHNO_SP_PRINT("ã‚ãªã‘ã—ã¾ã™ %d \n",i);
         CommPlayerResetHole( i );
     }
     pCP->bResetting = TRUE;
@@ -88,9 +88,9 @@ void CommPlayerManagerDeletePlayers(void)
 
 //--------------------------------------------------------------
 /**
- * Šø‚ğ•Û‘¶‚·‚é
+ * æ——ã‚’ä¿å­˜ã™ã‚‹
  * @param	netID   playerID
- * @retval	Á‚µ‚½‚çTRUE
+ * @retval	æ¶ˆã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 static void _commPlayerDeliveryFlagData(int netID)
@@ -98,7 +98,7 @@ static void _commPlayerDeliveryFlagData(int netID)
     int i;
     CommPlayerWork* pCP = CommPlayerGetInstance();
 
-    if(netID == CommGetCurrentID()){  // ‹L˜^
+    if(netID == CommGetCurrentID()){  // è¨˜éŒ²
         if(pCP->pNowFlag[netID] != NULL){
 
             RECORD_Score_Add(SaveData_GetRecord(pCP->pFSys->savedata), SCORE_ID_NEW_FLAG_TAKE_OUT);
@@ -108,7 +108,7 @@ static void _commPlayerDeliveryFlagData(int netID)
             for(i = 0; i < _KEEP_FLAG_MAX; i++){
                 if(pCP->pKeepFlag[i]){
                     if(MyStatus_Compare(pCP->pNowFlag[netID], pCP->pKeepFlag[i]) == TRUE){
-                        // Š®‘Sˆê’v ‚Í¡‚ÌŠø‚ğÁ‚·‚¾‚¯
+                        // å®Œå…¨ä¸€è‡´ ã¯ä»Šã®æ——ã‚’æ¶ˆã™ã ã‘
                         CommPlayerDeleteFlagData(netID);
                         return;
                     }
@@ -135,10 +135,10 @@ static void _commPlayerDeliveryFlagData(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Šè‚Ì“ª‚©‚çŠø‚ğæ‚é
- * @param   myNetID   Šø‚ğ‚Æ‚él
- * @param   targetID  Šø‚ğ‚Æ‚ç‚ê‚él
- * @retval  ‚Æ‚Á‚½‚çTRUE
+ * @brief   ç›¸æ‰‹ã®é ­ã‹ã‚‰æ——ã‚’å–ã‚‹
+ * @param   myNetID   æ——ã‚’ã¨ã‚‹äºº
+ * @param   targetID  æ——ã‚’ã¨ã‚‰ã‚Œã‚‹äºº
+ * @retval  ã¨ã£ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -153,7 +153,7 @@ static BOOL _getHeadFlag(int myNetID, int targetNetID)
         pCP->pNowFlag[targetNetID] = NULL;
         pCP->hedFE[myNetID] = _HFE_FLAG;
         pCP->hedFE[targetNetID] = _HFE_NONE;
-//        OHNO_PRINT("‚Í‚½‚Æ‚è\n");
+//        OHNO_PRINT("ã¯ãŸã¨ã‚Š\n");
         pCP->sendFlagData[myNetID].netID = myNetID;
         pCP->sendFlagData[targetNetID].netID = INVALID_NETID;
         MyStatus_Copy(pCP->pNowFlag[myNetID], (MYSTATUS*)&pCP->sendFlagData[myNetID].mystatus);
@@ -164,7 +164,7 @@ static BOOL _getHeadFlag(int myNetID, int targetNetID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‚ğ©“®•\¦‚µ‚½ê‡‚ÌI—¹ƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è‡ªå‹•è¡¨ç¤ºã—ãŸå ´åˆã®çµ‚äº†æ™‚ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -202,7 +202,7 @@ static void _msgEndCallBackStolenMy(int num)
 
 //==============================================================================
 /**
- * ‰ï˜bƒŠƒXƒg‚ªI‚í‚Á‚½‚ÉŒÄ‚Ño‚µ‚Ä‚à‚ç‚¤
+ * ä¼šè©±ãƒªã‚¹ãƒˆãŒçµ‚ã‚ã£ãŸæ™‚ã«å‘¼ã³å‡ºã—ã¦ã‚‚ã‚‰ã†
  * @param   none
  * @retval  none
  */
@@ -224,8 +224,8 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   ’YzƒtƒB[ƒ‹ƒhƒƒjƒ…[‚ğŠJ‚¢‚Ä‚æ‚¢‚©‚Ç‚¤‚©  CF_CHECK_FIELDMENU_OPEN
- * @param   ƒR[ƒ‹ƒoƒbƒNƒpƒ‰ƒ[ƒ^[
+ * @brief   ç‚­é‰±ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã„ã¦ã‚ˆã„ã‹ã©ã†ã‹  CF_CHECK_FIELDMENU_OPEN
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -256,7 +256,7 @@ void CommPlayerRecvCheckFieldMenuOpen(int netID, int size, void* pData, void* pW
 
 //--------------------------------------------------------------
 /**
- * @brief   STARTƒƒjƒ…[‚ğŠJ‚¢‚Ä‚¢‚¢‚©‚Ç‚¤‚©‚ÌƒR[ƒ‹ƒoƒbƒN CF_RESULT_FIELDMENU_OPEN
+ * @brief   STARTãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã„ã¦ã„ã„ã‹ã©ã†ã‹ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ CF_RESULT_FIELDMENU_OPEN
  * @param   
  * @retval  none
  */
@@ -273,7 +273,7 @@ void CommPlayerRecvResultFieldMenuOpen(int netID, int size, void* pData, void* p
     if((pMenuOpen->bOpen == _RESULT_OK) && (pMenuOpen->netID == CommGetCurrentID())){
         if(!pCP->bTalkMenuDisp){
             pCP->bTalkMenuDisp = TRUE;
-            //’n‰ºê—pƒƒjƒ…[‚ğo‚·
+            //åœ°ä¸‹å°‚ç”¨ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‡ºã™
             CommUnderBagInit(_talkMenuEnd, pCP->pFSys);
         }
     }
@@ -287,9 +287,9 @@ void CommPlayerRecvResultFieldMenuOpen(int netID, int size, void* pData, void* p
 
 //--------------------------------------------------------------
 /**
- * @brief   –â‚¢‚©‚¯ƒƒjƒ…[‚ğŠJ‚¢‚Ä‚¢‚¢‚©‚Ç‚¤‚©‚ÌƒR[ƒ‹ƒoƒbƒN
+ * @brief   å•ã„ã‹ã‘ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã„ã¦ã„ã„ã‹ã©ã†ã‹ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *          CF_RESULT_UGMENU_OPEN
- * @param   ’ÊMƒR[ƒ‹ƒoƒbƒN
+ * @param   é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -301,14 +301,14 @@ void CommPlayerRecvResultUGMenuOpen(int netID, int size, void* pData, void* pWor
     EVENTWORK* pEV = SaveData_GetEventWork( pCP->pFSys->savedata );
     GF_ASSERT_RETURN(pMenuOpen->netID < COMM_MACHINE_MAX,);
 
-//    OHNO_PRINT("‰ï˜bŠJn ƒNƒ‰ƒCƒAƒ“ƒg\n");
+//    OHNO_PRINT("ä¼šè©±é–‹å§‹ ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ\n");
 
     if((pMenuOpen->bOpen == _RESULT_FOSSIL) && (pMenuOpen->netID == CommGetCurrentID())){
         CommPlayerHold();
         CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(),
                                msg_underworld_72,TRUE,_msgEndCallBack);
     }
-    if(pMenuOpen->bOpen == _RESULT_OK){    // Œü‚©‚¢‡‚¤•ûŒü‚É
+    if(pMenuOpen->bOpen == _RESULT_OK){    // å‘ã‹ã„åˆã†æ–¹å‘ã«
         CommPlayerSetLook(pMenuOpen->netID, pMenuOpen->targetID);
     }
     if((pMenuOpen->bOpen == _RESULT_OK) && (pMenuOpen->netID == CommGetCurrentID())){
@@ -318,7 +318,7 @@ void CommPlayerRecvResultUGMenuOpen(int netID, int size, void* pData, void* pWor
         pCP->talkMenuInfo.bItemMenu = FALSE;
         pCP->talkMenuInfo.bPersonalInformation = FALSE;
         if(pCP->handCount[pMenuOpen->targetID] == 0){
-            SecretBaseRecordSetTalkNum(SaveData_GetSecretBaseRecord(GameSystem_GetSaveData(pCP->pFSys)),pMenuOpen->targetID); // ˜b‚µ‚©‚¯ŠJn
+            SecretBaseRecordSetTalkNum(SaveData_GetSecretBaseRecord(GameSystem_GetSaveData(pCP->pFSys)),pMenuOpen->targetID); // è©±ã—ã‹ã‘é–‹å§‹
             SysWork_UGTalkCountSet(pEV,SysWork_UGTalkCountGet(pEV)+1);
             SysWork_UGTalkCount2Set(pEV,SysWork_UGTalkCount2Get(pEV)+1);
             pCP->handCount[pMenuOpen->targetID]++;
@@ -339,8 +339,8 @@ void CommPlayerRecvResultUGMenuOpen(int netID, int size, void* pData, void* pWor
 
 //--------------------------------------------------------------
 /**
- * @brief   Šø‚ÉŠÖ‚·‚éó‘Ô‚ğƒT[ƒo[‚©‚ç•Ô‚·ê‡‚ÌƒRƒ}ƒ“ƒhƒTƒCƒY
- * @param   ’ÊMƒR[ƒ‹ƒoƒbƒN
+ * @brief   æ——ã«é–¢ã™ã‚‹çŠ¶æ…‹ã‚’ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰è¿”ã™å ´åˆã®ã‚³ãƒãƒ³ãƒ‰ã‚µã‚¤ã‚º
+ * @param   é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -358,8 +358,8 @@ int CommPlayerRecvFlagStateServerRetGetSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Šø‚ÉŠÖ‚·‚éó‘Ô‚ªƒT[ƒo[‚É“Í‚¢‚½  CF_FLAG_STATE
- * @param   ’ÊMƒR[ƒ‹ƒoƒbƒN
+ * @brief   æ——ã«é–¢ã™ã‚‹çŠ¶æ…‹ãŒã‚µãƒ¼ãƒãƒ¼ã«å±Šã„ãŸ  CF_FLAG_STATE
+ * @param   é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -373,12 +373,12 @@ void CommPlayerRecvFlagState(int netID, int size, void* pData, void* pWork)
     switch(pState[0]){
       case UNDER_FLAG_DEL:
         ret.state = UNDER_FLAG_DEL;
-        CommSendFixSizeData_ServerSide(CF_FLAG_STATE_RET,&ret);  // Šø‚ğÁ‚·ˆ×‚ÉƒNƒ‰ƒCƒAƒ“ƒg‚É‘—M
+        CommSendFixSizeData_ServerSide(CF_FLAG_STATE_RET,&ret);  // æ——ã‚’æ¶ˆã™ç‚ºã«ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«é€ä¿¡
 //        CommPlayerSetMoveControl_Server(netID,FALSE);
         break;
       case UNDER_FLAG_DELIVERY:
         ret.state = UNDER_FLAG_DELIVERY;
-        CommSendFixSizeData_ServerSide(CF_FLAG_STATE_RET,&ret);  // Šø‚ğÁ‚·ˆ×‚ÉƒNƒ‰ƒCƒAƒ“ƒg‚É‘—M
+        CommSendFixSizeData_ServerSide(CF_FLAG_STATE_RET,&ret);  // æ——ã‚’æ¶ˆã™ç‚ºã«ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«é€ä¿¡
         CommPlayerSetMoveControl_Server(netID,FALSE);
         break;
     }
@@ -386,8 +386,8 @@ void CommPlayerRecvFlagState(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   Šø‚ÉŠÖ‚·‚éó‘Ô‚ªƒT[ƒo[‚É“Í‚¢‚½  CF_PLAYER_FREEZE_END
- * @param   ’ÊMƒR[ƒ‹ƒoƒbƒN
+ * @brief   æ——ã«é–¢ã™ã‚‹çŠ¶æ…‹ãŒã‚µãƒ¼ãƒãƒ¼ã«å±Šã„ãŸ  CF_PLAYER_FREEZE_END
+ * @param   é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -398,7 +398,7 @@ static void _commPlayerFreeze(int num)
 {
 //    u8* pBuff = pData;
 
-    CommPlayerSetFENoneAdd(CommGetCurrentID()); // I‚¯‚µ
+    CommPlayerSetFENoneAdd(CommGetCurrentID()); // ï¼ã‘ã—
     CommMsgTalkWindowEnd(CommUnderGetMsgUnderFlag());
     CommPlayerHoldBitEnd(_HOLD_FLAG_STOLEN);
 }
@@ -406,8 +406,8 @@ static void _commPlayerFreeze(int num)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒnƒ^‚ğæ‚ç‚ê‚½‚Ì‚Åˆê•bˆÈãŒÅ‚Ü‚é
- * @param   ’ÊMƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒã‚¿ã‚’å–ã‚‰ã‚ŒãŸã®ã§ä¸€ç§’ä»¥ä¸Šå›ºã¾ã‚‹
+ * @param   é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -439,8 +439,8 @@ static void _freezePlayer(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒnƒ^‚ğæ‚ç‚ê‚½‚Ì‚Åˆê•bˆÈãŒÅ‚Ü‚é
- * @param   ’ÊMƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒã‚¿ã‚’å–ã‚‰ã‚ŒãŸã®ã§ä¸€ç§’ä»¥ä¸Šå›ºã¾ã‚‹
+ * @param   é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -459,8 +459,8 @@ static void _freezeConditionStart(int targetID)
 
 //--------------------------------------------------------------
 /**
- * @brief   Šø‚ğ‚Á‚Ä‚¢‚él‚Æ‚ÌŒŸ¸
- * @param   ’ÊMƒR[ƒ‹ƒoƒbƒN
+ * @brief   æ——ã‚’æŒã£ã¦ã„ã‚‹äººã¨ã®æ¤œæŸ»
+ * @param   é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -472,14 +472,14 @@ BOOL CommPlayerFlagTalkCheck(int netID, int targetID, BOOL bNPCTalk)
     if(bNPCTalk & 0x01){
         ret.state = UNDER_FLAG_NOTALK;
     }
-    else if(CommPlayerIsFlagData(netID)){ // ©•ª‚ªŠø‚ğ‚Á‚Ä‚¢‚éê‡‚Í‚±‚ê
+    else if(CommPlayerIsFlagData(netID)){ // è‡ªåˆ†ãŒæ——ã‚’æŒã£ã¦ã„ã‚‹å ´åˆã¯ã“ã‚Œ
         ret.state = UNDER_FLAG_NOTALK;
     }
     else{
         if(targetID == COMM_INVALID_ID){
             return FALSE;
         }
-        else if(!CommPlayerIsFlagData(targetID)){ // ‘Šè‚ªŠø‚ğ‚Á‚Ä‚È‚¢
+        else if(!CommPlayerIsFlagData(targetID)){ // ç›¸æ‰‹ãŒæ——ã‚’æŒã£ã¦ãªã„
             return FALSE;
         }
         else{
@@ -490,15 +490,15 @@ BOOL CommPlayerFlagTalkCheck(int netID, int targetID, BOOL bNPCTalk)
     ret.myNetID = netID;
     ret.targetID = targetID;
     CommPlayerSetMoveControl_Server(netID,FALSE);
-    CommSendFixSizeData_ServerSide(CF_FLAG_STATE_RET,&ret);  // ƒNƒ‰ƒCƒAƒ“ƒg‚É‘—M
+    CommSendFixSizeData_ServerSide(CF_FLAG_STATE_RET,&ret);  // ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«é€ä¿¡
     return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚Ù‚ê‚é‚©‚Ç‚¤‚©  Šø‚Á‚Ä‚½‚ç‚Ù‚ê‚È‚¢
- * @param   id     l
- * @retval  ’ÊM‚ğ•Ô‚µ‚½‚çTRUE
+ * @brief   ã»ã‚Œã‚‹ã‹ã©ã†ã‹  æ——æŒã£ã¦ãŸã‚‰ã»ã‚Œãªã„
+ * @param   id     äºº
+ * @retval  é€šä¿¡ã‚’è¿”ã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -506,21 +506,21 @@ BOOL CommPlayerFlagDigCheck(int netID)
 {
     _flagStateCallBack ret;
 
-    if(CommPlayerIsFlagData(netID)){ // ©•ª‚ªŠø‚ğ‚Á‚Ä‚¢‚éê‡‚Í‚±‚ê
+    if(CommPlayerIsFlagData(netID)){ // è‡ªåˆ†ãŒæ——ã‚’æŒã£ã¦ã„ã‚‹å ´åˆã¯ã“ã‚Œ
         ret.state = UNDER_FLAG_NODIG;
     }
     else{
         return FALSE;
     }
     ret.myNetID = netID;
-    CommSendFixSizeData_ServerSide(CF_FLAG_STATE_RET,&ret);  // ƒNƒ‰ƒCƒAƒ“ƒg‚É‘—M
+    CommSendFixSizeData_ServerSide(CF_FLAG_STATE_RET,&ret);  // ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«é€ä¿¡
     return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒnƒ^‚ğ“‚Ü‚ê‚½l‚Ìˆ—  
- * @param   ’ÊMƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒã‚¿ã‚’ç›—ã¾ã‚ŒãŸäººã®å‡¦ç†  
+ * @param   é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -531,19 +531,19 @@ static void _stolenFlagPlayerFunc(_flagStateCallBack* pRet, BOOL bGet, SB_RECORD
 
     UgMgrForceExitNowTCB();
 #if T1656_060815_FIX
-    CommPlayerSetMoveControl(FALSE);  // ƒT[ƒo[‚É‘—M
+    CommPlayerSetMoveControl(FALSE);  // ã‚µãƒ¼ãƒãƒ¼ã«é€ä¿¡
 #endif  //T1656_060815_FIX
     CommPlayerHoldBit(_HOLD_FLAG_STOLEN);
     CommMsgRegisterTargetName(CommUnderGetMsgUnderFlag(),CommInfoGetMyStatus(pRet->myNetID));
     if(bGet){
         pCP->hedFE[CommGetCurrentID()] = _HFE_NONE;
-        CommPlayerSetFENoneAdd(CommGetCurrentID()); // ŠøÁ‚µ
+        CommPlayerSetFENoneAdd(CommGetCurrentID()); // æ——æ¶ˆã—
         CommPlayerSetFEExclamationAdd(CommGetCurrentID()); //!
-        CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),  // ’D‚í‚ê‚½
+        CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),  // å¥ªã‚ã‚ŒãŸ
                                mes_uw_flag_15, TRUE, _commPlayerFreeze);
     }
     else{
-        CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),  // ’D‚í‚ê‚½
+        CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),  // å¥ªã‚ã‚ŒãŸ
                                mes_uw_flag_16, TRUE, _commPlayerFreeze);
     }
     Snd_FadeOutNextPlaySet(SND_SCENE_FIELD,SEQ_TANKOU,BGM_FADE_TANKOU_TIME,0,0xff,NULL);
@@ -552,8 +552,8 @@ static void _stolenFlagPlayerFunc(_flagStateCallBack* pRet, BOOL bGet, SB_RECORD
 
 //--------------------------------------------------------------
 /**
- * @brief   Šø‚ÉŠÖ‚·‚éó‘Ô‚ªƒNƒ‰ƒCƒAƒ“ƒg‚É“Í‚¢‚½  CF_FLAG_STATE_RET
- * @param   ’ÊMƒR[ƒ‹ƒoƒbƒN
+ * @brief   æ——ã«é–¢ã™ã‚‹çŠ¶æ…‹ãŒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«å±Šã„ãŸ  CF_FLAG_STATE_RET
+ * @param   é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -568,7 +568,7 @@ void CommPlayerRecvFlagStateServerRet(int netID, int size, void* pData, void* pW
 
     switch(pRet->state){
       case UNDER_FLAG_DEL:
-        if(pCP->pNowFlag[pRet->myNetID]){ // ©•ª‚Ìƒnƒ^‚ª‚ ‚éê‡
+        if(pCP->pNowFlag[pRet->myNetID]){ // è‡ªåˆ†ã®ãƒã‚¿ãŒã‚ã‚‹å ´åˆ
             CommPlayerDeleteFlagData(pRet->myNetID);
             CommPlayerSetFENoneAdd(pRet->myNetID);
             if(pRet->myNetID == CommGetCurrentID()){
@@ -578,55 +578,55 @@ void CommPlayerRecvFlagStateServerRet(int netID, int size, void* pData, void* pW
                 Snd_FadeOutNextPlaySet(SND_SCENE_FIELD,SEQ_TANKOU,BGM_FADE_TANKOU_TIME,0,0xff,NULL);
             }
         }
-//        OHNO_PRINT("‚Í‚½Ì‚Ä‚½\n");
+//        OHNO_PRINT("ã¯ãŸæ¨ã¦ãŸ\n");
         break;
-      case UNDER_FLAG_RIP_OFF:  // ’D‚¢‡‚¢
-        // ƒNƒ‰ƒCƒAƒ“ƒgŠÇ—‚È‚Ì‚Å©•ª‚ª‚Á‚Ä‚½‚çæ‚ê‚½‚±‚Æ‚É‚·‚é
+      case UNDER_FLAG_RIP_OFF:  // å¥ªã„åˆã„
+        // ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç®¡ç†ãªã®ã§è‡ªåˆ†ãŒæŒã£ã¦ãŸã‚‰å–ã‚ŒãŸã“ã¨ã«ã™ã‚‹
         if(CommInfoGetMyStatus(pRet->myNetID)==NULL){
-            //’D‚Á‚½l‚ª‚¢‚È‚¢ê‡  ‘Šè‚Ìƒnƒ^‚¾‚¯Á‚µ‚ÄŠ®—¹
+            //å¥ªã£ãŸäººãŒã„ãªã„å ´åˆ  ç›¸æ‰‹ã®ãƒã‚¿ã ã‘æ¶ˆã—ã¦å®Œäº†
             CommPlayerDeleteFlagData(pRet->targetID);
-//            OHNO_PRINT("’D‚¢‡‚¢‚¯‚µ‚Ä‚¨‚í‚è\n");
+//            OHNO_PRINT("å¥ªã„åˆã„ã‘ã—ã¦ãŠã‚ã‚Š\n");
             return;
         }
-        if(pCP->pNowFlag[pRet->targetID]==NULL){ // ‘Šè‚Ìƒnƒ^‚ª–³‚¢ê‡
-            // I—¹
+        if(pCP->pNowFlag[pRet->targetID]==NULL){ // ç›¸æ‰‹ã®ãƒã‚¿ãŒç„¡ã„å ´åˆ
+            // çµ‚äº†
             if(pRet->myNetID==CommGetCurrentID()){
                 CommPlayerHoldEnd();
             }
-//            OHNO_PRINT("‚Í‚½‚È‚¢\n");
+//            OHNO_PRINT("ã¯ãŸãªã„\n");
             return;
         }
         if(MyStatus_Compare(pCP->pNowFlag[pRet->targetID],
-                            CommInfoGetMyStatus(pRet->myNetID)) == TRUE){  // À‚Í©•ª‚ÌŠø‚¾‚Á‚½
-            // ‘Šè‚ÌŠø‚ğÁ‚·
+                            CommInfoGetMyStatus(pRet->myNetID)) == TRUE){  // å®Ÿã¯è‡ªåˆ†ã®æ——ã ã£ãŸ
+            // ç›¸æ‰‹ã®æ——ã‚’æ¶ˆã™
             CommPlayerDeleteFlagData(pRet->targetID);
             if(pRet->myNetID == CommGetCurrentID()){
-                SecretBaseRecordSetFlagReverseNum(pSBD);   // ’D‚Á‚½Šø‚ğæ‚è–ß‚µ‚½
+                SecretBaseRecordSetFlagReverseNum(pSBD);   // å¥ªã£ãŸæ——ã‚’å–ã‚Šæˆ»ã—ãŸ
                 CommPlayerHold();
-                CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),  // ‚Æ‚è‚à‚Ç‚µ‚½
+                CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),  // ã¨ã‚Šã‚‚ã©ã—ãŸ
                                               mes_uw_flag_18, TRUE, _msgEndCallBack);
                 Snd_SePlay(UG_SE_FLAG_CONQUER);
             }
             else if(pRet->targetID == CommGetCurrentID()){
-                _stolenFlagPlayerFunc(pRet, FALSE, pSBD); // æ‚ç‚ê‚½‘¤
+                _stolenFlagPlayerFunc(pRet, FALSE, pSBD); // å–ã‚‰ã‚ŒãŸå´
             }
-            UgSecretBaseSetFlagReverseLog(pRet->myNetID);//‚Æ‚è‚à‚Ç‚µ‚½
+            UgSecretBaseSetFlagReverseLog(pRet->myNetID);//ã¨ã‚Šã‚‚ã©ã—ãŸ
         }
-        else if(_getHeadFlag(pRet->myNetID,pRet->targetID)){  // ƒnƒ^‚ğæ‚ê‚½
+        else if(_getHeadFlag(pRet->myNetID,pRet->targetID)){  // ãƒã‚¿ã‚’å–ã‚ŒãŸ
             if(pRet->myNetID == CommGetCurrentID()){
-                SecretBaseRecordSetFlagConquerNum(pSBD);  // ’D‚Á‚½
+                SecretBaseRecordSetFlagConquerNum(pSBD);  // å¥ªã£ãŸ
                 CommPlayerHoldBit(_HOLD_FLAG_RIP_OFF);
                 CommMsgRegisterTargetName(CommUnderGetMsgUnderFlag(),CommInfoGetMyStatus(pRet->targetID));
-                CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),  // ’D‚Á‚½
+                CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),  // å¥ªã£ãŸ
                                               mes_uw_flag_17, TRUE, _msgEndCallBackRipOff);
                 Snd_BgmPlay( SEQ_HATANIGE );
                 Snd_SePlay(UG_SE_FLAG_CONQUER);
             }
             else if(pRet->targetID == CommGetCurrentID()){
-                _stolenFlagPlayerFunc(pRet, TRUE, pSBD); // æ‚ç‚ê‚½‘¤
+                _stolenFlagPlayerFunc(pRet, TRUE, pSBD); // å–ã‚‰ã‚ŒãŸå´
             }
-//            OHNO_PRINT("’D‚Á‚½\n");
-            UgSecretBaseSetFlagConquerLog(pRet->myNetID, pRet->targetID);//‚¤‚Î‚Á‚½
+//            OHNO_PRINT("å¥ªã£ãŸ\n");
+            UgSecretBaseSetFlagConquerLog(pRet->myNetID, pRet->targetID);//ã†ã°ã£ãŸ
         }
         break;
       case UNDER_FLAG_NOTALK:
@@ -646,14 +646,14 @@ void CommPlayerRecvFlagStateServerRet(int netID, int size, void* pData, void* pW
         break;
       case UNDER_FLAG_DELIVERY:
         pCP->hedFE[pRet->myNetID] = _HFE_NONE;
-        CommPlayerSetFENoneAdd(pRet->myNetID); // ŠøÁ‚µ
+        CommPlayerSetFENoneAdd(pRet->myNetID); // æ——æ¶ˆã—
 
-        if(pRet->myNetID == CommGetCurrentID()){  // •\¦
+        if(pRet->myNetID == CommGetCurrentID()){  // è¡¨ç¤º
             SB_RECORD_DATA* pSBD = SaveData_GetSecretBaseRecord(GameSystem_GetSaveData(pCP->pFSys));
             u8 type = SecretBaseRecordGetFlagType(pSBD);
-            SecretBaseRecordSetFlagDeliveryNum(pSBD);  // ‰^‚ñ‚¾
-            SysFlag_UgHataSet(SaveData_GetEventWork(pCP->pFSys->savedata)); // ‰^‚ñ‚¾
-            if(pCP->pNowFlag[pRet->myNetID]){            // ƒnƒ^‚ğ‰^‚Ô‚½‚Ñ‚ÉŒÄ‚Î‚ê‚é
+            SecretBaseRecordSetFlagDeliveryNum(pSBD);  // é‹ã‚“ã 
+            SysFlag_UgHataSet(SaveData_GetEventWork(pCP->pFSys->savedata)); // é‹ã‚“ã 
+            if(pCP->pNowFlag[pRet->myNetID]){            // ãƒã‚¿ã‚’é‹ã¶ãŸã³ã«å‘¼ã°ã‚Œã‚‹
                 TVTOPIC_Entry_Watch_GetFlag(pCP->pFSys,pCP->pNowFlag[pRet->myNetID]);
                 if(pCP->myDeliveryFlagNum!=0xffff){
                     pCP->myDeliveryFlagNum++;
@@ -661,29 +661,29 @@ void CommPlayerRecvFlagStateServerRet(int netID, int size, void* pData, void* pW
             }
             CommPlayerHold();
             Snd_SePlay(UG_SE_FLAG_DELIVERY);
-            if(type == SecretBaseRecordGetFlagType(pSBD)){  // ƒnƒ^“¯‚¶‚¾‚Á‚½
+            if(type == SecretBaseRecordGetFlagType(pSBD)){  // ãƒã‚¿åŒã˜ã ã£ãŸ
                 CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),
                                        mes_uw_flag_12, TRUE, _msgEndCallBack);
             }
             else{
-                CommSendFixSizeData(CF_LVUP_FLAG, &type);  // LVUP‰‰o
+                CommSendFixSizeData(CF_LVUP_FLAG, &type);  // LVUPæ¼”å‡º
             }
             Snd_FadeOutNextPlaySet(SND_SCENE_FIELD,SEQ_TANKOU,BGM_FADE_TANKOU_TIME,0,0xff,NULL);
         }
         if(pCP->pNowFlag[pRet->myNetID]){
             if(MyStatus_Compare(pCP->pNowFlag[pRet->myNetID],
-                                CommInfoGetMyStatus(CommGetCurrentID())) == TRUE){  // À‚Í©•ª‚ÌŠø‚¾‚Á‚½
+                                CommInfoGetMyStatus(CommGetCurrentID())) == TRUE){  // å®Ÿã¯è‡ªåˆ†ã®æ——ã ã£ãŸ
                 TVTOPIC_Entry_Watch_LoseFlag(pCP->pFSys,CommInfoGetMyStatus(pRet->myNetID));
             }
         }
-        _commPlayerDeliveryFlagData(pRet->myNetID);  // ‹L˜^
+        _commPlayerDeliveryFlagData(pRet->myNetID);  // è¨˜éŒ²
         break;
     }
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   e‹@‘¤‚Ìƒnƒ^ƒv[ƒ‹ƒf[ƒ^‚ğÁ‚·
+ * @brief   è¦ªæ©Ÿå´ã®ãƒã‚¿ãƒ—ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
  * @param   none
  * @retval  none
  */
@@ -701,10 +701,10 @@ void CommPlayerParentFlagDataReset(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒnƒ^‚ğó‚¯æ‚éƒoƒbƒtƒ@
- * @param   xpos  êŠ
+ * @brief   ãƒã‚¿ã‚’å—ã‘å–ã‚‹ãƒãƒƒãƒ•ã‚¡
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -716,10 +716,10 @@ u8* CommPlayerGetFlagRecvBuff( int netID, void* pWork, int size)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»ó‚Ìƒnƒ^ƒf[ƒ^‘—M
- * @param   xpos  êŠ
+ * @brief   ç¾çŠ¶ã®ãƒã‚¿ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -729,7 +729,7 @@ void CommPlayerNowFlagSend(void)
 
     pCP->bFlagDataRecv = FALSE;
     if(pCP->pNowFlag[CommGetCurrentID()]){
-        CommSendFixSizeData(CF_FLAG_NOWARRAY_REQ, pCP->pNowFlag[CommGetCurrentID()]); //ƒnƒ^î•ñXV
+        CommSendFixSizeData(CF_FLAG_NOWARRAY_REQ, pCP->pNowFlag[CommGetCurrentID()]); //ãƒã‚¿æƒ…å ±æ›´æ–°
     }
     else{
         MYSTATUS* pMy = MyStatus_AllocWork(HEAPID_COMMUNICATION);
@@ -737,7 +737,7 @@ void CommPlayerNowFlagSend(void)
         GF_ASSERT(pMy);
         GF_ASSERT(pBuf);
         MyStatus_SetMyNameFromString(pMy,pBuf);
-        CommSendFixSizeData(CF_FLAG_NOWARRAY_REQ, pMy); //ƒnƒ^î•ñXV
+        CommSendFixSizeData(CF_FLAG_NOWARRAY_REQ, pMy); //ãƒã‚¿æƒ…å ±æ›´æ–°
         STRBUF_Delete(pBuf);
         sys_FreeMemoryEz(pMy);
     }
@@ -745,10 +745,10 @@ void CommPlayerNowFlagSend(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»ó‚Ìƒnƒ^ƒf[ƒ^ƒTƒCƒY‚ğ‚¦‚é
- * @param   xpos  êŠ
+ * @brief   ç¾çŠ¶ã®ãƒã‚¿ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’ãˆã‚‹
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -759,10 +759,10 @@ int CommPlayerNowFlagSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»ó‚Ìƒnƒ^ƒf[ƒ^‚ğ‘Sˆõ‚É‘—‚é
- * @param   xpos  êŠ
+ * @brief   ç¾çŠ¶ã®ãƒã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å…¨å“¡ã«é€ã‚‹
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -781,11 +781,11 @@ void CommPlayerRecvNowFlagDataReq(int netID, int size, void* pData, void* pWork)
         MyStatus_Copy(pMyStatus, (MYSTATUS*)pCP->sendFlagData[netID].mystatus);
 
         pStrBuf = MyStatus_CreateNameString(pMyStatus, HEAPID_COMMUNICATION);
-        if(STRBUF_GetLen(pStrBuf)!=0){  // –¼‘O‚ª‚ ‚ê‚Î³‚µ‚¢ƒf[ƒ^
+        if(STRBUF_GetLen(pStrBuf)!=0){  // åå‰ãŒã‚ã‚Œã°æ­£ã—ã„ãƒ‡ãƒ¼ã‚¿
             pCP->sendFlagData[netID].netID = netID;
         }
         for(i = 0; i < COMM_MACHINE_MAX;i++){
-//            OHNO_PRINT("ŠøŒŸ¸ %d\n", pCP->sendFlagData[i].netID);
+//            OHNO_PRINT("æ——æ¤œæŸ» %d\n", pCP->sendFlagData[i].netID);
             if(pCP->sendFlagData[i].netID != INVALID_NETID){
 
 
@@ -807,10 +807,10 @@ void CommPlayerRecvNowFlagDataReq(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»ó‚Ìƒnƒ^ƒf[ƒ^‚ª“’…
- * @param   xpos  êŠ
+ * @brief   ç¾çŠ¶ã®ãƒã‚¿ãƒ‡ãƒ¼ã‚¿ãŒåˆ°ç€
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -834,10 +834,10 @@ void CommPlayerRecvNowFlagDataArray(int netID, int size, void* pData, void* pWor
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»ó‚Ìƒnƒ^ƒf[ƒ^ƒTƒCƒY
- * @param   xpos  êŠ
+ * @brief   ç¾çŠ¶ã®ãƒã‚¿ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -848,7 +848,7 @@ int CommPlayerNowFlagDataArraySize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Šøƒf[ƒ^óMƒR[ƒ‹ƒoƒbƒN
+ * @brief   æ——ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 //--------------------------------------------------------------
 
@@ -857,7 +857,7 @@ void CommPlayerRecvNowFlagDataEnd(int netID, int size, void* pData, void* pWork)
     u8* pBuff = pData;
     CommPlayerWork* pCP = CommPlayerGetInstance();
 
-//    OHNO_PRINT("CommPlayerRecvNowFlagDataEndƒRƒ}ƒ“ƒhóM %d\n",pBuff[0]);
+//    OHNO_PRINT("CommPlayerRecvNowFlagDataEndã‚³ãƒãƒ³ãƒ‰å—ä¿¡ %d\n",pBuff[0]);
     if(pBuff[0] == CommGetCurrentID()){
         pCP->bFlagDataRecv = TRUE;
     }
@@ -866,8 +866,8 @@ void CommPlayerRecvNowFlagDataEnd(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   Šøƒf[ƒ^‚ğóM‚µ‚½‚©‚Ç‚¤‚©
- * @retval  TRUE‚È‚çóM‚µ‚½
+ * @brief   æ——ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‹ã©ã†ã‹
+ * @retval  TRUEãªã‚‰å—ä¿¡ã—ãŸ
  */
 //--------------------------------------------------------------
 
@@ -880,8 +880,8 @@ BOOL CommPlayerIsNowFlagDataEnd(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@‚Æ‚µ‚Ä‚Á‚Ä‚¢‚½Šø‚ğe‹@iƒ\ƒj‚ÉŒq‚®
- *          ©•ª‚ÌˆÈŠO‚Í–•Á
+ * @brief   å­æ©Ÿã¨ã—ã¦æŒã£ã¦ã„ãŸæ——ã‚’è¦ªæ©Ÿï¼ˆã‚½ãƒ­ï¼‰ã«ç¹‹ã
+ *          è‡ªåˆ†ã®ä»¥å¤–ã¯æŠ¹æ¶ˆ
  * @param   none
  * @retval  none
  */
@@ -894,20 +894,20 @@ void CommPlayerFlagChange(void)
     int id = CommGetCurrentID();
     CommPlayerWork* pCP = CommPlayerGetInstance();
 
-    // Šø‚ğ‚Á‚Ä‚½‚ç’u‚¢‚Ä‚¨‚­
+    // æ——ã‚’æŒã£ã¦ãŸã‚‰ç½®ã„ã¦ãŠã
     if(pCP->pNowFlag[id]){
-//        OHNO_PRINT("©•ª‚ªŠø‚ğ‚Á‚Ä‚¢‚é\n");
+//        OHNO_PRINT("è‡ªåˆ†ãŒæ——ã‚’æŒã£ã¦ã„ã‚‹\n");
         pMy = pCP->pNowFlag[id];
         pCP->pNowFlag[id] = NULL;
         pCP->hedFE[id] = _HFE_NONE;
         pCP->sendFlagData[id].netID = INVALID_NETID;
     }
-    // ‘S•”Á‚·
+    // å…¨éƒ¨æ¶ˆã™
     for(i = 0; i < COMM_MACHINE_MAX; i++){
         CommPlayerDeleteFlagData(i);
     }
     if(pMy){
-//        OHNO_PRINT("Ø’f@ƒnƒ^÷“n\n");
+//        OHNO_PRINT("åˆ‡æ–­ã€€ãƒã‚¿è­²æ¸¡\n");
         pCP->pNowFlag[COMM_PARENT_ID] = pMy;
         pCP->hedFE[COMM_PARENT_ID] = _HFE_FLAG;
         MyStatus_Copy(pMy, (MYSTATUS*)&pCP->sendFlagData[COMM_PARENT_ID].mystatus);
@@ -917,9 +917,9 @@ void CommPlayerFlagChange(void)
 
 //==============================================================================
 /**
- * ã©‚É‚©‚©‚Á‚Ä‚é‚©‚Ç‚¤‚©
+ * ç½ ã«ã‹ã‹ã£ã¦ã‚‹ã‹ã©ã†ã‹
  * @param   targetID
- * @retval  ‚©‚©‚Á‚Ä‚¢‚½‚çTRUE
+ * @retval  ã‹ã‹ã£ã¦ã„ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -938,7 +938,7 @@ BOOL CommPlayerIsTrapBind(int targetID)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@‚©‚çNPC‚É˜b‚µ‚©‚¯‚½Û‚É”ò‚ñ‚Å‚«‚Ü‚·
+ * @brief   å­æ©Ÿã‹ã‚‰NPCã«è©±ã—ã‹ã‘ãŸéš›ã«é£›ã‚“ã§ãã¾ã™
  * @param   none
  * @retval  none
  */
@@ -953,7 +953,7 @@ void CommPlayerRecvOtherTalk(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   e‹@‚©‚çNPC‚É˜b‚µ‚©‚¯‚½q‹@‚ª‚¢‚½Û‚É”ò‚ñ‚Å‚«‚Ü‚· CF_OTHER_TALK_SERVER_SIDE
+ * @brief   è¦ªæ©Ÿã‹ã‚‰NPCã«è©±ã—ã‹ã‘ãŸå­æ©ŸãŒã„ãŸéš›ã«é£›ã‚“ã§ãã¾ã™ CF_OTHER_TALK_SERVER_SIDE
  * @param   none
  * @retval  none
  */
@@ -967,9 +967,9 @@ void CommPlayerRecvOtherTalk_ServerSide(int netID, int size, void* pData, void* 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ÌX‚ÌˆÊ’u‚ğ•Ô‚·  ‚©‚¹‚«Œ@‚èê—p
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  X‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®Xã®ä½ç½®ã‚’è¿”ã™  ã‹ã›ãæ˜ã‚Šå°‚ç”¨
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Xã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -991,9 +991,9 @@ int CommPlayerGetPosDigFossilX(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ÌZ‚ÌˆÊ’u‚ğ•Ô‚·  ‚©‚¹‚«Œ@‚èê—p
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  Z‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®Zã®ä½ç½®ã‚’è¿”ã™  ã‹ã›ãæ˜ã‚Šå°‚ç”¨
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Zã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -1015,9 +1015,9 @@ int CommPlayerGetPosDigFossilZ(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ã©‚É‚©‚©‚Á‚½‚ÌƒvƒŒ[ƒ„[‚Ìó‘Ô‚ğƒZƒbƒg‚·‚¢‚é
- * @param   victimNetID  ã©‚É‚©‚©‚Á‚½l
- * @param   trapType     ã©ƒ^ƒCƒv
+ * @brief   ç½ ã«ã‹ã‹ã£ãŸæ™‚ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®çŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆã™ã„ã‚‹
+ * @param   victimNetID  ç½ ã«ã‹ã‹ã£ãŸäºº
+ * @param   trapType     ç½ ã‚¿ã‚¤ãƒ—
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1025,7 +1025,7 @@ int CommPlayerGetPosDigFossilZ(int netID)
 void CommPlayerSetCondition(int victimNetID, int condition)
 {
     CommPlayerWork* pCP = CommPlayerGetInstance();
-//    OHNO_PRINT("setƒRƒ“ƒfƒBƒVƒ‡ƒ“ %d \n", victimNetID);
+//    OHNO_PRINT("setã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ %d \n", victimNetID);
     CommPlayerCondSetCondition(
         CommPlayerCondGetWork(pCP->pCondMgr, victimNetID),
         condition);
@@ -1033,9 +1033,9 @@ void CommPlayerSetCondition(int victimNetID, int condition)
 
 //--------------------------------------------------------------
 /**
- * @brief   ã©‚É‚©‚©‚Á‚½‚ÌƒvƒŒ[ƒ„[‚Ìó‘Ô‚ğÁ‚·
- * @param   victimNetID  ã©‚É‚©‚©‚Á‚½l
- * @param   trapType     ã©ƒ^ƒCƒv
+ * @brief   ç½ ã«ã‹ã‹ã£ãŸæ™‚ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®çŠ¶æ…‹ã‚’æ¶ˆã™
+ * @param   victimNetID  ç½ ã«ã‹ã‹ã£ãŸäºº
+ * @param   trapType     ç½ ã‚¿ã‚¤ãƒ—
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1043,7 +1043,7 @@ void CommPlayerSetCondition(int victimNetID, int condition)
 void CommPlayerResetCondition(int victimNetID)
 {
     CommPlayerWork* pCP = CommPlayerGetInstance();
-//    OHNO_PRINT("ƒŠƒZƒbƒgƒRƒ“ƒfƒBƒVƒ‡ƒ“ %d \n", victimNetID);
+//    OHNO_PRINT("ãƒªã‚»ãƒƒãƒˆã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ %d \n", victimNetID);
     CommPlayerCondSetCondition(
         CommPlayerCondGetWork(pCP->pCondMgr, victimNetID),
         PLAYER_COND_NONE);
@@ -1051,7 +1051,7 @@ void CommPlayerResetCondition(int victimNetID)
 
 //--------------------------------------------------------------
 /**
- * @brief   êŠˆÚ“®‚·‚é
+ * @brief   å ´æ‰€ç§»å‹•ã™ã‚‹
  * @param   netID
  * @param   x
  * @param   y
@@ -1066,12 +1066,12 @@ void CommPlayerBaseTeleportServer(int netID, int x, int z, int dir)
     pPP->xpos = x + FieldOBJ_DirAddValueGX(dir);
     pPP->zpos = z + FieldOBJ_DirAddValueGZ(dir);
     pPP->dir = dir;
- //   _pCommPlayerWork->bMoveChange[netID]=TRUE;  // ‰Œ‚ğ”é–§Šî’n‚É“ü‚é‚Éo‚µ‚½‚¢‚Ì‚Å ‚±‚ÌuŠÔ‚Íclient‚É’Ê’m‚µ‚È‚¢ 2006.05.16
+ //   _pCommPlayerWork->bMoveChange[netID]=TRUE;  // ç…™ã‚’ç§˜å¯†åŸºåœ°ã«å…¥ã‚‹æ™‚ã«å‡ºã—ãŸã„ã®ã§ ã“ã®ç¬é–“ã¯clientã«é€šçŸ¥ã—ãªã„ 2006.05.16
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   êŠˆÚ“®‚·‚é
+ * @brief   å ´æ‰€ç§»å‹•ã™ã‚‹
  * @param   netID
  * @param   x
  * @param   y
@@ -1110,9 +1110,9 @@ void CommPlayerBaseTeleportClient(int netID, int x, int z, int dir)
 
 //--------------------------------------------------------------
 /**
- * Šø‚ğÁ‚·
+ * æ——ã‚’æ¶ˆã™
  * @param	netID   playerID
- * @retval	Á‚µ‚½‚çTRUE
+ * @retval	æ¶ˆã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 BOOL CommPlayerDeleteFlagData(int netID)
@@ -1130,9 +1130,9 @@ BOOL CommPlayerDeleteFlagData(int netID)
 
 //--------------------------------------------------------------
 /**
- * Šø‚ğ‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+ * æ——ã‚’æŒã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
  * @param	netID   playerID
- * @retval	‚Á‚Ä‚¢‚½‚çTRUE
+ * @retval	æŒã£ã¦ã„ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 BOOL CommPlayerIsFlagData(int netID)
@@ -1146,9 +1146,9 @@ BOOL CommPlayerIsFlagData(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Šè‚Ìƒpƒ\ƒRƒ“‚©‚çŠø‚ğæ‚é
- * @param   myNetID   Šø‚ğ‚Æ‚él
- * @param   targetID  Šø‚ğ‚Æ‚ç‚ê‚él
+ * @brief   ç›¸æ‰‹ã®ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰æ——ã‚’å–ã‚‹
+ * @param   myNetID   æ——ã‚’ã¨ã‚‹äºº
+ * @param   targetID  æ——ã‚’ã¨ã‚‰ã‚Œã‚‹äºº
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1162,12 +1162,12 @@ BOOL CommPlayerGetFlag(int myNetID, int targetNetID)
             pCP->pNowFlag[myNetID] = MyStatus_AllocWork(HEAPID_COMMUNICATION);
             MyStatus_Copy(pTargetStatus, pCP->pNowFlag[myNetID]);
             pCP->hedFE[myNetID] = _HFE_FLAG;
-//            OHNO_PRINT("‚Í‚½tor %d\n",myNetID);
+//            OHNO_PRINT("ã¯ãŸtor %d\n",myNetID);
             pCP->sendFlagData[myNetID].netID = myNetID;
             MyStatus_Copy(pTargetStatus, (MYSTATUS*)&pCP->sendFlagData[myNetID].mystatus);
             if(targetNetID == CommGetCurrentID()){
                 SB_RECORD_DATA* pSBD = SaveData_GetSecretBaseRecord(pCP->pFSys->savedata);
-                SecretBaseRecordSetFlagStealNum(pSBD);  // ‚Æ‚ç‚ê‚½
+                SecretBaseRecordSetFlagStealNum(pSBD);  // ã¨ã‚‰ã‚ŒãŸ
             }
             return TRUE;
         }
@@ -1177,7 +1177,7 @@ BOOL CommPlayerGetFlag(int myNetID, int targetNetID)
 
 //==============================================================================
 /**
- * ‚Ñ‚Á‚­‚èƒ}[ƒN‚ğÁ‚·ŠÖ”
+ * ã³ã£ãã‚Šãƒãƒ¼ã‚¯ã‚’æ¶ˆã™é–¢æ•°
  * @param   none
  * @retval  none
  */
@@ -1199,8 +1199,8 @@ void CommPlayerMarkDelete(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‚Ìl‚ÉŠø‚ğo‚·
- * @param   netID        Šø‚ª‚Â‚­l
+ * @brief   æŒ‡å®šã®äººã«æ——ã‚’å‡ºã™
+ * @param   netID        æ——ãŒã¤ãäºº
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1239,8 +1239,8 @@ void CommPlayerSetFlagDisp(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‚Ìl‚É‚Ñ‚Á‚­‚èƒ}[ƒN‚ğo‚·
- * @param   netID        ‚Ñ‚Á‚­‚èƒ}[ƒN‚ª‚Â‚­l
+ * @brief   æŒ‡å®šã®äººã«ã³ã£ãã‚Šãƒãƒ¼ã‚¯ã‚’å‡ºã™
+ * @param   netID        ã³ã£ãã‚Šãƒãƒ¼ã‚¯ãŒã¤ãäºº
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1248,7 +1248,7 @@ void CommPlayerSetFlagDisp(int netID)
 void CommPlayerSetFEExclamationAdd(int netID)
 {
     CommPlayerWork* pCP = CommPlayerGetInstance();
-//    OHNO_PRINT("‚Ñ‚Á‚­‚èƒ}[ƒN‚ğo‚·\n");
+//    OHNO_PRINT("ã³ã£ãã‚Šãƒãƒ¼ã‚¯ã‚’å‡ºã™\n");
     if(pCP->hedFE[ netID ] != _HFE_FLAG){
         pCP->hedFE[ netID ] = _HFE_EXCLAMATION;
     }
@@ -1256,8 +1256,8 @@ void CommPlayerSetFEExclamationAdd(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‚Ìl‚ÉOKƒ}[ƒN‚ğo‚·
- * @param   netID        ‚Ñ‚Á‚­‚èƒ}[ƒN‚ª‚Â‚­l
+ * @brief   æŒ‡å®šã®äººã«OKãƒãƒ¼ã‚¯ã‚’å‡ºã™
+ * @param   netID        ã³ã£ãã‚Šãƒãƒ¼ã‚¯ãŒã¤ãäºº
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1273,8 +1273,8 @@ void CommPlayerSetFEOkAdd(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‚Ìl‚Éƒ}[ƒN‚ğÁ‚·
- * @param   netID        ‚¯‚·l
+ * @brief   æŒ‡å®šã®äººã«ãƒãƒ¼ã‚¯ã‚’æ¶ˆã™
+ * @param   netID        ã‘ã™äºº
  * @retval  none
  */
 //--------------------------------------------------------------

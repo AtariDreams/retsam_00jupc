@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	height_ex.c
- * @brief	Šg’£‚‚³ƒf[ƒ^
+ * @brief	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿
  * @author	Nozomu Saito
  * @date	2005.12.05
  */
@@ -31,20 +31,20 @@ static BOOL HitCheckExHeightFromData(	const int inGridX,
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ìƒqƒbƒgƒ`ƒFƒbƒN
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  *
- * @param	inGridX			ƒ`ƒFƒbƒN‚·‚éƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ			ƒ`ƒFƒbƒN‚·‚éƒOƒŠƒbƒhZÀ•W
- * @param	inExHeightData	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inGridX			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inExHeightData	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:ƒqƒbƒg	FALSE:ƒm[ƒqƒbƒg
+ * @return	BOOL	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒãƒ¼ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL HitCheckExHeightFromData(	const int inGridX,
 										const int inGridZ,
 										const EX_HEIGHT_DATA *inExHeightData )
 {
-	//ƒf[ƒ^‚ª–³Œø‚È‚çƒqƒbƒg‚µ‚È‚©‚Á‚½‚Æ‚İ‚È‚·
+	//ãƒ‡ãƒ¼ã‚¿ãŒç„¡åŠ¹ãªã‚‰ãƒ’ãƒƒãƒˆã—ãªã‹ã£ãŸã¨ã¿ãªã™
 	if (inExHeightData->Valid == FALSE){
 		return FALSE;
 	}
@@ -74,12 +74,12 @@ OS_Printf("local_print HIT!!\n");
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ìƒƒ‚ƒŠƒAƒƒP[ƒg
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ãƒˆ
  *
- * @param	inNum		Šm•Û‚·‚éƒf[ƒ^ŒÂ”
- * @param	inHeapID	Šm•Û‚·‚éƒq[ƒvID
+ * @param	inNum		ç¢ºä¿ã™ã‚‹ãƒ‡ãƒ¼ã‚¿å€‹æ•°
+ * @param	inHeapID	ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	EHL_PTR	Šm•Û‚µ‚½—Ìˆæ‚Ìæ“ªƒ|ƒCƒ“ƒ^
+ * @return	EHL_PTR	ç¢ºä¿ã—ãŸé ˜åŸŸã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 EHL_PTR EXH_AllocExHeightList(const u8 inNum, const u8 inHeapID)
@@ -89,7 +89,7 @@ EHL_PTR EXH_AllocExHeightList(const u8 inNum, const u8 inHeapID)
 	ehl_p = sys_AllocMemory( inHeapID, sizeof(EX_HEIGHT_LIST) );
 	ehl_p->ExHeightData = sys_AllocMemory( inHeapID, sizeof(EX_HEIGHT_DATA)*inNum );
 	ehl_p->Num = inNum;
-	//ƒf[ƒ^‚ğ–³Œø‰»
+	//ãƒ‡ãƒ¼ã‚¿ã‚’ç„¡åŠ¹åŒ–
 	for(i=0;i<inNum;i++){
 		ehl_p->ExHeightData[i].Valid = FALSE;
 	}
@@ -99,15 +99,15 @@ EHL_PTR EXH_AllocExHeightList(const u8 inNum, const u8 inHeapID)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚ÌƒZƒbƒgƒAƒbƒv
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param	inIndex		æ“¾‚·‚é‚‚³ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param	inStX			—ÌˆæŠJnƒOƒŠƒbƒhXÀ•W
- * @param	instZ			—ÌˆæŠJnƒOƒŠƒbƒhZÀ•W
- * @param	inSizX			—ÌˆæƒOƒŠƒbƒh‰¡•
- * @param	inSizZ			—ÌˆæƒOƒŠƒbƒhc•
- * @param	inHeight		—Ìˆæ“à‚‚³
- * @param	outExHeightList	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIndex		å–å¾—ã™ã‚‹é«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inStX			é ˜åŸŸé–‹å§‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	instZ			é ˜åŸŸé–‹å§‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inSizX			é ˜åŸŸã‚°ãƒªãƒƒãƒ‰æ¨ªå¹…
+ * @param	inSizZ			é ˜åŸŸã‚°ãƒªãƒƒãƒ‰ç¸¦å¹…
+ * @param	inHeight		é ˜åŸŸå†…é«˜ã•
+ * @param	outExHeightList	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -130,9 +130,9 @@ void EXH_SetUpExHeightData(	const u8 inIndex,
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‰ğ•ú
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿è§£æ”¾
  *
- * @param	outExHeightData	Šg’£‚‚³ƒf[ƒ^‚Ìæ“ªƒ|ƒCƒ“ƒ^
+ * @param	outExHeightData	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -145,13 +145,13 @@ void EXH_FreeExHeightList(EHL_PTR outExHeightList)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ìƒqƒbƒgƒ`ƒFƒbƒN
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  *
- * @param	inGridX			ƒ`ƒFƒbƒN‚·‚éƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ			ƒ`ƒFƒbƒN‚·‚éƒOƒŠƒbƒhZÀ•W
- * @param	inExHeightList	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inGridX			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inExHeightList	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:ƒqƒbƒg	FALSE:ƒm[ƒqƒbƒg
+ * @return	BOOL	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒãƒ¼ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------------------------------------
 BOOL EXH_HitCheckExHeight(	const int inGridX,
@@ -163,7 +163,7 @@ BOOL EXH_HitCheckExHeight(	const int inGridX,
 	BOOL rc;
 	EX_HEIGHT_DATA *ehd_p;
 
-	GF_ASSERT((outIndex != NULL)&&"Ši”[•Ï”‚ªNULL");
+	GF_ASSERT((outIndex != NULL)&&"æ ¼ç´å¤‰æ•°ãŒNULL");
 
 	for(i=0;i<inExHeightList->Num;i++){
 		ehd_p = &inExHeightList->ExHeightData[i];
@@ -177,28 +177,28 @@ BOOL EXH_HitCheckExHeight(	const int inGridX,
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚©‚ç‚‚³‚ğæ“¾(ƒŠƒXƒg)
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰é«˜ã•ã‚’å–å¾—(ãƒªã‚¹ãƒˆ)
  *
- * @param	inIndex	Šg’£‚‚³ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	inExHeightList	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIndex	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inExHeightList	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	fx32	‚‚³
+ * @return	fx32	é«˜ã•
  */
 //--------------------------------------------------------------------------------------------
 fx32 EXH_GetExHeight(const u8 inIndex, EHL_CONST_PTR inExHeightList)
 {
-	GF_ASSERT((inIndex<inExHeightList->Num)&&"Šg’£‚‚³ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXƒI[ƒo[");
-	GF_ASSERT((inExHeightList->ExHeightData[inIndex].Valid)&&"ƒf[ƒ^‚Í–³Œø‚Å‚·");
+	GF_ASSERT((inIndex<inExHeightList->Num)&&"æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚ªãƒ¼ãƒãƒ¼");
+	GF_ASSERT((inExHeightList->ExHeightData[inIndex].Valid)&&"ãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹ã§ã™");
 	return inExHeightList->ExHeightData[inIndex].Height;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ì‚‚³ƒZƒbƒg(ƒŠƒXƒg)
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®é«˜ã•ã‚»ãƒƒãƒˆ(ãƒªã‚¹ãƒˆ)
  *
- * @param	inIndex	Šg’£‚‚³ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	inHeight		—Ìˆæ“à‚‚³
- * @param	outExHeightList	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIndex	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inHeight		é ˜åŸŸå†…é«˜ã•
+ * @param	outExHeightList	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -207,17 +207,17 @@ void EXH_SetExHeight(	const u8 inIndex,
 						const fx32 inHeight,
 						EHL_PTR outExHeightList )
 {
-	GF_ASSERT((inIndex<outExHeightList->Num)&&"Šg’£‚‚³ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXƒI[ƒo[");
+	GF_ASSERT((inIndex<outExHeightList->Num)&&"æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚ªãƒ¼ãƒãƒ¼");
 	outExHeightList->ExHeightData[inIndex].Height = inHeight;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ì—LŒøE–³Œø‰»(ƒŠƒXƒg)
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹åŒ–(ãƒªã‚¹ãƒˆ)
  *
- * @param	inIndex	Šg’£‚‚³ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	inValid			TRUE:—LŒø	FALSE:–³Œø
- * @param	outExHeightData	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIndex	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inValid			TRUE:æœ‰åŠ¹	FALSE:ç„¡åŠ¹
+ * @param	outExHeightData	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -226,36 +226,36 @@ void EXH_SetExHeightValid(	const u8 inIndex,
 							const BOOL inValid,
 							EHL_PTR outExHeightList )
 {
-	GF_ASSERT((inIndex<outExHeightList->Num)&&"Šg’£‚‚³ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXƒI[ƒo[");
+	GF_ASSERT((inIndex<outExHeightList->Num)&&"æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚ªãƒ¼ãƒãƒ¼");
 	outExHeightList->ExHeightData[inIndex].Valid = inValid;
 }
 
 #if 0
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ìæ“¾
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
  *
- * @param	inIndex		æ“¾‚·‚é‚‚³ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @param	inIndex		å–å¾—ã™ã‚‹é«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @return	EHD_PTR		Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	EHD_PTR		æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 EHD_PTR GetExHeightData(const u8 inIndex, EHL_PTR inExHeightList)
 {
-	GF_ASSERT((inIndex<inExHeightList->Num)&"Šg’£‚‚³ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXƒI[ƒo[");
+	GF_ASSERT((inIndex<inExHeightList->Num)&"æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚ªãƒ¼ãƒãƒ¼");
 	return inExHeightList->ExHeightData;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚ÌƒZƒbƒgƒAƒbƒv
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param	inStX			—ÌˆæŠJnƒOƒŠƒbƒhXÀ•W
- * @param	instZ			—ÌˆæŠJnƒOƒŠƒbƒhZÀ•W
- * @param	inSizX			—ÌˆæƒOƒŠƒbƒh‰¡•
- * @param	inSizZ			—ÌˆæƒOƒŠƒbƒhc•
- * @param	inHeight		—Ìˆæ“à‚‚³
- * @param	outExHeightData	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inStX			é ˜åŸŸé–‹å§‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	instZ			é ˜åŸŸé–‹å§‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inSizX			é ˜åŸŸã‚°ãƒªãƒƒãƒ‰æ¨ªå¹…
+ * @param	inSizZ			é ˜åŸŸã‚°ãƒªãƒƒãƒ‰ç¸¦å¹…
+ * @param	inHeight		é ˜åŸŸå†…é«˜ã•
+ * @param	outExHeightData	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -277,10 +277,10 @@ void SetUpExHeightData(	const int inStX,
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ì‚‚³ƒZƒbƒg
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®é«˜ã•ã‚»ãƒƒãƒˆ
  *
- * @param	inHeight		—Ìˆæ“à‚‚³
- * @param	outExHeightData	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inHeight		é ˜åŸŸå†…é«˜ã•
+ * @param	outExHeightData	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -293,10 +293,10 @@ void SetExHeight(	const fx32 inHeigt,
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ì—LŒøE–³Œø‰»
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹åŒ–
  *
- * @param	inValid			TRUE:—LŒø	FALSE:–³Œø
- * @param	outExHeightData	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inValid			TRUE:æœ‰åŠ¹	FALSE:ç„¡åŠ¹
+ * @param	outExHeightData	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -308,16 +308,16 @@ void SetExHeightValid(	const BOOL inValid,
 }
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚©‚ç‚‚³‚ğæ“¾
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰é«˜ã•ã‚’å–å¾—
  *
- * @param	inExHeightData	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inExHeightData	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	fx32	‚‚³
+ * @return	fx32	é«˜ã•
  */
 //--------------------------------------------------------------------------------------------
 fx32 GetExHeightFromData(EHD_CONST_PTR inExHeightData)
 {
-	GF_ASSERT(inExHeightData->Valid&"ƒf[ƒ^‚Í–³Œø‚Å‚·");
+	GF_ASSERT(inExHeightData->Valid&"ãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹ã§ã™");
 	return inExHeightData->Height;
 }
 

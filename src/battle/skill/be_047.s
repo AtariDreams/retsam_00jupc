@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_047.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			047�@�N���e�B�J���q�b�g���o�₷���Ȃ�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			047　クリティカルヒットが出やすくなる
  *
  *@author	HisashiSogabe
  *@data		2005.10.03
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_047:
-	//���łɂ��������߂��Ă��鎞�́A���܂����܂��ɂ���
+	//すでにきあいだめしている時は、うまくきまらんにする
 	IF_PSP		IF_FLAG_BIT,SIDE_ATTACK,ID_PSP_condition2,CONDITION2_KIAIDAME,Umakukimaran
 	VALUE		VAL_BIT,BUF_PARA_ADD_STATUS_DIRECT,ADD_COND2_KIAIDAME|ADD_STATUS_ATTACK
 	SEQ_END

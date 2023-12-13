@@ -105,11 +105,11 @@ NNS_G3dPrintTexSRTAnm(const NNSG3dResTexSRTAnm* pTexSRTAnm)
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintTexSRTAnmSet
 
-  Description:  NNSG3dResTexSRTAnmSet ‚Ì“à—e‚ð ƒfƒoƒbƒNo—Í‚É•\Ž¦‚µ‚Ü‚·B
+  Description:  NNSG3dResTexSRTAnmSet ã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã«è¡¨ç¤ºã—ã¾ã™ã€‚
                 
-  Arguments:    pTexSRTSet:     ƒeƒNƒXƒ`ƒƒSRTƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒZƒbƒg‚ð‘©‚Ë‚é\‘¢‘Ì
+  Arguments:    pTexSRTSet:     ãƒ†ã‚¯ã‚¹ãƒãƒ£SRTã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚»ãƒƒãƒˆã‚’æŸã­ã‚‹æ§‹é€ ä½“
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void
@@ -141,11 +141,11 @@ NNS_G3dPrintTexSRTAnmSet( const NNSG3dResTexSRTAnmSet* pAnmSet )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintNSBTA
 
-  Description:  SBTA ƒtƒ@ƒCƒ‹ ‚Ì“à—e‚ð ƒfƒoƒbƒNo—Í‚É•\Ž¦‚µ‚Ü‚·B
+  Description:  SBTA ãƒ•ã‚¡ã‚¤ãƒ« ã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã«è¡¨ç¤ºã—ã¾ã™ã€‚
                 
-  Arguments:    binFile:     SBTAƒtƒ@ƒCƒ‹ƒf[ƒ^‚Ìæ“ª‚ðŽw‚·ƒ|ƒCƒ“ƒ^
+  Arguments:    binFile:     SBTAãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚’æŒ‡ã™ãƒã‚¤ãƒ³ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void
@@ -162,7 +162,7 @@ NNS_G3dPrintNSBTA(const u8* binFile)
     NNS_G3dPrintFileHeader(header);
 
     //
-    // ‚·‚×‚Ä‚ÌƒuƒƒbƒN‚É‚Â‚¢‚Ä...
+    // ã™ã¹ã¦ã®ãƒ–ãƒ­ãƒƒã‚¯ã«ã¤ã„ã¦...
     //
     numBlocks  = header->dataBlocks;
     for ( i = 0; i < numBlocks; ++i )

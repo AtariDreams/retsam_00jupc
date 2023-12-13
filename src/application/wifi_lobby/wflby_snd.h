@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_snd.h
- *	@brief		Lê‰¹Šyƒwƒbƒ_
+ *	@brief		åºƒå ´éŸ³æ¥½ãƒ˜ãƒƒãƒ€
  *	@author		tomoya takahashi
  *	@data		2008.01.09
  *
@@ -16,189 +16,189 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
-#define WFLBY_SND_JUMP		( SEQ_SE_PL_DANSA5 )		// æ‚è•¨‚Éæ‚é‰¹
+#define WFLBY_SND_JUMP		( SEQ_SE_PL_DANSA5 )		// ä¹—ã‚Šç‰©ã«ä¹—ã‚‹éŸ³
 
-#define WFLBY_SND_MINIGAME	( SEQ_SE_DP_DECIDE )		// ƒ~ƒjƒQ[ƒ€ƒJƒEƒ“ƒ^[‚É“ü‚Á‚½‰¹
-//#define WFLBY_SND_MINIGAME	( SEQ_SE_PL_TIMER02 )		// ƒ~ƒjƒQ[ƒ€ƒJƒEƒ“ƒ^[‚É“ü‚Á‚½‰¹
+#define WFLBY_SND_MINIGAME	( SEQ_SE_DP_DECIDE )		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã«å…¥ã£ãŸéŸ³
+//#define WFLBY_SND_MINIGAME	( SEQ_SE_PL_TIMER02 )		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã«å…¥ã£ãŸéŸ³
 
-#define WFLBY_SND_CURSOR	( SEQ_SE_DP_SELECT )		// ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹‰¹
+#define WFLBY_SND_CURSOR	( SEQ_SE_DP_SELECT )		// ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«éŸ³
 
-#define WFLBY_SND_STAFF		( SEQ_SE_DP_SELECT )		// ƒXƒ^ƒbƒt‚É˜b‚µ‚©‚¯‚½‚Æ‚«
+#define WFLBY_SND_STAFF		( SEQ_SE_DP_SELECT )		// ã‚¹ã‚¿ãƒƒãƒ•ã«è©±ã—ã‹ã‘ãŸã¨ã
 
-#define WFLBY_SND_PLIN		( SEQ_SE_DP_TELE2 )			// l‚ª~‚è‚Ä‚­‚é‰¹
-#define WFLBY_SND_PLOUT		( SEQ_SE_DP_TELE2 )			// l‚ªã‚é‰¹
+#define WFLBY_SND_PLIN		( SEQ_SE_DP_TELE2 )			// äººãŒé™ã‚Šã¦ãã‚‹éŸ³
+#define WFLBY_SND_PLOUT		( SEQ_SE_DP_TELE2 )			// äººãŒä¸Šã‚‹éŸ³
 
-#define WFLBY_SND_DOUZOU	( SEQ_SE_PL_EFF02 )			// “º‘œ‚É˜b‚µ‚©‚¯(‚¨‚à‚¿‚á‚ª“®‚­‰¹)
-#define WFLBY_SND_DOUZOU2	( SEQ_SE_PL_EFF04 )			// “º‘œ‚É˜b‚µ‚©‚¯(‚¨‚à‚¿‚á‚ª“®‚­‰¹)ƒ~ƒ…ƒE
+#define WFLBY_SND_DOUZOU	( SEQ_SE_PL_EFF02 )			// éŠ…åƒã«è©±ã—ã‹ã‘(ãŠã‚‚ã¡ã‚ƒãŒå‹•ãéŸ³)
+#define WFLBY_SND_DOUZOU2	( SEQ_SE_PL_EFF04 )			// éŠ…åƒã«è©±ã—ã‹ã‘(ãŠã‚‚ã¡ã‚ƒãŒå‹•ãéŸ³)ãƒŸãƒ¥ã‚¦
 
-//–¢Žg—p
-//#define WFLBY_SND_NEWSIN	( SEQ_SE_PL_BREC16 )		// ƒƒr[ƒjƒ…[ƒX‚É“ü‚Á‚½‰¹
-//#define WFLBY_SND_WLDTMIN	( SEQ_SE_PL_BREC16 )		// ¢ŠEŽžŒv‚É“ü‚Á‚½‰¹
-//#define WFLBY_SND_FOOTIN	( SEQ_SE_PL_BREC16 )		// ‘«Õƒ{[ƒh‚É“ü‚Á‚½‰¹
-#define WFLBY_SND_NEWSIN	( SEQ_SE_DP_SELECT )		// ƒƒr[ƒjƒ…[ƒX‚É“ü‚Á‚½‰¹
-#define WFLBY_SND_WLDTMIN	( SEQ_SE_DP_SELECT )		// ¢ŠEŽžŒv‚É“ü‚Á‚½‰¹
-#define WFLBY_SND_FOOTIN	( SEQ_SE_DP_SELECT )		// ‘«Õƒ{[ƒh‚É“ü‚Á‚½‰¹
+//æœªä½¿ç”¨
+//#define WFLBY_SND_NEWSIN	( SEQ_SE_PL_BREC16 )		// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ã«å…¥ã£ãŸéŸ³
+//#define WFLBY_SND_WLDTMIN	( SEQ_SE_PL_BREC16 )		// ä¸–ç•Œæ™‚è¨ˆã«å…¥ã£ãŸéŸ³
+//#define WFLBY_SND_FOOTIN	( SEQ_SE_PL_BREC16 )		// è¶³è·¡ãƒœãƒ¼ãƒ‰ã«å…¥ã£ãŸéŸ³
+#define WFLBY_SND_NEWSIN	( SEQ_SE_DP_SELECT )		// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ã«å…¥ã£ãŸéŸ³
+#define WFLBY_SND_WLDTMIN	( SEQ_SE_DP_SELECT )		// ä¸–ç•Œæ™‚è¨ˆã«å…¥ã£ãŸéŸ³
+#define WFLBY_SND_FOOTIN	( SEQ_SE_DP_SELECT )		// è¶³è·¡ãƒœãƒ¼ãƒ‰ã«å…¥ã£ãŸéŸ³
 
-#define WFLBY_SND_TALK		( SEQ_SE_DP_BUTTON9 )		// ˜b‚µ‚©‚¯‰¹
+#define WFLBY_SND_TALK		( SEQ_SE_DP_BUTTON9 )		// è©±ã—ã‹ã‘éŸ³
 
-#define WFLBY_SND_PROFILE	( SEQ_SE_DP_SELECT )		// Xƒ{ƒ^ƒ“‚ÅŽ©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ðŠJ‚­
-
-//-----------------------------------------------------------------------------
-//
-//	ƒtƒ[ƒgŠÖ˜A			
-//
-//	–Â‚«º{ƒGƒtƒFƒNƒg{ƒ‚[ƒ^[‚ª‚È‚é‚©‚àH
-//
-//	æ‚è•¨“®‚©‚·ƒ{ƒ^ƒ“‚Í‹¤’Ê
-//	›_PV = –Â‚«º‚È‚ç‚·ƒ{ƒ^ƒ“(–Â‚«ºˆ—{SE‚ðÄ¶)
-//	›_EX = “ÁŽê“®‚«ƒ{ƒ^ƒ“
-//-----------------------------------------------------------------------------
-#define WFLBY_SND_RIDE_INVALIDITY			(0xfffe)	// SE‚ðÄ¶‚µ‚È‚¢’è‹`
-
-//#define WFLBY_SND_RIDE_BUTTON01	( SEQ_SE_PL_FLOAT03 )// ƒtƒ[ƒg“‹æŽž‚É‰ºƒ{ƒ^ƒ“(æ•¨‚ð“®‚©‚·)
-#define WFLBY_SND_RIDE_BUTTON01	( SEQ_SE_PL_FLOAT13 )	// ƒtƒ[ƒg“‹æŽž‚É‰ºƒ{ƒ^ƒ“(æ•¨‚ð“®‚©‚·)
-//#define WFLBY_SND_RIDE_BUTTON02	( SEQ_SE_PL_FLOAT03 )// ƒtƒ[ƒg“‹æŽž‚É‰ºƒ{ƒ^ƒ“(ƒ‰ƒCƒg“®‚©‚·)
-//#define WFLBY_SND_RIDE_BUTTON03	( SEQ_SE_PL_FLOAT03 )// ƒtƒ[ƒg“‹æŽž‚É‰ºƒ{ƒ^ƒ“(–Â‚«º‚È‚ç‚·)
-//ª‚±‚±‚ÍSnd_PMVoicePlay( monsno, 0 );‚Å‚¨Šè‚¢‚µ‚Ü‚·
-
-//01(ƒAƒ`ƒƒƒ‚)
-//ƒgƒTƒJ‚ª—h‚ê‚é
-#define WFLBY_SND_RIDE_BUTTON_ATYAMO_PV		( WFLBY_SND_RIDE_INVALIDITY )	//–Ú‚Ì•\î‚ª•Ï‚í‚é
-#define WFLBY_SND_RIDE_BUTTON_ATYAMO_EX		( SEQ_SE_PL_FLOAT10 )	//ƒgƒTƒJ‚ª—h‚ê‚é
-
-//02(ƒŠƒU[ƒhƒ“)
-#define WFLBY_SND_RIDE_BUTTON_RIZAADON_PV	( SEQ_SE_PL_FIRE )		//‰Š‚ªo‚é
-//#define WFLBY_SND_RIDE_BUTTON_RIZAADON_PV	( WFLBY_SND_RIDE_INVALIDITY )		//‰Š‚ªo‚é
-#define WFLBY_SND_RIDE_BUTTON_RIZAADON_EX	( SEQ_SE_PL_FLOAT03 )	//‰H‚ª‚Ð‚ç‚­
-
-//03(ƒtƒVƒMƒ_ƒl)
-#define WFLBY_SND_RIDE_BUTTON_HUSIGIDANE_PV	( SEQ_SE_PL_WHIP )		//‚Â‚é‚Ì•Ú‚ªo‚é
-#define WFLBY_SND_RIDE_BUTTON_HUSIGIDANE_EX	( SEQ_SE_PL_FLOAT11 )	//”w’†‚Ì‚Â‚Ú‚Ý‚ª‚Í‚Ü‚Á‚Ä”ò‚Ño‚·
-
-//04(ƒ}ƒXƒLƒbƒp)
-#define WFLBY_SND_RIDE_BUTTON_HAEZIGOKU_PV	( SEQ_SE_PL_FLOAT03 )	//Œû‚ª“®‚­
-#define WFLBY_SND_RIDE_BUTTON_HAEZIGOKU_EX	( SEQ_SE_PL_FLOAT10 )	//Žè‚ª“®‚­
-
-//05(ƒ|ƒbƒ`ƒƒƒ})
-#define WFLBY_SND_RIDE_BUTTON_POTTYAMA_PV	( SEQ_SE_PL_FLOAT10 )	//‘«‚ª“®‚­
-//#define WFLBY_SND_RIDE_BUTTON_POTTYAMA_EX	( SEQ_SE_PL_FLOAT10 )	//Žè‚ª‰ñ‚é
-#define WFLBY_SND_RIDE_BUTTON_POTTYAMA_EX	( SEQ_SE_PL_FLOAT12 )	//Žè‚ª‰ñ‚é
-
-//06(ƒMƒƒƒ‰ƒhƒX)
-#define WFLBY_SND_RIDE_BUTTON_GYARADOSU_PV	( SEQ_SE_PL_WATER )			//…‚ªo‚é
-//#define WFLBY_SND_RIDE_BUTTON_GYARADOSU_PV	( WFLBY_SND_RIDE_INVALIDITY )	//…‚ªo‚é
-#define WFLBY_SND_RIDE_BUTTON_GYARADOSU_EX	( SEQ_SE_PL_FLOAT10 )	//K”ö‚ª“®‚­
-
-//07(ƒsƒJƒ`ƒ…ƒE)
-//#define WFLBY_SND_RIDE_BUTTON_PIKATYUU_PV	( SEQ_SE_PL_FLOAT03 )	//Šç‚Ì•\î‚ª•Ï‚í‚é
-#define WFLBY_SND_RIDE_BUTTON_PIKATYUU_PV	( WFLBY_SND_RIDE_INVALIDITY )	//Šç‚Ì•\î‚ª•Ï‚í‚é
-#define WFLBY_SND_RIDE_BUTTON_PIKATYUU_EX	( SEQ_SE_PL_FLOAT10 )	//K”ö‚ª“®‚­
-
-//08(ƒWƒoƒRƒCƒ‹)
-//#define WFLBY_SND_RIDE_BUTTON_DEKAKOIRU_PV	( SEQ_SE_PL_FLOAT03 )		//–Ú‚ª“®‚­
-#define WFLBY_SND_RIDE_BUTTON_DEKAKOIRU_PV	( WFLBY_SND_RIDE_INVALIDITY )	//–Ú‚ª“®‚­
-#define WFLBY_SND_RIDE_BUTTON_DEKAKOIRU_EX	( SEQ_SE_PL_ELECTRO )	//“d‹C‚ªo‚é
-
-//09(ƒ~ƒ…ƒE)
-//#define WFLBY_SND_RIDE_BUTTON_MYUU_PV		( SEQ_SE_PL_FLOAT03 )	//‘«‚ª“®‚­
-#define WFLBY_SND_RIDE_BUTTON_MYUU_PV		( WFLBY_SND_RIDE_INVALIDITY )	//‘«‚ª“®‚­
-#define WFLBY_SND_RIDE_BUTTON_MYUU_EX		( SEQ_SE_PL_FLOAT10 )	//K”ö‚ª“®‚­
-#define WFLBY_SND_RIDE_BUTTON_MYUU_PV_2		( SEQ_SE_PL_KIRAKIRA4 )	//ƒLƒ‰ƒLƒ‰ƒGƒtƒFƒNƒg(3‘ä–Ú‚Ì‚Ý)
-
+#define WFLBY_SND_PROFILE	( SEQ_SE_DP_SELECT )		// Xãƒœã‚¿ãƒ³ã§è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’é–‹ã
 
 //-----------------------------------------------------------------------------
 //
-//	ƒ^ƒbƒ`ƒgƒCŠÖ˜A
+//	ãƒ•ãƒ­ãƒ¼ãƒˆé–¢é€£			
+//
+//	é³´ãå£°ï¼‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼‹ãƒ¢ãƒ¼ã‚¿ãƒ¼ãŒãªã‚‹ã‹ã‚‚ï¼Ÿ
+//
+//	ä¹—ã‚Šç‰©å‹•ã‹ã™ãƒœã‚¿ãƒ³ã¯å…±é€š
+//	â—‹_PV = é³´ãå£°ãªã‚‰ã™ãƒœã‚¿ãƒ³(é³´ãå£°å‡¦ç†ï¼‹SEã‚’å†ç”Ÿ)
+//	â—‹_EX = ç‰¹æ®Šå‹•ããƒœã‚¿ãƒ³
+//-----------------------------------------------------------------------------
+#define WFLBY_SND_RIDE_INVALIDITY			(0xfffe)	// SEã‚’å†ç”Ÿã—ãªã„å®šç¾©
+
+//#define WFLBY_SND_RIDE_BUTTON01	( SEQ_SE_PL_FLOAT03 )// ãƒ•ãƒ­ãƒ¼ãƒˆæ­ä¹—æ™‚ã«ä¸‹ãƒœã‚¿ãƒ³(ä¹—ç‰©ã‚’å‹•ã‹ã™)
+#define WFLBY_SND_RIDE_BUTTON01	( SEQ_SE_PL_FLOAT13 )	// ãƒ•ãƒ­ãƒ¼ãƒˆæ­ä¹—æ™‚ã«ä¸‹ãƒœã‚¿ãƒ³(ä¹—ç‰©ã‚’å‹•ã‹ã™)
+//#define WFLBY_SND_RIDE_BUTTON02	( SEQ_SE_PL_FLOAT03 )// ãƒ•ãƒ­ãƒ¼ãƒˆæ­ä¹—æ™‚ã«ä¸‹ãƒœã‚¿ãƒ³(ãƒ©ã‚¤ãƒˆå‹•ã‹ã™)
+//#define WFLBY_SND_RIDE_BUTTON03	( SEQ_SE_PL_FLOAT03 )// ãƒ•ãƒ­ãƒ¼ãƒˆæ­ä¹—æ™‚ã«ä¸‹ãƒœã‚¿ãƒ³(é³´ãå£°ãªã‚‰ã™)
+//â†‘ã“ã“ã¯Snd_PMVoicePlay( monsno, 0 );ã§ãŠé¡˜ã„ã—ã¾ã™
+
+//01(ã‚¢ãƒãƒ£ãƒ¢)
+//ãƒˆã‚µã‚«ãŒæºã‚Œã‚‹
+#define WFLBY_SND_RIDE_BUTTON_ATYAMO_PV		( WFLBY_SND_RIDE_INVALIDITY )	//ç›®ã®è¡¨æƒ…ãŒå¤‰ã‚ã‚‹
+#define WFLBY_SND_RIDE_BUTTON_ATYAMO_EX		( SEQ_SE_PL_FLOAT10 )	//ãƒˆã‚µã‚«ãŒæºã‚Œã‚‹
+
+//02(ãƒªã‚¶ãƒ¼ãƒ‰ãƒ³)
+#define WFLBY_SND_RIDE_BUTTON_RIZAADON_PV	( SEQ_SE_PL_FIRE )		//ç‚ŽãŒå‡ºã‚‹
+//#define WFLBY_SND_RIDE_BUTTON_RIZAADON_PV	( WFLBY_SND_RIDE_INVALIDITY )		//ç‚ŽãŒå‡ºã‚‹
+#define WFLBY_SND_RIDE_BUTTON_RIZAADON_EX	( SEQ_SE_PL_FLOAT03 )	//ç¾½ãŒã²ã‚‰ã
+
+//03(ãƒ•ã‚·ã‚®ãƒ€ãƒ)
+#define WFLBY_SND_RIDE_BUTTON_HUSIGIDANE_PV	( SEQ_SE_PL_WHIP )		//ã¤ã‚‹ã®éž­ãŒå‡ºã‚‹
+#define WFLBY_SND_RIDE_BUTTON_HUSIGIDANE_EX	( SEQ_SE_PL_FLOAT11 )	//èƒŒä¸­ã®ã¤ã¼ã¿ãŒã¯ã¾ã£ã¦é£›ã³å‡ºã™
+
+//04(ãƒžã‚¹ã‚­ãƒƒãƒ‘)
+#define WFLBY_SND_RIDE_BUTTON_HAEZIGOKU_PV	( SEQ_SE_PL_FLOAT03 )	//å£ãŒå‹•ã
+#define WFLBY_SND_RIDE_BUTTON_HAEZIGOKU_EX	( SEQ_SE_PL_FLOAT10 )	//æ‰‹ãŒå‹•ã
+
+//05(ãƒãƒƒãƒãƒ£ãƒž)
+#define WFLBY_SND_RIDE_BUTTON_POTTYAMA_PV	( SEQ_SE_PL_FLOAT10 )	//è¶³ãŒå‹•ã
+//#define WFLBY_SND_RIDE_BUTTON_POTTYAMA_EX	( SEQ_SE_PL_FLOAT10 )	//æ‰‹ãŒå›žã‚‹
+#define WFLBY_SND_RIDE_BUTTON_POTTYAMA_EX	( SEQ_SE_PL_FLOAT12 )	//æ‰‹ãŒå›žã‚‹
+
+//06(ã‚®ãƒ£ãƒ©ãƒ‰ã‚¹)
+#define WFLBY_SND_RIDE_BUTTON_GYARADOSU_PV	( SEQ_SE_PL_WATER )			//æ°´ãŒå‡ºã‚‹
+//#define WFLBY_SND_RIDE_BUTTON_GYARADOSU_PV	( WFLBY_SND_RIDE_INVALIDITY )	//æ°´ãŒå‡ºã‚‹
+#define WFLBY_SND_RIDE_BUTTON_GYARADOSU_EX	( SEQ_SE_PL_FLOAT10 )	//å°»å°¾ãŒå‹•ã
+
+//07(ãƒ”ã‚«ãƒãƒ¥ã‚¦)
+//#define WFLBY_SND_RIDE_BUTTON_PIKATYUU_PV	( SEQ_SE_PL_FLOAT03 )	//é¡”ã®è¡¨æƒ…ãŒå¤‰ã‚ã‚‹
+#define WFLBY_SND_RIDE_BUTTON_PIKATYUU_PV	( WFLBY_SND_RIDE_INVALIDITY )	//é¡”ã®è¡¨æƒ…ãŒå¤‰ã‚ã‚‹
+#define WFLBY_SND_RIDE_BUTTON_PIKATYUU_EX	( SEQ_SE_PL_FLOAT10 )	//å°»å°¾ãŒå‹•ã
+
+//08(ã‚¸ãƒã‚³ã‚¤ãƒ«)
+//#define WFLBY_SND_RIDE_BUTTON_DEKAKOIRU_PV	( SEQ_SE_PL_FLOAT03 )		//ç›®ãŒå‹•ã
+#define WFLBY_SND_RIDE_BUTTON_DEKAKOIRU_PV	( WFLBY_SND_RIDE_INVALIDITY )	//ç›®ãŒå‹•ã
+#define WFLBY_SND_RIDE_BUTTON_DEKAKOIRU_EX	( SEQ_SE_PL_ELECTRO )	//é›»æ°—ãŒå‡ºã‚‹
+
+//09(ãƒŸãƒ¥ã‚¦)
+//#define WFLBY_SND_RIDE_BUTTON_MYUU_PV		( SEQ_SE_PL_FLOAT03 )	//è¶³ãŒå‹•ã
+#define WFLBY_SND_RIDE_BUTTON_MYUU_PV		( WFLBY_SND_RIDE_INVALIDITY )	//è¶³ãŒå‹•ã
+#define WFLBY_SND_RIDE_BUTTON_MYUU_EX		( SEQ_SE_PL_FLOAT10 )	//å°»å°¾ãŒå‹•ã
+#define WFLBY_SND_RIDE_BUTTON_MYUU_PV_2		( SEQ_SE_PL_KIRAKIRA4 )	//ã‚­ãƒ©ã‚­ãƒ©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ(3å°ç›®ã®ã¿)
+
+
+//-----------------------------------------------------------------------------
+//
+//	ã‚¿ãƒƒãƒãƒˆã‚¤é–¢é€£
 //
 //-----------------------------------------------------------------------------
 #if 0	//2ch
-#define WFLBY_SND_TOUCH_TOY01_1	( SEQ_SE_PL_HIROBA01 )	// ƒxƒ‹
-#define WFLBY_SND_TOUCH_TOY01_2	( SEQ_SE_PL_HIROBA01_2 )// ƒxƒ‹
-#define WFLBY_SND_TOUCH_TOY01_3	( SEQ_SE_PL_HIROBA01_3 )// ƒxƒ‹
+#define WFLBY_SND_TOUCH_TOY01_1	( SEQ_SE_PL_HIROBA01 )	// ãƒ™ãƒ«
+#define WFLBY_SND_TOUCH_TOY01_2	( SEQ_SE_PL_HIROBA01_2 )// ãƒ™ãƒ«
+#define WFLBY_SND_TOUCH_TOY01_3	( SEQ_SE_PL_HIROBA01_3 )// ãƒ™ãƒ«
 #else	//1ch
-#define WFLBY_SND_TOUCH_TOY01_1	( SEQ_SE_PL_HIROBA01_4 )// ƒxƒ‹
-#define WFLBY_SND_TOUCH_TOY01_2	( SEQ_SE_PL_HIROBA01_5 )// ƒxƒ‹
-#define WFLBY_SND_TOUCH_TOY01_3	( SEQ_SE_PL_HIROBA01_6 )// ƒxƒ‹
+#define WFLBY_SND_TOUCH_TOY01_1	( SEQ_SE_PL_HIROBA01_4 )// ãƒ™ãƒ«
+#define WFLBY_SND_TOUCH_TOY01_2	( SEQ_SE_PL_HIROBA01_5 )// ãƒ™ãƒ«
+#define WFLBY_SND_TOUCH_TOY01_3	( SEQ_SE_PL_HIROBA01_6 )// ãƒ™ãƒ«
 #endif
 
-#if 1	//2ch(‚±‚±‚¾‚¯1ch‚¾‚Æ•·‚±‚¦‚È‚¢‚½‚ß)
-#define WFLBY_SND_TOUCH_TOY02_1	( SEQ_SE_PL_HIROBA03 )	// ƒhƒ‰ƒ€
-#define WFLBY_SND_TOUCH_TOY02_2	( SEQ_SE_PL_HIROBA03_2 )// ƒhƒ‰ƒ€
-#define WFLBY_SND_TOUCH_TOY02_3	( SEQ_SE_PL_HIROBA03_3 )// ƒhƒ‰ƒ€
+#if 1	//2ch(ã“ã“ã ã‘1chã ã¨èžã“ãˆãªã„ãŸã‚)
+#define WFLBY_SND_TOUCH_TOY02_1	( SEQ_SE_PL_HIROBA03 )	// ãƒ‰ãƒ©ãƒ 
+#define WFLBY_SND_TOUCH_TOY02_2	( SEQ_SE_PL_HIROBA03_2 )// ãƒ‰ãƒ©ãƒ 
+#define WFLBY_SND_TOUCH_TOY02_3	( SEQ_SE_PL_HIROBA03_3 )// ãƒ‰ãƒ©ãƒ 
 #else
-#define WFLBY_SND_TOUCH_TOY02_1	( SEQ_SE_PL_HIROBA03_4 )// ƒhƒ‰ƒ€
-#define WFLBY_SND_TOUCH_TOY02_2	( SEQ_SE_PL_HIROBA03_5 )// ƒhƒ‰ƒ€
-#define WFLBY_SND_TOUCH_TOY02_3	( SEQ_SE_PL_HIROBA03_6 )// ƒhƒ‰ƒ€
+#define WFLBY_SND_TOUCH_TOY02_1	( SEQ_SE_PL_HIROBA03_4 )// ãƒ‰ãƒ©ãƒ 
+#define WFLBY_SND_TOUCH_TOY02_2	( SEQ_SE_PL_HIROBA03_5 )// ãƒ‰ãƒ©ãƒ 
+#define WFLBY_SND_TOUCH_TOY02_3	( SEQ_SE_PL_HIROBA03_6 )// ãƒ‰ãƒ©ãƒ 
 #endif	//1ch
 
 #if 0	//2ch
-#define WFLBY_SND_TOUCH_TOY03_1	( SEQ_SE_PL_HIROBA02 )	// ƒVƒ“ƒoƒ‹
-#define WFLBY_SND_TOUCH_TOY03_2	( SEQ_SE_PL_HIROBA02_2 )// ƒVƒ“ƒoƒ‹
-#define WFLBY_SND_TOUCH_TOY03_3	( SEQ_SE_PL_HIROBA02_3 )// ƒVƒ“ƒoƒ‹
+#define WFLBY_SND_TOUCH_TOY03_1	( SEQ_SE_PL_HIROBA02 )	// ã‚·ãƒ³ãƒãƒ«
+#define WFLBY_SND_TOUCH_TOY03_2	( SEQ_SE_PL_HIROBA02_2 )// ã‚·ãƒ³ãƒãƒ«
+#define WFLBY_SND_TOUCH_TOY03_3	( SEQ_SE_PL_HIROBA02_3 )// ã‚·ãƒ³ãƒãƒ«
 #else	//1ch
-#define WFLBY_SND_TOUCH_TOY03_1	( SEQ_SE_PL_HIROBA02_4 )// ƒVƒ“ƒoƒ‹
-#define WFLBY_SND_TOUCH_TOY03_2	( SEQ_SE_PL_HIROBA02_5 )// ƒVƒ“ƒoƒ‹
-#define WFLBY_SND_TOUCH_TOY03_3	( SEQ_SE_PL_HIROBA02_6 )// ƒVƒ“ƒoƒ‹
+#define WFLBY_SND_TOUCH_TOY03_1	( SEQ_SE_PL_HIROBA02_4 )// ã‚·ãƒ³ãƒãƒ«
+#define WFLBY_SND_TOUCH_TOY03_2	( SEQ_SE_PL_HIROBA02_5 )// ã‚·ãƒ³ãƒãƒ«
+#define WFLBY_SND_TOUCH_TOY03_3	( SEQ_SE_PL_HIROBA02_6 )// ã‚·ãƒ³ãƒãƒ«
 #endif
 
-#define WFLBY_SND_TOUCH_TOY04_1	( SEQ_SE_PL_HIROBA70 )	// ƒŠƒbƒvƒ‹(‚Í‚à‚ñ)
-#define WFLBY_SND_TOUCH_TOY04_2	( SEQ_SE_PL_HIROBA70_2 )// ƒŠƒbƒvƒ‹(‚Í‚à‚ñ)
-#define WFLBY_SND_TOUCH_TOY04_3	( SEQ_SE_PL_HIROBA70_3 )// ƒŠƒbƒvƒ‹(‚Í‚à‚ñ)
-#define WFLBY_SND_TOUCH_TOY05_1	( SEQ_SE_PL_HIROBA100 )	// ƒVƒOƒiƒ‹
-#define WFLBY_SND_TOUCH_TOY05_2	( SEQ_SE_PL_HIROBA100_2)// ƒVƒOƒiƒ‹
-#define WFLBY_SND_TOUCH_TOY05_3	( SEQ_SE_PL_HIROBA100_3)// ƒVƒOƒiƒ‹
-#define WFLBY_SND_TOUCH_TOY06_1	( SEQ_SE_PL_HIROBA05 )	// ƒXƒCƒ“ƒO
-#define WFLBY_SND_TOUCH_TOY06_2	( SEQ_SE_PL_HIROBA05_2 )// ƒXƒCƒ“ƒO
-#define WFLBY_SND_TOUCH_TOY06_3	( SEQ_SE_PL_HIROBA05_3 )// ƒXƒCƒ“ƒO
-#define WFLBY_SND_TOUCH_TOY07_1	( SEQ_SE_PL_W030 )		// ƒNƒ‰ƒbƒJ[(¬)
-#define WFLBY_SND_TOUCH_TOY07_2	( SEQ_SE_PL_W030_2 )	// ƒNƒ‰ƒbƒJ[
-#define WFLBY_SND_TOUCH_TOY07_3	( SEQ_SE_PL_W030_3 )	// ƒNƒ‰ƒbƒJ[(‘å)
-#define WFLBY_SND_TOUCH_TOY08_1	( SEQ_SE_PL_W019 )		// Ž†á
-#define WFLBY_SND_TOUCH_TOY08_2	( SEQ_SE_PL_W019_2 )	// Ž†á
-#define WFLBY_SND_TOUCH_TOY08_3	( SEQ_SE_PL_W019_3 )	// Ž†á
-#define WFLBY_SND_TOUCH_TOY09_1	( SEQ_SE_PL_HIROBA30 )	// •—‘D
-#define WFLBY_SND_TOUCH_TOY09_2	( SEQ_SE_PL_HIROBA30 )	// •—‘D
-#define WFLBY_SND_TOUCH_TOY09_3	( SEQ_SE_PL_HIROBA30 )	// •—‘D
+#define WFLBY_SND_TOUCH_TOY04_1	( SEQ_SE_PL_HIROBA70 )	// ãƒªãƒƒãƒ—ãƒ«(ã¯ã‚‚ã‚“)
+#define WFLBY_SND_TOUCH_TOY04_2	( SEQ_SE_PL_HIROBA70_2 )// ãƒªãƒƒãƒ—ãƒ«(ã¯ã‚‚ã‚“)
+#define WFLBY_SND_TOUCH_TOY04_3	( SEQ_SE_PL_HIROBA70_3 )// ãƒªãƒƒãƒ—ãƒ«(ã¯ã‚‚ã‚“)
+#define WFLBY_SND_TOUCH_TOY05_1	( SEQ_SE_PL_HIROBA100 )	// ã‚·ã‚°ãƒŠãƒ«
+#define WFLBY_SND_TOUCH_TOY05_2	( SEQ_SE_PL_HIROBA100_2)// ã‚·ã‚°ãƒŠãƒ«
+#define WFLBY_SND_TOUCH_TOY05_3	( SEQ_SE_PL_HIROBA100_3)// ã‚·ã‚°ãƒŠãƒ«
+#define WFLBY_SND_TOUCH_TOY06_1	( SEQ_SE_PL_HIROBA05 )	// ã‚¹ã‚¤ãƒ³ã‚°
+#define WFLBY_SND_TOUCH_TOY06_2	( SEQ_SE_PL_HIROBA05_2 )// ã‚¹ã‚¤ãƒ³ã‚°
+#define WFLBY_SND_TOUCH_TOY06_3	( SEQ_SE_PL_HIROBA05_3 )// ã‚¹ã‚¤ãƒ³ã‚°
+#define WFLBY_SND_TOUCH_TOY07_1	( SEQ_SE_PL_W030 )		// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼(å°)
+#define WFLBY_SND_TOUCH_TOY07_2	( SEQ_SE_PL_W030_2 )	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼
+#define WFLBY_SND_TOUCH_TOY07_3	( SEQ_SE_PL_W030_3 )	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼(å¤§)
+#define WFLBY_SND_TOUCH_TOY08_1	( SEQ_SE_PL_W019 )		// ç´™å¹é›ª
+#define WFLBY_SND_TOUCH_TOY08_2	( SEQ_SE_PL_W019_2 )	// ç´™å¹é›ª
+#define WFLBY_SND_TOUCH_TOY08_3	( SEQ_SE_PL_W019_3 )	// ç´™å¹é›ª
+#define WFLBY_SND_TOUCH_TOY09_1	( SEQ_SE_PL_HIROBA30 )	// é¢¨èˆ¹
+#define WFLBY_SND_TOUCH_TOY09_2	( SEQ_SE_PL_HIROBA30 )	// é¢¨èˆ¹
+#define WFLBY_SND_TOUCH_TOY09_3	( SEQ_SE_PL_HIROBA30 )	// é¢¨èˆ¹
 
-//ƒ^ƒbƒ`ƒgƒC‚Ì•—‘D
-#define WFLBY_SND_BALLOON_01	( SEQ_SE_PL_HIROBA20 )	// Š„‚ê‚é
-#define WFLBY_SND_BALLOON_02	( SEQ_SE_PL_SUTYA )		// ŽålŒö’…’n
-//ªŠ„‚ê‚é‰¹‚Æ“¯Žž‚È‚Ì‚Å‚¢‚ç‚È‚¢‚©‚àH
+//ã‚¿ãƒƒãƒãƒˆã‚¤ã®é¢¨èˆ¹
+#define WFLBY_SND_BALLOON_01	( SEQ_SE_PL_HIROBA20 )	// å‰²ã‚Œã‚‹
+#define WFLBY_SND_BALLOON_02	( SEQ_SE_PL_SUTYA )		// ä¸»äººå…¬ç€åœ°
+//â†‘å‰²ã‚Œã‚‹éŸ³ã¨åŒæ™‚ãªã®ã§ã„ã‚‰ãªã„ã‹ã‚‚ï¼Ÿ
 
-//‰Ô‰Î
-#define WFLBY_SND_FIREWORKS01	( SEQ_SE_PL_140_3 )		// Ý’u‰Ô‰Î(¬‚³‚¢‘Å‚¿ã‚°‚àž‚Ý)
-//ªƒ‹[ƒv‰¹‚È‚Ì‚ÅAI—¹Žž‚ÉSnd_SeStopBySeqNo( WFLBY_SND_FIREWORKS01, 0 );‚ðŒÄ‚ñ‚Å‚­‚¾‚³‚¢
-//#define WFLBY_SND_FIREWORKS02	( SEQ_SE_PL_140 )		// ‘Åã‰Ô‰Î(ÅŒã‚É‘Å‚¿‚ ‚ª‚é‰Ô‰Î)
-#define WFLBY_SND_FIREWORKS02	( SEQ_SE_PL_140_2 )		// ‘Åã‰Ô‰Î(ÅŒã‚É‘Å‚¿‚ ‚ª‚é‰Ô‰Î)
+//èŠ±ç«
+#define WFLBY_SND_FIREWORKS01	( SEQ_SE_PL_140_3 )		// è¨­ç½®èŠ±ç«(å°ã•ã„æ‰“ã¡ä¸Šã’ã‚‚è¾¼ã¿)
+//â†‘ãƒ«ãƒ¼ãƒ—éŸ³ãªã®ã§ã€çµ‚äº†æ™‚ã«Snd_SeStopBySeqNo( WFLBY_SND_FIREWORKS01, 0 );ã‚’å‘¼ã‚“ã§ãã ã•ã„
+//#define WFLBY_SND_FIREWORKS02	( SEQ_SE_PL_140 )		// æ‰“ä¸ŠèŠ±ç«(æœ€å¾Œã«æ‰“ã¡ã‚ãŒã‚‹èŠ±ç«)
+#define WFLBY_SND_FIREWORKS02	( SEQ_SE_PL_140_2 )		// æ‰“ä¸ŠèŠ±ç«(æœ€å¾Œã«æ‰“ã¡ã‚ãŒã‚‹èŠ±ç«)
 
-//ƒ^ƒbƒ`ƒgƒC‚ðŒðŠ·‚·‚é
-//#define WFLBY_SND_TOUCH_TOY_CHG	( SEQ_SE_PL_EFF03 )		// Œ»ó‚ÍSE‚ÅŽŽ‚·
-#define WFLBY_SND_TOUCH_TOY_CHG	( SEQ_SE_PL_EFF03_4 )		// Œ»ó‚ÍSE‚ÅŽŽ‚·
+//ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’äº¤æ›ã™ã‚‹
+//#define WFLBY_SND_TOUCH_TOY_CHG	( SEQ_SE_PL_EFF03 )		// ç¾çŠ¶ã¯SEã§è©¦ã™
+#define WFLBY_SND_TOUCH_TOY_CHG	( SEQ_SE_PL_EFF03_4 )		// ç¾çŠ¶ã¯SEã§è©¦ã™
 
 
 
-// ƒvƒƒtƒB[ƒ‹‚Éƒ^ƒCƒv‚ð“ü‚ê‚é‰¹
+// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã«ã‚¿ã‚¤ãƒ—ã‚’å…¥ã‚Œã‚‹éŸ³
 #define WFLBY_SND_TYPE_SET	( SEQ_SE_DP_BUTTON3 )
 
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒAƒ“ƒP[ƒgŠÖ˜A
+ *			ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆé–¢é€£
  */
 //-----------------------------------------------------------------------------
-#define ANKETO_SND_RECV_WAIT	( SEQ_SE_PL_BREC80 )	// ŽóM’†
-#define ANKETO_SND_RECV			( SEQ_SE_DP_BUTTON9 )	// ŽóM
-#define ANKETO_SND_SEND_WAIT	( SEQ_SE_PL_BREC80 )	// ‘—M’†
-#define ANKETO_SND_SEND			( SEQ_SE_DP_BUTTON9 )	// ‘—M
-#define ANKETO_SND_CURSOR		( SEQ_SE_DP_SELECT78 )	// cursor‰¹
-//#define ANKETO_SND_SELECT		( SEQ_SE_DP_PIRORIRO2 )	// ‘I‘ð
-#define ANKETO_SND_SELECT		( SEQ_SE_DP_SELECT )	// ‘I‘ð(‚·‚®‘—M‚É‚¢‚­‚Ì‚Å’Z‚¢‰¹)
-//#define ANKETO_SND_BAR		( SEQ_SE_PL_CON_034 )	// ƒo[•\Ž¦
-#define ANKETO_SND_BAR			( SEQ_SE_PL_PINPON2 )	// ƒo[•\Ž¦
+#define ANKETO_SND_RECV_WAIT	( SEQ_SE_PL_BREC80 )	// å—ä¿¡ä¸­
+#define ANKETO_SND_RECV			( SEQ_SE_DP_BUTTON9 )	// å—ä¿¡
+#define ANKETO_SND_SEND_WAIT	( SEQ_SE_PL_BREC80 )	// é€ä¿¡ä¸­
+#define ANKETO_SND_SEND			( SEQ_SE_DP_BUTTON9 )	// é€ä¿¡
+#define ANKETO_SND_CURSOR		( SEQ_SE_DP_SELECT78 )	// cursoréŸ³
+//#define ANKETO_SND_SELECT		( SEQ_SE_DP_PIRORIRO2 )	// é¸æŠž
+#define ANKETO_SND_SELECT		( SEQ_SE_DP_SELECT )	// é¸æŠž(ã™ãé€ä¿¡ã«ã„ãã®ã§çŸ­ã„éŸ³)
+//#define ANKETO_SND_BAR		( SEQ_SE_PL_CON_034 )	// ãƒãƒ¼è¡¨ç¤º
+#define ANKETO_SND_BAR			( SEQ_SE_PL_PINPON2 )	// ãƒãƒ¼è¡¨ç¤º
 
 
 #endif		// __WFLBY_SND_H__

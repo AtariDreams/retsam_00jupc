@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	fld_bgm.c
- * @brief	�t�B�[���h�T�E���h����
+ * @brief	フィールドサウンド操作
  * @author	Satoshi Nohara
  * @date	2005.10.14
  */
@@ -18,7 +18,7 @@
 #include "fld_bgm.h"
 #include "field/situation_local.h"
 
-#include "battle/battle_common.h"	//���C���N���[�h�ɕK�v
+#include "battle/battle_common.h"	//↓インクルードに必要
 #include "poketool/tr_tool.h"
 #include "battle/trtype_def.h"
 
@@ -29,39 +29,39 @@
 
 //==============================================================================================
 //
-//	�ϐ�
+//	変数
 //
 //==============================================================================================
 
 
 //==============================================================================================
 //
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //
 //==============================================================================================
 void Snd_GameOverSet();
 void Snd_RestartSet( FIELDSYS_WORK* fsys );
 
-//�t�B�[���hBGM�i���o�[�擾
+//フィールドBGMナンバー取得
 u16 Snd_FieldBgmNoGet( FIELDSYS_WORK* fsys, int zone_id );
 
-//�t�B�[���hBGM�i���o�[�擾(BASIC_BANK������)
+//フィールドBGMナンバー取得(BASIC_BANKを除く)
 u16 Snd_FieldBgmNoGetNonBasicBank( FIELDSYS_WORK* fsys, int zone_id );
 static u16 Snd_CyclingBgmNoGet( FIELDSYS_WORK* fsys, int zone_id );
 
-//"�]�[�����܂�����p"�t�F�[�h�A�E�g �� BGM�Đ�(�t�B�[���h��p)
+//"ゾーンをまたぐ専用"フェードアウト → BGM再生(フィールド専用)
 BOOL Snd_FadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, int mode );
 
-//"�}�b�v�J�ڐ�p"�@�t�F�[�h�A�E�g �� BGM�Đ�(�t�B�[���h��p)
+//"マップ遷移専用"　フェードアウト → BGM再生(フィールド専用)
 static BOOL Snd_MapChangeFadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, int mode );
 
-//ev_mapchange.c�p�̊֐�
+//ev_mapchange.c用の関数
 //BOOL Snd_MapChangeFadeOutNextPlaySub( FIELDSYS_WORK* fsys, int zone_id, int mode );
 
-//���[�J���֐�
+//ローカル関数
 static void Snd_BgmFadeOutTimeGet( FIELDSYS_WORK* fsys, int mode, int* frame, int* next_wait );
 
-//BGM�i���o�[�擾
+//BGMナンバー取得
 u16 Snd_EyeBgmGet( int tr_id );
 u16 Snd_BattleBgmGet( u32 fight_type, int tr_id );
 u16 Snd_ZoneDataBgmNoGet( int zone_id );
@@ -69,13 +69,13 @@ u16 Snd_ZoneDataBgmNoGet( int zone_id );
 
 //==============================================================================================
 //
-//	�֐�
+//	関数
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�Q�[���I�[�o�[���ɂ��鏈��(field_encount.c����Ă΂��)
+ * @brief	ゲームオーバー時にする処理(field_encount.cから呼ばれる)
  *
  * @param	none
  *
@@ -84,14 +84,14 @@ u16 Snd_ZoneDataBgmNoGet( int zone_id );
 //--------------------------------------------------------------
 void Snd_GameOverSet()
 {
-	//�S�Ă̍Đ����̃V�[�P���X���~
+	//全ての再生中のシーケンスを停止
 	Snd_Stop();
 
-	//�S�Ẵ|�[�Y�t���O�N���A
+	//全てのポーズフラグクリア
 	Snd_PauseClearAll();
 
-	//�t�B�[���h�V�[������t�B�[���h�V�[���̃��[�h������̂ŁA
-	//��x�V�[�����N���A���Ă���A�t�B�[���h�f�[�^���[�h�֐i��
+	//フィールドシーンからフィールドシーンのロードがあるので、
+	//一度シーンをクリアしてから、フィールドデータロードへ進む
 	Snd_SceneSet( SND_SCENE_DUMMY );
 
 	return;
@@ -99,28 +99,28 @@ void Snd_GameOverSet()
 
 //--------------------------------------------------------------
 /**
- * @brief	�Q�[���I�[�o�[��ɍĊJ���鎞�̏���(field_encount.c����Ă΂��)
+ * @brief	ゲームオーバー後に再開する時の処理(field_encount.cから呼ばれる)
  *
- * @param	fsys	FIELDSYS_WORK�^�̃|�C���^
+ * @param	fsys	FIELDSYS_WORK型のポインタ
  *
  * @retval	none
  *
- * ���g�p�I
+ * 未使用！
  */
 //--------------------------------------------------------------
 void Snd_RestartSet( FIELDSYS_WORK* fsys )
 {
 	u16 bgm_no;
 
-	//�t�B�[���h�V�[������t�B�[���h�V�[���̃��[�h������̂ŁA
-	//��x�V�[�����N���A���Ă���A�t�B�[���h�f�[�^���[�h�֐i��
+	//フィールドシーンからフィールドシーンのロードがあるので、
+	//一度シーンをクリアしてから、フィールドデータロードへ進む
 	Snd_SceneSet( SND_SCENE_DUMMY );
 
-	//�t�B�[���h�f�[�^���[�h
+	//フィールドデータロード
 	bgm_no = Snd_FieldBgmNoGet( fsys, fsys->location->zone_id );
 	Snd_DataSetByScene( SND_SCENE_FIELD, bgm_no, 1 );
 
-	//�t�F�[�h�C��
+	//フェードイン
 	Snd_BgmFadeIn(BGM_VOL_MAX, BGM_FADEIN_RESTART_TIME, BGM_FADEIN_START_VOL_MIN);
 
 	return;
@@ -128,15 +128,15 @@ void Snd_RestartSet( FIELDSYS_WORK* fsys )
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�w��Z�b�g
+ * @brief	BGM指定セット
  *
- * @param	fsys	FIELDSYS_WORK�^�̃|�C���^
- * @param	bgm_no	BGM�i���o�[
+ * @param	fsys	FIELDSYS_WORK型のポインタ
+ * @param	bgm_no	BGMナンバー
  *
  * @retval	none
  *
- * �}�b�v�������BGM�w�肪�Z�b�g�����
- * ���]��BGM�̐���ȂǂɎg�p
+ * マップ内限定のBGM指定がセットされる
+ * 自転車BGMの制御などに使用
  */
 //--------------------------------------------------------------
 void Snd_FieldBgmSetSpecial( FIELDSYS_WORK* fsys, u16 bgm_no )
@@ -148,14 +148,14 @@ void Snd_FieldBgmSetSpecial( FIELDSYS_WORK* fsys, u16 bgm_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�w��Q�b�g
+ * @brief	BGM指定ゲット
  *
- * @param	fsys	FIELDSYS_WORK�^�̃|�C���^
+ * @param	fsys	FIELDSYS_WORK型のポインタ
  *
- * @retval	"BGM�i���o�["
+ * @retval	"BGMナンバー"
  *
- * �}�b�v�������BGM�w�肪�Z�b�g�����
- * ���]��BGM�̐���ȂǂɎg�p
+ * マップ内限定のBGM指定がセットされる
+ * 自転車BGMの制御などに使用
  */
 //--------------------------------------------------------------
 u16 Snd_FieldBgmGetSpecial( FIELDSYS_WORK* fsys )
@@ -166,14 +166,14 @@ u16 Snd_FieldBgmGetSpecial( FIELDSYS_WORK* fsys )
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�w��N���A
+ * @brief	BGM指定クリア
  *
- * @param	fsys	FIELDSYS_WORK�^�̃|�C���^
+ * @param	fsys	FIELDSYS_WORK型のポインタ
  *
  * @retval	none
  *
- * �}�b�v�������BGM�w�肪�N���A�����
- * ���]��BGM�̐���ȂǂɎg�p
+ * マップ内限定のBGM指定がクリアされる
+ * 自転車BGMの制御などに使用
  */
 //--------------------------------------------------------------
 void Snd_FieldBgmClearSpecial( FIELDSYS_WORK* fsys )
@@ -185,14 +185,14 @@ void Snd_FieldBgmClearSpecial( FIELDSYS_WORK* fsys )
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���hBGM�i���o�[�擾
+ * @brief	フィールドBGMナンバー取得
  *
- * @param	fsys	FIELDSYS_WORK�^�̃|�C���^
- * @param	zone_id	�]�[��ID
+ * @param	fsys	FIELDSYS_WORK型のポインタ
+ * @param	zone_id	ゾーンID
  *
- * @retval	"�t�B�[���hBGM�i���o�["
+ * @retval	"フィールドBGMナンバー"
  *
- * �}�b�v�Ǘ��\�͒��ڌ��Ȃ��ŁA���̊֐���ʂ���BGM�i���o�[�擾����
+ * マップ管理表は直接見ないで、この関数を通してBGMナンバー取得する
  */
 //--------------------------------------------------------------
 u16 Snd_FieldBgmNoGet( FIELDSYS_WORK* fsys, int zone_id )
@@ -204,11 +204,11 @@ u16 Snd_FieldBgmNoGet( FIELDSYS_WORK* fsys, int zone_id )
 	player = fsys->player;
 	status = Player_FormGet(player);
 
-	//�g��蒆���`�F�b�N
+	//波乗り中かチェック
 	if( status == HERO_FORM_SWIM ){
 		#if 0	//dp
 		return SEQ_NAMINORI;
-		#else	//�j�ꂽ���E�ł͔g���BGM��炳�Ȃ�
+		#else	//破れた世界では波乗りBGMを鳴らさない
 		switch( zone_id ){
 		case ZONE_ID_D34R0101:
 		case ZONE_ID_D34R0102:
@@ -227,24 +227,24 @@ u16 Snd_FieldBgmNoGet( FIELDSYS_WORK* fsys, int zone_id )
 		#endif
 	}
 
-	//��ꑐ�����`�F�b�N
+	//ゆれ草中かチェック
 	if( SwayGrass_CheckValid(fsys->SwayGrass) == TRUE ){
 		return SEQ_KUSAGASA;
 	}
 
-	//�t�B�[���hBGM�i���o�[�擾(BASIC_BANK������)
+	//フィールドBGMナンバー取得(BASIC_BANKを除く)
 	bgm_no = Snd_FieldBgmNoGetNonBasicBank( fsys, zone_id );
 
 	/*
-	INIT_CHANGE�ŁABmgSpecialSet���Ăяo���āA
-	�C�x���g�Ȑ؂�ւ��𔽉f�����悤�Ǝv�������A
-	���̃]�[���̋ȃt�F�[�h�C�����A
-	���̃]�[����INIT_CHANGE����ɂ��邽�ߏo���Ȃ��I
-	�Ȃ̂ŁA���̃]�[��ID�͎擾�ł��Ă���̂ŁA
-	�����ŃC�x���g�t���O�����ăC�x���g�Ȃɐ؂�ւ���I(06.06.17)
+	INIT_CHANGEで、BmgSpecialSetを呼び出して、
+	イベント曲切り替えを反映させようと思ったが、
+	次のゾーンの曲フェードインが、
+	次のゾーンのINIT_CHANGEより先にくるため出来ない！
+	なので、次のゾーンIDは取得できているので、
+	ここでイベントフラグを見てイベント曲に切り替える！(06.06.17)
 	*/
 
-	//����BGM�w�肪�Z�b�g����Ă�����(���]�ԂȂ�)
+	//特殊BGM指定がセットされていたら(自転車など)
 	if( Snd_FieldBgmGetSpecial(fsys) != 0 ){
 		bgm_no = Snd_FieldBgmGetSpecial( fsys );
 	}
@@ -254,36 +254,36 @@ u16 Snd_FieldBgmNoGet( FIELDSYS_WORK* fsys, int zone_id )
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���hBGM�i���o�[�擾(BASIC_BANK������)
+ * @brief	フィールドBGMナンバー取得(BASIC_BANKを除く)
  *
- * @param	fsys	FIELDSYS_WORK�^�̃|�C���^
- * @param	zone_id	�]�[��ID
+ * @param	fsys	FIELDSYS_WORK型のポインタ
+ * @param	zone_id	ゾーンID
  *
- * @retval	"�t�B�[���hBGM�i���o�["
+ * @retval	"フィールドBGMナンバー"
  *
- * �}�b�v�J�ڂ̎��́ABASIC_BANK�ɂȂ���̂��܂߂����Ȃ�
- * �}�b�v�J�ڂ̎��́A����w��̓`�F�b�N����K�v���Ȃ�
- * �}�b�v�J�ڂ̎��́A���]�ԁA�Ȃ݂̂�͈����p�����Ƃ͂Ȃ�
+ * マップ遷移の時は、BASIC_BANKになるものを含めたくない
+ * マップ遷移の時は、特殊指定はチェックする必要がない
+ * マップ遷移の時は、自転車、なみのりは引き継ぐことはない
  */
 //--------------------------------------------------------------
 u16 Snd_FieldBgmNoGetNonBasicBank( FIELDSYS_WORK* fsys, int zone_id )
 {
 	u16 bgm_no,ret;
 
-	//�}�b�v�Ǘ��\����BGM�i���o�[��Ԃ�
-	if( GF_RTC_IsNightTime() == FALSE ){			//FALSE=���ATRUE=��
+	//マップ管理表からBGMナンバーを返す
+	if( GF_RTC_IsNightTime() == FALSE ){			//FALSE=昼、TRUE=夜
 		bgm_no = ZoneData_GetDayBGMID( zone_id );
 	}else{
 		bgm_no = ZoneData_GetNightBGMID( zone_id );
 	}
 
-	//�C�x���gBGM�؂�ւ�
+	//イベントBGM切り替え
 	ret = SysFlag_EventBgmGet( SaveData_GetEventWork(fsys->savedata), zone_id );
 	if( ret != 0 ){
 		bgm_no = ret;
 	}
 
-	//�T�C�N�����O���[�hBGM�؂�ւ�
+	//サイクリングロードBGM切り替え
 	ret = Snd_CyclingBgmNoGet( fsys, zone_id );
 	if( ret != 0 ){
 		bgm_no = ret;
@@ -292,18 +292,18 @@ u16 Snd_FieldBgmNoGetNonBasicBank( FIELDSYS_WORK* fsys, int zone_id )
 	return bgm_no;
 }
 
-//�T�C�N�����O���[�hBGM�؂�ւ�
+//サイクリングロードBGM切り替え
 static u16 Snd_CyclingBgmNoGet( FIELDSYS_WORK* fsys, int zone_id )
 {
 	int x,z;
 	SITUATION* sit = SaveData_GetSituation( fsys->savedata );
 	LOCATION_WORK* before = Situation_GetBeforeLocation( sit );
 
-	//��l���̍��W���擾
+	//主人公の座標を取得
 	x = Player_NowGPosXGet( fsys->player );
 	z = Player_NowGPosZGet( fsys->player );
 
-	//�T�C�N�����O���[�h(r206)
+	//サイクリングロード(r206)
 	if( zone_id != ZONE_ID_R206 ){
 		return 0;
 	}
@@ -321,16 +321,16 @@ static u16 Snd_CyclingBgmNoGet( FIELDSYS_WORK* fsys, int zone_id )
 
 #if 0
 		08.06.10
-		z���W���C�R�[���Ō��Ă���̂ŁA�Z�[�u�A���[�h�������ɁA�Ђ�������Ȃ����A
+		z座標がイコールで見ているので、セーブ、ロードした時に、ひっかからないが、
 
-		//����BGM�w�肪�Z�b�g����Ă�����(���]�ԂȂ�)
+		//特殊BGM指定がセットされていたら(自転車など)
 		if( Snd_FieldBgmGetSpecial(fsys) != 0 ){
 
-		���̕���ň���������̂ŁA���]�ԋȂ��Đ������
+		この分岐で引っかかるので、自転車曲が再生される
 #endif
 
 		if( (z == SCR_CYCLING_Z_U) || (z == SCR_CYCLING_Z_D) ){
-			return SEQ_PL_BICYCLE;				//�T�C�N�����O���[�h��pBGM
+			return SEQ_PL_BICYCLE;				//サイクリングロード専用BGM
 		}
 	}
 
@@ -339,19 +339,19 @@ static u16 Snd_CyclingBgmNoGet( FIELDSYS_WORK* fsys, int zone_id )
 
 //--------------------------------------------------------------
 /**
- * @brief	"�]�[�����܂�����p"�@�t�F�[�h�A�E�g �� BGM�Đ�(�t�B�[���h��p)
+ * @brief	"ゾーンをまたぐ専用"　フェードアウト → BGM再生(フィールド専用)
  *
- * @param	fsys	FIELDSYS_WORK�^�̃|�C���^
- * @param	seq_no	�V�[�P���X�i���o�[
- * @param	mode	���[�h(fld_bgm.h�Q��)
+ * @param	fsys	FIELDSYS_WORK型のポインタ
+ * @param	seq_no	シーケンスナンバー
+ * @param	mode	モード(fld_bgm.h参照)
  *
- * @retval	"0=�������Ȃ��A1=�J�n"
+ * @retval	"0=何もしない、1=開始"
  *
- * �t�B�[���h�ȊO�́A���̊֐����g�p���ĉ������I
- * ��Snd_BgmFadeOutNextPlaySet(...);
+ * フィールド以外は、この関数を使用して下さい！
+ * ●Snd_BgmFadeOutNextPlaySet(...);
  *
- * �]�[�����܂�����p�ł��B���H�A���̃]�[�����܂������Ɏg�p���܂��B
- * �}�b�v�J�ڂɂ͎g�p�ł��܂���B
+ * ゾーンをまたぐ専用です。道路、町のゾーンをまたぐ時に使用します。
+ * マップ遷移には使用できません。
  */
 //--------------------------------------------------------------
 BOOL Snd_FadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, int mode )
@@ -362,36 +362,36 @@ BOOL Snd_FadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, int mode )
 	player = fsys->player;
 	status = Player_FormGet(player);
 
-	//�t�B�[���hBGM���Œ�ɂ���t���O�`�F�b�N(�Z�[�u�͂��Ȃ�)
+	//フィールドBGMを固定にするフラグチェック(セーブはしない)
 	if( Snd_CtrlBgmFlagCheck() == 1 ){
-		return 0;		//�������Ȃ�
+		return 0;		//何もしない
 	}
 
-	//�ύX����BGM�i���o�[���A����BGM�i���o�[�Ɠ������`�F�b�N
+	//変更するBGMナンバーが、今のBGMナンバーと同じかチェック
 	if( seq_no == Snd_NowBgmNoGet(fsys) ){
-		return 0;		//�������Ȃ�
+		return 0;		//何もしない
 	}
 
-	//�C�x���g�ŁA�A�����BGM��PLAYER_BGM�Ŗ炵�Ȃ���A�}�b�v�J�ڂ���ƁA
-	//PLAYER_FIELD���|�[�Y��Ԃ̂܂܂ɂȂ��Ă���I
-	//�]�[���؂�ւ����̓|�[�Y��S�ăN���A���Ă����Ȃ��͂��I
+	//イベントで、連れ歩きBGMをPLAYER_BGMで鳴らしながら、マップ遷移すると、
+	//PLAYER_FIELDがポーズ状態のままになっている！
+	//ゾーン切り替え時はポーズを全てクリアしても問題ないはず！
 	
-	//�S�Ẵ|�[�Y�t���O�N���A
+	//全てのポーズフラグクリア
 	Snd_PauseClearAll();
 
-	//�����̏o���肩�A�]�[�����܂��������ɂ���āA�t�F�[�h�A�E�g���Ԃ�ς���I
+	//建物の出入りか、ゾーンをまたぐ時かによって、フェードアウト時間を変える！
 	Snd_BgmFadeOutTimeGet( fsys, mode, &frame, &next_wait );
 
 /*
-//#ifdef SND_BICYCLE_070208	//���ݖ����ł�(071009)
+//#ifdef SND_BICYCLE_070208	//現在無効です(071009)
 
-	//�T�C�N�����O���[�h�֐i�ގ��́A�t�F�[�h�C��������Ȃ��悤�ɂ���
-	//�T�C�N�����O���[�h��p�̎��]��BGM���Đ����Ă���(BANK_BGM_FIELD)
+	//サイクリングロードへ進む時は、フェードインが入らないようにする
+	//サイクリングロード専用の自転車BGMを再生している(BANK_BGM_FIELD)
 	
 	if( (fsys->location->zone_id == ZONE_ID_R206) &&
 		(SysFlag_CyclingRoadCheck(SaveData_GetEventWork(fsys->savedata)) == 1) ){
 
-		//�ʏ�̓t�F�[�h�A�E�g���J�n(�o���N���̂܂܌p��)
+		//通常はフェードアウト→開始(バンクそのまま継続)
 		Snd_FadeOutNextPlaySet(SND_SCENE_FIELD, seq_no, frame, next_wait, SND_BANK_CONTINUE, NULL);
 		return 1;
 	}
@@ -399,11 +399,11 @@ BOOL Snd_FadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, int mode )
 */
 
 	if( (status == HERO_FORM_CYCLE_R) || (status == HERO_FORM_CYCLE_D) ){
-		//���]�Ԃɏ���Ă��鎞�̓t�F�[�h�A�E�g���t�F�[�h�C��(�o���N���̂܂܌p��)
+		//自転車に乗っている時はフェードアウト→フェードイン(バンクそのまま継続)
 		Snd_FadeOutNextFadeInSet(SND_SCENE_FIELD, seq_no, frame, next_wait, 
 									BGM_FADEIN_CYCLE_TIME, SND_BANK_CONTINUE, NULL);
 	}else{
-		//�ʏ�̓t�F�[�h�A�E�g���J�n(�o���N���̂܂܌p��)
+		//通常はフェードアウト→開始(バンクそのまま継続)
 		Snd_FadeOutNextPlaySet(SND_SCENE_FIELD, seq_no, frame, next_wait, SND_BANK_CONTINUE, NULL);
 	}
 
@@ -412,16 +412,16 @@ BOOL Snd_FadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	"�}�b�v�J�ڐ�p"�@�t�F�[�h�A�E�g �� BGM�Đ�(�t�B�[���h��p)
+ * @brief	"マップ遷移専用"　フェードアウト → BGM再生(フィールド専用)
  *
- * @param	fsys	FIELDSYS_WORK�^�̃|�C���^
- * @param	seq_no	�V�[�P���X�i���o�[
- * @param	mode	���[�h(fld_bgm.h�Q��)
+ * @param	fsys	FIELDSYS_WORK型のポインタ
+ * @param	seq_no	シーケンスナンバー
+ * @param	mode	モード(fld_bgm.h参照)
  *
- * @retval	"0=�������Ȃ��A1=�J�n"
+ * @retval	"0=何もしない、1=開始"
  *
- * �}�b�v�J�ڐ�p�ł��B�����A�_���W�����ɓ��鎞�Ɏg�p���܂��B
- * ���H�A���̃]�[�����܂������ɂ͎g�p�ł��܂���B
+ * マップ遷移専用です。建物、ダンジョンに入る時に使用します。
+ * 道路、町のゾーンをまたぐ時には使用できません。
  */
 //--------------------------------------------------------------
 static BOOL Snd_MapChangeFadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, int mode )
@@ -430,33 +430,33 @@ static BOOL Snd_MapChangeFadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, i
 
 	/*
 
-	//FLAG_CHANGE�ŃT�E���h���[�N�̃��N�G�X�gBGM��BGM�i���o�[�����āA
-	//����ɒl�������Ă�����A����BGM��点��悤�ɂ��Ă����Ƃ悢�����B
-	//Snd_FieldBgmNoGet�ŁA�C�x���g�̃`�F�b�N���������A�X�N���v�g�őS�Ă�����悤�ɂȂ�̂ŁB
+	//FLAG_CHANGEでサウンドワークのリクエストBGMにBGMナンバーを入れて、
+	//それに値が入っていたら、そのBGMを鳴らせるようにしておくとよいかも。
+	//Snd_FieldBgmNoGetで、イベントのチェックをかかず、スクリプトで全てかけるようになるので。
 	
 	*/
 
-	//�t�B�[���hBGM���Œ�ɂ���t���O�`�F�b�N(�Z�[�u�͂��Ȃ�)
+	//フィールドBGMを固定にするフラグチェック(セーブはしない)
 	if( Snd_CtrlBgmFlagCheck() == 1 ){
-		return 0;		//�������Ȃ�
+		return 0;		//何もしない
 	}
 
-	//�ύX����BGM�i���o�[���A����BGM�i���o�[�Ɠ������`�F�b�N
+	//変更するBGMナンバーが、今のBGMナンバーと同じかチェック
 	if( seq_no == Snd_NowBgmNoGet(fsys) ){
-		return 0;		//�������Ȃ�
+		return 0;		//何もしない
 	}
 
-	//�C�x���g�ŁA�A�����BGM��PLAYER_BGM�Ŗ炵�Ȃ���A�}�b�v�J�ڂ���ƁA
-	//PLAYER_FIELD���|�[�Y��Ԃ̂܂܂ɂȂ��Ă���I
-	//�]�[���؂�ւ����̓|�[�Y��S�ăN���A���Ă����Ȃ��͂��I
+	//イベントで、連れ歩きBGMをPLAYER_BGMで鳴らしながら、マップ遷移すると、
+	//PLAYER_FIELDがポーズ状態のままになっている！
+	//ゾーン切り替え時はポーズを全てクリアしても問題ないはず！
 	
-	//�S�Ẵ|�[�Y�t���O�N���A
+	//全てのポーズフラグクリア
 	Snd_PauseClearAll();
 
-	//�����̏o���肩�A�]�[�����܂��������ɂ���āA�t�F�[�h�A�E�g���Ԃ�ς���I
+	//建物の出入りか、ゾーンをまたぐ時かによって、フェードアウト時間を変える！
 	Snd_BgmFadeOutTimeGet( fsys, mode, &frame, &next_wait );
 
-	//�t�F�[�h�A�E�g���J�n(�o���N�؂�ւ���)
+	//フェードアウト→開始(バンク切り替える)
 	Snd_FadeOutNextPlaySet(SND_SCENE_FIELD, seq_no, frame, next_wait, SND_BANK_CHANGE, NULL);
 	
 	return 1;
@@ -464,23 +464,23 @@ static BOOL Snd_MapChangeFadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, i
 
 //--------------------------------------------------------------
 /**
- * @brief	"�}�b�v�J�ڐ�p"�@ev_mapchange.c�p�̊֐�
+ * @brief	"マップ遷移専用"　ev_mapchange.c用の関数
  *
- * @param	fsys	FIELDSYS_WORK�^�̃|�C���^
- * @param	zone_id	�]�[��ID
- * @param	mode	���[�h(fld_bgm.h�Q��)
+ * @param	fsys	FIELDSYS_WORK型のポインタ
+ * @param	zone_id	ゾーンID
+ * @param	mode	モード(fld_bgm.h参照)
  *
- * @retval	"0=�������Ȃ��A1=�J�n"
+ * @retval	"0=何もしない、1=開始"
  *
- * �}�b�v�J�ڐ�p�ł��B�����A�_���W�����ɓ��鎞�Ɏg�p���܂��B
- * ���H�A���̃]�[�����܂������ɂ͎g�p�ł��܂���B
+ * マップ遷移専用です。建物、ダンジョンに入る時に使用します。
+ * 道路、町のゾーンをまたぐ時には使用できません。
  */
 //--------------------------------------------------------------
 /*
 BOOL Snd_MapChangeFadeOutNextPlaySub( FIELDSYS_WORK* fsys, int zone_id, int mode )
 {
 	u16 bgm_no = Snd_FieldBgmNoGet( fsys, zone_id );
-	Snd_ZoneBgmSet( Snd_ZoneDataBgmNoGet(zone_id) );				//�]�[���̋Ȃ��Z�b�g
+	Snd_ZoneBgmSet( Snd_ZoneDataBgmNoGet(zone_id) );				//ゾーンの曲をセット
 	return Snd_MapChangeFadeOutNextPlayCall( fsys, bgm_no, mode );
 }
 */
@@ -488,50 +488,50 @@ BOOL Snd_MapChangeFadeOutNextPlaySub( FIELDSYS_WORK* fsys, int zone_id, int mode
 
 //==============================================================================================
 //
-//	���[�J���֐�
+//	ローカル関数
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�F�[�h�A�E�g���Ԏ擾
+ * @brief	フェードアウト時間取得
  *
- * @param	fsys		FIELDSYS_WORK�^�̃|�C���^
- * @param	mode		���[�h(fld_bgm.h�Q��)
- * @param	frame		�t�F�[�h�A�E�g�t���[�������i�[����|�C���^
- * @param	next_wait	����BGM��炷�܂ł̃t���[�������i�[����|�C���^
+ * @param	fsys		FIELDSYS_WORK型のポインタ
+ * @param	mode		モード(fld_bgm.h参照)
+ * @param	frame		フェードアウトフレーム数を格納するポインタ
+ * @param	next_wait	次のBGMを鳴らすまでのフレーム数を格納するポインタ
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void Snd_BgmFadeOutTimeGet( FIELDSYS_WORK* fsys, int mode, int* frame, int* next_wait )
 {
-	//�}�b�v�Ǘ��\�ŁA�]�[���̃^�C�v(�������A�t�B�[���h���A���A���Ȃ�)��
-	//���ʂł���悤�ɂȂ�����A�����̃��[�h�͂���Ȃ������H
+	//マップ管理表で、ゾーンのタイプ(室内か、フィールドか、洞窟かなど)を
+	//判別できるようになったら、引数のモードはいらないかも？
 
-	//�����̏o���肩�A�]�[�����܂��������ɂ���āA�t�F�[�h�A�E�g���Ԃ�ς���I
+	//建物の出入りか、ゾーンをまたぐ時かによって、フェードアウト時間を変える！
 	
 	switch( mode ){
 
-	//�����̏o����
+	//建物の出入り
 	case BGM_FADE_ROOM_MODE:
 		*frame		= BGM_FADE_ROOM_TIME;
 		*next_wait	= 0;
 		break;
 
-	//�t�B�[���h�̐؂�ւ�
+	//フィールドの切り替え
 	case BGM_FADE_FIELD_MODE:
 		*frame		= BGM_FADE_FIELD_TIME;
 		*next_wait	= 0;
 		break;
 
-	//���A�̏o����
+	//洞窟の出入り
 	case BGM_FADE_CAVE_MODE:
 		*frame		= BGM_FADE_CAVE_TIME;
 		*next_wait	= BGM_NEXT_WAIT_CAVE_TIME;
 		break;
 
-	//���̑�
+	//その他
 	case BGM_FADE_OTHERS_MODE:
 		*frame		= BGM_FADE_OTHERS_TIME;
 		*next_wait	= 0;
@@ -543,9 +543,9 @@ static void Snd_BgmFadeOutTimeGet( FIELDSYS_WORK* fsys, int mode, int* frame, in
 
 //--------------------------------------------------------------
 /**
- * @brief	�g���[�i�[����BGM�擾(�X�N���v�g����Ă΂��)
+ * @brief	トレーナー視線BGM取得(スクリプトから呼ばれる)
  *
- * @param	tr_id	�g���[�i�[ID
+ * @param	tr_id	トレーナーID
  *
  * @retval	none
  */
@@ -557,7 +557,7 @@ u16 Snd_EyeBgmGet( int tr_id )
 
 	type = (u8)TT_TrainerDataParaGet( tr_id, ID_TD_tr_type );
 
-	bgm = SEQ_EYE_KID;	//�ی�
+	bgm = SEQ_EYE_KID;	//保険
 
 	for( i=0; i < TRTYPE_BGM_TBL_MAX ;i++ ){
 
@@ -572,10 +572,10 @@ u16 Snd_EyeBgmGet( int tr_id )
 
 //--------------------------------------------------------------
 /**
- * @brief	�퓬BGM�擾
+ * @brief	戦闘BGM取得
  *
- * @param	fight_type	�퓬��ʃt���O
- * @param	tr_id		�g���[�i�[ID
+ * @param	fight_type	戦闘種別フラグ
+ * @param	tr_id		トレーナーID
  *
  * @retval	none
  */
@@ -585,16 +585,16 @@ u16 Snd_BattleBgmGet( u32 fight_type, int tr_id )
 	u8 type;
 	u16 bgm = SEQ_BA_POKE;
 
-	//�쐶�n�q�T�t�@��   k.ohno �ʐM�ΐ�Ŏ~�܂�̂ŏC��
+	//野生ＯＲサファリ   k.ohno 通信対戦で止まるので修正
 
-    //�g���[�i�[
+    //トレーナー
 	if(fight_type == FIGHT_TYPE_TRAINER){
 
 		type = (u8)TT_TrainerDataParaGet( tr_id, ID_TD_tr_type );
 
 		switch( type ){
 
-		//�W��
+		//ジム
 		case TRTYPE_LEADER1:
 		case TRTYPE_LEADER2:
 		case TRTYPE_LEADER3:
@@ -606,20 +606,20 @@ u16 Snd_BattleBgmGet( u32 fight_type, int tr_id )
 			bgm = SEQ_BA_GYM;
 			break;
 
-		//�M���K�c
+		//ギンガ団
 		case TRTYPE_GINGAM:
 		case TRTYPE_GINGAW:
 			bgm = SEQ_BA_GINGA;
 			break;
 
-		//�M���K�c�{�X
+		//ギンガ団ボス
 		case TRTYPE_GINGALEADER1:
 		case TRTYPE_GINGALEADER2:
 		case TRTYPE_GINGALEADER3:
 			bgm = SEQ_BA_AKAGI;
 			break;
 
-		//�g���[�i�[
+		//トレーナー
 		default:
 			bgm = SEQ_BA_TRAIN;
 			break;
@@ -631,19 +631,19 @@ u16 Snd_BattleBgmGet( u32 fight_type, int tr_id )
 
 //--------------------------------------------------------------
 /**
- * @brief	�]�[���f�[�^��BGM�i���o�[�擾
+ * @brief	ゾーンデータのBGMナンバー取得
  *
- * @param	zone_id	�]�[��ID
+ * @param	zone_id	ゾーンID
  *
- * @retval	"BGM�i���o�["
+ * @retval	"BGMナンバー"
  */
 //--------------------------------------------------------------
 u16 Snd_ZoneDataBgmNoGet( int zone_id )
 {
 	u16 bgm_no;
 
-	//�}�b�v�Ǘ��\����BGM�i���o�[��Ԃ�
-	if( GF_RTC_IsNightTime() == FALSE ){			//FALSE=���ATRUE=��
+	//マップ管理表からBGMナンバーを返す
+	if( GF_RTC_IsNightTime() == FALSE ){			//FALSE=昼、TRUE=夜
 		bgm_no = ZoneData_GetDayBGMID( zone_id );
 	}else{
 		bgm_no = ZoneData_GetNightBGMID( zone_id );
@@ -655,7 +655,7 @@ u16 Snd_ZoneDataBgmNoGet( int zone_id )
 
 //==============================================================================================
 //
-//	�}�b�v�J�ڗp(�܂������͎g�p�s�I)
+//	マップ遷移用(またぐ時は使用不可！)
 //
 //	ev_mapchange.c
 //	map_jump.c
@@ -664,22 +664,22 @@ u16 Snd_ZoneDataBgmNoGet( int zone_id )
 
 //--------------------------------------------------------------
 /**
- * @brief	�}�b�v�J�ځF�]�[���؂�ւ��鎞�Ƀt�F�[�h�A�E�g
+ * @brief	マップ遷移：ゾーン切り替える時にフェードアウト
  *
- * @param	fsys		FIELDSYS_WORK�^�̃|�C���^
- * @param	zone_id		�]�[��ID
+ * @param	fsys		FIELDSYS_WORK型のポインタ
+ * @param	zone_id		ゾーンID
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 void Snd_EvMapChangeBgmFadeCheck( FIELDSYS_WORK* fsys, int zone_id )
 {
-	//�t�B�[���hBGM���Œ�ɂ���t���O�`�F�b�N(�Z�[�u�͂��Ȃ�)
+	//フィールドBGMを固定にするフラグチェック(セーブはしない)
 	if( Snd_CtrlBgmFlagCheck() == 1 ){
 		return;
 	}
 
-	//�t�B�[���hBGM�i���o�[�擾(BASIC_BANK������)
+	//フィールドBGMナンバー取得(BASIC_BANKを除く)
 	if( Snd_NowBgmNoGet() != Snd_FieldBgmNoGetNonBasicBank(fsys,zone_id) ){
 		Snd_BgmFadeOut( 0, BGM_FADE_MAPJUMP_TIME );
 	}
@@ -688,10 +688,10 @@ void Snd_EvMapChangeBgmFadeCheck( FIELDSYS_WORK* fsys, int zone_id )
 
 //--------------------------------------------------------------
 /**
- * @brief	�}�b�v�J�ځF�]�[���؂�ւ��鎞��BGM�Đ�
+ * @brief	マップ遷移：ゾーン切り替える時のBGM再生
  *
- * @param	fsys		FIELDSYS_WORK�^�̃|�C���^
- * @param	zone_id		�]�[��ID
+ * @param	fsys		FIELDSYS_WORK型のポインタ
+ * @param	zone_id		ゾーンID
  *
  * @retval	none
  */
@@ -700,17 +700,17 @@ void Snd_EvMapChangeBgmPlay( FIELDSYS_WORK* fsys, int zone_id )
 {
 	u16 bgm_no;
 
-	//�t�B�[���hBGM���Œ�ɂ���t���O�`�F�b�N(�Z�[�u�͂��Ȃ�)
+	//フィールドBGMを固定にするフラグチェック(セーブはしない)
 	if( Snd_CtrlBgmFlagCheck() == 1 ){
 		return;
 	}
 
 	Snd_SceneSet( SND_SCENE_DUMMY );
 
-	//�t�B�[���hBGM�i���o�[�擾(BASIC_BANK������)
+	//フィールドBGMナンバー取得(BASIC_BANKを除く)
 	bgm_no = Snd_FieldBgmNoGetNonBasicBank( fsys, zone_id );
 
-	Snd_ZoneBgmSet( bgm_no );		//�]�[���ȃZ�b�g
+	Snd_ZoneBgmSet( bgm_no );		//ゾーン曲セット
 
 	Snd_DataSetByScene( SND_SCENE_FIELD, bgm_no, 1 );
 	return;
@@ -719,34 +719,34 @@ void Snd_EvMapChangeBgmPlay( FIELDSYS_WORK* fsys, int zone_id )
 
 //==============================================================================================
 //
-//	�t�B�[���h�������p
+//	フィールド初期化用
 //
 //	fieldmap.c
-//	fld_menu.c(�i����̕��A�Ɏg�p)
+//	fld_menu.c(進化後の復帰に使用)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���h�������F�T�E���h�f�[�^�Z�b�g
+ * @brief	フィールド初期化：サウンドデータセット
  *
- * @param	fsys		FIELDSYS_WORK�^�̃|�C���^
- * @param	zone_id		�]�[��ID
+ * @param	fsys		FIELDSYS_WORK型のポインタ
+ * @param	zone_id		ゾーンID
  *
  * @retval	none
  *
- * �V�[�����ύX����Ȃ����͉������Ȃ��I
+ * シーンが変更されない時は何もしない！
  */
 //--------------------------------------------------------------
 void Snd_FieldMapInitBgmPlay( FIELDSYS_WORK* fsys, int zone_id )
 {
 	u16 bgm_no;
 
-	bgm_no = Snd_FieldBgmNoGet( fsys, zone_id );	//���]��BGM�ŕ��A���邱�Ƃ����肦��I
+	bgm_no = Snd_FieldBgmNoGet( fsys, zone_id );	//自転車BGMで復帰することもありえる！
 
-	Snd_ZoneBgmSet( Snd_FieldBgmNoGetNonBasicBank(fsys,zone_id) );	//�]�[���ȃZ�b�g
+	Snd_ZoneBgmSet( Snd_FieldBgmNoGetNonBasicBank(fsys,zone_id) );	//ゾーン曲セット
 
-	//�T�E���h�f�[�^�Z�b�g(�V�[�����ύX����Ȃ����͉������Ȃ�)
+	//サウンドデータセット(シーンが変更されない時は何もしない)
 	Snd_DataSetByScene( SND_SCENE_FIELD, bgm_no, 1 );
 	return;
 }

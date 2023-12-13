@@ -29,8 +29,8 @@ extern "C" {
 #endif
 
 //
-// ‰ü–¼‚ğs‚Á‚½ŠÖ”‚Ì•Ê–¼
-// ŒİŠ·«ˆÛ‚Ì‚½‚ß•Ê–¼‚Æ‚µ‚ÄˆÈ‘O‚ÌŠÖ”‚ğéŒ¾‚µ‚Ü‚·B
+// æ”¹åã‚’è¡Œã£ãŸé–¢æ•°ã®åˆ¥å
+// äº’æ›æ€§ç¶­æŒã®ãŸã‚åˆ¥åã¨ã—ã¦ä»¥å‰ã®é–¢æ•°ã‚’å®£è¨€ã—ã¾ã™ã€‚
 // 
 #define NNS_G2dSetCellAnimSpeed                           NNS_G2dSetCellAnimationSpeed
 #define NNS_G2dGetCellAnimAnimCtrl                        NNS_G2dGetCellAnimationAnimCtrl                        
@@ -38,7 +38,7 @@ extern "C" {
 #define NNS_G2dInitializeCellAnimationVramTransfered      NNS_G2dInitCellAnimationVramTransfered 
 
 //------------------------------------------------------------------------------
-// ‚í‚©‚è‚â‚·‚³‚Ì‚½‚ß‚É•Ê–¼‚ğ’è‹`‚µ‚Ü‚·B
+// ã‚ã‹ã‚Šã‚„ã™ã•ã®ãŸã‚ã«åˆ¥åã‚’å®šç¾©ã—ã¾ã™ã€‚
 typedef NNSG2dAnimSequence            NNSG2dCellAnimSequence;
 typedef NNSG2dAnimBankData            NNSG2dCellAnimBankData;
 
@@ -49,20 +49,20 @@ typedef NNSG2dAnimBankData            NNSG2dCellAnimBankData;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dCellAnimation
 
-  Description:  ƒZƒ‹ ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÀ‘Ì‚ğ•\Œ»‚·‚éŠT”O‚Å‚·B
+  Description:  ã‚»ãƒ« ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å®Ÿä½“ã‚’è¡¨ç¾ã™ã‚‹æ¦‚å¿µã§ã™ã€‚
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dCellAnimation
 {
-    NNSG2dAnimController            animCtrl;               // ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰
-    const NNSG2dCellData*           pCurrentCell;           // Œ»İ•\¦‚µ‚Ä‚¢‚é ƒZƒ‹ 
-    const NNSG2dCellDataBank*       pCellDataBank;          // ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ğ\¬‚·‚éƒZƒ‹‚Ì’è‹`ƒoƒ“ƒN
+    NNSG2dAnimController            animCtrl;               // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+    const NNSG2dCellData*           pCurrentCell;           // ç¾åœ¨è¡¨ç¤ºã—ã¦ã„ã‚‹ ã‚»ãƒ« 
+    const NNSG2dCellDataBank*       pCellDataBank;          // ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æ§‹æˆã™ã‚‹ã‚»ãƒ«ã®å®šç¾©ãƒãƒ³ã‚¯
     
-    u32                             cellTransferStateHandle; // Vram “]‘— ƒ^ƒXƒN‚Ìƒnƒ“ƒhƒ‹
-                                                             // Vram “]‘— ƒAƒjƒ[ƒVƒ‡ƒ“‚Åg—p‚µ‚Ü‚·
+    u32                             cellTransferStateHandle; // Vram è»¢é€ ã‚¿ã‚¹ã‚¯ã®ãƒãƒ³ãƒ‰ãƒ«
+                                                             // Vram è»¢é€ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã§ä½¿ç”¨ã—ã¾ã™
                                                             
                                                             
-    NNSG2dSRTControl                srtCtrl;                // SRTƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŒ‹‰Ê 
+    NNSG2dSRTControl                srtCtrl;                // SRTã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®çµæœ 
     
 }NNSG2dCellAnimation;
 
@@ -116,12 +116,12 @@ u16 NNS_G2dMakeCellToOams
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetCellAnimationAnimCtrl
 
-  Description:  ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
                 
-  Arguments:    pCellAnim             : ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ À‘Ì             
+  Arguments:    pCellAnim             : ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ å®Ÿä½“             
                                   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE NNSG2dAnimController* NNS_G2dGetCellAnimationAnimCtrl
@@ -136,11 +136,11 @@ NNS_G2D_INLINE NNSG2dAnimController* NNS_G2dGetCellAnimationAnimCtrl
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetCellAnimationCurrentCell
 
-  Description:  ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŒ»İ•\¦‚µ‚Ä‚¢‚é ƒZƒ‹ ‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç¾åœ¨è¡¨ç¤ºã—ã¦ã„ã‚‹ ã‚»ãƒ« ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pCellAnim             : ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ À‘Ì             
+  Arguments:    pCellAnim             : ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ å®Ÿä½“             
                                   
-  Returns:      Œ»İ•\¦‚µ‚Ä‚¢‚é ƒZƒ‹ 
+  Returns:      ç¾åœ¨è¡¨ç¤ºã—ã¦ã„ã‚‹ ã‚»ãƒ« 
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE const NNSG2dCellData* NNS_G2dGetCellAnimationCurrentCell
@@ -153,11 +153,11 @@ NNS_G2D_INLINE const NNSG2dCellData* NNS_G2dGetCellAnimationCurrentCell
 }
 
 //------------------------------------------------------------------------------
-// ƒ‰ƒCƒuƒ‰ƒŠ“àŒÀ’èŒöŠJ ŠÖ”
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…é™å®šå…¬é–‹ é–¢æ•°
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// Vram“]‘—İ’è—pƒnƒ“ƒhƒ‹‚ª—LŒø‚©ƒ`ƒFƒbƒN‚µ‚Ü‚·
+// Vramè»¢é€è¨­å®šç”¨ãƒãƒ³ãƒ‰ãƒ«ãŒæœ‰åŠ¹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¾ã™
 NNS_G2D_INLINE BOOL 
 NNSi_G2dIsCellAnimVramTransferHandleValid( const NNSG2dCellAnimation* pCellAnim )
 {
@@ -166,7 +166,7 @@ NNSi_G2dIsCellAnimVramTransferHandleValid( const NNSG2dCellAnimation* pCellAnim 
 }
 
 //------------------------------------------------------------------------------
-// Vram“]‘—ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚©ƒ`ƒFƒbƒN‚µ‚Ü‚·
+// Vramè»¢é€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‹ãƒã‚§ãƒƒã‚¯ã—ã¾ã™
 NNS_G2D_INLINE BOOL 
 NNSi_G2dIsVramTransferCellAnim( const NNSG2dCellAnimation* pCellAnim )
 {
@@ -174,7 +174,7 @@ NNSi_G2dIsVramTransferCellAnim( const NNSG2dCellAnimation* pCellAnim )
 }
 
 //------------------------------------------------------------------------------
-// ƒnƒ“ƒhƒ‹‚Ìİ’è
+// ãƒãƒ³ãƒ‰ãƒ«ã®è¨­å®š
 NNS_G2D_INLINE void 
 NNSi_G2dSetCellAnimVramTransferHandle( NNSG2dCellAnimation* pCellAnim, u32 handle )
 {
@@ -185,7 +185,7 @@ NNSi_G2dSetCellAnimVramTransferHandle( NNSG2dCellAnimation* pCellAnim, u32 handl
 }
 
 //------------------------------------------------------------------------------
-// ƒnƒ“ƒhƒ‹‚Ìæ“¾
+// ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 NNS_G2D_INLINE u32 
 NNSi_G2dGetCellAnimVramTransferHandle( const NNSG2dCellAnimation* pCellAnim )
 {

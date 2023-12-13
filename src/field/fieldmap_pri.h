@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fieldmap_pri.h
- * @brief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒv“à‚Å“®ì‚·‚éƒ^ƒXƒN‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB’è‹`
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—å†…ã§å‹•ä½œã™ã‚‹ã‚¿ã‚¹ã‚¯ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å®šç¾©
  */
 //============================================================================================
 
@@ -9,32 +9,32 @@
 #define	__FIELDMAP_PRI_H__
 
 typedef enum {
-	FLDMAP_PRI_POKETCH = 0,				///<ƒ|ƒPƒbƒ`
+	FLDMAP_PRI_POKETCH = 0,				///<ãƒã‚±ãƒƒãƒ
 
-	FLDMAP_PRI_PLACENAME = 0,			///<’n–¼•\Ž¦ƒEƒBƒ“ƒhƒE
+	FLDMAP_PRI_PLACENAME = 0,			///<åœ°åè¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-	FLDMAP_PRI_DIVMAP_MODEL = 1,		///<’nŒ`ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
-	FLDMAP_PRI_DIVMAP_HEIGHT = 1,		///<’nŒ`‚½‚©‚³ƒf[ƒ^“Ç‚Ýž‚Ý
+	FLDMAP_PRI_DIVMAP_MODEL = 1,		///<åœ°å½¢ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+	FLDMAP_PRI_DIVMAP_HEIGHT = 1,		///<åœ°å½¢ãŸã‹ã•ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 
-	FLDMAP_PRI_MSGICON = 0,				///<isƒEƒBƒ“ƒhƒE‚ÌƒAƒCƒRƒ“§Œä
-	FLDMAP_PRI_SCRIPT_MENU = 0,			///<ƒXƒNƒŠƒvƒgŒÄ‚Ño‚µƒƒjƒ…[
-	FLDMAP_PRI_OBJSYS = 5,				///<“®ìƒ‚ƒfƒ‹§Œä‚ÌŠî€ƒvƒ‰ƒCƒIƒŠƒeƒB
+	FLDMAP_PRI_MSGICON = 0,				///<é€²è¡Œã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¢ã‚¤ã‚³ãƒ³åˆ¶å¾¡
+	FLDMAP_PRI_SCRIPT_MENU = 0,			///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘¼ã³å‡ºã—ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	FLDMAP_PRI_OBJSYS = 5,				///<å‹•ä½œãƒ¢ãƒ‡ãƒ«åˆ¶å¾¡ã®åŸºæº–ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
-	FLDMAP_PRI_WEATHER_CHG = 0,			///<“VŒóƒVƒXƒeƒ€F•ÏX
-	FLDMAP_PRI_WEATHER_DIVINIT = 1,		///<“VŒóƒVƒXƒeƒ€F‰Šú‰»
-	FLDMAP_PRI_WEATHER_MAIN = 4,		///<“VŒóƒVƒXƒeƒ€FƒƒCƒ“
+	FLDMAP_PRI_WEATHER_CHG = 0,			///<å¤©å€™ã‚·ã‚¹ãƒ†ãƒ ï¼šå¤‰æ›´
+	FLDMAP_PRI_WEATHER_DIVINIT = 1,		///<å¤©å€™ã‚·ã‚¹ãƒ†ãƒ ï¼šåˆæœŸåŒ–
+	FLDMAP_PRI_WEATHER_MAIN = 4,		///<å¤©å€™ã‚·ã‚¹ãƒ†ãƒ ï¼šãƒ¡ã‚¤ãƒ³
 
-	FLDMAP_PRI_ENCOUNT_EFF = 5,			///<ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
-	FLDMAP_PRI_UG_CHG_EFF = 5,			///<’YzˆÚ“®ƒGƒtƒFƒNƒg
+	FLDMAP_PRI_ENCOUNT_EFF = 5,			///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	FLDMAP_PRI_UG_CHG_EFF = 5,			///<ç‚­é‰±ç§»å‹•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-	FLDMAP_PRI_UNION_MAIN = 10,			///<ƒ†ƒjƒIƒ“ƒ‹[ƒ€§Œä
-	FLDMAP_PRI_UNION_VIEW = 11,			///<ƒ†ƒjƒIƒ“ƒ‹[ƒ€•\Ž¦
+	FLDMAP_PRI_UNION_MAIN = 10,			///<ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ åˆ¶å¾¡
+	FLDMAP_PRI_UNION_VIEW = 11,			///<ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ è¡¨ç¤º
 
-	FLDMAP_PRI_UG_COMMON = 100,			///<’Yz‚ÌŠî€ƒvƒ‰ƒCƒIƒŠƒeƒB
+	FLDMAP_PRI_UG_COMMON = 100,			///<ç‚­é‰±ã®åŸºæº–ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
-	FLDMAP_PRI_VOICE_CTRL = 0,			///<–Â‚«º§Œä
-	FLDMAP_PRI_QUICK_SAND	= 2,		///<—¬»ƒAƒjƒŠÄŽ‹
-	FLDMAP_PRI_BASE_PANEL = 0,			///<”é–§Šî’nƒpƒlƒ‹ƒJ[ƒ\ƒ‹
+	FLDMAP_PRI_VOICE_CTRL = 0,			///<é³´ãå£°åˆ¶å¾¡
+	FLDMAP_PRI_QUICK_SAND	= 2,		///<æµç ‚ã‚¢ãƒ‹ãƒ¡ç›£è¦–
+	FLDMAP_PRI_BASE_PANEL = 0,			///<ç§˜å¯†åŸºåœ°ãƒ‘ãƒãƒ«ã‚«ãƒ¼ã‚½ãƒ«
 	FLDMAP_PRI_DEBUGPRINT	= 0x10000,
 }FLDMAP_PRI;
 

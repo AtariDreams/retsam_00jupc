@@ -15,28 +15,28 @@
   Copyright fix
 
   Revision 1.73  2007/06/11 00:35:48  okubata_ryoma
-  ˆø”‚ªŠ‡ŒÊ‚Å‚­‚­‚ç‚ê‚Ä‚¢‚È‚©‚Á‚½ƒ}ƒNƒ‚ğC³
+  å¼•æ•°ãŒæ‹¬å¼§ã§ããã‚‰ã‚Œã¦ã„ãªã‹ã£ãŸãƒã‚¯ãƒ­ã‚’ä¿®æ­£
 
   Revision 1.72  2006/04/10 02:30:08  kitase_hirotake
-  G3OP_DUMMY_COMMAND ƒRƒ}ƒ“ƒh‚ğ’Ç‰Á
+  G3OP_DUMMY_COMMAND ã‚³ãƒãƒ³ãƒ‰ã‚’è¿½åŠ 
 
   Revision 1.71  2006/03/13 05:59:06  okubata_ryoma
-  ƒ}ƒNƒ‚Ì”÷C³
+  ãƒã‚¯ãƒ­ã®å¾®ä¿®æ­£
 
   Revision 1.70  2006/01/18 02:11:21  kitase_hirotake
   do-indent
 
   Revision 1.69  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL ‚Ì”»’è•”•ª‚É SDK_WIN32 ‚Å‚Ì”»’è‚à’Ç‰Á
+  SDK_FROM_TOOL ã®åˆ¤å®šéƒ¨åˆ†ã« SDK_WIN32 ã§ã®åˆ¤å®šã‚‚è¿½åŠ 
 
   Revision 1.68  2005/07/26 04:39:06  takano_makoto
-  G3_GetDLStart, G3_GetDLLength, G3_GetDLSize‚Ìˆø”‚ÉconstCüq‚ğ’Ç‰Á
+  G3_GetDLStart, G3_GetDLLength, G3_GetDLSizeã®å¼•æ•°ã«constä¿®é£¾å­ã‚’è¿½åŠ 
 
   Revision 1.67  2005/03/15 02:42:48  takano_makoto
-  G3_GetDLSize‚ª4‘å‚«‚¢ƒTƒCƒY‚ğ•Ô‚·ƒP[ƒX‚ª‚ ‚é•s‹ï‡‚ğC³B
+  G3_GetDLSizeãŒ4å¤§ãã„ã‚µã‚¤ã‚ºã‚’è¿”ã™ã‚±ãƒ¼ã‚¹ãŒã‚ã‚‹ä¸å…·åˆã‚’ä¿®æ­£ã€‚
 
   Revision 1.66  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.65  2005/02/28 05:26:13  yosizaki
   do-indent.

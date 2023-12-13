@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SND_StopTimer</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>SND_StopTimer</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void SND_StopTimer(
@@ -21,7 +21,7 @@
         u32 <var>flags</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAGNWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -29,19 +29,19 @@
 <tbody>
 <tr>
 <td><em><strong><code>chBitMask</code></strong></em></td>
-<td>�`�����l���r�b�g�}�X�N�ł��B�ǂ̃`�����l���𑀍삷�邩���w�肵�܂��B</td>
+<td>チャンネルビットマスクです。どのチャンネルを操作するかを指定します。</td>
 </tr>
 <tr>
 <td><em><strong><code>capBitMask</code></strong></em></td>
-<td>�L���v�`���r�b�g�}�X�N�ł��B�ǂ̃L���v�`���𑀍삷�邩���w�肵�܂��B</td>
+<td>キャプチャビットマスクです。どのキャプチャを操作するかを指定します。</td>
 </tr>
 <tr>
 <td><em><strong><code>alarmBitMask</code></strong></em></td>
-<td>�A���[���r�b�g�}�X�N�ł��B�ǂ̃T�E���h�A���[���𑀍삷�邩���w�肵�܂��B</td>
+<td>アラームビットマスクです。どのサウンドアラームを操作するかを指定します。</td>
 </tr>
 <tr>
 <td><em><strong><code>flags</code></strong></em></td>
-<td>�I�v�V�����t���O�ł��B</td>
+<td>オプションフラグです。</td>
 </tr>
 </tbody>
 </table>
@@ -49,58 +49,58 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAKOWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAROWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�^�C�}�[���X�g�b�v���܂��B
+タイマーをストップします。
 </p>
       <p>
-��x�ɕ����̃`�����l���E�L���v�`���E�A���[�����w�肷��ƁA�����͂قړ���̃^�C�~���O�ŃX�g�b�v�����邱�Ƃ��ł��܂��B
-���Ԃ́A�`�����l�� -&gt; �L���v�`�� -&gt; �A���[���̏��ōs���܂��B
+一度に複数のチャンネル・キャプチャ・アラームを指定すると、それらはほぼ同一のタイミングでストップさせることができます。
+順番は、チャンネル -&gt; キャプチャ -&gt; アラームの順で行われます。
 </p>
       <p>
-�ǂ̃`�����l���𑀍삷��̂��́A�`�����l���r�b�g�}�X�N<em><strong><code>chBitMask</code></strong></em>�Ŏw�肵�܂��B�e�r�b�g�́A�ŉ��ʃr�b�g���`�����l��0�ŁA�ȉ����Ƀ`�����l��1�A�`�����l��2�A�A�A��\���Ă��܂��B�r�b�g�������Ă�����̂ɑΉ�����`�����l���ɑ΂��Ă̂݁A������s���܂��B
+どのチャンネルを操作するのかは、チャンネルビットマスク<em><strong><code>chBitMask</code></strong></em>で指定します。各ビットは、最下位ビットがチャンネル0で、以下順にチャンネル1、チャンネル2、、、を表しています。ビットが立っているものに対応するチャンネルに対してのみ、操作を行います。
 </p>
       <p>
-�ǂ̃L���v�`���𑀍삷��̂��́A�L���v�`���r�b�g�}�X�N<em><strong><code>capBitMask</code></strong></em>�Ŏw�肵�܂��B
-SND_CAPTURE_0�Ȃ�( 1 &lt;&lt; SND_CAPTURE_0 )���ASND_CAPTURE_1�Ȃ�( 1 &lt;&lt; SND_CAPTURE_1 )���A
-�����Ȃ炻�ꂼ��̘_���a�����܂��B
+どのキャプチャを操作するのかは、キャプチャビットマスク<em><strong><code>capBitMask</code></strong></em>で指定します。
+SND_CAPTURE_0なら( 1 &lt;&lt; SND_CAPTURE_0 )を、SND_CAPTURE_1なら( 1 &lt;&lt; SND_CAPTURE_1 )を、
+両方ならそれぞれの論理和を入れます。
 </p>
       <p>
-�ǂ̃T�E���h�A���[���𑀍삷��̂��́A�A���[���r�b�g�}�X�N<em><strong><code>alarmBitMask</code></strong></em>�Ŏw�肵�܂��B�e�r�b�g�́A�ŉ��ʃr�b�g���A���[��0�ŁA�ȉ����ɃA���[��1�A�A���[��2�A�A�A��\���Ă��܂��B�r�b�g�������Ă�����̂ɑΉ�����A���[���ɑ΂��Ă̂݁A������s���܂��B
+どのサウンドアラームを操作するのかは、アラームビットマスク<em><strong><code>alarmBitMask</code></strong></em>で指定します。各ビットは、最下位ビットがアラーム0で、以下順にアラーム1、アラーム2、、、を表しています。ビットが立っているものに対応するアラームに対してのみ、操作を行います。
 </p>
       <p>
-�t���O<em><strong><code>flags</code></strong></em>�́A0�܂��́A<span class="symbol">SND_COMMAND_CHANNEL_HOLD</span>�����܂��B
-<span class="symbol">SND_COMMAND_CHANNEL_HOLD</span>������ƁA�`�����l������~��������A
-�Ō�̃T���v���l���o�͂������܂��B0�Ȃ�`�����l������~����ƁA�o�̓��x����0�ɗ����܂��B
+フラグ<em><strong><code>flags</code></strong></em>は、0または、<span class="symbol">SND_COMMAND_CHANNEL_HOLD</span>を入れます。
+<span class="symbol">SND_COMMAND_CHANNEL_HOLD</span>を入れると、チャンネルが停止した後も、
+最後のサンプル値を出力し続けます。0ならチャンネルが停止すると、出力レベルは0に落ちます。
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-���̊֐��́AARM7�R�}���h�\��֐��ł��B
-���̊֐����Ăт�������A
-<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>�֐���
-�R�}���h�𔭍s���Ďn�߂āA�������s���܂��B
+この関数は、ARM7コマンド予約関数です。
+この関数を呼びだした後、
+<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>関数で
+コマンドを発行して始めて、処理が行われます。
 </p>
 <p>
-�܂��A�����̊����Ɠ��������K�v������ꍇ�́A
-�܂��A���̊֐��Ăяo���̒���ɁA
-<tt class="function"><a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a></tt>�֐��ŁA�R�}���h�^�O���擾���Ă����܂��B
-�����ăR�}���h���s��ɁA�擾�����R�}���h�^�O���g����
-<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>�֐��܂��́A
-<tt class="function"><a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></tt>�֐����Ăт����āA
-�����̊������`�F�b�N������A�҂����肵�܂��B
+また、処理の完了と同期を取る必要がある場合は、
+まず、この関数呼び出しの直後に、
+<tt class="function"><a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a></tt>関数で、コマンドタグを取得しておきます。
+そしてコマンド発行後に、取得したコマンドタグを使って
+<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>関数または、
+<tt class="function"><a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></tt>関数を呼びだして、
+処理の完了をチェックしたり、待ったりします。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="SND_FlushCommand.html">SND_FlushCommand</a>, <a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a>, <a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a>, <a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></p>
-<h2>����</h2>
-<p>2005/02/17 ARM7�R�}���h�����̒��ӏ����ǉ�<br>2004/07/20 ����<br></p>
+<h2>履歴</h2>
+<p>2005/02/17 ARM7コマンド処理の注意書き追加<br>2004/07/20 初版<br></p>
 </div>
 </body>
 </html>

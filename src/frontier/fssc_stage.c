@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fssc_stage.c
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒXƒe[ƒW
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¹ãƒ†ãƒ¼ã‚¸
  * @author	Satoshi Nohara
  * @date	07.06.07
  */
@@ -28,7 +28,7 @@
 
 #include "field/eventflag.h"
 #include "field/evwkdef.h"
-#include "gflib/strbuf_family.h"				//‹–‰Â§
+#include "gflib/strbuf_family.h"				//è¨±å¯åˆ¶
 
 #include "../field/field_battle.h"				//BattleParam_IsWinResult
 #include "../field/field_subproc.h"				//TestBattleProcData
@@ -50,13 +50,13 @@
 #include "field/eventflag.h"
 
 #include "savedata/tv_work.h"
-#include "../field/tv_topic.h"					//ƒeƒŒƒrƒgƒsƒbƒN¶¬—p
+#include "../field/tv_topic.h"					//ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆç”¨
 #include "field/tvtopic_extern.h"
 
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL FSSC_StageWorkAlloc( FSS_TASK * core );
@@ -74,21 +74,21 @@ static u16 btlstage_GetMineObj( STAGE_SCRWORK* wk );
 BOOL FSSC_StageTalkMsgAppear(FSS_TASK* core);
 BOOL FSSC_StageRenshouCopyExtra( FSS_TASK * core );
 
-//“n‚µ‚½ƒ[ƒN‚Ì‰ð•úˆ—
+//æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†
 static void StageFreeMemory( void *parent_work );
 
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒžãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒWƒ[ƒNŠm•Û
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -99,23 +99,23 @@ BOOL FSSC_StageWorkAlloc( FSS_TASK * core )
 	FRONTIER_EX_PARAM* ex_param;
 	u16 init	= FSSTGetWorkValue( core );
 	u16 type	= FSSTGetWorkValue( core );
-	u16 pos		= FSSTGetWorkValue( core );		//‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“ˆÊ’u
-	u16 pos2	= FSSTGetWorkValue( core );		//‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“ˆÊ’u
+	u16 pos		= FSSTGetWorkValue( core );		//é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ä½ç½®
+	u16 pos2	= FSSTGetWorkValue( core );		//é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ä½ç½®
 
 	ex_param = Frontier_ExParamGet( core->fss->fmain );
 
 	wk = StageScr_WorkAlloc( ex_param->savedata, init, type, pos, pos2 );
 	Frontier_SysWorkSet( core->fss->fmain, wk );
 
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒXƒe[ƒWƒ[ƒNŠm•Û\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ç¢ºä¿\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒWƒ[ƒN@“GƒgƒŒ[ƒi[‚Æ“Gƒ|ƒPƒ‚ƒ“‚ð‘Io
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã€€æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã¨æ•µãƒã‚±ãƒ¢ãƒ³ã‚’é¸å‡º
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -129,15 +129,15 @@ BOOL FSSC_StageWorkEnemySet( FSS_TASK * core )
 
 	StageScr_WorkEnemySet( bs_scr_wk, init );
 
-	OS_Printf( "“GƒgƒŒ[ƒi[A“Gƒ|ƒPƒ‚ƒ“‚Ì‘Io\n" );
+	OS_Printf( "æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€æ•µãƒã‚±ãƒ¢ãƒ³ã®é¸å‡º\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒWƒ[ƒNíœ
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -147,15 +147,15 @@ BOOL FSSC_StageWorkFree( FSS_TASK * core )
 	STAGE_SCRWORK* bs_scr_wk;
 	bs_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	StageScr_WorkRelease( bs_scr_wk );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒXƒe[ƒWƒ[ƒNŠJ•ú\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯é–‹æ”¾\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒ^ƒCƒv‘I‘ð‰æ–ÊŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¿ã‚¤ãƒ—é¸æŠžç”»é¢å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -169,10 +169,10 @@ BOOL FSSC_StagePokeTypeSelCall( FSS_TASK * core)
 	STAGE_CALL_WORK* stage_call;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
 
-	//ƒI[ƒo[ƒŒƒCIDéŒ¾
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY( stage );
 	
-	//ƒ^ƒCƒv‘I‘ð‰æ–ÊƒvƒƒZƒXƒf[ƒ^
+	//ã‚¿ã‚¤ãƒ—é¸æŠžç”»é¢ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA StageProc = {	
 		StageProc_Init,
 		StageProc_Main,
@@ -182,7 +182,7 @@ BOOL FSSC_StagePokeTypeSelCall( FSS_TASK * core)
 
 	bs_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	OS_Printf( "ƒ^ƒCƒv‘I‘ð‰æ–ÊŒÄ‚Ño‚µ\n" );
+	OS_Printf( "ã‚¿ã‚¤ãƒ—é¸æŠžç”»é¢å‘¼ã³å‡ºã—\n" );
 
 	stage_call = sys_AllocMemory( HEAPID_WORLD, sizeof(STAGE_CALL_WORK) );
 	MI_CpuClear8( stage_call, sizeof(STAGE_CALL_WORK) );
@@ -193,22 +193,22 @@ BOOL FSSC_StagePokeTypeSelCall( FSS_TASK * core)
 	stage_call->p_party			= bs_scr_wk->p_party;
 	//stage_call->btl_count		= ( bs_scr_wk->rensyou + bs_scr_wk->round );
 	stage_call->btl_count		= bs_scr_wk->rensyou;
-	OS_Printf( "˜AŸ” = %d\n", bs_scr_wk->rensyou );
-	//OS_Printf( "‰½l–Ú = %d\n", bs_scr_wk->round );
+	OS_Printf( "é€£å‹æ•° = %d\n", bs_scr_wk->rensyou );
+	//OS_Printf( "ä½•äººç›® = %d\n", bs_scr_wk->round );
 	stage_call->csr_pos			= bs_scr_wk->csr_pos;
 	stage_call->p_pair_poke_level = &bs_scr_wk->pair_poke_level[0];
 
 	PokeParty_InitWork( stage_call->p_party );
-	party = SaveData_GetTemotiPokemon( ex_param->savedata );					//ŽèŽ‚¿ƒp[ƒeƒBŽæ“¾
+	party = SaveData_GetTemotiPokemon( ex_param->savedata );					//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 	poke = PokeParty_GetMemberPointer( party, bs_scr_wk->mine_poke_pos[0] );
 	PokeParty_Add( stage_call->p_party, poke );
 
-	//ƒ_ƒuƒ‹
+	//ãƒ€ãƒ–ãƒ«
 	if( stage_call->type == STAGE_TYPE_DOUBLE ){
 		poke = PokeParty_GetMemberPointer( party, bs_scr_wk->mine_poke_pos[1] );
 		PokeParty_Add(	stage_call->p_party, poke );
 
-	//ƒ}ƒ‹ƒ`AWIFI
+	//ãƒžãƒ«ãƒã€WIFI
 	}else if( (stage_call->type == STAGE_TYPE_MULTI) || 
 					(stage_call->type == STAGE_TYPE_WIFI_MULTI) ){
 		PokeParty_Add(	stage_call->p_party, bs_scr_wk->pair_poke );
@@ -220,9 +220,9 @@ BOOL FSSC_StagePokeTypeSelCall( FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒXƒe[ƒWí“¬Œ‹‰ÊŽæ“¾‚µ‚ÄŠJ•ú
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¹ãƒ†ãƒ¼ã‚¸æˆ¦é—˜çµæžœå–å¾—ã—ã¦é–‹æ”¾
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -238,16 +238,16 @@ BOOL FSSC_StageCallGetResult( FSS_TASK * core)
 	bs_scr_wk->winlose_flag = BattleParam_IsWinResult( param->win_lose_flag );
 	OS_Printf( "bs_scr_wk->winlose_flag = %d\n", bs_scr_wk->winlose_flag );
 
-	//BATTLE_PARAM‚ÌŠJ•ú
+	//BATTLE_PARAMã®é–‹æ”¾
 	BattleParam_Delete( param );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFí“¬ŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -260,37 +260,37 @@ BOOL FSSC_StageBattleCall( FSS_TASK * core)
 
 	bs_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	//ƒoƒgƒ‹ƒf[ƒ^‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	param = BtlStage_CreateBattleParam( bs_scr_wk, ex_param );
 	bs_scr_wk->p_work = param;
 
-	//í“¬Ø‚è‘Ö‚¦
-	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ƒoƒgƒ‹‹ÈÄ¶
+	//æˆ¦é—˜åˆ‡ã‚Šæ›¿ãˆ
+	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
     Frontier_SubProcSet(core->fss->fmain, &TestBattleProcData, param, FALSE, NULL );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒXƒe[ƒWí“¬ŒÄ‚Ño‚µ\n" );			//field_encount.c
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¹ãƒ†ãƒ¼ã‚¸æˆ¦é—˜å‘¼ã³å‡ºã—\n" );			//field_encount.c
 	return 1;
 }
 
-//ƒXƒe[ƒW‰æ–Ê‚Å“n‚µ‚½ƒ[ƒN‚Ì‰ð•úˆ—
+//ã‚¹ãƒ†ãƒ¼ã‚¸ç”»é¢ã§æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†
 static void StageFreeMemory( void *parent_work )
 {
 	int i;
 	POKEMON_PARAM* temp_poke;
 	STAGE_CALL_WORK* stage_call = parent_work;
 
-	//Œ‹‰Ê‚ðŽæ“¾
+	//çµæžœã‚’å–å¾—
 	StageScr_GetResult( stage_call->p_work, parent_work );
 
-	//STAGE_CALL_WORK‚Ìíœ
+	//STAGE_CALL_WORKã®å‰Šé™¤
 	sys_FreeMemoryEz( parent_work );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFSTAGE_SCR_WORK‚ÌƒZƒbƒgAƒQƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šSTAGE_SCR_WORKã®ã‚»ãƒƒãƒˆã€ã‚²ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -314,54 +314,54 @@ BOOL FSSC_StageScrWork( FSS_TASK * core )
 
 	switch( code ){
 
-	//ƒ^ƒCƒv(ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`)‚ÌƒZƒbƒg
+	//ã‚¿ã‚¤ãƒ—(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ)ã®ã‚»ãƒƒãƒˆ
 	case FS_ID_SET_TYPE:
 		bs_scr_wk->type = param1;
 		break;
 
-	//ret_work‚ÌŽæ“¾
+	//ret_workã®å–å¾—
 	case FS_ID_GET_RET_WORK:
 		*work = bs_scr_wk->ret_work;
 		break;
 
-	//˜AŸ”‚ÌŽæ“¾
+	//é€£å‹æ•°ã®å–å¾—
 	case FS_ID_GET_RENSYOU:
 		*work = bs_scr_wk->rensyou;
 		break;
 
-	//˜AŸ”‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+	//é€£å‹æ•°ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	case FS_ID_INC_RENSYOU:
 		if( bs_scr_wk->rensyou < STAGE_RENSYOU_MAX ){
 			bs_scr_wk->rensyou++;
 		}
 		break;
 
-	//ƒŠƒZƒbƒg‚µ‚Äƒ^ƒCƒgƒ‹‚É–ß‚é
+	//ãƒªã‚»ãƒƒãƒˆã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
 	case FS_ID_SYSTEM_RESET:
 		OS_ResetSystem( 0 );
 		break;
 
 	//------------------------------------
-	//	STAGEDATA‚ÉƒAƒNƒZƒX
+	//	STAGEDATAã«ã‚¢ã‚¯ã‚»ã‚¹
 	//------------------------------------
-	//ƒZ[ƒuƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©•Ô‚·
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹è¿”ã™
 	case FS_ID_IS_SAVE_DATA_ENABLE:
 		*work = STAGEDATA_GetSaveFlag( bs_scr_wk->stage_savedata );
 		break;
 
-	//‹x‚ÞŽž‚ÉŒ»Ý‚ÌƒvƒŒƒCó‹µ‚ðƒZ[ƒu‚É‘‚«o‚·
+	//ä¼‘ã‚€æ™‚ã«ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤çŠ¶æ³ã‚’ã‚»ãƒ¼ãƒ–ã«æ›¸ãå‡ºã™
 	case FS_ID_SAVE_REST_PLAY_DATA:
 		StageScr_SaveRestPlayData( bs_scr_wk, FR_MODE_REST );
 		break;
 
-	//ƒ‰ƒEƒ“ƒh”‚ðƒCƒ“ƒNƒŠƒƒ“ƒg
+	//ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	case FS_ID_INC_ROUND:
 		*work = StageScr_IncRound( bs_scr_wk );
 		break;
 
-	//Žü‰ñ”‚ðŽæ“¾
+	//å‘¨å›žæ•°ã‚’å–å¾—
 	case FS_ID_GET_LAP:
-		//’ÊMƒ}ƒ‹ƒ`‚Ì‚Ýƒ‰ƒ“ƒN10ŒÅ’èI
+		//é€šä¿¡ãƒžãƒ«ãƒã®ã¿ãƒ©ãƒ³ã‚¯10å›ºå®šï¼
 		if( bs_scr_wk->type == STAGE_TYPE_MULTI ){
 			//*work = STAGE_LAP_MAX;
 			*work = STAGE_TYPE_LEVEL_MAX;
@@ -370,34 +370,34 @@ BOOL FSSC_StageScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//“GƒgƒŒ[ƒi[‚ÌOBJƒR[ƒh‚ðŽæ“¾
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®OBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	case FS_ID_GET_TR_OBJ_CODE:
 		*work = StageScr_GetEnemyObjCode( bs_scr_wk, param1 );
 		break;
 
-	//”sí‚µ‚½Žž‚Ìˆ—
+	//æ•—æˆ¦ã—ãŸæ™‚ã®å‡¦ç†
 	case FS_ID_SET_LOSE:
 		StageScr_SetLose( bs_scr_wk );
 		break;
 
-	//7˜AŸ(ƒNƒŠƒA)‚µ‚½Žž‚Ìˆ—
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸæ™‚ã®å‡¦ç†
 	case FS_ID_SET_CLEAR:
 		StageScr_SetClear( bs_scr_wk );
 		break;
 
-	//ƒ‰ƒEƒ“ƒh”‚ðŽæ“¾
+	//ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’å–å¾—
 	case FS_ID_GET_ROUND:
 		*work = StageScr_GetRound( bs_scr_wk );
 		break;
 
-	//ƒŠƒ^ƒCƒ„ƒtƒ‰ƒO‚ðŽæ“¾
+	//ãƒªã‚¿ã‚¤ãƒ¤ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	case FS_ID_GET_RETIRE_FLAG:
 		*work = bs_scr_wk->pair_retire_flag;
 		break;
 
-	//•Û‘¶‚µ‚Ä‚¨‚¢‚½ƒAƒCƒeƒ€ƒiƒ“ƒo[‚ðƒZƒbƒg‚·‚é
+	//ä¿å­˜ã—ã¦ãŠã„ãŸã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	case FS_ID_SET_TEMP_ITEM:
-		party = SaveData_GetTemotiPokemon( ex_param->savedata );	//ŽèŽ‚¿ƒp[ƒeƒBŽæ“¾
+		party = SaveData_GetTemotiPokemon( ex_param->savedata );	//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 		m_max = Stage_GetMinePokeNum( bs_scr_wk->type );
 		for( i=0; i < m_max ;i++ ){
 			temp_poke = PokeParty_GetMemberPointer( party, bs_scr_wk->mine_poke_pos[i] );
@@ -405,9 +405,9 @@ BOOL FSSC_StageScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//‘I‘ð‚³‚ê‚Ä‚¢‚éƒ^ƒCƒv‚Ìƒ‰ƒ“ƒN‚ðã‚°‚é(0-9‚Å10‚É‚È‚Á‚½‚ç‚»‚Ì‚Ü‚Ü)(•\Ž¦‚Í1-10‚Å10‚Ì‚Ü‚Ü)
+	//é¸æŠžã•ã‚Œã¦ã„ã‚‹ã‚¿ã‚¤ãƒ—ã®ãƒ©ãƒ³ã‚¯ã‚’ä¸Šã’ã‚‹(0-9ã§10ã«ãªã£ãŸã‚‰ãã®ã¾ã¾)(è¡¨ç¤ºã¯1-10ã§10ã®ã¾ã¾)
 	case FS_ID_INC_TYPE_LEVEL:
-		//š‚±‚±‚ÍƒŒƒR[ƒh‚Å‚Í‚È‚¢I
+		//â˜…ã“ã“ã¯ãƒ¬ã‚³ãƒ¼ãƒ‰ã§ã¯ãªã„ï¼
 		rank = Stage_GetTypeLevel( bs_scr_wk->csr_pos, &bs_scr_wk->type_level[bs_scr_wk->type][0] );
 		if( rank < STAGE_TYPE_LEVEL_MAX ){
 			Stage_SetTypeLevel( bs_scr_wk->csr_pos, 
@@ -415,33 +415,33 @@ BOOL FSSC_StageScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//’ÊMÝ’è
+	//é€šä¿¡è¨­å®š
 	case FS_ID_COMM_COMMAND_INITIALIZE:
 		CommCommandFrontierInitialize( bs_scr_wk );
 		break;
 
-	//’ÊMƒ^ƒCƒv‚©ƒ`ƒFƒbƒN
+	//é€šä¿¡ã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯
 	case FS_ID_CHECK_COMM_TYPE:
 		*work = Stage_CommCheck( bs_scr_wk->type );
 		break;
 
-	//ƒ^ƒCƒvŽæ“¾
+	//ã‚¿ã‚¤ãƒ—å–å¾—
 	case FS_ID_GET_TYPE:
 		*work = bs_scr_wk->type;
 		break;
 
-	//‘½d–Ê‚ð•\Ž¦‚·‚é
+	//å¤šé‡é¢ã‚’è¡¨ç¤ºã™ã‚‹
 	case FS_ID_EFF_FRAME_ON:
 		if( param1 == 0 ){
-			//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_ON );		//BG•\Ž¦
-			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );		//BG•\Ž¦
+			//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_ON );		//BGè¡¨ç¤º
+			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );		//BGè¡¨ç¤º
 		}else{
-			//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_ON );		//BG•\Ž¦
-			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BG”ñ•\Ž¦
+			//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_ON );		//BGè¡¨ç¤º
+			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BGéžè¡¨ç¤º
 		}
 		break;
 
-	//í“¬‘O‰ï˜b‚Ì‚½‚ß‚ÉB_TOWER_PARTNER_DATA‚ÌƒZƒbƒg
+	//æˆ¦é—˜å‰ä¼šè©±ã®ãŸã‚ã«B_TOWER_PARTNER_DATAã®ã‚»ãƒƒãƒˆ
 	case FS_ID_SET_B_TOWER_PARTNER_DATA:
 		FSRomBattleTowerTrainerDataMake2( &(bs_scr_wk->tr_data[0]), 
 					bs_scr_wk->tr_index[bs_scr_wk->round*STAGE_ENTRY_POKE_MAX], HEAPID_WORLD, 
@@ -451,39 +451,39 @@ BOOL FSSC_StageScrWork( FSS_TASK * core )
 					ARC_PL_BTD_TR );
 		break;
 
-	//‘I‘ð‚³‚ê‚Ä‚¢‚éƒ^ƒCƒv‚Ìƒ‰ƒ“ƒN‚ðŽæ“¾
+	//é¸æŠžã•ã‚Œã¦ã„ã‚‹ã‚¿ã‚¤ãƒ—ã®ãƒ©ãƒ³ã‚¯ã‚’å–å¾—
 	case FS_ID_GET_TYPE_LEVEL:
-		//š‚±‚±‚ÍƒŒƒR[ƒh‚Å‚Í‚È‚¢I
+		//â˜…ã“ã“ã¯ãƒ¬ã‚³ãƒ¼ãƒ‰ã§ã¯ãªã„ï¼
 		*work=Stage_GetTypeLevel( bs_scr_wk->csr_pos, &bs_scr_wk->type_level[bs_scr_wk->type][0] );
 		break;
 
-	//–á‚¦‚éƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ðŽæ“¾
+	//è²°ãˆã‚‹ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’å–å¾—
 	case FS_ID_GET_BP_POINT:
 		*work = StageScr_GetAddBtlPoint( bs_scr_wk );
 		break;
 
-	//’§í‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ðŽæ“¾
+	//æŒ‘æˆ¦ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	case FS_ID_GET_MONSNO:
-		party = SaveData_GetTemotiPokemon( ex_param->savedata );	//ŽèŽ‚¿ƒp[ƒeƒBŽæ“¾
+		party = SaveData_GetTemotiPokemon( ex_param->savedata );	//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 		temp_poke = PokeParty_GetMemberPointer( party, bs_scr_wk->mine_poke_pos[0] );
 		*work = PokeParaGet( temp_poke, ID_PARA_monsno, NULL );
 		break;
 
-	//ƒ^ƒCƒv‚Ìƒ‰ƒ“ƒN‚ª‘S‚Ä’§íÏ‚Ý‚ÌÅ‘å‚É‚È‚Á‚Ä‚¢‚½‚ç’²®‚ð‚©‚¯‚é
+	//ã‚¿ã‚¤ãƒ—ã®ãƒ©ãƒ³ã‚¯ãŒå…¨ã¦æŒ‘æˆ¦æ¸ˆã¿ã®æœ€å¤§ã«ãªã£ã¦ã„ãŸã‚‰èª¿æ•´ã‚’ã‹ã‘ã‚‹
 	case FS_ID_TYPE_LEVEL_MAX:
 		StageScr_TypeLevelMaxOff( bs_scr_wk );
 		break;
 
-	//ŽQ‰Áƒ|ƒPƒ‚ƒ“‚Åˆê”ÔƒŒƒxƒ‹‚ª‚‚¢’l‚Ì•½•ûª‚ðŒvŽZ
+	//å‚åŠ ãƒã‚±ãƒ¢ãƒ³ã§ä¸€ç•ªãƒ¬ãƒ™ãƒ«ãŒé«˜ã„å€¤ã®å¹³æ–¹æ ¹ã‚’è¨ˆç®—
 	case FS_ID_SQRT:
 		StageScr_Sqrt( bs_scr_wk );
 		break;
 
-	//ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN(0=‚È‚µA1=‰“oêA2=2‰ñ–Ú)
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯(0=ãªã—ã€1=åˆç™»å ´ã€2=2å›žç›®)
 	case FS_ID_CHECK_BRAIN:
 		*work = 0;
 
-		//ƒVƒ“ƒOƒ‹‚Ì‚Ý
+		//ã‚·ãƒ³ã‚°ãƒ«ã®ã¿
 		if( bs_scr_wk->type == STAGE_TYPE_SINGLE ){
 
 			if( (bs_scr_wk->rensyou+1) == STAGE_LEADER_SET_1ST ){
@@ -494,7 +494,7 @@ BOOL FSSC_StageScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//ƒEƒBƒ“ƒhƒEˆ—(ƒXƒNƒ[ƒ‹‚µ‚½Žž‚Ìƒ|ƒPƒ‚ƒ“OBJ‚Ì‰¼‘z”ÍˆÍ‘Î‰ž)
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡¦ç†(ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã—ãŸæ™‚ã®ãƒã‚±ãƒ¢ãƒ³OBJã®ä»®æƒ³ç¯„å›²å¯¾å¿œ)
 	case FS_ID_WND_SET:
 #if 0
 		if( param1 == 1 ){
@@ -503,17 +503,17 @@ BOOL FSSC_StageScrWork( FSS_TASK * core )
 			G2_SetWnd0InsidePlane(	GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | 
 									GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, TRUE );
 
-			//ƒuƒŒ[ƒ“‚ÌŽž‚ÍAŽålŒö‚ª‚¢‚éó‘Ô‚È‚Ì‚ÅA‚»‚±‚É”í‚ç‚È‚¢‚æ‚¤‚É‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢
+			//ãƒ–ãƒ¬ãƒ¼ãƒ³ã®æ™‚ã¯ã€ä¸»äººå…¬ãŒã„ã‚‹çŠ¶æ…‹ãªã®ã§ã€ãã“ã«è¢«ã‚‰ãªã„ã‚ˆã†ã«ã—ãªã„ã¨ã„ã‘ãªã„
 			//G2_SetWnd0Position( 96, 192-32, 210, 192 );
 			//
 			G2_SetWnd0Position( 90, 192-32, 210, 192 );
 
-			//¶ãX‚Ì2dot•ªAƒ|ƒPƒ‚ƒ“‚ÆŽålŒö‚ª‚©‚Ô‚Á‚Ä‚»‚¤
+			//å·¦ä¸ŠXã®2dotåˆ†ã€ãƒã‚±ãƒ¢ãƒ³ã¨ä¸»äººå…¬ãŒã‹ã¶ã£ã¦ãã†
 
-			//ŽålŒö‚ª‚©‚¯‚é
+			//ä¸»äººå…¬ãŒã‹ã‘ã‚‹
 			//G2_SetWnd0Position( 88, 192-32, 210, 192 );
 		}else{
-			GX_SetVisibleWnd( GX_WNDMASK_NONE );			//Œ³‚É–ß‚·
+			GX_SetVisibleWnd( GX_WNDMASK_NONE );			//å…ƒã«æˆ»ã™
 		}
 #endif
 		break;
@@ -525,9 +525,9 @@ BOOL FSSC_StageScrWork( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[”s–kƒ`ƒFƒbƒN
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ•—åŒ—ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -540,22 +540,22 @@ BOOL FSSC_StageLoseCheck( FSS_TASK * core )
 	bs_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
 	*work = bs_scr_wk->winlose_flag;
-	OS_Printf( "”s–kƒ`ƒFƒbƒN*work TRUEŸ—˜ FALSE”s–k = %d\n", *work );
+	OS_Printf( "æ•—åŒ—ãƒã‚§ãƒƒã‚¯*work TRUEå‹åˆ© FALSEæ•—åŒ— = %d\n", *work );
 	return 0;
 }
 
 
 //==============================================================================================
 //
-//	‘—MAŽóM‚ÌŒÄ‚Ño‚µ
+//	é€ä¿¡ã€å—ä¿¡ã®å‘¼ã³å‡ºã—
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * ‘—M
+ * é€ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -575,9 +575,9 @@ BOOL FSSC_StageSendBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * ŽóM
+ * å—ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -586,18 +586,18 @@ BOOL FSSC_StageRecvBuf( FSS_TASK * core )
 {
 	u16 wk_id = FSSTGetU16( core );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ðŠi”[
+	//ä»®æƒ³ãƒžã‚·ãƒ³ã®æ±Žç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	FSST_SetWait( core, WaitStageRecvBuf );
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitStageRecvBuf( FSS_TASK * core )
 {
 	STAGE_SCRWORK* bs_scr_wk;
-	u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//’ˆÓI
+	u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//æ³¨æ„ï¼
 
 	bs_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
@@ -611,7 +611,7 @@ static BOOL WaitStageRecvBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒXƒe[ƒW‘Îí‘OƒƒbƒZ[ƒWê—p•\Ž¦
+ *	@brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸å¯¾æˆ¦å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å°‚ç”¨è¡¨ç¤º
  */
 //--------------------------------------------------------------
 BOOL FSSC_StageTalkMsgAppear(FSS_TASK* core)
@@ -619,7 +619,7 @@ BOOL FSSC_StageTalkMsgAppear(FSS_TASK* core)
 	u16	*msg;
 	STAGE_SCRWORK*	bs_scr_wk;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
-	u16	tr_idx = FSSTGetU8(core);	//ˆêl–Ú‚©“ñl–Ú‚©H
+	u16	tr_idx = FSSTGetU8(core);	//ä¸€äººç›®ã‹äºŒäººç›®ã‹ï¼Ÿ
 
 	bs_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	if(bs_scr_wk == NULL){
@@ -634,9 +634,9 @@ BOOL FSSC_StageTalkMsgAppear(FSS_TASK* core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒXƒe[ƒW‚ÌŠO•”˜AŸ‹L˜^‚ð‘‚«ž‚ÝAƒZ[ƒu‚ðs‚¤
+ * ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã®å¤–éƒ¨é€£å‹è¨˜éŒ²ã‚’æ›¸ãè¾¼ã¿ã€ã‚»ãƒ¼ãƒ–ã‚’è¡Œã†
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -653,9 +653,9 @@ BOOL FSSC_StageRenshouCopyExtra( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * TV:ƒXƒe[ƒWTEMPƒZƒbƒg
+ * TV:ã‚¹ãƒ†ãƒ¼ã‚¸TEMPã‚»ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -671,11 +671,11 @@ BOOL FSSC_TVTempStageSet( FSS_TASK * core )
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
 
 	bs_scr_wk	=  Frontier_SysWorkGet( core->fss->fmain );
-	party		= SaveData_GetTemotiPokemon( ex_param->savedata );	//ŽèŽ‚¿ƒp[ƒeƒBŽæ“¾
+	party		= SaveData_GetTemotiPokemon( ex_param->savedata );	//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 	temp_poke	= PokeParty_GetMemberPointer( party, bs_scr_wk->mine_poke_pos[0] );
 	monsno		= PokeParaGet( temp_poke, ID_PARA_monsno, NULL );
 
-	//ƒVƒ“ƒOƒ‹‚Ì‚Ý
+	//ã‚·ãƒ³ã‚°ãƒ«ã®ã¿
 	if( bs_scr_wk->type == STAGE_TYPE_SINGLE ){
 		tvwk = SaveData_GetTvWork( ex_param->savedata );
 		TVTOPIC_StageTemp_Set( tvwk, temp_poke );

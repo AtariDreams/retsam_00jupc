@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_075.s
- *@brief	�퓬�V�[�P���X
- *			���܂����܂�񃁃b�Z�[�W���o��
+ *@brief	戦闘シーケンス
+ *			うまくきまらんメッセージを出す
 
  *@author	HisashiSogabe
  *@data		2006.01.23
@@ -19,7 +19,7 @@ SUB_075:
 	MESSAGE			UmakukimaranMsg,TAG_NONE
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//WazaStatusMessage�𖳌��ɂ��邽�߂ɂ��̃t���O�𗧂Ă�
+	//WazaStatusMessageを無効にするためにこのフラグを立てる
 	//VALUE			VAL_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_SIPPAI_RENZOKU_CHECK
 	VALUE			VAL_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_SIPPAI
 	SEQ_END

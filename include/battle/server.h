@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	server.h
- * @bfief	í“¬ƒT[ƒoƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ã‚µãƒ¼ãƒãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.05.24
  */
@@ -13,64 +13,64 @@
 
 #include	"battle/battle_common.h"
 
-#define	SERVER_QUE_TIME_OUT		(60*30)	///<ServerQueCheck‚Ìƒ^ƒCƒ€ƒAƒEƒgƒJƒEƒ“ƒgi60•bj
+#define	SERVER_QUE_TIME_OUT		(60*30)	///<ServerQueCheckæ™‚ã®ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚«ã‚¦ãƒ³ãƒˆï¼ˆ60ç§’ï¼‰
 
-//ServerSequenceTbl‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+//ServerSequenceTblã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
 enum{
-	SERVER_POKEMON_PARAM_GET_NO,		///<ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ğƒT[ƒoƒ[ƒN‚ÉƒQƒbƒg
-	SERVER_ENCOUNT_SET_NO,				///<ƒGƒ“ƒJƒEƒ“ƒgˆ—
-	SERVER_TRAINER_MESSAGE_NO,			///<í“¬’†‚ÉƒgƒŒ[ƒi[‚ªo‚Ä‚«‚ÄƒƒbƒZ[ƒW•\¦
-	SERVER_POKE_APPEAR_CHECK_NO,		///<ƒ|ƒPƒ‚ƒ““oê‚Éƒ`ƒFƒbƒN‚·‚é€–Ú
-	SERVER_COMMAND_SELECT_INIT_NO,		///<ƒRƒ}ƒ“ƒh‘I‘ğˆ—‰Šú‰»
-	SERVER_COMMAND_SELECT_NO,			///<ƒRƒ}ƒ“ƒh‘I‘ğˆ—
-	SERVER_AGI_CALC_NO,					///<‘f‘‚³ŒvZˆ—
-	SERVER_BEFORE_ACT_NO,				///<“®ì‘Oˆ—
-	SERVER_ACTION_BRANCH_NO,			///<“®ì•ªŠòˆ—
-	SERVER_FIELD_CONDITION_CHECK_NO,	///<ê‚É‚©‚©‚Á‚Ä‚¢‚éí“¬Œø‰Êƒ`ƒFƒbƒN
-	SERVER_POKE_CONDITION_CHECK_NO,		///<ƒ|ƒPƒ‚ƒ“‚É‚©‚©‚Á‚Ä‚¢‚éí“¬Œø‰Êƒ`ƒFƒbƒN
-	SERVER_SIDE_CONDITION_CHECK_NO,		///<ƒ|ƒPƒ‚ƒ“‚É‚©‚©‚Á‚Ä‚¢‚éí“¬Œø‰Êƒ`ƒFƒbƒNi‘¤‚É‚©‚©‚Á‚Ä‚¢‚éŒø‰Êj
-	SERVER_TURN_END_NO,					///<í“¬ƒ^[ƒ“I—¹ˆ—
+	SERVER_POKEMON_PARAM_GET_NO,		///<ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚µãƒ¼ãƒãƒ¯ãƒ¼ã‚¯ã«ã‚²ãƒƒãƒˆ
+	SERVER_ENCOUNT_SET_NO,				///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
+	SERVER_TRAINER_MESSAGE_NO,			///<æˆ¦é—˜ä¸­ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒå‡ºã¦ãã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	SERVER_POKE_APPEAR_CHECK_NO,		///<ãƒã‚±ãƒ¢ãƒ³ç™»å ´æ™‚ã«ãƒã‚§ãƒƒã‚¯ã™ã‚‹é …ç›®
+	SERVER_COMMAND_SELECT_INIT_NO,		///<ã‚³ãƒãƒ³ãƒ‰é¸æŠå‡¦ç†åˆæœŸåŒ–
+	SERVER_COMMAND_SELECT_NO,			///<ã‚³ãƒãƒ³ãƒ‰é¸æŠå‡¦ç†
+	SERVER_AGI_CALC_NO,					///<ç´ æ—©ã•è¨ˆç®—å‡¦ç†
+	SERVER_BEFORE_ACT_NO,				///<å‹•ä½œå‰å‡¦ç†
+	SERVER_ACTION_BRANCH_NO,			///<å‹•ä½œåˆ†å²å‡¦ç†
+	SERVER_FIELD_CONDITION_CHECK_NO,	///<å ´ã«ã‹ã‹ã£ã¦ã„ã‚‹æˆ¦é—˜åŠ¹æœãƒã‚§ãƒƒã‚¯
+	SERVER_POKE_CONDITION_CHECK_NO,		///<ãƒã‚±ãƒ¢ãƒ³ã«ã‹ã‹ã£ã¦ã„ã‚‹æˆ¦é—˜åŠ¹æœãƒã‚§ãƒƒã‚¯
+	SERVER_SIDE_CONDITION_CHECK_NO,		///<ãƒã‚±ãƒ¢ãƒ³ã«ã‹ã‹ã£ã¦ã„ã‚‹æˆ¦é—˜åŠ¹æœãƒã‚§ãƒƒã‚¯ï¼ˆå´ã«ã‹ã‹ã£ã¦ã„ã‚‹åŠ¹æœï¼‰
+	SERVER_TURN_END_NO,					///<æˆ¦é—˜ã‚¿ãƒ¼ãƒ³çµ‚äº†å‡¦ç†
 
-	SERVER_FIGHT_COMMAND_NO,			///<‚½‚½‚©‚¤“®ìˆ—
-	SERVER_ITEM_COMMAND_NO,				///<“¹‹ïg—pˆ—
-	SERVER_POKEMON_COMMAND_NO,			///<ƒ|ƒPƒ‚ƒ“‘I‘ğˆ—
-	SERVER_ESCAPE_COMMAND_NO,			///<‚É‚°‚é“®ìˆ—
+	SERVER_FIGHT_COMMAND_NO,			///<ãŸãŸã‹ã†å‹•ä½œå‡¦ç†
+	SERVER_ITEM_COMMAND_NO,				///<é“å…·ä½¿ç”¨å‡¦ç†
+	SERVER_POKEMON_COMMAND_NO,			///<ãƒã‚±ãƒ¢ãƒ³é¸æŠå‡¦ç†
+	SERVER_ESCAPE_COMMAND_NO,			///<ã«ã’ã‚‹å‹•ä½œå‡¦ç†
 
-	SERVER_SAFARI_BALL_NO,				///<ƒTƒtƒ@ƒŠƒ{[ƒ‹“Š‚°‚éˆ—
-	SERVER_SAFARI_ESA_NO,				///<ƒTƒtƒ@ƒŠƒGƒT“Š‚°‚éˆ—
-	SERVER_SAFARI_DORO_NO,				///<ƒTƒtƒ@ƒŠƒhƒ“Š‚°‚éˆ—
-	SERVER_SAFARI_YOUSUMI_NO,			///<ƒTƒtƒ@ƒŠ—lqŒ©ˆ—
+	SERVER_SAFARI_BALL_NO,				///<ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«æŠ•ã’ã‚‹å‡¦ç†
+	SERVER_SAFARI_ESA_NO,				///<ã‚µãƒ•ã‚¡ãƒªã‚¨ã‚µæŠ•ã’ã‚‹å‡¦ç†
+	SERVER_SAFARI_DORO_NO,				///<ã‚µãƒ•ã‚¡ãƒªãƒ‰ãƒ­æŠ•ã’ã‚‹å‡¦ç†
+	SERVER_SAFARI_YOUSUMI_NO,			///<ã‚µãƒ•ã‚¡ãƒªæ§˜å­è¦‹å‡¦ç†
 
-	SERVER_WAZA_SEQUENCE_NO,			///<‹ZƒV[ƒPƒ“ƒXÀs
-	SERVER_WAZA_BEFORE_NO,				///<‹Z‘Oˆ—
-	SERVER_WAZA_OUT_CHECK_NO,			///<‹Z”­“®ƒ`ƒFƒbƒN
-	SERVER_ADD_STATUS_DIRECT_CHECK_NO,	///<’Ç‰ÁŒø‰Êƒ`ƒFƒbƒNi’¼Ú’Ç‰Á‚Ì‚İj
-	SERVER_WAZA_HAZURE_MESSAGE_NO,		///<“–‚½‚ç‚È‚©‚Á‚½ŒnƒƒbƒZ[ƒW•\¦
-	SERVER_WAZA_OUT_NO,					///<‹Z”­“®ˆ—
-	SERVER_HP_CALC_NO,					///<HPŒvZ
-	SERVER_WAZA_OUT_AFTER_MESSAGE_NO,	///<‹Z‚ª‚Å‚½Œã‚Ì‚¢‚ë‚¢‚ë‚ÈƒƒbƒZ[ƒW•\¦
-	SERVER_ADD_STATUS_CHECK_NO,			///<’Ç‰ÁŒø‰Êƒ`ƒFƒbƒNi’¼Ú’Ç‰ÁˆÈŠOj
-	SERVER_WAZA_OUT_AFTER_KOUKA_NO,		///<‹Z‚ª‚Å‚½Œã‚Ì‚¢‚ë‚¢‚ë‚ÈŒø‰Êƒ`ƒFƒbƒN
-	SERVER_RENZOKU_CHECK_NO,			///<˜A‘±UŒ‚‚Ìƒ`ƒFƒbƒN
-	SERVER_SINKURO_CHECK_NO,			///<ƒVƒ“ƒNƒƒ`ƒFƒbƒN
-	SERVER_KIZETSU_EFFECT_NO,			///<‹CâƒGƒtƒFƒNƒg
-	SERVER_LOOP_CHECK_NO,				///<•¡”‘Ì“–‚½‚é‹Z‚Ìƒ`ƒFƒbƒN
-	SERVER_JIBAKU_EFFECT_NO,			///<‚¶‚Î‚­‚É‚æ‚é‹CâƒGƒtƒFƒNƒg
-	SERVER_WAZA_HIT_AFTER_CHECK_NO,		///<‹Z‚ªƒqƒbƒg‚µ‚½Œã‚Ìƒ`ƒFƒbƒN
-	SERVER_GET_EXP_EFFECT_NO,			///<ŒoŒ±’læ“¾ƒ`ƒFƒbƒN
-	SERVER_WAZA_NO_BUFFER_SET_NO,		///<‹Zƒiƒ“ƒo[‚ğƒoƒbƒtƒ@‚ÖŠi”[
-	SERVER_WAZA_END_NO,					///<‹ZƒV[ƒPƒ“ƒXI—¹
+	SERVER_WAZA_SEQUENCE_NO,			///<æŠ€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®Ÿè¡Œ
+	SERVER_WAZA_BEFORE_NO,				///<æŠ€å‰å‡¦ç†
+	SERVER_WAZA_OUT_CHECK_NO,			///<æŠ€ç™ºå‹•ãƒã‚§ãƒƒã‚¯
+	SERVER_ADD_STATUS_DIRECT_CHECK_NO,	///<è¿½åŠ åŠ¹æœãƒã‚§ãƒƒã‚¯ï¼ˆç›´æ¥è¿½åŠ ã®ã¿ï¼‰
+	SERVER_WAZA_HAZURE_MESSAGE_NO,		///<å½“ãŸã‚‰ãªã‹ã£ãŸç³»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	SERVER_WAZA_OUT_NO,					///<æŠ€ç™ºå‹•å‡¦ç†
+	SERVER_HP_CALC_NO,					///<HPè¨ˆç®—
+	SERVER_WAZA_OUT_AFTER_MESSAGE_NO,	///<æŠ€ãŒã§ãŸå¾Œã®ã„ã‚ã„ã‚ãªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	SERVER_ADD_STATUS_CHECK_NO,			///<è¿½åŠ åŠ¹æœãƒã‚§ãƒƒã‚¯ï¼ˆç›´æ¥è¿½åŠ ä»¥å¤–ï¼‰
+	SERVER_WAZA_OUT_AFTER_KOUKA_NO,		///<æŠ€ãŒã§ãŸå¾Œã®ã„ã‚ã„ã‚ãªåŠ¹æœãƒã‚§ãƒƒã‚¯
+	SERVER_RENZOKU_CHECK_NO,			///<é€£ç¶šæ”»æ’ƒã®ãƒã‚§ãƒƒã‚¯
+	SERVER_SINKURO_CHECK_NO,			///<ã‚·ãƒ³ã‚¯ãƒ­ãƒã‚§ãƒƒã‚¯
+	SERVER_KIZETSU_EFFECT_NO,			///<æ°—çµ¶ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	SERVER_LOOP_CHECK_NO,				///<è¤‡æ•°ä½“å½“ãŸã‚‹æŠ€ã®ãƒã‚§ãƒƒã‚¯
+	SERVER_JIBAKU_EFFECT_NO,			///<ã˜ã°ãã«ã‚ˆã‚‹æ°—çµ¶ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	SERVER_WAZA_HIT_AFTER_CHECK_NO,		///<æŠ€ãŒãƒ’ãƒƒãƒˆã—ãŸå¾Œã®ãƒã‚§ãƒƒã‚¯
+	SERVER_GET_EXP_EFFECT_NO,			///<çµŒé¨“å€¤å–å¾—ãƒã‚§ãƒƒã‚¯
+	SERVER_WAZA_NO_BUFFER_SET_NO,		///<æŠ€ãƒŠãƒ³ãƒãƒ¼ã‚’ãƒãƒƒãƒ•ã‚¡ã¸æ ¼ç´
+	SERVER_WAZA_END_NO,					///<æŠ€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚äº†
 
-	SERVER_POKE_RESHUFFLE_AFTER_NO,		///<ƒ|ƒPƒ‚ƒ“‚¢‚ê‚©‚¦ŒãƒV[ƒPƒ“ƒX
+	SERVER_POKE_RESHUFFLE_AFTER_NO,		///<ãƒã‚±ãƒ¢ãƒ³ã„ã‚Œã‹ãˆå¾Œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 
-	SERVER_WIN_LOSE_NO,					///<í“¬Ÿ”sƒV[ƒPƒ“ƒX
+	SERVER_WIN_LOSE_NO,					///<æˆ¦é—˜å‹æ•—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 
-//	SERVER_QUE_CHECK_NO,				///<ƒT[ƒoƒLƒ…[‚ğƒ`ƒFƒbƒN‚µ‚ÄI—¹‚ğ‘Ò‚Â
+//	SERVER_QUE_CHECK_NO,				///<ã‚µãƒ¼ãƒã‚­ãƒ¥ãƒ¼ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦çµ‚äº†ã‚’å¾…ã¤
 
-	SERVER_BATTLE_RECORD_STOP_NO,		///<‘Îí˜^‰æÄ¶’†’f
+	SERVER_BATTLE_RECORD_STOP_NO,		///<å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­æ–­
 
-	SERVER_FIGHT_END_NO,				///<í“¬I—¹
-	SERVER_FIGHT_END_WAIT_NO			///<í“¬I—¹i’ÊM‘Îí‚Ì‘Ò‚¿j
+	SERVER_FIGHT_END_NO,				///<æˆ¦é—˜çµ‚äº†
+	SERVER_FIGHT_END_WAIT_NO			///<æˆ¦é—˜çµ‚äº†ï¼ˆé€šä¿¡å¯¾æˆ¦æ™‚ã®å¾…ã¡ï¼‰
 };
 
 extern	void	*ServerInit(BATTLE_WORK *bw);

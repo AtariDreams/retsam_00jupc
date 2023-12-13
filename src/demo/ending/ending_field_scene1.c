@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_field.c
- * @brief	�G���f�B���O�t�B�[���h�F���C��
+ * @brief	エンディングフィールド：メイン
  * @author	matsuda
- * @date	2008.04.12(�y)
+ * @date	2008.04.12(土)
  */
 //==============================================================================
 #include "common.h"
@@ -29,13 +29,13 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///���Ԗڂ܂ŃL���v�`���摜��\�����邩
+///何番目までキャプチャ画像を表示するか
 #define CAP_FIELD_CAPTURE_NUM		(4)
-///�L���v�`���摜��؂�ւ���Ƃ��A�^���Âȉ�ʂł̑҂�����
+///キャプチャ画像を切り替えるとき、真っ暗な画面での待ち時間
 #define CAP_NEXT_WAIT				(CAP_FIELD_CAPTURE_NUM * 16)	//(30)
-///���t���[���Ԋu�ŃL���v�`���摜��ύX���Ă�����
+///何フレーム間隔でキャプチャ画像を変更していくか
 #define CAP_FIELD_CHANGE_FRAME		((ENDING_COUNTER_FIELD_END - ENDING_COUNTER_SCENE3_END - CAP_NEXT_WAIT * (CAP_FIELD_CAPTURE_NUM-1)) / CAP_FIELD_CAPTURE_NUM)
 
 
@@ -48,7 +48,7 @@
 
 
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static void AlphaFadeInit(SCENE_WORK_FIELD1 *sw_field1, u32 plane1);
 static BOOL AlphaFadeMain(SCENE_WORK_FIELD1 *sw_field1);
@@ -61,12 +61,12 @@ static BOOL AlphaFadeMain(SCENE_WORK_FIELD1 *sw_field1);
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �V�[���t�B�[���h�F���C��
+ * @brief   シーンフィールド：メイン
  *
- * @param   emw		�G���f�B���O���C�����[�N�ւ̃|�C���^
- * @param   sw		�V�[�����[�N�ւ̃|�C���^
+ * @param   emw		エンディングメインワークへのポインタ
+ * @param   sw		シーンワークへのポインタ
  *
- * @retval  TRUE:�I���B�@FALSE:�p����
+ * @retval  TRUE:終了。　FALSE:継続中
  */
 //--------------------------------------------------------------
 BOOL MapFieldScene1_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
@@ -131,7 +131,7 @@ BOOL MapFieldScene1_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
 
 //--------------------------------------------------------------
 /**
- * @brief   �������t�F�[�h�ŃL���v�`��BG�ʐ؂�ւ��F�����ݒ�
+ * @brief   半透明フェードでキャプチャBG面切り替え：初期設定
  *
  * @param   sw_field1		
  * @param   plane1			
@@ -156,11 +156,11 @@ static void AlphaFadeInit(SCENE_WORK_FIELD1 *sw_field1, u32 plane1)
 
 //--------------------------------------------------------------
 /**
- * @brief   �������t�F�[�h�ŃL���v�`��BG�ʐ؂�ւ��F���C��
+ * @brief   半透明フェードでキャプチャBG面切り替え：メイン
  *
  * @param   sw_field1		
  * 
- * @retval  TRUE:�؂�ւ��I��
+ * @retval  TRUE:切り替え終了
  */
 //--------------------------------------------------------------
 static BOOL AlphaFadeMain(SCENE_WORK_FIELD1 *sw_field1)

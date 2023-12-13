@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_gimmick.c
- * @brief	ƒ}ƒbƒvŒÅ—L‚ÌŽdŠ|‚¯‚ð”­“®‚·‚é‚©‚Ç‚¤‚©‚ð”»’è‚·‚éƒ\[ƒX
+ * @brief	ãƒžãƒƒãƒ—å›ºæœ‰ã®ä»•æŽ›ã‘ã‚’ç™ºå‹•ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹ã‚½ãƒ¼ã‚¹
  * @author	saito
  * @date	2006.02.09
  *
@@ -21,54 +21,54 @@
 #include "mapdefine.h"
 
 const static FLD_GMK_SETUP_FUNC FldGimmickSetupFunc[FLD_GIMMICK_MAX] = {
-	NULL,					//0:–³‚µ
-	GYM_SetupWaterGym,		//1:…ƒWƒ€
-//	GYM_SetupGhostGym,		//2:ƒS[ƒXƒgƒWƒ€
-	GYM_SetupPLGhostGym,		//2:ƒS[ƒXƒgƒWƒ€
-	GYM_SetupSteelGym,		//3:|ƒWƒ€
-	GYM_SetupPLFightGym,	//4:Ši“¬ƒWƒ€
-	GYM_SetupElecGym,		//5:“d‹CƒWƒ€
-	SafariTrain_Setup,		//6:ƒTƒtƒ@ƒŠ“dŽÔ
-	FLIFT_Setup,			//7:ƒtƒB[ƒ‹ƒhƒŠƒtƒg
-	GYM_SetupPLGrassGym,	//8:PL ‘ƒWƒ€
-	FldTornWorld_Setup,		//9:‚â‚Ô‚ê‚½‚¹‚©‚¢
-	FldVilla_Setup,			//10:•Ê‘‘
+	NULL,					//0:ç„¡ã—
+	GYM_SetupWaterGym,		//1:æ°´ã‚¸ãƒ 
+//	GYM_SetupGhostGym,		//2:ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
+	GYM_SetupPLGhostGym,		//2:ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
+	GYM_SetupSteelGym,		//3:é‹¼ã‚¸ãƒ 
+	GYM_SetupPLFightGym,	//4:æ ¼é—˜ã‚¸ãƒ 
+	GYM_SetupElecGym,		//5:é›»æ°—ã‚¸ãƒ 
+	SafariTrain_Setup,		//6:ã‚µãƒ•ã‚¡ãƒªé›»è»Š
+	FLIFT_Setup,			//7:ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒªãƒ•ãƒˆ
+	GYM_SetupPLGrassGym,	//8:PL è‰ã‚¸ãƒ 
+	FldTornWorld_Setup,		//9:ã‚„ã¶ã‚ŒãŸã›ã‹ã„
+	FldVilla_Setup,			//10:åˆ¥è˜
 };
 
 const static FLD_GMK_END_FUNC FldGimmickEndFunc[FLD_GIMMICK_MAX] = {
-	NULL,					//0:–³‚µ
-	NULL,					//1:…ƒWƒ€
-//	NULL,					//2:ƒS[ƒXƒgƒWƒ€
-	GYM_EndPLGhostGym,		//2:ƒS[ƒXƒgƒWƒ€
-	GYM_EndSteelGym,		//3:|ƒWƒ€
-	GYM_EndPLFightGym,		//4:Ši“¬ƒWƒ€
-	GYM_EndElecGym,			//5:“d‹CƒWƒ€
-	NULL,					//6:ƒTƒtƒ@ƒŠ“dŽÔ
-	NULL,					//7:ƒtƒB[ƒ‹ƒhƒŠƒtƒg
-	GYM_EndPLGrassGym,		//8:PL ‘ƒWƒ€
-	FldTornWorld_End,		//9:‚â‚Ô‚ê‚½‚¹‚©‚¢
-	FldVilla_End,			//10:•Ê‘‘
+	NULL,					//0:ç„¡ã—
+	NULL,					//1:æ°´ã‚¸ãƒ 
+//	NULL,					//2:ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
+	GYM_EndPLGhostGym,		//2:ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
+	GYM_EndSteelGym,		//3:é‹¼ã‚¸ãƒ 
+	GYM_EndPLFightGym,		//4:æ ¼é—˜ã‚¸ãƒ 
+	GYM_EndElecGym,			//5:é›»æ°—ã‚¸ãƒ 
+	NULL,					//6:ã‚µãƒ•ã‚¡ãƒªé›»è»Š
+	NULL,					//7:ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒªãƒ•ãƒˆ
+	GYM_EndPLGrassGym,		//8:PL è‰ã‚¸ãƒ 
+	FldTornWorld_End,		//9:ã‚„ã¶ã‚ŒãŸã›ã‹ã„
+	FldVilla_End,			//10:åˆ¥è˜
 };
 
 const static FLD_GMK_HIT_CHECK FldGimmickHitCheck[FLD_GIMMICK_MAX] = {
-	NULL,					//0:–³‚µ
-	GYM_HitCheckWaterGym,	//1:…ƒWƒ€
-	NULL,					//2:ƒS[ƒXƒgƒWƒ€
-	GYM_HitCheckSteelGym,	//3:|ƒWƒ€
-	GYM_HitCheckPLFightGym,	//4:Ši“¬ƒWƒ€
-	GYM_HitCheckElecGym,	//5:“d‹CƒWƒ€
-	NULL,					//6:ƒTƒtƒ@ƒŠ“dŽÔ
-	NULL,					//7:ƒtƒB[ƒ‹ƒhƒŠƒtƒg
-	GYM_HitCheckPLGrassGym,	//8:PL ‘ƒWƒ€
-	FldTornWorld_HitCheck,	//9:‚â‚Ô‚ê‚½‚¹‚©‚¢
-	FldVilla_HitCheck,		//10:•Ê‘‘
+	NULL,					//0:ç„¡ã—
+	GYM_HitCheckWaterGym,	//1:æ°´ã‚¸ãƒ 
+	NULL,					//2:ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
+	GYM_HitCheckSteelGym,	//3:é‹¼ã‚¸ãƒ 
+	GYM_HitCheckPLFightGym,	//4:æ ¼é—˜ã‚¸ãƒ 
+	GYM_HitCheckElecGym,	//5:é›»æ°—ã‚¸ãƒ 
+	NULL,					//6:ã‚µãƒ•ã‚¡ãƒªé›»è»Š
+	NULL,					//7:ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒªãƒ•ãƒˆ
+	GYM_HitCheckPLGrassGym,	//8:PL è‰ã‚¸ãƒ 
+	FldTornWorld_HitCheck,	//9:ã‚„ã¶ã‚ŒãŸã›ã‹ã„
+	FldVilla_HitCheck,		//10:åˆ¥è˜
 };
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒMƒ~ƒbƒN‚ÌƒZƒbƒgƒAƒbƒvŠÖ”
+ * @brief	ã‚®ãƒŸãƒƒã‚¯ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—é–¢æ•°
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -78,23 +78,23 @@ void FLDGMK_SetUpFieldGimmick(FIELDSYS_WORK *fsys)
 	int id;
 	GIMMICKWORK *work;
 	
-	//ƒMƒ~ƒbƒNƒ[ƒNŽæ“¾
+	//ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯å–å¾—
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
-	//ƒMƒ~ƒbƒNƒR[ƒh‚ðŽæ“¾
+	//ã‚®ãƒŸãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	id = GIMMICKWORK_GetAssignID(work);
 	
 	if (id == FLD_GIMMICK_NONE){
-		return;					//ƒMƒ~ƒbƒN–³‚µ
+		return;					//ã‚®ãƒŸãƒƒã‚¯ç„¡ã—
 	}
-	//ƒMƒ~ƒbƒNƒZƒbƒgƒAƒbƒv
+	//ã‚®ãƒŸãƒƒã‚¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	FldGimmickSetupFunc[id](fsys);
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒMƒ~ƒbƒN‚ÌI—¹ŠÖ”
+ * @brief	ã‚®ãƒŸãƒƒã‚¯ã®çµ‚äº†é–¢æ•°
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -103,15 +103,15 @@ void FLDGMK_EndFieldGimmick(FIELDSYS_WORK *fsys)
 {
 	int id;
 	GIMMICKWORK *work;
-	//ƒMƒ~ƒbƒNƒ[ƒNŽæ“¾
+	//ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯å–å¾—
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
-	//ƒMƒ~ƒbƒNƒR[ƒh‚ðŽæ“¾
+	//ã‚®ãƒŸãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	id = GIMMICKWORK_GetAssignID(work);
 	
 	if (id == FLD_GIMMICK_NONE){
-		return;					//ƒMƒ~ƒbƒN–³‚µ
+		return;					//ã‚®ãƒŸãƒƒã‚¯ç„¡ã—
 	}
-	//ƒMƒ~ƒbƒNI—¹
+	//ã‚®ãƒŸãƒƒã‚¯çµ‚äº†
 	if (FldGimmickEndFunc[id] != NULL){
 		FldGimmickEndFunc[id](fsys);
 	}
@@ -119,13 +119,13 @@ void FLDGMK_EndFieldGimmick(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒMƒ~ƒbƒN—p“ÁŽê“–‚½‚è”»’èˆ—
+ * @brief	ã‚®ãƒŸãƒƒã‚¯ç”¨ç‰¹æ®Šå½“ãŸã‚Šåˆ¤å®šå‡¦ç†
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒh‚wÀ•W
- * @param	inGirdZ		ƒOƒŠƒbƒh‚yÀ•W
- * @param	inHeight	Œ»Ý‚‚³
- * @param	outHit		TRUE:’Êí“–‚½‚è”»’è‚ðs‚È‚í‚È‚¢	FALSEF’Êí“–‚½‚è”»’è‚ðs‚¤
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰ï¼¸åº§æ¨™
+ * @param	inGirdZ		ã‚°ãƒªãƒƒãƒ‰ï¼ºåº§æ¨™
+ * @param	inHeight	ç¾åœ¨é«˜ã•
+ * @param	outHit		TRUE:é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œãªã‚ãªã„	FALSEï¼šé€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  * 
  * @return	BOOL		TRUE:HIT		FALSE:NOHIT
  */
@@ -137,33 +137,33 @@ BOOL FLDGMK_FieldGimmickHitCheck(	FIELDSYS_WORK *fsys,
 {
 	int id;
 	GIMMICKWORK *work;
-	//ƒMƒ~ƒbƒNƒ[ƒNŽæ“¾
+	//ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯å–å¾—
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
-	//ƒMƒ~ƒbƒNƒR[ƒh‚ðŽæ“¾
+	//ã‚®ãƒŸãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	id = GIMMICKWORK_GetAssignID(work);
 	
 	if (id == FLD_GIMMICK_NONE){
-		return FALSE;					//ƒMƒ~ƒbƒN–³‚µ
+		return FALSE;					//ã‚®ãƒŸãƒƒã‚¯ç„¡ã—
 	}
-	//ƒMƒ~ƒbƒNI—¹
+	//ã‚®ãƒŸãƒƒã‚¯çµ‚äº†
 	if (FldGimmickHitCheck[id] != NULL){
 		BOOL rc;
 		rc = FldGimmickHitCheck[id](fsys, inGridX, inGridZ, inHeight, outHit);
 		return rc;
 	}
 	
-	return FALSE;						//ˆ—–³‚µ
+	return FALSE;						//å‡¦ç†ç„¡ã—
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒMƒ~ƒbƒN—p“ÁŽêƒWƒƒƒ“ƒvƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+ * @brief	ã‚®ãƒŸãƒƒã‚¯ç”¨ç‰¹æ®Šã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒh‚wÀ•W
- * @param	inGirdZ		ƒOƒŠƒbƒh‚yÀ•W
- * @param	inHeight	Œ»Ý‚‚³
- * @param	dir			is•ûŒü DIR_UP“™
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰ï¼¸åº§æ¨™
+ * @param	inGirdZ		ã‚°ãƒªãƒƒãƒ‰ï¼ºåº§æ¨™
+ * @param	inHeight	ç¾åœ¨é«˜ã•
+ * @param	dir			é€²è¡Œæ–¹å‘ DIR_UPç­‰
  * @return	BOOL		TRUE:HIT		FALSE:NOHIT
  */
 //---------------------------------------------------------------------------
@@ -172,7 +172,7 @@ BOOL FLDGMK_FieldGimmickExAttrCheck(
 		const int inGridX, const int inGridZ,
 		const fx32 inHeight, int dir )
 {
-	//‘ƒWƒ€
+	//è‰ã‚¸ãƒ 
 	if( fsys->location->zone_id == ZONE_ID_C04GYM0101 ){
 		if( GYM_PLGrass_ExJumpPosCheck(fsys,inGridX,inGridZ,dir) ){
 			return( TRUE );

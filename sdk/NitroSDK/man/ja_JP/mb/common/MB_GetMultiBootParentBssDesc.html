@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MB_GetMultiBootParentBssDesc</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MB_GetMultiBootParentBssDesc</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,28 +22,28 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <p>
-�Ȃ�
+なし
 </p>
 
-<h2>�Ԃ�l</h2>
-<p>�}���`�u�[�g�q�@�Ƃ��ċN��������Ԃł���ΗL���Ȑe�@���ւ̃|�C���^���A�����łȂ��Ȃ�NULL��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>マルチブート子機として起動した状態であれば有効な親機情報へのポインタを、そうでないならNULLを返します。</p>
 
-<H2>����</H2>
-<P>�v���O�������g���}���`�u�[�g�q�@�Ƃ��ċN�����ꂽ���̂ł���΁A�L���Ȑe�@��񂪊i�[���ꂽ�|�C���^��Ԃ��܂��B<BR>
+<H2>説明</H2>
+<P>プログラム自身がマルチブート子機として起動されたものであれば、有効な親機情報が格納されたポインタを返します。<BR>
 <BR>
-�������A�u�[�g���O���炱�̊֐��Ăяo���܂ł̊��̉��炩�̕ω��ɂ���ẮA<BR>
-���̊֐��̕Ԃ��e�@��񂪂��͂�L���Ȃ��̂ł͂Ȃ��Ȃ��Ă���\�������邱�Ƃɂ����ӂ��������B<BR>
+ただし、ブート直前からこの関数呼び出しまでの環境の何らかの変化によっては、<BR>
+この関数の返す親機情報がもはや有効なものではなくなっている可能性があることにご注意ください。<BR>
 <BR>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="MB_Init.html">MB_Init</A> 
 <A href="MB_IsMultiBootChild.html">MB_IsMultiBootChild</A> 
 <BR></CODE></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/08/09 ����<BR>
+2004/08/09 初版<BR>
 </P>
 </body>
 </html>

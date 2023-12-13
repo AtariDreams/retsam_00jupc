@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	factory_sys.h
- * @brief	uƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[vƒVƒXƒeƒ€ƒwƒbƒ_[
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€ã‚·ã‚¹ãƒ†ãƒ ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.03.15
  */
@@ -13,12 +13,12 @@
 #include "system/procsys.h"
 
 
-//#define DEBUG_ON									//ƒfƒoƒbƒNˆ——LŒø
+//#define DEBUG_ON									//ãƒ‡ãƒãƒƒã‚¯å‡¦ç†æœ‰åŠ¹
 
 
 //==============================================================================================
 //
-//	ƒ^ƒNƒgƒ[ƒN‚Ö‚Ì•sŠ®‘SŒ^ƒ|ƒCƒ“ƒ^
+//	ã‚¿ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ä¸å®Œå…¨åž‹ãƒã‚¤ãƒ³ã‚¿
 //
 //==============================================================================================
 typedef	struct _FACTORY_WORK FACTORY_WORK;
@@ -26,36 +26,36 @@ typedef	struct _FACTORY_WORK FACTORY_WORK;
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒpƒŒƒbƒg’è‹`
-#define BF_TALKWIN_PAL			(10)				//‰ï˜bƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BF_MENU_PAL				(11)				//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BF_MSGFONT_PAL			(12)				//MSGƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BF_FONT_PAL				(13)				//SYSTEMƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
+//ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
+#define BF_TALKWIN_PAL			(10)				//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BF_MENU_PAL				(11)				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BF_MSGFONT_PAL			(12)				//MSGãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BF_FONT_PAL				(13)				//SYSTEMãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 
-#define FACTORY_VANISH_ON		(0)					//”ñ•\Ž¦
-#define FACTORY_VANISH_OFF		(1)					//•\Ž¦
+#define FACTORY_VANISH_ON		(0)					//éžè¡¨ç¤º
+#define FACTORY_VANISH_OFF		(1)					//è¡¨ç¤º
 
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒIƒuƒWƒFƒNƒgƒiƒ“ƒo[
+//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
 enum{
-	FACTORY_RES_OBJ_BALL = 0,						//ƒ{[ƒ‹AƒJ[ƒ\ƒ‹‚È‚Ç
-	FACTORY_RES_OBJ_MAX,							//Å‘å”(ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚Í1‚Â‚Ì‚Ý)
+	FACTORY_RES_OBJ_BALL = 0,						//ãƒœãƒ¼ãƒ«ã€ã‚«ãƒ¼ã‚½ãƒ«ãªã©
+	FACTORY_RES_OBJ_MAX,							//æœ€å¤§æ•°(ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¯1ã¤ã®ã¿)
 };
 
-//ŠÇ—ID
+//ç®¡ç†ID
 enum{
-	FACTORY_ID_OBJ_BALL	= 0,						//ƒ{[ƒ‹
+	FACTORY_ID_OBJ_BALL	= 0,						//ãƒœãƒ¼ãƒ«
 };
 
-//ŠÇ—o—ˆ‚é“®•¨OBJ‚ÌÅ‘å”
-#define BALL_OBJ_MAX			(6)					//ƒZƒ‹ƒAƒNƒ^[‚ÉÝ’è‚·‚éƒAƒNƒ^[Å‘å”
-#define CSR_OBJ_MAX				(2)					//ƒZƒ‹ƒAƒNƒ^[‚ÉÝ’è‚·‚éƒAƒNƒ^[Å‘å”
+//ç®¡ç†å‡ºæ¥ã‚‹å‹•ç‰©OBJã®æœ€å¤§æ•°
+#define BALL_OBJ_MAX			(6)					//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®šã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+#define CSR_OBJ_MAX				(2)					//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®šã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
 #define WIN_OBJ_MAX				(1)
-#define FACTORY_CLACT_OBJ_MAX	(BALL_OBJ_MAX+CSR_OBJ_MAX+WIN_OBJ_MAX)		//¡‚Í“K“–
+#define FACTORY_CLACT_OBJ_MAX	(BALL_OBJ_MAX+CSR_OBJ_MAX+WIN_OBJ_MAX)		//ä»Šã¯é©å½“
 
-//ƒAƒjƒƒiƒ“ƒo[
+//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
 
 enum{
 	ANM_SINGLE_OPEN	= 0,
@@ -64,20 +64,20 @@ enum{
 	ANM_MULTI_CLOSE,
 	ANM_3POKE_OPEN,
 	ANM_3POKE_CLOSE,
-	ANM_BALL_STOP,						//ƒ{[ƒ‹’âŽ~
-	ANM_BALL_MOVE,						//ƒ{[ƒ‹“®‚­
-	ANM_BALL_CSR,						//ƒ{[ƒ‹ƒJ[ƒ\ƒ‹
-	ANM_MENU_CSR,						//ƒƒjƒ…[ƒJ[ƒ\ƒ‹
-	ANM_BALL_YURE,						//ƒ{[ƒ‹‚ä‚ê
+	ANM_BALL_STOP,						//ãƒœãƒ¼ãƒ«åœæ­¢
+	ANM_BALL_MOVE,						//ãƒœãƒ¼ãƒ«å‹•ã
+	ANM_BALL_CSR,						//ãƒœãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«
+	ANM_MENU_CSR,						//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«
+	ANM_BALL_YURE,						//ãƒœãƒ¼ãƒ«ã‚†ã‚Œ
 	ANM_MULTI_2POKE_OPEN,
 	ANM_MULTI_2POKE_CLOSE,
-	ANM_BALL_CSR_STOP,					//ƒ{[ƒ‹ƒJ[ƒ\ƒ‹’âŽ~
+	ANM_BALL_CSR_STOP,					//ãƒœãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«åœæ­¢
 };
 
 #define BF_FRAME_WIN	(GF_BGL_FRAME1_M)
-#define BF_FRAME_SLIDE	(GF_BGL_FRAME2_M)			//MULTI‚ÆƒŒƒ“ƒ^ƒ‹Œˆ’èŽž
+#define BF_FRAME_SLIDE	(GF_BGL_FRAME2_M)			//MULTIã¨ãƒ¬ãƒ³ã‚¿ãƒ«æ±ºå®šæ™‚
 #define BF_FRAME_BG		(GF_BGL_FRAME3_M)			//SINGLE,DOUBLE
-#define BF_FRAME_SUB	(GF_BGL_FRAME0_S)			//ƒ{[ƒ‹
+#define BF_FRAME_SUB	(GF_BGL_FRAME0_S)			//ãƒœãƒ¼ãƒ«
 
 typedef struct{
 	s16  x;
@@ -87,15 +87,15 @@ typedef struct{
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
-extern const PROC_DATA FactoryProcData;				//ƒvƒƒZƒX’è‹`ƒf[ƒ^
+extern const PROC_DATA FactoryProcData;				//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT FactoryProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT FactoryProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT FactoryProc_End( PROC * proc, int * seq );
 
-//’ÊM
+//é€šä¿¡
 extern void Factory_CommRecvBufBasicData(int id_no,int size,void *pData,void *work);
 extern void Factory_CommRecvBufRentalData(int id_no,int size,void *pData,void *work);
 extern void Factory_CommRecvBufCancelData(int id_no,int size,void *pData,void *work);

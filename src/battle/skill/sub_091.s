@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_091.s
- *@brief	�퓬�V�[�P���X
- *			�ӂ��Ƃ΂��V�[�P���X
+ *@brief	戦闘シーケンス
+ *			ふきとばしシーケンス
  *@author	HisashiSogabe
  *@data		2006.01.26
  *
@@ -15,23 +15,23 @@
 	.include	"waza_seq_def.h"
 
 SUB_091:
-	//��ɂ��Ȃ��ĊO��̏ꍇ�́A���܂����܂��ɂ���
+	//場にいなくて外れの場合は、うまくきまらんにする
 	IF					IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_KIE_NOHIT,Umakukimaran
-	//�������イ�΂�������Ă���Ƃ��͎��s����
+	//特性きゅうばんを持っているときは失敗する
 	KATAYABURI_TOKUSEI_CHECK		TOKUSEI_HAVE,SIDE_DEFENCE,TOKUSYU_KYUUBAN,Kyuuban
-	//���𒣂��Ă��鎞�͎��s����
+	//根を張っている時は失敗する
 	IF_PSP				IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_waza_kouka,WAZAKOUKA_NEWOHARU,Newoharu
-	//2vs2�쐶�͎��s
+	//2vs2野生は失敗
 	IF					IF_FLAG_EQ,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_2vs2_YASEI,Umakukimaran
 	HUKITOBASI			Umakukimaran
 	GOSUB				SUB_SEQ_WAZA_OUT_EFF
-	//���������񂩂��ӂ��������Ă�����A��Ԉُ�𒼂�
+	//特性しぜんかいふくをもっていたら、状態異常を直す
 	SIZENKAIHUKU_CHECK	SIDE_DEFENCE,SUB_091_NEXT
 	PSP_VALUE			VAL_SET,SIDE_DEFENCE,ID_PSP_condition,0
 SUB_091_NEXT:
 	POKEMON_DELETE		SIDE_DEFENCE
 	SERVER_WAIT
-	//�쐶��Ȃ�퓬�I��
+	//野生戦なら戦闘終了
 	IF					IF_FLAG_NBIT,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_TRAINER,FightEnd
 	HP_GAUGE_OUT		SIDE_DEFENCE
 	SERVER_WAIT
@@ -44,7 +44,7 @@ SUB_091_NEXT:
 	MESSAGE				HikizuriMineMsg,TAG_NICK,SIDE_DEFENCE
 	SERVER_WAIT
 	WAIT				MSG_WAIT
-	//ReshuffleClient��DefenceClient����
+	//ReshuffleClientにDefenceClientを代入
 	VALUE_WORK			VAL_SET,BUF_PARA_RESHUFFLE_CLIENT,BUF_PARA_DEFENCE_CLIENT
 	GOSUB				SUB_SEQ_MAKIBISI_CHECK
 	SEQ_END
@@ -71,6 +71,6 @@ SUB_091_END:
 	MESSAGE_WORK
 	SERVER_WAIT
 	WAIT				MSG_WAIT
-	//�Z�̋N���Ɏ��s�t���O�𗧂Ă�
+	//技の起動に失敗フラグを立てる
 	VALUE				VAL_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_SIPPAI
 	SEQ_END

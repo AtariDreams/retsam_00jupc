@@ -2,16 +2,16 @@
 #define __DEMO_EFF_H__
 
 
-#define DEMO_TR_DAN_HIGH_BALL_MOVE_SYNC		( 5 )	// ˆÚ“®ƒVƒ“ƒN
-#define DEMO_TR_DAN_HIGH_BLOCK_SYNC			( 1 )	// ƒƒCƒvƒVƒ“ƒN
-#define DEMO_TR_DAN_HIGH_BLOCK_START_SYNC	( 1 )	// ƒƒCƒvƒVƒ“ƒN
+#define DEMO_TR_DAN_HIGH_BALL_MOVE_SYNC		( 5 )	// ç§»å‹•ã‚·ãƒ³ã‚¯
+#define DEMO_TR_DAN_HIGH_BLOCK_SYNC			( 1 )	// ãƒ¯ã‚¤ãƒ—ã‚·ãƒ³ã‚¯
+#define DEMO_TR_DAN_HIGH_BLOCK_START_SYNC	( 1 )	// ãƒ¯ã‚¤ãƒ—ã‚·ãƒ³ã‚¯
 
 
 #define TCB_TSK_PRI	(5)
 #define TCB_VWAIT_BR_TSK_PRI	(10)
 
 //-------------------------------------
-//	”Ä—p“®ì
+//	æ±ç”¨å‹•ä½œ
 //=====================================
 typedef struct {
 	int x;
@@ -24,12 +24,12 @@ typedef struct {
 extern void DEFF_MoveReq( DEFF_MOVE_WORK* p_work, int s_x, int e_x, int count_max );
 extern BOOL	DEFF_MoveMain( DEFF_MOVE_WORK* p_work );
 
-// ƒtƒ‰ƒbƒVƒ…
+// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 extern void DEFF_EncountFlashTask(int disp, u32 bright_color, u32 sub_bright_color, BOOL* end, u32 flash_num );
 
 //-------------------------------------
 //	
-//	Ï½À°ƒuƒ‰ƒCƒgƒlƒXŠÖ˜A
+//	ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹é–¢é€£
 //	
 //=====================================
 typedef struct {
@@ -37,7 +37,7 @@ typedef struct {
 	int disp;
 } BR_BRIGHTNESS_FADE;
 
-#define DEMO_TR_DAN_HIGH_BLOCK_FILLCOLOR	( 15 )	// “h‚è‚Â‚Ô
+#define DEMO_TR_DAN_HIGH_BLOCK_FILLCOLOR	( 15 )	// å¡—ã‚Šã¤ã¶
 
 extern void DEFF_SetMstBrightness( int disp, int no );
 extern void DEFF_ChangeMstBrightness( BR_BRIGHTNESS_FADE* p_data, int start, int end, int disp, int sync );
@@ -45,7 +45,7 @@ extern BOOL DEFF_ChangeMstBrightnessMain( BR_BRIGHTNESS_FADE* p_data );
 extern void DEFF_V_SetMstBrightness( int disp, int no );
 
 
-// ƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒNó“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒg
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯çŠ¶å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 typedef struct _DEFF_BMP_FILL_BLOCK DEFF_BMP_FILL_BLOCK;
 
 extern DEFF_BMP_FILL_BLOCK* DEFF_BMP_FillBlockAlloc( u32 heapID );
@@ -53,7 +53,7 @@ extern void DEFF_BMP_FillBlockDelete( DEFF_BMP_FILL_BLOCK* p_work );
 extern void DEFF_BMP_FillBlockStart( DEFF_BMP_FILL_BLOCK* p_work, int s_x, int e_x, int s_y, int e_y, int sync, GF_BGL_BMPWIN* p_bmp, u32 width, u32 height, u8 col );
 extern BOOL DEFF_BMP_FillBlockMain( DEFF_BMP_FILL_BLOCK* p_work );
 
-// ƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒN–„‚ßs‚­‚µƒVƒXƒeƒ€
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯åŸ‹ã‚å°½ãã—ã‚·ã‚¹ãƒ†ãƒ 
 typedef struct _DEFF_BMP_FILL_BLOCK_MOVE DEFF_BMP_FILL_BLOCK_MOVE;
 
 extern DEFF_BMP_FILL_BLOCK_MOVE* DEFF_BMP_FillBlockMoveAlloc( u32 heapID );
@@ -65,27 +65,27 @@ extern BOOL DEFF_BMP_FillBlockMoveMain_LinesUP( DEFF_BMP_FILL_BLOCK_MOVE* p_work
 extern BOOL DEFF_BMP_FillBlockMoveMain_Place( DEFF_BMP_FILL_BLOCK_MOVE* p_work );
 
 
-#define DEMO_LASTER_SCALE_SS		( FX32_CONST( 0.1f ) )	// Šgk‰‘¬“x
-#define DEMO_LASTER_SIN_R		( FX32_CONST( 18 ) )	// ”¼Œa
-#define DEMO_LASTER_SP			( 4*100 )				// ƒ‰ƒXƒ^[ƒXƒs[ƒh
-#define DEMO_LASTER_SIN_ADDR		( (0xffff/192) * 2 )	// ƒ‰ƒXƒ^[Šp“xƒXƒs[ƒh
+#define DEMO_LASTER_SCALE_SS		( FX32_CONST( 0.1f ) )	// æ‹¡ç¸®åˆé€Ÿåº¦
+#define DEMO_LASTER_SIN_R		( FX32_CONST( 18 ) )	// åŠå¾„
+#define DEMO_LASTER_SP			( 4*100 )				// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define DEMO_LASTER_SIN_ADDR		( (0xffff/192) * 2 )	// ãƒ©ã‚¹ã‚¿ãƒ¼è§’åº¦ã‚¹ãƒ”ãƒ¼ãƒ‰
 
 #define DEMO_LASTER_TASK_PRI		( TCB_TSK_PRI - 1 )
 #define DEMO_LASTER_FLIP_DOT		( 2 )
 
 
 //-------------------------------------
-//	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹@ƒ^ƒXƒN—Dæ‡ˆÊ
+//	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€€ã‚¿ã‚¹ã‚¯å„ªå…ˆé †ä½
 //=====================================
 #define DEMO_EFF_LASTER_SCRLL_VWAIT_BUFF_SWITCH_TASK_PRI	( 1024 )
 #define DEMO_EFF_LASTER_SCRLL_VINTR_DMA_SET_TASK_PRI	( 1024 )
-#define DEMO_TR_WATER_HIGH_SIN_R		( FX32_CONST( 12 ) )	// ”¼Œa
-#define DEMO_TR_WATER_HIGH_LASTER_SP	( 100 )	// ƒ‰ƒXƒ^[ƒXƒs[ƒh
-#define DEMO_TR_WATER_HIGH_SIN_ADDR	( (0xffff/192) * 2 )// ƒ‰ƒXƒ^[Šp“xƒXƒs[ƒh
+#define DEMO_TR_WATER_HIGH_SIN_R		( FX32_CONST( 12 ) )	// åŠå¾„
+#define DEMO_TR_WATER_HIGH_LASTER_SP	( 100 )	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define DEMO_TR_WATER_HIGH_SIN_ADDR	( (0xffff/192) * 2 )// ãƒ©ã‚¹ã‚¿ãƒ¼è§’åº¦ã‚¹ãƒ”ãƒ¼ãƒ‰
 #define DEMO_TR_WATER_HIGH_LASTER_TASK_PRI	( 0x10000 - 1 )
 #define DEMO_TR_WATER_HIGH_LASTER_FLIP_DOT	( 2 )
 //-------------------------------------
-//	p_lasterƒXƒNƒ[ƒ‹ƒ[ƒN
+//	p_lasterã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	LASTER_SCROLL_PTR p_laster;
@@ -103,17 +103,17 @@ extern void DEFF_Laster_BuffXFlip( DEMO_LASTER_SCROLL* p_laster, u32 dot );
 
 //-------------------------------------
 //	
-//	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+//	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
 //
-//	‚R‚O•ª‚Ì‚PƒtƒŒ[ƒ€Var
+//	ï¼“ï¼åˆ†ã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ Var
 //
-//	‚±‚ÌƒVƒXƒeƒ€‚ª‚â‚é‚±‚Æ
-//		‰Šú‰»ˆ—		‚ğ‚Ü‚Æ‚ß‚Äs‚¤
-//		”jŠüˆ—		‚ğ‚Ü‚Æ‚ß‚Äs‚¤
-//		VBlankŠúŠÔˆ—	‚ğ‚Ü‚Æ‚ß‚Äs‚¤
+//	ã“ã®ã‚·ã‚¹ãƒ†ãƒ ãŒã‚„ã‚‹ã“ã¨
+//		åˆæœŸåŒ–å‡¦ç†		ã‚’ã¾ã¨ã‚ã¦è¡Œã†
+//		ç ´æ£„å‡¦ç†		ã‚’ã¾ã¨ã‚ã¦è¡Œã†
+//		VBlankæœŸé–“å‡¦ç†	ã‚’ã¾ã¨ã‚ã¦è¡Œã†
 //
-//	g‚¤l‚ª‚â‚é‚±‚Æ
-//		ƒoƒbƒtƒ@‚Ö‚Ì’l‚Ìİ’è
+//	ä½¿ã†äººãŒã‚„ã‚‹ã“ã¨
+//		ãƒãƒƒãƒ•ã‚¡ã¸ã®å€¤ã®è¨­å®š
 //	
 //=====================================
 #define FEFTOOL_DEFLASTER_BUFF_SIZE	(192)
@@ -131,48 +131,48 @@ extern u32	FEFTool_GetDefLasterTransAddr( FEFTOOL_DEFLASTER_PTR p_lst );
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //
-//	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[‰Šú‰»\‘¢‘Ì
+//	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼åˆæœŸåŒ–æ§‹é€ ä½“
 //
 //=====================================
 typedef struct {
-	// ƒOƒ‰ƒtƒBƒbƒNƒ‚[ƒh
-	GXDispMode dispMode;	// ƒfƒBƒXƒvƒŒƒCƒ‚[ƒh
-	GXBGMode bgMode;		// BGƒ‚[ƒh	
-	GXBG0As bg0_2d3d;		// BG0‚ğ3d‚Ég—p‚·‚é‚©
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¢ãƒ¼ãƒ‰
+	GXDispMode dispMode;	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰
+	GXBGMode bgMode;		// BGãƒ¢ãƒ¼ãƒ‰	
+	GXBG0As bg0_2d3d;		// BG0ã‚’3dã«ä½¿ç”¨ã™ã‚‹ã‹
 
-	// ƒLƒƒƒvƒ`ƒƒ
-	GXCaptureSize sz;		// ƒLƒƒƒvƒ`ƒƒƒTƒCƒY
-    GXCaptureMode mode;		// ƒLƒƒƒvƒ`ƒƒƒ‚[ƒh
-    GXCaptureSrcA a;		// ƒLƒƒƒvƒ`ƒƒæA
-    GXCaptureSrcB b;		// ƒLƒƒƒvƒ`ƒƒæB
-    GXCaptureDest dest;		// ƒLƒƒƒvƒ`ƒƒƒf[ƒ^“]‘—Vram
-    int eva;				// ƒuƒŒƒ“ƒhŒW”A
-    int evb;				// ƒuƒŒƒ“ƒhŒW”B
+	// ã‚­ãƒ£ãƒ—ãƒãƒ£
+	GXCaptureSize sz;		// ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚µã‚¤ã‚º
+    GXCaptureMode mode;		// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¢ãƒ¼ãƒ‰
+    GXCaptureSrcA a;		// ã‚­ãƒ£ãƒ—ãƒãƒ£å…ˆA
+    GXCaptureSrcB b;		// ã‚­ãƒ£ãƒ—ãƒãƒ£å…ˆB
+    GXCaptureDest dest;		// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€Vram
+    int eva;				// ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°A
+    int evb;				// ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°B
 
-	int heap_id;			// g—p‚·‚éƒq[ƒvID
+	int heap_id;			// ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
 }DEMO_MOTION_BL_DATA;
 
 
-typedef struct _DEMO_MOTION_BL_TASK*	DEMO_MOTION_BL_PTR;	// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[“®ìƒIƒuƒWƒFƒNƒg
+typedef struct _DEMO_MOTION_BL_TASK*	DEMO_MOTION_BL_PTR;	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼å‹•ä½œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[‚ğg‚¦‚éó‘Ô‚É‰Šú‰»
+ *@brief	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚’ä½¿ãˆã‚‹çŠ¶æ…‹ã«åˆæœŸåŒ–
  *
- *@param	init		‰Šú‰»ƒf[ƒ^
+ *@param	init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
- *@return	DEMO_MOTION_BL_PTR	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒIƒuƒWƒFƒNƒg
+ *@return	DEMO_MOTION_BL_PTR	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
  *
  */
@@ -182,9 +182,9 @@ extern DEMO_MOTION_BL_PTR DEMO_MOTION_BL_Init(DEMO_MOTION_BL_DATA* init);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[‚ğ‰ğœ
+ *@brief	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚’è§£é™¤
  *
- *@param	data		ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒIƒuƒWƒFƒNƒg
+ *@param	data		ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
  *@return	none
  *	
@@ -197,10 +197,10 @@ extern void DEMO_MOTION_BL_Delete(DEMO_MOTION_BL_PTR* data, GXDispMode dispMode,
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“r’†‚Åƒpƒ‰ƒ[ƒ^[‚ğ•ÏX‚·‚é
+ *@brief	é€”ä¸­ã§ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
  *
- *@param	eva			ƒuƒŒƒ“ƒhŒW”A		CaptureŒ³
- *@param	evb			ƒuƒŒƒ“ƒhŒW”B		Captureƒf[ƒ^“]‘—æ
+ *@param	eva			ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°A		Captureå…ƒ
+ *@param	evb			ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°B		Captureãƒ‡ãƒ¼ã‚¿è»¢é€å…ˆ
  *
  *@return	none
  *

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MI_GetCompressionType</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MI_GetCompressionType</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,53 +20,53 @@
   <BR>
   <CODE>MICompressionType MI_GetCompressionType( const void* srcp );</CODE></dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>srcp</STRONG></EM></TD>
-      <TD width="87%">���k�f�[�^���i�[����Ă���\�[�X�A�h���X</TD>
+      <TD width="87%">圧縮データが格納されているソースアドレス</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>���k�̌`���ł��B</p>
+<h2>返り値</h2>
+<p>圧縮の形式です。</p>
 
-<H2>����</H2>
-<P>���k�f�[�^�̃w�b�_���𒲂ׁA���k�`�����擾���܂��B<BR>
-�f�[�^�̐擪�����ɖ��ߍ��܂ꂽ���k�`����ǂ݁A�����Ԃ������ł��̂ŁA���ۂɈ��k�f�[�^�̒��g���̂𒲂ׂ�킯�ł͂���܂���B</P>
-<P>���̊֐���NITRO-SDK�ŃT�|�[�g���Ă���S�Ă̈��k�`���̃f�[�^�ɑΉ����Ă��܂��B</P>
-<P>�Ԃ�l�� <CODE>MICompressType</CODE> �񋓌^�ňȉ��̒ʂ�̈Ӗ��������܂��B</P>
+<H2>説明</H2>
+<P>圧縮データのヘッダ情報を調べ、圧縮形式を取得します。<BR>
+データの先頭部分に埋め込まれた圧縮形式を読み、それを返すだけですので、実際に圧縮データの中身自体を調べるわけではありません。</P>
+<P>この関数はNITRO-SDKでサポートしている全ての圧縮形式のデータに対応しています。</P>
+<P>返り値は <CODE>MICompressType</CODE> 列挙型で以下の通りの意味を持ちます。</P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD><CODE>MI_COMPRESSION_LZ</CODE></TD>
-      <TD>LZ77�`���ň��k���ꂽ�f�[�^</TD>
+      <TD>LZ77形式で圧縮されたデータ</TD>
     </TR>
     <TR>
       <TD><CODE>MI_COMPRESSION_HUFFMAN</CODE></TD>
-      <TD>Huffman �`���ň��k���ꂽ�f�[�^</TD>
+      <TD>Huffman 形式で圧縮されたデータ</TD>
     </TR>
     <TR>
       <TD><CODE>MI_COMPRESSION_RL</CODE></TD>
-      <TD>���������O�X�`���ň��k���ꂽ�f�[�^</TD>
+      <TD>ランレングス形式で圧縮されたデータ</TD>
     </TR>
     <TR>
       <TD><CODE>MI_COMPRESSION_DIFF</CODE></TD>
-      <TD>�����t�B���^��������ꂽ�f�[�^</TD>
+      <TD>差分フィルタがかけられたデータ</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>��������</h2>
-<P>�f�[�^�̐擪�S�o�C�g��ǂ݁A���̒l�������Ɉ��k�^�C�v�����肵�܂��B</P>
+<h2>内部動作</h2>
+<P>データの先頭４バイトを読み、その値をを元に圧縮タイプを決定します。</P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="MI_UncompressLZ.html">MI_UncompressLZ*</A>, <A href="MI_UncompressHuffman.html">MI_UncompressHuffman</A>, <A href="MI_UncompressRL.html">MI_UncompressRL*</A>, <A href="MI_UnfilterDiff.html">MI_UnfilterDiff*</A><BR>
 <A href="MI_GetUncompressedSize.html">MI_GetUncompressedSize</A><br>
 </CODE></p>
 
-<H2>����</H2>
-<P>2004/06/18 ����</P>
+<H2>履歴</H2>
+<P>2004/06/18 初版</P>
 </body>
 </html>

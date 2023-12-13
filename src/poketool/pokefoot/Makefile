@@ -1,6 +1,6 @@
 ##-----------------------------------------------------------------------------
 #**
-#*			‘«ÕƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒA[ƒJƒCƒuƒƒCƒN
+#*			è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ¡ã‚¤ã‚¯
 #**
 ##-----------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ RES_DIR	= .
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#Make‚Å¶¬‚³‚ê‚é*.bin/*.narc‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.bin/*.narcã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(POKEGRA:.nce=.NCGR) \
 			$(POKEGRA:.nce=.NCER) \
 			$(POKEGRA:.nce=.NANR) \

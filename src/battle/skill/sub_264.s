@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_264.s
- *@brief	�퓬�V�[�P���X
- *			���Q�̈З͂���߂鑕�����ʂ̃`�F�b�N
+ *@brief	戦闘シーケンス
+ *			抜群の威力を弱める装備効果のチェック
  *@author	HisashiSogabe
  *@data		2006.05.19
  *
@@ -15,11 +15,11 @@
 	.include	"waza_seq_def.h"
 
 SUB_264:
-	//�^�C�v�`�F�b�N���Ȃ��Ă����t���O�������Ă��鎞�͕s��
+	//タイプチェックしなくていいフラグが立っている時は不発
 	IF				IF_FLAG_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_TYPE_FLAT|SERVER_STATUS_FLAG_TYPE_NONE,SUB_264_END
-	//�ꌂ�K�E�͕s��
+	//一撃必殺は不発
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_ICHIGEKI,SUB_264_END
-	//�����m�[�}���X�L���̓^�C�v���m�[�}����
+	//特性ノーマルスキンはタイプをノーマルに
 	TOKUSEI_CHECK	TOKUSEI_NO_HAVE,SIDE_ATTACK,TOKUSYU_NOOMARUSUKIN,NoTokusyu
 	VALUE			VAL_SET,BUF_PARA_CALC_WORK,NORMAL_TYPE
 	BRANCH			SUB_264_NEXT
@@ -28,10 +28,10 @@ NoTokusyu:
 	VALUE_WORK		VAL_GET,BUF_PARA_WAZA_TYPE,BUF_PARA_CALC_WORK
 	BRANCH			SUB_264_NEXT
 TypeGet:
-	//�Z�̃^�C�v���擾
+	//技のタイプを取得
 	WAZA_PARAM_GET	ID_WTD_wazatype
 SUB_264_NEXT:
-	//�������ʂ��擾
+	//装備効果を取得
 	SOUBI_EQP_GET	SIDE_WORK,BUF_PARA_TEMP_WORK
 	IF				IF_FLAG_EQ,BUF_PARA_TEMP_WORK,SOUBI_NOOMARUHANGEN,		NormalCheck
 

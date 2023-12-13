@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	undergrounddata.h
- * @brief	’n‰ºƒAƒCƒeƒ€ƒAƒNƒZƒX—pƒwƒbƒ_
+ * @brief	åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ˜ãƒƒãƒ€
  * @author	k.ohno
  * @date	2006.2.23
  */
@@ -9,27 +9,27 @@
 #ifndef __UNDERGROUNDDATA_H__
 #define __UNDERGROUNDDATA_H__
 
-#include "system/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "system/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
-#include "gflib/msg_print.h"		//STRCODEQÆ‚Ì‚½‚ß
-#include "gflib/strbuf.h"			//STRBUFQÆ‚Ì‚½‚ß
-#include "savedata/mystatus.h"			//MYSTATUSQÆ‚Ì‚½‚ß
+#include "gflib/msg_print.h"		//STRCODEå‚ç…§ã®ãŸã‚
+#include "gflib/strbuf.h"			//STRBUFå‚ç…§ã®ãŸã‚
+#include "savedata/mystatus.h"			//MYSTATUSå‚ç…§ã®ãŸã‚
 
 
 //----------------------------------------------------------
 /**
- * @brief	”é–§Šî’nƒf[ƒ^Œ^’è‹`
+ * @brief	ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿å‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct _SECRETBASEDATA SECRETBASEDATA;
 typedef struct _SB_RECORD_DATA SB_RECORD_DATA;
 
-#define SECRETBASE_PC_NUM_MAX   (1) // ƒpƒ\ƒRƒ“‚ÌÅ‘å”
-#define SECRETBASE_GOODS_NUM_MAX   (15) // ƒOƒbƒY‚ÌÅ‘å”
-#define SECRETBASE_LOCK_NUM_MAX   (16)  // Šâ‚ÌÅ‘å”
+#define SECRETBASE_PC_NUM_MAX   (1) // ãƒ‘ã‚½ã‚³ãƒ³ã®æœ€å¤§æ•°
+#define SECRETBASE_GOODS_NUM_MAX   (15) // ã‚°ãƒƒã‚ºã®æœ€å¤§æ•°
+#define SECRETBASE_LOCK_NUM_MAX   (16)  // å²©ã®æœ€å¤§æ•°
 #define SECRETBASE_SETUPOBJ_NUM_MAX (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_LOCK_NUM_MAX + SECRETBASE_PC_NUM_MAX)
-#define SECRETBASE_GOODS_ROCK   (6)     // Šâ‚Ìƒ^ƒCƒv”Ô†
-#define SECRETBASE_PC_INDEX_NO  (0)    // ƒpƒ\ƒRƒ“‚ÌƒCƒ“ƒfƒbƒNƒX”Ô†
+#define SECRETBASE_GOODS_ROCK   (6)     // å²©ã®ã‚¿ã‚¤ãƒ—ç•ªå·
+#define SECRETBASE_PC_INDEX_NO  (0)    // ãƒ‘ã‚½ã‚³ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 
 #include "undergrounddata_def.h"
 
@@ -45,7 +45,7 @@ typedef enum {
 };
 
 
-typedef enum {  // ’n‰ºƒ|ƒCƒ“ƒg‚Å‚à‚ç‚¦‚éÌ†
+typedef enum {  // åœ°ä¸‹ãƒã‚¤ãƒ³ãƒˆã§ã‚‚ã‚‰ãˆã‚‹ç§°å·
   UG_RANK_BEGINNER,
 /*  UG_RANK_RANGER6,
   UG_RANK_RANGER5,
@@ -65,21 +65,21 @@ typedef enum {  // ’n‰ºƒ|ƒCƒ“ƒg‚Å‚à‚ç‚¦‚éÌ†
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒAƒCƒeƒ€ŠÖ˜A’è‹`
+ * @brief	åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ é–¢é€£å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct _UNDERGROUND_DATA UNDERGROUNDDATA;
 
-#define UG_ITEM_PC_NUM_MAX    (200) // ƒpƒ\ƒRƒ“‚ÌƒAƒCƒeƒ€Å‘å”
-#define UG_ITEM_BAG_NUM_MAX   (40) // ƒoƒbƒO“à‚ÌÅ‘å”
-#define UG_TRAP_PLACE_NUM_MAX (16)  // ”z’u‚·‚éã©‚ÌÅ‘å”
-#define UG_NATURETRAP_PLACE_NUM_MAX (16*4)  // ”z’u‚·‚é©‘Rã©‚ÌÅ‘å”
-#define UG_STONE_PLACE_NUM_MAX (100)  // ”z’u‚·‚é‚½‚Ü‚ÌÅ‘å”
+#define UG_ITEM_PC_NUM_MAX    (200) // ãƒ‘ã‚½ã‚³ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ æœ€å¤§æ•°
+#define UG_ITEM_BAG_NUM_MAX   (40) // ãƒãƒƒã‚°å†…ã®æœ€å¤§æ•°
+#define UG_TRAP_PLACE_NUM_MAX (16)  // é…ç½®ã™ã‚‹ç½ ã®æœ€å¤§æ•°
+#define UG_NATURETRAP_PLACE_NUM_MAX (16*4)  // é…ç½®ã™ã‚‹è‡ªç„¶ç½ ã®æœ€å¤§æ•°
+#define UG_STONE_PLACE_NUM_MAX (100)  // é…ç½®ã™ã‚‹ãŸã¾ã®æœ€å¤§æ•°
 #define UG_FOSSIL_PLACE_NUM_MAX (255)
-#define UG_FLAG_NUM_MAX (5)  // ‹L˜^‚µ‚Ä‚¨‚­Šø‚Ì”
+#define UG_FLAG_NUM_MAX (5)  // è¨˜éŒ²ã—ã¦ãŠãæ——ã®æ•°
 
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚â’ÊM‚Åg—p‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ã‚„é€šä¿¡ã§ä½¿ç”¨ã™ã‚‹é–¢æ•°
 //----------------------------------------------------------
 extern int UnderGroundData_GetWorkSize(void);
 extern UNDERGROUNDDATA * UnderGroundData_AllocWork(u32 heapID);
@@ -93,11 +93,11 @@ extern void SecretBaseData_Copy(const SECRETBASEDATA *pFrom, SECRETBASEDATA* pTo
 
 
 //----------------------------------------------------------
-//	UNDERGROUNDDATA‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	UNDERGROUNDDATAæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern void UnderGroundData_Init(UNDERGROUNDDATA* pSBData);
 
-// “ú”‚ÉŠÖ˜A‚µ‚½ˆ—
+// æ—¥æ•°ã«é–¢é€£ã—ãŸå‡¦ç†
 extern void UnderGroundDataDayUpdate(SAVEDATA* pSave, int diff_days);
 extern u32 UnderGroundGetDayRandSeed(UNDERGROUNDDATA* pUGData);
 extern void UnderGroundDataMinUpdate(SAVEDATA* pSave,  s32 diff_minute, BOOL bPenaltyMode);
@@ -105,15 +105,15 @@ extern void UnderGroundDataBeforeUGSave(SAVEDATA* pSave);
 extern void UnderGroundDataAfterUG(SAVEDATA* pSave);
 extern void UnderGroundDataLoadUpdate(SAVEDATA* pSave);
 extern BOOL UnderGroundDataIsGoodsSend(SAVEDATA* pSave);
-// ’nã‚Æ‚Ì˜A“®
+// åœ°ä¸Šã¨ã®é€£å‹•
 extern void UnderGroundSetDiamondPearlEvent(UNDERGROUNDDATA* pUGData);
 extern BOOL UnderGroundIsDiamondPearlEvent(UNDERGROUNDDATA* pUGData);
 
-// Šø‚ÉŠÖŒW‚µ‚½ˆ—
+// æ——ã«é–¢ä¿‚ã—ãŸå‡¦ç†
 extern void UnderGroundAddFlag(UNDERGROUNDDATA* pUGData, const MYSTATUS* pMyStatus);
 extern MYSTATUS* UnderGroundGetFlag(const UNDERGROUNDDATA* pUGData,int heapID,int index);
 
-// ƒOƒbƒYŠÖ˜A
+// ã‚°ãƒƒã‚ºé–¢é€£
 extern int UnderGroundGetNumGoodsPCItem(UNDERGROUNDDATA* pUGData);
 extern BOOL UnderGroundAddGoodsPCItem(UNDERGROUNDDATA* pUGData, int goodsNo);
 extern BOOL UnderGroundAddChkGoodsPCItem(UNDERGROUNDDATA* pUGData, int goodsNo);
@@ -132,7 +132,7 @@ extern BOOL UnderGroundAddGoodsBagItem(UNDERGROUNDDATA* pUGData, int goodsType);
 extern BOOL UnderGroundAddChkGoodsBagItem(UNDERGROUNDDATA* pUGData, int goodsType);
 extern void UnderGroundChangeGoodsBagItem(UNDERGROUNDDATA* pUGData, int listIndex,int nextIndex);
 
-// ‚½‚ÜŠÖ˜A
+// ãŸã¾é–¢é€£
 extern int UnderGroundGetNumStonePCItem(UNDERGROUNDDATA* pUGData);
 extern int UnderGroundGetStonePCItem(UNDERGROUNDDATA* pUGData, int listIndex);
 extern int UnderGroundGetStoneCaratPCItem(UNDERGROUNDDATA* pUGData, int listIndex);
@@ -146,7 +146,7 @@ extern int UnderGroundDelStoneBagItem(UNDERGROUNDDATA* pUGData, int listIndex);
 extern BOOL UnderGroundAddStoneBagItem(UNDERGROUNDDATA* pUGData, int stoneType, int carat);
 extern void UnderGroundChangeStoneBagItem(UNDERGROUNDDATA* pUGData, int listIndex,int nextIndex);
 
-// ‚¨‚½‚©‚çŠÖ˜A
+// ãŠãŸã‹ã‚‰é–¢é€£
 extern int UnderGroundGetTreasureBagItem(UNDERGROUNDDATA* pUGData, BOOL bDelete);
 extern int UnderGroundTreasureItem2Item(int treasureType);
 extern int UnderGroundGetNumTreasureBagItem(UNDERGROUNDDATA* pUGData);
@@ -155,7 +155,7 @@ extern int UnderGroundDelTreasureBagItem(UNDERGROUNDDATA* pUGData, int listIndex
 extern BOOL UnderGroundAddTreasureBagItem(UNDERGROUNDDATA* pUGData, int treasureType);
 extern void UnderGroundChangeTreasureBagItem(UNDERGROUNDDATA* pUGData, int listIndex,int nextIndex);
 
-// ã©ŠÖ˜A
+// ç½ é–¢é€£
 extern int UnderGroundGetNumTrapPCItem(UNDERGROUNDDATA* pUGData);
 extern int UnderGroundGetTrapPCItem(UNDERGROUNDDATA* pUGData, int listIndex);
 extern int UnderGroundDelTrapPCItem(UNDERGROUNDDATA* pUGData, int listIndex);
@@ -168,7 +168,7 @@ extern BOOL UnderGroundAddTrapBagItem(UNDERGROUNDDATA* pUGData, int trapType);
 extern void UnderGroundChangeTrapBagItem(UNDERGROUNDDATA* pUGData, int listIndex,int nextIndex);
 
 
-// ’n–Ê‚É–„‚ß‚½‚à‚ÌŠÖ˜A
+// åœ°é¢ã«åŸ‹ã‚ãŸã‚‚ã®é–¢é€£
 
 extern void UnderGroundAddNatureTrapGroundItem(UNDERGROUNDDATA* pUGData, int trapType,int index, int x,int z);
 extern int UnderGroundGetNatureTrapGroundItemType(UNDERGROUNDDATA* pUGData,int index);
@@ -205,7 +205,7 @@ extern void UnderGroundSetFossilDig(UNDERGROUNDDATA* pUGData,int type);
 extern BOOL UnderGroundIsFossilAdvent(UNDERGROUNDDATA* pUGData,int type);
 
 //----------------------------------------------------------
-//	SECRETBASEDATA‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	SECRETBASEDATAæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern void SecretBaseData_Init(SECRETBASEDATA* pSBData);
 extern void SecretBaseData_Reform(SECRETBASEDATA* pSBData);
@@ -214,13 +214,13 @@ extern void SecretBaseData_ChangeGoodsPosition(SECRETBASEDATA* pSBData, int good
 extern int SecretBaseData_GetGoodsType(const SECRETBASEDATA* pSBData, int goodsIndex);
 extern int SecretBaseData_GetGoodsXPos(const SECRETBASEDATA* pSBData, int goodsIndex);
 extern int SecretBaseData_GetGoodsZPos(const SECRETBASEDATA* pSBData, int goodsIndex);
-/// Šâ‚ğ‚Ç‚Ì‚­‚ç‚¢•Û‚µ‚Ä‚¢‚È‚¢‚Æ‚¢‚¯‚È‚¢‚©‚ğ•Ô‚·
+/// å²©ã‚’ã©ã®ãã‚‰ã„ä¿æŒã—ã¦ã„ãªã„ã¨ã„ã‘ãªã„ã‹ã‚’è¿”ã™
 extern int SecretBaseData_GetPlaceRockLimit(const SECRETBASEDATA* pSBData);
-///	”z’u•¨‚ğ‚¢‚­‚Â‚Ü‚Å’u‚¢‚Ä‚¢‚¢‚Ì‚©‚ğ•Ô‚·
+///	é…ç½®ç‰©ã‚’ã„ãã¤ã¾ã§ç½®ã„ã¦ã„ã„ã®ã‹ã‚’è¿”ã™
 extern int SecretBaseData_GetPlaceGoodsLimit(const SECRETBASEDATA* pSBData);
 extern void SecretBaseData_SetMakeDown(SECRETBASEDATA* pSBData);
 
-/// ƒŒƒR[ƒhƒf[ƒ^‚Ìæ“¾
+/// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 extern int SecretBaseRecordGetPoint(const SB_RECORD_DATA* pSBRecord);
 extern int SecretBaseRecordGetUGRank(const SB_RECORD_DATA* pSBRecord);
 extern void SecretBaseRecordSetPoint(SB_RECORD_DATA* pSBRecord, int add);
@@ -264,7 +264,7 @@ extern void UnderGroundSetFirstFossil(UNDERGROUNDDATA* pUGData);
 extern BOOL UnderGroundIsFirstFossil(UNDERGROUNDDATA* pUGData);
 
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^æ“¾‚Ì‚½‚ß‚ÌŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern UNDERGROUNDDATA* SaveData_GetUnderGroundData(SAVEDATA* pSave);
 extern SECRETBASEDATA* SaveData_GetSecretBaseData(SAVEDATA* pSave);
@@ -272,7 +272,7 @@ extern SB_RECORD_DATA* SaveData_GetSecretBaseRecord(SAVEDATA* pSave);
 extern SB_RECORD_DATA* SecretBaseGetSecretBaseRecord(SECRETBASEDATA* pSec);
 
 //----------------------------------------------------------
-//	ƒfƒoƒbƒO‚Ì‚½‚ß‚ÌŠÖ”
+//	ãƒ‡ãƒãƒƒã‚°ã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 #ifdef PM_DEBUG
 extern void Debug_UnderGroundData_AddTreasure(UNDERGROUNDDATA* pSBData, int type);

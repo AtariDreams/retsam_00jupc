@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_321.s
- * @brief	‚­‚·‚®‚ι			321
+ * @brief	γγ™γγ‚‹			321
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(ζ°΄)
  *
- * ‚±‚±‚ΙFX‚Θ‰πΰ“™‚π‘‚Ά‚Δ‚ΰ‚ζ‚Ά
+ * γ“γ“γ«θ‰²γ€…γªθ§£θª¬η­‰γ‚’ζ›Έγ„γ¦γ‚‚γ‚γ„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	΅‚­‚·‚®‚ι			321
+//	β– γγ™γγ‚‹			321
 //
 //
 // =============================================================================
@@ -39,7 +39,7 @@ WEST_KUSUGURU:
 	ADD_PARTICLE 	0,W_197_197_MIKIRI_KIRA1, EMTFUNC_ATTACK_POS
 	ADD_PARTICLE 	0,W_197_197_MIKIRI_KIRA2, EMTFUNC_ATTACK_POS
 
-	///< Ξ
+	///< η¬‘
 	FUNC_CALL		WEST_SP_WE_204, 1,1,0,0,0,0,0,0,0
 	
 	LOOP_LABEL		1
@@ -69,7 +69,7 @@ MINE:
 	ADD_PARTICLE 	0,W_197_197_MIKIRI_KIRA1, EMTFUNC_ATTACK_POS
 	ADD_PARTICLE 	0,W_197_197_MIKIRI_KIRA2, EMTFUNC_ATTACK_POS
 
-	///< Ξ
+	///< η¬‘
 	FUNC_CALL		WEST_SP_WE_204, 1,1,0,0,0,0,0,0,0
 	
 	LOOP_LABEL		1
@@ -105,7 +105,7 @@ ENEMY:
 	EX_DATA			4, OPERATOR_EX_REVERCE_OFF, -PT_LCD_PTP_CHG(48), +PT_LCD_PTP_CHG(0), 0
 
 
-	///< Ξ
+	///< η¬‘
 	FUNC_CALL		WEST_SP_WE_204, 1,1,0,0,0,0,0,0,0
 	
 	LOOP_LABEL		1
@@ -142,7 +142,7 @@ CONTEST:
 	EX_DATA			4, OPERATOR_EX_REVERCE_OFF, -PT_LCD_PTP_CHG(48), +PT_LCD_PTP_CHG(0), 0
 
 
-	///< Ξ
+	///< η¬‘
 	FUNC_CALL		WEST_SP_WE_204, 1,1,0,0,0,0,0,0,0
 	
 	LOOP_LABEL		1

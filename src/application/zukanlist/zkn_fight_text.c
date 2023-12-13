@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_fight_text.c
- *	@brief		}ŠÓí“¬Œê‚ÌƒeƒLƒXƒgƒf[ƒ^•\¦ƒVƒXƒeƒ€
+ *	@brief		å›³é‘‘æˆ¦é—˜èªã®ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2006.03.22
  *
@@ -43,24 +43,24 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@
 #define ZKN_FIGHT_OAM_BG_PRI	( 2 )
 #define ZKN_FIGHT_OAM_SOFT_PRI	( 32 )
 
-// ”wŒiÀ•W
+// èƒŒæ™¯åº§æ¨™
 #define ZKN_FIGHT_POKE_DRAW_FRAME_CX	( 0 )
 #define ZKN_FIGHT_POKE_DRAW_FRAME_CY	( 3 )
 #define ZKN_FIGHT_FOOT_FRAME_CX			( 12 )
@@ -84,18 +84,18 @@
 #define ZKN_FIGHT_TEXT_FRAME_CY			( 16 )
 
 
-// •¶š—ñ–Ê
-#define ZKN_FIGHT_NUM_STR		( 64 )	// ƒoƒbƒtƒ@ƒTƒCƒY
+// æ–‡å­—åˆ—é¢
+#define ZKN_FIGHT_NUM_STR		( 64 )	// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 #define ZKN_FIGHT_TITLE_TEXT_X	( 32 )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/20
-// g ‚â p ‚È‚Ç‚Ì•¶š‚ª‰º‚Ì˜g‚É‚©‚©‚Á‚Ä‚µ‚Ü‚¤‚Ì‚ğC³
+// g ã‚„ p ãªã©ã®æ–‡å­—ãŒä¸‹ã®æ ã«ã‹ã‹ã£ã¦ã—ã¾ã†ã®ã‚’ä¿®æ­£
 #define ZKN_FIGHT_TITLE_TEXT_Y	( 0 )
 // ----------------------------------------------------------------------------
 
 //-------------------------------------
-//	•\¦ƒV[ƒPƒ“ƒX
+//	è¡¨ç¤ºã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum
 {
@@ -106,31 +106,31 @@ enum
 	ZKN_FIGHT_END
 };
 
-// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgÀ•W
+// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆåº§æ¨™
 #define ZKN_FIGHT_POKELIST_MAT_X	( 172 )
 #define ZKN_FIGHT_POKELIST_MAT_Y	( 32 )
 
-// ‘«Õ
+// è¶³è·¡
 #define ZKN_FIGHT_FOOT_MAT_X	( 120 * FX32_ONE )
 #define ZKN_FIGHT_FOOT_MAT_Y	( 88 * FX32_ONE )
 
-// ƒ^ƒCƒvÀ•W
+// ã‚¿ã‚¤ãƒ—åº§æ¨™
 #define ZKN_FIGHT_POKETYPE1_MAT_X	( 170 * FX32_ONE )
 #define ZKN_FIGHT_POKETYPE2_MAT_X	( 220 * FX32_ONE )
 #define ZKN_FIGHT_POKETYPE_MAT_Y	( 72 * FX32_ONE )
-// À²Ìß”
+// ã‚¿ã‚¤ãƒ—æ•°
 enum{
 	ZKN_FIGHT_TYPE_1,
 	ZKN_FIGHT_TYPE_2,
 	ZKN_FIGHT_TYPE_NUM
 };
 
-// `ƒ|ƒPƒ‚ƒ“À•W
+// ã€œãƒã‚±ãƒ¢ãƒ³åº§æ¨™
 #define ZKN_FIGHT_POKETYPE_TEXT_MAT_X	( 192 * FX32_ONE )
 #define ZKN_FIGHT_POKETYPE_TEXT_MAT_Y	( 52 * FX32_ONE )
 
 
-// ƒpƒŒƒbƒgƒAƒjƒ
+// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 enum{
 	ZKN_FIGHT_PALANM_ONE,
 	ZKN_FIGHT_PALANM_TWO,
@@ -142,11 +142,11 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	‘«Õƒf[ƒ^
+//	è¶³è·¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR foot;
@@ -154,7 +154,7 @@ typedef struct {
 } ZKN_FIGHT_FOOT;
 
 //-------------------------------------
-//	`ƒ|ƒPƒ‚ƒ“
+//	ã€œãƒã‚±ãƒ¢ãƒ³
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR  poketype_text_tbl;
@@ -162,15 +162,15 @@ typedef struct {
 } ZKN_FIGHT_POKETYPE_NAME;
 
 //-------------------------------------
-//	À²Ìß
+//	ã‚¿ã‚¤ãƒ—
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR  type[ ZKN_FIGHT_TYPE_NUM ];
-	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ResourceƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// Resourceã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
 } ZKN_FIGHT_TYPE;
 
 //-------------------------------------
-//	ƒpƒŒƒbƒgƒAƒjƒƒ[ƒN
+//	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	void* p_pltt_buff[ ZKN_FIGHT_PALANM_NUM ];
@@ -184,24 +184,24 @@ typedef struct {
 
 
 //-------------------------------------
-//	•`‰æƒ[ƒN
+//	æç”»ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _ZKN_FIGHT_TEXT_DRAW{
 	GF_BGL_INI*			p_bgl;		// BGL
-	GF_BGL_BMPWIN*		p_bmp;		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
-	PALETTE_FADE_PTR	p_pfd;		// ƒpƒŒƒbƒgƒtƒF[ƒh
-	SOFT_SPRITE*		p_ssp;		// •\¦ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	CLACT_U_EASYRENDER_DATA render_data;	// ƒŒƒ“ƒ_ƒ‰[ƒf[ƒ^
-	CLACT_SET_PTR		clact_set;	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_RES_MANAGER_PTR	res_manager[ ZKN_CLACT_RES_MANAGER_NUM ];	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	ZKN_FONTOAM_SYS_PTR p_fontoam_sys;	// FONTOAMƒVƒXƒeƒ€
+	GF_BGL_BMPWIN*		p_bmp;		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	PALETTE_FADE_PTR	p_pfd;		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+	SOFT_SPRITE*		p_ssp;		// è¡¨ç¤ºãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_EASYRENDER_DATA render_data;	// ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_SET_PTR		clact_set;	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_RES_MANAGER_PTR	res_manager[ ZKN_CLACT_RES_MANAGER_NUM ];	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	ZKN_FONTOAM_SYS_PTR p_fontoam_sys;	// FONTOAMã‚·ã‚¹ãƒ†ãƒ 
 
-	ZKN_POKELIST_DATA_OAM_DATA poketbl;	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒe[ƒuƒ‹ƒf[ƒ^
-	ZKN_FIGHT_FOOT pokefoot;	// ƒ|ƒPƒ‚ƒ“‘«Õ
-	ZKN_FIGHT_POKETYPE_NAME poketype_name;	// `ƒ|ƒPƒ‚ƒ“
-	ZKN_FIGHT_TYPE poke_type;	// ƒ|ƒPƒ‚ƒ“À²Ìßƒ[ƒN
+	ZKN_POKELIST_DATA_OAM_DATA poketbl;	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ZKN_FIGHT_FOOT pokefoot;	// ãƒã‚±ãƒ¢ãƒ³è¶³è·¡
+	ZKN_FIGHT_POKETYPE_NAME poketype_name;	// ã€œãƒã‚±ãƒ¢ãƒ³
+	ZKN_FIGHT_TYPE poke_type;	// ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
 
-	u32 oam_mapping_mode_tmp;	// ƒIƒuƒWƒFƒ}ƒbƒvƒ‚[ƒh•Û‘¶
+	u32 oam_mapping_mode_tmp;	// ã‚ªãƒ–ã‚¸ã‚§ãƒãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰ä¿å­˜
 
 	u32 seq;
 
@@ -209,7 +209,7 @@ typedef struct _ZKN_FIGHT_TEXT_DRAW{
 
 	TCB_PTR tcb;
 
-	ZKN_PALANM_WORK palanm;	// ƒpƒŒƒbƒgƒAƒjƒ
+	ZKN_PALANM_WORK palanm;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 	BOOL palanm_flag;
 
 } ;
@@ -217,20 +217,20 @@ typedef struct _ZKN_FIGHT_TEXT_DRAW{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒ^ƒXƒN
+// ã‚¿ã‚¹ã‚¯
 static void ZknFight_TCB( TCB_PTR tcb, void* p_work );
 
 
-// ƒpƒŒƒbƒgƒtƒF[ƒhˆ—
+// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknFight_PalFadeWorkSet( PALETTE_FADE_PTR pfd, SOFT_SPRITE* ssp );
 static void ZknFight_PalFadeReq( PALETTE_FADE_PTR pfd, SOFT_SPRITE* ssp, int ssp_s_evy, int s_evy, int e_evy, int wait, int rgb );
 static BOOL ZknFight_PalFadeEndCheck( PALETTE_FADE_PTR pfd, SOFT_SPRITE* ssp );
 
 
-//•`‰æŠÖŒW‚Å‚·
+//æç”»é–¢ä¿‚ã§ã™
 static void ZknFight_InitDraw( ZKN_FIGHT_TEXT_DRAW* p_zftd, const ZKN_FIGHT_TEXT_PARAM* cp_param );
 static void ZknFight_DeleteDraw( ZKN_FIGHT_TEXT_DRAW* p_zftd );
 
@@ -275,7 +275,7 @@ static void ZknFight_InitCharManager( int heap );
 static void ZknFight_DeleteCharManager( void );
 
 
-// ƒpƒŒƒbƒgƒAƒjƒ
+// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 static void ZknFight_InitPalAnm( ZKN_PALANM_WORK* p_data, int heap, int poke_num_mode, ARCHANDLE* p_handle );
 static void ZknFight_MainPalAnm( ZKN_PALANM_WORK* p_data );
 static void ZknFight_DeletePalAnm( ZKN_PALANM_WORK* p_data );
@@ -285,11 +285,11 @@ static void ZknFight_TransPalAnmVblank( ZKN_PALANM_WORK* p_data, int frm );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒeƒLƒXƒg•`‰æƒŠƒNƒGƒXƒg
+ *	@brief	å›³é‘‘ãƒ†ã‚­ã‚¹ãƒˆæç”»ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	cp_param	ƒf[ƒ^ƒpƒ‰ƒ[ƒ^
+ *	@param	cp_param	ãƒ‡ãƒ¼ã‚¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *	@return	•`‰æƒ[ƒN
+ *	@return	æç”»ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 ZKN_FIGHT_TEXT_DRAW* ZKN_FIGHT_TextDrawReq( const ZKN_FIGHT_TEXT_PARAM* cp_param )
@@ -297,7 +297,7 @@ ZKN_FIGHT_TEXT_DRAW* ZKN_FIGHT_TextDrawReq( const ZKN_FIGHT_TEXT_PARAM* cp_param
 	ZKN_FIGHT_TEXT_DRAW* p_zftd = sys_AllocMemory( cp_param->heap, sizeof( ZKN_FIGHT_TEXT_DRAW ) );
 	memset( p_zftd, 0, sizeof( ZKN_FIGHT_TEXT_DRAW ) );
 
-	// ƒMƒ‰ƒeƒBƒi‚Íâ‘Î‚ÉFORMNo0
+	// ã‚®ãƒ©ãƒ†ã‚£ãƒŠã¯çµ¶å¯¾ã«FORMNo0
 	{
 		u32 monsno;
 		u32 form;
@@ -312,14 +312,14 @@ ZKN_FIGHT_TEXT_DRAW* ZKN_FIGHT_TextDrawReq( const ZKN_FIGHT_TEXT_PARAM* cp_param
 		}
 	}
 
-	// •`‰æ–Êİ’è
+	// æç”»é¢è¨­å®š
 	ZknFight_InitDraw( p_zftd, cp_param );
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒh‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
 	ZknFight_PalFadeWorkSet( p_zftd->p_pfd, p_zftd->p_ssp );
 	ZknFight_PalFadeReq( p_zftd->p_pfd, p_zftd->p_ssp, 10, 15, 0, 0, 0x0 );
 		
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	p_zftd->tcb = TCB_Add( ZknFight_TCB, p_zftd, ZKN_FIGHT_TCB_PRI );
 
 	return p_zftd;
@@ -327,32 +327,32 @@ ZKN_FIGHT_TEXT_DRAW* ZKN_FIGHT_TextDrawReq( const ZKN_FIGHT_TEXT_PARAM* cp_param
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒeƒLƒXƒg•`‰æ@”jŠü
+ *	@brief	å›³é‘‘ãƒ†ã‚­ã‚¹ãƒˆæç”»ã€€ç ´æ£„
  *
- *	@param	p_data	•`‰æƒ[ƒN
+ *	@param	p_data	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- *	ƒtƒF[ƒhƒAƒEƒgŒã‚É”jŠü‚·‚é•K—v‚ª‚ ‚è‚Ü‚·.
+ *	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾Œã«ç ´æ£„ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™.
  */
 //-----------------------------------------------------------------------------
 void ZKN_FIGHT_TextDrawDelete( ZKN_FIGHT_TEXT_DRAW* p_data )
 {
-	// ƒ[ƒN“àƒf[ƒ^”jŠü
+	// ãƒ¯ãƒ¼ã‚¯å†…ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	ZknFight_DeleteDraw( p_data );
 
-	// TCB”jŠü
+	// TCBç ´æ£„
 	TCB_Delete( p_data->tcb );
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_data );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒeƒLƒXƒg•`‰æ@I—¹ƒ`ƒFƒbƒN
+ *	@brief	å›³é‘‘ãƒ†ã‚­ã‚¹ãƒˆæç”»ã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_data		}ŠÓƒ[ƒN
+ *	@param	cp_data		å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -368,11 +368,11 @@ BOOL ZKN_FIGHT_TexDrawEndCheck( const ZKN_FIGHT_TEXT_DRAW* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ[ƒN‚ğ•Ô‚·
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¯ãƒ¼ã‚¯ã‚’è¿”ã™
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ[ƒN
+ *	@return	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 SOFT_SPRITE* ZKN_FIGHT_TexDrawGetSsp( ZKN_FIGHT_TEXT_DRAW* p_data )
@@ -382,16 +382,16 @@ SOFT_SPRITE* ZKN_FIGHT_TexDrawGetSsp( ZKN_FIGHT_TEXT_DRAW* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒAƒjƒONOFFƒtƒ‰ƒOİ’è
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ONOFFãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	p_data	ƒ[ƒN
- *	@param	flag	ƒpƒŒƒbƒgƒAƒjƒƒtƒ‰ƒO
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  *
  *	flag
- *		TRUE	ƒAƒjƒON
- *		FALSE	ƒAƒjƒOFF
+ *		TRUE	ã‚¢ãƒ‹ãƒ¡ON
+ *		FALSE	ã‚¢ãƒ‹ãƒ¡OFF
  */
 //-----------------------------------------------------------------------------
 void ZKN_FIGHT_PalAnmFlagSet( ZKN_FIGHT_TEXT_DRAW* p_data, BOOL flag )
@@ -401,12 +401,12 @@ void ZKN_FIGHT_PalAnmFlagSet( ZKN_FIGHT_TEXT_DRAW* p_data, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒAƒjƒONOFFƒtƒ‰ƒOæ“¾
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ONOFFãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	cp_data		ƒ[ƒN
+ *	@param	cp_data		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒAƒjƒ’†
- *	@retval	FALSE	ƒAƒjƒOFF’†
+ *	@retval	TRUE	ã‚¢ãƒ‹ãƒ¡ä¸­
+ *	@retval	FALSE	ã‚¢ãƒ‹ãƒ¡OFFä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_FIGHT_PalAnmFlagGet( const ZKN_FIGHT_TEXT_DRAW* cp_data )
@@ -418,15 +418,15 @@ BOOL ZKN_FIGHT_PalAnmFlagGet( const ZKN_FIGHT_TEXT_DRAW* cp_data )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æŠÖŒW‚Ì‘S‰Šú‰»
+ *	@brief	æç”»é–¢ä¿‚ã®å…¨åˆæœŸåŒ–
  *
- *	@param	p_zftd		ƒ[ƒN
- *	@param	cp_param	ƒVƒXƒeƒ€ˆø”
+ *	@param	p_zftd		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_param	ã‚·ã‚¹ãƒ†ãƒ å¼•æ•°
  *
  *	@return	none
  */
@@ -437,20 +437,20 @@ static void ZknFight_InitDraw( ZKN_FIGHT_TEXT_DRAW* p_zftd, const ZKN_FIGHT_TEXT
 	ARCHANDLE* p_handle = ArchiveDataHandleOpen( ARC_ZUKAN_GRA, cp_param->heap );
 	int form_no;
 
-	// ‘S‘}ŠÓƒiƒ“ƒo[
+	// å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼
 	p_zftd->monsno  = PokeParaGet( cp_param->p_pp, ID_PARA_monsno, NULL );
 	form_no			= PokeParaGet( cp_param->p_pp, ID_PARA_form_no, NULL );
 
-	// BGƒVƒXƒeƒ€
+	// BGã‚·ã‚¹ãƒ†ãƒ 
 	p_zftd->p_bgl = cp_param->p_bgl;
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 	p_zftd->clact_set = CLACT_U_SetEasyInit( ZKN_FIGHT_CLACT_WORKNUM, &p_zftd->render_data, cp_param->heap );
 
-	// ˆê‰OAM–Ê‚ÌƒNƒŠƒA
+	// ä¸€å¿œOAMé¢ã®ã‚¯ãƒªã‚¢
 	CLACT_UtilOamRamClear_Main( cp_param->heap );
 
-	//@ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ‰Šú‰»
+	//ã€€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 	ZknFight_InitCharManager( cp_param->heap );
 
 	// ssp
@@ -459,20 +459,20 @@ static void ZknFight_InitDraw( ZKN_FIGHT_TEXT_DRAW* p_zftd, const ZKN_FIGHT_TEXT
 			ZKN_FIGHT_POKEGRA_MAT_X, ZKN_FIGHT_POKEGRA_MAT_Y,
 			cp_param->heap );
 	
-	// ƒpƒŒƒbƒgƒtƒF[ƒh
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 	p_zftd->p_pfd	= cp_param->p_pfd;
 
-	// FONTOAMì¬
+	// FONTOAMä½œæˆ
 	fontoam_init.clact_set	= p_zftd->clact_set;
 	fontoam_init.p_bg		= p_zftd->p_bgl;
 	fontoam_init.work_num	= ZKN_FIGHT_FONTOAM_WORKNUM;
 	fontoam_init.heap		= cp_param->heap;
 	p_zftd->p_fontoam_sys	= ZKN_FONTOAM_InitSys( &fontoam_init );
 	
-	// BGSystem‰Šú‰»
+	// BGSystemåˆæœŸåŒ–
 	ZknFight_InitBgSystem( p_zftd->p_bgl, cp_param->heap );
 
-	// ‘S‚Ä‚Ì–Ê‚ğ”ñ•\¦‚É‚·‚é
+	// å…¨ã¦ã®é¢ã‚’éè¡¨ç¤ºã«ã™ã‚‹
 	G2_SetBlendBrightness( PLANEMASK_ALL, -16 );
 /*	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
@@ -480,31 +480,31 @@ static void ZknFight_InitDraw( ZKN_FIGHT_TEXT_DRAW* p_zftd, const ZKN_FIGHT_TEXT
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_OFF );
 //*/
-	// BMP‚Ìæ“¾
+	// BMPã®å–å¾—
 	p_zftd->p_bmp = ZknFight_InitTextBmp( p_zftd->p_bgl, cp_param->heap );
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	ZknFight_InitResManager( p_zftd->res_manager, cp_param->heap );
 	
-	// ƒ|ƒPƒ‚ƒ“–¼ƒe[ƒuƒ‹ì¬
+	// ãƒã‚±ãƒ¢ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	ZKN_GlbPokeNameTblResLoad_Minute( &p_zftd->poketbl, p_zftd->res_manager, cp_param->heap, p_handle );
 
-	// ƒ|ƒPƒ‚ƒ“–¼ƒe[ƒuƒ‹ƒAƒNƒ^[“o˜^
+	// ãƒã‚±ãƒ¢ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	ZKN_GlbPokeNameTblActAdd_Minute( &p_zftd->poketbl, p_zftd->clact_set, p_zftd->res_manager, cp_param->heap, ZKN_FIGHT_OAM_BG_PRI );
 
-	// ƒ|ƒPƒ‚ƒ“–¼İ’è
+	// ãƒã‚±ãƒ¢ãƒ³åè¨­å®š
 	ZknFight_InitPokeNameTblFontOamData( &p_zftd->poketbl, p_zftd->p_fontoam_sys, cp_param->heap, p_zftd->monsno, cp_param->pokenum_mode );
 	
-	// ƒ|ƒPƒ‚ƒ“–¼À•Wİ’è
+	// ãƒã‚±ãƒ¢ãƒ³ååº§æ¨™è¨­å®š
 	ZKN_UTIL_PokeListPokeNameGlbMatrixSet_Minute( &p_zftd->poketbl, ZKN_FIGHT_POKELIST_MAT_X, ZKN_FIGHT_POKELIST_MAT_Y );
 
-	// ƒ|ƒPƒ‚ƒ“–¼•\¦
+	// ãƒã‚±ãƒ¢ãƒ³åè¡¨ç¤º
 	ZKN_GlbPokeNameTblDrawFlagSet_Minute( &p_zftd->poketbl, TRUE );
 
-	// ƒ|ƒPƒtƒbƒg‰Šú‰»
+	// ãƒã‚±ãƒ•ãƒƒãƒˆåˆæœŸåŒ–
 	{
 		int foot_monsno;
-		// ƒMƒ‰ƒeƒBƒiƒIƒŠƒWƒ“ƒtƒHƒ‹ƒ€‚Ì‚Æ‚«‚¾‚¯Aƒ_ƒ~[‚Æ‚µ‚Ä‘«Õ‚Ì‚È‚¢ƒ|ƒPƒ‚ƒ“‚Ì‘«Õ‚ğo‚·
+		// ã‚®ãƒ©ãƒ†ã‚£ãƒŠã‚ªãƒªã‚¸ãƒ³ãƒ•ã‚©ãƒ«ãƒ ã®ã¨ãã ã‘ã€ãƒ€ãƒŸãƒ¼ã¨ã—ã¦è¶³è·¡ã®ãªã„ãƒã‚±ãƒ¢ãƒ³ã®è¶³è·¡ã‚’å‡ºã™
 		if((p_zftd->monsno == MONSNO_KIMAIRAN) && (form_no > 0)){
 			foot_monsno = MONSNO_TORANSERU;
 		}else{
@@ -515,93 +515,93 @@ static void ZknFight_InitDraw( ZKN_FIGHT_TEXT_DRAW* p_zftd, const ZKN_FIGHT_TEXT
 		ZknFight_PokeFootClactAdd( &p_zftd->pokefoot, p_zftd->clact_set, p_zftd->res_manager, cp_param->heap );
 	}
 
-	// ƒ|ƒPƒ‚ƒ“À²ÌßƒAƒNƒ^[‰Šú‰»
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	ZknFight_PokeTypeResLoad( &p_zftd->poke_type, p_zftd->res_manager, p_zftd->monsno, cp_param->heap, p_handle );
 	ZknFight_PokeTypeClactAdd( &p_zftd->poke_type, p_zftd->clact_set, p_zftd->res_manager, cp_param->heap, p_zftd->monsno );
 
 
-	// `ƒ|ƒPƒ‚ƒ“‰Šú‰»
+	// ã€œãƒã‚±ãƒ¢ãƒ³åˆæœŸåŒ–
 	ZknFight_PokeTypeNameClactAdd( &p_zftd->poketype_name, p_zftd->clact_set, p_zftd->res_manager, cp_param->heap, p_zftd->poke_type.res_obj );
 	ZknFight_PokeTypeNameFontAdd( &p_zftd->poketype_name, p_zftd->p_fontoam_sys, cp_param->heap, p_zftd->monsno, p_zftd->poketbl.pokelist_res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ”wŒiİ’è
+	// èƒŒæ™¯è¨­å®š
 	ZknFight_BackGroundSetUp( p_zftd->p_bgl, cp_param->heap, p_handle );
 	ZknFight_BackUtilSetUp( p_zftd->p_bgl, cp_param->heap, p_handle );
 
-	// •¶š—ñ–Êİ’è
+	// æ–‡å­—åˆ—é¢è¨­å®š
 	ZknFight_TextSetUp( p_zftd->p_bmp, cp_param->heap, p_zftd->monsno );
 
-	// ƒpƒŒƒbƒgƒAƒjƒ‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
 	ZknFight_InitPalAnm( &p_zftd->palanm, cp_param->heap, cp_param->pokenum_mode, p_handle );
-	p_zftd->palanm_flag = TRUE;		// ƒpƒŒƒbƒgƒAƒjƒƒtƒ‰ƒOON
+	p_zftd->palanm_flag = TRUE;		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°ON
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 	ArchiveDataHandleClose( p_handle );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æŠÖŒW‚Ì‘S”jŠü
+ *	@brief	æç”»é–¢ä¿‚ã®å…¨ç ´æ£„
  *
- *	@param	p_zftd		ƒ[ƒN
+ *	@param	p_zftd		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknFight_DeleteDraw( ZKN_FIGHT_TEXT_DRAW* p_zftd )
 {
-	// ƒpƒŒƒbƒgƒAƒjƒ”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ç ´æ£„
 	ZknFight_DeletePalAnm( &p_zftd->palanm );
 	
-	// ƒ|ƒPƒ‚ƒ“À²ÌßƒAƒNƒ^[
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚¢ã‚¯ã‚¿ãƒ¼
 	ZknFight_PokeTypeClactDelete( &p_zftd->poke_type );
 	ZknFight_PokeTypeResDelete( &p_zftd->poke_type, p_zftd->res_manager );
 	
-	// `ƒ|ƒPƒ‚ƒ“‚Ì”jŠü
+	// ã€œãƒã‚±ãƒ¢ãƒ³ã®ç ´æ£„
 	ZknFight_PokeTypeNameFontDelete( &p_zftd->poketype_name );
 	ZknFight_PokeTypeNameClactDelete( &p_zftd->poketype_name );
 	
-	// ƒ|ƒPƒtƒbƒg”jŠü
+	// ãƒã‚±ãƒ•ãƒƒãƒˆç ´æ£„
 	ZknFight_PokeFootClactDelete( &p_zftd->pokefoot );
 	ZknFight_PokeFootResDelete( &p_zftd->pokefoot, p_zftd->res_manager );
 	
-	// ƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒg”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆç ´æ£„
 	ZknFight_DeletePokeNameTblFontOamData( &p_zftd->poketbl );	// FONTOAM
-	ZKN_GlbPokeNameTblActDelete_Minute( &p_zftd->poketbl );		// ƒAƒNƒ^[”jŠü
-	ZKN_GlbPokeNameTblResRelease_Minute( &p_zftd->poketbl, p_zftd->res_manager );	// ƒŠƒ\[ƒX”jŠü	
+	ZKN_GlbPokeNameTblActDelete_Minute( &p_zftd->poketbl );		// ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
+	ZKN_GlbPokeNameTblResRelease_Minute( &p_zftd->poketbl, p_zftd->res_manager );	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„	
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	ZknFight_DeleteResManager( p_zftd->res_manager );
 
-	// ƒZƒ‹ƒAƒNƒ^[”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	CLACT_DestSet( p_zftd->clact_set );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZknFight_DeleteTextBmp( p_zftd->p_bmp );
 
-	// BGƒVƒXƒeƒ€”jŠü
+	// BGã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	ZknFitht_ReleaseBgSystem( p_zftd->p_bgl );
 
-	// FONTOAMƒVƒXƒeƒ€”jŠü
+	// FONTOAMã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	ZKN_FONTOAM_DeleteSys( p_zftd->p_fontoam_sys );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ”jŠü
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	ZknFight_DeleteCharManager();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒVƒXƒeƒ€ƒf[ƒ^‘‚«Š·‚¦
+ *	@brief	BGã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ›¸ãæ›ãˆ
  *
- *	@param	p_bgl	BGƒVƒXƒeƒ€
- *	@param	heap	ƒq[ƒv
+ *	@param	p_bgl	BGã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknFight_InitBgSystem( GF_BGL_INI* p_bg, int heap )
 {
-	// ƒƒCƒ“‰æ–Ê BG1–Ê		•¶š—ñ‘‚«‚İ–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ BG1é¢		æ–‡å­—åˆ—æ›¸ãè¾¼ã¿é¢
 	{
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0,
@@ -615,7 +615,7 @@ static void ZknFight_InitBgSystem( GF_BGL_INI* p_bg, int heap )
 		GF_BGL_ScrClear( p_bg, ZKN_BG_FRM_FONT_M );
 	}
 
-	// ƒƒCƒ“‰æ–Ê BG2–Ê		ƒ†[ƒeƒBƒŠƒeƒB–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ BG2é¢		ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢
 	{
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0,
@@ -629,13 +629,13 @@ static void ZknFight_InitBgSystem( GF_BGL_INI* p_bg, int heap )
 		GF_BGL_ScrClear( p_bg, ZKN_BG_FRM_UTIL_M );
 	}
 
-	// 3D–Ê
+	// 3Dé¢
 	GF_BGL_PrioritySet( GF_BGL_FRAME0_M, 0 );
 	// BG0ON
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_BGL_BGControlExit( p_bg, 0 );
 
-	// ƒƒCƒ“‰æ–Ê BG3–Ê		”wŒi–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ BG3é¢		èƒŒæ™¯é¢
 	{
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0,
@@ -654,9 +654,9 @@ static void ZknFight_InitBgSystem( GF_BGL_INI* p_bg, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BGƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^”jŠü
+ *	@brief	BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_bg	BGƒRƒ“ƒgƒ[ƒ‹
+ *	@param	p_bg	BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
  *	@return	none
  *
@@ -672,29 +672,29 @@ static void ZknFitht_ReleaseBgSystem( GF_BGL_INI* p_bg )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	í“¬•ßŠlŒã@}ŠÓ‰æ–Ê@ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+ *	@brief	æˆ¦é—˜æ•ç²å¾Œã€€å›³é‘‘ç”»é¢ã€€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
  *
- *	@param	p_bgl	BGƒVƒXƒeƒ€
- *	@param	heap	ƒq[ƒv
+ *	@param	p_bgl	BGã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE	
+ *	@return	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	
  */
 //-----------------------------------------------------------------------------
 static GF_BGL_BMPWIN* ZknFight_InitTextBmp( GF_BGL_INI* p_bgl, int heap )
 {
 	GF_BGL_BMPWIN* p_bmp;
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_bmp = GF_BGL_BmpWinAllocGet( heap, 1 );	
 	
-	// ƒ‚ƒWƒƒ“‚Ìƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“o˜^
+	// ãƒ¢ã‚¸ãƒ¡ãƒ³ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç™»éŒ²
 	GF_BGL_BmpWinAdd( p_bgl, p_bmp, ZKN_BG_FRM_FONT_M, 0, 0, ZKN_BG_FONTBMP_CX, ZKN_BG_FONTBMP_CY, ZKN_BG_FIGHT_FONT_COLOR, 0 );
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( p_bmp, 0 );
 
-	// •\¦
+	// è¡¨ç¤º
 	GF_BGL_BmpWinOn( p_bmp );
 
 	return p_bmp;
@@ -702,9 +702,9 @@ static GF_BGL_BMPWIN* ZknFight_InitTextBmp( GF_BGL_INI* p_bgl, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	í“¬•ßŠlŒã@}ŠÓ‰æ–Ê@ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	æˆ¦é—˜æ•ç²å¾Œã€€å›³é‘‘ç”»é¢ã€€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒv
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
  *
  *	@return	none
  */
@@ -718,10 +718,10 @@ static void ZknFight_DeleteTextBmp( GF_BGL_BMPWIN* p_bmp )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ìì¬
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®ä½œæˆ
  *
- *	@param	pp_res_manager	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒoƒbƒtƒ@
- *	@param	heap			ƒq[ƒv
+ *	@param	pp_res_manager	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒãƒƒãƒ•ã‚¡
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -737,9 +737,9 @@ static void ZknFight_InitResManager( CLACT_U_RES_MANAGER_PTR* pp_res_manager, in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ì‚Í‚«
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®ã¯ã
  *
- *	@param	pp_res_manager	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+ *	@param	pp_res_manager	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
  *	
  *	@return	none
  */
@@ -756,11 +756,11 @@ static void ZknFight_DeleteResManager( CLACT_U_RES_MANAGER_PTR* pp_res_manager )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“–¼ƒe[ƒuƒ‹•¶šì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«æ–‡å­—ä½œæˆ
  *
- *	@param	p_poketbl			ƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹ƒ[ƒN
- *	@param	p_fontoam_sys		ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€
- *	@param	heap				ƒq[ƒv
+ *	@param	p_poketbl			ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_fontoam_sys		ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap				ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -768,13 +768,13 @@ static void ZknFight_DeleteResManager( CLACT_U_RES_MANAGER_PTR* pp_res_manager )
 static void ZknFight_InitPokeNameTblFontOamData( ZKN_POKELIST_DATA_OAM_DATA* p_poketbl, ZKN_FONTOAM_SYS_PTR p_fontoam_sys, int heap, int monsno, int pokenum_mode )
 {
 	ZKN_FONTOAM_INIT fontoam_init;
-	GF_BGL_BMPWIN* p_bmp;	// ‘‚«‚İ—Ìˆæ
-	CLACT_U_RES_OBJ_PTR pltt_obj;	// ƒpƒŒƒbƒgƒvƒƒNƒVæ“¾—p
+	GF_BGL_BMPWIN* p_bmp;	// æ›¸ãè¾¼ã¿é ˜åŸŸ
+	CLACT_U_RES_OBJ_PTR pltt_obj;	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·å–å¾—ç”¨
 
-	// ƒ|ƒPƒ‚ƒ“–¼ƒAƒNƒ^[‚Ég—p‚·‚éƒpƒŒƒbƒgƒvƒƒNƒVæ“¾
+	// ãƒã‚±ãƒ¢ãƒ³åã‚¢ã‚¯ã‚¿ãƒ¼ã«ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·å–å¾—
 	pltt_obj = p_poketbl->pokelist_res_obj[ CLACT_U_PLTT_RES ];
 		
-	// ƒ|ƒPƒ‚ƒ“–¼ƒAƒNƒ^[ì¬
+	// ãƒã‚±ãƒ¢ãƒ³åã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆ
 	fontoam_init.zkn_fontoam = p_fontoam_sys;
 	fontoam_init.pltt		 = CLACT_U_PlttManagerGetProxy( pltt_obj, NULL );
 	fontoam_init.parent		 = p_poketbl->pokelist_tbl;
@@ -786,25 +786,25 @@ static void ZknFight_InitPokeNameTblFontOamData( ZKN_POKELIST_DATA_OAM_DATA* p_p
 	fontoam_init.heap		 = heap;
 
 
-	// •¶š—ñ‘‚«‚İ—Ìˆæì¬
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿é ˜åŸŸä½œæˆ
 	if( pokenum_mode == PM_NUMBER_SHINOU ){
 		p_bmp = ZKN_UTIL_PokeListPokeNameTblBmpMake_Shinou( p_fontoam_sys, heap, monsno );
 	}else{
 		p_bmp = ZKN_UTIL_PokeListPokeNameTblBmpMake_Zenkoku( p_fontoam_sys, heap, monsno );
 	}
 
-	// FONTOAM“o˜^
+	// FONTOAMç™»éŒ²
 	fontoam_init.p_bmp = p_bmp;
 	ZKN_GlbPokeNameTblSet_Minute( p_poketbl, &fontoam_init, 0, monsno, pokenum_mode );
-	// BMP—Ìˆæ”jŠü
+	// BMPé ˜åŸŸç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( p_bmp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹ƒtƒHƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_poketbl	ƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹ƒf[ƒ^
+ *	@param	p_poketbl	ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -819,54 +819,54 @@ static void ZknFight_DeletePokeNameTblFontOamData( ZKN_POKELIST_DATA_OAM_DATA* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šî–{“I‚ÈƒAƒNƒ^[ƒŠƒ\[ƒX“Ç‚İ‚İŠÖ”
+ *	@brief	åŸºæœ¬çš„ãªã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿é–¢æ•°
  *
- *	@param	p_res_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
- *	@param	pp_res_manager	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	heap			ƒq[ƒv
- *	@param	charidx			ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	plttidx			ƒpƒŒƒbƒgƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	cellidx			ƒZƒ‹ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	cellanmidx		ƒZƒ‹ƒAƒjƒƒCƒ“ƒfƒbƒNƒX
- *	@param	plttload_num	ƒpƒŒƒbƒg“Ç‚İ‚İ–{”
+ *	@param	p_res_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	pp_res_manager	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	charidx			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	plttidx			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	cellidx			ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	cellanmidx		ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	plttload_num	ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æœ¬æ•°
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknFight_DefaultClactResLoad( CLACT_U_RES_OBJ_PTR* p_res_obj, CLACT_U_RES_MANAGER_PTR* pp_res_manager, int heap, int arc_idx, int charidx, int plttidx, int cellidx, int cellanmidx, int plttload_num, int common_res_id )
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar( 
 			pp_res_manager[ CLACT_U_CHAR_RES ], arc_idx,
 			charidx, TRUE,
 			common_res_id,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt( 
 			pp_res_manager[ CLACT_U_PLTT_RES ], arc_idx,
 			plttidx, FALSE, 
 			common_res_id,
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			plttload_num, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell(
 			pp_res_manager[ CLACT_U_CELL_RES ], arc_idx,
 			cellidx, TRUE,
 			common_res_id,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell(
 			pp_res_manager[ CLACT_U_CELLANM_RES ], arc_idx, 
 			cellanmidx, TRUE,
@@ -876,55 +876,55 @@ static void ZknFight_DefaultClactResLoad( CLACT_U_RES_OBJ_PTR* p_res_obj, CLACT_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šî–{“I‚ÈƒAƒNƒ^[ƒŠƒ\[ƒX“Ç‚İ‚İŠÖ”
+ *	@brief	åŸºæœ¬çš„ãªã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿é–¢æ•°
  *
- *	@param	p_res_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
- *	@param	pp_res_manager	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	heap			ƒq[ƒv
- *	@param	charidx			ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	plttidx			ƒpƒŒƒbƒgƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	cellidx			ƒZƒ‹ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	cellanmidx		ƒZƒ‹ƒAƒjƒƒCƒ“ƒfƒbƒNƒX
- *	@param	plttload_num	ƒpƒŒƒbƒg“Ç‚İ‚İ–{”
- *	@param	p_handle		ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+ *	@param	p_res_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	pp_res_manager	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	charidx			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	plttidx			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	cellidx			ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	cellanmidx		ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	plttload_num	ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æœ¬æ•°
+ *	@param	p_handle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknFight_DefaultClactResLoadHandle( CLACT_U_RES_OBJ_PTR* p_res_obj, CLACT_U_RES_MANAGER_PTR* pp_res_manager, int heap, ARCHANDLE* p_handle, int charidx, int plttidx, int cellidx, int cellanmidx, int plttload_num, int common_res_id )
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			pp_res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			charidx, TRUE,
 			common_res_id,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			pp_res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			plttidx, FALSE, 
 			common_res_id,
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			plttload_num, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			pp_res_manager[ CLACT_U_CELL_RES ], p_handle,
 			cellidx, TRUE,
 			common_res_id,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			pp_res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			cellanmidx, TRUE,
@@ -935,10 +935,10 @@ static void ZknFight_DefaultClactResLoadHandle( CLACT_U_RES_OBJ_PTR* p_res_obj, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šî–{“I‚ÈƒŠƒ\[ƒX”jŠü
+ *	@brief	åŸºæœ¬çš„ãªãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_res_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF	
- *	@param	pp_res_manager	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+ *	@param	p_res_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§	
+ *	@param	pp_res_manager	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
  *
  *	@return	none
  */
@@ -948,7 +948,7 @@ static void ZknFight_DefaultClactResDelete( CLACT_U_RES_OBJ_PTR* p_res_obj, CLAC
 	CLACT_U_CharManagerDelete( p_res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			pp_res_manager[ CLACT_U_CHAR_RES ],
 			p_res_obj[ CLACT_U_CHAR_RES ] );
@@ -965,11 +965,11 @@ static void ZknFight_DefaultClactResDelete( CLACT_U_RES_OBJ_PTR* p_res_obj, CLAC
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ƒf[ƒ^ì¬
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_res_obj			ƒŠƒ\[ƒXƒIƒuƒWƒF
- *	@param	pp_res_manager		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	p_head				ƒwƒbƒ_[ƒ[ƒN
+ *	@param	p_res_obj			ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	pp_res_manager		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	p_head				ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -977,8 +977,8 @@ static void ZknFight_DefaultClactResDelete( CLACT_U_RES_OBJ_PTR* p_res_obj, CLAC
 static void ZknFight_DefaultClactHeaderMake( CLACT_U_RES_OBJ_PTR* p_res_obj, CLACT_U_RES_MANAGER_PTR* pp_res_manager, CLACT_HEADER* p_head, int bg_pri )
 {
 	
-	// Šeƒ{ƒ^ƒ“‚ğ“o˜^
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// å„ãƒœã‚¿ãƒ³ã‚’ç™»éŒ²
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( p_head,
 			CLACT_U_ResManagerGetResObjID( p_res_obj[ CLACT_U_CHAR_RES ] ),
 			CLACT_U_ResManagerGetResObjID( p_res_obj[ CLACT_U_PLTT_RES ] ),
@@ -994,12 +994,12 @@ static void ZknFight_DefaultClactHeaderMake( CLACT_U_RES_OBJ_PTR* p_res_obj, CLA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‘«ÕƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³è¶³è·¡ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	foot			‘«Õƒ[ƒN
- *	@param	pp_res_manager	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	monsno			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	heap			ƒq[ƒv
+ *	@param	foot			è¶³è·¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	pp_res_manager	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	monsno			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1012,13 +1012,13 @@ static void ZknFight_PokeFootResLoad( ZKN_FIGHT_FOOT* foot, CLACT_U_RES_MANAGER_
 	int cell_idx = PokeFootCellDataIdxGet();
 	int cellanm_idx = PokeFootCellAnmDataIdxGet();
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	ZknFight_DefaultClactResLoad( foot->res_obj, pp_res_manager, heap, arc_file, char_idx, pltt_idx, cell_idx, cellanm_idx, ZKN_ZUKAN_FOOT_PLTT_LOAD, ZKN_ZUKAN_FOOT_RES_ID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‘«ÕƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³è¶³è·¡ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
  *	@param	foot
  *	@param	pp_res_manager 
@@ -1033,12 +1033,12 @@ static void ZknFight_PokeFootResDelete( ZKN_FIGHT_FOOT* foot, CLACT_U_RES_MANAGE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‘«ÕƒAƒNƒ^[“o˜^
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³è¶³è·¡ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	foot			‘«Õƒ[ƒN
- *	@param	clact_set		ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
- *	@param	pp_res_manager	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	heap			ƒq[ƒv
+ *	@param	foot			è¶³è·¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	clact_set		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *	@param	pp_res_manager	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1048,10 +1048,10 @@ static void ZknFight_PokeFootClactAdd( ZKN_FIGHT_FOOT* foot, CLACT_SET_PTR clact
 	CLACT_ADD_SIMPLE add;
 	CLACT_HEADER head;
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	ZknFight_DefaultClactHeaderMake( foot->res_obj, pp_res_manager, &head, ZKN_FIGHT_OAM_BG_PRI );
 
-	// İ’è
+	// è¨­å®š
 	add.ClActSet	= clact_set;
 	add.ClActHeader	= &head;
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -1065,9 +1065,9 @@ static void ZknFight_PokeFootClactAdd( ZKN_FIGHT_FOOT* foot, CLACT_SET_PTR clact
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«ÕƒAƒNƒ^[”jŠü
+ *	@brief	è¶³è·¡ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	foot	‘«Õƒ[ƒN
+ *	@param	foot	è¶³è·¡ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1080,13 +1080,13 @@ static void ZknFight_PokeFootClactDelete( ZKN_FIGHT_FOOT* foot )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“À²Ìß–¼ƒe[ƒuƒ‹‚ÌƒAƒNƒ^[“o˜^
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—åãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	typename			ƒ[ƒN
- *	@param	clact_set			ƒAƒNƒ^[ƒZƒbƒg
- *	@param	pp_res_manager		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	heap				ƒq[ƒv
- *	@param	pp_poketbl_res_obj	ƒ|ƒPƒŠƒXƒg‚ÌƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	typename			ãƒ¯ãƒ¼ã‚¯
+ *	@param	clact_set			ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *	@param	pp_res_manager		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	heap				ãƒ’ãƒ¼ãƒ—
+ *	@param	pp_poketbl_res_obj	ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -1096,10 +1096,10 @@ static void ZknFight_PokeTypeNameClactAdd( ZKN_FIGHT_POKETYPE_NAME* typename, CL
 	CLACT_ADD_SIMPLE add;
 	CLACT_HEADER head;
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	ZknFight_DefaultClactHeaderMake( pp_poketbl_res_obj, pp_res_manager, &head, ZKN_FIGHT_OAM_BG_PRI );
 
-	// İ’è
+	// è¨­å®š
 	add.ClActSet	= clact_set;
 	add.ClActHeader	= &head;
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -1114,9 +1114,9 @@ static void ZknFight_PokeTypeNameClactAdd( ZKN_FIGHT_POKETYPE_NAME* typename, CL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	`ƒ|ƒPƒ‚ƒ“@‚ÌƒAƒNƒ^[”jŠü
+ *	@brief	ã€œãƒã‚±ãƒ¢ãƒ³ã€€ã®ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	typename	ƒ|ƒPƒ‚ƒ“À²Ìß–¼ƒ[ƒN
+ *	@param	typename	ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—åãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1128,13 +1128,13 @@ static void ZknFight_PokeTypeNameClactDelete( ZKN_FIGHT_POKETYPE_NAME* typename 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	`ƒ|ƒPƒ‚ƒ“ƒtƒHƒ“ƒgOAMƒAƒbƒh
+ *	@brief	ã€œãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚©ãƒ³ãƒˆOAMã‚¢ãƒƒãƒ‰
  *
- *	@param	typename			`ƒ|ƒPƒ‚ƒ“ƒ[ƒN
- *	@param	p_fontoam_sys		ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€
- *	@param	heap				ƒq[ƒv
- *	@param	monsno				ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	pltt_res			g—pƒpƒŒƒbƒgƒŠƒ\[ƒX
+ *	@param	typename			ã€œãƒã‚±ãƒ¢ãƒ³ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_fontoam_sys		ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap				ãƒ’ãƒ¼ãƒ—
+ *	@param	monsno				ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	pltt_res			ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
  *
  *	@return	none
  */
@@ -1144,10 +1144,10 @@ static void ZknFight_PokeTypeNameFontAdd( ZKN_FIGHT_POKETYPE_NAME* typename, ZKN
 	GF_BGL_BMPWIN* p_bmp;
 	ZKN_FONTOAM_INIT fontoam_init;
 
-	// •¶šƒf[ƒ^ì¬
+	// æ–‡å­—ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_bmp = ZknZukanPokeTypeTextBmpMake( p_fontoam_sys, monsno, heap );
 
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_fontoam_sys;
 	fontoam_init.pltt		 = CLACT_U_PlttManagerGetProxy( pltt_res, NULL );
 	fontoam_init.parent		 = typename->poketype_text_tbl;
@@ -1160,15 +1160,15 @@ static void ZknFight_PokeTypeNameFontAdd( ZKN_FIGHT_POKETYPE_NAME* typename, ZKN
 	fontoam_init.p_bmp		 = p_bmp;
 	typename->p_poketype_text = ZKN_FONTOAM_Make( &fontoam_init );
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( p_bmp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	`ƒ|ƒPƒ‚ƒ“@ƒtƒHƒ“ƒgOAM”jŠü
+ *	@brief	ã€œãƒã‚±ãƒ¢ãƒ³ã€€ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
  *
- *	@param	typename	`ƒ|ƒPƒ‚ƒ“ƒ[ƒN
+ *	@param	typename	ã€œãƒã‚±ãƒ¢ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1181,12 +1181,12 @@ static void ZknFight_PokeTypeNameFontDelete( ZKN_FIGHT_POKETYPE_NAME* typename )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“À²Ìß@ƒAƒNƒ^[@ƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã€€ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	type				À²Ìßƒ[ƒN
- *	@param	pp_res_manager		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	monsno				ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	heap				ƒq[ƒv
+ *	@param	type				ã‚¿ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pp_res_manager		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	monsno				ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	heap				ãƒ’ãƒ¼ãƒ—
  *	@param	p_handle
  *
  *	@return	none
@@ -1194,7 +1194,7 @@ static void ZknFight_PokeTypeNameFontDelete( ZKN_FIGHT_POKETYPE_NAME* typename )
 //-----------------------------------------------------------------------------
 static void ZknFight_PokeTypeResLoad( ZKN_FIGHT_TYPE* type, CLACT_U_RES_MANAGER_PTR* pp_res_manager, int monsno, int heap, ARCHANDLE* p_handle )
 {
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	ZknFight_DefaultClactResLoadHandle( type->res_obj, 
 			pp_res_manager, heap, p_handle, 
 			NARC_zukan_zkn_data_oam_main2_lzh_NCGR,
@@ -1207,10 +1207,10 @@ static void ZknFight_PokeTypeResLoad( ZKN_FIGHT_TYPE* type, CLACT_U_RES_MANAGER_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“À²ÌßƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	type				À²Ìß
- *	@param	pp_res_manager		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+ *	@param	type				ã‚¿ã‚¤ãƒ—
+ *	@param	pp_res_manager		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
  *
  *	@return	none
  */
@@ -1222,13 +1222,13 @@ static void ZknFight_PokeTypeResDelete( ZKN_FIGHT_TYPE* type, CLACT_U_RES_MANAGE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“À²ÌßƒAƒNƒ^[“o˜^
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	type			À²Ìßƒ[ƒN
- *	@param	clact_set		ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
- *	@param	pp_res_manager	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	heap			ƒq[ƒv
- *	@param	monsno			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	type			ã‚¿ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	clact_set		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *	@param	pp_res_manager	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	monsno			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *		
  *	@return	none
  */
@@ -1241,28 +1241,28 @@ static void ZknFight_PokeTypeClactAdd( ZKN_FIGHT_TYPE* type, CLACT_SET_PTR clact
 
 	type1 = PokePersonalParaGet( monsno, ID_PER_type1 );
 	type2 = PokePersonalParaGet( monsno, ID_PER_type2 );
-	// type‚ğƒjƒgƒƒLƒƒƒ‰ƒNƒ^‚ÌƒAƒjƒƒV[ƒPƒ“ƒXƒiƒ“ƒo[‚É•ÏX
+	// typeã‚’ãƒ‹ãƒˆãƒ­ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ã«å¤‰æ›´
 	type1 =	ZknZukanClactTypeNoChg( type1 );
 	type2 =	ZknZukanClactTypeNoChg( type2 );
 
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	ZknFight_DefaultClactHeaderMake(type->res_obj, pp_res_manager, &head, ZKN_FIGHT_OAM_BG_PRI );
 	
-	// İ’è
+	// è¨­å®š
 	add.ClActSet	= clact_set;
 	add.ClActHeader	= &head;
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 	add.pri			= ZKN_FIGHT_OAM_SOFT_PRI;
 	add.heap		= heap;
 
-	// À²Ìß1
+	// ã‚¿ã‚¤ãƒ—1
 	add.mat.x		= ZKN_FIGHT_POKETYPE1_MAT_X;
 	add.mat.y		= ZKN_FIGHT_POKETYPE_MAT_Y;
 	type->type[ ZKN_FIGHT_TYPE_1 ] = CLACT_AddSimple( &add );
 	CLACT_AnmChg( type->type[ ZKN_FIGHT_TYPE_1 ], ZKN_ZUKAN_POKETYPE_NORMAL + type1 );
 
-	// ƒ^ƒCƒv2
+	// ã‚¿ã‚¤ãƒ—2
 	if( type1 != type2 ){
 		add.mat.x = ZKN_FIGHT_POKETYPE2_MAT_X;
 		add.mat.y = ZKN_FIGHT_POKETYPE_MAT_Y;
@@ -1275,9 +1275,9 @@ static void ZknFight_PokeTypeClactAdd( ZKN_FIGHT_TYPE* type, CLACT_SET_PTR clact
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN@ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã€€ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	type À²Ìß
+ *	@param	type ã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  */
@@ -1294,11 +1294,11 @@ static void ZknFight_PokeTypeClactDelete( ZKN_FIGHT_TYPE* type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒiİ’è
+ *	@brief	èƒŒæ™¯è¨­å®š
  *
- *	@param	p_bg	BGƒVƒXƒeƒ€
- *	@param	heap	ƒq[ƒv
- *	@param	p_handleƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+ *	@param	p_bg	BGã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
+ *	@param	p_handleã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
  *
  *	@return	none
  */
@@ -1308,58 +1308,58 @@ static void ZknFight_BackGroundSetUp( GF_BGL_INI* p_bg, int heap, ARCHANDLE* p_h
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_HDL_PalSet( p_handle, NARC_zukan_zkn_data_NCLR, PALTYPE_MAIN_BG, 0, 0, heap );
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_zukan_zkn_data_main_lzh_NCGR, p_bg, ZKN_BG_FRM_BACK_M, 0, 0, TRUE, heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ArcUtil_HDL_ScrnDataGet( p_handle, NARC_zukan_zkn_data_bg_main1_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_bg, ZKN_BG_FRM_BACK_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì•\¦˜g‚ğ”wŒi‚É“\‚è•t‚¯	
+	// ãƒã‚±ãƒ¢ãƒ³ã®è¡¨ç¤ºæ ã‚’èƒŒæ™¯ã«è²¼ã‚Šä»˜ã‘	
 	buff = ArcUtil_HDL_ScrnDataGet( p_handle, NARC_zukan_zkn_data_bg_main1_a_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_bg, ZKN_BG_FRM_BACK_M, p_scrn->rawData,
 			ZKN_FIGHT_POKE_DRAW_FRAME_CX, ZKN_FIGHT_POKE_DRAW_FRAME_CY,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒ|ƒPƒ‚ƒ“‘«Õ‚Ì•\¦˜g‚ğ”wŒi‚É“\‚è•t‚¯	
+	// ãƒã‚±ãƒ¢ãƒ³è¶³è·¡ã®è¡¨ç¤ºæ ã‚’èƒŒæ™¯ã«è²¼ã‚Šä»˜ã‘	
 	buff = ArcUtil_HDL_ScrnDataGet( p_handle, NARC_zukan_zkn_data_bg_main1_b_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_bg, ZKN_BG_FRM_BACK_M, p_scrn->rawData,
 			ZKN_FIGHT_FOOT_FRAME_CX, ZKN_FIGHT_FOOT_FRAME_CY,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒ|ƒPƒ‚ƒ“à–¾text˜g‚ğ“\‚è•t‚¯	
+	// ãƒã‚±ãƒ¢ãƒ³èª¬æ˜textæ ã‚’è²¼ã‚Šä»˜ã‘	
 	buff = ArcUtil_HDL_ScrnDataGet( p_handle, NARC_zukan_zkn_data_bg_main1_d_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_bg, ZKN_BG_FRM_BACK_M, p_scrn->rawData,
 			ZKN_FIGHT_TEXT_FRAME_CX, ZKN_FIGHT_TEXT_FRAME_CY,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_bg, ZKN_BG_FRM_BACK_M );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒ†[ƒeƒBƒŠƒeƒB–Êİ’è
+ *	@brief	å›³é‘‘ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢è¨­å®š
  *
  *	@param	p_bg
  *	@param	heap 
@@ -1372,30 +1372,30 @@ static void ZknFight_BackUtilSetUp( GF_BGL_INI* p_bg, int heap, ARCHANDLE* p_han
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_zukan_zkn_data_main_lzh_NCGR, p_bg, ZKN_BG_FRM_UTIL_M, 0, 0, TRUE, heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ArcUtil_HDL_ScrnDataGet( p_handle, NARC_zukan_zkn_data_bg_main2_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_bg, ZKN_BG_FRM_UTIL_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_bg, ZKN_BG_FRM_UTIL_M );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ßŠlŒã‰æ–Êƒ^ƒXƒN
+ *	@brief	æ•ç²å¾Œç”»é¢ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb			ƒ^ƒXƒNƒ[ƒN
- *	@param	p_work		ƒf[ƒ^ƒ[ƒN
+ *	@param	tcb			ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1407,7 +1407,7 @@ static void ZknFight_TCB( TCB_PTR tcb, void* p_work )
 	
 	switch( p_zftd->seq ){
 	case ZKN_FIGHT_FADE_IN:
-		// •\¦ON
+		// è¡¨ç¤ºON
 		G2_BlendNone();
 /*		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
@@ -1425,7 +1425,7 @@ static void ZknFight_TCB( TCB_PTR tcb, void* p_work )
 
 	case ZKN_FIGHT_SND_PLY:
 		check = Snd_PMVoicePlayEx( PV_ZUKAN_NORMAL, p_zftd->monsno, PV_PTN_PARAM_NONE, 
-								   PV_PTN_PARAM_NONE, PV_PTN_PARAM_NONE, 0 );	//‚Øƒ‰ƒbƒv(default)
+								   PV_PTN_PARAM_NONE, PV_PTN_PARAM_NONE, 0 );	//ãºãƒ©ãƒƒãƒ—(default)
 		GF_ASSERT( check );
 		p_zftd->seq++;
 		break;
@@ -1443,22 +1443,22 @@ static void ZknFight_TCB( TCB_PTR tcb, void* p_work )
 		break;
 	}
 
-	// ƒpƒŒƒbƒgƒAƒjƒƒtƒ‰ƒO
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
 	if( p_zftd->palanm_flag ){
-		// ƒpƒŒƒbƒgƒAƒjƒ
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 		ZknFight_MainPalAnm( &p_zftd->palanm );
 	}
 
-	// ƒZƒ‹ƒAƒNƒ^[•`‰æ
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»
 	CLACT_Draw( p_zftd->clact_set );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒtƒF[ƒh—pƒ[ƒNì¬
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- *	@param	pfd		ƒpƒŒƒbƒgƒtƒF[ƒhƒ[ƒN
- *	@param	ssp		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+ *	@param	pfd		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	ssp		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  *	
  *	@return	none
  */
@@ -1471,10 +1471,10 @@ static void ZknFight_PalFadeWorkSet( PALETTE_FADE_PTR pfd, SOFT_SPRITE* ssp )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒtƒF[ƒh@ƒtƒF[ƒhƒCƒ“ƒŠƒNƒGƒXƒg
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	pfd		ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€
- *	@param	ssp		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+ *	@param	pfd		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	ssp		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  *
  *	@return	none
  */
@@ -1484,19 +1484,19 @@ static void ZknFight_PalFadeReq( PALETTE_FADE_PTR pfd, SOFT_SPRITE* ssp, int ssp
 	SoftSpritePalFadeSet( ssp, ssp_s_evy, e_evy, wait, rgb );
 	PaletteFadeReq( pfd, PF_BIT_MAIN_BG|PF_BIT_MAIN_OBJ, 0xffff, wait, s_evy, e_evy, rgb );
 
-	// ‘S“]‘—‚Í‚µ‚È‚¢
+	// å…¨è»¢é€ã¯ã—ãªã„
 	PaletteTrans_AutoSet( pfd, FALSE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒtƒF[ƒhI—¹ƒ`ƒFƒbƒN
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	pfd		ƒpƒŒƒbƒgƒtƒF[ƒh
- *	@param	ssp		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+ *	@param	pfd		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+ *	@param	ssp		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknFight_PalFadeEndCheck( PALETTE_FADE_PTR pfd, SOFT_SPRITE* ssp )
@@ -1516,11 +1516,11 @@ static BOOL ZknFight_PalFadeEndCheck( PALETTE_FADE_PTR pfd, SOFT_SPRITE* ssp )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•¶š—ñ•`‰æ
+ *	@brief	æ–‡å­—åˆ—æç”»
  *
- *	@param	p_bmp		‘‚«‚İæ
- *	@param	heap		ƒq[ƒv
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[ 
+ *	@param	p_bmp		æ›¸ãè¾¼ã¿å…ˆ
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ 
  *
  *	@return	none
  */
@@ -1529,16 +1529,16 @@ static void ZknFight_TextSetUp( GF_BGL_BMPWIN* p_bmp, int heap, int monsno )
 {
 	ZknZukanSetUpFontBg_Minute( p_bmp, monsno, heap, 0, ZKN_BG_FIGHT_FONT_COLOR_MSK );
 
-	// ƒ|ƒPƒ‚ƒ“}ŠÓ‚Ì@“o˜^@Š®—¹
+	// ãƒã‚±ãƒ¢ãƒ³å›³é‘‘ã®ã€€ç™»éŒ²ã€€å®Œäº†
 	ZknFight_FontSetPokeTitle( p_bmp, heap );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“}ŠÓ‚Ì@“o˜^@Š®—¹
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å›³é‘‘ã®ã€€ç™»éŒ²ã€€å®Œäº†
  *
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒv	
- *	@param	heap		ƒq[ƒv
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—	
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1548,7 +1548,7 @@ static void ZknFight_FontSetPokeTitle( GF_BGL_BMPWIN* p_bmp, int heap )
 	STRBUF* str = STRBUF_Create(ZKN_FIGHT_NUM_STR, heap);
 	MSGDATA_MANAGER* man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_zkn_dat, heap);
 
-	//	ƒ|ƒPƒ‚ƒ“}ŠÓ‚Ì@“o˜^@Š®—¹
+	//	ãƒã‚±ãƒ¢ãƒ³å›³é‘‘ã®ã€€ç™»éŒ²ã€€å®Œäº†
 	MSGMAN_GetString( man, ZKN_POKEGET_00, str );
 	GF_STR_PrintColor( p_bmp, FONT_SYSTEM, str, ZKN_FIGHT_TITLE_TEXT_X, ZKN_FIGHT_TITLE_TEXT_Y, 0, ZKN_BG_FIGHT_FONT_COLOR2_MSK, NULL );
 
@@ -1558,13 +1558,13 @@ static void ZknFight_FontSetPokeTitle( GF_BGL_BMPWIN* p_bmp, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg@‚Ì‰Šú‰»
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã€€ã®åˆæœŸåŒ–
  *
- *	@param	p_ssp		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
- *	@param	p_pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	heap		ƒq[ƒv
+ *	@param	p_ssp		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+ *	@param	p_pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	SOFT_SPRITE
  */
@@ -1585,12 +1585,12 @@ static SOFT_SPRITE* ZknFight_InitSoftSprite( SOFT_SPRITE_MANAGER* p_ssp, POKEMON
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğæ“¾‚·‚é
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	mode	ƒ‚[ƒh
- *	@param	p_pp	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ *	@param	mode	ãƒ¢ãƒ¼ãƒ‰
+ *	@param	p_pp	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *	@return	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ *	@return	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static int ZknFight_GetPokemonNumber( u32 mode, POKEMON_PARAM* p_pp )
@@ -1603,7 +1603,7 @@ static int ZknFight_GetPokemonNumber( u32 mode, POKEMON_PARAM* p_pp )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ‰Šú‰»
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  *
  *	@param	heap	
  *
@@ -1624,7 +1624,7 @@ static void ZknFight_InitCharManager( int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ”jŠü
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
  *
  *	@param	none 
  *
@@ -1639,11 +1639,11 @@ static void ZknFight_DeleteCharManager( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒAƒjƒ‰Šú‰»
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
  *
- *	@param	p_data	ƒ[ƒN
- *	@param	heap	ƒq[ƒv
- *	@param	poke_num_mode ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[ƒ‚[ƒh
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
+ *	@param	poke_num_mode ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ãƒ¢ãƒ¼ãƒ‰
  *
  *	@return	none
  */
@@ -1652,14 +1652,14 @@ static void ZknFight_InitPalAnm( ZKN_PALANM_WORK* p_data, int heap, int poke_num
 {
 	int i;
 	
-	// 1ƒtƒŒ–Ú
+	// 1ãƒ•ãƒ¬ç›®
 	if( poke_num_mode == PM_NUMBER_SHINOU ){
 		p_data->p_pltt_buff[ZKN_FIGHT_PALANM_ONE] = ArcUtil_HDL_PalDataGet( p_handle, NARC_zukan_zkn_data_sin_NCLR, &p_data->p_plt[ZKN_FIGHT_PALANM_ONE], heap );
 	}else{
 		p_data->p_pltt_buff[ZKN_FIGHT_PALANM_ONE] = ArcUtil_HDL_PalDataGet( p_handle, NARC_zukan_zkn_data_zen_NCLR, &p_data->p_plt[ZKN_FIGHT_PALANM_ONE], heap );
 	}
 	
-	// 2ƒtƒŒ–Ú
+	// 2ãƒ•ãƒ¬ç›®
 	p_data->p_pltt_buff[ZKN_FIGHT_PALANM_TWO] = ArcUtil_HDL_PalDataGet( p_handle, NARC_zukan_zkn_data_get_NCLR, &p_data->p_plt[ZKN_FIGHT_PALANM_TWO], heap );
 
 
@@ -1669,45 +1669,45 @@ static void ZknFight_InitPalAnm( ZKN_PALANM_WORK* p_data, int heap, int poke_num
 		p_data->anmtbl[ i ] = (i+1) * ZKN_FIGHT_PALANM_TIMING;
 	}
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ZknFight_TransPalAnm( p_data, p_data->now_set );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒAƒjƒƒƒCƒ“
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknFight_MainPalAnm( ZKN_PALANM_WORK* p_data )
 {
-	// ƒAƒjƒ§Œä
+	// ã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡
 	if( p_data->anmtbl[ p_data->now_set ] <= p_data->count ){
 
-		// ƒAƒjƒXV
+		// ã‚¢ãƒ‹ãƒ¡æ›´æ–°
 		p_data->now_set ++;
 
 		if( p_data->now_set >= ZKN_FIGHT_PALANM_NUM ){
 			p_data->now_set = 0;
 			p_data->count = 0;
 		}
-		// ƒAƒjƒ“]‘—
+		// ã‚¢ãƒ‹ãƒ¡è»¢é€
 		ZknFight_TransPalAnmVblank( p_data, p_data->now_set );
 //		ZknFight_TransPalAnm( p_data, p_data->now_set );		
 	}else{
-		// ƒJƒEƒ“ƒgƒAƒbƒv
+		// ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 		p_data->count ++;	
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒAƒjƒ”jŠü
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ç ´æ£„
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1724,10 +1724,10 @@ static void ZknFight_DeletePalAnm( ZKN_PALANM_WORK* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒg“]‘—
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
  *
- *	@param	p_data	ƒ[ƒN
- *	@param	frm		İ’èƒtƒŒ[ƒ€
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
+ *	@param	frm		è¨­å®šãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  *	@return	none
  */
@@ -1743,10 +1743,10 @@ static void ZknFight_TransPalAnm( ZKN_PALANM_WORK* p_data, int frm )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒg“]‘—
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
  *
- *	@param	p_data	ƒ[ƒN
- *	@param	frm		İ’èƒtƒŒ[ƒ€
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
+ *	@param	frm		è¨­å®šãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  *	@return	none
  */

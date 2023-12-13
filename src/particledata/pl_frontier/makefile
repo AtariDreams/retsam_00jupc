@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ƒtƒƒ“ƒeƒBƒA—pƒp[ƒeƒBƒNƒ‹
+# Project:  ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 # File:     Makefile
 #
 # Copyright 2007 GameFreak.inc  All rights reserved.
@@ -17,7 +17,7 @@ include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
 
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= frontier_particle.narc frontier_particle.naix
 
 #----------------------------------------------------------------------------
@@ -27,13 +27,13 @@ include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 .SUFFIXES:.spa.narc
 
 #-------------------------------
-#	Às‡
-#		ƒŠƒ\[ƒXƒRƒs[
-#		ƒŠƒ\[ƒXƒA[ƒJƒCƒu
-#		‹ZƒGƒtƒFƒNƒgƒA[ƒJƒCƒu
+#	å®Ÿè¡Œé †
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚³ãƒ”ãƒ¼
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+#		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 #-------------------------------
 do-build: particledata.narc
-#---------- ‹ZƒGƒtƒFƒNƒg—pƒp[ƒeƒBƒNƒ‹‚ğƒA[ƒJƒCƒu‚·‚é ----------
+#---------- æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ ----------
 particledata.narc: $(SPAFILES)
 	nnsarc -c -l -n -i frontier_particle.narc -S frontier_particle.lst
 	$(ETD) frontier_particle.naix

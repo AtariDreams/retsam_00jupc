@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_097.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			097�@�������u�˂ނ�v��Ԃ̎��������ʂ̂���Z�i�u�˂ނ�v��ԂłȂ��ƋZ�͎��s����j�A�����Ă���Z�������_���Ŏg��
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			097　自分が「ねむり」状態の時だけ効果のある技（「ねむり」状態でないと技は失敗する）、持っている技をランダムで使う
  *
  *@author	HisashiSogabe
  *@data		2006.01.24
@@ -17,7 +17,7 @@
 BE_097:
 //	VALUE	VAL_SET,BUF_PARA_ADD_STATUS_DIRECT,ADD_COND2_NEGOTO|ADD_STATUS_WAZAKOUKA
 //	SEQ_END
-	//�˂ނ��Ԃ���Ȃ��Ƃ��́A���܂����܂��
+	//ねむり状態じゃないときは、うまくきまらん
 	IF_PSP			IF_FLAG_NBIT,SIDE_ATTACK,ID_PSP_condition,CONDITION_NEMURI,Umakukimaran
 	GOSUB			SUB_SEQ_SLEEPING
 	NEGOTO			Umakukimaran

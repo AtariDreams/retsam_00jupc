@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_sortsearch_sub.c
- *	@brief		ŒŸõƒ\[ƒgƒTƒu‰æ–ÊƒTƒu‰æ–Ê		‹¤’Ê•”•ª
+ *	@brief		æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚µãƒ–ç”»é¢ã‚µãƒ–ç”»é¢		å…±é€šéƒ¨åˆ†
  *	@author		tomoya takahashi 
  *	@data		2006.01.21
  *
@@ -34,31 +34,31 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_SORTSEARCHSUB_EVENT_NUM ( 0 )	// ƒCƒxƒ“ƒg”
+#define ZKN_SORTSEARCHSUB_EVENT_NUM ( 0 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
 
 
 //-------------------------------------
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_SORTSEARCHSUB_SEQINIT_ALLOC,
@@ -75,7 +75,7 @@ enum{
 };
 
 
-//ƒAƒjƒƒV[ƒPƒ“ƒX
+//ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ZKN_SORTSEARCHSUB_MAIN_BUTTON,
 	ZKN_SORTSEARCHSUB_ACTION_BUTTON,
@@ -104,23 +104,23 @@ enum{
 	ZKN_SORTSEARCHSUB_FORM_NONE,
 };
 
-// ˆ—ƒtƒ‰ƒO‚Ì‰Šú‰»”
+// å‡¦ç†ãƒ•ãƒ©ã‚°ã®åˆæœŸåŒ–æ•°
 #define ZKN_SORTSEARCHSUB_DO_FLAG_INIT ( 0xffff )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒ{ƒ^ƒ“ƒJ[ƒ\ƒ‹ÃÞ°À‹¤’Ê•”•ª
+ *		ãƒœã‚¿ãƒ³ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿å…±é€šéƒ¨åˆ†
  */
 //-----------------------------------------------------------------------------
-// ‹¤’ÊˆÈŠO‚Ìƒ{ƒ^ƒ“‚ÌÅ‘å”
+// å…±é€šä»¥å¤–ã®ãƒœã‚¿ãƒ³ã®æœ€å¤§æ•°
 #define ZKN_SORTSEARCHSUB_BUTTON_SUB_MAX	( 15 )
 
 
-// cŽ²‚Ì”
+// ç¸¦è»¸ã®æ•°
 #define ZKN_SORTSEARCHSUB_BUTTON_Y_NUM		( 6 )
 
 
-// YÀ•WˆÊ’u
+// Yåº§æ¨™ä½ç½®
 #define ZKN_SORTSEARCHSUB_BUTTON_00_Y		( 16 )	
 #define ZKN_SORTSEARCHSUB_BUTTON_01_Y		( 48 )	
 #define ZKN_SORTSEARCHSUB_BUTTON_02_Y		( 80 )
@@ -128,12 +128,12 @@ enum{
 #define ZKN_SORTSEARCHSUB_BUTTON_04_Y		( 144 )
 #define ZKN_SORTSEARCHSUB_BUTTON_05_Y		( 176 )
 
-// ‚È‚ç‚Ñ@‚È‚Ü‚¦@‚½‚¢‚Õ‹¤’ÊXÀ•W
+// ãªã‚‰ã³ã€€ãªã¾ãˆã€€ãŸã„ã·å…±é€šXåº§æ¨™
 #define ZKN_SORTSEARCHSUB_BUTTONDEF_00_X	( 48 )
 #define ZKN_SORTSEARCHSUB_BUTTONDEF_01_X	( 128 )
 
 
-// ‚Ó‚§‚ñ‚ÆOAM‚Ì•¶Žš”•ÊOFSET
+// ãµã‰ã‚“ã¨OAMã®æ–‡å­—æ•°åˆ¥OFSET
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_2_X		( -12 )
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X		( -18 )
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_4_X		( -24 )
@@ -146,16 +146,16 @@ enum{
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_OTHER_PLTOFS	( 0xB )
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_OTHER_PUSHPLTOFS	( 6 )
 
-// ƒJ[ƒ\ƒ‹YŽ²”
+// ã‚«ãƒ¼ã‚½ãƒ«Yè»¸æ•°
 #define ZKN_SORTSEARCHSUB_CURSOR_MAX_Y	( ZKN_SORTSEARCHSUB_BUTTON_Y_NUM )
 
-// ŽÀs‚ÆŠî–{ƒ{ƒ^ƒ“‚ÌƒTƒCƒY
+// å®Ÿè¡Œã¨åŸºæœ¬ãƒœã‚¿ãƒ³ã®ã‚µã‚¤ã‚º
 #define ZKN_SORTSEARCHSUB_BUTTON_ACTION_SIZX	( 80 )
 #define ZKN_SORTSEARCHSUB_BUTTON_ACTION_SIZY	( 32 )
 #define ZKN_SORTSEARCHSUB_CURSOR_ACTION_SIZX	( 60 )
 #define ZKN_SORTSEARCHSUB_CURSOR_ACTION_SIZY	( 16 )
 
-// À²Ìß1‚ÆÀ²Ìß2‚Ìƒy[ƒWØ‚è‘Ö‚¦ƒ{ƒ^ƒ“ƒTƒCƒY
+// ã‚¿ã‚¤ãƒ—1ã¨ã‚¿ã‚¤ãƒ—2ã®ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define ZKN_SORTSEARCHSUB_BUTTON_PAGE_SIZX	( 32 )
 #define ZKN_SORTSEARCHSUB_BUTTON_PAGE_SIZY	( 32 )
 #define ZKN_SORTSEARCHSUB_CURSOR_PAGE_SIZX	( 16 )
@@ -163,7 +163,7 @@ enum{
 
 
 //-------------------------------------
-//	ƒJ[ƒ\ƒ‹§ŒäID	ƒJ[ƒ\ƒ‹ID‚Í‚©‚Ô‚ç‚È‚¢‚æ‚¤‚É‚·‚é
+//	ã‚«ãƒ¼ã‚½ãƒ«åˆ¶å¾¡ID	ã‚«ãƒ¼ã‚½ãƒ«IDã¯ã‹ã¶ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹
 //=====================================
 enum{
 	ZKN_SORTSEARCHSUB_CURSOR_ID_BACK,
@@ -190,16 +190,16 @@ enum{
 	ZKN_SORTSEARCHSUB_SURSOR_ID_NUM,
 };
 
-// ƒJ[ƒ\ƒ‹‚Ì–³‚¢‚Æ‚±‚ë‚É“ü‚ê‚éID
+// ã‚«ãƒ¼ã‚½ãƒ«ã®ç„¡ã„ã¨ã“ã‚ã«å…¥ã‚Œã‚‹ID
 #define ZKN_SORTSEARCHSUB_CURSOR_ID_NONE	( 0xff )
 
 //-----------------------------------------------------------------------------
 /**
- *		‹¤’Ê•”•ªƒ{ƒ^ƒ“ƒJ[ƒ\ƒ‹ÃÞ°À
+ *		å…±é€šéƒ¨åˆ†ãƒœã‚¿ãƒ³ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒTƒuƒRƒ‚ƒ“ƒ{ƒ^ƒ“”
+//	ã‚µãƒ–ã‚³ãƒ¢ãƒ³ãƒœã‚¿ãƒ³æ•°
 //=====================================
 enum{
 	ZKN_SORTSEARCHSUB_BUTTON_BACK,
@@ -228,7 +228,7 @@ enum{
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX	( 8 )
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY	( 2 )
 
-// ƒJ[ƒ\ƒ‹
+// ã‚«ãƒ¼ã‚½ãƒ«
 #define ZKN_SORTSEARCHSUB_CURSOR_SIZX		( 44 )
 #define ZKN_SORTSEARCHSUB_CURSOR_SIZY		( 16 )
 #define ZKN_SORTSEARCHSUB_CURSOR_BACK_SIZX	( 28 )
@@ -238,11 +238,11 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *		‚È‚ç‚Ñ‰æ–Êƒ{ƒ^ƒ“”z’uÃÞ°À
+ *		ãªã‚‰ã³ç”»é¢ãƒœã‚¿ãƒ³é…ç½®ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒTƒuƒ{ƒ^ƒ“”
+//	ã‚µãƒ–ãƒœã‚¿ãƒ³æ•°
 //=====================================
 enum{
 	ZKN_SORTSEARCHSUB_BUTTON_NARABI_NUMBER,
@@ -258,16 +258,16 @@ enum{
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NARABI_SIZE_CX	( 10 )
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NARABI_SIZE_CY	( 2 )
 
-// ƒJ[ƒ\ƒ‹
+// ã‚«ãƒ¼ã‚½ãƒ«
 #define ZKN_SORTSEARCHSUB_CURSOR_NARABI_MAX_X	( 3 )
 
 //-----------------------------------------------------------------------------
 /**
- *		‚È‚Ü‚¦‰æ–Êƒ{ƒ^ƒ“”z’uÃÞ°À
+ *		ãªã¾ãˆç”»é¢ãƒœã‚¿ãƒ³é…ç½®ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒTƒuƒ{ƒ^ƒ“”
+//	ã‚µãƒ–ãƒœã‚¿ãƒ³æ•°
 //=====================================
 enum{
 	ZKN_SORTSEARCHSUB_BUTTON_NAME_A,
@@ -285,7 +285,7 @@ enum{
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/18
-// ƒ\[ƒg‚ðŒÜ\‰¹‚©‚çƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚É
+// ã‚½ãƒ¼ãƒˆã‚’äº”åéŸ³ã‹ã‚‰ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«
 
 #define ZKN_SORTSEARCHSUB_BUTTON_NAME_ABC	ZKN_SORTSEARCHSUB_BUTTON_NAME_A
 #define ZKN_SORTSEARCHSUB_BUTTON_NAME_DEF	ZKN_SORTSEARCHSUB_BUTTON_NAME_HA
@@ -303,21 +303,21 @@ enum{
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NAME_SIZE_CX	( 10 )
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NAME_SIZE_CY	( 2 )
 
-// ƒJ[ƒ\ƒ‹
+// ã‚«ãƒ¼ã‚½ãƒ«
 #define ZKN_SORTSEARCHSUB_CURSOR_NAME_MAX_X	( 3 )
 
 
 //-----------------------------------------------------------------------------
 /**
- *		À²Ìß1‰æ–Êƒ{ƒ^ƒ“”z’uÃÞ°À
+ *		ã‚¿ã‚¤ãƒ—1ç”»é¢ãƒœã‚¿ãƒ³é…ç½®ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒTƒuƒ{ƒ^ƒ“”
+//	ã‚µãƒ–ãƒœã‚¿ãƒ³æ•°
 //=====================================
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/19
-// ƒ^ƒCƒv‚Ì•À‚Ñ‡‚ðŒÜ\‰¹‡‚©‚ç]—ˆ‚Ì‡‚Ö
+// ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³é †ã‚’äº”åéŸ³é †ã‹ã‚‰å¾“æ¥ã®é †ã¸
 enum{
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_BATTLE,
@@ -339,23 +339,23 @@ enum{
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE1_SIZE_CX	( 10 )
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE1_SIZE_CY	( 2 )
 
-// ŽŸ‚Ö‚Ìƒ{ƒ^ƒ“ˆÊ’u
+// æ¬¡ã¸ã®ãƒœã‚¿ãƒ³ä½ç½®
 #define ZKN_SORTSEARCHSUB_BUTTON_TYPE1_TYPE2_X	( ZKN_SORTSEARCHSUB_BUTTONDEF_00_X - 24 )
 
-// ƒJ[ƒ\ƒ‹
+// ã‚«ãƒ¼ã‚½ãƒ«
 #define ZKN_SORTSEARCHSUB_CURSOR_TYPE1_MAX_X	( 3 )
 
 //-----------------------------------------------------------------------------
 /**
- *		À²Ìß2‰æ–Êƒ{ƒ^ƒ“”z’uÃÞ°À
+ *		ã‚¿ã‚¤ãƒ—2ç”»é¢ãƒœã‚¿ãƒ³é…ç½®ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒTƒuƒ{ƒ^ƒ“”
+//	ã‚µãƒ–ãƒœã‚¿ãƒ³æ•°
 //=====================================
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/19
-// ƒ^ƒCƒv‚Ì•À‚Ñ‡‚ðŒÜ\‰¹‡‚©‚ç]—ˆ‚Ì‡‚Ö
+// ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³é †ã‚’äº”åéŸ³é †ã‹ã‚‰å¾“æ¥ã®é †ã¸
 enum{
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_WATER,
@@ -374,20 +374,20 @@ enum{
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE2_SIZE_CX	( 10 )
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE2_SIZE_CY	( 2 )
 
-// ŽŸ‚Ö‚Ìƒ{ƒ^ƒ“ˆÊ’u
+// æ¬¡ã¸ã®ãƒœã‚¿ãƒ³ä½ç½®
 #define ZKN_SORTSEARCHSUB_BUTTON_TYPE2_TYPE1_X	( ZKN_SORTSEARCHSUB_BUTTONDEF_00_X - 24 )
 
-// ƒJ[ƒ\ƒ‹
+// ã‚«ãƒ¼ã‚½ãƒ«
 #define ZKN_SORTSEARCHSUB_CURSOR_TYPE2_MAX_X	( 3 )
 
 
 //-----------------------------------------------------------------------------
 /**
- *		Œ`‰æ–Êƒ{ƒ^ƒ“”z’uÃÞ°À
+ *		å½¢ç”»é¢ãƒœã‚¿ãƒ³é…ç½®ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒTƒuƒ{ƒ^ƒ“”
+//	ã‚µãƒ–ãƒœã‚¿ãƒ³æ•°
 //=====================================
 enum{
 	ZKN_SORTSEARCHSUB_BUTTON_FORM_CIRCLE,
@@ -414,12 +414,12 @@ enum{
 #define ZKN_SORTSEARCHSUB_BUTTON_FORM_DEF_X			( 28 )
 #define ZKN_SORTSEARCHSUB_BUTTON_FORM_OFS_X			( 56 )
 
-// ƒJ[ƒ\ƒ‹
+// ã‚«ãƒ¼ã‚½ãƒ«
 #define ZKN_SORTSEARCHSUB_CURSOR_FORM_MAX_X	( 4 )
 #define ZKN_SORTSEARCHSUB_CURSOR_FORM_SIZX		( 32 )
 #define ZKN_SORTSEARCHSUB_CURSOR_FORM_SIZY		( 20 )
 
-// ƒ{ƒ^ƒ“ƒtƒF[ƒhŽí—Þ
+// ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰ç¨®é¡ž
 enum{
 	ZKN_SORTSEARCH_SUB_BUTTON_FADE_NONE,
 	ZKN_SORTSEARCH_SUB_BUTTON_FADE_IN,
@@ -429,34 +429,34 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ŒŸõƒ\[ƒg‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	æ¤œç´¢ã‚½ãƒ¼ãƒˆç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	int*				p_event_key;		// ƒCƒxƒ“ƒgƒL[
-	ZKN_GLB_DATA*		p_glb;				// ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	ZKN_APL_DATA*		p_main_apl;			// ƒƒCƒ“‰æ–ÊƒAƒvƒŠƒf[ƒ^
+	int*				p_event_key;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
+	ZKN_GLB_DATA*		p_glb;				// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	ZKN_APL_DATA*		p_main_apl;			// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 
-	// Ž©•ª‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ÃÞ°À
-	ZKN_APL_DATA*		p_my_apl;			// •`‰æ‚Æ‚Ì˜AŒg‚ðŽæ‚é•K—v‚ª‚ ‚é‚½‚ß
+	// è‡ªåˆ†ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ZKN_APL_DATA*		p_my_apl;			// æç”»ã¨ã®é€£æºã‚’å–ã‚‹å¿…è¦ãŒã‚ã‚‹ãŸã‚
 } ZKN_SORTSEARCHSUB_GLB;
 
 //-------------------------------------
-//	ŒŸõƒ\[ƒg‰æ–Ê@•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	æ¤œç´¢ã‚½ãƒ¼ãƒˆç”»é¢ã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DRAWDATA*	p_drawglb;			// •`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DRAWDATA*	p_drawglb;			// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
-	// ƒ{ƒ^ƒ“ƒtƒF[ƒh—p
+	// ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 	int button_fade_req;
 	BOOL* button_fade;
 } ZKN_SORTSEARCHSUB_DRAWGLB;
 
 //-------------------------------------
-//	ƒ{ƒ^ƒ“—pƒ[ƒN
+//	ãƒœã‚¿ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	void* p_glb;
@@ -464,51 +464,51 @@ typedef struct {
 } ZKN_SORTSEARCHSUB_BUTTON_WORK;
 
 //-------------------------------------
-//	ŒŸõƒ\[ƒg‰æ–Ê@“à•”ƒ[ƒN
+//	æ¤œç´¢ã‚½ãƒ¼ãƒˆç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£
 	BUTTON_MAN* p_button_man;
-	TP_HIT_TBL *hit_tbl;	// ƒ{ƒ^ƒ“ƒf[ƒ^
-	// ƒTƒuƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ
+	TP_HIT_TBL *hit_tbl;	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
+	// ã‚µãƒ–ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£
 	BUTTON_MAN* p_button_man_sub;
-	TP_HIT_TBL *hit_tbl_sub;	// ƒ{ƒ^ƒ“ƒf[ƒ^
+	TP_HIT_TBL *hit_tbl_sub;	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
 	ZKN_SORTSEARCHSUB_BUTTON_WORK button_work;
 
 
-	// ƒJ[ƒ\ƒ‹ƒVƒXƒeƒ€
+	// ã‚«ãƒ¼ã‚½ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
 	ZKN_CURSOR* p_cursor;
 	ZKN_CURSOR_ONEDATA* p_cursor_tbl;
 
 
-	int type_page;			// À²Ìßƒy[ƒW
+	int type_page;			// ã‚¿ã‚¤ãƒ—ãƒšãƒ¼ã‚¸
 
-	// ƒ[ƒNƒ[ƒJƒ‹¡‚Ì‘I‘ðÀ²Ìß
+	// ãƒ¯ãƒ¼ã‚¯ãƒ­ãƒ¼ã‚«ãƒ«ä»Šã®é¸æŠžã‚¿ã‚¤ãƒ—
 	int local_select;	
-	int local_type_page;			// ”½‰fƒ`ƒFƒbƒN—pÀ²Ìßƒy[ƒW
+	int local_type_page;			// åæ˜ ãƒã‚§ãƒƒã‚¯ç”¨ã‚¿ã‚¤ãƒ—ãƒšãƒ¼ã‚¸
 
-	// ƒ{ƒ^ƒ““®ìÃÞ°À
-	int button_event[ ZKN_SORTSEARCHSUB_BUTTON_NUM ];	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
-	int button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_SUB_MAX ];	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
+	// ãƒœã‚¿ãƒ³å‹•ä½œãƒ‡ãƒ¼ã‚¿
+	int button_event[ ZKN_SORTSEARCHSUB_BUTTON_NUM ];	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+	int button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_SUB_MAX ];	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 
-	// ˆ—ŽÀsÃÞ°À
-	int do_flag_common;		// ˆ—ŽÀsÃÞ°À	‰Ÿ‚³‚ê‚½ƒ{ƒ^ƒ“ÅÝÊÞ°‚ðŠi”[
-	int do_flag_select;		// ˆ—ŽÀsÃÞ°À‰Ÿ‚³‚ê‚½ƒ{ƒ^ƒ“ÅÝÊÞ°‚ðŠi”[
+	// å‡¦ç†å®Ÿè¡Œãƒ‡ãƒ¼ã‚¿
+	int do_flag_common;		// å‡¦ç†å®Ÿè¡Œãƒ‡ãƒ¼ã‚¿	æŠ¼ã•ã‚ŒãŸãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’æ ¼ç´
+	int do_flag_select;		// å‡¦ç†å®Ÿè¡Œãƒ‡ãƒ¼ã‚¿æŠ¼ã•ã‚ŒãŸãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’æ ¼ç´
 
-	int type_set_no;		// Ý’è‚·‚éÀ²ÌßÅÝÊÞ°
+	int type_set_no;		// è¨­å®šã™ã‚‹ã‚¿ã‚¤ãƒ—ãƒŠãƒ³ãƒãƒ¼
 
 	BOOL cursor_no_touch;
 	BOOL tp_no_touch;
 	
 
-	int req_count;	// ‰Ÿ‚µ‚Á‚Ï‚È‚µŽž‚Ì‚Q‰ñ–Ú‚©‚çTRUE‚ª“ü‚é
+	int req_count;	// æŠ¼ã—ã£ã±ãªã—æ™‚ã®ï¼’å›žç›®ã‹ã‚‰TRUEãŒå…¥ã‚‹
 
-	// ƒ{ƒ^ƒ“ƒtƒF[ƒhˆ—‘Ò‚¿ƒtƒ‰ƒO
+	// ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†å¾…ã¡ãƒ•ãƒ©ã‚°
 	BOOL button_fade_flag;
 } ZKN_SORTSEARCHSUB_WORK;
 
 //-------------------------------------
-//	ŒŸõƒ\[ƒg‰æ–Ê@•`‰æƒ[ƒN
+//	æ¤œç´¢ã‚½ãƒ¼ãƒˆç”»é¢ã€€æç”»ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR clact[ ZKN_SORTSEARCHSUB_BUTTON_NUM ];
@@ -518,15 +518,15 @@ typedef struct {
 	ZKN_FONTOAM_DATA* p_fontoam_sub[ ZKN_SORTSEARCHSUB_BUTTON_SUB_MAX ];
 	CLACT_WORK_PTR clact_sub_form[ ZKN_SORTSEARCHSUB_BUTTON_SUB_MAX ];
 
-	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ResourceƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
-	CLACT_U_RES_OBJ_PTR res_obj_form[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ResourceƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// Resourceã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
+	CLACT_U_RES_OBJ_PTR res_obj_form[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// Resourceã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
 
-	// ƒ[ƒNƒ[ƒJƒ‹¡‚Ì‘I‘ðÀ²Ìß
+	// ãƒ¯ãƒ¼ã‚¯ãƒ­ãƒ¼ã‚«ãƒ«ä»Šã®é¸æŠžã‚¿ã‚¤ãƒ—
 	int local_select;	
-	int local_type_page;			// À²Ìßƒy[ƒW
+	int local_type_page;			// ã‚¿ã‚¤ãƒ—ãƒšãƒ¼ã‚¸
 
 
-	// ƒ{ƒ^ƒ“ƒtƒF[ƒhˆ—
+	// ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 	ZKN_UTIL_MOVE_WORK fade_work;
 	int do_fade;
 	int do_fade_seq;
@@ -535,12 +535,12 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_SORTSEARCHSUB_GLB* MakeSortSearchSubGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -555,7 +555,7 @@ static int SortSearchSubEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknSortSearchSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -566,10 +566,10 @@ static int ZknSortSearchSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 static int ZknSortSearchSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
 
-// ƒtƒF[ƒhˆ—
+// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknSortSearchSubSortFadeSys( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const ZKN_SORTSEARCHSUB_GLB* cp_glb );
 
-// Resource“Ç‚Ýž‚Ý
+// Resourceèª­ã¿è¾¼ã¿
 static void ZknSortSearchSubLoadRes( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const ZKN_SORTSEARCHSUB_GLB* cp_glb, const ZKN_SORTSEARCHSUB_WORK* cp_datawork, int heap );
 static void ZknSortSearchSubDeleteRes( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb );
 static void ZknSortSearchSubSetUpBg( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const ZKN_SORTSEARCHSUB_GLB* cp_glb, int heap );
@@ -579,7 +579,7 @@ static void ZknSortSearchSubLoadOamForm( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SOR
 static void ZknSortSearchSubReleaseOamForm( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb );
 
 
-// ƒ{ƒ^ƒ“ƒtƒF[ƒhˆ—
+// ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknSortSearchSubButtonFadeCont( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb );
 static void ZknSortSearchSubButtonFade( ZKN_SORTSEARCHSUB_DRAW* p_draw );
 static void ZknSortSearchSubButtonFadeOamModeSet_Pack( ZKN_SORTSEARCHSUB_DRAW* p_draw, int mode, int select_type, int type_page );
@@ -589,7 +589,7 @@ static void ZknSortSearchSubButtonFadeOamModeSet_Type2Ver( ZKN_SORTSEARCHSUB_DRA
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒZƒ‹ƒAƒNƒ^[“o˜^
+ *	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddClact( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, int heap );
@@ -597,50 +597,50 @@ static void ZknSortSearchSubDeleteClact( ZKN_SORTSEARCHSUB_DRAW* p_draw );
 static void ZknSortSearchSubAddSubClact( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add, int select_type, int local_type_page );
 static void ZknSortSearchSubChgClact( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, int heap );
 
-// ‹¤’Êƒ{ƒ^ƒ““o˜^
+// å…±é€šãƒœã‚¿ãƒ³ç™»éŒ²
 static void ZknSortSearchSubAddClactCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add );
 static void ZknSortSearchSubDeleteClactCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw );
-// ”jŠü‹¤’Ê
+// ç ´æ£„å…±é€š
 static void ZknSortSearchSubDeleteClactSub( ZKN_SORTSEARCHSUB_DRAW* p_draw );
-// ¿°Ä‰æ–Ê“o˜^
+// ã‚½ãƒ¼ãƒˆç”»é¢ç™»éŒ²
 static void ZknSortSearchSubAddClactSort( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add );
-// ‚È‚Ü‚¦‰æ–Ê“o˜^
+// ãªã¾ãˆç”»é¢ç™»éŒ²
 static void ZknSortSearchSubAddClactName( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add );
-// À²Ìß1‰æ–Ê“o˜^
+// ã‚¿ã‚¤ãƒ—1ç”»é¢ç™»éŒ²
 static void ZknSortSearchSubAddClactType1( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add );
-// À²Ìß2‰æ–Ê“o˜^
+// ã‚¿ã‚¤ãƒ—2ç”»é¢ç™»éŒ²
 static void ZknSortSearchSubAddClactType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add );
-// ƒtƒH[ƒ€‰æ–Ê“o˜^
+// ãƒ•ã‚©ãƒ¼ãƒ ç”»é¢ç™»éŒ²
 static void ZknSortSearchSubAddClactForm( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add );
 static void ZknSortSearchSubAddClactForm_Gra( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, int heap );
 static void ZknSortSearchSubDeleteClactForm_Gra( ZKN_SORTSEARCHSUB_DRAW* p_draw );
 
 //-----------------------------------------------------------------------------
 /**
- *	FONTOAMì¬
+ *	FONTOAMä½œæˆ
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddFontOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, int heap );
 static void ZknSortSearchSubDeleteFontOam( ZKN_SORTSEARCHSUB_DRAW* p_draw );
 static void ZknSortSearchSubAddSubFontOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys, int select_type, int local_type_page );
 static void ZknSortSearchSubChgFontOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, int heap );
-// ‹¤’Êƒ{ƒ^ƒ“
+// å…±é€šãƒœã‚¿ãƒ³
 static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys );
 static void ZknSortSearchSubDeleteFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw );
-// ”jŠü‹¤’Ê
+// ç ´æ£„å…±é€š
 static void ZknSortSearchSubDeleteFontSub( ZKN_SORTSEARCHSUB_DRAW* p_draw );
-// ¿°Äƒ{ƒ^ƒ“
+// ã‚½ãƒ¼ãƒˆãƒœã‚¿ãƒ³
 static void ZknSortSearchSubAddFontSort( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys );
-// –¼‘Oƒ{ƒ^ƒ“
+// åå‰ãƒœã‚¿ãƒ³
 static void ZknSortSearchSubAddFontName( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys );
-// À²Ìß1ƒ{ƒ^ƒ“
+// ã‚¿ã‚¤ãƒ—1ãƒœã‚¿ãƒ³
 static void ZknSortSearchSubAddFontType1( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys );
-// À²Ìß2ƒ{ƒ^ƒ“
+// ã‚¿ã‚¤ãƒ—2ãƒœã‚¿ãƒ³
 static void ZknSortSearchSubAddFontType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒ{ƒ^ƒ““®ì
+ *		ãƒœã‚¿ãƒ³å‹•ä½œ
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonInit( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap );
@@ -652,7 +652,7 @@ static void ZknSortSearchSubButtonMoveSub( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_S
 
 static void ZknSortSearchSubButtonEventBuffInit( ZKN_SORTSEARCHSUB_WORK* p_work );
 
-//@‹¤’Êƒ{ƒ^ƒ“—p
+//ã€€å…±é€šãƒœã‚¿ãƒ³ç”¨
 static void ZknSortSearchSubButtonMake( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap );
 static void ZknSortSearchSubButtonMove( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 static void ZknSortSearchSubButtonDelete( ZKN_SORTSEARCHSUB_WORK* p_work );
@@ -660,42 +660,42 @@ static void ZknSortSearchSubButtonCallBack( u32 button_no, u32 event, void* p_wo
 static void ZknSortSearchSubButtonEventInit( ZKN_SORTSEARCHSUB_WORK* p_work );
 static void ZknSortSearchSubButtonSelectEventSet( ZKN_SORTSEARCHSUB_WORK* p_work, int select_type );
 
-// ƒTƒuƒ{ƒ^ƒ“—p”jŠü
+// ã‚µãƒ–ãƒœã‚¿ãƒ³ç”¨ç ´æ£„
 static void ZknSortSearchSubButtonSubDelete( ZKN_SORTSEARCHSUB_WORK* p_work );
-// ƒTƒuƒ{ƒ^ƒ“ƒCƒxƒ“ƒg”z—ñ‰Šú‰»
+// ã‚µãƒ–ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆé…åˆ—åˆæœŸåŒ–
 static void ZknSortSearchSubButtonSubEventInit( ZKN_SORTSEARCHSUB_WORK* p_work );
-// ƒ\[ƒg‰æ–Ê
+// ã‚½ãƒ¼ãƒˆç”»é¢
 static void ZknSortSearchSubButtonMakeSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap );
 static void ZknSortSearchSubButtonMoveSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 static void ZknSortSearchSubButtonCallBackSort( u32 button_no, u32 event, void* p_work );
-// –¼‘O‰æ–Ê
+// åå‰ç”»é¢
 static void ZknSortSearchSubButtonMakeName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap );
 static void ZknSortSearchSubButtonMoveName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 static void ZknSortSearchSubButtonCallBackName( u32 button_no, u32 event, void* p_work );
-// À²Ìß1‰æ–Ê
+// ã‚¿ã‚¤ãƒ—1ç”»é¢
 static void ZknSortSearchSubButtonMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap );
 static void ZknSortSearchSubButtonMoveType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 static void ZknSortSearchSubButtonCallBackType1( u32 button_no, u32 event, void* p_work );
 static void ZknSortSearchSubButtonSelectSetType1( ZKN_SORTSEARCHSUB_WORK* p_work, int type );
-// À²Ìß2‰æ–Ê
+// ã‚¿ã‚¤ãƒ—2ç”»é¢
 static void ZknSortSearchSubButtonMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap );
 static void ZknSortSearchSubButtonMoveType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 static void ZknSortSearchSubButtonCallBackType2( u32 button_no, u32 event, void* p_work );
 static void ZknSortSearchSubButtonSelectSetType2( ZKN_SORTSEARCHSUB_WORK* p_work, int type );
-// ‚©‚½‚¿‰æ–Ê
+// ã‹ãŸã¡ç”»é¢
 static void ZknSortSearchSubButtonMakeForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap );
 static void ZknSortSearchSubButtonMoveForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 static void ZknSortSearchSubButtonCallBackForm( u32 button_no, u32 event, void* p_work );
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒJ[ƒ\ƒ‹§Œä
+ *	ã‚«ãƒ¼ã‚½ãƒ«åˆ¶å¾¡
  */
 //-----------------------------------------------------------------------------
-//@‹¤’Ê”jŠü
+//ã€€å…±é€šç ´æ£„
 static void ZknSortSearchSubCursorDelete( ZKN_SORTSEARCHSUB_WORK* p_work );
 
-// ƒJ[ƒ\ƒ‹“®ì‹¤’Ê
+// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œå…±é€š
 static void ZknSortSearchSubCursorMake( ZKN_SORTSEARCHSUB_WORK* p_work, int heap );
 static void ZknSortSearchSubCursorMakeSub( ZKN_SORTSEARCHSUB_WORK* p_work, int heap, int select_type, int type_page );
 static void ZknSortSearchSubCursorInit( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
@@ -705,23 +705,23 @@ static void ZknSortSearchSubCursorChg( ZKN_SORTSEARCHSUB_WORK* p_work, int heap 
 static void ZknSortSearchSubCursorCommonSet( ZKN_CURSOR_ONEDATA* p_data, int id );
 static void ZknSortSearchSubCursorMoveCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 
-// ¿°Ä‰æ–Ê
+// ã‚½ãƒ¼ãƒˆç”»é¢
 static void ZknSortSearchSubCursorMakeSort( ZKN_SORTSEARCHSUB_WORK* p_work, int heap );
 static void ZknSortSearchSubCursorMoveSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
-// –¼‘O‰æ–Ê
+// åå‰ç”»é¢
 static void ZknSortSearchSubCursorMakeName( ZKN_SORTSEARCHSUB_WORK* p_work, int heap );
 static void ZknSortSearchSubCursorMoveName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
-// À²Ìß1‰æ–Ê
+// ã‚¿ã‚¤ãƒ—1ç”»é¢
 static void ZknSortSearchSubCursorMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, int heap );
 static void ZknSortSearchSubCursorMoveType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
-// À²Ìß2‰æ–Ê
+// ã‚¿ã‚¤ãƒ—2ç”»é¢
 static void ZknSortSearchSubCursorMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, int heap );
 static void ZknSortSearchSubCursorMoveType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
-// Œ`‰æ–Ê
+// å½¢ç”»é¢
 static void ZknSortSearchSubCursorMakeForm( ZKN_SORTSEARCHSUB_WORK* p_work, int heap );
 static void ZknSortSearchSubCursorMoveForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 
-// •`‰æˆ—
+// æç”»å‡¦ç†
 static void ZknSortSearchSubCursorDrawInit( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const ZKN_SORTSEARCHSUB_WORK* cp_work, const ZKN_SORTSEARCHSUB_GLB* cp_glb );
 static void ZknSortSearchSubCursorDrawPack( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const ZKN_SORTSEARCHSUB_WORK* cp_work, const ZKN_SORTSEARCHSUB_GLB* cp_glb );
 static void ZknSortSearchSubCursorDraw( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const ZKN_SORTSEARCHSUB_WORK* cp_work );
@@ -730,36 +730,36 @@ static BOOL ZknSortSearchSubCursorOnOff( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb,  
 
 //-----------------------------------------------------------------------------
 /**
- *		ŽÀs“®ì
+ *		å®Ÿè¡Œå‹•ä½œ
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubDoInit( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 static void ZknSortSearchSubDoMain( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 static void ZknSortSearchSubDoSelect( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int select_type, int type_page );
 
-// ‹¤’Êƒ{ƒ^ƒ“‚ÌŽÀs
+// å…±é€šãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
 static void ZknSortSearchSubDoCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
-// ¿°Äƒ{ƒ^ƒ“‚ÌŽÀs
+// ã‚½ãƒ¼ãƒˆãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
 static void ZknSortSearchSubDoSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
-// –¼‘Oƒ{ƒ^ƒ“‚ÌŽÀs
+// åå‰ãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
 static void ZknSortSearchSubDoName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
-// À²Ìß1ƒ{ƒ^ƒ“‚ÌŽÀs
+// ã‚¿ã‚¤ãƒ—1ãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
 static void ZknSortSearchSubDoType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
-// À²Ìß2ƒ{ƒ^ƒ“‚ÌŽÀs
+// ã‚¿ã‚¤ãƒ—2ãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
 static void ZknSortSearchSubDoType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 static void ZknSortSearchSubDoTypeSetCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int set_num );
-// Œ`ƒ{ƒ^ƒ“‚ÌŽÀs
+// å½¢ãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
 static void ZknSortSearchSubDoForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb );
 
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒAƒvƒŠì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		Žg—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -792,9 +792,9 @@ void ZKN_SortSearchSubAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int he
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	ƒTƒu‰æ–Ê@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã‚µãƒ–ç”»é¢ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -812,18 +812,18 @@ void ZKN_SortSearchSubAplDelete( ZKN_APL_DATA* p_data )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -837,17 +837,17 @@ static ZKN_SORTSEARCHSUB_GLB* MakeSortSearchSubGlb( int heap, ZKN_SYS_PTR zkn_sy
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_SORTSEARCHSUB_GLB) );
 
-	// main‰æ–Ê‚©‚ç‚ÌƒCƒxƒ“ƒgƒL[
+	// mainç”»é¢ã‹ã‚‰ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrMain( zkn_sys ); 
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
 
-	// ƒƒCƒ“‰æ–ÊƒAƒvƒŠÃÞ°À
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 	p_glb->p_main_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_SORTSEARCH );
 
-	// Ž©•ª‚ÌƒAƒvƒŠÃÞ°À
+	// è‡ªåˆ†ã®ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 	p_glb->p_my_apl = ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_SORTSEARCH );
 	
 	return p_glb;
@@ -856,12 +856,12 @@ static ZKN_SORTSEARCHSUB_GLB* MakeSortSearchSubGlb( int heap, ZKN_SYS_PTR zkn_sy
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -875,7 +875,7 @@ static ZKN_SORTSEARCHSUB_DRAWGLB* MakeSortSearchSubDrawGlb( int heap, ZKN_SYS_PT
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_SORTSEARCHSUB_DRAWGLB) );
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 	return p_glb;
@@ -884,12 +884,12 @@ static ZKN_SORTSEARCHSUB_DRAWGLB* MakeSortSearchSubDrawGlb( int heap, ZKN_SYS_PT
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒCƒxƒ“ƒgì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		Žg—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -902,9 +902,9 @@ static ZKN_EVENT_DATA* MakeSortSearchSubEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -920,9 +920,9 @@ static void DeleteSortSearchSubGlb( ZKN_SORTSEARCHSUB_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -938,9 +938,9 @@ static void DeleteSortSearchSubDrawGlb( ZKN_SORTSEARCHSUB_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -955,11 +955,11 @@ static void DeleteSortSearchSubEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒgƒAƒvƒŠ@ƒCƒxƒ“ƒg”Žæ“¾
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	ŒŸõƒ\[ƒgƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -972,19 +972,19 @@ static int SortSearchSubEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -995,27 +995,27 @@ static int ZknSortSearchSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_g
 	ZKN_SORTSEARCHSUB_WORK* p_work;
 	int i;
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_SORTSEARCHSUB_WORK) );
 	GF_ASSERT( p_work );
 	memset( p_work, 0, sizeof(ZKN_SORTSEARCHSUB_WORK) );
 	p_dodata->p_work = p_work;
 
 
-	// •ªŠòˆ—‰Šú‰»
+	// åˆ†å²å‡¦ç†åˆæœŸåŒ–
 	p_work->do_flag_common = ZKN_SORTSEARCHSUB_DO_FLAG_INIT;
 	ZknSortSearchSubDoInit( p_work, p_glb );
 
 
-	// ƒ{ƒ^ƒ“ƒJ[ƒ\ƒ‹‚ðì¬
+	// ãƒœã‚¿ãƒ³ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä½œæˆ
 	ZknSortSearchSubButtonInit( p_work, p_glb, p_dodata->heap );
 	ZknSortSearchSubCursorMake( p_work, p_dodata->heap );
 	ZknSortSearchSubCursorInit( p_work, p_glb );
 
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 	for( i=0; i<ZKN_SORTSEARCHSUB_BUTTON_NUM; i++ ){
-		p_work->button_event[ i ] = ZKN_UTIL_BUTTON_PUSH_NONE;	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
+		p_work->button_event[ i ] = ZKN_UTIL_BUTTON_PUSH_NONE;	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 	}
 	
 	return ZKN_PROC_TRUE;
@@ -1023,14 +1023,14 @@ static int ZknSortSearchSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_g
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -1043,7 +1043,7 @@ static int ZknSortSearchSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_g
 	int select_type;
 	int old_local_select;
 	
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -1054,7 +1054,7 @@ static int ZknSortSearchSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_g
 		return ZKN_PROC_FALSE;
 	}
 
-	// ƒtƒF[ƒhˆ—’†‚Í“®ì‹ÖŽ~II
+	// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ä¸­ã¯å‹•ä½œç¦æ­¢ï¼ï¼
 	if( ZKN_SortSearchAplFadeModeGet( p_glb->p_main_apl ) != ZKN_SORTSEARCH_FADENONE ){
 		return ZKN_PROC_FALSE;
 	}
@@ -1062,44 +1062,44 @@ static int ZknSortSearchSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_g
 	select_type = ZKN_SortSearchAplSelectTypeGet( p_glb->p_main_apl );
 	
 	switch( p_dodata->seq ){
-	// “®ìˆ—
+	// å‹•ä½œå‡¦ç†
 	case 0:	
 
-		// ‘I‘ðÀ²Ìß•ªŠò
+		// é¸æŠžã‚¿ã‚¤ãƒ—åˆ†å²
 		if( (p_work->local_select != select_type) ||
 			(p_work->local_type_page != p_work->type_page ) ){
 
-			// ƒ{ƒ^ƒ“ƒtƒF[ƒhƒŠƒNƒGƒXƒg
+			// ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 			p_work->button_fade_flag = FALSE;
 			p_drawglb->button_fade_req = ZKN_SORTSEARCH_SUB_BUTTON_FADE_OUT;
 			p_drawglb->button_fade = &p_work->button_fade_flag;
 
-			// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒg‚ð‰Šú‰»
+			// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã‚’åˆæœŸåŒ–
 			ZknSortSearchSubButtonEventInit( p_work );
-			// •`‰æ‚Ì‚½‚ß‚Éƒ{ƒ^ƒ“ƒCƒxƒ“ƒg‚Ì’l‚ðÝ’è
+			// æç”»ã®ãŸã‚ã«ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã®å€¤ã‚’è¨­å®š
 			ZknSortSearchSubButtonSelectEventSet( p_work, select_type );
 
 
-			// ƒ{ƒ^ƒ““®ì•ÏX‚Ö
+			// ãƒœã‚¿ãƒ³å‹•ä½œå¤‰æ›´ã¸
 			p_dodata->seq++;
 			break;
 		}
 
-		// ƒ{ƒ^ƒ““®ì
+		// ãƒœã‚¿ãƒ³å‹•ä½œ
 		ZknSortSearchSubButtonMoveAll( p_work, p_glb );
 
-		// ƒJ[ƒ\ƒ‹“®ì
+		// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
 		if( (ZKN_GLBDATA_TouchCursorFlagGet( p_glb->p_glb ) == ZKN_TCHCUSO_CURSOR) ){
 
 			ZknSortSearchSubCursorMove( p_work, p_glb );
 		}
 
 
-		// “®ìƒƒCƒ“
+		// å‹•ä½œãƒ¡ã‚¤ãƒ³
 		ZknSortSearchSubDoMain( p_work, p_glb );
 		break;
 
-	// ƒ{ƒ^ƒ“ƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+	// ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 	case 1:
 		if( p_work->button_fade_flag ){
 			p_dodata->seq ++;
@@ -1107,9 +1107,9 @@ static int ZknSortSearchSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_g
 		}
 		break;
 
-	// ƒ{ƒ^ƒ“•ÏX
+	// ãƒœã‚¿ãƒ³å¤‰æ›´
 	case 2:
-		old_local_select = p_work->local_select;	// ƒJ[ƒ\ƒ‹ˆÊ’u‰Šú‰»‚Ì‚½‚ß•Û‘¶
+		old_local_select = p_work->local_select;	// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®åˆæœŸåŒ–ã®ãŸã‚ä¿å­˜
 		p_work->local_select = select_type;
 		p_work->local_type_page = p_work->type_page;
 		
@@ -1117,31 +1117,31 @@ static int ZknSortSearchSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_g
 		ZknSortSearchSubCursorChg( p_work, p_dodata->heap );
 		ZknSortSearchSubDoInit( p_work, p_glb );
 
-		// ‘I‘ðÀ²Ìß‚Ì•ÏX‚ª‚ ‚Á‚½‚Æ‚«‚Ì‚ÝƒJ[ƒ\ƒ‹ˆÊ’u‚ð‰Šú‰»
+		// é¸æŠžã‚¿ã‚¤ãƒ—ã®å¤‰æ›´ãŒã‚ã£ãŸã¨ãã®ã¿ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’åˆæœŸåŒ–
 		if( old_local_select != p_work->local_select ){
 			ZknSortSearchSubCursorInit( p_work, p_glb );
 		}
 
-		// ƒ{ƒ^ƒ“ƒtƒF[ƒhƒŠƒNƒGƒXƒg
+		// ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		p_work->button_fade_flag = FALSE;
 		p_drawglb->button_fade_req = ZKN_SORTSEARCH_SUB_BUTTON_FADE_IN;
 		p_drawglb->button_fade = &p_work->button_fade_flag;
 
 
-		// ƒTƒuƒ{ƒ^ƒ“‰Šú‰»
+		// ã‚µãƒ–ãƒœã‚¿ãƒ³åˆæœŸåŒ–
 		ZknSortSearchSubButtonSubEventInit( p_work );
 		
 		p_dodata->seq++;
 		break;
 
-	// ƒ{ƒ^ƒ“ƒtƒF[ƒhƒCƒ“‘Ò‚¿
+	// ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 	case 3:
 		if( p_work->button_fade_flag ){
 			p_dodata->seq ++;
 		}
 		break;
 
-	// ƒƒCƒ““®ìˆ—‚É–ß‚é
+	// ãƒ¡ã‚¤ãƒ³å‹•ä½œå‡¦ç†ã«æˆ»ã‚‹
 	case 4:
 		p_dodata->seq = 0;
 		break;
@@ -1152,14 +1152,14 @@ static int ZknSortSearchSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_g
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -1168,7 +1168,7 @@ static int ZknSortSearchSubProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p
 {
 	ZKN_SORTSEARCHSUB_WORK* p_work = p_dodata->p_work;
 
-	// ƒ{ƒ^ƒ“ƒJ[ƒ\ƒ‹”jŠü
+	// ãƒœã‚¿ãƒ³ã‚«ãƒ¼ã‚½ãƒ«ç ´æ£„
 	ZknSortSearchSubButtonAllDelete( p_work );
 	ZknSortSearchSubCursorDelete( p_work );
 
@@ -1180,17 +1180,17 @@ static int ZknSortSearchSubProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -1213,18 +1213,18 @@ static int ZknSortSearchSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 	case ZKN_SORTSEARCHSUB_SEQINIT_LOAD:
 		ZknSortSearchSubLoadRes( p_drawwork, p_drawglb, cp_dataglb, cp_datawork, p_drawdata->heap );
 		
-		// ƒtƒF[ƒh‰Šú‰»
+		// ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
 		ChangeBrightnessRequest( ZKN_FADE_SYNC_COMMON,
 				BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, PLANEMASK_ALL, MASK_SUB_DISPLAY );
 
-		// ƒJ[ƒ\ƒ‹•`‰æ‰Šú‰»
+		// ã‚«ãƒ¼ã‚½ãƒ«æç”»åˆæœŸåŒ–
 		ZknSortSearchSubCursorDrawInit( p_drawglb, cp_datawork, cp_dataglb );
 		
 		p_drawdata->seq++;
 		break;
 		
 	case ZKN_SORTSEARCHSUB_SEQINIT_FADEIN:
-		// ƒtƒF[ƒh
+		// ãƒ•ã‚§ãƒ¼ãƒ‰
 		if( IsFinishedBrightnessChg( MASK_SUB_DISPLAY  ) ){
 			p_drawdata->seq++;
 		}
@@ -1239,17 +1239,17 @@ static int ZknSortSearchSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -1268,16 +1268,16 @@ static int ZknSortSearchSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 
 	if( ZKN_SortSearchAplFadeModeGet( cp_dataglb->p_main_apl ) != ZKN_SORTSEARCH_FADENONE ){
 
-		// ƒtƒF[ƒhƒVƒXƒeƒ€
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
 		ZknSortSearchSubSortFadeSys( p_drawwork, p_drawglb, cp_dataglb );
 
 
 	}else{
 
-		// ƒtƒF[ƒhƒCƒ“ƒAƒEƒgˆ—
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆå‡¦ç†
 		ZknSortSearchSubButtonFadeCont( p_drawwork, p_drawglb );
 
-		// ƒAƒNƒ^[@ƒtƒHƒ“ƒgOAM‚Ì•ÏXˆ—
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒ•ã‚©ãƒ³ãƒˆOAMã®å¤‰æ›´å‡¦ç†
 		if( (p_drawwork->local_select != cp_datawork->local_select) || 
 			(p_drawwork->local_type_page != cp_datawork->local_type_page) ){
 			old_select = p_drawwork->local_select;
@@ -1286,7 +1286,7 @@ static int ZknSortSearchSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 			p_drawwork->local_select = cp_datawork->local_select;
 			p_drawwork->local_type_page = cp_datawork->local_type_page;
 
-			// ‚à‚µold_select‚ªŒ`ó‚Ì‚Æ‚«‚ÍƒŠƒ\[ƒX”jŠü
+			// ã‚‚ã—old_selectãŒå½¢çŠ¶ã®ã¨ãã¯ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 			if( old_select == ZKN_SORTSEARCH_SELECT_FORM ){
 				ZknSortSearchSubReleaseOamForm( p_drawwork, p_drawglb );
 				ZknSortSearchSubDeleteClactForm_Gra( p_drawwork );
@@ -1295,26 +1295,26 @@ static int ZknSortSearchSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 			ZknSortSearchSubChgClact( p_drawwork, p_drawglb, p_drawdata->heap );
 			ZknSortSearchSubChgFontOam( p_drawwork, p_drawglb, p_drawdata->heap );
 
-			// ŽŸ‚ªŒ`ó‚Ì‚Æ‚«‚ÍƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+			// æ¬¡ãŒå½¢çŠ¶ã®ã¨ãã¯ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 			if( p_drawwork->local_select == ZKN_SORTSEARCH_SELECT_FORM ){
 				ZknSortSearchSubLoadOamForm( p_drawwork, p_drawglb, p_drawdata->heap );
 				ZknSortSearchSubAddClactForm_Gra( p_drawwork, p_drawglb, p_drawdata->heap );
 			} 
 
-			// OAM‚ð”¼“§–¾Ý’è
+			// OAMã‚’åŠé€æ˜Žè¨­å®š
 			ZknSortSearchSubButtonFadeOamModeSet_Pack( p_drawwork, GX_OAM_MODE_XLU, p_drawwork->local_select, p_drawwork->local_type_page );
 		}
 		
-		// ƒJ[ƒ\ƒ‹“®ì
+		// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
 		ZknSortSearchSubCursorDrawPack( p_drawglb, cp_datawork, cp_dataglb );
 	}
 
-	// ƒ{ƒ^ƒ““®ì
+	// ãƒœã‚¿ãƒ³å‹•ä½œ
 	for( i=0; i<ZKN_SORTSEARCHSUB_BUTTON_NUM; i++ ){
 		ZKN_UTIL_ButtonMove( p_drawwork->clact[ i ],
 				cp_datawork->button_event[ i ] );
 
-		// ƒ{ƒ^ƒ“ƒtƒHƒ“ƒgƒAƒjƒ
+		// ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡
 		if( p_drawwork->p_fontoam[ i ] ){
 			if( i==ZKN_SORTSEARCHSUB_BUTTON_ACTION ){
 				pltt_ofs = ZKN_SORTSEARCHSUB_BUTTONFONT_KETTEI_PLTOFS;		
@@ -1329,14 +1329,14 @@ static int ZknSortSearchSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 		}
 	}
 
-	// ƒTƒuƒ{ƒ^ƒ““®ì
+	// ã‚µãƒ–ãƒœã‚¿ãƒ³å‹•ä½œ
 	for( i=0; i<ZKN_SORTSEARCHSUB_BUTTON_SUB_MAX; i++ ){
 		if( p_drawwork->clact_sub[ i ] ){
 			ZKN_UTIL_ButtonMove( p_drawwork->clact_sub[ i ],
 					cp_datawork->button_event_sub[ i ] );
 		}
 
-		// ƒ{ƒ^ƒ“ƒtƒHƒ“ƒgƒAƒjƒ
+		// ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡
 		if( p_drawwork->p_fontoam_sub[ i ] ){
 			ZKN_UTIL_ButtonFontMove_Col( p_drawwork->clact_sub[ i ],
 					p_drawwork->p_fontoam_sub[ i ],
@@ -1345,7 +1345,7 @@ static int ZknSortSearchSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 					ZKN_SORTSEARCHSUB_BUTTONFONT_OTHER_PUSHPLTOFS );
 		}
 
-		// Œ`óƒ{ƒ^ƒ“
+		// å½¢çŠ¶ãƒœã‚¿ãƒ³
 		if( p_drawwork->clact_sub_form[i] ){
 			ZKN_UTIL_ButtonMove( p_drawwork->clact_sub_form[ i ],
 					cp_datawork->button_event_sub[ i ] );
@@ -1357,17 +1357,17 @@ static int ZknSortSearchSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -1404,7 +1404,7 @@ static int ZknSortSearchSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DA
 		
 		ZknSortSearchSubDeleteRes( p_drawwork, p_drawglb );
 
-		// ‚à‚µŒ`ó‚Ì‚Æ‚«‚ÍƒŠƒ\[ƒX”jŠü
+		// ã‚‚ã—å½¢çŠ¶ã®ã¨ãã¯ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 		if( p_drawwork->local_select == ZKN_SORTSEARCH_SELECT_FORM ){
 			ZknSortSearchSubReleaseOamForm( p_drawwork, p_drawglb );
 			ZknSortSearchSubDeleteClactForm_Gra( p_drawwork );
@@ -1430,43 +1430,43 @@ static int ZknSortSearchSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource“Ç‚Ýž‚Ý•‰æ–Ê\’z
+ *	@brief	Resourceèª­ã¿è¾¼ã¿ï¼†ç”»é¢æ§‹ç¯‰
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_datawork	ƒf[ƒ^ƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_datawork	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubLoadRes( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const ZKN_SORTSEARCHSUB_GLB* cp_glb, const ZKN_SORTSEARCHSUB_WORK* cp_datawork, int heap )
 {
-	// BGÝ’è
+	// BGè¨­å®š
 	ZknSortSearchSubSetUpBg( p_drawglb, cp_glb, heap );
 
-	// ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	ZknSortSearchSubLoadOam( p_draw, p_drawglb, heap );
 
-	// OAM“o˜^
+	// OAMç™»éŒ²
 	ZknSortSearchSubAddClact( p_draw, p_drawglb, heap );
 
 
 	// FONTOAM
 	ZknSortSearchSubAddFontOam( p_draw, p_drawglb, heap );
 
-	// OAM‚ð”¼“§–¾Ý’è
+	// OAMã‚’åŠé€æ˜Žè¨­å®š
 	ZknSortSearchSubButtonFadeOamModeSet_Pack( p_draw, GX_OAM_MODE_XLU, p_draw->local_select, p_draw->local_type_page );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource”jŠü
+ *	@brief	Resourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1479,24 +1479,24 @@ static void ZknSortSearchSubDeleteRes( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTS
 	// OAM
 	ZknSortSearchSubDeleteClact( p_draw );
 
-	// OAMƒŠƒ\[ƒX
+	// OAMãƒªã‚½ãƒ¼ã‚¹
 	ZknSortSearchSubReleaseOam( p_draw, p_drawglb );
 
-	// ƒJ[ƒ\ƒ‹•\Ž¦‚ÌOFF
+	// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºã®OFF
 	ZKN_UTIL_CursorSetDrawFlag( &p_drawglb->p_drawglb->cursor, FALSE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒi–ÊƒZƒbƒg	
+ *	@brief	èƒŒæ™¯é¢ã‚»ãƒƒãƒˆ	
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
- * [ƒCƒxƒ“ƒg‚Åo‚Ä‚­‚é“‡‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«Š·‚¦‚à‚±‚Ì’†]
+ * [ã‚¤ãƒ™ãƒ³ãƒˆã§å‡ºã¦ãã‚‹å³¶ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãæ›ãˆã‚‚ã“ã®ä¸­]
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubSetUpBg( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const ZKN_SORTSEARCHSUB_GLB* cp_glb, int heap )
@@ -1504,19 +1504,19 @@ static void ZknSortSearchSubSetUpBg( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_list_sub_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_S, 0, 0, TRUE, heap );
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_sort_bg_sub2_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«ž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_S,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_S );
 }
 
@@ -1524,27 +1524,27 @@ static void ZknSortSearchSubSetUpBg( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ÃÞ°À‰Šú‰»ì¬
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–ä½œæˆ
  *
- *	@param	p_work		ÃÞ°Àƒ[ƒN
- *	@param	p_glb		ÃÞ°ÀƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb		ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonInit( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap )
 {
-	// ‹¤’Êƒ{ƒ^ƒ“ì¬
+	// å…±é€šãƒœã‚¿ãƒ³ä½œæˆ
 	ZknSortSearchSubButtonMake( p_work, p_glb, heap );
 
-	// ƒTƒu–Êƒ{ƒ^ƒ“ì¬
+	// ã‚µãƒ–é¢ãƒœã‚¿ãƒ³ä½œæˆ
 	ZknSortSearchSubButtonMakeSub( p_work, p_glb, heap, p_work->local_select, p_work->local_type_page );
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒoƒbƒtƒ@‰Šú‰»
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 	ZknSortSearchSubButtonEventBuffInit( p_work );
 }
-// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒoƒbƒtƒ@‰Šú‰»
+// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 static void ZknSortSearchSubButtonEventBuffInit( ZKN_SORTSEARCHSUB_WORK* p_work )
 {
 	int i;
@@ -1561,52 +1561,52 @@ static void ZknSortSearchSubButtonEventBuffInit( ZKN_SORTSEARCHSUB_WORK* p_work 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘Sƒ{ƒ^ƒ“ÃÞ°À”jŠü
+ *	@brief	å…¨ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_work	ÃÞ°Àƒ[ƒN
+ *	@param	p_work	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonAllDelete( ZKN_SORTSEARCHSUB_WORK* p_work )
 {
-	// ‹¤’Êƒ{ƒ^ƒ“
+	// å…±é€šãƒœã‚¿ãƒ³
 	ZknSortSearchSubButtonDelete( p_work );
 
-	// ƒTƒu–Êƒ{ƒ^ƒ“
+	// ã‚µãƒ–é¢ãƒœã‚¿ãƒ³
 	ZknSortSearchSubButtonSubDelete( p_work );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu–Êƒ{ƒ^ƒ“ÃÞ°À‚Ì•ÏX
+ *	@brief	ã‚µãƒ–é¢ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ã®å¤‰æ›´
  *
- *	@param	p_work	ÃÞ°Àƒ[ƒN
- *	@param	p_glb	ÃÞ°ÀƒOƒ[ƒoƒ‹
- *	@param	heap	ƒq[ƒv 
+ *	@param	p_work	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap	ãƒ’ãƒ¼ãƒ— 
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonChgMake( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap )
 {
-	// ¡‚Ü‚Å‚Ì‚ð”jŠü
+	// ä»Šã¾ã§ã®ã‚’ç ´æ£„
 	ZknSortSearchSubButtonSubDelete( p_work );
 
 
-	// Äì¬
+	// å†ä½œæˆ
 	ZknSortSearchSubButtonMakeSub( p_work, p_glb, heap, p_work->local_select, p_work->local_type_page );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu–Êƒ{ƒ^ƒ“ì¬
+ *	@brief	ã‚µãƒ–é¢ãƒœã‚¿ãƒ³ä½œæˆ
  *
- *	@param	p_work		ÃÞ°Àƒ[ƒN
- *	@param	p_glb		ÃÞ°ÀƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
- *	@param	select_type	‘I‘ðÀ²Ìß
- *	@param	type_page	À²Ìßƒy[ƒW
+ *	@param	p_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb		ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	select_type	é¸æŠžã‚¿ã‚¤ãƒ—
+ *	@param	type_page	ã‚¿ã‚¤ãƒ—ãƒšãƒ¼ã‚¸
  *
  *	@return	none
  */
@@ -1641,32 +1641,32 @@ static void ZknSortSearchSubButtonMakeSub( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_S
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“‚Ì“®ì
+ *	@brief	ãƒœã‚¿ãƒ³ã®å‹•ä½œ
  *
- *	@param	p_work	ÃÞ°Àƒ[ƒN
- *	@param	p_glb	ÃÞ°ÀƒOƒ[ƒoƒ‹
+ *	@param	p_work	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonMoveAll( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb )
 {
-	// ‹¤’Êƒ{ƒ^ƒ““®ì
+	// å…±é€šãƒœã‚¿ãƒ³å‹•ä½œ
 	ZknSortSearchSubButtonMove( p_work, p_glb );
 
 
-	//@‘I‘ðÀ²Ìß•Ê“®ì
+	//ã€€é¸æŠžã‚¿ã‚¤ãƒ—åˆ¥å‹•ä½œ
 	ZknSortSearchSubButtonMoveSub( p_work, p_glb, p_work->local_select, p_work->local_type_page );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu–Êƒ{ƒ^ƒ““®ì
+ *	@brief	ã‚µãƒ–é¢ãƒœã‚¿ãƒ³å‹•ä½œ
  *
- *	@param	p_work			ÃÞ°Àƒ[ƒN
- *	@param	p_glb			ÃÞ°ÀƒOƒ[ƒoƒ‹
- *	@param	select_type		‘I‘ðÀ²Ìß
- *	@param	type_page		À²Ìßƒy[ƒW
+ *	@param	p_work			ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb			ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	select_type		é¸æŠžã‚¿ã‚¤ãƒ—
+ *	@param	type_page		ã‚¿ã‚¤ãƒ—ãƒšãƒ¼ã‚¸
  *
  *	@return	none
  */
@@ -1701,21 +1701,21 @@ static void ZknSortSearchSubButtonMoveSub( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_S
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒ^ƒbƒ`ƒf[ƒ^ì¬
+ *	@brief	ãƒœã‚¿ãƒ³ã‚¿ãƒƒãƒãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap	ƒq[ƒv
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonMake( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap )
 {
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_work->hit_tbl = sys_AllocMemory( heap, sizeof(TP_HIT_TBL) * ZKN_SORTSEARCHSUB_BUTTON_NUM );
 
-	// ƒe[ƒuƒ‹ƒf[ƒ^Ý’è
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl[ ZKN_SORTSEARCHSUB_BUTTON_NARABI ],
 			ZKN_SORTSEARCHSUB_BUTTON_NARABI_Y - (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
 			ZKN_SORTSEARCHSUB_BUTTON_NARABI_Y + (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
@@ -1755,7 +1755,7 @@ static void ZknSortSearchSubButtonMake( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORT
 	p_work->button_work.p_glb = p_glb;
 	p_work->button_work.p_work = p_work;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_work->p_button_man = BMN_Create( 
 			p_work->hit_tbl,
 			ZKN_SORTSEARCHSUB_BUTTON_NUM,
@@ -1766,31 +1766,31 @@ static void ZknSortSearchSubButtonMake( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ““®ì
+ *	@brief	ãƒœã‚¿ãƒ³å‹•ä½œ
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonMove( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb )
 {
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒg‰Šú‰»
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆåˆæœŸåŒ–
 	ZknSortSearchSubButtonEventInit( p_work );
 	
 	BMN_Main( p_work->p_button_man );
 
-	// ¡‘I‘ð’†‚Ì€–Ú‚Ìƒ{ƒ^ƒ“‚Í‰Ÿ‚µ‚Á‚Ï‚È‚µ
+	// ä»Šé¸æŠžä¸­ã®é …ç›®ã®ãƒœã‚¿ãƒ³ã¯æŠ¼ã—ã£ã±ãªã—
 	ZknSortSearchSubButtonSelectEventSet( p_work, p_work->local_select );
 }
 
-// ƒCƒxƒ“ƒg‰Šú
+// ã‚¤ãƒ™ãƒ³ãƒˆåˆæœŸ
 static void ZknSortSearchSubButtonEventInit( ZKN_SORTSEARCHSUB_WORK* p_work )
 {
 	int i;
 	
-	// •ú‚³‚ê‚½‚ç‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªŒ³‚ÌŠG‚É–ß‚é
+	// æ”¾ã•ã‚ŒãŸã‚‰å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒå…ƒã®çµµã«æˆ»ã‚‹
 	for( i = 0; i < ZKN_SORTSEARCHSUB_BUTTON_NUM; i++ ){
 		p_work->button_event[ i ] = BMN_EVENT_SLIDEOUT;
 	}
@@ -1798,7 +1798,7 @@ static void ZknSortSearchSubButtonEventInit( ZKN_SORTSEARCHSUB_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“‚ÌƒZƒŒƒNƒgÀ²ÌßÝ’è
+ *	@brief	ãƒœã‚¿ãƒ³ã®ã‚»ãƒ¬ã‚¯ãƒˆã‚¿ã‚¤ãƒ—è¨­å®š
  *
  *	@param	p_work 
  *
@@ -1836,9 +1836,9 @@ static void ZknSortSearchSubButtonSelectEventSet( ZKN_SORTSEARCHSUB_WORK* p_work
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“”jŠü
+ *	@brief	ãƒœã‚¿ãƒ³ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1847,18 +1847,18 @@ static void ZknSortSearchSubButtonDelete( ZKN_SORTSEARCHSUB_WORK* p_work )
 {
 	BMN_Delete( p_work->p_button_man );
 
-	// ƒe[ƒuƒ‹ƒ[ƒN”jŠü
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_work->hit_tbl );
 	p_work->hit_tbl = NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	button_no	ƒ{ƒ^ƒ“ƒiƒ“ƒo[
- *	@param	event		ƒCƒxƒ“ƒgƒ^ƒCƒv
- *	@param	p_work		ƒ[ƒN
+ *	@param	button_no	ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1869,12 +1869,12 @@ static void ZknSortSearchSubButtonCallBack( u32 button_no, u32 event, void* p_wo
 	ZKN_SORTSEARCHSUB_GLB* p_glb = p_button_work->p_glb;
 	ZKN_SORTSEARCHSUB_WORK* p_subwork = p_button_work->p_work;
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgŠi”[
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆæ ¼ç´
 	p_subwork->button_event[ button_no ] = event;
 	
 	switch( event ){
 	case BMN_EVENT_HOLD:
-		// ƒJ[ƒ\ƒ‹‚ð‚»‚ÌˆÊ’u‚ÉÝ’è
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚’ãã®ä½ç½®ã«è¨­å®š
 		ZKN_CURSOR_Cont( p_subwork->p_cursor, ZKN_CURSOR_CONT_SET_CONTID, button_no );
 		p_subwork->do_flag_common = button_no;
 		p_subwork->req_count ++;
@@ -1888,7 +1888,7 @@ static void ZknSortSearchSubButtonCallBack( u32 button_no, u32 event, void* p_wo
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ{ƒ^ƒ“—p”jŠü
+ *	@brief	ã‚µãƒ–ãƒœã‚¿ãƒ³ç”¨ç ´æ£„
  *
  *	@param	p_work
  *
@@ -1899,14 +1899,14 @@ static void ZknSortSearchSubButtonSubDelete( ZKN_SORTSEARCHSUB_WORK* p_work )
 {
 	BMN_Delete( p_work->p_button_man_sub );
 
-	// ƒe[ƒuƒ‹ƒ[ƒN”jŠü
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_work->hit_tbl_sub );
 	p_work->hit_tbl_sub = NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ{ƒ^ƒ“ƒCƒxƒ“ƒg‰Šú‰»
+ *	@brief	ã‚µãƒ–ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆåˆæœŸåŒ–
  *
  *	@param	p_work 
  *
@@ -1917,7 +1917,7 @@ static void ZknSortSearchSubButtonSubEventInit( ZKN_SORTSEARCHSUB_WORK* p_work )
 {
 	int i;
 	
-	// •ú‚³‚ê‚½‚ç‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªŒ³‚ÌŠG‚É–ß‚é
+	// æ”¾ã•ã‚ŒãŸã‚‰å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒå…ƒã®çµµã«æˆ»ã‚‹
 	for( i = 0; i < ZKN_SORTSEARCHSUB_BUTTON_SUB_MAX; i++ ){
 		p_work->button_event_sub[ i ] = BMN_EVENT_SLIDEOUT;
 	}
@@ -1925,24 +1925,24 @@ static void ZknSortSearchSubButtonSubEventInit( ZKN_SORTSEARCHSUB_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\[ƒg‰æ–Ê
+ *	@brief	ã‚½ãƒ¼ãƒˆç”»é¢
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonMakeSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap )
 {
 	int i, j;
 	int x, y;
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_work->hit_tbl_sub = sys_AllocMemory( heap, sizeof(TP_HIT_TBL) * ZKN_SORTSEARCHSUB_BUTTON_NARABI_NUM );
 
 
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<3; i++ ){
 		y = ZKN_SORTSEARCHSUB_BUTTON_01_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		for( j=0; j<2; j++ ){
 			x = ZKN_SORTSEARCHSUB_BUTTONDEF_00_X + (j * (ZKN_SORTSEARCHSUB_BUTTONDEF_01_X - ZKN_SORTSEARCHSUB_BUTTONDEF_00_X));
 
-			// ƒe[ƒuƒ‹ƒf[ƒ^Ý’è
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 			ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl_sub[ (i*2)+j ],
 					y - (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
 					y + (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
@@ -1955,7 +1955,7 @@ static void ZknSortSearchSubButtonMakeSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 	p_work->button_work.p_glb = p_glb;
 	p_work->button_work.p_work = p_work;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_work->p_button_man_sub = BMN_Create( 
 			p_work->hit_tbl_sub,
 			ZKN_SORTSEARCHSUB_BUTTON_NARABI_NUM,
@@ -1967,46 +1967,46 @@ static void ZknSortSearchSubButtonMoveSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 {
 	int i;
 	
-	// •ú‚³‚ê‚½‚ç‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªŒ³‚ÌŠG‚É–ß‚é
+	// æ”¾ã•ã‚ŒãŸã‚‰å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒå…ƒã®çµµã«æˆ»ã‚‹
 	for( i = 0; i < ZKN_SORTSEARCHSUB_BUTTON_NARABI_NUM; i++ ){
 		p_work->button_event_sub[ i ] = BMN_EVENT_SLIDEOUT;
 	}
 	
 	BMN_Main( p_work->p_button_man_sub );
 
-	// ¡‘I‘ð’†‚Ìƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Á‚Ï‚È‚µ‚É‚·‚é
+	// ä»Šé¸æŠžä¸­ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã£ã±ãªã—ã«ã™ã‚‹
 	switch( ZKN_SortSearchAplSortTypeGet( p_glb->p_main_apl ) ){
-	case ZKN_POKELIST_SORT_NORMAL:		// ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+	case ZKN_POKELIST_SORT_NORMAL:		// ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_NUMBER ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_NUMBER ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SORT_GOZYUUON:		// ŒÜ\‰¹
+	case ZKN_POKELIST_SORT_GOZYUUON:		// äº”åéŸ³
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_AIUEO ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_AIUEO ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SORT_GRAM_L:		// d‚¢
+	case ZKN_POKELIST_SORT_GRAM_L:		// é‡ã„
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_HEAVY ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_HEAVY ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SORT_GRAM_S:		// Œy‚¢
+	case ZKN_POKELIST_SORT_GRAM_S:		// è»½ã„
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_LIGHT ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_LIGHT ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SORT_HIGH_L:		// ‚‚¢
+	case ZKN_POKELIST_SORT_HIGH_L:		// é«˜ã„
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_TALL ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_TALL ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELSIT_SOTT_HIGH_S:		// ’á‚¢
+	case ZKN_POKELSIT_SOTT_HIGH_S:		// ä½Žã„
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_SHORT ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NARABI_SHORT ] = BMN_EVENT_RELEASE;
 		}
@@ -2019,7 +2019,7 @@ static void ZknSortSearchSubButtonCallBackSort( u32 button_no, u32 event, void* 
 	ZKN_SORTSEARCHSUB_GLB* p_glb = p_button_work->p_glb;
 	ZKN_SORTSEARCHSUB_WORK* p_subwork = p_button_work->p_work;
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgŠi”[
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆæ ¼ç´
 	p_subwork->button_event_sub[ button_no ] = event;
 	
 	switch( event ){
@@ -2037,23 +2037,23 @@ static void ZknSortSearchSubButtonCallBackSort( u32 button_no, u32 event, void* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–¼‘O‰æ–Ê
+ *	@brief	åå‰ç”»é¢
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonMakeName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap )
 {
 	int i, j;
 	int x, y;
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_work->hit_tbl_sub = sys_AllocMemory( heap, sizeof(TP_HIT_TBL) * ZKN_SORTSEARCHSUB_BUTTON_NAME_NUM );
 
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<5; i++ ){
 		y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		for( j=0; j<2; j++ ){
 			x = ZKN_SORTSEARCHSUB_BUTTONDEF_00_X + (j * (ZKN_SORTSEARCHSUB_BUTTONDEF_01_X - ZKN_SORTSEARCHSUB_BUTTONDEF_00_X));
 
-			// ƒe[ƒuƒ‹ƒf[ƒ^Ý’è
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 			ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl_sub[ (i*2)+j ],
 					y - (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
 					y + (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
@@ -2065,7 +2065,7 @@ static void ZknSortSearchSubButtonMakeName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 	p_work->button_work.p_glb = p_glb;
 	p_work->button_work.p_work = p_work;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_work->p_button_man_sub = BMN_Create( 
 			p_work->hit_tbl_sub,
 			ZKN_SORTSEARCHSUB_BUTTON_NAME_NUM,
@@ -2077,7 +2077,7 @@ static void ZknSortSearchSubButtonMoveName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 {
 	int i;
 	
-	// •ú‚³‚ê‚½‚ç‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªŒ³‚ÌŠG‚É–ß‚é
+	// æ”¾ã•ã‚ŒãŸã‚‰å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒå…ƒã®çµµã«æˆ»ã‚‹
 	for( i = 0; i < ZKN_SORTSEARCHSUB_BUTTON_NAME_NUM; i++ ){
 		p_work->button_event_sub[ i ] = BMN_EVENT_SLIDEOUT;
 	}
@@ -2087,7 +2087,7 @@ static void ZknSortSearchSubButtonMoveName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 	switch( ZKN_SortSearchAplNameTypeGet( p_glb->p_main_apl ) ){
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ\[ƒg‚ðŒÜ\‰¹‚©‚çƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚É
+	// ã‚½ãƒ¼ãƒˆã‚’äº”åéŸ³ã‹ã‚‰ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«
 	case ZKN_POKELIST_SEARCH_NAME_ABC:
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_ABC ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_ABC ] = BMN_EVENT_RELEASE;
@@ -2153,12 +2153,12 @@ static void ZknSortSearchSubButtonCallBackName( u32 button_no, u32 event, void* 
 	ZKN_SORTSEARCHSUB_GLB* p_glb = p_button_work->p_glb;
 	ZKN_SORTSEARCHSUB_WORK* p_subwork = p_button_work->p_work;
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgŠi”[
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆæ ¼ç´
 	p_subwork->button_event_sub[ button_no ] = event;
 	
 	switch( event ){
 	case BMN_EVENT_HOLD:
-		// ƒJ[ƒ\ƒ‹ˆÊ’u‚ð‡‚í‚¹‚é
+		// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’åˆã‚ã›ã‚‹
 		ZKN_CURSOR_Cont( p_subwork->p_cursor, ZKN_CURSOR_CONT_SET_CONTID, ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00+button_no );
 
 		p_subwork->do_flag_select = button_no;
@@ -2171,23 +2171,23 @@ static void ZknSortSearchSubButtonCallBackName( u32 button_no, u32 event, void* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß1‰æ–Ê
+ *	@brief	ã‚¿ã‚¤ãƒ—1ç”»é¢
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap )
 {
 	int i, j;
 	int x, y;
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_work->hit_tbl_sub = sys_AllocMemory( heap, sizeof(TP_HIT_TBL) * ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NUM );
 
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<5; i++ ){
 		y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		for( j=0; j<2; j++ ){
 			x = ZKN_SORTSEARCHSUB_BUTTONDEF_00_X + (j * (ZKN_SORTSEARCHSUB_BUTTONDEF_01_X - ZKN_SORTSEARCHSUB_BUTTONDEF_00_X));
 
-			// ƒe[ƒuƒ‹ƒf[ƒ^Ý’è
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 			ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl_sub[ (i*2)+j ],
 					y - (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
 					y + (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
@@ -2196,10 +2196,10 @@ static void ZknSortSearchSubButtonMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 		}
 	}
 	
-	// ƒy[ƒW‘—‚èƒ{ƒ^ƒ“
+	// ãƒšãƒ¼ã‚¸é€ã‚Šãƒœã‚¿ãƒ³
 	y = ZKN_SORTSEARCHSUB_BUTTON_05_Y;
 	x = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_TYPE2_X;
-	// ƒe[ƒuƒ‹ƒf[ƒ^Ý’è
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_TYPE2 ],
 			y - (ZKN_SORTSEARCHSUB_BUTTON_PAGE_SIZY/2),
 			y + (ZKN_SORTSEARCHSUB_BUTTON_PAGE_SIZY/2),
@@ -2209,7 +2209,7 @@ static void ZknSortSearchSubButtonMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 	p_work->button_work.p_glb = p_glb;
 	p_work->button_work.p_work = p_work;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_work->p_button_man_sub = BMN_Create( 
 			p_work->hit_tbl_sub,
 			ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NUM,
@@ -2221,14 +2221,14 @@ static void ZknSortSearchSubButtonMoveType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 {
 	int i;
 	
-	// •ú‚³‚ê‚½‚ç‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªŒ³‚ÌŠG‚É–ß‚é
+	// æ”¾ã•ã‚ŒãŸã‚‰å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒå…ƒã®çµµã«æˆ»ã‚‹
 	for( i = 0; i < ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NUM; i++ ){
 		p_work->button_event_sub[ i ] = BMN_EVENT_SLIDEOUT;
 	}
 	
 	BMN_Main( p_work->p_button_man_sub );
 
-	// ‘I‘ð’†‚Ì€–Ú‚ð‰Ÿ‚µ‚Á‚Ï‚È‚µ‚É
+	// é¸æŠžä¸­ã®é …ç›®ã‚’æŠ¼ã—ã£ã±ãªã—ã«
 	ZknSortSearchSubButtonSelectSetType1( p_work, ZKN_SortSearchAplTypeTypeGet( p_glb->p_main_apl, ZKN_SORTSEARCH_TYPE1 ) );
 	ZknSortSearchSubButtonSelectSetType1( p_work, ZKN_SortSearchAplTypeTypeGet( p_glb->p_main_apl, ZKN_SORTSEARCH_TYPE2 ) );
 
@@ -2237,7 +2237,7 @@ static void ZknSortSearchSubButtonSelectSetType1( ZKN_SORTSEARCHSUB_WORK* p_work
 {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-	// ƒ^ƒCƒv‚Ì•À‚Ñ‡‚ðŒÜ\‰¹‡‚©‚ç]—ˆ‚Ì‡‚Ö
+	// ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³é †ã‚’äº”åéŸ³é †ã‹ã‚‰å¾“æ¥ã®é †ã¸
 	switch( type ){
 	case ZKN_POKELIST_SEARCH_TYPE_NORMAL:
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL ] != BMN_EVENT_HOLD ){
@@ -2295,13 +2295,13 @@ static void ZknSortSearchSubButtonCallBackType1( u32 button_no, u32 event, void*
 	ZKN_SORTSEARCHSUB_GLB* p_glb = p_button_work->p_glb;
 	ZKN_SORTSEARCHSUB_WORK* p_subwork = p_button_work->p_work;
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgŠi”[
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆæ ¼ç´
 	p_subwork->button_event_sub[ button_no ] = event;
 
 	switch( event ){
 	case BMN_EVENT_HOLD:
 		if( p_subwork->tp_no_touch == FALSE ){
-			// ƒJ[ƒ\ƒ‹ˆÊ’u‚ð‡‚í‚¹‚é
+			// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’åˆã‚ã›ã‚‹
 			ZKN_CURSOR_Cont( p_subwork->p_cursor, ZKN_CURSOR_CONT_SET_CONTID, ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00+button_no );
 
 			p_subwork->do_flag_select = button_no;
@@ -2317,23 +2317,23 @@ static void ZknSortSearchSubButtonCallBackType1( u32 button_no, u32 event, void*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß2‰æ–Ê
+ *	@brief	ã‚¿ã‚¤ãƒ—2ç”»é¢
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap )
 {
 	int i, j;
 	int x, y;
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_work->hit_tbl_sub = sys_AllocMemory( heap, sizeof(TP_HIT_TBL) * ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NUM );
 
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<4; i++ ){
 		y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		for( j=0; j<2; j++ ){
 			x = ZKN_SORTSEARCHSUB_BUTTONDEF_00_X + (j * (ZKN_SORTSEARCHSUB_BUTTONDEF_01_X - ZKN_SORTSEARCHSUB_BUTTONDEF_00_X));
 
-			// ƒe[ƒuƒ‹ƒf[ƒ^Ý’è
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 			ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl_sub[ (i*2)+j ],
 					y - (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
 					y + (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
@@ -2342,20 +2342,20 @@ static void ZknSortSearchSubButtonMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 		}
 	}
 
-	// [[[[[ƒ{ƒ^ƒ“
+	// ãƒ¼ãƒ¼ãƒ¼ãƒ¼ãƒ¼ãƒœã‚¿ãƒ³
 	y = ZKN_SORTSEARCHSUB_BUTTON_04_Y;
 	x = ZKN_SORTSEARCHSUB_BUTTONDEF_01_X;
-	// ƒe[ƒuƒ‹ƒf[ƒ^Ý’è
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NONE ],
 			y - (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
 			y + (ZKN_SORTSEARCHSUB_BUTTON_SIZY/2),
 			x - (ZKN_SORTSEARCHSUB_BUTTON_ACTION_SIZX/2),
 			x + (ZKN_SORTSEARCHSUB_BUTTON_ACTION_SIZX/2) );
 	
-	// ƒy[ƒW‘—‚èƒ{ƒ^ƒ“
+	// ãƒšãƒ¼ã‚¸é€ã‚Šãƒœã‚¿ãƒ³
 	y = ZKN_SORTSEARCHSUB_BUTTON_05_Y;
 	x = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_TYPE1_X;
-	// ƒe[ƒuƒ‹ƒf[ƒ^Ý’è
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_TYPE1 ],
 			y - (ZKN_SORTSEARCHSUB_BUTTON_PAGE_SIZY/2),
 			y + (ZKN_SORTSEARCHSUB_BUTTON_PAGE_SIZY/2),
@@ -2366,7 +2366,7 @@ static void ZknSortSearchSubButtonMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 	p_work->button_work.p_glb = p_glb;
 	p_work->button_work.p_work = p_work;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_work->p_button_man_sub = BMN_Create( 
 			p_work->hit_tbl_sub,
 			ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NUM,
@@ -2378,14 +2378,14 @@ static void ZknSortSearchSubButtonMoveType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 {
 	int i;
 	
-	// •ú‚³‚ê‚½‚ç‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªŒ³‚ÌŠG‚É–ß‚é
+	// æ”¾ã•ã‚ŒãŸã‚‰å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒå…ƒã®çµµã«æˆ»ã‚‹
 	for( i = 0; i < ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NUM; i++ ){
 		p_work->button_event_sub[ i ] = BMN_EVENT_SLIDEOUT;
 	}
 	
 	BMN_Main( p_work->p_button_man_sub );
 
-	// ‘I‘ð’†‚Ì€–Ú‚ð‰Ÿ‚µ‚Á‚Ï‚È‚µ‚É
+	// é¸æŠžä¸­ã®é …ç›®ã‚’æŠ¼ã—ã£ã±ãªã—ã«
 	ZknSortSearchSubButtonSelectSetType2( p_work, ZKN_SortSearchAplTypeTypeGet( p_glb->p_main_apl, ZKN_SORTSEARCH_TYPE1 ) );
 	ZknSortSearchSubButtonSelectSetType2( p_work, ZKN_SortSearchAplTypeTypeGet( p_glb->p_main_apl, ZKN_SORTSEARCH_TYPE2 ) );
 }
@@ -2395,13 +2395,13 @@ static void ZknSortSearchSubButtonCallBackType2( u32 button_no, u32 event, void*
 	ZKN_SORTSEARCHSUB_GLB* p_glb = p_button_work->p_glb;
 	ZKN_SORTSEARCHSUB_WORK* p_subwork = p_button_work->p_work;
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgŠi”[
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆæ ¼ç´
 	p_subwork->button_event_sub[ button_no ] = event;
 	
 	switch( event ){
 	case BMN_EVENT_HOLD:
 		if( p_subwork->tp_no_touch == FALSE ){
-			// ƒJ[ƒ\ƒ‹ˆÊ’u‚ð‡‚í‚¹‚é
+			// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’åˆã‚ã›ã‚‹
 			if( button_no == ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NONE ){
 				ZKN_CURSOR_Cont( p_subwork->p_cursor, ZKN_CURSOR_CONT_SET_CONTID, ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00+button_no+1 );
 			}else{
@@ -2421,7 +2421,7 @@ static void ZknSortSearchSubButtonSelectSetType2( ZKN_SORTSEARCHSUB_WORK* p_work
 {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-	// ƒ^ƒCƒv‚Ì•À‚Ñ‡‚ðŒÜ\‰¹‡‚©‚ç]—ˆ‚Ì‡‚Ö
+	// ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³é †ã‚’äº”åéŸ³é †ã‹ã‚‰å¾“æ¥ã®é †ã¸
 	switch( type ){
 	case ZKN_POKELIST_SEARCH_TYPE_FIRE:	
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE ] != BMN_EVENT_HOLD ){
@@ -2471,23 +2471,23 @@ static void ZknSortSearchSubButtonSelectSetType2( ZKN_SORTSEARCHSUB_WORK* p_work
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚©‚½‚¿‰æ–Ê
+ *	@brief	ã‹ãŸã¡ç”»é¢
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonMakeForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int heap )
 {
 	int i, j;
 	int x, y;
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_work->hit_tbl_sub = sys_AllocMemory( heap, sizeof(TP_HIT_TBL) * ZKN_SORTSEARCHSUB_BUTTON_FORM_NUM );
 
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<5; i++ ){
 		y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		for( j=0; j<3; j++ ){
 			x = ZKN_SORTSEARCHSUB_BUTTON_FORM_DEF_X + (j * ZKN_SORTSEARCHSUB_BUTTON_FORM_OFS_X);
 
-			// ƒe[ƒuƒ‹ƒf[ƒ^Ý’è
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 			ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl_sub[ (i*3)+j ],
 					y - (ZKN_SORTSEARCHSUB_BUTTON_FORM_SIZY/2),
 					y + (ZKN_SORTSEARCHSUB_BUTTON_FORM_SIZY/2),
@@ -2499,7 +2499,7 @@ static void ZknSortSearchSubButtonMakeForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 	p_work->button_work.p_glb = p_glb;
 	p_work->button_work.p_work = p_work;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_work->p_button_man_sub = BMN_Create( 
 			p_work->hit_tbl_sub,
 			ZKN_SORTSEARCHSUB_BUTTON_FORM_NUM,
@@ -2511,7 +2511,7 @@ static void ZknSortSearchSubButtonMoveForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 {
 	int i;
 	
-	// •ú‚³‚ê‚½‚ç‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªŒ³‚ÌŠG‚É–ß‚é
+	// æ”¾ã•ã‚ŒãŸã‚‰å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒå…ƒã®çµµã«æˆ»ã‚‹
 	for( i = 0; i < ZKN_SORTSEARCHSUB_BUTTON_FORM_NUM; i++ ){
 		p_work->button_event_sub[ i ] = BMN_EVENT_SLIDEOUT;
 	}
@@ -2600,12 +2600,12 @@ static void ZknSortSearchSubButtonCallBackForm( u32 button_no, u32 event, void* 
 	ZKN_SORTSEARCHSUB_GLB* p_glb = p_button_work->p_glb;
 	ZKN_SORTSEARCHSUB_WORK* p_subwork = p_button_work->p_work;
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgŠi”[
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆæ ¼ç´
 	p_subwork->button_event_sub[ button_no ] = event;
 	
 	switch( event ){
 	case BMN_EVENT_HOLD:
-		// ƒJ[ƒ\ƒ‹ˆÊ’u‚ð‡‚í‚¹‚é
+		// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’åˆã‚ã›ã‚‹
 		ZKN_CURSOR_Cont( p_subwork->p_cursor, ZKN_CURSOR_CONT_SET_CONTID, ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00+button_no );
 		p_subwork->do_flag_select = button_no;
 		break;
@@ -2618,10 +2618,10 @@ static void ZknSortSearchSubButtonCallBackForm( u32 button_no, u32 event, void* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ƒf[ƒ^ì¬
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *	
- *	@param	p_work	ƒ[ƒN
- *	@param	heap	ƒq[ƒv
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -2629,15 +2629,15 @@ static void ZknSortSearchSubButtonCallBackForm( u32 button_no, u32 event, void* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹“®ì
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
-// ‹¤’Êƒ{ƒ^ƒ“
+// å…±é€šãƒœã‚¿ãƒ³
 static void ZknSortSearchSubCursorCommonSet( ZKN_CURSOR_ONEDATA* p_data, int id )
 {
 	int x, y;
@@ -2686,7 +2686,7 @@ static void ZknSortSearchSubCursorCommonSet( ZKN_CURSOR_ONEDATA* p_data, int id 
 		size_y = ZKN_SORTSEARCHSUB_CURSOR_ACTION_SIZY;
 		break;
 	}
-	// ƒJ[ƒ\ƒ‹ˆÚ“®ƒf[ƒ^Ý’è
+	// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	ZKN_CURSOR_SetOneData( 
 			p_data,
 			x, 
@@ -2700,18 +2700,18 @@ static void ZknSortSearchSubCursorCommonSet( ZKN_CURSOR_ONEDATA* p_data, int id 
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’Êƒ{ƒ^ƒ““®ì
+ *	@brief	å…±é€šãƒœã‚¿ãƒ³å‹•ä½œ
  *
- *	@param	p_work	ÃÞ°Àƒ[ƒN
- *	@param	p_glb	ÃÞ°ÀƒOƒ[ƒoƒ‹
+ *	@param	p_work	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubCursorMoveCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb )
 {
-	// ƒJ[ƒ\ƒ‹ˆÊ’u‚Ì‹@”\‚ðŽÀs
-	// ‹¤’Ê•”•ª‚ª‰Ÿ‚³‚ê‚½ˆ—‚Íˆê
+	// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®æ©Ÿèƒ½ã‚’å®Ÿè¡Œ
+	// å…±é€šéƒ¨åˆ†ãŒæŠ¼ã•ã‚ŒãŸå‡¦ç†ã¯ä¸€ç·’
 	if( sys.cont & PAD_BUTTON_A ){
 
 		if( p_work->cursor_no_touch == FALSE ){
@@ -2757,10 +2757,10 @@ static void ZknSortSearchSubCursorMoveCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZK
 	}else{
 		p_work->req_count = 0;
 
-		p_work->cursor_no_touch = FALSE;	// PAD_BUTTON_A‚ð‚Í‚È‚µ‚½
+		p_work->cursor_no_touch = FALSE;	// PAD_BUTTON_Aã‚’ã¯ãªã—ãŸ
 	}
 
-	// Bƒ{ƒ^ƒ“‚Åƒ|ƒPƒŠƒXƒg‚É–ß‚é
+	// Bãƒœã‚¿ãƒ³ã§ãƒã‚±ãƒªã‚¹ãƒˆã«æˆ»ã‚‹
 	if(sys.trg & PAD_BUTTON_B){
 		p_work->do_flag_common = ZKN_SORTSEARCHSUB_BUTTON_BACK;
 		p_work->button_event[ p_work->do_flag_common ] = BMN_EVENT_HOLD;
@@ -2768,7 +2768,7 @@ static void ZknSortSearchSubCursorMoveCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZK
 
 }
 
-// ¿°Ä‰æ–Ê
+// ã‚½ãƒ¼ãƒˆç”»é¢
 static void ZknSortSearchSubCursorMakeSort( ZKN_SORTSEARCHSUB_WORK* p_work, int heap )
 {
 	int i, j;
@@ -2778,7 +2778,7 @@ static void ZknSortSearchSubCursorMakeSort( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 
 	p_work->p_cursor_tbl = sys_AllocMemory( heap, sizeof(ZKN_CURSOR_ONEDATA) * (ZKN_SORTSEARCHSUB_CURSOR_NARABI_MAX_X * ZKN_SORTSEARCHSUB_CURSOR_MAX_Y) );
 
-	//@ƒJ[ƒ\ƒ‹ÃÞ°Àì¬
+	//ã€€ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<ZKN_SORTSEARCHSUB_CURSOR_MAX_Y; i++ ){
 		y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		
@@ -2787,7 +2787,7 @@ static void ZknSortSearchSubCursorMakeSort( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 			x = ZKN_SORTSEARCHSUB_BUTTONDEF_00_X + (j * (ZKN_SORTSEARCHSUB_BUTTONDEF_01_X - ZKN_SORTSEARCHSUB_BUTTONDEF_00_X));
 			id = ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00 + (i * (ZKN_SORTSEARCHSUB_CURSOR_NARABI_MAX_X - 1)) + j;
 
-			// s‚É‚æ‚èŠi”[ƒf[ƒ^‚ª•ÏX‚·‚é
+			// è¡Œã«ã‚ˆã‚Šæ ¼ç´ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã™ã‚‹
 			switch( i ){
 			case ZKN_SORTSEARCHSUB_BUTTON_BACK:
 				if( j == (ZKN_SORTSEARCHSUB_CURSOR_NARABI_MAX_X - 1) ){
@@ -2833,9 +2833,9 @@ static void ZknSortSearchSubCursorMakeSort( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 				break;
 			}
 
-			// ‘I‘ðÀ²Ìßƒ{ƒ^ƒ“
+			// é¸æŠžã‚¿ã‚¤ãƒ—ãƒœã‚¿ãƒ³
 			if( j < (ZKN_SORTSEARCHSUB_CURSOR_NARABI_MAX_X - 1) ){
-				// ƒJ[ƒ\ƒ‹ˆÚ“®ƒf[ƒ^Ý’è
+				// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ‡ãƒ¼ã‚¿è¨­å®š
 				ZKN_CURSOR_SetOneData( 
 						&p_work->p_cursor_tbl[ (i*ZKN_SORTSEARCHSUB_CURSOR_NARABI_MAX_X) + j ],
 						x, y,
@@ -2844,7 +2844,7 @@ static void ZknSortSearchSubCursorMakeSort( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 						move_type, move_type,
 						id );
 			}else{
-				// ‹¤—pƒ{ƒ^ƒ“
+				// å…±ç”¨ãƒœã‚¿ãƒ³
 				ZknSortSearchSubCursorCommonSet( 
 						&p_work->p_cursor_tbl[ (i*ZKN_SORTSEARCHSUB_CURSOR_NARABI_MAX_X) + j ],
 						id );
@@ -2853,7 +2853,7 @@ static void ZknSortSearchSubCursorMakeSort( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 	}
 
 
-	// ƒJ[ƒ\ƒ‹ƒf[ƒ^Ý’è
+	// ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_work->p_cursor = ZKN_CURSOR_Alloc( heap );
 	ZKN_CURSOR_Init( p_work->p_cursor, p_work->p_cursor_tbl,
 			ZKN_SORTSEARCHSUB_CURSOR_NARABI_MAX_X,
@@ -2866,7 +2866,7 @@ static void ZknSortSearchSubCursorMoveSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 		if( p_work->cursor_no_touch == FALSE ){
 
 			switch( ZKN_CURSOR_GetContID( p_work->p_cursor ) ){
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_02:		// 0‚Æ1‚Íƒ_ƒ~[
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_02:		// 0ã¨1ã¯ãƒ€ãƒŸãƒ¼
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_NARABI_NUMBER;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
 				break;
@@ -2897,11 +2897,11 @@ static void ZknSortSearchSubCursorMoveSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 		}
 
 	}else{
-		p_work->cursor_no_touch = FALSE;	// PAD_BUTTON_A‚ð‚Í‚È‚µ‚½
+		p_work->cursor_no_touch = FALSE;	// PAD_BUTTON_Aã‚’ã¯ãªã—ãŸ
 	}
 }
 
-// –¼‘O‰æ–Ê
+// åå‰ç”»é¢
 static void ZknSortSearchSubCursorMakeName( ZKN_SORTSEARCHSUB_WORK* p_work, int heap )
 {
 	int i, j;
@@ -2910,7 +2910,7 @@ static void ZknSortSearchSubCursorMakeName( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 	int id;
 	p_work->p_cursor_tbl = sys_AllocMemory( heap, sizeof(ZKN_CURSOR_ONEDATA) * (ZKN_SORTSEARCHSUB_CURSOR_NAME_MAX_X * ZKN_SORTSEARCHSUB_CURSOR_MAX_Y) );
 
-	//@ƒJ[ƒ\ƒ‹ÃÞ°Àì¬
+	//ã€€ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<ZKN_SORTSEARCHSUB_CURSOR_MAX_Y; i++ ){
 		y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		
@@ -2919,7 +2919,7 @@ static void ZknSortSearchSubCursorMakeName( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 			x = ZKN_SORTSEARCHSUB_BUTTONDEF_00_X + (j * (ZKN_SORTSEARCHSUB_BUTTONDEF_01_X - ZKN_SORTSEARCHSUB_BUTTONDEF_00_X));
 			id = ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00 + (i * 2) + j;
 
-			// s‚É‚æ‚èŠi”[ƒf[ƒ^‚ª•ÏX‚·‚é
+			// è¡Œã«ã‚ˆã‚Šæ ¼ç´ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã™ã‚‹
 			switch( i ){
 			case ZKN_SORTSEARCHSUB_BUTTON_BACK:
 				if( j == (ZKN_SORTSEARCHSUB_CURSOR_NAME_MAX_X - 1) ){
@@ -2965,9 +2965,9 @@ static void ZknSortSearchSubCursorMakeName( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 				break;
 			}
 
-			// ‘I‘ðÀ²Ìßƒ{ƒ^ƒ“
+			// é¸æŠžã‚¿ã‚¤ãƒ—ãƒœã‚¿ãƒ³
 			if( j < (ZKN_SORTSEARCHSUB_CURSOR_NAME_MAX_X - 1) ){
-				// ƒJ[ƒ\ƒ‹ˆÚ“®ƒf[ƒ^Ý’è
+				// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ‡ãƒ¼ã‚¿è¨­å®š
 				ZKN_CURSOR_SetOneData( 
 						&p_work->p_cursor_tbl[ (i*ZKN_SORTSEARCHSUB_CURSOR_NAME_MAX_X) + j ],
 						x, y,
@@ -2976,7 +2976,7 @@ static void ZknSortSearchSubCursorMakeName( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 						move_type, move_type,
 						id );
 			}else{
-				// ‹¤—pƒ{ƒ^ƒ“
+				// å…±ç”¨ãƒœã‚¿ãƒ³
 				ZknSortSearchSubCursorCommonSet( 
 						&p_work->p_cursor_tbl[ (i*ZKN_SORTSEARCHSUB_CURSOR_NAME_MAX_X) + j ],
 						id );
@@ -2984,7 +2984,7 @@ static void ZknSortSearchSubCursorMakeName( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 		}
 	}
 
-	// ƒJ[ƒ\ƒ‹ƒf[ƒ^Ý’è
+	// ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_work->p_cursor = ZKN_CURSOR_Alloc( heap );
 	ZKN_CURSOR_Init( p_work->p_cursor, p_work->p_cursor_tbl,
 			ZKN_SORTSEARCHSUB_CURSOR_NAME_MAX_X,
@@ -3047,7 +3047,7 @@ static void ZknSortSearchSubCursorMoveName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 	}
 }
 
-// À²Ìß1‰æ–Ê
+// ã‚¿ã‚¤ãƒ—1ç”»é¢
 static void ZknSortSearchSubCursorMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, int heap )
 {
 	int i, j;
@@ -3057,7 +3057,7 @@ static void ZknSortSearchSubCursorMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, int
 	int id;
 	p_work->p_cursor_tbl = sys_AllocMemory( heap, sizeof(ZKN_CURSOR_ONEDATA) * (ZKN_SORTSEARCHSUB_CURSOR_TYPE1_MAX_X * ZKN_SORTSEARCHSUB_CURSOR_MAX_Y) );
 
-	//@ƒJ[ƒ\ƒ‹ÃÞ°Àì¬
+	//ã€€ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<ZKN_SORTSEARCHSUB_CURSOR_MAX_Y; i++ ){
 		y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		
@@ -3066,7 +3066,7 @@ static void ZknSortSearchSubCursorMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, int
 			x = ZKN_SORTSEARCHSUB_BUTTONDEF_00_X + (j * (ZKN_SORTSEARCHSUB_BUTTONDEF_01_X - ZKN_SORTSEARCHSUB_BUTTONDEF_00_X));
 			id = ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00 + (i * 2) + j;
 
-			// s‚É‚æ‚èŠi”[ƒf[ƒ^‚ª•ÏX‚·‚é
+			// è¡Œã«ã‚ˆã‚Šæ ¼ç´ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã™ã‚‹
 			switch( i ){
 			case ZKN_SORTSEARCHSUB_BUTTON_BACK:
 				if( j == (ZKN_SORTSEARCHSUB_CURSOR_TYPE1_MAX_X - 1) ){
@@ -3131,9 +3131,9 @@ static void ZknSortSearchSubCursorMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, int
 				break;
 			}
 
-			// ‘I‘ðÀ²Ìßƒ{ƒ^ƒ“
+			// é¸æŠžã‚¿ã‚¤ãƒ—ãƒœã‚¿ãƒ³
 			if( j < (ZKN_SORTSEARCHSUB_CURSOR_TYPE1_MAX_X - 1) ){
-				// ƒJ[ƒ\ƒ‹ˆÚ“®ƒf[ƒ^Ý’è
+				// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ‡ãƒ¼ã‚¿è¨­å®š
 				ZKN_CURSOR_SetOneData( 
 						&p_work->p_cursor_tbl[ (i*ZKN_SORTSEARCHSUB_CURSOR_TYPE1_MAX_X) + j ],
 						x, y,
@@ -3142,7 +3142,7 @@ static void ZknSortSearchSubCursorMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, int
 						move_type, move_type,
 						id );
 			}else{
-				// ‹¤—pƒ{ƒ^ƒ“
+				// å…±ç”¨ãƒœã‚¿ãƒ³
 				ZknSortSearchSubCursorCommonSet( 
 						&p_work->p_cursor_tbl[ (i*ZKN_SORTSEARCHSUB_CURSOR_TYPE1_MAX_X) + j ],
 						id );
@@ -3150,7 +3150,7 @@ static void ZknSortSearchSubCursorMakeType1( ZKN_SORTSEARCHSUB_WORK* p_work, int
 		}
 	}
 
-	// ƒJ[ƒ\ƒ‹ƒf[ƒ^Ý’è
+	// ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_work->p_cursor = ZKN_CURSOR_Alloc( heap );
 	ZKN_CURSOR_Init( p_work->p_cursor, p_work->p_cursor_tbl,
 			ZKN_SORTSEARCHSUB_CURSOR_TYPE1_MAX_X,
@@ -3164,7 +3164,7 @@ static void ZknSortSearchSubCursorMoveType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-			// ƒ^ƒCƒv‚Ì•À‚Ñ‡‚ðŒÜ\‰¹‡‚©‚ç]—ˆ‚Ì‡‚Ö
+			// ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³é †ã‚’äº”åéŸ³é †ã‹ã‚‰å¾“æ¥ã®é †ã¸
 			switch( ZKN_CURSOR_GetContID( p_work->p_cursor ) ){
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00:
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL;
@@ -3205,7 +3205,7 @@ static void ZknSortSearchSubCursorMoveType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_09:
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NONE;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				p_work->cursor_no_touch = TRUE;	// ŽŸ‰Ÿ‚µ‚Ä‚à”½‰ž‚µ‚È‚¢
+				p_work->cursor_no_touch = TRUE;	// æ¬¡æŠ¼ã—ã¦ã‚‚åå¿œã—ãªã„
 				break;
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_10:
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_TYPE2;
@@ -3223,7 +3223,7 @@ static void ZknSortSearchSubCursorMoveType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 	}
 }
 
-// À²Ìß2‰æ–Ê
+// ã‚¿ã‚¤ãƒ—2ç”»é¢
 static void ZknSortSearchSubCursorMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, int heap )
 {
 	int i, j;
@@ -3233,7 +3233,7 @@ static void ZknSortSearchSubCursorMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, int
 	int id;
 	p_work->p_cursor_tbl = sys_AllocMemory( heap, sizeof(ZKN_CURSOR_ONEDATA) * (ZKN_SORTSEARCHSUB_CURSOR_TYPE2_MAX_X * ZKN_SORTSEARCHSUB_CURSOR_MAX_Y) );
 
-	//@ƒJ[ƒ\ƒ‹ÃÞ°Àì¬
+	//ã€€ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<ZKN_SORTSEARCHSUB_CURSOR_MAX_Y; i++ ){
 		y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		
@@ -3242,7 +3242,7 @@ static void ZknSortSearchSubCursorMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, int
 			x = ZKN_SORTSEARCHSUB_BUTTONDEF_00_X + (j * (ZKN_SORTSEARCHSUB_BUTTONDEF_01_X - ZKN_SORTSEARCHSUB_BUTTONDEF_00_X));
 			id = ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00 + (i * 2) + j;
 
-			// s‚É‚æ‚èŠi”[ƒf[ƒ^‚ª•ÏX‚·‚é
+			// è¡Œã«ã‚ˆã‚Šæ ¼ç´ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã™ã‚‹
 			switch( i ){
 			case ZKN_SORTSEARCHSUB_BUTTON_BACK:
 				if( j == (ZKN_SORTSEARCHSUB_CURSOR_TYPE2_MAX_X - 1) ){
@@ -3321,9 +3321,9 @@ static void ZknSortSearchSubCursorMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, int
 				break;
 			}
 
-			// ‘I‘ðÀ²Ìßƒ{ƒ^ƒ“
+			// é¸æŠžã‚¿ã‚¤ãƒ—ãƒœã‚¿ãƒ³
 			if( j < (ZKN_SORTSEARCHSUB_CURSOR_TYPE2_MAX_X - 1) ){
-				// ƒJ[ƒ\ƒ‹ˆÚ“®ƒf[ƒ^Ý’è
+				// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ‡ãƒ¼ã‚¿è¨­å®š
 				ZKN_CURSOR_SetOneData( 
 						&p_work->p_cursor_tbl[ (i*ZKN_SORTSEARCHSUB_CURSOR_TYPE2_MAX_X) + j ],
 						x, y,
@@ -3332,7 +3332,7 @@ static void ZknSortSearchSubCursorMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, int
 						move_typex, move_typey,
 						id );
 			}else{
-				// ‹¤—pƒ{ƒ^ƒ“
+				// å…±ç”¨ãƒœã‚¿ãƒ³
 				ZknSortSearchSubCursorCommonSet( 
 						&p_work->p_cursor_tbl[ (i*ZKN_SORTSEARCHSUB_CURSOR_TYPE2_MAX_X) + j ],
 						id );
@@ -3340,7 +3340,7 @@ static void ZknSortSearchSubCursorMakeType2( ZKN_SORTSEARCHSUB_WORK* p_work, int
 		}
 	}
 
-	// ƒJ[ƒ\ƒ‹ƒf[ƒ^Ý’è
+	// ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_work->p_cursor = ZKN_CURSOR_Alloc( heap );
 	ZKN_CURSOR_Init( p_work->p_cursor, p_work->p_cursor_tbl,
 			ZKN_SORTSEARCHSUB_CURSOR_TYPE2_MAX_X,
@@ -3353,7 +3353,7 @@ static void ZknSortSearchSubCursorMoveType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-			// ƒ^ƒCƒv‚Ì•À‚Ñ‡‚ðŒÜ\‰¹‡‚©‚ç]—ˆ‚Ì‡‚Ö
+			// ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³é †ã‚’äº”åéŸ³é †ã‹ã‚‰å¾“æ¥ã®é †ã¸
 			switch( ZKN_CURSOR_GetContID( p_work->p_cursor ) ){
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00:
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE;
@@ -3387,10 +3387,10 @@ static void ZknSortSearchSubCursorMoveType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_AKU;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
 				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_09:		// ‚W‚Íƒ_ƒ~[
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_09:		// ï¼˜ã¯ãƒ€ãƒŸãƒ¼
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NONE;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				p_work->cursor_no_touch = TRUE;	// ŽŸ‰Ÿ‚µ‚Ä‚à”½‰ž‚µ‚È‚¢
+				p_work->cursor_no_touch = TRUE;	// æ¬¡æŠ¼ã—ã¦ã‚‚åå¿œã—ãªã„
 				break;
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_10:
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_TYPE1;
@@ -3408,7 +3408,7 @@ static void ZknSortSearchSubCursorMoveType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 	}
 }
 
-// Œ`‰æ–Ê
+// å½¢ç”»é¢
 static void ZknSortSearchSubCursorMakeForm( ZKN_SORTSEARCHSUB_WORK* p_work, int heap )
 {
 	int i, j;
@@ -3418,7 +3418,7 @@ static void ZknSortSearchSubCursorMakeForm( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 	p_work->p_cursor_tbl = sys_AllocMemory( heap, sizeof(ZKN_CURSOR_ONEDATA) * (ZKN_SORTSEARCHSUB_CURSOR_FORM_MAX_X * ZKN_SORTSEARCHSUB_CURSOR_MAX_Y) );
 
 
-	//@ƒJ[ƒ\ƒ‹ÃÞ°Àì¬
+	//ã€€ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<ZKN_SORTSEARCHSUB_CURSOR_MAX_Y; i++ ){
 		y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		
@@ -3427,7 +3427,7 @@ static void ZknSortSearchSubCursorMakeForm( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 			x = ZKN_SORTSEARCHSUB_BUTTON_FORM_DEF_X + (j * ZKN_SORTSEARCHSUB_BUTTON_FORM_OFS_X);
 			id = ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00 + (i * (ZKN_SORTSEARCHSUB_CURSOR_FORM_MAX_X - 1)) + j;
 
-			// s‚É‚æ‚èŠi”[ƒf[ƒ^‚ª•ÏX‚·‚é
+			// è¡Œã«ã‚ˆã‚Šæ ¼ç´ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã™ã‚‹
 			switch( i ){
 			case ZKN_SORTSEARCHSUB_BUTTON_BACK:
 				if( j == (ZKN_SORTSEARCHSUB_CURSOR_FORM_MAX_X - 1) ){
@@ -3473,9 +3473,9 @@ static void ZknSortSearchSubCursorMakeForm( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 				break;
 			}
 
-			// ‘I‘ðÀ²Ìßƒ{ƒ^ƒ“
+			// é¸æŠžã‚¿ã‚¤ãƒ—ãƒœã‚¿ãƒ³
 			if( j < (ZKN_SORTSEARCHSUB_CURSOR_FORM_MAX_X - 1) ){
-				// ƒJ[ƒ\ƒ‹ˆÚ“®ƒf[ƒ^Ý’è
+				// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ‡ãƒ¼ã‚¿è¨­å®š
 				ZKN_CURSOR_SetOneData( 
 						&p_work->p_cursor_tbl[ (i*ZKN_SORTSEARCHSUB_CURSOR_FORM_MAX_X) + j ],
 						x, y,
@@ -3484,7 +3484,7 @@ static void ZknSortSearchSubCursorMakeForm( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 						move_type, move_type,
 						id );
 			}else{
-				// ‹¤—pƒ{ƒ^ƒ“
+				// å…±ç”¨ãƒœã‚¿ãƒ³
 				ZknSortSearchSubCursorCommonSet( 
 						&p_work->p_cursor_tbl[ (i*ZKN_SORTSEARCHSUB_CURSOR_FORM_MAX_X) + j ],
 						id );
@@ -3492,7 +3492,7 @@ static void ZknSortSearchSubCursorMakeForm( ZKN_SORTSEARCHSUB_WORK* p_work, int 
 		}
 	}
 
-	// ƒJ[ƒ\ƒ‹ƒf[ƒ^Ý’è
+	// ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_work->p_cursor = ZKN_CURSOR_Alloc( heap );
 	ZKN_CURSOR_Init( p_work->p_cursor, p_work->p_cursor_tbl,
 			ZKN_SORTSEARCHSUB_CURSOR_FORM_MAX_X,
@@ -3575,7 +3575,7 @@ static void ZknSortSearchSubCursorMoveForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹‹¤’Ê“®ì
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«å…±é€šå‹•ä½œ
  *
  *	@param	p_work
  *	@param	p_glb 
@@ -3588,44 +3588,44 @@ static void ZknSortSearchSubCursorMove( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORT
 	
 	if( sys.trg & PAD_KEY_RIGHT ){
 		ZKN_CURSOR_Cont( p_work->p_cursor, ZKN_CURSOR_CONT_ADD_X, 1 );
-		p_work->cursor_no_touch = TRUE;	// PAD_BUTTON_A‚ð‰Ÿ‚µ‚Ä‚à”½‰ž‚µ‚È‚¢
+		p_work->cursor_no_touch = TRUE;	// PAD_BUTTON_Aã‚’æŠ¼ã—ã¦ã‚‚åå¿œã—ãªã„
 		//		Snd_SePlay( ZKN_SND_SELECT );
 	}
 
 	if( sys.trg & PAD_KEY_LEFT ){
 		ZKN_CURSOR_Cont( p_work->p_cursor, ZKN_CURSOR_CONT_ADD_X, -1 );
-		p_work->cursor_no_touch = TRUE;	// PAD_BUTTON_A‚ð‰Ÿ‚µ‚Ä‚à”½‰ž‚µ‚È‚¢
+		p_work->cursor_no_touch = TRUE;	// PAD_BUTTON_Aã‚’æŠ¼ã—ã¦ã‚‚åå¿œã—ãªã„
 //		Snd_SePlay( ZKN_SND_SELECT );
 	}
 
 	if( sys.trg & PAD_KEY_UP ){
 		ZKN_CURSOR_Cont( p_work->p_cursor, ZKN_CURSOR_CONT_ADD_Y, -1 );
-		p_work->cursor_no_touch = TRUE;	// PAD_BUTTON_A‚ð‰Ÿ‚µ‚Ä‚à”½‰ž‚µ‚È‚¢
+		p_work->cursor_no_touch = TRUE;	// PAD_BUTTON_Aã‚’æŠ¼ã—ã¦ã‚‚åå¿œã—ãªã„
 //		Snd_SePlay( ZKN_SND_SELECT );
 	}
 
 	if( sys.trg & PAD_KEY_DOWN ){
 		ZKN_CURSOR_Cont( p_work->p_cursor, ZKN_CURSOR_CONT_ADD_Y, 1 );
-		p_work->cursor_no_touch = TRUE;	// PAD_BUTTON_A‚ð‰Ÿ‚µ‚Ä‚à”½‰ž‚µ‚È‚¢
+		p_work->cursor_no_touch = TRUE;	// PAD_BUTTON_Aã‚’æŠ¼ã—ã¦ã‚‚åå¿œã—ãªã„
 //		Snd_SePlay( ZKN_SND_SELECT );
 	}
 
-	// ‹¤’Ê“®ì
+	// å…±é€šå‹•ä½œ
 	ZknSortSearchSubCursorMoveCommon( p_work, p_glb );
 
 
-	// ‘I‘ð•Ê“®ì
+	// é¸æŠžåˆ¥å‹•ä½œ
 	ZknSortSearchSubCursorMoveSub( p_work, p_glb, p_work->local_select, p_work->local_type_page );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ðÀ²Ìß•ÊƒJ[ƒ\ƒ‹“®ì
+ *	@brief	é¸æŠžã‚¿ã‚¤ãƒ—åˆ¥ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
  *
- *	@param	p_work			ƒ[ƒNÃÞ°À
- *	@param	p_glb			ƒOƒ[ƒoƒ‹ÃÞ°À
- *	@param	select_type		ƒZƒŒƒNƒgÀ²Ìß
- *	@param	type_page		À²Ìß‚Ìƒy[ƒW
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	select_type		ã‚»ãƒ¬ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	type_page		ã‚¿ã‚¤ãƒ—ã®ãƒšãƒ¼ã‚¸
  *
  *	@return	none
  */
@@ -3660,9 +3660,9 @@ static void ZknSortSearchSubCursorMoveSub( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_S
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -3678,10 +3678,10 @@ static void ZknSortSearchSubCursorDelete( ZKN_SORTSEARCHSUB_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹‚Ì‰Šúì¬
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ã®åˆæœŸä½œæˆ
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	heap	ƒq[ƒv
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -3693,12 +3693,12 @@ static void ZknSortSearchSubCursorMake( ZKN_SORTSEARCHSUB_WORK* p_work, int heap
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ðÀ²Ìß•Êì¬
+ *	@brief	é¸æŠžã‚¿ã‚¤ãƒ—åˆ¥ä½œæˆ
  *
- *	@param	p_work			ƒ[ƒN
- *	@param	heap			ƒq[ƒv
- *	@param	select_type		‘I‘ðÀ²Ìß
- *	@param	type_page		À²Ìßƒy[ƒW
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	select_type		é¸æŠžã‚¿ã‚¤ãƒ—
+ *	@param	type_page		ã‚¿ã‚¤ãƒ—ãƒšãƒ¼ã‚¸
  *
  *	@return	none
  */	
@@ -3733,7 +3733,7 @@ static void ZknSortSearchSubCursorMakeSub( ZKN_SORTSEARCHSUB_WORK* p_work, int h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹‰Šú‰»ˆ—
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–å‡¦ç†
  *
  *	@param	p_work
  *	@param	p_glb 
@@ -3771,7 +3771,7 @@ static void ZknSortSearchSubCursorInit( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹•ÏX
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«å¤‰æ›´
  *
  *	@param	p_work
  *	@param	heap 
@@ -3781,10 +3781,10 @@ static void ZknSortSearchSubCursorInit( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORT
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubCursorChg( ZKN_SORTSEARCHSUB_WORK* p_work, int heap )
 {
-	// ¡‚Ü‚Å‚ÌƒJ[ƒ\ƒ‹ÃÞ°À”jŠü
+	// ä»Šã¾ã§ã®ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	ZknSortSearchSubCursorDelete( p_work );
 
-	// ì¬
+	// ä½œæˆ
 	ZknSortSearchSubCursorMakeSub( p_work, heap, p_work->local_select, p_work->local_type_page );
 }
 
@@ -3793,20 +3793,20 @@ static void ZknSortSearchSubCursorChg( ZKN_SORTSEARCHSUB_WORK* p_work, int heap 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹‰Šú‰»
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_work		ƒf[ƒ^ƒ[ƒN
- *	@param	cp_glb		ƒf[ƒ^ƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubCursorDrawInit( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const ZKN_SORTSEARCHSUB_WORK* cp_work, const ZKN_SORTSEARCHSUB_GLB* cp_glb )
 {
-	// ƒJ[ƒ\ƒ‹‰Šú‰»À•WÝ’è
+	// ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–åº§æ¨™è¨­å®š
 	ZKN_UTIL_CursorSetMatrixCursorSysNotAnm( cp_work->p_cursor, p_drawglb->p_drawglb );
-	// ƒJ[ƒ\ƒ‹“®ì
+	// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
 	ZknSortSearchSubCursorDrawPack( p_drawglb, cp_work, cp_glb );
 }
 
@@ -3814,11 +3814,11 @@ static void ZknSortSearchSubCursorDrawInit( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹•`‰æˆ—ƒpƒbƒNŠÖ”
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«æç”»å‡¦ç†ãƒ‘ãƒƒã‚¯é–¢æ•°
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_work		ƒf[ƒ^ƒ[ƒN
- *	@param	cp_glb		ƒf[ƒ^ƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -3827,14 +3827,14 @@ static void ZknSortSearchSubCursorDrawPack( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb
 {
 	BOOL check;
 	
-	//@•\Ž¦‚n‚m‚n‚e‚e‚ÆƒJ[ƒ\ƒ‹“®ì
+	//ã€€è¡¨ç¤ºï¼¯ï¼®ï¼¯ï¼¦ï¼¦ã¨ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
 	if( (ZKN_GLBDATA_TouchCursorFlagGet( cp_glb->p_glb ) != ZKN_TCHCUSO_TOUCHPANEL) ){
 
 		check = ZknSortSearchSubCursorOnOff( p_drawglb, TRUE );
 
 		if( check ){
-			// Ä•`‰æ‚³‚ê‚½‚Æ‚«‚Í,ƒJ[ƒ\ƒ‹•`‰æÀ•W‚ð‰Šú‰»
-			// ƒJ[ƒ\ƒ‹‰Šú‰»À•WÝ’è
+			// å†æç”»ã•ã‚ŒãŸã¨ãã¯,ã‚«ãƒ¼ã‚½ãƒ«æç”»åº§æ¨™ã‚’åˆæœŸåŒ–
+			// ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–åº§æ¨™è¨­å®š
 			ZKN_UTIL_CursorSetMatrixCursorSysNotAnm( cp_work->p_cursor, p_drawglb->p_drawglb );
 		}
 
@@ -3846,10 +3846,10 @@ static void ZknSortSearchSubCursorDrawPack( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒJ[ƒ\ƒ‹•`‰æˆ—
+ *	@brief	å›³é‘‘ã‚«ãƒ¼ã‚½ãƒ«æç”»å‡¦ç†
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	p_work		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	p_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -3863,13 +3863,13 @@ static void ZknSortSearchSubCursorDraw( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, co
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹•`‰æONOFF
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«æç”»ONOFF
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	flag	ONOFFƒtƒ‰ƒO
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	ONOFFãƒ•ãƒ©ã‚°
  *	
- *	@retval	TRUE	’l•ÏX
- *	@retval	FALSE	•ÏX‚µ‚È‚©‚Á‚½
+ *	@retval	TRUE	å€¤å¤‰æ›´
+ *	@retval	FALSE	å¤‰æ›´ã—ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknSortSearchSubCursorOnOff( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb,  BOOL flag )
@@ -3886,11 +3886,11 @@ static BOOL ZknSortSearchSubCursorOnOff( ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb,  
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–ÊOAMResource“Ç‚Ýž‚Ý
+ *	@brief	ã‚µãƒ–ç”»é¢OAMResourceèª­ã¿è¾¼ã¿
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[‚Î‚é
- *	@param	heap			ƒq[ƒv
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ã°ã‚‹
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -3900,38 +3900,38 @@ static void ZknSortSearchSubLoadOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEA
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_drawglb );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_sort_oam_sub_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_sort_oam_sub_lzh_NCGR + ZKN_SORTSEARCHSUB_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DSUB, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			NARC_zukan_zkn_list_oam_NCLR, FALSE, 
 			NARC_zukan_zkn_list_oam_NCLR + ZKN_SORTSEARCHSUB_RES_ID, 
 			NNS_G2D_VRAM_TYPE_2DSUB, 
 			ZKN_ZUKAN_COMMON_PLTT_SUB_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_draw->res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_sort_oam_sub_lzh_NCER, TRUE,
 			NARC_zukan_zkn_sort_oam_sub_lzh_NCER + ZKN_SORTSEARCHSUB_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_sort_oam_sub_lzh_NANR, TRUE,
@@ -3941,10 +3941,10 @@ static void ZknSortSearchSubLoadOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–ÊOAMResource”jŠü
+ *	@brief	ã‚µãƒ–ç”»é¢OAMResourceç ´æ£„
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -3957,7 +3957,7 @@ static void ZknSortSearchSubReleaseOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORT
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -3974,11 +3974,11 @@ static void ZknSortSearchSubReleaseOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ`‘ÔOAM“Ç‚Ýž‚Ý
+ *	@brief	å½¢æ…‹OAMèª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -3988,26 +3988,26 @@ static void ZknSortSearchSubLoadOamForm( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SOR
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_drawglb );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_form[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_sort_oam_sub2_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_sort_oam_sub2_lzh_NCGR + ZKN_SORTSEARCHSUB_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DSUB, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj_form[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj_form[ CLACT_U_CHAR_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_form[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_sort_oam_sub2_lzh_NCER, TRUE,
 			NARC_zukan_zkn_sort_oam_sub2_lzh_NCER + ZKN_SORTSEARCHSUB_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_form[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_sort_oam_sub2_lzh_NANR, TRUE,
@@ -4017,7 +4017,7 @@ static void ZknSortSearchSubLoadOamForm( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SOR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ`óOMA”jŠü
+ *	@brief	å½¢çŠ¶OMAç ´æ£„
  *
  *	@param	p_draw
  *	@param	p_drawglb 
@@ -4032,7 +4032,7 @@ static void ZknSortSearchSubReleaseOamForm( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_
 
 	CLACT_U_CharManagerDelete( p_draw->res_obj_form[ CLACT_U_CHAR_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj_form[ CLACT_U_CHAR_RES ] );
@@ -4046,11 +4046,11 @@ static void ZknSortSearchSubReleaseOamForm( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -4062,8 +4062,8 @@ static void ZknSortSearchSubAddClact( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSE
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_drawglb;
 	int i;
 	
-	// Šeƒ{ƒ^ƒ“‚ð“o˜^
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// å„ãƒœã‚¿ãƒ³ã‚’ç™»éŒ²
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_sort_oam_sub_lzh_NCGR + ZKN_SORTSEARCHSUB_RES_ID,
 			NARC_zukan_zkn_list_oam_NCLR + ZKN_SORTSEARCHSUB_RES_ID, 
@@ -4076,25 +4076,25 @@ static void ZknSortSearchSubAddClact( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSE
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ðÝ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= 32;
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DSUB;
 	add.heap		= heap;
 
-	// ‹¤’ÊÃÞ°À“o˜^
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 	ZknSortSearchSubAddClactCommon( p_draw, &add );
 
-	// ƒTƒuÃÞ°À“o˜^
+	// ã‚µãƒ–ãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 	ZknSortSearchSubAddSubClact( p_draw, &add, p_draw->local_select, p_draw->local_type_page );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4103,17 +4103,17 @@ static void ZknSortSearchSubDeleteClact( ZKN_SORTSEARCHSUB_DRAW* p_draw )
 {
 	ZknSortSearchSubDeleteClactCommon( p_draw );
 
-	// ‘I‘ðÀ²Ìß•ÊƒAƒNƒ^[”jŠü
+	// é¸æŠžã‚¿ã‚¤ãƒ—åˆ¥ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	ZknSortSearchSubDeleteClactSub( p_draw );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒŒƒNƒgÀ²Ìß‚ª•ÏX‚³‚ê‚½‚Ì‚ÅAƒZƒ‹ƒAƒNƒ^[‚ð•ÏX
+ *	@brief	ã‚»ãƒ¬ã‚¯ãƒˆã‚¿ã‚¤ãƒ—ãŒå¤‰æ›´ã•ã‚ŒãŸã®ã§ã€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å¤‰æ›´
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -4125,8 +4125,8 @@ static void ZknSortSearchSubChgClact( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSE
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_drawglb;
 	int i;
 	
-	// Šeƒ{ƒ^ƒ“‚ð“o˜^
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// å„ãƒœã‚¿ãƒ³ã‚’ç™»éŒ²
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_sort_oam_sub_lzh_NCGR + ZKN_SORTSEARCHSUB_RES_ID,
 			NARC_zukan_zkn_list_oam_NCLR + ZKN_SORTSEARCHSUB_RES_ID, 
@@ -4139,7 +4139,7 @@ static void ZknSortSearchSubChgClact( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSE
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ðÝ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= 32;
@@ -4147,21 +4147,21 @@ static void ZknSortSearchSubChgClact( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSE
 	add.heap		= heap;
 
 
-	// ¡‚Ü‚Å‚Ì‚à‚Ì‚ð”jŠü
+	// ä»Šã¾ã§ã®ã‚‚ã®ã‚’ç ´æ£„
 	ZknSortSearchSubDeleteClactSub( p_draw );
 
-	// ƒTƒuÃÞ°À“o˜^
+	// ã‚µãƒ–ãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 	ZknSortSearchSubAddSubClact( p_draw, &add, p_draw->local_select, p_draw->local_type_page );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒZƒ‹ƒAƒNƒ^[“o˜^ŠÖ”
+ *	@brief	ã‚µãƒ–ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²é–¢æ•°
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_add		“o˜^ÃÞ°À
- *	@param	select_type	ƒZƒŒƒNƒgÀ²Ìß
- *	@param	local_type_page	À²Ìß‚Ìpage”
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_add		ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
+ *	@param	select_type	ã‚»ãƒ¬ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	local_type_page	ã‚¿ã‚¤ãƒ—ã®pageæ•°
  *
  *	@return	none
  */
@@ -4192,10 +4192,10 @@ static void ZknSortSearchSubAddSubClact( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_A
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’Ê•”•ª‚ÌƒOƒ‰ƒtƒBƒbƒNƒZƒ‹ƒAƒNƒ^[“o˜^
+ *	@brief	å…±é€šéƒ¨åˆ†ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_add		“o˜^ÃÞ°À@•K{ÃÞ°ÀŠi”[Ï‚Ý
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_add		ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ã€€å¿…é ˆãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿
  *
  *	@return	none
  */
@@ -4205,9 +4205,9 @@ static void ZknSortSearchSubAddClactCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLAC
 	int i;
 	
 	
-	// ƒ{ƒ^ƒ“ì¬
+	// ãƒœã‚¿ãƒ³ä½œæˆ
 	for( i=0; i<ZKN_SORTSEARCHSUB_BUTTON_NUM; i++ ){
-		// “o˜^À•WÝ’è
+		// ç™»éŒ²åº§æ¨™è¨­å®š
 		switch( i ){
 		case ZKN_SORTSEARCHSUB_BUTTON_BACK:
 			p_add->mat.y		= (ZKN_SORTSEARCHSUB_BUTTON_BACK_Y * FX32_ONE) + SUB_SURFACE_Y;
@@ -4240,10 +4240,10 @@ static void ZknSortSearchSubAddClactCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLAC
 			break;
 		}
 
-		// “o˜^@ƒAƒjƒ[ƒVƒ‡ƒ“Ý’è
+		// ç™»éŒ²ã€€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
 		p_draw->clact[ i ] = CLACT_AddSimple( p_add );
 		
-		// ƒAƒjƒƒV[ƒPƒ“ƒXÝ’è
+		// ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹è¨­å®š
 		switch( i ){
 		case ZKN_SORTSEARCHSUB_BUTTON_BACK:
 			CLACT_AnmChg( p_draw->clact[ i ], ZKN_SORTSEARCHSUB_RET_BUTTON );
@@ -4265,9 +4265,9 @@ static void ZknSortSearchSubAddClactCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLAC
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’Ê•”•ª‚ÌOAM”jŠü
+ *	@brief	å…±é€šéƒ¨åˆ†ã®OAMç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4283,7 +4283,7 @@ static void ZknSortSearchSubDeleteClactCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw )
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ{ƒ^ƒ“ƒAƒNƒ^[”jŠü‹¤’Ê
+ *	@brief	ã‚µãƒ–ãƒœã‚¿ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„å…±é€š
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubDeleteClactSub( ZKN_SORTSEARCHSUB_DRAW* p_draw )
@@ -4300,14 +4300,14 @@ static void ZknSortSearchSubDeleteClactSub( ZKN_SORTSEARCHSUB_DRAW* p_draw )
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	¿°Ä‰æ–Ê“o˜^
+ *	@brief	ã‚½ãƒ¼ãƒˆç”»é¢ç™»éŒ²
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddClactSort( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add )
 {
 	int i, j;
 	
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<3; i++ ){
 		p_add->mat.y = ZKN_SORTSEARCHSUB_BUTTON_01_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		p_add->mat.y = (p_add->mat.y << FX32_SHIFT)  + SUB_SURFACE_Y;
@@ -4323,14 +4323,14 @@ static void ZknSortSearchSubAddClactSort( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	‚È‚Ü‚¦‰æ–Ê“o˜^
+ *	@brief	ãªã¾ãˆç”»é¢ç™»éŒ²
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddClactName( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add )
 {
 	int i, j;
 	
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<5; i++ ){
 		p_add->mat.y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		p_add->mat.y = (p_add->mat.y << FX32_SHIFT)  + SUB_SURFACE_Y;
@@ -4346,14 +4346,14 @@ static void ZknSortSearchSubAddClactName( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß1‰æ–Ê“o˜^
+ *	@brief	ã‚¿ã‚¤ãƒ—1ç”»é¢ç™»éŒ²
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddClactType1( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add )
 {
 	int i, j;
 	
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<5; i++ ){
 		p_add->mat.y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		p_add->mat.y = (p_add->mat.y << FX32_SHIFT)  + SUB_SURFACE_Y;
@@ -4366,7 +4366,7 @@ static void ZknSortSearchSubAddClactType1( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT
 		}
 	}
 	
-	// ƒy[ƒW‘—‚èƒ{ƒ^ƒ“
+	// ãƒšãƒ¼ã‚¸é€ã‚Šãƒœã‚¿ãƒ³
 	p_add->mat.y = ZKN_SORTSEARCHSUB_BUTTON_05_Y;
 	p_add->mat.x = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_TYPE2_X;
 	p_add->mat.x <<= FX32_SHIFT;
@@ -4377,14 +4377,14 @@ static void ZknSortSearchSubAddClactType1( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß2‰æ–Ê“o˜^
+ *	@brief	ã‚¿ã‚¤ãƒ—2ç”»é¢ç™»éŒ²
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddClactType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add )
 {
 	int i, j;
 	
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<4; i++ ){
 		p_add->mat.y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		p_add->mat.y = (p_add->mat.y << FX32_SHIFT)  + SUB_SURFACE_Y;
@@ -4397,7 +4397,7 @@ static void ZknSortSearchSubAddClactType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT
 		}
 	}
 
-	// [[[[[ƒ{ƒ^ƒ“
+	// ãƒ¼ãƒ¼ãƒ¼ãƒ¼ãƒ¼ãƒœã‚¿ãƒ³
 	p_add->mat.y = ZKN_SORTSEARCHSUB_BUTTON_04_Y;
 	p_add->mat.x = ZKN_SORTSEARCHSUB_BUTTONDEF_01_X;
 	p_add->mat.x <<= FX32_SHIFT;
@@ -4405,7 +4405,7 @@ static void ZknSortSearchSubAddClactType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT
 	p_draw->clact_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NONE ] = CLACT_AddSimple( p_add );
 	CLACT_AnmChg( p_draw->clact_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NONE ], ZKN_SORTSEARCHSUB_MAIN_BUTTON );
 	
-	// ƒy[ƒW‘—‚èƒ{ƒ^ƒ“
+	// ãƒšãƒ¼ã‚¸é€ã‚Šãƒœã‚¿ãƒ³
 	p_add->mat.y = ZKN_SORTSEARCHSUB_BUTTON_05_Y;
 	p_add->mat.x = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_TYPE1_X;
 	p_add->mat.x <<= FX32_SHIFT;
@@ -4416,14 +4416,14 @@ static void ZknSortSearchSubAddClactType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒH[ƒ€‰æ–Ê“o˜^
+ *	@brief	ãƒ•ã‚©ãƒ¼ãƒ ç”»é¢ç™»éŒ²
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddClactForm( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_ADD_SIMPLE* p_add )
 {
 	int i, j;
 	
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<5; i++ ){
 		p_add->mat.y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		p_add->mat.y = (p_add->mat.y << FX32_SHIFT)  + SUB_SURFACE_Y;
@@ -4439,11 +4439,11 @@ static void ZknSortSearchSubAddClactForm( ZKN_SORTSEARCHSUB_DRAW* p_draw, CLACT_
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ`óOAM‚ÌŠG•”•ª‚ÌOAMì¬
+ *	@brief	å½¢çŠ¶OAMã®çµµéƒ¨åˆ†ã®OAMä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -4455,8 +4455,8 @@ static void ZknSortSearchSubAddClactForm_Gra( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZK
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_drawglb;
 	int i, j;
 	
-	// Šeƒ{ƒ^ƒ“‚ð“o˜^
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// å„ãƒœã‚¿ãƒ³ã‚’ç™»éŒ²
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_sort_oam_sub2_lzh_NCGR + ZKN_SORTSEARCHSUB_RES_ID,
 			NARC_zukan_zkn_list_oam_NCLR + ZKN_SORTSEARCHSUB_RES_ID, 
@@ -4469,7 +4469,7 @@ static void ZknSortSearchSubAddClactForm_Gra( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZK
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ðÝ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= 15;
@@ -4477,7 +4477,7 @@ static void ZknSortSearchSubAddClactForm_Gra( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZK
 	add.heap		= heap;
 
 
-	// ŠeÀ•WˆÙOAM‚ðì¬‚·‚é
+	// å„åº§æ¨™ç•°OAMã‚’ä½œæˆã™ã‚‹
 	for( i=0; i<5; i++ ){
 		add.mat.y = ZKN_SORTSEARCHSUB_BUTTON_00_Y + (i * (ZKN_SORTSEARCHSUB_BUTTON_01_Y - ZKN_SORTSEARCHSUB_BUTTON_00_Y));
 		add.mat.y = (add.mat.y << FX32_SHIFT)  + SUB_SURFACE_Y;
@@ -4540,7 +4540,7 @@ static void ZknSortSearchSubAddClactForm_Gra( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ`ó@ƒOƒ‰ƒtƒBƒbƒNƒAƒNƒ^[”jŠü
+ *	@brief	å½¢çŠ¶ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
  *	@param	p_draw 
  *
@@ -4563,11 +4563,11 @@ static void ZknSortSearchSubDeleteClactForm_Gra( ZKN_SORTSEARCHSUB_DRAW* p_draw 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAMì¬
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -4578,12 +4578,12 @@ static void ZknSortSearchSubAddFontOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORT
 	CLACT_U_RES_OBJ_PTR res_obj;
 	ZKN_GLB_DRAWDATA* p_glb_draw = p_drawglb->p_drawglb;
 
-	// ƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒf[ƒ^Žæ“¾
-	// ƒpƒŒƒbƒgƒvƒƒNƒVŽæ“¾—p
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·å–å¾—ç”¨
 	res_obj = CLACT_U_ResManagerGetIDResObjPtr( p_glb_draw->res_manager[ CLACT_U_PLTT_RES ], NARC_zukan_zkn_list_oam_NCLR + ZKN_SORTSEARCHSUB_RES_ID );
 
-	// ‰Šú‰»ƒf[ƒ^‚Ì‹¤’Ê•”•ª‚ðì¬
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã®å…±é€šéƒ¨åˆ†ã‚’ä½œæˆ
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_glb_draw->fontoam_sys;
 	fontoam_init.pltt		 = CLACT_U_PlttManagerGetProxy( res_obj, NULL );
 	fontoam_init.bg_pri		 = 0;
@@ -4591,19 +4591,19 @@ static void ZknSortSearchSubAddFontOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORT
 	fontoam_init.draw_area	 = NNS_G2D_VRAM_TYPE_2DSUB;
 	fontoam_init.heap		 = heap;
 
-	// ‹¤’Êƒ{ƒ^ƒ“‚ÌƒtƒHƒ“ƒgOAM
+	// å…±é€šãƒœã‚¿ãƒ³ã®ãƒ•ã‚©ãƒ³ãƒˆOAM
 	ZknSortSearchSubAddFontCommon( p_draw, &fontoam_init, p_glb_draw->fontoam_sys );
 
 
-	// ‘I‘ðÀ²Ìß‚ÌƒtƒHƒ“ƒgOAM“o˜^
+	// é¸æŠžã‚¿ã‚¤ãƒ—ã®ãƒ•ã‚©ãƒ³ãƒˆOAMç™»éŒ²
 	ZknSortSearchSubAddSubFontOam( p_draw, &fontoam_init, p_glb_draw->fontoam_sys, p_draw->local_select, p_draw->local_type_page );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4612,20 +4612,20 @@ static void ZknSortSearchSubDeleteFontOam( ZKN_SORTSEARCHSUB_DRAW* p_draw )
 {
 	ZknSortSearchSubDeleteFontCommon( p_draw );
 
-	// ‘I‘ðƒtƒHƒ“ƒgOAM‚Ì”jŠü
+	// é¸æŠžãƒ•ã‚©ãƒ³ãƒˆOAMã®ç ´æ£„
 	ZknSortSearchSubDeleteFontSub( p_draw );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM•ÏXˆ—
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMå¤‰æ›´å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
- *	•ÏX‡”Ô‚Æ‚µ‚Ä‚ÍZknSortSearchSubChgClact‚ÌŒã‚És‚¤
+ *	å¤‰æ›´é †ç•ªã¨ã—ã¦ã¯ZknSortSearchSubChgClactã®å¾Œã«è¡Œã†
  *
  */
 //-----------------------------------------------------------------------------
@@ -4635,12 +4635,12 @@ static void ZknSortSearchSubChgFontOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORT
 	CLACT_U_RES_OBJ_PTR res_obj;
 	ZKN_GLB_DRAWDATA* p_glb_draw = p_drawglb->p_drawglb;
 
-	// ƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒf[ƒ^Žæ“¾
-	// ƒpƒŒƒbƒgƒvƒƒNƒVŽæ“¾—p
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·å–å¾—ç”¨
 	res_obj = CLACT_U_ResManagerGetIDResObjPtr( p_glb_draw->res_manager[ CLACT_U_PLTT_RES ], NARC_zukan_zkn_list_oam_NCLR + ZKN_SORTSEARCHSUB_RES_ID );
 
-	// ‰Šú‰»ƒf[ƒ^‚Ì‹¤’Ê•”•ª‚ðì¬
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã®å…±é€šéƒ¨åˆ†ã‚’ä½œæˆ
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_glb_draw->fontoam_sys;
 	fontoam_init.pltt		 = CLACT_U_PlttManagerGetProxy( res_obj, NULL );
 	fontoam_init.bg_pri		 = 0;
@@ -4648,23 +4648,23 @@ static void ZknSortSearchSubChgFontOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORT
 	fontoam_init.draw_area	 = NNS_G2D_VRAM_TYPE_2DSUB;
 	fontoam_init.heap		 = heap;
 
-	// ¡‚Ü‚Å‚ÌFONTOAM”jŠü
+	// ä»Šã¾ã§ã®FONTOAMç ´æ£„
 	ZknSortSearchSubDeleteFontSub( p_draw );
 
 
-	// “o˜^
+	// ç™»éŒ²
 	ZknSortSearchSubAddSubFontOam( p_draw, &fontoam_init, p_glb_draw->fontoam_sys, p_draw->local_select, p_draw->local_type_page );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu–ÊƒtƒHƒ“ƒgOAM‚Ì“o˜^
+ *	@brief	ã‚µãƒ–é¢ãƒ•ã‚©ãƒ³ãƒˆOAMã®ç™»éŒ²
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_fontoam_init	ƒtƒHƒ“ƒgOAM“o˜^ƒf[ƒ^
- *	@param	fontoam_sys		ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€
- *	@param	select_type		‘I‘ðÀ²Ìß
- *	@param	local_type_page	À²Ìß‚Ìƒy[ƒW”
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_fontoam_init	ãƒ•ã‚©ãƒ³ãƒˆOAMç™»éŒ²ãƒ‡ãƒ¼ã‚¿
+ *	@param	fontoam_sys		ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	select_type		é¸æŠžã‚¿ã‚¤ãƒ—
+ *	@param	local_type_page	ã‚¿ã‚¤ãƒ—ã®ãƒšãƒ¼ã‚¸æ•°
  *
  *	@return	none
  */
@@ -4696,38 +4696,38 @@ static void ZknSortSearchSubAddSubFontOam( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg@‹¤’Êƒ{ƒ^ƒ“—p
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã€€å…±é€šãƒœã‚¿ãƒ³ç”¨
  *
  *	@param	p_draw
- *	@param	p_fontoam_init	•K{ÃÞ°ÀŠi”[Ï‚Ý
+ *	@param	p_fontoam_init	å¿…é ˆãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys )
 {
-	GF_BGL_BMPWIN* win;	// •¶Žš—ñ‘‚«ž‚Ýæ
-	int pltt_ofs;	// ƒpƒŒƒbƒgƒAƒhƒŒƒX
+	GF_BGL_BMPWIN* win;	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿å…ˆ
+	int pltt_ofs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+	// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 	u32 width;
 	// ----------------------------------------------------------------------------
 
 
-	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXŽæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	pltt_ofs = GetPlttProxyOffset( p_fontoam_init->pltt, NNS_G2D_VRAM_TYPE_2DSUB );
 
 	//-------------------------------------
-	//	‚È‚ç‚Ñ
+	//	ãªã‚‰ã³
 	//=====================================
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+	// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 	width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, ZNK_SORTSEARCH_03, 0, 0 );
 	p_fontoam_init->p_bmp		 = win;
 	p_fontoam_init->parent = p_draw->clact[ ZKN_SORTSEARCHSUB_BUTTON_NARABI ];
@@ -4736,19 +4736,19 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 	p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
 	p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_NARABI ] = ZKN_FONTOAM_Make( p_fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_NARABI ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_PLTOFS );
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 
 	//-------------------------------------
-	//	‚È‚Ü‚¦
+	//	ãªã¾ãˆ
 	//=====================================
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+	// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 	width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, ZNK_SORTSEARCH_00, 0, 0 );
 	p_fontoam_init->p_bmp		 = win;
 	p_fontoam_init->parent = p_draw->clact[ ZKN_SORTSEARCHSUB_BUTTON_NAME ];
@@ -4757,19 +4757,19 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 	p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
 	p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_NAME ] = ZKN_FONTOAM_Make( p_fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_NAME ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_PLTOFS );
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 
 	//-------------------------------------
-	//	À²Ìß
+	//	ã‚¿ã‚¤ãƒ—
 	//=====================================
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+	// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 	width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, ZNK_SORTSEARCH_01, 0, 0 );
 	p_fontoam_init->p_bmp		 = win;
 	p_fontoam_init->parent = p_draw->clact[ ZKN_SORTSEARCHSUB_BUTTON_TYPE ];
@@ -4778,19 +4778,19 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 	p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
 	p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_TYPE ] = ZKN_FONTOAM_Make( p_fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_TYPE ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_PLTOFS );
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 
 	//-------------------------------------
-	//@‚©‚½‚¿
+	//ã€€ã‹ãŸã¡
 	//=====================================
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+	// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 	width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, ZNK_SORTSEARCH_02, 0, 0 );
 	p_fontoam_init->p_bmp		 = win;
 	p_fontoam_init->parent = p_draw->clact[ ZKN_SORTSEARCHSUB_BUTTON_FORM ];
@@ -4799,19 +4799,19 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 	p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
 	p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_FORM ] = ZKN_FONTOAM_Make( p_fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_FORM ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_PLTOFS );
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 
 	//-------------------------------------
-	//	Œˆ’è
+	//	æ±ºå®š
 	//=====================================
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+	// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 	width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, ZNK_SORTSEARCH_04, 0, 0 );
 	p_fontoam_init->p_bmp		 = win;
 	p_fontoam_init->parent = p_draw->clact[ ZKN_SORTSEARCHSUB_BUTTON_ACTION ];
@@ -4820,13 +4820,13 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 	p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
 	p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_ACTION ] = ZKN_FONTOAM_Make( p_fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_ACTION ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_KETTEI_PLTOFS );
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg”jŠü
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆç ´æ£„
  *
  *	@param	p_draw 
  *
@@ -4846,10 +4846,10 @@ static void ZknSortSearchSubDeleteFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒTƒu–Ê‚Ìƒ{ƒ^ƒ“ƒtƒHƒ“ƒgÝ’è
+ *	@brief		ã‚µãƒ–é¢ã®ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆè¨­å®š
  */
 //-----------------------------------------------------------------------------
-// ”jŠü‹¤’Ê
+// ç ´æ£„å…±é€š
 static void ZknSortSearchSubDeleteFontSub( ZKN_SORTSEARCHSUB_DRAW* p_draw )
 {
 	int i;
@@ -4863,26 +4863,26 @@ static void ZknSortSearchSubDeleteFontSub( ZKN_SORTSEARCHSUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°Äƒ{ƒ^ƒ“
+ *	@brief	ã‚½ãƒ¼ãƒˆãƒœã‚¿ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddFontSort( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys )
 {
-	GF_BGL_BMPWIN* win;	// •¶Žš—ñ‘‚«ž‚Ýæ
-	int pltt_ofs;	// ƒpƒŒƒbƒgƒAƒhƒŒƒX
+	GF_BGL_BMPWIN* win;	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿å…ˆ
+	int pltt_ofs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 	int i;
 	int msg_idx;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+	// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 	u32 width;
 	// ----------------------------------------------------------------------------
 
-	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXŽæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	pltt_ofs = GetPlttProxyOffset( p_fontoam_init->pltt, NNS_G2D_VRAM_TYPE_2DSUB );
 
 	for( i=0; i<ZKN_SORTSEARCHSUB_BUTTON_NARABI_NUM; i++ ){
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 		win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NARABI_SIZE_CX,
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NARABI_SIZE_CY );
@@ -4890,7 +4890,7 @@ static void ZknSortSearchSubAddFontSort( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FON
 		
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-		// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+		// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 		switch( i ){
 		case ZKN_SORTSEARCHSUB_BUTTON_NARABI_NUMBER:
 			msg_idx = ZNK_SORTSEARCH_SORT_00;
@@ -4926,33 +4926,33 @@ static void ZknSortSearchSubAddFontSort( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FON
 	
 		p_draw->p_fontoam_sub[ i ] = ZKN_FONTOAM_Make( p_fontoam_init );
 		FONTOAM_SetPaletteNo( p_draw->p_fontoam_sub[ i ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_OTHER_PLTOFS );
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		ZKN_FONTOAM_DeleteBmp( win );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–¼‘Oƒ{ƒ^ƒ“
+ *	@brief	åå‰ãƒœã‚¿ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddFontName( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys )
 {
-	GF_BGL_BMPWIN* win;	// •¶Žš—ñ‘‚«ž‚Ýæ
-	int pltt_ofs;	// ƒpƒŒƒbƒgƒAƒhƒŒƒX
+	GF_BGL_BMPWIN* win;	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿å…ˆ
+	int pltt_ofs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 	int i, j;
 	int msg_idx;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+	// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 	u32 width;
 	// ----------------------------------------------------------------------------
 
-	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXŽæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	pltt_ofs = GetPlttProxyOffset( p_fontoam_init->pltt, NNS_G2D_VRAM_TYPE_2DSUB );
 
 	for( i=0; i<ZKN_SORTSEARCHSUB_BUTTON_NAME_NUM; i++ ){
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 		win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NAME_SIZE_CX,
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NAME_SIZE_CY );
@@ -4961,7 +4961,7 @@ static void ZknSortSearchSubAddFontName( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FON
 		switch( i ){
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-		// ƒ\[ƒg‚ðŒÜ\‰¹‚©‚çƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚ÉAu?????v‚ðƒeƒLƒXƒg‚É’u‚«Š·‚¦
+		// ã‚½ãƒ¼ãƒˆã‚’äº”åéŸ³ã‹ã‚‰ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«ã€ã€Œ?????ã€ã‚’ãƒ†ã‚­ã‚¹ãƒˆã«ç½®ãæ›ãˆ
 		case ZKN_SORTSEARCHSUB_BUTTON_NAME_ABC:
 			msg_idx = ZNK_SORTSEARCH_NAME_01;
 			break;
@@ -4997,7 +4997,7 @@ static void ZknSortSearchSubAddFontName( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FON
 		
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-		// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+		// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 		width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, msg_idx, 0, 0 );
 
 		p_fontoam_init->x = -width / 2;
@@ -5008,33 +5008,33 @@ static void ZknSortSearchSubAddFontName( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FON
 	
 		p_draw->p_fontoam_sub[ i ] = ZKN_FONTOAM_Make( p_fontoam_init );
 		FONTOAM_SetPaletteNo( p_draw->p_fontoam_sub[ i ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_OTHER_PLTOFS );
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		ZKN_FONTOAM_DeleteBmp( win );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß1ƒ{ƒ^ƒ“
+ *	@brief	ã‚¿ã‚¤ãƒ—1ãƒœã‚¿ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddFontType1( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys )
 {
-	GF_BGL_BMPWIN* win;	// •¶Žš—ñ‘‚«ž‚Ýæ
-	int pltt_ofs;	// ƒpƒŒƒbƒgƒAƒhƒŒƒX
+	GF_BGL_BMPWIN* win;	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿å…ˆ
+	int pltt_ofs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 	int i, j;
 	int msg_idx;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+	// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 	u32 width;
 	// ----------------------------------------------------------------------------
 
-	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXŽæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	pltt_ofs = GetPlttProxyOffset( p_fontoam_init->pltt, NNS_G2D_VRAM_TYPE_2DSUB );
 
 	for( i=0; i<ZKN_SORTSEARCHSUB_BUTTON_TYPE1_TYPE2; i++ ){
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 		win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE1_SIZE_CX,
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE1_SIZE_CY );
@@ -5042,10 +5042,10 @@ static void ZknSortSearchSubAddFontType1( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FO
 		
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-		// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+		// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-		// ƒ^ƒCƒv‚Ì•À‚Ñ‡‚ðŒÜ\‰¹‡‚©‚ç]—ˆ‚Ì‡‚Ö
+		// ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³é †ã‚’äº”åéŸ³é †ã‹ã‚‰å¾“æ¥ã®é †ã¸
 		switch( i ){
 		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL:
 			msg_idx = ZNK_SORTSEARCH_TYPE_00;
@@ -5089,33 +5089,33 @@ static void ZknSortSearchSubAddFontType1( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FO
 	
 		p_draw->p_fontoam_sub[ i ] = ZKN_FONTOAM_Make( p_fontoam_init );
 		FONTOAM_SetPaletteNo( p_draw->p_fontoam_sub[ i ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_OTHER_PLTOFS );
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		ZKN_FONTOAM_DeleteBmp( win );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß2ƒ{ƒ^ƒ“
+ *	@brief	ã‚¿ã‚¤ãƒ—2ãƒœã‚¿ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubAddFontType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FONTOAM_INIT* p_fontoam_init, ZKN_FONTOAM_SYS_PTR fontoam_sys )
 {
-	GF_BGL_BMPWIN* win;	// •¶Žš—ñ‘‚«ž‚Ýæ
-	int pltt_ofs;	// ƒpƒŒƒbƒgƒAƒhƒŒƒX
+	GF_BGL_BMPWIN* win;	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿å…ˆ
+	int pltt_ofs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 	int i, j;
 	int msg_idx;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+	// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 	u32 width;
 	// ----------------------------------------------------------------------------
 
-	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXŽæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	pltt_ofs = GetPlttProxyOffset( p_fontoam_init->pltt, NNS_G2D_VRAM_TYPE_2DSUB );
 
 	for( i=0; i<ZKN_SORTSEARCHSUB_BUTTON_TYPE2_TYPE1; i++ ){
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 		win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE2_SIZE_CX,
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE2_SIZE_CY );
@@ -5123,10 +5123,10 @@ static void ZknSortSearchSubAddFontType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FO
 		
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-		// ƒ{ƒ^ƒ“‚Ì•¶Žš‚ðŽ©“®‚Å’†‰›Šñ‚¹‚·‚é‚æ‚¤‚É
+		// ãƒœã‚¿ãƒ³ã®æ–‡å­—ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã™ã‚‹ã‚ˆã†ã«
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-		// ƒ^ƒCƒv‚Ì•À‚Ñ‡‚ðŒÜ\‰¹‡‚©‚ç]—ˆ‚Ì‡‚Ö
+		// ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³é †ã‚’äº”åéŸ³é †ã‹ã‚‰å¾“æ¥ã®é †ã¸
 		switch( i ){
 		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE:
 			msg_idx = ZNK_SORTSEARCH_TYPE_01;
@@ -5167,7 +5167,7 @@ static void ZknSortSearchSubAddFontType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FO
 	
 		p_draw->p_fontoam_sub[ i ] = ZKN_FONTOAM_Make( p_fontoam_init );
 		FONTOAM_SetPaletteNo( p_draw->p_fontoam_sub[ i ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_OTHER_PLTOFS );
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		ZKN_FONTOAM_DeleteBmp( win );
 	}
 }
@@ -5178,10 +5178,10 @@ static void ZknSortSearchSubAddFontType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆ—ŽÀs@‰Šú‰»
+ *	@brief	å‡¦ç†å®Ÿè¡Œã€€åˆæœŸåŒ–
  *
- *	@param	p_work	ÃÞ°Àƒ[ƒN
- *	@param	p_glb	ÃÞ°ÀƒOƒ[ƒoƒ‹
+ *	@param	p_work	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -5194,21 +5194,21 @@ static void ZknSortSearchSubDoInit( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEAR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆ—‚ÌŽÀsˆ—
+ *	@brief	å‡¦ç†ã®å®Ÿè¡Œå‡¦ç†
  *
- *	@param	p_work		ÃÞ°Àƒ[ƒN
- *	@param	p_glb		ÃÞ°ÀƒOƒ[ƒoƒ‹
+ *	@param	p_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb		ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubDoMain( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb )
 {
-	// ‹¤’Ê“®ì
+	// å…±é€šå‹•ä½œ
 	ZknSortSearchSubDoCommon( p_work, p_glb );
 
 
-	// ‘I‘ðÀ²Ìß•Ê“®ì
+	// é¸æŠžã‚¿ã‚¤ãƒ—åˆ¥å‹•ä½œ
 	ZknSortSearchSubDoSelect( p_work, p_glb, p_work->local_select, p_work->local_type_page  );
 }
 static void ZknSortSearchSubDoSelect( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb, int select_type, int type_page )
@@ -5242,56 +5242,56 @@ static void ZknSortSearchSubDoSelect( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’Êƒ{ƒ^ƒ“‚ÌŽÀs
+ *	@brief	å…±é€šãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubDoCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb )
 {
 	switch( p_work->do_flag_common ){
 	case ZKN_SORTSEARCHSUB_BUTTON_BACK:
-		// ƒ|ƒPƒŠƒXƒg‚É‰½‚à‚¹‚¸‚É–ß‚é
+		// ãƒã‚±ãƒªã‚¹ãƒˆã«ä½•ã‚‚ã›ãšã«æˆ»ã‚‹
 		ZKN_SortSearchAplReqListFade( p_glb->p_main_apl, FALSE );
-		// ƒ{ƒ^ƒ“‰¹
+		// ãƒœã‚¿ãƒ³éŸ³
 		Snd_SePlay( ZKN_SND_BUTTON );
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_NARABI:
 		if( ZKN_SortSearchAplSelectTypeGet( p_glb->p_main_apl ) != ZKN_SORTSEARCH_SELECT_SORT ){
-			// ¿°Ä‘I‘ðƒ‚[ƒh‚Ö
+			// ã‚½ãƒ¼ãƒˆé¸æŠžãƒ¢ãƒ¼ãƒ‰ã¸
 			ZKN_SortSearchAplSelectTypeSet( p_glb->p_main_apl, ZKN_SORTSEARCH_SELECT_SORT );
-			// ƒ{ƒ^ƒ“‰¹
+			// ãƒœã‚¿ãƒ³éŸ³
 			Snd_SePlay( ZKN_SND_BUTTON );
 		}
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_NAME:
 		if( ZKN_SortSearchAplSelectTypeGet( p_glb->p_main_apl ) != ZKN_SORTSEARCH_SELECT_NEME ){
-			// ‚È‚Ü‚¦‘I‘ðƒ‚[ƒh‚Ö
+			// ãªã¾ãˆé¸æŠžãƒ¢ãƒ¼ãƒ‰ã¸
 			ZKN_SortSearchAplSelectTypeSet( p_glb->p_main_apl, ZKN_SORTSEARCH_SELECT_NEME );
-			// ƒ{ƒ^ƒ“‰¹
+			// ãƒœã‚¿ãƒ³éŸ³
 			Snd_SePlay( ZKN_SND_BUTTON );
 		}
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_TYPE:
 		if( ZKN_SortSearchAplSelectTypeGet( p_glb->p_main_apl ) != ZKN_SORTSEARCH_SELECT_TYPE ){
-			// À²Ìß‘I‘ðƒ‚[ƒh‚Ö
+			// ã‚¿ã‚¤ãƒ—é¸æŠžãƒ¢ãƒ¼ãƒ‰ã¸
 			ZKN_SortSearchAplSelectTypeSet( p_glb->p_main_apl, ZKN_SORTSEARCH_SELECT_TYPE );
-			// ƒ{ƒ^ƒ“‰¹
+			// ãƒœã‚¿ãƒ³éŸ³
 			Snd_SePlay( ZKN_SND_BUTTON );
 			p_work->type_set_no = ZKN_SORTSEARCH_TYPE1;
 		}
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_FORM:
 		if( ZKN_SortSearchAplSelectTypeGet( p_glb->p_main_apl ) != ZKN_SORTSEARCH_SELECT_FORM ){
-			// Œ`‘I‘ðƒ‚[ƒh‚Ö
+			// å½¢é¸æŠžãƒ¢ãƒ¼ãƒ‰ã¸
 			ZKN_SortSearchAplSelectTypeSet( p_glb->p_main_apl, ZKN_SORTSEARCH_SELECT_FORM );
-			// ƒ{ƒ^ƒ“‰¹
+			// ãƒœã‚¿ãƒ³éŸ³
 			Snd_SePlay( ZKN_SND_BUTTON );
 		}
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_ACTION:
-		if( p_work->req_count <= 1 ){	// Å‰‚ÌƒŠƒNƒGƒXƒg‚É‚µ‚©”½‰ž‚µ‚È‚¢
-			//@¿°ÄŽÀs 
+		if( p_work->req_count <= 1 ){	// æœ€åˆã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«ã—ã‹åå¿œã—ãªã„
+			//ã€€ã‚½ãƒ¼ãƒˆå®Ÿè¡Œ 
 			ZKN_SortSearchAplReqListFade( p_glb->p_main_apl, TRUE );
-			// ƒ{ƒ^ƒ“‰¹
+			// ãƒœã‚¿ãƒ³éŸ³
 			Snd_SePlay( ZKN_SND_BUTTON );
 		}
 		break;
@@ -5304,7 +5304,7 @@ static void ZknSortSearchSubDoCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°Äƒ{ƒ^ƒ“‚ÌŽÀs
+ *	@brief	ã‚½ãƒ¼ãƒˆãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubDoSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb )
@@ -5336,7 +5336,7 @@ static void ZknSortSearchSubDoSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEAR
 	if( set_num != 100 ){
 
 		if( ZKN_SortSearchAplSortTypeGet( p_glb->p_main_apl ) != set_num ){
-			// ƒ{ƒ^ƒ“‰¹
+			// ãƒœã‚¿ãƒ³éŸ³
 			Snd_SePlay( ZKN_SND_BUTTON );
 			ZKN_SortSearchAplSortTypeSet( p_glb->p_main_apl, set_num );	
 		}
@@ -5347,7 +5347,7 @@ static void ZknSortSearchSubDoSort( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEAR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–¼‘Oƒ{ƒ^ƒ“‚ÌŽÀs
+ *	@brief	åå‰ãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubDoName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb )
@@ -5357,7 +5357,7 @@ static void ZknSortSearchSubDoName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEAR
 	switch( p_work->do_flag_select ){
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ƒ\[ƒg‚ðŒÜ\‰¹‚©‚çƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚É
+	// ã‚½ãƒ¼ãƒˆã‚’äº”åéŸ³ã‹ã‚‰ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«
 	case ZKN_SORTSEARCHSUB_BUTTON_NAME_ABC:
 		set_num = ZKN_POKELIST_SEARCH_NAME_ABC;
 		break;
@@ -5395,7 +5395,7 @@ static void ZknSortSearchSubDoName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEAR
 
 	if( set_num != 100 ){
 		if( ZKN_SortSearchAplNameTypeGet( p_glb->p_main_apl ) !=set_num  ){
-			// ƒ{ƒ^ƒ“‰¹
+			// ãƒœã‚¿ãƒ³éŸ³
 			Snd_SePlay( ZKN_SND_BUTTON );
 
 			ZKN_SortSearchAplNameTypeSet( p_glb->p_main_apl, set_num );
@@ -5406,7 +5406,7 @@ static void ZknSortSearchSubDoName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEAR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß1ƒ{ƒ^ƒ“‚ÌŽÀs
+ *	@brief	ã‚¿ã‚¤ãƒ—1ãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubDoType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb )
@@ -5415,7 +5415,7 @@ static void ZknSortSearchSubDoType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEA
 	
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-	// ƒ^ƒCƒv‚Ì•À‚Ñ‡‚ðŒÜ\‰¹‡‚©‚ç]—ˆ‚Ì‡‚Ö
+	// ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³é †ã‚’äº”åéŸ³é †ã‹ã‚‰å¾“æ¥ã®é †ã¸
 	switch( p_work->do_flag_select ){
 	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL:
 		set_num = ZKN_POKELIST_SEARCH_TYPE_NORMAL;
@@ -5449,7 +5449,7 @@ static void ZknSortSearchSubDoType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEA
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_TYPE2:
 		p_work->type_page = 1;
-		// ƒ{ƒ^ƒ“‰¹
+		// ãƒœã‚¿ãƒ³éŸ³
 		Snd_SePlay( ZKN_SND_BUTTON );
 		break;
 	default:
@@ -5465,7 +5465,7 @@ static void ZknSortSearchSubDoType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²Ìß2ƒ{ƒ^ƒ“‚ÌŽÀs
+ *	@brief	ã‚¿ã‚¤ãƒ—2ãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubDoType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb )
@@ -5474,7 +5474,7 @@ static void ZknSortSearchSubDoType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEA
 	
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
-	// ƒ^ƒCƒv‚Ì•À‚Ñ‡‚ðŒÜ\‰¹‡‚©‚ç]—ˆ‚Ì‡‚Ö
+	// ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³é †ã‚’äº”åéŸ³é †ã‹ã‚‰å¾“æ¥ã®é †ã¸
 	switch( p_work->do_flag_select ){
 	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE:
 		set_num = ZKN_POKELIST_SEARCH_TYPE_FIRE;
@@ -5505,7 +5505,7 @@ static void ZknSortSearchSubDoType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEA
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_TYPE1:
 		p_work->type_page = 0;
-		// ƒ{ƒ^ƒ“‰¹
+		// ãƒœã‚¿ãƒ³éŸ³
 		Snd_SePlay( ZKN_SND_BUTTON );
 		break;
 	default:
@@ -5522,7 +5522,7 @@ static void ZknSortSearchSubDoTypeSetCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 {
 	if( set_num != ZKN_POKELIST_SEARCH_TYPE_NONE ){
 
-		// —¼•û‚Ì’l‚Æˆá‚Á‚Ä‚¢‚½‚çÝ’è
+		// ä¸¡æ–¹ã®å€¤ã¨é•ã£ã¦ã„ãŸã‚‰è¨­å®š
 		if( (ZKN_SortSearchAplTypeTypeGet( p_glb->p_main_apl, ZKN_SORTSEARCH_TYPE1 ) != set_num) &&
 			(ZKN_SortSearchAplTypeTypeGet( p_glb->p_main_apl, ZKN_SORTSEARCH_TYPE2 ) != set_num) ){
 		
@@ -5530,21 +5530,21 @@ static void ZknSortSearchSubDoTypeSetCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 				
 				ZKN_SortSearchAplTypeTypeSet( p_glb->p_main_apl, set_num, p_work->type_set_no );
 				p_work->type_set_no = (p_work->type_set_no + 1) % ZKN_SORTSEARCH_TYPENUM;
-				// ƒ{ƒ^ƒ“‰¹
+				// ãƒœã‚¿ãƒ³éŸ³
 				Snd_SePlay( ZKN_SND_BUTTON );
 			}
 		}
 	}else{
-		// ‹ó”’‚É‚·‚é‚Æ‚«
-		// ‹ó”’ˆÈŠO‚ª“ü‚Á‚Ä‚¢‚é‚Ù‚¤‚ð‰Šú‰»‚·‚é
+		// ç©ºç™½ã«ã™ã‚‹ã¨ã
+		// ç©ºç™½ä»¥å¤–ãŒå…¥ã£ã¦ã„ã‚‹ã»ã†ã‚’åˆæœŸåŒ–ã™ã‚‹
 		if( ZKN_SortSearchAplTypeTypeGet( p_glb->p_main_apl, ZKN_SORTSEARCH_TYPE1 ) != ZKN_POKELIST_SEARCH_TYPE_NONE ){
 			ZKN_SortSearchAplTypeTypeSet( p_glb->p_main_apl, set_num, ZKN_SORTSEARCH_TYPE1 );
-			// ƒ{ƒ^ƒ“‰¹
+			// ãƒœã‚¿ãƒ³éŸ³
 			Snd_SePlay( ZKN_SND_BUTTON );
 		}else{
 			if( ZKN_SortSearchAplTypeTypeGet( p_glb->p_main_apl, ZKN_SORTSEARCH_TYPE2 ) != ZKN_POKELIST_SEARCH_TYPE_NONE ){
 				ZKN_SortSearchAplTypeTypeSet( p_glb->p_main_apl, set_num, ZKN_SORTSEARCH_TYPE2 );
-				// ƒ{ƒ^ƒ“‰¹
+				// ãƒœã‚¿ãƒ³éŸ³
 				Snd_SePlay( ZKN_SND_BUTTON );
 			}
 		}
@@ -5554,7 +5554,7 @@ static void ZknSortSearchSubDoTypeSetCommon( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ`ƒ{ƒ^ƒ“‚ÌŽÀs
+ *	@brief	å½¢ãƒœã‚¿ãƒ³ã®å®Ÿè¡Œ
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubDoForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEARCHSUB_GLB* p_glb )
@@ -5613,7 +5613,7 @@ static void ZknSortSearchSubDoForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEAR
 
 	if( set_num != 100 ){
 		if( ZKN_SortSearchAplFormTypeGet( p_glb->p_main_apl ) != set_num ){
-			// ƒ{ƒ^ƒ“‰¹
+			// ãƒœã‚¿ãƒ³éŸ³
 			Snd_SePlay( ZKN_SND_BUTTON );
 
 			ZKN_SortSearchAplFormTypeSet( p_glb->p_main_apl, set_num );
@@ -5625,42 +5625,42 @@ static void ZknSortSearchSubDoForm( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEAR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒtƒF[ƒhƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubButtonFadeCont( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb )
 {
-	// ¡ƒtƒF[ƒh’†‚©ƒ`ƒFƒbƒN
+	// ä»Šãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_draw->do_fade == ZKN_SORTSEARCH_SUB_BUTTON_FADE_NONE ){
 		
-		// ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½‚çƒtƒF[ƒhŠJŽn
+		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸã‚‰ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 		if( p_drawglb->button_fade_req > ZKN_SORTSEARCH_SUB_BUTTON_FADE_NONE ){
 			p_draw->do_fade = p_drawglb->button_fade_req;
 			p_draw->do_fade_seq = 0;
 			p_draw->end_flag = p_drawglb->button_fade;
 			*p_draw->end_flag = FALSE;
 
-			// ƒŠƒNƒGƒXƒgÃÞ°À‰Šú‰»
+			// ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 			p_drawglb->button_fade_req = ZKN_SORTSEARCH_SUB_BUTTON_FADE_NONE;
 		}
 	}else{
 
-		// ƒtƒF[ƒhŽÀs
+		// ãƒ•ã‚§ãƒ¼ãƒ‰å®Ÿè¡Œ
 		ZknSortSearchSubButtonFade( p_draw );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒtƒF[ƒhˆ—
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -5670,14 +5670,14 @@ static void ZknSortSearchSubButtonFade( ZKN_SORTSEARCHSUB_DRAW* p_draw )
 	BOOL check;
 
 
-	// ŽÀsƒtƒF[ƒhÀ²Ìß‚ªNONE‚È‚ç‚È‚É‚à‚µ‚È‚¢
+	// å®Ÿè¡Œãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¤ãƒ—ãŒNONEãªã‚‰ãªã«ã‚‚ã—ãªã„
 	if( p_draw->do_fade == ZKN_SORTSEARCH_SUB_BUTTON_FADE_NONE ){
 		return ;
 	}
 	
 	switch( p_draw->do_fade_seq ){
 	case 0:
-		// “®ì‰Šú‰»
+		// å‹•ä½œåˆæœŸåŒ–
 		if( p_draw->do_fade == ZKN_SORTSEARCH_SUB_BUTTON_FADE_IN ){
 			ZKN_UTIL_MoveReq( &p_draw->fade_work, 0, 16, 0, 0, ZKN_SORTSEARCHSUB_BUTTON_FADE_SYNC );
 		}else{
@@ -5692,7 +5692,7 @@ static void ZknSortSearchSubButtonFade( ZKN_SORTSEARCHSUB_DRAW* p_draw )
 		check = ZKN_UTIL_MoveMain( &p_draw->fade_work );	
 		G2S_ChangeBlendAlpha( p_draw->fade_work.x, 16 - p_draw->fade_work.x );
 		if( check == TRUE ){
-			// OAM‚ð”¼“§–¾‰ðœ
+			// OAMã‚’åŠé€æ˜Žè§£é™¤
 			if( p_draw->do_fade == ZKN_SORTSEARCH_SUB_BUTTON_FADE_IN ){
 				G2S_BlendNone();
 			}
@@ -5707,7 +5707,7 @@ static void ZknSortSearchSubButtonFade( ZKN_SORTSEARCHSUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°Ä»°ÁOAMÓ°ÄÞÝ’èƒpƒbƒNŠÖ”
+ *	@brief	ã‚½ãƒ¼ãƒˆã‚µãƒ¼ãƒOAMãƒ¢ãƒ¼ãƒ‰è¨­å®šãƒ‘ãƒƒã‚¯é–¢æ•°
  *
  *	@param	p_draw
  *	@param	mode
@@ -5734,7 +5734,7 @@ static void ZknSortSearchSubButtonFadeOamModeSet_Pack( ZKN_SORTSEARCHSUB_DRAW* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒh‚·‚éƒIƒuƒWƒF‚àƒ‚[ƒhÝ’è
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚‚ãƒ¢ãƒ¼ãƒ‰è¨­å®š
  *
  *	@param	p_draw
  *	@param	mode 
@@ -5761,7 +5761,7 @@ static void ZknSortSearchSubButtonFadeOamModeSet( ZKN_SORTSEARCHSUB_DRAW* p_draw
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”¼“§–¾Ý’è@À²Ìß‚Pƒo[ƒWƒ‡ƒ“
+ *	@brief	åŠé€æ˜Žè¨­å®šã€€ã‚¿ã‚¤ãƒ—ï¼‘ãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *
  *	@param	p_draw
  *	@param	mode 
@@ -5784,7 +5784,7 @@ static void ZknSortSearchSubButtonFadeOamModeSet_Type1Ver( ZKN_SORTSEARCHSUB_DRA
 		}
 	}
 }
-// À²Ìß‚Qƒo[ƒWƒ‡ƒ“
+// ã‚¿ã‚¤ãƒ—ï¼’ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 static void ZknSortSearchSubButtonFadeOamModeSet_Type2Ver( ZKN_SORTSEARCHSUB_DRAW* p_draw, int mode )
 {
 	int i;
@@ -5804,18 +5804,18 @@ static void ZknSortSearchSubButtonFadeOamModeSet_Type2Ver( ZKN_SORTSEARCHSUB_DRA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°ÄƒtƒF[ƒhƒVƒXƒeƒ€
+ *	@brief	ã‚½ãƒ¼ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSortSearchSubSortFadeSys( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_SORTSEARCHSUB_DRAWGLB* p_drawglb, const ZKN_SORTSEARCHSUB_GLB* cp_glb )
 {
-	// “®ìˆ—‰Šú‰»
+	// å‹•ä½œå‡¦ç†åˆæœŸåŒ–
 	if( ZKN_SortSearchAplFadeModeCountGet( cp_glb->p_main_apl ) == ZKN_SORTSEARCH_FADECOUNT_MAX ){
 		
 		if( ZKN_SortSearchAplFadeModeGet( cp_glb->p_main_apl ) == ZKN_SORTSEARCH_FADEIN ){

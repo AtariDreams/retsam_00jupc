@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fnote_main.h
- * @brief	–`Œ¯ƒm[ƒg@•\Ž¦ƒƒCƒ“ˆ—
+ * @brief	å†’é™ºãƒŽãƒ¼ãƒˆã€€è¡¨ç¤ºãƒ¡ã‚¤ãƒ³å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2006.03.06
  */
@@ -17,56 +17,56 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// BMPƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_TIME1 = 0,		// “ú•t‚P
-	WIN_STR1,			// î•ñ‚P
-	WIN_TIME2,			// “ú•t‚Q
-	WIN_STR2,			// î•ñ‚Q
+	WIN_TIME1 = 0,		// æ—¥ä»˜ï¼‘
+	WIN_STR1,			// æƒ…å ±ï¼‘
+	WIN_TIME2,			// æ—¥ä»˜ï¼’
+	WIN_STR2,			// æƒ…å ±ï¼’
 	WIN_MAX
 };
 
-// –`Œ¯ƒm[ƒgƒ[ƒN
+// å†’é™ºãƒŽãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	GF_BGL_INI * bgl;				// BGLƒf[ƒ^
+	GF_BGL_INI * bgl;				// BGLãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_BMPWIN	win[WIN_MAX];	// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_BMPWIN	win[WIN_MAX];	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	FNOTE_DATA * dat;			// –`Œ¯ƒm[ƒgƒf[ƒ^
-	MYSTATUS * myst;			// ƒvƒŒ[ƒ„[ƒf[ƒ^
-	SAVEDATA * sv;				// ƒ‰ƒCƒoƒ‹–¼Žæ“¾‚Ì‚½‚ßEEE
+	FNOTE_DATA * dat;			// å†’é™ºãƒŽãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+	MYSTATUS * myst;			// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	SAVEDATA * sv;				// ãƒ©ã‚¤ãƒãƒ«åå–å¾—ã®ãŸã‚ãƒ»ãƒ»ãƒ»
 
-	MSGDATA_MANAGER * mman;		// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
-	WORDSET * wset;				// ’PŒêƒZƒbƒg
-	STRBUF * msg_buf;			// ƒeƒ“ƒ|ƒ‰ƒŠƒƒbƒZ[ƒWƒoƒbƒtƒ@
+	MSGDATA_MANAGER * mman;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£
+	WORDSET * wset;				// å˜èªžã‚»ãƒƒãƒˆ
+	STRBUF * msg_buf;			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡
 
 //	TCB_PTR		vtask;
 
 
-	u16	chr_scrn[32*32];		// ”wŒiBG•Û‘¶êŠ
-	u16	bmp_scrn[32*32];		// BMP‚ÌBG•Û‘¶êŠ
+	u16	chr_scrn[32*32];		// èƒŒæ™¯BGä¿å­˜å ´æ‰€
+	u16	bmp_scrn[32*32];		// BMPã®BGä¿å­˜å ´æ‰€
 
 //	BOOL	wipe_flg;
 
-	s8	page;					// Œ»Ý‚Ìƒy[ƒW
-	s8	page_chg_mv;			// ƒy[ƒWØ‚è‘Ö‚¦•ûŒü
-	s8	page_chg_seq;			// ƒy[ƒWØ‚è‘Ö‚¦ƒV[ƒPƒ“ƒX
-	s8	page_chg_cnt;			// ƒy[ƒWØ‚è‘Ö‚¦ƒJƒEƒ“ƒ^
-	s8	page_write_flg;			// ƒy[ƒW‘‚«ž‚Ýƒtƒ‰ƒO
+	s8	page;					// ç¾åœ¨ã®ãƒšãƒ¼ã‚¸
+	s8	page_chg_mv;			// ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆæ–¹å‘
+	s8	page_chg_seq;			// ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	s8	page_chg_cnt;			// ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆã‚«ã‚¦ãƒ³ã‚¿
+	s8	page_write_flg;			// ãƒšãƒ¼ã‚¸æ›¸ãè¾¼ã¿ãƒ•ãƒ©ã‚°
 
-	u8	now_chr_frm;			// Œ»Ý•\Ž¦‚³‚ê‚Ä‚¢‚éƒy[ƒW‚ÌBGƒXƒNƒŠ[ƒ“
-	u8	now_bmp_frm;			// Œ»Ý•\Ž¦‚³‚ê‚Ä‚¢‚éƒy[ƒW‚Ì•¶ŽšƒXƒNƒŠ[ƒ“
-	u8	new_chr_frm;			// V‚µ‚­•\Ž¦‚·‚éƒy[ƒW‚ÌBGƒXƒNƒŠ[ƒ“
-	u8	new_bmp_frm;			// V‚µ‚­•\Ž¦‚·‚éƒy[ƒW‚Ì•¶ŽšƒXƒNƒŠ[ƒ“
+	u8	now_chr_frm;			// ç¾åœ¨è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒšãƒ¼ã‚¸ã®BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³
+	u8	now_bmp_frm;			// ç¾åœ¨è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒšãƒ¼ã‚¸ã®æ–‡å­—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
+	u8	new_chr_frm;			// æ–°ã—ãè¡¨ç¤ºã™ã‚‹ãƒšãƒ¼ã‚¸ã®BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³
+	u8	new_bmp_frm;			// æ–°ã—ãè¡¨ç¤ºã™ã‚‹ãƒšãƒ¼ã‚¸ã®æ–‡å­—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 
 }FNOTE_WORK;
 
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 

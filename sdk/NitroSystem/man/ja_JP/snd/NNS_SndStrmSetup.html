@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndStrmSetup</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndStrmSetup</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndStrmSetup(
@@ -25,7 +25,7 @@
         void* <var>arg</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA1MWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -33,35 +33,35 @@
 <tbody>
 <tr>
 <td><em><strong><code>stream</code></strong></em></td>
-<td>�X�g���[���\���̂̃|�C���^�ł��B</td>
+<td>ストリーム構造体のポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>format</code></strong></em></td>
-<td>�X�g���[���f�[�^�t�H�[�}�b�g�ł��B</td>
+<td>ストリームデータフォーマットです。</td>
 </tr>
 <tr>
 <td><em><strong><code>buffer</code></strong></em></td>
-<td>�X�g���[���o�b�t�@�̐擪�A�h���X�ł��B32�o�C�g�A���C�����g����Ă���K�v������܂��B</td>
+<td>ストリームバッファの先頭アドレスです。32バイトアライメントされている必要があります。</td>
 </tr>
 <tr>
 <td><em><strong><code>bufSize</code></strong></em></td>
-<td>�X�g���[���o�b�t�@�T�C�Y�ł��B<var>interval</var> * (�`�����l����) * 32�̔{���Ŗ�����΂Ȃ�܂���B</td>
+<td>ストリームバッファサイズです。<var>interval</var> * (チャンネル数) * 32の倍数で無ければなりません。</td>
 </tr>
 <tr>
 <td><em><strong><code>timer</code></strong></em></td>
-<td>�X�g���[���`�����l���̃^�C�}�[�l�ł��B</td>
+<td>ストリームチャンネルのタイマー値です。</td>
 </tr>
 <tr>
 <td><em><strong><code>interval</code></strong></em></td>
-<td>�R�[���o�b�N�C���^�[�o���ł��B2�ȏ�̒l���w�肵�܂��B</td>
+<td>コールバックインターバルです。2以上の値を指定します。</td>
 </tr>
 <tr>
 <td><em><strong><code>callback</code></strong></em></td>
-<td>�X�g���[���R�[���o�b�N�֐��̃|�C���^�ł��B</td>
+<td>ストリームコールバック関数のポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>arg</code></strong></em></td>
-<td>�X�g���[���R�[���o�b�N�֐��̃��[�U�[�����ł��B</td>
+<td>ストリームコールバック関数のユーザー引数です。</td>
 </tr>
 </tbody>
 </table>
@@ -69,42 +69,42 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDA4OWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Z�b�g�A�b�v�ɐ����������ǂ�����Ԃ��܂��B</p>
+      <p>セットアップに成功したかどうかを返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAFPWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�X�g���[���̃Z�b�g�A�b�v���s���܂��B
-���炩���߁A<tt class="function"><a href="NNS_SndStrmAllocChannel.html">NNS_SndStrmAllocChannel</a></tt>�֐��ŁA
-�`�����l�����m�ۂ��Ă����K�v������܂��B
-�X�g���[�����Đ����邽�߂ɂ́A���̊֐��̌��
-<tt class="function"><a href="NNS_SndStrmStart.html">NNS_SndStrmStart</a></tt>�֐����Ăт����܂��B
+ストリームのセットアップを行います。
+あらかじめ、<tt class="function"><a href="NNS_SndStrmAllocChannel.html">NNS_SndStrmAllocChannel</a></tt>関数で、
+チャンネルを確保しておく必要があります。
+ストリームを再生するためには、この関数の後で
+<tt class="function"><a href="NNS_SndStrmStart.html">NNS_SndStrmStart</a></tt>関数を呼びだします。
 </p>
       <p>
-�X�g���[���f�[�^�t�H�[�}�b�g<em><strong><code>format</code></strong></em>�́A���L����I�����܂��B
-16�r�b�g�̕��������͗ǂ��Ȃ�܂����A8�r�b�g�̎��Ɣ�ׂĂQ�{�̕p�x�ŃR�[���o�b�N�֐����Ăт�����܂��B
-8�r�b�g�̎��Ɠ����p�x�ŌĂт������悤�ɂ��邽�߂ɂ́A
-�X�g���[���o�b�t�@���Q�{�̃T�C�Y�p�ӂ���K�v������܂��B
+ストリームデータフォーマット<em><strong><code>format</code></strong></em>は、下記から選択します。
+16ビットの方が音質は良くなりますが、8ビットの時と比べて２倍の頻度でコールバック関数が呼びだされます。
+8ビットの時と同じ頻度で呼びだされるようにするためには、
+ストリームバッファを２倍のサイズ用意する必要があります。
 </p>
-            <div class="table"><a name="IDA1PWT"></a><p class="title"><b>�\ . NNSSndStrmFormat</b></p>
+            <div class="table"><a name="IDA1PWT"></a><p class="title"><b>表 . NNSSndStrmFormat</b></p>
 <table summary="NNSSndStrmFormat" border="1">
 <colgroup><col><col></colgroup>
 <thead>
 <tr>
-<th>���x��</th>
-<th>����</th>
+<th>ラベル</th>
+<th>説明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>NNS_SND_STRM_FORMAT_PCM8</td>
-<td>8�r�b�gPCM</td>
+<td>8ビットPCM</td>
 </tr>
 <tr>
 <td>NNS_SND_STRM_FORMAT_PCM16</td>
-<td>16�r�b�gPCM</td>
+<td>16ビットPCM</td>
 </tr>
 </tbody>
 </table>
@@ -112,39 +112,39 @@
 
 
       <p>
-�X�g���[���Đ����s�����߂ɂ́A�X�g���[���o�b�t�@���K�v�ɂȂ�܂��B
-�X�g���[���o�b�t�@���������قǕp�ɂɃR�[���o�b�N�֐����Ăт�����܂��B
-�X�g���[���o�b�t�@�̐擪�A�h���X<em><strong><code>buffer</code></strong></em>�́A
-32�o�C�g�A���C�����g����Ă���K�v������܂��B
-�܂��A�X�g���[���o�b�t�@�T�C�Y<em><strong><code>bufSize</code></strong></em>�́A
-interval * (�`�����l����) * 32�̔{���Ŗ�����΂Ȃ�܂���B
-����(�`�����l����)�Ƃ́A<tt class="function">NNS_SndStrmAllocChannel</tt>�֐��Ŋm�ۂ����`�����l�������w���܂��B
+ストリーム再生を行うためには、ストリームバッファが必要になります。
+ストリームバッファが小さいほど頻繁にコールバック関数が呼びだされます。
+ストリームバッファの先頭アドレス<em><strong><code>buffer</code></strong></em>は、
+32バイトアライメントされている必要があります。
+また、ストリームバッファサイズ<em><strong><code>bufSize</code></strong></em>は、
+interval * (チャンネル数) * 32の倍数で無ければなりません。
+この(チャンネル数)とは、<tt class="function">NNS_SndStrmAllocChannel</tt>関数で確保したチャンネル数を指します。
 </p>
       <p>
-�X�g���[���`�����l���̃^�C�}�[�l<em><strong><code>timer</code></strong></em>�́A�X�g���[���̍Đ����x�𐧌䂷��p�����[�^�ł��B
-�l�̒P�ʂ́A�P�T���v���Đ�����N���b�N���ł��B�P�b������̃N���b�N���́A
-<span class="symbol">NNS_SND_STRM_TIMER_CLOCK</span>�Ƃ��Ē�`����Ă��܂��B
-�Ⴆ�΁A�T���v�����O���[�g<em><strong><code>sampleRate</code></strong></em>�ōĐ����邽�߂ɂ́A
-<span class="symbol">NNS_SND_STRM_TIMER_CLOCK</span> / <em><strong><code>sampleRate</code></strong></em>���^�C�}�[�l�Ƃ��Ďw�肵�܂��B
+ストリームチャンネルのタイマー値<em><strong><code>timer</code></strong></em>は、ストリームの再生速度を制御するパラメータです。
+値の単位は、１サンプル再生するクロック数です。１秒あたりのクロック数は、
+<span class="symbol">NNS_SND_STRM_TIMER_CLOCK</span>として定義されています。
+例えば、サンプリングレート<em><strong><code>sampleRate</code></strong></em>で再生するためには、
+<span class="symbol">NNS_SND_STRM_TIMER_CLOCK</span> / <em><strong><code>sampleRate</code></strong></em>をタイマー値として指定します。
 
 </p>
       <p>
-�R�[���o�b�N�C���^�[�o��<em><strong><code>interval</code></strong></em>�́A�X�g���[���o�b�t�@�S�̂��Đ�����ԂɁA
-����R�[���o�b�N�֐����Ăт������̂����w�肵�܂��B
-�Ⴆ�΁A�Q���w�肵���ꍇ�A�o�b�t�@�̔������Đ����ɁA�c�蔼���ɔg�`�f�[�^���������ނ悤�ɂ��܂��B
+コールバックインターバル<em><strong><code>interval</code></strong></em>は、ストリームバッファ全体を再生する間に、
+何回コールバック関数が呼びだされるのかを指定します。
+例えば、２を指定した場合、バッファの半分を再生中に、残り半分に波形データを書き込むようにします。
 </p>
       <p>
-�R�[���o�b�N�֐�<em><strong><code>callback</code></strong></em>�́A�g�`�f�[�^�̕�[���K�v�ɂȂ����Ƃ��ɌĂт������֐��ł��B
-�R�[���o�b�N�֐��̃��[�U�[����<em><strong><code>arg</code></strong></em>�́A
-�R�[���o�b�N�֐�<em><strong><code>callback</code></strong></em>�̈����ɂ��̂܂ܓn����܂��B
-�R�[���o�b�N�֐��ɂ��ẮA
-<tt class="function"><a href="NNSSndStrmCallback.html">NNSSndStrmCallback</a></tt>�̐������Q�Ƃ��Ă��������B
+コールバック関数<em><strong><code>callback</code></strong></em>は、波形データの補充が必要になったときに呼びだされる関数です。
+コールバック関数のユーザー引数<em><strong><code>arg</code></strong></em>は、
+コールバック関数<em><strong><code>callback</code></strong></em>の引数にそのまま渡されます。
+コールバック関数については、
+<tt class="function"><a href="NNSSndStrmCallback.html">NNSSndStrmCallback</a></tt>の説明を参照してください。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndStrmAllocChannel.html">NNS_SndStrmAllocChannel</a>, <a href="NNS_SndStrmStart.html">NNS_SndStrmStart</a>, <a href="NNSSndStrmCallback.html">NNSSndStrmCallback</a></p>
-<h2>����</h2>
-<p>2004/11/26 NNSSndStrmCallback�̐����𕪗�<br>2004/08/10 ����<br></p>
+<h2>履歴</h2>
+<p>2004/11/26 NNSSndStrmCallbackの説明を分離<br>2004/08/10 初版<br></p>
 </div>
 </body>
 </html>

@@ -15,51 +15,51 @@
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	WiFi�ʐM�����f�[�^�̕s���S�^�錾
+ * @brief	WiFi通信履歴データの不完全型宣言
  */
 //----------------------------------------------------------
 typedef struct _WIFI_HISTORY WIFI_HISTORY;
 
-///WiFi�ʐM�������c�����̐�
+///WiFi通信履歴を残す国の数
 #define	WIFI_NATION_MAX		(256)
 
-///WiFi�ʐM�������c�����̂��ꂼ��̒n��R�[�h�̍ő吔
+///WiFi通信履歴を残す国のそれぞれの地域コードの最大数
 #define	WIFI_AREA_MAX		(64)
 
 
-///���{�̒n���V��`(�{����country103�Ȃ񂾂��Q�Ƃł��Ȃ��̂Łj
+///日本の地球儀定義(本当はcountry103なんだけ参照できないので）
 #define WIFI_NATION_JAPAN	( 103 ) 
 
-///�����̂��鍑�̐��iwifi_earth/wifi_place_msg_world.gmm�j
+///国名のある国の数（wifi_earth/wifi_place_msg_world.gmm）
 #define	WIFI_COUNTRY_MAX		(234)
 
-///�n�於�̂���n��̐��iwifi_earth/wifi_place_msg_USA.gmm�j
+///地域名のある地域の数（wifi_earth/wifi_place_msg_USA.gmm）
 #define	WIFI_AREADATA_MAX		(52)
 
 //----------------------------------------------------------
 /**
- * @brief	WiFi�ʐM�����f�[�^�̏�Ԓ�`
+ * @brief	WiFi通信履歴データの状態定義
  */
 //----------------------------------------------------------
 typedef enum {
-	WIFIHIST_STAT_NODATA = 0,	///<�܂��ʐM�������Ƃ��Ȃ�
-	WIFIHIST_STAT_NEW = 1,		///<�{�����߂ĒʐM����
-	WIFIHIST_STAT_EXIST = 2,	///<�ʐM�������Ƃ�����
-	WIFIHIST_STAT_MINE = 3,		///<�����̏ꏊ
+	WIFIHIST_STAT_NODATA = 0,	///<まだ通信したことがない
+	WIFIHIST_STAT_NEW = 1,		///<本日初めて通信した
+	WIFIHIST_STAT_EXIST = 2,	///<通信したことがある
+	WIFIHIST_STAT_MINE = 3,		///<自分の場所
 
 	WIFIHIST_STAT_MAX,
 }WIFIHIST_STAT;
 
 //----------------------------------------------------------
 //----------------------------------------------------------
-//���[�N�T�C�Y�擾�i�Z�[�u�V�X�e������Ă΂��j
+//ワークサイズ取得（セーブシステムから呼ばれる）
 extern int WIFIHISTORY_GetWorkSize(void);
-//�������i�Z�[�u�V�X�e������Ă΂��j
+//初期化（セーブシステムから呼ばれる）
 extern void WIFIHISTORY_Init(WIFI_HISTORY * hist);
-//�Z�[�u�f�[�^�擾�i�g���ӏ��ŌĂԁj
+//セーブデータ取得（使う箇所で呼ぶ）
 extern WIFI_HISTORY * SaveData_GetWifiHistory(SAVEDATA * sv);
 
-//������m�F���Ă��܂���B
+//↓動作確認していません。
 extern void WIFIHISTORY_SetMyNationArea(WIFI_HISTORY * wh, int nation, int area);
 extern int WIFIHISTORY_GetMyNation(const WIFI_HISTORY * wh);
 extern int WIFIHISTORY_GetMyArea(const WIFI_HISTORY * wh);
@@ -69,7 +69,7 @@ extern WIFIHIST_STAT WIFIHISTORY_GetStat(const WIFI_HISTORY * wh, int nation, in
 extern BOOL WIFIHISTORY_GetWorldFlag(const WIFI_HISTORY * wh);
 extern void WIFIHISTORY_SetWorldFlag(WIFI_HISTORY * wh, BOOL flag);
 
-//���t�ɂ��X�V����
+//日付による更新処理
 extern void WIFIHISTORY_Update(WIFI_HISTORY * wh);
 
 #endif	/* __WIFIHISTORY_H__ */

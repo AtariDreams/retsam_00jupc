@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pokeicon.h
- * @bfief	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ŠÖ˜Aˆ—
+ * @bfief	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³é–¢é€£å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	05.09.16
  */
@@ -20,17 +20,17 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// ƒfƒIƒLƒVƒX—p’è‹`
+// ãƒ‡ã‚ªã‚­ã‚·ã‚¹ç”¨å®šç¾©
 enum {
-	PICON_DEOKISISU_N = 0,		// ƒm[ƒ}ƒ‹ƒtƒHƒ‹ƒ€
-	PICON_DEOKISISU_A,			// ƒAƒ^ƒbƒNƒtƒHƒ‹ƒ€
-	PICON_DEOKISISU_D,			// ƒfƒBƒtƒFƒ“ƒXƒtƒHƒ‹ƒ€
-	PICON_DEOKISISU_S			// ƒXƒs[ƒhƒtƒHƒ‹ƒ€
+	PICON_DEOKISISU_N = 0,		// ãƒŽãƒ¼ãƒžãƒ«ãƒ•ã‚©ãƒ«ãƒ 
+	PICON_DEOKISISU_A,			// ã‚¢ã‚¿ãƒƒã‚¯ãƒ•ã‚©ãƒ«ãƒ 
+	PICON_DEOKISISU_D,			// ãƒ‡ã‚£ãƒ•ã‚§ãƒ³ã‚¹ãƒ•ã‚©ãƒ«ãƒ 
+	PICON_DEOKISISU_S			// ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ•ã‚©ãƒ«ãƒ 
 };
 
-// ƒAƒ“ƒm[ƒ“—p’è‹`
+// ã‚¢ãƒ³ãƒŽãƒ¼ãƒ³ç”¨å®šç¾©
 enum {
 	PICON_ANNOON_A = 0,			// A
 	PICON_ANNOON_B,				// B
@@ -62,7 +62,7 @@ enum {
 	PICON_ANNOON_QUE,			// ?
 };
 
-// ƒAƒjƒƒEƒFƒCƒgŽæ“¾ƒpƒ‰ƒ[ƒ^
+// ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆå–å¾—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 enum {
 	POKEICON_HP_MAX = 0,
 	POKEICON_HP_GREEN,
@@ -71,32 +71,32 @@ enum {
 	POKEICON_HP_NULL
 };
 
-// ƒAƒjƒŽí—Þ
+// ã‚¢ãƒ‹ãƒ¡ç¨®é¡ž
 enum {
-	POKEICON_ANM_DEATH = 0,		// •mŽ€
+	POKEICON_ANM_DEATH = 0,		// ç€•æ­»
 	POKEICON_ANM_HPMAX,			// HP MAX
-	POKEICON_ANM_HPGREEN,		// HP —Î
-	POKEICON_ANM_HPYERROW,		// HP ‰©
-	POKEICON_ANM_HPRED,			// HP Ô
-	POKEICON_ANM_STCHG,			// ó‘ÔˆÙí
+	POKEICON_ANM_HPGREEN,		// HP ç·‘
+	POKEICON_ANM_HPYERROW,		// HP é»„
+	POKEICON_ANM_HPRED,			// HP èµ¤
+	POKEICON_ANM_STCHG,			// çŠ¶æ…‹ç•°å¸¸
 };
 
-#define	POKEICON_PAL_MAX	( 3 )	// ƒAƒCƒRƒ“‚ÅŽg—p‚·‚éƒpƒŒƒbƒg”
+#define	POKEICON_PAL_MAX	( 3 )	// ã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæ•°
 
-#define POKEICON_SIZE_X		(32)	// ƒAƒCƒRƒ“‚Ì‰¡ƒTƒCƒY
-#define POKEICON_SIZE_Y		(32)	// ƒAƒCƒRƒ“‚ÌcƒTƒCƒY
+#define POKEICON_SIZE_X		(32)	// ã‚¢ã‚¤ã‚³ãƒ³ã®æ¨ªã‚µã‚¤ã‚º
+#define POKEICON_SIZE_Y		(32)	// ã‚¢ã‚¤ã‚³ãƒ³ã®ç¸¦ã‚µã‚¤ã‚º
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾ ( POKEMON_PASO_PARAM ”Å )
+ * ã‚­ãƒ£ãƒ©ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾— ( POKEMON_PASO_PARAM ç‰ˆ )
  *
  * @param	ppp			POKEMON_PASO_PARAM
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  */
 //--------------------------------------------------------------------------------------------
@@ -104,11 +104,11 @@ GLOBAL u32 PokeIconCgxArcIndexGet( const POKEMON_PASO_PARAM* ppp );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾ ( POKEMON_PARAM ”Å )
+ * ã‚­ãƒ£ãƒ©ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾— ( POKEMON_PARAM ç‰ˆ )
  *
  * @param	pp			POKEMON_PARAM
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  */
 //--------------------------------------------------------------------------------------------
@@ -116,138 +116,138 @@ GLOBAL u32 PokeIconCgxArcIndexGetByPP( POKEMON_PARAM * pp );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾
+ * ã‚­ãƒ£ãƒ©ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
- * @param	mons		ƒ|ƒPƒ‚ƒ“”Ô†
- * @param	egg			ƒ^ƒ}ƒSƒtƒ‰ƒO
- * @param	pat			Šg’£ƒpƒ^[ƒ“
+ * @param	mons		ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+ * @param	egg			ã‚¿ãƒžã‚´ãƒ•ãƒ©ã‚°
+ * @param	pat			æ‹¡å¼µãƒ‘ã‚¿ãƒ¼ãƒ³
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	pat‚ÍƒfƒIƒLƒVƒX‚âƒAƒ“ƒm[ƒ“‚ÉŽg—p
+ *	patã¯ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã‚„ã‚¢ãƒ³ãƒŽãƒ¼ãƒ³ã«ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 PokeIconCgxArcIndexGetByMonsNumber( u32 mons, u32 egg, u32 pat );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰‚ÌŠg’£ƒpƒ^[ƒ“ƒiƒ“ƒo[‚ðŽæ“¾iŽæ“¾‚µ‚½ƒiƒ“ƒo[‚ÍPokeIconCgxArcIndexGetByMonsNo‚Ìˆø”‚Æ‚µ‚ÄŽg‚¦‚éj
+ * ã‚­ãƒ£ãƒ©ã®æ‹¡å¼µãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ï¼ˆå–å¾—ã—ãŸãƒŠãƒ³ãƒãƒ¼ã¯PokeIconCgxArcIndexGetByMonsNoã®å¼•æ•°ã¨ã—ã¦ä½¿ãˆã‚‹ï¼‰
  *
  * @param   ppp		
  *
- * @retval  u16		Šg’£ƒpƒ^[ƒ“ƒiƒ“ƒo[
+ * @retval  u16		æ‹¡å¼µãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u16 PokeIconCgxPatternGet( const POKEMON_PASO_PARAM* ppp );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg”Ô†Žæ“¾
+ * ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·å–å¾—
  *
- * @param	mons		ƒ|ƒPƒ‚ƒ“”Ô†
- * @param	form		ƒtƒHƒ‹ƒ€”Ô†
- * @param	egg			ƒ^ƒ}ƒSƒtƒ‰ƒO
+ * @param	mons		ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+ * @param	form		ãƒ•ã‚©ãƒ«ãƒ ç•ªå·
+ * @param	egg			ã‚¿ãƒžã‚´ãƒ•ãƒ©ã‚°
  *
- * @return	ƒpƒŒƒbƒg”Ô†
+ * @return	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL const u8 PokeIconPalNumGet( u32 mons, u32 form, u32 egg );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg”Ô†Žæ“¾iPOKEMON_PASO_PARAM”Åj
+ * ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·å–å¾—ï¼ˆPOKEMON_PASO_PARAMç‰ˆï¼‰
  *
  * @param	ppp		POKEMON_PASO_PARAM
  *
- * @return	ƒpƒŒƒbƒg”Ô†
+ * @return	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL const u8 PokeIconPalNumGetByPPP( const POKEMON_PASO_PARAM * ppp );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg”Ô†Žæ“¾iPOKEMON_PARAM”Åj
+ * ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·å–å¾—ï¼ˆPOKEMON_PARAMç‰ˆï¼‰
  *
  * @param	pp		POKEMON_PARAM
  *
- * @return	ƒpƒŒƒbƒg”Ô†
+ * @return	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL const u8 PokeIconPalNumGetByPP( POKEMON_PARAM * pp );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾
+ * ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 PokeIconPalArcIndexGet(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾
+ * ã‚»ãƒ«ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 PokeIconCellArcIndexGet(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾iƒAƒjƒ“ü‚èj
+ * ã‚»ãƒ«ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—ï¼ˆã‚¢ãƒ‹ãƒ¡å…¥ã‚Šï¼‰
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 PokeIconAnmCellArcIndexGet(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾i64k,ƒAƒjƒ“ü‚èj
+ * ã‚»ãƒ«ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—ï¼ˆ64k,ã‚¢ãƒ‹ãƒ¡å…¥ã‚Šï¼‰
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 PokeIcon64kCellArcIndexGet(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒjƒ‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾
+ * ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 PokeIconCellAnmArcIndexGet(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒjƒ‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾iƒAƒjƒ“ü‚èj
+ * ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—ï¼ˆã‚¢ãƒ‹ãƒ¡å…¥ã‚Šï¼‰
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 PokeIconAnmCellAnmArcIndexGet(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒjƒ‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾i64k,ƒAƒjƒ“ü‚èj
+ * ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—ï¼ˆ64k,ã‚¢ãƒ‹ãƒ¡å…¥ã‚Šï¼‰
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 PokeIcon64kCellAnmArcIndexGet(void);

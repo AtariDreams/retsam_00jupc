@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ‹ZƒV[ƒPƒ“ƒX
+# Project:  æŠ€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -16,7 +16,7 @@ SUBSRCS:=$(wildcard sub_*.s)
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#Make‚Å¶¬‚³‚ê‚é*.bin/*.narc‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.bin/*.narcã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(WAZASRCS:.s=.bin) $(BESRCS:.s=.bin) $(SUBSRCS:.s=.bin) waza_seq.narc be_seq.narc sub_seq.narc
 
 #----------------------------------------------------------------------------

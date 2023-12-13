@@ -4,7 +4,7 @@
 #include "common.h"
 #include "system/softsprite.h"
 
-//#define POKE_ANIME_MAX	(50+84)		//ƒAƒjƒ[ƒVƒ‡ƒ“Å‘å”	DP
+//#define POKE_ANIME_MAX	(50+84)		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æœ€å¤§æ•°	DP
 
 enum {
 	
@@ -21,16 +21,16 @@ enum {
 	ePL_Anime_Max,	
 };
 
-#define POKE_PL_ANIME	( ePL_Anime_Max )				///< ’Ç‰ÁƒAƒjƒ
-#define POKE_ANIME_MAX	( 50 + 84 + POKE_PL_ANIME )		///< ƒAƒjƒ[ƒVƒ‡ƒ“Å‘å” PL
+#define POKE_PL_ANIME	( ePL_Anime_Max )				///< è¿½åŠ ã‚¢ãƒ‹ãƒ¡
+#define POKE_ANIME_MAX	( 50 + 84 + POKE_PL_ANIME )		///< ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æœ€å¤§æ•° PL
 
 typedef struct POKE_ANIME_SYS_tag * POKE_ANM_SYS_PTR;
 
 typedef struct P_ANM_SETTING_PARAM_tag
 {
-	u16		AnimeNo;		//ƒAƒjƒ[ƒVƒ‡ƒ“”Ô†
-	u16		Wait;			//ƒAƒjƒŠJnƒEƒFƒCƒgiƒtƒŒ[ƒ€”j
-	u8		Reverse;		//”½“]ƒtƒ‰ƒOiw’è‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚Í@0F¶‰E‹t“®ì‚Å‚«‚È‚¢@1F¶‰E‹t“®ì‚Å‚«‚é)
+	u16		AnimeNo;		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·
+	u16		Wait;			//ã‚¢ãƒ‹ãƒ¡é–‹å§‹ã‚¦ã‚§ã‚¤ãƒˆï¼ˆãƒ•ãƒ¬ãƒ¼ãƒ æ•°ï¼‰
+	u8		Reverse;		//åè»¢ãƒ•ãƒ©ã‚°ï¼ˆæŒ‡å®šã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã¯ã€€0ï¼šå·¦å³é€†å‹•ä½œã§ããªã„ã€€1ï¼šå·¦å³é€†å‹•ä½œã§ãã‚‹)
 }P_ANM_SETTING_PARAM;
 
 extern void PokeAnm_CreateSettingParam(const int inMonsNo, P_ANM_SETTING_PARAM *outParam);

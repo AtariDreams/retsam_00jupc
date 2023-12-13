@@ -1,6 +1,6 @@
 /**
  *  @file	mail_local.h
- *	@brief	ƒ[ƒ‹ƒZ[ƒuƒf[ƒ^§Œäƒ‚ƒWƒ…[ƒ‹‚Ì‚Ý‚ªinclude‚µ‚Ä—Ç‚¢
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åˆ¶å¾¡ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ã¿ãŒincludeã—ã¦è‰¯ã„
  *	@author	Miyuki Iwasawa
  *	@date	06.03.02
  */
@@ -10,7 +10,7 @@
 
 #include "savedata/mail.h"
 
-///ƒ[ƒ‹ƒf[ƒ^ƒZ[ƒuƒf[ƒ^ƒuƒƒbƒN’è‹`\‘¢‘Ì
+///ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯å®šç¾©æ§‹é€ ä½“
 typedef struct _MAIL_BLOCK{
 //	MAIL_DATA	temoti[MAIL_STOCK_TEMOTI];	
 	MAIL_DATA	paso[MAIL_STOCK_PASOCOM];

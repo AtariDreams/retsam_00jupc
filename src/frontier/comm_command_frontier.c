@@ -1,8 +1,8 @@
 //=============================================================================
 /**
  * @file	comm_command_frontier.c
- * @brief	ƒtƒƒ“ƒeƒBƒA@ƒf[ƒ^‚ğ‘—‚é‚½‚ß‚ÌƒRƒ}ƒ“ƒh‚ğƒe[ƒuƒ‹‰»
- *          comm_command_frontier.h ‚Ì enum ‚Æ“¯‚¶•À‚Ñ‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã€€ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹ãŸã‚ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«åŒ–
+ *          comm_command_frontier.h ã® enum ã¨åŒã˜ä¸¦ã³ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
  * @author	nohara
  * @date    2007.07.17
  */
@@ -24,7 +24,7 @@
 #include "castle_tool.h"
 #include "castle_def.h"
 
-//óMŠÖ”‚ªŠO‚É‚ ‚é
+//å—ä¿¡é–¢æ•°ãŒå¤–ã«ã‚ã‚‹
 #include "factory/factory_sys.h"
 #include "stage/stage_sys.h"
 #include "castle/castle_sys.h"
@@ -40,10 +40,10 @@
 
 //==============================================================================
 //
-//  ƒe[ƒuƒ‹‚É‘‚­ŠÖ”‚Ì’è‹`
+//  ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ›¸ãé–¢æ•°ã®å®šç¾©
 //
 //==============================================================================
-//ƒ^ƒ[(ƒtƒB[ƒ‹ƒhAWiFi)
+//ã‚¿ãƒ¯ãƒ¼(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€WiFi)
 static void CommFrWiFiCounterTowerRecvBufPlayerData(int id_no,int size,void *pData,void *work);
 BOOL CommFrWiFiCounterTowerSendBufTrainerData( BTOWER_SCRWORK* wk );
 static void CommFrWiFiCounterTowerRecvBufTrainerData(int id_no,int size,void *pData,void *work);
@@ -65,16 +65,16 @@ void CommFrWiFiCounterRecvBufGameContinue(int id_no,int size,void *pData,void *w
 
 //==============================================================================
 //
-//	ƒe[ƒuƒ‹éŒ¾
+//	ãƒ†ãƒ¼ãƒ–ãƒ«å®£è¨€
 //
-//  comm_shar.h ‚Ì enum ‚Æ“¯‚¶‚È‚ç‚Ñ‚É‚µ‚Ä‚­‚¾‚³‚¢
-//  CALLBACK‚ğŒÄ‚Î‚ê‚½‚­‚È‚¢ê‡‚ÍNULL‚ğ‘‚¢‚Ä‚­‚¾‚³‚¢
-//  ƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY‚ğ•Ô‚·ŠÖ”‚ğ‘‚¢‚Ä‚à‚ç‚¦‚é‚Æ’ÊM‚ªŒy‚­‚È‚è‚Ü‚·
-//  _getZero‚ÍƒTƒCƒY‚È‚µ‚ğ•Ô‚µ‚Ü‚·B_getVariable‚Í‰Â•Ïƒf[ƒ^g—p‚Ég‚¢‚Ü‚·
+//  comm_shar.h ã® enum ã¨åŒã˜ãªã‚‰ã³ã«ã—ã¦ãã ã•ã„
+//  CALLBACKã‚’å‘¼ã°ã‚ŒãŸããªã„å ´åˆã¯NULLã‚’æ›¸ã„ã¦ãã ã•ã„
+//  ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™é–¢æ•°ã‚’æ›¸ã„ã¦ã‚‚ã‚‰ãˆã‚‹ã¨é€šä¿¡ãŒè»½ããªã‚Šã¾ã™
+//  _getZeroã¯ã‚µã‚¤ã‚ºãªã—ã‚’è¿”ã—ã¾ã™ã€‚_getVariableã¯å¯å¤‰ãƒ‡ãƒ¼ã‚¿ä½¿ç”¨æ™‚ã«ä½¿ã„ã¾ã™
 //
 //==============================================================================
 static const CommPacketTbl _CommPacketTbl[] = {
-	//ƒtƒ@ƒNƒgƒŠ[(ƒtƒƒ“ƒeƒBƒA)
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢)
 	{CommFactoryRecvBasicData,		_getVariable,	NULL},						//
 	{CommFactoryRecvTrData,			_getVariable,	NULL},						// 
 	{CommFactoryRecvRentalData,		_getVariable,	NULL},						// 
@@ -83,26 +83,26 @@ static const CommPacketTbl _CommPacketTbl[] = {
 	{CommFactoryRecvTradeYesNoFlag,	_getVariable,	NULL},						//
 	{CommFactoryRecvTemotiPokeData,	_getVariable,	NULL},						//
 	
-	//ƒtƒ@ƒNƒgƒŠ[(ƒŒƒ“ƒ^ƒ‹AŒğŠ·‰æ–Ê)
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼(ãƒ¬ãƒ³ã‚¿ãƒ«ã€äº¤æ›ç”»é¢)
 	{Factory_CommRecvBufBasicData,	_getVariable,	NULL},						//
 	{Factory_CommRecvBufRentalData,	_getVariable,	NULL},						//
 	{Factory_CommRecvBufCancelData,	_getVariable,	NULL},						//
 	{Factory_CommRecvBufTradeFlag,	_getVariable,	NULL},						//
 
-	//ƒXƒe[ƒW(ƒtƒƒ“ƒeƒBƒA)
+	//ã‚¹ãƒ†ãƒ¼ã‚¸(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢)
 	{CommStageRecvMonsNo,			_getVariable,	NULL},						//
 	{CommStageRecvBasicData,		_getVariable,	NULL},						//
 	{CommStageRecvTrData,			_getVariable,	NULL},						//
 	{CommStageRecvEnemyPokeData,	_getVariable,	NULL},						//
 	{CommStageRecvRetireFlag,		_getVariable,	NULL},						//
-	{CommStageRecvBufTemotiPokeData,_getVariable,	CommStageGetRecvDataBuff},	//‹‘åƒf[ƒ^
+	{CommStageRecvBufTemotiPokeData,_getVariable,	CommStageGetRecvDataBuff},	//å·¨å¤§ãƒ‡ãƒ¼ã‚¿
 
-	//ƒXƒe[ƒW(ƒ^ƒCƒv‘I‘ğ‰æ–Ê)
+	//ã‚¹ãƒ†ãƒ¼ã‚¸(ã‚¿ã‚¤ãƒ—é¸æŠç”»é¢)
 	{Stage_CommRecvBufBasicData,	_getVariable,	NULL},						//
 	{Stage_CommRecvBufPokeTypeData,	_getVariable,	NULL},						//
 	{Stage_CommRecvBufFinalAnswerData,_getVariable,	NULL},						//
 
-	//ƒLƒƒƒbƒXƒ‹(ƒtƒƒ“ƒeƒBƒA)
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢)
 	{CommCastleRecvBufBasicData,	_getVariable,	NULL},						//
 	{CommCastleRecvBufTrData,		_getVariable,	NULL},						// 
 	{CommCastleRecvBufSelData,		_getVariable,	NULL},						// 
@@ -110,42 +110,42 @@ static const CommPacketTbl _CommPacketTbl[] = {
 	{CommCastleRecvBufRetireFlag,	_getVariable,	NULL},						//
 	{CommCastleRecvBufTradeYesNoFlag,_getVariable,	NULL},						//
 	//{CommCastleRecvBufTemotiPokeData,_getVariable,	NULL},						//
-	{CommCastleRecvBufTemotiPokeData,_getVariable,	CommCastleGetRecvDataBuff},	//‹‘åƒf[ƒ^
+	{CommCastleRecvBufTemotiPokeData,_getVariable,	CommCastleGetRecvDataBuff},	//å·¨å¤§ãƒ‡ãƒ¼ã‚¿
 
-	//ƒLƒƒƒbƒXƒ‹(è‚¿ƒ|ƒPƒ‚ƒ“‰æ–Ê)
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«(æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ç”»é¢)
 	{CastleMine_CommRecvBufBasicData,	_getVariable,	NULL},						//
 	{CastleMine_CommRecvBufRankUpType,	_getVariable,	NULL},						//
 	{CastleMine_CommRecvBufCsrPos,		_getVariable,	NULL},						//
 	{CastleMine_CommRecvBufModoru,		_getVariable,	NULL},						//
 	
-	//ƒLƒƒƒbƒXƒ‹(“GƒgƒŒ[ƒi[‰æ–Ê)
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«(æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢)
 	{CastleEnemy_CommRecvBufBasicData,	_getVariable,	NULL},						//
 	{CastleEnemy_CommRecvBufRankUpType,	_getVariable,	NULL},						//
 	{CastleEnemy_CommRecvBufCsrPos,		_getVariable,	NULL},						//
 	{CastleEnemy_CommRecvBufModoru,		_getVariable,	NULL},						//
 	
-	//ƒtƒƒ“ƒeƒBƒAWiFió•t(ƒtƒƒ“ƒeƒBƒA)
+	//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢)
 	{CommFrWiFiCounterRecvBufBFNo,		_getVariable,	NULL},						//
 	{CommFrWiFiCounterRecvBufRetireFlag,_getVariable,	NULL},						//
 	{CommFrWiFiCounterRecvBufMonsNoItemNo,_getVariable,	NULL},						//
 	{CommFrWiFiCounterRecvBufStageRecordDel,_getVariable,	NULL},					//
 	{CommFrWiFiCounterRecvBufGameContinue,_getVariable,	NULL},						//
 
-	//ƒ^ƒ[(ƒtƒB[ƒ‹ƒhAWifi)
+	//ã‚¿ãƒ¯ãƒ¼(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€Wifi)
 	{CommFrWiFiCounterTowerRecvBufPlayerData,_getVariable,	NULL},						//
 	{CommFrWiFiCounterTowerRecvBufTrainerData,_getVariable,	NULL},						//
 	{CommFrWiFiCounterTowerRecvBufRetireSelect,_getVariable,	NULL},					//
 
-	//ƒ‹[ƒŒƒbƒg(ƒtƒƒ“ƒeƒBƒA)
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢)
 	{CommRouletteRecvBufBasicData,	_getVariable,	NULL},						//
 	{CommRouletteRecvBufTrData,		_getVariable,	NULL},						// 
 	{CommRouletteRecvBufEnemyPokeData,_getVariable,	NULL},						//
 	{CommRouletteRecvBufRetireFlag,	_getVariable,	NULL},						//
 	{CommRouletteRecvBufTradeYesNoFlag,_getVariable,	NULL},						//
 	//{CommRouletteRecvBufTemotiPokeData,_getVariable,	NULL},						//
-	{CommRouletteRecvBufTemotiPokeData,_getVariable,	CommRouletteGetRecvDataBuff},	//‹‘åƒf[ƒ^
+	{CommRouletteRecvBufTemotiPokeData,_getVariable,	CommRouletteGetRecvDataBuff},	//å·¨å¤§ãƒ‡ãƒ¼ã‚¿
 
-	//ƒ‹[ƒŒƒbƒg(ƒ‰ƒ“ƒNƒAƒbƒv‰æ–Ê)
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ(ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ç”»é¢)
 	{Roulette_CommRecvBufBasicData,	_getVariable,	NULL},						//
 	{Roulette_CommRecvBufRankUpType,	_getVariable,	NULL},						//
 	{Roulette_CommRecvBufCsrPos,		_getVariable,	NULL},						//
@@ -154,7 +154,7 @@ static const CommPacketTbl _CommPacketTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒA—p‚ÌƒRƒ}ƒ“ƒh‘ÌŒn‚É‰Šú‰»‚µ‚Ü‚·
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨ã®ã‚³ãƒãƒ³ãƒ‰ä½“ç³»ã«åˆæœŸåŒ–ã—ã¾ã™
  *
  * @param   none
  *
@@ -170,13 +170,13 @@ void CommCommandFrontierInitialize(void* pWork)
 
 //==============================================================================
 //
-//	ƒ^ƒ[(ƒtƒB[ƒ‹ƒh,WiFi)
+//	ã‚¿ãƒ¯ãƒ¼(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰,WiFi)
 //
 //==============================================================================
 	
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìƒoƒgƒ‹ƒ^ƒ[‘—‚ç‚ê‚Ä‚«‚½ƒvƒŒƒCƒ„[ƒf[ƒ^‚ğæ“¾
+ * @brief	recv_bufã®ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€ã‚‰ã‚Œã¦ããŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
  * @param	
  *
@@ -190,14 +190,14 @@ static void CommFrWiFiCounterTowerRecvBufPlayerData(int id_no,int size,void *pDa
 	BTOWER_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ƒoƒgƒ‹ƒ^ƒ[@ƒvƒŒƒCƒ„[ƒf[ƒ^‚ğóM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	ret = 0;
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -225,9 +225,9 @@ static void CommFrWiFiCounterTowerRecvBufPlayerData(int id_no,int size,void *pDa
 	
 //--------------------------------------------------------------
 /**
- * @brief	’Š‘I‚µ‚½ƒgƒŒ[ƒi[No‚ğq‹@‚É‘—M
+ * @brief	æŠ½é¸ã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noã‚’å­æ©Ÿã«é€ä¿¡
  *
- * @param	wk			BTOWER_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			BTOWER_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -238,7 +238,7 @@ BOOL CommFrWiFiCounterTowerSendBufTrainerData( BTOWER_SCRWORK* wk )
 
 	size = (BTOWER_STOCK_TRAINER_MAX * 2);
 
-	OS_Printf( "******WIFIó•t****** ƒoƒgƒ‹ƒ^ƒ[@ƒgƒŒ[ƒi[No‚ğ‘—M‚µ‚½\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noã‚’é€ä¿¡ã—ãŸ\n" );
 
 	MI_CpuCopy8( wk->trainer, wk->send_buf, size );
 
@@ -253,7 +253,7 @@ BOOL CommFrWiFiCounterTowerSendBufTrainerData( BTOWER_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìƒoƒgƒ‹ƒ^ƒ[‘—‚ç‚ê‚Ä‚«‚½ƒgƒŒ[ƒi[ƒf[ƒ^‚ğæ“¾
+ * @brief	recv_bufã®ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€ã‚‰ã‚Œã¦ããŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
  * @param	
  *
@@ -266,20 +266,20 @@ static void CommFrWiFiCounterTowerRecvBufTrainerData(int id_no,int size,void *pD
 	BTOWER_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ƒoƒgƒ‹ƒ^ƒ[@ƒgƒŒ[ƒi[No‚ğóM‚µ‚½\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noã‚’å—ä¿¡ã—ãŸ\n" );
 	OS_Printf( "id_no = %d\n", id_no );
-	OS_Printf( "©•ªid = %d\n", CommGetCurrentID() );
+	OS_Printf( "è‡ªåˆ†id = %d\n", CommGetCurrentID() );
 
 	num = 0;
 	wk->recieve_count++;
 	OS_Printf( "wk->recieve_count = %d\n", wk->recieve_count );
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		return;
 	}
@@ -299,12 +299,12 @@ static void CommFrWiFiCounterTowerRecvBufTrainerData(int id_no,int size,void *pD
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìƒoƒgƒ‹ƒ^ƒ[‘—‚ç‚ê‚Ä‚«‚½ƒŠƒ^ƒCƒA‚·‚é‚©‚Ç‚¤‚©‚ÌŒ‹‰Ê‚ğæ“¾
+ * @brief	recv_bufã®ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€ã‚‰ã‚Œã¦ããŸãƒªã‚¿ã‚¤ã‚¢ã™ã‚‹ã‹ã©ã†ã‹ã®çµæœã‚’å–å¾—
  *
  * @param	
  *
- * @retval	0	ƒŠƒ^ƒCƒA‚µ‚È‚¢
- * @retval	1	ƒŠƒ^ƒCƒA‚·‚é
+ * @retval	0	ãƒªã‚¿ã‚¤ã‚¢ã—ãªã„
+ * @retval	1	ãƒªã‚¿ã‚¤ã‚¢ã™ã‚‹
  */
 //--------------------------------------------------------------
 static void CommFrWiFiCounterTowerRecvBufRetireSelect(int id_no,int size,void *pData,void *work)
@@ -313,14 +313,14 @@ static void CommFrWiFiCounterTowerRecvBufRetireSelect(int id_no,int size,void *p
 	BTOWER_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ƒoƒgƒ‹ƒ^ƒ[@ƒgƒŒ[ƒi[No‚ğóM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noã‚’å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->check_work = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -336,31 +336,31 @@ static void CommFrWiFiCounterTowerRecvBufRetireSelect(int id_no,int size,void *p
 
 //==============================================================================
 //
-//	ƒtƒƒ“ƒeƒBƒAWiFió•t
+//	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜
 //
 //==============================================================================
 #if 1
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚É‘I‘ğ‚µ‚½{İNo‚ğƒZƒbƒg
+ * @brief	send_bufã«é¸æŠã—ãŸæ–½è¨­Noã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommFrWiFiCounterSendBufBFNo( FRWIFI_SCRWORK* wk )
 {
 	int ret,size,id;
 
-	OS_Printf( "******WIFIó•t****** ‘I‘ğ‚µ‚½{İNo‘—M\n" );
+	OS_Printf( "******WIFIå—ä»˜****** é¸æŠã—ãŸæ–½è¨­Noé€ä¿¡\n" );
 
-	size = FRWIFI_COMM_BUF_LEN;									//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FRWIFI_COMM_BUF_LEN;									//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
-	wk->send_buf[0]	= wk->bf_no;								//{İNo
+	wk->send_buf[0]	= wk->bf_no;								//æ–½è¨­No
 
 #if 1
-	//˜AŸ”‚ğæ“¾
+	//é€£å‹æ•°ã‚’å–å¾—
 	id = WifiCounterRensyouRecordIDGet( wk->bf_no );
 	wk->send_buf[1] = FrontierRecord_Get(	SaveData_GetFrontier(wk->sv), id, 
 											Frontier_GetFriendIndex(id) );
@@ -377,9 +377,9 @@ BOOL CommFrWiFiCounterSendBufBFNo( FRWIFI_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ì‘I‘ğ‚µ‚½{İNo‚ğæ“¾
+ * @brief	recv_bufã®é¸æŠã—ãŸæ–½è¨­Noã‚’å–å¾—
  *
- * @param	wk			FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
@@ -391,48 +391,48 @@ void CommFrWiFiCounterRecvBufBFNo(int id_no,int size,void *pData,void *work)
 	FRWIFI_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ‘I‘ğ‚µ‚½{İNoóM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** é¸æŠã—ãŸæ–½è¨­Noå—ä¿¡\n" );
 
 	wk->recieve_count++;
 	//OS_Printf( "wk->recieve_count = %d\n", wk->recieve_count );
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	wk->pair_bf_no = (u8)recv_buf[0];							//{İNo
-	OS_Printf( "óMFwk->pair_bf_no = %d\n", wk->pair_bf_no );
+	wk->pair_bf_no = (u8)recv_buf[0];							//æ–½è¨­No
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_bf_no = %d\n", wk->pair_bf_no );
 
-	//˜AŸ”‚ğæ“¾
-	wk->pair_rensyou = recv_buf[1];								//˜AŸ”
-	OS_Printf( "óMFwk->pair_rensyou = %d\n", wk->pair_rensyou );
+	//é€£å‹æ•°ã‚’å–å¾—
+	wk->pair_rensyou = recv_buf[1];								//é€£å‹æ•°
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_rensyou = %d\n", wk->pair_rensyou );
 	return;
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚É‘I‘ğˆ‚Å‰½‚ğ‘I‚ñ‚¾‚©‚ğƒZƒbƒg
+ * @brief	send_bufã«é¸æŠè‚¢ã§ä½•ã‚’é¸ã‚“ã ã‹ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel		0=‚Â‚Ã‚¯‚éA0ˆÈŠO=ƒŠƒ^ƒCƒ„(‚«‚ë‚­‚·‚é‚Í‚¢‚ç‚È‚¢)
+ * @param	wk		FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel		0=ã¤ã¥ã‘ã‚‹ã€0ä»¥å¤–=ãƒªã‚¿ã‚¤ãƒ¤(ãã‚ãã™ã‚‹ã¯ã„ã‚‰ãªã„)
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommFrWiFiCounterSendBufRetireFlag( FRWIFI_SCRWORK* wk, u16 retire_flag )
 {
 	int ret,size;
 
-	size = FRWIFI_COMM_BUF_LEN;								//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FRWIFI_COMM_BUF_LEN;								//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
-	OS_Printf( "******WIFIó•t****** ƒŠƒ^ƒCƒA‘—M\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒªã‚¿ã‚¤ã‚¢é€ä¿¡\n" );
 
 	wk->send_buf[0] = retire_flag;
-	OS_Printf( "‘—MFretire_flag = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šretire_flag = %d\n", wk->send_buf[0] );
 
 	if( CommSendData(FC_WIFI_COUNTER_RETIRE_FLAG,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -445,14 +445,14 @@ BOOL CommFrWiFiCounterSendBufRetireFlag( FRWIFI_SCRWORK* wk, u16 retire_flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ì‘I‘ğˆ‚Å‰½‚ğ‘I‚ñ‚¾‚©‚ğæ“¾
+ * @brief	recv_bufã®é¸æŠè‚¢ã§ä½•ã‚’é¸ã‚“ã ã‹ã‚’å–å¾—
  *
- * @param	wk			FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommFrWiFiCounterRecvBufRetireFlag(int id_no,int size,void *pData,void *work)
@@ -461,27 +461,27 @@ void CommFrWiFiCounterRecvBufRetireFlag(int id_no,int size,void *pData,void *wor
 	FRWIFI_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ƒŠƒ^ƒCƒAóM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒªã‚¿ã‚¤ã‚¢å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	wk->pair_retire_flag = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ğƒZƒbƒg
+ * @brief	send_bufã«ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -492,9 +492,9 @@ BOOL CommFrWiFiCounterSendBufMonsNoItemNo( FRWIFI_SCRWORK* wk, u16 pos1, u16 pos
 	POKEMON_PARAM* pp;
 	POKEPARTY* party;
 
-	size = FRWIFI_COMM_BUF_LEN;								//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FRWIFI_COMM_BUF_LEN;								//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
-	OS_Printf( "******WIFIó•t****** ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‘—M\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼é€ä¿¡\n" );
 
 	party = SaveData_GetTemotiPokemon( wk->sv );
 
@@ -503,7 +503,7 @@ BOOL CommFrWiFiCounterSendBufMonsNoItemNo( FRWIFI_SCRWORK* wk, u16 pos1, u16 pos
 	wk->mine_poke_pos[0] = pos1;
 	wk->mine_poke_pos[1] = pos2;
 	
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ä‚¢‚½‚ç
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦ã„ãŸã‚‰
 	if( pos1 == 0xff ){
 		wk->monsno[0] = 0;
 		wk->itemno[0] = 0;
@@ -521,14 +521,14 @@ BOOL CommFrWiFiCounterSendBufMonsNoItemNo( FRWIFI_SCRWORK* wk, u16 pos1, u16 pos
 
 	wk->send_buf[0] = wk->monsno[0];
 	wk->send_buf[1] = wk->itemno[0];
-	OS_Printf( "‘—MFmonsno1 = %d\n", wk->send_buf[0] );
-	OS_Printf( "‘—MFitemno1 = %d\n", wk->send_buf[1] );
+	OS_Printf( "é€ä¿¡ï¼šmonsno1 = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šitemno1 = %d\n", wk->send_buf[1] );
 
 	////////////////////////////////////////////////////////////
 	wk->send_buf[2] = wk->monsno[1];
 	wk->send_buf[3] = wk->itemno[1];
-	OS_Printf( "‘—MFmonsno2 = %d\n", wk->send_buf[2] );
-	OS_Printf( "‘—MFitemno2 = %d\n", wk->send_buf[3] );
+	OS_Printf( "é€ä¿¡ï¼šmonsno2 = %d\n", wk->send_buf[2] );
+	OS_Printf( "é€ä¿¡ï¼šitemno2 = %d\n", wk->send_buf[3] );
 
 	if( CommSendData(FC_WIFI_COUNTER_MONSNO_ITEMNO,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -541,12 +541,12 @@ BOOL CommFrWiFiCounterSendBufMonsNoItemNo( FRWIFI_SCRWORK* wk, u16 pos1, u16 pos
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ğæ“¾
+ * @brief	recv_bufã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommFrWiFiCounterRecvBufMonsNoItemNo(int id_no,int size,void *pData,void *work)
@@ -554,49 +554,49 @@ void CommFrWiFiCounterRecvBufMonsNoItemNo(int id_no,int size,void *pData,void *w
 	FRWIFI_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[óM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼å—ä¿¡\n" );
 
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//‘Šè‚Ìè‚¿‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğæ“¾(ƒyƒAƒ[ƒN‚É‘ã“ü)
+	//ç›¸æ‰‹ã®æ‰‹æŒã¡ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—(ãƒšã‚¢ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥)
 	wk->pair_monsno[0] = recv_buf[0];
 	wk->pair_itemno[0] = recv_buf[1];
 	wk->pair_monsno[1] = recv_buf[2];
 	wk->pair_itemno[1] = recv_buf[3];
-	OS_Printf( "óMFwk->pair_monsno[0] = %d\n", wk->pair_monsno[0] );
-	OS_Printf( "óMFwk->pair_itemno[0] = %d\n", wk->pair_itemno[0] );
-	OS_Printf( "óMFwk->pair_monsno[1] = %d\n", wk->pair_monsno[1] );
-	OS_Printf( "óMFwk->pair_itemno[1] = %d\n", wk->pair_itemno[1] );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_monsno[0] = %d\n", wk->pair_monsno[0] );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_itemno[0] = %d\n", wk->pair_itemno[0] );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_monsno[1] = %d\n", wk->pair_monsno[1] );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_itemno[1] = %d\n", wk->pair_itemno[1] );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉƒXƒe[ƒW‚Ì‹L˜^‚ğÁ‚µ‚Ä‚æ‚¢‚©‚ğƒZƒbƒg
+ * @brief	send_bufã«ã‚¹ãƒ†ãƒ¼ã‚¸ã®è¨˜éŒ²ã‚’æ¶ˆã—ã¦ã‚ˆã„ã‹ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel		0=‚Â‚Ã‚¯‚éA0ˆÈŠO=ƒŠƒ^ƒCƒ„(‚«‚ë‚­‚·‚é‚Í‚¢‚ç‚È‚¢)
+ * @param	wk		FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel		0=ã¤ã¥ã‘ã‚‹ã€0ä»¥å¤–=ãƒªã‚¿ã‚¤ãƒ¤(ãã‚ãã™ã‚‹ã¯ã„ã‚‰ãªã„)
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªu‚¢‚¢‚¦v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œã„ã„ãˆã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommFrWiFiCounterSendBufStageRecordDel( FRWIFI_SCRWORK* wk, u16 stage_del_flag )
 {
 	int ret,size;
 
-	size = FRWIFI_COMM_BUF_LEN;								//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FRWIFI_COMM_BUF_LEN;								//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
-	OS_Printf( "******WIFIó•t****** ƒXƒe[ƒW‹L˜^Á‚µ‚Ä‚æ‚¢‚©‘—M\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ã‚¹ãƒ†ãƒ¼ã‚¸è¨˜éŒ²æ¶ˆã—ã¦ã‚ˆã„ã‹é€ä¿¡\n" );
 
 	wk->send_buf[0] = stage_del_flag;
-	OS_Printf( "‘—MFstage_del_flag = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šstage_del_flag = %d\n", wk->send_buf[0] );
 
 	if( CommSendData(FC_WIFI_COUNTER_STAGE_RECORD_DEL,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -609,14 +609,14 @@ BOOL CommFrWiFiCounterSendBufStageRecordDel( FRWIFI_SCRWORK* wk, u16 stage_del_f
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚ÌƒXƒe[ƒW‚Ì‹L˜^‚ğÁ‚µ‚Ä‚æ‚¢‚©‚ğæ“¾
+ * @brief	recv_bufã®ã‚¹ãƒ†ãƒ¼ã‚¸ã®è¨˜éŒ²ã‚’æ¶ˆã—ã¦ã‚ˆã„ã‹ã‚’å–å¾—
  *
- * @param	wk			FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªu‚¢‚¢‚¦v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œã„ã„ãˆã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommFrWiFiCounterRecvBufStageRecordDel(int id_no,int size,void *pData,void *work)
@@ -625,44 +625,44 @@ void CommFrWiFiCounterRecvBufStageRecordDel(int id_no,int size,void *pData,void 
 	FRWIFI_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ƒXƒe[ƒW‹L˜^Á‚µ‚Ä‚æ‚¢‚©óM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ã‚¹ãƒ†ãƒ¼ã‚¸è¨˜éŒ²æ¶ˆã—ã¦ã‚ˆã„ã‹å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	wk->pair_stage_del = recv_buf[0];
-	OS_Printf( "óMFwk->pair_stage_del = %d\n", wk->pair_stage_del );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_stage_del = %d\n", wk->pair_stage_del );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éˆø‚«‘±‚«—V‚Ô‚©‚ğƒZƒbƒg
+ * @brief	send_bufã«å¼•ãç¶šãéŠã¶ã‹ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel		0=‚Í‚¢A1=‚¢‚¢‚¦
+ * @param	wk		FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel		0=ã¯ã„ã€1=ã„ã„ãˆ
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªu‚¢‚¢‚¦v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œã„ã„ãˆã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommFrWiFiCounterSendBufGameContinue( FRWIFI_SCRWORK* wk, u16 flag )
 {
 	int ret,size;
 
-	size = FRWIFI_COMM_BUF_LEN;								//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FRWIFI_COMM_BUF_LEN;								//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
-	OS_Printf( "******WIFIó•t****** ˆø‚«‘±‚«—V‚Ô‚©‚ğ‘—M\n" );
+	OS_Printf( "******WIFIå—ä»˜****** å¼•ãç¶šãéŠã¶ã‹ã‚’é€ä¿¡\n" );
 
 	wk->send_buf[0] = flag;
-	OS_Printf( "‘—MFgame_continue = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šgame_continue = %d\n", wk->send_buf[0] );
 
 	if( CommSendData(FC_WIFI_COUNTER_GAME_CONTINUE,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -675,14 +675,14 @@ BOOL CommFrWiFiCounterSendBufGameContinue( FRWIFI_SCRWORK* wk, u16 flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìˆø‚«‘±‚«—V‚Ô‚©‚ğæ“¾
+ * @brief	recv_bufã®å¼•ãç¶šãéŠã¶ã‹ã‚’å–å¾—
  *
- * @param	wk			FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªu‚¢‚¢‚¦v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œã„ã„ãˆã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommFrWiFiCounterRecvBufGameContinue(int id_no,int size,void *pData,void *work)
@@ -691,19 +691,19 @@ void CommFrWiFiCounterRecvBufGameContinue(int id_no,int size,void *pData,void *w
 	FRWIFI_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ˆø‚«‘±‚«—V‚Ô‚©‚ğóM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** å¼•ãç¶šãéŠã¶ã‹ã‚’å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	wk->pair_game_continue = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_game_continue = %d\n", wk->pair_game_continue );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_game_continue = %d\n", wk->pair_game_continue );
 	return;
 }
 #endif

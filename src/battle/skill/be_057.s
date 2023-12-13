@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_057.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			057�@�Ώۂ̑���Ɠ����p�ɂȂ�A�Z���G�Ɠ����Z���g����i�o�o�͑S�ĂT�j
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			057　対象の相手と同じ姿になる、技も敵と同じ技を使える（ＰＰは全て５）
  *
  *@author	HisashiSogabe
  *@data		2006.01.26

@@ -21,15 +21,15 @@
 #include <nnsys/g2d/fmt/g2d_Oam_data.h>
 #include <nnsys/g2d/fmt/g2d_Character_data.h>
 
-#include <nnsys/g2d/g2d_Image.h> // TODO : ‚±‚ÌˆË‘¶‚ÍOK‚©H—vŒŸ“¢
+#include <nnsys/g2d/g2d_Image.h> // TODO : ã“ã®ä¾å­˜ã¯OKã‹ï¼Ÿè¦æ¤œè¨
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 //
-// ‰ü–¼‚ğs‚Á‚½ŠÖ”‚Ì•Ê–¼
-// ŒİŠ·«ˆÛ‚Ì‚½‚ß•Ê–¼‚Æ‚µ‚ÄˆÈ‘O‚ÌŠÖ”‚ğéŒ¾‚µ‚Ü‚·B
+// æ”¹åã‚’è¡Œã£ãŸé–¢æ•°ã®åˆ¥å
+// äº’æ›æ€§ç¶­æŒã®ãŸã‚åˆ¥åã¨ã—ã¦ä»¥å‰ã®é–¢æ•°ã‚’å®£è¨€ã—ã¾ã™ã€‚
 // 
 #define NNS_G2dInitializeOamManager         NNS_G2dInitOamManagerModule
 #define NNS_G2dEntryNewOam                  NNS_G2dEntryOamManagerOam
@@ -48,15 +48,15 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dOamType
 
-  Description:  NNSG2dOamType ‚Ì í—Ş
+  Description:  NNSG2dOamType ã® ç¨®é¡
                 
  *---------------------------------------------------------------------------*/
 typedef enum NNSG2dOamType
 {
-    NNS_G2D_OAMTYPE_MAIN = 0,               // ƒƒCƒ“2DƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“‚ÌOAM
-    NNS_G2D_OAMTYPE_SUB,                    // ƒTƒu2DƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“‚ÌOAM
-    NNS_G2D_OAMTYPE_SOFTWAREEMULATION,      // 3D Graphics Engine ‚ğ g—p‚µ‚½ ƒGƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“
-    NNS_G2D_OAMTYPE_INVALID,                // •s³‚Èí—Ş
+    NNS_G2D_OAMTYPE_MAIN = 0,               // ãƒ¡ã‚¤ãƒ³2Dã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ã®OAM
+    NNS_G2D_OAMTYPE_SUB,                    // ã‚µãƒ–2Dã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ã®OAM
+    NNS_G2D_OAMTYPE_SOFTWAREEMULATION,      // 3D Graphics Engine ã‚’ ä½¿ç”¨ã—ãŸ ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³
+    NNS_G2D_OAMTYPE_INVALID,                // ä¸æ­£ãªç¨®é¡
     NNS_G2D_OAMTYPE_MAX         
     
 }NNSG2dOamType;
@@ -78,33 +78,33 @@ typedef enum NNSG2dOamType
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dOAMManageArea
 
-  Description:  ŠÇ——Ìˆæ
+  Description:  ç®¡ç†é ˜åŸŸ
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dOAMManageArea
 {
-    u16     fromIdx;                // ŠÇ——Ìˆæ iŠJn”Ô†j
-    u16     toIdx;                  // ŠÇ——Ìˆæ iI—¹”Ô†j
-    u16     currentIdx;             // Œ»İ‚Ì“o˜^ˆÊ’u ”Ô†
+    u16     fromIdx;                // ç®¡ç†é ˜åŸŸ ï¼ˆé–‹å§‹ç•ªå·ï¼‰
+    u16     toIdx;                  // ç®¡ç†é ˜åŸŸ ï¼ˆçµ‚äº†ç•ªå·ï¼‰
+    u16     currentIdx;             // ç¾åœ¨ã®ç™»éŒ²ä½ç½® ç•ªå·
 }NNSG2dOAMManageArea;
 
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dOamManagerInstance
 
-  Description:  OamManager ‚Ì À‘Ì
+  Description:  OamManager ã® å®Ÿä½“
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dOamManagerInstance
 {
-    NNSG2dOamType         type;                // Oam‚Ìí—Ş
+    NNSG2dOamType         type;                // Oamã®ç¨®é¡
     
-    NNSG2dOAMManageArea   managedAttrArea;     // ƒ}ƒl[ƒWƒƒŠÇ——Ìˆæ(Oam Attribute)
-    NNSG2dOAMManageArea   managedAffineArea;   // ƒ}ƒl[ƒWƒƒŠÇ——Ìˆæ(Affine Paramater)
+    NNSG2dOAMManageArea   managedAttrArea;     // ãƒãƒãƒ¼ã‚¸ãƒ£ç®¡ç†é ˜åŸŸ(Oam Attribute)
+    NNSG2dOAMManageArea   managedAffineArea;   // ãƒãƒãƒ¼ã‚¸ãƒ£ç®¡ç†é ˜åŸŸ(Affine Paramater)
     
-    u16                   GUID;                // NNSG2dOamManagerInstance ‚ğ¯•Ê‚·‚é ID
-    u16                   pad16_;              // ƒpƒfƒBƒ“ƒO
-    BOOL                  bFastTransferEnable; // ‰Šú‰»‚Éİ’è‚³‚ê‚Ü‚·B(ƒ†[ƒU‚Í‘€ì‚µ‚È‚¢‚Å‚­‚¾‚³‚¢)
-    fx32                  spriteZoffsetStep;   // ƒXƒvƒ‰ƒCƒg•`‰æ‚Ég—p‚³‚ê‚é©“®ƒIƒtƒZƒbƒg’l
+    u16                   GUID;                // NNSG2dOamManagerInstance ã‚’è­˜åˆ¥ã™ã‚‹ ID
+    u16                   pad16_;              // ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
+    BOOL                  bFastTransferEnable; // åˆæœŸåŒ–æ™‚ã«è¨­å®šã•ã‚Œã¾ã™ã€‚(ãƒ¦ãƒ¼ã‚¶ã¯æ“ä½œã—ãªã„ã§ãã ã•ã„)
+    fx32                  spriteZoffsetStep;   // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»æ™‚ã«ä½¿ç”¨ã•ã‚Œã‚‹è‡ªå‹•ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
     
 }NNSG2dOamManagerInstance;
 
@@ -112,7 +112,7 @@ typedef struct NNSG2dOamManagerInstance
 
 
 //------------------------------------------------------------------------------
-// ƒ‰ƒCƒuƒ‰ƒŠ“à•”ŒöŠJ
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨å…¬é–‹
 //------------------------------------------------------------------------------
 void* NNSi_G2dGetOamManagerInternalBufferForDebug( NNSG2dOamType type );
 
@@ -120,7 +120,7 @@ void* NNSi_G2dGetOamManagerInternalBufferForDebug( NNSG2dOamType type );
 
 
 //------------------------------------------------------------------------------
-// ŠO•”ŒöŠJ
+// å¤–éƒ¨å…¬é–‹
 //------------------------------------------------------------------------------
 
 void NNS_G2dInitOamManagerModule();

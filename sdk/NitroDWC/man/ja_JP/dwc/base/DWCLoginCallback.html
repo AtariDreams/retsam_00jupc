@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWCLoginCallback</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWCLoginCallback</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>#include &lt;dwc.h&gt;
@@ -20,39 +20,39 @@ typedef void (*DWCLoginCallback)( DWCError error,
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-          <a href="DWC_LoginAsync.html">DWC_LoginAsync</a>�֐����Ăяo������AWi-Fi�R�l�N�V�����ւ̐ڑ��������ɌĂяo����܂��B
+          <a href="DWC_LoginAsync.html">DWC_LoginAsync</a>関数を呼び出した後、Wi-Fiコネクションへの接続完了時に呼び出されます。
 		</P>
 		<P>
-		  �{�R�[���o�b�N�֐���<a href="DWC_LoginAsync.html">DWC_LoginAsync</a>�֐��ɂ���Đݒ肷�邱�Ƃ��ł��܂��B
+		  本コールバック関数は<a href="DWC_LoginAsync.html">DWC_LoginAsync</a>関数によって設定することができます。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>error</CODE></STRONG></EM></TD>
-                    <TD>DWC�G���[��ʁB���e�̏ڍׂ́A<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>���Q�Ƃ��Ă��������B</TD>
+                    <TD>DWCエラー種別。内容の詳細は、<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>を参照してください。</TD>
 				</TR>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>profileID</CODE></STRONG></EM></TD>
-					<TD>�擾�ł���������GS�v���t�@�C��ID</TD>
+					<TD>取得できた自分のGSプロファイルID</TD>
 				</TR>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>param</CODE></STRONG></EM></TD>
-					<TD><a href="DWC_LoginAsync.html">DWC_LoginAsync</a>�֐��Ŏw�肵���R�[���o�b�N�p�p�����[�^</TD>
+					<TD><a href="DWC_LoginAsync.html">DWC_LoginAsync</a>関数で指定したコールバック用パラメータ</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<P>
-          �Ȃ��B
+          なし。
 		</P>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
           <code>
             <a href="DWC_LoginAsync.html">DWC_LoginAsync</a>,
@@ -60,10 +60,10 @@ typedef void (*DWCLoginCallback)( DWCError error,
           </code>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2005/12/16 �֐��������C��<BR>
-			2005/11/01 ����<BR>
+			2005/12/16 関数説明を修正<BR>
+			2005/11/01 初版<BR>
 		</P>
 
 	</BODY>

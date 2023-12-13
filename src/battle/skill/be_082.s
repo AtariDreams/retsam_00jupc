@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_082.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			082�@�G���Ō�Ɏg�����Z���A���̐퓬�������R�s�[���Ďg����i�R�s�[�Z�̂o�o�͂T�j�A�G���Z���g���O�Ɏg���ƋZ�͎��s����
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			082　敵が最後に使った技を、その戦闘中だけコピーして使える（コピー技のＰＰは５）、敵が技を使う前に使うと技は失敗する
  *
  *@author	HisashiSogabe
  *@data		2006.01.19

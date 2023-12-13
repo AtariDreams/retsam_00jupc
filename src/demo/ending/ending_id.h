@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_id.h
- * @brief	ƒLƒƒƒ‰IDAƒZƒ‹ID“™‚Ì’è‹`êŠ
+ * @brief	ã‚­ãƒ£ãƒ©IDã€ã‚»ãƒ«IDç­‰ã®å®šç¾©å ´æ‰€
  * @author	matsuda
- * @date	2008.04.10(–Ø)
+ * @date	2008.04.10(æœ¨)
  */
 //==============================================================================
 #ifndef __ENDING_ID_H__
@@ -11,95 +11,95 @@
 
 
 //==============================================================================
-//	ƒLƒƒƒ‰ID
+//	ã‚­ãƒ£ãƒ©ID
 //==============================================================================
 enum{
 	CHARID_ENDING_START = 10000,
 
-	CHARID_HERO,					//ŽålŒö
-	CHARID_STAR,					//—¬‚ê¯
+	CHARID_HERO,					//ä¸»äººå…¬
+	CHARID_STAR,					//æµã‚Œæ˜Ÿ
 	
-	//-- ƒTƒu‰æ–Ê --//
-	CHARID_SUB_FUWANTE,					//ƒtƒƒ“ƒe
-	CHARID_SUB_KYAMOME,					//ƒLƒƒƒ‚ƒ
-	CHARID_SUB_JIBA,					//ƒWƒoƒRƒCƒ‹
+	//-- ã‚µãƒ–ç”»é¢ --//
+	CHARID_SUB_FUWANTE,					//ãƒ•ãƒ¯ãƒ³ãƒ†
+	CHARID_SUB_KYAMOME,					//ã‚­ãƒ£ãƒ¢ãƒ¡
+	CHARID_SUB_JIBA,					//ã‚¸ãƒã‚³ã‚¤ãƒ«
 };
 
 //==============================================================================
-//	ƒpƒŒƒbƒgID
+//	ãƒ‘ãƒ¬ãƒƒãƒˆID
 //==============================================================================
 enum{
 	PLTTID_ENDING_START = 10000,
 
-	PLTTID_HERO,					//ŽålŒö
-	PLTTID_STAR,					//—¬‚ê¯
+	PLTTID_HERO,					//ä¸»äººå…¬
+	PLTTID_STAR,					//æµã‚Œæ˜Ÿ
 	
-	//-- ƒTƒu‰æ–Ê --//
-	PLTTID_SUB_FUWANTE,					//ƒtƒƒ“ƒe
-	PLTTID_SUB_KYAMOME,					//ƒLƒƒƒ‚ƒ
-	PLTTID_SUB_JIBA,					//ƒWƒoƒRƒCƒ‹
+	//-- ã‚µãƒ–ç”»é¢ --//
+	PLTTID_SUB_FUWANTE,					//ãƒ•ãƒ¯ãƒ³ãƒ†
+	PLTTID_SUB_KYAMOME,					//ã‚­ãƒ£ãƒ¢ãƒ¡
+	PLTTID_SUB_JIBA,					//ã‚¸ãƒã‚³ã‚¤ãƒ«
 };
 
 //--------------------------------------------------------------
-//	í’“OBJƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+//	å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 enum{
-	PALOFS_STAR = 3,			///<—¬‚ê¯
+	PALOFS_STAR = 3,			///<æµã‚Œæ˜Ÿ
 	
-//	ENDING_COMMON_PAL_NUM = 3,	///<í’“OBJƒpƒŒƒbƒg‚Ì–{”
+//	ENDING_COMMON_PAL_NUM = 3,	///<å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã®æœ¬æ•°
 };
 
 //--------------------------------------------------------------
-//	ƒTƒu‰æ–Ê‚Ìí’“OBJƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+//	ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 enum{
-	PALOFS_SUB_FUWANTE = 1,			///<ƒtƒƒ“ƒe
-	PALOFS_SUB_KYAMOME = 0,			///<ƒLƒƒƒ‚ƒ
-	PALOFS_SUB_JIBA = 2,			///<ƒWƒoƒRƒCƒ‹
-	PALOFS_SUB_STAR = 3,			///<—¬‚ê¯
+	PALOFS_SUB_FUWANTE = 1,			///<ãƒ•ãƒ¯ãƒ³ãƒ†
+	PALOFS_SUB_KYAMOME = 0,			///<ã‚­ãƒ£ãƒ¢ãƒ¡
+	PALOFS_SUB_JIBA = 2,			///<ã‚¸ãƒã‚³ã‚¤ãƒ«
+	PALOFS_SUB_STAR = 3,			///<æµã‚Œæ˜Ÿ
 	
-//	ENDING_SUB_COMMON_PAL_NUM = 1,	///<ƒTƒu‰æ–Ê‚Ìí’“OBJƒpƒŒƒbƒg‚Ì–{”
+//	ENDING_SUB_COMMON_PAL_NUM = 1,	///<ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã®æœ¬æ•°
 };
 
 //==============================================================================
-//	ƒZƒ‹ID
+//	ã‚»ãƒ«ID
 //==============================================================================
 enum{
 	CELLID_ENDING_START = 10000,
 
-	CELLID_HERO,					//ŽålŒö
-	CELLID_STAR,					//—¬‚ê¯
+	CELLID_HERO,					//ä¸»äººå…¬
+	CELLID_STAR,					//æµã‚Œæ˜Ÿ
 	
-	//-- ƒTƒu‰æ–Ê --//
-	CELLID_SUB_FUWANTE,					//ƒtƒƒ“ƒe
-	CELLID_SUB_KYAMOME,					//ƒLƒƒƒ‚ƒ
-	CELLID_SUB_JIBA,					//ƒWƒoƒRƒCƒ‹
+	//-- ã‚µãƒ–ç”»é¢ --//
+	CELLID_SUB_FUWANTE,					//ãƒ•ãƒ¯ãƒ³ãƒ†
+	CELLID_SUB_KYAMOME,					//ã‚­ãƒ£ãƒ¢ãƒ¡
+	CELLID_SUB_JIBA,					//ã‚¸ãƒã‚³ã‚¤ãƒ«
 };
 
 //==============================================================================
-//	ƒZƒ‹ƒAƒjƒID
+//	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
 //==============================================================================
 enum{
 	CELLANMID_ENDING_START = 10000,
 
-	CELLANMID_HERO,					//ŽålŒö
-	CELLANMID_STAR,					//—¬‚ê¯
+	CELLANMID_HERO,					//ä¸»äººå…¬
+	CELLANMID_STAR,					//æµã‚Œæ˜Ÿ
 	
-	//-- ƒTƒu‰æ–Ê --//
-	CELLANMID_SUB_FUWANTE,					//ƒtƒƒ“ƒe
-	CELLANMID_SUB_KYAMOME,					//ƒLƒƒƒ‚ƒ
-	CELLANMID_SUB_JIBA,					//ƒWƒoƒRƒCƒ‹
+	//-- ã‚µãƒ–ç”»é¢ --//
+	CELLANMID_SUB_FUWANTE,					//ãƒ•ãƒ¯ãƒ³ãƒ†
+	CELLANMID_SUB_KYAMOME,					//ã‚­ãƒ£ãƒ¢ãƒ¡
+	CELLANMID_SUB_JIBA,					//ã‚¸ãƒã‚³ã‚¤ãƒ«
 };
 
 //==============================================================================
-//	ƒ}ƒ‹ƒ`ƒZƒ‹ID
+//	ãƒžãƒ«ãƒã‚»ãƒ«ID
 //==============================================================================
 enum{
 	MCELLID_ENDING_START = 10000,
 };
 
 //==============================================================================
-//	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒID
+//	ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
 //==============================================================================
 enum{
 	MCELLANMID_ENDING_START = 10000,

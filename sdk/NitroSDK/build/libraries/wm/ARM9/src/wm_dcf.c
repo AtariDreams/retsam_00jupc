@@ -18,19 +18,19 @@
   do-indent.
 
   Revision 1.5  2004/12/03 06:35:20  ooe
-  Å‘å‘—MƒTƒCƒY‚Ìƒ`ƒFƒbƒN•”A1500‚ğWM_DCF_MAX_SIZE‚ÉC³B
+  æœ€å¤§é€ä¿¡ã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯éƒ¨ã€1500ã‚’WM_DCF_MAX_SIZEã«ä¿®æ­£ã€‚
 
   Revision 1.4  2004/10/22 04:37:28  terui
-  WMErrCode‚Æ‚µ‚ÄintŒ^‚ğ•Ô‚µ‚Ä‚¢‚½ŠÖ”‚É‚Â‚¢‚ÄAWMErrCode—ñ‹“Œ^‚ğ•Ô‚·‚æ‚¤‚É•ÏXB
+  WMErrCodeã¨ã—ã¦intå‹ã‚’è¿”ã—ã¦ã„ãŸé–¢æ•°ã«ã¤ã„ã¦ã€WMErrCodeåˆ—æŒ™å‹ã‚’è¿”ã™ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.3  2004/10/08 08:37:37  ooe
   small fix
 
   Revision 1.2  2004/10/05 09:45:28  terui
-  MACƒAƒhƒŒƒX‚ğu8Œ^‚Ì”z—ñ‚É“ˆêB
+  MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’u8å‹ã®é…åˆ—ã«çµ±ä¸€ã€‚
 
   Revision 1.1  2004/09/10 11:03:30  terui
-  wm.c‚Ì•ªŠ„‚É”º‚¢AV‹KuploadB
+  wm.cã®åˆ†å‰²ã«ä¼´ã„ã€æ–°è¦uploadã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -42,27 +42,27 @@
 /*---------------------------------------------------------------------------*
   Name:         WM_StartDCF
 
-  Description:  ƒCƒ“ƒtƒ‰ƒXƒgƒ‰ƒNƒ`ƒƒƒ‚[ƒh‚Å‚Ì’ÊM‚ğŠJn‚·‚éB
+  Description:  ã‚¤ãƒ³ãƒ•ãƒ©ã‚¹ãƒˆãƒ©ã‚¯ãƒãƒ£ãƒ¢ãƒ¼ãƒ‰ã§ã®é€šä¿¡ã‚’é–‹å§‹ã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                recvBuf     -   ƒf[ƒ^óMƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                ARM7‚ª’¼Úƒf[ƒ^‚ğ‘‚«o‚·‚Ì‚ÅAƒLƒƒƒbƒVƒ…‚É’ˆÓB
-                recvBufSize -   ƒf[ƒ^óMƒoƒbƒtƒ@‚ÌƒTƒCƒYB
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                recvBuf     -   ãƒ‡ãƒ¼ã‚¿å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                ARM7ãŒç›´æ¥ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™ã®ã§ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ³¨æ„ã€‚
+                recvBufSize -   ãƒ‡ãƒ¼ã‚¿å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartDCF(WMCallbackFunc callback, WMDcfRecvBuf *recvBuf, u16 recvBufSize)
 {
     WMErrCode result;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckState(WM_STATE_CHILD);
     WM_CHECK_RESULT(result);
 
-    // DCFó‘ÔŠm”F
+    // DCFçŠ¶æ…‹ç¢ºèª
     DC_InvalidateRange(&(p->status->dcf_flag), 4);
     if (p->status->dcf_flag == TRUE)
     {
@@ -70,7 +70,7 @@ WMErrCode WM_StartDCF(WMCallbackFunc callback, WMDcfRecvBuf *recvBuf, u16 recvBu
         return WM_ERRCODE_ILLEGAL_STATE;
     }
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (recvBufSize < 16)
     {
         WM_WARNING("Parameter \"recvBufSize\" must not be less than %d.\n", 16);
@@ -83,17 +83,17 @@ WMErrCode WM_StartDCF(WMCallbackFunc callback, WMDcfRecvBuf *recvBuf, u16 recvBu
     }
     if ((u32)recvBuf & 0x01f)
     {
-        // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+        // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
         WM_WARNING("Parameter \"recvBuf\" is not 32-byte aligned.\n");
     }
 
-    // w’èƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…‚ğ‘‚«o‚µ
+    // æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’æ›¸ãå‡ºã—
     DC_StoreRange(recvBuf, recvBufSize);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_START_DCF, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_START_DCF, 2, (u32)recvBuf, (u32)recvBufSize);
     WM_CHECK_RESULT(result);
 
@@ -103,18 +103,18 @@ WMErrCode WM_StartDCF(WMCallbackFunc callback, WMDcfRecvBuf *recvBuf, u16 recvBu
 /*---------------------------------------------------------------------------*
   Name:         WM_SetDCFData
 
-  Description:  ƒCƒ“ƒtƒ‰ƒXƒgƒ‰ƒNƒ`ƒƒƒ‚[ƒh’ÊM‚É‚Ä‘—M‚·‚éƒf[ƒ^‚ğ—\–ñ‚·‚é
+  Description:  ã‚¤ãƒ³ãƒ•ãƒ©ã‚¹ãƒˆãƒ©ã‚¯ãƒãƒ£ãƒ¢ãƒ¼ãƒ‰é€šä¿¡ã«ã¦é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’äºˆç´„ã™ã‚‹
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                destAdr     -   ’ÊM‘Šè‚ÌMACƒAƒhƒŒƒX‚ğ¦‚·ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                sendData    -   ‘—M—\–ñ‚·‚éƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                ‘—M—\–ñ‚·‚éƒf[ƒ^‚ÌÀ‘Ì‚Í‹­§“I‚ÉƒLƒƒƒbƒVƒ…ƒXƒgƒA
-                                ‚³‚ê‚é“_‚É’ˆÓB
-                sendDataSize -  ‘—M—\–ñ‚·‚éƒf[ƒ^‚ÌƒTƒCƒYB
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                destAdr     -   é€šä¿¡ç›¸æ‰‹ã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç¤ºã™ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                sendData    -   é€ä¿¡äºˆç´„ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                é€ä¿¡äºˆç´„ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å®Ÿä½“ã¯å¼·åˆ¶çš„ã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚¹ãƒˆã‚¢
+                                ã•ã‚Œã‚‹ç‚¹ã«æ³¨æ„ã€‚
+                sendDataSize -  é€ä¿¡äºˆç´„ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode
 WM_SetDCFData(WMCallbackFunc callback, const u8 *destAdr, const u16 *sendData, u16 sendDataSize)
@@ -123,11 +123,11 @@ WM_SetDCFData(WMCallbackFunc callback, const u8 *destAdr, const u16 *sendData, u
     WMArm9Buf *p = WMi_GetSystemWork();
     u32     wMac[2];
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckState(WM_STATE_DCF_CHILD);
     WM_CHECK_RESULT(result);
 
-    // DCFó‘ÔŠm”F
+    // DCFçŠ¶æ…‹ç¢ºèª
     DC_InvalidateRange(&(p->status->dcf_flag), 4);
     if (p->status->dcf_flag == FALSE)
     {
@@ -135,7 +135,7 @@ WM_SetDCFData(WMCallbackFunc callback, const u8 *destAdr, const u16 *sendData, u
         return WM_ERRCODE_ILLEGAL_STATE;
     }
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (sendDataSize > WM_DCF_MAX_SIZE)
     {
         WM_WARNING("Parameter \"sendDataSize\" is over %d.\n", WM_DCF_MAX_SIZE);
@@ -143,20 +143,20 @@ WM_SetDCFData(WMCallbackFunc callback, const u8 *destAdr, const u16 *sendData, u
     }
     if ((u32)sendData & 0x01f)
     {
-        // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+        // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
         WM_WARNING("Parameter \"sendData\" is not 32-byte aligned.\n");
     }
 
-    // w’èƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…‚ğ‘‚«o‚µ
+    // æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’æ›¸ãå‡ºã—
     DC_StoreRange((void *)sendData, sendDataSize);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_SET_DCF_DATA, callback);
 
-    // MACƒAƒhƒŒƒX‚ğƒRƒs[
+    // MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚³ãƒ”ãƒ¼
     MI_CpuCopy8(destAdr, wMac, 6);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_SET_DCF_DATA, 4,
                              (u32)wMac[0], (u32)wMac[1], (u32)sendData, (u32)sendDataSize);
     WM_CHECK_RESULT(result);
@@ -167,24 +167,24 @@ WM_SetDCFData(WMCallbackFunc callback, const u8 *destAdr, const u16 *sendData, u
 /*---------------------------------------------------------------------------*
   Name:         WM_EndDCF
 
-  Description:  ƒCƒ“ƒtƒ‰ƒXƒgƒ‰ƒNƒ`ƒƒƒ‚[ƒh‚Å‚Ì’ÊM‚ğ’â~‚·‚éB
+  Description:  ã‚¤ãƒ³ãƒ•ãƒ©ã‚¹ãƒˆãƒ©ã‚¯ãƒãƒ£ãƒ¢ãƒ¼ãƒ‰ã§ã®é€šä¿¡ã‚’åœæ­¢ã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndDCF(WMCallbackFunc callback)
 {
     WMErrCode result;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckState(WM_STATE_DCF_CHILD);
     WM_CHECK_RESULT(result);
 
-    // DCFó‘ÔŠm”F
+    // DCFçŠ¶æ…‹ç¢ºèª
     DC_InvalidateRange(&(p->status->dcf_flag), 4);
     if (p->status->dcf_flag == FALSE)
     {
@@ -192,10 +192,10 @@ WMErrCode WM_EndDCF(WMCallbackFunc callback)
         return WM_ERRCODE_ILLEGAL_STATE;
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_END_DCF, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_END_DCF, 0);
     WM_CHECK_RESULT(result);
 

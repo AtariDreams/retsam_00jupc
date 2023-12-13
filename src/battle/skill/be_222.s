@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_222.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			222�@�����Ă���؂̎��ɂ���āA�Z�̃^�C�v�ƈЗ͂��ς��B
- *				 �P�x�g���Ɩ؂̎��͏�����B�����Ă��Ȃ��Ƃ��̓m�[�}���^�C�v�B�ʓr�e�[�u���p�ӁB
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			222　もっている木の実によって、技のタイプと威力が変わる。
+ *				 １度使うと木の実は消える。持っていないときはノーマルタイプ。別途テーブル用意。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14
@@ -19,7 +19,7 @@ BE_222:
 	SHIZENNOMEGUMI		Umakukimaran
 	CRITICAL_CHECK
 	DAMAGE_CALC
-	//�����Ă���A�C�e��������
+	//持っているアイテムを消す
 //	PSP_VALUE			VAL_SET,SIDE_ATTACK,ID_PSP_item,0
 	KILL_ITEM			SIDE_ATTACK
 	SEQ_END

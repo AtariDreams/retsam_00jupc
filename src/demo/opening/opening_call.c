@@ -14,14 +14,14 @@
 FS_EXTERN_OVERLAY(opening);
 //==============================================================================================
 //
-//	グローバル変数
+//	繧ｰ繝ｭ繝ｼ繝舌Ν螟画焚
 //
 //==============================================================================================
 extern PROC_RESULT Intro_Init( PROC * proc, int * seq );
 extern PROC_RESULT Intro_Main( PROC * proc, int * seq );
 extern PROC_RESULT Intro_Exit( PROC * proc, int * seq );
 
-//プロセス定義データ
+//繝励Ο繧ｻ繧ｹ螳夂ｾｩ繝�繝ｼ繧ｿ
 const PROC_DATA OpeningProcData = {
 #if 0
 	OpeningProc_Init,

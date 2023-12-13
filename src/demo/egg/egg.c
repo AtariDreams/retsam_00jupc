@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	egg.c
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2006.05.20(“y)
+ * @date	2006.05.20(åœŸ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -48,7 +48,7 @@ static PROC_RESULT	EGG_ProcExit(PROC* proc, int* seq);
 // =============================================================================
 //
 //
-//	¡ ƒvƒƒbƒN
+//	â–  ãƒ—ãƒ­ãƒƒã‚¯
 //
 //
 // =============================================================================
@@ -64,7 +64,7 @@ const PROC_DATA	EGG_ProcData = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒN‰Šú‰»
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯åˆæœŸåŒ–
  *
  * @param	proc	
  * @param	seq	
@@ -78,8 +78,8 @@ static PROC_RESULT	EGG_ProcInit(PROC* proc, int* seq)
 	EGG_PROC_WORK*	epwk;
 	EGG_MAIN_WORK*	emwk;
 	
-	sys_VBlankFuncChange(NULL, NULL);			///< VBlankƒZƒbƒg
-	sys_HBlankIntrStop();						///< HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange(NULL, NULL);			///< VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();						///< HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 	
 	
 	sys_CreateHeap(HEAPID_BASE_APP, HEAPID_EGG_DEMO, EGG_DEMO_HEAP_SIZE);
@@ -110,11 +110,11 @@ static PROC_RESULT	EGG_ProcInit(PROC* proc, int* seq)
 	PaletteFadeWorkAllocSet(emwk->sys.pfd, FADE_SUB_BG,   0x200, HEAPID_EGG_DEMO);
 	PaletteFadeWorkAllocSet(emwk->sys.pfd, FADE_SUB_OBJ,  0x200, HEAPID_EGG_DEMO);
 	
-	EggDisp_SystemInit();						///< ƒVƒXƒeƒ€‰Šú‰»
-	EggDisp_DefaultBlendSet();					///< Blendİ’è
-	EggDisp_3DVramInit();						///< 3Dİ’è
+	EggDisp_SystemInit();						///< ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
+	EggDisp_DefaultBlendSet();					///< Blendè¨­å®š
+	EggDisp_3DVramInit();						///< 3Dè¨­å®š
 	
-	EggDisp_VramBankSet(emwk->sys.bgl);			///< Bankİ’è
+	EggDisp_VramBankSet(emwk->sys.bgl);			///< Bankè¨­å®š
 	
 	EggOAM_CatsInit(&emwk->sys);
 
@@ -122,15 +122,15 @@ static PROC_RESULT	EGG_ProcInit(PROC* proc, int* seq)
 //	SodateTamagoHuka( emwk->epwk->param.pp, HEAPID_EGG_DEMO );
 //	OS_Printf("ssm_p = %8X\n", emwk->epwk);
 	
-	Snd_Stop();									///< ƒTƒEƒ“ƒh‘S’â~
-	sys_VBlankFuncChange(EggDisp_VBlank, emwk);	///< VBlankƒZƒbƒg		
+	Snd_Stop();									///< ã‚µã‚¦ãƒ³ãƒ‰å…¨åœæ­¢
+	sys_VBlankFuncChange(EggDisp_VBlank, emwk);	///< VBlankã‚»ãƒƒãƒˆ		
 
 	return PROC_RES_FINISH;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒNƒƒCƒ“
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
  *
  * @param	proc	
  * @param	seq	
@@ -194,7 +194,7 @@ static PROC_RESULT	EGG_ProcMain(PROC* proc, int* seq)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒNI—¹
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
  * @param	proc	
  * @param	seq	
@@ -242,8 +242,8 @@ static PROC_RESULT	EGG_ProcExit(PROC* proc, int* seq)
 		
 	sys_DeleteHeap(HEAPID_EGG_DEMO);
 		
-	sys_VBlankFuncChange( NULL, NULL );			///< VBlankƒZƒbƒg
-	sys_HBlankIntrStop();						///< HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );			///< VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();						///< HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	return PROC_RES_FINISH;
 }
@@ -257,13 +257,13 @@ static PROC_RESULT	EGG_ProcExit(PROC* proc, int* seq)
 // =============================================================================
 //
 //
-//	¡ ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒh‘¤
+//	â–  ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰å´
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒ‚ŠÄ‹ƒƒCƒ“
+ * @brief	ãƒ‡ãƒ¢ç›£è¦–ãƒ¡ã‚¤ãƒ³
  *
  * @param	event	
  *
@@ -292,7 +292,7 @@ static BOOL EGG_Demo_Main( GMEVENT_CONTROL * event )
 		{
 			FIELDSYS_WORK*	fsys = FieldEvent_GetFieldSysWork(event);
 			
-			///< ›z‰»î•ñİ’è
+			///< å­µåŒ–æƒ…å ±è¨­å®š
 			{
 				POKEMON_PARAM* pp	= epwk->param.pp;
 				MYSTATUS* my		= SaveData_GetMyStatus( GameSystem_GetSaveData(fsys) );
@@ -307,7 +307,7 @@ static BOOL EGG_Demo_Main( GMEVENT_CONTROL * event )
 				PokeParaPut(pp, ID_PARA_default_name, NULL);
 			}
 			
-			///< }ŠÓ“o˜^
+			///< å›³é‘‘ç™»éŒ²
 			{
 				SaveData_GetPokeRegister( GameSystem_GetSaveData(fsys), epwk->param.pp );
 			}
@@ -342,7 +342,7 @@ static BOOL EGG_Demo_Main( GMEVENT_CONTROL * event )
 		if (epwk->namein->cancel == 0){
 			PokeParaPut(epwk->param.pp, ID_PARA_nickname_buf_flag, epwk->namein->strbuf);
 			
-			///< ƒŒƒR[ƒh‚Ì’Ç‰Á
+			///< ãƒ¬ã‚³ãƒ¼ãƒ‰ã®è¿½åŠ 
 			{
 				FIELDSYS_WORK*	fsys = FieldEvent_GetFieldSysWork( event );
 				RECORD * rec = SaveData_GetRecord( GameSystem_GetSaveData( fsys ) );
@@ -369,7 +369,7 @@ static BOOL EGG_Demo_Main( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒ‚ŠÄ‹ŒÄ‚Ño‚µ
+ * @brief	ãƒ‡ãƒ¢ç›£è¦–å‘¼ã³å‡ºã—
  *
  * @param	event	
  * @param	param	
@@ -398,7 +398,7 @@ void EventCmd_EGGProc(GMEVENT_CONTROL * event, void* param)
 // =============================================================================
 //
 //
-//	¡ ƒfƒoƒbƒO—p
+//	â–  ãƒ‡ãƒãƒƒã‚°ç”¨
 //
 //
 // =============================================================================
@@ -410,7 +410,7 @@ typedef struct {
 } DEBUG_EGG_DEMO;
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒ‚ŒÄ‚Ño‚µ—pƒfƒoƒbƒO
+ * @brief	ãƒ‡ãƒ¢å‘¼ã³å‡ºã—ç”¨ãƒ‡ãƒãƒƒã‚°
  *
  * @param	event	
  *
@@ -439,7 +439,7 @@ static BOOL DebugEGG_GMEVENT_EggDemo(GMEVENT_CONTROL * event)
 			param.pp	= PokeParty_GetMemberPointer(ppty ,0);
 			param.cfg	= SaveData_GetConfig(fsys->savedata);
 			param.my	= SaveData_GetMyStatus(fsys->savedata);
-			param.bgmno	= Snd_NowBgmNoGet();	///< ¡‚ÌBGMƒiƒ“ƒo[‚ğ•Û‘¶
+			param.bgmno	= Snd_NowBgmNoGet();	///< ä»Šã®BGMãƒŠãƒ³ãƒãƒ¼ã‚’ä¿å­˜
 			
 			EventCmd_EGGProc(event, &param);
 		}
@@ -490,7 +490,7 @@ static BOOL DebugEGG_GMEVENT_EggDemoMana(GMEVENT_CONTROL * event)
 			
 			param.cfg	= SaveData_GetConfig(fsys->savedata);
 			param.my	= SaveData_GetMyStatus(fsys->savedata);
-			param.bgmno	= Snd_NowBgmNoGet();	///< ¡‚ÌBGMƒiƒ“ƒo[‚ğ•Û‘¶
+			param.bgmno	= Snd_NowBgmNoGet();	///< ä»Šã®BGMãƒŠãƒ³ãƒãƒ¼ã‚’ä¿å­˜
 			
 			EventCmd_EGGProc(event, &param);
 		}
@@ -524,7 +524,7 @@ static BOOL DebugEGG_GMEVENT_EggDemoMana(GMEVENT_CONTROL * event)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOŒÄ‚Ño‚µ
+ * @brief	ãƒ‡ãƒãƒƒã‚°å‘¼ã³å‡ºã—
  *
  * @param	fsys	
  *

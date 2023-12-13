@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	box_reel.h
- * @brief	ƒ{ƒbƒNƒX‘€ì‰æ–Ê@ƒTƒu‰æ–ÊƒŠ[ƒ‹ƒZƒŒƒNƒ^‚Ì“®ì”»’è
+ * @brief	ãƒœãƒƒã‚¯ã‚¹æ“ä½œç”»é¢ã€€ã‚µãƒ–ç”»é¢ãƒªãƒ¼ãƒ«ã‚»ãƒ¬ã‚¯ã‚¿ã®å‹•ä½œåˆ¤å®š
  * @author	taya
  * @date	2005.11.16
  */
@@ -11,10 +11,10 @@
 
 
 enum {
-	REEL_RESULT_NULL,	///< ‰½‚à‚È‚¢
-	REEL_RESULT_START,	///< ‘ª’èŠJŽn
-	REEL_RESULT_MOVE,	///< “®‚¢‚½
-	REEL_RESULT_RELEASE,///< ‘ª’èI—¹
+	REEL_RESULT_NULL,	///< ä½•ã‚‚ãªã„
+	REEL_RESULT_START,	///< æ¸¬å®šé–‹å§‹
+	REEL_RESULT_MOVE,	///< å‹•ã„ãŸ
+	REEL_RESULT_RELEASE,///< æ¸¬å®šçµ‚äº†
 };
 
 typedef struct _BOX_REEL_CTRL{

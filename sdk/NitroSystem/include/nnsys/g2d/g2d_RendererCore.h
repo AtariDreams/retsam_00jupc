@@ -31,7 +31,7 @@ extern "C" {
 #endif
 
 #define MtxCache_NOT_AVAILABLE                  0xFFFF
-#define MtxCache_NOT_AVAILABLE_ForMemFill       0xFFFFFFFF // ƒƒ‚ƒŠƒtƒBƒ‹—p
+#define MtxCache_NOT_AVAILABLE_ForMemFill       0xFFFFFFFF // ãƒ¡ãƒ¢ãƒªãƒ•ã‚£ãƒ«ç”¨
 #define NNS_G2D_NUMBER_OF_2DGRAPHICS_ENGINE     2
 #define NNS_G2D_RNDCORE_INTERNAL_OAMBUFFER_SIZE 128
 #define NNS_G2D_OAMFLIP_PATTERN_NUM             0x04 // (OAM_FLIP_NONE, OAM_FLIP_H, OAM_FLIP_V, OAM_FLIP_HV )
@@ -40,29 +40,29 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRendererAffineTypeOverwiteMode
 
-  Description:  OAMƒAƒgƒŠƒrƒ…[ƒg‚ÌƒAƒtƒBƒ“İ’è•”•ª‚Ìã‘‚«‘®«
+  Description:  OAMã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®ã‚¢ãƒ•ã‚£ãƒ³è¨­å®šéƒ¨åˆ†ã®ä¸Šæ›¸ãå±æ€§
  *---------------------------------------------------------------------------*/ 
 typedef enum NNSG2dRendererAffineTypeOverwiteMode
 {
-    NNS_G2D_RND_AFFINE_OVERWRITE_NONE,  // ã‘‚«‚µ‚È‚¢
-    NNS_G2D_RND_AFFINE_OVERWRITE_NORMAL,// ’Êí‚ÌƒAƒtƒBƒ“•ÏŠ·•û®‚Éİ’è
-    NNS_G2D_RND_AFFINE_OVERWRITE_DOUBLE // ”{ŠpƒAƒtƒBƒ“•ÏŠ·•û®‚Éİ’è
+    NNS_G2D_RND_AFFINE_OVERWRITE_NONE,  // ä¸Šæ›¸ãã—ãªã„
+    NNS_G2D_RND_AFFINE_OVERWRITE_NORMAL,// é€šå¸¸ã®ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›æ–¹å¼ã«è¨­å®š
+    NNS_G2D_RND_AFFINE_OVERWRITE_DOUBLE // å€è§’ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›æ–¹å¼ã«è¨­å®š
     
 }NNSG2dRendererAffineTypeOverwiteMode;
 
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dSurfaceType
 
-  Description:  ƒŒƒ“ƒ_ƒŠƒ“ƒO‘ÎÛ
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°å¯¾è±¡
                 
  *---------------------------------------------------------------------------*/
-// enum ’l ‚Í •ÏX‚µ‚Ä‚Í‚È‚ç‚È‚¢ 
-// “à•”“®ì‚ÉŠÖ˜A‚µ‚Ü‚·B
+// enum å€¤ ã¯ å¤‰æ›´ã—ã¦ã¯ãªã‚‰ãªã„ 
+// å†…éƒ¨å‹•ä½œã«é–¢é€£ã—ã¾ã™ã€‚
 typedef enum NNSG2dSurfaceType
 {
-    NNS_G2D_SURFACETYPE_MAIN3D = 0x00,  // 3D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“   ‚ğg—p
-    NNS_G2D_SURFACETYPE_MAIN2D = 0x01,  // 2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“ A ‚ğg—p
-    NNS_G2D_SURFACETYPE_SUB2D  = 0x02,  // 2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“ B ‚ğg—p
+    NNS_G2D_SURFACETYPE_MAIN3D = 0x00,  // 3D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³   ã‚’ä½¿ç”¨
+    NNS_G2D_SURFACETYPE_MAIN2D = 0x01,  // 2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ A ã‚’ä½¿ç”¨
+    NNS_G2D_SURFACETYPE_SUB2D  = 0x02,  // 2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ B ã‚’ä½¿ç”¨
     NNS_G2D_SURFACETYPE_MAX    = 0x03
     
 }NNSG2dSurfaceType;
@@ -70,7 +70,7 @@ typedef enum NNSG2dSurfaceType
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRendererFlip
 
-  Description:  ƒŒƒ“ƒ_ƒ‰AƒtƒŠƒbƒv•`‰æî•ñ
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã€ãƒ•ãƒªãƒƒãƒ—æç”»æƒ…å ±
                 
  *---------------------------------------------------------------------------*/
 typedef enum NNSG2dRendererFlip
@@ -83,14 +83,14 @@ typedef enum NNSG2dRendererFlip
 
 
 //------------------------------------------------------------------------------
-// ÀÛ‚Ì 2D Graphics Enigine ‚Ö‚Ì Affine ƒpƒ‰ƒ[ƒ^“o˜^‚ğ ƒLƒƒƒVƒ…‚·‚é–ğŠ„‚ğ‰Ê‚½‚µ‚Ü‚·B
-// d•¡‚·‚é “o˜^‚Í Às‚³‚ê‚¸‰ß‹‚Ì“o˜^Œ‹‰Ê‚ª•Ô‚³‚ê‚Ü‚·B
+// å®Ÿéš›ã® 2D Graphics Enigine ã¸ã® Affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç™»éŒ²ã‚’ ã‚­ãƒ£ã‚·ãƒ¥ã™ã‚‹å½¹å‰²ã‚’æœãŸã—ã¾ã™ã€‚
+// é‡è¤‡ã™ã‚‹ ç™»éŒ²ã¯ å®Ÿè¡Œã•ã‚Œãšéå»ã®ç™»éŒ²çµæœãŒè¿”ã•ã‚Œã¾ã™ã€‚
 // 
-// ‚±‚ê‚É‚æ‚Á‚ÄA“¯ˆê NNSG2dRndCore2DMtxCache Index ‚ğ w’è‚µ‚½ê‡ 
-// “¯ˆê Affine ƒpƒ‰ƒ[ƒ^ ‚ğQÆ‚·‚é‚±‚Æ‚Æ‚È‚è‚Ü‚·B
+// ã“ã‚Œã«ã‚ˆã£ã¦ã€åŒä¸€ NNSG2dRndCore2DMtxCache Index ã‚’ æŒ‡å®šã—ãŸå ´åˆ 
+// åŒä¸€ Affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã¨ãªã‚Šã¾ã™ã€‚
 //
-// affineIndex ‚Í ‹K’è’l‚Å Affine ƒpƒ‰ƒ[ƒ^“o˜^ ‚ª‚È‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚¢‚¤ˆÓ–¡‚Ì 
-// MtxCache_NOT_AVAILABLE ‚ğ‚¿‚Ü‚·B
+// affineIndex ã¯ è¦å®šå€¤ã§ Affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç™»éŒ² ãŒãªã•ã‚Œã¦ã„ãªã„ã¨ã„ã†æ„å‘³ã® 
+// MtxCache_NOT_AVAILABLE ã‚’æŒã¡ã¾ã™ã€‚
 // 
 typedef struct NNSG2dRndCore2DMtxCache
 {
@@ -102,12 +102,12 @@ typedef struct NNSG2dRndCore2DMtxCache
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dViewRect
 
-  Description:  ‰Â‹—Ìˆæ‚ğ‚ ‚ç‚í‚·‹éŒ`
+  Description:  å¯è¦–é ˜åŸŸã‚’ã‚ã‚‰ã‚ã™çŸ©å½¢
  *---------------------------------------------------------------------------*/ 
 typedef struct NNSG2dViewRect
 {
-    NNSG2dFVec2            posTopLeft;      // ‰Â‹—Ìˆæ ¶ãˆÊ’u
-    NNSG2dFVec2            sizeView;        // ƒrƒ…[‚ÌƒTƒCƒY
+    NNSG2dFVec2            posTopLeft;      // å¯è¦–é ˜åŸŸ å·¦ä¸Šä½ç½®
+    NNSG2dFVec2            sizeView;        // ãƒ“ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚º
     
 }NNSG2dViewRect;
 
@@ -115,18 +115,18 @@ typedef struct NNSG2dViewRect
  /*---------------------------------------------------------------------------*
   Name:         NNSG2dOamRegisterFunction
 
-  Description:  Oam “o˜^‚Ég—p‚³‚ê‚éŠÖ”ƒ|ƒCƒ“ƒ^
+  Description:  Oam ç™»éŒ²ã«ä½¿ç”¨ã•ã‚Œã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
                 
-  Arguments:    pOam :                  V‚µ‚­“o˜^‚·‚é OamƒAƒgƒŠƒrƒ…[ƒg
-                affineIndex :           affine ƒCƒ“ƒfƒbƒNƒX
-                                        ( 32 ˆÈã‚Ìê‡‚à‚ ‚è‚Ü‚· )
-                                        (–¢g—p‚Ìê‡‚Í
-                                        NNS_G2D_OAM_AFFINE_IDX_NONE‚ğw’è‚µ‚Ü‚·)
+  Arguments:    pOam :                  æ–°ã—ãç™»éŒ²ã™ã‚‹ Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+                affineIndex :           affine ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+                                        ( 32 ä»¥ä¸Šã®å ´åˆã‚‚ã‚ã‚Šã¾ã™ )
+                                        (æœªä½¿ç”¨ã®å ´åˆã¯
+                                        NNS_G2D_OAM_AFFINE_IDX_NONEã‚’æŒ‡å®šã—ã¾ã™)
                                         
-                bDoubleAffine :         ”{Špaffineƒ‚[ƒh‚Å•`‰æ‚·‚é‚©
-                                        (Œ»İ‚Íg—p‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ)
+                bDoubleAffine :         å€è§’affineãƒ¢ãƒ¼ãƒ‰ã§æç”»ã™ã‚‹ã‹
+                                        (ç¾åœ¨ã¯ä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã›ã‚“)
                 
-  Returns:      “o˜^‚Ì¬”Û
+  Returns:      ç™»éŒ²ã®æˆå¦
   
  *---------------------------------------------------------------------------*/
 typedef BOOL (*NNSG2dOamRegisterFunction)     
@@ -146,11 +146,11 @@ typedef BOOL (*NNSG2dOamBlockRegisterFunction)
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAffineRegisterFunction
   
-  Description:  affine ƒpƒ‰ƒ[ƒ^ “o˜^‚Ég—p‚³‚ê‚éŠÖ”ƒ|ƒCƒ“ƒ^
+  Description:  affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ç™»éŒ²ã«ä½¿ç”¨ã•ã‚Œã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
   
-  Arguments:    mtx :                  affine•ÏŠ·s—ñ
+  Arguments:    mtx :                  affineå¤‰æ›è¡Œåˆ—
                
-  Returns:      “o˜^‚³‚ê‚½affineIndex( 32 ˆÈã‚Ìê‡‚à‚ ‚è‚Ü‚· )
+  Returns:      ç™»éŒ²ã•ã‚ŒãŸaffineIndex( 32 ä»¥ä¸Šã®å ´åˆã‚‚ã‚ã‚Šã¾ã™ )
   
  *---------------------------------------------------------------------------*/ 
 typedef u16 (*NNSG2dAffineRegisterFunction)   
@@ -171,15 +171,15 @@ typedef void(*NNSG2dRndCoreDrawCellCallBack)
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRndDrawOamCallBack
   
-  Description:  ƒZƒ‹ “à‚ÌOamƒAƒgƒŠƒrƒ…[ƒg•`‰æ‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒN
-                i•`‰æ‘O‚Æ•`‰æŒã‚ÉŒÄ‚Ño‚³‚ê‚éj
+  Description:  ã‚»ãƒ« å†…ã®Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæç”»æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+                ï¼ˆæç”»å‰ã¨æç”»å¾Œã«å‘¼ã³å‡ºã•ã‚Œã‚‹ï¼‰
   
-  Arguments:    pRend   : ƒŒƒ“ƒ_ƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                pSurface: ƒŒƒ“ƒ_ƒT[ƒtƒFƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                pCell   : ƒZƒ‹
-                pMtx    : •ÏŠ·s—ñ
+  Arguments:    pRend   : ãƒ¬ãƒ³ãƒ€ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                pSurface: ãƒ¬ãƒ³ãƒ€ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                pCell   : ã‚»ãƒ«
+                pMtx    : å¤‰æ›è¡Œåˆ—
                
-  Returns:      –³‚µ
+  Returns:      ç„¡ã—
   
  *---------------------------------------------------------------------------*/ 
 typedef void(*NNSG2dRndCoreDrawOamCallBack)
@@ -192,19 +192,19 @@ typedef void(*NNSG2dRndCoreDrawOamCallBack)
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRndCoreOamOverwriteCallBack
   
-  Description:  Oam ƒpƒ‰ƒ[ƒ^‚ğã‘‚«‚·‚é‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒN
-                –{ƒR[ƒ‹ƒoƒbƒN‚Í OamƒAƒgƒŠƒrƒ…[ƒg•`‰æ ƒR[ƒ‹ƒoƒbƒN
-                NNSG2dRndDrawOamCallBack‚Æ“‡‚³‚êA”p~‚³‚ê‚Ü‚µ‚½B
+  Description:  Oam ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¸Šæ›¸ãã™ã‚‹ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+                æœ¬ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯ Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæç”»æ™‚ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+                NNSG2dRndDrawOamCallBackã¨çµ±åˆã•ã‚Œã€å»ƒæ­¢ã•ã‚Œã¾ã—ãŸã€‚
                 
-                NNSG2dRndDrawOamCallBack’†‚ÅA
-                pRend->currentOam‚É‘Î‚µ‚Ä“¯“™‚Ìƒpƒ‰ƒ[ƒ^‚ğã‘‚«ˆ—‚ğs‚Á‚Ä‚­‚¾‚³‚¢B
+                NNSG2dRndDrawOamCallBackä¸­ã§ã€
+                pRend->currentOamã«å¯¾ã—ã¦åŒç­‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¸Šæ›¸ãå‡¦ç†ã‚’è¡Œã£ã¦ãã ã•ã„ã€‚
                 
   
-  Arguments:    pRend   : ƒŒƒ“ƒ_ƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                pCell   : ˆêƒZƒ‹i‘‚«Š·‚¦‰Â”\j
-                oamIdx  : ƒZƒ‹”Ô†
+  Arguments:    pRend   : ãƒ¬ãƒ³ãƒ€ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                pCell   : ä¸€æ™‚ã‚»ãƒ«ï¼ˆæ›¸ãæ›ãˆå¯èƒ½ï¼‰
+                oamIdx  : ã‚»ãƒ«ç•ªå·
                
-  Returns:      –³‚µ
+  Returns:      ç„¡ã—
   
  *---------------------------------------------------------------------------*/ 
 
@@ -213,17 +213,17 @@ typedef void(*NNSG2dRndCoreDrawOamCallBack)
 //------------------------------------------------------------------------------
 typedef struct NNSG2dRndCoreSurface
 {
-    NNSG2dViewRect                    viewRect;                     // ‰Â‹—Ìˆæ‚ğ‚ ‚ç‚í‚·‹éŒ`
-    BOOL                              bActive;                      // —LŒø‚©
-    NNSG2dSurfaceType                 type;                         // ƒT[ƒtƒFƒX‚Ìí—Ş 
+    NNSG2dViewRect                    viewRect;                     // å¯è¦–é ˜åŸŸã‚’ã‚ã‚‰ã‚ã™çŸ©å½¢
+    BOOL                              bActive;                      // æœ‰åŠ¹ã‹
+    NNSG2dSurfaceType                 type;                         // ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ç¨®é¡ 
     
     
-    NNSG2dRndCoreDrawCellCallBack         pBeforeDrawCellBackFunc;  // ‰Â‹ƒJƒŠƒ“ƒOŠÖ”‚à‚©‚Ë‚é
+    NNSG2dRndCoreDrawCellCallBack         pBeforeDrawCellBackFunc;  // å¯è¦–ã‚«ãƒªãƒ³ã‚°é–¢æ•°ã‚‚ã‹ã­ã‚‹
     NNSG2dRndCoreDrawCellCallBack         pAfterDrawCellBackFunc;   
     
-    NNSG2dRndCoreDrawOamCallBack          pBeforeDrawOamBackFunc;   // Oam ƒpƒ‰ƒ[ƒ^ã‘‚«—pƒR[ƒ‹ƒoƒbƒN  
+    NNSG2dRndCoreDrawOamCallBack          pBeforeDrawOamBackFunc;   // Oam ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¸Šæ›¸ãç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯  
                                                                     // NNSG2dRndCoreOamOverwriteCallBack     
-                                                                    // pOamOverwriteFunc ‚Í–{ƒR[ƒ‹ƒoƒbƒN‚Æ“‡‚³‚ê‚Ü‚µ‚½B
+                                                                    // pOamOverwriteFunc ã¯æœ¬ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¨çµ±åˆã•ã‚Œã¾ã—ãŸã€‚
     NNSG2dRndCoreDrawOamCallBack          pAfterDrawOamBackFunc;    
 }
 NNSG2dRndCoreSurface;
@@ -234,57 +234,57 @@ struct NNSG2dImagePaletteProxy;
 //------------------------------------------------------------------------------
 typedef struct NNSG2dRndCoreInstance
 {
-    NNSG2dRndCoreSurface*                   pCurrentTargetSurface; // •`‰æ‘ÎÛƒT[ƒtƒFƒX
-    NNSG2dRendererAffineTypeOverwiteMode    affineOverwriteMode;   // i‹K’è’lFNNS_G2D_RND_AFFINE_OVERWRITE_DOUBLEj
+    NNSG2dRndCoreSurface*                   pCurrentTargetSurface; // æç”»å¯¾è±¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+    NNSG2dRendererAffineTypeOverwiteMode    affineOverwriteMode;   // ï¼ˆè¦å®šå€¤ï¼šNNS_G2D_RND_AFFINE_OVERWRITE_DOUBLEï¼‰
     
     //
-    // OBJ‚ªQÆ‚·‚é ‰æ‘œƒf[ƒ^
+    // OBJãŒå‚ç…§ã™ã‚‹ ç”»åƒãƒ‡ãƒ¼ã‚¿
     //
-    const struct NNSG2dImageProxy*          pImgProxy;             // ‰æ‘œî•ñ
-    const struct NNSG2dImagePaletteProxy*   pPltProxy;             // ƒpƒŒƒbƒgî•ñ
-    u32                                     base2DCharOffset;      // 2D ƒLƒƒƒ‰ƒNƒ^ƒx[ƒXƒIƒtƒZƒbƒg
-                                                                   // BeginRendering ŒÄ‚Ño‚µ‚ÉŒÄ‚Î‚ê‚Ü‚·B
-    u32                                     baseTexAddr3D;         // 3D ƒeƒNƒXƒ`ƒƒƒx[ƒXƒIƒtƒZƒbƒg
-    u32                                     basePltAddr3D;         // 3D ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒx[ƒXƒIƒtƒZƒbƒg
+    const struct NNSG2dImageProxy*          pImgProxy;             // ç”»åƒæƒ…å ±
+    const struct NNSG2dImagePaletteProxy*   pPltProxy;             // ãƒ‘ãƒ¬ãƒƒãƒˆæƒ…å ±
+    u32                                     base2DCharOffset;      // 2D ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                                                                   // BeginRendering å‘¼ã³å‡ºã—æ™‚ã«å‘¼ã°ã‚Œã¾ã™ã€‚
+    u32                                     baseTexAddr3D;         // 3D ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ™ãƒ¼ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+    u32                                     basePltAddr3D;         // 3D ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆãƒ™ãƒ¼ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
     //
-    // 2D ŠÖ˜A“o˜^ŠÖ”
-    // 2D HW•`‰æ‚ğs‚¤Û‚É‚Í•K‚¸İ’è‚³‚ê‚Ä‚¢‚é‚±‚Æ
-    // pFuncOamRegister ‚Æ pFuncOamBlockRegister ‚Í ”r‘¼“I‚Ég—p‚³‚ê‚Ü‚·B
+    // 2D é–¢é€£ç™»éŒ²é–¢æ•°
+    // 2D HWæç”»ã‚’è¡Œã†éš›ã«ã¯å¿…ãšè¨­å®šã•ã‚Œã¦ã„ã‚‹ã“ã¨
+    // pFuncOamRegister ã¨ pFuncOamBlockRegister ã¯ æ’ä»–çš„ã«ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
     //
-    NNSG2dOamRegisterFunction             pFuncOamRegister;        // Oam “o˜^ŠÖ”
-    NNSG2dAffineRegisterFunction          pFuncOamAffineRegister;  // Affine “o˜^ŠÖ”
+    NNSG2dOamRegisterFunction             pFuncOamRegister;        // Oam ç™»éŒ²é–¢æ•°
+    NNSG2dAffineRegisterFunction          pFuncOamAffineRegister;  // Affine ç™»éŒ²é–¢æ•°
     
     
     // NNSG2dRendererFlip 
-    // •`‰æƒtƒŠƒbƒv‚ğg—p‚·‚é‚©‚Ç‚¤‚©
-    // g—p‚·‚éê‡‚ÍƒAƒtƒBƒ“•ÏŠ·‚ª—˜—p‚Å‚«‚È‚¢‚Ì‚Å’ˆÓ
+    // æç”»ãƒ•ãƒªãƒƒãƒ—ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+    // ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ãŒåˆ©ç”¨ã§ããªã„ã®ã§æ³¨æ„
     u32                                     flipFlag;              
     
     // 
-    // pCurrentMtxCacheFor2D ‚ª İ’è‚³‚ê‚Ä‚¢‚éê‡‚ÍA2D HW ‚É‚æ‚éOBJ•`‰æ‚ÌÛ‚É 
-    // OBJ ‚É‘Î‚µ‚Ä ƒAƒtƒBƒ“•ÏŠ·‚ª{‚³‚ê‚Ü‚·B
-    // 2Dƒn[ƒhƒEƒFƒA‚Ì§–ñ‚©‚çƒAƒtƒBƒ“•ÏŠ· ‚Æ ƒtƒŠƒbƒvˆ—‚Í”r‘¼“I‚Ég—p‚³‚ê–³‚¯‚ê‚Î‚È‚ç‚È‚¢‚Ì‚ÅA
-    // flipFlag != NNS_G2D_RENDERERFLIP_NONE ‚Å pCurrentMtxCacheFor2D ‚ªİ’è‚³‚ê‚½ê‡A
-    // ƒŒƒ“ƒ_ƒ‰ƒRƒAƒ‚ƒWƒ…[ƒ‹‚ÍŒxƒƒbƒZ[ƒW‚ğ•\¦‚µ‚Ü‚·B
+    // pCurrentMtxCacheFor2D ãŒ è¨­å®šã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€2D HW ã«ã‚ˆã‚‹OBJæç”»ã®éš›ã« 
+    // OBJ ã«å¯¾ã—ã¦ ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ãŒæ–½ã•ã‚Œã¾ã™ã€‚
+    // 2Dãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã®åˆ¶ç´„ã‹ã‚‰ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ› ã¨ ãƒ•ãƒªãƒƒãƒ—å‡¦ç†ã¯æ’ä»–çš„ã«ä½¿ç”¨ã•ã‚Œç„¡ã‘ã‚Œã°ãªã‚‰ãªã„ã®ã§ã€
+    // flipFlag != NNS_G2D_RENDERERFLIP_NONE ã§ pCurrentMtxCacheFor2D ãŒè¨­å®šã•ã‚ŒãŸå ´åˆã€
+    // ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯è­¦å‘Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
     //
-    NNSG2dRndCore2DMtxCache*                pCurrentMtxCacheFor2D;      // ƒJƒŒƒ“ƒgs—ñ‚ÌƒLƒƒƒbƒVƒ…(2D HW —p )
+    NNSG2dRndCore2DMtxCache*                pCurrentMtxCacheFor2D;      // ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥(2D HW ç”¨ )
     // 
-    // pCurrentMxt ‚Í 3D HW •`‰æ‚ÌÛ‚Ég—p‚³‚ê‚éƒJƒŒƒ“ƒgs—ñ‚Å‚·B
-    // İ’è‚³‚ê‚È‚©‚Á‚½ê‡‚É‚ÍA’PˆÊs—ñ‚ªg—p‚³‚ê‚Ü‚·B
+    // pCurrentMxt ã¯ 3D HW æç”»ã®éš›ã«ä½¿ç”¨ã•ã‚Œã‚‹ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ã§ã™ã€‚
+    // è¨­å®šã•ã‚Œãªã‹ã£ãŸå ´åˆã«ã¯ã€å˜ä½è¡Œåˆ—ãŒä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
     //
-    const MtxFx32*                          pCurrentMxt;           // ƒJƒŒƒ“ƒgs—ñ
+    const MtxFx32*                          pCurrentMxt;           // ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—
     
     
     
-    BOOL                                    bDrawEnable;           // •`‰æ‚ª—LŒø‚©H
+    BOOL                                    bDrawEnable;           // æç”»ãŒæœ‰åŠ¹ã‹ï¼Ÿ
     
-    fx32                                    zFor3DSoftwareSprite;  // Z ’l
+    fx32                                    zFor3DSoftwareSprite;  // Z å€¤
     
-    GXOamAttr                               currentOam;            // Œ»İ‚Ì•`‰æˆ—‘ÎÛOAM
+    GXOamAttr                               currentOam;            // ç¾åœ¨ã®æç”»å‡¦ç†å¯¾è±¡OAM
     
-    MtxFx43                                 mtxFor3DGE;            // 3D Graphics Engine —p‚Ìs—ñ
-                                                                   // pCurrentMxt‚©‚ç¶¬‚³‚ê‚Ü‚·B
+    MtxFx43                                 mtxFor3DGE;            // 3D Graphics Engine ç”¨ã®è¡Œåˆ—
+                                                                   // pCurrentMxtã‹ã‚‰ç”Ÿæˆã•ã‚Œã¾ã™ã€‚
     
     
     
@@ -294,13 +294,13 @@ typedef struct NNSG2dRndCoreInstance
 
 
 //------------------------------------------------------------------------------
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void NNS_G2dInitRndCore( NNSG2dRndCoreInstance* pRnd );
 void NNS_G2dInitRndCoreSurface( NNSG2dRndCoreSurface* pSurface );
 
 
 //------------------------------------------------------------------------------
-// ‰æ‘œƒvƒƒLƒV‚Ìİ’è
+// ç”»åƒãƒ—ãƒ­ã‚­ã‚·ã®è¨­å®š
 struct NNSG2dImageProxy;
 struct NNSG2dImagePaletteProxy;
 
@@ -312,7 +312,7 @@ void NNS_G2dSetRndCoreImageProxy
 );
 
 //------------------------------------------------------------------------------
-// 2D HW “o˜^ŠÖ”
+// 2D HW ç™»éŒ²é–¢æ•°
 void NNS_G2dSetRndCoreOamRegisterFunc
 (
     NNSG2dRndCoreInstance*          pRnd,
@@ -321,7 +321,7 @@ void NNS_G2dSetRndCoreOamRegisterFunc
 );
 
 //------------------------------------------------------------------------------
-// İ’è
+// è¨­å®š
 void NNS_G2dSetRndCoreAffineOverwriteMode
 (   NNSG2dRndCoreInstance*                  pRnd, 
     NNSG2dRendererAffineTypeOverwiteMode    mode 
@@ -339,7 +339,7 @@ void NNS_G2dSetRndCoreSurface
 );
 
 //------------------------------------------------------------------------------
-// s—ñŠÖ˜A
+// è¡Œåˆ—é–¢é€£
 void NNS_G2dSetRndCoreCurrentMtx3D
 ( 
     const MtxFx32*          pCurrentMxt
@@ -352,7 +352,7 @@ void NNS_G2dSetRndCoreCurrentMtx2D
 
 
 //------------------------------------------------------------------------------
-// FlipŠÖ˜A
+// Flipé–¢é€£
 BOOL NNS_G2dIsRndCoreFlipH( const NNSG2dRndCoreInstance* pRnd );
 BOOL NNS_G2dIsRndCoreFlipV( const NNSG2dRndCoreInstance* pRnd );
 void NNS_G2dSetRndCoreFlipMode( NNSG2dRndCoreInstance* pRnd, BOOL bFlipH, BOOL bFlipV );
@@ -360,7 +360,7 @@ void NNS_G2dSetRndCoreFlipMode( NNSG2dRndCoreInstance* pRnd, BOOL bFlipH, BOOL b
 
 
 //------------------------------------------------------------------------------
-// •`‰æ
+// æç”»
 void NNS_G2dRndCoreBeginRendering( NNSG2dRndCoreInstance* pRnd );
 void NNS_G2dRndCoreEndRendering( void );
 
@@ -373,21 +373,21 @@ void NNS_G2dSetRndCoreCellCloneSource3D ( const NNSG2dCellData* pCell );
 void NNS_G2dRndCoreDrawCellClone3D      ( const NNSG2dCellData* pCell );
 
 //------------------------------------------------------------------------------
-// inline ŠÖ”
+// inline é–¢æ•°
 //------------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitRndCore2DMtxCache
 
-  Description:  s—ñƒLƒƒƒbƒVƒ…‚ğ‰Šú‰»‚µ‚Ü‚·B
-                s—ñƒLƒƒƒbƒVƒ…“à•”‚ÌƒAƒtƒBƒ“ƒCƒ“ƒfƒbƒNƒXî•ñ‚ğ‰Šú‰»‚µ‚Ä‚¢‚Ü‚·B
+  Description:  è¡Œåˆ—ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
+                è¡Œåˆ—ã‚­ãƒ£ãƒƒã‚·ãƒ¥å†…éƒ¨ã®ã‚¢ãƒ•ã‚£ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ã‚’åˆæœŸåŒ–ã—ã¦ã„ã¾ã™ã€‚
                 
-                NNS_G2dSetRndCore2DMtxCacheMtxParams() ‚É‚æ‚Á‚ÄA
-                s—ñƒLƒƒƒbƒVƒ…‚Ì“à—e‚ğİ’è‚·‚éÛ‚É“à•”‚ÅŒÄ‚Ño‚³‚ê‚Ü‚·B
+                NNS_G2dSetRndCore2DMtxCacheMtxParams() ã«ã‚ˆã£ã¦ã€
+                è¡Œåˆ—ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®å†…å®¹ã‚’è¨­å®šã™ã‚‹éš›ã«å†…éƒ¨ã§å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
                 
-  Arguments:    pMtxCache:      s—ñƒLƒƒƒbƒVƒ…
+  Arguments:    pMtxCache:      è¡Œåˆ—ã‚­ãƒ£ãƒƒã‚·ãƒ¥
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dInitRndCore2DMtxCache
@@ -403,16 +403,16 @@ NNS_G2D_INLINE void NNS_G2dInitRndCore2DMtxCache
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetRndCore2DMtxCacheMtxParams
 
-  Description:  s—ñƒLƒƒƒbƒVƒ…‚És—ñ‚ğİ’è‚µ‚Ü‚·B
-                “à•”‚ÅANNS_G2dInitRndCore2DMtxCache ‚ªŒÄ‚Î‚êAƒAƒtƒBƒ“ƒCƒ“ƒfƒbƒNƒXî•ñ‚ª‰Šú‰»‚³‚ê‚Ü‚·B
+  Description:  è¡Œåˆ—ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«è¡Œåˆ—ã‚’è¨­å®šã—ã¾ã™ã€‚
+                å†…éƒ¨ã§ã€NNS_G2dInitRndCore2DMtxCache ãŒå‘¼ã°ã‚Œã€ã‚¢ãƒ•ã‚£ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æƒ…å ±ãŒåˆæœŸåŒ–ã•ã‚Œã¾ã™ã€‚
                 
                 
-  Arguments:    pMtxCache:      ƒZƒ‹ƒf[ƒ^
-                pM:             ƒAƒtƒBƒ“•ÏŠ·s—ñ
-                                (2DƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“‚ÌƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚Éİ’è‚·‚és—ñ‚Å‚·B
-                                 ƒXƒP[ƒ‹—v‘f‚Ìˆµ‚¢‚ªˆê”Ê‚Ì•ÏŠ·s—ñ‚ÆˆÙ‚È‚é“_‚É’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B)
+  Arguments:    pMtxCache:      ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+                pM:             ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—
+                                (2Dã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ã®ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«è¨­å®šã™ã‚‹è¡Œåˆ—ã§ã™ã€‚
+                                 ã‚¹ã‚±ãƒ¼ãƒ«è¦ç´ ã®æ‰±ã„ãŒä¸€èˆ¬ã®å¤‰æ›è¡Œåˆ—ã¨ç•°ãªã‚‹ç‚¹ã«æ³¨æ„ã—ã¦ãã ã•ã„ã€‚)
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dSetRndCore2DMtxCacheMtxParams

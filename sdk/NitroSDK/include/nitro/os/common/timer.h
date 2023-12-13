@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.23  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.22  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -39,49 +39,49 @@
   change SDK prefix iris -> nitro
 
   Revision 1.15  2004/01/27 01:47:52  yada
-  inlineŒ©’¼‚µ
+  inlineè¦‹ç›´ã—
 
   Revision 1.14  2004/01/17 02:28:38  nishida_kenji
   convert 'inline' to 'static inline' in header files
 
   Revision 1.13  2004/01/08 05:42:39  yada
-  ASSERT C³
+  ASSERT ä¿®æ­£
 
   Revision 1.12  2004/01/08 05:06:34  yada
-  ƒLƒƒƒXƒgƒ~ƒX‚ğC³
+  ã‚­ãƒ£ã‚¹ãƒˆãƒŸã‚¹ã‚’ä¿®æ­£
 
   Revision 1.11  2004/01/08 04:55:48  yada
-  ƒ^ƒCƒ}İ’è‚Ì•s‹ï‡‚ğC³BOS_StopTimer() ’Ç‰Á
+  ã‚¿ã‚¤ãƒè¨­å®šã®ä¸å…·åˆã‚’ä¿®æ­£ã€‚OS_StopTimer() è¿½åŠ 
 
   Revision 1.10  2003/12/25 07:30:15  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.9  2003/12/25 00:19:29  nishida_kenji
   convert INLINE to inline
 
   Revision 1.8  2003/11/17 01:28:34  yada
-  assert‚Ì’†‚ÌŠÔˆá‚¢C³
+  assertã®ä¸­ã®é–“é•ã„ä¿®æ­£
 
   Revision 1.7  2003/11/14 04:58:11  yada
-  ƒŒƒWƒXƒ^‚ÌƒAƒNƒZƒXƒ}ƒNƒ REG_XXX ¨ reg_XXX ‚Æ‚µ‚½B
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®ã‚¢ã‚¯ã‚»ã‚¹ãƒã‚¯ãƒ­ REG_XXX â†’ reg_XXX ã¨ã—ãŸã€‚
 
   Revision 1.6  2003/11/13 04:03:30  yada
-  OSENUM... ‚ğ‚â‚ß‚½B
+  OSENUM... ã‚’ã‚„ã‚ãŸã€‚
 
   Revision 1.5  2003/11/05 01:05:20  yada
   (none)
 
   Revision 1.4  2003/11/05 01:03:18  yada
-  ƒLƒƒƒXƒg‚ğŒµ‚µ‚­B‚Æ‚è‚ ‚¦‚¸warning ‚ªo‚È‚¢‚æ‚¤‚ÉB
+  ã‚­ãƒ£ã‚¹ãƒˆã‚’å³ã—ãã€‚ã¨ã‚Šã‚ãˆãšwarning ãŒå‡ºãªã„ã‚ˆã†ã«ã€‚
 
   Revision 1.3  2003/10/31 04:11:37  yada
-  extern"C" ‚É‘Î‚·‚é } ‚ª”²‚¯‚Ä‚¢‚½B
+  extern"C" ã«å¯¾ã™ã‚‹ } ãŒæŠœã‘ã¦ã„ãŸã€‚
 
   Revision 1.2  2003/10/30 11:42:52  yada
-  ƒŒƒWƒXƒ^‚ÌŒ^‚ÉREGTypexx ‚ğg‚¤‚æ‚¤‚É‚µ‚½B
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®å‹ã«REGTypexx ã‚’ä½¿ã†ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.1  2003/10/30 06:56:20  yada
-  ‰”Åì¬
+  åˆç‰ˆä½œæˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_017.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			ƒ‹[ƒvƒqƒbƒg
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ãƒ«ãƒ¼ãƒ—ãƒ’ãƒƒãƒˆ
  *@author	HisashiSogabe
  *@data		2005.11.25
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_017:
-	//ƒƒbƒZ[ƒW‚ðo‚³‚È‚¢ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç•\Ž¦‚µ‚È‚¢
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã•ãªã„ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰è¡¨ç¤ºã—ãªã„
 	IF				IF_FLAG_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_LOOP_HIT_MSG,SUB_017_END
 	MESSAGE			RenzokuHitMsg,TAG_NUM,SIDE_WORK
 	SERVER_WAIT

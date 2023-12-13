@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.7  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.6  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -54,7 +54,7 @@ extern  "C"
 #endif
 
 
-/* Œ»İİ’è‚³‚ê‚Ä‚¢‚éƒfƒoƒCƒX‚ª EEPROM ‚©”»’è */
+/* ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒã‚¤ã‚¹ãŒ EEPROM ã‹åˆ¤å®š */
     static inline BOOL CARD_IsBackupEeprom(void)
     {
         const CARDBackupType t = CARD_GetCurrentBackupType();
@@ -64,7 +64,7 @@ extern  "C"
                      CARD_BACKUP_TYPE_DEVICE_MASK) == CARD_BACKUP_TYPE_DEVICE_EEPROM);
     }
 
-/* ƒf[ƒ^ƒŠ[ƒh */
+/* ãƒ‡ãƒ¼ã‚¿ãƒªãƒ¼ãƒ‰ */
     static inline BOOL CARD_ReadEeprom(u32 src, void *dst, u32 len)
     {
         return CARD_ReadBackup(src, dst, len);
@@ -76,7 +76,7 @@ extern  "C"
     }
 
 
-/* ƒf[ƒ^ƒ‰ƒCƒg (EEPROM ƒ`ƒbƒvƒRƒ}ƒ“ƒh "program" ‚É‘Š“–) */
+/* ãƒ‡ãƒ¼ã‚¿ãƒ©ã‚¤ãƒˆ (EEPROM ãƒãƒƒãƒ—ã‚³ãƒãƒ³ãƒ‰ "program" ã«ç›¸å½“) */
     static inline BOOL CARD_WriteEeprom(u32 dst, const void *src, u32 len)
     {
         return CARD_ProgramBackup(dst, src, len);
@@ -87,7 +87,7 @@ extern  "C"
         CARD_ProgramBackupAsync(dst, src, len, callback, arg);
     }
 
-/* ƒf[ƒ^ƒxƒŠƒtƒ@ƒC */
+/* ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒªãƒ•ã‚¡ã‚¤ */
     static inline BOOL CARD_VerifyEeprom(u32 dst, const void *src, u32 len)
     {
         return CARD_VerifyBackup(dst, src, len);
@@ -98,7 +98,7 @@ extern  "C"
         CARD_VerifyBackupAsync(dst, src, len, callback, arg);
     }
 
-/* ƒf[ƒ^ƒ‰ƒCƒg + ƒxƒŠƒtƒ@ƒC */
+/* ãƒ‡ãƒ¼ã‚¿ãƒ©ã‚¤ãƒˆ + ãƒ™ãƒªãƒ•ã‚¡ã‚¤ */
     static inline BOOL CARD_WriteAndVerifyEeprom(u32 dst, const void *src, u32 len)
     {
         return CARD_ProgramAndVerifyBackup(dst, src, len);

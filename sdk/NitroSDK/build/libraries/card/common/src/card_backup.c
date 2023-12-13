@@ -26,8 +26,8 @@
 #if defined(SDK_ARM9)
 
 /*
- * �o�b�N�A�b�v�g�p�A�v���P�[�V�����̌��o�p����.
- * �Ӑ}�̗L�����킸�o�b�N�A�b�v���g�p�����ꍇ�͕K�����̕�������܂�.
+ * バックアップ使用アプリケーションの検出用処理.
+ * 意図の有無を問わずバックアップを使用した場合は必ずこの文字列を含む.
  */
 #include <nitro/version_begin.h>
 SDK_DEFINE_MIDDLEWARE(cardi_backup_assert, "NINTENDO", "BACKUP");
@@ -38,10 +38,10 @@ SDK_DEFINE_MIDDLEWARE(cardi_backup_assert, "NINTENDO", "BACKUP");
 /*---------------------------------------------------------------------------*
   Name:         CARDi_RequestStreamCommandCore
 
-  Description:  �f�[�^��]������R�}���h���N�G�X�g�̏����{��.
-                �����I���邢�͔񓯊��I�ɌĂяo�����.
+  Description:  データを転送するコマンドリクエストの処理本体.
+                同期的あるいは非同期的に呼び出される.
 
-  Arguments:    p          ���C�u�����̃��[�N�o�b�t�@ (�����̂��߂Ɉ����n��)
+  Arguments:    p          ライブラリのワークバッファ (効率のために引数渡し)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -54,7 +54,7 @@ static void CARDi_RequestStreamCommandCore(CARDiCommon * p)
 
     SDK_USING_BACKUP();
 
-    /* �y�[�W�܂��̓Z�N�^�P�ʂŃ��N�G�X�g */
+    /* ページまたはセクタ単位でリクエスト */
     if (req_type == CARD_REQ_ERASE_SECTOR_BACKUP)
     {
         size = CARD_GetBackupSectorSize();
@@ -68,7 +68,7 @@ static void CARDi_RequestStreamCommandCore(CARDiCommon * p)
         const u32 len = (size < p->len) ? size : p->len;
         p->cmd->len = len;
 
-        /* �L�����Z���v��������΂����Œ��~ */
+        /* キャンセル要求があればここで中止 */
         if ((p->flag & CARD_STAT_CANCEL) != 0)
         {
             p->flag &= ~CARD_STAT_CANCEL;
@@ -78,14 +78,14 @@ static void CARDi_RequestStreamCommandCore(CARDiCommon * p)
         switch (req_mode)
         {
         case CARD_REQUEST_MODE_RECV:
-            /* ��M�n�R�}���h�Ȃ�o�b�t�@�𖳌��� */
+            /* 受信系コマンドならバッファを無効化 */
             DC_InvalidateRange(p->backup_cache_page_buf, len);
             p->cmd->src = (u32)p->src;
             p->cmd->dst = (u32)p->backup_cache_page_buf;
             break;
         case CARD_REQUEST_MODE_SEND:
         case CARD_REQUEST_MODE_SEND_VERIFY:
-            /* ���M�n�R�}���h�Ȃ�f�[�^���e���|�����o�b�t�@�փR�s�[ */
+            /* 送信系コマンドならデータをテンポラリバッファへコピー */
             MI_CpuCopy8((const void *)p->src, p->backup_cache_page_buf, len);
             DC_FlushRange(p->backup_cache_page_buf, len);
             DC_WaitWriteBufferEmpty();
@@ -93,17 +93,17 @@ static void CARDi_RequestStreamCommandCore(CARDiCommon * p)
             p->cmd->dst = (u32)p->dst;
             break;
         case CARD_REQUEST_MODE_SPECIAL:
-            /* �o�b�t�@����͕s�v */
+            /* バッファ操作は不要 */
             p->cmd->src = (u32)p->src;
             p->cmd->dst = (u32)p->dst;
             break;
         }
-        /* ���N�G�X�g���M */
+        /* リクエスト送信 */
         if (!CARDi_Request(p, req_type, retry_count))
         {
             break;
         }
-        /* �w�肪����΂���ɓ����ݒ�Ńx���t�@�C�v�� */
+        /* 指定があればさらに同じ設定でベリファイ要求 */
         if (req_mode == CARD_REQUEST_MODE_SEND_VERIFY)
         {
             if (!CARDi_Request(p, CARD_REQ_VERIFY_BACKUP, 1))
@@ -111,7 +111,7 @@ static void CARDi_RequestStreamCommandCore(CARDiCommon * p)
         }
         else if (req_mode == CARD_REQUEST_MODE_RECV)
         {
-            /* �L���b�V������R�s�[ */
+            /* キャッシュからコピー */
             MI_CpuCopy8(p->backup_cache_page_buf, (void *)p->dst, len);
         }
         p->src += len;
@@ -125,10 +125,10 @@ static void CARDi_RequestStreamCommandCore(CARDiCommon * p)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_RequestWriteSectorCommandCore
 
-  Description:  �Z�N�^���� + �v���O�����̃��N�G�X�g�̏����{��.
-                �����I���邢�͔񓯊��I�ɌĂяo�����.
+  Description:  セクタ消去 + プログラムのリクエストの処理本体.
+                同期的あるいは非同期的に呼び出される.
 
-  Arguments:    p          ���C�u�����̃��[�N�o�b�t�@ (�����̂��߂Ɉ����n��)
+  Arguments:    p          ライブラリのワークバッファ (効率のために引数渡し)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -137,7 +137,7 @@ static void CARDi_RequestWriteSectorCommandCore(CARDiCommon * p)
     const u32 sector_size = CARD_GetBackupSectorSize();
     SDK_USING_BACKUP();
 
-    /* �����͈͂��Z�N�^�P�ʂ̐����{�łȂ���Ύ��s��Ԃ� */
+    /* 処理範囲がセクタ単位の整数倍でなければ失敗を返す */
     if ((((u32)p->dst | p->len) & (sector_size - 1)) != 0)
     {
         p->flag &= ~CARD_STAT_CANCEL;
@@ -145,18 +145,18 @@ static void CARDi_RequestWriteSectorCommandCore(CARDiCommon * p)
     }
     else
     {
-        /* �Z�N�^�P�ʏ��� */
+        /* セクタ単位処理 */
         for (; p->len > 0; p->len -= sector_size)
         {
             u32     len = sector_size;
-            /* �L�����Z���v��������΂����Œ��~ */
+            /* キャンセル要求があればここで中止 */
             if ((p->flag & CARD_STAT_CANCEL) != 0)
             {
                 p->flag &= ~CARD_STAT_CANCEL;
                 p->cmd->result = CARD_RESULT_CANCELED;
                 break;
             }
-            /* �Z�N�^���� */
+            /* セクタ消去 */
             p->cmd->dst = (u32)p->dst;
             p->cmd->len = len;
             if (!CARDi_Request(p, CARD_REQ_ERASE_SECTOR_BACKUP, 1))
@@ -166,14 +166,14 @@ static void CARDi_RequestWriteSectorCommandCore(CARDiCommon * p)
             while (len > 0)
             {
                 const u32 page = sizeof(p->backup_cache_page_buf);
-                /* �L�����Z���v��������΂����Œ��~ */
+                /* キャンセル要求があればここで中止 */
                 if ((p->flag & CARD_STAT_CANCEL) != 0)
                 {
                     p->flag &= ~CARD_STAT_CANCEL;
                     p->cmd->result = CARD_RESULT_CANCELED;
                     break;
                 }
-                /* �v���O���� */
+                /* プログラム */
                 MI_CpuCopy8((const void *)p->src, p->backup_cache_page_buf, page);
                 DC_FlushRange(p->backup_cache_page_buf, page);
                 DC_WaitWriteBufferEmpty();
@@ -184,7 +184,7 @@ static void CARDi_RequestWriteSectorCommandCore(CARDiCommon * p)
                 {
                     break;
                 }
-                /* �K�v�Ȃ�x���t�@�C */
+                /* 必要ならベリファイ */
                 if (p->req_mode == CARD_REQUEST_MODE_SEND_VERIFY)
                 {
                     if (!CARDi_Request(p, CARD_REQ_VERIFY_BACKUP, 1))
@@ -202,19 +202,19 @@ static void CARDi_RequestWriteSectorCommandCore(CARDiCommon * p)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_RequestStreamCommand
 
-  Description:  �f�[�^��]������R�}���h�̃��N�G�X�g�𔭍s.
+  Description:  データを転送するコマンドのリクエストを発行.
 
-  Arguments:    src        �]�����I�t�Z�b�g�܂��̓������A�h���X
-                dst        �]����I�t�Z�b�g�܂��̓������A�h���X
-                len        �]���T�C�Y
-                callback   �����R�[���o�b�N (�s�g�p�Ȃ� NULL)
-                arg        �����R�[���o�b�N�̈��� (�s�g�p�Ȃ疳�������)
-                is_async   �񓯊�������w�肳��Ă���� TRUE
-                req_type   �R�}���h���N�G�X�g�^�C�v
-                req_retry  �R�}���h���N�G�X�g�̎��s�����g���C�ő��
-                req_mode   �R�}���h���N�G�X�g�̓��샂�[�h
+  Arguments:    src        転送元オフセットまたはメモリアドレス
+                dst        転送先オフセットまたはメモリアドレス
+                len        転送サイズ
+                callback   完了コールバック (不使用なら NULL)
+                arg        完了コールバックの引数 (不使用なら無視される)
+                is_async   非同期操作を指定されていれば TRUE
+                req_type   コマンドリクエストタイプ
+                req_retry  コマンドリクエストの失敗時リトライ最大回数
+                req_mode   コマンドリクエストの動作モード
 
-  Returns:      ���������������� TRUE.
+  Returns:      処理が成功したら TRUE.
  *---------------------------------------------------------------------------*/
 BOOL CARDi_RequestStreamCommand(u32 src, u32 dst, u32 len,
                                 MIDmaCallback callback, void *arg, BOOL is_async,
@@ -252,12 +252,12 @@ BOOL CARDi_RequestStreamCommand(u32 src, u32 dst, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARDi_AccessStatus
 
-  Description:  �X�e�[�^�X���[�h�܂��̓��C�g (�e�X�g�p)
+  Description:  ステータスリードまたはライト (テスト用)
 
-  Arguments:    command    CARD_REQ_READ_STATUS�܂���CARD_REQ_WRITE_STATUS
-                value      CARD_REQ_WRITE_STATUS�ł���Ώ������ޒl
+  Arguments:    command    CARD_REQ_READ_STATUSまたはCARD_REQ_WRITE_STATUS
+                value      CARD_REQ_WRITE_STATUSであれば書き込む値
 
-  Returns:      ���������0�ȏ�̒l�A���s����Ε��̒l
+  Returns:      成功すれば0以上の値、失敗すれば負の値
  *---------------------------------------------------------------------------*/
 int CARDi_AccessStatus(CARDRequest command, u8 value)
 {
@@ -285,17 +285,17 @@ int CARDi_AccessStatus(CARDRequest command, u8 value)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_RequestWriteSectorCommand
 
-  Description:  �Z�N�^���� + �v���O�����̃��N�G�X�g�𔭍s.
+  Description:  セクタ消去 + プログラムのリクエストを発行.
 
-  Arguments:    src        �]�����������A�h���X
-                dst        �]����I�t�Z�b�g
-                len        �]���T�C�Y
-                verify     �x���t�@�C���s���ꍇ�� TRUE
-                callback   �����R�[���o�b�N (�s�g�p�Ȃ� NULL)
-                arg        �����R�[���o�b�N�̈��� (�s�g�p�Ȃ疳�������)
-                is_async   �񓯊�������w�肳��Ă���� TRUE
+  Arguments:    src        転送元メモリアドレス
+                dst        転送先オフセット
+                len        転送サイズ
+                verify     ベリファイを行う場合は TRUE
+                callback   完了コールバック (不使用なら NULL)
+                arg        完了コールバックの引数 (不使用なら無視される)
+                is_async   非同期操作を指定されていれば TRUE
 
-  Returns:      ���������������� TRUE.
+  Returns:      処理が成功したら TRUE.
  *---------------------------------------------------------------------------*/
 BOOL CARDi_RequestWriteSectorCommand(u32 src, u32 dst, u32 len, BOOL verify,
                                      MIDmaCallback callback, void *arg, BOOL is_async)
@@ -409,8 +409,8 @@ BOOL CARD_IdentifyBackup(CARDBackupType type)
     CARDiCommon *const p = &cardi_common;
 
     /*
-     * 2.2PR �ȍ~�œ������ꂽ�o�b�N�A�b�v�A�N�Z�X�ÓI����̖W���ɂȂ邽��,
-     * �����I�� CARD_BACKUP_TYPE_NOT_USE ���w�肷�邱�Ƃ͋֎~���ꂽ.
+     * 2.2PR 以降で導入されたバックアップアクセス静的判定の妨げになるため,
+     * 明示的に CARD_BACKUP_TYPE_NOT_USE を指定することは禁止された.
      */
     SDK_USING_BACKUP();
     if (type == CARD_BACKUP_TYPE_NOT_USE)
@@ -419,27 +419,27 @@ BOOL CARD_IdentifyBackup(CARDBackupType type)
     }
 
     SDK_ASSERT(CARD_IsAvailable());
-    /* 2.1PR �ȍ~, ����������܂ōs�����ƂɂȂ�o�X�̃��b�N���K�{�ɂȂ��� */
+    /* 2.1PR 以降, 正当性判定まで行うことになりバスのロックが必須になった */
     SDK_ASSERTMSG((CARDi_GetTargetMode() == CARD_TARGET_BACKUP),
                   "CARD_IdentifyBackup() must be called with CARD locked by CARD_LockBackup()!");
 
-    /* CARD �A�N�Z�X�ɑ΂��鐳��������
-       �����A�N�Z�X�֎~�Ȃ�֐������� OS_Panic ���� */
+    /* CARD アクセスに対する正当性判定
+       もしアクセス禁止なら関数内部で OS_Panic する */
     CARD_CheckEnabled();
 
     /*
-     * �^�X�N��҂��� ARM7 �փf�o�C�X�^�C�v�𑗐M.
-     * ����͒��ڃf�o�C�X�𑀍삵�Ȃ��̂Ŏ��O�̃��b�N�͓��ɕs�v��������,
-     * 2.1PR �ȍ~, ����������܂ōs�����ƂɂȂ�o�X�̃��b�N���K�{�ɂȂ���.
+     * タスクを待って ARM7 へデバイスタイプを送信.
+     * これは直接デバイスを操作しないので事前のロックは特に不要だったが,
+     * 2.1PR 以降, 正当性判定まで行うことになりバスのロックが必須になった.
      */
     CARDi_WaitTask(p, NULL, NULL);
     CARDi_IdentifyBackupCore(type);
     cardi_common.cur_th = OS_GetCurrentThread();
     (void)CARDi_Request(p, CARD_REQ_IDENTIFY, 1);
     /*
-     * �擪 1 BYTE �̃��[�h�R�}���h�𔭍s���Č��ʒl���擾����.
-     * �ڐG�s��, �j��, �����̂����ꂩ�ł���Βl�Ɋւ�炸 TIMEOUT ���Ԃ�.
-     * (TIMEOUT ��, �f�o�C�X��ʂɊւ�炸 Read-Status �R�}���h�Ŕ��f�\)
+     * 先頭 1 BYTE のリードコマンドを発行して結果値を取得する.
+     * 接触不良, 破損, 寿命のいずれかであれば値に関わらず TIMEOUT が返る.
+     * (TIMEOUT は, デバイス種別に関わらず Read-Status コマンドで判断可能)
      */
     p->cmd->src = 0;
     p->cmd->dst = (u32)p->backup_cache_page_buf;
@@ -547,13 +547,13 @@ void CARD_CancelBackupAsync(void)
   add check in CARD_IdentifyBackup().
 
   Revision 1.17  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.16  2005/02/28 05:26:02  yosizaki
   do-indent.
 
   Revision 1.15  2004/12/15 09:44:45  yasu
-  CARD �A�N�Z�X�C�l�[�u���@�\�̒ǉ�
+  CARD アクセスイネーブラ機構の追加
 
   Revision 1.14  2004/12/08 12:40:26  yosizaki
   add comments.

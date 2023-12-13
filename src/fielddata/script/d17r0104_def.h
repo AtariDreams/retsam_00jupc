@@ -1,13 +1,13 @@
 #ifndef _D17R0104_DEF_H_
 #define _D17R0104_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D17R0104_INIT_CHANGE		(1)
 #define	SCRID_D17R0104_LEGEND_01		(2)
 #define	SCRID_D17R0104_ITEM_01		(3)
 #define	SCRID_D17R0104_RECORD_01		(4)
 #define	SCRID_D17R0104_FLAG_CHANGE		(5)
 #define	SCRID_D17R0104_WARP		(6)
-#define	SCRID_D17R0104_DATA_MAX		(6)		//最大数
+#define	SCRID_D17R0104_DATA_MAX		(6)		//譛螟ｧ謨ｰ
 
 #endif //_D17R0104_DEF_H_

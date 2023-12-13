@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<TITLE>NNS_G2dArrangeOBJ*</TITLE>
 	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
@@ -11,7 +11,7 @@
 
 <H1 align="left">NNS_G2dArrangeOBJ*</H1>
 
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>
@@ -40,93 +40,93 @@ int NNS_G2dArrangeOBJ2DRect(
 </CODE></PRE>
 </DL>
 
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>oam</STRONG></EM></TD>
-      <TD width="87%"> [OUT] CharCanvas �̕\���ɗ��p����OBJ��OAM�z��ւ̃|�C���^�B </TD>
+      <TD width="87%"> [OUT] CharCanvas の表示に利用するOBJのOAM配列へのポインタ。 </TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>areaWidth</STRONG></EM></TD>
-      <TD width="87%"> [IN] CharCanvas �̕� (�L�����N�^�P��) </TD>
+      <TD width="87%"> [IN] CharCanvas の幅 (キャラクタ単位) </TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>areaHeight</STRONG></EM></TD>
-      <TD width="87%"> [IN] CharCanvas �̍��� (�L�����N�^�P��) </TD>
+      <TD width="87%"> [IN] CharCanvas の高さ (キャラクタ単位) </TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>x</STRONG></EM></TD>
-      <TD width="87%"> [IN] CharCanvas ������̕\���ʒu (�s�N�Z���P��) </TD>
+      <TD width="87%"> [IN] CharCanvas 左上隅の表示位置 (ピクセル単位) </TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>y</STRONG></EM></TD>
-      <TD width="87%"> [IN] CharCanvas ������̕\���ʒu (�s�N�Z���P��) </TD>
+      <TD width="87%"> [IN] CharCanvas 左上隅の表示位置 (ピクセル単位) </TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>color</STRONG></EM></TD>
-      <TD width="87%"> [IN] CharCanvas �̃J���[���[�h </TD>
+      <TD width="87%"> [IN] CharCanvas のカラーモード </TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>charName</STRONG></EM></TD>
-      <TD width="87%"> [IN] �擪�L�����N�^�l�[�� </TD>
+      <TD width="87%"> [IN] 先頭キャラクタネーム </TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>vramMode</STRONG></EM></TD>
-      <TD width="87%"> [IN] OBJ VRAM �e�� </TD>
+      <TD width="87%"> [IN] OBJ VRAM 容量 </TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<H2>�Ԃ�l</H2>
+<H2>返り値</H2>
 <P>
-	�g�p���� OBJ �̐���Ԃ��܂��B
+	使用する OBJ の数を返します。
 </P>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
 	<code><a href="NNS_G2dCharCanvasInitForOBJ1D.html">NNS_G2dCharCanvasInitForOBJ1D()</a></code>
-	�����
+	および
 	<code><a href="NNS_G2dCharCanvasInitForOBJ2DRect.html">NNS_G2dCharCanvasInitForOBJ2DRect()</a></code>
-	�ŏ��������� CharCanvas �����ۂɉ�ʂɕ\���ł���悤�� OBJ ��K�؂ɔz�u���܂��B
-	��̓I�ɂ�OBJ�̃p�����[�^�̂����ʒu�A�T�C�Y�A�擪�L�����N�^�l�[���A�J���[���[�h��ݒ肵�܂��B
-	���̑��̃p�����[�^�ɂ��Ă͕ʓr�ݒ肷��K�v������܂��B
+	で初期化した CharCanvas を実際に画面に表示できるように OBJ を適切に配置します。
+	具体的にはOBJのパラメータのうち位置、サイズ、先頭キャラクタネーム、カラーモードを設定します。
+	その他のパラメータについては別途設定する必要があります。
 </P>
 
 <P>
-	OBJ VRAM�e�� <EM><STRONG>vramMode</STRONG></EM> �ɂ͈ȉ��̂����ꂩ���w�肵�܂��B
+	OBJ VRAM容量 <EM><STRONG>vramMode</STRONG></EM> には以下のいずれかを指定します。
 </P>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD>NNS_G2D_OBJVRAMMODE_32K</TD>
-      <TD>�g�p�\ OBJ VRAM �ő�e�� 32KB</TD>
+      <TD>使用可能 OBJ VRAM 最大容量 32KB</TD>
     </TR>
     <TR>
       <TD>NNS_G2D_OBJVRAMMODE_64K</TD>
-      <TD>�g�p�\ OBJ VRAM �ő�e�� 64KB</TD>
+      <TD>使用可能 OBJ VRAM 最大容量 64KB</TD>
     </TR>
     <TR>
       <TD>NNS_G2D_OBJVRAMMODE_128K</TD>
-      <TD>�g�p�\ OBJ VRAM �ő�e�� 128KB</TD>
+      <TD>使用可能 OBJ VRAM 最大容量 128KB</TD>
     </TR>
     <TR>
       <TD>NNS_G2D_OBJVRAMMODE_256K</TD>
-      <TD>�g�p�\ OBJ VRAM �ő�e�� 256KB</TD>
+      <TD>使用可能 OBJ VRAM 最大容量 256KB</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P>
-	<code>NNS_G2dArrangeOBJ1D()</code> �ł̓J���[���[�h <EM><STRONG>color</STRONG></EM> 
-	��OBJ VRAM�e�� <EM><STRONG>vramMode</STRONG></EM> �ɂ���Ă�
-	<EM><STRONG>areaWidth</STRONG></EM> �� <EM><STRONG>areaHeight</STRONG></EM>
-	�Ɏw��\�Ȓl�Ɉȉ��̕\�̂悤�Ȑ���������܂��B
+	<code>NNS_G2dArrangeOBJ1D()</code> ではカラーモード <EM><STRONG>color</STRONG></EM> 
+	とOBJ VRAM容量 <EM><STRONG>vramMode</STRONG></EM> によっては
+	<EM><STRONG>areaWidth</STRONG></EM> と <EM><STRONG>areaHeight</STRONG></EM>
+	に指定可能な値に以下の表のような制限があります。
 </P>
 <TABLE border="1" width="100%">
   <THEAD>
     <TR>
-      <TH rowspan="2">�J���[���[�h</TH>
-      <TH colspan="4">OBJ VRAM�e��</TH>
+      <TH rowspan="2">カラーモード</TH>
+      <TH colspan="4">OBJ VRAM容量</TH>
     </TR>
     <TR>
       <TH>32K</TH>
@@ -137,31 +137,31 @@ int NNS_G2dArrangeOBJ2DRect(
   </THEAD>
   <TBODY>
     <TR>
-      <TH>16�F</TH>
-      <TD>(�����Ȃ�)</TD>
-      <TD>(�����Ȃ�)</TD>
-      <TD>��Ɓu4�Ŋ������]�肪3�̒l�v�̑g�ݍ��킹�͕s��</TD>
-      <TD>��s��</TD>
+      <TH>16色</TH>
+      <TD>(制限なし)</TD>
+      <TD>(制限なし)</TD>
+      <TD>奇数と「4で割った余りが3の値」の組み合わせは不可</TD>
+      <TD>奇数不可</TD>
     </TR>
     <TR>
-      <TH>256�F</TH>
-      <TD>(�����Ȃ�)</TD>
-      <TD>(�����Ȃ�)</TD>
-      <TD>(�����Ȃ�)</TD>
-      <TD>��Ɓu4�Ŋ������]�肪3�̒l�v�̑g�ݍ��킹�͕s��</TD>
+      <TH>256色</TH>
+      <TD>(制限なし)</TD>
+      <TD>(制限なし)</TD>
+      <TD>(制限なし)</TD>
+      <TD>奇数と「4で割った余りが3の値」の組み合わせは不可</TD>
     </TR>
   </TBODY>
 </TABLE>
 
 <P>
-	�K�v�� OBJ �̐����A���̊֐����Ăяo���O�ɒm�邽�߂ɂ�
+	必要な OBJ の数を、この関数を呼び出す前に知るためには
 	<code><a href="NNS_G2dCalcRequiredOBJXXX.html">NNS_G2dCalcRequiredOBJ1D()</a></code>
-	��������
+	もしくは
 	<code><a href="NNS_G2dCalcRequiredOBJXXX.html">NNS_G2dCalcRequiredOBJ2DRect()</a></code>
-	�𗘗p���܂��B
+	を利用します。
 </P>
 
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE>
 <a href="NNS_G2dCharCanvasInitForOBJ1D.html">NNS_G2dCharCanvasInitForOBJ1D</a>, 
 <a href="NNS_G2dCharCanvasInitForOBJ2DRect.html">NNS_G2dCharCanvasInitForOBJ2DRect</a>, 
@@ -169,8 +169,8 @@ int NNS_G2dArrangeOBJ2DRect(
 <a href="NNS_G2dCalcRequiredOBJXXX.html">NNS_G2dCalcRequiredOBJ2DRect</a>
 </CODE></P>
 
-<H2>����</H2>
-<P>2005/05/25 ����</P>
+<H2>履歴</H2>
+<P>2005/05/25 初版</P>
 </BODY>
 
 </HTML>

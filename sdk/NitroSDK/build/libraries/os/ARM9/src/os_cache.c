@@ -34,40 +34,40 @@
   fix Copyright header.
 
   Revision 1.15  2005/01/21 10:39:50  takano_makoto
-  *_UnlockdownŠÖ”‚ğ’Ç‰ÁA LockdownŠÖ”‚Å³í‚ÉƒƒbƒN‚³‚ê‚È‚¢ê‡‚Ì‚ ‚é•s‹ï‡‚ğC³
+  *_Unlockdowné–¢æ•°ã‚’è¿½åŠ ã€ Lockdowné–¢æ•°ã§æ­£å¸¸ã«ãƒ­ãƒƒã‚¯ã•ã‚Œãªã„å ´åˆã®ã‚ã‚‹ä¸å…·åˆã‚’ä¿®æ­£
 
   Revision 1.14  2004/04/07 05:45:47  yada
   add explanation for function
 
   Revision 1.13  2004/02/24 12:16:46  yada
-  ƒLƒƒƒbƒVƒ…ƒ‰ƒCƒ“‚ÌŠÛ‚ßÀ‘•
+  ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ©ã‚¤ãƒ³ã®ä¸¸ã‚å®Ÿè£…
 
   Revision 1.12  2004/02/09 11:17:05  yasu
   include code32.h
 
   Revision 1.11  2004/02/09 06:27:44  yada
-  DC_Disable, DC_Restore ‚Å‚»‚ê‚Ü‚Å‚Ìó‘Ô‚ğ³‚µ‚­•Ô‚µ‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ğC³
+  DC_Disable, DC_Restore ã§ãã‚Œã¾ã§ã®çŠ¶æ…‹ã‚’æ­£ã—ãè¿”ã—ã¦ã„ãªã‹ã£ãŸã®ã‚’ä¿®æ­£
 
   Revision 1.10  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.9  2004/01/18 01:51:52  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`‚Ì‚İ
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢ã®ã¿
 
   Revision 1.8  2003/12/22 01:37:00  yada
-  ƒvƒŠƒ[ƒh’Ç‰Á
+  ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰è¿½åŠ 
 
   Revision 1.7  2003/12/18 02:01:10  yada
-  BOOL ’l‚ğ•Ô‚·ŠÖ”‚Í 0|1 ‚ğ•Ô‚·‚æ‚¤‚É‚µ‚½
+  BOOL å€¤ã‚’è¿”ã™é–¢æ•°ã¯ 0|1 ã‚’è¿”ã™ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.6  2003/12/18 01:57:07  yada
-  C³
+  ä¿®æ­£
 
   Revision 1.5  2003/12/18 01:54:09  yada
-  –½—ßƒLƒƒƒbƒVƒ…‘€ìAƒ‰ƒCƒgƒoƒbƒtƒ@ƒGƒ“ƒvƒeƒB‘Ò‚¿’Ç‰Á
+  å‘½ä»¤ã‚­ãƒ£ãƒƒã‚·ãƒ¥æ“ä½œã€ãƒ©ã‚¤ãƒˆãƒãƒƒãƒ•ã‚¡ã‚¨ãƒ³ãƒ—ãƒ†ã‚£å¾…ã¡è¿½åŠ 
 
   Revision 1.4  2003/12/17 11:32:06  yada
-  ƒf[ƒ^ƒLƒƒƒbƒVƒ…ŠÖ”‹Lq
+  ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥é–¢æ•°è¨˜è¿°
 
   Revision 1.3  2003/12/17 09:41:19  nishida_kenji
   suppress warnings
@@ -76,7 +76,7 @@
   small bug fix
 
   Revision 1.1  2003/12/17 09:33:33  yada
-  ‰”Å(‚Æ‚è‚ ‚¦‚¸”Å)
+  åˆç‰ˆ(ã¨ã‚Šã‚ãˆãšç‰ˆ)
 
 
   $NoKeywords: $
@@ -85,7 +85,7 @@
 #include <nitro/code32.h>
 
 
-/* Flush ƒRƒ}ƒ“ƒh‚ğb’è“I‚É‰ñ”ğ‚·‚éê‡‚Í ON */
+/* Flush ã‚³ãƒãƒ³ãƒ‰ã‚’æš«å®šçš„ã«å›é¿ã™ã‚‹å ´åˆã¯ ON */
 #define SDK_AVOID_FLUSH
 
 
@@ -141,7 +141,7 @@ asm BOOL DC_Disable()
  *---------------------------------------------------------------------------*/
 asm BOOL DC_Restore( register BOOL enable )
 {
-    //---- ˆø”ˆ—
+    //---- å¼•æ•°å‡¦ç†
     cmp         r0, #0
     moveq       r2, #0
     movne       r2, #HW_C1_DCACHE_ENABLE
@@ -216,10 +216,10 @@ asm void DC_StoreAll( void )
 asm void DC_FlushAll( void )
 {
     mov         r12, #0
-    mov         r1, #0          // r1: ƒZƒbƒg‚m‚ƒJƒEƒ“ƒ^i0 ` 3j
+    mov         r1, #0          // r1: ã‚»ãƒƒãƒˆï¼®ï½ã‚«ã‚¦ãƒ³ã‚¿ï¼ˆ0 ã€œ 3ï¼‰
 
 @1:
-    mov         r0, #0          // r0: ƒ‰ƒCƒ“ƒJƒEƒ“ƒ^i0 ` DCACHE_SIZE/4j
+    mov         r0, #0          // r0: ãƒ©ã‚¤ãƒ³ã‚«ã‚¦ãƒ³ã‚¿ï¼ˆ0 ã€œ DCACHE_SIZE/4ï¼‰
 
 @2:
     orr         r2, r1, r0
@@ -350,11 +350,11 @@ asm void DC_TouchRange( register const void* startAddr, register u32 nBytes )
  *---------------------------------------------------------------------------*/
 asm void DC_LockdownRange( register const void* startAddr, register u32 nBytes )
 {
-    add         r1, r1, r0                              // r1: ƒGƒ“ƒhƒAƒhƒŒƒX
+    add         r1, r1, r0                              // r1: ã‚¨ãƒ³ãƒ‰ã‚¢ãƒ‰ãƒ¬ã‚¹
     bic         r0, r0, #HW_CACHE_LINE_SIZE - 1
     mrc         p15, 0, r3, c9, c0, 0
-    and         r3, r3, #HW_C9_LOCKDOWN_SET_NO_MASK     // r3: ƒJƒŒƒ“ƒgƒZƒbƒg‚m‚
-    cmp         r3, #3                                  // ‚RƒZƒbƒg‚ğƒƒbƒNƒ_ƒEƒ“‚µ‚Ä‚¢‚ê‚ÎƒGƒ‰[
+    and         r3, r3, #HW_C9_LOCKDOWN_SET_NO_MASK     // r3: ã‚«ãƒ¬ãƒ³ãƒˆã‚»ãƒƒãƒˆï¼®ï½
+    cmp         r3, #3                                  // ï¼“ã‚»ãƒƒãƒˆã‚’ãƒ­ãƒƒã‚¯ãƒ€ã‚¦ãƒ³ã—ã¦ã„ã‚Œã°ã‚¨ãƒ©ãƒ¼
     mvneq       r0, #0
     bxeq        lr
     
@@ -364,16 +364,16 @@ asm void DC_LockdownRange( register const void* startAddr, register u32 nBytes )
     mov         r2, r0
     ldmfd       sp!, { lr, r0, r1 }
     
-    orr         r3, r3, #HW_C9_LOCKDOWN_LOAD_MODE       // ƒLƒƒƒbƒVƒ…ƒƒbƒNƒ_ƒEƒ“Eƒ[ƒhƒ‚[ƒh
+    orr         r3, r3, #HW_C9_LOCKDOWN_LOAD_MODE       // ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ­ãƒƒã‚¯ãƒ€ã‚¦ãƒ³ãƒ»ãƒ­ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
     mcr         p15, 0, r3, c9, c0, 0
     
 @111:
-    mcr         p15, 0, r0, c7, c14, 1                  // ƒLƒƒƒbƒVƒ…‚Éæ‚Á‚Ä‚¢‚éƒf[ƒ^‚ğˆê’UƒNƒŠ[ƒ“^–³Œø‰»‚·‚é
-    ldr         r12, [r0]                               // ƒf[ƒ^‚ğ“Ç‚İ‚İƒLƒƒƒbƒVƒ…‚Éæ‚¹‚é
+    mcr         p15, 0, r0, c7, c14, 1                  // ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ä¹—ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ—¦ã‚¯ãƒªãƒ¼ãƒ³ï¼ç„¡åŠ¹åŒ–ã™ã‚‹
+    ldr         r12, [r0]                               // ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ä¹—ã›ã‚‹
     add         r0, r0, #HW_CACHE_LINE_SIZE
     cmp         r0, r1
     blt         @111
-    add         r3, r3, #1                              // ƒLƒƒƒbƒVƒ…’Êíƒ‚[ƒh • ƒZƒbƒg‚m‚‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+    add         r3, r3, #1                              // ã‚­ãƒ£ãƒƒã‚·ãƒ¥é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ ï¼† ã‚»ãƒƒãƒˆï¼®ï½ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
     bic         r0, r3, #HW_C9_LOCKDOWN_LOAD_MODE
     mcr         p15, 0, r3, c9, c0, 0
     
@@ -492,7 +492,7 @@ asm BOOL IC_Disable()
  *---------------------------------------------------------------------------*/
 asm BOOL IC_Restore( register BOOL enable )
 {
-    //---- ˆø”ˆ—
+    //---- å¼•æ•°å‡¦ç†
     cmp         r0, #0
     moveq       r2, #0
     movne       r2, #HW_C1_ICACHE_ENABLE
@@ -586,11 +586,11 @@ asm void IC_PrefetchRange( register const void* startAddr, register u32 nBytes )
  *---------------------------------------------------------------------------*/
 asm void IC_LockdownRange( register const void* startAddr, register u32 nBytes )
 {
-    add         r1, r1, r0                              // r1: ƒGƒ“ƒhƒAƒhƒŒƒX
+    add         r1, r1, r0                              // r1: ã‚¨ãƒ³ãƒ‰ã‚¢ãƒ‰ãƒ¬ã‚¹
     bic         r0, r0, #HW_CACHE_LINE_SIZE - 1
     mrc         p15, 0, r3, c9, c0, 1
-    and         r3, r3, #HW_C9_LOCKDOWN_SET_NO_MASK     // r3: ƒJƒŒƒ“ƒgƒZƒbƒg‚m‚
-    cmp         r3, #3                                  // ‚RƒZƒbƒg‚ğƒƒbƒNƒ_ƒEƒ“‚µ‚Ä‚¢‚ê‚ÎƒGƒ‰[
+    and         r3, r3, #HW_C9_LOCKDOWN_SET_NO_MASK     // r3: ã‚«ãƒ¬ãƒ³ãƒˆã‚»ãƒƒãƒˆï¼®ï½
+    cmp         r3, #3                                  // ï¼“ã‚»ãƒƒãƒˆã‚’ãƒ­ãƒƒã‚¯ãƒ€ã‚¦ãƒ³ã—ã¦ã„ã‚Œã°ã‚¨ãƒ©ãƒ¼
     mvneq       r0, #0
     bxeq        lr
 
@@ -600,16 +600,16 @@ asm void IC_LockdownRange( register const void* startAddr, register u32 nBytes )
     mov         r2, r0
     ldmfd       sp!, { lr, r0, r1 }
 
-    orr         r3, r3, #HW_C9_LOCKDOWN_LOAD_MODE       // ƒLƒƒƒbƒVƒ…ƒƒbƒNƒ_ƒEƒ“Eƒ[ƒhƒ‚[ƒh
+    orr         r3, r3, #HW_C9_LOCKDOWN_LOAD_MODE       // ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ­ãƒƒã‚¯ãƒ€ã‚¦ãƒ³ãƒ»ãƒ­ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
     mcr         p15, 0, r3, c9, c0, 1
 
 @1:
-    mcr         p15, 0, r0, c7, c5, 1                   // ƒLƒƒƒbƒVƒ…‚©‚çˆê’U–³Œø‰»
-    mcr         p15, 0, r0, c7, c13, 1                  // ƒvƒŠƒtƒFƒbƒ`
+    mcr         p15, 0, r0, c7, c5, 1                   // ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰ä¸€æ—¦ç„¡åŠ¹åŒ–
+    mcr         p15, 0, r0, c7, c13, 1                  // ãƒ—ãƒªãƒ•ã‚§ãƒƒãƒ
     add         r0, r0, #HW_CACHE_LINE_SIZE
     cmp         r0, r1
     blt         @1
-    add         r3, r3, #1                              // ƒLƒƒƒbƒVƒ…’Êíƒ‚[ƒh • ƒZƒbƒg‚m‚‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+    add         r3, r3, #1                              // ã‚­ãƒ£ãƒƒã‚·ãƒ¥é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ ï¼† ã‚»ãƒƒãƒˆï¼®ï½ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
     bic         r0, r3, #HW_C9_LOCKDOWN_LOAD_MODE
     mcr         p15, 0, r3, c9, c0, 1
     

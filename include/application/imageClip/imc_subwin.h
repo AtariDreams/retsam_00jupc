@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_subwin.h
- *	@brief		ƒTƒuƒEƒBƒ“ƒhƒE
+ *	@brief		ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *	@author		tomoya takahashi
  *	@data		2005.10.24
  *
@@ -26,52 +26,52 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	‰Šú‰»ƒ}ƒXƒN
+//	åˆæœŸåŒ–ãƒã‚¹ã‚¯
 //	
 //=====================================
 enum{
-	IMC_SUBWIN_INITMASK_CLEAN	= 1 << 0,	// Å‰‚Ì‰Šú‰»
-	IMC_SUBWIN_INITMASK_BG		= 1 << 1,	// BG–Ê‚Ì‰Šú‰»
-	IMC_SUBWIN_INITMASK_BMP		= 1 << 2,	// bmpƒEƒBƒ“ƒhƒE–Ê‚Ì‰Šú‰» 
-	IMC_SUBWIN_INITMASK_ACCE_COUNT = 1 << 3,// ƒAƒNƒZƒTƒŠƒJƒEƒ“ƒg‰æ–Ê‚Ì‰Šú‰» 
-	IMC_SUBWIN_INITMASK_TIME_COUNT = 1 << 4,// ƒ^ƒCƒ€ƒJƒEƒ“ƒg‰æ–Ê‚Ì‰Šú‰» 
-	IMC_SUBWIN_INITMASK_RANKBMP = 1 << 5,	// ƒ‰ƒ“ƒN‚ÌBMPƒEƒBƒ“ƒhƒE
+	IMC_SUBWIN_INITMASK_CLEAN	= 1 << 0,	// æœ€åˆã®åˆæœŸåŒ–
+	IMC_SUBWIN_INITMASK_BG		= 1 << 1,	// BGé¢ã®åˆæœŸåŒ–
+	IMC_SUBWIN_INITMASK_BMP		= 1 << 2,	// bmpã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢ã®åˆæœŸåŒ– 
+	IMC_SUBWIN_INITMASK_ACCE_COUNT = 1 << 3,// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚«ã‚¦ãƒ³ãƒˆç”»é¢ã®åˆæœŸåŒ– 
+	IMC_SUBWIN_INITMASK_TIME_COUNT = 1 << 4,// ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ãƒˆç”»é¢ã®åˆæœŸåŒ– 
+	IMC_SUBWIN_INITMASK_RANKBMP = 1 << 5,	// ãƒ©ãƒ³ã‚¯ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 };
 
 #define IMC_SUBWIN_DEFAULT_INIT	(IMC_SUBWIN_INITMASK_CLEAN | IMC_SUBWIN_INITMASK_BG | IMC_SUBWIN_INITMASK_BMP | IMC_SUBWIN_INITMASK_ACCE_COUNT)
 #define IMC_SUBWIN_CONTEST_INIT	(IMC_SUBWIN_INITMASK_CLEAN | IMC_SUBWIN_INITMASK_BG | IMC_SUBWIN_INITMASK_BMP | IMC_SUBWIN_INITMASK_ACCE_COUNT | IMC_SUBWIN_INITMASK_TIME_COUNT | IMC_SUBWIN_INITMASK_RANKBMP)
 
 //---------------------------------------------------------
-//	ƒAƒNƒZƒTƒŠ¶³İÀŠÖŒW
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚«ã‚¦ãƒ³ã‚¿é–¢ä¿‚
 //---------------------------------------------------------
-// ƒAƒNƒZƒTƒŠƒAƒCƒRƒ“¶³İÀƒ[ƒN‚ÌÅ‘å”
+// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¢ã‚¤ã‚³ãƒ³ã‚«ã‚¦ãƒ³ã‚¿ãƒ¯ãƒ¼ã‚¯ã®æœ€å¤§æ•°
 #define IMC_SUBWIN_ACCECOUNT_ICON_MAX	( IMC_RBOX_ACCE_CONTEST_MAX )
 
 
 //---------------------------------------------------------
-//	ƒ^ƒCƒ€¶³İÀŠÖŒW		¶³İÀ“]‘—ƒ‚[ƒh
+//	ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿é–¢ä¿‚		ã‚«ã‚¦ãƒ³ã‚¿è»¢é€ãƒ¢ãƒ¼ãƒ‰
 //---------------------------------------------------------
-#define IMC_SUBWIN_NUM_KETA	(2)		// Œ…”
+#define IMC_SUBWIN_NUM_KETA	(2)		// æ¡æ•°
 enum{
-	IMC_SUBWIN_NUM_TRANS_OYA,		// e
-	IMC_SUBWIN_NUM_TRANS_CHILD,		// q
-	IMC_SUBWIN_NUM_TRANS_NONE,		// ‚È‚ñ‚Å‚à‚È‚¢
+	IMC_SUBWIN_NUM_TRANS_OYA,		// è¦ª
+	IMC_SUBWIN_NUM_TRANS_CHILD,		// å­
+	IMC_SUBWIN_NUM_TRANS_NONE,		// ãªã‚“ã§ã‚‚ãªã„
 };
 #define IMC_SUBWIN_NUM_POP_TCB_PRI	( 128 )
 #define IMC_SUBWIN_NUM_PUSH_TCB_PRI	( 64 )
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒAƒCƒRƒ“ƒf[ƒ^
+//	ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	CLACT_U_RES_OBJ_PTR res_obj[IMC_DRAW_USE_RES_NUM];
@@ -81,7 +81,7 @@ typedef struct {
 } IMC_SUBWIN_ACCEICON;
 
 //-------------------------------------
-//	“®ìƒ[ƒN
+//	å‹•ä½œãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	fx32 x;
@@ -93,11 +93,11 @@ typedef struct {
 
 
 //-------------------------------------
-//	ƒ^ƒCƒ€ƒJƒEƒ“ƒgƒOƒ‰ƒtƒBƒbƒN—p
-//	´Ìª¸Äƒ[ƒN
+//	ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç”¨
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	BOOL init_flg;	// TRUE	“®ì’† FALSE	”ñ“®ì’†
+	BOOL init_flg;	// TRUE	å‹•ä½œä¸­ FALSE	éå‹•ä½œä¸­
 	CLACT_WORK_PTR	num[IMC_SUBWIN_NUM_KETA];
 	VecFx32 mat[IMC_SUBWIN_NUM_KETA];
 	IMC_SUBWIN_MOVE_WORK	scale;
@@ -107,83 +107,83 @@ typedef struct {
 
 
 //-------------------------------------
-//	ƒ^ƒCƒ€¶³İÀƒ[ƒN
+//	ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	CLACT_U_RES_OBJ_PTR res_obj[IMC_DRAW_USE_RES_NUM];
 	CLACT_WORK_PTR	num[IMC_SUBWIN_NUM_KETA];
 	GF_BGL_BMPWIN*	bmp;
 	int count;
-	int master_count;		// ’ÊM‚Ìe—p¶³İÀ
-	TCB_PTR	CountTCB;		// count‚Ì’l‚ğ‘‚«Š·‚¦‚éTCB
-	TCB_PTR MstTransTCB;	// Ï½À°¶³İÀ‚Ì’l‚ğ“]‘—‚·‚éTCB
-	CON_IMC_LOCAL* p_comm_data;	// ’ÊMƒf[ƒ^
-	IMC_SUBWIN_TIME_EFFECT counter_eff;	// ƒJƒEƒ“ƒ^[´Ìª¸Ä
+	int master_count;		// é€šä¿¡ã®è¦ªç”¨ã‚«ã‚¦ãƒ³ã‚¿
+	TCB_PTR	CountTCB;		// countã®å€¤ã‚’æ›¸ãæ›ãˆã‚‹TCB
+	TCB_PTR MstTransTCB;	// ãƒã‚¹ã‚¿ãƒ¼ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã‚’è»¢é€ã™ã‚‹TCB
+	CON_IMC_LOCAL* p_comm_data;	// é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+	IMC_SUBWIN_TIME_EFFECT counter_eff;	// ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-	BOOL pal_chg;	// ƒpƒŒƒbƒg•ÏXÏ‚İƒ`ƒFƒbƒN
+	BOOL pal_chg;	// ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
 } IMC_SUBWIN_TIMECOUNT;
 
 
 //-------------------------------------
 //	
-//	ƒTƒu‰æ–Ê\‘¢‘Ì
+//	ã‚µãƒ–ç”»é¢æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	IMC_BG			bg;			// BG–Ê
-	GF_BGL_BMPWIN*	bmp;		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
-	CLACT_SET_PTR		clactSet;			// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_RES_MANAGER_PTR* p_resMan;	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+	IMC_BG			bg;			// BGé¢
+	GF_BGL_BMPWIN*	bmp;		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	CLACT_SET_PTR		clactSet;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_RES_MANAGER_PTR* p_resMan;	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
 
-	IMC_SUBWIN_ACCEICON	acce_icon;	// ƒAƒNƒZƒTƒŠƒAƒCƒRƒ“ƒ[ƒN
-	IMC_SUBWIN_TIMECOUNT counter;	// ƒJƒEƒ“ƒ^[
-	GF_BGL_BMPWIN*	rankbmp;		// ƒ‰ƒ“ƒN•¶š—ñƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+	IMC_SUBWIN_ACCEICON	acce_icon;	// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯
+	IMC_SUBWIN_TIMECOUNT counter;	// ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	GF_BGL_BMPWIN*	rankbmp;		// ãƒ©ãƒ³ã‚¯æ–‡å­—åˆ—ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	
-	int init_flg;				// ‰Šú‰»Ï‚İƒ`ƒFƒbƒNƒtƒ‰ƒO
+	int init_flg;				// åˆæœŸåŒ–æ¸ˆã¿ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°
 
-	// ƒRƒ“ƒtƒBƒOƒf[ƒ^
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
 	int wnd_no;
 	u32 wait;
 
-	STRBUF* p_glb_str;	// ƒOƒ[ƒoƒ‹•¶š—ñƒoƒbƒtƒ@
+	STRBUF* p_glb_str;	// ã‚°ãƒ­ãƒ¼ãƒãƒ«æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
 } IMC_SUBWIN;
 
 typedef struct {
 	GF_BGL_INI* bg_ini;
-	CLACT_SET_PTR		clactSet;			// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_RES_MANAGER_PTR* p_resMan;	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+	CLACT_SET_PTR		clactSet;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_RES_MANAGER_PTR* p_resMan;	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
 
-	// ƒRƒ“ƒtƒBƒO
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚°
 	const CONFIG* cp_config;
 
-	// ƒAƒNƒZƒTƒŠ¶³İÀ—p
-	int acce_max;		// ƒAƒCƒRƒ“”
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚«ã‚¦ãƒ³ã‚¿ç”¨
+	int acce_max;		// ã‚¢ã‚¤ã‚³ãƒ³æ•°
 
-	// ƒe[ƒ}—p
-	int rank_msgid;		// ƒ‰ƒ“ƒNƒƒbƒZ[ƒWID
-	int rank_strid;		// ƒ‰ƒ“ƒN•¶š—ñID
+	// ãƒ†ãƒ¼ãƒç”¨
+	int rank_msgid;		// ãƒ©ãƒ³ã‚¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+	int rank_strid;		// ãƒ©ãƒ³ã‚¯æ–‡å­—åˆ—ID
 
-	// ƒ^ƒCƒ}[—p
-	int count_max;		// Å‘åƒJƒEƒ“ƒg’l
-	CON_IMC_LOCAL* p_comm_data;	// ’ÊMƒf[ƒ^
-	ARCHANDLE* p_handle;	// ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^‚Ìƒnƒ“ƒhƒ‹
+	// ã‚¿ã‚¤ãƒãƒ¼ç”¨
+	int count_max;		// æœ€å¤§ã‚«ã‚¦ãƒ³ãƒˆå€¤
+	CON_IMC_LOCAL* p_comm_data;	// é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+	ARCHANDLE* p_handle;	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒ³ãƒ‰ãƒ«
 } IMC_SUBWIN_INIT;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
  *
- *	@param	subwin		ƒTƒuƒEƒBƒ“ƒhƒE\‘¢‘Ì
- *	@param	init		‰Šú‰»ƒf[ƒ^
- *	@param	init_mask	‰Šú‰»ƒ}ƒXƒN
+ *	@param	subwin		ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹é€ ä½“
+ *	@param	init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	init_mask	åˆæœŸåŒ–ãƒã‚¹ã‚¯
  *
  *	@return	none
  *
@@ -195,9 +195,9 @@ GLOBAL void IMC_SUBWIN_Init( IMC_SUBWIN* subwin, IMC_SUBWIN_INIT* init, int init
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	subwin	ƒTƒuƒEƒBƒ“ƒhƒE
+ *	@param	subwin	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  *	@return	none
  *
@@ -209,9 +209,9 @@ GLOBAL void IMC_SUBWIN_Delete( IMC_SUBWIN* subwin );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒƒCƒ“ŠÖ”
+ *	@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	subwin	ƒTƒuƒEƒBƒ“ƒhƒE
+ *	@param	subwin	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  *	@return	none
  *
@@ -223,12 +223,12 @@ GLOBAL void IMC_SUBWIN_Main( IMC_SUBWIN* subwin );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒbƒgƒ}ƒbƒv‚É•¶š—ñ‚ğ•\¦
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«æ–‡å­—åˆ—ã‚’è¡¨ç¤º
  *
- *	@param	subwin	ƒTƒuƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
- *	@param	arcID	ƒA[ƒJƒCƒuID
- *	@param	dataID	ƒf[ƒ^ID
- *	@param	msgID	•\¦‚·‚éƒƒbƒZ[ƒWID
+ *	@param	subwin	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	arcID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ *	@param	dataID	ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	msgID	è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *	
  *	@return	none
  *
@@ -237,14 +237,14 @@ GLOBAL void IMC_SUBWIN_Main( IMC_SUBWIN* subwin );
 //-----------------------------------------------------------------------------
 GLOBAL void IMC_SUBWIN_SetBmpWin( IMC_SUBWIN* subwin, int arcID, int dataID, int msgID );
 GLOBAL s32 IMC_SUBWIN_SetBmpWinWait( IMC_SUBWIN* subwin, int arcID, int dataID, int msgID );
-GLOBAL void IMC_SUBWIN_EndBmpWinWait( IMC_SUBWIN* subwin );	// Šm•Û‚µ‚Ä‚¢‚½ƒ[ƒN‚ğ‚Í‚«
+GLOBAL void IMC_SUBWIN_EndBmpWinWait( IMC_SUBWIN* subwin );	// ç¢ºä¿ã—ã¦ã„ãŸãƒ¯ãƒ¼ã‚¯ã‚’ã¯ã
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒJƒEƒ“ƒgƒAƒCƒRƒ“•`‰æİ’è
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚«ã‚¦ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³æç”»è¨­å®š
  *
- *	@param	subwin		ƒ[ƒN
- *	@param	acce_num	Œ»İ‚ÌƒAƒNƒZƒTƒŠ”
+ *	@param	subwin		ãƒ¯ãƒ¼ã‚¯
+ *	@param	acce_num	ç¾åœ¨ã®ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
  *
  *	@return	none
  */	
@@ -253,11 +253,11 @@ GLOBAL void IMC_SUBWIN_SetAcceIcon( IMC_SUBWIN* subwin, int acce_num );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚ÌƒJƒEƒ“ƒ^[’læ“¾ŠÖ”
+ *	@brief	ä»Šã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼å€¤å–å¾—é–¢æ•°
  *
- *	@param	subwin	ƒTƒuƒEƒBƒ“ƒhƒE
+ *	@param	subwin	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	@return	ƒJƒEƒ“ƒ^[‚Ì’l
+ *	@return	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®å€¤
  */
 //-----------------------------------------------------------------------------
 GLOBAL int IMC_SUBWIN_GetCounterNowNum( const IMC_SUBWIN* subwin );
@@ -265,12 +265,12 @@ GLOBAL void IMC_SUBWIN_SetCounterNowNum( IMC_SUBWIN* subwin, int count );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒ^[´Ìª¸Ä‚ÌI—¹ƒ`ƒFƒbƒN
+ *	@brief	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	subwin	ƒTƒuƒEƒBƒ“ƒhƒE
+ *	@param	subwin	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 GLOBAL BOOL IMC_SUBWIN_GetCounterEffectEnd( const IMC_SUBWIN* subwin );

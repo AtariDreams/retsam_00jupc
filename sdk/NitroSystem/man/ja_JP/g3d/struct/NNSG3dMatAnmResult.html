@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 	<TITLE>NNSG3dMatAnmResult</TITLE>
@@ -11,7 +11,7 @@
 <BODY>
 
 <H1 align="left">NNSG3dMatAnmResult</H1>
-<H2>�\���̂̒�`</H2>
+<H2>構造体の定義</H2>
 <PRE><CODE>#include &lt;nnsys/g3d/anm.h&gt;
 
 typedef enum
@@ -43,82 +43,82 @@ typedef struct NNSG3dMatAnmResult_
     fx32                   magW, magH;
 }
 NNSG3dMatAnmResult;</CODE></PRE>
-<H2>�\���̂̉��</H2>
-<P><CODE>NNSG3dMatAnmResult</CODE>�\���̂́A�}�e���A������ێ����Ă��܂��BG3D�͂��̍\���̂Ɋi�[���ꂽ�����g�p���ăW�I���g���G���W���ɃR�}���h�𑗐M�����܂��B���̍\���̂́A<CODE>NNSi_G3dFuncSbc_MAT</CODE>�֐�(SBC��MAT�R�}���h�������ɌĂяo�����)�̎��s���ɍ쐬����A�g�p����܂��B<BR>
+<H2>構造体の解説</H2>
+<P><CODE>NNSG3dMatAnmResult</CODE>構造体は、マテリアル情報を保持しています。G3Dはこの構造体に格納された情報を使用してジオメトリエンジンにコマンドを送信をします。この構造体は、<CODE>NNSi_G3dFuncSbc_MAT</CODE>関数(SBCのMATコマンド処理時に呼び出される)の実行時に作成され、使用されます。<BR>
 <BR>
-�}�e���A���A�j���[�V�����́A���̍\���̂Ɋi�[����Ă���f�[�^��<CODE>NNSi_G3dFuncSbc_MAT</CODE>�֐������ɂ����ăA�j���[�V�����f�[�^�ɏ]���ݒ肷�邱�Ƃɂ���������Ă��܂��B<BR>
+マテリアルアニメーションは、この構造体に格納されているデータを<CODE>NNSi_G3dFuncSbc_MAT</CODE>関数内部においてアニメーションデータに従い設定することにより実装されています。<BR>
 <BR>
-�܂��A<CODE><A href="../sbc/SBC_MAT.html">NNS_G3D_SBC_MAT</A></CODE>�ɃR�[���o�b�N��ݒ肷�邱�Ƃɂ���āA�}�e���A���̐ݒ�����[�U�[�v���O��������R���g���[�����邱�Ƃ��ł��܂��B<BR>
+また、<CODE><A href="../sbc/SBC_MAT.html">NNS_G3D_SBC_MAT</A></CODE>にコールバックを設定することによって、マテリアルの設定をユーザープログラムからコントロールすることができます。<BR>
 </P>
 <TABLE border="1">
   <TBODY>
     <TR>
-      <TH width="252">NNSG3dMatAnmResult�\���̂̃����o</TH>
-      <TH width="770">����</TH>
+      <TH width="252">NNSG3dMatAnmResult構造体のメンバ</TH>
+      <TH width="770">説明</TH>
     </TR>
     <TR>
       <TD width="252"><B><I>flag</I></B></TD>
-      <TD width="770">NNSG3dMatAnmResultFlag�^�����t���O�ł��B</TD>
+      <TD width="770">NNSG3dMatAnmResultFlag型をもつフラグです。</TD>
     </TR>
     <TR>
       <TD width="252"><I><B>prmMatColor0</B></I></TD>
-      <TD width="770">diffuse��ambient���i�[����Ă��܂��BMaterialColor0�W�I���g���R�}���h�̃p�����^�ƈ�v���܂��B</TD>
+      <TD width="770">diffuseとambientが格納されています。MaterialColor0ジオメトリコマンドのパラメタと一致します。</TD>
     </TR>
     <TR>
       <TD width="252"><I><B>prmMatColor1</B></I></TD>
-      <TD width="770">specular��emission���i�[����Ă��܂��BMaterialColor1�W�I���g���R�}���h�̃p�����^�ƈ�v���܂��B</TD>
+      <TD width="770">specularとemissionが格納されています。MaterialColor1ジオメトリコマンドのパラメタと一致します。</TD>
     </TR>
     <TR>
       <TD width="252"><I><B>prmPolygonAttr</B></I></TD>
-      <TD width="770">�|���S���֘A�����l���i�[����Ă��܂��BPolygonAttr�W�I���g���R�}���h�̃p�����^�ƈ�v���܂��B</TD>
+      <TD width="770">ポリゴン関連属性値が格納されています。PolygonAttrジオメトリコマンドのパラメタと一致します。</TD>
     </TR>
     <TR>
       <TD width="252"><I><B>prmTexImage</B></I></TD>
-      <TD width="770">�e�N�X�`���p�����[�^���i�[����Ă��܂��BTexImageParam�W�I���g���R�}���h�̃p�����^�ƈ�v���܂��B</TD>
+      <TD width="770">テクスチャパラメータが格納されています。TexImageParamジオメトリコマンドのパラメタと一致します。</TD>
     </TR>
     <TR>
       <TD width="252"><B><I>prmTexPltt</I></B></TD>
-      <TD width="770">�e�N�X�`���p���b�g�̃x�[�X�A�h���X���i�[����Ă��܂��BTexPlttBase�W�I���g���R�}���h�̃p�����^�ƈ�v���܂��B</TD>
+      <TD width="770">テクスチャパレットのベースアドレスが格納されています。TexPlttBaseジオメトリコマンドのパラメタと一致します。</TD>
     </TR>
     <TR>
       <TD width="252"><I><B>scaleS</B></I></TD>
-      <TD width="770">�e�N�X�`����S�����̃X�P�[���l�ł��B</TD>
+      <TD width="770">テクスチャのS方向のスケール値です。</TD>
     </TR>
     <TR>
       <TD width="252"><B><I>scaleT</I></B></TD>
-      <TD width="770">�e�N�X�`����T�����̃X�P�[���l�ł��B</TD>
+      <TD width="770">テクスチャのT方向のスケール値です。</TD>
     </TR>
     <TR>
       <TD width="252"><B><I>sinR</I></B></TD>
-      <TD width="770">�e�N�X�`���̉�]�p�̐����l�ł��B</TD>
+      <TD width="770">テクスチャの回転角の正弦値です。</TD>
     </TR>
     <TR>
       <TD width="252"><B><I>cosR</I></B></TD>
-      <TD width="770">�e�N�X�`���̉�]�p�̗]���l�ł��B</TD>
+      <TD width="770">テクスチャの回転角の余弦値です。</TD>
     </TR>
     <TR>
       <TD width="252"><B><I>transS</I></B></TD>
-      <TD width="770">�e�N�X�`����S�����̕��s�ړ������ł��B</TD>
+      <TD width="770">テクスチャのS方向の平行移動成分です。</TD>
     </TR>
     <TR>
       <TD width="252"><B><I>transT</I></B></TD>
-      <TD width="770">�e�N�X�`����T�����̕��s�ړ������ł��B</TD>
+      <TD width="770">テクスチャのT方向の平行移動成分です。</TD>
     </TR>
     <TR>
       <TD width="252"><B><I>origWidth</I></B></TD>
-      <TD width="770">g3dcvtr�o�͎��Ƀ}�e���A���ɑΉ����Ă����e�N�X�`���̕��ł��B</TD>
+      <TD width="770">g3dcvtr出力時にマテリアルに対応していたテクスチャの幅です。</TD>
     </TR>
     <TR>
       <TD width="252"><B><I>origHeight</I></B></TD>
-      <TD width="770">g3dcvtr�o�͎��Ƀ}�e���A���ɑΉ����Ă����e�N�X�`���̍����ł��B</TD>
+      <TD width="770">g3dcvtr出力時にマテリアルに対応していたテクスチャの高さです。</TD>
     </TR>
     <TR>
       <TD width="252"><I><B>magW</B></I></TD>
-      <TD width="770">���f���ƃe�N�X�`���̃o�C���h���Ɍ��肳���{���ł��B�ʏ��FX32_ONE�ł��B</TD>
+      <TD width="770">モデルとテクスチャのバインド時に決定される倍率です。通常はFX32_ONEです。</TD>
     </TR>
     <TR>
       <TD width="252"><I><B>magH</B></I></TD>
-      <TD width="770">���f���ƃe�N�X�`���̃o�C���h���Ɍ��肳���{���ł��B�ʏ��FX32_ONE�ł��B</TD>
+      <TD width="770">モデルとテクスチャのバインド時に決定される倍率です。通常はFX32_ONEです。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -126,39 +126,39 @@ NNSG3dMatAnmResult;</CODE></PRE>
 <TABLE border="1">
   <TBODY>
     <TR>
-      <TH width="300">NNSG3dMatAnmResultFlag�̒l</TH>
-      <TH width="722">����</TH>
+      <TH width="300">NNSG3dMatAnmResultFlagの値</TH>
+      <TH width="722">説明</TH>
     </TR>
     <TR>
       <TD width="300"><CODE>NNS_G3D_MATANM_RESULTFLAG_TEXMTX_SCALEONE</CODE></TD>
-      <TD width="722">���̃t���O���Z�b�g����Ă���ꍇ�A<I><B>scaleS</B></I>�y��<B><I>scaleT</I></B>�Ɋi�[����Ă���l�͖����ł��B�����Ƃ�FX32_ONE�������Ă�����̂Ƃ��Ĉ����܂��B</TD>
+      <TD width="722">このフラグがセットされている場合、<I><B>scaleS</B></I>及び<B><I>scaleT</I></B>に格納されている値は無効です。両方ともFX32_ONEが入っているものとして扱われます。</TD>
     </TR>
     <TR>
       <TD width="300"><CODE>NNS_G3D_MATANM_RESULTFLAG_TEXMTX_ROTZERO</CODE></TD>
-      <TD width="722">���̃t���O���Z�b�g����Ă���ꍇ�A<B><I>sinR</I></B>�y��<B><I>cosR</I></B>�Ɋi�[����Ă���l�͖����ł��B<B><I>sinR</I></B>�ɂ�0���A<B><I>cosR</I></B>�ɂ�FX32_ONE�������Ă�����̂Ƃ��Ĉ����܂��B</TD>
+      <TD width="722">このフラグがセットされている場合、<B><I>sinR</I></B>及び<B><I>cosR</I></B>に格納されている値は無効です。<B><I>sinR</I></B>には0が、<B><I>cosR</I></B>にはFX32_ONEが入っているものとして扱われます。</TD>
     </TR>
     <TR>
       <TD width="300"><CODE>NNS_G3D_MATANM_RESULTFLAG_TEXMTX_TRANSZERO</CODE></TD>
-      <TD width="722">���̃t���O���Z�b�g����Ă���ꍇ�A<B><I>transS</I></B>�y��<B><I>transT</I></B>�Ɋi�[����Ă���l�͖����ł��B�����Ƃ�0�������Ă�����̂Ƃ��Ĉ����܂��B</TD>
+      <TD width="722">このフラグがセットされている場合、<B><I>transS</I></B>及び<B><I>transT</I></B>に格納されている値は無効です。両方とも0が入っているものとして扱われます。</TD>
     </TR>
     <TR>
       <TD width="300"><CODE>NNS_G3D_MATANM_RESULTFLAG_TEXMTX_SET</CODE></TD>
-      <TD width="722">���̃t���O���Z�b�g����Ă���ꍇ�A���̍\���̂̐ݒ�ɑΉ�����e�N�X�`���s�񂪃J�����g�e�N�X�`���s��ɐݒ肳��܂��B</TD>
+      <TD width="722">このフラグがセットされている場合、この構造体の設定に対応するテクスチャ行列がカレントテクスチャ行列に設定されます。</TD>
     </TR>
     <TR>
       <TD width="300"><CODE>NNS_G3D_MATANM_RESULTFLAG_TEXMTX_MULT</CODE></TD>
-      <TD width="722">���̃t���O���Z�b�g����Ă���ꍇ�A���̍\���̂̐ݒ�ɑΉ�����e�N�X�`���s�񂪃J�����g�e�N�X�`���s��ɏ�Z����܂��B</TD>
+      <TD width="722">このフラグがセットされている場合、この構造体の設定に対応するテクスチャ行列がカレントテクスチャ行列に乗算されます。</TD>
     </TR>
     <TR>
       <TD width="300"><CODE>NNS_G3D_MATANM_RESULTFLAG_WIREFRAME</CODE></TD>
-      <TD width="722">���̃t���O���Z�b�g����Ă���ꍇ�A�}�e���A���ɑ�����|���S���̓��C���[�t���[���ŕ`�悳��܂��B</TD>
+      <TD width="722">このフラグがセットされている場合、マテリアルに属するポリゴンはワイヤーフレームで描画されます。</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�Q��</H2>
-<P><A href="../list_g3d.html#Kernel">�J�[�l��</A> <A href="../list_g3d.html#SBC">�`��G���W��</A></P>
-<H2>����</H2>
-<P>2004/10/13 ����</P>
+<H2>参照</H2>
+<P><A href="../list_g3d.html#Kernel">カーネル</A> <A href="../list_g3d.html#SBC">描画エンジン</A></P>
+<H2>履歴</H2>
+<P>2004/10/13 初版</P>
 </BODY>
 
 </HTML>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WBT_SetPacketSize</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">WBT_SetPacketSize</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,62 +22,62 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <p>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>send_packet_size</STRONG></EM></TD>
-      <TD width="87%">WBT�̂��߂Ɏg�p���邱�Ƃ̂ł���MP�ʐM�̐e�@�p�P�b�g�T�C�Y<br>
-	  ���̒l��WBT_PACKET_SIZE_MIN�o�C�g�ȏ�ł���K�v������܂��B</TD>
+      <TD width="87%">WBTのために使用することのできるMP通信の親機パケットサイズ<br>
+	  この値はWBT_PACKET_SIZE_MINバイト以上である必要があります。</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>recv_packet_size</STRONG></EM></TD>
-      <TD width="87%">WBT�̂��߂Ɏg�p���邱�Ƃ̂ł���MP�ʐM�̎q�@�p�P�b�g�T�C�Y<br>
-	  ���̒l��WBT_PACKET_SIZE_MIN�o�C�g�ȏ�ł���K�v������܂��B</TD>
+      <TD width="87%">WBTのために使用することのできるMP通信の子機パケットサイズ<br>
+	  この値はWBT_PACKET_SIZE_MINバイト以上である必要があります。</TD>
     </TR>
   </TBODY>
 </TABLE>
 </p>
 
-<h2>�Ԃ�l</h2>
-<p>���݃p�P�b�g�T�C�Y��ύX�\�ł���� TRUE ���A�����łȂ��Ȃ� FALSE ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>現在パケットサイズを変更可能であれば TRUE を、そうでないなら FALSE を返します。</p>
 
-<H2>����</H2>
-<P>WBT ���C�u�����̐e�@��<A href="../init/WBT_InitParent.html">WBT_InitParent</A>�֐��Ŏw�肵���p�P�b�g�T�C�Y��<br>
-��������̔C�ӂ̃^�C�~���O�œ��I�ɕύX���邽�߂Ɏg�p���܂��B<br>
-��������΁A�֐��͂������ɐ����Ԃ��܂��B<br>
+<H2>説明</H2>
+<P>WBT ライブラリの親機が<A href="../init/WBT_InitParent.html">WBT_InitParent</A>関数で指定したパケットサイズを<br>
+初期化後の任意のタイミングで動的に変更するために使用します。<br>
+成功すれば、関数はただちに制御を返します。<br>
 <br>
-�f�[�^�V�F�A�����O���AWBT�ȊO�ł̒ʐM�|�[�g���p�̗L���ɍ��킹��<br>
-���̊֐��Ńp�P�b�g�T�C�Y��ύX���邱�Ƃœ]�������𒲐����邱�Ƃ��ł��܂��B<br>
+データシェアリング等、WBT以外での通信ポート併用の有無に合わせて<br>
+この関数でパケットサイズを変更することで転送効率を調整することができます。<br>
 <br>
-<H2>����</H2>
+<H2>注意</H2>
 <font color="#800000">
-���̊֐��̓��[�U�A�v���P�[�V�������ł̘_���I�Ȑ����O��Ƃ��ČĂяo���\�Ȃ��̂ŁA<br>
-��Ɉ��S�ȓ����ۏ؂���Ă�����̂ł͂���܂���B<br>
+この関数はユーザアプリケーション側での論理的な制御を前提として呼び出し可能なもので、<br>
+常に安全な動作を保証されているものではありません。<br>
 <br>
-�e�q�@��<A href="../command/WBT_RequestSync.html">WBT_RequestSync</A>�֐��ōŌ�ɐe�@����擾�����p�P�b�g�T�C�Y�ݒ�Ɋ�Â��āA<br>
-<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>�֐��ł̓]���P�ʃT�C�Y��r�b�g�}�b�v�o�b�t�@�T�C�Y���v�Z���܂��B<br>
-����āA�C�ӂ�<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>�f�[�^��M���s���Ă���Œ��Ƀp�P�b�g�T�C�Y��ύX���邱�Ƃ͂ł��܂���B<br>
+各子機は<A href="../command/WBT_RequestSync.html">WBT_RequestSync</A>関数で最後に親機から取得したパケットサイズ設定に基づいて、<br>
+<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>関数での転送単位サイズやビットマップバッファサイズを計算します。<br>
+よって、任意の<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>データ受信が行われている最中にパケットサイズを変更することはできません。<br>
 <br>
-�ȉ��̏�����S�Ė������ꍇ�ɂ̂݁A���̊֐������S�Ɏg�p�ł���_�ɒ��ӂ��Ă��������B<br>
+以下の条件を全て満たす場合にのみ、この関数を安全に使用できる点に注意してください。<br>
 <br>
-�E�e�@�����̊֐����Ăяo�����_��<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>�֐��ɂ��f�[�^�]����N�����s���ł͂Ȃ�<br>
-�E�e�@�����̊֐����Ăяo������A�q�@��<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>�֐��̑O�ɕK��1���<A href="../command/WBT_RequestSync.html">WBT_RequestSync</A>�֐����Ăяo��<br>
+・親機がこの関数を呼び出す時点で<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>関数によるデータ転送を誰も実行中ではない<br>
+・親機がこの関数を呼び出した後、子機は<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>関数の前に必ず1回は<A href="../command/WBT_RequestSync.html">WBT_RequestSync</A>関数を呼び出す<br>
 <br>
-���̊֐����̂������ōs�����Ƃ̂ł��锻��͏�L�����̈ꕔ���݂̂ŁA<br>
-���̊֐��� TRUE ��Ԃ������Ƃ���L������S�Ė����������ƂƓ��l�ł͂Ȃ��_�ɂ����ӂ��Ă��������B<br>
+この関数自体が内部で行うことのできる判定は上記条件の一部分のみで、<br>
+この関数が TRUE を返したことが上記条件を全て満たしたことと同値ではない点にも注意してください。<br>
 <br></font>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <A href="../init/WBT_InitParent.html">WBT_InitParent</A>
 <A href="../command/WBT_RequestSync.html">WBT_RequestSync</A>
 <A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>
 </P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/09/21 ����<BR>
+2004/09/21 初版<BR>
 </P>
 </body>
 </html>

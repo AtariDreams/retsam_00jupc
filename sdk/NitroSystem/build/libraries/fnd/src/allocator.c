@@ -21,11 +21,11 @@
 #include <nnsys/fnd/allocator.h>
 
 /* ========================================================================
-    static�֐�
+    static関数
    ======================================================================== */
 
 /* ------------------------------------------------------------------------
-    Exp Heap �p
+    Exp Heap 用
    ------------------------------------------------------------------------ */
 
 static void*
@@ -50,7 +50,7 @@ AllocatorFreeForExpHeap(
 }
 
 /* ------------------------------------------------------------------------
-    Frame Heap �p
+    Frame Heap 用
    ------------------------------------------------------------------------ */
 
 static void*
@@ -65,8 +65,8 @@ AllocatorAllocForFrmHeap(
 }
 
 /*
-    �t���[���q�[�v�ł̓������u���b�N�P�ʂ̃�����������ł��Ȃ����߁A
-    ���̎����ł͉������Ȃ����Ƃɂ���B
+    フレームヒープではメモリブロック単位のメモリ解放ができないため、
+    この実装では何もしないことにする。
 */
 static void
 AllocatorFreeForFrmHeap(
@@ -78,12 +78,12 @@ AllocatorFreeForFrmHeap(
 
 
 /* ------------------------------------------------------------------------
-    Unit Heap �p
+    Unit Heap 用
    ------------------------------------------------------------------------ */
 
 /*
-    ���j�b�g�q�[�v�̃������u���b�N�T�C�Y�𒴂���T�C�Y�̊��蓖�Ă͂ł��Ȃ��̂�
-    NULL��Ԃ��B
+    ユニットヒープのメモリブロックサイズを超えるサイズの割り当てはできないので
+    NULLを返す。
 */
 static void*
 AllocatorAllocForUnitHeap(
@@ -113,7 +113,7 @@ AllocatorFreeForUnitHeap(
 
 
 /* ------------------------------------------------------------------------
-    SDK heap �p
+    SDK heap 用
    ------------------------------------------------------------------------ */
 
 static void*
@@ -141,22 +141,22 @@ AllocatorFreeForSDKHeap(
 
 
 /* ========================================================================
-    �O���֐�
+    外部関数
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndAllocFromAllocator
 
-  Description:  �A���P�[�^���烁�����u���b�N�m�ۂ��܂��B
+  Description:  アロケータからメモリブロック確保します。
 
-                ���ۂɂ́A�ǂ̂悤�Ɋm�ۂ���邩�ǂ����̓A���P�[�^��
-                ����Ɋ֘A�t�����Ă��郁�����}�l�[�W���̎����ɂ��܂��B
+                実際には、どのように確保されるかどうかはアロケータと
+                それに関連付けられているメモリマネージャの実装によります。
 
-  Arguments:    pAllocator:  NNSFndAllocator�\���̂̃A�h���X�B
-                size:        �������u���b�N�̃T�C�Y(�o�C�g)�B
+  Arguments:    pAllocator:  NNSFndAllocator構造体のアドレス。
+                size:        メモリブロックのサイズ(バイト)。
 
-  Returns:      �������u���b�N���m�ۂł����ꍇ�A���̃������u���b�N�̐擪�A�h���X��Ԃ��܂��B
-                �m�ۂł��Ȃ������ꍇ�ANULL ��Ԃ��܂��B
+  Returns:      メモリブロックを確保できた場合、そのメモリブロックの先頭アドレスを返します。
+                確保できなかった場合、NULL を返します。
  *---------------------------------------------------------------------------*/
 void*
 NNS_FndAllocFromAllocator(
@@ -171,15 +171,15 @@ NNS_FndAllocFromAllocator(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndFreeToAllocator
 
-  Description:  �������u���b�N��������A���P�[�^�֕ԋp���܂��B
+  Description:  メモリブロックを解放しアロケータへ返却します。
 
-                ���ۂɂ́A�ǂ̂悤�ɕԋp����邩�ǂ����̓A���P�[�^��
-                ����Ɋ֘A�t�����Ă��郁�����}�l�[�W���̎����ɂ��܂��B
+                実際には、どのように返却されるかどうかはアロケータと
+                それに関連付けられているメモリマネージャの実装によります。
 
-  Arguments:    pAllocator:  NNSFndAllocator�\���̂̃A�h���X�B
-                memBlock:    ������郁�����u���b�N�ւ̃|�C���^�B
+  Arguments:    pAllocator:  NNSFndAllocator構造体のアドレス。
+                memBlock:    解放するメモリブロックへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndFreeToAllocator(
@@ -194,15 +194,15 @@ NNS_FndFreeToAllocator(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndInitAllocatorForExpHeap
 
-  Description:  �g���q�[�v���烁�����̊m�ۂƉ�����s���悤�ɃA���P�[�^�����������܂��B
-                �A���P�[�^��ʂ��Ċm�ۂ����S�Ẵ������u���b�N�̃A���C�����g�l��
-                ����alignment�Ŏw�肵���l�ɂȂ�܂��B
+  Description:  拡張ヒープからメモリの確保と解放を行うようにアロケータを初期化します。
+                アロケータを通じて確保される全てのメモリブロックのアライメント値は
+                引数alignmentで指定した値になります。
 
-  Arguments:    pAllocator:  NNSFndAllocator�\���̂̃A�h���X�B
-                heap:        �g���q�[�v�̃n���h���B
-                alignment:   �m�ۂ���e�������u���b�N�ɓK�p����A���C�����g�l
+  Arguments:    pAllocator:  NNSFndAllocator構造体のアドレス。
+                heap:        拡張ヒープのハンドル。
+                alignment:   確保する各メモリブロックに適用するアライメント値
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndInitAllocatorForExpHeap(
@@ -226,15 +226,15 @@ NNS_FndInitAllocatorForExpHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndInitAllocatorForFrmHeap
 
-  Description:  �t���[���q�[�v���烁�����̊m�ۂƉ�����s���悤�ɃA���P�[�^�����������܂��B
-                �A���P�[�^��ʂ��Ċm�ۂ����S�Ẵ������u���b�N�̃A���C�����g�l��
-                ����alignment�Ŏw�肵���l�ɂȂ�܂��B
+  Description:  フレームヒープからメモリの確保と解放を行うようにアロケータを初期化します。
+                アロケータを通じて確保される全てのメモリブロックのアライメント値は
+                引数alignmentで指定した値になります。
 
-  Arguments:    pAllocator:  NNSFndAllocator�\���̂̃A�h���X�B
-                heap:        �t���[���q�[�v�̃n���h���B
-                alignment:   �m�ۂ���e�������u���b�N�ɓK�p����A���C�����g�l
+  Arguments:    pAllocator:  NNSFndAllocator構造体のアドレス。
+                heap:        フレームヒープのハンドル。
+                alignment:   確保する各メモリブロックに適用するアライメント値
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndInitAllocatorForFrmHeap(
@@ -258,14 +258,14 @@ NNS_FndInitAllocatorForFrmHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndInitAllocatorForUnitHeap
 
-  Description:  ���j�b�g�q�[�v���烁�����̊m�ۂƉ�����s���悤�ɃA���P�[�^�����������܂��B
-                ���j�b�g�q�[�v�̃������u���b�N�T�C�Y���傫�ȃ������u���b�N���m�ۂ��邱�Ƃ͏o���܂���B
-                ���̏ꍇ�A�֐�NNS_FndAllocFromAllocator() ��NULL��Ԃ��܂��B
+  Description:  ユニットヒープからメモリの確保と解放を行うようにアロケータを初期化します。
+                ユニットヒープのメモリブロックサイズより大きなメモリブロックを確保することは出来ません。
+                その場合、関数NNS_FndAllocFromAllocator() はNULLを返します。
 
-  Arguments:    pAllocator:  NNSFndAllocator�\���̂̃A�h���X�B
-                heap:        ���j�b�g�q�[�v�̃n���h���B
+  Arguments:    pAllocator:  NNSFndAllocator構造体のアドレス。
+                heap:        ユニットヒープのハンドル。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndInitAllocatorForUnitHeap(
@@ -288,14 +288,14 @@ NNS_FndInitAllocatorForUnitHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndInitAllocatorForSDKHeap
 
-  Description:  NITRO-SDK��OS_CreateHeap()�֐��ō쐬�����q�[�v����
-                �������̊m�ۂƉ�����s���悤�ɃA���P�[�^�����������܂��B
+  Description:  NITRO-SDKのOS_CreateHeap()関数で作成されるヒープから
+                メモリの確保と解放を行うようにアロケータを初期化します。
 
-  Arguments:    pAllocator:  NNSFndAllocator�\���̂̃A�h���X�B
-                id:          �q�[�v�̂���A���[�i�̃A���[�iID�B
-                heap:        �q�[�v�̃n���h���B
+  Arguments:    pAllocator:  NNSFndAllocator構造体のアドレス。
+                id:          ヒープのあるアリーナのアリーナID。
+                heap:        ヒープのハンドル。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndInitAllocatorForSDKHeap(

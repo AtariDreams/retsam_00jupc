@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_275.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			ƒ|ƒPƒ‚ƒ“•ßŠlƒV[ƒPƒ“ƒXiƒTƒtƒ@ƒŠƒ{[ƒ‹j
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ãƒã‚±ãƒ¢ãƒ³æ•ç²ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ï¼‰
  *@author	HisashiSogabe
  *@data		2005.07.20
  *
@@ -27,7 +27,7 @@ ParkBallThrow:
 SUB_275_NEXT:
 	POKEMON_GET_INIT	GET_SAFARI
 	POKEMON_GET
-	//ƒTƒtƒ@ƒŠƒ{[ƒ‹‚ÌŒÂ”‚ðƒ`ƒFƒbƒN‚·‚é
+	//ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®å€‹æ•°ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	IF					IF_FLAG_BIT,BUF_PARA_WIN_LOSE_FLAG,FIGHT_POKE_GET,SUB_275_END
 	IF					IF_FLAG_NE,BUF_PARA_SAFARI_BALL_COUNT,0,SUB_275_END
 	SE_PLAY				SIDE_ATTACK,BSE_SAFARI_END				

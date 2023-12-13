@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SOC_GetLinkState</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">SOC_GetLinkState</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
@@ -20,32 +20,32 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 
 <table width="100%">
   <tr>
     <td><font size="-1"color="#808080"><code><em><strong>interface</strong></em></code></td>
-    <td><font size="-1"color="#808080">AP�ƃ����N���Ă��邩�ǂ����𒲂ׂ�SOCInterface�ւ̃|�C���^�B���̈����͌݊����̂��ߗp�ӂ���Ă��܂����A���ۂɂ͖�������܂��B</td>
+    <td><font size="-1"color="#808080">APとリンクしているかどうかを調べるSOCInterfaceへのポインタ。この引数は互換性のため用意されていますが、実際には無視されます。</td>
   </tr>
   <tr>
     <td><code><em><strong>status</strong></em></code></td>
-    <td>�C���^�[�t�F�[�X�̃����N��Ԃ��󂯎��BOOL�ւ̃|�C���^�B �C���^�[�t�F�[�X���ڑ���Ԃ̏ꍇ��TRUE�ɁA�ڑ�����Ă��Ȃ��ꍇ��FALSE���L�^����܂��B</td>
+    <td>インターフェースのリンク状態を受け取るBOOLへのポインタ。 インターフェースが接続状態の場合はTRUEに、接続されていない場合はFALSEが記録されます。</td>
   </tr>
 </table>
 
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 
-<p>�Ȃ��B</p>
+<p>なし。</p>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>�w�肵���l�b�g���[�N �C���^�[�t�F�[�X��AP�ƃ����N���Ă��邩�ǂ����𒲂ׂ܂��B</p>
+<p>指定したネットワーク インターフェースがAPとリンクしているかどうかを調べます。</p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/12/12 �����̋L�q�ύX<BR>
-2005/09/13 ����</P>
+2005/12/12 説明の記述変更<BR>
+2005/09/13 初版</P>
 </body>
 </html>

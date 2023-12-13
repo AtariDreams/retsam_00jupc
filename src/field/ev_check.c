@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ev_check.c	
- * @brief	ƒCƒxƒ“ƒg”­“®ƒ`ƒFƒbƒNƒVƒXƒeƒ€
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãƒã‚§ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
  * @author	Sousuke Tamada
  * @date	01.03.29
  *
@@ -22,7 +22,7 @@
 
 #define EV_CHECK_H_GLOBAL
 #include "ev_check.h"
-#include "eventdata.h"		//ƒ][ƒ“–ˆ‚ÌƒCƒxƒ“ƒgƒf[ƒ^QÆ‚Ì‚½‚ß
+#include "eventdata.h"		//ã‚¾ãƒ¼ãƒ³æ¯ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å‚ç…§ã®ãŸã‚
 
 #include "fld_debug.h"
 
@@ -103,25 +103,25 @@
 
 #include "field_tornworld.h"
 
-#include "field_villa.h"	//•Ê‘‘@‰Æ‹ï˜b‚µ‚©‚¯
+#include "field_villa.h"	//åˆ¥è˜ã€€å®¶å…·è©±ã—ã‹ã‘
 
 #include "field/gym_init.h"
 #include "field/field_gimmick_def.h"
 
 //#define	DEBUG_ALL_EXIT_CONNECT
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 #define	ALL_KEY		( PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT )
 
-#define	PAD_BUTTON_MENU		( PAD_BUTTON_X )		// ƒƒjƒ…[ƒ{ƒ^ƒ“
-#define	PAD_BUTTON_BENRI	( PAD_BUTTON_Y )		// •Ö—˜ƒ{ƒ^ƒ“
+#define	PAD_BUTTON_MENU		( PAD_BUTTON_X )		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒœã‚¿ãƒ³
+#define	PAD_BUTTON_BENRI	( PAD_BUTTON_Y )		// ä¾¿åˆ©ãƒœã‚¿ãƒ³
 
 
-///“Åƒ_ƒ[ƒW‚ğó‚¯‚é•à”
+///æ¯’ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã‚‹æ­©æ•°
 #define	POISON_STEP_MAX		(4)
 
-///‚È‚Â‚«“xŒvZ‚·‚é•à”
+///ãªã¤ãåº¦è¨ˆç®—ã™ã‚‹æ­©æ•°
 #define FRIENDCALC_STEP_MAX	(128)
 
 //============================================================================================
@@ -133,7 +133,7 @@ static BOOL EvCheck_ExitByPush(FIELDSYS_WORK * fsys, const EV_REQUEST * req);
 static  u16 EvCheck_TalkMapAttr(FIELDSYS_WORK * repw, MATR matr);
 
 static BOOL CheckEncountEvent(FIELDSYS_WORK * fsys);
-static BOOL CheckMoveEvent(FIELDSYS_WORK * fsys);// ˆê•à‚²‚Æ‚ÌƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN
+static BOOL CheckMoveEvent(FIELDSYS_WORK * fsys);// ä¸€æ­©ã”ã¨ã®ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯
 static BOOL CheckPosEvent(FIELDSYS_WORK * fsys);
 static BOOL CheckExit(FIELDSYS_WORK * fsys, const int x, const int z, const u8 inAttr);
 static BOOL CheckSodateya( FIELDSYS_WORK *fsys );
@@ -147,7 +147,7 @@ static BOOL CheckSpray( FIELDSYS_WORK *fsys );
 static BOOL CheckFriendCalcStepCount( FIELDSYS_WORK *fsys );
 static void DoFriendCalcStepCount( FIELDSYS_WORK *fsys );
 
-//ƒc[ƒ‹ŠÖ”
+//ãƒ„ãƒ¼ãƒ«é–¢æ•°
 static void GetNowPos(const FIELDSYS_WORK * fsys, int *x, int *z);
 static void GetFrontPos(const FIELDSYS_WORK * fsys, int * x, int * z);
 static void GetMovePos(const FIELDSYS_WORK * fsys, int dir, int * x, int * z);
@@ -164,9 +164,9 @@ static BOOL TwTalkObjEventCheck( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR *fldobj );
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg‚Ì‰Šú‰»
+ * ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®åˆæœŸåŒ–
  *
- * @param	req		ƒCƒxƒ“ƒgƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg\‘¢‘Ì
+ * @param	req		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ§‹é€ ä½“
  *
  * @return	none
  */
@@ -194,11 +194,11 @@ static void ClearRequest( EV_REQUEST * req )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg‚ÌƒZƒbƒg
+ * ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‚»ãƒƒãƒˆ
  *
- * @param	req		ƒCƒxƒ“ƒgƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg\‘¢‘Ì
- * @param	trg		ƒL[ƒgƒŠƒK[î•ñ
- * @param	cont	ƒL[‰Ÿ‚µî•ñ
+ * @param	req		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ§‹é€ ä½“
+ * @param	trg		ã‚­ãƒ¼ãƒˆãƒªã‚¬ãƒ¼æƒ…å ±
+ * @param	cont	ã‚­ãƒ¼æŠ¼ã—æƒ…å ±
  *
  * @return	none
  */
@@ -212,9 +212,9 @@ void SetRequest( EV_REQUEST * req, FIELDSYS_WORK * repw, u16 trg, u16 cont )
 
 	ClearRequest(req);
 
-	st  = Player_MoveStateGet( repw->player );		// ©‹@‚Ìó‘Ô
-	val = Player_MoveValueGet( repw->player );		// ©‹@‚ÌˆÚ“®ó‘Ô
-	dir = Player_DirGet( repw->player );			// ©‹@‚Ì•ûŒü
+	st  = Player_MoveStateGet( repw->player );		// è‡ªæ©Ÿã®çŠ¶æ…‹
+	val = Player_MoveValueGet( repw->player );		// è‡ªæ©Ÿã®ç§»å‹•çŠ¶æ…‹
+	dir = Player_DirGet( repw->player );			// è‡ªæ©Ÿã®æ–¹å‘
 	req->trg = trg;
 	req->cont = cont;
 
@@ -247,7 +247,7 @@ void SetRequest( EV_REQUEST * req, FIELDSYS_WORK * repw, u16 trg, u16 cont )
 		req->MoveCheck = TRUE;
 	}
 
-	// ˆê•àˆÚ“®I—¹ƒ^ƒCƒ~ƒ“ƒO‚©H
+	// ä¸€æ­©ç§»å‹•çµ‚äº†ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‹ï¼Ÿ
 	if (st == OBJ_MOVE_STATE_END) {
 		req->StepCheck = TRUE;
 	}
@@ -262,9 +262,9 @@ void SetRequest( EV_REQUEST * req, FIELDSYS_WORK * repw, u16 trg, u16 cont )
 		req->PushSite = DIR_NOT;
 	}
 	
-//ã‰º—Dæ‚Ì‚Æ‚è•û‚©‚ç©‹@“Æ©‚ÌƒL[“ü—ÍŠÖ”‚É•ÏX 060317 kaga
+//ä¸Šä¸‹å„ªå…ˆã®ã¨ã‚Šæ–¹ã‹ã‚‰è‡ªæ©Ÿç‹¬è‡ªã®ã‚­ãƒ¼å…¥åŠ›é–¢æ•°ã«å¤‰æ›´ 060317 kaga
 #if 0
-	// ˆÚ“®•ûŒü‚ÌƒŠƒNƒGƒXƒg
+	// ç§»å‹•æ–¹å‘ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	if( cont & PAD_KEY_UP ){
 		req->Site = DIR_UP;
 	}else if( cont & PAD_KEY_DOWN ){
@@ -278,12 +278,12 @@ void SetRequest( EV_REQUEST * req, FIELDSYS_WORK * repw, u16 trg, u16 cont )
 	req->Site = Player_KeyDirGet( repw->player, trg, cont );
 #endif
 	
-	// ˆÈ‰º‚ÍƒfƒoƒbƒO‹@”\‚Ì”­“®ƒ`ƒFƒbƒN
+	// ä»¥ä¸‹ã¯ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã®ç™ºå‹•ãƒã‚§ãƒƒã‚¯
 #ifdef	PM_DEBUG
 	if( cont & PAD_BUTTON_R ){
 		req->DebugKeyPush = TRUE;
 		
-		//Rƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‚¢‚é‚Æ‚«‚ÍŠeíƒCƒxƒ“ƒg‚Ì”­“®‚ğ—}‚¦‚é
+		//Rãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ã„ã‚‹ã¨ãã¯å„ç¨®ã‚¤ãƒ™ãƒ³ãƒˆã®ç™ºå‹•ã‚’æŠ‘ãˆã‚‹
 		req->MoveCheck = FALSE;
 		req->StepCheck = FALSE;
 		req->MatCheck = FALSE;
@@ -298,7 +298,7 @@ void SetRequest( EV_REQUEST * req, FIELDSYS_WORK * repw, u16 trg, u16 cont )
 /*
 	if( st == OBJ_MOVE_STATE_END || st == OBJ_MOVE_STATE_OFF ){
 		if( cont & PAD_BUTTON_R ){
-			// ƒfƒoƒbƒOƒoƒgƒ‹
+			// ãƒ‡ãƒãƒƒã‚°ãƒãƒˆãƒ«
 			if( (cont & PAD_BUTTON_START) && !(req->DebugMenu) ){ 
 				req->DebugBattle = TRUE;
 			}
@@ -313,20 +313,20 @@ void SetRequest( EV_REQUEST * req, FIELDSYS_WORK * repw, u16 trg, u16 cont )
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * @breif	‘‚Ş‚ç‚É“ü‚ê‚È‚¢ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
- * @param	req		ƒŠƒNƒGƒXƒg\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE	ƒCƒxƒ“ƒg”­“®‚µ‚½
- * @retval	FALSE	ƒCƒxƒ“ƒg”­“®‚µ‚È‚©‚Á‚½
+ * @breif	è‰ã‚€ã‚‰ã«å…¥ã‚Œãªã„ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
+ * @param	req		ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE	ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ã—ãŸ
+ * @retval	FALSE	ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ã—ãªã‹ã£ãŸ
  *
  *
- * R201‚Å‚ÌƒCƒxƒ“ƒgê—pB”ñí‚É‚«‚¿‚á‚È‚¢‹Lq‚ÌŠÖ”‚È‚Ì‚Å
- * ‚ ‚Æ‚Å‚à‚¤­‚µ‚Ü‚Æ‚à‚È‘‚«Š·‚¦‚ğl‚¦’†
+ * R201ã§ã®ã‚¤ãƒ™ãƒ³ãƒˆå°‚ç”¨ã€‚éå¸¸ã«ãã¡ã‚ƒãªã„è¨˜è¿°ã®é–¢æ•°ãªã®ã§
+ * ã‚ã¨ã§ã‚‚ã†å°‘ã—ã¾ã¨ã‚‚ãªæ›¸ãæ›ãˆã‚’è€ƒãˆä¸­
  */
 //--------------------------------------------------------------------------------------------
 static BOOL GrassStepInCheck(const EV_REQUEST * req, FIELDSYS_WORK * fsys)
 {
-	int st  = Player_MoveStateGet( fsys->player );		// ©‹@‚Ìó‘Ô
+	int st  = Player_MoveStateGet( fsys->player );		// è‡ªæ©Ÿã®çŠ¶æ…‹
 	if (fsys->location->zone_id != ZONE_ID_R201) {
 		return FALSE;
 	}
@@ -334,24 +334,24 @@ static BOOL GrassStepInCheck(const EV_REQUEST * req, FIELDSYS_WORK * fsys)
 		return FALSE;
 	}
 	if (st == OBJ_MOVE_STATE_OFF) {
-#if 0	//©‹@‚Ìó‘Ô‚©‚çƒL[“ü—Í‚ğŒ©‚é—l‚É‚·‚é 060317 kaga
+#if 0	//è‡ªæ©Ÿã®çŠ¶æ…‹ã‹ã‚‰ã‚­ãƒ¼å…¥åŠ›ã‚’è¦‹ã‚‹æ§˜ã«ã™ã‚‹ 060317 kaga
 		if (req->PushSite != DIR_NOT && MATR_IsGrass(GetFrontAttr(fsys))) {
 			return TRUE;
 		}
 #elif 1
 		{
-			int val = Player_MoveValueGet( fsys->player );	//©‹@“®ìó‘Ô‚ğæ“¾
+			int val = Player_MoveValueGet( fsys->player );	//è‡ªæ©Ÿå‹•ä½œçŠ¶æ…‹ã‚’å–å¾—
 			
-			if( (s8)req->Site != DIR_NOT &&					//ƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é
-				val == OBJ_MOVE_VALUE_WALK ){				//©‹@‚Ìó‘Ô‚ÍˆÚ“®‚Å‚ ‚é
+			if( (s8)req->Site != DIR_NOT &&					//ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹
+				val == OBJ_MOVE_VALUE_WALK ){				//è‡ªæ©Ÿã®çŠ¶æ…‹ã¯ç§»å‹•ã§ã‚ã‚‹
 				int x,z;
-				GetMovePos( fsys, req->Site, &x, &z );		//ˆÚ“®æ‚ÌƒAƒgƒŠƒrƒ…[ƒgæ“¾
+				GetMovePos( fsys, req->Site, &x, &z );		//ç§»å‹•å…ˆã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
 				if (MATR_IsGrass(GetAttributeLSB(fsys, x, z))) {
 					return TRUE;
 				}
 			}else{
-				if( (s8)req->PushSite != DIR_NOT &&			//©‹@‚ÌŒü‚«‚ÉƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é
-					MATR_IsGrass(GetFrontAttr(fsys))) {		//Œü‚«‚Ìæ‚ÌƒAƒgƒŠƒrƒ…[ƒg‚ğæ“¾
+				if( (s8)req->PushSite != DIR_NOT &&			//è‡ªæ©Ÿã®å‘ãã«ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹
+					MATR_IsGrass(GetFrontAttr(fsys))) {		//å‘ãã®å…ˆã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’å–å¾—
 					return TRUE;
 				}
 			}
@@ -370,31 +370,31 @@ static BOOL GrassStepInCheck(const EV_REQUEST * req, FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN
+ * ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯
  *
- * @param	req		ƒCƒxƒ“ƒgƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg
+ * @param	req		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @retval	"TRUE = ƒCƒxƒ“ƒg”­“®"
- * @retval	"FALSE = ƒCƒxƒ“ƒg”­“®‚È‚µ"
+ * @retval	"TRUE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•"
+ * @retval	"FALSE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãªã—"
  *
- *	ƒŠƒNƒGƒXƒg‚ğŒ³‚Éƒ`ƒFƒbƒNƒvƒƒOƒ‰ƒ€‚ğŒÄ‚Ño‚µAƒCƒxƒ“ƒg‚ğ‹N“®‚·‚é
+ *	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å…ƒã«ãƒã‚§ãƒƒã‚¯ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’å‘¼ã³å‡ºã—ã€ã‚¤ãƒ™ãƒ³ãƒˆã‚’èµ·å‹•ã™ã‚‹
  */
 //--------------------------------------------------------------------------------------------
 int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 {
 
-	//“ÁêƒXƒNƒŠƒvƒgiƒV[ƒ“‹N“®ƒXƒNƒŠƒvƒgjƒ`ƒFƒbƒN
+	//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼ˆã‚·ãƒ¼ãƒ³èµ·å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼‰ãƒã‚§ãƒƒã‚¯
 	if (req->DebugKeyPush == FALSE && SpScriptSearch(repw, SP_SCRID_SCENE_CHANGE) == TRUE) {
 		return TRUE;
 	}
 	
-	//ƒgƒŒ[ƒi[‹üƒ`ƒFƒbƒN
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒã‚§ãƒƒã‚¯
 	{
 		if( req->DebugKeyPush == FALSE ){
 			BOOL flag = EvPoke_Enable2vs2Battle(SaveData_GetTemotiPokemon(repw->savedata));
 			
 			if( SysFlag_PairCheck(SaveData_GetEventWork(repw->savedata)) == 1 ){
-				flag = TRUE;		//˜A‚ê•à‚«’†‚È‚çƒ_ƒuƒ‹‰Â”\ 
+				flag = TRUE;		//é€£ã‚Œæ­©ãä¸­ãªã‚‰ãƒ€ãƒ–ãƒ«å¯èƒ½ 
 			}
 			
 			#if 0	//DP
@@ -415,9 +415,9 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 		}
 	}
 	
-	//ˆê•àˆÚ“®ƒ`ƒFƒbƒN
+	//ä¸€æ­©ç§»å‹•ãƒã‚§ãƒƒã‚¯
 	if (req->MoveCheck) {
-		//ˆê•à“®‚¢‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒO‚ÌXV
+		//ä¸€æ­©å‹•ã„ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã®æ›´æ–°
 		SysFlag_OneStepReset( SaveData_GetEventWork(repw->savedata) );
 		//IncRecord( CNT_WALK );
 		if( CheckMoveEvent( repw ) == TRUE ){
@@ -426,14 +426,14 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 	}
 
 #if 0	//07.06.28
-	//‘‚Ş‚ç‚É“ü‚ê‚È‚¢ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+	//è‰ã‚€ã‚‰ã«å…¥ã‚Œãªã„ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 	if (GrassStepInCheck(req, repw)) {
 		EventSet_Script( repw, SCRID_POS_R201_STOP, NULL );
 		return TRUE;
 	}
 #endif
 
-	//©‹@ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+	//è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 	if( req->DebugKeyPush == FALSE ){
 		HERO_EVBIT evbit = HERO_EVBIT_NON;
 		int dir = Player_KeyDirGet( repw->player, req->trg, req->cont );
@@ -458,19 +458,19 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 		}
 	}
 	
-	//©‹@“®ìƒ`ƒFƒbƒNiˆê•àˆÚ“® ‚ ‚é‚¢‚Í U‚èŒü‚«j
+	//è‡ªæ©Ÿå‹•ä½œãƒã‚§ãƒƒã‚¯ï¼ˆä¸€æ­©ç§»å‹• ã‚ã‚‹ã„ã¯ æŒ¯ã‚Šå‘ãï¼‰
 	if(req->StepCheck ){
-		// ƒGƒ“ƒJƒEƒ“ƒg
+		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 		if (CheckEncountEvent(repw)) {
 			return TRUE;
 		}
 		
-		// ŠÅ”Âƒ`ƒFƒbƒN
+		// çœ‹æ¿ãƒã‚§ãƒƒã‚¯
 		if( CheckBoardStart(repw) == TRUE ){
 			return TRUE;
 		}
 		
-		//”j‚ê‚½¢ŠEƒ`ƒFƒbƒN
+		//ç ´ã‚ŒãŸä¸–ç•Œãƒã‚§ãƒƒã‚¯
 		if( GYM_GimmickCodeCheck(repw,FLD_GIMMICK_TORNWORLD) == TRUE ){
 			int dir = (s8)req->Site;
 			if( dir == DIR_NOT ){dir = Player_DirGet(repw->player);}
@@ -480,18 +480,18 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 		}
 	}
 
-	//•ûŒü“]Š·‚Å‚¤‚Ü‚­“®ì‚µ‚È‚¢‚Ì‚ÅA‚±‚±‚Å‚àŠÅ”Âƒ`ƒFƒbƒN ( FR/LG ‚Ìƒ}ƒl )
+	//æ–¹å‘è»¢æ›ã§ã†ã¾ãå‹•ä½œã—ãªã„ã®ã§ã€ã“ã“ã§ã‚‚çœ‹æ¿ãƒã‚§ãƒƒã‚¯ ( FR/LG ã®ãƒãƒ )
 	if( req->MatCheck && Player_DirGet(repw->player) == req->Site ){
-		// ŠÅ”Âƒ`ƒFƒbƒN
+		// çœ‹æ¿ãƒã‚§ãƒƒã‚¯
 		if( CheckBoardStart(repw) == TRUE ){
 			return TRUE;
 		}
 	}
 
-	// ‰ï˜b
+	// ä¼šè©±
 	if( req->TalkCheck ){
 		#if 0
-		{	// OBJ‚Æ‚Ì‰ï˜bƒ`ƒFƒbƒN
+		{	// OBJã¨ã®ä¼šè©±ãƒã‚§ãƒƒã‚¯
 			FIELD_OBJ_PTR obj;
 			if( TalkObjEventCheck( repw, &obj ) == TRUE ){
 				EVENT_WORK * ev_work;
@@ -508,8 +508,8 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 				return TRUE;
 			}
 		}
-		#else	//”j‚ê‚½¢ŠE‚ğl—¶
-		{	// OBJ‚Æ‚Ì‰ï˜bƒ`ƒFƒbƒN
+		#else	//ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®
+		{	// OBJã¨ã®ä¼šè©±ãƒã‚§ãƒƒã‚¯
 			int ret;
 			FIELD_OBJ_PTR obj;
 			
@@ -539,7 +539,7 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 		#endif
 		
 		#if 0	//DP old
-		{	// BG‚Ì˜b‚µ‚©‚¯ƒ`ƒFƒbƒN
+		{	// BGã®è©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯
 			int	id;
 			
 			id = TalkBgEventCheck(
@@ -553,15 +553,15 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 			}
 		}
 		
-		{	// –¨“h‚è–Øƒ`ƒFƒbƒN
+		{	// èœœå¡—ã‚Šæœ¨ãƒã‚§ãƒƒã‚¯
 			int id;
 			if (HTE_CheckHoneyTree(repw,&id)){
 				EventSet_Script( repw, id, NULL );
 				return TRUE;
 			}
 		}
-		#else	//”j‚ê‚½¢ŠE‚ğl—¶
-		{	// BG‚Ì˜b‚µ‚©‚¯ƒ`ƒFƒbƒN
+		#else	//ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®
+		{	// BGã®è©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯
 			HEROTWTYPE twtype;
 			twtype = Player_MoveBitCheck_TWorld( repw->player );
 			
@@ -578,7 +578,7 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 				}
 			}
 			
-			if( twtype == HEROTWTYPE_NON ){	// –¨“h‚è–Øƒ`ƒFƒbƒN
+			if( twtype == HEROTWTYPE_NON ){	// èœœå¡—ã‚Šæœ¨ãƒã‚§ãƒƒã‚¯
 				int id;
 				if (HTE_CheckHoneyTree(repw,&id)){
 					EventSet_Script( repw, id, NULL );
@@ -597,7 +597,7 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 				return TRUE;
 			}
 		}
-		#else	//”j‚ê‚½¢ŠE‚ğl—¶
+		#else	//ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®
 		{
 			int dir = Player_TwThinkDirGet( repw->player );
 			u32 attr = Player_TwThinkNextDirAttrGet( repw->player, dir );
@@ -609,7 +609,7 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 		}
 		#endif
 		
-		{	//•Ê‘‘@‰Æ‹ï˜b‚µ‚©‚¯
+		{	//åˆ¥è˜ã€€å®¶å…·è©±ã—ã‹ã‘
 			int x,z,dir;
 			dir = Player_DirGet( repw->player );
 			GetFrontPos( repw, &x, &z );
@@ -626,9 +626,9 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 			return TRUE;
 		}
 	}
-	#else	//”j‚ê‚½¢ŠE‚ğl—¶
+	#else	//ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®
 	if (req->PushCheck) {
-		//”j‚ê‚½¢ŠEê—pƒvƒbƒVƒ…ƒ`ƒFƒbƒN
+		//ç ´ã‚ŒãŸä¸–ç•Œå°‚ç”¨ãƒ—ãƒƒã‚·ãƒ¥ãƒã‚§ãƒƒã‚¯
 		if( GYM_GimmickCodeCheck(repw,FLD_GIMMICK_TORNWORLD) == TRUE ){
 			FldTornWorld_PushEventCheck( repw, req->PushSite );
 		}else if (EvCheck_ExitByPush(repw, req) == TRUE) {
@@ -639,27 +639,27 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 	#endif
 	
 
-	// ˆÈ‰º‚ÍAålŒö‚ÌˆÊ’u‚ª–³ŠÖŒW‚ÈƒCƒxƒ“ƒg
+	// ä»¥ä¸‹ã¯ã€ä¸»äººå…¬ã®ä½ç½®ãŒç„¡é–¢ä¿‚ãªã‚¤ãƒ™ãƒ³ãƒˆ
 	//
-	// •Ö—˜ƒ{ƒ^ƒ“ƒ`ƒFƒbƒN
+	// ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒã‚§ãƒƒã‚¯
 	if( req->CnvButton ){
 		if( FieldConvButtonEventInit( repw ) == TRUE ){
 			return TRUE;
 		}
 	}
 
-	// ƒƒjƒ…[ƒ`ƒFƒbƒN
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( req->MenuOpen ){
-		if( FieldMenuCallCheck( repw ) == TRUE ){	// u‚È‚¼‚Ì‚Î‚µ‚åvƒ`ƒFƒbƒN 2006/10/24 by nakahiro
+		if( FieldMenuCallCheck( repw ) == TRUE ){	// ã€Œãªãã®ã°ã—ã‚‡ã€ãƒã‚§ãƒƒã‚¯ 2006/10/24 by nakahiro
 			Snd_SePlay( SE_WIN_OPEN );
 		    FieldMenuInit( repw );
 			return TRUE;
 		}
 	}
 #ifdef	PM_DEBUG
-	// í“¬ƒeƒXƒg‚Ö
+	// æˆ¦é—˜ãƒ†ã‚¹ãƒˆã¸
 	if( req->DebugBattle ){
-		DebugFieldEncount( repw );	//–³ğŒ‚ÅƒGƒ“ƒJƒEƒ“ƒgƒZƒbƒg
+		DebugFieldEncount( repw );	//ç„¡æ¡ä»¶ã§ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚»ãƒƒãƒˆ
 		return TRUE;
 	}
 
@@ -675,10 +675,10 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”Â‚ÌƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN
- * @param	reqw	ƒtƒB[ƒ‹ƒhƒf[ƒ^
- * @retval	"TRUE = ƒCƒxƒ“ƒg”­“®"
- * @retval	"FALSE = ƒCƒxƒ“ƒg”­“®‚È‚µ"
+ * çœ‹æ¿ã®ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯
+ * @param	reqw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ * @retval	"TRUE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•"
+ * @retval	"FALSE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãªã—"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL CheckBoardStart( FIELDSYS_WORK * repw )
@@ -686,13 +686,13 @@ static BOOL CheckBoardStart( FIELDSYS_WORK * repw )
 	FIELD_OBJ_PTR obj;
 	int	id;
 
-	// OBJŠÅ”Âƒ`ƒFƒbƒN
+	// OBJçœ‹æ¿ãƒã‚§ãƒƒã‚¯
 	if( TalkAutoObjBoardEventCheck( repw, &obj ) == TRUE ){
 		EventSet_Script( repw, FieldOBJ_EventIDGet(obj), obj );
 		return TRUE;
 	}
 
-	// BGŠÅ”Âƒ`ƒFƒbƒN
+	// BGçœ‹æ¿ãƒã‚§ãƒƒã‚¯
 	id = TalkAutoBgBoardEventCheck(
 			repw,(void *)EventData_GetNowBgTalkData(repw),EventData_GetNowBgTalkDataSize(repw));
 	if( id != EVENT_ID_NONE ){
@@ -708,18 +708,18 @@ static BOOL CheckBoardStart( FIELDSYS_WORK * repw )
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ’Yz‚ÌƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN  by k.ohno
- * @param	req		ƒCƒxƒ“ƒgƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg
- * @retval	"TRUE = ƒCƒxƒ“ƒg”­“®"
- * @retval	"FALSE = ƒCƒxƒ“ƒg”­“®‚È‚µ"
+ * ç‚­é‰±æ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯  by k.ohno
+ * @param	req		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+ * @retval	"TRUE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•"
+ * @retval	"FALSE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãªã—"
  */
 //--------------------------------------------------------------------------------------------
 
 BOOL CheckRequestUG( EV_REQUEST * req, FIELDSYS_WORK * repw )
 {
     u8 bTalkCheck = FALSE;
-    //06.04.06 ’n‰º‚É‰‚ß‚Ä~‚è‚½‚Ì‹­§ƒCƒxƒ“ƒg”­“®‚Ì‚½‚ß‚É’Ç‰Á
-	//“ÁêƒXƒNƒŠƒvƒgiƒV[ƒ“‹N“®ƒXƒNƒŠƒvƒgjƒ`ƒFƒbƒN
+    //06.04.06 åœ°ä¸‹ã«åˆã‚ã¦é™ã‚ŠãŸæ™‚ã®å¼·åˆ¶ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ã®ãŸã‚ã«è¿½åŠ 
+	//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼ˆã‚·ãƒ¼ãƒ³èµ·å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼‰ãƒã‚§ãƒƒã‚¯
 	if (req->DebugKeyPush == FALSE && SpScriptSearch(repw, SP_SCRID_SCENE_CHANGE) == TRUE) {
 		return TRUE;
 	}
@@ -727,16 +727,16 @@ BOOL CheckRequestUG( EV_REQUEST * req, FIELDSYS_WORK * repw )
         return FALSE;
     }
     UgMgrKeyCountDown();
-    if( req->TalkCheck ){    // ‰ï˜b--> ’Yzê—pƒƒjƒ…[
+    if( req->TalkCheck ){    // ä¼šè©±--> ç‚­é‰±å°‚ç”¨ãƒ¡ãƒ‹ãƒ¥ãƒ¼
         UgMgrTalkCheck(bTalkCheck);
         return FALSE;
     }
-    if( req->MenuOpen ){	// ålŒö‚ÌˆÊ’u‚ª–³ŠÖŒW‚ÈƒCƒxƒ“ƒg
+    if( req->MenuOpen ){	// ä¸»äººå…¬ã®ä½ç½®ãŒç„¡é–¢ä¿‚ãªã‚¤ãƒ™ãƒ³ãƒˆ
         UgMgrMenuCheck();
         return FALSE;
     }
 
-    if(UgMgrTouchCheck()){ //ƒ^ƒbƒ`ƒpƒlƒ‹‚Ì‘€ì‚ÉŠÖ‚·‚é‚à‚Ì
+    if(UgMgrTouchCheck()){ //ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®æ“ä½œã«é–¢ã™ã‚‹ã‚‚ã®
         return FALSE;
     }
 	
@@ -754,16 +754,16 @@ BOOL CheckRequestUG( EV_REQUEST * req, FIELDSYS_WORK * repw )
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ‘Îí•”‰®‚ÌƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN  by k.ohno
- * @param	req		ƒCƒxƒ“ƒgƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg
- * @retval	"TRUE = ƒCƒxƒ“ƒg”­“®"
- * @retval	"FALSE = ƒCƒxƒ“ƒg”­“®‚È‚µ"
+ * å¯¾æˆ¦éƒ¨å±‹æ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯  by k.ohno
+ * @param	req		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+ * @retval	"TRUE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•"
+ * @retval	"FALSE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãªã—"
  */
 //--------------------------------------------------------------------------------------------
 
 BOOL CheckRequestVSRoom( EV_REQUEST * req, FIELDSYS_WORK * repw )
 {
-	if (req->PushCheck) {  // oŒû
+	if (req->PushCheck) {  // å‡ºå£
 		if (req->PushSite == DIR_DOWN && MATR_IsDownMat(GetNowAttr(repw))) {
             EventSet_Script( repw, SCRID_BATTLE_ROOM_EXIT, NULL );
 			return TRUE;
@@ -774,14 +774,14 @@ BOOL CheckRequestVSRoom( EV_REQUEST * req, FIELDSYS_WORK * repw )
         return FALSE;
     }
     
-	// ‰ï˜b  ‰ï˜b‚ÉŠÖ‚µ‚Ä‚ÍƒNƒ‰ƒCƒAƒ“ƒg‚¾‚¯‚Åˆ—‚ª‰Â”\‚È‚Ì‚Åã‚Æ“¯‚¶‚É‚È‚é
-    // ‚½‚¾‚µCommPlayer‚Íœ‚­
+	// ä¼šè©±  ä¼šè©±ã«é–¢ã—ã¦ã¯ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã ã‘ã§å‡¦ç†ãŒå¯èƒ½ãªã®ã§ä¸Šã¨åŒã˜ã«ãªã‚‹
+    // ãŸã ã—CommPlayerã¯é™¤ã
 	if( req->TalkCheck ){
-		{	// OBJ‚Æ‚Ì‰ï˜bƒ`ƒFƒbƒN
+		{	// OBJã¨ã®ä¼šè©±ãƒã‚§ãƒƒã‚¯
 			FIELD_OBJ_PTR obj;
 			if( TalkObjEventCheck( repw, &obj ) == TRUE ){
 				EVENT_WORK * ev_work;
-                if(MV_PLAYER != FieldOBJ_MoveCodeGet(obj)){ // ‘¼‚ÌƒvƒŒ[ƒ„[‚Ìê‡
+                if(MV_PLAYER != FieldOBJ_MoveCodeGet(obj)){ // ä»–ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®å ´åˆ
                     if( Player_MoveForceStopCheck( repw->player ) == TRUE ){
                         Player_MoveForceStop( repw->player, Player_DirGet(repw->player) );
                     }
@@ -791,11 +791,11 @@ BOOL CheckRequestVSRoom( EV_REQUEST * req, FIELDSYS_WORK * repw )
 			}
 		}
 	}
-    if( req->TalkCheck ){    // ‰ï˜b--> 
+    if( req->TalkCheck ){    // ä¼šè©±--> 
         EventCmd_VSRoomTrainer(repw);
         return TRUE;
     }
-	// •Ö—˜ƒ{ƒ^ƒ“ƒ`ƒFƒbƒN
+	// ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒã‚§ãƒƒã‚¯
 /*	if( req->CnvButton ){
 		if( FieldConvButtonEventInit( repw ) == TRUE ){
 			return TRUE;
@@ -839,61 +839,61 @@ static int MyStatusCheck( void )
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ†ƒjƒIƒ“ƒ‹[ƒ€ê—pƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN
- * @param	req		ƒCƒxƒ“ƒgƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg
- * @param	repw	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	"TRUE = ƒCƒxƒ“ƒg”­“®"
- * @retval	"FALSE = ƒCƒxƒ“ƒg”­“®‚È‚µ"
+ * @brief	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å°‚ç”¨ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯
+ * @param	req		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+ * @param	repw	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	"TRUE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•"
+ * @retval	"FALSE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãªã—"
  */
 //--------------------------------------------------------------------------------------------
 BOOL CheckRequestUnion(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 {
-	//˜b‚µ‚©‚¯‚ç‚ê
-	//i’Ç‰Á—\’èj
+	//è©±ã—ã‹ã‘ã‚‰ã‚Œ
+	//ï¼ˆè¿½åŠ äºˆå®šï¼‰
 
-	// ’ÊMÚ‘±‚ª‚ ‚Á‚½ê‡‚Íâ‘Î‚ÉƒCƒxƒ“ƒg‚ğŠJn‚³‚¹‚È‚¢
+	// é€šä¿¡æ¥ç¶šãŒã‚ã£ãŸå ´åˆã¯çµ¶å¯¾ã«ã‚¤ãƒ™ãƒ³ãƒˆã‚’é–‹å§‹ã•ã›ãªã„
 //	if(CommStateIsUnionParentConnectSuccess()){
 	if(WH_GetBitmap()&0xfe){
-		OS_Printf("Ú‘±’†‚È‚Ì‚ÅAƒCƒxƒ“ƒg‚Í”­¶‚³‚¹‚È‚¢ bitmap=%02x status=%d connectnum=%d\n", WH_GetBitmap(), MyStatusCheck(), CommGetConnectNum());
+		OS_Printf("æ¥ç¶šä¸­ãªã®ã§ã€ã‚¤ãƒ™ãƒ³ãƒˆã¯ç™ºç”Ÿã•ã›ãªã„ bitmap=%02x status=%d connectnum=%d\n", WH_GetBitmap(), MyStatusCheck(), CommGetConnectNum());
 		if(MyStatusCheck() && CommGetConnectNum()>1){
 
-			// œœ‚É˜b‚µ‚©‚¯‚ç‚ê‚Ü‚µ‚½
+			// â—â—ã«è©±ã—ã‹ã‘ã‚‰ã‚Œã¾ã—ãŸ
 			EventSet_Script( repw, SCRID_CONNECT_UNION_RECEIVE_OBJ, NULL );
 			return TRUE;
 		}
 		return FALSE;
 	}
 
-	//ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒCƒxƒ“ƒgƒ`ƒFƒbƒNF‰ï˜biNPC‚Öj
+	//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ï¼šä¼šè©±ï¼ˆNPCã¸ï¼‰
 	if( req->TalkCheck ){
-		// OBJ‚Æ‚Ì‰ï˜bƒ`ƒFƒbƒN
+		// OBJã¨ã®ä¼šè©±ãƒã‚§ãƒƒã‚¯
 		FIELD_OBJ_PTR obj;
 		if( TalkObjEventCheck( repw, &obj ) == TRUE ){
 			if( Player_MoveForceStopCheck( repw->player ) == TRUE ){
 				Player_MoveForceStop( repw->player, Player_DirGet(repw->player) );
 			}
-            CommStateChildReserve(); // q‹@‚Æ‚µ‚Ä‚Â‚È‚ª‚é‚Ì‚Åe‹@‚É‚Í‚È‚ç‚È‚¢
+            CommStateChildReserve(); // å­æ©Ÿã¨ã—ã¦ã¤ãªãŒã‚‹ã®ã§è¦ªæ©Ÿã«ã¯ãªã‚‰ãªã„
 			EventSet_Script( repw, FieldOBJ_EventIDGet(obj), obj );
 			return TRUE;
 		}
 	}
 
-	//ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒCƒxƒ“ƒgƒ`ƒFƒbƒNFo“üŒû
+	//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ï¼šå‡ºå…¥å£
 	if (req->MoveCheck && MATR_IsWarpPoint(GetNowAttr(repw))) {
 		EventSet_UnionRoomMapChangeOut(repw);
 		return TRUE;
 	}
 
-	//ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒCƒxƒ“ƒgƒ`ƒFƒbƒNFƒƒjƒ…[iƒfƒoƒbƒOŠÜ‚Şj
-	//	•Ö—˜ƒ{ƒ^ƒ“‚ª‚ ‚é‚È‚ç‚Îƒ`ƒFƒbƒN‚Í‚±‚Ì‚ ‚½‚è
+	//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ï¼šãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ˆãƒ‡ãƒãƒƒã‚°å«ã‚€ï¼‰
+	//	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãŒã‚ã‚‹ãªã‚‰ã°ãƒã‚§ãƒƒã‚¯ã¯ã“ã®ã‚ãŸã‚Š
 	if( req->MenuOpen ){
-        if(CommGetConnectNum()>1){  //‚Â‚È‚ª‚Á‚Ä‚¢‚½‚çŠJ‚©‚È‚¢
+        if(CommGetConnectNum()>1){  //ã¤ãªãŒã£ã¦ã„ãŸã‚‰é–‹ã‹ãªã„
         }
         else{
             Snd_SePlay( SE_WIN_OPEN );
             FieldMenuInitUnion( repw );
 
-            // ¡–Z‚µ‚¢‚Éƒr[ƒRƒ“‘‚«Š·‚¦
+            // ä»Šå¿™ã—ã„ã«ãƒ“ãƒ¼ã‚³ãƒ³æ›¸ãæ›ãˆ
             Union_BeaconChange( UNION_PARENT_MODE_BUSY );	
             CommStateUnionPause();
 
@@ -915,32 +915,32 @@ BOOL CheckRequestUnion(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ^ƒ[ê—pƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å°‚ç”¨ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯
  *
- * @param	req		ƒCƒxƒ“ƒgƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg
+ * @param	req		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @retval	"TRUE = ƒCƒxƒ“ƒg”­“®"
- * @retval	"FALSE = ƒCƒxƒ“ƒg”­“®‚È‚µ"
+ * @retval	"TRUE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•"
+ * @retval	"FALSE = ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãªã—"
  *
- *	ƒŠƒNƒGƒXƒg‚ğŒ³‚Éƒ`ƒFƒbƒNƒvƒƒOƒ‰ƒ€‚ğŒÄ‚Ño‚µAƒCƒxƒ“ƒg‚ğ‹N“®‚·‚é
+ *	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å…ƒã«ãƒã‚§ãƒƒã‚¯ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’å‘¼ã³å‡ºã—ã€ã‚¤ãƒ™ãƒ³ãƒˆã‚’èµ·å‹•ã™ã‚‹
  */
 //--------------------------------------------------------------------------------------------
 int CheckRequestBTower(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 {
 
-	//“ÁêƒXƒNƒŠƒvƒgiƒV[ƒ“‹N“®ƒXƒNƒŠƒvƒgjƒ`ƒFƒbƒN
+	//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼ˆã‚·ãƒ¼ãƒ³èµ·å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼‰ãƒã‚§ãƒƒã‚¯
 	if (req->DebugKeyPush == FALSE && SpScriptSearch(repw, SP_SCRID_SCENE_CHANGE) == TRUE) {
 		return TRUE;
 	}
 
 #if 0
-	//ƒgƒŒ[ƒi[‹üƒ`ƒFƒbƒN
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒã‚§ãƒƒã‚¯
 	{
 		if( req->DebugKeyPush == FALSE ){
 			BOOL flag = EvPoke_Enable2vs2Battle(SaveData_GetTemotiPokemon(repw->savedata));
 			
 			if( SysFlag_PairCheck(SaveData_GetEventWork(repw->savedata)) == 1 ){
-				flag = TRUE;		//˜A‚ê•à‚«’†‚È‚çƒ_ƒuƒ‹‰Â”\ 
+				flag = TRUE;		//é€£ã‚Œæ­©ãä¸­ãªã‚‰ãƒ€ãƒ–ãƒ«å¯èƒ½ 
 			}
 			
 			if( EvTrainerEyeCheck(repw,flag) == TRUE ){
@@ -949,26 +949,26 @@ int CheckRequestBTower(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 		}
 	}
 	
-	//ˆê•àˆÚ“®ƒ`ƒFƒbƒN
+	//ä¸€æ­©ç§»å‹•ãƒã‚§ãƒƒã‚¯
 	if (req->MoveCheck) {
-		//ˆê•à“®‚¢‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒO‚ÌXV
+		//ä¸€æ­©å‹•ã„ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã®æ›´æ–°
 		SysFlag_OneStepReset( SaveData_GetEventWork(repw->savedata) );
 		//IncRecord( CNT_WALK );
 		if( CheckMoveEvent( repw ) == TRUE ){
 			return TRUE;
 		}
-		//|ƒWƒ€ƒ`ƒFƒbƒN
+		//é‹¼ã‚¸ãƒ ãƒã‚§ãƒƒã‚¯
 		if ( GYM_CheckSteelLift(repw) ){
 			return TRUE;
 		}
 	}
-	//‘‚Ş‚ç‚É“ü‚ê‚È‚¢ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+	//è‰ã‚€ã‚‰ã«å…¥ã‚Œãªã„ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 	if (GrassStepInCheck(req, repw)) {
 		EventSet_Script( repw, SCRID_POS_R201_STOP, NULL );
 		return TRUE;
 	}
 
-	//©‹@ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+	//è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 	{
 		int dir = Player_KeyDirGet( repw->player, req->trg, req->cont );
 		HERO_EVBIT evbit;
@@ -981,37 +981,37 @@ int CheckRequestBTower(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 		}
 	}
 	
-	//©‹@“®ìƒ`ƒFƒbƒNiˆê•àˆÚ“® ‚ ‚é‚¢‚Í U‚èŒü‚«j
+	//è‡ªæ©Ÿå‹•ä½œãƒã‚§ãƒƒã‚¯ï¼ˆä¸€æ­©ç§»å‹• ã‚ã‚‹ã„ã¯ æŒ¯ã‚Šå‘ãï¼‰
 	if(req->StepCheck ){
 		int dir = Player_KeyDirGet( repw->player, req->trg, req->cont );
         if( JikiEventCheck_ArrowMat(repw,repw->player,dir) == TRUE ){
             return( TRUE );
         }
         
-		// ƒGƒ“ƒJƒEƒ“ƒg
+		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 		if (CheckEncountEvent(repw)) {
 			return TRUE;
 		}
 
 
-		// ŠÅ”Âƒ`ƒFƒbƒN
+		// çœ‹æ¿ãƒã‚§ãƒƒã‚¯
 		if( CheckBoardStart(repw) == TRUE ){
 			return TRUE;
 		}
 	}
 
-	//•ûŒü“]Š·‚Å‚¤‚Ü‚­“®ì‚µ‚È‚¢‚Ì‚ÅA‚±‚±‚Å‚àŠÅ”Âƒ`ƒFƒbƒN ( FR/LG ‚Ìƒ}ƒl )
+	//æ–¹å‘è»¢æ›ã§ã†ã¾ãå‹•ä½œã—ãªã„ã®ã§ã€ã“ã“ã§ã‚‚çœ‹æ¿ãƒã‚§ãƒƒã‚¯ ( FR/LG ã®ãƒãƒ )
 	if( req->MatCheck && Player_DirGet(repw->player) == req->Site ){
-		// ŠÅ”Âƒ`ƒFƒbƒN
+		// çœ‹æ¿ãƒã‚§ãƒƒã‚¯
 		if( CheckBoardStart(repw) == TRUE ){
 			return TRUE;
 		}
 	}
 #endif
-	// ‰ï˜b
+	// ä¼šè©±
 	if( req->TalkCheck ){
 
-		{	// OBJ‚Æ‚Ì‰ï˜bƒ`ƒFƒbƒN
+		{	// OBJã¨ã®ä¼šè©±ãƒã‚§ãƒƒã‚¯
 			FIELD_OBJ_PTR obj;
 			if( TalkObjEventCheck( repw, &obj ) == TRUE ){
 				EVENT_WORK * ev_work;
@@ -1028,7 +1028,7 @@ int CheckRequestBTower(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 			}
 		}
 
-		{	// BG‚Ì˜b‚µ‚©‚¯ƒ`ƒFƒbƒN
+		{	// BGã®è©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯
 			int	id;
 			
 			id = TalkBgEventCheck(
@@ -1042,7 +1042,7 @@ int CheckRequestBTower(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 			}
 		}
 #if 0
-		{	// –¨“h‚è–Øƒ`ƒFƒbƒN
+		{	// èœœå¡—ã‚Šæœ¨ãƒã‚§ãƒƒã‚¯
 			int id;
 			if (HTE_CheckHoneyTree(repw,&id)){
 				EventSet_Script( repw, id, NULL );
@@ -1067,16 +1067,16 @@ int CheckRequestBTower(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 		}
 	}
 
-	// ˆÈ‰º‚ÍAålŒö‚ÌˆÊ’u‚ª–³ŠÖŒW‚ÈƒCƒxƒ“ƒg
+	// ä»¥ä¸‹ã¯ã€ä¸»äººå…¬ã®ä½ç½®ãŒç„¡é–¢ä¿‚ãªã‚¤ãƒ™ãƒ³ãƒˆ
 	//
-	// •Ö—˜ƒ{ƒ^ƒ“ƒ`ƒFƒbƒN
+	// ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒã‚§ãƒƒã‚¯
 	if( req->CnvButton ){
 		if( FieldConvButtonEventInit( repw ) == TRUE ){
 			return TRUE;
 		}
 	}
 
-	// ƒƒjƒ…[ƒ`ƒFƒbƒN
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( req->MenuOpen ){
 		Snd_SePlay( SE_WIN_OPEN );
         FieldMenuInit( repw );
@@ -1097,7 +1097,7 @@ int CheckRequestBTower(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 //============================================================================================
 //
 //
-//				ƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒNFŒÂ•Êƒ`ƒFƒbƒNƒ‹[ƒ`ƒ“
+//				ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯ï¼šå€‹åˆ¥ãƒã‚§ãƒƒã‚¯ãƒ«ãƒ¼ãƒãƒ³
 //
 //
 //============================================================================================
@@ -1123,7 +1123,7 @@ static BOOL CheckEncountEvent(FIELDSYS_WORK * fsys)
 		return TRUE;
 	}
 #else
-	// ƒGƒ“ƒJƒEƒ“ƒg
+	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 	if( ZoneData_GetEncountFlag(fsys->location->zone_id) &&
 		FieldEncount_Check( fsys ) == TRUE) {
 		return TRUE;
@@ -1134,11 +1134,11 @@ static BOOL CheckEncountEvent(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒNFo“üŒûi‰Ÿ‚µ‚İj
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	req		ƒŠƒNƒGƒXƒg\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE	ƒCƒxƒ“ƒg‹N“®‚ ‚è
- * @retval	FALSE	ƒCƒxƒ“ƒg‹N“®‚È‚µ
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯ï¼šå‡ºå…¥å£ï¼ˆæŠ¼ã—è¾¼ã¿ï¼‰
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	req		ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE	ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ã‚ã‚Š
+ * @retval	FALSE	ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãªã—
  */
 //------------------------------------------------------------------
 static BOOL EvCheck_ExitByPush(FIELDSYS_WORK * fsys, const EV_REQUEST * req)
@@ -1150,24 +1150,24 @@ static BOOL EvCheck_ExitByPush(FIELDSYS_WORK * fsys, const EV_REQUEST * req)
 	u8	attr;
 	LOCATION_WORK cnct;
 
-	//‰Ÿ‚µ‚İ‘€ì‚ğ‚µ‚Ä‚¢‚È‚¢ê‡Aƒ`ƒFƒbƒN‚µ‚È‚¢
+	//æŠ¼ã—è¾¼ã¿æ“ä½œã‚’ã—ã¦ã„ãªã„å ´åˆã€ãƒã‚§ãƒƒã‚¯ã—ãªã„
 	if (req->PushSite == DIR_NOT) {
 		return FALSE;
 	}
 	
-	//Ši“¬ƒWƒ€ƒCƒxƒ“ƒgƒqƒbƒgƒ`ƒFƒbƒN
+	//æ ¼é—˜ã‚¸ãƒ ã‚¤ãƒ™ãƒ³ãƒˆãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 	if( GYM_GimmickCodeCheck(fsys, FLD_GIMMICK_COMBAT_GYM) == TRUE 
 			&& GYM_PLFightGymEventHitCheck(fsys) == TRUE ){
 		return TRUE;
 	}
 	
-	//is•ûŒüˆê•à‘O‚ªis•s”\‚Å‚È‚¢ê‡Aƒ`ƒFƒbƒN‚Í‚µ‚È‚¢
+	//é€²è¡Œæ–¹å‘ä¸€æ­©å‰ãŒé€²è¡Œä¸èƒ½ã§ãªã„å ´åˆã€ãƒã‚§ãƒƒã‚¯ã¯ã—ãªã„
 	GetFrontPos(fsys, &x, &z);
 	if (GetHitAttr(fsys, x, z) == 0) {
 		return FALSE;
 	}
 
-	//is•ûŒüˆê•à‘O‚Ìo“üŒûƒ`ƒFƒbƒN
+	//é€²è¡Œæ–¹å‘ä¸€æ­©å‰ã®å‡ºå…¥å£ãƒã‚§ãƒƒã‚¯
 	if (GetConnectData(fsys, x, z, &cnct) && req->PushSite != DIR_NOT) {
 		attr = GetAttributeLSB(fsys, x, z);
 		if (MATR_IsDoor(attr)) {
@@ -1186,18 +1186,18 @@ static BOOL EvCheck_ExitByPush(FIELDSYS_WORK * fsys, const EV_REQUEST * req)
 		}
 #ifdef	DEBUG_ALL_EXIT_CONNECT
 		//2006.03.04
-		//Œ»ó‚ÍAƒhƒAˆÈŠO‚Å‚àÚ‘±‚ª‘¶İ‚·‚éê‡‚Í‚Æ‚è‚ ‚¦‚¸‚Â‚È‚¢‚Å‚µ‚Ü‚¤B
-		//‚»‚Ì‚¤‚¿‚¿‚á‚ñ‚ÆƒAƒgƒŠƒrƒ…[ƒg‚ª“ü‚é‚Ì‚Å”p~‚·‚é—\’è
+		//ç¾çŠ¶ã¯ã€ãƒ‰ã‚¢ä»¥å¤–ã§ã‚‚æ¥ç¶šãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯ã¨ã‚Šã‚ãˆãšã¤ãªã„ã§ã—ã¾ã†ã€‚
+		//ãã®ã†ã¡ã¡ã‚ƒã‚“ã¨ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãŒå…¥ã‚‹ã®ã§å»ƒæ­¢ã™ã‚‹äºˆå®š
 		EventSet_EasyMapChange(fsys, cnct.zone_id, cnct.door_id,
 				0,0, Player_DirGet(fsys->player));
 		return TRUE;
 #endif
 	}
 
-	//Œ»İ‚Ì‘«Œ³ˆÊ’u‚Ìo“üŒûƒ`ƒFƒbƒN
+	//ç¾åœ¨ã®è¶³å…ƒä½ç½®ã®å‡ºå…¥å£ãƒã‚§ãƒƒã‚¯
 	GetNowPos(fsys, &x, &z);
 
-	// ƒ}ƒbƒgƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 	attr = GetAttributeLSB( fsys, x, z );
 	if( MATR_IsRightMat(attr)||MATR_IsRightNoArrowMat(attr) ){
 		if( req->PushSite != DIR_RIGHT ){
@@ -1211,11 +1211,11 @@ static BOOL EvCheck_ExitByPush(FIELDSYS_WORK * fsys, const EV_REQUEST * req)
 		if( req->PushSite != DIR_DOWN ){
 			return FALSE;
 		}
-	}else if( MATR_IsRightStairs(attr) ){	//‰EŠK’i
+	}else if( MATR_IsRightStairs(attr) ){	//å³éšæ®µ
 		if( req->PushSite != DIR_RIGHT ){
 			return FALSE;
 		}
-	}else if( MATR_IsLeftStairs(attr) ){	//¶ŠK’i
+	}else if( MATR_IsLeftStairs(attr) ){	//å·¦éšæ®µ
 		if( req->PushSite != DIR_LEFT ){
 			return FALSE;
 		}
@@ -1228,11 +1228,11 @@ static BOOL EvCheck_ExitByPush(FIELDSYS_WORK * fsys, const EV_REQUEST * req)
 
 	{
 		int type;
-		if (MATR_IsDoor(attr)){					//ƒhƒA
+		if (MATR_IsDoor(attr)){					//ãƒ‰ã‚¢
 			type = M_JUMP_DOOR;
-		}else if(MATR_IsRightStairs(attr)){		//ŠK’i
+		}else if(MATR_IsRightStairs(attr)){		//éšæ®µ
 			type = M_JUMP_STAIRS;
-		}else if(MATR_IsLeftStairs(attr)){		//ŠK’i
+		}else if(MATR_IsLeftStairs(attr)){		//éšæ®µ
 			type = M_JUMP_STAIRS;
 		}else if (MATR_IsRightMat(attr) || MATR_IsRightNoArrowMat(attr)
 				|| MATR_IsLeftMat(attr) || MATR_IsLeftNoArrowMat(attr)
@@ -1256,11 +1256,11 @@ static BOOL EvCheck_ExitByPush(FIELDSYS_WORK * fsys, const EV_REQUEST * req)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg˜b‚µ‚©‚¯ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
- * @param	repw	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	matr	ƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg‚Ì’l
+ * @brief	ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆè©±ã—ã‹ã‘ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
+ * @param	repw	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	matr	ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®å€¤
  * @retval	EVENT_ID_NONE	
- * @retval	‚»‚êˆÈŠO		ƒXƒNƒŠƒvƒg‚ÌIDw’è
+ * @retval	ãã‚Œä»¥å¤–		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDæŒ‡å®š
  */
 //--------------------------------------------------------------------------------------------
 u16 EvCheck_TalkMapAttr(FIELDSYS_WORK * repw, MATR matr)
@@ -1313,13 +1313,13 @@ u16 EvCheck_TalkMapAttr(FIELDSYS_WORK * repw, MATR matr)
 			}
 		}
 	}
-	#else	//”j‚ê‚½¢ŠE‚ğl—¶
+	#else	//ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®
 	if( Player_FormGet(repw->player) != HERO_FORM_SWIM ){
 		MYSTATUS * my = SaveData_GetMyStatus(repw->savedata);
 		u32 natr = Player_TwThinkNowAttrGet( repw->player );
 		if( Player_EventAttrCheck_Naminori(repw->player,natr,matr)
 				//&& MyStatus_GetBadgeFlag(my, BADGE_ID_C05)){
-				&& MyStatus_GetBadgeFlag(my, BADGE_ID_C06)){			//ƒvƒ‰ƒ`ƒi•ÏX
+				&& MyStatus_GetBadgeFlag(my, BADGE_ID_C06)){			//ãƒ—ãƒ©ãƒãƒŠå¤‰æ›´
 			if( EvPoke_CheckWaza(SaveData_GetTemotiPokemon(repw->savedata),
 						WAZANO_NAMINORI) != 0xff) {
 				return SCRID_HIDEN_NAMINORI;
@@ -1333,11 +1333,11 @@ u16 EvCheck_TalkMapAttr(FIELDSYS_WORK * repw, MATR matr)
 
 //-------------------------------------------------------------
 /**
- * @brief	ˆê•à‚²‚Æ‚ÌƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ä¸€æ­©ã”ã¨ã®ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param
  * 
- * @retval	BOOL		TRUE:”­Œ©	FALSE:‚È‚¢
+ * @retval	BOOL		TRUE:ç™ºè¦‹	FALSE:ãªã„
  */
 //-------------------------------------------------------------
 static BOOL CheckMoveEvent(FIELDSYS_WORK * fsys)
@@ -1346,19 +1346,19 @@ static BOOL CheckMoveEvent(FIELDSYS_WORK * fsys)
 	int x,z;
 	int dir;
 
-	//|ƒWƒ€ƒ`ƒFƒbƒN
+	//é‹¼ã‚¸ãƒ ãƒã‚§ãƒƒã‚¯
 	if ( GYM_GimmickCodeCheck(fsys, FLD_GIMMICK_STEEL_GYM) == TRUE && GYM_CheckSteelLift(fsys) ){
 		return TRUE;
 	}
 	
-	//”j‚ê‚½¢ŠEƒ`ƒFƒbƒN
+	//ç ´ã‚ŒãŸä¸–ç•Œãƒã‚§ãƒƒã‚¯
 	if( GYM_GimmickCodeCheck(fsys,FLD_GIMMICK_TORNWORLD) == TRUE ){
 		if( FldTornWorld_MoveEventCheck(fsys) == TRUE ){
 			return TRUE;
 		}
 	}
 	
-	//‹­§ˆÚ“®°ƒ`ƒFƒbƒN
+	//å¼·åˆ¶ç§»å‹•åºŠãƒã‚§ãƒƒã‚¯
 	dir = Player_DirGet( fsys->player );
 	if( JikiEventCheck_ArrowMat(fsys,fsys->player,dir) == TRUE ){
 		return( TRUE );
@@ -1369,28 +1369,28 @@ static BOOL CheckMoveEvent(FIELDSYS_WORK * fsys)
 	
 	attr = GetAttributeLSB( fsys, x, z );
 	
-	if ( CheckPosEvent(fsys) == TRUE ) return TRUE;		// À•W”­“®ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+	if ( CheckPosEvent(fsys) == TRUE ) return TRUE;		// åº§æ¨™ç™ºå‹•ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 	if ( CheckExit( fsys, x, z, attr) == TRUE ){
 		SetEscapeData(fsys);
-		return TRUE;	// o“ü‚èŒûƒ`ƒFƒbƒN
+		return TRUE;	// å‡ºå…¥ã‚Šå£ãƒã‚§ãƒƒã‚¯
 	}
-///	if ( PosAttrCheck(attr) == TRUE ) return TRUE;		// ƒAƒgƒŠƒrƒ…[ƒg”­“®ƒ`ƒFƒbƒN
+///	if ( PosAttrCheck(attr) == TRUE ) return TRUE;		// ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç™ºå‹•ãƒã‚§ãƒƒã‚¯
 	if ( Player_MoveBitCheck_Force(fsys->player) ) {
-		//©‹@‚ª‹­§ˆÚ“®’†‚Í•à”‚ª‚©‚©‚í‚éˆ—‚ÍƒtƒbƒN‚³‚ê‚é
+		//è‡ªæ©ŸãŒå¼·åˆ¶ç§»å‹•ä¸­ã¯æ­©æ•°ãŒã‹ã‹ã‚ã‚‹å‡¦ç†ã¯ãƒ•ãƒƒã‚¯ã•ã‚Œã‚‹
 		return FALSE;
 	}
 
 	Field_SendPoketchInfo( fsys, POKETCH_SEND_PEDOMATER, 1 );
 
-	if ( CheckPoison( fsys ) == TRUE ) return TRUE;		// “Åƒ_ƒ[ƒWˆ—
-	if ( CheckSafariStep(fsys) == TRUE ) return TRUE;	// ƒTƒtƒ@ƒŠ•à”ƒ`ƒFƒbƒN
-	if ( CheckSodateya( fsys )==TRUE ) return TRUE;		// ˆç‚Ä‰®ˆ—
-	if ( CheckBtlSearcher( fsys )==TRUE ) return TRUE;	// ƒoƒgƒ‹ƒT[ƒ`ƒƒ[ˆ—
-	if ( CheckPokeSearcher( fsys )==TRUE ) return TRUE;	// ƒ|ƒPƒT[ƒ`ƒƒ[ˆ—
-///	if ( StepCountCheck(attr) == TRUE ) return TRUE;	// •à”ƒJƒEƒ“ƒgŠÖ˜Aƒ`ƒFƒbƒN
-	if ( CheckSpray( fsys ) == TRUE )	return	TRUE;	// ƒXƒvƒŒ[ˆ—ƒ`ƒFƒbƒN
+	if ( CheckPoison( fsys ) == TRUE ) return TRUE;		// æ¯’ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
+	if ( CheckSafariStep(fsys) == TRUE ) return TRUE;	// ã‚µãƒ•ã‚¡ãƒªæ­©æ•°ãƒã‚§ãƒƒã‚¯
+	if ( CheckSodateya( fsys )==TRUE ) return TRUE;		// è‚²ã¦å±‹å‡¦ç†
+	if ( CheckBtlSearcher( fsys )==TRUE ) return TRUE;	// ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼å‡¦ç†
+	if ( CheckPokeSearcher( fsys )==TRUE ) return TRUE;	// ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼å‡¦ç†
+///	if ( StepCountCheck(attr) == TRUE ) return TRUE;	// æ­©æ•°ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ãƒã‚§ãƒƒã‚¯
+	if ( CheckSpray( fsys ) == TRUE )	return	TRUE;	// ã‚¹ãƒ—ãƒ¬ãƒ¼å‡¦ç†ãƒã‚§ãƒƒã‚¯
 
-	// 128•à•à‚­‚²‚Æ‚É1‰ñ‚È‚Â‚«‚ÇŒvZ
+	// 128æ­©æ­©ãã”ã¨ã«1å›ãªã¤ãã©è¨ˆç®—
 	if( CheckFriendCalcStepCount( fsys ) ){
 		DoFriendCalcStepCount( fsys );
 	}
@@ -1401,10 +1401,10 @@ static BOOL CheckMoveEvent(FIELDSYS_WORK * fsys)
 
 //-------------------------------------------------------------
 /**
- * @brief	POSƒCƒxƒ“ƒgƒ`ƒFƒbƒN
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	POSã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
- * @retval	BOOL		TRUE:”­Œ©	FALSE:‚È‚¢
+ * @retval	BOOL		TRUE:ç™ºè¦‹	FALSE:ãªã„
  */
 //-------------------------------------------------------------
 static BOOL CheckPosEvent(FIELDSYS_WORK * fsys)
@@ -1422,7 +1422,7 @@ static BOOL CheckPosEvent(FIELDSYS_WORK * fsys)
 }
 
 //-------------------------------------------------------------
-//	 o“ü‚èŒû‚Ìƒ`ƒFƒbƒN•ƒf[ƒ^ƒZƒbƒg
+//	 å‡ºå…¥ã‚Šå£ã®ãƒã‚§ãƒƒã‚¯ï¼†ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 //-------------------------------------------------------------
 static BOOL CheckExit(FIELDSYS_WORK * fsys, const int x, const int z, const u8 inAttr)
 {
@@ -1432,15 +1432,15 @@ static BOOL CheckExit(FIELDSYS_WORK * fsys, const int x, const int z, const u8 i
 		return FALSE;
 	}
 	
-	//ƒGƒXƒJƒŒ[ƒ^[
+	//ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼
 	if( MATR_IsEscalator(inAttr) == TRUE ){
 		int dir = Player_DirGet( fsys->player );
-		if (dir == DIR_LEFT){	//¶Œü‚«
-			dir = DIR_RIGHT;	//ƒtƒF[ƒhƒCƒ“‚Í‰EŒü‚«
-		}else if (dir == DIR_RIGHT){	//‰EŒü‚«
-			dir = DIR_LEFT;	//ƒtƒF[ƒhƒCƒ“‚Í¶Œü‚«
+		if (dir == DIR_LEFT){	//å·¦å‘ã
+			dir = DIR_RIGHT;	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æ™‚ã¯å³å‘ã
+		}else if (dir == DIR_RIGHT){	//å³å‘ã
+			dir = DIR_LEFT;	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æ™‚ã¯å·¦å‘ã
 		}else{
-			GF_ASSERT(0&&"©‹@‚ÌŒü‚«‚ª•s³");
+			GF_ASSERT(0&&"è‡ªæ©Ÿã®å‘ããŒä¸æ­£");
 			return FALSE;
 		}
 		MJUMP_ChangeMap(fsys, cnct.zone_id, cnct.door_id,
@@ -1449,20 +1449,20 @@ static BOOL CheckExit(FIELDSYS_WORK * fsys, const int x, const int z, const u8 i
 	}else if ( MATR_IsEscalatorNonRet(inAttr) == TRUE ){
 		int dir = Player_DirGet( fsys->player );
 		if ( (dir!=DIR_LEFT)&&(dir!=DIR_RIGHT) ){
-			GF_ASSERT( 0&&"©‹@‚ÌŒü‚«‚ª•s³" );
+			GF_ASSERT( 0&&"è‡ªæ©Ÿã®å‘ããŒä¸æ­£" );
 			return FALSE;
 		}
 		MJUMP_ChangeMap(fsys, cnct.zone_id, cnct.door_id,
 						0, 0, dir, M_JUMP_ESCA);
 		return TRUE;
 	}
-	//ãŒü‚«“¥‚İ‚İƒ}ƒbƒg
+	//ä¸Šå‘ãè¸ã¿è¾¼ã¿ãƒãƒƒãƒˆ
 	if (MATR_IsUpMat(inAttr)||MATR_IsUpNoArrowMat(inAttr)){
 		MJUMP_ChangeMapByLocation(	fsys, cnct.zone_id, cnct.door_id,
 										0, 0, DIR_UP);
 		return TRUE;
 	}
-    // ƒ[ƒvƒ|ƒCƒ“ƒg
+    // ãƒ¯ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆ
     if(MATR_IsWarpPoint(inAttr)){
         EventCmd_WarpPoint(fsys, cnct.zone_id, cnct.door_id);
 		return TRUE;
@@ -1470,8 +1470,8 @@ static BOOL CheckExit(FIELDSYS_WORK * fsys, const int x, const int z, const u8 i
 	
 #ifdef	DEBUG_ALL_EXIT_CONNECT
 	//2006.03.04
-	//ƒAƒgƒŠƒrƒ…[ƒg‚ª‚È‚¢‚ªo“üŒû‚ª‚ ‚éê‡A‚Æ‚è‚ ‚¦‚¸‚Â‚È‚®
-	//ÅI“I‚É‚Í‚±‚Ìˆ—‚Í‘S‚Ä‚ÌƒAƒgƒŠƒrƒ…[ƒg‚ª‚»‚ë‚¦‚Î•s—v‚Æ‚È‚é
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãŒãªã„ãŒå‡ºå…¥å£ãŒã‚ã‚‹å ´åˆã€ã¨ã‚Šã‚ãˆãšã¤ãªã
+	//æœ€çµ‚çš„ã«ã¯ã“ã®å‡¦ç†ã¯å…¨ã¦ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãŒãã‚ãˆã°ä¸è¦ã¨ãªã‚‹
 	if (
 			MATR_IsLeftStairs(inAttr) ||
 			MATR_IsRightStairs(inAttr) ||
@@ -1483,7 +1483,7 @@ static BOOL CheckExit(FIELDSYS_WORK * fsys, const int x, const int z, const u8 i
 //			MATR_IsUpNoArrowMat(inAttr) ||
 			MATR_IsLeftNoArrowMat(inAttr) ||
 			MATR_IsRightNoArrowMat(inAttr)) {
-		//ã‚É‚Ì‚Á‚Ä‰Ÿ‚µ‚Şƒ^ƒCƒv‚ÌƒAƒgƒŠƒrƒ…[ƒg‚Ìê‡‚Í–³‹‚·‚é
+		//ä¸Šã«ã®ã£ã¦æŠ¼ã—è¾¼ã‚€ã‚¿ã‚¤ãƒ—ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®å ´åˆã¯ç„¡è¦–ã™ã‚‹
 		return FALSE;
 	}
 	EventSet_EasyMapChange(fsys, cnct.zone_id, cnct.door_id,
@@ -1493,11 +1493,11 @@ static BOOL CheckExit(FIELDSYS_WORK * fsys, const int x, const int z, const u8 i
 #endif
 
 /**	
-			//‰·ò
-			//‰B‚µ—‚Æ‚µŒŠ
-			//ƒ[ƒvƒ|ƒCƒ“ƒg
-			//—‚Æ‚µŒŠ
-			//OBJˆÊ’u•Ûƒ[ƒvƒ|ƒCƒ“ƒg
+			//æ¸©æ³‰
+			//éš ã—è½ã¨ã—ç©´
+			//ãƒ¯ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆ
+			//è½ã¨ã—ç©´
+			//OBJä½ç½®ä¿æŒãƒ¯ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆ
 */	
 
 	return FALSE;
@@ -1505,7 +1505,7 @@ static BOOL CheckExit(FIELDSYS_WORK * fsys, const int x, const int z, const u8 i
 
 //==============================================================================
 /**
- * $brief   ˆç‚Ä‰®ƒ`ƒFƒbƒNŒÄ‚Ño‚µ
+ * $brief   è‚²ã¦å±‹ãƒã‚§ãƒƒã‚¯å‘¼ã³å‡ºã—
  *
  * @param   fsys		
  *
@@ -1517,16 +1517,16 @@ static BOOL CheckSodateya( FIELDSYS_WORK *fsys )
 	POKEPARTY     *myparty  = SaveData_GetTemotiPokemon(fsys->savedata);
 	SODATEYA_WORK *sodateya = SaveData_GetSodateyaWork(fsys->savedata);
 	
-	// ˆç‚Ä‰®‚P•à•à‚«ˆ—
+	// è‚²ã¦å±‹ï¼‘æ­©æ­©ãå‡¦ç†
 	if (PokeSodateya( sodateya, myparty, fsys ) == TRUE) {
 		RECORD *record = SaveData_GetRecord(fsys->savedata);
 		
-		// ƒ^ƒ}ƒS‚ª¶‚Ü‚ê‚½‰ñ”‚ğ{‚P
+		// ã‚¿ãƒã‚´ãŒç”Ÿã¾ã‚ŒãŸå›æ•°ã‚’ï¼‹ï¼‘
 		RECORD_Inc( record, RECID_TAMAGO_HATCHING );
-		// ƒXƒRƒA‰ÁZ
+		// ã‚¹ã‚³ã‚¢åŠ ç®—
 		RECORD_Score_Add( record, SCORE_ID_EGG_HATCHING );
 		
-		// ƒ^ƒ}ƒS‚ª›z‰»‚µ‚½ƒCƒxƒ“ƒg”­“®
+		// ã‚¿ãƒã‚´ãŒå­µåŒ–ã—ãŸã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
 		EventSet_Script(fsys, SCRID_EGG_HATCHING, NULL);
 		
 
@@ -1538,7 +1538,7 @@ static BOOL CheckSodateya( FIELDSYS_WORK *fsys )
 
 //==============================================================================
 /**
- * $brief   ƒoƒgƒ‹ƒT[ƒ`ƒƒ[ƒ`ƒFƒbƒNŒÄ‚Ño‚µ
+ * $brief   ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ãƒã‚§ãƒƒã‚¯å‘¼ã³å‡ºã—
  *
  * @param   fsys		
  *
@@ -1553,7 +1553,7 @@ static BOOL CheckBtlSearcher( FIELDSYS_WORK *fsys )
 
 //==============================================================================
 /**
- * $brief   ƒ|ƒPƒT[ƒ`ƒƒ[ƒ`ƒFƒbƒNŒÄ‚Ño‚µ
+ * $brief   ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼ãƒã‚§ãƒƒã‚¯å‘¼ã³å‡ºã—
  *
  * @param   fsys		
  *
@@ -1568,11 +1568,11 @@ static BOOL CheckPokeSearcher( FIELDSYS_WORK *fsys )
 
 //==============================================================================
 /**
- * $brief   ƒXƒvƒŒ[ˆ—
+ * $brief   ã‚¹ãƒ—ãƒ¬ãƒ¼å‡¦ç†
  *
  * @param   fsys		
  *
- * @retval  BOOL		TRUE‚¾‚Á‚½‚çAƒXƒvƒŒ[Œø‰ÊØ‚ê‚½ƒƒbƒZ[ƒW•\¦
+ * @retval  BOOL		TRUEã ã£ãŸã‚‰ã€ã‚¹ãƒ—ãƒ¬ãƒ¼åŠ¹æœåˆ‡ã‚ŒãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  */
 //==============================================================================
 static BOOL CheckSpray( FIELDSYS_WORK *fsys )
@@ -1582,12 +1582,12 @@ static BOOL CheckSpray( FIELDSYS_WORK *fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜A‚ê•à‚«@‚È‚Â‚«“xŒŸ¸
+ *	@brief	é€£ã‚Œæ­©ãã€€ãªã¤ãåº¦æ¤œæŸ»
  *
- *	@param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
+ *	@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	‚È‚Â‚«“xŒvZ‚·‚é
- *	@retval	FALSE	‚È‚Â‚«“xŒvZ‚µ‚È‚¢
+ *	@retval	TRUE	ãªã¤ãåº¦è¨ˆç®—ã™ã‚‹
+ *	@retval	FALSE	ãªã¤ãåº¦è¨ˆç®—ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL CheckFriendCalcStepCount( FIELDSYS_WORK *fsys )
@@ -1610,9 +1610,9 @@ static BOOL CheckFriendCalcStepCount( FIELDSYS_WORK *fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚È‚Â‚«“xŒvZ‚ğs‚¤
+ *	@brief	ãªã¤ãåº¦è¨ˆç®—ã‚’è¡Œã†
  *
- *	@param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
+ *	@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void DoFriendCalcStepCount( FIELDSYS_WORK *fsys )
@@ -1636,11 +1636,11 @@ static void DoFriendCalcStepCount( FIELDSYS_WORK *fsys )
 //==============================================================================
 //-------------------------------------------------------------
 /**
- * @brief	“Åƒ_ƒ[ƒWƒ`ƒFƒbƒN
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚Ì‚Æ‚«“Å‚É‚æ‚é€–Sƒ_ƒ[ƒW”­“®
+ * @brief	æ¯’ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒã‚§ãƒƒã‚¯
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã®ã¨ãæ¯’ã«ã‚ˆã‚‹æ­»äº¡ãƒ€ãƒ¡ãƒ¼ã‚¸ç™ºå‹•
  *
- * “à•”‚Å“ÅƒGƒtƒFƒNƒg‚ÌŒÄ‚Ño‚µ‚ğs‚Á‚Ä‚¢‚é
+ * å†…éƒ¨ã§æ¯’ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å‘¼ã³å‡ºã—ã‚’è¡Œã£ã¦ã„ã‚‹
  */
 //-------------------------------------------------------------
 static BOOL CheckPoison(FIELDSYS_WORK * fsys)
@@ -1670,9 +1670,9 @@ static BOOL CheckPoison(FIELDSYS_WORK * fsys)
 //==============================================================================
 //-------------------------------------------------------------
 /**
- * @brief	ƒTƒtƒ@ƒŠ•à”ƒ`ƒFƒbƒN
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚Ì‚Æ‚«•à”I—¹ƒCƒxƒ“ƒg”­“®
+ * @brief	ã‚µãƒ•ã‚¡ãƒªæ­©æ•°ãƒã‚§ãƒƒã‚¯
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã®ã¨ãæ­©æ•°çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  *
  */
 //-------------------------------------------------------------
@@ -1680,7 +1680,7 @@ static BOOL CheckSafariStep(FIELDSYS_WORK * fsys)
 {
 	u16 * safari_ball;
 	u16 * safari_step;
-	//ƒTƒtƒ@ƒŠƒ‚[ƒh‚Å‚È‚¯‚ê‚Îƒ`ƒFƒbƒN‚µ‚È‚¢
+	//ã‚µãƒ•ã‚¡ãƒªãƒ¢ãƒ¼ãƒ‰ã§ãªã‘ã‚Œã°ãƒã‚§ãƒƒã‚¯ã—ãªã„
 	if (SysFlag_SafariCheck(SaveData_GetEventWork(fsys->savedata)) == FALSE) {
 		return FALSE;
 	}
@@ -1705,7 +1705,7 @@ static BOOL CheckSafariStep(FIELDSYS_WORK * fsys)
 //============================================================================================
 //
 //
-//		ƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN—pƒc[ƒ‹ŠÖ”
+//		ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯ç”¨ãƒ„ãƒ¼ãƒ«é–¢æ•°
 //
 //
 //============================================================================================
@@ -1747,7 +1747,7 @@ static void GetMovePos(const FIELDSYS_WORK * fsys, int dir, int * x, int * z)
 		*x += 1;
 		break;
 	default:
-		GF_ASSERT_MSG("©‹@‚Ì•ûŒü‚ª‚¨‚©‚µ‚¢\n",0);
+		GF_ASSERT_MSG("è‡ªæ©Ÿã®æ–¹å‘ãŒãŠã‹ã—ã„\n",0);
 	}
 }
 
@@ -1776,12 +1776,12 @@ static u8 GetFrontAttr(const FIELDSYS_WORK * fsys)
 
 //-------------------------------------------------------------
 /**
- * @brief	Ú‘±ƒf[ƒ^‚Ìæ“¾
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	x			Ú‘±ƒf[ƒ^‚ğ’T‚·XˆÊ’uiƒOƒŠƒbƒh’PˆÊj
- * @param	z			Ú‘±ƒf[ƒ^‚ğ’T‚·YˆÊ’uiƒOƒŠƒbƒh’PˆÊj
- * @retval	CONNECT_DATA	Ú‘±ƒf[ƒ^‚ÌƒAƒhƒŒƒX
- * @retval	NULL			Ú‘±ƒf[ƒ^‚ª‚È‚©‚Á‚½ê‡
+ * @brief	æ¥ç¶šãƒ‡ãƒ¼ã‚¿ã®å–å¾—
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x			æ¥ç¶šãƒ‡ãƒ¼ã‚¿ã‚’æ¢ã™Xä½ç½®ï¼ˆã‚°ãƒªãƒƒãƒ‰å˜ä½ï¼‰
+ * @param	z			æ¥ç¶šãƒ‡ãƒ¼ã‚¿ã‚’æ¢ã™Yä½ç½®ï¼ˆã‚°ãƒªãƒƒãƒ‰å˜ä½ï¼‰
+ * @retval	CONNECT_DATA	æ¥ç¶šãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @retval	NULL			æ¥ç¶šãƒ‡ãƒ¼ã‚¿ãŒãªã‹ã£ãŸå ´åˆ
  */
 //-------------------------------------------------------------
 static BOOL GetConnectData(const FIELDSYS_WORK * fsys, int x, int z,
@@ -1805,7 +1805,7 @@ static BOOL GetConnectData(const FIELDSYS_WORK * fsys, int x, int z,
 				connect->x, connect->z, DIR_DOWN);
 	}
 	{
-		//¡“ü‚é‚±‚Æ‚É‚È‚éo“üŒû‚Ìî•ñ‚ğŠo‚¦‚Ä‚¨‚­
+		//ä»Šå…¥ã‚‹ã“ã¨ã«ãªã‚‹å‡ºå…¥å£ã®æƒ…å ±ã‚’è¦šãˆã¦ãŠã
 		LOCATION_WORK * ent = Situation_GetEntranceLocation(SaveData_GetSituation(fsys->savedata));
 		SetLocation(ent, fsys->location->zone_id, door_id, x, z, Player_DirGet(fsys->player));
 	}
@@ -1814,12 +1814,12 @@ static BOOL GetConnectData(const FIELDSYS_WORK * fsys, int x, int z,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒGƒXƒP[ƒvƒf[ƒ^ƒZƒbƒg
+ * ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inX				•œ‹A‚wÀ—p
- * @param	inZ				•œ‹A‚yÀ•W
- * @param	inDir			“ü‚Á‚½‚ÌŒü‚«
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inX				å¾©å¸°ï¼¸åº§ç”¨
+ * @param	inZ				å¾©å¸°ï¼ºåº§æ¨™
+ * @param	inDir			å…¥ã£ãŸæ™‚ã®å‘ã
  *
  * @return	none
  */
@@ -1841,9 +1841,9 @@ static void SetEscapeDataCore(FIELDSYS_WORK * fsys, const int inX, const int inZ
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒGƒXƒP[ƒvƒf[ƒ^ƒZƒbƒg
+ * ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1872,10 +1872,10 @@ static void SetEscapeData(FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠEê—p@OBJ˜b‚µ‚©‚¯ƒ`ƒFƒbƒNBSXY•W€‚ÌƒJƒEƒ“ƒ^[ƒ`ƒFƒbƒN‚Ís‚í‚È‚¢
+ * ç ´ã‚ŒãŸä¸–ç•Œå°‚ç”¨ã€€OBJè©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯ã€‚SXYæ¨™æº–ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯ã¯è¡Œã‚ãªã„
  * @param	fsys	FIELDSYS_WORK 
- * @param	fldobj	˜b‚µ‚©‚¯‘ÎÛ‚ÌFIELD_OBJ_PTRŠi”[æ
- * @retval	BOLL	TRUE=‹N“® FALSE=‘Šè‚ª‹‚È‚¢
+ * @param	fldobj	è©±ã—ã‹ã‘å¯¾è±¡ã®FIELD_OBJ_PTRæ ¼ç´å…ˆ
+ * @retval	BOLL	TRUE=èµ·å‹• FALSE=ç›¸æ‰‹ãŒå±…ãªã„
  */
 //--------------------------------------------------------------
 static BOOL TwTalkObjEventCheck( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR *fldobj )
@@ -1886,7 +1886,7 @@ static BOOL TwTalkObjEventCheck( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR *fldobj )
 	Player_TwThinkFrontPosGet( fsys->player, &gx, &gy, &gz );
 	
 	#ifdef PM_DEBUG
-	OS_Printf( "”j‚ê‚½¢ŠE ˜b‚µ‚©‚¯ GX=%d,GY=%d,GZ=%d\n", gx, gy, gz );
+	OS_Printf( "ç ´ã‚ŒãŸä¸–ç•Œ è©±ã—ã‹ã‘ GX=%d,GY=%d,GZ=%d\n", gx, gy, gz );
 	#endif
 	
 	while( FieldOBJSys_FieldOBJSearch(

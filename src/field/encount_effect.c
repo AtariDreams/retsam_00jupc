@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	encount_effect.c
- * @bfief	ƒGƒ“ƒJƒEƒ“ƒgˆ—
+ * @bfief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
  * @author	GAME FREAK inc.
  */
 //============================================================================================
@@ -35,7 +35,7 @@
 
 //-----------------------------------------------------------------------------
 //
-// ƒGƒ“ƒJƒEƒ“ƒg—pŠÖ”ƒe[ƒuƒ‹
+// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç”¨é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 //=============================================================================
 static const TCB_FUNC EncountEffectTask[] ={
@@ -53,14 +53,14 @@ static const TCB_FUNC EncountEffectTask[] ={
 	EncountEffect_Trainer_DanLevelLow,
 	EncountEffect_Trainer_DanLevelHigh,
 
-	EncountEffect_SPTR_IwaGym,			// ƒNƒƒKƒlƒWƒ€
-	EncountEffect_SPTR_KusaGym,         // ƒnƒNƒ^ƒCƒWƒ€
-	EncountEffect_SPTR_MizuGym,         // ƒmƒ‚ƒZƒWƒ€
-	EncountEffect_SPTR_KakutouGym,      // ƒgƒoƒŠƒWƒ€
-	EncountEffect_SPTR_GoosutoGym,      // ƒˆƒXƒKƒgƒWƒ€
-	EncountEffect_SPTR_KooriGym,        // ƒLƒbƒTƒLƒWƒ€
-	EncountEffect_SPTR_HaganeGym,       // ƒ~ƒIƒWƒ€
-	EncountEffect_SPTR_DenkiGym,        // ƒiƒMƒTƒWƒ€
+	EncountEffect_SPTR_IwaGym,			// ã‚¯ãƒ­ã‚¬ãƒã‚¸ãƒ 
+	EncountEffect_SPTR_KusaGym,         // ãƒã‚¯ã‚¿ã‚¤ã‚¸ãƒ 
+	EncountEffect_SPTR_MizuGym,         // ãƒãƒ¢ã‚»ã‚¸ãƒ 
+	EncountEffect_SPTR_KakutouGym,      // ãƒˆãƒãƒªã‚¸ãƒ 
+	EncountEffect_SPTR_GoosutoGym,      // ãƒ¨ã‚¹ã‚¬ãƒˆã‚¸ãƒ 
+	EncountEffect_SPTR_KooriGym,        // ã‚­ãƒƒã‚µã‚­ã‚¸ãƒ 
+	EncountEffect_SPTR_HaganeGym,       // ãƒŸã‚ªã‚¸ãƒ 
+	EncountEffect_SPTR_DenkiGym,        // ãƒŠã‚®ã‚µã‚¸ãƒ 
 
 	EncountEffect_SPTR_Siten00,
 	EncountEffect_SPTR_Siten01,
@@ -86,10 +86,10 @@ static const TCB_FUNC EncountEffectTask[] ={
 
 //-------------------------------------
 //	
-//	ƒrƒbƒgƒ}ƒbƒv‘€ì
+//	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æ“ä½œ
 //	
 //=====================================
-// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒg
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 typedef struct _ENC_BMP_FILL_OBJ{
 	ENC_MOVE_WORK move_x;
 	ENC_MOVE_WORK move_y;
@@ -100,7 +100,7 @@ typedef struct _ENC_BMP_FILL_OBJ{
 	u8 col;
 } ;
 
-// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒuƒƒbƒNã“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒg
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ–ãƒ­ãƒƒã‚¯ä¸Šå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 typedef struct _ENC_BMP_FILL_BLOCK{
 	ENC_MOVE_WORK move_x;
 	ENC_MOVE_WORK move_y;
@@ -113,15 +113,15 @@ typedef struct _ENC_BMP_FILL_BLOCK{
 
 static void ENC_BMP_Fill( GF_BGL_BMPWIN* p_bmp, s32 top, s32 bottom, s32 left, s32 right, u8 col );
 
-// ƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒN–„‚ßs‚­‚µƒVƒXƒeƒ€
-#define ENCOUNT_BLOCK_MOVE_WIDTH	( 32 )	// ƒuƒƒbƒNƒTƒCƒY
-#define ENCOUNT_BLOCK_MOVE_HEIGHT	( 32 )	// ƒuƒƒbƒNƒTƒCƒY
-#define ENCOUNT_BLOCK_MOVE_MAT_Y	( -16 )	// ŠJnÀ•W
-#define ENCOUNT_BLOCK_MOVE_MOVE_Y	( 192 + ENCOUNT_BLOCK_MOVE_MAT_Y )	// ˆÚ“®‹——£
-#define ENCOUNT_BLOCK_MOVE_OBJNUM	( 48 )	// xƒuƒƒbƒN‚Å–„‚ß‚é
-#define ENCOUNT_BLOCK_MOVE_X_NUM	( 8 )	// ‰¡‚Ì”
-#define ENCOUNT_BLOCK_MOVE_Y_NUM	( 6 )	// c‚Ì”
-static const u8 ENCOUNT_BLOCK_MOVE_MoveParam[ ENCOUNT_BLOCK_MOVE_X_NUM ] = {	// o‚Ä‚­‚éxÀ•W‚Ì‡”Ôƒe[ƒuƒ‹
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯åŸ‹ã‚å°½ãã—ã‚·ã‚¹ãƒ†ãƒ 
+#define ENCOUNT_BLOCK_MOVE_WIDTH	( 32 )	// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+#define ENCOUNT_BLOCK_MOVE_HEIGHT	( 32 )	// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+#define ENCOUNT_BLOCK_MOVE_MAT_Y	( -16 )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_BLOCK_MOVE_MOVE_Y	( 192 + ENCOUNT_BLOCK_MOVE_MAT_Y )	// ç§»å‹•è·é›¢
+#define ENCOUNT_BLOCK_MOVE_OBJNUM	( 48 )	// xãƒ–ãƒ­ãƒƒã‚¯ã§åŸ‹ã‚ã‚‹
+#define ENCOUNT_BLOCK_MOVE_X_NUM	( 8 )	// æ¨ªã®æ•°
+#define ENCOUNT_BLOCK_MOVE_Y_NUM	( 6 )	// ç¸¦ã®æ•°
+static const u8 ENCOUNT_BLOCK_MOVE_MoveParam[ ENCOUNT_BLOCK_MOVE_X_NUM ] = {	// å‡ºã¦ãã‚‹xåº§æ¨™ã®é †ç•ªãƒ†ãƒ¼ãƒ–ãƒ«
 	 0, 2, 5, 7, 1, 6, 3, 4 
 };
 typedef struct _ENC_BMP_FILL_BLOCK_MOVE{
@@ -137,7 +137,7 @@ typedef struct _ENC_BMP_FILL_BLOCK_MOVE{
 	u8	dummy[1];
 };
 
-// ‰~Œ`ƒrƒbƒgƒ}ƒbƒv“h‚è‚Â‚Ô‚µ
+// å††å½¢ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å¡—ã‚Šã¤ã¶ã—
 typedef struct _ENC_BMP_CIRCLE_FILL{
 	GF_BGL_BMPWIN* p_bmp;
 	ENC_MOVE_WORK rota;
@@ -147,14 +147,14 @@ typedef struct _ENC_BMP_CIRCLE_FILL{
 };
 static void EncBmpCircleFill_Fill( GF_BGL_BMPWIN* p_bmp, u16 last_rota, u16 now_rota, u8 col );
 
-// ƒtƒ‰ƒbƒVƒ…ƒAƒEƒg@ƒIƒuƒWƒF
+// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã€€ã‚ªãƒ–ã‚¸ã‚§
 #define ENC_BMP_FLASH_CIRCLE_NUM	( 8 )
 static const u16 FlashOutParam[8][2] = {
 	{ 0, 23 },
 	{ 45, 22 },
 	{ 45, 68 },
-	{ 90, 67 },		// ‚±‚±‚ÍŒÅ’è@‚±‚ê‚¶‚á‚È‚¢‚Æ‚¤‚Ü‚­‚¢‚©‚È‚¢
-	{ 91, 113 },	// ‚±‚±‚ÍŒÅ’è@‚±‚ê‚¶‚á‚È‚¢‚Æ‚¤‚Ü‚­‚¢‚©‚È‚¢
+	{ 90, 67 },		// ã“ã“ã¯å›ºå®šã€€ã“ã‚Œã˜ã‚ƒãªã„ã¨ã†ã¾ãã„ã‹ãªã„
+	{ 91, 113 },	// ã“ã“ã¯å›ºå®šã€€ã“ã‚Œã˜ã‚ƒãªã„ã¨ã†ã¾ãã„ã‹ãªã„
 	{ 135, 112 },
 	{ 135, 158 },
 	{ 180, 157 },
@@ -168,7 +168,7 @@ typedef struct _ENC_BMP_FLASH_OUT {
 
 //-------------------------------------
 //	
-//	ÌŞ×²ÄÈ½ŠÖŒW
+//	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹é–¢ä¿‚
 //	
 //=====================================
 
@@ -176,24 +176,24 @@ static void ENC_BrightnessVset( TCB_PTR tcb, void* work );
 
 //-------------------------------------
 //
-//	Å‰‚ÌƒsƒJƒsƒJ‚Ìƒ^ƒXƒN
+//	æœ€åˆã®ãƒ”ã‚«ãƒ”ã‚«ã®ã‚¿ã‚¹ã‚¯
 //
 //=====================================
 typedef struct{
 	int seq;
 	u32 flash_num;
 	int count;
-	int disp;		// ‰æ–Êw’è
+	int disp;		// ç”»é¢æŒ‡å®š
 	u32 end_bright;
 	u32 sub_bright;
 	BR_BRIGHTNESS_FADE br_main;
 	BR_BRIGHTNESS_FADE br_sub;
-	BOOL* end;		// I—¹Áª¯¸—p
+	BOOL* end;		// çµ‚äº†ãƒã‚§ãƒƒã‚¯ç”¨
 } BR_FLASH_TASK;
 #define FLASH_EFF_SYNC_SUB	( 8 )
 #define FLASH_EFF_SYNC_ONE	( 3 )
 
-// ŠJnƒGƒtƒFƒNƒgƒ^ƒXƒNiÅ‰‚ÌŒõ‚é‚à‚Ì‚È‚Ç‚ğ§Œäj
+// é–‹å§‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯ï¼ˆæœ€åˆã®å…‰ã‚‹ã‚‚ã®ãªã©ã‚’åˆ¶å¾¡ï¼‰
 static void BR_FlashTask(TCB_PTR tcb, void *work);
 enum{
 	FADE_SUB_EFFECT,
@@ -206,23 +206,23 @@ enum{
 
 //-------------------------------------
 //
-//	Hƒuƒ‰ƒ“ƒN—p
+//	Hãƒ–ãƒ©ãƒ³ã‚¯ç”¨
 //
 //=====================================
 //---------------------------
-// BG‚ğ‰¡‚ÉŠ„‚éHBlank—p
+// BGã‚’æ¨ªã«å‰²ã‚‹HBlankç”¨
 //===========================
 typedef struct {
-	int x;			// ¡‚ÌˆÚ“®ˆÊ’u
-	int speed;		// ‘¬“x
-	BOOL* end_check;// I—¹ƒ`ƒFƒbƒN
+	int x;			// ä»Šã®ç§»å‹•ä½ç½®
+	int speed;		// é€Ÿåº¦
+	BOOL* end_check;// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 } ENC_HB_BG_CUT;
-#define ENC_HB_BG_CUT_ST	(100)		// ‰Á‘¬“x
+#define ENC_HB_BG_CUT_ST	(100)		// åŠ é€Ÿåº¦
 #define ENC_HB_BG_CUT_END_X	(25000)
 static void ENC_BG_Cut_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work);
 
 //-------------------------------------
-//	‚˜ƒhƒbƒg‚²‚Æ‚É¶‰E‚É•ª‚¯‚ÄˆÚ“®
+//	ï½˜ãƒ‰ãƒƒãƒˆã”ã¨ã«å·¦å³ã«åˆ†ã‘ã¦ç§»å‹•
 //=====================================
 typedef struct _ENC_HB_BG_SLICE{
 	ENC_ADDMOVE_WORK_FX move_x;
@@ -231,7 +231,7 @@ typedef struct _ENC_HB_BG_SLICE{
 	FIELD_HBLANK_SYS* p_hsys;
 	FIELD_HBLANK_OBJ* p_hobj;
 	TCB_PTR tcb;
-	BOOL* end_check;// I—¹ƒ`ƒFƒbƒN
+	BOOL* end_check;// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 } ;
 #define END_HB_BG_SLICE_TCB_PRI	( 1024 )
 #define END_HB_BG_SLICE_INIT_TCB_PRI	( 1024 )
@@ -242,7 +242,7 @@ static void ENC_BG_Slice_End( ENC_HB_BG_SLICE* p_work );
 
 
 //-------------------------------------
-// ƒEƒBƒ“ƒhƒE‚ÅÎ‚ß‚É‰æ–Ê‚ğ‰B‚µ‚Ä‚¢‚­
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§æ–œã‚ã«ç”»é¢ã‚’éš ã—ã¦ã„ã
 //=====================================
 typedef struct _ENC_HB_BG_WND_SLANT{
 	ENC_ADDMOVE_WORK_FX move_x;
@@ -252,7 +252,7 @@ typedef struct _ENC_HB_BG_WND_SLANT{
 	FIELD_HBLANK_SYS* p_hsys;
 	FIELD_HBLANK_OBJ* p_hobj;
 	TCB_PTR tcb;
-	BOOL* end_check;// I—¹ƒ`ƒFƒbƒN
+	BOOL* end_check;// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 };
 #define END_HB_BG_WND_SLANT_TCB_PRI	( 1024 )
 #define END_HB_BG_WND_SLANT_INIT_TCB_PRI	( 1024 )
@@ -264,7 +264,7 @@ static void ENC_BG_WndSlant_Tcb( TCB_PTR tcb, void* p_work );
 static void ENC_BG_WndSlant_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work);
 static void ENC_BG_WndSlant_End( ENC_HB_BG_WND_SLANT* p_work );
 
-// ƒJƒbƒgƒCƒ“—p@ƒWƒOƒUƒOƒEƒBƒ“ƒhƒE
+// ã‚«ãƒƒãƒˆã‚¤ãƒ³ç”¨ã€€ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 typedef struct _ENC_HB_BG_WND_ZIGUZAGU{
 	ENC_MOVE_WORK move_x;
 	u32 seq;
@@ -272,7 +272,7 @@ typedef struct _ENC_HB_BG_WND_ZIGUZAGU{
 	FIELD_HBLANK_SYS* p_hsys;
 	FIELD_HBLANK_OBJ* p_hobj;
 	TCB_PTR tcb;
-	BOOL* end_check;// I—¹ƒ`ƒFƒbƒN
+	BOOL* end_check;// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 } ;
 #define ENC_BG_WND_ZIGUZAGU_MOVE_S		( 255 )
 #define ENC_BG_WND_ZIGUZAGU_MOVE_E		( 0 )
@@ -286,7 +286,7 @@ static void ENC_BG_WndZiguzagu_End( ENC_HB_BG_WND_ZIGUZAGU* p_work );
 
 
 //-------------------------------------
-//	ƒOƒ‰ƒtƒBƒbƒN—Ş
+//	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é¡
 //=====================================
 #define ENC_BG_AFFINCONT_TASK	( 1024 )
 static void ENC_BG_AffinContSetTcb( TCB_PTR tcb, void* work );
@@ -294,11 +294,11 @@ static void ENC_BG_AffinContSetTcb( TCB_PTR tcb, void* work );
 // OAM
 static void ENC_OAM_TransOamPltt( CLACT_WORK_PTR clact, void* data, u32 size );
 static void ENC_OAM_TransOamChar( CLACT_WORK_PTR clact, void* data, u32 size );
-#define ENC_OAM_TR_CHAR_SIZE_X	( 64 )	// OAMƒLƒƒƒ‰ƒNƒ^’PˆÊƒTƒCƒY
-#define ENC_OAM_TR_CHAR_SIZE_Y	( 64 )	// OAMƒLƒƒƒ‰ƒNƒ^’PˆÊƒTƒCƒY
+#define ENC_OAM_TR_CHAR_SIZE_X	( 64 )	// OAMã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã‚µã‚¤ã‚º
+#define ENC_OAM_TR_CHAR_SIZE_Y	( 64 )	// OAMã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã‚µã‚¤ã‚º
 #define ENC_OAM_TR_CHAR_ONELINE	( 8*8 )
-#define ENC_OAM_TR_CHAR_BUFF_SIZE 	( 0x800 )// ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@ƒTƒCƒY
-#define ENC_OAM_TR_CHAR_CUT_Y	( 0 )	// ‚±‚ê‚¾‚¯‚¸‚ç‚µ‚½‚Æ‚±‚ë‚©‚ç”²‚«o‚·
+#define ENC_OAM_TR_CHAR_BUFF_SIZE 	( 0x800 )// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+#define ENC_OAM_TR_CHAR_CUT_Y	( 0 )	// ã“ã‚Œã ã‘ãšã‚‰ã—ãŸã¨ã“ã‚ã‹ã‚‰æŠœãå‡ºã™
 static void* ENC_OAM_TrCharMake( const NNSG2dCharacterData* cp_chardata, u32 heap, u32* p_size, u32 ofs_cx );
 
 static void ENC_WND_SetWndPositionVWait( TCB_PTR tcb, void* p_work );
@@ -308,7 +308,7 @@ static void ENC_WND_SetWndPositionVWait( TCB_PTR tcb, void* p_work );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒvƒŠƒ“ƒg	V•`‰æŠÂ‹«İ’èƒVƒXƒeƒ€
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ—ãƒªãƒ³ãƒˆ	æ–°æç”»ç’°å¢ƒè¨­å®šã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 typedef struct{
@@ -316,10 +316,10 @@ typedef struct{
 	u8  init;
 	u8  draw_start;
 	FIELDSYS_WORK*	p_fsys;
-	PTC_PTR			p_ptc;		// ƒp[ƒeƒBƒNƒ‹
-	void*			p_ptc_work;	// ƒp[ƒeƒBƒNƒ‹‚É•K—v‚Èƒ[ƒN
-	u32				tex_addr;	// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXŠÇ—
-	u32				plt_addr;	// ƒpƒŒƒbƒgƒAƒhƒŒƒXŠÇ—
+	PTC_PTR			p_ptc;		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
+	void*			p_ptc_work;	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯
+	u32				tex_addr;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ç®¡ç†
+	u32				plt_addr;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ç®¡ç†
 } ENC_GPRINT_WK;
 
 static ENC_GPRINT_WK* pENC_GPRINT_WK = NULL;
@@ -344,11 +344,11 @@ static u32 ENC_GPrint_PTC_PltAlloc( u32 size, BOOL comp4pltt );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŠJn
+ *@brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *@param	No		ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgNO
- *@param	*fsw	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- *@param	end		I—¹ƒ`ƒFƒbƒN—p@TRUEFI—¹‚µ‚½ 
+ *@param	No		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆNO
+ *@param	*fsw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	end		çµ‚äº†ãƒã‚§ãƒƒã‚¯ç”¨ã€€TRUEï¼šçµ‚äº†ã—ãŸ 
  *
  *@return	none
  *
@@ -362,7 +362,7 @@ void EncountEffectStart(int No, FIELDSYS_WORK *fsw, BOOL* end )
 	tcb = PMDS_taskAdd(EncountEffectTask[No], sizeof(ENCOUNT_EFFECT_WORK), TCB_TSK_PRI, HEAPID_FIELD);
 	eew = TCB_GetWork(tcb);
 	eew->fsw = fsw;
-	eew->end = end;		// I—¹ƒtƒ‰ƒOİ’è
+	eew->end = end;		// çµ‚äº†ãƒ•ãƒ©ã‚°è¨­å®š
 	eew->p_handle = ArchiveDataHandleOpen( ARC_ENCOUNTEFFECT, HEAPID_FIELD );
 	if(eew->end != NULL){
 		*(eew->end) = FALSE;
@@ -375,35 +375,35 @@ void EncountEffectStart(int No, FIELDSYS_WORK *fsw, BOOL* end )
 
 //----------------------------------------------------------------------------
 /**
- * encount_effect_subˆÈŠO‚ÌŠO•””ñŒöŠJ
- *	@brief	ƒ[ƒN‚Æƒ^ƒXƒN”jŠüŠÖ”
+ * encount_effect_subä»¥å¤–ã®å¤–éƒ¨éå…¬é–‹
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã¨ã‚¿ã‚¹ã‚¯ç ´æ£„é–¢æ•°
  *
- *	@param	eew ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒ[ƒN
+ *	@param	eew ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void ENC_End( ENCOUNT_EFFECT_WORK* eew, TCB_PTR tcb )
 {
 	ArchiveDataHandleClose( eew->p_handle );
 	sys_FreeMemory(HEAPID_FIELD, eew->work);
-	PMDS_taskDel(tcb);	//ƒ^ƒXƒNI—¹
+	PMDS_taskDel(tcb);	//ã‚¿ã‚¹ã‚¯çµ‚äº†
 }
 
 //-----------------------------------------------------------------------------
 //
-//	Å‰‚ÌƒsƒJƒsƒJ—pƒ^ƒXƒNŠJnŠÖ”
+//	æœ€åˆã®ãƒ”ã‚«ãƒ”ã‚«ç”¨ã‚¿ã‚¹ã‚¯é–‹å§‹é–¢æ•°
 //
 //=============================================================================
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Å‰‚Ìƒtƒ‰ƒbƒVƒ…‚Ì•\Œ»‚ğ‚·‚éƒ^ƒXƒN‚ğÀs‚·‚é
+ *@brief	æœ€åˆã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®è¡¨ç¾ã‚’ã™ã‚‹ã‚¿ã‚¹ã‚¯ã‚’å®Ÿè¡Œã™ã‚‹
  *					
- *@param	disp	ƒƒCƒ“‰æ–Ê‚É‚©‚¯‚é:MASK_MAIN_DISPLAY
- *					ƒTƒu‰æ–Ê‚É‚©‚¯‚é:MASK_SUB_DISPLAY
- *					—¼‰æ–Ê‚É‚©‚¯‚é:MASK_DOUBLE_DISPLAY
+ *@param	disp	ãƒ¡ã‚¤ãƒ³ç”»é¢ã«ã‹ã‘ã‚‹:MASK_MAIN_DISPLAY
+ *					ã‚µãƒ–ç”»é¢ã«ã‹ã‘ã‚‹:MASK_SUB_DISPLAY
+ *					ä¸¡ç”»é¢ã«ã‹ã‘ã‚‹:MASK_DOUBLE_DISPLAY
  *
- *@param	end		I—¹‚µ‚½‚çTRUE‚ğ•Ô‚·ƒtƒ‰ƒO
- *@param	flash_num	ƒtƒ‰ƒbƒVƒ…‰ñ”
+ *@param	end		çµ‚äº†ã—ãŸã‚‰TRUEã‚’è¿”ã™ãƒ•ãƒ©ã‚°
+ *@param	flash_num	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å›æ•°
  *
  *@return	none
  *
@@ -419,7 +419,7 @@ void EncountFlashTask(int disp, u32 bright_color, u32 sub_bright_color, BOOL* en
 	memset( eew, 0, sizeof(BR_FLASH_TASK) );
 	TCB_Add( BR_FlashTask, eew, TCB_TSK_PRI );
 	
-	eew->end = end;		// I—¹ƒtƒ‰ƒOİ’è
+	eew->end = end;		// çµ‚äº†ãƒ•ãƒ©ã‚°è¨­å®š
 	if(eew->end != NULL){
 		*(eew->end) = FALSE;
 	}
@@ -432,16 +432,16 @@ void EncountFlashTask(int disp, u32 bright_color, u32 sub_bright_color, BOOL* en
 //------------------------------------------------------------------
 /**
  * 
- * ƒGƒtƒFƒNƒg
+ * ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * Å‰‚ÌƒsƒJƒsƒJ•\Œ»
+ * æœ€åˆã®ãƒ”ã‚«ãƒ”ã‚«è¡¨ç¾
  * 
- * @param   tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param   work	ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  *
- * ƒsƒJƒsƒJ@20ƒVƒ“ƒNg—p
+ * ãƒ”ã‚«ãƒ”ã‚«ã€€20ã‚·ãƒ³ã‚¯ä½¿ç”¨
  */
 //------------------------------------------------------------------
 static void BR_FlashTask(TCB_PTR tcb, void *work)
@@ -451,12 +451,12 @@ static void BR_FlashTask(TCB_PTR tcb, void *work)
 	switch(eew->seq){
 	case FADE_SUB_EFFECT:
 		if(eew->disp == MASK_MAIN_DISPLAY){
-			//ƒuƒ‰ƒbƒNƒAƒEƒg
+			//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 //			ChangeBrightnessRequest( 40,-16,0, eew->plane, MASK_SUB_DISPLAY);
 			ENC_ChangeMstBrightness( &eew->br_sub, 0, eew->sub_bright, MASK_SUB_DISPLAY, FLASH_EFF_SYNC_SUB );
 		}else{
 			if(eew->disp == MASK_SUB_DISPLAY){
-				//ƒuƒ‰ƒbƒNƒAƒEƒg
+				//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 //				ChangeBrightnessRequest(40,-16,0, eew->plane, MASK_MAIN_DISPLAY);
 				ENC_ChangeMstBrightness( &eew->br_sub, 0, eew->sub_bright, MASK_MAIN_DISPLAY, FLASH_EFF_SYNC_SUB );
 			}
@@ -465,7 +465,7 @@ static void BR_FlashTask(TCB_PTR tcb, void *work)
 		break;
 
 	case FADE_EFFECT:
-		//ƒzƒƒCƒgƒAƒEƒg
+		//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
 //		ChangeBrightnessRequest(4,16,0,eew->plane,eew->disp);
 		ENC_ChangeMstBrightness( &eew->br_main, 0, eew->end_bright, eew->disp, FLASH_EFF_SYNC_ONE );
 		eew->seq++;
@@ -477,7 +477,7 @@ static void BR_FlashTask(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FADE_RET_EFFECT:
-		//ƒzƒƒCƒgƒCƒ“
+		//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
 //		ChangeBrightnessRequest(4,0,16,eew->plane,eew->disp);
 		ENC_ChangeMstBrightness( &eew->br_main, eew->end_bright, 0, eew->disp, FLASH_EFF_SYNC_ONE );
 		eew->seq++;
@@ -494,20 +494,20 @@ static void BR_FlashTask(TCB_PTR tcb, void *work)
 			}
 		}
 		break;
-	case END_EFFECT:		// ƒƒCƒ“ƒGƒtƒFƒNƒg‚ÉˆÚ“®
+	case END_EFFECT:		// ãƒ¡ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ç§»å‹•
 		eew->seq = 0;
 		eew->count = 0;
 
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 
-		TCB_Delete(tcb);	//ƒ^ƒXƒNI—¹
+		TCB_Delete(tcb);	//ã‚¿ã‚¹ã‚¯çµ‚äº†
 		sys_FreeMemoryEz( eew );
 		return ;
 	}
 
-	// ƒTƒu–ÊƒtƒF[ƒh
+	// ã‚µãƒ–é¢ãƒ•ã‚§ãƒ¼ãƒ‰
 	ENC_ChangeMstBrightnessMain( &eew->br_sub );
 }
 
@@ -515,14 +515,14 @@ static void BR_FlashTask(TCB_PTR tcb, void *work)
 //----------------------------------------------------------------------------
 //
 //
-//	ƒGƒtƒFƒNƒg—pHƒuƒ‰ƒ“ƒNŠÖ”ŒS
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°éƒ¡
 //
 //
 //============================================================================
-// Hƒuƒ‰ƒ“ƒNI—¹ƒ`ƒFƒbƒN
+// Hãƒ–ãƒ©ãƒ³ã‚¯çµ‚äº†ãƒã‚§ãƒƒã‚¯
 //----------------------------------------------------------------------------
 /**
- *	@brief	Hƒuƒ‰ƒ“ƒNI—¹ƒ`ƒFƒbƒN
+ *	@brief	Hãƒ–ãƒ©ãƒ³ã‚¯çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *	@param	p_work 
  *	@return
  */
@@ -535,9 +535,9 @@ BOOL ENC_HBlankEndCheck( ENCOUNT_EFFECT_WORK* p_work )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	BG–Ê‚ğ‘S‚Ä‰¡‚ÉƒJƒbƒgƒXƒ^[ƒg
+ *@brief	BGé¢ã‚’å…¨ã¦æ¨ªã«ã‚«ãƒƒãƒˆã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- *@param	p_ew	´Ìª¸Äƒ[ƒN
+ *@param	p_ew	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  */
@@ -556,10 +556,10 @@ void ENC_BG_Cut_Start(ENCOUNT_EFFECT_WORK* p_ew)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	BG–Ê‚ğ‘S‚Ä‰¡‚ÉƒJƒbƒg‚·‚é
+ *@brief	BGé¢ã‚’å…¨ã¦æ¨ªã«ã‚«ãƒƒãƒˆã™ã‚‹
  *
- *@param	p_hobj	hƒuƒ‰ƒ“ƒNƒIƒuƒWƒFƒNƒg
- *@param	p_work	ƒ[ƒN
+ *@param	p_hobj	hãƒ–ãƒ©ãƒ³ã‚¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  */
@@ -567,16 +567,16 @@ void ENC_BG_Cut_Start(ENCOUNT_EFFECT_WORK* p_ew)
 static void ENC_BG_Cut_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work)
 {
 	ENC_HB_BG_CUT* hbw = (ENC_HB_BG_CUT*)p_work;
-	int v_count;		// VƒJƒEƒ“ƒg
-	int	x_num;			// BGƒIƒtƒZƒbƒg‚Éİ’è‚·‚é’l
+	int v_count;		// Vã‚«ã‚¦ãƒ³ãƒˆ
+	int	x_num;			// BGã‚ªãƒ•ã‚»ãƒƒãƒˆã«è¨­å®šã™ã‚‹å€¤
 
-	// VƒJƒEƒ“ƒ^‚ğæ“¾‚µA‚O‚Ì‚ÍˆÚ“®’l‚ğŒvZ‚·‚é
+	// Vã‚«ã‚¦ãƒ³ã‚¿ã‚’å–å¾—ã—ã€ï¼ã®æ™‚ã¯ç§»å‹•å€¤ã‚’è¨ˆç®—ã™ã‚‹
 	v_count = GX_GetVCount();
 	if(v_count == 0){
 
 		if((hbw->x + hbw->speed) <= ENC_HB_BG_CUT_END_X){
-			hbw->x += hbw->speed;			// ˆÚ“®
-			hbw->speed += ENC_HB_BG_CUT_ST;	// ‰Á‘¬
+			hbw->x += hbw->speed;			// ç§»å‹•
+			hbw->speed += ENC_HB_BG_CUT_ST;	// åŠ é€Ÿ
 		}else{
 			
 			*hbw->end_check = TRUE;
@@ -586,7 +586,7 @@ static void ENC_BG_Cut_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work)
 		}
 	}
 
-	// 96–¢–‚ğ¶A96ˆÈã‚ğ‰E‚ÉˆÚ“®‚³‚¹‚é
+	// 96æœªæº€ã‚’å·¦ã€96ä»¥ä¸Šã‚’å³ã«ç§»å‹•ã•ã›ã‚‹
 	x_num = hbw->x / 100;
 	if(v_count >= 96){
 		x_num = -x_num;
@@ -601,12 +601,12 @@ static void ENC_BG_Cut_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‰Šú‰»
+ *	@brief	å‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work			“®ìƒ[ƒN
- *	@param	s_x				ŠJnxÀ•W
- *	@param	e_x				I—¹xÀ•W
- *	@param	count_max		ƒJƒEƒ“ƒgÅ‘å’l
+ *	@param	p_work			å‹•ä½œãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x				é–‹å§‹xåº§æ¨™
+ *	@param	e_x				çµ‚äº†xåº§æ¨™
+ *	@param	count_max		ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
  *
  *	@return	none
  */
@@ -622,19 +622,19 @@ void ENC_MoveReq( ENC_MOVE_WORK* p_work, int s_x, int e_x, int count_max )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_MoveMain( ENC_MOVE_WORK* p_work )
 {
 	int w_x;
 
-	// Œ»İÀ•Wæ“¾
+	// ç¾åœ¨åº§æ¨™å–å¾—
 	w_x = p_work->dis_x * p_work->count;
 	w_x = w_x / p_work->count_max;
 
@@ -652,12 +652,12 @@ BOOL ENC_MoveMain( ENC_MOVE_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‰Šú‰»
+ *	@brief	å‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work			“®ìƒ[ƒN
- *	@param	s_x				ŠJnxÀ•W
- *	@param	e_x				I—¹xÀ•W
- *	@param	count_max		ƒJƒEƒ“ƒgÅ‘å’l
+ *	@param	p_work			å‹•ä½œãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x				é–‹å§‹xåº§æ¨™
+ *	@param	e_x				çµ‚äº†xåº§æ¨™
+ *	@param	count_max		ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
  *
  *	@return	none
  */
@@ -673,19 +673,19 @@ void ENC_MoveReqFx( ENC_MOVE_WORK_FX* p_work, fx32 s_x, fx32 e_x, int count_max 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_MoveMainFx( ENC_MOVE_WORK_FX* p_work )
 {
 	fx32 w_x;
 
-	// Œ»İÀ•Wæ“¾
+	// ç¾åœ¨åº§æ¨™å–å¾—
 	w_x = FX_Mul( p_work->dis_x, p_work->count << FX32_SHIFT );
 	w_x = FX_Div( w_x, p_work->count_max << FX32_SHIFT );
 	
@@ -702,27 +702,27 @@ BOOL ENC_MoveMainFx( ENC_MOVE_WORK_FX* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Á‘¬“®ì”Ä—p@‰Šú‰»
+ *	@brief	åŠ é€Ÿå‹•ä½œæ±ç”¨ã€€åˆæœŸåŒ–
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	s_x		ŠJnÀ•W
- *	@param	e_x		I—¹À•W
- *	@param	s_s		ŠJn‘¬“x
- *	@param	count_max ¶³İÀ’l
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x		é–‹å§‹åº§æ¨™
+ *	@param	e_x		çµ‚äº†åº§æ¨™
+ *	@param	s_s		é–‹å§‹é€Ÿåº¦
+ *	@param	count_max ã‚«ã‚¦ãƒ³ã‚¿å€¤
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ENC_AddMoveReqFx( ENC_ADDMOVE_WORK_FX* p_work, fx32 s_x, fx32 e_x, fx32 s_s, int count_max )
 {
-	fx32 t_x_t;	// ƒ^ƒCƒ€‚Ì‚Qæ
-	fx32 vot;	// ‰‘¬“x–ƒ^ƒCƒ€
+	fx32 t_x_t;	// ã‚¿ã‚¤ãƒ ã®ï¼’ä¹—
+	fx32 vot;	// åˆé€Ÿåº¦ï¼Šã‚¿ã‚¤ãƒ 
 	fx32 dis;
 	fx32 a;
 
 	dis = e_x - s_x;
 	
-	// ‰Á‘¬’l‚ğ‹‚ß‚é
+	// åŠ é€Ÿå€¤ã‚’æ±‚ã‚ã‚‹
 	// a = 2(x - vot)/(t*t)
 	t_x_t = (count_max * count_max) << FX32_SHIFT;
 	vot = FX_Mul( s_s, count_max * FX32_ONE );
@@ -740,12 +740,12 @@ void ENC_AddMoveReqFx( ENC_ADDMOVE_WORK_FX* p_work, fx32 s_x, fx32 e_x, fx32 s_s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Á‘¬“®ìƒƒCƒ“
+ *	@brief	åŠ é€Ÿå‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_AddMoveMainFx( ENC_ADDMOVE_WORK_FX* p_work )
@@ -755,13 +755,13 @@ BOOL ENC_AddMoveMainFx( ENC_ADDMOVE_WORK_FX* p_work )
 	fx32 calc_work;
 	fx32 vot;
 	
-	// “™‰Á‘¬“x‰^“®
+	// ç­‰åŠ é€Ÿåº¦é‹å‹•
 	// dis = vot + 1/2( a*(t*t) )
 	vot = FX_Mul( p_work->s_s, p_work->count << FX32_SHIFT );
 	t_x_t = (p_work->count * p_work->count) << FX32_SHIFT;
 	calc_work = FX_Mul( p_work->s_a, t_x_t );
 	calc_work = FX_Div( calc_work, 2*FX32_ONE );	// 1/2(a*(t*t))
-	dis = vot + calc_work;	///<ˆÚ“®‹——£
+	dis = vot + calc_work;	///<ç§»å‹•è·é›¢
 
 	p_work->x = p_work->s_x + dis;
 
@@ -778,17 +778,17 @@ BOOL ENC_AddMoveMainFx( ENC_ADDMOVE_WORK_FX* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ï½À°ƒuƒ‰ƒCƒgƒlƒXİ’è
+ *	@brief	ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è¨­å®š
  *
- *	@param	disp	–Ê
- *	@param	no		’l
+ *	@param	disp	é¢
+ *	@param	no		å€¤
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ENC_SetMstBrightness( int disp, int no )
 {
-	// ƒuƒ‰ƒCƒgƒlƒX‰ğœ
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è§£é™¤
 	if( disp == MASK_MAIN_DISPLAY ){
 		GX_SetMasterBrightness(no);
 	}else{
@@ -798,13 +798,13 @@ void ENC_SetMstBrightness( int disp, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ï½À°ƒuƒ‰ƒCƒgƒlƒX•ÏX@ƒtƒF[ƒhƒf[ƒ^Ši”[
+ *	@brief	ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å¤‰æ›´ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿æ ¼ç´
  *
- *	@param	p_data		Ši”[æ
- *	@param	start		ŠJn’l
- *	@param	end			I—¹’l
- *	@param	disp		–Ê
- *	@param	sync		ƒVƒ“ƒN”
+ *	@param	p_data		æ ¼ç´å…ˆ
+ *	@param	start		é–‹å§‹å€¤
+ *	@param	end			çµ‚äº†å€¤
+ *	@param	disp		é¢
+ *	@param	sync		ã‚·ãƒ³ã‚¯æ•°
  *
  *	@return	none
  */
@@ -817,12 +817,12 @@ void ENC_ChangeMstBrightness( BR_BRIGHTNESS_FADE* p_data, int start, int end, in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ï½À°ƒuƒ‰ƒCƒgƒlƒX•ÏX@ƒtƒF[ƒhƒƒCƒ“
+ *	@brief	ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å¤‰æ›´ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_ChangeMstBrightnessMain( BR_BRIGHTNESS_FADE* p_data )
@@ -830,20 +830,20 @@ BOOL ENC_ChangeMstBrightnessMain( BR_BRIGHTNESS_FADE* p_data )
 	BOOL result;
 	result = ENC_MoveMain( &p_data->brightness );
 	
-	// Vƒuƒ‰ƒ“ƒNŠúŠÔ’†‚Éİ’è‚µ‚È‚¢‚Æ‚«‚ê‚¢‚ÉƒtƒF[ƒh‚µ‚È‚¢
+	// Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«è¨­å®šã—ãªã„ã¨ãã‚Œã„ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã—ãªã„
 	VWaitTCB_Add( ENC_BrightnessVset, p_data, TCB_VWAIT_BR_TSK_PRI );
 	return result;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Vƒuƒ‰ƒ“ƒNŠúŠÔ’†‚ÉÌŞ×²ÄÈ½’l‚ğİ’è‚·‚éƒ^ƒXƒN
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤ã‚’è¨­å®šã™ã‚‹ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
- *	Vƒuƒ‰ƒ“ƒNŠúŠÔ’†‚Éİ’è‚µ‚È‚¢‚Æ‚«‚ê‚¢‚ÉƒtƒF[ƒh‚µ‚È‚¢
+ *	Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«è¨­å®šã—ãªã„ã¨ãã‚Œã„ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static void ENC_BrightnessVset( TCB_PTR tcb, void* work )
@@ -856,11 +856,11 @@ static void ENC_BrightnessVset( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒNì¬
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
  *	@param	none
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 ENC_HB_BG_SLICE* ENC_BG_Slice_Alloc( void )
@@ -870,7 +870,7 @@ ENC_HB_BG_SLICE* ENC_BG_Slice_Alloc( void )
 	p_work = sys_AllocMemory( HEAPID_FIELD, sizeof(ENC_HB_BG_SLICE) );
 	memset( p_work, 0, sizeof(ENC_HB_BG_SLICE) );
 
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒNİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯è¨­å®š
 	G2_SetWnd0InsidePlane( GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE );	
 	G2_SetWnd1InsidePlane( GX_WND_PLANEMASK_NONE, FALSE );	
 
@@ -879,7 +879,7 @@ ENC_HB_BG_SLICE* ENC_BG_Slice_Alloc( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”jŠü
+ *	@brief	ç ´æ£„
  *
  *	@param	p_work 
  *
@@ -892,7 +892,7 @@ void ENC_BG_Slice_Delete( ENC_HB_BG_SLICE* p_work )
 		ENC_BG_Slice_End( p_work );
 	}
 
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒN”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯ç ´æ£„
 	GX_SetVisibleWnd( GX_WNDMASK_NONE );
 
 	sys_FreeMemoryEz( p_work );
@@ -900,22 +900,22 @@ void ENC_BG_Slice_Delete( ENC_HB_BG_SLICE* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGSliceŠJn
+ *	@brief	BGSliceé–‹å§‹
  *
- *	@param	p_ew	ƒGƒtƒFƒNƒgƒ[ƒN
- *	@param	p_eff	BGƒXƒ‰ƒCƒX
- *	@param	dot		•ªŠ„ƒhƒbƒg”	1ƒhƒbƒg‚²‚Æ‚È‚ç1
- *	@param	sync	ƒGƒtƒFƒNƒgŠ®—¹ƒVƒ“ƒN”
- *	@param	s_x		ŠJnx’l
- *	@param	e_x		I—¹X’l
- *	@param	s_s		‰‘¬“x
+ *	@param	p_ew	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_eff	BGã‚¹ãƒ©ã‚¤ã‚¹
+ *	@param	dot		åˆ†å‰²ãƒ‰ãƒƒãƒˆæ•°	1ãƒ‰ãƒƒãƒˆã”ã¨ãªã‚‰1
+ *	@param	sync	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Œäº†ã‚·ãƒ³ã‚¯æ•°
+ *	@param	s_x		é–‹å§‹xå€¤
+ *	@param	e_x		çµ‚äº†Xå€¤
+ *	@param	s_s		åˆé€Ÿåº¦
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void ENC_BG_Slice_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_SLICE* p_eff, u8 dot, u32 sync, int s_x, int e_x, fx32 s_s )
 {
-	// ŠJnÏ‚İ
+	// é–‹å§‹æ¸ˆã¿
 	GF_ASSERT( p_eff->p_hobj == NULL );
 	
 	p_ew->hblank_flg	= FALSE;
@@ -927,17 +927,17 @@ void ENC_BG_Slice_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_SLICE* p_eff, u8 d
 
 	if( s_x >= 0 ){
 		G2_SetWnd0Position( 0, 0, 255 - s_x, 192 );
-		G2_SetWnd1Position( 0, 0, 1 + s_x, 192 );	// +1‚µ‚È‚¢‚Æ‚ ‚í‚È‚¢
+		G2_SetWnd1Position( 0, 0, 1 + s_x, 192 );	// +1ã—ãªã„ã¨ã‚ã‚ãªã„
 	}else{
 		G2_SetWnd0Position( 0, 0, 255 + s_x, 192 );
-		G2_SetWnd1Position( 0, 0, 1 - s_x, 192 );	// +1‚µ‚È‚¢‚Æ‚ ‚í‚È‚¢
+		G2_SetWnd1Position( 0, 0, 1 - s_x, 192 );	// +1ã—ãªã„ã¨ã‚ã‚ãªã„
 	}
 	
-	// “®‚³ƒ^ƒXƒN“o˜^ŠÖ”
+	// å‹•ã•ã‚¿ã‚¹ã‚¯ç™»éŒ²é–¢æ•°
 	VWaitTCB_Add( ENC_BG_Slice_SetUp_Tcb, p_eff, END_HB_BG_SLICE_INIT_TCB_PRI );
 }
 
-// İ’èŠÖ”
+// è¨­å®šé–¢æ•°
 static void ENC_BG_Slice_SetUp_Tcb( TCB_PTR tcb, void* p_work )
 {
 	ENC_HB_BG_SLICE* p_eff = p_work;
@@ -951,22 +951,22 @@ static void ENC_BG_Slice_SetUp_Tcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒbƒgƒpƒ‰ƒ[ƒ^•ÏXŠÖ”
+ *	@brief	ã‚«ãƒƒãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´é–¢æ•°
  *
- *	@param	p_ew	ƒ[ƒN
- *	@param	p_work	ƒ[ƒN
- *	@param	dot		ƒhƒbƒg”
- *	@param	sync	ƒVƒ“ƒN”
- *	@param	s_x		‚˜ŠJnˆÊ’u
- *	@param	e_x		‚˜I—¹ˆÊ’u
- *	@param	s_s		‰‘¬“x
+ *	@param	p_ew	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	dot		ãƒ‰ãƒƒãƒˆæ•°
+ *	@param	sync	ã‚·ãƒ³ã‚¯æ•°
+ *	@param	s_x		ï½˜é–‹å§‹ä½ç½®
+ *	@param	e_x		ï½˜çµ‚äº†ä½ç½®
+ *	@param	s_s		åˆé€Ÿåº¦
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ENC_BG_Slice_Change( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_SLICE* p_work, u8 dot, u32 sync, int s_x, int e_x, fx32 s_s )
 {
-	// ‚à‚¤I—¹Ï‚İ‚È‚çƒGƒ‰[
+	// ã‚‚ã†çµ‚äº†æ¸ˆã¿ãªã‚‰ã‚¨ãƒ©ãƒ¼
 	GF_ASSERT( ENC_HBlankEndCheck( p_ew ) == FALSE );	
 
 	p_work->dot			= dot;
@@ -977,10 +977,10 @@ void ENC_BG_Slice_Change( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_SLICE* p_work, u8
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒXƒ‰ƒCƒXƒ^ƒXƒN
+ *	@brief	BGã‚¹ãƒ©ã‚¤ã‚¹ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	p_work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -998,14 +998,14 @@ static void ENC_BG_Slice_Tcb( TCB_PTR tcb, void* p_work )
 		num = p_data->move_x.x >> FX32_SHIFT;
 		if( num >= 0 ){
 			G2_SetWnd0Position( 0, 0, 255 - num, 192 );
-			G2_SetWnd1Position( 0, 0, 1 + num, 192 );	// +1‚µ‚È‚¢‚Æ‚ ‚í‚È‚¢
+			G2_SetWnd1Position( 0, 0, 1 + num, 192 );	// +1ã—ãªã„ã¨ã‚ã‚ãªã„
 		}else{
 			G2_SetWnd0Position( 0, 0, 255 + num, 192 );
-			G2_SetWnd1Position( 0, 0, 1 - num, 192 );	// +1‚µ‚È‚¢‚Æ‚ ‚í‚È‚¢
+			G2_SetWnd1Position( 0, 0, 1 - num, 192 );	// +1ã—ãªã„ã¨ã‚ã‚ãªã„
 		}
 		break;
 
-	case 1:	// Hƒuƒ‰ƒ“ƒN‚Åã‚Ì’l‚ª”½‰f‚³‚ê‚é‚Ì‚Å‚PƒVƒ“ƒN‘Ò‚Â@I—¹
+	case 1:	// Hãƒ–ãƒ©ãƒ³ã‚¯ã§ä¸Šã®å€¤ãŒåæ˜ ã•ã‚Œã‚‹ã®ã§ï¼‘ã‚·ãƒ³ã‚¯å¾…ã¤ã€€çµ‚äº†
 		ENC_BG_Slice_End( p_work );
 		break;
 	}
@@ -1013,16 +1013,16 @@ static void ENC_BG_Slice_Tcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒXƒ‰ƒCƒXI—¹
+ *	@brief	BGã‚¹ãƒ©ã‚¤ã‚¹çµ‚äº†
  *
- *	@param	p_work ƒ[ƒN
+ *	@param	p_work ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ENC_BG_Slice_End( ENC_HB_BG_SLICE* p_work )
 {
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒNİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯è¨­å®š
 	G2_SetWnd0InsidePlane( GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE );	
 	G2_SetWndOutsidePlane( GX_WND_PLANEMASK_NONE, FALSE );	
 	G2_SetWnd0Position( 0,0,0,0 );
@@ -1038,10 +1038,10 @@ static void ENC_BG_Slice_End( ENC_HB_BG_SLICE* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒXƒ‰ƒCƒX@Hƒuƒ‰ƒ“ƒNƒR[ƒ‹ƒoƒbƒN
+ *	@brief	BGã‚¹ãƒ©ã‚¤ã‚¹ã€€Hãƒ–ãƒ©ãƒ³ã‚¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	p_hobj	ƒIƒuƒWƒFƒNƒg
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_hobj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1049,10 +1049,10 @@ static void ENC_BG_Slice_End( ENC_HB_BG_SLICE* p_work )
 static void ENC_BG_Slice_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work)
 {
 	ENC_HB_BG_SLICE* p_data = p_work;
-	int v_count;		// VƒJƒEƒ“ƒg
-	int	x_num;			// BGƒIƒtƒZƒbƒg‚Éİ’è‚·‚é’l
+	int v_count;		// Vã‚«ã‚¦ãƒ³ãƒˆ
+	int	x_num;			// BGã‚ªãƒ•ã‚»ãƒƒãƒˆã«è¨­å®šã™ã‚‹å€¤
 
-	// VƒJƒEƒ“ƒ^‚ğæ“¾‚µA‚O‚Ì‚ÍˆÚ“®’l‚ğŒvZ‚·‚é
+	// Vã‚«ã‚¦ãƒ³ã‚¿ã‚’å–å¾—ã—ã€ï¼ã®æ™‚ã¯ç§»å‹•å€¤ã‚’è¨ˆç®—ã™ã‚‹
 	v_count = GX_GetVCount();
 	
 	if( ((v_count / p_data->dot) % 2) == 0 ){
@@ -1077,8 +1077,8 @@ static void ENC_BG_Slice_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work)
 
 //----------------------------------------------------------------------------
 /**
- *		yƒEƒBƒ“ƒhƒEÎ‚ßƒJƒbƒgz
- *	@brief		ƒ[ƒNŠm•Û
+ *		ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ–œã‚ã‚«ãƒƒãƒˆã€‘
+ *	@brief		ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  */
 //-----------------------------------------------------------------------------
 ENC_HB_BG_WND_SLANT* ENC_BG_WndSlant_Alloc( void )
@@ -1088,7 +1088,7 @@ ENC_HB_BG_WND_SLANT* ENC_BG_WndSlant_Alloc( void )
 	p_work = sys_AllocMemory( HEAPID_FIELD, sizeof(ENC_HB_BG_WND_SLANT) );
 	memset( p_work, 0, sizeof(ENC_HB_BG_WND_SLANT) );
 	
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒNİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯è¨­å®š
 	G2_SetWnd0InsidePlane( GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE );	
 	G2_SetWnd1InsidePlane( GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE );	
 	G2_SetWndOutsidePlane( GX_WND_PLANEMASK_NONE, FALSE );	
@@ -1098,8 +1098,8 @@ ENC_HB_BG_WND_SLANT* ENC_BG_WndSlant_Alloc( void )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒEƒBƒ“ƒhƒEÎ‚ßƒJƒbƒgz
- *	@brief		ƒ[ƒN”jŠü
+ *		ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ–œã‚ã‚«ãƒƒãƒˆã€‘
+ *	@brief		ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 void ENC_BG_WndSlant_Delete( ENC_HB_BG_WND_SLANT* p_work )
@@ -1108,7 +1108,7 @@ void ENC_BG_WndSlant_Delete( ENC_HB_BG_WND_SLANT* p_work )
 		ENC_BG_WndSlant_End( p_work );
 	}
 
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒN”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯ç ´æ£„
 	GX_SetVisibleWnd( GX_WNDMASK_NONE );
 
 	sys_FreeMemoryEz( p_work );
@@ -1116,19 +1116,19 @@ void ENC_BG_WndSlant_Delete( ENC_HB_BG_WND_SLANT* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒEƒBƒ“ƒhƒEÎ‚ßƒJƒbƒgz
- *	@brief	ŠJn
+ *		ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ–œã‚ã‚«ãƒƒãƒˆã€‘
+ *	@brief	é–‹å§‹
  *
- *	@param	p_ew		ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒ[ƒN
- *	@param	p_eff		ƒGƒtƒFƒNƒgƒ[ƒN
- *	@param	sync		ƒVƒ“ƒN”
- *	@param	x_ss		X•ûŒü‰‘¬“x
- *	@param	y_ss		Y•ûŒü‰‘¬“x
+ *	@param	p_ew		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_eff		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	sync		ã‚·ãƒ³ã‚¯æ•°
+ *	@param	x_ss		Xæ–¹å‘åˆé€Ÿåº¦
+ *	@param	y_ss		Yæ–¹å‘åˆé€Ÿåº¦
  */
 //-----------------------------------------------------------------------------
 void ENC_BG_WndSlant_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_WND_SLANT* p_eff, u32 sync, fx32 x_ss, fx32 y_ss )
 {
-	// ŠJnÏ‚İ
+	// é–‹å§‹æ¸ˆã¿
 	GF_ASSERT( p_eff->p_hobj == NULL );
 	
 	p_ew->hblank_flg	= FALSE;
@@ -1142,14 +1142,14 @@ void ENC_BG_WndSlant_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_WND_SLANT* p_ef
 	G2_SetWnd0Position( 0, 0, 255, 192 );
 	G2_SetWnd1Position( 0, 0, 255, 192 );
 	
-	// “®‚³ƒ^ƒXƒN“o˜^ŠÖ”
+	// å‹•ã•ã‚¿ã‚¹ã‚¯ç™»éŒ²é–¢æ•°
 	VWaitTCB_Add( ENC_BG_WndSlant_SetUp_Tcb, p_eff, END_HB_BG_WND_SLANT_INIT_TCB_PRI );
 }
 
 //----------------------------------------------------------------------------
 /**
- *		yƒEƒBƒ“ƒhƒEÎ‚ßƒJƒbƒgz
- *	@brief	ƒZƒbƒgƒAƒbƒvƒ^ƒXƒN
+ *		ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ–œã‚ã‚«ãƒƒãƒˆã€‘
+ *	@brief	ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚¿ã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ENC_BG_WndSlant_SetUp_Tcb( TCB_PTR tcb, void* p_work )
@@ -1164,8 +1164,8 @@ static void ENC_BG_WndSlant_SetUp_Tcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒEƒBƒ“ƒhƒEÎ‚ßƒJƒbƒgz
- *	@brief	“®‚³ƒ^ƒXƒN
+ *		ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ–œã‚ã‚«ãƒƒãƒˆã€‘
+ *	@brief	å‹•ã•ã‚¿ã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ENC_BG_WndSlant_Tcb( TCB_PTR tcb, void* p_work )
@@ -1186,7 +1186,7 @@ static void ENC_BG_WndSlant_Tcb( TCB_PTR tcb, void* p_work )
 		G2_SetWnd1Position( x_num, 96 + y_num, 255, 192);
 		break;
 
-	case 1:	// Hƒuƒ‰ƒ“ƒN‚Åã‚Ì’l‚ª”½‰f‚³‚ê‚é‚Ì‚Å‚PƒVƒ“ƒN‘Ò‚Â@I—¹
+	case 1:	// Hãƒ–ãƒ©ãƒ³ã‚¯ã§ä¸Šã®å€¤ãŒåæ˜ ã•ã‚Œã‚‹ã®ã§ï¼‘ã‚·ãƒ³ã‚¯å¾…ã¤ã€€çµ‚äº†
 		ENC_BG_WndSlant_End( p_work );
 		break;
 	}
@@ -1194,18 +1194,18 @@ static void ENC_BG_WndSlant_Tcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒEƒBƒ“ƒhƒEÎ‚ßƒJƒbƒgz
- *	@brief	Hƒuƒ‰ƒ“ƒNŠÖ”
+ *		ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ–œã‚ã‚«ãƒƒãƒˆã€‘
+ *	@brief	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 static void ENC_BG_WndSlant_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work)
 {
 	ENC_HB_BG_WND_SLANT* p_data = p_work;
-	int v_count;		// VƒJƒEƒ“ƒg
-	int	x_num;			// BGƒIƒtƒZƒbƒg‚Éİ’è‚·‚é’l
-	int	y_num;			// BGƒIƒtƒZƒbƒg‚Éİ’è‚·‚é’l
+	int v_count;		// Vã‚«ã‚¦ãƒ³ãƒˆ
+	int	x_num;			// BGã‚ªãƒ•ã‚»ãƒƒãƒˆã«è¨­å®šã™ã‚‹å€¤
+	int	y_num;			// BGã‚ªãƒ•ã‚»ãƒƒãƒˆã«è¨­å®šã™ã‚‹å€¤
 
-	// VƒJƒEƒ“ƒ^‚ğæ“¾‚µA‚O‚Ì‚ÍˆÚ“®’l‚ğŒvZ‚·‚é
+	// Vã‚«ã‚¦ãƒ³ã‚¿ã‚’å–å¾—ã—ã€ï¼ã®æ™‚ã¯ç§»å‹•å€¤ã‚’è¨ˆç®—ã™ã‚‹
 	v_count = GX_GetVCount();
 	
 	if( v_count <= p_data->cut_y ){
@@ -1217,13 +1217,13 @@ static void ENC_BG_WndSlant_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work)
 
 //----------------------------------------------------------------------------
 /**
- *		yƒEƒBƒ“ƒhƒEÎ‚ßƒJƒbƒgz
- *	@brief	I—¹ŠÖ”
+ *		ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ–œã‚ã‚«ãƒƒãƒˆã€‘
+ *	@brief	çµ‚äº†é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 static void ENC_BG_WndSlant_End( ENC_HB_BG_WND_SLANT* p_work )
 {
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒNİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯è¨­å®š
 	G2_SetWnd0InsidePlane( GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE );	
 	G2_SetWndOutsidePlane( GX_WND_PLANEMASK_NONE, FALSE );	
 	G2_SetWnd0Position( 0,0,0,0 );
@@ -1241,7 +1241,7 @@ static void ENC_BG_WndSlant_End( ENC_HB_BG_WND_SLANT* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒtƒBƒ“BGİ’è
+ *	@brief	ã‚¢ãƒ•ã‚£ãƒ³BGè¨­å®š
  *
  *	@param	p_bgl	BGL
  *
@@ -1255,7 +1255,7 @@ void ENC_BG_SetAffineCont( GF_BGL_INI* p_bgl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		‚ ‚Ó‚¡‚ñBGİ’è
+ *	@brief		ã‚ãµãƒã‚“BGè¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void ENC_BG_AffinContSetTcb( TCB_PTR tcb, void* work )
@@ -1271,7 +1271,7 @@ static void ENC_BG_AffinContSetTcb( TCB_PTR tcb, void* work )
 
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );	
 
-	{	// MAIN DISPiƒGƒtƒFƒNƒg‚Pj
+	{	// MAIN DISPï¼ˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼‘ï¼‰
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xe800, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -1281,11 +1281,11 @@ static void ENC_BG_AffinContSetTcb( TCB_PTR tcb, void* work )
 		GF_BGL_BGControlSet( p_bgl, GF_BGL_FRAME1_M, &TextBgCntDat, GF_BGL_MODE_TEXT );
 		GF_BGL_ClearCharSet( GF_BGL_FRAME1_M, 32, 0, HEAPID_FIELD );
 		GF_BGL_ScrClear( p_bgl, GF_BGL_FRAME1_M );
-		// •\¦OFF
+		// è¡¨ç¤ºOFF
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	}
 
-	{	// MAIN DISPiƒGƒtƒFƒNƒg‚Qj
+	{	// MAIN DISPï¼ˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼’ï¼‰
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xf000, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_23,
@@ -1295,11 +1295,11 @@ static void ENC_BG_AffinContSetTcb( TCB_PTR tcb, void* work )
 		GF_BGL_BGControlSet( p_bgl, GF_BGL_FRAME2_M, &TextBgCntDat, GF_BGL_MODE_TEXT );
 		GF_BGL_ClearCharSet( GF_BGL_FRAME2_M, 32, 0, HEAPID_FIELD );
 		GF_BGL_ScrClear( p_bgl, GF_BGL_FRAME2_M );
-		// •\¦OFF
+		// è¡¨ç¤ºOFF
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 	}
 
-	{	// ƒAƒtƒBƒ“BG
+	{	// ã‚¢ãƒ•ã‚£ãƒ³BG
 		GF_BGL_BGCNT_HEADER AffBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0xf800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_23,
@@ -1310,7 +1310,7 @@ static void ENC_BG_AffinContSetTcb( TCB_PTR tcb, void* work )
 		GF_BGL_ClearCharSet( ENC_BG_AFFINE_FRAME, 32, 0, HEAPID_FIELD );
 		GF_BGL_ScrClear( p_bgl, ENC_BG_AFFINE_FRAME );
 
-		// •\¦OFF
+		// è¡¨ç¤ºOFF
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 	}
 
@@ -1320,11 +1320,11 @@ static void ENC_BG_AffinContSetTcb( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒtƒBƒ“BGİ’è
+ *	@brief	ã‚¢ãƒ•ã‚£ãƒ³BGè¨­å®š
  *
- *	@param	scrn_idx		ƒXƒNƒŠ[ƒ“ƒCƒ“ƒfƒbƒNƒX
- *	@param	char_idx		ƒLƒƒƒ‰ƒNƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	pltt_idx		ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX
+ *	@param	scrn_idx		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	char_idx		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	pltt_idx		ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	@param	p_bgl			BGL
  *
  *	@return	none
@@ -1333,7 +1333,7 @@ static void ENC_BG_AffinContSetTcb( TCB_PTR tcb, void* work )
 void ENC_BG_SetAffineBG( ARCHANDLE* p_handle, u32 scrn_idx, u32 char_idx, u32 pltt_idx, GF_BGL_INI* p_bgl )
 {
 
-	// ƒOƒ‰ƒtƒBƒbƒN“Ç‚İ‚İ
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
 	ArcUtil_HDL_PalSet( p_handle, pltt_idx, PALTYPE_MAIN_BG, 0, 0, HEAPID_FIELD );
 	ArcUtil_HDL_BgCharSet( p_handle, char_idx, p_bgl, ENC_BG_AFFINE_FRAME, 0, 0, FALSE, HEAPID_FIELD );
 	ArcUtil_HDL_ScrnSet( p_handle, scrn_idx, p_bgl, ENC_BG_AFFINE_FRAME, 0, 0, FALSE, HEAPID_FIELD );
@@ -1341,15 +1341,15 @@ void ENC_BG_SetAffineBG( ARCHANDLE* p_handle, u32 scrn_idx, u32 char_idx, u32 pl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊíBGİ’è
+ *	@brief	é€šå¸¸BGè¨­å®š
  *
- *	@param	scrn_idx	ƒXƒNƒŠ[ƒ“ƒCƒ“ƒfƒbƒNƒX
- *	@param	char_idx	ƒLƒƒƒ‰ƒNƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	pltt_idx	ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX
- *	@param	pltt_no		ƒpƒŒƒbƒgƒiƒ“ƒo[
- *	@param	pltt_num	ƒpƒŒƒbƒg”
+ *	@param	scrn_idx	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	char_idx	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	pltt_idx	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	pltt_no		ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+ *	@param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆæ•°
  *	@param	p_bgl		BGL
- *	@param	frame		BGƒtƒŒ[ƒ€
+ *	@param	frame		BGãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  *	@return	none
  */
@@ -1359,19 +1359,19 @@ void ENC_BG_SetNormalBG( ARCHANDLE* p_handle, u32 scrn_idx, u32 char_idx, u32 pl
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 	
-	// ƒOƒ‰ƒtƒBƒbƒN“Ç‚İ‚İ
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
 	ArcUtil_HDL_PalSet( p_handle, pltt_idx, PALTYPE_MAIN_BG, pltt_no*32, pltt_num*32, HEAPID_FIELD );
 	ArcUtil_HDL_BgCharSet( p_handle, char_idx, p_bgl, frame, 0, 0, FALSE, HEAPID_FIELD );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ArcUtil_HDL_ScrnDataGet( p_handle, scrn_idx, FALSE, &p_scrn, HEAPID_FIELD );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_bgl, frame,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
-	// ƒpƒŒƒbƒg‚ğ‚ ‚í‚¹‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚ã‚ã›ã‚‹
 	GF_BGL_ScrPalChange( p_bgl, frame,
 			0, 0, 
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8,
@@ -1379,13 +1379,13 @@ void ENC_BG_SetNormalBG( ARCHANDLE* p_handle, u32 scrn_idx, u32 char_idx, u32 pl
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req( p_bgl, frame );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒAƒtƒBƒ“ƒXƒNƒ[ƒ‹İ’èƒ^ƒXƒN
+ *	@brief		ã‚¢ãƒ•ã‚£ãƒ³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¨­å®šã‚¿ã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ENC_BG_SetAffineMtxTcb( TCB_PTR tcb, void* p_work )
@@ -1401,17 +1401,17 @@ static void ENC_BG_SetAffineMtxTcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒtƒBƒ“ƒf[ƒ^İ’èŠÖ”
+ *	@brief	ã‚¢ãƒ•ã‚£ãƒ³ãƒ‡ãƒ¼ã‚¿è¨­å®šé–¢æ•°
  *
  *	@param	p_bgl		BGL
- *	@param	frame		ƒtƒŒ[ƒ€
- *	@param	scale_x		Šgkx
- *	@param	scale_y		Šgky
- *	@param	rota		‰ñ“]
- *	@param	cx			’†SX@iƒhƒbƒg’PˆÊj
- *	@param	cy			’†SY@iƒhƒbƒg’PˆÊj
- *	@param	sc_x		ƒXƒNƒ[ƒ‹À•W
- *	@param	sc_y		ƒXƒNƒ[ƒ‹À•W
+ *	@param	frame		ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	scale_x		æ‹¡ç¸®x
+ *	@param	scale_y		æ‹¡ç¸®y
+ *	@param	rota		å›è»¢
+ *	@param	cx			ä¸­å¿ƒXã€€ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰
+ *	@param	cy			ä¸­å¿ƒYã€€ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰
+ *	@param	sc_x		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™
+ *	@param	sc_y		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™
  *
  *	@return	none
  */
@@ -1421,7 +1421,7 @@ void ENC_BG_SetAffineMtx( ENC_BG_SET_AFFINEPARAM* p_work, GF_BGL_INI* p_bgl, u32
 	
 	MTX_Identity22( &p_work->mtx );
 
-	// Šg‘å‰ñ“]s—ñì¬
+	// æ‹¡å¤§å›è»¢è¡Œåˆ—ä½œæˆ
 	MTX_Rot22( &p_work->mtx, FX_SinIdx( rota ), FX_CosIdx( rota ) );
 	MTX_ScaleApply22( &p_work->mtx, &p_work->mtx, FX_Div( FX32_ONE, scale_x ), FX_Div( FX32_ONE, scale_y ) );
 
@@ -1437,27 +1437,27 @@ void ENC_BG_SetAffineMtx( ENC_BG_SET_AFFINEPARAM* p_work, GF_BGL_INI* p_bgl, u32
 //-----------------------------------------------------------------------------
 /**
  *
- *		OAMİ’èŠÖ˜A
+ *		OAMè¨­å®šé–¢é€£
  *
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚È‚Çì¬
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãªã©ä½œæˆ
  *
- *	@param	p_sys		ƒ[ƒN
- *	@param	work_num	ƒ[ƒN”
- *	@param	res_num		ƒŠƒ\[ƒX”
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	work_num	ãƒ¯ãƒ¼ã‚¯æ•°
+ *	@param	res_num		ãƒªã‚½ãƒ¼ã‚¹æ•°
  */
 //-----------------------------------------------------------------------------
 void ENC_CLACT_Init( ENC_CLACT_SYS* p_sys, int work_num, int res_num )
 {
 	int i;
 	
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 	p_sys->cas = CLACT_U_SetEasyInit( work_num, &p_sys->renddata, HEAPID_FIELD );
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	for( i=0; i<4; i++ ){
 		p_sys->resMan[i] = CLACT_U_ResManagerInit( res_num, i, HEAPID_FIELD );
 	}
@@ -1465,9 +1465,9 @@ void ENC_CLACT_Init( ENC_CLACT_SYS* p_sys, int work_num, int res_num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€î•ñ”jŠü
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ æƒ…å ±ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void ENC_CLACT_Delete( ENC_CLACT_SYS* p_sys )
@@ -1484,51 +1484,51 @@ void ENC_CLACT_Delete( ENC_CLACT_SYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’Pƒ‚ÈƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	å˜ç´”ãªãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_sys		ŠÇ—ƒVƒXƒeƒ€
- *	@param	p_work		ƒf[ƒ^Ši”[æ
- *	@param	pltt_idx	ƒpƒŒƒbƒg
- *	@param	pltt_num	ƒpƒŒƒbƒg“Ç‚İ‚İ”
- *	@param	char_idx	ƒLƒƒƒ‰ƒNƒ^
- *	@param	cel_idx		ƒZƒ‹
- *	@param	anm_idx		ƒAƒjƒ
- *	@param	cont_id		ŠÇ—ID
+ *	@param	p_sys		ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_work		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	pltt_idx	ãƒ‘ãƒ¬ãƒƒãƒˆ
+ *	@param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°
+ *	@param	char_idx	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+ *	@param	cel_idx		ã‚»ãƒ«
+ *	@param	anm_idx		ã‚¢ãƒ‹ãƒ¡
+ *	@param	cont_id		ç®¡ç†ID
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ENC_CLACT_ResLoadEasy( ARCHANDLE* p_handle, ENC_CLACT_SYS* p_sys, ENC_CLACT_RES_WORK* p_work, u32 pltt_idx, u32 pltt_num, u32 char_idx, u32 cel_idx, u32 anm_idx, u32 cont_id )
 {
-	// ƒLƒƒƒ‰ƒNƒ^
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 	p_work->resobj[0] = CLACT_U_ResManagerResAddArcChar_ArcHandle_AllocType( p_sys->resMan[0],
 			p_handle, char_idx, FALSE, cont_id,
 			NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_FIELD, ALLOC_BOTTOM );
 
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	p_work->resobj[1] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( p_sys->resMan[1],
 			p_handle, pltt_idx, FALSE, cont_id,
 			NNS_G2D_VRAM_TYPE_2DMAIN, pltt_num, HEAPID_FIELD );
 
-	// ƒZƒ‹
+	// ã‚»ãƒ«
 	p_work->resobj[2] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( p_sys->resMan[2],
 			p_handle, cel_idx, FALSE, cont_id,
 			CLACT_U_CELL_RES, HEAPID_FIELD );
 
-	// ƒAƒjƒ
+	// ã‚¢ãƒ‹ãƒ¡
 	p_work->resobj[3] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( p_sys->resMan[3],
 			p_handle, anm_idx, FALSE, cont_id,
 			CLACT_U_CELLANM_RES, HEAPID_FIELD );
 
 
-	// Vram“]‘—
+	// Vramè»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_work->resobj[0] );	
 	CLACT_U_ResManagerResOnlyDelete( p_work->resobj[0] );
 	CLACT_U_PlttManagerSetCleanArea( p_work->resobj[1] );	
 //	CLACT_U_ResManagerResOnlyDelete( p_work->resobj[1] );
-//	ƒpƒŒƒbƒg‚Í”jŠü‚µ‚È‚¢A“r’†‚ÅƒpƒŒƒbƒg‚ğ•ÏX‚·‚é‚±‚Æ‚ª‚ ‚é‚½‚ß
+//	ãƒ‘ãƒ¬ãƒƒãƒˆã¯ç ´æ£„ã—ãªã„ã€é€”ä¸­ã§ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹ã“ã¨ãŒã‚ã‚‹ãŸã‚
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &p_work->head,
 			cont_id, cont_id, cont_id, cont_id,
 			CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
@@ -1539,10 +1539,10 @@ void ENC_CLACT_ResLoadEasy( ARCHANDLE* p_handle, ENC_CLACT_SYS* p_sys, ENC_CLACT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’PƒƒŠƒ\[ƒX”jŠü
+ *	@brief	å˜ç´”ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  */
@@ -1553,7 +1553,7 @@ void ENC_CLACT_ResDeleteEasy( ENC_CLACT_SYS* p_sys, ENC_CLACT_RES_WORK* p_work )
 	CLACT_U_CharManagerDelete( p_work->resobj[0] );
 	CLACT_U_PlttManagerDelete( p_work->resobj[1] );
 
-	// ƒŠƒ\[ƒXŠ®‘S”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹å®Œå…¨ç ´æ£„
 	for( i=0; i<4; i++ ){
 		CLACT_U_ResManagerResDelete( p_sys->resMan[i], p_work->resobj[i] );
 	}
@@ -1561,10 +1561,10 @@ void ENC_CLACT_ResDeleteEasy( ENC_CLACT_SYS* p_sys, ENC_CLACT_RES_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒ‰[ƒpƒŒƒbƒg•ÏX
+ *	@brief	ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
  *
- *	@param	clact		ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
- *	@param	p_work		ƒ[ƒN
+ *	@param	clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void ENC_CLACT_ResColorChange( CLACT_WORK_PTR clact, u32 heap, u32 tr_type, u8 evy, u16 next_rgb )
@@ -1576,15 +1576,15 @@ void ENC_CLACT_ResColorChange( CLACT_WORK_PTR clact, u32 heap, u32 tr_type, u8 e
 
 	TrCLACTGraDataGet( tr_type, PARA_FRONT, &ssa );
 
-	// ƒf[ƒ^ì¬æ
+	// ãƒ‡ãƒ¼ã‚¿ä½œæˆå…ˆ
 	dest = sys_AllocMemory( heap, 32 );
 
-	// ƒLƒƒƒ‰ƒNƒ^‚ÆƒpƒŒƒbƒgæ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¨ãƒ‘ãƒ¬ãƒƒãƒˆå–å¾—
 	p_pltt_buff = ArcUtil_PalDataGet( ssa.arcID, ssa.nclrID, &p_pltt, heap );
 
 	SoftFade( p_pltt->pRawData, dest, 16, evy, next_rgb );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ENC_OAM_TransOamPltt( clact, dest, 32 );
 
 	sys_FreeMemoryEz( dest );
@@ -1594,16 +1594,16 @@ void ENC_CLACT_ResColorChange( CLACT_WORK_PTR clact, u32 heap, u32 tr_type, u8 e
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_work		ƒŠƒ\[ƒXƒ[ƒN
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	z			‚šÀ•W
- *	@param	pri			—Dæ‡ˆÊ
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work		ãƒªã‚½ãƒ¼ã‚¹ãƒ¯ãƒ¼ã‚¯
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	z			ï½šåº§æ¨™
+ *	@param	pri			å„ªå…ˆé †ä½
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 CLACT_WORK_PTR ENC_CLACT_Add( ENC_CLACT_SYS* p_sys, ENC_CLACT_RES_WORK* p_work, fx32 x, fx32 y, fx32 z, int pri )
@@ -1627,13 +1627,13 @@ CLACT_WORK_PTR ENC_CLACT_Add( ENC_CLACT_SYS* p_sys, ENC_CLACT_RES_WORK* p_work, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒxƒNƒgƒ‹ì¬
+ *	@brief	ãƒ™ã‚¯ãƒˆãƒ«ä½œæˆ
  *
- *	@param	x	‚˜’l
- *	@param	y	‚™’l
- *	@param	z	‚š’l
+ *	@param	x	ï½˜å€¤
+ *	@param	y	ï½™å€¤
+ *	@param	z	ï½šå€¤
  *
- *	@return	ƒxƒNƒgƒ‹
+ *	@return	ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 VecFx32 ENC_MakeVec( fx32 x, fx32 y, fx32 z )
@@ -1647,13 +1647,13 @@ VecFx32 ENC_MakeVec( fx32 x, fx32 y, fx32 z )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM‚ÌƒLƒƒƒ‰ƒNƒ^‚ÆƒpƒŒƒbƒg‚ğƒgƒŒ[ƒi[‚ÌÒ‚É‚·‚é
+ *	@brief	OAMã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®è€…ã«ã™ã‚‹
  *
- *	@param	clact		ƒZƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
- *	@param	tr_type		ƒgƒŒ[ƒi[ƒ^ƒCƒv
+ *	@param	clact		ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	tr_type		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
  *
- *	@param ofs_cx		Ø‚èæ‚éXƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg’l
+ *	@param ofs_cx		åˆ‡ã‚Šå–ã‚‹Xã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
  */
 //-----------------------------------------------------------------------------
 void ENC_CLACT_ResSetSoftSpriteDataTrOam( CLACT_WORK_PTR clact, u32 heap, u32 tr_type, u8 evy, u16 next_rgb, u32 ofs_cx )
@@ -1666,19 +1666,19 @@ void ENC_CLACT_ResSetSoftSpriteDataTrOam( CLACT_WORK_PTR clact, u32 heap, u32 tr
 		
 	TrCLACTGraDataGet( tr_type, PARA_FRONT, &ssa );
 
-	// ƒLƒƒƒ‰ƒNƒ^‚ÆƒpƒŒƒbƒgæ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¨ãƒ‘ãƒ¬ãƒƒãƒˆå–å¾—
 	p_char = ArcUtil_CharDataGet( ssa.arcID, ssa.ncbrID, FALSE, &p_chardata, heap );
 
-	// •œ†
+	// å¾©å·
 	SoftSpriteChrMask( (u8*)p_chardata->pRawData );
 
-	// ƒpƒŒƒbƒg‚Í‚±‚Ìˆ—‚Ås‚¤
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã¯ã“ã®å‡¦ç†ã§è¡Œã†
 	ENC_CLACT_ResColorChange( clact, heap, tr_type, evy, next_rgb );
 	
-	// OAM—pƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^¶¬
+	// OAMç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	p_charbuff = ENC_OAM_TrCharMake( p_chardata, heap, &size, ofs_cx );
 
-	// ƒLƒƒƒ‰ƒNƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	ENC_OAM_TransOamChar( clact, p_charbuff, size );
 
 	sys_FreeMemoryEz( p_charbuff );
@@ -1687,11 +1687,11 @@ void ENC_CLACT_ResSetSoftSpriteDataTrOam( CLACT_WORK_PTR clact, u32 heap, u32 tr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒbƒgˆø—pOAMƒLƒƒƒ‰ƒNƒ^‚Ì¶¬
+ *	@brief	ã‚«ãƒƒãƒˆå¼•ç”¨OAMã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ç”Ÿæˆ
  *
- *	@param	p_chardata		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg—pƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
- *	@param	heap			ƒq[ƒv
- *	@param	ofs_cx			‚±‚ê‚¾‚¯‚¸‚ç‚µ‚½‚Æ‚±‚ë‚©‚ç”²‚«o‚·
+ *	@param	p_chardata		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	ofs_cx			ã“ã‚Œã ã‘ãšã‚‰ã—ãŸã¨ã“ã‚ã‹ã‚‰æŠœãå‡ºã™
  *
  *	@return	none
  */
@@ -1723,7 +1723,7 @@ static void* ENC_OAM_TrCharMake( const NNSG2dCharacterData* cp_chardata, u32 hea
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		OAM‚ÌƒpƒŒƒbƒgÄ“]‘—
+ *	@brief		OAMã®ãƒ‘ãƒ¬ãƒƒãƒˆå†è»¢é€
  *
  */
 //-----------------------------------------------------------------------------
@@ -1741,7 +1741,7 @@ static void ENC_OAM_TransOamPltt( CLACT_WORK_PTR clact, void* data, u32 size )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^Ä“]‘—
+ *	@brief		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å†è»¢é€
  */
 //-----------------------------------------------------------------------------
 static void ENC_OAM_TransOamChar( CLACT_WORK_PTR clact, void* data, u32 size )
@@ -1758,12 +1758,12 @@ static void ENC_OAM_TransOamChar( CLACT_WORK_PTR clact, void* data, u32 size )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	ƒ[ƒN‚ÌŠm•Û
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿
  *
- *	@param	heapID	ƒq[ƒvID
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 ENC_BMP_FILL_OBJ* ENC_BMP_FillObjAlloc( u32 heapID )
@@ -1777,10 +1777,10 @@ ENC_BMP_FILL_OBJ* ENC_BMP_FillObjAlloc( u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	ƒ[ƒN”jŠü
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void ENC_BMP_FillObjDelete( ENC_BMP_FILL_OBJ* p_work )
@@ -1790,47 +1790,47 @@ void ENC_BMP_FillObjDelete( ENC_BMP_FILL_OBJ* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	“®‚³ŠJn
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	å‹•ã•é–‹å§‹
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	s_x			“h‚è‚Â‚Ô‚µŠJn‚˜À•W
- *	@param	e_x			“h‚è‚Â‚Ô‚µI—¹‚˜À•W
- *	@param	s_y			“h‚è‚Â‚Ô‚µŠJn‚™À•W
- *	@param	e_y			“h‚è‚Â‚Ô‚µI—¹‚™À•W
- *	@param	sync		ƒVƒ“ƒN”
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	width		•
- *	@param	height		‚‚³
- *	@param	col			“h‚è‚Â‚Ô‚·ƒpƒŒƒbƒg”Ô†
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x			å¡—ã‚Šã¤ã¶ã—é–‹å§‹ï½˜åº§æ¨™
+ *	@param	e_x			å¡—ã‚Šã¤ã¶ã—çµ‚äº†ï½˜åº§æ¨™
+ *	@param	s_y			å¡—ã‚Šã¤ã¶ã—é–‹å§‹ï½™åº§æ¨™
+ *	@param	e_y			å¡—ã‚Šã¤ã¶ã—çµ‚äº†ï½™åº§æ¨™
+ *	@param	sync		ã‚·ãƒ³ã‚¯æ•°
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	width		å¹…
+ *	@param	height		é«˜ã•
+ *	@param	col			å¡—ã‚Šã¤ã¶ã™ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //-----------------------------------------------------------------------------
 void ENC_BMP_FillObjStart( ENC_BMP_FILL_OBJ* p_work, int s_x, int e_x, int s_y, int e_y, int sync, GF_BGL_BMPWIN* p_bmp, u32 width, u32 height, u8 col )
 {
 	GF_ASSERT( p_work->move_flg == FALSE );
 
-	// “®‚³ƒpƒ‰ƒ[ƒ^
+	// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	ENC_MoveReq( &p_work->move_x, s_x, e_x, sync );
 	ENC_MoveReq( &p_work->move_y, s_y, e_y, sync );
 
-	// ‚»‚Ì‘¼ƒpƒ‰ƒ[ƒ^
-	p_work->p_bmp	= p_bmp;	// “h‚è‚Â‚Ô‚·ƒrƒbƒgƒ}ƒbƒv
-	p_work->width	= width;	// “h‚è‚Â‚Ô‚µ•
-	p_work->height	= height;	// “h‚è‚Â‚Ô‚µ‚‚³
-	p_work->col		= col;		// “h‚è‚Â‚Ô‚µƒJƒ‰[”Ô†
+	// ãã®ä»–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	p_work->p_bmp	= p_bmp;	// å¡—ã‚Šã¤ã¶ã™ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+	p_work->width	= width;	// å¡—ã‚Šã¤ã¶ã—å¹…
+	p_work->height	= height;	// å¡—ã‚Šã¤ã¶ã—é«˜ã•
+	p_work->col		= col;		// å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ç•ªå·
 
 	p_work->move_flg = TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	“®‚³ƒƒCƒ“
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	å‹•ã•ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_BMP_FillObjMain( ENC_BMP_FILL_OBJ* p_work )
@@ -1849,7 +1849,7 @@ BOOL ENC_BMP_FillObjMain( ENC_BMP_FILL_OBJ* p_work )
 	right = left + p_work->width;
 	bottom = top + p_work->height;
 
-	// ƒrƒbƒgƒ}ƒbƒv“h‚è‚Â‚Ô‚µ
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å¡—ã‚Šã¤ã¶ã—
 	ENC_BMP_Fill( p_work->p_bmp, top, bottom, left, right, p_work->col );
 
 	return result;
@@ -1858,12 +1858,12 @@ BOOL ENC_BMP_FillObjMain( ENC_BMP_FILL_OBJ* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒNã“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	ƒ[ƒN‚ÌŠm•Û
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ä¸Šå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿
  *
- *	@param	heapID	ƒq[ƒvID
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 ENC_BMP_FILL_BLOCK* ENC_BMP_FillBlockAlloc( u32 heapID )
@@ -1877,10 +1877,10 @@ ENC_BMP_FILL_BLOCK* ENC_BMP_FillBlockAlloc( u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒNã“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	ƒ[ƒN”jŠü
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ä¸Šå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void ENC_BMP_FillBlockDelete( ENC_BMP_FILL_BLOCK* p_work )
@@ -1890,47 +1890,47 @@ void ENC_BMP_FillBlockDelete( ENC_BMP_FILL_BLOCK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒNã“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	“®‚³ŠJn
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ä¸Šå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	å‹•ã•é–‹å§‹
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	s_x			“h‚è‚Â‚Ô‚µŠJn‚˜À•W
- *	@param	e_x			“h‚è‚Â‚Ô‚µI—¹‚˜À•W
- *	@param	s_y			“h‚è‚Â‚Ô‚µŠJn‚™À•W
- *	@param	e_y			“h‚è‚Â‚Ô‚µI—¹‚™À•W
- *	@param	sync		ƒVƒ“ƒN”
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	width		•
- *	@param	height		‚‚³
- *	@param	col			“h‚è‚Â‚Ô‚·ƒpƒŒƒbƒg”Ô†
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x			å¡—ã‚Šã¤ã¶ã—é–‹å§‹ï½˜åº§æ¨™
+ *	@param	e_x			å¡—ã‚Šã¤ã¶ã—çµ‚äº†ï½˜åº§æ¨™
+ *	@param	s_y			å¡—ã‚Šã¤ã¶ã—é–‹å§‹ï½™åº§æ¨™
+ *	@param	e_y			å¡—ã‚Šã¤ã¶ã—çµ‚äº†ï½™åº§æ¨™
+ *	@param	sync		ã‚·ãƒ³ã‚¯æ•°
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	width		å¹…
+ *	@param	height		é«˜ã•
+ *	@param	col			å¡—ã‚Šã¤ã¶ã™ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //-----------------------------------------------------------------------------
 void ENC_BMP_FillBlockStart( ENC_BMP_FILL_BLOCK* p_work, int s_x, int e_x, int s_y, int e_y, int sync, GF_BGL_BMPWIN* p_bmp, u32 width, u32 height, u8 col )
 {
 	GF_ASSERT( p_work->move_flg == FALSE );
 
-	// “®‚³ƒpƒ‰ƒ[ƒ^
+	// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	ENC_MoveReq( &p_work->move_x, s_x, e_x, sync );
 	ENC_MoveReq( &p_work->move_y, s_y, e_y, sync );
 
-	// ‚»‚Ì‘¼ƒpƒ‰ƒ[ƒ^
-	p_work->p_bmp	= p_bmp;	// “h‚è‚Â‚Ô‚·ƒrƒbƒgƒ}ƒbƒv
-	p_work->width	= width;	// “h‚è‚Â‚Ô‚µ•
-	p_work->height	= height;	// “h‚è‚Â‚Ô‚µ‚‚³
-	p_work->col		= col;		// “h‚è‚Â‚Ô‚µƒJƒ‰[”Ô†
+	// ãã®ä»–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	p_work->p_bmp	= p_bmp;	// å¡—ã‚Šã¤ã¶ã™ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+	p_work->width	= width;	// å¡—ã‚Šã¤ã¶ã—å¹…
+	p_work->height	= height;	// å¡—ã‚Šã¤ã¶ã—é«˜ã•
+	p_work->col		= col;		// å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ç•ªå·
 
 	p_work->move_flg = TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒNã“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	“®‚³ƒƒCƒ“
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ä¸Šå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	å‹•ã•ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_BMP_FillBlockMain( ENC_BMP_FILL_BLOCK* p_work )
@@ -1941,7 +1941,7 @@ BOOL ENC_BMP_FillBlockMain( ENC_BMP_FILL_BLOCK* p_work )
 		return TRUE;
 	}
 
-	// 1‚Â‘O‚ğÁ‚·
+	// 1ã¤å‰ã‚’æ¶ˆã™
 	left = p_work->move_x.x - (p_work->width/2);
 	top = p_work->move_y.x - (p_work->height/2);
 	right = left + p_work->width;
@@ -1963,26 +1963,26 @@ BOOL ENC_BMP_FillBlockMain( ENC_BMP_FILL_BLOCK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“h‚è‚Â‚Ô‚µ@‹éŒ`
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¡—ã‚Šã¤ã¶ã—ã€€çŸ©å½¢
  *
- *	@param	p_bmp		ƒ[ƒN
- *	@param	top			ã
- *	@param	bottom		‰º
- *	@param	left		¶
- *	@param	right		‰E
- *	@param	col			ƒJƒ‰[”Ô†
+ *	@param	p_bmp		ãƒ¯ãƒ¼ã‚¯
+ *	@param	top			ä¸Š
+ *	@param	bottom		ä¸‹
+ *	@param	left		å·¦
+ *	@param	right		å³
+ *	@param	col			ã‚«ãƒ©ãƒ¼ç•ªå·
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ENC_BMP_Fill( GF_BGL_BMPWIN* p_bmp, s32 top, s32 bottom, s32 left, s32 right, u8 col )
 {
-	// ‰æ–ÊŠOƒ`ƒFƒbƒN
+	// ç”»é¢å¤–ãƒã‚§ãƒƒã‚¯
 	if( (right <= 0) || (bottom <= 0) ){
 		return ;
 	}
 
-	// ˆê‚È‚ç•`‰æ‚µ‚È‚¢
+	// ä¸€ç·’ãªã‚‰æç”»ã—ãªã„
 	if( (left == right) || (top == bottom) ){
 		return ;
 	}
@@ -2000,7 +2000,7 @@ static void ENC_BMP_Fill( GF_BGL_BMPWIN* p_bmp, s32 top, s32 bottom, s32 left, s
 		bottom = 256;
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv“h‚è‚Â‚Ô‚µ
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å¡—ã‚Šã¤ã¶ã—
 	GF_BGL_BmpWinFill( p_bmp, col,
 			left,
 			top,
@@ -2011,11 +2011,11 @@ static void ENC_BMP_Fill( GF_BGL_BMPWIN* p_bmp, s32 top, s32 bottom, s32 left, s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒNŠm•Û
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- *	@param	heapID	ƒq[ƒv
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 ENC_BMP_FILL_BLOCK_MOVE* ENC_BMP_FillBlockMoveAlloc( u32 heapID )
@@ -2026,7 +2026,7 @@ ENC_BMP_FILL_BLOCK_MOVE* ENC_BMP_FillBlockMoveAlloc( u32 heapID )
 	p_work = sys_AllocMemory( HEAPID_FIELD, sizeof(ENC_BMP_FILL_BLOCK_MOVE) );
 	memset( p_work, 0, sizeof(ENC_BMP_FILL_BLOCK_MOVE) );
 
-	// ƒIƒuƒWƒFƒNƒgì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä½œæˆ
 	for( i=0; i<ENCOUNT_BLOCK_MOVE_OBJNUM; i++ ){
 		p_work->p_block[i] = ENC_BMP_FillBlockAlloc( heapID );
 	}
@@ -2035,16 +2035,16 @@ ENC_BMP_FILL_BLOCK_MOVE* ENC_BMP_FillBlockMoveAlloc( u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN”jŠü
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void ENC_BMP_FillBlockMoveDelete( ENC_BMP_FILL_BLOCK_MOVE* p_work )
 {
 	int i;
 	
-	// ƒuƒƒbƒNƒIƒuƒWƒF”jŠü
+	// ãƒ–ãƒ­ãƒƒã‚¯ã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
 	for( i=0; i<ENCOUNT_BLOCK_MOVE_OBJNUM; i++ ){
 		ENC_BMP_FillBlockDelete( p_work->p_block[i] );
 	}
@@ -2053,13 +2053,13 @@ void ENC_BMP_FillBlockMoveDelete( ENC_BMP_FILL_BLOCK_MOVE* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®‚³ŠJn
+ *	@brief	å‹•ã•é–‹å§‹
  *	
- *	@param	p_work	ƒ[ƒN
- *	@param	sync	‚P‚Â‚ÌƒIƒuƒWƒF‚ª“®‚­ƒVƒ“ƒN”
- *	@param	start	‚P‚Â‚ÌƒIƒuƒWƒF”­Ëƒ^ƒCƒ~ƒ“ƒO
- *	@param	p_bmp	ƒrƒbƒgƒ}ƒbƒv
- *	@param	col		ƒJƒ‰[
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	sync	ï¼‘ã¤ã®ã‚ªãƒ–ã‚¸ã‚§ãŒå‹•ãã‚·ãƒ³ã‚¯æ•°
+ *	@param	start	ï¼‘ã¤ã®ã‚ªãƒ–ã‚¸ã‚§ç™ºå°„ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+ *	@param	p_bmp	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	col		ã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 void ENC_BMP_FillBlockMoveStart( ENC_BMP_FILL_BLOCK_MOVE* p_work, u8 sync, u8 start, GF_BGL_BMPWIN* p_bmp, u8 col )
@@ -2076,12 +2076,12 @@ void ENC_BMP_FillBlockMoveStart( ENC_BMP_FILL_BLOCK_MOVE* p_work, u8 sync, u8 st
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ŠÖ”
+ *	@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_BMP_FillBlockMoveMain( ENC_BMP_FILL_BLOCK_MOVE* p_work )
@@ -2094,7 +2094,7 @@ BOOL ENC_BMP_FillBlockMoveMain( ENC_BMP_FILL_BLOCK_MOVE* p_work )
 		return TRUE;
 	}
 	
-	// ”­Ë•”
+	// ç™ºå°„éƒ¨
 	if( p_work->block_count < ENCOUNT_BLOCK_MOVE_OBJNUM ){
 		p_work->wait --;
 		if( p_work->wait <= 0 ){
@@ -2104,7 +2104,7 @@ BOOL ENC_BMP_FillBlockMoveMain( ENC_BMP_FILL_BLOCK_MOVE* p_work )
 			x = (ENCOUNT_BLOCK_MOVE_WIDTH/2) + (x * ENCOUNT_BLOCK_MOVE_WIDTH);
 			s_y = ENCOUNT_BLOCK_MOVE_MAT_Y - ((p_work->block_count/ENCOUNT_BLOCK_MOVE_X_NUM) * ENCOUNT_BLOCK_MOVE_HEIGHT);
 			e_y = ENCOUNT_BLOCK_MOVE_MOVE_Y - ((p_work->block_count/ENCOUNT_BLOCK_MOVE_X_NUM) * ENCOUNT_BLOCK_MOVE_HEIGHT);
-			// ”­Ë
+			// ç™ºå°„
 			ENC_BMP_FillBlockStart( 
 					p_work->p_block[ p_work->block_count ],
 					x, x,
@@ -2118,7 +2118,7 @@ BOOL ENC_BMP_FillBlockMoveMain( ENC_BMP_FILL_BLOCK_MOVE* p_work )
 	}
 	
 
-	// “®‚³•”
+	// å‹•ã•éƒ¨
 	for( i=p_work->block_end_count; i<p_work->block_count; i++ ){
 		result = ENC_BMP_FillBlockMain( p_work->p_block[i] );
 		if( result == TRUE ){
@@ -2126,7 +2126,7 @@ BOOL ENC_BMP_FillBlockMoveMain( ENC_BMP_FILL_BLOCK_MOVE* p_work )
 		}
 	}
 
-	// ‘S“®‚³I—¹ƒ`ƒFƒbƒN
+	// å…¨å‹•ã•çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( (p_work->block_end_count >= ENCOUNT_BLOCK_MOVE_OBJNUM) &&
 		(result == TRUE) ){
 		p_work->init_flg = FALSE;
@@ -2138,12 +2138,12 @@ BOOL ENC_BMP_FillBlockMoveMain( ENC_BMP_FILL_BLOCK_MOVE* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		y‰~Œ`@BMP@“h‚è‚Â‚Ô‚µƒIƒuƒWƒFz
- *	@brief	ƒ[ƒNŠm•Û
+ *		ã€å††å½¢ã€€BMPã€€å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- *	@param	heapID	ƒq[ƒvID
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 ENC_BMP_CIRCLE_FILL* ENC_BMP_CircleFillAlloc( u32 heapID )
@@ -2157,10 +2157,10 @@ ENC_BMP_CIRCLE_FILL* ENC_BMP_CircleFillAlloc( u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *		y‰~Œ`@BMP@“h‚è‚Â‚Ô‚µƒIƒuƒWƒFz
- *	@brief	ƒ[ƒN”jŠü
+ *		ã€å††å½¢ã€€BMPã€€å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void ENC_BMP_CircleFillDelete( ENC_BMP_CIRCLE_FILL* p_work )
@@ -2170,15 +2170,15 @@ void ENC_BMP_CircleFillDelete( ENC_BMP_CIRCLE_FILL* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		y‰~Œ`@BMP@“h‚è‚Â‚Ô‚µƒIƒuƒWƒFz
- *	@brief	ƒGƒtƒFƒNƒgŠJn
+ *		ã€å††å½¢ã€€BMPã€€å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã€‘
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	sync	ƒVƒ“ƒN”
- *	@param	s_rota	ŠJn‰ñ“]Šp		(”½“]‚µ‚Ä”½‘Î‘¤‚àì¬‚·‚é‚½‚ß 0`179‚ÌŠp“x)
- *	@param	e_rota	I—¹‰ñ“]Šp		(”½“]‚µ‚Ä”½‘Î‘¤‚àì¬‚·‚é‚½‚ß 0`179‚ÌŠp“x)
- *	@param	p_bmp	ƒrƒbƒgƒ}ƒbƒv
- *	@param	col		“h‚è‚Â‚Ô‚µƒJƒ‰[
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	sync	ã‚·ãƒ³ã‚¯æ•°
+ *	@param	s_rota	é–‹å§‹å›è»¢è§’		(åè»¢ã—ã¦åå¯¾å´ã‚‚ä½œæˆã™ã‚‹ãŸã‚ 0ã€œ179ã®è§’åº¦)
+ *	@param	e_rota	çµ‚äº†å›è»¢è§’		(åè»¢ã—ã¦åå¯¾å´ã‚‚ä½œæˆã™ã‚‹ãŸã‚ 0ã€œ179ã®è§’åº¦)
+ *	@param	p_bmp	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	col		å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼
  *
  *	@return	none
  */
@@ -2193,13 +2193,13 @@ void ENC_BMP_CircleFillStart( ENC_BMP_CIRCLE_FILL* p_work, u8 sync, u16 s_rota, 
 
 //----------------------------------------------------------------------------
 /**
- *		y‰~Œ`@BMP@“h‚è‚Â‚Ô‚µƒIƒuƒWƒFz
- *	@brief	ƒƒCƒ“ŠÖ”
+ *		ã€å††å½¢ã€€BMPã€€å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã€‘
+ *	@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_BMP_CircleFillMain( ENC_BMP_CIRCLE_FILL* p_work )
@@ -2211,13 +2211,13 @@ BOOL ENC_BMP_CircleFillMain( ENC_BMP_CIRCLE_FILL* p_work )
 		return TRUE;
 	}
 
-	// ‘O‚ÌŠp“x
+	// å‰ã®è§’åº¦
 	last_rota = p_work->rota.x;
 
-	// Às
+	// å®Ÿè¡Œ
 	result = ENC_MoveMain( &p_work->rota );
 
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	EncBmpCircleFill_Fill( p_work->p_bmp, last_rota, p_work->rota.x, p_work->col );	
 
 	if( result == TRUE ){
@@ -2227,7 +2227,7 @@ BOOL ENC_BMP_CircleFillMain( ENC_BMP_CIRCLE_FILL* p_work )
 	return FALSE;
 }
 
-// ƒ^ƒ“ƒWƒFƒ“ƒgŒvZ
+// ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆè¨ˆç®—
 static inline fx32 getTanX( u16 rota )
 {
 	return FX_Div(FX_SinIdx(rota), FX_CosIdx(rota));
@@ -2235,13 +2235,13 @@ static inline fx32 getTanX( u16 rota )
 
 //----------------------------------------------------------------------------
 /**
- *		y‰~Œ`@BMP@“h‚è‚Â‚Ô‚µƒIƒuƒWƒFz
- *	@brief	‰~Œ`@ƒrƒbƒgƒ}ƒbƒv“h‚è‚Â‚Ô‚µ@À“®‚³
+ *		ã€å††å½¢ã€€BMPã€€å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã€‘
+ *	@brief	å††å½¢ã€€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å¡—ã‚Šã¤ã¶ã—ã€€å®Ÿå‹•ã•
  *
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- *	@param	last_rota	‘O‚ÌŠp“x
- *	@param	now_rota	¡‚ÌŠp“x
- *	@param	col			ƒJƒ‰[
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	last_rota	å‰ã®è§’åº¦
+ *	@param	now_rota	ä»Šã®è§’åº¦
+ *	@param	col			ã‚«ãƒ©ãƒ¼
  *	
  *	@return	none
  */
@@ -2249,16 +2249,16 @@ static inline fx32 getTanX( u16 rota )
 static void EncBmpCircleFill_Fill( GF_BGL_BMPWIN* p_bmp, u16 last_rota, u16 now_rota, u8 col )
 {
 	int now_x, last_x, tmp;
-	int re_now_x, re_last_x;	// ƒtƒŠƒbƒv
+	int re_now_x, re_last_x;	// ãƒ•ãƒªãƒƒãƒ—
 	int i;
 	int y;
 	fx32 now_tan_x, last_tan_x;
 
-	// ƒ^ƒ“ƒWƒFƒ“ƒg’l‚ğ‹‚ß‚é
+	// ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆå€¤ã‚’æ±‚ã‚ã‚‹
 	now_tan_x = getTanX( now_rota );
 	last_tan_x = getTanX( last_rota );
 
-	// Še‚‚³‚Å‚ÌXÀ•W‚ğ‹‚ß‚»‚Ì’l‚Å“h‚è‚Â‚Ô‚·
+	// å„é«˜ã•ã§ã®Xåº§æ¨™ã‚’æ±‚ã‚ãã®å€¤ã§å¡—ã‚Šã¤ã¶ã™
 	for( i=0; i<96; i++ ){
 
 		y = 95 - i;
@@ -2266,13 +2266,13 @@ static void EncBmpCircleFill_Fill( GF_BGL_BMPWIN* p_bmp, u16 last_rota, u16 now_
 		now_x = FX_Mul( now_tan_x, y*FX32_ONE ) >> FX32_SHIFT;
 		last_x = FX_Mul( last_tan_x, y*FX32_ONE ) >> FX32_SHIFT;
 
-		// ’†SÀ•W‚©‚ç‚Ì’l‚É‚·‚é
+		// ä¸­å¿ƒåº§æ¨™ã‹ã‚‰ã®å€¤ã«ã™ã‚‹
 		re_now_x = 128 + now_x;
 		re_last_x = 128 + last_x;
 		now_x = 128 - now_x;
 		last_x = 128 - last_x;
 
-		//@‚¾‚¢‚µ‚å‚¤‚ğ®‚¦‚é
+		//ã€€ã ã„ã—ã‚‡ã†ã‚’æ•´ãˆã‚‹
 		if( last_x > now_x ){
 			tmp = last_x;
 			last_x = now_x;
@@ -2296,12 +2296,12 @@ static void EncBmpCircleFill_Fill( GF_BGL_BMPWIN* p_bmp, u16 last_rota, u16 now_
 
 //----------------------------------------------------------------------------
 /**
- *		yƒtƒ‰ƒbƒVƒ…ƒAƒEƒgz
- *	@brief	ƒ[ƒNŠm•Û
+ *		ã€ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *	
- *	@param	heapID	ƒq[ƒvID
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 ENC_BMP_FLASH_OUT* ENC_BMP_FlashOutAlloc( u32 heapID )
@@ -2321,10 +2321,10 @@ ENC_BMP_FLASH_OUT* ENC_BMP_FlashOutAlloc( u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒtƒ‰ƒbƒVƒ…ƒAƒEƒgz
- *	@brief	ƒ[ƒN”jŠü
+ *		ã€ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_work ƒ[ƒN
+ *	@param	p_work ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void ENC_BMP_FlashOutDelete( ENC_BMP_FLASH_OUT* p_work )
@@ -2339,13 +2339,13 @@ void ENC_BMP_FlashOutDelete( ENC_BMP_FLASH_OUT* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒtƒ‰ƒbƒVƒ…ƒAƒEƒgz
- *	@brief	ƒGƒtƒFƒNƒgŠJn
+ *		ã€ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã€‘
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	sync	ƒVƒ“ƒN”
- *	@param	p_bmp	ƒrƒbƒgƒ}ƒbƒv
- *	@param	col		“h‚è‚Â‚Ô‚µƒJƒ‰[”Ô†
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	sync	ã‚·ãƒ³ã‚¯æ•°
+ *	@param	p_bmp	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	col		å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ç•ªå·
  *
  *	@return	none
  */
@@ -2354,7 +2354,7 @@ void ENC_BMP_FlashOutStart( ENC_BMP_FLASH_OUT* p_work, u8 sync, GF_BGL_BMPWIN* p
 {
 	int i;
 
-	// “h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒg‰Šú‰»
+	// å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
 	for( i=0; i<ENC_BMP_FLASH_CIRCLE_NUM; i++ ){
 		ENC_BMP_CircleFillStart( p_work->p_circle[i],
 				sync, 
@@ -2365,19 +2365,19 @@ void ENC_BMP_FlashOutStart( ENC_BMP_FLASH_OUT* p_work, u8 sync, GF_BGL_BMPWIN* p
 	}
 	p_work->move_flg = 1;
 
-	// Å‰‚É93  99ƒhƒbƒg‚ğ“h‚è‚Â‚Ô‚·
+	// æœ€åˆã«93  99ãƒ‰ãƒƒãƒˆã‚’å¡—ã‚Šã¤ã¶ã™
 	ENC_BMP_Fill( p_bmp, 93, 99, 0, 256, col );
 }
 
 //----------------------------------------------------------------------------
 /**
- *		yƒtƒ‰ƒbƒVƒ…ƒAƒEƒgz
- *	@brief	ƒtƒ‰ƒbƒVƒ…ƒAƒEƒgƒƒCƒ“
+ *		ã€ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã€‘
+ *	@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_BMP_FlashOutMain( ENC_BMP_FLASH_OUT* p_work )
@@ -2404,8 +2404,8 @@ BOOL ENC_BMP_FlashOutMain( ENC_BMP_FLASH_OUT* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	yƒWƒOƒUƒOƒEƒBƒ“ƒhƒEz
- *	@brief	‚¬‚´‚¬‚´ƒEƒBƒ“ƒhƒE“®‚³
+ *	ã€ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€‘
+ *	@brief	ãã–ãã–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ã•
  */
 //-----------------------------------------------------------------------------
 ENC_HB_BG_WND_ZIGUZAGU* ENC_BG_WndZiguzagu_Alloc( void )
@@ -2420,8 +2420,8 @@ ENC_HB_BG_WND_ZIGUZAGU* ENC_BG_WndZiguzagu_Alloc( void )
 
 //----------------------------------------------------------------------------
 /**
- *	yƒWƒOƒUƒOƒEƒBƒ“ƒhƒEz
- *	@brief	ƒ[ƒN‚Ì”jŠü
+ *	ã€ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
  *
  *	@param	p_work 
  */
@@ -2436,16 +2436,16 @@ void ENC_BG_WndZiguzagu_Delete( ENC_HB_BG_WND_ZIGUZAGU* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	yƒWƒOƒUƒOƒEƒBƒ“ƒhƒEz
- *	@brief	ŠÖ”ŠJn
+ *	ã€ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€‘
+ *	@brief	é–¢æ•°é–‹å§‹
  *
- *	@param	p_ew		ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒ[ƒN
- *	@param	p_eff		ƒGƒtƒFƒNƒgƒ[ƒN
- *	@param	sync		ƒVƒ“ƒN”
- *	@param	dot			¶‰EØ‚è‘Ö‚¦ƒhƒbƒg”
- *	@param	width		¶‰E•
- *	@param	wnd_msgk_in		ƒEƒBƒ“ƒhƒEƒ}ƒXƒN	’†
- *	@param	wnd_msgk_out	ƒEƒBƒ“ƒhƒEƒ}ƒXƒN	ŠO
+ *	@param	p_ew		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_eff		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	sync		ã‚·ãƒ³ã‚¯æ•°
+ *	@param	dot			å·¦å³åˆ‡ã‚Šæ›¿ãˆãƒ‰ãƒƒãƒˆæ•°
+ *	@param	width		å·¦å³å¹…
+ *	@param	wnd_msgk_in		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯	ä¸­
+ *	@param	wnd_msgk_out	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯	å¤–
  */
 //-----------------------------------------------------------------------------
 void ENC_BG_WndZiguzagu_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_WND_ZIGUZAGU* p_eff, u32 sync, u32 dot, u32 width, u32 wnd_msk_in, u32 wnd_msk_out )
@@ -2454,7 +2454,7 @@ void ENC_BG_WndZiguzagu_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_WND_ZIGUZAGU
 	int count;
 	int set_w;
 	
-	// ŠJnÏ‚İ
+	// é–‹å§‹æ¸ˆã¿
 	GF_ASSERT( p_eff->tcb == NULL );
 
 	p_ew->hblank_flg	= FALSE;
@@ -2463,14 +2463,14 @@ void ENC_BG_WndZiguzagu_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_WND_ZIGUZAGU
 	p_eff->end_check	= &p_ew->hblank_flg;
 	ENC_MoveReq( &p_eff->move_x, ENC_BG_WND_ZIGUZAGU_MOVE_S, ENC_BG_WND_ZIGUZAGU_MOVE_E, sync );
 	
-	// ƒWƒOƒUƒOì¬
+	// ã‚¸ã‚°ã‚¶ã‚°ä½œæˆ
 	for( i=0; i<192; i++ ){
-		// İ’è•‚ğ‹‚ß‚é
+		// è¨­å®šå¹…ã‚’æ±‚ã‚ã‚‹
 		count = i % dot;
 		set_w = count * width;
 		set_w = set_w / dot;
 
-		// ƒWƒOƒUƒO‚Éİ’è
+		// ã‚¸ã‚°ã‚¶ã‚°ã«è¨­å®š
 		if( ((i/dot) % 2) == 0 ){
 			p_eff->ziguzagu_buf[ i ] = set_w;
 		}else{
@@ -2478,20 +2478,20 @@ void ENC_BG_WndZiguzagu_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_WND_ZIGUZAGU
 		}
 	}
 
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒNİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯è¨­å®š
 	G2_SetWnd0InsidePlane( wnd_msk_in, TRUE );
 	G2_SetWndOutsidePlane( wnd_msk_out, FALSE );	
 	G2_SetWnd0Position( 0, 0, 0, 192 );
 	GX_SetVisibleWnd( GX_WNDMASK_W0 );
 
-	// ‰Šú‰»ƒ^ƒXƒN¶¬
+	// åˆæœŸåŒ–ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	VWaitTCB_Add( ENC_BG_WndZiguzagu_SetUp_Tcb, p_eff, END_HB_BG_WND_ZIGUZAGU_INIT_TCB_PRI );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	yƒWƒOƒUƒOƒEƒBƒ“ƒhƒEz
- *	@brief	ƒWƒOƒUƒO“®‚³ƒ^ƒXƒN¶¬
+ *	ã€ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€‘
+ *	@brief	ã‚¸ã‚°ã‚¶ã‚°å‹•ã•ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
  */
 //-----------------------------------------------------------------------------
 static void ENC_BG_WndZiguzagu_SetUp_Tcb( TCB_PTR tcb, void* p_work )
@@ -2499,7 +2499,7 @@ static void ENC_BG_WndZiguzagu_SetUp_Tcb( TCB_PTR tcb, void* p_work )
 	ENC_HB_BG_WND_ZIGUZAGU* p_eff = p_work;
 
 	
-	// Hƒuƒ‰ƒ“ƒNŠÖ”“o˜^
+	// Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ç™»éŒ²
 	p_eff->p_hobj = FLDHBLANK_OBJ_Add( p_eff->p_hsys, ENC_BG_WndZiguzagu_HBlank, p_eff );
 
 	
@@ -2510,8 +2510,8 @@ static void ENC_BG_WndZiguzagu_SetUp_Tcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	yƒWƒOƒUƒOƒEƒBƒ“ƒhƒEz
- *	@brief	ƒƒCƒ““®‚³ƒ^ƒXƒN
+ *	ã€ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€‘
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‹•ã•ã‚¿ã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ENC_BG_WndZiguzagu_Tcb( TCB_PTR tcb, void* p_work )
@@ -2535,17 +2535,17 @@ static void ENC_BG_WndZiguzagu_Tcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	yƒWƒOƒUƒOƒEƒBƒ“ƒhƒEz
- *	@brief	Hƒuƒ‰ƒ“ƒNŠÖ”
+ *	ã€ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€‘
+ *	@brief	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
  */	
 //-----------------------------------------------------------------------------
 static void ENC_BG_WndZiguzagu_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work)
 {
 	ENC_HB_BG_WND_ZIGUZAGU* p_eff = p_work;
 	int set_x;
-	int v_count;		// VƒJƒEƒ“ƒg
+	int v_count;		// Vã‚«ã‚¦ãƒ³ãƒˆ
 
-	// VƒJƒEƒ“ƒ^‚ğæ“¾‚µA‚O‚Ì‚ÍˆÚ“®’l‚ğŒvZ‚·‚é
+	// Vã‚«ã‚¦ãƒ³ã‚¿ã‚’å–å¾—ã—ã€ï¼ã®æ™‚ã¯ç§»å‹•å€¤ã‚’è¨ˆç®—ã™ã‚‹
 	v_count = GX_GetVCount();
 	
 	if( v_count < 192 ){
@@ -2559,13 +2559,13 @@ static void ENC_BG_WndZiguzagu_HBlank(FIELD_HBLANK_OBJ* p_hobj, void* p_work)
 
 //----------------------------------------------------------------------------
 /**
- *	yƒWƒOƒUƒOƒEƒBƒ“ƒhƒEz
- *	@brief	I—¹ˆ—
+ *	ã€ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€‘
+ *	@brief	çµ‚äº†å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void ENC_BG_WndZiguzagu_End( ENC_HB_BG_WND_ZIGUZAGU* p_work )
 {
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒN”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯ç ´æ£„
 	GX_SetVisibleWnd( GX_WNDMASK_NONE );
 	
 	*(p_work->end_check) = TRUE;
@@ -2580,29 +2580,29 @@ static void ENC_BG_WndZiguzagu_End( ENC_HB_BG_WND_ZIGUZAGU* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒiƒ“ƒo[æ“¾ŠÖ”
+ *	@brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼å–å¾—é–¢æ•°
  *
- *	@param	data	ƒf[ƒ^
+ *	@param	data	ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒiƒ“ƒo[
+ *	@return	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
  *
  *
- *	‘Î‰
- *		’ÊM@ƒoƒgƒ‹ƒ^ƒ[
- *		ƒ_ƒuƒ‹ƒoƒgƒ‹
- *		–ì¶í
- *		ƒgƒŒ[ƒi[í
+ *	å¯¾å¿œ
+ *		é€šä¿¡ã€€ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+ *		ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
+ *		é‡ç”Ÿæˆ¦
+ *		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦
  *
- *	–¢‘Î‰
- *		“ÁêƒgƒŒ[ƒi[
- *		“Áêƒ|ƒPƒ‚ƒ“
+ *	æœªå¯¾å¿œ
+ *		ç‰¹æ®Šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+ *		ç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³
  */
 //-----------------------------------------------------------------------------
-#define ENCEFF_FIELD	(0)	// –ì¶í
-#define ENCEFF_TRAINER	(1)	// TRAINERí
-#define ENCEFF_GRASS	(0)	// ‘
-#define ENCEFF_WATER	(1)	// …
-#define ENCEFF_DAN		(2)	// ƒ_ƒ“ƒWƒ‡ƒ“
+#define ENCEFF_FIELD	(0)	// é‡ç”Ÿæˆ¦
+#define ENCEFF_TRAINER	(1)	// TRAINERæˆ¦
+#define ENCEFF_GRASS	(0)	// è‰
+#define ENCEFF_WATER	(1)	// æ°´
+#define ENCEFF_DAN		(2)	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 u32 ENCEFF_GetEffectNo( const BATTLE_PARAM * p_battleparam )
 {
 	int lv;
@@ -2612,31 +2612,31 @@ u32 ENCEFF_GetEffectNo( const BATTLE_PARAM * p_battleparam )
 	POKEMON_PARAM* p_enemy_poke;
 	int mypoke_lev, enemypoke_lev;
 
-	// ƒoƒgƒ‹À²Ìß‚©‚ç‘å‘Ì‚ğ•ªŠò‚³‚¹‚é
+	// ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã‹ã‚‰å¤§ä½“ã‚’åˆ†å²ã•ã›ã‚‹
 	if( p_battleparam->fight_type & FIGHT_TYPE_TRAINER ){
 		
 		type = ENCEFF_TRAINER;
 		
 	}else if( (p_battleparam->fight_type & (FIGHT_TYPE_MOVE|FIGHT_TYPE_SAFARI|FIGHT_TYPE_POKE_PARK|FIGHT_TYPE_GET_DEMO)) ||
-		(p_battleparam->fight_type == FIGHT_TYPE_YASEI) ){		// –ì¶‚Í0‚È‚Ì‚Å&‚Åæ‚ê‚È‚¢‚½‚ß‚±‚¤‚·‚é
+		(p_battleparam->fight_type == FIGHT_TYPE_YASEI) ){		// é‡ç”Ÿã¯0ãªã®ã§&ã§å–ã‚Œãªã„ãŸã‚ã“ã†ã™ã‚‹
 		
 		type = ENCEFF_FIELD;
 	}else{
 
-		GF_ASSERT( 0 );	// ‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñB
+		GF_ASSERT( 0 );	// å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“ã€‚
 		type = 0;
 	}
 
-	// ƒtƒB[ƒ‹ƒhi–ì¶j@ƒgƒŒ[ƒi[‚Ì‚Æ‚«‚ÍAƒŒƒxƒ‹‚Æ’nŒ`‚©‚ç
-	// ƒGƒtƒFƒNƒg‚ª•Ï‚í‚é
-	// ƒŒƒxƒ‹ƒ`ƒFƒbƒN
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼ˆé‡ç”Ÿï¼‰ã€€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ã¨ãã¯ã€ãƒ¬ãƒ™ãƒ«ã¨åœ°å½¢ã‹ã‚‰
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒå¤‰ã‚ã‚‹
+	// ãƒ¬ãƒ™ãƒ«ãƒã‚§ãƒƒã‚¯
 	p_my_poke = EvPoke_GetLivingPokemonTop( p_battleparam->poke_party[CLIENT_NO_MINE] );
 	p_enemy_poke = EvPoke_GetLivingPokemonTop( p_battleparam->poke_party[CLIENT_NO_ENEMY] );
 	mypoke_lev = PokeParaGet( p_my_poke, ID_PARA_level, NULL );
 	enemypoke_lev = PokeParaGet( p_enemy_poke, ID_PARA_level, NULL );
 	lv = enemypoke_lev - mypoke_lev;
 	
-	// ƒGƒŠƒAƒ`ƒFƒbƒN
+	// ã‚¨ãƒªã‚¢ãƒã‚§ãƒƒã‚¯
 	switch( p_battleparam->ground_id ){
 	case GROUND_ID_GRAVEL:
 	case GROUND_ID_SANDS:
@@ -2649,17 +2649,17 @@ u32 ENCEFF_GetEffectNo( const BATTLE_PARAM * p_battleparam )
 	case GROUND_ID_BRIDGE:
 	case GROUND_ID_FLOOR:
 	case GROUND_ID_ALL:
-		area = ENCEFF_GRASS * 2;	// low‚Æhi‚ª‚ ‚é‚©‚ç
+		area = ENCEFF_GRASS * 2;	// lowã¨hiãŒã‚ã‚‹ã‹ã‚‰
 		break;
 	case GROUND_ID_WATER:
-		area = ENCEFF_WATER * 2;	// low‚Æhi‚ª‚ ‚é‚©‚ç
+		area = ENCEFF_WATER * 2;	// lowã¨hiãŒã‚ã‚‹ã‹ã‚‰
 		break;
 	case GROUND_ID_CAVE:
-		area = ENCEFF_DAN * 2;	// low‚Æhi‚ª‚ ‚é‚©‚ç
+		area = ENCEFF_DAN * 2;	// lowã¨hiãŒã‚ã‚‹ã‹ã‚‰
 		break;
 	}
 	if( lv > 0 ){
-		area ++;	// hi‚È‚Ì‚Å
+		area ++;	// hiãªã®ã§
 	}
 
 	return (type*6) + area;
@@ -2668,13 +2668,13 @@ u32 ENCEFF_GetEffectNo( const BATTLE_PARAM * p_battleparam )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM–Ê‚ğƒEƒBƒ“ƒhƒE‚ğ‹éŒ`‚Åİ’è@Šg‘åk¬‰Â”\
+ *	@brief	OAMé¢ã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’çŸ©å½¢ã§è¨­å®šã€€æ‹¡å¤§ç¸®å°å¯èƒ½
  *
- *	@param	y		’†S‚™
- *	@param	scale	Šgk’l
- *	@param	height@‚‚³
- *	@param	bottom_y’ê•Ó‚Ü‚Å‚Ì’·‚³	’ê•Ó‚ª‚‚³‚Ì”¼•ª‚æ‚è¬‚³‚¢‚Æ‚«‚ª‚ ‚é‚½‚ß
- *	@param	wndno	g—pƒEƒBƒ“ƒhƒE
+ *	@param	y		ä¸­å¿ƒï½™
+ *	@param	scale	æ‹¡ç¸®å€¤
+ *	@param	heightã€€é«˜ã•
+ *	@param	bottom_yåº•è¾ºã¾ã§ã®é•·ã•	åº•è¾ºãŒé«˜ã•ã®åŠåˆ†ã‚ˆã‚Šå°ã•ã„ã¨ããŒã‚ã‚‹ãŸã‚
+ *	@param	wndno	ä½¿ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  *	@return	none
  */
@@ -2698,13 +2698,13 @@ void ENC_WND_SetScaleWnd( fx32 y, int bottom_y, fx32 scale, int height, int wndn
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒc[ƒ‹@Šg‘å—¦‚Ì’ê•Ó‚Ì‚‚³‚ğ‹‚ß‚é
+ *	@brief	ãƒ„ãƒ¼ãƒ«ã€€æ‹¡å¤§ç‡æ™‚ã®åº•è¾ºã®é«˜ã•ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	scale			Šgk’l
- *	@param	c_y				’†SYÀ•W
- *	@param	half_height		’ê•Ó‚Ö‚ÌƒTƒCƒY
+ *	@param	scale			æ‹¡ç¸®å€¤
+ *	@param	c_y				ä¸­å¿ƒYåº§æ¨™
+ *	@param	half_height		åº•è¾ºã¸ã®ã‚µã‚¤ã‚º
  *
- *	@return		’ê•ÓÀ•W
+ *	@return		åº•è¾ºåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 int ENC_WND_SetScaleWndToolMakeBottomY( fx32 scale, int c_y, int half_height )
@@ -2716,7 +2716,7 @@ int ENC_WND_SetScaleWndToolMakeBottomY( fx32 scale, int c_y, int half_height )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEƒ|ƒWƒVƒ‡ƒ“@Vƒuƒ‰ƒ“ƒNİ’è
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€Vãƒ–ãƒ©ãƒ³ã‚¯è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void ENC_WND_SetWndPositionVWait( TCB_PTR tcb, void* p_work )
@@ -2724,10 +2724,10 @@ static void ENC_WND_SetWndPositionVWait( TCB_PTR tcb, void* p_work )
 	ENC_WND_SETPOSITION* p_data = p_work;
 
 	if( p_data->wnd_no == 0 ){
-		// Vƒuƒ‰ƒ“ƒNŠúŠÔ‚Éİ’è
+		// Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ã«è¨­å®š
 		G2_SetWnd0Position( p_data->x1, p_data->y1, p_data->x2, p_data->y2  );
 	}else{
-		// Vƒuƒ‰ƒ“ƒNŠúŠÔ‚Éİ’è
+		// Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ã«è¨­å®š
 		G2_SetWnd1Position( p_data->x1, p_data->y1, p_data->x2, p_data->y2  );
 	}
 
@@ -2737,7 +2737,7 @@ static void ENC_WND_SetWndPositionVWait( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Vƒuƒ‰ƒ“ƒNMaster‹P“xİ’èŠÖ”
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯Masterè¼åº¦è¨­å®šé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 static void EncSetMstBrightnessSetVTcb( TCB_PTR tcb, void* p_work )
@@ -2749,8 +2749,8 @@ static void EncSetMstBrightnessSetVTcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Vƒuƒ‰ƒ“ƒNMaster‹P“xİ’èŠÖ”
- *	@param	p_setnum	İ’è”QÆƒ|ƒCƒ“ƒ^
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯Masterè¼åº¦è¨­å®šé–¢æ•°
+ *	@param	p_setnum	è¨­å®šæ•°å‚ç…§ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void ENC_SetMasterBrightnessVblank( int* p_setnum )
@@ -2765,7 +2765,7 @@ void ENC_SetMasterBrightnessVblank( int* p_setnum )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒvƒŠƒ“ƒg	V•`‰æŠÂ‹«İ’èƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ—ãƒªãƒ³ãƒˆ	æ–°æç”»ç’°å¢ƒè¨­å®šã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 void ENC_GPrint_Init( FIELDSYS_WORK* p_fsys )
@@ -2779,33 +2779,33 @@ void ENC_GPrint_Init( FIELDSYS_WORK* p_fsys )
 	pENC_GPRINT_WK->init	= FALSE;
 	pENC_GPRINT_WK->p_fsys	= p_fsys;
 	
-	// BG–Ê‚ğ•\¦OFF
+	// BGé¢ã‚’è¡¨ç¤ºOFF
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG1,VISIBLE_OFF);
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG2,VISIBLE_OFF);
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG3,VISIBLE_OFF);
-	GX_ResetBankForBG();	// ƒoƒ“ƒNİ’è‚ğ‰ğœ‚·‚é
+	GX_ResetBankForBG();	// ãƒãƒ³ã‚¯è¨­å®šã‚’è§£é™¤ã™ã‚‹
 	
-	// Ÿ‚ÌƒtƒŒ[ƒ€‚ğƒLƒƒƒvƒ`ƒƒ‚µ‚Ä‚à‚ç‚¤
+	// æ¬¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚­ãƒ£ãƒ—ãƒãƒ£ã—ã¦ã‚‚ã‚‰ã†
 	MI_CpuClearFast( (void*)HW_LCDC_VRAM_C, HW_VRAM_C_SIZE );
 	GX_SetCapture(
-			GX_CAPTURE_SIZE_256x192,			// ƒLƒƒƒvƒ`ƒƒƒTƒCƒY
-			GX_CAPTURE_MODE_AB,					// ƒLƒƒƒvƒ`ƒƒƒ‚[ƒh
-			GX_CAPTURE_SRCA_2D3D,				// ƒLƒƒƒvƒ`ƒƒƒuƒŒƒ“ƒhA
-			GX_CAPTURE_SRCB_VRAM_0x00000,		// ƒLƒƒƒvƒ`ƒƒƒuƒŒƒ“ƒhB
-			GX_CAPTURE_DEST_VRAM_C_0x00000,		// “]‘—Vram
-			4,						// ƒuƒŒƒ“ƒhŒW”A
-			12);						// ƒuƒŒƒ“ƒhŒW”B	
+			GX_CAPTURE_SIZE_256x192,			// ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚µã‚¤ã‚º
+			GX_CAPTURE_MODE_AB,					// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¢ãƒ¼ãƒ‰
+			GX_CAPTURE_SRCA_2D3D,				// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ–ãƒ¬ãƒ³ãƒ‰A
+			GX_CAPTURE_SRCB_VRAM_0x00000,		// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ–ãƒ¬ãƒ³ãƒ‰B
+			GX_CAPTURE_DEST_VRAM_C_0x00000,		// è»¢é€Vram
+			4,						// ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°A
+			12);						// ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°B	
 	
-	// VBlankŠÖ”İ’è
+	// VBlanké–¢æ•°è¨­å®š
 	VWaitTCB_Add( ENC_GPrint_VBlank, pENC_GPRINT_WK, ENC_SET_GPRINT_VBLANK_TCB_PRI );
 
-	// í’“TCB
+	// å¸¸é§TCB
 	TCB_Add( ENC_GPrint_TCB, pENC_GPRINT_WK, ENC_SET_GPRINT_VBLANK_TCB_PRI );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RD‚Ì•\¦‚©‚ç‚QD•\¦‚ÉØ‚è‘Ö‚¦‚é
+ *	@brief	ï¼“Dã®è¡¨ç¤ºã‹ã‚‰ï¼’Dè¡¨ç¤ºã«åˆ‡ã‚Šæ›¿ãˆã‚‹
  */
 //-----------------------------------------------------------------------------
 void ENC_GPrint_SwitchOn(void)
@@ -2816,10 +2816,10 @@ void ENC_GPrint_SwitchOn(void)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	İ’èŠ®—¹‚µ‚½‚©ƒ`ƒFƒbƒN
+ *	@brief	è¨­å®šå®Œäº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	TRUE	İ’èŠ®—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	è¨­å®šå®Œäº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_GPrint_Check( void )
@@ -2830,7 +2830,7 @@ BOOL ENC_GPrint_Check( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—‚ğs‚¢‚Ü‚·
+ *	@brief	æç”»å‡¦ç†ã‚’è¡Œã„ã¾ã™
  */
 //-----------------------------------------------------------------------------
 void ENC_GPrint_Draw( void )
@@ -2839,28 +2839,28 @@ void ENC_GPrint_Draw( void )
 		return ;
 	}
 	
-	// ƒp[ƒeƒBƒNƒ‹•\¦ˆ—
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è¡¨ç¤ºå‡¦ç†
 	Particle_DrawAll();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	İ’è”jŠü
+ *	@brief	è¨­å®šç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void ENC_GPrint_Exit(void)
 {
 	GF_ASSERT( pENC_GPRINT_WK );
 
-	// ƒp[ƒeƒBƒNƒ‹”jŠü
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç ´æ£„
 	Particle_SystemExitAll();
 	
-	//  BGİ’è‚ğŒ³‚É–ß‚·
+	//  BGè¨­å®šã‚’å…ƒã«æˆ»ã™
 	ENC_GPrint_ReseBg( pENC_GPRINT_WK->p_fsys );
 
-	// ƒtƒB[ƒ‹ƒhXVİ’è‚ğŒ³‚É–ß‚·
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æ›´æ–°è¨­å®šã‚’å…ƒã«æˆ»ã™
 	Fieldmap_UpdateMsk_Set3Dwrite( pENC_GPRINT_WK->p_fsys, TRUE );
 	Fieldmap_UpdateMsk_SetFieldAnime( pENC_GPRINT_WK->p_fsys, TRUE );
 
@@ -2870,10 +2870,10 @@ void ENC_GPrint_Exit(void)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒp[ƒeƒBƒNƒ‹“Ç‚İ‚İ
+ *	@brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«èª­ã¿è¾¼ã¿
  *
- *	@param	p_handle		ƒnƒ“ƒhƒ‹
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_handle		ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 void ENC_GPrint_PTC_Load(ARCHANDLE* p_handle, u32 idx)
@@ -2884,7 +2884,7 @@ void ENC_GPrint_PTC_Load(ARCHANDLE* p_handle, u32 idx)
 	GF_ASSERT( pENC_GPRINT_WK );
 	GF_ASSERT( pENC_GPRINT_WK->p_ptc == NULL );
 
-	// ƒp[ƒeƒBƒNƒ‹ƒ[ƒNì¬
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	pENC_GPRINT_WK->p_ptc_work = sys_AllocMemory( HEAPID_FIELD, PARTICLE_LIB_HEAP_SIZE );
 	pENC_GPRINT_WK->p_ptc = Particle_SystemCreate( 
 			ENC_GPrint_PTC_TexAlloc, ENC_GPrint_PTC_PltAlloc, 
@@ -2893,21 +2893,21 @@ void ENC_GPrint_PTC_Load(ARCHANDLE* p_handle, u32 idx)
 	GF_ASSERT( pENC_GPRINT_WK->p_ptc );
 
 
-	// ƒJƒƒ‰İ’è
+	// ã‚«ãƒ¡ãƒ©è¨­å®š
 	Particle_CameraTypeSet(pENC_GPRINT_WK->p_ptc, GF_CAMERA_ORTHO);
 	p_camera = Particle_GetCameraPtr( pENC_GPRINT_WK->p_ptc );
 	GFC_SetCameraClip(FX32_ONE, FX32_ONE * 900, p_camera);
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ•İ’è
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ï¼†è¨­å®š
 	p_res = ArcUtil_HDL_Load(p_handle, idx, FALSE, HEAPID_FIELD, ALLOC_TOP);
 	Particle_ResourceSet(pENC_GPRINT_WK->p_ptc, p_res, PTC_AUTOTEX_NULL|PTC_AUTOPLTT_NULL, FALSE);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒp[ƒeƒBƒNƒ‹	ŠJn
+ *	@brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«	é–‹å§‹
  *	
- *	@param	emitter_num		ƒGƒ~ƒbƒ^”
+ *	@param	emitter_num		ã‚¨ãƒŸãƒƒã‚¿æ•°
  */
 //-----------------------------------------------------------------------------
 void ENC_GPrint_PTC_Start(u32 emitter_num)
@@ -2918,7 +2918,7 @@ void ENC_GPrint_PTC_Start(u32 emitter_num)
 	GF_ASSERT( pENC_GPRINT_WK );
 	GF_ASSERT( pENC_GPRINT_WK->p_ptc );
 	
-	// ƒGƒ~ƒbƒ^‚Ì“o˜^
+	// ã‚¨ãƒŸãƒƒã‚¿ã®ç™»éŒ²
 	for( i=0; i<emitter_num; i++ ){
 		Particle_CreateEmitter( pENC_GPRINT_WK->p_ptc, i, &init_pos );
 	}
@@ -2926,10 +2926,10 @@ void ENC_GPrint_PTC_Start(u32 emitter_num)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒp[ƒeƒBƒNƒ‹‚ğ“®‚©‚·
+ *	@brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’å‹•ã‹ã™
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_GPrint_PTC_Move(void)
@@ -2942,7 +2942,7 @@ BOOL ENC_GPrint_PTC_Move(void)
 
 	Particle_CalcAll();
 
-	// “®ì’†‚ÌƒGƒ~ƒbƒ^‚ª‚È‚­‚È‚ê‚Î“®ìI—¹
+	// å‹•ä½œä¸­ã®ã‚¨ãƒŸãƒƒã‚¿ãŒãªããªã‚Œã°å‹•ä½œçµ‚äº†
 	if( Particle_GetEmitterNum(pENC_GPRINT_WK->p_ptc) == 0 ){
 		return TRUE;
 	}
@@ -2952,17 +2952,17 @@ BOOL ENC_GPrint_PTC_Move(void)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒp[ƒeƒBƒNƒ‹‚ªI‚í‚Á‚½‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãŒçµ‚ã‚ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
  *	@param	none
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL ENC_GPrint_PTC_EndCheck(void)
 {
-	// “®ì’†‚ÌƒGƒ~ƒbƒ^‚ª‚È‚­‚È‚ê‚Î“®ìI—¹
+	// å‹•ä½œä¸­ã®ã‚¨ãƒŸãƒƒã‚¿ãŒãªããªã‚Œã°å‹•ä½œçµ‚äº†
 	if( Particle_GetEmitterNum(pENC_GPRINT_WK->p_ptc) == 0 ){
 		return TRUE;
 	}
@@ -2971,7 +2971,7 @@ BOOL ENC_GPrint_PTC_EndCheck(void)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒp[ƒeƒBƒNƒ‹‚ğ”jŠü‚·‚é
+ *	@brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’ç ´æ£„ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 void ENC_GPrint_PTC_Delete(void)
@@ -2988,10 +2988,10 @@ void ENC_GPrint_PTC_Delete(void)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlank	‚¢‚ë‚¢‚ëİ’èˆ—
+ *	@brief	VBlank	ã„ã‚ã„ã‚è¨­å®šå‡¦ç†
  *	
- *	@param	tcb		TCBƒ[ƒN
- *	@param	p_work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ENC_GPrint_VBlank( TCB_PTR tcb, void* p_work )
@@ -2999,16 +2999,16 @@ static void ENC_GPrint_VBlank( TCB_PTR tcb, void* p_work )
 	ENC_GPRINT_WK* p_wk = p_work;
 
 	switch( p_wk->seq ){
-	case 0:	// ƒLƒƒƒvƒ`ƒƒ‘Ò‚¿
+	case 0:	// ã‚­ãƒ£ãƒ—ãƒãƒ£å¾…ã¡
 		p_wk->seq ++;
 		break;
 
-	case 1:	// ‚¢‚ë‚¢‚ëİ’è
+	case 1:	// ã„ã‚ã„ã‚è¨­å®š
 		if( p_wk->draw_start == TRUE ){
-			// BG–Ê‚ÌÄİ’è
+			// BGé¢ã®å†è¨­å®š
 			ENC_GPrint_SetUpBg( p_wk->p_fsys );
 			
-			// İ’èŠ®—¹
+			// è¨­å®šå®Œäº†
 			TCB_Delete( tcb );
 			p_wk->seq ++;
 		}
@@ -3018,7 +3018,7 @@ static void ENC_GPrint_VBlank( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankŠúŠÔ‚É‚·‚é•K—v‚Ì–³‚¢İ’èˆ—
+ *	@brief	VBlankæœŸé–“ã«ã™ã‚‹å¿…è¦ã®ç„¡ã„è¨­å®šå‡¦ç†
  *
  *	@param	tcb
  *	@param	p_work 
@@ -3029,12 +3029,12 @@ static void ENC_GPrint_TCB( TCB_PTR tcb, void* p_work )
 	ENC_GPRINT_WK* p_wk = p_work;
 
 	switch( p_wk->seq ){
-	case 2:	// •\¦ŠÂ‹«‚Ì\’z 
+	case 2:	// è¡¨ç¤ºç’°å¢ƒã®æ§‹ç¯‰ 
 
-		// 3D•\¦ŠÂ‹«‚ğ\’z‚·‚é
-		Particle_SystemWorkInit();		// ƒp[ƒeƒBƒNƒ‹‰Šú‰»
+		// 3Dè¡¨ç¤ºç’°å¢ƒã‚’æ§‹ç¯‰ã™ã‚‹
+		Particle_SystemWorkInit();		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
 
-		// Šî–{ƒOƒ[ƒoƒ‹ƒXƒe[ƒgİ’è
+		// åŸºæœ¬ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆè¨­å®š
 		{
 			VecFx32 vec = {0};
 			VecFx32 scale = {FX32_ONE,FX32_ONE,FX32_ONE};
@@ -3046,13 +3046,13 @@ static void ENC_GPrint_TCB( TCB_PTR tcb, void* p_work )
 			NNS_G3dGlbSetBaseRot( &rot );
 		}
 
-		// 3D•\¦OFF
+		// 3Dè¡¨ç¤ºOFF
 		Fieldmap_UpdateMsk_Set3Dwrite( p_wk->p_fsys, FALSE );
 		Fieldmap_UpdateMsk_SetFieldAnime( p_wk->p_fsys, FALSE );
-		// 3D–Ê‚ğã‚É‚·‚é
+		// 3Dé¢ã‚’ä¸Šã«ã™ã‚‹
 		GF_BGL_PrioritySet( GF_BGL_FRAME0_M, 0 );	
 
-		// İ’èŠ®—¹
+		// è¨­å®šå®Œäº†
 		p_wk->init = TRUE;
 		TCB_Delete( tcb );
 		break;
@@ -3064,49 +3064,49 @@ static void ENC_GPrint_TCB( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG–Êİ’è
+ *	@brief	BGé¢è¨­å®š
  *
- *	@param	p_fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
+ *	@param	p_fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void ENC_GPrint_SetUpBg( FIELDSYS_WORK* p_fsys )
 {
-	// VBlankİ’è
+	// VBlankè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_256_BC,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_16_F,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_0123_E			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_256_BC,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_16_F,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_0123_E			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 	}
 
-	//  ‚RD•\¦OFF
+	//  ï¼“Dè¡¨ç¤ºOFF
 	GF_Disp_GX_VisibleControl(
 		GX_PLANEMASK_BG0, VISIBLE_OFF );
 
 
-	// BGƒRƒ“ƒgƒ[ƒ‹
+	// BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 	{
-		// ƒRƒ“ƒgƒ[ƒ‹
+		// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 		GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS,GX_BGMODE_3,GX_BGMODE_0, GX_BG0_AS_3D
 		};
 		GF_BGL_InitBG(&BGsys_data);
 	}
 
-	// BGLÄ\’z
+	// BGLå†æ§‹ç¯‰
 	{
 		Fieldmap_BgExit( p_fsys->bgl );
 
-		// BACK•\¦–Ê 
+		// BACKè¡¨ç¤ºé¢ 
 		{	
 			G2_SetBG3ControlDCBmp( 
 					GX_BG_SCRSIZE_DCBMP_256x256, 
@@ -3124,7 +3124,7 @@ static void ENC_GPrint_SetUpBg( FIELDSYS_WORK* p_fsys )
 				G2_SetBG3Affine( &mtx, 0, 0, 0, 0 );
 			}
 #else
-			///< screen ofs ‚Ìó‘Ô‚ª•s’è‚È‚Ì‚Å0‰Šú‰» goto
+			///< screen ofs ã®çŠ¶æ…‹ãŒä¸å®šãªã®ã§0åˆæœŸåŒ– goto
 			GF_BGL_ScrollSet( p_fsys->bgl, GF_BGL_FRAME3_M, GF_BGL_SCROLL_X_SET, 0 );
 			GF_BGL_ScrollSet( p_fsys->bgl, GF_BGL_FRAME3_M, GF_BGL_SCROLL_Y_SET, 0 );
 #endif
@@ -3132,7 +3132,7 @@ static void ENC_GPrint_SetUpBg( FIELDSYS_WORK* p_fsys )
 	
 		}
 
-		// ƒGƒtƒFƒNƒg–Ê‚ğİ’è
+		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã‚’è¨­å®š
 		{
 			GF_BGL_BGCNT_HEADER TextBgCntDat = {
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -3146,7 +3146,7 @@ static void ENC_GPrint_SetUpBg( FIELDSYS_WORK* p_fsys )
 	}
 
 
-	//  OBJ‚Í•\¦‚µ‚Ä‚¨‚­
+	//  OBJã¯è¡¨ç¤ºã—ã¦ãŠã
 	GF_Disp_GX_VisibleControl(
 		GX_PLANEMASK_OBJ, VISIBLE_ON );
 
@@ -3154,29 +3154,29 @@ static void ENC_GPrint_SetUpBg( FIELDSYS_WORK* p_fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG–Êİ’è‚ğŒ³‚É–ß‚·
+ *	@brief	BGé¢è¨­å®šã‚’å…ƒã«æˆ»ã™
  *
- *	@param	p_fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
+ *	@param	p_fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void ENC_GPrint_ReseBg( FIELDSYS_WORK* p_fsys )
 {
-	// İ’èƒtƒŒ[ƒ€”jŠü
+	// è¨­å®šãƒ•ãƒ¬ãƒ¼ãƒ ç ´æ£„
 	GF_BGL_BGControlExit( p_fsys->bgl, GF_BGL_FRAME2_M );
 
-	// ƒtƒB[ƒ‹ƒh‚Ìİ’è‚É–ß‚·
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®è¨­å®šã«æˆ»ã™
 	Fieldmap_BgSet( p_fsys->bgl );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒp[ƒeƒBƒNƒ‹—p	ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXæ“¾ŠÖ”
+ *	@brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç”¨	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—é–¢æ•°
  *
- *	@param	size		ƒTƒCƒY
- *	@param	comp4x4		ˆ³k‚©
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	comp4x4		åœ§ç¸®ã‹
  *
- *	@return	ƒAƒhƒŒƒX
+ *	@return	ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //-----------------------------------------------------------------------------
 static u32 ENC_GPrint_PTC_TexAlloc( u32 size, BOOL comp4x4 )
@@ -3186,8 +3186,8 @@ static u32 ENC_GPrint_PTC_TexAlloc( u32 size, BOOL comp4x4 )
 	GF_ASSERT( pENC_GPRINT_WK );
 	GF_ASSERT( comp4x4 == FALSE );
 
-	// ‚¨\‚¢‚È‚µ‚É‚RD‚ÌVRAM‚ğ‰ó‚µ‚Ä‚¢‚­
-	// •\¦‚·‚é‚Ì‚Íƒp[ƒeƒBƒNƒ‹‚Ì‚İ‚Ì—\’è‚È‚Ì‚Å
+	// ãŠæ§‹ã„ãªã—ã«ï¼“Dã®VRAMã‚’å£Šã—ã¦ã„ã
+	// è¡¨ç¤ºã™ã‚‹ã®ã¯ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã¿ã®äºˆå®šãªã®ã§
 	addr = pENC_GPRINT_WK->tex_addr;
 	pENC_GPRINT_WK->tex_addr += size;
 
@@ -3200,8 +3200,8 @@ static u32 ENC_GPrint_PTC_PltAlloc( u32 size, BOOL comp4pltt )
 	GF_ASSERT( pENC_GPRINT_WK );
 	GF_ASSERT( comp4pltt == FALSE );
 
-	// ‚¨\‚¢‚È‚µ‚É‚RD‚ÌVRAM‚ğ‰ó‚µ‚Ä‚¢‚­
-	// •\¦‚·‚é‚Ì‚Íƒp[ƒeƒBƒNƒ‹‚Ì‚İ‚Ì—\’è‚È‚Ì‚Å
+	// ãŠæ§‹ã„ãªã—ã«ï¼“Dã®VRAMã‚’å£Šã—ã¦ã„ã
+	// è¡¨ç¤ºã™ã‚‹ã®ã¯ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã¿ã®äºˆå®šãªã®ã§
 	addr = pENC_GPRINT_WK->plt_addr;
 	pENC_GPRINT_WK->plt_addr += size;
 

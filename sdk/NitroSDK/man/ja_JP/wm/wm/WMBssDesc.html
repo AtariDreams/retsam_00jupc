@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WMBssDesc</title>
@@ -13,7 +13,7 @@
 
 <h1 align="left">WMBssDesc</h1>
 
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -44,31 +44,31 @@ typedef struct WMBssDesc
 </CODE></PRE>
   </dd>
 
-</dl><h2>�v�f</h2>
+</dl><h2>要素</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="200"><em><strong><font face="Courier New">length</font></strong></em></TD>
-      <TD width="800">���̍\���̑S�̂Ɋi�[���ꂽ�L���ȃf�[�^�́A�n�[�t���[�h(u16)�P�ʂł̃T�C�Y�ł��B</TD>
+      <TD width="800">この構造体全体に格納された有効なデータの、ハーフワード(u16)単位でのサイズです。</TD>
     </TR>
 
     <TR>
       <TD width="200"><em><strong><font face="Courier New">bssid</font></strong></em></TD>
-      <TD width="800">�e�@��BSS ID�ł��B<br>
-	  ���̒l�͐e�@��MAC�A�h���X�ł���@�̂��ƂɌŗL�ł��B</TD>
+      <TD width="800">親機のBSS IDです。<br>
+	  この値は親機のMACアドレスであり機体ごとに固有です。</TD>
     </TR>
     <TR>
       <TD width="200"><em><strong><font face="Courier New">gameInfoLength</font></strong></em></TD>
-      <TD width="800">gameInfo�Ɋi�[���ꂽ�L���ȃf�[�^�o�C�g���ł��B</TD>
+      <TD width="800">gameInfoに格納された有効なデータバイト数です。</TD>
     </TR>
     <TR>
       <TD width="200"><em><strong><font face="Courier New">gameInfo</font></strong></em></TD>
-      <TD width="800">�e�@�̎w�肵����񂪊i�[���ꂽ<a href="WMGameInfo.html">WMGameInfo</a>�\���̂ł��B</TD>
+      <TD width="800">親機の指定した情報が格納された<a href="WMGameInfo.html">WMGameInfo</a>構造体です。</TD>
     </TR>
 
     <TR>
       <TD width="200"><font color="#808080">rssi</font></TD>
-      <TD width="800" rowspan="11"><font color="#808080">���C�u���������Ŏg�p����܂��B</font></TD>
+      <TD width="800" rowspan="11"><font color="#808080">ライブラリ内部で使用されます。</font></TD>
     </TR>
     <TR>
       <TD width="200"><font color="#808080">ssidLength</font></TD>
@@ -104,14 +104,14 @@ typedef struct WMBssDesc
   </TBODY>
 </TABLE>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-<a href="WM_StartScan.html">WM_StartScan</a>�֐��ɂ��T���̌��ʔ������ꂽ�e�@�̏�񂪊i�[�����\���̂ł��B<br>
+<a href="WM_StartScan.html">WM_StartScan</a>関数による探索の結果発見された親機の情報が格納される構造体です。<br>
 </P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/10/06 ����<BR>
+2004/10/06 初版<BR>
 </P>
 </body>
 </html>

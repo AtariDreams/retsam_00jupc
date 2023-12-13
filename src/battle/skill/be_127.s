@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_127.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			127�@�����̃|�P�����ƌ�シ��A��シ�鎞�ɍ��܂ł������Ă����⏕���ʂ����̂܂܎󂯌p�����鎖���o����
- *				�i��������|�P���������Ȃ��ꍇ�A�Z�͎��s����j
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			127　味方のポケモンと交代する、交代する時に今までかかっていた補助効果をそのまま受け継がせる事が出来る
+ *				（交換するポケモンがいない場合、技は失敗する）
  *
  *@author	HisashiSogabe
  *@data		2006.02.02

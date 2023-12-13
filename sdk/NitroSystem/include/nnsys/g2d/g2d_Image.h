@@ -25,8 +25,8 @@ extern "C" {
 #endif
 
 //
-// �������s�����֐��̕ʖ�
-// �݊����ێ��̂��ߕʖ��Ƃ��ĈȑO�̊֐���錾���܂��B
+// 改名を行った関数の別名
+// 互換性維持のため別名として以前の関数を宣言します。
 // 
 #define NNS_G2dInitializeImageProxy         NNS_G2dInitImageProxy
 #define NNS_G2dInitializeImagePaletteProxy  NNS_G2dInitImagePaletteProxy 
@@ -34,7 +34,7 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2D_VRAM_TYPE
 
-  Description:  VRAM�̎��
+  Description:  VRAMの種類
  *---------------------------------------------------------------------------*/
 typedef enum NNS_G2D_VRAM_TYPE
 {
@@ -57,29 +57,29 @@ typedef enum NNS_G2D_VRAM_TYPE
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dImageAttr
 
-  Description:  �摜����
-                NNSG2dImageProxy �� ���L����܂�
+  Description:  画像属性
+                NNSG2dImageProxy に 所有されます
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dImageAttr
 {
-    GXTexSizeS                      sizeS;          // �摜�T�C�Y(1D�}�b�s���O���ɂ͕s���ȃf�[�^���ݒ肳��܂�)
-    GXTexSizeT                      sizeT;          // �摜�T�C�Y(1D�}�b�s���O���ɂ͕s���ȃf�[�^���ݒ肳��܂�)
+    GXTexSizeS                      sizeS;          // 画像サイズ(1Dマッピング時には不正なデータが設定されます)
+    GXTexSizeT                      sizeT;          // 画像サイズ(1Dマッピング時には不正なデータが設定されます)
     
-    GXTexFmt                        fmt;            // �摜�t�H�[�}�b�g
-    BOOL                            bExtendedPlt;   // �g���p���b�g���g�p���邩�ǂ����H
+    GXTexFmt                        fmt;            // 画像フォーマット
+    BOOL                            bExtendedPlt;   // 拡張パレットを使用するかどうか？
     
-    GXTexPlttColor0                 plttUse;        // �p���b�g0�Ԃ̎g�p���@
-    GXOBJVRamModeChar               mappingType;    // �}�b�s���O���[�h
+    GXTexPlttColor0                 plttUse;        // パレット0番の使用方法
+    GXOBJVRamModeChar               mappingType;    // マッピングモード
 }
 NNSG2dImageAttr;
 
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dVRamLocation
 
-  Description:  VRAM�ł̎��A�h���X
-                VRAM�̎�ޕ��̎��A�h���X�������܂�
-                NNSG2dImageProxy�ɏ��L����܂��B
+  Description:  VRAMでの実アドレス
+                VRAMの種類分の実アドレスを持ちます
+                NNSG2dImageProxyに所有されます。
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dVRamLocation
@@ -91,7 +91,7 @@ NNSG2dVRamLocation;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dImageProxy
 
-  Description:  �摜��\������\��
+  Description:  画像を表現する構造
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dImageProxy
@@ -104,15 +104,15 @@ NNSG2dImageProxy;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dImagePaletteProxy
 
-  Description:  �摜�p���b�g��\������\��
+  Description:  画像パレットを表現する構造
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dImagePaletteProxy
 {
     
-    GXTexFmt                  fmt;          // �p���b�g�t�H�[�}�b�g
-                                            // (  �Ƃ肤��l�� GX_TEXFMT_PLTT16 GX_TEXFMT_PLTT256 �Ɍ����܂� �j
+    GXTexFmt                  fmt;          // パレットフォーマット
+                                            // (  とりうる値は GX_TEXFMT_PLTT16 GX_TEXFMT_PLTT256 に限られます ）
                                             
-    BOOL                      bExtendedPlt; // �g���p���b�g���g�p���邩
+    BOOL                      bExtendedPlt; // 拡張パレットを使用するか
     
     NNSG2dVRamLocation        vramLocation;           
 }

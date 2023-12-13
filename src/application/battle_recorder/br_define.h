@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_define.h
- * @brief	”’l‚Ü‚Æ‚ß‚Ä‚é‚Æ‚±
+ * @brief	æ•°å€¤ã¾ã¨ã‚ã¦ã‚‹ã¨ã“
  * @author	goto
- * @date	2008.03.12(…)
+ * @date	2008.03.12(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -14,7 +14,7 @@
 
 //	----------------------------------------
 //
-//		ƒfƒoƒbƒO
+//		ãƒ‡ãƒãƒƒã‚°
 //
 //	----------------------------------------
 #ifdef PM_DEBUG
@@ -31,7 +31,7 @@
 
 // -----------------------------------------
 //
-//	ƒ^ƒXƒN‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ã‚¿ã‚¹ã‚¯ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //
 // -----------------------------------------
 enum {
@@ -44,20 +44,20 @@ enum {
 };
 
 
-#define BB_INFO_WAIT			( 30 * 2 )					///< Ž©“®‚ÅÁ‚¦‚éŽžŠÔ
+#define BB_INFO_WAIT			( 30 * 2 )					///< è‡ªå‹•ã§æ¶ˆãˆã‚‹æ™‚é–“
 
 
 #define HEAPID_BR				( HEAPID_BATTLE_RECORDER )	///< HEAPID
-#define HEAP_SIZE_BR			( 0x55000 )					///< 60000ˆÈ“à‚É‚µ‚Æ‚«‚½‚¢B
+#define HEAP_SIZE_BR			( 0x55000 )					///< 60000ä»¥å†…ã«ã—ã¨ããŸã„ã€‚
 
 #define BR_MSG_CLEAR_CODE		( 0xCC )
 
-#define SUB_SURFACE_FX_Y_BR		( 256 * FX32_ONE )			///< ƒT[ƒtƒFƒCƒX
+#define SUB_SURFACE_FX_Y_BR		( 256 * FX32_ONE )			///< ã‚µãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
 #define SUB_SURFACE_Y_BR		( 256 )
 #define SUB_SURFACE_FX_Y_N		( 192 * FX32_ONE )
 #define SUB_SURFACE_Y_N			( 192 )
 
-///< ƒ^ƒO‚ÌÀ•WŠÇ—
+///< ã‚¿ã‚°ã®åº§æ¨™ç®¡ç†
 #define TAG_INIT_POS( n,m )		( 25 + ( ( 36 ) * ( n ) ) + ( 16 * ( 5 - ( m ) ) ) )
 #define TAG_INIT_POS_2( n,m )	( 25 + ( ( 36 ) * ( n ) ) + ( 16 * ( 4 - ( m ) ) ) )
 #define TAG_INIT_POS_U( n )		( 25 + ( ( 36 ) * ( n ) ) )
@@ -69,13 +69,13 @@ enum {
 #define BR_TAG_BMP_WIX_SX	( 20 )
 #define BR_TAG_BMP_WIX_SY	( 2 )
 #define BMPWIN_CHAR_OFS		( 256 )
-#define BR_DRESS_VIEW_MAX	( 5 )		///< ƒhƒŒƒXƒAƒbƒv‚ÌÅ‘å”
-#define BR_UNION_CHAR_MAX	( 16 )		///< ƒ†ƒjƒIƒ“ƒLƒƒƒ‰‚ÌÅ‘å”
+#define BR_DRESS_VIEW_MAX	( 5 )		///< ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã®æœ€å¤§æ•°
+#define BR_UNION_CHAR_MAX	( 16 )		///< ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã®æœ€å¤§æ•°
 
-#define PRINT_COL_BOOT		( GF_PRINTCOLOR_MAKE(  1, 14,  0 ) )	// ‹N“®Žž‚Ì•¶ŽšF
-#define PRINT_COL_NORMAL	( GF_PRINTCOLOR_MAKE( 15, 13,  0 ) )	// ‚æ‚­Žg‚¤•¶ŽšF
-#define	PRINT_COL_BLACK		( GF_PRINTCOLOR_MAKE( 14, 13,  0 ) )	// ƒtƒHƒ“ƒgƒJƒ‰[
-#define	PRINT_COL_INFO		( GF_PRINTCOLOR_MAKE( 15, 13, 12 ) )	// ƒtƒHƒ“ƒgƒJƒ‰[
+#define PRINT_COL_BOOT		( GF_PRINTCOLOR_MAKE(  1, 14,  0 ) )	// èµ·å‹•æ™‚ã®æ–‡å­—è‰²
+#define PRINT_COL_NORMAL	( GF_PRINTCOLOR_MAKE( 15, 13,  0 ) )	// ã‚ˆãä½¿ã†æ–‡å­—è‰²
+#define	PRINT_COL_BLACK		( GF_PRINTCOLOR_MAKE( 14, 13,  0 ) )	// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+#define	PRINT_COL_INFO		( GF_PRINTCOLOR_MAKE( 15, 13, 12 ) )	// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
 #define	PRINT_COL_PHOTO		( PRINT_COL_NORMAL )
 #define	PRINT_COL_BOX_SHOT	( PRINT_COL_NORMAL )
 #define	PRINT_COL_BOX_NAME	( GF_PRINTCOLOR_MAKE( 15,  1,  0 ) )
@@ -95,15 +95,15 @@ enum {
 
 #define WEEKLY_RANK_DATA_MAX	( 9999999999999999999 )
 
-///< ƒtƒF[ƒh‘ÎÛ‚ÌƒJƒ‰[ƒrƒbƒg
+///< ãƒ•ã‚§ãƒ¼ãƒ‰å¯¾è±¡ã®ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆ
 #define LOGO_PALETTE			( 0x0002 )
 #define TAG_SUB_PALETTE			( 0x000C )		///< 
 #define LINE_OTHER_SUB_PALETTE	( 0x000C )		///< 
 #define TAG_PALETTE				( 0x000C )		///< 001-1100
 #define POKE_ICON_PALETTE		( 0x00F0 )		///< 111-1100
 
-///< ƒƒS‚ÌF ƒpƒŒƒbƒg‚P‚Ì‚PF–Ú
-#define LOGO_COLOR_B			( 0x73fa )		///< ƒuƒ‰ƒEƒYƒ‚[ƒh ’Êí
+///< ãƒ­ã‚´ã®è‰² ãƒ‘ãƒ¬ãƒƒãƒˆï¼‘ã®ï¼‘è‰²ç›®
+#define LOGO_COLOR_B			( 0x73fa )		///< ãƒ–ãƒ©ã‚¦ã‚ºãƒ¢ãƒ¼ãƒ‰ é€šå¸¸
 #define LOGO_COLOR_B2			( 0x771f )
 #define LOGO_COLOR_B3			( 0x6f7b )
 #define LOGO_COLOR_B4			( 0x6fff )
@@ -112,10 +112,10 @@ enum {
 #define LOGO_COLOR_B7			( 0x5b9f )
 #define LOGO_COLOR_B8			( 0xFFFF )
 #define LOGO_COLOR_B9			( 0xFFFF )
-#define LOGO_COLOR_G			( 0x7fdd )		///< ƒOƒ[ƒoƒ‹ƒ‚[ƒh
+#define LOGO_COLOR_G			( 0x7fdd )		///< ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰
 
-///< ƒ‰ƒCƒ“‚ÌF ƒpƒŒƒbƒg‚O‚Ì‚PF–Ú
-#define LINE_COLOR_B			( 0x1642 )		///< ƒuƒ‰ƒEƒYƒ‚[ƒh ’Êí
+///< ãƒ©ã‚¤ãƒ³ã®è‰² ãƒ‘ãƒ¬ãƒƒãƒˆï¼ã®ï¼‘è‰²ç›®
+#define LINE_COLOR_B			( 0x1642 )		///< ãƒ–ãƒ©ã‚¦ã‚ºãƒ¢ãƒ¼ãƒ‰ é€šå¸¸
 #define LINE_COLOR_B2			( 0x357f )
 #define LINE_COLOR_B3			( 0x3def )
 #define LINE_COLOR_B4			( 0x031f )
@@ -124,47 +124,47 @@ enum {
 #define LINE_COLOR_B7			( 0x023f )
 #define LINE_COLOR_B8			( 0xFFFF )
 #define LINE_COLOR_B9			( 0xFFFF )
-#define LINE_COLOR_G			( 0x7e05 )		///< ƒOƒ[ƒoƒ‹ƒ‚[ƒh
+#define LINE_COLOR_G			( 0x7e05 )		///< ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰
 
-#define CHANGE_COLOR_MAX		( 7 )			///< ‚¢‚ë‚ª‚¦‚Å‚«‚é”
+#define CHANGE_COLOR_MAX		( 7 )			///< ã„ã‚ãŒãˆã§ãã‚‹æ•°
 
-#define SIDE_BAR_MOVE_F			( 10 )			///< ƒTƒCƒhƒo[‚ÌˆÚ“®ƒtƒŒ[ƒ€
+#define SIDE_BAR_MOVE_F			( 10 )			///< ã‚µã‚¤ãƒ‰ãƒãƒ¼ã®ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-#define	TAG_MAX					( 5 )			///< ƒ^ƒO‚ÌŒÂ”
-#define TAG_CIRCLE_CX			( 15 + 1 )		///< ‚­‚é‚­‚éƒJ[ƒ\ƒ‹‚ÌƒIƒtƒZƒbƒg
-#define TAG_INIT_RAD			( 90 )			///< ƒ^ƒO‚ÌŠp“x
-#define TAG_VANISH_TOP			( -48 )			///< Œ©‚¦‚È‚¢ˆÊ’u
-#define TAG_VANISH_BOTTOM		( 48 )			///< ‰º‚ÌŒ©‚¦‚È‚¢ˆÊ’u
-#define TAG_VANISH_BOTTOM_INIT	( 32 )			///< ”‚ª­‚È‚¢‚Æ‚«‚Ì‰Šú’l
-#define TAG_UP_MOVE_F			( 8 )			///< ã‚Éƒ^ƒO‚ª—ˆ‚éƒXƒs[ƒh
-#define TAG_UP_SUB_MOVE_F		( 4 )			///< ƒTƒu‰æ–Ê‚Ìƒ^ƒO‚ÌƒXƒs[ƒh
-#define TAG_DOWN_MOVE_F			( 8 )			///< ‰º‚É‰º‚ª‚é‚Æ‚«‚Ìƒ^ƒO‚ÌƒXƒs[ƒh
+#define	TAG_MAX					( 5 )			///< ã‚¿ã‚°ã®å€‹æ•°
+#define TAG_CIRCLE_CX			( 15 + 1 )		///< ãã‚‹ãã‚‹ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define TAG_INIT_RAD			( 90 )			///< ã‚¿ã‚°ã®è§’åº¦
+#define TAG_VANISH_TOP			( -48 )			///< è¦‹ãˆãªã„ä½ç½®
+#define TAG_VANISH_BOTTOM		( 48 )			///< ä¸‹ã®è¦‹ãˆãªã„ä½ç½®
+#define TAG_VANISH_BOTTOM_INIT	( 32 )			///< æ•°ãŒå°‘ãªã„ã¨ãã®åˆæœŸå€¤
+#define TAG_UP_MOVE_F			( 8 )			///< ä¸Šã«ã‚¿ã‚°ãŒæ¥ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define TAG_UP_SUB_MOVE_F		( 4 )			///< ã‚µãƒ–ç”»é¢ã®ã‚¿ã‚°ã®ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define TAG_DOWN_MOVE_F			( 8 )			///< ä¸‹ã«ä¸‹ãŒã‚‹ã¨ãã®ã‚¿ã‚°ã®ã‚¹ãƒ”ãƒ¼ãƒ‰
 
-#define MENU_IN_SPEED			( 1 )					///< ƒƒjƒ…[‚ª‚Å‚éƒXƒs[ƒh ( ‰Šú = x1 )
-#define TAG_FADE_SPPED			( 1 * MENU_IN_SPEED )	///< ƒ^ƒO‚ÌƒtƒF[ƒhƒXƒs[ƒh
-#define TAG_IN_WAIT				( 4 / MENU_IN_SPEED )	///< ƒ^ƒO‚ÌƒCƒ“ƒT[ƒg‘Ò‚¿
-#define TAG_MOVE_VALUE_U		( 8 * MENU_IN_SPEED )	///< ƒ^ƒO‚ÌˆÚ“®—Ê
-#define TAG_RAD_VALUE_U			( -4 * MENU_IN_SPEED )	///< ƒ^ƒO‚Ì‰ñ“]Šp“x
+#define MENU_IN_SPEED			( 1 )					///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒã§ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰ ( åˆæœŸ = x1 )
+#define TAG_FADE_SPPED			( 1 * MENU_IN_SPEED )	///< ã‚¿ã‚°ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define TAG_IN_WAIT				( 4 / MENU_IN_SPEED )	///< ã‚¿ã‚°ã®ã‚¤ãƒ³ã‚µãƒ¼ãƒˆå¾…ã¡
+#define TAG_MOVE_VALUE_U		( 8 * MENU_IN_SPEED )	///< ã‚¿ã‚°ã®ç§»å‹•é‡
+#define TAG_RAD_VALUE_U			( -4 * MENU_IN_SPEED )	///< ã‚¿ã‚°ã®å›žè»¢è§’åº¦
 
-#define MENU_OUT_SPEED			( 1 )					///< ƒƒjƒ…[‚ª–ß‚éƒXƒs[ƒh ( ‰Šú = x1 )
-#define TAG_MOVE_VALUE_D		( 8 * MENU_OUT_SPEED )	///< ƒ^ƒO‚Ì–ß‚éƒXƒs[ƒh
-#define TAG_RAD_VALUE_D			( 4 * MENU_OUT_SPEED )	///< ƒ^ƒO‚Ì‰ñ“]Šp“x
+#define MENU_OUT_SPEED			( 1 )					///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒæˆ»ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰ ( åˆæœŸ = x1 )
+#define TAG_MOVE_VALUE_D		( 8 * MENU_OUT_SPEED )	///< ã‚¿ã‚°ã®æˆ»ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define TAG_RAD_VALUE_D			( 4 * MENU_OUT_SPEED )	///< ã‚¿ã‚°ã®å›žè»¢è§’åº¦
 
-#define FONT_OAM_TAG_OX			( 36 )			///< •¶ŽšOAM‚ÌƒIƒtƒZƒbƒg
-#define FONT_OAM_TAG_OY			( -8 )			///< •¶ŽšOAM‚ÌƒIƒtƒZƒbƒg
+#define FONT_OAM_TAG_OX			( 36 )			///< æ–‡å­—OAMã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define FONT_OAM_TAG_OY			( -8 )			///< æ–‡å­—OAMã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 #define TAG_HIT_HEIGHT			( 16 )
 #define TAG_HIT_RIGHT			( 160 )
 
-#define COMM_HORMING_CUR_CX		( 128 )			///< ƒz[ƒ~ƒ“ƒOƒJ[ƒ\ƒ‹
+#define COMM_HORMING_CUR_CX		( 128 )			///< ãƒ›ãƒ¼ãƒŸãƒ³ã‚°ã‚«ãƒ¼ã‚½ãƒ«
 #define COMM_HORMING_CUR_CY		(  96 )
-#define COMM_HORMING_R			(  24 )			///< ‘—ŽóM’†‚Ì”¼Œa
-#define LIST_HORMING_R			(  12 )			///< ƒŠƒXƒgƒJ[ƒ\ƒ‹‚Ì”¼Œa
+#define COMM_HORMING_R			(  24 )			///< é€å—ä¿¡ä¸­ã®åŠå¾„
+#define LIST_HORMING_R			(  12 )			///< ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ã®åŠå¾„
 
-#define GLOBAL_POKE_ICON_ID		( 500 )			///< ƒOƒ[ƒoƒ‹‚ÈƒOƒ‰ƒtƒBƒbƒN‚h‚c
+#define GLOBAL_POKE_ICON_ID		( 500 )			///< ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼©ï¼¤
 
 
-///< ƒGƒ‰[‚ª‚ç‚Ý‚Ì‚Ü‚Æ‚ß
+///< ã‚¨ãƒ©ãƒ¼ãŒã‚‰ã¿ã®ã¾ã¨ã‚
 #define ERR_WIN_X				( 1 )
 #define ERR_WIN_Y				( 1 )
 #define ERR_WIN_SX				( 20 )
@@ -182,21 +182,21 @@ enum {
 #define DEF_SP1		( GX_BLEND_PLANEMASK_BG3 )
 #define DEF_SP2		( GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ )
 
-///< ƒXƒ‰ƒCƒ_[ˆ—
+///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼å‡¦ç†
 #define BB_SLIDER_HIT_FRAME		( 2 )
 #define BB_SLIDER_MOVE_VALUE	( 16 )
 
-///< ƒ^ƒbƒ`ƒŠƒXƒg@¡T‚È‚çparam_ex‚ÌƒXƒRƒA‚ÍŽQÆ‚µ‚È‚¢
-#define TL_THIS_WEEK_TR	( 10000 )	///< ¡TƒgƒŒ[ƒi[
+///< ã‚¿ãƒƒãƒãƒªã‚¹ãƒˆã€€ä»Šé€±ãªã‚‰param_exã®ã‚¹ã‚³ã‚¢ã¯å‚ç…§ã—ãªã„
+#define TL_THIS_WEEK_TR	( 10000 )	///< ä»Šé€±ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 #define TL_LAST_WEEK_TR	( 20000 )
-#define TL_THIS_WEEK_YM	( 30000 )	///< ¡T‚¤‚Ü‚ê‚Â‚«
+#define TL_THIS_WEEK_YM	( 30000 )	///< ä»Šé€±ã†ã¾ã‚Œã¤ã
 #define TL_LAST_WEEK_YM	( 40000 )
-#define TL_THIS_WEEK_MN	( 50000 )	///< ¡Tƒ|ƒPƒ‚ƒ“
+#define TL_THIS_WEEK_MN	( 50000 )	///< ä»Šé€±ãƒã‚±ãƒ¢ãƒ³
 #define TL_LAST_WEEK_MN	( 60000 )
 
-#define NOTFOUND_MONSNO	( 0xFFFF )	///< ƒ|ƒP–³‚µ
+#define NOTFOUND_MONSNO	( 0xFFFF )	///< ãƒã‚±ç„¡ã—
 
-///< ƒ^ƒbƒ`ƒAƒNƒVƒ‡ƒ“
+///< ã‚¿ãƒƒãƒã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 #define TOUCH_ACTION_DEF_R		( 6 )
 #define TOUCH_ACTION_ADD_R		( 2 )
 #define TOUCH_ACTION_CUR_R( n )	( TOUCH_ACTION_DEF_R + ( n * TOUCH_ACTION_ADD_R ) )
@@ -221,7 +221,7 @@ enum {
 	eOAM_PRI_TAG_OFS	= 10,
 };
 
-///< ƒV[ƒPƒ“ƒX	¦ƒƒjƒ…[ƒf[ƒ^‚à‘‚â‚¹
+///< ã‚·ãƒ¼ã‚±ãƒ³ã‚¹	â€»ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚‚å¢—ã‚„ã›
 enum {
 	
 	eMAIN_Start			= 0,
@@ -247,11 +247,11 @@ enum {
 	eMAIN_Blank,	
 	eMAIN_Delete,
 	
-	eMAIN_Error,		///< “ÁŽê‚Èˆ—
+	eMAIN_Error,		///< ç‰¹æ®Šãªå‡¦ç†
 	eMAIN_End			= 0xFF,	
 };
 
-///< ƒƒjƒ…[ƒf[ƒ^
+///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 #define SEAM_LESS_ON	( TRUE )
 #define SEAM_LESS_OFF	( TRUE )
 enum {
@@ -288,7 +288,7 @@ enum {
 	eMUENU_DATA_DUMMY,
 };
 
-///< ƒGƒ‰[ƒR[ƒh
+///< ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 enum {
 	
 	eERR_DRESS_SEND = 0,
@@ -301,11 +301,11 @@ enum {
 	eERR_RANKING_SEND,
 	
 	eERR_VIDEO_SEND,
-	eERR_VIDEO_SEARCH,		///< ÅV‚Æ‚©ƒ‰ƒ“ƒLƒ“ƒO‚à
-	eERR_VIDEO_DATA_GET,	///< ƒR[ƒhŒŸõ
+	eERR_VIDEO_SEARCH,		///< æœ€æ–°ã¨ã‹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚‚
+	eERR_VIDEO_DATA_GET,	///< ã‚³ãƒ¼ãƒ‰æ¤œç´¢
 };
 
-///< ƒLƒƒƒ‰ƒf[ƒ^
+///< ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
 enum {
 	
 	eID_OAM_SIDE_BAR_M	= 9999,
@@ -316,16 +316,16 @@ enum {
 	eID_OAM_POKE_ICON	= 100000,
 	eID_OAM_HERO_ICON	= 100000 + 65535,
 	
-	eID_OAM_HUM_ICON	= 18181,	///< ƒtƒƒ“ƒeƒBƒAƒuƒŒƒCƒ“
+	eID_OAM_HUM_ICON	= 18181,	///< ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ã‚¤ãƒ³
 	eID_OAM_BG_PHOTO	= 28282,	///< BG
 	eID_OAM_BP_NUM		= 29292,	///< BP
 	
-	eID_OAM_EX_TAG		= 11924,	///< Šg’£ƒ^ƒO
+	eID_OAM_EX_TAG		= 11924,	///< æ‹¡å¼µã‚¿ã‚°
 	
-	eID_LIST_CUR		= 200000,	///< ƒŠƒXƒg—p‚ÌƒJ[ƒ\ƒ‹
+	eID_LIST_CUR		= 200000,	///< ãƒªã‚¹ãƒˆç”¨ã®ã‚«ãƒ¼ã‚½ãƒ«
 };
 
-///< Side Bar ƒV[ƒPƒ“ƒX
+///< Side Bar ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	eSB_TCB_STATE_WAIT		= 0,
 	eSB_TCB_STATE_MOVE_1,
@@ -333,7 +333,7 @@ enum {
 	eSB_TCB_STATE_STAY,
 };
 
-///< OAMƒpƒŒƒbƒg
+///< OAMãƒ‘ãƒ¬ãƒƒãƒˆ
 enum {
 	
 	eOAM_PAL_CUR			= 0,	
@@ -342,17 +342,17 @@ enum {
 	eOAM_PAL_TAG_2,	
 //	eOAM_PAL_FONT,
 	
-	///< ƒvƒƒtƒB[ƒ‹
+	///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 	eOAM_PAL_POKE_ICON		= 4,			///<
 	eOAM_PAL_POKE_ICON_2,
 	eOAM_PAL_POKE_ICON_3,
 	eOAM_PAL_PLAYER,
 	
-	///< BP‰æ–Ê
-	eOMA_PAL_BP_NUM			= 4,			///< ‰º
-	eOMA_PAL_BG_OAM			= 4,			///< ã BGOAMx6
-	eOMA_PAL_HUM			= 10,			///< ã ƒuƒŒ[ƒ“x5
-	eOAM_OAL_PLAYER			= 15,			///< ã ƒvƒŒƒCƒ„[ ‚à‚¤ƒpƒŒƒbƒg‚Ë‚¥‚æI
+	///< BPç”»é¢
+	eOMA_PAL_BP_NUM			= 4,			///< ä¸‹
+	eOMA_PAL_BG_OAM			= 4,			///< ä¸Š BGOAMx6
+	eOMA_PAL_HUM			= 10,			///< ä¸Š ãƒ–ãƒ¬ãƒ¼ãƒ³x5
+	eOAM_OAL_PLAYER			= 15,			///< ä¸Š ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ ã‚‚ã†ãƒ‘ãƒ¬ãƒƒãƒˆã­ã‡ã‚ˆï¼
 	
 	eOAM_PAL_MAX,
 };
@@ -361,19 +361,19 @@ enum {
 #define dOAM_PAL_TAG_1	( eOAM_PAL_TAG_1 - eOAM_PAL_LINE )
 #define dOAM_PAL_TAG_2	( eOAM_PAL_TAG_2 - eOAM_PAL_LINE )
 
-///< BG ƒpƒŒƒbƒg
+///< BG ãƒ‘ãƒ¬ãƒƒãƒˆ
 enum {
 	
 	eBG_PAL_BASE_0		= 0,
 	eBG_PAL_BASE_END	= 8,
 	
-	eBG_PAL_BOX		= 12,///13‚à
+	eBG_PAL_BOX		= 12,///13ã‚‚
 	eBG_PAL_DRESS	= 13,
 	eBG_PAL_FONT	= 14,	
 };
 #define BG_PAL_BASE_END		( eBG_PAL_BASE_END + 1 )
 
-///< ƒ^ƒOƒR[ƒh
+///< ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰
 enum {
 	
 	eTAG_FIGHT		= 0,
@@ -388,21 +388,21 @@ enum {
 
 enum {
 	
-	eTAG_GDS_DETAIL_S		 = 0,		///< ‚­‚í‚µ‚­‚³‚ª‚·
-	eTAG_GDS_FACILITIES_S,				///< ‚µ‚¹‚Â‚Å‚³‚ª‚·
-	eTAG_GDS_LOOK,						///< ‚Ý‚é
+	eTAG_GDS_DETAIL_S		 = 0,		///< ãã‚ã—ãã•ãŒã™
+	eTAG_GDS_FACILITIES_S,				///< ã—ã›ã¤ã§ã•ãŒã™
+	eTAG_GDS_LOOK,						///< ã¿ã‚‹
 	eTAG_GDS_VS,						///< VS
-	eTAG_GDS_ANOTHER_REC,				///< ’N‚©‚Ì‹L˜^
-	eTAG_GDS_BACK,						///< ‚à‚Ç‚é
-	eTAG_GDS_OK,						///< ‚n‚j
-	eTAG_GDS_FACTORY_OPEN,				///< ƒtƒ@ƒNƒgƒŠ[ƒI[ƒvƒ“
-	eTAG_GDS_SAVE,						///< •Û‘¶
-	eTAG_GDS_SEND,						///< ‘—M
-	eTAG_GDS_NEW30,						///< ‚³‚¢‚µ‚ñ‚R‚O
-	eTAG_GDS_DATANO_S,					///< ƒf[ƒ^ƒiƒ“ƒo[‚Å‚³‚ª‚·
-	eTAG_GDS_PREV,						///< Œã
-	eTAG_GDS_NEXT,						///< ‘O
-	eTAG_GDS_END,						///< ‚¨‚í‚é
+	eTAG_GDS_ANOTHER_REC,				///< èª°ã‹ã®è¨˜éŒ²
+	eTAG_GDS_BACK,						///< ã‚‚ã©ã‚‹
+	eTAG_GDS_OK,						///< ï¼¯ï¼«
+	eTAG_GDS_FACTORY_OPEN,				///< ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã‚ªãƒ¼ãƒ—ãƒ³
+	eTAG_GDS_SAVE,						///< ä¿å­˜
+	eTAG_GDS_SEND,						///< é€ä¿¡
+	eTAG_GDS_NEW30,						///< ã•ã„ã—ã‚“ï¼“ï¼
+	eTAG_GDS_DATANO_S,					///< ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ã§ã•ãŒã™
+	eTAG_GDS_PREV,						///< å¾Œ
+	eTAG_GDS_NEXT,						///< å‰
+	eTAG_GDS_END,						///< ãŠã‚ã‚‹
 };
 
 enum {	
@@ -413,7 +413,7 @@ enum {
 	eTAG_GDS_BOX_DRESS_OK,
 };
 
-///< ƒZ[ƒu
+///< ã‚»ãƒ¼ãƒ–
 enum {
 	eTAG_GDS_SAVE_DATA = 0,
 	eTAG_GDS_SAVE_BACK
@@ -428,7 +428,7 @@ enum {
 	eTAG_GDS_RANK_SAVE_OK,
 };
 
-///< ƒrƒfƒI
+///< ãƒ“ãƒ‡ã‚ª
 enum {	
 	eTAG_GDS_VIDEO_KUWASIKU = 0,
 	eTAG_GDS_VIDEO_SISETU,
@@ -442,17 +442,17 @@ enum {
 	eTAG_GDS_VIDEO_END,	
 };
 
-///< ƒrƒfƒIƒ‰ƒ“ƒLƒ“ƒO
+///< ãƒ“ãƒ‡ã‚ªãƒ©ãƒ³ã‚­ãƒ³ã‚°
 enum {	
 	eTAG_GDS_VR_TUUSHIN = 0,
 	eTAG_GDS_VR_FRONTIER,
 	eTAG_GDS_VR_END,
 	eTAG_GDS_VR_1,
-	eTAG_GDS_VR_2,	///< ‚à‚Ç‚é
-	eTAG_GDS_VR_3,	///< ‚Í‚¢
+	eTAG_GDS_VR_2,	///< ã‚‚ã©ã‚‹
+	eTAG_GDS_VR_3,	///< ã¯ã„
 };
 
-///< Šg’£ƒ^ƒO
+///< æ‹¡å¼µã‚¿ã‚°
 enum {	
 	eTAG_EX_BACK = 0,
 	eTAG_EX_OK,
@@ -463,7 +463,7 @@ enum {
 	eTAG_SLIDER,
 };
 
-///< ƒ{ƒbƒNƒX‚Ìê‡
+///< ãƒœãƒƒã‚¯ã‚¹ã®å ´åˆ
 enum {	
 	eTAG_EX_BOX_BACK = 0,
 	eTAG_EX_BOX_OK,	
@@ -471,21 +471,21 @@ enum {
 };
 
 
-///< “–‚½‚è”»’è
+///< å½“ãŸã‚Šåˆ¤å®š
 enum {	
-	eHRT_TAG_0	= 0,		///< ƒ^ƒO‚Ì“–‚½‚è”»’è
+	eHRT_TAG_0	= 0,		///< ã‚¿ã‚°ã®å½“ãŸã‚Šåˆ¤å®š
 	eHRT_TAG_1,
 	eHRT_TAG_2,
 	eHRT_TAG_3,
 	eHRT_TAG_4,	
 	
-	eHRT_MAX,				///< “–‚½‚è”»’èƒe[ƒuƒ‹‚ÌÅ‘å’l
+	eHRT_MAX,				///< å½“ãŸã‚Šåˆ¤å®šãƒ†ãƒ¼ãƒ–ãƒ«ã®æœ€å¤§å€¤
 };
 
 
 // -----------------------------------------
 //
-//	ƒƒjƒ…[ƒf[ƒ^\‘¢
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿æ§‹é€ 
 //
 // -----------------------------------------
 #define BR_EX_DATA_NONE				( 0xFBFBFBFB )
@@ -501,17 +501,17 @@ enum {
 #define BR_EX_DATA_NO_SEARCH		( 220 )
 
 #define BR_EX_WIFI_END				( 999 )
-#define BR_EX_SEND_CHECK			( 9999 )	///< ‘—MŠm”F
+#define BR_EX_SEND_CHECK			( 9999 )	///< é€ä¿¡ç¢ºèª
 
 
 
-#define BR_RECOVER_WORK_MAX			( 8 )		///< •œ‹A—p‚Ìƒ[ƒN
+#define BR_RECOVER_WORK_MAX			( 8 )		///< å¾©å¸°ç”¨ã®ãƒ¯ãƒ¼ã‚¯
 
 
 // =============================================================================
 //
 //
-//	¡ƒV[ƒPƒ“ƒX’è‹`
+//	â– ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
 //
 //
 // =============================================================================
@@ -534,7 +534,7 @@ enum {
 	eINPUT_TAG_SELECT,
 	eINPUT_TAG_BACK,
 	eINPUT_MENU_IN,
-	eINPUT_EXECUTED,		///< ƒ_ƒCƒŒƒNƒg‚ÉŽÀs‚·‚é
+	eINPUT_EXECUTED,		///< ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã«å®Ÿè¡Œã™ã‚‹
 	eINPUT_COLOR_CHANGE_L,
 	eINPUT_COLOR_CHANGE_R,
 	
@@ -562,7 +562,7 @@ enum {
 
 // br_photo
 
-///< Šî–{ƒV[ƒPƒ“ƒX
+///< åŸºæœ¬ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	eDRESS_Init = 0,
 	eDRESS_Setup,	
@@ -571,7 +571,7 @@ enum {
 
 #define DRESS_SepSeq	( eDRESS_Sep )
 
-///< ‘—MƒV[ƒPƒ“ƒX
+///< é€ä¿¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	eDRESS_SendIn	= DRESS_SepSeq,
 	eDRESS_SendMain,
@@ -579,20 +579,20 @@ enum {
 	eDRESS_SendMainOut,
 };
 
-///< ƒ|ƒPƒ‚ƒ“Žw’èŽóMƒV[ƒPƒ“ƒX
+///< ãƒã‚±ãƒ¢ãƒ³æŒ‡å®šå—ä¿¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	eDRESS_PokemonInit	= DRESS_SepSeq,
 	eDRESS_PokemonAIUEO,
 	eDRESS_PokemonSelect,
 	eDRESS_PokemonOut,
 
-	eDRESS_RecvMain,		///< ŽóM
+	eDRESS_RecvMain,		///< å—ä¿¡
 	
-	eDRESS_MainIn,			///< ƒhƒŒƒXIN
-	eDRESS_Main,			///< ƒƒCƒ“
-	eDRESS_MainOut,			///< ƒhƒŒƒX@¨@ƒ|ƒPƒ‚ƒ“‘I‘ð
-	eDRESS_ProfChange,		///< ƒvƒƒt@ƒhƒŒƒXØ‚è‘Ö‚¦
-	eDRESS_DataChange,		///< ŽŸ‚Ìƒf[ƒ^
+	eDRESS_MainIn,			///< ãƒ‰ãƒ¬ã‚¹IN
+	eDRESS_Main,			///< ãƒ¡ã‚¤ãƒ³
+	eDRESS_MainOut,			///< ãƒ‰ãƒ¬ã‚¹ã€€â†’ã€€ãƒã‚±ãƒ¢ãƒ³é¸æŠž
+	eDRESS_ProfChange,		///< ãƒ—ãƒ­ãƒ•ã€€ãƒ‰ãƒ¬ã‚¹åˆ‡ã‚Šæ›¿ãˆ
+	eDRESS_DataChange,		///< æ¬¡ã®ãƒ‡ãƒ¼ã‚¿
 };
 
 enum {
@@ -708,19 +708,19 @@ enum {
 	eVRANK_SaveMain,
 	eVRANK_SaveExit,
 
-	eVRANK_CheckIn,				///< Šm”F‰æ–Ê‚¢‚­
-	eVRANK_CheckMain,			///< Šm”F
-	eVRANK_CheckExit,			///< I—¹`ƒZ[ƒu‰æ–ÊH
-	eVRANK_CheckFinish,			///< I—¹`ƒZ[ƒu‰æ–ÊH
+	eVRANK_CheckIn,				///< ç¢ºèªç”»é¢ã„ã
+	eVRANK_CheckMain,			///< ç¢ºèª
+	eVRANK_CheckExit,			///< çµ‚äº†ã€œã‚»ãƒ¼ãƒ–ç”»é¢ï¼Ÿ
+	eVRANK_CheckFinish,			///< çµ‚äº†ã€œã‚»ãƒ¼ãƒ–ç”»é¢ï¼Ÿ
 	
-	eVRANK_BrsDataGet,			///< ƒf[ƒ^Žæ“¾
+	eVRANK_BrsDataGet,			///< ãƒ‡ãƒ¼ã‚¿å–å¾—
 	eVRANK_RecoverIn,
 	eVRANK_PlayRecover,
 };
 
 // br_video.c
 enum {
-	///< ‘—M—p	
+	///< é€ä¿¡ç”¨	
 	eVIDEO_Init = 0,
 	eVIDEO_Fade_Out,
 	eVIDEO_Send_Init,
@@ -729,7 +729,7 @@ enum {
 };
 
 enum {
-	///< ƒf[ƒ^ƒiƒ“ƒo[Žw’è
+	///< ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼æŒ‡å®š
 	eVIDEO_CodeIn_Init = 2,
 	eVIDEO_CodeIn_Main,
 	eVIDEO_CodeIn_Exit,
@@ -738,40 +738,40 @@ enum {
 	
 	eVIDEO_CodeIn_ProfIn,
 	eVIDEO_CodeIn_ProfMain,
-	eVIDEO_CodeIn_ProfChange,	///< ŠT—vEƒvƒƒt‚ÌØ‚è‘Ö‚¦
+	eVIDEO_CodeIn_ProfChange,	///< æ¦‚è¦ãƒ»ãƒ—ãƒ­ãƒ•ã®åˆ‡ã‚Šæ›¿ãˆ
 	eVIDEO_CodeIn_Play,
-	eVIDEO_CodeIn_ProfExit,		///< ‚à‚Ç‚é
+	eVIDEO_CodeIn_ProfExit,		///< ã‚‚ã©ã‚‹
 
-	eVIDEO_CodeIn_SaveIn,		///< ƒZ[ƒu‰æ–Ês‚­
-	eVIDEO_CodeIn_SaveMain,		///< ƒZ[ƒu‰æ–Ê
-	eVIDEO_CodeIn_SaveExit,		///< ƒZ[ƒu‰æ–Ê`ƒvƒƒtƒB[ƒ‹
+	eVIDEO_CodeIn_SaveIn,		///< ã‚»ãƒ¼ãƒ–ç”»é¢è¡Œã
+	eVIDEO_CodeIn_SaveMain,		///< ã‚»ãƒ¼ãƒ–ç”»é¢
+	eVIDEO_CodeIn_SaveExit,		///< ã‚»ãƒ¼ãƒ–ç”»é¢ã€œãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 
-	eVIDEO_CodeIn_CheckIn,		///< Šm”F‰æ–Ê‚¢‚­
-	eVIDEO_CodeIn_CheckMain,	///< Šm”F
-	eVIDEO_CodeIn_CheckExit,	///< I—¹`ƒZ[ƒu‰æ–ÊH
-	eVIDEO_CodeIn_CheckFinish,	///< I—¹`ƒZ[ƒu‰æ–ÊH
+	eVIDEO_CodeIn_CheckIn,		///< ç¢ºèªç”»é¢ã„ã
+	eVIDEO_CodeIn_CheckMain,	///< ç¢ºèª
+	eVIDEO_CodeIn_CheckExit,	///< çµ‚äº†ã€œã‚»ãƒ¼ãƒ–ç”»é¢ï¼Ÿ
+	eVIDEO_CodeIn_CheckFinish,	///< çµ‚äº†ã€œã‚»ãƒ¼ãƒ–ç”»é¢ï¼Ÿ
 	
 	eVIDEO_CodeIn_RecoveIn,
 	eVIDEO_PlayRecover,
 };
 
 enum {
-	///< ÅV30Œ
-	eN30_DownLoad = 2,			///< ˆê——Žæ“¾
-	eN30_ListInit,				///< ƒŠƒXƒg‰Šú‰»
-	eN30_ListMain,				///< ƒŠƒXƒgƒƒCƒ“
-	eN30_ListExit,				///< ƒŠƒXƒg”²‚¯‚é	
+	///< æœ€æ–°30ä»¶
+	eN30_DownLoad = 2,			///< ä¸€è¦§å–å¾—
+	eN30_ListInit,				///< ãƒªã‚¹ãƒˆåˆæœŸåŒ–
+	eN30_ListMain,				///< ãƒªã‚¹ãƒˆãƒ¡ã‚¤ãƒ³
+	eN30_ListExit,				///< ãƒªã‚¹ãƒˆæŠœã‘ã‚‹	
 	eN30_RecoverIn,
 };
 
 enum {
-	///< ŒŸõ	Conditional Search
-	eCS_TopViewInit = 2,		///< ŒŸõTOP
+	///< æ¤œç´¢	Conditional Search
+	eCS_TopViewInit = 2,		///< æ¤œç´¢TOP
 	eCS_TopViewMain,
 	eCS_TopViewExit,
 	
-	///< ŠeÝ’è
-	eCS_SearchCommonInit,		///< ‰º–ÊI—¹ŠeŒŸõ•ªŠò
+	///< å„è¨­å®š
+	eCS_SearchCommonInit,		///< ä¸‹é¢çµ‚äº†å„æ¤œç´¢åˆ†å²
 	eCS_Shisetu,
 	eCS_Pokemon,
 	eCS_PokemonAIUEO,
@@ -781,34 +781,34 @@ enum {
 	
 	eCS_SearchMain,				///< main
 	eCS_SearchExit,				///< exit
-	eCS_ListInit,				///< ƒŠƒXƒg‚Ì‰Šú‰»
-	eCS_ListMain,				///< ƒŠƒXƒg‚Ì‰Šú‰»	
-	eCS_TopViewRecover,			///< ŒŸõ‰æ–Ê‚É–ß‚é
+	eCS_ListInit,				///< ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
+	eCS_ListMain,				///< ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–	
+	eCS_TopViewRecover,			///< æ¤œç´¢ç”»é¢ã«æˆ»ã‚‹
 
-	eCS_ProfIn,					///< ƒvƒƒtƒB[ƒ‹ƒCƒ“
-	eCS_ProfMain,				///< ƒvƒƒtƒB[ƒ‹ƒƒCƒ“
-	eCS_ProfChange,				///< ŠT—vEƒvƒƒt‚ÌØ‚è‘Ö‚¦
-	eCS_Play,					///< Ä¶
-	eCS_ProfExit,				///< ‚à‚Ç‚é
+	eCS_ProfIn,					///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚¤ãƒ³
+	eCS_ProfMain,				///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ¡ã‚¤ãƒ³
+	eCS_ProfChange,				///< æ¦‚è¦ãƒ»ãƒ—ãƒ­ãƒ•ã®åˆ‡ã‚Šæ›¿ãˆ
+	eCS_Play,					///< å†ç”Ÿ
+	eCS_ProfExit,				///< ã‚‚ã©ã‚‹
 	
-	eCS_SaveIn,					///< •Û‘¶
-	eCS_SaveMain,				///< •Û‘¶ƒƒCƒ“
-	eCS_SaveExit,				///< I—¹
+	eCS_SaveIn,					///< ä¿å­˜
+	eCS_SaveMain,				///< ä¿å­˜ãƒ¡ã‚¤ãƒ³
+	eCS_SaveExit,				///< çµ‚äº†
 	
-	eCS_CheckIn,				///< Šm”F‰æ–Ê‚¢‚­
-	eCS_CheckMain,				///< Šm”F
-	eCS_CheckExit,				///< I—¹`ƒZ[ƒu‰æ–ÊH
-	eCS_CheckFinish,			///< I—¹`ƒZ[ƒu‰æ–ÊH
+	eCS_CheckIn,				///< ç¢ºèªç”»é¢ã„ã
+	eCS_CheckMain,				///< ç¢ºèª
+	eCS_CheckExit,				///< çµ‚äº†ã€œã‚»ãƒ¼ãƒ–ç”»é¢ï¼Ÿ
+	eCS_CheckFinish,			///< çµ‚äº†ã€œã‚»ãƒ¼ãƒ–ç”»é¢ï¼Ÿ
 	
-	eCS_BrsDataGet,				///< ƒf[ƒ^Žæ“¾
+	eCS_BrsDataGet,				///< ãƒ‡ãƒ¼ã‚¿å–å¾—
 	
-	eCS_RecoverIn,				///< í“¬‚©‚ç‚Ì•œ‹A
+	eCS_RecoverIn,				///< æˆ¦é—˜ã‹ã‚‰ã®å¾©å¸°
 	
 	eCS_PlayRecover,
 };
 
 
-// ‚¢‚ë‚ª‚¦
+// ã„ã‚ãŒãˆ
 enum {	
 	GET_PAL_FONT = 0,
 	GET_PAL_PHOTO,

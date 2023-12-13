@@ -1,7 +1,7 @@
 #ifndef _POKEPARAM_H
 #define _POKEPARAM_H
 
-#define MONS_NAME_SIZE		10		// ƒ|ƒPƒ‚ƒ“–¼‚Ì’·‚³
+#define MONS_NAME_SIZE		10		// ãƒã‚±ãƒ¢ãƒ³åã®é•·ã•
 #define PERSON_NAME_SIZE 7
 
 typedef struct
@@ -17,7 +17,7 @@ typedef struct
 typedef struct
 {
 	u16	waza[4];
-	u8	pp[4];								//12ƒoƒCƒg
+	u8	pp[4];								//12ãƒã‚¤ãƒˆ
 }PokemonPara2;
 
 typedef struct
@@ -28,22 +28,22 @@ typedef struct
 	u8	agi_exp;
 	u8	spepow_exp;
 	u8	spedef_exp;
-	u8	style;						//	‚©‚Á‚±‚æ‚³
-	u8	beautiful;					//	‚¤‚Â‚­‚µ‚³
-	u8	cute;						//	‚©‚í‚¢‚³
-	u8	clever;						//@‚©‚µ‚±‚³
-	u8	strong;						//	‚½‚­‚Ü‚µ‚³
-	u8	fur;						//	–Ñ‰	12ƒoƒCƒg
+	u8	style;						//	ã‹ã£ã“ã‚ˆã•
+	u8	beautiful;					//	ã†ã¤ãã—ã•
+	u8	cute;						//	ã‹ã‚ã„ã•
+	u8	clever;						//ã€€ã‹ã—ã“ã•
+	u8	strong;						//	ãŸãã¾ã—ã•
+	u8	fur;						//	æ¯›è‰¶	12ãƒã‚¤ãƒˆ
 }PokemonPara3;
 	
 typedef struct
 {
 	u32	pokerus		:8;
-	u32	get_place	:8;				//	•ß‚Ü‚¦‚½êŠ
-	u32	get_level	:7;				//	•ß‚Ü‚¦‚½ƒŒƒxƒ‹
-	u32	get_cassette:4;				//	•ß‚Ü‚¦‚½ƒJƒZƒbƒgiƒJƒ‰[ƒo[ƒWƒ‡ƒ“j
-	u32	get_ball	:4;				//	•ß‚Ü‚¦‚½ƒ{[ƒ‹
-	u32	oyasex		:1;				//	e‚Ì«•Ê
+	u32	get_place	:8;				//	æ•ã¾ãˆãŸå ´æ‰€
+	u32	get_level	:7;				//	æ•ã¾ãˆãŸãƒ¬ãƒ™ãƒ«
+	u32	get_cassette:4;				//	æ•ã¾ãˆãŸã‚«ã‚»ãƒƒãƒˆï¼ˆã‚«ãƒ©ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼‰
+	u32	get_ball	:4;				//	æ•ã¾ãˆãŸãƒœãƒ¼ãƒ«
+	u32	oyasex		:1;				//	è¦ªã®æ€§åˆ¥
 	
 	u32	hp_rnd		:5;
 	u32	pow_rnd		:5;
@@ -51,28 +51,28 @@ typedef struct
 	u32	agi_rnd		:5;
 	u32	spepow_rnd	:5;
 	u32	spedef_rnd	:5;
-	u32	tamago_flag	:1;				//	0:ƒ^ƒ}ƒS‚¶‚á‚È‚¢1:ƒ^ƒ}ƒS‚¾‚æ
-	u32	speabi		:1;				//	“Áê”\—Íi0:“Áê”\—Í1@1:“Áê”\—Í2j
+	u32	tamago_flag	:1;				//	0:ã‚¿ãƒã‚´ã˜ã‚ƒãªã„1:ã‚¿ãƒã‚´ã ã‚ˆ
+	u32	speabi		:1;				//	ç‰¹æ®Šèƒ½åŠ›ï¼ˆ0:ç‰¹æ®Šèƒ½åŠ›1ã€€1:ç‰¹æ®Šèƒ½åŠ›2ï¼‰
 
-	u32	stylemedal			:3;		//	‚©‚Á‚±‚æ‚³ŒMÍ
-	u32	beautifulmedal		:3;		//	‚¤‚Â‚­‚µ‚³ŒMÍ
-	u32	cutemedal			:3;		//	‚©‚í‚¢‚³ŒMÍ
-	u32	clevermedal			:3;		//	‚©‚µ‚±‚³ŒMÍ
-	u32	strongmedal			:3;		//	‚½‚­‚Ü‚µ‚³ŒMÍ
-	u32	champ_ribbon		:1;		//	ƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
-	u32	winning_ribbon		:1;		//	ƒEƒBƒjƒ“ƒOƒŠƒ{ƒ“
-	u32	victory_ribbon		:1;		//	ƒrƒNƒgƒŠ[ƒŠƒ{ƒ“
-	u32	bromide_ribbon		:1;		//	ƒuƒƒ}ƒCƒhƒŠƒ{ƒ“
-	u32	ganba_ribbon		:1;		//	‚ª‚ñ‚ÎƒŠƒ{ƒ“
-	u32	marine_ribbon		:1;		//	ƒ}ƒŠƒ“ƒŠƒ{ƒ“
-	u32	land_ribbon			:1;		//	ƒ‰ƒ“ƒhƒŠƒ{ƒ“
-	u32	sky_ribbon			:1;		//	ƒXƒJƒCƒŠƒ{ƒ“
-	u32	country_ribbon		:1;		//	ƒJƒ“ƒgƒŠ[ƒŠƒ{ƒ“
-	u32	national_ribbon		:1;		//	ƒiƒVƒ‡ƒiƒ‹ƒŠƒ{ƒ“
-	u32	earth_ribbon		:1;		//	ƒA[ƒXƒŠƒ{ƒ“
-	u32	world_ribbon		:1;		//	ƒ[ƒ‹ƒhƒŠƒ{ƒ“
-	u32	amari_ribbon		:4;		//	‚ ‚Ü‚Á‚Ä‚Ü‚·
-	u32	event_get_flag		:1;		//	ƒCƒxƒ“ƒg‚Å”z•z‚³‚ê‚½‚±‚Æ‚ğ¦‚·ƒtƒ‰ƒO
+	u32	stylemedal			:3;		//	ã‹ã£ã“ã‚ˆã•å‹²ç« 
+	u32	beautifulmedal		:3;		//	ã†ã¤ãã—ã•å‹²ç« 
+	u32	cutemedal			:3;		//	ã‹ã‚ã„ã•å‹²ç« 
+	u32	clevermedal			:3;		//	ã‹ã—ã“ã•å‹²ç« 
+	u32	strongmedal			:3;		//	ãŸãã¾ã—ã•å‹²ç« 
+	u32	champ_ribbon		:1;		//	ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
+	u32	winning_ribbon		:1;		//	ã‚¦ã‚£ãƒ‹ãƒ³ã‚°ãƒªãƒœãƒ³
+	u32	victory_ribbon		:1;		//	ãƒ“ã‚¯ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+	u32	bromide_ribbon		:1;		//	ãƒ–ãƒ­ãƒã‚¤ãƒ‰ãƒªãƒœãƒ³
+	u32	ganba_ribbon		:1;		//	ãŒã‚“ã°ãƒªãƒœãƒ³
+	u32	marine_ribbon		:1;		//	ãƒãƒªãƒ³ãƒªãƒœãƒ³
+	u32	land_ribbon			:1;		//	ãƒ©ãƒ³ãƒ‰ãƒªãƒœãƒ³
+	u32	sky_ribbon			:1;		//	ã‚¹ã‚«ã‚¤ãƒªãƒœãƒ³
+	u32	country_ribbon		:1;		//	ã‚«ãƒ³ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+	u32	national_ribbon		:1;		//	ãƒŠã‚·ãƒ§ãƒŠãƒ«ãƒªãƒœãƒ³
+	u32	earth_ribbon		:1;		//	ã‚¢ãƒ¼ã‚¹ãƒªãƒœãƒ³
+	u32	world_ribbon		:1;		//	ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒªãƒœãƒ³
+	u32	amari_ribbon		:4;		//	ã‚ã¾ã£ã¦ã¾ã™
+	u32	event_get_flag		:1;		//	ã‚¤ãƒ™ãƒ³ãƒˆã§é…å¸ƒã•ã‚ŒãŸã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°
 }PokemonPara4;
 
 typedef struct
@@ -80,31 +80,31 @@ typedef struct
 	u32	personal_rnd;
 	u32	id_no;
 	u8	nickname[MONS_NAME_SIZE];			//M_N_S=10
-	u8	country_code;						//‘ƒR[ƒh
-	u8	fusei_tamago_flag	:1;				//ƒf[ƒ^‰ü‚´‚ñ‚Ìƒ^ƒ}ƒSƒtƒ‰ƒO
-	u8	poke_exist_flag		:1;				//ƒ|ƒPƒ‚ƒ“‘¶İƒtƒ‰ƒO
-	u8	egg_exist_flag		:1;				//ƒ^ƒ}ƒS‚Æ‚µ‚Ä‚Ì‘¶İƒtƒ‰ƒO
-	u8	poke_no_move_flag	:1;				//ƒ|ƒPƒ‚ƒ“‚ğˆÚ“®‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ìƒtƒ‰ƒO
-											//i‘Îƒƒ‚ƒŠ[ƒ{ƒbƒNƒX—pj
+	u8	country_code;						//å›½ã‚³ãƒ¼ãƒ‰
+	u8	fusei_tamago_flag	:1;				//ãƒ‡ãƒ¼ã‚¿æ”¹ã–ã‚“æ™‚ã®ã‚¿ãƒã‚´ãƒ•ãƒ©ã‚°
+	u8	poke_exist_flag		:1;				//ãƒã‚±ãƒ¢ãƒ³å­˜åœ¨ãƒ•ãƒ©ã‚°
+	u8	egg_exist_flag		:1;				//ã‚¿ãƒã‚´ã¨ã—ã¦ã®å­˜åœ¨ãƒ•ãƒ©ã‚°
+	u8	poke_no_move_flag	:1;				//ãƒã‚±ãƒ¢ãƒ³ã‚’ç§»å‹•ã§ããªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ãƒ•ãƒ©ã‚°
+											//ï¼ˆå¯¾ãƒ¡ãƒ¢ãƒªãƒ¼ãƒœãƒƒã‚¯ã‚¹ç”¨ï¼‰
 	u8						:4;
 	u8	oyaname[PERSON_NAME_SIZE];			//P_N_S=7
-	u8	mark;								//ƒ|ƒPƒ‚ƒ“‚É‚Â‚¯‚éƒ}[ƒNiƒ{ƒbƒNƒXj
+	u8	mark;								//ãƒã‚±ãƒ¢ãƒ³ã«ã¤ã‘ã‚‹ãƒãƒ¼ã‚¯ï¼ˆãƒœãƒƒã‚¯ã‚¹ï¼‰
 	u16	checksum;
-	u16	amari;								//	‘±•Ò‚Ì‚½‚ß‚Ì—]‚è—Ìˆæ
-											//32ƒoƒCƒg
+	u16	amari;								//	ç¶šç·¨ã®ãŸã‚ã®ä½™ã‚Šé ˜åŸŸ
+											//32ãƒã‚¤ãƒˆ
 	u8	paradata[sizeof(PokemonPara1)+
 				 sizeof(PokemonPara2)+
 				 sizeof(PokemonPara3)+
 				 sizeof(PokemonPara4)];
 }PokemonPasoParam;
 
-#define BOX_NUM		(14)		//ƒ{ƒbƒNƒX‚Ì”
-#define BOX_X_MAX	(6)		///< ‰¡‚É‰½‘Ìƒ|ƒPƒ‚ƒ“‚ğ•\¦‚·‚é‚©
-#define BOX_Y_MAX	(5)		///< c‚É‰½‘Ìƒ|ƒPƒ‚ƒ“‚ğ•\¦‚·‚é‚©
-#define BOX_POKE_NUM (BOX_X_MAX*BOX_Y_MAX)	///< ‚Pƒ{ƒbƒNƒX‚Ìƒ|ƒPƒ‚ƒ“Å‘å”
-#define PM_TAIHI	(BOX_POKE_NUM*2)//BoxPMStruct‚Ìˆê”ÔŒã‚ë
+#define BOX_NUM		(14)		//ãƒœãƒƒã‚¯ã‚¹ã®æ•°
+#define BOX_X_MAX	(6)		///< æ¨ªã«ä½•ä½“ãƒã‚±ãƒ¢ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‹
+#define BOX_Y_MAX	(5)		///< ç¸¦ã«ä½•ä½“ãƒã‚±ãƒ¢ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‹
+#define BOX_POKE_NUM (BOX_X_MAX*BOX_Y_MAX)	///< ï¼‘ãƒœãƒƒã‚¯ã‚¹ã®ãƒã‚±ãƒ¢ãƒ³æœ€å¤§æ•°
+#define PM_TAIHI	(BOX_POKE_NUM*2)//BoxPMStructã®ä¸€ç•ªå¾Œã‚
 #define BOXNAME_MAX  (8)
-#define	EOM_SIZE			1	// I—¹ƒR[ƒh‚Ì’·‚³
+#define	EOM_SIZE			1	// çµ‚äº†ã‚³ãƒ¼ãƒ‰ã®é•·ã•
 
 typedef struct{
 	u8 CurrentBoxNo;

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	undergrounditem_local.h
- * @brief	’n‰ºƒf[ƒ^ƒwƒbƒ_[(‚±‚ÌƒfƒBƒŒƒNƒgƒŠ‚Ì‚Ý‚Å‚Ì‚ÝŽQÆ‰Â)
+ * @brief	åœ°ä¸‹ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ãƒ¼(ã“ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ã¿ã§ã®ã¿å‚ç…§å¯)
  * @author	k.ohno
  * @date	2006.2.23
  */
@@ -17,7 +17,7 @@
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒXƒe[ƒ^ƒXƒf[ƒ^Œ^’è‹`
+ * @brief	åœ°ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾©
  */
 //----------------------------------------------------------
 
@@ -26,95 +26,95 @@ typedef struct _SB_LOCK SB_LOCK;
 typedef struct _SECRETBASEDATA SECRETBASEDATA;
 
 struct _SB_GOODS {
-  u8 x;       // ƒOƒbƒY‚ÌˆÊ’u ƒZƒNƒVƒ‡ƒ““à’PˆÊ
+  u8 x;       // ã‚°ãƒƒã‚ºã®ä½ç½® ã‚»ã‚¯ã‚·ãƒ§ãƒ³å†…å˜ä½
   u8 z;
-  u8 type;    // ƒOƒbƒY‚ÌŽí—Þ  ƒpƒ\ƒRƒ“‚Ìƒf[ƒ^[ƒ“ƒfƒbƒNƒX‚É‚È‚é‚©‚à
+  u8 type;    // ã‚°ãƒƒã‚ºã®ç¨®é¡ž  ãƒ‘ã‚½ã‚³ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ãƒ¼ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ãªã‚‹ã‹ã‚‚
 };
 
 struct _SB_LOCK {
-  u8 x;   // Šâ‚ÌˆÊ’u ƒZƒNƒVƒ‡ƒ““à’PˆÊ   
+  u8 x;   // å²©ã®ä½ç½® ã‚»ã‚¯ã‚·ãƒ§ãƒ³å†…å˜ä½   
   u8 z;
 };
 
 struct _SB_RECORD_DATA {
-    u32 pointCount:20;        // ‚¿‚©ƒ|ƒCƒ“ƒg
-    u32 talkCount:20;         // ‚Å‚ ‚Á‚½l‚Ìl”
-    u32 sendItemCount:20;     // “¹‹ï‚ð‚ ‚°‚½‰ñ”
-    u32 flagConquerCount:20;  // ƒnƒ^‚ð‚Æ‚Á‚½‰ñ”
-    u32 stoneCount:20;        // ƒ^ƒ}‚ðŒ@‚Á‚½‰ñ”
-    u32 fossilCount:20;       // ‰»Î‚ðŒ@‚Á‚½‰ñ”
-    u32 treasureCount:20;     // •ó‚ðŒ@‚Á‚½‰ñ”
-    u32 trapConquerCount:20;  // ƒgƒ‰ƒbƒv‚ð‚©‚¯‚½‰ñ”
-    u32 trapTumbleCount:20;   // ƒgƒ‰ƒbƒv‚É‚©‚©‚Á‚½‰ñ”
-    u32 trapRescueCount:20;   // l‚ð•‚¯‚½‰ñ”
-    u32 itemRecvCount:20;     // “¹‹ï‚ð‚à‚ç‚Á‚½‰ñ”
-    u32 flagStealCount:20;    // Šø‚ð‚Æ‚ç‚ê‚½‰ñ”
-    u32 flagReverseCount:20;  // Šø‚ðŽæ‚è•Ô‚µ‚½‰ñ”
-    u32 relocateCount:20;     // ˆø‚Á‰z‚µ‚µ‚½‰ñ”
-    u32 flagDeliveryCount:20; // Šø‚ð”[•i‚µ‚½‰ñ”
+    u32 pointCount:20;        // ã¡ã‹ãƒã‚¤ãƒ³ãƒˆ
+    u32 talkCount:20;         // ã§ã‚ã£ãŸäººã®äººæ•°
+    u32 sendItemCount:20;     // é“å…·ã‚’ã‚ã’ãŸå›žæ•°
+    u32 flagConquerCount:20;  // ãƒã‚¿ã‚’ã¨ã£ãŸå›žæ•°
+    u32 stoneCount:20;        // ã‚¿ãƒžã‚’æŽ˜ã£ãŸå›žæ•°
+    u32 fossilCount:20;       // åŒ–çŸ³ã‚’æŽ˜ã£ãŸå›žæ•°
+    u32 treasureCount:20;     // å®ã‚’æŽ˜ã£ãŸå›žæ•°
+    u32 trapConquerCount:20;  // ãƒˆãƒ©ãƒƒãƒ—ã‚’ã‹ã‘ãŸå›žæ•°
+    u32 trapTumbleCount:20;   // ãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‹ã£ãŸå›žæ•°
+    u32 trapRescueCount:20;   // äººã‚’åŠ©ã‘ãŸå›žæ•°
+    u32 itemRecvCount:20;     // é“å…·ã‚’ã‚‚ã‚‰ã£ãŸå›žæ•°
+    u32 flagStealCount:20;    // æ——ã‚’ã¨ã‚‰ã‚ŒãŸå›žæ•°
+    u32 flagReverseCount:20;  // æ——ã‚’å–ã‚Šè¿”ã—ãŸå›žæ•°
+    u32 relocateCount:20;     // å¼•ã£è¶Šã—ã—ãŸå›žæ•°
+    u32 flagDeliveryCount:20; // æ——ã‚’ç´å“ã—ãŸå›žæ•°
 };
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒXƒe[ƒ^ƒXƒf[ƒ^Œ^’è‹`
+ * @brief	åœ°ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾©
  */
 //----------------------------------------------------------
 struct _SECRETBASEDATA {
   SB_GOODS goodsPos[SECRETBASE_GOODS_NUM_MAX];
   SB_LOCK rockPos[SECRETBASE_LOCK_NUM_MAX];
   SB_RECORD_DATA recordData;
-  u16 xpos;         // ƒhƒA‚ÌˆÊ’u
+  u16 xpos;         // ãƒ‰ã‚¢ã®ä½ç½®
   u16 zpos;
-  u8 dir;        // ŠO‚Éo‚Ä‚éƒhƒA‚Ì•ûŒü
-  u8 bMake;     //  ì‚Á‚½‚©‚Ç‚¤‚©
+  u8 dir;        // å¤–ã«å‡ºã¦ã‚‹ãƒ‰ã‚¢ã®æ–¹å‘
+  u8 bMake;     //  ä½œã£ãŸã‹ã©ã†ã‹
 };
 
 
 //----------------------------------------------------------
 /**
- * @brief	Šeƒf[ƒ^‚Ì‹–‚·”ÍˆÍ
+ * @brief	å„ãƒ‡ãƒ¼ã‚¿ã®è¨±ã™ç¯„å›²
  */
 //----------------------------------------------------------
-#define _GOODS_TYPE_NUM_MAX   (150)    // ƒOƒbƒY‚ÌÅ‘å
+#define _GOODS_TYPE_NUM_MAX   (150)    // ã‚°ãƒƒã‚ºã®æœ€å¤§
 
 #define _PCPOS_X (15)
 #define _PCPOS_Z (12)
 
 #define _INVALID_POS  (0)
 
-#define _MAX  (999999)   // ƒŒƒR[ƒh’l‚ÌÅ‘å
+#define _MAX  (999999)   // ãƒ¬ã‚³ãƒ¼ãƒ‰å€¤ã®æœ€å¤§
 
 #define _MAX_WALK_COUNT (100)
 
-// ƒOƒbƒY‚ÌŽó‚¯“n‚µ‚Æƒyƒiƒ‹ƒeƒB[ŠÖ˜A
+// ã‚°ãƒƒã‚ºã®å—ã‘æ¸¡ã—ã¨ãƒšãƒŠãƒ«ãƒ†ã‚£ãƒ¼é–¢é€£
 #define _GOODS_SEND_NONE  (0)
 #define _GOODS_SEND_UNDERIN  (1)
 #define _GOODS_SEND_NOT  (2)
 #define _PENALTY_TIME (24*60)
 
-// ’nãƒAƒCƒeƒ€“üŽè‚Å‚Ì˜A“®
+// åœ°ä¸Šã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã§ã®é€£å‹•
 #define _ITEM_KONGOUDAMA_BIT (1)
 #define _ITEM_SIRATAMA_BIT (2)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒXƒe[ƒ^ƒXƒf[ƒ^Œ^’è‹`
+ * @brief	åœ°ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾©
  */
 //----------------------------------------------------------
 
 struct _UNDERGROUND_DATA {
   SECRETBASEDATA base;
-  u32 randSeed;                     //ƒOƒbƒYe•ƒ‚Ì”„‚è•¨Œˆ’è—”‚ÌŽí
-  s32 sendGoodsMinTimer;   // ƒOƒbƒYŽó‚¯“n‚µ—}§‚Ìƒ^ƒCƒ}[
-  u8 sendGoodsSaveInfo;   // ’n‰º‚ÌƒZ[ƒuó‘Ôƒtƒ‰ƒO
-  u8 groundStoneGetBit;   //’nã‚Å‚±‚ñ‚²‚¤‚¾‚ÜA‚Ü‚µ‚ë‚¾‚Ü‚ð“üŽè‚µ‚½Žž‚ÌBIT
-  //-------------ŠøŠÖ˜A
-  u32 id[UG_FLAG_NUM_MAX];						// Ž‚¿Žå‚ÌID
-  STRCODE name[UG_FLAG_NUM_MAX][PERSON_NAME_SIZE + EOM_SIZE];		// Ž‚¿Žå‚Ì–¼‘O
-  u8 region_code[UG_FLAG_NUM_MAX];	      			// ‘ƒR[ƒh
-  u8 rom_code[UG_FLAG_NUM_MAX];	      			// ROMƒR[ƒh
+  u32 randSeed;                     //ã‚°ãƒƒã‚ºè¦ªçˆ¶ã®å£²ã‚Šç‰©æ±ºå®šä¹±æ•°ã®ç¨®
+  s32 sendGoodsMinTimer;   // ã‚°ãƒƒã‚ºå—ã‘æ¸¡ã—æŠ‘åˆ¶ã®ã‚¿ã‚¤ãƒžãƒ¼
+  u8 sendGoodsSaveInfo;   // åœ°ä¸‹ã®ã‚»ãƒ¼ãƒ–çŠ¶æ…‹ãƒ•ãƒ©ã‚°
+  u8 groundStoneGetBit;   //åœ°ä¸Šã§ã“ã‚“ã”ã†ã ã¾ã€ã¾ã—ã‚ã ã¾ã‚’å…¥æ‰‹ã—ãŸæ™‚ã®BIT
+  //-------------æ——é–¢é€£
+  u32 id[UG_FLAG_NUM_MAX];						// æŒã¡ä¸»ã®ID
+  STRCODE name[UG_FLAG_NUM_MAX][PERSON_NAME_SIZE + EOM_SIZE];		// æŒã¡ä¸»ã®åå‰
+  u8 region_code[UG_FLAG_NUM_MAX];	      			// å›½ã‚³ãƒ¼ãƒ‰
+  u8 rom_code[UG_FLAG_NUM_MAX];	      			// ROMã‚³ãƒ¼ãƒ‰
   u8 newFlagNo;
-  //--------------ŠøŠÖ˜A
+  //--------------æ——é–¢é€£
   u8 groundNatureTrapType[UG_NATURETRAP_PLACE_NUM_MAX];
   u8 groundNatureTrapPos[UG_NATURETRAP_PLACE_NUM_MAX][3];
   u8 groundFossilPos[UG_FOSSIL_PLACE_NUM_MAX][3];
@@ -126,18 +126,18 @@ struct _UNDERGROUND_DATA {
   u8 groundStoneCarat[UG_STONE_PLACE_NUM_MAX];
   u8 groundStonePos[UG_STONE_PLACE_NUM_MAX][3];
   u8 groundStoneDummy[UG_STONE_PLACE_NUM_MAX-12];
-  //------‰»ÎŠÖ˜A
-  u32 digBit;  // ƒvƒŒ[ƒg‚ðŒ@‚Á‚½‚©‚Ç‚¤‚©‚ÌŠÇ—
+  //------åŒ–çŸ³é–¢é€£
+  u32 digBit;  // ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’æŽ˜ã£ãŸã‹ã©ã†ã‹ã®ç®¡ç†
   u8 pcGoods[UG_ITEM_PC_NUM_MAX];
   u8 bagTrap[UG_ITEM_BAG_NUM_MAX];
   u8 bagGoods[UG_ITEM_BAG_NUM_MAX];
   u8 bagTreasure[UG_ITEM_BAG_NUM_MAX];
   u8 bagStone[UG_ITEM_BAG_NUM_MAX];
   u8 bagStoneCarat[UG_ITEM_BAG_NUM_MAX];
-  u8 secretBasePlace[SECRETBASE_GOODS_NUM_MAX]; // ”é–§Šî’n‚É”z’u‚µ‚½ƒpƒ\ƒRƒ“‚ÌGOODS‚Ì pcGood index+1‚ª“ü‚é
-  u8 walk;   // •à‚¢‚½•à” 100•à‚ÅƒŠƒZƒbƒg
-  u8 bNewDay:4;  // ‚±‚ÌBIT‚ªTRUE‚È‚ç‰»Î”z’uŠ·‚¦‚ð’n‰º‚É“ü‚Á‚½Žž‚ÉŽÀs
-  u8 bFossilFirst:4;  // ‚±‚ÌBIT‚ªFALSE‚È‚ç‰‰ñ
+  u8 secretBasePlace[SECRETBASE_GOODS_NUM_MAX]; // ç§˜å¯†åŸºåœ°ã«é…ç½®ã—ãŸãƒ‘ã‚½ã‚³ãƒ³ã®GOODSã® pcGood index+1ãŒå…¥ã‚‹
+  u8 walk;   // æ­©ã„ãŸæ­©æ•° 100æ­©ã§ãƒªã‚»ãƒƒãƒˆ
+  u8 bNewDay:4;  // ã“ã®BITãŒTRUEãªã‚‰åŒ–çŸ³é…ç½®æ›ãˆã‚’åœ°ä¸‹ã«å…¥ã£ãŸæ™‚ã«å®Ÿè¡Œ
+  u8 bFossilFirst:4;  // ã“ã®BITãŒFALSEãªã‚‰åˆå›ž
 };
 
 

@@ -12,35 +12,35 @@
 
   $Log: dwc_core.h,v $
   Revision 1.16  2006/06/30 03:03:31  takayama
-  include�̏��ԂɈˑ��������������߁Adwc_main.h���Ō�ɂ����B
+  includeの順番に依存性があったため、dwc_main.hを最後にした。
 
   Revision 1.15  2006/06/29 09:50:18  takayama
-  dwc_common��NITRODWC_NOGS�I�v�V����������O�����B
+  dwc_commonをNITRODWC_NOGSオプション時から外した。
 
   Revision 1.14  2006/04/27 11:17:33  takayama
-  NITRODWC_NOGS�I�v�V�������u���E�U��������ʏ�̂��̂ɏC���B
+  NITRODWC_NOGSオプションをブラウザ向けから通常のものに修正。
 
   Revision 1.13  2006/04/21 01:33:43  takayama
-  NITORDWC_NOGS�ł̃r���h���̒����B
+  NITORDWC_NOGSでのビルド環境の調整。
 
   Revision 1.12  2006/04/20 13:21:12  takayama
-  NITRODWC_NOGS�I�v�V�����ɑΉ��B
+  NITRODWC_NOGSオプションに対応。
 
   Revision 1.11  2006/03/07 01:18:16  nakata
-  NAS�Ɋ֘A����@�\�ǉ���dwc_nasfunc.c/dwc_nasfunc.h�ɏW�񂷂�ۂɕK�v�ȕύX���s�����B
+  NASに関連する機能追加をdwc_nasfunc.c/dwc_nasfunc.hに集約する際に必要な変更を行った。
 
   Revision 1.10  2005/11/02 02:49:33  arakit
-  �t�@�C���̃C���N���[�h�֌W�𒲐������B
+  ファイルのインクルード関係を調整した。
 
   Revision 1.9  2005/09/05 05:17:22  onozawa
-  dwc_ghttp.h�̒ǉ�
+  dwc_ghttp.hの追加
 
   Revision 1.8  2005/08/20 07:01:19  sasakit
-  �w�b�_�C���N���[�h�K�[�h�̏����𓝈ꂵ���B
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
-  �w�b�_��Copyright�������B
-  �\���̖̂��O��Ԃ��ł��邾�����[���ɂ����Â����B
-  util_wifiidtool.h��dwc_backup.h�̊֌W���኱�C���B
+  ヘッダインクルードガードの書式を統一した。
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
+  ヘッダにCopyrightをつけた。
+  構造体の名前空間をできるだけルールにちかづけた。
+  util_wifiidtool.hとdwc_backup.hの関係を若干修正。
 
 
   $NoKeywords: $

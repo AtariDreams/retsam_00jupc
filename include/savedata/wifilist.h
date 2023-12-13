@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	WifiList.h
- * @brief	�Ƃ������Ă��傤�p 
+ * @brief	ともだちてちょう用 
  * @author	mori GAME FREAK inc.  --> k.ohno
  * @date	2006.02.10
  */
@@ -11,26 +11,26 @@
 
 #include <dwc.h>
 
-#include "savedata/savedata_def.h"	//SAVEDATA�Q�Ƃ̂���
+#include "savedata/savedata_def.h"	//SAVEDATA参照のため
 
-#include "gflib/msg_print.h"		//STRCODE�Q�Ƃ̂���
-#include "gflib/strbuf.h"			//STRBUF�Q�Ƃ̂���
+#include "gflib/msg_print.h"		//STRCODE参照のため
+#include "gflib/strbuf.h"			//STRBUF参照のため
 
 
-#define WIFILIST_FRIEND_MAX	( 32 )	// WIFI���X�g�����t�����h�̐�
-#define WIFILIST_COUNT_RANGE_MAX  (9999)   // �����܂����̉񐔏��
+#define WIFILIST_FRIEND_MAX	( 32 )	// WIFIリストが持つフレンドの数
+#define WIFILIST_COUNT_RANGE_MAX  (9999)   // かちまけ等の回数上限
 
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	���肠���O���[�v�f�[�^�^��`
+ * @brief	しりあいグループデータ型定義
  */
 //----------------------------------------------------------
 typedef struct _WIFI_LIST WIFI_LIST;
 
 
-// WifiList_<Get*Set>FriendInfo�Ŏg��enum
+// WifiList_<Get*Set>FriendInfoで使うenum
 enum{
 	WIFILIST_FRIEND_ID = 0,
 //	WIFILIST_FRIEND_BATTLE_NUM,
@@ -51,7 +51,7 @@ enum{
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
-//	�Z�[�u�f�[�^�V�X�e�����ˑ�����֐�
+//	セーブデータシステムが依存する関数
 //----------------------------------------------------------
 extern int WifiList_GetWorkSize(void);
 extern WIFI_LIST * WifiList_AllocWork(u32 heapID);
@@ -85,7 +85,7 @@ extern void WifiList_SetCountStopNum( WIFI_LIST *list, int no );
 #endif
 
 //----------------------------------------------------------
-//	�Z�[�u�f�[�^�擾�̂��߂̊֐�
+//	セーブデータ取得のための関数
 //----------------------------------------------------------
 extern WIFI_LIST* SaveData_GetWifiListData(SAVEDATA* pSave);
 

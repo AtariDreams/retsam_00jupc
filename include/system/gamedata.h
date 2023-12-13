@@ -3,9 +3,9 @@
  * @file	gamedata.h
  *
  * 2006.05.30
- *	�Q�[���i�s�f�[�^�Ȃǁi�G�������h���j���L�q���Ă����������Ō���������₷���Ȃ�
- *	�Ӗ����Ȃ��Ȃ����Ǝv����̂ő啝�ɓ��e���폜�����B
- *	�����Ƃ��d�v��PERSON_NAME_SIZE�ȂǕ����񒷂̒�`��buflen.h�Ɉړ������B
+ *	ゲーム進行データなど（エメラルドより）を記述していたが検索で誤解を招きやすいなど
+ *	意味がなくなったと思われるので大幅に内容を削除した。
+ *	もっとも重要なPERSON_NAME_SIZEなど文字列長の定義はbuflen.hに移動した。
  *
  */
 //============================================================================================
@@ -13,10 +13,10 @@
 #ifndef __GAMEDATA_H__
 #define __GAMEDATA_H__
 
-//	���O�Ȃǂ̒�����`
+//	名前などの長さ定義
 #include "system/buflen.h"
 
-//-- �|�P�����莝���ő吔 --//
+//-- ポケモン手持ち最大数 --//
 #define TEMOTI_POKEMAX		6
 
 #endif // __GAMEDATA_H__

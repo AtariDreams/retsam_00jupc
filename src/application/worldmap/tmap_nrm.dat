@@ -1,6 +1,6 @@
 /**
 	@file	tmap_nrm.dat
-	@brief	ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹@ƒm[ƒ}ƒ‹ƒ‚[ƒh—p’è‹`
+	@brief	ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã€€ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ç”¨å®šç¾©
 	@author	Miyuki Iwasawa
 	@date	05.11.09
 */
@@ -11,7 +11,7 @@
 #define TMAPN_BUFLEN_GUIDETAG	(8*2)
 #define TMAPN_BUFLEN_ZNW	(12*2)
 
-///ƒm[ƒ}ƒ‹ƒ‚[ƒh@ƒV[ƒPƒ“ƒX’è‹`
+///ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
 #define TM_N_KEYWAIT (0)
 #define TM_N_FADEIN	(1)
 #define TM_N_FADEINWAIT	(2)
@@ -19,17 +19,17 @@
 #define TM_N_FADEOUTWAIT (4)
 #define TM_N_CMOVE (5)
 
-///‰æ–Ê§Œä‚ÌƒtƒH[ƒJƒX
+///ç”»é¢åˆ¶å¾¡ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹
 #define TMAPN_FORCUS_MAIN (0)
 #define TMAPN_FORCUS_SUB (1)
 
-///ƒXƒNƒ[ƒ‹’l§Œä
+///ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤åˆ¶å¾¡
 #define TMAPN_BGS0X_MAX	(248)
 #define TMAPN_BGS0X_MIN	(8)
 #define TMAPN_BGS0Y_MAX	(304)
 #define TMAPN_BGS0Y_MIN	(72+8)
 
-///ƒJ[ƒ\ƒ‹ˆÚ“®À•WãŒÀ
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•åº§æ¨™ä¸Šé™
 #define CMOVE_MINX	(2)
 #define CMOVE_MINZ	(7)
 #define CMOVE_MAXX	(27)
@@ -55,7 +55,7 @@
 
 #define CMOVE_KEYIN	(0x01)
 
-///ViewXVƒtƒ‰ƒO’è‹`
+///Viewæ›´æ–°ãƒ•ãƒ©ã‚°å®šç¾©
 #define VIEW_NRM	(0x00)
 #define VIEW_CLEAR	(0x00)
 #define VIEW_UP		(0x01)
@@ -63,9 +63,9 @@
 
 
 //==================================================
-//BG•`‰æŠÖŒW
+//BGæç”»é–¢ä¿‚
 //==================================================
-#define TMSCR_DSWMB_DPX	(13)	///<ƒTƒu‰æ–Êƒ^ƒbƒ`ƒpƒlƒ‹ƒ{ƒ^ƒ“
+#define TMSCR_DSWMB_DPX	(13)	///<ã‚µãƒ–ç”»é¢ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒœã‚¿ãƒ³
 #define TMSCR_DSWMB_DPY	(10)
 #define TMSCR_DSWMB_DSX	(6)
 #define TMSCR_DSWMB_DSY	(7)
@@ -74,7 +74,7 @@
 #define TMSCR_DSWMB_DEX	(TMSCR_DSWMB_DPX+TMSCR_DSWMB_DSX)
 #define TMSCR_DSWMB_DEY	(TMSCR_DSWMB_DPY+TMSCR_DSWMB_DSY)
 
-#define TMSCR_DSWMG_DPX	(10)	///<ƒTƒu‰æ–ÊƒKƒCƒh•¶ƒEƒBƒ“ƒhƒE
+#define TMSCR_DSWMG_DPX	(10)	///<ã‚µãƒ–ç”»é¢ã‚¬ã‚¤ãƒ‰æ–‡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define TMSCR_DSWMG_DPY	(0)
 #define TMSCR_DSWMG_DSX	(12)
 #define TMSCR_DSWMG_DSY	(2)
@@ -82,31 +82,31 @@
 #define TMSCR_DSWMG_SPY	(7)
 
 //==================================================
-//”z•zƒ}ƒbƒvBGŠÖŒW
+//é…å¸ƒãƒãƒƒãƒ—BGé–¢ä¿‚
 //==================================================
 //D15
-#define HMAP01_MB_DPX	(5)	///<”z•zƒ}ƒbƒv1 ƒoƒbƒN
+#define HMAP01_MB_DPX	(5)	///<é…å¸ƒãƒãƒƒãƒ—1 ãƒãƒƒã‚¯
 #define HMAP01_MB_DPY	(0)
 #define HMAP01_MB_PX	(3)	
 #define HMAP01_MB_PY	(1)
 #define HMAP01_MB_SX	(2)
 #define HMAP01_MB_SY	(3)
 
-#define HMAP01_SB_DPX	(8)	///<”z•zƒ}ƒbƒv1 ƒoƒbƒN
+#define HMAP01_SB_DPX	(8)	///<é…å¸ƒãƒãƒƒãƒ—1 ãƒãƒƒã‚¯
 #define HMAP01_SB_DPY	(0)
 #define HMAP01_SB_PX	(3)	
 #define HMAP01_SB_PY	(16)
 #define HMAP01_SB_SX	(4)
 #define HMAP01_SB_SY	(4)
 
-#define HMAP01_ML_DPX	(5)	///<”z•zƒ}ƒbƒv1 ƒ[ƒh 
+#define HMAP01_ML_DPX	(5)	///<é…å¸ƒãƒãƒƒãƒ—1 ãƒ­ãƒ¼ãƒ‰ 
 #define HMAP01_ML_DPY	(3)
 #define HMAP01_ML_PX	(3)	
 #define HMAP01_ML_PY	(2)
 #define HMAP01_ML_SX	(2)
 #define HMAP01_ML_SY	(2)
 
-#define HMAP01_SL_DPX	(8)	///<”z•zƒ}ƒbƒv1 ƒ[ƒh
+#define HMAP01_SL_DPX	(8)	///<é…å¸ƒãƒãƒƒãƒ—1 ãƒ­ãƒ¼ãƒ‰
 #define HMAP01_SL_DPY	(4)
 #define HMAP01_SL_PX	(3)	
 #define HMAP01_SL_PY	(16)
@@ -115,28 +115,28 @@
 
 ////////////////////////////////////////////////////
 //D30
-#define HMAP02_MB_DPX	(0)	///<”z•zƒ}ƒbƒv2 ƒoƒbƒN
+#define HMAP02_MB_DPX	(0)	///<é…å¸ƒãƒãƒƒãƒ—2 ãƒãƒƒã‚¯
 #define HMAP02_MB_DPY	(0)
 #define HMAP02_MB_PX	(6)	
 #define HMAP02_MB_PY	(1)
 #define HMAP02_MB_SX	(2)
 #define HMAP02_MB_SY	(3)
 
-#define HMAP02_SB_DPX	(0)	///<”z•zƒ}ƒbƒv2 ƒoƒbƒN
+#define HMAP02_SB_DPX	(0)	///<é…å¸ƒãƒãƒƒãƒ—2 ãƒãƒƒã‚¯
 #define HMAP02_SB_DPY	(0)
 #define HMAP02_SB_PX	(8)	
 #define HMAP02_SB_PY	(16)
 #define HMAP02_SB_SX	(4)
 #define HMAP02_SB_SY	(4)
 
-#define HMAP02_ML_DPX	(0)	///<”z•zƒ}ƒbƒv2 ƒ[ƒh 
+#define HMAP02_ML_DPX	(0)	///<é…å¸ƒãƒãƒƒãƒ—2 ãƒ­ãƒ¼ãƒ‰ 
 #define HMAP02_ML_DPY	(3)
 #define HMAP02_ML_PX	(6)	
 #define HMAP02_ML_PY	(2)
 #define HMAP02_ML_SX	(2)
 #define HMAP02_ML_SY	(2)
 
-#define HMAP02_SL_DPX	(0)	///<”z•zƒ}ƒbƒv2 ƒoƒbƒN
+#define HMAP02_SL_DPX	(0)	///<é…å¸ƒãƒãƒƒãƒ—2 ãƒãƒƒã‚¯
 #define HMAP02_SL_DPY	(4)
 #define HMAP02_SL_PX	(8)	
 #define HMAP02_SL_PY	(16)
@@ -145,14 +145,14 @@
 
 ////////////////////////////////////////////////////
 //L4
-#define HMAP03_ML_DPX	(4)	///<”z•zƒ}ƒbƒv3 ƒ[ƒh 
+#define HMAP03_ML_DPX	(4)	///<é…å¸ƒãƒãƒƒãƒ—3 ãƒ­ãƒ¼ãƒ‰ 
 #define HMAP03_ML_DPY	(5)
 #define HMAP03_ML_PX	(22)	
 #define HMAP03_ML_PY	(13)
 #define HMAP03_ML_SX	(3)
 #define HMAP03_ML_SY	(3)
 
-#define HMAP03_SL_DPX	(8)	///<”z•zƒ}ƒbƒv3 ƒ[ƒh
+#define HMAP03_SL_DPX	(8)	///<é…å¸ƒãƒãƒƒãƒ—3 ãƒ­ãƒ¼ãƒ‰
 #define HMAP03_SL_DPY	(8)
 #define HMAP03_SL_PX	(48)	
 #define HMAP03_SL_PY	(42)
@@ -160,28 +160,28 @@
 #define HMAP03_SL_SY	(6)
 
 //D18
-#define HMAP04_MB_DPX	(2)	///<”z•zƒ}ƒbƒv4 ƒoƒbƒN
+#define HMAP04_MB_DPX	(2)	///<é…å¸ƒãƒãƒƒãƒ—4 ãƒãƒƒã‚¯
 #define HMAP04_MB_DPY	(0)
 #define HMAP04_MB_PX	(26)	
 #define HMAP04_MB_PY	(0)
 #define HMAP04_MB_SX	(3)
 #define HMAP04_MB_SY	(3)
 
-#define HMAP04_SB_DPX	(4)	///<”z•zƒ}ƒbƒv4 ƒoƒbƒN
+#define HMAP04_SB_DPX	(4)	///<é…å¸ƒãƒãƒƒãƒ—4 ãƒãƒƒã‚¯
 #define HMAP04_SB_DPY	(0)
 #define HMAP04_SB_PX	(57)	
 #define HMAP04_SB_PY	(12)
 #define HMAP04_SB_SX	(4)
 #define HMAP04_SB_SY	(4)
 
-#define HMAP04_ML_DPX	(2)	///<”z•zƒ}ƒbƒv4 ƒ[ƒh 
+#define HMAP04_ML_DPX	(2)	///<é…å¸ƒãƒãƒƒãƒ—4 ãƒ­ãƒ¼ãƒ‰ 
 #define HMAP04_ML_DPY	(3)
 #define HMAP04_ML_PX	(27)	
 #define HMAP04_ML_PY	(0)
 #define HMAP04_ML_SX	(2)
 #define HMAP04_ML_SY	(9)
 
-#define HMAP04_SL_DPX	(4)	///<”z•zƒ}ƒbƒv4 ƒ[ƒh 
+#define HMAP04_SL_DPX	(4)	///<é…å¸ƒãƒãƒƒãƒ—4 ãƒ­ãƒ¼ãƒ‰ 
 #define HMAP04_SL_DPY	(4)
 #define HMAP04_SL_PX	(57)	
 #define HMAP04_SL_PY	(12)
@@ -189,9 +189,9 @@
 #define HMAP04_SL_SY	(19)
 
 //==================================================
-//BMP WinŠÖŒW
+//BMP Winé–¢ä¿‚
 //==================================================
-///ƒEƒBƒ“ƒhƒEBGƒGƒŠƒA’è‹`
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦BGã‚¨ãƒªã‚¢å®šç¾©
 #define ZONEN_BGW_PX	(0)
 #define ZONEN_BGW_PY	(21)
 #define ZONEN_BGW_SX	(32)
@@ -206,7 +206,7 @@
 #define ZONEN_BG_SY	(3)
 
 
-///ƒƒCƒ“‰æ–Ê’n–¼•\¦—p
+///ãƒ¡ã‚¤ãƒ³ç”»é¢åœ°åè¡¨ç¤ºç”¨
 #define TMAPN_BMPCHAR_BASE	(1023)
 #define BMPL_M01_PX	(3)
 #define BMPL_M01_PY	(21)
@@ -220,7 +220,7 @@
 #define BMPL_M01_WIDTH	(BMPL_M01_SX*8)
 #define BMPL_M01_NSX	(15*8+2)
 
-///ƒƒCƒ“‰æ–ÊŠÅ”Â•\¦—p
+///ãƒ¡ã‚¤ãƒ³ç”»é¢çœ‹æ¿è¡¨ç¤ºç”¨
 #define BMPL_M02_PX	(0)
 #define BMPL_M02_PY	(0)
 #define BMPL_M02_SX	(32)
@@ -229,7 +229,7 @@
 #define BMPL_M02_CGX	(BMPL_M01_CGX-BMPL_M02_SX*BMPL_M02_SY)
 #define BMPL_M02_FRM	(GF_BGL_FRAME1_M)
 
-// ŠÅ”ÂƒEƒBƒ“ƒhƒEiƒTƒuj
+// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆã‚µãƒ–ï¼‰
 #define TMAPN_S_BMPCHAR_BASE0 (1023)
 
 #define	BMPL_BOARD0_PX	( 9 )
@@ -246,7 +246,7 @@
 #define	BMPL_BOARD1_SY	( 4 )
 #define	BMPL_BOARD1_CGX	( BMPL_BOARD0_CGX-(BMPL_BOARD1_SX*BMPL_BOARD1_SY))
 
-//ƒuƒƒbƒNà–¾ƒEƒBƒ“ƒhƒE(ƒTƒu)
+//ãƒ–ãƒ­ãƒƒã‚¯èª¬æ˜ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦(ã‚µãƒ–)
 #define BMPL_BLOCK_PX	(1)
 #define BMPL_BLOCK_PY	(8)
 #define BMPL_BLOCK_SX	(28)
@@ -255,7 +255,7 @@
 #define BMPL_BLOCK_CGX	(BMPL_BOARD1_CGX-(BMPL_BLOCK_SX*BMPL_BLOCK_SY))
 #define BMPL_BLOCK_FRM	(GF_BGL_FRAME0_S)
 
-//ƒKƒCƒhƒ^ƒOƒEƒBƒ“ƒhƒE(ƒTƒu)
+//ã‚¬ã‚¤ãƒ‰ã‚¿ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦(ã‚µãƒ–)
 #define BMPL_GUIDE_PX	(11)
 #define BMPL_GUIDE_PY	(0)
 #define BMPL_GUIDE_SX	(10)
@@ -276,7 +276,7 @@ enum{
 	WIN_MAX,
 };
 
-///ƒV[ƒPƒ“ƒX
+///ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	TMAPJ_KEYWAIT = 0,
 	TMAPJ_SELINIT,

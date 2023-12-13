@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.4  2005/09/05 01:36:06  yasu
-  TAB �̋󔒉�
+  TAB の空白化
 
   Revision 1.3  2005/08/24 12:56:41  yada
   fix a little

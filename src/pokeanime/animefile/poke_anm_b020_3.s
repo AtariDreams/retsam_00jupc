@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm_b020_3.s
- * @brief	ƒuƒ‹ƒuƒ‹‰¡ˆÚ“®
+ * @brief	ãƒ–ãƒ«ãƒ–ãƒ«æ¨ªç§»å‹•
  * @author	
  * @date	
  *
@@ -18,7 +18,7 @@
 // =============================================================================
 //
 //
-//	”w–Ê	ƒuƒ‹ƒuƒ‹‰¡ˆÚ“®ƒXƒ[
+//	èƒŒé¢	ãƒ–ãƒ«ãƒ–ãƒ«æ¨ªç§»å‹•ã‚¹ãƒ­ãƒ¼
 //
 //
 // =============================================================================
@@ -26,21 +26,21 @@
 #define CALC_NUM	(8)
 #define HEIGHT	(2)
 PAST_ANIME_B020_3:
-	//¶	CALC_NUM‰ñ‚Ìˆ—‚Å-WIDTHˆÚ“®
+	//å·¦	CALC_NUMå›žã®å‡¦ç†ã§-WIDTHç§»å‹•
 	CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_DX,-WIDTH,CALC_NUM
-	//ã‰º
+	//ä¸Šä¸‹
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,HEIGHT,0x4000*CALC_NUM,0,CALC_NUM
 	HOLD_CMD
 	
-	//‰E	CALC_NUMx2‰ñ‚Ìˆ—‚ÅWIDTH‚˜2ˆÚ“®
+	//å³	CALC_NUMx2å›žã®å‡¦ç†ã§WIDTHï½˜2ç§»å‹•
 	CALL_MF_LINE_DIVTIME	APPLY_ADD,0,TARGET_DX,WIDTH*2,CALC_NUM*2
-	//ã‰º
+	//ä¸Šä¸‹
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,HEIGHT,0x4000*CALC_NUM*2,0,CALC_NUM*2
 	HOLD_CMD
 	
-	//¶	CALC_NUM‰ñ‚Ìˆ—‚Å-WIDTHˆÚ“®
+	//å·¦	CALC_NUMå›žã®å‡¦ç†ã§-WIDTHç§»å‹•
 	CALL_MF_LINE_DIVTIME	APPLY_ADD,0,TARGET_DX,-WIDTH,CALC_NUM
-	//ã‰º
+	//ä¸Šä¸‹
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,HEIGHT,0x4000*CALC_NUM,0,CALC_NUM
 	HOLD_CMD
 	

@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.1  2005/04/12 06:16:12  ida
-  SND‚ğNITRO-SDK‚ÖˆÚİ
+  SNDã‚’NITRO-SDKã¸ç§»è¨­
 
   Revision 1.4  2005/02/14 08:29:42  ida
-  ‚Qd‰Šú‰»ƒ`ƒFƒbƒN’Ç‰Á
+  ï¼’é‡åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯è¿½åŠ 
 
   Revision 1.3  2005/02/02 05:31:57  ida
-  ’˜ìŒ ”NŸ•\‹L‚ğXV
+  è‘—ä½œæ¨©å¹´æ¬¡è¡¨è¨˜ã‚’æ›´æ–°
 
   Revision 1.2  2005/02/02 05:09:21  ida
-  ARM7‚Å‚Íƒ~ƒ…[ƒeƒbƒNƒXƒƒbƒN‚ğs‚í‚È‚¢‚æ‚¤‚É‚µ‚½
+  ARM7ã§ã¯ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ãƒ­ãƒƒã‚¯ã‚’è¡Œã‚ãªã„ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.1  2004/11/22 04:30:00  ida
   ARM7/src -> common/src
@@ -84,7 +84,7 @@
   add alarm functions
 
   Revision 1.3  2004/03/18 13:01:26  yada
-  includeC³ cmake’Ê‚é‚æ‚¤‚É
+  includeä¿®æ­£ â€¦makeé€šã‚‹ã‚ˆã†ã«
 
   Revision 1.2  2004/03/10 06:31:24  ida
   SND_Snd -> SND_
@@ -178,7 +178,7 @@ static void SndAlarmCallback(void *arg);
 /*---------------------------------------------------------------------------*
   Name:         SND_Init
 
-  Description:  ƒTƒEƒ“ƒhƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
 
   Arguments:    None.
 
@@ -203,7 +203,7 @@ void SND_Init(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_Init
 
-  Description:  ƒTƒEƒ“ƒh‚ğ‰Šú‰»‚µAƒTƒEƒ“ƒhƒXƒŒƒbƒh‚ğ‹N“®‚·‚é
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ã‚’åˆæœŸåŒ–ã—ã€ã‚µã‚¦ãƒ³ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·å‹•ã™ã‚‹
 
   Arguments:    threadPrio - thread priority
 
@@ -226,7 +226,7 @@ void SND_Init(u32 threadPrio)
 /*---------------------------------------------------------------------------*
   Name:         SND_CreateThread
 
-  Description:  ƒTƒEƒ“ƒhƒXƒŒƒbƒh‚Ì‹N“®
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰ã®èµ·å‹•
 
   Arguments:    threadPrio - thread priority
 
@@ -245,11 +245,11 @@ void SND_CreateThread(u32 threadPrio)
 /*---------------------------------------------------------------------------*
   Name:         SND_SetThreadPriority
 
-  Description:  ƒTƒEƒ“ƒhƒXƒŒƒbƒh‚Ì—Dæ“x‚Ìİ’è
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆåº¦ã®è¨­å®š
 
-  Arguments:    prio - ƒXƒŒƒbƒhƒvƒ‰ƒCƒIƒŠƒeƒB
+  Arguments:    prio - ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL SND_SetThreadPriority(u32 prio)
 {
@@ -259,7 +259,7 @@ BOOL SND_SetThreadPriority(u32 prio)
 /*---------------------------------------------------------------------------*
   Name:         SND_InitIntervalTimer
 
-  Description:  ƒCƒ“ƒ^[ƒoƒ‹ƒ^ƒCƒ}[‚Ì‰Šú‰»
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã‚¿ã‚¤ãƒãƒ¼ã®åˆæœŸåŒ–
 
   Arguments:    None.
 
@@ -275,7 +275,7 @@ void SND_InitIntervalTimer(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_StartIntervalTimer
 
-  Description:  ƒCƒ“ƒ^[ƒoƒ‹ƒ^ƒCƒ}[‚Ì‹N“®
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã‚¿ã‚¤ãƒãƒ¼ã®èµ·å‹•
 
   Arguments:    None.
 
@@ -291,7 +291,7 @@ void SND_StartIntervalTimer(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_StopIntervalTimer
 
-  Description:  ƒCƒ“ƒ^[ƒoƒ‹ƒ^ƒCƒ}[‚Ì’â~
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã‚¿ã‚¤ãƒãƒ¼ã®åœæ­¢
 
   Arguments:    None.
 
@@ -305,11 +305,11 @@ void SND_StopIntervalTimer(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_WaitForIntervalTimer
 
-  Description:  ƒCƒ“ƒ^[ƒoƒ‹ƒ^ƒCƒ}[‘Ò‚¿
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã‚¿ã‚¤ãƒãƒ¼å¾…ã¡
 
   Arguments:    None.
 
-  Returns:      ƒƒbƒZ[ƒW‚ğ•Ô‚·
+  Returns:      ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™
  *---------------------------------------------------------------------------*/
 OSMessage SND_WaitForIntervalTimer(void)
 {
@@ -323,11 +323,11 @@ OSMessage SND_WaitForIntervalTimer(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_SendWakeupMessage
 
-  Description:  ƒTƒEƒ“ƒhƒXƒŒƒbƒh‚ğ‹N‚±‚·ƒƒbƒZ[ƒW‘—M
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·ã“ã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ƒƒbƒZ[ƒW‚Ì‘—M‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+  Returns:      ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®é€ä¿¡ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *---------------------------------------------------------------------------*/
 BOOL SND_SendWakeupMessage(void)
 {
@@ -343,7 +343,7 @@ BOOL SND_SendWakeupMessage(void)
 /*---------------------------------------------------------------------------*
   Name:         SNDi_LockMutex
 
-  Description:  ƒTƒEƒ“ƒhƒ~ƒ…[ƒeƒbƒNƒX‚ÉƒƒbƒN‚ğ‚©‚¯‚Ü‚·
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã«ãƒ­ãƒƒã‚¯ã‚’ã‹ã‘ã¾ã™
 
   Arguments:    None.
 
@@ -359,7 +359,7 @@ void SNDi_LockMutex(void)
 /*---------------------------------------------------------------------------*
   Name:         SNDi_UnlockMutex
 
-  Description:  ƒTƒEƒ“ƒhƒ~ƒ…[ƒeƒbƒNƒX‚ÌƒƒbƒN‚ğ‰ğœ‚µ‚Ü‚·
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤ã—ã¾ã™
 
   Arguments:    None.
 
@@ -381,9 +381,9 @@ void SNDi_UnlockMutex(void)
 /*---------------------------------------------------------------------------*
   Name:         SndAlarmCallback
 
-  Description:  ƒAƒ‰[ƒ€üŠú‚ÅŒÄ‚Ñ‚¾‚³‚ê‚éƒR[ƒ‹ƒoƒbƒN
+  Description:  ã‚¢ãƒ©ãƒ¼ãƒ å‘¨æœŸã§å‘¼ã³ã ã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    arg - ƒ†[ƒU[ƒf[ƒ^i–¢g—pj
+  Arguments:    arg - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -398,9 +398,9 @@ static void SndAlarmCallback(void * /*arg */ )
 /*---------------------------------------------------------------------------*
   Name:         SndThread
 
-  Description:  ƒTƒEƒ“ƒhƒXƒŒƒbƒhŠÖ”
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰é–¢æ•°
 
-  Arguments:    arg - ƒ†[ƒU[ƒf[ƒ^i–¢g—pj
+  Arguments:    arg - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

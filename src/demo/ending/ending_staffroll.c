@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_staffroll.c
- * @brief	ƒXƒ^ƒbƒtƒ[ƒ‹
+ * @brief	ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«
  * @author	matsuda
- * @date	2008.04.14(ŒŽ)
+ * @date	2008.04.14(æœˆ)
  */
 //==============================================================================
 #include "common.h"
@@ -29,15 +29,15 @@
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "stafflist.dat"
-///ƒXƒ^ƒbƒtƒŠƒXƒg‚Ì”
+///ã‚¹ã‚¿ãƒƒãƒ•ãƒªã‚¹ãƒˆã®æ•°
 #define STAFFLIST_MAX		(NELEMS(StaffListDataTable))
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 typedef struct{
 	u32 height;
@@ -53,7 +53,7 @@ void EndingStaffroll_Init(ENDING_MAIN_WORK *emw)
 	GF_BGL_ScrollSet(emw->bgl, FRAME_S_STAFFROLL, GF_BGL_SCROLL_Y_SET, 256);
 }
 
-///‚‚³‰ÁŽZ’l@¦‰ºˆÊ8ƒrƒbƒg¬”@¦ƒXƒ^ƒbƒtƒ[ƒ‹‚Ì—¬‚ê‚é‘¬“x
+///é«˜ã•åŠ ç®—å€¤ã€€â€»ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°ã€€â€»ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«ã®æµã‚Œã‚‹é€Ÿåº¦
 #define HEIGHT_ADD		(0x0100)
 BOOL EndingStaffroll_Main(ENDING_MAIN_WORK *emw, STAFFROLL_WORK *srw)
 {

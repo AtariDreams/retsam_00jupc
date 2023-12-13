@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	ev_win.c
- * @brief	ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE(BMPƒƒjƒ…[ABMPƒŠƒXƒg)
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦(BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€BMPãƒªã‚¹ãƒˆ)
  * @author	Satoshi Nohara
  * @date	2005.07.29
  */
@@ -28,8 +28,8 @@
 #include "msgdata/msg_ev_win.h"			//msg_ev_win_016
 #include "msgdata/msg_shop.h"
 
-//—LŒø‚ÅA•\¦”‚æ‚è€–Ú”‚ª‘½‚¢ƒŠƒXƒgˆ—‚ÍAã‰º‚ÉƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹‚ğ•\¦
-//ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ª‚È‚¢‚Ì‚ÅA‚»‚Ì•Ó‚Í‰¼‚Å‚·B
+//æœ‰åŠ¹ã§ã€è¡¨ç¤ºæ•°ã‚ˆã‚Šé …ç›®æ•°ãŒå¤šã„ãƒªã‚¹ãƒˆå‡¦ç†ã¯ã€ä¸Šä¸‹ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤º
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ã€ãã®è¾ºã¯ä»®ã§ã™ã€‚
 //#define EV_WIN_SCROLL_CURSOR
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
@@ -37,23 +37,23 @@
 #include "system/arc_util.h"
 #include "system/clact_tool.h"
 #include "field_clact.h"
-#include "field/ranking.naix"			//ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ª‚È‚¢‚Ì‚Å‰¼
+#include "field/ranking.naix"			//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ä»®
 #endif
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 static void EvWin_Init( FIELDSYS_WORK* fsys, EV_WIN_WORK* wk, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman );
 
-//BMPƒƒjƒ…[
+//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼
 EV_WIN_WORK * CmdEvBmpMenu_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman );
 void CmdEvBmpMenu_MakeList( EV_WIN_WORK* wk, u32 msg_id, u32 param  );
 void CmdEvBmpMenu_Start( EV_WIN_WORK* wk );
 
-//BMPƒƒjƒ…[c‰¡
+//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¸¦æ¨ª
 void CmdEvBmpMenuHV_Start( EV_WIN_WORK* wk, u8 x_max );
 static void BmpMenuHV_h_default_set( EV_WIN_WORK* wk, u8 x_max, u8 y_max );
 
@@ -62,7 +62,7 @@ static u32 BmpMenu_length_get( EV_WIN_WORK* wk );
 static void BmpMenu_h_default_set(EV_WIN_WORK* wk);
 static void EvBmpMenu_MainTCB( TCB_PTR tcb, void* wk );
 
-//BMPƒŠƒXƒg
+//BMPãƒªã‚¹ãƒˆ
 EV_WIN_WORK * CmdEvBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman );
 void CmdEvBmpList_MakeList( EV_WIN_WORK* wk, u32 msg_id, u32 talk_msg_id, u32 param  );
 void CmdEvBmpList_Start( EV_WIN_WORK* wk );
@@ -87,63 +87,63 @@ static void EvWin_ActorRelease( EV_WIN_WORK* wk );
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-#define EV_WIN_FONT		(FONT_SYSTEM)			//ƒtƒHƒ“ƒgw’è
-//#define EV_WIN_FONT	(FONT_TALK)				//ƒtƒHƒ“ƒgw’è
+#define EV_WIN_FONT		(FONT_SYSTEM)			//ãƒ•ã‚©ãƒ³ãƒˆæŒ‡å®š
+//#define EV_WIN_FONT	(FONT_TALK)				//ãƒ•ã‚©ãƒ³ãƒˆæŒ‡å®š
 
-//#define EVWIN_MSG_BUF_SIZE	(32*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
-#define EVWIN_MSG_BUF_SIZE		(40*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+//#define EVWIN_MSG_BUF_SIZE	(32*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+#define EVWIN_MSG_BUF_SIZE		(40*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-//BMPƒƒjƒ…[
-#define EV_WIN_MENU_MAX			(28)			//ƒƒjƒ…[€–Ú‚ÌÅ‘å”
+//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼
+#define EV_WIN_MENU_MAX			(28)			//ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®æœ€å¤§æ•°
 
-//BMPƒŠƒXƒg
-#define EV_WIN_LIST_MAX			(28)			//ƒŠƒXƒg€–Ú‚ÌÅ‘å”
+//BMPãƒªã‚¹ãƒˆ
+#define EV_WIN_LIST_MAX			(28)			//ãƒªã‚¹ãƒˆé …ç›®ã®æœ€å¤§æ•°
 
-#define	EV_WIN_MSG_MAX			(28)			//MSGƒoƒbƒtƒ@‚ÌÅ‘å”
+#define	EV_WIN_MSG_MAX			(28)			//MSGãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ•°
 
-//BMPƒŠƒXƒgƒwƒbƒ_[’è‹`
-#define EV_LIST_LINE			(8)				//•\¦Å‘å€–Ú”
-#define EV_LIST_RABEL_X			(1)				//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-#define EV_LIST_DATA_X			(12)			//€–Ú•\¦‚wÀ•W
-#define EV_LIST_CURSOR_X		(2)				//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-#define EV_LIST_LINE_Y			(1)				//•\¦‚xÀ•W
+//BMPãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼å®šç¾©
+#define EV_LIST_LINE			(8)				//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+#define EV_LIST_RABEL_X			(1)				//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_DATA_X			(12)			//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_CURSOR_X		(2)				//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_LINE_Y			(1)				//è¡¨ç¤ºï¼¹åº§æ¨™
 
-//ƒJ[ƒ\ƒ‹•
-#define EV_WIN_CURSOR_WIDTH		(12)			//ƒJ[ƒ\ƒ‹•
+//ã‚«ãƒ¼ã‚½ãƒ«å¹…
+#define EV_WIN_CURSOR_WIDTH		(12)			//ã‚«ãƒ¼ã‚½ãƒ«å¹…
 
-#define EV_WIN_DEFAULT_WAIT		(3)				//ƒL[‘€ì‚ª‚·‚®‚É“ü‚ç‚È‚¢‚æ‚¤‚ÉŠî–{ƒEƒFƒCƒg
+#define EV_WIN_DEFAULT_WAIT		(3)				//ã‚­ãƒ¼æ“ä½œãŒã™ãã«å…¥ã‚‰ãªã„ã‚ˆã†ã«åŸºæœ¬ã‚¦ã‚§ã‚¤ãƒˆ
 
 
-// ‚¨‚±‚¸‚©‚¢ƒEƒBƒ“ƒhƒE’è‹`
-#define	EVWIN_GOLD_SX		( 10 )								// Š‹àƒEƒBƒ“ƒhƒEXƒTƒCƒY
-#define	EVWIN_GOLD_SY		( 4 )								// Š‹àƒEƒBƒ“ƒhƒEYƒTƒCƒY
-#define	EVWIN_GOLD_FRM		( SHOP_FRM_WINDOW )					// Š‹àƒEƒBƒ“ƒhƒEBGƒtƒŒ[ƒ€
-#define	EVWIN_GOLD_PAL		( FLD_SYSFONT_PAL )					// Š‹àƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg
-#define	EVWIN_GOLD_CGX		( 1 )								// Š‹àƒEƒBƒ“ƒhƒEƒLƒƒƒ‰g—pˆÊ’u
-#define	EVWIN_GOLD_CGX_SIZ	( EVWIN_GOLD_SX * EVWIN_GOLD_SY )	// Š‹àƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ƒTƒCƒY
+// ãŠã“ãšã‹ã„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+#define	EVWIN_GOLD_SX		( 10 )								// æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Xã‚µã‚¤ã‚º
+#define	EVWIN_GOLD_SY		( 4 )								// æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Yã‚µã‚¤ã‚º
+#define	EVWIN_GOLD_FRM		( SHOP_FRM_WINDOW )					// æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦BGãƒ•ãƒ¬ãƒ¼ãƒ 
+#define	EVWIN_GOLD_PAL		( FLD_SYSFONT_PAL )					// æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define	EVWIN_GOLD_CGX		( 1 )								// æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ä½¿ç”¨ä½ç½®
+#define	EVWIN_GOLD_CGX_SIZ	( EVWIN_GOLD_SX * EVWIN_GOLD_SY )	// æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
 
-#define	GOLD_BUFLEN			( 16 )					// Š‹à•¶š” ( (6Œ…+‰~+EOM)*2 )
-#define	EVWIN_GOLD_SX_DOT	( EVWIN_GOLD_SX * 8 )	// Š‹àƒEƒBƒ“ƒhƒEXƒTƒCƒYiƒhƒbƒgj
-#define	EVWIN_GOLD_VAL_PY	( 16 )					// Š‹à•\¦YÀ•W
+#define	GOLD_BUFLEN			( 16 )					// æ‰€æŒé‡‘æ–‡å­—æ•° ( (6æ¡+å††+EOM)*2 )
+#define	EVWIN_GOLD_SX_DOT	( EVWIN_GOLD_SX * 8 )	// æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Xã‚µã‚¤ã‚ºï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define	EVWIN_GOLD_VAL_PY	( 16 )					// æ‰€æŒé‡‘è¡¨ç¤ºYåº§æ¨™
 
-// ƒRƒCƒ“ƒEƒBƒ“ƒhƒE’è‹`
-#define	EVWIN_COIN_SX		( 10 )									// ƒRƒCƒ“ƒEƒBƒ“ƒhƒEXƒTƒCƒY
-#define	EVWIN_COIN_SY		( 2 )									// ƒRƒCƒ“ƒEƒBƒ“ƒhƒEYƒTƒCƒY
-#define	EVWIN_COIN_FRM		( SHOP_FRM_WINDOW )						// ƒRƒCƒ“ƒEƒBƒ“ƒhƒEBGƒtƒŒ[ƒ€
-#define	EVWIN_COIN_PAL		( FLD_SYSFONT_PAL )						// ƒRƒCƒ“ƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg
-#define	EVWIN_COIN_CGX		( EVWIN_GOLD_CGX+EVWIN_GOLD_CGX_SIZ )	// ƒRƒCƒ“ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰g—pˆÊ’u
-#define	EVWIN_COIN_CGX_SIZ	( EVWIN_COIN_SX * EVWIN_COIN_SY )		// ƒRƒCƒ“ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ƒTƒCƒY
+// ã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+#define	EVWIN_COIN_SX		( 10 )									// ã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Xã‚µã‚¤ã‚º
+#define	EVWIN_COIN_SY		( 2 )									// ã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Yã‚µã‚¤ã‚º
+#define	EVWIN_COIN_FRM		( SHOP_FRM_WINDOW )						// ã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦BGãƒ•ãƒ¬ãƒ¼ãƒ 
+#define	EVWIN_COIN_PAL		( FLD_SYSFONT_PAL )						// ã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define	EVWIN_COIN_CGX		( EVWIN_GOLD_CGX+EVWIN_GOLD_CGX_SIZ )	// ã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ä½¿ç”¨ä½ç½®
+#define	EVWIN_COIN_CGX_SIZ	( EVWIN_COIN_SX * EVWIN_COIN_SY )		// ã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
 
-#define	COIN_BUFLEN			( 16 )					// ƒRƒCƒ“•¶š” ( (4Œ…+‰~+EOM)*2 )
-#define	EVWIN_COIN_SX_DOT	( EVWIN_COIN_SX * 8 )	// ƒRƒCƒ“ƒEƒBƒ“ƒhƒEXƒTƒCƒYiƒhƒbƒgj
+#define	COIN_BUFLEN			( 16 )					// ã‚³ã‚¤ãƒ³æ–‡å­—æ•° ( (4æ¡+å††+EOM)*2 )
+#define	EVWIN_COIN_SX_DOT	( EVWIN_COIN_SX * 8 )	// ã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Xã‚µã‚¤ã‚ºï¼ˆãƒ‰ãƒƒãƒˆï¼‰
 
-#define BP_BUFLEN			((4+2+1)*2)	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒg•¶š”((4Œ…+BP+EOM)*2)
+#define BP_BUFLEN			((4+2+1)*2)	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆæ–‡å­—æ•°((4æ¡+BP+EOM)*2)
 
-// «‚±‚±‚©‚çg‚Á‚Ä‰º‚³‚¢II
-#define	EVWIN_FREE_CGX		( EVWIN_COIN_CGX+EVWIN_COIN_CGX_SIZ )	// ƒtƒŠ[‚ÌƒLƒƒƒ‰ˆÊ’u
+// â†“ã“ã“ã‹ã‚‰ä½¿ã£ã¦ä¸‹ã•ã„ï¼ï¼
+#define	EVWIN_FREE_CGX		( EVWIN_COIN_CGX+EVWIN_COIN_CGX_SIZ )	// ãƒ•ãƒªãƒ¼ã®ã‚­ãƒ£ãƒ©ä½ç½®
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 #define CURSOR_ANMNO				(0)
@@ -155,11 +155,11 @@ static void EvWin_ActorRelease( EV_WIN_WORK* wk );
 #define EVWIN_CEL_H_ID_CURSOR		(13528)
 #define EVWIN_ANM_H_ID_CURSOR		(13528)
 
-#define EVWIN_ACTMAX				(2)			//ƒAƒNƒ^[”(ãŒü‚«‚Æ‰ºŒü‚«‚Ì‚Q‚Â)
+#define EVWIN_ACTMAX				(2)			//ã‚¢ã‚¯ã‚¿ãƒ¼æ•°(ä¸Šå‘ãã¨ä¸‹å‘ãã®ï¼’ã¤)
 
 #define ACT_RES_PAL_NUM				(3)
 
-//ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ª‚È‚¢‚Ì‚Å’u‚«Š·‚¦
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ç½®ãæ›ãˆ
 enum{
 	ARC_EVWIN_GRA	= ARC_RANKING_GRA,
 	NARC_evwin_nclr = NARC_ranking_ranking_nclr,
@@ -172,83 +172,83 @@ enum{
 
 //==============================================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //
 //==============================================================================================
 struct _EV_WIN_WORK{
-	FIELDSYS_WORK * fsys;						//FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
+	FIELDSYS_WORK * fsys;						//FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
 	TCB_PTR	tcb;
 
- 	GF_BGL_BMPWIN bmpwin;						//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- 	GF_BGL_BMPWIN* talk_bmpwin;					//BMP‰ï˜bƒEƒBƒ“ƒhƒEƒf[ƒ^
+ 	GF_BGL_BMPWIN bmpwin;						//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ 	GF_BGL_BMPWIN* talk_bmpwin;					//BMPä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 	
-	STRBUF* msg_buf[EV_WIN_MSG_MAX];			//ƒƒbƒZ[ƒWƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-	MSGDATA_MANAGER* msgman;					//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;							//’PŒêƒZƒbƒg
+	STRBUF* msg_buf[EV_WIN_MSG_MAX];			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+	MSGDATA_MANAGER* msgman;					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;							//å˜èªã‚»ãƒƒãƒˆ
 
-	u8  wait;									//ƒEƒFƒCƒg
-	u8  menu_id;								//BMPƒƒjƒ…[ID
-	u8  cursor_pos;								//ƒJ[ƒ\ƒ‹ˆÊ’u
-	u8  cancel:1;								//ƒLƒƒƒ“ƒZƒ‹
-	u8  msgman_del_flag:1;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[íœƒtƒ‰ƒO
+	u8  wait;									//ã‚¦ã‚§ã‚¤ãƒˆ
+	u8  menu_id;								//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ID
+	u8  cursor_pos;								//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8  cancel:1;								//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	u8  msgman_del_flag:1;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤ãƒ•ãƒ©ã‚°
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
-	// ƒƒjƒ…[^ƒŠƒXƒg‚Ìw’èˆÊ’u‚ğƒEƒBƒ“ƒhƒE‚Ì‰E’[‚â‰º’[‚É‚·‚é‚½‚ß‚ÌŠÖ”
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ãƒªã‚¹ãƒˆã®æŒ‡å®šä½ç½®ã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å³ç«¯ã‚„ä¸‹ç«¯ã«ã™ã‚‹ãŸã‚ã®é–¢æ•°
 	u8  dmy:4;									//
-	u8  align_right:1;							// ^‚È‚çxÀ•W‚Í‰E’[w’è
-	u8  align_bottom:1;							// ^‚È‚çyÀ•W‚Í‰º’[w’è
+	u8  align_right:1;							// çœŸãªã‚‰xåº§æ¨™ã¯å³ç«¯æŒ‡å®š
+	u8  align_bottom:1;							// çœŸãªã‚‰yåº§æ¨™ã¯ä¸‹ç«¯æŒ‡å®š
 	// ----------------------------------------------------------------------------
 	
-	u8  x;										//ƒEƒBƒ“ƒhƒEˆÊ’uX
-	u8  y;										//ƒEƒBƒ“ƒhƒEˆÊ’uY
-	u8  dmyy;									//ƒƒjƒ…[ƒiƒ“ƒo[
-	u8  list_no;								//ƒƒjƒ…[€–Ú‚Ì‰½”Ô–Ú‚©
+	u8  x;										//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®X
+	u8  y;										//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®Y
+	u8  dmyy;									//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u8  list_no;								//ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®ä½•ç•ªç›®ã‹
 
-	u16* pMsg;									//ƒƒbƒZ[ƒWƒf[ƒ^
-	u16* work;									//Œ‹‰Êæ“¾ƒ[ƒN
-	u16* lp_work;								//list_bakæ“¾ƒ[ƒN
-	u16* cp_work;								//cursor_bakæ“¾ƒ[ƒN
+	u16* pMsg;									//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+	u16* work;									//çµæœå–å¾—ãƒ¯ãƒ¼ã‚¯
+	u16* lp_work;								//list_bakå–å¾—ãƒ¯ãƒ¼ã‚¯
+	u16* cp_work;								//cursor_bakå–å¾—ãƒ¯ãƒ¼ã‚¯
  
-	//BMPƒƒjƒ…[(bmp_menu.h)
-	BMPMENU_HEADER MenuH;						//BMPƒƒjƒ…[ƒwƒbƒ_[
-	BMPMENU_WORK * mw;							//BMPƒƒjƒ…[ƒ[ƒN
-	BMPMENU_DATA Data[EV_WIN_MENU_MAX];			//BMPƒƒjƒ…[ƒf[ƒ^
+	//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼(bmp_menu.h)
+	BMPMENU_HEADER MenuH;						//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	BMPMENU_WORK * mw;							//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	BMPMENU_DATA Data[EV_WIN_MENU_MAX];			//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	//BMPƒŠƒXƒg
-	BMPLIST_HEADER ListH;						//BMPƒŠƒXƒgƒwƒbƒ_[
-	BMPLIST_WORK* lw;							//BMPƒŠƒXƒgƒf[ƒ^
-	u16 list_bak;								//ƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒv
-	u16 cursor_bak;								//ƒJ[ƒ\ƒ‹ˆÊ’uƒoƒbƒNƒAƒbƒv
-	BMPLIST_DATA list_Data[EV_WIN_LIST_MAX];	//ƒŠƒXƒgƒf[ƒ^
-	u16 talk_msg_id[EV_WIN_LIST_MAX];			//ƒŠƒXƒgƒf[ƒ^‚É‘Î‚É‚È‚é‰ï˜bƒƒbƒZ[ƒWID
+	//BMPãƒªã‚¹ãƒˆ
+	BMPLIST_HEADER ListH;						//BMPãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼
+	BMPLIST_WORK* lw;							//BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	u16 list_bak;								//ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	u16 cursor_bak;								//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	BMPLIST_DATA list_Data[EV_WIN_LIST_MAX];	//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	u16 talk_msg_id[EV_WIN_LIST_MAX];			//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã«å¯¾ã«ãªã‚‹ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 
 	u16 pos_bak;
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-	FIELD_CLACT		fcat;						//ƒtƒB[ƒ‹ƒh—pƒZƒ‹ƒAƒNƒ^[İ’è
-	CATS_ACT_PTR	act[EVWIN_ACTMAX];			//CATS‚ğg‚¤‚Ìê—pƒAƒNƒ^[\‘¢‘Ì
+	FIELD_CLACT		fcat;						//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®š
+	CATS_ACT_PTR	act[EVWIN_ACTMAX];			//CATSã‚’ä½¿ã†æ™‚ã®å°‚ç”¨ã‚¢ã‚¯ã‚¿ãƒ¼æ§‹é€ ä½“
 #endif
 };
 
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE@ƒ[ƒN‰Šú‰»
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	x			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	cursor		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	cancel		BƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO(TRUE=—LŒøAFALSE=–³Œø)
- * @param	work		Œ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	cursor		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	cancel		Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°(TRUE=æœ‰åŠ¹ã€FALSE=ç„¡åŠ¹)
+ * @param	work		çµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -258,21 +258,21 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, EV_WIN_WORK* wk, u8 x, u8 y, u8 cur
 	int i;
 
 	if( msgman == NULL ){
-		//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_ev_win_dat, HEAPID_FIELD);
 		wk->msgman_del_flag = 1;
 	}else{
-		wk->msgman = msgman;	//ˆøŒp‚¬
+		wk->msgman = msgman;	//å¼•ç¶™ã
 		wk->msgman_del_flag = 0;
 	}
 
 	//wk->wordset = WORDSET_Create( HEAPID_FIELD );
-	wk->wordset		= wordset;		//ƒXƒNƒŠƒvƒg‚ğˆø‚«Œp‚®
+	wk->wordset		= wordset;		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å¼•ãç¶™ã
 
 	wk->fsys		= fsys;
 	wk->work		= work;
 #if 1
-	*wk->work		= 0;			//‰Šú‰»‚ğ“ü‚ê‚Ä‚¨‚­
+	*wk->work		= 0;			//åˆæœŸåŒ–ã‚’å…¥ã‚Œã¦ãŠã
 #endif
 	wk->lp_work		= NULL;
 	wk->cp_work		= NULL;
@@ -280,7 +280,7 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, EV_WIN_WORK* wk, u8 x, u8 y, u8 cur
 	wk->cursor_pos	= cursor;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
-	// ƒƒjƒ…[^ƒŠƒXƒg‚Ìw’èˆÊ’u‚ğƒEƒBƒ“ƒhƒE‚Ì‰E’[‚â‰º’[‚É‘Î‰
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ãƒªã‚¹ãƒˆã®æŒ‡å®šä½ç½®ã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å³ç«¯ã‚„ä¸‹ç«¯ã«å¯¾å¿œ
 	wk->align_right  = FALSE;
 	wk->align_bottom = FALSE;
 	// ----------------------------------------------------------------------------
@@ -302,12 +302,12 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, EV_WIN_WORK* wk, u8 x, u8 y, u8 cur
 		wk->talk_msg_id[i] = EV_WIN_TALK_MSG_NONE;
 	}
 
-	//MSGMAN_Create‚ÌŒã‚Éˆ—
+	//MSGMAN_Createã®å¾Œã«å‡¦ç†
 	for( i=0; i < EV_WIN_MSG_MAX ;i++ ){
 		wk->msg_buf[i] = STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );
 	}
 
-	//‘I‘ğ‚µ‚½’l‚ğæ“¾‚·‚éƒ[ƒN‚ğ‰Šú‰»
+	//é¸æŠã—ãŸå€¤ã‚’å–å¾—ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
 	*wk->work = EV_WIN_NOTHING;
 
 	return;
@@ -316,22 +316,22 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, EV_WIN_WORK* wk, u8 x, u8 y, u8 cur
 
 //==============================================================================================
 //
-//	BMPƒƒjƒ…[ŠÖ˜A
+//	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[@‰Šú‰»
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€åˆæœŸåŒ–
  *
- * @param	x			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	cursor		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	cancel		BƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO(TRUE=—LŒøAFALSE=–³Œø)
- * @param	work		Œ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	cursor		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	cancel		Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°(TRUE=æœ‰åŠ¹ã€FALSE=ç„¡åŠ¹)
+ * @param	work		çµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"EV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒXANULL‚Í¸”s"
+ * @retval	"EV_WIN_WORKå‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€NULLã¯å¤±æ•—"
  */
 //--------------------------------------------------------------
 EV_WIN_WORK * CmdEvBmpMenu_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman )
@@ -346,7 +346,7 @@ EV_WIN_WORK * CmdEvBmpMenu_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 
 	}
 	memset( wk, 0, sizeof(EV_WIN_WORK) );
 
-	//ƒ[ƒN‰Šú‰»	
+	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–	
 	EvWin_Init( fsys, wk, x, y, cursor, cancel, work, wordset, talk_bmpwin, msgman );
 
 	return wk;
@@ -354,11 +354,11 @@ EV_WIN_WORK * CmdEvBmpMenu_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[@ƒŠƒXƒgì¬
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	param		BMPMENUƒpƒ‰ƒ[ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPMENUãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -371,11 +371,11 @@ void CmdEvBmpMenu_MakeList( EV_WIN_WORK* wk, u32 msg_id, u32 param  )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[@ŠJn
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€é–‹å§‹
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	param		BMPMENUƒpƒ‰ƒ[ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPMENUãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -384,7 +384,7 @@ void CmdEvBmpMenu_Start( EV_WIN_WORK* wk )
 {
 	u32 len;
 
-	//(Å‘å•¶š”{ƒJ[ƒ\ƒ‹) * ƒtƒHƒ“ƒgƒTƒCƒY
+	//(æœ€å¤§æ–‡å­—æ•°ï¼‹ã‚«ãƒ¼ã‚½ãƒ«) * ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	//len = (BmpMenu_length_get(wk)+1) * FontHeaderGet(EV_WIN_FONT, FONT_HEADER_SIZE_X);
 	len = BmpMenu_length_get(wk);
 
@@ -396,7 +396,7 @@ void CmdEvBmpMenu_Start( EV_WIN_WORK* wk )
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
-	// ƒƒjƒ…[^ƒŠƒXƒg‚Ìw’èˆÊ’u‚ğƒEƒBƒ“ƒhƒE‚Ì‰E’[‚â‰º’[‚É‘Î‰
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ãƒªã‚¹ãƒˆã®æŒ‡å®šä½ç½®ã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å³ç«¯ã‚„ä¸‹ç«¯ã«å¯¾å¿œ
 	if (wk->align_right)  wk->x -= len;
 	if (wk->align_bottom) wk->y -= wk->list_no * 2;
 	// ----------------------------------------------------------------------------
@@ -404,19 +404,19 @@ void CmdEvBmpMenu_Start( EV_WIN_WORK* wk )
 	GF_BGL_BmpWinAdd( wk->fsys->bgl, &wk->bmpwin, FLD_MBGFRM_FONT, wk->x, wk->y, 
 									len, wk->list_no*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(
 		wk->fsys->bgl, FLD_MBGFRM_FONT, MENU_WIN_CGX_NUM, MENU_WIN_PAL, 0, HEAPID_FIELD );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite(&wk->bmpwin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL);
 
 
-	//ƒƒjƒ…[ƒwƒbƒ_[‰Šúİ’è
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
 	BmpMenu_h_default_set(wk);
 	wk->mw = BmpMenuAdd( &wk->MenuH, wk->cursor_pos, HEAPID_FIELD );
 
-	//TCB’Ç‰Á
+	//TCBè¿½åŠ 
 	wk->tcb	= TCB_Add( EvBmpMenu_MainTCB, wk, 0 );
 
 	return;
@@ -424,11 +424,11 @@ void CmdEvBmpMenu_Start( EV_WIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒŠƒXƒgì¬
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	param		BMPMENUƒpƒ‰ƒ[ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPMENUãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -438,16 +438,16 @@ static void BmpMenu_list_make( EV_WIN_WORK* wk, u32 msg_id, u32 param  )
 	int i;
 	void* msg;
 
-	SDK_ASSERTMSG( wk->list_no < EV_WIN_MENU_MAX, "ƒƒjƒ…[€–Ú”ƒI[ƒo[I" );
+	SDK_ASSERTMSG( wk->list_no < EV_WIN_MENU_MAX, "ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®æ•°ã‚ªãƒ¼ãƒãƒ¼ï¼" );
 
 #if 1
 	{
-		//“WŠJ‚İ
+		//å±•é–‹è¾¼ã¿
 		
-		STRBUF* tmp_buf2= STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );	//ƒRƒs[—pƒoƒbƒtƒ@
+		STRBUF* tmp_buf2= STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );	//ã‚³ãƒ”ãƒ¼ç”¨ãƒãƒƒãƒ•ã‚¡
 
 		MSGMAN_GetString( wk->msgman, msg_id, tmp_buf2 );
-		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//“WŠJ
+		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//å±•é–‹
 		wk->Data[ wk->list_no ].str = (const void *)wk->msg_buf[wk->list_no];
 
 		STRBUF_Delete( tmp_buf2 );
@@ -465,9 +465,9 @@ static void BmpMenu_list_make( EV_WIN_WORK* wk, u32 msg_id, u32 param  )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	€–Ú‚Ì’†‚©‚çÅ‘å•¶š”‚ğæ“¾
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	é …ç›®ã®ä¸­ã‹ã‚‰æœ€å¤§æ–‡å­—æ•°ã‚’å–å¾—
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -487,7 +487,7 @@ static u32 BmpMenu_length_get( EV_WIN_WORK* wk )
 
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/14
-		// •¶š•\¦ˆÊ’u•ÏXƒ^ƒO‚ğl—¶‚µ‚Ä•‚ğæ“¾‚·‚é‚æ‚¤‚É•ÏX
+		// æ–‡å­—è¡¨ç¤ºä½ç½®å¤‰æ›´ã‚¿ã‚°ã‚’è€ƒæ…®ã—ã¦å¹…ã‚’å–å¾—ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 		ret = FontProc_GetEvWinItemWidth( EV_WIN_FONT, (STRBUF*)wk->Data[i].str );
 		// ----------------------------------------------------------------------------
 
@@ -501,9 +501,9 @@ static u32 BmpMenu_length_get( EV_WIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…	ƒwƒbƒ_[‰Šúİ’è
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -520,11 +520,11 @@ static void BmpMenu_h_default_set(EV_WIN_WORK* wk)
 	wk->MenuH.line_spc	= 0;
 	wk->MenuH.c_disp_f	= 0;
 
-	//ƒƒjƒ…[€–Ú‚ª4í—ŞˆÈã‚¾‚Á‚½‚ÍƒJ[ƒ\ƒ‹‚Ìƒ‹[ƒv—L‚è‚É‚·‚é
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ãŒ4ç¨®é¡ä»¥ä¸Šã ã£ãŸæ™‚ã¯ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ«ãƒ¼ãƒ—æœ‰ã‚Šã«ã™ã‚‹
 	if( wk->list_no >= 4 ){
-		wk->MenuH.loop_f	= 1;			//—L
+		wk->MenuH.loop_f	= 1;			//æœ‰
 	}else{
-		wk->MenuH.loop_f	= 0;			//–³
+		wk->MenuH.loop_f	= 0;			//ç„¡
 	}
 
 	return;
@@ -532,10 +532,10 @@ static void BmpMenu_h_default_set(EV_WIN_WORK* wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[@ƒƒCƒ“
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ãƒ¡ã‚¤ãƒ³
  *
  * @param	tcb			TCB_PTR
- * @param	wk			ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -546,13 +546,13 @@ static void EvBmpMenu_MainTCB( TCB_PTR tcb, void* wk )
 	EV_WIN_WORK *swk;
 	swk = (EV_WIN_WORK *)wk;
 
-	//ƒEƒFƒCƒg
+	//ã‚¦ã‚§ã‚¤ãƒˆ
 	if( swk->wait != 0 ){
 		swk->wait--;
 		return;
 	}
 
-	//ƒƒCƒv’†‚Íˆ—‚µ‚È‚¢
+	//ãƒ¯ã‚¤ãƒ—ä¸­ã¯å‡¦ç†ã—ãªã„
 	if( WIPE_SYS_EndCheck() == FALSE ){
 		return;
 	}
@@ -562,13 +562,13 @@ static void EvBmpMenu_MainTCB( TCB_PTR tcb, void* wk )
 	case BMPMENU_NULL:
 		break;
 	case BMPMENU_CANCEL:
-		if( swk->cancel == TRUE ){			//TRUE = BƒLƒƒƒ“ƒZƒ‹—LŒø
-			*swk->work = EV_WIN_B_CANCEL;	//‘I‘ğ‚µ‚½’l‚ğƒ[ƒN‚É‘ã“ü
+		if( swk->cancel == TRUE ){			//TRUE = Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+			*swk->work = EV_WIN_B_CANCEL;	//é¸æŠã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 			EvBmpMenu_Del(wk);
 		}
 		break;
 	default:
-		*swk->work = ret;					//‘I‘ğ‚µ‚½’l‚ğƒ[ƒN‚É‘ã“ü
+		*swk->work = ret;					//é¸æŠã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 		EvBmpMenu_Del(wk);
 		break;
 	};
@@ -578,20 +578,20 @@ static void EvBmpMenu_MainTCB( TCB_PTR tcb, void* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[@I—¹
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€çµ‚äº†
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * SEQ_SE_DP_SELECT‚ğ–Â‚ç‚µ‚Ä‚¢‚éI
+ * SEQ_SE_DP_SELECTã‚’é³´ã‚‰ã—ã¦ã„ã‚‹ï¼
  */
 //--------------------------------------------------------------
 void EvBmpMenu_Del( EV_WIN_WORK* wk )
 {
 	int i;
 
-	Snd_SePlay(SEQ_SE_DP_SELECT);	//’ˆÓI
+	Snd_SePlay(SEQ_SE_DP_SELECT);	//æ³¨æ„ï¼
 
 	BmpMenuExit( wk->mw, NULL );
 	BmpMenuWinClear( wk->MenuH.win, WINDOW_TRANS_ON );
@@ -614,22 +614,22 @@ void EvBmpMenu_Del( EV_WIN_WORK* wk )
 
 //==============================================================================================
 //
-//	BMPƒŠƒXƒgŠÖ˜A
+//	BMPãƒªã‚¹ãƒˆé–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@‰Šú‰»
+ * @brief	BMPãƒªã‚¹ãƒˆã€€åˆæœŸåŒ–
  *
- * @param	x			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	cursor		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	cancel		BƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO(TRUE=—LŒøAFALSE=–³Œø)
- * @param	work		Œ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	cursor		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	cancel		Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°(TRUE=æœ‰åŠ¹ã€FALSE=ç„¡åŠ¹)
+ * @param	work		çµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"EV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒXANULL‚Í¸”s"
+ * @retval	"EV_WIN_WORKå‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€NULLã¯å¤±æ•—"
  */
 //--------------------------------------------------------------
 EV_WIN_WORK * CmdEvBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman )
@@ -639,12 +639,12 @@ EV_WIN_WORK * CmdEvBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgì¬
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	param		BMPLISTƒpƒ‰ƒ[ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPLISTãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -657,9 +657,9 @@ void CmdEvBmpList_MakeList( EV_WIN_WORK* wk, u32 msg_id, u32 talk_msg_id, u32 pa
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ŠJn
+ * @brief	BMPãƒªã‚¹ãƒˆã€€é–‹å§‹
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -668,7 +668,7 @@ void CmdEvBmpList_Start( EV_WIN_WORK* wk )
 {
 	u32 len;
 
-	//(Å‘å•¶š”{ƒJ[ƒ\ƒ‹) * ƒtƒHƒ“ƒgƒTƒCƒY
+	//(æœ€å¤§æ–‡å­—æ•°ï¼‹ã‚«ãƒ¼ã‚½ãƒ«) * ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	//len = (BmpList_length_get(wk)+1) * FontHeaderGet(EV_WIN_FONT, FONT_HEADER_SIZE_X);
 	len = BmpList_length_get(wk);
 
@@ -680,7 +680,7 @@ void CmdEvBmpList_Start( EV_WIN_WORK* wk )
 
     // ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
-	// ƒƒjƒ…[^ƒŠƒXƒg‚Ìw’èˆÊ’u‚ğƒEƒBƒ“ƒhƒE‚Ì‰E’[‚â‰º’[‚É‘Î‰
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ãƒªã‚¹ãƒˆã®æŒ‡å®šä½ç½®ã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å³ç«¯ã‚„ä¸‹ç«¯ã«å¯¾å¿œ
 	if (wk->align_right)  wk->x -= len;
 	if (wk->align_bottom) {
 		if (wk->list_no > EV_LIST_LINE) {
@@ -695,7 +695,7 @@ void CmdEvBmpList_Start( EV_WIN_WORK* wk )
 	return;
 }
 
-//ˆø”‚ÅƒEƒBƒ“ƒhƒEƒTƒCƒYŒÅ’è
+//å¼•æ•°ã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºå›ºå®š
 void CmdEvBmpList_StartWidth( EV_WIN_WORK* wk, u16 width )
 {
 	u32 len;
@@ -706,11 +706,11 @@ void CmdEvBmpList_StartWidth( EV_WIN_WORK* wk, u16 width )
 	return;
 }
 
-//ƒŠƒXƒg‹¤’Êˆ—
+//ãƒªã‚¹ãƒˆå…±é€šå‡¦ç†
 static void CmdEvBmpList_StartCommon( EV_WIN_WORK* wk, u32 len )
 {
 
-	//•\¦Å‘å€–Ú”ƒ`ƒFƒbƒN
+	//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°ãƒã‚§ãƒƒã‚¯
 	if( wk->list_no > EV_LIST_LINE ){
 		GF_BGL_BmpWinAdd( wk->fsys->bgl, &wk->bmpwin, FLD_MBGFRM_FONT, wk->x, wk->y, 
 									len, EV_LIST_LINE*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
@@ -719,26 +719,26 @@ static void CmdEvBmpList_StartCommon( EV_WIN_WORK* wk, u32 len )
 									len, wk->list_no*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
 	}
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(
 		wk->fsys->bgl, FLD_MBGFRM_FONT, MENU_WIN_CGX_NUM, MENU_WIN_PAL, 0, HEAPID_FIELD );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite(&wk->bmpwin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL);
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 	EvWin_ActorInit( wk );
 #endif
 
-	//ƒŠƒXƒgƒwƒbƒ_[‰Šúİ’è
+	//ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
 	BmpList_h_default_set(wk);
 
 	wk->lw = BmpListSet( (const BMPLIST_HEADER*)&wk->ListH, 0, wk->cursor_pos, HEAPID_FIELD );
 
-	//‰ï˜bƒEƒBƒ“ƒhƒEXV
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›´æ–°
 	talk_msg_update( wk );
 
-	//TCB’Ç‰Á
+	//TCBè¿½åŠ 
 	wk->tcb	= TCB_Add( EvBmpList_MainTCB, wk, 0 );
 
 	return;
@@ -746,9 +746,9 @@ static void CmdEvBmpList_StartCommon( EV_WIN_WORK* wk, u32 len )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ŠJn(lp,cpw’è)
+ * @brief	BMPãƒªã‚¹ãƒˆã€€é–‹å§‹(lp,cpæŒ‡å®š)
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -757,7 +757,7 @@ void CmdEvBmpList_StartLpCp( EV_WIN_WORK* wk, u16* lp_wk, u16* cp_wk )
 {
 	u32 len;
 
-	//(Å‘å•¶š”{ƒJ[ƒ\ƒ‹) * ƒtƒHƒ“ƒgƒTƒCƒY
+	//(æœ€å¤§æ–‡å­—æ•°ï¼‹ã‚«ãƒ¼ã‚½ãƒ«) * ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	//len = (BmpList_length_get(wk)+1) * FontHeaderGet(EV_WIN_FONT, FONT_HEADER_SIZE_X);
 	len = BmpList_length_get(wk);
 
@@ -767,7 +767,7 @@ void CmdEvBmpList_StartLpCp( EV_WIN_WORK* wk, u16* lp_wk, u16* cp_wk )
 		len = (len / 8)+1;
 	}
 
-	//•\¦Å‘å€–Ú”ƒ`ƒFƒbƒN
+	//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°ãƒã‚§ãƒƒã‚¯
 	if( wk->list_no > EV_LIST_LINE ){
 		GF_BGL_BmpWinAdd( wk->fsys->bgl, &wk->bmpwin, FLD_MBGFRM_FONT, wk->x, wk->y, 
 									len, EV_LIST_LINE*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
@@ -776,18 +776,18 @@ void CmdEvBmpList_StartLpCp( EV_WIN_WORK* wk, u16* lp_wk, u16* cp_wk )
 									len, wk->list_no*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
 	}
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(
 		wk->fsys->bgl, FLD_MBGFRM_FONT, MENU_WIN_CGX_NUM, MENU_WIN_PAL, 0, HEAPID_FIELD );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite(&wk->bmpwin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL);
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 	EvWin_ActorInit( wk );
 #endif
 
-	//ƒŠƒXƒgƒwƒbƒ_[‰Šúİ’è
+	//ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
 	BmpList_h_default_set(wk);
 
 	wk->lp_work = lp_wk;
@@ -795,10 +795,10 @@ void CmdEvBmpList_StartLpCp( EV_WIN_WORK* wk, u16* lp_wk, u16* cp_wk )
 	wk->pos_bak	= ( (*wk->lp_work) + (*wk->cp_work) );
 	wk->lw = BmpListSet( (const BMPLIST_HEADER*)&wk->ListH, *lp_wk, *cp_wk, HEAPID_FIELD );
 
-	//‰ï˜bƒEƒBƒ“ƒhƒEXV
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›´æ–°
 	talk_msg_update( wk );
 
-	//TCB’Ç‰Á
+	//TCBè¿½åŠ 
 	wk->tcb	= TCB_Add( EvBmpList_MainTCB, wk, 0 );
 
 	return;
@@ -806,12 +806,12 @@ void CmdEvBmpList_StartLpCp( EV_WIN_WORK* wk, u16* lp_wk, u16* cp_wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒŠƒXƒgì¬
+ * @brief	BMPãƒªã‚¹ãƒˆ	ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	param		BMPLISTƒpƒ‰ƒ[ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPLISTãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -821,16 +821,16 @@ static void BmpList_list_make( EV_WIN_WORK* wk, u32 msg_id, u32 talk_msg_id, u32
 	int i;
 	void* msg;
 
-	SDK_ASSERTMSG( wk->list_no < EV_WIN_LIST_MAX, "ƒŠƒXƒg€–Ú”ƒI[ƒo[I" );
+	SDK_ASSERTMSG( wk->list_no < EV_WIN_LIST_MAX, "ãƒªã‚¹ãƒˆé …ç›®æ•°ã‚ªãƒ¼ãƒãƒ¼ï¼" );
 
 #if 1
 	{
-		//“WŠJ‚İ
+		//å±•é–‹è¾¼ã¿
 		
-		STRBUF* tmp_buf2= STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );	//ƒRƒs[—pƒoƒbƒtƒ@
+		STRBUF* tmp_buf2= STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );	//ã‚³ãƒ”ãƒ¼ç”¨ãƒãƒƒãƒ•ã‚¡
 
 		MSGMAN_GetString( wk->msgman, msg_id, tmp_buf2 );
-		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//“WŠJ
+		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//å±•é–‹
 		wk->list_Data[ wk->list_no ].str = (const void *)wk->msg_buf[wk->list_no];
 
 		STRBUF_Delete( tmp_buf2 );
@@ -857,9 +857,9 @@ static void BmpList_list_make( EV_WIN_WORK* wk, u32 msg_id, u32 talk_msg_id, u32
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	€–Ú‚Ì’†‚©‚çÅ‘å•¶š”‚ğæ“¾
+ * @brief	BMPãƒªã‚¹ãƒˆ	é …ç›®ã®ä¸­ã‹ã‚‰æœ€å¤§æ–‡å­—æ•°ã‚’å–å¾—
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -879,7 +879,7 @@ static u32 BmpList_length_get( EV_WIN_WORK* wk )
 
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/14
-		// •¶š•\¦ˆÊ’u•ÏXƒ^ƒO‚ğl—¶‚µ‚Ä•‚ğæ“¾‚·‚é‚æ‚¤‚É•ÏX
+		// æ–‡å­—è¡¨ç¤ºä½ç½®å¤‰æ›´ã‚¿ã‚°ã‚’è€ƒæ…®ã—ã¦å¹…ã‚’å–å¾—ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 		ret = FontProc_GetEvWinItemWidth( EV_WIN_FONT, (STRBUF*)wk->list_Data[i].str );
 		// ----------------------------------------------------------------------------
 		
@@ -893,9 +893,9 @@ static u32 BmpList_length_get( EV_WIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒwƒbƒ_[‰Šúİ’è
+ * @brief	BMPãƒªã‚¹ãƒˆ	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -933,10 +933,10 @@ static void BmpList_h_default_set(EV_WIN_WORK* wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒXƒgƒVƒXƒeƒ€‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒN¦ˆês•\¦‚²‚Æ
+ * @brief	ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯â€»ä¸€è¡Œè¡¨ç¤ºã”ã¨
  *
- * @param	lw			BMPLIST_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	param		‘I‘ğƒŠƒ^[ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param	lw			BMPLIST_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param		é¸æŠæ™‚ãƒªã‚¿ãƒ¼ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  * @param	y			
  *
  * @retval	none
@@ -953,7 +953,7 @@ static void	BmpList_CallBack(BMPLIST_WORK* lw,u32 param,u8 y)
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒN
+ * @brief	BMPãƒªã‚¹ãƒˆ	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	
  *
@@ -978,32 +978,32 @@ static void BmpList_CursorMoveCallBack( BMPLIST_WORK* wk, u32 param, u8 mode )
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 
-	//‰Šú‰»
+	//åˆæœŸåŒ–æ™‚
 	if( mode == 1 ){
 		//
 	}
 
-	count = BmpListParamGet( wk, BMPLIST_ID_COUNT );	//ƒŠƒXƒg€–Ú”
-	line  = BmpListParamGet( wk, BMPLIST_ID_LINE );		//•\¦Å‘å€–Ú”
+	count = BmpListParamGet( wk, BMPLIST_ID_COUNT );	//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	line  = BmpListParamGet( wk, BMPLIST_ID_LINE );		//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	//‘S‚Ä‚Ì€–Ú‚ğ•\¦‚µ‚Ä‚¢‚È‚¢
+	//å…¨ã¦ã®é …ç›®ã‚’è¡¨ç¤ºã—ã¦ã„ãªã„æ™‚
 	if( count > line ){
 
 		if( list_bak == 0 ){
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹”ñ•\¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], FALSE );	//OBJ‚Ì”ñ•\¦İ’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJ‚Ì•\¦İ’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«éè¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], FALSE );	//OBJã®éè¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
 		}else if( list_bak == (count-line) ){
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹”ñ•\¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJ‚Ì•\¦İ’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], FALSE );	//OBJ‚Ì”ñ•\¦İ’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«éè¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], FALSE );	//OBJã®éè¡¨ç¤ºè¨­å®š
 		}else{
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJ‚Ì•\¦İ’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJ‚Ì•\¦İ’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
 		}
 	}
 
@@ -1014,10 +1014,10 @@ static void BmpList_CursorMoveCallBack( BMPLIST_WORK* wk, u32 param, u8 mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgƒƒCƒ“
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆãƒ¡ã‚¤ãƒ³
  *
  * @param	tcb			TCB_PTR
- * @param	wk			ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -1029,29 +1029,29 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 	EV_WIN_WORK* swk;
 	swk = (EV_WIN_WORK*)wk;
 
-	//ƒEƒFƒCƒg
+	//ã‚¦ã‚§ã‚¤ãƒˆ
 	if( swk->wait != 0 ){
 		swk->wait--;
 		return;
 	}
 
-	//ƒƒCƒv’†‚Íˆ—‚µ‚È‚¢
+	//ãƒ¯ã‚¤ãƒ—ä¸­ã¯å‡¦ç†ã—ãªã„
 	if( WIPE_SYS_EndCheck() == FALSE ){
 		return;
 	}
 
 	ret = BmpListMain( swk->lw );
 
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ğæ“¾
-	tmp_pos_bak = swk->pos_bak;		//‘Ş”ğ
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = swk->pos_bak;		//é€€é¿
 	BmpListDirectPosGet( swk->lw, &swk->pos_bak );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != swk->pos_bak ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE‚ÌƒƒbƒZ[ƒWXV
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ›´æ–°
 	if( (sys.repeat & PAD_KEY_UP) || (sys.repeat & PAD_KEY_DOWN) ||
 		(sys.repeat & PAD_KEY_LEFT) || (sys.repeat & PAD_KEY_RIGHT) ){
 		talk_msg_update( swk );
@@ -1065,20 +1065,20 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 	case BMPLIST_NULL:
 		break;
 	case BMPLIST_CANCEL:
-		if( swk->cancel == TRUE ){			//TRUE = BƒLƒƒƒ“ƒZƒ‹—LŒø
+		if( swk->cancel == TRUE ){			//TRUE = Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 			Snd_SePlay( SEQ_SE_DP_SELECT );
-			*swk->work = EV_WIN_B_CANCEL;	//‘I‘ğ‚µ‚½’l‚ğƒ[ƒN‚É‘ã“ü
+			*swk->work = EV_WIN_B_CANCEL;	//é¸æŠã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-			EvWin_ActorRelease( wk );		//íœ
+			EvWin_ActorRelease( wk );		//å‰Šé™¤
 #endif
 			EvBmpList_Del(wk);
 		}
 		break;
 	default:
 		Snd_SePlay( SEQ_SE_DP_SELECT );
-		*swk->work = ret;					//‘I‘ğ‚µ‚½’l‚ğƒ[ƒN‚É‘ã“ü
+		*swk->work = ret;					//é¸æŠã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-		EvWin_ActorRelease( wk );			//íœ
+		EvWin_ActorRelease( wk );			//å‰Šé™¤
 #endif
 		EvBmpList_Del(wk);
 		break;
@@ -1089,20 +1089,20 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgI—¹
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆçµ‚äº†
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * SEQ_SE_DP_SELECT‚ğ–Â‚ç‚µ‚Ä‚¢‚éI
+ * SEQ_SE_DP_SELECTã‚’é³´ã‚‰ã—ã¦ã„ã‚‹ï¼
  */
 //--------------------------------------------------------------
 static void EvBmpList_Del( EV_WIN_WORK* wk )
 {
 	int i;
 
-	Snd_SePlay(SEQ_SE_DP_SELECT);	//’ˆÓI
+	Snd_SePlay(SEQ_SE_DP_SELECT);	//æ³¨æ„ï¼
 
 	BmpListExit( wk->lw, NULL, NULL );
 	BmpMenuWinClear( wk->ListH.win, WINDOW_TRANS_ON );
@@ -1124,11 +1124,11 @@ static void EvBmpList_Del( EV_WIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW‚ğˆêŠ‡•\¦
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¸€æ‹¬è¡¨ç¤º
  *
- * @param	wk			EV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒX
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	wait		ƒƒbƒZ[ƒWƒEƒFƒCƒg
+ * @param	wk			EV_WIN_WORKå‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	wait		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
  *
  * @retval	none
  */
@@ -1138,12 +1138,12 @@ static void talk_msg_print( EV_WIN_WORK* wk, u16 talk_msg_id, u32 wait )
 	STRBUF* tmp_buf = STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );
 	STRBUF* tmp_buf2= STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );
 
-	//ƒƒbƒZ[ƒWƒNƒŠƒA
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( wk->talk_bmpwin, (FBMP_COL_WHITE) );
 
 	MSGMAN_GetString( wk->msgman, talk_msg_id, tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, tmp_buf2, tmp_buf );
 
 	GF_STR_PrintSimple( wk->talk_bmpwin, FONT_TALK, tmp_buf2, 0, 0, wait, NULL );
@@ -1155,18 +1155,18 @@ static void talk_msg_print( EV_WIN_WORK* wk, u16 talk_msg_id, u32 wait )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW‚ğˆêŠ‡•\¦
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¸€æ‹¬è¡¨ç¤º
  *
- * @param	wk			EV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒX
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	wait		ƒƒbƒZ[ƒWƒEƒFƒCƒg
+ * @param	wk			EV_WIN_WORKå‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	wait		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void talk_msg_update( EV_WIN_WORK* wk )
 {
-	BmpListDirectPosGet( wk->lw, &wk->cursor_bak );		//ƒJ[ƒ\ƒ‹À•Wæ“¾
+	BmpListDirectPosGet( wk->lw, &wk->cursor_bak );		//ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™å–å¾—
 	if( wk->talk_msg_id[wk->cursor_bak] != EV_WIN_TALK_MSG_NONE ){
 		talk_msg_print( wk, wk->talk_msg_id[wk->cursor_bak], MSG_ALLPUT );
 	}
@@ -1176,18 +1176,18 @@ static void talk_msg_update( EV_WIN_WORK* wk )
 
 //==============================================================================================
 //
-//	ƒGƒŒƒx[ƒ^ƒtƒƒAŠÖ˜A
+//	ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒ•ãƒ­ã‚¢é–¢é€£
 //
 //==============================================================================================
-#define FLOOR_WIN_SIZE_X			(8)		//ƒtƒƒAƒEƒBƒ“ƒhƒE‚Ì‚wƒTƒCƒY
-#define FLOOR_WIN_SIZE_Y			(4)		//ƒtƒƒAƒEƒBƒ“ƒhƒE‚Ì‚xƒTƒCƒY
-#define FLOOR_TITLE_X				(0)		//u‚°‚ñ‚´‚¢‚Ì@ƒtƒƒAv‚Ì•\¦ˆÊ’u
+#define FLOOR_WIN_SIZE_X			(8)		//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ï¼¸ã‚µã‚¤ã‚º
+#define FLOOR_WIN_SIZE_Y			(4)		//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ï¼¹ã‚µã‚¤ã‚º
+#define FLOOR_TITLE_X				(0)		//ã€Œã’ã‚“ã–ã„ã®ã€€ãƒ•ãƒ­ã‚¢ã€ã®è¡¨ç¤ºä½ç½®
 #define FLOOR_TITLE_Y				(0)
-#define FLOOR_TITLE_X2				(8*4)	//u›‚©‚¢v‚Ì•\¦ˆÊ’u
-#define FLOOR_TITLE_X3				(8*2)	//u‚¿‚©›‚©‚¢v‚Ì•\¦ˆÊ’u
+#define FLOOR_TITLE_X2				(8*4)	//ã€Œâ—‹ã‹ã„ã€ã®è¡¨ç¤ºä½ç½®
+#define FLOOR_TITLE_X3				(8*2)	//ã€Œã¡ã‹â—‹ã‹ã„ã€ã®è¡¨ç¤ºä½ç½®
 #define FLOOR_TITLE_Y2				(16)
-#define EV_WIN_SIZE_X				(16)	//¶‘¤‚É•\¦‚³‚ê‚é‘I‘ğƒEƒBƒ“ƒhƒE‚Ì‚wƒTƒCƒY
-#define EV_WIN_SIZE_Y				(10)	//¶‘¤‚É•\¦‚³‚ê‚é‘I‘ğƒEƒBƒ“ƒhƒE‚Ì‚xƒTƒCƒY
+#define EV_WIN_SIZE_X				(16)	//å·¦å´ã«è¡¨ç¤ºã•ã‚Œã‚‹é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ï¼¸ã‚µã‚¤ã‚º
+#define EV_WIN_SIZE_Y				(10)	//å·¦å´ã«è¡¨ç¤ºã•ã‚Œã‚‹é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ï¼¹ã‚µã‚¤ã‚º
 
 static void ElevatorFloorMainTCB( TCB_PTR tcb, void* wk );
 void ElevatorFloorWrite(FIELDSYS_WORK* fsys, u8 x, u8 y, u16* work, WORDSET* wordset, u16 floor);
@@ -1198,13 +1198,13 @@ static u16 ElevatorMsgGet( int zone_id, u16 floor, u8* msg_x );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒƒAƒEƒBƒ“ƒhƒE•\¦
+ * @brief	ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	x			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	work		Œ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	work		çµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1215,10 +1215,10 @@ void ElevatorFloorWrite(FIELDSYS_WORK* fsys, u8 x, u8 y, u16* work, WORDSET* wor
 	u32 len,msg;
 	EV_WIN_WORK* wk;
 
-	//BMPƒƒjƒ…[‰Šú‰»(ev_win.gmmŒÅ’è)
+	//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸåŒ–(ev_win.gmmå›ºå®š)
 	wk = CmdEvBmpMenu_Init( fsys, x, y, 0, 0, work, wordset, NULL, NULL );
 
-	//(Å‘å•¶š”) * ƒtƒHƒ“ƒgƒTƒCƒY
+	//(æœ€å¤§æ–‡å­—æ•°) * ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	len = (FLOOR_WIN_SIZE_X) * FontHeaderGet(EV_WIN_FONT, FONT_HEADER_SIZE_X);
 
 	if( (len % 8) == 0 ){
@@ -1227,26 +1227,26 @@ void ElevatorFloorWrite(FIELDSYS_WORK* fsys, u8 x, u8 y, u16* work, WORDSET* wor
 		len = (len / 8)+1;
 	}
 
-	//¶‘¤‚É•\¦‚·‚éƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE‚ÌƒIƒtƒZƒbƒg‚ğ“ü‚ê‚éI
+	//å·¦å´ã«è¡¨ç¤ºã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å…¥ã‚Œã‚‹ï¼
 	GF_BGL_BmpWinAdd( wk->fsys->bgl, &wk->bmpwin, FLD_MBGFRM_FONT, wk->x, wk->y, 
 						len, FLOOR_WIN_SIZE_Y, FLD_SYSFONT_PAL, EVWIN_FREE_CGX + (EV_WIN_SIZE_X*EV_WIN_SIZE_Y) );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(wk->fsys->bgl,FLD_MBGFRM_FONT,MENU_WIN_CGX_NUM,MENU_WIN_PAL,0,HEAPID_FIELD);
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite(&wk->bmpwin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL);
 
-	//w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+	//æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 	GF_BGL_BmpWinFill( &wk->bmpwin, FBMP_COL_WHITE, 0, 0, (len*8), (FLOOR_WIN_SIZE_Y*8) );
 
-	ev_win_msg_print( wk, msg_ev_win_016, FLOOR_TITLE_X, FLOOR_TITLE_Y );	//u‚°‚ñ‚´‚¢‚Ì@ƒtƒƒAv
-    ev_win_msg_print( wk, msg_ev_win_017, FLOOR_TITLE_X2, FLOOR_TITLE_Y2 );	//u›‚©‚¢v // MatchComment: plat JP reverted this change to DP JP/US?
+	ev_win_msg_print( wk, msg_ev_win_016, FLOOR_TITLE_X, FLOOR_TITLE_Y );	//ã€Œã’ã‚“ã–ã„ã®ã€€ãƒ•ãƒ­ã‚¢ã€
+    ev_win_msg_print( wk, msg_ev_win_017, FLOOR_TITLE_X2, FLOOR_TITLE_Y2 );	//ã€Œâ—‹ã‹ã„ã€ // MatchComment: plat JP reverted this change to DP JP/US?
 
 	wk->MenuH.win = &wk->bmpwin;
 	GF_BGL_BmpWinOn( &wk->bmpwin );
 	
-	//TCB’Ç‰Á
+	//TCBè¿½åŠ 
 	wk->tcb	= TCB_Add( ElevatorFloorMainTCB, wk, 0 );
 
 	return;
@@ -1254,12 +1254,12 @@ void ElevatorFloorWrite(FIELDSYS_WORK* fsys, u8 x, u8 y, u16* work, WORDSET* wor
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk			EV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒX
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	x			•\¦‚wÀ•W
- * @param	y			•\¦‚xÀ•W
+ * @param	wk			EV_WIN_WORKå‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x			è¡¨ç¤ºï¼¸åº§æ¨™
+ * @param	y			è¡¨ç¤ºï¼¹åº§æ¨™
  *
  * @retval	none
  */
@@ -1281,10 +1281,10 @@ static void ev_win_msg_print( EV_WIN_WORK* wk, u16 msg_id, u8 x, u8 y )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒƒAƒEƒBƒ“ƒhƒE•\¦ ƒƒCƒ“
+ * @brief	ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º ãƒ¡ã‚¤ãƒ³
  *
  * @param	tcb			TCB_PTR
- * @param	wk			ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -1295,7 +1295,7 @@ static void ElevatorFloorMainTCB( TCB_PTR tcb, void* wk )
 	EV_WIN_WORK *swk;
 	swk = (EV_WIN_WORK *)wk;
 
-	//’ÊíAWK_ELEVATOR_FLOOR‚Ì’l‚ª"FLOOR_NOTHING"‚É‚È‚é‚Ü‚ÅŠÄ‹‚µ‚Ä‚¢‚éˆ—
+	//é€šå¸¸ã€WK_ELEVATOR_FLOORã®å€¤ãŒ"FLOOR_NOTHING"ã«ãªã‚‹ã¾ã§ç›£è¦–ã—ã¦ã„ã‚‹å‡¦ç†
 	if( *swk->work == FLOOR_NOTHING ){
 		BmpMenuWinClear( swk->MenuH.win, WINDOW_TRANS_ON );
 		GF_BGL_BmpWinDel( swk->MenuH.win );
@@ -1318,13 +1318,13 @@ static void ElevatorFloorMainTCB( TCB_PTR tcb, void* wk )
 
 //--------------------------------------------------------------
 /**
- * “ÁêÚ‘±æ‚©‚çAŒ»İ‚ÌƒtƒƒAƒiƒ“ƒo[‚ğæ“¾
+ * ç‰¹æ®Šæ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param   zone_id		ƒ][ƒ“ID
+ * @param   zone_id		ã‚¾ãƒ¼ãƒ³ID
  *
- * @retval  "ƒtƒƒAƒiƒ“ƒo["
+ * @retval  "ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼"
  *
- * ƒGƒŒƒx[ƒ^ƒ}ƒbƒv‚ª‘‚¦‚½‚ç‘Î‰‚µ‚Ä‚¢‚­I
+ * ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒãƒƒãƒ—ãŒå¢—ãˆãŸã‚‰å¯¾å¿œã—ã¦ã„ãï¼
  */
 //--------------------------------------------------------------
 u16 ElevatorNowFloorGet( int zone_id )
@@ -1411,7 +1411,7 @@ u16 ElevatorNowFloorGet( int zone_id )
 		floor = FLOOR_C01R0208_4F;
 		break;
 
-	//’Ç‰Á‚·‚é
+	//è¿½åŠ ã™ã‚‹
 	//case
 
 	default:
@@ -1423,13 +1423,13 @@ u16 ElevatorNowFloorGet( int zone_id )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‚ÌƒtƒƒAƒiƒ“ƒo[‚©‚çu›‚©‚¢vmsg‚ğæ“¾(’n‰º‚Æ’nã‚ÅƒƒbƒZ[ƒW‚ª•Ï‚í‚é‚½‚ß)
+ * ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã€Œâ—‹ã‹ã„ã€msgã‚’å–å¾—(åœ°ä¸‹ã¨åœ°ä¸Šã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå¤‰ã‚ã‚‹ãŸã‚)
  *
- * @param   zone_id		ƒ][ƒ“ID
+ * @param   zone_id		ã‚¾ãƒ¼ãƒ³ID
  *
  * @retval  "msgID"
  *
- * ƒGƒŒƒx[ƒ^ƒ}ƒbƒv‚ª‘‚¦‚½‚ç‘Î‰‚µ‚Ä‚¢‚­I
+ * ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒãƒƒãƒ—ãŒå¢—ãˆãŸã‚‰å¯¾å¿œã—ã¦ã„ãï¼
  */
 //--------------------------------------------------------------
 static u16 ElevatorMsgGet( int zone_id, u16 floor, u8* msg_x )
@@ -1442,29 +1442,29 @@ static u16 ElevatorMsgGet( int zone_id, u16 floor, u8* msg_x )
 	case ZONE_ID_C07R0206:
 		if( floor == FLOOR_C07R0206_B1F ){
 			*msg_x = FLOOR_TITLE_X3;
-			return msg_ev_win_118;	//u‚¿‚©‚P‚©‚¢v
+			return msg_ev_win_118;	//ã€Œã¡ã‹ï¼‘ã‹ã„ã€
 		}
 		break;
 
 	};
 
 	*msg_x = FLOOR_TITLE_X2;
-	return msg_ev_win_017;			//u›‚©‚¢v
+	return msg_ev_win_017;			//ã€Œâ—‹ã‹ã„ã€
 }
 
 
 //==============================================================================================
 //
-//	BMPƒƒjƒ…[c‰¡ŠÖ˜A
+//	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¸¦æ¨ªé–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[c‰¡@ŠJn
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¸¦æ¨ªã€€é–‹å§‹
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	x_max		‰¡•ûŒü€–ÚÅ‘å”(•K‚¸1ˆÈã)
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x_max		æ¨ªæ–¹å‘é …ç›®æœ€å¤§æ•°(å¿…ãš1ä»¥ä¸Š)
  *
  * @retval	none
  */
@@ -1474,7 +1474,7 @@ void CmdEvBmpMenuHV_Start( EV_WIN_WORK* wk, u8 x_max )
 	u32 len;
 	u8 y_max;
 
-	//(Å‘å•¶š”{ƒJ[ƒ\ƒ‹) * ƒtƒHƒ“ƒgƒTƒCƒY
+	//(æœ€å¤§æ–‡å­—æ•°ï¼‹ã‚«ãƒ¼ã‚½ãƒ«) * ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	//len = (BmpMenu_length_get(wk)+1) * FontHeaderGet(EV_WIN_FONT, FONT_HEADER_SIZE_X);
 	len = BmpMenu_length_get(wk);
 	//OS_Printf( "len = %d\n", len );
@@ -1485,8 +1485,8 @@ void CmdEvBmpMenuHV_Start( EV_WIN_WORK* wk, u8 x_max )
 		len = (len / 8)+1;
 	}
 
-	y_max = (wk->list_no / x_max);			//YƒTƒCƒY
-	if( (wk->list_no % x_max) != 0 ){		//—]‚è‚ª‚ ‚Á‚½‚ç•â³
+	y_max = (wk->list_no / x_max);			//Yã‚µã‚¤ã‚º
+	if( (wk->list_no % x_max) != 0 ){		//ä½™ã‚ŠãŒã‚ã£ãŸã‚‰è£œæ­£
 		y_max++;
 	}
 
@@ -1497,26 +1497,26 @@ void CmdEvBmpMenuHV_Start( EV_WIN_WORK* wk, u8 x_max )
 	GF_BGL_BmpWinAdd( wk->fsys->bgl, &wk->bmpwin, FLD_MBGFRM_FONT, wk->x, wk->y, 
 								(len * x_max), y_max*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
 
-	//’ˆÓI
-	//Å‘å•¶š”‚ÅA‰¡•ûŒü‚Ì•¶š‚ğ•`‰æ‚µ‚Ä‚¢‚é‚Ì‚ÅA
-	//u‚¹‚Â‚ß‚¢‚ğ‚«‚­@‚¢‚¢‚¦@@@@v‚İ‚½‚­‚È‚é
+	//æ³¨æ„ï¼
+	//æœ€å¤§æ–‡å­—æ•°ã§ã€æ¨ªæ–¹å‘ã®æ–‡å­—ã‚’æç”»ã—ã¦ã„ã‚‹ã®ã§ã€
+	//ã€Œã›ã¤ã‚ã„ã‚’ããã€€ã„ã„ãˆã€€ã€€ã€€ã€€ã€ã¿ãŸããªã‚‹
 	//
-	//u‚¹‚Â‚ß‚¢‚ğ‚«‚­@‚¢‚¢‚¦@@@@v
-	//u‚Í‚¢@@@@@@@@@@@@@v‚Ío—ˆ‚È‚¢‚Ì‚ÅA
-	//ƒ_ƒ~[‚Ì‹ó”’•¶š‚ğ“ü‚ê‚é•K—v‚ª‚ ‚éI
+	//ã€Œã›ã¤ã‚ã„ã‚’ããã€€ã„ã„ãˆã€€ã€€ã€€ã€€ã€
+	//ã€Œã¯ã„ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€ã¯å‡ºæ¥ãªã„ã®ã§ã€
+	//ãƒ€ãƒŸãƒ¼ã®ç©ºç™½æ–‡å­—ã‚’å…¥ã‚Œã‚‹å¿…è¦ãŒã‚ã‚‹ï¼
 	
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(
 		wk->fsys->bgl, FLD_MBGFRM_FONT, MENU_WIN_CGX_NUM, MENU_WIN_PAL, 0, HEAPID_FIELD );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite(&wk->bmpwin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL);
 
-	//ƒƒjƒ…[ƒwƒbƒ_[‰Šúİ’è
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
 	BmpMenuHV_h_default_set( wk, x_max, y_max );
 	wk->mw = BmpMenuAdd( &wk->MenuH, wk->cursor_pos, HEAPID_FIELD );
 
-	//TCB’Ç‰Á
+	//TCBè¿½åŠ 
 	wk->tcb	= TCB_Add( EvBmpMenu_MainTCB, wk, 0 );
 
 	return;
@@ -1524,11 +1524,11 @@ void CmdEvBmpMenuHV_Start( EV_WIN_WORK* wk, u8 x_max )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[c‰¡	ƒwƒbƒ_[‰Šúİ’è
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¸¦æ¨ª	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	x_max		‰¡•ûŒü€–ÚÅ‘å”(•K‚¸1ˆÈã)
- * @param	y_max		c•ûŒü€–ÚÅ‘å”(•K‚¸1ˆÈã)
+ * @param	wk			EV_WIN_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x_max		æ¨ªæ–¹å‘é …ç›®æœ€å¤§æ•°(å¿…ãš1ä»¥ä¸Š)
+ * @param	y_max		ç¸¦æ–¹å‘é …ç›®æœ€å¤§æ•°(å¿…ãš1ä»¥ä¸Š)
  *
  * @retval	none
  */
@@ -1547,11 +1547,11 @@ static void BmpMenuHV_h_default_set( EV_WIN_WORK* wk, u8 x_max, u8 y_max )
 	wk->MenuH.c_disp_f	= 0;
 
 #if 0
-	//ƒƒjƒ…[€–Ú‚ª4í—ŞˆÈã‚¾‚Á‚½‚ÍƒJ[ƒ\ƒ‹‚Ìƒ‹[ƒv—L‚è‚É‚·‚é
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ãŒ4ç¨®é¡ä»¥ä¸Šã ã£ãŸæ™‚ã¯ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ«ãƒ¼ãƒ—æœ‰ã‚Šã«ã™ã‚‹
 	if( wk->list_no >= 4 ){
-		wk->MenuH.loop_f	= 1;			//—L
+		wk->MenuH.loop_f	= 1;			//æœ‰
 	}else{
-		wk->MenuH.loop_f	= 0;			//–³
+		wk->MenuH.loop_f	= 0;			//ç„¡
 	}
 #endif
 
@@ -1563,24 +1563,24 @@ static void BmpMenuHV_h_default_set( EV_WIN_WORK* wk, u8 x_max, u8 y_max )
 
 //==============================================================================================
 //
-//	Š‹àƒEƒBƒ“ƒhƒE
-//	ŠƒRƒCƒ“ƒEƒBƒ“ƒhƒE
+//	æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+//	æ‰€æŒã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //
 //==============================================================================================
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * Š‹àƒEƒBƒ“ƒhƒE•\¦
+ * æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param	fsys
  * @param	wk
- * @param	x		•\¦XÀ•W
- * @param	y		•\¦YÀ•W
+ * @param	x		è¡¨ç¤ºXåº§æ¨™
+ * @param	y		è¡¨ç¤ºYåº§æ¨™
  *
- * @return	Šm•Û‚µ‚½BMPƒEƒBƒ“ƒhƒE
+ * @return	ç¢ºä¿ã—ãŸBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	EvWin_GoldWinDel‚Åíœ‚·‚é‚±‚ÆI
+ *	EvWin_GoldWinDelã§å‰Šé™¤ã™ã‚‹ã“ã¨ï¼
  */
 //--------------------------------------------------------------------------------------------
 GF_BGL_BMPWIN * EvWin_GoldWinPut( FIELDSYS_WORK * fsys, u8 x, u8 y )
@@ -1591,14 +1591,14 @@ GF_BGL_BMPWIN * EvWin_GoldWinPut( FIELDSYS_WORK * fsys, u8 x, u8 y )
 		fsys->bgl, win, FLD_MBGFRM_FONT, x, y,
 		EVWIN_GOLD_SX, EVWIN_GOLD_SY, EVWIN_GOLD_PAL, EVWIN_GOLD_CGX );
 
-	// ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet( fsys->bgl, FLD_MBGFRM_FONT, MENU_WIN_CGX_NUM, MENU_WIN_PAL, 0, HEAPID_FIELD );
-	// ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL );
-	// w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+	// æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 	GF_BGL_BmpWinDataFill( win, FBMP_COL_WHITE );
 
-	{	// u‚¨‚±‚¸‚©‚¢v
+	{	// ã€ŒãŠã“ãšã‹ã„ã€
 		MSGDATA_MANAGER * man;
 		STRBUF * str;
 
@@ -1615,7 +1615,7 @@ GF_BGL_BMPWIN * EvWin_GoldWinPut( FIELDSYS_WORK * fsys, u8 x, u8 y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Š‹àƒEƒBƒ“ƒhƒEíœ
+ * æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
  * @param	wk
  *
@@ -1630,7 +1630,7 @@ void EvWin_GoldWinDel( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Š‹à•`‰æ
+ * æ‰€æŒé‡‘æç”»
  *
  * @param	fsys
  * @param	wk
@@ -1673,16 +1673,16 @@ void EvWin_GoldWrite( FIELDSYS_WORK * fsys, GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠƒRƒCƒ“ƒEƒBƒ“ƒhƒE•\¦
+ * æ‰€æŒã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param	fsys
  * @param	wk
- * @param	x		•\¦XÀ•W
- * @param	y		•\¦YÀ•W
+ * @param	x		è¡¨ç¤ºXåº§æ¨™
+ * @param	y		è¡¨ç¤ºYåº§æ¨™
  *
- * @return	Šm•Û‚µ‚½BMPƒEƒBƒ“ƒhƒE
+ * @return	ç¢ºä¿ã—ãŸBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	EvWin_CoinWinDel‚Åíœ‚·‚é‚±‚ÆI
+ *	EvWin_CoinWinDelã§å‰Šé™¤ã™ã‚‹ã“ã¨ï¼
  */
 //--------------------------------------------------------------------------------------------
 GF_BGL_BMPWIN * EvWin_CoinWinPut( FIELDSYS_WORK * fsys, u8 x, u8 y )
@@ -1693,11 +1693,11 @@ GF_BGL_BMPWIN * EvWin_CoinWinPut( FIELDSYS_WORK * fsys, u8 x, u8 y )
 		fsys->bgl, win, FLD_MBGFRM_FONT, x, y,
 		EVWIN_COIN_SX, EVWIN_COIN_SY, EVWIN_COIN_PAL, EVWIN_COIN_CGX );
 
-	// ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet( fsys->bgl, FLD_MBGFRM_FONT, MENU_WIN_CGX_NUM, MENU_WIN_PAL, 0, HEAPID_FIELD );
-	// ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL );
-	// w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+	// æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 //	GF_BGL_BmpWinDataFill( win, FBMP_COL_WHITE );
 
 	EvWin_CoinWrite( fsys, win );
@@ -1707,7 +1707,7 @@ GF_BGL_BMPWIN * EvWin_CoinWinPut( FIELDSYS_WORK * fsys, u8 x, u8 y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠƒRƒCƒ“ƒEƒBƒ“ƒhƒEíœ
+ * æ‰€æŒã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
  * @param	wk
  *
@@ -1722,7 +1722,7 @@ void EvWin_CoinWinDel( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠƒRƒCƒ“•`‰æ
+ * æ‰€æŒã‚³ã‚¤ãƒ³æç”»
  *
  * @param	fsys
  * @param	wk
@@ -1762,16 +1762,16 @@ void EvWin_CoinWrite( FIELDSYS_WORK * fsys, GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒEƒBƒ“ƒhƒE•\¦
+ * æ‰€æŒãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param	fsys
  * @param	wk
- * @param	x		•\¦XÀ•W
- * @param	y		•\¦YÀ•W
+ * @param	x		è¡¨ç¤ºXåº§æ¨™
+ * @param	y		è¡¨ç¤ºYåº§æ¨™
  *
- * @return	Šm•Û‚µ‚½BMPƒEƒBƒ“ƒhƒE
+ * @return	ç¢ºä¿ã—ãŸBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	EvWin_CoinWinDel(‹¤—L‚Åg‚¦‚é)‚Åíœ‚·‚é‚±‚ÆI
+ *	EvWin_CoinWinDel(å…±æœ‰ã§ä½¿ãˆã‚‹)ã§å‰Šé™¤ã™ã‚‹ã“ã¨ï¼
  */
 //--------------------------------------------------------------------------------------------
 GF_BGL_BMPWIN * EvWin_BtlPointWinPut( FIELDSYS_WORK * fsys, u8 x, u8 y )
@@ -1782,11 +1782,11 @@ GF_BGL_BMPWIN * EvWin_BtlPointWinPut( FIELDSYS_WORK * fsys, u8 x, u8 y )
 		fsys->bgl, win, FLD_MBGFRM_FONT, x, y,
 		EVWIN_COIN_SX, EVWIN_COIN_SY, EVWIN_COIN_PAL, EVWIN_COIN_CGX );
 
-	// ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet( fsys->bgl, FLD_MBGFRM_FONT, MENU_WIN_CGX_NUM, MENU_WIN_PAL, 0, HEAPID_FIELD );
-	// ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL );
-	// w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+	// æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 //	GF_BGL_BmpWinDataFill( win, FBMP_COL_WHITE );
 
 	EvWin_BtlPointWrite( fsys, win );
@@ -1796,7 +1796,7 @@ GF_BGL_BMPWIN * EvWin_BtlPointWinPut( FIELDSYS_WORK * fsys, u8 x, u8 y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šƒoƒgƒ‹ƒ|ƒCƒ“ƒg•`‰æ
+ * æ‰€æŒãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆæç”»
  *
  * @param	fsys
  * @param	wk
@@ -1835,24 +1835,24 @@ void EvWin_BtlPointWrite( FIELDSYS_WORK * fsys, GF_BGL_BMPWIN * win )
 
 //==============================================================================================
 //
-//	ƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹
+//	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«
 //
 //==============================================================================================
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 
-//ƒAƒNƒ^[‰Šú‰»
+//ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 static void EvWin_ActorInit( EV_WIN_WORK* wk )
 {
 	int i;
 	s16 x = (wk->x * 8) + (BmpList_length_get(wk) / 2);
 
-	//ƒŠƒ\[ƒX“o˜^Å‘å”’è‹`\‘¢‘Ì
+	//ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²æœ€å¤§æ•°å®šç¾©æ§‹é€ ä½“
 	TCATS_RESOURCE_NUM_LIST	crnl = { 1, 1, 1, 1 };
 
-	//“o˜^—p\‘¢‘Ì ’P‘Ì“o˜^—p(À•W‚ÍŒã‚Åİ’è‚µ’¼‚·)
+	//ç™»éŒ²ç”¨æ§‹é€ ä½“ å˜ä½“ç™»éŒ²ç”¨(åº§æ¨™ã¯å¾Œã§è¨­å®šã—ç›´ã™)
 	static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 	{
-		//ãŒü‚«
+		//ä¸Šå‘ã
 		{
 			0, 0, 0,
 			CURSOR_ANMNO, CURSOR_SPRI, CURSOR_PALT, NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1863,7 +1863,7 @@ static void EvWin_ActorInit( EV_WIN_WORK* wk )
 			0, 0
 		},
 
-		//‰ºŒü‚«
+		//ä¸‹å‘ã
 		{
 			0, 0, 0,
 			CURSOR_ANMNO, CURSOR_SPRI, CURSOR_PALT, NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1875,7 +1875,7 @@ static void EvWin_ActorInit( EV_WIN_WORK* wk )
 		},
 	};
 	
-	//ƒtƒB[ƒ‹ƒhƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	FieldCellActSet_S( &wk->fcat, &crnl, EVWIN_ACTMAX, HEAPID_FIELD );
 	
 	{
@@ -1883,7 +1883,7 @@ static void EvWin_ActorInit( EV_WIN_WORK* wk )
 		
 		hdl = ArchiveDataHandleOpen( ARC_EVWIN_GRA, HEAPID_FIELD );
 
-		//ƒŠƒ\[ƒXİ’è
+		//ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
 		FldClact_LoadResPlttArcH(	&wk->fcat, hdl, NARC_evwin_nclr,
 									0, ACT_RES_PAL_NUM, NNS_G2D_VRAM_TYPE_2DMAIN, 
 									EVWIN_PAL_H_ID );
@@ -1900,41 +1900,41 @@ static void EvWin_ActorInit( EV_WIN_WORK* wk )
 		ArchiveDataHandleClose( hdl );
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[’Ç‰Á(’P”­—p)
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ (å˜ç™ºç”¨)
 	for( i=0; i < EVWIN_ACTMAX; i++ ){
 		wk->act[i] = FieldCellActAdd_S( &wk->fcat, &ActAddParam_S[i] );
-		CLACT_SetAnmFlag( wk->act[i]->act, 1 );				//ƒI[ƒgƒAƒjƒ
-		CATS_ObjectEnableCap( wk->act[i], FALSE );			//OBJ‚Ì”ñ•\¦İ’è
+		CLACT_SetAnmFlag( wk->act[i]->act, 1 );				//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
+		CATS_ObjectEnableCap( wk->act[i], FALSE );			//OBJã®éè¡¨ç¤ºè¨­å®š
 	}
 
-	//À•W‚Ìİ’è
+	//åº§æ¨™ã®è¨­å®š
 	//OS_Printf( "x = %d\n", x );
 	//OS_Printf( "wk->y = %d\n", (wk->y*8) );
 	//OS_Printf( "y = %d\n", (wk->list_no*8) );
 	CATS_ObjectPosSetCap( wk->act[0], x, (wk->y*8) );
 	CATS_ObjectPosSetCap( wk->act[1], x, (wk->list_no*8) );
 
-	//ƒI[ƒgƒAƒjƒ‚Å‘Î‰‚¶‚á‚È‚­‚ÄAÀ•W‚ğ“®‚©‚µ‚ÄƒAƒjƒ‚Å‚à‚¢‚¢‚Ì‚©‚àBB•Û—¯
+	//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã§å¯¾å¿œã˜ã‚ƒãªãã¦ã€åº§æ¨™ã‚’å‹•ã‹ã—ã¦ã‚¢ãƒ‹ãƒ¡ã§ã‚‚ã„ã„ã®ã‹ã‚‚ã€‚ã€‚ä¿ç•™
 	
-	//‘I‘ğƒJ[ƒ\ƒ‹‚ÌF•ÏX
+	//é¸æŠã‚«ãƒ¼ã‚½ãƒ«ã®è‰²å¤‰æ›´
 	//CATS_ObjectPaletteSetCap(wk->act[ACT_CURSOR],CURSOR_PALF);
 	
 	return;
 }
 
-//ƒAƒNƒ^[íœ
+//ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 static void EvWin_ActorRelease( EV_WIN_WORK* wk )
 {
 	int i;
 
-	//ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^‚Ìíœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿ã®å‰Šé™¤
 	for( i=0; i < EVWIN_ACTMAX; i++ ){
 		if( wk->act[i] != NULL ){
 			CATS_ActorPointerDelete_S( wk->act[i] );
 		}
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[íœi’P”­—pj
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ï¼ˆå˜ç™ºç”¨ï¼‰
 	FieldCellActDelete_S( &wk->fcat );
 	return;
 }
@@ -1943,14 +1943,14 @@ static void EvWin_ActorRelease( EV_WIN_WORK* wk )
 
 //==============================================================================================
 //
-//	‹Z‹³‚¦ƒ{[ƒhŠÖ˜A
+//	æŠ€æ•™ãˆãƒœãƒ¼ãƒ‰é–¢é€£
 //
 //==============================================================================================
-//#define WAZA_OSHIE_WIN_SIZE_X			(12)		//ƒEƒBƒ“ƒhƒE‚Ì‚wƒTƒCƒY
-#define WAZA_OSHIE_WIN_SIZE_X			(10)		//ƒEƒBƒ“ƒhƒE‚Ì‚wƒTƒCƒY
-//#define WAZA_OSHIE_WIN_SIZE_Y			(10)		//ƒEƒBƒ“ƒhƒE‚Ì‚xƒTƒCƒY
-#define WAZA_OSHIE_WIN_SIZE_Y			(16)		//ƒEƒBƒ“ƒhƒE‚Ì‚xƒTƒCƒY
-#define WAZA_OSHIE_TITLE_X				(0)			//•\¦ˆÊ’u
+//#define WAZA_OSHIE_WIN_SIZE_X			(12)		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ï¼¸ã‚µã‚¤ã‚º
+#define WAZA_OSHIE_WIN_SIZE_X			(10)		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ï¼¸ã‚µã‚¤ã‚º
+//#define WAZA_OSHIE_WIN_SIZE_Y			(10)		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ï¼¹ã‚µã‚¤ã‚º
+#define WAZA_OSHIE_WIN_SIZE_Y			(16)		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ï¼¹ã‚µã‚¤ã‚º
+#define WAZA_OSHIE_TITLE_X				(0)			//è¡¨ç¤ºä½ç½®
 #define WAZA_OSHIE_TITLE_Y				(0)
 #define WAZA_OSHIE_TITLE_Y_NUM			(WAZA_OSHIE_TITLE_Y + 16)
 #define WAZA_OSHIE_TITLE_Y2				(32)
@@ -1965,13 +1965,13 @@ void WazaOshieBoardDel( EV_WIN_WORK* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	‹Z‹³‚¦ƒ{[ƒh•\¦
+ * @brief	æŠ€æ•™ãˆãƒœãƒ¼ãƒ‰è¡¨ç¤º
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	x			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	work		Œ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	work		çµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1980,20 +1980,20 @@ EV_WIN_WORK * WazaOshieBoardWrite(FIELDSYS_WORK* fsys, u8 x, u8 y, u16* work, WO
 {
 	EV_WIN_WORK* wk;
 
-	//BMPƒƒjƒ…[‰Šú‰»(ev_win.gmmŒÅ’è)
+	//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸåŒ–(ev_win.gmmå›ºå®š)
 	wk = CmdEvBmpMenu_Init( fsys, x, y, 0, 0, work, wordset, NULL, NULL );
 
 	GF_BGL_BmpWinAdd(	wk->fsys->bgl, &wk->bmpwin, FLD_MBGFRM_FONT, wk->x, wk->y, 
 						WAZA_OSHIE_WIN_SIZE_X, WAZA_OSHIE_WIN_SIZE_Y, FLD_SYSFONT_PAL, 
 						EVWIN_FREE_CGX );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(wk->fsys->bgl,FLD_MBGFRM_FONT,MENU_WIN_CGX_NUM,MENU_WIN_PAL,0,HEAPID_FIELD);
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite(&wk->bmpwin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL);
 
-	//w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+	//æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 	GF_BGL_BmpWinFill(	&wk->bmpwin, FBMP_COL_WHITE, 0, 0, 
 						(WAZA_OSHIE_WIN_SIZE_X*8), (WAZA_OSHIE_WIN_SIZE_Y*8) );
 	
@@ -2020,9 +2020,9 @@ EV_WIN_WORK * WazaOshieBoardWrite(FIELDSYS_WORK* fsys, u8 x, u8 y, u16* work, WO
 
 //--------------------------------------------------------------
 /**
- * @brief	‹Z‹³‚¦ƒ{[ƒhíœ
+ * @brief	æŠ€æ•™ãˆãƒœãƒ¼ãƒ‰å‰Šé™¤
  *
- * @param	wk			ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -2049,7 +2049,7 @@ void WazaOshieBoardDel( EV_WIN_WORK* wk )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/14
-// ƒƒjƒ…[^ƒŠƒXƒg‚Ìw’èˆÊ’u‚ğƒEƒBƒ“ƒhƒE‚Ì‰E’[‚â‰º’[‚É‚·‚é‚½‚ß‚ÌŠÖ”
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ãƒªã‚¹ãƒˆã®æŒ‡å®šä½ç½®ã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å³ç«¯ã‚„ä¸‹ç«¯ã«ã™ã‚‹ãŸã‚ã®é–¢æ•°
 
 void CmdEvBmpMenuList_AlignRight( EV_WIN_WORK* wk, BOOL flag )
 {

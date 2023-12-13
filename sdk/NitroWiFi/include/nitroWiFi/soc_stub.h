@@ -34,20 +34,20 @@
 extern "C" {
 #endif
 
-//xxxxxxxxxxxxxxxx ‚±‚±ˆÈ‰º‚Í gctest ‚ð’Ê‚ç‚¹‚é‚½‚ß‚ÌˆêŽž“I‚È‚à‚Ì‚Å‚·B
+//xxxxxxxxxxxxxxxx ã“ã“ä»¥ä¸‹ã¯ gctest ã‚’é€šã‚‰ã›ã‚‹ãŸã‚ã®ä¸€æ™‚çš„ãªã‚‚ã®ã§ã™ã€‚
 //
-#define UDP_HLEN                8           //xxxxxxxxxxxxxxxxxx ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_SOL_TCP             0           //xxxxxxxxxxxxxxxxxx ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_TCP_MAXSEG          0           //xxxxxxxxxxxxxxxxxx ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_SO_TYPE             0x00001008  //xxxxxxxxxxxxxxxxxx ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_SOL_IP              0           //xxxxxxxxxxxxxxxxxx ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_IP_ADD_MEMBERSHIP   0x0000000b  //xxxxxxxxxxxxxxxxx x ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_IP_MULTICAST_LOOP   0x00000009  //xxxxxxxxxxxxxxxxx x ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_IP_DROP_MEMBERSHIP  0x0000000c  //xxxxxxxxxxxxxxxxx x ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_SO_SNDLOWAT         0x00001003  //xxxxxxxxxxxxxxxxx x ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_SO_RCVLOWAT         0x00001004  //xxxxxxxxxxxxxxxxx x ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_NI_MAXHOST          10          //xxxxxxxxxxxxxxxxx x ƒeƒ“ƒ|ƒ‰ƒŠ
-#define SOC_NI_MAXSERV          10          //xxxxxxxxxxxxxxxxx x ƒeƒ“ƒ|ƒ‰ƒŠ
+#define UDP_HLEN                8           //xxxxxxxxxxxxxxxxxx ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_SOL_TCP             0           //xxxxxxxxxxxxxxxxxx ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_TCP_MAXSEG          0           //xxxxxxxxxxxxxxxxxx ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_SO_TYPE             0x00001008  //xxxxxxxxxxxxxxxxxx ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_SOL_IP              0           //xxxxxxxxxxxxxxxxxx ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_IP_ADD_MEMBERSHIP   0x0000000b  //xxxxxxxxxxxxxxxxx x ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_IP_MULTICAST_LOOP   0x00000009  //xxxxxxxxxxxxxxxxx x ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_IP_DROP_MEMBERSHIP  0x0000000c  //xxxxxxxxxxxxxxxxx x ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_SO_SNDLOWAT         0x00001003  //xxxxxxxxxxxxxxxxx x ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_SO_RCVLOWAT         0x00001004  //xxxxxxxxxxxxxxxxx x ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_NI_MAXHOST          10          //xxxxxxxxxxxxxxxxx x ãƒ†ãƒ³ãƒãƒ©ãƒª
+#define SOC_NI_MAXSERV          10          //xxxxxxxxxxxxxxxxx x ãƒ†ãƒ³ãƒãƒ©ãƒª
 #define SOC_NI_NOFQDN           1
 
 #define SOAddrInfo              SOCAddrInfo
@@ -91,7 +91,7 @@ typedef struct SOCIpMreq
     SOCInAddr   interface;  // IP address of interface
 } SOCIpMreq;
 
-//---- soc_stub ‚É“ü‚Á‚Ä‚¢‚éŠÖ”
+//---- soc_stub ã«å…¥ã£ã¦ã„ã‚‹é–¢æ•°
 extern int  SOC_GetAddrInfo(const char* nodeName, const char* servName, const SOCAddrInfo* hints, SOCAddrInfo ** res);
 extern void SOC_FreeAddrInfo(SOCAddrInfo* head);
 extern int  SOC_GetNameInfo(const void*  sa, char*  node, unsigned nodeLen, char*  service, unsigned serviceLen,

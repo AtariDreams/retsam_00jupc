@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>mb_child</TITLE>
@@ -12,31 +12,31 @@
 </HEAD>
 <BODY>
 <H1 align="left">mb_child</H1>
-<H2>�T�v</H2>
-mb_child ��DS���i�ł̋N���v���O����(IPL)�Ɋ܂܂��DS�_�E�����[�h�v���C���j���[�݂̂𒊏o�����v���O�����ł��B<br>
-���̃v���O�����͔F�؃R�[�h�̃`�F�b�N���s�킸�Ƀv���O�������_�E�����[�h���܂��̂ŁA�J�����̃e�X�g�Ȃǂɂ��g�p���������B<br>
-<H2>������@</H2>
-�N������ƁA�u�_�E�����[�h�ł���\�t�g��T���Ă��܂��B�v�ƕ\������܂��B<br>
-���̌�DS�_�E�����[�h�v���C�e�@�𔭌����邽�тɃA�C�R���ƃQ�[�����Ȃǂ̏�񂪂P�������A<br>
-�t�ɐe�@����莞�Ԉȏ㌩�����������ꍇ�ɂ͌����Ă䂫�܂��B<br>
+<H2>概要</H2>
+mb_child はDS製品版の起動プログラム(IPL)に含まれるDSダウンロードプレイメニューのみを抽出したプログラムです。<br>
+このプログラムは認証コードのチェックを行わずにプログラムをダウンロードしますので、開発時のテストなどにご使用ください。<br>
+<H2>操作方法</H2>
+起動すると、「ダウンロードできるソフトを探しています。」と表示されます。<br>
+その後DSダウンロードプレイ親機を発見するたびにアイコンとゲーム名などの情報が１つずつ増え、<br>
+逆に親機を一定時間以上見失い続けた場合には減ってゆきます。<br>
 <br>
-�㉺�L�[�ŃQ�[����I�����AA�{�^���Ń_�E�����[�h�����肵�܂��B<br>
+上下キーでゲームを選択し、Aボタンでダウンロードを決定します。<br>
 <br>
-���̌�́A�_�E�����[�h�̊����Ɛe�@����̍ċN���v������M����܂Łu�_�E�����[�h���Ă��܂��B�v�ƕ\������܂��B<br>
-���̂Ƃ���B�{�^���������ƃ_�E�����[�h�̓L�����Z������A�ŏ��̑I����ʂ֖߂�܂��B<br>
+その後は、ダウンロードの完了と親機からの再起動要求を受信するまで「ダウンロードしています。」と表示されます。<br>
+このときにBボタンを押すとダウンロードはキャンセルされ、最初の選択画面へ戻ります。<br>
 <br>
-�e�@����̍ċN���v���ɂƂ��Ȃ������I�ɍċN�����A�_�E�����[�h�����Q�[�����N�����܂��B<br>
+親機からの再起動要求にともない自動的に再起動し、ダウンロードしたゲームを起動します。<br>
 <br>
-<H2>�ꏊ</H2>
+<H2>場所</H2>
 <P><CODE>
 $NitroSDK/bin/ARM9-TS/Rom/mb_child.srl
 </CODE></P>
 
-<H2>�Q��</H2>
+<H2>参照</H2>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/03/08 ���ō쐬<br>
+2005/03/08 初版作成<br>
 </P>
 </BODY>
 </HTML>

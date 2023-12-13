@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_big_debug_sub.c
- *	@brief		‚‚³”ä‚×DEBUGƒAƒvƒŠ
+ *	@brief		é«˜ã•æ¯”ã¹DEBUGã‚¢ãƒ—ãƒª
  *	@author		tomoya takahashi
  *	@data		2006.03.20
  *
@@ -37,27 +37,27 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_BIG_DEBUG_EVENT_NUM ( 2 )	// ƒCƒxƒ“ƒg”
+#define ZKN_BIG_DEBUG_EVENT_NUM ( 2 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
 #define ZKN_BIG_DEBUG_EVENT_CHANGE_HEIGHT		(1<<0)
 #define ZKN_BIG_DEBUG_EVENT_CHANGE_HEIGHT_ALL	(2<<0)
 
@@ -78,7 +78,7 @@ enum{
 };
 
 //-------------------------------------
-//	‘I‘ðÀ²Ìß
+//	é¸æŠžã‚¿ã‚¤ãƒ—
 //=====================================
 enum{
 	ZKN_BIGDEBUG_SELE_POKE,
@@ -88,7 +88,7 @@ enum{
 
 
 //-------------------------------------
-//	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+//	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 enum{
 	ZKN_BIGDEBUG_WND_POKEGRA_DATA,
@@ -103,7 +103,7 @@ enum{
 #define ZKN_BIGDEBUG_STRNUM_KETA		( 4 )
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNÃÞ°À—p
+//	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç”¨
 //=====================================
 #define ZKN_BIGDEBUG_POKEGRA_DATA_CX	( 1 )
 #define ZKN_BIGDEBUG_POKEGRA_DATA_CY	( 18 )
@@ -111,7 +111,7 @@ enum{
 #define ZKN_BIGDEBUG_POKEGRA_DATA_CSIZY	( 6 )
 #define ZKN_BIGDEBUG_POKEGRA_DATA_CGOFS	( 1 )
 
-// ‹¤’Ê
+// å…±é€š
 #define ZKN_BIGDEBUG_POKEHERO_NAME_X	( 0 )
 #define ZKN_BIGDEBUG_POKEHERO_HIRITSU_X	( 0 )
 #define ZKN_BIGDEBUG_POKEHERO_TAKASA_X	( 64 )
@@ -120,7 +120,7 @@ enum{
 #define ZKN_BIGDEBUG_POKEHERO_NAME_Y	( 0 )
 
 //-------------------------------------
-//	ŽålŒöÃÞ°À—p
+//	ä¸»äººå…¬ãƒ‡ãƒ¼ã‚¿ç”¨
 //=====================================
 #define ZKN_BIGDEBUG_HERO_DATA_CX	( 16 )
 #define ZKN_BIGDEBUG_HERO_DATA_CY	( 18 )
@@ -129,7 +129,7 @@ enum{
 #define ZKN_BIGDEBUG_HERO_DATA_CGOFS	( 100 )
 
 //-------------------------------------
-//	‘€ì•û–@ÃÞ°À—p
+//	æ“ä½œæ–¹æ³•ãƒ‡ãƒ¼ã‚¿ç”¨
 //=====================================
 #define ZKN_BIGDEBUG_CONT_DATA_CX	( 1 )
 #define ZKN_BIGDEBUG_CONT_DATA_CY	( 0 )
@@ -138,7 +138,7 @@ enum{
 #define ZKN_BIGDEBUG_CONT_DATA_CGOFS	( 200 )
 
 //-------------------------------------
-//	•ÒW’†ÃÞ°À—p
+//	ç·¨é›†ä¸­ãƒ‡ãƒ¼ã‚¿ç”¨
 //=====================================
 #define ZKN_BIGDEBUG_NOW_POKE_DATA_CX	( 19 )
 #define ZKN_BIGDEBUG_NOW_POKE_DATA_CY	( 10 )
@@ -150,7 +150,7 @@ enum{
 
 
 //-------------------------------------
-//	‘€ìŒn
+//	æ“ä½œç³»
 //=====================================
 #define ZKN_BIGDEBUG_CONT_TRG_TIME		( 16 )
 
@@ -158,30 +158,30 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
 	int* p_event_key;
 
 	ZKN_GLB_DATA* p_glb;
 
-	// ‚‚³”ä‚×ƒAƒvƒŠ
+	// é«˜ã•æ¯”ã¹ã‚¢ãƒ—ãƒª
 	ZKN_APL_DATA* p_height_apl;
 } ZKN_BIG_DEBUG_GLB;
 
 //-------------------------------------
-//	‘å‚«‚³‚®‚ç‚×ƒTƒu‰æ–Ê‰æ–Ê@•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	å¤§ãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ç”»é¢ã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
 	ZKN_GLB_DRAWDATA* p_drawglb;
 } ZKN_BIG_DEBUG_DRAWGLB;
 
 //-------------------------------------
-//	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@“à•”ƒ[ƒN
+//	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	short scale[ZKN_BIGDEBUG_SELE_NUM];
@@ -189,11 +189,11 @@ typedef struct {
 
 	int now_select;
 
-	int trg_count;		// trgƒ{ƒ^ƒ“‚Å‚¢‚é¶³ÝÀ
+	int trg_count;		// trgãƒœã‚¿ãƒ³ã§ã„ã‚‹ã‚«ã‚¦ãƒ³ã‚¿
 } ZKN_BIG_DEBUG_WORK;
 
 //-------------------------------------
-//	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê‰æ–Ê@“à•”ƒ[ƒN
+//	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	GF_BGL_BMPWIN* p_bmp[ZKN_BIGDEBUG_WND_NUM];
@@ -207,12 +207,12 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_BIG_DEBUG_GLB* MakeBigDebugGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -228,7 +228,7 @@ static int BigDebugEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknBigDebugProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -238,7 +238,7 @@ static int ZknBigDebugProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 static int ZknBigDebugProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 static int ZknBigDebugProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
-// ƒtƒF[ƒhˆ—
+// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknBigDebugOamFadeInit( ZKN_BIG_DEBUG_DRAW* p_draw );
 static void ZknBigDebugOamFadeDelete( ZKN_BIG_DEBUG_DRAW* p_draw );
 static void ZknBigDebugFadeInit( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWGLB* p_drawglb, const ZKN_BIG_DEBUG_GLB* cp_glb, BOOL fadein_out );
@@ -247,7 +247,7 @@ static BOOL ZknBigDebugFadeMain( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWG
 static void ZknBigDebugObjDataReset( ZKN_BIG_DEBUG_WORK* p_work );
 
 
-// “Ç‚Ýž‚Ý
+// èª­ã¿è¾¼ã¿
 static void ZknBigDebugLoadResource( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWGLB* p_drawglb, const ZKN_BIG_DEBUG_GLB* cp_glb, const ZKN_BIG_DEBUG_WORK* cp_work, int heap );
 static void ZknBigDebugReleaseResource( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWGLB* p_drawglb, int heap );
 
@@ -267,11 +267,11 @@ static void ZknBigDebug0xNumMake( GF_BGL_BMPWIN* p_bmp, u32 x, u32 y, STRBUF* st
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒAƒvƒŠì¬
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		Žg—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -304,9 +304,9 @@ void ZKN_BigDebugAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	ƒTƒu‰æ–Ê@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã‚µãƒ–ç”»é¢ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -323,18 +323,18 @@ void ZKN_BigDebugAplDelete( ZKN_APL_DATA* p_data )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -347,15 +347,15 @@ static ZKN_BIG_DEBUG_GLB* MakeBigDebugGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_BIG_DEBUG_GLB) );
 
-	// •Ï”‰Šú‰»
-	// ƒCƒxƒ“ƒgƒL[
+	// å¤‰æ•°åˆæœŸåŒ–
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrSub( zkn_sys );		
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
 
-	// }ŠÓ‚‚³‚­‚ç‚× ƒAƒvƒŠ
+	// å›³é‘‘é«˜ã•ãã‚‰ã¹ ã‚¢ãƒ—ãƒª
 	p_glb->p_height_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG );
 	
 	return p_glb;
@@ -364,12 +364,12 @@ static ZKN_BIG_DEBUG_GLB* MakeBigDebugGlb( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -384,7 +384,7 @@ static ZKN_BIG_DEBUG_DRAWGLB* MakeBigDebugDrawGlb( int heap, ZKN_SYS_PTR zkn_sys
 	memset( p_glb, 0, sizeof(ZKN_BIG_DEBUG_DRAWGLB) );
 
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 	return p_glb;
@@ -393,12 +393,12 @@ static ZKN_BIG_DEBUG_DRAWGLB* MakeBigDebugDrawGlb( int heap, ZKN_SYS_PTR zkn_sys
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒCƒxƒ“ƒgì¬
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		Žg—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -408,7 +408,7 @@ static ZKN_EVENT_DATA* MakeBigDebugEvent( int heap, ZKN_SYS_PTR zkn_sys )
 	ZKN_EVENT_DATA* p_event_tbl;
 	int event_num = BigDebugEventDataNumGet();
 
-	// ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_event_tbl = sys_AllocMemory( heap, sizeof(ZKN_EVENT_DATA) * event_num );
 	GF_ASSERT( p_event_tbl );
 	memset( p_event_tbl, 0, sizeof(ZKN_EVENT_DATA) * event_num );
@@ -422,9 +422,9 @@ static ZKN_EVENT_DATA* MakeBigDebugEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -440,9 +440,9 @@ static void DeleteBigDebugGlb( ZKN_BIG_DEBUG_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -458,9 +458,9 @@ static void DeleteBigDebugDrawGlb( ZKN_BIG_DEBUG_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -480,11 +480,11 @@ static void DeleteBigDebugEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–ÊƒAƒvƒŠ@ƒCƒxƒ“ƒg”Žæ“¾
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–ÊƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -497,19 +497,19 @@ static int BigDebugEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -520,7 +520,7 @@ static int ZknBigDebugProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 	ZKN_BIG_DEBUG_WORK* p_work = p_dodata->p_work;
 	int i;
 
-	// ƒ[ƒN‚Ìì¬
+	// ãƒ¯ãƒ¼ã‚¯ã®ä½œæˆ
 	p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_BIG_DEBUG_WORK) );
 	memset( p_work, 0, sizeof(ZKN_BIG_DEBUG_WORK) );
 
@@ -535,14 +535,14 @@ static int ZknBigDebugProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -553,7 +553,7 @@ static int ZknBigDebugProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 	ZKN_BIG_DEBUG_GLB* p_glb = p_glbdata;
 	ZKN_BIG_DEBUG_WORK* p_work = p_dodata->p_work;
 	
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -565,7 +565,7 @@ static int ZknBigDebugProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 	}
 
 
-	// ƒgƒŠƒK[@ƒRƒ“ƒg@ƒJƒEƒ“ƒgˆ—
+	// ãƒˆãƒªã‚¬ãƒ¼ã€€ã‚³ãƒ³ãƒˆã€€ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	if( sys.cont != 0 ){
 		if( (p_work->trg_count - 1) >= 0 ){
 			p_work->trg_count --;
@@ -575,15 +575,15 @@ static int ZknBigDebugProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 	}
 
 
-	// ‘I‘ð‚Ì•ÏX
+	// é¸æŠžã®å¤‰æ›´
 	if( sys.trg & PAD_BUTTON_A ){
 		p_work->now_select ^= 1;
 	}
 
-	// ƒgƒŠƒK[ŒŸo‚·‚é‚©@ƒ`ƒFƒbƒN
+	// ãƒˆãƒªã‚¬ãƒ¼æ¤œå‡ºã™ã‚‹ã‹ã€€ãƒã‚§ãƒƒã‚¯
 	if( p_work->trg_count == 0 ){
 
-		// Šgk
+		// æ‹¡ç¸®
 		if( sys.cont & PAD_KEY_LEFT ){
 			p_work->scale[ p_work->now_select ] ++;
 		}
@@ -591,7 +591,7 @@ static int ZknBigDebugProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 			p_work->scale[ p_work->now_select ] --;
 		}
 
-		// YˆÊ’u
+		// Yä½ç½®
 		if( sys.cont & PAD_KEY_UP ){
 			p_work->yofs[ p_work->now_select ] --;
 		}
@@ -599,7 +599,7 @@ static int ZknBigDebugProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 			p_work->yofs[ p_work->now_select ] ++;
 		}
 	}else{
-		// Šgk
+		// æ‹¡ç¸®
 		if( sys.trg & PAD_KEY_LEFT ){
 			p_work->scale[ p_work->now_select ] ++;
 		}
@@ -607,7 +607,7 @@ static int ZknBigDebugProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 			p_work->scale[ p_work->now_select ] --;
 		}
 
-		// YˆÊ’u
+		// Yä½ç½®
 		if( sys.trg & PAD_KEY_UP ){
 			p_work->yofs[ p_work->now_select ] --;
 		}
@@ -616,7 +616,7 @@ static int ZknBigDebugProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 		}
 	}
 
-	// ŽŸ‚Ìƒ|ƒPƒ‚ƒ“
+	// æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³
 	if( sys.trg & PAD_BUTTON_L ){
 		if( ZKN_GLBDATA_PokeListTblNoAdd( p_glb->p_glb, 1 ) == FALSE ){
 			ZKN_GLBDATA_PokeListTblNoSet( p_glb->p_glb, 0 );
@@ -625,7 +625,7 @@ static int ZknBigDebugProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 		ZknBigDebugObjDataReset( p_work );
 	}
 
-	// ‘O‚Ìƒ|ƒPƒ‚ƒ“
+	// å‰ã®ãƒã‚±ãƒ¢ãƒ³
 	if( sys.trg & PAD_BUTTON_R ){
 		if( ZKN_GLBDATA_PokeListTblNoAdd( p_glb->p_glb, -1 ) == FALSE ){
 			ZKN_GLBDATA_PokeListTblNoSet( p_glb->p_glb, ZKN_GLBDATA_PokeListTblNumGet( p_glb->p_glb ) - 1 );
@@ -634,19 +634,19 @@ static int ZknBigDebugProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 		ZknBigDebugObjDataReset( p_work );
 	}
 
-	// ’j—
+	// ç”·å¥³
 	if( sys.trg & PAD_BUTTON_SELECT ){
 		p_glb->p_glb->hero_sex ^= 1;
 		*p_glb->p_event_key |= ZKN_BIG_DEBUG_EVENT_CHANGE_HEIGHT;
 		ZknBigDebugObjDataReset( p_work );
 	}
 
-	// I—¹
+	// çµ‚äº†
 	if( sys.trg & PAD_BUTTON_B ){
 		*p_glb->p_event_key |= ZKN_BIG_DEBUG_EVENT_CHANGE_HEIGHT_ALL;
 	}
 
-	// ’l”½‰f
+	// å€¤åæ˜ 
 	ZKN_BigAplPokeGraScaleSet( p_glb->p_height_apl, p_work->scale[ ZKN_BIGDEBUG_SELE_POKE ] );
 	ZKN_BigAplHeroGraScaleSet( p_glb->p_height_apl, p_work->scale[ ZKN_BIGDEBUG_SELE_HERO ] );
 	ZKN_BigAplPokeGraYofsSet( p_glb->p_height_apl, p_work->yofs[ ZKN_BIGDEBUG_SELE_POKE ] );
@@ -658,14 +658,14 @@ static int ZknBigDebugProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -675,7 +675,7 @@ static int ZknBigDebugProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 	ZKN_BIG_DEBUG_GLB* p_glb = p_glbdata;
 	ZKN_BIG_DEBUG_WORK* p_work = p_dodata->p_work;
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_work );
 
 	return ZKN_PROC_TRUE;
@@ -683,17 +683,17 @@ static int ZknBigDebugProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -713,10 +713,10 @@ static int ZknBigDebugProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 		break;
 		
 	case ZKN_BIGDEBUG_SEQINIT_LOAD:
-		// Resource“Ç‚Ýž‚Ý
+		// Resourceèª­ã¿è¾¼ã¿
 		ZknBigDebugLoadResource( p_drawwork, p_drawglb, cp_dataglb, cp_datawork, p_drawdata->heap );
  
-		// ƒtƒF[ƒhˆ—
+		// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 		ZknBigDebugFadeInit( p_drawwork, p_drawglb, cp_dataglb, TRUE );
 		
 		p_drawdata->seq++;
@@ -740,17 +740,17 @@ static int ZknBigDebugProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -763,8 +763,8 @@ static int ZknBigDebugProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 	ZKN_BIG_DEBUG_DRAW*		p_drawwork = p_drawdata->p_work;
 
 	
-	// ƒrƒbƒgƒ}ƒbƒv•`‰æ
-	// ƒ|ƒPƒ‚ƒ“ÃÞ°À	
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—æç”»
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿	
 	if( (p_drawwork->local_scale[ ZKN_BIGDEBUG_SELE_POKE ] != cp_datawork->scale[ ZKN_BIGDEBUG_SELE_POKE ]) ||
 		(p_drawwork->local_yofs[ ZKN_BIGDEBUG_SELE_POKE ] != cp_datawork->yofs[ ZKN_BIGDEBUG_SELE_POKE ]) ){
 		ZknBigDebugDrawPokeBmp( p_drawwork->p_bmp[ ZKN_BIGDEBUG_WND_POKEGRA_DATA ], cp_dataglb, cp_datawork, p_drawdata->heap );
@@ -773,7 +773,7 @@ static int ZknBigDebugProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 		p_drawwork->local_yofs[ ZKN_BIGDEBUG_SELE_POKE ] = cp_datawork->yofs[ ZKN_BIGDEBUG_SELE_POKE ];
 	}
 
-	// ŽålŒöÃÞ°À
+	// ä¸»äººå…¬ãƒ‡ãƒ¼ã‚¿
 	if( (p_drawwork->local_scale[ ZKN_BIGDEBUG_SELE_HERO ] != cp_datawork->scale[ ZKN_BIGDEBUG_SELE_HERO ]) ||
 		(p_drawwork->local_yofs[ ZKN_BIGDEBUG_SELE_HERO ] != cp_datawork->yofs[ ZKN_BIGDEBUG_SELE_HERO ]) ){
 		ZknBigDebugDrawHeroBmp( p_drawwork->p_bmp[ ZKN_BIGDEBUG_WND_HERO_DATA ], cp_dataglb, cp_datawork, p_drawdata->heap );
@@ -782,7 +782,7 @@ static int ZknBigDebugProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 		p_drawwork->local_yofs[ ZKN_BIGDEBUG_SELE_HERO ] = cp_datawork->yofs[ ZKN_BIGDEBUG_SELE_HERO ];
 	}
 
-	// ‘I‘ðƒf[ƒ^
+	// é¸æŠžãƒ‡ãƒ¼ã‚¿
 	if( p_drawwork->local_now_select != cp_datawork->now_select ){
 
 		ZknBigDebugDrawSelectBmp( p_drawwork->p_bmp[ ZKN_BIGDEBUG_WND_NOW_POKE_DATA ], cp_dataglb, cp_datawork, p_drawdata->heap );
@@ -795,17 +795,17 @@ static int ZknBigDebugProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -819,7 +819,7 @@ static int ZknBigDebugProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 
 	switch( p_drawdata->seq ){
 	case ZKN_BIGDEBUG_SEQDELETE_FADEOUT_INIT:
-		// ƒtƒF[ƒhˆ—
+		// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 		ZknBigDebugFadeInit( p_drawwork, p_drawglb, cp_dataglb, FALSE );
 		p_drawdata->seq++;
 		break;
@@ -831,7 +831,7 @@ static int ZknBigDebugProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 		break;
 
 	case ZKN_BIGDEBUG_SEQDELETE_RELEASE:
-		// Resource“Ç‚Ýž‚Ý
+		// Resourceèª­ã¿è¾¼ã¿
 		ZknBigDebugReleaseResource( p_drawwork, p_drawglb, p_drawdata->heap );
 		p_drawdata->seq++;
 		break;
@@ -853,9 +853,9 @@ static int ZknBigDebugProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒhˆ—	‰Šú‰»
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†	åˆæœŸåŒ–
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -866,7 +866,7 @@ static void ZknBigDebugOamFadeInit( ZKN_BIG_DEBUG_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒhˆ—@Œãˆ—
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã€€å¾Œå‡¦ç†
  *
  *	@param	p_draw 
  *
@@ -879,28 +879,28 @@ static void ZknBigDebugOamFadeDelete( ZKN_BIG_DEBUG_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–ÊƒtƒF[ƒhˆ—
+ *	@brief	ã‚µãƒ–ç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“@TRUE@ƒAƒEƒg FALSE	
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€TRUEã€€ã‚¢ã‚¦ãƒˆ FALSE	
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigDebugFadeInit( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWGLB* p_drawglb, const ZKN_BIG_DEBUG_GLB* cp_glb, BOOL fadein_out )
 {
-	// ”¼“§–¾OAMÝ’è
+	// åŠé€æ˜ŽOAMè¨­å®š
 	ZknBigDebugOamFadeInit( p_draw );
 
 
 	if( fadein_out ){
-		// ƒtƒF[ƒhƒCƒ“
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade_sub, ZKN_FADE_SYNC_COMMON,
 				BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_BIGDEBUG_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_SUB );
 	}else{
-		// ƒtƒF[ƒhƒAƒEƒg
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade_sub, ZKN_FADE_SYNC_COMMON,
 				BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_BIGDEBUG_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_SUB );
 	}
@@ -908,15 +908,15 @@ static void ZknBigDebugFadeInit( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWG
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—@ƒƒCƒ“
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“@TRUE@ƒAƒEƒg@FALSE
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€TRUEã€€ã‚¢ã‚¦ãƒˆã€€FALSE
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknBigDebugFadeMain( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWGLB* p_drawglb, const ZKN_BIG_DEBUG_GLB* cp_glb, BOOL fadein_out )
@@ -925,10 +925,10 @@ static BOOL ZknBigDebugFadeMain( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWG
 
 	check = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade_sub );
 
-	// I‚í‚Á‚½‚çI—¹ˆ—
+	// çµ‚ã‚ã£ãŸã‚‰çµ‚äº†å‡¦ç†
 	if( check ){
 		if( fadein_out ){
-			// ”¼“§–¾OAM”jŠü
+			// åŠé€æ˜ŽOAMç ´æ£„
 			ZknBigDebugOamFadeDelete( p_draw );
 		}
 
@@ -942,18 +942,18 @@ static BOOL ZknBigDebugFadeMain( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWG
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»ˆ—
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigDebugLoadResource( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWGLB* p_drawglb, const ZKN_BIG_DEBUG_GLB* cp_glb, const ZKN_BIG_DEBUG_WORK* cp_work, int heap )
 {
-	// ƒXƒNƒŠ[ƒ“‰Šú‰»
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆæœŸåŒ–
 	GF_BGL_ClearCharSet( ZKN_BG_FRM_UTIL_S, 32, 0, heap );
 	GF_BGL_ClearCharSet( ZKN_BG_FRM_BACK_S, 32, 0, heap );
 	GF_BGL_ClearCharSet( ZKN_BG_FRM_AFFINE_S, 32, 0, heap );
@@ -962,44 +962,44 @@ static void ZknBigDebugLoadResource( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_D
 	GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_AFFINE_S );
 	
 	
-	// ƒrƒbƒgƒ}ƒbƒv–Ê
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—é¢
 	ZknBigDebugInitBmp( p_draw, p_drawglb, heap );
 
-	// ŽålŒöÃÞ°À•\Ž¦
+	// ä¸»äººå…¬ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
 	ZknBigDebugDrawHeroBmp( p_draw->p_bmp[ ZKN_BIGDEBUG_WND_HERO_DATA ], cp_glb, cp_work, heap );
 
-	// ƒ|ƒPƒ‚ƒ“ÃÞ°À•\Ž¦
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
 	ZknBigDebugDrawPokeBmp( p_draw->p_bmp[ ZKN_BIGDEBUG_WND_POKEGRA_DATA ], cp_glb, cp_work, heap );
 
-	// ‘€ì•û–@
+	// æ“ä½œæ–¹æ³•
 	ZknBigDebugDrawContBmp( p_draw->p_bmp[ ZKN_BIGDEBUG_WND_CONT_DATA ], heap );
 
-	// ÃÞ°À•\Ž¦
-	// ‘I‘ðƒf[ƒ^
+	// ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
+	// é¸æŠžãƒ‡ãƒ¼ã‚¿
 	ZknBigDebugDrawSelectBmp( p_draw->p_bmp[ ZKN_BIGDEBUG_WND_NOW_POKE_DATA ], cp_glb, cp_work, heap );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN”jŠüˆ—
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigDebugReleaseResource( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWGLB* p_drawglb, int heap )
 {
-	// ƒrƒbƒgƒ}ƒbƒv–Ê‚Ì”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—é¢ã®ç ´æ£„
 	ZknBigDebugDeleteBmp( p_draw, p_drawglb );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æ—pƒEƒBƒ“ƒhƒEì¬
+ *	@brief	æç”»ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
  *
  *	@param	p_draw
  *	@param	p_drawglb
@@ -1013,35 +1013,35 @@ static void ZknBigDebugInitBmp( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWGL
 	int i;
 	GF_BGL_INI* p_bg = p_drawglb->p_drawglb->p_bg;
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	for( i=0; i<ZKN_BIGDEBUG_WND_NUM; i++ ){
 		p_draw->p_bmp[ i ] = GF_BGL_BmpWinAllocGet( heap, 1 );
 	}
 
 
-	// —ÌˆæŠm•Û
-	// Îß¹¸Þ×ÃÞ°À
+	// é ˜åŸŸç¢ºä¿
+	// ãƒã‚±ã‚°ãƒ©ãƒ‡ãƒ¼ã‚¿
 	GF_BGL_BmpWinAdd( p_bg, p_draw->p_bmp[ ZKN_BIGDEBUG_WND_POKEGRA_DATA ],
 			ZKN_BG_FRM_BACK_S,
 			ZKN_BIGDEBUG_POKEGRA_DATA_CX, ZKN_BIGDEBUG_POKEGRA_DATA_CY,
 			ZKN_BIGDEBUG_POKEGRA_DATA_CSIZX, ZKN_BIGDEBUG_POKEGRA_DATA_CSIZY,
 			ZKN_BIGDEBUG_BMPWND_PL, ZKN_BIGDEBUG_POKEGRA_DATA_CGOFS );
 
-	// ŽålŒöÃÞ°À
+	// ä¸»äººå…¬ãƒ‡ãƒ¼ã‚¿
 	GF_BGL_BmpWinAdd( p_bg, p_draw->p_bmp[ ZKN_BIGDEBUG_WND_HERO_DATA ],
 			ZKN_BG_FRM_BACK_S,
 			ZKN_BIGDEBUG_HERO_DATA_CX, ZKN_BIGDEBUG_HERO_DATA_CY,
 			ZKN_BIGDEBUG_HERO_DATA_CSIZX, ZKN_BIGDEBUG_HERO_DATA_CSIZY,
 			ZKN_BIGDEBUG_BMPWND_PL, ZKN_BIGDEBUG_HERO_DATA_CGOFS );
 
-	// ‘€ì•û–@ÃÞ°À
+	// æ“ä½œæ–¹æ³•ãƒ‡ãƒ¼ã‚¿
 	GF_BGL_BmpWinAdd( p_bg, p_draw->p_bmp[ ZKN_BIGDEBUG_WND_CONT_DATA ],
 			ZKN_BG_FRM_BACK_S,
 			ZKN_BIGDEBUG_CONT_DATA_CX, ZKN_BIGDEBUG_CONT_DATA_CY,
 			ZKN_BIGDEBUG_CONT_DATA_CSIZX, ZKN_BIGDEBUG_CONT_DATA_CSIZY,
 			ZKN_BIGDEBUG_BMPWND_PL, ZKN_BIGDEBUG_CONT_DATA_CGOFS );
 
-	// •ÒW’†ÃÞ°À
+	// ç·¨é›†ä¸­ãƒ‡ãƒ¼ã‚¿
 	GF_BGL_BmpWinAdd( p_bg, p_draw->p_bmp[ ZKN_BIGDEBUG_WND_NOW_POKE_DATA ],
 			ZKN_BG_FRM_BACK_S,
 			ZKN_BIGDEBUG_NOW_POKE_DATA_CX, ZKN_BIGDEBUG_NOW_POKE_DATA_CY,
@@ -1051,7 +1051,7 @@ static void ZknBigDebugInitBmp( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAWGL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒöÃÞ°À•\Ž¦
+ *	@brief	ä¸»äººå…¬ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  *	@param	p_bmp
  *	@param	cp_glb
@@ -1069,7 +1069,7 @@ static void ZknBigDebugDrawHeroBmp( GF_BGL_BMPWIN* p_bmp, const ZKN_BIG_DEBUG_GL
 
 	GF_BGL_BmpWinDataFill( p_bmp, 0 );
 
-	// ŽålŒöÃÞ°À‘‚«ž‚Ý
+	// ä¸»äººå…¬ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	if( ZKN_GLBDATA_HeroSexGet( cp_glb->p_glb ) == 0 ){
 		MSGMAN_GetString( man, DEBUG_ZUKAN_20, name );
 	}else{
@@ -1088,7 +1088,7 @@ static void ZknBigDebugDrawHeroBmp( GF_BGL_BMPWIN* p_bmp, const ZKN_BIG_DEBUG_GL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ÃÞ°À•\Ž¦
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  *	@param	p_bmp
  *	@param	cp_glb
@@ -1107,7 +1107,7 @@ static void ZknBigDebugDrawPokeBmp( GF_BGL_BMPWIN* p_bmp, const ZKN_BIG_DEBUG_GL
 
 	GF_BGL_BmpWinDataFill( p_bmp, 0 );
 
-	// ƒ|ƒPƒ‚ƒ“ÃÞ°À‘‚«ž‚Ý
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	ZknBigDebugOneParamDataPrint( p_bmp, 
 		cp_work->yofs[ZKN_BIGDEBUG_SELE_POKE], cp_work->scale[ZKN_BIGDEBUG_SELE_POKE],
 		str, man, mons_name );
@@ -1121,7 +1121,7 @@ static void ZknBigDebugDrawPokeBmp( GF_BGL_BMPWIN* p_bmp, const ZKN_BIG_DEBUG_GL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘€ì•û–@•\Ž¦
+ *	@brief	æ“ä½œæ–¹æ³•è¡¨ç¤º
  *
  *	@param	p_bmp
  *	@param	heap 
@@ -1136,7 +1136,7 @@ static void ZknBigDebugDrawContBmp( GF_BGL_BMPWIN* p_bmp, int heap )
 
 	GF_BGL_BmpWinDataFill( p_bmp, 0 );
 
-	// ‘€ì•û–@
+	// æ“ä½œæ–¹æ³•
 	MSGMAN_GetString( man, DEBUG_ZUKAN_02, str );
 	GF_STR_PrintColor( p_bmp,
 			FONT_SYSTEM, str, 0, 0, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
@@ -1149,7 +1149,7 @@ static void ZknBigDebugDrawContBmp( GF_BGL_BMPWIN* p_bmp, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ð•û–@•\Ž¦
+ *	@brief	é¸æŠžæ–¹æ³•è¡¨ç¤º
  *
  *	@param	p_bmp
  *	@param	cp_glb
@@ -1175,7 +1175,7 @@ static void ZknBigDebugDrawSelectBmp( GF_BGL_BMPWIN* p_bmp, const ZKN_BIG_DEBUG_
 		MSGMAN_GetString( man, DEBUG_ZUKAN_03, name );
 	}
 
-	// ‘I‘ð’†‚Ì‚à‚Ì
+	// é¸æŠžä¸­ã®ã‚‚ã®
 	if( cp_work->now_select == ZKN_BIGDEBUG_SELE_POKE ){
 		GF_STR_PrintColor( p_bmp,
 				FONT_SYSTEM, mons_name, 0, 0, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
@@ -1184,7 +1184,7 @@ static void ZknBigDebugDrawSelectBmp( GF_BGL_BMPWIN* p_bmp, const ZKN_BIG_DEBUG_
 				FONT_SYSTEM, name, 0, 0, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	}
 
-	// ‚Ö‚ñ‚µ‚ã‚¤‚¿‚ã‚¤
+	// ã¸ã‚“ã—ã‚…ã†ã¡ã‚…ã†
 	MSGMAN_GetString( man, DEBUG_ZUKAN_21, str );
 	GF_STR_PrintColor( p_bmp,
 			FONT_SYSTEM, str, 0, ZKN_BIGDEBUG_NOW_POKE_DATA_STR_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
@@ -1199,7 +1199,7 @@ static void ZknBigDebugDrawSelectBmp( GF_BGL_BMPWIN* p_bmp, const ZKN_BIG_DEBUG_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒE‚Ì”jŠü
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç ´æ£„
  *
  *	@param	p_draw
  *	@param	p_drawglb 
@@ -1211,7 +1211,7 @@ static void ZknBigDebugDeleteBmp( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAW
 {
 	int i;
 
-	// ”jŠü
+	// ç ´æ£„
 	for( i=0; i<ZKN_BIGDEBUG_WND_NUM; i++ ){
 		GF_BGL_BmpWinOff( p_draw->p_bmp[ i ] );
 		GF_BGL_BmpWinDel( p_draw->p_bmp[ i ] );
@@ -1221,54 +1221,54 @@ static void ZknBigDebugDeleteBmp( ZKN_BIG_DEBUG_DRAW* p_draw, ZKN_BIG_DEBUG_DRAW
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ÆŽålŒö‚ÌÃÞ°À‚ð•\Ž¦‚·‚éŠÖ”
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã¨ä¸»äººå…¬ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¡¨ç¤ºã™ã‚‹é–¢æ•°
  *
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- *	@param	yofs		•\Ž¦ƒf[ƒ^‚P
- *	@param	scale		•\Ž¦ƒf[ƒ^‚Q
- *	@param	str			Žg—p‚·‚éSTRBUF
- *	@param	man			Žg—p‚·‚éƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- *	@param	name		•\Ž¦‚·‚é–¼‘O
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	yofs		è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ï¼‘
+ *	@param	scale		è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ï¼’
+ *	@param	str			ä½¿ç”¨ã™ã‚‹STRBUF
+ *	@param	man			ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£
+ *	@param	name		è¡¨ç¤ºã™ã‚‹åå‰
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigDebugOneParamDataPrint( GF_BGL_BMPWIN* p_bmp, short yofs, short scale, STRBUF* str, MSGDATA_MANAGER* man, STRBUF* name )
 {
-	// ‚È‚Ü‚¦
+	// ãªã¾ãˆ
 	GF_STR_PrintColor( p_bmp,
 			FONT_SYSTEM, name, ZKN_BIGDEBUG_POKEHERO_NAME_X, ZKN_BIGDEBUG_POKEHERO_NAME_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	
 	
-	// ‚Ð‚è‚Â
+	// ã²ã‚Šã¤
 	MSGMAN_GetString( man, DEBUG_ZUKAN_00, str );
 	GF_STR_PrintColor( p_bmp,
 			FONT_SYSTEM, str, ZKN_BIGDEBUG_POKEHERO_HIRITSU_X, ZKN_BIGDEBUG_POKEHERO_STR_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 		
-	// ‚Ð‚è‚Â‚Ì”Žš
+	// ã²ã‚Šã¤ã®æ•°å­—
 	ZknBigDebug0xNumMake( p_bmp, ZKN_BIGDEBUG_POKEHERO_HIRITSU_X, ZKN_BIGDEBUG_POKEHERO_NUM_Y, str, (u32)scale, ZKN_BIGDEBUG_STRNUM_KETA, man, DEBUG_ZUKAN_04 );
 
-	// ‚½‚©‚³
+	// ãŸã‹ã•
 	MSGMAN_GetString( man, DEBUG_ZUKAN_01, str );
 	GF_STR_PrintColor( p_bmp,
 			FONT_SYSTEM, str, ZKN_BIGDEBUG_POKEHERO_TAKASA_X, ZKN_BIGDEBUG_POKEHERO_STR_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 
-	// ‚½‚©‚³‚Ì”Žš
+	// ãŸã‹ã•ã®æ•°å­—
 	ZknBigDebug0xNumMake( p_bmp, ZKN_BIGDEBUG_POKEHERO_TAKASA_X, ZKN_BIGDEBUG_POKEHERO_NUM_Y, str, (u32)yofs, ZKN_BIGDEBUG_STRNUM_KETA, man, DEBUG_ZUKAN_04 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	16i”‚Ì”Žš‚ðì¬
+ *	@brief	16é€²æ•°ã®æ•°å­—ã‚’ä½œæˆ
  *
- *	@param	p_bmp	‘‚«ž‚Þƒrƒbƒgƒ}ƒbƒv
- *	@param	x		‚˜À•W@iƒhƒbƒgj
- *	@param	y		‚™À•W	iƒhƒbƒgj
- *	@param	str		•¶Žš—ñƒoƒbƒtƒ@
- *	@param	num		”Žš
- *	@param	keta	Œ…
- *	@param	man		ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- *	@param	start_msg_idx	ƒƒbƒZ[ƒW²ÝÃÞ¯¸½
+ *	@param	p_bmp	æ›¸ãè¾¼ã‚€ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
+ *	@param	x		ï½˜åº§æ¨™ã€€ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+ *	@param	y		ï½™åº§æ¨™	ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+ *	@param	str		æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+ *	@param	num		æ•°å­—
+ *	@param	keta	æ¡
+ *	@param	man		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£
+ *	@param	start_msg_idx	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  */
@@ -1296,7 +1296,7 @@ static void ZknBigDebug0xNumMake( GF_BGL_BMPWIN* p_bmp, u32 x, u32 y, STRBUF* st
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šgk’l@YÀ•W‰Šú‰»
+ *	@brief	æ‹¡ç¸®å€¤ã€€Yåº§æ¨™åˆæœŸåŒ–
  *
  *	@param	p_work 
  *

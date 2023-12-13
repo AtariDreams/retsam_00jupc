@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	tradelist.h
- * @bfief	ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒŠƒXƒg‰æ–Ê
+ * @bfief	ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒªã‚¹ãƒˆç”»é¢
  * @author	Akito Mori
  * @date	05.12.08
  */
@@ -11,7 +11,7 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 #include "savedata/friendlist.h"
 #include "savedata/wifihistory.h"
@@ -21,10 +21,10 @@
 #include "savedata/record.h"
 
 
-#define TRADELIST_END_FINISH  ( 0 )				// ŒðŠ·‚ð‚â‚ß‚ÄI—¹‚µ‚½
-#define TRADELIST_END_DEMO    ( 1 )				// ŒðŠ·‚ð¬—§‚³‚¹‚Äƒfƒ‚‚É‚¢‚­
+#define TRADELIST_END_FINISH  ( 0 )				// äº¤æ›ã‚’ã‚„ã‚ã¦çµ‚äº†ã—ãŸ
+#define TRADELIST_END_DEMO    ( 1 )				// äº¤æ›ã‚’æˆç«‹ã•ã›ã¦ãƒ‡ãƒ¢ã«ã„ã
 
-// ŒðŠ·ƒŠƒXƒg‚És‚­‚Æ‚«‚É“n‚·ƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+// äº¤æ›ãƒªã‚¹ãƒˆã«è¡Œãã¨ãã«æ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct {
 	FIELDSYS_WORK *fsys;
 	MYSTATUS      *mystatus;
@@ -32,19 +32,19 @@ typedef struct {
 	FRIEND_LIST   *friendlist;
 	SAVEDATA      *savedata;
 	WIFI_HISTORY  *wifihistory;
-	CONFIG		  *config;			// ƒRƒ“ƒtƒBƒO\‘¢‘Ì
-	FNOTE_DATA	  *fnote;			// –`Œ¯ƒm[ƒgƒ|ƒCƒ“ƒ^
-	RECORD		  *record;			// ƒŒƒR[ƒhƒ|ƒCƒ“ƒ^
-	ZUKAN_WORK    *zukanwork;		// }ŠÓƒf[ƒ^
-	int			  result;			// ŒðŠ·ƒŠƒXƒg‚©‚ç‚Ì•Ô‚è’l 
-									// TRADELIST_END_FINISH = ŒðŠ·‚ð‚â‚ß‚½
-									// TRADELIST_END_DEMO   = ŒðŠ·ƒfƒ‚‚Ö
-	int			  exchangepos;		// ŒðŠ·‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u
+	CONFIG		  *config;			// ã‚³ãƒ³ãƒ•ã‚£ã‚°æ§‹é€ ä½“
+	FNOTE_DATA	  *fnote;			// å†’é™ºãƒŽãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿
+	RECORD		  *record;			// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+	ZUKAN_WORK    *zukanwork;		// å›³é‘‘ãƒ‡ãƒ¼ã‚¿
+	int			  result;			// äº¤æ›ãƒªã‚¹ãƒˆã‹ã‚‰ã®è¿”ã‚Šå€¤ 
+									// TRADELIST_END_FINISH = äº¤æ›ã‚’ã‚„ã‚ãŸ
+									// TRADELIST_END_DEMO   = äº¤æ›ãƒ‡ãƒ¢ã¸
+	int			  exchangepos;		// äº¤æ›ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®
 
-	int			  zukanmode;		// }ŠÓƒ‚[ƒhiƒVƒ“ƒIƒEE‘S‘)
+	int			  zukanmode;		// å›³é‘‘ãƒ¢ãƒ¼ãƒ‰ï¼ˆã‚·ãƒ³ã‚ªã‚¦ãƒ»å…¨å›½)
 	int			  times;
 
-	// ƒfƒ‚‰æ–Ê—pƒpƒ‰ƒ[ƒ^iƒ|ƒCƒ“ƒ^Žó‚¯“n‚µ‚Å‚Í‚È‚­AŽÀ‘Ì—p—Ìˆæ‚ðŠm•Û‚µ‚Ä‚ ‚é‚Ì‚ÅƒRƒs[‚·‚éj
+	// ãƒ‡ãƒ¢ç”»é¢ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒã‚¤ãƒ³ã‚¿å—ã‘æ¸¡ã—ã§ã¯ãªãã€å®Ÿä½“ç”¨é ˜åŸŸã‚’ç¢ºä¿ã—ã¦ã‚ã‚‹ã®ã§ã‚³ãƒ”ãƒ¼ã™ã‚‹ï¼‰
 	MYSTATUS*			result_partner;
 	POKEMON_PARAM*		result_sendPoke;
 	POKEMON_PARAM*		result_recvPoke;
@@ -53,7 +53,7 @@ typedef struct {
 
 
 
-typedef struct TRADELIST_WORK TRADELIST_WORK;	// ƒ|ƒPƒ‚ƒ“ŒðŠ·‰æ–Êƒ[ƒN\‘¢‘Ìiƒ|ƒCƒ“ƒ^ŽQÆ‚¾‚¯‚Å‚«‚éj
+typedef struct TRADELIST_WORK TRADELIST_WORK;	// ãƒã‚±ãƒ¢ãƒ³äº¤æ›ç”»é¢ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ï¼ˆãƒã‚¤ãƒ³ã‚¿å‚ç…§ã ã‘ã§ãã‚‹ï¼‰
 
 
 extern PROC_RESULT TradeListProc_Init( PROC * proc, int * seq );

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		field_hideneff.h
- *	@brief		ÉtÉBÅ[ÉãÉhîÈì`ãZÉGÉtÉFÉNÉg
+ *	@brief		„Éï„Ç£„Éº„É´„ÉâÁßò‰ºùÊäÄ„Ç®„Éï„Çß„ÇØ„Éà
  *	@author		tomoya takahashi
  *	@data		2006.06.26
  *
@@ -22,7 +22,7 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					Ç¢Ç†Ç¢Ç¨ÇË
+ *					„ÅÑ„ÅÇ„ÅÑ„Åé„Çä
 */
 //-----------------------------------------------------------------------------
 GLOBAL FLDMAPFUNC_WORK* FLD_HIDENEFF_Iaigiri_Start( FIELDSYS_WORK* fsys );
@@ -31,7 +31,7 @@ GLOBAL BOOL FLD_HIDENEFF_Iaigiri_EndCheck( FLDMAPFUNC_WORK* p_demo );
 
 //-----------------------------------------------------------------------------
 /**
- *					Ç¢ÇÌÇ≠ÇæÇ´
+ *					„ÅÑ„Çè„Åè„Å†„Åç
 */
 //-----------------------------------------------------------------------------
 GLOBAL FLDMAPFUNC_WORK* FLD_HIDENEFF_Iwakudaki_Start( FIELDSYS_WORK* fsys );
@@ -42,7 +42,7 @@ GLOBAL BOOL FLD_HIDENEFF_Iwakudaki_EndCheck( FLDMAPFUNC_WORK* p_demo );
 
 //-----------------------------------------------------------------------------
 /**
- *					ÇΩÇ´ÇÃÇ⁄ÇË		
+ *					„Åü„Åç„ÅÆ„Åº„Çä		
 */
 //-----------------------------------------------------------------------------
 GLOBAL FLDMAPFUNC_WORK* FLD_HIDENEFF_Takinobori_Start( FIELDSYS_WORK* fsys );
@@ -52,7 +52,7 @@ GLOBAL void FLD_HIDENEFF_Takinobori_End( FLDMAPFUNC_WORK* p_demo );
 
 //-----------------------------------------------------------------------------
 /**
- *					ÉçÉbÉNÉNÉâÉCÉÄ		
+ *					„É≠„ÉÉ„ÇØ„ÇØ„É©„Ç§„É†		
 */
 //-----------------------------------------------------------------------------
 GLOBAL FLDMAPFUNC_WORK* FLD_HIDENEFF_RockClime_Start( FIELDSYS_WORK* fsys );

@@ -12,7 +12,7 @@
 
   $Log: os_alarm.c,v $
   Revision 1.28  2006/04/04 06:06:00  yosizaki
-  ƒR[ƒ‹ƒXƒ^ƒbƒN‚Ì8ƒoƒCƒg®‡‚ÉŠÖ‚·‚éC³.
+  ã‚³ãƒ¼ãƒ«ã‚¹ã‚¿ãƒƒã‚¯ã®8ãƒã‚¤ãƒˆæ•´åˆã«é–¢ã™ã‚‹ä¿®æ­£.
 
   Revision 1.27  2006/01/18 02:11:30  kitase_hirotake
   do-indent
@@ -48,38 +48,38 @@
   in case alarm already set when set, force to call OS_Panic()
 
   Revision 1.16  2004/03/22 09:11:57  yada
-  üŠúƒAƒ‰[ƒ€‚Ì‚ÉAƒAƒ‰[ƒ€ƒnƒ“ƒhƒ‰‚ğŒÄ‚Ño‚·‚Æ‚«ƒAƒ‰[ƒ€ƒNƒŠƒA‚µ‚È‚¢‚æ‚¤‚É‚µ‚½B
+  å‘¨æœŸã‚¢ãƒ©ãƒ¼ãƒ ã®æ™‚ã«ã€ã‚¢ãƒ©ãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ©ã‚’å‘¼ã³å‡ºã™ã¨ãã‚¢ãƒ©ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã—ãªã„ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.15  2004/03/22 00:21:46  yada
-  OS_CancelAlarm() ’†‚ÅAalarm.period ‚ğ0ƒNƒŠƒA‚·‚é‚æ‚¤‚É‚µ‚½B
-  ‚±‚ê‚ÍƒAƒ‰[ƒ€ƒnƒ“ƒhƒ‰‚Ì’†‚ÅüŠúƒAƒ‰[ƒ€‚ª©•ª©g‚ğƒLƒƒƒ“ƒZƒ‹‚Å‚«‚é‚æ‚¤‚É‚·‚é‚½‚ßB
+  OS_CancelAlarm() ä¸­ã§ã€alarm.period ã‚’0ã‚¯ãƒªã‚¢ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
+  ã“ã‚Œã¯ã‚¢ãƒ©ãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ©ã®ä¸­ã§å‘¨æœŸã‚¢ãƒ©ãƒ¼ãƒ ãŒè‡ªåˆ†è‡ªèº«ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã€‚
 
   Revision 1.14  2004/02/25 11:30:01  yada
-  systemClock¨Tick ‚É”º‚¤•ÏX
+  systemClockâ†’Tick ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.13  2004/02/24 08:22:43  yada
-  Ä“xƒnƒ“ƒhƒ‹“à‚ÅüŠúƒAƒ‰[ƒ€“ñ“x‹N“®ƒ`ƒFƒbƒN•”•ªC³
+  å†åº¦ãƒãƒ³ãƒ‰ãƒ«å†…ã§å‘¨æœŸã‚¢ãƒ©ãƒ¼ãƒ äºŒåº¦èµ·å‹•ãƒã‚§ãƒƒã‚¯éƒ¨åˆ†ä¿®æ­£
 
   Revision 1.12  2004/02/24 04:48:25  yada
-  ƒnƒ“ƒhƒ‹“à‚ÅüŠúƒAƒ‰[ƒ€“ñ“x‹N“®ƒ`ƒFƒbƒN•”•ªC³
+  ãƒãƒ³ãƒ‰ãƒ«å†…ã§å‘¨æœŸã‚¢ãƒ©ãƒ¼ãƒ äºŒåº¦èµ·å‹•ãƒã‚§ãƒƒã‚¯éƒ¨åˆ†ä¿®æ­£
 
   Revision 1.11  2004/02/23 11:56:16  yada
-  periodic ƒAƒ‰[ƒ€‚Ì“ñd‹N“®—}§
+  periodic ã‚¢ãƒ©ãƒ¼ãƒ ã®äºŒé‡èµ·å‹•æŠ‘åˆ¶
 
   Revision 1.10  2004/02/23 02:43:34  yada
   u64 sub fix
 
   Revision 1.9  2004/02/20 05:10:05  yada
-  ƒ^ƒCƒ}‚ğŠ„‚è‚Ü‚¹‚½Œã‚Ìˆ—C³
+  ã‚¿ã‚¤ãƒã‚’å‰²ã‚Šè¾¼ã¾ã›ãŸå¾Œã®å‡¦ç†ä¿®æ­£
 
   Revision 1.8  2004/02/20 04:45:53  yada
-  TIMER ƒCƒl[ƒuƒ‹ƒtƒ‰ƒO
+  TIMER ã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°
 
   Revision 1.7  2004/02/20 04:35:18  yada
-  ƒ^ƒCƒ}İ’è•s‹ï‡C³
+  ã‚¿ã‚¤ãƒè¨­å®šä¸å…·åˆä¿®æ­£
 
   Revision 1.6  2004/02/20 02:35:01  yada
-  ƒ^ƒCƒ}İ’èAdisableˆ—‚ğ“ü‚ê‚½
+  ã‚¿ã‚¤ãƒè¨­å®šæ™‚ã€disableå‡¦ç†ã‚’å…¥ã‚ŒãŸ
 
   Revision 1.5  2004/02/19 08:41:11  yada
   only fix comment
@@ -91,7 +91,7 @@
   change SDK prefix iris -> nitro
 
   Revision 1.2  2004/02/04 07:32:15  yada
-  OS_IsAlarmAvailable(), OS_EndAlarm() ’Ç‰Á
+  OS_IsAlarmAvailable(), OS_EndAlarm() è¿½åŠ 
 
   Revision 1.1  2004/02/03 11:20:19  yada
   firstRelease
@@ -505,9 +505,9 @@ void OS_CancelAlarm(OSAlarm *alarm)
 #include <nitro/code32.h>
 asm void OSi_AlarmHandler( void* arg )
 {
-    stmfd     sp!, {r0, lr} /* ƒR[ƒ‹ƒXƒ^ƒbƒN‚ğ 8 ƒoƒCƒg®‡ */
+    stmfd     sp!, {r0, lr} /* ã‚³ãƒ¼ãƒ«ã‚¹ã‚¿ãƒƒã‚¯ã‚’ 8 ãƒã‚¤ãƒˆæ•´åˆ */
     bl        OSi_ArrangeTimer
-    ldmfd     sp!, {r0, lr} /* ƒR[ƒ‹ƒXƒ^ƒbƒN‚ğ 8 ƒoƒCƒg®‡ */
+    ldmfd     sp!, {r0, lr} /* ã‚³ãƒ¼ãƒ«ã‚¹ã‚¿ãƒƒã‚¯ã‚’ 8 ãƒã‚¤ãƒˆæ•´åˆ */
     bx        lr
 }
 #include <nitro/codereset.h>

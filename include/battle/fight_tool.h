@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	fight_tool.h
- * @bfief	í“¬ƒVƒXƒeƒ€—pƒc[ƒ‹ƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ„ãƒ¼ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.07.22
  */
@@ -11,7 +11,7 @@
 #ifndef __FIGHT_TOOL_H_
 #define __FIGHT_TOOL_H_
 
-//BattleWorkEnemyClientNoGet‚Ìsidew’è
+//BattleWorkEnemyClientNoGetã®sideæŒ‡å®š
 #define	BWECNG_SIDE_RIGHT	(0)
 #define	BWECNG_SIDE_LEFT	(2)
 
@@ -31,7 +31,7 @@
 #include	"savedata/config.h"
 #include	"battle/temoti_gauge.h"
 
-//ƒ|ƒPƒ‚ƒ“ƒvƒƒOƒ‰ƒ€ƒAƒjƒ
+//ãƒã‚±ãƒ¢ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡
 typedef struct POKE_ANIME_SYS_tag * POKE_ANM_SYS_PTR;
 
 extern	GF_BGL_INI			*BattleWorkGF_BGL_INIGet(BATTLE_WORK *bw);

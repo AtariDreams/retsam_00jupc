@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_244.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			ƒVƒƒƒbƒgƒAƒEƒgI‚í‚Á‚½ƒƒbƒZ[ƒWƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ã‚·ãƒ£ãƒƒãƒˆã‚¢ã‚¦ãƒˆçµ‚ã‚ã£ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2006.05.04
  *
@@ -18,6 +18,6 @@ SUB_244:
 	MESSAGE		ShutoutEndMineMsg,TAG_NICK,SIDE_WORK
 	SERVER_WAIT
 	WAIT		MSG_WAIT
-	//ƒVƒƒƒbƒgƒAƒEƒgƒtƒ‰ƒO‚ð—Ž‚Æ‚·
+	//ã‚·ãƒ£ãƒƒãƒˆã‚¢ã‚¦ãƒˆãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 	PSP_VALUE	VAL_NBIT,SIDE_WORK,ID_PSP_waza_kouka,WAZAKOUKA_SHUTOUT
 	SEQ_END

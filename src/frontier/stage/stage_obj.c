@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	stage_obj.c
- * @brief	uƒoƒgƒ‹ƒXƒe[ƒWvOBJ(ƒJ[ƒ\ƒ‹AƒAƒCƒRƒ“)
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€OBJ(ã‚«ãƒ¼ã‚½ãƒ«ã€ã‚¢ã‚¤ã‚³ãƒ³)
  * @author	Satoshi Nohara
  * @date	2007.03.20
  */
@@ -19,19 +19,19 @@
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
-//OBJ(ƒJ[ƒ\ƒ‹AƒAƒCƒRƒ“)
+//OBJ(ã‚«ãƒ¼ã‚½ãƒ«ã€ã‚¢ã‚¤ã‚³ãƒ³)
 struct _STAGE_OBJ{
-	u32	pause;						//ƒ|[ƒYƒtƒ‰ƒO
-	u32 work;						//”Ä—pƒ[ƒN
-	u32 counter;					//ƒJƒEƒ“ƒ^[
-	const u8* anm_tbl;				//ƒJ[ƒ\ƒ‹ƒAƒjƒƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
-	CLACT_WORK_PTR p_clact;			//ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^
+	u32	pause;						//ãƒãƒ¼ã‚ºãƒ•ãƒ©ã‚°
+	u32 work;						//æ±Žç”¨ãƒ¯ãƒ¼ã‚¯
+	u32 counter;					//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	const u8* anm_tbl;				//ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	CLACT_WORK_PTR p_clact;			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 
-//ƒJ[ƒ\ƒ‹‚ÌƒpƒŒƒbƒg
+//ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
 enum{
 	PAL_OBJ_MOVE = 0,
 	PAL_OBJ_STOP,
@@ -40,7 +40,7 @@ enum{
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 STAGE_OBJ* StageObj_Create( STAGE_CLACT* stage_clact, u32 data_no, u32 anm_no, u16 x, u16 y, const u8* anm_tbl );
@@ -54,19 +54,19 @@ void StageObj_IconPalChg( STAGE_OBJ* wk, POKEMON_PARAM* pp );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OBJì¬
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OBJä½œæˆ
  *
- * @param	stage_clact	STAGE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	data_index		ƒf[ƒ^index
- * @param	heapID			ƒq[ƒvID
+ * @param	stage_clact	STAGE_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	data_index		ãƒ‡ãƒ¼ã‚¿index
+ * @param	heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"STAGE_OBJƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^"
+ * @retval	"STAGE_OBJãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿"
  */
 //--------------------------------------------------------------
 STAGE_OBJ* StageObj_Create( STAGE_CLACT* stage_clact, u32 data_no, u32 anm_no, u16 x, u16 y, const u8* anm_tbl )
@@ -74,19 +74,19 @@ STAGE_OBJ* StageObj_Create( STAGE_CLACT* stage_clact, u32 data_no, u32 anm_no, u
 	STAGE_OBJ* wk;
 	VecFx32	vec;
 
-	wk = sys_AllocMemory( HEAPID_STAGE, sizeof(STAGE_OBJ) );		//ƒƒ‚ƒŠŠm•Û
+	wk = sys_AllocMemory( HEAPID_STAGE, sizeof(STAGE_OBJ) );		//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	memset( wk, 0, sizeof(STAGE_OBJ) );
 
-	wk->anm_tbl		= anm_tbl;				//ƒJ[ƒ\ƒ‹‚ÌƒAƒjƒƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
+	wk->anm_tbl		= anm_tbl;				//ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
 
-	//ƒAƒjƒƒe[ƒuƒ‹‚ÌŽw’è‚ª‚ ‚éŽž
+	//ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ã®æŒ‡å®šãŒã‚ã‚‹æ™‚
 	if( anm_tbl != NULL ){
 		wk->p_clact = StageClact_SetActor( stage_clact, data_no, anm_no, 0, DISP_MAIN );
 	}else{
 		wk->p_clact = StageClact_SetActor( stage_clact, data_no, anm_no, 0, DISP_MAIN );
 	}
 
-	//‰ŠúƒJ[ƒ\ƒ‹À•W‚ðƒZƒbƒg
+	//åˆæœŸã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	vec.x = (x * FX32_ONE);
 	vec.y = (y * FX32_ONE);
 	CLACT_SetMatrix( wk->p_clact, &vec );
@@ -96,9 +96,9 @@ STAGE_OBJ* StageObj_Create( STAGE_CLACT* stage_clact, u32 data_no, u32 anm_no, u
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OBJƒ[ƒNíœ
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OBJãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param	wk		STAGE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -107,7 +107,7 @@ void* StageObj_Delete( STAGE_OBJ* wk )
 {
 	CLACT_Delete( wk->p_clact );
 
-	//STAGE_OBJ‚Ìƒƒ“ƒo‚Åƒƒ‚ƒŠŠm•Û‚µ‚½‚à‚Ì‚ª‚ ‚Á‚½‚çŠJ•ú‚·‚é
+	//STAGE_OBJã®ãƒ¡ãƒ³ãƒã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ãŸã‚‚ã®ãŒã‚ã£ãŸã‚‰é–‹æ”¾ã™ã‚‹
 
 	sys_FreeMemoryEz( wk );
 	return NULL;
@@ -115,10 +115,10 @@ void* StageObj_Delete( STAGE_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒjƒbƒVƒ…‘€ì
+ * @brief	ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
  *
- * @param	wk		STAGE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0:”ñ•`‰æ 1:ƒŒƒ“ƒ_ƒ‰•`‰æ	
+ * @param	wk		STAGE_OBJåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0:éžæç”» 1:ãƒ¬ãƒ³ãƒ€ãƒ©æç”»	
  *
  * @return	none
  */
@@ -131,10 +131,10 @@ void StageObj_Vanish( STAGE_OBJ* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|[ƒY
+ * @brief	ãƒãƒ¼ã‚º
  *
- * @param	wk		STAGE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0:ƒ|[ƒY‰ðœ 1:ƒ|[ƒY
+ * @param	wk		STAGE_OBJåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0:ãƒãƒ¼ã‚ºè§£é™¤ 1:ãƒãƒ¼ã‚º
  *
  * @return	none
  */
@@ -147,9 +147,9 @@ void StageObj_Pause( STAGE_OBJ* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ðƒZƒbƒg
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_OBJåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -158,26 +158,26 @@ void StageObj_SetObjPos( STAGE_OBJ* wk, u16 x, u16 y )
 {
 	VecFx32	vec;
 
-	//ƒAƒjƒ‚ðØ‚è‘Ö‚¦‚é
+	//ã‚¢ãƒ‹ãƒ¡ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	if( wk->anm_tbl != NULL ){
 		CLACT_AnmChgCheck( wk->p_clact, wk->anm_tbl[0] );
 	}
 
-	//À•W‚ðŽæ“¾
+	//åº§æ¨™ã‚’å–å¾—
 	vec = *( CLACT_GetMatrix(wk->p_clact) );
 	vec.x = (x * FX32_ONE);
 	vec.y = (y * FX32_ONE);
 
-	//À•W‚ðÝ’è
+	//åº§æ¨™ã‚’è¨­å®š
 	CLACT_SetMatrix( wk->p_clact, &vec );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒØ‚è‘Ö‚¦
+ * @brief	ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		STAGE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -185,25 +185,25 @@ void StageObj_SetObjPos( STAGE_OBJ* wk, u16 x, u16 y )
 void StageObj_AnmChg( STAGE_OBJ* wk, u32 num )
 {
 	CLACT_SetAnmFrame( wk->p_clact, FX32_ONE );
-	//CLACT_AnmFrameSet( wk->p_clact, 0 );	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ðƒZƒbƒg
-	CLACT_AnmChgCheck( wk->p_clact, num );		//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ðƒ`ƒFƒ“ƒW‚·‚é
+	//CLACT_AnmFrameSet( wk->p_clact, 0 );	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
+	CLACT_AnmChgCheck( wk->p_clact, num );		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸ã™ã‚‹
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒRƒ“ƒAƒjƒ
+ * @brief	ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		STAGE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp		POKEMON_PARAMƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp		POKEMON_PARAMãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 void StageObj_IconPalChg( STAGE_OBJ* wk, POKEMON_PARAM* pp )
 {
-	//ƒpƒŒƒbƒgØ‚è‘Ö‚¦
-	//CLACT_PaletteOffsetChgŠÖ”‚ÌŒ‹‰Ê‚ÉƒpƒŒƒbƒg‚Ì“]‘—ææ“ªƒpƒŒƒbƒgƒiƒ“ƒo[‚ð‰ÁŽZ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
+	//CLACT_PaletteOffsetChgé–¢æ•°ã®çµæžœã«ãƒ‘ãƒ¬ãƒƒãƒˆã®è»¢é€å…ˆå…ˆé ­ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’åŠ ç®—
 	CLACT_PaletteOffsetChgAddTransPlttNo( wk->p_clact, PokeIconPalNumGetByPP(pp) );
 	return;
 }

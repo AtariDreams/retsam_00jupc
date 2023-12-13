@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	opening_demo.c
- * @brief	ƒI[ƒvƒjƒ“ƒOƒfƒ‚
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒ‡ãƒ¢
  * @author	Nozomu Saito
  * @date	2006.05.31
  */
@@ -32,20 +32,20 @@
 
 #include "op_frame_def.h"
 
-#include "field/weather_sys.naix"	//–Ø˜R‚ê“ú
+#include "field/weather_sys.naix"	//æœ¨æ¼ã‚Œæ—¥
 
 #ifdef PM_DEBUG
-#define COPYRIGHT_SKIP		//<<—LŒø‚É‚·‚é‚Æ’˜ìŒ î•ñ‚ğƒXƒLƒbƒv‚Å‚«‚Ü‚·
+#define COPYRIGHT_SKIP		//<<æœ‰åŠ¹ã«ã™ã‚‹ã¨è‘—ä½œæ¨©æƒ…å ±ã‚’ã‚¹ã‚­ãƒƒãƒ—ã§ãã¾ã™
 #endif
 
 #ifdef PM_DEBUG
-//#define DEBUG_MATSUDA_SCENE2_SKIP	//—LŒø‚É‚µ‚Ä‚¢‚é‚ÆƒV[ƒ“‚Q‚ğƒXƒLƒbƒv
-//#define DEBUG_MATSUDA_LOGO_SKIP		//—LŒø‚É‚µ‚Ä‚¢‚é‚ÆGFƒƒS‚ğƒXƒLƒbƒv
+//#define DEBUG_MATSUDA_SCENE2_SKIP	//æœ‰åŠ¹ã«ã—ã¦ã„ã‚‹ã¨ã‚·ãƒ¼ãƒ³ï¼’ã‚’ã‚¹ã‚­ãƒƒãƒ—
+//#define DEBUG_MATSUDA_LOGO_SKIP		//æœ‰åŠ¹ã«ã—ã¦ã„ã‚‹ã¨GFãƒ­ã‚´ã‚’ã‚¹ã‚­ãƒƒãƒ—
 #endif
 
-#define PAL_ONE_SIZE	(2)		//‚QƒoƒCƒg
+#define PAL_ONE_SIZE	(2)		//ï¼’ãƒã‚¤ãƒˆ
 
-//ƒV[ƒ“1
+//ã‚·ãƒ¼ãƒ³1
 #define	COPY_LIGHT_FRAME	(GF_BGL_FRAME1_M)
 #define	GAME_FREAK_LOGO_M_FRAME	(GF_BGL_FRAME2_M)
 #define	GAME_FREAK_LOGO_S_FRAME	(GF_BGL_FRAME2_S)
@@ -58,13 +58,13 @@
 #define BLD_MASK_GF_LOGO_S		(GX_BLEND_PLANEMASK_BG2)
 #define BLD_MASK_BACK_BASE_S	(GX_BLEND_PLANEMASK_BG3)
 
-#define COPY_LIGHT_BLD_IN_COUNT_MAX	(6)	//ƒuƒŒƒ“ƒh‚·‚é‘¬“x6ƒtƒŒ‚É‚P‰ñ•ÏX
-#define COPY_LIGHT_BLD_COUNT_MAX	(4)	//ƒuƒŒƒ“ƒh‚·‚é‘¬“x4ƒtƒŒ‚É‚P‰ñ•ÏX
+#define COPY_LIGHT_BLD_IN_COUNT_MAX	(6)	//ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹é€Ÿåº¦6ãƒ•ãƒ¬ã«ï¼‘å›å¤‰æ›´
+#define COPY_LIGHT_BLD_COUNT_MAX	(4)	//ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹é€Ÿåº¦4ãƒ•ãƒ¬ã«ï¼‘å›å¤‰æ›´
 #define OPDEMO_BRIGHTNESS_SYNC	(18)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
-// –k•Ä”Å‚Å‚Í ESRB Notice ‚ğ‰º‰æ–Ê‚É’Ç‰Á
+// åŒ—ç±³ç‰ˆã§ã¯ ESRB Notice ã‚’ä¸‹ç”»é¢ã«è¿½åŠ 
 #if PM_LANG == LANG_ENGLISH
 #define	ESRB_NOTICE_FRAME		(GF_BGL_FRAME1_S)
 #define BLD_MASK_ESRB_NOTICE	(GX_BLEND_PLANEMASK_BG1)
@@ -72,7 +72,7 @@
 // ----------------------------------------------------------------------------
 
 
-//ƒV[ƒ“2
+//ã‚·ãƒ¼ãƒ³2
 #define TITLE_LOGO_WHITE_IN_SYNC	(8)
 #define TITLE_LOGO_NEW_WHITE_IN_SYNC	(4)
 #define BG_ON	(1)
@@ -85,33 +85,33 @@
 #define SUB_BG1_FRAME	(GF_BGL_FRAME1_S)
 #define SUB_BG2_FRAME	(GF_BGL_FRAME2_S)
 #define SUB_BG3_FRAME	(GF_BGL_FRAME3_S)
-#define SCENE2_MAPCHANGE_SYNC	(4)		//ƒV[ƒ“2ƒ}ƒbƒvØ‚è‘Ö‚¦‚ÌƒƒCƒv‘¬“x
-#define TOWN_BG_SPEED	(-1)	//‹ó‚a‚f‚ÌˆÚ“®ƒXƒs[ƒh
-#define SKY_BG_SPEED	(1)	//‹ó‚a‚f‚ÌˆÚ“®ƒXƒs[ƒh
-#define BATTLE_BG_SPEED	(-16)	//ƒoƒgƒ‹‚a‚fƒXƒNƒ[ƒ‹ƒXƒs[ƒh
-#define BALL_THROW_STREAM_BG_SPEED	(16)	//ƒ{[ƒ‹‚ğ“Š‚°‚é‚Ì—¬¯BGƒXƒNƒ[ƒ‹ƒXƒs[ƒh
-#define HAND_BG_SPEED	(12)	//è‚ªƒXƒNƒ[ƒ‹ƒAƒEƒg‚·‚é‚ÌƒXƒs[ƒh
-#define HAND_Y_BG_SPEED	(-1)	//è‚ªƒXƒNƒ[ƒ‹ƒAƒEƒg‚·‚é‚ÌƒXƒs[ƒh
+#define SCENE2_MAPCHANGE_SYNC	(4)		//ã‚·ãƒ¼ãƒ³2ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã®ãƒ¯ã‚¤ãƒ—é€Ÿåº¦
+#define TOWN_BG_SPEED	(-1)	//ç©ºï¼¢ï¼§ã®ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define SKY_BG_SPEED	(1)	//ç©ºï¼¢ï¼§ã®ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BATTLE_BG_SPEED	(-16)	//ãƒãƒˆãƒ«ï¼¢ï¼§ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BALL_THROW_STREAM_BG_SPEED	(16)	//ãƒœãƒ¼ãƒ«ã‚’æŠ•ã’ã‚‹æ™‚ã®æµæ˜ŸBGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define HAND_BG_SPEED	(12)	//æ‰‹ãŒã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆã™ã‚‹æ™‚ã®ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define HAND_Y_BG_SPEED	(-1)	//æ‰‹ãŒã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆã™ã‚‹æ™‚ã®ã‚¹ãƒ”ãƒ¼ãƒ‰
 
-///ŠX•À‚İ‚ÌƒXƒNƒ[ƒ‹‘¬“x(fx32)
+///è¡—ä¸¦ã¿ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦(fx32)
 #define SCENE2_SCROLL_SP_TOWN		(0x0280)
-///–ØX‚ÌƒXƒNƒ[ƒ‹‘¬“x(fx32)
+///æœ¨ã€…ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦(fx32)
 #define SCENE2_SCROLL_SP_TREE		(0x0110)
 
-#define SCENE2_POKE_APPEAR_FLASH_SYNC	(4)		//ƒV[ƒ“2ƒoƒgƒ‹–ÊØ‚è‘Ö‚¦ƒuƒ‰ƒbƒNƒCƒ“ƒAƒEƒgƒXƒs[ƒh
-#define SCENE2_POKE_APPEAR_AFTER_FLASH_SYNC	(64)		//ƒV[ƒ“2ƒoƒgƒ‹–ÊØ‚è‘Ö‚¦ƒuƒ‰ƒbƒNƒCƒ“ƒAƒEƒgƒXƒs[ƒh
-#define POKE_BG_SLIDE_IN_SPEED			(20)	//ƒ|ƒPƒ‚ƒ““oêƒXƒ‰ƒCƒhƒCƒ“‚Ì‘¬“x
+#define SCENE2_POKE_APPEAR_FLASH_SYNC	(4)		//ã‚·ãƒ¼ãƒ³2ãƒãƒˆãƒ«é¢åˆ‡ã‚Šæ›¿ãˆãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆã‚¹ãƒ”ãƒ¼ãƒ‰
+#define SCENE2_POKE_APPEAR_AFTER_FLASH_SYNC	(64)		//ã‚·ãƒ¼ãƒ³2ãƒãƒˆãƒ«é¢åˆ‡ã‚Šæ›¿ãˆãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆã‚¹ãƒ”ãƒ¼ãƒ‰
+#define POKE_BG_SLIDE_IN_SPEED			(20)	//ãƒã‚±ãƒ¢ãƒ³ç™»å ´ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³ã®é€Ÿåº¦
 #define POKE_STREAM_SPEED				(BALL_THROW_STREAM_BG_SPEED << FX32_SHIFT)
 
-#define SCENE2_DISP_CHG_SYNC	(4)		//ƒV[ƒ“2ƒoƒgƒ‹–ÊØ‚è‘Ö‚¦ƒuƒ‰ƒbƒNƒCƒ“ƒAƒEƒgƒXƒs[ƒh
-#define SCENE2_DISP_CHG_SYNC_WAZA_AFTER	(16)		//ƒV[ƒ“2‹Z‘S‚ÄI—¹Œãƒuƒ‰ƒbƒNƒCƒ“ƒXƒs[ƒh
+#define SCENE2_DISP_CHG_SYNC	(4)		//ã‚·ãƒ¼ãƒ³2ãƒãƒˆãƒ«é¢åˆ‡ã‚Šæ›¿ãˆãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆã‚¹ãƒ”ãƒ¼ãƒ‰
+#define SCENE2_DISP_CHG_SYNC_WAZA_AFTER	(16)		//ã‚·ãƒ¼ãƒ³2æŠ€å…¨ã¦çµ‚äº†å¾Œãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ã‚¹ãƒ”ãƒ¼ãƒ‰
 #define SCENE2_TOWN_SCROLL_MARGIN	(24)
 #define SCENE2_SKY_SCROLL_MARGIN	(3)
 #define SCENE2_BATTLE_SCROLL_MARGIN	(1)
 
-#define POKE_ATTACK_SCROLL_OFFSET_X		(60)	//‘Ì“–‚½‚è‚Ì‹——£
-#define POKE_ATTACK_SCROLL_SPEED		(12)		//‘Ì“–‚½‚è‚Ì‘¬“x
-#define SCENE2_DISP_CHG_SYNC_THUNDER	(6)//(12)	//—‹‚ÌŒã‚ÌƒtƒF[ƒhƒAƒEƒg‘¬“x
+#define POKE_ATTACK_SCROLL_OFFSET_X		(60)	//ä½“å½“ãŸã‚Šã®è·é›¢
+#define POKE_ATTACK_SCROLL_SPEED		(12)		//ä½“å½“ãŸã‚Šã®é€Ÿåº¦
+#define SCENE2_DISP_CHG_SYNC_THUNDER	(6)//(12)	//é›·ã®å¾Œã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé€Ÿåº¦
 
 #define OP_MAP_BLOCK_MAX	(6)
 #define SONOO_TOWN_HEIGHT	(FX32_ONE*16*5)
@@ -119,7 +119,7 @@
 #define	SCENE2_KIRA_MARGIN1	(4)
 #define	SCENE2_KIRA_MARGIN2	(16)
 
-//ƒV[ƒ“3
+//ã‚·ãƒ¼ãƒ³3
 #define MT_TENGAN_FRAME	(GF_BGL_FRAME2_M)
 
 #define TENGAN_WH_OUT_SYNC	(18)
@@ -129,12 +129,12 @@
 #define AFF_LIMIT_1	(0x3000)
 //#define LAVE_AFF_LIMIT	(0xa80)
 
-#define SCENE3_START_IN_SYNC	(90)//(120)		//ƒV[ƒ“3ŠJnƒuƒ‰ƒbƒNƒCƒ“ƒXƒs[ƒh
+#define SCENE3_START_IN_SYNC	(90)//(120)		//ã‚·ãƒ¼ãƒ³3é–‹å§‹ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ã‚¹ãƒ”ãƒ¼ãƒ‰
 
 enum{
 	SCENE2_BG_TRANS_STATUS_NORMAL,
-	SCENE2_BG_TRANS_STATUS_POKE,		//ƒ|ƒPƒ‚ƒ“BG“WŠJŒã
-	SCENE2_BG_TRANS_STATUS_THUNDER,		//—‹“WŠJŒã
+	SCENE2_BG_TRANS_STATUS_POKE,		//ãƒã‚±ãƒ¢ãƒ³BGå±•é–‹å¾Œ
+	SCENE2_BG_TRANS_STATUS_THUNDER,		//é›·å±•é–‹å¾Œ
 };
 
 typedef enum{
@@ -150,29 +150,29 @@ typedef struct BLOCK_3D_DATA_tag
 
 typedef struct SCENE2_3D_DATA_tag
 {
-	void			*TexFile;		//ƒeƒNƒXƒ`ƒƒ[ƒtƒ@ƒCƒ‹À‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	void			*TexFile;		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«å®Ÿä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	NNSG3dResTex	*Texture;
-	GF_CAMERA_PTR CameraPtr;		//ƒJƒƒ‰
+	GF_CAMERA_PTR CameraPtr;		//ã‚«ãƒ¡ãƒ©
 	BLOCK_3D_DATA	Block[OP_MAP_BLOCK_MAX];
-	int block_num;		///<Block‚É“WŠJ‚µ‚Ä‚¢‚é”
+	int block_num;		///<Blockã«å±•é–‹ã—ã¦ã„ã‚‹æ•°
 }SCENE2_3D_DATA;
 
 typedef struct SCENE3_THUNDER_DATA_tag
 {
 	u8 Request;
-	u8 NowPalTblNo;	//ƒpƒŒƒbƒgƒe[ƒuƒ‹”Ô†
-	u8 Margin;		//ƒpƒŒƒbƒg•ÏXŠÔŠu
+	u8 NowPalTblNo;	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·
+	u8 Margin;		//ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´é–“éš”
 	u8 Counter;
 }SCENE3_THUNDER_DATA;
 
 
-//ƒRƒs[ƒ‰ƒCƒg`ƒQ[ƒtƒŠƒƒS‚Ü‚Å‚Ìƒf[ƒ^\‘¢‘Ì
+//ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆã€œã‚²ãƒ¼ãƒ•ãƒªãƒ­ã‚´ã¾ã§ã®ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct SCENE1_WORK_tag
 {
 	u8 Seq;
 	u8 SceneSeq;
-	u8 InitOK;			//initƒV[ƒPƒ“ƒX’Ê‰ß‚µ‚½‚©H
-	u8 LoadOK;			//loadƒV[ƒPƒ“ƒX’Ê‰ß‚µ‚½‚©H
+	u8 InitOK;			//initã‚·ãƒ¼ã‚±ãƒ³ã‚¹é€šéã—ãŸã‹ï¼Ÿ
+	u8 LoadOK;			//loadã‚·ãƒ¼ã‚±ãƒ³ã‚¹é€šéã—ãŸã‹ï¼Ÿ
 	u16 Wait;
 	u8 Alpha;
 	u8 Counter;
@@ -183,20 +183,20 @@ typedef struct SCENE1_WORK_tag
 	u8 *SkipOKPtr;
 }SCENE1_WORK;
 
-//ƒ^ƒCƒgƒ‹`ƒoƒgƒ‹‚Ü‚Å‚Ìƒf[ƒ^\‘¢‘Ì
+//ã‚¿ã‚¤ãƒˆãƒ«ã€œãƒãƒˆãƒ«ã¾ã§ã®ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct SCENE2_WORK_tag
 {
 	u8 Seq;
 	u8 SceneSeq;
-	u8 InitOK;				//initƒV[ƒPƒ“ƒX’Ê‰ß‚µ‚½‚©H
-	u8 LoadOK;				//loadƒV[ƒPƒ“ƒX’Ê‰ß‚µ‚½‚©H
-	u8 Load3DOK;			//load3DƒV[ƒPƒ“ƒX‚ğ’Ê‰ß‚µ‚½‚©H
-	u8 Load3D_DivMode;		//•ªŠ„“Ç‚İ‚İ’†
-	u8 Disp3DFlg;			//‹óBƒtƒ‰ƒO
+	u8 InitOK;				//initã‚·ãƒ¼ã‚±ãƒ³ã‚¹é€šéã—ãŸã‹ï¼Ÿ
+	u8 LoadOK;				//loadã‚·ãƒ¼ã‚±ãƒ³ã‚¹é€šéã—ãŸã‹ï¼Ÿ
+	u8 Load3DOK;			//load3Dã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é€šéã—ãŸã‹ï¼Ÿ
+	u8 Load3D_DivMode;		//åˆ†å‰²èª­ã¿è¾¼ã¿ä¸­
+	u8 Disp3DFlg;			//ç©ºæ’®ãƒ•ãƒ©ã‚°
 	u8 KiraMargin;
 	u8 KiraMarginCore;
 	u8 div_seq;
-	int BG_ScrollMargin;	//ƒXƒNƒ[ƒ‹ƒZƒbƒgŠÔŠu
+	int BG_ScrollMargin;	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚»ãƒƒãƒˆé–“éš”
 	GF_BGL_INI *bgl;
 	OPD_OBJ_PTR	ObjWorkPtr;
 	OPD_KIRA_DATLST_PTR KiraListPtr;
@@ -205,54 +205,54 @@ typedef struct SCENE2_WORK_tag
 	
 	u16 *pokebg_palbuf;
 
-	u8 kira_vanish;			///<TRUE:ƒLƒ‰ƒLƒ‰ƒAƒNƒ^[”ñ•\¦ó‘Ô
-	u8 window_on_req;		///<TRUE:WINDOW ON ƒŠƒNƒGƒXƒg
-	u8 window_off_req;		///<TRUE:WINDOW OFF ƒŠƒNƒGƒXƒg
-	u8 bg_visible_on_req;	///<Vblank‚ÅBG‚Ì•\¦İ’è‚ğs‚¤(ƒrƒbƒgw’è)
-	u8 bg_visible_off_req;	///<Vblank‚ÅBG‚Ì”ñ•\¦İ’è‚ğs‚¤(ƒrƒbƒgw’è)
+	u8 kira_vanish;			///<TRUE:ã‚­ãƒ©ã‚­ãƒ©ã‚¢ã‚¯ã‚¿ãƒ¼éè¡¨ç¤ºçŠ¶æ…‹
+	u8 window_on_req;		///<TRUE:WINDOW ON ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	u8 window_off_req;		///<TRUE:WINDOW OFF ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	u8 bg_visible_on_req;	///<Vblankã§BGã®è¡¨ç¤ºè¨­å®šã‚’è¡Œã†(ãƒ“ãƒƒãƒˆæŒ‡å®š)
+	u8 bg_visible_off_req;	///<Vblankã§BGã®éè¡¨ç¤ºè¨­å®šã‚’è¡Œã†(ãƒ“ãƒƒãƒˆæŒ‡å®š)
 	
-	s16 wnd0_m_left;		///<ƒEƒBƒ“ƒhƒE0(ƒƒCƒ“‰æ–Ê)‚Ì¶À•W
-	s16 wnd0_m_right;		///<ƒEƒBƒ“ƒhƒE0(ƒƒCƒ“‰æ–Ê)‚Ì‰EÀ•W
-	s16 wnd0_m_top;			///<ƒEƒBƒ“ƒhƒE0(ƒƒCƒ“‰æ–Ê)‚ÌãÀ•W
-	s16 wnd0_m_bottom;		///<ƒEƒBƒ“ƒhƒE0(ƒƒCƒ“‰æ–Ê)‚Ì‰ºÀ•W
-	s16 wnd0_s_left;		///<ƒEƒBƒ“ƒhƒE0(ƒTƒu‰æ–Ê)‚Ì¶À•W
-	s16 wnd0_s_right;		///<ƒEƒBƒ“ƒhƒE0(ƒTƒu‰æ–Ê)‚Ì‰EÀ•W
-	s16 wnd0_s_top;			///<ƒEƒBƒ“ƒhƒE0(ƒTƒu‰æ–Ê)‚ÌãÀ•W
-	s16 wnd0_s_bottom;		///<ƒEƒBƒ“ƒhƒE0(ƒTƒu‰æ–Ê)‚Ì‰ºÀ•W
+	s16 wnd0_m_left;		///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0(ãƒ¡ã‚¤ãƒ³ç”»é¢)ã®å·¦åº§æ¨™
+	s16 wnd0_m_right;		///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0(ãƒ¡ã‚¤ãƒ³ç”»é¢)ã®å³åº§æ¨™
+	s16 wnd0_m_top;			///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0(ãƒ¡ã‚¤ãƒ³ç”»é¢)ã®ä¸Šåº§æ¨™
+	s16 wnd0_m_bottom;		///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0(ãƒ¡ã‚¤ãƒ³ç”»é¢)ã®ä¸‹åº§æ¨™
+	s16 wnd0_s_left;		///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0(ã‚µãƒ–ç”»é¢)ã®å·¦åº§æ¨™
+	s16 wnd0_s_right;		///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0(ã‚µãƒ–ç”»é¢)ã®å³åº§æ¨™
+	s16 wnd0_s_top;			///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0(ã‚µãƒ–ç”»é¢)ã®ä¸Šåº§æ¨™
+	s16 wnd0_s_bottom;		///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0(ã‚µãƒ–ç”»é¢)ã®ä¸‹åº§æ¨™
 
-	u8 bg_trans_status;		///<0=—‹BG“WŠJ‘O‚ÌBG\¬ATRUE=“WŠJŒã‚ÌBG\¬
-	u8 v_req_scene2_map_disp_change;	///<TRUE:Vƒuƒ‰ƒ“ƒN‚ÅƒƒCƒ“‚ÆƒTƒu‚ÌØ‚è‘Ö‚¦
-	u8 map_draw_ok;			///<TRUE:ƒ}ƒbƒv•`‰æOK
-	u8 particle_occ;		///<TRUE:ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€—LŒø
+	u8 bg_trans_status;		///<0=é›·BGå±•é–‹å‰ã®BGæ§‹æˆã€TRUE=å±•é–‹å¾Œã®BGæ§‹æˆ
+	u8 v_req_scene2_map_disp_change;	///<TRUE:Vãƒ–ãƒ©ãƒ³ã‚¯ã§ãƒ¡ã‚¤ãƒ³ã¨ã‚µãƒ–ã®åˆ‡ã‚Šæ›¿ãˆ
+	u8 map_draw_ok;			///<TRUE:ãƒãƒƒãƒ—æç”»OK
+	u8 particle_occ;		///<TRUE:ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ æœ‰åŠ¹
 	
-	fx32 scroll_sp_town;	///<”wŒi(ŠX)‚ÌƒXƒNƒ[ƒ‹‘¬“x
-	fx32 scroll_sp_tree;	///<”wŒi(–Ø)‚ÌƒXƒNƒ[ƒ‹‘¬“x
+	fx32 scroll_sp_town;	///<èƒŒæ™¯(è¡—)ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦
+	fx32 scroll_sp_tree;	///<èƒŒæ™¯(æœ¨)ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦
 }SCENE2_WORK;
 
-//ƒeƒ“ƒKƒ“ƒUƒ“ƒV[ƒ“‚Ìƒf[ƒ^\‘¢‘Ì
+//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³ã‚·ãƒ¼ãƒ³ã®ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct SCENE3_WORK_tag
 {
 	u8 Seq;
 	u8 SceneSeq;
-	u8 InitOK;			//initƒV[ƒPƒ“ƒX’Ê‰ß‚µ‚½‚©H
-	u8 LoadOK;			//loadƒV[ƒPƒ“ƒX’Ê‰ß‚µ‚½‚©H
-//	u8 TenganAffMargin;	//ƒeƒ“ƒKƒ“ƒUƒ“ƒXƒP[ƒ‹•ÏXŠÔŠu
-//	u8 LakeAffMargin;	//ŒÎƒXƒP[ƒ‹•ÏXŠÔŠu
+	u8 InitOK;			//initã‚·ãƒ¼ã‚±ãƒ³ã‚¹é€šéã—ãŸã‹ï¼Ÿ
+	u8 LoadOK;			//loadã‚·ãƒ¼ã‚±ãƒ³ã‚¹é€šéã—ãŸã‹ï¼Ÿ
+//	u8 TenganAffMargin;	//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³ã‚¹ã‚±ãƒ¼ãƒ«å¤‰æ›´é–“éš”
+//	u8 LakeAffMargin;	//æ¹–ã‚¹ã‚±ãƒ¼ãƒ«å¤‰æ›´é–“éš”
 	
-	fx32 akagi_scr_y;	//ƒAƒJƒMBGƒXƒNƒ[ƒ‹’l
+	fx32 akagi_scr_y;	//ã‚¢ã‚«ã‚®BGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
 	GF_BGL_INI *bgl;
 	SCENE3_THUNDER_DATA ThunderData;
 }SCENE3_WORK;
 
-///	ƒ^ƒCƒgƒ‹‘S‘Ì§Œä—pƒ[ƒN\‘¢‘Ì
+///	ã‚¿ã‚¤ãƒˆãƒ«å…¨ä½“åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct OPENING_DEMO_WORK_tag
 {
 	int	heapID;
 	int FrameCounter;
 	BOOL SkipFlg;
 
-	GF_BGL_INI*		bgl;	// BGƒ}ƒl[ƒWƒƒ
-	GF_G3DMAN*		g3Dman;	// 3Dƒ}ƒl[ƒWƒƒ
+	GF_BGL_INI*		bgl;	// BGãƒãƒãƒ¼ã‚¸ãƒ£
+	GF_G3DMAN*		g3Dman;	// 3Dãƒãƒãƒ¼ã‚¸ãƒ£
 
 	u32 RandSeed;
 
@@ -286,7 +286,7 @@ static void Scene2_Load2D_BG_Exit(OPENING_DEMO_WORK *wk, BOOL bgl_free);
 
 //=================================================================================================
 //
-// ‚o‚q‚n‚b’è‹`ƒe[ƒuƒ‹
+// ï¼°ï¼²ï¼¯ï¼£å®šç¾©ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 //=================================================================================================
 const PROC_DATA OpDemoProcData = {
@@ -337,7 +337,7 @@ const int ModelArcTbl[][OP_MAP_BLOCK_MAX] = {
 	},
 };
 
-//ƒJƒƒ‰İ’è
+//ã‚«ãƒ¡ãƒ©è¨­å®š
 static const GF_CAMERA_PARAM CameraData = {
 	0x29aec1,
 	{
@@ -348,7 +348,7 @@ static const GF_CAMERA_PARAM CameraData = {
 	0	//dummy
 };
 
-//ƒGƒbƒWƒ}[ƒLƒ“ƒOƒe[ƒuƒ‹
+//ã‚¨ãƒƒã‚¸ãƒãƒ¼ã‚­ãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const GXRgb gEdgeColor[8] = {
     GX_RGB(0, 0, 0),
     GX_RGB(4, 4, 4),
@@ -360,7 +360,7 @@ static const GXRgb gEdgeColor[8] = {
     GX_RGB(4, 4, 4)
 };
 
-//ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^
+//ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 const VecFx32 LightVec[4] = {
 	{-2043,-3548,110},
 	{0,0,0},
@@ -376,75 +376,75 @@ const GXRgb LightColor[4] = {
 };
 
 //----------------------------------
-//‚u‚q‚`‚lİ’è
+//ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 //----------------------------------
 static void OpDemo_VramBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_80_EF,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0_G				// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_80_EF,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0_G				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 //----------------------------------
-//‚u‚q‚`‚lİ’èiƒ^ƒCƒgƒ‹`3‚c`ƒoƒgƒ‹j
+//ï¼¶ï¼²ï¼¡ï¼­è¨­å®šï¼ˆã‚¿ã‚¤ãƒˆãƒ«ã€œ3ï¼¤ã€œãƒãƒˆãƒ«ï¼‰
 //----------------------------------
 static void OpDemo_Scene2_VramBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_32_FG,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0123_E				// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_32_FG,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0123_E				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 //----------------------------------
-//‚u‚q‚`‚lİ’èiƒeƒ“ƒKƒ“ƒUƒ“j
+//ï¼¶ï¼²ï¼¡ï¼­è¨­å®šï¼ˆãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³ï¼‰
 //----------------------------------
 static void OpDemo_Scene3_VramBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_256_AB,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_NONE,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE				// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_256_AB,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_NONE,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 //----------------------------------
 //
-//	‚Q‚c‚a‚f‰Šú‰»•I—¹
+//	ï¼’ï¼¤ï¼¢ï¼§åˆæœŸåŒ–ï¼†çµ‚äº†
 //
 //----------------------------------
 static void OpDemo2DBgSet( OPENING_DEMO_WORK* wk )
 {
-	//BGƒ‰ƒCƒuƒ‰ƒŠ—pƒƒ‚ƒŠŠm•Û
+	//BGãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 
-	{	// BGƒVƒXƒeƒ€İ’è
+	{	// BGã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS,GX_BGMODE_0,GX_BGMODE_0,GX_BG0_AS_2D
 		};	
@@ -452,52 +452,52 @@ static void OpDemo2DBgSet( OPENING_DEMO_WORK* wk )
 	}
 
 	
-	{	// ƒRƒs[ƒ‰ƒCƒg ‚a‚fİ’è(ƒƒCƒ“1)
+	{	// ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆ ï¼¢ï¼§è¨­å®š(ãƒ¡ã‚¤ãƒ³1)
 		GF_BGL_BGCNT_HEADER CopyLight_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000,
-			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB0
+			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£0
 		};
 		GF_BGL_BGControlSet( wk->bgl, COPY_LIGHT_FRAME, &CopyLight_Data, GF_BGL_MODE_TEXT );
 	}
 
-	{	// ƒQ[ƒtƒŠƒƒS ‚a‚fİ’è(ƒƒCƒ“2)
+	{	// ã‚²ãƒ¼ãƒ•ãƒªãƒ­ã‚´ ï¼¢ï¼§è¨­å®š(ãƒ¡ã‚¤ãƒ³2)
 		GF_BGL_BGCNT_HEADER GF_Logo_m_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x08000,
-			GX_BG_EXTPLTT_01, 1, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB1
+			GX_BG_EXTPLTT_01, 1, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£1
 		};
 		GF_BGL_BGControlSet( wk->bgl, GAME_FREAK_LOGO_M_FRAME, &GF_Logo_m_Data, GF_BGL_MODE_TEXT );
 	}
 
-	{	// ƒx[ƒX”wŒi ‚a‚fİ’è(ƒƒCƒ“3)
+	{	// ãƒ™ãƒ¼ã‚¹èƒŒæ™¯ ï¼¢ï¼§è¨­å®š(ãƒ¡ã‚¤ãƒ³3)
 		GF_BGL_BGCNT_HEADER GF_Back_m_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x08000,
-			GX_BG_EXTPLTT_01, 2, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB2
+			GX_BG_EXTPLTT_01, 2, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£2
 		};
 		GF_BGL_BGControlSet( wk->bgl, BACK_BASE_M_FRAME, &GF_Back_m_Data, GF_BGL_MODE_TEXT );
 	}
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
-// –k•Ä”Å‚Å‚Í ESRB Notice ‚ğ‰º‰æ–Ê‚É’Ç‰Á
+// åŒ—ç±³ç‰ˆã§ã¯ ESRB Notice ã‚’ä¸‹ç”»é¢ã«è¿½åŠ 
 
 #if PM_LANG == LANG_ENGLISH
-	{	// ƒRƒs[ƒ‰ƒCƒg ‚a‚fİ’è(ƒTƒu1)
+	{	// ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆ ï¼¢ï¼§è¨­å®š(ã‚µãƒ–1)
 		GF_BGL_BGCNT_HEADER EsrbNotice_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x08000,
-			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB0
+			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£0
 		};
 		GF_BGL_BGControlSet( wk->bgl, ESRB_NOTICE_FRAME, &EsrbNotice_Data, GF_BGL_MODE_TEXT );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2007/02/10
-// ‘ÌŒ±”Å‚Å‚Í ESRB Notice ‚ğ•\¦‚µ‚È‚¢‚æ‚¤‚É•ÏX
+// ä½“é¨“ç‰ˆã§ã¯ ESRB Notice ã‚’è¡¨ç¤ºã—ãªã„ã‚ˆã†ã«å¤‰æ›´
 #ifdef PG5_TRIAL
 			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 #endif
@@ -507,112 +507,112 @@ static void OpDemo2DBgSet( OPENING_DEMO_WORK* wk )
 
 // ----------------------------------------------------------------------------
 
-	{	// ƒQ[ƒtƒŠƒƒS ‚a‚fİ’è(ƒTƒu2)
+	{	// ã‚²ãƒ¼ãƒ•ãƒªãƒ­ã‚´ ï¼¢ï¼§è¨­å®š(ã‚µãƒ–2)
 		GF_BGL_BGCNT_HEADER GF_Logo_s_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000,
-			GX_BG_EXTPLTT_01, 1, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB1
+			GX_BG_EXTPLTT_01, 1, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£1
 		};
 		GF_BGL_BGControlSet( wk->bgl, GAME_FREAK_LOGO_S_FRAME, &GF_Logo_s_Data, GF_BGL_MODE_TEXT );
 	}
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
-// –k•Ä”Å‚Å‚Í ESRB Notice ‚ğ‰º‰æ–Ê‚É’Ç‰Á
-	{	// ƒx[ƒX”wŒi ‚a‚fİ’è(ƒTƒu3)
+// åŒ—ç±³ç‰ˆã§ã¯ ESRB Notice ã‚’ä¸‹ç”»é¢ã«è¿½åŠ 
+	{	// ãƒ™ãƒ¼ã‚¹èƒŒæ™¯ ï¼¢ï¼§è¨­å®š(ã‚µãƒ–3)
 		GF_BGL_BGCNT_HEADER GF_Back_s_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x04000,
-			GX_BG_EXTPLTT_01, 2, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB2
+			GX_BG_EXTPLTT_01, 2, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£2
 		};
 		GF_BGL_BGControlSet( wk->bgl, BACK_BASE_S_FRAME, &GF_Back_s_Data, GF_BGL_MODE_TEXT );
 	}
 // ----------------------------------------------------------------------------
 
 
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0x0000 );	//”wŒiF‰Šú‰»iƒƒCƒ“‰æ–Êj
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//”wŒiF‰Šú‰»iƒTƒu‰æ–Êj
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‰
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆã‚µãƒ–ç”»é¢ï¼‰
 }
 
 //----------------------------------
 //
-//	‚Q‚c‚a‚f‰Šú‰»•I—¹
+//	ï¼’ï¼¤ï¼¢ï¼§åˆæœŸåŒ–ï¼†çµ‚äº†
 //
 //----------------------------------
 static void OpDemo_Scene2_2DBgSet( OPENING_DEMO_WORK* wk )
 {
-	//BGƒ‰ƒCƒuƒ‰ƒŠ—pƒƒ‚ƒŠŠm•Û
+	//BGãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 
-	{	// BGƒVƒXƒeƒ€İ’è
+	{	// BGã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS,GX_BGMODE_0,GX_BGMODE_0,GX_BG0_AS_3D
 		};	
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	{	// ŠX ‚a‚fİ’è(ƒƒCƒ“1)	–Ø˜R‚ê“ú
+	{	// è¡— ï¼¢ï¼§è¨­å®š(ãƒ¡ã‚¤ãƒ³1)	æœ¨æ¼ã‚Œæ—¥
 		GF_BGL_BGCNT_HEADER Town_Data = {
 			0, 0, 0, 0,
 			GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x10000,
-			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 		};
 		GF_BGL_BGControlSet( wk->bgl, TOWN_FRAME, &Town_Data, GF_BGL_MODE_TEXT );
 	}
 
-	{	// ‹ó ‚a‚fİ’è(ƒƒCƒ“2)	GFƒƒS
+	{	// ç©º ï¼¢ï¼§è¨­å®š(ãƒ¡ã‚¤ãƒ³2)	GFãƒ­ã‚´
 		GF_BGL_BGCNT_HEADER Sky_Data = {
 			0, 0, 0, 0,
 			GF_BGL_SCRSIZ_256x512, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0x4000, GX_BG_CHARBASE_0x18000,
-			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 		};
 		GF_BGL_BGControlSet( wk->bgl, SKY_FRAME, &Sky_Data, GF_BGL_MODE_TEXT );
 	}
 
-	{	// ‚a‚fİ’è(ƒƒCƒ“3)	GFƒƒS
+	{	// ï¼¢ï¼§è¨­å®š(ãƒ¡ã‚¤ãƒ³3)	GFãƒ­ã‚´
 		GF_BGL_BGCNT_HEADER bg3_Data = {
 			0, 0, 0, 0,
 			GF_BGL_SCRSIZ_256x512, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x08000,
-			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 		};
 		GF_BGL_BGControlSet( wk->bgl, MAIN_BG3_FRAME, &bg3_Data, GF_BGL_MODE_TEXT );
 	}
 
-	//ƒTƒu–Ê
-	{	// ƒQ[ƒtƒŠƒƒS ‚a‚fİ’è(ƒTƒu0)
+	//ã‚µãƒ–é¢
+	{	// ã‚²ãƒ¼ãƒ•ãƒªãƒ­ã‚´ ï¼¢ï¼§è¨­å®š(ã‚µãƒ–0)
 		GF_BGL_BGCNT_HEADER GF_Logo_Data = {
 			0, 0, 0x1000, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0x6000, GX_BG_CHARBASE_0x14000,
-			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB0
+			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£0
 		};
 		GF_BGL_BGControlSet( wk->bgl, WB_TITLE_FRAME, &GF_Logo_Data, GF_BGL_MODE_TEXT );
 	}
 	
-	{	//ƒTƒu–Êc‚è
+	{	//ã‚µãƒ–é¢æ®‹ã‚Š
 		GF_BGL_BGCNT_HEADER SubBg_Data[] = {
 			{
 				0, 0, 0, 0,
 				GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x08000,
-				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 			},
 			{
 				0, 0, 0, 0,
 				GF_BGL_SCRSIZ_256x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x0c000,
-				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 			},
 			{
 				0, 0, 0, 0,
 				GF_BGL_SCRSIZ_256x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x4000, GX_BG_CHARBASE_0x10000,
-				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 			},
 		};
 		GF_BGL_BGControlSet( wk->bgl, SUB_BG1_FRAME, &SubBg_Data[0], GF_BGL_MODE_TEXT );
@@ -620,67 +620,67 @@ static void OpDemo_Scene2_2DBgSet( OPENING_DEMO_WORK* wk )
 		GF_BGL_BGControlSet( wk->bgl, SUB_BG3_FRAME, &SubBg_Data[2], GF_BGL_MODE_TEXT );
 	}
 
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME1_M, 0x0000 );	//”wŒiF‰Šú‰»iƒƒCƒ“‰æ–Êj
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//”wŒiF‰Šú‰»iƒTƒu‰æ–Êj
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME1_M, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‰
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆã‚µãƒ–ç”»é¢ï¼‰
 }
 
 //--------------------------------------------------------------
-//	ƒ|ƒPƒ‚ƒ“BG“WŠJ‚Ìˆ×‚ÌBG\¬İ’è
+//	ãƒã‚±ãƒ¢ãƒ³BGå±•é–‹ã®ç‚ºã®BGæ§‹æˆè¨­å®š
 //--------------------------------------------------------------
 static void OpDemo_Scene2_2DBgSet_PokeBG( OPENING_DEMO_WORK* wk )
 {
-	Scene2_Load2D_BG_Exit(wk, FALSE);	//ˆê’UBG\¬‚ğ”jŠü
+	Scene2_Load2D_BG_Exit(wk, FALSE);	//ä¸€æ—¦BGæ§‹æˆã‚’ç ´æ£„
 
-	{	// ‚a‚fİ’è(ƒƒCƒ“3)
+	{	// ï¼¢ï¼§è¨­å®š(ãƒ¡ã‚¤ãƒ³3)
 		GF_BGL_BGCNT_HEADER bg3_Data = {
 			0, 0, 0, 0,
 			GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x08000,
-			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 		};
 		GF_BGL_BGControlSet( wk->bgl, MAIN_BG3_FRAME, &bg3_Data, GF_BGL_MODE_TEXT );
 	}
 
-	{	// ŠX ‚a‚fİ’è(ƒƒCƒ“1)
+	{	// è¡— ï¼¢ï¼§è¨­å®š(ãƒ¡ã‚¤ãƒ³1)
 		GF_BGL_BGCNT_HEADER Town_Data = {
 			0, 0, 0, 0,
 			GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x0c000,
-			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 		};
 		GF_BGL_BGControlSet( wk->bgl, TOWN_FRAME, &Town_Data, GF_BGL_MODE_TEXT );
 	}
 
-	{	// ‹ó ‚a‚fİ’è(ƒƒCƒ“2)
+	{	// ç©º ï¼¢ï¼§è¨­å®š(ãƒ¡ã‚¤ãƒ³2)
 		GF_BGL_BGCNT_HEADER Sky_Data = {
 			0, 0, 0, 0,
 			GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x4000, GX_BG_CHARBASE_0x10000,
-			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+			GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 		};
 		GF_BGL_BGControlSet( wk->bgl, SKY_FRAME, &Sky_Data, GF_BGL_MODE_TEXT );
 	}
 
-	//ƒTƒu–Ê
-	{	//ƒTƒu–Êc‚è
+	//ã‚µãƒ–é¢
+	{	//ã‚µãƒ–é¢æ®‹ã‚Š
 		GF_BGL_BGCNT_HEADER SubBg_Data[] = {
 			{
 				0, 0, 0, 0,
 				GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x08000,
-				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 			},
 			{
 				0, 0, 0, 0,
 				GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x0c000,
-				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 			},
 			{
 				0, 0, 0, 0,
 				GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x4000, GX_BG_CHARBASE_0x10000,
-				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB3
+				GX_BG_EXTPLTT_01, 3, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£3
 			},
 		};
 		GF_BGL_BGControlSet( wk->bgl, SUB_BG1_FRAME, &SubBg_Data[0], GF_BGL_MODE_TEXT );
@@ -688,48 +688,48 @@ static void OpDemo_Scene2_2DBgSet_PokeBG( OPENING_DEMO_WORK* wk )
 		GF_BGL_BGControlSet( wk->bgl, SUB_BG3_FRAME, &SubBg_Data[2], GF_BGL_MODE_TEXT );
 	}
 
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME1_M, 0x0000 );	//”wŒiF‰Šú‰»iƒƒCƒ“‰æ–Êj
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//”wŒiF‰Šú‰»iƒTƒu‰æ–Êj
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME1_M, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‰
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆã‚µãƒ–ç”»é¢ï¼‰
 
-	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );	//GFƒƒSOFF
+	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );	//GFãƒ­ã‚´OFF
 
 	wk->SceneWork2.bg_trans_status = SCENE2_BG_TRANS_STATUS_POKE;
 }
 
 //--------------------------------------------------------------
-//	—‹BG“WŠJ‚Ìˆ×‚ÌBG\¬İ’è
+//	é›·BGå±•é–‹ã®ç‚ºã®BGæ§‹æˆè¨­å®š
 //--------------------------------------------------------------
 static void OpDemo_Scene2_2DBgSet_Thunder( OPENING_DEMO_WORK* wk )
 {
-	Scene2_Load3D_Exit(wk);		//3D”jŠü
-	//Scene2_Load2D_BG_Exit(wk, FALSE);	//ˆê’UBG\¬‚ğ”jŠü
-	OpDemo_Scene2_2DBgSet_PokeBG(wk);	//ˆê’UBG\¬‚ğ”jŠü•ƒ|ƒPƒ‚ƒ“BG\¬ó‘Ô‚É‚Í‚µ‚Ä‚¨‚­
+	Scene2_Load3D_Exit(wk);		//3Dç ´æ£„
+	//Scene2_Load2D_BG_Exit(wk, FALSE);	//ä¸€æ—¦BGæ§‹æˆã‚’ç ´æ£„
+	OpDemo_Scene2_2DBgSet_PokeBG(wk);	//ä¸€æ—¦BGæ§‹æˆã‚’ç ´æ£„ï¼†ãƒã‚±ãƒ¢ãƒ³BGæ§‹æˆçŠ¶æ…‹ã«ã¯ã—ã¦ãŠã
 	
-	//¡‚ ‚éBGL‚É’Ç‰Á‚·‚é
-	{	// BGƒVƒXƒeƒ€İ’è
+	//ä»Šã‚ã‚‹BGLã«è¿½åŠ ã™ã‚‹
+	{	// BGã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS,GX_BGMODE_0,GX_BGMODE_0,GX_BG0_AS_2D
 		};	
 		GF_BGL_InitBG( &BGsys_data );
 	}
 	
-	{	//—‹BGİ’è(ƒƒCƒ“0)
+	{	//é›·BGè¨­å®š(ãƒ¡ã‚¤ãƒ³0)
 		GF_BGL_BGCNT_HEADER bg0_Data = {
 			0, 0, 0, 0,
 			GF_BGL_SCRSIZ_256x512, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x6000, GX_BG_CHARBASE_0x14000,
-			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB0
+			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£0
 		};
 		GF_BGL_BGControlSet( wk->bgl, MAIN_BG0_FRAME, &bg0_Data, GF_BGL_MODE_TEXT );
 	}
 	
-	//ƒTƒu–Ê
-	{	// —‹ ‚a‚fİ’è(ƒTƒu0)
+	//ã‚µãƒ–é¢
+	{	// é›· ï¼¢ï¼§è¨­å®š(ã‚µãƒ–0)
 		GF_BGL_BGCNT_HEADER sub_bg0_Data = {
 			0, 0, 0, 0,
 			GF_BGL_SCRSIZ_256x512, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x6000, GX_BG_CHARBASE_0x14000,
-			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB0
+			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£0
 		};
 		GF_BGL_BGControlSet( wk->bgl, WB_TITLE_FRAME, &sub_bg0_Data, GF_BGL_MODE_TEXT );
 	}
@@ -755,37 +755,37 @@ static void OpDemo_Scene2_2DBgSet_Thunder( OPENING_DEMO_WORK* wk )
 
 //----------------------------------
 //
-//	‚Q‚c‚a‚f‰Šú‰»
+//	ï¼’ï¼¤ï¼¢ï¼§åˆæœŸåŒ–
 //
 //----------------------------------
 static void OpDemo_Scene3_2DBgSet( OPENING_DEMO_WORK* wk )
 {
-	//BGƒ‰ƒCƒuƒ‰ƒŠ—pƒƒ‚ƒŠŠm•Û
+	//BGãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 
-	{	// BGƒVƒXƒeƒ€İ’è
+	{	// BGã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS,GX_BGMODE_0,GX_BGMODE_0,GX_BG0_AS_2D
 		};	
 		GF_BGL_InitBG( &BGsys_data );
 	}
 	
-	{	// ƒeƒ“ƒKƒ“ƒUƒ“R ‚a‚fİ’è(ƒƒCƒ“2)
+	{	// ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±± ï¼¢ï¼§è¨­å®š(ãƒ¡ã‚¤ãƒ³2)
 		GF_BGL_BGCNT_HEADER Tengan_Data = {
 			0, 0, 0x1000, 0,
 			GF_BGL_SCRSIZ_256x512, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x08000,
-			GX_BG_EXTPLTT_01, 1, 0, 0, FALSE			//ƒvƒ‰ƒCƒIƒŠƒeƒB1
+			GX_BG_EXTPLTT_01, 1, 0, 0, FALSE			//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£1
 		};
 		GF_BGL_BGControlSet( wk->bgl, MT_TENGAN_FRAME, &Tengan_Data, GF_BGL_MODE_TEXT );
 	}
 
-	GF_BGL_BackGroundColorSet( MT_TENGAN_FRAME, 0x0000 );	//”wŒiF‰Šú‰»iƒƒCƒ“‰æ–Êj
+	GF_BGL_BackGroundColorSet( MT_TENGAN_FRAME, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‰
 }
 
 //----------------------------------
 //
-//	‚R‚c‰Šú‰»•I—¹
+//	ï¼“ï¼¤åˆæœŸåŒ–ï¼†çµ‚äº†
 //
 //----------------------------------
 static void OpDemo3D_Init( OPENING_DEMO_WORK* wk )
@@ -798,41 +798,41 @@ static void OpDemo3D_Init( OPENING_DEMO_WORK* wk )
 			GF_G3DMAN_LNK, GF_G3DTEX_128K, GF_G3DMAN_LNK, GF_G3DPLT_64K, SetUp3D );
 
 	
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^“]‘——Ìˆæ‚ÌVram‚ğŠm•Û•“]‘—ƒAƒhƒŒƒX‚ÆƒTƒCƒY‚ğİ’è	
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€é ˜åŸŸã®Vramã‚’ç¢ºä¿ï¼†è»¢é€ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚µã‚¤ã‚ºã‚’è¨­å®š	
 	texKey = NNS_GfdAllocTexVram(0x2000*4, FALSE, 0);
 	plttKey = NNS_GfdAllocPlttVram(0x20*4, FALSE, NNS_GFD_ALLOC_FROM_LOW);
 
 	tex_addrs = NNS_GfdGetTexKeyAddr(texKey);
 	pltt_addrs = NNS_GfdGetPlttKeyAddr(plttKey);
-	OS_TPrintf("ƒI[ƒvƒjƒ“ƒOƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒeƒNƒXƒ`ƒƒVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", tex_addrs);
-	OS_TPrintf("ƒI[ƒvƒjƒ“ƒOƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒpƒŒƒbƒgVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", pltt_addrs);
+	OS_TPrintf("ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", tex_addrs);
+	OS_TPrintf("ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆVramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", pltt_addrs);
 }
 
 static void SetUp3D(void)
 {
 	NNS_G3dGeFlushBuffer();
 	
-	// ‚R‚cg—p–Ê‚Ìİ’è(•\¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
     G2_SetBG0Priority(1);
 
-	// Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( TRUE );
 	G3X_SetEdgeColorTable(gEdgeColor);
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //----------------------------------
-//‚u‚a‚k‚`‚m‚jŠÖ”
+//ï¼¶ï¼¢ï¼¬ï¼¡ï¼®ï¼«é–¢æ•°
 //----------------------------------
 static void Scene1_VBlankFunc(void* work)
 {
@@ -840,13 +840,13 @@ static void Scene1_VBlankFunc(void* work)
 	OPENING_DEMO_WORK* wk = work;
 //	GF_BGL_VBlankFunc(wk->bgl);
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();
 
 }
 
 //----------------------------------
-//‚u‚a‚k‚`‚m‚jŠÖ”
+//ï¼¶ï¼¢ï¼¬ï¼¡ï¼®ï¼«é–¢æ•°
 //----------------------------------
 static void Scene2_VBlankFunc(void* work)
 {
@@ -855,18 +855,18 @@ static void Scene2_VBlankFunc(void* work)
 	SCENE2_WORK *scene_wk = &wk->SceneWork2;
 	
 	if(scene_wk->v_req_scene2_map_disp_change == TRUE){
-		//‚R‚c•`‰æƒXƒCƒbƒ`
+		//ï¼“ï¼¤æç”»ã‚¹ã‚¤ãƒƒãƒ
 		sys.disp3DSW = DISP_3D_TO_SUB;
 		GF_Disp_DispSelect();
 		
-		//ƒTƒu‰æ–Ê‚ÌGFƒƒS‚ğ•\¦‚µAƒƒCƒ“‰æ–Ê‚Ì‚Í”ñ•\¦‚É‚·‚é
+		//ã‚µãƒ–ç”»é¢ã®GFãƒ­ã‚´ã‚’è¡¨ç¤ºã—ã€ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã¯éè¡¨ç¤ºã«ã™ã‚‹
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 		scene_wk->v_req_scene2_map_disp_change = 0;
 
-		//ƒJƒƒ‰‚ğƒ}ƒbƒv‚É–ß‚·
+		//ã‚«ãƒ¡ãƒ©ã‚’ãƒãƒƒãƒ—ã«æˆ»ã™
 		GFC_SetCameraView(GF_CAMERA_PERSPECTIV, scene_wk->Data.CameraPtr);
 		GFC_AttachCamera(scene_wk->Data.CameraPtr);
 	}
@@ -901,7 +901,7 @@ static void Scene2_VBlankFunc(void* work)
 
 	DoVramTransferManager();
 	
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();
 
 	OPD_Poke_VBlank(wk->SceneWork2.OpSsmPtr);
@@ -910,7 +910,7 @@ static void Scene2_VBlankFunc(void* work)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒEİ’è
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
  *
  * @param	none
  *
@@ -919,7 +919,7 @@ static void Scene2_VBlankFunc(void* work)
 //--------------------------------------------------------------------------------------------
 static void Scene2_SetWindow(void)
 {
-	//ƒƒCƒ“
+	//ãƒ¡ã‚¤ãƒ³
 	GX_SetVisibleWnd( GX_WNDMASK_W0 );
 	G2_SetWnd0InsidePlane(	GX_WND_PLANEMASK_BG0|
 							GX_WND_PLANEMASK_BG1|
@@ -928,7 +928,7 @@ static void Scene2_SetWindow(void)
 							GX_WND_PLANEMASK_OBJ, 1 );
 	G2_SetWndOutsidePlane( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_OBJ, 1 );
 
-	//ƒTƒu
+	//ã‚µãƒ–
 	GXS_SetVisibleWnd( GX_WNDMASK_W0 );
 	G2S_SetWnd0InsidePlane(	GX_WND_PLANEMASK_BG0|
 							GX_WND_PLANEMASK_BG1|
@@ -945,7 +945,7 @@ static void Scene2_WindowOff(void)
 }
 
 //----------------------------------
-//‚o‚q‚n‚b‰Šú‰»
+//ï¼°ï¼²ï¼¯ï¼£åˆæœŸåŒ–
 //----------------------------------
 static PROC_RESULT OpDemo_Init(PROC * proc, int * seq)
 {
@@ -956,12 +956,12 @@ static PROC_RESULT OpDemo_Init(PROC * proc, int * seq)
 
 	BrightnessChgInit();
 	
-	//ƒ}ƒXƒ^[‹P“x‚ğ‚ ‚°‚Ä‚¨‚­
+	//ãƒã‚¹ã‚¿ãƒ¼è¼åº¦ã‚’ã‚ã’ã¦ãŠã
 	WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_WHITE );
 	WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_WHITE );
 	
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );		// HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );		// HBlankã‚»ãƒƒãƒˆ
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -981,24 +981,24 @@ static PROC_RESULT OpDemo_Init(PROC * proc, int * seq)
 #ifdef COPYRIGHT_SKIP
 	wk->SkipOK = 1;
 #else
-	//n‚ß‚ÍƒXƒLƒbƒv•s‰Â
+	//å§‹ã‚ã¯ã‚¹ã‚­ãƒƒãƒ—ä¸å¯
 	wk->SkipOK = 0;
 #endif
-	//‚R‚c•`‰æƒXƒCƒbƒ`
+	//ï¼“ï¼¤æç”»ã‚¹ã‚¤ãƒƒãƒ
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 
-	//—”‚Ìí‘Ş”ğ
+	//ä¹±æ•°ã®ç¨®é€€é¿
 	wk->RandSeed = gf_get_seed();
 	
-	//—”‰Šú‰»
+	//ä¹±æ•°åˆæœŸåŒ–
 	gf_srand(0);
 
 	return	PROC_RES_FINISH;
 }
 
 //----------------------------------
-//‚o‚q‚n‚bƒƒCƒ“
+//ï¼°ï¼²ï¼¯ï¼£ãƒ¡ã‚¤ãƒ³
 //----------------------------------
 static PROC_RESULT OpDemo_Main(PROC * proc, int * seq)
 {
@@ -1019,7 +1019,7 @@ static PROC_RESULT OpDemo_Main(PROC * proc, int * seq)
 	if ( (wk->SkipOK)&&( (sys.trg & PAD_BUTTON_A)||(sys.trg & PAD_BUTTON_START) ) )
 	{
 		wk->SkipFlg = TRUE;
-		sys.DS_Boot_Flag = FALSE;	//ƒu[ƒgƒtƒ‰ƒOƒZƒbƒg
+		sys.DS_Boot_Flag = FALSE;	//ãƒ–ãƒ¼ãƒˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 		WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_BLACK );
 		WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 	}
@@ -1031,19 +1031,19 @@ static PROC_RESULT OpDemo_Main(PROC * proc, int * seq)
 		break;
 	case 1:	
 		if ( GemeFreakLogoScene(wk) ){
-			//Ÿ‚ÌƒV[ƒPƒ“ƒX
+			//æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 			(*seq)++;
 		}
 		break;
 	case 2:
 		if ( Title_3D_BattleScene(wk) ){
-			//Ÿ‚ÌƒV[ƒPƒ“ƒX
+			//æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 			(*seq)++;
 		}
 		break;
 	case 3:
 		if ( MtTenganScene(wk) ){
-			//Ÿ‚ÌƒV[ƒPƒ“ƒX
+			//æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 			(*seq)++;
 		}
 		break;
@@ -1058,7 +1058,7 @@ static PROC_RESULT OpDemo_Main(PROC * proc, int * seq)
 	}
 
 	if (wk->SkipFlg){
-		OS_Printf("ƒXƒLƒbƒv‚É‚æ‚èAƒƒCƒ“ƒvƒƒZƒXI—¹\n");
+		OS_Printf("ã‚¹ã‚­ãƒƒãƒ—ã«ã‚ˆã‚Šã€ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†\n");
 		return	PROC_RES_FINISH;
 	}
 
@@ -1070,15 +1070,15 @@ static PROC_RESULT OpDemo_Main(PROC * proc, int * seq)
 static PROC_RESULT OpDemo_Exit(PROC * proc, int * seq)
 {
 	OPENING_DEMO_WORK * wk = PROC_GetWork( proc );
-	//ƒƒCƒv‚Ì‹­§I—¹
+	//ãƒ¯ã‚¤ãƒ—ã®å¼·åˆ¶çµ‚äº†
 	if(WIPE_SYS_EndCheck() == FALSE){
 		WIPE_SYS_ExeEnd();
 	}
 
-	//—”‚Ìí•œ‹A
+	//ä¹±æ•°ã®ç¨®å¾©å¸°
 	gf_srand(wk->RandSeed);
 	
-	PROC_FreeWork( proc );				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	sys_DeleteHeap( HEAPID_OP_DEMO );
 	
 	Main_SetNextProc( FS_OVERLAY_ID(title), &TitleProcData);
@@ -1095,25 +1095,25 @@ static void TCB_BlendOutCopyLight( TCB_PTR tcb, void* work );
 static void TCB_BlendInGFLogoM( TCB_PTR tcb, void* work );
 static void TCB_BlendInGFLogoS( TCB_PTR tcb, void* work );
 
-//ƒRƒs[ƒ‰ƒCƒgEƒQ[ƒtƒŠƒƒS‚Ì•\¦ƒV[ƒ“
+//ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆãƒ»ã‚²ãƒ¼ãƒ•ãƒªãƒ­ã‚´ã®è¡¨ç¤ºã‚·ãƒ¼ãƒ³
 static BOOL GemeFreakLogoScene(OPENING_DEMO_WORK * wk)
 {
 	u8 *seq = &(wk->SceneWork1.Seq);
 	
 	if (wk->SkipFlg){
-		(*seq) = 3;		//ƒXƒLƒbƒvÀs
+		(*seq) = 3;		//ã‚¹ã‚­ãƒƒãƒ—å®Ÿè¡Œ
 	}
 	
 	switch(*seq){
-	case 0:		//‰Šú‰»
+	case 0:		//åˆæœŸåŒ–
 		Scene1_Init(wk);
 		(*seq)++;
 		break;
-	case 1:			//ƒOƒ‰ƒtƒBƒbƒNƒ[ƒh
+	case 1:			//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰
 		Scene1_Load(&wk->SceneWork1);
 		(*seq)++;
 		break;
-	case 2:			//ƒƒCƒ“
+	case 2:			//ãƒ¡ã‚¤ãƒ³
 	#ifdef DEBUG_MATSUDA_LOGO_SKIP
 		wk->FrameCounter = FM_TITLE_LOGO_IN - 10;
 		(*seq)++;
@@ -1124,7 +1124,7 @@ static BOOL GemeFreakLogoScene(OPENING_DEMO_WORK * wk)
 			(*seq)++;
 		}
 		break;
-	case 3:			//I—¹
+	case 3:			//çµ‚äº†
 		Scene1_End(wk);
 		
 		return TRUE;
@@ -1141,41 +1141,41 @@ static void Scene1_Init(OPENING_DEMO_WORK * wk)
 
 	sys_VBlankFuncChange(Scene1_VBlankFunc,(void*)wk);
 
-	wk->SceneWork1.InitOK = 1;	//init’Ê‰ß
+	wk->SceneWork1.InitOK = 1;	//inité€šé
 }
 
 static void Scene1_Load(SCENE1_WORK *scene_wk)
 {
-	//--ƒQ[ƒtƒŠƒƒSƒf[ƒ^ƒ[ƒh
-	//ƒLƒƒƒ‰(‚Pƒtƒ@ƒCƒ‹‚É‚È‚Á‚Ä‚é‚Ì‚Å“ñ–Ê‚É‘—‚éB•ª‚¯‚Ä‚à‚ç‚Á‚½‚Ù‚¤‚ª‚¢‚¢‚©‚à)
+	//--ã‚²ãƒ¼ãƒ•ãƒªãƒ­ã‚´ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
+	//ã‚­ãƒ£ãƒ©(ï¼‘ãƒ•ã‚¡ã‚¤ãƒ«ã«ãªã£ã¦ã‚‹ã®ã§äºŒé¢ã«é€ã‚‹ã€‚åˆ†ã‘ã¦ã‚‚ã‚‰ã£ãŸã»ã†ãŒã„ã„ã‹ã‚‚)
 	ArcUtil_BgCharSet(ARC_OP_DEMO, NARC_op_demo_op_demoBG0_logo_NCGR,
 						scene_wk->bgl, GAME_FREAK_LOGO_M_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	ArcUtil_BgCharSet(ARC_OP_DEMO, NARC_op_demo_op_demoBG0_logo_NCGR,
 						scene_wk->bgl, GAME_FREAK_LOGO_S_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);	
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_ScrnSet(ARC_OP_DEMO, NARC_op_demo_op_demoBG0_logo_m_NSCR,
 						scene_wk->bgl, GAME_FREAK_LOGO_M_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	ArcUtil_ScrnSet(ARC_OP_DEMO, NARC_op_demo_op_demoBG0_logo_s_NSCR,
 						scene_wk->bgl, GAME_FREAK_LOGO_S_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	ArcUtil_PalSet( ARC_OP_DEMO, NARC_op_demo_op_demoBG0_NCLR,
 						PALTYPE_MAIN_BG, 0, 0, HEAPID_OP_DEMO );
 	ArcUtil_PalSet( ARC_OP_DEMO, NARC_op_demo_op_demoBG0_NCLR,
 						PALTYPE_SUB_BG, 0, 0, HEAPID_OP_DEMO );
 	
-	//--ƒRƒs[ƒ‰ƒCƒgƒf[ƒ^ƒ[ƒh
-	//ƒLƒƒƒ‰
+	//--ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
+	//ã‚­ãƒ£ãƒ©
 	ArcUtil_BgCharSet(ARC_TITLE_PL, NARC_titledemo_cp_light_NCGR,
 						scene_wk->bgl, COPY_LIGHT_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_ScrnSet(ARC_TITLE_PL, NARC_titledemo_cp_light_NSCR,
 						scene_wk->bgl, COPY_LIGHT_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	ArcUtil_PalSet( ARC_TITLE_PL, NARC_titledemo_cp_light_NCLR,
-						PALTYPE_MAIN_BG, 0, PAL_ONE_SIZE*16*1, HEAPID_OP_DEMO );	//‚O”Ô‚É‚P‚UFƒ[ƒh
+						PALTYPE_MAIN_BG, 0, PAL_ONE_SIZE*16*1, HEAPID_OP_DEMO );	//ï¼ç•ªã«ï¼‘ï¼–è‰²ãƒ­ãƒ¼ãƒ‰
 	
-	//--ƒx[ƒX”wŒiƒ[ƒh
-	//ƒXƒNƒŠ[ƒ“
+	//--ãƒ™ãƒ¼ã‚¹èƒŒæ™¯ãƒ­ãƒ¼ãƒ‰
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_ScrnSet(ARC_OP_DEMO, NARC_op_demo_op_demoBG0_logo_back_NSCR,
 						scene_wk->bgl, BACK_BASE_M_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	ArcUtil_ScrnSet(ARC_OP_DEMO, NARC_op_demo_op_demoBG0_logo_back_NSCR,
@@ -1183,40 +1183,40 @@ static void Scene1_Load(SCENE1_WORK *scene_wk)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
-// –k•Ä”Å‚Å‚Í ESRB Notice ‚ğ‰º‰æ–Ê‚É’Ç‰Á
+// åŒ—ç±³ç‰ˆã§ã¯ ESRB Notice ã‚’ä¸‹ç”»é¢ã«è¿½åŠ 
 
 #if PM_LANG == LANG_ENGLISH
-	//--ƒRƒs[ƒ‰ƒCƒgƒf[ƒ^ƒ[ƒh
-	//ƒLƒƒƒ‰
+	//--ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
+	//ã‚­ãƒ£ãƒ©
 	ArcUtil_BgCharSet(ARC_OP_DEMO, NARC_op_demo_esrb_notice_NCGR,
 						scene_wk->bgl, ESRB_NOTICE_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_ScrnSet(ARC_OP_DEMO, NARC_op_demo_esrb_notice_NSCR,
 						scene_wk->bgl, ESRB_NOTICE_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	ArcUtil_PalSet( ARC_OP_DEMO, NARC_op_demo_esrb_notice_NCLR,
-						PALTYPE_SUB_BG, 0, PAL_ONE_SIZE*16*1, HEAPID_OP_DEMO );	//‚O”Ô‚É‚P‚UFƒ[ƒh
+						PALTYPE_SUB_BG, 0, PAL_ONE_SIZE*16*1, HEAPID_OP_DEMO );	//ï¼ç•ªã«ï¼‘ï¼–è‰²ãƒ­ãƒ¼ãƒ‰
 #endif
 
 // ----------------------------------------------------------------------------
 
 
-	//--‰Šú‚a‚fİ’è
-	//BG0Eã‰º‰æ–ÊƒQ[ƒtƒŠƒƒS”ñ•\¦
+	//--åˆæœŸï¼¢ï¼§è¨­å®š
+	//BG0ãƒ»ä¸Šä¸‹ç”»é¢ã‚²ãƒ¼ãƒ•ãƒªãƒ­ã‚´éè¡¨ç¤º
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
-	//ƒx[ƒX”wŒi‚ÆƒRƒs[ƒ‰ƒCƒg‚ğƒuƒŒƒ“ƒh
+	//ãƒ™ãƒ¼ã‚¹èƒŒæ™¯ã¨ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰
 	G2_SetBlendAlpha( BLD_MASK_COPY_LIGHT, BLD_MASK_BACK_BASE_M, 0, 16);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
-// –k•Ä”Å‚Å‚Í ESRB Notice ‚ğ‰º‰æ–Ê‚É’Ç‰Á
+// åŒ—ç±³ç‰ˆã§ã¯ ESRB Notice ã‚’ä¸‹ç”»é¢ã«è¿½åŠ 
 #if PM_LANG == LANG_ENGLISH
 	G2S_SetBlendAlpha( BLD_MASK_ESRB_NOTICE, BLD_MASK_BACK_BASE_S, 0, 16);
 #endif
 // ----------------------------------------------------------------------------
 
-	OS_WaitIrq(TRUE, OS_IE_V_BLANK); 	// ‚uƒuƒ‰ƒ“ƒN‘Ò‚¿
-	//ƒ}ƒXƒ^[‹P“x‚ğ–ß‚·
+	OS_WaitIrq(TRUE, OS_IE_V_BLANK); 	// ï¼¶ãƒ–ãƒ©ãƒ³ã‚¯å¾…ã¡
+	//ãƒã‚¹ã‚¿ãƒ¼è¼åº¦ã‚’æˆ»ã™
 	WIPE_ResetBrightness( WIPE_DISP_MAIN );
 	WIPE_ResetBrightness( WIPE_DISP_SUB );
 
@@ -1230,16 +1230,16 @@ static BOOL Scene1_Main(SCENE1_WORK *scene_wk, const int inCounter)
 	KiraGenerateMain(scene_wk->KiraGeneMngPtr, inCounter);
 	
 	switch(*seq){
-	case 0:	//ƒRƒs[ƒ‰ƒCƒgƒuƒŒƒ“ƒhƒCƒ“
+	case 0:	//ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¤ãƒ³
 		scene_wk->Counter = 0;
 		scene_wk->Alpha = 0;
 		scene_wk->BlendEnd = 0;
 		scene_wk->BlendTcb = TCB_Add( TCB_BlendInCopyLight, scene_wk, 0 );
-		//‚a‚f‚lŠJn
+		//ï¼¢ï¼§ï¼­é–‹å§‹
 		Snd_DataSetByScene( SND_SCENE_TITLE, SEQ_TITLE00, 1 );
 		(*seq)++;
 		break;
-	case 1:	//‚æ‚«‚Æ‚±‚ë‚ÅƒRƒs[ƒ‰ƒCƒgƒuƒŒƒ“ƒhƒAƒEƒg
+	case 1:	//ã‚ˆãã¨ã“ã‚ã§ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¢ã‚¦ãƒˆ
 		if ( (scene_wk->BlendEnd)&&(inCounter >= FM_COPY_LIGHT_OUT) ){
 			scene_wk->Counter = 0;
 			scene_wk->Alpha = 16;
@@ -1248,21 +1248,21 @@ static BOOL Scene1_Main(SCENE1_WORK *scene_wk, const int inCounter)
 			(*seq)++;
 		}
 		break;
-	case 2:	//ƒQ[ƒtƒŠƒƒSƒuƒŒƒ“ƒhƒCƒ“
+	case 2:	//ã‚²ãƒ¼ãƒ•ãƒªãƒ­ã‚´ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¤ãƒ³
 		if ( (scene_wk->BlendEnd)&&(inCounter>=FM_FG_LOGO_IN) ){
-			//ƒRƒs[ƒ‰ƒCƒg–Ê”ñ•\¦
+			//ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆé¢éè¡¨ç¤º
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2007/02/10
-// ESRB Notice ‚ğÁ‹
+// ESRB Notice ã‚’æ¶ˆå»
 #if PM_LANG == LANG_ENGLISH
 			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 #endif
 // ----------------------------------------------------------------------------
-			//ƒuƒŒƒ“ƒh‰Šúİ’è
+			//ãƒ–ãƒ¬ãƒ³ãƒ‰åˆæœŸè¨­å®š
 			G2_SetBlendAlpha( BLD_MASK_GF_LOGO_M, BLD_MASK_BACK_BASE_M, 0, 16);
 			G2S_SetBlendAlpha( BLD_MASK_GF_LOGO_S, BLD_MASK_BACK_BASE_S, 0, 16);
-			//ƒQ[ƒtƒŠƒƒS–Ê•\¦
+			//ã‚²ãƒ¼ãƒ•ãƒªãƒ­ã‚´é¢è¡¨ç¤º
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 			
@@ -1273,7 +1273,7 @@ static BOOL Scene1_Main(SCENE1_WORK *scene_wk, const int inCounter)
 			(*seq)++;
 		}
 		break;
-	case 3:	//‰ºê–ÊƒuƒŒƒ“ƒhƒCƒ“
+	case 3:	//ä¸‹å ´é¢ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¤ãƒ³
 		if ( (scene_wk->BlendEnd) ){
 			scene_wk->Counter = 0;
 			scene_wk->Alpha = 0;
@@ -1282,9 +1282,9 @@ static BOOL Scene1_Main(SCENE1_WORK *scene_wk, const int inCounter)
 			(*seq)++;
 		}
 		break;
-	case 4:	//‰º‰æ–Êã‰æ–Ê‚Ì‡‚Å‘S•”ƒuƒ‰ƒbƒNƒAƒEƒg
+	case 4:	//ä¸‹ç”»é¢ä¸Šç”»é¢ã®é †ã§å…¨éƒ¨ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 		if ( (scene_wk->BlendEnd)&&(inCounter>=FM_GF_LOGO_OUT) ){
-			//ƒƒCƒvƒXƒ^[ƒg	ƒzƒƒCƒgƒCƒ“
+			//ãƒ¯ã‚¤ãƒ—ã‚¹ã‚¿ãƒ¼ãƒˆ	ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
 			WIPE_SYS_Start(	WIPE_PATTERN_FSAM, WIPE_TYPE_FADEOUT,
 							WIPE_TYPE_FADEOUT,0x0000,OPDEMO_BRIGHTNESS_SYNC,1,HEAPID_OP_DEMO );
 			(*seq)++;
@@ -1300,12 +1300,12 @@ static BOOL Scene1_Main(SCENE1_WORK *scene_wk, const int inCounter)
 
 static void Scene1_End(OPENING_DEMO_WORK * wk)
 {
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
 	
 	if (wk->SceneWork1.InitOK){
-		//ƒWƒFƒlƒŒ[ƒ^[‰ğ•ú
+		//ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼è§£æ”¾
 		OPDKira_FreeGeneMng(wk->SceneWork1.KiraGeneMngPtr);
-		//‚a‚f‚k‰ğ•ú
+		//ï¼¢ï¼§ï¼¬è§£æ”¾
 		GF_BGL_BGControlExit( wk->bgl, COPY_LIGHT_FRAME );
 		GF_BGL_BGControlExit( wk->bgl, GAME_FREAK_LOGO_M_FRAME );
 		GF_BGL_BGControlExit( wk->bgl, GAME_FREAK_LOGO_S_FRAME );
@@ -1313,7 +1313,7 @@ static void Scene1_End(OPENING_DEMO_WORK * wk)
 		GF_BGL_BGControlExit( wk->bgl, BACK_BASE_S_FRAME );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
-// –k•Ä”Å‚Å‚Í ESRB Notice ‚ğ‰º‰æ–Ê‚É’Ç‰Á
+// åŒ—ç±³ç‰ˆã§ã¯ ESRB Notice ã‚’ä¸‹ç”»é¢ã«è¿½åŠ 
 #if PM_LANG == LANG_ENGLISH
 		GF_BGL_BGControlExit( wk->bgl, ESRB_NOTICE_FRAME );
 #endif
@@ -1322,16 +1322,16 @@ static void Scene1_End(OPENING_DEMO_WORK * wk)
 		wk->SceneWork1.InitOK = 0;
 	}
 
-	//ƒ^ƒXƒN‚ª“®‚¢‚Ä‚¢‚é‚È‚ç‚ÎI—¹
+	//ã‚¿ã‚¹ã‚¯ãŒå‹•ã„ã¦ã„ã‚‹ãªã‚‰ã°çµ‚äº†
 	if (wk->SceneWork1.BlendTcb != NULL){
 		GF_ASSERT(wk->SkipFlg);
-		OS_Printf("ƒXƒLƒbƒv‚É‚æ‚èATCB‚ğŠO‚©‚ç‰ğ•ú‚µ‚Ü‚µ‚½\n");
+		OS_Printf("ã‚¹ã‚­ãƒƒãƒ—ã«ã‚ˆã‚Šã€TCBã‚’å¤–ã‹ã‚‰è§£æ”¾ã—ã¾ã—ãŸ\n");
 		TCB_Delete(wk->SceneWork1.BlendTcb);
 		wk->SceneWork1.BlendTcb = NULL;
 	}
 }
 
-//ƒRƒs[ƒ‰ƒCƒhƒuƒŒƒ“ƒhƒCƒ“‚s‚b‚a
+//ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒ‰ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¤ãƒ³ï¼´ï¼£ï¼¢
 static void TCB_BlendInCopyLight( TCB_PTR tcb, void* work )
 {
 	SCENE1_WORK *s_work = work;
@@ -1351,14 +1351,14 @@ static void TCB_BlendInCopyLight( TCB_PTR tcb, void* work )
 	G2_SetBlendAlpha( BLD_MASK_COPY_LIGHT, BLD_MASK_BACK_BASE_M, s_work->Alpha, 16);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
-// –k•Ä”Å‚Å‚Í ESRB Notice ‚ğ‰º‰æ–Ê‚É’Ç‰Á
+// åŒ—ç±³ç‰ˆã§ã¯ ESRB Notice ã‚’ä¸‹ç”»é¢ã«è¿½åŠ 
 #if PM_LANG == LANG_ENGLISH
 	G2S_SetBlendAlpha( BLD_MASK_ESRB_NOTICE, BLD_MASK_BACK_BASE_S, s_work->Alpha, 16);
 #endif
 // ----------------------------------------------------------------------------
 }
 
-//ƒRƒs[ƒ‰ƒCƒhƒuƒŒƒ“ƒhƒAƒEƒg‚s‚b‚a
+//ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒ‰ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¢ã‚¦ãƒˆï¼´ï¼£ï¼¢
 static void TCB_BlendOutCopyLight( TCB_PTR tcb, void* work )
 {
 	SCENE1_WORK *s_work = work;
@@ -1373,20 +1373,20 @@ static void TCB_BlendOutCopyLight( TCB_PTR tcb, void* work )
 		TCB_Delete(tcb);
 		s_work->BlendTcb = NULL;
 		s_work->BlendEnd = 1;
-		*(s_work->SkipOKPtr) = 1;	//ƒXƒLƒbƒv‹–‰Â
+		*(s_work->SkipOKPtr) = 1;	//ã‚¹ã‚­ãƒƒãƒ—è¨±å¯
 	}
 
 	G2_SetBlendAlpha( BLD_MASK_COPY_LIGHT, BLD_MASK_BACK_BASE_M, s_work->Alpha, 16);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
-// –k•Ä”Å‚Å‚Í ESRB Notice ‚ğ‰º‰æ–Ê‚É’Ç‰Á
+// åŒ—ç±³ç‰ˆã§ã¯ ESRB Notice ã‚’ä¸‹ç”»é¢ã«è¿½åŠ 
 #if PM_LANG == LANG_ENGLISH
 	G2S_SetBlendAlpha( BLD_MASK_ESRB_NOTICE, BLD_MASK_BACK_BASE_S, s_work->Alpha, 16);
 #endif
 // ----------------------------------------------------------------------------
 }
 
-//ƒƒCƒ“‰æ–Ê‚f‚eƒƒSƒuƒŒƒ“ƒhƒCƒ“‚s‚b‚a
+//ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼§ï¼¦ãƒ­ã‚´ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¤ãƒ³ï¼´ï¼£ï¼¢
 static void TCB_BlendInGFLogoM( TCB_PTR tcb, void* work )
 {
 	SCENE1_WORK *s_work = work;
@@ -1406,7 +1406,7 @@ static void TCB_BlendInGFLogoM( TCB_PTR tcb, void* work )
 	G2_SetBlendAlpha( BLD_MASK_GF_LOGO_M, BLD_MASK_BACK_BASE_M, s_work->Alpha, 16);
 }
 
-//ƒTƒu‰æ–Ê‚f‚eƒƒSƒuƒŒƒ“ƒhƒCƒ“‚s‚b‚a
+//ã‚µãƒ–ç”»é¢ï¼§ï¼¦ãƒ­ã‚´ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¤ãƒ³ï¼´ï¼£ï¼¢
 static void TCB_BlendInGFLogoS( TCB_PTR tcb, void* work )
 {
 	SCENE1_WORK *s_work = work;
@@ -1450,31 +1450,31 @@ static void Scene2_CameraMoveMain(SCENE2_WORK *scene_wk, const int inCounter);
 static void Scene2_MapChange(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, int inCounter);
 static void Scene2_End(OPENING_DEMO_WORK * wk);
 
-//ƒ^ƒCƒgƒ‹•\¦`3‚c`ƒoƒgƒ‹‚ÌƒV[ƒ“
+//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤ºã€œ3ï¼¤ã€œãƒãƒˆãƒ«ã®ã‚·ãƒ¼ãƒ³
 static BOOL Title_3D_BattleScene(OPENING_DEMO_WORK * wk)
 {
 	u8 *seq = &(wk->SceneWork2.Seq);
 
 	if (wk->SkipFlg){
-		(*seq) = 4;		//ƒXƒLƒbƒvÀs
+		(*seq) = 4;		//ã‚¹ã‚­ãƒƒãƒ—å®Ÿè¡Œ
 	}
 
 	switch(*seq){
-	case 0:		//‰Šú‰»
+	case 0:		//åˆæœŸåŒ–
 		Scene2_Init(wk);
 		(*seq)++;
 		break;
-	case 1:			//ƒOƒ‰ƒtƒBƒbƒNƒ[ƒh
+	case 1:			//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰
 		Scene2_Load(&wk->SceneWork2);
 		(*seq)++;
 		break;
 	case 2:
 		if(Scene2_Load3D_Div(&wk->SceneWork2, 0) == TRUE){
-			wk->SceneWork2.Disp3DFlg = 1;	//‹óBƒtƒ‰ƒOƒIƒ“
+			wk->SceneWork2.Disp3DFlg = 1;	//ç©ºæ’®ãƒ•ãƒ©ã‚°ã‚ªãƒ³
 			(*seq)++;
 		}
 		break;
-	case 3:			//ƒƒCƒ“
+	case 3:			//ãƒ¡ã‚¤ãƒ³
 		if ( Scene2_Main(wk, &wk->SceneWork2, wk->FrameCounter ) ){
 			(*seq)++;
 		}
@@ -1487,7 +1487,7 @@ static BOOL Title_3D_BattleScene(OPENING_DEMO_WORK * wk)
 			OPD_Poke_Main( wk->SceneWork2.OpSsmPtr );
 		}
 		break;
-	case 4:			//I—¹
+	case 4:			//çµ‚äº†
 		Scene2_End(wk);
 		return TRUE;
 	}
@@ -1518,12 +1518,12 @@ static void Scene2_Init(OPENING_DEMO_WORK * wk)
 
 	wk->SceneWork2.bgl = wk->bgl;
 
-	//‚R‚c•`‰æƒXƒCƒbƒ`	ã‚ğƒƒCƒ“‚É‚·‚é
+	//ï¼“ï¼¤æç”»ã‚¹ã‚¤ãƒƒãƒ	ä¸Šã‚’ãƒ¡ã‚¤ãƒ³ã«ã™ã‚‹
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 
 	for(i=0;i<4;i++){
-		//ƒ‰ƒCƒgƒZƒbƒg
+		//ãƒ©ã‚¤ãƒˆã‚»ãƒƒãƒˆ
 		NNS_G3dGlbLightVector(i,
 							LightVec[i].x,
 							LightVec[i].y,
@@ -1531,7 +1531,7 @@ static void Scene2_Init(OPENING_DEMO_WORK * wk)
 		NNS_G3dGlbLightColor(i, LightColor[i]);
 	}
 
-	//ƒOƒ[ƒoƒ‹ƒXƒe[ƒg‘‚«Š·‚¦
+	//ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆæ›¸ãæ›ãˆ
 	NNS_G3dGlbMaterialColorDiffAmb(
 				GX_RGB(16,16,16),
 				GX_RGB(10,12,12),
@@ -1542,9 +1542,9 @@ static void Scene2_Init(OPENING_DEMO_WORK * wk)
 				GX_RGB(14,14,14),
 				FALSE);
 	
-	// ƒ|ƒŠƒSƒ“ƒAƒgƒŠƒrƒ…[ƒg
+	// ãƒãƒªã‚´ãƒ³ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	NNS_G3dGlbPolygonAttr(
-				13,		//<ƒ‰ƒCƒg1ˆÈŠO—LŒøi1101j
+				13,		//<ãƒ©ã‚¤ãƒˆ1ä»¥å¤–æœ‰åŠ¹ï¼ˆ1101ï¼‰
 				GX_POLYGONMODE_MODULATE,
 				GX_CULL_BACK,
 				0,
@@ -1553,10 +1553,10 @@ static void Scene2_Init(OPENING_DEMO_WORK * wk)
 	
 	sys_VBlankFuncChange(Scene2_VBlankFunc,(void*)wk);
 
-	//ƒ^ƒCƒgƒ‹ƒƒS‚Ì‹P“x‚ğã‚°‚Ä‚¨‚­
+	//ã‚¿ã‚¤ãƒˆãƒ«ãƒ­ã‚´ã®è¼åº¦ã‚’ä¸Šã’ã¦ãŠã
 	SetBrightness( BRIGHTNESS_BLACK, GX_BLEND_PLANEMASK_BG3, MASK_MAIN_DISPLAY );
 	
-	wk->SceneWork2.InitOK = 1;		//init’Ê‰ß
+	wk->SceneWork2.InitOK = 1;		//inité€šé
 }
 
 static void Scene2_Load3D_Exit(OPENING_DEMO_WORK *wk)
@@ -1564,15 +1564,15 @@ static void Scene2_Load3D_Exit(OPENING_DEMO_WORK *wk)
 	int i;
 	
 	if (wk->SceneWork2.Load3DOK || wk->SceneWork2.Load3D_DivMode){
-		//ƒJƒƒ‰íœ
+		//ã‚«ãƒ¡ãƒ©å‰Šé™¤
 		GFC_PurgeCamera();
 		GFC_FreeCamera(wk->SceneWork2.Data.CameraPtr);
-		//ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^íœ
+		//ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 		for (i=0;i<wk->SceneWork2.Data.block_num;i++){
 			sys_FreeMemoryEz(wk->SceneWork2.Data.Block[i].ResFile);
 		}
 		wk->SceneWork2.Data.block_num = 0;
-		//ƒeƒNƒXƒ`ƒƒíœ
+		//ãƒ†ã‚¯ã‚¹ãƒãƒ£å‰Šé™¤
 		sys_FreeMemoryEz(wk->SceneWork2.Data.TexFile);
 		wk->SceneWork2.Load3DOK = 0;
 		wk->SceneWork2.Load3D_DivMode = 0;
@@ -1622,19 +1622,19 @@ static void Scene2_End(OPENING_DEMO_WORK * wk)
 {	
 	u8 i;
 
-	//ƒEƒBƒ“ƒhƒEƒIƒt
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
 	GX_SetVisibleWnd( GX_WNDMASK_NONE );
 
 	Scene2_Load3D_Exit(wk);
 
 	if (wk->SceneWork2.LoadOK){
-		//ƒAƒNƒ^[ŠÖ˜A‰ğ•ú
+		//ã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£è§£æ”¾
 		OPD_Obj_EndCellActor( wk->SceneWork2.ObjWorkPtr );
 		wk->SceneWork2.LoadOK = 0;
 	}
 
 	if (wk->SceneWork2.InitOK){
-		//ƒLƒ‰ƒGƒtƒFƒNƒg‰ğ•ú
+		//ã‚­ãƒ©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè§£æ”¾
 		if (wk->SceneWork2.KiraListPtr != NULL){
 			OPDKira_FreeList(wk->SceneWork2.KiraListPtr);
 			wk->SceneWork2.KiraListPtr = NULL;
@@ -1644,7 +1644,7 @@ static void Scene2_End(OPENING_DEMO_WORK * wk)
 			wk->SceneWork2.ObjWorkPtr = NULL;
 		}
 		if (wk->SceneWork2.OpSsmPtr != NULL){
-			//ƒXƒvƒ‰ƒCƒgEƒp[ƒeƒBƒNƒ‹‰ğ•ú
+			//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ»ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è§£æ”¾
 			OPD_Poke_End(wk->SceneWork2.OpSsmPtr);
 			sys_FreeMemoryEz(wk->SceneWork2.OpSsmPtr);
 			wk->SceneWork2.OpSsmPtr = NULL;
@@ -1658,7 +1658,7 @@ static void Scene2_End(OPENING_DEMO_WORK * wk)
 			wk->SceneWork2.pokebg_palbuf = NULL;
 		}
 		
-		//3D‰ğ•ú
+		//3Dè§£æ”¾
 		GF_G3D_Exit( wk->g3Dman );
 		wk->SceneWork2.InitOK = 0;
 	}
@@ -1667,11 +1667,11 @@ static void Scene2_End(OPENING_DEMO_WORK * wk)
 	NNS_G3dGeFlushBuffer();
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	//ƒEƒBƒ“ƒhƒEOFF
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OFF
 	GX_SetVisibleWnd( 0 );
 	GXS_SetVisibleWnd( 0 );
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg	
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ	
 }
 
 static void Scene2_Load(SCENE2_WORK *scene_wk)
@@ -1681,29 +1681,29 @@ static void Scene2_Load(SCENE2_WORK *scene_wk)
 	
 	hdl  = ArchiveDataHandleOpen(ARC_OP_DEMO, HEAPID_OP_DEMO); 
 
-	//-- ƒƒCƒ“‰æ–Ê(‰º) --//
+	//-- ãƒ¡ã‚¤ãƒ³ç”»é¢(ä¸‹) --//
 	{
-	#if 0	//–Ø˜R‚ê“ú‚É•ÏX
+	#if 0	//æœ¨æ¼ã‚Œæ—¥ã«å¤‰æ›´
 		ArcUtil_HDL_PalSet(hdl, NARC_op_demo_op_heroinebg_NCLR, 
 			PALTYPE_MAIN_BG, 0, 0, HEAPID_OP_DEMO);
 
-		//BG1	è‚ÌƒAƒbƒv
+		//BG1	æ‰‹ã®ã‚¢ãƒƒãƒ—
 		ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_heroine1_NCGR,
 			scene_wk->bgl, TOWN_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 		ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_heroine2a_NSCR,
 			scene_wk->bgl, TOWN_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-		//BG2	ålŒöƒ{[ƒ‹“Š‚°
+		//BG2	ä¸»äººå…¬ãƒœãƒ¼ãƒ«æŠ•ã’
 		ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_heroine1_NCGR,
 			scene_wk->bgl, SKY_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 		ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_heroine1a_NSCR,
 			scene_wk->bgl, SKY_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-		//BG3	”wŒi
+		//BG3	èƒŒæ™¯
 		ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_heroinebg_NCGR,
 			scene_wk->bgl, MAIN_BG3_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 		ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_heroine1b_NSCR,
 			scene_wk->bgl, MAIN_BG3_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	#else
-		//BG3	GFƒƒS(ƒXƒJƒXƒJ‚Ì‚â‚Â)
+		//BG3	GFãƒ­ã‚´(ã‚¹ã‚«ã‚¹ã‚«ã®ã‚„ã¤)
 		ArcUtil_HDL_PalSetEx(hdl, NARC_op_demo_g_logo0_NCLR,
 				PALTYPE_MAIN_BG,0x20*0xc, 0x20*0xc, 0x20*2, HEAPID_OP_DEMO);
 		ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_g_logo0_NCGR,
@@ -1711,7 +1711,7 @@ static void Scene2_Load(SCENE2_WORK *scene_wk)
 		ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_g_logo_NSCR,
 							scene_wk->bgl, MAIN_BG3_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 
-		//BG2	GFƒƒS(F‚ª“ü‚Á‚Ä‚¢‚é•û)
+		//BG2	GFãƒ­ã‚´(è‰²ãŒå…¥ã£ã¦ã„ã‚‹æ–¹)
 		ArcUtil_HDL_PalSetEx(hdl, NARC_op_demo_g_logo2_NCLR,
 				PALTYPE_MAIN_BG,0x20*0xe, 0x20*0xe, 0x20*2, HEAPID_OP_DEMO);
 		ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_g_logo2_NCGR,
@@ -1719,7 +1719,7 @@ static void Scene2_Load(SCENE2_WORK *scene_wk)
 		ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_g_logo_NSCR,
 							scene_wk->bgl, SKY_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 
-		//BG1	–Ø˜R‚ê“ú
+		//BG1	æœ¨æ¼ã‚Œæ—¥
 		{
 			ARCHANDLE* hdl;
 			
@@ -1729,7 +1729,7 @@ static void Scene2_Load(SCENE2_WORK *scene_wk)
 				scene_wk->bgl, TOWN_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 			ArcUtil_HDL_ScrnSet(hdl, NARC_WEATHER_SYS_KOGOREBI_NSCR,
 				scene_wk->bgl, TOWN_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-			//ƒXƒNƒŠ[ƒ“‚ğ512x512‚É‚µ‚Ä‚¢‚é‚Ì‚Å—×‚É‚àƒXƒNƒŠ[ƒ“‚ğ“]‘—‚·‚é
+			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’512x512ã«ã—ã¦ã„ã‚‹ã®ã§éš£ã«ã‚‚ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’è»¢é€ã™ã‚‹
 			ArcUtil_HDL_ScrnSet(hdl, NARC_WEATHER_SYS_KOGOREBI_NSCR,
 				scene_wk->bgl, TOWN_FRAME, 32*32, 0, FALSE, HEAPID_OP_DEMO);
 			ArcUtil_HDL_PalSet(hdl, NARC_WEATHER_SYS_KOGOREBI_NCLR, 
@@ -1740,29 +1740,29 @@ static void Scene2_Load(SCENE2_WORK *scene_wk)
 	#endif
 	}
 
-	//-- ƒTƒu‰æ–Ê(ã) --//
+	//-- ã‚µãƒ–ç”»é¢(ä¸Š) --//
 	{
 		ArcUtil_HDL_PalSet(hdl, NARC_op_demo_op_herobg_NCLR, 
 			PALTYPE_SUB_BG, 0, 0, HEAPID_OP_DEMO);
 
-		//BG1	è‚ÌƒAƒbƒv
+		//BG1	æ‰‹ã®ã‚¢ãƒƒãƒ—
 		ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_hero2_NCGR,
 			scene_wk->bgl, SUB_BG1_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 		ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_hero2a_NSCR,
 			scene_wk->bgl, SUB_BG1_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-		//BG2	ålŒöƒ{[ƒ‹“Š‚°
+		//BG2	ä¸»äººå…¬ãƒœãƒ¼ãƒ«æŠ•ã’
 		ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_hero1_NCGR,
 			scene_wk->bgl, SUB_BG2_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 		ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_hero1a_NSCR,
 			scene_wk->bgl, SUB_BG2_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-		//BG3	”wŒi
+		//BG3	èƒŒæ™¯
 		ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_herobg_NCGR,
 			scene_wk->bgl, SUB_BG3_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 		ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_hero1b_NSCR,
 			scene_wk->bgl, SUB_BG3_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	}
 
-	//--ƒTƒu‰æ–Ê(ã) 256ƒ^ƒCƒgƒ‹ƒf[ƒ^ƒ[ƒh
+	//--ã‚µãƒ–ç”»é¢(ä¸Š) 256ã‚¿ã‚¤ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	{
 		ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_g_logo2_NCGR,
 							scene_wk->bgl, WB_TITLE_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
@@ -1772,20 +1772,20 @@ static void Scene2_Load(SCENE2_WORK *scene_wk)
 					PALTYPE_SUB_BG,0x20*0xe, 0x20*0xe, 0x20*2, HEAPID_OP_DEMO);
 	}
 
-	//--ƒAƒNƒ^[ƒZƒbƒg
+	//--ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 	OPD_Obj_InitCellActor( scene_wk->ObjWorkPtr );
 	OPD_Obj_SetActor( scene_wk->ObjWorkPtr );
 	
-	//--ƒLƒ‰ƒLƒ‰ƒAƒNƒ^[ƒZƒbƒg
+	//--ã‚­ãƒ©ã‚­ãƒ©ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 	OPD_Obj_SetKiraActor( scene_wk->ObjWorkPtr,
 						  scene_wk->KiraListPtr );
 
-	//ƒoƒbƒOƒOƒ‰ƒEƒ“ƒhF‚ğ•‚É‚·‚é
+	//ãƒãƒƒã‚°ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰è‰²ã‚’é»’ã«ã™ã‚‹
 	MI_CpuClear16((void*)HW_BG_PLTT, 2);
 	MI_CpuClear16((void*)HW_DB_BG_PLTT, 2);
 
-	//--‰Šú‚a‚fİ’è
-	//‘S•””ñ•\¦
+	//--åˆæœŸï¼¢ï¼§è¨­å®š
+	//å…¨éƒ¨éè¡¨ç¤º
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1|GX_PLANEMASK_BG2|GX_PLANEMASK_BG3, VISIBLE_OFF );
 	
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0|GX_PLANEMASK_BG1|GX_PLANEMASK_BG2|GX_PLANEMASK_BG3, VISIBLE_OFF );
@@ -1795,13 +1795,13 @@ static void Scene2_Load(SCENE2_WORK *scene_wk)
 
 
 	ArchiveDataHandleClose( hdl );
-	scene_wk->LoadOK = 1;		//load’Ê‰ß
+	scene_wk->LoadOK = 1;		//loadé€šé
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“2:2D”wŒi‚ÆålŒöƒ{[ƒ‹“Š‚°ƒOƒ‰ƒtƒBƒbƒN‚ğ“]‘—
- * 			(‹Z‚ğo‚·‚²‚Æ‚ÉƒƒCƒ“AƒTƒu‚ªØ‚è‘Ö‚í‚é‚Ì‚ÅA‹¤‚É“¯‚¶‚à‚Ì‚ğ“]‘—)
+ * @brief   ã‚·ãƒ¼ãƒ³2:2DèƒŒæ™¯ã¨ä¸»äººå…¬ãƒœãƒ¼ãƒ«æŠ•ã’ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’è»¢é€
+ * 			(æŠ€ã‚’å‡ºã™ã”ã¨ã«ãƒ¡ã‚¤ãƒ³ã€ã‚µãƒ–ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹ã®ã§ã€å…±ã«åŒã˜ã‚‚ã®ã‚’è»¢é€)
  *
  * @param   scene_wk		
  */
@@ -1811,14 +1811,14 @@ static void Scene2_HeroBGTrans(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk)
 	u8 i;
 	ARCHANDLE* hdl;
 
-	//HeroBG‚Å‚ÍBG\¬‚ğ•Ï‚¦‚é•K—v‚Í‚È‚¢‚Ì‚ÅƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ì“WŠJ‚¾‚¯s‚¤
-//	OpDemo_Scene2_2DBgSet_PokeBG(wk);	//ƒ|ƒPƒ‚ƒ“BG—p‚ÌV‚µ‚¢\¬‚ğİ’è
+	//HeroBGã§ã¯BGæ§‹æˆã‚’å¤‰ãˆã‚‹å¿…è¦ã¯ãªã„ã®ã§ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®å±•é–‹ã ã‘è¡Œã†
+//	OpDemo_Scene2_2DBgSet_PokeBG(wk);	//ãƒã‚±ãƒ¢ãƒ³BGç”¨ã®æ–°ã—ã„æ§‹æˆã‚’è¨­å®š
 
-	//GFƒƒS—p‚Éİ’è‚µ‚½256Fƒ‚[ƒh‚ğ16F‚É•ÏX
+	//GFãƒ­ã‚´ç”¨ã«è¨­å®šã—ãŸ256è‰²ãƒ¢ãƒ¼ãƒ‰ã‚’16è‰²ã«å¤‰æ›´
 	GF_BGL_BGControlReset(scene_wk->bgl, SKY_FRAME, BGL_RESET_COLOR, GX_BG_COLORMODE_16);
 	GF_BGL_BGControlReset(scene_wk->bgl, MAIN_BG3_FRAME, BGL_RESET_COLOR, GX_BG_COLORMODE_16);
 	
-    //–Ø˜R‚ê“ú—p‚É•ÏX‚µ‚Ä‚¢‚½ƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ–ß‚·
+    //æœ¨æ¼ã‚Œæ—¥ç”¨ã«å¤‰æ›´ã—ã¦ã„ãŸãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’æˆ»ã™
     G2_SetBG0Priority(0);
 	GF_BGL_PrioritySet( TOWN_FRAME, 3 );
 	
@@ -1827,27 +1827,27 @@ static void Scene2_HeroBGTrans(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk)
 	ArcUtil_HDL_PalSet(hdl, NARC_op_demo_op_heroinebg_NCLR, 
 		PALTYPE_MAIN_BG, 0, 0, HEAPID_OP_DEMO);
 
-	//BG1	è‚ÌƒAƒbƒv
+	//BG1	æ‰‹ã®ã‚¢ãƒƒãƒ—
 	ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_heroine2_NCGR,
 		scene_wk->bgl, TOWN_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_heroine2a_NSCR,
 		scene_wk->bgl, TOWN_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-	//BG2	ålŒöƒ{[ƒ‹“Š‚°
+	//BG2	ä¸»äººå…¬ãƒœãƒ¼ãƒ«æŠ•ã’
 	ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_heroine1_NCGR,
 		scene_wk->bgl, SKY_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_heroine1a_NSCR,
 		scene_wk->bgl, SKY_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-	//BG3	”wŒi
+	//BG3	èƒŒæ™¯
 	ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_heroinebg_NCGR,
 		scene_wk->bgl, MAIN_BG3_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_heroine1b_NSCR,
 		scene_wk->bgl, MAIN_BG3_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 
-	//ƒoƒbƒOƒOƒ‰ƒEƒ“ƒhF‚ğ•‚É‚·‚é
+	//ãƒãƒƒã‚°ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰è‰²ã‚’é»’ã«ã™ã‚‹
 	MI_CpuClear16((void*)HW_BG_PLTT, 2);
 	MI_CpuClear16((void*)HW_DB_BG_PLTT, 2);
 
-	//‰ŠúÀ•Wİ’è
+	//åˆæœŸåº§æ¨™è¨­å®š
 	GF_BGL_ScrollSet( scene_wk->bgl, TOWN_FRAME, 0, 0);
 	GF_BGL_ScrollSet( scene_wk->bgl, SKY_FRAME, 0, 0);
 	GF_BGL_ScrollSet( scene_wk->bgl, MAIN_BG3_FRAME, 0, 0);
@@ -1860,8 +1860,8 @@ static void Scene2_HeroBGTrans(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“2:ƒ|ƒPƒ‚ƒ“BGƒOƒ‰ƒtƒBƒbƒN‚ğ“]‘—
- * 			(‹Z‚ğo‚·‚²‚Æ‚ÉƒƒCƒ“AƒTƒu‚ªØ‚è‘Ö‚í‚é‚Ì‚ÅA‹¤‚É“¯‚¶‚à‚Ì‚ğ“]‘—)
+ * @brief   ã‚·ãƒ¼ãƒ³2:ãƒã‚±ãƒ¢ãƒ³BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’è»¢é€
+ * 			(æŠ€ã‚’å‡ºã™ã”ã¨ã«ãƒ¡ã‚¤ãƒ³ã€ã‚µãƒ–ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹ã®ã§ã€å…±ã«åŒã˜ã‚‚ã®ã‚’è»¢é€)
  *
  * @param   scene_wk		
  */
@@ -1871,18 +1871,18 @@ static void Scene2_PokeBGTrans(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk)
 	u8 i;
 	ARCHANDLE* hdl;
 
-	OpDemo_Scene2_2DBgSet_PokeBG(wk);	//ƒ|ƒPƒ‚ƒ“BG—p‚ÌV‚µ‚¢\¬‚ğİ’è
+	OpDemo_Scene2_2DBgSet_PokeBG(wk);	//ãƒã‚±ãƒ¢ãƒ³BGç”¨ã®æ–°ã—ã„æ§‹æˆã‚’è¨­å®š
 	
 	hdl  = ArchiveDataHandleOpen(ARC_OP_DEMO, HEAPID_OP_DEMO); 
 
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	ArcUtil_HDL_PalSet(hdl, NARC_op_demo_op_poke_NCLR, PALTYPE_MAIN_BG, 0, 0, HEAPID_OP_DEMO);
 	ArcUtil_HDL_PalSet(hdl, NARC_op_demo_op_poke_NCLR, PALTYPE_SUB_BG, 0, 0, HEAPID_OP_DEMO);
 	scene_wk->pokebg_palbuf = sys_AllocMemory(HEAPID_OP_DEMO, 0x200);
 	MI_CpuCopy16((void*)HW_BG_PLTT, scene_wk->pokebg_palbuf, 0x200);
-	MI_CpuClear16(scene_wk->pokebg_palbuf, 2);	//ƒoƒbƒOƒOƒ‰ƒEƒ“ƒh‚ğ•‚É‚·‚é
+	MI_CpuClear16(scene_wk->pokebg_palbuf, 2);	//ãƒãƒƒã‚°ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚’é»’ã«ã™ã‚‹
 
-	//BG1 ‘å
+	//BG1 å¤§
 	ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_poke_l_NCGR,
 		scene_wk->bgl, TOWN_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_poke_l_NSCR,
@@ -1892,7 +1892,7 @@ static void Scene2_PokeBGTrans(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk)
 	ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_poke_l_NSCR,
 		scene_wk->bgl, SUB_BG1_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	
-	//BG2@’†
+	//BG2ã€€ä¸­
 	ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_poke_m_NCGR,
 		scene_wk->bgl, SKY_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_poke_m_NSCR,
@@ -1902,7 +1902,7 @@ static void Scene2_PokeBGTrans(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk)
 	ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_poke_m_NSCR,
 		scene_wk->bgl, SUB_BG2_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	
-	//BG3@¬
+	//BG3ã€€å°
 	ArcUtil_HDL_BgCharSet(hdl, NARC_op_demo_op_poke_s_NCGR,
 		scene_wk->bgl, MAIN_BG3_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_poke_s_NSCR,
@@ -1912,11 +1912,11 @@ static void Scene2_PokeBGTrans(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk)
 	ArcUtil_HDL_ScrnSet(hdl, NARC_op_demo_op_poke_s_NSCR,
 		scene_wk->bgl, SUB_BG3_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 
-	//ƒoƒbƒOƒOƒ‰ƒEƒ“ƒhF‚ğ•‚É‚·‚é
+	//ãƒãƒƒã‚°ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰è‰²ã‚’é»’ã«ã™ã‚‹
 	MI_CpuClear16((void*)HW_BG_PLTT, 2);
 	MI_CpuClear16((void*)HW_DB_BG_PLTT, 2);
 
-	//‰ŠúÀ•Wİ’è
+	//åˆæœŸåº§æ¨™è¨­å®š
 	GF_BGL_ScrollSet( scene_wk->bgl, TOWN_FRAME, 
 		GF_BGL_SCROLL_X_SET, -128);
 	GF_BGL_ScrollSet( scene_wk->bgl, SKY_FRAME, 
@@ -1935,7 +1935,7 @@ static void Scene2_PokeBGTrans(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“2:—‹ƒOƒ‰ƒtƒBƒbƒN‚ğ“]‘—
+ * @brief   ã‚·ãƒ¼ãƒ³2:é›·ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’è»¢é€
  *
  * @param   scene_wk		
  */
@@ -1945,7 +1945,7 @@ static void Scene2_ThunderBGTrans(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk)
 	u8 i;
 	ARCHANDLE* hdl;
 
-	OpDemo_Scene2_2DBgSet_Thunder(wk);	//—‹BG—p‚ÌV‚µ‚¢\¬‚ğİ’è
+	OpDemo_Scene2_2DBgSet_Thunder(wk);	//é›·BGç”¨ã®æ–°ã—ã„æ§‹æˆã‚’è¨­å®š
 	
 	hdl  = ArchiveDataHandleOpen(ARC_OP_DEMO, HEAPID_OP_DEMO); 
 
@@ -1963,14 +1963,14 @@ static void Scene2_ThunderBGTrans(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“BG‚ğƒƒCƒ“‰æ–Ê‚ª‚Ç‚¿‚ç‚É‚È‚Á‚Ä‚¢‚é‚©‚É‚æ‚Á‚ÄABGƒvƒ‰ƒCƒIƒŠƒeƒB‚ÆYÀ•W‚ğİ’è‚·‚é
+ * @brief   ãƒã‚±ãƒ¢ãƒ³BGã‚’ãƒ¡ã‚¤ãƒ³ç”»é¢ãŒã©ã¡ã‚‰ã«ãªã£ã¦ã„ã‚‹ã‹ã«ã‚ˆã£ã¦ã€BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã¨Yåº§æ¨™ã‚’è¨­å®šã™ã‚‹
  *
  * @param   scene_wk		
  */
 //--------------------------------------------------------------
 static void Scene2_PokeBG_MainSub_DispSetting(SCENE2_WORK *scene_wk)
 {
-	if(sys.disp3DSW == DISP_3D_TO_MAIN){	//ã‰æ–Ê‚ªƒƒCƒ“
+	if(sys.disp3DSW == DISP_3D_TO_MAIN){	//ä¸Šç”»é¢ãŒãƒ¡ã‚¤ãƒ³
 		GF_BGL_ScrollSet( scene_wk->bgl, TOWN_FRAME, GF_BGL_SCROLL_Y_SET, 0 );
 		GF_BGL_ScrollSet( scene_wk->bgl, SKY_FRAME, GF_BGL_SCROLL_Y_SET, 0 );
 		GF_BGL_ScrollSet( scene_wk->bgl, MAIN_BG3_FRAME, GF_BGL_SCROLL_Y_SET, 0 );
@@ -2006,27 +2006,27 @@ static void Scene2_PokeBG_MainSub_DispSetting(SCENE2_WORK *scene_wk)
 
 static void Scene2_Load3D_Tex(SCENE2_WORK *scene_wk, int map_resource_no)
 {
-	//ƒeƒNƒXƒ`ƒƒƒ[ƒh
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰
 	scene_wk->Data.TexFile = ArchiveDataLoadMalloc(	ARC_OP_DEMO,
 													TexsetArcTbl[map_resource_no],
 													HEAPID_OP_DEMO );
 
-	scene_wk->Data.Texture = NNS_G3dGetTex((NNSG3dResFileHeader*) scene_wk->Data.TexFile );	// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXæ“¾
+	scene_wk->Data.Texture = NNS_G3dGetTex((NNSG3dResFileHeader*) scene_wk->Data.TexFile );	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 
 	{
 		BOOL rc;
 		rc = LoadVRAMTexture(scene_wk->Data.Texture);
-		GF_ASSERT(rc && "ƒI[ƒvƒjƒ“ƒOFƒeƒNƒXƒ`ƒƒ‚ÌVRAMŠm•Û¸”s");
+		GF_ASSERT(rc && "ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ã®VRAMç¢ºä¿å¤±æ•—");
 	}
 
-	//À‘Ì‚ğ”jŠü
+	//å®Ÿä½“ã‚’ç ´æ£„
 	{
 		u8* texImgStartAddr;
 		u32 newSize;
 
 		GF_ASSERT(scene_wk->Data.Texture->texInfo.ofsTex != 0);
 		texImgStartAddr = (u8*)scene_wk->Data.Texture + scene_wk->Data.Texture->texInfo.ofsTex;
-		// ƒq[ƒv‚Ìæ“ª‚©‚çƒeƒNƒXƒ`ƒƒƒCƒ[ƒW‚Ü‚Å‚ÌƒTƒCƒY
+		// ãƒ’ãƒ¼ãƒ—ã®å…ˆé ­ã‹ã‚‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã¾ã§ã®ã‚µã‚¤ã‚º
 		newSize = (u32)(texImgStartAddr - (u8*)scene_wk->Data.TexFile);
 		sys_CutMemoryBlockSize( scene_wk->Data.TexFile, newSize );
 	}
@@ -2044,7 +2044,7 @@ static void Scene2_Load3D_MapModel(SCENE2_WORK *scene_wk, int map_resource_no, i
 		map_end = OP_MAP_BLOCK_MAX;
 	}
 	
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	handle = ArchiveDataHandleOpen( ARC_OP_DEMO, HEAPID_OP_DEMO );
 	
 	for (i = map_start; i < map_end; i++){
@@ -2052,52 +2052,52 @@ static void Scene2_Load3D_MapModel(SCENE2_WORK *scene_wk, int map_resource_no, i
 			break;
 		}
 		
-		//ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚ğƒ[ƒh
+		//ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 		scene_wk->Data.Block[i].ResFile = ArchiveDataLoadAllocByHandle( handle, ModelArcTbl[map_resource_no][i], HEAPID_OP_DEMO );
 
-		//ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh
+		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰
 		status = BindTexture(scene_wk->Data.Block[i].ResFile, scene_wk->Data.Texture);
 		GF_ASSERT(status&&"BindTexture failed");
 	
 		model_set = NNS_G3dGetMdlSet(scene_wk->Data.Block[i].ResFile);
 
-		GF_ASSERT(model_set->dict.numEntry==1&&"ƒ‚ƒfƒ‹ƒZƒbƒg‚Ì’†‚É•¡”ƒ‚ƒfƒ‹‚ª‘¶İ");
+		GF_ASSERT(model_set->dict.numEntry==1&&"ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆã®ä¸­ã«è¤‡æ•°ãƒ¢ãƒ‡ãƒ«ãŒå­˜åœ¨");
 
 		model = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(scene_wk->Data.Block[i].ResFile), 0);
 		GF_ASSERT(model&&"load failed");
 		NNS_G3dRenderObjInit(&scene_wk->Data.Block[i].RenderObj, model);
 
-		//ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚ÍƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚ğg—p‚·‚é
-		NNS_G3dMdlUseGlbDiff(model);			// ƒfƒBƒtƒ…[ƒY
-		NNS_G3dMdlUseGlbAmb(model);				// ƒAƒ“ƒrƒGƒ“ƒg
-		NNS_G3dMdlUseGlbSpec(model);			// ƒXƒyƒLƒ…ƒ‰[
-		NNS_G3dMdlUseGlbEmi(model);				// ƒGƒ~ƒbƒVƒ‡ƒ“
+		//ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã¯ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹
+		NNS_G3dMdlUseGlbDiff(model);			// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚º
+		NNS_G3dMdlUseGlbAmb(model);				// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
+		NNS_G3dMdlUseGlbSpec(model);			// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼
+		NNS_G3dMdlUseGlbEmi(model);				// ã‚¨ãƒŸãƒƒã‚·ãƒ§ãƒ³
 	
 		NNS_G3dMdlUseGlbLightEnableFlag(model);
 		
 		scene_wk->Data.block_num++;
 	}
-	//ƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+	//ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( handle );
 }
 
 static void Scene2_Load3D_Camera(SCENE2_WORK *scene_wk, int map_resource_no)
 {
-	scene_wk->Data.CameraPtr = GFC_AllocCamera(HEAPID_OP_DEMO);	//ƒJƒƒ‰ì¬
+	scene_wk->Data.CameraPtr = GFC_AllocCamera(HEAPID_OP_DEMO);	//ã‚«ãƒ¡ãƒ©ä½œæˆ
 	{
 		VecFx32 target = {0,0,FX32_ONE*16*6};
-		//ƒJƒƒ‰ƒZƒbƒg
+		//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 		GFC_InitCameraTDA( &target,
-			CameraData.Distance,	// ‹——£
+			CameraData.Distance,	// è·é›¢
 			&CameraData.Angle,	//
-			CameraData.PerspWay,	// “ŠË‰e‚ÌŠp“x
+			CameraData.PerspWay,	// æŠ•å°„å½±ã®è§’åº¦
 			CameraData.View,
-			FALSE,				//ƒoƒCƒ“ƒh‚µ‚È‚¢
+			FALSE,				//ãƒã‚¤ãƒ³ãƒ‰ã—ãªã„
 			scene_wk->Data.CameraPtr
 			);
 		GFC_SetCameraPerspWay(0x0981,scene_wk->Data.CameraPtr);
 
-		//ƒ\ƒmƒIƒ^ƒEƒ“‚Ì‚‚³‚É‚ ‚í‚¹‚é
+		//ã‚½ãƒã‚ªã‚¿ã‚¦ãƒ³ã®é«˜ã•ã«ã‚ã‚ã›ã‚‹
 		{
 			VecFx32 move = {0,SONOO_TOWN_HEIGHT,0};
 			GFC_ShiftCamera(&move,scene_wk->Data.CameraPtr);
@@ -2115,7 +2115,7 @@ static void Scene2_Load3D(SCENE2_WORK *scene_wk, int map_resource_no)
 	Scene2_Load3D_MapModel(scene_wk, map_resource_no, 0, OP_MAP_BLOCK_MAX);
 	Scene2_Load3D_Camera(scene_wk, map_resource_no);
 	
-	scene_wk->Load3DOK = 1;		//3Dload’Ê‰ß
+	scene_wk->Load3DOK = 1;		//3Dloadé€šé
 }
 
 static BOOL Scene2_Load3D_Div(SCENE2_WORK *scene_wk, int map_resource_no)
@@ -2135,7 +2135,7 @@ static BOOL Scene2_Load3D_Div(SCENE2_WORK *scene_wk, int map_resource_no)
 			Scene2_Load3D_MapModel(scene_wk, map_resource_no, 1, OP_MAP_BLOCK_MAX);
 			scene_wk->div_seq = 0;
 			scene_wk->Load3D_DivMode = 0;
-			scene_wk->Load3DOK = 1;		//3Dload’Ê‰ß
+			scene_wk->Load3DOK = 1;		//3Dloadé€šé
 			return TRUE;
 		}
 	}
@@ -2157,7 +2157,7 @@ static BOOL Scene2_Load3D_Div(SCENE2_WORK *scene_wk, int map_resource_no)
 			Scene2_Load3D_MapModel(scene_wk, map_resource_no, 4, OP_MAP_BLOCK_MAX);
 			scene_wk->div_seq = 0;
 			scene_wk->Load3D_DivMode = 0;
-			scene_wk->Load3DOK = 1;		//3Dload’Ê‰ß
+			scene_wk->Load3DOK = 1;		//3Dloadé€šé
 			return TRUE;
 		}
 	}
@@ -2189,8 +2189,8 @@ static void Scene2_Disp3D(SCENE2_WORK *scene_wk)
 	if(scene_wk->particle_occ == TRUE){
 		NNS_G3dGeFlushBuffer();
 		GF_G3X_Reset();
-		Particle_DrawAll();	//ƒp[ƒeƒBƒNƒ‹•`‰æ
-		Particle_CalcAll();	//ƒp[ƒeƒBƒNƒ‹ŒvZ
+		Particle_DrawAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æç”»
+		Particle_CalcAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è¨ˆç®—
 	}
 
 	GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO,GX_BUFFERMODE_W);
@@ -2206,14 +2206,14 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 	scene_wk->KiraMargin = (scene_wk->KiraMargin+1)%scene_wk->KiraMarginCore;
 	
 	switch(*seq){
-	case 0:	//ƒ^ƒCƒ~ƒ“ƒO‚ğæ‚Á‚ÄAƒo[ƒ“I‚Æƒ|ƒPƒ‚ƒ“ƒƒS
+	case 0:	//ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’å–ã£ã¦ã€ãƒãƒ¼ãƒ³ï¼ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ­ã‚´
 		if(inCounter == FM_TITLE_LOGO_IN - 1){
 		}
 		
 		if (inCounter >= FM_TITLE_LOGO_IN){
 			GF_BGL_VisibleSet(MAIN_BG3_FRAME, VISIBLE_ON);
 		//	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
-			//ƒ^ƒCƒgƒ‹ƒƒS‚Ì‹P“x‚ğŒ³‚É–ß‚·
+			//ã‚¿ã‚¤ãƒˆãƒ«ãƒ­ã‚´ã®è¼åº¦ã‚’å…ƒã«æˆ»ã™
 			ChangeBrightnessRequest(TITLE_LOGO_WHITE_IN_SYNC, BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK,
 								GX_BLEND_PLANEMASK_BG3, MASK_MAIN_DISPLAY);
 			(*seq)++;
@@ -2229,12 +2229,12 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			G2_SetBlendAlpha( 0, GX_BLEND_PLANEMASK_BG0|GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG2|GX_BLEND_PLANEMASK_BG3 , 0, 0);
 			scene_wk->particle_occ = TRUE;
 
-			//ålŒöƒAƒjƒŠJn
+			//ä¸»äººå…¬ã‚¢ãƒ‹ãƒ¡é–‹å§‹
 			OPD_Obj_OnOffHeroHeroineAnime( scene_wk->ObjWorkPtr, 1 );
 			(*seq)++;
 		}
 /**		
-		//‚æ‚«‚Æ‚±‚ë‚Å‰º–ÊƒzƒƒCƒgƒAƒEƒg
+		//ã‚ˆãã¨ã“ã‚ã§ä¸‹é¢ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
 		if (inCounter >= FM_TITLE_WHITE_OUT){
 			WIPE_SYS_Start(	WIPE_PATTERN_M, WIPE_TYPE_FADEOUT,
 								WIPE_TYPE_FADEOUT,0x7fff,OPDEMO_BRIGHTNESS_SYNC,1,HEAPID_OP_DEMO );
@@ -2244,7 +2244,7 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 		break;
 	case 2:
 		if(inCounter == FM_TITLE_LOGO_FLASH_OUT){
-			//ƒzƒƒCƒgƒAƒEƒg
+			//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
 			WIPE_SYS_Start(	WIPE_PATTERN_M, WIPE_TYPE_FADEOUT,
 				WIPE_TYPE_FADEOUT,0x7fff,TITLE_LOGO_NEW_WHITE_IN_SYNC,1,HEAPID_OP_DEMO );
 		}
@@ -2253,7 +2253,7 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 
 			scene_wk->bg_visible_on_req = (1<<SKY_FRAME);
 			scene_wk->bg_visible_off_req = (1<<MAIN_BG3_FRAME);
-			//ƒzƒƒCƒgƒCƒ“
+			//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
 			WIPE_SYS_Start(	WIPE_PATTERN_M, WIPE_TYPE_FADEIN,
 				WIPE_TYPE_FADEIN,0x7fff,TITLE_LOGO_NEW_WHITE_IN_SYNC,1,HEAPID_OP_DEMO );
 		}
@@ -2264,7 +2264,7 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			scene_wk->particle_occ = FALSE;
 			scene_wk->map_draw_ok = TRUE;
 
-			//‚à‚µ‚Ü‚¾‘¶İ‚µ‚Ä‚¢‚é‚È‚ç‚±‚±‚ÅƒGƒ~ƒbƒ^íœ
+			//ã‚‚ã—ã¾ã å­˜åœ¨ã—ã¦ã„ã‚‹ãªã‚‰ã“ã“ã§ã‚¨ãƒŸãƒƒã‚¿å‰Šé™¤
 			GF_ASSERT(Particle_GetEmitterNum(OPD_Poke_PtcGet(scene_wk->OpSsmPtr)) == 0);
 		}
 		if (inCounter==FM_KIRA_DISP_START){
@@ -2272,14 +2272,14 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 		}
 		
 		if ( /*WIPE_SYS_EndCheck()&&*/(inCounter>=FM_SKY_CAMERA_START) ){
-			//ƒƒCƒ“3DE‚n‚a‚i•\¦
+			//ãƒ¡ã‚¤ãƒ³3Dãƒ»ï¼¯ï¼¢ï¼ªè¡¨ç¤º
 			GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG0, VISIBLE_ON);
-			//ƒzƒƒCƒgƒCƒ“
+			//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
 			WIPE_SYS_Start(	WIPE_PATTERN_M, WIPE_TYPE_FADEIN,
 							WIPE_TYPE_FADEIN,0x7fff,OPDEMO_BRIGHTNESS_SYNC,1,HEAPID_OP_DEMO );
 
 
-			//ålŒö’j•\¦
+			//ä¸»äººå…¬ç”·è¡¨ç¤º
 		//	OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_HERO, 1 );
 
 			scene_wk->KiraMarginCore = SCENE2_KIRA_MARGIN2;
@@ -2287,16 +2287,16 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			(*seq)++;
 		}
 		break;
-	case 3:	//ƒCƒ“‚µ‚½‚çA3‚cƒJƒƒ‰ˆÚ“®ƒV[ƒ“i— ‚Å2‚c–Ê‚Ì•\¦‚Í‚µ‚Ä‚¨‚­j
+	case 3:	//ã‚¤ãƒ³ã—ãŸã‚‰ã€3ï¼¤ã‚«ãƒ¡ãƒ©ç§»å‹•ã‚·ãƒ¼ãƒ³ï¼ˆè£ã§2ï¼¤é¢ã®è¡¨ç¤ºã¯ã—ã¦ãŠãï¼‰
 		if ( /*(inCounter>=FM_SKY_CAMERA_START)*/1 ){
 			Scene2_MapChange(wk, scene_wk, inCounter);
-			//‹óB
+			//ç©ºæ’®
 			Scene2_CameraMoveMain(scene_wk,inCounter);
-			//’¹ƒXƒ‰ƒCƒh
+			//é³¥ã‚¹ãƒ©ã‚¤ãƒ‰
 			OPD_Obj_SlideInBird(scene_wk->ObjWorkPtr, inCounter);
 			
 			if(inCounter == FM_HEROINE_APPEAR){
-				//ålŒö—•\¦
+				//ä¸»äººå…¬å¥³è¡¨ç¤º
 		//		OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_HEROINE, 1 );
 		//		OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_HERO, 0 );
 			}
@@ -2307,7 +2307,7 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			OPD_Obj_SlideInHakase(scene_wk->ObjWorkPtr, inCounter);
 
 			if (inCounter >= FM_3D_WHITE_OUT){
-				//‹óBI—¹ƒzƒƒCƒgƒAƒEƒgƒŠƒNƒGƒXƒg
+				//ç©ºæ’®çµ‚äº†ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 				WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT,
 								WIPE_TYPE_FADEOUT,0x7fff,OPDEMO_BRIGHTNESS_SYNC,1,HEAPID_OP_DEMO );
 				(*seq)++;
@@ -2315,31 +2315,31 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 		}
 		break;
 	case 4:
-		//‹óB
+		//ç©ºæ’®
 		Scene2_CameraMoveMain(scene_wk,inCounter);
-		//’¹ƒXƒ‰ƒCƒh
+		//é³¥ã‚¹ãƒ©ã‚¤ãƒ‰
 		OPD_Obj_SlideInBird(scene_wk->ObjWorkPtr, inCounter);
-		//ƒ‰ƒCƒoƒ‹•”m
+		//ãƒ©ã‚¤ãƒãƒ«ï¼†åšå£«
 		OPD_Obj_SlideInRival(scene_wk->ObjWorkPtr, inCounter);
 		OPD_Obj_SlideInHakase(scene_wk->ObjWorkPtr, inCounter);
-		//ƒzƒƒCƒgƒAƒEƒg‘Ò‚¿
+		//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆå¾…ã¡
 		if ( WIPE_SYS_EndCheck()&&(inCounter >= FM_HERO_WALK) ){
-			GF_BGL_VisibleSet(WB_TITLE_FRAME, VISIBLE_OFF);	//GFƒƒS‚ğÁ‚·
+			GF_BGL_VisibleSet(WB_TITLE_FRAME, VISIBLE_OFF);	//GFãƒ­ã‚´ã‚’æ¶ˆã™
 
-			//ƒLƒ‰ƒLƒ‰íœ
+			//ã‚­ãƒ©ã‚­ãƒ©å‰Šé™¤
 			OPD_Obj_KiraActorDrawOff(scene_wk->ObjWorkPtr, scene_wk->KiraListPtr );
 			scene_wk->kira_vanish = TRUE;
 		//	OPDKira_FreeList(scene_wk->KiraListPtr);
 		//	scene_wk->KiraListPtr = NULL;
 
-			//^‚Á”’‚ÈŠÔ‚ÉBG‚ğÄ\¬
+			//çœŸã£ç™½ãªé–“ã«BGã‚’å†æ§‹æˆ
 			Scene2_HeroBGTrans(wk, scene_wk);
 
-			//—¼‰æ–Ê‚ÉålŒö•\¦
+			//ä¸¡ç”»é¢ã«ä¸»äººå…¬è¡¨ç¤º
 			OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_HERO_SUB, 1 );
 			OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_HEROINE, 1 );
 			
-			//ŠX‚Æ‹óBG•\¦
+			//è¡—ã¨ç©ºBGè¡¨ç¤º
 			GF_BGL_VisibleSet(TOWN_FRAME, VISIBLE_ON);
 			GF_BGL_VisibleSet(SKY_FRAME, VISIBLE_ON);
 			GF_BGL_VisibleSet(MAIN_BG3_FRAME, VISIBLE_ON);
@@ -2361,7 +2361,7 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			scene_wk->scroll_sp_tree += 0;
 			scene_wk->scroll_sp_town = 256 << FX32_SHIFT;
 			
-			//ƒEƒBƒ“ƒhƒE•\¦
+			//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 			scene_wk->wnd0_m_left = 0;
 			scene_wk->wnd0_m_right = 255;
 			scene_wk->wnd0_m_top = 32;
@@ -2371,28 +2371,28 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			scene_wk->wnd0_s_top = 32;
 			scene_wk->wnd0_s_bottom = 159;
 			scene_wk->window_on_req = TRUE;
-			//3Dƒ‚ƒfƒ‹ƒhƒ[ŠÖ”‚ğ–³Œø
+			//3Dãƒ¢ãƒ‡ãƒ«ãƒ‰ãƒ­ãƒ¼é–¢æ•°ã‚’ç„¡åŠ¹
 			scene_wk->Disp3DFlg = 0;
 			
-			//BLEND–³Œø‰»
+			//BLENDç„¡åŠ¹åŒ–
 			G2_BlendNone();
 			G2S_BlendNone();
 
-			//ƒzƒƒCƒgƒCƒ“ƒŠƒNƒGƒXƒg
+			//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 			WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN,
 							WIPE_TYPE_FADEIN,0x7fff,OPDEMO_BRIGHTNESS_SYNC,1,HEAPID_OP_DEMO );
 			(*seq)++;
 		}
 		break;
-	case 5:	//—¼‰æ–Ê‚ÅålŒö‚ª‘–‚é
-		//’¬ƒXƒNƒ[ƒ‹
+	case 5:	//ä¸¡ç”»é¢ã§ä¸»äººå…¬ãŒèµ°ã‚‹
+		//ç”ºã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 		Scene2_ScrollTown(scene_wk);
-		//ålŒöƒXƒNƒ[ƒ‹
+		//ä¸»äººå…¬ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 		OPD_Obj_HeroHeroineMove(scene_wk->ObjWorkPtr);
-		//ƒzƒƒCƒgƒCƒ“‘Ò‚¿
+		//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³å¾…ã¡
 		if ( WIPE_SYS_EndCheck() ){
 			if(inCounter >= FM_BALL_THROW){
-				//—¬¯BG‚ÉÀ•W‚ğ‡‚í‚¹‚é
+				//æµæ˜ŸBGã«åº§æ¨™ã‚’åˆã‚ã›ã‚‹
 				GF_BGL_ScrollReq(scene_wk->bgl, MAIN_BG3_FRAME, GF_BGL_SCROLL_X_SET, 0);
 				GF_BGL_ScrollReq(scene_wk->bgl, MAIN_BG3_FRAME, GF_BGL_SCROLL_Y_SET, 256);
 				GF_BGL_ScrollReq(scene_wk->bgl, SUB_BG3_FRAME, GF_BGL_SCROLL_X_SET, 0);
@@ -2408,7 +2408,7 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 
 				scene_wk->window_off_req = TRUE;
 				
-				//ålŒö‚ğÁ‚·
+				//ä¸»äººå…¬ã‚’æ¶ˆã™
 				OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_HERO_SUB, 0 );
 				OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_HEROINE, 0 );
 
@@ -2416,7 +2416,7 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			}
 		}
 		break;
-	case 6:	//ƒ{[ƒ‹‚ğ“Š‚°‚é
+	case 6:	//ãƒœãƒ¼ãƒ«ã‚’æŠ•ã’ã‚‹
 		Scene2_ScrollBallThrowStream(scene_wk);
 		Scene2_ScrollHand(scene_wk, inCounter);
 		if(inCounter == FM_BALL_HAND){
@@ -2425,11 +2425,11 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			(*seq)++;
 		}
 		break;
-	case 7:	//è‚ÌƒAƒbƒv
+	case 7:	//æ‰‹ã®ã‚¢ãƒƒãƒ—
 		Scene2_ScrollBallThrowStream(scene_wk);
 		Scene2_ScrollHand(scene_wk, inCounter);
 		if(WIPE_SYS_EndCheck()){
-			//è‚ÌƒAƒbƒvBG‚ğ•\¦
+			//æ‰‹ã®ã‚¢ãƒƒãƒ—BGã‚’è¡¨ç¤º
 			scene_wk->bg_visible_on_req = (1<<TOWN_FRAME) | (1<<SUB_BG1_FRAME);
 			scene_wk->bg_visible_off_req = (1<<SKY_FRAME) | (1<<SUB_BG2_FRAME);
 			GF_BGL_ScrollReq(scene_wk->bgl, TOWN_FRAME, GF_BGL_SCROLL_X_SET, 0);
@@ -2442,21 +2442,21 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			(*seq)++;
 		}
 		break;
-	case 8:	//ƒ{[ƒ‹‚ªè‚©‚ç—£‚ê‚é
+	case 8:	//ãƒœãƒ¼ãƒ«ãŒæ‰‹ã‹ã‚‰é›¢ã‚Œã‚‹
 		Scene2_ScrollBallThrowStream(scene_wk);
 		Scene2_ScrollHand(scene_wk, inCounter);
 		OPD_Obj_BallRotate(scene_wk->ObjWorkPtr, inCounter);
 		if(WIPE_SYS_EndCheck()){
 			if(inCounter == FM_BALL_HAND_RELEASE){
-				//è‚©‚çƒ{[ƒ‹‚ª—£‚ê‚é
+				//æ‰‹ã‹ã‚‰ãƒœãƒ¼ãƒ«ãŒé›¢ã‚Œã‚‹
 				
-				//è‚ÌƒAƒjƒ2ƒRƒ}–Ú‚ğ•\¦
+				//æ‰‹ã®ã‚¢ãƒ‹ãƒ¡2ã‚³ãƒç›®ã‚’è¡¨ç¤º
 				GF_BGL_ScrollReq(scene_wk->bgl, TOWN_FRAME, GF_BGL_SCROLL_X_SET, 0);
 				GF_BGL_ScrollReq(scene_wk->bgl, TOWN_FRAME, GF_BGL_SCROLL_Y_SET, 256);
 				GF_BGL_ScrollReq(scene_wk->bgl, SUB_BG1_FRAME, GF_BGL_SCROLL_X_SET, 0);
 				GF_BGL_ScrollReq(scene_wk->bgl, SUB_BG1_FRAME, GF_BGL_SCROLL_Y_SET, 256);
 				
-				//ƒ{[ƒ‹ƒAƒNƒ^[•\¦
+				//ãƒœãƒ¼ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤º
 				OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_BALL_MAIN, 1 );
 				OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_BALL_SUB, 1 );
 			}
@@ -2481,10 +2481,10 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_STREAM_SUB_1, 1 );
 			OPD_Obj_StreamDispReset(scene_wk->ObjWorkPtr, FALSE);
 
-			//^‚Á”’‚ÈŠÔ‚ÉBG‚ğÄ\¬
+			//çœŸã£ç™½ãªé–“ã«BGã‚’å†æ§‹æˆ
 			Scene2_PokeBGTrans(wk, scene_wk);
 
-			//ã‰æ–Ê‚©‚ç‹Z‚ğŒJ‚èo‚·ˆ×AƒƒCƒ“‰æ–Ê•ÏX
+			//ä¸Šç”»é¢ã‹ã‚‰æŠ€ã‚’ç¹°ã‚Šå‡ºã™ç‚ºã€ãƒ¡ã‚¤ãƒ³ç”»é¢å¤‰æ›´
 			sys.disp3DSW = DISP_3D_TO_MAIN;
 			GF_Disp_DispSelect();
 			Scene2_PokeBG_MainSub_DispSetting(scene_wk);
@@ -2497,46 +2497,46 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			(*seq)++;
 		}
 		else{
-			//BG”ñ•\¦ƒŠƒNƒGƒXƒg‚âƒXƒNƒ[ƒ‹XV‚ª”í‚é‰Â”\«‚ª‚ ‚é‚Ì‚Å
-			//‚±‚¢‚Â‚¾‚¯Wipeƒ`ƒFƒbƒN‚µ‚½Œã‚Ås‚¤B
+			//BGéè¡¨ç¤ºãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚„ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ›´æ–°ãŒè¢«ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§
+			//ã“ã„ã¤ã ã‘Wipeãƒã‚§ãƒƒã‚¯ã—ãŸå¾Œã§è¡Œã†ã€‚
 			Scene2_ScrollBallThrowStream(scene_wk);
 			Scene2_ScrollHand(scene_wk, inCounter);
 		}
 		break;
-	case 10:	//ƒ|ƒPƒ‚ƒ““oê
+	case 10:	//ãƒã‚±ãƒ¢ãƒ³ç™»å ´
 		OPD_Obj_StreamScroll(scene_wk->ObjWorkPtr, POKE_STREAM_SPEED);
 		Scene2_PokeAppearSlideIn(scene_wk, inCounter);
 		
 		if ( WIPE_SYS_EndCheck() ){
 			if(inCounter >= FM_WAZA_RIGHT){
-				//ƒuƒ‰ƒbƒNƒAƒEƒg‘¬‚ß
+				//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆé€Ÿã‚
 				WIPE_SYS_Start(	WIPE_PATTERN_M, WIPE_TYPE_FADEOUT,
 							WIPE_TYPE_FADEOUT,0x0000,SCENE2_DISP_CHG_SYNC,1,HEAPID_OP_DEMO );
 				(*seq)++;
 			}
 		}
 		break;
-	case 11:	//ƒuƒ‰ƒbƒNƒAƒEƒg‚µ‚½‚ç‰º‹Lˆ—
+	case 11:	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆã—ãŸã‚‰ä¸‹è¨˜å‡¦ç†
 		OPD_Obj_StreamScroll(scene_wk->ObjWorkPtr, POKE_STREAM_SPEED);
 		if ( WIPE_SYS_EndCheck() ){
 			G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE,
 				GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG1 
 				| GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 0,0);
 			
-			//‹Z‚ğo‚·•û‚Ìƒ|ƒPƒ‚ƒ“BG‚ÌƒpƒŒƒbƒg‚ğ^‚Á•‚É‚·‚é
+			//æŠ€ã‚’å‡ºã™æ–¹ã®ãƒã‚±ãƒ¢ãƒ³BGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’çœŸã£é»’ã«ã™ã‚‹
 			MI_CpuClear16((void*)HW_BG_PLTT, 0x200);
 			
-			//ƒuƒ‰ƒbƒNƒCƒ“‘¬‚ß
+			//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³é€Ÿã‚
 			WIPE_SYS_Start(	WIPE_PATTERN_M, WIPE_TYPE_FADEIN,
 							WIPE_TYPE_FADEIN,0x0000,SCENE2_DISP_CHG_SYNC,1,HEAPID_OP_DEMO );
 			(*seq)++;
 		}
 		break;
-	case 12:	//ƒ|ƒbƒ`ƒƒƒ}ƒJƒbƒgƒCƒ“
+	case 12:	//ãƒãƒƒãƒãƒ£ãƒã‚«ãƒƒãƒˆã‚¤ãƒ³
 		OPD_Obj_StreamScroll(scene_wk->ObjWorkPtr, POKE_STREAM_SPEED);
 		if ( WIPE_SYS_EndCheck() ){
 			if ( OPD_Poke_CutIn(scene_wk->OpSsmPtr, CUT_IN_POKE_0, inCounter) ){
-				//ƒuƒ‰ƒbƒNƒAƒEƒg‘¬‚ß
+				//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆé€Ÿã‚
 				WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT,
 							WIPE_TYPE_FADEOUT,0x0000,SCENE2_DISP_CHG_SYNC,1,HEAPID_OP_DEMO );
 				(*seq)++;
@@ -2544,58 +2544,58 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 		}
 		break;
 
-	case 13:	//ƒ|ƒbƒ`ƒƒƒ}‚Ì‹ZI—¹‘Ò‚¿
+	case 13:	//ãƒãƒƒãƒãƒ£ãƒã®æŠ€çµ‚äº†å¾…ã¡
 		OPD_Obj_StreamScroll(scene_wk->ObjWorkPtr, POKE_STREAM_SPEED);
 		if ( WIPE_SYS_EndCheck() ){
 			if (1){//inCounter >= FM_RIVAL_SETUP){
-				//‰º‰æ–Ê‚©‚ç‹Z‚ğŒJ‚èo‚·ˆ×AƒƒCƒ“‰æ–Ê•ÏX
+				//ä¸‹ç”»é¢ã‹ã‚‰æŠ€ã‚’ç¹°ã‚Šå‡ºã™ç‚ºã€ãƒ¡ã‚¤ãƒ³ç”»é¢å¤‰æ›´
 				sys.disp3DSW = DISP_3D_TO_SUB;
 				GF_Disp_DispSelect();
 				Scene2_PokeBG_MainSub_DispSetting(scene_wk);
 				
-				//ƒuƒ‰ƒbƒNƒCƒ“‘¬‚ß
+				//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³é€Ÿã‚
 				WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN,
 								WIPE_TYPE_FADEIN,0x0000,SCENE2_DISP_CHG_SYNC,1,HEAPID_OP_DEMO );
 				(*seq)++;
 			}
 		}
 		break;
-	case 14:	//ƒqƒRƒUƒ‹ƒJƒbƒgƒCƒ“
+	case 14:	//ãƒ’ã‚³ã‚¶ãƒ«ã‚«ãƒƒãƒˆã‚¤ãƒ³
 		OPD_Obj_StreamScroll(scene_wk->ObjWorkPtr, POKE_STREAM_SPEED);
 		if ( WIPE_SYS_EndCheck() ){
 			if(inCounter >= FM_WAZA_LEFT){
 				if ( OPD_Poke_CutIn(scene_wk->OpSsmPtr, CUT_IN_POKE_1, inCounter) ){
-					//ƒuƒ‰ƒbƒNƒAƒEƒg‘¬‚ß
+					//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆé€Ÿã‚
 					WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT,
 								WIPE_TYPE_FADEOUT,0x0000,SCENE2_DISP_CHG_SYNC,1,HEAPID_OP_DEMO );
-					scene_wk->BG_ScrollMargin = 0;	//ƒXƒNƒ[ƒ‹‚É”õ‚¦‰Šú‰»
+					scene_wk->BG_ScrollMargin = 0;	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã«å‚™ãˆåˆæœŸåŒ–
 					(*seq)++;
 				}
 			}
 		}
 		break;
-	case 15:	//ƒqƒRƒUƒ‹‚Ì‹ZI—¹‘Ò‚¿
+	case 15:	//ãƒ’ã‚³ã‚¶ãƒ«ã®æŠ€çµ‚äº†å¾…ã¡
 		OPD_Obj_StreamScroll(scene_wk->ObjWorkPtr, POKE_STREAM_SPEED);
 		if ( WIPE_SYS_EndCheck() ){
-			//ƒƒCƒ“‰æ–Ê‚Ìƒ|ƒPƒ‚ƒ“BG‚ÌƒpƒŒƒbƒg‚ğŒ³‚É–ß‚·
+			//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ãƒã‚±ãƒ¢ãƒ³BGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å…ƒã«æˆ»ã™
 			MI_CpuCopy16(scene_wk->pokebg_palbuf, (void*)HW_BG_PLTT, 0x200);
 
-			//ƒƒCƒ“‰æ–Ê‚ğã‚É–ß‚·(—‹‚ğ—‚Æ‚·‚Æ‚«l‚¦‚â‚·‚¢‚Ì‚Å)
+			//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚’ä¸Šã«æˆ»ã™(é›·ã‚’è½ã¨ã™ã¨ãè€ƒãˆã‚„ã™ã„ã®ã§)
 			sys.disp3DSW = DISP_3D_TO_MAIN;
 			GF_Disp_DispSelect();
 			
-			//^‚Á•‚ÈŠÔ‚ÉBGÄ\¬
+			//çœŸã£é»’ãªé–“ã«BGå†æ§‹æˆ
 			Scene2_ThunderBGTrans(wk, scene_wk);
 			Scene2_PokeBG_MainSub_DispSetting(scene_wk);
 
-			//—¬¯Á‚·
+			//æµæ˜Ÿæ¶ˆã™
 		//	OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_STREAM_MAIN_0, 0 );
 		//	OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_STREAM_MAIN_1, 0 );
 		//	OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_STREAM_SUB_0, 0 );
 		//	OPD_Obj_DispOnOff( scene_wk->ObjWorkPtr, ACT_WORK_STREAM_SUB_1, 0 );
 			OPD_Obj_StreamDispReset(scene_wk->ObjWorkPtr, TRUE);
 
-			//‘Ì“–‚½‚è‚³‚¹‚é‚Ì‚ÅAƒ|ƒPƒ‚ƒ“‚ğ‘S‘Ì“I‚ÉŒã‚ë‚É‰º‚°‚é
+			//ä½“å½“ãŸã‚Šã•ã›ã‚‹ã®ã§ã€ãƒã‚±ãƒ¢ãƒ³ã‚’å…¨ä½“çš„ã«å¾Œã‚ã«ä¸‹ã’ã‚‹
 			GF_BGL_ScrollReq(scene_wk->bgl, TOWN_FRAME, GF_BGL_SCROLL_X_SET, 
 				-POKE_ATTACK_SCROLL_OFFSET_X);
 			GF_BGL_ScrollReq(scene_wk->bgl, SKY_FRAME, GF_BGL_SCROLL_X_SET, 
@@ -2609,7 +2609,7 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			GF_BGL_ScrollReq(scene_wk->bgl, SUB_BG3_FRAME, GF_BGL_SCROLL_X_SET, 
 				POKE_ATTACK_SCROLL_OFFSET_X);
 			
-			//ƒuƒ‰ƒbƒNƒCƒ“­‚µ‚ä‚Á‚­‚è
+			//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³å°‘ã—ã‚†ã£ãã‚Š
 			WIPE_SYS_Start(	WIPE_PATTERN_M, WIPE_TYPE_FADEIN,
 					WIPE_TYPE_FADEIN,0x0000,SCENE2_DISP_CHG_SYNC_WAZA_AFTER,1,HEAPID_OP_DEMO );
 			(*seq)++;
@@ -2623,17 +2623,17 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 			(*seq)++;
 		}
 		break;
-	case 17:	//‘Ì“–‚½‚è
+	case 17:	//ä½“å½“ãŸã‚Š
 		OPD_Obj_StreamScroll(scene_wk->ObjWorkPtr, POKE_STREAM_SPEED);
 		if ( WIPE_SYS_EndCheck() ){
 			if(inCounter >= FM_POKE_ATTACK){
 				Scene2_ScrollPokeAttack(scene_wk);
 			}
 			if(inCounter >= FM_SCENE2_END_WIPE){
-				//—‹•\¦
+				//é›·è¡¨ç¤º
 				scene_wk->bg_visible_on_req |= (1<<MAIN_BG0_FRAME)|(1<<WB_TITLE_FRAME);
 				
-				//ƒzƒƒCƒgƒAƒEƒg
+				//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
 				WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT,
 					WIPE_TYPE_FADEOUT,0x7fff,SCENE2_DISP_CHG_SYNC_THUNDER,1,HEAPID_OP_DEMO );
 				(*seq)++;
@@ -2643,14 +2643,14 @@ static BOOL Scene2_Main(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, const int 
 	case 18:
 		Scene2_ScrollPokeAttack(scene_wk);
 		OPD_Obj_StreamScroll(scene_wk->ObjWorkPtr, POKE_STREAM_SPEED);
-		//ƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 		if ( WIPE_SYS_EndCheck() ){
 			sys.disp3DSW = DISP_3D_TO_SUB;
 			GF_Disp_DispSelect();
 			(*seq)++;
 		}
 		break;
-	case 19:	//I—¹
+	case 19:	//çµ‚äº†
 		return TRUE;
 		break;
 	}	
@@ -2704,10 +2704,10 @@ static void Scene2_ScrollBallThrowStream(SCENE2_WORK *scene_wk)
 static void Scene2_ScrollHand(SCENE2_WORK *scene_wk, int inCounter)
 {
 	if(inCounter == FM_BALL_HAND_RELEASE){
-		//ƒEƒBƒ“ƒhƒE‚ÅƒXƒNƒ[ƒ‹‚Ì‰ñ‚è‚İ‚ª”­¶‚µ‚È‚¢‚æ‚¤‚É‰B‚·
-		//‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Ì‚Í‚Ü‚¾ƒXƒNƒ[ƒ‹‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅAVƒuƒ‰ƒ“ƒN‚Å‚â‚ç‚È‚­‚Ä‚à‘åä•v
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã®å›ã‚Šè¾¼ã¿ãŒç™ºç”Ÿã—ãªã„ã‚ˆã†ã«éš ã™
+		//ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®æ™‚ã¯ã¾ã ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã—ã¦ã„ãªã„ã®ã§ã€Vãƒ–ãƒ©ãƒ³ã‚¯ã§ã‚„ã‚‰ãªãã¦ã‚‚å¤§ä¸ˆå¤«
 		
-		//ƒƒCƒ“@¶‚ÉƒXƒNƒ[ƒ‹‚·‚éˆ×AƒEƒBƒ“ƒhƒE“à‚Í•\¦ONAŠO‚Í•\¦OFF
+		//ãƒ¡ã‚¤ãƒ³ã€€å·¦ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹ç‚ºã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã¯è¡¨ç¤ºONã€å¤–ã¯è¡¨ç¤ºOFF
 		G2_SetWnd0InsidePlane(	GX_WND_PLANEMASK_BG0|
 								GX_WND_PLANEMASK_BG1|
 								GX_WND_PLANEMASK_BG2|
@@ -2723,8 +2723,8 @@ static void Scene2_ScrollHand(SCENE2_WORK *scene_wk, int inCounter)
 		scene_wk->wnd0_m_bottom = 8*0x11;//192;
 		G2_SetWnd0Position( scene_wk->wnd0_m_left, scene_wk->wnd0_m_top, 
 			scene_wk->wnd0_m_right, scene_wk->wnd0_m_bottom);
-		GX_SetVisibleWnd( GX_WNDMASK_W0 );	//À•Wİ’è‚ªÏ‚ñ‚ÅÅŒã‚É•\¦ON
-		//ƒTƒu
+		GX_SetVisibleWnd( GX_WNDMASK_W0 );	//åº§æ¨™è¨­å®šãŒæ¸ˆã‚“ã§æœ€å¾Œã«è¡¨ç¤ºON
+		//ã‚µãƒ–
 		G2S_SetWnd0InsidePlane(	GX_WND_PLANEMASK_BG0|
 								GX_WND_PLANEMASK_BG1|
 								GX_WND_PLANEMASK_BG2|
@@ -2734,7 +2734,7 @@ static void Scene2_ScrollHand(SCENE2_WORK *scene_wk, int inCounter)
 								GX_WND_PLANEMASK_BG2|
 								GX_WND_PLANEMASK_BG3|
 								GX_WND_PLANEMASK_OBJ, 1 );
-		//‰E‘¤‚ğˆÍ‚¤ˆ×2–‡g‚¤
+		//å³å´ã‚’å›²ã†ç‚º2æšä½¿ã†
 		G2S_SetWnd1InsidePlane(	GX_WND_PLANEMASK_BG0|
 								GX_WND_PLANEMASK_BG1|
 								GX_WND_PLANEMASK_BG2|
@@ -2748,7 +2748,7 @@ static void Scene2_ScrollHand(SCENE2_WORK *scene_wk, int inCounter)
 			scene_wk->wnd0_s_right, scene_wk->wnd0_s_bottom);
 		G2S_SetWnd1Position( 1, scene_wk->wnd0_s_top, 
 			0, scene_wk->wnd0_s_bottom);
-		GXS_SetVisibleWnd( GX_WNDMASK_W0 | GX_WNDMASK_W1 );	//À•Wİ’è‚ªÏ‚ñ‚ÅÅŒã‚É•\¦ON
+		GXS_SetVisibleWnd( GX_WNDMASK_W0 | GX_WNDMASK_W1 );	//åº§æ¨™è¨­å®šãŒæ¸ˆã‚“ã§æœ€å¾Œã«è¡¨ç¤ºON
 	}
 	else if(inCounter > FM_BALL_HAND_RELEASE){
 		if(GF_BGL_ScreenScrollXGet(scene_wk->bgl, TOWN_FRAME) >= 256){
@@ -2856,7 +2856,7 @@ static void Scene2_CameraMoveMain(SCENE2_WORK *scene_wk, const int inCounter)
 {
 	VecFx32 move = {0,0,0};
 	if (inCounter<FM_MAP2_LOAD){
-		//ƒJƒƒ‰ƒY[ƒ€
+		//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ 
 		{
 			u16 persp_way;
 			persp_way = GFC_GetCameraPerspWay(scene_wk->Data.CameraPtr);
@@ -2866,34 +2866,34 @@ static void Scene2_CameraMoveMain(SCENE2_WORK *scene_wk, const int inCounter)
 				GFC_SetCameraPerspWay(0x05c1,scene_wk->Data.CameraPtr);
 			}
 		}
-		//ã‚É•½sˆÚ“®
+		//ä¸Šã«å¹³è¡Œç§»å‹•
 		move.z -= FX32_ONE*2;
 		GFC_ShiftCamera(&move, scene_wk->Data.CameraPtr);
 	}
 	else if(inCounter == FM_MAP2_LOAD){
 		VecFx32 target = {-(FX32_ONE*16*4),0,-FX32_ONE*16*3};
 
-		//ƒJƒƒ‰ƒZƒbƒg
+		//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 		GFC_InitCameraTDA( &target,
-			CameraData.Distance,	// ‹——£
+			CameraData.Distance,	// è·é›¢
 			&CameraData.Angle,	//
-			CameraData.PerspWay,	// “ŠË‰e‚ÌŠp“x
+			CameraData.PerspWay,	// æŠ•å°„å½±ã®è§’åº¦
 			CameraData.View,
-			FALSE,				//ƒoƒCƒ“ƒh‚µ‚È‚¢
+			FALSE,				//ãƒã‚¤ãƒ³ãƒ‰ã—ãªã„
 			scene_wk->Data.CameraPtr
 		);
-		//ƒ\ƒmƒIƒ^ƒEƒ“‚Ì‚‚³‚É‚ ‚í‚¹‚é
+		//ã‚½ãƒã‚ªã‚¿ã‚¦ãƒ³ã®é«˜ã•ã«ã‚ã‚ã›ã‚‹
 		{
 			VecFx32 move = {0,SONOO_TOWN_HEIGHT,0};
 			GFC_ShiftCamera(&move,scene_wk->Data.CameraPtr);
 		}
-		//Šp“x‚Â‚¯‚é
+		//è§’åº¦ã¤ã‘ã‚‹
 		{
 	//		CAMERA_ANGLE angle = {0,ANGLE_MOVE,0,0};
 	//		GFC_AddCameraAngleRot(&angle,scene_wk->Data.CameraPtr);
 		}
 
-		//ƒtƒHƒOİ’è
+		//ãƒ•ã‚©ã‚°è¨­å®š
 		{
 			NNS_G3dGeFlushBuffer();
 			G3X_SetFog( TRUE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x1000, 4500);	//24927
@@ -2909,7 +2909,7 @@ static void Scene2_CameraMoveMain(SCENE2_WORK *scene_wk, const int inCounter)
 				G3X_SetFogTable(fog_table);
 			}
 		}
-		//2DBGƒAƒ‹ƒtƒ@İ’è
+		//2DBGã‚¢ãƒ«ãƒ•ã‚¡è¨­å®š
 		{
 			G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, 
 				GX_BLEND_PLANEMASK_BG0|GX_BLEND_PLANEMASK_BD, 7, 16 - 7);
@@ -2919,49 +2919,49 @@ static void Scene2_CameraMoveMain(SCENE2_WORK *scene_wk, const int inCounter)
 		}
 	}
 	else if(inCounter<FM_MAP3_LOAD){
-		//‰E‚É•½sˆÚ“®
+		//å³ã«å¹³è¡Œç§»å‹•
 		move.x += FX32_ONE * 4;
 		GFC_ShiftCamera(&move, scene_wk->Data.CameraPtr);
 		GF_BGL_ScrollReq( scene_wk->bgl, TOWN_FRAME, GF_BGL_SCROLL_X_INC, 4);
 	}
 	else if(inCounter == FM_MAP3_LOAD){
 		VecFx32 target = {FX32_ONE*16*30,0,FX32_ONE*0 - 0x70000};
-		//ƒJƒƒ‰ƒZƒbƒg
+		//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 		GFC_InitCameraTDA( &target,
-			CameraData.Distance,	// ‹——£
+			CameraData.Distance,	// è·é›¢
 			&CameraData.Angle,	//
-			CameraData.PerspWay,	// “ŠË‰e‚ÌŠp“x
+			CameraData.PerspWay,	// æŠ•å°„å½±ã®è§’åº¦
 			CameraData.View,
-			FALSE,				//ƒoƒCƒ“ƒh‚µ‚È‚¢
+			FALSE,				//ãƒã‚¤ãƒ³ãƒ‰ã—ãªã„
 			scene_wk->Data.CameraPtr
 		);
 	//	GFC_SetCameraPerspWay(0x05c1,scene_wk->Data.CameraPtr);
-		//ƒ\ƒmƒIƒ^ƒEƒ“‚Ì‚‚³‚É‚ ‚í‚¹‚é
+		//ã‚½ãƒã‚ªã‚¿ã‚¦ãƒ³ã®é«˜ã•ã«ã‚ã‚ã›ã‚‹
 		{
 			VecFx32 move = {0,SONOO_TOWN_HEIGHT,0};
 			GFC_ShiftCamera(&move,scene_wk->Data.CameraPtr);
 		}
-		//Šp“x‚Â‚¯‚é
+		//è§’åº¦ã¤ã‘ã‚‹
 		{
 			CAMERA_ANGLE angle = {0,-ANGLE_MOVE,0,0};
 			GFC_AddCameraAngleRot(&angle,scene_wk->Data.CameraPtr);
 		}
-		//ƒtƒHƒOİ’è
+		//ãƒ•ã‚©ã‚°è¨­å®š
 		{
 			NNS_G3dGeFlushBuffer();
 			G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 		}
-		//–Ø˜R‚ê“úOFF
+		//æœ¨æ¼ã‚Œæ—¥OFF
 		{
 			G2_BlendNone();
 			GF_BGL_VisibleSet(TOWN_FRAME, VISIBLE_OFF);
 		}
 	}else {
-		//‰º‚É•½sˆÚ“®i‚æ‚«‚Æ‚±‚ë‚ÅAƒJƒƒ‰ˆø‚­j
+		//ä¸‹ã«å¹³è¡Œç§»å‹•ï¼ˆã‚ˆãã¨ã“ã‚ã§ã€ã‚«ãƒ¡ãƒ©å¼•ãï¼‰
 		if (inCounter>=FM_CAM_ZOOM_OUT_START){
 			u16 persp_way;
 			persp_way = GFC_GetCameraPerspWay(scene_wk->Data.CameraPtr);
-		#if 0	//ˆø‚­‘¬“x‚ğ‚¿‚å‚Á‚Æ’x‚­‚·‚é
+		#if 0	//å¼•ãé€Ÿåº¦ã‚’ã¡ã‚‡ã£ã¨é…ãã™ã‚‹
 			if (persp_way+32<0x4000){
 				GFC_AddCameraPerspWay(32,scene_wk->Data.CameraPtr);
 			}
@@ -2986,11 +2986,11 @@ static void Scene2_MapChange(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, int i
 					WIPE_TYPE_FADEOUT,0x0000,SCENE2_MAPCHANGE_SYNC,1,HEAPID_OP_DEMO );
 		break;
 	case FM_MAP2_LOAD:
-		//‚±‚Ì“_‚ÅWIPE‚ªI—¹‚µ‚Ä‚¢‚È‚©‚Á‚½‚çWIPE‚Ì‘¬“x‚ğ‚à‚Á‚Æ‚ ‚°‚é‚©A
-		//FM_MAP2_LOAD‚Ì”’l‚ğŒã‚ë‚É‰º‚°‚é
+		//ã“ã®æ™‚ç‚¹ã§WIPEãŒçµ‚äº†ã—ã¦ã„ãªã‹ã£ãŸã‚‰WIPEã®é€Ÿåº¦ã‚’ã‚‚ã£ã¨ã‚ã’ã‚‹ã‹ã€
+		//FM_MAP2_LOADã®æ•°å€¤ã‚’å¾Œã‚ã«ä¸‹ã’ã‚‹
 		GF_ASSERT(WIPE_SYS_EndCheck() == TRUE);
 		
-		//ƒ}ƒbƒv‚ğ‰ğ•ú‚µ‚ÄAŸ‚Ì‚ğ“Ç‚İ‚Ş
+		//ãƒãƒƒãƒ—ã‚’è§£æ”¾ã—ã¦ã€æ¬¡ã®ã‚’èª­ã¿è¾¼ã‚€
 		Scene2_Load3D_Exit(wk);
 		Scene2_Load3D_Div(scene_wk, 1);
 		//Scene2_Load3D(scene_wk, 1);
@@ -3012,11 +3012,11 @@ static void Scene2_MapChange(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, int i
 					WIPE_TYPE_FADEOUT,0x0000,SCENE2_MAPCHANGE_SYNC,1,HEAPID_OP_DEMO );
 		break;
 	case FM_MAP3_LOAD:
-		//‚±‚Ì“_‚ÅWIPE‚ªI—¹‚µ‚Ä‚¢‚È‚©‚Á‚½‚çWIPE‚Ì‘¬“x‚ğ‚à‚Á‚Æ‚ ‚°‚é‚©A
-		//FM_MAP2_LOAD‚Ì”’l‚ğŒã‚ë‚É‰º‚°‚é
+		//ã“ã®æ™‚ç‚¹ã§WIPEãŒçµ‚äº†ã—ã¦ã„ãªã‹ã£ãŸã‚‰WIPEã®é€Ÿåº¦ã‚’ã‚‚ã£ã¨ã‚ã’ã‚‹ã‹ã€
+		//FM_MAP2_LOADã®æ•°å€¤ã‚’å¾Œã‚ã«ä¸‹ã’ã‚‹
 		GF_ASSERT(WIPE_SYS_EndCheck() == TRUE);
 		
-		//ƒ}ƒbƒv‚ğ‰ğ•ú‚µ‚ÄAŸ‚Ì‚ğ“Ç‚İ‚Ş
+		//ãƒãƒƒãƒ—ã‚’è§£æ”¾ã—ã¦ã€æ¬¡ã®ã‚’èª­ã¿è¾¼ã‚€
 		Scene2_Load3D_Exit(wk);
 		Scene2_Load3D(scene_wk, 2);
 
@@ -3028,7 +3028,7 @@ static void Scene2_MapChange(OPENING_DEMO_WORK *wk, SCENE2_WORK *scene_wk, int i
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //
-//ƒV[ƒ“3iƒeƒ“ƒKƒ“ƒUƒ“j
+//ã‚·ãƒ¼ãƒ³3ï¼ˆãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³ï¼‰
 static void Scene3_Init(OPENING_DEMO_WORK * wk);
 static void Scene3_Load(SCENE3_WORK *scene_wk);
 static BOOL Scene3_Main(SCENE3_WORK *scene_wk, const int inCounter);
@@ -3038,24 +3038,24 @@ static BOOL MtTenganScene(OPENING_DEMO_WORK * wk)
 {
 	u8 *seq = &(wk->SceneWork3.Seq);
 	if (wk->SkipFlg){
-		(*seq) = 3;		//ƒXƒLƒbƒvÀs
+		(*seq) = 3;		//ã‚¹ã‚­ãƒƒãƒ—å®Ÿè¡Œ
 	}
 	
 	switch(*seq){
-	case 0:		//‰Šú‰»
+	case 0:		//åˆæœŸåŒ–
 		Scene3_Init(wk);
 		(*seq)++;
 		break;
-	case 1:			//ƒOƒ‰ƒtƒBƒbƒNƒ[ƒh
+	case 1:			//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰
 		Scene3_Load(&wk->SceneWork3);
 		(*seq)++;
 		break;
-	case 2:			//ƒƒCƒ“
+	case 2:			//ãƒ¡ã‚¤ãƒ³
 		if ( Scene3_Main( &wk->SceneWork3, wk->FrameCounter ) ){
 			(*seq)++;
 		}
 		break;
-	case 3:			//I—¹
+	case 3:			//çµ‚äº†
 		Scene3_End(wk);
 		return TRUE;
 	}
@@ -3071,13 +3071,13 @@ static void Scene3_Init(OPENING_DEMO_WORK * wk)
 
 	wk->SceneWork3.bgl = wk->bgl;
 
-	//ƒ}ƒXƒ^[‹P“x‚ğ‚O‚É‚·‚é
+	//ãƒã‚¹ã‚¿ãƒ¼è¼åº¦ã‚’ï¼ã«ã™ã‚‹
 	WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_WHITE );
 	WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_WHITE );
-	//ƒJƒ‰[“ÁêŒø‰Ê–³Œø
+	//ã‚«ãƒ©ãƒ¼ç‰¹æ®ŠåŠ¹æœç„¡åŠ¹
 	G2_BlendNone();
 
-	wk->SceneWork3.InitOK = 1;	//init’Ê‰ß
+	wk->SceneWork3.InitOK = 1;	//inité€šé
 }
 
 static void Scene3_Load(SCENE3_WORK *scene_wk)
@@ -3091,19 +3091,19 @@ static void Scene3_Load(SCENE3_WORK *scene_wk)
 	};
 */	
 
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	ArcUtil_PalSet( ARC_OP_DEMO, NARC_op_demo_op_akagi_NCLR,
 						PALTYPE_MAIN_BG, 0, 0, HEAPID_OP_DEMO );
 	
-	//--ƒAƒJƒMƒf[ƒ^ƒ[ƒh
-	//ƒLƒƒƒ‰
+	//--ã‚¢ã‚«ã‚®ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
+	//ã‚­ãƒ£ãƒ©
 	ArcUtil_BgCharSet(ARC_OP_DEMO, NARC_op_demo_op_akagi_NCGR,
 						scene_wk->bgl, MT_TENGAN_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_ScrnSet(ARC_OP_DEMO, NARC_op_demo_op_akagi_NSCR,
 						scene_wk->bgl, MT_TENGAN_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 	
-	//--‰Šú‚a‚fİ’è
+	//--åˆæœŸï¼¢ï¼§è¨­å®š
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GX_VisibleControlDirect( 0 );
 	GF_Disp_GXS_VisibleControlDirect( 0 );
@@ -3113,7 +3113,7 @@ static void Scene3_Load(SCENE3_WORK *scene_wk)
 	GF_BGL_ScrollSet( scene_wk->bgl, MT_TENGAN_FRAME, GF_BGL_SCROLL_Y_SET, 
 		scene_wk->akagi_scr_y / FX32_ONE);
 	
-	scene_wk->LoadOK = 1;		//load’Ê‰ß
+	scene_wk->LoadOK = 1;		//loadé€šé
 }
 
 static BOOL Scene3_Main(SCENE3_WORK *scene_wk, const int inCounter)
@@ -3121,7 +3121,7 @@ static BOOL Scene3_Main(SCENE3_WORK *scene_wk, const int inCounter)
 	u8 *seq = &(scene_wk->SceneSeq);
 	
 	switch(*seq){
-	case 0:	//‚ä‚Á‚­‚èƒuƒ‰ƒbƒNƒCƒ“
+	case 0:	//ã‚†ã£ãã‚Šãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
 		if (inCounter>=FM_TENGAN_IN){
 			WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN,
 								WIPE_TYPE_FADEIN,0x7fff,30,1,HEAPID_OP_DEMO );
@@ -3141,8 +3141,8 @@ static BOOL Scene3_Main(SCENE3_WORK *scene_wk, const int inCounter)
 			(*seq)++;
 		}
 		break;
-	case 3://‚æ‚«‚Æ‚±‚ë‚Å—¼–ÊƒzƒƒCƒgƒAƒEƒg
-		//‚a‚fƒXƒNƒ[ƒ‹EŠgkƒƒCƒ“
+	case 3://ã‚ˆãã¨ã“ã‚ã§ä¸¡é¢ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
+		//ï¼¢ï¼§ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ»æ‹¡ç¸®ãƒ¡ã‚¤ãƒ³
 		if(inCounter >= FM_TENGAN_OUT){
 			WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT,
 							WIPE_TYPE_FADEOUT,0x0000,8,1,HEAPID_OP_DEMO );
@@ -3150,7 +3150,7 @@ static BOOL Scene3_Main(SCENE3_WORK *scene_wk, const int inCounter)
 			(*seq)++;
 		}
 		
-	#if 0	//ƒeƒ“ƒKƒ“ƒUƒ“‚ÌŠg‘å‚È‚­‚µ‚½
+	#if 0	//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³ã®æ‹¡å¤§ãªãã—ãŸ
 		if (inCounter>=FM_MT_AFFINE){
 			Scene3_Affine(scene_wk);
 		}
@@ -3163,7 +3163,7 @@ static BOOL Scene3_Main(SCENE3_WORK *scene_wk, const int inCounter)
 		}
 	#endif
 		break;
-	case 4:	//ƒzƒƒCƒgƒAƒEƒg‘Ò‚¿
+	case 4:	//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆå¾…ã¡
 //		Scene3_Affine(scene_wk);
 	//	Scene3_Affine2(scene_wk);
 		if( WIPE_SYS_EndCheck() ){
@@ -3181,13 +3181,13 @@ static BOOL Scene3_Main(SCENE3_WORK *scene_wk, const int inCounter)
 static void Scene3_End(OPENING_DEMO_WORK * wk)
 {
 	if (wk->SceneWork3.InitOK){
-		//bgl‰ğ•ú
+		//bglè§£æ”¾
 		GF_BGL_BGControlExit( wk->bgl, MT_TENGAN_FRAME );
 		sys_FreeMemoryEz( wk->bgl );
 		wk->SceneWork3.InitOK = 0;
 	}
-	if (wk->SceneWork3.LoadOK){		//load’Ê‰ß
-		//ƒpƒŒƒbƒg‰ğ•ú
+	if (wk->SceneWork3.LoadOK){		//loadé€šé
+		//ãƒ‘ãƒ¬ãƒƒãƒˆè§£æ”¾
 		wk->SceneWork3.LoadOK = 0;
 	}
 }

@@ -1,8 +1,8 @@
 //=============================================================================
 /**
  * @file	comm_def.h
- * @brief	’ÊMŠÖ˜A‚ÅƒCƒxƒ“ƒg“™‚Å‚ÌŽó‚¯“n‚µ‚ª•K—v‚È’è‹`‚ðW‚ß‚½ƒtƒ@ƒCƒ‹
-            define‚µ‚©‹–‚³‚È‚¢‚Æ‚ÌŽ–
+ * @brief	é€šä¿¡é–¢é€£ã§ã‚¤ãƒ™ãƒ³ãƒˆç­‰ã§ã®å—ã‘æ¸¡ã—ãŒå¿…è¦ãªå®šç¾©ã‚’é›†ã‚ãŸãƒ•ã‚¡ã‚¤ãƒ«
+            defineã—ã‹è¨±ã•ãªã„ã¨ã®äº‹
  * @author	Katsumi Ohno
  * @date    2005.11.09
  */
@@ -10,167 +10,167 @@
 #ifndef _COMM_DEF_H_
 #define _COMM_DEF_H_
 
-// –³ü‚ÅŽg—p‚·‚éDMA”Ô†
+// ç„¡ç·šã§ä½¿ç”¨ã™ã‚‹DMAç•ªå·
 #define COMM_DMA_NO                 (2)
-//WM‚Ìƒpƒ[ƒ‚[ƒh
+//WMã®ãƒ‘ãƒ¯ãƒ¼ãƒ¢ãƒ¼ãƒ‰
 #define COMM_POWERMODE       (1)
-//SSLˆ—‚ÌƒXƒŒƒbƒh—Dæ‡ˆÊ
+//SSLå‡¦ç†ã®ã‚¹ãƒ¬ãƒƒãƒ‰å„ªå…ˆé †ä½
 #define COMM_SSL_PRIORITY     (20)
 
 
 
-// e‹@‚ð‘I‘ð‚Å‚«‚é”B
+// è¦ªæ©Ÿã‚’é¸æŠžã§ãã‚‹æ•°ã€‚
 #define  SCAN_PARENT_COUNT_MAX ( 16 )
 
-// Žq‹@Å‘å”
+// å­æ©Ÿæœ€å¤§æ•°
 #define  COMM_CHILD_MAX  ( 7 )
 
-// ‚ ‚è‚¦‚È‚¢ID
+// ã‚ã‚Šãˆãªã„ID
 #define COMM_INVALID_ID  (0xff)
 
 
-// ‹@Å‘å”
+// æ©Ÿæœ€å¤§æ•°
 #define  COMM_MACHINE_MAX  (COMM_CHILD_MAX+1)
 
-// ˆµ‚¦‚éƒRƒ}ƒ“ƒh‚ÌŽóMÅ‘åƒTƒCƒY
+// æ‰±ãˆã‚‹ã‚³ãƒžãƒ³ãƒ‰ã®å—ä¿¡æœ€å¤§ã‚µã‚¤ã‚º
 #define  COMM_COMMAND_RECV_SIZE_MAX  (256)
-// ˆµ‚¦‚éƒRƒ}ƒ“ƒh‚Ì‘—MÅ‘åƒTƒCƒY  (ringbuff‚Æ“¯‚¶‘å‚«‚³)
+// æ‰±ãˆã‚‹ã‚³ãƒžãƒ³ãƒ‰ã®é€ä¿¡æœ€å¤§ã‚µã‚¤ã‚º  (ringbuffã¨åŒã˜å¤§ãã•)
 #define  COMM_COMMAND_SEND_SIZE_MAX  (264)
 
 
 
-// e‚ÌID
+// è¦ªã®ID
 #define COMM_PARENT_ID    (0)
 
-// ’ÊM‚Åƒƒjƒ…[‚ðo‚µ‚½ê‡‚Ì–ß‚è’l
-#define  COMM_RETVAL_NULL    (0)     ///< ‘I‘ð’†
-#define  COMM_RETVAL_CANCEL  (1)   ///< userƒLƒƒƒ“ƒZƒ‹
-#define  COMM_RETVAL_OK      (2)              ///< ‘I‘ðŠ®—¹
-#define  COMM_RETVAL_ERROR   (3)              ///< ’ÊMƒGƒ‰[
-#define  COMM_RETVAL_DIFFER_REGULATION   (4)              ///< ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ªˆÙ‚È‚é
+// é€šä¿¡ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‡ºã—ãŸå ´åˆã®æˆ»ã‚Šå€¤
+#define  COMM_RETVAL_NULL    (0)     ///< é¸æŠžä¸­
+#define  COMM_RETVAL_CANCEL  (1)   ///< userã‚­ãƒ£ãƒ³ã‚»ãƒ«
+#define  COMM_RETVAL_OK      (2)              ///< é¸æŠžå®Œäº†
+#define  COMM_RETVAL_ERROR   (3)              ///< é€šä¿¡ã‚¨ãƒ©ãƒ¼
+#define  COMM_RETVAL_DIFFER_REGULATION   (4)              ///< ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒç•°ãªã‚‹
 
 
-// ’ÊM‚ÌŽí—Þ  
-#define  COMM_MODE_TRADE    (0)     // 1on1 ƒ|ƒPƒ‚ƒ“ŒðŠ·
-#define  COMM_MODE_BATTLE_SINGLE (1)    // 1vs1 ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_DOUBLE (2)    // 1vs1 ƒ_ƒuƒ‹ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_MIX_1ON1 (3)  // 1vs1 ƒ~ƒbƒNƒXƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_MULTI (4)     // 2vs2 ƒ}ƒ‹ƒ`ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_MIX_2ON2 (5)  // 2vs2 ƒ~ƒbƒNƒXƒoƒgƒ‹
-#define  COMM_MODE_NUT_CRASH (6)        // 2-5  –Ø‚ÌŽÀƒNƒ‰ƒbƒVƒ…
-#define  COMM_MODE_RECORD (7)           // 2-4  ƒŒƒR[ƒhƒR[ƒi[
-#define  COMM_MODE_CONTEST (8)           // 2-4  ƒRƒ“ƒeƒXƒg
-#define  COMM_MODE_UNION (9)            // ƒ†ƒjƒIƒ“ƒ‹[ƒ€
-#define  COMM_MODE_UNDERGROUND (10)      // 16  ’n‰º
-#define  COMM_MODE_POLLOCK4 (11)           // 4lƒ|ƒƒbƒN
-#define  COMM_MODE_POLLOCK16 (12)           // 16lƒ|ƒƒbƒN
-#define  COMM_MODE_PICTURE (13)            // ƒ†ƒjƒIƒ“ƒ‹[ƒ€->‚¨ŠG‚©‚«
-#define  COMM_MODE_POKETCH (14)            // ‚Û‚¯‚Á‚¿
-#define  COMM_MODE_MYSTERY (15)            // •sŽv‹c’ÊM
-#define  COMM_MODE_TOWER_MULTI (16)            // ƒoƒgƒ‹ƒ^ƒ[ƒ}ƒ‹ƒ`
-#define  COMM_MODE_PARTY (17)          // ƒp[ƒeƒB[ƒQ[ƒ€ƒXƒLƒƒƒ“
-#define  COMM_MODE_UNION_APP (18)            // ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒAƒvƒŠƒP[ƒVƒ‡ƒ“
-#define  COMM_MODE_BATTLE_SINGLE_WIFI (19)    // 1vs1 WIFI ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_DOUBLE_WIFI (20)    // 1vs1 WIFI ƒ_ƒuƒ‹
-#define  COMM_MODE_TRADE_WIFI (21)    // WIFIŒðŠ·
+// é€šä¿¡ã®ç¨®é¡ž  
+#define  COMM_MODE_TRADE    (0)     // 1on1 ãƒã‚±ãƒ¢ãƒ³äº¤æ›
+#define  COMM_MODE_BATTLE_SINGLE (1)    // 1vs1 ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_DOUBLE (2)    // 1vs1 ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_MIX_1ON1 (3)  // 1vs1 ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_MULTI (4)     // 2vs2 ãƒžãƒ«ãƒãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_MIX_2ON2 (5)  // 2vs2 ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
+#define  COMM_MODE_NUT_CRASH (6)        // 2-5  æœ¨ã®å®Ÿã‚¯ãƒ©ãƒƒã‚·ãƒ¥
+#define  COMM_MODE_RECORD (7)           // 2-4  ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼
+#define  COMM_MODE_CONTEST (8)           // 2-4  ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+#define  COMM_MODE_UNION (9)            // ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ 
+#define  COMM_MODE_UNDERGROUND (10)      // 16  åœ°ä¸‹
+#define  COMM_MODE_POLLOCK4 (11)           // 4äººãƒãƒ­ãƒƒã‚¯
+#define  COMM_MODE_POLLOCK16 (12)           // 16äººãƒãƒ­ãƒƒã‚¯
+#define  COMM_MODE_PICTURE (13)            // ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ->ãŠçµµã‹ã
+#define  COMM_MODE_POKETCH (14)            // ã½ã‘ã£ã¡
+#define  COMM_MODE_MYSTERY (15)            // ä¸æ€è­°é€šä¿¡
+#define  COMM_MODE_TOWER_MULTI (16)            // ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒžãƒ«ãƒ
+#define  COMM_MODE_PARTY (17)          // ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚²ãƒ¼ãƒ ã‚¹ã‚­ãƒ£ãƒ³
+#define  COMM_MODE_UNION_APP (18)            // ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
+#define  COMM_MODE_BATTLE_SINGLE_WIFI (19)    // 1vs1 WIFI ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_DOUBLE_WIFI (20)    // 1vs1 WIFI ãƒ€ãƒ–ãƒ«
+#define  COMM_MODE_TRADE_WIFI (21)    // WIFIäº¤æ›
 #define  COMM_MODE_VCHAT_WIFI (22)    // WIFI VCT
 #define  COMM_MODE_LOGIN_WIFI (23)    // WIFI LOGIN
 #define  COMM_MODE_DPW_WIFI (24)    // DPW WIFI
-#define  COMM_MODE_FUSIGI_WIFI (25)    // ‚Ó‚µ‚¬ WIFI
-#define  COMM_MODE_GURU2 (26)			// ‚®‚é‚®‚éŒðŠ·
-#define  COMM_MODE_FACTORY_MULTI_LV50 (27)		// ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ƒ}ƒ‹ƒ`LV50
-#define  COMM_MODE_FACTORY_MULTI_OPEN (28)		// ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ƒ}ƒ‹ƒ`OPEN
-#define	 COMM_MODE_WIFI_POFIN	(29)	// WIFI	ƒ|ƒtƒBƒ“
-#define  COMM_MODE_STAGE_MULTI (30)		// ƒoƒgƒ‹ƒXƒe[ƒWƒ}ƒ‹ƒ`
-#define  COMM_MODE_CASTLE_MULTI (31)		// ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹ƒ}ƒ‹ƒ`
-#define  COMM_MODE_ROULETTE_MULTI (32)		// ƒoƒgƒ‹ƒ‹[ƒŒƒbƒgƒ}ƒ‹ƒ`
-#define  COMM_MODE_LOBBY_WIFI (33)    // ƒƒr[ WIFI
-#define  COMM_MODE_WIFI_FRONTIER_COMMON (34)		// WIFIƒtƒƒ“ƒeƒBƒA‹¤—p
-#define  COMM_MODE_CLUB_WIFI (35)    //  WIFIƒNƒ‰ƒu—p
-#define  COMM_MODE_EMAIL_WIFI (36)    //  WIFIe-mailÝ’è—p
+#define  COMM_MODE_FUSIGI_WIFI (25)    // ãµã—ãŽ WIFI
+#define  COMM_MODE_GURU2 (26)			// ãã‚‹ãã‚‹äº¤æ›
+#define  COMM_MODE_FACTORY_MULTI_LV50 (27)		// ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒžãƒ«ãƒLV50
+#define  COMM_MODE_FACTORY_MULTI_OPEN (28)		// ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒžãƒ«ãƒOPEN
+#define	 COMM_MODE_WIFI_POFIN	(29)	// WIFI	ãƒãƒ•ã‚£ãƒ³
+#define  COMM_MODE_STAGE_MULTI (30)		// ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒžãƒ«ãƒ
+#define  COMM_MODE_CASTLE_MULTI (31)		// ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒžãƒ«ãƒ
+#define  COMM_MODE_ROULETTE_MULTI (32)		// ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒžãƒ«ãƒ
+#define  COMM_MODE_LOBBY_WIFI (33)    // ãƒ­ãƒ“ãƒ¼ WIFI
+#define  COMM_MODE_WIFI_FRONTIER_COMMON (34)		// WIFIãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å…±ç”¨
+#define  COMM_MODE_CLUB_WIFI (35)    //  WIFIã‚¯ãƒ©ãƒ–ç”¨
+#define  COMM_MODE_EMAIL_WIFI (36)    //  WIFIe-mailè¨­å®šç”¨
 #define  COMM_MODE_MAX (37)
-#define  COMM_MODE_NONE (38)   // ƒT[ƒrƒXØ‚è‘Ö‚¦‚ðs‚í‚È‚¢Žž‚ÉŽg—p
+#define  COMM_MODE_NONE (38)   // ã‚µãƒ¼ãƒ“ã‚¹åˆ‡ã‚Šæ›¿ãˆã‚’è¡Œã‚ãªã„æ™‚ã«ä½¿ç”¨
 
-// ’ÊM‚ÌŽí—Þ ‚É‘Î‰ž‚µ‚½Žq‹@MIN”
-#define  COMM_MODE_TRADE_NUM_MIN    (1)     // 1on1 ƒ|ƒPƒ‚ƒ“ŒðŠ·
-#define  COMM_MODE_BATTLE_SINGLE_NUM_MIN (1)    // 1vs1 ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_DOUBLE_NUM_MIN (1)    // 1vs1 ƒ_ƒuƒ‹ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_MIX_1ON1_NUM_MIN (1)  // 1vs1 ƒ~ƒbƒNƒXƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_MULTI_NUM_MIN (3)     // 2vs2 ƒ}ƒ‹ƒ`ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_MIX_2ON2_NUM_MIN (3)  // 2vs2 ƒ~ƒbƒNƒXƒoƒgƒ‹
-#define  COMM_MODE_NUT_CRASH_NUM_MIN (1)        // 2-5  –Ø‚ÌŽÀƒNƒ‰ƒbƒVƒ…
-#define  COMM_MODE_RECORD_NUM_MIN (1)           // 2-4  ƒŒƒR[ƒhƒR[ƒi[
-#define  COMM_MODE_CONTEST_NUM_MIN (1)           // 2-4  ƒRƒ“ƒeƒXƒg
-#define  COMM_MODE_UNION_NUM_MIN (1)            // ƒ†ƒjƒIƒ“ƒ‹[ƒ€
-#define  COMM_MODE_UNDERGROUND_NUM_MIN (1)      // 16  ’n‰º
-#define  COMM_MODE_POLLOCK4_NUM_MIN (1)           // 4lƒ|ƒƒbƒN
-#define  COMM_MODE_POLLOCK16_NUM_MIN (1)           // 16lƒ|ƒƒbƒN
-#define  COMM_MODE_PICTURE_NUM_MIN (1)            // ƒ†ƒjƒIƒ“ƒ‹[ƒ€->‚¨ŠG‚©‚«
-#define  COMM_MODE_POKETCH_NUM_MIN (1)            // ‚Û‚¯‚Á‚¿
-#define  COMM_MODE_MYSTERY_NUM_MIN (1)            // •sŽv‹c’ÊM
-#define  COMM_MODE_TOWER_MULTI_NUM_MIN (1)            // ƒoƒgƒ‹ƒ^ƒ[ƒ}ƒ‹ƒ`
+// é€šä¿¡ã®ç¨®é¡ž ã«å¯¾å¿œã—ãŸå­æ©ŸMINæ•°
+#define  COMM_MODE_TRADE_NUM_MIN    (1)     // 1on1 ãƒã‚±ãƒ¢ãƒ³äº¤æ›
+#define  COMM_MODE_BATTLE_SINGLE_NUM_MIN (1)    // 1vs1 ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_DOUBLE_NUM_MIN (1)    // 1vs1 ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_MIX_1ON1_NUM_MIN (1)  // 1vs1 ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_MULTI_NUM_MIN (3)     // 2vs2 ãƒžãƒ«ãƒãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_MIX_2ON2_NUM_MIN (3)  // 2vs2 ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
+#define  COMM_MODE_NUT_CRASH_NUM_MIN (1)        // 2-5  æœ¨ã®å®Ÿã‚¯ãƒ©ãƒƒã‚·ãƒ¥
+#define  COMM_MODE_RECORD_NUM_MIN (1)           // 2-4  ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼
+#define  COMM_MODE_CONTEST_NUM_MIN (1)           // 2-4  ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+#define  COMM_MODE_UNION_NUM_MIN (1)            // ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ 
+#define  COMM_MODE_UNDERGROUND_NUM_MIN (1)      // 16  åœ°ä¸‹
+#define  COMM_MODE_POLLOCK4_NUM_MIN (1)           // 4äººãƒãƒ­ãƒƒã‚¯
+#define  COMM_MODE_POLLOCK16_NUM_MIN (1)           // 16äººãƒãƒ­ãƒƒã‚¯
+#define  COMM_MODE_PICTURE_NUM_MIN (1)            // ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ->ãŠçµµã‹ã
+#define  COMM_MODE_POKETCH_NUM_MIN (1)            // ã½ã‘ã£ã¡
+#define  COMM_MODE_MYSTERY_NUM_MIN (1)            // ä¸æ€è­°é€šä¿¡
+#define  COMM_MODE_TOWER_MULTI_NUM_MIN (1)            // ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒžãƒ«ãƒ
 #define  COMM_MODE_PARTY_NUM_MIN (1)            // party
-#define  COMM_MODE_UNION_APP_NUM_MIN (1)            // ƒ†ƒjƒIƒ“ƒ‹[ƒ€APP
-#define  COMM_MODE_BATTLE_SINGLE_WIFI_NUM_MIN (1)    // 1vs1 WIFIƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_DOUBLE_WIFI_NUM_MIN (1)    // 1vs1 WIFIƒoƒgƒ‹
-#define  COMM_MODE_TRADE_WIFI_NUM_MIN (1)    // ƒgƒŒ[ƒh
-#define  COMM_MODE_VCHAT_WIFI_NUM_MIN (1)    // ƒ{ƒCƒXƒ`ƒƒƒbƒg
-#define  COMM_MODE_LOGIN_WIFI_NUM_MIN (1)    // LOGIN‚Ì‚Ý
-#define  COMM_MODE_DPW_WIFI_NUM_MIN (0)    // ¢ŠEŒðŠ·,ƒoƒgƒ‹ƒ^ƒ[
-#define  COMM_MODE_FUSIGI_WIFI_NUM_MIN (0)    // ‚Ó‚µ‚¬WIFI
-#define  COMM_MODE_GURU2_NUM_MIN (1)    // ‚®‚é‚®‚éŒðŠ·
-#define  COMM_MODE_FACTORY_MULTI_LV50_NUM_MIN (1)    // ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ƒ}ƒ‹ƒ`LV50
-#define  COMM_MODE_FACTORY_MULTI_OPEN_NUM_MIN (1)    // ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ƒ}ƒ‹ƒ`OPEN
-#define  COMM_MODE_POFIN_WIFI_NUM_MIN (1)           // wifi4lƒ|ƒƒbƒN
-#define  COMM_MODE_STAGE_MULTI_NUM_MIN (1)    // ƒoƒgƒ‹ƒXƒe[ƒWƒ}ƒ‹ƒ`
-#define  COMM_MODE_CASTLE_MULTI_NUM_MIN (1)    // ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹ƒ}ƒ‹ƒ`
-#define  COMM_MODE_ROULETTE_MULTI_NUM_MIN (1)    // ƒoƒgƒ‹ƒ‹[ƒŒƒbƒgƒ}ƒ‹ƒ`
-#define  COMM_MODE_LOBBY_WIFI_NUM_MIN (1)    // ƒƒr[ WIFI
-#define  COMM_MODE_WIFI_FRONTIER_COMMON_NUM_MIN (1)    // WIFIƒtƒƒ“ƒeƒBƒA‹¤—p
-#define  COMM_MODE_CLUB_WIFI_NUM_MIN (1)    // WIFIƒNƒ‰ƒu—p
-#define  COMM_MODE_EMAIL_WIFI_NUM_MIN (0)    // WIFIe-mailÝ’è—p
+#define  COMM_MODE_UNION_APP_NUM_MIN (1)            // ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ APP
+#define  COMM_MODE_BATTLE_SINGLE_WIFI_NUM_MIN (1)    // 1vs1 WIFIãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_DOUBLE_WIFI_NUM_MIN (1)    // 1vs1 WIFIãƒãƒˆãƒ«
+#define  COMM_MODE_TRADE_WIFI_NUM_MIN (1)    // ãƒˆãƒ¬ãƒ¼ãƒ‰
+#define  COMM_MODE_VCHAT_WIFI_NUM_MIN (1)    // ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆ
+#define  COMM_MODE_LOGIN_WIFI_NUM_MIN (1)    // LOGINã®ã¿
+#define  COMM_MODE_DPW_WIFI_NUM_MIN (0)    // ä¸–ç•Œäº¤æ›,ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+#define  COMM_MODE_FUSIGI_WIFI_NUM_MIN (0)    // ãµã—ãŽWIFI
+#define  COMM_MODE_GURU2_NUM_MIN (1)    // ãã‚‹ãã‚‹äº¤æ›
+#define  COMM_MODE_FACTORY_MULTI_LV50_NUM_MIN (1)    // ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒžãƒ«ãƒLV50
+#define  COMM_MODE_FACTORY_MULTI_OPEN_NUM_MIN (1)    // ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒžãƒ«ãƒOPEN
+#define  COMM_MODE_POFIN_WIFI_NUM_MIN (1)           // wifi4äººãƒãƒ­ãƒƒã‚¯
+#define  COMM_MODE_STAGE_MULTI_NUM_MIN (1)    // ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒžãƒ«ãƒ
+#define  COMM_MODE_CASTLE_MULTI_NUM_MIN (1)    // ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒžãƒ«ãƒ
+#define  COMM_MODE_ROULETTE_MULTI_NUM_MIN (1)    // ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒžãƒ«ãƒ
+#define  COMM_MODE_LOBBY_WIFI_NUM_MIN (1)    // ãƒ­ãƒ“ãƒ¼ WIFI
+#define  COMM_MODE_WIFI_FRONTIER_COMMON_NUM_MIN (1)    // WIFIãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å…±ç”¨
+#define  COMM_MODE_CLUB_WIFI_NUM_MIN (1)    // WIFIã‚¯ãƒ©ãƒ–ç”¨
+#define  COMM_MODE_EMAIL_WIFI_NUM_MIN (0)    // WIFIe-mailè¨­å®šç”¨
 
-// ’ÊM‚ÌŽí—Þ ‚É‘Î‰ž‚µ‚½Žq‹@MAX”
-#define  COMM_MODE_TRADE_NUM_MAX    (1)     // 1on1 ƒ|ƒPƒ‚ƒ“ŒðŠ·
-#define  COMM_MODE_BATTLE_SINGLE_NUM_MAX (1)    // 1vs1 ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_DOUBLE_NUM_MAX (1)    // 1vs1 ƒ_ƒuƒ‹ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_MIX_1ON1_NUM_MAX (1)  // 1vs1 ƒ~ƒbƒNƒXƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_MULTI_NUM_MAX (3)     // 2vs2 ƒ}ƒ‹ƒ`ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_MIX_2ON2_NUM_MAX (3)  // 2vs2 ƒ~ƒbƒNƒXƒoƒgƒ‹
-#define  COMM_MODE_NUT_CRASH_NUM_MAX (3)        // 2-5  –Ø‚ÌŽÀƒNƒ‰ƒbƒVƒ…
-#define  COMM_MODE_RECORD_NUM_MAX (4)           // 2-4  ƒŒƒR[ƒhƒR[ƒi[
-#define  COMM_MODE_CONTEST_NUM_MAX (3)           // 2-4  ƒRƒ“ƒeƒXƒg
-#define  COMM_MODE_UNION_NUM_MAX (4)            // ƒ†ƒjƒIƒ“ƒ‹[ƒ€
-#define  COMM_MODE_UNDERGROUND_NUM_MAX (COMM_CHILD_MAX)      // 16  ’n‰º
-#define  COMM_MODE_POLLOCK4_NUM_MAX (3)           // 4lƒ|ƒƒbƒN
-#define  COMM_MODE_POLLOCK16_NUM_MAX (COMM_CHILD_MAX)           // 16lƒ|ƒƒbƒN
-#define  COMM_MODE_PICTURE_NUM_MAX (COMM_MODE_UNION_NUM_MAX)            // ƒ†ƒjƒIƒ“ƒ‹[ƒ€->‚¨ŠG‚©‚«
-#define  COMM_MODE_POKETCH_NUM_MAX (1)           // ‚Û‚¯‚Á‚¿
-#define  COMM_MODE_MYSTERY_NUM_MAX (4)           // •sŽv‹c’ÊM
-#define  COMM_MODE_TOWER_MULTI_NUM_MAX (1)            // ƒoƒgƒ‹ƒ^ƒ[ƒ}ƒ‹ƒ`
+// é€šä¿¡ã®ç¨®é¡ž ã«å¯¾å¿œã—ãŸå­æ©ŸMAXæ•°
+#define  COMM_MODE_TRADE_NUM_MAX    (1)     // 1on1 ãƒã‚±ãƒ¢ãƒ³äº¤æ›
+#define  COMM_MODE_BATTLE_SINGLE_NUM_MAX (1)    // 1vs1 ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_DOUBLE_NUM_MAX (1)    // 1vs1 ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_MIX_1ON1_NUM_MAX (1)  // 1vs1 ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_MULTI_NUM_MAX (3)     // 2vs2 ãƒžãƒ«ãƒãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_MIX_2ON2_NUM_MAX (3)  // 2vs2 ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
+#define  COMM_MODE_NUT_CRASH_NUM_MAX (3)        // 2-5  æœ¨ã®å®Ÿã‚¯ãƒ©ãƒƒã‚·ãƒ¥
+#define  COMM_MODE_RECORD_NUM_MAX (4)           // 2-4  ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼
+#define  COMM_MODE_CONTEST_NUM_MAX (3)           // 2-4  ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+#define  COMM_MODE_UNION_NUM_MAX (4)            // ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ 
+#define  COMM_MODE_UNDERGROUND_NUM_MAX (COMM_CHILD_MAX)      // 16  åœ°ä¸‹
+#define  COMM_MODE_POLLOCK4_NUM_MAX (3)           // 4äººãƒãƒ­ãƒƒã‚¯
+#define  COMM_MODE_POLLOCK16_NUM_MAX (COMM_CHILD_MAX)           // 16äººãƒãƒ­ãƒƒã‚¯
+#define  COMM_MODE_PICTURE_NUM_MAX (COMM_MODE_UNION_NUM_MAX)            // ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ->ãŠçµµã‹ã
+#define  COMM_MODE_POKETCH_NUM_MAX (1)           // ã½ã‘ã£ã¡
+#define  COMM_MODE_MYSTERY_NUM_MAX (4)           // ä¸æ€è­°é€šä¿¡
+#define  COMM_MODE_TOWER_MULTI_NUM_MAX (1)            // ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒžãƒ«ãƒ
 #define  COMM_MODE_PARTY_NUM_MAX (1)           // party
 #define  COMM_MODE_UNION_APP_NUM_MAX (4)           // unionapp
-#define  COMM_MODE_BATTLE_SINGLE_WIFI_NUM_MAX (1)    // 1vs1 WIFI ƒoƒgƒ‹
-#define  COMM_MODE_BATTLE_DOUBLE_WIFI_NUM_MAX (1)    // 1vs1 WIFI ƒoƒgƒ‹
-#define  COMM_MODE_TRADE_WIFI_NUM_MAX (1)    // ƒgƒŒ[ƒh
-#define  COMM_MODE_VCHAT_WIFI_NUM_MAX (1)    // ƒ{ƒCƒXƒ`ƒƒƒbƒg
-#define  COMM_MODE_LOGIN_WIFI_NUM_MAX (3)    // LOGIN‚Ì‚Ý
-#define  COMM_MODE_DPW_WIFI_NUM_MAX (0)    // ¢ŠEŒðŠ·,ƒoƒgƒ‹ƒ^ƒ[
-#define  COMM_MODE_FUSIGI_WIFI_NUM_MAX (0)    // ‚Ó‚µ‚¬WIFI
-#define  COMM_MODE_GURU2_NUM_MAX (4)    // ‚®‚é‚®‚éŒðŠ·
-#define  COMM_MODE_FACTORY_MULTI_LV50_NUM_MAX (1)    // ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ƒ}ƒ‹ƒ`LV50
-#define  COMM_MODE_FACTORY_MULTI_OPEN_NUM_MAX (1)    // ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ƒ}ƒ‹ƒ`OPEN
-#define  COMM_MODE_POFIN_WIFI_NUM_MAX (2)    // WIFIƒ|ƒtƒBƒ“‚Ì‚Ý
-#define  COMM_MODE_STAGE_MULTI_NUM_MAX (1)    // ƒoƒgƒ‹ƒXƒe[ƒWƒ}ƒ‹ƒ`
-#define  COMM_MODE_CASTLE_MULTI_NUM_MAX (1)    // ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹ƒ}ƒ‹ƒ`
-#define  COMM_MODE_ROULETTE_MULTI_NUM_MAX (1)    // ƒoƒgƒ‹ƒ‹[ƒŒƒbƒgƒ}ƒ‹ƒ`
-#define  COMM_MODE_LOBBY_WIFI_NUM_MAX (3)    // ƒƒr[ WIFI
-#define  COMM_MODE_WIFI_FRONTIER_COMMON_NUM_MAX (1)    // WIFIƒtƒƒ“ƒeƒBƒA‹¤—p
-#define  COMM_MODE_CLUB_WIFI_NUM_MAX (3)    //  WIFIƒNƒ‰ƒu
-#define  COMM_MODE_EMAIL_WIFI_NUM_MAX (0)    // WIFIe-mailÝ’è
+#define  COMM_MODE_BATTLE_SINGLE_WIFI_NUM_MAX (1)    // 1vs1 WIFI ãƒãƒˆãƒ«
+#define  COMM_MODE_BATTLE_DOUBLE_WIFI_NUM_MAX (1)    // 1vs1 WIFI ãƒãƒˆãƒ«
+#define  COMM_MODE_TRADE_WIFI_NUM_MAX (1)    // ãƒˆãƒ¬ãƒ¼ãƒ‰
+#define  COMM_MODE_VCHAT_WIFI_NUM_MAX (1)    // ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆ
+#define  COMM_MODE_LOGIN_WIFI_NUM_MAX (3)    // LOGINã®ã¿
+#define  COMM_MODE_DPW_WIFI_NUM_MAX (0)    // ä¸–ç•Œäº¤æ›,ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+#define  COMM_MODE_FUSIGI_WIFI_NUM_MAX (0)    // ãµã—ãŽWIFI
+#define  COMM_MODE_GURU2_NUM_MAX (4)    // ãã‚‹ãã‚‹äº¤æ›
+#define  COMM_MODE_FACTORY_MULTI_LV50_NUM_MAX (1)    // ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒžãƒ«ãƒLV50
+#define  COMM_MODE_FACTORY_MULTI_OPEN_NUM_MAX (1)    // ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒžãƒ«ãƒOPEN
+#define  COMM_MODE_POFIN_WIFI_NUM_MAX (2)    // WIFIãƒãƒ•ã‚£ãƒ³ã®ã¿
+#define  COMM_MODE_STAGE_MULTI_NUM_MAX (1)    // ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒžãƒ«ãƒ
+#define  COMM_MODE_CASTLE_MULTI_NUM_MAX (1)    // ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒžãƒ«ãƒ
+#define  COMM_MODE_ROULETTE_MULTI_NUM_MAX (1)    // ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒžãƒ«ãƒ
+#define  COMM_MODE_LOBBY_WIFI_NUM_MAX (3)    // ãƒ­ãƒ“ãƒ¼ WIFI
+#define  COMM_MODE_WIFI_FRONTIER_COMMON_NUM_MAX (1)    // WIFIãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å…±ç”¨
+#define  COMM_MODE_CLUB_WIFI_NUM_MAX (3)    //  WIFIã‚¯ãƒ©ãƒ–
+#define  COMM_MODE_EMAIL_WIFI_NUM_MAX (0)    // WIFIe-mailè¨­å®š
 
 
-// ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ÌŽí—Þ  
+// ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®ç¨®é¡ž  
 #define  COMM_REG_NORMAL     (0)
 #define  COMM_REG_FANCY      (1)
 #define  COMM_REG_YELLOW     (2)
@@ -188,17 +188,17 @@
 #define  COMM_REG_MAX        (14)
 
 
-#define CURRENT_PLAYER_WORD_IDX    (0)    // Ž©•ª‚Ì–¼‘O‚ð“ü‚ê‚éƒoƒbƒtƒ@‚ÌêŠ
-#define TARGET_PLAYER_WORD_IDX     (1)     // ‘ÎÛ‚Æ‚È‚é–¼‘O‚ð“ü‚ê‚éƒoƒbƒtƒ@‚ÌêŠ
-#define ASSAILANT_PLAYER_WORD_IDX  (2)     // ”íŠQŽÒ‚Æ‚È‚é–¼‘O‚ð“ü‚ê‚éƒoƒbƒtƒ@‚ÌêŠ
+#define CURRENT_PLAYER_WORD_IDX    (0)    // è‡ªåˆ†ã®åå‰ã‚’å…¥ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡ã®å ´æ‰€
+#define TARGET_PLAYER_WORD_IDX     (1)     // å¯¾è±¡ã¨ãªã‚‹åå‰ã‚’å…¥ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡ã®å ´æ‰€
+#define ASSAILANT_PLAYER_WORD_IDX  (2)     // è¢«å®³è€…ã¨ãªã‚‹åå‰ã‚’å…¥ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡ã®å ´æ‰€
 
 
-#define CC_NOT_FOUND_PARENT_INFO (0) // e‹@î•ñ‚ª‚È‚¢ê‡  
-#define CC_BUSY_STATE  (1)  //’ÊM‚Ì“à•”ó‘Ô‚ª‘JˆÚ’†‚ÅAÚ‘±‚É‚¢‚¯‚È‚¢ê‡
-#define CC_CONNECT_STARTING (2) // Ú‘±ŠÖ”‚ðŒÄ‚Ño‚µ‚½‚ç
+#define CC_NOT_FOUND_PARENT_INFO (0) // è¦ªæ©Ÿæƒ…å ±ãŒãªã„å ´åˆ  
+#define CC_BUSY_STATE  (1)  //é€šä¿¡ã®å†…éƒ¨çŠ¶æ…‹ãŒé·ç§»ä¸­ã§ã€æŽ¥ç¶šã«ã„ã‘ãªã„å ´åˆ
+#define CC_CONNECT_STARTING (2) // æŽ¥ç¶šé–¢æ•°ã‚’å‘¼ã³å‡ºã—ãŸã‚‰
 
 
-// MYSTATUS‚ð‘—‚é‚½‚ß‚Ì—Ìˆæ
+// MYSTATUSã‚’é€ã‚‹ãŸã‚ã®é ˜åŸŸ
 #define COMM_SEND_MYSTATUS_SIZE   (32)
 #define COMM_SEND_REGULATION_SIZE (32)
 

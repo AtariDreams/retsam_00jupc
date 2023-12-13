@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_092.s
- * @brief	�ǂ��ǂ�			92
+ * @brief	どくどく			92
  * @author	goto
- * @date	2005.07.13(��)
+ * @date	2005.07.13(水)
  *
- * �����ɐF�X�ȉ�����������Ă��悢
+ * ここに色々な解説等を書いてもよい
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	���ǂ��ǂ�			92
+//	■どくどく			92
 //
 //
 // =============================================================================
@@ -44,12 +44,12 @@ WEST_DOKUDOKU:
 	
 	WAIT			1
 
-	///< �h�N�̏�
+	///< ドクの沼
 	ADD_PARTICLE 	1,W_092_092_DOKU_BASE,  EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_EP_OFS, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 	EX_DATA			4, OPERATOR_EX_REVERCE_OFF, 0, PT_LCD_PTP_CHG(-10), 0
 
-	///< �h�N�̖A
+	///< ドクの泡
 	ADD_PARTICLE 	0,W_092_092_DOKU_BUB01, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_EP, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 	ADD_PARTICLE 	0,W_092_092_DOKU_BUB02, EMTFUNC_FIELD_OPERATOR

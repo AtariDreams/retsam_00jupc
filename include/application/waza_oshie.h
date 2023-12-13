@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	waza_oshie.h
- * @brief	‹Z‹³‚¦/Žv‚¢o‚µˆ—
+ * @brief	æŠ€æ•™ãˆ/æ€ã„å‡ºã—å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	06.05.09
  */
@@ -17,70 +17,70 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 typedef struct {
-	POKEMON_PARAM * pp;		// ƒ|ƒPƒ‚ƒ“
-	MYSTATUS * myst;		// Ž©•ªƒf[ƒ^
-	CONFIG * cfg;			// ƒRƒ“ƒtƒBƒOƒf[ƒ^
-	u16 * waza_tbl;			// ‹Zƒe[ƒuƒ‹
+	POKEMON_PARAM * pp;		// ãƒã‚±ãƒ¢ãƒ³
+	MYSTATUS * myst;		// è‡ªåˆ†ãƒ‡ãƒ¼ã‚¿
+	CONFIG * cfg;			// ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
+	u16 * waza_tbl;			// æŠ€ãƒ†ãƒ¼ãƒ–ãƒ«
 	u16	pos;
 	u16	scr;
 	u8	page;
-	u8	mode;				// ˆ—ƒ‚[ƒh
-	u8	ret;				// –ß‚è’l
+	u8	mode;				// å‡¦ç†ãƒ¢ãƒ¼ãƒ‰
+	u8	ret;				// æˆ»ã‚Šå€¤
 	u8	del_pos;
 }WAZAOSHIE_DATA;
 
 enum {
-	WAZAOSHIE_MODE_TEACH = 0,	// ‹³‚¦
-	WAZAOSHIE_MODE_REMIND,		// Žv‚¢o‚µ
+	WAZAOSHIE_MODE_TEACH = 0,	// æ•™ãˆ
+	WAZAOSHIE_MODE_REMIND,		// æ€ã„å‡ºã—
 };
 
 enum {
-	WAZAOSHIE_RET_SET = 0,	// Šo‚¦‚½
-	WAZAOSHIE_RET_CANCEL,	// ƒLƒƒƒ“ƒZƒ‹
+	WAZAOSHIE_RET_SET = 0,	// è¦šãˆãŸ
+	WAZAOSHIE_RET_CANCEL,	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 };
 
-#define	WAZAOSHIE_TBL_MAX		( 0xffff )	// ‹Zƒe[ƒuƒ‹‚ÌÅŒã‚É’Ç‰Á
+#define	WAZAOSHIE_TBL_MAX		( 0xffff )	// æŠ€ãƒ†ãƒ¼ãƒ–ãƒ«ã®æœ€å¾Œã«è¿½åŠ 
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL PROC_RESULT WazaOshieProc_Init( PROC * proc, int * seq );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL PROC_RESULT WazaOshieProc_Main( PROC * proc, int * seq );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL PROC_RESULT WazaOshieProc_End( PROC * proc, int * seq );
@@ -88,20 +88,20 @@ GLOBAL PROC_RESULT WazaOshieProc_End( PROC * proc, int * seq );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‹³‚¦ƒf[ƒ^—ÌˆæŽæ“¾
+ * æŠ€æ•™ãˆãƒ‡ãƒ¼ã‚¿é ˜åŸŸå–å¾—
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	‹Z‹³‚¦ƒf[ƒ^—Ìˆæ
+ * @return	æŠ€æ•™ãˆãƒ‡ãƒ¼ã‚¿é ˜åŸŸ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL WAZAOSHIE_DATA * WazaOshie_DataAlloc( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‹³‚¦ƒf[ƒ^—Ìˆæ‰ð•ú
+ * æŠ€æ•™ãˆãƒ‡ãƒ¼ã‚¿é ˜åŸŸè§£æ”¾
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -110,26 +110,26 @@ GLOBAL void WazaOshie_DataFree( WAZAOSHIE_DATA * dat );
 
 //--------------------------------------------------------------------------------------------
 /**
- * Žv‚¢o‚µ‰Â”\‚È‹Z‚ðŽæ“¾
+ * æ€ã„å‡ºã—å¯èƒ½ãªæŠ€ã‚’å–å¾—
  *
- * @param	pp		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- * @param	heap	ƒq[ƒvID
+ * @param	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	Žæ“¾‚µ‚½‹Zƒf[ƒ^
+ * @return	å–å¾—ã—ãŸæŠ€ãƒ‡ãƒ¼ã‚¿
  *
- *	‰ð•ú‚ÍŠeŽ©‚Å
+ *	è§£æ”¾ã¯å„è‡ªã§
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u16 * RemaindWazaGet( POKEMON_PARAM * pp, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹³‚¦‚ç‚ê‚é/Žv‚¢o‚¹‚é‹Z‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ * æ•™ãˆã‚‰ã‚Œã‚‹/æ€ã„å‡ºã›ã‚‹æŠ€ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	tbl		‹Zƒe[ƒuƒ‹
+ * @param	tbl		æŠ€ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- * @retval	"TRUE = ‚ ‚è"
- * @retval	"FALSE = ‚È‚µ"
+ * @retval	"TRUE = ã‚ã‚Š"
+ * @retval	"FALSE = ãªã—"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BOOL WazaOshie_WazaTableChack( u16 * tbl );

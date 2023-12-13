@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		minigame_commcomand_func.h
- *	@brief		É~ÉjÉQÅ[ÉÄÉcÅ[Éãí êMÉRÉ}ÉìÉh
+ *	@brief		„Éü„Éã„Ç≤„Éº„É†„ÉÑ„Éº„É´ÈÄö‰ø°„Ç≥„Éû„É≥„Éâ
  *	@author		tomoya takahashi
  *	@data		2007.11.08
  *
@@ -16,41 +16,41 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					íËêîêÈåæ
+ *					ÂÆöÊï∞ÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ç\ë¢ëÃêÈåæ
+ *					ÊßãÈÄ†‰ΩìÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ÉvÉçÉgÉ^ÉCÉvêÈåæ
+ *					„Éó„É≠„Éà„Çø„Ç§„ÉóÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
-// í êMèâä˙âªä÷êî
+// ÈÄö‰ø°ÂàùÊúüÂåñÈñ¢Êï∞
 extern void CommCommandMNGMInitialize( MNGM_RESULTWK* p_wk );
 extern void CommCommandMNGMEntryInitialize( MNGM_ENTRYWK* p_wk );
 
-// ã§í ÉTÉCÉYéÊìæä÷êî
+// ÂÖ±ÈÄö„Çµ„Ç§„Ç∫ÂèñÂæóÈñ¢Êï∞
 extern int CommMNGMGetZeroSize( void );
 extern int CommMNGMGetu32Size( void );
 
-// êeÅ[ÅÑéqÅ@RareÉQÅ[ÉÄÉ^ÉCÉv
+// Ë¶™„ÉºÔºûÂ≠ê„ÄÄRare„Ç≤„Éº„É†„Çø„Ç§„Éó
 extern void CommMNGMRareGame( int netID, int size, void* pBuff, void* pWork );
 
 
-// éqÅ[>êe	Ç‡Ç§Ç¢ÇøÇ«
+// Â≠ê„Éº>Ë¶™	„ÇÇ„ÅÜ„ÅÑ„Å°„Å©
 extern void CommMNGMRetryYes( int netID, int size, void* pBuff, void* pWork );
-// éqÅ[>êe	Ç‡Ç§Ç‚ÇÁÇ»Ç¢
+// Â≠ê„Éº>Ë¶™	„ÇÇ„ÅÜ„ÇÑ„Çâ„Å™„ÅÑ
 extern void CommMNGMRetryNo( int netID, int size, void* pBuff, void* pWork );
 
-// êeÅ[>éq	Ç‡Ç§Ç¢ÇøÇ«
+// Ë¶™„Éº>Â≠ê	„ÇÇ„ÅÜ„ÅÑ„Å°„Å©
 extern void CommMNGMRetryOk( int netID, int size, void* pBuff, void* pWork );
-// êeÅ[>éq	Ç‡Ç§Ç‚ÇÁÇ»Ç¢
+// Ë¶™„Éº>Â≠ê	„ÇÇ„ÅÜ„ÇÑ„Çâ„Å™„ÅÑ
 extern void CommMNGMRetryNg( int netID, int size, void* pBuff, void* pWork );
 
 #endif		// __MINIGAME_COMMCOMAND_FUNC_H__

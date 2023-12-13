@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	scratch_obj.c
- * @brief	uƒXƒNƒ‰ƒbƒ`vOBJ(ƒJ[ƒ\ƒ‹AƒAƒCƒRƒ“)
+ * @brief	ã€Œã‚¹ã‚¯ãƒ©ãƒƒãƒã€OBJ(ã‚«ãƒ¼ã‚½ãƒ«ã€ã‚¢ã‚¤ã‚³ãƒ³)
  * @author	Satoshi Nohara
  * @date	2007.12.11
  */
@@ -19,20 +19,20 @@
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
-//OBJ(ƒJ[ƒ\ƒ‹AƒAƒCƒRƒ“)
+//OBJ(ã‚«ãƒ¼ã‚½ãƒ«ã€ã‚¢ã‚¤ã‚³ãƒ³)
 struct _SCRATCH_OBJ{
-	u16	pause;						//ƒ|[ƒYƒtƒ‰ƒO
+	u16	pause;						//ãƒãƒ¼ã‚ºãƒ•ãƒ©ã‚°
 	u8	disp;						//DISP_MAIN,DISP_SUB
 	u8	dummy;
-	u32 work;						//”Ä—pƒ[ƒN
-	u32 counter;					//ƒJƒEƒ“ƒ^[
-	CLACT_WORK_PTR p_clact;			//ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^
+	u32 work;						//æ±ç”¨ãƒ¯ãƒ¼ã‚¯
+	u32 counter;					//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	CLACT_WORK_PTR p_clact;			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 
-//ƒJ[ƒ\ƒ‹‚ÌƒpƒŒƒbƒg
+//ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
 enum{
 	PAL_OBJ_MOVE = 0,
 	PAL_OBJ_STOP,
@@ -41,7 +41,7 @@ enum{
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 SCRATCH_OBJ* ScratchObj_Create( SCRATCH_CLACT* scratch_clact, u32 data_no, u32 anm_no, u16 x, u16 y, u8 disp, u32 bg_pri, u32 pri );
@@ -65,19 +65,19 @@ BOOL ScratchObj_AnmActiveCheck( SCRATCH_OBJ* wk );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OBJì¬
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OBJä½œæˆ
  *
- * @param	scratch_clact	SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	data_index		ƒf[ƒ^index
- * @param	heapID			ƒq[ƒvID
+ * @param	scratch_clact	SCRATCH_CLACTå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	data_index		ãƒ‡ãƒ¼ã‚¿index
+ * @param	heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"SCRATCH_OBJƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^"
+ * @retval	"SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿"
  */
 //--------------------------------------------------------------
 SCRATCH_OBJ* ScratchObj_Create( SCRATCH_CLACT* scratch_clact, u32 data_no, u32 anm_no, u16 x, u16 y, u8 disp, u32 bg_pri, u32 pri )
@@ -85,14 +85,14 @@ SCRATCH_OBJ* ScratchObj_Create( SCRATCH_CLACT* scratch_clact, u32 data_no, u32 a
 	SCRATCH_OBJ* wk;
 	VecFx32	vec;
 
-	wk = sys_AllocMemory( HEAPID_SCRATCH, sizeof(SCRATCH_OBJ) );		//ƒƒ‚ƒŠŠm•Û
+	wk = sys_AllocMemory( HEAPID_SCRATCH, sizeof(SCRATCH_OBJ) );		//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	memset( wk, 0, sizeof(SCRATCH_OBJ) );
 
 	wk->p_clact = ScratchClact_SetActor( scratch_clact, data_no, anm_no, bg_pri, pri, disp );
 	wk->disp	= disp;
 
 #if 0
-	//‰ŠúƒJ[ƒ\ƒ‹À•W‚ğƒZƒbƒg
+	//åˆæœŸã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	vec.x = (x * FX32_ONE);
 	vec.y = (y * FX32_ONE);
 	CLACT_SetMatrix( wk->p_clact, &vec );
@@ -106,9 +106,9 @@ SCRATCH_OBJ* ScratchObj_Create( SCRATCH_CLACT* scratch_clact, u32 data_no, u32 a
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OBJƒ[ƒNíœ
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OBJãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param	wk		SCRATCH_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -117,7 +117,7 @@ void* ScratchObj_Delete( SCRATCH_OBJ* wk )
 {
 	CLACT_Delete( wk->p_clact );
 
-	//SCRATCH_OBJ‚Ìƒƒ“ƒo‚Åƒƒ‚ƒŠŠm•Û‚µ‚½‚à‚Ì‚ª‚ ‚Á‚½‚çŠJ•ú‚·‚é
+	//SCRATCH_OBJã®ãƒ¡ãƒ³ãƒã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ãŸã‚‚ã®ãŒã‚ã£ãŸã‚‰é–‹æ”¾ã™ã‚‹
 
 	sys_FreeMemoryEz( wk );
 	return NULL;
@@ -125,10 +125,10 @@ void* ScratchObj_Delete( SCRATCH_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒjƒbƒVƒ…‘€ì
+ * @brief	ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
  *
- * @param	wk		SCRATCH_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0:”ñ•`‰æ 1:ƒŒƒ“ƒ_ƒ‰•`‰æ	
+ * @param	wk		SCRATCH_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0:éæç”» 1:ãƒ¬ãƒ³ãƒ€ãƒ©æç”»	
  *
  * @return	none
  */
@@ -141,10 +141,10 @@ void ScratchObj_Vanish( SCRATCH_OBJ* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒ‰ƒCƒIƒŠƒeƒB‘€ì
+ * @brief	ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£æ“ä½œ
  *
- * @param	wk			SCRATCH_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	Priority	ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param	wk			SCRATCH_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	Priority	ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  *
  * @return	none
  */
@@ -157,10 +157,10 @@ void ScratchObj_Priority( SCRATCH_OBJ* wk, u32 Priority )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|[ƒY
+ * @brief	ãƒãƒ¼ã‚º
  *
- * @param	wk		SCRATCH_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0:ƒ|[ƒY‰ğœ 1:ƒ|[ƒY
+ * @param	wk		SCRATCH_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0:ãƒãƒ¼ã‚ºè§£é™¤ 1:ãƒãƒ¼ã‚º
  *
  * @return	none
  */
@@ -173,9 +173,9 @@ void ScratchObj_Pause( SCRATCH_OBJ* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ğƒZƒbƒg
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		SCRATCH_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -189,22 +189,22 @@ void ScratchObj_SetObjPos( SCRATCH_OBJ* wk, int x, int y )
 
 #if 1
 	if( wk->disp == DISP_SUB ){
-		//vec.y += SUB_SURFACE_Y;				//ƒTƒu‰æ–Ê
-		vec.y += SCRATCH_SUB_ACTOR_DISTANCE;	//ƒTƒu‰æ–Ê
-		//OS_Printf( "ƒTƒu‰æ–Ê‚Å‚·I\n" );
+		//vec.y += SUB_SURFACE_Y;				//ã‚µãƒ–ç”»é¢
+		vec.y += SCRATCH_SUB_ACTOR_DISTANCE;	//ã‚µãƒ–ç”»é¢
+		//OS_Printf( "ã‚µãƒ–ç”»é¢ã§ã™ï¼\n" );
 	}
 #endif
 
-	//À•W‚ğİ’è
+	//åº§æ¨™ã‚’è¨­å®š
 	CLACT_SetMatrix( wk->p_clact, &vec );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ğæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å–å¾—
  *
- * @param	wk		SCRATCH_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -222,9 +222,9 @@ void ScratchObj_GetObjPos( SCRATCH_OBJ* wk, int* x, int* y )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒØ‚è‘Ö‚¦
+ * @brief	ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		SCRATCH_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -232,35 +232,35 @@ void ScratchObj_GetObjPos( SCRATCH_OBJ* wk, int* x, int* y )
 void ScratchObj_AnmChg( SCRATCH_OBJ* wk, u32 num )
 {
 	CLACT_SetAnmFrame( wk->p_clact, FX32_ONE );
-	//CLACT_AnmFrameSet( wk->p_clact, 0 );	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ğƒZƒbƒg
-	CLACT_AnmChgCheck( wk->p_clact, num );		//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ğƒ`ƒFƒ“ƒW‚·‚é
+	//CLACT_AnmFrameSet( wk->p_clact, 0 );	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
+	CLACT_AnmChgCheck( wk->p_clact, num );		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸ã™ã‚‹
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒRƒ“ƒAƒjƒ
+ * @brief	ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		SCRATCH_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp		POKEMON_PARAMƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp		POKEMON_PARAMãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 void ScratchObj_IconPalChg( SCRATCH_OBJ* wk, POKEMON_PARAM* pp )
 {
-	//ƒpƒŒƒbƒgØ‚è‘Ö‚¦
-	//CLACT_PaletteOffsetChgŠÖ”‚ÌŒ‹‰Ê‚ÉƒpƒŒƒbƒg‚Ì“]‘—ææ“ªƒpƒŒƒbƒgƒiƒ“ƒo[‚ğ‰ÁZ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
+	//CLACT_PaletteOffsetChgé–¢æ•°ã®çµæœã«ãƒ‘ãƒ¬ãƒƒãƒˆã®è»¢é€å…ˆå…ˆé ­ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’åŠ ç®—
 	CLACT_PaletteOffsetChgAddTransPlttNo( wk->p_clact, PokeIconPalNumGetByPP(pp) );
 	return;
 }
 
 //--------------------------------------------------------------
-///	Šg‘å—¦
+///	æ‹¡å¤§ç‡
 //--------------------------------------------------------------
 static const VecFx32 scale_tbl[] =
 {
-	{ FX32_ONE,				FX32_ONE,				FX32_ONE },				//“™”{
+	{ FX32_ONE,				FX32_ONE,				FX32_ONE },				//ç­‰å€
 	
 	{ FX32_ONE+(FX32_ONE/5),FX32_ONE+(FX32_ONE/5),	FX32_ONE+(FX32_ONE/5) },
 	{ FX32_ONE+(FX32_ONE/4),FX32_ONE+(FX32_ONE/4),	FX32_ONE+(FX32_ONE/4) },
@@ -284,9 +284,9 @@ static const VecFx32 scale_tbl[] =
 
 //--------------------------------------------------------------
 /**
- * @brief	Šg‘åk¬
+ * @brief	æ‹¡å¤§ç¸®å°
  *
- * @param	wk		SCRATCH_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -297,7 +297,7 @@ void ScratchObj_SetScaleAffine( SCRATCH_OBJ* wk, u32 no )
 	tbl_no = no;
 
 	//CLACT_SetScaleAffine( wk->p_clact, &scale_tbl[tbl_no], CLACT_AFFINE_NORMAL );
-	//CLACT_SetScaleAffine( wk->p_clact, &scale_tbl[tbl_no], CLACT_AFFINE_DOUBLE );	//”{Šp
+	//CLACT_SetScaleAffine( wk->p_clact, &scale_tbl[tbl_no], CLACT_AFFINE_DOUBLE );	//å€è§’
 
 	CLACT_SetScaleAffine( wk->p_clact, &scale_tbl[0], CLACT_AFFINE_NORMAL );
 	return;
@@ -305,9 +305,9 @@ void ScratchObj_SetScaleAffine( SCRATCH_OBJ* wk, u32 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	Šg‘åk¬
+ * @brief	æ‹¡å¤§ç¸®å°
  *
- * @param	wk		SCRATCH_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -320,32 +320,32 @@ void ScratchObj_SetScaleAffine2( SCRATCH_OBJ* wk, u8 no )
 	scale_tbl.y = FX32_ONE + (FX32_ONE / no);
 	scale_tbl.z = FX32_ONE + (FX32_ONE / no);
 
-	//CLACT_SetScaleAffine( wk->p_clact, tbl, CLACT_AFFINE_DOUBLE );	//”{Šp
-	CLACT_SetScaleAffine( wk->p_clact, (const VecFx32*)&scale_tbl, CLACT_AFFINE_DOUBLE );	//”{Šp
+	//CLACT_SetScaleAffine( wk->p_clact, tbl, CLACT_AFFINE_DOUBLE );	//å€è§’
+	CLACT_SetScaleAffine( wk->p_clact, (const VecFx32*)&scale_tbl, CLACT_AFFINE_DOUBLE );	//å€è§’
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	Šg‘åk¬
+ * @brief	æ‹¡å¤§ç¸®å°
  *
- * @param	wk		SCRATCH_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 void ScratchObj_SetScaleAffineTbl( SCRATCH_OBJ* wk, VecFx32* tbl )
 {
-	CLACT_SetScaleAffine( wk->p_clact, tbl, CLACT_AFFINE_DOUBLE );	//”{Šp
+	CLACT_SetScaleAffine( wk->p_clact, tbl, CLACT_AFFINE_DOUBLE );	//å€è§’
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒgNo
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆNo
  *
- * @param	wk			SCRATCH_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	pltt_num	ƒpƒŒƒbƒgNo
+ * @param	wk			SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆNo
  *
  * @retval	none
  */
@@ -363,12 +363,12 @@ void ScratchObj_PaletteNoChg( SCRATCH_OBJ* wk, u32 pltt_num )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒgNoæ“¾
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆNoå–å¾—
  *
- * @param	wk			SCRATCH_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	pltt_num	ƒpƒŒƒbƒgNo
+ * @param	wk			SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆNo
  *
- * @retval	"ƒpƒŒƒbƒgNo"
+ * @retval	"ãƒ‘ãƒ¬ãƒƒãƒˆNo"
  */
 //--------------------------------------------------------------
 u32 ScratchObj_PaletteNoGet( SCRATCH_OBJ* wk )
@@ -378,10 +378,10 @@ u32 ScratchObj_PaletteNoGet( SCRATCH_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒI[ƒgƒAƒjƒƒtƒ‰ƒO‚ÌON,OFF
+ * @brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°ã®ON,OFF
  *
- * @param	wk			SCRATCH_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag		0=”ñƒAƒjƒA1=ƒI[ƒgƒAƒjƒ
+ * @param	wk			SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag		0=éã‚¢ãƒ‹ãƒ¡ã€1=ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
  *
  * @retval	none
  */
@@ -390,24 +390,24 @@ void ScratchObj_SetAnmFlag( SCRATCH_OBJ* wk, int flag )
 {
 	CLACT_SetAnmFlag( wk->p_clact, flag );
 	CLACT_SetAnmFrame( wk->p_clact, FX32_ONE );
-	CLACT_AnmChg( wk->p_clact, CLACT_AnmGet(wk->p_clact) );	//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ğƒ`ƒFƒ“ƒW
+	CLACT_AnmChg( wk->p_clact, CLACT_AnmGet(wk->p_clact) );	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚ƒUƒCƒNİ’è
+ * @brief	ãƒ¢ã‚¶ã‚¤ã‚¯è¨­å®š
  *
- * @param	wk			SCRATCH_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag		TRUE=ONAFALSE=OFF
+ * @param	wk			SCRATCH_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag		TRUE=ONã€FALSE=OFF
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 void ScratchObj_MosaicSet( SCRATCH_OBJ* wk, BOOL flag )
 {
-	//•0-15(0‚Í’Êí•\¦)
-	//ƒ‚ƒUƒCƒN‚Ì•‚ğİ’è
+	//å¹…0-15(0ã¯é€šå¸¸è¡¨ç¤º)
+	//ãƒ¢ã‚¶ã‚¤ã‚¯ã®å¹…ã‚’è¨­å®š
 	//G2_SetOBJMosaicSize( task_w->mosaic.x, task_w->mosaic.x );
 
 	CLACT_MosaicSet( wk->p_clact, flag );
@@ -416,12 +416,12 @@ void ScratchObj_MosaicSet( SCRATCH_OBJ* wk, BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒ[ƒVƒ‡ƒ“’†‚©ƒ`ƒFƒbƒN
+ * @brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		SCRATCH_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	TRUE	ƒAƒjƒ[ƒVƒ‡ƒ“’†
- * @retval	FALSE	ƒXƒgƒbƒv
+ * @retval	TRUE	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä¸­
+ * @retval	FALSE	ã‚¹ãƒˆãƒƒãƒ—
  */
 //--------------------------------------------------------------
 BOOL ScratchObj_AnmActiveCheck( SCRATCH_OBJ* wk )

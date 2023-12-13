@@ -12,13 +12,13 @@
 
   $Log: wm_private.h,v $
   Revision 1.27  2005/11/01 08:50:20  seiki_masashi
-  WM_DEBUG_AIDBITMAP ‚Ì’Ç‰Á
+  WM_DEBUG_AIDBITMAP ã®è¿½åŠ 
 
   Revision 1.26  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.25  2005/02/23 12:48:14  seiki_masashi
-  ƒfƒoƒbƒO•\¦‚Ì®—
+  ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºã®æ•´ç†
 
   Revision 1.24  2005/02/22 02:14:05  seiki_masashi
   small fix
@@ -27,73 +27,73 @@
   small fix
 
   Revision 1.22  2005/02/22 01:53:47  seiki_masashi
-  WM_WARNING, WM_ASSERT ‚ğ’Ç‰Á
-  DEBUG_WM_USE_PRINTF ‚ğíœ
+  WM_WARNING, WM_ASSERT ã‚’è¿½åŠ 
+  DEBUG_WM_USE_PRINTF ã‚’å‰Šé™¤
 
   Revision 1.21  2005/02/18 12:27:45  seiki_masashi
-  ƒfƒoƒbƒO—pƒXƒCƒbƒ`‚Ì”»’è•¶‚ğ #if ‚©‚ç #ifdef ‚É•ÏX
+  ãƒ‡ãƒãƒƒã‚°ç”¨ã‚¹ã‚¤ãƒƒãƒã®åˆ¤å®šæ–‡ã‚’ #if ã‹ã‚‰ #ifdef ã«å¤‰æ›´
 
   Revision 1.20  2005/02/03 23:41:47  ooe
-  Copyright •\‹L‚ÌC³B
+  Copyright è¡¨è¨˜ã®ä¿®æ­£ã€‚
 
   Revision 1.19  2005/01/31 00:53:06  seiki_masashi
-  ƒfƒoƒbƒOƒtƒ‰ƒO‚Ì’è‹`‚Ì’Ç‰Á
+  ãƒ‡ãƒãƒƒã‚°ãƒ•ãƒ©ã‚°ã®å®šç¾©ã®è¿½åŠ 
 
   Revision 1.18  2004/08/18 00:23:40  seiki_masashi
-  ˆê•”’è”‚ğ wm.h ‚ÉˆÚ“®
+  ä¸€éƒ¨å®šæ•°ã‚’ wm.h ã«ç§»å‹•
 
   Revision 1.17  2004/08/17 12:49:11  seiki_masashi
-  ’è”‚Ì’Ç‰Á
+  å®šæ•°ã®è¿½åŠ 
 
   Revision 1.16  2004/08/12 14:23:26  seiki_masashi
-  WM_DEBUG_INDICATES ‚Ì’Ç‰Á
+  WM_DEBUG_INDICATES ã®è¿½åŠ 
 
   Revision 1.15  2004/08/11 04:24:24  seiki_masashi
-  ƒfƒoƒbƒOƒtƒ‰ƒO‚Ì’Ç‰Á
+  ãƒ‡ãƒãƒƒã‚°ãƒ•ãƒ©ã‚°ã®è¿½åŠ 
 
   Revision 1.14  2004/08/07 05:16:44  seiki_masashi
-  WM_DEBUG ‚ğ OFF ‚É
+  WM_DEBUG ã‚’ OFF ã«
 
   Revision 1.13  2004/08/07 00:20:29  seiki_masashi
-  WM_HEADER_SEQ_NUM_MASK ‚Ì’Ç‰Á
+  WM_HEADER_SEQ_NUM_MASK ã®è¿½åŠ 
 
   Revision 1.12  2004/08/06 05:11:39  seiki_masashi
   add WM_DEBUG switch
 
   Revision 1.11  2004/08/05 10:02:44  seiki_masashi
-  wmHeader ’†‚Ì KS ƒrƒbƒg‚ÌˆÊ’u‚ğ 0x0002 ‚©‚ç 0x4000 ‚É•ÏX
+  wmHeader ä¸­ã® KS ãƒ“ãƒƒãƒˆã®ä½ç½®ã‚’ 0x0002 ã‹ã‚‰ 0x4000 ã«å¤‰æ›´
 
   Revision 1.10  2004/08/04 01:33:34  seiki_masashi
-  VSYNC flag ‚ÌˆÊ’u‚Ì•ÏX
-  port “±“ü‚Ì‘O€”õ
+  VSYNC flag ã®ä½ç½®ã®å¤‰æ›´
+  port å°å…¥ã®å‰æº–å‚™
 
   Revision 1.9  2004/07/28 02:44:11  terui
-  •s—v‚È’è‹`‚ğíœB
-  WM“à•”ƒXƒe[ƒg‚ÉŠÖ‚·‚é’è‹`‚ğwm.h‚ÉˆÚ“®
+  ä¸è¦ãªå®šç¾©ã‚’å‰Šé™¤ã€‚
+  WMå†…éƒ¨ã‚¹ãƒ†ãƒ¼ãƒˆã«é–¢ã™ã‚‹å®šç¾©ã‚’wm.hã«ç§»å‹•
 
   Revision 1.8  2004/07/27 07:30:30  yasu
   Add #pragma  warn_padding off
 
   Revision 1.7  2004/07/11 03:12:23  ooe
-  ƒr[ƒRƒ“ŠÖŒW‚ÌCMDSTATE‚ğ’Ç‰Á
+  ãƒ“ãƒ¼ã‚³ãƒ³é–¢ä¿‚ã®CMDSTATEã‚’è¿½åŠ 
 
   Revision 1.6  2004/07/10 11:49:24  terui
-  MarioneaƒCƒ“ƒXƒg[ƒ‹êŠ•ÏX‚É”º‚¤C³
+  Marioneaã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å ´æ‰€å¤‰æ›´ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.5  2004/07/08 09:50:22  terui
-  WM7‚Ì‰ü‘¢ŠJn‚É”º‚¤•ÏX
+  WM7ã®æ”¹é€ é–‹å§‹ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.8  2004/07/06 08:11:47  Ooe
-  WL-1.56.00‚Ö‚Ì‘Î‰
+  WL-1.56.00ã¸ã®å¯¾å¿œ
 
   Revision 1.7  2004/07/06 01:54:47  Ooe
-  WMƒwƒbƒ_‚Ìƒrƒbƒg‚Ì’è‹`‚ğ’Ç‰Á
+  WMãƒ˜ãƒƒãƒ€ã®ãƒ“ãƒƒãƒˆã®å®šç¾©ã‚’è¿½åŠ 
 
   Revision 1.6  2004/07/03 07:30:21  Ooe
-  CMDSTATE‚ğ’Ç‰Á
+  CMDSTATEã‚’è¿½åŠ 
 
   Revision 1.5  2004/06/24 10:04:23  Ooe
-  WM_SetGameInfo()‚ğ’Ç‰Á
+  WM_SetGameInfo()ã‚’è¿½åŠ 
 
   Revision 1.4  2004/06/21 06:40:20  Ooe
   (none)
@@ -111,7 +111,7 @@
   ver. up
 
   Revision 1.1  2004/05/26 08:54:40  terui
-  –³ü‘g‚İ‚İ‚É”º‚¤’Ç‰Á
+  ç„¡ç·šçµ„ã¿è¾¼ã¿ã«ä¼´ã†è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -132,16 +132,16 @@ extern "C" {
 #endif
 
 /*---------------------------------------------------------------------------*
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
-//#define WM_DEBUG                // WM ‚ÌƒfƒoƒbƒOƒtƒ‰ƒO(å‚ÉARM7)
-//#define WM_DEBUG_DATASHARING    // DataSharing ŠÖŒW‚ÌƒfƒoƒbƒOƒƒbƒZ[ƒWƒtƒ‰ƒO(ARM9)
-//#define WM_DEBUG_CALLBACK       // ARM9 ‚Ì–³ü—p PXI Š„‚è‚İ‚ÌƒfƒoƒbƒO•\¦ƒtƒ‰ƒO(ARM9)
-//#define WM_DEBUG_AIDBITMAP      // ARM9 ‚Ì AID BITMAP ŠÖŒW‚ÌƒfƒoƒbƒO•\¦ƒtƒ‰ƒO(ARM9)
+//#define WM_DEBUG                // WM ã®ãƒ‡ãƒãƒƒã‚°ãƒ•ãƒ©ã‚°(ä¸»ã«ARM7)
+//#define WM_DEBUG_DATASHARING    // DataSharing é–¢ä¿‚ã®ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒ©ã‚°(ARM9)
+//#define WM_DEBUG_CALLBACK       // ARM9 ã®ç„¡ç·šç”¨ PXI å‰²ã‚Šè¾¼ã¿ã®ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºãƒ•ãƒ©ã‚°(ARM9)
+//#define WM_DEBUG_AIDBITMAP      // ARM9 ã® AID BITMAP é–¢ä¿‚ã®ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºãƒ•ãƒ©ã‚°(ARM9)
 
 /*---------------------------------------------------------------------------*
-    ƒ}ƒNƒ’è‹`
+    ãƒã‚¯ãƒ­å®šç¾©
  *---------------------------------------------------------------------------*/
 
 #ifdef SDK_DEBUG

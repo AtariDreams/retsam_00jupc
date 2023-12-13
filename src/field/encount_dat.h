@@ -2,8 +2,8 @@
 #define _ENCOUNT_DAT_H_
 
 //#include "enc_def.h"
-//�G���J�E���g�f�[�^�R���o�[�^�ł��܂��W�J�ł��Ȃ��Ȃ��Ă���̂�
-//�C�����邽�߂�enc_def.h�𒼐ړW�J
+//エンカウントデータコンバータでうまく展開できなくなっているのを
+//修正するためにenc_def.hを直接展開
 
 #define ENC_MONS_NUM_NORMAL		(12)
 #define ENC_MONS_NUM_GENERATE	(2)
@@ -32,15 +32,15 @@ typedef struct NON_GROUND_ENC_MONSTER_DAT_tag
 
 typedef struct ENCOUNT_DATA_tag
 {
-	//int PlaceCode;<<�폜
+	//int PlaceCode;<<削除
 	int EncProbGround;
 	GROUND_ENC_MONSTER_DAT NormalEnc[ENC_MONS_NUM_NORMAL];
 	int GenerateEnc[ENC_MONS_NUM_GENERATE];
 	int NoonEnc[ENC_MONS_NUM_NOON];
 	int NightEnc[ENC_MONS_NUM_NIGHT];
 	int SwayEnc[ENC_MONS_NUM_SWAY_GRASS];
-	int FormProb[ENC_FORM_PROB_NUM];		//�C���f�b�N�X�@0:�V�[�E�V�@1�F�V�[�h���S�@2�`4�F���g�p
-	int AnnoonTable;						//�A���m�[���o���e�[�u���i0�F�A���m�[���퓬�����@1�`8�F�e�[�u���ԍ��j
+	int FormProb[ENC_FORM_PROB_NUM];		//インデックス　0:シーウシ　1：シードルゴ　2〜4：未使用
+	int AnnoonTable;						//アンノーン出現テーブル（0：アンノーン戦闘無し　1〜8：テーブル番号）
 	int RubyEnc[ENC_MONS_NUM_AGB];
 	int SapphireEnc[ENC_MONS_NUM_AGB];
 	int EmeraldEnc[ENC_MONS_NUM_AGB];

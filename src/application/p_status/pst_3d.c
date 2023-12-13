@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pst_3d.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–Ê3Dˆ—
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢3Då‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2006.01.24
  */
@@ -23,22 +23,22 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	POKE_SS_PX	( 52 )		// ƒ|ƒPƒ‚ƒ“•\Ž¦XÀ•W
-#define	POKE_SS_PY	( 104 )		// ƒ|ƒPƒ‚ƒ“•\Ž¦YÀ•W
+#define	POKE_SS_PX	( 52 )		// ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºXåº§æ¨™
+#define	POKE_SS_PY	( 104 )		// ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºYåº§æ¨™
 
 /*
-	ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW‚Í‚S‚Â‚ÌŽlŠpƒ|ƒŠƒSƒ“‚Å•\Ž¦‚³‚ê‚Ä‚¢‚éB
-	ŽlŠpƒ|ƒŠƒSƒ“‚Ì•À‚Ñ‚Í
-			‚Q@‚P
-			‚R@‚S
-	‚Æ‚È‚Á‚Ä‚¢‚éB
-	’¸“_‚Ì‚h‚c‚Í¶ã‚ð‚P‚Æ‚µ‚ÄŽžŒv‰ñ‚èB
+	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸ã¯ï¼”ã¤ã®å››è§’ãƒãƒªã‚´ãƒ³ã§è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã€‚
+	å››è§’ãƒãƒªã‚´ãƒ³ã®ä¸¦ã³ã¯
+			ï¼’ã€€ï¼‘
+			ï¼“ã€€ï¼”
+	ã¨ãªã£ã¦ã„ã‚‹ã€‚
+	é ‚ç‚¹ã®ï¼©ï¼¤ã¯å·¦ä¸Šã‚’ï¼‘ã¨ã—ã¦æ™‚è¨ˆå›žã‚Šã€‚
 */
 
-// ƒQ[ƒW‚P
-// ’¸“_‚ÌÅ‘åÀ•W
+// ã‚²ãƒ¼ã‚¸ï¼‘
+// é ‚ç‚¹ã®æœ€å¤§åº§æ¨™
 /*
 #define	COND_P1_X1_MAX	( 5122 )
 #define	COND_P1_Y1_MAX	( 3712 )
@@ -59,7 +59,7 @@
 #define	COND_P1_Y3_MAX	( -2955 )
 #define	COND_P1_X4_MAX	( 5138 )
 #define	COND_P1_Y4_MAX	( 300 )
-// ’¸“_‚ÌÅ¬À•W
+// é ‚ç‚¹ã®æœ€å°åº§æ¨™
 #define	COND_P1_X1_MIN	( COND_P1_X1_MAX )
 #define	COND_P1_Y1_MIN	( COND_P1_Y4_MAX+(COND_P1_Y1_MAX-COND_P1_Y4_MAX)/8 )
 #define	COND_P1_X2_MIN	( COND_P1_X4_MAX+(COND_P1_X2_MAX-COND_P1_X4_MAX)/8 )
@@ -69,8 +69,8 @@
 #define	COND_P1_X4_MIN	( COND_P1_X4_MAX )
 #define	COND_P1_Y4_MIN	( COND_P1_Y4_MAX )
 
-// ƒQ[ƒW‚Q
-// ’¸“_‚ÌÅ‘åÀ•W
+// ã‚²ãƒ¼ã‚¸ï¼’
+// é ‚ç‚¹ã®æœ€å¤§åº§æ¨™
 /*
 #define	COND_P2_X1_MAX	( 1843 )
 #define	COND_P2_Y1_MAX	( 965 )
@@ -91,7 +91,7 @@
 #define	COND_P2_Y3_MAX	( 300 )
 #define	COND_P2_X4_MAX	( 3106 )
 #define	COND_P2_Y4_MAX	( -2955 )
-// ’¸“_‚ÌÅ¬À•W
+// é ‚ç‚¹ã®æœ€å°åº§æ¨™
 #define	COND_P2_X1_MIN	( COND_P2_X3_MAX+(COND_P2_X1_MAX-COND_P2_X3_MAX)/8 )
 #define	COND_P2_Y1_MIN	( COND_P2_Y3_MAX+(COND_P2_Y1_MAX-COND_P2_Y3_MAX)/8 )
 #define	COND_P2_X2_MIN	( COND_P2_X2_MAX )
@@ -101,8 +101,8 @@
 #define	COND_P2_X4_MIN	( COND_P2_X3_MAX+(COND_P2_X4_MAX-COND_P2_X3_MAX)/8 )
 #define	COND_P2_Y4_MIN	( COND_P2_Y3_MAX+(COND_P2_Y4_MAX-COND_P2_Y3_MAX)/8 )
 
-// ƒQ[ƒW‚R
-// ’¸“_‚ÌÅ‘åÀ•W
+// ã‚²ãƒ¼ã‚¸ï¼“
+// é ‚ç‚¹ã®æœ€å¤§åº§æ¨™
 #define	COND_P3_X1_MAX	( COND_P2_X1_MAX )
 #define	COND_P3_Y1_MAX	( COND_P2_Y1_MAX )
 #define	COND_P3_X2_MAX	( COND_P2_X3_MAX )
@@ -111,7 +111,7 @@
 #define	COND_P3_Y3_MAX	( COND_P1_Y3_MAX )
 #define	COND_P3_X4_MAX	( COND_P2_X4_MAX )
 #define	COND_P3_Y4_MAX	( COND_P2_Y4_MAX )
-// ’¸“_‚ÌÅ¬À•W
+// é ‚ç‚¹ã®æœ€å°åº§æ¨™
 #define	COND_P3_X1_MIN	( COND_P3_X2_MAX+(COND_P3_X1_MAX-COND_P3_X2_MAX)/8 )
 #define	COND_P3_Y1_MIN	( COND_P3_Y2_MAX+(COND_P3_Y1_MAX-COND_P3_Y2_MAX)/8 )
 #define	COND_P3_X2_MIN	( COND_P3_X2_MAX )
@@ -121,8 +121,8 @@
 #define	COND_P3_X4_MIN	( COND_P3_X2_MAX+(COND_P3_X4_MAX-COND_P3_X2_MAX)/8 )
 #define	COND_P3_Y4_MIN	( COND_P3_Y2_MAX+(COND_P3_Y4_MAX-COND_P3_Y2_MAX)/8 )
 
-// ƒQ[ƒW‚S
-// ’¸“_‚ÌÅ‘åÀ•W
+// ã‚²ãƒ¼ã‚¸ï¼”
+// é ‚ç‚¹ã®æœ€å¤§åº§æ¨™
 #define	COND_P4_X1_MAX	( COND_P1_X4_MAX )
 #define	COND_P4_Y1_MAX	( COND_P1_Y4_MAX )
 #define	COND_P4_X2_MAX	( COND_P1_X2_MAX )
@@ -131,7 +131,7 @@
 #define	COND_P4_Y3_MAX	( COND_P1_Y3_MAX )
 #define	COND_P4_X4_MAX	( COND_P2_X4_MAX )
 #define	COND_P4_Y4_MAX	( COND_P2_Y4_MAX )
-// ’¸“_‚ÌÅ¬À•W
+// é ‚ç‚¹ã®æœ€å°åº§æ¨™
 #define	COND_P4_X1_MIN	( COND_P4_X1_MAX )
 #define	COND_P4_Y1_MIN	( COND_P4_Y1_MAX )
 #define	COND_P4_X2_MIN	( COND_P4_X1_MAX+(COND_P4_X2_MAX-COND_P4_X1_MAX)/8 )
@@ -141,19 +141,19 @@
 #define	COND_P4_X4_MIN	( COND_P4_X1_MAX+(COND_P4_X4_MAX-COND_P4_X1_MAX)/8 )
 #define	COND_P4_Y4_MIN	( COND_P4_Y1_MAX+(COND_P4_Y4_MAX-COND_P4_Y1_MAX)/8 )
 
-// ‚Pƒpƒ‰ƒ[ƒ^‚ ‚½‚è‚ÌƒTƒCƒYŒvŽZƒ}ƒNƒ
+// ï¼‘ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚ãŸã‚Šã®ã‚µã‚¤ã‚ºè¨ˆç®—ãƒžã‚¯ãƒ­
 #define	PRM_SIZ(max,min)	( FX_F32_TO_FX16( FX_FX16_TO_F32(max-min)/0xff ) )
 
-// •\Ž¦À•WŒvŽZ—pƒpƒ‰ƒ[ƒ^
+// è¡¨ç¤ºåº§æ¨™è¨ˆç®—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct {
-	VecFx16	max;	// Å‘åÀ•W
-	VecFx16	min;	// Å¬À•W
-	VecFx16	siz;	// ‚P‚ ‚½‚è‚ÌƒTƒCƒY
+	VecFx16	max;	// æœ€å¤§åº§æ¨™
+	VecFx16	min;	// æœ€å°åº§æ¨™
+	VecFx16	siz;	// ï¼‘ã‚ãŸã‚Šã®ã‚µã‚¤ã‚º
 }CONDITION_VTX_CALC;
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void ConditionGagePut( PST_CONDISION_VTX * vtx );
 static void ConditionParamPlus( VecFx16 * p, VecFx16 * m );
@@ -163,93 +163,93 @@ static void ConditionMoveMake( VecFx16 * now, VecFx16 * max, VecFx16 * move );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 static const CONDITION_VTX_CALC	ConPrm[][4] =
 {
-	{	// ƒQ[ƒW‚P
-		{	// ¶ã
+	{	// ã‚²ãƒ¼ã‚¸ï¼‘
+		{	// å·¦ä¸Š
 			{ COND_P1_X1_MAX, COND_P1_Y1_MAX, 0 },
 			{ COND_P1_X1_MIN, COND_P1_Y1_MIN, 0 },
 			{ PRM_SIZ(COND_P1_X1_MAX,COND_P1_X1_MIN),PRM_SIZ(COND_P1_Y1_MAX,COND_P1_Y1_MIN),0 }
 		},
-		{	// ‰Eã
+		{	// å³ä¸Š
 			{ COND_P1_X2_MAX, COND_P1_Y2_MAX, 0 },
 			{ COND_P1_X2_MIN, COND_P1_Y2_MIN, 0 },
 			{ PRM_SIZ(COND_P1_X2_MAX,COND_P1_X2_MIN),PRM_SIZ(COND_P1_Y2_MAX,COND_P1_Y2_MIN),0 }
 		},
-		{	// ‰E‰º
+		{	// å³ä¸‹
 			{ COND_P1_X3_MAX, COND_P1_Y3_MAX, 0 },
 			{ COND_P1_X3_MIN, COND_P1_Y3_MIN, 0 },
 			{ PRM_SIZ(COND_P1_X3_MAX,COND_P1_X3_MIN),PRM_SIZ(COND_P1_Y3_MAX,COND_P1_Y3_MIN),0 }
 		},
-		{	// ¶‰º
+		{	// å·¦ä¸‹
 			{ COND_P1_X4_MAX, COND_P1_Y4_MAX, 0 },
 			{ COND_P1_X4_MIN, COND_P1_Y4_MIN, 0 },
 			{ PRM_SIZ(COND_P1_X4_MAX,COND_P1_X4_MIN),PRM_SIZ(COND_P1_Y4_MAX,COND_P1_Y4_MIN),0 }
 		}
 	},
-	{	// ƒQ[ƒW‚Q
-		{	// ¶ã
+	{	// ã‚²ãƒ¼ã‚¸ï¼’
+		{	// å·¦ä¸Š
 			{ COND_P2_X1_MAX, COND_P2_Y1_MAX, 0 },
 			{ COND_P2_X1_MIN, COND_P2_Y1_MIN, 0 },
 			{ PRM_SIZ(COND_P2_X1_MAX,COND_P2_X1_MIN),PRM_SIZ(COND_P2_Y1_MAX,COND_P2_Y1_MIN),0 }
 		},
-		{	// ‰Eã
+		{	// å³ä¸Š
 			{ COND_P2_X2_MAX, COND_P2_Y2_MAX, 0 },
 			{ COND_P2_X2_MIN, COND_P2_Y2_MIN, 0 },
 			{ PRM_SIZ(COND_P2_X2_MAX,COND_P2_X2_MIN),PRM_SIZ(COND_P2_Y2_MAX,COND_P2_Y2_MIN),0 }
 		},
-		{	// ‰E‰º
+		{	// å³ä¸‹
 			{ COND_P2_X3_MAX, COND_P2_Y3_MAX, 0 },
 			{ COND_P2_X3_MIN, COND_P2_Y3_MIN, 0 },
 			{ PRM_SIZ(COND_P2_X3_MAX,COND_P2_X3_MIN),PRM_SIZ(COND_P2_Y3_MAX,COND_P2_Y3_MIN),0 }
 		},
-		{	// ¶‰º
+		{	// å·¦ä¸‹
 			{ COND_P2_X4_MAX, COND_P2_Y4_MAX, 0 },
 			{ COND_P2_X4_MIN, COND_P2_Y4_MIN, 0 },
 			{ PRM_SIZ(COND_P2_X4_MAX,COND_P2_X4_MIN),PRM_SIZ(COND_P2_Y4_MAX,COND_P2_Y4_MIN),0 }
 		}
 	},
-	{	// ƒQ[ƒW‚R
-		{	// ¶ã
+	{	// ã‚²ãƒ¼ã‚¸ï¼“
+		{	// å·¦ä¸Š
 			{ COND_P3_X1_MAX, COND_P3_Y1_MAX, 0 },
 			{ COND_P3_X1_MIN, COND_P3_Y1_MIN, 0 },
 			{ PRM_SIZ(COND_P3_X1_MAX,COND_P3_X1_MIN),PRM_SIZ(COND_P3_Y1_MAX,COND_P3_Y1_MIN),0 }
 		},
-		{	// ‰Eã
+		{	// å³ä¸Š
 			{ COND_P3_X2_MAX, COND_P3_Y2_MAX, 0 },
 			{ COND_P3_X2_MIN, COND_P3_Y2_MIN, 0 },
 			{ PRM_SIZ(COND_P3_X2_MAX,COND_P3_X2_MIN),PRM_SIZ(COND_P3_Y2_MAX,COND_P3_Y2_MIN),0 }
 		},
-		{	// ‰E‰º
+		{	// å³ä¸‹
 			{ COND_P3_X3_MAX, COND_P3_Y3_MAX, 0 },
 			{ COND_P3_X3_MIN, COND_P3_Y3_MIN, 0 },
 			{ PRM_SIZ(COND_P3_X3_MAX,COND_P3_X3_MIN),PRM_SIZ(COND_P3_Y3_MAX,COND_P3_Y3_MIN),0 }
 		},
-		{	// ¶‰º
+		{	// å·¦ä¸‹
 			{ COND_P3_X4_MAX, COND_P3_Y4_MAX, 0 },
 			{ COND_P3_X4_MIN, COND_P3_Y4_MIN, 0 },
 			{ PRM_SIZ(COND_P3_X4_MAX,COND_P3_X4_MIN),PRM_SIZ(COND_P3_Y4_MAX,COND_P3_Y4_MIN),0 }
 		}
 	},
-	{	// ƒQ[ƒW‚S
-		{	// ¶ã
+	{	// ã‚²ãƒ¼ã‚¸ï¼”
+		{	// å·¦ä¸Š
 			{ COND_P4_X1_MAX, COND_P4_Y1_MAX, 0 },
 			{ COND_P4_X1_MIN, COND_P4_Y1_MIN, 0 },
 			{ PRM_SIZ(COND_P4_X1_MAX,COND_P4_X1_MIN),PRM_SIZ(COND_P4_Y1_MAX,COND_P4_Y1_MIN),0 }
 		},
-		{	// ‰Eã
+		{	// å³ä¸Š
 			{ COND_P4_X2_MAX, COND_P4_Y2_MAX, 0 },
 			{ COND_P4_X2_MIN, COND_P4_Y2_MIN, 0 },
 			{ PRM_SIZ(COND_P4_X2_MAX,COND_P4_X2_MIN),PRM_SIZ(COND_P4_Y2_MAX,COND_P4_Y2_MIN),0 }
 		},
-		{	// ‰E‰º
+		{	// å³ä¸‹
 			{ COND_P4_X3_MAX, COND_P4_Y3_MAX, 0 },
 			{ COND_P4_X3_MIN, COND_P4_Y3_MIN, 0 },
 			{ PRM_SIZ(COND_P4_X3_MAX,COND_P4_X3_MIN),PRM_SIZ(COND_P4_Y3_MAX,COND_P4_Y3_MIN),0 }
 		},
-		{	// ¶‰º
+		{	// å·¦ä¸‹
 			{ COND_P4_X4_MAX, COND_P4_Y4_MAX, 0 },
 			{ COND_P4_X4_MIN, COND_P4_Y4_MIN, 0 },
 			{ PRM_SIZ(COND_P4_X4_MAX,COND_P4_X4_MIN),PRM_SIZ(COND_P4_Y4_MAX,COND_P4_Y4_MIN),0 }
@@ -261,17 +261,17 @@ static const CONDITION_VTX_CALC	ConPrm[][4] =
 
 //--------------------------------------------------------------------------------------------
 /**
- * 3DŠÖ˜A‰Šú‰»
+ * 3Dé–¢é€£åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 void PokeStatus_3DInit( PST_WORK * wk )
 {
-	// ‰Šú‰»iNITRO-SDK‚ÌƒTƒ“ƒvƒ‹‚©‚çj
-	NNS_G3dInit();		// NitroSystem:‚R‚cƒGƒ“ƒWƒ“‚Ì‰Šú‰»
+	// åˆæœŸåŒ–ï¼ˆNITRO-SDKã®ã‚µãƒ³ãƒ—ãƒ«ã‹ã‚‰ï¼‰
+	NNS_G3dInit();		// NitroSystem:ï¼“ï¼¤ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–
 	G3X_Init();
 	G3X_InitMtxStack();
 	G3X_SetShading( GX_SHADING_TOON );
@@ -290,9 +290,9 @@ void PokeStatus_3DInit( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * 3DŠÖ˜AƒƒCƒ“
+ * 3Dé–¢é€£ãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -323,31 +323,31 @@ void PokeStatus_3DMain( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * 3DŠÖ˜Aíœ
+ * 3Dé–¢é€£å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 void PokeStatus_3DRelease( PST_WORK * wk )
 {
-	GFC_FreeCamera( wk->p3d.camera );	// ƒJƒƒ‰íœ
+	GFC_FreeCamera( wk->p3d.camera );	// ã‚«ãƒ¡ãƒ©å‰Šé™¤
 	PokeAnm_EndAnimeForce( wk->p3d.poke_anm_sys, 0 );
 	PokeAnm_FreeMemory( wk->p3d.poke_anm_sys );
-	SoftSpriteEnd( wk->p3d.ssm );	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgíœ
+	SoftSpriteEnd( wk->p3d.ssm );	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå‰Šé™¤
 }
 
 
 //============================================================================================
-//	ƒRƒ“ƒfƒBƒVƒ‡ƒ“
+//	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒJƒƒ‰Ý’è
+ * ã‚«ãƒ¡ãƒ©è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -362,16 +362,16 @@ void PokeStatus_CameraInit( PST_WORK * wk )
 	wk->p3d.camera = GFC_AllocCamera( HEAPID_POKESTATUS );
 
 	GFC_InitCameraCDA( &camera_pos, distance, &angle, perspway, GF_CAMERA_ORTHO, wk->p3d.camera );
-	GFC_SetCameraClip( 0, FX32_CONST(100), wk->p3d.camera );	// ƒNƒŠƒbƒvÝ’è(near-far)
+	GFC_SetCameraClip( 0, FX32_CONST(100), wk->p3d.camera );	// ã‚¯ãƒªãƒƒãƒ—è¨­å®š(near-far)
 	GFC_PurgeCameraTarget( wk->p3d.camera );
 	GFC_AttachCamera( wk->p3d.camera );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW•\Ž¦
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	vtx		ƒ|ƒŠƒSƒ“•\Ž¦À•W
+ * @param	vtx		ãƒãƒªã‚´ãƒ³è¡¨ç¤ºåº§æ¨™
  *
  * @return	none
  */
@@ -525,10 +525,10 @@ static void ConditionGagePut( PST_CONDISION_VTX * vtx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •\Ž¦À•W•ÏX
+ * è¡¨ç¤ºåº§æ¨™å¤‰æ›´
  *
- * @param	p		•\Ž¦À•W
- * @param	m		•ÏX’l
+ * @param	p		è¡¨ç¤ºåº§æ¨™
+ * @param	m		å¤‰æ›´å€¤
  *
  * @return	none
  */
@@ -542,9 +542,9 @@ static void ConditionParamPlus( VecFx16 * p, VecFx16 * m )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW“®ì
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸å‹•ä½œ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -582,9 +582,9 @@ static void PokeStatus_ConditionPlus( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW‰Šú‰»
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -620,11 +620,11 @@ void PokeStatus_ConditionParamInit( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒWÅ‘å’lƒZƒbƒg
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸æœ€å¤§å€¤ã‚»ãƒƒãƒˆ
  *
- * @param	cnst	À•Wƒf[ƒ^
- * @param	make	ì¬êŠ
- * @param	prm		ƒpƒ‰ƒ[
+ * @param	cnst	åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+ * @param	make	ä½œæˆå ´æ‰€
+ * @param	prm		ãƒ‘ãƒ©ãƒ¡ãƒ¼
  *
  * @return	none
  */
@@ -644,11 +644,11 @@ static void ConditionMaxMake( const CONDITION_VTX_CALC * cnst, VecFx16 * make, u
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW“®ì’lƒZƒbƒg
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸å‹•ä½œå€¤ã‚»ãƒƒãƒˆ
  *
- * @param	now		Œ»Ý‚ÌÀ•W
- * @param	max		Å‘åÀ•W
- * @param	move	‚P‚ ‚½‚è‚Ì“®ì’l
+ * @param	now		ç¾åœ¨ã®åº§æ¨™
+ * @param	max		æœ€å¤§åº§æ¨™
+ * @param	move	ï¼‘ã‚ãŸã‚Šã®å‹•ä½œå€¤
  *
  * @return	none
  */
@@ -662,9 +662,9 @@ static void ConditionMoveMake( VecFx16 * now, VecFx16 * max, VecFx16 * move )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW“®ìƒpƒ‰ƒ[ƒ^ì¬
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -673,7 +673,7 @@ void PokeStatus_ConditionParamMake( PST_WORK * wk )
 {
 	u32	i;
 
-	// Å‘å’l‚ðƒZƒbƒg
+	// æœ€å¤§å€¤ã‚’ã‚»ãƒƒãƒˆ
 	ConditionMaxMake( &ConPrm[0][0], &wk->mvtx[0].lt, wk->pp.style );
 	ConditionMaxMake( &ConPrm[0][1], &wk->mvtx[0].rt, wk->pp.beautiful );
 	ConditionMaxMake( &ConPrm[0][2], &wk->mvtx[0].ru, wk->pp.cute );
@@ -694,7 +694,7 @@ void PokeStatus_ConditionParamMake( PST_WORK * wk )
 	ConditionMaxMake( &ConPrm[3][2], &wk->mvtx[3].ru, wk->pp.cute );
 	ConditionMaxMake( &ConPrm[3][3], &wk->mvtx[3].lu, wk->pp.clever );
 
-	// ƒvƒ‰ƒX’l‚ðŒvŽZ
+	// ãƒ—ãƒ©ã‚¹å€¤ã‚’è¨ˆç®—
 	for( i=0; i<4; i++ ){
 		ConditionMoveMake( &wk->cvtx[i].lt, &wk->mvtx[i].lt, &wk->pvtx[i].lt );
 		ConditionMoveMake( &wk->cvtx[i].rt, &wk->mvtx[i].rt, &wk->pvtx[i].rt );
@@ -707,14 +707,14 @@ void PokeStatus_ConditionParamMake( PST_WORK * wk )
 
 
 //============================================================================================
-//	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+//	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒZƒbƒg
+ * ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -751,9 +751,9 @@ void PokeStatus_SoftSpriteSet( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚ÌƒAƒjƒƒbƒg
+ * ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ‹ãƒ¡ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -791,9 +791,9 @@ void PokeStatus_SoftSpriteAnmSet( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgÄƒZƒbƒg
+ * ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå†ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -802,7 +802,7 @@ void PokeStatus_SoftSpriteReset( PST_WORK * wk )
 {
 	PokeAnm_EndAnimeForce( wk->p3d.poke_anm_sys, 0 );
 
-	SoftSpriteEnd( wk->p3d.ssm );	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgíœ
+	SoftSpriteEnd( wk->p3d.ssm );	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå‰Šé™¤
 	PokeStatus_SoftSpriteSet( wk );
 	PokeStatus_SoftSpriteAnmSet( wk );
 }

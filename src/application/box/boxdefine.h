@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxdefine.h
- * @brief	ƒ{ƒbƒNƒX’è”
+ * @brief	ãƒœãƒƒã‚¯ã‚¹å®šæ•°
  * @author	taya
  * @date	2005.09.07
  */
@@ -13,10 +13,10 @@
 
 
 typedef enum {
-	BOX_MODE_STORE,			///< ‚ ‚¸‚¯‚é
-	BOX_MODE_WITHDRAW,		///< ‚Â‚ê‚Ä‚¢‚­
-	BOX_MODE_ARRANGE,		///< ‚¹‚¢‚è
-	BOX_MODE_ITEM,			///< ‚Ç‚¤‚®‚¹‚¢‚è
+	BOX_MODE_STORE,			///< ã‚ãšã‘ã‚‹
+	BOX_MODE_WITHDRAW,		///< ã¤ã‚Œã¦ã„ã
+	BOX_MODE_ARRANGE,		///< ã›ã„ã‚Š
+	BOX_MODE_ITEM,			///< ã©ã†ãã›ã„ã‚Š
 }BOX_MODE;
 
 

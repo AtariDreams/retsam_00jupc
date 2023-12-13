@@ -1,16 +1,16 @@
 //=============================================================================================
 /**
  * @file	fontproc.c
- * @brief	ƒtƒHƒ“ƒgƒf[ƒ^ˆ—
+ * @brief	ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å‡¦ç†
  * @author	tetsu
  * @date	2003.03.25
  *
- *	ŠeƒtƒHƒ“ƒg‚Ì‰æ‘œƒf[ƒ^‚ð•K—v‚É‰ž‚¶‚Äƒ[ƒhEƒAƒ“ƒ[ƒho—ˆ‚é‚æ‚¤‚ÉC³
+ *	å„ãƒ•ã‚©ãƒ³ãƒˆã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’å¿…è¦ã«å¿œã˜ã¦ãƒ­ãƒ¼ãƒ‰ãƒ»ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰å‡ºæ¥ã‚‹ã‚ˆã†ã«ä¿®æ­£
  *	2005.08.24	taya
  *
  *
- *	ƒtƒHƒ“ƒgƒ^ƒCƒv‚²‚Æ‚Éˆ—ŠÖ”‚ð—pˆÓ‚·‚é‚±‚ê‚Ü‚Å‚Ì•û–@‚ðŽ~‚ßA
- *	ƒtƒHƒ“ƒgƒf[ƒ^Ž©‘Ì‚Éˆ—‚É•K—v‚Èƒpƒ‰ƒ[ƒ^‚ðŽ‚½‚¹‚ÄA‹¤’Ê‚ÌŠÖ”ŒQ‚Å‘€ì‚·‚é‚æ‚¤‚É‚µ‚½B
+ *	ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã”ã¨ã«å‡¦ç†é–¢æ•°ã‚’ç”¨æ„ã™ã‚‹ã“ã‚Œã¾ã§ã®æ–¹æ³•ã‚’æ­¢ã‚ã€
+ *	ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿è‡ªä½“ã«å‡¦ç†ã«å¿…è¦ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æŒãŸã›ã¦ã€å…±é€šã®é–¢æ•°ç¾¤ã§æ“ä½œã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
  *	2005.09.14	taya
  *
  */
@@ -28,13 +28,13 @@
 
 //---------------------------------------------------------------------------------------------
 /**
- *	ƒtƒHƒ“ƒgƒf[ƒ^ƒ[ƒhŽžƒpƒ‰ƒ[ƒ^iFONT_TYPE‚Ì‡‚É•À‚ñ‚Å‚¢‚éj
+ *	ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰æ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆFONT_TYPEã®é †ã«ä¸¦ã‚“ã§ã„ã‚‹ï¼‰
  */
 //---------------------------------------------------------------------------------------------
 //
 static const struct {
-	u16  arcDataIdx;	///< ƒA[ƒJƒCƒu“à‚ÌƒtƒHƒ“ƒgƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
-	u16  fixedFontFlag;	///< “™•ƒtƒHƒ“ƒgƒtƒ‰ƒO
+	u16  arcDataIdx;	///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u16  fixedFontFlag;	///< ç­‰å¹…ãƒ•ã‚©ãƒ³ãƒˆãƒ•ãƒ©ã‚°
 }FontDataTbl[] = {
 	{ NARC_font_system_dat,  FALSE,  },
 	{ NARC_font_talk_dat,    FALSE,  },
@@ -44,33 +44,33 @@ static const struct {
 
 //---------------------------------------------------------------------------------------------
 /**
- *	•¶Žšì¬ˆ—ƒf[ƒ^ƒwƒbƒ_‚ÌÝ’èiFONT_TYPE‚Ì‡‚É•À‚ñ‚Å‚¢‚éj
+ *	æ–‡å­—ä½œæˆå‡¦ç†ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ã®è¨­å®šï¼ˆFONT_TYPEã®é †ã«ä¸¦ã‚“ã§ã„ã‚‹ï¼‰
  */
 //---------------------------------------------------------------------------------------------
 static const MSG_FONT_HEADER font_header_data[] = {
-	// ƒƒbƒZ[ƒWƒtƒHƒ“ƒgiƒvƒƒ|[ƒVƒ‡ƒiƒ‹j
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆï¼ˆãƒ—ãƒ­ãƒãƒ¼ã‚·ãƒ§ãƒŠãƒ«ï¼‰
 	{
-		11, 16,			// ƒtƒHƒ“ƒgƒTƒCƒY X, Y
-		 0,  0, 0,		// ŽšŠÔ, sŠÔ, ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
- 		 1, 15, 2		// •¶ŽšFA”wŒiFA‰eF
+		11, 16,			// ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º X, Y
+		 0,  0, 0,		// å­—é–“, è¡Œé–“, ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
+ 		 1, 15, 2		// æ–‡å­—è‰²ã€èƒŒæ™¯è‰²ã€å½±è‰²
 	},
-	// ƒVƒXƒeƒ€ƒtƒHƒ“ƒgiƒvƒƒ|[ƒVƒ‡ƒiƒ‹j
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆï¼ˆãƒ—ãƒ­ãƒãƒ¼ã‚·ãƒ§ãƒŠãƒ«ï¼‰
 	{
-		11, 16,			// ƒtƒHƒ“ƒgƒTƒCƒY X, Y
-		 0,  0, 0,		// ŽšŠÔ, sŠÔ, ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
- 		 1, 15, 2		// •¶ŽšFA”wŒiFA‰eF
+		11, 16,			// ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º X, Y
+		 0,  0, 0,		// å­—é–“, è¡Œé–“, ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
+ 		 1, 15, 2		// æ–‡å­—è‰²ã€èƒŒæ™¯è‰²ã€å½±è‰²
 	},
-	// ƒ{ƒ^ƒ“ƒtƒHƒ“ƒgiƒvƒƒ|[ƒVƒ‡ƒiƒ‹j
+	// ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆï¼ˆãƒ—ãƒ­ãƒãƒ¼ã‚·ãƒ§ãƒŠãƒ«ï¼‰
 	{
-		11, 16,			// ƒtƒHƒ“ƒgƒTƒCƒY X, Y
-		 0,  0, 0,		// ŽšŠÔ, sŠÔ, ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
- 		 1, 15, 2		// •¶ŽšFA”wŒiFA‰eF
+		11, 16,			// ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º X, Y
+		 0,  0, 0,		// å­—é–“, è¡Œé–“, ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
+ 		 1, 15, 2		// æ–‡å­—è‰²ã€èƒŒæ™¯è‰²ã€å½±è‰²
 	},
-	// ƒAƒ“ƒm[ƒ“ƒtƒHƒ“ƒgiƒvƒƒ|[ƒVƒ‡ƒiƒ‹j
+	// ã‚¢ãƒ³ãƒŽãƒ¼ãƒ³ãƒ•ã‚©ãƒ³ãƒˆï¼ˆãƒ—ãƒ­ãƒãƒ¼ã‚·ãƒ§ãƒŠãƒ«ï¼‰
 	{
-		11, 16,			// ƒtƒHƒ“ƒgƒTƒCƒY X, Y
-		 0,  0, 0,		// ŽšŠÔ, sŠÔ, ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
- 		 1, 15, 2		// •¶ŽšFA”wŒiFA‰eF
+		11, 16,			// ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º X, Y
+		 0,  0, 0,		// å­—é–“, è¡Œé–“, ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
+ 		 1, 15, 2		// æ–‡å­—è‰²ã€èƒŒæ™¯è‰²ã€å½±è‰²
 	},
 	{	0,0,0,0,0,0,0,0},
 };
@@ -78,11 +78,11 @@ static const MSG_FONT_HEADER font_header_data[] = {
 
 //---------------------------------------------------------------------------------------------
 /**
- *	ƒ[ƒN’è‹`
+ *	ãƒ¯ãƒ¼ã‚¯å®šç¾©
  */
 //---------------------------------------------------------------------------------------------
 typedef struct {
-	MSG_FONT_DATA     letterBitData;		///< ƒrƒbƒgƒf[ƒ^‚P•¶Žš•`‰æƒ[ƒN
+	MSG_FONT_DATA     letterBitData;		///< ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ï¼‘æ–‡å­—æç”»ãƒ¯ãƒ¼ã‚¯
 	void*             fontData[ NELEMS(FontDataTbl) ];
 	GF_FONTDATA_MAN*  fontMan[ NELEMS(FontDataTbl) ];
 
@@ -93,7 +93,7 @@ static FONT_PROC_WORK* WorkPtr = NULL;
 
 //------------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒgˆ—ƒ‚ƒWƒ…[ƒ‹‚Ì‰Šú‰»
+ * ãƒ•ã‚©ãƒ³ãƒˆå‡¦ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®åˆæœŸåŒ–
  */
 //------------------------------------------------------------------
 void FontProcInit( void )
@@ -113,9 +113,9 @@ void FontProcInit( void )
 
 //------------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒgƒf[ƒ^‚ðRAMã‚Éƒ[ƒh‚·‚é
+ * ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’RAMä¸Šã«ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
- * @param   font		ƒtƒHƒ“ƒgƒ^ƒCƒv
+ * @param   font		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  */
 //------------------------------------------------------------------
 void FontProc_LoadFont( FONT_TYPE font, u32 heapID )
@@ -124,7 +124,7 @@ void FontProc_LoadFont( FONT_TYPE font, u32 heapID )
 	u32 i;
 	void *fontData = NULL;
 
-	// ‚·‚Å‚É“¯‚¶ƒtƒHƒ“ƒgƒf[ƒ^‚ðƒ[ƒh‚µ‚Ä‚ ‚éê‡‚Í‚»‚ê‚ðŽg‚¤
+	// ã™ã§ã«åŒã˜ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ã‚ã‚‹å ´åˆã¯ãã‚Œã‚’ä½¿ã†
 	for(i = 0; i < NELEMS(FontDataTbl); i++)
 	{
 		if( i == font ){
@@ -138,7 +138,7 @@ void FontProc_LoadFont( FONT_TYPE font, u32 heapID )
 		}
 	}
 
-	// ‚Ü‚¾ƒ[ƒh‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎV‹K‚Éƒ[ƒh
+	// ã¾ã ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ãªã‘ã‚Œã°æ–°è¦ã«ãƒ­ãƒ¼ãƒ‰
 	if( fontData == NULL )
 	{
 		fontData = ArcUtil_Load( ARC_FONT, FontDataTbl[font].arcDataIdx, FALSE, heapID, ALLOC_TOP );
@@ -148,7 +148,7 @@ void FontProc_LoadFont( FONT_TYPE font, u32 heapID )
 		}
 		else
 		{
-			GF_ASSERT(0 && "ƒtƒHƒ“ƒgƒf[ƒ^‚Ìƒ[ƒh‚ÉŽ¸”s\n");
+			GF_ASSERT(0 && "ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—\n");
 			return;
 		}
 	}
@@ -165,10 +165,10 @@ void FontProc_LoadFont( FONT_TYPE font, u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒg‚Ìƒrƒbƒgƒf[ƒ^‚ðƒƒ‚ƒŠ‚Éí’“‚³‚¹A“Ç‚Ýž‚Ýˆ—‚ð‚‘¬‰»‚·‚é
+ * ãƒ•ã‚©ãƒ³ãƒˆã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¡ãƒ¢ãƒªã«å¸¸é§ã•ã›ã€èª­ã¿è¾¼ã¿å‡¦ç†ã‚’é«˜é€ŸåŒ–ã™ã‚‹
  *
- * @param   font			ƒtƒHƒ“ƒgID
- * @param   heapID			ƒrƒbƒgƒf[ƒ^í’“—pƒq[ƒvID
+ * @param   font			ãƒ•ã‚©ãƒ³ãƒˆID
+ * @param   heapID			ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å¸¸é§ç”¨ãƒ’ãƒ¼ãƒ—ID
  *
  */
 //------------------------------------------------------------------
@@ -182,10 +182,10 @@ void FontProc_LoadBitData( FONT_TYPE font, u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * FontProc_LoadBitData ‚Åí’“‚³‚¹‚½ƒrƒbƒgƒf[ƒ^‚ð”jŠü‚µA
- * ’€ŽŸƒtƒ@ƒCƒ‹“Ç‚Ýž‚Ý•ûŽ®‚É–ß‚·
+ * FontProc_LoadBitData ã§å¸¸é§ã•ã›ãŸãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã—ã€
+ * é€æ¬¡ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿æ–¹å¼ã«æˆ»ã™
  *
- * @param   font			ƒtƒHƒ“ƒgID
+ * @param   font			ãƒ•ã‚©ãƒ³ãƒˆID
  *
  */
 //------------------------------------------------------------------
@@ -201,9 +201,9 @@ void FontProc_UnloadBitData( FONT_TYPE font )
 
 //------------------------------------------------------------------
 /**
- * RAMã‚Éƒ[ƒh‚³‚ê‚Ä‚¢‚éƒtƒHƒ“ƒgBMP‚ðƒAƒ“ƒ[ƒh‚·‚é
+ * RAMä¸Šã«ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ãƒ³ãƒˆBMPã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
- * @param   font		ƒtƒHƒ“ƒgƒ^ƒCƒv
+ * @param   font		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  */
 //------------------------------------------------------------------
 void FontProc_UnloadFont( FONT_TYPE font )
@@ -214,8 +214,8 @@ void FontProc_UnloadFont( FONT_TYPE font )
 	{
 		int i;
 
-		// “¯‚¶ƒtƒHƒ“ƒgƒf[ƒ^‚ðŽQÆ‚µ‚Ä‚¢‚éƒ}ƒl[ƒWƒƒ‚ª‚ ‚ê‚Î
-		// ¡Œã‚ÌŠÇ—‚ð‚»‚¢‚Â‚É”C‚¹‚ÄA‚·‚®‚Éƒf[ƒ^‚Ì‰ð•ú‚Í‚µ‚È‚¢
+		// åŒã˜ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã—ã¦ã„ã‚‹ãƒžãƒãƒ¼ã‚¸ãƒ£ãŒã‚ã‚Œã°
+		// ä»Šå¾Œã®ç®¡ç†ã‚’ãã„ã¤ã«ä»»ã›ã¦ã€ã™ãã«ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾ã¯ã—ãªã„
 		for(i = 0; i < NELEMS(FontDataTbl); i++)
 		{
 			if( i == font ){ continue; }
@@ -241,12 +241,12 @@ void FontProc_UnloadFont( FONT_TYPE font )
 }
 //------------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒgBMPƒf[ƒ^‚P•¶Žš•ª‚ðƒ[ƒN‚É“Ç‚Ýž‚ÝA‚»‚ÌƒAƒhƒŒƒX‚ð“n‚·
+ * ãƒ•ã‚©ãƒ³ãƒˆBMPãƒ‡ãƒ¼ã‚¿ï¼‘æ–‡å­—åˆ†ã‚’ãƒ¯ãƒ¼ã‚¯ã«èª­ã¿è¾¼ã¿ã€ãã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ¸¡ã™
  *
- * @param   font		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   code		•¶ŽšƒR[ƒh
+ * @param   font		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   code		æ–‡å­—ã‚³ãƒ¼ãƒ‰
  *
- * @retval  const MSG_FONT_DATA*		“Ç‚Ýž‚ÝæƒAƒhƒŒƒX
+ * @retval  const MSG_FONT_DATA*		èª­ã¿è¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //------------------------------------------------------------------
 const MSG_FONT_DATA* FontDataGet( FONT_TYPE font, STRCODE code )
@@ -256,10 +256,10 @@ const MSG_FONT_DATA* FontDataGet( FONT_TYPE font, STRCODE code )
 }
 //------------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒgƒf[ƒ^‚ðƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ƒ[ƒN—Ìˆæ‚É•`‰æ
+ * ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã«æç”»
  *
- * @param   font		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   ini			BGLƒVƒXƒeƒ€ƒ[ƒN
+ * @param   font		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   ini			BGLã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  * @param   mdh		
  *
  */
@@ -279,13 +279,13 @@ PRINT_RESULT FontDataPrint( FONT_TYPE font, MSG_DATA_HEADER * mdh_p )
 
 //------------------------------------------------------------------
 /**
- * •¶Žš—ñ‚ðƒrƒbƒgƒ}ƒbƒv‰»‚µ‚½Žž‚Ì‰¡•Žæ“¾
+ * æ–‡å­—åˆ—ã‚’ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—åŒ–ã—ãŸæ™‚ã®æ¨ªå¹…å–å¾—
  *
- * @param   font		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   str			•¶Žš—ñ
- * @param   margin		ŽšŠÔiƒhƒbƒgj
+ * @param   font		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   str			æ–‡å­—åˆ—
+ * @param   margin		å­—é–“ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
  *
- * @retval  u32			‰¡•iƒhƒbƒgj
+ * @retval  u32			æ¨ªå¹…ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
  */
 //------------------------------------------------------------------
 u32 FontProc_GetStrWidth( FONT_TYPE font, const STRCODE* str, u32 margin )
@@ -296,13 +296,13 @@ u32 FontProc_GetStrWidth( FONT_TYPE font, const STRCODE* str, u32 margin )
 
 //------------------------------------------------------------------
 /**
- * •¶Žš—ñ‚ðƒrƒbƒgƒ}ƒbƒv‰»‚µ‚½Žž‚Ì‰¡•Žæ“¾(STRBUF”Åj
+ * æ–‡å­—åˆ—ã‚’ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—åŒ–ã—ãŸæ™‚ã®æ¨ªå¹…å–å¾—(STRBUFç‰ˆï¼‰
  *
- * @param   font		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   str			•¶Žš—ñ
- * @param   margin		ŽšŠÔiƒhƒbƒgj
+ * @param   font		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   str			æ–‡å­—åˆ—
+ * @param   margin		å­—é–“ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
  *
- * @retval  u32			‰¡•iƒhƒbƒgj
+ * @retval  u32			æ¨ªå¹…ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
  */
 //------------------------------------------------------------------
 u32 FontProc_GetPrintStrWidth( FONT_TYPE font, const STRBUF* str, u32 margin )
@@ -313,14 +313,14 @@ u32 FontProc_GetPrintStrWidth( FONT_TYPE font, const STRBUF* str, u32 margin )
 
 //------------------------------------------------------------------
 /**
- * •¶Žš—ñ‚É•s–¾‚È•¶ŽšƒR[ƒh‚ª“ü‚Á‚Ä‚¢‚È‚¢‚©’²‚×‚é
+ * æ–‡å­—åˆ—ã«ä¸æ˜Žãªæ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒå…¥ã£ã¦ã„ãªã„ã‹èª¿ã¹ã‚‹
  *
- * @param   font		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   str			•¶Žš—ñ
- * @param   str			ˆ³k•¶Žš—ñ‚Ìê‡‚ÌˆêŽž“WŠJæ
+ * @param   font		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   str			æ–‡å­—åˆ—
+ * @param   str			åœ§ç¸®æ–‡å­—åˆ—ã®å ´åˆã®ä¸€æ™‚å±•é–‹å…ˆ
  *
- * @retval  TRUE:‘S‚Ä³í
- * @retval  FALSE:•s–¾‚È•¶ŽšƒR[ƒh‚ª“ü‚Á‚Ä‚¢‚é
+ * @retval  TRUE:å…¨ã¦æ­£å¸¸
+ * @retval  FALSE:ä¸æ˜Žãªæ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒå…¥ã£ã¦ã„ã‚‹
  */
 //------------------------------------------------------------------
 u32 FontProc_ErrorStrCheck( FONT_TYPE font, STRBUF* str, STRBUF *temp_str )
@@ -334,12 +334,12 @@ u32 FontProc_ErrorStrCheck( FONT_TYPE font, STRBUF* str, STRBUF *temp_str )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒgƒf[ƒ^Žæ“¾
+ * ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param	fnt_index	ƒtƒHƒ“ƒgƒCƒ“ƒfƒbƒNƒX
- * @param	param		Žæ“¾ƒpƒ‰ƒ[ƒ^
+ * @param	fnt_index	ãƒ•ã‚©ãƒ³ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	param		å–å¾—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @return	Žw’è‚³‚ê‚½ƒpƒ‰ƒ[ƒ^
+ * @return	æŒ‡å®šã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 u8 FontHeaderGet( u8 fnt_index, u8 param )
@@ -347,28 +347,28 @@ u8 FontHeaderGet( u8 fnt_index, u8 param )
 	u8	ret = 0;
 
 	switch( param ){
-	case FONT_HEADER_SIZE_X:	// ƒtƒHƒ“ƒgXƒTƒCƒYŽw’è
+	case FONT_HEADER_SIZE_X:	// ãƒ•ã‚©ãƒ³ãƒˆXã‚µã‚¤ã‚ºæŒ‡å®š
 		ret = font_header_data[ fnt_index ].size_x;
 		break;
-	case FONT_HEADER_SIZE_Y:	// ƒtƒHƒ“ƒgYƒTƒCƒYŽw’è
+	case FONT_HEADER_SIZE_Y:	// ãƒ•ã‚©ãƒ³ãƒˆYã‚µã‚¤ã‚ºæŒ‡å®š
 		ret = font_header_data[ fnt_index ].size_y;
 		break;
-	case FONT_HEADER_SPACE_X:	// •¶ŽšŠÔŠuX(‰ŠúÝ’è)
+	case FONT_HEADER_SPACE_X:	// æ–‡å­—é–“éš”X(åˆæœŸè¨­å®š)
 		ret = font_header_data[ fnt_index ].space_x;
 		break;
-	case FONT_HEADER_SPACE_Y: 	// •¶ŽšŠÔŠuY(‰ŠúÝ’è)
+	case FONT_HEADER_SPACE_Y: 	// æ–‡å­—é–“éš”Y(åˆæœŸè¨­å®š)
 		ret = font_header_data[ fnt_index ].space_y;
 		break;
-	case FONT_HEADER_STYLE:		// ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹(‰ŠúÝ’è)
+	case FONT_HEADER_STYLE:		// ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«(åˆæœŸè¨­å®š)
 		ret = font_header_data[ fnt_index ].style;
 		break;
-	case FONT_HEADER_F_COLOR:	// •¶ŽšFƒiƒ“ƒo[
+	case FONT_HEADER_F_COLOR:	// æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼
 		ret = font_header_data[ fnt_index ].f_col;
 		break;
-	case FONT_HEADER_B_COLOR:	// ”wŒiFƒiƒ“ƒo[
+	case FONT_HEADER_B_COLOR:	// èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
 		ret = font_header_data[ fnt_index ].b_col;
 		break;
-	case FONT_HEADER_S_COLOR:	// ‰eF@ƒiƒ“ƒo[
+	case FONT_HEADER_S_COLOR:	// å½±è‰²ã€€ãƒŠãƒ³ãƒãƒ¼
 		ret = font_header_data[ fnt_index ].s_col;
 		break;
 	}
@@ -379,11 +379,11 @@ u8 FontHeaderGet( u8 fnt_index, u8 param )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+ * ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
  *
- * @param	type	ƒpƒŒƒbƒg“]‘—æƒ^ƒCƒv
- * @param	offs	“Ç‚Ýž‚ÝƒIƒtƒZƒbƒgiƒoƒCƒg’PˆÊj
- * @param	heap	ƒq[ƒvID
+ * @param	type	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param	offs	èª­ã¿è¾¼ã¿ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -395,11 +395,11 @@ void SystemFontPaletteLoad( u32 type, u32 offs, u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+ * ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
  *
- * @param	type	ƒpƒŒƒbƒg“]‘—æƒ^ƒCƒv
- * @param	offs	“Ç‚Ýž‚ÝƒIƒtƒZƒbƒgiƒoƒCƒg’PˆÊj
- * @param	heap	ƒq[ƒvID
+ * @param	type	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param	offs	èª­ã¿è¾¼ã¿ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -411,7 +411,7 @@ void TalkFontPaletteLoad( u32 type, u32 offs, u32 heap )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/05
-// •¡”s‚É‚í‚½‚é•¶Žš—ñ‚ÌAÅ’·s‚Ìƒrƒbƒgƒ}ƒbƒv•‚ð•Ô‚·ŠÖ”
+// è¤‡æ•°è¡Œã«ã‚ãŸã‚‹æ–‡å­—åˆ—ã®ã€æœ€é•·è¡Œã®ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—å¹…ã‚’è¿”ã™é–¢æ•°
 
 u32 FontProc_GetMaxLineWidth( FONT_TYPE font, const STRCODE* str, u32 margin )
 {
@@ -429,7 +429,7 @@ u32 FontProc_GetPrintMaxLineWidth( FONT_TYPE font, const STRBUF* str, u32 margin
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/14
-// 1s‚Ì•¶Žš—ñ‚ðƒZƒ“ƒ^ƒŠƒ“ƒO‚µ‚½ˆÊ’u‚ð•Ô‚·ŠÖ”
+// 1è¡Œã®æ–‡å­—åˆ—ã‚’ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã—ãŸä½ç½®ã‚’è¿”ã™é–¢æ•°
 
 u32 FontProc_GetCenteredPositionX( FONT_TYPE font, const STRCODE* str, u32 margin, u32 width )
 {
@@ -447,7 +447,7 @@ u32 FontProc_GetPrintCenteredPositionX( FONT_TYPE font, const STRBUF* str, u32 m
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/20
-// •¶Žš—ñ‚Ìs”‚ðƒJƒEƒ“ƒg‚µ‚Ä•Ô‚·ŠÖ”
+// æ–‡å­—åˆ—ã®è¡Œæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦è¿”ã™é–¢æ•°
 
 u32 FontProc_GetLineNum(const STRCODE* str)
 {
@@ -477,7 +477,7 @@ u32 FontProc_GetPrintLineNum(const STRBUF* str)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/14
-// ƒXƒNƒŠƒvƒgƒEƒBƒ“ƒhƒE‚ðŠJ‚­Û‚ÉAŠe€–Ú‚Ì’·‚³‚ðŽæ“¾‚·‚é‚½‚ß‚ÌŠÖ”
+// ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ãéš›ã«ã€å„é …ç›®ã®é•·ã•ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®é–¢æ•°
 
 u32 FontProc_GetEvWinItemWidth( FONT_TYPE font, const STRBUF* str )
 {

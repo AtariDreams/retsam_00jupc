@@ -3,7 +3,7 @@
 /**
  *
  *@file		union_board.c
- *@brief	ƒ†ƒjƒIƒ“ƒ‹[ƒ€Œf¦”Â•\¦ˆ—iƒTƒu‰æ–Êj
+ *@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ æ²ç¤ºæ¿è¡¨ç¤ºå‡¦ç†ï¼ˆã‚µãƒ–ç”»é¢ï¼‰
  *@author	Akito Mori
  *@data		2006.02.03
  *
@@ -61,30 +61,30 @@ FS_EXTERN_OVERLAY(unionroom_board);
 
 
 struct _STRBUF {
-	u16  size;			///< ”z—ñƒTƒCƒY
-	u16  strlen;		///< •¶š—ñ’·iEOM‚ğŠÜ‚Ü‚È‚¢j
-	u32  magicNumber;	///< ³í‚É‰Šú‰»Ï‚İ‚Å‚ ‚é‚±‚Æ‚ğƒ`ƒFƒbƒN‚·‚é‚½‚ß‚Ìƒiƒ“ƒo[
+	u16  size;			///< é…åˆ—ã‚µã‚¤ã‚º
+	u16  strlen;		///< æ–‡å­—åˆ—é•·ï¼ˆEOMã‚’å«ã¾ãªã„ï¼‰
+	u32  magicNumber;	///< æ­£å¸¸ã«åˆæœŸåŒ–æ¸ˆã¿ã§ã‚ã‚‹ã“ã¨ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãŸã‚ã®ãƒŠãƒ³ãƒãƒ¼
 
-	STRCODE  buffer[1];	///< ”z—ñ–{‘Ì
+	STRCODE  buffer[1];	///< é…åˆ—æœ¬ä½“
 };
 
 //========================================================================================
-// ’è”éŒ¾
+// å®šæ•°å®£è¨€
 //========================================================================================
 
-#define UNION_BOARD_RESOURCE_ID	( 999 ) // ‰º‰æ–Ê‚ÌƒŠƒ\[ƒX‚h‚c‚ğÕ“Ë‚µ‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚É1000‚Æ‚·‚é
+#define UNION_BOARD_RESOURCE_ID	( 999 ) // ä¸‹ç”»é¢ã®ãƒªã‚½ãƒ¼ã‚¹ï¼©ï¼¤ã‚’è¡çªã—ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«1000ã¨ã™ã‚‹
 
 
-// CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ì”iƒ}ƒ‹ƒ`ƒZƒ‹Eƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚Íg—p‚µ‚È‚¢j
+// CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®æ•°ï¼ˆï¼ãƒãƒ«ãƒã‚»ãƒ«ãƒ»ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã¯ä½¿ç”¨ã—ãªã„ï¼‰
 #define CELL_ANIME_RESOURCE_NUM		(4)
 
-// ƒ†ƒjƒIƒ“ƒ{[ƒh‚É•\¦‚·‚éOBJ‚Ì”
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒœãƒ¼ãƒ‰ã«è¡¨ç¤ºã™ã‚‹OBJã®æ•°
 #define UNION_BOARD_OBJ_PARTS_NUM	(3)	
 
-// ’YzƒŒ[ƒ_[‚Ìƒ^ƒXƒN‚Ì—Dæ‡ˆÊi’ÊM‚æ‚è‚Í‰º‚É‚¢‚é•K—v‚Æ‚©‚ ‚é‚Æv‚¤‚Ì‚Åj
+// ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ã®ã‚¿ã‚¹ã‚¯ã®å„ªå…ˆé †ä½ï¼ˆé€šä¿¡ã‚ˆã‚Šã¯ä¸‹ã«ã„ã‚‹å¿…è¦ã¨ã‹ã‚ã‚‹ã¨æ€ã†ã®ã§ï¼‰
 #define UNION_BOARD_TCB_PRIORITY	(4)
 
-// ‰º‰æ–Ê‚É•\¦‚·‚éŠÈˆÕ‰ï˜b‚Ì”
+// ä¸‹ç”»é¢ã«è¡¨ç¤ºã™ã‚‹ç°¡æ˜“ä¼šè©±ã®æ•°
 #define UNION_BOARD_CARD_NUM		( 3 )
 
 #define UNION_BOARD_CLACT_MAX			( 10 )
@@ -94,9 +94,9 @@ struct _STRBUF {
 #define MESSAGE_END			( 2 )
 
 
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-// -----’YzƒŒ[ƒ_[ˆ—‚ÌƒV[ƒPƒ“ƒX’è‹`---------
+// -----ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼å‡¦ç†ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©---------
 enum{
 	UNIONBOARD_INIT_BG = 0,
 	UNIONBOARD_INIT_ACTOR,
@@ -106,10 +106,10 @@ enum{
 
 
 
-// ƒ{ƒ^ƒ“ƒAƒjƒ‰Ÿ‚µ‚Á‚Ï‚È‚µƒV[ƒPƒ“ƒX
+// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡æŠ¼ã—ã£ã±ãªã—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 #define UNIONBOARD_SCRLLBTTN_PUSH	( 1 )
 //========================================================================================
-// \‘¢‘ÌéŒ¾
+// æ§‹é€ ä½“å®£è¨€
 //========================================================================================
 typedef struct{
 	u16 max;
@@ -119,37 +119,37 @@ typedef struct{
 }UNION_SCROLL;
 
 typedef struct{
-	GF_BGL_BMPWIN	bName;							// –¼‘O•`‰æƒrƒbƒgƒ}ƒbƒv
-	GF_BGL_BMPWIN	bMessage;						// ŠÈˆÕ‰ï˜b•`‰æƒrƒbƒgƒ}ƒbƒv
-	GF_BGL_BMPWIN	bFriend;						// ‚µ‚è‚ ‚¢’mƒrƒbƒgƒ}ƒbƒv
-	int				sex;							// “\‚è•t‚¯‚éƒJ[ƒh‚Ì”wŒi
-	int				push;							// ‰Ÿ‚µ‚Ü‚êó‘Ô
+	GF_BGL_BMPWIN	bName;							// åå‰æç”»ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+	GF_BGL_BMPWIN	bMessage;						// ç°¡æ˜“ä¼šè©±æç”»ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+	GF_BGL_BMPWIN	bFriend;						// ã—ã‚Šã‚ã„å‘ŠçŸ¥ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+	int				sex;							// è²¼ã‚Šä»˜ã‘ã‚‹ã‚«ãƒ¼ãƒ‰ã®èƒŒæ™¯
+	int				push;							// æŠ¼ã—è¾¼ã¾ã‚ŒçŠ¶æ…‹
 }UNION_BOARD_BMP;
 
 struct UNION_BOARD_WORK{
-	int           			mode;									//ƒV[ƒPƒ“ƒX‘JˆÚ
+	int           			mode;									//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é·ç§»
 
 	COMM_UNIONROOM_VIEW 	*cuv;
 	COMM_UNIONROOM_WORK     *union_work;
-	FIELDSYS_WORK 			*fsys;									// ƒtƒB[ƒ‹ƒh‚©‚çˆø‚«Œp‚®ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+	FIELDSYS_WORK 			*fsys;									// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰å¼•ãç¶™ãã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
 	MYSTATUS				*mystatus;
-	GF_BGL_INI    			*bgl;									// ƒtƒB[ƒ‹ƒh‚©‚çˆø‚«Œp‚®‚a‚fƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+	GF_BGL_INI    			*bgl;									// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰å¼•ãç¶™ãï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
 	
 
-	WORDSET					*WordSet;								// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER 		*MsgManager;							// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
+	WORDSET					*WordSet;								// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER 		*MsgManager;							// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 
-	u16			  	 		*Bg1ScrenData;							// BG1‘‚«Š·‚¦—pƒXƒNƒŠ[ƒ“ƒf[ƒ^À‘Ì
-	NNSG2dScreenData 		*BoardScreen;							// BG1‘‚«Š·‚¦—pƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒAƒhƒŒƒX
+	u16			  	 		*Bg1ScrenData;							// BG1æ›¸ãæ›ãˆç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿å®Ÿä½“
+	NNSG2dScreenData 		*BoardScreen;							// BG1æ›¸ãæ›ãˆç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-	CLACT_SET_PTR 			clactSet;								// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	renddata;								// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	resMan[CELL_ANIME_RESOURCE_NUM];		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR 	resObjTbl[CELL_ANIME_RESOURCE_NUM];		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-	CLACT_HEADER			clActHeader;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
+	CLACT_SET_PTR 			clactSet;								// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	renddata;								// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	resMan[CELL_ANIME_RESOURCE_NUM];		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR 	resObjTbl[CELL_ANIME_RESOURCE_NUM];		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+	CLACT_HEADER			clActHeader;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
 
-	CLACT_WORK_PTR			clActWork[COMM_MACHINE_MAX];			// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ(ålŒöj
-	int						MesIndex;								// ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+	CLACT_WORK_PTR			clActWork[COMM_MACHINE_MAX];			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—(ä¸»äººå…¬ï¼‰
+	int						MesIndex;								// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	int						TalkMode;
 	int						Wait;
 	int						lastHitTrg;
@@ -168,9 +168,9 @@ struct UNION_BOARD_WORK{
 	u8						touchRepeatWait;
 	u8						touchRepeatSpeed;
 
-	BOOL					scrollbarYCont;	// ScrollControlŠÖ”“à‚Å
-											// scrollbar‚ÌYÀ•W‚ğƒRƒ“ƒgƒ[ƒ‹‚·‚é‚©
-	u16						scrllbttn_push[2];	// ƒXƒNƒ[ƒ‹ƒ{ƒ^ƒ“‰Ÿ‚µ‚Ä‚¢‚é”»’è
+	BOOL					scrollbarYCont;	// ScrollControlé–¢æ•°å†…ã§
+											// scrollbarã®Yåº§æ¨™ã‚’ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã™ã‚‹ã‹
+	u16						scrllbttn_push[2];	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒœã‚¿ãƒ³æŠ¼ã—ã¦ã„ã‚‹åˆ¤å®š
 
 	TCB_PTR					tcb;	
 };
@@ -181,7 +181,7 @@ static UNION_BOARD_WORK *debug_ubw;
 #endif
 
 //========================================================================================
-// ƒvƒƒgƒ^ƒCƒvéŒ¾
+// ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //========================================================================================
 static void InitWork( UNION_BOARD_WORK *ubw );
 static void destBG(GF_BGL_INI* bgl);
@@ -234,10 +234,10 @@ static void UnionBoardScrollBttnAnmMain( UNION_BOARD_WORK *ubw );
 
 //------------------------------------------------------------------
 /**
- * ’YzƒŒ[ƒ_[ƒƒCƒ“iƒ^ƒXƒNŠÖ”j
+ * ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ãƒ¡ã‚¤ãƒ³ï¼ˆã‚¿ã‚¹ã‚¯é–¢æ•°ï¼‰
  *
- * @param   tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^(UG_RADAR_WORK‚Æ‚µ‚ÄƒLƒƒƒXƒg‚µ‚Äg‚¤j
+ * @param   tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿(UG_RADAR_WORKã¨ã—ã¦ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ä½¿ã†ï¼‰
  *
  * @retval  none		
  */
@@ -248,20 +248,20 @@ static void UnionRoom_BoardFunc(TCB_PTR tcb, void *wk)
 	GF_BGL_INI       *bgl = ubw->bgl;
 	int i;
 
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚©‚çålŒö‚ª”ò‚ñ‚Å‚¢‚­‚Æƒ†ƒjƒIƒ“—p‚Ìƒ[ƒN‚ªÁ–Å‚µ‚Ä‚µ‚Ü‚¤‚Ì‚Å—\–hü
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‹ã‚‰ä¸»äººå…¬ãŒé£›ã‚“ã§ã„ãã¨ãƒ¦ãƒ‹ã‚ªãƒ³ç”¨ã®ãƒ¯ãƒ¼ã‚¯ãŒæ¶ˆæ»…ã—ã¦ã—ã¾ã†ã®ã§äºˆé˜²ç·š
 	if(ubw->fsys->union_view==NULL){
 		return;
 	}
 
 	switch(ubw->mode){
 	case UNIONBOARD_INIT_BG:
-		// BG‰Šú‰»EVRAM“]‘—
+		// BGåˆæœŸåŒ–ãƒ»VRAMè»¢é€
 		OS_Printf("start unionboard = %ld\n",sys_GetHeapFreeSize(HEAPID_FIELD));
 		OS_Printf("unionboard work= %ld\n",sizeof(UNION_BOARD_WORK));
 
 		initBG( bgl );
 
-		// ƒŒ[ƒ_[—p”z—ñ‰Šú‰»
+		// ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨é…åˆ—åˆæœŸåŒ–
 		InitWork( ubw );
 //		UnionChatAllocInit( &ubw->UnionChatRingBuf );
 
@@ -270,13 +270,13 @@ static void UnionRoom_BoardFunc(TCB_PTR tcb, void *wk)
 
 #endif
 
-		// systemƒŠƒs[ƒgİ’è
+		// systemãƒªãƒ”ãƒ¼ãƒˆè¨­å®š
 		sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-		// ƒ^ƒbƒ`ƒŠƒs[ƒgİ’è
+		// ã‚¿ãƒƒãƒãƒªãƒ”ãƒ¼ãƒˆè¨­å®š
 		UnionBoardTouchRepeatInit( ubw );
 
-		// ƒXƒNƒ[ƒ‹ƒo[‚ÌYÀ•W‚ğŠÇ—‚·‚é
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®Yåº§æ¨™ã‚’ç®¡ç†ã™ã‚‹
 		UnionBoardScrollbarYContFlagSet( ubw, TRUE );
 
 		ubw->mode++;
@@ -290,7 +290,7 @@ static void UnionRoom_BoardFunc(TCB_PTR tcb, void *wk)
 
 		BmpWinInit( ubw->bgl, ubw->UnionBmp );
 
-		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
@@ -298,10 +298,10 @@ static void UnionRoom_BoardFunc(TCB_PTR tcb, void *wk)
 		UnionBoardReWriteOn( ubw );
 		ubw->mode++;
 		break;
-	// ƒƒCƒ“ƒV[ƒPƒ“ƒX
+	// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	case UNIONBOARD_MAIN:
 
-		// ƒ^ƒbƒ`ƒŠƒs[ƒgƒƒCƒ“
+		// ã‚¿ãƒƒãƒãƒªãƒ”ãƒ¼ãƒˆãƒ¡ã‚¤ãƒ³
 		UnionBoardTouchRepeatMain( ubw );
 
 		GetUnionChat( ubw );
@@ -356,7 +356,7 @@ static void UnionRoom_BoardFunc(TCB_PTR tcb, void *wk)
 			OS_TPrintf("now beacon =\n");
 			for(i=0;i<10;i++){
 				beacon = CommMPGetWMBssDesc(i);	
-				if(beacon!=NULL){		// ƒr[ƒRƒ“‚ªæ‚ê‚È‚©‚Á‚½‚çƒXƒ‹[
+				if(beacon!=NULL){		// ãƒ“ãƒ¼ã‚³ãƒ³ãŒå–ã‚Œãªã‹ã£ãŸã‚‰ã‚¹ãƒ«ãƒ¼
 					gfinfo = (_GF_BSS_DATA_INFO*)&beacon->gameInfo.userGameInfo;
 					OS_TPrintf( "%08x,  ", gfinfo->pokeID);
 				}
@@ -368,16 +368,16 @@ static void UnionRoom_BoardFunc(TCB_PTR tcb, void *wk)
 		if(sys.trg & PAD_BUTTON_SELECT){
 			PMS_DATA pmsdata;
 			PMSDAT_SetDebugRandom( &pmsdata );
-			Union_SetMyPmsData( ubw->union_work, &pmsdata );		// ƒ†ƒjƒIƒ“ƒ[ƒN‚Å•Û‘¶‚µ‚Ä‚¨‚«‰º‰æ–Ê‚É•\¦‚³‚¹‚é
+			Union_SetMyPmsData( ubw->union_work, &pmsdata );		// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ¯ãƒ¼ã‚¯ã§ä¿å­˜ã—ã¦ãŠãä¸‹ç”»é¢ã«è¡¨ç¤ºã•ã›ã‚‹
 		}
 
 #endif
 		BoardWriteFunc( ubw );
 
-		// “Áêƒ{ƒ^ƒ““®ì
+		// ç‰¹æ®Šãƒœã‚¿ãƒ³å‹•ä½œ
 		UnionBoardScrollBttnAnmMain( ubw );
 		
-		CLACT_Draw( ubw->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+		CLACT_Draw( ubw->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 		break;
 
 	case UNIONBOARD_END:
@@ -386,21 +386,21 @@ static void UnionRoom_BoardFunc(TCB_PTR tcb, void *wk)
 	}
 }
 
-// –¼‘O•\¦‚a‚l‚o’è‹`
+// åå‰è¡¨ç¤ºï¼¢ï¼­ï¼°å®šç¾©
 #define NAME_BMPWIN_W			(  8 )
 #define NAME_BMPWIN_H			(  2 )
 
 #define NAME_BMPWIN_POSX		(  1 )
 #define NAME0_BMPWIN_POSY		(  1 )
 
-// ŠÈˆÕ‰ï˜b•\¦‚a‚l‚o’è‹`
+// ç°¡æ˜“ä¼šè©±è¡¨ç¤ºï¼¢ï¼­ï¼°å®šç¾©
 #define MESSAGE_BMPWIN_W		( 27 )
 #define MESSAGE_BMPWIN_H		(  5 )
 
 #define MESSAGE_BMPWIN_POSX		(  2 )
 #define MESSAGE0_BMPWIN_POSY	(  3 )
 
-// ‚µ‚è‚ ‚¢’m‚a‚l‚o’è‹`
+// ã—ã‚Šã‚ã„å‘ŠçŸ¥ï¼¢ï¼­ï¼°å®šç¾©
 #define FRIEND_BMPWIN_W		( 15 )
 #define FRIEND_BMPWIN_H		(  2 )
 
@@ -420,7 +420,7 @@ static void UnionRoom_BoardFunc(TCB_PTR tcb, void *wk)
 
 //------------------------------------------------------------------
 /**
- * ƒ†ƒjƒIƒ“ƒ{[ƒhƒ[ƒN‰Šú‰»
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ãƒœãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   pos[][POS_XZ]			
  * @param   view[][POS_XZ_TIME]		
@@ -439,12 +439,12 @@ static void InitWork( UNION_BOARD_WORK *ubw )
 	ubw->Scroll.barflag = 0;
 
 
-	// •¶š—ñƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// æ–‡å­—åˆ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	ubw->WordSet    = WORDSET_Create( HEAPID_FIELD );
 	ubw->MsgManager = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_union_dat, HEAPID_FIELD );
 
 
-	// ‰ÁH—pBG1ƒf[ƒ^“Ç‚İ‚İ
+	// åŠ å·¥ç”¨BG1ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	ubw->Bg1ScrenData = ArcUtil_ScrnDataGet(ARC_UNIONROOM_GRA, NARC_unionroom_unionbg1_lz_nscr, 1, &(ubw->BoardScreen), HEAPID_FIELD);
 	OS_Printf( "bg1srcreen data adrs = %08x\n",ubw->BoardScreen);
 
@@ -454,7 +454,7 @@ static void InitWork( UNION_BOARD_WORK *ubw )
 
 //------------------------------------------------------------------
 /**
- * $brief   BMPWINŠm•Û
+ * $brief   BMPWINç¢ºä¿
  *
  * @param   bgl		
  * @param   UnionBmp		
@@ -464,11 +464,11 @@ static void InitWork( UNION_BOARD_WORK *ubw )
 //------------------------------------------------------------------
 static void BmpWinInit( GF_BGL_INI *bgl, UNION_BOARD_BMP *UnionBmp)
 {
-	// ‰º‰æ–Êƒ{ƒ^ƒ“—pBMPŠm•Û
+	// ä¸‹ç”»é¢ãƒœã‚¿ãƒ³ç”¨BMPç¢ºä¿
 	int i;
 
 	for(i=0;i<UNION_BOARD_CARD_NUM;i++){
-		// –¼‘O
+		// åå‰
 		GF_BGL_BmpWinAdd(bgl, &UnionBmp[i].bName, GF_BGL_FRAME0_S+i,	
 			NAME_BMPWIN_POSX, 
 			NAME0_BMPWIN_POSY+i*8, 
@@ -479,7 +479,7 @@ static void BmpWinInit( GF_BGL_INI *bgl, UNION_BOARD_BMP *UnionBmp)
 
 		GF_BGL_BmpWinOn( &UnionBmp[i].bName );
 
-		// ŠÈˆÕ‰ï˜b
+		// ç°¡æ˜“ä¼šè©±
 		GF_BGL_BmpWinAdd(bgl, &UnionBmp[i].bMessage, GF_BGL_FRAME0_S+i,	
 			MESSAGE_BMPWIN_POSX, 
 			MESSAGE0_BMPWIN_POSY+i*8, 
@@ -489,7 +489,7 @@ static void BmpWinInit( GF_BGL_INI *bgl, UNION_BOARD_BMP *UnionBmp)
 		GF_BGL_BmpWinDataFill( &UnionBmp[i].bMessage, 0x0000 );
 		GF_BGL_BmpWinOn( &UnionBmp[i].bMessage );
 
-		// ‚µ‚è‚ ‚¢‰ï˜b
+		// ã—ã‚Šã‚ã„ä¼šè©±
 		GF_BGL_BmpWinAdd(bgl, &UnionBmp[i].bFriend, GF_BGL_FRAME0_S+i,	
 			FRIEND_BMPWIN_POSX, 
 			FRIEND_BMPWIN_POSY+i*8, 
@@ -508,7 +508,7 @@ static void BmpWinInit( GF_BGL_INI *bgl, UNION_BOARD_BMP *UnionBmp)
 
 //------------------------------------------------------------------
 /**
- * $brief   BMPWIN‰ğ•ú
+ * $brief   BMPWINè§£æ”¾
  *
  * @param   UnionBmp		
  *
@@ -528,9 +528,9 @@ static void BmpWinDelete( UNION_BOARD_BMP *UnionBmp )
 
 //==============================================================================
 /**
- * ’YzƒŒ[ƒ_[‰Šú‰»ŠÖ”iƒ^ƒXƒN“o˜^j
+ * ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼åˆæœŸåŒ–é–¢æ•°ï¼ˆã‚¿ã‚¹ã‚¯ç™»éŒ²ï¼‰
  *
- * @param   fsys		FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fsys		FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -540,7 +540,7 @@ UNION_BOARD_WORK *UnionRoom_BoardInit( FIELDSYS_WORK *fsys )
 	UNION_BOARD_WORK *ubw;
 	TCB_PTR       tcb;
 
-	//’YzƒŒ[ƒ_[ƒ^ƒXƒN‚ğ’Ç‰Á
+	//ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¹ã‚¯ã‚’è¿½åŠ 
 	tcb           = PMDS_taskAdd(UnionRoom_BoardFunc, sizeof(UNION_BOARD_WORK), UNION_BOARD_TCB_PRIORITY, HEAPID_FIELD);
 	ubw           = TCB_GetWork(tcb);
 	ubw->fsys     = fsys;
@@ -561,16 +561,16 @@ UNION_BOARD_WORK *UnionRoom_BoardInit( FIELDSYS_WORK *fsys )
 
 //==============================================================================
 /**
- * ƒŒ[ƒ_[‰æ–ÊI—¹‚ğ’Ê’m
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢çµ‚äº†ã‚’é€šçŸ¥
  *
- * @param   fsys		FieldSys‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fsys		FieldSysã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
 //==============================================================================
 void UnionRoom_BoardEnd(UNION_BOARD_WORK *ubw)
 {
-	// ƒŒ[ƒ_[‚ÌƒV[ƒPƒ“ƒX’è‹`‚ğI—¹‚É•ÏX
+	// ãƒ¬ãƒ¼ãƒ€ãƒ¼ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©ã‚’çµ‚äº†ã«å¤‰æ›´
 	if(ubw->mode==UNIONBOARD_MAIN){
 		GF_BGL_INI       *bgl = ubw->bgl;
 		int i;
@@ -579,27 +579,27 @@ void UnionRoom_BoardEnd(UNION_BOARD_WORK *ubw)
 
 		FontProc_UnloadBitData( FONT_TALK );
 
-		// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		// ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		CLACT_U_CharManagerDelete(ubw->resObjTbl[CLACT_U_CHAR_RES]);
 
-		// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		CLACT_U_PlttManagerDelete(ubw->resObjTbl[CLACT_U_PLTT_RES]);
 		
-		// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+		// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		for(i=0;i<CELL_ANIME_RESOURCE_NUM;i++){
 			CLACT_U_ResManagerDelete(ubw->resMan[i]);
 		}
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 		CLACT_DestSet(ubw->clactSet);
 
-		// •¶š—ñƒ}ƒl[ƒWƒƒ[”jŠü
+		// æ–‡å­—åˆ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		MSGMAN_Delete(  ubw->MsgManager );
 		WORDSET_Delete( ubw->WordSet );
 
-		//BmpWin‰ğ•ú
+		//BmpWinè§£æ”¾
 		BmpWinDelete( ubw->UnionBmp );				
 
-		destBG(bgl);											// BG0,BG1—pƒoƒbƒtƒ@‰ğ•ú
+		destBG(bgl);											// BG0,BG1ç”¨ãƒãƒƒãƒ•ã‚¡è§£æ”¾
 
 //		UnionChatAllFree( ubw->UnionChatRingBuf);
 //		UnionBoard_ChatDataDelete( ubw->UnionChatRingBuf );
@@ -608,17 +608,17 @@ void UnionRoom_BoardEnd(UNION_BOARD_WORK *ubw)
 		PMDS_taskDel( ubw->tcb );
 
 	}else{
-        // ~‚Ü‚ç‚È‚¢ASSERT‚ğ~‚Ü‚é‚æ‚¤‚ÉC³
-		GF_ASSERT_MSG(0,"NotInit\n"); // ƒŒ[ƒ_[‰Šú‰»‚ªI‚í‚ç‚È‚¢‚¤‚¿‚ÉI—¹ŒÄ‚Ño‚µ‚³‚ê‚Ü‚µ‚½");
+        // æ­¢ã¾ã‚‰ãªã„ASSERTã‚’æ­¢ã¾ã‚‹ã‚ˆã†ã«ä¿®æ­£
+		GF_ASSERT_MSG(0,"NotInit\n"); // ãƒ¬ãƒ¼ãƒ€ãƒ¼åˆæœŸåŒ–ãŒçµ‚ã‚ã‚‰ãªã„ã†ã¡ã«çµ‚äº†å‘¼ã³å‡ºã—ã•ã‚Œã¾ã—ãŸ");
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief ’n‰º‰æ–Ê‚É“Ë“ü‚·‚é‚Ü‚Å‚ÌƒTƒu‰æ–Ê‚a‚f‚ÌƒVƒXƒeƒ€‚ğ”jŠü
+ *@brief åœ°ä¸‹ç”»é¢ã«çªå…¥ã™ã‚‹ã¾ã§ã®ã‚µãƒ–ç”»é¢ï¼¢ï¼§ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’ç ´æ£„
  *
- *@param	bgl		BGLƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *@param	bgl		BGLã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -637,9 +637,9 @@ static void destBG(GF_BGL_INI* bgl)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	BGƒRƒ“ƒgƒ[ƒ‹İ’è
+ *@brief	BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
  *
- *@param	bgl	BGLƒVƒXƒeƒ€‚Ìƒ|ƒCƒ“ƒ^
+ *@param	bgl	BGLã‚·ã‚¹ãƒ†ãƒ ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -648,11 +648,11 @@ static void destBG(GF_BGL_INI* bgl)
 //-----------------------------------------------------------------------------
 static void initBG( GF_BGL_INI* bgl )
 {
-	// ¡‚Ü‚Å‚Ì”jŠü
+	// ä»Šã¾ã§ã®ç ´æ£„
 	destBG(bgl);
 
-	// ƒTƒu–ÊBGİ’è
-	// BG0–ÊiƒeƒLƒXƒg0j
+	// ã‚µãƒ–é¢BGè¨­å®š
+	// BG0é¢ï¼ˆãƒ†ã‚­ã‚¹ãƒˆ0ï¼‰
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -663,7 +663,7 @@ static void initBG( GF_BGL_INI* bgl )
 		GF_BGL_ScrClear( bgl, GF_BGL_FRAME0_S );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	}
-	// BG1–ÊiƒeƒLƒXƒg1j
+	// BG1é¢ï¼ˆãƒ†ã‚­ã‚¹ãƒˆ1ï¼‰
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -675,7 +675,7 @@ static void initBG( GF_BGL_INI* bgl )
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	}
 
-	// BG2–ÊiƒeƒLƒXƒg1j
+	// BG2é¢ï¼ˆãƒ†ã‚­ã‚¹ãƒˆ1ï¼‰
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -687,7 +687,7 @@ static void initBG( GF_BGL_INI* bgl )
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 	}
 
-	// BG3–Êi”wŒij
+	// BG3é¢ï¼ˆèƒŒæ™¯ï¼‰
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -698,16 +698,16 @@ static void initBG( GF_BGL_INI* bgl )
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 	}
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_PalSet(    ARC_UNIONROOM_GRA, NARC_unionroom_unionbg_nclr, PALTYPE_SUB_BG, 0, 0x20*3,  HEAPID_FIELD);
 
-	// ƒLƒƒƒ‰“]‘—(“]‘—ƒLƒƒƒ‰‚Ìw’è‚ªBGCHAR_OFFSET‚É‚È‚Á‚Ä‚¢‚é‚Ì‚ÍABG‚ÌVRAM‚©‚ç“]‘—‚µ‚Ä‚¢‚é‚©‚çj
+	// ã‚­ãƒ£ãƒ©è»¢é€(è»¢é€ã‚­ãƒ£ãƒ©ã®æŒ‡å®šãŒBGCHAR_OFFSETã«ãªã£ã¦ã„ã‚‹ã®ã¯ã€BGã®VRAMã‹ã‚‰è»¢é€ã—ã¦ã„ã‚‹ã‹ã‚‰ï¼‰
 	ArcUtil_BgCharSet( ARC_UNIONROOM_GRA, NARC_unionroom_unionbg_lz_ncgr, bgl, GF_BGL_FRAME3_S, 0, UNION_BOARD_BGCHAR_OFFSET*0x20, 1, HEAPID_FIELD);
 
-	// ƒXƒNƒŠ[ƒ““]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_ScrnSet(   ARC_UNIONROOM_GRA, NARC_unionroom_unionbg1_base_lz_nscr, bgl, GF_BGL_FRAME3_S, 0, 32*24*2, 1, HEAPID_FIELD);
 
-	FieldMsgPrintInit(PALTYPE_SUB_BG, MSG_PRINT_NO_INIT);				// ƒTƒu‰æ–ÊVRAM‚ÉƒtƒHƒ“ƒg‚ÆƒpƒŒƒbƒg‚ğ“]‘—
+	FieldMsgPrintInit(PALTYPE_SUB_BG, MSG_PRINT_NO_INIT);				// ã‚µãƒ–ç”»é¢VRAMã«ãƒ•ã‚©ãƒ³ãƒˆã¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€
 
 }
 
@@ -715,9 +715,9 @@ static void initBG( GF_BGL_INI* bgl )
 
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‰æ–Ê—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param   ubw		ƒŒ[ƒ_[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ubw		ãƒ¬ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -725,35 +725,35 @@ static void initBG( GF_BGL_INI* bgl )
 static void InitCellActor(UNION_BOARD_WORK *ubw)
 {
 	int i;
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	ubw->clactSet = CLACT_U_SetEasyInit( UNION_BOARD_CLACT_MAX, &ubw->renddata, HEAPID_FIELD );
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<CELL_ANIME_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<CELL_ANIME_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		ubw->resMan[i] = CLACT_U_ResManagerInit(1, i, HEAPID_FIELD);
 	}
 
 	
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	ubw->resObjTbl[CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(ubw->resMan[CLACT_U_CHAR_RES], 
 			ARC_UNIONROOM_GRA, NARC_unionroom_unionobj_lz_ncgr, 1, UNION_BOARD_RESOURCE_ID, NNS_G2D_VRAM_TYPE_2DSUB, HEAPID_FIELD);
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	ubw->resObjTbl[CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(ubw->resMan[CLACT_U_PLTT_RES],
 			ARC_UNIONROOM_GRA, NARC_unionroom_unionobj_nclr, 0, UNION_BOARD_RESOURCE_ID, NNS_G2D_VRAM_TYPE_2DSUB, 1, HEAPID_FIELD);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	ubw->resObjTbl[CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(ubw->resMan[CLACT_U_CELL_RES],
 			ARC_UNIONROOM_GRA, NARC_unionroom_unionobj_lz_ncer, 1, UNION_BOARD_RESOURCE_ID, CLACT_U_CELL_RES,HEAPID_FIELD);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	ubw->resObjTbl[CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(ubw->resMan[CLACT_U_CELLANM_RES],
 			ARC_UNIONROOM_GRA, NARC_unionroom_unionobj_lz_nanr, 1, UNION_BOARD_RESOURCE_ID, CLACT_U_CELLANM_RES,HEAPID_FIELD);
 
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSetAreaCont( ubw->resObjTbl[CLACT_U_CHAR_RES] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSetCleanArea( ubw->resObjTbl[CLACT_U_PLTT_RES] );
 
 }
@@ -772,7 +772,7 @@ static const int obj_parts_table_y[]={
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒZƒ‹ƒAƒNƒ^[”z’u
+ * $brief   ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼é…ç½®
  *
  * @param   ubw		
  *
@@ -782,7 +782,7 @@ static const int obj_parts_table_y[]={
 static void SetCellActor( UNION_BOARD_WORK *ubw )
 {
 	int i;
-		// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 		CLACT_U_MakeHeader(&ubw->clActHeader, 
 							UNION_BOARD_RESOURCE_ID,
 							UNION_BOARD_RESOURCE_ID,
@@ -797,7 +797,7 @@ static void SetCellActor( UNION_BOARD_WORK *ubw )
 							NULL,NULL);
 
 		{
-			//“o˜^î•ñŠi”[
+			//ç™»éŒ²æƒ…å ±æ ¼ç´
 			CLACT_ADD add;
 
 			add.ClActSet	= ubw->clactSet;
@@ -812,17 +812,17 @@ static void SetCellActor( UNION_BOARD_WORK *ubw )
 			add.DrawArea	= NNS_G2D_VRAM_TYPE_2DSUB;
 			add.heap		= HEAPID_FIELD;
 
-			//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-			// ã‰º–îˆóƒXƒNƒ[ƒ‹ƒo[“o˜^
+			// ä¸Šä¸‹çŸ¢å°ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ç™»éŒ²
 			for(i=0;i<UNION_BOARD_OBJ_PARTS_NUM;i++){
 				add.mat.x		= FX32_CONST( UNION_ARROW_X ) ;
-				add.mat.y		= FX32_CONST( obj_parts_table_y[i] ) + SUB_SURFACE_Y;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+				add.mat.y		= FX32_CONST( obj_parts_table_y[i] ) + SUB_SURFACE_Y;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 				ubw->clActWork[i] = CLACT_Add(&add);
 				CLACT_SetAnmFlag(ubw->clActWork[i],1);
-				CLACT_AnmChg( ubw->clActWork[i], i );	//ŠeX‚Ìp‚É
+				CLACT_AnmChg( ubw->clActWork[i], i );	//å„ã€…ã®å§¿ã«
 			}
-//			CLACT_SetDrawFlag(ubw->clActWork[2], 0);	//ƒXƒNƒ[ƒ‹ƒo[‚Í”ñ•\¦‚É
+//			CLACT_SetDrawFlag(ubw->clActWork[2], 0);	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã¯éè¡¨ç¤ºã«
 			
 		}	
 
@@ -834,7 +834,7 @@ static void SetCellActor( UNION_BOARD_WORK *ubw )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒŠƒ“ƒOƒoƒbƒtƒ@“à‚ÅQÆ“_‚Ì‘«‚µZ‚ğs‚¤
+ * $brief   ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡å†…ã§å‚ç…§ç‚¹ã®è¶³ã—ç®—ã‚’è¡Œã†
  *
  * @param   chatbuf		
  * @param   pos		
@@ -854,7 +854,7 @@ static int AddUnionChatRingBufPos( UNION_CHAT_RINGBUF *chatbuf, int pos )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒŠƒ“ƒOƒoƒbƒtƒ@‚ğl—¶‚µ‚½ƒ`ƒƒƒbƒg•\¦ŠJnˆÊ’uæ“¾
+ * $brief   ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‚’è€ƒæ…®ã—ãŸãƒãƒ£ãƒƒãƒˆè¡¨ç¤ºé–‹å§‹ä½ç½®å–å¾—
  *
  * @param   start		
  * @param   now		
@@ -872,7 +872,7 @@ static int GetUnionBoardPrintPoint( int start, int now )
 }
 //------------------------------------------------------------------
 /**
- * $brief   –¼‘O‚ğŠÈˆÕ‰ï˜b‚ğ•`‰æ
+ * $brief   åå‰ã‚’ç°¡æ˜“ä¼šè©±ã‚’æç”»
  *
  * @param   ubw		
  * @param   no		
@@ -884,36 +884,36 @@ static int GetUnionBoardPrintPoint( int start, int now )
 static void UnionChat_Print( UNION_BOARD_WORK *ubw, int no, UNION_CHAT *mes)
 {
 
-	// ƒJ[ƒh—p‚É«•Ê‚ğ•Û‘¶
+	// ã‚«ãƒ¼ãƒ‰ç”¨ã«æ€§åˆ¥ã‚’ä¿å­˜
 	ubw->UnionBmp[no].sex = mes->sex;
 
-	OS_Printf("ƒJ[ƒh•`‰æ\n");
+	OS_Printf("ã‚«ãƒ¼ãƒ‰æç”»\n");
 
-	// ƒXƒNƒŠ[ƒ“‰ÁH“]‘—(«•Ê‚É‘Î‰‚µ‚ÄÂ‚©Ô‚É‚È‚éj
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åŠ å·¥è»¢é€(æ€§åˆ¥ã«å¯¾å¿œã—ã¦é’ã‹èµ¤ã«ãªã‚‹ï¼‰
 	GF_BGL_ScrWriteExpand(	ubw->bgl, GF_BGL_FRAME3_S, 0, no*8, 32, 8,
 			ubw->BoardScreen->rawData, 0, 24*ubw->UnionBmp[no].sex, 32, 48 );
 
-	// BMP—pƒoƒbƒtƒ@ƒNƒŠƒA
+	// BMPç”¨ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( &ubw->UnionBmp[no].bName,    0x0000 );
 	GF_BGL_BmpWinDataFill( &ubw->UnionBmp[no].bMessage, 0x0000 );
 	GF_BGL_BmpWinDataFill( &ubw->UnionBmp[no].bFriend,  0x0000 );
 	
-/* ‰¢B”Å‚Å•¶š‚ªã‚ÉØ‚ê‚éƒoƒO‚ª‚ ‚Á‚½‚Ì‚ÅA‚Pƒhƒbƒg‚¾‚¯ã‚°‚éC³‚ª‘g‚İ‚Ü‚ê‚½ */
+/* æ¬§å·ç‰ˆã§æ–‡å­—ãŒä¸Šã«åˆ‡ã‚Œã‚‹ãƒã‚°ãŒã‚ã£ãŸã®ã§ã€ï¼‘ãƒ‰ãƒƒãƒˆã ã‘ä¸Šã’ã‚‹ä¿®æ­£ãŒçµ„ã¿è¾¼ã¾ã‚ŒãŸ */
 #if AFTERMASTER_070719_UNION_BOARD_FONT_BUG_FIX	
-	// •¶š—ñ•`‰æ
+	// æ–‡å­—åˆ—æç”»
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/04/24
-	// 'g' ‚â 'y' ‚È‚Ç‚Ì‰º’[‚ªØ‚ê‚é‚Ì‚ÅA•\¦ˆÊ’u‚ğ1ƒsƒNƒZƒ‹ã‚ÉˆÚ“®
-	// ¦ •`‰æ—Ìˆæ‚ğ‰º’[‚Ü‚Åg‚¢Ø‚Á‚½•¶š‚ª‚ ‚é‚Æ‚³‚ç‚ÉØ‚ê‚é‚Ì‚Å’ˆÓ
+	// 'g' ã‚„ 'y' ãªã©ã®ä¸‹ç«¯ãŒåˆ‡ã‚Œã‚‹ã®ã§ã€è¡¨ç¤ºä½ç½®ã‚’1ãƒ”ã‚¯ã‚»ãƒ«ä¸Šã«ç§»å‹•
+	// â€» æç”»é ˜åŸŸã‚’ä¸‹ç«¯ã¾ã§ä½¿ã„åˆ‡ã£ãŸæ–‡å­—ãŒã‚ã‚‹ã¨ã•ã‚‰ã«åˆ‡ã‚Œã‚‹ã®ã§æ³¨æ„
 	GF_STR_PrintColor( &ubw->UnionBmp[no].bName,    FONT_TALK, mes->name,    0, 1, MSG_NO_PUT, GF_PRINTCOLOR_MAKE(1,2,0),NULL );
 	// ----------------------------------------------------------------------------
 #else
-	// •¶š—ñ•`‰æ
+	// æ–‡å­—åˆ—æç”»
 	GF_STR_PrintColor( &ubw->UnionBmp[no].bName,    FONT_TALK, mes->name,    0, 2, MSG_NO_PUT, GF_PRINTCOLOR_MAKE(1,2,0),NULL );
 #endif
 	GF_STR_PrintColor( &ubw->UnionBmp[no].bMessage, FONT_TALK, mes->message, 0, 6, MSG_NO_PUT, GF_PRINTCOLOR_MAKE(1,2,0),NULL );
 
-	// VRAM‚ÉvBlank’†‚É“]‘—
+	// VRAMã«vBlankä¸­ã«è»¢é€
 	GF_BGL_BmpWinOnVReq( &ubw->UnionBmp[no].bName    );
 	GF_BGL_BmpWinOnVReq( &ubw->UnionBmp[no].bMessage );
 
@@ -926,7 +926,7 @@ static void UnionChat_Print( UNION_BOARD_WORK *ubw, int no, UNION_CHAT *mes)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ†ƒjƒIƒ“ƒ{[ƒh•`‰æí’“ŠÖ”
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒœãƒ¼ãƒ‰æç”»å¸¸é§é–¢æ•°
  *
  * @param   ubw		
  *
@@ -943,18 +943,18 @@ static void BoardWriteFunc( UNION_BOARD_WORK *ubw )
 		max = 3;
 	}
 
-	// ƒXƒNƒ[ƒ‹ƒo[‚ÌˆÊ’u‚ª“®‚¢‚Ä‚¢‚½ê‡‚ÍÄ•`‰æ
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®ä½ç½®ãŒå‹•ã„ã¦ã„ãŸå ´åˆã¯å†æç”»
 	if(ubw->Scroll.now!=ubw->old_scrollpoint){
 		UnionBoardReWriteOn( ubw );
 		ubw->old_scrollpoint = ubw->Scroll.now;
 	}
 
-	// ŠÈˆÕ‰ï˜b•`‰æ
+	// ç°¡æ˜“ä¼šè©±æç”»
 	if(ubw->BgTransReq==TRUE){
 //		OS_Printf( "pos=%d, bufnum=%d bufstart=%d now=%d",pos, ubw->UnionChatRingBuf.num, ubw->UnionChatRingBuf.start, ubw->Scroll.now);
 
 		
-		// ŠÈˆÕ‰ï˜b•`‰æ
+		// ç°¡æ˜“ä¼šè©±æç”»
 		for(i=0;i<max;i++){
 			UnionChat_Print(ubw, i, &ubw->UnionChatRingBuf->mes[pos]);
 			pos = AddUnionChatRingBufPos(ubw->UnionChatRingBuf,pos);
@@ -968,7 +968,7 @@ static void BoardWriteFunc( UNION_BOARD_WORK *ubw )
 
 }
 
-// ‰º‰æ–Ê—pƒ{ƒ^ƒ“ˆÊ’u’è‹`
+// ä¸‹ç”»é¢ç”¨ãƒœã‚¿ãƒ³ä½ç½®å®šç¾©
 #define SUB_BUTTON1_POSX		( 256-24   )
 #define SUB_BUTTON1_POSY		( 0        )
 #define SUB_BUTTON2_POSX		( 256-24   )
@@ -995,7 +995,7 @@ static const RECT_HIT_TBL sub_button_hittbl[]={
 	{SUB_CHAT2_POSY, SUB_CHAT2_POSY+SUB_CHAT_H, SUB_CHAT_POSX, SUB_CHAT_POSX+SUB_CHAT_W},
 	{SUB_CHAT3_POSY, SUB_CHAT3_POSY+SUB_CHAT_H, SUB_CHAT_POSX, SUB_CHAT_POSX+SUB_CHAT_W},
 	{SUB_SCROLLBAR_POSY, SUB_SCROLLBAR_POSY+SUB_SCROLLBAR_H, SUB_SCROLLBAR_POSX, SUB_SCROLLBAR_POSX+SUB_SCROLLBAR_W},
-	{RECT_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+	{RECT_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 static const RECT_HIT_TBL sub_scroll_hittbl[]={
@@ -1003,14 +1003,14 @@ static const RECT_HIT_TBL sub_scroll_hittbl[]={
 	{SUB_CHAT1_POSY, SUB_CHAT1_POSY+SUB_CHAT_H, SUB_CHAT_POSX, SUB_CHAT_POSX+SUB_CHAT_W},
 	{SUB_CHAT2_POSY, SUB_CHAT2_POSY+SUB_CHAT_H, SUB_CHAT_POSX, SUB_CHAT_POSX+SUB_CHAT_W},
 	{SUB_CHAT3_POSY, SUB_CHAT3_POSY+SUB_CHAT_H, SUB_CHAT_POSX, SUB_CHAT_POSX+SUB_CHAT_W},
-	{RECT_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+	{RECT_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒXƒNƒ[ƒ‹ƒo[‚ÌÀ•W‚ğİ’è‚·‚é
+ * $brief   ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®åº§æ¨™ã‚’è¨­å®šã™ã‚‹
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   y		
  *
  * @retval  none		
@@ -1029,7 +1029,7 @@ static void SetScrollBar_PosY( CLACT_WORK_PTR act, int y )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒXƒNƒ[ƒ‹ƒo[ü‚è‚Ìˆ—
+ * $brief   ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼å‘¨ã‚Šã®å‡¦ç†
  *
  * @param   ubw		
  *
@@ -1041,12 +1041,12 @@ static void ScrollControl( UNION_BOARD_WORK *ubw )
 
 	ubw->Scroll.max = ubw->UnionChatRingBuf->num;
 
-	// €–Ú”‚ª‚SˆÈã‚É‚È‚Á‚½‚çƒXƒNƒ[ƒ‹ƒo[‚ğ•\¦‚·‚é(Œ¸‚é–‚Í‚È‚¢‚¾‚ë‚¤‚¯‚Çj
+	// é …ç›®æ•°ãŒï¼”ä»¥ä¸Šã«ãªã£ãŸã‚‰ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹(æ¸›ã‚‹äº‹ã¯ãªã„ã ã‚ã†ã‘ã©ï¼‰
 	if(ubw->Scroll.max > 3 && ubw->Scroll.old_max<=3){
 		ubw->Scroll.barflag = 1;
 		ubw->Scroll.now     = ubw->Scroll.max - 3;
 	}
-	CLACT_SetDrawFlag(ubw->clActWork[2], ubw->Scroll.barflag);	//ƒXƒNƒ[ƒ‹ƒo[•\¦§Œä
+	CLACT_SetDrawFlag(ubw->clActWork[2], ubw->Scroll.barflag);	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼è¡¨ç¤ºåˆ¶å¾¡
 	
 	if( ubw->Scroll.barflag ){
 		if(UnionBoardScrollbarYContFlagGet( ubw ) == TRUE){
@@ -1061,7 +1061,7 @@ static void ScrollControl( UNION_BOARD_WORK *ubw )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌƒgƒŠƒK[ˆ—
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ãƒˆãƒªã‚¬ãƒ¼å‡¦ç†
  *
  * @param   ubw		
  *
@@ -1079,10 +1079,10 @@ static int TouchTrgFunc( UNION_BOARD_WORK *ubw )
 
 	if( (button != RECT_HIT_NONE) ){
 		switch(button){
-		// ã–îˆóiã‚ÉƒEƒCƒ“ƒhƒE‚ğ‚P‚ÂƒXƒNƒ[ƒ‹j
+		// ä¸ŠçŸ¢å°ï¼ˆä¸Šã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ï¼‘ã¤ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ï¼‰
 		case 0:
 			UnionBoardScrollBttnAnmPush( ubw, button );
-			// repeatƒ`ƒFƒbƒN
+			// repeatãƒã‚§ãƒƒã‚¯
 			if( repeat == TRUE ){
 				if(ubw->Scroll.now!=0){
 					Snd_SePlay(SEQ_SE_DP_BUTTON3);
@@ -1091,10 +1091,10 @@ static int TouchTrgFunc( UNION_BOARD_WORK *ubw )
 				ubw->lastHitTrg = button-2;
 			}
 			break;
-		// ‰º–îˆói‰º‚ÉƒEƒCƒ“ƒhƒE‚ğ‚P‚ÂƒXƒNƒ[ƒ‹j
+		// ä¸‹çŸ¢å°ï¼ˆä¸‹ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ï¼‘ã¤ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ï¼‰
 		case 1:
 			UnionBoardScrollBttnAnmPush( ubw, button );
-			// repeatƒ`ƒFƒbƒN
+			// repeatãƒã‚§ãƒƒã‚¯
 			if( repeat == TRUE ){
 				if(ubw->Scroll.now<ubw->Scroll.max-3){
 					Snd_SePlay(SEQ_SE_DP_BUTTON3);
@@ -1103,29 +1103,29 @@ static int TouchTrgFunc( UNION_BOARD_WORK *ubw )
 				ubw->lastHitTrg = button-2;
 			}
 			break;
-		// ƒXƒNƒ[ƒ‹ƒo[
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼
 		case 5:
 			ubw->lastHitTrg = button-2;
 			break;
 
-		// ã‰æ–Êƒƒ“ƒo[ƒT[ƒ`ˆ—iƒEƒCƒ“ƒhƒE‚ğG‚é‚Æã‚ÅÔ‚¢˜gj
-		// ŠÈˆÕ‰ï˜bƒEƒCƒ“ƒhƒE‚ğ‰Ÿ‚µ‚½
+		// ä¸Šç”»é¢ãƒ¡ãƒ³ãƒãƒ¼ã‚µãƒ¼ãƒå‡¦ç†ï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è§¦ã‚‹ã¨ä¸Šã§èµ¤ã„æ ï¼‰
+		// ç°¡æ˜“ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’æŠ¼ã—ãŸ
 //		case 2:	case 3:	case 4:
 		default:
 
-			// ‚±‚±‚ÍƒgƒŠƒKƒ`ƒFƒbƒN
+			// ã“ã“ã¯ãƒˆãƒªã‚¬ãƒã‚§ãƒƒã‚¯
 			if( sys.tp_trg == FALSE ){
 				break;
 			}
 			
-			if(ubw->UnionChatRingBuf->num >= (button-1)){	// ó‚¯æ‚Á‚Ä‚¢‚é‰ï˜b‚æ‚è‚àƒ{ƒ^ƒ“‚ª‘å‚«‚¢‚Æ‚«‚Í–³‹‚·‚é
+			if(ubw->UnionChatRingBuf->num >= (button-1)){	// å—ã‘å–ã£ã¦ã„ã‚‹ä¼šè©±ã‚ˆã‚Šã‚‚ãƒœã‚¿ãƒ³ãŒå¤§ãã„ã¨ãã¯ç„¡è¦–ã™ã‚‹
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/10
-// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Å30E31ŒÂ–Ú‚ÌƒƒO‚ğƒ^ƒbƒ`‚µ‚Ä‚àŒø‚©‚È‚¢•s‹ï‡‚ÌC³‚ğ”½‰f
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§30ãƒ»31å€‹ç›®ã®ãƒ­ã‚°ã‚’ã‚¿ãƒƒãƒã—ã¦ã‚‚åŠ¹ã‹ãªã„ä¸å…·åˆã®ä¿®æ­£ã‚’åæ˜ 
 
-/* ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Å‚R‚Ol–Ú‚Ìƒr[ƒRƒ“‚Æ‚R‚Pl–Ú‚Ìƒr[ƒRƒ“‚ğó‚¯æ‚Á‚½‚Æ‚«‚É
-   ‰º‰æ–Ê‚Ìƒ{ƒ^ƒ“‚ª•·‚©‚È‚­‚È‚éƒoƒO‚ğC³ */
+/* ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ï¼“ï¼äººç›®ã®ãƒ“ãƒ¼ã‚³ãƒ³ã¨ï¼“ï¼‘äººç›®ã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å—ã‘å–ã£ãŸã¨ãã«
+   ä¸‹ç”»é¢ã®ãƒœã‚¿ãƒ³ãŒèã‹ãªããªã‚‹ãƒã‚°ã‚’ä¿®æ­£ */
 #if AFTER_MASTER_070206_UNION_BOARD_FIX
 
 				listpos = GetUnionBoardPrintPoint( ubw->UnionChatRingBuf->start, ubw->Scroll.now+button-2 );
@@ -1137,14 +1137,14 @@ static int TouchTrgFunc( UNION_BOARD_WORK *ubw )
 
 // ----------------------------------------------------------------------------
 
-				// ƒr[ƒRƒ“‚ÌID‚ªˆê’v‚µ‚ÄA‚©‚ÂŠù‚É’n–Ê‚É—§‚Á‚Ä‚¢‚é‚È‚ç‚ÎƒGƒtƒFƒNƒgON
+				// ãƒ“ãƒ¼ã‚³ãƒ³ã®IDãŒä¸€è‡´ã—ã¦ã€ã‹ã¤æ—¢ã«åœ°é¢ã«ç«‹ã£ã¦ã„ã‚‹ãªã‚‰ã°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆON
 			
-				// ‚P‚Ol•ª‚Ìe‹@ƒr[ƒRƒ“‚ğŒŸõ‚·‚é
+				// ï¼‘ï¼äººåˆ†ã®è¦ªæ©Ÿãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ¤œç´¢ã™ã‚‹
 				for(i=0;i<10;i++){
 					beacon = CommMPGetWMBssDesc(i);	
-					if(beacon!=NULL){		// ƒr[ƒRƒ“‚ªæ‚ê‚È‚©‚Á‚½‚çƒXƒ‹[
+					if(beacon!=NULL){		// ãƒ“ãƒ¼ã‚³ãƒ³ãŒå–ã‚Œãªã‹ã£ãŸã‚‰ã‚¹ãƒ«ãƒ¼
 						gfinfo = (_GF_BSS_DATA_INFO*)&beacon->gameInfo.userGameInfo;
-						// ƒr[ƒRƒ“‚ÌID‚ªˆê’v‚µ‚ÄA‚©‚ÂŠù‚É’n–Ê‚É—§‚Á‚Ä‚¢‚é‚È‚ç‚ÎƒGƒtƒFƒNƒgON
+						// ãƒ“ãƒ¼ã‚³ãƒ³ã®IDãŒä¸€è‡´ã—ã¦ã€ã‹ã¤æ—¢ã«åœ°é¢ã«ç«‹ã£ã¦ã„ã‚‹ãªã‚‰ã°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆON
 //						OS_Printf("appear=%d, pokeID=%d, RingBufID=%d\n",ubw->cuv->objwork[i].appear,gfinfo->pokeID,ubw->UnionChatRingBuf.mes[listpos].id);
 						if((ubw->cuv->objwork[i].appear==OBJ_OK) && (gfinfo->pokeID == ubw->UnionChatRingBuf->mes[listpos].id)){
 							Snd_SePlay(SEQ_SE_DP_BUTTON3);
@@ -1153,7 +1153,7 @@ static int TouchTrgFunc( UNION_BOARD_WORK *ubw )
 						}
 					}
 				}
-				// ©•ª‚Ìƒ`ƒƒƒbƒgH
+				// è‡ªåˆ†ã®ãƒãƒ£ãƒƒãƒˆï¼Ÿ
 				{
 					MYSTATUS *my = CommMPGetMyStatus();
 					
@@ -1175,7 +1175,7 @@ static int TouchTrgFunc( UNION_BOARD_WORK *ubw )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹‚ğƒhƒ‰ƒbƒO‚·‚é‚Æ‚«‚Ìˆ—
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚’ãƒ‰ãƒ©ãƒƒã‚°ã™ã‚‹ã¨ãã®å‡¦ç†
  *
  * @param   ubw		
  *
@@ -1186,20 +1186,20 @@ static int TouchContFunc( UNION_BOARD_WORK *ubw )
 {
 	int button;
 
-	// ƒXƒ‰ƒCƒhƒo[ˆ—
+	// ã‚¹ãƒ©ã‚¤ãƒ‰ãƒãƒ¼å‡¦ç†
 	button=GF_TP_RectHitCont( sub_scroll_hittbl );
 	if( button != RECT_HIT_NONE ){
 		u32 x, y;
 		switch(button){
 		case 0:
-			// YÀ•W‚Í‚±‚Á‚¿‚ªŠÇ—‚·‚é
+			// Yåº§æ¨™ã¯ã“ã£ã¡ãŒç®¡ç†ã™ã‚‹
 			UnionBoardScrollbarYContFlagSet( ubw, FALSE );
 
-			// ƒ^ƒbƒ`‚µ‚Ä‚¢‚éÀ•W‚ÉƒXƒ‰ƒCƒhƒo[‚ğÀ•Wİ’è
+			// ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹åº§æ¨™ã«ã‚¹ãƒ©ã‚¤ãƒ‰ãƒãƒ¼ã‚’åº§æ¨™è¨­å®š
 			GF_TP_GetPointCont( &x, &y );
 			SetScrollBar_PosY( ubw->clActWork[2],y );
 		
-			// ˆê”Ô‹ß‚¢ƒƒbƒZ[ƒW”•ªŠ„ˆÊ’u‚ÌƒAƒ^ƒŠ‚àæ“¾‚µ‚Ä‚¨‚­
+			// ä¸€ç•ªè¿‘ã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ•°åˆ†å‰²ä½ç½®ã®ã‚¢ã‚¿ãƒªã‚‚å–å¾—ã—ã¦ãŠã
 			if(ubw->Scroll.max>3){
 				int haba,i;
 
@@ -1212,12 +1212,12 @@ static int TouchContFunc( UNION_BOARD_WORK *ubw )
 				}
 			}
 			break;
-		// ŠÈˆÕ‰ï˜bƒEƒCƒ“ƒhƒE
+		// ç°¡æ˜“ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 //		case 1: case 2: case 3:
 		default:
-			if(ubw->UnionChatRingBuf->num>=button){	// ó‚¯æ‚Á‚Ä‚¢‚é‰ï˜b‚æ‚è‚àƒ{ƒ^ƒ“‚ª‘å‚«‚¢‚Æ‚«‚Í–³‹‚·‚é
+			if(ubw->UnionChatRingBuf->num>=button){	// å—ã‘å–ã£ã¦ã„ã‚‹ä¼šè©±ã‚ˆã‚Šã‚‚ãƒœã‚¿ãƒ³ãŒå¤§ãã„ã¨ãã¯ç„¡è¦–ã™ã‚‹
 
-				// ‰Ÿ‚µ‚Ä‚È‚©‚Á‚½‚Ü‚½‚Í“¯‚¶ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‘±‚¯‚Ä‚¢‚é‚È‚ç”½‰‚·‚é
+				// æŠ¼ã—ã¦ãªã‹ã£ãŸã¾ãŸã¯åŒã˜ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ç¶šã‘ã¦ã„ã‚‹ãªã‚‰åå¿œã™ã‚‹
 				if(ubw->lastHitTrg==(button-1)){	
 					if(ubw->UnionBmp[button-1].push<2*2+1){
 						ubw->UnionBmp[button-1].push++;
@@ -1227,7 +1227,7 @@ static int TouchContFunc( UNION_BOARD_WORK *ubw )
 			break;
 		}
 	}else{
-		// YÀ•W‚ÍƒXƒNƒ[ƒ‹ˆ—‚ªŠÇ—‚·‚é
+		// Yåº§æ¨™ã¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†ãŒç®¡ç†ã™ã‚‹
 		UnionBoardScrollbarYContFlagSet( ubw, TRUE );
 	}
 
@@ -1237,7 +1237,7 @@ static int TouchContFunc( UNION_BOARD_WORK *ubw )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚k‚qƒ{ƒ^ƒ“‚Åƒ`ƒƒƒbƒgƒEƒCƒ“ƒhƒE‚ğ“®‚©‚·–‚ª‚Å‚«‚é
+ * @brief   ï¼¬ï¼²ãƒœã‚¿ãƒ³ã§ãƒãƒ£ãƒƒãƒˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‹•ã‹ã™äº‹ãŒã§ãã‚‹
  *
  * @param   ubw		
  *
@@ -1246,10 +1246,10 @@ static int TouchContFunc( UNION_BOARD_WORK *ubw )
 //------------------------------------------------------------------
 static void LR_ButtonFunc( UNION_BOARD_WORK *ubw )
 {
-	// •\¦‚Ícont ÀÛ‚Ì“®ì‚Írepeat
+	// è¡¨ç¤ºã¯cont å®Ÿéš›ã®å‹•ä½œã¯repeat
 	
 	if(sys.cont & PAD_BUTTON_L){
-		// ã–îˆói‰º‚ÉƒEƒCƒ“ƒhƒE‚ğ‚P‚ÂƒXƒNƒ[ƒ‹j‚Æ“¯‚¶‹@”\ 
+		// ä¸ŠçŸ¢å°ï¼ˆä¸‹ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ï¼‘ã¤ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ï¼‰ã¨åŒã˜æ©Ÿèƒ½ 
 		UnionBoardScrollBttnAnmPush( ubw, 0 );
 		if( sys.repeat & PAD_BUTTON_L ){
 			if(ubw->Scroll.now!=0){
@@ -1258,7 +1258,7 @@ static void LR_ButtonFunc( UNION_BOARD_WORK *ubw )
 			}
 		}
 	}else if(sys.cont & PAD_BUTTON_R){
-		// ‰º–îˆói‰º‚ÉƒEƒCƒ“ƒhƒE‚ğ‚P‚ÂƒXƒNƒ[ƒ‹j‚Æ“¯‚¶‹@”\ 
+		// ä¸‹çŸ¢å°ï¼ˆä¸‹ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ï¼‘ã¤ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ï¼‰ã¨åŒã˜æ©Ÿèƒ½ 
 		UnionBoardScrollBttnAnmPush( ubw, 1 );
 		if( sys.repeat & PAD_BUTTON_R ){
 			if(ubw->Scroll.now<ubw->Scroll.max-3){
@@ -1271,7 +1271,7 @@ static void LR_ButtonFunc( UNION_BOARD_WORK *ubw )
 }
 //------------------------------------------------------------------
 /**
- * $brief   ƒ^ƒbƒ`ƒpƒlƒ‹ˆ—
+ * $brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å‡¦ç†
  *
  * @param   ubw		
  *
@@ -1282,20 +1282,20 @@ static void TouchPanelFunc( UNION_BOARD_WORK *ubw )
 {
 	int button=RECT_HIT_NONE;
 
-	// ƒCƒxƒ“ƒg’†‚Å‚È‚¯‚ê‚Îƒ^ƒbƒ`ƒpƒlƒ‹‚É”½‰‚·‚é
+	// ã‚¤ãƒ™ãƒ³ãƒˆä¸­ã§ãªã‘ã‚Œã°ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«åå¿œã™ã‚‹
 	if(!FieldEvent_Check(ubw->fsys)){
 		int check;
 		check  = TouchTrgFunc( ubw );
 		button = TouchContFunc( ubw );
 
-		// ƒ^ƒbƒ`ƒpƒlƒ‹‚É‚Ü‚Á‚½‚­G‚Á‚Ä‚¢‚È‚¢‚È‚ç‚k‚qƒ{ƒ^ƒ“‚Ìˆ—‚àŒÄ‚Ño‚·
+		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«ã¾ã£ãŸãè§¦ã£ã¦ã„ãªã„ãªã‚‰ï¼¬ï¼²ãƒœã‚¿ãƒ³ã®å‡¦ç†ã‚‚å‘¼ã³å‡ºã™
 		if(check==RECT_HIT_NONE && button == RECT_HIT_NONE){
 			LR_ButtonFunc(ubw);
 		}
 	}
 	
 
-	// ŠÈˆÕ‰ï˜bƒEƒCƒ“ƒhƒEƒ{ƒ^ƒ“‚ÌƒAƒjƒˆ—i‰Ÿ‚³‚ê‚½‚ç‚Ö‚±‚ŞE—£‚·‚Æ–ß‚éj
+	// ç°¡æ˜“ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒœã‚¿ãƒ³ã®ã‚¢ãƒ‹ãƒ¡å‡¦ç†ï¼ˆæŠ¼ã•ã‚ŒãŸã‚‰ã¸ã“ã‚€ãƒ»é›¢ã™ã¨æˆ»ã‚‹ï¼‰
 	ChatButtonAnimation( ubw->bgl, ubw->BoardScreen, ubw->UnionBmp, button-1, ubw->UnionChatRingBuf->num, &ubw->old_winanime);
 }
 
@@ -1304,7 +1304,7 @@ static const bg_src_anime_offset[]={0,3,5};
 
 //------------------------------------------------------------------
 /**
- * @brief   ŠÈˆÕ‰ï˜bƒEƒCƒ“ƒhƒEƒAƒjƒˆ—
+ * @brief   ç°¡æ˜“ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¢ãƒ‹ãƒ¡å‡¦ç†
  *
  * @param   bgl		
  * @param   Screen		
@@ -1333,18 +1333,18 @@ static void ChatButtonAnimation( GF_BGL_INI *bgl, NNSG2dScreenData *Screen, UNIO
 	}
 //	OS_Printf("\n");
 
-	// ‘S•”‚O‚¾‚Á‚½‚ç“]‘—‚Ì•K—v‚Í‚È‚¢(‘S•”‚O‚¾‚Á‚½Ÿ‚ÌƒtƒŒ[ƒ€‚à“]‘—‚·‚éj
+	// å…¨éƒ¨ï¼ã ã£ãŸã‚‰è»¢é€ã®å¿…è¦ã¯ãªã„(å…¨éƒ¨ï¼ã ã£ãŸæ¬¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚‚è»¢é€ã™ã‚‹ï¼‰
 	if(tmp==0 && *old==0){
 		*old = tmp;
 		return;
 	}
-	// ‘O‰ñ‚ÌƒtƒŒ[ƒ€‚ÌƒoƒbƒNƒAƒbƒv
+	// å‰å›ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
 	*old = tmp;
 
 	for(i=0;i<num;i++){
 		int page = Board[i].push/2;
 
-		// ƒXƒNƒŠ[ƒ“‰ÁH“]‘—
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åŠ å·¥è»¢é€
 		GF_BGL_ScrWriteExpand( bgl, GF_BGL_FRAME3_S, 0, i*8, 32, 8,
 			Screen->rawData, 0, 24*Board[i].sex+8*page, 32, 48 );
 		GF_BGL_ScrollSet( bgl, GF_BGL_FRAME0_S+i, GF_BGL_SCROLL_Y_SET, bg_src_anime_offset[page] );
@@ -1355,13 +1355,13 @@ static void ChatButtonAnimation( GF_BGL_INI *bgl, NNSG2dScreenData *Screen, UNIO
 	GF_BGL_LoadScreen(	bgl, GF_BGL_FRAME3_S, GF_BGL_ScreenAdrsGet( bgl, GF_BGL_FRAME3_S ), 32*24*2, 0 );
 
 
-//	OS_Printf("“]‘—‚µ‚Ä‚é\n");
+//	OS_Printf("è»¢é€ã—ã¦ã‚‹\n");
 
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚µ‚è‚ ‚¢‚È‚çu›››‚Ì‚Æ‚à‚¾‚¿v‚Æ‚¢‚¤•¶š—ñ‚ğƒZƒbƒg
+ * $brief   ã—ã‚Šã‚ã„ãªã‚‰ã€Œâ—‹â—‹â—‹ã®ã¨ã‚‚ã ã¡ã€ã¨ã„ã†æ–‡å­—åˆ—ã‚’ã‚»ãƒƒãƒˆ
  *
  * @param   fr		
  * @param   id		
@@ -1377,24 +1377,24 @@ static STRBUF *FriendLinkStringGet(FRIEND_LIST *friendlist, u32 id, WORDSET *wor
 	STRBUF *name;
 	int ret = 0;
 
-	// ‚µ‚è‚ ‚¢‚©A‚µ‚è‚ ‚¢‚Ì‚µ‚è‚ ‚¢‚©ŒŸõ
+	// ã—ã‚Šã‚ã„ã‹ã€ã—ã‚Šã‚ã„ã®ã—ã‚Šã‚ã„ã‹æ¤œç´¢
 	if(id != MyStatus_GetID(my)){
 		ret = FriendList_IdFullCheck( friendlist, id );
 	}
 	
 	if(ret>0){
 		if(ret==DIRECT_FRIEND){
-			// ©•ª‚Ì‚µ‚è‚ ‚¢‚¾‚Á‚½‚ç©•ª‚Ì–¼‘O‚ğ
+			// è‡ªåˆ†ã®ã—ã‚Šã‚ã„ã ã£ãŸã‚‰è‡ªåˆ†ã®åå‰ã‚’
 			WORDSET_RegisterPlayerName( wordset, 0, my );
 		}else if(ret>=INDIRECT_FRIEND){
-			// —F’B‚Ì’m‚è‡‚¢‚¾‚Á‚½‚ç‚»‚Ì—F’B‚Ì–¼‘O‚ğ
+			// å‹é”ã®çŸ¥ã‚Šåˆã„ã ã£ãŸã‚‰ãã®å‹é”ã®åå‰ã‚’
 			int index = ret-INDIRECT_FRIEND;
 			name = STRBUF_Create(10,HEAPID_UNIONBOARD);
 			STRBUF_SetStringCode( name, FriendList_GetName(friendlist, index));
 			WORDSET_RegisterWord( wordset, 0, name, 0, 0, FriendList_GetGroupListRegion( friendlist, index ) );
 			STRBUF_Delete(name);
 		}
-		// u›››‚Ì‚Æ‚à‚¾‚¿v
+		// ã€Œâ—‹â—‹â—‹ã®ã¨ã‚‚ã ã¡ã€
 		string = MSGDAT_UTIL_AllocExpandString( wordset, msgdata, msg_union_friend_name01, HEAPID_UNIONBOARD );
 	}
 	return string;
@@ -1403,7 +1403,7 @@ static STRBUF *FriendLinkStringGet(FRIEND_LIST *friendlist, u32 id, WORDSET *wor
 
 //------------------------------------------------------------------
 /**
- * $brief   UnionChat\‘¢‘Ì‚ÉV‚µ‚¢ƒf[ƒ^‚ğ“o˜^‚·‚é
+ * $brief   UnionChatæ§‹é€ ä½“ã«æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã™ã‚‹
  *
  * @param   union_mes		
  * @param   id		
@@ -1420,25 +1420,25 @@ static void AddUnionChatPmsData( UNION_BOARD_WORK *ubw,	u32 id, PMS_DATA *pms, M
 	FRIEND_LIST *friendlist 	= ubw->cuv->friendlist;
 	int *pos;
 
-	OS_Printf("‘‚«‚İ‘O chat->num %d, chat->start %d\n", chatbuf->num, chatbuf->start);
+	OS_Printf("æ›¸ãè¾¼ã¿å‰ chat->num %d, chat->start %d\n", chatbuf->num, chatbuf->start);
 
-	// ƒ`ƒƒƒbƒgƒŠƒ“ƒOƒoƒbƒtƒ@‚ÌÅ‘å”‚Ü‚Å‚«‚Ä‚¢‚éê‡‚ÍƒXƒ^[ƒgˆÊ’u‚ğ‚¸‚ç‚µ‚Ä‚¢‚­iƒŠƒ“ƒOƒoƒbƒtƒ@ˆ—j
-	if(chatbuf->num==UNION_CHAT_MAX){	// MAX=30ŒÂ
+	// ãƒãƒ£ãƒƒãƒˆãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ•°ã¾ã§ãã¦ã„ã‚‹å ´åˆã¯ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã‚’ãšã‚‰ã—ã¦ã„ãï¼ˆãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡å‡¦ç†ï¼‰
+	if(chatbuf->num==UNION_CHAT_MAX){	// MAX=30å€‹
 		pos = &chatbuf->start;
 	}else{
 		pos = &chatbuf->num;
 	}
 	
-	// Šù‚ÉŠÈˆÕ‰ï˜b‚Ì•¶š—ñƒoƒbƒtƒ@‚ğŠm•Û‚µ‚Ä‚¢‚éê‡‚Í‰ğ•ú‚·‚é
+	// æ—¢ã«ç°¡æ˜“ä¼šè©±ã®æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ã¦ã„ã‚‹å ´åˆã¯è§£æ”¾ã™ã‚‹
 	if(chatbuf->mes[*pos].message!=NULL){
 		STRBUF_Delete(chatbuf->mes[*pos].message);
 	}
-	// Šù‚É‚µ‚è‚ ‚¢’m‚Ì•¶š—ñƒoƒbƒtƒ@‚ğŠm•Û‚µ‚Ä‚¢‚éê‡‚Í‰ğ•ú‚·‚é
+	// æ—¢ã«ã—ã‚Šã‚ã„å‘ŠçŸ¥ã®æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ã¦ã„ã‚‹å ´åˆã¯è§£æ”¾ã™ã‚‹
 	if(chatbuf->mes[*pos].friend!=NULL){
 		STRBUF_Delete(chatbuf->mes[*pos].friend);
 	}
 	
-	// –¼‘OEIDEŠÈˆÕ‰ï˜bEŠÈˆÕ‰ï˜b•¶š—ñ‚Ì“o˜^
+	// åå‰ãƒ»IDãƒ»ç°¡æ˜“ä¼šè©±ãƒ»ç°¡æ˜“ä¼šè©±æ–‡å­—åˆ—ã®ç™»éŒ²
 	STRBUF_SetStringCode( chatbuf->mes[*pos].name, MyStatus_GetMyName(mystatus));
 	chatbuf->mes[*pos].PmsData = *pms;
 	chatbuf->mes[*pos].id      = id;
@@ -1446,28 +1446,28 @@ static void AddUnionChatPmsData( UNION_BOARD_WORK *ubw,	u32 id, PMS_DATA *pms, M
 	chatbuf->mes[*pos].message = PMSDAT_ToString( pms, HEAPID_UNIONBOARD );
 	chatbuf->mes[*pos].friend  = FriendLinkStringGet(friendlist, id, ubw->WordSet, ubw->MsgManager, ubw->mystatus);
 	
-	// Ÿ‚Ì“o˜^ˆÊ’u‚É‚¸‚ç‚·
+	// æ¬¡ã®ç™»éŒ²ä½ç½®ã«ãšã‚‰ã™
 	(*pos)++;
 
-	// ƒXƒ^[ƒgˆÊ’u‚ªÅ‘å‚Ü‚Å‚«‚½ê‡‚ÍÅ‰‚É–ß‚·
+	// ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ãŒæœ€å¤§ã¾ã§ããŸå ´åˆã¯æœ€åˆã«æˆ»ã™
 	if(chatbuf->start==UNION_CHAT_MAX){
 		chatbuf->start = 0;
 	}
 
-	OS_Printf("‘‚«‚İŒã chat->num %d, chat->start %d\n", chatbuf->num, chatbuf->start);
+	OS_Printf("æ›¸ãè¾¼ã¿å¾Œ chat->num %d, chat->start %d\n", chatbuf->num, chatbuf->start);
 
 }
 
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ`ƒƒƒbƒgƒf[ƒ^‚ª“o˜^‚·‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ * $brief   ãƒãƒ£ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãŒç™»éŒ²ã™ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   ubw		
  * @param   pms		
  * @param   id		
  *
- * @retval  int		0‚Í“o˜^Ï‚İ 1‚È‚ç“o˜^‚³‚ê‚Ä‚È‚¢Vƒƒ“ƒo[ 
+ * @retval  int		0ã¯ç™»éŒ²æ¸ˆã¿ 1ãªã‚‰ç™»éŒ²ã•ã‚Œã¦ãªã„æ–°ãƒ¡ãƒ³ãƒãƒ¼ 
  */
 //------------------------------------------------------------------
 static int UnionChatRegisterCheck(UNION_BOARD_WORK *ubw, PMS_DATA *pms, int id)
@@ -1475,12 +1475,12 @@ static int UnionChatRegisterCheck(UNION_BOARD_WORK *ubw, PMS_DATA *pms, int id)
 	int r,index;
 
 
-	// ŠÈˆÕ‰ï˜b‚Í—LŒø‚È“à—e‚©H
+	// ç°¡æ˜“ä¼šè©±ã¯æœ‰åŠ¹ãªå†…å®¹ã‹ï¼Ÿ
 	if(!PMSDAT_IsEnabled(pms)){
 		return 0;
 	}
 
-	// Šù‚É•\¦Ï‚İ‚Ì“à—e‚©ƒ`ƒFƒbƒN
+	// æ—¢ã«è¡¨ç¤ºæ¸ˆã¿ã®å†…å®¹ã‹ãƒã‚§ãƒƒã‚¯
 	for(r=0;r<ubw->UnionChatRingBuf->num;r++){
 		if( id==ubw->UnionChatRingBuf->mes[r].id ){
 			if(PMSDAT_Compare( pms, &ubw->UnionChatRingBuf->mes[r].PmsData)){
@@ -1489,15 +1489,15 @@ static int UnionChatRegisterCheck(UNION_BOARD_WORK *ubw, PMS_DATA *pms, int id)
 		}
 	}
 
-	// Šù‚É“o˜^Ï‚İ‚©H( “o˜^”‚O‚Ì‚Íâ‘Î“o˜^)
+	// æ—¢ã«ç™»éŒ²æ¸ˆã¿ã‹ï¼Ÿ( ç™»éŒ²æ•°ï¼ã®æ™‚ã¯çµ¶å¯¾ç™»éŒ²)
 	if(r!=ubw->UnionChatRingBuf->num && ubw->UnionChatRingBuf->num!=0){
 		return 0;
 	}
 
 	if( id==ubw->UnionChatRingBuf->mes[r].id ){
-		OS_Printf("ID‚ªˆá‚Á‚½‚Ì‚Å“o˜^ %08x , %08x\n", id,ubw->UnionChatRingBuf->mes[r].id);
+		OS_Printf("IDãŒé•ã£ãŸã®ã§ç™»éŒ² %08x , %08x\n", id,ubw->UnionChatRingBuf->mes[r].id);
 	}else if(PMSDAT_Compare( pms, &ubw->UnionChatRingBuf->mes[r].PmsData)){
-		OS_Printf("ŠÈˆÕ‰ï˜b‚ªˆá‚Á‚½‚Ì‚Å“o˜^ %08x , %08x\n", id,ubw->UnionChatRingBuf->mes[r].id);
+		OS_Printf("ç°¡æ˜“ä¼šè©±ãŒé•ã£ãŸã®ã§ç™»éŒ² %08x , %08x\n", id,ubw->UnionChatRingBuf->mes[r].id);
 	}
 
 	return 1;
@@ -1508,7 +1508,7 @@ static int UnionChatRegisterCheck(UNION_BOARD_WORK *ubw, PMS_DATA *pms, int id)
 
 //------------------------------------------------------------------
 /**
- * $brief   V‹KŠÈˆÕ‰ï˜b“o˜^i‘¼lE©•ª—¼•û‘Î‰j
+ * $brief   æ–°è¦ç°¡æ˜“ä¼šè©±ç™»éŒ²ï¼ˆä»–äººãƒ»è‡ªåˆ†ä¸¡æ–¹å¯¾å¿œï¼‰
  *
  * @param   ubw		
  * @param   mystatus		
@@ -1521,16 +1521,16 @@ static void UnionBoard_AddChatSub( UNION_BOARD_WORK *ubw, MYSTATUS *status, PMS_
 {
 	int flag=0;
 
-	// ƒXƒNƒ[ƒ‹ƒo[‚Ìˆê”Ô‰º‚ÉˆÊ’u‚µ‚Ä‚¢‚é‚©
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®ä¸€ç•ªä¸‹ã«ä½ç½®ã—ã¦ã„ã‚‹ã‹
 	if(ubw->Scroll.now==ubw->Scroll.max-3){
 		flag = 1;
 	}
 	OS_Printf("scroll.now=%d scroll_max = %d\n", ubw->Scroll.now, ubw->Scroll.max);
 
-	// ƒ`ƒƒƒbƒg‚ªƒoƒbƒtƒ@‚Æˆê’v‚µ‚È‚©‚Á‚½‚Ì‚Å“o˜^
+	// ãƒãƒ£ãƒƒãƒˆãŒãƒãƒƒãƒ•ã‚¡ã¨ä¸€è‡´ã—ãªã‹ã£ãŸã®ã§ç™»éŒ²
 	AddUnionChatPmsData( ubw, id, pms, status );
 
-	// ƒXƒNƒ[ƒ‹ƒo[‚ªˆê”Ô‰º‚É‚ ‚é‚Í‰º‚É‚¢‚Â‚Ã‚¯‚é‚æ‚¤‚É{‚P‚·‚é
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ãŒä¸€ç•ªä¸‹ã«ã‚ã‚‹æ™‚ã¯ä¸‹ã«ã„ã¤ã¥ã‘ã‚‹ã‚ˆã†ã«ï¼‹ï¼‘ã™ã‚‹
 	if(ubw->Scroll.barflag){
 		if(flag){
 			ubw->Scroll.now = ubw->UnionChatRingBuf->num-3;
@@ -1547,7 +1547,7 @@ static void UnionBoard_AddChatSub( UNION_BOARD_WORK *ubw, MYSTATUS *status, PMS_
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒr[ƒRƒ“ƒf[ƒ^‚©‚çV‚µ‚¢ƒ`ƒƒƒbƒgƒf[ƒ^‚ğæ“¾‚·‚é
+ * $brief   ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ–°ã—ã„ãƒãƒ£ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  * @param   ubw		
  *
@@ -1564,39 +1564,39 @@ static void GetUnionChat( UNION_BOARD_WORK *ubw )
 	MYSTATUS			*status;
 	PMS_DATA			debugpms;
 
-	// ˜b‚µŠ|‚¯’†‚Íƒ`ƒƒƒbƒgXV‚ğ‚µ‚È‚¢
+	// è©±ã—æ›ã‘ä¸­ã¯ãƒãƒ£ãƒƒãƒˆæ›´æ–°ã‚’ã—ãªã„
 	if(FieldEvent_Check(ubw->fsys)){
 		return;
 	}
 
-    //‚ ‚Ü‚è‚É–ˆ‰ñŠm•Û‚·‚é‚Ì‚ÅC³
+    //ã‚ã¾ã‚Šã«æ¯å›ç¢ºä¿ã™ã‚‹ã®ã§ä¿®æ­£
 //	status = MyStatus_AllocWork(HEAPID_FIELD);
 	
 	for(i=0;i<16;i++){
 		beacon = CommMPGetWMBssDesc(i);
 		
-		// ƒr[ƒRƒ“‚ª‘¶İ‚µ‚Ä‚¢‚éƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Ìl‚ª‚¢‚é
+		// ãƒ“ãƒ¼ã‚³ãƒ³ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ï¼ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã®äººãŒã„ã‚‹
 		if(beacon!=NULL){
 
 			gfinfo = (_GF_BSS_DATA_INFO*)&beacon->gameInfo.userGameInfo;
 			pms    = (PMS_DATA*)&gfinfo->pmsData;
-            //ƒfƒoƒbƒO—p‚àQÆ‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅƒRƒƒ“ƒg
+            //ãƒ‡ãƒãƒƒã‚°ç”¨ã‚‚å‚ç…§ã—ã¦ã„ãªã„ã®ã§ã‚³ãƒ¡ãƒ³ãƒˆ
 //			d_gfinfo = (_GF_BSS_DATA_INFO*)&beacon->gameInfo.userGameInfo;
 //			d_pms    = (PMS_DATA*)&gfinfo->pmsData;
 //			MyStatus_Copy((MYSTATUS*)gfinfo->myStatusBuff, status);
 
-			// ƒ`ƒƒƒbƒgƒf[ƒ^‚Í“o˜^Ï‚İH
+			// ãƒãƒ£ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã¯ç™»éŒ²æ¸ˆã¿ï¼Ÿ
 			if(UnionChatRegisterCheck(ubw, pms, gfinfo->pokeID)){
-				// ˆê’v‚µ‚È‚©‚Á‚½‚Ì‚Å“o˜^
-				UnionBoard_AddChatSub( ubw, CommMPGetBconMyStatus(i), pms, gfinfo->pokeID );	// ŠÈˆÕ‰ï˜b“o˜^
+				// ä¸€è‡´ã—ãªã‹ã£ãŸã®ã§ç™»éŒ²
+				UnionBoard_AddChatSub( ubw, CommMPGetBconMyStatus(i), pms, gfinfo->pokeID );	// ç°¡æ˜“ä¼šè©±ç™»éŒ²
 			}
 		}
 	}
 
-	// ©•ª‚Ìƒf[ƒ^‚ªŒfÚƒŠƒNƒGƒXƒg‚ğó‚¯‚Ä‚¢‚È‚¢‚©H
+	// è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ãŒæ²è¼‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å—ã‘ã¦ã„ãªã„ã‹ï¼Ÿ
 	if((pms=Union_GetMyPmsData( ubw->union_work ))!=NULL){
 		u32 id = MyStatus_GetID( ubw->mystatus );
-		UnionBoard_AddChatSub( ubw, ubw->mystatus, pms, id  );	// ŠÈˆÕ‰ï˜b“o˜^
+		UnionBoard_AddChatSub( ubw, ubw->mystatus, pms, id  );	// ç°¡æ˜“ä¼šè©±ç™»éŒ²
 	}
 	
 //	sys_FreeMemoryEz(status);
@@ -1605,7 +1605,7 @@ static void GetUnionChat( UNION_BOARD_WORK *ubw )
 
 //------------------------------------------------------------------
 /**
- * $brief   BMP–Ê‚ÌÄ•`‰æƒŠƒNƒGƒXƒg”­s
+ * $brief   BMPé¢ã®å†æç”»ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œ
  *
  * @param   ubw		
  *
@@ -1620,16 +1620,16 @@ static void UnionBoardReWriteOn( UNION_BOARD_WORK *ubw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒŠƒs[ƒg‰Šú‰»
+ *	@brief	ã‚¿ãƒƒãƒãƒªãƒ”ãƒ¼ãƒˆåˆæœŸåŒ–
  *	
- *	@param	ubw			ƒ[ƒN
+ *	@param	ubw			ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void UnionBoardTouchRepeatInit( UNION_BOARD_WORK *ubw )
 {
-	// gflib/system‚Ìkeyrepeat‚Æˆê‚Ìˆ—‚Ås‚¤
-	// ƒ^ƒbƒ`‚È‚µó‘Ô‚©‚ç‰ƒ^ƒbƒ`‚ÍWAIT‚ÌŠÔŠu‚Åƒ^ƒbƒ`‚ğ—§‚Ä‚Ä
-	// ‰ƒ^ƒbƒ`‚©‚ç‚ÍSPEED‚ÌŠÔŠu‚Åƒ^ƒbƒ`ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// gflib/systemã®keyrepeatã¨ä¸€ç·’ã®å‡¦ç†ã§è¡Œã†
+	// ã‚¿ãƒƒãƒãªã—çŠ¶æ…‹ã‹ã‚‰åˆã‚¿ãƒƒãƒæ™‚ã¯WAITã®é–“éš”ã§ã‚¿ãƒƒãƒã‚’ç«‹ã¦ã¦
+	// åˆã‚¿ãƒƒãƒã‹ã‚‰ã¯SPEEDã®é–“éš”ã§ã‚¿ãƒƒãƒãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	ubw->touchRepeat = 0;
 	ubw->touchRepeatWait = SYS_KEYREPEAT_WAIT_DEF;
 	ubw->touchRepeatSpeed = SYS_KEYREPEAT_SPEED_DEF;
@@ -1638,22 +1638,22 @@ static void UnionBoardTouchRepeatInit( UNION_BOARD_WORK *ubw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒŠƒs[ƒgƒƒCƒ“
+ *	@brief	ã‚¿ãƒƒãƒãƒªãƒ”ãƒ¼ãƒˆãƒ¡ã‚¤ãƒ³
  *
- *	@param	ubw		ƒ[ƒN
+ *	@param	ubw		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void UnionBoardTouchRepeatMain( UNION_BOARD_WORK *ubw )
 {
 	ubw->touchRepeat = 0;
 	
-	// Å‰‚Ì“ü—Í‚Í”½‰
+	// æœ€åˆã®å…¥åŠ›ã¯åå¿œ
 	if( sys.tp_trg ){
 		ubw->touchRepeat = TRUE;
 	}else{
 		
-		// Å‰‚ÌŸ‚ÍRepeatWait‚ÌŠÔŠu
-		// ‚»‚ÌŒã‚ÍSPEED‚ÌŠÔŠu
+		// æœ€åˆã®æ¬¡ã¯RepeatWaitã®é–“éš”
+		// ãã®å¾Œã¯SPEEDã®é–“éš”
 		if( sys.tp_cont ){
 			ubw->touchRepeatCount --;
 			if( ubw->touchRepeatCount < 0 ){
@@ -1668,12 +1668,12 @@ static void UnionBoardTouchRepeatMain( UNION_BOARD_WORK *ubw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒŠƒs[ƒgæ“¾
+ *	@brief	ã‚¿ãƒƒãƒãƒªãƒ”ãƒ¼ãƒˆå–å¾—
  *
- *	@param	cp_ubw	ƒ[ƒN
+ *	@param	cp_ubw	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE		ƒ^ƒbƒ`‚µ‚Ä‚¢‚é
- *	@retval FALSE		ƒ^ƒbƒ`‚µ‚Ä‚¢‚È‚¢
+ *	@retval	TRUE		ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹
+ *	@retval FALSE		ã‚¿ãƒƒãƒã—ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL UnionBoardTouchRepeatGet( const UNION_BOARD_WORK * cp_ubw )
@@ -1683,10 +1683,10 @@ static BOOL UnionBoardTouchRepeatGet( const UNION_BOARD_WORK * cp_ubw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ƒo[‚ÌYÀ•W‚ğŠÇ—‚·‚é‚©‚Ìƒtƒ‰ƒO
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®Yåº§æ¨™ã‚’ç®¡ç†ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
  *
- *	@param	ubw		ƒ[ƒN
- *	@param	flag	ƒtƒ‰ƒO
+ *	@param	ubw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 static void UnionBoardScrollbarYContFlagSet( UNION_BOARD_WORK *ubw, BOOL flag )
@@ -1696,12 +1696,12 @@ static void UnionBoardScrollbarYContFlagSet( UNION_BOARD_WORK *ubw, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ƒo[‚ÌYÀ•W‚ğŠÇ—‚·‚é‚©ƒtƒ‰ƒO‚ğæ“¾‚·‚é
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®Yåº§æ¨™ã‚’ç®¡ç†ã™ã‚‹ã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_ubw	ƒ[ƒN
+ *	@param	cp_ubw	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ŠÇ—‚·‚é
- *	@retval	FALSE	ŠÇ—‚µ‚È‚¢
+ *	@retval	TRUE	ç®¡ç†ã™ã‚‹
+ *	@retval	FALSE	ç®¡ç†ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL UnionBoardScrollbarYContFlagGet( const UNION_BOARD_WORK *cp_ubw )
@@ -1712,12 +1712,12 @@ static BOOL UnionBoardScrollbarYContFlagGet( const UNION_BOARD_WORK *cp_ubw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ƒ{ƒ^ƒ“ƒAƒjƒ		‰Ÿ‚µ‚Ä‚¢‚éƒtƒ‰ƒOİ’è
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡		æŠ¼ã—ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	ubw			ƒ[ƒN
- *	@param	button_no	ƒ{ƒ^ƒ“ƒiƒ“ƒo[
+ *	@param	ubw			ãƒ¯ãƒ¼ã‚¯
+ *	@param	button_no	ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
  *
- *	ƒŠƒs[ƒg“®ì‚Ì‚Æ‚«‚Éƒ{ƒ^ƒ“‚ª‰Ÿ‚µ‚Á‚Ï‚È‚µ‚É‚È‚é‚æ‚¤‚É’²®
+ *	ãƒªãƒ”ãƒ¼ãƒˆå‹•ä½œã®ã¨ãã«ãƒœã‚¿ãƒ³ãŒæŠ¼ã—ã£ã±ãªã—ã«ãªã‚‹ã‚ˆã†ã«èª¿æ•´
  */
 //-----------------------------------------------------------------------------
 static void UnionBoardScrollBttnAnmPush( UNION_BOARD_WORK *ubw, int button_no )
@@ -1728,9 +1728,9 @@ static void UnionBoardScrollBttnAnmPush( UNION_BOARD_WORK *ubw, int button_no )
 	frame = CLACT_AnmFrameGet( ubw->clActWork[button_no] );
 	anmseq = CLACT_AnmGet( ubw->clActWork[button_no] );
 	
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚ªI‚í‚Á‚Ä‚¢‚½‚çi‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒçµ‚ã‚ã£ã¦ã„ãŸã‚‰é€²ã‚ã‚‹
 	if( (frame > UNIONBOARD_SCRLLBTTN_PUSH) || (anmseq != button_no+4) ){
-		// ƒŠƒXƒ^[ƒg
+		// ãƒªã‚¹ã‚¿ãƒ¼ãƒˆ
 		CLACT_AnmChg( ubw->clActWork[button_no], button_no+4 );
 	}
 	
@@ -1739,11 +1739,11 @@ static void UnionBoardScrollBttnAnmPush( UNION_BOARD_WORK *ubw, int button_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ƒ{ƒ^ƒ“ƒAƒjƒ@	ƒAƒjƒŠÇ—ˆ—
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€	ã‚¢ãƒ‹ãƒ¡ç®¡ç†å‡¦ç†
  *
- *	@param	ubw			ƒ[ƒN
+ *	@param	ubw			ãƒ¯ãƒ¼ã‚¯
  *
- *	ƒŠƒs[ƒg“®ì‚Ì‚Æ‚«‚Éƒ{ƒ^ƒ“‚ª‰Ÿ‚µ‚Á‚Ï‚È‚µ‚É‚È‚é‚æ‚¤‚É’²®
+ *	ãƒªãƒ”ãƒ¼ãƒˆå‹•ä½œã®ã¨ãã«ãƒœã‚¿ãƒ³ãŒæŠ¼ã—ã£ã±ãªã—ã«ãªã‚‹ã‚ˆã†ã«èª¿æ•´
  */
 //-----------------------------------------------------------------------------
 static void UnionBoardScrollBttnAnmMain( UNION_BOARD_WORK *ubw )
@@ -1751,7 +1751,7 @@ static void UnionBoardScrollBttnAnmMain( UNION_BOARD_WORK *ubw )
 	int i;
 	u16 frame;
 
-	// ƒAƒjƒˆ—
+	// ã‚¢ãƒ‹ãƒ¡å‡¦ç†
 	for( i=0; i<2; i++ ){
 		frame = CLACT_AnmFrameGet( ubw->clActWork[i] );
 		if( ubw->scrllbttn_push[i] == TRUE ){
@@ -1759,7 +1759,7 @@ static void UnionBoardScrollBttnAnmMain( UNION_BOARD_WORK *ubw )
 				CLACT_SetAnmFlag(ubw->clActWork[i],0);
 			}
 
-			// ƒtƒ‰ƒO‚ğ‰º‚°‚éŸ‚ÌƒtƒŒ[ƒ€‚à‚¨‚µ‚Ä‚ ‚Á‚½‚çTRUE‚É‚È‚Á‚Ä‚±‚ÌŠÖ”‚É‹A‚Á‚Ä‚­‚é
+			// ãƒ•ãƒ©ã‚°ã‚’ä¸‹ã’ã‚‹æ¬¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚‚ãŠã—ã¦ã‚ã£ãŸã‚‰TRUEã«ãªã£ã¦ã“ã®é–¢æ•°ã«å¸°ã£ã¦ãã‚‹
 			ubw->scrllbttn_push[i] = FALSE;
 			
 		}else{

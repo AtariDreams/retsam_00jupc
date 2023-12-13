@@ -2,12 +2,12 @@
 /**
  *
  *	@file		zkn_pokelist_sub.c
- *	@brief		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒTƒu‰æ–Ê
+ *	@brief		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚µãƒ–ç”»é¢
  *	@author		tomoya takahashi
  *	@data		2006.01.20
  *
  *
- *	2006.08.02	ƒŠƒXƒg‚ð“®‚©‚·ƒpƒ‰ƒ[ƒ^‚Ì’l‚ð‘S‚ÄŠp“x‚©‚çƒxƒNƒgƒ‹‚Ì“®‚¢‚½‹——£‚É•ÏX@’è”‚ð’²®‚µ‚Ü‚µ‚½B
+ *	2006.08.02	ãƒªã‚¹ãƒˆã‚’å‹•ã‹ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã‚’å…¨ã¦è§’åº¦ã‹ã‚‰ãƒ™ã‚¯ãƒˆãƒ«ã®å‹•ã„ãŸè·é›¢ã«å¤‰æ›´ã€€å®šæ•°ã‚’èª¿æ•´ã—ã¾ã—ãŸã€‚
  *
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -37,27 +37,27 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
-#define ZKN_POKELIST_SUB_LIST_PAR_SET	// Îß¹ÓÝØ½Ä‚Éd‚³‚ðŽ‚½‚¹‚é
+#define ZKN_POKELIST_SUB_LIST_PAR_SET	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã«é‡ã•ã‚’æŒãŸã›ã‚‹
 
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
@@ -73,9 +73,9 @@
 #define ZKN_POKELSIT_SUB_FONT_BMP_SIZE_CY	( 4 )
 
 //-------------------------------------
-//	ƒzƒC[ƒ‹–Ê—p’è”
+//	ãƒ›ã‚¤ãƒ¼ãƒ«é¢ç”¨å®šæ•°
 //=====================================
-#define ZKN_POKELIST_SUB_EVENT_POKELIST		( 0x1 << 0 )	// }ŠÓŽí—Þ•ÏŠ·
+#define ZKN_POKELIST_SUB_EVENT_POKELIST		( 0x1 << 0 )	// å›³é‘‘ç¨®é¡žå¤‰æ›
 
 #define ZKN_POKELIST_SUB_SEARCH_BUTTON_X	( 48 )
 #define ZKN_POKELIST_SUB_ZUKANCHG_BUTTON_X	( 48 )
@@ -100,9 +100,9 @@
 #define ZKN_POKELIST_SUB_LISTEND_BUTTON_SIZE_X	( 16 )
 #define ZKN_POKELIST_SUB_LISTEND_BUTTON_SIZE_Y	( 16 )
 
-#define ZKN_POKELSIT_SUB_SEARCH_BUTTON_SEQ	( 2 )	// ƒŠƒXƒgƒŠƒZƒbƒgƒ{ƒ^ƒ“ƒV[ƒPƒ“ƒX
-#define ZKN_POKELSIT_SUB_ZUKANCHG_BUTTON_SEQ	( 0 )	// ƒŠƒXƒg‚Ìæ“ª‚Öƒ{ƒ^ƒ“ƒV[ƒPƒ“ƒX
-#define ZKN_POKELSIT_SUB_ZUKANSEE_BUTTON_SEQ	( 1 )	// ƒŠƒXƒg‚ÌÅŒã‚Öƒ{ƒ^ƒ“ƒV[ƒPƒ“ƒX
+#define ZKN_POKELSIT_SUB_SEARCH_BUTTON_SEQ	( 2 )	// ãƒªã‚¹ãƒˆãƒªã‚»ãƒƒãƒˆãƒœã‚¿ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+#define ZKN_POKELSIT_SUB_ZUKANCHG_BUTTON_SEQ	( 0 )	// ãƒªã‚¹ãƒˆã®å…ˆé ­ã¸ãƒœã‚¿ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+#define ZKN_POKELSIT_SUB_ZUKANSEE_BUTTON_SEQ	( 1 )	// ãƒªã‚¹ãƒˆã®æœ€å¾Œã¸ãƒœã‚¿ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 #define ZKN_POKELSIT_SUB_LISTSTART_BUTTON_SEQ	( 3 )
 #define ZKN_POKELSIT_SUB_LISTEND_BUTTON_SEQ	( 4 )
 
@@ -115,24 +115,24 @@
 
 #define ZKN_POKELSIT_SUB_MAT_X	( -120 )
 #define ZKN_POKELSIT_SUB_MAT_Y	( 0 )
-#define ZKN_POKELIST_SUB_BGCX	( 128 )		// BGƒAƒtƒBƒ“•ÏŠ·—p’†S
-#define ZKN_POKELIST_SUB_BGCY	( 104 )		// BGƒAƒtƒBƒ“•ÏŠ·—p’†S
-#define ZKN_POKELIST_SUB_CX		( ZKN_POKELIST_SUB_BGCX + (-ZKN_POKELSIT_SUB_MAT_X) )	// ’†S
-#define ZKN_POKELIST_SUB_CY		( ZKN_POKELIST_SUB_BGCY + (-ZKN_POKELSIT_SUB_MAT_Y) )	// ’†S
-#define ZKN_POKELSIT_SUB_R		( 104 )		// ”¼Œa
+#define ZKN_POKELIST_SUB_BGCX	( 128 )		// BGã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ç”¨ä¸­å¿ƒ
+#define ZKN_POKELIST_SUB_BGCY	( 104 )		// BGã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ç”¨ä¸­å¿ƒ
+#define ZKN_POKELIST_SUB_CX		( ZKN_POKELIST_SUB_BGCX + (-ZKN_POKELSIT_SUB_MAT_X) )	// ä¸­å¿ƒ
+#define ZKN_POKELIST_SUB_CY		( ZKN_POKELIST_SUB_BGCY + (-ZKN_POKELSIT_SUB_MAT_Y) )	// ä¸­å¿ƒ
+#define ZKN_POKELSIT_SUB_R		( 104 )		// åŠå¾„
 
-// ƒŠƒXƒg“®ì§Œäƒpƒ‰
-#define ZKN_POKELIST_SUB_MOVE_CACL_R	( 524 )	// ‹——£‚ð‹‚ß‚éˆ×‚Ì‰~”¼ŒaŠî€’l
-#define ZKN_POKELIST_SUB_MOVE_CACL_MUL	( 10 )	// ‹——£‚ÉŠ|‚¯‚é’l
-#define ZKN_POKELIST_SUB_LOCK_MOVE_MAX	( 1024 )	// ƒL[‘€ì‚Ì‚Æ‚«‚Ì1ŒÂ‚ÌƒŠƒXƒg‚ª“®‚­‹——£
-#define ZKN_POKELIST_SUB_COUNT_R	( ZKN_POKELIST_SUB_LOCK_MOVE_MAX / ZKN_POKELIST_MOVE_END_COUNT )	// ‚±‚Ì’l‚ÅA“®ì‘¬“x‚ðŠ„‚Á‚ÄƒŠƒXƒg¶³ÝÀ‚ð“®‚©‚·
-#define ZKN_POKELIST_SUB_SUB_R	( 2 )	// ‘¬“xŒ¸‚ç‚µ‚Ä‚¢‚­‚ ‚½‚¢
-#define ZKN_POKELIST_SUB_SUBLIMIT_R	( ZKN_POKELIST_SUB_COUNT_R + 32 )// ’l‚ð”½‰f‚³‚¹‚È‚¢ƒŠƒ~ƒbƒg
-#define ZKN_POKELIST_SUB_SUBDRAWLIMIT_R	( 4 )// ’l‚ð”½‰f‚³‚¹‚È‚¢ƒŠƒ~ƒbƒg
-#define ZKN_POKELIST_SUB_SUB_MIN_SP	( 16 )// ‚±‚êˆÈ‰º‚ÌƒXƒs[ƒh‚Ì‚Æ‚«‚Í”½‰ž‚µ‚È‚¢
+// ãƒªã‚¹ãƒˆå‹•ä½œåˆ¶å¾¡ãƒ‘ãƒ©
+#define ZKN_POKELIST_SUB_MOVE_CACL_R	( 524 )	// è·é›¢ã‚’æ±‚ã‚ã‚‹ç‚ºã®å††åŠå¾„åŸºæº–å€¤
+#define ZKN_POKELIST_SUB_MOVE_CACL_MUL	( 10 )	// è·é›¢ã«æŽ›ã‘ã‚‹å€¤
+#define ZKN_POKELIST_SUB_LOCK_MOVE_MAX	( 1024 )	// ã‚­ãƒ¼æ“ä½œã®ã¨ãã®1å€‹ã®ãƒªã‚¹ãƒˆãŒå‹•ãè·é›¢
+#define ZKN_POKELIST_SUB_COUNT_R	( ZKN_POKELIST_SUB_LOCK_MOVE_MAX / ZKN_POKELIST_MOVE_END_COUNT )	// ã“ã®å€¤ã§ã€å‹•ä½œé€Ÿåº¦ã‚’å‰²ã£ã¦ãƒªã‚¹ãƒˆã‚«ã‚¦ãƒ³ã‚¿ã‚’å‹•ã‹ã™
+#define ZKN_POKELIST_SUB_SUB_R	( 2 )	// é€Ÿåº¦æ¸›ã‚‰ã—ã¦ã„ãã‚ãŸã„
+#define ZKN_POKELIST_SUB_SUBLIMIT_R	( ZKN_POKELIST_SUB_COUNT_R + 32 )// å€¤ã‚’åæ˜ ã•ã›ãªã„ãƒªãƒŸãƒƒãƒˆ
+#define ZKN_POKELIST_SUB_SUBDRAWLIMIT_R	( 4 )// å€¤ã‚’åæ˜ ã•ã›ãªã„ãƒªãƒŸãƒƒãƒˆ
+#define ZKN_POKELIST_SUB_SUB_MIN_SP	( 16 )// ã“ã‚Œä»¥ä¸‹ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã®ã¨ãã¯åå¿œã—ãªã„
 
-// ƒzƒC[ƒ‹•`‰æ§Œä’è”
-#define ZKN_POKELIST_SUB_LOCK_MOVE_DRAW_MAX	( FX_GET_ROTA_NUM( 25 ) )	// ƒL[‘€ì‚Ì‚Æ‚«‚Ì1ŒÂ‚ÌƒŠƒXƒg‚ª“®‚­‚Æ‚«‚É‰ñ‚éƒzƒC[ƒ‹‚ÌŠp“x@•`‰æ”½‰fŠp“x
+// ãƒ›ã‚¤ãƒ¼ãƒ«æç”»åˆ¶å¾¡å®šæ•°
+#define ZKN_POKELIST_SUB_LOCK_MOVE_DRAW_MAX	( FX_GET_ROTA_NUM( 25 ) )	// ã‚­ãƒ¼æ“ä½œã®ã¨ãã®1å€‹ã®ãƒªã‚¹ãƒˆãŒå‹•ãã¨ãã«å›žã‚‹ãƒ›ã‚¤ãƒ¼ãƒ«ã®è§’åº¦ã€€æç”»åæ˜ è§’åº¦
 
 #ifdef ZKN_POKELIST_SUB_LIST_PAR_SET
 /////////////////////////////////////////////////////
@@ -153,7 +153,7 @@
 #define ZKN_POKELIST_SUB_CLACT_NUM	( 3 )
 
 
-// Bƒ{ƒ^ƒ“
+// Bãƒœã‚¿ãƒ³
 #define ZKN_POKELIST_SUB_BUTTON_B_X	( 124 )
 #define ZKN_POKELIST_SUB_BUTTON_B_Y	( 8 )
 #define ZKN_POKELIST_SUB_BUTTON_B_ANM	( 5 )
@@ -167,22 +167,22 @@
 #define ZKN_POKELIST_SUB_BUTTON_HIT_WIDHT	( 64 )
 #define ZKN_POKELIST_SUB_BUTTON_HIT_HEIGHT	( 16 )
 
-// ƒTƒu‰æ–Ê‚ÌƒpƒŒƒbƒgˆÊ’u
+// ã‚µãƒ–ç”»é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆä½ç½®
 #define ZKN_POKELIST_SUB_BACK_PL		( 3 )
 
-// ƒ{ƒ^ƒ“’è”
+// ãƒœã‚¿ãƒ³å®šæ•°
 enum{
 	ZKN_POKELIST_SUB_BUTTON_SEARCH,
 	ZKN_POKELIST_SUB_BUTTON_ZUKANCHG,
 	ZKN_POKELIST_SUB_BUTTON_ZUKANSEE,
 	ZKN_POKELIST_SUB_BUTTON_LISTSTART,
 	ZKN_POKELIST_SUB_BUTTON_LISTEND,
-	ZKN_POKELIST_SUB_BUTTON_WHEEL,		// ƒzƒC[ƒ‹
+	ZKN_POKELIST_SUB_BUTTON_WHEEL,		// ãƒ›ã‚¤ãƒ¼ãƒ«
 	ZKN_POKELIST_SUB_BUTTON_CANCEL,
 	ZKN_POKELIST_SUB_BUTTON_NUM,
 };
 
-// ‰Šú‰»ƒV[ƒPƒ“ƒX
+// åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ZKN_POKELIST_SUB_SEQINIT_ALLOC,
 	ZKN_POKELIST_SUB_SEQINIT_LOAD,
@@ -191,7 +191,7 @@ enum{
 	ZKN_POKELIST_SUB_SEQINIT_END,
 };
 
-// ”jŠüƒV[ƒPƒ“ƒX
+// ç ´æ£„ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ZKN_POKELIST_SUB_SEQDELETE_FADEOUT_INIT,
 	ZKN_POKELIST_SUB_SEQDELETE_FADEOUT,
@@ -204,51 +204,51 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê
-//	ƒzƒC[ƒ‹ƒAƒvƒŠ@ƒOƒ[ƒoƒ‹ƒf[ƒ^
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢
+//	ãƒ›ã‚¤ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	int button_event[ ZKN_POKELIST_SUB_BUTTON_NUM ];	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
-	ZKN_POKELIST_GLB_DATA* p_pokelist_glb;		// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgmainƒf[ƒ^
-	int* p_event_key;		// ƒCƒxƒ“ƒgƒL[
+	int button_event[ ZKN_POKELIST_SUB_BUTTON_NUM ];	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+	ZKN_POKELIST_GLB_DATA* p_pokelist_glb;		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆmainãƒ‡ãƒ¼ã‚¿
+	int* p_event_key;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	int heap;
 } ZKN_POKELIST_SUB_GLB;
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê
-//	ƒzƒC[ƒ‹ƒAƒvƒŠ@ƒOƒ‰ƒtƒBƒbƒNƒOƒ[ƒoƒ‹ƒf[ƒ^
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢
+//	ãƒ›ã‚¤ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	ZKN_GLB_DRAWDATA* p_glb_draw;
 } ZKN_POKELIST_SUB_GLBDRAW;
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê
-//	ƒzƒC[ƒ‹ƒAƒvƒŠ@“à•”ƒ[ƒN
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢
+//	ãƒ›ã‚¤ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£
 	BUTTON_MAN* p_button_man;
 	void* p_button_work;
-	TP_HIT_TBL *hit_tbl;	// ƒ{ƒ^ƒ“ƒf[ƒ^
+	TP_HIT_TBL *hit_tbl;	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
 
-	int move_dist;		// ˆÚ“®‚µ‚½‹——£
-	int move_dist_list;	// ˆÚ“®‚µ‚½‹——£’l”½‰f—p
+	int move_dist;		// ç§»å‹•ã—ãŸè·é›¢
+	int move_dist_list;	// ç§»å‹•ã—ãŸè·é›¢å€¤åæ˜ ç”¨
 	int tp_last_x;
 	int tp_last_y;
 
-	fx32 wheel_rota_par;// ‰ñ“]Šp“x”½‰f—¦
+	fx32 wheel_rota_par;// å›žè»¢è§’åº¦åæ˜ çŽ‡
 
 	BOOL touch_hold;
 } ZKN_POKELIST_SUB_WORK;
 
 //-------------------------------------
-//	ƒ{ƒ^ƒ“—pƒ[ƒN
+//	ãƒœã‚¿ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	ZKN_POKELIST_SUB_WORK* p_work;
@@ -258,8 +258,8 @@ typedef struct {
 
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê
-//	ƒzƒC[ƒ‹ƒAƒvƒŠ@•`‰æ“à•”ƒ[ƒN
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢
+//	ãƒ›ã‚¤ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªã€€æç”»å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR clact[ ZKN_POKELIST_SUB_CLACT_NUM ];
@@ -271,10 +271,10 @@ typedef struct {
 	CLACT_WORK_PTR act_B;
 	ZKN_FONTOAM_DATA* p_fontoam_B;
 
-	u16 wheel_rota;		// ƒzƒC[ƒ‹‚ÌŒ»Ý‰ñ“]Šp
-	u16 save_wheel_rota;// ƒzƒC[ƒ‹‚ÌŠp“x•Û‘¶—Ìˆæ
+	u16 wheel_rota;		// ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç¾åœ¨å›žè»¢è§’
+	u16 save_wheel_rota;// ãƒ›ã‚¤ãƒ¼ãƒ«ã®è§’åº¦ä¿å­˜é ˜åŸŸ
 
-	// ƒŠƒ\[ƒXƒIƒuƒWƒF
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
 	CLACT_U_RES_OBJ_PTR		res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];
 
 } ZKN_POKELIST_SUB_DRAWWORK;
@@ -285,12 +285,12 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 
@@ -306,7 +306,7 @@ static int EventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 
@@ -318,7 +318,7 @@ static int ZknPokeListSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 static int ZknPokeListSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
 
-// ƒ{ƒ^ƒ“‚Ì“®ì
+// ãƒœã‚¿ãƒ³ã®å‹•ä½œ
 static void ZknPokelistSubButtonFontMove( CLACT_WORK_PTR act, ZKN_FONTOAM_DATA* p_fontoam, int def_y, int off_pltt, int on_pltt );
 
 static void ZknPokeListSubButtonMake( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKELIST_SUB_GLB* p_glb, int heap );
@@ -327,7 +327,7 @@ static void ZknPokeListSubButtonDelete( ZKN_POKELIST_SUB_WORK* p_work );
 static void ZknPokeListSubButtonCallBack( u32 button_no, u32 event, void* p_work );
 static void ZknPokeListSubButton_KeyMove( ZKN_POKELIST_SUB_GLB* p_glb );
 
-// ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 static void ZknPokeListSubResLoad( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKELIST_SUB_GLBDRAW* p_drawglb, const ZKN_POKELIST_SUB_GLB* cp_glb, int heap );
 static void ZknPokeListSubResDelete( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKELIST_SUB_GLBDRAW* p_drawglb, int heap );
 static void ZknPokeListSubBgLoad( ZKN_POKELIST_SUB_GLBDRAW* p_drawglb, const ZKN_POKELIST_SUB_GLB* cp_glb, int heap );
@@ -343,7 +343,7 @@ static void ZknPokeListSubBgDelete( ZKN_POKELIST_SUB_GLBDRAW* p_drawglb, int hea
 
 static void ZknPokeListSub_ListNoChange( ZKN_POKELIST_SUB_GLB* p_glb, int no );
 
-// “®ì
+// å‹•ä½œ
 static void ZknPokeListSubListCount( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKELIST_SUB_GLB* p_glb );
 static void ZknPokeListSubMoveDistGet( ZKN_POKELIST_SUB_WORK* p_work );
 static void ZknPokeListSubDrawMove( ZKN_POKELIST_SUB_DRAWWORK* p_drawwork, ZKN_POKELIST_SUB_GLBDRAW* p_drawglb, int add_num, fx32 draw_ref_par );
@@ -361,11 +361,11 @@ static fx32 ZknPokeListSubDrawRefParCalc( fx32 now_par, s32 now_rota );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê@ƒzƒC[ƒ‹ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢ã€€ãƒ›ã‚¤ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ä½œæˆ
  *	
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		ƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -398,9 +398,9 @@ void ZKN_PokeListSubAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê@ƒzƒC[ƒ‹ƒAƒvƒŠƒf[ƒ^”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢ã€€ãƒ›ã‚¤ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -417,18 +417,18 @@ void ZKN_PokeListSubAplDelete( ZKN_APL_DATA* p_data )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê@ƒzƒC[ƒ‹@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬@
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢ã€€ãƒ›ã‚¤ãƒ¼ãƒ«ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆã€€
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *	
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -446,15 +446,15 @@ static ZKN_POKELIST_SUB_GLB* MakePokeListSubGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	p_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_POKELIST );
 	p_glb->p_pokelist_glb = p_apl->p_glb_data;
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	for( i=0; i<ZKN_POKELIST_SUB_BUTTON_NUM; i++ ){
 		p_glb->button_event[ i ] = ZKN_UTIL_BUTTON_PUSH_NONE;
 	}
 
-	// ƒCƒxƒ“ƒgƒL[ƒ|ƒCƒ“ƒ^
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼ãƒã‚¤ãƒ³ã‚¿
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrSub( zkn_sys );
 
-	// ƒq[ƒv
+	// ãƒ’ãƒ¼ãƒ—
 	p_glb->heap = heap;
 
 	return p_glb;
@@ -463,12 +463,12 @@ static ZKN_POKELIST_SUB_GLB* MakePokeListSubGlb( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê@ƒzƒC[ƒ‹@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬@
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢ã€€ãƒ›ã‚¤ãƒ¼ãƒ«ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆã€€
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *	
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -490,10 +490,10 @@ static ZKN_POKELIST_SUB_GLBDRAW* MakePokeListSubGlbDraw( int heap, ZKN_SYS_PTR z
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê@ƒzƒC[ƒ‹@ƒCƒxƒ“ƒgƒf[ƒ^ì¬@
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢ã€€ãƒ›ã‚¤ãƒ¼ãƒ«ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆã€€
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -502,16 +502,16 @@ static ZKN_POKELIST_SUB_GLBDRAW* MakePokeListSubGlbDraw( int heap, ZKN_SYS_PTR z
 //-----------------------------------------------------------------------------
 static ZKN_EVENT_DATA* MakePokeListSubEvent( int heap, ZKN_SYS_PTR zkn_sys )
 {
-	ZKN_EVENT_DATA* p_event_tbl;	// ƒCƒxƒ“ƒgƒe[ƒuƒ‹ì¬æ
+	ZKN_EVENT_DATA* p_event_tbl;	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆå…ˆ
 	int event_num = EventDataNumGet();
 
-	// ƒCƒxƒ“ƒgƒe[ƒuƒ‹ƒƒ‚ƒŠŠm•Û
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_event_tbl = sys_AllocMemory( heap, sizeof(ZKN_EVENT_DATA) * event_num );
 	GF_ASSERT( p_event_tbl );
 	memset( p_event_tbl, 0, sizeof(ZKN_EVENT_DATA) * event_num );
 
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	ZKN_EVENT_MakeStartMainPokeList( &p_event_tbl[0], zkn_sys, heap, ZKN_POKELIST_SUB_EVENT_POKELIST );
 
 	return p_event_tbl;
@@ -520,9 +520,9 @@ static ZKN_EVENT_DATA* MakePokeListSubEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê@ƒzƒC[ƒ‹@	ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢ã€€ãƒ›ã‚¤ãƒ¼ãƒ«ã€€	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -539,9 +539,9 @@ static void DeletePokeListSubGlb( ZKN_POKELIST_SUB_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê@ƒzƒC[ƒ‹@	ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢ã€€ãƒ›ã‚¤ãƒ¼ãƒ«ã€€	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -558,9 +558,9 @@ static void DeletePokeListSubGlbDraw( ZKN_POKELIST_SUB_GLBDRAW* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ƒTƒu‰æ–Ê@ƒzƒC[ƒ‹@	ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€ã‚µãƒ–ç”»é¢ã€€ãƒ›ã‚¤ãƒ¼ãƒ«ã€€	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event		ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -571,7 +571,7 @@ static void DeletePokeListSubEvent( ZKN_EVENT_DATA* p_event )
 {
 	GF_ASSERT( p_event );
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	ZKN_EVENT_DeleteData( &p_event[0] );
 
 	sys_FreeMemoryEz( p_event );
@@ -581,11 +581,11 @@ static void DeletePokeListSubEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒzƒC[ƒ‹ƒAƒvƒŠƒCƒxƒ“ƒg”Žæ“¾
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *
  *	@param	none
  *
- *	@return	ƒzƒC[ƒ‹ƒAƒvƒŠƒCƒxƒ“ƒgƒf[ƒ^”
+ *	@return	ãƒ›ã‚¤ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æ•°
  *
  *
  */
@@ -597,19 +597,19 @@ static int EventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -629,26 +629,26 @@ static int ZknPokeListSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 		p_work->wheel_rota_par = ZKN_POKELIST_SUB_LIST_PAR_MIN;
 #endif
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒ[ƒN‰Šú‰»
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	for( i=0; i<ZKN_POKELIST_SUB_BUTTON_NUM; i++ ){
 		p_glb->button_event[ i ] = ZKN_UTIL_BUTTON_PUSH_NONE;
 	}
 		
-	// ƒ{ƒ^ƒ“ƒf[ƒ^ì¬
+	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	ZknPokeListSubButtonMake( p_dodata->p_work, p_glb, p_dodata->heap );
 	return ZKN_PROC_TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -659,7 +659,7 @@ static int ZknPokeListSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 	ZKN_POKELIST_SUB_WORK* p_work = p_dodata->p_work;
 	
 
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -669,20 +669,20 @@ static int ZknPokeListSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 		return ZKN_PROC_FALSE;
 	}
 
-	// “®ìƒXƒs[ƒh‚ðŒ¸‚ç‚µ‚Ä‚­
+	// å‹•ä½œã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’æ¸›ã‚‰ã—ã¦ã
 	ZknPokeListSubResist( p_work, p_glb->p_pokelist_glb->move_count, p_glb->p_pokelist_glb->move_way );
 
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒg§Œä
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡
 	ZknPokeListSubButtonMove( p_work, p_glb );
 
 
-	// ƒŠƒXƒgƒJƒEƒ“ƒg
+	// ãƒªã‚¹ãƒˆã‚«ã‚¦ãƒ³ãƒˆ
 	if( p_glb->p_pokelist_glb->sub_wheel_lock == ZKN_POKELIST_WHEEL_LOCK_NONE ){		
-		// ƒƒCƒ“‰æ–Ê‚ªƒTƒuƒzƒC[ƒ‹‚ðlock‚µ‚Ä‚¢‚È‚¯‚ê‚Î“®ì
+		// ãƒ¡ã‚¤ãƒ³ç”»é¢ãŒã‚µãƒ–ãƒ›ã‚¤ãƒ¼ãƒ«ã‚’lockã—ã¦ã„ãªã‘ã‚Œã°å‹•ä½œ
 		ZknPokeListSubListCount( p_work, p_glb );
 	}else{
-		p_work->move_dist = 0;	// lock‚³‚ê‚½‚ç‚Æ‚ß‚é
+		p_work->move_dist = 0;	// lockã•ã‚ŒãŸã‚‰ã¨ã‚ã‚‹
 		p_work->move_dist_list = 0;
 	}
 
@@ -691,41 +691,41 @@ static int ZknPokeListSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
 //-----------------------------------------------------------------------------
 static int ZknPokeListSubProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 {
-	// ƒ{ƒ^ƒ“ƒf[ƒ^”jŠü
+	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	ZknPokeListSubButtonDelete( p_dodata->p_work );
 	
-	// ƒƒ‚ƒŠ”jŠü
+	// ãƒ¡ãƒ¢ãƒªç ´æ£„
 	sys_FreeMemoryEz( p_dodata->p_work );
 	return ZKN_PROC_TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -740,7 +740,7 @@ static int ZknPokeListSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 
 	switch( p_drawdata->seq ){
 	case ZKN_POKELIST_SUB_SEQINIT_ALLOC:
-		// ƒƒ‚ƒŠŠm•Û
+		// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		p_drawdata->p_work = sys_AllocMemory( p_drawdata->heap, sizeof(ZKN_POKELIST_SUB_DRAWWORK) );
 		GF_ASSERT( p_drawdata->p_work );
 		memset( p_drawdata->p_work, 0, sizeof(ZKN_POKELIST_SUB_DRAWWORK) );
@@ -778,17 +778,17 @@ static int ZknPokeListSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -801,7 +801,7 @@ static int ZknPokeListSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 	ZKN_POKELIST_SUB_DRAWWORK* p_drawwork = p_drawdata->p_work;
 
 	
-	// ƒ{ƒ^ƒ““®ì
+	// ãƒœã‚¿ãƒ³å‹•ä½œ
 	ZKN_UTIL_ButtonMove( p_drawwork->clact[ ZKN_POKELIST_SUB_BUTTON_SEARCH ],
 			cp_glb->button_event[ ZKN_POKELIST_SUB_BUTTON_SEARCH ] );
 	ZKN_UTIL_ButtonMove( p_drawwork->clact[ ZKN_POKELIST_SUB_BUTTON_ZUKANCHG ], cp_glb->button_event[ ZKN_POKELIST_SUB_BUTTON_ZUKANCHG ] );
@@ -809,7 +809,7 @@ static int ZknPokeListSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 	ZKN_UTIL_ButtonMove( p_drawwork->list_start, cp_glb->button_event[ ZKN_POKELIST_SUB_BUTTON_LISTSTART ] );
 	ZKN_UTIL_ButtonMove( p_drawwork->list_end, cp_glb->button_event[ ZKN_POKELIST_SUB_BUTTON_LISTEND ] );
 
-	// •¶Žš—ñƒ{ƒ^ƒ““®ì
+	// æ–‡å­—åˆ—ãƒœã‚¿ãƒ³å‹•ä½œ
 	ZknPokelistSubButtonFontMove( 
 			p_drawwork->clact[ ZKN_POKELIST_SUB_BUTTON_SEARCH ],
 			p_drawwork->p_fontoam[ ZKN_POKELIST_SUB_BUTTON_SEARCH ],
@@ -825,16 +825,16 @@ static int ZknPokeListSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 			ZKN_POKELIST_SUB_BUTTON_FONT_COL_ZUKAN,
 			ZKN_POKELIST_SUB_BUTTON_FONT_PUSH_COL );
 
-	// ƒzƒC[ƒ‹“®ì
+	// ãƒ›ã‚¤ãƒ¼ãƒ«å‹•ä½œ
 	if( cp_glb->p_pokelist_glb->sub_wheel_lock == ZKN_POKELIST_WHEEL_LOCK_NONE ){
 		ZknPokeListSubDrawMove( p_drawwork, p_drawglb,
-				CalcTool_CircleVectroDistRotaGet( ZKN_POKELIST_SUB_MOVE_CACL_R, cp_datawork->move_dist ), // ˆÚ“®‹——£‚ð‰ñ“]Šp“x‚É•ÏX
+				CalcTool_CircleVectroDistRotaGet( ZKN_POKELIST_SUB_MOVE_CACL_R, cp_datawork->move_dist ), // ç§»å‹•è·é›¢ã‚’å›žè»¢è§’åº¦ã«å¤‰æ›´
 				cp_datawork->wheel_rota_par );		
 	}else if( cp_glb->p_pokelist_glb->sub_wheel_lock == ZKN_POKELIST_WHEEL_LOCK_NORMAL ){
-		// lock‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Ì“®‚«
+		// lockã•ã‚Œã¦ã„ã‚‹ã¨ãã®å‹•ã
 		ZknPokeListSubDrawMoveLockTime( p_drawwork, p_drawglb, cp_glb );
 	}else{
-		// Š®‘Slock‰½‚à‚µ‚Ü‚¹‚ñ
+		// å®Œå…¨lockä½•ã‚‚ã—ã¾ã›ã‚“
 	}
 	
 	return ZKN_PROC_FALSE;
@@ -842,17 +842,17 @@ static int ZknPokeListSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 	
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -901,11 +901,11 @@ static int ZknPokeListSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒzƒC[ƒ‹–Êƒ{ƒ^ƒ“ì¬
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«é¢ãƒœã‚¿ãƒ³ä½œæˆ
  *
- *	@param	p_work	ƒzƒC[ƒ‹ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap	ƒq[ƒv
+ *	@param	p_work	ãƒ›ã‚¤ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -914,10 +914,10 @@ static void ZknPokeListSubButtonMake( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKELIS
 {
 	ZKN_POKELIST_SUB_BUTTON_WORK* p_button_work;
 	
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_work->hit_tbl = sys_AllocMemory( heap, sizeof(TP_HIT_TBL) * ZKN_POKELIST_SUB_BUTTON_NUM );
 
-	// ƒe[ƒuƒ‹ƒf[ƒ^Ý’è
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl[ ZKN_POKELIST_SUB_BUTTON_SEARCH ],
 			ZKN_POKELIST_SUB_SEARCH_BUTTON_Y - (ZKN_POKELIST_SUB_SEARCH_BUTTON_SIZE_Y/2),
 			ZKN_POKELIST_SUB_SEARCH_BUTTON_Y + (ZKN_POKELIST_SUB_SEARCH_BUTTON_SIZE_Y/2),
@@ -954,21 +954,21 @@ static void ZknPokeListSubButtonMake( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKELIS
 	p_work->hit_tbl[ ZKN_POKELIST_SUB_BUTTON_WHEEL ].circle.r	 = ZKN_POKELSIT_SUB_R;
 
 
-	// CANCELƒ{ƒ^ƒ“—p
+	// CANCELãƒœã‚¿ãƒ³ç”¨
 	ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl[ ZKN_POKELIST_SUB_BUTTON_CANCEL ],
 			ZKN_POKELIST_SUB_BUTTON_HIT_Y,
 			ZKN_POKELIST_SUB_BUTTON_HIT_Y + ZKN_POKELIST_SUB_BUTTON_HIT_HEIGHT,
 			ZKN_POKELIST_SUB_BUTTON_HIT_X,
 			ZKN_POKELIST_SUB_BUTTON_HIT_X + ZKN_POKELIST_SUB_BUTTON_HIT_WIDHT);
 
-	// ƒ{ƒ^ƒ“—pƒ[ƒNì¬
+	// ãƒœã‚¿ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_button_work = sys_AllocMemory( heap, sizeof(ZKN_POKELIST_SUB_BUTTON_WORK) );	
 	p_button_work->p_work = p_work;
 	p_button_work->p_glb  = p_glb;
 	p_work->p_button_work = p_button_work;
 
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_work->p_button_man = BMN_Create( 
 			p_work->hit_tbl,
 			ZKN_POKELIST_SUB_BUTTON_NUM,
@@ -979,10 +979,10 @@ static void ZknPokeListSubButtonMake( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKELIS
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒzƒC[ƒ‹ƒ{ƒ^ƒ““®ì
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«ãƒœã‚¿ãƒ³å‹•ä½œ
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -991,30 +991,30 @@ static void ZknPokeListSubButtonMove( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKELIS
 {
 	int i;
 	
-	// •ú‚³‚ê‚½‚ç‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªŒ³‚ÌŠG‚É–ß‚é
+	// æ”¾ã•ã‚ŒãŸã‚‰å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒå…ƒã®çµµã«æˆ»ã‚‹
 	for( i = 0; i < ZKN_POKELIST_SUB_BUTTON_NUM; i++ ){
 		p_glb->button_event[ i ] = ZKN_UTIL_BUTTON_PUSH_NONE;
 	}
 
-	// ƒL[‚É‚æ‚éƒ{ƒ^ƒ““®ì
+	// ã‚­ãƒ¼ã«ã‚ˆã‚‹ãƒœã‚¿ãƒ³å‹•ä½œ
 	ZknPokeListSubButton_KeyMove( p_glb );
 	
-	// ƒ^ƒbƒ`ƒpƒlƒ‹‚É‚æ‚éƒ{ƒ^ƒ“‘€ì
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«ã‚ˆã‚‹ãƒœã‚¿ãƒ³æ“ä½œ
 	BMN_Main( p_work->p_button_man );
 
-	// ŽŸ‚ÌƒŠƒXƒg‚Éi‚ß‚é‚©ƒ`ƒFƒbƒN‚·‚é
+	// æ¬¡ã®ãƒªã‚¹ãƒˆã«é€²ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	if( ZknPokeListSubListMoveOkCheck( p_work, p_glb->p_pokelist_glb->p_glb ) == FALSE ){
 		p_work->move_dist = 0;
 	}
 
-	// ƒzƒC[ƒ‹•`‰æ”½‰fƒp[ƒZƒ“ƒgŒvŽZ
+	// ãƒ›ã‚¤ãƒ¼ãƒ«æç”»åæ˜ ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆè¨ˆç®—
 #ifdef ZKN_POKELIST_SUB_LIST_PAR_SET
 	if( p_glb->button_event[ ZKN_POKELIST_SUB_BUTTON_WHEEL ] != ZKN_UTIL_BUTTON_PUSH_NONE ){
-		// ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚Á‚½‚Æ‚«‚ÍA“®‚©‚µ‚½Šp“x‚Å”½‰f”‚ð•ÏX‚³‚¹‚é
+		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã£ãŸã¨ãã¯ã€å‹•ã‹ã—ãŸè§’åº¦ã§åæ˜ æ•°ã‚’å¤‰æ›´ã•ã›ã‚‹
 		p_work->wheel_rota_par = ZknPokeListSubDrawRefParCalc( p_work->wheel_rota_par, p_work->move_dist );
 	}else{
-		// ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚Á‚Ä‚¢‚È‚¢‚Æ‚«‚ÍA“®‚©‚µ‚Ä‚¢‚È‚¢‚Æ‚µ‚Ä
-		// ‚O‚ÅŒvŽZ‚·‚é
+		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã£ã¦ã„ãªã„ã¨ãã¯ã€å‹•ã‹ã—ã¦ã„ãªã„ã¨ã—ã¦
+		// ï¼ã§è¨ˆç®—ã™ã‚‹
 		p_work->wheel_rota_par = ZknPokeListSubDrawRefParCalc( p_work->wheel_rota_par, 0 );
 	}
 #endif
@@ -1022,9 +1022,9 @@ static void ZknPokeListSubButtonMove( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKELIS
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒzƒC[ƒ‹ƒ{ƒ^ƒ“”jŠü
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«ãƒœã‚¿ãƒ³ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1035,18 +1035,18 @@ static void ZknPokeListSubButtonDelete( ZKN_POKELIST_SUB_WORK* p_work )
 
 	sys_FreeMemoryEz( p_work->p_button_work );
 
-	// ƒe[ƒuƒ‹ƒ[ƒN”jŠü
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_work->hit_tbl );
 	p_work->hit_tbl = NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒzƒC[ƒ‹ƒ{ƒ^ƒ“ƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	button_no	ƒ{ƒ^ƒ“ƒiƒ“ƒo[
- *	@param	event		ƒCƒxƒ“ƒgƒiƒ“ƒo[
- *	@param	p_work		ƒ[ƒN
+ *	@param	button_no	ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1061,7 +1061,7 @@ static void ZknPokeListSubButtonCallBack( u32 button_no, u32 event, void* p_work
 	int zkn_mode;
 
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^Ý’è
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_glb->button_event[ button_no ] = event;
 
 	switch( event ){
@@ -1098,7 +1098,7 @@ static void ZknPokeListSubButtonCallBack( u32 button_no, u32 event, void* p_work
 			break;
 
 		case ZKN_POKELIST_SUB_BUTTON_CANCEL:
-			// CANCEL‚Ü‚½‚ÍA•ª•z}OFF
+			// CANCELã¾ãŸã¯ã€åˆ†å¸ƒå›³OFF
 			if(  p_glb->p_pokelist_glb->p_glb->sort_search_flag == ZKN_SORTSEARCH_NONE ){
 				p_glb->p_pokelist_glb->zukan_end = TRUE;
 			}else{
@@ -1112,12 +1112,12 @@ static void ZknPokeListSubButtonCallBack( u32 button_no, u32 event, void* p_work
 
 		if( button_no == ZKN_POKELIST_SUB_BUTTON_WHEEL ){
  
-			// ƒƒCƒ“‰æ–Ê‘¤‚Åƒ^ƒbƒ`ƒpƒlƒ‹“®ì‚ðƒz[ƒ‹ƒh‚µ‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+			// ãƒ¡ã‚¤ãƒ³ç”»é¢å´ã§ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å‹•ä½œã‚’ãƒ›ãƒ¼ãƒ«ãƒ‰ã—ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( p_glb->p_pokelist_glb->sub_wheel_lock == ZKN_POKELIST_WHEEL_LOCK_NONE ){
-				// ˆÚ“®‚µ‚½‹——£‚ð‹‚ß‚é
+				// ç§»å‹•ã—ãŸè·é›¢ã‚’æ±‚ã‚ã‚‹
 				ZknPokeListSubMoveDistGet( p_datawork );	
 
-				// ‹——£‚ªZKN_POKELIST_SUB_SUB_MIN_SP–¢–ž‚È‚ç‚O‚É‚·‚é
+				// è·é›¢ãŒZKN_POKELIST_SUB_SUB_MIN_SPæœªæº€ãªã‚‰ï¼ã«ã™ã‚‹
 				if( (p_datawork->move_dist <= ZKN_POKELIST_SUB_SUB_MIN_SP) &&
 					(p_datawork->move_dist >= -ZKN_POKELIST_SUB_SUB_MIN_SP) ){
 					p_datawork->move_dist = 0;
@@ -1139,44 +1139,44 @@ static void ZknPokeListSubButtonCallBack( u32 button_no, u32 event, void* p_work
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒTƒu‰æ–Ê@ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚µãƒ–ç”»é¢ã€€ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListSubResLoad( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKELIST_SUB_GLBDRAW* p_drawglb, const ZKN_POKELIST_SUB_GLB* cp_glb, int heap )
 {
-	// ”wŒi
+	// èƒŒæ™¯
 	ZknPokeListSubBgLoad( p_drawglb, cp_glb, heap );
 
-	// ƒzƒC[ƒ‹
+	// ãƒ›ã‚¤ãƒ¼ãƒ«
 	ZknPokeListSubBgSetUp( p_drawglb, heap );
 
 	// OAM
 	ZknPokeListSubOamResLoad( p_work, p_drawglb, heap );
 
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	ZknPokeListSubAddClact( p_work, p_drawglb, cp_glb, heap );
 
-	// FONTOAM“o˜^
+	// FONTOAMç™»éŒ²
 	ZknPokeListSubFontMake( p_work, p_drawglb, cp_glb, heap );
 
-	// BG—Dæ‡ˆÊ•ÏX
+	// BGå„ªå…ˆé †ä½å¤‰æ›´
 	GF_BGL_PrioritySet( ZKN_BG_FRM_AFFINE_S, 3 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒTƒu‰æ–Ê@ƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚µãƒ–ç”»é¢ã€€ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1195,17 +1195,17 @@ static void ZknPokeListSubResDelete( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKE
 	// BG
 	ZknPokeListSubBgDelete( p_drawglb, heap );
 
-	// BG—Dæ‡ˆÊ•ÏX
+	// BGå„ªå…ˆé †ä½å¤‰æ›´
 	GF_BGL_PrioritySet( ZKN_BG_FRM_AFFINE_S, 1 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒTƒu‰æ–Ê@BG–Ê‚ÌÝ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚µãƒ–ç”»é¢ã€€BGé¢ã®è¨­å®š
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1218,46 +1218,46 @@ static void ZknPokeListSubBgLoad( ZKN_POKELIST_SUB_GLBDRAW* p_drawglb, const ZKN
 
 	
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_PalSet( p_drawglb->p_glb_draw, NARC_zukan_zkn_list_NCLR, PALTYPE_SUB_BG, 0, 0, heap );
 
-	// ¿°ÄÓ°ÄÞ‚ÌŽž‚ÍF•ÏX
+	// ã‚½ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯è‰²å¤‰æ›´
 	if( cp_glb->p_pokelist_glb->p_glb->sort_search_flag == ZKN_SORTSEARCH_SORT ){
 
 		ZKN_GLBDATA_PalSet( p_drawglb->p_glb_draw, NARC_zukan_zkn_list2_NCLR, PALTYPE_SUB_BG, ZKN_POKELIST_SUB_BACK_PL * 32, 32, heap );
 	}else{
 
-		// ‘S‘}ŠÓ‚Ì‚Æ‚«‚ÍF‚ð•Ï‚¦‚é
+		// å…¨å›½å›³é‘‘ã®ã¨ãã¯è‰²ã‚’å¤‰ãˆã‚‹
 		if( ZKN_GLBDATA_PokeZknModeGet( cp_glb->p_pokelist_glb->p_glb ) == ZKN_MODE_ZENKOKU ){
 			ZKN_GLBDATA_PalSet( p_drawglb->p_glb_draw, NARC_zukan_zkn_list4_NCLR, PALTYPE_SUB_BG, ZKN_POKELIST_SUB_BACK_PL * 32, 32, heap );
 		}
 	}
 
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_glb_draw, NARC_zukan_zkn_list_sub_lzh_NCGR, p_bg, ZKN_BG_FRM_BACK_S, 0, 0, TRUE, heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_glb_draw, NARC_zukan_zkn_list_bg_sub1_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«ž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_bg, ZKN_BG_FRM_BACK_S,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_bg, ZKN_BG_FRM_BACK_S );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒTƒu‰æ–Ê@OAMƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚µãƒ–ç”»é¢ã€€OAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1267,38 +1267,38 @@ static void ZknPokeListSubOamResLoad( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POK
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_glb_draw;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_glb_draw );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_work->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_list_oam_sub_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_list_oam_sub_lzh_NCGR + ZKN_POKELIST_SUB_RES_ID_OFS,
 			NNS_G2D_VRAM_TYPE_2DSUB, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_work->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_work->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_work->res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			NARC_zukan_zkn_list_oam_NCLR, FALSE, 
 			NARC_zukan_zkn_list_oam_NCLR + ZKN_POKELIST_SUB_RES_ID_OFS, 
 			NNS_G2D_VRAM_TYPE_2DSUB, 
 			ZKN_POKELIST_SUB_TBL_PLTT_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_work->res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_work->res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_work->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_list_oam_sub_lzh_NCER, TRUE,
 			NARC_zukan_zkn_list_oam_sub_lzh_NCER + ZKN_POKELIST_SUB_RES_ID_OFS,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_work->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_list_oam_sub_lzh_NANR, TRUE,
@@ -1309,10 +1309,10 @@ static void ZknPokeListSubOamResLoad( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒTƒu‰æ–Ê@OAMƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚µãƒ–ç”»é¢ã€€OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1325,7 +1325,7 @@ static void ZknPokeListSubOamResRelease( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_
 	CLACT_U_CharManagerDelete( p_work->res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_work->res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_work->res_obj[ CLACT_U_CHAR_RES ] );
@@ -1343,12 +1343,12 @@ static void ZknPokeListSubOamResRelease( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒzƒC[ƒ‹ƒZƒ‹ƒAƒNƒ^[“o˜^
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1359,7 +1359,7 @@ static void ZknPokeListSubAddClact( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKEL
 	CLACT_ADD_SIMPLE	add;
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_glb_draw;
 	
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_list_oam_sub_lzh_NCGR + ZKN_POKELIST_SUB_RES_ID_OFS,
 			NARC_zukan_zkn_list_oam_NCLR + ZKN_POKELIST_SUB_RES_ID_OFS, 
@@ -1372,54 +1372,54 @@ static void ZknPokeListSubAddClact( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKEL
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ðÝ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= 8;
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DSUB;
 	add.heap		= heap;
 	
-	// ƒ|ƒPƒ‚ƒ“‚ð’T‚·
+	// ãƒã‚±ãƒ¢ãƒ³ã‚’æŽ¢ã™
 	add.mat.x = ZKN_POKELIST_SUB_SEARCH_BUTTON_X << FX32_SHIFT;
 	add.mat.y = ZKN_POKELIST_SUB_SEARCH_BUTTON_Y << FX32_SHIFT;
 	add.mat.y += SUB_SURFACE_Y;
 	p_work->clact[ ZKN_POKELIST_SUB_BUTTON_SEARCH ] = CLACT_AddSimple( &add );
 	CLACT_AnmChg( p_work->clact[ ZKN_POKELIST_SUB_BUTTON_SEARCH ],
 			ZKN_POKELSIT_SUB_SEARCH_BUTTON_SEQ );
-	// ¿°ÄÓ°ÄÞ‚ÌŽž‚Í”ñ•\Ž¦
+	// ã‚½ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯éžè¡¨ç¤º
 	if( cp_glb->p_pokelist_glb->p_glb->sort_search_flag == ZKN_SORTSEARCH_SORT ){
 		CLACT_SetDrawFlag( p_work->clact[ ZKN_POKELIST_SUB_BUTTON_SEARCH ], FALSE );
 	}
 
-	// }ŠÓ‚ðØ‚è‘Ö‚¦‚é
+	// å›³é‘‘ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	add.mat.x = ZKN_POKELIST_SUB_ZUKANCHG_BUTTON_X << FX32_SHIFT;
 	add.mat.y = ZKN_POKELIST_SUB_ZUKANCHG_BUTTON_Y << FX32_SHIFT;
 	add.mat.y += SUB_SURFACE_Y;
 	p_work->clact[ ZKN_POKELIST_SUB_BUTTON_ZUKANCHG ] = CLACT_AddSimple( &add );
 	CLACT_AnmChg( p_work->clact[ ZKN_POKELIST_SUB_BUTTON_ZUKANCHG ], ZKN_POKELSIT_SUB_ZUKANCHG_BUTTON_SEQ );
 
-	// }ŠÓ‚ðØ‚è‘Ö‚¦‚ç‚ê‚È‚¢‚Æ‚«‚Í”ñ•\Ž¦‚É‚·‚é
-	// ¿°ÄÓ°ÄÞ‚ÌŽž‚Í”ñ•\Ž¦
+	// å›³é‘‘ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œãªã„ã¨ãã¯éžè¡¨ç¤ºã«ã™ã‚‹
+	// ã‚½ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯éžè¡¨ç¤º
 	if( (ZKN_GLBDATA_PokeZknModeChengeCheck( cp_glb->p_pokelist_glb->p_glb, ZKN_MODE_ZENKOKU ) == FALSE) ||
 		(cp_glb->p_pokelist_glb->p_glb->sort_search_flag == ZKN_SORTSEARCH_SORT) ){
 		CLACT_SetDrawFlag( p_work->clact[ ZKN_POKELIST_SUB_BUTTON_ZUKANCHG ], FALSE );
 	}
 
-	// }ŠÓ‚ðŒ©‚é
+	// å›³é‘‘ã‚’è¦‹ã‚‹
 	add.mat.x = ZKN_POKELIST_SUB_ZUKANSEE_BUTTON_X << FX32_SHIFT;
 	add.mat.y = ZKN_POKELIST_SUB_ZUKANSEE_BUTTON_Y << FX32_SHIFT;
 	add.mat.y += SUB_SURFACE_Y;
 	p_work->clact[ ZKN_POKELIST_SUB_BUTTON_ZUKANSEE ] = CLACT_AddSimple( &add );
 	CLACT_AnmChg( p_work->clact[ ZKN_POKELIST_SUB_BUTTON_ZUKANSEE ], ZKN_POKELSIT_SUB_ZUKANSEE_BUTTON_SEQ );
 
-	// ƒŠƒXƒg‚Ìæ“ª‚Ö
+	// ãƒªã‚¹ãƒˆã®å…ˆé ­ã¸
 	add.mat.x = ZKN_POKELIST_SUB_LISTSTART_BUTTON_X << FX32_SHIFT;
 	add.mat.y = ZKN_POKELIST_SUB_LISTSTART_BUTTON_Y << FX32_SHIFT;
 	add.mat.y += SUB_SURFACE_Y;
 	p_work->list_start = CLACT_AddSimple( &add );
 	CLACT_AnmChg( p_work->list_start, ZKN_POKELSIT_SUB_LISTSTART_BUTTON_SEQ );
 
-	// ƒŠƒXƒg‚ÌÅŒã”ö‚Ö
+	// ãƒªã‚¹ãƒˆã®æœ€å¾Œå°¾ã¸
 	add.mat.x = ZKN_POKELIST_SUB_LISTEND_BUTTON_X << FX32_SHIFT;
 	add.mat.y = ZKN_POKELIST_SUB_LISTEND_BUTTON_Y << FX32_SHIFT;
 	add.mat.y += SUB_SURFACE_Y;
@@ -1427,7 +1427,7 @@ static void ZknPokeListSubAddClact( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKEL
 	CLACT_AnmChg( p_work->list_end, ZKN_POKELSIT_SUB_LISTEND_BUTTON_SEQ );
 
 
-	// B‚Æ‚¢‚¤ƒ{ƒ^ƒ“
+	// Bã¨ã„ã†ãƒœã‚¿ãƒ³
 	add.mat.x = ZKN_POKELIST_SUB_BUTTON_B_X << FX32_SHIFT;
 	add.mat.y = ZKN_POKELIST_SUB_BUTTON_B_Y << FX32_SHIFT;
 	add.mat.y += SUB_SURFACE_Y;
@@ -1437,9 +1437,9 @@ static void ZknPokeListSubAddClact( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKEL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1456,33 +1456,33 @@ static void ZknPokeListSubDeleteClact( ZKN_POKELIST_SUB_DRAWWORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAMì¬
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆ
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListSubFontMake( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKELIST_SUB_GLBDRAW* p_drawglb, const ZKN_POKELIST_SUB_GLB* cp_glb, int heap )
 {
-	GF_BGL_BMPWIN* win;	// •¶Žš—ñ‘‚«ž‚Ýæ
+	GF_BGL_BMPWIN* win;	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿å…ˆ
 	ZKN_FONTOAM_INIT fontoam_init;
 	CLACT_U_RES_OBJ_PTR res_obj;
 	ZKN_GLB_DRAWDATA* p_glb_draw = p_drawglb->p_glb_draw;
-	int pltt_ofs;	// ƒpƒŒƒbƒgƒAƒhƒŒƒX
+	int pltt_ofs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 
-	// æ‚ÉCLACT‚ð“o˜^‚µ‚Ä‚ ‚é•K—v‚ª‚ ‚é
+	// å…ˆã«CLACTã‚’ç™»éŒ²ã—ã¦ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 	GF_ASSERT( p_work->clact[ ZKN_POKELIST_SUB_BUTTON_SEARCH ] );
 
-	// ƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒf[ƒ^Žæ“¾
-	// ƒpƒŒƒbƒgƒvƒƒNƒVŽæ“¾—p
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·å–å¾—ç”¨
 	res_obj = CLACT_U_ResManagerGetIDResObjPtr( p_glb_draw->res_manager[ CLACT_U_PLTT_RES ], NARC_zukan_zkn_list_oam_NCLR + ZKN_POKELIST_SUB_RES_ID_OFS );
 
-	// ‰Šú‰»ƒf[ƒ^‚Ì‹¤’Ê•”•ª‚ðì¬
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã®å…±é€šéƒ¨åˆ†ã‚’ä½œæˆ
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_glb_draw->fontoam_sys;
 	fontoam_init.pltt		 = CLACT_U_PlttManagerGetProxy( res_obj, NULL );
 	fontoam_init.x			 = ZKN_POKELIST_SUB_FONTOAM_OFS_X;
@@ -1492,37 +1492,37 @@ static void ZknPokeListSubFontMake( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKEL
 	fontoam_init.draw_area	 = NNS_G2D_VRAM_TYPE_2DSUB;
 	fontoam_init.heap		 = heap;
 
-	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXŽæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	pltt_ofs = GetPlttProxyOffset( fontoam_init.pltt, NNS_G2D_VRAM_TYPE_2DSUB );
 
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( p_glb_draw->fontoam_sys, 
 			ZKN_POKELSIT_SUB_FONT_BMP_SIZE_CX,
 			ZKN_POKELSIT_SUB_FONT_BMP_SIZE_CY );
 
-	// SORT‰æ–Ê‚Ö
+	// SORTç”»é¢ã¸
 	ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
 			NARC_msg_zkn_dat, ZNK_POKELIST_BUTTON_05, 0, 0 );
 	fontoam_init.p_bmp		 = win;
 	fontoam_init.parent = p_work->clact[ ZKN_POKELIST_SUB_BUTTON_SEARCH ];
 	p_work->p_fontoam[ ZKN_POKELIST_SUB_BUTTON_SEARCH ] = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_work->p_fontoam[ ZKN_POKELIST_SUB_BUTTON_SEARCH ]->p_fontoam, pltt_ofs + ZKN_POKELIST_SUB_BUTTON_FONT_COL );
-	// ¿°ÄÓ°ÄÞ‚ÌŽž‚Í”ñ•\Ž¦
+	// ã‚½ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯éžè¡¨ç¤º
 	if( cp_glb->p_pokelist_glb->p_glb->sort_search_flag == ZKN_SORTSEARCH_SORT ){
 		FONTOAM_SetDrawFlag( p_work->p_fontoam[ ZKN_POKELIST_SUB_BUTTON_SEARCH ]->p_fontoam, FALSE );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( p_glb_draw->fontoam_sys, 
 			ZKN_POKELSIT_SUB_FONT_BMP_SIZE_CX,
 			ZKN_POKELSIT_SUB_FONT_BMP_SIZE_CY );
 
-	// }ŠÓØ‚è‘Ö‚¦
+	// å›³é‘‘åˆ‡ã‚Šæ›¿ãˆ
 	ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
 			NARC_msg_zkn_dat, ZNK_POKELIST_BUTTON_03, 0, 0 );
 	fontoam_init.p_bmp		 = win;
@@ -1530,22 +1530,22 @@ static void ZknPokeListSubFontMake( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKEL
 	p_work->p_fontoam[ ZKN_POKELIST_SUB_BUTTON_ZUKANCHG ] = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_work->p_fontoam[ ZKN_POKELIST_SUB_BUTTON_ZUKANCHG ]->p_fontoam, pltt_ofs + ZKN_POKELIST_SUB_BUTTON_FONT_COL );
 
-	// }ŠÓ‚ðØ‚è‘Ö‚¦‚ç‚ê‚È‚¢‚Æ‚«‚Í”ñ•\Ž¦‚É‚·‚é
+	// å›³é‘‘ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œãªã„ã¨ãã¯éžè¡¨ç¤ºã«ã™ã‚‹
 	if( (ZKN_GLBDATA_PokeZknModeChengeCheck( cp_glb->p_pokelist_glb->p_glb, ZKN_MODE_ZENKOKU ) == FALSE) ||
 		(cp_glb->p_pokelist_glb->p_glb->sort_search_flag == ZKN_SORTSEARCH_SORT) ){
 		FONTOAM_SetDrawFlag( p_work->p_fontoam[ ZKN_POKELIST_SUB_BUTTON_ZUKANCHG ]->p_fontoam, FALSE );
 	}
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( p_glb_draw->fontoam_sys, 
 			ZKN_POKELSIT_SUB_FONT_BMP_SIZE_CX,
 			ZKN_POKELSIT_SUB_FONT_BMP_SIZE_CY );
 	
-	// }ŠÓ‚ðŒ©‚é
+	// å›³é‘‘ã‚’è¦‹ã‚‹
 	ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
 			NARC_msg_zkn_dat, ZNK_BUTTON_00, 0, 0 );
 	fontoam_init.p_bmp		 = win;
@@ -1553,16 +1553,16 @@ static void ZknPokeListSubFontMake( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKEL
 	p_work->p_fontoam[ ZKN_POKELIST_SUB_BUTTON_ZUKANSEE ] = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_work->p_fontoam[ ZKN_POKELIST_SUB_BUTTON_ZUKANSEE ]->p_fontoam, pltt_ofs + ZKN_POKELIST_SUB_BUTTON_FONT_COL_ZUKAN );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( p_glb_draw->fontoam_sys, 
 			ZKN_POKELIST_SUB_FONT_B_BMP_CX,
 			ZKN_POKELIST_SUB_FONT_B_BMP_CY );
 
-	// Bƒ{ƒ^ƒ“‚Ì‰¡‚ÌƒtƒHƒ“ƒgOAM
+	// Bãƒœã‚¿ãƒ³ã®æ¨ªã®ãƒ•ã‚©ãƒ³ãƒˆOAM
 	if( cp_glb->p_pokelist_glb->p_glb->sort_search_flag == ZKN_SORTSEARCH_NONE ){
 		ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
 				NARC_msg_zkn_dat, ZNK_BACK_00, 0, 0 );
@@ -1577,15 +1577,15 @@ static void ZknPokeListSubFontMake( ZKN_POKELIST_SUB_DRAWWORK* p_work, ZKN_POKEL
 	p_work->p_fontoam_B = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_work->p_fontoam_B->p_fontoam, pltt_ofs + ZKN_POKELIST_SUB_BUTTON_FONT_COL_CLOSE );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1602,10 +1602,10 @@ static void ZknPokeListSubFontDelete( ZKN_POKELIST_SUB_DRAWWORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒzƒC[ƒ‹–Ê‚Ì•\Ž¦	
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«é¢ã®è¡¨ç¤º	
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1616,32 +1616,32 @@ static void ZknPokeListSubBgSetUp( ZKN_POKELIST_SUB_GLBDRAW* p_drawglb, int heap
 	NNSG2dScreenData* p_scrn;
 	GF_BGL_INI* p_bg = p_drawglb->p_glb_draw->p_bg;
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_glb_draw, NARC_zukan_zkn_list_disk_lzh_NCGR, p_bg, ZKN_BG_FRM_AFFINE_S, 0, 0, TRUE, heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_glb_draw, NARC_zukan_zkn_list_bg_disk_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«ž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_bg, ZKN_BG_FRM_AFFINE_S,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_bg, ZKN_BG_FRM_AFFINE_S );
 
-	// ƒXƒNƒŠ[ƒ“À•W‚ðÝ’è
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’è¨­å®š
 	GF_BGL_ScrollSet( p_bg, ZKN_BG_FRM_AFFINE_S, GF_BGL_SCROLL_X_SET, ZKN_POKELIST_SUB_BGFADE_DEF_X );
 	GF_BGL_ScrollSet( p_bg, ZKN_BG_FRM_AFFINE_S, GF_BGL_SCROLL_Y_SET, ZKN_POKELSIT_SUB_MAT_Y );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“‚ð‰Šú‰»
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’åˆæœŸåŒ–
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return
  */
@@ -1655,10 +1655,10 @@ static void ZknPokeListSubBgDelete( ZKN_POKELIST_SUB_GLBDRAW* p_drawglb, int hea
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒJƒEƒ“ƒgˆ—
+ *	@brief	ãƒªã‚¹ãƒˆã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return
  */
@@ -1668,32 +1668,32 @@ static void ZknPokeListSubListCount( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKELIST
 	int rota;
 	ZKN_GLB_DATA* p_zkn_glb = p_glb->p_pokelist_glb->p_glb;
 
-	// ¡ƒJƒEƒ“ƒg’†‚Å‚È‚¢‚È‚ç‘«‚·
+	// ä»Šã‚«ã‚¦ãƒ³ãƒˆä¸­ã§ãªã„ãªã‚‰è¶³ã™
 	if( p_glb->p_pokelist_glb->move_count <= 0 ){
 		
-		// ƒJƒEƒ“ƒg’l‚ª‚ ‚é
+		// ã‚«ã‚¦ãƒ³ãƒˆå€¤ãŒã‚ã‚‹
 		if( p_work->move_dist_list != 0 ){
 			
-			// “o˜^
-			// Ž¸”s‚µ‚½‚ç“®ì’âŽ~
+			// ç™»éŒ²
+			// å¤±æ•—ã—ãŸã‚‰å‹•ä½œåœæ­¢
 			if( ZknPokeListSubListAdd( p_work, p_zkn_glb ) == FALSE ){
 
 				ZknPokeListSubListMoveStop( p_work, p_glb );
 			}else{
 				p_glb->p_pokelist_glb->move_count = ZKN_POKELIST_MOVE_END_COUNT;
 			
-				// ‘I‘ðˆÚ“®‰¹
+				// é¸æŠžç§»å‹•éŸ³
 				Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 			}
 
 		}else{
 
-			// “®‚©‚¸“®ìƒJƒEƒ“ƒg‚à‚O‚È‚çI‚í‚è
+			// å‹•ã‹ãšå‹•ä½œã‚«ã‚¦ãƒ³ãƒˆã‚‚ï¼ãªã‚‰çµ‚ã‚ã‚Š
 			p_glb->p_pokelist_glb->move_way = ZKN_POKE_LIST_NO_MOVE;
 		}
 	}
 
-	// •ûŒüÝ’è
+	// æ–¹å‘è¨­å®š
 	if( p_work->move_dist_list < 0 ){
 		p_glb->p_pokelist_glb->move_way = ZKN_POKE_LIST_UP;
 	}else{
@@ -1702,22 +1702,22 @@ static void ZknPokeListSubListCount( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKELIST
 		}
 	}
 
-	// ƒŠƒXƒg“®ì
+	// ãƒªã‚¹ãƒˆå‹•ä½œ
 	if( p_glb->p_pokelist_glb->move_way != ZKN_POKE_LIST_NO_MOVE ){
 		
-		// â‘Î’l‚É‚·‚é
+		// çµ¶å¯¾å€¤ã«ã™ã‚‹
 		if( p_work->move_dist_list < 0 ){
 			rota = -p_work->move_dist_list;
 		}else{
 			rota = p_work->move_dist_list;
 		}
 
-		// ƒJƒEƒ“ƒg’l‚ðŽæ“¾
+		// ã‚«ã‚¦ãƒ³ãƒˆå€¤ã‚’å–å¾—
 		rota /= ZKN_POKELIST_SUB_COUNT_R;
 
-		// ƒJƒEƒ“ƒgˆ—
+		// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 		p_glb->p_pokelist_glb->move_count -= rota;
-		// ƒJƒEƒ“ƒ^‚ªÅŒã‚Ü‚Ås‚Á‚½‚©ƒ`ƒFƒbƒN
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒæœ€å¾Œã¾ã§è¡Œã£ãŸã‹ãƒã‚§ãƒƒã‚¯
 		if( p_glb->p_pokelist_glb->move_count < 0 ){	
 			p_glb->p_pokelist_glb->move_count = 0;
 		}
@@ -1726,9 +1726,9 @@ static void ZknPokeListSubListCount( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKELIST
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]‚µ‚½‹——£‚ðŽæ“¾		06.08.02ˆÚ“®‹——£‚É•ÏX
+ *	@brief	å›žè»¢ã—ãŸè·é›¢ã‚’å–å¾—		06.08.02ç§»å‹•è·é›¢ã«å¤‰æ›´
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1738,13 +1738,13 @@ static void ZknPokeListSubMoveDistGet( ZKN_POKELIST_SUB_WORK* p_work )
 	int last_y, last_x;
 	int now_y, now_x;
 
-	// ƒzƒC[ƒ‹‚Ì’†SÀ•W‚©‚ç‚Ì’l‚É‚·‚é
+	// ãƒ›ã‚¤ãƒ¼ãƒ«ã®ä¸­å¿ƒåº§æ¨™ã‹ã‚‰ã®å€¤ã«ã™ã‚‹
 	last_x = p_work->tp_last_x - ZKN_POKELIST_SUB_CX;
 	last_y = p_work->tp_last_y - ZKN_POKELIST_SUB_CY;
 	now_x = sys.tp_x - ZKN_POKELIST_SUB_CX;
 	now_y = sys.tp_y - ZKN_POKELIST_SUB_CY;
 
-	// “®‚³’l‚ð‹‚ß‚é
+	// å‹•ã•å€¤ã‚’æ±‚ã‚ã‚‹
 //	p_work->move_dist = CalcTool_CircleVectorMove( last_x, last_y, now_x, now_y );
 	p_work->move_dist = CalcTool_CircleVectorDistance( last_x, last_y, now_x, now_y, ZKN_POKELIST_SUB_MOVE_CACL_R );
 	p_work->move_dist *= ZKN_POKELIST_SUB_MOVE_CACL_MUL;
@@ -1755,20 +1755,20 @@ static void ZknPokeListSubMoveDistGet( ZKN_POKELIST_SUB_WORK* p_work )
 
 	p_work->move_dist = now_rota - last_rota;
 
-	// â‘Î’l‚ð‹‚ß‚é
+	// çµ¶å¯¾å€¤ã‚’æ±‚ã‚ã‚‹
 	if( p_work->move_dist < 0 ){
 		zettai = -p_work->move_dist;
 	}else{
 		zettai = p_work->move_dist;
 	}
 
-	// 180ˆÈã‚É‚È‚é‚±‚Æ‚Íl‚¦‚É‚­‚¢‚»‚Ìê‡‚Í,‚O‚ð‚R‚U‚O‚Æ‚µ‚Äl‚¦‚é
+	// 180ä»¥ä¸Šã«ãªã‚‹ã“ã¨ã¯è€ƒãˆã«ãã„ãã®å ´åˆã¯,ï¼ã‚’ï¼“ï¼–ï¼ã¨ã—ã¦è€ƒãˆã‚‹
 	if( zettai >= FX_GET_ROTA_NUM(180) ){
 		zettai = FX_GET_ROTA_NUM(360) - zettai;
-		zettai = -zettai;		// 0->360‚Æ‚¢‚¤l‚¦‚É‚È‚é‚©‚çƒxƒNƒgƒ‹‚ð•Ï‚¦‚é•K—v‚ª‚ ‚é
+		zettai = -zettai;		// 0->360ã¨ã„ã†è€ƒãˆã«ãªã‚‹ã‹ã‚‰ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¤‰ãˆã‚‹å¿…è¦ãŒã‚ã‚‹
 	}
 
-	// Ý’è
+	// è¨­å®š
 	if( p_work->move_dist < 0 ){
 		p_work->move_dist = -zettai;
 	}else{
@@ -1779,12 +1779,12 @@ static void ZknPokeListSubMoveDistGet( ZKN_POKELIST_SUB_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒzƒC[ƒ‹‚Ì•`‰æ“®ì
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«ã®æç”»å‹•ä½œ
  *
- *	@param	p_drawwork	•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	add_num		‰ñ“]Šp‚ð“®‚©‚·’l
- *	@param	draw_ref_par	•`‰æ‰ñ“]Šp”½‰fƒp[ƒZƒ“ƒg
+ *	@param	p_drawwork	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	add_num		å›žè»¢è§’ã‚’å‹•ã‹ã™å€¤
+ *	@param	draw_ref_par	æç”»å›žè»¢è§’åæ˜ ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
  *
  *	@return	none
  */
@@ -1795,32 +1795,32 @@ static void ZknPokeListSubDrawMove( ZKN_POKELIST_SUB_DRAWWORK* p_drawwork, ZKN_P
 	int add_rot_num;
 	add_rot_num = FX_Mul( add_num*FX32_ONE, draw_ref_par ) >> FX32_SHIFT;
 	
-	// ‰ñ“]Šp“x‚ð‹‚ß‚é
+	// å›žè»¢è§’åº¦ã‚’æ±‚ã‚ã‚‹
 	p_drawwork->wheel_rota += add_rot_num;
 	p_drawwork->wheel_rota &= 0xffff;
 #else
 
-	// ‰ñ“]Šp“x‚ð‹‚ß‚é
+	// å›žè»¢è§’åº¦ã‚’æ±‚ã‚ã‚‹
 	p_drawwork->wheel_rota += add_num;
 	p_drawwork->wheel_rota &= 0xffff;
 #endif
 
-	// ‰ñ“]Šp“x‚ÌÝ’è
+	// å›žè»¢è§’åº¦ã®è¨­å®š
 	GF_BGL_RadianSetReq( p_drawglb->p_glb_draw->p_bg, ZKN_BG_FRM_AFFINE_S, GF_BGL_RADION_SET, p_drawwork->wheel_rota / 182 );
 	GF_BGL_RotateCenterSetReq( p_drawglb->p_glb_draw->p_bg, ZKN_BG_FRM_AFFINE_S, GF_BGL_CENTER_X_SET, ZKN_POKELIST_SUB_BGCX );
 	GF_BGL_RotateCenterSetReq( p_drawglb->p_glb_draw->p_bg, ZKN_BG_FRM_AFFINE_S, GF_BGL_CENTER_Y_SET, ZKN_POKELIST_SUB_BGCY );
 
-	// lock‚³‚ê‚½‚Æ‹N—p‚ÉŠp“x‚ð•Û‘¶
+	// lockã•ã‚ŒãŸã¨èµ·ç”¨ã«è§’åº¦ã‚’ä¿å­˜
 	p_drawwork->save_wheel_rota = p_drawwork->wheel_rota;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	lock‚³‚ê‚Ä‚¢‚é‚Æ‚«‚ÉƒzƒC[ƒ‹‚ÌŠG‚ð“®‚©‚·
+ *	@brief	lockã•ã‚Œã¦ã„ã‚‹ã¨ãã«ãƒ›ã‚¤ãƒ¼ãƒ«ã®çµµã‚’å‹•ã‹ã™
  *
- *	@param	p_drawwork		•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹
+ *	@param	p_drawwork		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1831,26 +1831,26 @@ static void ZknPokeListSubDrawMoveLockTime( ZKN_POKELIST_SUB_DRAWWORK* p_drawwor
 	int calc;
 	int count = ZKN_POKELIST_MOVE_END_COUNT - cp_glb->p_pokelist_glb->move_count;
 	
-	//@¡‚ÌŠp“xŒvŽZ
+	//ã€€ä»Šã®è§’åº¦è¨ˆç®—
 	calc = ZKN_POKELIST_SUB_LOCK_MOVE_DRAW_MAX * count;
 	rota_num = calc / ZKN_POKELIST_MOVE_END_COUNT;
 	
-	// -•ûŒüÝ’è
+	// -æ–¹å‘è¨­å®š
 	if( cp_glb->p_pokelist_glb->move_way == ZKN_POKE_LIST_UP ){
 		rota_num = -rota_num;
 	}
 
-	// ‰ñ“]Šp“x‚ð‹‚ß‚é
+	// å›žè»¢è§’åº¦ã‚’æ±‚ã‚ã‚‹
 	p_drawwork->wheel_rota = p_drawwork->save_wheel_rota + rota_num;
 	p_drawwork->wheel_rota &= 0xffff;
 
-	// ‰ñ“]Šp“x‚ÌÝ’è
+	// å›žè»¢è§’åº¦ã®è¨­å®š
 	GF_BGL_RadianSetReq( p_drawglb->p_glb_draw->p_bg, ZKN_BG_FRM_AFFINE_S, GF_BGL_RADION_SET, p_drawwork->wheel_rota / 182 );
 	GF_BGL_RotateCenterSetReq( p_drawglb->p_glb_draw->p_bg, ZKN_BG_FRM_AFFINE_S, GF_BGL_CENTER_X_SET, ZKN_POKELIST_SUB_BGCX );
 	GF_BGL_RotateCenterSetReq( p_drawglb->p_glb_draw->p_bg, ZKN_BG_FRM_AFFINE_S, GF_BGL_CENTER_Y_SET, ZKN_POKELIST_SUB_BGCY );
 
 
-	// “®ìƒJƒEƒ“ƒ^‚ª0‚ÌŽž‰ñ“]Šp‚ðƒZ[ƒu‚·‚é
+	// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã®æ™‚å›žè»¢è§’ã‚’ã‚»ãƒ¼ãƒ–ã™ã‚‹
 	if( cp_glb->p_pokelist_glb->move_count == 0 ){
 		p_drawwork->save_wheel_rota = p_drawwork->wheel_rota;
 	} 
@@ -1859,17 +1859,17 @@ static void ZknPokeListSubDrawMoveLockTime( ZKN_POKELIST_SUB_DRAWWORK* p_drawwor
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒzƒC[ƒ‹‚ÌƒXƒs[ƒh‚ð—Ž‚Æ‚·
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è½ã¨ã™
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	move_count “®ìƒJƒEƒ“ƒ^
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	move_count å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListSubResist( ZKN_POKELIST_SUB_WORK* p_work, int move_count, int move_way )
 {
-	// •`‰æ—p‰ñ“]ŠpŒvŽZ
+	// æç”»ç”¨å›žè»¢è§’è¨ˆç®—
 	if( p_work->move_dist > 0 ){
 		if( p_work->move_dist - ZKN_POKELIST_SUB_SUB_R >= ZKN_POKELIST_SUB_SUBDRAWLIMIT_R ){
 
@@ -1886,19 +1886,19 @@ static void ZknPokeListSubResist( ZKN_POKELIST_SUB_WORK* p_work, int move_count,
 		}
 	}
 
-	// ‹——£‚ð’l”½‰f—p‹——£‚ÉÝ’è
+	// è·é›¢ã‚’å€¤åæ˜ ç”¨è·é›¢ã«è¨­å®š
 	p_work->move_dist_list = p_work->move_dist;
 
 
-	// “®ì‹——£‚ª@ZKN_POKELIST_SUB_COUNT_R‚Ì‚Æ‚«‚Å
-	// move_count‚ª0‚È‚ç‰ñ“]‚ðŽ~‚ß‚é
+	// å‹•ä½œè·é›¢ãŒã€€ZKN_POKELIST_SUB_COUNT_Rã®ã¨ãã§
+	// move_countãŒ0ãªã‚‰å›žè»¢ã‚’æ­¢ã‚ã‚‹
 	if( (p_work->move_dist <= ZKN_POKELIST_SUB_SUBLIMIT_R) && 
 		(p_work->move_dist >= -ZKN_POKELIST_SUB_SUBLIMIT_R)){
 		if( move_count == 0 ){
 			p_work->move_dist_list = 0;
 
-			// ‚³‚ç‚ÉZKN_POKELIST_SUB_SUBDRAWLIMIT_RˆÈ‰º‚È‚ç•`‰æ—p
-			// ¶³ÝÀ‚à‚Æ‚ß‚é
+			// ã•ã‚‰ã«ZKN_POKELIST_SUB_SUBDRAWLIMIT_Rä»¥ä¸‹ãªã‚‰æç”»ç”¨
+			// ã‚«ã‚¦ãƒ³ã‚¿ã‚‚ã¨ã‚ã‚‹
 			if( (p_work->move_dist <= ZKN_POKELIST_SUB_SUBDRAWLIMIT_R) && 
 				(p_work->move_dist >= -ZKN_POKELIST_SUB_SUBDRAWLIMIT_R)){
 				p_work->move_dist = 0;
@@ -1909,8 +1909,8 @@ static void ZknPokeListSubResist( ZKN_POKELIST_SUB_WORK* p_work, int move_count,
 			}
 		}else{
 
-			// ƒJƒEƒ“ƒg‚ª‚Æ‚Ü‚ç‚È‚¢‚æ‚¤‚É
-			// ZKN_POKELIST_SUB_COUNT_R‚¢‚©‚É‚µ‚È‚¢
+			// ã‚«ã‚¦ãƒ³ãƒˆãŒã¨ã¾ã‚‰ãªã„ã‚ˆã†ã«
+			// ZKN_POKELIST_SUB_COUNT_Rã„ã‹ã«ã—ãªã„
 			if( move_way == ZKN_POKE_LIST_UP ){
 				p_work->move_dist_list = -ZKN_POKELIST_SUB_SUBLIMIT_R;
 				p_work->move_dist = -ZKN_POKELIST_SUB_SUBLIMIT_R;
@@ -1925,13 +1925,13 @@ static void ZknPokeListSubResist( ZKN_POKELIST_SUB_WORK* p_work, int move_count,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg“®ì
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆå‹•ä½œ
  *
- *	@param	act				ƒAƒNƒ^[
- *	@param	p_fontoam		ƒtƒHƒ“ƒgOAM
- *	@param	def_y			ƒfƒtƒHƒ‹ƒgYˆÊ’u
- *	@param	off_pltt		ƒ{ƒ^ƒ“OFFŽž‚ÌƒJƒ‰[ƒpƒŒƒbƒg
- *	@param	on_pltt			ƒ{ƒ^ƒ“ONŽž‚ÌƒJƒ‰[ƒpƒŒƒbƒg
+ *	@param	act				ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	p_fontoam		ãƒ•ã‚©ãƒ³ãƒˆOAM
+ *	@param	def_y			ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆYä½ç½®
+ *	@param	off_pltt		ãƒœã‚¿ãƒ³OFFæ™‚ã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+ *	@param	on_pltt			ãƒœã‚¿ãƒ³ONæ™‚ã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  *	@return	none
  */
@@ -1943,9 +1943,9 @@ static void ZknPokelistSubButtonFontMove( CLACT_WORK_PTR act, ZKN_FONTOAM_DATA* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“‰æ–Ê‚ÌŠÇ—‚µ‚Ä‚¢‚éƒL[‘€ì‚É‚æ‚éƒ{ƒ^ƒ“‚Ì“®ì
+ *	@brief	ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ç®¡ç†ã—ã¦ã„ã‚‹ã‚­ãƒ¼æ“ä½œã«ã‚ˆã‚‹ãƒœã‚¿ãƒ³ã®å‹•ä½œ
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -1954,19 +1954,19 @@ static void ZknPokeListSubButton_KeyMove( ZKN_POKELIST_SUB_GLB* p_glb )
 {
 	ZKN_POKELIST_GLB_DATA* p_main_glb = p_glb->p_pokelist_glb;
 	
-	// }ŠÓ‰æ–Ê‚Ö
+	// å›³é‘‘ç”»é¢ã¸
 	if( p_main_glb->zukan_see ){
 		p_glb->button_event[ ZKN_POKELIST_SUB_BUTTON_ZUKANSEE ] = BMN_EVENT_HOLD;
 		return;
 	}//*/
 
-	// SORT‰æ–Ê‚Ö
+	// SORTç”»é¢ã¸
 	if( p_main_glb->sort_chg ){
 		p_glb->button_event[ ZKN_POKELIST_SUB_BUTTON_SEARCH ] = BMN_EVENT_HOLD;
 		return;
 	}
 
-	// }ŠÓ‚ðØ‚è‘Ö‚¦‚é
+	// å›³é‘‘ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	if( p_main_glb->zukan_chg ){
 		p_glb->button_event[ ZKN_POKELIST_SUB_BUTTON_ZUKANCHG ] = BMN_EVENT_HOLD;
 		return;
@@ -1976,13 +1976,13 @@ static void ZknPokeListSubButton_KeyMove( ZKN_POKELIST_SUB_GLB* p_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒzƒC[ƒ‹‚Ìi‚ñ‚Å‚¢‚é•ûŒü‚ðŒ©‚ÄA‚»‚Ì•ûŒü‚Éi‚ß‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«ã®é€²ã‚“ã§ã„ã‚‹æ–¹å‘ã‚’è¦‹ã¦ã€ãã®æ–¹å‘ã«é€²ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param  p_work		ƒ[ƒN
- *	@param	p_glb		}ŠÓƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param  p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb		å›³é‘‘ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	‚Ü‚¾‰ñ‚Á‚ÄOK
- *	@retval	FALSE	‰ñ‚Á‚¿‚á‚¾‚ß
+ *	@retval	TRUE	ã¾ã å›žã£ã¦OK
+ *	@retval	FALSE	å›žã£ã¡ã‚ƒã ã‚
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknPokeListSubListMoveOkCheck( ZKN_POKELIST_SUB_WORK* p_work, ZKN_GLB_DATA* p_glb )
@@ -1991,14 +1991,14 @@ static BOOL ZknPokeListSubListMoveOkCheck( ZKN_POKELIST_SUB_WORK* p_work, ZKN_GL
 
 	if( p_work->move_dist != 0 ){
 
-		// ƒŠƒXƒg‚ð‘«‚·‚±‚Æ‚ª‚Å‚«‚é‚Ì‚©ƒ`ƒFƒbƒN
-		// ‘«‚·’l‚ð‘ã“ü
+		// ãƒªã‚¹ãƒˆã‚’è¶³ã™ã“ã¨ãŒã§ãã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
+		// è¶³ã™å€¤ã‚’ä»£å…¥
 		if( p_work->move_dist < 0 ){
 			add_count = 1;
 		}else{
 			add_count = -1;
 		}
-		// Ž¸”s‚µ‚½‚ç“®ì’âŽ~
+		// å¤±æ•—ã—ãŸã‚‰å‹•ä½œåœæ­¢
 		if( ZKN_GLBDATA_PokeListDrawTblNoAddCheck( p_glb, add_count ) == FALSE ){
 			return FALSE;
 		}
@@ -2008,13 +2008,13 @@ static BOOL ZknPokeListSubListMoveOkCheck( ZKN_POKELIST_SUB_WORK* p_work, ZKN_GL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒg‘«‚µŽZ
+ *	@brief	ãƒªã‚¹ãƒˆè¶³ã—ç®—
  *
- *	@param  p_work		ƒ[ƒN
- *	@param	p_glb		}ŠÓƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param  p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb		å›³é‘‘ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	‚Ü‚¾‰ñ‚Á‚ÄOK
- *	@retval	FALSE	‰ñ‚Á‚¿‚á‚¾‚ß
+ *	@retval	TRUE	ã¾ã å›žã£ã¦OK
+ *	@retval	FALSE	å›žã£ã¡ã‚ƒã ã‚
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknPokeListSubListAdd( ZKN_POKELIST_SUB_WORK* p_work, ZKN_GLB_DATA* p_glb )
@@ -2023,14 +2023,14 @@ static BOOL ZknPokeListSubListAdd( ZKN_POKELIST_SUB_WORK* p_work, ZKN_GLB_DATA* 
 
 	if( p_work->move_dist_list != 0 ){
 
-		// ƒŠƒXƒg‚ð‘«‚·‚±‚Æ‚ª‚Å‚«‚é‚Ì‚©ƒ`ƒFƒbƒN
-		// ‘«‚·’l‚ð‘ã“ü
+		// ãƒªã‚¹ãƒˆã‚’è¶³ã™ã“ã¨ãŒã§ãã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
+		// è¶³ã™å€¤ã‚’ä»£å…¥
 		if( p_work->move_dist_list < 0 ){
 			add_count = 1;
 		}else{
 			add_count = -1;
 		}
-		// Ž¸”s‚µ‚½‚ç“®ì’âŽ~
+		// å¤±æ•—ã—ãŸã‚‰å‹•ä½œåœæ­¢
 		if( ZKN_GLBDATA_PokeListDrawTblNoAdd( p_glb, add_count ) == FALSE ){
 			return FALSE;
 		}
@@ -2040,7 +2040,7 @@ static BOOL ZknPokeListSubListAdd( ZKN_POKELIST_SUB_WORK* p_work, ZKN_GLB_DATA* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒzƒC[ƒ‹‹­§I—¹
+ *	@brief	ãƒ›ã‚¤ãƒ¼ãƒ«å¼·åˆ¶çµ‚äº†
  *
  *	@param	p_work
  *	@param	p_glb 
@@ -2055,15 +2055,15 @@ static void ZknPokeListSubListMoveStop( ZKN_POKELIST_SUB_WORK* p_work, ZKN_POKEL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒiƒ“ƒo[Ý’è
+ *	@brief	ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼è¨­å®š
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	no		ƒŠƒXƒgƒiƒ“ƒo[
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	no		ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListSub_ListNoChange( ZKN_POKELIST_SUB_GLB* p_glb, int no )
 {
-	// ‚»‚Ì‘¼‰æ–ÊØ‚è‘Ö‚¦ƒŠƒNƒGƒXƒg‚ª—ˆ‚Ä‚¢‚½‚çˆ—‚µ‚È‚¢
+	// ãã®ä»–ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ¥ã¦ã„ãŸã‚‰å‡¦ç†ã—ãªã„
 	if( ZKN_PokeList_SubEventSetOkCheck( p_glb->p_pokelist_glb ) == FALSE ){
 		return ;
 	}
@@ -2071,28 +2071,28 @@ static void ZknPokeListSub_ListNoChange( ZKN_POKELIST_SUB_GLB* p_glb, int no )
 	ZKN_GLBDATA_PokeListTblNoSet( p_glb->p_pokelist_glb->p_glb, no );
 
 	(*p_glb->p_event_key) |= ZKN_POKELIST_SUB_EVENT_POKELIST;
-	// “®ìƒJƒEƒ“ƒ^‚à‰Šú‰»
+	// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿ã‚‚åˆæœŸåŒ–
 	 p_glb->p_pokelist_glb->move_count = 0;	
-	// ƒzƒC[ƒ‹‚Ì“®‚«‚ðŽ~‚ß‚é
+	// ãƒ›ã‚¤ãƒ¼ãƒ«ã®å‹•ãã‚’æ­¢ã‚ã‚‹
 	 p_glb->p_pokelist_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_ALL;	
-	// ƒtƒF[ƒhƒCƒ“ƒ‚[ƒh•ÏX
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 	p_glb->p_pokelist_glb->fade_mode = ZKN_POKELIST_BG_FADE_SHUTTER;
 	p_glb->p_pokelist_glb->fade_zukan_data = FALSE;
-	// •ûŒü‚à‚È‚µ
+	// æ–¹å‘ã‚‚ãªã—
 	p_glb->p_pokelist_glb->move_way = ZKN_POKE_LIST_NO_MOVE;
-	// •\Ž¦‚Ì•ÏX‚ÍƒtƒF[ƒhI—¹‚µ‚Ä‚©‚ç
+	// è¡¨ç¤ºã®å¤‰æ›´ã¯ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ã—ã¦ã‹ã‚‰
 	p_glb->p_pokelist_glb->move_draw = FALSE;
 }
 
 #ifdef ZKN_POKELIST_SUB_LIST_PAR_SET
 //----------------------------------------------------------------------------
 /**
- *	@brief	Îß¹ÓÝØ½Ä•`‰æ@ƒzƒC[ƒ‹‰ñ“]Šp”½‰fƒp[ƒZƒ“ƒgŒvŽZŠÖ”
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæç”»ã€€ãƒ›ã‚¤ãƒ¼ãƒ«å›žè»¢è§’åæ˜ ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆè¨ˆç®—é–¢æ•°
  *
- *	@param	now_par		Œ»Ý‚Ì”½‰fƒp[ƒZƒ“ƒg
- *	@param	now_rota	¡ƒvƒŒƒCƒ„[‚ª“ü—Í‚µ‚½‰ñ“]Šp
+ *	@param	now_par		ç¾åœ¨ã®åæ˜ ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
+ *	@param	now_rota	ä»Šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå…¥åŠ›ã—ãŸå›žè»¢è§’
  *
- *	@return	ŒvŽZŒã‚Ì”½‰fƒp[ƒZƒ“ƒg
+ *	@return	è¨ˆç®—å¾Œã®åæ˜ ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static fx32 ZknPokeListSubDrawRefParCalc( fx32 now_par, s32 now_rota )
@@ -2101,7 +2101,7 @@ static fx32 ZknPokeListSubDrawRefParCalc( fx32 now_par, s32 now_rota )
 	
 	abs_add = MATH_ABS( now_rota );
 
-	// ‘«‚·’l‚Ì”½‰f—¦‚ð•ÏX
+	// è¶³ã™å€¤ã®åæ˜ çŽ‡ã‚’å¤‰æ›´
 	if( abs_add < ZKN_POKELIST_SUB_LIST_PAR_ADD_LIMIT ){
 		if( (now_par - ZKN_POKELIST_SUB_LIST_PAR_SUB) >= ZKN_POKELIST_SUB_LIST_PAR_MIN){
 			now_par -= ZKN_POKELIST_SUB_LIST_PAR_SUB;

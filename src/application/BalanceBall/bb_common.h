@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	bb_common.h
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2007.09.25(‰Î)
+ * @date	2007.09.25(ç«)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -55,7 +55,7 @@ enum {
 #define BB_CAMERA_PY		( 0 )
 #define BB_CAMERA_PZ		( FX32_ONE * 160 )//( FX32_ONE * 144 )
 
-#define BB_TOUCH_HIT_NUM	( 1 )		///< “–‚½‚è”»’è‚Ì”
+#define BB_TOUCH_HIT_NUM	( 1 )		///< å½“ãŸã‚Šåˆ¤å®šã®æ•°
 
 #define BB_BALL_HIT_CX		( 122 )
 #define BB_BALL_HIT_CY		( 143 )
@@ -91,7 +91,7 @@ enum {
 #define BB_COLOR_FADE_PAL_OFS	( 0x0001 )
 
 
-///< ƒ‹[ƒ‹
+///< ãƒ«ãƒ¼ãƒ«
 enum {	
 	eBB_RULE_BALL_L		= 0,
 	eBB_RULE_BALL_N,
@@ -99,21 +99,21 @@ enum {
 };
 
 
-///< ’ÊM“¯Šú—p
+///< é€šä¿¡åŒæœŸç”¨
 enum {	
 	BB_SYNCID_NONE,
 	BB_SYNCID_END,	
 };
 
-///< ƒQ[ƒ€ƒ‹[ƒ‹’ÊM
+///< ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ«é€šä¿¡
 typedef struct {
 	
-	u8		ball_type;		///< 1 = ƒŒƒAƒQ[ƒ€	
+	u8		ball_type;		///< 1 = ãƒ¬ã‚¢ã‚²ãƒ¼ãƒ 	
 	u32		rand;
 		
 } BB_RULE_COMM;
 
-///< ƒQ[ƒ€’ÊM
+///< ã‚²ãƒ¼ãƒ é€šä¿¡
 enum {
 	eBB_STATE_NONE = 0,
 	eBB_STATE_FALL,
@@ -124,12 +124,12 @@ typedef struct {
 
 //	u16		netid;
 	u32		state;
-//	BOOL	state;	///< TRUE = —‚¿‚½
+//	BOOL	state;	///< TRUE = è½ã¡ãŸ
 
 } BB_STATE_COMM;
 
 
-///< ƒXƒRƒA’ÊM
+///< ã‚¹ã‚³ã‚¢é€šä¿¡
 typedef struct {
 	
 	u32 score;
@@ -138,7 +138,7 @@ typedef struct {
 } BB_RESULT_COMM;
 
 
-///< ƒƒ“ƒo[‚ÌƒXƒRƒA’ÊM
+///< ãƒ¡ãƒ³ãƒãƒ¼ã®ã‚¹ã‚³ã‚¢é€šä¿¡
 typedef struct {
 	
 	BB_RESULT_COMM	result[ BB_PLAYER_NUM ];
@@ -150,11 +150,11 @@ typedef struct {
 typedef struct {	
     D3DOBJ				obj;
     D3DOBJ_MDL			mdl;
-    D3DOBJ_ANM			anm[ 10 ];			///< ‚Æ‚è‚ ‚¦‚¸10ŒÂ        
-	QUATERNION_MTX44	rt;					///< ŒvZ—pƒ}ƒgƒŠƒbƒNƒX
-	QUATERNION			tq;					///< ƒNƒH[ƒ^ƒjƒIƒ“
-	QUATERNION			cq;					///< ƒNƒH[ƒ^ƒjƒIƒ“
-	MtxFx43				tmp43;				///< ÀÛ‚Ì•\¦•”•ªƒ}ƒgƒŠƒbƒNƒX
+    D3DOBJ_ANM			anm[ 10 ];			///< ã¨ã‚Šã‚ãˆãš10å€‹        
+	QUATERNION_MTX44	rt;					///< è¨ˆç®—ç”¨ãƒãƒˆãƒªãƒƒã‚¯ã‚¹
+	QUATERNION			tq;					///< ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³
+	QUATERNION			cq;					///< ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³
+	MtxFx43				tmp43;				///< å®Ÿéš›ã®è¡¨ç¤ºéƒ¨åˆ†ãƒãƒˆãƒªãƒƒã‚¯ã‚¹
 	VecFx32				pos;
 	BOOL				bAnime;
 	BOOL				bInit;
@@ -167,7 +167,7 @@ typedef struct {
 } BB_3D_MODEL;
 
 
-///< ƒRƒ“ƒgƒ[ƒ‰[
+///< ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
 typedef struct {
 	
 	u32 old_x;
@@ -181,20 +181,20 @@ typedef struct {
 	
 	fx32 x;
 	fx32 s_x;
-	fx32 s_s;	// ‰‘¬“x
-	fx32 s_a;	// ‰Á‘¬“x
+	fx32 s_s;	// åˆé€Ÿåº¦
+	fx32 s_a;	// åŠ é€Ÿåº¦
 	int count;
 	int count_max;
 	
 } BB_ADDMOVE_WORK_FX;
 
-///< —‚¿‚é‚Æ‚«Aã‚é‚Æ‚«‚ÌTCB—pƒ[ƒN
+///< è½ã¡ã‚‹ã¨ãã€ä¸Šã‚‹ã¨ãã®TCBç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct {
 	
 	int				seq;
 	int				type;
 	int				wait;
-	CATS_ACT_PTR	cap_mane;		///< ‰eƒ[ƒN‚É‚àg‚¤
+	CATS_ACT_PTR	cap_mane;		///< å½±ãƒ¯ãƒ¼ã‚¯ã«ã‚‚ä½¿ã†
 	CATS_ACT_PTR	cap_ball;
 
 	BB_ADDMOVE_WORK_FX data;
@@ -208,7 +208,7 @@ typedef struct {
 	int				seq;
 	int				type;
 	int				wait;
-	CATS_ACT_PTR	cap_kage;		///< ‰eƒ[ƒN‚É‚àg‚¤
+	CATS_ACT_PTR	cap_kage;		///< å½±ãƒ¯ãƒ¼ã‚¯ã«ã‚‚ä½¿ã†
 
 	BB_ADDMOVE_WORK_FX data;
 	
@@ -249,27 +249,27 @@ typedef struct {
 	
 } BB_MANENE_3D_ACTION;
 
-///< ƒQ[ƒ€ƒVƒXƒeƒ€
+///< ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ 
 typedef struct {
 	
-	int				lot_timer;					///< ’Š‘Iƒ^ƒCƒ}[
-	int 			game_timer;					///< ƒ^ƒCƒ}[(ŠeƒNƒ‰ƒCƒAƒ“ƒg‚ª”»’f‚·‚éˆ×‚¾‚¯‚Ég‚¤)
+	int				lot_timer;					///< æŠ½é¸ã‚¿ã‚¤ãƒãƒ¼
+	int 			game_timer;					///< ã‚¿ã‚¤ãƒãƒ¼(å„ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒåˆ¤æ–­ã™ã‚‹ç‚ºã ã‘ã«ä½¿ã†)
 
-	int				eff_level;					///< ƒGƒtƒFƒNƒgƒŒƒxƒ‹
-	int				level;						///< ƒŒƒxƒ‹	
-	int				point;						///< ƒXƒRƒA‚ÌŒ³
-	int				fever_level;				///< ƒtƒB[ƒo[ƒŒƒxƒ‹
-	int				fever_level_old;			///< ƒtƒB[ƒo[ƒŒƒxƒ‹‚PŒÂ‘O
-	s16				recover_wait;				///< •œ‹AŠÔ
+	int				eff_level;					///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¬ãƒ™ãƒ«
+	int				level;						///< ãƒ¬ãƒ™ãƒ«	
+	int				point;						///< ã‚¹ã‚³ã‚¢ã®å…ƒ
+	int				fever_level;				///< ãƒ•ã‚£ãƒ¼ãƒãƒ¼ãƒ¬ãƒ™ãƒ«
+	int				fever_level_old;			///< ãƒ•ã‚£ãƒ¼ãƒãƒ¼ãƒ¬ãƒ™ãƒ«ï¼‘å€‹å‰
+	s16				recover_wait;				///< å¾©å¸°æ™‚é–“
 
-	s16				fever_time;					///< ƒVƒ“ƒNƒ”­“®ƒJƒEƒ“ƒ^
-	s16				l_time[ BB_PLAYER_NUM ];	///< Šeƒ†[ƒU[‚Ì¶‘¶ŠÔ
-	int				o_level[ BB_PLAYER_NUM ];	///< Šeƒ†[ƒU[‚ÌƒŒƒxƒ‹
+	s16				fever_time;					///< ã‚·ãƒ³ã‚¯ãƒ­ç™ºå‹•ã‚«ã‚¦ãƒ³ã‚¿
+	s16				l_time[ BB_PLAYER_NUM ];	///< å„ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ç”Ÿå­˜æ™‚é–“
+	int				o_level[ BB_PLAYER_NUM ];	///< å„ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
 	
-	int				result_time;				///< ÀÛ‚Éæ‚Á‚Ä‚¢‚éŠÔ
+	int				result_time;				///< å®Ÿéš›ã«ä¹—ã£ã¦ã„ã‚‹æ™‚é–“
 	
 	
-	///< ˆÚ“®—p
+	///< ç§»å‹•ç”¨
 	s16				pow_x;
 	s16				pow_y;
 	s16				frame;
@@ -293,7 +293,7 @@ typedef struct {
 
 #define BB_EFFECT_MAX	( 5 )
 
-///< ƒ‰ƒCƒg‚Ìƒ[ƒN
+///< ãƒ©ã‚¤ãƒˆã®ãƒ¯ãƒ¼ã‚¯
 typedef struct {
 	
 	CATS_ACT_PTR	cap;
@@ -326,7 +326,7 @@ typedef struct {
 
 } BB_LIGHT_MOVE;
 
-///< ƒ‰ƒCƒg‚ÌƒGƒtƒFƒNƒg
+///< ãƒ©ã‚¤ãƒˆã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 typedef struct {
 	
 	BB_LIGHT_MOVE	mvwk;
@@ -335,16 +335,16 @@ typedef struct {
 
 	TCB_PTR	 tcb;
 	int*	 level;			///< Level
-	int*	 col1;			///< ŒÂlƒGƒtƒFƒNƒg‚Ì–¾“x
-	int*	 col2;			///< ƒtƒB[ƒo[‚Ì–¾“x
+	int*	 col1;			///< å€‹äººã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®æ˜åº¦
+	int*	 col2;			///< ãƒ•ã‚£ãƒ¼ãƒãƒ¼æ™‚ã®æ˜åº¦
 	
 	int		 wait;			///< wait
 
-	int		 eff_seq;		///< ƒGƒtƒFƒNƒg—p‚Ìseq
-	int		 eff_wait;		///< ƒGƒtƒFƒNƒg—p‚Ìwait
+	int		 eff_seq;		///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã®seq
+	int		 eff_wait;		///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã®wait
 
-	int		 seq;			///< Open Close ‚É g‚¤
-	BOOL	 bActive;		///< ‚Ó‚¥[ƒo[n‚Ü‚Á‚½‚©H
+	int		 seq;			///< Open Close ã« ä½¿ã†
+	BOOL	 bActive;		///< ãµã‡ãƒ¼ãƒãƒ¼å§‹ã¾ã£ãŸã‹ï¼Ÿ
 	BOOL	 bOpenClose;	///< OpenClose task TRUE = OPEN
 
 	BB_SYS*	 sys;
@@ -352,7 +352,7 @@ typedef struct {
 	
 } BB_FEVER;
 
-///< ŒÂlƒGƒtƒFƒNƒg
+///< å€‹äººã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 typedef struct {
 	
 	int		seq;
@@ -363,11 +363,11 @@ typedef struct {
 	
 } BB_EFF_WORK;
 
-///< ŒÂlƒGƒtƒFƒNƒgŠÇ—
+///< å€‹äººã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†
 typedef struct {	
 
-	int			old_level;	///< 1ƒtƒŒ‘O‚ÌƒŒƒxƒ‹
-	int* 		level;		///< ƒQ[ƒ€ƒVƒXƒeƒ€‚ªŠÇ—‚µ‚Ä‚éƒŒƒxƒ‹
+	int			old_level;	///< 1ãƒ•ãƒ¬å‰ã®ãƒ¬ãƒ™ãƒ«
+	int* 		level;		///< ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ãŒç®¡ç†ã—ã¦ã‚‹ãƒ¬ãƒ™ãƒ«
 
 	BB_EFF_WORK work[ BB_EFFECT_MAX ];
 	TCB_PTR		tcb;
@@ -376,7 +376,7 @@ typedef struct {
 
 } BB_EFFECT;
 
-///< ¯‚­‚¸
+///< æ˜Ÿããš
 typedef struct {
 
 	BOOL				active;
@@ -389,7 +389,7 @@ typedef struct {
 } BB_STARDUST;
 
 
-///< ƒT[ƒo[
+///< ã‚µãƒ¼ãƒãƒ¼
 typedef struct {
 	
 	int dummy;
@@ -402,7 +402,7 @@ typedef struct {
 } BB_SERVER;
 
 
-///< ƒNƒ‰ƒCƒAƒ“ƒg
+///< ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
 typedef struct {
 	
 	u32 netid;	
@@ -428,31 +428,31 @@ typedef struct {
 
 	u16				netid_to_capid[ BB_PLAYER_NUM ];
 	int				direc[ BB_PLAYER_NUM - 1 ];	
-	int				color1;						///< ‰æ–Ê‘S‘Ì‚Ì–¾ˆÃ‘€ì	
-	int				color2;						///< ‰æ–Ê‘S‘Ì‚Ì–¾ˆÃ‘€ì	
-	int				anime_type;					///< ƒAƒjƒ[ƒVƒ‡ƒ“‚Ìí—Ş
+	int				color1;						///< ç”»é¢å…¨ä½“ã®æ˜æš—æ“ä½œ	
+	int				color2;						///< ç”»é¢å…¨ä½“ã®æ˜æš—æ“ä½œ	
+	int				anime_type;					///< ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç¨®é¡
 	
-	BB_3D_MODEL		bb3d_ball;						///< ƒ{[ƒ‹
-	BB_3D_MODEL		bb3d_mane[ 3 ];					///< ƒ}ƒlƒl
-	BB_3D_MODEL		bb3d_spot;						///< ƒ‰ƒCƒg
-	BB_3D_MODEL		bb3d_kami[ BB_KAMI_HUBUKI_MAX ];///< †á
-	BB_3D_MODEL		bb3d_lvbs;						///< ƒŒƒxƒ‹ƒAƒbƒv
-	BB_3D_MODEL		bb3d_lvup;						///< ƒŒƒxƒ‹ƒAƒbƒv
+	BB_3D_MODEL		bb3d_ball;						///< ãƒœãƒ¼ãƒ«
+	BB_3D_MODEL		bb3d_mane[ 3 ];					///< ãƒãƒãƒ
+	BB_3D_MODEL		bb3d_spot;						///< ãƒ©ã‚¤ãƒˆ
+	BB_3D_MODEL		bb3d_kami[ BB_KAMI_HUBUKI_MAX ];///< ç´™å¹é›ª
+	BB_3D_MODEL		bb3d_lvbs;						///< ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
+	BB_3D_MODEL		bb3d_lvup;						///< ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
 
-	VecFx32			mane_pos;					///< ƒ}ƒlƒl‚Ì‚ ‚é‚P“_
+	VecFx32			mane_pos;					///< ãƒãƒãƒã®ã‚ã‚‹ï¼‘ç‚¹
 	
-	BB_CONTROL		control;					///< ƒRƒ“ƒgƒ[ƒ‹iƒ^ƒbƒ`ƒpƒlƒ‹j
+	BB_CONTROL		control;					///< ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ï¼ˆã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ï¼‰
 	
-	GF_BGL_BMPWIN	win;						///< ƒEƒBƒ“ƒhƒE
-	GF_BGL_BMPWIN	win_name[ BB_PLAYER_NUM ];	///< ƒEƒBƒ“ƒhƒE
+	GF_BGL_BMPWIN	win;						///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN	win_name[ BB_PLAYER_NUM ];	///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-	BB_FEVER		fever_sys;					///< ƒVƒ“ƒNƒ
-	BB_EFFECT		eff_sys;					///< ŒÂlƒGƒtƒFƒNƒgŠÇ—
-	BB_STARDUST		star[ STAR_DUST_EFF_MAX ];	///< ¯‚­‚¸ƒGƒtƒFƒNƒg
+	BB_FEVER		fever_sys;					///< ã‚·ãƒ³ã‚¯ãƒ­
+	BB_EFFECT		eff_sys;					///< å€‹äººã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†
+	BB_STARDUST		star[ STAR_DUST_EFF_MAX ];	///< æ˜Ÿããšã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	
-	BB_LEVEL_UP		level_sys[ BB_PLAYER_NUM ];	///< ƒŒƒxƒ‹ƒAƒbƒv
-	BB_GAME_SYS		game_sys;					///< ƒQ[ƒ€ƒVƒXƒeƒ€
-	BB_STATE_COMM	state[ BB_PLAYER_NUM ];		///< ƒ†[ƒU[‚Ìó‘Ô
+	BB_LEVEL_UP		level_sys[ BB_PLAYER_NUM ];	///< ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
+	BB_GAME_SYS		game_sys;					///< ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ 
+	BB_STATE_COMM	state[ BB_PLAYER_NUM ];		///< ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®çŠ¶æ…‹
 	
 	u32				rand;	
 	u32				seed_use;
@@ -463,7 +463,7 @@ typedef struct {
 } BB_CLIENT;
 
 
-///< ƒƒCƒ“ƒ[ƒN
+///< ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 typedef struct {
 
 	BB_SERVER*		p_server;
@@ -542,7 +542,7 @@ extern s16 Action_MoveValue_3Z( void );
 
 extern BOOL Debug_GameSetup( BB_WORK* work );
 
-///< V‹K
+///< æ–°è¦
 extern void BB_disp_BG_Load( BB_WORK* wk );
 extern void BB_disp_Manene_Add( BB_WORK* bb_wk, BB_CLIENT* wk );
 

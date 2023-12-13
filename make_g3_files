@@ -1,11 +1,11 @@
-#----IMD’è‹`‚Íƒ‚ƒfƒŠƒ“ƒO{ƒeƒNƒXƒ`ƒƒ‚ª•K—v‚ÈIMDƒtƒ@ƒCƒ‹‚ð‘‚«ž‚Þ
+#----IMDå®šç¾©ã¯ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ï¼‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒå¿…è¦ãªIMDãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ›¸ãè¾¼ã‚€
 G3D_IMD =	$(DATASRC)/crystal.imd \
 			$(DATASRC)/ug_base_cur.imd
 			
-#----IMT’è‹`‚Íƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚¾‚¯Žæ‚èo‚µ‚½‚¢IMDƒtƒ@ƒCƒ‹‚ð‘‚«ž‚Þi‚È‚Ì‚ÅG3D_IMD‚Æ–¼‘O‚ªd‚È‚Á‚Ä‚Í‚¢‚¯‚È‚¢j
+#----IMTå®šç¾©ã¯ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã ã‘å–ã‚Šå‡ºã—ãŸã„IMDãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ›¸ãè¾¼ã‚€ï¼ˆãªã®ã§G3D_IMDã¨åå‰ãŒé‡ãªã£ã¦ã¯ã„ã‘ãªã„ï¼‰
 G3D_IMT =
 
-#----IMT’è‹`‚ÍƒeƒNƒXƒ`ƒƒƒf[ƒ^‚¾‚¯Žæ‚èo‚µ‚½‚¢IMDƒtƒ@ƒCƒ‹‚ð‘‚«ž‚Þ
+#----IMTå®šç¾©ã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ã ã‘å–ã‚Šå‡ºã—ãŸã„IMDãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ›¸ãè¾¼ã‚€
 G3D_TX_IMD =	$(DATASRC)/minimum.imd \
 			$(DATASRC)/minirhana.imd \
 			$(DATASRC)/miniasasea.imd \

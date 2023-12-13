@@ -2,7 +2,7 @@
 /**
  *
  *	@file		texanm_sys.c
- *	@brief		ITPƒAƒjƒƒf[ƒ^‚Ì•K—v‚È‚Æ‚±‚ë‚Ì‚Ý‚ð”²‚«o‚µƒeƒNƒXƒ`ƒƒ‚ðƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ðŽæ“¾‚·‚éƒVƒXƒeƒ€
+ *	@brief		ITPã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®å¿…è¦ãªã¨ã“ã‚ã®ã¿ã‚’æŠœãå‡ºã—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
  *	@author	 
  *	@data		2005.10.31
  *
@@ -14,52 +14,52 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Íc_‚ð•t‚¯‚é
- *						static‚É‚Ís_‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Íp_‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æcsp_‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯c_ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯s_ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯p_ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨csp_ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	frame”‚É‘Î‰ž‚·‚éƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX@ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX‚ÌŽæ“¾
+ *	@brief	frameæ•°ã«å¯¾å¿œã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
  *
- *	@param	cp_texanm	ƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
- *	@param	c_frame		Œ»ÝƒtƒŒ[ƒ€”
+ *	@param	cp_texanm	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	c_frame		ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
- *	@return	ƒtƒŒ[ƒ€”‚É‘Î‰ž‚µ‚½ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX@ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX
+ *	@return	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã«å¯¾å¿œã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	
 		typedef struct {
-			u8	tex_idx;		// ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX	
-			u8	pltt_idx;		// ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX
+			u8	tex_idx;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	
+			u8	pltt_idx;		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 		} TEXANM_DATA;
  *
  *
@@ -67,21 +67,21 @@
 //-----------------------------------------------------------------------------
 TEXANM_DATA TEXANM_GetFrameData( const TEXANM_DATATBL* cp_texanm, const u16 c_frame )
 {
-	int i;					// ƒ‹[ƒv—p
-	TEXANM_DATA	o_tex_anm;	// –ß‚è’l
+	int i;					// ãƒ«ãƒ¼ãƒ—ç”¨
+	TEXANM_DATA	o_tex_anm;	// æˆ»ã‚Šå€¤
 
-	// ƒtƒŒ[ƒ€”‚É‘Î‰ž‚·‚éƒe[ƒuƒ‹—v‘f”i i j‚ðŽæ“¾
+	// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã«å¯¾å¿œã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°ï¼ˆ i ï¼‰ã‚’å–å¾—
 	for( i = 0; i < cp_texanm->tbl_num - 1; i++ ){
 
-		// i + 1‚Ì’l‚ª—v‘f”‚ª•Ï‚í‚éƒtƒŒ[ƒ€”‚Å‚·B
+		// i + 1ã®å€¤ãŒè¦ç´ æ•°ãŒå¤‰ã‚ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã§ã™ã€‚
 		if( cp_texanm->cp_frame[ i + 1 ] > c_frame ){
 
 			break;
 		}
 	}
 	
-	// ƒtƒŒ[ƒ€”‚É‘Î‰ž‚·‚éƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX
-	// ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX‘ã“ü
+	// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã«å¯¾å¿œã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä»£å…¥
 	o_tex_anm.tex_idx = cp_texanm->cp_tex_idx[ i ];
 	o_tex_anm.pltt_idx = cp_texanm->cp_pltt_idx[ i ];
 
@@ -91,14 +91,14 @@ TEXANM_DATA TEXANM_GetFrameData( const TEXANM_DATATBL* cp_texanm, const u16 c_fr
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ROM‚©‚ç“Ç‚Ýž‚ñ‚Å‚«‚½ƒf[ƒ^‚ðƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹Œ`Ž®‚ÉƒAƒ“ƒpƒbƒN‚·‚é
+ *	@brief	ROMã‹ã‚‰èª­ã¿è¾¼ã‚“ã§ããŸãƒ‡ãƒ¼ã‚¿ã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«å½¢å¼ã«ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_buff			“Ç‚Ýž‚ñ‚Å‚«‚½ƒf[ƒ^
- *	@param	op_texanm		ƒAƒ“ƒpƒbƒNæƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
+ *	@param	cp_buff			èª­ã¿è¾¼ã‚“ã§ããŸãƒ‡ãƒ¼ã‚¿
+ *	@param	op_texanm		ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯å…ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *	@return	none
  *
- * œop_texanm‚ðŽg—p‚µ‚Ä‚¢‚éŠúŠÔ‚Å‚Ícp_buff‚Ìƒƒ‚ƒŠ‚ÍŠm•Û‚µ‚½‚Ü‚Ü‚É‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢
+ * â—op_texanmã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹æœŸé–“ã§ã¯cp_buffã®ãƒ¡ãƒ¢ãƒªã¯ç¢ºä¿ã—ãŸã¾ã¾ã«ã—ã¦ãŠã„ã¦ãã ã•ã„
  *
  */
 //-----------------------------------------------------------------------------
@@ -108,19 +108,19 @@ void TEXANM_UnPackLoadFile( const void* cp_buff, TEXANM_DATATBL* op_texanm )
 
 	work = cp_buff;
 	
-	// ƒe[ƒuƒ‹—v‘f”Žæ“¾
-	// Å‰‚Ì4byte‚Íƒe[ƒuƒ‹—v‘f”
+	// ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°å–å¾—
+	// æœ€åˆã®4byteã¯ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°
 	op_texanm->tbl_num = *((u32*)work);
-	work = work + sizeof(u32);		// 4byteˆÚ“®
+	work = work + sizeof(u32);		// 4byteç§»å‹•
 	
-	// ƒtƒŒ[ƒ€ƒf[ƒ^ƒe[ƒuƒ‹æ“ªƒ|ƒCƒ“ƒ^Ý’è
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«å…ˆé ­ãƒã‚¤ãƒ³ã‚¿è¨­å®š
 	op_texanm->cp_frame = (u16*)work;
-	work = work + (sizeof(u16) * op_texanm->tbl_num);	// ƒe[ƒuƒ‹•ªˆÚ“®
+	work = work + (sizeof(u16) * op_texanm->tbl_num);	// ãƒ†ãƒ¼ãƒ–ãƒ«åˆ†ç§»å‹•
 
-	// ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒXƒf[ƒ^ƒe[ƒuƒ‹æ“ªƒ|ƒCƒ“ƒ^Ý’è
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«å…ˆé ­ãƒã‚¤ãƒ³ã‚¿è¨­å®š
 	op_texanm->cp_tex_idx = (u8*)work;
-	work = work + (sizeof(u8) * op_texanm->tbl_num);	// ƒe[ƒuƒ‹•ªˆÚ“®
+	work = work + (sizeof(u8) * op_texanm->tbl_num);	// ãƒ†ãƒ¼ãƒ–ãƒ«åˆ†ç§»å‹•
 
-	// ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒXƒf[ƒ^ƒe[ƒuƒ‹æ“ªƒ|ƒCƒ“ƒ^Ý’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«å…ˆé ­ãƒã‚¤ãƒ³ã‚¿è¨­å®š
 	op_texanm->cp_pltt_idx = (u8*)work;
 }

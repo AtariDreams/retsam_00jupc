@@ -13,55 +13,55 @@
 #
 # $Log: commondefs.cctype.CW,v $
 # Revision 1.127  2007/08/06 04:39:01  okubata_ryoma
-# Nightly �� warning �������������ύX
+# Nightly の warning を少し厳しく変更
 #
 # Revision 1.126  2006/06/06 01:00:21  yasu
-# default �� CodeWarrior �p�X�̕ύX
+# default の CodeWarrior パスの変更
 #
 # Revision 1.125  2006/06/06 00:23:06  yasu
-# �Â��o�[�W������ CodeWarrior �R���p�C���̃T�|�[�g���~
+# 古いバージョンの CodeWarrior コンパイラのサポートを停止
 #
 # Revision 1.124  2006/06/01 00:25:29  okubata_ryoma
-# CW�̃o�[�W���������version.h���g�p���Ȃ��悤�ɏC��
+# CWのバージョン判定にversion.hを使用しないように修正
 #
 # Revision 1.123  2006/05/02 05:18:20  yasu
 # typo fix
 #
 # Revision 1.122  2006/05/01 01:15:56  okubata_ryoma
-# CW�o�[�W������r���@�̕ύX�ɂƂ��Ȃ��ύX
+# CWバージョン比較方法の変更にともなう変更
 #
 # Revision 1.121  2006/04/21 06:22:45  okubata_ryoma
-# �x���}���I�v�V�������폜
+# 警告抑制オプションを削除
 #
 # Revision 1.120  2006/03/30 06:28:21  okubata_ryoma
 # small fix
 #
 # Revision 1.119  2006/03/30 04:10:53  okubata_ryoma
-# working�p��package�p��p��
+# working用とpackage用を用意
 #
 # Revision 1.118  2006/03/29 09:15:04  okubata_ryoma
-# verinfo.cw.*�̐����O�ɎQ�Ƃ���Ă������߂̃G���[�C��
+# verinfo.cw.*の生成前に参照されていたためのエラー修正
 #
 # Revision 1.117  2006/03/17 00:33:06  yosizaki
 # support __declspec(force_export)
 #
 # Revision 1.116  2006/03/01 08:58:17  okubata_ryoma
-# �ύX�����Z�p���Z���C�u�����ɖ�肪����������undo
+# 変更した算術演算ライブラリに問題があったためundo
 #
 # Revision 1.115  2006/02/21 01:37:00  okubata_ryoma
-# �Z�p���Z���C�u�����̕ύX
+# 算術演算ライブラリの変更
 #
 # Revision 1.114  2006/02/20 09:41:18  okubata_ryoma
 # samll fix
 #
 # Revision 1.113  2006/02/17 04:58:00  okubata_ryoma
-# CW2.0beta�ɑΉ����邽�߂̕ύX
+# CW2.0betaに対応するための変更
 #
 # Revision 1.112  2006/02/14 08:40:53  okubata_ryoma
-# CW2.0beta�ɑΉ����邽�߂̕ύX
+# CW2.0betaに対応するための変更
 #
 # Revision 1.111  2006/02/13 08:31:03  okubata_ryoma
-# CW2.0beta�ւ̑Ή�
+# CW2.0betaへの対応
 #
 # Revision 1.110  2005/11/22 09:11:51  yosizaki
 # support SDK_ENABLE_ARM7_PRINT.
@@ -70,37 +70,37 @@
 # Add SDK_SVC_WAITVBLANK_COMPATIBLE macro flag.
 #
 # Revision 1.108  2005/07/20 04:51:57  yasu
-# �u�v���R���p�C���w�b�_�g�p���f�t�H���g�ŗL���Ɂv�̐ݒ�~�X�C��
+# 「プリコンパイルヘッダ使用をデフォルトで有効に」の設定ミス修正
 #
 # Revision 1.107  2005/07/20 04:46:26  yasu
-# �v���R���p�C���w�b�_�g�p���f�t�H���g�ŗL����
+# プリコンパイルヘッダ使用をデフォルトで有効に
 #
 # Revision 1.106  2005/06/21 09:56:03  yasu
-# NITRO_UTEST �̒ǉ�
+# NITRO_UTEST の追加
 #
 # Revision 1.105  2005/06/20 12:26:11  yasu
-# Surffix -> Suffix �C��
+# Surffix -> Suffix 修正
 #
 # Revision 1.104  2005/06/17 03:12:06  yasu
 # small fix in comment
 #
 # Revision 1.103  2005/04/25 10:55:03  yasu
-# FPLIB �� fastI �֐؂�ւ�
+# FPLIB を fastI へ切り替え
 #
 # Revision 1.102  2005/04/25 08:57:50  yasu
-# CW_LIBFP �̐ݒ�� Makefile ���ōĒ�`�\�Ȃ悤�ɂ���
+# CW_LIBFP の設定を Makefile 側で再定義可能なようにした
 #
 # Revision 1.101  2005/03/04 09:39:45  yasu
-# �f�t�H���g�� CodeWarrior �̃p�X���C��
+# デフォルトの CodeWarrior のパスを修正
 #
 # Revision 1.100  2005/02/18 14:12:17  seiki_masashi
-# Copyright �\�L�̏C��
+# Copyright 表記の修正
 #
 # Revision 1.99  2005/02/18 13:37:30  yasu
-# NITRO_WARNING_STRICT �}�N���ɂ��x���\���̐؂�ւ����T�|�[�g
+# NITRO_WARNING_STRICT マクロによる警告表示の切り替えをサポート
 #
 # Revision 1.98  2005/02/18 09:01:53  yasu
-# �x���\���̋���
+# 警告表示の強化
 #
 # Revision 1.97  2004/12/27 03:51:22  yasu
 # Change CC->MWCC , AS->MWAS, LD->MWLD and AR->MWAR
@@ -109,10 +109,10 @@
 # Add LMACRO_FLAGS to MACRO_FLAGS
 #
 # Revision 1.95  2004/09/24 08:49:02  takano_makoto
-# TS�̏ꍇ��SDK_CW_WARNOFF_SAFESTRB��OFF�ɕύX
+# TSの場合にSDK_CW_WARNOFF_SAFESTRBをOFFに変更
 #
 # Revision 1.94  2004/09/04 09:30:36  yosiokat
-# SDK_SMALL_BUILD�̒ǉ��B
+# SDK_SMALL_BUILDの追加。
 #
 # Revision 1.93  2004/08/27 05:23:26  yasu
 # Set default codewarrior version to 0.6.1
@@ -251,7 +251,7 @@
 # change SDK prefix iris -> nitro
 #
 # Revision 1.47  2004/02/03 06:38:47  yasu
-# SDK_AUTOTEST �̒ǉ�
+# SDK_AUTOTEST の追加
 #
 # Revision 1.46  2004/01/26 10:53:58  yasu
 # delete SDK_CWBUG_VSNPRINTF workaround
@@ -263,133 +263,133 @@
 # Clean up comments
 #
 # Revision 1.43  2003/12/24 09:24:35  yada
-# BB�ł̃R���p�C���� -proc arm946e �Ƃ���(nightyly build error�΍�)
+# BBでのコンパイルも -proc arm946e とする(nightyly build error対策)
 #
 # Revision 1.42  2003/12/22 04:43:46  yasu
-# CW_NITRO 0.2 Hotfix �Ή�
+# CW_NITRO 0.2 Hotfix 対応
 #
 # Revision 1.41  2003/12/17 09:22:48  yasu
-# SDK_CWBUG_PROC_OPT �̒ǉ�
+# SDK_CWBUG_PROC_OPT の追加
 #
 # Revision 1.40  2003/12/16 10:44:32  yasu
-# SDK_CWBUGS_VSNPRINTF �̏C��
+# SDK_CWBUGS_VSNPRINTF の修正
 #
 # Revision 1.39  2003/12/16 05:25:12  yasu
-# ARM7 �ŃI�v�V�����̐ݒ�
+# ARM7 版オプションの設定
 #
 # Revision 1.38  2003/12/12 07:12:55  yasu
-# ARM7 �ł̃R���p�C���I�v�V�������� -avoid_strb all,err ���O����
+# ARM7 でのコンパイルオプションから -avoid_strb all,err を外した
 #
 # Revision 1.37  2003/12/12 05:03:48  yasu
-# vsprintf �� strb �Ή��ł������[�X�����܂ł̃��[�N�A���E���h�ǉ�
+# vsprintf の strb 対応版がリリースされるまでのワークアラウンド追加
 #
 # Revision 1.36  2003/12/10 05:12:48  yasu
-# �\�[�X�t�@�C���w��� xxxx/src.c �̌`�����g����悤�ɕύX
-# Makefile.srcs �̒ǉ�
-# IS_NITRO_DIR ����`���Ă���ꍇ�� IS Debugger ���C�u�����������N����悤�C��
+# ソースファイル指定に xxxx/src.c の形式を使えるように変更
+# Makefile.srcs の追加
+# IS_NITRO_DIR が定義してある場合に IS Debugger ライブラリをリンクするよう修正
 #
 # Revision 1.35  2003/12/08 09:26:43  yasu
-# -once �I�v�V�����̒ǉ�
+# -once オプションの追加
 #
 # Revision 1.34  2003/12/02 04:54:02  yasu
-# NITROSDK_ROOT �̃p�X��؂蕶���� \ �ւ̑Ή�
+# NITROSDK_ROOT のパス区切り文字の \ への対応
 #
 # Revision 1.33  2003/12/02 02:40:23  yasu
-# IS-NITRO-EMULATOR �p���C�u�����̒�`�ǉ�
+# IS-NITRO-EMULATOR 用ライブラリの定義追加
 #
 # Revision 1.32  2003/12/01 23:50:52  yasu
-# LM_LICENSE_FILE �̏C��
+# LM_LICENSE_FILE の修正
 #
 # Revision 1.31  2003/12/01 11:30:55  yasu
-# ROM �쐬�c�[���� objcopy -> elftobin �֕ύX����
+# ROM 作成ツールを objcopy -> elftobin へ変更した
 #
 # Revision 1.30  2003/12/01 04:28:03  yasu
-# �Â����C�u�������R�����g��ԂŒǉ�
+# 古いライブラリをコメント状態で追加
 #
 # Revision 1.29  2003/12/01 00:51:35  yasu
-# license.dat �t�@�C���̐ݒ�C��
+# license.dat ファイルの設定修正
 #
 # Revision 1.28  2003/11/29 12:29:22  yasu
-# vsnprintf �̊܂܂�Ă��郉�C�u�����ȊO�� strb �łɕύX
+# vsnprintf の含まれているライブラリ以外を strb 版に変更
 #
 # Revision 1.27  2003/11/29 10:48:32  yasu
-# SDK_BB_ICE �̒ǉ�
+# SDK_BB_ICE の追加
 #
 # Revision 1.26  2003/11/29 04:10:21  yasu
-# as �̃I�v�V�������C��
+# as のオプションを修正
 #
 # Revision 1.25  2003/11/29 01:26:21  yasu
-# vsnprintf �����삵�Ă��Ȃ����߃��C�u�����Q���Â����̂ɕύX
+# vsnprintf が動作していないためライブラリ群を古いものに変更
 #
 # Revision 1.24  2003/11/28 02:02:52  yasu
-# libsyscall.a �� commondefs �ֈړ�
+# libsyscall.a を commondefs へ移動
 #
 # Revision 1.23  2003/11/28 02:01:12  yasu
-# CW for NITRO �̕W�����C�u���������ւ���
+# CW for NITRO の標準ライブラリを取り替えた
 #
 # Revision 1.22  2003/11/27 13:43:31  yasu
-# �o�C�g�A�N�Z�X�p�̃I�v�V������ǉ�
+# バイトアクセス用のオプションを追加
 #
 # Revision 1.21  2003/11/27 08:12:34  yasu
-# CWFolder_NITRO -> CWFOLDER_NITRO �ɏC��
+# CWFolder_NITRO -> CWFOLDER_NITRO に修正
 #
 # Revision 1.20  2003/11/27 05:01:15  yasu
-# CodeWarrior for NITRO v0.1 �Ή�
+# CodeWarrior for NITRO v0.1 対応
 #
 # Revision 1.19  2003/11/25 00:03:03  yasu
-# -stdinc �I�v�V�����ǉ�
+# -stdinc オプション追加
 #
 # Revision 1.18  2003/11/21 06:32:00  yasu
-# SDK_DEBUG �̂Ƃ��� SDK_CWBUG_INLINE ���`���Ȃ�
+# SDK_DEBUG のときは SDK_CWBUG_INLINE を定義しない
 #
 # Revision 1.17  2003/11/21 04:07:21  yasu
-# inline �̍œK���̃o�O�̃��[�N�A���E���h�̂��߂̃X�C�b�` SDK_CWBUG_INLINE ��ǉ�
+# inline の最適化のバグのワークアラウンドのためのスイッチ SDK_CWBUG_INLINE を追加
 #
 # Revision 1.16  2003/11/20 13:02:51  yasu
-# SDK_ARM �̂Q�d��`�̉�� SDK_CODE_ARM ��
+# SDK_ARM の２重定義の回避 SDK_CODE_ARM へ
 #
 # Revision 1.15  2003/11/20 00:02:47  yasu
-# SDK_ARM/SDK_THUMB ��`�̒ǉ�
+# SDK_ARM/SDK_THUMB 定義の追加
 #
 # Revision 1.14  2003/11/17 01:31:05  yasu
-# C++ �̒�`�� C �̒�`�ƕ���
+# C++ の定義を C の定義と分離
 #
 # Revision 1.13  2003/11/13 11:59:47  yasu
-# typo �C��
+# typo 修正
 #
 # Revision 1.12  2003/11/13 06:44:10  yasu
-# ARM ���[�h�� Thumb ���[�h�̃R���p�C���؂�ւ��X�C�b�`��ǉ�
+# ARM モードと Thumb モードのコンパイル切り替えスイッチを追加
 #
 # Revision 1.11  2003/11/12 04:19:41  yasu
-# ARM7 �p�̒�`��ǉ��D�}�N���X�C�b�` TARGET_PROC ���g�p����
+# ARM7 用の定義を追加．マクロスイッチ TARGET_PROC を使用する
 #
 # Revision 1.10  2003/11/10 05:24:18  yasu
-# ���ϐ��ɂ�� build �̃R���g���[���̒ǉ�
+# 環境変数による build のコントロールの追加
 #
 # Revision 1.9	2003/11/07 08:54:49  yasu
-# -enum int �Ȃǂ̃I�v�V�����ǉ�
+# -enum int などのオプション追加
 #
 # Revision 1.8	2003/11/06 13:36:58  yasu
-# LM_LICENSE_FILE �� default �l�̏C��
+# LM_LICENSE_FILE の default 値の修正
 #
 # Revision 1.7	2003/11/06 10:39:21  yasu
-# �R���p�C���I�v�V�����̌�����
+# コンパイルオプションの見直し
 #
 # Revision 1.6	2003/11/05 09:57:26  yasu
-# NITRO_INC_DIR -> NITRO_INCDIR �̏C��
+# NITRO_INC_DIR -> NITRO_INCDIR の修正
 #
 # Revision 1.5	2003/11/05 09:15:13  yasu
-# ARFLAGS �ǉ�
-# SDK_RELEASE/SDK_DEBUG �ɂ��\�[�X�̃X�C�b�`��L����
+# ARFLAGS 追加
+# SDK_RELEASE/SDK_DEBUG によるソースのスイッチを有効に
 #
 # Revision 1.4	2003/11/05 07:14:00  yasu
-# CodeWarrior �̃I�v�V�����̐ݒ�̉�����
+# CodeWarrior のオプションの設定の仮完了
 #
 # Revision 1.3	2003/10/29 06:47:28  yasu
 # Support "make clean/clobber" only
 #
 # Revision 1.2	2003/10/24 13:19:07  yasu
-# �w�b�_�t�@�C���Ȃǂ̓o�^
+# ヘッダファイルなどの登録
 #
 # Revision 1.1	2003/10/23 04:38:07  yasu
 # initial version
@@ -562,14 +562,14 @@ CW_INCDIRS	= $(CW_ARMDIR)/msl/MSL_C/MSL_ARM/Include		\
 		  $(CW_ARMDIR)/msl/MSL_C++/MSL_Common/Include		\
 		  $(CW_ARMDIR)/msl/MSL_Extras/MSL_Common/Include	\
 		  $(CW_ARMDIR)/Profiler/include
-#--------CW2.0beta2 �ȍ~�̃o�[�W�����ł�Runtime�̃f�B���N�g�����ύX���ꂽ����
+#--------CW2.0beta2 以降のバージョンではRuntimeのディレクトリが変更されたため
 ifeq		($(CW_MAJOR_VER),2)
 CW_INCDIRS	+= $(CW_ARMDIR)/msl/MSL_Extras/MSL_ARM/Include
 endif
 
 CW_CXX		= $(if $(SDK_CW_WA_LIBCXX),CXX,CPP)
 CW_LIBCXX_DIR	= $(if $(SDK_CW_WA_LIBCXX),$(ROOT)/lib/CodeWarrior,$(CW_ARMDIR)/msl/MSL_C++/MSL_ARM/Lib)
-#--------CW2.0beta2 �ȍ~�̃o�[�W�����ł�Runtime�̃f�B���N�g�����ύX���ꂽ����
+#--------CW2.0beta2 以降のバージョンではRuntimeのディレクトリが変更されたため
 ifeq		($(CW_MAJOR_VER),2)
 CW_LIBDIRS	?= $(CW_ARMDIR)/msl/MSL_C/MSL_ARM/Lib			\
 		   $(CW_LIBCXX_DIR)					\

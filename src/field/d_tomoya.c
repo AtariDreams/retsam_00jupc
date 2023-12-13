@@ -88,8 +88,8 @@ static void PrintString( GF_BGL_BMPWIN* win, u32 fontID, MSGDATA_MANAGER* man, u
 /**
  *
  *
- *		ƒfƒIƒLƒVƒXƒZ[ƒuƒf[ƒ^
- *			C³ƒ‹[ƒ`ƒ“
+ *		ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *			ä¿®æ­£ãƒ«ãƒ¼ãƒãƒ³
  *
  */
 //-----------------------------------------------------------------------------
@@ -100,14 +100,14 @@ static void D_TomoDeokisisuSaveBuckUp( TCB_PTR tcb,void* work );
 /**
  * 
  * 
- *		1‚Â‘O‚Ì¬‚º¬‚º—¿—
- *			TEAMWORK“¾“_•`‰æƒ‹[ƒ`ƒ“
+ *		1ã¤å‰ã®æ··ãœæ··ãœæ–™ç†
+ *			TEAMWORKå¾—ç‚¹æç”»ãƒ«ãƒ¼ãƒãƒ³
  *
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	1‚Â‘O‚Ì¬‚º¬‚º—¿—
-//	TEAMWORK“¾“_•`‰æƒ‹[ƒ`ƒ“
+//	1ã¤å‰ã®æ··ãœæ··ãœæ–™ç†
+//	TEAMWORKå¾—ç‚¹æç”»ãƒ«ãƒ¼ãƒãƒ³
 //=====================================
 typedef struct {
 	FIELDSYS_WORK* p_fsys;
@@ -120,12 +120,12 @@ extern u32 D_Tomoya_MazeMaze_TeamWork;
 //-----------------------------------------------------------------------------
 /**
  *
- *		”é“`‹ZƒGƒtƒFƒNƒg
+ *		ç§˜ä¼æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	”é“`‹ZƒGƒtƒFƒNƒg
+//	ç§˜ä¼æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //=====================================
 typedef struct {
 	FLDMAPFUNC_WORK* p_demo;
@@ -143,7 +143,7 @@ static void StartHideEff02( TCB_PTR tcb,void* work );
 //-----------------------------------------------------------------------------
 /**
  *
- *		ƒ|ƒPƒp[ƒeƒB[“à‚Éƒ~ƒmƒ€ƒbƒ`‚¢‚ë‚ñ‚ÈƒtƒH[ƒ€‚Ì
+ *		ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼å†…ã«ãƒŸãƒãƒ ãƒƒãƒã„ã‚ã‚“ãªãƒ•ã‚©ãƒ¼ãƒ ã®
  *
  */
 //-----------------------------------------------------------------------------
@@ -154,12 +154,12 @@ static void Debug_MinoMuchiSet( TCB_PTR tcb, void* work );
 /**
  *
  *
- *			ƒAƒNƒZƒTƒŠ[ŒğŠ·
+ *			ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼äº¤æ›
  * 
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒAƒNƒZƒTƒŠ[ŒğŠ·
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼äº¤æ›
 //=====================================
 typedef struct {
 	u32 seq;
@@ -172,7 +172,7 @@ static void MainAcceShop( TCB_PTR tcb, void* p_work );
 //-----------------------------------------------------------------------------
 /**
  * 
- *		ƒŒƒR[ƒhŒğŠ·@ƒNƒŠƒbƒv
+ *		ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›ã€€ã‚¯ãƒªãƒƒãƒ—
  * 
  */
 //-----------------------------------------------------------------------------
@@ -181,7 +181,7 @@ static void Record_Clip( TCB_PTR tcb, void* p_work );
 //-----------------------------------------------------------------------------
 /**
  *
- *		ƒQ[ƒ€“àŒğŠ·
+ *		ã‚²ãƒ¼ãƒ å†…äº¤æ›
  *
  */
 //-----------------------------------------------------------------------------
@@ -197,7 +197,7 @@ static void StartFldTrade03( TCB_PTR tcb, void* p_work );
 //-----------------------------------------------------------------------------
 /**
  *
- *		}ŠÓƒf[ƒ^‘€ì
+ *		å›³é‘‘ãƒ‡ãƒ¼ã‚¿æ“ä½œ
  *
  */
 //-----------------------------------------------------------------------------
@@ -226,12 +226,12 @@ static void MainZukanShinouSeeSet( TCB_PTR tcb, void* p_work );
 //-----------------------------------------------------------------------------
 /**
  *
- *		ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+ *		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŠÇ—ƒ[ƒN
+//	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	s32 no;
@@ -241,7 +241,7 @@ typedef struct {
 } D_TOMOYA_ENCOUNT_SYS_WORK;
 static void StartEncountEffectSys( u32 effect_no );
 static void MainEncountEffectSys( TCB_PTR tcb, void* p_work );
-// Še´Ìª¸Ä
+// å„ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 static void EncountEffect_00( TCB_PTR tcb, void* p_work );
 static void EncountEffect_01( TCB_PTR tcb, void* p_work );
 static void EncountEffect_02( TCB_PTR tcb, void* p_work );
@@ -277,12 +277,12 @@ static void EncountEffect_30( TCB_PTR tcb, void* p_work );
 //-----------------------------------------------------------------------------
 /**
  * 
- *		‚ ‚Ü‚¢‚©‚¨‚è
+ *		ã‚ã¾ã„ã‹ãŠã‚Š
  * 
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ŠÃ‚¢‚èƒ[ƒN
+//	ç”˜ã„é¦™ã‚Šãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	FLDMAPFUNC_WORK* p_work;
@@ -298,12 +298,12 @@ static void MainAmaikaoriDemo( TCB_PTR tcb,void* work );
 //-----------------------------------------------------------------------------
 /**
  *
- *	climax‚Å‚à—p
+ *	climaxã§ã‚‚ç”¨
  *
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒNƒ‰ƒCƒ}ƒbƒNƒX‚Å‚àƒ[ƒN
+//	ã‚¯ãƒ©ã‚¤ãƒãƒƒã‚¯ã‚¹ã§ã‚‚ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	FLDMAPFUNC_WORK* p_demo;
@@ -328,13 +328,13 @@ static void MainClimaxDemoAntEggStart( TCB_PTR tcb,void* work );
 //-----------------------------------------------------------------------------
 /**
  *
- * “ÅƒGƒtƒFƒNƒg
+ * æ¯’ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒ[ƒN	
+//	ãƒ¯ãƒ¼ã‚¯	
 //	
 //=====================================
 typedef struct {
@@ -345,11 +345,11 @@ typedef struct {
 	GF_CAMERA_PTR	camera;
 	PLAYER_STATE_PTR player;
 } D_TOMOYA_POISON;
-static void StartPoison( TCB_PTR tcb,void* work );		//	“Å
-static void MainPoison( TCB_PTR tcb,void* work );		//	“Å
+static void StartPoison( TCB_PTR tcb,void* work );		//	æ¯’
+static void MainPoison( TCB_PTR tcb,void* work );		//	æ¯’
 
 //-------------------------------------
-//	ƒ[ƒN	
+//	ãƒ¯ãƒ¼ã‚¯	
 //=====================================
 typedef struct {
 	int		next_count;
@@ -357,15 +357,15 @@ typedef struct {
 	PLAYER_STATE_PTR player;
 
 } D_TOMOYA_POISON_2;
-static void StartPoison2( TCB_PTR tcb,void* work );		//	“Å
-static void MainPoison2( TCB_PTR tcb,void* work );		//	“Å
+static void StartPoison2( TCB_PTR tcb,void* work );		//	æ¯’
+static void MainPoison2( TCB_PTR tcb,void* work );		//	æ¯’
 
 
 //-------------------------------------
 //	
-//	ƒXƒvƒ‰ƒCƒg‚ğ•\¦‚³‚¹‚é‚½‚ß‚É•K—v‚È•¨
+//	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’è¡¨ç¤ºã•ã›ã‚‹ãŸã‚ã«å¿…è¦ãªç‰©
 //
-//	‚»‚ÌŒãƒvƒƒbƒNƒ`ƒFƒ“ƒW‚É•K—v‚È‚à‚Ì‚É‚È‚è‚Ü‚µ‚½
+//	ãã®å¾Œãƒ—ãƒ­ãƒƒã‚¯ãƒã‚§ãƒ³ã‚¸ã«å¿…è¦ãªã‚‚ã®ã«ãªã‚Šã¾ã—ãŸ
 //	
 //	
 //=====================================
@@ -375,9 +375,9 @@ typedef struct {
 }D_TOMOYA_TV_PRINTDATA_SELE;
 
 
-static void StartSprite_Check( TCB_PTR tcb,void* work );	// ƒhƒŒƒXƒAƒbƒv’ÊíŠJn
-static void StartSprite_Check_Contest( TCB_PTR tcb,void* work );	// ƒhƒŒƒXƒAƒbƒvƒRƒ“ƒeƒXƒg—pŠJn
-static void StartSprite_CheckTelevision_View( TCB_PTR tcb,void* work );	// ƒhƒŒƒXƒAƒbƒv’Êí‚Ìƒrƒ…[ƒA[ŠJn
+static void StartSprite_Check( TCB_PTR tcb,void* work );	// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—é€šå¸¸é–‹å§‹
+static void StartSprite_Check_Contest( TCB_PTR tcb,void* work );	// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨é–‹å§‹
+static void StartSprite_CheckTelevision_View( TCB_PTR tcb,void* work );	// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—é€šå¸¸ã®ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼é–‹å§‹
 static void StartSprite_CheckTelevision_PrintDataSelect( TCB_PTR tcb,void* work );
 static void StartZukan_Check( TCB_PTR tcb, void* work );
 static void StartEvPokeSelect_Check( TCB_PTR tcb, void* work );
@@ -412,47 +412,47 @@ static void StartWFLBYROOM_Check_End( DT_SPRITE_CHECK* data );
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—ƒ`ƒFƒbƒNƒVƒXƒeƒ€
+*		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€ãƒã‚§ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	“]‘—ƒf[ƒ^
+//	è»¢é€ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
 	
-	void* tex_buff;				// ƒeƒNƒXƒ`ƒƒƒoƒbƒtƒ@
-	NNSG3dResTex*	tex_res;	// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
-	int		trans_num;			// “]‘—”
-	int		trans_size;			// “]‘—ƒTƒCƒY
+	void* tex_buff;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒƒãƒ•ã‚¡
+	NNSG3dResTex*	tex_res;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+	int		trans_num;			// è»¢é€æ•°
+	int		trans_size;			// è»¢é€ã‚µã‚¤ã‚º
 	int		vram;
 } D_TM_TEX_TRANS;
-static void StartTexTrans( TCB_PTR tcb,void* work );		// ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—ƒ`ƒFƒbƒN
-static void MainTexTrans( TCB_PTR tcb,void* work );			// ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—ƒ`ƒFƒbƒN
+static void StartTexTrans( TCB_PTR tcb,void* work );		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€ãƒã‚§ãƒƒã‚¯
+static void MainTexTrans( TCB_PTR tcb,void* work );			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€ãƒã‚§ãƒƒã‚¯
 
 
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒƒCƒvƒ`ƒFƒbƒN
+*		ãƒ¯ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒƒCƒvƒ`ƒFƒbƒNƒ^ƒXƒN\‘¢‘Ì
+//	ãƒ¯ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯ã‚¿ã‚¹ã‚¯æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct{
-	int no;		// ƒƒCƒvƒiƒ“ƒo[
+	int no;		// ãƒ¯ã‚¤ãƒ—ãƒŠãƒ³ãƒãƒ¼
 	int seq;
 }D_TMY_WIPE;
 
 //-----------------------------------------------------------------------------
-//			ƒvƒƒgƒ^ƒCƒv
+//			ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //=============================================================================
-static void StartWipe( TCB_PTR tcb,void* work );		// ‰æ–ÊØ‚è‘Ö‚¦ŠJn
-static void MainWipe( TCB_PTR tcb,void* work );			// ‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒ“
+static void StartWipe( TCB_PTR tcb,void* work );		// ç”»é¢åˆ‡ã‚Šæ›¿ãˆé–‹å§‹
+static void MainWipe( TCB_PTR tcb,void* work );			// ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ¡ã‚¤ãƒ³
 
 
 
@@ -460,92 +460,92 @@ static void MainWipe( TCB_PTR tcb,void* work );			// ‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒ“
 
 //============================================================================
 //
-//		ƒZƒ‹ƒAƒNƒ^[ƒ`ƒFƒbƒN—p
-//					“®ìŠJnƒVƒXƒeƒ€
+//		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯ç”¨
+//					å‹•ä½œé–‹å§‹ã‚·ã‚¹ãƒ†ãƒ 
 //
 //
 //=============================================================================
 //-----------------------------------------------------------------------------
-//			\‘¢‘Ì
+//			æ§‹é€ ä½“
 //=============================================================================
 //-------------------------------------
 //	
-//	ƒZƒ‹‚ğ•\¦‚³‚¹‚é‚½‚ß‚É•K—v‚È•¨
+//	ã‚»ãƒ«ã‚’è¡¨ç¤ºã•ã›ã‚‹ãŸã‚ã«å¿…è¦ãªç‰©
 //	
 //=====================================
 typedef struct {
-	CLACT_SET_PTR		clactSet;		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_HEADER_TBL_PTR	clactHeader;	// ƒwƒbƒ_[
-	CLACT_U_RES_MANAGER_PTR	resMan[6];		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_HEADER_PTR	resHeader;		// ƒŠƒ\[ƒXƒwƒbƒ_
-	CLACT_U_RES_OBJ_TBL*	resObjTbl[2];	// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-	int						resObjNum[6];	// ‚»‚ê‚¼‚ê‚ÌƒŠƒ\[ƒXƒIƒuƒWƒF”
-	CLACT_U_EASYRENDER_DATA		renddata;	// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
+	CLACT_SET_PTR		clactSet;		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_HEADER_TBL_PTR	clactHeader;	// ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_U_RES_MANAGER_PTR	resMan[6];		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_HEADER_PTR	resHeader;		// ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€
+	CLACT_U_RES_OBJ_TBL*	resObjTbl[2];	// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+	int						resObjNum[6];	// ãã‚Œãã‚Œã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§æ•°
+	CLACT_U_EASYRENDER_DATA		renddata;	// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	NNSG2dCellTransferState*	cellTransArray;	// ƒZƒ‹Vram“]‘—ƒ}ƒl[ƒWƒƒ[—Ìˆæ
+	NNSG2dCellTransferState*	cellTransArray;	// ã‚»ãƒ«Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼é ˜åŸŸ
 
 	CLACT_WORK_PTR	clact_w[10];
-	int add_num;	// “o˜^”
+	int add_num;	// ç™»éŒ²æ•°
 	TCB_PTR tcb;	// tcb
 } DT_CLACT;
 
 static DT_CLACT* DT_clact = NULL;
 
 //-----------------------------------------------------------------------------
-//			ƒvƒƒgƒ^ƒCƒv
+//			ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //=============================================================================
-static void StartCLACT_Check( TCB_PTR tcb,void* work );		// ƒZƒ‹ƒAƒNƒ^[ŠJn
-static void MainCLACT_Check( TCB_PTR tcb,void* work );		// ƒZƒ‹ƒAƒNƒ^[ƒƒCƒ“
-static void EndCLACT_Check( TCB_PTR tcb,void* work );		// ƒZƒ‹ƒAƒNƒ^[I—¹ˆ—
+static void StartCLACT_Check( TCB_PTR tcb,void* work );		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼é–‹å§‹
+static void MainCLACT_Check( TCB_PTR tcb,void* work );		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¡ã‚¤ãƒ³
+static void EndCLACT_Check( TCB_PTR tcb,void* work );		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼çµ‚äº†å‡¦ç†
 ;
 
 //============================================================================
-//		‚¿‚©‚Ü‚Á‚ÕƒtƒF[ƒhƒGƒtƒFƒNƒg
-//			“®ìŠJnƒVƒXƒeƒ€
+//		ã¡ã‹ã¾ã£ã·ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+//			å‹•ä½œé–‹å§‹ã‚·ã‚¹ãƒ†ãƒ 
 //
 //
 //=============================================================================
 //-----------------------------------------------------------------------------
-//			\‘¢‘Ì
+//			æ§‹é€ ä½“
 //=============================================================================
 typedef struct{
 	int	no;
 	int	flag;
 }D_TMY_ENC;
 //-----------------------------------------------------------------------------
-//			ƒvƒƒgƒ^ƒCƒv
+//			ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //=============================================================================
-static void StartUnderGround( TCB_PTR tcb,void* work );		// ’n‰ºƒ}ƒbƒvƒtƒF[ƒh
-static void MainUnderGround( TCB_PTR tcb,void* work );		// ‚¿‚©‚Ü‚Á‚ÕƒtƒF[ƒh
+static void StartUnderGround( TCB_PTR tcb,void* work );		// åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰
+static void MainUnderGround( TCB_PTR tcb,void* work );		// ã¡ã‹ã¾ã£ã·ãƒ•ã‚§ãƒ¼ãƒ‰
 
 
 
 //#define D_TOMOYA_MATERIAL_ON
 #ifdef D_TOMOYA_MATERIAL_ON
 //============================================================================
-//		ƒ}ƒeƒŠƒAƒ‹‘€ì
+//		ãƒãƒ†ãƒªã‚¢ãƒ«æ“ä½œ
 //
-//			ƒ}ƒeƒŠƒAƒ‹‘€ì‚ÌŠÖ”‚âƒf[ƒ^
+//			ãƒãƒ†ãƒªã‚¢ãƒ«æ“ä½œã®é–¢æ•°ã‚„ãƒ‡ãƒ¼ã‚¿
 //
 //
 //=============================================================================
 
 //-----------------------------------------------------------------------------
-//			\‘¢‘Ì
+//			æ§‹é€ ä½“
 //=============================================================================
 LIGHT_CONT_DATA* DebugMaterial;
 
 //-------------------------------------
 //	
-//	‚P“ú•\Œ»ƒZƒbƒg	
+//	ï¼‘æ—¥è¡¨ç¾ã‚»ãƒƒãƒˆ	
 //	
 //=====================================
 typedef struct _LIGHT_CONT_SET{
-	u32		DataNum;				// ƒf[ƒ^”
-	LIGHT_CONT_DATA* pDataTbl;		// ƒf[ƒ^ƒe[ƒuƒ‹
-	int Light_Num;					// ¡‚ÌLIGHTƒiƒ“ƒo[
-	GLST_DATA_PTR	Glb;			// ƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚Ìó‘Ô•Û‘¶—Ìˆæ
-	BOOL reflect;					// ”½‰fƒtƒ‰ƒO	TRUE”½‰f
+	u32		DataNum;				// ãƒ‡ãƒ¼ã‚¿æ•°
+	LIGHT_CONT_DATA* pDataTbl;		// ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+	int Light_Num;					// ä»Šã®LIGHTãƒŠãƒ³ãƒãƒ¼
+	GLST_DATA_PTR	Glb;			// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã®çŠ¶æ…‹ä¿å­˜é ˜åŸŸ
+	BOOL reflect;					// åæ˜ ãƒ•ãƒ©ã‚°	TRUEåæ˜ 
 } LIGHT_CONT_SET;
 
 
@@ -565,47 +565,47 @@ enum{
 	DEB_MATE_AMBIENT,
 	DEB_MATE_SPECULAR,
 	DEB_MATE_EMISSION,
-	DEB_WIN,					// ƒfƒoƒbƒNƒEƒBƒ“ƒhƒE‚ÉƒL[‚Ì‘€ì‚ğ‹–‰Â‚·‚é
+	DEB_WIN,					// ãƒ‡ãƒãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ã‚­ãƒ¼ã®æ“ä½œã‚’è¨±å¯ã™ã‚‹
 	DEB_MATE_NUM
 };
 
 #define MT_ROTA_DEF		(90*182)
 #define MT_ROT_GET(x)		((0xffff/360)*(x))
 //-----------------------------------------------------------------------------
-//			ƒvƒƒgƒ^ƒCƒv
+//			ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //=============================================================================
 
-static void StartMaterialWindow( TCB_PTR tcb,void* work );	// ƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒoƒbƒNƒEƒBƒ“ƒhƒEŠJn
-static void MainMaterialWindow( TCB_PTR tcb,void* work );	// ƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒoƒbƒNƒEƒBƒ“ƒhƒEƒƒCƒ“
-static void EndMaterialWindow( TCB_PTR tcb,void* work );	// ƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒoƒbƒNƒEƒBƒ“ƒhƒEI—¹
+static void StartMaterialWindow( TCB_PTR tcb,void* work );	// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
+static void MainMaterialWindow( TCB_PTR tcb,void* work );	// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
+static void EndMaterialWindow( TCB_PTR tcb,void* work );	// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦çµ‚äº†
 
-static void DrawMenu( u32 num );				// Menu‚Æî•ñ‚ğ•`‰æ
-static u8 NumInput(u32* num, u32 add, u32 limit);		// ”š‚Ì“ü—Í
-static u8 ColorInput( s16* num );				// F‚Ì“ü—Í
-static u8 VecInput(u16* rotaY, u16* rotaXZ);	// ƒxƒNƒgƒ‹“ü—Í
-static void DrawRGB( GXRgb num );				// F‚Ì•`‰æ
+static void DrawMenu( u32 num );				// Menuã¨æƒ…å ±ã‚’æç”»
+static u8 NumInput(u32* num, u32 add, u32 limit);		// æ•°å­—ã®å…¥åŠ›
+static u8 ColorInput( s16* num );				// è‰²ã®å…¥åŠ›
+static u8 VecInput(u16* rotaY, u16* rotaXZ);	// ãƒ™ã‚¯ãƒˆãƒ«å…¥åŠ›
+static void DrawRGB( GXRgb num );				// è‰²ã®æç”»
 
 static void SetVecRota( u16* rotaY, u16* rotaXZ, fx32 X, fx32 Y, fx32 Z );
 static void SetVecsRotas( u16* rotaY, u16* rotaXZ, LIGHT_CONT_DATA* light );
 
 
 //-----------------------------------------------------------------------------
-//			•Ï”
+//			å¤‰æ•°
 //=============================================================================
 static int	MaterialDataNo = 0;
 
 static u8	MaterialWinFlag=0;
 static TCB_PTR	materialTCBData;
-static int MaterialCount;			// ƒJƒEƒ“ƒ^
-static u16 MaterialrotaY[ 4 ];					// ‰ñ“]ŠpY
-static u16 MaterialrotaXZ[ 4 ];					// ‰ñ“]ŠpXZ
+static int MaterialCount;			// ã‚«ã‚¦ãƒ³ã‚¿
+static u16 MaterialrotaY[ 4 ];					// å›è»¢è§’Y
+static u16 MaterialrotaXZ[ 4 ];					// å›è»¢è§’XZ
 
-static int MT_InputCount;			// “ü—ÍƒJƒEƒ“ƒ^
-static int MT_InputNow;				// ¡‚Ì“ü—Í‘Ò‚¿ŠÔ
-static GF_BGL_BMPWIN* D_M_win;		// ƒEƒBƒ“ƒhƒE
+static int MT_InputCount;			// å…¥åŠ›ã‚«ã‚¦ãƒ³ã‚¿
+static int MT_InputNow;				// ä»Šã®å…¥åŠ›å¾…ã¡æ™‚é–“
+static GF_BGL_BMPWIN* D_M_win;		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
 
-// ƒ^ƒCƒgƒ‹ŒS
+// ã‚¿ã‚¤ãƒˆãƒ«éƒ¡
 static const u16 pD_M_str[] = {
 	D_M_str14,
 	D_M_str00,
@@ -627,12 +627,12 @@ static const u16 pD_M_str[] = {
 #endif	// D_TOMOYA_MATERIAL_ON
 
 //-------------------------------------
-//	ƒtƒHƒO‚Æ‹¤’Ê
+//	ãƒ•ã‚©ã‚°ã¨å…±é€š
 //=====================================
-#define	MT_INPUT_MAX	(12)		// ƒL[“ü—Í‘€ì—p
+#define	MT_INPUT_MAX	(12)		// ã‚­ãƒ¼å…¥åŠ›æ“ä½œç”¨
 #define MT_INPUT_MIN	(0)
 #define MT_INPUT_SUB	(4)
-#define D_M_MENU_X		(8)			// •\¦ˆÊ’u—p
+#define D_M_MENU_X		(8)			// è¡¨ç¤ºä½ç½®ç”¨
 #define D_M_MENU_Y		(8)
 #define D_M_MENU_SPACE_Y	(8)
 #define D_M_MENU_SPACE_X	(16)
@@ -643,34 +643,34 @@ static const u16 pD_M_str[] = {
 #define	D_M_2		(68)
 #define	D_M_3		(88)
 #define D_M_SELECT	(108)
-static void DrawNum( s32 num, u32 x, u32 y, GF_BGL_BMPWIN* win );// ”š‚Ì•`‰æ
+static void DrawNum( s32 num, u32 x, u32 y, GF_BGL_BMPWIN* win );// æ•°å­—ã®æç”»
 
 
 
 
 
 //============================================================================
-//		ƒtƒHƒO
+//		ãƒ•ã‚©ã‚°
 //
-//			ƒtƒHƒO‚Ìİ’èAI—¹
+//			ãƒ•ã‚©ã‚°ã®è¨­å®šã€çµ‚äº†
 //
 //
 //=============================================================================
 //-----------------------------------------------------------------------------
-//			\‘¢‘Ì
+//			æ§‹é€ ä½“
 //=============================================================================
 //-----------------------------------------------------------------------------
-//			ƒvƒƒgƒ^ƒCƒv
+//			ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //=============================================================================
-static void StartFog( TCB_PTR tcb,void* work );	// ƒtƒHƒO‚ğİ’è
-static void MainFog( TCB_PTR tcb,void* work);	// ƒtƒHƒOƒƒCƒ“
-static void EndFog( TCB_PTR tcb,void* work );	// ƒtƒHƒO‚ğI—¹
+static void StartFog( TCB_PTR tcb,void* work );	// ãƒ•ã‚©ã‚°ã‚’è¨­å®š
+static void MainFog( TCB_PTR tcb,void* work);	// ãƒ•ã‚©ã‚°ãƒ¡ã‚¤ãƒ³
+static void EndFog( TCB_PTR tcb,void* work );	// ãƒ•ã‚©ã‚°ã‚’çµ‚äº†
 
 static void InputFog( int num );
 static void DrawFog( int num );
 
 //-----------------------------------------------------------------------------
-//			•Ï”
+//			å¤‰æ•°
 //=============================================================================
 u8	FogFlag=0;
 static TCB_PTR	FogTCBData;
@@ -678,13 +678,13 @@ static u8	Fog_DrawFlag = 0;
 
 NNSG3dResMdl* groundMdl;
 
-static int FOG_Count = 0;			// ¡‘€ì‚µ‚Ä‚¢‚é‚±‚Æ
-static int FOG_InputCount;			// “ü—ÍƒJƒEƒ“ƒ^
-static int FOG_InputNow;			// ¡‚Ì“ü—Í‘Ò‚¿ŠÔ
-static GF_BGL_BMPWIN* FOG_win;		// ƒEƒBƒ“ƒhƒE
-static int FOG_TBL_Count=0;			// ƒtƒHƒOƒe[ƒuƒ‹¡‘€ì‚µ‚Ä‚¢‚é‚Æ‚±‚ë
+static int FOG_Count = 0;			// ä»Šæ“ä½œã—ã¦ã„ã‚‹ã“ã¨
+static int FOG_InputCount;			// å…¥åŠ›ã‚«ã‚¦ãƒ³ã‚¿
+static int FOG_InputNow;			// ä»Šã®å…¥åŠ›å¾…ã¡æ™‚é–“
+static GF_BGL_BMPWIN* FOG_win;		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+static int FOG_TBL_Count=0;			// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ä»Šæ“ä½œã—ã¦ã„ã‚‹ã¨ã“ã‚
 
-// •¶š—ñŒS
+// æ–‡å­—åˆ—éƒ¡
 
 static const u16	fog_title[]={
 	fog_title00,
@@ -705,11 +705,11 @@ enum{
 //#define		FOG_BG_ON
 #ifdef FOG_BG_ON
 
-static void BG2Move(TCB_PTR tcb,void* work);	// BG2‚ğ“®‚©‚·ƒ^ƒXƒN
+static void BG2Move(TCB_PTR tcb,void* work);	// BG2ã‚’å‹•ã‹ã™ã‚¿ã‚¹ã‚¯
 #define		FOG_BG_SCROLL_COUNT	(1)
 #define		FOG_BG_SCROLL_PAR	(4)
 static TCB_PTR	FOG_BG_TASK = NULL;
-static u32	Fog_BG_Count =0;		// BG–ÊƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^
+static u32	Fog_BG_Count =0;		// BGé¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿
 
 static int bg2_flag = 0;
 #define		SCREEN_SIZE (32 * 32)
@@ -1246,56 +1246,56 @@ const unsigned int d_64_256_bg_schDT[16 * 128] = {
 #if 0
 //=============================================================================
 //
-//		ƒ^[ƒ“ƒe[ƒuƒ‹	
+//		ã‚¿ãƒ¼ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«	
 //
 //=============================================================================
 //-----------------------------------------------------------------------------
-//			’è”
+//			å®šæ•°
 //=============================================================================
-#define D_SAMPLING_RATE (16000)		// ƒŒ[ƒg
-#define D_SAMPLING_TIME     (10)	// ƒTƒ“ƒvƒŠƒ“ƒO(•b)
+#define D_SAMPLING_RATE (16000)		// ãƒ¬ãƒ¼ãƒˆ
+#define D_SAMPLING_TIME     (10)	// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°(ç§’)
 
-#define D_CHANNEL_NO (7)			// ƒTƒEƒ“ƒhƒ`ƒƒƒ“ƒlƒ‹
+#define D_CHANNEL_NO (7)			// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ£ãƒ³ãƒãƒ«
 
-#define D_WAVE_SAMPLE ( D_SAMPLING_RATE * D_SAMPLING_TIME )	// ƒoƒbƒtƒ@ƒTƒCƒY
+#define D_WAVE_SAMPLE ( D_SAMPLING_RATE * D_SAMPLING_TIME )	// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define	D_DJ_SPEED	(32768/2)	// tpÀ•W‚ª‚Pi‚Ş‚Æ‚«‚ÌƒXƒs[ƒh
+#define	D_DJ_SPEED	(32768/2)	// tpåº§æ¨™ãŒï¼‘é€²ã‚€ã¨ãã®ã‚¹ãƒ”ãƒ¼ãƒ‰
 //-----------------------------------------------------------------------------
-//			\‘¢‘Ì
+//			æ§‹é€ ä½“
 //=============================================================================
 
 
 //-----------------------------------------------------------------------------
-//			ƒvƒƒgƒ^ƒCƒvéŒ¾
+//			ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //=============================================================================
 static void D_MicCallback( MICResult /**/, void* /**/ );
-static void StartWaveMic( TCB_PTR tcb,void* work );	// ƒEƒF[ƒuƒ}ƒCƒN‚ğİ’è
-static void MainWaveMic( TCB_PTR tcb,void* work);	// ƒEƒF[ƒuƒ}ƒCƒNƒƒCƒ“
-static void EndWaveMic( TCB_PTR tcb,void* work );	// ƒEƒF[ƒuƒ}ƒCƒN‚ğI—¹
+static void StartWaveMic( TCB_PTR tcb,void* work );	// ã‚¦ã‚§ãƒ¼ãƒ–ãƒã‚¤ã‚¯ã‚’è¨­å®š
+static void MainWaveMic( TCB_PTR tcb,void* work);	// ã‚¦ã‚§ãƒ¼ãƒ–ãƒã‚¤ã‚¯ãƒ¡ã‚¤ãƒ³
+static void EndWaveMic( TCB_PTR tcb,void* work );	// ã‚¦ã‚§ãƒ¼ãƒ–ãƒã‚¤ã‚¯ã‚’çµ‚äº†
 
-static void WaveInput(u32 num);		// “ü—Í
+static void WaveInput(u32 num);		// å…¥åŠ›
 static void WaveStartOutPut(u32 Speed);
 static void WaveDataReturn(s16* pWaveData, u32 LoopStart);
 
 //-----------------------------------------------------------------------------
-//			•Ï”
+//			å¤‰æ•°
 //=============================================================================
 static s16 D_WaveBuffer[ D_WAVE_SAMPLE ] ATTRIBUTE_ALIGN(32);
-static MICAutoParam D_MicParam;	// ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒOƒpƒ‰ƒ[ƒ^
-static NNSSndWaveOutHandle D_WaveOutHandle;	// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
+static MICAutoParam D_MicParam;	// ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+static NNSSndWaveOutHandle D_WaveOutHandle;	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
 
-static u8	WaveMicFlag=0;		// WaveMicÀs’†:1
-static TCB_PTR	WaveMicTCBData;	// ƒ^ƒXƒNƒf[ƒ^
-static s32	WaveNum=0;			// Às’†‚Ìˆ—
-static u32	WaveSpeed = 32768;	// ƒXƒs[ƒh
-static u32	WavePan = 64;		// ƒpƒ“(ƒXƒs[ƒJ[‚Ì¶‰E‚Ìƒ{ƒŠƒ…[ƒ€)
-static s32	WaveNo=0;			// ¡‚ÌÀs’†‚Ì”z—ñˆÊ’u
-static TPData	WaveTP;			// ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ•Û‘¶—p
-static u8	WaveSndFlag=0;		// ¶Ä¶:1	‹tÄ¶:0
+static u8	WaveMicFlag=0;		// WaveMicå®Ÿè¡Œä¸­:1
+static TCB_PTR	WaveMicTCBData;	// ã‚¿ã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿
+static s32	WaveNum=0;			// å®Ÿè¡Œä¸­ã®å‡¦ç†
+static u32	WaveSpeed = 32768;	// ã‚¹ãƒ”ãƒ¼ãƒ‰
+static u32	WavePan = 64;		// ãƒ‘ãƒ³(ã‚¹ãƒ”ãƒ¼ã‚«ãƒ¼ã®å·¦å³ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ )
+static s32	WaveNo=0;			// ä»Šã®å®Ÿè¡Œä¸­ã®é…åˆ—ä½ç½®
+static TPData	WaveTP;			// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ä¿å­˜ç”¨
+static u8	WaveSndFlag=0;		// ç”Ÿå†ç”Ÿ:1	é€†å†ç”Ÿ:0
 
-static u8	WaveMicDataFlag=0;	// ŠeŠ—˜—p‚Ìƒtƒ‰ƒO
+static u8	WaveMicDataFlag=0;	// å„æ‰€åˆ©ç”¨ã®ãƒ•ãƒ©ã‚°
 
-// •¶š—ñŒS
+// æ–‡å­—åˆ—éƒ¡
 static const u16	wave_title00[] = {ro_,ku_,o_,n_,EOM_,};
 static const u16	wave_title01[] = {sa_,i_,se_,i_,EOM_,};
 
@@ -1319,50 +1319,50 @@ enum{
 #endif
 //=============================================================================
 //
-//		‚¨“V‹CƒVƒXƒeƒ€	
+//		ãŠå¤©æ°—ã‚·ã‚¹ãƒ†ãƒ 	
 //
 //=============================================================================
 //-----------------------------------------------------------------------------
-//			’è”
+//			å®šæ•°
 //=============================================================================
 #define MAP_TYPE_LIST_COUNT_SUB_OTENKI_00	(25)
 
 //-----------------------------------------------------------------------------
-//			\‘¢‘Ì
+//			æ§‹é€ ä½“
 //=============================================================================
 
 //-----------------------------------------------------------------------------
-//			ƒvƒƒgƒ^ƒCƒvéŒ¾
+//			ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //=============================================================================
-static void StartWeather00( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather01( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather02( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather03( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather04( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather05( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather06( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather07( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather08( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather09( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather10( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather11( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather12( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather13( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather14( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather15( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather16( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather17( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğİ’è
-static void StartWeather18( TCB_PTR tcb,void* work );	// ‹Ã‚ê”ü
-static void StartWeather19( TCB_PTR tcb,void* work );	// “´ŒA
-static void StartWeather20( TCB_PTR tcb,void* work );	// “´ŒA
-static void StartWeather21( TCB_PTR tcb,void* work );	// ƒMƒ“ƒK‚O‚O
-static void StartWeather22( TCB_PTR tcb,void* work );	// LostTower‚O‚O
-static void StartWeather23( TCB_PTR tcb,void* work );	// LostTower‚O‚O
-static void StartWeather24( TCB_PTR tcb,void* work );	// LostTower‚O‚O
-static void StopWeather( TCB_PTR tcb,void* work );		// ‚¨“V‹C‚ğI—¹
-static void EndWeather( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğ”jŠü	 
+static void StartWeather00( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather01( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather02( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather03( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather04( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather05( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather06( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather07( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather08( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather09( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather10( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather11( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather12( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather13( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather14( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather15( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather16( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather17( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’è¨­å®š
+static void StartWeather18( TCB_PTR tcb,void* work );	// å‡ã‚Œç¾
+static void StartWeather19( TCB_PTR tcb,void* work );	// æ´çªŸ
+static void StartWeather20( TCB_PTR tcb,void* work );	// æ´çªŸ
+static void StartWeather21( TCB_PTR tcb,void* work );	// ã‚®ãƒ³ã‚¬ï¼ï¼
+static void StartWeather22( TCB_PTR tcb,void* work );	// LostTowerï¼ï¼
+static void StartWeather23( TCB_PTR tcb,void* work );	// LostTowerï¼ï¼
+static void StartWeather24( TCB_PTR tcb,void* work );	// LostTowerï¼ï¼
+static void StopWeather( TCB_PTR tcb,void* work );		// ãŠå¤©æ°—ã‚’çµ‚äº†
+static void EndWeather( TCB_PTR tcb,void* work );	// ãŠå¤©æ°—ã‚’ç ´æ£„	 
 //-----------------------------------------------------------------------------
-//			•Ï”
+//			å¤‰æ•°
 //=============================================================================
 
 
@@ -1370,9 +1370,9 @@ static void EndWeather( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğ”jŠü
 //============================================================================
 //		jump
 //		
-//		ƒfƒtƒHƒ‹ƒg
+//		ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
 //
-//			ƒfƒoƒbƒNƒEƒBƒ“ƒhƒE‚ÌŠÖ”‚âƒf[ƒ^
+//			ãƒ‡ãƒãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®é–¢æ•°ã‚„ãƒ‡ãƒ¼ã‚¿
 //
 //
 //=============================================================================
@@ -1382,13 +1382,13 @@ static void EndWeather( TCB_PTR tcb,void* work );	// ‚¨“V‹C‚ğ”jŠü
 	#define MAP_TYPE_LIST_COUNT_MAIN	(19)
 #endif	// D_TOMOYA_MATERIAL_ON
 
-#define MAP_TYPE_LIST_COUNT_NO_SUB	(15)		// ƒTƒuƒƒjƒ…[‚ª‚È‚¢ƒVƒXƒeƒ€
+#define MAP_TYPE_LIST_COUNT_NO_SUB	(15)		// ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒãªã„ã‚·ã‚¹ãƒ†ãƒ 
 #define MAP_TYPE_LIST_COUNT_SUB		(2)
 
 #define MAP_TYPE_LIST_COUNT_LIGHT_SUB		(3)
 		
 //-----------------------------------------------------------------------------
-//			\‘¢‘Ì
+//			æ§‹é€ ä½“
 //=============================================================================
 typedef struct {
 	u8	work;
@@ -1402,33 +1402,33 @@ typedef struct {
 }DEBUG_WINDOW_DATA;
 
 //-----------------------------------------------------------------------------
-//			ƒvƒƒgƒ^ƒCƒv
+//			ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //=============================================================================
 static void InitDebugWindow(DEBUG_WINDOW_DATA *wp);
 static void DebugListFree(TCB_PTR tcb,void* work);
 static void DebugWindowExit(TCB_PTR tcb,void* work);
 static void DebugListControlTask(TCB_PTR tcb,void* work);
-static void EndDebugWind( TCB_PTR tcb,void* work );		// ƒfƒoƒbƒNƒEƒBƒ“ƒhƒE‚µ‚ã‚¤‚è‚å‚¤
+static void EndDebugWind( TCB_PTR tcb,void* work );		// ãƒ‡ãƒãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã—ã‚…ã†ã‚Šã‚‡ã†
 
-// ƒTƒu—p
+// ã‚µãƒ–ç”¨
 static void StartApplication(TCB_PTR tcb,void* work);
 static void ApplicationControlTask(TCB_PTR tcb,void* work);
 //-----------------------------------------------------------------------------
-//			•Ï”
+//			å¤‰æ•°
 //=============================================================================
 //----------------------------------------------------------------------------
-//	ƒŠƒXƒg€–Ú–¼
+//	ãƒªã‚¹ãƒˆé …ç›®å
 //----------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------
-//	ƒEƒBƒ“ƒhƒE§Œäƒf[ƒ^
+//	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------------------
 DEBUG_WINDOW_DATA* MainWp = NULL;
 
 //--------------------------------------------------------------------------
-//	€–Ú‚ÆÀsŠÖ”‚ÌƒŠƒXƒg
+//	é …ç›®ã¨å®Ÿè¡Œé–¢æ•°ã®ãƒªã‚¹ãƒˆ
 //--------------------------------------------------------------------------
-//ƒƒCƒ“—p
+//ãƒ¡ã‚¤ãƒ³ç”¨
 static const BMPLIST_DATA MainDebugList[] = {
 	{(void*)Msg01_32,(u32)StartWFLBYROOM_Check},
 	{(void*)Msg01_28,(u32)StartWFLBYROOM_EVSPEED_Check},
@@ -1478,53 +1478,53 @@ static const BMPLIST_DATA MainDebugList[] = {
 	{(void*)Msg01_19,(u32)StartFldTrade03},//*/
 
 #ifdef D_TOMOYA_MATERIAL_ON
-	{(void*)Msg01_04,(u32)StartApplication},	// ƒ}ƒeƒŠƒAƒ‹
+	{(void*)Msg01_04,(u32)StartApplication},	// ãƒãƒ†ãƒªã‚¢ãƒ«
 #endif	// D_TOMOYA_MATERIAL_ON
-	{(void*)Msg01_05,(u32)StartApplication},	// ƒtƒHƒO
-	{(void*)Msg01_07,(u32)StartApplication},	// ‚Ä‚ñ‚«
-//	{(void*)Msg01_10,(u32)StartApplication},	// ƒGƒ“ƒJƒEƒ“ƒg
+	{(void*)Msg01_05,(u32)StartApplication},	// ãƒ•ã‚©ã‚°
+	{(void*)Msg01_07,(u32)StartApplication},	// ã¦ã‚“ã
+//	{(void*)Msg01_10,(u32)StartApplication},	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 	{(void*)Msg01_11,(u32)EndDebugWind},
 };
 
 
 #define BMPLIST_ENDCODE	(const void*)(0xffffffff)
 
-// ƒTƒu—p
-static const BMPLIST_DATA SubFogDebugList[] = {	// ƒtƒHƒO
+// ã‚µãƒ–ç”¨
+static const BMPLIST_DATA SubFogDebugList[] = {	// ãƒ•ã‚©ã‚°
 	{(void*)Msg02_01,(u32)StartFog},
 	{(void*)Msg02_02,(u32)EndFog},
 	{BMPLIST_ENDCODE, 0},
 };
-static const BMPLIST_DATA SubWeatherDebugList[] = {	// “V‹C
-	{(void*)Msg07_01,(u32)StartWeather00},	// °‚ê
-	{(void*)Msg07_02,(u32)StartWeather01},	// “Ü‚è	 
-	{(void*)Msg07_03,(u32)StartWeather02},	// ‰J	 
-	{(void*)Msg07_04,(u32)StartWeather03},	// ‘å‰J	 
-	{(void*)Msg07_05,(u32)StartWeather04},	// ‘å‰J	 
-	{(void*)Msg07_06,(u32)StartWeather05},	// á	 
-	{(void*)Msg07_07,(u32)StartWeather06},	// á	 
-	{(void*)Msg07_08,(u32)StartWeather07},	// –Òá
-	{(void*)Msg07_09,(u32)StartWeather08},	// –¶¬	 
-	{(void*)Msg07_10,(u32)StartWeather09},	// ‰ÎRŠD
-	{(void*)Msg07_11,(u32)StartWeather10},	// BGg—p»—’
-	{(void*)Msg07_12,(u32)StartWeather11},	// ƒXƒm[ƒ_ƒXƒg
-	{(void*)Msg07_13,(u32)StartWeather12},	// –¶‘å	–¶•¥‚¢‚Ì–¶ 
-	{(void*)Msg07_13,(u32)StartWeather17},	// –¶‘å	–¶•¥‚¢‚Ì–¶ 
-	{(void*)Msg07_14,(u32)StartWeather13},	// ƒtƒ‰ƒbƒVƒ…	   
-	{(void*)Msg07_15,(u32)StartWeather14},	// ‹C‡
-	{(void*)Msg07_16,(u32)StartWeather15},	// _”é
-	{(void*)Msg07_20,(u32)StartWeather18},	// ‹Ã‚ê”ü
-	{(void*)Msg07_21,(u32)StartWeather19},	// “´ŒA
-	{(void*)Msg07_21,(u32)StartWeather20},	// “´ŒA
-	{(void*)Msg07_22,(u32)StartWeather21},	// ƒMƒ“ƒK
+static const BMPLIST_DATA SubWeatherDebugList[] = {	// å¤©æ°—
+	{(void*)Msg07_01,(u32)StartWeather00},	// æ™´ã‚Œ
+	{(void*)Msg07_02,(u32)StartWeather01},	// æ›‡ã‚Š	 
+	{(void*)Msg07_03,(u32)StartWeather02},	// é›¨	 
+	{(void*)Msg07_04,(u32)StartWeather03},	// å¤§é›¨	 
+	{(void*)Msg07_05,(u32)StartWeather04},	// å¤§é›¨	 
+	{(void*)Msg07_06,(u32)StartWeather05},	// é›ª	 
+	{(void*)Msg07_07,(u32)StartWeather06},	// å¹é›ª	 
+	{(void*)Msg07_08,(u32)StartWeather07},	// çŒ›å¹é›ª
+	{(void*)Msg07_09,(u32)StartWeather08},	// éœ§å°	 
+	{(void*)Msg07_10,(u32)StartWeather09},	// ç«å±±ç°
+	{(void*)Msg07_11,(u32)StartWeather10},	// BGä½¿ç”¨ç ‚åµ
+	{(void*)Msg07_12,(u32)StartWeather11},	// ã‚¹ãƒãƒ¼ãƒ€ã‚¹ãƒˆ
+	{(void*)Msg07_13,(u32)StartWeather12},	// éœ§å¤§	éœ§æ‰•ã„ã®éœ§ 
+	{(void*)Msg07_13,(u32)StartWeather17},	// éœ§å¤§	éœ§æ‰•ã„ã®éœ§ 
+	{(void*)Msg07_14,(u32)StartWeather13},	// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥	   
+	{(void*)Msg07_15,(u32)StartWeather14},	// æ°—åˆ
+	{(void*)Msg07_16,(u32)StartWeather15},	// ç¥ç§˜
+	{(void*)Msg07_20,(u32)StartWeather18},	// å‡ã‚Œç¾
+	{(void*)Msg07_21,(u32)StartWeather19},	// æ´çªŸ
+	{(void*)Msg07_21,(u32)StartWeather20},	// æ´çªŸ
+	{(void*)Msg07_22,(u32)StartWeather21},	// ã‚®ãƒ³ã‚¬
 	{(void*)Msg07_23,(u32)StartWeather22},	// LostTower
-	{(void*)Msg07_24,(u32)StartWeather23},	// ƒn[ƒhƒ}ƒEƒ“ƒeƒ“
-	{(void*)Msg07_25,(u32)StartWeather24},	// “´ŒA02
+	{(void*)Msg07_24,(u32)StartWeather23},	// ãƒãƒ¼ãƒ‰ãƒã‚¦ãƒ³ãƒ†ãƒ³
+	{(void*)Msg07_25,(u32)StartWeather24},	// æ´çªŸ02
 
 	{(void*)Msg07_18,(u32)EndWeather},
 	{BMPLIST_ENDCODE, 0},                   
 };
-static const BMPLIST_DATA SubEncountDebugList[] = {	// ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+static const BMPLIST_DATA SubEncountDebugList[] = {	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	{(void*)Msg08_00,(u32)EncountEffect_00},
 	{(void*)Msg08_01,(u32)EncountEffect_01},
 	{(void*)Msg08_02,(u32)EncountEffect_02},
@@ -1560,7 +1560,7 @@ static const BMPLIST_DATA SubEncountDebugList[] = {	// ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
 };
 
 #ifdef D_TOMOYA_MATERIAL_ON
-static const BMPLIST_DATA SubMaterialDebugList[] = {	// ƒ}ƒeƒŠƒAƒ‹
+static const BMPLIST_DATA SubMaterialDebugList[] = {	// ãƒãƒ†ãƒªã‚¢ãƒ«
 	{(void*)Msg02_01,(u32)StartMaterialWindow},
 	{(void*)Msg02_02,(u32)EndMaterialWindow},
 	{BMPLIST_ENDCODE, 0},
@@ -1568,9 +1568,9 @@ static const BMPLIST_DATA SubMaterialDebugList[] = {	// ƒ}ƒeƒŠƒAƒ‹
 #endif	// D_TOMOYA_MATERIAL_ON
 
 //---------------------------------------------------------------------------
-//  ƒEƒBƒ“ƒhƒEİ’è
+//  ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 //---------------------------------------------------------------------------
-//ƒƒCƒ“ƒEƒBƒ“ƒhƒE
+//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 static const BMPWIN_DAT	MainDebugListWindowData = {
 	FLD_MBGFRM_FONT,
 	0,0,
@@ -1579,7 +1579,7 @@ static const BMPWIN_DAT	MainDebugListWindowData = {
 	8
 };
 
-//ƒTƒuƒEƒBƒ“ƒhƒE
+//ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 static const BMPWIN_DAT	SubDebugListWindowData = {
 	FLD_MBGFRM_FONT,
 	0,0,
@@ -1589,129 +1589,129 @@ static const BMPWIN_DAT	SubDebugListWindowData = {
 };
 
 //------------------------------------------------------------------
-//	€–ÚƒŠƒXƒgƒf[ƒ^
+//	é …ç›®ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 //------------------------------------------------------------------
-//ƒƒCƒ“—p
+//ãƒ¡ã‚¤ãƒ³ç”¨
 static const BMPLIST_HEADER MainDebugListHeader = {
-	MainDebugList,		//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,				//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,				//‚Ps‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,				// ƒEƒBƒ“ƒhƒE
-	MAP_TYPE_LIST_COUNT_MAIN,//ƒŠƒXƒg€–Ú”
-	10,	//•\¦Å‘å€–Ú”
-	2,					//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	12,					//€–Ú•\¦‚wÀ•W
-	1,					//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	8,					//•\¦‚xÀ•W
-	FBMP_COL_WHITE,		//•¶šF
-	FBMP_COL_BLACK,		//”wŒiF
-	FBMP_COL_BLK_SDW,	//•¶š‰eF
-	0,					//•¶šŠÔŠu‚w
-	1,					//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,		//•¶šw’è
-	0,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	MainDebugList,		//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,				//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,				//ï¼‘è¡Œã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,				// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	MAP_TYPE_LIST_COUNT_MAIN,//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	10,	//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	2,					//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	12,					//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	1,					//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,					//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,		//æ–‡å­—è‰²
+	FBMP_COL_BLACK,		//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,	//æ–‡å­—å½±è‰²
+	0,					//æ–‡å­—é–“éš”ï¼¸
+	1,					//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,		//æ–‡å­—æŒ‡å®š
+	0,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
-//ƒTƒu—p
+//ã‚µãƒ–ç”¨
 static const BMPLIST_HEADER SubDebugListHeader[] = {
 #ifdef D_TOMOYA_MATERIAL_ON
 	{
-		SubMaterialDebugList,	//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^	
-		NULL,		//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,		//‚Ps‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,		//ƒEƒBƒ“ƒhƒE
-		MAP_TYPE_LIST_COUNT_SUB,//ƒŠƒXƒg€–Ú”
-		MAP_TYPE_LIST_COUNT_SUB,//•\¦Å‘å€–Ú”
-		2,					//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-		12,					//€–Ú•\¦‚wÀ•W
-		1,					//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-		8,					//•\¦‚xÀ•W
-		FBMP_COL_WHITE,		//•¶šF
-		FBMP_COL_BLACK,		//”wŒiF
-		FBMP_COL_BLK_SDW,	//•¶š‰eF
-		0,					//•¶šŠÔŠu‚w
-		1,					//•¶šŠÔŠu‚x
-		BMPLIST_NO_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-		FONT_SYSTEM,			//•¶šw’è
-		0,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+		SubMaterialDebugList,	//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿	
+		NULL,		//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,		//ï¼‘è¡Œã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+		MAP_TYPE_LIST_COUNT_SUB,//ãƒªã‚¹ãƒˆé …ç›®æ•°
+		MAP_TYPE_LIST_COUNT_SUB,//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+		2,					//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+		12,					//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+		1,					//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+		8,					//è¡¨ç¤ºï¼¹åº§æ¨™
+		FBMP_COL_WHITE,		//æ–‡å­—è‰²
+		FBMP_COL_BLACK,		//èƒŒæ™¯è‰²
+		FBMP_COL_BLK_SDW,	//æ–‡å­—å½±è‰²
+		0,					//æ–‡å­—é–“éš”ï¼¸
+		1,					//æ–‡å­—é–“éš”ï¼¹
+		BMPLIST_NO_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+		FONT_SYSTEM,			//æ–‡å­—æŒ‡å®š
+		0,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 	},
 #endif	// D_TOMOYA_MATERIAL_ON
 	{
-		SubFogDebugList,	//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^	
-		NULL,		//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,		//‚Ps‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,		//ƒEƒBƒ“ƒhƒE
-		MAP_TYPE_LIST_COUNT_SUB,//ƒŠƒXƒg€–Ú”
-		MAP_TYPE_LIST_COUNT_SUB,//•\¦Å‘å€–Ú”
-		2,					//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-		12,					//€–Ú•\¦‚wÀ•W
-		1,					//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-		8,					//•\¦‚xÀ•W
-		FBMP_COL_WHITE,		//•¶šF
-		FBMP_COL_BLACK,		//”wŒiF
-		FBMP_COL_BLK_SDW,	//•¶š‰eF
-		0,					//•¶šŠÔŠu‚w
-		1,					//•¶šŠÔŠu‚x
-		BMPLIST_NO_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-		FONT_SYSTEM,			//•¶šw’è
-		0,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+		SubFogDebugList,	//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿	
+		NULL,		//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,		//ï¼‘è¡Œã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+		MAP_TYPE_LIST_COUNT_SUB,//ãƒªã‚¹ãƒˆé …ç›®æ•°
+		MAP_TYPE_LIST_COUNT_SUB,//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+		2,					//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+		12,					//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+		1,					//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+		8,					//è¡¨ç¤ºï¼¹åº§æ¨™
+		FBMP_COL_WHITE,		//æ–‡å­—è‰²
+		FBMP_COL_BLACK,		//èƒŒæ™¯è‰²
+		FBMP_COL_BLK_SDW,	//æ–‡å­—å½±è‰²
+		0,					//æ–‡å­—é–“éš”ï¼¸
+		1,					//æ–‡å­—é–“éš”ï¼¹
+		BMPLIST_NO_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+		FONT_SYSTEM,			//æ–‡å­—æŒ‡å®š
+		0,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 	},
 	{
-		SubWeatherDebugList,	//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^	
-		NULL,		//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,		//‚Ps‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,		//ƒEƒBƒ“ƒhƒE
-		MAP_TYPE_LIST_COUNT_SUB_OTENKI_00,//ƒŠƒXƒg€–Ú”
-		8,//•\¦Å‘å€–Ú”
-		2,					//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-		12,					//€–Ú•\¦‚wÀ•W
-		1,					//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-		8,					//•\¦‚xÀ•W
-		FBMP_COL_WHITE,		//•¶šF
-		FBMP_COL_BLACK,		//”wŒiF
-		FBMP_COL_BLK_SDW,	//•¶š‰eF
-		0,					//•¶šŠÔŠu‚w
-		1,					//•¶šŠÔŠu‚x
-		BMPLIST_LRKEY_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-		FONT_SYSTEM,		//•¶šw’è
-		0,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+		SubWeatherDebugList,	//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿	
+		NULL,		//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,		//ï¼‘è¡Œã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+		MAP_TYPE_LIST_COUNT_SUB_OTENKI_00,//ãƒªã‚¹ãƒˆé …ç›®æ•°
+		8,//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+		2,					//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+		12,					//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+		1,					//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+		8,					//è¡¨ç¤ºï¼¹åº§æ¨™
+		FBMP_COL_WHITE,		//æ–‡å­—è‰²
+		FBMP_COL_BLACK,		//èƒŒæ™¯è‰²
+		FBMP_COL_BLK_SDW,	//æ–‡å­—å½±è‰²
+		0,					//æ–‡å­—é–“éš”ï¼¸
+		1,					//æ–‡å­—é–“éš”ï¼¹
+		BMPLIST_LRKEY_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+		FONT_SYSTEM,		//æ–‡å­—æŒ‡å®š
+		0,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 	},
-	{	// ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
-		SubEncountDebugList,	//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^	
-		NULL,		//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,		//‚Ps‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,		//ƒEƒBƒ“ƒhƒE
-		31,//ƒŠƒXƒg€–Ú”	// ƒe[ƒuƒ‹”
-		8,//•\¦Å‘å€–Ú”
-		2,					//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-		13,					//€–Ú•\¦‚wÀ•W
-		1,					//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-		8,					//•\¦‚xÀ•W
-		FBMP_COL_WHITE,		//•¶šF
-		FBMP_COL_BLACK,		//”wŒiF
-		FBMP_COL_BLK_SDW,	//•¶š‰eF
-		0,					//•¶šŠÔŠu‚w
-		1,					//•¶šŠÔŠu‚x
-		BMPLIST_LRKEY_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-		FONT_SYSTEM,		//•¶šw’è
-		0,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	{	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+		SubEncountDebugList,	//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿	
+		NULL,		//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,		//ï¼‘è¡Œã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+		31,//ãƒªã‚¹ãƒˆé …ç›®æ•°	// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+		8,//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+		2,					//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+		13,					//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+		1,					//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+		8,					//è¡¨ç¤ºï¼¹åº§æ¨™
+		FBMP_COL_WHITE,		//æ–‡å­—è‰²
+		FBMP_COL_BLACK,		//èƒŒæ™¯è‰²
+		FBMP_COL_BLK_SDW,	//æ–‡å­—å½±è‰²
+		0,					//æ–‡å­—é–“éš”ï¼¸
+		1,					//æ–‡å­—é–“éš”ï¼¹
+		BMPLIST_LRKEY_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+		FONT_SYSTEM,		//æ–‡å­—æŒ‡å®š
+		0,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 	},
 };
 
 
 //-------------------------------------
-//	ƒL[‚Ì“ü—Í‚ğƒLƒƒƒ“ƒZƒ‹‚·‚éƒtƒ‰ƒO
+//	ã‚­ãƒ¼ã®å…¥åŠ›ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ãƒ•ãƒ©ã‚°
 static u8	KeyNoTouchFlag = 0;
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	BmpƒEƒBƒ“ƒhƒEì¬
+ *@brief	Bmpã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
  *
- *@param	num		ƒEƒBƒ“ƒhƒE‚ÌŒÂ”
+ *@param	num		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å€‹æ•°
  *
- *@return	ì¬ƒf[ƒ^
+ *@return	ä½œæˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1724,9 +1724,9 @@ static GF_BGL_BMPWIN* initBmpWin(int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	BMPƒEƒBƒ“ƒhƒE‚ğ”jŠü
+ *@brief	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç ´æ£„
  *
- *@param	data	ƒf[ƒ^
+ *@param	data	ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1740,26 +1740,26 @@ static void delBmpWin(GF_BGL_BMPWIN* data)
 }
 
 //===============================================================================
-//	ƒEƒBƒ“ƒhƒE‹¤’Ê
+//	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å…±é€š
 //===============================================================================
-//‰Šú‰»
+//åˆæœŸåŒ–
 static void InitDebugWindow(DEBUG_WINDOW_DATA *wp)
 {
 	wp->debug_list = 0;
 	wp->debug_cursor = 0;
 	wp->bmplist = NULL;
 }
-//ƒŠƒXƒg‚ÌŠJ•úˆ—
+//ãƒªã‚¹ãƒˆã®é–‹æ”¾å‡¦ç†
 static void DebugListFree(TCB_PTR tcb,void* work)
 {
 	DEBUG_WINDOW_DATA	*wp;
 
 	wp = (DEBUG_WINDOW_DATA*)work;
 
-	//BMPƒEƒBƒ“ƒhƒEOFF
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OFF
 	GF_BGL_BmpWinOff(wp->bmplistID);
 
-	//BMPƒŠƒXƒg”jŠü
+	//BMPãƒªã‚¹ãƒˆç ´æ£„
 	if(wp->bmplist != NULL)
 	{
 		BMP_MENULIST_Delete(wp->bmplist);
@@ -1767,28 +1767,28 @@ static void DebugListFree(TCB_PTR tcb,void* work)
 	}
 	BmpListExit(wp->bmplistContID,&wp->debug_list,&wp->debug_cursor);
 
-	//BMPWindowÁ‹
+	//BMPWindowæ¶ˆå»
 	delBmpWin(wp->bmplistID);
 	wp->bmplistID = NULL;
 
 	return;
 }
-//ƒfƒoƒbƒOƒEƒBƒ“ƒhƒE‚ğ‰ğ•ú
+//ãƒ‡ãƒãƒƒã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è§£æ”¾
 static void FreeDebugWindow(TCB_PTR tcb,void* work)
 {
-	//ƒŠƒXƒg‚ÌŠJ•úˆ—
+	//ãƒªã‚¹ãƒˆã®é–‹æ”¾å‡¦ç†
 	DebugListFree(tcb,work);
-	//ƒ[ƒNƒƒ‚ƒŠŠJ•ú
+	//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 	sys_FreeMemory(HEAPID_FIELD,work);
 }
-//ƒfƒoƒbƒOƒEƒBƒ“ƒhƒEI—¹
+//ãƒ‡ãƒãƒƒã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦çµ‚äº†
 static void DebugWindowExit(TCB_PTR tcb,void* work)
 {
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//OBJ“™‚Ì“®ì’â~‰ğœ
+	//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 	FieldSystemProc_SeqHoldEnd();
 	return;
 }
@@ -1815,17 +1815,17 @@ static void mainlistStart(void)
 	BMPLIST_HEADER bmplist_h;
 	TCB_PTR	pTcb = NULL;
 	
-	//ƒfƒoƒbƒOƒƒjƒ…[—p•Ï”‰Šú‰»
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨å¤‰æ•°åˆæœŸåŒ–
 	InitDebugWindow(MainWp);
 	
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(DebugListControlTask,MainWp,0);
 
-	//BITMAPƒƒjƒ…[’Ç‰Á
+	//BITMAPãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ 
 	MainWp->bmplistID = initBmpWin(1);
 	GF_BGL_BmpWinAddEx(D_TomoyaFldSys->bgl, MainWp->bmplistID, &MainDebugListWindowData);
 
-	//BMPƒŠƒXƒgİ’è
+	//BMPãƒªã‚¹ãƒˆè¨­å®š
 	MainWp->bmplist = BmpListMake(MainDebugList, NELEMS(MainDebugList));
 	bmplist_h = MainDebugListHeader;
 	bmplist_h.win = MainWp->bmplistID;
@@ -1834,7 +1834,7 @@ static void mainlistStart(void)
 	MainWp->bmplistContID = BmpListSet(&bmplist_h,MainWp->debug_list,MainWp->debug_cursor, HEAPID_FIELD);	
 }
 
-//ƒŠƒXƒgƒRƒ“ƒgƒ[ƒ‹
+//ãƒªã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 static void DebugListControlTask(TCB_PTR tcb,void* work)
 {
 	s32	ret_code;
@@ -1843,11 +1843,11 @@ static void DebugListControlTask(TCB_PTR tcb,void* work)
 	
 	wp = (DEBUG_WINDOW_DATA*)work;
 
-	// “ü—ÍƒLƒƒƒ“ƒZƒ‹
+	// å…¥åŠ›ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if(KeyNoTouchFlag == 0){
 		ret_code = BmpListMain(wp->bmplistContID);
 
-		//ƒL[‘€ì”»’è
+		//ã‚­ãƒ¼æ“ä½œåˆ¤å®š
 		if(sys.trg & PAD_BUTTON_A){
 			if(ret_code){
 				func = (TCB_FUNC)ret_code;
@@ -1856,7 +1856,7 @@ static void DebugListControlTask(TCB_PTR tcb,void* work)
 			return;
 		}
 
-		// Bƒ{ƒ^ƒ“ƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚é
+		// Bãƒœã‚¿ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
 		if(sys.trg & PAD_BUTTON_B){
 			EndDebugWind(tcb, work);
 			return;
@@ -1864,7 +1864,7 @@ static void DebugListControlTask(TCB_PTR tcb,void* work)
 	}
 }
 
-// ƒTƒu‰æ–ÊƒŠƒXƒgƒRƒ“ƒgƒ[ƒ‹
+// ã‚µãƒ–ç”»é¢ãƒªã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 static void ApplicationControlTask(TCB_PTR tcb,void* work)
 {
 	s32	ret_code;
@@ -1875,7 +1875,7 @@ static void ApplicationControlTask(TCB_PTR tcb,void* work)
 
 	ret_code = BmpListMain(wp->bmplistContID);
 
-	//ƒL[‘€ì”»’è
+	//ã‚­ãƒ¼æ“ä½œåˆ¤å®š
 	if(sys.trg & PAD_BUTTON_A){
 		if(ret_code){
 			func = (TCB_FUNC)ret_code;
@@ -1884,14 +1884,14 @@ static void ApplicationControlTask(TCB_PTR tcb,void* work)
 	return;
 	}
 
-	// Bƒ{ƒ^ƒ“ƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚é
+	// Bãƒœã‚¿ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
 	if(sys.trg & PAD_BUTTON_B){
-		//ƒEƒBƒ“ƒhƒE‰ğ•ú
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 		FreeDebugWindow(tcb,work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 
-		// ƒƒCƒ“ƒŠƒXƒgƒXƒ^[ƒg
+		// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚¹ã‚¿ãƒ¼ãƒˆ
 		mainlistStart();
 		return;
 	}
@@ -1909,7 +1909,7 @@ static u32 GetListMax(const BMPLIST_DATA* list )
 	return cnt;
 }
 
-// ApplicationŠJnŠÖ”
+// Applicationé–‹å§‹é–¢æ•°
 static void StartApplication(TCB_PTR tcb,void* work)
 {
 	DEBUG_WINDOW_DATA*	sub_wp;
@@ -1920,49 +1920,49 @@ static void StartApplication(TCB_PTR tcb,void* work)
 	
 	DT_clact = NULL;
 	//-----------------------------------------------------
-	//	ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğ”jŠü‚·‚é
-	//	ƒTƒu‰æ–Ê‚ÌƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»‚ğs‚¤
-	//	ƒTƒu‰æ–ÊƒRƒ“ƒgƒ[ƒ‹ƒ^ƒXƒN‚ğì¬‚·‚é
+	//	ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç ´æ£„ã™ã‚‹
+	//	ã‚µãƒ–ç”»é¢ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–ã‚’è¡Œã†
+	//	ã‚µãƒ–ç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯ã‚’ä½œæˆã™ã‚‹
 	//-----------------------------------------------------
-	// ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒRƒ“ƒg[ƒ‹ƒf[ƒ^æ“¾
+	// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚³ãƒ³ãƒˆãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
 	wp = (DEBUG_WINDOW_DATA*)work;
 	
-	// ¡‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ğæ“¾
+	// ä»Šã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å–å¾—
 	BmpListDirectPosGet(wp->bmplistContID, &num);
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
-	//ƒŠƒXƒg‚ÌŠJ•úˆ—
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
+	//ãƒªã‚¹ãƒˆã®é–‹æ”¾å‡¦ç†
 	DebugListFree(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
 
-	// ƒTƒuƒEƒBƒ“ƒhƒEƒRƒ“ƒg[ƒ‹—Ìˆæ‚ğŠm•Û
+	// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚³ãƒ³ãƒˆãƒ¼ãƒ«é ˜åŸŸã‚’ç¢ºä¿
 	sub_wp = sys_AllocMemory(HEAPID_FIELD,sizeof(DEBUG_WINDOW_DATA));
 	if(sub_wp == NULL){
-		//ƒ[ƒNƒGƒŠƒA‚ªæ“¾‚Å‚«‚È‚¯‚ê‚Î‰½‚à‚µ‚È‚¢
+		//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ãŒå–å¾—ã§ããªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„
 		OS_Printf("map_num debug menu crate failed\n");
 		return;
 	}
 	memset(sub_wp,0,sizeof(DEBUG_WINDOW_DATA));
 
-	//ƒfƒoƒbƒOƒƒjƒ…[—p•Ï”‰Šú‰»
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨å¤‰æ•°åˆæœŸåŒ–
 	InitDebugWindow(sub_wp);
 
-	// ‚»‚ÌApplicationƒf[ƒ^‚ğƒwƒbƒ_‚ÉƒZƒbƒg
+	// ãã®Applicationãƒ‡ãƒ¼ã‚¿ã‚’ãƒ˜ãƒƒãƒ€ã«ã‚»ãƒƒãƒˆ
 	bmplist_h = SubDebugListHeader[num - MAP_TYPE_LIST_COUNT_NO_SUB];
 	sub_wp->bmplist = BmpListMake( bmplist_h.list, GetListMax(bmplist_h.list) );
 	bmplist_h.list = sub_wp->bmplist;
 
 
-	//ƒTƒuˆ—ƒ^ƒXƒN’Ç‰Á
+	//ã‚µãƒ–å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(ApplicationControlTask,sub_wp,0);
 
-	//BITMAPƒƒjƒ…[’Ç‰Á
+	//BITMAPãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ 
 	sub_wp->bmplistID = GF_BGL_BmpWinAllocGet(HEAPID_FIELD, 1);
 	GF_BGL_BmpWinAddEx(D_TomoyaFldSys->bgl, sub_wp->bmplistID, &SubDebugListWindowData);
 
-	//BMPƒŠƒXƒgİ’è
+	//BMPãƒªã‚¹ãƒˆè¨­å®š
 	bmplist_h.win = sub_wp->bmplistID;
 	sub_wp->bmplistContID = BmpListSet(&bmplist_h,sub_wp->debug_list,sub_wp->debug_cursor, HEAPID_FIELD);
 }
@@ -1971,9 +1971,9 @@ extern void InitDebugTouchpanel( void );
 extern void D_TouchPanelSet( void );
 
 //-----------------------------------------------------------------------------
-//	ƒAƒNƒZƒXŠÖ”
+//	ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 //-----------------------------------------------------------------------------
-//ƒfƒoƒbƒOƒƒCƒ“ƒEƒBƒ“ƒhƒE\’zŠÖ”
+//ãƒ‡ãƒãƒƒã‚°ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰é–¢æ•°
 void DebugListSetOfTomoya(FIELDSYS_WORK* data)
 {
 	TCB_PTR	pTcb = NULL;
@@ -1982,22 +1982,22 @@ void DebugListSetOfTomoya(FIELDSYS_WORK* data)
 
 	MainWp = sys_AllocMemory(HEAPID_FIELD,sizeof(DEBUG_WINDOW_DATA));
 	if(MainWp == NULL){
-		//ƒ[ƒNƒGƒŠƒA‚ªæ“¾‚Å‚«‚È‚¯‚ê‚Î‰½‚à‚µ‚È‚¢
+		//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ãŒå–å¾—ã§ããªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„
 		OS_Printf("map_num debug menu crate failed\n");
 		return;
 	}
 	memset(MainWp,0,sizeof(DEBUG_WINDOW_DATA));
 
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
 
-// ‚¿‚©‚Ü‚Á‚ÕƒtƒF[ƒh
+// ã¡ã‹ã¾ã£ã·ãƒ•ã‚§ãƒ¼ãƒ‰
 static void StartUnderGround( TCB_PTR tcb,void* work ){
 	TCB_PTR tcb_ptr;
 	D_TMY_ENC* data;
@@ -2015,7 +2015,7 @@ static void MainUnderGround( TCB_PTR tcb,void* work )
 
 	
 	if(data->flag){
-		// “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+		// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 		CharLoadStartAll();
 		PlttLoadStartAll();
 		
@@ -2025,7 +2025,7 @@ static void MainUnderGround( TCB_PTR tcb,void* work )
 	}
 	
 	if(data->no == 4){
-		// I—¹
+		// çµ‚äº†
 		PMDS_taskDel(tcb);
 	}
 }
@@ -2037,14 +2037,14 @@ static void EndDebugWind( TCB_PTR tcb,void* work )
 
 
 #ifdef D_TOMOYA_MATERIAL_ON
-	// ƒ}ƒeƒŠƒAƒ‹‚ÌI—¹ƒ`ƒFƒbƒN
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ã®çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if(MaterialWinFlag == 1){
 		MaterialWinFlag = 0;
-		TCB_Delete(materialTCBData);		// ƒ^ƒXƒN”jŠü
+		TCB_Delete(materialTCBData);		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		materialTCBData = NULL;
 
 		
-		// •`‰æ–Ê
+		// æç”»é¢
 		delBmpWin(D_M_win);
 		D_M_win = NULL;
 		
@@ -2056,10 +2056,10 @@ static void EndDebugWind( TCB_PTR tcb,void* work )
 
 	if(FogFlag == 1){
 		FogFlag = 0;
-		TCB_Delete(FogTCBData);		// ƒ^ƒXƒN”jŠü
+		TCB_Delete(FogTCBData);		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		FogTCBData = NULL;
 		
-		// •`‰æ–Ê
+		// æç”»é¢
 		delBmpWin(FOG_win);
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
@@ -2074,20 +2074,20 @@ static void EndDebugWind( TCB_PTR tcb,void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“ÅƒGƒtƒFƒNƒg
+ *	@brief	æ¯’ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
  *
  */
 //-----------------------------------------------------------------------------
-#define D_TOMO_POISON_COUNT		( 8 )		// “®ì¶³İÀ
-#define D_TOMO_POISON_NEXT		( 64 )		// Ÿ“®ì‚Ü‚Å‚Ì¶³İÀ
-#define D_TOMO_POISON_NEXT_WALK		( 4 )		// Ÿ“®ì‚Ü‚Å‚Ì¶³İÀ
-//#define D_TOMO_POISON_NUM		( 8 )		// “Åƒpƒ‰ƒ[ƒ^ŒvZ’li‚P‰ñj
+#define D_TOMO_POISON_COUNT		( 8 )		// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
+#define D_TOMO_POISON_NEXT		( 64 )		// æ¬¡å‹•ä½œã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
+#define D_TOMO_POISON_NEXT_WALK		( 4 )		// æ¬¡å‹•ä½œã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
+//#define D_TOMO_POISON_NUM		( 8 )		// æ¯’ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨ˆç®—å€¤ï¼ˆï¼‘å›ï¼‰
 static int D_TOMO_POISON_NUM = 8;
 static void StartPoison( TCB_PTR tcb,void* work )
 {
@@ -2108,7 +2108,7 @@ static void StartPoison( TCB_PTR tcb,void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒƒCƒ““®ì
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
  *	@param	tcb
  *	@param	work 
@@ -2135,19 +2135,19 @@ static void MainPoison( TCB_PTR tcb,void* work )
 		OS_Printf( "effect_num %d\n", D_TOMO_POISON_NUM );
 	}
 
-	// I—¹
+	// çµ‚äº†
 	if( sys.trg & PAD_BUTTON_B ){
 		data->seq = 5;
 	}
 
 	switch( data->seq ){
-	case 0:		// ‰Šú‰»
+	case 0:		// åˆæœŸåŒ–
 		data->count = D_TOMO_POISON_COUNT;
 		data->num	= D_TOMO_POISON_NUM;
 		data->seq++;
 		break;
 
-	case 1:		// Œ¸Z
+	case 1:		// æ¸›ç®—
 		GFC_AddCameraPerspWay( -data->num, data->camera );
 		data->count --;
 		if( data->count <= 0 ){
@@ -2156,7 +2156,7 @@ static void MainPoison( TCB_PTR tcb,void* work )
 		}
 		break;
 
-	case 2:		// ‰ÁZ
+	case 2:		// åŠ ç®—
 		GFC_AddCameraPerspWay( data->num, data->camera );
 		data->count --;
 		if( data->count <= 0 ){
@@ -2172,7 +2172,7 @@ static void MainPoison( TCB_PTR tcb,void* work )
 		break;
 
 	case 4:
-		// ƒvƒŒƒCƒ„[‚ªD_TOMO_POISON_NEXT_WALK•à•à‚­‚Ì‚ğ‘Ò‚Â
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒD_TOMO_POISON_NEXT_WALKæ­©æ­©ãã®ã‚’å¾…ã¤
 		play_value = Player_MoveValueGet( data->player );
 		play_state = Player_MoveStateGet( data->player );
 		if( (play_value == OBJ_MOVE_VALUE_WALK) &&
@@ -2193,7 +2193,7 @@ static void MainPoison( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ÅƒeƒXƒg´Ìª¸Ä	‚Q
+ *	@brief	æ¯’ãƒ†ã‚¹ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ	ï¼’
  *
  *	@param	tcb	
  *	@param	work 
@@ -2218,7 +2218,7 @@ static void StartPoison2( TCB_PTR tcb,void* work )
 extern void DEBUG_Poison( void );
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ÅƒeƒXƒg´Ìª¸Ä‚Q
+ *	@brief	æ¯’ãƒ†ã‚¹ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼’
  *
  *	@param	tcb
  *	@param	work 
@@ -2234,13 +2234,13 @@ static void MainPoison2( TCB_PTR tcb,void* work )
 
 	DEBUG_Poison();
 	
-	// I—¹
+	// çµ‚äº†
 	if( sys.trg & PAD_BUTTON_B ){
 		data->seq = 3;
 	}
 
 	switch( data->seq ){
-	case 0:		// ‰Šú‰»
+	case 0:		// åˆæœŸåŒ–
 		POISON_EFFE_Start( D_TomoyaFldSys->fldmap->poisoneffect );
 		data->seq++;
 		break;
@@ -2253,7 +2253,7 @@ static void MainPoison2( TCB_PTR tcb,void* work )
 		break;
 
 	case 2:
-		// ƒvƒŒƒCƒ„[‚ªD_TOMO_POISON_NEXT_WALK•à•à‚­‚Ì‚ğ‘Ò‚Â
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒD_TOMO_POISON_NEXT_WALKæ­©æ­©ãã®ã‚’å¾…ã¤
 		play_value = Player_MoveValueGet( data->player );
 		play_state = Player_MoveStateGet( data->player );
 		if( (play_value == OBJ_MOVE_VALUE_WALK) &&
@@ -2276,7 +2276,7 @@ static void MainPoison2( TCB_PTR tcb,void* work )
 
 //-----------------------------------------------------------------------------
 /**
- *		3DƒeƒNƒXƒ`ƒƒ“]‘—ÀŒ±
+ *		3Dãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€å®Ÿé¨“
  */
 //-----------------------------------------------------------------------------
 
@@ -2302,12 +2302,12 @@ static void StartTexTrans( TCB_PTR tcb,void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒf[ƒ^—p‚ÌVramkey‚ğæ“¾
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ç”¨ã®Vramkeyã‚’å–å¾—
  *
- *	@param	res		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *	@param	tex		ƒeƒNƒXƒ`ƒƒƒL[
- *	@param	tex4x4	4x4ˆ³kƒeƒNƒXƒ`ƒƒ
- *	@param	pltt	ƒpƒŒƒbƒgƒL[
+ *	@param	res		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	tex		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *	@param	tex4x4	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£
+ *	@param	pltt	ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -2361,13 +2361,13 @@ static void MainTexTrans( TCB_PTR tcb,void* work )
 			NNS_G3dTexSetTexKey(data->tex_res, tex, tex4x4);
 			NNS_G3dPlttSetPlttKey(data->tex_res, pltt);
 
-			// VRAM‚Ö‚Ìƒ[ƒh
+			// VRAMã¸ã®ãƒ­ãƒ¼ãƒ‰
 			NNS_G3dTexLoad(data->tex_res, TRUE);
 			NNS_G3dPlttLoad(data->tex_res, TRUE);
 
-			// ƒeƒNƒXƒ`ƒƒƒL[‚ª‚ ‚é‚Æ‚«‚Í”jŠü
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ãŒã‚ã‚‹ã¨ãã¯ç ´æ£„
 			NNS_GfdFreeTexVram( tex );
-			// ƒpƒŒƒbƒgƒL[”jŠü
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ç ´æ£„
 			NNS_GfdFreePlttVram( pltt );
 		
 			/*
@@ -2398,7 +2398,7 @@ static void MainTexTrans( TCB_PTR tcb,void* work )
 		OS_Printf( "1:vram 0:now [%d]\n", data->vram );
 	}
 
-	// Bƒ{ƒ^ƒ“	I—¹
+	// Bãƒœã‚¿ãƒ³	çµ‚äº†
 	if( sys.trg & PAD_BUTTON_B ){
 
 		sys_FreeMemoryEz( data->tex_buff );
@@ -2407,7 +2407,7 @@ static void MainTexTrans( TCB_PTR tcb,void* work )
 }
 
 
-static void StartWipe( TCB_PTR tcb,void* work )// ‰æ–ÊØ‚è‘Ö‚¦ŠJn
+static void StartWipe( TCB_PTR tcb,void* work )// ç”»é¢åˆ‡ã‚Šæ›¿ãˆé–‹å§‹
 {
 	TCB_PTR tcb_ptr;
 	D_TMY_WIPE* data;
@@ -2418,7 +2418,7 @@ static void StartWipe( TCB_PTR tcb,void* work )// ‰æ–ÊØ‚è‘Ö‚¦ŠJn
 	data->no	= 0;
 //	data->no	= WIPE_TYPE_PESOCOMOUT;
 
-	// ƒtƒB[ƒ‹ƒh‚ÌHƒuƒ‰ƒ“ƒNˆ—ƒXƒgƒbƒv
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®Hãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†ã‚¹ãƒˆãƒƒãƒ—
 	FLDHBLANK_SYS_Stop( D_TomoyaFldSys->fldmap->hblanksys );
 	
 	EndDebugWind(tcb, work);
@@ -2426,7 +2426,7 @@ static void StartWipe( TCB_PTR tcb,void* work )// ‰æ–ÊØ‚è‘Ö‚¦ŠJn
 
 //extern u16 WIPE_ROTA_LIMIT;
 //extern int DEBUG_WIPE_ADD;
-static void MainWipe( TCB_PTR tcb,void* work )// ‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒ“
+static void MainWipe( TCB_PTR tcb,void* work )// ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ¡ã‚¤ãƒ³
 {
 	D_TMY_WIPE* data = (D_TMY_WIPE*)work;
 
@@ -2440,19 +2440,19 @@ static void MainWipe( TCB_PTR tcb,void* work )// ‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒ“
 	}//*/
 
 	
-	// ‹­§I—¹
+	// å¼·åˆ¶çµ‚äº†
 	if( sys.cont & PAD_BUTTON_X ){
-		//‹­§I—¹
+		//å¼·åˆ¶çµ‚äº†
 		WIPE_SYS_ExeEnd();
 
 		PMDS_taskDel( tcb );
-		// ƒtƒB[ƒ‹ƒh‚ÌHƒuƒ‰ƒ“ƒNˆ—ŠJn
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®Hãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†é–‹å§‹
 		FLDHBLANK_SYS_Start( D_TomoyaFldSys->fldmap->hblanksys );
 	}
 
 	switch(data->seq){
 	case 0:
-		// ó‘Ô”jŠü
+		// çŠ¶æ…‹ç ´æ£„
 		WIPE_SYS_Start(WIPE_PATTERN_FSAM,
 			data->no, data->no,
 			WIPE_FADE_WHITE,
@@ -2471,14 +2471,14 @@ static void MainWipe( TCB_PTR tcb,void* work )// ‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒ“
 				WIPE_Reset( WIPE_DISP_MAIN );
 				WIPE_Reset( WIPE_DISP_SUB );
 				PMDS_taskDel( tcb );
-				// ƒtƒB[ƒ‹ƒh‚ÌHƒuƒ‰ƒ“ƒNˆ—ŠJn
+				// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®Hãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†é–‹å§‹
 				FLDHBLANK_SYS_Start( D_TomoyaFldSys->fldmap->hblanksys );
 			}else{
 
 				if( sys.cont & PAD_BUTTON_B ){
 
 					PMDS_taskDel( tcb );
-					// ƒtƒB[ƒ‹ƒh‚ÌHƒuƒ‰ƒ“ƒNˆ—ŠJn
+					// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®Hãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†é–‹å§‹
 					FLDHBLANK_SYS_Start( D_TomoyaFldSys->fldmap->hblanksys );
 				}
 			}
@@ -2487,7 +2487,7 @@ static void MainWipe( TCB_PTR tcb,void* work )// ‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒ“
 	}
 }
 
-// }ŠÓ
+// å›³é‘‘
 static void StartZukan_Check_Start( DT_SPRITE_CHECK* data )
 {
 	FieldZukan_SetProc( data->p_fsys, data->p_pearent );
@@ -2497,7 +2497,7 @@ static void StartZukan_Check_End( DT_SPRITE_CHECK* data )
 	sys_FreeMemoryEz( data->p_pearent );
 }
 
-// 3‚½‚¢‘I‚Ô
+// 3ãŸã„é¸ã¶
 static void StartEvPokeSelect_Check_Start( DT_SPRITE_CHECK* data )
 {
 	Field_EVPokeSelect_SetProc( data->p_fsys, data->p_pearent );
@@ -2511,17 +2511,17 @@ static void StartEvPokeSelect_Check_End( DT_SPRITE_CHECK* data )
 #if 0
 	switch( p_pearent->select_monsno ){
 	case MONSNO_NAEGAME:
-		OS_Printf( "‚È‚¦‚ª‚ß\n" );
+		OS_Printf( "ãªãˆãŒã‚\n" );
 		break;
 	case MONSNO_HINOKOZARU:
-		OS_Printf( "‚Ğ‚Ì‚±‚´‚é\n" );
+		OS_Printf( "ã²ã®ã“ã–ã‚‹\n" );
 		break;
 	case MONSNO_UMIOUZI:
-		OS_Printf( "‚¤‚İ‚¨‚¤‚¶\n" );
+		OS_Printf( "ã†ã¿ãŠã†ã˜\n" );
 		break;
 
 	default:
-		OS_Printf( "‚¨‚©‚µ‚¢\n" );
+		OS_Printf( "ãŠã‹ã—ã„\n" );
 		break; 
 	}
 #endif
@@ -2530,7 +2530,7 @@ static void StartEvPokeSelect_Check_End( DT_SPRITE_CHECK* data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠJnƒ|ƒPƒ‚ƒ“‘I‘ğ
+ *	@brief	é–‹å§‹ãƒã‚±ãƒ¢ãƒ³é¸æŠ
  *
  *	@param	TCB_PTR tcb
  *	@param	work 
@@ -2543,9 +2543,9 @@ static void StartEvPokeSelect_Check( TCB_PTR tcb, void* work )
 	DT_SPRITE_CHECK* DT_sprite = NULL;
 	EV_POKESELECT_PEARENT_DATA* p_pearent;
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	DT_sprite = sys_AllocMemory( HEAPID_BASE_APP, sizeof( DT_SPRITE_CHECK ) );
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(DTomoya_ProcChenge, DT_sprite, 8);
 
 	DT_sprite->seq = 0;
@@ -2554,7 +2554,7 @@ static void StartEvPokeSelect_Check( TCB_PTR tcb, void* work )
 	DT_sprite->pStartFunc = StartEvPokeSelect_Check_Start;
 	DT_sprite->pEndFunc = StartEvPokeSelect_Check_End;
 
-	// ƒyƒAƒŒƒ“ƒgƒf[ƒ^ì¬
+	// ãƒšã‚¢ãƒ¬ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_pearent = sys_AllocMemory( HEAPID_BASE_APP, sizeof(EV_POKESELECT_PEARENT_DATA) );
 	p_pearent->cp_config = SaveData_GetConfig( D_TomoyaFldSys->savedata );
 	DT_sprite->p_pearent = p_pearent;
@@ -2565,7 +2565,7 @@ static void StartEvPokeSelect_Check( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŒv‚ğŒ©‚é
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆã‚’è¦‹ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void StartWorldTimer_Check( TCB_PTR tcb, void* work )
@@ -2574,9 +2574,9 @@ static void StartWorldTimer_Check( TCB_PTR tcb, void* work )
 	WLDTIMER_PARAM* p_pearent;
 	WFLBY_WLDTIMER* p_data;
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	DT_sprite = sys_AllocMemory( HEAPID_BASE_APP, sizeof( DT_SPRITE_CHECK ) );
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(DTomoya_ProcChenge, DT_sprite, 8);
 
 	DT_sprite->seq = 0;
@@ -2585,7 +2585,7 @@ static void StartWorldTimer_Check( TCB_PTR tcb, void* work )
 	DT_sprite->pStartFunc = StartWorldTimer_Check_Start;
 	DT_sprite->pEndFunc = StartWorldTimer_Check_End;
 
-	// ƒyƒAƒŒƒ“ƒgƒf[ƒ^ì¬
+	// ãƒšã‚¢ãƒ¬ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_pearent = sys_AllocMemory( HEAPID_BASE_APP, sizeof(WLDTIMER_PARAM) );
 	p_data = sys_AllocMemory( HEAPID_BASE_APP, sizeof(WFLBY_WLDTIMER) );
 	memset( p_data, 0, sizeof(WFLBY_WLDTIMER) );
@@ -2594,7 +2594,7 @@ static void StartWorldTimer_Check( TCB_PTR tcb, void* work )
 		for( i=0; i<20; i++ ){
 			p_data->data[i].flag = TRUE;
 			switch(i){
-			// [–é
+			// æ·±å¤œ
 			case 0:
 				p_data->data[i].nation = 219;
 				p_data->data[i].area = 3;
@@ -2611,7 +2611,7 @@ static void StartWorldTimer_Check( TCB_PTR tcb, void* work )
 				p_data->data[i].outside = FALSE;
 				break;
 
-			// ’©
+			// æœ
 			case 3:
 				p_data->data[i].nation = 43;
 				p_data->data[i].area = 18;
@@ -2638,7 +2638,7 @@ static void StartWorldTimer_Check( TCB_PTR tcb, void* work )
 				p_data->data[i].outside = FALSE;
 				break;
 
-			// ’‹
+			// æ˜¼
 			case 8:
 				p_data->data[i].nation = 179;
 				p_data->data[i].area = 0;
@@ -2660,7 +2660,7 @@ static void StartWorldTimer_Check( TCB_PTR tcb, void* work )
 				p_data->data[i].outside = FALSE;
 				break;
 
-			// —[•û
+			// å¤•æ–¹
 			case 12:
 				p_data->data[i].nation = 220;
 				p_data->data[i].area = 37;
@@ -2682,7 +2682,7 @@ static void StartWorldTimer_Check( TCB_PTR tcb, void* work )
 				p_data->data[i].outside = FALSE;
 				break;
 
-			// –é
+			// å¤œ
 			case 16:
 				p_data->data[i].nation = 99;
 				p_data->data[i].area = 0;
@@ -2720,7 +2720,7 @@ static void StartWorldTimer_Check_Start( DT_SPRITE_CHECK* data )
 {
 	FS_EXTERN_OVERLAY(wifilobby_common);
 
-	// }ŠÓƒvƒƒbƒNƒf[ƒ^
+	// å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {	
 		WLDTIMER_DebugInit,
 		WLDTIMER_Main,
@@ -2744,10 +2744,10 @@ static void StartWorldTimer_Check_End( DT_SPRITE_CHECK* data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[•”‰®
+ *	@brief	ãƒ­ãƒ“ãƒ¼éƒ¨å±‹
  */
 //-----------------------------------------------------------------------------
-extern BOOL D_Tomoya_WiFiLobby_DebugStart;	// ƒfƒoƒbƒNŠJnî•ñ
+extern BOOL D_Tomoya_WiFiLobby_DebugStart;	// ãƒ‡ãƒãƒƒã‚¯é–‹å§‹æƒ…å ±
 extern u32 D_Tomoya_WiFiLobby_ChannelPrefix;
 extern BOOL D_Tomoya_WiFiLobby_ChannelPrefixFlag;
 extern BOOL D_Tomoya_WiFiLobby_ALLVip;
@@ -2757,9 +2757,9 @@ static void StartWFLBYROOM_Check( TCB_PTR tcb, void* work )
 	DT_SPRITE_CHECK* DT_sprite = NULL;
 	WFLBY_PROC_PARAM* p_pearent;
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	DT_sprite = sys_AllocMemory( HEAPID_BASE_APP, sizeof( DT_SPRITE_CHECK ) );
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(DTomoya_ProcChenge, DT_sprite, 8);
 
 	DT_sprite->seq = 0;
@@ -2768,7 +2768,7 @@ static void StartWFLBYROOM_Check( TCB_PTR tcb, void* work )
 	DT_sprite->pStartFunc	= StartWFLBYROOM_Check_Start;
 	DT_sprite->pEndFunc		= StartWFLBYROOM_Check_End;
 
-	// ƒyƒAƒŒƒ“ƒgƒf[ƒ^ì¬
+	// ãƒšã‚¢ãƒ¬ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_pearent = sys_AllocMemory( HEAPID_BASE_APP, sizeof(WFLBY_PROC_PARAM) );
 	memset( p_pearent, 0, sizeof(WFLBY_PROC_PARAM) );
 
@@ -2778,7 +2778,7 @@ static void StartWFLBYROOM_Check( TCB_PTR tcb, void* work )
 	DT_sprite->p_pearent = p_pearent;
 	DT_sprite->p_fsys = D_TomoyaFldSys;
 
-	//  ‘‚ğİ’è
+	//  å›½ã‚’è¨­å®š
 /*	{
 		WIFI_HISTORY* p_history = SaveData_GetWifiHistory( D_TomoyaFldSys->savedata );
 		WIFIHISTORY_SetMyNationArea( p_history, 1+(gf_mtRand()%20), 0 );
@@ -2828,10 +2828,10 @@ static void StartWFLBYROOM_LockLong_Check( TCB_PTR tcb, void* work )
 
 static void StartWFLBYROOM_Check_Start( DT_SPRITE_CHECK* data )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(wifilobby_common);
 
-	// }ŠÓƒvƒƒbƒNƒf[ƒ^
+	// å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {	
 		WFLBYProc_Init,
 		WFLBYProc_Main,
@@ -2856,7 +2856,7 @@ static void StartWFLBYROOM_Check_End( DT_SPRITE_CHECK* data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒ`ƒFƒbƒN
+ *	@brief	å›³é‘‘ãƒã‚§ãƒƒã‚¯
  *
  *	@param	TCB_PTR tcb
  *	@param	work 
@@ -2874,9 +2874,9 @@ static void StartZukan_Check( TCB_PTR tcb,void* work )
 	MYSTATUS* p_hero;
 	static BOOL init_flg = 0;
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	DT_sprite = sys_AllocMemory( HEAPID_BASE_APP, sizeof( DT_SPRITE_CHECK ) );
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(DTomoya_ProcChenge, DT_sprite, 8);
 
 	DT_sprite->seq = 0;
@@ -2885,7 +2885,7 @@ static void StartZukan_Check( TCB_PTR tcb,void* work )
 	DT_sprite->pStartFunc = StartZukan_Check_Start;
 	DT_sprite->pEndFunc = StartZukan_Check_End;
 
-	// ƒyƒAƒŒƒ“ƒgƒf[ƒ^ì¬
+	// ãƒšã‚¢ãƒ¬ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_pearent = sys_AllocMemory( HEAPID_BASE_APP, sizeof(ZKN_PEARENT_DATA) );
 	p_zukan = SaveData_GetZukanWork( D_TomoyaFldSys->savedata );
 	p_hero = SaveData_GetMyStatus(D_TomoyaFldSys->savedata);
@@ -2901,15 +2901,15 @@ static void StartZukan_Check( TCB_PTR tcb,void* work )
 	if( init_flg == FALSE ){
 		init_flg = TRUE;
 
-/*		// —‚É‚È‚é
+/*		// å¥³ã«ãªã‚‹
 		MyStatus_SetMySex(p_hero, 1);//*/
 
 		
-		// ‘S‘}ŠÓ‚ğŒ©‚Â‚¯‚½‚±‚Æ‚É‚·‚é
+		// å…¨å›½å›³é‘‘ã‚’è¦‹ã¤ã‘ãŸã“ã¨ã«ã™ã‚‹
 		ZukanWork_SetZenkokuZukanFlag( p_zukan );
 		MyStatus_SetDpZenkokuFlag( p_hero );
 
-		// ƒ|ƒPƒ‚ƒ“Œ©‚Â‚¯‚½ƒf[ƒ^‚ğ‚à‚Á‚Æ‘‚â‚·
+		// ãƒã‚±ãƒ¢ãƒ³è¦‹ã¤ã‘ãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚‚ã£ã¨å¢—ã‚„ã™
 		Debug_ZukanWork_Make( p_zukan, 1, MONSNO_END, FALSE );
 	}
 	
@@ -2921,7 +2921,7 @@ static void StartZukan_Check( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒŠƒbƒvŠJn
+ *	@brief	ã‚¯ãƒªãƒƒãƒ—é–‹å§‹
  *
  *	@param	DT_SPRITE_CHECK* p_data 
  */
@@ -2933,7 +2933,7 @@ static void StartSprite_Start( DT_SPRITE_CHECK* data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒŠƒbƒvI—¹
+ *	@brief	ã‚¯ãƒªãƒƒãƒ—çµ‚äº†
  *
  *	@param	DT_SPRITE_CHECK* p_data 
  */
@@ -2948,17 +2948,17 @@ static void StartSprite_End( DT_SPRITE_CHECK* data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒŠƒbƒvƒRƒ“ƒeƒXƒgŠJn
+ *	@brief	ã‚¯ãƒªãƒƒãƒ—ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé–‹å§‹
  *
  *	@param	DT_SPRITE_CHECK* p_data 
  */
 //-----------------------------------------------------------------------------
 static void StartSpriteContest_Start( DT_SPRITE_CHECK* data )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(ol_imageclip);
 	
-	// ƒvƒƒbƒNƒf[ƒ^
+	// ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static PROC_DATA IMC_SYS_Proc = {
 		IMC_ProcContestInit,
 		IMC_ProcContestMain,
@@ -2971,7 +2971,7 @@ static void StartSpriteContest_Start( DT_SPRITE_CHECK* data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒŠƒbƒvƒRƒ“ƒeƒXƒgI—¹
+ *	@brief	ã‚¯ãƒªãƒƒãƒ—ã‚³ãƒ³ãƒ†ã‚¹ãƒˆçµ‚äº†
  *
  *	@param	DT_SPRITE_CHECK* p_data 
  */
@@ -2987,17 +2987,17 @@ static void StartSpriteContest_End( DT_SPRITE_CHECK* data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒŠƒbƒvƒrƒ…[ŠJn
+ *	@brief	ã‚¯ãƒªãƒƒãƒ—ãƒ“ãƒ¥ãƒ¼é–‹å§‹
  *
  *	@param	DT_SPRITE_CHECK* p_data 
  */
 //-----------------------------------------------------------------------------
 static void StartSpriteView_Start( DT_SPRITE_CHECK* data )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(ol_imageclip);
 	
-	// ƒvƒƒbƒNƒf[ƒ^
+	// ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static PROC_DATA IMC_SYS_PLAY_Proc = {
 		IMC_Prev_ProcInit,
 		IMC_Prev_ProcMain,
@@ -3010,14 +3010,14 @@ static void StartSpriteView_Start( DT_SPRITE_CHECK* data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒŠƒbƒvƒrƒ…[I—¹
+ *	@brief	ã‚¯ãƒªãƒƒãƒ—ãƒ“ãƒ¥ãƒ¼çµ‚äº†
  *
  *	@param	DT_SPRITE_CHECK* p_data 
  */
 //-----------------------------------------------------------------------------
 static void StartSpriteView_End( DT_SPRITE_CHECK* data )
 {
-// ƒvƒƒbƒNƒf[ƒ^”jŠü
+// ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_PROC_PREV_WORK* imc_w = data->p_pearent;
 	sys_FreeMemoryEz( imc_w );
 }
@@ -3046,9 +3046,9 @@ static void StartSprite_Check( TCB_PTR tcb,void* work )
 	IMC_TELEVISION_SAVEDATA* p_save_one;
 	IMC_ITEM_SAVEDATA* p_save_item;
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	DT_sprite = sys_AllocMemory( HEAPID_BASE_APP, sizeof( DT_SPRITE_CHECK ) );
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(DTomoya_ProcChenge, DT_sprite, 8);
 
 	DT_sprite->seq = 0;
@@ -3057,10 +3057,10 @@ static void StartSprite_Check( TCB_PTR tcb,void* work )
 	DT_sprite->pStartFunc = StartSprite_Start;
 	DT_sprite->pEndFunc = StartSprite_End;
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒv‚É“n‚·ƒf[ƒ^ì¬
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	imc_w = sys_AllocMemory( HEAPID_BASE_APP, sizeof( IMC_PROC_WORK ) );
 	memset( imc_w, 0, sizeof( IMC_PROC_WORK ) );
-	// ƒ|ƒPƒpƒ‰		¡‚Í“K“–‚ÉŠÔ‚É‚æ‚Á‚Ä•ÒW‚·‚éƒ|ƒPƒ‚ƒ“‚ğ‘I‚Ô
+	// ãƒã‚±ãƒ‘ãƒ©		ä»Šã¯é©å½“ã«æ™‚é–“ã«ã‚ˆã£ã¦ç·¨é›†ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã¶
 	GF_RTC_GetTime( &time );
 	poke_no = time.second;
 	poke_no += time.hour * 20;
@@ -3068,21 +3068,21 @@ static void StartSprite_Check( TCB_PTR tcb,void* work )
 	poke = PokemonParam_AllocWork( HEAPID_BASE_APP );
 	PokeParaSet( poke, poke_no, 5, POW_RND, RND_NO_SET, 0, ID_NO_RARE, 0 );
 	imc_w->p_poke_para = poke;
-	// ƒZ[ƒuƒf[ƒ^
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	p_save = SaveData_GetImcSaveData( D_TomoyaFldSys->savedata );
 	p_save_one = ImcSaveData_GetTelevisionSaveData( p_save, 0 );
 	p_save_item = ImcSaveData_GetItemSaveData( p_save );
-	ImcSaveData_ClaenTelevisionData( p_save_one );		// •ÒW‚·‚éƒ[ƒN‚ğ‰Šú‰»
+	ImcSaveData_ClaenTelevisionData( p_save_one );		// ç·¨é›†ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
 	imc_w->p_imc_one_data = p_save_one;
-	imc_w->cp_imc_item = p_save_item;					// ƒAƒCƒeƒ€ƒZ[ƒuƒf[ƒ^
+	imc_w->cp_imc_item = p_save_item;					// ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	imc_w->cp_config  = SaveData_GetConfig( D_TomoyaFldSys->savedata );
 	imc_w->p_record = SaveData_GetRecord( D_TomoyaFldSys->savedata );
 	imc_w->reference = FALSE;
 
-	// ƒfƒoƒbƒNƒf[ƒ^İ’è
+	// ãƒ‡ãƒãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	Debug_ImcSaveData_Make( p_save, 0 );
 	
-	// ãˆÊ‚©‚ç‚Ìƒf[ƒ^İ’è
+	// ä¸Šä½ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	DT_sprite->p_pearent = imc_w;
 
 	DT_sprite->p_fsys = D_TomoyaFldSys;
@@ -3093,7 +3093,7 @@ static void StartSprite_Check( TCB_PTR tcb,void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief		ƒRƒ“ƒeƒXƒg—pƒhƒŒƒXƒAƒbƒv
+ *	@brief		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—
  *
  *	@param	TCB_PTR tcb
  *	@param	work 
@@ -3114,9 +3114,9 @@ static void StartSprite_Check_Contest( TCB_PTR tcb,void* work )
 	IMC_ITEM_SAVEDATA* p_save_item;
 	POKEPARTY* party = SaveData_GetTemotiPokemon( D_TomoyaFldSys->savedata );
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	DT_sprite = sys_AllocMemory( HEAPID_BASE_APP, sizeof( DT_SPRITE_CHECK ) );
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 	TCB_Add(DTomoya_ProcChenge, DT_sprite, 8);
 
 	DT_sprite->seq = 0;
@@ -3125,31 +3125,31 @@ static void StartSprite_Check_Contest( TCB_PTR tcb,void* work )
 	DT_sprite->pStartFunc = StartSpriteContest_Start;
 	DT_sprite->pEndFunc = StartSpriteContest_End;
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒv‚É“n‚·ƒf[ƒ^ì¬
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	imc_w = sys_AllocMemory( HEAPID_BASE_APP, sizeof( IMC_CONTEST_PROC_WORK ) );
 	memset( imc_w, 0, sizeof( IMC_CONTEST_PROC_WORK ) );
 	poke = PokemonParam_AllocWork( HEAPID_BASE_APP );
 	PokeCopyPPtoPP( PokeParty_GetMemberPointer( party, 0 ), poke );
 	imc_w->p_poke_para = poke;
-	// ƒZ[ƒuƒf[ƒ^
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	p_save = SaveData_GetImcSaveData( D_TomoyaFldSys->savedata );
 	p_save_one = ImcSaveData_GetContestSaveData( p_save, 0 );
 	p_save_item = ImcSaveData_GetItemSaveData( p_save );
-	ImcSaveData_ClaenContestData( p_save_one );		// •ÒW‚·‚éƒ[ƒN‚ğ‰Šú‰»
+	ImcSaveData_ClaenContestData( p_save_one );		// ç·¨é›†ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
 	imc_w->p_imc_one_data = p_save_one;
-	imc_w->cp_imc_item = p_save_item;					// ƒAƒCƒeƒ€ƒZ[ƒuƒf[ƒ^
-	imc_w->theme	= 0;		// ƒe[ƒ}
-	imc_w->rank     = CONRANK_MASTER;	// ƒ‰ƒ“ƒN
+	imc_w->cp_imc_item = p_save_item;					// ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+	imc_w->theme	= 0;		// ãƒ†ãƒ¼ãƒ
+	imc_w->rank     = CONRANK_MASTER;	// ãƒ©ãƒ³ã‚¯
 	imc_w->p_comm_data = sys_AllocMemory( HEAPID_BASE_APP, sizeof(CON_IMC_LOCAL) );
 	memset( imc_w->p_comm_data, 0, sizeof(CON_IMC_LOCAL) );
 	imc_w->p_comm_data->sio_flag = FALSE;
 	imc_w->cp_config  = SaveData_GetConfig( D_TomoyaFldSys->savedata );
 	imc_w->cp_tr  = SaveData_GetMyStatus( D_TomoyaFldSys->savedata );
 
-	// ƒfƒoƒbƒNƒf[ƒ^İ’è
+	// ãƒ‡ãƒãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	Debug_ImcSaveData_Make( p_save, 0 );
 	
-	// ãˆÊ‚©‚ç‚Ìƒf[ƒ^İ’è
+	// ä¸Šä½ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	DT_sprite->p_pearent = imc_w;
 
 	DT_sprite->p_fsys = D_TomoyaFldSys;
@@ -3159,7 +3159,7 @@ static void StartSprite_Check_Contest( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief ƒhƒŒƒXƒAƒbƒv’Êí‚Ìƒrƒ…[ƒA[ŠJn
+ *	@brief ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—é€šå¸¸ã®ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼é–‹å§‹
  *
  *	@param	TCB_PTR tcb
  *	@param	work 
@@ -3177,7 +3177,7 @@ static void StartSprite_CheckTelevision_View( TCB_PTR tcb,void* work )
 	IMC_PROC_PREV_WORK* imc_w;
 	D_TOMOYA_TV_PRINTDATA_SELE* p_printdata;
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	DT_sprite = sys_AllocMemory( HEAPID_BASE_APP, sizeof( DT_SPRITE_CHECK ) );
 	p_printdata = sys_AllocMemory( HEAPID_BASE_APP, sizeof( D_TOMOYA_TV_PRINTDATA_SELE ) );
 
@@ -3205,24 +3205,24 @@ static void StartSprite_CheckTelevision_View( TCB_PTR tcb,void* work )
 
 	G2_SetBG2Priority(0);
 		
-	// ƒCƒ[ƒWƒNƒŠƒbƒv‚É“n‚·ƒf[ƒ^ì¬
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	imc_w = sys_AllocMemory( HEAPID_BASE_APP, sizeof( IMC_PROC_PREV_WORK ) );
 	memset( imc_w, 0, sizeof( IMC_PROC_PREV_WORK ) );
 
-	// ãˆÊ‚©‚ç‚Ìƒf[ƒ^İ’è
+	// ä¸Šä½ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	DT_sprite->p_pearent = imc_w;
 	DT_sprite->p_fsys = D_TomoyaFldSys;
 	DT_sprite->sub = 0;
 	
 	EndDebugWind(tcb, work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\¦ƒNƒŠƒbƒvƒiƒ“ƒo[‚ğ‘I‘ğ
+ *	@brief	è¡¨ç¤ºã‚¯ãƒªãƒƒãƒ—ãƒŠãƒ³ãƒãƒ¼ã‚’é¸æŠ
  */
 //-----------------------------------------------------------------------------
 static void StartSprite_CheckTelevision_PrintDataSelect( TCB_PTR tcb,void* work )
@@ -3255,7 +3255,7 @@ static void StartSprite_CheckTelevision_PrintDataSelect( TCB_PTR tcb,void* work 
 	}
 
 	if( sys.trg & PAD_BUTTON_START ){
-		// ƒZ[ƒuƒf[ƒ^
+		// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 		p_save = SaveData_GetImcSaveData( D_TomoyaFldSys->savedata );
 		imc_w->p_imc_data = p_save;
 		imc_w->data_idx = p_printdata->count;
@@ -3285,15 +3285,15 @@ static void StartSprite_CheckTelevision_PrintDataSelect( TCB_PTR tcb,void* work 
 /*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
  *
  *
- *	ƒZƒ‹ƒAƒNƒ^[ƒ`ƒFƒbƒN—p
- *					“®ìŠJnƒVƒXƒeƒ€
+ *	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯ç”¨
+ *					å‹•ä½œé–‹å§‹ã‚·ã‚¹ãƒ†ãƒ 
  * 
  *				
  [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[*/
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ŠJn
+ *@brief	é–‹å§‹
  *
  *@param	tcb
  *@param	work 
@@ -3315,11 +3315,11 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-		// ƒƒ‚ƒŠŠm•Û
+		// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		DT_clact = sys_AllocMemory(HEAPID_FIELD, sizeof(DT_CLACT));
 		memset(DT_clact, 0, sizeof(DT_CLACT));
 
-		// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ‰Šú‰»
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 		{
 			CHAR_MANAGER_MAKE init = {
 				32, 0x2000, 0x2000, HEAPID_FIELD
@@ -3329,20 +3329,20 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 			InitCharManager(&init);
 		}
 
-		// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ‰Šú‰»
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 		DeletePlttManager();
 		InitPlttManager(32, HEAPID_FIELD);
 
 		
-		// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+		// OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 		NNS_G2dInitOamManagerModule();
 		
 
-		// ƒZƒ‹Vram“]‘—ƒ}ƒl[ƒWƒƒì¬
+		// ã‚»ãƒ«Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 		DT_clact->cellTransArray = InitCellTransfer(32, HEAPID_FIELD);
 
 
-/*		// ƒAƒNƒ^[ƒZƒbƒgì¬
+/*		// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		{
 			CLACT_SETDATA	set;
 			set.WorkNum = 32;
@@ -3352,39 +3352,39 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 			DT_clact->clactSet = CLACT_InitSet( &set );
 		}//*/
 
-		// ŠÈˆÕ“o˜^
+		// ç°¡æ˜“ç™»éŒ²
 		{
-			// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-			// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+			// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+			// ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 /*			REND_OAMInit( 
-					0, 16,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-					0, 4,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-					0, 16,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-					0, 4,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-					HEAPID_FIELD);//*/	// ‹¤—LOAM‚Ífieldmap.c‚Åì¬Ï‚İ
+					0, 16,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+					0, 4,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+					0, 16,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+					0, 4,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+					HEAPID_FIELD);//*/	// å…±æœ‰OAMã¯fieldmap.cã§ä½œæˆæ¸ˆã¿
 
-			// ŠÈˆÕƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
-			// ã‚Åì¬‚µ‚½‹¤—LOAMƒ}ƒl[ƒWƒƒ‚ğg—p‚µ‚ÄƒŒƒ“ƒ_ƒ‰[‚ğì¬‚µA
-			// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚Ìì¬‚ğs‚¤
+			// ç°¡æ˜“ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
+			// ä¸Šã§ä½œæˆã—ãŸå…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ä½¿ç”¨ã—ã¦ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’ä½œæˆã—ã€
+			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ä½œæˆã‚’è¡Œã†
 			DT_clact->clactSet = CLACT_U_SetEasyInit( 10, &DT_clact->renddata, HEAPID_FIELD );
 		}
 
-		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 		for(i=0; i<=CLACT_U_MULTIANM_RES;i++){
 			DT_clact->resMan[i] = CLACT_U_ResManagerInit(16, i, HEAPID_FIELD);
 		}
 
-		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ—pƒwƒbƒ_—Ìˆæ‚ğì¬
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç”¨ãƒ˜ãƒƒãƒ€é ˜åŸŸã‚’ä½œæˆ
 		size = CLACT_U_ResManagerGetHeaderSize();
 		DT_clact->resHeader = sys_AllocMemory(HEAPID_FIELD, size * 6);
 		
-		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ—pƒwƒbƒ_“Ç‚İ‚İ
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç”¨ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 		// char
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 0);
 		buff = sys_LoadFile( HEAPID_FIELD, "data/uground_char.resdat" );
 		
 		CLACT_U_ResManagerHeaderLoadBinary(
-				buff,	// ƒLƒƒƒ‰ƒNƒ^
+				buff,	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 				res_head, HEAPID_FIELD);
 		sys_FreeMemoryEz( buff );
 
@@ -3392,7 +3392,7 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 1);
 		buff = sys_LoadFile( HEAPID_FIELD, "data/uground_pltt.resdat" );
 		CLACT_U_ResManagerHeaderLoadBinary(
-				buff,	// ƒpƒŒƒbƒg
+				buff,	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 				res_head, HEAPID_FIELD);
 		sys_FreeMemoryEz( buff );
 		
@@ -3400,7 +3400,7 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 2);
 		buff = sys_LoadFile( HEAPID_FIELD, "data/uground_cell.resdat" );
 		CLACT_U_ResManagerHeaderLoadBinary(
-				buff,	// ƒZƒ‹
+				buff,	// ã‚»ãƒ«
 				res_head, HEAPID_FIELD);
 		sys_FreeMemoryEz( buff );
 		
@@ -3408,72 +3408,72 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 3);
 		buff = sys_LoadFile( HEAPID_FIELD, "data/uground_cellanm.resdat" );
 		CLACT_U_ResManagerHeaderLoadBinary(
-				buff,	// ƒZƒ‹ƒAƒjƒ
+				buff,	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 				res_head, HEAPID_FIELD);
 		sys_FreeMemoryEz( buff );
 		
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 4);
-		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_multi.txt",	// ƒ}ƒ‹ƒ`ƒZƒ‹
+		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_multi.txt",	// ãƒãƒ«ãƒã‚»ãƒ«
 				res_head, HEAPID_FIELD);
 		
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 5);
-		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_multianm.txt",// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_multianm.txt",// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 				res_head, HEAPID_FIELD);//*/
 
 		/*
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 0);
-		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_char.txt",	// ƒLƒƒƒ‰ƒNƒ^
+		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_char.txt",	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 				res_head, HEAPID_FIELD);
 
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 1);
-		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_pltt.txt",	// ƒpƒŒƒbƒg
+		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_pltt.txt",	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 				res_head, HEAPID_FIELD);
 		
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 2);
-		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_cell.txt",	// ƒZƒ‹
+		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_cell.txt",	// ã‚»ãƒ«
 				res_head, HEAPID_FIELD);
 		
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 3);
-		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_cellanm.txt",	// ƒZƒ‹ƒAƒjƒ
+		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_cellanm.txt",	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 				res_head, HEAPID_FIELD);
 		
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 4);
-		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_multi.txt",	// ƒ}ƒ‹ƒ`ƒZƒ‹
+		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_multi.txt",	// ãƒãƒ«ãƒã‚»ãƒ«
 				res_head, HEAPID_FIELD);
 		
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 5);
-		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_multianm.txt",// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+		CLACT_U_ResManagerHeaderLoad("data/dt_test_res_multianm.txt",// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 				res_head, HEAPID_FIELD);//*/
 		
 
-		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚É“o˜^‚·‚éƒf[ƒ^“Ç‚İ‚İ
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²ã™ã‚‹ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		//
-		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹ì¬
+		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 0);
 		size = CLACT_U_ResManagerHeaderSetDataNum(res_head);
 		DT_clact->resObjTbl[0] = CLACT_U_ResManagerResObjTblMake(size, HEAPID_FIELD);
 		
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		DT_clact->resObjNum[0] = CLACT_U_ResManagerResAddsHd(
 				DT_clact->resMan[0],
 				res_head,
 				DT_clact->resObjTbl[0],
 				HEAPID_FIELD);
 		
-		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹ì¬
+		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 		res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, 1);
 		size = CLACT_U_ResManagerHeaderSetDataNum(res_head);
 		DT_clact->resObjTbl[1] = CLACT_U_ResManagerResObjTblMake(size, HEAPID_FIELD);
 		
-		// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		DT_clact->resObjNum[1] = CLACT_U_ResManagerResAddsHd(
 				DT_clact->resMan[1],
 				res_head,
 				DT_clact->resObjTbl[1],
 				HEAPID_FIELD);
 
-		// ‚»‚Ì‘¼ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹‚ğì¬‚µ‚È‚­‚Ä‚à—Ç‚¢ƒŠƒ\[ƒX“Ç‚İ‚İ
-		// iID‚Ìæ“¾AƒŠƒ\[ƒXæ“¾‚È‚Ç‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚Í•K—v‚Å‚·Bj
+		// ãã®ä»–ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã—ãªãã¦ã‚‚è‰¯ã„ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+		// ï¼ˆIDã®å–å¾—ã€ãƒªã‚½ãƒ¼ã‚¹å–å¾—ãªã©ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã¯å¿…è¦ã§ã™ã€‚ï¼‰
 		for(i=CLACT_U_CELL_RES;i<=CLACT_U_MULTIANM_RES;i++){
 			res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, i);
 			DT_clact->resObjNum[i] = CLACT_U_ResManagerResAddsHd(
@@ -3484,10 +3484,10 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 		}
 
 		
-		// ƒLƒƒƒ‰ƒNƒ^“Ç‚İ‚İŠJnƒIƒtƒZƒbƒgİ’è
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
 		CharLoadStartAll();
 
-		// ƒpƒŒƒbƒg“Ç‚İ‚İŠJnƒIƒtƒZƒbƒgİ’è
+		// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
 		PlttLoadStartAll();
 
 //		GX_SetOBJVRamModeChar( GX_OBJVRAMMODE_CHAR_2D );
@@ -3498,8 +3498,8 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 		{
 			int i;
 			for(i=0; i< 5; i++){
-				// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ‚É“o˜^
-				// Vram‚É”z’u‚µ‚Ü‚·B
+				// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
+				// Vramã«é…ç½®ã—ã¾ã™ã€‚
 				CLACT_U_CharManagerSetsCharModeAdjustAreaCont(DT_clact->resObjTbl[0]);
 
 				CLACT_U_CharManagerDeletes(DT_clact->resObjTbl[0]);
@@ -3507,8 +3507,8 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 		}
 		CLACT_U_CharManagerSetsCharModeAdjustAreaCont(DT_clact->resObjTbl[0]);
 
-		// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ‚É“o˜^
-		// Vram‚É”z’u‚µ‚Ü‚·B
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
+		// Vramã«é…ç½®ã—ã¾ã™ã€‚
 		{
 			int i;
 			for(i=0;i<10;i++){
@@ -3518,7 +3518,7 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 			CLACT_U_PlttManagerSetsCleanArea(DT_clact->resObjTbl[1]);
 		}
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_“Ç‚İ‚İ
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 		buff = sys_LoadFile( HEAPID_FIELD, "data/uground_clact.cldat" );
 		DT_clact->clactHeader = CLACT_U_MakeHeaderBinary(
 				buff,HEAPID_FIELD,
@@ -3526,15 +3526,15 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 				DT_clact->resMan[3], DT_clact->resMan[4], DT_clact->resMan[5]);
 		sys_FreeMemoryEz( buff );
 
-		// ƒZƒ‹ƒAƒNƒ^[“o˜^”‰Šú‰»
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°åˆæœŸåŒ–
 		DT_clact->tcb = TCB_Add(MainCLACT_Check, DT_clact, 8);
 	
-		//ƒEƒBƒ“ƒhƒE‰ğ•ú
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 		FreeDebugWindow(tcb,work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 
-		// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+		// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 		mainlistStart();//*/
 
 	}
@@ -3543,7 +3543,7 @@ static void StartCLACT_Check( TCB_PTR tcb,void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒƒCƒ“ŠÖ”i“o˜^”jŠüj
+ *@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°ï¼ˆç™»éŒ²ç ´æ£„ï¼‰
  *
  *@param	tcb
  *@param	work 
@@ -3561,14 +3561,14 @@ static void MainCLACT_Check( TCB_PTR tcb,void* work )
 	CLACT_HEADER_PTR head;
 	int i;
 
-	// A‚Å“o˜^
+	// Aã§ç™»éŒ²
 	if(sys.trg & PAD_BUTTON_A){
 		if(data->add_num < 10){
 			
 			add.ClActSet	= data->clactSet;
 			add.ClActHeader	= &data->clactHeader->tbl[0];
 			
-			// Vram“]‘—‚Ì‚ÍImageProxyÄæ“¾
+			// Vramè»¢é€ã®æ™‚ã¯ImageProxyå†å–å¾—
 		/*	if(data->clactHeader->tbl[1].flag == 1){
 				head = &data->clactHeader->tbl[2];
 				head->pImageProxy = GetCharVramTransProxyCopy(head->pImageProxy, head->pCellBank->pVramTransferData->szByteMax);
@@ -3591,7 +3591,7 @@ static void MainCLACT_Check( TCB_PTR tcb,void* work )
 		}
 	}//*/
 
-	// ƒIƒuƒWƒF‚ª‚ ‚Á‚½‚çƒAƒjƒ‚³‚¹‚é
+	// ã‚ªãƒ–ã‚¸ã‚§ãŒã‚ã£ãŸã‚‰ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹
 	for(i=0;i<data->add_num;i++){
 		static count = 0;
 		CLACT_SetRotation(data->clact_w[i], count);
@@ -3609,7 +3609,7 @@ static void MainCLACT_Check( TCB_PTR tcb,void* work )
 		CLACT_SetAffineParam( data->clact_w[ 0 ], CLACT_AFFINE_NONE );
 	}
 	
-	// B‚Å”jŠü
+	// Bã§ç ´æ£„
 /*	if(sys.trg & PAD_BUTTON_B){
 		if(data->add_num > 0){
 			data->add_num--;
@@ -3618,21 +3618,21 @@ static void MainCLACT_Check( TCB_PTR tcb,void* work )
 	}//*/
 
 
-	// •`‰æ
+	// æç”»
 	CLACT_Draw(data->clactSet);
 
-	// Vram“]‘—ƒ^ƒXƒN‚ğİ’è
+	// Vramè»¢é€ã‚¿ã‚¹ã‚¯ã‚’è¨­å®š
 	UpdateCellTransfer();
 
-	// VBlankŠÖ”i–{“–‚ÍVƒuƒ‰ƒ“ƒNŠúŠÔ’†j
-	// ƒŒƒ“ƒ_ƒ‰[‹¤—LOAMƒ}ƒl[ƒWƒƒ‚ÌOAM“]‘—
-//	REND_OAMTrans();		‹¤—LOAMƒ}ƒl[ƒWƒƒƒf[ƒ^‚Ì“]‘—‚Ífieldmap.c‚ÅÀsÏ‚İ
+	// VBlanké–¢æ•°ï¼ˆæœ¬å½“ã¯Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ï¼‰
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ã®OAMè»¢é€
+//	REND_OAMTrans();		å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ‡ãƒ¼ã‚¿ã®è»¢é€ã¯fieldmap.cã§å®Ÿè¡Œæ¸ˆã¿
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	I—¹ˆ—
+ *@brief	çµ‚äº†å‡¦ç†
  *
  *@param	tcb
  *@param	work 
@@ -3648,77 +3648,77 @@ static void EndCLACT_Check( TCB_PTR tcb,void* work )
 	CLACT_U_RES_HEADER_PTR res_head;
 	
 	if(DT_clact != NULL){
-		// OAM•`‰æ’â~
+		// OAMæç”»åœæ­¢
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_OFF );
 		
-		// ƒAƒNƒ^[ƒZƒbƒg”jŠü
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 		CLACT_DestSet(DT_clact->clactSet);
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[”jŠü
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç ´æ£„
 		CLACT_U_CLACT_HeaderTblDelete(DT_clact->clactHeader);
 
-		// ƒŠƒ\[ƒXƒwƒbƒ_[”jŠü
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼ç ´æ£„
 		for(i=0;i<= CLACT_U_MULTIANM_RES;i++){
 			res_head = CLACT_U_ResManagerGetHeaderNoData(DT_clact->resHeader, i);
 			CLACT_U_ResManagerHeaderFree(res_head);
 		}
 		sys_FreeMemoryEz(DT_clact->resHeader);
 
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”jŠü
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		CLACT_U_CharManagerDeletes( DT_clact->resObjTbl[0] );
 		
-		// ƒpƒŒƒbƒgƒf[ƒ^”jŠü
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		CLACT_U_PlttManagerDeletes( DT_clact->resObjTbl[1] );
 	
-		// ƒLƒƒƒ‰ƒNƒ^‚ÆƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹‚ğ”jŠü
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç ´æ£„
 		for(i=0;i<2;i++){
 			CLACT_U_ResManagerResObjTblDelete(DT_clact->resObjTbl[i]);
 		}
 		
-		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 		for(i=0;i<=CLACT_U_MULTIANM_RES;i++){
 			CLACT_U_ResManagerDelete(DT_clact->resMan[i]);
 		}
 
-		// ƒZƒ‹Vram“]‘—ƒ}ƒl[ƒWƒƒ”jŠü
+		// ã‚»ãƒ«Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 		DeleteCellTransfer(DT_clact->cellTransArray);
 
 
-		// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ”jŠü
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 		DeleteCharManager();
 
-		// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ”jŠü
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 		DeletePlttManager();
 		
-		// ƒŒƒ“ƒ_ƒ‰[‹¤—LOAMƒ}ƒl[ƒWƒƒ”jŠü
-//		REND_OAM_Delete();		 ‹¤—LOAM‚Ì”jŠü‚Ífieldmap.c‚ªs‚¢‚Ü‚·B
+		// ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
+//		REND_OAM_Delete();		 å…±æœ‰OAMã®ç ´æ£„ã¯fieldmap.cãŒè¡Œã„ã¾ã™ã€‚
 
-		// tcb”jŠü
+		// tcbç ´æ£„
 		TCB_Delete(DT_clact->tcb);
 		sys_FreeMemoryEz(DT_clact);
 		DT_clact = NULL;
 
-		//ƒEƒBƒ“ƒhƒE‰ğ•ú
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 		FreeDebugWindow(tcb,work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 
-		// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+		// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 		mainlistStart();//*/
 	}
 }
 
 #ifdef D_TOMOYA_MATERIAL_ON
 /*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
- *				ƒ}ƒeƒŠƒAƒ‹
+ *				ãƒãƒ†ãƒªã‚¢ãƒ«
  [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[*/
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒoƒbƒNƒEƒBƒ“ƒhƒEƒXƒ^[ƒg
+ *@brief	ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- *@param	ƒ^ƒXƒN—p
+ *@param	ã‚¿ã‚¹ã‚¯ç”¨
  *
  *@return	none
  *
@@ -3727,26 +3727,26 @@ static void EndCLACT_Check( TCB_PTR tcb,void* work )
 //-----------------------------------------------------------------------------
 static void StartMaterialWindow( TCB_PTR tcb,void* work )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
-	// ƒ^ƒXƒN‚ğƒZƒbƒg
+	// ã‚¿ã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	if(MaterialWinFlag == 0){
 		MaterialWinFlag = 1;
 		if(D_TomoyaFldSys->light_cont_data->DataNum > 0){
 		
-			DebugMaterial = &D_TomoyaFldSys->light_cont_data->pDataTbl[0];	// ‘€ì‚·‚éƒe[ƒuƒ‹ƒZƒbƒg
+			DebugMaterial = &D_TomoyaFldSys->light_cont_data->pDataTbl[0];	// æ“ä½œã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚»ãƒƒãƒˆ
 
 			SetVecsRotas( MaterialrotaY, MaterialrotaXZ, DebugMaterial );
 		
 			materialTCBData =  TCB_Add(MainMaterialWindow,NULL,8);
 
-			// “ü—Í‚ğæ‚éƒ^ƒCƒ~ƒ“ƒO
+			// å…¥åŠ›ã‚’å–ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			MT_InputNow = MT_INPUT_MAX;
 			MT_InputCount = 0;
 
 		
 			GF_BGL_BGControlExit( D_TomoyaFldSys->bgl, FLD_SBGFRM_EFFECT1 );
-			// •`‰æ–Ê‚ğì¬
+			// æç”»é¢ã‚’ä½œæˆ
 			{	// SUB DISP BG1
 				GF_BGL_BGCNT_HEADER SBg1_Data = {
 					0, 0, 0x800, 0,
@@ -3766,12 +3766,12 @@ static void StartMaterialWindow( TCB_PTR tcb,void* work )
 
 			DrawMenu(MaterialCount);
 		}
-		//ƒEƒBƒ“ƒhƒE‰ğ•ú
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 		FreeDebugWindow(tcb,work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 	
-		// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+		// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 		mainlistStart();
 	}
 }
@@ -3779,9 +3779,9 @@ static void StartMaterialWindow( TCB_PTR tcb,void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒoƒbƒNƒEƒBƒ“ƒhƒEI—¹
+ *@brief	ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦çµ‚äº†
  *
- *@param	ƒ^ƒXƒN—p
+ *@param	ã‚¿ã‚¹ã‚¯ç”¨
  *
  *@return	none
  *
@@ -3795,10 +3795,10 @@ static void EndMaterialWindow( TCB_PTR tcb,void* work )
 	
 	if(MaterialWinFlag == 1){
 		MaterialWinFlag = 0;
-		TCB_Delete(materialTCBData);		// ƒ^ƒXƒN”jŠü
+		TCB_Delete(materialTCBData);		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		materialTCBData = NULL;
 			
-		// •`‰æ–Ê
+		// æç”»é¢
 		delBmpWin(D_M_win);
 		D_M_win = NULL;
 
@@ -3807,12 +3807,12 @@ static void EndMaterialWindow( TCB_PTR tcb,void* work )
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 		//GF_BGL_BGControlExit( FLD_SBGFRM_EFFECT1 );
-		//ƒEƒBƒ“ƒhƒE‰ğ•ú
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 		FreeDebugWindow(tcb,work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 	
-		// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+		// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 		mainlistStart();
 	}
 }
@@ -3820,9 +3820,9 @@ static void EndMaterialWindow( TCB_PTR tcb,void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒoƒbƒNƒEƒBƒ“ƒhƒEƒƒCƒ“
+ *@brief	ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
  *
- *@param	ƒ^ƒXƒN—p
+ *@param	ã‚¿ã‚¹ã‚¯ç”¨
  *
  *@return	none
  *
@@ -3831,12 +3831,12 @@ static void EndMaterialWindow( TCB_PTR tcb,void* work )
 //-----------------------------------------------------------------------------
 static void MainMaterialWindow( TCB_PTR tcb,void* work )
 {
-	int i;			// ƒ‹[ƒv—p
-	s16 data;		// ì‹Æ—p
-	u8	draw_flag = 0;	// •`‰æ‘‚«Š·‚¦ƒtƒ‰ƒO
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	s16 data;		// ä½œæ¥­ç”¨
+	u8	draw_flag = 0;	// æç”»æ›¸ãæ›ãˆãƒ•ãƒ©ã‚°
 
-	KeyNoTouchFlag = 1;// ƒL[ƒƒbƒN
-	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );	// •\¦ƒIƒt
+	KeyNoTouchFlag = 1;// ã‚­ãƒ¼ãƒ­ãƒƒã‚¯
+	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );	// è¡¨ç¤ºã‚ªãƒ•
 
 	
 	if(sys.trg & PAD_KEY_LEFT){
@@ -3853,13 +3853,13 @@ static void MainMaterialWindow( TCB_PTR tcb,void* work )
 		draw_flag = 1;
 	}
 
-	// ã‚ª‰Ÿ‚³‚ê‚Ä‚¢‚Ä‚Ù‚©‚Ìƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚«‚ÍÅŒã‚Ì‰æ–Ê‚É”ò‚Ô
+	// ä¸ŠãŒæŠ¼ã•ã‚Œã¦ã„ã¦ã»ã‹ã®ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ãªã„ã¨ãã¯æœ€å¾Œã®ç”»é¢ã«é£›ã¶
 	if( (sys.cont == PAD_KEY_UP) ){
 		MaterialCount = DEB_WIN;
 	}
 
 
-	// L,R‚Åƒf[ƒ^‚ğ•ÏX
+	// L,Rã§ãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›´
 	if(sys.trg & PAD_BUTTON_L){
 		MaterialDataNo--;
 		if(MaterialDataNo < 0){
@@ -3878,11 +3878,11 @@ static void MainMaterialWindow( TCB_PTR tcb,void* work )
 		draw_flag = 1;
 	}
 
-	// “ü—ÍƒJƒEƒ“ƒg
+	// å…¥åŠ›ã‚«ã‚¦ãƒ³ãƒˆ
 	if(MT_InputCount > 0){
 		MT_InputCount--;
 	}
-	// UP‚ÆDOWN‚Ì“ü—Í‚ª‚È‚©‚Á‚½‚çMT_InputNow‚Ì’l‚ğÅ‘å‚É‚·‚é
+	// UPã¨DOWNã®å…¥åŠ›ãŒãªã‹ã£ãŸã‚‰MT_InputNowã®å€¤ã‚’æœ€å¤§ã«ã™ã‚‹
 	if(!((sys.cont & PAD_KEY_UP) ||
 	   (sys.cont & PAD_KEY_DOWN))){
 		MT_InputNow = MT_INPUT_MAX;
@@ -3891,9 +3891,9 @@ static void MainMaterialWindow( TCB_PTR tcb,void* work )
 
 	i = 0;
 	
-	// Šeƒ}ƒeƒŠƒAƒ‹‚Ì’l‚ğ•ÏX
+	// å„ãƒãƒ†ãƒªã‚¢ãƒ«ã®å€¤ã‚’å¤‰æ›´
 	switch(MaterialCount){
-	case DEB_MATE_LIGHT_END:		// ƒ‰ƒCƒgI—¹ƒtƒŒ[ƒ€”
+	case DEB_MATE_LIGHT_END:		// ãƒ©ã‚¤ãƒˆçµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 		if(sys.cont & PAD_BUTTON_B){
 			draw_flag |= NumInput(&(DebugMaterial->lightEnd), 1, 0xffffffff);
 		}
@@ -3909,7 +3909,7 @@ static void MainMaterialWindow( TCB_PTR tcb,void* work )
 		
 		break;
 		
-	case DEB_MATE_LIGHT_FLAG:		// ‚Ç‚Ìƒ‰ƒCƒg‚ğg—p‚·‚é‚©
+	case DEB_MATE_LIGHT_FLAG:		// ã©ã®ãƒ©ã‚¤ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹
 		if(sys.trg & PAD_BUTTON_Y){	// 0
 			DebugMaterial->lightFlag ^= 0x01;
 			draw_flag = 1;
@@ -3935,28 +3935,28 @@ static void MainMaterialWindow( TCB_PTR tcb,void* work )
 		i++;
 	case DEB_MATE_LIGHT_COLOR_1:	
 		i++;
-	case DEB_MATE_LIGHT_COLOR_0:	// ƒ‰ƒCƒg‚ÌƒJƒ‰[
+	case DEB_MATE_LIGHT_COLOR_0:	// ãƒ©ã‚¤ãƒˆã®ã‚«ãƒ©ãƒ¼
 		if(MT_InputCount == 0){
-			if(sys.cont & PAD_BUTTON_Y){	// Ô
+			if(sys.cont & PAD_BUTTON_Y){	// èµ¤
 				data = DebugMaterial->lightColor[i];
 				data &= 0x001f;
-				draw_flag |= ColorInput(&data);				// “ü—Í
-				DebugMaterial->lightColor[i] &= 0xffe0;		// 0ƒNƒŠƒA
+				draw_flag |= ColorInput(&data);				// å…¥åŠ›
+				DebugMaterial->lightColor[i] &= 0xffe0;		// 0ã‚¯ãƒªã‚¢
 				DebugMaterial->lightColor[i] |= data;
 			}
 
 			if(sys.cont & PAD_BUTTON_X){
 				data = DebugMaterial->lightColor[i] >> 5;
 				data &= 0x001f;
-				draw_flag |= ColorInput(&data);				// “ü—Í
-				DebugMaterial->lightColor[i] &= 0xfc1f;		// 0ƒNƒŠƒA
+				draw_flag |= ColorInput(&data);				// å…¥åŠ›
+				DebugMaterial->lightColor[i] &= 0xfc1f;		// 0ã‚¯ãƒªã‚¢
 				DebugMaterial->lightColor[i] |= data << 5;
 			}
 
 			if(sys.cont & PAD_BUTTON_A){
 				data = DebugMaterial->lightColor[i] >> 10;
-				draw_flag |= ColorInput(&data);				// “ü—Í
-				DebugMaterial->lightColor[i] &= 0x03ff;		// 0ƒNƒŠƒA
+				draw_flag |= ColorInput(&data);				// å…¥åŠ›
+				DebugMaterial->lightColor[i] &= 0x03ff;		// 0ã‚¯ãƒªã‚¢
 				DebugMaterial->lightColor[i] |= data << 10;
 			}
 		}
@@ -3968,11 +3968,11 @@ static void MainMaterialWindow( TCB_PTR tcb,void* work )
 		i++;
 	case DEB_MATE_LIGHT_VEC_1:	
 		i++;
-	case DEB_MATE_LIGHT_VEC_0:	// ƒ‰ƒCƒg‚ÌƒxƒNƒgƒ‹
+	case DEB_MATE_LIGHT_VEC_0:	// ãƒ©ã‚¤ãƒˆã®ãƒ™ã‚¯ãƒˆãƒ«
 		
 		draw_flag |= VecInput(&MaterialrotaY[i], &MaterialrotaXZ[i]);
 
-		// ¡‚Ì‰ñ“]Šp‚©‚çƒxƒNƒgƒ‹‚ğZo
+		// ä»Šã®å›è»¢è§’ã‹ã‚‰ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 		if(draw_flag == 1){
 			DebugMaterial->lightVec[i].x = FX_Mul(FX_SinIdx(MaterialrotaXZ[i]), FX_CosIdx(MaterialrotaY[i]));
 			DebugMaterial->lightVec[i].z = FX_Mul(FX_CosIdx(MaterialrotaXZ[i]), FX_CosIdx(MaterialrotaY[i]));
@@ -3991,122 +3991,122 @@ static void MainMaterialWindow( TCB_PTR tcb,void* work )
 		}*/
 		break;
 
-	case DEB_MATE_DIFFUSE:	// ƒfƒBƒtƒ…[ƒY
-		if(sys.cont & PAD_BUTTON_Y){	// Ô
+	case DEB_MATE_DIFFUSE:	// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚º
+		if(sys.cont & PAD_BUTTON_Y){	// èµ¤
 			data = DebugMaterial->diffuse;
 			data &= 0x001f;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->diffuse &= 0xffe0;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->diffuse &= 0xffe0;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->diffuse |= data;
 		}
 
 		if(sys.cont & PAD_BUTTON_X){
 			data = DebugMaterial->diffuse >> 5;
 			data &= 0x001f;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->diffuse &= 0xfc1f;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->diffuse &= 0xfc1f;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->diffuse |= data << 5;
 		}
 
 		if(sys.cont & PAD_BUTTON_A){
 			data = DebugMaterial->diffuse >> 10;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->diffuse &= 0x03ff;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->diffuse &= 0x03ff;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->diffuse |= data << 10;
 		}
 		break;
 
-	case DEB_MATE_AMBIENT:	// ƒAƒ“ƒrƒGƒ“ƒg
-		if(sys.cont & PAD_BUTTON_Y){	// Ô
+	case DEB_MATE_AMBIENT:	// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
+		if(sys.cont & PAD_BUTTON_Y){	// èµ¤
 			data = DebugMaterial->ambient;
 			data &= 0x001f;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->ambient &= 0xffe0;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->ambient &= 0xffe0;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->ambient |= data;
 		}
 
 		if(sys.cont & PAD_BUTTON_X){
 			data = DebugMaterial->ambient >> 5;
 			data &= 0x001f;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->ambient &= 0xfc1f;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->ambient &= 0xfc1f;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->ambient |= data << 5;
 		}
 
 		if(sys.cont & PAD_BUTTON_A){
 			data = DebugMaterial->ambient >> 10;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->ambient &= 0x03ff;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->ambient &= 0x03ff;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->ambient |= data << 10;
 		}
 		break;
 
-	case DEB_MATE_SPECULAR:	// ƒXƒyƒLƒ…ƒ‰[
-		if(sys.cont & PAD_BUTTON_Y){	// Ô
+	case DEB_MATE_SPECULAR:	// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼
+		if(sys.cont & PAD_BUTTON_Y){	// èµ¤
 			data = DebugMaterial->specular;
 			data &= 0x001f;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->specular &= 0xffe0;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->specular &= 0xffe0;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->specular |= data;
 		}
 
 		if(sys.cont & PAD_BUTTON_X){
 			data = DebugMaterial->specular >> 5;
 			data &= 0x001f;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->specular &= 0xfc1f;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->specular &= 0xfc1f;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->specular |= data << 5;
 		}
 
 		if(sys.cont & PAD_BUTTON_A){
 			data = DebugMaterial->specular >> 10;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->specular &= 0x03ff;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->specular &= 0x03ff;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->specular |= data << 10;
 		}
 		break;
 
-	case DEB_MATE_EMISSION:	// •úËF
-		if(sys.cont & PAD_BUTTON_Y){	// Ô
+	case DEB_MATE_EMISSION:	// æ”¾å°„è‰²
+		if(sys.cont & PAD_BUTTON_Y){	// èµ¤
 			data = DebugMaterial->emission;
 			data &= 0x001f;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->emission &= 0xffe0;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->emission &= 0xffe0;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->emission |= data;
 		}
 
 		if(sys.cont & PAD_BUTTON_X){
 			data = DebugMaterial->emission >> 5;
 			data &= 0x001f;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->emission &= 0xfc1f;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->emission &= 0xfc1f;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->emission |= data << 5;
 		}
 
 		if(sys.cont & PAD_BUTTON_A){
 			data = DebugMaterial->emission >> 10;
 			data &= 0x001f;
-			draw_flag |= ColorInput(&data);			// “ü—Í
-			DebugMaterial->emission &= 0x03ff;		// 0ƒNƒŠƒA
+			draw_flag |= ColorInput(&data);			// å…¥åŠ›
+			DebugMaterial->emission &= 0x03ff;		// 0ã‚¯ãƒªã‚¢
 			DebugMaterial->emission |= data << 10;
 		}
 		break;
 
-	case DEB_WIN:	// ƒfƒoƒbƒNƒEƒBƒ“ƒhƒE‚É“n‚·
+	case DEB_WIN:	// ãƒ‡ãƒãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«æ¸¡ã™
 		KeyNoTouchFlag = 0;
-		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );	// •\¦ƒIƒt
+		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );	// è¡¨ç¤ºã‚ªãƒ•
 		break;
 
 	default:
 		break;
 	}
 	
-	// •`‰æ
+	// æç”»
 	if(draw_flag == 1){
 		DrawMenu(MaterialCount);
 	}
 	
-	// ƒ‰ƒCƒgİ’è
+	// ãƒ©ã‚¤ãƒˆè¨­å®š
 	for(i=0;i<4;i++){
 		if((DebugMaterial->lightFlag & (1<<i)) != 0){
 			GLST_LightVector(D_TomoyaFldSys->light_cont_data->Glb, i, DebugMaterial->lightVec[i].x, DebugMaterial->lightVec[i].y, DebugMaterial->lightVec[i].z);
@@ -4116,37 +4116,37 @@ static void MainMaterialWindow( TCB_PTR tcb,void* work )
 			GLST_LightColor(D_TomoyaFldSys->light_cont_data->Glb, i,0);
 		}
 	}
-	// ƒfƒBƒtƒ…[ƒYAƒAƒ“ƒrƒGƒ“ƒgAƒXƒyƒLƒ…ƒ‰[A•úËŒõ
+	// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã€ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã€ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼ã€æ”¾å°„å…‰
 	GLST_MaterialDiff(D_TomoyaFldSys->light_cont_data->Glb, DebugMaterial->diffuse,FALSE,FALSE);
 	GLST_MaterialAmb(D_TomoyaFldSys->light_cont_data->Glb, DebugMaterial->ambient,TRUE);
 	GLST_MaterialSpec(D_TomoyaFldSys->light_cont_data->Glb, DebugMaterial->specular,FALSE,FALSE);
 	GLST_MaterialEmi(D_TomoyaFldSys->light_cont_data->Glb, DebugMaterial->emission,TRUE);
-	// ƒ‰ƒCƒgƒtƒ‰ƒO
+	// ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°
 	GLST_MdlLightFlag(D_TomoyaFldSys->light_cont_data->Glb, DebugMaterial->lightFlag, TRUE, TRUE);
 }
 
-// ƒiƒ“ƒo[‚Ìƒf[ƒ^‚ğ•`‰æ
+// ãƒŠãƒ³ãƒãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’æç”»
 static void DrawMenu( u32 num )
 {
 	MSGDATA_MANAGER* man;
-	int i;			// ƒ‹[ƒv—p
-	int work;		// ì‹Æ—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int work;		// ä½œæ¥­ç”¨
 
 	man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_debug_tomoya_dat, HEAPID_BASE_APP);
 
-	// ƒNƒŠƒA
+	// ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill(D_M_win, 1 );
 
-	// Menu‚ğ•`‰æ
+	// Menuã‚’æç”»
 	PrintString(D_M_win, FONT_SYSTEM, man, pD_M_str[num], D_M_MENU_X, D_M_MENU_Y, 0, NULL );
 
-	// L,R‚ğ•`‰æ
+	// L,Rã‚’æç”»
 	PrintString(D_M_win, FONT_SYSTEM, man, D_M_TMP_CH, D_M_MENU_X, D_M_SELECT, 0, NULL );
 
 	i=0;
-	// ƒf[ƒ^‚ğ•`‰æ
+	// ãƒ‡ãƒ¼ã‚¿ã‚’æç”»
 	switch(num){
-	case DEB_MATE_LIGHT_END:		// ƒ‰ƒCƒgI—¹ƒtƒŒ[ƒ€
+	case DEB_MATE_LIGHT_END:		// ãƒ©ã‚¤ãƒˆçµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 
 		DrawNum(DebugMaterial->lightEnd, D_M_NUM_X, D_M_0, D_M_win);
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_FRAME0, D_M_KEY_X, D_M_0, 0, NULL );			// key
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_FRAME1, D_M_KEY_X, D_M_1, 0, NULL );			// key
@@ -4155,7 +4155,7 @@ static void DrawMenu( u32 num )
 		break;
 
 	case DEB_MATE_LIGHT_FLAG:		// on off
-		// ƒ‰ƒCƒg‚P
+		// ãƒ©ã‚¤ãƒˆï¼‘
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_LIGHT1, D_M_MENU_X, D_M_0, 0, NULL );
 		if(DebugMaterial->lightFlag & 1){		// on/off
 			PrintString(D_M_win, FONT_SYSTEM, man, D_M_on, D_M_NUM_X, D_M_0, 0, NULL );
@@ -4163,7 +4163,7 @@ static void DrawMenu( u32 num )
 			PrintString(D_M_win, FONT_SYSTEM, man, D_M_off, D_M_NUM_X, D_M_0, 0, NULL );	
 		}
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_Y, D_M_KEY_X, D_M_0, 0, NULL );			// key
-		// ƒ‰ƒCƒg‚Q
+		// ãƒ©ã‚¤ãƒˆï¼’
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_LIGHT2, D_M_MENU_X, D_M_1, 0, NULL );
 		if(DebugMaterial->lightFlag & 2){		// on/off
 			PrintString(D_M_win, FONT_SYSTEM, man, D_M_on, D_M_NUM_X, D_M_1, 0, NULL );
@@ -4171,7 +4171,7 @@ static void DrawMenu( u32 num )
 			PrintString(D_M_win, FONT_SYSTEM, man, D_M_off, D_M_NUM_X, D_M_1, 0, NULL );	
 		}
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_X, D_M_KEY_X, D_M_1, 0, NULL );			// key
-		// ƒ‰ƒCƒg‚R
+		// ãƒ©ã‚¤ãƒˆï¼“
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_LIGHT3, D_M_MENU_X, D_M_2, 0, NULL );
 		if(DebugMaterial->lightFlag & 4){		// on/off
 			PrintString(D_M_win, FONT_SYSTEM, man, D_M_on, D_M_NUM_X, D_M_2, 0, NULL );
@@ -4179,7 +4179,7 @@ static void DrawMenu( u32 num )
 			PrintString(D_M_win, FONT_SYSTEM, man, D_M_off, D_M_NUM_X, D_M_2, 0, NULL );	
 		}
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_A, D_M_KEY_X, D_M_2, 0, NULL );			// key
-		// ƒ‰ƒCƒg‚S
+		// ãƒ©ã‚¤ãƒˆï¼”
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_LIGHT4, D_M_MENU_X, D_M_3, 0, NULL );
 		if(DebugMaterial->lightFlag & 8){		// on/off
 			PrintString(D_M_win, FONT_SYSTEM, man, D_M_on, D_M_NUM_X, D_M_3, 0, NULL );
@@ -4195,7 +4195,7 @@ static void DrawMenu( u32 num )
 		i++;
 	case DEB_MATE_LIGHT_COLOR_1:	
 		i++;
-	case DEB_MATE_LIGHT_COLOR_0:	// ƒ‰ƒCƒg‚ÌF
+	case DEB_MATE_LIGHT_COLOR_0:	// ãƒ©ã‚¤ãƒˆã®è‰²
 		DrawRGB(DebugMaterial->lightColor[i]);	
 		break;
 		
@@ -4206,18 +4206,18 @@ static void DrawMenu( u32 num )
 		i++;
 	case DEB_MATE_LIGHT_VEC_1:	
 		i++;
-	case DEB_MATE_LIGHT_VEC_0:	// ƒ‰ƒCƒg‚ÌƒxƒNƒgƒ‹
-		// XÀ•W
+	case DEB_MATE_LIGHT_VEC_0:	// ãƒ©ã‚¤ãƒˆã®ãƒ™ã‚¯ãƒˆãƒ«
+		// Xåº§æ¨™
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_X, D_M_MENU_X, D_M_0, 0, NULL );
 		work = FX_FX16_TO_F32(DebugMaterial->lightVec[i].x)*10;
 		DrawNum(DebugMaterial->lightVec[i].x, D_M_NUM_X, D_M_0, D_M_win);
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_Xb, D_M_KEY_X, D_M_0, 0, NULL );			// key
-		// YÀ•W
+		// Yåº§æ¨™
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_Y, D_M_MENU_X, D_M_1, 0, NULL );
 		work = FX_FX16_TO_F32(DebugMaterial->lightVec[i].y)*10;
 		DrawNum(DebugMaterial->lightVec[i].y, D_M_NUM_X, D_M_1, D_M_win);
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_Bb, D_M_KEY_X, D_M_1, 0, NULL );			// key
-		// ZÀ•W
+		// Zåº§æ¨™
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_Z, D_M_MENU_X, D_M_2, 0, NULL );
 		work = FX_FX16_TO_F32(DebugMaterial->lightVec[i].z)*10;
 		DrawNum(DebugMaterial->lightVec[i].z, D_M_NUM_X, D_M_2, D_M_win);
@@ -4225,19 +4225,19 @@ static void DrawMenu( u32 num )
 		PrintString(D_M_win, FONT_SYSTEM, man, D_M_Ab, D_M_KEY_X, D_M_3, 0, NULL );			// key
 		break;
 
-	case DEB_MATE_DIFFUSE:		// ƒfƒBƒtƒ…[ƒYF
+	case DEB_MATE_DIFFUSE:		// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
 		DrawRGB(DebugMaterial->diffuse);	
 		break;
 	
-	case DEB_MATE_AMBIENT:		// ƒAƒ“ƒrƒGƒ“ƒgF
+	case DEB_MATE_AMBIENT:		// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²
 		DrawRGB(DebugMaterial->ambient);	
 		break;
 
-	case DEB_MATE_SPECULAR:		// ƒXƒyƒLƒ…ƒ‰[F
+	case DEB_MATE_SPECULAR:		// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²
 		DrawRGB(DebugMaterial->specular);
 		break;
 
-	case DEB_MATE_EMISSION:		// •úËF
+	case DEB_MATE_EMISSION:		// æ”¾å°„è‰²
 		DrawRGB(DebugMaterial->emission);
 		break;
 
@@ -4277,7 +4277,7 @@ static u8 NumInput(u32* num, u32 add, u32 limit)
 	return draw_flag;
 }
 
-static u8 ColorInput( s16* num )				// F‚Ì“ü—Í
+static u8 ColorInput( s16* num )				// è‰²ã®å…¥åŠ›
 {
 	u8 draw_flag = 0;
 	
@@ -4305,24 +4305,24 @@ static u8 ColorInput( s16* num )				// F‚Ì“ü—Í
 	return draw_flag;
 }
 
-static u8 VecInput( u16* rotaY, u16* rotaXZ )				// ƒxƒNƒgƒ‹“ü—Í
+static u8 VecInput( u16* rotaY, u16* rotaXZ )				// ãƒ™ã‚¯ãƒˆãƒ«å…¥åŠ›
 {
 	u8 draw_flag = 0;
 	
 	if(MT_InputCount == 0){
-		if(sys.cont & PAD_BUTTON_X){		// X²‰ñ“]ƒAƒbƒv
+		if(sys.cont & PAD_BUTTON_X){		// Xè»¸å›è»¢ã‚¢ãƒƒãƒ—
 			*rotaY += MT_ROT_GET(2);
 			draw_flag = 1;
 		}
-		if(sys.cont & PAD_BUTTON_B){	// X²‰ñ“]ƒ_ƒEƒ“
+		if(sys.cont & PAD_BUTTON_B){	// Xè»¸å›è»¢ãƒ€ã‚¦ãƒ³
 			*rotaY -= MT_ROT_GET(2);
 			draw_flag = 1;
 		}
-		if(sys.cont & PAD_BUTTON_A){	// Y²‰ñ“]¶‚Ö
+		if(sys.cont & PAD_BUTTON_A){	// Yè»¸å›è»¢å·¦ã¸
 			*rotaXZ += MT_ROT_GET(2);
 			draw_flag = 1;
 		}
-		if(sys.cont & PAD_BUTTON_Y){	// Y²‰ñ“]‰E‚Ö
+		if(sys.cont & PAD_BUTTON_Y){	// Yè»¸å›è»¢å³ã¸
 			*rotaXZ -= MT_ROT_GET(2);
 			draw_flag = 1;
 		}
@@ -4343,19 +4343,19 @@ static void DrawRGB( GXRgb num )
 	MSGDATA_MANAGER* man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_debug_tomoya_dat, HEAPID_BASE_APP);
 	int work;
 
-	// Ô
+	// èµ¤
 	PrintString(D_M_win, FONT_SYSTEM, man, D_M_CR, D_M_MENU_X, D_M_0, 0, NULL );
 	work = num;
 	work &= 0x001f;
 	DrawNum(work, D_M_NUM_X, D_M_0, D_M_win);
 	PrintString(D_M_win, FONT_SYSTEM, man, D_M_Ya, D_M_KEY_X, D_M_0, 0, NULL );			// key
-	// —Î
+	// ç·‘
 	PrintString(D_M_win, FONT_SYSTEM, man, D_M_CG, D_M_MENU_X, D_M_1, 0, NULL );
 	work = num >> 5;
 	work &= 0x001f;
 	DrawNum(work, D_M_NUM_X, D_M_1, D_M_win);
 	PrintString(D_M_win, FONT_SYSTEM, man, D_M_Xa, D_M_KEY_X, D_M_1, 0, NULL );			// key
-	// Â
+	// é’
 	PrintString(D_M_win, FONT_SYSTEM, man, D_M_CB, D_M_MENU_X, D_M_2, 0, NULL );
 	work = num >> 10;
 	work &= 0x001f;
@@ -4368,9 +4368,9 @@ static void DrawRGB( GXRgb num )
 
 static void SetVecRota( u16* rotaY, u16* rotaXZ, fx32 X, fx32 Y, fx32 Z )
 {
-	fx32 xz_dis;		// •½–Ê‚ÌƒxƒNƒgƒ‹
+	fx32 xz_dis;		// å¹³é¢ã®ãƒ™ã‚¯ãƒˆãƒ«
 	
-	// ‰ñ“]Špæ“¾
+	// å›è»¢è§’å–å¾—
 	xz_dis = FX_Mul(X, X);
 	xz_dis += FX_Mul(Z,Z);
 	xz_dis = FX_Sqrt(xz_dis);
@@ -4382,7 +4382,7 @@ static void SetVecRota( u16* rotaY, u16* rotaXZ, fx32 X, fx32 Y, fx32 Z )
 
 static void SetVecsRotas( u16* rotaY, u16* rotaXZ, LIGHT_CONT_DATA* light )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	for( i=0; i<4; i++ ){
 		SetVecRota( rotaY + i, rotaXZ + i,
@@ -4394,7 +4394,7 @@ static void SetVecsRotas( u16* rotaY, u16* rotaXZ, LIGHT_CONT_DATA* light )
 
 #endif	// D_TOMOYA_MATERIAL_ON
 //-------------------------------------
-//	ƒtƒHƒO‚Æ‹¤’Ê
+//	ãƒ•ã‚©ã‚°ã¨å…±é€š
 //=====================================
 static void DrawNum( s32 num, u32 x, u32 y, GF_BGL_BMPWIN* win )
 {
@@ -4418,7 +4418,7 @@ static void PrintString( GF_BGL_BMPWIN* win, u32 fontID, MSGDATA_MANAGER* man, u
 
 //-----------------------------------------------------------------------------
 //
-//			FogŠÖŒW
+//			Fogé–¢ä¿‚
 //
 //=============================================================================
 static void StartFog( TCB_PTR tcb,void* work )
@@ -4426,37 +4426,37 @@ static void StartFog( TCB_PTR tcb,void* work )
     int i;
 	
 	if(FogFlag == 0){
-		// “ü—Í‚ğæ‚éƒ^ƒCƒ~ƒ“ƒO
+		// å…¥åŠ›ã‚’å–ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 		FOG_InputNow = MT_INPUT_MAX;
 		FOG_InputCount = 0;
 
 
 #ifdef FOG_BG_ON
 		/*--------------------------------------------------------
-		 *	BG2‚É‰½‚©‚ğ•`‰æ‚·‚é€”õ
+		 *	BG2ã«ä½•ã‹ã‚’æç”»ã™ã‚‹æº–å‚™
 		 =======================================================*/
-		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒfƒBƒ“ƒOİ’è
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°è¨­å®š
 		G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0,
 						GX_BLEND_PLANEMASK_BG2,
 						0, 0);
 
 		
 		GF_BGL_BGControlExit( D_TomoyaFldSys->bgl, FLD_MBGFRM_EFFECT2 );
-		{	// ƒƒCƒ“‰æ–Ê‚Ì‚a‚f‚Q‚ğİ’è
+		{	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ï¼¢ï¼§ï¼’ã‚’è¨­å®š
 			GF_BGL_BGCNT_HEADER BgData = {
-				0,								// ‰Šú•\¦‚wİ’è
-				0,								// ‰Šú•\¦‚xİ’è
-				0x800,							// ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒTƒCƒY
-				0,								// ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒIƒtƒZƒbƒg
-				GF_BGL_SCRSIZ_256x256,			// ƒXƒNƒŠ[ƒ“ƒTƒCƒY 256x256
-				GX_BG_COLORMODE_256,			// ƒJƒ‰[ƒ‚[ƒh 256F
+				0,								// åˆæœŸè¡¨ç¤ºï¼¸è¨­å®š
+				0,								// åˆæœŸè¡¨ç¤ºï¼¹è¨­å®š
+				0x800,							// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+				0,								// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+				GF_BGL_SCRSIZ_256x256,			// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º 256x256
+				GX_BG_COLORMODE_256,			// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ 256è‰²
 				GX_BG_SCRBASE_0xf000,
 				GX_BG_CHARBASE_0x08000,
-				GX_BG_EXTPLTT_23,				// Šg’£ƒpƒŒƒbƒgƒXƒƒbƒg
-				2,								// •\¦ƒvƒ‰ƒCƒIƒŠƒeƒB
-				0,								// ƒGƒŠƒAƒI[ƒo[ƒtƒ‰ƒO
-				0,								// ƒ_ƒ~[
-				FALSE							// ƒ‚ƒUƒCƒNİ’è
+				GX_BG_EXTPLTT_23,				// æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
+				2,								// è¡¨ç¤ºãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+				0,								// ã‚¨ãƒªã‚¢ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ©ã‚°
+				0,								// ãƒ€ãƒŸãƒ¼
+				FALSE							// ãƒ¢ã‚¶ã‚¤ã‚¯è¨­å®š
 			};
 
 			GF_BGL_BGControlSet(D_TomoyaFldSys->bgl,  FLD_MBGFRM_EFFECT2, &BgData, GF_BGL_MODE_TEXT );
@@ -4477,7 +4477,7 @@ static void StartFog( TCB_PTR tcb,void* work )
 		GF_BGL_LoadScreen(D_TomoyaFldSys->bgl, FLD_MBGFRM_EFFECT2, sScrnBuf, sizeof(sScrnBuf), 0 );
 		GF_BGL_ScreenBufSet(D_TomoyaFldSys->bgl, FLD_MBGFRM_EFFECT2, sScrnBuf, sizeof(sScrnBuf) );
 
-		// ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^“Ç‚İ‚İ
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		GF_BGL_LoadCharacter(D_TomoyaFldSys->bgl,  FLD_MBGFRM_EFFECT2, d_64_256_bg_schDT, sizeof(d_64_256_bg_schDT), 0 );
 
 		if(bg2_flag == 0){
@@ -4486,7 +4486,7 @@ static void StartFog( TCB_PTR tcb,void* work )
 #endif
 			
 	
-		// •`‰æ–Ê‚ğì¬
+		// æç”»é¢ã‚’ä½œæˆ
 		GF_BGL_BGControlExit( D_TomoyaFldSys->bgl, FLD_SBGFRM_EFFECT1 );
 		{	// SUB DISP BG1
 			GF_BGL_BGCNT_HEADER SBg1_Data = {
@@ -4504,24 +4504,24 @@ static void StartFog( TCB_PTR tcb,void* work )
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 	
 		
-		// ƒƒCƒ“ƒ^ƒXƒN‚ğƒZƒbƒg
+		// ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆ
 		FogTCBData =  TCB_Add(MainFog,NULL,8);
 		FogFlag = 1;
 
 #ifdef FOG_BG_ON
-		// BG‚ğ“®‚©‚·ƒ^ƒXƒNƒZƒbƒg
+		// BGã‚’å‹•ã‹ã™ã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
 		if(FOG_BG_TASK == NULL){
 			FOG_BG_TASK = TCB_Add(BG2Move,NULL,8);
 		}
 #endif
 
 		DrawFog(FOG_Count);
-		//ƒEƒBƒ“ƒhƒE‰ğ•ú
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 		FreeDebugWindow(tcb,work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 	
-		// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+		// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 		mainlistStart();
 
 	}
@@ -4533,10 +4533,10 @@ static void EndFog( TCB_PTR tcb,void* work )
 	
 	if(FogFlag == 1){
 		FogFlag = 0;
-		TCB_Delete(FogTCBData);		// ƒ^ƒXƒN”jŠü
+		TCB_Delete(FogTCBData);		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		FogTCBData = NULL;
 
-		SetFogData(D_TomoyaFldSys->fog_data, FOG_SYS_FLAG, TRUE, 0,0,0);		// on/offƒtƒ‰ƒO‚ğİ’è
+		SetFogData(D_TomoyaFldSys->fog_data, FOG_SYS_FLAG, TRUE, 0,0,0);		// on/offãƒ•ãƒ©ã‚°ã‚’è¨­å®š
 
 #ifdef FOG_BG_ON
 		TCB_Delete(FOG_BG_TASK);
@@ -4545,7 +4545,7 @@ static void EndFog( TCB_PTR tcb,void* work )
 		G2_BlendNone();
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		GF_BGL_BGControlExit( D_TomoyaFldSys->bgl, FLD_MBGFRM_EFFECT2 );
-		{	// MAIN DISPiƒGƒtƒFƒNƒg‚Qj
+		{	// MAIN DISPï¼ˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼’ï¼‰
 			GF_BGL_BGCNT_HEADER TextBgCntDat = {
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xf000, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_23,
@@ -4556,7 +4556,7 @@ static void EndFog( TCB_PTR tcb,void* work )
 		}
 #endif
 
-		// •`‰æ–Ê
+		// æç”»é¢
 		delBmpWin(FOG_win);
 		GF_BGL_BGControlExit( D_TomoyaFldSys->bgl, FLD_SBGFRM_EFFECT1 );
 		
@@ -4564,24 +4564,24 @@ static void EndFog( TCB_PTR tcb,void* work )
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 		//GF_BGL_BGControlExit( FLD_SBGFRM_EFFECT1 );
 	
-		//ƒEƒBƒ“ƒhƒE‰ğ•ú
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 		FreeDebugWindow(tcb,work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 	
-		// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+		// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 		mainlistStart();
 	}
 }
 
-// BG2–Ê‚ğ“®‚©‚·
+// BG2é¢ã‚’å‹•ã‹ã™
 static void BG2Move(TCB_PTR tcb,void* work)
 {
 #ifdef FOG_BG_ON
-	// BG–Ê‚ğSCROLL
+	// BGé¢ã‚’SCROLL
 	if(bg2_flag == 1){
 		
-		Fog_BG_Count = (Fog_BG_Count + FOG_BG_SCROLL_COUNT) % (256*FOG_BG_SCROLL_PAR);		// BG–ÊƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^
+		Fog_BG_Count = (Fog_BG_Count + FOG_BG_SCROLL_COUNT) % (256*FOG_BG_SCROLL_PAR);		// BGé¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿
 		G2_SetBG2Offset((Fog_BG_Count / FOG_BG_SCROLL_PAR),0);
 	}
 #endif
@@ -4591,7 +4591,7 @@ static void MainFog( TCB_PTR tcb,void* work )
 {
 	int i;
 	
-	KeyNoTouchFlag = 1;// ƒL[ƒƒbƒN
+	KeyNoTouchFlag = 1;// ã‚­ãƒ¼ãƒ­ãƒƒã‚¯
 
 	if(sys.trg & PAD_BUTTON_SELECT){
 #ifdef FOG_BG_ON
@@ -4605,7 +4605,7 @@ static void MainFog( TCB_PTR tcb,void* work )
 #endif
 	}
 
-	// “ü—Íˆ—
+	// å…¥åŠ›å‡¦ç†
 	if(sys.trg & PAD_KEY_LEFT){
 		FOG_Count--;
 		Fog_DrawFlag = 1;
@@ -4618,11 +4618,11 @@ static void MainFog( TCB_PTR tcb,void* work )
 		Fog_DrawFlag = 1;
 	}
 
-	// “ü—ÍƒJƒEƒ“ƒg
+	// å…¥åŠ›ã‚«ã‚¦ãƒ³ãƒˆ
 	if(FOG_InputCount > 0){
 		FOG_InputCount--;
 	}
-	// UP‚ÆDOWN‚Ì“ü—Í‚ª‚È‚©‚Á‚½‚çMT_InputNow‚Ì’l‚ğÅ‘å‚É‚·‚é
+	// UPã¨DOWNã®å…¥åŠ›ãŒãªã‹ã£ãŸã‚‰MT_InputNowã®å€¤ã‚’æœ€å¤§ã«ã™ã‚‹
 	if(!((sys.cont & PAD_KEY_UP) ||
 	   (sys.cont & PAD_KEY_DOWN))){
 		FOG_InputNow = MT_INPUT_MAX;
@@ -4632,7 +4632,7 @@ static void MainFog( TCB_PTR tcb,void* work )
 	InputFog(FOG_Count);
 
 
-	// •`‰æ
+	// æç”»
 	if(Fog_DrawFlag == 1){
 		DrawFog(FOG_Count);
 		Fog_DrawFlag = 0;
@@ -4647,7 +4647,7 @@ static void FogColorGet( FIELDSYS_WORK* D_TomoyaFldSys,int* r, int* g, int* b )
 	*b = (GetFogColor(D_TomoyaFldSys->fog_data) >> 10) & 0x1f;
 }
 
-// “ü—Í
+// å…¥åŠ›
 static void InputFog( int num )
 {
 	int	fog_flag = GetFogFlag(D_TomoyaFldSys->fog_data);
@@ -4681,7 +4681,7 @@ static void InputFog( int num )
 			fog_mode = (fog_mode + 1) % 2;
 			Fog_DrawFlag = 1;
 		}
-		if(sys.cont & PAD_BUTTON_A){	// ŒW‚è‹ï‡
+		if(sys.cont & PAD_BUTTON_A){	// ä¿‚ã‚Šå…·åˆ
 			if(sys.trg & PAD_KEY_UP){
 				fog_slope = (fog_slope + 1) % 11;
 				Fog_DrawFlag = 1;
@@ -4696,7 +4696,7 @@ static void InputFog( int num )
 		}
 
 		if(FOG_InputCount == 0){
-			if(sys.cont & PAD_BUTTON_B){	// ‚Ç‚ÌˆÊ’u‚©‚ç‚©‚¯‚é‚©
+			if(sys.cont & PAD_BUTTON_B){	// ã©ã®ä½ç½®ã‹ã‚‰ã‹ã‘ã‚‹ã‹
 				if(sys.cont & PAD_KEY_UP){
 					fog_offset += FOG_OFS_ADD;
 					Fog_DrawFlag = 1;
@@ -4813,7 +4813,7 @@ static void InputFog( int num )
 	}
 }
 
-// •`‰æ
+// æç”»
 static void DrawFog( int num )
 {
 	int	fog_flag = GetFogFlag(D_TomoyaFldSys->fog_data);
@@ -4826,8 +4826,8 @@ static void DrawFog( int num )
 	int alpha = GetFogAlpha(D_TomoyaFldSys->fog_data);
 	char fog_tbl[32];
 	const char* p_get = GetFogTbl(D_TomoyaFldSys->fog_data);
-	int i,j;		// ƒ‹[ƒv—p
-	int work;		// ì‹Æ—p
+	int i,j;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	int work;		// ä½œæ¥­ç”¨
 	MSGDATA_MANAGER* man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_debug_tomoya_dat, HEAPID_BASE_APP);
 
 	FogColorGet(D_TomoyaFldSys, &r, &g, &b);
@@ -4838,19 +4838,19 @@ static void DrawFog( int num )
 	
 	GF_ASSERT( FOG_win );
 	
-	// ƒNƒŠƒA
+	// ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill(FOG_win, 1 );
 
-	// Menu‚ğ•`‰æ
+	// Menuã‚’æç”»
 	PrintString(FOG_win, FONT_SYSTEM, man, fog_title[num], D_M_MENU_X, D_M_MENU_Y, 0, NULL );
 
-	// BG–Ê•\¦
+	// BGé¢è¡¨ç¤º
 	if(num != FOG_TBL_SET){
 		PrintString(FOG_win, FONT_SYSTEM, man, fog_tbl_bg, D_M_MENU_X, D_M_SELECT, 0, NULL );
 	}
 	
 
-	// •`‰æ
+	// æç”»
 	switch(num){
 	case FOG_NORMAL_SET:
 		// on/off
@@ -4867,31 +4867,31 @@ static void DrawFog( int num )
 		DrawNum(fog_mode, D_M_NUM_X, D_M_1, FOG_win);	
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_X, D_M_KEY_X, D_M_1, 0, NULL );
 		
-		// ‚©‚©‚è‚®‚ ‚¢
+		// ã‹ã‹ã‚Šãã‚ã„
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_KAKARI, D_M_MENU_X, D_M_2, 0, NULL );
 		DrawNum(fog_slope, D_M_NUM_X, D_M_2, FOG_win);
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_Aa, D_M_KEY_X, D_M_2, 0, NULL );
 
-		// ƒIƒtƒZƒbƒg
+		// ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_OFS, D_M_MENU_X, D_M_3, 0, NULL );
 		DrawNum(fog_offset, D_M_NUM_X, D_M_3, FOG_win);
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_Ba, D_M_KEY_X, D_M_3, 0, NULL );
 		break;
 
 	case FOG_COLOR_SET:
-		// Ô
+		// èµ¤
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_CR, D_M_MENU_X, D_M_0, 0, NULL );
 		DrawNum(r, D_M_NUM_X, D_M_0, FOG_win);	
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_Ya, D_M_KEY_X, D_M_0, 0, NULL );
-		// —Î
+		// ç·‘
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_CG, D_M_MENU_X, D_M_1, 0, NULL );
 		DrawNum(g, D_M_NUM_X, D_M_1, FOG_win);	
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_Xa, D_M_KEY_X, D_M_1, 0, NULL );
-		// Â
+		// é’
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_CB, D_M_MENU_X, D_M_2, 0, NULL );
 		DrawNum(b, D_M_NUM_X, D_M_2, FOG_win);	
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_Aa, D_M_KEY_X, D_M_2, 0, NULL );
-		// ƒAƒ‹ƒtƒ@
+		// ã‚¢ãƒ«ãƒ•ã‚¡
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_CA, D_M_MENU_X, D_M_3, 0, NULL );
 		DrawNum(alpha, D_M_NUM_X, D_M_3, FOG_win);	
 		PrintString(FOG_win, FONT_SYSTEM, man, D_M_Ba, D_M_KEY_X, D_M_3, 0, NULL );
@@ -4903,7 +4903,7 @@ static void DrawFog( int num )
 		PrintString(FOG_win, FONT_SYSTEM, man, fog_tbl_data, D_M_NUM_X + 8, D_M_MENU_Y, 0, NULL );
 		DrawNum(fog_tbl[FOG_TBL_Count], D_M_KEY_X - 24, D_M_MENU_Y, FOG_win);
 
-		// ƒe[ƒuƒ‹‚Ì’†g‚ğ•\¦
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä¸­èº«ã‚’è¡¨ç¤º
 		for(i=0;i<7;i++){
 			for(j=0;j<5;j++){
 				if(((i*5)+j) >= 32){
@@ -4925,13 +4925,13 @@ static void DrawFog( int num )
 //-----------------------------------------------------------------------------
 /**
  * 
- *			}ŠÓƒf[ƒ^‘€ì
+ *			å›³é‘‘ãƒ‡ãƒ¼ã‚¿æ“ä½œ
  * 
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠJn
+ *	@brief	é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 #define D_TOMO_ZKN_SOUSA_DRAW_X	( 10 )
@@ -4960,14 +4960,14 @@ static void StartZukanCont( TCB_PTR tcb, void* p_work )
 	GF_BGL_BmpWinAdd( p_data->p_fsys->bgl, 
 			p_data->p_bmp, GF_BGL_FRAME2_M, 2, 2, 28, 18, 7, MENU_WIN_CGX_SIZ + 1 );
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_data->msg_data = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_debug_tomoya_dat, HEAPID_FIELD );
 
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( p_data->p_bmp, 15 );
 
-	// ‘€ì•û–@‚ğ•\¦
+	// æ“ä½œæ–¹æ³•ã‚’è¡¨ç¤º
 	str = MSGMAN_AllocString( p_data->msg_data, MSG_D_ZKN_00 );
 	GF_STR_PrintColor( p_data->p_bmp, FONT_SYSTEM, str, D_TOMO_ZKN_SOUSA_DRAW_X, D_TOMO_ZKN_SOUSA_DRAW_Y, MSG_NO_PUT, D_TOMOYA_ZUKAN_DRAWCOLOR, NULL );
 
@@ -4985,10 +4985,10 @@ static void StartZukanCont( TCB_PTR tcb, void* p_work )
 	
 	STRBUF_Delete( str );
 
-	// ˜g‚ğ•`‰æ
+	// æ ã‚’æç”»
 	MenuWinGraphicSet( p_data->p_fsys->bgl, GF_BGL_FRAME2_M, 1, 6, 0, HEAPID_FIELD );
 
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚İ‚İ
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 7 * 32, HEAPID_FIELD );
 
 	BmpMenuWinWrite( p_data->p_bmp, WINDOW_TRANS_ON, 1, 6 );
@@ -5003,10 +5003,10 @@ static void StartZukanCont( TCB_PTR tcb, void* p_work )
 	NUMFONT_WriteNumber( p_num, p_data->start, 3, NUMFONT_MODE_ZERO, p_data->p_bmp, D_TOMO_ZKN_NUM_DRAW_X, D_TOMO_ZKN_START_DRAW_Y );
 	NUMFONT_WriteNumber( p_num, p_data->end, 3, NUMFONT_MODE_ZERO, p_data->p_bmp, D_TOMO_ZKN_NUM_DRAW_X, D_TOMO_ZKN_END_DRAW_Y );
 	GF_BGL_BmpWinOn( p_data->p_bmp );
-	// ƒiƒ“ƒo[ƒtƒHƒ“ƒg”jŠü
+	// ãƒŠãƒ³ãƒãƒ¼ãƒ•ã‚©ãƒ³ãƒˆç ´æ£„
 	NUMFONT_Delete( p_num );
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	TCB_Add( MainZukanCont, p_data, 0 );
 
 	// BG
@@ -5015,7 +5015,7 @@ static void StartZukanCont( TCB_PTR tcb, void* p_work )
 
 	EndDebugWind(tcb, p_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
@@ -5078,7 +5078,7 @@ static void MainZukanContKeySousa( s32* p_count, BOOL* set_flg, s32 min, s32 max
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“
+ *	@brief	ãƒ¡ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void MainZukanCont( TCB_PTR tcb, void* p_work )
@@ -5125,7 +5125,7 @@ static void MainZukanCont( TCB_PTR tcb, void* p_work )
 		GF_BGL_BmpWinOn( p_data->p_bmp );
 	}
 	
-	// }ŠÓ‚É”½‰f
+	// å›³é‘‘ã«åæ˜ 
 	if( sys.trg & PAD_BUTTON_START ){
 		p_data->set_chuu = TRUE;
 
@@ -5138,7 +5138,7 @@ static void MainZukanCont( TCB_PTR tcb, void* p_work )
 		Debug_ZukanWork_Make( p_data->p_zknwork, p_data->start, p_data->end, FALSE );
 	}
 
-	// ‘SƒNƒŠƒA
+	// å…¨ã‚¯ãƒªã‚¢
 	if( sys.trg & PAD_BUTTON_SELECT ){
 		ZukanWork_Init( p_data->p_zknwork );
 		ZukanWork_SetZukanGetFlag( p_data->p_zknwork );
@@ -5150,10 +5150,10 @@ static void MainZukanCont( TCB_PTR tcb, void* p_work )
 		// BG
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 
-		// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ”jŠü
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 		MSGMAN_Delete( p_data->msg_data );
 
-		// ƒrƒbƒgƒ}ƒbƒv”jŠü
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç ´æ£„
 		GF_BGL_BmpWinDel( p_data->p_bmp );
 		GF_BGL_BmpWinFree( p_data->p_bmp, 1 );
 		FieldSystemProc_SeqHoldEnd();
@@ -5161,14 +5161,14 @@ static void MainZukanCont( TCB_PTR tcb, void* p_work )
 		sys_FreeMemoryEz( p_data );
 	}
 
-	// ƒiƒ“ƒo[ƒtƒHƒ“ƒg”jŠü
+	// ãƒŠãƒ³ãƒãƒ¼ãƒ•ã‚©ãƒ³ãƒˆç ´æ£„
 	NUMFONT_Delete( p_num );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒ“ƒRƒNƒtƒ‰ƒOİ’è
+ *	@brief	ã‚¼ãƒ³ã‚³ã‚¯ãƒ•ãƒ©ã‚°è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void MainZukanZenkokuFlagSet( TCB_PTR tcb, void* p_work )
@@ -5184,7 +5184,7 @@ static void MainZukanZenkokuFlagSet( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒ“ƒRƒN}ŠÓ‚ğ–„‚ß‚é
+ *	@brief	ã‚¼ãƒ³ã‚³ã‚¯å›³é‘‘ã‚’åŸ‹ã‚ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void MainZukanZenkokuSet( TCB_PTR tcb, void* p_work )
@@ -5201,7 +5201,7 @@ static void MainZukanZenkokuSet( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒ“ƒIƒE}ŠÓ‚ğ–„‚ß‚é
+ *	@brief	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚’åŸ‹ã‚ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void MainZukanShinouSet( TCB_PTR tcb, void* p_work )
@@ -5223,7 +5223,7 @@ static void MainZukanShinouSet( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒ“ƒRƒNƒ|ƒPƒ‚ƒ“‘S•”Œ©
+ *	@brief	ã‚¼ãƒ³ã‚³ã‚¯ãƒã‚±ãƒ¢ãƒ³å…¨éƒ¨è¦‹
  */
 //-----------------------------------------------------------------------------
 static void MainZukanZenkokuSeeSet( TCB_PTR tcb, void* p_work )
@@ -5240,7 +5240,7 @@ static void MainZukanZenkokuSeeSet( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒ“ƒIƒEƒ|ƒPƒ‚ƒ“‘S•”Œ©
+ *	@brief	ã‚·ãƒ³ã‚ªã‚¦ãƒã‚±ãƒ¢ãƒ³å…¨éƒ¨è¦‹
  */
 //-----------------------------------------------------------------------------
 static void MainZukanShinouSeeSet( TCB_PTR tcb, void* p_work )
@@ -5260,237 +5260,237 @@ static void MainZukanShinouSeeSet( TCB_PTR tcb, void* p_work )
 
 //-----------------------------------------------------------------------------
 //
-//		‚¨“V‹CƒVƒXƒeƒ€
+//		ãŠå¤©æ°—ã‚·ã‚¹ãƒ†ãƒ 
 //	
 //=============================================================================
-// ‰J
+// é›¨
 static void StartWeather00( TCB_PTR tcb,void* work )
 {
 
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_SUNNY );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ‚­‚à‚è
+// ãã‚‚ã‚Š
 static void StartWeather01( TCB_PTR tcb,void* work )
 {
 
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_CLOUDINESS );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ‰J
+// é›¨
 static void StartWeather02( TCB_PTR tcb,void* work )
 {
 
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_RAIN );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ‘å‰J
+// å¤§é›¨
 static void StartWeather03( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_STRAIN );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ‘å‰J{—‹
+// å¤§é›¨ï¼‹é›·
 static void StartWeather04( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_SPARK );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// á
+// é›ª
 static void StartWeather05( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_SNOW );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// á
+// å¹é›ª
 static void StartWeather06( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_SNOWSTORM );
 	
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// –Òá
+// çŒ›å¹é›ª
 static void StartWeather07( TCB_PTR tcb,void* work )
 {
 
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_SNOWSTORM_H );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ‚«‚è
+// ãã‚Š
 static void StartWeather08( TCB_PTR tcb,void* work )
 {
 
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_FOG );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ‰ÎRŠD
+// ç«å±±ç°
 static void StartWeather09( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_VOLCANO );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// »—’
+// ç ‚åµ
 static void StartWeather10( TCB_PTR tcb,void* work )
 {
 
  	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_SANDSTORM );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ƒXƒm[ƒ_ƒXƒg
+// ã‚¹ãƒãƒ¼ãƒ€ã‚¹ãƒˆ
 static void StartWeather11( TCB_PTR tcb,void* work )
 {
 
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_DIAMONDDUST );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ‚«‚è‚Í‚ç‚¢
+// ãã‚Šã¯ã‚‰ã„
 static void StartWeather12( TCB_PTR tcb,void* work )
 {
 
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_MIST2 );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ƒtƒ‰ƒbƒVƒ…
+// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 static void StartWeather13( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_FLASH );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ‹C‡
+// æ°—åˆ
 static void StartWeather14( TCB_PTR tcb,void* work )
 {
 
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_SPIRIT );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// _”é
+// ç¥ç§˜
 static void StartWeather15( TCB_PTR tcb,void* work )
 {
 
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_MYSTIC );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
@@ -5498,80 +5498,80 @@ static void StartWeather16( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_RAINBOW );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ‚«‚è‚Í‚ç‚¢@”’
+// ãã‚Šã¯ã‚‰ã„ã€€ç™½
 static void StartWeather17( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_MIST1 );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ‹Ã‚ê”ü
+// å‡ã‚Œç¾
 static void StartWeather18( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_KOGOREBI );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// “´ŒA
+// æ´çªŸ
 static void StartWeather19( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_DOUKUTU00 );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 static void StartWeather20( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_DOUKUTU01 );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ƒMƒ“ƒK‚O‚O
+// ã‚®ãƒ³ã‚¬ï¼ï¼
 static void StartWeather21( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_GINGA00 );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 // LostTower
@@ -5579,78 +5579,78 @@ static void StartWeather22( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_LOSTTOWER00 );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ƒn[ƒhƒ}ƒEƒ“ƒeƒ“
+// ãƒãƒ¼ãƒ‰ãƒã‚¦ãƒ³ãƒ†ãƒ³
 static void StartWeather23( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_HARDMOUNTAIN );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// “´ŒA‚O‚Q
+// æ´çªŸï¼ï¼’
 static void StartWeather24( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_DOUKUTU02 );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 
-// ‘S’â~
+// å…¨åœæ­¢
 static void StopWeather( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_SUNNY );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
-// ”jŠü
+// ç ´æ£„
 static void EndWeather( TCB_PTR tcb,void* work )
 {
 	WEATHER_ChengeReq( D_TomoyaFldSys->fldmap->weather_data, WEATHER_SYS_SUNNY );
 	
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
 	
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒ‰ƒCƒ}ƒbƒNƒXƒfƒ‚	ŠJn
+ *	@brief	ã‚¯ãƒ©ã‚¤ãƒãƒƒã‚¯ã‚¹ãƒ‡ãƒ¢	é–‹å§‹
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN 
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯ 
  *
  *	@return	none
  */
@@ -5664,7 +5664,7 @@ static void StartClimaxDemo( TCB_PTR tcb,void* work )
 	tcb_ptr = TCB_Add(MainClimaxDemo, data, 6);
 	memset( data, 0, sizeof(DTOMOYA_DEMO_CLIMAX) );
 
-	// ‹â‰Íƒfƒ‚
+	// éŠ€æ²³ãƒ‡ãƒ¢
 	data->p_demo = FLDMAP_DEMO_Ginga_Start( D_TomoyaFldSys );
 
 	EndDebugWind(tcb, work);
@@ -5672,10 +5672,10 @@ static void StartClimaxDemo( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒ‰ƒCƒ}ƒbƒNƒXƒfƒ‚@ƒƒCƒ“
+ *	@brief	ã‚¯ãƒ©ã‚¤ãƒãƒƒã‚¯ã‚¹ãƒ‡ãƒ¢ã€€ãƒ¡ã‚¤ãƒ³
  *	
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return
  *
@@ -5686,32 +5686,32 @@ static void MainClimaxDemo( TCB_PTR tcb,void* work )
 	DTOMOYA_DEMO_CLIMAX* p_data = work;
 
 	switch( p_data->seq ){
-	case 0:	// ‰Šú‰»
+	case 0:	// åˆæœŸåŒ–
 		if( FLDMAP_DEMO_Ginga_GetState( p_data->p_demo ) == FLDMAP_DEMO_GINGA_SEQ_ENDREQ_WAIT ){
 			p_data->seq ++;
 		}
 		break;
 
-	case 1:	// ƒƒCƒ“
-		// X‚Å”jŠü
+	case 1:	// ãƒ¡ã‚¤ãƒ³
+		// Xã§ç ´æ£„
 		if( sys.trg & PAD_BUTTON_X ){
 			 FLDMAP_DEMO_Ginga_EndReq( p_data->p_demo );
 			p_data->seq ++;
 		}
 		break;
 
-	case 2:	// I—¹‘Ò‚¿
+	case 2:	// çµ‚äº†å¾…ã¡
 		if( FLDMAP_DEMO_Ginga_GetState( p_data->p_demo ) == FLDMAP_DEMO_GINGA_SEQ_END ){
 			p_data->seq ++;
 		}
 		break;
 
-	case 3:	// I—¹
+	case 3:	// çµ‚äº†
 		FLDMAP_DEMO_Ginga_End( p_data->p_demo );
 		p_data->seq ++;
 		break;
 
-	case 4:	// Š®‘SI—¹
+	case 4:	// å®Œå…¨çµ‚äº†
 		sys_FreeMemoryEz( work );
 		TCB_Delete( tcb );
 		break;
@@ -5721,10 +5721,10 @@ static void MainClimaxDemo( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“`àƒ|ƒPƒ‚ƒ“@“oêƒfƒ‚
+ *	@brief	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã€€ç™»å ´ãƒ‡ãƒ¢
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -5743,7 +5743,7 @@ static void StartClimaxDemoLegend( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“`àƒ|ƒPƒ‚ƒ““oê
+ *	@brief	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ç™»å ´
  *
  *	@param	tcb
  *	@param	work 
@@ -5758,40 +5758,40 @@ static void MainClimaxDemoLegend( TCB_PTR tcb,void* work )
 
 	switch( data->seq ){
 	case 0:
-		// “oêƒfƒ‚
+		// ç™»å ´ãƒ‡ãƒ¢
 		data->p_demo = FLDMAP_DEMO_LegendPokeApp_Start( D_TomoyaFldSys );
 		data->seq ++;
 		break;
 		
 	case 1:
-		//ƒQƒXƒg“o˜^
+		//ã‚²ã‚¹ãƒˆç™»éŒ²
 		fldobj = FieldOBJ_AddHMake(
 		D_TomoyaFldSys->fldobjsys,		//fsys->fldobjsys
 		D_TomoyaFldSys->location->grid_x,
-		D_TomoyaFldSys->location->grid_z,//ƒOƒŠƒbƒh’PˆÊ‚Åw’è
+		D_TomoyaFldSys->location->grid_z,//ã‚°ãƒªãƒƒãƒ‰å˜ä½ã§æŒ‡å®š
 		DIR_UP,							//src\field\fieldobj_code.h DIR_UP-DIR_RIGHT 
-		SPPOKE4,							//src\field\fieldobj_code.h HERO“™
-		MV_DMY,							// src\field\fieldobj_code.h MV_MDY“™
-		D_TomoyaFldSys->location->zone_id );// fsys->location->zone_id ’Ç‰Á‚·‚éÛ‚Ìƒ][ƒ“ID
+		SPPOKE4,							//src\field\fieldobj_code.h HEROç­‰
+		MV_DMY,							// src\field\fieldobj_code.h MV_MDYç­‰
+		D_TomoyaFldSys->location->zone_id );// fsys->location->zone_id è¿½åŠ ã™ã‚‹éš›ã®ã‚¾ãƒ¼ãƒ³ID
 
-//šššššššššššššššššššššššššššššššššššššš
-//		FieldOBJ_OBJIDSet( fldobj, D05R0114_SPPOKE_01 ); //•Ö—˜‚©‚à
-//		‚±‚ÌOBJID‚ª‚È‚­‚È‚Á‚½‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg‚µ‚Ü‚µ‚½B(08.03.27)
+//â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…
+//		FieldOBJ_OBJIDSet( fldobj, D05R0114_SPPOKE_01 ); //ä¾¿åˆ©ã‹ã‚‚
+//		ã“ã®OBJIDãŒãªããªã£ãŸã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã¾ã—ãŸã€‚(08.03.27)
 
 	
 //		FieldOBJ_StatusBitSet_Vanish( fldobj, TRUE );
 
-		// ƒIƒuƒWƒF”ñ•\¦‚É
+		// ã‚ªãƒ–ã‚¸ã‚§éè¡¨ç¤ºã«
 		data->seq++;
 		break;
 
-	case 2:	// ƒƒCƒ“
+	case 2:	// ãƒ¡ã‚¤ãƒ³
 		if( FLDMAP_DEMO_LegendPokeApp_EndCheck( data->p_demo ) ){
 			data->seq ++;
 		}
 		break;
 
-	case 3:	// I—¹
+	case 3:	// çµ‚äº†
 		FLDMAP_DEMO_LegendPokeApp_End( data->p_demo );
 		sys_FreeMemoryEz( work );
 		TCB_Delete( tcb );
@@ -5801,10 +5801,10 @@ static void MainClimaxDemoLegend( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒ‚•ƒŠƒ“ƒO@ŠJn
+ *	@brief	ãƒ‡ãƒ¢é»’ãƒªãƒ³ã‚°ã€€é–‹å§‹
  *
- *	@param	tcb		TCBƒ^ƒXƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBã‚¿ã‚¹ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -5819,21 +5819,21 @@ static void StartClimaxDemoBlackRing( TCB_PTR tcb,void* work )
 	tcb_ptr = TCB_Add(MainClimaxDemoBlackRing, data, 6);
 	memset( data, 0, sizeof(DTOMOYA_DEMO_CLIMAX) );
 
-	//ƒQƒXƒg“o˜^
+	//ã‚²ã‚¹ãƒˆç™»éŒ²
 	fldobj = FieldOBJ_AddHMake(
 	D_TomoyaFldSys->fldobjsys,		//fsys->fldobjsys
 	D_TomoyaFldSys->location->grid_x,
-	D_TomoyaFldSys->location->grid_z,//ƒOƒŠƒbƒh’PˆÊ‚Åw’è
+	D_TomoyaFldSys->location->grid_z,//ã‚°ãƒªãƒƒãƒ‰å˜ä½ã§æŒ‡å®š
 	DIR_UP,							//src\field\fieldobj_code.h DIR_UP-DIR_RIGHT 
-	SPPOKE4,							//src\field\fieldobj_code.h HERO“™
-	MV_DMY,							// src\field\fieldobj_code.h MV_MDY“™
-	D_TomoyaFldSys->location->zone_id );// fsys->location->zone_id ’Ç‰Á‚·‚éÛ‚Ìƒ][ƒ“ID
+	SPPOKE4,							//src\field\fieldobj_code.h HEROç­‰
+	MV_DMY,							// src\field\fieldobj_code.h MV_MDYç­‰
+	D_TomoyaFldSys->location->zone_id );// fsys->location->zone_id è¿½åŠ ã™ã‚‹éš›ã®ã‚¾ãƒ¼ãƒ³ID
 
-//šššššššššššššššššššššššššššššššššššššš
-//	FieldOBJ_OBJIDSet( fldobj, D05R0114_SPPOKE_01 ); //•Ö—˜‚©‚à
-//		‚±‚ÌOBJID‚ª‚È‚­‚È‚Á‚½‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg‚µ‚Ü‚µ‚½B(08.03.27)
+//â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…â˜…
+//	FieldOBJ_OBJIDSet( fldobj, D05R0114_SPPOKE_01 ); //ä¾¿åˆ©ã‹ã‚‚
+//		ã“ã®OBJIDãŒãªããªã£ãŸã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã¾ã—ãŸã€‚(08.03.27)
 
-	// •‚¢‚í‚Á‚©ƒfƒ‚
+	// é»’ã„ã‚ã£ã‹ãƒ‡ãƒ¢
 	data->p_demo = FLDMAP_DEMO_BlackRing_Start( D_TomoyaFldSys );	
 
 	
@@ -5842,10 +5842,10 @@ static void StartClimaxDemoBlackRing( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ƒŠƒ“ƒO@“®ìƒƒCƒ“
+ *	@brief	é»’ãƒªãƒ³ã‚°ã€€å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -5854,7 +5854,7 @@ static void MainClimaxDemoBlackRing( TCB_PTR tcb,void* work )
 {
 	DTOMOYA_DEMO_CLIMAX* data = work;
 
-	// B‚Å”jŠü
+	// Bã§ç ´æ£„
 	if( sys.trg & PAD_BUTTON_START ){
 		FLDMAP_DEMO_BlackRing_End( data->p_demo );
 		TCB_Delete( tcb );
@@ -5908,10 +5908,10 @@ static void StartClimaxDemoAntEgg02( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚ ‚è‚Ì—‘‚Å‚àƒƒCƒ“
+ *	@brief	ã‚ã‚Šã®åµã§ã‚‚ãƒ¡ã‚¤ãƒ³
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -5921,9 +5921,9 @@ static void MainClimaxDemoAntEgg( TCB_PTR tcb,void* work )
 	DTOMOYA_DEMO_CLIMAX* data = work;
 	CAMERA_ANGLE angle;
 
-	// B‚Å”jŠü
+	// Bã§ç ´æ£„
 	if( sys.trg & PAD_BUTTON_SELECT ){
-		// ƒJƒƒ‰ƒpƒ‰ƒ[ƒ^İ’è
+		// ã‚«ãƒ¡ãƒ©ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 		GFC_SetCameraPerspWay( 0x5C1, D_TomoyaFldSys->camera_ptr );	
 		GFC_SetCameraDistance( 0x29AEC1, D_TomoyaFldSys->camera_ptr );
 		GFC_SetLookTarget( &data->matrix_tmp, D_TomoyaFldSys->camera_ptr );
@@ -5941,7 +5941,7 @@ static void MainClimaxDemoAntEgg( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÃ‚¢‚è
+ *	@brief	ç”˜ã„é¦™ã‚Š
  *
  *	@param	tcb
  *	@param	work 
@@ -5969,7 +5969,7 @@ static void StartAmaikaoriDemo( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÃ‚¢‚è
+ *	@brief	ç”˜ã„é¦™ã‚Š
  *
  *	@param	tcb
  *	@param	work 
@@ -6022,7 +6022,7 @@ static void MainAmaikaoriDemo( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŠJn
+ *	@brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  */
 //-----------------------------------------------------------------------------
 static void StartEncountEffectSys( u32 effect_no )
@@ -6040,10 +6040,10 @@ static void StartEncountEffectSys( u32 effect_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŠJn
+ *	@brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	p_work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -6063,14 +6063,14 @@ static void MainEncountEffectSys( TCB_PTR tcb, void* p_work )
 	case 1:
 		if( p_data->sub_end ){
 			p_data->seq ++;
-			//ƒJƒƒ‰–ß‚·
+			//ã‚«ãƒ¡ãƒ©æˆ»ã™
 			GFC_SetCameraDistance( p_data->work[0], D_TomoyaFldSys->camera_ptr );
 			G2_SetBG0Offset(0, 0);
 			G2_SetBG1Offset(0, 0);
 			G2_SetBG2Offset(0, 0);
 			G2_SetBG3Offset(0, 0);
 
-			// BGL‚ğÄì¬
+			// BGLã‚’å†ä½œæˆ
 			Fieldmap_BgExit( D_TomoyaFldSys->bgl );
 			Fieldmap_BgSet( D_TomoyaFldSys->bgl );
 			FieldMsgPrintInit( PALTYPE_MAIN_BG, MSG_PRINT_INIT_ON );
@@ -6080,7 +6080,7 @@ static void MainEncountEffectSys( TCB_PTR tcb, void* p_work )
 		break;
 
 	case 2:
-		// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNOFF
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯OFF
 		FLDHBLANK_SYS_Stop( D_TomoyaFldSys->fldmap->hblanksys );
 
 		WIPE_SYS_Start( WIPE_PATTERN_WMS,
@@ -6097,7 +6097,7 @@ static void MainEncountEffectSys( TCB_PTR tcb, void* p_work )
 		if( WIPE_SYS_EndCheck() ){
 			sys_FreeMemoryEz( p_data );
 			TCB_Delete( tcb );
-			// ƒtƒB[ƒ‹ƒhHƒuƒ‰ƒ“ƒNON
+			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰Hãƒ–ãƒ©ãƒ³ã‚¯ON
 			FLDHBLANK_SYS_Start( D_TomoyaFldSys->fldmap->hblanksys );
 
 		}
@@ -6107,494 +6107,494 @@ static void MainEncountEffectSys( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘@ƒŒƒxƒ‹’á
+ *	@brief	è‰ã€€ãƒ¬ãƒ™ãƒ«ä½
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_00( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_FIELD_GRASS_LEVEL_LOW );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘@ƒŒƒxƒ‹‚
+ *	@brief	è‰ã€€ãƒ¬ãƒ™ãƒ«é«˜
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_01( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_FIELD_GRASS_LEVEL_HIGH );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	…@ƒŒƒxƒ‹’á
+ *	@brief	æ°´ã€€ãƒ¬ãƒ™ãƒ«ä½
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_02( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_FIELD_WATER_LEVEL_LOW );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	…@ƒŒƒxƒ‹‚
+ *	@brief	æ°´ã€€ãƒ¬ãƒ™ãƒ«é«˜
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_03( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_FIELD_WATER_LEVEL_HIGH );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹’á
+ *	@brief	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«ä½
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_04( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_FIELD_DAN_LEVEL_LOW );
 
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹‚
+ *	@brief	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«é«˜
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_05( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_FIELD_DAN_LEVEL_HIGH );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	TRAINER@‘@ƒŒƒxƒ‹’á
+ *	@brief	TRAINERã€€è‰ã€€ãƒ¬ãƒ™ãƒ«ä½
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_06( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_TRAINER_GRASS_LEVEL_LOW );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	TRAINER@‘@ƒŒƒxƒ‹‚
+ *	@brief	TRAINERã€€è‰ã€€ãƒ¬ãƒ™ãƒ«é«˜
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_07( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_TRAINER_GRASS_LEVEL_HIGH );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	TRAINER@…@ƒŒƒxƒ‹’á
+ *	@brief	TRAINERã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«ä½
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_08( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_TRAINER_WATER_LEVEL_LOW );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	TRAINER@…@ƒŒƒxƒ‹‚‚¢
+ *	@brief	TRAINERã€€æ°´ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_09( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_TRAINER_WATER_LEVEL_HIGH );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	TRAINER@ƒ_ƒ“@ƒŒƒxƒ‹’á
+ *	@brief	TRAINERã€€ãƒ€ãƒ³ã€€ãƒ¬ãƒ™ãƒ«ä½
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_10( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_TRAINER_DAN_LEVEL_LOW );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	TRAINER@ƒ_ƒ“@ƒŒƒxƒ‹‚‚¢
+ *	@brief	TRAINERã€€ãƒ€ãƒ³ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_11( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_TRAINER_DAN_LEVEL_HIGH );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“Áê@ƒoƒgƒ‹ƒ^ƒ[@ƒtƒ@ƒNƒgƒŠ[
+ *	@brief	ç‰¹æ®Šã€€ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_12( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPECIAL_TOWER );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“Áê	ƒ_ƒuƒ‹ƒoƒgƒ‹
+ *	@brief	ç‰¹æ®Š	ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_13( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPECIAL_DOUBLE );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹â‰Í’c@’Êí
+ *	@brief	éŠ€æ²³å›£ã€€é€šå¸¸
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_14( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_GINGA_NORMAL );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹â‰Í’c@Š²•”
+ *	@brief	éŠ€æ²³å›£ã€€å¹¹éƒ¨
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_15( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_GINGA_SPECIAL );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“`àƒ|ƒPƒ‚ƒ“
+ *	@brief	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_16( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_LEGEND_NORMAL );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PACKAGEƒ|ƒPƒ‚ƒ“
+ *	@brief	PACKAGEãƒã‚±ãƒ¢ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_17( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_LEGEND_PACKAGE );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒ€@ƒNƒƒKƒl
+ *	@brief	ã‚¸ãƒ ã€€ã‚¯ãƒ­ã‚¬ãƒ
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_18( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_KUROGANE_GYM );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒ€@ƒnƒNƒ^ƒC
+ *	@brief	ã‚¸ãƒ ã€€ãƒã‚¯ã‚¿ã‚¤
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_19( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_HAKUTAI_GYM );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒ€@ƒmƒ‚ƒZ
+ *	@brief	ã‚¸ãƒ ã€€ãƒãƒ¢ã‚»
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_20( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_NOMOSE_GYM );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒ€@ƒgƒoƒŠ
+ *	@brief	ã‚¸ãƒ ã€€ãƒˆãƒãƒª
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_21( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_TOBARI_GYM );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒ€@ƒˆƒXƒK
+ *	@brief	ã‚¸ãƒ ã€€ãƒ¨ã‚¹ã‚¬
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_22( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_YOSUGA_GYM );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒ€@ƒLƒbƒTƒL
+ *	@brief	ã‚¸ãƒ ã€€ã‚­ãƒƒã‚µã‚­
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_23( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_KISSAKI_GYM );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒ€@ƒ~ƒI
+ *	@brief	ã‚¸ãƒ ã€€ãƒŸã‚ª
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_24( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_MIO_GYM );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒ€@ƒiƒMƒT
+ *	@brief	ã‚¸ãƒ ã€€ãƒŠã‚®ã‚µ
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_25( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_NAGISA_GYM );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l“V‰¤‚O‚O
+ *	@brief	å››å¤©ç‹ï¼ï¼
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_26( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_SITEN_00 );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l“V‰¤‚O‚P
+ *	@brief	å››å¤©ç‹ï¼ï¼‘
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_27( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_SITEN_01 );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l“V‰¤02
+ *	@brief	å››å¤©ç‹02
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_28( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_SITEN_02 );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l“V‰¤03
+ *	@brief	å››å¤©ç‹03
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_29( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_SITEN_03 );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ`ƒƒƒ“ƒsƒIƒ“
+ *	@brief	ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_30( TCB_PTR tcb, void* p_work )
 {
 	StartEncountEffectSys( ENCOUNT_SPTR_CHANPION );
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,p_work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	// ƒƒCƒ“ƒŠƒXƒgƒZƒbƒg
+	// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	mainlistStart();
 }
 
@@ -6607,7 +6607,7 @@ static void EncountEffect_30( TCB_PTR tcb, void* p_work )
 //-----------------------------------------------------------------------------
 /**
  *
- *		ƒQ[ƒ€“àŒğŠ·
+ *		ã‚²ãƒ¼ãƒ å†…äº¤æ›
  *
  */
 //-----------------------------------------------------------------------------
@@ -6647,7 +6647,7 @@ static void StartFldTrade03( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŒƒR[ƒhƒR[ƒi[ƒNƒŠƒbƒvƒfƒoƒbƒN
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒãƒƒã‚¯
  *
  */
 //-----------------------------------------------------------------------------
@@ -6662,7 +6662,7 @@ static void Record_Clip( TCB_PTR tcb, void* p_work )
 	int monsno;
 	RTCTime time;
 	
-	// ƒŒƒR[ƒhŒğŠ·ÀŒ±
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›å®Ÿé¨“
 	pp = PokemonParam_AllocWork( HEAPID_BASE_APP );
 	GF_RTC_GetTime( &time );
 	monsno = time.second + 1;
@@ -6674,16 +6674,16 @@ static void Record_Clip( TCB_PTR tcb, void* p_work )
 		Debug_ImcSaveData_MakeTelevisionDummyData( p_tv[i], pp, 2 );
 	}
 	sys_FreeMemoryEz( pp );
-	// 3‚É‚ÍA©•ª‚Ìƒf[ƒ^‚ğ“ü‚ê‚é
+	// 3ã«ã¯ã€è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹
 	p_television[3] = ImcSaveData_GetTelevisionSaveData( iw, 0 );
 
 
-	// ŒğŠ·
-	// ŒğŠ·Œã‚Ì—\‘z
-	// ©•ª ‚Ó‚µ‚¬‚¾‚Ë@‚Ó‚µ‚¬‚»‚¤@‚Ó‚µ‚¬‚¾‚Ë@‚Ó‚µ‚¬‚»‚¤
+	// äº¤æ›
+	// äº¤æ›å¾Œã®äºˆæƒ³
+	// è‡ªåˆ† ãµã—ãã ã­ã€€ãµã—ããã†ã€€ãµã—ãã ã­ã€€ãµã—ããã†
 	ImcSaveData_RecordMix( 6, 3, iw, p_television );
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	for( i=0; i<RECORD_TRADE_NUM; i++ ){
 		sys_FreeMemoryEz( p_tv[i] );
 	}
@@ -6693,7 +6693,7 @@ static void Record_Clip( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ[ŒğŠ·@ŠJn
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼äº¤æ›ã€€é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 static void StartAcceShop( TCB_PTR tcb, void* p_work )
@@ -6707,14 +6707,14 @@ static void StartAcceShop( TCB_PTR tcb, void* p_work )
 
 	EndDebugWind(tcb, p_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ[ŒğŠ·@I—¹
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼äº¤æ›ã€€çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 static void MainAcceShop( TCB_PTR tcb, void* p_work )
@@ -6745,10 +6745,10 @@ static void MainAcceShop( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒmƒ€ƒbƒ`‚Ìİ’è
+ *	@brief	ãƒŸãƒãƒ ãƒƒãƒã®è¨­å®š
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void Debug_MinoMuchiSet( TCB_PTR tcb, void* work )
@@ -6758,7 +6758,7 @@ static void Debug_MinoMuchiSet( TCB_PTR tcb, void* work )
 	int i;
 	int poke_num = PokeParty_GetPokeCount( party );
 	
-	// Œã‚ë‚Ì3‚Â‚ğƒ~ƒmƒ€ƒbƒ`‚É‚·‚é
+	// å¾Œã‚ã®3ã¤ã‚’ãƒŸãƒãƒ ãƒƒãƒã«ã™ã‚‹
 	for( i=poke_num-1; i>2; i-- ){
 		PokeParty_Delete( party, i );
 	}
@@ -6778,7 +6778,7 @@ static void Debug_MinoMuchiSet( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”é“`‹ZƒGƒtƒFƒNƒg	ŠJn
+ *	@brief	ç§˜ä¼æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ	é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 static void StartHideEff( TCB_PTR tcb,void* work )
@@ -6795,7 +6795,7 @@ static void StartHideEff( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”é“`‹ZƒGƒtƒFƒNƒg@ƒƒCƒ“
+ *	@brief	ç§˜ä¼æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ãƒ¡ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void MainHideEff( TCB_PTR tcb,void* work )
@@ -6808,13 +6808,13 @@ static void MainHideEff( TCB_PTR tcb,void* work )
 		data->seq ++;
 		break;
 
-	case 1:	// I—¹‘Ò‚¿
+	case 1:	// çµ‚äº†å¾…ã¡
 		if( FLD_HIDENEFF_Iaigiri_EndCheck( data->p_demo ) == TRUE ){
 			data->seq ++;
 		}
 		break;
 
-	case 2:	// I—¹
+	case 2:	// çµ‚äº†
 		FLD_HIDENEFF_Iaigiri_End( data->p_demo );
 		sys_FreeMemoryEz( data );
 		TCB_Delete( tcb );
@@ -6824,7 +6824,7 @@ static void MainHideEff( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”é“`‹ZƒGƒtƒFƒNƒg	ŠJn
+ *	@brief	ç§˜ä¼æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ	é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 static void StartHideEff01( TCB_PTR tcb,void* work )
@@ -6841,7 +6841,7 @@ static void StartHideEff01( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”é“`‹ZƒGƒtƒFƒNƒg@ƒƒCƒ“
+ *	@brief	ç§˜ä¼æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ãƒ¡ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void MainHideEff01( TCB_PTR tcb,void* work )
@@ -6854,13 +6854,13 @@ static void MainHideEff01( TCB_PTR tcb,void* work )
 		data->seq ++;
 		break;
 
-	case 1:	// I—¹‘Ò‚¿
+	case 1:	// çµ‚äº†å¾…ã¡
 		if( FLD_HIDENEFF_Iwakudaki_EndCheck( data->p_demo ) == TRUE ){
 			data->seq ++;
 		}
 		break;
 
-	case 2:	// I—¹
+	case 2:	// çµ‚äº†
 		FLD_HIDENEFF_Iwakudaki_End( data->p_demo );
 		sys_FreeMemoryEz( data );
 		TCB_Delete( tcb );
@@ -6890,7 +6890,7 @@ static BOOL DEBUG_TakinoboriEvent( GMEVENT_CONTROL * event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”é“`‹ZƒGƒtƒFƒNƒg	ŠJn
+ *	@brief	ç§˜ä¼æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ	é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 static void StartHideEff02( TCB_PTR tcb,void* work )
@@ -6909,7 +6909,7 @@ static void StartHideEff02( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	TEAMWORK“¾“_•`‰æ
+ *	@brief	TEAMWORKå¾—ç‚¹æç”»
  */
 //-----------------------------------------------------------------------------
 static void StartTeamWorkScore( TCB_PTR tcb,void* work )
@@ -6925,31 +6925,31 @@ static void StartTeamWorkScore( TCB_PTR tcb,void* work )
 	GF_BGL_BmpWinAdd( p_data->p_fsys->bgl, 
 			p_data->p_bmp, GF_BGL_FRAME2_M, 2, 2, 28, 18, 7, MENU_WIN_CGX_SIZ + 1 );
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( p_data->p_bmp, 15 );
 
 	NUMFONT_WriteNumber( p_num, D_Tomoya_MazeMaze_TeamWork, 3, NUMFONT_MODE_ZERO, p_data->p_bmp, 0, 0 );
 	GF_BGL_BmpWinOn( p_data->p_bmp );
 
-	// ƒiƒ“ƒo[ƒtƒHƒ“ƒg”jŠü
+	// ãƒŠãƒ³ãƒãƒ¼ãƒ•ã‚©ãƒ³ãƒˆç ´æ£„
 	NUMFONT_Delete( p_num );
 
 	// BG
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 	G2_SetBG2Priority(0);
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	TCB_Add( MainTeamWorkScore, p_data, 0 );
 
 	EndDebugWind(tcb, work);
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	TEAMWORK“¾“_•`‰æ
+ *	@brief	TEAMWORKå¾—ç‚¹æç”»
  */
 //-----------------------------------------------------------------------------
 static void MainTeamWorkScore( TCB_PTR tcb,void* work )
@@ -6960,7 +6960,7 @@ static void MainTeamWorkScore( TCB_PTR tcb,void* work )
 		// BG
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 
-		// ƒrƒbƒgƒ}ƒbƒv”jŠü
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç ´æ£„
 		GF_BGL_BmpWinDel( p_data->p_bmp );
 		GF_BGL_BmpWinFree( p_data->p_bmp, 1 );
 		FieldSystemProc_SeqHoldEnd();
@@ -6972,13 +6972,13 @@ static void MainTeamWorkScore( TCB_PTR tcb,void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXƒZ[ƒuƒf[ƒ^ƒoƒbƒNƒAƒbƒv
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
  */	
 //-----------------------------------------------------------------------------
 static void D_TomoDeokisisuSaveBuckUp( TCB_PTR tcb,void* work )
 {
 	ZUKAN_WORK* zw = SaveData_GetZukanWork( D_TomoyaFldSys->savedata );
-	// ƒfƒIƒLƒVƒXƒZ[ƒuƒ[ƒNƒoƒbƒNƒAƒbƒv
+	// ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
 	Debug_ZukanWork_DeokisisuBuckUp( zw );
 	EndDebugWind(tcb, work);
 }

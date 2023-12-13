@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	castle_tool.h
- * @brief	ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹ŠÖ˜Aƒc[ƒ‹—Ş
+ * @brief	ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«é–¢é€£ãƒ„ãƒ¼ãƒ«é¡
  * @author	nohara
  * @date	2007.07.04
  */
@@ -16,26 +16,26 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚©‚ç‚Ì’Šo”ÍˆÍ
+///ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã®æŠ½å‡ºç¯„å›²
 typedef struct{
-	u16 trainer_index;	///<ƒgƒŒ[ƒi[Index(‚±‚ÌIndex–¢–‚ÌƒgƒŒ[ƒi[‚ª‘ÎÛ)
-	u16 start;			///<ƒ|ƒPƒ‚ƒ“IndexŠJnNo
-	u16 end;			///<ƒ|ƒPƒ‚ƒ“IndexI—¹No
-	u8 pow_rnd;			///<ƒpƒ[—”
+	u16 trainer_index;	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Index(ã“ã®Indexæœªæº€ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒå¯¾è±¡)
+	u16 start;			///<ãƒã‚±ãƒ¢ãƒ³Indexé–‹å§‹No
+	u16 end;			///<ãƒã‚±ãƒ¢ãƒ³Indexçµ‚äº†No
+	u8 pow_rnd;			///<ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	
-	u8 dummy;	///<4ƒoƒCƒg‹«ŠEƒIƒtƒZƒbƒg
+	u8 dummy;	///<4ãƒã‚¤ãƒˆå¢ƒç•Œã‚ªãƒ•ã‚»ãƒƒãƒˆ
 }CASTLE_POKE_RANGE;
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void Castle_EnemyLapAllTrainerIndexGet( u8 type, int lap, u16 trainer_index[], u8 num );
 extern u32 Castle_PokemonParamCreate(B_TOWER_POKEMON *pwd,
@@ -60,7 +60,7 @@ extern const CASTLE_POKE_RANGE *Castle_EnemyPokemonRangeGet(int trainer_index,
 /******************************************************************************/
 //==============================================================================
 //
-//	04.07.11’Ç‰Á
+//	04.07.11è¿½åŠ 
 //
 //==============================================================================
 #include "battle/battle_common.h"
@@ -74,54 +74,54 @@ extern const CASTLE_POKE_RANGE *Castle_EnemyPokemonRangeGet(int trainer_index,
 
 //============================================================================================
 //
-//	ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹@ƒXƒNƒŠƒvƒgƒ[ƒN
+//	ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯
 //
 //============================================================================================
 typedef struct{
 
-	int	heapID;											//ƒq[ƒv
+	int	heapID;											//ãƒ’ãƒ¼ãƒ—
 	SAVEDATA* sv;
-	CASTLEDATA* castle_savedata;						//ƒLƒƒƒbƒXƒ‹ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	CASTLEDATA* castle_savedata;						//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	void* p_work;
 
-	u8	type;											//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
-	u8	round;											//¡‰½l–ÚH
-	u8	hinsi_flag;										//•m€ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©ƒtƒ‰ƒO
-	u8	brain_appear_msg_flag;							//ƒuƒŒ[ƒ““oêƒƒbƒZ[ƒW•\¦‚µ‚½‚©
+	u8	type;											//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã€wifiãƒãƒ«ãƒ
+	u8	round;											//ä»Šä½•äººç›®ï¼Ÿ
+	u8	hinsi_flag;										//ç€•æ­»ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	u8	brain_appear_msg_flag;							//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã—ãŸã‹
 
-	u16	rensyou;										//Œ»İ‚Ì˜AŸ”
-	u16	lap;											//Œ»İ‚Ìü‰ñ”
+	u16	rensyou;										//ç¾åœ¨ã®é€£å‹æ•°
+	u16	lap;											//ç¾åœ¨ã®å‘¨å›æ•°
 
-	u32	win_cnt;										//Œ»İ‚Ü‚Å‚Ì‘Ÿ—˜”
-	int winlose_flag;									//Ÿ‚¿•‰‚¯ƒtƒ‰ƒO
+	u32	win_cnt;										//ç¾åœ¨ã¾ã§ã®ç·å‹åˆ©æ•°
+	int winlose_flag;									//å‹ã¡è² ã‘ãƒ•ãƒ©ã‚°
 
-	u16 temp_start_cp;									//’§í‚ÌCP‚ğ‘Ş”ğ
-	u16 temp_now_cp;									//Œ»İ‚ÌCP‚ğ‘Ş”ğ
+	u16 temp_start_cp;									//æŒ‘æˆ¦æ™‚ã®CPã‚’é€€é¿
+	u16 temp_now_cp;									//ç¾åœ¨ã®CPã‚’é€€é¿
 
-	//Q‰Á‚µ‚Ä‚¢‚éè‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	u8	mine_poke_pos[CASTLE_ENTRY_POKE_MAX];
-	u8	clear_flag;										//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO(0‚©1)
+	u8	clear_flag;										//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°(0ã‹1)
 
-	//ƒLƒƒƒbƒXƒ‹ê—p‰æ–Ê‚Ö“n‚·—p‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	POKEPARTY* p_m_party;								//–¡•û
-	POKEPARTY* p_e_party;								//“G
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«å°‚ç”¨ç”»é¢ã¸æ¸¡ã™ç”¨ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	POKEPARTY* p_m_party;								//å‘³æ–¹
+	POKEPARTY* p_e_party;								//æ•µ
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
-	u16 tr_index[CASTLE_LAP_MULTI_ENEMY_MAX];			//ƒgƒŒ[ƒi[indexƒe[ƒuƒ‹(*2=ƒ_ƒuƒ‹)
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	u16 tr_index[CASTLE_LAP_MULTI_ENEMY_MAX];			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼indexãƒ†ãƒ¼ãƒ–ãƒ«(*2=ãƒ€ãƒ–ãƒ«)
 
-	//‘Îí‘Šèƒf[ƒ^Ši”[êŠ
+	//å¯¾æˆ¦ç›¸æ‰‹ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
 	B_TOWER_PARTNER_DATA tr_data[2];
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 enemy_poke_index[CASTLE_ENEMY_POKE_MAX];		//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
-	u8	enemy_pow_rnd[CASTLE_ENEMY_POKE_MAX];			//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
-	u32 enemy_personal_rnd[CASTLE_ENEMY_POKE_MAX];		//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
-	B_TOWER_POKEMON enemy_poke[CASTLE_ENEMY_POKE_MAX];	//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 dummy_enemy_eom;								//b’èˆ—(EOM‚ª2byte—]Œv‚É‘‚«‚Ü‚ê‚é‚½‚ß)
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 enemy_poke_index[CASTLE_ENEMY_POKE_MAX];		//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
+	u8	enemy_pow_rnd[CASTLE_ENEMY_POKE_MAX];			//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+	u32 enemy_personal_rnd[CASTLE_ENEMY_POKE_MAX];		//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
+	B_TOWER_POKEMON enemy_poke[CASTLE_ENEMY_POKE_MAX];	//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 dummy_enemy_eom;								//æš«å®šå‡¦ç†(EOMãŒ2byteä½™è¨ˆã«æ›¸ãè¾¼ã¾ã‚Œã‚‹ãŸã‚)
 
-	u16 itemno[CASTLE_ENTRY_POKE_MAX];					//ŠƒAƒCƒeƒ€
+	u16 itemno[CASTLE_ENTRY_POKE_MAX];					//æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ 
 
-	//“GƒgƒŒ[ƒi[‰æ–Ê‚Ìî•ñ‚ªŒöŠJ‚³‚ê‚½‚©ƒtƒ‰ƒO
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢ã®æƒ…å ±ãŒå…¬é–‹ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°
 	u8	enemy_temoti_flag[CASTLE_ENEMY_POKE_MAX];
 	u8	enemy_level_flag[CASTLE_ENEMY_POKE_MAX];
 	u8	enemy_tuyosa_flag[CASTLE_ENEMY_POKE_MAX];
@@ -129,25 +129,25 @@ typedef struct{
 
 	u16 ret_work[CASTLE_RET_WORK_MAX];
 
-	//è‚¿ƒ|ƒPƒ‚ƒ“
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
 	u16	hp[CASTLE_MINE_POKE_MAX];						//HP
-	u16	pp[CASTLE_MINE_POKE_MAX][4];					//‹Z4‚Â‚ÌPP
-	u8	condition[CASTLE_MINE_POKE_MAX];				//“ÅA–ƒáƒ‚È‚Ç‚Ìó‘Ô
-	u16 item[CASTLE_MINE_POKE_MAX];						//“¹‹ï
+	u16	pp[CASTLE_MINE_POKE_MAX][4];					//æŠ€4ã¤ã®PP
+	u8	condition[CASTLE_MINE_POKE_MAX];				//æ¯’ã€éº»ç—ºãªã©ã®çŠ¶æ…‹
+	u16 item[CASTLE_MINE_POKE_MAX];						//é“å…·
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//’ÊM—pFƒf[ƒ^ƒoƒbƒtƒ@
+	//é€šä¿¡ç”¨ï¼šãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
 	u16	send_buf[CASTLE_COMM_BUF_LEN];
 	u8	huge_buf[CASTLE_HUGE_BUF_LEN];
 	u8	recieve_huge_buf[CASTLE_COMM_PLAYER_NUM][CASTLE_HUGE_BUF_LEN];
 
-	//’ÊM—pFŠî–{î•ñ
-	u8	pair_retire_flag;									//ƒŠƒ^ƒCƒ„‚ğ‘I‚ñ‚¾‚©=1
-	u8	pair_trade_yesno_flag;								//ŒğŠ·‚µ‚½‚¢‚©(0=‚µ‚½‚¢A1=‚µ‚½‚­‚È‚¢)
-	u16	pair_lap;											//ü‰ñ”
+	//é€šä¿¡ç”¨ï¼šåŸºæœ¬æƒ…å ±
+	u8	pair_retire_flag;									//ãƒªã‚¿ã‚¤ãƒ¤ã‚’é¸ã‚“ã ã‹=1
+	u8	pair_trade_yesno_flag;								//äº¤æ›ã—ãŸã„ã‹(0=ã—ãŸã„ã€1=ã—ãŸããªã„)
+	u16	pair_lap;											//å‘¨å›æ•°
 
-	u16	pair_trade_count;									//ŒğŠ·‰ñ”
-	u16	pair_rensyou;										//Œ»İ‚Ì˜AŸ”(27l–Ú‚Æ‚©‚Ì•\¦‚É•K—v)
+	u16	pair_trade_count;									//äº¤æ›å›æ•°
+	u16	pair_rensyou;										//ç¾åœ¨ã®é€£å‹æ•°(27äººç›®ã¨ã‹ã®è¡¨ç¤ºã«å¿…è¦)
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 
 	u8	sel_type;
@@ -165,7 +165,7 @@ typedef struct{
 
 //============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //============================================================================================
 extern u8 Castle_GetMinePokeNum( u8 type, BOOL flag );

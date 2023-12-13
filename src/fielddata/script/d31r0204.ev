@@ -10,11 +10,11 @@
 	.include	"../../../src/field/b_tower_scr_def.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d31r0204_flag_change
 _EVENT_DATA		ev_d31r0204_obj_change
@@ -28,13 +28,13 @@ _EVENT_DATA_END
 ev_d31r0204_flag_change:
 	_IFVAL_JUMP		WK_SCENE_D31R0204,EQ,0,ev_d31r0204_flag_change_end
 	/*
-	  �ʐM�̎q�̎��͐e�q�̍��E�ʒu�����ꂩ����
-	  �J�����gID�擾�֐��͔�ڑ����ɌĂԂ�0���Ԃ�
+	  通信の子の時は親子の左右位置をいれかえる
+	  カレントID取得関数は非接続時に呼ぶと0が返る
 	*/
 	_COMM_GET_CURRENT_ID	LOCALWORK0
 	_IFVAL_JUMP		LOCALWORK0,EQ,1,ev_d31r0204_flag_change_child
 
-	/*��ڑ����Ɛe�̂Ƃ�*/
+	/*非接続時と親のとき*/
 	_BTOWER_TOOLS	BTWR_SUB_GET_MINE_OBJ,BTWR_PTCODE_MINE,LOCALWORK0
 	_LDWK			OBJCHRWORK0,LOCALWORK0
 	_BTOWER_TOOLS	BTWR_SUB_GET_MINE_OBJ,BTWR_PTCODE_MINE2,LOCALWORK0
@@ -42,7 +42,7 @@ ev_d31r0204_flag_change:
 ev_d31r0204_flag_change_end:
 	_END
 
-/*�ʐM�̎q�̎�*/
+/*通信の子の時*/
 ev_d31r0204_flag_change_child:
 	_BTOWER_TOOLS	BTWR_SUB_GET_MINE_OBJ,BTWR_PTCODE_MINE,LOCALWORK0
 	_LDWK			OBJCHRWORK1,LOCALWORK0
@@ -60,7 +60,7 @@ ev_d31r0204_obj_seven_chk:
 
 ev_d31r0204_obj_player:
 	_OBJ_INVISIBLE	FLDOBJ_ID_PLAYER
-	//���}�X���炷
+	//半マスずらす
 	_PLAYER_POS_OFFSET_SET	8,0,0	
 	_RET
 	
@@ -79,11 +79,11 @@ ev_tower_wayd_common:
 
 //====================================================================
 /********************************************************************/
-/*	�o�g���^���[�@�}���`�ʘH�A�j���R����							*/
+/*	バトルタワー　マルチ通路アニメコモン							*/
 /********************************************************************/
 //====================================================================
 ev_tower_wayd_comanm_in:
-	//�G���x�[�^�h�Aopen
+	//エレベータドアopen
 	_SET_UP_DOOR_ANIME	0,0,3,2,77
 	_SET_UP_DOOR_ANIME	0,0,14,2,78
 	_SEQ_OPEN_DOOR	77
@@ -98,12 +98,12 @@ ev_tower_wayd_comanm_in:
 	_OBJ_ANIME		D31R0204_HERO,anm_d31r0204_trainer_in
 	_OBJ_ANIME		D31R0204_TRAINER,anm_d31r0204_trainer_in
 	_OBJ_ANIME_WAIT
-	_SEQ_CLOSE_DOOR	77	//�h�A�߂�
-	_SEQ_CLOSE_DOOR	78	//�h�A�߂�
-	_WAIT_3D_ANIME	77	//�A�j���I���҂�
-	_WAIT_3D_ANIME	78	//�A�j���I���҂�
-	_FREE_3D_ANIME	77	//�h�A�A�j�����	
-	_FREE_3D_ANIME	78	//�h�A�A�j�����	
+	_SEQ_CLOSE_DOOR	77	//ドア閉める
+	_SEQ_CLOSE_DOOR	78	//ドア閉める
+	_WAIT_3D_ANIME	77	//アニメ終了待ち
+	_WAIT_3D_ANIME	78	//アニメ終了待ち
+	_FREE_3D_ANIME	77	//ドアアニメ解放	
+	_FREE_3D_ANIME	78	//ドアアニメ解放	
 	_RET
 
 ev_tower_wayd_comanm_walk:
@@ -123,7 +123,7 @@ ev_tower_wayd_comanm_out:
 	_RET
 
 //--------------------------------------------------------------------
-//�g���[�i�[�@In
+//トレーナー　In
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0204_pcwoman2_in
 	_ANIME_DATA	AC_WALK_D_8F,3
@@ -135,7 +135,7 @@ _ANIME_LABEL	anm_d31r0204_trainer_in
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�g���[�i�[01�@walk
+//トレーナー01　walk
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0204_trainer_right
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -148,7 +148,7 @@ _ANIME_LABEL	anm_d31r0204_trainer_left
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�g���[�i�[ out�@
+//トレーナー out　
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0204_trainer_out
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -156,7 +156,7 @@ _ANIME_LABEL	anm_d31r0204_trainer_out
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�󂯕t����@walk
+//受け付け嬢　walk
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0204_pcwoman2_right
 	_ANIME_DATA	AC_WALK_R_8F,5

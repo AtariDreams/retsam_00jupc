@@ -9,7 +9,7 @@
 	//.include	"../eventdata/zone_c05r0201evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c05r0201_gentleman
 _EVENT_DATA		ev_c05r0201_woman2
@@ -34,26 +34,26 @@ ev_c05r0301_flagchange_vanish:
 	_END
 
 /********************************************************************/
-/*							aŽm		@							*/
+/*							ç´³å£«		ã€€							*/
 /********************************************************************/
 ev_c05r0201_gentleman:
 	_TALK_OBJ_START
 
-	//ƒAƒCƒeƒ€‚à‚ç‚Á‚Ä‚¢‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚‚ã‚‰ã£ã¦ã„ã‚‹
 	_IF_FLAGON_JUMP	FE_C05R0201_ITEM_GET,ev_c05r0201_gentleman_02
 
 	_TALK_KEYWAIT	msg_c05r0201_gentleman_01
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_POFINKEESU
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05r0201_gentleman_01_item_event_fail
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_FLAG_SET		FE_C05R0201_ITEM_GET
 
@@ -65,7 +65,7 @@ ev_c05r0201_gentleman:
 	_END
 
 ev_c05r0201_gentleman_02:
-	//ƒƒUƒ}ƒVƒ“‚ð‚­‚ê‚½ŒãƒƒbƒZ[ƒW
+	//ãƒ¯ã‚¶ãƒžã‚·ãƒ³ã‚’ãã‚ŒãŸå¾Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	_TALKMSG	msg_c05r0201_gentleman_03
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -73,19 +73,19 @@ ev_c05r0201_gentleman_02:
 	_END
 
 ev_c05r0201_gentleman_01_item_event_fail:
-	//ƒAƒCƒeƒ€Žæ“¾Ž¸”sƒCƒxƒ“ƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¤±æ•—ã‚¤ãƒ™ãƒ³ãƒˆ
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
 /********************************************************************/
-/*						‚¨Ÿ­—ŽŽo‚³‚ñ	@							*/
+/*						ãŠæ´’è½å§‰ã•ã‚“	ã€€							*/
 /********************************************************************/
 ev_c05r0201_woman2:
 	_TALK_OBJ_START
 
-	//æ“ªƒ|ƒPƒ‚ƒ“”Ô†(ƒ^ƒ}ƒS‚ðœ‚­j‚ðŽæ“¾
+	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³ç•ªå·(ã‚¿ãƒžã‚´ã‚’é™¤ãï¼‰ã‚’å–å¾—
 	_FRONT_POKEMON	SCWK_PARAM0
 
 	_NICK_NAME		0,SCWK_PARAM0
@@ -153,21 +153,21 @@ ev_c05r0201_woman2_08:
 	_END
 
 /********************************************************************/
-/*						ƒRƒ_ƒbƒN		@							*/
+/*						ã‚³ãƒ€ãƒƒã‚¯		ã€€							*/
 /********************************************************************/
 ev_c05r0201_koduck:
 	_EASY_VOICE_MSG	msg_c05r0201_koduck_01,MONSNO_KODAKKU,0
 	_END
 
 /********************************************************************/
-/*						ƒ}ƒŠƒ‹			@							*/
+/*						ãƒžãƒªãƒ«			ã€€							*/
 /********************************************************************/
 ev_c05r0201_maril:
 	_EASY_VOICE_MSG	msg_c05r0201_maril_01,MONSNO_MIMITTO,0
 	_END
 
 /********************************************************************/
-/*						ƒsƒbƒs			@							*/
+/*						ãƒ”ãƒƒãƒ”			ã€€							*/
 /********************************************************************/
 ev_c05r0201_pippi:
 	_EASY_VOICE_MSG	msg_c05r0201_pippi_01,MONSNO_PIPPI,0

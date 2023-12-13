@@ -1,49 +1,49 @@
 //==============================================================================
 /**
  * @file	actin_tcb_pri.h
- * @brief	‰‰‹Z•”–å‚ÌTCBƒvƒ‰ƒCƒIƒŠƒeƒB’è‹`
+ * @brief	æ¼”æŠ€éƒ¨é–€ã®TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å®šç¾©
  * @author	matsuda
- * @date	2005.11.16(…)
+ * @date	2005.11.16(æ°´)
  */
 //==============================================================================
 #ifndef __ACTIN_TCB_PRI_H__
 #define __ACTIN_TCB_PRI_H__
 
 
-///FightUpdate(ƒAƒNƒ^[Update“™ŽÀs‚µ‚Ä‚¢‚é)	ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚ÅŽÀs
+///FightUpdate(ã‚¢ã‚¯ã‚¿ãƒ¼Updateç­‰å®Ÿè¡Œã—ã¦ã„ã‚‹)	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã§å®Ÿè¡Œ
 #define TCBPRI_ACTIN_UPDATE		(60000)
 
-///‹ZƒGƒtƒFƒNƒgŽÀsƒ^ƒXƒN
+///æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œã‚¿ã‚¹ã‚¯
 #define TCBPRI_ACTIN_WAZAEFF	(5)
 
-///–½—ßŽÀsƒTƒuƒ^ƒXƒN‚Ì”Ä—pƒvƒ‰ƒCƒIƒŠƒeƒB
+///å‘½ä»¤å®Ÿè¡Œã‚µãƒ–ã‚¿ã‚¹ã‚¯ã®æ±Žç”¨ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_ACTIN_ORDERSUB	(30000)
-///ŠeŽíƒGƒtƒFƒNƒg‚Ì”Ä—pƒvƒ‰ƒCƒIƒŠƒeƒB
+///å„ç¨®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®æ±Žç”¨ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_ACTIN_EFFECT		(40000)
 
-///‹Z‘I‘ðŽÀsƒ^ƒXƒN
+///æŠ€é¸æŠžå®Ÿè¡Œã‚¿ã‚¹ã‚¯
 #define TCBPRI_ACTIN_WAZASELECT	(100)
 
-///‰ï˜bƒEƒBƒ“ƒhƒEƒXƒNƒ[ƒ‹ƒ^ƒXƒN
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯
 #define TCBPRI_ACTIN_TALKWIN_SLIDE	(1000)
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹ƒ¿ƒGƒtƒFƒNƒgƒ^ƒXƒN
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«Î±ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯
 #define TCBPRI_ACTIN_BRDPANEL_ALPHA	(1000)
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹ƒ¿ƒGƒtƒFƒNƒgFVƒuƒ‰ƒ“ƒN“]‘—ƒ^ƒXƒN
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«Î±ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šVãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ã‚¿ã‚¹ã‚¯
 #define TCBPRI_ACTIN_BRDPANEL_ALPHA_VTASK	(10)
 
-///ŠÏ‹qBGƒAƒjƒƒ^ƒXƒN
+///è¦³å®¢BGã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯
 #define TCBPRI_ACTIN_AUDIENCE_ANIME		(3000)
 
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹ƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒg
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 #define TCBPRI_ACTIN_BRDPANEL_FLASH		(TCBPRI_ACTIN_EFFECT + 100)
 
 
 //--------------------------------------------------------------
-//	ƒTƒu‰æ–Ê
+//	ã‚µãƒ–ç”»é¢
 //--------------------------------------------------------------
-///“ü—Í‰æ–ÊƒGƒtƒFƒNƒgTCB
+///å…¥åŠ›ç”»é¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCB
 #define TCBPRI_AINPUT_EFFECT	(1300)
-///“ü—Í‰æ–ÊƒJƒ‰[ƒGƒtƒFƒNƒgTCB
+///å…¥åŠ›ç”»é¢ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCB
 #define TCBPRI_AINPUT_COLOR_EFFECT	(1320)
 
 

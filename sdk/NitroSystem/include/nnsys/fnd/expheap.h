@@ -24,97 +24,97 @@ extern "C" {
 
 
 /* =======================================================================
-    �萔��`
+    定数定義
    ======================================================================== */
 
-// �������m�ە���
+// メモリ確保方向
 enum
 {
-    NNS_FND_EXPHEAP_ALLOC_DIR_FRONT,    // �O�����m��
-    NNS_FND_EXPHEAP_ALLOC_DIR_REAR      // ������m��
+    NNS_FND_EXPHEAP_ALLOC_DIR_FRONT,    // 前方より確保
+    NNS_FND_EXPHEAP_ALLOC_DIR_REAR      // 後方より確保
 };
 
-// �������m�ۃ��[�h
+// メモリ確保モード
 enum
 {
     /*
-        ���̑����l���Z�b�g����Ă���ƁA�m�ۂ��悤�Ƃ��Ă���
-        �������u���b�N�̃T�C�Y�ȏ�̑傫�������A
-        �ŏ��Ɍ��������󂫗̈悩�烁�����u���b�N���m�ۂ��܂��B
+        この属性値がセットされていると、確保しようとしている
+        メモリブロックのサイズ以上の大きさを持つ、
+        最初に見つかった空き領域からメモリブロックを確保します。
     */
     NNS_FND_EXPHEAP_ALLOC_MODE_FIRST,
 
     /*
-        ���̑����l���Z�b�g����Ă���ƁA�m�ۂ��悤�Ƃ��Ă���
-        �������u���b�N�̃T�C�Y�Ɉ�ԋ߂��T�C�Y�̋󂫗̈��T���A
-        ���̋󂫗̈悩�烁�����u���b�N���m�ۂ��܂��B
+        この属性値がセットされていると、確保しようとしている
+        メモリブロックのサイズに一番近いサイズの空き領域を探し、
+        その空き領域からメモリブロックを確保します。
     */
     NNS_FND_EXPHEAP_ALLOC_MODE_NEAR
 };
 
 
 /* =======================================================================
-    �^��`
+    型定義
    ======================================================================== */
 
 typedef struct NNSiFndExpHeapMBlockHead NNSiFndExpHeapMBlockHead;
 
-// �������u���b�N�̃w�b�_���
+// メモリブロックのヘッダ情報
 struct NNSiFndExpHeapMBlockHead
 {
-    u16                         signature;      // �V�O�l�`��
-    u16                         attribute;      // ����
-                                                // [8:�O���[�vID]
-                                                // [7:�A���C�������g]
-                                                // [1:�e���|�����t���O]
+    u16                         signature;      // シグネチャ
+    u16                         attribute;      // 属性
+                                                // [8:グループID]
+                                                // [7:アラインメント]
+                                                // [1:テンポラリフラグ]
 
-    u32                         blockSize;      // �u���b�N�T�C�Y(�f�[�^�̈�̂�)
+    u32                         blockSize;      // ブロックサイズ(データ領域のみ)
 
-    NNSiFndExpHeapMBlockHead*   pMBHeadPrev;    // �O�u���b�N
-    NNSiFndExpHeapMBlockHead*   pMBHeadNext;    // ���u���b�N
+    NNSiFndExpHeapMBlockHead*   pMBHeadPrev;    // 前ブロック
+    NNSiFndExpHeapMBlockHead*   pMBHeadNext;    // 次ブロック
 };
 
 typedef struct NNSiFndExpMBlockList NNSiFndExpMBlockList;
 
-// �������u���b�N�̃��X�g
+// メモリブロックのリスト
 struct NNSiFndExpMBlockList
 {
-    NNSiFndExpHeapMBlockHead*   head;   // �擪�Ɍq����Ă��郁�����u���b�N�ւ̃|�C���^
-    NNSiFndExpHeapMBlockHead*   tail;   // ����Ɍq����Ă��郁�����u���b�N�ւ̃|�C���^
+    NNSiFndExpHeapMBlockHead*   head;   // 先頭に繋がれているメモリブロックへのポインタ
+    NNSiFndExpHeapMBlockHead*   tail;   // 後尾に繋がれているメモリブロックへのポインタ
 };
 
 typedef struct NNSiFndExpHeapHead NNSiFndExpHeapHead;
 
-// �g���q�[�v�̃w�b�_���
+// 拡張ヒープのヘッダ情報
 struct NNSiFndExpHeapHead
 {
-    NNSiFndExpMBlockList        mbFreeList;     // �t���[���X�g
-    NNSiFndExpMBlockList        mbUsedList;     // �g�p���X�g
+    NNSiFndExpMBlockList        mbFreeList;     // フリーリスト
+    NNSiFndExpMBlockList        mbUsedList;     // 使用リスト
 
-    u16                         groupID;        // �J�����g�O���[�vID (����8bit�̂�)
-    u16                         feature;        // ����
+    u16                         groupID;        // カレントグループID (下位8bitのみ)
+    u16                         feature;        // 属性
 };
 
-// �������u���b�N���ɌĂяo�����R�[���o�b�N�֐��̌^
+// メモリブロック毎に呼び出されるコールバック関数の型
 typedef void        (*NNSFndHeapVisitor)(
                         void*               memBlock,
                         NNSFndHeapHandle    heap,
                         u32                 userParam);
 
 /* =======================================================================
-    �}�N���֐�
+    マクロ関数
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndCreateExpHeap
 
-  Description:  �g���q�[�v���쐬���܂��B
+  Description:  拡張ヒープを作成します。
 
-  Arguments:    startAddress: �q�[�v�̈�̐擪�A�h���X�B
-                size:         �q�[�v�̈�̃T�C�Y�B
+  Arguments:    startAddress: ヒープ領域の先頭アドレス。
+                size:         ヒープ領域のサイズ。
 
-  Returns:      �֐������������ꍇ�A�쐬���ꂽ�g���q�[�v�̃n���h�����Ԃ�܂��B
-                �֐������s����ƁANNS_FND_HEAP_INVALID_HANDLE ���Ԃ�܂��B
+  Returns:      関数が成功した場合、作成された拡張ヒープのハンドルが返ります。
+                関数が失敗すると、NNS_FND_HEAP_INVALID_HANDLE が返ります。
  *---------------------------------------------------------------------------*/
 #define             NNS_FndCreateExpHeap(startAddress, size) \
                         NNS_FndCreateExpHeapEx(startAddress, size, 0)
@@ -122,15 +122,15 @@ typedef void        (*NNSFndHeapVisitor)(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndAllocFromExpHeap
 
-  Description:  �g���q�[�v���烁�����u���b�N���m�ۂ��܂��B
-                �������u���b�N�̃A���C�����g��4�o�C�g�Œ�ł��B
+  Description:  拡張ヒープからメモリブロックを確保します。
+                メモリブロックのアライメントは4バイト固定です。
 
-  Arguments:    heap:   �g���q�[�v�̃n���h���B
-                size:   �m�ۂ��郁�����u���b�N�̃T�C�Y(�o�C�g�P��)�B
+  Arguments:    heap:   拡張ヒープのハンドル。
+                size:   確保するメモリブロックのサイズ(バイト単位)。
 
-  Returns:      �������u���b�N�̊m�ۂ����������ꍇ�A�m�ۂ����������u���b�N�ւ�
-                �|�C���^���Ԃ�܂��B
-                ���s�����ꍇ�ANULL���Ԃ�܂��B
+  Returns:      メモリブロックの確保が成功した場合、確保したメモリブロックへの
+                ポインタが返ります。
+                失敗した場合、NULLが返ります。
  *---------------------------------------------------------------------------*/
 #define             NNS_FndAllocFromExpHeap(heap, size) \
                         NNS_FndAllocFromExpHeapEx(heap, size, NNS_FND_HEAP_DEFAULT_ALIGNMENT)
@@ -138,19 +138,19 @@ typedef void        (*NNSFndHeapVisitor)(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetAllocatableSizeForExpHeap
 
-  Description:  �g���q�[�v���̊��蓖�ĉ\�ȍő�T�C�Y���擾���܂��B
-                �������u���b�N�̃A���C�����g��4�o�C�g�Œ�ł��B
+  Description:  拡張ヒープ内の割り当て可能な最大サイズを取得します。
+                メモリブロックのアライメントは4バイト固定です。
 
-  Arguments:    heap:     �g���q�[�v�̃n���h���B
+  Arguments:    heap:     拡張ヒープのハンドル。
 
-  Returns:      �g���q�[�v���̊��蓖�ĉ\�ȍő�T�C�Y��Ԃ��܂�(�o�C�g�P��)�B
+  Returns:      拡張ヒープ内の割り当て可能な最大サイズを返します(バイト単位)。
  *---------------------------------------------------------------------------*/
 #define             NNS_FndGetAllocatableSizeForExpHeap(heap) \
                         NNS_FndGetAllocatableSizeForExpHeapEx(heap, NNS_FND_HEAP_DEFAULT_ALIGNMENT)
 
 
 /* =======================================================================
-    �֐��v���g�^�C�v
+    関数プロトタイプ
    ======================================================================== */
 
 #if ! defined(NNS_FINALROM)

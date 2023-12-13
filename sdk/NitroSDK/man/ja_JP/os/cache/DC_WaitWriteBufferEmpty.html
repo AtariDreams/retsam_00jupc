@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>DC_WaitWriteBufferEmpty</TITLE>
@@ -9,7 +9,7 @@
 </HEAD>
 <BODY>
 <H1 align="left">DC_WaitWriteBufferEmpty</H1>
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
@@ -17,24 +17,24 @@
 </PRE>
 </DL>
 
-<H2>����</H2>
-<P>�Ȃ��B</P>
+<H2>引数</H2>
+<P>なし。</P>
 
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
+<H2>返り値</H2>
+<P>なし。</P>
 
-<H2>����</H2>
-<P>���C�g�o�b�t�@����ɂȂ�̂�҂��܂��B<BR>
-���C�g�o�b�t�@�̓��e���S�ă������ɏ������܂��܂ŁAARM9 ���X�g�[�������邱�Ƃ��\�ł��B<BR>
+<H2>説明</H2>
+<P>ライトバッファが空になるのを待ちます。<BR>
+ライトバッファの内容が全てメモリに書き込まれるまで、ARM9 をストールさせることが可能です。<BR>
 <BR>
-�L���b�V���s��/�o�b�t�@�s�̈� �ւ̏������݂̑O�ɂ̓��C�g�o�b�t�@�̏����o�����s���邽�߁A�L���b�V���̃t���b�V����Ȃǂ�I/O���W�X�^�ւ̏������݂��s�Ȃ��ꍇ�́A�����I�Ƀ��C�g�o�b�t�@�̃G���v�e�B�҂����s���K�v�͂���܂���B</P>
-<P>�Ȃ��AI/O���W�X�^����̓ǂݍ��݂ɂ��ẮA���C�g�o�b�t�@�̏����o���͍s���܂���̂ŁA�����ӂ��������B</P>
-<h2>��������</h2>
-<P>�V�X�e������R�v���Z�b�T�̃��W�X�^7�𑀍삵�Ă��܂��B</P>
-<H2>�Q��</H2>
+キャッシュ不可/バッファ不可領域 への書き込みの前にはライトバッファの書き出しが行われるため、キャッシュのフラッシュ後などにI/Oレジスタへの書き込みを行なう場合は、明示的にライトバッファのエンプティ待ちを行う必要はありません。</P>
+<P>なお、I/Oレジスタからの読み込みについては、ライトバッファの書き出しは行われませんので、ご注意ください。</P>
+<h2>内部動作</h2>
+<P>システム制御コプロセッサのレジスタ7を操作しています。</P>
+<H2>参照</H2>
 <P><CODE><A href="DC_StoreAll.html">DC_StoreAll</A><BR></CODE></P>
 
-<H2>����</H2>
-<P>2003/12/22 ����</P>
+<H2>履歴</H2>
+<P>2003/12/22 初版</P>
 </BODY>
 </HTML>

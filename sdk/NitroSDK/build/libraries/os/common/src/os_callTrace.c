@@ -21,16 +21,16 @@
   consider for const OSThread*.
 
   Revision 1.23  2005/03/04 11:09:27  yasu
-  __declspec(weak) ‚ğ SDK_WEAK_SYMBOL ‚É’u‚«Š·‚¦
+  __declspec(weak) ã‚’ SDK_WEAK_SYMBOL ã«ç½®ãæ›ãˆ
 
   Revision 1.22  2005/02/28 05:26:28  yosizaki
   do-indent.
 
   Revision 1.21  2005/02/18 08:51:35  yasu
-  ’˜ì”N“x•ÏX
+  è‘—ä½œå¹´åº¦å¤‰æ›´
 
   Revision 1.20  2005/02/18 06:29:02  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.19  2004/10/01 12:36:24  yada
   %08% -> %08x
@@ -68,7 +68,7 @@
   OSi->OS: about OS_Enable/Disable/RestoreCallTrace
 
   Revision 1.8  2004/04/23 00:29:38  yada
-  logƒ‚[ƒh‚É‘Î‰
+  logãƒ¢ãƒ¼ãƒ‰ã«å¯¾å¿œ
 
   Revision 1.7  2004/04/15 02:26:38  yada
   add code32 include
@@ -83,10 +83,10 @@
   fix to make in THUMB
 
   Revision 1.3  2004/04/13 12:08:28  yada
-  ASSERT’è‹`ƒ~ƒXC³
+  ASSERTå®šç¾©ãƒŸã‚¹ä¿®æ­£
 
   Revision 1.2  2004/04/13 06:21:21  yada
-  dumpC³
+  dumpä¿®æ­£
 
   Revision 1.1  2004/04/12 12:12:08  yada
   first release

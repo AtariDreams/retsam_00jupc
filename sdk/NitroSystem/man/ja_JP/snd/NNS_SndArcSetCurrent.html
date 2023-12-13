@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndArcSetCurrent</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>NNS_SndArcSetCurrent</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">NNSSndArc* NNS_SndArcSetCurrent( NNSSndArc* <var>arc</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA5LAU"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,45 +25,45 @@
 <tbody>
 <tr>
 <td><em><strong><code>arc</code></strong></em></td>
-<td>�T�E���h�A�[�J�C�u�̃|�C���^�ł��B</td>
+<td>サウンドアーカイブのポインタです。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAOMAU"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�ݒ�O�̃J�����g�T�E���h�A�[�J�C�u�̃|�C���^��Ԃ��܂��B</p>
+      <p>設定前のカレントサウンドアーカイブのポインタを返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAVMAU"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�J�����g�T�E���h�A�[�J�C�u��ύX���܂��B
+カレントサウンドアーカイブを変更します。
 </p>
       <p>
-�T�E���h�A�[�J�C�u�������֐��́A�S�ăJ�����g�T�E���h�A�[�J�C�u�ɑ΂��Ď��s����܂��B
-���̊֐����g���ƁA�J�����g�T�E���h�A�[�J�C�u��ύX���邱�Ƃ��ł��܂��B
+サウンドアーカイブを扱う関数は、全てカレントサウンドアーカイブに対して実行されます。
+この関数を使うと、カレントサウンドアーカイブを変更することができます。
 </p>
       <p>
-�J�����g�T�E���h�A�[�J�C�u���擾���邽�߂ɂ́A
-<tt class="function"><a href="NNS_SndArcGetCurrent.html">NNS_SndArcGetCurrent</a></tt>�֐����g���܂��B
+カレントサウンドアーカイブを取得するためには、
+<tt class="function"><a href="NNS_SndArcGetCurrent.html">NNS_SndArcGetCurrent</a></tt>関数を使います。
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-�֐����̐擪��"NNS_SndArc"�����֐�(NNS_SndArcPlayer*�Ȃǂ��܂�)�́A
-�J�����g�T�E���h�A�[�J�C�u���Q�Ƃ��܂��B
-�����̃T�E���h�A�[�J�C�u���g�p����ꍇ�́A
-�����̊֐��Ăт����̑O�ɁA�ΏۂƂ���T�E���h�A�[�J�C�u��
-�J�����g�T�E���h�A�[�J�C�u�ɐݒ肵�Ă����K�v������܂��B
+関数名の先頭に"NNS_SndArc"がつく関数(NNS_SndArcPlayer*なども含む)は、
+カレントサウンドアーカイブを参照します。
+複数のサウンドアーカイブを使用する場合は、
+これらの関数呼びだしの前に、対象とするサウンドアーカイブを
+カレントサウンドアーカイブに設定しておく必要があります。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcGetCurrent.html">NNS_SndArcGetCurrent</a></p>
-<h2>����</h2>
-<p>2006/09/13 ���ӏ����ǉ�<br>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2006/09/13 注意書き追加<br>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

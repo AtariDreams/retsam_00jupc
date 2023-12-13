@@ -21,17 +21,17 @@
   add WBT_CancelCurrentCommand
 
   Revision 1.16  2004/09/23 07:50:17  miya
-  initŠ®—¹ƒtƒ‰ƒO’Ç‰Á
+  initå®Œäº†ãƒ•ãƒ©ã‚°è¿½åŠ 
 
   Revision 1.15  2004/09/21 05:29:45  yosizaki
   adjust some variable types.
   add comments.
 
   Revision 1.14  2004/09/14 01:34:23  miya
-  WBT_SetPacketSizeŠÖ”’Ç‰Á
+  WBT_SetPacketSizeé–¢æ•°è¿½åŠ 
 
   Revision 1.13  2004/09/13 06:38:41  miya
-  ƒ}ƒNƒ’Ç‰Á
+  ãƒã‚¯ãƒ­è¿½åŠ 
 
   Revision 1.12  2004/09/07 02:18:36  yosizaki
   add WBT_BLOCK_ID_MIN.
@@ -41,31 +41,31 @@
   delete RegisterUserDefinedBlock func.
 
   Revision 1.10  2004/09/01 04:00:29  miya
-  PutBlock,RequestRegisterBlock,ResponseRegisterBlock,DoneƒRƒ}ƒ“ƒhíœ
+  PutBlock,RequestRegisterBlock,ResponseRegisterBlock,Doneã‚³ãƒãƒ³ãƒ‰å‰Šé™¤
 
   Revision 1.9  2004/09/01 00:16:17  miya
-  ƒ†[ƒU[ƒf[ƒ^‚ÌƒTƒCƒY•ÏX
+  ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºå¤‰æ›´
 
   Revision 1.8  2004/08/28 11:26:10  miya
-  WBT_PutUserDataŠÖ”’Ç‰Á
+  WBT_PutUserDataé–¢æ•°è¿½åŠ 
 
   Revision 1.7  2004/08/27 07:07:32  miya
-  –¼‘O‚È‚Ç‚Ì•ÏX
+  åå‰ãªã©ã®å¤‰æ›´
 
   Revision 1.6  2004/08/26 12:59:06  miya
-  –¼‘O‚Ì•ÏX‚È‚Ç
+  åå‰ã®å¤‰æ›´ãªã©
 
   Revision 1.5  2004/08/26 03:18:34  miya
-  WBT_RegisterUserDefinedBlockŠÖ”’Ç‰Á
+  WBT_RegisterUserDefinedBlocké–¢æ•°è¿½åŠ 
 
   Revision 1.4  2004/08/25 12:29:06  miya
-  RegBlockŒnƒRƒ}ƒ“ƒh’Ç‰Á
+  RegBlockç³»ã‚³ãƒãƒ³ãƒ‰è¿½åŠ 
 
   Revision 1.3  2004/08/24 02:50:37  miya
   small fix
 
   Revision 1.2  2004/08/23 12:39:03  miya
-  UI“I‚É–â‘è‚É‚È‚è‚»‚¤‚È‚Æ‚±‚ë‚Ì•ÏX
+  UIçš„ã«å•é¡Œã«ãªã‚Šãã†ãªã¨ã“ã‚ã®å¤‰æ›´
 
   Revision 1.1  2004/08/23 09:43:45  yosizaki
   (none)
@@ -86,37 +86,37 @@ extern "C" {
 #include	<nitro/os.h>
 
 /*---------------------------------------------------------------------------*
-	Œ^’è‹`
+	å‹å®šç¾©
  *---------------------------------------------------------------------------*/
 
-/* WBT ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ÌŒ`® */
+/* WBT ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®å½¢å¼ */
 typedef void (*WBTCallback) (void *);
 
 
 /*---------------------------------------------------------------------------*
-	’è”’è‹`
+	å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
-/* WBT_RegisterBlock ‚Å“o˜^‰Â”\‚ÈƒuƒƒbƒN‚Ì‘” */
+/* WBT_RegisterBlock ã§ç™»éŒ²å¯èƒ½ãªãƒ–ãƒ­ãƒƒã‚¯ã®ç·æ•° */
 #define WBT_NUM_MAX_BLOCK_INFO_ID 1000
 
-/* WBT_RegisterBlock ‚Å“o˜^‰Â”\‚ÈƒuƒƒbƒN ID ‚ÌÅ¬’l */
+/* WBT_RegisterBlock ã§ç™»éŒ²å¯èƒ½ãªãƒ–ãƒ­ãƒƒã‚¯ ID ã®æœ€å°å€¤ */
 #define WBT_BLOCK_ID_MIN	WBT_NUM_MAX_BLOCK_INFO_ID
 
 /*
- * WBT_InitParent ‚Åİ’è‰Â”\‚È, e‹@ / q‹@‚ÌƒpƒPƒbƒgƒTƒCƒYÅ¬’l.
- * ‚±‚Ì’lˆÈã‚©‚Â MP ’ÊM‚Éw’è‚µ‚½Å‘å’lˆÈ‰º‚Ì”ÍˆÍ‚ÅƒTƒCƒY‚ğİ’è‚·‚é‚Æ,
- * WBT ‚ÌƒvƒƒgƒRƒ‹‚Í‚»‚ÌƒTƒCƒY“à‚ÅƒuƒƒbƒN“]‘—ƒpƒPƒbƒg‚ğ¶¬‚µ‚Ü‚·.
+ * WBT_InitParent ã§è¨­å®šå¯èƒ½ãª, è¦ªæ©Ÿ / å­æ©Ÿã®ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºæœ€å°å€¤.
+ * ã“ã®å€¤ä»¥ä¸Šã‹ã¤ MP é€šä¿¡ã«æŒ‡å®šã—ãŸæœ€å¤§å€¤ä»¥ä¸‹ã®ç¯„å›²ã§ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹ã¨,
+ * WBT ã®ãƒ—ãƒ­ãƒˆã‚³ãƒ«ã¯ãã®ã‚µã‚¤ã‚ºå†…ã§ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ãƒ‘ã‚±ãƒƒãƒˆã‚’ç”Ÿæˆã—ã¾ã™.
  */
 #define	WBT_PACKET_SIZE_MIN	14
 
-/* WBT_GetBlockInfo ‚Åæ“¾‚Å‚«‚éƒ†[ƒU’è‹` ID —Ìˆæ‚ÌƒTƒCƒY */
+/* WBT_GetBlockInfo ã§å–å¾—ã§ãã‚‹ãƒ¦ãƒ¼ã‚¶å®šç¾© ID é ˜åŸŸã®ã‚µã‚¤ã‚º */
 #define WBT_USER_ID_LEN 32
 
-/* WBT_PutUserData ‚Åw’è‚Å‚«‚éƒ†[ƒU’è‹`ƒf[ƒ^‚ÌÅ‘åƒTƒCƒY */
+/* WBT_PutUserData ã§æŒ‡å®šã§ãã‚‹ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ‡ãƒ¼ã‚¿ã®æœ€å¤§ã‚µã‚¤ã‚º */
 #define WBT_SIZE_USER_DATA        9
 
-/* WBT ‚ÌƒGƒ‰[ƒR[ƒh */
+/* WBT ã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ */
 typedef s16 WBTResult;
 #define WBT_RESULT_SUCCESS                       0
 #define WBT_RESULT_ERROR_TIMEOUT                 1
@@ -126,7 +126,7 @@ typedef s16 WBTResult;
 #define WBT_RESULT_ERROR_RECV_BUFFER_OVERFLOW    5
 #define WBT_RESULT_ERROR_SAVE_FAILURE            6
 
-/* ƒR[ƒ‹ƒoƒbƒNƒ^ƒCƒv—ñ‹“Œ^ */
+/* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¿ã‚¤ãƒ—åˆ—æŒ™å‹ */
 typedef enum
 {
     WBT_CMD_REQ_NONE = 0,
@@ -150,12 +150,12 @@ typedef enum
 WBTCommandType;
 
 
-/* ƒpƒPƒbƒgƒTƒCƒY‚©‚çóMƒrƒbƒgƒ}ƒbƒvƒTƒCƒY‚ğŒvZ‚·‚éƒ}ƒNƒ */
+/* ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºã‹ã‚‰å—ä¿¡ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹ãƒã‚¯ãƒ­ */
 #define WBT_PACKET_BITMAP_SIZE(block_size, packet_size) \
   (((((block_size) + ((packet_size) - WBT_PACKET_SIZE_MIN) - 1)/((packet_size) - WBT_PACKET_SIZE_MIN)) + 31 )/sizeof(u32))  * sizeof(u32)
 
 
-/* AID ‚ğw’è‚·‚éƒ}ƒNƒŒQ */
+/* AID ã‚’æŒ‡å®šã™ã‚‹ãƒã‚¯ãƒ­ç¾¤ */
 #define WBT_NUM_OF_AID         (WBT_AID_CHILD_LAST+1)
 #define WBT_AID_PARENT         0
 #define WBT_AID_CHILD_FIRST    1
@@ -208,7 +208,7 @@ typedef s32 WBTBlockSize;
 
 
 /*---------------------------------------------------------------------------*
-	\‘¢‘Ì’è‹`
+	æ§‹é€ ä½“å®šç¾©
  *---------------------------------------------------------------------------*/
 
 
@@ -301,7 +301,7 @@ typedef struct
     u16     target_bmp;
     u16     peer_bmp;
     WBTCommandCounter my_cmd_counter;
-    WBTCommandCounter peer_cmd_counter; /* ƒfƒoƒbƒO—p */
+    WBTCommandCounter peer_cmd_counter; /* ãƒ‡ãƒãƒƒã‚°ç”¨ */
     WBTResult result;
     WBTCallback callback;
     union
@@ -318,7 +318,7 @@ WBTCommand;
 
 
 /*---------------------------------------------------------------------------*
-	ŠÖ”’è‹`
+	é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
 

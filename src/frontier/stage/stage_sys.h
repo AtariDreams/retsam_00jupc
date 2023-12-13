@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	stage_sys.h
- * @brief	uƒoƒgƒ‹ƒXƒe[ƒWvƒVƒXƒeƒ€ƒwƒbƒ_[
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€ã‚·ã‚¹ãƒ†ãƒ ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	07.06.08
  */
@@ -15,7 +15,7 @@
 
 //==============================================================================================
 //
-//	ƒ^ƒNƒgƒ[ƒN‚Ö‚Ì•sŠ®‘SŒ^ƒ|ƒCƒ“ƒ^
+//	ã‚¿ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ä¸å®Œå…¨åž‹ãƒã‚¤ãƒ³ã‚¿
 //
 //==============================================================================================
 typedef	struct _STAGE_WORK STAGE_WORK;
@@ -23,46 +23,46 @@ typedef	struct _STAGE_WORK STAGE_WORK;
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒpƒŒƒbƒg’è‹`
-#define BS_TALKWIN_PAL			(10)				//‰ï˜bƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BS_MENU_PAL				(11)				//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BS_MSGFONT_PAL			(12)				//MSGƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BS_FONT_PAL				(13)				//SYSTEMƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
+//ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
+#define BS_TALKWIN_PAL			(10)				//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BS_MENU_PAL				(11)				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BS_MSGFONT_PAL			(12)				//MSGãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BS_FONT_PAL				(13)				//SYSTEMãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 
-#define STAGE_VANISH_ON			(0)					//”ñ•\Ž¦
-#define STAGE_VANISH_OFF		(1)					//•\Ž¦
+#define STAGE_VANISH_ON			(0)					//éžè¡¨ç¤º
+#define STAGE_VANISH_OFF		(1)					//è¡¨ç¤º
 
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒIƒuƒWƒFƒNƒgƒiƒ“ƒo[
+//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
 enum{
-	STAGE_RES_OBJ_CSR = 0,								//ƒJ[ƒ\ƒ‹
-	STAGE_RES_OBJ_ICON,									//ƒAƒCƒRƒ“
-	STAGE_RES_OBJ_MAX,									//Å‘å”(ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚Í1‚ÂA‚ ‚Æ‚ÍƒAƒCƒRƒ“)
+	STAGE_RES_OBJ_CSR = 0,								//ã‚«ãƒ¼ã‚½ãƒ«
+	STAGE_RES_OBJ_ICON,									//ã‚¢ã‚¤ã‚³ãƒ³
+	STAGE_RES_OBJ_MAX,									//æœ€å¤§æ•°(ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¯1ã¤ã€ã‚ã¨ã¯ã‚¢ã‚¤ã‚³ãƒ³)
 };
 
-//ŠÇ—ID
+//ç®¡ç†ID
 enum{
-	STAGE_ID_OBJ_CSR = 0,								//ƒJ[ƒ\ƒ‹
-	STAGE_ID_OBJ_ICON,									//ƒAƒCƒRƒ“
+	STAGE_ID_OBJ_CSR = 0,								//ã‚«ãƒ¼ã‚½ãƒ«
+	STAGE_ID_OBJ_ICON,									//ã‚¢ã‚¤ã‚³ãƒ³
 	STAGE_ID_OBJ_MAX,
 };
 
-#define STAGE_CLACT_OBJ_MAX	(2)						//ƒZƒ‹ƒAƒNƒ^[‚ÉÝ’è‚·‚éÅ‘åƒAƒNƒ^[”
+#define STAGE_CLACT_OBJ_MAX	(2)						//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®šã™ã‚‹æœ€å¤§ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
 
-//ƒAƒjƒƒiƒ“ƒo[
+//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
 enum{
-	ANM_CSR_STOP = 0,								//ƒJ[ƒ\ƒ‹’âŽ~’†
-	ANM_CSR_MOVE,									//ƒJ[ƒ\ƒ‹ˆÚ“®’†
-	ANM_CSR_POKE,									//ƒJ[ƒ\ƒ‹ƒ|ƒPƒ‚ƒ“
+	ANM_CSR_STOP = 0,								//ã‚«ãƒ¼ã‚½ãƒ«åœæ­¢ä¸­
+	ANM_CSR_MOVE,									//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ä¸­
+	ANM_CSR_POKE,									//ã‚«ãƒ¼ã‚½ãƒ«ãƒã‚±ãƒ¢ãƒ³
 };
 
 #define BS_FRAME_WIN	(GF_BGL_FRAME0_M)
 #define BS_FRAME_TYPE	(GF_BGL_FRAME1_M)
-#define BS_FRAME_SLIDE	(GF_BGL_FRAME2_M)			//MULTI‚ÆƒŒƒ“ƒ^ƒ‹Œˆ’èŽž
+#define BS_FRAME_SLIDE	(GF_BGL_FRAME2_M)			//MULTIã¨ãƒ¬ãƒ³ã‚¿ãƒ«æ±ºå®šæ™‚
 #define BS_FRAME_BG		(GF_BGL_FRAME3_M)			//SINGLE,DOUBLE
-#define BS_FRAME_SUB	(GF_BGL_FRAME0_S)			//ƒ{[ƒ‹
+#define BS_FRAME_SUB	(GF_BGL_FRAME0_S)			//ãƒœãƒ¼ãƒ«
 
 typedef struct{
 	s16  x;
@@ -72,15 +72,15 @@ typedef struct{
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
-extern const PROC_DATA StageProcData;				//ƒvƒƒZƒX’è‹`ƒf[ƒ^
+extern const PROC_DATA StageProcData;				//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT StageProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT StageProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT StageProc_End( PROC * proc, int * seq );
 
-//’ÊM
+//é€šä¿¡
 extern void Stage_CommSendBufBasicData( STAGE_WORK* wk, u16 type );
 extern void Stage_CommRecvBufBasicData(int id_no,int size,void *pData,void *work);
 extern void Stage_CommSendBufPokeTypeData( STAGE_WORK* wk, u16 type, u16 param );

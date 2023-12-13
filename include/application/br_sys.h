@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_sys.h
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  * @author	goto
- * @date	2007.07.26(–Ø)
+ * @date	2007.07.26(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -18,10 +18,10 @@
 
 // -------------------------------------
 //
-//	ƒvƒƒZƒXƒf[ƒ^
+//	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 //
 // -------------------------------------
-extern const PROC_DATA	BattleRecorder_ManagerProcData;		///< ŠÇ—
+extern const PROC_DATA	BattleRecorder_ManagerProcData;		///< ç®¡ç†
 
 extern const PROC_DATA	BattleRecorder_BrowseProcData;
 extern const PROC_DATA	BattleRecorder_GDSProcData;

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <title>WFS_CallServerPacketSendHook</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
@@ -10,7 +10,7 @@
 <body>
 
 <h1>WFS_CallServerPacketSendHook</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -21,31 +21,31 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <tr>
       <td style="width:13%"><em><strong>context</strong></em></td>
-      <td style="width:87%">WFSServerContext�\���̂̃|�C���^</td>
+      <td style="width:87%">WFSServerContext構造体のポインタ</td>
     </tr>
     <tr>
       <td style="width:13%"><em><strong>packet</strong></em></td>
-      <td style="width:87%">���M�p�P�b�g�̏�񂪊i�[���ꂽ<a href="../WFSPacketBuffer.html">WFSPacketBuffer</a>�\���̂̃|�C���^<br />
-	  �e�����o�ɂ͈ȉ��̓��e��ݒ肵�ė^����K�v������܂��B<br />
+      <td style="width:87%">送信パケットの情報が格納された<a href="../WFSPacketBuffer.html">WFSPacketBuffer</a>構造体のポインタ<br />
+	  各メンバには以下の内容を設定して与える必要があります。<br />
       <table border="1" width="100%">
         <tbody>
           <tr>
             <td style="width:13%"><em><strong>buffer</strong></em></td>
-            <td style="width:87%">�p�P�b�g�f�[�^���i�[����o�b�t�@���w�肵�܂��B</td>
+            <td style="width:87%">パケットデータを格納するバッファを指定します。</td>
           </tr>
           <tr>
             <td style="width:13%"><em><strong>length</strong></em></td>
-            <td style="width:87%">buffer�̃T�C�Y���w�肵�܂��B</td>
+            <td style="width:87%">bufferのサイズを指定します。</td>
           </tr>
           <tr>
             <td style="width:13%"><em><strong>bitmap</strong></em></td>
-            <td style="width:87%">���񑗐M�\�ȑΏۂ�����AID�r�b�g�}�b�v���w�肵�܂��B<br />
-			�A�v���P�[�V�������œ��Ɏx�Ⴊ������Ώ��0xFFFF(�S��)�ō\���܂���B</td>
+            <td style="width:87%">今回送信可能な対象を示すAIDビットマップを指定します。<br />
+			アプリケーション側で特に支障が無ければ常に0xFFFF(全て)で構いません。</td>
           </tr>
         </tbody>
       </table>
@@ -54,18 +54,18 @@
   </tbody>
 </table>
 
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�<br />
-����packet��length�����o�ɁA���ۂɐ������ꂽ�p�P�b�g�T�C�Y���i�[����܂��B</p>
+<h2>返り値</h2>
+<p>なし<br />
+引数packetのlengthメンバに、実際に生成されたパケットサイズが格納されます。</p>
 
-<h2>����</h2>
-<p>WFS���C�u�����̓����I�ȃv���g�R����MP�ʐM1�񕪂̃p�P�b�g�f�[�^�ɕϊ����܂��B
-���̊֐��Ńp�P�b�g�f�[�^�𐶐�����<a href="../../wm/wm/WM_SetMPDataToPort.html">WM_SetMPDataToPort</a>�֐��Ȃǂő��M���邱�Ƃɂ��A
-�e�q�Ԃ�WFS��Ԃ��X�V����܂��B<br />
-�A�v���P�[�V�����͂��̊֐��Ăяo����MP�ʐM��K���ȕp�x�ŌJ��Ԃ��K�v������܂��B<br />
+<h2>説明</h2>
+<p>WFSライブラリの内部的なプロトコルをMP通信1回分のパケットデータに変換します。
+この関数でパケットデータを生成して<a href="../../wm/wm/WM_SetMPDataToPort.html">WM_SetMPDataToPort</a>関数などで送信することにより、
+親子間でWFS状態が更新されます。<br />
+アプリケーションはこの関数呼び出しとMP通信を適当な頻度で繰り返す必要があります。<br />
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <a href="WFS_InitServer.html">WFS_InitServer</a> 
 <a href="WFS_CallServerConnectHook.html">WFS_CallServerConnectHook</a>
@@ -73,9 +73,9 @@
 <a href="WFS_CallServerPacketRecvHook.html">WFS_CallServerPacketRecvHook</a>
 </p>
 
-<h2>����</h2>
+<h2>履歴</h2>
 <p>
-2007/06/06 ����<br />
+2007/06/06 初版<br />
 </p>
 </body>
 </html>

@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	attr_def.h
- * @bfief	í“¬”wŒi—p’è”’è‹`
+ * @bfief	æˆ¦é—˜èƒŒæ™¯ç”¨å®šæ•°å®šç¾©
  * @author	HisashiSogabe
  * @date	06.02.24
  */
@@ -11,63 +11,63 @@
 #ifndef __ATTR_DEF_H_
 #define __ATTR_DEF_H_
 
-//’n–Ê‚ÉŠÖ‚·‚é’è‹`
-#define	GROUND_ID_GRAVEL	(0)		//»—˜
-#define	GROUND_ID_SANDS		(1)		//»•l
-#define	GROUND_ID_LAWN		(2)		//ŽÅ¶
-#define	GROUND_ID_POOL		(3)		//…‚½‚Ü‚è
-#define	GROUND_ID_ROCK		(4)		//Šâ”§
-#define	GROUND_ID_CAVE		(5)		//“´ŒA
-#define	GROUND_ID_SNOW		(6)		//áŒ´
-#define	GROUND_ID_WATER		(7)		//…ã
-#define	GROUND_ID_ICE		(8)		//•Xã
-#define	GROUND_ID_FLOOR		(9)		//°
-#define	GROUND_ID_BOG		(10)	//À’n
-#define	GROUND_ID_BRIDGE	(11)	//’Ý‚è‹´
-#define	GROUND_ID_END		(12)	//‚»‚êˆÈŠOiˆê‰ž’è‹`j
-//ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á
-#define	GROUND_ID_BIG_FOUR_A	(12)	//Žl“V‰¤’n–ÊA
-#define	GROUND_ID_BIG_FOUR_B	(13)	//Žl“V‰¤’n–ÊB
-#define	GROUND_ID_BIG_FOUR_C	(14)	//Žl“V‰¤’n–ÊC
-#define	GROUND_ID_BIG_FOUR_D	(15)	//Žl“V‰¤’n–ÊD
-#define	GROUND_ID_CHAMPION		(16)	//ƒ`ƒƒƒ“ƒsƒIƒ“’n–Ê
-#define	GROUND_ID_HAKAI			(17)	//”j‚ê‚½¢ŠE(‘ŠŽè’n–Ê—L‚è)
-#define	GROUND_ID_TOWER			(18)	//ƒoƒgƒ‹ƒ^ƒ[
-#define	GROUND_ID_FACTORY		(19)	//ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
-#define	GROUND_ID_ROULETTE		(20)	//ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
-#define	GROUND_ID_CASTLE		(21)	//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
-#define	GROUND_ID_STAGE			(22)	//ƒoƒgƒ‹ƒXƒe[ƒW
-#define GROUND_ID_HAKAI_GIRA	(23)	//”j‚ê‚½¢ŠE(ƒMƒ‰ƒeƒBƒií—pB‘ŠŽè’n–Ê–³‚µ)
-#define	GROUND_ID_ALL		(24)	//‚»‚êˆÈŠOiˆê‰ž’è‹`j
+//åœ°é¢ã«é–¢ã™ã‚‹å®šç¾©
+#define	GROUND_ID_GRAVEL	(0)		//ç ‚åˆ©
+#define	GROUND_ID_SANDS		(1)		//ç ‚æµœ
+#define	GROUND_ID_LAWN		(2)		//èŠç”Ÿ
+#define	GROUND_ID_POOL		(3)		//æ°´ãŸã¾ã‚Š
+#define	GROUND_ID_ROCK		(4)		//å²©è‚Œ
+#define	GROUND_ID_CAVE		(5)		//æ´žçªŸ
+#define	GROUND_ID_SNOW		(6)		//é›ªåŽŸ
+#define	GROUND_ID_WATER		(7)		//æ°´ä¸Š
+#define	GROUND_ID_ICE		(8)		//æ°·ä¸Š
+#define	GROUND_ID_FLOOR		(9)		//åºŠ
+#define	GROUND_ID_BOG		(10)	//æ²¼åœ°
+#define	GROUND_ID_BRIDGE	(11)	//åŠã‚Šæ©‹
+#define	GROUND_ID_END		(12)	//ãã‚Œä»¥å¤–ï¼ˆä¸€å¿œå®šç¾©ï¼‰
+//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ 
+#define	GROUND_ID_BIG_FOUR_A	(12)	//å››å¤©çŽ‹åœ°é¢A
+#define	GROUND_ID_BIG_FOUR_B	(13)	//å››å¤©çŽ‹åœ°é¢B
+#define	GROUND_ID_BIG_FOUR_C	(14)	//å››å¤©çŽ‹åœ°é¢C
+#define	GROUND_ID_BIG_FOUR_D	(15)	//å››å¤©çŽ‹åœ°é¢D
+#define	GROUND_ID_CHAMPION		(16)	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³åœ°é¢
+#define	GROUND_ID_HAKAI			(17)	//ç ´ã‚ŒãŸä¸–ç•Œ(ç›¸æ‰‹åœ°é¢æœ‰ã‚Š)
+#define	GROUND_ID_TOWER			(18)	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+#define	GROUND_ID_FACTORY		(19)	//ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+#define	GROUND_ID_ROULETTE		(20)	//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+#define	GROUND_ID_CASTLE		(21)	//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+#define	GROUND_ID_STAGE			(22)	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
+#define GROUND_ID_HAKAI_GIRA	(23)	//ç ´ã‚ŒãŸä¸–ç•Œ(ã‚®ãƒ©ãƒ†ã‚£ãƒŠæˆ¦ç”¨ã€‚ç›¸æ‰‹åœ°é¢ç„¡ã—)
+#define	GROUND_ID_ALL		(24)	//ãã‚Œä»¥å¤–ï¼ˆä¸€å¿œå®šç¾©ï¼‰
 
-//¦ã‹L’è‹`‚ÅAƒGƒNƒZƒ‹•\‚Å‚ÍA»—˜•»•lAŽÅ¶•…‚½‚Ü‚èAŠâ”§•“´ŒA‚Æ‚È‚Á‚Ä‚¢‚é‚ªA
-//@•ª‚©‚ê‚é‰Â”\«‚à‚ ‚é‚Æ‚¢‚¤˜b‚È‚Ì‚ÅA•Ê’è‹`‚É‚µ‚Ä‚¢‚Ü‚·
+//â€»ä¸Šè¨˜å®šç¾©ã§ã€ã‚¨ã‚¯ã‚»ãƒ«è¡¨ã§ã¯ã€ç ‚åˆ©ï¼†ç ‚æµœã€èŠç”Ÿï¼†æ°´ãŸã¾ã‚Šã€å²©è‚Œï¼†æ´žçªŸã¨ãªã£ã¦ã„ã‚‹ãŒã€
+//ã€€åˆ†ã‹ã‚Œã‚‹å¯èƒ½æ€§ã‚‚ã‚ã‚‹ã¨ã„ã†è©±ãªã®ã§ã€åˆ¥å®šç¾©ã«ã—ã¦ã„ã¾ã™
 
-//”wŒi‚ÉŠÖ‚·‚é’è‹`
-#define	BG_ID_BASIC			(0)		//‘Œ´
-#define	BG_ID_SEA			(1)		//ŠC
-#define	BG_ID_CITY			(2)		//ŠX
-#define	BG_ID_FOREST		(3)		//X—Ñ
-#define	BG_ID_MOUNTAIN		(4)		//ŽRŠx
-#define	BG_ID_SNOW_MOUNTAIN	(5)		//áŽR
-#define	BG_ID_ROOM_A		(6)		//Žº“à‚`
-#define	BG_ID_ROOM_B		(7)		//Žº“à‚a
-#define	BG_ID_ROOM_C		(8)		//Žº“à‚b
-#define	BG_ID_CAVE_A		(9)		//“´ŒA‚`
-#define	BG_ID_CAVE_B		(10)	//“´ŒA‚a
-#define	BG_ID_CAVE_C		(11)	//“´ŒA‚b
-//ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á
-#define BG_ID_BIG_FOUR_A	(12)	//Žl“V‰¤
-#define BG_ID_BIG_FOUR_B	(13)	//Žl“V‰¤
-#define BG_ID_BIG_FOUR_C	(14)	//Žl“V‰¤
-#define BG_ID_BIG_FOUR_D	(15)	//Žl“V‰¤
-#define BG_ID_CHAMPION		(16)	//ƒ`ƒƒƒ“ƒsƒIƒ“
-#define BG_ID_HAKAI			(17)	//”j‚ê‚½¢ŠE
-#define BG_ID_TOWER			(18)	//ƒoƒgƒ‹ƒ^ƒ[
-#define BG_ID_FACTORY		(19)	//ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
-#define BG_ID_ROULETTE		(20)	//ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
-#define BG_ID_CASTLE		(21)	//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
-#define BG_ID_STAGE			(22)	//ƒoƒgƒ‹ƒXƒe[ƒW
+//èƒŒæ™¯ã«é–¢ã™ã‚‹å®šç¾©
+#define	BG_ID_BASIC			(0)		//è‰åŽŸ
+#define	BG_ID_SEA			(1)		//æµ·
+#define	BG_ID_CITY			(2)		//è¡—
+#define	BG_ID_FOREST		(3)		//æ£®æž—
+#define	BG_ID_MOUNTAIN		(4)		//å±±å²³
+#define	BG_ID_SNOW_MOUNTAIN	(5)		//é›ªå±±
+#define	BG_ID_ROOM_A		(6)		//å®¤å†…ï¼¡
+#define	BG_ID_ROOM_B		(7)		//å®¤å†…ï¼¢
+#define	BG_ID_ROOM_C		(8)		//å®¤å†…ï¼£
+#define	BG_ID_CAVE_A		(9)		//æ´žçªŸï¼¡
+#define	BG_ID_CAVE_B		(10)	//æ´žçªŸï¼¢
+#define	BG_ID_CAVE_C		(11)	//æ´žçªŸï¼£
+//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ 
+#define BG_ID_BIG_FOUR_A	(12)	//å››å¤©çŽ‹
+#define BG_ID_BIG_FOUR_B	(13)	//å››å¤©çŽ‹
+#define BG_ID_BIG_FOUR_C	(14)	//å››å¤©çŽ‹
+#define BG_ID_BIG_FOUR_D	(15)	//å››å¤©çŽ‹
+#define BG_ID_CHAMPION		(16)	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
+#define BG_ID_HAKAI			(17)	//ç ´ã‚ŒãŸä¸–ç•Œ
+#define BG_ID_TOWER			(18)	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+#define BG_ID_FACTORY		(19)	//ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+#define BG_ID_ROULETTE		(20)	//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+#define BG_ID_CASTLE		(21)	//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+#define BG_ID_STAGE			(22)	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 
 
 #endif __ATTR_DEF_H_

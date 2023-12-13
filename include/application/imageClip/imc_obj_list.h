@@ -2,12 +2,12 @@
 /**
  *
  *	@file		imc_obj_list.h
- *	@brief		�I�u�W�F�N�g���X�g	�\���D�揇�ʁ@�^�b�`�p�l������D�揇�ʂȂǂ��Ǘ�
+ *	@brief		オブジェクトリスト	表示優先順位　タッチパネル判定優先順位などを管理
  *	@author		tomoya takahashi	
  *	@data		2005.09.28
  *
- * �C���[�W�N���b�v�ł����g�p���Ȃ��̂ŁA���̃V�X�e������
- * �A�N�Z�T���Ȃǂ����ނ悤�̊֐���錾���܂��B
+ * イメージクリップでしか使用しないので、このシステム内に
+ * アクセサリなどをつかむようの関数を宣言します。
  * 
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -24,34 +24,34 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	�I�u�W�F�N�g���X�g�\����
+//	オブジェクトリスト構造体
 //	
 //=====================================
 typedef struct __IMC_OBJLIST{
 	void*	obj_data;
-	int		flag;			// �g��������̃��[�N�����Ȃ̂����`�F�b�N����
-							// ���߂̃t���O
+	int		flag;			// 使う側が上のワークが何なのかをチェックする
+							// ためのフラグ
 	
-	struct __IMC_OBJLIST* next;	// ���̃��X�g
-	struct __IMC_OBJLIST* prev;	// �O�̃��X�g
+	struct __IMC_OBJLIST* next;	// 次のリスト
+	struct __IMC_OBJLIST* prev;	// 前のリスト
 } IMC_OBJLIST;
 
 typedef void (*IMCOBJLIST_FUNC)( IMC_OBJLIST* work );
 
 //-------------------------------------
 //	
-//	�I�u�W�F�N�g���X�g�\����
+//	オブジェクトリスト構造体
 //	
 //=====================================
 typedef struct {
@@ -63,17 +63,17 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�I�u�W�F���X�g�e�[�u����������
+ *	@brief	オブジェリストテーブルを初期化
  *
- *	@param	tbl		�I�u�W�F���X�g�e�[�u�����Ԃ̃|�C���^
- *	@param	num		�Ǘ��������I�u�W�F�N�g��
- *	@param	heap	�g�p����q�[�v
+ *	@param	tbl		オブジェリストテーブル実態のポインタ
+ *	@param	num		管理したいオブジェクト数
+ *	@param	heap	使用するヒープ
  *
  *	@return	none
  *
@@ -85,9 +85,9 @@ GLOBAL void IMC_OBJLIST_TblInit( IMC_OBJLIST_TBL* tbl, int num, int heap );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�I�u�W�F���X�g�e�[�u���̔j��
+ *	@brief	オブジェリストテーブルの破棄
  *
- *	@param	tbl		�I�u�W�F�N�g���X�g�e�[�u�����Ԃ̃|�C���^
+ *	@param	tbl		オブジェクトリストテーブル実態のポインタ
  *
  *	@return	none
  *
@@ -99,13 +99,13 @@ GLOBAL void IMC_OBJLIST_TblDelete( IMC_OBJLIST_TBL* tbl );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�I�u�W�F���X�g�f�[�^�쐬
+ *	@brief	オブジェリストデータ作成
  *
- *	@param	tbl		�I�u�W�F���X�g�e�[�u��
- *	@param	work	�I�u�W�F���[�N
- *	@param	flag	�I�u�W�F�̒萔	�i�d�����Ӂj
+ *	@param	tbl		オブジェリストテーブル
+ *	@param	work	オブジェワーク
+ *	@param	flag	オブジェの定数	（重複注意）
  *
- *	@return	IMC_OBJLIST*	�I�u�W�F���X�g
+ *	@return	IMC_OBJLIST*	オブジェリスト
  *
  *
  */
@@ -115,9 +115,9 @@ GLOBAL IMC_OBJLIST* IMC_OBJLIST_MakeObjList( IMC_OBJLIST_TBL* tbl, void* work, i
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�I�u�W�F���X�g�f�[�^�j��
+ *	@brief	オブジェリストデータ破棄
  *
- *	@param	obj		�j������I�u�W�F���X�g
+ *	@param	obj		破棄するオブジェリスト
  *
  *	@return	none
  *
@@ -129,12 +129,12 @@ GLOBAL void IMC_OBJLIST_DeleteObjList( IMC_OBJLIST* obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���X�g�ɐݒ肷��	
+ *	@brief	リストに設定する	
  *
- *	@param	work			�f�[�^��ݒ肷�郏�[�N
- *	@param	dummy			�O�̃f�[�^
- *	@param	data			�f�[�^
- *	@param	flag			�f�[�^�萔
+ *	@param	work			データを設定するワーク
+ *	@param	dummy			前のデータ
+ *	@param	data			データ
+ *	@param	flag			データ定数
  *
  *	@return
  *
@@ -146,9 +146,9 @@ GLOBAL void IMC_OBJLIST_Set( IMC_OBJLIST* work, IMC_OBJLIST* prev );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���X�g����폜
+ *	@brief	リストから削除
  *
- *	@param	obj		�폜���郊�X�g�f�[�^
+ *	@param	obj		削除するリストデータ
  *
  *	@return	none
  *
@@ -160,9 +160,9 @@ GLOBAL void IMC_OBJLIST_Delete( IMC_OBJLIST* obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�擪�_�~�[�f�[�^�ɂȂ����Ă���t�@�C����S�Ĕj������
+ *	@brief	先頭ダミーデータにつながっているファイルを全て破棄する
  *
- *	@param	dummy	�_�~�[�f�[�^
+ *	@param	dummy	ダミーデータ
  *
  *	@return	none
  *

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_112.s
- *@brief	�퓬�V�[�P���X
- *			�v���[���g�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			プレゼントシーケンス
  *@author	HisashiSogabe
  *@data		2006.01.31
  *
@@ -18,7 +18,7 @@ SUB_112:
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_HAZURE,Hazure
 	ATTACK_MESSAGE
 	SERVER_WAIT
-	//�q�[���u���b�N���󂯂Ă��鎞�͉񕜓���Ȃ�
+	//ヒールブロックを受けている時は回復動作なし
 	IF_PSP			IF_FLAG_NE,SIDE_DEFENCE,ID_PSP_wkw_healblock_count,0,Healblock
 	GOSUB			SUB_SEQ_KAIFUKU
 Hazure:

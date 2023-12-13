@@ -28,11 +28,11 @@
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintJntAnm
 
-  Description:  NNSG3dResJntAnm ‚Ì“à—e‚ğ ƒfƒoƒbƒNo—Í‚µ‚Ü‚·
+  Description:  NNSG3dResJntAnm ã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã—ã¾ã™
                 
-  Arguments:    pJntAnm:           ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“
+  Arguments:    pJntAnm:           ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void 
@@ -44,13 +44,13 @@ NNS_G3dPrintJntAnm( const NNSG3dResJntAnm* pJntAnm )
     tabPlus_();
     {
         //
-        // Node ” joint”
+        // Node æ•° jointæ•°
         //
         tabPrint_(); RES_PRINTF("# of frames, %d\n", pJntAnm->numFrame);
         tabPrint_(); RES_PRINTF("# of nodes, %d\n", pJntAnm->numNode);
         
         //
-        // ‘S‚Ä‚Ìƒm[ƒh‚É‚Â‚¢‚ÄƒTƒ}ƒŠ‚ğ•\¦‚·‚éB
+        // å…¨ã¦ã®ãƒãƒ¼ãƒ‰ã«ã¤ã„ã¦ã‚µãƒãƒªã‚’è¡¨ç¤ºã™ã‚‹ã€‚
         //
         tabPlus_(); 
         for( i = 0; i < pJntAnm->numNode; i++ )
@@ -122,11 +122,11 @@ NNS_G3dPrintJntAnm( const NNSG3dResJntAnm* pJntAnm )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintJntAnmSet
 
-  Description:  NNS_G3dPrintJntAnmSet ‚Ì“à—e‚ğ ƒfƒoƒbƒNo—Í‚µ‚Ü‚·
+  Description:  NNS_G3dPrintJntAnmSet ã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã—ã¾ã™
                 
-  Arguments:    pJntAnmSet:           ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒZƒbƒg
+  Arguments:    pJntAnmSet:           ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚»ãƒƒãƒˆ
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void 
@@ -139,7 +139,7 @@ NNS_G3dPrintJntAnmSet( const NNSG3dResJntAnmSet* pJntAnmSet )
     tabPlus_();
     {
         //
-        // ‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹–¼ƒGƒ“ƒgƒŠ‚É‚Â‚¢‚Ä...
+        // ã™ã¹ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚¨ãƒ³ãƒˆãƒªã«ã¤ã„ã¦...
         //
         for( i = 0; i < pJntAnmSet->dict.numEntry ; i++ )
         {
@@ -160,11 +160,11 @@ NNS_G3dPrintJntAnmSet( const NNSG3dResJntAnmSet* pJntAnmSet )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintNSBCA
 
-  Description:  NSBCA ƒtƒ@ƒCƒ‹ ‚Ì“à—e‚ğ ƒfƒoƒbƒNo—Í‚É•\¦‚µ‚Ü‚·B
+  Description:  NSBCA ãƒ•ã‚¡ã‚¤ãƒ« ã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã«è¡¨ç¤ºã—ã¾ã™ã€‚
                 
-  Arguments:    binFile:     NSBCAƒtƒ@ƒCƒ‹ƒf[ƒ^‚Ìæ“ª‚ğw‚·ƒ|ƒCƒ“ƒ^
+  Arguments:    binFile:     NSBCAãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚’æŒ‡ã™ãƒã‚¤ãƒ³ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void
@@ -187,7 +187,7 @@ NNS_G3dPrintNSBCA(const u8* binFile)
         NNS_G3dPrintDataBlockHeader(blk);
 
         //
-        // ‹ï‘Ì“I‚Èí—Ş‚²‚Æ‚ÉƒTƒ}ƒŠ‚ÌƒfƒoƒbƒNo—Í‚ğÀs‚µ‚Ü‚·
+        // å…·ä½“çš„ãªç¨®é¡ã”ã¨ã«ã‚µãƒãƒªã®ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã‚’å®Ÿè¡Œã—ã¾ã™
         //
         tabPlus_();
         {

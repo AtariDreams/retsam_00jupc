@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_132.s
- *@brief	�퓬�V�[�P���X
- *			���傤�͂V�[�P���X
+ *@brief	戦闘シーケンス
+ *			ちょうはつシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.07
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_132:
-	//���łɂ��傤�͂���Ă��鎞�́A���܂����܂��
+	//すでにちょうはつされている時は、うまくきまらん
 	IF_PSP			IF_FLAG_NE,SIDE_DEFENCE,ID_PSP_wkw_chouhatsu_count,0,Umakukimaran
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
 	GOSUB			SUB_SEQ_WAZA_OUT_EFF

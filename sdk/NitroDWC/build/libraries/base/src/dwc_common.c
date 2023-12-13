@@ -12,7 +12,7 @@
 //----------------------------------------------------------------------------
 // variable
 //----------------------------------------------------------------------------
-static MATHRandContext32 stRandContext32 = { 0, 0, 0 };  // —”ƒRƒ“ƒeƒLƒXƒg
+static MATHRandContext32 stRandContext32 = { 0, 0, 0 };  // ä¹±æ•°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 
 
 //----------------------------------------------------------------------------
@@ -24,13 +24,13 @@ static MATHRandContext32 stRandContext32 = { 0, 0, 0 };  // —”ƒRƒ“ƒeƒLƒXƒg
 // function - external
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  ”Ä—pkey/valueŒ^•¶Žš—ñì¬ŠÖ”
-  ˆø”@Fkey       Ý’è‚µ‚½‚¢key•¶Žš—ñ
-          value     Ý’è‚µ‚½‚¢value•¶Žš—ñ
-          string    key/valueŒ^•¶Žš—ñŠi”[æƒ|ƒCƒ“ƒ^
-          separator Še•¶Žš—ñ‚ð•ª‚¯‚é‹æØ‚è•¶Žš
-  –ß‚è’lFƒZƒbƒg‚³‚ê‚½key/value•¶Žš—ñ’·iNULLI’[ŠÜ‚Ü‚¸j
-  —p“r@Fkey/value‚Ì•¶Žš—ñ‚ðŽw’è‚µADWC”Ä—pkey/value•¶Žš—ñ‚ðì¬‚·‚é
+  æ±Žç”¨key/valueåž‹æ–‡å­—åˆ—ä½œæˆé–¢æ•°
+  å¼•æ•°ã€€ï¼škey       è¨­å®šã—ãŸã„keyæ–‡å­—åˆ—
+          value     è¨­å®šã—ãŸã„valueæ–‡å­—åˆ—
+          string    key/valueåž‹æ–‡å­—åˆ—æ ¼ç´å…ˆãƒã‚¤ãƒ³ã‚¿
+          separator å„æ–‡å­—åˆ—ã‚’åˆ†ã‘ã‚‹åŒºåˆ‡ã‚Šæ–‡å­—
+  æˆ»ã‚Šå€¤ï¼šã‚»ãƒƒãƒˆã•ã‚ŒãŸkey/valueæ–‡å­—åˆ—é•·ï¼ˆNULLçµ‚ç«¯å«ã¾ãšï¼‰
+  ç”¨é€”ã€€ï¼škey/valueã®æ–‡å­—åˆ—ã‚’æŒ‡å®šã—ã€DWCæ±Žç”¨key/valueæ–‡å­—åˆ—ã‚’ä½œæˆã™ã‚‹
  *---------------------------------------------------------------------------*/
 int  DWC_SetCommonKeyValueString(const char* key, const char* value, char* string, char separator)
 {
@@ -46,13 +46,13 @@ int  DWC_SetCommonKeyValueString(const char* key, const char* value, char* strin
 
 
 /*---------------------------------------------------------------------------*
-  ”Ä—pkey/valueŒ^•¶Žš—ñ’Ç‰ÁŠÖ”
-  ˆø”@Fkey       Ý’è‚µ‚½‚¢key•¶Žš—ñ
-          value     Ý’è‚µ‚½‚¢value•¶Žš—ñ
-          string    key/valueŒ^•¶Žš—ñŠi”[æƒ|ƒCƒ“ƒ^
-          separator Še•¶Žš—ñ‚ð•ª‚¯‚é‹æØ‚è•¶Žš
-  –ß‚è’lFkey/value•¶Žš—ñ‚ª’Ç‰Á‚³‚ê‚½Œã‚Ìkey/value•¶Žš—ñ’·iNULLI’[ŠÜ‚Ü‚¸j
-  —p“r@Fkey/value‚Ì•¶Žš—ñ‚ðŠù‘¶‚Ì•¶Žš—ñ‚É’Ç‰Á‚·‚é
+  æ±Žç”¨key/valueåž‹æ–‡å­—åˆ—è¿½åŠ é–¢æ•°
+  å¼•æ•°ã€€ï¼škey       è¨­å®šã—ãŸã„keyæ–‡å­—åˆ—
+          value     è¨­å®šã—ãŸã„valueæ–‡å­—åˆ—
+          string    key/valueåž‹æ–‡å­—åˆ—æ ¼ç´å…ˆãƒã‚¤ãƒ³ã‚¿
+          separator å„æ–‡å­—åˆ—ã‚’åˆ†ã‘ã‚‹åŒºåˆ‡ã‚Šæ–‡å­—
+  æˆ»ã‚Šå€¤ï¼škey/valueæ–‡å­—åˆ—ãŒè¿½åŠ ã•ã‚ŒãŸå¾Œã®key/valueæ–‡å­—åˆ—é•·ï¼ˆNULLçµ‚ç«¯å«ã¾ãšï¼‰
+  ç”¨é€”ã€€ï¼škey/valueã®æ–‡å­—åˆ—ã‚’æ—¢å­˜ã®æ–‡å­—åˆ—ã«è¿½åŠ ã™ã‚‹
  *---------------------------------------------------------------------------*/
 int  DWC_AddCommonKeyValueString(const char* key, const char* value, char* string, char separator)
 {
@@ -64,14 +64,14 @@ int  DWC_AddCommonKeyValueString(const char* key, const char* value, char* strin
 
 
 /*---------------------------------------------------------------------------*
-  ”Ä—pkey/valueŒ^•¶Žš—ñvalueŽæ“¾ŠÖ”
-  ˆø”@Fkey       Žæ‚èo‚µ‚½‚¢key•¶Žš—ñ
-          value     Žæ‚èo‚µ‚½value•¶Žš—ñ‚ÌŠi”[æƒ|ƒCƒ“ƒ^B
-          string    key/valueŒ^•¶Žš—ñ
-          separator Še•¶Žš—ñ‚ð•ª‚¯‚é‹æØ‚è•¶Žš
-  –ß‚è’lFvalue•¶Žš—ñ’·iNULLI’[ŠÜ‚Ü‚¸jB‘¶Ý‚µ‚È‚¢key‚ðŽw’è‚µ‚½ê‡‚Í-1‚ð•Ô‚·
-  —p“r@FŽw’è‚µ‚½‹æØ‚è•¶Žš‚Å‹æØ‚ç‚ê‚½DWC”Ä—pkey/valueŒ^•¶Žš—ñ‚©‚çA
-          Žw’è‚³‚ê‚½key•¶Žš—ñ‚É‘Î‰ž‚·‚évalue•¶Žš—ñ‚ðŽæ“¾‚·‚éB
+  æ±Žç”¨key/valueåž‹æ–‡å­—åˆ—valueå–å¾—é–¢æ•°
+  å¼•æ•°ã€€ï¼škey       å–ã‚Šå‡ºã—ãŸã„keyæ–‡å­—åˆ—
+          value     å–ã‚Šå‡ºã—ãŸvalueæ–‡å­—åˆ—ã®æ ¼ç´å…ˆãƒã‚¤ãƒ³ã‚¿ã€‚
+          string    key/valueåž‹æ–‡å­—åˆ—
+          separator å„æ–‡å­—åˆ—ã‚’åˆ†ã‘ã‚‹åŒºåˆ‡ã‚Šæ–‡å­—
+  æˆ»ã‚Šå€¤ï¼švalueæ–‡å­—åˆ—é•·ï¼ˆNULLçµ‚ç«¯å«ã¾ãšï¼‰ã€‚å­˜åœ¨ã—ãªã„keyã‚’æŒ‡å®šã—ãŸå ´åˆã¯-1ã‚’è¿”ã™
+  ç”¨é€”ã€€ï¼šæŒ‡å®šã—ãŸåŒºåˆ‡ã‚Šæ–‡å­—ã§åŒºåˆ‡ã‚‰ã‚ŒãŸDWCæ±Žç”¨key/valueåž‹æ–‡å­—åˆ—ã‹ã‚‰ã€
+          æŒ‡å®šã•ã‚ŒãŸkeyæ–‡å­—åˆ—ã«å¯¾å¿œã™ã‚‹valueæ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 int  DWC_GetCommonValueString(const char* key, char* value, const char* string, char separator)
 {
@@ -83,33 +83,33 @@ int  DWC_GetCommonValueString(const char* key, char* value, const char* string, 
 
     if (!value) return -1;
 
-    pSrcBegin = strchr(string, separator);  // key/value•¶Žš—ñ‚ÌŠJŽnƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+    pSrcBegin = strchr(string, separator);  // key/valueæ–‡å­—åˆ—ã®é–‹å§‹ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
     if (!pSrcBegin) return -1;
 
     while (1){
         if (!strncmp(pSrcBegin+1, key, strlen(key)) &&
             (pSrcBegin[strlen(key)+1] == separator)){
-            break;  // key”­Œ©
+            break;  // keyç™ºè¦‹
         }
 
-        // ŽŸ‚Ìkey‚ð’T‚·B
+        // æ¬¡ã®keyã‚’æŽ¢ã™ã€‚
         pSrcBegin = strchr(pSrcBegin+1, separator);
         if (!pSrcBegin) return -1;
         pSrcBegin = strchr(pSrcBegin+1, separator);
         if (!pSrcBegin) return -1;
     }
 
-    // value‚ÌŠJŽnƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+    // valueã®é–‹å§‹ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
     pSrcBegin = strchr(pSrcBegin+1, separator);
     if (!pSrcBegin) return -1;
     pSrcBegin++;
 
-    // value‚Ì•¶Žš—ñ’·‚ðŽæ“¾
+    // valueã®æ–‡å­—åˆ—é•·ã‚’å–å¾—
     pSrcEnd = strchr(pSrcBegin, separator);
     if (pSrcEnd) len = (int)(pSrcEnd-pSrcBegin);
     else len = (int)strlen(pSrcBegin);
 
-    strncpy(value, pSrcBegin, (u32)len);  // value•¶Žš—ñ‚ðƒRƒs[
+    strncpy(value, pSrcBegin, (u32)len);  // valueæ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼
     value[len] = '\0';
 
     return len;
@@ -120,18 +120,18 @@ int  DWC_GetCommonValueString(const char* key, char* value, const char* string, 
 // function - internal
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  32bit—”’lŽæ“¾ŠÖ”
-  ˆø”@Fmax Žæ“¾‚·‚é—”‚ÌÅ‘å’lB‚±‚±‚ÅÝ’è‚µ‚½ max-1 ‚ª“¾‚ç‚ê‚é—”‚Ì
-              Å‘å’l‚Æ‚È‚éB0‚ðŽw’è‚µ‚½ê‡‚É‚Í‚·‚×‚Ä‚Ì”ÍˆÍ‚Ì”‚ª“¾‚ç‚ê‚éB
-  –ß‚è’lF32bit—”’l
-  —p“r@FŠÖ”MATH_Rand32()‚Å¶¬‚µ‚½32bit—”’l‚ðŽæ“¾‚·‚é
+  32bitä¹±æ•°å€¤å–å¾—é–¢æ•°
+  å¼•æ•°ã€€ï¼šmax å–å¾—ã™ã‚‹ä¹±æ•°ã®æœ€å¤§å€¤ã€‚ã“ã“ã§è¨­å®šã—ãŸ max-1 ãŒå¾—ã‚‰ã‚Œã‚‹ä¹±æ•°ã®
+              æœ€å¤§å€¤ã¨ãªã‚‹ã€‚0ã‚’æŒ‡å®šã—ãŸå ´åˆã«ã¯ã™ã¹ã¦ã®ç¯„å›²ã®æ•°ãŒå¾—ã‚‰ã‚Œã‚‹ã€‚
+  æˆ»ã‚Šå€¤ï¼š32bitä¹±æ•°å€¤
+  ç”¨é€”ã€€ï¼šé–¢æ•°MATH_Rand32()ã§ç”Ÿæˆã—ãŸ32bitä¹±æ•°å€¤ã‚’å–å¾—ã™ã‚‹
  *---------------------------------------------------------------------------*/
 u32  DWCi_GetMathRand32(u32 max)
 {
     u64 seed;
 
     if (!stRandContext32.x && !stRandContext32.mul && !stRandContext32.add){
-        // —”ƒRƒ“ƒeƒLƒXƒg‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰Šú‰»‚·‚é
+        // ä¹±æ•°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„å ´åˆã¯åˆæœŸåŒ–ã™ã‚‹
         OS_GetMacAddress((u8 *)&seed);
         seed = ((seed >> 24) & 0xffffff) | (OS_GetTick() << 24);
         MATH_InitRand32(&stRandContext32, seed);
@@ -142,9 +142,9 @@ u32  DWCi_GetMathRand32(u32 max)
 
 
 /*---------------------------------------------------------------------------*
-  ƒƒCƒh•¶Žš—ñ‚Ì•¶Žš—ñ’·Žæ“¾
-  ˆø”@Fstr ƒƒCƒh•¶Žš—ñ
-  –ß‚è’lF•¶Žš”
+  ãƒ¯ã‚¤ãƒ‰æ–‡å­—åˆ—ã®æ–‡å­—åˆ—é•·å–å¾—
+  å¼•æ•°ã€€ï¼šstr ãƒ¯ã‚¤ãƒ‰æ–‡å­—åˆ—
+  æˆ»ã‚Šå€¤ï¼šæ–‡å­—æ•°
  *---------------------------------------------------------------------------*/
 u32 DWCi_WStrLen( const u16* str )
 {

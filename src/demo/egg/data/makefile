@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ‹ZƒGƒtƒFƒNƒg
+# Project:  æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -17,7 +17,7 @@ include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
 
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= egg_data.narc $(PT_DIR)egg_demo_particle.narc
 
 PT_DIR = ./particle/
@@ -27,20 +27,20 @@ PT_DIR = ./particle/
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 
 #-------------------------------
-#	Às‡
-#		ƒŠƒ\[ƒXƒRƒs[
-#		ƒŠƒ\[ƒXƒA[ƒJƒCƒu
-#		‹ZƒGƒtƒFƒNƒgƒA[ƒJƒCƒu
+#	å®Ÿè¡Œé †
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚³ãƒ”ãƒ¼
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+#		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 #-------------------------------
 do-build: egg_data.narc $(PT_DIR)egg_demo_particle.narc
 
-#----------- ƒT[ƒo[‚©‚çƒRƒs[‚·‚é -----------
+#----------- ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã‚³ãƒ”ãƒ¼ã™ã‚‹ -----------
 res_cp:
 	xcopy /d /y $(CP_RES_DIR)*.NCGR $(RES_BG_DIR)
 	xcopy /d /y $(CP_RES_DIR)*.NCLR $(RES_BG_DIR)
 	xcopy /d /y $(CP_RES_DIR)*.NSCR $(RES_BG_DIR)
 
-#----------- ƒA[ƒJƒCƒu‚·‚é -----------
+#----------- ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ -----------
 egg_data.narc: $(RES_DIR:\\=/)*.N*R egg.lst
 #	nnsarc -c -l -n -i egg_data.narc -S egg.lst
 	$(NITRO_COMP) $(NITROSDK_ROOT) egg.lst egg_data.narc egg_data.naix

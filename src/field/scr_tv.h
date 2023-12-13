@@ -10,12 +10,12 @@
 
 //============================================================================================
 //
-//		�X�N���v�g�E�v���O�������ʂŎQ�Ƃ����`
+//		スクリプト・プログラム共通で参照する定義
 //
 //============================================================================================
 
 //-----------------------------------------------------------------------------
-//�ԑg�p�R�}���h��`
+//番組用コマンド定義
 //-----------------------------------------------------------------------------
 #define	TV_CMD_GET_STATUS			0
 #define	TV_CMD_GET_PROG_MSG			1
@@ -26,34 +26,34 @@
 #define TV_CMD_GET_DATA_TOTAL		6
 
 
-//�ԑg��Ԓ�`
-#define	TV_STATUS_PROGRAM_END		0			///<�ԑg�I�����
-#define	TV_STATUS_TOPIC_END			1			///<�S�g�s�b�N���������
-#define	TV_STATUS_START				2			///<�ԑg�J�n����
-#define	TV_STATUS_ONAIR				3			///<�ԑg�������i2�ڈȍ~�j
-#define	TV_STATUS_NO_TOPIC			4			///<�g�s�b�N�i�؂�
+//番組状態定義
+#define	TV_STATUS_PROGRAM_END		0			///<番組終了状態
+#define	TV_STATUS_TOPIC_END			1			///<４つトピックを放送した
+#define	TV_STATUS_START				2			///<番組開始直後
+#define	TV_STATUS_ONAIR				3			///<番組放送中（2つ目以降）
+#define	TV_STATUS_NO_TOPIC			4			///<トピック品切れ
 
-//�ԑg���ʃ��b�Z�[�WID
-#define	TV_PROG_MSG_OPENING			0			///<�J�n���b�Z�[�W�i�����Ӂj
-#define TV_PROG_MSG_INTRO			1			///<�����i��ԍŏ��A����ȍ~�j
-#define	TV_PROG_MSG_ENDING			2			///<�I�����b�Z�[�W
-#define	TV_PROG_MSG_PLEASE			3			///<�ԑg����Ă˃��b�Z�[�W
+//番組共通メッセージID
+#define	TV_PROG_MSG_OPENING			0			///<開始メッセージ（朝昼晩）
+#define TV_PROG_MSG_INTRO			1			///<導入（一番最初、それ以降）
+#define	TV_PROG_MSG_ENDING			2			///<終了メッセージ
+#define	TV_PROG_MSG_PLEASE			3			///<番組作ってねメッセージ
 
-#define	TV_MINE_TOPIC				1			///<�����̃g�s�b�N
-#define	TV_OTHER_TOPIC				0			///<���̑��̃g�s�b�N
+#define	TV_MINE_TOPIC				1			///<自分のトピック
+#define	TV_OTHER_TOPIC				0			///<その他のトピック
 
-#define	TV_NEW_TOPIC				0			///<�V�����g�s�b�N
-#define	TV_OLD_TOPIC				1			///<�������Ƃ̂���g�s�b�N
+#define	TV_NEW_TOPIC				0			///<新しいトピック
+#define	TV_OLD_TOPIC				1			///<見たことのあるトピック
 
 //-----------------------------------------------------------------------------
-//�C���^�r���[�p�R�}���h��`
+//インタビュー用コマンド定義
 //-----------------------------------------------------------------------------
 #define	TV_INTERVIEW_CMD_GET_MSG	0
 #define	TV_INTERVIEW_CMD_SET_TOPIC	1
 #define	TV_INTERVIEW_CMD_CHK_TOPIC	2
 
 //-----------------------------------------------------------------------------
-//�A����������f�[�^�o�^�p�R�}���h��`
+//連れ歩き公園データ登録用コマンド定義
 //-----------------------------------------------------------------------------
 #define	TV_ENTRYPARK_CMD_INIT		0
 #define	TV_ENTRYPARK_CMD_ITEM		1
@@ -61,10 +61,10 @@
 
 //============================================================================================
 //
-//		�v���O�����ł̂ݎQ�Ƃ����`
+//		プログラムでのみ参照する定義
 //
 //============================================================================================
-//__ASM_NO_DEF_����`����Ă���ꍇ�A�A�Z���u���\�[�X�Ȃ̂ňȉ��͖����ɂ���
+//__ASM_NO_DEF_が定義されている場合、アセンブラソースなので以下は無効にする
 #ifndef	__ASM_NO_DEF_
 
 #include "vm.h"
@@ -75,9 +75,9 @@ extern BOOL EvCmdTVEntryWatchChangeName(VM_MACHINE * core);
 extern BOOL EvCmdTVInterview(VM_MACHINE * core);
 extern BOOL EvCmdTVInterviewerCheck(VM_MACHINE * core);
 extern BOOL EvCmdTVEntryParkInfo(VM_MACHINE * core);
-extern BOOL EvCmdTVEntryWatchOsuMesu(VM_MACHINE * core);			//��
-extern BOOL EvCmdTVEntryWatchVilla(VM_MACHINE * core);				//��
-extern BOOL EvCmdTVEntryWatchReconstruction(VM_MACHINE * core);		//��
+extern BOOL EvCmdTVEntryWatchOsuMesu(VM_MACHINE * core);			//★
+extern BOOL EvCmdTVEntryWatchVilla(VM_MACHINE * core);				//★
+extern BOOL EvCmdTVEntryWatchReconstruction(VM_MACHINE * core);		//★
 extern BOOL EvCmdTVSafariTempCaptureCountGet(VM_MACHINE * core);
 extern BOOL EvCmdTVFrFriendSxyGet( VM_MACHINE * core );
 

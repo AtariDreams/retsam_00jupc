@@ -53,9 +53,9 @@ static void EndSleep( void* arg );
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmInit
 
-  Description:  ƒXƒgƒŠ[ƒ€‚Ì‰Šú‰»
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®åˆæœŸåŒ–
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -85,13 +85,13 @@ void NNS_SndStrmInit( NNSSndStrm* stream )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmAllocChannel
 
-  Description:  ƒXƒgƒŠ[ƒ€—pƒ`ƒƒƒ“ƒlƒ‹‚ÌŠm•Û
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ç”¨ãƒãƒ£ãƒ³ãƒãƒ«ã®ç¢ºä¿
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
-                numChannels - ƒ`ƒƒƒ“ƒlƒ‹”
-                chNoList    - ƒ`ƒƒƒ“ƒlƒ‹”Ô†ƒŠƒXƒg
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+                numChannels - ãƒãƒ£ãƒ³ãƒãƒ«æ•°
+                chNoList    - ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·ãƒªã‚¹ãƒˆ
 
-  Returns:      Šm•Û‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ç¢ºä¿ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndStrmAllocChannel( NNSSndStrm* stream, int numChannels, const u8 chNoList[] )
 {
@@ -123,9 +123,9 @@ BOOL NNS_SndStrmAllocChannel( NNSSndStrm* stream, int numChannels, const u8 chNo
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmFreeChannel
 
-  Description:  ƒXƒgƒŠ[ƒ€—pƒ`ƒƒƒ“ƒlƒ‹‚Ì‰ğ•ú
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ç”¨ãƒãƒ£ãƒ³ãƒãƒ«ã®è§£æ”¾
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -144,18 +144,18 @@ void NNS_SndStrmFreeChannel( NNSSndStrm* stream )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmSetup
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ÌƒZƒbƒgƒAƒbƒv
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
-                format - ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
-                buffer - ƒXƒgƒŠ[ƒ€ƒoƒbƒtƒ@‚Ìæ“ªƒAƒhƒŒƒX
-                bufSize - ƒXƒgƒŠ[ƒ€ƒoƒbƒtƒ@‚ÌƒTƒCƒY
-                timer  - ƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒ}[’l
-                interval - ƒR[ƒ‹ƒoƒbƒNŠÔŠu
-                callback - ƒR[ƒ‹ƒoƒbƒNŠÖ”
-                arg      - ƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+                format - ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                buffer - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                bufSize - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+                timer  - ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒãƒ¼å€¤
+                interval - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–“éš”
+                callback - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                arg      - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndStrmSetup(
     NNSSndStrm* stream,
@@ -181,28 +181,28 @@ BOOL NNS_SndStrmSetup(
     NNS_MINMAX_ASSERT( timer, NNS_SND_STRM_TIMER_MIN, NNS_SND_STRM_TIMER_MAX );
     NNS_NULL_ASSERT( callback );
     
-    /* ‹­§’â~ */
+    /* å¼·åˆ¶åœæ­¢ */
     if ( stream->activeFlag ) {
         NNS_SndStrmStop( stream );
     }
     
-    /* ƒ`ƒƒƒ“ƒlƒ‹–ˆ‚Ìƒoƒbƒtƒ@’·‚ÌŒvZ */
+    /* ãƒãƒ£ãƒ³ãƒãƒ«æ¯ã®ãƒãƒƒãƒ•ã‚¡é•·ã®è¨ˆç®— */
     bufSize /= 32 * interval * stream->numChannels;
     stream->chBufLen = bufSize * interval * 32;
     
-    /* ƒTƒ“ƒvƒ‹”‚ÌŒvZ */
+    /* ã‚µãƒ³ãƒ—ãƒ«æ•°ã®è¨ˆç®— */
     samples = stream->chBufLen;
     if ( format == NNS_SND_STRM_FORMAT_PCM16 ) samples >>= 1;
     
-    /* ƒ^ƒCƒ}[’l‚ÌŒvZ */
+    /* ã‚¿ã‚¤ãƒãƒ¼å€¤ã®è¨ˆç®— */
     NNS_ASSERTMSG( ( samples % interval ) == 0, "interval must be a multiple of sample count." );     
     alarmTimer = timer * samples / interval;
     
-    /* ƒŠƒ\[ƒX‚ÌŠm•Û */
+    /* ãƒªã‚½ãƒ¼ã‚¹ã®ç¢ºä¿ */
     stream->alarmNo = NNS_SndAllocAlarm();
     if ( stream->alarmNo < 0 ) return FALSE;
     
-    /* ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒZƒbƒgƒAƒbƒv */
+    /* ãƒãƒ£ãƒ³ãƒãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ— */
     for( index = 0; index < stream->numChannels ; index++ )
     {
         chNo = stream->channelNo[ index ];
@@ -228,7 +228,7 @@ BOOL NNS_SndStrmSetup(
         );
     }
     
-    /* ƒAƒ‰[ƒ€‚Ìİ’è */
+    /* ã‚¢ãƒ©ãƒ¼ãƒ ã®è¨­å®š */
     SND_SetupAlarm(
         stream->alarmNo,
         alarmTimer,
@@ -237,10 +237,10 @@ BOOL NNS_SndStrmSetup(
         stream
     );
     
-    /* ƒŠƒXƒg‚Ö‚Ì“o˜^ */
+    /* ãƒªã‚¹ãƒˆã¸ã®ç™»éŒ² */
     NNS_FndAppendListObject( &sStrmList, stream );
     
-    /* ƒpƒ‰ƒ[ƒ^‚Ì‰Šú‰» */
+    /* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åˆæœŸåŒ– */
     stream->format = format;
     stream->interval = interval;
     stream->callback = callback;
@@ -251,7 +251,7 @@ BOOL NNS_SndStrmSetup(
     
     stream->activeFlag = TRUE;
     
-    /* ƒZƒbƒgƒAƒbƒvƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ */
+    /* ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã— */
     {
         OSIntrMode old = OS_DisableInterrupts();
         
@@ -268,9 +268,9 @@ BOOL NNS_SndStrmSetup(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmStart
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ÌÄ¶ŠJn
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®å†ç”Ÿé–‹å§‹
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -297,9 +297,9 @@ void NNS_SndStrmStart( NNSSndStrm* stream )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmStop
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ÌÄ¶’â~
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®å†ç”Ÿåœæ­¢
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -315,10 +315,10 @@ void NNS_SndStrmStop( NNSSndStrm* stream )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmSetVolume
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒ{ƒŠƒ…[ƒ€‚Ì•ÏX
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®å¤‰æ›´
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
-                volume - ƒ{ƒŠƒ…[ƒ€
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+                volume - ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -350,11 +350,11 @@ void NNS_SndStrmSetVolume( NNSSndStrm* stream, int volume )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmSetChannelVolume
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒ`ƒƒƒ“ƒlƒ‹ƒ{ƒŠƒ…[ƒ€‚Ì•ÏX
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ£ãƒ³ãƒãƒ«ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®å¤‰æ›´
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
-                chNo   - ƒ`ƒƒƒ“ƒlƒ‹”Ô†
-                volume - ƒ{ƒŠƒ…[ƒ€
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+                chNo   - ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·
+                volume - ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -383,11 +383,11 @@ void NNS_SndStrmSetChannelVolume( NNSSndStrm* stream, int chNo, int volume )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmSetChannelPan
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒ`ƒƒƒ“ƒlƒ‹ƒpƒ“‚Ì•ÏX
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‘ãƒ³ã®å¤‰æ›´
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
-                chNo   - ƒ`ƒƒƒ“ƒlƒ‹”Ô†
-                pan    - ƒpƒ“.
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+                chNo   - ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·
+                pan    - ãƒ‘ãƒ³.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -408,9 +408,9 @@ void NNS_SndStrmSetChannelPan( NNSSndStrm* stream, int chNo, int pan )
 /*---------------------------------------------------------------------------*
   Name:         ForceStopStrm
 
-  Description:  ƒXƒgƒŠ[ƒ€‚Ì‹­§’â~
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®å¼·åˆ¶åœæ­¢
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg.
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -445,9 +445,9 @@ static void ForceStopStrm( NNSSndStrm* stream )
 /*---------------------------------------------------------------------------*
   Name:         ShutdownStrm
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚é
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -465,9 +465,9 @@ static void ShutdownStrm( NNSSndStrm* stream )
 /*---------------------------------------------------------------------------*
   Name:         AlarmCallback
 
-  Description:  ƒAƒ‰[ƒ€ƒR[ƒ‹ƒoƒbƒN
+  Description:  ã‚¢ãƒ©ãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    arg - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
+  Arguments:    arg - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -479,10 +479,10 @@ static void AlarmCallback( void* arg )
 /*---------------------------------------------------------------------------*
   Name:         StrmCallback
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒN
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    stream - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
-                status - ƒR[ƒ‹ƒoƒbƒNƒXƒe[ƒ^ƒX
+  Arguments:    stream - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+                status - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -517,9 +517,9 @@ static void StrmCallback( NNSSndStrm* stream, NNSSndStrmCallbackStatus status )
 /*---------------------------------------------------------------------------*
   Name:         BeginSleep
 
-  Description:  ƒXƒŠ[ƒvƒ‚[ƒh‘Oˆ—
+  Description:  ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰å‰å‡¦ç†
 
-  Arguments:    arg - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
+  Arguments:    arg - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -547,9 +547,9 @@ void BeginSleep( void* arg )
 /*---------------------------------------------------------------------------*
   Name:         EndSleep
 
-  Description:  ƒXƒŠ[ƒvƒ‚[ƒhŒãˆ—
+  Description:  ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰å¾Œå‡¦ç†
 
-  Arguments:    arg - ƒXƒgƒŠ[ƒ€ƒIƒuƒWƒFƒNƒg
+  Arguments:    arg - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

@@ -18,7 +18,7 @@
   add MI_StrNCpy(), MI_StrCpy()
 
   Revision 1.18  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.17  2005/02/28 05:26:25  yosizaki
   do-indent.
@@ -61,16 +61,16 @@
   Reduce use of stack in MI_CopyXX.
 
   Revision 1.4  2004/02/10 08:37:42  yada
-  MI_Copy48B, MI_Copy128B ‚Å‘Ş”ğƒŒƒWƒXƒ^•ÏX
+  MI_Copy48B, MI_Copy128B ã§é€€é¿ãƒ¬ã‚¸ã‚¹ã‚¿å¤‰æ›´
 
   Revision 1.3  2004/02/10 06:01:33  nishida_kenji
   Add MI_CopyxB, MI_ZeroxB.
 
   Revision 1.2  2004/02/10 02:27:30  yada
-  code32‚ÅˆÍ‚¤
+  code32ã§å›²ã†
 
   Revision 1.1  2004/02/10 01:22:22  yada
-  UTL_ ‚©‚ç‚ÌˆÚs
+  UTL_ ã‹ã‚‰ã®ç§»è¡Œ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -79,10 +79,10 @@
 #include <nitro/mi/memory.h>
 
 
-//****ƒoƒO‘Îô****
-//  CW ‚ÌƒoƒO‚ÅAldrh ‚â strh ‚Æ‚¢‚Á‚½Aƒn[ƒtƒ[ƒhƒAƒNƒZƒX–½—ß‚ª
-//  inline assembler ‚Å’Ê‚ç‚È‚¢‚Ì‚ÅA’¼‚É–½—ß‚Ì’l‚ğ dcd ‚Å‘‚¢‚Ä
-//  ‰ñ”ğ‚·‚éBƒoƒO‚ª‚È‚¨‚Á‚½‚ç‰º‚Ìdefine ‚Ííœ‚·‚éB
+//****ãƒã‚°å¯¾ç­–****
+//  CW ã®ãƒã‚°ã§ã€ldrh ã‚„ strh ã¨ã„ã£ãŸã€ãƒãƒ¼ãƒ•ãƒ¯ãƒ¼ãƒ‰ã‚¢ã‚¯ã‚»ã‚¹å‘½ä»¤ãŒ
+//  inline assembler ã§é€šã‚‰ãªã„ã®ã§ã€ç›´ã«å‘½ä»¤ã®å€¤ã‚’ dcd ã§æ›¸ã„ã¦
+//  å›é¿ã™ã‚‹ã€‚ãƒã‚°ãŒãªãŠã£ãŸã‚‰ä¸‹ã®define ã¯å‰Šé™¤ã™ã‚‹ã€‚
 
 //  Fixed with CodeWarrior 0.4 or later
 //#define CW_BUG_FOR_LDRH_AND_STRH
@@ -652,7 +652,7 @@ asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
     bx    lr
 @bxeq2:
 
-    // dstp ‚ğ 16bit ƒAƒ‰ƒCƒ“.
+    // dstp ã‚’ 16bit ã‚¢ãƒ©ã‚¤ãƒ³.
     tst     r0, #1
     beq     @_1
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
@@ -676,7 +676,7 @@ asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
 @bxeq4:
 @_1:
 
-    // 32bit ƒAƒ‰ƒCƒ“.
+    // 32bit ã‚¢ãƒ©ã‚¤ãƒ³.
     cmp     r2, #2
     bcc     @_6
     orr     r1, r1, r1, lsl #8
@@ -694,7 +694,7 @@ asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
     bx    lr
 @bxeq6:
 @_8:
-    // 32bit “]‘—.
+    // 32bit è»¢é€.
     orr     r1, r1, r1, lsl #16
     bics    r3, r2, #3
     beq     @_10
@@ -706,7 +706,7 @@ asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
     bcc     @_9
 
 @_10:
-    //  ÅŒã‚Ì 16bit “]‘—.
+    //  æœ€å¾Œã® 16bit è»¢é€.
     tst     r2, #2
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
     bne @strneh1
@@ -719,7 +719,7 @@ asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
 #endif
 
 @_6:
-    //  ÅŒã‚Ì 8bit “]‘—.
+    //  æœ€å¾Œã® 8bit è»¢é€.
     tst     r2, #1
     beq @bxeq7
     b @bxeq8
@@ -779,7 +779,7 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
     bx    lr
 @bxeq2:
 
-    // dstp ‚ğ 16bit ƒAƒ‰ƒCƒ“.
+    // dstp ã‚’ 16bit ã‚¢ãƒ©ã‚¤ãƒ³.
     tst     r1, #1
     beq     @_1
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
@@ -828,12 +828,12 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
 @bxeq4:
 @_1:
 
-    // ƒAƒhƒŒƒX’[”‚Ì 16/32bit “¯Šú‚ğƒ`ƒFƒbƒN.
+    // ã‚¢ãƒ‰ãƒ¬ã‚¹ç«¯æ•°ã® 16/32bit åŒæœŸã‚’ãƒã‚§ãƒƒã‚¯.
     eor     r12, r1, r0
     tst     r12, #1
     beq     @_2
 
-    // ‘S‚­“¯Šú‚µ‚È‚¢‚Ì‚Å•Ï‘¥ 16bit “]‘—.
+    // å…¨ãåŒæœŸã—ãªã„ã®ã§å¤‰å‰‡ 16bit è»¢é€.
     //  tmp = *(u16*)src++ >> 8;
     //  while((size -= 2) >= 0) {
     //      tmp |= (*(u16*)src++ << 8);
@@ -892,7 +892,7 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
 @_2:
     tst     r12, #2
     beq     @_5
-    // 16bit “]‘—.
+    // 16bit è»¢é€.
     bics    r3, r2, #1
     beq     @_6
     sub     r2, r2, r3
@@ -913,7 +913,7 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
     b       @_6
 
 @_5:
-    // 32bit ƒAƒ‰ƒCƒ“.
+    // 32bit ã‚¢ãƒ©ã‚¤ãƒ³.
     cmp     r2, #2
     bcc     @_6
     tst     r1, #2
@@ -935,7 +935,7 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
     bx    lr
 @bxeq8:
 @_8:
-    // 32bit “]‘—.
+    // 32bit è»¢é€.
     bics    r3, r2, #3
     beq     @_10
     sub     r2, r2, r3
@@ -947,7 +947,7 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
     bcc     @_9
 
 @_10:
-    //  ÅŒã‚Ì 16bit “]‘—.
+    //  æœ€å¾Œã® 16bit è»¢é€.
     tst     r2, #2
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
     bne @ldrneh3
@@ -966,7 +966,7 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
 #endif
 
 @_6:
-    //  ÅŒã‚Ì 8bit “]‘—.
+    //  æœ€å¾Œã® 8bit è»¢é€.
     tst     r2, #1
     beq @bxeq9
     b @bxeq10

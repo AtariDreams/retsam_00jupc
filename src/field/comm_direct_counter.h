@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_direct_counter.h
- * @bfief	’ÊMƒ_ƒCƒŒƒNƒgƒR[ƒi[‚ÌƒJƒEƒ“ƒ^[
+ * @bfief	é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
  * @author	katsumi ohno
  * @date	05/08/04
  */
@@ -14,47 +14,47 @@
 #include "battle/battle_common.h"
 
 //==============================================================================
-// externéŒ¾
+// externå®£è¨€
 //==============================================================================
-/// ’ÊMƒ_ƒCƒŒƒNƒgƒR[ƒi[‚ÌƒJƒEƒ“ƒ^‚Ìƒƒjƒ…[
+/// é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼ã®ã‚«ã‚¦ãƒ³ã‚¿ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 extern void CommDirectCounterMenu(FIELDSYS_WORK* pFSys);
 
 
-/// e‹@‘I‘ğƒEƒCƒ“ƒhƒE‚ğŠJ‚­
+/// è¦ªæ©Ÿé¸æŠã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 extern void CommSelectParentWindowOpen(FIELDSYS_WORK* pFSys,
                                        int connectMode,int type1,int type2);
-/// e‹@‘I‘ğƒEƒCƒ“ƒhƒE‚ğŒŸ¸‚·‚é
+/// è¦ªæ©Ÿé¸æŠã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’æ¤œæŸ»ã™ã‚‹
 extern u32 CommSelectParentWindowCheck(void);
 
-/// q‹@ˆê——ƒEƒCƒ“ƒhƒE‚ğŠJ‚­
+/// å­æ©Ÿä¸€è¦§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 extern void CommChildWindowOpen(FIELDSYS_WORK* pFSys,
                                 int connectMode,int type1,int type2);
-/// q‹@ˆê——ƒEƒCƒ“ƒhƒE‚ğŠÄ‹‚·‚é
+/// å­æ©Ÿä¸€è¦§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç›£è¦–ã™ã‚‹
 extern u32 CommChildWindowCheck(void);
 
 extern void CommChildListWindowOpen(void);
 extern void CommParentSelectParentWindowOpen(void);
 
-/// ’ÊMƒ_ƒCƒŒƒNƒgƒ‹[ƒ€‚É“ü‚Á‚½‚Ìˆ—
+/// é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆãƒ«ãƒ¼ãƒ ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
 extern void CommDirectEnterBattleRoom(FIELDSYS_WORK* pFSys);
-/// ’ÊMƒ_ƒCƒŒƒNƒgƒ‹[ƒ€‚Ì‰Šú‰»ˆ—‚ªI‚í‚Á‚½‚©‚Ç‚¤‚©
+/// é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆãƒ«ãƒ¼ãƒ ã®åˆæœŸåŒ–å‡¦ç†ãŒçµ‚ã‚ã£ãŸã‹ã©ã†ã‹
 extern BOOL CommDirectIsRoomInitialize(void);
-/// ’ÊMƒ_ƒCƒŒƒNƒgƒR[ƒi[‚ÌI—¹ˆ—‚ğŠJn‚·‚é
+/// é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼ã®çµ‚äº†å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹
 extern void CommDirectEnd(void);
-// ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+// ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 extern BATTLE_PARAM* DirectCounter_BattleParamSet(FIELDSYS_WORK* fsys);
 
 
 
 
 #ifdef PM_DEBUG
-///   ƒfƒoƒbƒO—pƒ_ƒCƒŒƒNƒgƒR[ƒi[e‹@Ú‘±
+///   ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼è¦ªæ©Ÿæ¥ç¶š
 extern void CommDirectParent_Debug(FIELDSYS_WORK* pFSys);
-///   ƒfƒoƒbƒO—pƒ_ƒCƒŒƒNƒgƒR[ƒi[q‹@Ú‘±
+///   ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼å­æ©Ÿæ¥ç¶š
 extern void CommDirectChild_Debug(FIELDSYS_WORK* pFSys);
-/// ƒfƒoƒbƒO—pƒ_ƒCƒŒƒNƒgƒR[ƒi[Ú‘±Š®—¹
+/// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼æ¥ç¶šå®Œäº†
 extern void CommDirectConnect_Debug(void);
-/// ƒfƒoƒbƒO—pƒ_ƒCƒŒƒNƒgƒR[ƒi[‰Šú‰»ƒpƒ‰ƒ[ƒ^İ’è
+/// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 extern void CommDirectConnectSetParam_Debug(FIELDSYS_WORK* pFSys, int gameMode, int type1, int type2);
 #endif
 

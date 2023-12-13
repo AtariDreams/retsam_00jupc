@@ -1,5 +1,5 @@
 /* Metrowerks Runtime Library
- * Copyright © 1993-2005 Metrowerks Corporation.  All rights reserved.
+ * Copyright 1993-2005 Metrowerks Corporation.  All rights reserved.
  *
  * $Date: 2005/08/22 17:01:06 $
  * $Revision: 1.4 $

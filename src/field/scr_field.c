@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	scr_field.c
- * @bfief	ƒXƒNƒŠƒvƒg‚Åg—p‚·‚éƒvƒƒOƒ‰ƒ€(”ñí’“ƒtƒB[ƒ‹ƒhƒvƒƒOƒ‰ƒ€)
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ä½¿ç”¨ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ (éå¸¸é§ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ )
  * @author	Satoshi Nohara
  * @date	07.12.03
  *
- * ƒŠƒXƒgˆ—‚Ì—‚½‚à‚Ì‚ªscr_wazaoshie.c‚É‚à‘¶İ‚µ‚Ä‚¢‚é
+ * ãƒªã‚¹ãƒˆå‡¦ç†ã®ä¼¼ãŸã‚‚ã®ãŒscr_wazaoshie.cã«ã‚‚å­˜åœ¨ã—ã¦ã„ã‚‹
  */
 //============================================================================================
 #include "common.h"
@@ -61,7 +61,7 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
 #define ZKN_SORTDATA_ONESIZE		(sizeof(u16))
@@ -69,7 +69,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾	
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€	
 //
 //============================================================================================
 static u16* ZKN_SORTDATA_Get( int heap, int idx, int* p_arry_num );
@@ -83,30 +83,30 @@ BOOL EvCmdVillaListCheck( VM_MACHINE * core );
 
 //============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //============================================================================================
 static u16 arc_tbl[] = {
-	NARC_zukan_data_zkn_sort_a_dat,				//‚ 
-	NARC_zukan_data_zkn_sort_ka_dat,			//‚©
-	NARC_zukan_data_zkn_sort_sa_dat,			//‚³
-	NARC_zukan_data_zkn_sort_ta_dat,			//‚½
-	NARC_zukan_data_zkn_sort_na_dat,			//‚È
-	NARC_zukan_data_zkn_sort_ha_dat,			//‚Í
-	NARC_zukan_data_zkn_sort_ma_dat,			//‚Ü
-	NARC_zukan_data_zkn_sort_ra_dat,			//‚ç		//’ˆÓI@}ŠÓ‚Ì•À‚Ñ‚É‚ ‚í‚¹‚½
-	NARC_zukan_data_zkn_sort_yawa_dat,			//‚â‚í		//’ˆÓI@}ŠÓ‚Ì•À‚Ñ‚É‚ ‚í‚¹‚½
+	NARC_zukan_data_zkn_sort_a_dat,				//ã‚
+	NARC_zukan_data_zkn_sort_ka_dat,			//ã‹
+	NARC_zukan_data_zkn_sort_sa_dat,			//ã•
+	NARC_zukan_data_zkn_sort_ta_dat,			//ãŸ
+	NARC_zukan_data_zkn_sort_na_dat,			//ãª
+	NARC_zukan_data_zkn_sort_ha_dat,			//ã¯
+	NARC_zukan_data_zkn_sort_ma_dat,			//ã¾
+	NARC_zukan_data_zkn_sort_ra_dat,			//ã‚‰		//æ³¨æ„ï¼ã€€å›³é‘‘ã®ä¸¦ã³ã«ã‚ã‚ã›ãŸ
+	NARC_zukan_data_zkn_sort_yawa_dat,			//ã‚„ã‚		//æ³¨æ„ï¼ã€€å›³é‘‘ã®ä¸¦ã³ã«ã‚ã‚ã›ãŸ
 };
 #define ARC_TBL_MAX		( NELEMS(arc_tbl) )
 
 
 //==============================================================================================
 //
-//	ev_win‚ÌƒŠƒXƒgˆ—‚ğŒ³‚É‚µ‚Ä‚¢‚é
+//	ev_winã®ãƒªã‚¹ãƒˆå‡¦ç†ã‚’å…ƒã«ã—ã¦ã„ã‚‹
 //
 //==============================================================================================
-//—LŒø‚ÅA•\¦”‚æ‚è€–Ú”‚ª‘½‚¢ƒŠƒXƒgˆ—‚ÍAã‰º‚ÉƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹‚ğ•\¦
-//ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ª‚È‚¢‚Ì‚ÅA‚»‚Ì•Ó‚Í‰¼‚Å‚·B
+//æœ‰åŠ¹ã§ã€è¡¨ç¤ºæ•°ã‚ˆã‚Šé …ç›®æ•°ãŒå¤šã„ãƒªã‚¹ãƒˆå‡¦ç†ã¯ã€ä¸Šä¸‹ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤º
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ã€ãã®è¾ºã¯ä»®ã§ã™ã€‚
 //#define EV_WIN_SCROLL_CURSOR
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
@@ -114,19 +114,19 @@ static u16 arc_tbl[] = {
 #include "system/arc_util.h"
 #include "system/clact_tool.h"
 #include "field_clact.h"
-#include "field/ranking.naix"			//ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ª‚È‚¢‚Ì‚Å‰¼
+#include "field/ranking.naix"			//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ä»®
 #endif
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 static void EvWin_MsgManSet( SEISEKI_WORK* wk, MSGDATA_MANAGER* msgman );
 static void EvWin_Init( FIELDSYS_WORK* fsys, SEISEKI_WORK* wk, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman, u16* lp_work, u16* cp_work );
 
-//BMPƒŠƒXƒg
+//BMPãƒªã‚¹ãƒˆ
 SEISEKI_WORK * CmdSeisekiBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman, u16* lp_work, u16* cp_work);
 void CmdSeisekiBmpList_MakeList( SEISEKI_WORK* wk, u32 msg_id, u32 talk_msg_id, u32 param  );
 static void CmdSeisekiBmpList_Start( SEISEKI_WORK* wk );
@@ -147,7 +147,7 @@ static void EvWin_ActorRelease( SEISEKI_WORK* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	‰Šú‰»AƒŠƒXƒgì¬AŠJn
+ * @brief	BMPãƒªã‚¹ãƒˆ	åˆæœŸåŒ–ã€ãƒªã‚¹ãƒˆä½œæˆã€é–‹å§‹
  *
  * @param	none
  *
@@ -169,29 +169,29 @@ BOOL EvCmdSeisekiBmpListStart( VM_MACHINE * core )
 	u16 type					= VMGetWorkValue( core );
 	u16 param2					= VMGetWorkValue( core );
 	u16 wk_id					= VMGetU16( core );
-	u16 wk_id2					= VMGetU16( core );				//lp_work—p
-	u16 wk_id3					= VMGetU16( core );				//cp_work—p
+	u16 wk_id2					= VMGetU16( core );				//lp_workç”¨
+	u16 wk_id3					= VMGetU16( core );				//cp_workç”¨
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
-	//ƒ|ƒPƒ‚ƒ“–¼
+	//ãƒã‚±ãƒ¢ãƒ³å
 	man = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_monsname_dat, HEAPID_EVENT );
 
-	//evwin‰Šú‰»
+	//evwinåˆæœŸåŒ–
 	seiseki_win	= CmdSeisekiBmpList_Init(	fsys, 20, 1, 0, 1, 
 									GetEventWorkAdrs(fsys,wk_id), *wordset, 
 									GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_MSGWINDAT), man, 
 									GetEventWorkAdrs(fsys,wk_id2),
 									GetEventWorkAdrs(fsys,wk_id3) );
 
-	//ƒtƒƒ“ƒeƒBƒAŠO•”ƒf[ƒ^‚Ìƒ[ƒh
+	//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
 	fes = FrontierEx_Load( fsys->savedata, HEAPID_WORLD, &load_ret );
 
-	//ƒf[ƒ^³í“Ç‚İ‚İ
+	//ãƒ‡ãƒ¼ã‚¿æ­£å¸¸èª­ã¿è¾¼ã¿
 	if( load_ret == LOAD_RESULT_OK ){
 
-		//ƒŠƒXƒgì¬
+		//ãƒªã‚¹ãƒˆä½œæˆ
 		p_data = ZKN_SORTDATA_Get( HEAPID_EVENT, arc_tbl[param2], &sort_data_count );
 		for( i=0; i < sort_data_count ;i++ ){
 
@@ -201,7 +201,7 @@ BOOL EvCmdSeisekiBmpListStart( VM_MACHINE * core )
 			renshou = FrontierEx_StageRenshou_Get(	fsys->savedata, fes, 
 													StageScr_GetExMaxWinRecordID(type), p_data[i] );
 	
-			//˜AŸ‹L˜^‚ª‘¶İ‚µ‚½‚çƒŠƒXƒgì¬
+			//é€£å‹è¨˜éŒ²ãŒå­˜åœ¨ã—ãŸã‚‰ãƒªã‚¹ãƒˆä½œæˆ
 			if( renshou != 0 ){
 				CmdSeisekiBmpList_MakeList(seiseki_win, p_data[i], EV_WIN_TALK_MSG_NONE, p_data[i]);
 			}
@@ -215,7 +215,7 @@ BOOL EvCmdSeisekiBmpListStart( VM_MACHINE * core )
 	}
 
 #if 1
-	//ev_win.gmm‚©‚çu‚à‚Ç‚év‚ğg—p‚µ‚Ä‚¢‚é
+	//ev_win.gmmã‹ã‚‰ã€Œã‚‚ã©ã‚‹ã€ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹
 	
 	ev_win_man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_ev_win_dat, HEAPID_EVENT );
 	EvWin_MsgManSet( seiseki_win, ev_win_man );
@@ -223,11 +223,11 @@ BOOL EvCmdSeisekiBmpListStart( VM_MACHINE * core )
 								EV_WIN_TALK_MSG_NONE, EV_WIN_B_CANCEL );
 	MSGMAN_Delete( ev_win_man );
 
-	//ˆê‰–ß‚·
+	//ä¸€å¿œæˆ»ã™
 	EvWin_MsgManSet( seiseki_win, man );
 #endif
 
-	//ƒŠƒXƒgŠJn
+	//ãƒªã‚¹ãƒˆé–‹å§‹
 	CmdSeisekiBmpList_Start( seiseki_win );
 	
 	VM_SetWait( core, EvSeisekiSelWinWait );
@@ -236,28 +236,28 @@ BOOL EvCmdSeisekiBmpListStart( VM_MACHINE * core )
 	return 1;
 }
 
-//ƒEƒFƒCƒgŠÖ”
+//ã‚¦ã‚§ã‚¤ãƒˆé–¢æ•°
 static BOOL EvSeisekiSelWinWait(VM_MACHINE * core)
 {
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16* ret_wk = GetEventWorkAdrs( fsys, core->reg[0] );	//’ˆÓI
+	u16* ret_wk = GetEventWorkAdrs( fsys, core->reg[0] );	//æ³¨æ„ï¼
 
 	if( *ret_wk == EV_WIN_NOTHING ){
-		return FALSE;	//Œp‘±
+		return FALSE;	//ç¶™ç¶š
 	}
 
-	return TRUE;		//I—¹
+	return TRUE;		//çµ‚äº†
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\[ƒgÃŞ°Àæ“¾
+ *	@brief	ã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	heap		ƒq[ƒv
- *	@param	idx			ÃŞ°À²İÃŞ¯¸½
- *	@param	p_arry_num	”z—ñ—v‘f”æ“¾æ
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	idx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	p_arry_num	é…åˆ—è¦ç´ æ•°å–å¾—å…ˆ
  *
- *	@return	ÃŞ°Àƒoƒbƒtƒ@		—v‘f”‚Íp_arry_num‚ÉŠi”[
+ *	@return	ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡		è¦ç´ æ•°ã¯p_arry_numã«æ ¼ç´
  */
 //-----------------------------------------------------------------------------
 static u16* ZKN_SORTDATA_Get( int heap, int idx, int* p_arry_num )
@@ -265,7 +265,7 @@ static u16* ZKN_SORTDATA_Get( int heap, int idx, int* p_arry_num )
 	u32 size;
 	u16* p_buf;
 	
-	//“Ç‚İ‚İ
+	//èª­ã¿è¾¼ã¿
 	p_buf = ArcUtil_LoadEx( ARC_ZUKAN_DATA, idx, FALSE, 
 							heap, ALLOC_TOP, &size );
 
@@ -276,30 +276,30 @@ static u16* ZKN_SORTDATA_Get( int heap, int idx, int* p_arry_num )
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-#define EV_WIN_FONT				(FONT_SYSTEM)	//ƒtƒHƒ“ƒgw’è
+#define EV_WIN_FONT				(FONT_SYSTEM)	//ãƒ•ã‚©ãƒ³ãƒˆæŒ‡å®š
 
-#define EVWIN_MSG_BUF_SIZE		(40*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define EVWIN_MSG_BUF_SIZE		(40*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define EV_WIN_LIST_MAX			(120)			//BMPƒŠƒXƒg€–Ú‚ÌÅ‘å”
-#define	EV_WIN_MSG_MAX			(120)			//MSGƒoƒbƒtƒ@‚ÌÅ‘å”
+#define EV_WIN_LIST_MAX			(120)			//BMPãƒªã‚¹ãƒˆé …ç›®ã®æœ€å¤§æ•°
+#define	EV_WIN_MSG_MAX			(120)			//MSGãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ•°
 
-//BMPƒŠƒXƒgƒwƒbƒ_[’è‹`
-#define EV_LIST_LINE			(8)				//•\¦Å‘å€–Ú”
-#define EV_LIST_RABEL_X			(1)				//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-#define EV_LIST_DATA_X			(12)			//€–Ú•\¦‚wÀ•W
-#define EV_LIST_CURSOR_X		(2)				//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-#define EV_LIST_LINE_Y			(1)				//•\¦‚xÀ•W
+//BMPãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼å®šç¾©
+#define EV_LIST_LINE			(8)				//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+#define EV_LIST_RABEL_X			(1)				//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_DATA_X			(12)			//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_CURSOR_X		(2)				//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_LINE_Y			(1)				//è¡¨ç¤ºï¼¹åº§æ¨™
 
-//ƒJ[ƒ\ƒ‹•
-#define EV_WIN_CURSOR_WIDTH		(12)			//ƒJ[ƒ\ƒ‹•
+//ã‚«ãƒ¼ã‚½ãƒ«å¹…
+#define EV_WIN_CURSOR_WIDTH		(12)			//ã‚«ãƒ¼ã‚½ãƒ«å¹…
 
-#define EV_WIN_DEFAULT_WAIT		(3)				//ƒL[‘€ì‚ª‚·‚®‚É“ü‚ç‚È‚¢‚æ‚¤‚ÉŠî–{ƒEƒFƒCƒg
+#define EV_WIN_DEFAULT_WAIT		(3)				//ã‚­ãƒ¼æ“ä½œãŒã™ãã«å…¥ã‚‰ãªã„ã‚ˆã†ã«åŸºæœ¬ã‚¦ã‚§ã‚¤ãƒˆ
 
-// «‚±‚±‚©‚çg‚Á‚Ä‰º‚³‚¢II
-#define	EVWIN_FREE_CGX			( 1 )			//ƒtƒŠ[‚ÌƒLƒƒƒ‰ˆÊ’u
+// â†“ã“ã“ã‹ã‚‰ä½¿ã£ã¦ä¸‹ã•ã„ï¼ï¼
+#define	EVWIN_FREE_CGX			( 1 )			//ãƒ•ãƒªãƒ¼ã®ã‚­ãƒ£ãƒ©ä½ç½®
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 #define CURSOR_ANMNO				(0)
@@ -311,11 +311,11 @@ static u16* ZKN_SORTDATA_Get( int heap, int idx, int* p_arry_num )
 #define EVWIN_CEL_H_ID_CURSOR		(13528)
 #define EVWIN_ANM_H_ID_CURSOR		(13528)
 
-#define EVWIN_ACTMAX				(2)			//ƒAƒNƒ^[”(ãŒü‚«‚Æ‰ºŒü‚«‚Ì‚Q‚Â)
+#define EVWIN_ACTMAX				(2)			//ã‚¢ã‚¯ã‚¿ãƒ¼æ•°(ä¸Šå‘ãã¨ä¸‹å‘ãã®ï¼’ã¤)
 
 #define ACT_RES_PAL_NUM				(3)
 
-//ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ª‚È‚¢‚Ì‚Å’u‚«Š·‚¦
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ç½®ãæ›ãˆ
 enum{
 	ARC_EVWIN_GRA	= ARC_RANKING_GRA,
 	NARC_evwin_nclr = NARC_ranking_ranking_nclr,
@@ -328,66 +328,66 @@ enum{
 
 //==============================================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //
 //==============================================================================================
 struct _SEISEKI_WORK{
-	FIELDSYS_WORK * fsys;						//FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
+	FIELDSYS_WORK * fsys;						//FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
 	TCB_PTR	tcb;
 
- 	GF_BGL_BMPWIN bmpwin;						//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- 	GF_BGL_BMPWIN* talk_bmpwin;					//BMP‰ï˜bƒEƒBƒ“ƒhƒEƒf[ƒ^
+ 	GF_BGL_BMPWIN bmpwin;						//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ 	GF_BGL_BMPWIN* talk_bmpwin;					//BMPä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 	
-	STRBUF* msg_buf[EV_WIN_MSG_MAX];			//ƒƒbƒZ[ƒWƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-	MSGDATA_MANAGER* msgman;					//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;							//’PŒêƒZƒbƒg
+	STRBUF* msg_buf[EV_WIN_MSG_MAX];			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+	MSGDATA_MANAGER* msgman;					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;							//å˜èªã‚»ãƒƒãƒˆ
 
-	u8  wait;									//ƒEƒFƒCƒg
-	u8  menu_id;								//BMPƒƒjƒ…[ID
-	u8  cursor_pos;								//ƒJ[ƒ\ƒ‹ˆÊ’u
-	u8  cancel:1;								//ƒLƒƒƒ“ƒZƒ‹
-	u8  msgman_del_flag:1;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[íœƒtƒ‰ƒO
+	u8  wait;									//ã‚¦ã‚§ã‚¤ãƒˆ
+	u8  menu_id;								//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ID
+	u8  cursor_pos;								//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8  cancel:1;								//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	u8  msgman_del_flag:1;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤ãƒ•ãƒ©ã‚°
 	u8  dmy:6;									//
 
-	u8  x;										//ƒEƒBƒ“ƒhƒEˆÊ’uX
-	u8  y;										//ƒEƒBƒ“ƒhƒEˆÊ’uY
-	u8  dmyy;									//ƒƒjƒ…[ƒiƒ“ƒo[
-	u8  list_no;								//ƒƒjƒ…[€–Ú‚Ì‰½”Ô–Ú‚©
+	u8  x;										//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®X
+	u8  y;										//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®Y
+	u8  dmyy;									//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u8  list_no;								//ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®ä½•ç•ªç›®ã‹
 
-	u16* pMsg;									//ƒƒbƒZ[ƒWƒf[ƒ^
-	u16* work;									//Œ‹‰Êæ“¾ƒ[ƒN
-	u16* lp_work;								//list_bakæ“¾ƒ[ƒN
-	u16* cp_work;								//cursor_bakæ“¾ƒ[ƒN
+	u16* pMsg;									//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+	u16* work;									//çµæœå–å¾—ãƒ¯ãƒ¼ã‚¯
+	u16* lp_work;								//list_bakå–å¾—ãƒ¯ãƒ¼ã‚¯
+	u16* cp_work;								//cursor_bakå–å¾—ãƒ¯ãƒ¼ã‚¯
  
-	//BMPƒŠƒXƒg
-	BMPLIST_HEADER ListH;						//BMPƒŠƒXƒgƒwƒbƒ_[
-	BMPLIST_WORK* lw;							//BMPƒŠƒXƒgƒf[ƒ^
-	u16 list_bak;								//ƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒv
-	u16 cursor_bak;								//ƒJ[ƒ\ƒ‹ˆÊ’uƒoƒbƒNƒAƒbƒv
-	BMPLIST_DATA list_Data[EV_WIN_LIST_MAX];	//ƒŠƒXƒgƒf[ƒ^
-	u16 talk_msg_id[EV_WIN_LIST_MAX];			//ƒŠƒXƒgƒf[ƒ^‚É‘Î‚É‚È‚é‰ï˜bƒƒbƒZ[ƒWID
+	//BMPãƒªã‚¹ãƒˆ
+	BMPLIST_HEADER ListH;						//BMPãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼
+	BMPLIST_WORK* lw;							//BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	u16 list_bak;								//ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	u16 cursor_bak;								//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	BMPLIST_DATA list_Data[EV_WIN_LIST_MAX];	//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	u16 talk_msg_id[EV_WIN_LIST_MAX];			//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã«å¯¾ã«ãªã‚‹ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 
 	u16 pos_bak;
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-	FIELD_CLACT		fcat;						//ƒtƒB[ƒ‹ƒh—pƒZƒ‹ƒAƒNƒ^[İ’è
-	CATS_ACT_PTR	act[EVWIN_ACTMAX];			//CATS‚ğg‚¤‚Ìê—pƒAƒNƒ^[\‘¢‘Ì
+	FIELD_CLACT		fcat;						//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®š
+	CATS_ACT_PTR	act[EVWIN_ACTMAX];			//CATSã‚’ä½¿ã†æ™‚ã®å°‚ç”¨ã‚¢ã‚¯ã‚¿ãƒ¼æ§‹é€ ä½“
 #endif
 };
 
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE@ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[ƒZƒbƒg
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚»ãƒƒãƒˆ
  *
- * @param	wk			WAZA_OSHIE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msgman		MSGDATA_MANAGERŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			WAZA_OSHIE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msgman		MSGDATA_MANAGERå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -400,15 +400,15 @@ static void EvWin_MsgManSet( SEISEKI_WORK* wk, MSGDATA_MANAGER* msgman )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE@ƒ[ƒN‰Šú‰»
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param	wk			SEISEKI_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	x			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	cursor		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	cancel		BƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO(TRUE=—LŒøAFALSE=–³Œø)
- * @param	work		Œ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			SEISEKI_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	cursor		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	cancel		Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°(TRUE=æœ‰åŠ¹ã€FALSE=ç„¡åŠ¹)
+ * @param	work		çµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -417,14 +417,14 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, SEISEKI_WORK* wk, u8 x, u8 y, u8 cu
 {
 	int i;
 
-	wk->msgman		= msgman;		//ˆøŒp‚¬
+	wk->msgman		= msgman;		//å¼•ç¶™ã
 	wk->msgman_del_flag = 0;
-	wk->wordset		= wordset;		//ƒXƒNƒŠƒvƒg‚ğˆø‚«Œp‚®
+	wk->wordset		= wordset;		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å¼•ãç¶™ã
 
 	wk->fsys		= fsys;
 	wk->work		= work;
 #if 1
-	*wk->work		= 0;			//‰Šú‰»
+	*wk->work		= 0;			//åˆæœŸåŒ–
 #endif
 	wk->lp_work		= lp_work;
 	wk->cp_work		= cp_work;
@@ -443,12 +443,12 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, SEISEKI_WORK* wk, u8 x, u8 y, u8 cu
 		wk->talk_msg_id[i] = EV_WIN_TALK_MSG_NONE;
 	}
 
-	//MSGMAN_Create‚ÌŒã‚Éˆ—
+	//MSGMAN_Createã®å¾Œã«å‡¦ç†
 	for( i=0; i < EV_WIN_MSG_MAX ;i++ ){
 		wk->msg_buf[i] = STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );
 	}
 
-	//‘I‘ğ‚µ‚½’l‚ğæ“¾‚·‚éƒ[ƒN‚ğ‰Šú‰»
+	//é¸æŠã—ãŸå€¤ã‚’å–å¾—ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
 	*wk->work = EV_WIN_NOTHING;
 
 	return;
@@ -457,22 +457,22 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, SEISEKI_WORK* wk, u8 x, u8 y, u8 cu
 
 //==============================================================================================
 //
-//	BMPƒŠƒXƒgŠÖ˜A
+//	BMPãƒªã‚¹ãƒˆé–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@‰Šú‰»
+ * @brief	BMPãƒªã‚¹ãƒˆã€€åˆæœŸåŒ–
  *
- * @param	x			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\¦XÀ•W
- * @param	cursor		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	cancel		BƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO(TRUE=—LŒøAFALSE=–³Œø)
- * @param	work		Œ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	cursor		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	cancel		Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°(TRUE=æœ‰åŠ¹ã€FALSE=ç„¡åŠ¹)
+ * @param	work		çµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"SEISEKI_WORKŒ^‚ÌƒAƒhƒŒƒXANULL‚Í¸”s"
+ * @retval	"SEISEKI_WORKå‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€NULLã¯å¤±æ•—"
  */
 //--------------------------------------------------------------
 SEISEKI_WORK * CmdSeisekiBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman, u16* lp_work, u16* cp_work )
@@ -487,7 +487,7 @@ SEISEKI_WORK * CmdSeisekiBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 curso
 	}
 	memset( wk, 0, sizeof(SEISEKI_WORK) );
 
-	//ƒ[ƒN‰Šú‰»	
+	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–	
 	EvWin_Init( fsys, wk, x, y, cursor, cancel, work, wordset, talk_bmpwin, msgman, lp_work, cp_work );
 
 	return wk;
@@ -495,12 +495,12 @@ SEISEKI_WORK * CmdSeisekiBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 curso
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgì¬
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			SEISEKI_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	param		BMPLISTƒpƒ‰ƒ[ƒ^
+ * @param	wk			SEISEKI_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPLISTãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -513,16 +513,16 @@ void CmdSeisekiBmpList_MakeList( SEISEKI_WORK* wk, u32 msg_id, u32 talk_msg_id, 
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ŠJn
+ * @brief	BMPãƒªã‚¹ãƒˆã€€é–‹å§‹
  *
- * @param	wk			SEISEKI_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			SEISEKI_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void CmdSeisekiBmpList_Start( SEISEKI_WORK* wk )
 {
-	//•\¦Å‘å€–Ú”ƒ`ƒFƒbƒN
+	//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°ãƒã‚§ãƒƒã‚¯
 	if( wk->list_no > EV_LIST_LINE ){
 		GF_BGL_BmpWinAdd( wk->fsys->bgl, &wk->bmpwin, FLD_MBGFRM_FONT, wk->x, wk->y, 
 									11, EV_LIST_LINE*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
@@ -531,18 +531,18 @@ static void CmdSeisekiBmpList_Start( SEISEKI_WORK* wk )
 									11, wk->list_no*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
 	}
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(
 		wk->fsys->bgl, FLD_MBGFRM_FONT, MENU_WIN_CGX_NUM, MENU_WIN_PAL, 0, HEAPID_FIELD );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite(&wk->bmpwin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL);
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 	EvWin_ActorInit( wk );
 #endif
 
-	//ƒŠƒXƒgƒwƒbƒ_[‰Šúİ’è
+	//ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
 	BmpList_h_default_set(wk);
 
 	//OS_Printf( "*wk->lp_work = %d\n", *wk->lp_work );
@@ -550,7 +550,7 @@ static void CmdSeisekiBmpList_Start( SEISEKI_WORK* wk )
 	wk->lw = BmpListSet(	(const BMPLIST_HEADER*)&wk->ListH, *wk->lp_work, 
 							*wk->cp_work, HEAPID_FIELD );
 
-	//TCB’Ç‰Á
+	//TCBè¿½åŠ 
 	wk->tcb	= TCB_Add( EvBmpList_MainTCB, wk, 0 );
 
 	return;
@@ -558,12 +558,12 @@ static void CmdSeisekiBmpList_Start( SEISEKI_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒŠƒXƒgì¬
+ * @brief	BMPãƒªã‚¹ãƒˆ	ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			SEISEKI_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	param		BMPLISTƒpƒ‰ƒ[ƒ^
+ * @param	wk			SEISEKI_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPLISTãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -573,15 +573,15 @@ static void BmpList_list_make( SEISEKI_WORK* wk, u32 msg_id, u32 talk_msg_id, u3
 	int i;
 	void* msg;
 
-	SDK_ASSERTMSG( wk->list_no < EV_WIN_LIST_MAX, "ƒŠƒXƒg€–Ú”ƒI[ƒo[I" );
+	SDK_ASSERTMSG( wk->list_no < EV_WIN_LIST_MAX, "ãƒªã‚¹ãƒˆé …ç›®æ•°ã‚ªãƒ¼ãƒãƒ¼ï¼" );
 
 	{
-		//“WŠJ‚İ
+		//å±•é–‹è¾¼ã¿
 		
-		STRBUF* tmp_buf2= STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );	//ƒRƒs[—pƒoƒbƒtƒ@
+		STRBUF* tmp_buf2= STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );	//ã‚³ãƒ”ãƒ¼ç”¨ãƒãƒƒãƒ•ã‚¡
 
 		MSGMAN_GetString( wk->msgman, msg_id, tmp_buf2 );
-		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//“WŠJ
+		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//å±•é–‹
 		wk->list_Data[ wk->list_no ].str = (const void *)wk->msg_buf[wk->list_no];
 
 		STRBUF_Delete( tmp_buf2 );
@@ -603,9 +603,9 @@ static void BmpList_list_make( SEISEKI_WORK* wk, u32 msg_id, u32 talk_msg_id, u3
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	€–Ú‚Ì’†‚©‚çÅ‘å•¶š”‚ğæ“¾
+ * @brief	BMPãƒªã‚¹ãƒˆ	é …ç›®ã®ä¸­ã‹ã‚‰æœ€å¤§æ–‡å­—æ•°ã‚’å–å¾—
  *
- * @param	wk			SEISEKI_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			SEISEKI_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -635,9 +635,9 @@ static u32 BmpList_length_get( SEISEKI_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒwƒbƒ_[‰Šúİ’è
+ * @brief	BMPãƒªã‚¹ãƒˆ	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk			SEISEKI_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			SEISEKI_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -673,10 +673,10 @@ static void BmpList_h_default_set(SEISEKI_WORK* wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒXƒgƒVƒXƒeƒ€‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒN¦ˆês•\¦‚²‚Æ
+ * @brief	ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯â€»ä¸€è¡Œè¡¨ç¤ºã”ã¨
  *
- * @param	lw			BMPLIST_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	param		‘I‘ğƒŠƒ^[ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param	lw			BMPLIST_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param		é¸æŠæ™‚ãƒªã‚¿ãƒ¼ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  * @param	y			
  *
  * @retval	none
@@ -693,7 +693,7 @@ static void	BmpList_CallBack(BMPLIST_WORK* lw,u32 param,u8 y)
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒN
+ * @brief	BMPãƒªã‚¹ãƒˆ	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	
  *
@@ -718,32 +718,32 @@ static void BmpList_CursorMoveCallBack( BMPLIST_WORK* wk, u32 param, u8 mode )
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 
-	//‰Šú‰»
+	//åˆæœŸåŒ–æ™‚
 	if( mode == 1 ){
 		//
 	}
 
-	count = BmpListParamGet( wk, BMPLIST_ID_COUNT );			//ƒŠƒXƒg€–Ú”
-	line  = BmpListParamGet( wk, BMPLIST_ID_LINE );				//•\¦Å‘å€–Ú”
+	count = BmpListParamGet( wk, BMPLIST_ID_COUNT );			//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	line  = BmpListParamGet( wk, BMPLIST_ID_LINE );				//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	//‘S‚Ä‚Ì€–Ú‚ğ•\¦‚µ‚Ä‚¢‚È‚¢
+	//å…¨ã¦ã®é …ç›®ã‚’è¡¨ç¤ºã—ã¦ã„ãªã„æ™‚
 	if( count > line ){
 
 		if( list_bak == 0 ){
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹”ñ•\¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], FALSE );	//OBJ‚Ì”ñ•\¦İ’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJ‚Ì•\¦İ’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«éè¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], FALSE );	//OBJã®éè¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
 		}else if( list_bak == (count-line) ){
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹”ñ•\¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJ‚Ì•\¦İ’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], FALSE );	//OBJ‚Ì”ñ•\¦İ’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«éè¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], FALSE );	//OBJã®éè¡¨ç¤ºè¨­å®š
 		}else{
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJ‚Ì•\¦İ’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJ‚Ì•\¦İ’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
 		}
 	}
 
@@ -754,10 +754,10 @@ static void BmpList_CursorMoveCallBack( BMPLIST_WORK* wk, u32 param, u8 mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgƒƒCƒ“
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆãƒ¡ã‚¤ãƒ³
  *
  * @param	tcb			TCB_PTR
- * @param	wk			ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -769,24 +769,24 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 	SEISEKI_WORK* swk;
 	swk = (SEISEKI_WORK*)wk;
 
-	//ƒEƒFƒCƒg
+	//ã‚¦ã‚§ã‚¤ãƒˆ
 	if( swk->wait != 0 ){
 		swk->wait--;
 		return;
 	}
 
-	//ƒƒCƒv’†‚Íˆ—‚µ‚È‚¢
+	//ãƒ¯ã‚¤ãƒ—ä¸­ã¯å‡¦ç†ã—ãªã„
 	if( WIPE_SYS_EndCheck() == FALSE ){
 		return;
 	}
 
 	ret = BmpListMain( swk->lw );
 
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ğæ“¾
-	tmp_pos_bak = swk->pos_bak;		//‘Ş”ğ
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = swk->pos_bak;		//é€€é¿
 	BmpListDirectPosGet( swk->lw, &swk->pos_bak );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != swk->pos_bak ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
@@ -799,20 +799,20 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 	case BMPLIST_NULL:
 		break;
 	case BMPLIST_CANCEL:
-		if( swk->cancel == TRUE ){			//TRUE = BƒLƒƒƒ“ƒZƒ‹—LŒø
+		if( swk->cancel == TRUE ){			//TRUE = Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 			Snd_SePlay( SEQ_SE_DP_SELECT );
-			*swk->work = EV_WIN_B_CANCEL;	//‘I‘ğ‚µ‚½’l‚ğƒ[ƒN‚É‘ã“ü
+			*swk->work = EV_WIN_B_CANCEL;	//é¸æŠã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-			EvWin_ActorRelease( wk );		//íœ
+			EvWin_ActorRelease( wk );		//å‰Šé™¤
 #endif
 			EvBmpList_Del(wk);
 		}
 		break;
 	default:
 		Snd_SePlay( SEQ_SE_DP_SELECT );
-		*swk->work = ret;					//‘I‘ğ‚µ‚½’l‚ğƒ[ƒN‚É‘ã“ü
+		*swk->work = ret;					//é¸æŠã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-		EvWin_ActorRelease( wk );			//íœ
+		EvWin_ActorRelease( wk );			//å‰Šé™¤
 #endif
 		EvBmpList_Del(wk);
 		break;
@@ -823,20 +823,20 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgI—¹
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆçµ‚äº†
  *
- * @param	wk			SEISEKI_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			SEISEKI_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * SEQ_SE_DP_SELECT‚ğ–Â‚ç‚µ‚Ä‚¢‚éI
+ * SEQ_SE_DP_SELECTã‚’é³´ã‚‰ã—ã¦ã„ã‚‹ï¼
  */
 //--------------------------------------------------------------
 static void EvBmpList_Del( SEISEKI_WORK* wk )
 {
 	int i;
 
-	Snd_SePlay(SEQ_SE_DP_SELECT);	//’ˆÓI
+	Snd_SePlay(SEQ_SE_DP_SELECT);	//æ³¨æ„ï¼
 
 	BmpListExit( wk->lw, NULL, NULL );
 	BmpMenuWinClear( wk->ListH.win, WINDOW_TRANS_ON );
@@ -859,24 +859,24 @@ static void EvBmpList_Del( SEISEKI_WORK* wk )
 
 //==============================================================================================
 //
-//	ƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹
+//	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«
 //
 //==============================================================================================
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 
-//ƒAƒNƒ^[‰Šú‰»
+//ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 static void EvWin_ActorInit( SEISEKI_WORK* wk )
 {
 	int i;
 	s16 x = (wk->x * 8) + (BmpList_length_get(wk) / 2);
 
-	//ƒŠƒ\[ƒX“o˜^Å‘å”’è‹`\‘¢‘Ì
+	//ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²æœ€å¤§æ•°å®šç¾©æ§‹é€ ä½“
 	TCATS_RESOURCE_NUM_LIST	crnl = { 1, 1, 1, 1 };
 
-	//“o˜^—p\‘¢‘Ì ’P‘Ì“o˜^—p(À•W‚ÍŒã‚Åİ’è‚µ’¼‚·)
+	//ç™»éŒ²ç”¨æ§‹é€ ä½“ å˜ä½“ç™»éŒ²ç”¨(åº§æ¨™ã¯å¾Œã§è¨­å®šã—ç›´ã™)
 	static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 	{
-		//ãŒü‚«
+		//ä¸Šå‘ã
 		{
 			0, 0, 0,
 			CURSOR_ANMNO, CURSOR_SPRI, CURSOR_PALT, NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -887,7 +887,7 @@ static void EvWin_ActorInit( SEISEKI_WORK* wk )
 			0, 0
 		},
 
-		//‰ºŒü‚«
+		//ä¸‹å‘ã
 		{
 			0, 0, 0,
 			CURSOR_ANMNO, CURSOR_SPRI, CURSOR_PALT, NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -899,7 +899,7 @@ static void EvWin_ActorInit( SEISEKI_WORK* wk )
 		},
 	};
 	
-	//ƒtƒB[ƒ‹ƒhƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	FieldCellActSet_S( &wk->fcat, &crnl, EVWIN_ACTMAX, HEAPID_FIELD );
 	
 	{
@@ -907,7 +907,7 @@ static void EvWin_ActorInit( SEISEKI_WORK* wk )
 		
 		hdl = ArchiveDataHandleOpen( ARC_EVWIN_GRA, HEAPID_FIELD );
 
-		//ƒŠƒ\[ƒXİ’è
+		//ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
 		FldClact_LoadResPlttArcH(	&wk->fcat, hdl, NARC_evwin_nclr,
 									0, ACT_RES_PAL_NUM, NNS_G2D_VRAM_TYPE_2DMAIN, 
 									EVWIN_PAL_H_ID );
@@ -924,41 +924,41 @@ static void EvWin_ActorInit( SEISEKI_WORK* wk )
 		ArchiveDataHandleClose( hdl );
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[’Ç‰Á(’P”­—p)
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ (å˜ç™ºç”¨)
 	for( i=0; i < EVWIN_ACTMAX; i++ ){
 		wk->act[i] = FieldCellActAdd_S( &wk->fcat, &ActAddParam_S[i] );
-		CLACT_SetAnmFlag( wk->act[i]->act, 1 );				//ƒI[ƒgƒAƒjƒ
-		CATS_ObjectEnableCap( wk->act[i], FALSE );			//OBJ‚Ì”ñ•\¦İ’è
+		CLACT_SetAnmFlag( wk->act[i]->act, 1 );				//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
+		CATS_ObjectEnableCap( wk->act[i], FALSE );			//OBJã®éè¡¨ç¤ºè¨­å®š
 	}
 
-	//À•W‚Ìİ’è
+	//åº§æ¨™ã®è¨­å®š
 	//OS_Printf( "x = %d\n", x );
 	//OS_Printf( "wk->y = %d\n", (wk->y*8) );
 	//OS_Printf( "y = %d\n", (wk->list_no*8) );
 	CATS_ObjectPosSetCap( wk->act[0], x, (wk->y*8) );
 	CATS_ObjectPosSetCap( wk->act[1], x, (wk->list_no*8) );
 
-	//ƒI[ƒgƒAƒjƒ‚Å‘Î‰‚¶‚á‚È‚­‚ÄAÀ•W‚ğ“®‚©‚µ‚ÄƒAƒjƒ‚Å‚à‚¢‚¢‚Ì‚©‚àBB•Û—¯
+	//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã§å¯¾å¿œã˜ã‚ƒãªãã¦ã€åº§æ¨™ã‚’å‹•ã‹ã—ã¦ã‚¢ãƒ‹ãƒ¡ã§ã‚‚ã„ã„ã®ã‹ã‚‚ã€‚ã€‚ä¿ç•™
 	
-	//‘I‘ğƒJ[ƒ\ƒ‹‚ÌF•ÏX
+	//é¸æŠã‚«ãƒ¼ã‚½ãƒ«ã®è‰²å¤‰æ›´
 	//CATS_ObjectPaletteSetCap(wk->act[ACT_CURSOR],CURSOR_PALF);
 	
 	return;
 }
 
-//ƒAƒNƒ^[íœ
+//ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 static void EvWin_ActorRelease( SEISEKI_WORK* wk )
 {
 	int i;
 
-	//ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^‚Ìíœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿ã®å‰Šé™¤
 	for( i=0; i < EVWIN_ACTMAX; i++ ){
 		if( wk->act[i] != NULL ){
 			CATS_ActorPointerDelete_S( wk->act[i] );
 		}
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[íœi’P”­—pj
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ï¼ˆå˜ç™ºç”¨ï¼‰
 	FieldCellActDelete_S( &wk->fcat );
 	return;
 }
@@ -967,31 +967,31 @@ static void EvWin_ActorRelease( SEISEKI_WORK* wk )
 
 //============================================================================================
 //
-//	ƒgƒbƒvƒuƒŠ[ƒ_[
+//	ãƒˆãƒƒãƒ—ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
 //
 //============================================================================================
 BOOL EvCmdTopBreederPowRndGet( VM_MACHINE * core );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”’lƒ`ƒFƒbƒN
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°å€¤ãƒã‚§ãƒƒã‚¯
  *
  * @param	none
  *
  * @retval	0
  */
 //--------------------------------------------------------------
-//status.gmm‚Å‚ÍuHPv‚Å‚Í‚È‚­u‚½‚¢‚è‚å‚­v‚Æ‚È‚Á‚Ä‚¢‚é‚Ì‚Åƒ_ƒ(08.05.15)
+//status.gmmã§ã¯ã€ŒHPã€ã§ã¯ãªãã€ŒãŸã„ã‚Šã‚‡ãã€ã¨ãªã£ã¦ã„ã‚‹ã®ã§ãƒ€ãƒ¡(08.05.15)
 #if 0
 
 #include "msgdata/msg_status.h"
 static const u16 msg_id_tbl[] = {
-	STATUS_000,	//‚½‚¢‚è‚å‚­
-	STATUS_001,	//‚±‚¤‚°‚«
-	STATUS_002, //‚Ú‚¤‚¬‚å
-	STATUS_003,	//‚·‚Î‚â‚³
-	STATUS_004,	//‚Æ‚­‚±‚¤
-	STATUS_005,	//‚Æ‚­‚Ú‚¤
+	STATUS_000,	//ãŸã„ã‚Šã‚‡ã
+	STATUS_001,	//ã“ã†ã’ã
+	STATUS_002, //ã¼ã†ãã‚‡
+	STATUS_003,	//ã™ã°ã‚„ã•
+	STATUS_004,	//ã¨ãã“ã†
+	STATUS_005,	//ã¨ãã¼ã†
 };
 
 #else
@@ -999,11 +999,11 @@ static const u16 msg_id_tbl[] = {
 #include "msgdata/msg_d31r0201.h"
 static const u16 msg_id_tbl[] = {
 	msg_tower_judge_08,		//HP
-	msg_tower_judge_08_01,	//‚±‚¤‚°‚«
-	msg_tower_judge_08_02,	//‚Ú‚¤‚¬‚å
-	msg_tower_judge_08_05,	//‚·‚Î‚â‚³
-	msg_tower_judge_08_03,	//‚Æ‚­‚±‚¤
-	msg_tower_judge_08_04,	//‚Æ‚­‚Ú‚¤
+	msg_tower_judge_08_01,	//ã“ã†ã’ã
+	msg_tower_judge_08_02,	//ã¼ã†ãã‚‡
+	msg_tower_judge_08_05,	//ã™ã°ã‚„ã•
+	msg_tower_judge_08_03,	//ã¨ãã“ã†
+	msg_tower_judge_08_04,	//ã¨ãã¼ã†
 };
 
 #endif
@@ -1014,15 +1014,15 @@ BOOL EvCmdTopBreederPowRndGet( VM_MACHINE * core )
 	u32 temp[6];
 	POKEMON_PARAM* poke;
 	FIELDSYS_WORK* fsys	= core->fsys;
-	u16 pos				= VMGetWorkValue( core );	//è‚¿‚Ì‰½”Ô–Ú‚©‚ğ‘ã“ü‚µ‚Ä‚¨‚­
-	u16* ret_wk			= VMGetWork( core );		//ƒpƒ[—”‚Ì‡Œv
-	u16* ret_wk2		= VMGetWork( core );		//ƒpƒ[—”‚ªÅ‚à‚‚¢ƒpƒ‰ƒ[ƒ^
-	u16* ret_wk3		= VMGetWork( core );		//ƒpƒ[—”‚ªÅ‚à‚‚¢ƒpƒ‰ƒ[ƒ^‚Ì’l
+	u16 pos				= VMGetWorkValue( core );	//æ‰‹æŒã¡ã®ä½•ç•ªç›®ã‹ã‚’ä»£å…¥ã—ã¦ãŠã
+	u16* ret_wk			= VMGetWork( core );		//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã®åˆè¨ˆ
+	u16* ret_wk2		= VMGetWork( core );		//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ãŒæœ€ã‚‚é«˜ã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	u16* ret_wk3		= VMGetWork( core );		//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ãŒæœ€ã‚‚é«˜ã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤
 
-	//ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), pos );
 
-	//ƒpƒ[—”æ“¾
+	//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°å–å¾—
 	temp[0] = PokeParaGet( poke, ID_PARA_hp_rnd, NULL );
 	temp[1] = PokeParaGet( poke, ID_PARA_pow_rnd, NULL );
 	temp[2] = PokeParaGet( poke, ID_PARA_def_rnd, NULL );
@@ -1030,13 +1030,13 @@ BOOL EvCmdTopBreederPowRndGet( VM_MACHINE * core )
 	temp[4] = PokeParaGet( poke, ID_PARA_spepow_rnd, NULL );
 	temp[5] = PokeParaGet( poke, ID_PARA_spedef_rnd, NULL );
 
-	//ƒpƒ[—”‚Ì‡Œv
+	//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã®åˆè¨ˆ
 	*ret_wk = 0;
 	for( i=0; i < 6 ;i++ ){
 		*ret_wk += temp[i];
 	}
 
-	//ƒpƒ[—”‚ªÅ‚à‚‚¢ƒpƒ‰ƒ[ƒ^
+	//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ãŒæœ€ã‚‚é«˜ã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	*ret_wk2 = 0;
 	*ret_wk3 = temp[0];
 
@@ -1049,7 +1049,7 @@ BOOL EvCmdTopBreederPowRndGet( VM_MACHINE * core )
 
 		}else if( temp[*ret_wk2] == temp[i] ){
 
-			//“¯‚¶’l‚ª‘¶İ‚µ‚½‚çƒ‰ƒ“ƒ_ƒ€‚É‚·‚é
+			//åŒã˜å€¤ãŒå­˜åœ¨ã—ãŸã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã«ã™ã‚‹
 			if( (gf_rand() % 2) == 0 ){
 				*ret_wk2 = i;
 				*ret_wk3 = temp[i];
@@ -1057,7 +1057,7 @@ BOOL EvCmdTopBreederPowRndGet( VM_MACHINE * core )
 		}
 	}
 
-	//ƒƒbƒZ[ƒW‚ÌID‚ğ•Ô‚·‚æ‚¤‚É‚·‚é
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®IDã‚’è¿”ã™ã‚ˆã†ã«ã™ã‚‹
 	*ret_wk2 = msg_id_tbl[*ret_wk2];
 	return 0;
 }
@@ -1065,7 +1065,7 @@ BOOL EvCmdTopBreederPowRndGet( VM_MACHINE * core )
 
 //==============================================================================
 //
-//	ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚É“ü‚é‘O‚ÉƒtƒHƒ‹ƒ€‚ğ–ß‚·
+//	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã«å…¥ã‚‹å‰ã«ãƒ•ã‚©ãƒ«ãƒ ã‚’æˆ»ã™
 //
 //==============================================================================
 BOOL EvCmdUnionPokeFormReturn( VM_MACHINE * core )
@@ -1084,7 +1084,7 @@ BOOL EvCmdUnionPokeFormReturn( VM_MACHINE * core )
 	party_max	= PokeParty_GetPokeCount(party);
 	*ret_wk		= 0;
 	
-	//è‚¿‚ÌƒnƒbƒLƒ“ƒ_ƒ}‚Ì”‚ğƒJƒEƒ“ƒg
+	//æ‰‹æŒã¡ã®ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 	for(pos = 0; pos < party_max; pos++){
 		poke = PokeParty_GetMemberPointer(party, pos);
 		item_array[pos] = PokeParaGet(poke, ID_PARA_item, NULL);
@@ -1093,18 +1093,18 @@ BOOL EvCmdUnionPokeFormReturn( VM_MACHINE * core )
 		}
 	}
 
-	//ƒnƒbƒLƒ“ƒ_ƒ}‚ğƒoƒbƒO‚Ö–ß‚·
+	//ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã‚’ãƒãƒƒã‚°ã¸æˆ»ã™
 	if(hakkin_num > 0){
 
 		ret = MyItem_AddItem(	SaveData_GetMyItem(fsys->savedata), 
 								ITEM_HAKKINDAMA, hakkin_num, HEAPID_FIELD);
 
 		if(ret == FALSE){
-			*ret_wk = 0xff;	//ƒnƒbƒLƒ“ƒ_ƒ}‚ğè‚¿‚É–ß‚¹‚È‚©‚Á‚½
+			*ret_wk = 0xff;	//ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã‚’æ‰‹æŒã¡ã«æˆ»ã›ãªã‹ã£ãŸ
 			return 0;
 		}
 
-		//ƒoƒbƒO‚É–ß‚µ‚½‚Ì‚ÅƒnƒbƒLƒ“ƒ_ƒ}‚ğŠ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒeƒ€‚ğ–³‚µ‚É‚·‚é
+		//ãƒãƒƒã‚°ã«æˆ»ã—ãŸã®ã§ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã‚’æ‰€æŒã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç„¡ã—ã«ã™ã‚‹
 		set_item = 0;
 		for(pos = 0; pos < party_max; pos++){
 			if(item_array[pos] == ITEM_HAKKINDAMA){
@@ -1114,7 +1114,7 @@ BOOL EvCmdUnionPokeFormReturn( VM_MACHINE * core )
 		}
 	}
 	
-	//ƒMƒ‰ƒeƒBƒiAƒVƒFƒCƒ~Aƒƒgƒ€‚ÌƒtƒHƒ‹ƒ€‚ğ–ß‚·
+	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€ã‚·ã‚§ã‚¤ãƒŸã€ãƒ­ãƒˆãƒ ã®ãƒ•ã‚©ãƒ«ãƒ ã‚’æˆ»ã™
 	for(pos = 0; pos < party_max; pos++){
 
 		poke	= PokeParty_GetMemberPointer(party, pos);
@@ -1125,14 +1125,14 @@ BOOL EvCmdUnionPokeFormReturn( VM_MACHINE * core )
 			monsno = PokeParaGet(poke, ID_PARA_monsno, NULL);
 
 			switch(monsno){
-			case MONSNO_KIMAIRAN:	//ƒMƒ‰ƒeƒBƒi
-				//ã‚ÅƒnƒbƒLƒ“ƒ_ƒ}‚Íæ‚èã‚°‚Ä‚¢‚é‚Ì‚ÅÄŒvZ‚¾‚¯‚·‚é
+			case MONSNO_KIMAIRAN:	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
+				//ä¸Šã§ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã¯å–ã‚Šä¸Šã’ã¦ã„ã‚‹ã®ã§å†è¨ˆç®—ã ã‘ã™ã‚‹
 				PokeParaGirathinaFormChange(poke);
 				break;
-			case MONSNO_PURAZUMA:	//ƒƒgƒ€
+			case MONSNO_PURAZUMA:	//ãƒ­ãƒˆãƒ 
 				PokeParaRotomuFormChange(poke, FORMNO_ROTOMU_NORMAL, 0);
 				break;
-			case MONSNO_EURISU:		//ƒVƒFƒCƒ~
+			case MONSNO_EURISU:		//ã‚·ã‚§ã‚¤ãƒŸ
 				PokeParaSheimiFormChange(poke, FORMNO_SHEIMI_NORMAL);
 				break;
 			}
@@ -1144,7 +1144,7 @@ BOOL EvCmdUnionPokeFormReturn( VM_MACHINE * core )
 
 //==============================================================================
 //
-//	ˆç‚Ä‰®‚É—a‚¯‚é‘O‚ÉƒtƒHƒ‹ƒ€‚ğ–ß‚·(EvCmdUnionPokeFormReturn‚Ì’P•iƒo[ƒWƒ‡ƒ“)
+//	è‚²ã¦å±‹ã«é ã‘ã‚‹å‰ã«ãƒ•ã‚©ãƒ«ãƒ ã‚’æˆ»ã™(EvCmdUnionPokeFormReturnã®å˜å“ãƒãƒ¼ã‚¸ãƒ§ãƒ³)
 //
 //==============================================================================
 BOOL EvCmdSodateyaPokeFormReturn( VM_MACHINE * core )
@@ -1156,19 +1156,19 @@ BOOL EvCmdSodateyaPokeFormReturn( VM_MACHINE * core )
 	int item;
 	int ret;
 	FIELDSYS_WORK* fsys	= core->fsys;
-	u16 poke_pos		= VMGetWorkValue( core );				//è‚¿ˆÊ’u
+	u16 poke_pos		= VMGetWorkValue( core );				//æ‰‹æŒã¡ä½ç½®
 	u16* ret_wk			= VMGetWork( core );
 	
 	party	= SaveData_GetTemotiPokemon(fsys->savedata);
 	poke	= PokeParty_GetMemberPointer(party, poke_pos);
 	*ret_wk = 0;
 	
-	//ƒŠƒXƒg‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚½’l‚ª“ü‚Á‚Ä‚¢‚é‚Í‰½‚à‚µ‚È‚¢
+	//ãƒªã‚¹ãƒˆã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸå€¤ãŒå…¥ã£ã¦ã„ã‚‹æ™‚ã¯ä½•ã‚‚ã—ãªã„
 	if( poke_pos == 0xff ){
 		return 0;
 	}
 
-	//ƒnƒbƒLƒ“ƒ_ƒ}Šm”F
+	//ãƒãƒƒã‚­ãƒ³ãƒ€ãƒç¢ºèª
 	item = PokeParaGet(poke, ID_PARA_item, NULL);
 
 	if(item == ITEM_HAKKINDAMA){
@@ -1177,16 +1177,16 @@ BOOL EvCmdSodateyaPokeFormReturn( VM_MACHINE * core )
 								ITEM_HAKKINDAMA, 1, HEAPID_FIELD);
 
 		if(ret == FALSE){
-			*ret_wk = 0xff;	//ƒnƒbƒLƒ“ƒ_ƒ}‚ğè‚¿‚É–ß‚¹‚È‚©‚Á‚½
+			*ret_wk = 0xff;	//ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã‚’æ‰‹æŒã¡ã«æˆ»ã›ãªã‹ã£ãŸ
 			return 0;
 		}
 
-		//ƒoƒbƒO‚É–ß‚µ‚½‚Ì‚ÅƒnƒbƒLƒ“ƒ_ƒ}‚ğŠ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒeƒ€‚ğ–³‚µ‚É‚·‚é
+		//ãƒãƒƒã‚°ã«æˆ»ã—ãŸã®ã§ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã‚’æ‰€æŒã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç„¡ã—ã«ã™ã‚‹
 		set_item = 0;
 		PokeParaPut(poke, ID_PARA_item, &set_item);
 	}
 	
-	//ƒMƒ‰ƒeƒBƒiAƒVƒFƒCƒ~Aƒƒgƒ€‚ÌƒtƒHƒ‹ƒ€‚ğ–ß‚·
+	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€ã‚·ã‚§ã‚¤ãƒŸã€ãƒ­ãƒˆãƒ ã®ãƒ•ã‚©ãƒ«ãƒ ã‚’æˆ»ã™
 	form_no = PokeParaGet(poke, ID_PARA_form_no, NULL);
 
 	if(form_no > 0){
@@ -1194,14 +1194,14 @@ BOOL EvCmdSodateyaPokeFormReturn( VM_MACHINE * core )
 		monsno = PokeParaGet(poke, ID_PARA_monsno, NULL);
 
 		switch(monsno){
-		case MONSNO_KIMAIRAN:	//ƒMƒ‰ƒeƒBƒi
-			//ã‚ÅƒnƒbƒLƒ“ƒ_ƒ}‚Íæ‚èã‚°‚Ä‚¢‚é‚Ì‚ÅÄŒvZ‚¾‚¯‚·‚é
+		case MONSNO_KIMAIRAN:	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
+			//ä¸Šã§ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã¯å–ã‚Šä¸Šã’ã¦ã„ã‚‹ã®ã§å†è¨ˆç®—ã ã‘ã™ã‚‹
 			PokeParaGirathinaFormChange(poke);
 			break;
-		case MONSNO_PURAZUMA:	//ƒƒgƒ€
+		case MONSNO_PURAZUMA:	//ãƒ­ãƒˆãƒ 
 			PokeParaRotomuFormChange(poke, FORMNO_ROTOMU_NORMAL, 0);
 			break;
-		case MONSNO_EURISU:		//ƒVƒFƒCƒ~
+		case MONSNO_EURISU:		//ã‚·ã‚§ã‚¤ãƒŸ
 			PokeParaSheimiFormChange(poke, FORMNO_SHEIMI_NORMAL);
 			break;
 		}
@@ -1212,22 +1212,22 @@ BOOL EvCmdSodateyaPokeFormReturn( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW
+//	ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸
 //
 //============================================================================================
 BOOL EvCmdPokeFormChange( VM_MACHINE * core );
 
-//ƒtƒHƒ‹ƒ€‚ª‘‚¦‚½‚ç‘Î‰‚µ‚È‚¢‚Æƒ_ƒI
+//ãƒ•ã‚©ãƒ«ãƒ ãŒå¢—ãˆãŸã‚‰å¯¾å¿œã—ãªã„ã¨ãƒ€ãƒ¡ï¼
 #include "battle/battle_server.h"
 #include "battle/wazano_def.h"
 #include "ev_pokemon.h"
 static const u8 pura_form_tbl[FORMNO_ROTOMU_MAX] = {
-	//FORMNO_ROTOMU_NORMAL,				//ƒm[ƒ}ƒ‹ƒtƒHƒ‹ƒ€
-	FORMNO_ROTOMU_HOT,					//“dqƒŒƒ“ƒWƒtƒHƒ‹ƒ€
-	FORMNO_ROTOMU_WASH,					//ô‘ó‹@ƒtƒHƒ‹ƒ€
-	FORMNO_ROTOMU_COLD,					//—â‘ ŒÉƒtƒHƒ‹ƒ€
-	FORMNO_ROTOMU_FAN,					//î•—‹@ƒtƒHƒ‹ƒ€
-	FORMNO_ROTOMU_CUT,					//‘Š ‚è‹@ƒtƒHƒ‹ƒ€
+	//FORMNO_ROTOMU_NORMAL,				//ãƒãƒ¼ãƒãƒ«ãƒ•ã‚©ãƒ«ãƒ 
+	FORMNO_ROTOMU_HOT,					//é›»å­ãƒ¬ãƒ³ã‚¸ãƒ•ã‚©ãƒ«ãƒ 
+	FORMNO_ROTOMU_WASH,					//æ´—æ¿¯æ©Ÿãƒ•ã‚©ãƒ«ãƒ 
+	FORMNO_ROTOMU_COLD,					//å†·è”µåº«ãƒ•ã‚©ãƒ«ãƒ 
+	FORMNO_ROTOMU_FAN,					//æ‰‡é¢¨æ©Ÿãƒ•ã‚©ãƒ«ãƒ 
+	FORMNO_ROTOMU_CUT,					//è‰åˆˆã‚Šæ©Ÿãƒ•ã‚©ãƒ«ãƒ 
 };
 
 static const u16 pura_waza_tbl[FORMNO_ROTOMU_MAX] = {
@@ -1241,7 +1241,7 @@ static const u16 pura_waza_tbl[FORMNO_ROTOMU_MAX] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸
  *
  * @param	none
  *
@@ -1252,10 +1252,10 @@ BOOL EvCmdPokeFormChange( VM_MACHINE * core )
 {
 	POKEMON_PARAM* poke;
 	FIELDSYS_WORK* fsys	= core->fsys;
-	u16 pos				= VMGetWorkValue( core );	//è‚¿‚Ì‰½”Ô–Ú‚©‚ğ‘ã“ü‚µ‚Ä‚¨‚­
-	u16 no				= VMGetWorkValue( core );	//form‚Ç‚ê‚©
+	u16 pos				= VMGetWorkValue( core );	//æ‰‹æŒã¡ã®ä½•ç•ªç›®ã‹ã‚’ä»£å…¥ã—ã¦ãŠã
+	u16 no				= VMGetWorkValue( core );	//formã©ã‚Œã‹
 
-	//ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), pos );
 	PokeParaPut( poke, ID_PARA_form_no, &no );
 	return 0;
@@ -1263,7 +1263,7 @@ BOOL EvCmdPokeFormChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒgƒ€‚ÌƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚ªè‚¿‚É‰½•C‚¢‚é‚©æ“¾AÅ‰‚ÉŒ©‚Â‚¯‚½è‚¿ˆÊ’u‚àæ“¾
+ * @brief	ãƒ­ãƒˆãƒ ã®ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ãŒæ‰‹æŒã¡ã«ä½•åŒ¹ã„ã‚‹ã‹å–å¾—ã€æœ€åˆã«è¦‹ã¤ã‘ãŸæ‰‹æŒã¡ä½ç½®ã‚‚å–å¾—
  *
  * @param	none
  *
@@ -1286,7 +1286,7 @@ BOOL EvCmdTemotiRotomuFormChangeGet( VM_MACHINE * core )
 	party = SaveData_GetTemotiPokemon( fsys->savedata );
 	temoti_max = PokeParty_GetPokeCount( party );
 
-	//ƒ^ƒ}ƒS‚Å‚È‚¢Aƒm[ƒ}ƒ‹ƒtƒHƒ‹ƒ€‚Å‚È‚¢Aƒƒgƒ€‚Ì”‚ğæ“¾
+	//ã‚¿ãƒã‚´ã§ãªã„ã€ãƒãƒ¼ãƒãƒ«ãƒ•ã‚©ãƒ«ãƒ ã§ãªã„ã€ãƒ­ãƒˆãƒ ã®æ•°ã‚’å–å¾—
 	for( i=0; i < temoti_max; i++ ){
 
 		pp = PokeParty_GetMemberPointer( party, i );
@@ -1300,7 +1300,7 @@ BOOL EvCmdTemotiRotomuFormChangeGet( VM_MACHINE * core )
 
 		if( (monsno == MONSNO_PURAZUMA) && (form_no != FORMNO_ROTOMU_NORMAL) && (tamago_flag == 0)){
 
-			//Å‰‚ÉŒ©‚Â‚¯‚½è‚¿ˆÊ’u‚ğ•Û‘¶
+			//æœ€åˆã«è¦‹ã¤ã‘ãŸæ‰‹æŒã¡ä½ç½®ã‚’ä¿å­˜
 			if( *ret_wk2 == 0xff ){
 				*ret_wk2 = i;
 			}
@@ -1310,14 +1310,14 @@ BOOL EvCmdTemotiRotomuFormChangeGet( VM_MACHINE * core )
 	}
 
 	*ret_wk = count;
-	OS_Printf( "” *ret_wk = %d\n", *ret_wk );
-	OS_Printf( "ˆÊ’u *ret_wk2 = %d\n", *ret_wk2 );
+	OS_Printf( "æ•° *ret_wk = %d\n", *ret_wk );
+	OS_Printf( "ä½ç½® *ret_wk2 = %d\n", *ret_wk2 );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒgƒ€‚ÌƒtƒHƒ‹ƒ€‚ğ•Ï‚¦‚½‚Ì‹Z‘‚«Š·‚¦
+ * @brief	ãƒ­ãƒˆãƒ ã®ãƒ•ã‚©ãƒ«ãƒ ã‚’å¤‰ãˆãŸæ™‚ã®æŠ€æ›¸ãæ›ãˆ
  *
  * @param	none
  *
@@ -1331,23 +1331,23 @@ BOOL EvCmdRotomuFormWazaChange( VM_MACHINE * core )
 	POKEMON_PARAM* poke;
 	POKEPARTY* party;
 	FIELDSYS_WORK* fsys	= core->fsys;
-	u16 poke_pos	= VMGetWorkValue( core );				//è‚¿ˆÊ’u
-	u16 waza_pos	= VMGetWorkValue( core );				//‹Z‚ÌˆÊ’u
-	u16 waza		= VMGetWorkValue( core );				//Šo‚¦‚é‹Z
-	u16 next_form	= VMGetWorkValue( core );				//Ÿ‚ÌƒtƒHƒ‹ƒ€
+	u16 poke_pos	= VMGetWorkValue( core );				//æ‰‹æŒã¡ä½ç½®
+	u16 waza_pos	= VMGetWorkValue( core );				//æŠ€ã®ä½ç½®
+	u16 waza		= VMGetWorkValue( core );				//è¦šãˆã‚‹æŠ€
+	u16 next_form	= VMGetWorkValue( core );				//æ¬¡ã®ãƒ•ã‚©ãƒ«ãƒ 
 
 	party = SaveData_GetTemotiPokemon( fsys->savedata );
 	poke = PokeParty_GetMemberPointer( party, poke_pos );
 
-#if 1	//2008.03.27(–Ø)@matsuda
+#if 1	//2008.03.27(æœ¨)ã€€matsuda
 	PokeParaRotomuFormChange(poke, next_form, waza_pos);
-	ZukanWork_SetPokeGet(SaveData_GetZukanWork(fsys->savedata), poke);//}ŠÓ“o˜^
+	ZukanWork_SetPokeGet(SaveData_GetZukanWork(fsys->savedata), poke);//å›³é‘‘ç™»éŒ²
 #else
 
 	now_form_no = PokeParaGet( poke, ID_PARA_form_no, NULL );
 
 	///////////////////////////////////////
-	//ƒm[ƒ}ƒ‹‚©‚çˆá‚¤ƒtƒHƒ‹ƒ€‚É•ÏX‚·‚é
+	//ãƒãƒ¼ãƒãƒ«ã‹ã‚‰é•ã†ãƒ•ã‚©ãƒ«ãƒ ã«å¤‰æ›´ã™ã‚‹æ™‚
 	///////////////////////////////////////
 	if( now_form_no == FORMNO_ROTOMU_NORMAL ){
 
@@ -1357,17 +1357,17 @@ BOOL EvCmdRotomuFormWazaChange( VM_MACHINE * core )
 	}else{
 		for( i=0; i < FORMNO_ROTOMU_MAX ;i++ ){
 			if( now_form_no == pura_form_tbl[i] ){
-				del_waza_no = pura_waza_tbl[i];				//¡‚ÌƒtƒHƒ‹ƒ€‚Ìê—p‹Z‚ğæ“¾
+				del_waza_no = pura_waza_tbl[i];				//ä»Šã®ãƒ•ã‚©ãƒ«ãƒ ã®å°‚ç”¨æŠ€ã‚’å–å¾—
 				break;
 			}
 		}
 
 		/////////////////////////////////
-		//ƒm[ƒ}ƒ‹‚É–ß‚·
+		//ãƒãƒ¼ãƒãƒ«ã«æˆ»ã™æ™‚
 		/////////////////////////////////
 		if( next_form == FORMNO_ROTOMU_NORMAL ){
 
-			//w’è‚³‚ê‚½‹Z(ê—p‹Z)‚ğ‚à‚Á‚Ä‚¢‚½‚ç–Y‚ê‚³‚¹‚é
+			//æŒ‡å®šã•ã‚ŒãŸæŠ€(å°‚ç”¨æŠ€)ã‚’ã‚‚ã£ã¦ã„ãŸã‚‰å¿˜ã‚Œã•ã›ã‚‹
 			for( i=0; i < 4 ;i++ ){
 				if( PokeParaGet(poke,ID_PARA_waza1+i,NULL) == del_waza_no ){
 					PokeParaWazaDelPos( poke, i );
@@ -1375,7 +1375,7 @@ BOOL EvCmdRotomuFormWazaChange( VM_MACHINE * core )
 				}
 			}
 
-			//‹Z‚Ì”‚ª0‚É‚È‚Á‚Ä‚¢‚½‚çu‚Å‚ñ‚«ƒVƒ‡ƒbƒNv‚ğŠo‚¦‚³‚¹‚Ä‚¨‚­
+			//æŠ€ã®æ•°ãŒ0ã«ãªã£ã¦ã„ãŸã‚‰ã€Œã§ã‚“ãã‚·ãƒ§ãƒƒã‚¯ã€ã‚’è¦šãˆã•ã›ã¦ãŠã
 			waza_count = 0;
 			for( i=0; i < 4 ;i++ ){
 				if( PokeParaGet(poke,ID_PARA_waza1+i,NULL) != 0 ){
@@ -1389,11 +1389,11 @@ BOOL EvCmdRotomuFormWazaChange( VM_MACHINE * core )
 			}
 
 		/////////////////////////////////
-		//‚³‚ç‚Éˆá‚¤ƒtƒHƒ‹ƒ€‚É•ÏX‚·‚é
+		//ã•ã‚‰ã«é•ã†ãƒ•ã‚©ãƒ«ãƒ ã«å¤‰æ›´ã™ã‚‹æ™‚
 		/////////////////////////////////
 		}else{
 
-			//w’è‚³‚ê‚½‹Z(ê—p‹Z)‚ğ‚à‚Á‚Ä‚¢‚½‚çAŸ‚ÌƒtƒHƒ‹ƒ€‚Ì‹Z‚É’u‚«Š·‚¦‚é
+			//æŒ‡å®šã•ã‚ŒãŸæŠ€(å°‚ç”¨æŠ€)ã‚’ã‚‚ã£ã¦ã„ãŸã‚‰ã€æ¬¡ã®ãƒ•ã‚©ãƒ«ãƒ ã®æŠ€ã«ç½®ãæ›ãˆã‚‹
 			for( i=0; i < 4 ;i++ ){
 				if( PokeParaGet(poke,ID_PARA_waza1+i,NULL) == del_waza_no ){
 					EvPoke_ChangeWaza(	SaveData_GetTemotiPokemon(core->fsys->savedata), poke_pos, 
@@ -1402,7 +1402,7 @@ BOOL EvCmdRotomuFormWazaChange( VM_MACHINE * core )
 				}
 			}
 
-			//w’è‚³‚ê‚½‹Z‚ğ‚à‚Á‚Ä‚¢‚È‚©‚Á‚½‚çAƒvƒŒƒCƒ„[‚ª‘I‘ğ‚µ‚½‹ZˆÊ’u‚ğ‘‚«Š·‚¦‚é
+			//æŒ‡å®šã•ã‚ŒãŸæŠ€ã‚’ã‚‚ã£ã¦ã„ãªã‹ã£ãŸã‚‰ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒé¸æŠã—ãŸæŠ€ä½ç½®ã‚’æ›¸ãæ›ãˆã‚‹
 			if( i == 4 ){
 				EvPoke_ChangeWaza(	SaveData_GetTemotiPokemon(core->fsys->savedata), poke_pos, 
 									waza_pos, waza );
@@ -1416,13 +1416,13 @@ BOOL EvCmdRotomuFormWazaChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚ß‚´‚ß‚éƒpƒ[‚Ìƒ^ƒCƒv‚ğæ“¾
+ * @brief	ã‚ã–ã‚ã‚‹ãƒ‘ãƒ¯ãƒ¼ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
  * @param	none
  *
  * @retval	0
  *
- * ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğŒ©‚ÄAŠo‚¦‚ç‚ê‚È‚¢ƒ|ƒPƒ‚ƒ“”»•Ê‚ğ‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI
+ * ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’è¦‹ã¦ã€è¦šãˆã‚‰ã‚Œãªã„ãƒã‚±ãƒ¢ãƒ³åˆ¤åˆ¥ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼
  */
 //--------------------------------------------------------------
 BOOL EvCmdMezameruPawaaTypeGet( VM_MACHINE * core )
@@ -1431,10 +1431,10 @@ BOOL EvCmdMezameruPawaaTypeGet( VM_MACHINE * core )
 	int power,type;
 	POKEMON_PARAM* poke;
 	FIELDSYS_WORK* fsys	= core->fsys;
-	u16 pos				= VMGetWorkValue( core );	//è‚¿‚Ì‰½”Ô–Ú‚©‚ğ‘ã“ü‚µ‚Ä‚¨‚­
+	u16 pos				= VMGetWorkValue( core );	//æ‰‹æŒã¡ã®ä½•ç•ªç›®ã‹ã‚’ä»£å…¥ã—ã¦ãŠã
 	u16*ret_wk			= VMGetWork( core );	//
 
-	//ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), pos );
 
 	monsno = PokeParaGet( poke, ID_PARA_monsno, NULL );
@@ -1455,14 +1455,14 @@ BOOL EvCmdMezameruPawaaTypeGet( VM_MACHINE * core )
 		case MONSNO_SOONANO:
 		case MONSNO_DANBARU:
 		case MONSNO_MINOMUTTI:
-		case MONSNO_HEKISAGON:		//ƒ~ƒcƒnƒj[
-		case MONSNO_KOBOSI:			//ƒRƒƒ{[ƒV
-			*ret_wk = 0xffff;		//‚È‚µƒR[ƒh‚ğ‚¢‚ê‚Ä‚¨‚­
+		case MONSNO_HEKISAGON:		//ãƒŸãƒ„ãƒãƒ‹ãƒ¼
+		case MONSNO_KOBOSI:			//ã‚³ãƒ­ãƒœãƒ¼ã‚·
+			*ret_wk = 0xffff;		//ãªã—ã‚³ãƒ¼ãƒ‰ã‚’ã„ã‚Œã¦ãŠã
 			return 0;
 		};
 	}
 
-	//‚ß‚´‚ß‚éƒpƒ[‚Ìƒ^ƒCƒv‚ğæ“¾
+	//ã‚ã–ã‚ã‚‹ãƒ‘ãƒ¯ãƒ¼ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 	GetMezameruPowerParam( poke, &power, &type );
 	*ret_wk = type;
 	//*ret_wk2 = power;
@@ -1471,11 +1471,11 @@ BOOL EvCmdMezameruPawaaTypeGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚ß‚´‚ß‚éƒpƒ[‚ÌˆĞ—Í‚Æƒ^ƒCƒv‚ğæ“¾
+ * @brief	ã‚ã–ã‚ã‚‹ãƒ‘ãƒ¯ãƒ¼ã®å¨åŠ›ã¨ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- * @param[in]	pp		æ“¾‚·‚éPokemonParam\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[out]	power	ˆĞ—Í‚ğŠi”[‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^iNULLw’è‚Åæ“¾‚È‚µj
- * @param[out]	type	ˆĞ—Í‚ğŠi”[‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^iNULLw’è‚Åæ“¾‚È‚µj
+ * @param[in]	pp		å–å¾—ã™ã‚‹PokemonParamæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[out]	power	å¨åŠ›ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆNULLæŒ‡å®šã§å–å¾—ãªã—ï¼‰
+ * @param[out]	type	å¨åŠ›ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆNULLæŒ‡å®šã§å–å¾—ãªã—ï¼‰
  */
 //--------------------------------------------------------------
 static void	GetMezameruPowerParam(POKEMON_PARAM *pp,int *power,int *type)
@@ -1521,7 +1521,7 @@ static void	GetMezameruPowerParam(POKEMON_PARAM *pp,int *power,int *type)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚µ‚½ƒƒgƒ€‚ª‚¢‚é‚©ƒ`ƒFƒbƒN(‘S‚Äƒ`ƒFƒbƒN)
+ * @brief	ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã—ãŸãƒ­ãƒˆãƒ ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯(å…¨ã¦ãƒã‚§ãƒƒã‚¯)
  *
  * @param	none
  *
@@ -1533,7 +1533,7 @@ static u32 MyRotomuFormCheck(SAVEDATA *sv);
 
 #include "battle/battle_server.h"
 #if 0
-// ƒƒgƒ€‚ÌƒtƒHƒ‹ƒ€’è‹`(BITw’è)
+// ãƒ­ãƒˆãƒ ã®ãƒ•ã‚©ãƒ«ãƒ å®šç¾©(BITæŒ‡å®š)
 #define FORMNO_ROTOMU_BIT_NORMAL		(1 << FORMNO_ROTOMU_NORMAL)
 #define FORMNO_ROTOMU_BIT_HOT			(1 << FORMNO_ROTOMU_HOT)
 #define FORMNO_ROTOMU_BIT_WASH			(1 << FORMNO_ROTOMU_WASH)
@@ -1589,12 +1589,12 @@ BOOL EvCmdRotomuFormCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚Ìè‚¿Aƒ{ƒbƒNƒXAˆç‚Ä‰®A‚©‚çƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚µ‚½ƒƒgƒ€‚ª‚¢‚é‚©æ“¾
+ * @brief   è‡ªåˆ†ã®æ‰‹æŒã¡ã€ãƒœãƒƒã‚¯ã‚¹ã€è‚²ã¦å±‹ã€ã‹ã‚‰ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã—ãŸãƒ­ãƒˆãƒ ãŒã„ã‚‹ã‹å–å¾—
  *
- * @param   sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  FORMNO_ROTOMU_BIT_??? ‚ª OR‚Ì‘˜a‚Å•Ô‚Á‚Ä‚«‚Ü‚·
- * 			¦ƒm[ƒ}ƒ‹ƒtƒHƒ‹ƒ€‚Å‚àƒrƒbƒg‚ª—§‚Â‚±‚Æ‚É’ˆÓ
+ * @retval  FORMNO_ROTOMU_BIT_??? ãŒ ORã®ç·å’Œã§è¿”ã£ã¦ãã¾ã™
+ * 			â€»ãƒãƒ¼ãƒãƒ«ãƒ•ã‚©ãƒ«ãƒ ã§ã‚‚ãƒ“ãƒƒãƒˆãŒç«‹ã¤ã“ã¨ã«æ³¨æ„
  */
 //--------------------------------------------------------------
 static u32 MyRotomuFormCheck(SAVEDATA *sv)
@@ -1606,7 +1606,7 @@ static u32 MyRotomuFormCheck(SAVEDATA *sv)
 	
 	form_bit = 0;
 	
-	//è‚¿ƒ`ƒFƒbƒN
+	//æ‰‹æŒã¡ãƒã‚§ãƒƒã‚¯
 	{
 		POKEPARTY *party;
 		int temoti_max;
@@ -1622,7 +1622,7 @@ static u32 MyRotomuFormCheck(SAVEDATA *sv)
 		}
 	}
 	
-	//ˆç‚Ä‰®ƒ`ƒFƒbƒN
+	//è‚²ã¦å±‹ãƒã‚§ãƒƒã‚¯
 	{
 		SODATEYA_WORK *sodateya;
 		SODATEYA_POKE *s_poke;
@@ -1638,7 +1638,7 @@ static u32 MyRotomuFormCheck(SAVEDATA *sv)
 		}
 	}
 	
-	//ƒ{ƒbƒNƒXƒ`ƒFƒbƒN
+	//ãƒœãƒƒã‚¯ã‚¹ãƒã‚§ãƒƒã‚¯
 	{
 		BOX_DATA *boxdata;
 		u32 tray;
@@ -1661,13 +1661,13 @@ static u32 MyRotomuFormCheck(SAVEDATA *sv)
 
 //============================================================================================
 //
-//	‚¨‹C‚É“ü‚èƒ|ƒPƒ‚ƒ“
+//	ãŠæ°—ã«å…¥ã‚Šãƒã‚±ãƒ¢ãƒ³
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‚¨‹C‚É“ü‚èƒ|ƒPƒ‚ƒ“‚ÌƒZƒbƒg
+ * @brief	ãŠæ°—ã«å…¥ã‚Šãƒã‚±ãƒ¢ãƒ³ã®ã‚»ãƒƒãƒˆ
  *
  * @param	none
  *
@@ -1680,7 +1680,7 @@ BOOL EvCmdSetFavoritePoke( VM_MACHINE * core )
 	POKEMON_PARAM* poke;
 	FIELDSYS_WORK* fsys	= core->fsys;
 
-	//æ“ªƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), 0 );
 
 	misc = SaveData_GetMisc( fsys->savedata );
@@ -1693,7 +1693,7 @@ BOOL EvCmdSetFavoritePoke( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚¨‹C‚É“ü‚èƒ|ƒPƒ‚ƒ“‚Ìæ“¾
+ * @brief	ãŠæ°—ã«å…¥ã‚Šãƒã‚±ãƒ¢ãƒ³ã®å–å¾—
  *
  * @param	none
  *
@@ -1721,7 +1721,7 @@ BOOL EvCmdGetFavoritePoke( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	w’è‚µ‚½ˆÊ’u‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ğ‚©‚¦‚·(ƒƒgƒ€—p)
+ * @brief	æŒ‡å®šã—ãŸä½ç½®ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ã‹ãˆã™(ãƒ­ãƒˆãƒ ç”¨)
  *
  * @param	none
  *
@@ -1747,7 +1747,7 @@ BOOL EvCmdTemotiRotomuFormNoGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	•Ê‘‘‚ÌƒŠƒXƒg•\¦‰Â”\‚©ƒ`ƒFƒbƒN
+ * @brief	åˆ¥è˜ã®ãƒªã‚¹ãƒˆè¡¨ç¤ºå¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param	none
  *
@@ -1768,9 +1768,9 @@ BOOL EvCmdVillaListCheck( VM_MACHINE * core )
 
 	switch( no ){
 
-	//ƒ|ƒPƒ‚ƒ“‚¼‚¤1
+	//ãƒã‚±ãƒ¢ãƒ³ãã†1
 	case 13:
-		//ƒtƒƒ“ƒeƒBƒA‘S{İ1ŸˆÈã‚µ‚Ä‚¢‚éH
+		//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å…¨æ–½è¨­1å‹ä»¥ä¸Šã—ã¦ã„ã‚‹ï¼Ÿ
 		if( RECORD_Get(rec,RECID_BTOWER_WIN) < 1 ){
 			*ret_wk = 0;
 		}
@@ -1792,11 +1792,11 @@ BOOL EvCmdVillaListCheck( VM_MACHINE * core )
 		}
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“‚¼‚¤2
+	//ãƒã‚±ãƒ¢ãƒ³ãã†2
 	case 14:
 		*ret_wk = 0;		//NG
 
-		//‹âƒVƒ“ƒ{ƒ‹‚ğ‚Ç‚ê‚©1ƒRæ“¾‚µ‚Ä‚¢‚éH
+		//éŠ€ã‚·ãƒ³ãƒœãƒ«ã‚’ã©ã‚Œã‹1ã‚³å–å¾—ã—ã¦ã„ã‚‹ï¼Ÿ
 		if( SysWork_MemoryPrintFactory(ev) >= MEMORY_PRINT_PUT_OK_1ST ){
 			*ret_wk = 1;
 		}
@@ -1818,41 +1818,41 @@ BOOL EvCmdVillaListCheck( VM_MACHINE * core )
 		}
 		break;
 
-	//ƒsƒAƒm
+	//ãƒ”ã‚¢ãƒ
 	case 15:
-		//“a“°“ü‚èƒJƒEƒ“ƒg10ˆÈãH
+		//æ®¿å ‚å…¥ã‚Šã‚«ã‚¦ãƒ³ãƒˆ10ä»¥ä¸Šï¼Ÿ
 		if( RECORD_Get(rec,RECID_DENDOU_CNT) < 10 ){
 			*ret_wk = 0;
 		}
 		break;
 
-	//‚¨‚¤‚¹‚ÂƒZƒbƒg
+	//ãŠã†ã›ã¤ã‚»ãƒƒãƒˆ
 	case 16:
-		//Äí{İ‚Åí“¬‚µ‚½‰ñ”50ˆÈãH
+		//å†æˆ¦æ–½è¨­ã§æˆ¦é—˜ã—ãŸå›æ•°50ä»¥ä¸Šï¼Ÿ
 		if( RECORD_Get(rec,RECID_LEADERHOUSE_BATTLE) < 50 ){
 			*ret_wk = 0;
 		}
 		break;
 
-	//‚©‚×‚Ç‚¯‚¢
+	//ã‹ã¹ã©ã‘ã„
 	case 17:
-		//–Ø‚ÌÀ‚ğA‚¦‚½‰ñ”50ˆÈãH
+		//æœ¨ã®å®Ÿã‚’æ¤ãˆãŸå›æ•°50ä»¥ä¸Šï¼Ÿ
 		if( RECORD_Get(rec,RECID_NUTS_PLANT) < 50 ){
 			*ret_wk = 0;
 		}
 		break;
 
-	//‚·‚Î‚ç‚µ‚¢‚ß‚¢‚ª
+	//ã™ã°ã‚‰ã—ã„ã‚ã„ãŒ
 	case 18:
-		//ƒ^ƒ}ƒS›z‰»‚µ‚½‰ñ”30ˆÈãH
+		//ã‚¿ãƒã‚´å­µåŒ–ã—ãŸå›æ•°30ä»¥ä¸Šï¼Ÿ
 		if( RECORD_Get(rec,RECID_TAMAGO_HATCHING) < 30 ){
 			*ret_wk = 0;
 		}
 		break;
 
-	//ƒVƒƒƒ“ƒfƒŠƒA
+	//ã‚·ãƒ£ãƒ³ãƒ‡ãƒªã‚¢
 	case 20:
-		//•à”ƒJƒEƒ“ƒ^[300000ˆÈãH
+		//æ­©æ•°ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼300000ä»¥ä¸Šï¼Ÿ
 		if( RECORD_Get(rec,RECID_WALK_COUNT) < 300000 ){
 			*ret_wk = 0;
 		}
@@ -1865,16 +1865,16 @@ BOOL EvCmdVillaListCheck( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒhƒŒƒXƒAƒbƒv‘—MÏ‚İƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚·‚é
+ *	@brief	ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—é€ä¿¡æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  *
- *	@param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *	@return "1"
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdImageClipTvSendFlagReset( VM_MACHINE * core )
 {
-#if 0	//ƒtƒ‰ƒO©‘Ì–³‚­‚È‚Á‚½2008.06.21(“y) matsuda
+#if 0	//ãƒ•ãƒ©ã‚°è‡ªä½“ç„¡ããªã£ãŸ2008.06.21(åœŸ) matsuda
 	FIELDSYS_WORK* fsys	= core->fsys;
 	MISC * misc;
 	
@@ -1889,7 +1889,7 @@ typedef struct{
 	s16 z;
 }POS;
 
-//“¥‚ŞˆÊ’u
+//è¸ã‚€ä½ç½®
 static const POS rezi_d35r0102_pos[] = {
 	{ 4,	7 },	//
 	{ 5,	5 },	//
@@ -1925,9 +1925,9 @@ static const POS rezi_d35r0106_pos[] = {
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŒƒWƒ}ƒbƒv‚Ì°ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¬ã‚¸ãƒãƒƒãƒ—ã®åºŠãƒã‚§ãƒƒã‚¯
  *
- *	@param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *	@return "0"
  */
@@ -1976,7 +1976,7 @@ BOOL EvCmdD35FloorSet( VM_MACHINE * core )
 		break;
 	};
 
-	//‘S‚Ä‚Ì°‚ğ“¥‚ñ‚¾
+	//å…¨ã¦ã®åºŠã‚’è¸ã‚“ã 
 	if( *wk == all_num ){
 		*wk = REZI_WORK_POS_OK;
 	}
@@ -1988,13 +1988,13 @@ BOOL EvCmdD35FloorSet( VM_MACHINE * core )
 
 
 //============================================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ
 //============================================================================================
 //--------------------------------------------------------------
 /**
- *  @brief ƒtƒB[ƒ‹ƒhOBJ@OBJ‚É‚‚³æ“¾¸”s‚Å‚à•\¦‚·‚é—l‚É‚·‚éB
- *  ‚Â‚¢‚Å‚É‚‚³‚ğ©‹@‚É‡‚í‚¹‚éB©‹@‚¾‚¯‚Í‚»‚Ì‚Ü‚ÜB
- *	@param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *  @brief ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€OBJã«é«˜ã•å–å¾—å¤±æ•—ã§ã‚‚è¡¨ç¤ºã™ã‚‹æ§˜ã«ã™ã‚‹ã€‚
+ *  ã¤ã„ã§ã«é«˜ã•ã‚’è‡ªæ©Ÿã«åˆã‚ã›ã‚‹ã€‚è‡ªæ©Ÿã ã‘ã¯ãã®ã¾ã¾ã€‚
+ *	@param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *	@return "0"
  */
 //--------------------------------------------------------------
@@ -2049,9 +2049,9 @@ BOOL EvCmdFldOBJAllHeightVanishOFF( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- *  @brief ƒtƒB[ƒ‹ƒhOBJ
- *  EvCmdFldOBJAllHeightVanishOFF()‚ÅƒZƒbƒg‚µ‚½ƒtƒ‰ƒO‚ğ–ß‚·B
- *	@param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *  @brief ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ
+ *  EvCmdFldOBJAllHeightVanishOFF()ã§ã‚»ãƒƒãƒˆã—ãŸãƒ•ãƒ©ã‚°ã‚’æˆ»ã™ã€‚
+ *	@param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *	@return "0"
  */
 //--------------------------------------------------------------
@@ -2076,7 +2076,7 @@ BOOL EvCmdFldOBJAllHeightVanishON( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- *  @brief EvCmdFldOBJForceDraw_C04EventOnly()ƒRƒA
+ *  @brief EvCmdFldOBJForceDraw_C04EventOnly()ã‚³ã‚¢
  */
 //--------------------------------------------------------------
 static void evcmd_FldOBJForceDrawC04OnlyCore( FIELD_OBJ_PTR fldobj, int grid )
@@ -2101,8 +2101,8 @@ static void evcmd_FldOBJForceDrawC04OnlyCore( FIELD_OBJ_PTR fldobj, int grid )
 
 //--------------------------------------------------------------
 /**
- *  @brief C04ŒÀ’è ƒtƒB[ƒ‹ƒhOBJAGINGABOSS,BABYBOY1‚ğ‹­§•\¦
- *	@param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *  @brief C04é™å®š ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€GINGABOSS,BABYBOY1ã‚’å¼·åˆ¶è¡¨ç¤º
+ *	@param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *	@return "0"
  */
 //--------------------------------------------------------------
@@ -2112,14 +2112,14 @@ BOOL EvCmdFldOBJForceDraw_C04EventOnly( VM_MACHINE * core )
 	FIELDSYS_WORK *fsys = core->fsys;
 	FIELD_OBJ_SYS_PTR fos = fsys->fldobjsys;
 	
-	//ƒAƒJƒM
+	//ã‚¢ã‚«ã‚®
 	fldobj = FieldOBJSys_OBJIDSearch( fos, C04_AKAGI );
 	
 	if( fldobj != NULL ){
 		evcmd_FldOBJForceDrawC04OnlyCore( fldobj, 9 );
 	}
 	
-	//q‹Ÿ
+	//å­ä¾›
 	fldobj = FieldOBJSys_OBJIDSearch( fos, C04_BABYBOY1 );
 	
 	if( fldobj != NULL ){
@@ -2131,8 +2131,8 @@ BOOL EvCmdFldOBJForceDraw_C04EventOnly( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- *  @brief C04ŒÀ’è EvCmdFldOBJForceDraw_C04EventOnly()‚ÌŒãn––
- *	@param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *  @brief C04é™å®š EvCmdFldOBJForceDraw_C04EventOnly()ã®å¾Œå§‹æœ«
+ *	@param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *	@return "0"
  */
 //--------------------------------------------------------------
@@ -2141,14 +2141,14 @@ BOOL EvCmdFldOBJForceDraw_C04EventAfterOnly( VM_MACHINE * core )
 	FIELD_OBJ_PTR fldobj;
 	FIELD_OBJ_SYS_PTR fos = core->fsys->fldobjsys;
 	
-	//ƒAƒJƒM
+	//ã‚¢ã‚«ã‚®
 	fldobj = FieldOBJSys_OBJIDSearch( fos, C04_AKAGI );
 	
 	if( fldobj != NULL ){
 		FieldOBJ_StatusBit_OFF( fldobj, FLDOBJ_STA_BIT_HEIGHT_VANISH_OFF );
 	}
 	
-	//q‹Ÿ
+	//å­ä¾›
 	fldobj = FieldOBJSys_OBJIDSearch( fos, C04_BABYBOY1 );
 	
 	if( fldobj != NULL ){
@@ -2201,7 +2201,7 @@ BOOL ov05_21F7754( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n‹…‹V“o˜^
+ * @brief   åœ°çƒå„€ç™»éŒ²
  *
  * @param   SAVEDATA	savedata
  *
@@ -2217,7 +2217,7 @@ BOOL EvCmdWifiHistory( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒƒCƒ„[‚Ì‰¹—Ê‚ğ‘€ì
+ * @brief   ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®éŸ³é‡ã‚’æ“ä½œ
  *
  * @param   SAVEDATA	savedata
  *
@@ -2235,7 +2235,7 @@ BOOL EvCmdSndPlayerVolume( VM_MACHINE * core )
 #if PL_S0802_080716_FIX
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhF}ŠÓŒ©‚½‚±‚Æ‚ ‚é‚©æ“¾
+ * @brief		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šå›³é‘‘è¦‹ãŸã“ã¨ã‚ã‚‹ã‹å–å¾—
  * @param		core
  * @return		"0"
  */

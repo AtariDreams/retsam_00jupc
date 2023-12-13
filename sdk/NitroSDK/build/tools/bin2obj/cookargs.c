@@ -12,22 +12,22 @@
 
   $Log: cookargs.c,v $
   Revision 1.6  2006/07/21 07:57:19  yasu
-  PowerPC ‘Î‰
+  PowerPC å¯¾å¿œ
 
   Revision 1.5  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.4  2005/06/14 00:57:07  yasu
-  -s ƒIƒvƒVƒ‡ƒ“‚Ì’Ç‰Á
+  -s ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¿½åŠ 
 
   Revision 1.3  2005/06/13 11:37:56  yasu
-  bin2obj ‚Ì --compatible ƒIƒvƒVƒ‡ƒ“‘Î‰
+  bin2obj ã® --compatible ã‚ªãƒ—ã‚·ãƒ§ãƒ³å¯¾å¿œ
 
   Revision 1.2  2005/06/13 08:52:26  yasu
-  %f ‚ğƒVƒ“ƒ{ƒ‹–¼‚É‘Î‰
+  %f ã‚’ã‚·ãƒ³ãƒœãƒ«åã«å¯¾å¿œ
 
   Revision 1.1  2005/06/13 02:56:34  yasu
-  ƒIƒvƒVƒ‡ƒ“‚ÌC³AƒeƒXƒgì¬‚É‚æ‚é“®ì‚ÌŠm”F
+  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ä¿®æ­£ã€ãƒ†ã‚¹ãƒˆä½œæˆã«ã‚ˆã‚‹å‹•ä½œã®ç¢ºèª
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -37,7 +37,7 @@
 /*---------------------------------------------------------------------------*
   Name:         cook_args
 
-  Description:  bin2obj ƒƒCƒ“
+  Description:  bin2obj ãƒ¡ã‚¤ãƒ³
  *---------------------------------------------------------------------------*/
 void cook_args(Bin2ObjArgs * t, int argc, char *argv[])
 {
@@ -204,7 +204,7 @@ void cook_args(Bin2ObjArgs * t, int argc, char *argv[])
 /*---------------------------------------------------------------------------*
   Name:         create_symbol_string
 
-  Description:  ƒVƒ“ƒ{ƒ‹–¼‚ğƒoƒCƒiƒŠƒtƒ@ƒCƒ‹–¼‚©‚çì¬‚·‚é
+  Description:  ã‚·ãƒ³ãƒœãƒ«åã‚’ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«åã‹ã‚‰ä½œæˆã™ã‚‹
  *---------------------------------------------------------------------------*/
 char   *create_symbol_string(const char *filename, const char *symbol_format)
 {
@@ -213,11 +213,11 @@ char   *create_symbol_string(const char *filename, const char *symbol_format)
     char   *file_ext;
     int     i;
 
-    // ƒtƒ@ƒCƒ‹–¼‚ğ•ªÍ‚µ‚Ä—v‘f‚²‚Æ‚É•ª‚¯‚é
+    // ãƒ•ã‚¡ã‚¤ãƒ«åã‚’åˆ†æã—ã¦è¦ç´ ã”ã¨ã«åˆ†ã‘ã‚‹
     UnpackFileName(filename, NULL, &file_base, &file_ext);
 
-    // format w’è‚Ì’†‚Å %f,%b,%e ‚Æ‚¢‚¤•¶š‚ªo‚Ä‚­‚é‚©”»’è‚µA
-    // ‘Î‰‚·‚éƒtƒ@ƒCƒ‹–¼î•ñ(ƒtƒ@ƒCƒ‹åŠ²–¼AŠg’£q‚È‚Ç)‚Æ’u‚«Š·‚¦‚é
+    // format æŒ‡å®šã®ä¸­ã§ %f,%b,%e ã¨ã„ã†æ–‡å­—ãŒå‡ºã¦ãã‚‹ã‹åˆ¤å®šã—ã€
+    // å¯¾å¿œã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åæƒ…å ±(ãƒ•ã‚¡ã‚¤ãƒ«ä¸»å¹¹åã€æ‹¡å¼µå­ãªã©)ã¨ç½®ãæ›ãˆã‚‹
     symbol = StrDup(symbol_format);
     for (i = 0; symbol[i] != '\0'; i++)
     {
@@ -243,7 +243,7 @@ char   *create_symbol_string(const char *filename, const char *symbol_format)
         }
     }
 
-    // ƒVƒ“ƒ{ƒ‹‚Æ‚µ‚Äg—p‚Å‚«‚È‚¢•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚È‚çA‚»‚Ì•¶š‚ğ _ ‚É‚·‚é
+    // ã‚·ãƒ³ãƒœãƒ«ã¨ã—ã¦ä½¿ç”¨ã§ããªã„æ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ã‚‹ãªã‚‰ã€ãã®æ–‡å­—ã‚’ _ ã«ã™ã‚‹
     for (i = 0; symbol[i] != '\0'; i++)
     {
         if (!isalnum(symbol[i]) && symbol[i] != '_')
@@ -253,7 +253,7 @@ char   *create_symbol_string(const char *filename, const char *symbol_format)
     }
     if (isdigit(symbol[i]))
     {
-        symbol[i] = '_';               // 1•¶š–Ú‚Í”š‚à•s‰Â
+        symbol[i] = '_';               // 1æ–‡å­—ç›®ã¯æ•°å­—ã‚‚ä¸å¯
     }
 
     free(file_base);
@@ -265,25 +265,25 @@ char   *create_symbol_string(const char *filename, const char *symbol_format)
 /*---------------------------------------------------------------------------*
   Name:         replace_word
 
-  Description:  •¶š—ñ‚ğ’uŠ·‚·‚é
+  Description:  æ–‡å­—åˆ—ã‚’ç½®æ›ã™ã‚‹
   
-  Arguments:    *symbol   ’uŠ·‚³‚ê‚é•¶š—ñ(realloc ‚³‚ê‚é)
-                pos       ’uŠ·ˆÊ’u
-                len       ’uŠ·‚É‚æ‚èíœ‚³‚ê‚é•¶šƒTƒCƒY
-                str       ’uŠ·ˆÊ’u‚É‘}“ü‚³‚ê‚é•¶š—ñ
+  Arguments:    *symbol   ç½®æ›ã•ã‚Œã‚‹æ–‡å­—åˆ—(realloc ã•ã‚Œã‚‹)
+                pos       ç½®æ›ä½ç½®
+                len       ç½®æ›ã«ã‚ˆã‚Šå‰Šé™¤ã•ã‚Œã‚‹æ–‡å­—ã‚µã‚¤ã‚º
+                str       ç½®æ›ä½ç½®ã«æŒ¿å…¥ã•ã‚Œã‚‹æ–‡å­—åˆ—
   
-                symbol[pos]`symbol[pos+len-1] ‚Ü‚Å‚Ì•¶š‚ª str ‚É’u‚«Š·‚í‚é
-                str ‚ÌƒTƒCƒY‚ª len ‚ÌƒTƒCƒY‚ÆˆÙ‚È‚éê‡A•¶š—ñ‘S‘Ì‚Ì’·‚³‚ª
-                •Ï‰»‚·‚é‚±‚Æ‚É‚È‚é.
+                symbol[pos]ã€œsymbol[pos+len-1] ã¾ã§ã®æ–‡å­—ãŒ str ã«ç½®ãæ›ã‚ã‚‹
+                str ã®ã‚µã‚¤ã‚ºãŒ len ã®ã‚µã‚¤ã‚ºã¨ç•°ãªã‚‹å ´åˆã€æ–‡å­—åˆ—å…¨ä½“ã®é•·ã•ãŒ
+                å¤‰åŒ–ã™ã‚‹ã“ã¨ã«ãªã‚‹.
   
-  Returns:      ‘}“ü‚³‚ê‚½•¶š—ñ‚ÌÅŒã”ö‚ÌˆÊ’u
+  Returns:      æŒ¿å…¥ã•ã‚ŒãŸæ–‡å­—åˆ—ã®æœ€å¾Œå°¾ã®ä½ç½®
  *---------------------------------------------------------------------------*/
 int replace_word(char **str, int pos, int len, const char *substr)
 {
     int     new_len, str_len, substr_len;
     char   *new_str;
 
-    // ’uŠ·Œã‚Ì•¶š—ñ‚ÌƒTƒCƒY‚ÌŒvZ
+    // ç½®æ›å¾Œã®æ–‡å­—åˆ—ã®ã‚µã‚¤ã‚ºã®è¨ˆç®—
     str_len = strlen(*str);
     assert(str_len >= pos + len);
 
@@ -292,24 +292,24 @@ int replace_word(char **str, int pos, int len, const char *substr)
     substr_len = strlen(substr);
     new_len = str_len - len + substr_len;
 
-    // ’uŠ·Œã‚Ì•¶š—ñ‚Ìì¬
+    // ç½®æ›å¾Œã®æ–‡å­—åˆ—ã®ä½œæˆ
     new_str = Calloc(new_len + 1);     // +1 for '\0'
     strncpy(new_str, *str, pos);
     strcat(new_str, substr);
     strcat(new_str, *str + pos + len);
 
-    // realloc ˆ—
+    // realloc å‡¦ç†
     free(*str);
     *str = new_str;
 
-    // V‚µ‚¢ˆÊ’u‚ğ•Ô‚·
+    // æ–°ã—ã„ä½ç½®ã‚’è¿”ã™
     return pos + substr_len;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         free_args
 
-  Description:  Bin2ObjArgs —Ìˆæ‚ÌƒNƒŠƒA
+  Description:  Bin2ObjArgs é ˜åŸŸã®ã‚¯ãƒªã‚¢
  *---------------------------------------------------------------------------*/
 void free_args(Bin2ObjArgs * t)
 {
@@ -334,11 +334,11 @@ void free_args(Bin2ObjArgs * t)
 /*---------------------------------------------------------------------------*
   Name:         StrDup
 
-  Description:  strdup ‚ÌƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO”Å
+  Description:  strdup ã®ã‚¨ãƒ©ãƒ¼ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ç‰ˆ
   
-  Arguments:    str     ƒRƒs[‚·‚é•¶š—ñ
+  Arguments:    str     ã‚³ãƒ”ãƒ¼ã™ã‚‹æ–‡å­—åˆ—
   
-  Returns:      ƒRƒs[‚³‚ê‚½•¶š—ñ
+  Returns:      ã‚³ãƒ”ãƒ¼ã•ã‚ŒãŸæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 char   *StrDup(const char *str)
 {
@@ -355,12 +355,12 @@ char   *StrDup(const char *str)
 /*---------------------------------------------------------------------------*
   Name:         StrNDup
 
-  Description:  •¶š’·w’è‚Â‚«‚Ì strdup ‚ÌƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO”Å
+  Description:  æ–‡å­—é•·æŒ‡å®šã¤ãã® strdup ã®ã‚¨ãƒ©ãƒ¼ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ç‰ˆ
   
-  Arguments:    str     ƒRƒs[‚·‚é•¶š—ñ
-                len     ƒRƒs[‚·‚é•¶š’·('\0'‚ğŠÜ‚Ü‚È‚¢)
+  Arguments:    str     ã‚³ãƒ”ãƒ¼ã™ã‚‹æ–‡å­—åˆ—
+                len     ã‚³ãƒ”ãƒ¼ã™ã‚‹æ–‡å­—é•·('\0'ã‚’å«ã¾ãªã„)
   
-  Returns:      ƒRƒs[‚³‚ê‚½•¶š—ñ
+  Returns:      ã‚³ãƒ”ãƒ¼ã•ã‚ŒãŸæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 char   *StrNDup(const char *str, int len)
 {
@@ -371,20 +371,20 @@ char   *StrNDup(const char *str, int len)
         (void)strncpy(cp, str, len);
     return cp;
 
-    // malloc ‚Å len+1 ƒoƒCƒg•ª—Ìˆæ‚ğŠm•Û‚µ‚Ä‚¢‚é‚Ì‚Å
-    // strncpy Œã‚Ì '\0' ‚Ì•Ê“r’Ç‰Á‚Í•K—v‚È‚¢D
-    // ‚Ü‚½ str ‚ª NULL ‚Ì‚Æ‚«‚à‘Î‰‚Å‚«‚é
+    // malloc ã§ len+1 ãƒã‚¤ãƒˆåˆ†é ˜åŸŸã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã®ã§
+    // strncpy å¾Œã® '\0' ã®åˆ¥é€”è¿½åŠ ã¯å¿…è¦ãªã„ï¼
+    // ã¾ãŸ str ãŒ NULL ã®ã¨ãã‚‚å¯¾å¿œã§ãã‚‹
 }
 
 /*---------------------------------------------------------------------------*
   Name:         StrCatDup
 
-  Description:  •¶š—ñ‚ğ˜AŒ‹‚µ‚½‚à‚Ì‚ğƒq[ƒv—Ìˆæ‚©‚çŠm•Û‚·‚é
+  Description:  æ–‡å­—åˆ—ã‚’é€£çµã—ãŸã‚‚ã®ã‚’ãƒ’ãƒ¼ãƒ—é ˜åŸŸã‹ã‚‰ç¢ºä¿ã™ã‚‹
   
-  Arguments:    str1    •¶š—ñ1 ==NULL ‚Ì‚Í "" ‚Æ‚µ‚Äˆµ‚í‚ê‚é
-                str2    •¶š—ñ2 ==NULL ‚Ì‚Í "" ‚Æ‚µ‚Äˆµ‚í‚ê‚é
+  Arguments:    str1    æ–‡å­—åˆ—1 ==NULL ã®æ™‚ã¯ "" ã¨ã—ã¦æ‰±ã‚ã‚Œã‚‹
+                str2    æ–‡å­—åˆ—2 ==NULL ã®æ™‚ã¯ "" ã¨ã—ã¦æ‰±ã‚ã‚Œã‚‹
   
-  Returns:      ˜AŒ‹‚µ‚½•¶š—ñ
+  Returns:      é€£çµã—ãŸæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 char   *StrCatDup(const char *str1, const char *str2)
 {
@@ -407,11 +407,11 @@ char   *StrCatDup(const char *str1, const char *str2)
 /*---------------------------------------------------------------------------*
   Name:         Calloc
 
-  Description:  calloc ‚ÌƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO”Å(ˆø”‚Íˆê‚Â‚É‚È‚Á‚Ä‚¢‚é)
+  Description:  calloc ã®ã‚¨ãƒ©ãƒ¼ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ç‰ˆ(å¼•æ•°ã¯ä¸€ã¤ã«ãªã£ã¦ã„ã‚‹)
   
-  Arguments:    size    Šm•Û‚·‚é—Ìˆæ’·
+  Arguments:    size    ç¢ºä¿ã™ã‚‹é ˜åŸŸé•·
   
-  Returns:      Šm•Û‚³‚ê‚½—Ìˆæ
+  Returns:      ç¢ºä¿ã•ã‚ŒãŸé ˜åŸŸ
  *---------------------------------------------------------------------------*/
 void   *Calloc(int size)
 {
@@ -428,25 +428,25 @@ void   *Calloc(int size)
 /*---------------------------------------------------------------------------*
   Name:         UnpackFileName
 
-  Description:  ƒtƒ@ƒCƒ‹–¼‚ğ‰ğÍ‚µƒp[ƒc–ˆ
-                (ƒfƒBƒŒƒNƒgƒŠ•”Aƒtƒ@ƒCƒ‹åŠ²•”AŠg’£q)‚É•ªŠ„‚·‚é
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è§£æã—ãƒ‘ãƒ¼ãƒ„æ¯
+                (ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªéƒ¨ã€ãƒ•ã‚¡ã‚¤ãƒ«ä¸»å¹¹éƒ¨ã€æ‹¡å¼µå­)ã«åˆ†å‰²ã™ã‚‹
   
-  Arguments:    path   ƒtƒ‹ƒpƒX–¼
-                dir    ƒfƒBƒŒƒNƒgƒŠ
-                base   ƒtƒ@ƒCƒ‹åŠ²
-                ext    Šg’£q '.' ‚ÍŠÜ‚Ü‚È‚¢
+  Arguments:    path   ãƒ•ãƒ«ãƒ‘ã‚¹å
+                dir    ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+                base   ãƒ•ã‚¡ã‚¤ãƒ«ä¸»å¹¹
+                ext    æ‹¡å¼µå­ '.' ã¯å«ã¾ãªã„
   
-                * dir,base,ext ‚Íƒq[ƒv‚©‚çŠm•Û‚µ‚Ä‚¢‚é‚Ì‚Å free ‚ª•K—v
-                * dir,base,ext ‚ª NULL ‚Ì‚Æ‚«‚Í’l‚Ì‘ã“ü‚Í‚µ‚È‚¢
+                * dir,base,ext ã¯ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã—ã¦ã„ã‚‹ã®ã§ free ãŒå¿…è¦
+                * dir,base,ext ãŒ NULL ã®ã¨ãã¯å€¤ã®ä»£å…¥ã¯ã—ãªã„
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void UnpackFileName(const char *path, char **dir, char **base, char **ext)
 {
     int     i, base_top, ext_top;
     int     path_len = strlen(path);
 
-    // ÅI‚Ì '.' ‚ÌˆÊ’u‚ÆƒpƒX‹æØ‚è‚ÌˆÊ’u‚ğŒŸõ‚·‚é
+    // æœ€çµ‚ã® '.' ã®ä½ç½®ã¨ãƒ‘ã‚¹åŒºåˆ‡ã‚Šã®ä½ç½®ã‚’æ¤œç´¢ã™ã‚‹
     ext_top = path_len;
     for (i = path_len - 1; i >= 0; i--)
     {
@@ -461,7 +461,7 @@ void UnpackFileName(const char *path, char **dir, char **base, char **ext)
     }
     base_top = i + 1;
 
-    // ‘ã“ü‚·‚é
+    // ä»£å…¥ã™ã‚‹
     if (dir)
         *dir = StrNDup(path, base_top);
     if (base)

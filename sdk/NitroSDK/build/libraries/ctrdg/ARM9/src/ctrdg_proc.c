@@ -18,13 +18,13 @@
   small fix
 
   Revision 1.29  2006/08/10 00:02:52  okubata_ryoma
-  �J�[�g���b�W�̊����}���Ɋւ���s��C��
+  カートリッジの活線挿抜に関する不具合修正
 
   Revision 1.28  2006/05/02 02:04:47  kitase_hirotake
-  �s�K�v�ȃf�o�b�O�o�͂̍폜
+  不必要なデバッグ出力の削除
 
   Revision 1.27  2006/05/02 02:03:23  kitase_hirotake
-  �s�K�v�ȃf�o�b�O�o�͂̍폜
+  不必要なデバッグ出力の削除
 
   Revision 1.26  2006/05/01 06:04:55  yada
   avoid warning
@@ -33,28 +33,28 @@
   add about PHI Clock setting
 
   Revision 1.24  2006/04/05 10:48:30  okubata_ryoma
-  AGB�o�b�N�A�b�v���C�u������SDK���^�̂��߂̕ύX
+  AGBバックアップライブラリのSDK収録のための変更
 
   Revision 1.23  2006/02/22 02:27:10  kitase_hirotake
-  �O��̏C����߂�(�f�t�H���g�� terminate ���s��Ȃ��悤�ɏC��)
+  前回の修正を戻す(デフォルトで terminate を行わないように修正)
 
   Revision 1.22  2006/02/13 00:25:27  kitase_hirotake
-  �f�t�H���g�� terminate ���s��Ȃ��悤�ɏC��
+  デフォルトで terminate を行わないように修正
 
   Revision 1.21  2006/02/10 02:53:18  yosizaki
   support memory protection of cartridge access.
 
   Revision 1.20  2006/02/08 00:04:25  kitase_hirotake
-  Warning �C��
+  Warning 修正
 
   Revision 1.19  2006/02/07 08:13:09  kitase_hirotake
-  CTRDG_CheckPulledOut �ǉ�
+  CTRDG_CheckPulledOut 追加
 
   Revision 1.18  2006/01/18 02:11:20  kitase_hirotake
   do-indent
 
   Revision 1.17  2005/11/01 02:57:45  okubata_ryoma
-  CTRDG_SendToARM7�̒ǉ�
+  CTRDG_SendToARM7の追加
 
   Revision 1.16  2005/06/21 02:46:40  yada
   insert calling cache function
@@ -125,7 +125,7 @@ static int CTRDGi_Lock = FALSE;
 //---- user callback
 CTRDGPulledOutCallback CTRDG_UserCallback = NULL;
 
-/* �J�[�g���b�W�����R�[���o�b�N�� 2 �x�Ă΂�Ȃ� */
+/* カートリッジ抜けコールバックは 2 度呼ばれない */
 static BOOL isCartridgePullOut = FALSE;
 static BOOL skipCheck = FALSE;
 static BOOL ctrdg_already_pullout = FALSE;
@@ -154,7 +154,7 @@ void CTRDG_Init(void)
 
     CTRDGi_InitCommon();
 
-    /* �J�[�g���b�W�����R�[���o�b�N�� 2 �x�ȏ�Ă΂�Ȃ��悤�� */
+    /* カートリッジ抜けコールバックが 2 度以上呼ばれないように */
     ctrdg_already_pullout = FALSE;
 
 #ifndef SDK_SMALL_BUILD
@@ -173,7 +173,7 @@ void CTRDG_Init(void)
     //---- init user callback
     CTRDG_UserCallback = NULL;
 
-    // AGBBackup�A�N�Z�X�֐��̔񓯊��ł��g�p���邽�߂�TaskThread�쐬
+    // AGBBackupアクセス関数の非同期版を使用するためのTaskThread作成
     {
         static CTRDGiTaskWork CTRDGTaskList;
         CTRDGi_InitTaskThread(&CTRDGTaskList);
@@ -182,8 +182,8 @@ void CTRDG_Init(void)
     PXI_SetFifoRecvCallback(PXI_FIFO_TAG_CTRDG_PHI, CTRDGi_CallbackForSetPhi);
 
     /*
-     * ���[�U�������I�� enable ���w�肵�Ȃ�����A�N�Z�X����.
-     * (�I�v�V�����J�[�g���b�W�łȂ��Ȃ珑�����݃A�N�Z�X���֎~)
+     * ユーザが明示的に enable を指定しない限りアクセス無効.
+     * (オプションカートリッジでないなら書き込みアクセスも禁止)
      */
 #if defined(SDK_ARM9)
     CTRDG_Enable(FALSE);
@@ -261,8 +261,8 @@ void CTRDGi_InitModuleInfo(void)
     //---- release privilege for accessing cartridge
     CTRDGi_UnlockByProcessor(CTRDGi_Work.lockID, &lockInfo);
 
-    // �O��`�F�b�N�ŃJ�[�g���b�W���}������Ă����ꍇ�A�܂���
-    // �\�t�g���Z�b�g����x�����s����Ă��Ȃ��ꍇ�̂݃J�[�g���b�W�f�[�^���X�V����
+    // 前回チェックでカートリッジが挿入されていた場合、または
+    // ソフトリセットが一度も実行されていない場合のみカートリッジデータを更新する
     if ((*(u8 *)HW_IS_CTRDG_EXIST) || !(*(u8 *)HW_SET_CTRDG_MODULE_INFO_ONCE))
     {
         //---- copy the information of peripheral devices to system area
@@ -278,9 +278,9 @@ void CTRDGi_InitModuleInfo(void)
         cip->makerCode = chb->makerCode;
         cip->gameCode = chb->gameCode;
 
-        // �J�[�g���b�W���}������Ă���̂��`�F�b�N
+        // カートリッジが挿入されているのかチェック
         *(u8 *)HW_IS_CTRDG_EXIST = (u8)((CTRDG_IsExisting())? 1 : 0);
-        // �J�[�g���b�W�̏�񂪈��ł��X�V������TRUE
+        // カートリッジの情報が一回でも更新されればTRUE
         (*(u8 *)HW_SET_CTRDG_MODULE_INFO_ONCE) = TRUE;
     }
 
@@ -370,7 +370,7 @@ static void CTRDGi_PulledOutCallback(PXIFifoTag tag, u32 data, BOOL err)
             {
                 CTRDG_TerminateForPulledOut();
             }
-            /* ��x�Ă΂ꂽ��A�����Ă΂�Ȃ� */
+            /* 一度呼ばれたら、もう呼ばれない */
             ctrdg_already_pullout = TRUE;
         }
     }
@@ -465,8 +465,8 @@ void CTRDG_CheckPulledOut(void)
     //---------------- if cartridge pulled out, tell that to ARM9
     if (isCartridgePullOut)
     {
-        /* ARM7 ���� PXI �ŌĂ�ł����֐��𓯂����Ă� */
-        /* �����͏����������ꍇ�̈����ɋ����I�ɂ��� */
+        /* ARM7 から PXI で呼んでいた関数を同じく呼ぶ */
+        /* 引数は処理がされる場合の引数に強制的にした */
         CTRDGi_PulledOutCallback(PXI_FIFO_TAG_CTRDG, CTRDG_PXI_COMMAND_PULLED_OUT, NULL);
     }
 }

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pms_data.h
- * @bfief	�ȈՕ��́i�ȈՉ�b�f�[�^�ƒ�^����g�ݍ��킹�����́j
+ * @bfief	簡易文章（簡易会話データと定型文を組み合わせた文章）
  * @author	taya
  * @date	05.12.27
  */
@@ -14,23 +14,23 @@
 
 //------------------------------------------------------
 /**
- *  �֘A�萔
+ *  関連定数
  */
 //------------------------------------------------------
-#define  PMS_WORD_MAX		(2)			///< �����Ɋ܂܂��P��̍ő吔
-#define  PMS_WORD_NULL		(0xffff)	///< �P��Ƃ��Ė����Ȓl
+#define  PMS_WORD_MAX		(2)			///< 文中に含まれる単語の最大数
+#define  PMS_WORD_NULL		(0xffff)	///< 単語として無効な値
 
 //------------------------------------------------------
 /**
- *  ���̓^�C�v
+ *  文章タイプ
  */
 //------------------------------------------------------
 enum  PMS_TYPE {
-	PMS_TYPE_BATTLE_READY,	///< �ΐ�J�n�O
-	PMS_TYPE_BATTLE_WON,	///< �ΐ폟�����Ƃ�
-	PMS_TYPE_BATTLE_LOST,	///< �ΐ핉������
-	PMS_TYPE_MAIL,			///< ���[����������
-	PMS_TYPE_UNION,			///< ���j�I����������
+	PMS_TYPE_BATTLE_READY,	///< 対戦開始前
+	PMS_TYPE_BATTLE_WON,	///< 対戦勝ったとき
+	PMS_TYPE_BATTLE_LOST,	///< 対戦負けた時
+	PMS_TYPE_MAIL,			///< メールあいさつ
+	PMS_TYPE_UNION,			///< ユニオンあいさつ
 
 
 	PMS_TYPE_MAX,
@@ -38,7 +38,7 @@ enum  PMS_TYPE {
 
 //------------------------------------------------------
 /**
- *  �P��^��`
+ *  単語型定義
  */
 //------------------------------------------------------
 typedef	u16		PMS_WORD;
@@ -46,21 +46,21 @@ typedef	u16		PMS_WORD;
 
 //------------------------------------------------------
 /**
- *  ���͌^��`
+ *  文章型定義
  *
- *  �\���̓��e�����J����Ă��܂����A
- *  ����Ƀ����o���Q�Ƃ����菑���������肵�Ă͂����܂���B
- *  �K�v�ȏ����̓C���^�[�t�F�C�X�֐���ʂ��Ă̂ݍs���Ă��������B
+ *  構造体内容が公開されていますが、
+ *  勝手にメンバを参照したり書き換えたりしてはいけません。
+ *  必要な処理はインターフェイス関数を通してのみ行ってください。
  *
- *�i���J����Ă���̂́A���̍\���̂��܂ލ\���́i���[�����j��
- * �Z�[�u�f�[�^�p�ɒ�`���Ȃ���΂Ȃ�Ȃ����߂ł��j
+ *（公開されているのは、この構造体を含む構造体（メール等）を
+ * セーブデータ用に定義しなければならないためです）
  *
  */
 //------------------------------------------------------
 typedef struct {
-	u16				sentence_type;			///< ���̓^�C�v
-	u16				sentence_id;			///< �^�C�v��ID
-	PMS_WORD		word[PMS_WORD_MAX];		///< �P��ID
+	u16				sentence_type;			///< 文章タイプ
+	u16				sentence_id;			///< タイプ内ID
+	PMS_WORD		word[PMS_WORD_MAX];		///< 単語ID
 }PMS_DATA;
 
 
@@ -70,7 +70,7 @@ typedef struct {
 
 //------------------------------------------------------------------
 /**
- * �\���̂��󕶏͂Ƃ��ăN���A����
+ * 構造体を空文章としてクリアする
  *
  * @param   pms		
  *
@@ -80,13 +80,13 @@ extern void PMSDAT_Clear( PMS_DATA* pms );
 
 //------------------------------------------------------------------
 /**
- * ��ԏ�����
+ * 状態初期化
  *
- * @param   pms				���͌^�̈�ւ̃|�C���^
- * @param   sentence_type	���̓^�C�v
+ * @param   pms				文章型領域へのポインタ
+ * @param   sentence_type	文章タイプ
  *
- * �������ł̕��̓^�C�v�́A���͉�ʑJ�ڌ�̃f�t�H���g�l�Ƃ��ĎQ�Ƃ����B
- *   ���͉�ʂł̕ҏW��A�قȂ镶�̓^�C�v�ɂȂ��Ă��邱�Ƃ͂��蓾��B
+ * ※ここでの文章タイプは、入力画面遷移後のデフォルト値として参照される。
+ *   入力画面での編集後、異なる文章タイプになっていることはあり得る。
  *
  */
 //------------------------------------------------------------------
@@ -95,9 +95,9 @@ extern void PMSDAT_Init( PMS_DATA* pms, u32 sentence_type );
 
 //------------------------------------------------------------------
 /**
- * ���j�I�����[���f�t�H���g�������Ƃ��ď���������
+ * ユニオンルームデフォルトあいさつとして初期化する
  *
- * @param   pms		���͌^�ւ̃|�C���^
+ * @param   pms		文章型へのポインタ
  */
 //------------------------------------------------------------------
 extern void PMSDAT_SetupDefaultUnionMessage( PMS_DATA* pms );
@@ -105,10 +105,10 @@ extern void PMSDAT_SetupDefaultUnionMessage( PMS_DATA* pms );
 
 //------------------------------------------------------------------
 /**
- * �o�g���^���[�f�t�H���g�������Ƃ��ď���������
+ * バトルタワーデフォルトあいさつとして初期化する
  *
- * @param   pms			���͌^�ւ̃|�C���^
- * @param   msgType		�������^�C�v
+ * @param   pms			文章型へのポインタ
+ * @param   msgType		あいさつタイプ
  *
  */
 //------------------------------------------------------------------
@@ -118,20 +118,20 @@ extern void PMSDAT_SetupDefaultBattleTowerMessage( PMS_DATA* pms, BTWR_PLAYER_MS
 
 //------------------------------------------------------------------
 /**
- * ���͌^���當����𐶐��B���̕�����͂��̂܂�STR_Print�ɉ񂵂ĕ\���ł���
+ * 文章型から文字列を生成。この文字列はそのままSTR_Printに回して表示できる
  *
- * @param   pms			���͌^�ւ̃|�C���^
- * @param   heapID		�o�b�t�@�����p�q�[�vID
+ * @param   pms			文章型へのポインタ
+ * @param   heapID		バッファ生成用ヒープID
  *
- * @retval  STRBUF*		�������ꂽ��������܂ރo�b�t�@
+ * @retval  STRBUF*		生成された文字列を含むバッファ
  */
 //------------------------------------------------------------------
 extern STRBUF* PMSDAT_ToString( const PMS_DATA* pms, u32 heapID );
 
 //------------------------------------------------------------------
 /**
- * ���͌^����A�^�O�W�J�O�̕�������擾�B���̂܂ܕ\���͕s�B
- * ������g���̂́A�����炭�ȈՉ�b���͉�ʂ̂݁B
+ * 文章型から、タグ展開前の文字列を取得。そのまま表示は不可。
+ * これを使うのは、おそらく簡易会話入力画面のみ。
  *
  * @param   pms		
  * @param   heapID		
@@ -143,18 +143,18 @@ extern STRBUF*  PMSDAT_GetSourceString( const PMS_DATA* pms, u32 heapID );
 
 //------------------------------------------------------------------
 /**
- * �󕶏͂ɂȂ��Ă��Ȃ����`�F�b�N
+ * 空文章になっていないかチェック
  *
- * @param   pms		���͌^�ւ̃|�C���^
+ * @param   pms		文章型へのポインタ
  *
- * @retval  BOOL	TRUE�ŗL��
+ * @retval  BOOL	TRUEで有効
  */
 //------------------------------------------------------------------
 extern BOOL PMSDAT_IsEnabled( const PMS_DATA* pms );
 
 //------------------------------------------------------------------
 /**
- * ���͂��������Ă��邩�`�F�b�N
+ * 文章が完成しているかチェック
  *
  * @param   pms		
  *
@@ -166,56 +166,56 @@ extern BOOL PMSDAT_IsComplete( const PMS_DATA* pms );
 
 //------------------------------------------------------------------
 /**
- * �ݒ肳��Ă��镶�̓^�C�v���擾
+ * 設定されている文章タイプを取得
  *
- * @param   pms		���͌^�ւ̃|�C���^
+ * @param   pms		文章型へのポインタ
  *
- * @retval  u32		���̓^�C�v�ienum PMS_TYPE�j
+ * @retval  u32		文章タイプ（enum PMS_TYPE）
  */
 //------------------------------------------------------------------
 extern u32  PMSDAT_GetSentenceType( const PMS_DATA* pms );
 
 //------------------------------------------------------------------
 /**
- * �ݒ肳��Ă��镶�̓C���f�b�N�X��Ԃ�
+ * 設定されている文章インデックスを返す
  *
- * @param   pms		���͌^�ւ̃|�C���^
+ * @param   pms		文章型へのポインタ
  *
- * @retval  u32		���̓C���f�b�N�X�i���̂܂܂ł͎g�������Ȃ��n�Y�B���͉�ʗp�B�j
+ * @retval  u32		文章インデックス（このままでは使い道がないハズ。入力画面用。）
  */
 //------------------------------------------------------------------
 extern u32 PMSDAT_GetSentenceID( const PMS_DATA* pms );
 
 //------------------------------------------------------------------
 /**
- * �ݒ肳��Ă���P��i���o�[���擾
+ * 設定されている単語ナンバーを取得
  *
- * @param   pms		���͌^�ւ̃|�C���^
- * @param   pos		���Ԗڂ̒P�ꂩ�H
+ * @param   pms		文章型へのポインタ
+ * @param   pos		何番目の単語か？
  *
- * @retval  PMS_WORD	�ȈՉ�b�P��i���o�[
+ * @retval  PMS_WORD	簡易会話単語ナンバー
  */
 //------------------------------------------------------------------
 extern PMS_WORD  PMSDAT_GetWordNumber( const PMS_DATA* pms, int pos );
 
 //------------------------------------------------------------------
 /**
- * ���e��r
+ * 内容比較
  *
  * @param   pms1		
  * @param   pms2		
  *
- * @retval  BOOL		��v���Ă�����TRUE��Ԃ�
+ * @retval  BOOL		一致していたらTRUEを返す
  */
 //------------------------------------------------------------------
 extern BOOL PMSDAT_Compare( const PMS_DATA* pms1, const PMS_DATA* pms2 );
 
 //------------------------------------------------------------------
 /**
- * ���̓f�[�^�̃R�s�[
+ * 文章データのコピー
  *
- * @param   src		�R�s�[���|�C���^
- * @param   dst		�R�s�[��|�C���^
+ * @param   src		コピー元ポインタ
+ * @param   dst		コピー先ポインタ
  *
  */
 //------------------------------------------------------------------
@@ -224,7 +224,7 @@ extern void PMSDAT_Copy( PMS_DATA* dst, const PMS_DATA* src  );
 
 //------------------------------------------------------------------
 /**
- * ���̓^�C�v����A���̃^�C�v�Ɋ܂܂�镶�̓p�^�[���̍ő吔��Ԃ�
+ * 文章タイプから、そのタイプに含まれる文章パターンの最大数を返す
  *
  * @param   sentence_type		
  *
@@ -235,7 +235,7 @@ extern u32  PMSDAT_GetSentenceIdMax( u32 sentence_type );
 
 //------------------------------------------------------------------
 /**
- * ���̓^�C�v�A�p�^�[�����Z�b�g
+ * 文章タイプ、パターンをセット
  *
  * @param   pms		
  * @param   sentence_type		
@@ -260,7 +260,7 @@ extern void PMSDAT_SetWord( PMS_DATA* pms, u32 pos, PMS_WORD word );
 
 //------------------------------------------------------------------
 /**
- * ���̓^�C�v��ID����A�g��Ȃ��P��̈���N���A���Ă���
+ * 文章タイプ＆IDから、使わない単語領域をクリアしておく
  *
  * @param   pms		
  *
@@ -271,13 +271,13 @@ extern void PMSDAT_ClearUnnecessaryWord( PMS_DATA* pms );
 #ifdef PM_DEBUG
 //------------------------------------------------------------------
 /**
- * �e�X�g�p�ɓK���ȓ��e���Z�b�g����
+ * テスト用に適当な内容をセットする
  *
  * @param   pms		
  */
 //------------------------------------------------------------------
-extern void PMSDAT_SetDebug( PMS_DATA* pms );		// �Œ�
-extern void PMSDAT_SetDebugRandom( PMS_DATA* pms );	// �����_��
+extern void PMSDAT_SetDebug( PMS_DATA* pms );		// 固定
+extern void PMSDAT_SetDebugRandom( PMS_DATA* pms );	// ランダム
 
 #endif
 

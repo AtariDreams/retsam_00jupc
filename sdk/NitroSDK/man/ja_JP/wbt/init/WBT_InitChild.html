@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WBT_InitChild</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">WBT_InitChild</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,31 +22,31 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <p>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
-      <TD width="87%">����̃R�}���h�Ƃ͕ʂɔ�������C�x���g��ʒm����<A href="../wbt_callback_type.html">WBTCallback</A>�`���̊֐�<br>
-	  ���̊֐��ɂ́A<A href="../wbt_command_type_const.html">WBT_CMD_SYSTEM_CALLBACK</A>�R�}���h�Ƃ��ăR�[���o�b�N���ʒm����܂��B
-	  <br>���̃R�[���o�b�N��<a href="../child/WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</a>�֐��̓�������Ăяo����܂��B
+      <TD width="87%">特定のコマンドとは別に発生するイベントを通知する<A href="../wbt_callback_type.html">WBTCallback</A>形式の関数<br>
+	  この関数には、<A href="../wbt_command_type_const.html">WBT_CMD_SYSTEM_CALLBACK</A>コマンドとしてコールバックが通知されます。
+	  <br>このコールバックは<a href="../child/WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</a>関数の内部から呼び出されます。
 	  </TD>
     </TR>
   </TBODY>
 </TABLE>
 </p>
 
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�</p>
+<h2>返り値</h2>
+<p>なし</p>
 
-<H2>����</H2>
-<P>WBT ���C�u�������q�@�Ƃ��ď��������܂��B<BR>
-���̊֐��͖����̎q�@�ł̂ݎg�p���邱�Ƃ��ł��܂��B<br>
+<H2>説明</H2>
+<P>WBT ライブラリを子機として初期化します。<BR>
+この関数は無線の子機でのみ使用することができます。<br>
 <br>
-�������C�u�����̏�ԂȂǁA���̊֐��̌Ăяo���Ɋւ�������͓��ɂ���܂���B<br>
+無線ライブラリの状態など、この関数の呼び出しに関する条件は特にありません。<br>
 <br>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <A href="WBT_InitParent.html">WBT_InitParent
 <A href="WBT_End.html">WBT_End
@@ -54,10 +54,10 @@
 <BR>
 <A href="../wbt_callback_type.html">WBTCallback</A>
 </P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/06/01 �R�[���o�b�N��WBT_MpChildRecvHook�֐�����Ăяo�����|��⑫<br>
-2004/09/21 ����<BR>
+2005/06/01 コールバックがWBT_MpChildRecvHook関数から呼び出される旨を補足<br>
+2004/09/21 初版<BR>
 </P>
 </body>
 </html>

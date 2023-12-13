@@ -12,38 +12,38 @@
 
   $Log: dwc_prof.h,v $
   Revision 1.11  2007/06/29 09:13:06  takayama
-  ƒŠ[ƒWƒ‡ƒ“Žw’è”Å‚Ì•s³•¶Žš—ñƒ`ƒFƒbƒNŠJŽnŠÖ”‚ð’Ç‰ÁB
+  ãƒªãƒ¼ã‚¸ãƒ§ãƒ³æŒ‡å®šç‰ˆã®ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯é–‹å§‹é–¢æ•°ã‚’è¿½åŠ ã€‚
 
   Revision 1.10  2007/04/20 04:20:53  takayama
-  ƒRƒƒ“ƒg‚ÌŒë‹LC³B
+  ã‚³ãƒ¡ãƒ³ãƒˆã®èª¤è¨˜ä¿®æ­£ã€‚
 
   Revision 1.9  2007/04/09 02:45:59  takayama
-  DWC_CheckProfanityAsyncŠÖ”‚Ìˆø” badnum ‚ð badwordsnum ‚É•ÏX‚µ‚½‚±‚Æ‚É
-  ”º‚¤•ÏXB
+  DWC_CheckProfanityAsyncé–¢æ•°ã®å¼•æ•° badnum ã‚’ badwordsnum ã«å¤‰æ›´ã—ãŸã“ã¨ã«
+  ä¼´ã†å¤‰æ›´ã€‚
 
   Revision 1.8  2007/04/04 07:38:05  takayama
-  Žg—p‚µ‚Ä‚¢‚È‚¢’è‹`‚ðíœB
+  ä½¿ç”¨ã—ã¦ã„ãªã„å®šç¾©ã‚’å‰Šé™¤ã€‚
 
   Revision 1.7  2007/03/28 09:41:26  nakata
-  DWC_CheckProfanityAsyncŠÖ”‚ÌŽd—l•ÏX‚É”º‚¤C³B
+  DWC_CheckProfanityAsyncé–¢æ•°ã®ä»•æ§˜å¤‰æ›´ã«ä¼´ã†ä¿®æ­£ã€‚
 
   Revision 1.6  2007/03/19 11:24:36  nakata
-  DWCProfResult‚ðDWCProfState‚É•ÏX‚µ‚½
+  DWCProfResultã‚’DWCProfStateã«å¤‰æ›´ã—ãŸ
 
   Revision 1.5  2007/03/16 05:35:47  nakata
-  DWC_PROF_RESULT’è”Žü‚è‚Ì•ÏX
+  DWC_PROF_RESULTå®šæ•°å‘¨ã‚Šã®å¤‰æ›´
 
   Revision 1.4  2007/03/14 08:44:07  nakata
-  DWC_PROF_RESULT_STRING_LENGTH’è”‚ð’Ç‰Á
+  DWC_PROF_RESULT_STRING_LENGTHå®šæ•°ã‚’è¿½åŠ 
 
   Revision 1.3  2006/11/22 12:55:27  nakata
-  DWCProfResult‚Éƒlƒbƒgƒ[ƒNƒGƒ‰[‚ð’Ç‰Á
+  DWCProfResultã«ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¨ãƒ©ãƒ¼ã‚’è¿½åŠ 
 
   Revision 1.2  2006/11/17 08:29:47  nakata
-  ƒRƒƒ“ƒgC³
+  ã‚³ãƒ¡ãƒ³ãƒˆä¿®æ­£
 
   Revision 1.1  2006/11/17 08:29:06  nakata
-  •s³•¶Žš—ñƒ`ƒFƒbƒNŠÖŒWƒwƒbƒ_‚ð’Ç‰Á
+  ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯é–¢ä¿‚ãƒ˜ãƒƒãƒ€ã‚’è¿½åŠ 
 
 
   $NoKeywords: $
@@ -58,60 +58,60 @@ extern "C" {
 #endif // [nakata] __cplusplus
 
 //=============================================================================
-// [nakata] ’è‹`
+// [nakata] å®šç¾©
 //=============================================================================
 
 #define DWC_PROF_RESULT_STRING_LENGTH 51
 
-// [nakata] •s³ƒl[ƒ€ƒ`ƒFƒbƒN’†‚ÌƒXƒe[ƒg‚ðŽ¦‚·—ñ‹“Œ^
+// [nakata] ä¸æ­£ãƒãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯ä¸­ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ç¤ºã™åˆ—æŒ™åž‹
 typedef enum {
-	DWC_PROF_STATE_NOT_INITIALIZED	= 0,// –¢‰Šú‰»
-	DWC_PROF_STATE_OPERATING,				// HTTP’ÊM’†
-	DWC_PROF_STATE_SUCCESS,				// –¼‘Oƒ`ƒFƒbƒN¬Œ÷
-	DWC_PROF_STATE_FAIL					// –¼‘Oƒ`ƒFƒbƒNŽ¸”s
+	DWC_PROF_STATE_NOT_INITIALIZED	= 0,// æœªåˆæœŸåŒ–
+	DWC_PROF_STATE_OPERATING,				// HTTPé€šä¿¡ä¸­
+	DWC_PROF_STATE_SUCCESS,				// åå‰ãƒã‚§ãƒƒã‚¯æˆåŠŸ
+	DWC_PROF_STATE_FAIL					// åå‰ãƒã‚§ãƒƒã‚¯å¤±æ•—
 } DWCProfState;
 
-// •s³•¶Žš—ñƒ`ƒFƒbƒN‚ÌƒŠ[ƒWƒ‡ƒ“‚ðŽ¦‚·—ñ‹“Œ^
+// ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯ã®ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ç¤ºã™åˆ—æŒ™åž‹
 typedef enum {
-    DWC_PROF_REGION_SELF = 0x00,   // »•iƒR[ƒh‚É]‚¤
-    DWC_PROF_REGION_ALL  = 0xff    // ‘SƒŠ[ƒWƒ‡ƒ“
+    DWC_PROF_REGION_SELF = 0x00,   // è£½å“ã‚³ãƒ¼ãƒ‰ã«å¾“ã†
+    DWC_PROF_REGION_ALL  = 0xff    // å…¨ãƒªãƒ¼ã‚¸ãƒ§ãƒ³
 } DWCProfRegion;
 
 //=============================================================================
-// [nakata] ŠÖ”
+// [nakata] é–¢æ•°
 //=============================================================================
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : •s³•¶Žš—ñƒ`ƒFƒbƒNŠJŽnŠÖ”
-// ˆø” : words - ƒ`ƒFƒbƒN‚·‚é•¶Žš—ñ(UTF16-LE)‚Ìƒ|ƒCƒ“ƒ^”z—ñ
-//      : wordsnum - words‚Ì’·‚³
-//      : reserved - ƒQ[ƒ€“àƒoƒbƒhƒl[ƒ€Ž«‘Ø‚è‘Ö‚¦—p‚Ì4•¶Žš‚ÌASCII•¶Žš—ñ(’Êí‚ÍNULL)
-//      : timeout - ƒ^ƒCƒ€ƒAƒEƒgŽžŠÔ‚ð•b’PˆÊ‚ÅŽw’è‚·‚é
-//      : result - ƒ`ƒFƒbƒNŒ‹‰Ê
-//      : badwordsnum - •s³•¶Žš—ñ‚Ì”
-// •Ô’l : TRUE  : Žæ“¾ŠJŽn
-//        FALSE : Žæ“¾ŠJŽn‚Å‚«‚È‚¢
+// æ©Ÿèƒ½ : ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯é–‹å§‹é–¢æ•°
+// å¼•æ•° : words - ãƒã‚§ãƒƒã‚¯ã™ã‚‹æ–‡å­—åˆ—(UTF16-LE)ã®ãƒã‚¤ãƒ³ã‚¿é…åˆ—
+//      : wordsnum - wordsã®é•·ã•
+//      : reserved - ã‚²ãƒ¼ãƒ å†…ãƒãƒƒãƒ‰ãƒãƒ¼ãƒ è¾žæ›¸åˆ‡ã‚Šæ›¿ãˆç”¨ã®4æ–‡å­—ã®ASCIIæ–‡å­—åˆ—(é€šå¸¸ã¯NULL)
+//      : timeout - ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“ã‚’ç§’å˜ä½ã§æŒ‡å®šã™ã‚‹
+//      : result - ãƒã‚§ãƒƒã‚¯çµæžœ
+//      : badwordsnum - ä¸æ­£æ–‡å­—åˆ—ã®æ•°
+// è¿”å€¤ : TRUE  : å–å¾—é–‹å§‹
+//        FALSE : å–å¾—é–‹å§‹ã§ããªã„
 //-----------------------------------------------------------------------------
 BOOL DWC_CheckProfanityAsync(const u16 **words, int wordsnum, const char *reserved, int timeout, char *result, int *badwordsnum);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : •s³•¶Žš—ñƒ`ƒFƒbƒNŠJŽnŠÖ”(ƒŠ[ƒWƒ‡ƒ“Žw’è”Å)
-// ˆø” : words - ƒ`ƒFƒbƒN‚·‚é•¶Žš—ñ(UTF16-LE)‚Ìƒ|ƒCƒ“ƒ^”z—ñ
-//      : wordsnum - words‚Ì’·‚³
-//      : reserved - ƒQ[ƒ€“àƒoƒbƒhƒl[ƒ€Ž«‘Ø‚è‘Ö‚¦—p‚Ì4•¶Žš‚ÌASCII•¶Žš—ñ(’Êí‚ÍNULL)
-//      : timeout - ƒ^ƒCƒ€ƒAƒEƒgŽžŠÔ‚ð•b’PˆÊ‚ÅŽw’è‚·‚é
-//      : result - ƒ`ƒFƒbƒNŒ‹‰Ê
-//      : badwordsnum - •s³•¶Žš—ñ‚Ì”
-//      : region - ‘ÎÛ‚ÌƒŠ[ƒWƒ‡ƒ“
-// •Ô’l : TRUE  : Žæ“¾ŠJŽn
-//        FALSE : Žæ“¾ŠJŽn‚Å‚«‚È‚¢
+// æ©Ÿèƒ½ : ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯é–‹å§‹é–¢æ•°(ãƒªãƒ¼ã‚¸ãƒ§ãƒ³æŒ‡å®šç‰ˆ)
+// å¼•æ•° : words - ãƒã‚§ãƒƒã‚¯ã™ã‚‹æ–‡å­—åˆ—(UTF16-LE)ã®ãƒã‚¤ãƒ³ã‚¿é…åˆ—
+//      : wordsnum - wordsã®é•·ã•
+//      : reserved - ã‚²ãƒ¼ãƒ å†…ãƒãƒƒãƒ‰ãƒãƒ¼ãƒ è¾žæ›¸åˆ‡ã‚Šæ›¿ãˆç”¨ã®4æ–‡å­—ã®ASCIIæ–‡å­—åˆ—(é€šå¸¸ã¯NULL)
+//      : timeout - ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“ã‚’ç§’å˜ä½ã§æŒ‡å®šã™ã‚‹
+//      : result - ãƒã‚§ãƒƒã‚¯çµæžœ
+//      : badwordsnum - ä¸æ­£æ–‡å­—åˆ—ã®æ•°
+//      : region - å¯¾è±¡ã®ãƒªãƒ¼ã‚¸ãƒ§ãƒ³
+// è¿”å€¤ : TRUE  : å–å¾—é–‹å§‹
+//        FALSE : å–å¾—é–‹å§‹ã§ããªã„
 //-----------------------------------------------------------------------------
 BOOL DWC_CheckProfanityExAsync(const u16 **words, int wordsnum, const char *reserved, int timeout, char *result, int *badwordsnum, DWCProfRegion region);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : •s³•¶Žš—ñƒ`ƒFƒbƒNŽæ“¾ˆ—isŠÖ”
-// ˆø” : ‚È‚µ
-// •Ô’l : DWCProfState
+// æ©Ÿèƒ½ : ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯å–å¾—å‡¦ç†é€²è¡Œé–¢æ•°
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : DWCProfState
 //-----------------------------------------------------------------------------
 DWCProfState DWC_CheckProfanityProcess(void);
 

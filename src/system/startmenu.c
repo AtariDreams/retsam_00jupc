@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	startmenu.c	
- * @bfief	ƒ^ƒCƒgƒ‹ƒƒjƒ…[
+ * @bfief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  * @author	Satoshi Mitsuhara
  * @date	06.04.11
  *
@@ -45,41 +45,41 @@
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/01
-// AGBƒJ[ƒgƒŠƒbƒW‚ª”²‚©‚ê‚½‚Æ‚«‚ÍAƒuƒ‹[ƒXƒNƒŠ[ƒ“‚É‘JˆÚ‚·‚é‚æ‚¤‚É•ÏX
+// AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒæŠœã‹ã‚ŒãŸã¨ãã¯ã€ãƒ–ãƒ«ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«é·ç§»ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 #if AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
 #include "application/backup.h"
 #endif
 // ----------------------------------------------------------------------------
 
 /*
- * ¦•K‚¸•\Ž¦‚³‚ê‚éƒƒjƒ…[
+ * â€»å¿…ãšè¡¨ç¤ºã•ã‚Œã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  *
- *	‚Â‚Ã‚«‚©‚ç‚Í‚¶‚ß‚é
- *	‚³‚¢‚µ‚å‚©‚ç‚Í‚¶‚ß‚é
- *	WiFi‚¹‚Á‚Ä‚¢
+ *	ã¤ã¥ãã‹ã‚‰ã¯ã˜ã‚ã‚‹
+ *	ã•ã„ã—ã‚‡ã‹ã‚‰ã¯ã˜ã‚ã‚‹
+ *	WiFiã›ã£ã¦ã„
  *
- * ¦ƒJ[ƒgƒŠƒbƒW‚ªŽh‚³‚Á‚Ä‚¢‚é‚Æ•\Ž¦‚³‚ê‚éƒƒjƒ…[
+ * â€»ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒåˆºã•ã£ã¦ã„ã‚‹ã¨è¡¨ç¤ºã•ã‚Œã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  *
- *	‚È‚ñ‚Æ‚©‚Æ‚©‚ç‚Â‚ê‚Ä‚­‚é(ƒ‹ƒr[/ƒTƒtƒ@ƒCƒA/...)
+ *	ãªã‚“ã¨ã‹ã¨ã‹ã‚‰ã¤ã‚Œã¦ãã‚‹(ãƒ«ãƒ“ãƒ¼/ã‚µãƒ•ã‚¡ã‚¤ã‚¢/...)
  *
- * ¦ðŒ‚É‚æ‚Á‚Ä•\Ž¦‚³‚ê‚éƒƒjƒ…[
+ * â€»æ¡ä»¶ã«ã‚ˆã£ã¦è¡¨ç¤ºã•ã‚Œã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  *
- *	ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Æ‚¹‚Â‚¼‚­
- *	Wii‚Æ‚Ì‚¹‚Â‚¼‚­
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã›ã¤ãžã
+ *	Wiiã¨ã®ã›ã¤ãžã
  *
- * ¦ƒƒjƒ…[‚©‚ç‘I‘ð‚µ‚½Œã‚ÉÚ‘±‚·‚é‚à‚Ì
+ * â€»ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é¸æŠžã—ãŸå¾Œã«æŽ¥ç¶šã™ã‚‹ã‚‚ã®
  *
- *	ƒ_ƒCƒŒƒNƒg‚¹‚Â‚¼‚­
- *	WiFi‚¹‚Â‚¼‚­
- *	ƒr[ƒRƒ“‚¹‚Â‚¼‚­
+ *	ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã›ã¤ãžã
+ *	WiFiã›ã¤ãžã
+ *	ãƒ“ãƒ¼ã‚³ãƒ³ã›ã¤ãžã
  *
  */
 /*
-  ƒ^ƒCƒgƒ‹ƒƒjƒ…[‚ÌÅ‰‚ÌŽž“_‚Å‚¨Šè‚¢‚µ‚½‚¢Ž–‚ª‚ ‚è‚Ü‚·B
-  WIFI‚Ì‰Šú‰»ŠÖ”‚È‚Ì‚Å‚·‚ªA‚±‚ÌŠÖ”‚Ì–ß‚è’l‚ª
-  DWC_INIT_RESULT_DESTROY_OTHER_SETTING@‚Ìê‡‚ÉA
-  ƒƒbƒZ[ƒW‚ðo‚µ‚Ä‚¢‚½‚¾‚«‚½‚¢‚Ì‚Å‚·B
-  ‚¿‚È‚Ý‚É‚±‚ÌƒGƒ‰[‚ÍDS–{‘Ì‚Ì’ÊMî•ñ‚ª‰ó‚ê‚½ê‡‚Éo‚Ü‚·B
+  ã‚¿ã‚¤ãƒˆãƒ«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€åˆã®æ™‚ç‚¹ã§ãŠé¡˜ã„ã—ãŸã„äº‹ãŒã‚ã‚Šã¾ã™ã€‚
+  WIFIã®åˆæœŸåŒ–é–¢æ•°ãªã®ã§ã™ãŒã€ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤ãŒ
+  DWC_INIT_RESULT_DESTROY_OTHER_SETTINGã€€ã®å ´åˆã«ã€
+  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã—ã¦ã„ãŸã ããŸã„ã®ã§ã™ã€‚
+  ã¡ãªã¿ã«ã“ã®ã‚¨ãƒ©ãƒ¼ã¯DSæœ¬ä½“ã®é€šä¿¡æƒ…å ±ãŒå£Šã‚ŒãŸå ´åˆã«å‡ºã¾ã™ã€‚
 
   #include "msgdata/msg_wifi_system.h"
   #include "wifi/dwc_rap.h"
@@ -89,22 +89,22 @@
     message (  dwc_message_0001 );
   }
 
-  PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL ‚Å–{•¨‚Ìƒ^ƒCƒgƒ‹‚ÖˆÚ“®
+  PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL ã§æœ¬ç‰©ã®ã‚¿ã‚¤ãƒˆãƒ«ã¸ç§»å‹•
 
-  ‚±‚¤‚¢‚Á‚½—¬‚ê‚É‚È‚è‚Ü‚·B
+  ã“ã†ã„ã£ãŸæµã‚Œã«ãªã‚Šã¾ã™ã€‚
 */
 
 //
-// BG0 - ƒƒjƒ…[•\Ž¦‰æ–Ê
-// BG1 - ƒr[ƒRƒ“‚ðE‚Á‚½Û‚É•\Ž¦‚³‚ê‚éƒƒjƒ…[(ˆêŽž“I•\Ž¦‚Ì‚Ý)
-// BG2 - ’ÊMƒAƒCƒRƒ“(BG0‚Æˆê‚ÉƒXƒNƒ[ƒ‹)
+// BG0 - ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºç”»é¢
+// BG1 - ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ‹¾ã£ãŸéš›ã«è¡¨ç¤ºã•ã‚Œã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼(ä¸€æ™‚çš„è¡¨ç¤ºã®ã¿)
+// BG2 - é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³(BG0ã¨ä¸€ç·’ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«)
 //
 
 #define WIICLIENT_FILE		"data/eoo.dat"
 
-#define STARTMENU_FCHR1		1			// ’ÊíƒtƒŒ[ƒ€
+#define STARTMENU_FCHR1		1			// é€šå¸¸ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define STARTMENU_FCOL1		2
-#define STARTMENU_FCHR2		(STARTMENU_FCHR1 + 9)	// ‘I‘ðŽžƒtƒŒ[ƒ€
+#define STARTMENU_FCHR2		(STARTMENU_FCHR1 + 9)	// é¸æŠžæ™‚ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define STARTMENU_FCOL2		3
 
 
@@ -121,34 +121,34 @@
 #define RGB(r, g, b)	(((b)&31)<<10|((g)&31)<<5|((r)&31))
 
 enum {
-  // ƒƒCƒ“ƒV[ƒPƒ“ƒX
+  // ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
   STARTMENU_SEQ_INIT,
-  STARTMENU_SEQ_CHECK_SYSTEM,		// ŠeŽíƒVƒXƒeƒ€ƒ`ƒFƒbƒN
+  STARTMENU_SEQ_CHECK_SYSTEM,		// å„ç¨®ã‚·ã‚¹ãƒ†ãƒ ãƒã‚§ãƒƒã‚¯
   STARTMENU_SEQ_DISP_ERROR,
   STARTMENU_SEQ_HARDINIT,
-  STARTMENU_SEQ_CREATE_SCREEN,		// ƒXƒNƒŠ[ƒ“ì¬(Šî–{Œ`)
+  STARTMENU_SEQ_CREATE_SCREEN,		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆ(åŸºæœ¬å½¢)
   STARTMENU_SEQ_MAIN,
   STARTMENU_SEQ_SELECT_FIRSTGAME,
 
-  STARTMENU_SEQ_SELECT_MENU,		// ƒƒjƒ…[‚ª‘I‘ð‚³‚ê‚½Œã‚Ìˆ—
+  STARTMENU_SEQ_SELECT_MENU,		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé¸æŠžã•ã‚ŒãŸå¾Œã®å‡¦ç†
 
   STARTMENU_SEQ_FADE_WAIT,
-  STARTMENU_SEQ_FINISH,			// ‰½‚à‚¹‚¸”²‚¯‚é
+  STARTMENU_SEQ_FINISH,			// ä½•ã‚‚ã›ãšæŠœã‘ã‚‹
 
-  // ƒr[ƒRƒ“Žæ“¾ƒV[ƒPƒ“ƒX
-  STARTMENU_BEACON_SEQ_INIT,		// ‰Šú‰»
-  STARTMENU_BEACON_SEQ_INIT2,		// ‰Šú‰»
-  STARTMENU_BEACON_SEQ_WAIT,		// ƒƒCƒ“ˆ—‚ª—Ç‚¢‚Æ‚¢‚¤‚Ü‚Å‘Ò‚Â
-  STARTMENU_BEACON_SEQ_TIMER,		// ŽÀÛ‚Ìƒr[ƒRƒ“ŽûWˆ—
-  STARTMENU_BEACON_SEQ_CANCEL,		// ‹­§ƒLƒƒƒ“ƒZƒ‹ƒ‚[ƒh
+  // ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+  STARTMENU_BEACON_SEQ_INIT,		// åˆæœŸåŒ–
+  STARTMENU_BEACON_SEQ_INIT2,		// åˆæœŸåŒ–
+  STARTMENU_BEACON_SEQ_WAIT,		// ãƒ¡ã‚¤ãƒ³å‡¦ç†ãŒè‰¯ã„ã¨ã„ã†ã¾ã§å¾…ã¤
+  STARTMENU_BEACON_SEQ_TIMER,		// å®Ÿéš›ã®ãƒ“ãƒ¼ã‚³ãƒ³åŽé›†å‡¦ç†
+  STARTMENU_BEACON_SEQ_CANCEL,		// å¼·åˆ¶ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ¢ãƒ¼ãƒ‰
 
-  // ƒr[ƒRƒ“Žæ“¾Žž‚ÌƒƒbƒZ[ƒW•\Ž¦
-  BEACON_MSGSEQ_NOP,			// ‰½‚à‚µ‚È‚¢
-  BEACON_MSGSEQ_INIT,			// ‰Šú‰»
-  BEACON_MSGSEQ_INIT_DISP,		// ƒXƒNƒŠ[ƒ“‰Šú‰»
-  BEACON_MSGSEQ_INIT_MAIN,		// ƒL[“ü—Í‘Ò‚¿
-  BEACON_MSGSEQ_INIT_FINISH,		// I—¹
-  BEACON_MSGSEQ_FADE_WAIT,		// ƒtƒF[ƒh‘Ò‚¿
+  // ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+  BEACON_MSGSEQ_NOP,			// ä½•ã‚‚ã—ãªã„
+  BEACON_MSGSEQ_INIT,			// åˆæœŸåŒ–
+  BEACON_MSGSEQ_INIT_DISP,		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆæœŸåŒ–
+  BEACON_MSGSEQ_INIT_MAIN,		// ã‚­ãƒ¼å…¥åŠ›å¾…ã¡
+  BEACON_MSGSEQ_INIT_FINISH,		// çµ‚äº†
+  BEACON_MSGSEQ_FADE_WAIT,		// ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
   
   STARTMENU_SEQ_MAX
 };
@@ -158,7 +158,7 @@ typedef struct _STARTMENU_DATA {
   int mark;
   int height;
   int msgid;
-  // •\Ž¦Žž‚ÉŒÄ‚Ño‚³‚ê‚éƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
+  // è¡¨ç¤ºæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
   BOOL (*func)(void */* STARTMENU_WORK */, int, MYSTERY_WIN *, int);
 } STARTMENU_DATA;
 
@@ -185,7 +185,7 @@ enum {
 };
 
 enum {
-  STARTMENU_DWC_ERROR = 0,		// DS–{‘Ì‚Ì’ÊMî•ñ‚ª‰ó‚ê‚Ä‚¢‚é
+  STARTMENU_DWC_ERROR = 0,		// DSæœ¬ä½“ã®é€šä¿¡æƒ…å ±ãŒå£Šã‚Œã¦ã„ã‚‹
   STARTMENU_ERROR_MAX
 };
 
@@ -195,61 +195,61 @@ typedef struct {
   void (*func)(void */*STARTMENU_WORK* */);
 } ERRORTABLE;
 
-// ‚Q‚ÂƒZƒbƒg‚ÌƒGƒ‰[•\Ž¦ƒƒbƒZ[ƒW
+// ï¼’ã¤ã‚»ãƒƒãƒˆã®ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 static ERRORTABLE ErrorMsgTable[] = {
   { 5, 5, 22, 14, NARC_msg_wifi_system_dat, dwc_message_0001, NULL/*DispErrorDwc*/ },
 };
 
 
 STARTMENU_DATA StartMenuWinTable[] = {
-  // ‚Â‚Ã‚«‚©‚ç ‚Í‚¶‚ß‚é
+  // ã¤ã¥ãã‹ã‚‰ ã¯ã˜ã‚ã‚‹
   { SEL_CONTINUE,   10, mes_startmenu_01,	StartMenuContinue },
-  // ‚³‚¢‚µ‚å‚©‚ç@‚Í‚¶‚ß‚é
+  // ã•ã„ã—ã‚‡ã‹ã‚‰ã€€ã¯ã˜ã‚ã‚‹
   { SEL_FIRSTGAME,   2, mes_startmenu_02,	NULL },
-  // ‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì
+  // ãµã—ãŽãªã€€ãŠãã‚Šã‚‚ã®
   { SEL_MYSTERY,     2, mes_startmenu_03,	StartMenuCheckMystery },
-  // ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Æ‚Ì@‚¹‚Â‚¼‚­
+  // ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®ã€€ã›ã¤ãžã
   { SEL_RANGER,      2, mes_startmenu_04, 	StartMenuCheckRanger },
-  // ~~~‚©‚ç@‚Â‚ê‚Ä‚­‚é
+  // Ã—Ã—Ã—ã‹ã‚‰ã€€ã¤ã‚Œã¦ãã‚‹
   { SEL_AGBPOKEMON,  2, NULL, 			StartMenuAgbPokemon },
-  // Wii‚Æ@‚¹‚Â‚¼‚­
+  // Wiiã¨ã€€ã›ã¤ãžã
   { SEL_WII,         2, mes_startmenu_11, 	StartMenuCheckWii },
-  // Wi-Fi‚¹‚Á‚Ä‚¢
+  // Wi-Fiã›ã£ã¦ã„
   { SEL_WIFI,        2, mes_startmenu_12, 	StartMenuSetWifi },
-  // E-mail‚¹‚Á‚Ä‚¢
+  // E-mailã›ã£ã¦ã„
   { SEL_EMAIL,       2, mes_startmenu_21, 	StartMenuSetEmail },
 };
 
 
 static u32 StartMenuContinueTable[] = {
-  mes_startmenu_01,			// ‚Â‚Ã‚«‚©‚ç@‚Í‚¶‚ß‚é
-  mes_startmenu_13,			// ‚µ‚ã‚¶‚ñ‚±‚¤
-  mes_startmenu_14,			// ƒvƒŒƒC‚¶‚©‚ñ
-  mes_startmenu_16,			// ‚à‚Á‚Ä‚¢‚éƒoƒbƒW
-  mes_startmenu_15,			// ƒ|ƒPƒ‚ƒ“‚¸‚©‚ñ
+  mes_startmenu_01,			// ã¤ã¥ãã‹ã‚‰ã€€ã¯ã˜ã‚ã‚‹
+  mes_startmenu_13,			// ã—ã‚…ã˜ã‚“ã“ã†
+  mes_startmenu_14,			// ãƒ—ãƒ¬ã‚¤ã˜ã‹ã‚“
+  mes_startmenu_16,			// ã‚‚ã£ã¦ã„ã‚‹ãƒãƒƒã‚¸
+  mes_startmenu_15,			// ãƒã‚±ãƒ¢ãƒ³ãšã‹ã‚“
 };
 
-// ƒr[ƒRƒ“‚ðE‚Á‚½‚Æ‚«‚ÌƒƒbƒZ[ƒWƒf[ƒ^
+// ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ‹¾ã£ãŸã¨ãã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
 typedef struct {
   int sx, sy;
   int width, height;
   int msg;
 } BEACON_MSG_TABLE;
 BEACON_MSG_TABLE BeaconMsgTable[] = {
-  { 4, 2, 24, 20, bcon_002 },		// ‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ì‚ð”­Œ©Bƒƒjƒ…[‚Å‘I‚ñ‚Å‚Ë
-  { 4, 4, 24, 16, bcon_004 },		// ‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ì‚ð”­Œ©B‚Å‚à‚Ü‚¾ƒ_ƒ
-  { 4, 1, 24, 22, bcon_001 },		// ƒŒƒ“ƒWƒƒ[‚ð”­Œ©Bƒƒjƒ…[‚Å‘I‚ñ‚Å‚Ë
-  { 4, 3, 24, 18, bcon_003 },		// ƒŒƒ“ƒWƒƒ[‚ð”­Œ©B‚Å‚à‚Ü‚¾ƒ_ƒ
-  // «‚±‚ê‚¾‚¯ƒƒjƒ…[‘I‘ðŽžƒƒbƒZ[ƒW
-  { 2, 1, 28, 22, bcon_006 },		// ‚³‚¢‚µ‚å‚©‚ç‚Í‚¶‚ß‚Ä‚àƒZ[ƒu‚Å‚«‚ñ‚æH
+  { 4, 2, 24, 20, bcon_002 },		// ãµã—ãŽãªãŠãã‚Šã‚‚ã®ã‚’ç™ºè¦‹ã€‚ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§é¸ã‚“ã§ã­
+  { 4, 4, 24, 16, bcon_004 },		// ãµã—ãŽãªãŠãã‚Šã‚‚ã®ã‚’ç™ºè¦‹ã€‚ã§ã‚‚ã¾ã ãƒ€ãƒ¡
+  { 4, 1, 24, 22, bcon_001 },		// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã‚’ç™ºè¦‹ã€‚ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§é¸ã‚“ã§ã­
+  { 4, 3, 24, 18, bcon_003 },		// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã‚’ç™ºè¦‹ã€‚ã§ã‚‚ã¾ã ãƒ€ãƒ¡
+  // â†“ã“ã‚Œã ã‘ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠžæ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+  { 2, 1, 28, 22, bcon_006 },		// ã•ã„ã—ã‚‡ã‹ã‚‰ã¯ã˜ã‚ã¦ã‚‚ã‚»ãƒ¼ãƒ–ã§ãã‚“ã‚ˆï¼Ÿ
 };
 
 
 
-// ƒƒjƒ…[‚ÌÅ‘å”
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€å¤§æ•°
 #define MENU_WIN_MAX	(sizeof(StartMenuWinTable) / sizeof(STARTMENU_DATA))
 
-// ƒr[ƒRƒ“î•ñ‚ðW‚ß‚éŽžŠÔ
+// ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’é›†ã‚ã‚‹æ™‚é–“
 #define BEACON_GATHER_TIME	(2*60)
 
 #define SetSeq(w, n)	(w = n)
@@ -261,21 +261,21 @@ typedef struct {
   ZUKAN_WORK *zw;
   MYSTATUS *mst;
   PLAYTIME *ptime;
-  FUSHIGI_DATA *fdata;				// ‚Ó‚µ‚¬ƒf[ƒ^‚ð“Ç‚ñ‚¾êŠ
+  FUSHIGI_DATA *fdata;				// ãµã—ãŽãƒ‡ãƒ¼ã‚¿ã‚’èª­ã‚“ã å ´æ‰€
 
-  // ƒƒCƒ“ƒV[ƒPƒ“ƒXŠÖŒW
+  // ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–¢ä¿‚
 
   int jiffy;
   int next_seq;
-  int chrbase;			       	// ƒEƒBƒ“ƒhƒE‚ÌƒLƒƒƒ‰ƒNƒ^ƒx[ƒX
+  int chrbase;			       	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹
 
-  int agbpokemon;     			// Žh‚³‚Á‚Ä‚¢‚éAGBƒJƒZƒbƒg‚Ìƒ^ƒCƒv(CASTYPE_xxx)
+  int agbpokemon;     			// åˆºã•ã£ã¦ã„ã‚‹AGBã‚«ã‚»ãƒƒãƒˆã®ã‚¿ã‚¤ãƒ—(CASTYPE_xxx)
   int agbpokemoncheck;
-  int pokemonranger;			// ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚ð”­Œ©‚µ‚½
-  int wii;				// Wii‚Ìƒr[ƒRƒ“‚ð”­Œ©‚µ‚½
-  int mystery;				// ‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ìƒr[ƒRƒ“
+  int pokemonranger;			// ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã‚’ç™ºè¦‹ã—ãŸ
+  int wii;				// Wiiã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’ç™ºè¦‹ã—ãŸ
+  int mystery;				// ãµã—ãŽãªã€€ãŠãã‚Šã‚‚ã®ãƒ“ãƒ¼ã‚³ãƒ³
 
-  int menu_flag;			// ŠeŽíƒr[ƒRƒ“ƒƒjƒ…[‚ð•\Ž¦‚µ‚½‚©H(PARTYGAME_xxx)
+  int menu_flag;			// å„ç¨®ãƒ“ãƒ¼ã‚³ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã—ãŸã‹ï¼Ÿ(PARTYGAME_xxx)
   int new_menu_flag;
   
   
@@ -283,39 +283,39 @@ typedef struct {
   int beacon_disp_status;
   int redrawflag;
   
-  int zukangetflag;			// ‚¸‚©‚ñ‚ðŽ‚Á‚Ä‚¢‚é‚È‚çTRUE
-  int badgecount;			// ‚à‚Á‚Ä‚¢‚éƒoƒbƒ`‚Ì”
+  int zukangetflag;			// ãšã‹ã‚“ã‚’æŒã£ã¦ã„ã‚‹ãªã‚‰TRUE
+  int badgecount;			// ã‚‚ã£ã¦ã„ã‚‹ãƒãƒƒãƒã®æ•°
 
 
-  int cursor;				// Œ»Ý‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+  int cursor;				// ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 
-  int select;				// ‘I‘ð‚³‚ê‚½€–Ú(-1‚È‚ç‚Î‰½‚à‘I‘ð‚µ‚Ä‚¢‚È‚¢)
+  int select;				// é¸æŠžã•ã‚ŒãŸé …ç›®(-1ãªã‚‰ã°ä½•ã‚‚é¸æŠžã—ã¦ã„ãªã„)
   
   GF_BGL_BMPWIN mwin[MENU_WIN_MAX];
-  int menuflag[MENU_WIN_MAX];		// •\Ž¦‚³‚ê‚Ä‚¢‚½‚çTRUE(default = FALSE)
-  int iconflag[MENU_WIN_MAX];		// ƒƒCƒ„ƒŒƒXƒAƒCƒRƒ“‚ª‚ ‚éŽž‚ÉTRUE
+  int menuflag[MENU_WIN_MAX];		// è¡¨ç¤ºã•ã‚Œã¦ã„ãŸã‚‰TRUE(default = FALSE)
+  int iconflag[MENU_WIN_MAX];		// ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹ã‚¢ã‚¤ã‚³ãƒ³ãŒã‚ã‚‹æ™‚ã«TRUE
 
-  fx32 scrolly;				// Œ»Ý‚ÌƒXƒNƒ[ƒ‹’l
-  fx32 target;				// –Ú“IÀ•W
+  fx32 scrolly;				// ç¾åœ¨ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
+  fx32 target;				// ç›®çš„åº§æ¨™
 
-  // ƒr[ƒRƒ“Žæ“¾ŠÖŒW
+  // ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—é–¢ä¿‚
   int beacon_seq;
   int beacon_wait;
-  int beacon_msg_seq;			// ƒr[ƒRƒ“Žæ“¾Žž‚É•\Ž¦‚·‚éƒƒbƒZ[ƒWƒV[ƒPƒ“ƒX
+  int beacon_msg_seq;			// ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—æ™‚ã«è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
   int beacon_msg_wait;
   int beacon_key_wait;
   int beacon_result;
   GF_BGL_BMPWIN beacon_win;
   
-  int pass_start_menu;			// TRUE‚È‚ç‚ÎƒXƒ^[ƒgƒƒjƒ…[‚ð•\Ž¦‚³‚¹‚È‚¢
+  int pass_start_menu;			// TRUEãªã‚‰ã°ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã•ã›ãªã„
   int req_popup;
 
-  // ƒGƒ‰[î•ñ
+  // ã‚¨ãƒ©ãƒ¼æƒ…å ±
   BOOL errorflag[STARTMENU_ERROR_MAX];
   GF_BGL_BMPWIN ewin;
   
-  // ƒJ[ƒ\ƒ‹ƒAƒNƒ^[
-  CLACT_WORK_PTR clcursor[2];		// 0 = ª@1 = «
+  // ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+  CLACT_WORK_PTR clcursor[2];		// 0 = â†‘ã€€1 = â†“
 
   int anim_index;
 } STARTMENU_WORK;
@@ -326,7 +326,7 @@ typedef struct {
 
 
 //============================================================================================
-//	ŠO•”ŠÖ”’è‹`
+//	å¤–éƒ¨é–¢æ•°å®šç¾©
 //============================================================================================
 extern FUSHIGI_DATA * SaveData_GetFushigiData(SAVEDATA * sv);
 extern int CommPlayerNowFlagDataArraySize(void);
@@ -334,13 +334,13 @@ extern int MyStatus_GetWorkSize(void);
 extern void CreateIndexData(int heapid);
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€ƒGƒ‰[ƒ`ƒFƒbƒN
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
  * @param	NONE
  * @return	NONE
  */
@@ -350,10 +350,10 @@ static int StartMenuCheckSystem(STARTMENU_WORK *wk)
   int max, ret;
   
   max = 0;
-#if 0  //main‚ÅŒÄ‚Ñ‚Ü‚·‚Ì‚ÅA‚±‚±‚ÍÁ‚µ‚Ü‚·
-  // DS–{‘Ì‚Ì’ÊMî•ñ‚ª‰ó‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN‚·‚é
+#if 0  //mainã§å‘¼ã³ã¾ã™ã®ã§ã€ã“ã“ã¯æ¶ˆã—ã¾ã™
+  // DSæœ¬ä½“ã®é€šä¿¡æƒ…å ±ãŒå£Šã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
   ret = mydwc_init(HEAPID_BASE_APP);
-#if 0	// ƒfƒoƒbƒO—p‚Å‚·‚æ
+#if 0	// ãƒ‡ãƒãƒƒã‚°ç”¨ã§ã™ã‚ˆ
   ret = DWC_INIT_RESULT_DESTROY_OTHER_SETTING;
 #endif
   if(ret == DWC_INIT_RESULT_DESTROY_OTHER_SETTING){
@@ -367,7 +367,7 @@ static int StartMenuCheckSystem(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒGƒ‰[î•ñ‚ð•\Ž¦‚·‚é
+ * @brief	ã‚¨ãƒ©ãƒ¼æƒ…å ±ã‚’è¡¨ç¤ºã™ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -378,13 +378,13 @@ static BOOL StartMenuDisplayError(STARTMENU_WORK *wk)
   ERRORTABLE *et;
   MYSTERY_WIN mw;
 
-  // ƒGƒ‰[•\Ž¦ƒEƒBƒ“ƒhƒE‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Å”»’f‚ðs‚¨‚¤‚©‚È
+  // ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã§åˆ¤æ–­ã‚’è¡ŒãŠã†ã‹ãª
   if(GF_BGL_BmpWinAddCheck(&wk->ewin) == FALSE){
     for(i = 0; i < STARTMENU_ERROR_MAX; i++){
       if(wk->errorflag[i] == TRUE){
 	wk->errorflag[i] = FALSE;
 	et = &ErrorMsgTable[i];
-	//‚±‚±‚ÅƒGƒ‰[•\Ž¦‚ðs‚¤
+	//ã“ã“ã§ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºã‚’è¡Œã†
 	MysteryLib_WinInit1(&mw, &wk->ewin, STARTMENU_WCOL_SELECT, et->arc, STARTMENU_FCHR1, STARTMENU_FCOL1);
 	MysteryLib_WinInit2(&mw, et->width, et->height, /*et->msgid,*/ STARTMENU_WCHR);
 	MysteryLib_CreateWin(wk->bgl, &mw, et->sx, et->sy, et->msgid);
@@ -392,7 +392,7 @@ static BOOL StartMenuDisplayError(STARTMENU_WORK *wk)
       }
     }
   } else {
-    // ƒGƒ‰[ƒEƒBƒ“ƒhƒE‚Ì•\Ž¦’†
+    // ã‚¨ãƒ©ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºä¸­
     if(sys.trg & (PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL)){
       Snd_SePlay(SEQ_SE_DP_SELECT);
       BmpMenuWinClear(&wk->ewin, WINDOW_TRANS_ON);
@@ -409,7 +409,7 @@ static BOOL StartMenuDisplayError(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚`‚f‚aƒJƒZƒbƒg‚ªŽh‚³‚Á‚Ä‚¢‚é‚©‰Šú‰»‚·‚é
+ * @brief	ï¼¡ï¼§ï¼¢ã‚«ã‚»ãƒƒãƒˆãŒåˆºã•ã£ã¦ã„ã‚‹ã‹åˆæœŸåŒ–ã™ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -421,11 +421,11 @@ static void AgbCartridgeInit(STARTMENU_WORK *wk)
 
   wk->agbpokemon = FALSE;
   
-  // AGBƒ|ƒPƒ‚ƒ“‚ªŽh‚³‚Á‚Ä‚¢‚È‚¯‚ê‚Î‰½‚à‚µ‚È‚¢
+  // AGBãƒã‚±ãƒ¢ãƒ³ãŒåˆºã•ã£ã¦ã„ãªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„
   if(flag != AGBPOKE_ERROR_OK)
     return;
 
-  // ƒVƒXƒeƒ€‚ÖƒJƒZƒbƒgƒ^ƒCƒv‚ð’Ê’m‚·‚é
+  // ã‚·ã‚¹ãƒ†ãƒ ã¸ã‚«ã‚»ãƒƒãƒˆã‚¿ã‚¤ãƒ—ã‚’é€šçŸ¥ã™ã‚‹
   pmv = 0;	// unknown
   switch(agbpoke_getPokemonType()){
   case CASTYPE_RUBY:	pmv = VERSION_RUBY;	break;
@@ -436,32 +436,32 @@ static void AgbCartridgeInit(STARTMENU_WORK *wk)
   }
   sys_InitAgbCasetteVer(pmv);
 #ifdef DEBUG_ONLY_FOR_mituhara
-  OS_TPrintf("AGBƒJƒZƒbƒgƒo[ƒWƒ‡ƒ“: %d\n", pmv);
+  OS_TPrintf("AGBã‚«ã‚»ãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³: %d\n", pmv);
 #endif
 
 #ifndef DEBUG_ONLY_FOR_mituhara
-  // DP‘¤‚Ì‘S‘‚¸‚©‚ñƒ‚[ƒh‚ªON‚É‚È‚Á‚Ä‚¢‚È‚¯‚ê‚Îƒ|ƒPƒ‚ƒ“ƒJƒZƒbƒg‚Ìƒƒjƒ…[‚Í•\Ž¦‚³‚ê‚È‚¢
+  // DPå´ã®å…¨å›½ãšã‹ã‚“ãƒ¢ãƒ¼ãƒ‰ãŒONã«ãªã£ã¦ã„ãªã‘ã‚Œã°ãƒã‚±ãƒ¢ãƒ³ã‚«ã‚»ãƒƒãƒˆã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¯è¡¨ç¤ºã•ã‚Œãªã„
   if(ZukanWork_GetZenkokuZukanFlag(wk->zw) == FALSE)
     return;
 #endif
 
-  // DP‚Æ“¯‚¶Œ¾Œê‚Å‚È‚¯‚ê‚Îƒƒjƒ…[‚Í•\Ž¦‚µ‚È‚¢
+  // DPã¨åŒã˜è¨€èªžã§ãªã‘ã‚Œã°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¯è¡¨ç¤ºã—ãªã„
   if(agbpoke_getPokemonLanguage() != CasetteLanguage)
     return;
 
-  // ƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒCƒv‚ðÝ’è‚·‚é
+  // ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ã‚¤ãƒ—ã‚’è¨­å®šã™ã‚‹
   wk->agbpokemon = agbpoke_getPokemonType() + 1;
 
 #if 0
-  // RTC•t‚«‚ÌƒJ[ƒgƒŠƒbƒW‚ÅARTC‚Ì“d’r‚ªØ‚ê‚½‚à‚Ì‚Íí‚ÉOS_IE_CARTRIDGEŠ„‚èž‚Ý‚ª
-  // Š|‚©‚Á‚Ä‚µ‚Ü‚¤‚½‚ßAƒ^ƒCƒgƒ‹‰æ–Ê‚Å‚ÍƒJ[ƒgƒŠƒbƒW”²‚¯”»’è‚ð‚µ‚È‚¢
-  // ‚½‚¾‚µu~~~‚©‚ç@‚Â‚ê‚Ä‚­‚év‚ð‘I‘ð‚µ‚½Žž‚É’âŽ~‚·‚é‚æ‚¤‚É‚·‚é
-  // 2006.08.10(¦ƒ}ƒXƒ^[ƒAƒbƒv“–“ú)
+  // RTCä»˜ãã®ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã§ã€RTCã®é›»æ± ãŒåˆ‡ã‚ŒãŸã‚‚ã®ã¯å¸¸ã«OS_IE_CARTRIDGEå‰²ã‚Šè¾¼ã¿ãŒ
+  // æŽ›ã‹ã£ã¦ã—ã¾ã†ãŸã‚ã€ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã§ã¯ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸æŠœã‘åˆ¤å®šã‚’ã—ãªã„
+  // ãŸã ã—ã€ŒÃ—Ã—Ã—ã‹ã‚‰ã€€ã¤ã‚Œã¦ãã‚‹ã€ã‚’é¸æŠžã—ãŸæ™‚ã«åœæ­¢ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
+  // 2006.08.10(â€»ãƒžã‚¹ã‚¿ãƒ¼ã‚¢ãƒƒãƒ—å½“æ—¥)
 
-  /* AGBƒJ[ƒgƒŠƒbƒW‚Ì”²‚¯ŒŸoON */
+  /* AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®æŠœã‘æ¤œå‡ºON */
   MysteryLib_SetAgbCartridgeIntr(TRUE);
 #else
-  /* ƒXƒŠ[ƒvŽž‚ÌƒJ[ƒgƒŠƒbƒW”²‚¯‚ð—LŒø‚É‚·‚é‚½‚ß‚ÌŠÖ”ŒÄ‚Ño‚µ */
+  /* ã‚¹ãƒªãƒ¼ãƒ—æ™‚ã®ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸æŠœã‘ã‚’æœ‰åŠ¹ã«ã™ã‚‹ãŸã‚ã®é–¢æ•°å‘¼ã³å‡ºã— */
   MysteryLib_SetAgbCartridgeIntr2();
 #endif
 }
@@ -469,8 +469,8 @@ static void AgbCartridgeInit(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒr[ƒRƒ“Žæ“¾ƒvƒƒZƒX
- * 		¦thread‚É‚È‚Á‚Ä‚é‚í‚¯‚Å‚Í‚ ‚è‚Ü‚¹‚ñ
+ * @brief	ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—ãƒ—ãƒ­ã‚»ã‚¹
+ * 		â€»threadã«ãªã£ã¦ã‚‹ã‚ã‘ã§ã¯ã‚ã‚Šã¾ã›ã‚“
  */
 //------------------------------------------------------------------
 static void StartMenuBeacon_Proc(STARTMENU_WORK *wk)
@@ -479,19 +479,19 @@ static void StartMenuBeacon_Proc(STARTMENU_WORK *wk)
 
   switch(wk->beacon_seq){
   case STARTMENU_BEACON_SEQ_WAIT:
-    // ŠO•”‚©‚çƒV[ƒPƒ“ƒX‚ð•ÏX‚³‚ê‚È‚¢ŒÀ‚è“®‚©‚È‚¢
+    // å¤–éƒ¨ã‹ã‚‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã•ã‚Œãªã„é™ã‚Šå‹•ã‹ãªã„
     break;
 
   case STARTMENU_BEACON_SEQ_INIT:
     wk->beacon_seq = STARTMENU_BEACON_SEQ_INIT2;
     break;
   case STARTMENU_BEACON_SEQ_INIT2:
-    // * ƒp[ƒeƒB[ƒQ[ƒ€ŒŸõ‚Ì’ÊMˆ—ŠJŽniŽq‹@ó‘Ô‚Ì‚Ýj
+    // * ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚²ãƒ¼ãƒ æ¤œç´¢ã®é€šä¿¡å‡¦ç†é–‹å§‹ï¼ˆå­æ©ŸçŠ¶æ…‹ã®ã¿ï¼‰
     CommStateEnterPartyGameScanChild(wk->sv);
     wk->beacon_wait = BEACON_GATHER_TIME;
     wk->beacon_seq = STARTMENU_BEACON_SEQ_TIMER;
     wk->beacon_status = 0;
-    // ‚·‚Å‚Éu‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ìvƒƒjƒ…[‚ª•\Ž¦‚³‚ê‚Ä‚¢‚½‚çƒ|ƒbƒvƒAƒbƒv‚Í‚µ‚È‚¢
+    // ã™ã§ã«ã€Œãµã—ãŽãªã€€ãŠãã‚Šã‚‚ã®ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ãŸã‚‰ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ã¯ã—ãªã„
     if(FUSHIGIDATA_IsFushigiMenu(wk->fdata) == TRUE){
       wk->beacon_status |= PARTYGAME_MYSTERY_BCON;
       wk->beacon_disp_status |= PARTYGAME_MYSTERY_BCON;
@@ -500,13 +500,13 @@ static void StartMenuBeacon_Proc(STARTMENU_WORK *wk)
     break;
 
   case STARTMENU_BEACON_SEQ_TIMER:
-    // ‚·‚Å‚Éƒ|ƒbƒvƒAƒbƒv—\–ñ’†
+    // ã™ã§ã«ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—äºˆç´„ä¸­
     if(wk->beacon_msg_wait)	break;
-    // ƒr[ƒRƒ“ŽûW’†
+    // ãƒ“ãƒ¼ã‚³ãƒ³åŽé›†ä¸­
     flag = CommStateGetPartyGameBit();
 
 #ifdef DEBUG_ONLY_FOR_mituhara
-    // ƒfƒoƒbƒO’†
+    // ãƒ‡ãƒãƒƒã‚°ä¸­
 #if 1
     if(sys.trg & PAD_BUTTON_L)	flag |= PARTYGAME_RANGER_BCON;
     if(sys.trg & PAD_BUTTON_R)	flag |= PARTYGAME_WII_BCON;
@@ -518,29 +518,29 @@ static void StartMenuBeacon_Proc(STARTMENU_WORK *wk)
 #endif
 #endif
     
-    // ‘O‰ñ‚Ü‚Å•\Ž¦‚µ‚Ä‚¢‚È‚¢ƒrƒbƒg‚Ì‚Ý—§‚Ä‚é
+    // å‰å›žã¾ã§è¡¨ç¤ºã—ã¦ã„ãªã„ãƒ“ãƒƒãƒˆã®ã¿ç«‹ã¦ã‚‹
     flag = ~wk->beacon_status & flag;
-    // ‰½‚©‚Ìƒr[ƒRƒ“‚ðE‚Á‚Ä‚¢‚ÄAŠ„‚èž‚ÝƒƒbƒZ[ƒW•\Ž¦’†‚Å‚È‚­‚ÄA‚·‚Å‚É—\–ñÏ‚Ý‚Å‚È‚­‚ÄA‚Ü‚¾•\Ž¦‚µ‚Ä‚È‚¢ê‡
+    // ä½•ã‹ã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ‹¾ã£ã¦ã„ã¦ã€å‰²ã‚Šè¾¼ã¿ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ã§ãªãã¦ã€ã™ã§ã«äºˆç´„æ¸ˆã¿ã§ãªãã¦ã€ã¾ã è¡¨ç¤ºã—ã¦ãªã„å ´åˆ
     if(flag && wk->beacon_msg_seq == BEACON_MSGSEQ_NOP && wk->beacon_msg_wait == 0 && wk->beacon_status != flag){
       wk->redrawflag = TRUE;
       if(flag & PARTYGAME_MYSTERY_BCON)	wk->mystery = TRUE,		flag = PARTYGAME_MYSTERY_BCON;
       if(flag & PARTYGAME_RANGER_BCON)	wk->pokemonranger = TRUE,	flag = PARTYGAME_RANGER_BCON;
       if(flag & PARTYGAME_WII_BCON)	wk->wii = TRUE,			flag = PARTYGAME_WII_BCON;
-      // ‚Ó‚µ‚¬ƒr[ƒRƒ“‚ÆƒŒƒ“ƒWƒƒ[ƒr[ƒRƒ“‚Ìê‡‚ÍŠ„‚èž‚ÝƒƒbƒZ[ƒW•\Ž¦
+      // ãµã—ãŽãƒ“ãƒ¼ã‚³ãƒ³ã¨ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ãƒ“ãƒ¼ã‚³ãƒ³ã®å ´åˆã¯å‰²ã‚Šè¾¼ã¿ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
       if(flag & (PARTYGAME_MYSTERY_BCON|PARTYGAME_RANGER_BCON))
 	wk->req_popup = TRUE;
-      // ‚±‚±‚Å‚æ‚¤‚â‚­•\Ž¦Ï‚Ýƒtƒ‰ƒO‚ÌXV
+      // ã“ã“ã§ã‚ˆã†ã‚„ãè¡¨ç¤ºæ¸ˆã¿ãƒ•ãƒ©ã‚°ã®æ›´æ–°
       wk->beacon_status |= flag;
     }
     if(--wk->beacon_wait == 0){
-      // ƒp[ƒeƒB[ƒQ[ƒ€ƒT[ƒ`‚ÌI—¹ˆ—
+      // ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚²ãƒ¼ãƒ ã‚µãƒ¼ãƒã®çµ‚äº†å‡¦ç†
       CommStateExitPartyGameScan();
       wk->beacon_seq = STARTMENU_BEACON_SEQ_WAIT;
     }
     break;
 
   case STARTMENU_BEACON_SEQ_CANCEL:
-    // ‹­§I—¹ˆ—(ƒQ[ƒ€‚ªŠJŽn‚³‚ê‚½‚Æ‚©)
+    // å¼·åˆ¶çµ‚äº†å‡¦ç†(ã‚²ãƒ¼ãƒ ãŒé–‹å§‹ã•ã‚ŒãŸã¨ã‹)
     CommStateExitPartyGameScan();
     wk->beacon_seq = STARTMENU_BEACON_SEQ_WAIT;
     break;
@@ -550,7 +550,7 @@ static void StartMenuBeacon_Proc(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒr[ƒRƒ“‚ðŽæ“¾‚µ‚½Û‚É•\Ž¦‚·‚é‰æ–Ê
+ * @brief	ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å–å¾—ã—ãŸéš›ã«è¡¨ç¤ºã™ã‚‹ç”»é¢
  * @param	NONE
  * @return	NONE
  */
@@ -564,14 +564,14 @@ static BOOL BeaconMessage_Proc(STARTMENU_WORK *wk)
   switch(wk->beacon_msg_seq){
   case BEACON_MSGSEQ_NOP:
     if(wk->beacon_msg_wait == 0)	return FALSE;
-    // ƒr[ƒRƒ“‚ðE‚Á‚Ä‚©‚ç”ƒtƒŒ[ƒ€Œã‚É”­“®
+    // ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ‹¾ã£ã¦ã‹ã‚‰æ•°ãƒ•ãƒ¬ãƒ¼ãƒ å¾Œã«ç™ºå‹•
     if(--wk->beacon_msg_wait == 0)
       wk->beacon_msg_seq = BEACON_MSGSEQ_INIT;
     return TRUE;
     break;
 
   case BEACON_MSGSEQ_INIT:
-    // ‰Šú‰»
+    // åˆæœŸåŒ–
     MenuWinGraphicSet(wk->bgl, GF_BGL_FRAME1_M, STARTMENU_FCHR1, STARTMENU_FCOL1, 0, HEAPID_STARTMENU);
     GF_BGL_ScrClear(wk->bgl, GF_BGL_FRAME1_M);
     *((u16 *)HW_BG_PLTT + 33) = RGB(26, 26, 26);
@@ -579,21 +579,21 @@ static BOOL BeaconMessage_Proc(STARTMENU_WORK *wk)
     break;
 
   case BEACON_MSGSEQ_INIT_DISP:
-    // ƒXƒNƒŠ[ƒ“‰Šú‰»
+    // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆæœŸåŒ–
     MysteryLib_WinInit1(&mw, &wk->beacon_win, STARTMENU_WCOL_SELECT, NARC_msg_bconfind_dat, STARTMENU_FCHR1, STARTMENU_FCOL1);
 
-    // ‚P“x•\Ž¦‚µ‚½ƒƒjƒ…[‚Í•\Ž¦‚µ‚È‚¢‚½‚ß‚É•\Ž¦‚µ‚½ƒtƒ‰ƒO‚ðŠo‚¦‚Ä‚¨‚­
+    // ï¼‘åº¦è¡¨ç¤ºã—ãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¯è¡¨ç¤ºã—ãªã„ãŸã‚ã«è¡¨ç¤ºã—ãŸãƒ•ãƒ©ã‚°ã‚’è¦šãˆã¦ãŠã
     status = wk->beacon_status & ~wk->beacon_disp_status;
 
     if(status & PARTYGAME_MYSTERY_BCON){
-      if(wk->menu_flag & PARTYGAME_MYSTERY_BCON)	tbl = &BeaconMsgTable[0];	// ‚Ó‚µ‚¬’Ç‰Á
-      else						tbl = &BeaconMsgTable[1];	// ’Ç‰Á‚Å‚«‚È‚©‚Á‚½
+      if(wk->menu_flag & PARTYGAME_MYSTERY_BCON)	tbl = &BeaconMsgTable[0];	// ãµã—ãŽè¿½åŠ 
+      else						tbl = &BeaconMsgTable[1];	// è¿½åŠ ã§ããªã‹ã£ãŸ
     } else if(status & PARTYGAME_RANGER_BCON){
-      if(wk->menu_flag & PARTYGAME_RANGER_BCON)		tbl = &BeaconMsgTable[2];	// ƒŒƒ“ƒWƒƒ[’Ç‰Á
-      else						tbl = &BeaconMsgTable[3];	// ’Ç‰Á‚Å‚«‚È‚©‚Á‚½
+      if(wk->menu_flag & PARTYGAME_RANGER_BCON)		tbl = &BeaconMsgTable[2];	// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼è¿½åŠ 
+      else						tbl = &BeaconMsgTable[3];	// è¿½åŠ ã§ããªã‹ã£ãŸ
     } else if(status & STARTMENU_FIRSTGAME_SELECT){
-      tbl = &BeaconMsgTable[4];	// ‚³‚¢‚µ‚å‚©‚ç‚Í‚¶‚ß‚é‚ð‚¦‚ç‚ñ‚¾Žž‚ÌƒƒbƒZ[ƒW
-      status = 0;	// ‰½“x‚Å‚à•\Ž¦‚³‚¹‚½‚¢‚Ì‚ÅŠo‚¦‚³‚¹‚È‚¢
+      tbl = &BeaconMsgTable[4];	// ã•ã„ã—ã‚‡ã‹ã‚‰ã¯ã˜ã‚ã‚‹ã‚’ãˆã‚‰ã‚“ã æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+      status = 0;	// ä½•åº¦ã§ã‚‚è¡¨ç¤ºã•ã›ãŸã„ã®ã§è¦šãˆã•ã›ãªã„
     }
     wk->beacon_disp_status |= status;
 
@@ -614,7 +614,7 @@ static BOOL BeaconMessage_Proc(STARTMENU_WORK *wk)
     break;
 
   case BEACON_MSGSEQ_INIT_MAIN:
-    // ƒL[“ü—Í‘Ò‚¿
+    // ã‚­ãƒ¼å…¥åŠ›å¾…ã¡
     if(wk->beacon_key_wait){
       wk->beacon_key_wait--;
     } else {
@@ -628,7 +628,7 @@ static BOOL BeaconMessage_Proc(STARTMENU_WORK *wk)
     break;
 
   case BEACON_MSGSEQ_INIT_FINISH:
-    // I—¹
+    // çµ‚äº†
     GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG0, VISIBLE_ON);
     GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG2, VISIBLE_ON);
     GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG1, VISIBLE_OFF);
@@ -641,19 +641,19 @@ static BOOL BeaconMessage_Proc(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	–ˆƒtƒŒ[ƒ€s‚¤ˆ—
+ * @brief	æ¯Žãƒ•ãƒ¬ãƒ¼ãƒ è¡Œã†å‡¦ç†
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
-// ðŒ•ªŠò‚µ‚È‚¢ABS
+// æ¡ä»¶åˆ†å²ã—ãªã„ABS
 #define ABS(x)		(((x) ^ ((x)>>31)) - ((x)>>31))
 #define SCROLL_MAX_SPEED	(12 * FX32_ONE)
 static void StartMenuProc(STARTMENU_WORK *wk)
 {
   fx32 speed;
 
-  // ƒXƒNƒ[ƒ‹ˆ—
+  // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†
   if(wk->scrolly != wk->target){
     speed = (wk->target - wk->scrolly) / 4;
     if(ABS(speed) > SCROLL_MAX_SPEED){
@@ -672,7 +672,7 @@ static void StartMenuProc(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠ[ƒ“‰Šú‰»
+ * @brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆæœŸåŒ–
  * @param	NONE
  * @return	NONE
  */
@@ -680,16 +680,16 @@ static void StartMenuProc(STARTMENU_WORK *wk)
 static void InitStartMenuScreen(STARTMENU_WORK *wk)
 {
   GF_BGL_DISPVRAM tbl = {
-    GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-    GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-    GX_VRAM_SUB_BGEXTPLTT_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-    GX_VRAM_OBJEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-    GX_VRAM_SUB_OBJEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-    GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+    GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+    GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+    GX_VRAM_SUB_BGEXTPLTT_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+    GX_VRAM_OBJEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+    GX_VRAM_SUB_OBJEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+    GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
   };
   GF_BGL_SYS_HEADER BGsys_data = { GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BGMODE_0, GX_BG0_AS_2D };
 
@@ -697,31 +697,31 @@ static void InitStartMenuScreen(STARTMENU_WORK *wk)
 
   /* BG SYSTEM */
   GF_BGL_InitBG( &BGsys_data );
-  /* ƒƒjƒ…[‚ð•\Ž¦‚·‚éBG */
+  /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹BG */
   MysteryLib_BgInitFrame(wk->bgl, GF_BGL_FRAME0_M, GF_BGL_SCRSIZ_256x512, 0xF000, 0x0000); /* MAIN DISP BG0 */
   G2_SetBG0Priority(2);
   GF_BGL_ClearCharSet(GF_BGL_FRAME0_M, 32, 0, HEAPID_STARTMENU);
-  /* ƒr[ƒRƒ“Žæ“¾Žž‚É•\Ž¦‚·‚éƒƒbƒZ[ƒWBG */
+  /* ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—æ™‚ã«è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸BG */
   MysteryLib_BgInitFrame(wk->bgl, GF_BGL_FRAME1_M, GF_BGL_SCRSIZ_256x256, 0xD800, 0x8000); /* MAIN DISP BG1 */
   G2_SetBG1Priority(1);
   GF_BGL_ClearCharSet(GF_BGL_FRAME1_M, 32, 0, HEAPID_STARTMENU);
-  /* ’ÊMƒAƒCƒRƒ“‚ð•\Ž¦‚·‚éBG‰æ–Ê */
+  /* é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹BGç”»é¢ */
   MysteryLib_BgInitFrame(wk->bgl, GF_BGL_FRAME2_M, GF_BGL_SCRSIZ_256x512, 0xE000, 0x0000); /* MAIN DISP BG2 */
   G2_SetBG2Priority(0);
   GF_BGL_ClearCharSet(GF_BGL_FRAME2_M, 32, 0, HEAPID_STARTMENU);
 
   MSG_PrintInit();
 
-  /* ƒƒbƒZ[ƒW‚ÌƒtƒHƒ“ƒgƒJƒ‰[‚ðÝ’è */
+  /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®š */
   SystemFontPaletteLoad(PALTYPE_MAIN_BG, STARTMENU_WCOL_NORMAL * 32, HEAPID_STARTMENU);
   SystemFontPaletteLoad(PALTYPE_MAIN_BG, STARTMENU_WCOL_SELECT * 32, HEAPID_STARTMENU);
   *((u16 *)HW_BG_PLTT +  0) = RGB( 0,  0,  0);
 
-  *((u16 *)HW_BG_PLTT + 31) = RGB(26, 26, 26);	// ƒEƒBƒ“ƒhƒE‚Ì”wŒi
-  //ƒEƒBƒ“ƒhƒE˜gƒLƒƒƒ‰AƒpƒŒƒbƒg‚ðƒZƒbƒg
+  *((u16 *)HW_BG_PLTT + 31) = RGB(26, 26, 26);	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®èƒŒæ™¯
+  //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æž ã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
   MenuWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, STARTMENU_FCHR1, STARTMENU_FCOL1, 0, HEAPID_STARTMENU);
   MenuWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, STARTMENU_FCHR2, STARTMENU_FCOL2, 1, HEAPID_STARTMENU);
-  // ‘I‘ð‚µ‚Ä‚È‚¢ƒEƒBƒ“ƒhƒE‚Ì”’ƒ‰ƒCƒ“
+  // é¸æŠžã—ã¦ãªã„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç™½ãƒ©ã‚¤ãƒ³
   *((u16 *)HW_BG_PLTT + 33) = RGB(26, 26, 26);
 
 }
@@ -729,7 +729,7 @@ static void InitStartMenuScreen(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹‚Ì•\Ž¦€”õ
+ * @brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«ã®è¡¨ç¤ºæº–å‚™
  * @param	NONE
  * @return	NONE
  */
@@ -753,7 +753,7 @@ static void StartMenuInitClact(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	’ÊMƒAƒCƒRƒ“‚ÌƒOƒ‰ƒtƒBƒbƒNƒX€”õ
+ * @brief	é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹æº–å‚™
  * @param	NONE
  * @return	NONE
  */
@@ -761,9 +761,9 @@ static void StartMenuInitClact(STARTMENU_WORK *wk)
 #define WIRELESS_CHR_BASE		0x0380
 static void WirelessIconInit(STARTMENU_WORK *wk)
 {
-  // ƒƒCƒ“‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_wicon_nclr, PALTYPE_MAIN_BG, STARTMENU_WICON_PAL*32, 32*1, HEAPID_STARTMENU);
-  // ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
   ArcUtil_BgCharSet(ARC_MYSTERY_GRA, NARC_mystery_wicon_ncgr, wk->bgl,
 		    GF_BGL_FRAME2_M, WIRELESS_CHR_BASE, 2*32*0x20, 0, HEAPID_STARTMENU);
 }
@@ -771,7 +771,7 @@ static void WirelessIconInit(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	Žw’èÀ•W‚É’ÊMƒAƒCƒRƒ“‚ð•\Ž¦
+ * @brief	æŒ‡å®šåº§æ¨™ã«é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -805,7 +805,7 @@ static void ClrWirelessIcon(STARTMENU_WORK *wk, int sx, int sy)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚Â‚Ã‚«‚©‚ç‚Í‚¶‚ß‚é‚Ì“à—e•\Ž¦
+ * @brief	ã¤ã¥ãã‹ã‚‰ã¯ã˜ã‚ã‚‹ã®å†…å®¹è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -846,40 +846,40 @@ static BOOL StartMenuContinue(void *p, int index, MYSTERY_WIN *mw, int y)
   msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_startmenu_dat, HEAPID_STARTMENU);
   word = WORDSET_Create(HEAPID_STARTMENU);
 
-  // —«(FEMALE)‚È‚çÔA‚»‚êˆÈŠO(MALE, NEUTRAL)‚È‚ç‚ÎÂ
+  // å¥³æ€§(FEMALE)ãªã‚‰èµ¤ã€ãã‚Œä»¥å¤–(MALE, NEUTRAL)ãªã‚‰ã°é’
   if(MyStatus_GetMySex(wk->mst) == PM_FEMALE)	color = STARTMENU_RED;
   else						color = STARTMENU_BLUE;
   
-  // ‚³‚¢‚µ‚å‚Ì‚Ps‚ð•\Ž¦
+  // ã•ã„ã—ã‚‡ã®ï¼‘è¡Œã‚’è¡¨ç¤º
   MysteryLib_CreateWin(wk->bgl, mw, 3, y, StartMenuWinTable[index].msgid);
-  // ‚Qs–ÚˆÈ~‚ð•\Ž¦
+  // ï¼’è¡Œç›®ä»¥é™ã‚’è¡¨ç¤º
   for(i = 1; i < sizeof(StartMenuContinueTable) / sizeof(u32); i++){
-    // ‚¸‚©‚ñ‚ðŽ‚Á‚Ä‚¢‚È‚©‚Á‚½‚çA‚»‚à‚»‚à€–Ú‚ð•\Ž¦‚µ‚È‚¢
+    // ãšã‹ã‚“ã‚’æŒã£ã¦ã„ãªã‹ã£ãŸã‚‰ã€ãã‚‚ãã‚‚é …ç›®ã‚’è¡¨ç¤ºã—ãªã„
     if(i == 4 && wk->zukangetflag == FALSE) continue;
-    // ‚»‚êˆÈŠO‚Í•’Ê‚É•\Ž¦‚µ‚Ä—Ç‚¢
+    // ãã‚Œä»¥å¤–ã¯æ™®é€šã«è¡¨ç¤ºã—ã¦è‰¯ã„
     msg = MSGDAT_UTIL_AllocExpandString(word, msgman, StartMenuContinueTable[i], HEAPID_STARTMENU);
     GF_STR_PrintColor(mw->win, FONT_SYSTEM, msg, STARTMENU_MARGIN_L, i*16, MSG_NO_PUT, color, NULL);
     STRBUF_Delete(msg);
   }
   
-  // ŽålŒö‚Ìî•ñ•\Ž¦
+  // ä¸»äººå…¬ã®æƒ…å ±è¡¨ç¤º
   WORDSET_RegisterPlayerName(word, 0, wk->mst);
   StartMenuContinueSub1(mw->win, msgman, word, color, mes_startmenu_17, 16*1);
-  // ƒvƒŒƒCŽžŠÔ‚ð•\Ž¦
+  // ãƒ—ãƒ¬ã‚¤æ™‚é–“ã‚’è¡¨ç¤º
   StartMenuContinueSub2(word, PLAYTIME_GetHour(wk->ptime));
   WORDSET_RegisterNumber(word, 1, PLAYTIME_GetMinute(wk->ptime), 2, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
   StartMenuContinueSub1(mw->win, msgman, word, color, mes_startmenu_18, 16*2);
-  // ‚à‚Á‚Ä‚¢‚éƒoƒbƒ`
+  // ã‚‚ã£ã¦ã„ã‚‹ãƒãƒƒãƒ
   WORDSET_RegisterNumber(word, 0, wk->badgecount, 1, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
   StartMenuContinueSub1(mw->win, msgman, word, color, mes_startmenu_20, 16*3);
-  // ƒ|ƒPƒ‚ƒ“‚¸‚©‚ñ•\Ž¦
+  // ãƒã‚±ãƒ¢ãƒ³ãšã‹ã‚“è¡¨ç¤º
   if(wk->zukangetflag){
     StartMenuContinueSub2(word, ZukanWork_GetZukanPokeSeeCount(wk->zw));
     StartMenuContinueSub1(mw->win, msgman, word, color, mes_startmenu_19, 16*4);
   }
-  // ‚Ü‚Æ‚ß‚Ä•\Ž¦
+  // ã¾ã¨ã‚ã¦è¡¨ç¤º
   BmpMenuWinWrite(mw->win, WINDOW_TRANS_ON, mw->fchr, mw->fcol);
-  // •`‚¢‚½‚æƒtƒ‰ƒO‚ðON
+  // æã„ãŸã‚ˆãƒ•ãƒ©ã‚°ã‚’ON
   wk->menuflag[index] = StartMenuWinTable[index].mark;
 
   WORDSET_Delete(word);
@@ -891,7 +891,7 @@ static BOOL StartMenuContinue(void *p, int index, MYSTERY_WIN *mw, int y)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚`‚f‚aƒ|ƒPƒ‚ƒ“‚Ì—L–³‚ð’²‚×‚Äƒƒjƒ…[•\Ž¦
+ * @brief	ï¼¡ï¼§ï¼¢ãƒã‚±ãƒ¢ãƒ³ã®æœ‰ç„¡ã‚’èª¿ã¹ã¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -901,10 +901,10 @@ static BOOL StartMenuAgbPokemon(void *p, int index, MYSTERY_WIN *mw, int y)
   int msg;
   STARTMENU_WORK *wk = (STARTMENU_WORK *)p;
 
-  // AGBƒJ[ƒgƒŠƒbƒW‚Ì‘¶Ý‚Í•Ê‚Ìƒ^ƒCƒ~ƒ“ƒO‚Ås‚Á‚Ä‚¢‚Ü‚·
+  // AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®å­˜åœ¨ã¯åˆ¥ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§è¡Œã£ã¦ã„ã¾ã™
   if(wk->agbpokemon == FALSE)	return FALSE;
 
-  // •¶Žš—ñ‚ð‘I‘ð
+  // æ–‡å­—åˆ—ã‚’é¸æŠž
   switch(wk->agbpokemon - 1){
   case CASTYPE_RUBY:	msg = mes_startmenu_05; break;
   case CASTYPE_SAPPHIRE:msg = mes_startmenu_06; break;
@@ -912,7 +912,7 @@ static BOOL StartMenuAgbPokemon(void *p, int index, MYSTERY_WIN *mw, int y)
   case CASTYPE_RED:	msg = mes_startmenu_08; break;
   case CASTYPE_EMERALD:	msg = mes_startmenu_09; break;
   }    
-  // ƒƒjƒ…[•\Ž¦
+  // ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
   MysteryLib_CreateWin(wk->bgl, mw, 3, y, msg);
   ClrWirelessIcon(wk, 26, y);
   wk->menuflag[index] = StartMenuWinTable[index].mark;
@@ -923,7 +923,7 @@ static BOOL StartMenuAgbPokemon(void *p, int index, MYSTERY_WIN *mw, int y)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì‚ð•\Ž¦
+ * @brief	ãµã—ãŽãªã€€ãŠãã‚Šã‚‚ã®ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -932,37 +932,37 @@ static BOOL StartMenuCheckMystery(void *p, int index, MYSTERY_WIN *mw, int y)
 {
   STARTMENU_WORK *wk = (STARTMENU_WORK *)p;
 
-  // ‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì‚ð‹­§“I‚ÉON‚É‚·‚éê‡‚Ìˆ—
+  // ãµã—ãŽãªã€€ãŠãã‚Šã‚‚ã®ã‚’å¼·åˆ¶çš„ã«ONã«ã™ã‚‹å ´åˆã®å‡¦ç†
   if(wk->mystery == FALSE){
-    // ‚·‚Å‚É‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì‚Í•\Ž¦‰Â”\H
+    // ã™ã§ã«ãµã—ãŽãªã€€ãŠãã‚Šã‚‚ã®ã¯è¡¨ç¤ºå¯èƒ½ï¼Ÿ
     if(FUSHIGIDATA_IsFushigiMenu(wk->fdata) == TRUE)
       wk->mystery = TRUE;
-    // ƒQ[ƒ€’†‚Ì‚ ‚¢‚±‚Æ‚Î‚ª¬—§‚µ‚Ä‚¢‚éH
+    // ã‚²ãƒ¼ãƒ ä¸­ã®ã‚ã„ã“ã¨ã°ãŒæˆç«‹ã—ã¦ã„ã‚‹ï¼Ÿ
     if(SYSTEMDATA_GetWifiMPOpenFlag(SaveData_GetSystemData(wk->sv)) == TRUE)
       wk->mystery = TRUE;
-    // AGB‚Å‚Ì”z•z—pƒJƒZƒbƒg‚ªŽh‚³‚Á‚Ä‚éH
+    // AGBã§ã®é…å¸ƒç”¨ã‚«ã‚»ãƒƒãƒˆãŒåˆºã•ã£ã¦ã‚‹ï¼Ÿ
     // ----------------------------------------------------------------------------
     // localize_spec_mark(LANG_ALL) imatake 2007/01/15
-    // Crypto ƒ‰ƒCƒuƒ‰ƒŠ“à‚Åƒƒ‚ƒŠ‚ðŠm•Û‚·‚éƒq[ƒv‚ðÝ’è
+    // Crypto ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚’è¨­å®š
     SetAgbCartridgeHeapID(HEAPID_STARTMENU);
     // ----------------------------------------------------------------------------
 
     if(GetAgbCartridgeDataSize()){
       wk->mystery = TRUE;
-      MysteryLib_SetAgbCartridgeIntr(TRUE);	/* AGBƒJ[ƒgƒŠƒbƒW‚Ì”²‚¯ŒŸoON */
+      MysteryLib_SetAgbCartridgeIntr(TRUE);	/* AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®æŠœã‘æ¤œå‡ºON */
     }
   }
 
-  // ‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì‚ð‹­§“I‚ÉOFF‚É‚·‚éê‡‚Ìˆ—
+  // ãµã—ãŽãªã€€ãŠãã‚Šã‚‚ã®ã‚’å¼·åˆ¶çš„ã«OFFã«ã™ã‚‹å ´åˆã®å‡¦ç†
   if(wk->mystery == TRUE){
-    // ‚¸‚©‚ñ‚ðŽ‚Á‚Ä‚¢‚È‚¯‚ê‚Î‹­§“I‚ÉOFF‚·‚é
+    // ãšã‹ã‚“ã‚’æŒã£ã¦ã„ãªã‘ã‚Œã°å¼·åˆ¶çš„ã«OFFã™ã‚‹
     if(wk->zukangetflag == FALSE)
       wk->mystery = FALSE;
   }
 
-  // ŽÀÛ‚Ìƒ`ƒFƒbƒN‚ÍStartMenuBeacon_Proc‚Ås‚Á‚Ä‚¢‚Ü‚·
+  // å®Ÿéš›ã®ãƒã‚§ãƒƒã‚¯ã¯StartMenuBeacon_Procã§è¡Œã£ã¦ã„ã¾ã™
   if(wk->mystery == TRUE){
-    // ƒƒjƒ…[•\Ž¦
+    // ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
     MysteryLib_CreateWin(wk->bgl, mw, 3, y, StartMenuWinTable[index].msgid);
 #if 0
     SetWirelessIcon(wk, 26, y, 1);
@@ -981,7 +981,7 @@ static BOOL StartMenuCheckMystery(void *p, int index, MYSTERY_WIN *mw, int y)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Æ‚ÌÚ‘±‚ð•\Ž¦
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®æŽ¥ç¶šã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
 */
@@ -989,10 +989,10 @@ static BOOL StartMenuCheckMystery(void *p, int index, MYSTERY_WIN *mw, int y)
 static BOOL StartMenuCheckRanger(void *p, int index, MYSTERY_WIN *mw, int y)
 {
   STARTMENU_WORK *wk = (STARTMENU_WORK *)p;
-  // ŽÀÛ‚Ìƒ`ƒFƒbƒN‚ÍStartMenuBeacon_Proc‚Ås‚Á‚Ä‚¢‚Ü‚·
+  // å®Ÿéš›ã®ãƒã‚§ãƒƒã‚¯ã¯StartMenuBeacon_Procã§è¡Œã£ã¦ã„ã¾ã™
 
   if(wk->pokemonranger == TRUE && wk->zukangetflag == TRUE){
-    // ƒƒjƒ…[•\Ž¦
+    // ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
     MysteryLib_CreateWin(wk->bgl, mw, 3, y, StartMenuWinTable[index].msgid);
     SetWirelessIcon(wk, 26, y, 1);
     wk->iconflag[index] = 1;
@@ -1006,7 +1006,7 @@ static BOOL StartMenuCheckRanger(void *p, int index, MYSTERY_WIN *mw, int y)
 
 //------------------------------------------------------------------
 /**
- * @brief	Wii‚Ìƒƒjƒ…[‚ð•\Ž¦
+ * @brief	Wiiã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -1014,10 +1014,10 @@ static BOOL StartMenuCheckRanger(void *p, int index, MYSTERY_WIN *mw, int y)
 static BOOL StartMenuCheckWii(void *p, int index, MYSTERY_WIN *mw, int y)
 {
   STARTMENU_WORK *wk = (STARTMENU_WORK *)p;
-  // ŽÀÛ‚Ìƒ`ƒFƒbƒN‚ÍStartMenuBeacon_Proc‚Ås‚Á‚Ä‚¢‚Ü‚·
+  // å®Ÿéš›ã®ãƒã‚§ãƒƒã‚¯ã¯StartMenuBeacon_Procã§è¡Œã£ã¦ã„ã¾ã™
 
   if(wk->wii == TRUE){
-    // ƒƒjƒ…[•\Ž¦
+    // ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
     MysteryLib_CreateWin(wk->bgl, mw, 3, y, StartMenuWinTable[index].msgid);
     wk->iconflag[index] = 1;
     SetWirelessIcon(wk, 26, y, 1);
@@ -1030,7 +1030,7 @@ static BOOL StartMenuCheckWii(void *p, int index, MYSTERY_WIN *mw, int y)
 
 //------------------------------------------------------------------
 /**
- * @brief	Wi-FiÝ’è
+ * @brief	Wi-Fiè¨­å®š
  * @param	NONE
  * @return	NONE
  */
@@ -1038,7 +1038,7 @@ static BOOL StartMenuCheckWii(void *p, int index, MYSTERY_WIN *mw, int y)
 static BOOL StartMenuSetWifi(void *p, int index, MYSTERY_WIN *mw, int y)
 {
   STARTMENU_WORK *wk = (STARTMENU_WORK *)p;
-  // ƒƒjƒ…[•\Ž¦
+  // ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
   MysteryLib_CreateWin(wk->bgl, mw, 3, y, StartMenuWinTable[index].msgid);
   wk->iconflag[index] = 2;
   SetWirelessIcon(wk, 26, y, 2);
@@ -1048,7 +1048,7 @@ static BOOL StartMenuSetWifi(void *p, int index, MYSTERY_WIN *mw, int y)
 
 //--------------------------------------------------------------
 /**
- * @brief	Eƒ[ƒ‹
+ * @brief	Eãƒ¡ãƒ¼ãƒ«
  *
  * @param	p	
  * @param	index	
@@ -1062,7 +1062,7 @@ static BOOL StartMenuSetWifi(void *p, int index, MYSTERY_WIN *mw, int y)
 static BOOL StartMenuSetEmail(void *p, int index, MYSTERY_WIN *mw, int y)
 {
   STARTMENU_WORK *wk = (STARTMENU_WORK *)p;
-  // ƒƒjƒ…[•\Ž¦
+  // ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
   MysteryLib_CreateWin(wk->bgl, mw, 3, y, StartMenuWinTable[index].msgid);
   wk->iconflag[index] = 0;
   ClrWirelessIcon(wk, 26, y);
@@ -1073,7 +1073,7 @@ static BOOL StartMenuSetEmail(void *p, int index, MYSTERY_WIN *mw, int y)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ì¬
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
  * @param	NONE
  * @return	NONE
  */
@@ -1093,7 +1093,7 @@ static BOOL CreateStartMenu(STARTMENU_WORK *wk)
     MysteryLib_WinInit1(&mw, &wk->mwin[i], STARTMENU_WCOL_NORMAL, NARC_msg_startmenu_dat, STARTMENU_FCHR1, STARTMENU_FCOL1);
     MysteryLib_WinInit2(&mw, 26, smd->height,/* NULL,*/ wk->chrbase);
     if(smd->func){
-      // func“à•”‚Å•\Ž¦
+      // funcå†…éƒ¨ã§è¡¨ç¤º
       if(wk->menuflag[i]){
 	GF_BGL_BmpWinSet_PosX(mw.win, 3);
 	GF_BGL_BmpWinSet_PosY(mw.win, y);
@@ -1107,7 +1107,7 @@ static BOOL CreateStartMenu(STARTMENU_WORK *wk)
 	ret = TRUE;
       }
     } else {
-      // ’Êí•\Ž¦
+      // é€šå¸¸è¡¨ç¤º
       MysteryLib_CreateWin(wk->bgl, &mw, 3, y, smd->msgid);
       wk->menuflag[i] = smd->mark;
       y += smd->height + 2;
@@ -1120,7 +1120,7 @@ static BOOL CreateStartMenu(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒEƒBƒ“ƒhƒE‚Ì˜g(ƒtƒŒ[ƒ€)‚ðÄ•\Ž¦
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æž (ãƒ•ãƒ¬ãƒ¼ãƒ )ã‚’å†è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -1145,14 +1145,14 @@ static void RedrawWindowFrame(STARTMENU_WORK *wk, int select)
 			  STARTMENU_WCOL_NORMAL);
     }
   }
-  // ƒXƒNƒŠ[ƒ“‚Ì‘S‘Ì‚ðÄ“]‘—
+  // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å…¨ä½“ã‚’å†è»¢é€
   GF_BGL_LoadScreenReq(wk->bgl, GF_BGL_FRAME0_M);
 }
 
 
 //------------------------------------------------------------------
 /**
- * @brief	ŽŸ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ðŒŸõ‚·‚é
+ * @brief	æ¬¡ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’æ¤œç´¢ã™ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -1163,13 +1163,13 @@ static void NextCursorPosition(STARTMENU_WORK *wk, int offset)
 
   while(1){
     now += offset;
-    // ƒI[ƒo[ƒtƒ[ŒŸ¸
+    // ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼æ¤œæŸ»
     if(now == -1)		now = 0;
     if(now == MENU_WIN_MAX)	now = MENU_WIN_MAX - 1;
-    // “®‚¯‚éêŠ‚ª‚È‚¯‚ê‚Î“®‚©‚È‚¢
+    // å‹•ã‘ã‚‹å ´æ‰€ãŒãªã‘ã‚Œã°å‹•ã‹ãªã„
     if(now == wk->cursor)
       break;
-    // “®‚¯‚éêŠ‚ªŒ©‚Â‚©‚Á‚½‚çŒˆ’è
+    // å‹•ã‘ã‚‹å ´æ‰€ãŒè¦‹ã¤ã‹ã£ãŸã‚‰æ±ºå®š
     if(wk->menuflag[now]){
       Snd_SePlay(SEQ_SE_DP_SELECT);
       break;
@@ -1182,7 +1182,7 @@ static void NextCursorPosition(STARTMENU_WORK *wk, int offset)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚ª‰æ–Ê“à‚É“ü‚é‚æ‚¤‚ÉƒXƒNƒ[ƒ‹“o˜^
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ãŒç”»é¢å†…ã«å…¥ã‚‹ã‚ˆã†ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç™»éŒ²
  * @param	NONE
  * @return	NONE
  */
@@ -1191,20 +1191,20 @@ static void SetCursorScroll(STARTMENU_WORK *wk)
 {
   int cursory, height, basey;
 
-  // ƒhƒbƒgŠ·ŽZ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ðŽZo
+  // ãƒ‰ãƒƒãƒˆæ›ç®—ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ç®—å‡º
   cursory = (GF_BGL_BmpWinGet_PosY(&wk->mwin[wk->cursor] ) - 1) * 8;
   height = (GF_BGL_BmpWinGet_SizeY(&wk->mwin[wk->cursor] ) + 2) * 8;
 
-  // Œ»Ý‚ÌƒXƒNƒ[ƒ‹’l(–Ú“IÀ•W)
+  // ç¾åœ¨ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤(ç›®çš„åº§æ¨™)
   basey = wk->target / FX32_ONE;
 
-  // ‰æ–Ê‚Ì’†‚É“ü‚Á‚Ä‚¢‚é‚©’²¸‚·‚é
+  // ç”»é¢ã®ä¸­ã«å…¥ã£ã¦ã„ã‚‹ã‹èª¿æŸ»ã™ã‚‹
 
-  // ‰æ–Ê‚Ìã‚É‚Í‚Ýo‚Ä‚é‚Ì‚Å‰º‚ÉƒXƒNƒ[ƒ‹ƒZƒbƒg
+  // ç”»é¢ã®ä¸Šã«ã¯ã¿å‡ºã¦ã‚‹ã®ã§ä¸‹ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚»ãƒƒãƒˆ
   if(basey > cursory){
     wk->target = cursory * FX32_ONE;
   }
-  // ‰æ–Ê‚Ì‰º‚É‚Í‚Ýo‚Ä‚¢‚é‚Ì‚Åã‚ÉƒXƒNƒ[ƒ‹ƒZƒbƒg
+  // ç”»é¢ã®ä¸‹ã«ã¯ã¿å‡ºã¦ã„ã‚‹ã®ã§ä¸Šã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚»ãƒƒãƒˆ
   if(basey + HW_LCD_HEIGHT <= cursory){
     wk->target = ((cursory + height) - HW_LCD_HEIGHT) * FX32_ONE;
   }
@@ -1213,7 +1213,7 @@ static void SetCursorScroll(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ã‰ºƒJ[ƒ\ƒ‹‚Ì•\Ž¦^”ñ•\Ž¦ˆ—
+ * @brief	ä¸Šä¸‹ã‚«ãƒ¼ã‚½ãƒ«ã®è¡¨ç¤ºï¼éžè¡¨ç¤ºå‡¦ç†
  * @param	NONE
  * @return	NONE
  */
@@ -1225,21 +1225,21 @@ static void SetCursorVisible(STARTMENU_WORK *wk)
 
   du = dd = FALSE;
 
-  // Œ»Ý‚ÌƒXƒNƒ[ƒ‹’l(–Ú“IÀ•W)
+  // ç¾åœ¨ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤(ç›®çš„åº§æ¨™)
   basey = wk->target / FX32_ONE;
 
   for(i = 0; i < MENU_WIN_MAX; i++){
     if(GF_BGL_BmpWinAddCheck(&wk->mwin[i]) == FALSE)
       continue;
 
-    // ƒhƒbƒgŠ·ŽZ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ðŽZo
+    // ãƒ‰ãƒƒãƒˆæ›ç®—ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ç®—å‡º
     cursory = (GF_BGL_BmpWinGet_PosY(&wk->mwin[i] ) - 1) * 8;
     height = (GF_BGL_BmpWinGet_SizeY(&wk->mwin[i] ) + 2) * 8;
 
-    // ã‚Ì‚Í‚Ýo‚µƒ`ƒFƒbƒN
+    // ä¸Šã®ã¯ã¿å‡ºã—ãƒã‚§ãƒƒã‚¯
     if(basey > cursory)
       du = TRUE;
-    // ‰º‚Ì‚Í‚Ýo‚µƒ`ƒFƒbƒN
+    // ä¸‹ã®ã¯ã¿å‡ºã—ãƒã‚§ãƒƒã‚¯
     if(basey + HW_LCD_HEIGHT <= cursory)
       dd = TRUE;
   }
@@ -1252,7 +1252,7 @@ static void SetCursorVisible(STARTMENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ˆ—‚ÌI—¹ ƒƒ‚ƒŠŠJ•ú‚È‚Ç
+ * @brief	å‡¦ç†ã®çµ‚äº† ãƒ¡ãƒ¢ãƒªé–‹æ”¾ãªã©
  * @param	NONE
  * @return	NONE
  */
@@ -1262,21 +1262,21 @@ static void StartMenuFinish(PROC *proc)
   int i;
   STARTMENU_WORK *wk = PROC_GetWork(proc);
 
-  // ƒAƒNƒ^[ŠÖ˜A‚ÌŠJ•ú
+  // ã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£ã®é–‹æ”¾
   if(wk->clcursor[0] || wk->clcursor[1]){
     CLACT_Delete(wk->clcursor[0]);
     CLACT_Delete(wk->clcursor[1]);
     MysteryLib_RemoveClact();
   }
   
-  // ƒEƒBƒ“ƒhƒEŠJ•ú
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
   for(i = 0; i < MENU_WIN_MAX; i++){
     if(wk->mwin[i].ini){
       GF_BGL_BmpWinOff(&wk->mwin[i]);
       GF_BGL_BmpWinDel(&wk->mwin[i]);
     }
   }
-  // BGLŠJ•ú
+  // BGLé–‹æ”¾
   GF_BGL_BGControlExit(wk->bgl, GF_BGL_FRAME0_M);
   GF_BGL_BGControlExit(wk->bgl, GF_BGL_FRAME1_M);
   GF_BGL_BGControlExit(wk->bgl, GF_BGL_FRAME2_M);
@@ -1287,7 +1287,7 @@ static void StartMenuFinish(PROC *proc)
 
 //------------------------------------------------------------------
 /**
- * @brief	‘I‘ðƒEƒBƒ“ƒhƒE‚ÌƒpƒŒƒbƒgƒAƒjƒ
+ * @brief	é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
  * @param	NONE
  * @return	NONE
  */
@@ -1313,9 +1313,9 @@ static void SelectPalAnim(STARTMENU_WORK *wk)
 
 static void VBlankFunc(void *work)
 {
-  // ƒZƒ‹ƒAƒNƒ^[Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
   DoVramTransferManager();
-  // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+  // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
   REND_OAMTrans();	
   GF_BGL_VBlankFunc( (GF_BGL_INI*)work );
   OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -1324,11 +1324,11 @@ static void VBlankFunc(void *work)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXF‰Šú‰»
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šåˆæœŸåŒ–
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT StartMenuProc_Init(PROC * proc, int * seq)
@@ -1338,17 +1338,17 @@ static PROC_RESULT StartMenuProc_Init(PROC * proc, int * seq)
   sys_CreateHeap( HEAPID_BASE_APP, HEAPID_STARTMENU, 0x40000);
   //  sys_PrintHeapFreeSize(HEAPID_STARTMENU);
   wk = PROC_AllocWork(proc, sizeof(STARTMENU_WORK), HEAPID_STARTMENU);
-  // ‰Šú‰»•s—Ç‚ª•|‚¢‚Ì‚Åƒ[ƒN‚Íƒ[ƒƒNƒŠƒA
+  // åˆæœŸåŒ–ä¸è‰¯ãŒæ€–ã„ã®ã§ãƒ¯ãƒ¼ã‚¯ã¯ã‚¼ãƒ­ã‚¯ãƒªã‚¢
   memset(wk, 0, sizeof(STARTMENU_WORK));
 
-  /* ŠeŽí•Ï”‚Ì‰Šú‰» */
+  /* å„ç¨®å¤‰æ•°ã®åˆæœŸåŒ– */
   wk->bgl = GF_BGL_BglIniAlloc(HEAPID_STARTMENU);
 
-  /* ‰æ–Ê‚Ì‰ŠúÝ’è */
+  /* ç”»é¢ã®åˆæœŸè¨­å®š */
   WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
   WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 
-  /* •Ï”‰Šú‰» */
+  /* å¤‰æ•°åˆæœŸåŒ– */
   wk->sv = ((MAINWORK *)PROC_GetParentWork(proc))->savedata;
   wk->fdata = SaveData_GetFushigiData(wk->sv);
   //  wk->cursor = 0;
@@ -1363,16 +1363,16 @@ static PROC_RESULT StartMenuProc_Init(PROC * proc, int * seq)
   wk->badgecount = MyStatus_GetBadgeCount(wk->mst);
   wk->beacon_msg_seq = BEACON_MSGSEQ_NOP;
   
-  // ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+  // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
   MysteryLib_Init(HEAPID_STARTMENU);
 
-  // ƒZ[ƒuƒf[ƒ^‚ª–³‚¯‚ê‚ÎƒXƒ^[ƒgƒƒjƒ…[Ž©‘Ì‚ð•\Ž¦‚³‚¹‚È‚¢
+  // ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒç„¡ã‘ã‚Œã°ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼è‡ªä½“ã‚’è¡¨ç¤ºã•ã›ãªã„
   if(!SaveData_GetExistFlag(wk->sv)){
     wk->pass_start_menu = TRUE;
   }
 
-  Snd_BgmChannelSetAndReverbSet( 0 );	// Žg—p‰Â”\ƒ`ƒƒƒ“ƒlƒ‹‘€ìAƒŠƒo[ƒuÝ’è(ƒNƒŠƒA)
-  Snd_SceneSet( SND_SCENE_DUMMY );		// ŽŸ‚ÌƒV[ƒ“‚ª•K‚¸“Ç‚Ýž‚Ü‚ê‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­I
+  Snd_BgmChannelSetAndReverbSet( 0 );	// ä½¿ç”¨å¯èƒ½ãƒãƒ£ãƒ³ãƒãƒ«æ“ä½œã€ãƒªãƒãƒ¼ãƒ–è¨­å®š(ã‚¯ãƒªã‚¢)
+  Snd_SceneSet( SND_SCENE_DUMMY );		// æ¬¡ã®ã‚·ãƒ¼ãƒ³ãŒå¿…ãšèª­ã¿è¾¼ã¾ã‚Œã‚‹ã‚ˆã†ã«ã—ã¦ãŠãï¼
 
 #ifdef DEBUG_ONLY_FOR_mituhara
   OS_TPrintf("sizeof(POKEMON_PARAM) = %d\n", PokemonParam_GetWorkSize());
@@ -1392,11 +1392,11 @@ static PROC_RESULT StartMenuProc_Init(PROC * proc, int * seq)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXFƒƒCƒ“
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šãƒ¡ã‚¤ãƒ³
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT StartMenuProc_Main(PROC * proc, int * seq)
@@ -1406,25 +1406,25 @@ static PROC_RESULT StartMenuProc_Main(PROC * proc, int * seq)
   wk->jiffy++;
   CTRDG_IsExisting();
 
-  // ƒr[ƒRƒ“ŽóMŽž‚ÌƒƒbƒZ[ƒW•\Ž¦ƒV[ƒPƒ“ƒX
+  // ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚·ãƒ¼ã‚±ãƒ³ã‚¹
   if(BeaconMessage_Proc(wk) == TRUE){
     StartMenuBeacon_Proc(wk);
     StartMenuProc(wk);
     return PROC_RES_CONTINUE;
   }
 
-  // ‘I‘ð‚³‚ê‚Ä‚¢‚éƒEƒBƒ“ƒhƒE‚ðƒpƒŒƒbƒgƒAƒjƒ[ƒVƒ‡ƒ“
+  // é¸æŠžã•ã‚Œã¦ã„ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
   SelectPalAnim(wk);
 
   switch(*seq){
   case STARTMENU_SEQ_INIT:
-    // ‚a‚fŠÖŒW‚Ì•K—vÅ’áŒÀ‚Ì‰Šú‰»
+    // ï¼¢ï¼§é–¢ä¿‚ã®å¿…è¦æœ€ä½Žé™ã®åˆæœŸåŒ–
     InitStartMenuScreen(wk);
     SetSeq(*seq, STARTMENU_SEQ_CHECK_SYSTEM);
     break;
 
   case STARTMENU_SEQ_CHECK_SYSTEM:
-    // ŠeŽíƒVƒXƒeƒ€‚Ìƒ`ƒFƒbƒN(ˆê‹C‚Éƒ`ƒFƒbƒNA‡ŽŸ•\Ž¦)
+    // å„ç¨®ã‚·ã‚¹ãƒ†ãƒ ã®ãƒã‚§ãƒƒã‚¯(ä¸€æ°—ã«ãƒã‚§ãƒƒã‚¯ã€é †æ¬¡è¡¨ç¤º)
     if(StartMenuCheckSystem(wk) == 0){
       SetSeq(*seq, STARTMENU_SEQ_HARDINIT);
     } else {
@@ -1434,54 +1434,54 @@ static PROC_RESULT StartMenuProc_Main(PROC * proc, int * seq)
     break;
 
   case STARTMENU_SEQ_DISP_ERROR:
-    // ƒGƒ‰[‚ª‚ ‚Á‚½‚Ì‚ÅÚ×‚ð•\Ž¦‚µ‚Ü‚­‚è
+    // ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸã®ã§è©³ç´°ã‚’è¡¨ç¤ºã—ã¾ãã‚Š
     if(StartMenuDisplayError(wk) == FALSE)
       MysteryLib_RequestFade(WIPE_TYPE_FADEOUT, STARTMENU_SEQ_HARDINIT, seq, STARTMENU_SEQ_FADE_WAIT);
     break;
     
   case STARTMENU_SEQ_HARDINIT:
     wk->beacon_seq = STARTMENU_BEACON_SEQ_WAIT;
-    // ƒZ[ƒuƒf[ƒ^‚ª‚È‚¯‚ê‚ÎƒQ[ƒ€‚ÌÅ‰‚©‚çŽn‚ß‚é
+    // ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒãªã‘ã‚Œã°ã‚²ãƒ¼ãƒ ã®æœ€åˆã‹ã‚‰å§‹ã‚ã‚‹
     if(wk->pass_start_menu == TRUE){
       wk->select = SEL_FIRSTGAME;
       MysteryLib_RequestFade(WIPE_TYPE_FADEOUT, STARTMENU_SEQ_SELECT_MENU, seq, STARTMENU_SEQ_FADE_WAIT);
     } else {
-      // AGBƒJ[ƒgƒŠƒbƒW‚Ì‰Šú‰»‚ð‚µ‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+      // AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®åˆæœŸåŒ–ã‚’ã—ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
       AgbCartridgeInit(wk);
       SetSeq(*seq, STARTMENU_SEQ_CREATE_SCREEN);
     }
     break;
 
   case STARTMENU_SEQ_CREATE_SCREEN:
-    // ƒJ[ƒ\ƒ‹ƒIƒuƒWƒFƒNƒg‚Ì“Ç‚Ýž‚Ý
+    // ã‚«ãƒ¼ã‚½ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®èª­ã¿è¾¼ã¿
     StartMenuInitClact(wk);
-    // ƒƒCƒ„ƒŒƒXƒAƒCƒRƒ“‚Ì“Ç‚Ýž‚Ý
+    // ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹ã‚¢ã‚¤ã‚³ãƒ³ã®èª­ã¿è¾¼ã¿
     WirelessIconInit(wk);
     sys_VBlankFuncChange(VBlankFunc, wk->bgl);
 
-    // ƒXƒNƒŠ[ƒ“ì¬(Šî–{Œ`)
+    // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆ(åŸºæœ¬å½¢)
     CreateStartMenu(wk);
     RedrawWindowFrame(wk, wk->cursor);
     MysteryLib_RequestFade(WIPE_TYPE_FADEIN, STARTMENU_SEQ_MAIN, seq, STARTMENU_SEQ_FADE_WAIT);
     *((u16 *)HW_BG_PLTT +  0) = RGB(12, 12, 31);
-    // ƒr[ƒRƒ“‚ÌŽûW‚ðŠJŽn‚·‚é
+    // ãƒ“ãƒ¼ã‚³ãƒ³ã®åŽé›†ã‚’é–‹å§‹ã™ã‚‹
     wk->beacon_seq = STARTMENU_BEACON_SEQ_INIT;
     break;
 
   case STARTMENU_SEQ_MAIN:
-    // Œˆ’èƒ{ƒ^ƒ“ / ƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“
+    // æ±ºå®šãƒœã‚¿ãƒ³ / ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³
     if(sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL)){
       if(sys.trg & PAD_BUTTON_DECIDE){
 	Snd_SePlay(SEQ_SE_DP_SELECT);
 	wk->select = wk->menuflag[wk->cursor];
 
-	// AGBƒJƒZƒbƒg‚©‚ç˜A‚ê‚Ä‚­‚é‚ð‘I‚ñ‚¾Û‚Ì’âŽ~”»’èˆ—
+	// AGBã‚«ã‚»ãƒƒãƒˆã‹ã‚‰é€£ã‚Œã¦ãã‚‹ã‚’é¸ã‚“ã éš›ã®åœæ­¢åˆ¤å®šå‡¦ç†
 	if(wk->select == SEL_AGBPOKEMON){
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/01
-// AGBƒJ[ƒgƒŠƒbƒW‚ª”²‚©‚ê‚½‚Æ‚«‚ÍAƒuƒ‹[ƒXƒNƒŠ[ƒ“‚É‘JˆÚ‚·‚é‚æ‚¤‚É•ÏX
+// AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒæŠœã‹ã‚ŒãŸã¨ãã¯ã€ãƒ–ãƒ«ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«é·ç§»ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 #if AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
-	  // ƒJƒZƒbƒg‚ª”²‚©‚ê‚Ä‚¢‚½‚çƒGƒ‰[‰æ–Ê‚Ö”ò‚Ô
+	  // ã‚«ã‚»ãƒƒãƒˆãŒæŠœã‹ã‚Œã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼ç”»é¢ã¸é£›ã¶
 	  if(CTRDG_IsPulledOut() == TRUE){
 	    if(wk->beacon_seq != STARTMENU_BEACON_SEQ_WAIT)
 	      CommStateExitPartyGameScan();
@@ -1500,7 +1500,7 @@ static PROC_RESULT StartMenuProc_Main(PROC * proc, int * seq)
 	MysteryLib_ChangeFadeType(1);
       }
       if(wk->select == SEL_FIRSTGAME){
-	// ‚³‚¢‚µ‚å‚©‚ç‚Í‚¶‚ß‚é‚ð‘I‘ð‚µ‚½ê‡‚É‚ÍŒx‰æ–Ê‚ð•\Ž¦‚·‚é
+	// ã•ã„ã—ã‚‡ã‹ã‚‰ã¯ã˜ã‚ã‚‹ã‚’é¸æŠžã—ãŸå ´åˆã«ã¯è­¦å‘Šç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹
 	wk->beacon_status |= STARTMENU_FIRSTGAME_SELECT;
 	wk->beacon_msg_wait = 1;
 	SetSeq(*seq, STARTMENU_SEQ_SELECT_FIRSTGAME);
@@ -1510,32 +1510,32 @@ static PROC_RESULT StartMenuProc_Main(PROC * proc, int * seq)
 	MysteryLib_RequestFade(WIPE_TYPE_FADEOUT, STARTMENU_SEQ_SELECT_MENU, seq, STARTMENU_SEQ_FADE_WAIT);
       }
 
-      // ƒr[ƒRƒ“ŽûW’†‚¾‚Á‚½‚ç‹­§I—¹ˆ—‚Ö
+      // ãƒ“ãƒ¼ã‚³ãƒ³åŽé›†ä¸­ã ã£ãŸã‚‰å¼·åˆ¶çµ‚äº†å‡¦ç†ã¸
       if(wk->beacon_seq == STARTMENU_BEACON_SEQ_TIMER)
 	wk->beacon_seq = STARTMENU_BEACON_SEQ_CANCEL;
       break;
     }
     
-    // Ä•`‰æ‚Ì•K—v‚ª‚ ‚ê‚ÎÄ•`‰æ‚·‚é
+    // å†æç”»ã®å¿…è¦ãŒã‚ã‚Œã°å†æç”»ã™ã‚‹
     if(wk->redrawflag == TRUE){
       CreateStartMenu(wk);
       wk->redrawflag = FALSE;
       break;
     }
 
-    // ƒJ[ƒ\ƒ‹ˆÚ“®
+    // ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
     if(sys.trg & PAD_KEY_UP)
       NextCursorPosition(wk, -1);
     if(sys.trg & PAD_KEY_DOWN)
       NextCursorPosition(wk,  1);
-    // ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦
+    // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆ
     RedrawWindowFrame(wk, wk->cursor);
-    // ƒXƒNƒ[ƒ‹ˆ—
+    // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†
     SetCursorScroll(wk);
-    // ã‰ºƒJ[ƒ\ƒ‹‚Ì•\Ž¦ˆ—
+    // ä¸Šä¸‹ã‚«ãƒ¼ã‚½ãƒ«ã®è¡¨ç¤ºå‡¦ç†
     SetCursorVisible(wk);
 
-    // ƒŠƒXƒNƒGƒXƒg‚ªo‚Ä‚¢‚ê‚Îƒ|ƒbƒvƒAƒbƒvƒƒjƒ…[‚Ì“o˜^
+    // ãƒªã‚¹ã‚¯ã‚¨ã‚¹ãƒˆãŒå‡ºã¦ã„ã‚Œã°ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ç™»éŒ²
     if(*seq == STARTMENU_SEQ_MAIN && wk->req_popup == TRUE){
       wk->req_popup = FALSE;
       wk->beacon_msg_wait = 1;
@@ -1544,7 +1544,7 @@ static PROC_RESULT StartMenuProc_Main(PROC * proc, int * seq)
     break;
 
   case STARTMENU_SEQ_SELECT_FIRSTGAME:
-    // ‚³‚¢‚µ‚å‚©‚ç‚Í‚¶‚ß‚é‚ð‘I‚ñ‚¾Žž‚ÍŒx‚ð•\Ž¦
+    // ã•ã„ã—ã‚‡ã‹ã‚‰ã¯ã˜ã‚ã‚‹ã‚’é¸ã‚“ã æ™‚ã¯è­¦å‘Šã‚’è¡¨ç¤º
     if(wk->beacon_msg_seq == BEACON_MSGSEQ_NOP){
       if(wk->beacon_result & PAD_BUTTON_CANCEL){
 	SetSeq(*seq, STARTMENU_SEQ_MAIN);
@@ -1556,14 +1556,14 @@ static PROC_RESULT StartMenuProc_Main(PROC * proc, int * seq)
 
     
   case STARTMENU_SEQ_SELECT_MENU:
-    // ƒƒ‚ƒŠŒQ‚ðŠJ•ú
+    // ãƒ¡ãƒ¢ãƒªç¾¤ã‚’é–‹æ”¾
     StartMenuFinish(proc);
     return PROC_RES_FINISH;
     break;
 
     
   case STARTMENU_SEQ_FADE_WAIT:
-    // ƒtƒF[ƒh‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Á‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+    // ãƒ•ã‚§ãƒ¼ãƒ‰ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
     MysteryLib_FadeEndCheck(seq);
     break;
 
@@ -1583,7 +1583,7 @@ static PROC_RESULT StartMenuProc_Main(PROC * proc, int * seq)
 
 //------------------------------------------------------------------
 /**
- * @brief	‘I‘ð‚³‚ê‚½ƒƒjƒ…[‚É‚æ‚Á‚Äˆ—•ªŠò
+ * @brief	é¸æŠžã•ã‚ŒãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ˆã£ã¦å‡¦ç†åˆ†å²
  * @param	NONE
  * @return	NONE
  */
@@ -1605,47 +1605,47 @@ extern const PROC_DATA EmailProcData;
 static void StartMenuSetNextProc(STARTMENU_WORK *wk)
 {
   switch(wk->select){
-  case SEL_CONTINUE:	// ‚Â‚Ã‚«‚©‚ç@‚Í‚¶‚ß‚é
+  case SEL_CONTINUE:	// ã¤ã¥ãã‹ã‚‰ã€€ã¯ã˜ã‚ã‚‹
     Main_SetNextProc(OVERLAY_ID_GAMESTART, &ContinueGameStartProcData);
     break;
-  case SEL_FIRSTGAME:	// ‚³‚¢‚µ‚å‚©‚ç@‚Í‚¶‚ß‚é
+  case SEL_FIRSTGAME:	// ã•ã„ã—ã‚‡ã‹ã‚‰ã€€ã¯ã˜ã‚ã‚‹
     Main_SetNextProc(OVERLAY_ID_GAMESTART, &NewGameStartProcData);
     break;
-  case SEL_MYSTERY:	// ‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì
+  case SEL_MYSTERY:	// ãµã—ãŽãªã€€ãŠãã‚Šã‚‚ã®
 #ifdef CHECK_OVERLAY
     Main_SetNextProc(FS_OVERLAY_ID(startmenu), &MysteryGiftProcData);
 #else
     Main_SetNextProc(NO_OVERLAY_ID, &MysteryGiftProcData);
 #endif
     break;
-  case SEL_AGBPOKEMON:	// ~~~‚©‚ç@‚Â‚ê‚Ä‚­‚é
+  case SEL_AGBPOKEMON:	// Ã—Ã—Ã—ã‹ã‚‰ã€€ã¤ã‚Œã¦ãã‚‹
 #ifdef CHECK_OVERLAY
     Main_SetNextProc(FS_OVERLAY_ID(startmenu), &AgbCartridgeProcData);
 #else
     Main_SetNextProc(NO_OVERLAY_ID, &AgbCartridgeProcData);
 #endif
     break;
-  case SEL_RANGER:	// ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Æ‚Ì@‚¹‚Â‚¼‚­
+  case SEL_RANGER:	// ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®ã€€ã›ã¤ãžã
 #ifdef CHECK_OVERLAY
     Main_SetNextProc(FS_OVERLAY_ID(startmenu), &PokemonRangerProcData);
 #else
     Main_SetNextProc(OVERLAY_ID_GAMESTART, &PokemonRangerProcData);
 #endif
     break;
-  case SEL_WII:		// Wii‚Æ@‚¹‚Â‚¼‚­
+  case SEL_WII:		// Wiiã¨ã€€ã›ã¤ãžã
     rebooter(WIICLIENT_FILE);
     break;
-  case SEL_WIFI:	// Wi-Fi‚¹‚Á‚Ä‚¢
+  case SEL_WIFI:	// Wi-Fiã›ã£ã¦ã„
     Snd_Stop();
     Main_SetNextProc(NO_OVERLAY_ID, &StartMenuWifiProcData);
     break;
     
-  case SEL_EMAIL:	// Eƒ[ƒ‹‚¹‚Á‚Ä‚¢
+  case SEL_EMAIL:	// Eãƒ¡ãƒ¼ãƒ«ã›ã£ã¦ã„
     Snd_Stop();
     Main_SetNextProc( FS_OVERLAY_ID(email), &EmailProcData );
     break;
         
-  case SEL_CANCEL:	// ƒLƒƒƒ“ƒZƒ‹
+  case SEL_CANCEL:	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
     Main_SetNextProc( FS_OVERLAY_ID(title), &TitleProcData);
     break;
   }
@@ -1653,11 +1653,11 @@ static void StartMenuSetNextProc(STARTMENU_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXFI—¹
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šçµ‚äº†
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT StartMenuProc_End(PROC * proc, int * seq)
@@ -1669,7 +1669,7 @@ static PROC_RESULT StartMenuProc_End(PROC * proc, int * seq)
   PROC_FreeWork(proc);
   sys_DeleteHeap(HEAPID_STARTMENU);
 
-  /* AGBƒJ[ƒgƒŠƒbƒW‚Ì”²‚¯ŒŸoOFF */
+  /* AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®æŠœã‘æ¤œå‡ºOFF */
   MysteryLib_SetAgbCartridgeIntr(FALSE);
 
   return PROC_RES_FINISH;
@@ -1677,7 +1677,7 @@ static PROC_RESULT StartMenuProc_End(PROC * proc, int * seq)
 
 
 //--------------------------------------------------------------------------------------------
-// ‚±‚Ì’è‹`‚Ísrc/demo/title.c‚©‚çŽQÆ‚³‚ê‚Ü‚·
+// ã“ã®å®šç¾©ã¯src/demo/title.cã‹ã‚‰å‚ç…§ã•ã‚Œã¾ã™
 //--------------------------------------------------------------------------------------------
 //FS_EXTERN_OVERLAY(startmenu);
 const PROC_DATA StartMenuProcData = {

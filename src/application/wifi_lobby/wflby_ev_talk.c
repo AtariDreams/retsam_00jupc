@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_ev_talk.c
- *	@brief		‰ï˜bƒCƒxƒ“ƒg
+ *	@brief		ä¼šè©±ã‚¤ãƒ™ãƒ³ãƒˆ
  *	@author		tomoya takahashi
  *	@data		2007.12.18
  *
@@ -33,27 +33,27 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 #ifdef PM_DEBUG
-#define WFLBY_EV_TALK_DEBUG_SEL_MSG	// ‡”Ô‚ÉŽ¿–â‚ªo‚Ä‚­‚é
+#define WFLBY_EV_TALK_DEBUG_SEL_MSG	// é †ç•ªã«è³ªå•ãŒå‡ºã¦ãã‚‹
 #endif
 
-// ‡”Ô‚ÉŽ¿–â‚ªo‚Ä‚­‚é
+// é †ç•ªã«è³ªå•ãŒå‡ºã¦ãã‚‹
 #ifdef WFLBY_EV_TALK_DEBUG_SEL_MSG
 static BOOL s_WFLBY_EV_TALK_DEBUG_SEL_MSG_ON		= FALSE;
 static s32	s_WFLBY_EV_TALK_DEBUG_SEL_MSG_PAGE	= 0;
@@ -62,121 +62,121 @@ static s32	s_WFLBY_EV_TALK_DEBUG_SEL_MSG_PAGE	= 0;
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-/// ˜b‚µ‚©‚¯‚ª‚íƒV[ƒPƒ“ƒX
+/// è©±ã—ã‹ã‘ãŒã‚ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
-	WFLBY_EV_TALK_A_SEQ_INIT,			// ‰Šú‰»
-	WFLBY_EV_TALK_A_SEQ_REQ,			// ƒŠƒNƒGƒXƒg
-	WFLBY_EV_TALK_A_SEQ_ANSWAIT,		// ‰ñ“š‘Ò‚¿
-	WFLBY_EV_TALK_A_SEQ_AISATUMY,		// ‚ ‚¢‚³‚Â@Ž©•ª‚ÌŽžŠÔ
-	WFLBY_EV_TALK_A_SEQ_AISATUYOU,		// ‚ ‚¢‚³‚Â	 ‘ŠŽè‚ÌŽžŠÔ
-	WFLBY_EV_TALK_A_SEQ_SYNC_RECV,		// ‰ï˜bó‘Ô“¯Šú
-	WFLBY_EV_TALK_A_SEQ_AISATUFOLLOW,	// ‚ ‚¢‚³‚ÂƒtƒHƒ[
-	WFLBY_EV_TALK_A_SEQ_AISATUEND,		// ‚ ‚¢‚³‚Â‚ÌÅŒã‚ÌƒƒbƒZ[ƒW
-	WFLBY_EV_TALK_A_SEQ_AISATUEND2,		// ‚ ‚¢‚³‚Â‚ÌÅŒã‚ÌƒƒbƒZ[ƒW‚à‚¤‚P‰ñ˜b‚µ‚Ä‚é‚Æ‚«
-	WFLBY_EV_TALK_A_SEQ_SEL_GT_FIR,		// ƒKƒWƒFƒbƒgA‰ï˜bƒZƒŒƒNƒg	‚P‰ñ–Ú
-	WFLBY_EV_TALK_A_SEQ_SEL_GT_SEC,		// ƒKƒWƒFƒbƒgA‰ï˜bƒZƒŒƒNƒg	‚Q‰ñ–ÚˆÈ~
-	WFLBY_EV_TALK_A_SEQ_SEL_GT00,		// ƒKƒWƒFƒbƒgA‰ï˜bƒZƒŒƒNƒg
-	WFLBY_EV_TALK_A_SEQ_SEL_GT00WAIT,	// ƒKƒWƒFƒbƒgA‰ï˜bƒZƒŒƒNƒg@‘I‘ð‘Ò‚¿
-	WFLBY_EV_TALK_A_SEQ_SEND_G,			// ƒKƒWƒFƒbƒg‚à‚ç‚¤
-	WFLBY_EV_TALK_A_SEQ_SEND_G_GETCHK,	// ƒKƒWƒFƒbƒg‚à‚ç‚¤‚©‘I‘ð
-	WFLBY_EV_TALK_A_SEQ_SEND_G_GETCHKWAIT,// ƒKƒWƒFƒbƒg‚à‚ç‚¤‚©‘I‘ð‚Ü‚¿
-	WFLBY_EV_TALK_A_SEQ_SEND_G_GET,		// ƒKƒWƒFƒbƒg‚à‚ç‚¤
-	WFLBY_EV_TALK_A_SEQ_SEND_G_RECV_B_SE,// ƒKƒWƒFƒbƒg‚à‚ç‚¤B‚ÌŽóMŠm”F
-	WFLBY_EV_TALK_A_SEQ_SEND_G_RECV_B,	// ƒKƒWƒFƒbƒg‚à‚ç‚¤B‚ÌŽóMŠm”F
-	WFLBY_EV_TALK_A_SEQ_SEND_TALK,		// ‰ï˜b‚·‚é‚±‚Æ‚ð‘—M
-	WFLBY_EV_TALK_A_SEQ_SEL_T_K,		// ‰ï˜b€–Ú‘I‘ð
-	WFLBY_EV_TALK_A_SEQ_SEL_T_K_WAIT,	// ‰ï˜b€–Ú‘I‘ð‘Ò‚¿
-	WFLBY_EV_TALK_A_SEQ_SEL_T_M,		// Ž©•ª‚Ì‚±‚Æ‘I‘ð
-	WFLBY_EV_TALK_A_SEQ_SEL_T_M_SEL,	// Ž©•ª‚Ì‚±‚Æ‘I‘ð
-	WFLBY_EV_TALK_A_SEQ_SEL_T_M_WAIT,	// Ž©•ª‚Ì‚±‚Æ‘I‘ð
-	WFLBY_EV_TALK_A_SEQ_SEND_T,			// ‰ï˜b‘I‘ðî•ñ‘—M
-	WFLBY_EV_TALK_A_SEQ_SEND_T00,		// ‰ï˜b‘I‘ðî•ñ‘—M
-	WFLBY_EV_TALK_A_SEQ_SEND_TWAIT,		// ‰ï˜b‘I‘ðî•ñ‘—M
-	WFLBY_EV_TALK_A_SEQ_RECV_BT,		// ‰ï˜b‘I‘ðî•ñŽóM
-	WFLBY_EV_TALK_A_SEQ_MSG_BT,			// ‰ž“š‰ï˜bî•ñƒƒbƒZ[ƒW•\Ž¦
-	WFLBY_EV_TALK_A_SEQ_MSG_ABT_EQ,		// ‘I‘ð€–Ú‚ª“¯‚¶‚Æ‚«
-	WFLBY_EV_TALK_A_SEQ_MSG_BT_END,		// ‰ž“šƒƒbƒZ[ƒWÅŒã
-	WFLBY_EV_TALK_A_SEQ_ERR_ENDMSG,		// ƒGƒ‰[I—¹
-	WFLBY_EV_TALK_A_SEQ_ENDMSG,			// ’ÊíI—¹
-	WFLBY_EV_TALK_A_SEQ_ANSNGMSG,		// ‰ž“š‚È‚µI—¹
-	WFLBY_EV_TALK_A_SEQ_SELNGMSG,		// B‘I‘ð‚Å‚«‚È‚¢I—¹
-	WFLBY_EV_TALK_A_SEQ_WAIT,			// ƒEƒGƒCƒg
-	WFLBY_EV_TALK_A_SEQ_MSGWAIT,		// ƒƒbƒZ[ƒW‚ÌI—¹ƒEƒGƒCƒg
-	WFLBY_EV_TALK_A_SEQ_END,			// I—¹
+	WFLBY_EV_TALK_A_SEQ_INIT,			// åˆæœŸåŒ–
+	WFLBY_EV_TALK_A_SEQ_REQ,			// ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	WFLBY_EV_TALK_A_SEQ_ANSWAIT,		// å›žç­”å¾…ã¡
+	WFLBY_EV_TALK_A_SEQ_AISATUMY,		// ã‚ã„ã•ã¤ã€€è‡ªåˆ†ã®æ™‚é–“
+	WFLBY_EV_TALK_A_SEQ_AISATUYOU,		// ã‚ã„ã•ã¤	 ç›¸æ‰‹ã®æ™‚é–“
+	WFLBY_EV_TALK_A_SEQ_SYNC_RECV,		// ä¼šè©±çŠ¶æ…‹åŒæœŸ
+	WFLBY_EV_TALK_A_SEQ_AISATUFOLLOW,	// ã‚ã„ã•ã¤ãƒ•ã‚©ãƒ­ãƒ¼
+	WFLBY_EV_TALK_A_SEQ_AISATUEND,		// ã‚ã„ã•ã¤ã®æœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WFLBY_EV_TALK_A_SEQ_AISATUEND2,		// ã‚ã„ã•ã¤ã®æœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚‚ã†ï¼‘å›žè©±ã—ã¦ã‚‹ã¨ã
+	WFLBY_EV_TALK_A_SEQ_SEL_GT_FIR,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã€ä¼šè©±ã‚»ãƒ¬ã‚¯ãƒˆ	ï¼‘å›žç›®
+	WFLBY_EV_TALK_A_SEQ_SEL_GT_SEC,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã€ä¼šè©±ã‚»ãƒ¬ã‚¯ãƒˆ	ï¼’å›žç›®ä»¥é™
+	WFLBY_EV_TALK_A_SEQ_SEL_GT00,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã€ä¼šè©±ã‚»ãƒ¬ã‚¯ãƒˆ
+	WFLBY_EV_TALK_A_SEQ_SEL_GT00WAIT,	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã€ä¼šè©±ã‚»ãƒ¬ã‚¯ãƒˆã€€é¸æŠžå¾…ã¡
+	WFLBY_EV_TALK_A_SEQ_SEND_G,			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†
+	WFLBY_EV_TALK_A_SEQ_SEND_G_GETCHK,	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†ã‹é¸æŠž
+	WFLBY_EV_TALK_A_SEQ_SEND_G_GETCHKWAIT,// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†ã‹é¸æŠžã¾ã¡
+	WFLBY_EV_TALK_A_SEQ_SEND_G_GET,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†
+	WFLBY_EV_TALK_A_SEQ_SEND_G_RECV_B_SE,// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†Bã®å—ä¿¡ç¢ºèª
+	WFLBY_EV_TALK_A_SEQ_SEND_G_RECV_B,	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†Bã®å—ä¿¡ç¢ºèª
+	WFLBY_EV_TALK_A_SEQ_SEND_TALK,		// ä¼šè©±ã™ã‚‹ã“ã¨ã‚’é€ä¿¡
+	WFLBY_EV_TALK_A_SEQ_SEL_T_K,		// ä¼šè©±é …ç›®é¸æŠž
+	WFLBY_EV_TALK_A_SEQ_SEL_T_K_WAIT,	// ä¼šè©±é …ç›®é¸æŠžå¾…ã¡
+	WFLBY_EV_TALK_A_SEQ_SEL_T_M,		// è‡ªåˆ†ã®ã“ã¨é¸æŠž
+	WFLBY_EV_TALK_A_SEQ_SEL_T_M_SEL,	// è‡ªåˆ†ã®ã“ã¨é¸æŠž
+	WFLBY_EV_TALK_A_SEQ_SEL_T_M_WAIT,	// è‡ªåˆ†ã®ã“ã¨é¸æŠž
+	WFLBY_EV_TALK_A_SEQ_SEND_T,			// ä¼šè©±é¸æŠžæƒ…å ±é€ä¿¡
+	WFLBY_EV_TALK_A_SEQ_SEND_T00,		// ä¼šè©±é¸æŠžæƒ…å ±é€ä¿¡
+	WFLBY_EV_TALK_A_SEQ_SEND_TWAIT,		// ä¼šè©±é¸æŠžæƒ…å ±é€ä¿¡
+	WFLBY_EV_TALK_A_SEQ_RECV_BT,		// ä¼šè©±é¸æŠžæƒ…å ±å—ä¿¡
+	WFLBY_EV_TALK_A_SEQ_MSG_BT,			// å¿œç­”ä¼šè©±æƒ…å ±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	WFLBY_EV_TALK_A_SEQ_MSG_ABT_EQ,		// é¸æŠžé …ç›®ãŒåŒã˜ã¨ã
+	WFLBY_EV_TALK_A_SEQ_MSG_BT_END,		// å¿œç­”ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æœ€å¾Œ
+	WFLBY_EV_TALK_A_SEQ_ERR_ENDMSG,		// ã‚¨ãƒ©ãƒ¼çµ‚äº†
+	WFLBY_EV_TALK_A_SEQ_ENDMSG,			// é€šå¸¸çµ‚äº†
+	WFLBY_EV_TALK_A_SEQ_ANSNGMSG,		// å¿œç­”ãªã—çµ‚äº†
+	WFLBY_EV_TALK_A_SEQ_SELNGMSG,		// Bé¸æŠžã§ããªã„çµ‚äº†
+	WFLBY_EV_TALK_A_SEQ_WAIT,			// ã‚¦ã‚¨ã‚¤ãƒˆ
+	WFLBY_EV_TALK_A_SEQ_MSGWAIT,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®çµ‚äº†ã‚¦ã‚¨ã‚¤ãƒˆ
+	WFLBY_EV_TALK_A_SEQ_END,			// çµ‚äº†
 } ;
 
 //-------------------------------------
-/// ˜b‚µ‚©‚¯‚ç‚ê‘¤ƒV[ƒPƒ“ƒX
+/// è©±ã—ã‹ã‘ã‚‰ã‚Œå´ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
-	WFLBY_EV_TALK_B_SEQ_INIT,		// ‰Šú‰»
-	WFLBY_EV_TALK_B_SEQ_AISATUYOU,	// ‚ ‚¢‚³‚Â@‚ ‚¢‚Ä‚ÌŽžŠÔ
-	WFLBY_EV_TALK_B_SEQ_AISATUMY,	// ‚ ‚¢‚³‚Â	Ž©•ª‚ÌŽžŠÔ
-	WFLBY_EV_TALK_B_SEQ_SYNC_RECV,		// ‰ï˜bó‘Ô“¯Šú
-	WFLBY_EV_TALK_B_SEQ_AISATUFOLLOW,	// ‚ ‚¢‚³‚ÂƒtƒHƒ[
-	WFLBY_EV_TALK_B_SEQ_AISATUEND,		// ‚ ‚¢‚³‚Â‚ÌÅŒã‚ÌƒƒbƒZ[ƒW
-	WFLBY_EV_TALK_B_SEQ_AISATUEND2,		// ‚ ‚¢‚³‚Â‚ÌÅŒã‚ÌƒƒbƒZ[ƒW‚à‚¤‚P‰ñ˜b‚µ‚Ä‚é‚Æ‚«
-	WFLBY_EV_TALK_B_SEQ_RECV_A_FST,		// ‘ŠŽè‚Ì‘I‘ð“à—e‘Ò‚¿	Å‰
-	WFLBY_EV_TALK_B_SEQ_RECV_A_SEC,	// ‘ŠŽè‚Ì‘I‘ð“à—e‘Ò‚¿ ‚Q‰ñ–ÚˆÈ~
-	WFLBY_EV_TALK_B_SEQ_RECV_A,		// ‘ŠŽè‚Ì‘I‘ð“à—e‘Ò‚¿
-	WFLBY_EV_TALK_B_SEQ_MSG_G00,		// ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW
-	WFLBY_EV_TALK_B_SEQ_MSG_G01,		// ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW
-	WFLBY_EV_TALK_B_SEQ_MSG_G02,		// ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW
-	WFLBY_EV_TALK_B_SEQ_MSG_G03,		// ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW
-	WFLBY_EV_TALK_B_SEQ_MSG_G_EQ,	// ƒKƒWƒFƒbƒg‚ªˆêƒƒbƒZ[ƒW
-	WFLBY_EV_TALK_B_SEQ_MSG_AT00,	// A‰ï˜bŠJŽnƒƒbƒZ[ƒW•\Ž¦
-	WFLBY_EV_TALK_B_SEQ_RECV_A_SEL,	// A‚Ì‰ï˜b“à—e‚ðŽæ“¾
-	WFLBY_EV_TALK_B_SEQ_MSG_AT01,	// A‚Ì‘I‘ðŽ–€•\Ž¦
-	WFLBY_EV_TALK_B_SEQ_MSG_AT02,	// A‚Ì‘I‘ð‚Â‚È‚¬•\Ž¦
-	WFLBY_EV_TALK_B_SEQ_MSG_AT03,	// A‚Ì‘I‘ð‘I‚ñ‚¾‚±‚Æ•\Ž¦
-	WFLBY_EV_TALK_B_SEQ_MSG_AT04,	// A‚Ì‘I‘ð‚³‚ç‚É‚Â‚È‚¬•\Ž¦
-	WFLBY_EV_TALK_B_SEQ_SEL_T_M,	// Ž©•ª‚Ì‚ð‘I‘ð
-	WFLBY_EV_TALK_B_SEQ_SEND_T,		// Ž©•ª‚Ì‘I‘ð‚ð‘—M
-	WFLBY_EV_TALK_B_SEQ_MSG_BT,		// Ž©•ª‚Ì‘I‘ð‚Ì•\Ž¦
-	WFLBY_EV_TALK_B_SEQ_MSG_ABT_EQ,	// ‘I‘ð€–Ú‚ª“¯‚¶‚Æ‚«
-	WFLBY_EV_TALK_B_SEQ_MSG_AT_END,	// ‰ï˜bI—¹ƒƒbƒZ[ƒW
-	WFLBY_EV_TALK_B_SEQ_ERR_ENDMSG,	// ƒGƒ‰[I—¹
-	WFLBY_EV_TALK_B_SEQ_ENDMSG,		// ’ÊíI—¹
-	WFLBY_EV_TALK_B_SEQ_NONEENDMSG,	// ‚±‚½‚¦‚È‚¢‚Æ‚«I—¹
-	WFLBY_EV_TALK_B_SEQ_WAIT,			// ƒEƒGƒCƒg
-	WFLBY_EV_TALK_B_SEQ_MSGWAIT,		// ƒƒbƒZ[ƒW‚ÌI—¹ƒEƒGƒCƒg
-	WFLBY_EV_TALK_B_SEQ_END,		// I—¹
+	WFLBY_EV_TALK_B_SEQ_INIT,		// åˆæœŸåŒ–
+	WFLBY_EV_TALK_B_SEQ_AISATUYOU,	// ã‚ã„ã•ã¤ã€€ã‚ã„ã¦ã®æ™‚é–“
+	WFLBY_EV_TALK_B_SEQ_AISATUMY,	// ã‚ã„ã•ã¤	è‡ªåˆ†ã®æ™‚é–“
+	WFLBY_EV_TALK_B_SEQ_SYNC_RECV,		// ä¼šè©±çŠ¶æ…‹åŒæœŸ
+	WFLBY_EV_TALK_B_SEQ_AISATUFOLLOW,	// ã‚ã„ã•ã¤ãƒ•ã‚©ãƒ­ãƒ¼
+	WFLBY_EV_TALK_B_SEQ_AISATUEND,		// ã‚ã„ã•ã¤ã®æœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WFLBY_EV_TALK_B_SEQ_AISATUEND2,		// ã‚ã„ã•ã¤ã®æœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚‚ã†ï¼‘å›žè©±ã—ã¦ã‚‹ã¨ã
+	WFLBY_EV_TALK_B_SEQ_RECV_A_FST,		// ç›¸æ‰‹ã®é¸æŠžå†…å®¹å¾…ã¡	æœ€åˆ
+	WFLBY_EV_TALK_B_SEQ_RECV_A_SEC,	// ç›¸æ‰‹ã®é¸æŠžå†…å®¹å¾…ã¡ ï¼’å›žç›®ä»¥é™
+	WFLBY_EV_TALK_B_SEQ_RECV_A,		// ç›¸æ‰‹ã®é¸æŠžå†…å®¹å¾…ã¡
+	WFLBY_EV_TALK_B_SEQ_MSG_G00,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WFLBY_EV_TALK_B_SEQ_MSG_G01,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WFLBY_EV_TALK_B_SEQ_MSG_G02,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WFLBY_EV_TALK_B_SEQ_MSG_G03,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WFLBY_EV_TALK_B_SEQ_MSG_G_EQ,	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒä¸€ç·’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WFLBY_EV_TALK_B_SEQ_MSG_AT00,	// Aä¼šè©±é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	WFLBY_EV_TALK_B_SEQ_RECV_A_SEL,	// Aã®ä¼šè©±å†…å®¹ã‚’å–å¾—
+	WFLBY_EV_TALK_B_SEQ_MSG_AT01,	// Aã®é¸æŠžäº‹é …è¡¨ç¤º
+	WFLBY_EV_TALK_B_SEQ_MSG_AT02,	// Aã®é¸æŠžã¤ãªãŽè¡¨ç¤º
+	WFLBY_EV_TALK_B_SEQ_MSG_AT03,	// Aã®é¸æŠžé¸ã‚“ã ã“ã¨è¡¨ç¤º
+	WFLBY_EV_TALK_B_SEQ_MSG_AT04,	// Aã®é¸æŠžã•ã‚‰ã«ã¤ãªãŽè¡¨ç¤º
+	WFLBY_EV_TALK_B_SEQ_SEL_T_M,	// è‡ªåˆ†ã®ã‚’é¸æŠž
+	WFLBY_EV_TALK_B_SEQ_SEND_T,		// è‡ªåˆ†ã®é¸æŠžã‚’é€ä¿¡
+	WFLBY_EV_TALK_B_SEQ_MSG_BT,		// è‡ªåˆ†ã®é¸æŠžã®è¡¨ç¤º
+	WFLBY_EV_TALK_B_SEQ_MSG_ABT_EQ,	// é¸æŠžé …ç›®ãŒåŒã˜ã¨ã
+	WFLBY_EV_TALK_B_SEQ_MSG_AT_END,	// ä¼šè©±çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WFLBY_EV_TALK_B_SEQ_ERR_ENDMSG,	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
+	WFLBY_EV_TALK_B_SEQ_ENDMSG,		// é€šå¸¸çµ‚äº†
+	WFLBY_EV_TALK_B_SEQ_NONEENDMSG,	// ã“ãŸãˆãªã„ã¨ãçµ‚äº†
+	WFLBY_EV_TALK_B_SEQ_WAIT,			// ã‚¦ã‚¨ã‚¤ãƒˆ
+	WFLBY_EV_TALK_B_SEQ_MSGWAIT,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®çµ‚äº†ã‚¦ã‚¨ã‚¤ãƒˆ
+	WFLBY_EV_TALK_B_SEQ_END,		// çµ‚äº†
 } ;
 
 
 //-------------------------------------
-///	•¶Žšƒoƒbƒtƒ@”
+///	æ–‡å­—ãƒãƒƒãƒ•ã‚¡æ•°
 //=====================================
 #define WFLBY_EV_TALK_STRBUF_NUM	( 128 )
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒW•\Ž¦ƒEƒGƒCƒg
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚¦ã‚¨ã‚¤ãƒˆ
 //=====================================
 #define WFLBY_EV_TALK_MSG_WAIT		( 128 )
 
 
 //-------------------------------------
-///	¢ŠE‚Ìˆ¥ŽAŽí—Þ
+///	ä¸–ç•Œã®æŒ¨æ‹¶ç¨®é¡ž
 //=====================================
 #define WFLBY_EV_TALK_LANG_NUM	( LANG_SPAIN+1 )
 
 
 //-------------------------------------
-///	‰ï˜bƒf[ƒ^
+///	ä¼šè©±ãƒ‡ãƒ¼ã‚¿
 //=====================================
 enum {
-	WFLBY_EV_TALK_TYPE_AISATSUSYNC,	// "ˆ¥ŽAŒã‚Ì“¯Šú"
-	WFLBY_EV_TALK_TYPE_TALK_BEFORE,	// "‰ï˜b€–ÚŽóMŠ®—¹	B‘¤‚Ìƒ_ƒ~[•Ô“š"
-	WFLBY_EV_TALK_TYPE_GADGET_END,	// "‰ï˜b€–ÚŽóMŠ®—¹	B‘¤‚Ìƒ_ƒ~[•Ô“š"
-	WFLBY_EV_TALK_TYPE_GADGET,		// "ƒKƒWƒFƒbƒgŒðŠ·"
-	WFLBY_EV_TALK_TYPE_GADGET_EQ,	// "ƒKƒWƒFƒbƒgˆê"
-	WFLBY_EV_TALK_TYPE_TALK_START,	// "‰ï˜bŠJŽn"
+	WFLBY_EV_TALK_TYPE_AISATSUSYNC,	// "æŒ¨æ‹¶å¾Œã®åŒæœŸ"
+	WFLBY_EV_TALK_TYPE_TALK_BEFORE,	// "ä¼šè©±é …ç›®å—ä¿¡å®Œäº†	Bå´ã®ãƒ€ãƒŸãƒ¼è¿”ç­”"
+	WFLBY_EV_TALK_TYPE_GADGET_END,	// "ä¼šè©±é …ç›®å—ä¿¡å®Œäº†	Bå´ã®ãƒ€ãƒŸãƒ¼è¿”ç­”"
+	WFLBY_EV_TALK_TYPE_GADGET,		// "ã‚¬ã‚¸ã‚§ãƒƒãƒˆäº¤æ›"
+	WFLBY_EV_TALK_TYPE_GADGET_EQ,	// "ã‚¬ã‚¸ã‚§ãƒƒãƒˆä¸€ç·’"
+	WFLBY_EV_TALK_TYPE_TALK_START,	// "ä¼šè©±é–‹å§‹"
 
 	WFLBY_EV_TALK_TYPE_TALK_COL_00,
 	WFLBY_EV_TALK_TYPE_TALK_COL_01,
@@ -329,14 +329,14 @@ enum {
 	WFLBY_EV_TALK_TYPE_TALK_KININARU_03,
 	
 
-	WFLBY_EV_TALK_TYPE_TALK_NONE,			//  "‚í‚©‚ç‚È‚¢‚ð‘I‘ð"
+	WFLBY_EV_TALK_TYPE_TALK_NONE,			//  "ã‚ã‹ã‚‰ãªã„ã‚’é¸æŠž"
 
 	WFLBY_EV_TALK_TYPE_NUM,
 } ;
 
 
 //-------------------------------------
-///	ÅIƒf[ƒ^’Ç‰ÁƒƒbƒZ[ƒW‘I‘ð
+///	æœ€çµ‚ãƒ‡ãƒ¼ã‚¿è¿½åŠ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¸æŠž
 //=====================================
 enum {
 	WFLBY_EV_TALK_LIST_END_NONE,
@@ -348,33 +348,33 @@ enum {
 
 
 //-------------------------------------
-///	ƒgƒsƒbƒN‘O‚Ì‚¨Žo‚³‚ñ
+///	ãƒˆãƒ”ãƒƒã‚¯å‰ã®ãŠå§‰ã•ã‚“
 //=====================================
 enum {
-	WFLBY_EV_DEF_PLAYER_TOPIC_INIT,		// ‰Šú‰»
-	WFLBY_EV_DEF_PLAYER_TOPIC_PARADE,	// PARADEƒƒbƒZ[ƒW
-	WFLBY_EV_DEF_PLAYER_TOPIC_CLOSE,	// ƒNƒ[ƒY‘OƒƒbƒZ[ƒW
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSG00,	// ‚æ‚¤‚±‚»
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSG01,	// ‚Ç‚¿‚ç‚É‚Â‚¢‚ÄEEE
-	WFLBY_EV_DEF_PLAYER_TOPIC_LISTON,	// ƒŠƒXƒg•\Ž¦
-	WFLBY_EV_DEF_PLAYER_TOPIC_LISTWAIT,	// ƒŠƒXƒg‘Ò‚¿
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGGADGET,// ƒKƒWƒFƒbƒg
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI,		// ƒ~ƒjƒQ[ƒ€
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_SEL,	// ƒ~ƒjƒQ[ƒ€‚³‚ç‚É‘I‘ð
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_BS,	// ƒ^ƒ}“Š‚°
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_BB,	// ‚½‚Ü‚Ì‚è
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_BL,	// ‚Ó‚¤‚¹‚ñ‚í‚è
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGWLD,	// ¢ŠEŽžŒv
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGTOP,	// ƒjƒ…[ƒX
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGBOAD,	// ‘«Õƒ{[ƒh
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE,	// ƒCƒxƒ“ƒg
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_SEL,		// ƒCƒxƒ“ƒg‚³‚ç‚É‘I‘ð
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_LIGHTING,	// ƒCƒxƒ“ƒg@ƒ‰ƒCƒeƒBƒ“ƒO
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_FIRE,		// ƒCƒxƒ“ƒg@‚Í‚È‚Ñ
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_PARADE,	// ƒCƒxƒ“ƒg@ƒpƒŒ[ƒh
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGANKETO,// ƒAƒ“ƒP[ƒg
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEND,	// ƒIƒƒŠ
-	WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT,	// ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+	WFLBY_EV_DEF_PLAYER_TOPIC_INIT,		// åˆæœŸåŒ–
+	WFLBY_EV_DEF_PLAYER_TOPIC_PARADE,	// PARADEãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WFLBY_EV_DEF_PLAYER_TOPIC_CLOSE,	// ã‚¯ãƒ­ãƒ¼ã‚ºå‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSG00,	// ã‚ˆã†ã“ã
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSG01,	// ã©ã¡ã‚‰ã«ã¤ã„ã¦ãƒ»ãƒ»ãƒ»
+	WFLBY_EV_DEF_PLAYER_TOPIC_LISTON,	// ãƒªã‚¹ãƒˆè¡¨ç¤º
+	WFLBY_EV_DEF_PLAYER_TOPIC_LISTWAIT,	// ãƒªã‚¹ãƒˆå¾…ã¡
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGGADGET,// ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI,		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_SEL,	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã•ã‚‰ã«é¸æŠž
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_BS,	// ã‚¿ãƒžæŠ•ã’
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_BB,	// ãŸã¾ã®ã‚Š
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_BL,	// ãµã†ã›ã‚“ã‚ã‚Š
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGWLD,	// ä¸–ç•Œæ™‚è¨ˆ
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGTOP,	// ãƒ‹ãƒ¥ãƒ¼ã‚¹
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGBOAD,	// è¶³è·¡ãƒœãƒ¼ãƒ‰
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE,	// ã‚¤ãƒ™ãƒ³ãƒˆ
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_SEL,		// ã‚¤ãƒ™ãƒ³ãƒˆã•ã‚‰ã«é¸æŠž
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_LIGHTING,	// ã‚¤ãƒ™ãƒ³ãƒˆã€€ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_FIRE,		// ã‚¤ãƒ™ãƒ³ãƒˆã€€ã¯ãªã³
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_PARADE,	// ã‚¤ãƒ™ãƒ³ãƒˆã€€ãƒ‘ãƒ¬ãƒ¼ãƒ‰
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGANKETO,// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGEND,	// ã‚ªãƒ¯ãƒª
+	WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT,	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 	WFLBY_EV_DEF_PLAYER_TOPIC_END,	
 } ;
 #define WFLBY_EV_DEF_PLAYER_TOPIC_LISTWIN_X		( 16 )
@@ -382,11 +382,11 @@ enum {
 #define WFLBY_EV_DEF_PLAYER_TOPIC_LISTWIN_SIZX	( 15 )
 
 //-------------------------------------
-///	ƒgƒsƒbƒN‘O‚Ì‚¨ŒZ‚³‚ñ
+///	ãƒˆãƒ”ãƒƒã‚¯å‰ã®ãŠå…„ã•ã‚“
 //=====================================
 enum {
-	WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_INIT,		// ‰Šú‰»
-	WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_MSGWAIT,	// ƒƒbƒZ[ƒW•\Ž¦Š®—¹‘Ò‚¿
+	WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_INIT,		// åˆæœŸåŒ–
+	WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_MSGWAIT,	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå®Œäº†å¾…ã¡
 	WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_END,	
 } ;
 
@@ -397,22 +397,22 @@ enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg
+///	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆ
 //=====================================
 typedef struct {
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgê—p
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆå°‚ç”¨
 	BMPLIST_HEADER		bmplist;
-	u32					bmplist_num;	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg”
+	u32					bmplist_num;	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆæ•°
 } WFLBY_EV_TALK_BMPLIST;
 
 
 //-------------------------------------
-///	‘ŠŽè‚©‚çƒ_ƒ~[ƒƒbƒZ[ƒW‚ª‹A‚Á‚Ä‚«‚½‚çA
-//  ƒƒbƒZ[ƒW‚ð‘—M‚·‚éƒVƒXƒeƒ€
+///	ç›¸æ‰‹ã‹ã‚‰ãƒ€ãƒŸãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå¸°ã£ã¦ããŸã‚‰ã€
+//  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
 	u16		trans_on;
@@ -425,37 +425,37 @@ typedef struct {
 
 
 //-------------------------------------
-///	‰ï˜bƒCƒxƒ“ƒgƒ[ƒN
+///	ä¼šè©±ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	u8					sel_k;			// ‘I‚ñ‚¾€–Ú
-	u8					sel_k_data;		// ‘I‚ñ‚¾ƒf[ƒ^
-	u8					recv_k_data;	// ŽóM‚µ‚½‘I‚Ñƒf[ƒ^
-	u8					talk_idx;		// ‰ï˜bƒ^[ƒQƒbƒg
-	u8					my_timezone;	// Ž©•ª‚ÌŽžŠÔ‘Ñ
-	u8					you_timezone;	// ‘ŠŽè‚ÌŽžŠÔ‘Ñ
-	u8					wait;			// ƒEƒGƒCƒg
-	u8					next_seq;		// ƒEƒGƒCƒgŒã‚ÌƒV[ƒPƒ“ƒX
-	u16					my_idx;			// Ž©•ª‚ÌƒCƒ“ƒfƒbƒNƒX
-	u16					err_chk;		// ƒGƒ‰[ƒ`ƒFƒbƒN‚·‚é‚©
-	u8					gadget_eq;		// ƒKƒWƒFƒbƒg‚ªˆê‚È‚Ì‚©ƒtƒ‰ƒO
-	u8					sel_wait_flag;	// ‘I‘ðƒEƒGƒCƒgƒtƒ‰ƒO
-	s16					sel_wait;		// ‘I‘ðƒEƒGƒCƒg
+	u8					sel_k;			// é¸ã‚“ã é …ç›®
+	u8					sel_k_data;		// é¸ã‚“ã ãƒ‡ãƒ¼ã‚¿
+	u8					recv_k_data;	// å—ä¿¡ã—ãŸé¸ã³ãƒ‡ãƒ¼ã‚¿
+	u8					talk_idx;		// ä¼šè©±ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
+	u8					my_timezone;	// è‡ªåˆ†ã®æ™‚é–“å¸¯
+	u8					you_timezone;	// ç›¸æ‰‹ã®æ™‚é–“å¸¯
+	u8					wait;			// ã‚¦ã‚¨ã‚¤ãƒˆ
+	u8					next_seq;		// ã‚¦ã‚¨ã‚¤ãƒˆå¾Œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u16					my_idx;			// è‡ªåˆ†ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u16					err_chk;		// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‹
+	u8					gadget_eq;		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒä¸€ç·’ãªã®ã‹ãƒ•ãƒ©ã‚°
+	u8					sel_wait_flag;	// é¸æŠžã‚¦ã‚¨ã‚¤ãƒˆãƒ•ãƒ©ã‚°
+	s16					sel_wait;		// é¸æŠžã‚¦ã‚¨ã‚¤ãƒˆ
 	WFLBY_3DPERSON*		p_npc;			// NPC
 
 	WFLBY_EV_TALK_BMPLIST bmplist;
 
-	WFLBY_EV_TALK_RWSEND	rw_send;	// ƒ_ƒ~[ƒƒbƒZ[ƒW‚ðŽóM‚µ‚Ä‚©‚ç‘—M‚·‚éƒVƒXƒeƒ€
+	WFLBY_EV_TALK_RWSEND	rw_send;	// ãƒ€ãƒŸãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ä¿¡ã—ã¦ã‹ã‚‰é€ä¿¡ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
 
-	// —š—ð‚Éƒf[ƒ^‚ðƒZƒbƒg‚·‚é‚½‚ß‚Ìƒf[ƒ^
+	// å±¥æ­´ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãŸã‚ã®ãƒ‡ãƒ¼ã‚¿
 	u16	rireki_flag;
 	u16	rireki_actno;
 	s32 rireki_userid;
 
-	BOOL b_count_add;	// ‰ï˜bƒJƒEƒ“ƒ^‚ð1‘«‚µ‚½‚Ì‚©
+	BOOL b_count_add;	// ä¼šè©±ã‚«ã‚¦ãƒ³ã‚¿ã‚’1è¶³ã—ãŸã®ã‹
 
 
-	// ‘ÞŽº‚µ‚½ƒ†[ƒU‚ÌƒvƒƒtƒB[ƒ‹‚ðŽQÆ‚·‚é‰Â”\«‚ªo‚é‚Ì‚Å”pŽ~
+	// é€€å®¤ã—ãŸãƒ¦ãƒ¼ã‚¶ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å‚ç…§ã™ã‚‹å¯èƒ½æ€§ãŒå‡ºã‚‹ã®ã§å»ƒæ­¢
 //	const WFLBY_USER_PROFILE* cp_mypr;
 //	const WFLBY_USER_PROFILE* cp_youpr;
 
@@ -465,7 +465,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	ŽålŒö‰‰ñ“üŽºƒCƒxƒ“ƒgƒ[ƒN
+///	ä¸»äººå…¬åˆå›žå…¥å®¤ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	u32						ret_seq;
@@ -474,11 +474,11 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒŠƒXƒgƒf[ƒ^
+ *			ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	Šî–{ƒwƒbƒ_[
+///	åŸºæœ¬ãƒ˜ãƒƒãƒ€ãƒ¼
 //=====================================
 static const BMPLIST_HEADER sc_WFLBY_EV_TALK_HEADER = {
 	NULL,
@@ -486,20 +486,20 @@ static const BMPLIST_HEADER sc_WFLBY_EV_TALK_HEADER = {
 	NULL,
 	NULL,
 
-	0,	//ƒŠƒXƒg€–Ú”
-	6,	//•\Ž¦Å‘å€–Ú”
-	0,								//ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-	8,								//€–Ú•\Ž¦‚wÀ•W
-	0,								//ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-	0,								//•\Ž¦‚xÀ•W
-	FBMP_COL_BLACK,					//•\Ž¦•¶ŽšF
-	FBMP_COL_WHITE,					//•\Ž¦”wŒiF
-	FBMP_COL_BLK_SDW,				//•\Ž¦•¶Žš‰eF
-	0,								//•¶ŽšŠÔŠu‚w
-	16,								//•¶ŽšŠÔŠu‚x
-	BMPLIST_NO_SKIP,				//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,					//•¶ŽšŽw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚ÆŽv‚¤‚Ì‚Å)
-	0,								//‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	0,	//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	6,	//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,								//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,								//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,								//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,								//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,					//è¡¨ç¤ºæ–‡å­—è‰²
+	FBMP_COL_WHITE,					//è¡¨ç¤ºèƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,				//è¡¨ç¤ºæ–‡å­—å½±è‰²
+	0,								//æ–‡å­—é–“éš”ï¼¸
+	16,								//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_NO_SKIP,				//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,					//æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0,								//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 
 	NULL
 };
@@ -508,7 +508,7 @@ static const BMPLIST_HEADER sc_WFLBY_EV_TALK_HEADER = {
 
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒg‚©‰ï˜b‚©‘I‘ð
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‹ä¼šè©±ã‹é¸æŠž
 //=====================================
 enum{	
 	WFLBY_EV_TALK_LIST_SEL_GT_GAGET,
@@ -518,7 +518,7 @@ enum{
 };
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒg‚à‚ç‚¤‚©‘I‘ð
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†ã‹é¸æŠž
 //=====================================
 enum{	
 	WFLBY_EV_TALK_LIST_SEL_G_GET,
@@ -527,41 +527,41 @@ enum{
 };
 
 //-------------------------------------
-///	‰ï˜b€–Ú‘I‘ð
+///	ä¼šè©±é …ç›®é¸æŠž
 //=====================================
 enum{	
-	WFLBY_EV_TALK_LIST_SEL_TK_COL,		// F
-	WFLBY_EV_TALK_LIST_SEL_TK_POKE,		// ƒ|ƒP
-	WFLBY_EV_TALK_LIST_SEL_TK_WEA,		// “V‹C
-	WFLBY_EV_TALK_LIST_SEL_TK_ACT,		// ‚È‚É‚µ‚Ä‚½
-	WFLBY_EV_TALK_LIST_SEL_TK_YOTE,		// —\’è
-	WFLBY_EV_TALK_LIST_SEL_TK_TRA,		// ‚è‚å‚±‚¤
-	WFLBY_EV_TALK_LIST_SEL_TK_LOOK,		// ‚É‚Ä‚é
-	WFLBY_EV_TALK_LIST_SEL_TK_NEED,		// ‚Ù‚µ‚¢‚à‚Ì
-	WFLBY_EV_TALK_LIST_SEL_TK_BAD,		// ‚É‚ª‚Ä‚È‚à‚Ì
-	WFLBY_EV_TALK_LIST_SEL_TK_PLAY,		// ‚ ‚»‚Ñ‚É‚¢‚­‚È‚ç
-	WFLBY_EV_TALK_LIST_SEL_TK_GAME,		// ‚Æ‚­‚¢‚ÈƒQ[ƒ€
-	WFLBY_EV_TALK_LIST_SEL_TK_HAYARI,	// ‚Í‚â‚Á‚Ä‚é‚±‚Æ‚Í
-	WFLBY_EV_TALK_LIST_SEL_TK_TOKUI,	// ‚Æ‚­‚¢‚È‚±‚Æ‚Í
-	WFLBY_EV_TALK_LIST_SEL_TK_YEMERAREN,// ‚â‚ß‚ê‚È‚¢‚±‚Æ
-	WFLBY_EV_TALK_LIST_SEL_TK_KODAWARI,	// ‚±‚¾‚í‚Á‚Ä‚é‚±‚Æ
-	WFLBY_EV_TALK_LIST_SEL_TK_NANISURU,	// ‚±‚Ì‚ ‚Æ‚È‚É‚·‚é
-	WFLBY_EV_TALK_LIST_SEL_TK_HOME,		// ‰Æ‚ÌŽü‚è‚É‚È‚É‚ª‚ ‚é
-	WFLBY_EV_TALK_LIST_SEL_TK_FRIPLY,	// —F’B‚Æ‚È‚É‚µ‚Ä‚ ‚»‚Ô
-	WFLBY_EV_TALK_LIST_SEL_TK_PTAISE,	// ‚½‚¢‚¹‚Â‚È‚Ð‚Æ‚Í‚¢‚é
-	WFLBY_EV_TALK_LIST_SEL_TK_DONNAP,	// ‚Ç‚ñ‚È‚Ð‚Æ‚Á‚Ä‚¢‚í‚ê‚é
-	WFLBY_EV_TALK_LIST_SEL_TK_SIAWASE,	// ‚µ‚ ‚í‚¹‚Á‚Ä‚Ç‚ñ‚È‚Æ‚«
-	WFLBY_EV_TALK_LIST_SEL_TK_KOMARU,	// ‚±‚Ü‚Á‚Ä‚é‚±‚Æ‚Í‚ ‚é
-	WFLBY_EV_TALK_LIST_SEL_TK_GANBARU,	// ‚ª‚ñ‚Î‚Á‚Ä‚é‚±‚Æ‚Í‚ ‚é
-	WFLBY_EV_TALK_LIST_SEL_TK_SPORTS,	// ‚Æ‚­‚¢‚ÈƒXƒ|[ƒc
-	WFLBY_EV_TALK_LIST_SEL_TK_WORKS,	// “²‚ê‚ÌE‹Æ
-	WFLBY_EV_TALK_LIST_SEL_TK_ZIMAN,	// ‚·‚ñ‚Å‚é‚Æ‚±‚ë‚ÌŽ©–
-	WFLBY_EV_TALK_LIST_SEL_TK_DONNA,	// ‚·‚ñ‚Å‚é‚Æ‚±‚ë‚Í‚Ç‚ñ‚È‚Æ‚±
-	WFLBY_EV_TALK_LIST_SEL_TK_DONNAOTO,	// ‚Ç‚ñ‚È‚¨‚Æ‚µ‚Ä‚é
-	WFLBY_EV_TALK_LIST_SEL_TK_DONNANIOI,// ‚Ç‚ñ‚È‚É‚¨‚¢‚µ‚Ä‚é
-	WFLBY_EV_TALK_LIST_SEL_TK_KININARU,	// ¡‚«‚É‚È‚Á‚Ä‚é‚±‚Æ‚ ‚é
+	WFLBY_EV_TALK_LIST_SEL_TK_COL,		// è‰²
+	WFLBY_EV_TALK_LIST_SEL_TK_POKE,		// ãƒã‚±
+	WFLBY_EV_TALK_LIST_SEL_TK_WEA,		// å¤©æ°—
+	WFLBY_EV_TALK_LIST_SEL_TK_ACT,		// ãªã«ã—ã¦ãŸ
+	WFLBY_EV_TALK_LIST_SEL_TK_YOTE,		// äºˆå®š
+	WFLBY_EV_TALK_LIST_SEL_TK_TRA,		// ã‚Šã‚‡ã“ã†
+	WFLBY_EV_TALK_LIST_SEL_TK_LOOK,		// ã«ã¦ã‚‹
+	WFLBY_EV_TALK_LIST_SEL_TK_NEED,		// ã»ã—ã„ã‚‚ã®
+	WFLBY_EV_TALK_LIST_SEL_TK_BAD,		// ã«ãŒã¦ãªã‚‚ã®
+	WFLBY_EV_TALK_LIST_SEL_TK_PLAY,		// ã‚ãã³ã«ã„ããªã‚‰
+	WFLBY_EV_TALK_LIST_SEL_TK_GAME,		// ã¨ãã„ãªã‚²ãƒ¼ãƒ 
+	WFLBY_EV_TALK_LIST_SEL_TK_HAYARI,	// ã¯ã‚„ã£ã¦ã‚‹ã“ã¨ã¯
+	WFLBY_EV_TALK_LIST_SEL_TK_TOKUI,	// ã¨ãã„ãªã“ã¨ã¯
+	WFLBY_EV_TALK_LIST_SEL_TK_YEMERAREN,// ã‚„ã‚ã‚Œãªã„ã“ã¨
+	WFLBY_EV_TALK_LIST_SEL_TK_KODAWARI,	// ã“ã ã‚ã£ã¦ã‚‹ã“ã¨
+	WFLBY_EV_TALK_LIST_SEL_TK_NANISURU,	// ã“ã®ã‚ã¨ãªã«ã™ã‚‹
+	WFLBY_EV_TALK_LIST_SEL_TK_HOME,		// å®¶ã®å‘¨ã‚Šã«ãªã«ãŒã‚ã‚‹
+	WFLBY_EV_TALK_LIST_SEL_TK_FRIPLY,	// å‹é”ã¨ãªã«ã—ã¦ã‚ãã¶
+	WFLBY_EV_TALK_LIST_SEL_TK_PTAISE,	// ãŸã„ã›ã¤ãªã²ã¨ã¯ã„ã‚‹
+	WFLBY_EV_TALK_LIST_SEL_TK_DONNAP,	// ã©ã‚“ãªã²ã¨ã£ã¦ã„ã‚ã‚Œã‚‹
+	WFLBY_EV_TALK_LIST_SEL_TK_SIAWASE,	// ã—ã‚ã‚ã›ã£ã¦ã©ã‚“ãªã¨ã
+	WFLBY_EV_TALK_LIST_SEL_TK_KOMARU,	// ã“ã¾ã£ã¦ã‚‹ã“ã¨ã¯ã‚ã‚‹
+	WFLBY_EV_TALK_LIST_SEL_TK_GANBARU,	// ãŒã‚“ã°ã£ã¦ã‚‹ã“ã¨ã¯ã‚ã‚‹
+	WFLBY_EV_TALK_LIST_SEL_TK_SPORTS,	// ã¨ãã„ãªã‚¹ãƒãƒ¼ãƒ„
+	WFLBY_EV_TALK_LIST_SEL_TK_WORKS,	// æ†§ã‚Œã®è·æ¥­
+	WFLBY_EV_TALK_LIST_SEL_TK_ZIMAN,	// ã™ã‚“ã§ã‚‹ã¨ã“ã‚ã®è‡ªæ…¢
+	WFLBY_EV_TALK_LIST_SEL_TK_DONNA,	// ã™ã‚“ã§ã‚‹ã¨ã“ã‚ã¯ã©ã‚“ãªã¨ã“
+	WFLBY_EV_TALK_LIST_SEL_TK_DONNAOTO,	// ã©ã‚“ãªãŠã¨ã—ã¦ã‚‹
+	WFLBY_EV_TALK_LIST_SEL_TK_DONNANIOI,// ã©ã‚“ãªã«ãŠã„ã—ã¦ã‚‹
+	WFLBY_EV_TALK_LIST_SEL_TK_KININARU,	// ä»Šãã«ãªã£ã¦ã‚‹ã“ã¨ã‚ã‚‹
 	
-//	WFLBY_EV_TALK_LIST_SEL_TK_END,		// ‚â‚ß‚é
+//	WFLBY_EV_TALK_LIST_SEL_TK_END,		// ã‚„ã‚ã‚‹
 	WFLBY_EV_TALK_LIST_SEL_TK_NUM,
 };
 #define WFLBY_EV_TALK_TK_SEL_NUM			( 4 )
@@ -570,20 +570,20 @@ enum{
 #define WFLBY_EV_TALK_TK_LISTWIN_SIZX			( 23 )
 
 //-------------------------------------
-///	‰ï˜b“à—e
+///	ä¼šè©±å†…å®¹
 //=====================================
 enum{	
 	WFLBY_EV_TALK_LIST_SEL_TK_S_00,	
 	WFLBY_EV_TALK_LIST_SEL_TK_S_01,	
 	WFLBY_EV_TALK_LIST_SEL_TK_S_02,	
 	WFLBY_EV_TALK_LIST_SEL_TK_S_04,	
-	WFLBY_EV_TALK_LIST_SEL_TK_S_MAX,			// A[€–Ú”]	B[‚í‚©‚ç‚È‚¢]
-	WFLBY_EV_TALK_LIST_SEL_TK_S_B_MAX,			// €–Ú”
+	WFLBY_EV_TALK_LIST_SEL_TK_S_MAX,			// A[é …ç›®æ•°]	B[ã‚ã‹ã‚‰ãªã„]
+	WFLBY_EV_TALK_LIST_SEL_TK_S_B_MAX,			// é …ç›®æ•°
 };
 
 
 //-------------------------------------
-///	ƒgƒsƒbƒN‚¨Žo‚³‚ñƒŠƒXƒg
+///	ãƒˆãƒ”ãƒƒã‚¯ãŠå§‰ã•ã‚“ãƒªã‚¹ãƒˆ
 //=====================================
 enum {
 	WFLBY_EV_TOPIC_LIST_SEL_GADGET,
@@ -596,7 +596,7 @@ enum {
 	WFLBY_EV_TOPIC_LIST_SEL_END,	
 	WFLBY_EV_TOPIC_LIST_SEL_NUM,	
 } ;
-// ƒCƒxƒ“ƒgƒŠƒXƒg
+// ã‚¤ãƒ™ãƒ³ãƒˆãƒªã‚¹ãƒˆ
 enum {
 	WFLBY_EV_TOPIC_LIST_SEL_EVE_LIGHTING,
 	WFLBY_EV_TOPIC_LIST_SEL_EVE_FIRE,
@@ -604,7 +604,7 @@ enum {
 	WFLBY_EV_TOPIC_LIST_SEL_EVE_END,
 	WFLBY_EV_TOPIC_LIST_SEL_EVE_NUM,	
 } ;
-// ƒ~ƒjƒQ[ƒ€ƒŠƒXƒg
+// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒªã‚¹ãƒˆ
 enum {
 	WFLBY_EV_TOPIC_LIST_SEL_MG_BALLSLOW,
 	WFLBY_EV_TOPIC_LIST_SEL_MG_BALANCE,
@@ -618,7 +618,7 @@ enum {
 
 //-----------------------------------------------------------------------------
 /**
- *		VIPƒƒbƒZ[ƒWƒf[ƒ^ƒe[ƒuƒ‹
+ *		VIPãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //-----------------------------------------------------------------------------
 typedef struct{
@@ -986,7 +986,7 @@ static const WFLBY_VIP_MSGDATA sc_WFLBY_VIP_MSGTBL[] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
@@ -1029,7 +1029,7 @@ static u16 WFLBY_EV_TALK_RWSEND_GetTalkSeq( const WFLBY_EV_TALK_RWSEND* cp_wk );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯ŠJŽn
+ *	@brief	è©±ã—ã‹ã‘é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
@@ -1043,13 +1043,13 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 	const WFLBY_USER_PROFILE* cp_mypr;
 	const WFLBY_USER_PROFILE* cp_youpr;
 
-	p_system	= WFLBY_ROOM_GetSystemData( p_rmwk );		// ƒVƒXƒeƒ€ƒf[ƒ^Žæ“¾
-	p_event		= WFLBY_ROOM_GetEvent( p_rmwk );			// ƒCƒxƒ“ƒgƒ[ƒNŽæ“¾
-	p_evwk		= WFLBY_EVENTWK_GetWk( p_wk );				// ƒCƒxƒ“ƒgƒf[ƒ^Žæ“¾
-	talk_seq	= WFLBY_SYSTEM_GetTalkSeq( p_system );		// ‰ï˜bƒV[ƒPƒ“ƒXŽæ“¾
-	recv_data	= WFLBY_SYSTEM_GetTalkRecv( p_system );		// ŽóMƒf[ƒ^
+	p_system	= WFLBY_ROOM_GetSystemData( p_rmwk );		// ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿å–å¾—
+	p_event		= WFLBY_ROOM_GetEvent( p_rmwk );			// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯å–å¾—
+	p_evwk		= WFLBY_EVENTWK_GetWk( p_wk );				// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
+	talk_seq	= WFLBY_SYSTEM_GetTalkSeq( p_system );		// ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å–å¾—
+	recv_data	= WFLBY_SYSTEM_GetTalkRecv( p_system );		// å—ä¿¡ãƒ‡ãƒ¼ã‚¿
 
-	// ‚¦‚ç[‚ª”­¶‚µ‚½‚çEXI—¹
+	// ãˆã‚‰ãƒ¼ãŒç™ºç”Ÿã—ãŸã‚‰EXçµ‚äº†
 	if( WFLBY_SYSTEM_CheckTalkError( p_system ) ){
 		if( p_evwk ){
 			if( p_evwk->err_chk ){
@@ -1073,11 +1073,11 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 #endif
 	}
 
-	// ‰Šú‰»Š®—¹ŒãŽ©•ª‚Æ‘ŠŽè‚Ìƒ†[ƒUƒvƒƒtƒB[ƒ‹‚ðŽæ“¾‚·‚é
+	// åˆæœŸåŒ–å®Œäº†å¾Œè‡ªåˆ†ã¨ç›¸æ‰‹ã®ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—ã™ã‚‹
 	if( WFLBY_EVENTWK_GetSeq( p_wk ) > WFLBY_EV_TALK_A_SEQ_INIT ){
 		if( p_evwk->err_chk ){
 
-			// ‘ŠŽè‚ª‚¢‚È‚­‚È‚Á‚½‚ç‹­§I—¹
+			// ç›¸æ‰‹ãŒã„ãªããªã£ãŸã‚‰å¼·åˆ¶çµ‚äº†
 			if( cp_youpr == NULL ){	
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ERR_ENDMSG );
 				WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
@@ -1088,11 +1088,11 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 	
 
 	switch( WFLBY_EVENTWK_GetSeq( p_wk ) ){
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	case WFLBY_EV_TALK_A_SEQ_INIT:
 
 #ifdef WFLBY_EV_TALK_DEBUG_SEL_MSG
-		// ‡”Ô‚ÉŽ¿–â‚ªo‚Ä‚­‚éƒfƒoƒbƒNON
+		// é †ç•ªã«è³ªå•ãŒå‡ºã¦ãã‚‹ãƒ‡ãƒãƒƒã‚¯ON
 		if( sys.cont & PAD_BUTTON_R ){
 			s_WFLBY_EV_TALK_DEBUG_SEL_MSG_ON = TRUE;
 		}else{
@@ -1103,15 +1103,15 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 		p_evwk = WFLBY_EVENTWK_AllocWk( p_wk, sizeof(WFLBY_EV_TALK_WK) );
 
-		// —š—ðƒf[ƒ^‰Šú‰»
+		// å±¥æ­´ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 		p_evwk->rireki_flag		= FALSE;
 		p_evwk->rireki_actno	= 0;
 		p_evwk->rireki_userid	= 0;
 
-		// Ž©“®ƒƒbƒZ[ƒW‘—MƒVƒXƒeƒ€‚ð‰Šú‰»
+		// è‡ªå‹•ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–
 		WFLBY_EV_TALK_RWSEND_Init( &p_evwk->rw_send );
 		
-		//  ‰ï˜bƒ^[ƒQƒbƒg‚ðŽæ“¾‚·‚é
+		//  ä¼šè©±ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 		{
 			WFLBY_3DPERSON* p_npc;
 			WFLBY_3DOBJCONT* p_objcont;
@@ -1125,8 +1125,8 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			p_npc		= WFLBY_3DOBJCONT_GetFrontPerson( p_objcont, p_player );
 #if	PL_T0866_080715_FIX
 			if( p_npc == NULL ){
-				// ‰ï˜bƒGƒ‰[I—¹‚Ö
-				p_evwk->err_chk = FALSE;// (ˆê‰žs‚¤)
+				// ä¼šè©±ã‚¨ãƒ©ãƒ¼çµ‚äº†ã¸
+				p_evwk->err_chk = FALSE;// (ä¸€å¿œè¡Œã†)
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_END );
 				break;
 			}
@@ -1135,36 +1135,36 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			way			= WFLBY_3DOBJCONT_GetWkObjData( p_player,  WF2DMAP_OBJPM_WAY );
 			way			= WF2DMPA_OBJToolRetWayGet( way );
 
-			// 080630	‰ï˜bó‘Ô‚Ìƒ[ƒN‚ðƒNƒŠƒA
+			// 080630	ä¼šè©±çŠ¶æ…‹ã®ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢
 			WFLBY_SYSTEM_EndTalk( p_system );
 
-			// ƒ[ƒN‰Šú‰»
-			// –ß‚è’l‚Å˜b‚µ‘ŠŽè‚ªÝÐ’†‚©’²‚×‚é
+			// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+			// æˆ»ã‚Šå€¤ã§è©±ã—ç›¸æ‰‹ãŒåœ¨ç±ä¸­ã‹èª¿ã¹ã‚‹
 			result = WFLBY_EV_TALK_WK_Init( p_evwk, p_system, idx );
 		
-			// NPC‚à‚Æ‚ß‚é•‚±‚Á‚¿Œü‚¯‚é
+			// NPCã‚‚ã¨ã‚ã‚‹ï¼†ã“ã£ã¡å‘ã‘ã‚‹
 			p_evwk->p_npc	= p_npc;
 			WFLBY_3DOBJCONT_DRAW_SetUpdata( p_npc, FALSE );
 			WFLBY_3DOBJCONT_DRAW_SetWay( p_npc, way );
-			// ƒCƒxƒ“ƒg‚à‚Æ‚ß‚é
+			// ã‚¤ãƒ™ãƒ³ãƒˆã‚‚ã¨ã‚ã‚‹
 			WFLBY_EVENT_SetPrivateEventMove( p_event, idx, FALSE );
 
-			// ˜b‚µ‚©‚¯‰¹
+			// è©±ã—ã‹ã‘éŸ³
 			Snd_SePlay( WFLBY_SND_TALK );
 
-			// ‰ï˜bƒV[ƒPƒ“ƒX‚Ö
+			// ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 			WFLBY_SYSTEM_SetMyStatus( p_system, WFLBY_STATUS_TALK );
 
 			if( result == TRUE ){
-				// NPC‚ÌƒvƒƒtƒB[ƒ‹‚ð•\Ž¦‚·‚é
+				// NPCã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
 				WFLBY_ROOM_UNDERWIN_TrCardOn( p_rmwk, idx, FALSE );
 
-				// ‰ï˜bƒŠƒNƒGƒXƒg‚Ö
+				// ä¼šè©±ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_REQ );
 
 			}else{
 
-				// ‰ï˜bƒŠƒNƒGƒXƒg‚Ö
+				// ä¼šè©±ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ANSNGMSG );
 				break;
 			}
@@ -1172,136 +1172,136 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// ƒŠƒNƒGƒXƒg
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	case WFLBY_EV_TALK_A_SEQ_REQ:
 		{
 			BOOL result;
 
 			result = WFLBY_SYSTEM_SendTalkReq( p_system, p_evwk->talk_idx );
 			if( result == TRUE ){
-				// ‰ž“š‘Ò‚¿‚Ö
+				// å¿œç­”å¾…ã¡ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ANSWAIT );
 			}else{
-				// ‰ž“šŽ¸”s
+				// å¿œç­”å¤±æ•—
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ANSNGMSG );
 			}
 		}
 		break;
 		
-	// ‰ñ“š‘Ò‚¿
+	// å›žç­”å¾…ã¡
 	case WFLBY_EV_TALK_A_SEQ_ANSWAIT:
 		
-		// •ÔŽ–‚ª‹A‚Á‚Ä‚«‚½‚©H
+		// è¿”äº‹ãŒå¸°ã£ã¦ããŸã‹ï¼Ÿ
 		switch( talk_seq ){
-		// •ÔŽ–‚ÌŒ‹‰ÊOKO
-		case WFLBY_TALK_SEQ_A_SEL:	// ˜b‚µ‚©‚¯‘¤	‘I‘ð
+		// è¿”äº‹ã®çµæžœOKO
+		case WFLBY_TALK_SEQ_A_SEL:	// è©±ã—ã‹ã‘å´	é¸æŠž
 
-			// ‚»‚Ìl‚Æ˜b‚µ‚½‚ÆAƒ}ƒXƒNÝ’è
+			// ãã®äººã¨è©±ã—ãŸã¨ã€ãƒžã‚¹ã‚¯è¨­å®š
 			WFLBY_SYSTEM_SetTalkMsk( p_system, p_evwk->talk_idx );
 
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_AISATUMY );
 			break;
 
-		// •ÔŽ–‚ÌŒ‹‰ÊNG
-		case WFLBY_TALK_SEQ_NONE:	// ‰½‚à‚È‚µ	‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
+		// è¿”äº‹ã®çµæžœNG
+		case WFLBY_TALK_SEQ_NONE:	// ä½•ã‚‚ãªã—	ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ANSNGMSG );
 			break;
 
-		// ‘Ò‚¿ó‘Ô
-		case WFLBY_TALK_SEQ_B_ANS:	// ‚©‚¯‚ç‚ê‘¤	‰ž“š
+		// å¾…ã¡çŠ¶æ…‹
+		case WFLBY_TALK_SEQ_B_ANS:	// ã‹ã‘ã‚‰ã‚Œå´	å¿œç­”
 			break;
 
-		// ‚»‚Ì‘¼‚É‚Í‚È‚ç‚È‚¢‚Í‚¸
-		// EXEND‚ ‚Â‚©‚¢
-		case WFLBY_TALK_SEQ_B_SEL:	// ‚©‚¯‚ç‚ê‘¤	‘I‘ð
-		case WFLBY_TALK_SEQ_EXEND:	// ‹Ù‹}I—¹	‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
+		// ãã®ä»–ã«ã¯ãªã‚‰ãªã„ã¯ãš
+		// EXENDã‚ã¤ã‹ã„
+		case WFLBY_TALK_SEQ_B_SEL:	// ã‹ã‘ã‚‰ã‚Œå´	é¸æŠž
+		case WFLBY_TALK_SEQ_EXEND:	// ç·Šæ€¥çµ‚äº†	ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
 		default:
-			// Ø’fI—¹
+			// åˆ‡æ–­çµ‚äº†
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ERR_ENDMSG );
 			break;
 		}
 		break;
 
-	// ‚ ‚¢‚³‚Â	Ž©•ª‚ÌŽžŠÔ
+	// ã‚ã„ã•ã¤	è‡ªåˆ†ã®æ™‚é–“
 	case WFLBY_EV_TALK_A_SEQ_AISATUMY:
-		// –`Œ¯ƒm[ƒg
+		// å†’é™ºãƒŽãƒ¼ãƒˆ
 		WFLBY_SYSTEM_FNOTE_SetTalk( p_system, p_evwk->talk_idx );
 
-		// ƒŒƒR[ƒh
+		// ãƒ¬ã‚³ãƒ¼ãƒ‰
 		WFLBY_SYSTEM_RECORD_AddTalk( p_system );
 
-		// —V‚ñ‚¾î•ñ
+		// éŠã‚“ã æƒ…å ±
 		WFLBY_SYSTEM_PLAYED_SetPlay( p_system, WFLBY_PLAYED_TALK );
 		
 		WFLBY_EV_TALK_WK_AisatuDraw( p_evwk, p_system, p_rmwk, p_evwk->my_timezone, cp_mypr, cp_youpr );
-		// ƒEƒGƒCƒg‚Ì‚ ‚Æˆ¥ŽAƒtƒHƒ[‚Ö
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®ã‚ã¨æŒ¨æ‹¶ãƒ•ã‚©ãƒ­ãƒ¼ã¸
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_AISATUYOU, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 		break;
 
-	// ‚ ‚¢‚³‚Â	‘ŠŽè‚ÌŽžŠÔ
+	// ã‚ã„ã•ã¤	ç›¸æ‰‹ã®æ™‚é–“
 	case WFLBY_EV_TALK_A_SEQ_AISATUYOU:
 		WFLBY_EV_TALK_WK_AisatuDraw( p_evwk, p_system, p_rmwk, p_evwk->you_timezone, cp_youpr, cp_mypr );
 
-		// ƒEƒGƒCƒg‚ÌŒã“¯Šúˆ—‚Ö
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾ŒåŒæœŸå‡¦ç†ã¸
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_SYNC_RECV, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 
-		// “¯ŠúŠJŽn	Ž©•ª‚Ìƒf[ƒ^‘—M
+		// åŒæœŸé–‹å§‹	è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 		WFLBY_SYSTEM_SendTalkData( p_system, WFLBY_EV_TALK_TYPE_AISATSUSYNC );
 		break;
 
-	// ‰ï˜bó‘Ô“¯Šú
+	// ä¼šè©±çŠ¶æ…‹åŒæœŸ
 	case WFLBY_EV_TALK_A_SEQ_SYNC_RECV:		
-		// •ÔŽ–‚ª‹A‚Á‚Ä‚«‚½‚©H
+		// è¿”äº‹ãŒå¸°ã£ã¦ããŸã‹ï¼Ÿ
 		switch( talk_seq ){
-		case WFLBY_TALK_SEQ_A_SEL:	// ˜b‚µ‚©‚¯‘¤	‘I‘ð
+		case WFLBY_TALK_SEQ_A_SEL:	// è©±ã—ã‹ã‘å´	é¸æŠž
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 
 
-			// ‚»‚Ìl‚Æ‚Ì‰ï˜b‚ª‰‚ß‚Ä‚©‚Å•ªŠòH
+			// ãã®äººã¨ã®ä¼šè©±ãŒåˆã‚ã¦ã‹ã§åˆ†å²ï¼Ÿ
 			if( WFLBY_SYSTEM_GetTalkFirst( p_system ) ){
-				// ‰‚ß‚Ä‚Ì‚Æ‚«
-				// ˆ¥ŽAƒtƒHƒ[‚Ö
+				// åˆã‚ã¦ã®ã¨ã
+				// æŒ¨æ‹¶ãƒ•ã‚©ãƒ­ãƒ¼ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_AISATUFOLLOW );
 			}else{
-				// ‚à‚¤‚Í‚È‚µ‚½‚±‚Æ‚ª‚ ‚é
-				// ˆ¥ŽAI—¹‚Q‚Ö
+				// ã‚‚ã†ã¯ãªã—ãŸã“ã¨ãŒã‚ã‚‹
+				// æŒ¨æ‹¶çµ‚äº†ï¼’ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_AISATUEND2 );
 			}
 			break;
 
-		// ‘Ò‚¿ó‘Ô
-		case WFLBY_TALK_SEQ_B_SEL:	// ‚©‚¯‚ç‚ê‘¤	‘I‘ð
+		// å¾…ã¡çŠ¶æ…‹
+		case WFLBY_TALK_SEQ_B_SEL:	// ã‹ã‘ã‚‰ã‚Œå´	é¸æŠž
 			if( WFLBY_ROOM_TALKWIN_CheckTimeWait( p_rmwk ) == FALSE ){
 				WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 			}
 
-			// ‘Ò‚¿ŽžŠÔ‚ªWFLBY_TALK_RECV_HALF_WAIT‚É‚È‚Á‚½‚çƒƒbƒZ[ƒW‚ð•\Ž¦
+			// å¾…ã¡æ™‚é–“ãŒWFLBY_TALK_RECV_HALF_WAITã«ãªã£ãŸã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
 			WFLBY_EV_TALK_WK_PrintTimeWaitMsg( p_evwk, p_rmwk );
 			break;
 
-		// ‚»‚Ì‘¼‚É‚Í‚È‚ç‚È‚¢‚Í‚¸
-		// EXEND‚ ‚Â‚©‚¢
-		case WFLBY_TALK_SEQ_NONE:	// ‰½‚à‚È‚µ	‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
-		case WFLBY_TALK_SEQ_EXEND:	// ‹Ù‹}I—¹	‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
-		case WFLBY_TALK_SEQ_B_ANS:	// ‚©‚¯‚ç‚ê‘¤	‰ž“š
+		// ãã®ä»–ã«ã¯ãªã‚‰ãªã„ã¯ãš
+		// EXENDã‚ã¤ã‹ã„
+		case WFLBY_TALK_SEQ_NONE:	// ä½•ã‚‚ãªã—	ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
+		case WFLBY_TALK_SEQ_EXEND:	// ç·Šæ€¥çµ‚äº†	ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
+		case WFLBY_TALK_SEQ_B_ANS:	// ã‹ã‘ã‚‰ã‚Œå´	å¿œç­”
 		default:
-			// Ø’fI—¹
+			// åˆ‡æ–­çµ‚äº†
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ERR_ENDMSG );
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 			break;
 		}
 		break;
 
-	// ‚ ‚¢‚³‚ÂƒtƒHƒ[
+	// ã‚ã„ã•ã¤ãƒ•ã‚©ãƒ­ãƒ¼
 	case WFLBY_EV_TALK_A_SEQ_AISATUFOLLOW:
 		{
 			BOOL result;
-			// ƒtƒHƒ[‚ª•K—vH
+			// ãƒ•ã‚©ãƒ­ãƒ¼ãŒå¿…è¦ï¼Ÿ
 			result = WFLBY_EV_TALK_WK_AisatuFollowDraw( p_evwk, p_system, p_rmwk );
 			if( result == TRUE ){
-				// ƒEƒGƒCƒg‚Ì‚ ‚Æˆ¥ŽAÅŒã‚Ö
+				// ã‚¦ã‚¨ã‚¤ãƒˆã®ã‚ã¨æŒ¨æ‹¶æœ€å¾Œã¸
 				WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 						WFLBY_EV_TALK_A_SEQ_AISATUEND, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 			}else{
@@ -1310,20 +1310,20 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 		
-	// ‚ ‚¢‚³‚Â‚ÌÅŒã‚ÌƒƒbƒZ[ƒW
+	// ã‚ã„ã•ã¤ã®æœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_EV_TALK_A_SEQ_AISATUEND:
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_aisatu_03_01 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_aisatu_03_01 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãAŽ©•ª‚Ì‘I‘ð‚Ö
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è‡ªåˆ†ã®é¸æŠžã¸
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_SEL_GT_FIR, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 		break;
 
-	// ˆ¥ŽA‚ÌÅŒã‚ÌƒƒbƒZ[ƒW	‚à‚¤‚P‰ñ‚Í‚È‚µ‚Ä‚¢‚é‚Æ‚«
+	// æŒ¨æ‹¶ã®æœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸	ã‚‚ã†ï¼‘å›žã¯ãªã—ã¦ã„ã‚‹ã¨ã
 	case WFLBY_EV_TALK_A_SEQ_AISATUEND2:
 
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
@@ -1332,44 +1332,44 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		p_str = WFLBY_EV_TALK_GetStrBuf_Aisatu03_02( p_rmwk, p_evwk->talk_idx, p_evwk->my_idx );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãAŽ©•ª‚Ì‘I‘ð‚Ö
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è‡ªåˆ†ã®é¸æŠžã¸
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_SEL_GT_FIR, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 		break;
 
-	// ƒKƒWƒFƒbƒgA‰ï˜bƒZƒŒƒNƒg	‚P‰ñ–Ú
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã€ä¼šè©±ã‚»ãƒ¬ã‚¯ãƒˆ	ï¼‘å›žç›®
 	case WFLBY_EV_TALK_A_SEQ_SEL_GT_FIR:
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_00_01 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_00_01 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãAƒŠƒXƒg•\Ž¦
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ãƒªã‚¹ãƒˆè¡¨ç¤º
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_SEL_GT00, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 		break;
 		
-	// ƒKƒWƒFƒbƒgA‰ï˜bƒZƒŒƒNƒg	‚Q‰ñ–ÚˆÈ~
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã€ä¼šè©±ã‚»ãƒ¬ã‚¯ãƒˆ	ï¼’å›žç›®ä»¥é™
 	case WFLBY_EV_TALK_A_SEQ_SEL_GT_SEC:		
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_00_09 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_00_09 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãAƒŠƒXƒg•\Ž¦
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ãƒªã‚¹ãƒˆè¡¨ç¤º
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_SEL_GT00, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 		break;
 
-	// ƒKƒWƒFƒbƒgA‰ï˜bƒZƒŒƒNƒg ƒŠƒXƒg•\Ž¦
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã€ä¼šè©±ã‚»ãƒ¬ã‚¯ãƒˆ ãƒªã‚¹ãƒˆè¡¨ç¤º
 	case WFLBY_EV_TALK_A_SEQ_SEL_GT00:
 		WFLBY_EV_TALK_WK_InitBmpList( &p_evwk->bmplist, p_rmwk, WFLBY_EV_TALK_LIST_SEL_GT_NUM, msg_hiroba_menu_00_01, WFLBY_EV_TALK_LIST_END_NONE );
 		WFLBY_ROOM_LISTWIN_Start( p_rmwk, &p_evwk->bmplist.bmplist, 0, 0 );
-		WFLBY_EV_TALK_WK_StartSelectWait( p_evwk );	// ‘I‘ð‘Ò‚¿ŠJŽn
+		WFLBY_EV_TALK_WK_StartSelectWait( p_evwk );	// é¸æŠžå¾…ã¡é–‹å§‹
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEL_GT00WAIT );
 		break;
 
-	// ƒKƒWƒFƒbƒgA‰ï˜bƒZƒŒƒNƒg@‘I‘ð‘Ò‚¿
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã€ä¼šè©±ã‚»ãƒ¬ã‚¯ãƒˆã€€é¸æŠžå¾…ã¡
 	case WFLBY_EV_TALK_A_SEQ_SEL_GT00WAIT:
 		{
 			u32 result;
@@ -1377,16 +1377,16 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			result = WFLBY_ROOM_LISTWIN_Main( p_rmwk );
 			switch( result ){
 			case WFLBY_EV_TALK_LIST_SEL_GT_GAGET:
-				//  ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW‚Ö
+				//  ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEND_G );
 				del = TRUE;
 				break;
 				
 			case WFLBY_EV_TALK_LIST_SEL_GT_TALK:
-				//  ‰ï˜b‘I‘ð‚Ö
+				//  ä¼šè©±é¸æŠžã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEND_TALK );
 
-				// ‰ï˜bƒgƒsƒbƒNì¬
+				// ä¼šè©±ãƒˆãƒ”ãƒƒã‚¯ä½œæˆ
 				{
 					u32 npc_plno;
 					npc_plno = WFLBY_3DOBJCONT_GetWkObjData( p_evwk->p_npc, WF2DMAP_OBJPM_PLID );
@@ -1398,10 +1398,10 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				
 			case WFLBY_EV_TALK_LIST_SEL_GT_END:
 
-				// I—¹‚ð‘—M
+				// çµ‚äº†ã‚’é€ä¿¡
 				WFLBY_SYSTEM_SendTalkEnd( p_system );
 				
-				//  I—¹‚Ö
+				//  çµ‚äº†ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ENDMSG );
 				del = TRUE;
 				break;
@@ -1412,7 +1412,7 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				break;
 			}
 
-			// ƒŠƒXƒg”jŠü
+			// ãƒªã‚¹ãƒˆç ´æ£„
 			if( del == TRUE ){
 				OS_TPrintf( "SEL_GT00WAIT result = %d\n", result );
 				WFLBY_ROOM_LISTWIN_End( p_rmwk, NULL, NULL );
@@ -1422,35 +1422,35 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// ƒKƒWƒFƒbƒg‚à‚ç‚¤ˆ—ŠJŽn
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†å‡¦ç†é–‹å§‹
 	case WFLBY_EV_TALK_A_SEQ_SEND_G:
 
-		// ƒKƒWƒFƒbƒg‚ªˆê‚©ƒ`ƒFƒbƒN
+		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒä¸€ç·’ã‹ãƒã‚§ãƒƒã‚¯
 		if( WFLBY_SYSTEM_GetProfileItem( cp_mypr ) == WFLBY_SYSTEM_GetProfileItem( cp_youpr ) ){
 
-			// ƒKƒWƒFƒbƒgˆê	
+			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆä¸€ç·’	
 			p_evwk->gadget_eq = TRUE;
 			
-			// •¶Žš—ñì¬
+			// æ–‡å­—åˆ—ä½œæˆ
 			WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 			WFLBY_EV_TALK_WK_WordsetSetItem( p_evwk, p_system, p_rmwk, 1, FALSE );
 		//	p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_item_00_01 );
 			p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_item_00_01 );
 			WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-			// B‚Ì•Ô“š‘Ò‚¿‚É–ß‚é
+			// Bã®è¿”ç­”å¾…ã¡ã«æˆ»ã‚‹
 			WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 					WFLBY_EV_TALK_A_SEQ_SEND_G_RECV_B, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 
-			// ƒKƒWƒFƒbƒg‚ªˆê‚¾‚Æ‘—M
+			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒä¸€ç·’ã ã¨é€ä¿¡
 			WFLBY_SYSTEM_SendTalkData( p_system, WFLBY_EV_TALK_TYPE_GADGET_EQ );
 		}else{
 
-			// ƒKƒWƒFƒbƒgˆá‚¤
+			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆé•ã†
 			p_evwk->gadget_eq = FALSE;
 
-			// ˆá‚¤
-			// •¶Žš—ñì¬
+			// é•ã†
+			// æ–‡å­—åˆ—ä½œæˆ
 			WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 			WFLBY_EV_TALK_WK_WordsetSetItem( p_evwk, p_system, p_rmwk, 1, TRUE );
 			WFLBY_EV_TALK_WK_WordsetSetItem( p_evwk, p_system, p_rmwk, 2, FALSE );
@@ -1458,14 +1458,14 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_item_00_02 );
 			WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-			// ƒEƒGƒCƒg‚ÌŒãA‚à‚ç‚¤‚©‘I‘ð‚Ö
+			// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ã‚‚ã‚‰ã†ã‹é¸æŠžã¸
 			WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 					WFLBY_EV_TALK_A_SEQ_SEND_G_GETCHK, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 
 		}
 		break;
 		
-	// ƒKƒWƒFƒbƒg‚à‚ç‚¤‚©‘I‘ð
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†ã‹é¸æŠž
 	case WFLBY_EV_TALK_A_SEQ_SEND_G_GETCHK:
 		WFLBY_EV_TALK_WK_InitBmpList( &p_evwk->bmplist, p_rmwk, WFLBY_EV_TALK_LIST_SEL_G_NUM, msg_hiroba_menu_00_04, WFLBY_EV_TALK_LIST_END_YAMERU );
 		WFLBY_ROOM_LISTWIN_Start( p_rmwk, &p_evwk->bmplist.bmplist, 0, 0 );
@@ -1475,7 +1475,7 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEND_G_GETCHKWAIT );
 		break;
 
-	// ƒKƒWƒFƒbƒg‚à‚ç‚¤‚©‘I‘ð‚Ü‚¿
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†ã‹é¸æŠžã¾ã¡
 	case WFLBY_EV_TALK_A_SEQ_SEND_G_GETCHKWAIT:
 		{
 			u32 result;
@@ -1484,15 +1484,15 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			switch( result ){
 			case WFLBY_EV_TALK_LIST_SEL_G_GET:
 
-				// ƒKƒWƒFƒbƒg‚ð‚à‚ç‚¤‚Ì‚Å‚à‚ç‚¤‚±‚Æ‚ð‘—M
+				// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚’ã‚‚ã‚‰ã†ã®ã§ã‚‚ã‚‰ã†ã“ã¨ã‚’é€ä¿¡
 				WFLBY_SYSTEM_SendTalkData( p_system, WFLBY_EV_TALK_TYPE_GADGET );
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEND_G_GET );
 
-				// –`Œ¯ƒm[ƒg
+				// å†’é™ºãƒŽãƒ¼ãƒˆ
 				WFLBY_SYSTEM_FNOTE_SetGetGadget( p_system, p_evwk->talk_idx );
 
 
-				// ƒKƒWƒFƒbƒgŒðŠ·ƒgƒsƒbƒNì¬
+				// ã‚¬ã‚¸ã‚§ãƒƒãƒˆäº¤æ›ãƒˆãƒ”ãƒƒã‚¯ä½œæˆ
 				{
 					u32 npc_plno;
 					npc_plno = WFLBY_3DOBJCONT_GetWkObjData( p_evwk->p_npc, WF2DMAP_OBJPM_PLID );
@@ -1502,7 +1502,7 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				break;
 				
 			case WFLBY_EV_TALK_LIST_SEL_G_END:
-				//  ‰ï˜b‘I‘ð‚Ö
+				//  ä¼šè©±é¸æŠžã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEL_GT_SEC );
 				del = TRUE;
 				break;
@@ -1513,7 +1513,7 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				break;
 			}
 
-			// ƒŠƒXƒg”jŠü
+			// ãƒªã‚¹ãƒˆç ´æ£„
 			if( del == TRUE ){
 				WFLBY_ROOM_LISTWIN_End( p_rmwk, NULL, NULL );
 				WFLBY_EV_TALK_WK_ExitBmpList( &p_evwk->bmplist, p_rmwk );
@@ -1523,7 +1523,7 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// ƒKƒWƒFƒbƒg‚à‚ç‚¤
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†
 	case WFLBY_EV_TALK_A_SEQ_SEND_G_GET:
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 		WFLBY_EV_TALK_WK_WordsetSetItem( p_evwk, p_system, p_rmwk, 1, FALSE );
@@ -1531,11 +1531,11 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_item_00_04 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA€–Ú‘I‘ð‚Ö
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€é …ç›®é¸æŠžã¸
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_SEND_G_RECV_B_SE, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 
-		// ƒKƒWƒFƒbƒg‚ðÝ’è
+		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚’è¨­å®š
 		{
 			u32 item;
 			item = WFLBY_SYSTEM_GetProfileItem( cp_youpr );
@@ -1544,80 +1544,80 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		break;
 
 	case WFLBY_EV_TALK_A_SEQ_SEND_G_RECV_B_SE:
-		// ƒKƒWƒFƒbƒg‚à‚ç‚¤B‚ÌŽóMŠm”F
-		// SEÄ¶
+		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†Bã®å—ä¿¡ç¢ºèª
+		// SEå†ç”Ÿ
 		Snd_SePlay( WFLBY_SND_TOUCH_TOY_CHG );
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEND_G_RECV_B );
 		break;
 
-	// ƒKƒWƒFƒbƒg‚à‚ç‚¤B‚ÌŽóMŠm”F
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã†Bã®å—ä¿¡ç¢ºèª
 	case WFLBY_EV_TALK_A_SEQ_SEND_G_RECV_B:	
 
-		// •ÔŽ–‚ª‹A‚Á‚Ä‚«‚½‚©H
+		// è¿”äº‹ãŒå¸°ã£ã¦ããŸã‹ï¼Ÿ
 		switch( talk_seq ){
-		case WFLBY_TALK_SEQ_A_SEL:	// ˜b‚µ‚©‚¯‘¤	‘I‘ð
+		case WFLBY_TALK_SEQ_A_SEL:	// è©±ã—ã‹ã‘å´	é¸æŠž
 
-			// ÅŒã‚É‚µ‚½‚±‚Æ‚ÉƒKƒWƒFƒbƒgŒðŠ·‚ðÝ’è
+			// æœ€å¾Œã«ã—ãŸã“ã¨ã«ã‚¬ã‚¸ã‚§ãƒƒãƒˆäº¤æ›ã‚’è¨­å®š
 			WFLBY_EV_TALK_WK_SetRirekiData( p_evwk, cp_youpr );
 			
 			if( p_evwk->gadget_eq == TRUE ){
-				// ‰ï˜bI—¹‚Ö
+				// ä¼šè©±çµ‚äº†ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ENDMSG );
 			}else{
-				// Ä€–Ú‘I‘ð‚Ö
+				// å†é …ç›®é¸æŠžã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEL_GT_SEC );
 			}
 
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 			break;
 
-		// ‘Ò‚¿ó‘Ô
-		case WFLBY_TALK_SEQ_B_SEL:	// ‚©‚¯‚ç‚ê‘¤	‘I‘ð
+		// å¾…ã¡çŠ¶æ…‹
+		case WFLBY_TALK_SEQ_B_SEL:	// ã‹ã‘ã‚‰ã‚Œå´	é¸æŠž
 			if( WFLBY_ROOM_TALKWIN_CheckTimeWait( p_rmwk ) == FALSE ){
 				WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 			}
 
-			// ‘Ò‚¿ŽžŠÔ‚ªWFLBY_TALK_RECV_HALF_WAIT‚É‚È‚Á‚½‚çƒƒbƒZ[ƒW‚ð•\Ž¦
+			// å¾…ã¡æ™‚é–“ãŒWFLBY_TALK_RECV_HALF_WAITã«ãªã£ãŸã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
 			WFLBY_EV_TALK_WK_PrintTimeWaitMsg( p_evwk, p_rmwk );
 			break;
 
-		// ‚»‚Ì‘¼‚É‚Í‚È‚ç‚È‚¢‚Í‚¸
-		// EXEND‚ ‚Â‚©‚¢
-		case WFLBY_TALK_SEQ_NONE:	// ‰½‚à‚È‚µ	‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
-		case WFLBY_TALK_SEQ_EXEND:	// ‹Ù‹}I—¹	‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
-		case WFLBY_TALK_SEQ_B_ANS:	// ‚©‚¯‚ç‚ê‘¤	‰ž“š
+		// ãã®ä»–ã«ã¯ãªã‚‰ãªã„ã¯ãš
+		// EXENDã‚ã¤ã‹ã„
+		case WFLBY_TALK_SEQ_NONE:	// ä½•ã‚‚ãªã—	ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
+		case WFLBY_TALK_SEQ_EXEND:	// ç·Šæ€¥çµ‚äº†	ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
+		case WFLBY_TALK_SEQ_B_ANS:	// ã‹ã‘ã‚‰ã‚Œå´	å¿œç­”
 		default:
-			// Ø’fI—¹
+			// åˆ‡æ–­çµ‚äº†
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ERR_ENDMSG );
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 			break;
 		}
 		break;
 
-	// ‰ï˜b‚·‚é‚±‚Æ‚ð‘—M
+	// ä¼šè©±ã™ã‚‹ã“ã¨ã‚’é€ä¿¡
 	case WFLBY_EV_TALK_A_SEQ_SEND_TALK:
 		WFLBY_SYSTEM_SendTalkData( p_system, WFLBY_EV_TALK_TYPE_TALK_START );
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEL_T_K );
 		break;
 		
-	// ‰ï˜b€–Ú‘I‘ð
+	// ä¼šè©±é …ç›®é¸æŠž
 	case WFLBY_EV_TALK_A_SEQ_SEL_T_K:
 		WFLBY_EV_TALK_WK_InitBmpListRandom( &p_evwk->bmplist, p_rmwk, WFLBY_EV_TALK_LIST_SEL_TK_NUM, WFLBY_EV_TALK_TK_SEL_NUM, msg_hiroba_menu_01_01, WFLBY_EV_TALK_LIST_END_NONE );
 		WFLBY_ROOM_LISTWIN_Start_Ex( p_rmwk, &p_evwk->bmplist.bmplist, 0, 0, WFLBY_EV_TALK_TK_LISTWIN_X, WFLBY_EV_TALK_TK_LISTWIN_Y, WFLBY_EV_TALK_TK_LISTWIN_SIZX );
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEL_T_K_WAIT );
 
 
-		// €–Ú‘I‘ð‘Ò‚¿[„Ž©•ª‚Ì‚à‚Ì‚ð‘I‘ð@‚Ü‚Å‚P‚Â‚Ì‚­‚­‚è‚Æ‚µ‚Ä‘Ò‚Â
+		// é …ç›®é¸æŠžå¾…ã¡ãƒ¼ï¼žè‡ªåˆ†ã®ã‚‚ã®ã‚’é¸æŠžã€€ã¾ã§ï¼‘ã¤ã®ããã‚Šã¨ã—ã¦å¾…ã¤
 		WFLBY_EV_TALK_WK_StartSelectWait( p_evwk );
 		break;
 
-	// ‰ï˜b€–Ú‘I‘ð‘Ò‚¿
+	// ä¼šè©±é …ç›®é¸æŠžå¾…ã¡
 	case WFLBY_EV_TALK_A_SEQ_SEL_T_K_WAIT:	
 		{
 			u32 result;
 
 #ifdef WFLBY_EV_TALK_DEBUG_SEL_MSG
-			// ‡”Ô‚ÉŽ¿–â‚ªo‚Ä‚­‚éƒfƒoƒbƒN
+			// é †ç•ªã«è³ªå•ãŒå‡ºã¦ãã‚‹ãƒ‡ãƒãƒƒã‚¯
 			if( s_WFLBY_EV_TALK_DEBUG_SEL_MSG_ON == TRUE ){
 				if( (sys.trg & PAD_KEY_RIGHT) || (sys.trg & PAD_KEY_LEFT) ){
 
@@ -1633,7 +1633,7 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 					WFLBY_ROOM_LISTWIN_End( p_rmwk, NULL, NULL );
 					WFLBY_EV_TALK_WK_ExitBmpList( &p_evwk->bmplist, p_rmwk );
 
-					// ƒŠƒXƒgÄ•`‰æ
+					// ãƒªã‚¹ãƒˆå†æç”»
 					WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEL_T_K );
 				}
 			}
@@ -1643,11 +1643,11 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			result = WFLBY_ROOM_LISTWIN_Main( p_rmwk );
 			switch( result ){
 /*
-			case WFLBY_EV_TALK_LIST_SEL_TK_END:	// ‚â‚ß‚é
+			case WFLBY_EV_TALK_LIST_SEL_TK_END:	// ã‚„ã‚ã‚‹
 				WFLBY_ROOM_LISTWIN_End( p_rmwk, NULL, NULL );
 				WFLBY_EV_TALK_WK_ExitBmpList( &p_evwk->bmplist, p_rmwk );
 				WFLBY_EV_TALK_WK_StopSelectWait( p_evwk );
-				// ‘I‘ð‚Ö
+				// é¸æŠžã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEL_GT_SEC );
 				break;
 //*/
@@ -1657,16 +1657,16 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				WFLBY_EV_TALK_WK_CheckAndPrintSelectWait( p_evwk, p_rmwk );
 				break;
 
-			// ‚È‚ñ‚©‘I‚ñ‚¾
+			// ãªã‚“ã‹é¸ã‚“ã 
 			default:
 				WFLBY_ROOM_LISTWIN_End( p_rmwk, NULL, NULL );
 				WFLBY_EV_TALK_WK_ExitBmpList( &p_evwk->bmplist, p_rmwk );
-//				WFLBY_EV_TALK_WK_StopSelectWait( p_evwk );	// ŽŸ‚Ì‰ï˜b“à—e‚ð‘I‚Ô‚à‚Ì‚à‘±‚¯‚Ä‘Ò‚Â
+//				WFLBY_EV_TALK_WK_StopSelectWait( p_evwk );	// æ¬¡ã®ä¼šè©±å†…å®¹ã‚’é¸ã¶ã‚‚ã®ã‚‚ç¶šã‘ã¦å¾…ã¤
 
-				// ‰ï˜b€–Ú”Ý’è
+				// ä¼šè©±é …ç›®æ•°è¨­å®š
 				p_evwk->sel_k = result;
 
-				// Ú×€–Úƒ`ƒFƒbƒN‚Ö
+				// è©³ç´°é …ç›®ãƒã‚§ãƒƒã‚¯ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEL_T_M );
 				break;
 
@@ -1674,7 +1674,7 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 		
-	// Ž©•ª‚Ì‚±‚Æ‘I‘ð
+	// è‡ªåˆ†ã®ã“ã¨é¸æŠž
 	case WFLBY_EV_TALK_A_SEQ_SEL_T_M:
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 		
@@ -1682,12 +1682,12 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_06_01+p_evwk->sel_k );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãAƒŠƒXƒg•\Ž¦
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ãƒªã‚¹ãƒˆè¡¨ç¤º
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_SEL_T_M_SEL, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 		break;
 
-	// Ž©•ª‚Ì‚±‚Æ‘I‘ð
+	// è‡ªåˆ†ã®ã“ã¨é¸æŠž
 	case WFLBY_EV_TALK_A_SEQ_SEL_T_M_SEL:	
 		WFLBY_EV_TALK_WK_InitBmpList( &p_evwk->bmplist, p_rmwk, WFLBY_EV_TALK_LIST_SEL_TK_S_MAX, 
 				msg_hiroba_osyaberi_03_01 + (p_evwk->sel_k*WFLBY_EV_TALK_LIST_SEL_TK_S_MAX), WFLBY_EV_TALK_LIST_END_NONE );
@@ -1695,7 +1695,7 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEL_T_M_WAIT );
 		break;
 
-	// Ž©•ª‚Ì‚±‚Æ‘I‘ð
+	// è‡ªåˆ†ã®ã“ã¨é¸æŠž
 	case WFLBY_EV_TALK_A_SEQ_SEL_T_M_WAIT:
 		{
 			u32 result;
@@ -1709,10 +1709,10 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				WFLBY_EV_TALK_WK_ExitBmpList( &p_evwk->bmplist, p_rmwk );
 				WFLBY_EV_TALK_WK_StopSelectWait( p_evwk );
 
-				// ‰ï˜b€–ÚÝ’è
+				// ä¼šè©±é …ç›®è¨­å®š
 				p_evwk->sel_k_data = (p_evwk->sel_k*WFLBY_EV_TALK_LIST_SEL_TK_S_MAX) + result;
 
-				// Ú×€–Úƒ`ƒFƒbƒN‚Ö
+				// è©³ç´°é …ç›®ãƒã‚§ãƒƒã‚¯ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SEND_T );
 				break;
 
@@ -1722,12 +1722,12 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			}
 		}
 		break;
-	// ‰ï˜b‘I‘ðî•ñ‘—M
+	// ä¼šè©±é¸æŠžæƒ…å ±é€ä¿¡
 	case WFLBY_EV_TALK_A_SEQ_SEND_T:
-		// Ž©“®‘—MŠJŽn
+		// è‡ªå‹•é€ä¿¡é–‹å§‹
 		WFLBY_EV_TALK_RWSEND_Start( &p_evwk->rw_send, p_system, WFLBY_EV_TALK_TYPE_TALK_COL_00 + p_evwk->sel_k_data, WFLBY_TALK_SEQ_A_SEL );
 
-		// ƒŠƒAƒNƒVƒ‡ƒ“ƒƒbƒZ[ƒW•\Ž¦
+		// ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_04_01+p_evwk->sel_k_data );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_05_01+p_evwk->sel_k_data );
@@ -1737,9 +1737,9 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 		break;
 
-	// ‰ï˜bƒŠƒAƒNƒVƒ‡ƒ“
+	// ä¼šè©±ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	case WFLBY_EV_TALK_A_SEQ_SEND_T00:
-		// ƒŠƒAƒNƒVƒ‡ƒ“ƒƒbƒZ[ƒW2•\Ž¦
+		// ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸2è¡¨ç¤º
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_06_01+p_evwk->sel_k );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_02_01+p_evwk->sel_k );
@@ -1748,9 +1748,9 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				WFLBY_EV_TALK_A_SEQ_SEND_TWAIT, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 		break;
 
-	// ‰ï˜b‘I‘ðî•ñ‘—M
+	// ä¼šè©±é¸æŠžæƒ…å ±é€ä¿¡
 	case  WFLBY_EV_TALK_A_SEQ_SEND_TWAIT:
-		// Ž©“®‘—M‚ªI‚í‚Á‚½‚©ƒ`ƒFƒbƒN
+		// è‡ªå‹•é€ä¿¡ãŒçµ‚ã‚ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
 		{
 			BOOL result;
 			u16 recv_talk_seq;
@@ -1758,22 +1758,22 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			if( result == TRUE ){
 				recv_talk_seq = WFLBY_EV_TALK_RWSEND_GetTalkSeq( &p_evwk->rw_send );
 
-				// ¬Œ÷
+				// æˆåŠŸ
 				if( recv_talk_seq == WFLBY_TALK_SEQ_A_SEL ){
 
-					// ŽóM‘Ò‚¿‚Ö
+					// å—ä¿¡å¾…ã¡ã¸
 					WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_RECV_BT );
 				}else{
 
-					// Ø’fI—¹
+					// åˆ‡æ–­çµ‚äº†
 					WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ERR_ENDMSG );
 					WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 				}
 			}else{
 
-				// I‚í‚Á‚Ä‚È‚¢‚Ì‚Å‘Ò‹@
+				// çµ‚ã‚ã£ã¦ãªã„ã®ã§å¾…æ©Ÿ
 
-				// ƒ^ƒCƒ€ƒEƒGƒCƒgƒ}[ƒNo‚·
+				// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆãƒžãƒ¼ã‚¯å‡ºã™
 				if( WFLBY_ROOM_TALKWIN_CheckTimeWait( p_rmwk ) == FALSE ){
 					WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 				}
@@ -1782,16 +1782,16 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// ‰ï˜b‘I‘ðî•ñŽóM
+	// ä¼šè©±é¸æŠžæƒ…å ±å—ä¿¡
 	case WFLBY_EV_TALK_A_SEQ_RECV_BT:
 
 		
-		// ‰ï˜bƒf[ƒ^ŽóM‘Ò‚¿
+		// ä¼šè©±ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾…ã¡
 		switch( talk_seq ){
-		// ‰ï˜b‘I‘ð‚ ‚è
-		case WFLBY_TALK_SEQ_A_SEL:	// ˜b‚µ‚©‚¯‘¤	‘I‘ð
+		// ä¼šè©±é¸æŠžã‚ã‚Š
+		case WFLBY_TALK_SEQ_A_SEL:	// è©±ã—ã‹ã‘å´	é¸æŠž
 
-			// —š—ð•Û‘¶
+			// å±¥æ­´ä¿å­˜
 			WFLBY_EV_TALK_WK_SetRirekiData( p_evwk, cp_youpr );
 			
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_MSG_BT );
@@ -1799,49 +1799,49 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			break;
 
 
-		// ‘Ò‚¿ó‘Ô
-		case WFLBY_TALK_SEQ_B_SEL:	// ‚©‚¯‚ç‚ê‘¤	‘I‘ð
+		// å¾…ã¡çŠ¶æ…‹
+		case WFLBY_TALK_SEQ_B_SEL:	// ã‹ã‘ã‚‰ã‚Œå´	é¸æŠž
 			if( WFLBY_ROOM_TALKWIN_CheckTimeWait( p_rmwk ) == FALSE ){
 				WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 			}
 
-			// ‘Ò‚¿ŽžŠÔ‚ªWFLBY_TALK_RECV_HALF_WAIT‚É‚È‚Á‚½‚çƒƒbƒZ[ƒW‚ð•\Ž¦
+			// å¾…ã¡æ™‚é–“ãŒWFLBY_TALK_RECV_HALF_WAITã«ãªã£ãŸã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
 			WFLBY_EV_TALK_WK_PrintTimeWaitMsg( p_evwk, p_rmwk );
 			break;
 
-		// ‚»‚Ì‘¼‚É‚Í‚È‚ç‚È‚¢‚Í‚¸
-		// EXEND‚ ‚Â‚©‚¢
-		case WFLBY_TALK_SEQ_NONE:	// ‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
-		case WFLBY_TALK_SEQ_B_ANS:	// ‚©‚¯‚ç‚ê‘¤	‰ž“š
-		case WFLBY_TALK_SEQ_EXEND:	// ‹Ù‹}I—¹	‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
+		// ãã®ä»–ã«ã¯ãªã‚‰ãªã„ã¯ãš
+		// EXENDã‚ã¤ã‹ã„
+		case WFLBY_TALK_SEQ_NONE:	// ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
+		case WFLBY_TALK_SEQ_B_ANS:	// ã‹ã‘ã‚‰ã‚Œå´	å¿œç­”
+		case WFLBY_TALK_SEQ_EXEND:	// ç·Šæ€¥çµ‚äº†	ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
 		default:
-			// Ø’fI—¹
+			// åˆ‡æ–­çµ‚äº†
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_ERR_ENDMSG );
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 			break;
 		}
 		break;
 
-	// ‰ž“š‰ï˜bî•ñƒƒbƒZ[ƒW•\Ž¦
+	// å¿œç­”ä¼šè©±æƒ…å ±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	case WFLBY_EV_TALK_A_SEQ_MSG_BT:
 		{
 			u16 recv_k_data = (recv_data-WFLBY_EV_TALK_TYPE_TALK_COL_00);
 
-			// ‚í‚©‚ç‚È‚¢‚Æ‚¢‚Á‚Ä‚¢‚½‚çu‚í‚©‚ç‚È‚¢ƒƒbƒZ[ƒWI—¹v
-			// ‚í‚©‚ç‚È‚¢ˆÙí‚Ì”Žš‚ª‹A‚Á‚Ä‚«‚Ä‚à‚í‚©‚ç‚È‚¢‚É‚·‚é
+			// ã‚ã‹ã‚‰ãªã„ã¨ã„ã£ã¦ã„ãŸã‚‰ã€Œã‚ã‹ã‚‰ãªã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†ã€
+			// ã‚ã‹ã‚‰ãªã„ç•°å¸¸ã®æ•°å­—ãŒå¸°ã£ã¦ãã¦ã‚‚ã‚ã‹ã‚‰ãªã„ã«ã™ã‚‹
 			if( (recv_data >= WFLBY_EV_TALK_TYPE_TALK_NONE) || 
 				(recv_data < WFLBY_EV_TALK_TYPE_TALK_COL_00 ) ){
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_A_SEQ_SELNGMSG );
 				break;
 			}
 			
-			// ƒŠƒAƒNƒVƒ‡ƒ“ƒƒbƒZ[ƒW•\Ž¦
+			// ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 			WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //			p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_05_01+recv_k_data );
 			p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_04_01+recv_k_data );
 			WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-			// €–Ú‚ªˆê‚©ƒ`ƒFƒbƒN
+			// é …ç›®ãŒä¸€ç·’ã‹ãƒã‚§ãƒƒã‚¯
 			if( recv_k_data == p_evwk->sel_k_data ){
 				WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 						WFLBY_EV_TALK_A_SEQ_MSG_ABT_EQ, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
@@ -1852,7 +1852,7 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 		
-	// ‘I‘ð€–Ú‚ª“¯‚¶‚Æ‚«
+	// é¸æŠžé …ç›®ãŒåŒã˜ã¨ã
 	case WFLBY_EV_TALK_A_SEQ_MSG_ABT_EQ:	
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_00_06 );
@@ -1864,10 +1864,10 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 		break;
 
-	// ‰ž“šƒƒbƒZ[ƒWÅŒã
+	// å¿œç­”ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æœ€å¾Œ
 	case WFLBY_EV_TALK_A_SEQ_MSG_BT_END:		
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
-		// ‚È‚é‚Ù‚Ç‚È‚Ÿ
+		// ãªã‚‹ã»ã©ãªã
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_00_05 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_00_05 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -1876,171 +1876,171 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 		break;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	case WFLBY_EV_TALK_A_SEQ_ERR_ENDMSG:	
 
-		// ƒŠƒXƒg‚ªo‚Ä‚¢‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚ÅÁ‚·
+		// ãƒªã‚¹ãƒˆãŒå‡ºã¦ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§æ¶ˆã™
 		WFLBY_ROOM_LISTWIN_End( p_rmwk, NULL, NULL );
 		WFLBY_EV_TALK_WK_ExitBmpList( &p_evwk->bmplist, p_rmwk );
 		
-		// ‘I‘ð’†ƒƒbƒZ[ƒW•\Ž¦
-		// •¶Žš—ñì¬
+		// é¸æŠžä¸­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+		// æ–‡å­—åˆ—ä½œæˆ
 //		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_aisatu_04_04 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_aisatu_04_04 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ‚à‚¤ƒGƒ‰[ƒ`ƒFƒbƒN•K—v‚È‚µ
+		// ã‚‚ã†ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯å¿…è¦ãªã—
 		p_evwk->err_chk = FALSE;
 
-		// ƒEƒGƒCƒg‚ÌŒãAƒŠƒXƒg•\Ž¦
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ãƒªã‚¹ãƒˆè¡¨ç¤º
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_END, p_wk, WFLBY_EV_TALK_A_SEQ_WAIT );
 //				WFLBY_EV_TALK_A_SEQ_END, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 
-		// ‹­§I—¹‚µ‚½‚±‚Æ‚ð‹³‚¦‚é
+		// å¼·åˆ¶çµ‚äº†ã—ãŸã“ã¨ã‚’æ•™ãˆã‚‹
 		WFLBY_SYSTEM_SendTalkExEnd( p_system );
 		break;
-	// ’ÊíI—¹
+	// é€šå¸¸çµ‚äº†
 	case WFLBY_EV_TALK_A_SEQ_ENDMSG:		
-		// ‘I‘ð’†ƒƒbƒZ[ƒW•\Ž¦
-		// •¶Žš—ñì¬
+		// é¸æŠžä¸­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_aisatu_04_02 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_aisatu_04_02 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ‚à‚¤ƒGƒ‰[ƒ`ƒFƒbƒN•K—v‚È‚µ
+		// ã‚‚ã†ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯å¿…è¦ãªã—
 		p_evwk->err_chk = FALSE;
 
-		// ƒEƒGƒCƒg‚ÌŒãAƒŠƒXƒg•\Ž¦
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ãƒªã‚¹ãƒˆè¡¨ç¤º
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_END, p_wk, WFLBY_EV_TALK_A_SEQ_WAIT );
 //				WFLBY_EV_TALK_A_SEQ_END, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 
 		break;
 		
-	// ‰ž“š‚È‚µI—¹
+	// å¿œç­”ãªã—çµ‚äº†
 	case WFLBY_EV_TALK_A_SEQ_ANSNGMSG:
-		// ‘I‘ð’†ƒƒbƒZ[ƒW•\Ž¦
-		// •¶Žš—ñì¬
+		// é¸æŠžä¸­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+		// æ–‡å­—åˆ—ä½œæˆ
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_aisatu_04_01 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_aisatu_04_01 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ‚à‚¤ƒGƒ‰[ƒ`ƒFƒbƒN•K—v‚È‚µ
+		// ã‚‚ã†ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯å¿…è¦ãªã—
 		p_evwk->err_chk = FALSE;
 
-		// ƒEƒGƒCƒg‚ÌŒãAƒŠƒXƒg•\Ž¦
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ãƒªã‚¹ãƒˆè¡¨ç¤º
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_END, p_wk, WFLBY_EV_TALK_A_SEQ_WAIT );
 //				WFLBY_EV_TALK_A_SEQ_END, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 		break;
 
-	// B‘I‘ðNGƒƒbƒZ[ƒW
-	case WFLBY_EV_TALK_A_SEQ_SELNGMSG:		// B‘I‘ð‚Å‚«‚È‚¢I—¹
-		// ‘I‘ð’†ƒƒbƒZ[ƒW•\Ž¦
-		// •¶Žš—ñì¬
+	// Bé¸æŠžNGãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	case WFLBY_EV_TALK_A_SEQ_SELNGMSG:		// Bé¸æŠžã§ããªã„çµ‚äº†
+		// é¸æŠžä¸­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_04_41 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_04_41 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ‚à‚¤ƒGƒ‰[ƒ`ƒFƒbƒN•K—v‚È‚µ
+		// ã‚‚ã†ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯å¿…è¦ãªã—
 		p_evwk->err_chk = FALSE;
 
-		// ƒEƒGƒCƒg‚ÌŒãAƒŠƒXƒg•\Ž¦
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ãƒªã‚¹ãƒˆè¡¨ç¤º
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_A_SEQ_END, p_wk, WFLBY_EV_TALK_A_SEQ_WAIT );
 //				WFLBY_EV_TALK_A_SEQ_END, p_wk, WFLBY_EV_TALK_A_SEQ_MSGWAIT );
 		break;
 
-	// ‘Ò‹@ˆ—
+	// å¾…æ©Ÿå‡¦ç†
 	case WFLBY_EV_TALK_A_SEQ_WAIT:
 		WFLBY_EV_TALK_WK_WaitMain( p_evwk, p_wk );
 		break;
 
-	// ƒƒbƒZ[ƒW‚ÌI—¹ƒEƒGƒCƒg
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®çµ‚äº†ã‚¦ã‚¨ã‚¤ãƒˆ
 	case WFLBY_EV_TALK_A_SEQ_MSGWAIT:
 		WFLBY_EV_TALK_WK_MsgEndWaitMain( p_evwk, p_wk, p_rmwk );
 		break;
 
-	// I—¹
+	// çµ‚äº†
 	case WFLBY_EV_TALK_A_SEQ_END:		
 
-		// ÅŒã‚É‚µ‚½‚±‚Æ‚É‰ï˜b‚ðÝ’è
+		// æœ€å¾Œã«ã—ãŸã“ã¨ã«ä¼šè©±ã‚’è¨­å®š
 		if( p_evwk->rireki_flag == TRUE ){
 			WFLBY_SYSTEM_SetLastAction( p_system, p_evwk->rireki_actno, p_evwk->rireki_userid );
 		}
 
-		// ‰ï˜bI—¹‚É‚·‚é
+		// ä¼šè©±çµ‚äº†ã«ã™ã‚‹
 		WFLBY_SYSTEM_EndTalk( p_system );
 
-		// ƒƒbƒZ[ƒWI—¹
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†
 		WFLBY_ROOM_TALKWIN_Off( p_rmwk );
 		
 #if	PL_T0866_080715_FIX 
 #else
-		// ƒ[ƒN“à‚Ì”jŠü
+		// ãƒ¯ãƒ¼ã‚¯å†…ã®ç ´æ£„
 		WFLBY_EV_TALK_WK_Exit( p_evwk );
 
-		// ƒCƒxƒ“ƒgƒ[ƒN”jŠü
+		// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		WFLBY_EVENTWK_DeleteWk( p_wk );
 #endif
 
-		// ’ÊíƒV[ƒPƒ“ƒX‚Ö
+		// é€šå¸¸ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 		WFLBY_SYSTEM_SetMyStatus( p_system, WFLBY_STATUS_LOGIN );
 		{
 			WFLBY_3DPERSON* p_player;
 			WFLBY_3DOBJCONT* p_objcont;
 			u32 idx;
 
-			// ƒvƒŒƒCƒ„[‚ðŽæ“¾
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
 			p_objcont = WFLBY_ROOM_GetObjCont( p_rmwk );
 			p_player = WFLBY_3DOBJCONT_GetPlayer( p_objcont );
 			WFLBY_3DOBJCONT_SetWkMove( p_objcont, p_player, WFLBY_3DOBJCONT_MOVEPLAYER );
 
 #if PL_T0866_080715_FIX
 			if( p_evwk->p_npc != NULL ){
-				// NPC‚à“®‚©‚·
+				// NPCã‚‚å‹•ã‹ã™
 				WFLBY_3DOBJCONT_DRAW_SetUpdata( p_evwk->p_npc, TRUE );
 
-				// ƒCƒxƒ“ƒg‚à“®‚©‚·
+				// ã‚¤ãƒ™ãƒ³ãƒˆã‚‚å‹•ã‹ã™
 				idx	= WFLBY_3DOBJCONT_GetWkObjData( p_evwk->p_npc, WF2DMAP_OBJPM_PLID );
 				WFLBY_EVENT_SetPrivateEventMove( p_event, idx, TRUE );
 
-				// ƒvƒƒtƒB[ƒ‹•\Ž¦‚ð‚â‚ß‚é
+				// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«è¡¨ç¤ºã‚’ã‚„ã‚ã‚‹
 				WFLBY_ROOM_UNDERWIN_TrCardOff( p_rmwk );
 			}
 #else
 
-			// NPC‚à“®‚©‚·
+			// NPCã‚‚å‹•ã‹ã™
 			WFLBY_3DOBJCONT_DRAW_SetUpdata( p_evwk->p_npc, TRUE );
 
-			// ƒCƒxƒ“ƒg‚à“®‚©‚·
+			// ã‚¤ãƒ™ãƒ³ãƒˆã‚‚å‹•ã‹ã™
 			idx	= WFLBY_3DOBJCONT_GetWkObjData( p_evwk->p_npc, WF2DMAP_OBJPM_PLID );
 			WFLBY_EVENT_SetPrivateEventMove( p_event, idx, TRUE );
 
-			// ƒvƒƒtƒB[ƒ‹•\Ž¦‚ð‚â‚ß‚é
+			// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«è¡¨ç¤ºã‚’ã‚„ã‚ã‚‹
 			WFLBY_ROOM_UNDERWIN_TrCardOff( p_rmwk );
 #endif
 		}
 
 #if	PL_T0866_080715_FIX 
-		// ƒ[ƒN“à‚Ì”jŠü
+		// ãƒ¯ãƒ¼ã‚¯å†…ã®ç ´æ£„
 		WFLBY_EV_TALK_WK_Exit( p_evwk );
 
-		// ƒCƒxƒ“ƒgƒ[ƒN”jŠü
+		// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		WFLBY_EVENTWK_DeleteWk( p_wk );
 #else
 #endif
-		return TRUE;	// Š„‚èž‚ÝƒCƒxƒ“ƒgI—¹
+		return TRUE;	// å‰²ã‚Šè¾¼ã¿ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 	}
 
 	WFLBY_EV_TALK_WK_MainSelectWait( p_evwk );
 
 
-	// Ž©“®‘—MƒVƒXƒeƒ€ƒƒCƒ“
+	// è‡ªå‹•é€ä¿¡ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ã‚¤ãƒ³
 	WFLBY_EV_TALK_RWSEND_Main( &p_evwk->rw_send, p_system );
 	
 
@@ -2051,7 +2051,7 @@ BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯‚ç‚êŠJŽn
+ *	@brief	è©±ã—ã‹ã‘ã‚‰ã‚Œé–‹å§‹
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
@@ -2064,12 +2064,12 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 	const WFLBY_USER_PROFILE* cp_mypr;
 	const WFLBY_USER_PROFILE* cp_youpr;
 
-	p_system	= WFLBY_ROOM_GetSystemData( p_rmwk );		// ƒVƒXƒeƒ€ƒf[ƒ^Žæ“¾
-	p_evwk		= WFLBY_EVENTWK_GetWk( p_wk );				// ƒCƒxƒ“ƒgƒf[ƒ^Žæ“¾
-	talk_seq	= WFLBY_SYSTEM_GetTalkSeq( p_system );		// ‰ï˜bƒV[ƒPƒ“ƒXŽæ“¾
-	recv_data	= WFLBY_SYSTEM_GetTalkRecv( p_system );		// ŽóMƒf[ƒ^
+	p_system	= WFLBY_ROOM_GetSystemData( p_rmwk );		// ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿å–å¾—
+	p_evwk		= WFLBY_EVENTWK_GetWk( p_wk );				// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
+	talk_seq	= WFLBY_SYSTEM_GetTalkSeq( p_system );		// ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å–å¾—
+	recv_data	= WFLBY_SYSTEM_GetTalkRecv( p_system );		// å—ä¿¡ãƒ‡ãƒ¼ã‚¿
 
-	// ‚¦‚ç[‚ª”­¶‚µ‚½‚çEXI—¹
+	// ãˆã‚‰ãƒ¼ãŒç™ºç”Ÿã—ãŸã‚‰EXçµ‚äº†
 	if( WFLBY_SYSTEM_CheckTalkError( p_system ) ){
 		if( p_evwk ){
 			if( p_evwk->err_chk == TRUE ){
@@ -2085,10 +2085,10 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		cp_youpr	= WFLBY_SYSTEM_GetUserProfile( p_system, p_evwk->talk_idx );
 	}
 
-	// ‰Šú‰»Š®—¹ŒãŽ©•ª‚Æ‘ŠŽè‚Ìƒ†[ƒUƒvƒƒtƒB[ƒ‹‚ðŽæ“¾‚·‚é
+	// åˆæœŸåŒ–å®Œäº†å¾Œè‡ªåˆ†ã¨ç›¸æ‰‹ã®ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—ã™ã‚‹
 	if( WFLBY_EVENTWK_GetSeq( p_wk ) > WFLBY_EV_TALK_B_SEQ_INIT ){
 		if( p_evwk->err_chk == TRUE ){
-			// ‘ŠŽè‚ª‚¢‚È‚­‚È‚Á‚½‚ç‹­§I—¹
+			// ç›¸æ‰‹ãŒã„ãªããªã£ãŸã‚‰å¼·åˆ¶çµ‚äº†
 			if( cp_youpr == NULL ){	
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_ERR_ENDMSG );
 				WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
@@ -2099,7 +2099,7 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 	
 
 	switch( WFLBY_EVENTWK_GetSeq( p_wk ) ){
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	case WFLBY_EV_TALK_B_SEQ_INIT:
 		p_evwk = WFLBY_EVENTWK_AllocWk( p_wk, sizeof(WFLBY_EV_TALK_WK) );
 
@@ -2113,28 +2113,28 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 			talk_idx = WFLBY_SYSTEM_GetTalkIdx( p_system );
 
-			// ƒ[ƒN‰Šú‰»
-			// –ß‚è’l‚Å˜b‚µ‘ŠŽè‚ªÝÐ’†‚©’²‚×‚é
+			// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+			// æˆ»ã‚Šå€¤ã§è©±ã—ç›¸æ‰‹ãŒåœ¨ç±ä¸­ã‹èª¿ã¹ã‚‹
 			result = WFLBY_EV_TALK_WK_Init( p_evwk, p_system, talk_idx );
 
-			// ˜b‚µ‚©‚¯‰¹
+			// è©±ã—ã‹ã‘éŸ³
 			Snd_SePlay( WFLBY_SND_TALK );
 
-			// ‰ï˜bƒV[ƒPƒ“ƒX‚Ö
+			// ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 			WFLBY_SYSTEM_SetMyStatus( p_system, WFLBY_STATUS_TALK );
 
-			// ˜b‚µ‘ŠŽè‚ª‚¢‚½‚ç‚»‚Ì‚Ü‚Üi‚Þ
+			// è©±ã—ç›¸æ‰‹ãŒã„ãŸã‚‰ãã®ã¾ã¾é€²ã‚€
 			if( result == TRUE ){
-				// NPC‚ÌƒvƒƒtƒB[ƒ‹‚ð•\Ž¦‚·‚é
+				// NPCã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
 				WFLBY_ROOM_UNDERWIN_TrCardOn( p_rmwk, talk_idx, FALSE );
 
-				// ‚»‚Ìl‚Æ˜b‚µ‚½‚ÆAƒ}ƒXƒNÝ’è
+				// ãã®äººã¨è©±ã—ãŸã¨ã€ãƒžã‚¹ã‚¯è¨­å®š
 				WFLBY_SYSTEM_SetTalkMsk( p_system, talk_idx );
 
-				// ‰ï˜bƒŠƒNƒGƒXƒg‚Ö
+				// ä¼šè©±ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_AISATUYOU );
 			}else{
-				// ˜b‚µ‘ŠŽè‚ª‚¢‚È‚©‚Á‚½‚çI‚í‚é
+				// è©±ã—ç›¸æ‰‹ãŒã„ãªã‹ã£ãŸã‚‰çµ‚ã‚ã‚‹
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_ERR_ENDMSG );
 				break;
 			}
@@ -2142,10 +2142,10 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// ‚ ‚¢‚³‚Â	‚ ‚¢‚Ä‚ÌŽžŠÔ
+	// ã‚ã„ã•ã¤	ã‚ã„ã¦ã®æ™‚é–“
 	case WFLBY_EV_TALK_B_SEQ_AISATUYOU:
 
-		// ˆ¥ŽA‘ŠŽè‚ª–Ú‚Ì‘O‚É—ˆ‚é‚Ü‚Å‘Ò‚Â
+		// æŒ¨æ‹¶ç›¸æ‰‹ãŒç›®ã®å‰ã«æ¥ã‚‹ã¾ã§å¾…ã¤
 		if( WFLBY_SYSTEM_CheckTalkBStart( p_system ) == FALSE ){
 			break;
 		}
@@ -2156,83 +2156,83 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				WFLBY_EV_TALK_B_SEQ_AISATUMY, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// ‚ ‚¢‚³‚Â	Ž©•ª‚ÌŽžŠÔ
+	// ã‚ã„ã•ã¤	è‡ªåˆ†ã®æ™‚é–“
 	case WFLBY_EV_TALK_B_SEQ_AISATUMY:
 
-		// –`Œ¯ƒm[ƒg
+		// å†’é™ºãƒŽãƒ¼ãƒˆ
 		WFLBY_SYSTEM_FNOTE_SetTalk( p_system, p_evwk->talk_idx );
 
-		// ƒŒƒR[ƒh
+		// ãƒ¬ã‚³ãƒ¼ãƒ‰
 		WFLBY_SYSTEM_RECORD_AddTalk( p_system );
 
-		// —V‚ñ‚¾î•ñ
+		// éŠã‚“ã æƒ…å ±
 		WFLBY_SYSTEM_PLAYED_SetPlay( p_system, WFLBY_PLAYED_TALK );
 
 
 
 		WFLBY_EV_TALK_WK_AisatuDraw( p_evwk, p_system, p_rmwk, p_evwk->my_timezone, cp_mypr, cp_youpr );
 
-		// ƒEƒGƒCƒg‚ÌŒã’ÊM“¯Šú
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œé€šä¿¡åŒæœŸ
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_SYNC_RECV, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 
 		break;
 
-	// ‰ï˜bó‘Ô“¯Šú
+	// ä¼šè©±çŠ¶æ…‹åŒæœŸ
 	case WFLBY_EV_TALK_B_SEQ_SYNC_RECV:
-		// ‰ï˜bƒf[ƒ^ŽóM‘Ò‚¿
+		// ä¼šè©±ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾…ã¡
 		switch( talk_seq ){
-		// “¯ŠúŠm”Fƒf[ƒ^ŽóM
+		// åŒæœŸç¢ºèªãƒ‡ãƒ¼ã‚¿å—ä¿¡
 		case WFLBY_TALK_SEQ_B_SEL:
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 
-			// ‚·‚®‚Éƒ_ƒ~[‰ž“š
+			// ã™ãã«ãƒ€ãƒŸãƒ¼å¿œç­”
 			WFLBY_SYSTEM_SendTalkData( p_system,  WFLBY_EV_TALK_TYPE_AISATSUSYNC );
 
-			// ‚»‚Ìl‚Æ‚Ì‰ï˜b‚ª‰‚ß‚Ä‚©H
+			// ãã®äººã¨ã®ä¼šè©±ãŒåˆã‚ã¦ã‹ï¼Ÿ
 			if( WFLBY_SYSTEM_GetTalkFirst( p_system ) ){
-				// ‰‚ß‚Ä‚Ì‚Æ‚«
-				// ˆ¥ŽAƒtƒHƒ[‚Ö
+				// åˆã‚ã¦ã®ã¨ã
+				// æŒ¨æ‹¶ãƒ•ã‚©ãƒ­ãƒ¼ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_AISATUFOLLOW );
 			}else{
-				// ‚à‚¤‚Í‚È‚µ‚½‚±‚Æ‚ª‚ ‚é
-				// ƒEƒGƒCƒg‚Ì‚ ‚Æˆ¥ŽAI—¹‚Q‚Ö
+				// ã‚‚ã†ã¯ãªã—ãŸã“ã¨ãŒã‚ã‚‹
+				// ã‚¦ã‚¨ã‚¤ãƒˆã®ã‚ã¨æŒ¨æ‹¶çµ‚äº†ï¼’ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_AISATUEND2 );
 			}
 			break;
 
-		// ‘Ò‚¿ó‘Ô
-		case WFLBY_TALK_SEQ_A_SEL:	// ‚©‚¯‚ç‚ê‘¤	‘I‘ð
+		// å¾…ã¡çŠ¶æ…‹
+		case WFLBY_TALK_SEQ_A_SEL:	// ã‹ã‘ã‚‰ã‚Œå´	é¸æŠž
 			if( WFLBY_ROOM_TALKWIN_CheckTimeWait( p_rmwk ) == FALSE ){
 				WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 			}
 
-			// ‘Ò‚¿ŽžŠÔ‚ªWFLBY_TALK_RECV_HALF_WAIT‚É‚È‚Á‚½‚çƒƒbƒZ[ƒW‚ð•\Ž¦
+			// å¾…ã¡æ™‚é–“ãŒWFLBY_TALK_RECV_HALF_WAITã«ãªã£ãŸã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
 			WFLBY_EV_TALK_WK_PrintTimeWaitMsg( p_evwk, p_rmwk );
 			break;
 
 
-		// ‚»‚Ì‘¼‚É‚Í‚È‚ç‚È‚¢‚Í‚¸
-		// EXEND‚ ‚Â‚©‚¢
-		case WFLBY_TALK_SEQ_B_ANS:	// ‚©‚¯‚ç‚ê‘¤	‰ž“š
-		case WFLBY_TALK_SEQ_EXEND:	// ‹Ù‹}I—¹	‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
-		case WFLBY_TALK_SEQ_NONE:	// ‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
+		// ãã®ä»–ã«ã¯ãªã‚‰ãªã„ã¯ãš
+		// EXENDã‚ã¤ã‹ã„
+		case WFLBY_TALK_SEQ_B_ANS:	// ã‹ã‘ã‚‰ã‚Œå´	å¿œç­”
+		case WFLBY_TALK_SEQ_EXEND:	// ç·Šæ€¥çµ‚äº†	ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
+		case WFLBY_TALK_SEQ_NONE:	// ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
 		default:
-			// Ø’fI—¹
+			// åˆ‡æ–­çµ‚äº†
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_ERR_ENDMSG );
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 			break;
 		}
 		break;
 
-	// ‚ ‚¢‚³‚ÂƒtƒHƒ[
+	// ã‚ã„ã•ã¤ãƒ•ã‚©ãƒ­ãƒ¼
 	case WFLBY_EV_TALK_B_SEQ_AISATUFOLLOW:
 		{
 			BOOL result;
-			// ƒtƒHƒ[‚ª•K—vH
+			// ãƒ•ã‚©ãƒ­ãƒ¼ãŒå¿…è¦ï¼Ÿ
 			result = WFLBY_EV_TALK_WK_AisatuFollowDraw( p_evwk, p_system, p_rmwk );
 			if( result == TRUE ){
-				// ƒEƒGƒCƒg‚Ì‚ ‚Æˆ¥ŽAÅŒã‚Ö
+				// ã‚¦ã‚¨ã‚¤ãƒˆã®ã‚ã¨æŒ¨æ‹¶æœ€å¾Œã¸
 				WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 						WFLBY_EV_TALK_B_SEQ_AISATUEND, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 			}else{
@@ -2241,20 +2241,20 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 		
-	// ‚ ‚¢‚³‚Â‚ÌÅŒã‚ÌƒƒbƒZ[ƒW
+	// ã‚ã„ã•ã¤ã®æœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_EV_TALK_B_SEQ_AISATUEND:
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_aisatu_03_01 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_aisatu_03_01 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_RECV_A_FST, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// ˆ¥ŽA‚ÌÅŒã‚ÌƒƒbƒZ[ƒW	‚à‚¤‚P‰ñ‚Í‚È‚µ‚Ä‚¢‚é‚Æ‚«
+	// æŒ¨æ‹¶ã®æœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸	ã‚‚ã†ï¼‘å›žã¯ãªã—ã¦ã„ã‚‹ã¨ã
 	case WFLBY_EV_TALK_B_SEQ_AISATUEND2:
 
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
@@ -2263,77 +2263,77 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		p_str = WFLBY_EV_TALK_GetStrBuf_Aisatu03_02( p_rmwk, p_evwk->talk_idx, p_evwk->my_idx );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãAŽ©•ª‚Ì‘I‘ð‚Ö
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è‡ªåˆ†ã®é¸æŠžã¸
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_RECV_A_FST, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// ‘ŠŽè‚Ì‘I‘ð“à—e‘Ò‚¿	Å‰
+	// ç›¸æ‰‹ã®é¸æŠžå†…å®¹å¾…ã¡	æœ€åˆ
 	case WFLBY_EV_TALK_B_SEQ_RECV_A_FST:
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_00_02 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_00_02 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_RECV_A, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// ‘ŠŽè‚Ì‘I‘ð“à—e‘Ò‚¿ ‚Q‰ñ–ÚˆÈ~
+	// ç›¸æ‰‹ã®é¸æŠžå†…å®¹å¾…ã¡ ï¼’å›žç›®ä»¥é™
 	case WFLBY_EV_TALK_B_SEQ_RECV_A_SEC:	
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_00_08 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_00_08 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_RECV_A, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// ‘ŠŽè‚Ì‘I‘ð“à—e‘Ò‚¿
+	// ç›¸æ‰‹ã®é¸æŠžå†…å®¹å¾…ã¡
 	case WFLBY_EV_TALK_B_SEQ_RECV_A:
-		// ‰ï˜bƒf[ƒ^ŽóM‘Ò‚¿
+		// ä¼šè©±ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾…ã¡
 		switch( talk_seq ){
-		// ‰ï˜b‚©ƒKƒWƒFƒbƒg‚Ì‘I‘ðƒf[ƒ^“ž’…
-		case WFLBY_TALK_SEQ_B_SEL:	// ˜b‚µ‚©‚¯‚ç‚ê‘¤	‘I‘ð
+		// ä¼šè©±ã‹ã‚¬ã‚¸ã‚§ãƒƒãƒˆã®é¸æŠžãƒ‡ãƒ¼ã‚¿åˆ°ç€
+		case WFLBY_TALK_SEQ_B_SEL:	// è©±ã—ã‹ã‘ã‚‰ã‚Œå´	é¸æŠž
 			switch( recv_data ){
-			// ƒKƒWƒFƒbƒg‚à‚ç‚Á‚½
+			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚‚ã‚‰ã£ãŸ
 			case WFLBY_EV_TALK_TYPE_GADGET:
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_MSG_G00 );
 
-				// ‰ï˜b¬—§!!!
+				// ä¼šè©±æˆç«‹!!!
 				WFLBY_SYSTEM_AddTalkCount( p_system );
 				p_evwk->b_count_add = TRUE;
 
-				// ƒKƒWƒFƒbƒgŒðŠ·‚ð—š—ð‚ÉÝ’è
+				// ã‚¬ã‚¸ã‚§ãƒƒãƒˆäº¤æ›ã‚’å±¥æ­´ã«è¨­å®š
 				WFLBY_EV_TALK_WK_SetRirekiData( p_evwk, cp_youpr );
 				break;
-			// ƒKƒWƒFƒbƒg‚ªˆê
+			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒä¸€ç·’
 			case WFLBY_EV_TALK_TYPE_GADGET_EQ:
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_MSG_G_EQ );
 
-				// ‰ï˜b¬—§!!!
+				// ä¼šè©±æˆç«‹!!!
 				WFLBY_SYSTEM_AddTalkCount( p_system );
 				p_evwk->b_count_add = TRUE;
 
-				// ƒKƒWƒFƒbƒgŒðŠ·‚ð—š—ð‚ÉÝ’è
+				// ã‚¬ã‚¸ã‚§ãƒƒãƒˆäº¤æ›ã‚’å±¥æ­´ã«è¨­å®š
 				WFLBY_EV_TALK_WK_SetRirekiData( p_evwk, cp_youpr );
 				break;
 
-			// ˆ¥ŽA
+			// æŒ¨æ‹¶
 			case WFLBY_EV_TALK_TYPE_TALK_START:
-				// ‚·‚®‚Éƒ_ƒ~[‰ž“š
+				// ã™ãã«ãƒ€ãƒŸãƒ¼å¿œç­”
 				WFLBY_SYSTEM_SendTalkData( p_system,  WFLBY_EV_TALK_TYPE_TALK_BEFORE );
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_MSG_AT00 );
 				break;
 
-			// ‚»‚Ì‘¼‚Í‚ ‚è‚¦‚È‚¢
+			// ãã®ä»–ã¯ã‚ã‚Šãˆãªã„
 			default:
-				// Ø’fI—¹
+				// åˆ‡æ–­çµ‚äº†
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_ERR_ENDMSG );
 				WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 				break;
@@ -2341,95 +2341,95 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 			break;
 
-		// ‘Ò‚¿ó‘Ô
-		case WFLBY_TALK_SEQ_A_SEL:	// ‚©‚¯‚ç‚ê‘¤	‘I‘ð
+		// å¾…ã¡çŠ¶æ…‹
+		case WFLBY_TALK_SEQ_A_SEL:	// ã‹ã‘ã‚‰ã‚Œå´	é¸æŠž
 			if( WFLBY_ROOM_TALKWIN_CheckTimeWait( p_rmwk ) == FALSE ){
 				WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 			}
 
-			// ‘Ò‚¿ŽžŠÔ‚ªWFLBY_TALK_RECV_HALF_WAIT‚É‚È‚Á‚½‚çƒƒbƒZ[ƒW‚ð•\Ž¦
+			// å¾…ã¡æ™‚é–“ãŒWFLBY_TALK_RECV_HALF_WAITã«ãªã£ãŸã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
 			WFLBY_EV_TALK_WK_PrintTimeWaitMsg( p_evwk, p_rmwk );
 			break;
 
-		// I—¹‚ð‘I‘ð‚µ‚½
-		case WFLBY_TALK_SEQ_NONE:	// ‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
+		// çµ‚äº†ã‚’é¸æŠžã—ãŸ
+		case WFLBY_TALK_SEQ_NONE:	// ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_ENDMSG );
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 			break;
 
-		// ‚»‚Ì‘¼‚É‚Í‚È‚ç‚È‚¢‚Í‚¸
-		// EXEND‚ ‚Â‚©‚¢
-		case WFLBY_TALK_SEQ_B_ANS:	// ‚©‚¯‚ç‚ê‘¤	‰ž“š
-		case WFLBY_TALK_SEQ_EXEND:	// ‹Ù‹}I—¹	‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
+		// ãã®ä»–ã«ã¯ãªã‚‰ãªã„ã¯ãš
+		// EXENDã‚ã¤ã‹ã„
+		case WFLBY_TALK_SEQ_B_ANS:	// ã‹ã‘ã‚‰ã‚Œå´	å¿œç­”
+		case WFLBY_TALK_SEQ_EXEND:	// ç·Šæ€¥çµ‚äº†	ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
 		default:
-			// Ø’fI—¹
+			// åˆ‡æ–­çµ‚äº†
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_ERR_ENDMSG );
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 			break;
 		}
 		break;
 
-	// ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW
-	case WFLBY_EV_TALK_B_SEQ_MSG_G00:		// ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW
-		// •¶Žš—ñì¬
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	case WFLBY_EV_TALK_B_SEQ_MSG_G00:		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 		WFLBY_EV_TALK_WK_WordsetSetItem( p_evwk, p_system, p_rmwk, 1, TRUE );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_item_00_05 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_item_00_05 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_MSG_G01, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 		
-	// ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_EV_TALK_B_SEQ_MSG_G01:		
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 		WFLBY_EV_TALK_WK_WordsetSetItem( p_evwk, p_system, p_rmwk, 1, TRUE );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_item_00_06 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_item_00_06 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒã
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œ
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_MSG_G02, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_EV_TALK_B_SEQ_MSG_G02:		
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 		WFLBY_EV_TALK_WK_WordsetSetItem( p_evwk, p_system, p_rmwk, 1, TRUE );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_item_00_07 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_item_00_07 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãAh‚¾‚¢‚¶‚É‚·‚é‚Ëh
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€â€ã ã„ã˜ã«ã™ã‚‹ã­â€
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_MSG_G03, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_EV_TALK_B_SEQ_MSG_G03:
 
-		// ‚í‚¯‚Ä‚ ‚°‚½SE
+		// ã‚ã‘ã¦ã‚ã’ãŸSE
 		Snd_SePlay( WFLBY_SND_TOUCH_TOY_CHG );
 
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_item_00_08 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_RECV_A_SEC, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 
-		// ƒ_ƒ~[‰ž“š
+		// ãƒ€ãƒŸãƒ¼å¿œç­”
 		WFLBY_SYSTEM_SendTalkData( p_system,  WFLBY_EV_TALK_TYPE_GADGET_END );
 
-		// ƒTƒu‰æ–Ê‚Ì•\Ž¦‚àXV
+		// ã‚µãƒ–ç”»é¢ã®è¡¨ç¤ºã‚‚æ›´æ–°
 		{
 			u32  item;
 
@@ -2438,140 +2438,140 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// ƒKƒWƒFƒbƒg‚ªˆêƒƒbƒZ[ƒW
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒä¸€ç·’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_EV_TALK_B_SEQ_MSG_G_EQ:		
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 		WFLBY_EV_TALK_WK_WordsetSetItem( p_evwk, p_system, p_rmwk, 1, TRUE );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_item_00_01 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_item_00_01 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_ENDMSG, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 
-		// ƒ_ƒ~[‰ž“š
+		// ãƒ€ãƒŸãƒ¼å¿œç­”
 		WFLBY_SYSTEM_SendTalkData( p_system,  WFLBY_EV_TALK_TYPE_GADGET_END );
 		break;
 
-	// A‰ï˜bŠJŽnƒƒbƒZ[ƒW•\Ž¦
+	// Aä¼šè©±é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	case WFLBY_EV_TALK_B_SEQ_MSG_AT00:
-		// ‚¿‚å‚Á‚Æ‚¨‚µ‚á‚×‚è‚µ‚æ‚¤‚æI
+		// ã¡ã‚‡ã£ã¨ãŠã—ã‚ƒã¹ã‚Šã—ã‚ˆã†ã‚ˆï¼
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_08_01 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_RECV_A_SEL, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 		
-	// A‚Ì‰ï˜b“à—e‚ðŽæ“¾
+	// Aã®ä¼šè©±å†…å®¹ã‚’å–å¾—
 	case WFLBY_EV_TALK_B_SEQ_RECV_A_SEL:	
-		// ‰ï˜bƒf[ƒ^ŽóM‘Ò‚¿
+		// ä¼šè©±ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾…ã¡
 		switch( talk_seq ){
-		// ‰ï˜b‚Ì‘I‘ðƒf[ƒ^“ž’…
-		case WFLBY_TALK_SEQ_B_SEL:	// ˜b‚µ‚©‚¯‚ç‚ê‘¤	‘I‘ð
+		// ä¼šè©±ã®é¸æŠžãƒ‡ãƒ¼ã‚¿åˆ°ç€
+		case WFLBY_TALK_SEQ_B_SEL:	// è©±ã—ã‹ã‘ã‚‰ã‚Œå´	é¸æŠž
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_MSG_AT01 );
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 
-			// ‰ï˜b¬—§!!!
+			// ä¼šè©±æˆç«‹!!!
 			WFLBY_SYSTEM_AddTalkCount( p_system );
 			p_evwk->b_count_add = TRUE;
 			break;
 
-		// ‘Ò‚¿ó‘Ô
-		case WFLBY_TALK_SEQ_A_SEL:	// ‚©‚¯‚ç‚ê‘¤	‘I‘ð
+		// å¾…ã¡çŠ¶æ…‹
+		case WFLBY_TALK_SEQ_A_SEL:	// ã‹ã‘ã‚‰ã‚Œå´	é¸æŠž
 			if( WFLBY_ROOM_TALKWIN_CheckTimeWait( p_rmwk ) == FALSE ){
 				WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 			}
 
-			// ‘Ò‚¿ŽžŠÔ‚ªWFLBY_TALK_RECV_HALF_WAIT‚É‚È‚Á‚½‚çƒƒbƒZ[ƒW‚ð•\Ž¦
+			// å¾…ã¡æ™‚é–“ãŒWFLBY_TALK_RECV_HALF_WAITã«ãªã£ãŸã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
 			WFLBY_EV_TALK_WK_PrintTimeWaitMsg( p_evwk, p_rmwk );
 			break;
 
 
-		// ‚»‚Ì‘¼‚É‚Í‚È‚ç‚È‚¢‚Í‚¸
-		// EXEND‚ ‚Â‚©‚¢
-		case WFLBY_TALK_SEQ_B_ANS:	// ‚©‚¯‚ç‚ê‘¤	‰ž“š
-		case WFLBY_TALK_SEQ_EXEND:	// ‹Ù‹}I—¹	‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
-		case WFLBY_TALK_SEQ_NONE:	// ‰ï˜b‚ðI—¹‚³‚¹‚Ä‚­‚¾‚³‚¢
+		// ãã®ä»–ã«ã¯ãªã‚‰ãªã„ã¯ãš
+		// EXENDã‚ã¤ã‹ã„
+		case WFLBY_TALK_SEQ_B_ANS:	// ã‹ã‘ã‚‰ã‚Œå´	å¿œç­”
+		case WFLBY_TALK_SEQ_EXEND:	// ç·Šæ€¥çµ‚äº†	ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
+		case WFLBY_TALK_SEQ_NONE:	// ä¼šè©±ã‚’çµ‚äº†ã•ã›ã¦ãã ã•ã„
 		default:
-			// Ø’fI—¹
+			// åˆ‡æ–­çµ‚äº†
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_ERR_ENDMSG );
 			WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 			break;
 		}
 		break;
 		
-	// A‚Ì‘I‘ðŽ–€•\Ž¦
-	case WFLBY_EV_TALK_B_SEQ_MSG_AT01:	// A‚Ì‘I‘ðŽ–€•\Ž¦
-		// •s³‚ÈŽóMƒf[ƒ^ƒ`ƒFƒbƒN
+	// Aã®é¸æŠžäº‹é …è¡¨ç¤º
+	case WFLBY_EV_TALK_B_SEQ_MSG_AT01:	// Aã®é¸æŠžäº‹é …è¡¨ç¤º
+		// ä¸æ­£ãªå—ä¿¡ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 		if( (recv_data < WFLBY_EV_TALK_TYPE_TALK_COL_00) || (recv_data >= WFLBY_EV_TALK_TYPE_TALK_NONE) ){
-			// Ø’fI—¹
+			// åˆ‡æ–­çµ‚äº†
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_ERR_ENDMSG );
 			break;
 		}
 		
-		// ŽóMƒf[ƒ^‚©‚ç€–Ú‚Æƒf[ƒ^ƒiƒ“ƒo[‚ð‹‚ß‚é
+		// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰é …ç›®ã¨ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ã‚’æ±‚ã‚ã‚‹
 		p_evwk->recv_k_data		= recv_data - WFLBY_EV_TALK_TYPE_TALK_COL_00;
 		p_evwk->sel_k			= p_evwk->recv_k_data / WFLBY_EV_TALK_LIST_SEL_TK_S_MAX;
 
-		// €–Ú‚Ì‚±‚Æ‚ð‚¢‚¤
-		// •¶Žš—ñì¬
+		// é …ç›®ã®ã“ã¨ã‚’ã„ã†
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_01_01+p_evwk->sel_k );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_01_01+p_evwk->sel_k );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_MSG_AT02, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// A‚Ì‘I‘ð‚Â‚È‚¬•\Ž¦
+	// Aã®é¸æŠžã¤ãªãŽè¡¨ç¤º
 	case WFLBY_EV_TALK_B_SEQ_MSG_AT02:
 
-		// €–Ú‚Ì‚±‚Æ‚ð‚¢‚¤
-		// •¶Žš—ñì¬
+		// é …ç›®ã®ã“ã¨ã‚’ã„ã†
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_02_01+p_evwk->sel_k );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_02_01+p_evwk->sel_k );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_MSG_AT03, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 		
-	// A‚Ì‘I‘ð‘I‚ñ‚¾‚±‚Æ•\Ž¦
+	// Aã®é¸æŠžé¸ã‚“ã ã“ã¨è¡¨ç¤º
 	case WFLBY_EV_TALK_B_SEQ_MSG_AT03:
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_04_01+p_evwk->recv_k_data );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_04_01+p_evwk->recv_k_data );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_MSG_AT04, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// A‚Ì‘I‘ð‚³‚ç‚É‚Â‚È‚¬•\Ž¦
+	// Aã®é¸æŠžã•ã‚‰ã«ã¤ãªãŽè¡¨ç¤º
 	case WFLBY_EV_TALK_B_SEQ_MSG_AT04:	
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_06_01+p_evwk->sel_k );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_06_01+p_evwk->sel_k );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãA˜b‚µ‘ŠŽè‚Ì‘I‘ð‚Ü‚¿
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€è©±ã—ç›¸æ‰‹ã®é¸æŠžã¾ã¡
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_SEL_T_M, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// Ž©•ª‚Ì‚ð‘I‘ð
+	// è‡ªåˆ†ã®ã‚’é¸æŠž
 	case WFLBY_EV_TALK_B_SEQ_SEL_T_M:	
 		WFLBY_EV_TALK_WK_InitBmpList( &p_evwk->bmplist, p_rmwk, WFLBY_EV_TALK_LIST_SEL_TK_S_B_MAX, 
 				msg_hiroba_osyaberi_03_01 + (p_evwk->sel_k*WFLBY_EV_TALK_LIST_SEL_TK_S_MAX), 
@@ -2581,7 +2581,7 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_SEND_T );
 		break;
 		
-	// Ž©•ª‚Ì‘I‘ð‚ð‘—M
+	// è‡ªåˆ†ã®é¸æŠžã‚’é€ä¿¡
 	case WFLBY_EV_TALK_B_SEQ_SEND_T:		
 		{
 			u32 result;
@@ -2594,22 +2594,22 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			case WFLBY_EV_TALK_LIST_SEL_TK_S_02:	
 			case WFLBY_EV_TALK_LIST_SEL_TK_S_04:	
 
-				// ‰ï˜b€–ÚÝ’è
+				// ä¼šè©±é …ç›®è¨­å®š
 				p_evwk->sel_k_data = (p_evwk->sel_k*WFLBY_EV_TALK_LIST_SEL_TK_S_MAX) + result;
 				WFLBY_SYSTEM_SendTalkData( p_system, p_evwk->sel_k_data+WFLBY_EV_TALK_TYPE_TALK_COL_00 );
 
-				// Ž©•ª‚Ì‘I‘ð‚ð•\Ž¦ƒ`ƒFƒbƒN‚Ö
+				// è‡ªåˆ†ã®é¸æŠžã‚’è¡¨ç¤ºãƒã‚§ãƒƒã‚¯ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_MSG_BT );
 
 				del = TRUE;
 				break;
 
-			case WFLBY_EV_TALK_LIST_SEL_TK_S_MAX:			// 	B[‚í‚©‚ç‚È‚¢]
-				// ‰ï˜b€–ÚÝ’è
+			case WFLBY_EV_TALK_LIST_SEL_TK_S_MAX:			// 	B[ã‚ã‹ã‚‰ãªã„]
+				// ä¼šè©±é …ç›®è¨­å®š
 				p_evwk->sel_k_data = WFLBY_EV_TALK_TYPE_TALK_NONE;
 				WFLBY_SYSTEM_SendTalkData( p_system, p_evwk->sel_k_data );
 
-				// “š‚¦‚ç‚ê‚È‚¢‚Æ‚«‚ÌI—¹‚Ö
+				// ç­”ãˆã‚‰ã‚Œãªã„ã¨ãã®çµ‚äº†ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_TALK_B_SEQ_NONEENDMSG );
 
 				del = TRUE;
@@ -2626,169 +2626,169 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				WFLBY_EV_TALK_WK_ExitBmpList( &p_evwk->bmplist, p_rmwk );
 				WFLBY_EV_TALK_WK_StopSelectWait( p_evwk );
 
-				// Ž©•ª‚à‘I‘ð‚µ‚½‚Ì‚Å‰ï˜b—š—ð‚ÉÝ’è
+				// è‡ªåˆ†ã‚‚é¸æŠžã—ãŸã®ã§ä¼šè©±å±¥æ­´ã«è¨­å®š
 				WFLBY_EV_TALK_WK_SetRirekiData( p_evwk, cp_youpr );
 			}
 		}
 		break;
 
-	// Ž©•ª‚Ì‘I‘ð‚Ì•\Ž¦
+	// è‡ªåˆ†ã®é¸æŠžã®è¡¨ç¤º
 	case WFLBY_EV_TALK_B_SEQ_MSG_BT:
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_04_01+p_evwk->sel_k_data );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_05_01+p_evwk->sel_k_data );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ‘I‘ð€–Ú‚ªˆê‚©ƒ`ƒFƒbƒN
+		// é¸æŠžé …ç›®ãŒä¸€ç·’ã‹ãƒã‚§ãƒƒã‚¯
 		if( p_evwk->recv_k_data == p_evwk->sel_k_data ){
 
-			// ‚¢‚Á‚µ‚å‚¾‚Ë‚Ö
+			// ã„ã£ã—ã‚‡ã ã­ã¸
 			WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 					WFLBY_EV_TALK_B_SEQ_MSG_ABT_EQ, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		}else{
-			// ‚ ‚è‚ª‚Æ‚¤‚Ö
+			// ã‚ã‚ŠãŒã¨ã†ã¸
 			WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 					WFLBY_EV_TALK_B_SEQ_MSG_AT_END, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		}
 		break;
 
-	// ‘I‘ð€–Ú‚ª“¯‚¶‚Æ‚«
+	// é¸æŠžé …ç›®ãŒåŒã˜ã¨ã
 	case WFLBY_EV_TALK_B_SEQ_MSG_ABT_EQ:	
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_00_06 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_00_06 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ‚ ‚è‚ª‚Æ‚¤‚Ö
+		// ã‚ã‚ŠãŒã¨ã†ã¸
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_MSG_AT_END, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// ‰ï˜bI—¹ƒƒbƒZ[ƒW
+	// ä¼šè©±çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_EV_TALK_B_SEQ_MSG_AT_END:	
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_00_07 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_00_07 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ‚ ‚è‚ª‚Æ‚¤‚Ö
+		// ã‚ã‚ŠãŒã¨ã†ã¸
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_RECV_A_SEC, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		
 		break;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	case WFLBY_EV_TALK_B_SEQ_ERR_ENDMSG:	
 
-		// ƒŠƒXƒg‚ªo‚Ä‚¢‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚ÅÁ‚·
+		// ãƒªã‚¹ãƒˆãŒå‡ºã¦ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§æ¶ˆã™
 		WFLBY_ROOM_LISTWIN_End( p_rmwk, NULL, NULL );
 		WFLBY_EV_TALK_WK_ExitBmpList( &p_evwk->bmplist, p_rmwk );
 
-		// ‘I‘ð’†ƒƒbƒZ[ƒW•\Ž¦
-		// •¶Žš—ñì¬
+		// é¸æŠžä¸­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+		// æ–‡å­—åˆ—ä½œæˆ
 //		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_aisatu_04_04 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_aisatu_04_04 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ‚à‚¤ƒGƒ‰[ƒ`ƒFƒbƒN•K—v‚È‚µ
+		// ã‚‚ã†ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯å¿…è¦ãªã—
 		p_evwk->err_chk = FALSE;
 
-		// ƒEƒGƒCƒg‚ÌŒãAƒŠƒXƒg•\Ž¦
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ãƒªã‚¹ãƒˆè¡¨ç¤º
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_END, p_wk, WFLBY_EV_TALK_B_SEQ_WAIT );
 //				WFLBY_EV_TALK_B_SEQ_END, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 
-		// ‹­§I—¹‚µ‚½‚±‚Æ‚ð‹³‚¦‚é
+		// å¼·åˆ¶çµ‚äº†ã—ãŸã“ã¨ã‚’æ•™ãˆã‚‹
 		WFLBY_SYSTEM_SendTalkExEnd( p_system );
 		break;
 
-	// ’ÊíI—¹
+	// é€šå¸¸çµ‚äº†
 	case WFLBY_EV_TALK_B_SEQ_ENDMSG:		
-		// ‘I‘ð’†ƒƒbƒZ[ƒW•\Ž¦
-		// •¶Žš—ñì¬
+		// é¸æŠžä¸­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_aisatu_04_02 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_aisatu_04_02 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ‚à‚¤ƒGƒ‰[ƒ`ƒFƒbƒN•K—v‚È‚µ
+		// ã‚‚ã†ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯å¿…è¦ãªã—
 		p_evwk->err_chk = FALSE;
 
-		// ƒEƒGƒCƒg‚ÌŒãAƒŠƒXƒg•\Ž¦
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ãƒªã‚¹ãƒˆè¡¨ç¤º
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_END, p_wk, WFLBY_EV_TALK_B_SEQ_WAIT );
 //				WFLBY_EV_TALK_B_SEQ_END, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 
-	// ‚±‚½‚¦‚È‚¢‚Æ‚«I—¹
+	// ã“ãŸãˆãªã„ã¨ãçµ‚äº†
 	case WFLBY_EV_TALK_B_SEQ_NONEENDMSG:	
-		// •¶Žš—ñì¬
+		// æ–‡å­—åˆ—ä½œæˆ
 		WFLBY_ROOM_MSG_SetIdxPlayerName( p_rmwk, p_evwk->talk_idx, 0 );
 //		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_AISATSU, msg_hiroba_osyaberi_00_04 );
 		p_str = WFLBY_EV_TALK_GetStrBuf( p_rmwk, p_evwk->talk_idx, msg_hiroba_osyaberi_00_04 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-		// ƒEƒGƒCƒg‚ÌŒãAƒŠƒXƒg•\Ž¦
+		// ã‚¦ã‚¨ã‚¤ãƒˆã®å¾Œã€ãƒªã‚¹ãƒˆè¡¨ç¤º
 		WFLBY_EV_TALK_WK_Wait( p_evwk, WFLBY_EV_TALK_MSG_WAIT, 
 				WFLBY_EV_TALK_B_SEQ_ENDMSG, p_wk, WFLBY_EV_TALK_B_SEQ_MSGWAIT );
 		break;
 		
-	// ‘Ò‹@ˆ—
+	// å¾…æ©Ÿå‡¦ç†
 	case WFLBY_EV_TALK_B_SEQ_WAIT:
 		WFLBY_EV_TALK_WK_WaitMain( p_evwk, p_wk );
 		break;
 
-	// ƒƒbƒZ[ƒW‚ÌI—¹ƒEƒGƒCƒg
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®çµ‚äº†ã‚¦ã‚¨ã‚¤ãƒˆ
 	case WFLBY_EV_TALK_B_SEQ_MSGWAIT:
 		WFLBY_EV_TALK_WK_MsgEndWaitMain( p_evwk, p_wk, p_rmwk );
 		break;
 
-	// I—¹
+	// çµ‚äº†
 	case WFLBY_EV_TALK_B_SEQ_END:		
 
-		// ÅŒã‚É‚µ‚½‚±‚Æ‚É‰ï˜b‚ðÝ’è
+		// æœ€å¾Œã«ã—ãŸã“ã¨ã«ä¼šè©±ã‚’è¨­å®š
 		if( p_evwk->rireki_flag == TRUE ){
 			WFLBY_SYSTEM_SetLastAction( p_system, p_evwk->rireki_actno, p_evwk->rireki_userid );
 		}
 
-		// ‰ï˜b‚È‚Ç‰½‚à‚¹‚¸‚ÉI‚í‚é‚É‚«‚½‚ç
-		// ‰ï˜bƒJƒEƒ“ƒg‚ð‘«‚·
+		// ä¼šè©±ãªã©ä½•ã‚‚ã›ãšã«çµ‚ã‚ã‚‹ã«ããŸã‚‰
+		// ä¼šè©±ã‚«ã‚¦ãƒ³ãƒˆã‚’è¶³ã™
 		if( p_evwk->b_count_add == FALSE ){
-			// ‰ï˜b¬—§!!!
+			// ä¼šè©±æˆç«‹!!!
 			WFLBY_SYSTEM_AddTalkCountEx( p_system, p_evwk->talk_idx );
 		}
 
-		// ‰ï˜bI—¹‚É‚·‚é
+		// ä¼šè©±çµ‚äº†ã«ã™ã‚‹
 		WFLBY_SYSTEM_EndTalk( p_system );
 		
-		// ƒƒbƒZ[ƒWI—¹
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†
 		WFLBY_ROOM_TALKWIN_Off( p_rmwk );
 
-		// ƒ[ƒN“à‚Ì”jŠü
+		// ãƒ¯ãƒ¼ã‚¯å†…ã®ç ´æ£„
 		WFLBY_EV_TALK_WK_Exit( p_evwk );
 		
-		// ƒCƒxƒ“ƒgƒ[ƒN”jŠü
+		// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		WFLBY_EVENTWK_DeleteWk( p_wk );
 
-		// ’ÊíƒV[ƒPƒ“ƒX‚Ö
+		// é€šå¸¸ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 		WFLBY_SYSTEM_SetMyStatus( p_system, WFLBY_STATUS_LOGIN );
 		{
 			WFLBY_3DPERSON* p_player;
 			WFLBY_3DOBJCONT* p_objcont;
 
-			// ƒvƒŒƒCƒ„[‚ðŽæ“¾
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
 			p_objcont = WFLBY_ROOM_GetObjCont( p_rmwk );
 			p_player = WFLBY_3DOBJCONT_GetPlayer( p_objcont );
 			WFLBY_3DOBJCONT_SetWkMove( p_objcont, p_player, WFLBY_3DOBJCONT_MOVEPLAYER );
 
-			// ƒvƒƒtƒB[ƒ‹•\Ž¦‚ð‚â‚ß‚é
+			// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«è¡¨ç¤ºã‚’ã‚„ã‚ã‚‹
 			WFLBY_ROOM_UNDERWIN_TrCardOff( p_rmwk );
 		}
-		return TRUE;	// Š„‚èž‚ÝƒCƒxƒ“ƒgI—¹
+		return TRUE;	// å‰²ã‚Šè¾¼ã¿ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 	}
 
 	WFLBY_EV_TALK_WK_MainSelectWait( p_evwk );
@@ -2800,7 +2800,7 @@ BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN‚¨Žo‚³‚ñ‰ï˜b
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ãŠå§‰ã•ã‚“ä¼šè©±
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
@@ -2813,20 +2813,20 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 	p_system = WFLBY_ROOM_GetSystemData( p_rmwk );
 	
 	switch( WFLBY_EVENTWK_GetSeq( p_wk ) ){
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	case WFLBY_EV_DEF_PLAYER_TOPIC_INIT:		
 		p_evwk = WFLBY_EVENTWK_AllocWk( p_wk, sizeof(WFLBY_EV_DEF_PLAYER_WFTOPIC_WK) );
 
-		// ˜b‚µ‚©‚¯‚ç‚ê‚½‰¹
+		// è©±ã—ã‹ã‘ã‚‰ã‚ŒãŸéŸ³
 		Snd_SePlay( WFLBY_SND_STAFF );
 
-		// ƒNƒ[ƒY‘O‚©‚ ‚Æ‚©‚Å•ÏX
+		// ã‚¯ãƒ­ãƒ¼ã‚ºå‰ã‹ã‚ã¨ã‹ã§å¤‰æ›´
 		if( WFLBY_SYSTEM_Event_GetEndCM( p_system ) == TRUE ){
 
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_CLOSE );
 		}else{
 
-			// PARADE’†‚©ƒ`ƒFƒbƒN
+			// PARADEä¸­ã‹ãƒã‚§ãƒƒã‚¯
 			if( WFLBY_SYSTEM_Event_GetParade( p_system ) == TRUE ){
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_PARADE );
 			}else{
@@ -2835,7 +2835,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		}
 		break;
 
-	// PARADEƒƒbƒZ[ƒW
+	// PARADEãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_EV_DEF_PLAYER_TOPIC_PARADE:	
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_06 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -2843,7 +2843,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 
-	// ƒNƒ[ƒY‘OƒƒbƒZ[ƒW
+	// ã‚¯ãƒ­ãƒ¼ã‚ºå‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_EV_DEF_PLAYER_TOPIC_CLOSE:	
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoa_04 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -2851,7 +2851,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 
-	// ‚æ‚¤‚±‚»
+	// ã‚ˆã†ã“ã
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSG00:	
 		
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_01 );
@@ -2860,7 +2860,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 
-	// ‚Ç‚¿‚ç‚É‚Â‚¢‚ÄEEE
+	// ã©ã¡ã‚‰ã«ã¤ã„ã¦ãƒ»ãƒ»ãƒ»
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSG01:	
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_02 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -2868,7 +2868,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 		
-	// ƒŠƒXƒg•\Ž¦
+	// ãƒªã‚¹ãƒˆè¡¨ç¤º
 	case WFLBY_EV_DEF_PLAYER_TOPIC_LISTON:	
 		WFLBY_EV_TOPIC_WK_InitBmpList( &p_evwk->bmplist, p_rmwk );
 		WFLBY_ROOM_LISTWIN_Start_Ex( p_rmwk, &p_evwk->bmplist.bmplist, 0, 0, 
@@ -2877,7 +2877,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_LISTWAIT );
 		break;
 		
-	// ƒŠƒXƒg‘Ò‚¿
+	// ãƒªã‚¹ãƒˆå¾…ã¡
 	case WFLBY_EV_DEF_PLAYER_TOPIC_LISTWAIT:	
 		{
 			u32 result;
@@ -2914,7 +2914,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 				delete = TRUE;
 				break;
 			case BMPLIST_CANCEL:
-				Snd_SePlay( SEQ_SE_DP_SELECT );	// CANCEL‰¹
+				Snd_SePlay( SEQ_SE_DP_SELECT );	// CANCELéŸ³
 			case WFLBY_EV_TOPIC_LIST_SEL_END:	
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGEND );
 				delete = TRUE;
@@ -2931,7 +2931,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		}
 		break;
 
-	// ƒKƒWƒFƒbƒg
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGGADGET:
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_09 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -2939,14 +2939,14 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 		
-	// ƒ~ƒjƒQ[ƒ€
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI:	
 		WFLBY_EV_TOPIC_WK_InitMinigameBmpList( &p_evwk->bmplist, p_rmwk );
 		WFLBY_ROOM_LISTWIN_Start( p_rmwk, &p_evwk->bmplist.bmplist, 0, 0 );
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_SEL );
 		break;
 
-	// ƒ~ƒjƒQ[ƒ€‚³‚ç‚É‘I‘ð
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã•ã‚‰ã«é¸æŠž
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_SEL:	
 		{
 			u32 result;
@@ -2970,7 +2970,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 				break;
 
 			case BMPLIST_CANCEL:
-				Snd_SePlay( SEQ_SE_DP_SELECT );	// CANCEL‰¹
+				Snd_SePlay( SEQ_SE_DP_SELECT );	// CANCELéŸ³
 			case WFLBY_EV_TOPIC_LIST_SEL_MG_END:
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSG01 );
 				delete = TRUE;
@@ -2988,7 +2988,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		}
 		break;
 	
-	// ƒ^ƒ}“Š‚°
+	// ã‚¿ãƒžæŠ•ã’
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_BS:	
 		WFLBY_ROOM_MSG_SetMinigame( p_rmwk, WFLBY_GAME_BALLSLOW, 0 );
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_10 );
@@ -2997,7 +2997,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 	
-	// ‚½‚Ü‚Ì‚è
+	// ãŸã¾ã®ã‚Š
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_BB:	
 		WFLBY_ROOM_MSG_SetMinigame( p_rmwk, WFLBY_GAME_BALANCEBALL, 0 );
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_11 );
@@ -3006,7 +3006,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 
-	// ‚Ó‚¤‚¹‚ñ‚í‚è
+	// ãµã†ã›ã‚“ã‚ã‚Š
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGMINI_BL:	
 		WFLBY_ROOM_MSG_SetMinigame( p_rmwk, WFLBY_GAME_BALLOON, 0 );
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_12 );
@@ -3015,7 +3015,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 		
-	// ¢ŠEŽžŒv
+	// ä¸–ç•Œæ™‚è¨ˆ
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGWLD:	
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_04 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -3023,7 +3023,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 		
-	// ƒjƒ…[ƒX
+	// ãƒ‹ãƒ¥ãƒ¼ã‚¹
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGTOP:	
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_05 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -3031,7 +3031,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 		
-	// ‘«Õƒ{[ƒh
+	// è¶³è·¡ãƒœãƒ¼ãƒ‰
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGBOAD:	
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_06 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -3039,7 +3039,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 		
-	// ƒCƒxƒ“ƒg
+	// ã‚¤ãƒ™ãƒ³ãƒˆ
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE:	
 
 		WFLBY_EV_TOPIC_WK_InitEventBmpList( &p_evwk->bmplist, p_rmwk );
@@ -3047,7 +3047,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_SEL );
 		break;
 
-	// ƒCƒxƒ“ƒg‚³‚ç‚É‘I‘ð
+	// ã‚¤ãƒ™ãƒ³ãƒˆã•ã‚‰ã«é¸æŠž
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_SEL:
 		{
 			u32 result;
@@ -3071,7 +3071,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 				break;
 
 			case BMPLIST_CANCEL:
-				Snd_SePlay( SEQ_SE_DP_SELECT );	// CANCEL‰¹
+				Snd_SePlay( SEQ_SE_DP_SELECT );	// CANCELéŸ³
 			case WFLBY_EV_TOPIC_LIST_SEL_EVE_END:
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSG01 );
 				delete = TRUE;
@@ -3088,7 +3088,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		}
 		break;
 
-	// ƒCƒxƒ“ƒg@ƒ‰ƒCƒeƒBƒ“ƒO
+	// ã‚¤ãƒ™ãƒ³ãƒˆã€€ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_LIGHTING:	
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_13 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -3096,7 +3096,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 
-	// ƒCƒxƒ“ƒg@‚Í‚È‚Ñ
+	// ã‚¤ãƒ™ãƒ³ãƒˆã€€ã¯ãªã³
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_FIRE:		
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_14 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -3104,7 +3104,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 
-	// ƒCƒxƒ“ƒg@ƒpƒŒ[ƒh
+	// ã‚¤ãƒ™ãƒ³ãƒˆã€€ãƒ‘ãƒ¬ãƒ¼ãƒ‰
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGEVE_PARADE:	
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_15 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -3112,7 +3112,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 
-	// ƒAƒ“ƒP[ƒg
+	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGANKETO:
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_16 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -3120,7 +3120,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 		
-	// ‚â‚ß‚é
+	// ã‚„ã‚ã‚‹
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGEND:	
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infob_08 );
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -3128,14 +3128,14 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT );
 		break;
 		
-	// ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 	case WFLBY_EV_DEF_PLAYER_TOPIC_MSGWAIT:	
 		if( WFLBY_ROOM_TALKWIN_WaitEnd( p_rmwk ) ){
 			WFLBY_EVENTWK_SetSeq( p_wk, p_evwk->ret_seq );
 		}
 		break;
 
-	// I—¹
+	// çµ‚äº†
 	case WFLBY_EV_DEF_PLAYER_TOPIC_END:	
 		WFLBY_EVENTWK_DeleteWk( p_wk );
 		WFLBY_ROOM_TALKWIN_Off( p_rmwk );
@@ -3158,7 +3158,7 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_r
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN‚¨ŒZ‚³‚ñ‰ï˜b		—V‚Ñ‚ðŠ©‚ß‚él
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ãŠå…„ã•ã‚“ä¼šè©±		éŠã³ã‚’å‹§ã‚ã‚‹äºº
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_PLAYED_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
@@ -3171,25 +3171,25 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_PLAYED_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOM
 	p_system = WFLBY_ROOM_GetSystemData( p_rmwk );
 	
 	switch( WFLBY_EVENTWK_GetSeq( p_wk ) ){
-	case WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_INIT:		// ‰Šú‰»
+	case WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_INIT:		// åˆæœŸåŒ–
 
-		// ˜b‚µ‚©‚¯‚ç‚ê‚½‰¹
+		// è©±ã—ã‹ã‘ã‚‰ã‚ŒãŸéŸ³
 		Snd_SePlay( WFLBY_SND_STAFF );
 
-		// PARADE’†‚ÍPARADE‚Ì‚±‚Æ‚ð‚¢‚¤
+		// PARADEä¸­ã¯PARADEã®ã“ã¨ã‚’ã„ã†
 		if( WFLBY_SYSTEM_Event_GetEndCM( p_system ) == FALSE ){
-			// PARADE’†‚©ƒ`ƒFƒbƒN
+			// PARADEä¸­ã‹ãƒã‚§ãƒƒã‚¯
 			if( WFLBY_SYSTEM_Event_GetParade( p_system ) == TRUE ){
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_06 );
-				// ƒƒbƒZ[ƒW•`‰æ
+				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 				WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_MSGWAIT );
 				break;
 			}
 		}else{
-			// I—¹Žž‚ÍI—¹Žž‚Ì‚±‚Æ‚ð‚¢‚¤
+			// çµ‚äº†æ™‚ã¯çµ‚äº†æ™‚ã®ã“ã¨ã‚’ã„ã†
 			p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoa_04 );
-			// ƒƒbƒZ[ƒW•`‰æ
+			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 			WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_MSGWAIT );
 			break;
@@ -3201,46 +3201,46 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_PLAYED_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOM
 
 
 			played_type = WFLBY_SYSTEM_PLAYED_GetOsusumePlayType( p_system );
-			// ‰½‚ðo‚·‚©ƒ`ƒFƒbƒN
+			// ä½•ã‚’å‡ºã™ã‹ãƒã‚§ãƒƒã‚¯
 			switch(played_type){
-			// ƒ^ƒ}“Š‚°
+			// ã‚¿ãƒžæŠ•ã’
 			case WFLBY_PLAYED_BALLTHROW:	
 				WFLBY_ROOM_MSG_SetMinigame( p_rmwk, WFLBY_GAME_BALLSLOW, 0 );
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_01 );
 				break;
-			// Balanceƒ{[ƒ‹
+			// Balanceãƒœãƒ¼ãƒ«
 			case WFLBY_PLAYED_BALANCEBALL:
 				WFLBY_ROOM_MSG_SetMinigame( p_rmwk, WFLBY_GAME_BALANCEBALL, 0 );
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_01 );
 				break;
-			// ‚Ó‚¤‚¹‚ñ‚í‚è
+			// ãµã†ã›ã‚“ã‚ã‚Š
 			case WFLBY_PLAYED_BALLOON:		
 				WFLBY_ROOM_MSG_SetMinigame( p_rmwk, WFLBY_GAME_BALLOON, 0 );
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_01 );
 				break;
-			// ¢ŠEŽžŒv	
+			// ä¸–ç•Œæ™‚è¨ˆ	
 			case WFLBY_PLAYED_WORLDTIMER:	
 				WFLBY_ROOM_MSG_SetMinigame( p_rmwk, WFLBY_GAME_WLDTIMER, 0 );
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_05 );
 				break;
-			// Lêƒjƒ…[ƒX
+			// åºƒå ´ãƒ‹ãƒ¥ãƒ¼ã‚¹
 			case WFLBY_PLAYED_TOPIC:			
 				WFLBY_ROOM_MSG_SetMinigame( p_rmwk, WFLBY_GAME_NEWS, 0 );
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_05 );
 				break;
-			// ‘«ÕBOARD
+			// è¶³è·¡BOARD
 			case WFLBY_PLAYED_FOOTBOARD:		
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_02 );
 				break;
-			// ƒAƒ“ƒP[ƒg
+			// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 			case WFLBY_PLAYED_ANKETO:
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_07 );
 				break;
-			// ˜b‚µ‚©‚¯
+			// è©±ã—ã‹ã‘
 			case WFLBY_PLAYED_TALK:			
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_03 );
 				break;
-			// ‚à‚¤‘S•”—V‚ñ‚¾
+			// ã‚‚ã†å…¨éƒ¨éŠã‚“ã 
 			default:
 			case WFLBY_PLAYED_NUM:			
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoc_04 );
@@ -3248,14 +3248,14 @@ BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_PLAYED_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOM
 			}
 
 
-			// ƒƒbƒZ[ƒW•`‰æ
+			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 			WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 		}
 
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_MSGWAIT );
 		break;
 		
-	case WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_MSGWAIT:	// ƒƒbƒZ[ƒW•\Ž¦Š®—¹‘Ò‚¿
+	case WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_MSGWAIT:	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå®Œäº†å¾…ã¡
 		if( WFLBY_ROOM_TALKWIN_WaitEnd( p_rmwk ) ){
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_DEF_PLAYER_TOPIC_PLAYED_END );
 		}
@@ -3293,15 +3293,15 @@ BOOL WFLBY_EV_TALK_StartA_AllWorld( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u
 	const WFLBY_USER_PROFILE* cp_mypr;
 	const WFLBY_USER_PROFILE* cp_youpr;
 
-	p_system	= WFLBY_ROOM_GetSystemData( p_rmwk );		// ƒVƒXƒeƒ€ƒf[ƒ^Žæ“¾
-	p_evwk		= WFLBY_EVENTWK_GetWk( p_wk );				// ƒCƒxƒ“ƒgƒf[ƒ^Žæ“¾
+	p_system	= WFLBY_ROOM_GetSystemData( p_rmwk );		// ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿å–å¾—
+	p_evwk		= WFLBY_EVENTWK_GetWk( p_wk );				// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 
 	cp_mypr		= WFLBY_SYSTEM_GetMyProfile( p_system );
-	cp_youpr	= WFLBY_SYSTEM_GetUserProfile( p_system, 1 );	// “K“–‚É
+	cp_youpr	= WFLBY_SYSTEM_GetUserProfile( p_system, 1 );	// é©å½“ã«
 
 
 	switch( WFLBY_EVENTWK_GetSeq( p_wk ) ){
-	// •\Ž¦
+	// è¡¨ç¤º
 	case 0:
 		WFLBY_SYSTEM_DEBUG_SetLangCode( (WFLBY_USER_PROFILE*)cp_mypr, s_WFLBY_DEBUG_TALK_ALLWORLD_COUNT_MY );
 		WFLBY_SYSTEM_DEBUG_SetLangCode( (WFLBY_USER_PROFILE*)cp_youpr, s_WFLBY_DEBUG_TALK_ALLWORLD_COUNT_YOU );
@@ -3311,10 +3311,10 @@ BOOL WFLBY_EV_TALK_StartA_AllWorld( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u
 		WFLBY_EVENTWK_SetSeq( p_wk, 1 );
 		break;
 
-	// ƒ‹[ƒv
+	// ãƒ«ãƒ¼ãƒ—
 	case 1:
 
-		// A‚ª‚¨‚³‚ê‚é‚Ü‚Å‚Ü‚Â
+		// AãŒãŠã•ã‚Œã‚‹ã¾ã§ã¾ã¤
 		if( (sys.trg & PAD_BUTTON_A) == 0 ){
 			break;
 		}
@@ -3333,41 +3333,41 @@ BOOL WFLBY_EV_TALK_StartA_AllWorld( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u
 					s_WFLBY_DEBUG_TALK_ALLWORLD_COUNT_MY ++;
 				}else{
 
-					// I—¹‚Ö
+					// çµ‚äº†ã¸
 					WFLBY_EVENTWK_SetSeq( p_wk, 2 );
 					break;
 				}
 			}
 		}
 
-		// Ä•\Ž¦‚Ö
+		// å†è¡¨ç¤ºã¸
 		WFLBY_EVENTWK_SetSeq( p_wk, 0 );
 		break;
 
 
-	// I—¹
+	// çµ‚äº†
 	case 2:
-		// ƒƒbƒZ[ƒWI—¹
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†
 		WFLBY_ROOM_TALKWIN_Off( p_rmwk );
 
-		// ƒ[ƒN“à‚Ì”jŠü
+		// ãƒ¯ãƒ¼ã‚¯å†…ã®ç ´æ£„
 		WFLBY_EV_TALK_WK_Exit( p_evwk );
 		
-		// ƒCƒxƒ“ƒgƒ[ƒN”jŠü
+		// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		WFLBY_EVENTWK_DeleteWk( p_wk );
 
-		// ’ÊíƒV[ƒPƒ“ƒX‚Ö
+		// é€šå¸¸ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 		WFLBY_SYSTEM_SetMyStatus( p_system, WFLBY_STATUS_LOGIN );
 		{
 			WFLBY_3DPERSON* p_player;
 			WFLBY_3DOBJCONT* p_objcont;
 
-			// ƒvƒŒƒCƒ„[‚ðŽæ“¾
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
 			p_objcont = WFLBY_ROOM_GetObjCont( p_rmwk );
 			p_player = WFLBY_3DOBJCONT_GetPlayer( p_objcont );
 			WFLBY_3DOBJCONT_SetWkMove( p_objcont, p_player, WFLBY_3DOBJCONT_MOVEPLAYER );
 		}
-		return TRUE;	// Š„‚èž‚ÝƒCƒxƒ“ƒgI—¹
+		return TRUE;	// å‰²ã‚Šè¾¼ã¿ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 		break;
 	}
 
@@ -3380,17 +3380,17 @@ BOOL WFLBY_EV_TALK_StartA_AllWorld( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆ¥ŽAŽžŠÔƒ][ƒ“‚ðŽæ“¾‚·‚é
+ *	@brief	æŒ¨æ‹¶æ™‚é–“ã‚¾ãƒ¼ãƒ³ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_pr		ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_pr		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  *
- *	@return	ŽžŠÔƒ][ƒ“
+ *	@return	æ™‚é–“ã‚¾ãƒ¼ãƒ³
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_EV_TALK_GetTimeZone( const WFLBY_USER_PROFILE* cp_pr )
@@ -3399,7 +3399,7 @@ static u32 WFLBY_EV_TALK_GetTimeZone( const WFLBY_USER_PROFILE* cp_pr )
 	time = WFLBY_SYSTEM_GetProfileWldTime( cp_pr );
 	
 	switch( time.hour ){
-	// ’©
+	// æœ
 	case 4:
 	case 5:
 	case 6:
@@ -3409,7 +3409,7 @@ static u32 WFLBY_EV_TALK_GetTimeZone( const WFLBY_USER_PROFILE* cp_pr )
 	case 10:
 		return WFLBY_AISATSU_MORNING;
 
-	// ’‹
+	// æ˜¼
 	case 11:
 	case 12:
 	case 13:
@@ -3420,7 +3420,7 @@ static u32 WFLBY_EV_TALK_GetTimeZone( const WFLBY_USER_PROFILE* cp_pr )
 	case 18:
 		return WFLBY_AISATSU_NOON;
 
-	// –é
+	// å¤œ
 	case 19:
 	case 20:
 	case 21:
@@ -3434,7 +3434,7 @@ static u32 WFLBY_EV_TALK_GetTimeZone( const WFLBY_USER_PROFILE* cp_pr )
 		return WFLBY_AISATSU_NIGHT;
 	}
 
-	GF_ASSERT( 0 );	// ‚ ‚è‚¦‚È‚¢
+	GF_ASSERT( 0 );	// ã‚ã‚Šãˆãªã„
 	return WFLBY_AISATSU_NOON;
 }
 
@@ -3442,13 +3442,13 @@ static u32 WFLBY_EV_TALK_GetTimeZone( const WFLBY_USER_PROFILE* cp_pr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•¶Žš—ñ‚ðŽæ“¾‚·‚é
+ *	@brief	æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_rmwk		ƒ[ƒN
- *	@param	plidx		‚»‚Ì•¶Žš‚ð”­Œ¾‚·‚éƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
- *	@param	msgidx		ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_rmwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plidx		ãã®æ–‡å­—ã‚’ç™ºè¨€ã™ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	msgidx		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	•¶Žš—ñ
+ *	@return	æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static STRBUF* WFLBY_EV_TALK_GetStrBuf( WFLBY_ROOMWK* p_rmwk, u32 plidx, u32 msgidx )
@@ -3459,14 +3459,14 @@ static STRBUF* WFLBY_EV_TALK_GetStrBuf( WFLBY_ROOMWK* p_rmwk, u32 plidx, u32 msg
 
 	p_system = WFLBY_ROOM_GetSystemData( p_rmwk );
 	
-	// plidx‚Ìl‚ªVIP‚¶‚á‚È‚¢‚©ƒ`ƒFƒbƒN
+	// plidxã®äººãŒVIPã˜ã‚ƒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	vip = WFLBY_SYSTEM_GetUserVipFlag( p_system, plidx );
 	if( vip == TRUE ){
 		
-		// msgidx‚ÉVIP—pƒƒbƒZ[ƒW‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+		// msgidxã«VIPç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		for( i=0; i<NELEMS(sc_WFLBY_VIP_MSGTBL); i++ ){
 			if( msgidx == sc_WFLBY_VIP_MSGTBL[i].normal_msg ){
-				// VIP—pƒƒbƒZ[ƒW‚É‘‚«Š·‚¦‚é
+				// VIPç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«æ›¸ãæ›ãˆã‚‹
 				msgidx = sc_WFLBY_VIP_MSGTBL[i].vip_msg;	
 				break;
 			}
@@ -3478,13 +3478,13 @@ static STRBUF* WFLBY_EV_TALK_GetStrBuf( WFLBY_ROOMWK* p_rmwk, u32 plidx, u32 msg
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b‚Q‰ñ–Ú‚É‚ ‚Á‚½‚Æ‚«‚Ì•¶Žš—ñ‚ðŽæ“¾‚·‚é
+ *	@brief	ä¼šè©±ï¼’å›žç›®ã«ã‚ã£ãŸã¨ãã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_rmwk		ƒ[ƒN
- *	@param	aidx		˜b‚µ‚©‚¯‚½‘¤‚ÌIDX
- *	@param	bidx		˜b‚µ‚©‚¯‚ç‚ê‚½‘¤‚ÌIDX
+ *	@param	p_rmwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	aidx		è©±ã—ã‹ã‘ãŸå´ã®IDX
+ *	@param	bidx		è©±ã—ã‹ã‘ã‚‰ã‚ŒãŸå´ã®IDX
  *
- *	@return	•¶Žš—ñ
+ *	@return	æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static STRBUF* WFLBY_EV_TALK_GetStrBuf_Aisatu03_02( WFLBY_ROOMWK* p_rmwk, u32 aidx, u32 bidx )
@@ -3495,7 +3495,7 @@ static STRBUF* WFLBY_EV_TALK_GetStrBuf_Aisatu03_02( WFLBY_ROOMWK* p_rmwk, u32 ai
 
 	p_system = WFLBY_ROOM_GetSystemData( p_rmwk );
 	
-	// plidx‚Ìl‚ªVIP‚¶‚á‚È‚¢‚©ƒ`ƒFƒbƒN
+	// plidxã®äººãŒVIPã˜ã‚ƒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	a_vip	= WFLBY_SYSTEM_GetUserVipFlag( p_system, aidx );
 	b_vip	= WFLBY_SYSTEM_GetUserVipFlag( p_system, bidx );
 	
@@ -3520,30 +3520,30 @@ static STRBUF* WFLBY_EV_TALK_GetStrBuf_Aisatu03_02( WFLBY_ROOMWK* p_rmwk, u32 ai
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒf[ƒ^‰Šú‰»
+ *	@brief	ä¼šè©±ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_evwk		ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	p_system	ƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	idx			‰ï˜b‘ŠŽèƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_evwk		ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	idx			ä¼šè©±ç›¸æ‰‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	‰ï˜b‘ŠŽèÝÐ
- *	@retval	FALSE	‰ï˜b‘ŠŽè‚ª‚¢‚È‚¢
+ *	@retval	TRUE	ä¼šè©±ç›¸æ‰‹åœ¨ç±
+ *	@retval	FALSE	ä¼šè©±ç›¸æ‰‹ãŒã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_EV_TALK_WK_Init( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM* p_system, u32 idx )
 {
 	GF_ASSERT( idx != DWC_LOBBY_INVALID_USER_ID );
 	
-	// ‰ï˜b‘ŠŽè
+	// ä¼šè©±ç›¸æ‰‹
 	p_evwk->talk_idx = idx;
 
-	//Ž©•ª
+	//è‡ªåˆ†
 	p_evwk->my_idx = WFLBY_SYSTEM_GetMyIdx( p_system );
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒNON
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ON
 	p_evwk->err_chk = TRUE;
 	
-	// ƒvƒƒtƒB[ƒ‹ƒf[ƒ^‚ð”²‚«o‚·
+	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æŠœãå‡ºã™
 	{
 		const WFLBY_USER_PROFILE* cp_mypr;
 		const WFLBY_USER_PROFILE* cp_youpr;
@@ -3553,7 +3553,7 @@ static BOOL WFLBY_EV_TALK_WK_Init( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM* p_sys
 			return FALSE;
 		}
 
-		// ƒ^ƒCƒ€ƒ][ƒ“Žæ“¾
+		// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³å–å¾—
 		p_evwk->my_timezone		= WFLBY_EV_TALK_GetTimeZone( cp_mypr );
 		p_evwk->you_timezone	= WFLBY_EV_TALK_GetTimeZone( cp_youpr );
 
@@ -3564,9 +3564,9 @@ static BOOL WFLBY_EV_TALK_WK_Init( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM* p_sys
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‚Ì”jŠüˆ—
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„å‡¦ç†
  *
- *	@param	p_evwk	ƒ[ƒN
+ *	@param	p_evwk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_Exit( WFLBY_EV_TALK_WK* p_evwk )
@@ -3577,13 +3577,13 @@ static void WFLBY_EV_TALK_WK_Exit( WFLBY_EV_TALK_WK* p_evwk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒGƒCƒg	ŠJŽn
+ *	@brief	ã‚¦ã‚¨ã‚¤ãƒˆ	é–‹å§‹
  *
- *	@param	p_evwk		ƒ[ƒN
- *	@param	wait		ƒEƒGƒCƒg’liƒƒbƒZ[ƒWI—¹‘Ò‚¿‚Ì‚Æ‚«‚Í‚Ç‚ñ‚È’l‚Å‚à‚n‚jj
- *	@param	ret_seq		–ß‚Á‚Ä‚­‚éƒV[ƒPƒ“ƒX
- *	@param	p_wk		ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	wait_seq	‘Ò‹@ƒV[ƒPƒ“ƒX
+ *	@param	p_evwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	wait		ã‚¦ã‚¨ã‚¤ãƒˆå€¤ï¼ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡ã®ã¨ãã¯ã©ã‚“ãªå€¤ã§ã‚‚ï¼¯ï¼«ï¼‰
+ *	@param	ret_seq		æˆ»ã£ã¦ãã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *	@param	p_wk		ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	wait_seq	å¾…æ©Ÿã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_Wait( WFLBY_EV_TALK_WK* p_evwk, u8 wait, u8 ret_seq, WFLBY_EVENTWK* p_wk, u8 wait_seq )
@@ -3591,16 +3591,16 @@ static void WFLBY_EV_TALK_WK_Wait( WFLBY_EV_TALK_WK* p_evwk, u8 wait, u8 ret_seq
 	p_evwk->wait		= wait;
 	p_evwk->next_seq	= ret_seq;
 
-	// ‘Ò‹@ƒV[ƒPƒ“ƒX‚Ö
+	// å¾…æ©Ÿã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 	WFLBY_EVENTWK_SetSeq( p_wk, wait_seq );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒGƒCƒgƒƒCƒ“
+ *	@brief	ã‚¦ã‚¨ã‚¤ãƒˆãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_evwk	ƒ[ƒN
- *	@param	p_wk	ƒCƒxƒ“ƒgƒ[ƒN
+ *	@param	p_evwk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_WaitMain( WFLBY_EV_TALK_WK* p_evwk, WFLBY_EVENTWK* p_wk )
@@ -3609,36 +3609,36 @@ static void WFLBY_EV_TALK_WK_WaitMain( WFLBY_EV_TALK_WK* p_evwk, WFLBY_EVENTWK* 
 		p_evwk->wait --;
 	}else{
 
-		// ƒV[ƒPƒ“ƒX‚ð–ß‚·
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’æˆ»ã™
 		WFLBY_EVENTWK_SetSeq( p_wk, p_evwk->next_seq );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
  *
- *	@param	p_evwk	ƒ[ƒN
- *	@param	p_wk	ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	p_rmwk	•”‰®ƒ[ƒN
+ *	@param	p_evwk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk	éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_MsgEndWaitMain( WFLBY_EV_TALK_WK* p_evwk, WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk )
 {
 	if( WFLBY_ROOM_TALKWIN_WaitEnd( p_rmwk ) ){
-		// ƒV[ƒPƒ“ƒX‚ð–ß‚·
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’æˆ»ã™
 		WFLBY_EVENTWK_SetSeq( p_wk, p_evwk->next_seq );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆ¥ŽA‚Ì•\Ž¦
+ *	@brief	æŒ¨æ‹¶ã®è¡¨ç¤º
  *
- *	@param	p_evwk		ƒ[ƒN
- *	@param	p_system	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_rmwk		ƒ‹[ƒ€ƒ[ƒN
- *	@param	timezone	•\Ž¦‚·‚éŽžŠÔƒ][ƒ“
+ *	@param	p_evwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		ãƒ«ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	timezone	è¡¨ç¤ºã™ã‚‹æ™‚é–“ã‚¾ãƒ¼ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_AisatuDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM* p_system, WFLBY_ROOMWK* p_rmwk, u32 timezone, const WFLBY_USER_PROFILE* cp_mypr, const WFLBY_USER_PROFILE* cp_youpr )
@@ -3743,13 +3743,13 @@ static void WFLBY_EV_TALK_WK_AisatuDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM*
 		},
 	};
 
-	// Ž©•ª‚Ìˆ¥ŽA‚ðƒ[ƒhƒZƒbƒg‚ÉÝ’è
+	// è‡ªåˆ†ã®æŒ¨æ‹¶ã‚’ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«è¨­å®š
 	WFLBY_EV_TALK_WK_Aisatu_SetWordSet( p_rmwk, 0, timezone, cp_mypr );
-	// ‘ŠŽè‚Ìˆ¥ŽA‚ðƒ[ƒhƒZƒbƒg‚ÉÝ’è
+	// ç›¸æ‰‹ã®æŒ¨æ‹¶ã‚’ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«è¨­å®š
 	WFLBY_EV_TALK_WK_Aisatu_SetWordSet( p_rmwk, 1, timezone, cp_youpr );
 
-	// Ž©•ª‚Æ‘ŠŽè‚Ì‘ƒR[ƒhŽæ“¾
-	// •s–¾‚È‘ƒR[ƒh‚È‚ç‰pŒê‚É‚·‚é
+	// è‡ªåˆ†ã¨ç›¸æ‰‹ã®å›½ã‚³ãƒ¼ãƒ‰å–å¾—
+	// ä¸æ˜Žãªå›½ã‚³ãƒ¼ãƒ‰ãªã‚‰è‹±èªžã«ã™ã‚‹
 	my_lang = WFLBY_SYSTEM_GetProfileRagionCode( cp_mypr );
 	you_lang = WFLBY_SYSTEM_GetProfileRagionCode( cp_youpr );
 
@@ -3758,9 +3758,9 @@ static void WFLBY_EV_TALK_WK_AisatuDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM*
 	
 /*	
 
-	// ‘ŠŽè‚ÆŽ©•ª‚Ì‘‚©‚ç•\Ž¦‚·‚é•¶Žšƒf[ƒ^‚ðŽæ“¾
+	// ç›¸æ‰‹ã¨è‡ªåˆ†ã®å›½ã‹ã‚‰è¡¨ç¤ºã™ã‚‹æ–‡å­—ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	switch( WFLBY_SYSTEM_GetProfileRagionCode( cp_mypr ) ){
-	// Ž©•ª‚ª“ú–{
+	// è‡ªåˆ†ãŒæ—¥æœ¬
 	case LANG_JAPAN:
 		WFLBY_ROOM_MSG_SetAisatsuJapan( p_rmwk, 0, timezone );
 		switch( WFLBY_SYSTEM_GetProfileRagionCode( cp_youpr ) ){
@@ -3795,7 +3795,7 @@ static void WFLBY_EV_TALK_WK_AisatuDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM*
 		}
 		break;
 
-	// Ž©•ª‚ªƒtƒ‰ƒ“ƒX
+	// è‡ªåˆ†ãŒãƒ•ãƒ©ãƒ³ã‚¹
 	case LANG_FRANCE:	
 		WFLBY_ROOM_MSG_SetAisatsuFrance( p_rmwk, 0, timezone );
 		switch( WFLBY_SYSTEM_GetProfileRagionCode( cp_youpr ) ){
@@ -3830,7 +3830,7 @@ static void WFLBY_EV_TALK_WK_AisatuDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM*
 		}
 		break;
 
-	// Ž©•ª‚ªƒCƒ^ƒŠƒA
+	// è‡ªåˆ†ãŒã‚¤ã‚¿ãƒªã‚¢
 	case LANG_ITALY:
 		WFLBY_ROOM_MSG_SetAisatsuItaly( p_rmwk, 0, timezone );
 		switch( WFLBY_SYSTEM_GetProfileRagionCode( cp_youpr ) ){
@@ -3865,7 +3865,7 @@ static void WFLBY_EV_TALK_WK_AisatuDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM*
 		}
 		break;
 
-	// Ž©•ª‚ªƒhƒCƒc
+	// è‡ªåˆ†ãŒãƒ‰ã‚¤ãƒ„
 	case LANG_GERMANY:
 		WFLBY_ROOM_MSG_SetAisatsuGerMany( p_rmwk, 0, timezone );
 		switch( WFLBY_SYSTEM_GetProfileRagionCode( cp_youpr ) ){
@@ -3900,7 +3900,7 @@ static void WFLBY_EV_TALK_WK_AisatuDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM*
 		}
 		break;
 
-	// Ž©•ª‚ªƒXƒyƒCƒ“
+	// è‡ªåˆ†ãŒã‚¹ãƒšã‚¤ãƒ³
 	case LANG_SPAIN:	
 		WFLBY_ROOM_MSG_SetAisatsuSpain( p_rmwk, 0, timezone );
 		switch( WFLBY_SYSTEM_GetProfileRagionCode( cp_youpr ) ){
@@ -3935,9 +3935,9 @@ static void WFLBY_EV_TALK_WK_AisatuDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM*
 		}
 		break;
 	
-	// Ž©•ª‚ª‰p‘
+	// è‡ªåˆ†ãŒè‹±å›½
 	case LANG_ENGLISH:
-	// Ž©•ª‚ª•s–¾‚È‚Æ‚«‚Í‰pŒê‚Å‰ï˜b
+	// è‡ªåˆ†ãŒä¸æ˜Žãªã¨ãã¯è‹±èªžã§ä¼šè©±
 	default:
 		WFLBY_ROOM_MSG_SetAisatsuEnglish( p_rmwk, 0, timezone );
 		switch( WFLBY_SYSTEM_GetProfileRagionCode( cp_youpr ) ){
@@ -3981,12 +3981,12 @@ static void WFLBY_EV_TALK_WK_AisatuDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒ][ƒ“‚Ìˆ¥ŽA‚ðƒ[ƒhƒZƒbƒg‚ÉÝ’è
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã®æŒ¨æ‹¶ã‚’ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«è¨­å®š
  *
- *	@param	p_rmwk			•”‰®ƒ[ƒN
- *	@param	buffno			ƒ[ƒhƒZƒbƒgƒoƒbƒtƒ@ƒiƒ“ƒo[
- *	@param	timezone		ƒ^ƒCƒ€ƒ][ƒ“
- *	@param	cp_pr			ƒvƒƒtƒB[ƒ‹
+ *	@param	p_rmwk			éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	buffno			ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡ãƒŠãƒ³ãƒãƒ¼
+ *	@param	timezone		ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³
+ *	@param	cp_pr			ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_Aisatu_SetWordSet( WFLBY_ROOMWK* p_rmwk, u32 buffno, u32 timezone, const WFLBY_USER_PROFILE* cp_pr )
@@ -4018,14 +4018,14 @@ static void WFLBY_EV_TALK_WK_Aisatu_SetWordSet( WFLBY_ROOMWK* p_rmwk, u32 buffno
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆ¥ŽAƒtƒHƒ[‚Ì•\Ž¦
+ *	@brief	æŒ¨æ‹¶ãƒ•ã‚©ãƒ­ãƒ¼ã®è¡¨ç¤º
  *	
- *	@param	p_evwk		ƒ[ƒN
- *	@param	p_system	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
+ *	@param	p_evwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒtƒHƒ[‚ð•\Ž¦‚µ‚½
- *	@retval	FALSE	ƒtƒHƒ[‚¢‚ç‚È‚©‚Á‚½
+ *	@retval	TRUE	ãƒ•ã‚©ãƒ­ãƒ¼ã‚’è¡¨ç¤ºã—ãŸ
+ *	@retval	FALSE	ãƒ•ã‚©ãƒ­ãƒ¼ã„ã‚‰ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_EV_TALK_WK_AisatuFollowDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYSTEM* p_system, WFLBY_ROOMWK* p_rmwk )
@@ -4037,7 +4037,7 @@ static BOOL WFLBY_EV_TALK_WK_AisatuFollowDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_S
 	cp_mypr		= WFLBY_SYSTEM_GetMyProfileLocal( p_system );
 	cp_youpr	= WFLBY_SYSTEM_GetUserProfile( p_system, p_evwk->talk_idx );
 	
-	// Ž©•ª‚©‘ŠŽè‚ÌŒ¾Œê‚ª•s–¾‚Å‚È‚¢‚©
+	// è‡ªåˆ†ã‹ç›¸æ‰‹ã®è¨€èªžãŒä¸æ˜Žã§ãªã„ã‹
 	if( WFLBY_SYSTEM_CheckProfileRagionCode( cp_mypr ) == FALSE ){
 		return FALSE;
 	}
@@ -4045,10 +4045,10 @@ static BOOL WFLBY_EV_TALK_WK_AisatuFollowDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_S
 		return FALSE;
 	}
 	
-	// ŽžŠÔ‘Ñ‚ªˆá‚¤‚©ƒ`ƒFƒbƒN
+	// æ™‚é–“å¸¯ãŒé•ã†ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_evwk->my_timezone != p_evwk->you_timezone ){
 
-		// ‰½‚ð•\Ž¦‚·‚é‚©
+		// ä½•ã‚’è¡¨ç¤ºã™ã‚‹ã‹
 		switch( p_evwk->you_timezone ){
 		case WFLBY_AISATSU_MORNING:
 			data_id = msg_hiroba_aisatu_02_03;
@@ -4070,13 +4070,13 @@ static BOOL WFLBY_EV_TALK_WK_AisatuFollowDraw( WFLBY_EV_TALK_WK* p_evwk, WFLBY_S
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚ÉƒAƒCƒeƒ€–¼‚ð’Ç‰Á
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«ã‚¢ã‚¤ãƒ†ãƒ åã‚’è¿½åŠ 
  *
- *	@param	p_evwk		ƒ[ƒN
- *	@param	p_system	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
- *	@param	bufid		ƒoƒbƒtƒ@ID
- *	@param	my			Ž©•ª‚Ìƒf[ƒ^H
+ *	@param	p_evwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
+ *	@param	my			è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ï¼Ÿ
  *	
  */
 //-----------------------------------------------------------------------------
@@ -4101,10 +4101,10 @@ static void WFLBY_EV_TALK_WK_WordsetSetItem( WFLBY_EV_TALK_WK* p_evwk, WFLBY_SYS
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒg@‚Ì’†ŠÔ‚Ü‚ÅŽžŠÔ‚ª‚«‚½‚çA’†ŠÔƒƒbƒZ[ƒW‚ð•\Ž¦‚·‚é
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã€€ã®ä¸­é–“ã¾ã§æ™‚é–“ãŒããŸã‚‰ã€ä¸­é–“ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹
  *
- *	@param	p_evwk		ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
+ *	@param	p_evwk		ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_PrintTimeWaitMsg( WFLBY_EV_TALK_WK* p_evwk, WFLBY_ROOMWK* p_rmwk )
@@ -4125,9 +4125,9 @@ static void WFLBY_EV_TALK_WK_PrintTimeWaitMsg( WFLBY_EV_TALK_WK* p_evwk, WFLBY_R
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ð‘Ò‚¿ŽžŠÔƒJƒEƒ“ƒ^@ŠJŽn
+ *	@brief	é¸æŠžå¾…ã¡æ™‚é–“ã‚«ã‚¦ãƒ³ã‚¿ã€€é–‹å§‹
  *
- *	@param	p_evwk	ƒ[ƒN
+ *	@param	p_evwk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_StartSelectWait( WFLBY_EV_TALK_WK* p_evwk )
@@ -4138,7 +4138,7 @@ static void WFLBY_EV_TALK_WK_StartSelectWait( WFLBY_EV_TALK_WK* p_evwk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ð‘Ò‚¿ŽžŠÔƒJƒEƒ“ƒ^@’âŽ~
+ *	@brief	é¸æŠžå¾…ã¡æ™‚é–“ã‚«ã‚¦ãƒ³ã‚¿ã€€åœæ­¢
  *
  *	@param	p_evwk 
  */
@@ -4151,17 +4151,17 @@ static void WFLBY_EV_TALK_WK_StopSelectWait( WFLBY_EV_TALK_WK* p_evwk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ð‘Ò‚¿ƒJƒEƒ“ƒ^ƒEƒGƒCƒgˆ—
+ *	@brief	é¸æŠžå¾…ã¡ã‚«ã‚¦ãƒ³ã‚¿ã‚¦ã‚¨ã‚¤ãƒˆå‡¦ç†
  *
- *	@param	p_evwk	ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	p_rmwk	•”‰®ƒ[ƒN
+ *	@param	p_evwk	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk	éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_CheckAndPrintSelectWait( WFLBY_EV_TALK_WK* p_evwk, WFLBY_ROOMWK* p_rmwk )
 {
 	STRBUF* p_str;
 
-	// ‘I‘ð‘Ò‚¿ó‘Ô‚ÅAŽžŠÔ‚ªWFLBY_TALK_RECV_HALF_WAIT‚É‚¢‚Á‚½‚çƒƒbƒZ[ƒW‚ð—¬‚·
+	// é¸æŠžå¾…ã¡çŠ¶æ…‹ã§ã€æ™‚é–“ãŒWFLBY_TALK_RECV_HALF_WAITã«ã„ã£ãŸã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æµã™
 	if( p_evwk->sel_wait_flag == TRUE ){
 
 		if( p_evwk->sel_wait == WFLBY_TALK_RECV_HALF_WAIT ){
@@ -4174,9 +4174,9 @@ static void WFLBY_EV_TALK_WK_CheckAndPrintSelectWait( WFLBY_EV_TALK_WK* p_evwk, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ð‘Ò‚¿ƒJƒEƒ“ƒ^ƒEƒGƒCƒgˆ—	ƒƒCƒ“
+ *	@brief	é¸æŠžå¾…ã¡ã‚«ã‚¦ãƒ³ã‚¿ã‚¦ã‚¨ã‚¤ãƒˆå‡¦ç†	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_evwk		ƒCƒxƒ“ƒgƒ[ƒN
+ *	@param	p_evwk		ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_MainSelectWait( WFLBY_EV_TALK_WK* p_evwk )
@@ -4190,10 +4190,10 @@ static void WFLBY_EV_TALK_WK_MainSelectWait( WFLBY_EV_TALK_WK* p_evwk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—š—ðƒf[ƒ^Ý’è
+ *	@brief	å±¥æ­´ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_evwk		ƒ[ƒN
- *	@param	cp_youpr	‘ŠŽè‚ÌƒvƒƒtƒB[ƒ‹
+ *	@param	p_evwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_youpr	ç›¸æ‰‹ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_SetRirekiData( WFLBY_EV_TALK_WK* p_evwk, const WFLBY_USER_PROFILE* cp_youpr )
@@ -4210,13 +4210,13 @@ static void WFLBY_EV_TALK_WK_SetRirekiData( WFLBY_EV_TALK_WK* p_evwk, const WFLB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒf[ƒ^ì¬
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_evwk		ƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
- *	@param	num			ƒŠƒXƒg”
- *	@param	msg_start	ƒƒbƒZ[ƒWŠJŽnˆÊ’u
- *	@param	last_sel_b	‘I‘ðBÅIs‚ð’Ç‰Á‚·‚é‚©H
+ *	@param	p_evwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	num			ãƒªã‚¹ãƒˆæ•°
+ *	@param	msg_start	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹ä½ç½®
+ *	@param	last_sel_b	é¸æŠžBæœ€çµ‚è¡Œã‚’è¿½åŠ ã™ã‚‹ã‹ï¼Ÿ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_InitBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROOMWK* p_rmwk, u32 num, u32 msg_start, u32 last_sel_b )
@@ -4224,13 +4224,13 @@ static void WFLBY_EV_TALK_WK_InitBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROO
 	int i;
 	const STRBUF* cp_str;
 
-	// ƒoƒbƒtƒ@ì¬
+	// ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	WFLBY_ROOM_LISTWIN_CreateBmpList( p_rmwk, num );
 	p_wk->bmplist_num = num;
 
-	// ƒf[ƒ^ì¬
+	// ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<num; i++ ){
-		// ÅIsƒ`ƒFƒbƒN
+		// æœ€çµ‚è¡Œãƒã‚§ãƒƒã‚¯
 		if( (last_sel_b != WFLBY_EV_TALK_LIST_END_NONE) &&
 			(i == (num-1)) ){
 			if( last_sel_b == WFLBY_EV_TALK_LIST_END_YAMERU ){
@@ -4244,7 +4244,7 @@ static void WFLBY_EV_TALK_WK_InitBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROO
 		WFLBY_ROOM_LISTWIN_SetBmpListStr( p_rmwk, cp_str, i );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒwƒbƒ_[‚ÉÝ’è
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã«è¨­å®š
 	p_wk->bmplist			= sc_WFLBY_EV_TALK_HEADER;
 	p_wk->bmplist.count	= p_wk->bmplist_num;
 	if( p_wk->bmplist.line > p_wk->bmplist_num ){
@@ -4257,12 +4257,12 @@ static void WFLBY_EV_TALK_WK_InitBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROO
 /**
  *	@brief
  *
- *	@param	p_evwk		ƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
- *	@param	allnum		ƒƒbƒZ[ƒW‚·‚×‚Ä‚Ì”
- *	@param	sel_num		‘I‘ð‚·‚é”(last_sel_b‚ªNONE‚¶‚á‚È‚¢‚È‚ç’Ç‰Á‚·‚é€–Ú‚àŠÜ‚ß‚½’l)
- *	@param	msg_start	ƒƒbƒZ[ƒWŠJŽnˆÊ’u
- *	@param	last_sel_b	‘I‘ðBÅIs‚ð’Ç‰Á‚·‚é‚©H
+ *	@param	p_evwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	allnum		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã™ã¹ã¦ã®æ•°
+ *	@param	sel_num		é¸æŠžã™ã‚‹æ•°(last_sel_bãŒNONEã˜ã‚ƒãªã„ãªã‚‰è¿½åŠ ã™ã‚‹é …ç›®ã‚‚å«ã‚ãŸå€¤)
+ *	@param	msg_start	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹ä½ç½®
+ *	@param	last_sel_b	é¸æŠžBæœ€çµ‚è¡Œã‚’è¿½åŠ ã™ã‚‹ã‹ï¼Ÿ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_InitBmpListRandom( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROOMWK* p_rmwk, u32 allnum, u32 sel_num, u32 msg_start, u32 last_sel_b )
@@ -4274,14 +4274,14 @@ static void WFLBY_EV_TALK_WK_InitBmpListRandom( WFLBY_EV_TALK_BMPLIST* p_wk, WFL
 	BOOL result;
 	
 
-	// ƒoƒbƒtƒ@ì¬
+	// ãƒãƒƒãƒ•ã‚¡ä½œæˆ
     // MatchComment: WFLBY_ROOM_LISTWIN_CreateBmpList -> WFLBY_ROOM_LISTWIN_CreateBmpList_WithThirdArg. use allnum as third arg
 	WFLBY_ROOM_LISTWIN_CreateBmpList_WithThirdArg( p_rmwk, sel_num, allnum );
 	p_wk->bmplist_num = sel_num;
 
-	// ƒf[ƒ^ì¬
+	// ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<sel_num; i++ ){
-		// ÅIsƒ`ƒFƒbƒN
+		// æœ€çµ‚è¡Œãƒã‚§ãƒƒã‚¯
 		if( (last_sel_b != WFLBY_EV_TALK_LIST_END_NONE) &&
 			(i == (sel_num-1)) ){
 
@@ -4295,7 +4295,7 @@ static void WFLBY_EV_TALK_WK_InitBmpListRandom( WFLBY_EV_TALK_BMPLIST* p_wk, WFL
 
 
 #ifdef WFLBY_EV_TALK_DEBUG_SEL_MSG
-			// ƒfƒoƒbƒNŽž
+			// ãƒ‡ãƒãƒƒã‚¯æ™‚
 			if( s_WFLBY_EV_TALK_DEBUG_SEL_MSG_ON == TRUE ){
 				sel_msg		= i+(4*s_WFLBY_EV_TALK_DEBUG_SEL_MSG_PAGE);
 				sel_msg		= sel_msg % allnum;
@@ -4305,9 +4305,9 @@ static void WFLBY_EV_TALK_WK_InitBmpListRandom( WFLBY_EV_TALK_BMPLIST* p_wk, WFL
 
 			}else{
 
-				// ’Êí
+				// é€šå¸¸
 				// 
-				// d•¡‚µ‚È‚¢€–Ú‚ª‚Å‚é‚Ü‚Å
+				// é‡è¤‡ã—ãªã„é …ç›®ãŒã§ã‚‹ã¾ã§
 				do{
 					sel_msg		= gf_mtRand() % allnum;
 					msg_param	= sel_msg;
@@ -4317,9 +4317,9 @@ static void WFLBY_EV_TALK_WK_InitBmpListRandom( WFLBY_EV_TALK_BMPLIST* p_wk, WFL
 
 			}
 #else
-			// ’Êí
+			// é€šå¸¸
 			// 
-			// d•¡‚µ‚È‚¢€–Ú‚ª‚Å‚é‚Ü‚Å
+			// é‡è¤‡ã—ãªã„é …ç›®ãŒã§ã‚‹ã¾ã§
 			do{
 				sel_msg		= gf_mtRand() % allnum;
 				msg_param	= sel_msg;
@@ -4333,7 +4333,7 @@ static void WFLBY_EV_TALK_WK_InitBmpListRandom( WFLBY_EV_TALK_BMPLIST* p_wk, WFL
 		WFLBY_ROOM_LISTWIN_SetBmpListStr( p_rmwk, cp_str, msg_param );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒwƒbƒ_[‚ÉÝ’è
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã«è¨­å®š
 	p_wk->bmplist			= sc_WFLBY_EV_TALK_HEADER;
 	p_wk->bmplist.count	= p_wk->bmplist_num;
 	if( p_wk->bmplist.line > p_wk->bmplist_num ){
@@ -4344,9 +4344,9 @@ static void WFLBY_EV_TALK_WK_InitBmpListRandom( WFLBY_EV_TALK_BMPLIST* p_wk, WFL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN‘O‚¨Žo‚³‚ñ—pƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯å‰ãŠå§‰ã•ã‚“ç”¨ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆ
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */	
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TOPIC_WK_InitBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROOMWK* p_rmwk )
@@ -4364,17 +4364,17 @@ static void WFLBY_EV_TOPIC_WK_InitBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_RO
 		msg_hiroba_infowin_07,
 	};
 
-	// ƒoƒbƒtƒ@ì¬
+	// ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	WFLBY_ROOM_LISTWIN_CreateBmpList( p_rmwk, WFLBY_EV_TOPIC_LIST_SEL_NUM );
 	p_wk->bmplist_num = WFLBY_EV_TOPIC_LIST_SEL_NUM;
 
-	// ƒf[ƒ^ì¬
+	// ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<WFLBY_EV_TOPIC_LIST_SEL_NUM; i++ ){
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, sc_LISTMSG[i] );
 		WFLBY_ROOM_LISTWIN_SetBmpListStr( p_rmwk, p_str, i );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒwƒbƒ_[‚ÉÝ’è
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã«è¨­å®š
 	p_wk->bmplist			= sc_WFLBY_EV_TALK_HEADER;
 	p_wk->bmplist.count		= p_wk->bmplist_num;
 	p_wk->bmplist.line		= p_wk->bmplist_num;
@@ -4383,10 +4383,10 @@ static void WFLBY_EV_TOPIC_WK_InitBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_RO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN‘O‚¨Žo‚³‚ñ—pƒCƒxƒ“ƒg‘I‘ðƒŠƒXƒg
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯å‰ãŠå§‰ã•ã‚“ç”¨ã‚¤ãƒ™ãƒ³ãƒˆé¸æŠžãƒªã‚¹ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_rmwk	•”‰®ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk	éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TOPIC_WK_InitEventBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROOMWK* p_rmwk )
@@ -4394,23 +4394,23 @@ static void WFLBY_EV_TOPIC_WK_InitEventBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFL
 	int i;
 	STRBUF* p_str;
 
-	// ƒoƒbƒtƒ@ì¬
+	// ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	WFLBY_ROOM_LISTWIN_CreateBmpList( p_rmwk, WFLBY_EV_TOPIC_LIST_SEL_EVE_NUM );
 	p_wk->bmplist_num = WFLBY_EV_TOPIC_LIST_SEL_EVE_NUM;
 
-	// ƒf[ƒ^ì¬
+	// ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<WFLBY_EV_TOPIC_LIST_SEL_EVE_NUM-1; i++ ){
 		WFLBY_ROOM_MSG_SetTimeEvent( p_rmwk, WFLBY_EVENT_GMM_NEON+i, 0 );
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infowin_09 );
 		WFLBY_ROOM_LISTWIN_SetBmpListStr( p_rmwk, p_str, i );
 	}
 
-	// ‚â‚ß‚é‚ð’Ç‰Á
+	// ã‚„ã‚ã‚‹ã‚’è¿½åŠ 
 	p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infowin_07 );
 	WFLBY_ROOM_LISTWIN_SetBmpListStr( p_rmwk, p_str, WFLBY_EV_TOPIC_LIST_SEL_EVE_NUM-1 );
 	
 
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒwƒbƒ_[‚ÉÝ’è
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã«è¨­å®š
 	p_wk->bmplist			= sc_WFLBY_EV_TALK_HEADER;
 	p_wk->bmplist.count		= p_wk->bmplist_num;
 	p_wk->bmplist.line		= p_wk->bmplist_num;
@@ -4419,10 +4419,10 @@ static void WFLBY_EV_TOPIC_WK_InitEventBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN‘O‚¨Žo‚³‚ñ—pƒCƒxƒ“ƒg‘I‘ðƒŠƒXƒg
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯å‰ãŠå§‰ã•ã‚“ç”¨ã‚¤ãƒ™ãƒ³ãƒˆé¸æŠžãƒªã‚¹ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_rmwk	•”‰®ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk	éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TOPIC_WK_InitMinigameBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROOMWK* p_rmwk )
@@ -4430,22 +4430,22 @@ static void WFLBY_EV_TOPIC_WK_InitMinigameBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, 
 	int i;
 	STRBUF* p_str;
 
-	// ƒoƒbƒtƒ@ì¬
+	// ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	WFLBY_ROOM_LISTWIN_CreateBmpList( p_rmwk, WFLBY_EV_TOPIC_LIST_SEL_MG_NUM );
 	p_wk->bmplist_num = WFLBY_EV_TOPIC_LIST_SEL_MG_NUM;
 
-	// ƒf[ƒ^ì¬
+	// ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<WFLBY_EV_TOPIC_LIST_SEL_MG_NUM-1; i++ ){
 		WFLBY_ROOM_MSG_SetMinigame( p_rmwk, WFLBY_GAME_BALLSLOW+i, 0 );
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infowin_08 );
 		WFLBY_ROOM_LISTWIN_SetBmpListStr( p_rmwk, p_str, i );
 	}
 
-	// ‚â‚ß‚é‚ð’Ç‰Á
+	// ã‚„ã‚ã‚‹ã‚’è¿½åŠ 
 	p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infowin_07 );
 	WFLBY_ROOM_LISTWIN_SetBmpListStr( p_rmwk, p_str, WFLBY_EV_TOPIC_LIST_SEL_MG_NUM-1 );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒwƒbƒ_[‚ÉÝ’è
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã«è¨­å®š
 	p_wk->bmplist			= sc_WFLBY_EV_TALK_HEADER;
 	p_wk->bmplist.count		= p_wk->bmplist_num;
 	p_wk->bmplist.line		= p_wk->bmplist_num;
@@ -4454,9 +4454,9 @@ static void WFLBY_EV_TOPIC_WK_InitMinigameBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒf[ƒ^‚ð”jŠü
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *	@param	p_evwk	ƒ[ƒN
+ *	@param	p_evwk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_ExitBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROOMWK* p_rmwk )
@@ -4468,9 +4468,9 @@ static void WFLBY_EV_TALK_WK_ExitBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[ƒƒbƒZ[ƒWŽóMŒã@ƒf[ƒ^‘—M‚·‚éƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡å¾Œã€€ãƒ‡ãƒ¼ã‚¿é€ä¿¡ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *	
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_RWSEND_Init( WFLBY_EV_TALK_RWSEND* p_wk )
@@ -4480,12 +4480,12 @@ static void WFLBY_EV_TALK_RWSEND_Init( WFLBY_EV_TALK_RWSEND* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[ƒƒbƒZ[ƒWŽóMŒã@ƒf[ƒ^‘—M‚·‚éƒVƒXƒeƒ€	ŠJŽn
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡å¾Œã€€ãƒ‡ãƒ¼ã‚¿é€ä¿¡ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 	é–‹å§‹
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	cp_system		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	send_data		‘—Mƒf[ƒ^
- *	@param	wait_seq		ŽóM‘Ò‚¿‚µ‚Ä‚é‰ï˜bƒV[ƒPƒ“ƒX
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_system		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	send_data		é€ä¿¡ãƒ‡ãƒ¼ã‚¿
+ *	@param	wait_seq		å—ä¿¡å¾…ã¡ã—ã¦ã‚‹ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_RWSEND_Start( WFLBY_EV_TALK_RWSEND* p_wk, const WFLBY_SYSTEM* cp_system, u16 send_data, u16 wait_seq )
@@ -4499,34 +4499,34 @@ static void WFLBY_EV_TALK_RWSEND_Start( WFLBY_EV_TALK_RWSEND* p_wk, const WFLBY_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[ƒƒbƒZ[ƒWŽóMŒã@ƒf[ƒ^‘—M‚·‚éƒVƒXƒeƒ€	ƒƒCƒ“ŠÖ”
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡å¾Œã€€ãƒ‡ãƒ¼ã‚¿é€ä¿¡ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_system	ƒƒr[ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_system	ãƒ­ãƒ“ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_RWSEND_Main( WFLBY_EV_TALK_RWSEND* p_wk, WFLBY_SYSTEM* p_system )
 {
 	u32 talk_seq;
 
-	// “®ì’†‚©ƒ`ƒFƒbƒN
+	// å‹•ä½œä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_wk->trans_on == FALSE ){
 		return;
 	}
 
-	// ‰ï˜bƒV[ƒPƒ“ƒXŽæ“¾
-	talk_seq	= WFLBY_SYSTEM_GetTalkSeq( p_system );		// ‰ï˜bƒV[ƒPƒ“ƒXŽæ“¾
+	// ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å–å¾—
+	talk_seq	= WFLBY_SYSTEM_GetTalkSeq( p_system );		// ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å–å¾—
 
-	// ‰ï˜bƒV[ƒPƒ“ƒX•Û‘¶
+	// ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿å­˜
 	p_wk->recv_talk_seq = talk_seq;
 
-	// ‘Ò‚Á‚Ä‚¢‚éƒV[ƒPƒ“ƒX‚É‚È‚Á‚½‚çƒf[ƒ^‘—M
+	// å¾…ã£ã¦ã„ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«ãªã£ãŸã‚‰ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 	if( talk_seq == p_wk->wait_seq ){
-		// ƒf[ƒ^“]‘—
+		// ãƒ‡ãƒ¼ã‚¿è»¢é€
 		WFLBY_SYSTEM_SendTalkData( p_system, p_wk->trans_data );
 		p_wk->trans_on = FALSE;
 	}
-	// ƒV[ƒPƒ“ƒX‚ª•Ï‚í‚Á‚½‚ç‚¨‚©‚µ‚¢A‘—M‚¹‚¸‚ÉI—¹
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãŒå¤‰ã‚ã£ãŸã‚‰ãŠã‹ã—ã„ã€é€ä¿¡ã›ãšã«çµ‚äº†
 	else if( talk_seq != p_wk->start_seq ){
 		p_wk->trans_on = FALSE;
 	}
@@ -4534,12 +4534,12 @@ static void WFLBY_EV_TALK_RWSEND_Main( WFLBY_EV_TALK_RWSEND* p_wk, WFLBY_SYSTEM*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[ƒƒbƒZ[ƒWŽóMŒã@ƒf[ƒ^‘—M‚·‚éƒVƒXƒeƒ€	I—¹ƒ`ƒFƒbƒN
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡å¾Œã€€ãƒ‡ãƒ¼ã‚¿é€ä¿¡ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 	çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_EV_TALK_RWSEND_CheckEnd( const WFLBY_EV_TALK_RWSEND* cp_wk )
@@ -4552,11 +4552,11 @@ static BOOL WFLBY_EV_TALK_RWSEND_CheckEnd( const WFLBY_EV_TALK_RWSEND* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[ƒƒbƒZ[ƒWŽóMŒã@ƒf[ƒ^‘—M‚·‚éƒVƒXƒeƒ€	ŽóM‚µ‚½‰ï˜bƒV[ƒPƒ“ƒX‚ð•Ô‚·
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡å¾Œã€€ãƒ‡ãƒ¼ã‚¿é€ä¿¡ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 	å—ä¿¡ã—ãŸä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’è¿”ã™
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‰ï˜bƒV[ƒPƒ“ƒX
+ *	@return	ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 static u16 WFLBY_EV_TALK_RWSEND_GetTalkSeq( const WFLBY_EV_TALK_RWSEND* cp_wk )

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>CARD_TryWaitBackupAsync</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">CARD_TryWaitBackupAsync</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,28 +22,28 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
-<p>�Ȃ�</p>
+<h2>引数</h2>
+<p>なし</p>
 
-<h2>�Ԃ�l</h2>
-<p>CARD �o�b�N�A�b�v�f�o�C�X�ւ̔񓯊��֐����Ă΂�����������̏ꍇ�� FALSE ���A�����łȂ���� TRUE ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>CARD バックアップデバイスへの非同期関数が呼ばれつつ処理が未完の場合は FALSE を、そうでなければ TRUE を返します。</p>
 
-<H2>����</H2>
-<P>CARD �o�b�N�A�b�v�f�o�C�X�ւ̔񓯊��������������Ă��邩���肵�܂��B<BR>
-����̌��ʂɂ�����炸�A�֐��͂����ɐ����Ԃ��܂��B<BR>
+<H2>説明</H2>
+<P>CARD バックアップデバイスへの非同期処理が完了しているか判定します。<BR>
+判定の結果にかかわらず、関数はすぐに制御を返します。<BR>
 <BR>
-���̊֐����Ԃ��l�͔񓯊������������������ǂ����Ɋւ���^���l�ł��B���ۂ̏������ʂ��擾����ɂ�<A href="../common/CARD_GetResultCode.html">CARD_GetResultCode</A> �֐����g�p���Ă��������B
+この関数が返す値は非同期処理が完了したかどうかに関する真理値です。実際の処理結果を取得するには<A href="../common/CARD_GetResultCode.html">CARD_GetResultCode</A> 関数を使用してください。
 <BR>
 <BR>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../common/CARD_GetResultCode.html">CARD_GetResultCode</A>
 <A href="CARD_WaitBackupAsync.html">CARD_WaitBackupAsync</A> 
 <BR></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/08/31 �Ԃ�l�Ɋւ���L�q���ꕔ�C��<br>
-2004/07/28 ����<BR>
+2004/08/31 返り値に関する記述を一部修正<br>
+2004/07/28 初版<BR>
 </P>
 </body>
 </html>

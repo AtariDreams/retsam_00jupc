@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_place_name.h
- * @brief	’n–¼æ“¾
+ * @brief	åœ°åå–å¾—
  * @author	Saito
  * @date	05.12.01
  */
@@ -9,7 +9,7 @@
 #ifndef	__FIELD_MATRIX_H__
 #define	__FIELD_MATRIX_H__
 
-//À‘Ì‚Íplace_name_core.c
+//å®Ÿä½“ã¯place_name_core.c
 extern void PNC_GetPlaceNameFromZoneID(	const int inZoneID,
 										const u32 inHeapID,
 										STRBUF *outName);

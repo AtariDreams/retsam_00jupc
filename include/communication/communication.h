@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	communication.h
- * @brief	’ÊMŠÖ˜A‚ÅŠO•”QÆ‚ª•K—v‚ÈŠî–{“I‚È‚à‚Ì‚ğ’è‹`
+ * @brief	é€šä¿¡é–¢é€£ã§å¤–éƒ¨å‚ç…§ãŒå¿…è¦ãªåŸºæœ¬çš„ãªã‚‚ã®ã‚’å®šç¾©
  * @author	Katsumi Ohno
  * @date    2005.11.14
  */
@@ -13,7 +13,7 @@
 #include "system/pms_data.h"
 
 
-//ggid’è‹`‚Íwh.h‚ÉˆÚ“®‚µ‚Ü‚µ‚½
+//ggidå®šç¾©ã¯wh.hã«ç§»å‹•ã—ã¾ã—ãŸ
 
 #ifndef OHNO_PRINT
 #if defined(DEBUG_ONLY_FOR_ohno) | defined(DEBUG_ONLY_FOR_tomoya_takahashi)//(defined(DEBUG_ONLY_FOR_ohno) | defined(DEBUG_ONLY_FOR_tomoya_takahashi) | defined(DEBUG_ONLY_FOR_mituhara))
@@ -42,7 +42,7 @@
 #ifndef TOMOYA_PRINT
 #if (defined(DEBUG_ONLY_FOR_tomoya_takahashi))
 	
-/*// OS_Printf‚Ì©•ª‚¾‚¯o‚·”Õ
+/*// OS_Printfã®è‡ªåˆ†ã ã‘å‡ºã™ç›¤
 #define TOMOYA_PRINT(...) \
 	(void) ((OS_TPrintf(__VA_ARGS__)))//*/
 
@@ -57,31 +57,31 @@
 
 #define MYSTERY_BEACON_DATA_SIZE   (84)
 
-// WMBssDesc‚ÌgameInfo.userGameInfo‚ğg—p‚µ‚Ä‚¢‚éó‹µ‚Ì\‘¢‘Ì
-// WM_SIZE_USER_GAMEINFO  Å‘å 112byte
-// ¡Œã‚Ì‰ï‹c‚Å•ÏX‚É‚È‚é—\’è
-// ‰¼‚Å‚±‚±‚Éˆø‰z‚µ
+// WMBssDescã®gameInfo.userGameInfoã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹çŠ¶æ³ã®æ§‹é€ ä½“
+// WM_SIZE_USER_GAMEINFO  æœ€å¤§ 112byte
+// ä»Šå¾Œã®ä¼šè­°ã§å¤‰æ›´ã«ãªã‚‹äºˆå®š
+// ä»®ã§ã“ã“ã«å¼•è¶Šã—
 typedef struct{
   u32 		pokeID;     	// ID												8
-  u8  		serviceNo;   	// ’ÊMƒT[ƒrƒX”Ô†									9
-  u8  		regulationNo;  	// í“¬ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“•ƒRƒ“ƒeƒXƒgƒ^ƒCƒv‚Ì¯•Ê		10
-  u8  		connectNum;    	// ‚Â‚È‚ª‚Á‚Ä‚¢‚é‘ä”  --> –{e‚©‚Ç‚¤‚©¯•Ê			11
-  u8 		soloDebugNo;  	// ‘¼‚Ìl‚Æ’ÊM‚µ‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì”Ô†			12
-  PMS_DATA	pmsData;									// ŠÈˆÕ‰ï˜bƒf[ƒ^		20
-  u8  		myStatusBuff[COMM_SEND_MYSTATUS_SIZE];  	// ÀÛ‚Ìmystatus‚Ì‘å‚«‚³‚ÍÀs‚Å‚È‚¢‚Æ‚í‚©‚ç‚È‚¢‚Ì‚Åã‚ÉØ‚Á‚Ä‚ ‚é
-  u8  		regulationBuff[COMM_SEND_REGULATION_SIZE];  // ÀÛ‚Ìreg‚Ì‘å‚«‚³‚ÍÀs‚Å‚È‚¢‚Æ‚í‚©‚ç‚È‚¢‚Ì‚Åã‚ÉØ‚Á‚Ä‚ ‚é
-  // í“¬‚ÌˆÈŠO‚Í‹ó‚¢‚Ä‚é‚Ì‚ÅAƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Ìq‹@ID‚à“ü‚ê‚é–‚É‚·‚é
-  u32		UnionRoomTime;								// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚É“ü‚Á‚Ä‚¢‚éŠÔ‚ğ‘‚«Š·‚¦‚é
-  u8        pause;   // Ú‘±‚ğ‹Ö~‚µ‚½‚¢‚Ég—p‚·‚é
+  u8  		serviceNo;   	// é€šä¿¡ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·									9
+  u8  		regulationNo;  	// æˆ¦é—˜ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ï¼†ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã®è­˜åˆ¥		10
+  u8  		connectNum;    	// ã¤ãªãŒã£ã¦ã„ã‚‹å°æ•°  --> æœ¬è¦ªã‹ã©ã†ã‹è­˜åˆ¥			11
+  u8 		soloDebugNo;  	// ä»–ã®äººã¨é€šä¿¡ã—ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ç•ªå·			12
+  PMS_DATA	pmsData;									// ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿		20
+  u8  		myStatusBuff[COMM_SEND_MYSTATUS_SIZE];  	// å®Ÿéš›ã®mystatusã®å¤§ãã•ã¯å®Ÿè¡Œæ™‚ã§ãªã„ã¨ã‚ã‹ã‚‰ãªã„ã®ã§ä¸Šã«åˆ‡ã£ã¦ã‚ã‚‹
+  u8  		regulationBuff[COMM_SEND_REGULATION_SIZE];  // å®Ÿéš›ã®regã®å¤§ãã•ã¯å®Ÿè¡Œæ™‚ã§ãªã„ã¨ã‚ã‹ã‚‰ãªã„ã®ã§ä¸Šã«åˆ‡ã£ã¦ã‚ã‚‹
+  // æˆ¦é—˜ã®æ™‚ä»¥å¤–ã¯ç©ºã„ã¦ã‚‹ã®ã§ã€ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã®å­æ©ŸIDã‚‚å…¥ã‚Œã‚‹äº‹ã«ã™ã‚‹
+  u32		UnionRoomTime;								// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã«å…¥ã£ã¦ã„ã‚‹æ™‚é–“ã‚’æ›¸ãæ›ãˆã‚‹
+  u8        pause;   // æ¥ç¶šã‚’ç¦æ­¢ã—ãŸã„æ™‚ã«ä½¿ç”¨ã™ã‚‹
 } _GF_BSS_DATA_INFO;
 
-// ‹¤—p‘Ì‚É•Ï‚¦‚½‚©‚Á‚½‚ª‚ ‚Ü‚è‚ÉUNION‚Ìƒ\[ƒX•ÏX‚ª‘½‚¢‚Ì‚ÅA•Ê\‘¢‘Ì
+// å…±ç”¨ä½“ã«å¤‰ãˆãŸã‹ã£ãŸãŒã‚ã¾ã‚Šã«UNIONã®ã‚½ãƒ¼ã‚¹å¤‰æ›´ãŒå¤šã„ã®ã§ã€åˆ¥æ§‹é€ ä½“
 typedef struct{
   u32 		pokeID;     	// ID												8
-  u8  		serviceNo;   	// ’ÊMƒT[ƒrƒX”Ô†									9
-  u8  		regulationNo;  	// í“¬ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“•ƒRƒ“ƒeƒXƒgƒ^ƒCƒv‚Ì¯•Ê		10
-  u8  		connectNum;    	// ‚Â‚È‚ª‚Á‚Ä‚¢‚é‘ä”  --> –{e‚©‚Ç‚¤‚©¯•Ê			11
-  u8 		soloDebugNo;  	// ‘¼‚Ìl‚Æ’ÊM‚µ‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì”Ô†			12
+  u8  		serviceNo;   	// é€šä¿¡ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·									9
+  u8  		regulationNo;  	// æˆ¦é—˜ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ï¼†ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã®è­˜åˆ¥		10
+  u8  		connectNum;    	// ã¤ãªãŒã£ã¦ã„ã‚‹å°æ•°  --> æœ¬è¦ªã‹ã©ã†ã‹è­˜åˆ¥			11
+  u8 		soloDebugNo;  	// ä»–ã®äººã¨é€šä¿¡ã—ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ç•ªå·			12
   u8 mysteryData[MYSTERY_BEACON_DATA_SIZE];
 } _GF_BSS_MYSTERY;
 
@@ -96,7 +96,7 @@ typedef struct{
 #include "communication/wm_icon.h"
 #include "communication/comm_state.h"
 
-// ‘¼‚Ìl‚Æ’ÊMÚ‘±‚µ‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ì”Ô†
+// ä»–ã®äººã¨é€šä¿¡æ¥ç¶šã—ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ç•ªå·
 #ifdef PM_DEBUG		//DebugROM
 #if (defined(DEBUG_ONLY_FOR_ohno) | defined(DEBUG_ONLY_FOR_mituhara))
 #define   SOLO_DEBUG_NO   (0)
@@ -105,11 +105,11 @@ typedef struct{
 #endif
 #endif //PM_DEBUG
 
-// ƒ_ƒCƒŒƒNƒgƒfƒoƒbƒO’ÊM‚ª‘¼‚Ì‚à‚Ì‚Æ¬ü‚µ‚È‚¢‚æ‚¤‚É
+// ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆãƒ‡ãƒãƒƒã‚°é€šä¿¡ãŒä»–ã®ã‚‚ã®ã¨æ··ç·šã—ãªã„ã‚ˆã†ã«
 #define COMMDIRECT_DEBUG_NO  (2)
 
 
-// ƒf[ƒ^ƒ_ƒ“ƒv
+// ãƒ‡ãƒ¼ã‚¿ãƒ€ãƒ³ãƒ—
 #ifdef PM_DEBUG
 extern void CommDump_Debug(u8* adr, int length, char* pInfoStr);
 #define DEBUG_DUMP(a,l,s)  CommDump_Debug(a,l,s)

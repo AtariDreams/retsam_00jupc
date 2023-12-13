@@ -22,7 +22,7 @@ namespace AdminTool {
     array<Byte>^ NativeTypeToCliByteArray(const T& native)
     {
         array<Byte>^ arr = gcnew array<Byte>(sizeof(native));
-        // native‚Ö‚Í‘‚«‚Ü‚È‚¢‚Ì‚ÅconstŠO‚µ
+        // nativeã¸ã¯æ›¸ãè¾¼ã¾ãªã„ã®ã§constå¤–ã—
         Marshal::Copy(IntPtr(const_cast<T*>(&native)), arr, 0, sizeof(native)); 
         return arr;
     }
@@ -52,11 +52,11 @@ namespace AdminTool {
         return v;
     }
 
-	// ƒlƒCƒeƒBƒu‚È”z—ñ‚©‚ç’lŒ^‚ÌƒŠƒXƒg‚Ö‚Ì•ÏŠ·
+	// ãƒã‚¤ãƒ†ã‚£ãƒ–ãªé…åˆ—ã‹ã‚‰å€¤å‹ã®ãƒªã‚¹ãƒˆã¸ã®å¤‰æ›
     template<class TargetT, class SourceT>
     List<TargetT>^ NativeArrayToList(const SourceT* ary, int num)
     {
-        // —Ç‚¢•û–@‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚Ì‚ÅˆêŒÂ‚¸‚Â’Ç‰Á
+        // è‰¯ã„æ–¹æ³•ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã®ã§ä¸€å€‹ãšã¤è¿½åŠ 
         List<TargetT>^ list = gcnew List<TargetT>();
         for(int i=0; i<num; i++)
         {
@@ -65,11 +65,11 @@ namespace AdminTool {
         return list;
     }
 
-	// ƒlƒCƒeƒBƒu‚È”z—ñ‚©‚çƒnƒ“ƒhƒ‹‚ÌƒŠƒXƒg‚Ö‚Ì•ÏŠ·
+	// ãƒã‚¤ãƒ†ã‚£ãƒ–ãªé…åˆ—ã‹ã‚‰ãƒãƒ³ãƒ‰ãƒ«ã®ãƒªã‚¹ãƒˆã¸ã®å¤‰æ›
     template<class TargetT, class SourceT>
     List<TargetT^>^ NativeArrayToManageList(const SourceT* ary, int num)
     {
-        // —Ç‚¢•û–@‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚Ì‚ÅˆêŒÂ‚¸‚Â’Ç‰Á
+        // è‰¯ã„æ–¹æ³•ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã®ã§ä¸€å€‹ãšã¤è¿½åŠ 
         List<TargetT^>^ list = gcnew List<TargetT^>();
         for(int i=0; i<num; i++)
         {
@@ -78,7 +78,7 @@ namespace AdminTool {
         return list;
     }
 
-	// ”z—ñ‚Ì—v‘f‚ğ˜AŒ‹‚·‚é
+	// é…åˆ—ã®è¦ç´ ã‚’é€£çµã™ã‚‹
 	template<class T>
 	String^ Join(List<T>^ list, String^ token)
 	{
@@ -94,7 +94,7 @@ namespace AdminTool {
 		return result;
 	}
 
-	// ”z—ñ‚Ì—v‘f‚ğŒÂ”‚ğw’è‚µ‚Ä˜AŒ‹‚·‚é
+	// é…åˆ—ã®è¦ç´ ã‚’å€‹æ•°ã‚’æŒ‡å®šã—ã¦é€£çµã™ã‚‹
 	template<class T>
 	String^ Join(List<T>^ list, String^ token, int num)
 	{
@@ -110,19 +110,19 @@ namespace AdminTool {
 		return result;
 	}
 
-    // WFLBY_USER_PROFILE‚Ìƒ}ƒl[ƒW•\Œ»
-    // ‚¢‚ç‚È‚¢ƒpƒ‰ƒ[ƒ^‚ÍŠO‚·
+    // WFLBY_USER_PROFILEã®ãƒãƒãƒ¼ã‚¸è¡¨ç¾
+    // ã„ã‚‰ãªã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯å¤–ã™
     public ref struct REF_WFLBY_USER_PROFILE
     {
-        s32				userid;						// ƒƒr[“àƒ†[ƒUID
-        u32				trainerid;					// ƒgƒŒ[ƒi[ID					
-        List<STRCODE>^	name;	                    // ƒ†[ƒU–¼
-        u8				sex;						// «•Ê
-        u8				region_code;				// Œ¾ŒêƒR[ƒh LANG_JAPAN‚È‚Ç‚È‚Ç
-        u16				tr_type;					// ƒgƒŒ[ƒi‚ÌŒ©‚½–Ú
-        u16				nation;						// ‘ƒR[ƒh
-        u8				area;						// ’nˆæƒR[ƒh
-        u8				rom_code;					// ƒƒ€ƒo[ƒWƒ‡ƒ“	VERSION_PLATINUM‚Æ‚©
+        s32				userid;						// ãƒ­ãƒ“ãƒ¼å†…ãƒ¦ãƒ¼ã‚¶ID
+        u32				trainerid;					// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID					
+        List<STRCODE>^	name;	                    // ãƒ¦ãƒ¼ã‚¶å
+        u8				sex;						// æ€§åˆ¥
+        u8				region_code;				// è¨€èªã‚³ãƒ¼ãƒ‰ LANG_JAPANãªã©ãªã©
+        u16				tr_type;					// ãƒˆãƒ¬ãƒ¼ãƒŠã®è¦‹ãŸç›®
+        u16				nation;						// å›½ã‚³ãƒ¼ãƒ‰
+        u8				area;						// åœ°åŸŸã‚³ãƒ¼ãƒ‰
+        u8				rom_code;					// ãƒ­ãƒ ãƒãƒ¼ã‚¸ãƒ§ãƒ³	VERSION_PLATINUMã¨ã‹
 
         REF_WFLBY_USER_PROFILE(s32 userId_, u32 trainerid_, List<STRCODE>^ name_, u8 sex_, u8 region_code_, u16 tr_type_, u16 nation_, u8 area_, u8 rom_code_)
         {
@@ -142,7 +142,7 @@ namespace AdminTool {
             WFLBY_USER_PROFILE nativeProfile;
             if(size != sizeof(nativeProfile))
             {
-                throw gcnew System::Exception("ƒTƒCƒY‚ªˆê’v‚µ‚Ü‚¹‚ñ");
+                throw gcnew System::Exception("ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¾ã›ã‚“");
             }
             memcpy(&nativeProfile, (void*)ptr, sizeof(nativeProfile));
 
@@ -177,31 +177,31 @@ namespace AdminTool {
             vector<STRCODE> nativeName = ListToNativeArray(name);
             if(nativeName.empty())
             {
-                throw gcnew System::Exception("–¼‘O‚ª‹ó‚Å‚·B");
+                throw gcnew System::Exception("åå‰ãŒç©ºã§ã™ã€‚");
             }
 
             WFLBY_USER_PROFILE userProfile = {
-                userid, // ƒ†[ƒUID
-                trainerid,   // ƒgƒŒ[ƒi[ID
-                {0},   // ƒ†[ƒU–¼AŒã‚Å‘ã“ü
-                0,      // “üºŠÔ
-                0,      // ©•ª‚Ì‘‚ÌGMTŠÔ
-                {1, 2, 3, 4, 5, 6},    // è‚¿‚Ìƒ|ƒPƒ‚ƒ“
-                {0},    // ƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒf[ƒ^
-                {0},    // —‘ƒtƒ‰ƒO
-                sex,      // «•Ê
-                region_code,      // Œ¾ŒêƒR[ƒh
-                tr_type,      // ƒgƒŒ[ƒi[ƒ^ƒCƒv
-                nation,    // ‘ƒR[ƒh
-                area,      // ’nˆæƒR[ƒh
-                0,      // ‘S‘}ŠÓ•Ûƒtƒ‰ƒO
-                0,      // ƒQ[ƒ€ƒNƒŠƒAƒtƒ‰ƒO
-                0,      // ƒ^ƒbƒ`ƒgƒC
-                rom_code,     // ROMƒo[ƒWƒ‡ƒ“
-                0,      // ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX
-                0,      // –`Œ¯‚ğn‚ß‚½“ú
-                {0},    // ÅŒã‚És‚Á‚½‚±‚Æ
-                {0}     // ÅŒã‚És‚Á‚½‚±‚Æ‚ÉŠÖ˜A‚·‚él
+                userid, // ãƒ¦ãƒ¼ã‚¶ID
+                trainerid,   // ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+                {0},   // ãƒ¦ãƒ¼ã‚¶åã€å¾Œã§ä»£å…¥
+                0,      // å…¥å®¤æ™‚é–“
+                0,      // è‡ªåˆ†ã®å›½ã®GMTæ™‚é–“
+                {1, 2, 3, 4, 5, 6},    // æ‰‹æŒã¡ã®ãƒã‚±ãƒ¢ãƒ³
+                {0},    // ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒ‡ãƒ¼ã‚¿
+                {0},    // åµãƒ•ãƒ©ã‚°
+                sex,      // æ€§åˆ¥
+                region_code,      // è¨€èªã‚³ãƒ¼ãƒ‰
+                tr_type,      // ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
+                nation,    // å›½ã‚³ãƒ¼ãƒ‰
+                area,      // åœ°åŸŸã‚³ãƒ¼ãƒ‰
+                0,      // å…¨å›½å›³é‘‘ä¿æŒãƒ•ãƒ©ã‚°
+                0,      // ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°
+                0,      // ã‚¿ãƒƒãƒãƒˆã‚¤
+                rom_code,     // ROMãƒãƒ¼ã‚¸ãƒ§ãƒ³
+                0,      // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+                0,      // å†’é™ºã‚’å§‹ã‚ãŸæ—¥æ™‚
+                {0},    // æœ€å¾Œã«è¡Œã£ãŸã“ã¨
+                {0}     // æœ€å¾Œã«è¡Œã£ãŸã“ã¨ã«é–¢é€£ã™ã‚‹äºº
             };
             memcpy(&userProfile.name, DWCi_GetVectorBuffer(nativeName),
                 sizeof(userProfile.name[0]) * std::min(nativeName.size(), (std::size_t)(PERSON_NAME_SIZE + EOM_SIZE)));
@@ -215,14 +215,14 @@ namespace AdminTool {
 		return questionNo >= PPW_LOBBY_FREE_QUESTION_START_NO && questionNo < PPW_LOBBY_FREE_QUESTION_START_NO + PPW_LOBBY_FREE_QUESTION_NUM;
 	}
 
-	/// ƒAƒ“ƒP[ƒg“à—e
+	/// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå†…å®¹
 	public ref struct REF_PPW_LobbyQuestionnaireRecord
 	{
-		s32 questionSerialNo;                   ///< ¿–â’Ê‚µ”Ô†B0‚©‚çƒXƒ^[ƒgB
-		s32 questionNo;                         ///< ¿–â”Ô†BROM“à¿–â:0`59 ”CˆÓ¿–â:PPW_LOBBY_FREE_QUESTION_START_NO`PPW_LOBBY_FREE_QUESTION_START_NO+PPW_LOBBY_FREE_QUESTION_NUM
-		List<u16>^ questionSentence;   ///< ”CˆÓ¿–âB¿–â”Ô†‚ª”CˆÓ¿–â‚Ì”ÍˆÍ‚¾‚Á‚½‚Æ‚«‚Ì‚İŠi”[‚³‚ê‚Ü‚·B
-		List<List<u16>^>^ answer;    ///< ”CˆÓ¿–â‚Ì‰ñ“šB¿–â”Ô†‚ª”CˆÓ¿–â‚Ì”ÍˆÍ‚¾‚Á‚½‚Æ‚«‚Ì‚İŠi”[‚³‚ê‚Ü‚·B
-		List<u8>^ multiLanguageSummarizeFlags;     ///< WŒvŒ¾Œê
+		s32 questionSerialNo;                   ///< è³ªå•é€šã—ç•ªå·ã€‚0ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆã€‚
+		s32 questionNo;                         ///< è³ªå•ç•ªå·ã€‚ROMå†…è³ªå•:0ã€œ59 ä»»æ„è³ªå•:PPW_LOBBY_FREE_QUESTION_START_NOã€œPPW_LOBBY_FREE_QUESTION_START_NO+PPW_LOBBY_FREE_QUESTION_NUM
+		List<u16>^ questionSentence;   ///< ä»»æ„è³ªå•ã€‚è³ªå•ç•ªå·ãŒä»»æ„è³ªå•ã®ç¯„å›²ã ã£ãŸã¨ãã®ã¿æ ¼ç´ã•ã‚Œã¾ã™ã€‚
+		List<List<u16>^>^ answer;    ///< ä»»æ„è³ªå•ã®å›ç­”ã€‚è³ªå•ç•ªå·ãŒä»»æ„è³ªå•ã®ç¯„å›²ã ã£ãŸã¨ãã®ã¿æ ¼ç´ã•ã‚Œã¾ã™ã€‚
+		List<u8>^ multiLanguageSummarizeFlags;     ///< é›†è¨ˆè¨€èª
 		s32 isSpecialWeek;
 
 		REF_PPW_LobbyQuestionnaireRecord(const PPW_LobbyQuestionnaireRecord& native)
@@ -244,32 +244,32 @@ namespace AdminTool {
 			List<String^>^ answerStrs = gcnew List<String^>();
 			for each(List<u16>^ ans in answer)
 			{
-				answerStrs->Add(IsFreeQuestion(questionNo) ? Util::UShortListToUnicodeString(ans) : "<‚È‚µ>");
+				answerStrs->Add(IsFreeQuestion(questionNo) ? Util::UShortListToUnicodeString(ans) : "<ãªã—>");
 			}
 
-			return "¿–â’Ê‚µ”Ô†F" + questionSerialNo + Environment::NewLine +
-				"¿–â”Ô†F" + questionNo + Environment::NewLine +
-				"¿–â•¶F" + (IsFreeQuestion(questionNo) ? Util::UShortListToUnicodeString(questionSentence) : "<‚È‚µ>") + Environment::NewLine +
-				"‰ñ“šF" + Join(answerStrs, ", ") + Environment::NewLine +
-				"WŒvŒ¾ŒêF" + Join(multiLanguageSummarizeFlags, ", ", LANGUAGE_MAX) + Environment::NewLine +
-				"ƒXƒyƒVƒƒƒ‹ƒEƒB[ƒNF" + (isSpecialWeek ? "‚Í‚¢" : "‚¢‚¢‚¦");
+			return "è³ªå•é€šã—ç•ªå·ï¼š" + questionSerialNo + Environment::NewLine +
+				"è³ªå•ç•ªå·ï¼š" + questionNo + Environment::NewLine +
+				"è³ªå•æ–‡ï¼š" + (IsFreeQuestion(questionNo) ? Util::UShortListToUnicodeString(questionSentence) : "<ãªã—>") + Environment::NewLine +
+				"å›ç­”ï¼š" + Join(answerStrs, ", ") + Environment::NewLine +
+				"é›†è¨ˆè¨€èªï¼š" + Join(multiLanguageSummarizeFlags, ", ", LANGUAGE_MAX) + Environment::NewLine +
+				"ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯ï¼š" + (isSpecialWeek ? "ã¯ã„" : "ã„ã„ãˆ");
 		}
 	};
 
-	/// ƒAƒ“ƒP[ƒgî•ñ
+	/// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±
 	public ref struct REF_PPW_LobbyQuestionnaire
 	{
-		REF_PPW_LobbyQuestionnaireRecord^ currentQuestionnaireRecord;    ///< Œ»İ‚ÌƒAƒ“ƒP[ƒgî•ñ
-		REF_PPW_LobbyQuestionnaireRecord^ lastQuestionnaireRecord;       ///< ‘O‰ñ‚ÌƒAƒ“ƒP[ƒgî•ñ
-		List<s32>^ lastResult;         ///< ‘O‰ñ‚Ì©•ª‚ÌŒ¾Œê‚ÌŒ‹‰Ê
-		List<s32>^ lastMultiResult;    ///< ‘O‰ñ‚Ì•¡”WŒvŒ¾Œê‚Å‚ÌWŒvŒ‹‰ÊB::lastQuestionnaireRecord\‘¢‘Ì‚ÌmultiLanguageSummarizeFlagsƒƒ“ƒo‚Å•\‚³‚ê‚éŒ¾Œê‚Å‚ÌWŒvŒ‹‰Ê‚Å‚·B
+		REF_PPW_LobbyQuestionnaireRecord^ currentQuestionnaireRecord;    ///< ç¾åœ¨ã®ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±
+		REF_PPW_LobbyQuestionnaireRecord^ lastQuestionnaireRecord;       ///< å‰å›ã®ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±
+		List<s32>^ lastResult;         ///< å‰å›ã®è‡ªåˆ†ã®è¨€èªã®çµæœ
+		List<s32>^ lastMultiResult;    ///< å‰å›ã®è¤‡æ•°é›†è¨ˆè¨€èªã§ã®é›†è¨ˆçµæœã€‚::lastQuestionnaireRecordæ§‹é€ ä½“ã®multiLanguageSummarizeFlagsãƒ¡ãƒ³ãƒã§è¡¨ã•ã‚Œã‚‹è¨€èªã§ã®é›†è¨ˆçµæœã§ã™ã€‚
 
         REF_PPW_LobbyQuestionnaire(IntPtr ptr, int size)
         {
             PPW_LobbyQuestionnaire native;
             if(size != sizeof(native))
             {
-                throw gcnew System::Exception("ƒTƒCƒY‚ªˆê’v‚µ‚Ü‚¹‚ñ");
+                throw gcnew System::Exception("ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¾ã›ã‚“");
             }
             memcpy(&native, (void*)ptr, sizeof(native));
 
@@ -281,19 +281,19 @@ namespace AdminTool {
 
 		virtual System::String^ ToString() new
 		{
-			return "¡T‚ÌƒAƒ“ƒP[ƒg“à—eF" + Environment::NewLine +
+			return "ä»Šé€±ã®ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå†…å®¹ï¼š" + Environment::NewLine +
 				currentQuestionnaireRecord->ToString() + Environment::NewLine + Environment::NewLine +
-				"æT‚ÌƒAƒ“ƒP[ƒg“à—eF" + Environment::NewLine +
+				"å…ˆé€±ã®ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå†…å®¹ï¼š" + Environment::NewLine +
 				lastQuestionnaireRecord->ToString() + Environment::NewLine + Environment::NewLine +
-				"æT‚ÌŒ‹‰Ê(©•ª‚ÌŒ¾Œê)F" + Join(lastResult, ", ") + Environment::NewLine +
-				"æT‚ÌŒ‹‰Ê(•¡”Œ¾Œê)F" + Join(lastMultiResult, ", ");
+				"å…ˆé€±ã®çµæœ(è‡ªåˆ†ã®è¨€èª)ï¼š" + Join(lastResult, ", ") + Environment::NewLine +
+				"å…ˆé€±ã®çµæœ(è¤‡æ•°è¨€èª)ï¼š" + Join(lastMultiResult, ", ");
 
 		}
 	};
 
 
 
-	/// ¿–âğŒ
+	/// è³ªå•æ¡ä»¶
     [Serializable()]
 	public ref struct REF_PPW_LobbyQuestionCondition
 	{
@@ -323,7 +323,7 @@ namespace AdminTool {
 		}
 	};
 
-	/// ƒXƒyƒVƒƒƒ‹ƒEƒB[ƒNƒŒƒR[ƒh
+	/// ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯ãƒ¬ã‚³ãƒ¼ãƒ‰
     [Serializable()]
 	public ref struct REF_PPW_LobbySpecialWeekRecord
 	{
@@ -534,7 +534,7 @@ namespace AdminTool {
             PPW_LobbySpecialWeekRecord native;
             if(size != sizeof(native))
             {
-                throw gcnew System::Exception("ƒTƒCƒY‚ªˆê’v‚µ‚Ü‚¹‚ñ");
+                throw gcnew System::Exception("ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¾ã›ã‚“");
             }
             memcpy(&native, (void*)ptr, sizeof(native));
 
@@ -546,7 +546,7 @@ namespace AdminTool {
         {
 			PPW_LobbySpecialWeekRecord native = {
 				questionSerialNo,
-				{0}	// questionConditions Œã‚Å‘ã“ü
+				{0}	// questionConditions å¾Œã§ä»£å…¥
 			};
             memcpy(&native.questionConditions,
 				DWCi_GetVectorBuffer(ListToNativeArray<PPW_LobbyQuestionCondition, REF_PPW_LobbyQuestionCondition>(questionConditions)),
@@ -569,7 +569,7 @@ namespace AdminTool {
 		}
 	};
 
-	/// ”CˆÓ¿–â
+	/// ä»»æ„è³ªå•
 	public ref struct REF_PPW_LobbyFreeQuestion
 	{
 		static const int LOBBY_MAX_QUESTION_SENTENCE_LENGTH = PPW_LOBBY_MAX_QUESTION_SENTENCE_LENGTH;
@@ -578,10 +578,10 @@ namespace AdminTool {
 		static const int NATIVE_SIZE = sizeof(PPW_LobbyFreeQuestion);
 
 	private:
-		s32 language;                   ///< “o˜^‚·‚éŒ¾Œê
-		s32 questionNo;                 ///< ¿–â”Ô†
-		String^ questionSentence;	///< ”CˆÓ¿–âB
-		List<String^>^ answer;		///< ”CˆÓ¿–â‚Ì‰ñ“šB
+		s32 language;                   ///< ç™»éŒ²ã™ã‚‹è¨€èª
+		s32 questionNo;                 ///< è³ªå•ç•ªå·
+		String^ questionSentence;	///< ä»»æ„è³ªå•ã€‚
+		List<String^>^ answer;		///< ä»»æ„è³ªå•ã®å›ç­”ã€‚
 	public:
 		property s32 Language
 		{
@@ -661,7 +661,7 @@ namespace AdminTool {
 			answer = answer_;
 		}
 
-		// XMLƒVƒŠƒAƒ‰ƒCƒY‚Å•K—v
+		// XMLã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã§å¿…è¦
 		REF_PPW_LobbyFreeQuestion()
 		{
 			answer = gcnew List<String^>();
@@ -676,14 +676,14 @@ namespace AdminTool {
             PPW_LobbyFreeQuestion native;
             if(size != sizeof(native))
             {
-                throw gcnew Exception("ƒTƒCƒY‚ªˆê’v‚µ‚Ü‚¹‚ñ");
+                throw gcnew Exception("ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¾ã›ã‚“");
             }
             memcpy(&native, (void*)ptr, sizeof(native));
 
 			questionNo = native.questionNo;
 			language = native.language;
 
-			// ¿–â•¶‚Ìƒ}[ƒVƒƒƒŠƒ“ƒO
+			// è³ªå•æ–‡ã®ãƒãƒ¼ã‚·ãƒ£ãƒªãƒ³ã‚°
 			{
 				List<u16>^ questionSentenceList = NativeArrayToList<u16, u16>(native.questionSentence, PPW_LOBBY_MAX_QUESTION_SENTENCE_LENGTH);
 				List<u8>^ bytes = Util::UShortsToBytes(questionSentenceList, false);
@@ -696,11 +696,11 @@ namespace AdminTool {
 				}
 				catch(Exception^)
 				{
-					throw gcnew Exception("ƒT[ƒo‚Éİ’è‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚È‚¢‚©A‰ó‚ê‚Ä‚¢‚Ü‚·B‰Šú’l‚ğƒZƒbƒg‚µ‚Ä‚­‚¾‚³‚¢B");
+					throw gcnew Exception("ã‚µãƒ¼ãƒã«è¨­å®šãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãªã„ã‹ã€å£Šã‚Œã¦ã„ã¾ã™ã€‚åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆã—ã¦ãã ã•ã„ã€‚");
 				}
 			}
 
-			// ‰ñ“š‚Ìƒ}[ƒVƒƒƒŠƒ“ƒO
+			// å›ç­”ã®ãƒãƒ¼ã‚·ãƒ£ãƒªãƒ³ã‚°
 			answer = gcnew List<String^>();
 			for(int i=0; i<PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM; i++)
 			{
@@ -715,18 +715,18 @@ namespace AdminTool {
 			PPW_LobbyFreeQuestion native = {
 				language,
 				questionNo,
-				{0},	// questionSentence Œã‚Å‘ã“ü
-				{0}		// answer Œã‚Å‘ã“ü
+				{0},	// questionSentence å¾Œã§ä»£å…¥
+				{0}		// answer å¾Œã§ä»£å…¥
 			};
 
-			// String‚©‚çList<u16>‚Ö•ÏŠ·
+			// Stringã‹ã‚‰List<u16>ã¸å¤‰æ›
             String^ cur = "";
             String^ questionSentencePoke = "";
 			List<String^>^ answerPokes = gcnew List<String^>();
             try
             {
 				cur = questionSentence;
-				cur = Util::ConvMacroToLF(cur);	// <LF>‚©‚ç‰üsƒR[ƒh‚É•ÏŠ·‚·‚é
+				cur = Util::ConvMacroToLF(cur);	// <LF>ã‹ã‚‰æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã«å¤‰æ›ã™ã‚‹
 				questionSentencePoke = DpwUtil::Tools->UnicodeToPokecode(cur);
 				for(int i=0; i<PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM; i++)
 				{
@@ -736,7 +736,7 @@ namespace AdminTool {
             }
             catch (Exception^ e)
             {
-				MessageBox::Show("u" + cur + "v‚ÍƒQ[ƒ€“à•¶šƒR[ƒh‚Ö•ÏŠ·‚Å‚«‚Ü‚¹‚ñB");
+				MessageBox::Show("ã€Œ" + cur + "ã€ã¯ã‚²ãƒ¼ãƒ å†…æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¸å¤‰æ›ã§ãã¾ã›ã‚“ã€‚");
                 throw e;
             }
 			List<u16>^ questionSentenceList = Util::UnicodeStringToUShortList(questionSentencePoke);
@@ -746,7 +746,7 @@ namespace AdminTool {
 				answerList->Add(Util::UnicodeStringToUShortList(answerPokes[i]));
 			}
 			
-			// List<u16>‚©‚çƒlƒCƒeƒBƒu”z—ñ‚Ö
+			// List<u16>ã‹ã‚‰ãƒã‚¤ãƒ†ã‚£ãƒ–é…åˆ—ã¸
             memcpy(&native.questionSentence,
 				DWCi_GetVectorBuffer(ListToNativeArray(questionSentenceList)),
                 sizeof(native.questionSentence[0]) * PPW_LOBBY_MAX_QUESTION_SENTENCE_LENGTH);

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	gds_data_conv.c
- * @brief	ƒ{ƒbƒNƒX‚âƒhƒŒƒXƒAƒbƒv“™‚ðGDSƒT[ƒo[‚ÅŽg—p‚·‚éŒ`Ž®‚É•ÏŠ·‚·‚éƒc[ƒ‹
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ã‚„ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ç­‰ã‚’GDSã‚µãƒ¼ãƒãƒ¼ã§ä½¿ç”¨ã™ã‚‹å½¢å¼ã«å¤‰æ›ã™ã‚‹ãƒ„ãƒ¼ãƒ«
  * @author	matsuda
- * @date	2007.12.10(ŒŽ)
+ * @date	2007.12.10(æœˆ)
  */
 //==============================================================================
 #include "common.h"
@@ -27,31 +27,31 @@
 
 
 //==============================================================================
-//	ƒhƒŒƒXƒAƒbƒv
+//	ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒhƒŒƒXƒAƒbƒvƒf[ƒ^‚ðGTƒhƒŒƒXƒAƒbƒvŒ`Ž®‚É•ÏŠ·‚·‚é
+ * @brief   ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’GTãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—å½¢å¼ã«å¤‰æ›ã™ã‚‹
  *
- * @param   dress			Œ³ƒf[ƒ^‚Æ‚È‚éƒhƒŒƒXƒAƒbƒvƒf[ƒ^
- * @param   gt_dress		•ÏŠ·Œã‚Ìƒf[ƒ^ƒZƒbƒgæ
+ * @param   dress			å…ƒãƒ‡ãƒ¼ã‚¿ã¨ãªã‚‹ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+ * @param   gt_dress		å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå…ˆ
  */
 //--------------------------------------------------------------
 void GDS_CONV_Dress_to_GTDress(SAVEDATA *sv, const IMC_TELEVISION_SAVEDATA * dress, GT_GDS_DRESS * gt_dress)
 {
 	ImcTelevision_to_GTDress(dress, gt_dress);
 	
-	//ƒ`ƒFƒbƒNƒTƒ€ì¬
+	//ãƒã‚§ãƒƒã‚¯ã‚µãƒ ä½œæˆ
 	gt_dress->crc.crc16ccitt_hash = 
 		SaveData_CalcCRC(sv, gt_dress, sizeof(GT_GDS_DRESS) - GT_GDS_CRC_SIZE);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   GTƒhƒŒƒXƒAƒbƒv‚ðƒhƒŒƒXƒAƒbƒvŒ`Ž®‚É•ÏŠ·‚·‚é
+ * @brief   GTãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚’ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—å½¢å¼ã«å¤‰æ›ã™ã‚‹
  *
- * @param   gt_dress		Œ³ƒf[ƒ^‚Æ‚È‚éGTƒhƒŒƒXƒAƒbƒvƒf[ƒ^
- * @param   dress			•ÏŠ·Œã‚Ìƒf[ƒ^ƒZƒbƒgæ
+ * @param   gt_dress		å…ƒãƒ‡ãƒ¼ã‚¿ã¨ãªã‚‹GTãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+ * @param   dress			å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå…ˆ
  */
 //--------------------------------------------------------------
 void GDS_CONV_GTDress_to_Dress(const GT_GDS_DRESS * gt_dress, IMC_TELEVISION_SAVEDATA * dress)
@@ -61,18 +61,18 @@ void GDS_CONV_GTDress_to_Dress(const GT_GDS_DRESS * gt_dress, IMC_TELEVISION_SAV
 
 
 //==============================================================================
-//	ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg
-//		¦ƒ{ƒbƒNƒX‚Í•`‰æ•”•ª‚àGT\‘¢‘Ì‚ðŽg—p‚·‚é‚½‚ßAŽ©•ª‚Ìƒ{ƒbƒNƒX‚ð‘—M‚·‚éŽž‚Ì
-//		  •ÏŠ·–½—ß‚¾‚¯‚ª•K—v
+//	ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ
+//		â€»ãƒœãƒƒã‚¯ã‚¹ã¯æç”»éƒ¨åˆ†ã‚‚GTæ§‹é€ ä½“ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã€è‡ªåˆ†ã®ãƒœãƒƒã‚¯ã‚¹ã‚’é€ä¿¡ã™ã‚‹æ™‚ã®
+//		  å¤‰æ›å‘½ä»¤ã ã‘ãŒå¿…è¦
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒbƒNƒXƒf[ƒ^‚ðGTƒ{ƒbƒNƒXƒVƒ‡ƒbƒgƒf[ƒ^‚É•ÏŠ·
+ * @brief   ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’GTãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›
  *
- * @param   boxdata			ƒ{ƒbƒNƒXƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tray_number		ƒgƒŒƒC”Ô†
- * @param   gt_box			ƒf[ƒ^‘ã“üæ
- * @param   heap_id			ƒeƒ“ƒ|ƒ‰ƒŠ‚Æ‚µ‚ÄŽg—p‚·‚éƒq[ƒv‚ÌID
+ * @param   boxdata			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tray_number		ãƒˆãƒ¬ã‚¤ç•ªå·
+ * @param   gt_box			ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ
+ * @param   heap_id			ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
  */
 //--------------------------------------------------------------
 void GDS_CONV_Box_to_GTBox(SAVEDATA *sv, const BOX_DATA *boxdata, int tray_number, GT_BOX_SHOT *gt_box, int heap_id)
@@ -82,7 +82,7 @@ void GDS_CONV_Box_to_GTBox(SAVEDATA *sv, const BOX_DATA *boxdata, int tray_numbe
 
 	MI_CpuClear8( gt_box, sizeof( GT_BOX_SHOT ) );
 	
-	box_name = STRBUF_Create(GT_PLW_BOX_TRAYNAME_SIZE * 3, heap_id);	//”O‚Ì‚½‚ß‘½‚ß‚ÉŠm•Û
+	box_name = STRBUF_Create(GT_PLW_BOX_TRAYNAME_SIZE * 3, heap_id);	//å¿µã®ãŸã‚å¤šã‚ã«ç¢ºä¿
 	BOXDAT_GetBoxName(boxdata, tray_number, box_name);
 	STRBUF_GetStringCode(box_name, gt_box->box_name, GT_PLW_BOX_TRAYNAME_SIZE);
 	STRBUF_Delete(box_name);
@@ -101,28 +101,28 @@ void GDS_CONV_Box_to_GTBox(SAVEDATA *sv, const BOX_DATA *boxdata, int tray_numbe
 	
 	gt_box->wallPaper = BOXDAT_GetWallPaperNumber(boxdata, tray_number);
 	
-	//ƒT[ƒo[‘—MŽž‚ÉƒZƒbƒg‚·‚é‚Ì‚Å‚±‚±‚Å‚Í0‰Šú‰»
+	//ã‚µãƒ¼ãƒãƒ¼é€ä¿¡æ™‚ã«ã‚»ãƒƒãƒˆã™ã‚‹ã®ã§ã“ã“ã§ã¯0åˆæœŸåŒ–
 	gt_box->category_no = 0;
 	
-	//ƒ`ƒFƒbƒNƒTƒ€ì¬
+	//ãƒã‚§ãƒƒã‚¯ã‚µãƒ ä½œæˆ
 	gt_box->crc.crc16ccitt_hash = 
 		SaveData_CalcCRC(sv, gt_box, sizeof(GT_BOX_SHOT) - GT_GDS_CRC_SIZE);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   GTƒ{ƒbƒNƒXƒVƒ‡ƒbƒg‚É“o˜^ƒJƒeƒSƒŠ[”Ô†‚ð‘ã“ü
+ * @brief   GTãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆã«ç™»éŒ²ã‚«ãƒ†ã‚´ãƒªãƒ¼ç•ªå·ã‚’ä»£å…¥
  *
- * @param   gt_box			GTƒ{ƒbƒNƒXƒVƒ‡ƒbƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   category_no		“o˜^ƒJƒeƒSƒŠ[”Ô†
+ * @param   gt_box			GTãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   category_no		ç™»éŒ²ã‚«ãƒ†ã‚´ãƒªãƒ¼ç•ªå·
  *
- * ƒ`ƒFƒbƒNƒTƒ€‚ðì‚è’¼‚·ˆ×A“o˜^ƒJƒeƒSƒŠ[”Ô†‚ðƒZƒbƒg‚·‚éê‡‚Í•K‚¸‚±‚ÌŠÖ”‚ðŽg—p‚µ‚Ä‚­‚¾‚³‚¢
+ * ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’ä½œã‚Šç›´ã™ç‚ºã€ç™»éŒ²ã‚«ãƒ†ã‚´ãƒªãƒ¼ç•ªå·ã‚’ã‚»ãƒƒãƒˆã™ã‚‹å ´åˆã¯å¿…ãšã“ã®é–¢æ•°ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------
 void GDS_GTBoxShot_SetCategoryNo(SAVEDATA *sv, GT_BOX_SHOT *gt_box, int category_no)
 {
 	gt_box->category_no = category_no;
-	//ƒ`ƒFƒbƒNƒTƒ€‚ðì‚è’¼‚·
+	//ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’ä½œã‚Šç›´ã™
 	gt_box->crc.crc16ccitt_hash = 
 		SaveData_CalcCRC(sv, gt_box, sizeof(GT_BOX_SHOT) - GT_GDS_CRC_SIZE);
 }
@@ -131,15 +131,15 @@ void GDS_GTBoxShot_SetCategoryNo(SAVEDATA *sv, GT_BOX_SHOT *gt_box, int category
 
 //==============================================================================
 //
-//	GDSƒvƒƒtƒB[ƒ‹
+//	GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   GDSƒvƒƒtƒB[ƒ‹‚ðGTGDSƒvƒƒtƒB[ƒ‹Œ`Ž®‚É•ÏŠ·‚·‚é
+ * @brief   GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’GTGDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å½¢å¼ã«å¤‰æ›ã™ã‚‹
  *
- * @param   gpp			Œ³ƒf[ƒ^‚Æ‚È‚éGDSƒvƒƒtƒB[ƒ‹
- * @param   gt_gpp		•ÏŠ·Œã‚Ìƒf[ƒ^ƒZƒbƒgæ
+ * @param   gpp			å…ƒãƒ‡ãƒ¼ã‚¿ã¨ãªã‚‹GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ * @param   gt_gpp		å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå…ˆ
  */
 //--------------------------------------------------------------
 void GDS_CONV_GDSProfile_to_GTGDSProfile(SAVEDATA *sv, const GDS_PROFILE_PTR gpp, GT_GDS_PROFILE * gt_gpp)
@@ -152,10 +152,10 @@ void GDS_CONV_GDSProfile_to_GTGDSProfile(SAVEDATA *sv, const GDS_PROFILE_PTR gpp
 
 //--------------------------------------------------------------
 /**
- * @brief   GTGDSƒvƒƒtƒB[ƒ‹‚ðGDSƒvƒƒtƒB[ƒ‹Œ`Ž®‚É•ÏŠ·‚·‚é
+ * @brief   GTGDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å½¢å¼ã«å¤‰æ›ã™ã‚‹
  *
- * @param   gt_dress		Œ³ƒf[ƒ^‚Æ‚È‚éGTƒhƒŒƒXƒAƒbƒvƒf[ƒ^
- * @param   dress			•ÏŠ·Œã‚Ìƒf[ƒ^ƒZƒbƒgæ
+ * @param   gt_dress		å…ƒãƒ‡ãƒ¼ã‚¿ã¨ãªã‚‹GTãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+ * @param   dress			å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå…ˆ
  */
 //--------------------------------------------------------------
 void GDS_CONV_GTGDSProfile_to_GDSProfile(const GT_GDS_PROFILE * gt_gpp, GDS_PROFILE_PTR gpp)
@@ -167,10 +167,10 @@ void GDS_CONV_GTGDSProfile_to_GDSProfile(const GT_GDS_PROFILE * gt_gpp, GDS_PROF
 
 //--------------------------------------------------------------
 /**
- * @brief   GDSƒvƒƒtƒB[ƒ‹‚ðƒ‰ƒ“ƒLƒ“ƒOƒvƒƒtƒB[ƒ‹Œ`Ž®‚É•ÏŠ·‚·‚é
+ * @brief   GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å½¢å¼ã«å¤‰æ›ã™ã‚‹
  *
- * @param   gpp			Œ³ƒf[ƒ^‚Æ‚È‚éGDSƒvƒƒtƒB[ƒ‹
- * @param   gt_rp		•ÏŠ·Œã‚Ìƒf[ƒ^ƒZƒbƒgæ
+ * @param   gpp			å…ƒãƒ‡ãƒ¼ã‚¿ã¨ãªã‚‹GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ * @param   gt_rp		å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå…ˆ
  */
 //--------------------------------------------------------------
 void GDS_CONV_GDSProfile_to_GTRankingProfile(SAVEDATA *sv, const GDS_PROFILE_PTR gpp, GT_RANKING_PROFILE * gt_rp)

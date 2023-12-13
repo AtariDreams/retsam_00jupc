@@ -64,8 +64,8 @@ extern  "C"
 
 
 /*
- * ƒy[ƒWƒ“ƒO‚É‚æ‚é‰¼‘zƒƒ‚ƒŠ‚Ì‚½‚ß‚Ì\‘¢‘Ì.
- * ‚±‚Ì\‘¢‘Ì”z—ñ‚Å‘å—e—ÊƒAƒhƒŒƒX‹óŠÔ(CARD“™)‚ðƒLƒƒƒbƒVƒ…ŠÇ—‚·‚é.
+ * ãƒšãƒ¼ã‚¸ãƒ³ã‚°ã«ã‚ˆã‚‹ä»®æƒ³ãƒ¡ãƒ¢ãƒªã®ãŸã‚ã®æ§‹é€ ä½“.
+ * ã“ã®æ§‹é€ ä½“é…åˆ—ã§å¤§å®¹é‡ã‚¢ãƒ‰ãƒ¬ã‚¹ç©ºé–“(CARDç­‰)ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç®¡ç†ã™ã‚‹.
  */
     typedef struct
     {
@@ -98,10 +98,10 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         MBi_InitCache
 
-  Description:  ƒLƒƒƒbƒVƒ…ƒŠƒXƒg‚ð‰Šú‰»‚·‚é.
+  Description:  ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹.
                 
 
-  Arguments:    pl         ƒLƒƒƒbƒVƒ…ƒŠƒXƒg
+  Arguments:    pl         ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -110,14 +110,14 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         MBi_AttachCacheBuffer
 
-  Description:  ƒLƒƒƒbƒVƒ…ƒŠƒXƒg‚Öƒoƒbƒtƒ@‚ðŠ„‚è“–‚Ä‚é.
+  Description:  ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆã¸ãƒãƒƒãƒ•ã‚¡ã‚’å‰²ã‚Šå½“ã¦ã‚‹.
                 
-  Arguments:    pl         ƒLƒƒƒbƒVƒ…ƒŠƒXƒg
-                ptr        Š„‚è“–‚Ä‚éƒoƒbƒtƒ@
-                src        ptr ‚Ìƒ\[ƒXƒAƒhƒŒƒX
-                len        ptr ‚ÌƒoƒCƒgƒTƒCƒY
-                state      Žw’è‚·‚é‰Šúó‘Ô
-                           (MB_CACHE_STATE_READY ‚© MB_CACHE_STATE_LOCKED)
+  Arguments:    pl         ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ
+                ptr        å‰²ã‚Šå½“ã¦ã‚‹ãƒãƒƒãƒ•ã‚¡
+                src        ptr ã®ã‚½ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        ptr ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+                state      æŒ‡å®šã™ã‚‹åˆæœŸçŠ¶æ…‹
+                           (MB_CACHE_STATE_READY ã‹ MB_CACHE_STATE_LOCKED)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -126,30 +126,30 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         MBi_ReadFromCache
 
-  Description:  Žw’è‚µ‚½ƒAƒhƒŒƒX‚Ì“à—e‚ðƒLƒƒƒbƒVƒ…‚©‚çƒŠ[ƒh‚·‚é.
+  Description:  æŒ‡å®šã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹ã®å†…å®¹ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰ãƒªãƒ¼ãƒ‰ã™ã‚‹.
 
-  Arguments:    pl         ƒLƒƒƒbƒVƒ…ƒŠƒXƒg
-                src        ƒŠ[ƒhŒ³ƒAƒhƒŒƒX
-                len        ƒŠ[ƒhƒTƒCƒY (BYTE)
-                dst        ƒŠ[ƒhæƒAƒhƒŒƒX.
+  Arguments:    pl         ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ
+                src        ãƒªãƒ¼ãƒ‰å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        ãƒªãƒ¼ãƒ‰ã‚µã‚¤ã‚º (BYTE)
+                dst        ãƒªãƒ¼ãƒ‰å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹.
 
-  Returns:      ƒLƒƒƒbƒVƒ…‚Éƒqƒbƒg‚·‚ê‚ÎƒŠ[ƒh‚µ‚Ä TRUE, ‚»‚¤‚Å‚È‚¯‚ê‚Î FALSE.
+  Returns:      ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ãƒ’ãƒƒãƒˆã™ã‚Œã°ãƒªãƒ¼ãƒ‰ã—ã¦ TRUE, ãã†ã§ãªã‘ã‚Œã° FALSE.
  *---------------------------------------------------------------------------*/
     BOOL    MBi_ReadFromCache(MBiCacheList * pl, u32 src, void *dst, u32 len);
 
 /*---------------------------------------------------------------------------*
   Name:         MBi_TryLoadCache
 
-  Description:  Žw’è‚µ‚½ƒAƒhƒŒƒX‚Ì“à—e‚ðƒLƒƒƒbƒVƒ…‚Öƒ[ƒh‚·‚é.
-                Å‚à”Ô’n‚Ì¬‚³‚¢ READY ‚Ìƒy[ƒWƒLƒƒƒbƒVƒ…‚ª”jŠü‚³‚ê‚é.
+  Description:  æŒ‡å®šã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹ã®å†…å®¹ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¸ãƒ­ãƒ¼ãƒ‰ã™ã‚‹.
+                æœ€ã‚‚ç•ªåœ°ã®å°ã•ã„ READY ã®ãƒšãƒ¼ã‚¸ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒç ´æ£„ã•ã‚Œã‚‹.
 
-  Arguments:    pl         ƒLƒƒƒbƒVƒ…ƒŠƒXƒg
-                src        ƒŠƒ[ƒhŒ³ƒAƒhƒŒƒX
-                len        ƒŠƒ[ƒhƒTƒCƒY (BYTE)
+  Arguments:    pl         ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ
+                src        ãƒªãƒ­ãƒ¼ãƒ‰å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        ãƒªãƒ­ãƒ¼ãƒ‰ã‚µã‚¤ã‚º (BYTE)
 
-  Returns:      ƒŠƒ[ƒh‚ªŠJŽn‚Å‚«‚ê‚Î TRUE, ‚»‚¤‚Å‚È‚¯‚ê‚Î FALSE.
-                (ƒŠƒ[ƒhˆ—‚ÌƒGƒ“ƒWƒ“‚ªƒVƒXƒeƒ€“à‚Å’Pˆê‚Ìê‡,
-                 ‘O‰ñ‚Ìˆ—‚ð–¢—¹‚È‚ç‚±‚ÌŠÖ”‚Í FALSE ‚ð•Ô‚·‚Å‚ ‚ë‚¤)
+  Returns:      ãƒªãƒ­ãƒ¼ãƒ‰ãŒé–‹å§‹ã§ãã‚Œã° TRUE, ãã†ã§ãªã‘ã‚Œã° FALSE.
+                (ãƒªãƒ­ãƒ¼ãƒ‰å‡¦ç†ã®ã‚¨ãƒ³ã‚¸ãƒ³ãŒã‚·ã‚¹ãƒ†ãƒ å†…ã§å˜ä¸€ã®å ´åˆ,
+                 å‰å›žã®å‡¦ç†ã‚’æœªäº†ãªã‚‰ã“ã®é–¢æ•°ã¯ FALSE ã‚’è¿”ã™ã§ã‚ã‚ã†)
  *---------------------------------------------------------------------------*/
     BOOL    MBi_TryLoadCache(MBiCacheList * pl, u32 src, u32 len);
 

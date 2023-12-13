@@ -1,7 +1,7 @@
 //====================================================================
 //								c10r0113
 //
-//	LOCALWORK3	�����C�x���g����
+//	LOCALWORK3	強制イベント発動
 //====================================================================
 
 	.text
@@ -11,11 +11,11 @@
 	.include	"../eventdata/zone_c10r0113evc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c10r0113_dendou
 _EVENT_DATA_END
@@ -36,22 +36,22 @@ _EVENT_DATA_END
 ev_c10r0113_dendou:
 	_EVENT_START
 
-	/*��Ɉړ�*/
+	/*上に移動*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c10r0113_player_200
 	_OBJ_ANIME_WAIT
 
-	/*���n��*/
+	/*見渡す*/
 	_OBJ_ANIME		C10R0113_DOCTOR,anm_c10r0113_doctor_120
 	_OBJ_ANIME_WAIT
 
-	/*�a������L�^���邩�Ń��b�Z�[�W����*/
+	/*殿堂入り記録あるかでメッセージ分岐*/
 	_DENDOU_NUM_GET	SCWK_ANSWER
 	_IFVAL_CALL		SCWK_ANSWER,EQ,0,c10r0113_dendou_on
 	_IFVAL_CALL		SCWK_ANSWER,NE,0,c10r0113_dendou_off
 
 	_TALK_CLOSE
 
-	/*��������*/
+	/*下を向く*/
 	_OBJ_ANIME		C10R0113_DOCTOR,anm_c10r0113_doctor_100
 	_OBJ_ANIME		C10R0113_CHAMP,anm_c10r0113_champ_100
 	_OBJ_ANIME_WAIT
@@ -73,11 +73,11 @@ c10r0113_dendou_female:
 	_TALK_KEYWAIT	msg_c10r0113_champion_04
 	_JUMP			common_c10r0113_dendou
 
-/*���ʏ���*/
+/*共通処理*/
 common_c10r0113_dendou:
 	_TALK_CLOSE
 
-	/*�ړ�*/
+	/*移動*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c10r0113_player_01
 	_OBJ_ANIME		C10R0113_DOCTOR,anm_c10r0113_doctor_01
 	_OBJ_ANIME		C10R0113_CHAMP,anm_c10r0113_champ_01
@@ -88,14 +88,14 @@ common_c10r0113_dendou:
 
 	_FLAG_SET		SYS_FLAG_BS_LV4
 
-	/*�S���}�ӂɂȂ��Ă�����*/
+	/*全国図鑑になっていたら*/
 	_ZENKOKU_ZUKAN_FLAG	FLAG_MODE_GET,SCWK_ANSWER
 	_IFVAL_CALL		SCWK_ANSWER,EQ,1,c10r0113_zenkoku_zukan_open
 
-	/*���[�N�ɏ�����Z�b�g*/
+	/*ワークに初回をセット*/
 	_IFVAL_CALL		WK_SCENE_DENDOU,EQ,0,c10r0113_dendou_wk
 
-	/*�a���{�[���A�j��*/
+	/*殿堂ボールアニメ*/
 	_GET_POKE_COUNT		SCWK_ANSWER
 	_DENDOU_BALL_ANM	SCWK_ANSWER
 
@@ -103,12 +103,12 @@ common_c10r0113_dendou:
 	_WIPE_FADE_END_CHECK
 
 	_ADD_SCORE		SCORE_ID_DENDOU
-	//_RECORD_INC		RECID_DENDOU_CNT	/*DP�ł́Aev_gameclear.c��2�ӏ��ŌĂ΂�Ă���*/
+	//_RECORD_INC		RECID_DENDOU_CNT	/*DPでは、ev_gameclear.cの2箇所で呼ばれていた*/
 
-	/*�a������Ăяo���O�Ƀt���O���Z�b�g����*/
+	/*殿堂入り呼び出し前にフラグをセットする*/
 	_CALL			ev_c10r0113_game_clear_timing_flag_set
 
-	_DENDOU_SET_PROC								//�a���Ăяo��
+	_DENDOU_SET_PROC								//殿堂呼び出し
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -117,45 +117,45 @@ common_c10r0113_dendou:
 	_EVENT_END
 	_END
 
-/*���[�N�ɏ�����Z�b�g*/
+/*ワークに初回をセット*/
 c10r0113_dendou_wk:
 	_LDVAL			WK_SCENE_DENDOU,1
 	_RET
 
-/*�S���}�ӂɂȂ��Ă�����*/
+/*全国図鑑になっていたら*/
 c10r0113_zenkoku_zukan_open:
-	/*L04�}�b�v���I�[�v������*/
+	/*L04マップがオープンする*/
 	_HIDEMAP_STATE_CHG		HIDEMAP_ID_L04,1
 	_RET
 
-/*�a������L�^����*/
+/*殿堂入り記録あり*/
 c10r0113_dendou_on:
 	_TALK_KEYWAIT	msg_c10r0113_doctor_01
 	_TALK_KEYWAIT	msg_c10r0113_champion_01
 	_RET
 
-/*�a������L�^�Ȃ�*/
+/*殿堂入り記録なし*/
 c10r0113_dendou_off:
 	_TALK_KEYWAIT	msg_c10r0113_doctor_02
 	_TALK_KEYWAIT	msg_c10r0113_champion_02
 	_RET
 
 //--------------------------------------------------------------------
-//��l��	��Ɉړ�
+//主人公	上に移動
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0113_player_200
 	_ANIME_DATA	AC_WALK_U_8F,8
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��l��	�ړ�
+//主人公	移動
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0113_player_01
 	_ANIME_DATA	AC_WALK_U_8F,2
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���m	���n��
+//博士	見渡す
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0113_doctor_120
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
@@ -164,14 +164,14 @@ _ANIME_LABEL anm_c10r0113_doctor_120
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���m	��������
+//博士	下を向く
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0113_doctor_100
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���m	�ړ�
+//博士	移動
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0113_doctor_01
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -180,14 +180,14 @@ _ANIME_LABEL anm_c10r0113_doctor_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�`�����s�I��	��������
+//チャンピオン	下を向く
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0113_champ_100
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�`�����s�I��	�ړ�
+//チャンピオン	移動
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0113_champ_01
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -197,178 +197,178 @@ _ANIME_LABEL anm_c10r0113_champ_01
 
 
 /********************************************************************/
-/*				�Q�[���N���A�������̃t���O����						*/
+/*				ゲームクリアした時のフラグ操作						*/
 /********************************************************************/
 ev_c10r0113_game_clear_timing_flag_set:
 
 	/*
-	 �Q�[���N���A���ɂ܂Ƃ߂ď�������R�}���h�������ɂ܂Ƃ߂Ă܂�
+	 ゲームクリア時にまとめて処理するコマンドをここにまとめてます
 	*/
 
-	/*��ĉ�*/
+	/*育て屋*/
 	_FLAG_RESET			FV_T04R0101_SUNGLASSES
 
 	_FLAG_RESET			SYS_FLAG_BGM_C10
 
-	//�f�B�A���K�Đ�
+	//ディアルガ再戦
 	_IF_FLAGOFF_CALL	FE_D05R0118_D_GET,ev_d05r0118_legend_retry_ok_d
 
-	//�p���L�A�Đ�
+	//パルキア再戦
 	_IF_FLAGOFF_CALL	FE_D05R0119_P_GET,ev_d05r0119_legend_retry_ok_p
 
-	//�q�[�h�����Đ�
+	//ヒードラン再戦
 	_IF_FLAGOFF_CALL	FE_D16R0103_LEGEND_CLEAR,ev_d16r0103_legend_retry_ok
 
-	//���W�L���O�Đ�
+	//レジキング再戦
 	_IF_FLAGOFF_CALL	FE_D20R0106_LEGEND_CLEAR,ev_d20r0106_legend_retry_ok
 
-	//�n�C�Đ�
+	//ハイ再戦
 	_IF_FLAGOFF_CALL	FE_D28R0103_LEGEND_CLEAR,ev_d28r0103_legend_retry_ok
 
-	//���C�Đ�
+	//レイ再戦
 	_IF_FLAGOFF_CALL	FE_D29R0103_LEGEND_CLEAR,ev_d29r0103_legend_retry_ok
 
-	//�M���e�B�A�Đ�
+	//ギラティア再戦
 	_IF_FLAGOFF_CALL	FE_D17R0104_LEGEND_CLEAR,ev_d17r0104_legend_retry_ok
 
-	/*�A�C�Đ�*/
+	/*アイ再戦*/
 	_IFVAL_CALL			SYS_WORK_AI_GET,EQ,2,ev_ai_retry_ok
 
-	/*���[�o�X�Đ�*/
+	/*ムーバス再戦*/
 	_IFVAL_CALL			SYS_WORK_MUUBASU_GET,EQ,2,ev_muubasu_retry_ok
 
-	/*�t�@�C���[�Đ�*/
+	/*ファイヤー再戦*/
 	_IFVAL_CALL			SYS_WORK_FAIYAA_GET,EQ,2,ev_faiyaa_retry_ok
 
-	/*�T���_�[�Đ�*/
+	/*サンダー再戦*/
 	_IFVAL_CALL			SYS_WORK_SANDAA_GET,EQ,2,ev_sandaa_retry_ok
 
-	/*�t���[�U�[�Đ�*/
+	/*フリーザー再戦*/
 	_IFVAL_CALL			SYS_WORK_HURIIZAA_GET,EQ,2,ev_huriizaa_retry_ok
 
-	/*���W�X�`���Đ�*/
+	/*レジスチル再戦*/
 	//_IFVAL_CALL			SYS_WORK_D35R0102_REZI,NE,REZI_WORK_CAPTURE_OK,ev_rezisutiru_retry_ok
 
-	/*���W�A�C�X�Đ�*/
+	/*レジアイス再戦*/
 	//_IFVAL_CALL			SYS_WORK_D35R0104_REZI,NE,REZI_WORK_CAPTURE_OK,ev_reziaisu_retry_ok
 
-	/*���W���b�N�Đ�*/
+	/*レジロック再戦*/
 	//_IFVAL_CALL			SYS_WORK_D35R0106_REZI,NE,REZI_WORK_CAPTURE_OK,ev_rezirokku_retry_ok
 
-	//��l���̉Ƃ���ĊJ���鎞�̃}�}�Ƃ̉�b�����L�[
+	//主人公の家から再開する時のママとの会話発動キー
 	_IFVAL_CALL			WK_SCENE_T01R0201_GAME_CLEAR,EQ,0,ev_c10r0113_game_clear_t01r0201
 
-	/*T02�̃T�|�[�g*/
+	/*T02のサポート*/
 	_FLAG_RESET			FV_T02_SUPPORT
 
-	/*�f�p�[�g�̔��m*/
+	/*デパートの博士*/
 	_IF_FLAGOFF_CALL	FE_C07R0207_DOCTOR_TALK,ev_c10r0113_game_clear_c07r0207
 
-	/*�}���ق̃S���E*/
+	/*図書館のゴヨウ*/
 	_FLAG_RESET			FV_C02R0101_BIGFOUR4
 
-	/*�ǉ�O�̃V���iFE�t���O*/
+	/*壁画前のシロナFEフラグ*/
 	_FLAG_RESET			FE_T05R0501_CHAMP
 
-	/*������̌΂̃V���i�폜*/
+	/*おくりの湖のシロナ削除*/
 	_FLAG_SET			FV_D17R0101_CHAMP
 
 	_RET
 
 //--------------------------------------------------------------------
-//��x�̂݃C�x���g�����ɕύX(06.07.30)
+//一度のみイベント発生に変更(06.07.30)
 //--------------------------------------------------------------------
 ev_c10r0113_game_clear_t01r0201:
 	_LDVAL				WK_SCENE_T01R0201_GAME_CLEAR,1
 	_RET
 
-//�f�B�A���K�Đ�OK
+//ディアルガ再戦OK
 ev_d05r0118_legend_retry_ok_d:
 	_LDVAL				WK_SCENE_D05R0118,0
 	_RET
 
-//�p���L�A�Đ�OK
+//パルキア再戦OK
 ev_d05r0119_legend_retry_ok_p:
 	_LDVAL				WK_SCENE_D05R0119,0
 	_RET
 
-//�q�[�h�����Đ�OK
+//ヒードラン再戦OK
 ev_d16r0103_legend_retry_ok:
-	//����t���O�������Ă��Ȃ��Ƃ��́A�Đ��Ԃɂ��Ȃ�
+	//解放フラグが立っていないときは、再戦状態にしない
 	_IF_FLAGOFF_JUMP	FE_D16R0103_LEGEND_UNSEAL,ev_d16r0103_legend_retry_ng
 	_FLAG_RESET			FV_D16R0103_HIIDORAN
-	//�V�[����1���ƍĐ�OK
+	//シーンが1だと再戦OK
 	_LDVAL				WK_SCENE_D16R0103,1
 ev_d16r0103_legend_retry_ng:
 	_RET
 
-//���W�L���O�Đ�OK
+//レジキング再戦OK
 ev_d20r0106_legend_retry_ok:
-	//�S���}�Ӄt���OON�łȂ��ƃ_��
+	//全国図鑑フラグONでないとダメ
 	_ZENKOKU_ZUKAN_FLAG	FLAG_MODE_GET,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d20r0106_legend_retry_ng
 	_FLAG_RESET			FV_D20R0106_LEGEND
 ev_d20r0106_legend_retry_ng:
 	_RET
 
-//�n�C�Đ�OK
+//ハイ再戦OK
 ev_d28r0103_legend_retry_ok:
 	_FLAG_RESET		FV_D28R0103_HAI
 	_RET
 
-//���C�Đ�OK
+//レイ再戦OK
 ev_d29r0103_legend_retry_ok:
 	_FLAG_RESET		FV_D29R0103_REI
 	_RET
 
-//�M���e�B�i�Đ�OK
+//ギラティナ再戦OK
 ev_d17r0104_legend_retry_ok:
 	_FLAG_RESET		FV_D17R0104_LEGEND
 	_RET
 
-/*�A�C�Đ�*/
+/*アイ再戦*/
 ev_ai_retry_ok:
 	_FLAG_RESET		FV_D27R0103_AI
 	_LDVAL			SYS_WORK_AI_GET,3
 	_RET
 
-/*���[�o�X�Đ�*/
+/*ムーバス再戦*/
 ev_muubasu_retry_ok:
 	_FLAG_RESET		FV_D15R0101_LEGEND
 	_LDVAL			SYS_WORK_MUUBASU_GET,3
 	_RET
 
-/*�t�@�C���[�Đ�*/
+/*ファイヤー再戦*/
 ev_faiyaa_retry_ok:
 	_LDVAL			SYS_WORK_FAIYAA_GET,3
 	_RET
 
-/*�T���_�[�Đ�*/
+/*サンダー再戦*/
 ev_sandaa_retry_ok:
 	_LDVAL			SYS_WORK_SANDAA_GET,3
 	_RET
 
-/*�t���[�U�[�Đ�*/
+/*フリーザー再戦*/
 ev_huriizaa_retry_ok:
 	_LDVAL			SYS_WORK_HURIIZAA_GET,3
 	_RET
 
-/*���W�X�`���Đ�*/
+/*レジスチル再戦*/
 //ev_rezisutiru_retry_ok:
 //	_LDVAL			SYS_WORK_D35R0102_REZI,0
 //	_RET
 
-/*���W�A�C�X�Đ�*/
+/*レジアイス再戦*/
 //ev_reziaisu_retry_ok:
 //	_LDVAL			SYS_WORK_D35R0104_REZI,0
 //	_RET
 
-/*���W���b�N�Đ�*/
+/*レジロック再戦*/
 //ev_rezirokku_retry_ok:
 //	_LDVAL			SYS_WORK_D35R0106_REZI,0
 //	_RET
 
-/*�f�p�[�g�̔��m*/
+/*デパートの博士*/
 ev_c10r0113_game_clear_c07r0207:
 	_FLAG_RESET			FV_C07R0207_DOCTOR
 	_RET

@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm_b013_1.s
- * @brief	’¾‚Þ
+ * @brief	æ²ˆã‚€
  * @author	
  * @date	
  *
@@ -18,7 +18,7 @@
 // =============================================================================
 //
 //
-//	”w–Ê	’¾‚ÞƒNƒCƒbƒN
+//	èƒŒé¢	æ²ˆã‚€ã‚¯ã‚¤ãƒƒã‚¯
 //
 //
 // =============================================================================
@@ -26,11 +26,11 @@
 #define CALC_NUM	(15)	
 
 PAST_ANIME_B013_1:
-	//‰ñ“]’†S‚ð¶‚É‚¸‚ç‚·
+	//å›žè»¢ä¸­å¿ƒã‚’å·¦ã«ãšã‚‰ã™
 	SET_ADD_VAL		 PARA_ROT_CX,USE_VAL,-32,PARAM_SET
 
 	START_LOOP 2
-		//CALC_NUM‰ñ‚Ìˆ—‚Å180‹‚ðˆ—
+		//CALC_NUMå›žã®å‡¦ç†ã§180Â°ã‚’å‡¦ç†
 		CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN,TARGET_ROT,TILT,0x8000,0,CALC_NUM
 		HOLD_CMD
 	END_LOOP

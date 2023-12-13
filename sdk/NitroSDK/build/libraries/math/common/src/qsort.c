@@ -12,19 +12,19 @@
 
   $Log: qsort.c,v $
   Revision 1.6  2006/05/23 08:23:35  kitase_hirotake
-  num‚ª0,1‚Ìê‡‚É”­¶‚·‚é•s‹ï‡‚ÌC³
+  numãŒ0,1ã®å ´åˆã«ç™ºç”Ÿã™ã‚‹ä¸å…·åˆã®ä¿®æ­£
 
   Revision 1.5  2006/01/18 02:12:28  kitase_hirotake
   do-indent
 
   Revision 1.4  2005/09/09 08:59:42  takano_makoto
-  •s‹ï‡C³
+  ä¸å…·åˆä¿®æ­£
 
   Revision 1.3  2005/06/16 04:42:44  takano_makoto
-  ƒI[ƒo[ƒAƒNƒZƒX‚ª”­¶‚µ‚Ä‚µ‚Ü‚¤•s‹ï‡‚ğC³
+  ã‚ªãƒ¼ãƒãƒ¼ã‚¢ã‚¯ã‚»ã‚¹ãŒç™ºç”Ÿã—ã¦ã—ã¾ã†ä¸å…·åˆã‚’ä¿®æ­£
 
   Revision 1.2  2005/04/13 00:15:44  takano_makoto
-  ˆø”‚ÌŒ^‚ğint‚©‚çu32‚É•ÏX
+  å¼•æ•°ã®å‹ã‚’intã‹ã‚‰u32ã«å¤‰æ›´
 
   Revision 1.1  2005/04/12 10:15:15  takano_makoto
   Initial update.
@@ -34,20 +34,20 @@
 #include <nitro.h>
 
 /* ------------------------------------------- *
- * Ä‹A”ñg—p‚ÌƒNƒCƒbƒNƒ\[ƒg
+ * å†å¸°éä½¿ç”¨ã®ã‚¯ã‚¤ãƒƒã‚¯ã‚½ãƒ¼ãƒˆ
  * ------------------------------------------- */
 /*---------------------------------------------------------------------------*
   Name:         MATH_QSort
   
-  Description:  Ä‹A‚ğg—p‚¹‚¸‚ÉƒNƒCƒbƒNƒ\[ƒg‚ğs‚È‚¢‚Ü‚·B
-                ƒ\[ƒg—p‚Ìƒoƒbƒtƒ@—Ìˆæ‚ğ“n‚·•K—v‚ª‚ ‚èA
-                •K—v‚Èƒoƒbƒtƒ@ƒTƒCƒY‚ÍMATH_QSORT_STACK_SIZE( num )‚Åæ“¾‚Å‚«‚Ü‚·B
+  Description:  å†å¸°ã‚’ä½¿ç”¨ã›ãšã«ã‚¯ã‚¤ãƒƒã‚¯ã‚½ãƒ¼ãƒˆã‚’è¡Œãªã„ã¾ã™ã€‚
+                ã‚½ãƒ¼ãƒˆç”¨ã®ãƒãƒƒãƒ•ã‚¡é ˜åŸŸã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚Šã€
+                å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã¯MATH_QSORT_STACK_SIZE( num )ã§å–å¾—ã§ãã¾ã™ã€‚
   
-  Arguments:    head     ƒ\[ƒg‚·‚éƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                num      ƒ\[ƒg‚·‚éƒf[ƒ^‚ÌŒÂ”
-                width    ƒ\[ƒg‚·‚éƒf[ƒ^‚P‚Â•ª‚Ìƒf[ƒ^ƒTƒCƒY
-                comp     ”äŠrŠÖ”ƒ|ƒCƒ“ƒ^
-                stackBuf ƒ\[ƒg—pƒoƒbƒtƒ@
+  Arguments:    head     ã‚½ãƒ¼ãƒˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                num      ã‚½ãƒ¼ãƒˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
+                width    ã‚½ãƒ¼ãƒˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼‘ã¤åˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+                comp     æ¯”è¼ƒé–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+                stackBuf ã‚½ãƒ¼ãƒˆç”¨ãƒãƒƒãƒ•ã‚¡
                 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -71,14 +71,14 @@ asm void MATH_QSort( register void* head,  register u32 num,  register u32 width
     ble     @fin
     
     ldr     stack, [sp, #36]                //  stack = stackBuf;
-    mov     comp_, comp                     //  // r0-r3,r12‚ÍƒXƒNƒ‰ƒbƒ`ƒŒƒWƒXƒ^‚È‚Ì‚Å”äŠrŠÖ”ŒÄ‚Ño‚µ‘O‚É‘Ş”ğ
+    mov     comp_, comp                     //  // r0-r3,r12ã¯ã‚¹ã‚¯ãƒ©ãƒƒãƒãƒ¬ã‚¸ã‚¹ã‚¿ãªã®ã§æ¯”è¼ƒé–¢æ•°å‘¼ã³å‡ºã—å‰ã«é€€é¿
     mov     width_, width
     
     cmp     stack, #0
     bne     @00
-    clz     tmp, num                        //  // ƒ[ƒNƒoƒbƒtƒ@‚ªNULL‚Ìê‡‚ÍƒXƒ^ƒbƒN‚©‚çŠm•Û‚·‚éB
+    clz     tmp, num                        //  // ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ãŒNULLã®å ´åˆã¯ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰ç¢ºä¿ã™ã‚‹ã€‚
     rsb     tmp, tmp, #32
-    mov     tmp, tmp, lsl #3                //  // •K—vƒ[ƒNƒTƒCƒY‚ÍA(ILog2(num) + 1) * 4 * 2 
+    mov     tmp, tmp, lsl #3                //  // å¿…è¦ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã¯ã€(ILog2(num) + 1) * 4 * 2 
     sub     sp, sp, tmp
     mov     stack, sp
     str     tmp, [sp, #-4]!
@@ -87,11 +87,11 @@ asm void MATH_QSort( register void* head,  register u32 num,  register u32 width
     sub     num, num, #1            
     mla     num, num, width_, head   
     
-    mov     stackBuf_, stack                //  // ‰Šú’l‚ğPUSH‚·‚éB‚±‚êˆÈ~head‚Ænum‚Íg—p‚µ‚È‚¢‚Ì‚Å”jŠüB
+    mov     stackBuf_, stack                //  // åˆæœŸå€¤ã‚’PUSHã™ã‚‹ã€‚ã“ã‚Œä»¥é™headã¨numã¯ä½¿ç”¨ã—ãªã„ã®ã§ç ´æ£„ã€‚
     str     head, [stack], #4               //  PUSH(head);
     str     num, [stack], #4                //  PUSH(head + (num-1) * width);
     
-    clz     tmp, width_                     //  // ILog2(width)+1‚ğŒvZ‚µ‚Ä‚¨‚­(Œã‚ÅŠî€’l‘I‚Ñ‚Ég—p)
+    clz     tmp, width_                     //  // ILog2(width)+1ã‚’è¨ˆç®—ã—ã¦ãŠã(å¾Œã§åŸºæº–å€¤é¸ã³ã«ä½¿ç”¨)
     rsb     tmp, tmp, #32
     str     tmp, [sp, #-4]!
     
@@ -110,7 +110,7 @@ asm void MATH_QSort( register void* head,  register u32 num,  register u32 width
     blx     comp_
     cmp     r0, #0                          //          if ( comp( left, right ) > 0 ) {
     ble     @01
-                                            //              swap( left, right, width ); /* swap‚±‚±‚©‚ç*/
+                                            //              swap( left, right, width ); /* swapã“ã“ã‹ã‚‰*/
     mov     r0, width_
     tst     r0, #3
     beq     @012
@@ -131,18 +131,18 @@ asm void MATH_QSort( register void* head,  register u32 num,  register u32 width
     str     r1, [left], #4
     bne     @012
     b       @01
-                                            //              /* swap‚±‚±‚Ü‚Å */
+                                            //              /* swapã“ã“ã¾ã§ */
 
                                             //          }
                                             //          continue;
 @02:                                        //      }
-                                            //      // Å‰‚ÉŒvZ‚µ‚½ILog2(width)‚ğ—˜—p‚µ‚Ä’†ˆÊ’u‚ ‚½‚è‚ÌŠî€’l‚ğ‘I‚Ô
+                                            //      // æœ€åˆã«è¨ˆç®—ã—ãŸILog2(width)ã‚’åˆ©ç”¨ã—ã¦ä¸­ä½ç½®ã‚ãŸã‚Šã®åŸºæº–å€¤ã‚’é¸ã¶
                                             //      somewhere = (((right - left) >> ILog2(width)) * width / 2) + left;
     ldr     tmp2, [sp]
     sub     tmp, right, left
     mov     tmp, tmp, lsr tmp2
     mla     tmp, tmp, width_, left
-                                            //      swap( left, left + width * 2, width ); /* swap‚±‚±‚©‚ç */
+                                            //      swap( left, left + width * 2, width ); /* swapã“ã“ã‹ã‚‰ */
     mov     r3, left
     mov     r0, width_
     mov     r2, tmp
@@ -164,7 +164,7 @@ asm void MATH_QSort( register void* head,  register u32 num,  register u32 width
     add     r3, r3, #4
     str     r1, [r2], #4
     bne     @022
-                                            //      /* swap‚±‚±‚Ü‚Å */
+                                            //      /* swapã“ã“ã¾ã§ */
 @023:
     mov     somewhere_l, left               //      somewhere_l = left + width;
     mov     somewhere_r, right              //      somewhere_r = right;
@@ -189,7 +189,7 @@ asm void MATH_QSort( register void* head,  register u32 num,  register u32 width
     cmp     somewhere_l, somewhere_r        //          if ( somewhere_l < somewhere_r ) {
     bge     @05
     
-                                            //             swap( somewhere_l, somewhere_r, width ) /* swap ‚±‚±‚©‚ç */;
+                                            //             swap( somewhere_l, somewhere_r, width ) /* swap ã“ã“ã‹ã‚‰ */;
     mov     r2, somewhere_l
     mov     r3, somewhere_r
     mov     r0, width_
@@ -211,7 +211,7 @@ asm void MATH_QSort( register void* head,  register u32 num,  register u32 width
     add     r3, r3, #4
     str     r1, [r2], #4
     bne     @042
-                                            //              /* swap‚±‚±‚Ü‚Å */
+                                            //              /* swapã“ã“ã¾ã§ */
 
 @043:
 
@@ -222,7 +222,7 @@ asm void MATH_QSort( register void* head,  register u32 num,  register u32 width
     ble     @03                             //      } while ( somewhere_l <= smewhere_r );
     
 @05:
-                                            //      swap( left, somewhere_r, width ); /* swap‚±‚±‚©‚ç*/
+                                            //      swap( left, somewhere_r, width ); /* swapã“ã“ã‹ã‚‰*/
     mov     r2, left
     mov     r3, somewhere_r
     mov     r0, width_
@@ -244,11 +244,11 @@ asm void MATH_QSort( register void* head,  register u32 num,  register u32 width
     add     r3, r3, #4
     str     r1, [r2], #4
     bne     @052
-                                            //      /* swap‚±‚±‚Ü‚Å */
+                                            //      /* swapã“ã“ã¾ã§ */
 @053:
     
     sub     tmp, somewhere_r, left
-    sub     tmp2, right, somewhere_r        //      /* ‚Å‚«‚é‚¾‚¯ƒXƒ^ƒbƒN‚ğÁ”ï‚µ‚È‚¢ˆ×‚É¬‚³‚È”ÍˆÍ‚©‚çƒ\[ƒg‚µ‚Ä‚¢‚­ */
+    sub     tmp2, right, somewhere_r        //      /* ã§ãã‚‹ã ã‘ã‚¹ã‚¿ãƒƒã‚¯ã‚’æ¶ˆè²»ã—ãªã„ç‚ºã«å°ã•ãªç¯„å›²ã‹ã‚‰ã‚½ãƒ¼ãƒˆã—ã¦ã„ã */
     cmp     tmp, tmp2                       //      if ( somwehre_r - left > right - somewhere_r ) {
     ble     @06
     

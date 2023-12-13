@@ -1,936 +1,936 @@
-//�͂���
+//はたく
 #define	WAZANO_HATAKU			(1)
-//����ă`���b�v
+//からてチョップ
 #define	WAZANO_KARATETYOPPU			(2)
-//�����ӂ��r���^
+//おうふくビンタ
 #define	WAZANO_OUHUKUBINTA			(3)
-//��񂼂��p���`
+//れんぞくパンチ
 #define	WAZANO_RENZOKUPANTI			(4)
-//���K�g���p���`
+//メガトンパンチ
 #define	WAZANO_MEGATONPANTI			(5)
-//�l�R�ɂ��΂�
+//ネコにこばん
 #define	WAZANO_NEKONIKOBAN			(6)
-//�ق̂��̃p���`
+//ほのおのパンチ
 #define	WAZANO_HONOONOPANTI			(7)
-//�ꂢ�Ƃ��p���`
+//れいとうパンチ
 #define	WAZANO_REITOUPANTI			(8)
-//���݂Ȃ�p���`
+//かみなりパンチ
 #define	WAZANO_KAMINARIPANTI			(9)
-//�Ђ�����
+//ひっかく
 #define	WAZANO_HIKKAKU			(10)
-//�͂���
+//はさむ
 #define	WAZANO_HASAMU			(11)
-//�n�T�~�M���`��
+//ハサミギロチン
 #define	WAZANO_HASAMIGIROTIN			(12)
-//���܂�����
+//かまいたち
 #define	WAZANO_KAMAITATI			(13)
-//�邬�̂܂�
+//つるぎのまい
 #define	WAZANO_TURUGINOMAI			(14)
-//����������
+//いあいぎり
 #define	WAZANO_IAIGIRI			(15)
-//����������
+//かぜおこし
 #define	WAZANO_KAZEOKOSI			(16)
-//�΂��ł���
+//つばさでうつ
 #define	WAZANO_TUBASADEUTU			(17)
-//�ӂ��Ƃ΂�
+//ふきとばし
 #define	WAZANO_HUKITOBASI			(18)
-//������Ƃ�
+//そらをとぶ
 #define	WAZANO_SORAWOTOBU			(19)
-//���߂���
+//しめつける
 #define	WAZANO_SIMETUKERU			(20)
-//����������
+//たたきつける
 #define	WAZANO_TATAKITUKERU			(21)
-//��̃��`
+//つるのムチ
 #define	WAZANO_TURUNOMUTI			(22)
-//�ӂ݂�
+//ふみつけ
 #define	WAZANO_HUMITUKE			(23)
-//�ɂǂ���
+//にどげり
 #define	WAZANO_NIDOGERI			(24)
-//���K�g���L�b�N
+//メガトンキック
 #define	WAZANO_MEGATONKIKKU			(25)
-//�Ƃт���
+//とびげり
 #define	WAZANO_TOBIGERI			(26)
-//�܂킵����
+//まわしげり
 #define	WAZANO_MAWASIGERI			(27)
-//���Ȃ���
+//すなかけ
 #define	WAZANO_SUNAKAKE			(28)
-//����
+//ずつき
 #define	WAZANO_ZUTUKI			(29)
-//�̂ł�
+//つのでつく
 #define	WAZANO_TUNODETUKU			(30)
-//�݂���Â�
+//みだれづき
 #define	WAZANO_MIDAREDUKI			(31)
-//�̃h����
+//つのドリル
 #define	WAZANO_TUNODORIRU			(32)
-//����������
+//たいあたり
 #define	WAZANO_TAIATARI			(33)
-//�̂�������
+//のしかかり
 #define	WAZANO_NOSIKAKARI			(34)
-//�܂���
+//まきつく
 #define	WAZANO_MAKITUKU			(35)
-//�Ƃ�����
+//とっしん
 #define	WAZANO_TOSSIN			(36)
-//���΂��
+//あばれる
 #define	WAZANO_ABARERU			(37)
-//���Ă݃^�b�N��
+//すてみタックル
 #define	WAZANO_SUTEMITAKKURU			(38)
-//�����ۂ��ӂ�
+//しっぽをふる
 #define	WAZANO_SIPPOWOHURU			(39)
-//�ǂ��΂�
+//どくばり
 #define	WAZANO_DOKUBARI			(40)
-//�_�u���j�[�h��
+//ダブルニードル
 #define	WAZANO_DABURUNIIDORU			(41)
-//�~�T�C���΂�
+//ミサイルばり
 #define	WAZANO_MISAIRUBARI			(42)
-//�ɂ�݂���
+//にらみつける
 #define	WAZANO_NIRAMITUKERU			(43)
-//���݂�
+//かみつく
 #define	WAZANO_KAMITUKU			(44)
-//�Ȃ�����
+//なきごえ
 #define	WAZANO_NAKIGOE			(45)
-//�ق���
+//ほえる
 #define	WAZANO_HOERU			(46)
-//������
+//うたう
 #define	WAZANO_UTAU			(47)
-//���傤�����
+//ちょうおんぱ
 #define	WAZANO_TYOUONPA			(48)
-//�\�j�b�N�u�[��
+//ソニックブーム
 #define	WAZANO_SONIKKUBUUMU			(49)
-//���Ȃ��΂�
+//かなしばり
 #define	WAZANO_KANASIBARI			(50)
-//�悤��������
+//ようかいえき
 #define	WAZANO_YOUKAIEKI			(51)
-//�Ђ̂�
+//ひのこ
 #define	WAZANO_HINOKO			(52)
-//������ق�����
+//かえんほうしゃ
 #define	WAZANO_KAENHOUSYA			(53)
-//���낢����
+//しろいきり
 #define	WAZANO_SIROIKIRI			(54)
-//�݂��ł��ۂ�
+//みずでっぽう
 #define	WAZANO_MIZUDEPPOU			(55)
-//�n�C�h���|���v
+//ハイドロポンプ
 #define	WAZANO_HAIDOROPONPU			(56)
-//�Ȃ݂̂�
+//なみのり
 #define	WAZANO_NAMINORI			(57)
-//�ꂢ�Ƃ��r�[��
+//れいとうビーム
 #define	WAZANO_REITOUBIIMU			(58)
-//�ӂԂ�
+//ふぶき
 #define	WAZANO_HUBUKI			(59)
-//�T�C�P��������
+//サイケこうせん
 #define	WAZANO_SAIKEKOUSEN			(60)
-//�o�u����������
+//バブルこうせん
 #define	WAZANO_BABURUKOUSEN			(61)
-//�I�[�����r�[��
+//オーロラビーム
 #define	WAZANO_OORORABIIMU			(62)
-//�͂�����������
+//はかいこうせん
 #define	WAZANO_HAKAIKOUSEN			(63)
-//��
+//つつく
 #define	WAZANO_TUTUKU			(64)
-//�h���������΂�
+//ドリルくちばし
 #define	WAZANO_DORIRUKUTIBASI			(65)
-//�����������
+//じごくぐるま
 #define	WAZANO_ZIGOKUGURUMA			(66)
-//��������
+//けたぐり
 #define	WAZANO_KETAGURI			(67)
-//�J�E���^�[
+//カウンター
 #define	WAZANO_KAUNTAA			(68)
-//�����イ�Ȃ�
+//ちきゅうなげ
 #define	WAZANO_TIKYUUNAGE			(69)
-//�����肫
+//かいりき
 #define	WAZANO_KAIRIKI			(70)
-//�����Ƃ�
+//すいとる
 #define	WAZANO_SUITORU			(71)
-//���K�h���C��
+//メガドレイン
 #define	WAZANO_MEGADOREIN			(72)
-//��ǂ肬�̃^�l
+//やどりぎのタネ
 #define	WAZANO_YADORIGINOTANE			(73)
-//�������傤
+//せいちょう
 #define	WAZANO_SEITYOU			(74)
-//�͂��σJ�b�^�[
+//はっぱカッター
 #define	WAZANO_HAPPAKATTAA			(75)
-//�\�[���[�r�[��
+//ソーラービーム
 #define	WAZANO_SOORAABIIMU			(76)
-//�ǂ��̂���
+//どくのこな
 #define	WAZANO_DOKUNOKONA			(77)
-//���тꂲ��
+//しびれごな
 #define	WAZANO_SIBIREGONA			(78)
-//�˂ނ育��
+//ねむりごな
 #define	WAZANO_NEMURIGONA			(79)
-//�͂Ȃт�̂܂�
+//はなびらのまい
 #define	WAZANO_HANABIRANOMAI			(80)
-//���Ƃ��͂�
+//いとをはく
 #define	WAZANO_ITOWOHAKU			(81)
-//��イ�̂�����
+//りゅうのいかり
 #define	WAZANO_RYUUNOIKARI			(82)
-//�ق̂��̂���
+//ほのおのうず
 #define	WAZANO_HONOONOUZU			(83)
-//�ł񂫃V���b�N
+//でんきショック
 #define	WAZANO_DENKISYOKKU			(84)
-//�P�O�܂�{���g
+//１０まんボルト
 #define	WAZANO_10MANBORUTO			(85)
-//�ł񂶂�
+//でんじは
 #define	WAZANO_DENZIHA			(86)
-//���݂Ȃ�
+//かみなり
 #define	WAZANO_KAMINARI			(87)
-//���킨�Ƃ�
+//いわおとし
 #define	WAZANO_IWAOTOSI			(88)
-//������
+//じしん
 #define	WAZANO_ZISIN			(89)
-//�����
+//じわれ
 #define	WAZANO_ZIWARE			(90)
-//���Ȃ��ق�
+//あなをほる
 #define	WAZANO_ANAWOHORU			(91)
-//�ǂ��ǂ�
+//どくどく
 #define	WAZANO_DOKUDOKU			(92)
-//�˂�肫
+//ねんりき
 #define	WAZANO_NENRIKI			(93)
-//�T�C�R�L�l�V�X
+//サイコキネシス
 #define	WAZANO_SAIKOKINESISU			(94)
-//�����݂񂶂��
+//さいみんじゅつ
 #define	WAZANO_SAIMINZYUTU			(95)
-//���K�̃|�[�Y
+//ヨガのポーズ
 #define	WAZANO_YOGANOPOOZU			(96)
-//�����������ǂ�
+//こうそくいどう
 #define	WAZANO_KOUSOKUIDOU			(97)
-//�ł񂱂�������
+//でんこうせっか
 #define	WAZANO_DENKOUSEKKA			(98)
-//������
+//いかり
 #define	WAZANO_IKARI			(99)
-//�e���|�[�g
+//テレポート
 #define	WAZANO_TEREPOOTO			(100)
-//�i�C�g�w�b�h
+//ナイトヘッド
 #define	WAZANO_NAITOHEDDO			(101)
-//���̂܂�
+//ものまね
 #define	WAZANO_MONOMANE			(102)
-//����Ȃ���
+//いやなおと
 #define	WAZANO_IYANAOTO			(103)
-//�����Ԃ񂵂�
+//かげぶんしん
 #define	WAZANO_KAGEBUNSIN			(104)
-//������������
+//じこさいせい
 #define	WAZANO_ZIKOSAISEI			(105)
-//�������Ȃ�
+//かたくなる
 #define	WAZANO_KATAKUNARU			(106)
-//���������Ȃ�
+//ちいさくなる
 #define	WAZANO_TIISAKUNARU			(107)
-//����܂�
+//えんまく
 #define	WAZANO_ENMAKU			(108)
-//���₵���Ђ���
+//あやしいひかり
 #define	WAZANO_AYASIIHIKARI			(109)
-//����ɂ�����
+//からにこもる
 #define	WAZANO_KARANIKOMORU			(110)
-//�܂邭�Ȃ�
+//まるくなる
 #define	WAZANO_MARUKUNARU			(111)
-//�o���A�[
+//バリアー
 #define	WAZANO_BARIAA			(112)
-//�Ђ���̂���
+//ひかりのかべ
 #define	WAZANO_HIKARINOKABE			(113)
-//���낢����
+//くろいきり
 #define	WAZANO_KUROIKIRI			(114)
-//���t���N�^�[
+//リフレクター
 #define	WAZANO_RIHUREKUTAA			(115)
-//����������
+//きあいだめ
 #define	WAZANO_KIAIDAME			(116)
-//���܂�
+//がまん
 #define	WAZANO_GAMAN			(117)
-//��т��ӂ�
+//ゆびをふる
 #define	WAZANO_YUBIWOHURU			(118)
-//�I�E��������
+//オウムがえし
 #define	WAZANO_OUMUGAESI			(119)
-//���΂�
+//じばく
 #define	WAZANO_ZIBAKU			(120)
-//�^�}�S�΂�����
+//タマゴばくだん
 #define	WAZANO_TAMAGOBAKUDAN			(121)
-//�����łȂ߂�
+//したでなめる
 #define	WAZANO_SITADENAMERU			(122)
-//�X���b�O
+//スモッグ
 #define	WAZANO_SUMOGGU			(123)
-//�w�h����������
+//ヘドロこうげき
 #define	WAZANO_HEDOROKOUGEKI			(124)
-//�z�l����ڂ�
+//ホネこんぼう
 #define	WAZANO_HONEKONBOU			(125)
-//��������
+//だいもんじ
 #define	WAZANO_DAIMONZI			(126)
-//�����̂ڂ�
+//たきのぼり
 #define	WAZANO_TAKINOBORI			(127)
-//����ł͂���
+//からではさむ
 #define	WAZANO_KARADEHASAMU			(128)
-//�X�s�[�h�X�^�[
+//スピードスター
 #define	WAZANO_SUPIIDOSUTAA			(129)
-//���P�b�g����
+//ロケットずつき
 #define	WAZANO_ROKETTOZUTUKI			(130)
-//�Ƃ��L���m��
+//とげキャノン
 #define	WAZANO_TOGEKYANON			(131)
-//����݂�
+//からみつく
 #define	WAZANO_KARAMITUKU			(132)
-//�h�킷��
+//ドわすれ
 #define	WAZANO_DOWASURE			(133)
-//�X�v�[���܂�
+//スプーンまげ
 #define	WAZANO_SUPUUNMAGE			(134)
-//�^�}�S����
+//タマゴうみ
 #define	WAZANO_TAMAGOUMI			(135)
-//�ƂтЂ�����
+//とびひざげり
 #define	WAZANO_TOBIHIZAGERI			(136)
-//�ւтɂ��
+//へびにらみ
 #define	WAZANO_HEBINIRAMI			(137)
-//��߂���
+//ゆめくい
 #define	WAZANO_YUMEKUI			(138)
-//�ǂ��K�X
+//どくガス
 #define	WAZANO_DOKUGASU			(139)
-//���܂Ȃ�
+//たまなげ
 #define	WAZANO_TAMANAGE			(140)
-//���イ����
+//きゅうけつ
 #define	WAZANO_KYUUKETU			(141)
-//�����܂̃L�b�X
+//あくまのキッス
 #define	WAZANO_AKUMANOKISSU			(142)
-//�S�b�h�o�[�h
+//ゴッドバード
 #define	WAZANO_GODDOBAADO			(143)
-//�ւ񂵂�
+//へんしん
 #define	WAZANO_HENSIN			(144)
-//����
+//あわ
 #define	WAZANO_AWA			(145)
-//�s���s���p���`
+//ピヨピヨパンチ
 #define	WAZANO_PIYOPIYOPANTI			(146)
-//�L�m�R�̂ق���
+//キノコのほうし
 #define	WAZANO_KINOKONOHOUSI			(147)
-//�t���b�V��
+//フラッシュ
 #define	WAZANO_HURASSYU			(148)
-//�T�C�R�E�F�[�u
+//サイコウェーブ
 #define	WAZANO_SAIKOWHEEBU			(149)
-//�͂˂�
+//はねる
 #define	WAZANO_HANERU			(150)
-//�Ƃ���
+//とける
 #define	WAZANO_TOKERU			(151)
-//�N���u�n���}�[
+//クラブハンマー
 #define	WAZANO_KURABUHANMAA			(152)
-//�����΂��͂�
+//だいばくはつ
 #define	WAZANO_DAIBAKUHATU			(153)
-//�݂���Ђ�����
+//みだれひっかき
 #define	WAZANO_MIDAREHIKKAKI			(154)
-//�z�l�u�[������
+//ホネブーメラン
 #define	WAZANO_HONEBUUMERAN			(155)
-//�˂ނ�
+//ねむる
 #define	WAZANO_NEMURU			(156)
-//����Ȃ���
+//いわなだれ
 #define	WAZANO_IWANADARE			(157)
-//�Ђ����܂���
+//ひっさつまえば
 #define	WAZANO_HISSATUMAEBA			(158)
-//�����΂�
+//かくばる
 #define	WAZANO_KAKUBARU			(159)
-//�e�N�X�`���[
+//テクスチャー
 #define	WAZANO_TEKUSUTYAA			(160)
-//�g���C�A�^�b�N
+//トライアタック
 #define	WAZANO_TORAIATAKKU			(161)
-//������̂܂���
+//いかりのまえば
 #define	WAZANO_IKARINOMAEBA			(162)
-//���肳��
+//きりさく
 #define	WAZANO_KIRISAKU			(163)
-//�݂����
+//みがわり
 #define	WAZANO_MIGAWARI			(164)
-//��邠����
+//わるあがき
 #define	WAZANO_WARUAGAKI			(165)
-//�X�P�b�`
+//スケッチ
 #define	WAZANO_SUKETTI			(166)
-//�g���v���L�b�N
+//トリプルキック
 #define	WAZANO_TORIPURUKIKKU			(167)
-//�ǂ�ڂ�
+//どろぼう
 #define	WAZANO_DOROBOU			(168)
-//�N���̂�
+//クモのす
 #define	WAZANO_KUMONOSU			(169)
-//������̂�
+//こころのめ
 #define	WAZANO_KOKORONOME			(170)
-//������
+//あくむ
 #define	WAZANO_AKUMU			(171)
-//�����񂮂��
+//かえんぐるま
 #define	WAZANO_KAENGURUMA			(172)
-//���т�
+//いびき
 #define	WAZANO_IBIKI			(173)
-//�̂낢
+//のろい
 #define	WAZANO_NOROI			(174)
-//�����΂�
+//じたばた
 #define	WAZANO_ZITABATA			(175)
-//�e�N�X�`���[�Q
+//テクスチャー２
 #define	WAZANO_TEKUSUTYAA2			(176)
-//�G�A���u���X�g
+//エアロブラスト
 #define	WAZANO_EAROBURASUTO			(177)
-//�킽�ق���
+//わたほうし
 #define	WAZANO_WATAHOUSI			(178)
-//������������
+//きしかいせい
 #define	WAZANO_KISIKAISEI			(179)
-//�����
+//うらみ
 #define	WAZANO_URAMI			(180)
-//���Ȃ䂫
+//こなゆき
 #define	WAZANO_KONAYUKI			(181)
-//�܂���
+//まもる
 #define	WAZANO_MAMORU			(182)
-//�}�b�n�p���`
+//マッハパンチ
 #define	WAZANO_MAHHAPANTI			(183)
-//���킢����
+//こわいかお
 #define	WAZANO_KOWAIKAO			(184)
-//���܂�����
+//だましうち
 #define	WAZANO_DAMASIUTI			(185)
-//�Ă񂵂̃L�b�X
+//てんしのキッス
 #define	WAZANO_TENSINOKISSU			(186)
-//�͂炾����
+//はらだいこ
 #define	WAZANO_HARADAIKO			(187)
-//�w�h���΂�����
+//ヘドロばくだん
 #define	WAZANO_HEDOROBAKUDAN			(188)
-//�ǂ납��
+//どろかけ
 #define	WAZANO_DOROKAKE			(189)
-//�I�N�^���ق�
+//オクタンほう
 #define	WAZANO_OKUTANHOU			(190)
-//�܂��т�
+//まきびし
 #define	WAZANO_MAKIBISI			(191)
-//�ł񂶂ق�
+//でんじほう
 #define	WAZANO_DENZIHOU			(192)
-//�݂�Ԃ�
+//みやぶる
 #define	WAZANO_MIYABURU			(193)
-//�݂��Â�
+//みちづれ
 #define	WAZANO_MITIDURE			(194)
-//�ق�т̂���
+//ほろびのうた
 #define	WAZANO_HOROBINOUTA			(195)
-//�������邩��
+//こごえるかぜ
 #define	WAZANO_KOGOERUKAZE			(196)
-//�݂���
+//みきり
 #define	WAZANO_MIKIRI			(197)
-//�{�[�����b�V��
+//ボーンラッシュ
 #define	WAZANO_BOONRASSYU			(198)
-//���b�N�I��
+//ロックオン
 #define	WAZANO_ROKKUON			(199)
-//�������
+//げきりん
 #define	WAZANO_GEKIRIN			(200)
-//���Ȃ��炵
+//すなあらし
 #define	WAZANO_SUNAARASI			(201)
-//�M�K�h���C��
+//ギガドレイン
 #define	WAZANO_GIGADOREIN			(202)
-//���炦��
+//こらえる
 #define	WAZANO_KORAERU			(203)
-//���܂���
+//あまえる
 #define	WAZANO_AMAERU			(204)
-//���낪��
+//ころがる
 #define	WAZANO_KOROGARU			(205)
-//�݂˂���
+//みねうち
 #define	WAZANO_MINEUTI			(206)
-//���΂�
+//いばる
 #define	WAZANO_IBARU			(207)
-//�~���N�̂�
+//ミルクのみ
 #define	WAZANO_MIRUKUNOMI			(208)
-//�X�p�[�N
+//スパーク
 #define	WAZANO_SUPAAKU			(209)
-//��񂼂�����
+//れんぞくぎり
 #define	WAZANO_RENZOKUGIRI			(210)
-//�͂��˂̂΂�
+//はがねのつばさ
 #define	WAZANO_HAGANENOTUBASA			(211)
-//���낢�܂Ȃ���
+//くろいまなざし
 #define	WAZANO_KUROIMANAZASI			(212)
-//��������
+//メロメロ
 #define	WAZANO_MEROMERO			(213)
-//�˂���
+//ねごと
 #define	WAZANO_NEGOTO			(214)
-//���₵�̂���
+//いやしのすず
 #define	WAZANO_IYASINOSUZU			(215)
-//���񂪂���
+//おんがえし
 #define	WAZANO_ONGAESI			(216)
-//�v���[���g
+//プレゼント
 #define	WAZANO_PUREZENTO			(217)
-//�������
+//やつあたり
 #define	WAZANO_YATUATARI			(218)
-//����҂̂܂���
+//しんぴのまもり
 #define	WAZANO_SINPINOMAMORI			(219)
-//�����݂킯
+//いたみわけ
 #define	WAZANO_ITAMIWAKE			(220)
-//�����Ȃ�ق̂�
+//せいなるほのお
 #define	WAZANO_SEINARUHONOO			(221)
-//�}�O�j�`���[�h
+//マグニチュード
 #define	WAZANO_MAGUNITYUUDO			(222)
-//�΂���p���`
+//ばくれつパンチ
 #define	WAZANO_BAKURETUPANTI			(223)
-//���K�z�[��
+//メガホーン
 #define	WAZANO_MEGAHOON			(224)
-//��イ�̂��Ԃ�
+//りゅうのいぶき
 #define	WAZANO_RYUUNOIBUKI			(225)
-//�o�g���^�b�`
+//バトンタッチ
 #define	WAZANO_BATONTATTI			(226)
-//�A���R�[��
+//アンコール
 #define	WAZANO_ANKOORU			(227)
-//��������
+//おいうち
 #define	WAZANO_OIUTI			(228)
-//���������X�s��
+//こうそくスピン
 #define	WAZANO_KOUSOKUSUPIN			(229)
-//���܂�������
+//あまいかおり
 #define	WAZANO_AMAIKAORI			(230)
-//�A�C�A���e�[��
+//アイアンテール
 #define	WAZANO_AIANTEERU			(231)
-//���^���N���[
+//メタルクロー
 #define	WAZANO_METARUKUROO			(232)
-//���Ă݂Ȃ�
+//あてみなげ
 #define	WAZANO_ATEMINAGE			(233)
-//�����̂Ђ���
+//あさのひざし
 #define	WAZANO_ASANOHIZASI			(234)
-//������������
+//こうごうせい
 #define	WAZANO_KOUGOUSEI			(235)
-//���̂Ђ���
+//つきのひかり
 #define	WAZANO_TUKINOHIKARI			(236)
-//�߂��߂�p���[
+//めざめるパワー
 #define	WAZANO_MEZAMERUPAWAA			(237)
-//�N���X�`���b�v
+//クロスチョップ
 #define	WAZANO_KUROSUTYOPPU			(238)
-//���܂�
+//たつまき
 #define	WAZANO_TATUMAKI			(239)
-//���܂���
+//あまごい
 #define	WAZANO_AMAGOI			(240)
-//�ɂق�΂�
+//にほんばれ
 #define	WAZANO_NIHONBARE			(241)
-//���݂�����
+//かみくだく
 #define	WAZANO_KAMIKUDAKU			(242)
-//�~���[�R�[�g
+//ミラーコート
 #define	WAZANO_MIRAAKOOTO			(243)
-//��������
+//じこあんじ
 #define	WAZANO_ZIKOANZI			(244)
-//���񂻂�
+//しんそく
 #define	WAZANO_SINSOKU			(245)
-//���񂵂̂�����
+//げんしのちから
 #define	WAZANO_GENSINOTIKARA			(246)
-//�V���h�[�{�[��
+//シャドーボール
 #define	WAZANO_SYADOOBOORU			(247)
-//�݂炢�悿
+//みらいよち
 #define	WAZANO_MIRAIYOTI			(248)
-//���킭����
+//いわくだき
 #define	WAZANO_IWAKUDAKI			(249)
-//��������
+//うずしお
 #define	WAZANO_UZUSIO			(250)
-//�ӂ��낾����
+//ふくろだたき
 #define	WAZANO_HUKURODATAKI			(251)
-//�˂����܂�
+//ねこだまし
 #define	WAZANO_NEKODAMASI			(252)
-//���킮
+//さわぐ
 #define	WAZANO_SAWAGU			(253)
-//�����킦��
+//たくわえる
 #define	WAZANO_TAKUWAERU			(254)
-//�͂�����
+//はきだす
 #define	WAZANO_HAKIDASU			(255)
-//�݂̂���
+//のみこむ
 #define	WAZANO_NOMIKOMU			(256)
-//�˂��Ղ�
+//ねっぷう
 #define	WAZANO_NEPPUU			(257)
-//�����
+//あられ
 #define	WAZANO_ARARE			(258)
-//���������
+//いちゃもん
 #define	WAZANO_ITYAMON			(259)
-//�����Ă�
+//おだてる
 #define	WAZANO_ODATERU			(260)
-//���ɂ�
+//おにび
 #define	WAZANO_ONIBI			(261)
-//�����݂₰
+//おきみやげ
 #define	WAZANO_OKIMIYAGE			(262)
-//���炰��
+//からげんき
 #define	WAZANO_KARAGENKI			(263)
-//�������p���`
+//きあいパンチ
 #define	WAZANO_KIAIPANTI			(264)
-//����
+//きつけ
 #define	WAZANO_KITUKE			(265)
-//���̂�тƂ܂�
+//このゆびとまれ
 #define	WAZANO_KONOYUBITOMARE			(266)
-//������̂�����
+//しぜんのちから
 #define	WAZANO_SIZENNOTIKARA			(267)
-//���イ�ł�
+//じゅうでん
 #define	WAZANO_ZYUUDEN			(268)
-//���傤�͂�
+//ちょうはつ
 #define	WAZANO_TYOUHATU			(269)
-//�Ă�����
+//てだすけ
 #define	WAZANO_TEDASUKE			(270)
-//�g���b�N
+//トリック
 #define	WAZANO_TORIKKU			(271)
-//�Ȃ肫��
+//なりきり
 #define	WAZANO_NARIKIRI			(272)
-//�˂�������
+//ねがいごと
 #define	WAZANO_NEGAIGOTO			(273)
-//�˂��̂�
+//ねこのて
 #define	WAZANO_NEKONOTE			(274)
-//�˂��͂�
+//ねをはる
 #define	WAZANO_NEWOHARU			(275)
-//�΂�������
+//ばかぢから
 #define	WAZANO_BAKADIKARA			(276)
-//�}�W�b�N�R�[�g
+//マジックコート
 #define	WAZANO_MAZIKKUKOOTO			(277)
-//���T�C�N��
+//リサイクル
 #define	WAZANO_RISAIKURU			(278)
-//���x���W
+//リベンジ
 #define	WAZANO_RIBENZI			(279)
-//�������
+//かわらわり
 #define	WAZANO_KAWARAWARI			(280)
-//������
+//あくび
 #define	WAZANO_AKUBI			(281)
-//�͂������Ƃ�
+//はたきおとす
 #define	WAZANO_HATAKIOTOSU			(282)
-//���ނ����
+//がむしゃら
 #define	WAZANO_GAMUSYARA			(283)
-//�ӂ�
+//ふんか
 #define	WAZANO_HUNKA			(284)
-//�X�L���X���b�v
+//スキルスワップ
 #define	WAZANO_SUKIRUSUWAPPU			(285)
-//�ӂ�����
+//ふういん
 #define	WAZANO_HUUIN			(286)
-//���t���b�V��
+//リフレッシュ
 #define	WAZANO_RIHURESSYU			(287)
-//����˂�
+//おんねん
 #define	WAZANO_ONNEN			(288)
-//�悱�ǂ�
+//よこどり
 #define	WAZANO_YOKODORI			(289)
-//�Ђ݂̂�����
+//ひみつのちから
 #define	WAZANO_HIMITUNOTIKARA			(290)
-//�_�C�r���O
+//ダイビング
 #define	WAZANO_DAIBINGU			(291)
-//���ς�
+//つっぱり
 #define	WAZANO_TUPPARI			(292)
-//�ق����傭
+//ほごしょく
 #define	WAZANO_HOGOSYOKU			(293)
-//�ق����
+//ほたるび
 #define	WAZANO_HOTARUBI			(294)
-//���X�^�[�p�[�W
+//ラスターパージ
 #define	WAZANO_RASUTAAPAAZI			(295)
-//�~�X�g�{�[��
+//ミストボール
 #define	WAZANO_MISUTOBOORU			(296)
-//�t�F�U�[�_���X
+//フェザーダンス
 #define	WAZANO_FEZAADANSU			(297)
-//�t���t���_���X
+//フラフラダンス
 #define	WAZANO_HURAHURADANSU			(298)
-//�u���C�Y�L�b�N
+//ブレイズキック
 #define	WAZANO_BUREIZUKIKKU			(299)
-//�ǂ날����
+//どろあそび
 #define	WAZANO_DOROASOBI			(300)
-//�A�C�X�{�[��
+//アイスボール
 #define	WAZANO_AISUBOORU			(301)
-//�j�[�h���A�[��
+//ニードルアーム
 #define	WAZANO_NIIDORUAAMU			(302)
-//�Ȃ܂���
+//なまける
 #define	WAZANO_NAMAKERU			(303)
-//�n�C�p�[�{�C�X
+//ハイパーボイス
 #define	WAZANO_HAIPAABOISU			(304)
-//�ǂ��ǂ��̃L�o
+//どくどくのキバ
 #define	WAZANO_DOKUDOKUNOKIBA			(305)
-//�u���C�N�N���[
+//ブレイククロー
 #define	WAZANO_BUREIKUKUROO			(306)
-//�u���X�g�o�[��
+//ブラストバーン
 #define	WAZANO_BURASUTOBAAN			(307)
-//�n�C�h���J�m��
+//ハイドロカノン
 #define	WAZANO_HAIDOROKANON			(308)
-//�R���b�g�p���`
+//コメットパンチ
 #define	WAZANO_KOMETTOPANTI			(309)
-//���ǂ납��
+//おどろかす
 #define	WAZANO_ODOROKASU			(310)
-//�E�F�U�[�{�[��
+//ウェザーボール
 #define	WAZANO_WHEZAABOORU			(311)
-//�A���}�Z���s�[
+//アロマセラピー
 #define	WAZANO_AROMASERAPII			(312)
-//�����Ȃ�
+//うそなき
 #define	WAZANO_USONAKI			(313)
-//�G�A�J�b�^�[
+//エアカッター
 #define	WAZANO_EAKATTAA			(314)
-//�I�[�o�[�q�[�g
+//オーバーヒート
 #define	WAZANO_OOBAAHIITO			(315)
-//�����킯��
+//かぎわける
 #define	WAZANO_KAGIWAKERU			(316)
-//���񂹂��ӂ���
+//がんせきふうじ
 #define	WAZANO_GANSEKIHUUZI			(317)
-//���񂢂�̂���
+//ぎんいろのかぜ
 #define	WAZANO_GINIRONOKAZE			(318)
-//���񂼂�����
+//きんぞくおん
 #define	WAZANO_KINZOKUON			(319)
-//�����Ԃ�
+//くさぶえ
 #define	WAZANO_KUSABUE			(320)
-//��������
+//くすぐる
 #define	WAZANO_KUSUGURU			(321)
-//�R�X���p���[
+//コスモパワー
 #define	WAZANO_KOSUMOPAWAA			(322)
-//�����ӂ�
+//しおふき
 #define	WAZANO_SIOHUKI			(323)
-//�V�O�i���r�[��
+//シグナルビーム
 #define	WAZANO_SIGUNARUBIIMU			(324)
-//�V���h�[�p���`
+//シャドーパンチ
 #define	WAZANO_SYADOOPANTI			(325)
-//������肫
+//じんつうりき
 #define	WAZANO_ZINTUURIKI			(326)
-//�X�J�C�A�b�p�[
+//スカイアッパー
 #define	WAZANO_SUKAIAPPAA			(327)
-//���Ȃ�����
+//すなじごく
 #define	WAZANO_SUNAZIGOKU			(328)
-//���������ꂢ��
+//ぜったいれいど
 #define	WAZANO_ZETTAIREIDO			(329)
-//������イ
+//だくりゅう
 #define	WAZANO_DAKURYUU			(330)
-//�^�l�}�V���K��
+//タネマシンガン
 #define	WAZANO_TANEMASINGAN			(331)
-//�΂߂�����
+//つばめがえし
 #define	WAZANO_TUBAMEGAESI			(332)
-//���΂�
+//つららばり
 #define	WAZANO_TURARABARI			(333)
-//�Ă��؂�
+//てっぺき
 #define	WAZANO_TEPPEKI			(334)
-//�Ƃ�����ڂ�
+//とおせんぼう
 #define	WAZANO_TOOSENBOU			(335)
-//�Ƃ��ڂ�
+//とおぼえ
 #define	WAZANO_TOOBOE			(336)
-//�h���S���N���[
+//ドラゴンクロー
 #define	WAZANO_DORAGONKUROO			(337)
-//�n�[�h�v�����g
+//ハードプラント
 #define	WAZANO_HAADOPURANTO			(338)
-//�r���h�A�b�v
+//ビルドアップ
 #define	WAZANO_BIRUDOAPPU			(339)
-//�Ƃт͂˂�
+//とびはねる
 #define	WAZANO_TOBIHANERU			(340)
-//�}�b�h�V���b�g
+//マッドショット
 #define	WAZANO_MADDOSYOTTO			(341)
-//�|�C�Y���e�[��
+//ポイズンテール
 #define	WAZANO_POIZUNTEERU			(342)
-//�ق�����
+//ほしがる
 #define	WAZANO_HOSIGARU			(343)
-//�{���e�b�J�[
+//ボルテッカー
 #define	WAZANO_BORUTEKKAA			(344)
-//�}�W�J�����[�t
+//マジカルリーフ
 #define	WAZANO_MAZIKARURIIHU			(345)
-//�݂�������
+//みずあそび
 #define	WAZANO_MIZUASOBI			(346)
-//�߂�����
+//めいそう
 #define	WAZANO_MEISOU			(347)
-//���[�t�u���[�h
+//リーフブレード
 #define	WAZANO_RIIHUBUREEDO			(348)
-//��イ�̂܂�
+//りゅうのまい
 #define	WAZANO_RYUUNOMAI			(349)
-//���b�N�u���X�g
+//ロックブラスト
 #define	WAZANO_ROKKUBURASUTO			(350)
-//�ł񂰂���
+//でんげきは
 #define	WAZANO_DENGEKIHA			(351)
-//�݂��̂͂ǂ�
+//みずのはどう
 #define	WAZANO_MIZUNOHADOU			(352)
-//�͂߂̂˂���
+//はめつのねがい
 #define	WAZANO_HAMETUNONEGAI			(353)
-//�T�C�R�u�[�X�g
+//サイコブースト
 #define	WAZANO_SAIKOBUUSUTO			(354)
-//�͂˂₷��
+//はねやすめ
 #define	WAZANO_HANEYASUME			(355)
-//���イ��傭
+//じゅうりょく
 #define	WAZANO_ZYUURYOKU			(356)
-//�~���N���A�C
+//ミラクルアイ
 #define	WAZANO_MIRAKURUAI			(357)
-//�߂��܂��r���^
+//めざましビンタ
 #define	WAZANO_MEZAMASIBINTA			(358)
-//�A�[���n���}�[
+//アームハンマー
 #define	WAZANO_AAMUHANMAA			(359)
-//�W���C���{�[��
+//ジャイロボール
 #define	WAZANO_ZYAIROBOORU			(360)
-//���₵�̂˂���
+//いやしのねがい
 #define	WAZANO_IYASINONEGAI			(361)
-//�����݂�
+//しおみず
 #define	WAZANO_SIOMIZU			(362)
-//������̂߂���
+//しぜんのめぐみ
 #define	WAZANO_SIZENNOMEGUMI			(363)
-//�t�F�C���g
+//フェイント
 #define	WAZANO_FEINTO			(364)
-//���΂�
+//ついばむ
 #define	WAZANO_TUIBAMU			(365)
-//��������
+//おいかぜ
 #define	WAZANO_OIKAZE			(366)
-//�ڂ���
+//つぼをつく
 #define	WAZANO_TUBOWOTUKU			(367)
-//���^���o�[�X�g
+//メタルバースト
 #define	WAZANO_METARUBAASUTO			(368)
-//�Ƃ�ڂ�����
+//とんぼがえり
 #define	WAZANO_TONBOGAERI			(369)
-//�C���t�@�C�g
+//インファイト
 #define	WAZANO_INFAITO			(370)
-//�����؂�����
+//しっぺがえし
 #define	WAZANO_SIPPEGAESI			(371)
-//�_������
+//ダメおし
 #define	WAZANO_DAMEOSI			(372)
-//����������
+//さしおさえ
 #define	WAZANO_SASIOSAE			(373)
-//�Ȃ�����
+//なげつける
 #define	WAZANO_NAGETUKERU			(374)
-//�T�C�R�V�t�g
+//サイコシフト
 #define	WAZANO_SAIKOSIHUTO			(375)
-//����ӂ�
+//きりふだ
 #define	WAZANO_KIRIHUDA			(376)
-//�����ӂ��ӂ���
+//かいふくふうじ
 #define	WAZANO_KAIHUKUHUUZI			(377)
-//���ڂ�Ƃ�
+//しぼりとる
 #define	WAZANO_SIBORITORU			(378)
-//�p���[�g���b�N
+//パワートリック
 #define	WAZANO_PAWAATORIKKU			(379)
-//������
+//いえき
 #define	WAZANO_IEKI			(380)
-//���܂��Ȃ�
+//おまじない
 #define	WAZANO_OMAZINAI			(381)
-//�����ǂ�
+//さきどり
 #define	WAZANO_SAKIDORI			(382)
-//�܂˂���
+//まねっこ
 #define	WAZANO_MANEKKO			(383)
-//�p���[�X���b�v
+//パワースワップ
 #define	WAZANO_PAWAASUWAPPU			(384)
-//�K�[�h�X���b�v
+//ガードスワップ
 #define	WAZANO_GAADOSUWAPPU			(385)
-//��������
+//おしおき
 #define	WAZANO_OSIOKI			(386)
-//�Ƃ��Ă���
+//とっておき
 #define	WAZANO_TOTTEOKI			(387)
-//�Ȃ�݂̃^�l
+//なやみのタネ
 #define	WAZANO_NAYAMINOTANE			(388)
-//�ӂ�����
+//ふいうち
 #define	WAZANO_HUIUTI			(389)
-//�ǂ��т�
+//どくびし
 #define	WAZANO_DOKUBISI			(390)
-//�n�[�g�X���b�v
+//ハートスワップ
 #define	WAZANO_HAATOSUWAPPU			(391)
-//�A�N�A�����O
+//アクアリング
 #define	WAZANO_AKUARINGU			(392)
-//�ł񂶂ӂ䂤
+//でんじふゆう
 #define	WAZANO_DENZIHUYUU			(393)
-//�t���A�h���C�u
+//フレアドライブ
 #define	WAZANO_HUREADORAIBU			(394)
-//�͂�����
+//はっけい
 #define	WAZANO_HAKKEI			(395)
-//�͂ǂ�����
+//はどうだん
 #define	WAZANO_HADOUDAN			(396)
-//���b�N�J�b�g
+//ロックカット
 #define	WAZANO_ROKKUKATTO			(397)
-//�ǂ��Â�
+//どくづき
 #define	WAZANO_DOKUDUKI			(398)
-//�����̂͂ǂ�
+//あくのはどう
 #define	WAZANO_AKUNOHADOU			(399)
-//������
+//つじぎり
 #define	WAZANO_TUZIGIRI			(400)
-//�A�N�A�e�[��
+//アクアテール
 #define	WAZANO_AKUATEERU			(401)
-//�^�l�΂�����
+//タネばくだん
 #define	WAZANO_TANEBAKUDAN			(402)
-//�G�A�X���b�V��
+//エアスラッシュ
 #define	WAZANO_EASURASSYU			(403)
-//�V�U�[�N���X
+//シザークロス
 #define	WAZANO_SIZAAKUROSU			(404)
-//�ނ��̂����߂�
+//むしのさざめき
 #define	WAZANO_MUSINOSAZAMEKI			(405)
-//��イ�̂͂ǂ�
+//りゅうのはどう
 #define	WAZANO_RYUUNOHADOU			(406)
-//�h���S���_�C�u
+//ドラゴンダイブ
 #define	WAZANO_DORAGONDAIBU			(407)
-//�p���[�W�F��
+//パワージェム
 #define	WAZANO_PAWAAJEMU			(408)
-//�h���C���p���`
+//ドレインパンチ
 #define	WAZANO_DOREINPANTI			(409)
-//���񂭂���
+//しんくうは
 #define	WAZANO_SINKUUHA			(410)
-//����������
+//きあいだま
 #define	WAZANO_KIAIDAMA			(411)
-//�G�i�W�[�{�[��
+//エナジーボール
 #define	WAZANO_ENAZIIBOORU			(412)
-//�u���C�u�o�[�h
+//ブレイブバード
 #define	WAZANO_BUREIBUBAADO			(413)
-//�������̂�����
+//だいちのちから
 #define	WAZANO_DAITINOTIKARA			(414)
-//���肩��
+//すりかえ
 #define	WAZANO_SURIKAE			(415)
-//�M�K�C���p�N�g
+//ギガインパクト
 #define	WAZANO_GIGAINPAKUTO			(416)
-//��邾����
+//わるだくみ
 #define	WAZANO_WARUDAKUMI			(417)
-//�o���b�g�p���`
+//バレットパンチ
 #define	WAZANO_BARETTOPANTI			(418)
-//�䂫�Ȃ���
+//ゆきなだれ
 #define	WAZANO_YUKINADARE			(419)
-//������̂Ԃ�
+//こおりのつぶて
 #define	WAZANO_KOORINOTUBUTE			(420)
-//�V���h�[�N���[
+//シャドークロー
 #define	WAZANO_SYADOOKUROO			(421)
-//���݂Ȃ�̃L�o
+//かみなりのキバ
 #define	WAZANO_KAMINARINOKIBA			(422)
-//������̃L�o
+//こおりのキバ
 #define	WAZANO_KOORINOKIBA			(423)
-//�ق̂��̃L�o
+//ほのおのキバ
 #define	WAZANO_HONOONOKIBA			(424)
-//��������
+//かげうち
 #define	WAZANO_KAGEUTI			(425)
-//�ǂ�΂�����
+//どろばくだん
 #define	WAZANO_DOROBAKUDAN			(426)
-//�T�C�R�J�b�^�[
+//サイコカッター
 #define	WAZANO_SAIKOKATTAA			(427)
-//���˂�̂���
+//しねんのずつき
 #define	WAZANO_SINENNOZUTUKI			(428)
-//�~���[�V���b�g
+//ミラーショット
 #define	WAZANO_MIRAASYOTTO			(429)
-//���X�^�[�J�m��
+//ラスターカノン
 #define	WAZANO_RASUTAAKANON			(430)
-//���b�N�N���C��
+//ロッククライム
 #define	WAZANO_ROKKUKURAIMU			(431)
-//����΂炢
+//きりばらい
 #define	WAZANO_KIRIBARAI			(432)
-//�g���b�N���[��
+//トリックルーム
 #define	WAZANO_TORIKKURUUMU			(433)
-//��イ��������
+//りゅうせいぐん
 #define	WAZANO_RYUUSEIGUN			(434)
-//�ق��ł�
+//ほうでん
 #define	WAZANO_HOUDEN			(435)
-//�ӂ񂦂�
+//ふんえん
 #define	WAZANO_HUNEN			(436)
-//���[�t�X�g�[��
+//リーフストーム
 #define	WAZANO_RIIHUSUTOOMU			(437)
-//�p���[�E�B�b�v
+//パワーウィップ
 #define	WAZANO_PAWAAWHIPPU			(438)
-//���񂹂��ق�
+//がんせきほう
 #define	WAZANO_GANSEKIHOU			(439)
-//�N���X�|�C�Y��
+//クロスポイズン
 #define	WAZANO_KUROSUPOIZUN			(440)
-//�_�X�g�V���[�g
+//ダストシュート
 #define	WAZANO_DASUTOSYUUTO			(441)
-//�A�C�A���w�b�h
+//アイアンヘッド
 #define	WAZANO_AIANHEDDO			(442)
-//�}�O�l�b�g�{��
+//マグネットボム
 #define	WAZANO_MAGUNETTOBOMU			(443)
-//�X�g�[���G�b�W
+//ストーンエッジ
 #define	WAZANO_SUTOONEZI			(444)
-//�䂤�킭
+//ゆうわく
 #define	WAZANO_YUUWAKU			(445)
-//�X�e���X���b�N
+//ステルスロック
 #define	WAZANO_SUTERUSUROKKU			(446)
-//�����ނ���
+//くさむすび
 #define	WAZANO_KUSAMUSUBI			(447)
-//������ׂ�
+//おしゃべり
 #define	WAZANO_OSYABERI			(448)
-//���΂��̂Ԃ�
+//さばきのつぶて
 #define	WAZANO_SABAKINOTUBUTE			(449)
-//�ނ�����
+//むしくい
 #define	WAZANO_MUSIKUI			(450)
-//�`���[�W�r�[��
+//チャージビーム
 #define	WAZANO_TYAAZIBIIMU			(451)
-//�E�b�h�n���}�[
+//ウッドハンマー
 #define	WAZANO_UDDOHANMAA			(452)
-//�A�N�A�W�F�b�g
+//アクアジェット
 #define	WAZANO_AKUAJETTO			(453)
-//�����������ꂢ
+//こうげきしれい
 #define	WAZANO_KOUGEKISIREI			(454)
-//�ڂ����債�ꂢ
+//ぼうぎょしれい
 #define	WAZANO_BOUGYOSIREI			(455)
-//�����ӂ����ꂢ
+//かいふくしれい
 #define	WAZANO_KAIHUKUSIREI			(456)
-//����͂̂���
+//もろはのずつき
 #define	WAZANO_MOROHANOZUTUKI			(457)
-//�_�u���A�^�b�N
+//ダブルアタック
 #define	WAZANO_DABURUATAKKU			(458)
-//�Ƃ��̂ق�����
+//ときのほうこう
 #define	WAZANO_TOKINOHOUKOU			(459)
-//������������
+//あくうせつだん
 #define	WAZANO_AKUUSETUDAN			(460)
-//�݂��Â��̂܂�
+//みかづきのまい
 #define	WAZANO_MIKADUKINOMAI			(461)
-//�ɂ���Ԃ�
+//にぎりつぶす
 #define	WAZANO_NIGIRITUBUSU			(462)
-//�}�O�}�X�g�[��
+//マグマストーム
 #define	WAZANO_MAGUMASUTOOMU			(463)
-//�_�[�N�z�[��
+//ダークホール
 #define	WAZANO_DAAKUHOORU			(464)
-//�V�[�h�t���A
+//シードフレア
 #define	WAZANO_SIIDOHUREA			(465)
-//���₵������
+//あやしいかぜ
 #define	WAZANO_AYASIIKAZE			(466)
-//�V���h�[�_�C�u
+//シャドーダイブ
 #define	WAZANO_SYADOODAIBU			(467)
 #define	WAZANO_MAX	(467)
 

@@ -18,7 +18,7 @@
   small fix
 
   Revision 1.1  2006/04/05 10:48:30  okubata_ryoma
-  AGBƒoƒbƒNƒAƒbƒvƒ‰ƒCƒuƒ‰ƒŠ‚ÌSDKû˜^‚Ì‚½‚ß‚Ì•ÏX
+  AGBãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®SDKåéŒ²ã®ãŸã‚ã®å¤‰æ›´
 
 
   $NoKeywords: $
@@ -60,7 +60,7 @@ const CTRDGiFlashTypePlus MX29L010 = {
     CTRDGi_PollingSR1MCOMMON,
     MxMaxTime,
     {
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifndef   __FLASH_DEBUG
         0x00020000,                       // ROM size
         {0x00001000, 12, 32, 0},          // sector size,shift,count,top
@@ -84,7 +84,7 @@ const CTRDGiFlashTypePlus defaultFlash1M = {
     CTRDGi_PollingSR1MCOMMON,
     MxMaxTime,
     {
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifndef   __FLASH_DEBUG
         0x00020000,                       // ROM size
         {0x00001000, 12, 32, 0},          // sector size,shift,count,top
@@ -98,7 +98,7 @@ const CTRDGiFlashTypePlus defaultFlash1M = {
     },
 };
 
-/*”r‘¼§Œä*/
+/*æ’ä»–åˆ¶å¾¡*/
 extern u16 ctrdgi_flash_lock_id;
 extern BOOL ctrdgi_backup_irq;
 
@@ -109,7 +109,7 @@ extern BOOL ctrdgi_backup_irq;
 ********************************************************/
 u32 CTRDGi_EraseFlashChipCoreMX(CTRDGTaskInfo * arg)
 {
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifdef    __FLASH_DEBUG
 //  u32 i;
 //#endif
@@ -117,9 +117,9 @@ u32 CTRDGi_EraseFlashChipCoreMX(CTRDGTaskInfo * arg)
     u32     result;
     (void)arg;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
 
@@ -132,7 +132,7 @@ u32 CTRDGi_EraseFlashChipCoreMX(CTRDGTaskInfo * arg)
     *(vu8 *)CTRDG_BACKUP_COM_ADR1 = 0xaa;
     *(vu8 *)CTRDG_BACKUP_COM_ADR2 = 0x55;
     *(vu8 *)CTRDG_BACKUP_COM_ADR1 = 0x10;
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifdef    __FLASH_DEBUG
 //  adr=(u8 *)CTRDG_AGB_FLASH_ADR;
 //  for(i=0;i<AgbFlash->romSize;i++)
@@ -143,9 +143,9 @@ u32 CTRDGi_EraseFlashChipCoreMX(CTRDGTaskInfo * arg)
     result = CTRDGi_PollingSR(CTRDG_BACKUP_PHASE_CHIP_ERASE, (u8 *)CTRDG_AGB_FLASH_ADR, 0xff);
 //  *(vu16 *)REG_EXMEMCNT_ADDR=(*(vu16 *)REG_EXMEMCNT_ADDR & 0xfffc)| 1;
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return result;
@@ -163,13 +163,13 @@ u32 CTRDGi_EraseFlashSectorCoreMX(CTRDGTaskInfo * arg)
     if (secNo >= AgbFlash->sector.count)
         return CTRDG_BACKUP_RESULT_ERROR | CTRDG_BACKUP_PHASE_PARAMETER_CHECK;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
 
-    // ƒoƒ“ƒN‚ÌƒZƒbƒg
+    // ãƒãƒ³ã‚¯ã®ã‚»ãƒƒãƒˆ
     CTRDGi_SetFlashBankMx((u16)(secNo >> 4));
     secNo &= 0x0f;
 
@@ -186,7 +186,7 @@ u32 CTRDGi_EraseFlashSectorCoreMX(CTRDGTaskInfo * arg)
     *(vu8 *)CTRDG_BACKUP_COM_ADR1 = 0xaa;
     *(vu8 *)CTRDG_BACKUP_COM_ADR2 = 0x55;
     *(vu8 *)adr = 0x30;
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifdef    __FLASH_DEBUG
 //  for(i=0;i<AgbFlash->sector.size;i++)
 //      *adr++=0xff;
@@ -202,9 +202,9 @@ u32 CTRDGi_EraseFlashSectorCoreMX(CTRDGTaskInfo * arg)
         goto erase_again;
     }
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
 //  *(vu16 *)REG_EXMEMCNT_ADDR=(*(vu16 *)REG_EXMEMCNT_ADDR & 0xfffc)|1;
@@ -215,7 +215,7 @@ static u16 CTRDGi_ProgramFlashByteMX(u8 *src, u8 *dst)
 {
     u16     result;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
 //  OS_LockCartridge(ctrdgi_flash_lock_id);
 
     *(vu8 *)CTRDG_BACKUP_COM_ADR1 = 0xaa;
@@ -225,7 +225,7 @@ static u16 CTRDGi_ProgramFlashByteMX(u8 *src, u8 *dst)
 
     result = CTRDGi_PollingSR(CTRDG_BACKUP_PHASE_PROGRAM, dst, *src);
 
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
 //  OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return result;
@@ -251,15 +251,15 @@ u32 CTRDGi_WriteFlashSectorCoreMX(CTRDGTaskInfo * arg)
         return result;
     }
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
 
     // Program
 
-    // ƒoƒ“ƒN‚ÌƒZƒbƒg
+    // ãƒãƒ³ã‚¯ã®ã‚»ãƒƒãƒˆ
     CTRDGi_SetFlashBankMx((u16)(secNo >> 4));
     secNo &= 0x0f;
 
@@ -279,9 +279,9 @@ u32 CTRDGi_WriteFlashSectorCoreMX(CTRDGTaskInfo * arg)
     }
     (void)OS_RestoreIrq(ctrdgi_backup_irq);
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return result;

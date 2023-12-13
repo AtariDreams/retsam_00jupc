@@ -15,21 +15,21 @@
   INDENT SOURCE
 
   Revision 1.5  2005/10/12 01:45:29  yasu
-  DCF �R�[���o�b�N�̃L�����Z��
+  DCF コールバックのキャンセル
 
   Revision 1.4  2005/09/28 11:44:37  yasu
-  �R�[�h�𐮗�
-  SOCL_CalmDown() ��ǉ�
-  CPS ���C�u�����̐����Ή����܂��Ȃ̂� SOC ���ŏ������J�o�[���Ă���
+  コードを整理
+  SOCL_CalmDown() を追加
+  CPS ライブラリの正式対応がまだなので SOC 側で処理をカバーしている
 
   Revision 1.3  2005/09/27 14:18:09  yasu
-  SOC_Close �̔񓯊�����T�|�[�g
+  SOC_Close の非同期動作サポート
 
   Revision 1.2  2005/09/15 12:51:01  yasu
-  DHCP Requested IP �T�|�[�g
+  DHCP Requested IP サポート
 
   Revision 1.1  2005/08/18 13:17:59  yasu
-  cleanup API ��ʃt�@�C���ֈړ�
+  cleanup API を別ファイルへ移動
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -39,12 +39,12 @@
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Clearup
 
-  Description:  SOC/CPS �\�P�b�g���C�u�������V���b�g�_�E�����܂��B
+  Description:  SOC/CPS ソケットライブラリをシャットダウンします。
 
-  Arguments:    �Ȃ�
+  Arguments:    なし
 
-  Returns:       0 ����I��
-                -1 �S�Ẵ\�P�b�g�T�[�r�X����~���Ă��܂���
+  Returns:       0 正常終了
+                -1 全てのソケットサービスが停止していません
  *---------------------------------------------------------------------------*/
 int SOCL_Cleanup(void)
 {
@@ -52,14 +52,14 @@ int SOCL_Cleanup(void)
 
     SDK_ASSERT(SOCLiConfigPtr);
 
-    // IP �A�h���X���ۑ�����Ă��Ȃ��Ȃ�ۑ����Ă���
+    // IP アドレスが保存されていないなら保存しておく
     if (SOCLiRequestedIP == 0)
     {
         SOCLiRequestedIP = CPSMyIp;
     }
 
-    // �S�Ẵ\�P�b�g���N���[�Y���Ă����D
-    // SOCLiUDPSendSocket �����̏����ŃN���[�Y�����
+    // 全てのソケットをクローズしていく．
+    // SOCLiUDPSendSocket もこの処理でクローズされる
     while (SOCL_EINPROGRESS == SOCL_CalmDown())
     {
         OS_Sleep(100);
@@ -73,14 +73,14 @@ int SOCL_Cleanup(void)
         OS_TPrintf("CPS_Cleanup\n");
 #endif
 
-        // DHCP Release ���s�Ȃ����߂Ƀu���b�N����
-        // �������������ꍇ�� SOCL_CalmDown() �ŏ�����i�߂Ă�������
+        // DHCP Release を行なうためにブロックする
+        // これを避けたい場合は SOCL_CalmDown() で処理を進めておくこと
         CPS_Cleanup();
 
-        // �񓯊� Cleanup �΍�
+        // 非同期 Cleanup 対策
         CPS_SetScavengerCallback(NULL);
 
-        if (!SOCLiConfigPtr->lan_buffer)    // ���͊m�ۂ����̈�̊J��
+        if (!SOCLiConfigPtr->lan_buffer)    // 自力確保した領域の開放
         {
             SOCLi_Free(SOCLiCPSConfig.lan_buf);
         }
@@ -94,13 +94,13 @@ int SOCL_Cleanup(void)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_CloseAll
 
-  Description:  ���[�U�\�P�b�g��S�Ĕ񓯊��ŃN���[�Y����
-                (����\�P�b�g�͎c��)
+  Description:  ユーザソケットを全て非同期でクローズする
+                (特殊ソケットは残す)
   
-  Arguments:    �Ȃ�
+  Arguments:    なし
   
-  Returns:      SOCL_EINPROGRESS=-26 �Ȃ�N���[�Y������
-                SOCL_ESUCCESS   = 0  �Ȃ犮��
+  Returns:      SOCL_EINPROGRESS=-26 ならクローズ処理中
+                SOCL_ESUCCESS   = 0  なら完了
  *---------------------------------------------------------------------------*/
 int SOCL_CloseAll(void)
 {
@@ -109,12 +109,12 @@ int SOCL_CloseAll(void)
 
     for (;;)
     {
-        // �N���[�Y�Ăяo������ SocketList �̏�Ԃ��ω����邩������Ȃ��̂�
-        // ����擪���猟������
+        // クローズ呼び出し中に SocketList の状態が変化するかもしれないので
+        // 毎回先頭から検索する
         enable = OS_DisableInterrupts();
         for (socket = SOCLiSocketList; socket; socket = socket->next)
         {
-            // �܂��N���[�Y�������n�܂��Ă��Ȃ���ʂ̃\�P�b�g�ł��邩�H
+            // まだクローズ処理が始まっていない一般のソケットであるか？
             if ((int)socket != SOCLiUDPSendSocket && !SOCL_SocketIsWaitingClose(socket))
             {
                 break;
@@ -130,7 +130,7 @@ int SOCL_CloseAll(void)
         (void)SOCL_Close((int)socket);
     }
 
-    // �\�P�b�g���X�g����A���邢�� UDPSend �\�P�b�g�݂̂ł���p�����X�g����Ȃ�I��
+    // ソケットリストが空、あるいは UDPSend ソケットのみであり廃棄リストが空なら終了
     if (SOCLiSocketList == NULL || ((int)SOCLiSocketList == SOCLiUDPSendSocket && SOCLiSocketList->next == NULL))
     {
         if (SOCLiSocketListTrash == NULL)
@@ -145,13 +145,13 @@ int SOCL_CloseAll(void)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_CalmDown
 
-  Description:  �S�Ẵ\�P�b�g����ѕ⏕�\�P�b�g��񓯊��ŃN���[�Y���Acleanup ��
-                �������s�Ȃ��DCPS ���C�u�����̒�~�������J�n����D
+  Description:  全てのソケットおよび補助ソケットを非同期でクローズし、cleanup の
+                準備を行なう．CPS ライブラリの停止処理も開始する．
   
-  Arguments:    �Ȃ�
+  Arguments:    なし
   
-  Returns:      SOCL_EINPROGRESS=-26 �Ȃ�N���[�Y������
-                SOCL_ESUCCESS   = 0  �Ȃ犮��
+  Returns:      SOCL_EINPROGRESS=-26 ならクローズ処理中
+                SOCL_ESUCCESS   = 0  なら完了
  *---------------------------------------------------------------------------*/
 int SOCL_CalmDown(void)
 {
@@ -176,7 +176,7 @@ int SOCL_CalmDown(void)
         SOCLi_TrashSocket();
     }
     else
-    {   // �񓯊� Cleanup �΍�
+    {   // 非同期 Cleanup 対策
         if (CPS_CalmDown())
         {
             WCM_SetRecvDCFCallback(NULL);

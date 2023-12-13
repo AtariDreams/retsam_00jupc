@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_249.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			249�@�܂��т��̓Ńo�[�W�����B�_���[�W�̑���ɁA���񂾃|�P�������ǂ���Ԃɂ���B
- *				 �Ń|�P�������o���΁A�ł��󂯂��ɏ�����B�P��܂��ƓŁA�Q��܂��ƖғŁB�܂��т��Ɠ����ɂ܂����Ƃ͉\�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			249　まきびしの毒バージョン。ダメージの代わりに、踏んだポケモンをどく状態にする。
+ *				 毒ポケモンを出せば、毒を受けずに消える。１回まくと毒、２回まくと猛毒。まきびしと同時にまくことは可能。
  *
  *@author	HisashiSogabe
  *@data		2006.02.15

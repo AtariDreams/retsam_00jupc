@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>RTC_GetAlarmParam</title>
@@ -13,7 +13,7 @@
 
 <h1 align="left">RTC_GetAlarmParam</h1>
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -23,39 +23,39 @@
             <A href="RTCAlarmParam.html">RTCAlarmParam</A>*	param );</CODE></PRE>
   </dd>
 
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="300"><em><strong><font face="Courier New">chan</font></strong></em></TD>
-      <TD width="700">�A���[���`�����l����<A href="RTCAlarmChan.html">RTCAlarmChan�񋓌^</A>�Ŏw�肵�܂��B</TD>
+      <TD width="700">アラームチャンネルを<A href="RTCAlarmChan.html">RTCAlarmChan列挙型</A>で指定します。</TD>
     </TR>
     <TR>
       <TD><em><strong><font face="Courier New">param</font></strong></em></TD>
-      <TD>�A���[���ݒ�l���󂯎��<A href="RTCAlarmParam.html">RTCAlarmParam�^</A>�̃o�b�t�@�ւ̃|�C���^</TD>
+      <TD>アラーム設定値を受け取る<A href="RTCAlarmParam.html">RTCAlarmParam型</A>のバッファへのポインタ</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�v�������������ꍇ�� 0 ��Ԃ��܂��B<BR>
-�v�������s�����ꍇ�ɂ� 0 �ȊO��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>要求が成功した場合に 0 を返します。<BR>
+要求が失敗した場合には 0 以外を返します。</p>
 
-<H2>����</H2>
-<P>���A���^�C���N���b�N����A���[�����荞�ݐݒ�l��ǂݏo���܂��B<BR>
-���̊֐���ARM7�ɃA���[�����荞�ݐݒ�l�ǂݏo���v���𔭍s���AARM7����̉�����҂��ď������ʂ�Ԃ��܂��B<BR>
-<A href="RTC_GetAlarmParamAsync.html">RTC_GetAlarmParamAsync</A>�̓����łł��B</P>
+<H2>説明</H2>
+<P>リアルタイムクロックからアラーム割り込み設定値を読み出します。<BR>
+この関数はARM7にアラーム割り込み設定値読み出し要求を発行し、ARM7からの応答を待って処理結果を返します。<BR>
+<A href="RTC_GetAlarmParamAsync.html">RTC_GetAlarmParamAsync</A>の同期版です。</P>
 
-<H2>����</H2>
-<P><FONT color=red>���̊֐��͓��������ׂ�PXI���荞�݂�҂��܂��̂ŁAPXI���荞�݂��֎~������ԂŌĂяo���Ȃ��悤�ɂ��ĉ������B<BR>
-�܂��ARTC�A���[�����荞�݋���Ԃ�&quot;����&quot;�łȂ��ꍇ�̓��A���^�C���N���b�N����ݒ�l��ǂݏo�����Ƃ͂ł��܂���̂ŁA���̊֐��͎��s���܂��B</FONT></P>
+<H2>注意</H2>
+<P><FONT color=red>この関数は同期を取る為にPXI割り込みを待ちますので、PXI割り込みを禁止した状態で呼び出さないようにして下さい。<BR>
+また、RTCアラーム割り込み許可状態が&quot;許可&quot;でない場合はリアルタイムクロックから設定値を読み出すことはできませんので、この関数は失敗します。</FONT></P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><CODE><A href="RTC_GetAlarmParamAsync.html">RTC_GetAlarmParamAsync</A>, <A href="RTC_SetAlarmParam.html">RTC_SetAlarmParam</A>, <A href="RTC_SetAlarmParamAsync.html">RTC_SetAlarmParamAsync</A>, <A href="RTCResult.html">RTCResult</A>, <A href="RTCAlarmChan.html">RTCAlarmChan</A>, <A href="RTCAlarmParam.html">RTCAlarmParam</A></CODE></P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/03/08 �p�ꓝ�� [������] �� [���荞��]<br>
-2004/05/18 ����</P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/05/18 初版</P>
 </body>
 </html>

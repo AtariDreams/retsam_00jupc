@@ -2,7 +2,7 @@
 /**
  *
  *	@file		nutmix_comm_pack.c
- *	@brief		’ÊMPACKAGEƒVƒXƒeƒ€
+ *	@brief		é€šä¿¡PACKAGEã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2006.05.23
  *
@@ -17,35 +17,35 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define NUTMIX_COMM_PACK_DATABUFF_SIZE	( 38 )	// byte
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒ_ƒ~[ƒR[ƒ‹ƒoƒbƒNƒ[ƒN
+//	ãƒ€ãƒŸãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	BOOL init;
@@ -56,24 +56,24 @@ typedef struct {
 
 
 //-------------------------------------
-//	ƒ_ƒ~[ƒR[ƒ‹ƒoƒbƒNƒVƒXƒeƒ€
+//	ãƒ€ãƒŸãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
-	NUTMIX_COMMPACK_DUMMY_WORK	work[NUTMIX_COMM_PACK_DUMMY_WORK_NUM];	// ƒ[ƒN
-	const CommPacketTbl* pCommPacketLocal;	// ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
-	int					 commtbl_num;		// ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹”
-	void*				 pCallBackWork;		// ƒR[ƒ‹ƒoƒbƒNƒ[ƒN
-	TCB_PTR				 tcb;				// ƒ^ƒXƒNƒ[ƒN
+	NUTMIX_COMMPACK_DUMMY_WORK	work[NUTMIX_COMM_PACK_DUMMY_WORK_NUM];	// ãƒ¯ãƒ¼ã‚¯
+	const CommPacketTbl* pCommPacketLocal;	// ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
+	int					 commtbl_num;		// ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+	void*				 pCallBackWork;		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+	TCB_PTR				 tcb;				// ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
 } NUTMIX_COMMPACK_DUMMY_SYS;
 
 
 //-------------------------------------
-//	ŠO•”•Û@ƒVƒXƒeƒ€ƒ[ƒN
-//	comm_flg‚©‚çpWork‚Ìg—p—p“r‚ª•Ï‚í‚é
+//	å¤–éƒ¨ä¿æŒã€€ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+//	comm_flgã‹ã‚‰pWorkã®ä½¿ç”¨ç”¨é€”ãŒå¤‰ã‚ã‚‹
 //=====================================
 typedef struct _NUTMIX_COMMPACK_WORK{
-	int comm_flg;	// ’ÊMƒpƒbƒNƒtƒ‰ƒO
-	void* pWork;	// ƒ[ƒN
+	int comm_flg;	// é€šä¿¡ãƒ‘ãƒƒã‚¯ãƒ•ãƒ©ã‚°
+	void* pWork;	// ãƒ¯ãƒ¼ã‚¯
 } ;
 
 
@@ -81,7 +81,7 @@ typedef struct _NUTMIX_COMMPACK_WORK{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static NUTMIX_COMMPACK_DUMMY_SYS* NutMix_CommPack_DummySys_Init( const CommPacketTbl* pCommPacketLocal,int listNum,void* pWork, int heapID );
@@ -94,32 +94,32 @@ static BOOL NutMix_CommPack_DummySys_SendData( NUTMIX_COMMPACK_DUMMY_SYS* p_sys,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹İ’è@ƒpƒbƒNŠÖ”
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«è¨­å®šã€€ãƒ‘ãƒƒã‚¯é–¢æ•°
  *
- *	@param	pCommPacketLocal		ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
- *	@param	listNum					ƒŠƒXƒg”
- *	@param	pWork					ƒR[ƒ‹ƒoƒbƒNƒ[ƒN
- *	@param	comm_flg				’ÊMƒpƒbƒNƒtƒ‰ƒO
- *	@param	heapID					ƒq[ƒvID
+ *	@param	pCommPacketLocal		ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	listNum					ãƒªã‚¹ãƒˆæ•°
+ *	@param	pWork					ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	comm_flg				é€šä¿¡ãƒ‘ãƒƒã‚¯ãƒ•ãƒ©ã‚°
+ *	@param	heapID					ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	ƒRƒ}ƒ“ƒhƒpƒbƒNƒVƒXƒeƒ€ƒ[ƒN
+ *	@retval	ã‚³ãƒãƒ³ãƒ‰ãƒ‘ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 NUTMIX_COMMPACK_WORK* NMIX_CommPack_CommandInitialize( const CommPacketTbl* pCommPacketLocal,int listNum,void* pWork, int comm_flg, int heapID )
 {
 	NUTMIX_COMMPACK_WORK* p_sys;
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_sys = sys_AllocMemory( heapID, sizeof(NUTMIX_COMMPACK_WORK) );
 	p_sys->comm_flg = comm_flg;
 	p_sys->pWork = NULL;
 	
 	if( comm_flg == NUTMIX_COMM_PACK_COMM ){
 	    CommCommandInitialize( pCommPacketLocal, listNum, pWork );
-		OS_Printf( "’ÊMÓ°ÄŞƒZƒbƒgƒAƒbƒv\n" );
+		OS_Printf( "é€šä¿¡ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—\n" );
 	}else{
 		p_sys->pWork = NutMix_CommPack_DummySys_Init( pCommPacketLocal, listNum, pWork, heapID );
-		OS_Printf( "ˆêlÓ°ÄŞƒZƒbƒgƒAƒbƒv\n" );
+		OS_Printf( "ä¸€äººãƒ¢ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—\n" );
 	}
 
 	return p_sys;
@@ -127,15 +127,15 @@ NUTMIX_COMMPACK_WORK* NMIX_CommPack_CommandInitialize( const CommPacketTbl* pCom
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ}ƒ“ƒh“]‘—@ƒpƒbƒNŠÖ”
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰è»¢é€ã€€ãƒ‘ãƒƒã‚¯é–¢æ•°
  *
- *	@param	command				ƒRƒ}ƒ“ƒh
- *	@param	data				ƒf[ƒ^
- *	@param	size				ƒTƒCƒY
- *	@param	p_sys				ƒRƒ}ƒ“ƒhƒpƒbƒNƒVƒXƒeƒ€
+ *	@param	command				ã‚³ãƒãƒ³ãƒ‰
+ *	@param	data				ãƒ‡ãƒ¼ã‚¿
+ *	@param	size				ã‚µã‚¤ã‚º
+ *	@param	p_sys				ã‚³ãƒãƒ³ãƒ‰ãƒ‘ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	¸”s
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 BOOL NMIX_CommPack_CommSendData( int command, const void* data, int size, NUTMIX_COMMPACK_WORK* p_sys )
@@ -163,9 +163,9 @@ BOOL NMIX_CommPack_CommSendData( int command, const void* data, int size, NUTMIX
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹‘€ì	ƒpƒbƒNƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«æ“ä½œ	ãƒ‘ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void NMIX_CommPack_CommDelete( NUTMIX_COMMPACK_WORK* p_sys )
@@ -179,11 +179,11 @@ void NMIX_CommPack_CommDelete( NUTMIX_COMMPACK_WORK* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ÌÚ‘±ID‚ğæ“¾
+ *	@brief	è‡ªåˆ†ã®æ¥ç¶šIDã‚’å–å¾—
  *
- *	@param	p_sys	ƒVƒXƒeƒ€
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	Ú‘±ID
+ *	@return	æ¥ç¶šID
  */
 //-----------------------------------------------------------------------------
 int NMIX_CommPack_CommGetCurrentID( NUTMIX_COMMPACK_WORK* p_sys )
@@ -197,13 +197,13 @@ int NMIX_CommPack_CommGetCurrentID( NUTMIX_COMMPACK_WORK* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊM‰Â”\ó‘Ô‚È‚Ì‚©‚Ç‚¤‚©‚ğ•Ô‚· ‚½‚¾‚µƒRƒ}ƒ“ƒh‚É‚æ‚éƒlƒSƒVƒG[ƒVƒ‡ƒ“‚ª‚Ü‚¾‚Ìó‘Ô
+ *	@brief	é€šä¿¡å¯èƒ½çŠ¶æ…‹ãªã®ã‹ã©ã†ã‹ã‚’è¿”ã™ ãŸã ã—ã‚³ãƒãƒ³ãƒ‰ã«ã‚ˆã‚‹ãƒã‚´ã‚·ã‚¨ãƒ¼ã‚·ãƒ§ãƒ³ãŒã¾ã ã®çŠ¶æ…‹
  *
- *	@param	p_sys	ƒVƒXƒeƒ€
- *	@param	netID	Ú‘±ID
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	netID	æ¥ç¶šID
  *
- *	@retval	TRUE	Ú‘±‚µ‚Ä‚¢‚é
- *	@retval	FALSE	Ú‘±‚µ‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	æ¥ç¶šã—ã¦ã„ã‚‹
+ *	@retval	FALSE	æ¥ç¶šã—ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL NMIX_CommPack_CommIsConnect( NUTMIX_COMMPACK_WORK* p_sys, u16 netID )
@@ -224,28 +224,28 @@ BOOL NMIX_CommPack_CommIsConnect( NUTMIX_COMMPACK_WORK* p_sys, u16 netID )
 //-----------------------------------------------------------------------------
 /**
  * 
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  * 
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[ƒR[ƒ‹ƒoƒbƒNƒVƒXƒeƒ€
+ *	@brief	ãƒ€ãƒŸãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
  *	
- *	@param	pCommPacketLocal	ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
- *	@param	listNum				ƒe[ƒuƒ‹”
- *	@param	pWork				ƒ[ƒN
- *	@param	heapID				ƒq[ƒvID
+ *	@param	pCommPacketLocal	ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	listNum				ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+ *	@param	pWork				ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID				ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ì¬‚µ‚½ƒVƒXƒeƒ€ƒ[ƒN
+ *	@return	ä½œæˆã—ãŸã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static NUTMIX_COMMPACK_DUMMY_SYS* NutMix_CommPack_DummySys_Init( const CommPacketTbl* pCommPacketLocal,int listNum,void* pWork, int heapID )
 {
 	NUTMIX_COMMPACK_DUMMY_SYS* p_sys;
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_sys = sys_AllocMemory( heapID, sizeof(NUTMIX_COMMPACK_DUMMY_SYS) );
 	memset( p_sys, 0, sizeof(NUTMIX_COMMPACK_DUMMY_SYS) );
 
@@ -260,7 +260,7 @@ static NUTMIX_COMMPACK_DUMMY_SYS* NutMix_CommPack_DummySys_Init( const CommPacke
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“@“®‚³
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã€€å‹•ã•
  */
 //-----------------------------------------------------------------------------
 static void NutMix_CommPack_DummySys_Main( TCB_PTR tcb, void* p_work )
@@ -268,15 +268,15 @@ static void NutMix_CommPack_DummySys_Main( TCB_PTR tcb, void* p_work )
 	NUTMIX_COMMPACK_DUMMY_SYS* p_sys = p_work;
 	int i;
 
-	// ƒR[ƒ‹ƒoƒbƒNˆ—
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
 	for( i=0; i<NUTMIX_COMM_PACK_DUMMY_WORK_NUM; i++ ){
 
-		// ƒf[ƒ^‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+		// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( p_sys->work[i].init == TRUE ){
 			p_sys->pCommPacketLocal[ p_sys->work[i].command ].callbackFunc( 
 					NUTMIX_COMM_PACK_DUMMY_NETID, p_sys->work[i].size, 
 					p_sys->work[i].data, p_sys->pCallBackWork );
-			// ƒ[ƒNƒNƒŠƒA
+			// ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
 			memset( &p_sys->work[i], 0, sizeof(NUTMIX_COMMPACK_DUMMY_WORK) );
 		}
 	}
@@ -284,9 +284,9 @@ static void NutMix_CommPack_DummySys_Main( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[ƒR[ƒ‹ƒoƒbƒNƒVƒXƒeƒ€”jŠü
+ *	@brief	ãƒ€ãƒŸãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN 
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ 
  */
 //-----------------------------------------------------------------------------
 static void NutMix_CommPack_DummySys_Delete( NUTMIX_COMMPACK_DUMMY_SYS* p_sys )
@@ -297,15 +297,15 @@ static void NutMix_CommPack_DummySys_Delete( NUTMIX_COMMPACK_DUMMY_SYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ}ƒ“ƒh“o˜^
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰ç™»éŒ²
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	command		ƒRƒ}ƒ“ƒh
- *	@param	data		ƒf[ƒ^
- *	@param	size		ƒTƒCƒY
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	command		ã‚³ãƒãƒ³ãƒ‰
+ *	@param	data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	size		ã‚µã‚¤ã‚º
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	¸”s
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 static BOOL NutMix_CommPack_DummySys_SendData( NUTMIX_COMMPACK_DUMMY_SYS* p_sys, int command, const void* data, int size )
@@ -314,7 +314,7 @@ static BOOL NutMix_CommPack_DummySys_SendData( NUTMIX_COMMPACK_DUMMY_SYS* p_sys,
 	int check_size;
 	NUTMIX_COMMPACK_DUMMY_WORK* p_work;
 
-	// ‹ó‚¢‚Ä‚¢‚éƒ[ƒNæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯å–å¾—
 	p_work = NULL;
 	for( i=0; i<NUTMIX_COMM_PACK_DUMMY_WORK_NUM; i++ ){
 		if( p_sys->work[i].init == FALSE ){
@@ -322,23 +322,23 @@ static BOOL NutMix_CommPack_DummySys_SendData( NUTMIX_COMMPACK_DUMMY_SYS* p_sys,
 			break;
 		}
 	}
-	// “o˜^”ƒI[ƒo[
+	// ç™»éŒ²æ•°ã‚ªãƒ¼ãƒãƒ¼
 	GF_ASSERT( p_work );
 
 
-	// ƒRƒ}ƒ“ƒh‚Ì‹¤’Ê•”•ª”•¶ˆø‚­
+	// ã‚³ãƒãƒ³ãƒ‰ã®å…±é€šéƒ¨åˆ†æ•°æ–‡å¼•ã
 	command -= CS_COMMAND_MAX;
 
-	// “o˜^‚·‚éƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY‚Æƒf[ƒ^ƒTƒCƒY‚ª“™‚µ‚¢‚©ƒ`ƒFƒbƒN
+	// ç™»éŒ²ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚ºã¨ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒç­‰ã—ã„ã‹ãƒã‚§ãƒƒã‚¯
 	check_size = p_sys->pCommPacketLocal[ command ].getSizeFunc();
 	GF_ASSERT( check_size == size );
 
-	// ƒ_ƒ~[ƒoƒbƒtƒ@ƒTƒCƒY‚æ‚è¬‚³‚¢‚©ƒ`ƒFƒbƒN
+	// ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚ˆã‚Šå°ã•ã„ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( size < NUTMIX_COMM_PACK_DATABUFF_SIZE );
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_work->command = command;
-	if( size > 0 ){	// ƒTƒCƒY‚ª‚ ‚Á‚½‚çƒRƒs[
+	if( size > 0 ){	// ã‚µã‚¤ã‚ºãŒã‚ã£ãŸã‚‰ã‚³ãƒ”ãƒ¼
 		memcpy( p_work->data, data, size );
 	}
 	p_work->size	= size;

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	gds_connect.c
- * @brief	GDSƒ‚[ƒhFWifiÚ‘±‰æ–Ê
+ * @brief	GDSãƒ¢ãƒ¼ãƒ‰ï¼šWifiæŽ¥ç¶šç”»é¢
  * @author	matsuda
- * @date	2008.01.17(–Ø)
+ * @date	2008.01.17(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -59,7 +59,7 @@
 #include "msgdata/msg_wifi_lobby.h"
 #include "msgdata/msg_wifi_gtc.h"
 #include "msgdata/msg_wifi_system.h"
-#include "../wifi_p2pmatch/wifip2pmatch.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "../wifi_p2pmatch/wifip2pmatch.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 #include "application/connect_anm.h"
 
@@ -67,14 +67,14 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///GDSƒvƒƒbƒN§Œä‚ªŽg—p‚·‚éƒq[ƒvƒTƒCƒY
+///GDSãƒ—ãƒ­ãƒƒã‚¯åˆ¶å¾¡ãŒä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º
 #define GDSCONNECT_HEAP_SIZE		(0x50000)
 
-///¢ŠEŒðŠ·‚Æ“¯‚¶‚É‚µ‚Ä‚¨‚­(WORLDTRADE_WORDSET_BUFLEN)
+///ä¸–ç•Œäº¤æ›ã¨åŒã˜ã«ã—ã¦ãŠã(WORLDTRADE_WORDSET_BUFLEN)
 #define GDSCONNECT_WORDSET_BUFLEN	( 64 )
-// ‰ï˜bƒEƒCƒ“ƒhƒE•¶Žš—ñƒoƒbƒtƒ@’·
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡é•·
 #define TALK_MESSAGE_BUF_NUM	( 90*2 )
 #define DWC_ERROR_BUF_NUM		(16*8*2)
 
@@ -84,55 +84,55 @@
 #define GDSCONNECT_MENUFRAME_CHR ( GDSCONNECT_MESFRAME_CHR + TALK_WIN_CGX_SIZ )
 #define GDSCONNECT_TALKFONT_PAL	 ( 13 )
 
-// ‚P•b‘Ò‚Â—p‚Ì’è‹`
+// ï¼‘ç§’å¾…ã¤ç”¨ã®å®šç¾©
 #define WAIT_ONE_SECONDE_NUM	( 30 )
 
-//ƒƒbƒZ[ƒWˆêŠ‡•`‰æ‚Ìê‡‚ÉƒZƒbƒg‚·‚éƒƒbƒZ[ƒWindex
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä¸€æ‹¬æç”»ã®å ´åˆã«ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸index
 #define GDSCONNECT_MSG_NO_WAIT		(0xff)
 
 
-///ƒTƒuƒV[ƒPƒ“ƒX‚Ì–ß‚è’l
+///ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®æˆ»ã‚Šå€¤
 enum{
-	SUBSEQ_CONTINUE,	///<Œp‘±
-	SUBSEQ_END,			///<I—¹
+	SUBSEQ_CONTINUE,	///<ç¶™ç¶š
+	SUBSEQ_END,			///<çµ‚äº†
 };
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 typedef struct{
 	GDSPROC_MAIN_WORK *oya_proc_work;
 
 	GF_BGL_INI		*bgl;								// GF_BGL_INI
 	
-	int				subprocess_seq;						// ƒTƒuƒvƒƒOƒ‰ƒ€ƒV[ƒPƒ“ƒXNO
-	int				subprocess_nextseq;					// ƒTƒuƒvƒƒOƒ‰ƒ€NEXTƒV[ƒPƒ“ƒXNO
+	int				subprocess_seq;						// ã‚µãƒ–ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚·ãƒ¼ã‚±ãƒ³ã‚¹NO
+	int				subprocess_nextseq;					// ã‚µãƒ–ãƒ—ãƒ­ã‚°ãƒ©ãƒ NEXTã‚·ãƒ¼ã‚±ãƒ³ã‚¹NO
 
-	int				ConnectErrorNo;						// DWCE‚Ü‚½‚ÍƒT[ƒo[‚©‚ç‚ÌƒGƒ‰[
+	int				ConnectErrorNo;						// DWCãƒ»ã¾ãŸã¯ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã®ã‚¨ãƒ©ãƒ¼
 	int				ErrorRet;
 	int				ErrorCode;
 	int ErrorType;
 
-	// •`‰æ‚Ü‚í‚è‚Ìƒ[ƒNiŽå‚ÉBMP—p‚Ì•¶Žš—ñŽü‚èj
-	WORDSET			*WordSet;							// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *MsgManager;						// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *LobbyMsgManager;					// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *SystemMsgManager;					// WifiƒVƒXƒeƒ€ƒƒbƒZ[ƒWƒf[ƒ^
-	MSGDATA_MANAGER *GdsConnectMsgManager;					// Eƒ[ƒ‹ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	STRBUF			*TalkString;						// ‰ï˜bƒƒbƒZ[ƒW—p
-	STRBUF			*TitleString;						// ƒ^ƒCƒgƒ‹ƒƒbƒZ[ƒW—p
+	// æç”»ã¾ã‚ã‚Šã®ãƒ¯ãƒ¼ã‚¯ï¼ˆä¸»ã«BMPç”¨ã®æ–‡å­—åˆ—å‘¨ã‚Šï¼‰
+	WORDSET			*WordSet;							// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *MsgManager;						// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *LobbyMsgManager;					// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *SystemMsgManager;					// Wifiã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+	MSGDATA_MANAGER *GdsConnectMsgManager;					// Eãƒ¡ãƒ¼ãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	STRBUF			*TalkString;						// ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
+	STRBUF			*TitleString;						// ã‚¿ã‚¤ãƒˆãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
 	STRBUF			*ErrorString;
-	int				MsgIndex;							// I—¹ŒŸo—pƒ[ƒN
+	int				MsgIndex;							// çµ‚äº†æ¤œå‡ºç”¨ãƒ¯ãƒ¼ã‚¯
 
 
-	// BMPWIN•`‰æŽü‚è
-	GF_BGL_BMPWIN			MsgWin;					// ‰ï˜bƒEƒCƒ“ƒhƒE
-	GF_BGL_BMPWIN			TitleWin;				// uƒŒƒR[ƒhƒR[ƒi[@‚Ú‚µ‚ã‚¤‚¿‚ã‚¤Iv‚È‚Ç
-	GF_BGL_BMPWIN			SubWin;					// uƒŒƒR[ƒhƒR[ƒi[@‚Ú‚µ‚ã‚¤‚¿‚ã‚¤Iv‚È‚Ç
-	GF_BGL_BMPWIN			list_bmpwin;			///<ƒƒjƒ…[ƒŠƒXƒgì¬—pBMPWIN
+	// BMPWINæç”»å‘¨ã‚Š
+	GF_BGL_BMPWIN			MsgWin;					// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN			TitleWin;				// ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã€€ã¼ã—ã‚…ã†ã¡ã‚…ã†ï¼ã€ãªã©
+	GF_BGL_BMPWIN			SubWin;					// ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã€€ã¼ã—ã‚…ã†ã¡ã‚…ã†ï¼ã€ãªã©
+	GF_BGL_BMPWIN			list_bmpwin;			///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆä½œæˆç”¨BMPWIN
 
 	BMPMENU_WORK			*YesNoMenuWork;
-	void*					timeWaitWork;			// ‰ï˜bƒEƒCƒ“ƒhƒE‰¡ƒAƒCƒRƒ“ƒ[ƒN
+	void*					timeWaitWork;			// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ¨ªã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯
 
 	int						wait;
 
@@ -140,15 +140,15 @@ typedef struct{
 	int local_seq;
 	int local_wait;
 	int local_work;
-	BMP_MENULIST_DATA *listmenu;					///<Eƒ[ƒ‹ƒƒjƒ…[
+	BMP_MENULIST_DATA *listmenu;					///<Eãƒ¡ãƒ¼ãƒ«ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 	BMPLIST_WORK *lw;
 	
-	//WIFIÚ‘±BGƒpƒŒƒbƒgƒAƒjƒ§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	//WIFIæŽ¥ç¶šBGãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	CONNECT_BG_PALANM cbp;
 }GDS_CONNECT_SYS;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 PROC_RESULT GdsConnectProc_Init( PROC * proc, int * seq );
 PROC_RESULT GdsConnectProc_Main( PROC * proc, int * seq );
@@ -216,7 +216,7 @@ static int (*Functable[])( GDS_CONNECT_SYS *wk ) = {
 	Enter_DwcErrorPrint,                //ENTER_DWC_ERROR_PRINT,
 	Enter_ErrorPadWait,                 //ENTER_ERROR_PAD_WAIT,
 	Enter_End,                          //ENTER_END,
-	Enter_End,                          //ENTER_CONNECT_END,	’ÊM‚µ‚½‚Ü‚ÜI—¹
+	Enter_End,                          //ENTER_CONNECT_END,	é€šä¿¡ã—ãŸã¾ã¾çµ‚äº†
 	Enter_ServerServiceError,			//ENTER_SERVER_SERVICE_ERROR,
 	Enter_ServerServiceEnd,				//ENTER_SERVER_SERVICE_END,
 	Enter_MessageWait,					//ENTER_MES_WAIT,
@@ -224,48 +224,48 @@ static int (*Functable[])( GDS_CONNECT_SYS *wk ) = {
 };
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
-//	‚Í‚¢E‚¢‚¢‚¦@ƒEƒBƒ“ƒhƒE
+//	ã¯ã„ãƒ»ã„ã„ãˆã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
-// ‚Í‚¢E‚¢‚¢‚¦
+// ã¯ã„ãƒ»ã„ã„ãˆ
 #define	BMP_YESNO_PX	( 23 )
 #define	BMP_YESNO_PY	( 13 )
 #define	BMP_YESNO_SX	( 7 )
 #define	BMP_YESNO_SY	( 4 )
 #define	BMP_YESNO_PAL	( 13 )
 
-// ‚Í‚¢E‚¢‚¢‚¦(ƒEƒCƒ“ƒhƒE—pj
+// ã¯ã„ãƒ»ã„ã„ãˆ(ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨ï¼‰
 static const BMPWIN_DAT YesNoBmpWin = {
 	GF_BGL_FRAME0_M, BMP_YESNO_PX, BMP_YESNO_PY,
 	BMP_YESNO_SX, BMP_YESNO_SY, BMP_YESNO_PAL, 
-	0, //Œã‚ÅŽw’è‚·‚é
+	0, //å¾Œã§æŒ‡å®šã™ã‚‹
 };
 
-// ‚Í‚¢E‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ÌYÀ•W
-#define	GDSCONNECT_YESNO_PY2	( 13 )		// ‰ï˜bƒEƒCƒ“ƒhƒE‚ª‚Qs‚ÌŽž
-#define	GDSCONNECT_YESNO_PY1	( 15 )		// ‰ï˜bƒEƒCƒ“ƒhƒE‚ª‚Ps‚ÌŽž
+// ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®Yåº§æ¨™
+#define	GDSCONNECT_YESNO_PY2	( 13 )		// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒï¼’è¡Œã®æ™‚
+#define	GDSCONNECT_YESNO_PY1	( 15 )		// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒï¼‘è¡Œã®æ™‚
 
 
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT GdsConnectProc_Init( PROC * proc, int * seq )
 {
 	GDS_CONNECT_SYS *wk;
 	
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -288,42 +288,42 @@ PROC_RESULT GdsConnectProc_Init( PROC * proc, int * seq )
 
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-	//VRAMŠ„‚è“–‚ÄÝ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	GdsConnectMenu_VramBankSet(wk->bgl);
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	wk->WordSet    		 = WORDSET_CreateEx( 11, GDSCONNECT_WORDSET_BUFLEN, HEAPID_GDS_CONNECT );
 	wk->MsgManager       = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_gtc_dat, HEAPID_GDS_CONNECT );
 	wk->LobbyMsgManager  = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_lobby_dat, HEAPID_GDS_CONNECT );
 	wk->SystemMsgManager = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_system_dat, HEAPID_GDS_CONNECT );
 
-	// •¶Žš—ñƒoƒbƒtƒ@ì¬
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->TalkString  = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_GDS_CONNECT );
 	wk->ErrorString = STRBUF_Create( DWC_ERROR_BUF_NUM,    HEAPID_GDS_CONNECT );
 	wk->TitleString = MSGMAN_AllocString( wk->MsgManager, msg_gtc_01_032 );
 
-	// BGƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	BgGraphicSet( wk );
 
-	// BMPWINŠm•Û
+	// BMPWINç¢ºä¿
 	BmpWinInit( wk );
 
-	// ƒƒCƒvƒtƒF[ƒhŠJŽn
+	// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 
 		WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_GDS_CONNECT );
 
-	// BG–Ê•\Ž¦ON
-	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//’ÊMƒAƒCƒRƒ“
+	// BGé¢è¡¨ç¤ºON
+	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG1, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 
-	//ƒƒCƒ“‰æ–ÊÝ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢è¨­å®š
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 
@@ -333,15 +333,15 @@ PROC_RESULT GdsConnectProc_Init( PROC * proc, int * seq )
 
 	sys_VBlankFuncChange(VBlankFunc, wk);
 
-	//ŽÀs‚·‚é“®ì‚ðŒˆ’è
-	if(wk->oya_proc_work->connect_success){	//Šù‚Éƒlƒbƒg‚ÉŒq‚ª‚Á‚Ä‚¢‚é‚Ì‚ÅØ’fˆ—‚ÖˆÚs
+	//å®Ÿè¡Œã™ã‚‹å‹•ä½œã‚’æ±ºå®š
+	if(wk->oya_proc_work->connect_success){	//æ—¢ã«ãƒãƒƒãƒˆã«ç¹‹ãŒã£ã¦ã„ã‚‹ã®ã§åˆ‡æ–­å‡¦ç†ã¸ç§»è¡Œ
         WirelessIconEasy(); // MatchComment: new localization change
 		GdsConnect_SetNextSeq(wk, ENTER_CLEANUP_INET, ENTER_END);
 	}
-	else{	//ƒlƒbƒg‚ÉŒq‚ª‚Á‚Ä‚¢‚È‚¢‚Ì‚ÅŒq‚°‚És‚­
+	else{	//ãƒãƒƒãƒˆã«ç¹‹ãŒã£ã¦ã„ãªã„ã®ã§ç¹‹ã’ã«è¡Œã
 		if(wk->oya_proc_work->proc_param->connect){
-			//‰‰ñÚ‘±
-			wk->subprocess_seq = ENTER_INTERNET_CONNECT;	//u‚Í‚¢/‚¢‚¢‚¦v‘I‘ð‚ð”ò‚Î‚·
+			//åˆå›žæŽ¥ç¶š
+			wk->subprocess_seq = ENTER_INTERNET_CONNECT;	//ã€Œã¯ã„/ã„ã„ãˆã€é¸æŠžã‚’é£›ã°ã™
 		}
 		else{
 			wk->subprocess_seq = ENTER_START;
@@ -355,12 +355,12 @@ PROC_RESULT GdsConnectProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT GdsConnectProc_Main( PROC * proc, int * seq )
@@ -380,7 +380,7 @@ PROC_RESULT GdsConnectProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	case SEQ_MAIN:
-		// ƒV[ƒPƒ“ƒX‘JˆÚ‚ÅŽÀs
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é·ç§»ã§å®Ÿè¡Œ
 		temp_subprocess_seq = wk->subprocess_seq;
 		ret = (*Functable[wk->subprocess_seq])( wk );
 		if(temp_subprocess_seq != wk->subprocess_seq){
@@ -406,12 +406,12 @@ PROC_RESULT GdsConnectProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT GdsConnectProc_End( PROC * proc, int * seq )
@@ -420,7 +420,7 @@ PROC_RESULT GdsConnectProc_End( PROC * proc, int * seq )
 
 	ConnectBGPalAnm_End(&wk->cbp);
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ð•ú
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	MSGMAN_Delete( wk->SystemMsgManager );
 	MSGMAN_Delete( wk->LobbyMsgManager );
 	MSGMAN_Delete( wk->MsgManager );
@@ -432,17 +432,17 @@ PROC_RESULT GdsConnectProc_End( PROC * proc, int * seq )
 	
 	BmpWinDelete( wk );
 	
-	// BG_SYSTEM‰ð•ú
+	// BG_SYSTEMè§£æ”¾
 	sys_FreeMemoryEz( wk->bgl );
 	BgExit( wk->bgl );
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
 	MsgPrintSkipFlagSet(MSG_SKIP_OFF);
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
@@ -450,7 +450,7 @@ PROC_RESULT GdsConnectProc_End( PROC * proc, int * seq )
 
 	WirelessIconEasyEnd();
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	sys_DeleteHeap( HEAPID_GDS_CONNECT );
 
 	return PROC_RES_FINISH;
@@ -464,7 +464,7 @@ PROC_RESULT GdsConnectProc_End( PROC * proc, int * seq )
 //==============================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -475,10 +475,10 @@ static void VBlankFunc( void * work )
 {
 	GDS_CONNECT_SYS *wk = work;
 
-	// ƒZƒ‹ƒAƒNƒ^[Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();
 	
 	GF_BGL_VBlankFunc(wk->bgl);
@@ -490,9 +490,9 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNÝ’è‚ðs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void GdsConnectMenu_VramBankSet(GF_BGL_INI *bgl)
@@ -500,27 +500,27 @@ static void GdsConnectMenu_VramBankSet(GF_BGL_INI *bgl)
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -535,16 +535,16 @@ static void GdsConnectMenu_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME0_M	ƒeƒLƒXƒg–Ê
+			///<FRAME0_M	ãƒ†ã‚­ã‚¹ãƒˆé¢
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xf800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
 				0, 0, 0, FALSE
 			},
-			///<FRAME1_M	”wŒi
+			///<FRAME1_M	èƒŒæ™¯
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xf000, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01,
@@ -561,16 +561,16 @@ static void GdsConnectMenu_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_ScrollSet(bgl, GF_BGL_FRAME1_M, GF_BGL_SCROLL_X_SET, 0);
 		GF_BGL_ScrollSet(bgl, GF_BGL_FRAME1_M, GF_BGL_SCROLL_Y_SET, 0);
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME0_S	ƒeƒLƒXƒg–Ê
+			///<FRAME0_S	ãƒ†ã‚­ã‚¹ãƒˆé¢
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xf000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
 				0, 0, 0, FALSE
 			},
-			///<FRAME1_S	”wŒi
+			///<FRAME1_S	èƒŒæ™¯
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xd800, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01,
@@ -594,9 +594,9 @@ static void GdsConnectMenu_VramBankSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -612,9 +612,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -626,15 +626,15 @@ static void BgGraphicSet( GDS_CONNECT_SYS * wk )
 
 	p_handle = ArchiveDataHandleOpen( ARC_WIFIP2PMATCH_GRA, HEAPID_GDS_CONNECT );
 
-	// ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_MAIN_BG, 0, 0,  HEAPID_GDS_CONNECT);
 	ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_SUB_BG,  0, 0,  HEAPID_GDS_CONNECT);
 	
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, GDSCONNECT_TALKFONT_PAL*0x20, HEAPID_GDS_CONNECT );
 	TalkFontPaletteLoad( PALTYPE_SUB_BG,  GDSCONNECT_TALKFONT_PAL*0x20, HEAPID_GDS_CONNECT );
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	TalkWinGraphicSet(	bgl, GF_BGL_FRAME0_M, GDSCONNECT_MESFRAME_CHR, 
 				GDSCONNECT_MESFRAME_PAL,  
 				CONFIG_GetWindowType(SaveData_GetConfig(wk->oya_proc_work->proc_param->savedata)), 
@@ -646,25 +646,25 @@ static void BgGraphicSet( GDS_CONNECT_SYS * wk )
 
 
 
-	// ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_conect_NCGR, bgl, GF_BGL_FRAME1_M, 0, 0, 0, HEAPID_GDS_CONNECT);
 
-	// ƒƒCƒ“‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_conect_01_NSCR, bgl, GF_BGL_FRAME1_M, 0, 32*24*2, 0, HEAPID_GDS_CONNECT);
 
 
 
-	// ƒTƒu‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_conect_sub_NCGR, bgl, GF_BGL_FRAME1_S, 0, 0, 0, HEAPID_GDS_CONNECT);
 
-	// ƒTƒu‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_conect_sub_NSCR, bgl, GF_BGL_FRAME1_S, 0, 32*24*2, 0, HEAPID_GDS_CONNECT);
 
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0 );
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0 );
 
 	
-	//WifiÚ‘±BGƒpƒŒƒbƒgƒAƒjƒƒVƒXƒeƒ€‰Šú‰»
+	//WifiæŽ¥ç¶šBGãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	ConnectBGPalAnm_Init(&wk->cbp, p_handle, NARC_wifip2pmatch_conect_anm_NCLR, HEAPID_GDS_CONNECT);
 	
 	ArchiveDataHandleClose( p_handle );
@@ -680,7 +680,7 @@ static void BgGraphicSet( GDS_CONNECT_SYS * wk )
 #define CONNECT_TEXT_SX	( 24 )
 #define CONNECT_TEXT_SY	(  2 )
 
-// ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦ˆÊ’u’è‹`
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä½ç½®å®šç¾©
 #define TALK_WIN_X		(  2 )
 #define TALK_WIN_Y		( 19 )
 #define	TALK_WIN_SX		( 27 )
@@ -690,11 +690,11 @@ static void BgGraphicSet( GDS_CONNECT_SYS * wk )
 #define ERROR_MESSAGE_OFFSET ( TALK_MESSAGE_OFFSET   + TALK_WIN_SX*TALK_WIN_SY )
 #define TITLE_MESSAGE_OFFSET ( ERROR_MESSAGE_OFFSET  + SUB_TEXT_SX*SUB_TEXT_SY )
 #define YESNO_OFFSET 		 ( TITLE_MESSAGE_OFFSET  + CONNECT_TEXT_SX*CONNECT_TEXT_SY )
-#define MENULIST_MESSAGE_OFFSET	(ERROR_MESSAGE_OFFSET)	//ƒGƒ‰[ƒƒbƒZ[ƒW‚Æˆê‚É‚Ío‚È‚¢‚Ì‚Å ¦check YESNO_OFFSET‚Ì’l‚ð’²‚×‚ÄA[•ª‚È‹ó‚«‚ª‚ ‚é‚È‚çA‚»‚ÌŒã‚ë‚É‚·‚é
+#define MENULIST_MESSAGE_OFFSET	(ERROR_MESSAGE_OFFSET)	//ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¨ä¸€ç·’ã«ã¯å‡ºãªã„ã®ã§ â€»check YESNO_OFFSETã®å€¤ã‚’èª¿ã¹ã¦ã€å……åˆ†ãªç©ºããŒã‚ã‚‹ãªã‚‰ã€ãã®å¾Œã‚ã«ã™ã‚‹
 
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶Žšƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -703,22 +703,22 @@ static void BgGraphicSet( GDS_CONNECT_SYS * wk )
 //------------------------------------------------------------------
 static void BmpWinInit( GDS_CONNECT_SYS *wk )
 {
-	// ---------- ƒƒCƒ“‰æ–Ê ------------------
+	// ---------- ãƒ¡ã‚¤ãƒ³ç”»é¢ ------------------
 
-	// BG0–ÊBMPWIN(ƒGƒ‰[à–¾)ƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG0é¢BMPWIN(ã‚¨ãƒ©ãƒ¼èª¬æ˜Ž)ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->SubWin, GF_BGL_FRAME0_M,
 	SUB_TEXT_X, SUB_TEXT_Y, SUB_TEXT_SX, SUB_TEXT_SY, GDSCONNECT_TALKFONT_PAL,  ERROR_MESSAGE_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->SubWin, 0x0000 );
 
-	// BG0–ÊBMPWIN(ƒ^ƒCƒgƒ‹)ƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG0é¢BMPWIN(ã‚¿ã‚¤ãƒˆãƒ«)ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->TitleWin, GF_BGL_FRAME0_M,
 	CONNECT_TEXT_X, CONNECT_TEXT_Y, CONNECT_TEXT_SX, CONNECT_TEXT_SY, GDSCONNECT_TALKFONT_PAL, TITLE_MESSAGE_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->TitleWin, 0x0000 );
 	GdsConnect_TalkPrint( &wk->TitleWin, wk->TitleString, 0, 1, 1, GF_PRINTCOLOR_MAKE(15,14,0) );
 
-	// BG0–ÊBMPi‰ï˜bƒEƒCƒ“ƒhƒEjŠm•Û
+	// BG0é¢BMPï¼ˆä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼‰ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		TALK_WIN_X, 
 		TALK_WIN_Y, 
@@ -729,7 +729,7 @@ static void BmpWinInit( GDS_CONNECT_SYS *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Šm•Û‚µ‚½BMPWIN‚ð‰ð•ú
+ * $brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   wk		
  *
@@ -749,9 +749,9 @@ static void BmpWinDelete( GDS_CONNECT_SYS *wk )
  *
  * @param   win		
  * @param   strbuf		
- * @param   flag		1‚¾‚ÆƒZƒ“ƒ^ƒŠƒ“ƒOA‚Q‚¾‚Æ‰E‚æ‚¹
+ * @param   flag		1ã ã¨ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã€ï¼’ã ã¨å³ã‚ˆã›
  * @param   color		
- * @param   font		ƒtƒHƒ“ƒgŽw’èiFONT_TALK‚©FONT_SYSTEM
+ * @param   font		ãƒ•ã‚©ãƒ³ãƒˆæŒ‡å®šï¼ˆFONT_TALKã‹FONT_SYSTEM
  *
  * @retval  int		
  */
@@ -760,13 +760,13 @@ static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag,
 {
 	int length=0,ground;
 	switch(flag){
-	// ƒZƒ“ƒ^ƒŠƒ“ƒO
+	// ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°
 	case 1:
 		length = FontProc_GetPrintStrWidth( font, strbuf, 0 );
 		x          = ((win->sizx*8)-length)/2;
 		break;
 
-	// ‰EŠñ‚¹
+	// å³å¯„ã›
 	case 2:
 		length = FontProc_GetPrintStrWidth( font, strbuf, 0 );
 		x          = (win->sizx*8)-length;
@@ -778,14 +778,14 @@ static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag,
 
 //------------------------------------------------------------------
 /**
- * $brief   BMPWIN“à‚Ì•\Ž¦ˆÊ’u‚ðŽw’è‚µ‚ÄFONT_TALK‚ÅƒvƒŠƒ“ƒg(•`‰æ‚Ì‚Ýj
+ * $brief   BMPWINå†…ã®è¡¨ç¤ºä½ç½®ã‚’æŒ‡å®šã—ã¦FONT_TALKã§ãƒ—ãƒªãƒ³ãƒˆ(æç”»ã®ã¿ï¼‰
  *
  * @param   win		GF_BGL_BMPWIN
  * @param   strbuf	
- * @param   x		XÀ•W‚¸‚ç‚·’l
- * @param   y		YÀ•W‚¸‚ç‚·’l
- * @param   flag	0‚¾‚Æ¶Šñ‚¹A1‚¾‚ÆƒZƒ“ƒ^ƒŠƒ“ƒOA2‚¾‚Æ‰EŠñ‚¹
- * @param   color	•¶ŽšFŽw’èi”wŒiF‚ÅBMP‚ð“h‚è‚Â‚Ô‚µ‚Ü‚·j
+ * @param   x		Xåº§æ¨™ãšã‚‰ã™å€¤
+ * @param   y		Yåº§æ¨™ãšã‚‰ã™å€¤
+ * @param   flag	0ã ã¨å·¦å¯„ã›ã€1ã ã¨ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã€2ã ã¨å³å¯„ã›
+ * @param   color	æ–‡å­—è‰²æŒ‡å®šï¼ˆèƒŒæ™¯è‰²ã§BMPã‚’å¡—ã‚Šã¤ã¶ã—ã¾ã™ï¼‰
  *
  * @retval  none
  */
@@ -800,7 +800,7 @@ void GdsConnect_TalkPrint( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int y, int
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚—‚‰‚†‚‰ƒGƒ‰[•\Ž¦
+ * @brief   ï½—ï½‰ï½†ï½‰ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
  *
  * @param   wk		
  * @param   msgno		
@@ -814,20 +814,20 @@ static void _systemMessagePrint( GDS_CONNECT_SYS *wk, int msgno )
     MSGMAN_GetString(  wk->SystemMsgManager, msgno, tmpString );
     WORDSET_ExpandStr( wk->WordSet, wk->ErrorString, tmpString );
 
-    // ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+    // ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æž æç”»
     GF_BGL_BmpWinDataFill(&wk->SubWin, 15 );
     BmpMenuWinWrite(&wk->SubWin, WINDOW_TRANS_OFF, GDSCONNECT_MENUFRAME_CHR, GDSCONNECT_MENUFRAME_PAL );
-    // •¶Žš—ñ•`‰æŠJŽn
+    // æ–‡å­—åˆ—æç”»é–‹å§‹
     wk->MsgIndex = GF_STR_PrintSimple( &wk->SubWin, FONT_TALK,
                                        wk->ErrorString, 0, 0, MSG_ALLPUT, NULL);
-	wk->MsgIndex = GDSCONNECT_MSG_NO_WAIT;	//ˆêŠ‡•`‰æ‚È‚Ì‚Å‘Ò‚¿–³‚µ
+	wk->MsgIndex = GDSCONNECT_MSG_NO_WAIT;	//ä¸€æ‹¬æç”»ãªã®ã§å¾…ã¡ç„¡ã—
 
 	STRBUF_Delete(tmpString);
 }
 
 //------------------------------------------------------------------
 /**
- * @brief   WifiƒRƒlƒNƒVƒ‡ƒ“ƒGƒ‰[‚Ì•\Ž¦
+ * @brief   Wifiã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚¨ãƒ©ãƒ¼ã®è¡¨ç¤º
  *
  * @param   wk		
  * @param   type	
@@ -857,23 +857,23 @@ static void errorDisp(GDS_CONNECT_SYS* wk, int type, int code)
       case 1:
       case 4:
       case 5:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // ÄÚ‘±‚©ƒtƒB[ƒ‹ƒh‚©
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // å†æŽ¥ç¶šã‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹
         break;
       case 6:
       case 7:
       case 8:
       case 9:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;//WIFIP2PMATCH_POWEROFF_INIT;  // “dŒ¹‚ðØ‚é‚©ƒtƒB[ƒ‹ƒh
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;//WIFIP2PMATCH_POWEROFF_INIT;  // é›»æºã‚’åˆ‡ã‚‹ã‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
         break;
       case 10:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // ƒƒjƒ…[ˆê——‚Ö
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä¸€è¦§ã¸
         break;
       case 0:
       case 2:
       case 3:
       case 11:
       default:
-        wk->seq = WIFIP2PMATCH_MODE_CHECK_AND_END;  // ƒtƒB[ƒ‹ƒh
+        wk->seq = WIFIP2PMATCH_MODE_CHECK_AND_END;  // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
         break;
     }
 #endif
@@ -881,24 +881,24 @@ static void errorDisp(GDS_CONNECT_SYS* wk, int type, int code)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‚ÌI—¹ˆ—ƒ`ƒFƒbƒN
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®çµ‚äº†å‡¦ç†ãƒã‚§ãƒƒã‚¯
  *
- * @param   msg_index		ƒƒbƒZ[ƒWIndex
+ * @param   msg_index		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸Index
  *
- * @retval  TRUE:ˆ—’†B@@FALSE:I—¹‚µ‚Ä‚¢‚é
+ * @retval  TRUE:å‡¦ç†ä¸­ã€‚ã€€ã€€FALSE:çµ‚äº†ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static int Enter_MessagePrintEndCheck(int msg_index)
 {
 	if(msg_index == GDSCONNECT_MSG_NO_WAIT || GF_MSG_PrintEndCheck( msg_index )==0){
-		return FALSE;	//•`‰æI—¹‚µ‚Ä‚¢‚é
+		return FALSE;	//æç”»çµ‚äº†ã—ã¦ã„ã‚‹
 	}
-	return TRUE;	//ƒƒbƒZ[ƒWˆ—‘±s’†
+	return TRUE;	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ç¶šè¡Œä¸­
 }
 
 //------------------------------------------------------------------
 /**
- * @brief   ŽžŠÔƒAƒCƒRƒ“’Ç‰Á
+ * @brief   æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ 
  *
  * @param   wk		
  *
@@ -914,7 +914,7 @@ static void GdsConnect_TimeIconAdd( GDS_CONNECT_SYS *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŽžŠÔƒAƒCƒRƒ“Á‹ŽiNULLƒ`ƒFƒbƒN‚·‚éj
+ * @brief   æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆåŽ»ï¼ˆNULLãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼‰
  *
  * @param   wk		
  *
@@ -931,7 +931,7 @@ static void GdsConnect_TimeIconDel( GDS_CONNECT_SYS *wk )
 
 //==============================================================================
 /**
- * $brief   ‚Í‚¢E‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE“o˜^
+ * $brief   ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç™»éŒ²
  *
  * @param   bgl		
  * @param   menuframe		
@@ -954,7 +954,7 @@ static BMPMENU_WORK *GdsConnect_BmpWinYesNoMake( GF_BGL_INI *bgl, int y, int yes
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦
+ * $brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -963,22 +963,22 @@ static BMPMENU_WORK *GdsConnect_BmpWinYesNoMake( GF_BGL_INI *bgl, int y, int yes
 //------------------------------------------------------------------
 static void Enter_MessagePrint( GDS_CONNECT_SYS *wk, MSGDATA_MANAGER *msgman, int msgno, int wait, u16 dat )
 {
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	STRBUF *tempbuf;
 
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	tempbuf = MSGMAN_AllocString(  msgman, msgno );
 
-	// WORDSET“WŠJ
+	// WORDSETå±•é–‹
 	WORDSET_ExpandStr( wk->WordSet, wk->TalkString, tempbuf );
 
 	STRBUF_Delete(tempbuf);
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æž æç”»
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, GDSCONNECT_MESFRAME_CHR, GDSCONNECT_MESFRAME_PAL );
 
-	// •¶Žš—ñ•`‰æŠJŽn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, wait, NULL);
 
 	wk->wait = 0;
@@ -1008,13 +1008,13 @@ static void GdsConnect_SetNextSeq( GDS_CONNECT_SYS *wk, int to_seq, int next_seq
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÄÚ‘±OK‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ *	@brief	å†æŽ¥ç¶šOKã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  *	
- *	@param	errno		ƒGƒ‰[ƒR[ƒh
- *	@param	errtype		ƒGƒ‰[ƒ^ƒCƒv
+ *	@param	errno		ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ *	@param	errtype		ã‚¨ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	ÄÚ‘±OK
- *	@retval	FALSE	ÄÚ‘±NG
+ *	@retval	TRUE	å†æŽ¥ç¶šOK
+ *	@retval	FALSE	å†æŽ¥ç¶šNG
  */
 //-----------------------------------------------------------------------------
 static BOOL Enter_GetErrTypeRetry( int errno, int errtype )
@@ -1055,7 +1055,7 @@ static BOOL Enter_GetErrTypeRetry( int errno, int errtype )
 //==============================================================================
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXƒXƒ^[ƒgˆ—
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¹ã‚¿ãƒ¼ãƒˆå‡¦ç†
  *
  * @param   wk		
  *
@@ -1070,17 +1070,17 @@ static int Enter_Start( GDS_CONNECT_SYS *wk)
 
 	switch(wk->local_seq){
 	case 0:
-		OS_TPrintf("Enter ŠJŽn\n");
+		OS_TPrintf("Enter é–‹å§‹\n");
 
 		wk->local_seq++;
 		break;
 	case 1:
-		//WifiƒRƒlƒNƒVƒ‡ƒ“@‚É@‚¹‚Â‚¼‚­@‚µ‚Ü‚·‚©H
+		//Wifiã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã€€ã«ã€€ã›ã¤ãžãã€€ã—ã¾ã™ã‹ï¼Ÿ
 		Enter_MessagePrint( wk, wk->SystemMsgManager, dwc_message_0002, 1, 0x0f0f );
 		wk->local_seq++;
 		break;
 
-	case 2:	//‚Í‚¢E‚¢‚¢‚¦ƒEƒBƒ“ƒhƒE•\Ž¦
+	case 2:	//ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		wk->YesNoMenuWork = GdsConnect_BmpWinYesNoMake(wk->bgl, GDSCONNECT_YESNO_PY2, YESNO_OFFSET );
 		wk->local_seq++;
 		break;
@@ -1099,7 +1099,7 @@ static int Enter_Start( GDS_CONNECT_SYS *wk)
 		}
 		break;
 	
-	case 4:	//WiFiÚ‘±ŠJŽn
+	case 4:	//WiFiæŽ¥ç¶šé–‹å§‹
 		wk->subprocess_seq = ENTER_INTERNET_CONNECT;
 		break;
 	}
@@ -1109,7 +1109,7 @@ static int Enter_Start( GDS_CONNECT_SYS *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±ŠJŽn
+ * $brief   ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæŽ¥ç¶šé–‹å§‹
  *
  * @param   wk		
  *
@@ -1120,13 +1120,13 @@ static int Enter_InternetConnect( GDS_CONNECT_SYS *wk )
 {
 	switch(wk->local_seq){
 	case 0:
-		// ’ÊMƒGƒ‰[ŠÇ—‚Ì‚½‚ß‚É’ÊMƒ‹[ƒ`ƒ“‚ðON
+		// é€šä¿¡ã‚¨ãƒ©ãƒ¼ç®¡ç†ã®ãŸã‚ã«é€šä¿¡ãƒ«ãƒ¼ãƒãƒ³ã‚’ON
 		CommStateWifiDPWStart( wk->oya_proc_work->proc_param->savedata );
 
-		// Wifi’ÊMƒAƒCƒRƒ“
+		// Wifié€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
 	    WirelessIconEasy();
 
-		// WIFI‚¹‚Â‚¼‚­‚ðŠJŽn
+		// WIFIã›ã¤ãžãã‚’é–‹å§‹
 		Enter_MessagePrint( wk, wk->LobbyMsgManager, msg_wifilobby_002, 1, 0x0f0f );
 		GdsConnect_TimeIconAdd(wk);
 		wk->local_seq++;
@@ -1151,7 +1151,7 @@ static int Enter_InternetConnect( GDS_CONNECT_SYS *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒlƒbƒgÚ‘±‘Ò‚¿
+ * $brief   ãƒãƒƒãƒˆæŽ¥ç¶šå¾…ã¡
  *
  * @param   wk		
  *
@@ -1168,7 +1168,7 @@ static int Enter_InternetConnectWait( GDS_CONNECT_SYS *wk )
 		{
 		case DWC_CONNECTINET_STATE_ERROR:
 			{
-				// ƒGƒ‰[•\Ž¦
+				// ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 				DWCError err;
 				int errcode;
                 DWCErrorType errtype;
@@ -1182,9 +1182,9 @@ static int Enter_InternetConnectWait( GDS_CONNECT_SYS *wk )
 			DWC_ClearError();
 			DWC_CleanupInet();
 
-		    //‰æ–Ê‚ð”²‚¯‚¸‚É2“x˜A‘±‚ÅuEƒ[ƒ‹Ý’èv‚ð‚µ‚ÄWifi‚ÉŒq‚°‚æ‚¤‚Æ‚·‚é‚Æ
+		    //ç”»é¢ã‚’æŠœã‘ãšã«2åº¦é€£ç¶šã§ã€ŒEãƒ¡ãƒ¼ãƒ«è¨­å®šã€ã‚’ã—ã¦Wifiã«ç¹‹ã’ã‚ˆã†ã¨ã™ã‚‹ã¨
 		    //"dpw_tr.c:150 Panic:dpw tr is already initialized."
-		    //‚ÌƒGƒ‰[‚ªo‚é‚Ì‚Å‚«‚¿‚ñ‚Æ‚±‚ÌI—¹ŠÖ”‚ðŒÄ‚Ô‚æ‚¤‚É‚·‚é 2007.10.26(‹à) matsuda
+		    //ã®ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹ã®ã§ãã¡ã‚“ã¨ã“ã®çµ‚äº†é–¢æ•°ã‚’å‘¼ã¶ã‚ˆã†ã«ã™ã‚‹ 2007.10.26(é‡‘) matsuda
 	//	    Dpw_Tr_End();
 
 			GdsConnect_TimeIconDel( wk );
@@ -1202,7 +1202,7 @@ static int Enter_InternetConnectWait( GDS_CONNECT_SYS *wk )
 			//break;
 		case DWC_CONNECTINET_STATE_FATAL_ERROR:
 			{
-				// ƒGƒ‰[•\Ž¦
+				// ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 				DWCError err;
 				int errcode;
 				err = DWC_GetLastError(&errcode);
@@ -1215,7 +1215,7 @@ static int Enter_InternetConnectWait( GDS_CONNECT_SYS *wk )
 			break;
 
 		case DWC_CONNECTINET_STATE_CONNECTED:
-	        {	// Ú‘±æ‚ð•\Ž¦‚·‚éB“X•Ü‚Ìê‡‚Í“X•Üî•ñ‚à•\Ž¦‚·‚éB
+	        {	// æŽ¥ç¶šå…ˆã‚’è¡¨ç¤ºã™ã‚‹ã€‚åº—èˆ—ã®å ´åˆã¯åº—èˆ—æƒ…å ±ã‚‚è¡¨ç¤ºã™ã‚‹ã€‚
 				DWCApInfo apinfo;
 	
 				DWC_GetApInfo(&apinfo);
@@ -1229,12 +1229,12 @@ static int Enter_InternetConnectWait( GDS_CONNECT_SYS *wk )
 	                OS_TPrintf("spotinfo : %s.\n", apinfo.spotinfo);
 	            }
 	        }
-	        // ƒRƒlƒNƒg¬Œ÷H
+	        // ã‚³ãƒã‚¯ãƒˆæˆåŠŸï¼Ÿ
 			wk->subprocess_seq = ENTER_WIFI_CONNECTION_LOGIN;
 			break;
 		}
 
-		// ŽžŠÔƒAƒCƒRƒ“Á‹Ž
+		// æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆåŽ»
 
 	}
 	
@@ -1243,7 +1243,7 @@ static int Enter_InternetConnectWait( GDS_CONNECT_SYS *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   GameSpyƒT[ƒo[ƒƒOƒCƒ“ŠJŽn
+ * @brief   GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³é–‹å§‹
  *
  * @param   wk		
  *
@@ -1254,13 +1254,13 @@ static int Enter_WifiConnectionLogin( GDS_CONNECT_SYS *wk )
 {
 	DWC_NASLoginAsync();
 	wk->subprocess_seq = ENTER_WIFI_CONNECTION_LOGIN_WAIT;
-	OS_Printf("GameSpyƒT[ƒo[ƒƒOƒCƒ“ŠJŽn\n");
+	OS_Printf("GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³é–‹å§‹\n");
 
 	return SUBSEQ_CONTINUE;
 }
 //------------------------------------------------------------------
 /**
- * @brief   GameSpyƒT[ƒo[ƒƒOƒCƒ“ˆ—‘Ò‚¿
+ * @brief   GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†å¾…ã¡
  *
  * @param   wk
  *
@@ -1271,14 +1271,14 @@ static int Enter_WifiConnectionLoginWait( GDS_CONNECT_SYS *wk )
 {
 	switch(DWC_NASLoginProcess()){
 	case DWC_NASLOGIN_STATE_SUCCESS:
-		OS_Printf("GameSpyƒT[ƒo[ƒƒOƒCƒ“¬Œ÷\n");
+		OS_Printf("GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³æˆåŠŸ\n");
 		wk->subprocess_seq = ENTER_DPWTR_INIT;
 		break;
 	case DWC_NASLOGIN_STATE_ERROR:
 	case DWC_NASLOGIN_STATE_CANCELED:
 	case DWC_NASLOGIN_STATE_DIRTY:
 		GdsConnect_TimeIconDel(wk);
-		OS_Printf("GameSpyƒT[ƒo[ƒƒOƒCƒ“Ž¸”s\n");
+		OS_Printf("GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—\n");
 		{
 			int errCode;
 			DWCErrorType errType;
@@ -1291,12 +1291,12 @@ static int Enter_WifiConnectionLoginWait( GDS_CONNECT_SYS *wk )
 			DWC_ClearError();
 			DWC_CleanupInet();
 
-		    //‰æ–Ê‚ð”²‚¯‚¸‚É2“x˜A‘±‚ÅuEƒ[ƒ‹Ý’èv‚ð‚µ‚ÄWifi‚ÉŒq‚°‚æ‚¤‚Æ‚·‚é‚Æ
+		    //ç”»é¢ã‚’æŠœã‘ãšã«2åº¦é€£ç¶šã§ã€ŒEãƒ¡ãƒ¼ãƒ«è¨­å®šã€ã‚’ã—ã¦Wifiã«ç¹‹ã’ã‚ˆã†ã¨ã™ã‚‹ã¨
 		    //"dpw_tr.c:150 Panic:dpw tr is already initialized."
-		    //‚ÌƒGƒ‰[‚ªo‚é‚Ì‚Å‚«‚¿‚ñ‚Æ‚±‚ÌI—¹ŠÖ”‚ðŒÄ‚Ô‚æ‚¤‚É‚·‚é 2007.10.26(‹à) matsuda
+		    //ã®ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹ã®ã§ãã¡ã‚“ã¨ã“ã®çµ‚äº†é–¢æ•°ã‚’å‘¼ã¶ã‚ˆã†ã«ã™ã‚‹ 2007.10.26(é‡‘) matsuda
 		//	Dpw_Tr_End();
 
-			//‚ ‚è‚¦‚È‚¢‚Í‚¸‚¾‚ªA‚Ç‚ÌƒGƒ‰[‚É‚àˆø‚Á‚©‚©‚ç‚È‚¢‰Â”\«‚ðl—¶‚µA‰Šú’l‚Æ‚µ‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚ðæ‚ÉÝ’è‚µ‚Ä‚¨‚­
+			//ã‚ã‚Šãˆãªã„ã¯ãšã ãŒã€ã©ã®ã‚¨ãƒ©ãƒ¼ã«ã‚‚å¼•ã£ã‹ã‹ã‚‰ãªã„å¯èƒ½æ€§ã‚’è€ƒæ…®ã—ã€åˆæœŸå€¤ã¨ã—ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å…ˆã«è¨­å®šã—ã¦ãŠã
 			wk->subprocess_seq = ENTER_DWC_ERROR_PRINT;
 
 			switch(errType){
@@ -1316,16 +1316,16 @@ static int Enter_WifiConnectionLoginWait( GDS_CONNECT_SYS *wk )
 				DWC_ShutdownFriendsMatch();
 				wk->subprocess_seq = ENTER_DWC_ERROR_PRINT;
 				break;
-			case DWC_ETYPE_SHUTDOWN_ND:	//‚±‚ÌƒV[ƒPƒ“ƒX‚Å‚Í‚ ‚è‚¦‚È‚¢‚Ì‚Åˆê‰ž‹­§‚Ó‚Á‚Æ‚Î‚µ‚É‚·‚é
+			case DWC_ETYPE_SHUTDOWN_ND:	//ã“ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã¯ã‚ã‚Šãˆãªã„ã®ã§ä¸€å¿œå¼·åˆ¶ãµã£ã¨ã°ã—ã«ã™ã‚‹
 				OS_TPrintf("DWC_ETYPE_SHUTDOWN_ND!\n");
 				//break;
 			case DWC_ETYPE_FATAL:
-				// ‹­§‚Ó‚Á‚Æ‚Î‚µ
+				// å¼·åˆ¶ãµã£ã¨ã°ã—
 				CommFatalErrorFunc_NoNumber();
 				break;
 			}
 
-			// 20000”Ô‘ä‚ðƒLƒƒƒbƒ`‚µ‚½‚çerrType‚ª‰½‚Å‚ ‚ë‚¤‚ÆƒŠƒZƒbƒgƒGƒ‰[‚Ö
+			// 20000ç•ªå°ã‚’ã‚­ãƒ£ãƒƒãƒã—ãŸã‚‰errTypeãŒä½•ã§ã‚ã‚ã†ã¨ãƒªã‚»ãƒƒãƒˆã‚¨ãƒ©ãƒ¼ã¸
 			if(errCode<-20000 && errCode >=-29999){
 //				CommSetErrorReset(COMM_ERROR_RESET_TITLE);
 				OS_Printf("dwcError = %d  errCode = %d, errType = %d\n", dwcError, errCode, errType);
@@ -1341,7 +1341,7 @@ static int Enter_WifiConnectionLoginWait( GDS_CONNECT_SYS *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒlƒbƒgÚ‘±Œã‚ÌŒãˆ—
+ * $brief   ãƒãƒƒãƒˆæŽ¥ç¶šå¾Œã®å¾Œå‡¦ç†
  *
  * @param   wk		
  *
@@ -1350,8 +1350,8 @@ static int Enter_WifiConnectionLoginWait( GDS_CONNECT_SYS *wk )
 //------------------------------------------------------------------
 static int Enter_DpwTrInit( GDS_CONNECT_SYS *wk )
 {
-	// ¢ŠEŒðŠ·Ú‘±‰Šú‰»
-	DWCUserData		*MyUserData;		// ”FØÏ‚Ý‚ÌDWCUSERƒf[ƒ^‚µ‚©‚±‚È‚¢‚Í‚¸
+	// ä¸–ç•Œäº¤æ›æŽ¥ç¶šåˆæœŸåŒ–
+	DWCUserData		*MyUserData;		// èªè¨¼æ¸ˆã¿ã®DWCUSERãƒ‡ãƒ¼ã‚¿ã—ã‹ã“ãªã„ã¯ãš
 	s32 profileId;
 	SYSTEMDATA *systemdata;
 	WIFI_LIST *wifilist;
@@ -1359,31 +1359,31 @@ static int Enter_DpwTrInit( GDS_CONNECT_SYS *wk )
 	wifilist = SaveData_GetWifiListData(wk->oya_proc_work->proc_param->savedata);
 	systemdata = SaveData_GetSystemData(wk->oya_proc_work->proc_param->savedata);
 
-	// DWCUser\‘¢‘ÌŽæ“¾
+	// DWCUseræ§‹é€ ä½“å–å¾—
 	MyUserData = WifiList_GetMyUserInfo(wifilist);
 
-	// ‚±‚ÌFriendKey‚ÍƒvƒŒƒCƒ„[‚ªŽn‚ß‚ÄŽæ“¾‚µ‚½‚à‚Ì‚©H
-	//«X‚³‚ñ‚Æ‘Š’k‚µ‚½Œ‹‰ÊAŽg—pˆÓ}‚ª‚¢‚Ü‚¢‚¿ƒnƒbƒLƒŠ‚µ‚È‚¢‚Ì‚Å¢ŠEŒðŠ·‚È‚Ç‚Æ“¯‚¶‚æ‚¤‚É
-	//	‚Æ‚è‚ ‚¦‚¸ƒZƒbƒg‚µ‚Ä‚¨‚­‚±‚Æ‚É‚È‚Á‚½	2008.01.17(–Ø)
+	// ã“ã®FriendKeyã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå§‹ã‚ã¦å–å¾—ã—ãŸã‚‚ã®ã‹ï¼Ÿ
+	//â†“æ£®ã•ã‚“ã¨ç›¸è«‡ã—ãŸçµæžœã€ä½¿ç”¨æ„å›³ãŒã„ã¾ã„ã¡ãƒãƒƒã‚­ãƒªã—ãªã„ã®ã§ä¸–ç•Œäº¤æ›ãªã©ã¨åŒã˜ã‚ˆã†ã«
+	//	ã¨ã‚Šã‚ãˆãšã‚»ãƒƒãƒˆã—ã¦ãŠãã“ã¨ã«ãªã£ãŸ	2008.01.17(æœ¨)
 	profileId = SYSTEMDATA_GetDpwInfo( systemdata );
 	if( profileId==0 ){
-		OS_TPrintf("‰‰ñŽæ“¾profileId‚È‚Ì‚ÅDpwInfo‚Æ‚µ‚Ä“o˜^‚µ‚½ %08x \n", mydwc_getMyGSID(SaveData_GetWifiListData(wk->oya_proc_work->proc_param->savedata)));
+		OS_TPrintf("åˆå›žå–å¾—profileIdãªã®ã§DpwInfoã¨ã—ã¦ç™»éŒ²ã—ãŸ %08x \n", mydwc_getMyGSID(SaveData_GetWifiListData(wk->oya_proc_work->proc_param->savedata)));
 
-		// ‰‰ñŽæ“¾FriendKey‚È‚Ì‚ÅADpwId‚Æ‚µ‚Ä•Û‘¶‚·‚é
+		// åˆå›žå–å¾—FriendKeyãªã®ã§ã€DpwIdã¨ã—ã¦ä¿å­˜ã™ã‚‹
 		SYSTEMDATA_SetDpwInfo( systemdata, mydwc_getMyGSID(wifilist) );
 	}
 
 	
-	// ³Ž®‚Èƒf[ƒ^‚ðŽæ“¾
+	// æ­£å¼ãªãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	profileId = SYSTEMDATA_GetDpwInfo( systemdata );
-	OS_Printf("DpwƒT[ƒo[ƒƒOƒCƒ“î•ñ profileId=%08x\n", profileId);
+	OS_Printf("Dpwã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³æƒ…å ± profileId=%08x\n", profileId);
 
-	// DPW_TR‰Šú‰»
+	// DPW_TRåˆæœŸåŒ–
 //	Dpw_Tr_Init( profileId, DWC_CreateFriendKey( MyUserData ) );
 
-	OS_TPrintf("Dpw Trade ‰Šú‰»\n");
+	OS_TPrintf("Dpw Trade åˆæœŸåŒ–\n");
 
-	wk->subprocess_seq = ENTER_CONNECT_END;	//’ÊM‚µ‚½‚Ü‚ÜI—¹
+	wk->subprocess_seq = ENTER_CONNECT_END;	//é€šä¿¡ã—ãŸã¾ã¾çµ‚äº†
 	wk->oya_proc_work->ret_connect = TRUE;
 	
 	return SUBSEQ_CONTINUE;
@@ -1391,7 +1391,7 @@ static int Enter_DpwTrInit( GDS_CONNECT_SYS *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   WifiÚ‘±ƒGƒ‰[‚ð•\Ž¦
+ * @brief   WifiæŽ¥ç¶šã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1417,7 +1417,7 @@ static int Enter_DwcErrorPrint( GDS_CONNECT_SYS *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒvƒŠƒ“ƒgŒãƒL[‘Ò‚¿
+ * @brief   ãƒ—ãƒªãƒ³ãƒˆå¾Œã‚­ãƒ¼å¾…ã¡
  *
  * @param   wk		
  *
@@ -1441,7 +1441,7 @@ static int Enter_ErrorPadWait( GDS_CONNECT_SYS *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXI—¹ˆ—
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚äº†å‡¦ç†
  *
  * @param   wk		
  *
@@ -1456,7 +1456,7 @@ static int Enter_End( GDS_CONNECT_SYS *wk)
 
     WirelessIconEasyEnd();
 
-	// ŽžŠÔƒAƒCƒRƒ“Á‹Ž‚Qd‰ð•ú‚É‚È‚ç‚È‚¢‚æ‚¤‚ÉNULLƒ`ƒFƒbƒN‚µ‚Â‚Â
+	// æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆåŽ»ï¼’é‡è§£æ”¾ã«ãªã‚‰ãªã„ã‚ˆã†ã«NULLãƒã‚§ãƒƒã‚¯ã—ã¤ã¤
 	GdsConnect_TimeIconDel( wk );
 
 	
@@ -1471,7 +1471,7 @@ static int Enter_End( GDS_CONNECT_SYS *wk)
 
 //==============================================================================
 /**
- * $brief   ƒlƒbƒg‚É‚ÍŒq‚ª‚Á‚½‚¯‚ÇƒT[ƒo[ƒGƒ‰[‚¾‚Á‚½•\Ž¦
+ * $brief   ãƒãƒƒãƒˆã«ã¯ç¹‹ãŒã£ãŸã‘ã©ã‚µãƒ¼ãƒãƒ¼ã‚¨ãƒ©ãƒ¼ã ã£ãŸè¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1492,29 +1492,29 @@ static int Enter_ServerServiceError( GDS_CONNECT_SYS *wk )
 		break;
 	case DPW_TR_ERROR_SERVER_TIMEOUT:
 	case DPW_TR_ERROR_DISCONNECTED:
-		// ‚f‚s‚r‚Æ‚Ì‚¹‚Â‚¼‚­‚ª‚«‚ê‚Ü‚µ‚½B‚¤‚¯‚Â‚¯‚É‚à‚Ç‚è‚Ü‚·
+		// ï¼§ï¼´ï¼³ã¨ã®ã›ã¤ãžããŒãã‚Œã¾ã—ãŸã€‚ã†ã‘ã¤ã‘ã«ã‚‚ã©ã‚Šã¾ã™
 		msgno = msg_gtc_error_006;
 		break;
 	case DPW_TR_ERROR_CANCEL  :
 	case DPW_TR_ERROR_FAILURE :
 	case DPW_TR_ERROR_NO_DATA:
 	case DPW_TR_ERROR_ILLIGAL_REQUEST :
-		//@‚Â‚¤‚µ‚ñƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
+		//ã€€ã¤ã†ã—ã‚“ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚
 		msgno = msg_gtc_error_005;
 		break;
 	}
-	// ƒGƒ‰[•\Ž¦
+	// ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 	Enter_MessagePrint( wk, wk->MsgManager, msgno, 1, 0x0f0f );
 	GdsConnect_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_SERVER_SERVICE_END );
 
-	OS_TPrintf("Error”­¶\n");
+	OS_TPrintf("Errorç™ºç”Ÿ\n");
 
 	return SUBSEQ_CONTINUE;
 }
 
 //==============================================================================
 /**
- * $brief   ƒT[ƒo[ƒT[ƒrƒX‚Ì–â‘è‚ÅI—¹
+ * $brief   ã‚µãƒ¼ãƒãƒ¼ã‚µãƒ¼ãƒ“ã‚¹ã®å•é¡Œã§çµ‚äº†
  *
  * @param   wk		
  *
@@ -1530,13 +1530,13 @@ static int Enter_ServerServiceEnd( GDS_CONNECT_SYS *wk )
 		break;
 	case 1:
 		if(Enter_MessagePrintEndCheck(wk->MsgIndex) == FALSE){
-		    // ’ÊMƒGƒ‰[ŠÇ—‚Ì‚½‚ß‚É’ÊMƒ‹[ƒ`ƒ“‚ðOFF
+		    // é€šä¿¡ã‚¨ãƒ©ãƒ¼ç®¡ç†ã®ãŸã‚ã«é€šä¿¡ãƒ«ãƒ¼ãƒãƒ³ã‚’OFF
 		    CommStateWifiDPWEnd();
 		    DWC_CleanupInet();
 
-		    //‰æ–Ê‚ð”²‚¯‚¸‚É2“x˜A‘±‚ÅuEƒ[ƒ‹Ý’èv‚ð‚µ‚ÄWifi‚ÉŒq‚°‚æ‚¤‚Æ‚·‚é‚Æ
+		    //ç”»é¢ã‚’æŠœã‘ãšã«2åº¦é€£ç¶šã§ã€ŒEãƒ¡ãƒ¼ãƒ«è¨­å®šã€ã‚’ã—ã¦Wifiã«ç¹‹ã’ã‚ˆã†ã¨ã™ã‚‹ã¨
 		    //"dpw_tr.c:150 Panic:dpw tr is already initialized."
-		    //‚ÌƒGƒ‰[‚ªo‚é‚Ì‚Å‚«‚¿‚ñ‚Æ‚±‚ÌI—¹ŠÖ”‚ðŒÄ‚Ô‚æ‚¤‚É‚·‚é 2007.10.26(‹à) matsuda
+		    //ã®ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹ã®ã§ãã¡ã‚“ã¨ã“ã®çµ‚äº†é–¢æ•°ã‚’å‘¼ã¶ã‚ˆã†ã«ã™ã‚‹ 2007.10.26(é‡‘) matsuda
 		//    Dpw_Tr_End();
 
 			wk->local_seq++;
@@ -1564,7 +1564,7 @@ static int Enter_ServerServiceEnd( GDS_CONNECT_SYS *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bI—¹‚ð‘Ò‚Á‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+ * $brief   ä¼šè©±çµ‚äº†ã‚’å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
  *
  * @param   wk		
  *
@@ -1582,14 +1582,14 @@ static int Enter_MessageWait( GDS_CONNECT_SYS *wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   Wi-FiƒRƒlƒNƒVƒ‡ƒ“‚©‚çØ’f
+ * @brief   Wi-Fiã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‹ã‚‰åˆ‡æ–­
  *
  * @param   wk		
  *
  * @retval  
  *
- * EØ’fƒƒbƒZ[ƒW‚ð•\Ž¦‚µ‚Ü‚·B
- * EØ’fŒã‚Ì”ò‚Ñæ‚ÍEmail_SetNextSeq‚ÅÝ’è‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢
+ * ãƒ»åˆ‡æ–­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+ * ãƒ»åˆ‡æ–­å¾Œã®é£›ã³å…ˆã¯Email_SetNextSeqã§è¨­å®šã—ã¦ãŠã„ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------
 static int Enter_CleanupInet( GDS_CONNECT_SYS *wk )
@@ -1604,16 +1604,16 @@ static int Enter_CleanupInet( GDS_CONNECT_SYS *wk )
 		wk->local_seq++;
 		break;
 	case 1:
-		// WIFI‚¹‚Â‚¼‚­‚ðI—¹
+		// WIFIã›ã¤ãžãã‚’çµ‚äº†
 //		if(DWC_CheckInet()){
 		    DWC_CleanupInet();
 //		}
-		// ’ÊMƒGƒ‰[ŠÇ—‚Ì‚½‚ß‚É’ÊMƒ‹[ƒ`ƒ“‚ðOFF
+		// é€šä¿¡ã‚¨ãƒ©ãƒ¼ç®¡ç†ã®ãŸã‚ã«é€šä¿¡ãƒ«ãƒ¼ãƒãƒ³ã‚’OFF
 		CommStateWifiDPWEnd();
 		
-		//‰æ–Ê‚ð”²‚¯‚¸‚É2“x˜A‘±‚ÅuEƒ[ƒ‹Ý’èv‚ð‚µ‚ÄWifi‚ÉŒq‚°‚æ‚¤‚Æ‚·‚é‚Æ
+		//ç”»é¢ã‚’æŠœã‘ãšã«2åº¦é€£ç¶šã§ã€ŒEãƒ¡ãƒ¼ãƒ«è¨­å®šã€ã‚’ã—ã¦Wifiã«ç¹‹ã’ã‚ˆã†ã¨ã™ã‚‹ã¨
 		//"dpw_tr.c:150 Panic:dpw tr is already initialized."
-		//‚ÌƒGƒ‰[‚ªo‚é‚Ì‚Å‚«‚¿‚ñ‚Æ‚±‚ÌI—¹ŠÖ”‚ðŒÄ‚Ô‚æ‚¤‚É‚·‚é 2007.10.26(‹à) matsuda
+		//ã®ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹ã®ã§ãã¡ã‚“ã¨ã“ã®çµ‚äº†é–¢æ•°ã‚’å‘¼ã¶ã‚ˆã†ã«ã™ã‚‹ 2007.10.26(é‡‘) matsuda
 	//	Dpw_Tr_End();
 		
 		wk->local_seq++;
@@ -1625,7 +1625,7 @@ static int Enter_CleanupInet( GDS_CONNECT_SYS *wk )
 		break;
 	case 3:
 		wk->local_wait++;
-		if(wk->local_wait > 30){	//1•b‘Ò‚Â
+		if(wk->local_wait > 30){	//1ç§’å¾…ã¤
 			wk->subprocess_seq	= wk->subprocess_nextseq;
 		}
 		break;

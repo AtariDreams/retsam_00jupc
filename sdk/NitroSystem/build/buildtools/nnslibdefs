@@ -31,8 +31,8 @@ NITROSYSTEM_LIB_ROOT	:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSYSTEM_LIB_ROOT))
 #
 # NITRO-System Library settings
 #
-# NITRO-System��commondefs���g�p����Ă���ꍇ�́ANITRO-System���C�u�������g
-# �p���邽�߂̐ݒ�����܂��B
+# NITRO-Systemのcommondefsが使用されている場合は、NITRO-Systemライブラリを使
+# 用するための設定をします。
 #
 
 ifdef NITROSYSTEM_COMMONDEFS_

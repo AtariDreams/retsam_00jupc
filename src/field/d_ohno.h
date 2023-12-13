@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	d_ohno.h
- * @bfief	‘å–ì—pƒfƒoƒbƒOƒ‹[ƒ`ƒ“
+ * @bfief	å¤§é‡ç”¨ãƒ‡ãƒãƒƒã‚°ãƒ«ãƒ¼ãƒãƒ³
  * @author	katsumi ohno
  * @date	05/08/04
  */
@@ -12,19 +12,19 @@
 #ifdef PM_DEBUG
 
 
-// ƒfƒoƒbƒO—p‚ÉŒÄ‚Ño‚·Å‰‚ÌŠÖ”Bƒƒjƒ…[‚ğŠJ‚­‚½‚ß
+// ãƒ‡ãƒãƒƒã‚°ç”¨ã«å‘¼ã³å‡ºã™æœ€åˆã®é–¢æ•°ã€‚ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ããŸã‚
 extern void DebugCommMenuInit(void* pFSys);
 
-// ƒ`ƒƒƒ“ƒlƒ‹•\¦‚ğ‚·‚éƒEƒCƒ“ƒhƒE‚ğo‚·‚©‚Ç‚¤‚©
+// ãƒãƒ£ãƒ³ãƒãƒ«è¡¨ç¤ºã‚’ã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™ã‹ã©ã†ã‹
 extern BOOL DebugOhnoGetCommDebugDisp(void);
 extern void DebugOhnoCommDebugDisp(void* pDummy);
 
-// ’n‰ºÚ‘±‚ğƒfƒoƒbƒO‚Ìˆ×—×‚Æ‚Â‚È‚ª‚ç‚È‚¢‚æ‚¤‚É‚µ‚½
+// åœ°ä¸‹æ¥ç¶šã‚’ãƒ‡ãƒãƒƒã‚°ã®ç‚ºéš£ã¨ã¤ãªãŒã‚‰ãªã„ã‚ˆã†ã«ã—ãŸ
 extern void DebugOhnoCommDebugUnderNo(int no);
-// ‘å‚«‚¢ƒf[ƒ^‚ÌƒeƒXƒg
+// å¤§ãã„ãƒ‡ãƒ¼ã‚¿ã®ãƒ†ã‚¹ãƒˆ
 extern void CommDebugRecvHugeData(int netID, int size, void* pData, void* pWork);
 
-//e‹@‚¾‚¯Aq‹@‚¾‚¯‚ÌÚ‘±
+//è¦ªæ©Ÿã ã‘ã€å­æ©Ÿã ã‘ã®æ¥ç¶š
 extern void DebugOhnoCommDebugUnderParentOnly(int no);
 extern void DebugOhnoCommDebugUnderChildOnly(int no);
 

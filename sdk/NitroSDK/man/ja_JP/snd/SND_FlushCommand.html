@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SND_FlushCommand</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>SND_FlushCommand</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">BOOL SND_FlushCommand( u32 <var>flags</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAIMWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,7 +25,7 @@
 <tbody>
 <tr>
 <td><em><strong><code>flags</code></strong></em></td>
-<td>�t���O�ł��B</td>
+<td>フラグです。</td>
 </tr>
 </tbody>
 </table>
@@ -33,41 +33,41 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAXMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�R�}���h�̔��s�ɐ���������TRUE�A���s������FALSE��Ԃ��܂��B</p>
+      <p>コマンドの発行に成功したらTRUE、失敗したらFALSEを返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDA4MWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�\��ς݃R�}���h�𔭍s���܂��B
-ARM7�R�}���h�͂��̊֐����Ăт����Ďn�߂āAARM7�ŏ�������邱�ƂɂȂ�܂��B
+予約済みコマンドを発行します。
+ARM7コマンドはこの関数を呼びだして始めて、ARM7で処理されることになります。
 </p>
       <p>
-�t���O<em><strong><code>flags</code></strong></em>�ɂ́A
-<span class="symbol">SND_COMMAND_BLOCK</span>�܂��́A<span class="symbol">SND_COMMAND_NOBLOCK</span>���w�肵�܂��B
-<span class="symbol">SND_COMMAND_BLOCK</span>�̏ꍇ�A�R�}���h���s�ɐ�������܂Ŋ֐����Ńu���b�N���܂��B
-<span class="symbol">SND_COMMAND_NOBLOCK</span>�̏ꍇ�́A�R�}���h���s�Ɏ��s�����FALSE��Ԃ��܂��B
+フラグ<em><strong><code>flags</code></strong></em>には、
+<span class="symbol">SND_COMMAND_BLOCK</span>または、<span class="symbol">SND_COMMAND_NOBLOCK</span>を指定します。
+<span class="symbol">SND_COMMAND_BLOCK</span>の場合、コマンド発行に成功するまで関数内でブロックします。
+<span class="symbol">SND_COMMAND_NOBLOCK</span>の場合は、コマンド発行に失敗するとFALSEを返します。
 </p>
       <p>
-�܂��A�t���O<em><strong><code>flags</code></strong></em>�ɑ΂��āA
-<span class="symbol">SND_COMMAND_IMMEDIATE</span>���A�_���a���g���Ēǉ��Ŏw�肷�邱�Ƃ��ł��܂��B
-<span class="symbol">SND_COMMAND_IMMEDIATE</span>���w�肷��ƁA
-�R�}���h���s�ɐ��������ꍇ�A���s�����R�}���h�������ɏ��������悤�ɂȂ�܂��B
-�w�肵�Ă��Ȃ������ꍇ�́A���̃T�E���h�t���[��������Ă������_�ŁA��������܂��B
+また、フラグ<em><strong><code>flags</code></strong></em>に対して、
+<span class="symbol">SND_COMMAND_IMMEDIATE</span>を、論理和を使って追加で指定することができます。
+<span class="symbol">SND_COMMAND_IMMEDIATE</span>を指定すると、
+コマンド発行に成功した場合、発行したコマンドがすぐに処理されるようになります。
+指定していなかった場合は、次のサウンドフレームが回ってきた時点で、処理されます。
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-�\��ς݃R�}���h�������ꍇ�́A������TRUE��Ԃ��܂����A
-�R�}���h���������͂���܂���̂Œ��ӂ��Ă��������B
+予約済みコマンドが無い場合は、即座にTRUEを返しますが、
+コマンド処理応答はありませんので注意してください。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
-<p>�Ȃ��B</p>
-<h2>����</h2>
-<p>2005/03/01 SND_COMMAND_IMMEDIATE�t���O�ǉ�<br>2005/02/17 ��������"�t���b�V��"��"���s"�ɕύX<br>2004/07/20 ����<br></p>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2005/03/01 SND_COMMAND_IMMEDIATEフラグ追加<br>2005/02/17 説明中の"フラッシュ"を"発行"に変更<br>2004/07/20 初版<br></p>
 </div>
 </body>
 </html>

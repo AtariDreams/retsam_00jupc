@@ -80,7 +80,7 @@ NNS_G2D_INLINE fx32 NNSi_G2dGetOamCos( const NNSG2dOamAffineParams* pOamAff )
 }
 
 //------------------------------------------------------------------------------
-// ’l‚Ì’²®‚Í•ÊŠÖ”‚É‚µ‚Ü‚µ‚½
+// å€¤ã®èª¿æ•´ã¯åˆ¥é–¢æ•°ã«ã—ã¾ã—ãŸ
 NNS_G2D_INLINE s16 NNSi_G2dGetOamX( const GXOamAttr* oamAttr )
 {
     NNS_G2D_NULL_ASSERT( oamAttr ); 
@@ -92,7 +92,7 @@ NNS_G2D_INLINE s16 NNSi_G2dGetOamX( const GXOamAttr* oamAttr )
 
 
 //------------------------------------------------------------------------------
-// ’l‚Ì’²®‚Í•ÊŠÖ”‚É‚µ‚Ü‚µ‚½
+// å€¤ã®èª¿æ•´ã¯åˆ¥é–¢æ•°ã«ã—ã¾ã—ãŸ
 NNS_G2D_INLINE s16 NNSi_G2dGetOamY( const GXOamAttr* oamAttr )
 {
     NNS_G2D_NULL_ASSERT( oamAttr ); 
@@ -104,7 +104,7 @@ NNS_G2D_INLINE s16 NNSi_G2dGetOamY( const GXOamAttr* oamAttr )
 
 
 //------------------------------------------------------------------------------
-// ’l‚Ì’²®‚Í•ÊŠÖ”‚É‚µ‚Ü‚µ‚½
+// å€¤ã®èª¿æ•´ã¯åˆ¥é–¢æ•°ã«ã—ã¾ã—ãŸ
 // 0 --- 255
 NNS_G2D_INLINE s16 NNSi_G2dRepeatXinScreenArea( s16 srcX )
 {
@@ -116,7 +116,7 @@ NNS_G2D_INLINE s16 NNSi_G2dRepeatXinScreenArea( s16 srcX )
 }
 
 //------------------------------------------------------------------------------
-// ’l‚Ì’²®‚Í•ÊŠÖ”‚É‚µ‚Ü‚µ‚½
+// å€¤ã®èª¿æ•´ã¯åˆ¥é–¢æ•°ã«ã—ã¾ã—ãŸ
 // 0 --- 191
 NNS_G2D_INLINE s16 NNSi_G2dRepeatYinScreenArea( s16 srcY )
 {
@@ -128,7 +128,7 @@ NNS_G2D_INLINE s16 NNSi_G2dRepeatYinScreenArea( s16 srcY )
 }
 
 //------------------------------------------------------------------------------
-// ˆÈ‰º‚ÌŠÖ”‚ÍAg2d_Cell_data.h ‚É‘¶İ‚·‚é NNS_G2dRepeatXinCellSpace‚É“‡‚³‚ê‚Ü‚µ‚½
+// ä»¥ä¸‹ã®é–¢æ•°ã¯ã€g2d_Cell_data.h ã«å­˜åœ¨ã™ã‚‹ NNS_G2dRepeatXinCellSpaceã«çµ±åˆã•ã‚Œã¾ã—ãŸ
 //NNS_G2D_INLINE s16 NNSi_G2dRepeatXinCellSpace( s16 srcX )
 //NNS_G2D_INLINE s16 NNSi_G2dRepeatYinCellSpace( s16 srcY )
 
@@ -261,8 +261,8 @@ NNS_G2D_INLINE u16 NNSi_G2dGetAffineIdx( const GXOamAttr* pOam )
 
 
 //------------------------------------------------------------------------------
-// ‰ü–¼‚µ‚½‚Ù‚¤‚ª‚æ‚¢
-// Cell ‚ğ\¬‚·‚é OAM ‚Ì ˆÊ’uî•ñ‚ğæ“¾‚·‚éŠÖ”
+// æ”¹åã—ãŸã»ã†ãŒã‚ˆã„
+// Cell ã‚’æ§‹æˆã™ã‚‹ OAM ã® ä½ç½®æƒ…å ±ã‚’å–å¾—ã™ã‚‹é–¢æ•°
 NNS_G2D_INLINE void NNS_G2dGetOamTransFx32( const GXOamAttr* pOam, NNSG2dFVec2* pRet )
 {
     NNS_G2D_NULL_ASSERT( pOam );
@@ -274,8 +274,8 @@ NNS_G2D_INLINE void NNS_G2dGetOamTransFx32( const GXOamAttr* pOam, NNSG2dFVec2* 
 }
 
 //------------------------------------------------------------------------------
-// ”{ŠpƒAƒtƒBƒ“‚ªİ’è‚³‚ê‚Ä‚¢‚éOBJ‚È‚çA
-// ”{ŠpƒAƒtƒBƒ“OBJ •\¦‚ÌÛ‚És‚¤ •â³’l‚ğˆê’UAæ‚è‹‚è‚Ü‚·
+// å€è§’ã‚¢ãƒ•ã‚£ãƒ³ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹OBJãªã‚‰ã€
+// å€è§’ã‚¢ãƒ•ã‚£ãƒ³OBJ è¡¨ç¤ºã®éš›ã«è¡Œã† è£œæ­£å€¤ã‚’ä¸€æ—¦ã€å–ã‚Šå»ã‚Šã¾ã™
 //
 NNS_G2D_INLINE void NNSi_G2dRemovePositionAdjustmentFromDoubleAffineOBJ
 ( 
@@ -289,7 +289,7 @@ NNS_G2D_INLINE void NNSi_G2dRemovePositionAdjustmentFromDoubleAffineOBJ
 #ifdef NNS_G2D_ASSUME_DOUBLEAFFINE_OBJPOS_ADJUSTED
     if( G2_GetOBJEffect( pOam ) == GX_OAM_EFFECT_AFFINE_DOUBLE  )
     {
-        // - 1 ‚Í / 2 ‚ÌˆÓ
+        // - 1 ã¯ / 2 ã®æ„
         const GXOamShape     oamShape = NNS_G2dGetOAMSize( pOam );
         const int halfW = NNS_G2dGetOamSizeX( &oamShape ) << (FX32_SHIFT - 1); 
         const int halfH = NNS_G2dGetOamSizeY( &oamShape ) << (FX32_SHIFT - 1); 

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerSetPlayableSeqCount</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerSetPlayableSeqCount</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetPlayableSeqCount(
@@ -19,7 +19,7 @@
         int <var>seqCount</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA0LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -27,43 +27,43 @@
 <tbody>
 <tr>
 <td><em><strong><code>playerNo</code></strong></em></td>
-<td>�v���C���[�ԍ��ł��B</td>
+<td>プレイヤー番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>seqCount</code></strong></em></td>
-<td>�V�[�P���X�ő哯���Đ����ł��B�l�͈̔͂́A0�`16�ł��B</td>
+<td>シーケンス最大同時再生数です。値の範囲は、0〜16です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAQMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAXMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�w��v���C���[�œ����ɍĐ��ł���V�[�P���X�̍ő吔��ݒ肵�܂��B
-�f�t�H���g�ł́A1���ݒ肳��Ă��܂��B
+指定プレイヤーで同時に再生できるシーケンスの最大数を設定します。
+デフォルトでは、1が設定されています。
 </p>
       <p>
-<em><strong><code>seqCount</code></strong></em>��0�ɂ���ƁA���̃v���C���[�ŃV�[�P���X���Đ��ł��Ȃ����Ƃ��Ӗ����܂��B
-����A�ő��16�ɂ���ƁA�V�X�e���S�̂�16���������ɃV�[�P���X���Đ��ł��Ȃ����߁A�����㖳�����Ƃ������ƂɂȂ�܂��B 
+<em><strong><code>seqCount</code></strong></em>を0にすると、そのプレイヤーでシーケンスを再生できないことを意味します。
+一方、最大の16にすると、システム全体で16個しか同時にシーケンスを再生できないため、事実上無制限ということになります。 
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-���̊֐��́A<tt class="function"><a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></tt>�֐����ŁA
-�Ăт�����Ă��܂��B�ēx�A���̊֐����Ăт����ƁA�ݒ肵���l���㏑������܂��B
+この関数は、<tt class="function"><a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></tt>関数内で、
+呼びだされています。再度、この関数を呼びだすと、設定した値が上書きされます。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></p>
-<h2>����</h2>
-<p>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

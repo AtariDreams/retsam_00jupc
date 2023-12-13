@@ -14,7 +14,7 @@
  *---------------------------------------------------------------------------*/
 
 /*! @file
-	@brief	DP WiFi Trade ���C�u����
+	@brief	DP WiFi Trade ライブラリ
 	
 	@author	kitayama(kitayama_shigetoshi@nintendo.co.jp)
 	@author	Yamaguchi Ryo(yamaguchi_ryo@nintendo.co.jp)
@@ -30,7 +30,7 @@
 #include "include/libdpw/dpwi_assert.h"
 
 /*-----------------------------------------------------------------------*
-					�^�E�萔�錾
+					型・定数宣言
  *-----------------------------------------------------------------------*/
 
 #ifdef DPW_SERVER_PUBLIC
@@ -40,7 +40,7 @@
 #endif
 
 #ifdef _NITRO
-// �\���̂��z��̃T�C�Y�ƂȂ��Ă��邩�`�F�b�N
+// 構造体が想定のサイズとなっているかチェック
 SDK_COMPILER_ASSERT(sizeof(Dpw_Tr_Data) == 292);
 #endif
 
@@ -115,7 +115,7 @@ typedef struct {
 } DpwiTrCtrl;
 
 /*-----------------------------------------------------------------------*
-					�֐��v���g�^�C�v�錾
+					関数プロトタイプ宣言
  *-----------------------------------------------------------------------*/
 
 static BOOL Dpwi_Tr_CallSessionRequest(const u8* url, const void* data, int len, void* resbuf, int ressize );
@@ -123,27 +123,27 @@ static DpwTrError Dpwi_Tr_HandleCommonError(DpwiHttpError error);
 static void Dpwi_Db_GhttpCopleteCallback(const char* buf, int len, DWCGHTTPResult result, void* param);
 
 /*-----------------------------------------------------------------------*
-					�O���[�o���ϐ���`
+					グローバル変数定義
  *-----------------------------------------------------------------------*/
 
 static DpwiTrCtrl dpw_tr;
 static int db_ghttp_flag;
 
 /*-----------------------------------------------------------------------*
-					�O���[�o���֐���`
+					グローバル関数定義
  *-----------------------------------------------------------------------*/
 
 /*!
-	Dpw_Tr ���C�u���������������܂��B�S�Ă�Dpw_Tr �̕t���֐������s����O�ɃR�[�����܂��B
+	Dpw_Tr ライブラリを初期化します。全てのDpw_Tr の付く関数を実行する前にコールします。
 	
-	GS�v���t�@�C��ID�́A DWC_LoginAsync() �֐��̃R�[���o�b�N�Ŏ擾�ł���l�ŁA�T�[�o�[���ň�ӂɃN���C�A���g
-	�𔻕ʂ��邽�߂̒l�ł��B
+	GSプロファイルIDは、 DWC_LoginAsync() 関数のコールバックで取得できる値で、サーバー側で一意にクライアント
+	を判別するための値です。
 	
-	���̊֐����R�[������ۂ́ADWC ���C�u�����̃C���^�[�l�b�g�ڑ��֐��Ńl�b�g���[�N�ɐڑ����Ă���s���Ă���
-	�����B�������A���O�C�����s���Ă���K�v�͂���܂���B
+	この関数をコールする際は、DWC ライブラリのインターネット接続関数でネットワークに接続してから行ってくだ
+	さい。ただし、ログインを行っている必要はありません。
 	
-	@param[in] pid	������GS�v���t�@�C��ID
-	@param[in] friend_key	�����̃t�����h�L�[�BDWC_CreateFriendKey() �Ŏ擾�ł��܂��B
+	@param[in] pid	自分のGSプロファイルID
+	@param[in] friend_key	自分のフレンドキー。DWC_CreateFriendKey() で取得できます。
 */
 void Dpw_Tr_Init(s32 pid, u64 friend_key) {
 	
@@ -156,9 +156,9 @@ void Dpw_Tr_Init(s32 pid, u64 friend_key) {
 }
 
 /*!
-	���Q�[���t���[���Ăт����A������i�߂܂��B
+	毎ゲームフレーム呼びだし、処理を進めます。
 	
-	���֐��̂��߁A���̊֐��͏�ɌĂяo�����Ƃ��ł��܂��B����������Ԃł͉����s���܂���B
+	利便性のため、この関数は常に呼び出すことができます。未初期化状態では何も行いません。
 */
 void Dpw_Tr_Main(void) {
 	
@@ -398,13 +398,13 @@ void Dpw_Tr_Main(void) {
 				int response_size = DpwiGetResponseSize();
 				
 				if (response_size >= sizeof(Dpw_Tr_Data)) {
-					// �A���Ă����T�C�Y��sizeof(Dpw_Tr_Data)�ȏ�̂Ƃ��́A�f�[�^���A���Ă��Ă���
+					// 帰ってきたサイズがsizeof(Dpw_Tr_Data)以上のときは、データが帰ってきている
 					dpw_tr.last_result = (s32)(DpwiGetResponseSize() / sizeof(Dpw_Tr_Data));
 				} else if (response_size == 0) {
-					// �A���Ă����T�C�Y��0�̂Ƃ��́A������Ȃ�����
+					// 帰ってきたサイズが0のときは、見つからなかった
 					dpw_tr.last_result = 0;
 				} else {
-					// ����ȊO�̂Ƃ��̓T�[�o�[����̃��X�|���X�R�[�h�ɂ��
+					// それ以外のときはサーバーからのレスポンスコードによる
 					switch (dpw_tr.user_recv_buf[0]) {
 					case TR_RESPONSE_SERVER_TIMEOUT:
 						dpw_tr.last_result = DPW_TR_ERROR_SERVER_TIMEOUT;
@@ -578,10 +578,10 @@ void Dpw_Tr_Main(void) {
 }
 
 /*!
-	�������̊J���ȂǏI���������s���܂��B
+	メモリの開放など終了処理を行います。
 	
-	���̊֐��́A�񓯊����������s���Ă���Ƃ��ɂ̓R�[�����邱�Ƃ��ł��܂���B
-	Dpw_Tr_IsAsyncEnd() �Ŕ񓯊������̏I�����m�F���Ă���R�[�����Ă��������B
+	この関数は、非同期処理を実行しているときにはコールすることができません。
+	Dpw_Tr_IsAsyncEnd() で非同期処理の終了を確認してからコールしてください。
 */
 void Dpw_Tr_End(void) {
 	
@@ -592,12 +592,12 @@ void Dpw_Tr_End(void) {
 }
 
 /*!
-	Dpw_Tr���C�u�����̔񓯊��������I�����Ă��邩�ۂ���Ԃ��܂��B
+	Dpw_Trライブラリの非同期処理が終了しているか否かを返します。
 	
-	�֐����ɁuAsync�v���t���֐����R�[�������ۂ́A���̊֐������I�ɃR�[�����āA�I�����m�F���Ă��������B
+	関数名に「Async」が付く関数をコールした際は、この関数を定期的にコールして、終了を確認してください。
 	
-	@retval TRUE	�񓯊��������I�����Ă���
-	@retval FALSE	�񓯊��������I�����Ă��Ȃ�
+	@retval TRUE	非同期処理が終了している
+	@retval FALSE	非同期処理が終了していない
 */
 BOOL Dpw_Tr_IsAsyncEnd(void) {
 	
@@ -619,11 +619,11 @@ BOOL Dpw_Tr_IsAsyncEnd(void) {
 }
 
 /*!
-	���O�̔񓯊������̌��ʂ��擾���܂��B
-	Bpw_Tr_IsAsyncEnd() �ŏI�����m�F���Ă���R�[�����Ă��������B
+	直前の非同期処理の結果を取得します。
+	Bpw_Tr_IsAsyncEnd() で終了を確認してからコールしてください。
 	
-	�񓯊��������s�����ꍇ�́A�K�����̊֐��Ō��ʁi���ɃG���[���N�����Ă��Ȃ����j���m�F���Ă��������B
-	�G���[�̎�ނ͔񓯊������ɂ���ĈقȂ�܂����A�ȉ��̃G���[�͋��ʂł��B
+	非同期処理を行った場合は、必ずこの関数で結果（特にエラーが起こっていないか）を確認してください。
+	エラーの種類は非同期処理によって異なりますが、以下のエラーは共通です。
 	
 	@li ::DPW_TR_ERROR_SERVER_TIMEOUT
 	@li ::DPW_TR_ERROR_CANCEL
@@ -631,7 +631,7 @@ BOOL Dpw_Tr_IsAsyncEnd(void) {
 	@li ::DPW_TR_ERROR_DISCONNECTED
 	@li ::DPW_TR_ERROR_FAILURE
 	
-	@return	�񓯊������̌��ʁB���̒l�̓G���[�������A ::DpwTrError �̒l���Ԃ�܂��B
+	@return	非同期処理の結果。負の値はエラーを示し、 ::DpwTrError の値が返ります。
 */
 s32 Dpw_Tr_GetAsyncResult(void) {
 	
@@ -641,22 +641,22 @@ s32 Dpw_Tr_GetAsyncResult(void) {
 }
 
 /*!
-	�|�P�����f�[�^��a���鏈�����J�n���܂��B
+	ポケモンデータを預ける処理を開始します。
 	
-	���������ꍇ�́A Dpw_Tr_GetAsyncResult() ��0���Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�������͈ȉ��̃G���[���Ԃ���܂��B
+	成功した場合は、 Dpw_Tr_GetAsyncResult() で0が返されます。
+	エラーが起こった場合は、共通のエラーもしくは以下のエラーが返されます。
 	
-	@li ::DPW_TR_ERROR_SERVER_FULL		�F �T�[�o�[�̗e�ʃI�[�o�[�ł��B
-	@li ::DPW_TR_ERROR_DATA_TIMEOUT		�F �ȑO�a�����f�[�^���^�C���A�E�g���Ă��܂��B�^�}�S��Ԃ��Ă��������B
-	@li ::DPW_TR_ERROR_ILLIGAL_REQUEST	�F �T�[�o�[�Ɋ��Ƀf�[�^������܂��B Dpw_Tr_DownloadAsync() �Ŋm�F���Ă��������B
-	@li ::DPW_TR_ERROR_ILLEGAL_DATA		�F �A�b�v���[�h���ꂽ�f�[�^�����Ă��܂��B
-	@li ::DPW_TR_ERROR_CHEAT_DATA		�F �A�b�v���[�h���ꂽ�f�[�^���s���ł��B
-	@li ::DPW_TR_ERROR_NG_POKEMON_NAME	�F �A�b�v���[�h���ꂽ�|�P�����̖��O��NG���[�h���܂�ł��܂��B
-	@li ::DPW_TR_ERROR_NG_PARENT_NAME	�F �A�b�v���[�h���ꂽ�|�P�����̐e�̖��O��NG���[�h���܂�ł��܂��B
-	@li ::DPW_TR_ERROR_NG_MAIL_NAME		�F �A�b�v���[�h���ꂽ���[���̖��O��NG���[�h���܂�ł��܂��B
-	@li ::DPW_TR_ERROR_NG_OWNER_NAME	�F �A�b�v���[�h���ꂽ��l������NG���[�h���܂�ł��܂��B
+	@li ::DPW_TR_ERROR_SERVER_FULL		： サーバーの容量オーバーです。
+	@li ::DPW_TR_ERROR_DATA_TIMEOUT		： 以前預けたデータがタイムアウトしています。タマゴを返してください。
+	@li ::DPW_TR_ERROR_ILLIGAL_REQUEST	： サーバーに既にデータがあります。 Dpw_Tr_DownloadAsync() で確認してください。
+	@li ::DPW_TR_ERROR_ILLEGAL_DATA		： アップロードされたデータが壊れています。
+	@li ::DPW_TR_ERROR_CHEAT_DATA		： アップロードされたデータが不正です。
+	@li ::DPW_TR_ERROR_NG_POKEMON_NAME	： アップロードされたポケモンの名前がNGワードを含んでいます。
+	@li ::DPW_TR_ERROR_NG_PARENT_NAME	： アップロードされたポケモンの親の名前がNGワードを含んでいます。
+	@li ::DPW_TR_ERROR_NG_MAIL_NAME		： アップロードされたメールの名前がNGワードを含んでいます。
+	@li ::DPW_TR_ERROR_NG_OWNER_NAME	： アップロードされた主人公名がNGワードを含んでいます。
 	
-	@param[in] data	�A�b�v���[�h����f�[�^�B�֐����ŃR�s�[���܂��̂ŁA�ÓI�ɕێ�����K�v�͂���܂���B
+	@param[in] data	アップロードするデータ。関数内でコピーしますので、静的に保持する必要はありません。
 	
 	@sa Dpw_Tr_UploadFinishAsync()
 */
@@ -668,10 +668,10 @@ void Dpw_Tr_UploadAsync(const Dpw_Tr_Data* data) {
 	
 	memcpy(&dpw_tr.send_buf[0], data, sizeof(Dpw_Tr_Data));
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_UPLOAD, dpw_tr.send_buf, sizeof(Dpw_Tr_Data), dpw_tr.recv_buf, 2)) {
 		dpw_tr.state = DPWi_TR_RROCESS_UPLOAD;
 	} else {
@@ -682,14 +682,14 @@ void Dpw_Tr_UploadAsync(const Dpw_Tr_Data* data) {
 }
 
 /*!
-	Dpw_Tr_UploadAsync()�ŃA�b�v���[�h�����T�[�o�[��̃f�[�^��L���ɂ��܂��B
+	Dpw_Tr_UploadAsync()でアップロードしたサーバー上のデータを有効にします。
 	
-	���������ꍇ�A Dpw_Tr_GetAsyncResult() ��0���Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�������͈ȉ��̃G���[���Ԃ���܂��B
+	成功した場合、 Dpw_Tr_GetAsyncResult() で0が返されます。
+	エラーが起こった場合は、共通のエラーもしくは以下のエラーが返されます。
 	
-	@li ::DPW_TR_ERROR_NO_DATA			�F �T�[�o�[�Ƀf�[�^�����݂��܂���B�f�[�^�𕜌����Ă��������B
-	@li ::DPW_TR_ERROR_DATA_TIMEOUT		�F �ȑO�a�����f�[�^���^�C���A�E�g���Ă��܂��B�^�}�S��Ԃ��Ă��������B
-	@li ::DPW_TR_ERROR_ILLIGAL_REQUEST	�F �T�[�o�[�Ɋ��Ƀf�[�^������܂��B Dpw_Tr_DownloadAsync() �Ŋm�F���Ă��������B
+	@li ::DPW_TR_ERROR_NO_DATA			： サーバーにデータが存在しません。データを復元してください。
+	@li ::DPW_TR_ERROR_DATA_TIMEOUT		： 以前預けたデータがタイムアウトしています。タマゴを返してください。
+	@li ::DPW_TR_ERROR_ILLIGAL_REQUEST	： サーバーに既にデータがあります。 Dpw_Tr_DownloadAsync() で確認してください。
 	
 	@sa Dpw_Tr_UploadAsync()
 */
@@ -698,13 +698,13 @@ void Dpw_Tr_UploadFinishAsync(void) {
 	DPW_TASSERTMSG(dpw_tr.state != DPWi_TR_NOT_INIT, "dpw tr is not initialized.\n");
 	DPW_TASSERTMSG(dpw_tr.state == DPWi_TR_NORMAL, "async process is already running.\n");
 	
-	// �����̃t�����h�L�[�𑗂�
+	// 自分のフレンドキーを送る
 	memcpy(&dpw_tr.send_buf[0], &dpw_tr.friend_key, 8);
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_UPLOADFINISH, dpw_tr.send_buf, 8, dpw_tr.recv_buf, 2)) {
 		dpw_tr.state = DPWi_TR_RROCESS_UPLOADFINISH;
 	} else {
@@ -715,18 +715,18 @@ void Dpw_Tr_UploadFinishAsync(void) {
 }
 
 /*!
-	�������Ō�ɗa�����f�[�^���擾���܂��B
+	自分が最後に預けたデータを取得します。
 	
-	���������ꍇ�A Dpw_Tr_GetAsyncResult() ��0���Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�������͈ȉ��̃G���[���Ԃ���܂��B
+	成功した場合、 Dpw_Tr_GetAsyncResult() で0が返されます。
+	エラーが起こった場合は、共通のエラーもしくは以下のエラーが返されます。
 	
-	@li ::DPW_TR_ERROR_NO_DATA			�F �T�[�o�[�Ƀf�[�^�����݂��܂���B�f�[�^�𕜌����Ă��������B
-	@li ::DPW_TR_ERROR_DATA_TIMEOUT		�F �ȑO�a�����f�[�^���^�C���A�E�g���Ă��܂��B�^�}�S��Ԃ��Ă��������B
+	@li ::DPW_TR_ERROR_NO_DATA			： サーバーにデータが存在しません。データを復元してください。
+	@li ::DPW_TR_ERROR_DATA_TIMEOUT		： 以前預けたデータがタイムアウトしています。タマゴを返してください。
 	
-	�T�[�o�[�ɂ���Č������ꂽ��ł��擾�ł��܂��B
-	Dpw_Tr_DeleteAsync() �����s������͎擾�ł��܂���B
+	サーバーによって交換された後でも取得できます。
+	Dpw_Tr_DeleteAsync() を実行した後は取得できません。
 	
-	@param[out] data	�_�E�����[�h�����f�[�^���L�^����o�b�t�@
+	@param[out] data	ダウンロードしたデータを記録するバッファ
 */
 void Dpw_Tr_DownloadAsync(Dpw_Tr_Data* data) {
 	
@@ -736,10 +736,10 @@ void Dpw_Tr_DownloadAsync(Dpw_Tr_Data* data) {
 	
 	dpw_tr.user_recv_buf = (u8*)data;
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 	
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_DOWNLOAD, dpw_tr.send_buf, 0, data, sizeof(Dpw_Tr_Data))) {
 		dpw_tr.state = DPWi_TR_RROCESS_DOWNLOAD;
 	} else {
@@ -750,16 +750,16 @@ void Dpw_Tr_DownloadAsync(Dpw_Tr_Data* data) {
 }
 
 /*!
-	�ȑO�ɗa�����f�[�^���������ꂽ�����T�[�o�[�ɖ₢���킹�A��������Ă����
-	�������ꂽ�f�[�^�̃_�E�����[�h�������s���܂��B
+	以前に預けたデータが交換されたかをサーバーに問い合わせ、交換されていれば
+	交換されたデータのダウンロード処理を行います。
 	
-	�������s�����Ȃ�0���A���������Ȃ��1�� Dpw_Tr_GetAsyncResult() �ŕԂ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�������͈ȉ��̃G���[���Ԃ���܂��B
+	交換が不成立なら0が、交換成立ならば1が Dpw_Tr_GetAsyncResult() で返されます。
+	エラーが起こった場合は、共通のエラーもしくは以下のエラーが返されます。
 	
-	@li ::DPW_TR_ERROR_NO_DATA			�F �T�[�o�[�Ƀf�[�^�����݂��܂���B�f�[�^�𕜌����Ă��������B
-	@li ::DPW_TR_ERROR_DATA_TIMEOUT		�F �ȑO�a�����f�[�^���^�C���A�E�g���Ă��܂��B�^�}�S��Ԃ��Ă��������B
+	@li ::DPW_TR_ERROR_NO_DATA			： サーバーにデータが存在しません。データを復元してください。
+	@li ::DPW_TR_ERROR_DATA_TIMEOUT		： 以前預けたデータがタイムアウトしています。タマゴを返してください。
 	
-	�T�[�o�[�ɂČ��������f�[�^�́A Dpw_Tr_Data �^�̈ȉ��̃����o�ł��B����ȊO�͕ύX����܂���B
+	サーバーにて交換されるデータは、 Dpw_Tr_Data 型の以下のメンバです。それ以外は変更されません。
 	
 	@li Dpw_Tr_PokemonData postData;
 	@li u8 gender;
@@ -771,7 +771,7 @@ void Dpw_Tr_DownloadAsync(Dpw_Tr_Data* data) {
 	@li u8 versionCode;
 	@li u8 langCode;
 	
-	@param[out] data	�_�E�����[�h�����f�[�^���L�^����o�b�t�@
+	@param[out] data	ダウンロードしたデータを記録するバッファ
 */
 void Dpw_Tr_GetUploadResultAsync(Dpw_Tr_Data* data) {
 	
@@ -781,10 +781,10 @@ void Dpw_Tr_GetUploadResultAsync(Dpw_Tr_Data* data) {
 	
 	dpw_tr.user_recv_buf = (u8*)data;
 
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 	
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_GETUPLOADRESULT, dpw_tr.send_buf, 0, data, sizeof(Dpw_Tr_Data))) {
 		dpw_tr.state = DPWi_TR_RROCESS_GETUPLOADRESULT;
 	} else {
@@ -795,24 +795,24 @@ void Dpw_Tr_GetUploadResultAsync(Dpw_Tr_Data* data) {
 }
 
 /*!
-	���łɃA�b�v���[�h����Ă���f�[�^�̍폜���s���܂��B
-	���̊֐��́A�����ς݂̃f�[�^���폜����ꍇ�ɂ̂ݎg�p���Ă��������B
+	すでにアップロードされているデータの削除を行います。
+	この関数は、交換済みのデータを削除する場合にのみ使用してください。
 	
-	���������ꍇ�A Dpw_Tr_GetAsyncResult() ��0���Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�������͈ȉ��̃G���[���Ԃ���܂��B
+	成功した場合、 Dpw_Tr_GetAsyncResult() で0が返されます。
+	エラーが起こった場合は、共通のエラーもしくは以下のエラーが返されます。
 	
-	@li ::DPW_TR_ERROR_NO_DATA			�F �T�[�o�[�Ƀf�[�^�����݂��܂���B�f�[�^�𕜌����Ă��������B
-	@li ::DPW_TR_ERROR_DATA_TIMEOUT		�F �ȑO�a�����f�[�^���^�C���A�E�g���Ă��܂��B�^�}�S��Ԃ��Ă��������B
+	@li ::DPW_TR_ERROR_NO_DATA			： サーバーにデータが存在しません。データを復元してください。
+	@li ::DPW_TR_ERROR_DATA_TIMEOUT		： 以前預けたデータがタイムアウトしています。タマゴを返してください。
 */
 void Dpw_Tr_DeleteAsync(void) {
 	
 	DPW_TASSERTMSG(dpw_tr.state != DPWi_TR_NOT_INIT, "dpw tr is not initialized.\n");
 	DPW_TASSERTMSG(dpw_tr.state == DPWi_TR_NORMAL, "async process is already running.\n");
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 	
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_DELETE, dpw_tr.send_buf, 0, dpw_tr.recv_buf, 2)) {
 		dpw_tr.state = DPWi_TR_RROCESS_DELETE;
 	} else {
@@ -823,25 +823,25 @@ void Dpw_Tr_DeleteAsync(void) {
 }
 
 /*!
-	���łɃA�b�v���[�h����Ă���f�[�^�̍폜���s���܂��B
-	���̊֐��́A�T�[�o�[��̃f�[�^����������Ă��Ȃ��ꍇ�̂ݍ폜�ɐ������܂��B
+	すでにアップロードされているデータの削除を行います。
+	この関数は、サーバー上のデータが交換されていない場合のみ削除に成功します。
 	
-	���������ꍇ�A Dpw_Tr_GetAsyncResult() ��0���Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�������͈ȉ��̃G���[���Ԃ���܂��B
+	成功した場合、 Dpw_Tr_GetAsyncResult() で0が返されます。
+	エラーが起こった場合は、共通のエラーもしくは以下のエラーが返されます。
 	
-	@li ::DPW_TR_ERROR_NO_DATA			�F �T�[�o�[�Ƀf�[�^�����݂��܂���B�f�[�^�𕜌����Ă��������B
-	@li ::DPW_TR_ERROR_DATA_TIMEOUT		�F �ȑO�a�����f�[�^���^�C���A�E�g���Ă��܂��B�^�}�S��Ԃ��Ă��������B
-	@li ::DPW_TR_ERROR_ILLIGAL_REQUEST	�F �f�[�^�������ς݂��������߁A�폜�Ɏ��s���܂����B Dpw_Tr_DownloadAsync() �Ŋm�F���Ă��������B
+	@li ::DPW_TR_ERROR_NO_DATA			： サーバーにデータが存在しません。データを復元してください。
+	@li ::DPW_TR_ERROR_DATA_TIMEOUT		： 以前預けたデータがタイムアウトしています。タマゴを返してください。
+	@li ::DPW_TR_ERROR_ILLIGAL_REQUEST	： データが交換済みだったため、削除に失敗しました。 Dpw_Tr_DownloadAsync() で確認してください。
 */
 void Dpw_Tr_ReturnAsync(void) {
 	
 	DPW_TASSERTMSG(dpw_tr.state != DPWi_TR_NOT_INIT, "dpw tr is not initialized.\n");
 	DPW_TASSERTMSG(dpw_tr.state == DPWi_TR_NORMAL, "async process is already running.\n");
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 	
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_RETURN, dpw_tr.send_buf, 0, dpw_tr.recv_buf, 2)) {
 		dpw_tr.state = DPWi_TR_RROCESS_RETURN;
 	} else {
@@ -852,14 +852,14 @@ void Dpw_Tr_ReturnAsync(void) {
 }
 
 /*!
-	Dpw_Tr���C�u�����Ō��ݍs���Ă���񓯊��������L�����Z�����܂��B
+	Dpw_Trライブラリで現在行われている非同期処理をキャンセルします。
 	
-	�L�����Z�������ꍇ�A Dpw_Tr_GetAsyncResult() �̕Ԓl�� DPW_TR_ERROR_CANCEL �ƂȂ�܂��B
+	キャンセルした場合、 Dpw_Tr_GetAsyncResult() の返値は DPW_TR_ERROR_CANCEL となります。
 	
-	���ɒʐM���I�����Ă��邱�Ƃ�����܂��̂ŁA�L�����Z���͏�ɐ�������Ƃ͌���܂���B
-	�L�����Z���ł������ǂ����́A Dpw_Tr_GetAsyncResult() �̕Ԓl�� DPW_TR_ERROR_CANCEL �ƂȂ��Ă��邩�Ŕ��f���Ă��������B
+	既に通信が終了していることもありますので、キャンセルは常に成功するとは限りません。
+	キャンセルできたかどうかは、 Dpw_Tr_GetAsyncResult() の返値が DPW_TR_ERROR_CANCEL となっているかで判断してください。
 	
-	Dpw_Tr_CancelAsync() ���̂��񓯊��������s���܂����A������L�����Z�����邱�Ƃ͂ł��܂���B
+	Dpw_Tr_CancelAsync() 自体も非同期処理を行いますが、これをキャンセルすることはできません。
 */
 void Dpw_Tr_CancelAsync(void) {
 	
@@ -916,14 +916,14 @@ void Dpw_Tr_CancelAsync(void) {
 }
 
 /*!
-	�~�����|�P�����f�[�^�ƍ��v�����f�[�^�̃_�E�����[�h���J�n���܂��B
+	欲しいポケモンデータと合致したデータのダウンロードを開始します。
 	
-	���������ꍇ�� Dpw_Tr_GetAsyncResult() �Ń_�E�����[�h���ꂽ�f�[�^��(0-7)���Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�̂����ꂩ���Ԃ���܂��B
+	成功した場合は Dpw_Tr_GetAsyncResult() でダウンロードされたデータ数(0-7)が返されます。
+	エラーが起こった場合は、共通のエラーのいずれかが返されます。
 	
-	@param[in] searchData	��������|�P�����̃f�[�^�B�֐����ŃR�s�[���܂��̂ŁA�ÓI�ɕێ�����K�v�͂���܂���B
-	@param[in] maxNum	�_�E�����[�h����|�P�����f�[�^�̍ő吔(7�܂�)
-	@param[out] downloadData	�_�E�����[�h�����f�[�^���L�^����o�b�t�@�BmaxNum�Ŏw�肵�����ȏ�̃T�C�Y��p�ӂ��Ă��������B
+	@param[in] searchData	検索するポケモンのデータ。関数内でコピーしますので、静的に保持する必要はありません。
+	@param[in] maxNum	ダウンロードするポケモンデータの最大数(7まで)
+	@param[out] downloadData	ダウンロードしたデータを記録するバッファ。maxNumで指定した数以上のサイズを用意してください。
 */
 void Dpw_Tr_DownloadMatchDataAsync(const Dpw_Tr_PokemonSearchData* searchData, s32 maxNum, Dpw_Tr_Data* downloadData) {
 	
@@ -935,13 +935,13 @@ void Dpw_Tr_DownloadMatchDataAsync(const Dpw_Tr_PokemonSearchData* searchData, s
 	
 	dpw_tr.user_recv_buf = (u8*)downloadData;
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 	
 	memcpy(&dpw_tr.send_buf[0], searchData, sizeof(Dpw_Tr_PokemonSearchData));
 	dpw_tr.send_buf[sizeof(Dpw_Tr_PokemonSearchData)] = (u8)maxNum;
 	
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_DOWNLOADMATCHDATA, dpw_tr.send_buf,
 								   sizeof(Dpw_Tr_PokemonSearchData) + 1, downloadData, (int)sizeof(Dpw_Tr_Data)*maxNum))
 	{
@@ -954,13 +954,13 @@ void Dpw_Tr_DownloadMatchDataAsync(const Dpw_Tr_PokemonSearchData* searchData, s
 }
 
 /*!
-	�~�����|�P�����f�[�^�ƍ��v�����f�[�^�̃_�E�����[�h���J�n���܂��B�����ɍ��R�[�h��ǉ������o�[�W�����ł��B
+	欲しいポケモンデータと合致したデータのダウンロードを開始します。条件に国コードを追加したバージョンです。
 	
-	���������ꍇ�� Dpw_Tr_GetAsyncResult() �Ń_�E�����[�h���ꂽ�f�[�^��(0-7)���Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�̂����ꂩ���Ԃ���܂��B
+	成功した場合は Dpw_Tr_GetAsyncResult() でダウンロードされたデータ数(0-7)が返されます。
+	エラーが起こった場合は、共通のエラーのいずれかが返されます。
 	
-	@param[in] searchData	��������|�P�����̃f�[�^�B�֐����ŃR�s�[���܂��̂ŁA�ÓI�ɕێ�����K�v�͂���܂���B
-	@param[out] downloadData	�_�E�����[�h�����f�[�^���L�^����o�b�t�@�BmaxNum�Ŏw�肵�����ȏ�̃T�C�Y��p�ӂ��Ă��������B
+	@param[in] searchData	検索するポケモンのデータ。関数内でコピーしますので、静的に保持する必要はありません。
+	@param[out] downloadData	ダウンロードしたデータを記録するバッファ。maxNumで指定した数以上のサイズを用意してください。
 */
 void Dpw_Tr_DownloadMatchDataExAsync(const Dpw_Tr_PokemonSearchDataEx* searchData, Dpw_Tr_Data* downloadData) {
 	
@@ -972,12 +972,12 @@ void Dpw_Tr_DownloadMatchDataExAsync(const Dpw_Tr_PokemonSearchDataEx* searchDat
 	
 	dpw_tr.user_recv_buf = (u8*)downloadData;
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 	
 	memcpy(&dpw_tr.send_buf[0], searchData, sizeof(Dpw_Tr_PokemonSearchDataEx));
 	
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_DOWNLOADMATCHDATA, dpw_tr.send_buf,
 								   sizeof(Dpw_Tr_PokemonSearchDataEx), downloadData, (int)sizeof(Dpw_Tr_Data)*searchData->maxNum))
 	{
@@ -990,24 +990,24 @@ void Dpw_Tr_DownloadMatchDataExAsync(const Dpw_Tr_PokemonSearchDataEx* searchDat
 }
 
 /*!
-	�T�[�o�[���id �̃f�[�^�ƌ������J�n���܂��B
+	サーバー上のid のデータと交換を開始します。
 	
-	uploadData��downloadData�ɂ͓����|�C���^��^���邱�Ƃ��ł��܂��B
+	uploadDataとdownloadDataには同じポインタを与えることができます。
 	
-	���������ꍇ�A Dpw_Tr_GetAsyncResult() ��0���Ԃ���AdownloadData�Ɍ��������f�[�^������܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�������͈ȉ��̃G���[���Ԃ���܂��B
+	成功した場合、 Dpw_Tr_GetAsyncResult() で0が返され、downloadDataに交換したデータが入ります。
+	エラーが起こった場合は、共通のエラーもしくは以下のエラーが返されます。
 	
-	@li ::DPW_TR_ERROR_ILLIGAL_REQUEST	�F �g���[�h�����s���܂����B�g���[�h���s���O�̏�Ԃɖ߂��Ă��������B
-	@li ::DPW_TR_ERROR_ILLEGAL_DATA		�F �A�b�v���[�h���ꂽ�f�[�^�����Ă��܂��B
-	@li ::DPW_TR_ERROR_CHEAT_DATA		�F �A�b�v���[�h���ꂽ�f�[�^���s���ł��B
-	@li ::DPW_TR_ERROR_NG_POKEMON_NAME	�F �A�b�v���[�h���ꂽ�|�P�����̖��O��NG���[�h���܂�ł��܂��B
-	@li ::DPW_TR_ERROR_NG_PARENT_NAME	�F �A�b�v���[�h���ꂽ�|�P�����̐e�̖��O��NG���[�h���܂�ł��܂��B
-	@li ::DPW_TR_ERROR_NG_MAIL_NAME		�F �A�b�v���[�h���ꂽ���[���̖��O��NG���[�h���܂�ł��܂��B
-	@li ::DPW_TR_ERROR_NG_OWNER_NAME	�F �A�b�v���[�h���ꂽ��l������NG���[�h���܂�ł��܂��B
+	@li ::DPW_TR_ERROR_ILLIGAL_REQUEST	： トレードが失敗しました。トレードを行う前の状態に戻してください。
+	@li ::DPW_TR_ERROR_ILLEGAL_DATA		： アップロードされたデータが壊れています。
+	@li ::DPW_TR_ERROR_CHEAT_DATA		： アップロードされたデータが不正です。
+	@li ::DPW_TR_ERROR_NG_POKEMON_NAME	： アップロードされたポケモンの名前がNGワードを含んでいます。
+	@li ::DPW_TR_ERROR_NG_PARENT_NAME	： アップロードされたポケモンの親の名前がNGワードを含んでいます。
+	@li ::DPW_TR_ERROR_NG_MAIL_NAME		： アップロードされたメールの名前がNGワードを含んでいます。
+	@li ::DPW_TR_ERROR_NG_OWNER_NAME	： アップロードされた主人公名がNGワードを含んでいます。
 	
-	@param[in] id	���������ID
-	@param[in] uploadData	�A�b�v���[�h����f�[�^�B�֐����ŃR�s�[���܂��̂ŁA�ÓI�ɕێ�����K�v�͂���܂���B
-	@param[out] downloadData	�_�E�����[�h�����f�[�^���L�^����o�b�t�@
+	@param[in] id	交換相手のID
+	@param[in] uploadData	アップロードするデータ。関数内でコピーしますので、静的に保持する必要はありません。
+	@param[out] downloadData	ダウンロードしたデータを記録するバッファ
 	
 	@sa Dpw_Tr_TradeFinish()
 */
@@ -1020,14 +1020,14 @@ void Dpw_Tr_TradeAsync(s32 id, const Dpw_Tr_Data* uploadData, Dpw_Tr_Data* downl
 	
 	dpw_tr.user_recv_buf = (u8*)downloadData;
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 	
 	memcpy(&dpw_tr.send_buf[0], uploadData, sizeof(Dpw_Tr_Data));
 //	memcpy(&((Dpw_Tr_Data*)dpw_tr.send_buf)->friend_key, &dpw_tr.friend_key, 8);
 	*(s32*)(&dpw_tr.send_buf[sizeof(Dpw_Tr_Data)]) = id;
 	
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_TRADE, dpw_tr.send_buf, sizeof(Dpw_Tr_Data)+4, downloadData, sizeof(Dpw_Tr_Data))) {
 		dpw_tr.state = DPWi_TR_RROCESS_TRADE;
 	} else {
@@ -1038,25 +1038,25 @@ void Dpw_Tr_TradeAsync(s32 id, const Dpw_Tr_Data* uploadData, Dpw_Tr_Data* downl
 }
 
 /*!
-	Dpw_Tr_TradeAsync() �ŃA�b�v���[�h�����T�[�o�[��̃f�[�^��L���ɂ��܂��B
+	Dpw_Tr_TradeAsync() でアップロードしたサーバー上のデータを有効にします。
 	
-	���������ꍇ�A Dpw_Tr_GetAsyncResult() ��0���Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�������͈ȉ��̃G���[���Ԃ���܂��B
+	成功した場合、 Dpw_Tr_GetAsyncResult() で0が返されます。
+	エラーが起こった場合は、共通のエラーもしくは以下のエラーが返されます。
 	
-	@li ::DPW_TR_ERROR_ILLIGAL_REQUEST	�F �g���[�h�����s���܂����B�g���[�h���s���O�̏�Ԃɖ߂��Ă��������B
+	@li ::DPW_TR_ERROR_ILLIGAL_REQUEST	： トレードが失敗しました。トレードを行う前の状態に戻してください。
 */
 void Dpw_Tr_TradeFinishAsync(void) {
 	
 	DPW_TASSERTMSG(dpw_tr.state != DPWi_TR_NOT_INIT, "dpw tr is not initialized.\n");
 	DPW_TASSERTMSG(dpw_tr.state == DPWi_TR_NORMAL, "async process is already running.\n");
 	
-	// �����̃t�����h�L�[�𑗂�
+	// 自分のフレンドキーを送る
 	memcpy(&dpw_tr.send_buf[0], &dpw_tr.friend_key, 8);
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_TRADEFINISH, dpw_tr.send_buf, 8, dpw_tr.recv_buf, 2)) {
 		dpw_tr.state = DPWi_TR_RROCESS_TRADEFINISH;
 	} else {
@@ -1067,21 +1067,21 @@ void Dpw_Tr_TradeFinishAsync(void) {
 }
 
 /*!
-	�T�[�o�[��Ԃ̒������J�n���܂��B
+	サーバー状態の調査を開始します。
 	
-	�T�[�o�[�Ɛ���ɒʐM�ł����ꍇ�́A Dpw_Tr_GetAsyncResult() �� DpwTrServerStatus �̒l���Ԃ���܂��B
+	サーバーと正常に通信できた場合は、 Dpw_Tr_GetAsyncResult() で DpwTrServerStatus の値が返されます。
 	
-	����ɒʐM�ł��Ȃ������ꍇ�́A ���ʂ̃G���[�̂����ꂩ���Ԃ���܂��B
+	正常に通信できなかった場合は、 共通のエラーのいずれかが返されます。
 */
 void Dpw_Tr_GetServerStateAsync(void) {
 	
 	DPW_TASSERTMSG(dpw_tr.state != DPWi_TR_NOT_INIT, "dpw tr is not initialized.\n");
 	DPW_TASSERTMSG(dpw_tr.state == DPWi_TR_NORMAL, "async process is already running.\n");
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_GETSERVERSTATE, dpw_tr.send_buf, 0, dpw_tr.recv_buf, 2)) {
 		dpw_tr.state = DPWi_TR_RROCESS_GETSERVERSTATE;
 	} else {
@@ -1092,18 +1092,18 @@ void Dpw_Tr_GetServerStateAsync(void) {
 }
 
 /*!
-	�l����o�^���鏈�����J�n���܂��B
+	個人情報を登録する処理を開始します。
 	
-	���������ꍇ�́A Dpw_Tr_GetAsyncResult() ��0���Ԃ���A�w�肵��result�p�����[�^��code�����o��DPW_PROFILE_RESULTCODE_SUCCESS���Ԃ�܂��B
+	成功した場合は、 Dpw_Tr_GetAsyncResult() で0が返され、指定したresultパラメータのcodeメンバにDPW_PROFILE_RESULTCODE_SUCCESSが返ります。
     
-	��ɒʐM�ɋN������G���[���N�������ꍇ�́ADpw_Tr_GetAsyncResult()��TR�̋��ʂ̃G���[���Ԃ���܂��B
-    �l���o�^�Ɋւ���G���[���N�������ꍇ�͎w�肵��result�p�����[�^��code�����o��DPW_PROFILE_RESULTCODE_SUCCESS�ȊO�̒l���Z�b�g����܂��B
-    Dpw_Tr_GetAsyncResult()�ŃG���[���������Ȃ������ꍇ�̂�code�����o���Q�Ƃ��Ă��������B
+	主に通信に起因するエラーが起こった場合は、Dpw_Tr_GetAsyncResult()でTRの共通のエラーが返されます。
+    個人情報登録に関するエラーが起こった場合は指定したresultパラメータのcodeメンバにDPW_PROFILE_RESULTCODE_SUCCESS以外の値がセットされます。
+    Dpw_Tr_GetAsyncResult()でエラーが発生しなかった場合のみcodeメンバを参照してください。
 	
-	@param[in] data	�A�b�v���[�h����f�[�^�B�֐����ŃR�s�[���܂��̂ŁA�ÓI�ɕێ�����K�v�͂���܂���B
-                    MAC�A�h���X�̓��C�u�������Ŋi�[����̂ŃZ�b�g����K�v�͂���܂���B
-                    DP�؍���łł�version, language, countryCode, localCode, playerName, playerId, flag�݂̂��Z�b�g���Ă��������B����ȊO��0�Ŗ��߂Ă��������B
-	@param[out] result �T�[�o����̃��X�|���X�Bcode�����o�ɓo�^�Ɋւ��錋�ʂ��Z�b�g����AmailAddrAuthResult�Ƀ��[���A�h���X�o�^�Ɋւ��錋�ʂ��Z�b�g����܂��Bcode�����o��DPW_PROFILE_RESULTCODE_SUCCESS�������ꍇ�̂�mailAddrAuthResult�����o���Z�b�g���Ă��������B�������AmailAddrAuthResult�����o��DP�؍���łł͕K��0�ɂȂ�܂��B
+	@param[in] data	アップロードするデータ。関数内でコピーしますので、静的に保持する必要はありません。
+                    MACアドレスはライブラリ内で格納するのでセットする必要はありません。
+                    DP韓国語版ではversion, language, countryCode, localCode, playerName, playerId, flagのみをセットしてください。それ以外は0で埋めてください。
+	@param[out] result サーバからのレスポンス。codeメンバに登録に関する結果がセットされ、mailAddrAuthResultにメールアドレス登録に関する結果がセットされます。codeメンバがDPW_PROFILE_RESULTCODE_SUCCESSだった場合のみmailAddrAuthResultメンバをセットしてください。ただし、mailAddrAuthResultメンバはDP韓国語版では必ず0になります。
 */
 void Dpw_Tr_SetProfileAsync(const Dpw_Common_Profile* data, Dpw_Common_ProfileResult* result) {
 	
@@ -1113,16 +1113,16 @@ void Dpw_Tr_SetProfileAsync(const Dpw_Common_Profile* data, Dpw_Common_ProfileRe
 	
     DPW_TASSERTMSG(sizeof(Dpw_Common_Profile) <= sizeof(dpw_tr.send_buf), "Internal error: dpw send buf is too small.\n");
     
-    // Mac�A�h���X���Z�b�g
+    // Macアドレスをセット
 	OS_GetMacAddress((u8*)data->macAddr);
     
 	memcpy(dpw_tr.send_buf, data, sizeof(Dpw_Common_Profile));
 	dpw_tr.user_recv_buf = (u8*)result;
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Tr_CallSessionRequest(TR_URL_SETPROFILE, dpw_tr.send_buf, sizeof(Dpw_Common_Profile), dpw_tr.user_recv_buf, sizeof(Dpw_Common_ProfileResult))) {
 		dpw_tr.state = DPWi_TR_RROCESS_SETPROFILE;
 	} else {
@@ -1133,10 +1133,10 @@ void Dpw_Tr_SetProfileAsync(const Dpw_Common_Profile* data, Dpw_Common_ProfileRe
 }
 
 /*!
-	���E�ʐM�����̃T�[�o��Ԃ����������܂��B
-	�����Ńu���b�N���܂��B
+	世界通信交換のサーバ状態を初期化します。
+	内部でブロックします。
 	
-	���̊֐��͔p�~����܂����BDpw Admin Tool�����g�p�������B
+	この関数は廃止されました。Dpw Admin Toolをご使用下さい。
 */
 BOOL Dpw_Tr_Db_InitServer(void) {
 #if 0
@@ -1176,10 +1176,10 @@ BOOL Dpw_Tr_Db_InitServer(void) {
 }
 
 /*!
-	���E�����ʐM�̃T�[�o�̈�����̃A�b�v�f�[�g���s���܂��B
-	�����Ńu���b�N���܂��B
+	世界交換通信のサーバの一日一回のアップデートを行います。
+	内部でブロックします。
 	
-	���̊֐��͔p�~����܂����BDpw Admin Tool�����g�p�������B
+	この関数は廃止されました。Dpw Admin Toolをご使用下さい。
 */
 BOOL Dpw_Tr_Db_UpdateServer(void) {
 #if 0
@@ -1219,10 +1219,10 @@ BOOL Dpw_Tr_Db_UpdateServer(void) {
 }
 
 /*!
-	���E�ʐM�����́A�a�����Ă���|�P��������������鏇�Ԃ�ύX���܂��B
-	���̏����́A���i�ŃT�[�o�[�ł͈���Ɉ��s����\��ł��B
+	世界通信交換の、預けられているポケモンが検索される順番を変更します。
+	この処理は、製品版サーバーでは一日に一回行われる予定です。
 	
-	���̊֐��͔p�~����܂����BDpw Admin Tool�����g�p�������B
+	この関数は廃止されました。Dpw Admin Toolをご使用下さい。
 */
 BOOL Dpw_Tr_Db_ShuffleServerData(void) {
 #if 0
@@ -1262,20 +1262,20 @@ BOOL Dpw_Tr_Db_ShuffleServerData(void) {
 }
 
 /*-----------------------------------------------------------------------*
-					���[�J���֐���`
+					ローカル関数定義
  *-----------------------------------------------------------------------*/
 
 static BOOL Dpwi_Tr_CallSessionRequest(const u8* url, const void* data, int len, void* resbuf, int ressize) {
 	
 	OS_TPrintf("[DPW TR] Connecting to %s.\n", url);
 	switch (DpwiSessionRequest(url, dpw_tr.pid, data, len, (u8*)resbuf, ressize)) {
-	case DPWI_COMMON_SESSION_SUCCESS:				// ����I��
+	case DPWI_COMMON_SESSION_SUCCESS:				// 正常終了
 		return TRUE;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_NOTINITIALIZED:	// ��������
+	case DPWI_COMMON_SESSION_ERROR_NOTINITIALIZED:	// 未初期化
 		DPW_TASSERTMSG(FALSE, "common session not initialized.");
 		break;
-	case DPWI_COMMON_SESSION_ERROR_NOMEMORY:		// �������[�s��
+	case DPWI_COMMON_SESSION_ERROR_NOMEMORY:		// メモリー不足
 		DPW_TASSERTMSG(FALSE, "common session memory shortage.");
 		break;
 	}
@@ -1290,53 +1290,53 @@ static DpwTrError Dpwi_Tr_HandleCommonError(DpwiHttpError error) {
 	OS_TPrintf("[DPW TR] ghttp error: %d\n", error);
 	
 	switch (error) {
-	case DPWI_COMMON_SESSION_ERROR_IN_ERROR:			// �G���[������ 
-	case DPWI_COMMON_SESSION_ERROR_INVALID_POST:		// �����ȑ��M 
-	case DPWI_COMMON_SESSION_ERROR_INVALID_FILE_NAME:	// �����ȃt�@�C���� 
-	case DPWI_COMMON_SESSION_ERROR_INVALID_BUFFER_SIZE:	// �����ȃo�b�t�@�T�C�Y 
-	case DPWI_COMMON_SESSION_ERROR_INVALID_URL:			// ������URL
-	case DPWI_COMMON_SESSION_ERROR_UNSPECIFIED_ERROR:	// ���̑��̃G���[
-	case DPWI_COMMON_SESSION_ERROR_BUFFER_OVERFLOW:		// �������ꂽ�o�b�t�@�����������邽�߁A�t�@�C���̎擾���s 
-	case DPWI_COMMON_SESSION_ERROR_PARSE_URL_FAILED:	// URL��̓G���[ 
-//	case DPWI_COMMON_SESSION_ERROR_ENCRYPTION_ERROR:	// �Í����G���[ 
-	case DPWI_COMMON_SESSION_ERROR_FILE_TOO_BIG:		// �t�@�C�����傫�����邽�߃_�E�����[�h�s�\ 
-	case DPWI_COMMON_SESSION_ERROR_FILE_INCOMPLETE:		// �_�E�����[�h�̒��f 
-	case DPWI_COMMON_SESSION_ERROR_FILE_WRITE_FAILED:	// ���[�J���t�@�C���ւ̏������݃G���[ 
-	case DPWI_COMMON_SESSION_ERROR_FILE_READ_FAILED:	// ���[�J���t�@�C������̓ǂݏo���G���[ 
-	case DPWI_COMMON_SESSION_ERROR_BAD_RESPONSE:		// HTTP�T�[�o����̃��X�|���X�̉�̓G���[ 
-	case DPWI_COMMON_SESSION_ERROR_BUFFER_OVER:			// COMMON�w: ��M�o�b�t�@���I�[�o�[����
+	case DPWI_COMMON_SESSION_ERROR_IN_ERROR:			// エラー発生中 
+	case DPWI_COMMON_SESSION_ERROR_INVALID_POST:		// 無効な送信 
+	case DPWI_COMMON_SESSION_ERROR_INVALID_FILE_NAME:	// 無効なファイル名 
+	case DPWI_COMMON_SESSION_ERROR_INVALID_BUFFER_SIZE:	// 無効なバッファサイズ 
+	case DPWI_COMMON_SESSION_ERROR_INVALID_URL:			// 無効なURL
+	case DPWI_COMMON_SESSION_ERROR_UNSPECIFIED_ERROR:	// その他のエラー
+	case DPWI_COMMON_SESSION_ERROR_BUFFER_OVERFLOW:		// 供給されたバッファが小さすぎるため、ファイルの取得失敗 
+	case DPWI_COMMON_SESSION_ERROR_PARSE_URL_FAILED:	// URL解析エラー 
+//	case DPWI_COMMON_SESSION_ERROR_ENCRYPTION_ERROR:	// 暗号化エラー 
+	case DPWI_COMMON_SESSION_ERROR_FILE_TOO_BIG:		// ファイルが大きすぎるためダウンロード不可能 
+	case DPWI_COMMON_SESSION_ERROR_FILE_INCOMPLETE:		// ダウンロードの中断 
+	case DPWI_COMMON_SESSION_ERROR_FILE_WRITE_FAILED:	// ローカルファイルへの書き込みエラー 
+	case DPWI_COMMON_SESSION_ERROR_FILE_READ_FAILED:	// ローカルファイルからの読み出しエラー 
+	case DPWI_COMMON_SESSION_ERROR_BAD_RESPONSE:		// HTTPサーバからのレスポンスの解析エラー 
+	case DPWI_COMMON_SESSION_ERROR_BUFFER_OVER:			// COMMON層: 受信バッファをオーバーした
 		DPW_TASSERTMSG(FALSE, "library internal error. please contact author.");
 		ret = DPW_TR_ERROR_FATAL;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_INSUFFICIENT_MEMORY:	// �������s�� 
-	case DPWI_COMMON_SESSION_ERROR_OUT_OF_MEMORY:		// ���������蓖�Ď��s 
-	case DPWI_COMMON_SESSION_ERROR_MEMORY_ERROR: 		// ���������蓖�Ď��s 
+	case DPWI_COMMON_SESSION_ERROR_INSUFFICIENT_MEMORY:	// メモリ不足 
+	case DPWI_COMMON_SESSION_ERROR_OUT_OF_MEMORY:		// メモリ割り当て失敗 
+	case DPWI_COMMON_SESSION_ERROR_MEMORY_ERROR: 		// メモリ割り当て失敗 
 		DPW_TASSERTMSG(FALSE, "common session memory shortage.");
 		ret = DPW_TR_ERROR_FATAL;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_HOST_LOOKUP_FAILED:	// �z�X�g���������s 
+	case DPWI_COMMON_SESSION_ERROR_HOST_LOOKUP_FAILED:	// ホスト名検索失敗 
 		OS_TPrintf("[DPW TR] dns lookup failed.\n");
 		ret = DPW_TR_ERROR_FAILURE;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_SOCKET_FAILED:		// �\�P�b�g�̍쐬�A�������A�ǂݏo���A�������ݎ��s 
-	case DPWI_COMMON_SESSION_ERROR_CONNECT_FAILED:		// HTTP�T�[�o�ւ̐ڑ����s 
+	case DPWI_COMMON_SESSION_ERROR_SOCKET_FAILED:		// ソケットの作成、初期化、読み出し、書き込み失敗 
+	case DPWI_COMMON_SESSION_ERROR_CONNECT_FAILED:		// HTTPサーバへの接続失敗 
 		OS_TPrintf("[DPW TR] socket error.\n");
 		ret = DPW_TR_ERROR_FAILURE;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_UNAUTHORIZED:		// �t�@�C���擾������ 
-	case DPWI_COMMON_SESSION_ERROR_FORBIDDEN:			// HTTP�T�[�o�̃t�@�C�����M���� 
-	case DPWI_COMMON_SESSION_ERROR_FILE_NOT_FOUND:		// HTTP�T�[�o��̃t�@�C���������s 
-	case DPWI_COMMON_SESSION_ERROR_SERVER_ERROR:		// HTTP�T�[�o�����G���[ 
-	case DPWI_COMMON_SESSION_ERROR_CHECKSUM:			// COMMON�w: �`�F�b�N�T���̕s��v
-	case DPWI_COMMON_SESSION_ERROR_PID:					// COMMON�w: PID�̕s��v
-	case DPWI_COMMON_SESSION_ERROR_DATA_LENGTH: 		// COMMON�w: �f�[�^�̒������s��
-	case DPWI_COMMON_SESSION_ERROR_TOKEN_NOT_FOUND:		// COMMON�w: �g�[�N�����Ȃ�
-	case DPWI_COMMON_SESSION_ERROR_INCORRECT_HASH:		// COMMON�w: �n�b�V��������Ȃ�
+	case DPWI_COMMON_SESSION_ERROR_UNAUTHORIZED:		// ファイル取得未許可 
+	case DPWI_COMMON_SESSION_ERROR_FORBIDDEN:			// HTTPサーバのファイル送信拒否 
+	case DPWI_COMMON_SESSION_ERROR_FILE_NOT_FOUND:		// HTTPサーバ上のファイル検索失敗 
+	case DPWI_COMMON_SESSION_ERROR_SERVER_ERROR:		// HTTPサーバ内部エラー 
+	case DPWI_COMMON_SESSION_ERROR_CHECKSUM:			// COMMON層: チェックサムの不一致
+	case DPWI_COMMON_SESSION_ERROR_PID:					// COMMON層: PIDの不一致
+	case DPWI_COMMON_SESSION_ERROR_DATA_LENGTH: 		// COMMON層: データの長さが不正
+	case DPWI_COMMON_SESSION_ERROR_TOKEN_NOT_FOUND:		// COMMON層: トークンがない
+	case DPWI_COMMON_SESSION_ERROR_INCORRECT_HASH:		// COMMON層: ハッシュが合わない
 		OS_TPrintf("[DPW TR] server internal error.  please contact server administrator.\n");
 		ret = DPW_TR_ERROR_SERVER_TIMEOUT;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_REQUEST_REJECTED:	// HTTP�T�[�o�̃��N�G�X�g���� 
-	case DPWI_COMMON_SESSION_ERROR_TOKEN_EXPIRED:		// COMMON�w: �g�[�N���̗L�������؂�
+	case DPWI_COMMON_SESSION_ERROR_REQUEST_REJECTED:	// HTTPサーバのリクエスト拒否 
+	case DPWI_COMMON_SESSION_ERROR_TOKEN_EXPIRED:		// COMMON層: トークンの有効期限切れ
 		OS_TPrintf("[DPW TR] server is now heavy.\n");
 		ret = DPW_TR_ERROR_SERVER_TIMEOUT;
 		break;
@@ -1346,16 +1346,16 @@ static DpwTrError Dpwi_Tr_HandleCommonError(DpwiHttpError error) {
 		break;
 	}
 	
-	// FATAL�G���[�łȂ��ꍇ
+	// FATALエラーでない場合
 	if (ret != DPW_TR_ERROR_FATAL) {
 #ifdef _NITRO
-		// NitroWiFi�̃��C���[�Ŗ������؂�Ă��Ȃ����`�F�b�N����
+		// NitroWiFiのレイヤーで無線が切れていないかチェックする
 		if (WCM_GetPhase() != WCM_PHASE_DCF) {
 			OS_TPrintf("[DPW TR] disconnected from access point.\n");
 			ret = DPW_TR_ERROR_DISCONNECTED;
 		}
 #endif
-		// DWC�̃G���[��Ԃ��N���A����
+		// DWCのエラー状態をクリアする
 		DWC_ClearError();
 	}
 	

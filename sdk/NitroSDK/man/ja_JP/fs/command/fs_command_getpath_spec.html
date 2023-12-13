@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_COMMAND_GETPATH</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_COMMAND_GETPATH</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -23,16 +23,16 @@
   </dd>
 </dl>
 
-<H2>����</H2>
-<P>�A�[�J�C�u�R�}���h <CODE>FS_COMMAND_GETPATH �̓���d�l���ȉ��Ɏ����܂�</CODE>�B<BR>
+<H2>説明</H2>
+<P>アーカイブコマンド <CODE>FS_COMMAND_GETPATH の動作仕様を以下に示します</CODE>。<BR>
 <BR>
 <BR>
 
 <HR>
-<B>���̃R�}���h�ɓn��������</B>
+<B>このコマンドに渡される引数</B>
 <BLOCKQUOTE>
-<PRE>p_file �Ɋi�[���ꂽ�ϐ� arg.getpath ���R�}���h�����Ƃ��܂��B 
-���̕ϐ��� nitro/fs/file.h �ɂĈȉ��̂悤�ɒ�`����Ă��܂��B
+<PRE>p_file に格納された変数 arg.getpath をコマンド引数とします。 
+この変数は nitro/fs/file.h にて以下のように定義されています。
 
 typedef struct
 {
@@ -42,70 +42,70 @@ typedef struct
     u16    dir_id;
 } FSGetPathInfo; </PRE>
 </BLOCKQUOTE>
-<BLOCKQUOTE>�����̓��e�͈ȉ��̂Ƃ���ł��B<BR>
+<BLOCKQUOTE>引数の内容は以下のとおりです。<BR>
 </BLOCKQUOTE>
 <CENTER>
 <TABLE border="1" width="50%">
   <TBODY>
     <TR>
-      <TD style="text-align : center;" width="95">����</TD>
-      <TD style="text-align : center;" width="522">���e</TD>
+      <TD style="text-align : center;" width="95">引数</TD>
+      <TD style="text-align : center;" width="522">内容</TD>
     </TR>
     <TR>
       <TD width="95" style="text-align : center;">buf</TD>
-      <TD width="522">�擾������΃p�X����������i�[���郁�����ւ̃|�C���^�������܂��B<BR>
-      ���̒l�� NULL �̏ꍇ�A��΃p�X��������̎擾�͕s�v�ł��B</TD>
+      <TD width="522">取得した絶対パス名文字列を格納するメモリへのポインタを示します。<BR>
+      この値が NULL の場合、絶対パス名文字列の取得は不要です。</TD>
     </TR>
     <TR>
       <TD style="text-align : center;">buf_len</TD>
-      <TD>buf �̃������o�C�g�T�C�Y�������܂��B</TD>
+      <TD>buf のメモリバイトサイズを示します。</TD>
     </TR>
     <TR>
       <TD style="text-align : center;">total_len</TD>
-      <TD>���łɌv�Z�ς݂́A��������΃p�X�������񒷂������܂��B<BR>
-      ���̒l�� 0 �̏ꍇ�A�������ݒ肷��K�v������܂��B</TD>
+      <TD>すでに計算済みの、正しい絶対パス名文字列長を示します。<BR>
+      この値が 0 の場合、正しく設定する必要があります。</TD>
     </TR>
     <TR>
       <TD style="text-align : center;">dir_id</TD>
-      <TD>�Ώۂ��f�B���N�g���ł���΂��̈ʒu���A�t�@�C���ł���΂��ꂪ������f�B���N�g���̈ʒu�������܂��B<BR>
-      total_len �� 0 �̏ꍇ�A���̒l�𐳂����ݒ肷��K�v������܂��B</TD>
+      <TD>対象がディレクトリであればその位置を、ファイルであればそれが属するディレクトリの位置を示します。<BR>
+      total_len が 0 の場合、この値を正しく設定する必要があります。</TD>
     </TR>
   </TBODY>
 </TABLE>
 </CENTER>
 <BR>
 <HR>
-<B>���̃R�}���h�ɗv������铮��</B>
+<B>このコマンドに要求される動作</B>
 <BLOCKQUOTE>
-<PRE>p_file �́A�t�@�C�����܂��̓f�B���N�g���ʒu���̂����ꂩ��ێ����Ă��܂��B
-�ǂ���̏���ێ����Ă��邩�́AFS_IsFile �֐��܂��� FS_IsDir �֐��Ŕ��f���邱�Ƃ��ł��܂��B
-�����̊e�ϐ����ȉ��̂悤�ɐݒ肵�܂��B 
+<PRE>p_file は、ファイル情報またはディレクトリ位置情報のいずれかを保持しています。
+どちらの情報を保持しているかは、FS_IsFile 関数または FS_IsDir 関数で判断することができます。
+引数の各変数を以下のように設定します。 
 
-�E������ total_len �� 0 �̏ꍇ�Ap_file ��\����΃p�X��������̒������I�[�� '\0' ���܂߂� total_len �ɐݒ肵�A
-  p_file ���f�B���N�g���ł���΂��̒l���A�t�@�C���ł���΂��ꂪ������f�B���N�g���ʒu���Adir_id �ɐݒ肵�܂��B
-  total_len �� 0 �łȂ��ꍇ�A���łɂ��̃R�}���h�ɂ���ď�L�̐ݒ肪�s���Ă��邱�Ƃ��ۏ؂���܂��B
+・引数の total_len が 0 の場合、p_file を表す絶対パス名文字列の長さを終端の '\0' も含めて total_len に設定し、
+  p_file がディレクトリであればその値を、ファイルであればそれが属するディレクトリ位置を、dir_id に設定します。
+  total_len が 0 でない場合、すでにこのコマンドによって上記の設定が行われていることが保証されます。
 
-�E������ buf �� NULL �łȂ���΁Ap_file ��\����΃p�X����������I�[�� '\0' ���܂߂ă������֊i�[���܂��B
-  �������Abuf_len �� total_len ��菬�����ꍇ�ɂ� FS_RESULT_FAILURE ��Ԃ��K�v������܂��B
-  ���̂Ƃ��A�\�Ȍ��蕶������i�[���邱�Ƃ��A�S���i�[���Ȃ����Ƃ�������܂��B</PRE>
+・引数の buf が NULL でなければ、p_file を表す絶対パス名文字列を終端の '\0' も含めてメモリへ格納します。
+  ただし、buf_len が total_len より小さい場合には FS_RESULT_FAILURE を返す必要があります。
+  このとき、可能な限り文字列を格納することも、全く格納しないことも許されます。</PRE>
 </BLOCKQUOTE>
 <HR>
-<B>�f�t�H���g�̎���</B><BR>
+<B>デフォルトの実装</B><BR>
 <BR>
-<BLOCKQUOTE>�^����ꂽ��������AFS_COMMAND_SEEKDIR �R�}���h�� FS_COMMAND_READDIR �R�}���h�݂̂��g�p���Č��ʂ����߂܂��B</BLOCKQUOTE>
+<BLOCKQUOTE>与えられた引数から、FS_COMMAND_SEEKDIR コマンドと FS_COMMAND_READDIR コマンドのみを使用して結果を求めます。</BLOCKQUOTE>
 <HR>
-<B>�R�}���h�̌���</B><BR>
+<B>コマンドの結果</B><BR>
 
 <BLOCKQUOTE>
-<PRE>FS_RESULT_SUCCESS ��Ԃ����ꍇ�Atotal_len �ɂ͐�������΃p�X�������񒷂��ݒ肳��A
-���Abuf �� NULL �łȂ���ΏI�[�� '\0' ���܂߂���΃p�X�������񂪊i�[���ꂽ���̂Ɣ��f����܂��B
-�����łȂ��ꍇ�Abuf �� NULL �łȂ� buf_len �� total_len �����ł������Ɣ��f����܂��B</PRE>
+<PRE>FS_RESULT_SUCCESS を返した場合、total_len には正しい絶対パス名文字列長が設定され、
+かつ、buf が NULL でなければ終端の '\0' も含めた絶対パス名文字列が格納されたものと判断されます。
+そうでない場合、buf が NULL でなく buf_len が total_len 未満であったと判断されます。</PRE>
 </BLOCKQUOTE>
 <HR>
-<B>���̃R�}���h���g�p�����֐�</B><BR>
+<B>このコマンドが使用される関数</B><BR>
 <BLOCKQUOTE>FS_GetPathLength<BR>
 FS_GetPathName</BLOCKQUOTE>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../fs_archive_type.html">FSArchive</A>
 <A href="../fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
@@ -114,10 +114,10 @@ FS_GetPathName</BLOCKQUOTE>
 <A href="../archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/08/25 ��L�C�� FS_IdFile �� FS_IsFile<br>
-2004/07/12 ����<br>
+2004/08/25 誤記修正 FS_IdFile → FS_IsFile<br>
+2004/07/12 初版<br>
 </P>
 </body>
 </html>

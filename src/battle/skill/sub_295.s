@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_295.s
- *@brief	�퓬�V�[�P���X
- *			�t�B�[���h�V��Ńg���b�N���[��
+ *@brief	戦闘シーケンス
+ *			フィールド天候でトリックルーム
  *@author	HisashiSogabe
  *@data		2007.09.11
  *
@@ -18,9 +18,9 @@ SUB_295:
 	VALUE			VAL_SET,BUF_PARA_WAZA_WORK,WAZANO_TORIKKURUUMU
 	WAZA_EFFECT		SIDE_WORK
 	SERVER_WAIT
-	//�G�t�F�N�g�J�E���g�����ɖ߂�
+	//エフェクトカウントを元に戻す
 	VALUE			VAL_SET,BUF_PARA_WAZA_EFF_CNT,0
-	//�Z�G�t�F�N�g���N������悤�Ƀt���O�𗎂Ƃ�
+	//技エフェクトを起動するようにフラグを落とす
 	VALUE			VAL_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_WAZA_EFFECT
 	MESSAGE			FieldTrickRoomMsg,TAG_NONE
 	SERVER_WAIT

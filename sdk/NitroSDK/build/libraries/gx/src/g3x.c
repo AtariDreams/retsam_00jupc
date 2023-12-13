@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.74  2005/03/01 01:57:00  yosizaki
-  copyright ÇÃîNÇèCê≥.
+  copyright „ÅÆÂπ¥„Çí‰øÆÊ≠£.
 
   Revision 1.73  2005/02/28 05:26:13  yosizaki
   do-indent.
@@ -24,7 +24,7 @@
   fix G3X_InitTable() clear size
 
   Revision 1.71  2004/10/22 13:08:54  takano_makoto
-  LineBufferOverflow -> LineBufferUnderflowÇ÷â¸ñº
+  LineBufferOverflow -> LineBufferUnderflow„Å∏ÊîπÂêç
 
   Revision 1.70  2004/08/10 12:48:35  takano_makoto
   make available to use GX_DMA_NOT_USE.

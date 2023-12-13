@@ -24,11 +24,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace AdminTool
 {
     /// <summary>
-    /// ‹¤’ÊƒCƒ“ƒ^ƒtƒF[ƒXƒNƒ‰ƒX
+    /// å…±é€šã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
     /// </summary>
     public partial class RequestInterface
     {
-        // ’è”’è‹`
+        // å®šæ•°å®šç¾©
         public const int MAX_REQUEST_SIZE = 2000;
 
         public const ushort COMMON_REQUEST_REQUEST_VERSION = 1;
@@ -37,18 +37,18 @@ namespace AdminTool
 
         protected static RequestInterface s_instance = null;
         /// <summary>
-        /// Ú‘±æƒpƒX
+        /// æ¥ç¶šå…ˆãƒ‘ã‚¹
         /// </summary>
         public const string URL_ADMIN_SET_SERVER_STATE = "/web/common/adminSetServerState.asp";
         public const string URL_ADMIN_GET_SERVER_STATE = "/web/common/adminGetServerState.asp";
 
         /// <summary>
-        /// ŠÇ—ƒŠƒNƒGƒXƒg—pProfileID
+        /// ç®¡ç†ãƒªã‚¯ã‚¨ã‚¹ãƒˆç”¨ProfileID
         /// </summary>
         public const int ADMIN_PROFILE_ID = 0;
 
         /// <summary>
-        /// ƒT[ƒo‚Ìó‘Ô
+        /// ã‚µãƒ¼ãƒã®çŠ¶æ…‹
         /// </summary>
         public enum ServerState : uint
         {
@@ -58,7 +58,7 @@ namespace AdminTool
 
         public static object DeepCopy(object obj)
         {
-            // ƒfƒB[ƒvƒRƒs[
+            // ãƒ‡ã‚£ãƒ¼ãƒ—ã‚³ãƒ”ãƒ¼
             BinaryFormatter serializer = new BinaryFormatter();
             object loadedObj;
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
@@ -82,11 +82,11 @@ namespace AdminTool
             }
             catch (Exception e)
             {
-                MessageBox.Show("‘‚«‚İ‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B" + e.Message);
+                MessageBox.Show("æ›¸ãè¾¼ã¿æ™‚ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚" + e.Message);
             }
         }
 
-        // “Ç‚İ‚ß‚È‚¢‚Æ‚«‚ÍƒfƒtƒHƒ‹ƒg’l(‘å’ïnull)‚ğ•Ô‚·B
+        // èª­ã¿è¾¼ã‚ãªã„ã¨ãã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤(å¤§æŠµnull)ã‚’è¿”ã™ã€‚
         public static T LoadXML<T>(string filePath)
         {
             try
@@ -101,13 +101,13 @@ namespace AdminTool
             }
             catch (Exception e)
             {
-                MessageBox.Show("“Ç‚İ‚İ‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½Bƒtƒ@ƒCƒ‹Œ`®‚ª³‚µ‚¢‚©Šm”F‚µ‚Ä‚­‚¾‚³‚¢B" + e.Message);
+                MessageBox.Show("èª­ã¿è¾¼ã¿æ™‚ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ãŒæ­£ã—ã„ã‹ç¢ºèªã—ã¦ãã ã•ã„ã€‚" + e.Message);
                 return default(T);
             }
         }
 
         /// <summary>
-        /// ‹¤’Ê‚ÌƒŠƒNƒGƒXƒgƒRƒ“ƒeƒi
+        /// å…±é€šã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒ†ãƒŠ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         [Serializable()]
@@ -130,8 +130,8 @@ namespace AdminTool
                 requestVersion = COMMON_REQUEST_REQUEST_VERSION;
                 romVersion = COMMON_REQUEST_ROM_VERSION;
                 language = COMMON_REQUEST_LANGUAGE;
-                macAddr1 = 0xffff;  // “K“–‚ÉƒZƒbƒg
-                macAddr2 = 0xff;    // “K“–‚ÉƒZƒbƒg
+                macAddr1 = 0xffff;  // é©å½“ã«ã‚»ãƒƒãƒˆ
+                macAddr2 = 0xff;    // é©å½“ã«ã‚»ãƒƒãƒˆ
             }
 
             public object Clone()
@@ -171,7 +171,7 @@ namespace AdminTool
                 FieldInfo[] fis = this.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
                 foreach (FieldInfo fi in fis)
                 {
-                    // ’l‚ÈƒvƒƒpƒeƒB‚ğ‘S‚ÄƒGƒ“ƒfƒBƒAƒ“•ÏŠ·‚·‚é
+                    // å€¤ãªãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å…¨ã¦ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³å¤‰æ›ã™ã‚‹
                     /*
                     if (fi.FieldType.Equals(typeof(Int16)) || fi.FieldType.Equals(typeof(Int32)) || fi.FieldType.Equals(typeof(Int64))
                         || fi.FieldType.Equals(typeof(UInt16)) || fi.FieldType.Equals(typeof(UInt32)) || fi.FieldType.Equals(typeof(UInt64)))
@@ -221,7 +221,7 @@ namespace AdminTool
                     }
                     else
                     {
-                        //throw new NotImplementedException("ƒGƒ“ƒfƒBƒAƒ“•ÏŠ·‚É‘Î‰‚µ‚Ä‚¢‚È‚¢Œ^‚Å‚·B");
+                        //throw new NotImplementedException("ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³å¤‰æ›ã«å¯¾å¿œã—ã¦ã„ãªã„å‹ã§ã™ã€‚");
                     }
                 }
             }
@@ -242,7 +242,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ‹¤’Ê‚ÌƒŒƒXƒ|ƒ“ƒXƒRƒ“ƒeƒi
+        /// å…±é€šã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ³ãƒ†ãƒŠ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class ResponseContainer : IResponseContainer, ICloneable
@@ -262,7 +262,7 @@ namespace AdminTool
             }
 
             /// <summary>
-            /// ƒƒ“ƒo‚ğƒlƒbƒgƒ[ƒNƒoƒCƒgƒI[ƒ_[‚©‚çƒzƒXƒgƒoƒCƒgƒI[ƒ_[‚É•ÏŠ·‚·‚é
+            /// ãƒ¡ãƒ³ãƒã‚’ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒˆã‚ªãƒ¼ãƒ€ãƒ¼ã‹ã‚‰ãƒ›ã‚¹ãƒˆãƒã‚¤ãƒˆã‚ªãƒ¼ãƒ€ãƒ¼ã«å¤‰æ›ã™ã‚‹
             /// </summary>
             public virtual void ntoh()
             {
@@ -299,14 +299,14 @@ namespace AdminTool
                     }
                     else
                     {
-                        //throw new NotImplementedException("ƒGƒ“ƒfƒBƒAƒ“•ÏŠ·‚É‘Î‰‚µ‚Ä‚¢‚È‚¢Œ^‚Å‚·B");
+                        //throw new NotImplementedException("ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³å¤‰æ›ã«å¯¾å¿œã—ã¦ã„ãªã„å‹ã§ã™ã€‚");
                     }
                 }
             }
         }
 
         /// <summary>
-        /// ƒT[ƒo‚Ìó‘ÔƒZƒbƒgƒŠƒNƒGƒXƒg
+        /// ã‚µãƒ¼ãƒã®çŠ¶æ…‹ã‚»ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class AdminSetServerStateRequest : RequestContainer
@@ -322,7 +322,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒT[ƒo‚Ìó‘ÔƒZƒbƒgƒŒƒXƒ|ƒ“ƒX
+        /// ã‚µãƒ¼ãƒã®çŠ¶æ…‹ã‚»ãƒƒãƒˆãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class AdminSetServerStateResponse : ResponseContainer
@@ -330,7 +330,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒT[ƒo‚Ìó‘Ôæ“¾ƒŠƒNƒGƒXƒg
+        /// ã‚µãƒ¼ãƒã®çŠ¶æ…‹å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class AdminGetServerStateRequest : RequestContainer
@@ -343,7 +343,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒT[ƒo‚Ìó‘Ôæ“¾ƒŒƒXƒ|ƒ“ƒX
+        /// ã‚µãƒ¼ãƒã®çŠ¶æ…‹å–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class AdminGetServerStateResponse : ResponseContainer
@@ -352,7 +352,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// Ú‘±æƒT[ƒoî•ñ
+        /// æ¥ç¶šå…ˆã‚µãƒ¼ãƒæƒ…å ±
         /// </summary>
         public class ServerInfo
         {
@@ -363,7 +363,7 @@ namespace AdminTool
             private const string GAME_NAME_DEV = "ninsake";
 
             /// <summary>
-            /// ƒ[ƒ‹ƒAƒhƒŒƒXæ“¾‚È‚Ç‚Å’¼ÚHTTPÚ‘±‚·‚é‚½‚ß‚Ìƒx[ƒXƒAƒhƒŒƒX
+            /// ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—ãªã©ã§ç›´æ¥HTTPæ¥ç¶šã™ã‚‹ãŸã‚ã®ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
             /// </summary>
             private const string BASE_URL_GS_RELEASE = "http://gamestats2.gs.nintendowifi.net/" + GAME_NAME + "/";
             private const string BASE_URL_GS_DEBUG = "http://sdkdev.gamespy.com/games/" + GAME_NAME + "/web/";
@@ -371,7 +371,7 @@ namespace AdminTool
             private const string BASE_URL_GS_DEV_DEBUG = "http://sdkdev.gamespy.com/games/" + GAME_NAME_DEV + "/web/";
 
             /// <summary>
-            /// Ú‘±æ‚Ìí—Ş
+            /// æ¥ç¶šå…ˆã®ç¨®é¡
             /// </summary>
             public enum KIND
             {
@@ -423,7 +423,7 @@ namespace AdminTool
             {
                 NetworkCredential credential = new NetworkCredential("pokemonco", "pco88437");
                 NetworkCredential devCredential = null;
-                // ”C“V“°ŠJ”­—pƒT[ƒo‚Ìî•ñ‚ğ“Ç‚İ‚Ş
+                // ä»»å¤©å ‚é–‹ç™ºç”¨ã‚µãƒ¼ãƒã®æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€
                 try
                 {
                     using (StreamReader r = new StreamReader(@"secretkey_dev.txt"))
@@ -443,13 +443,13 @@ namespace AdminTool
 
                 list = new List<ServerInfo>();
                 list.Add(new ServerInfo(ServerInfo.KIND.DEBUG, EncSession.DWC_ENC_SERVER.DEBUG, SECRET_KEY,
-                    BASE_URL_GS_DEBUG, credential, "ƒfƒoƒbƒOƒT[ƒo"));
+                    BASE_URL_GS_DEBUG, credential, "ãƒ‡ãƒãƒƒã‚°ã‚µãƒ¼ãƒ"));
                 list.Add(new ServerInfo(ServerInfo.KIND.RELEASE, EncSession.DWC_ENC_SERVER.RELEASE, SECRET_KEY,
-                    BASE_URL_GS_RELEASE, credential, "ƒŠƒŠ[ƒXƒT[ƒo"));
+                    BASE_URL_GS_RELEASE, credential, "ãƒªãƒªãƒ¼ã‚¹ã‚µãƒ¼ãƒ"));
                 list.Add(new ServerInfo(ServerInfo.KIND.DEV_DEBUG, EncSession.DWC_ENC_SERVER.DEBUG, SECRET_KEY_DEV,
-                    BASE_URL_GS_DEV_DEBUG, devCredential, "ŠJ”­—pƒfƒoƒbƒOƒT[ƒo"));
+                    BASE_URL_GS_DEV_DEBUG, devCredential, "é–‹ç™ºç”¨ãƒ‡ãƒãƒƒã‚°ã‚µãƒ¼ãƒ"));
                 list.Add(new ServerInfo(ServerInfo.KIND.DEV_RELEASE, EncSession.DWC_ENC_SERVER.RELEASE, SECRET_KEY_DEV,
-                    BASE_URL_GS_DEV_RELEASE, devCredential, "ŠJ”­—pƒŠƒŠ[ƒXƒT[ƒo"));
+                    BASE_URL_GS_DEV_RELEASE, devCredential, "é–‹ç™ºç”¨ãƒªãƒªãƒ¼ã‚¹ã‚µãƒ¼ãƒ"));
             }
 
             private ServerInfo(KIND _kind, EncSession.DWC_ENC_SERVER _server, string _key, string _baseUrl, NetworkCredential _credential, string _name)
@@ -463,10 +463,10 @@ namespace AdminTool
             }
 
             /// <summary>
-            /// w’è‚µ‚½í—Ş‚ÌƒT[ƒoî•ñ‚ğ“¾‚é
+            /// æŒ‡å®šã—ãŸç¨®é¡ã®ã‚µãƒ¼ãƒæƒ…å ±ã‚’å¾—ã‚‹
             /// </summary>
-            /// <param name="kind">æ“¾‚µ‚½‚¢ƒT[ƒo‚Ìí—Ş</param>
-            /// <returns>ƒT[ƒoî•ñ</returns>
+            /// <param name="kind">å–å¾—ã—ãŸã„ã‚µãƒ¼ãƒã®ç¨®é¡</param>
+            /// <returns>ã‚µãƒ¼ãƒæƒ…å ±</returns>
             public static ServerInfo Select(KIND kind)
             {
                 return list.Find(delegate(ServerInfo info)
@@ -476,7 +476,7 @@ namespace AdminTool
             }
         }
 
-        // ƒCƒ“ƒXƒ^ƒ“ƒX•Ï”’è‹`
+        // ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å¤‰æ•°å®šç¾©
         private ServerInfo currentServer;
         internal ServerInfo CurrentServer
         {
@@ -491,7 +491,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// EncƒCƒ“ƒ^ƒtƒF[ƒX‚ğ‰Šú‰»‚·‚é
+        /// Encã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹
         /// </summary>
         protected RequestInterface(ServerInfo.KIND kind, string _proxyServer)
         {
@@ -500,10 +500,10 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒŠƒNƒGƒXƒg—pƒCƒ“ƒ^ƒtƒF[ƒX‚ğæ“¾‚·‚éBˆê‰ñ–Ú—p
+        /// ãƒªã‚¯ã‚¨ã‚¹ãƒˆç”¨ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚ä¸€å›ç›®ç”¨
         /// </summary>
-        /// <param name="kind">Å‰‚ÉÚ‘±‚·‚éƒT[ƒo</param>
-        /// <returns>RequestInterfaceƒIƒuƒWƒFƒNƒg</returns>
+        /// <param name="kind">æœ€åˆã«æ¥ç¶šã™ã‚‹ã‚µãƒ¼ãƒ</param>
+        /// <returns>RequestInterfaceã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</returns>
         public static RequestInterface CreateInstance(ServerInfo.KIND kind, string _proxyServer)
         {
             lock (typeof(RequestInterface))
@@ -514,16 +514,16 @@ namespace AdminTool
                 }
                 else
                 {
-                    throw new Exception("‚·‚Å‚ÉƒIƒuƒWƒFƒNƒg‚Í¶¬‚³‚ê‚Ä‚¢‚é‚Ì‚ÅÚ‘±æ‚Ìw’è‚Í–³Œø‚Å‚·B");
+                    throw new Exception("ã™ã§ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¯ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ã®ã§æ¥ç¶šå…ˆã®æŒ‡å®šã¯ç„¡åŠ¹ã§ã™ã€‚");
                 }
             }
             return s_instance;
         }
 
         /// <summary>
-        /// ƒT[ƒo‚ğØ‚è‘Ö‚¦‚é
+        /// ã‚µãƒ¼ãƒã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
         /// </summary>
-        /// <param name="server">Ú‘±æƒT[ƒo</param>
+        /// <param name="server">æ¥ç¶šå…ˆã‚µãƒ¼ãƒ</param>
         public void ChangeServer(ServerInfo.KIND kind)
         {
             currentServer = ServerInfo.Select(kind);
@@ -531,7 +531,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// Œ»İ‚ÌƒT[ƒo‚ÉÄÚ‘±‚·‚é
+        /// ç¾åœ¨ã®ã‚µãƒ¼ãƒã«å†æ¥ç¶šã™ã‚‹
         /// </summary>
         public void Reconnect()
         {
@@ -539,14 +539,14 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ”Ä—p“I‚ÈƒŠƒNƒGƒXƒg‘—Mƒƒ\ƒbƒh
+        /// æ±ç”¨çš„ãªãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡ãƒ¡ã‚½ãƒƒãƒ‰
         /// </summary>
-        /// <typeparam name="T_REQ">ƒŠƒNƒGƒXƒgƒf[ƒ^ƒNƒ‰ƒX</typeparam>
-        /// <typeparam name="T_RES">ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^ƒNƒ‰ƒX</typeparam>
-        /// <param name="url">Ú‘±æƒpƒX</param>
-        /// <param name="request">ƒŠƒNƒGƒXƒgƒf[ƒ^</param>
-        /// <param name="message">ƒŒƒXƒ|ƒ“ƒXƒƒbƒZ[ƒW</param>
-        /// <returns>ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^</returns>
+        /// <typeparam name="T_REQ">ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚¯ãƒ©ã‚¹</typeparam>
+        /// <typeparam name="T_RES">ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒ©ã‚¹</typeparam>
+        /// <param name="url">æ¥ç¶šå…ˆãƒ‘ã‚¹</param>
+        /// <param name="request">ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿</param>
+        /// <param name="message">ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</param>
+        /// <returns>ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿</returns>
         internal T_RES GenericSession<T_REQ, T_RES>(string url, T_REQ request, out string message)
             where T_REQ : RequestContainer
             where T_RES : ResponseContainer, new()
@@ -558,16 +558,16 @@ namespace AdminTool
             T_RES res = encSession.GenericSession<T_REQ, T_RES>(url, request.id, request, out ptr, out size);
             if (res != default(T_RES))
             {
-                // ³íI—¹
+                // æ­£å¸¸çµ‚äº†
                 return res;
             }
-            else // ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ªˆá‚¤‚Æ‚«
+            else // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒé•ã†ã¨ã
             {
                 res = new T_RES();
-                // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ğæ‚èo‚·
+                // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’å–ã‚Šå‡ºã™
                 if (size < Marshal.SizeOf(res.code))
                 {
-                    throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·B\n" + size + " != " + Marshal.SizeOf(typeof(T_RES)));
+                    throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚\n" + size + " != " + Marshal.SizeOf(typeof(T_RES)));
                 }
 
                 res.code = (uint)Marshal.ReadInt32(ptr);
@@ -577,17 +577,17 @@ namespace AdminTool
                 {
                     if (size < Marshal.SizeOf(typeof(T_RES)))
                     {
-                        // ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª¬‚³‚¢‚Ì‚ÉƒŒƒXƒ|ƒ“ƒXƒR[ƒh0‚Ì‚Æ‚«
-                        throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·B\n" + size + " != " + Marshal.SizeOf(typeof(T_RES)));
+                        // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒå°ã•ã„ã®ã«ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰0ã®ã¨ã
+                        throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚\n" + size + " != " + Marshal.SizeOf(typeof(T_RES)));
                     }
                 }
                 else
                 {
-                    // ƒGƒ‰[ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(res.code)), 256);
                 }
 
-                // ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª‘å‚«‚¢‚Æ‚«AƒGƒ‰[ƒR[ƒh‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Í—áŠO‚ğ“Š‚°‚¸³íI—¹
+                // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒå¤§ãã„ã¨ãã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã¨ãã¯ä¾‹å¤–ã‚’æŠ•ã’ãšæ­£å¸¸çµ‚äº†
                 return res;
             }
         }

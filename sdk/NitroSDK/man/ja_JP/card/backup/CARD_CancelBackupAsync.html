@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>CARD_CancelBackupAsync</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">CARD_CancelBackupAsync</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,28 +22,28 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
-<p>�Ȃ�</p>
+<h2>引数</h2>
+<p>なし</p>
 
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�</p>
+<h2>返り値</h2>
+<p>なし</p>
 
-<H2>����</H2>
-<P>CARD �o�b�N�A�b�v�f�o�C�X�ւ̔񓯊����������s���ł���΂��̏����̃L�����Z����v�����܂��B<BR>
-���s���̔񓯊������̗L���ɂ�����炸�A�֐��͂����ɐ����Ԃ��܂��B<BR>
+<H2>説明</H2>
+<P>CARD バックアップデバイスへの非同期処理が実行中であればその処理のキャンセルを要求します。<BR>
+実行中の非同期処理の有無にかかわらず、関数はすぐに制御を返します。<BR>
 <br>
-�L�����Z�����ꂽ�����̌��ʂ� CARD_RESULT_CANCELED �ɂȂ�܂��B<br>
-<font color="#800000">�L�����Z���v���͔񓯊������̓����Œ���I�ɔ��肳��邽�߁A
-���̊֐��̌Ăяo�����������ɔ��f�����킯�ł͂Ȃ��Ƃ����_�ɒ��ӂ��Ă��������B</font>
+キャンセルされた処理の結果は CARD_RESULT_CANCELED になります。<br>
+<font color="#800000">キャンセル要求は非同期処理の内部で定期的に判定されるため、
+この関数の呼び出しがただちに反映されるわけではないという点に注意してください。</font>
 <BR></P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../common/CARD_GetResultCode.html">CARD_GetResultCode</A> 
 <A href="CARD_TryWaitBackupAsync.html">CARD_TryWaitBackupAsync</A> 
 <BR></P></CODE>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/09/02 ����<BR>
+2005/09/02 初版<BR>
 </P>
 </body>
 </html>

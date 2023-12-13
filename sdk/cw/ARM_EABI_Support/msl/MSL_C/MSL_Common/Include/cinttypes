@@ -1,5 +1,5 @@
 /* MSL
- * Copyright © 1995-2006 Freescale Corporation.  All rights reserved.
+ * Copyright 1995-2006 Freescale Corporation.  All rights reserved.
  *
  * $Date: 2006/02/08 20:32:24 $
  * $Revision: 1.41.2.2 $
@@ -46,7 +46,7 @@
  *   Forward references: integer types <stdint.h> (7.18), formatted input/output
  *   functions (7.19.6), formatted wide character input/output functions (7.24.2).
  *   __________________
- *   181) See ‘‘future library directions’’ (7.26.4).
+ *   181) See „É§„É§future library directions„É¶„É¶ (7.26.4).
  */
 
 #include <div_t.h>
@@ -299,7 +299,7 @@ _MSL_BEGIN_EXTERN_C
  * 2 The imaxabs function computes the absolute value of an integer j. If the result cannot
  * 	 be represented, the behavior is undefined.184)
  *	 __________________
- *	 184) The absolute value of the most negative number cannot be represented in two’s complement.
+ *	 184) The absolute value of the most negative number cannot be represented in two„É¶s complement.
  *
  *	 Returns
  * 3 The imaxabs function returns the absolute value.

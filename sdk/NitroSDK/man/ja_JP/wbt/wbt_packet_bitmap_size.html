@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WBT_PACKET_BITMAP_SIZE</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">WBT_PACKET_BITMAP_SIZE</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -25,37 +25,37 @@
   </dd>
 </dl>
 
-<H2>����</H2>
-<P><a href="command/WBT_GetBlock.html">WBT_GetBlock</a>�֐��̎�M�����ɕK�v�ƂȂ��M�����L�^�p�r�b�g�}�b�v�o�b�t�@�̃T�C�Y���v�Z���܂��B<BR>
-�R���p�C�����ɐÓI�ȃo�b�t�@�m�ۂ��s���ꍇ�ɂ��̊֐����g�p���܂��B<BR>
+<H2>説明</H2>
+<P><a href="command/WBT_GetBlock.html">WBT_GetBlock</a>関数の受信処理に必要となる受信履歴記録用ビットマップバッファのサイズを計算します。<BR>
+コンパイル時に静的なバッファ確保を行う場合にこの関数を使用します。<BR>
 <br>
-�K�v�Ȏ�M�����L�^�p�r�b�g�}�b�v�o�b�t�@�̃T�C�Y�͒ʐM�p�P�b�g�T�C�Y�Ɉˑ����邽�߁A<br>
-���s���ɓ��I�ɃT�C�Y�����߂�ɂ�<A href="common/WBT_CalcPacketbitmapSize.html">WBT_CalcPacketbitmapSize</A>�֐����g�p���܂��B<br>
+必要な受信履歴記録用ビットマップバッファのサイズは通信パケットサイズに依存するため、<br>
+実行時に動的にサイズを求めるには<A href="common/WBT_CalcPacketbitmapSize.html">WBT_CalcPacketbitmapSize</A>関数を使用します。<br>
 <br>
-�e�����̓��e�͈ȉ��̒ʂ�ł��B<BR>
+各引数の内容は以下の通りです。<BR>
 <TABLE border="0">
   <TBODY>
     <TR>
       <TD>block_size</TD>
-      <TD>��M���ׂ��f�[�^�u���b�N�̃T�C�Y���w�肵�܂��B</TD>
+      <TD>受信すべきデータブロックのサイズを指定します。</TD>
     </TR>
     <TR>
       <TD>packet_size</TD>
-      <TD>���s����WBT�֊��蓖�Ă���MP�ʐM�p�P�b�g�T�C�Y���w�肵�܂��B</TD>
+      <TD>実行時にWBTへ割り当てられるMP通信パケットサイズを指定します。</TD>
     </TR>
   </TBODY>
 </TABLE>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="common/WBT_CalcPacketbitmapSize.html">WBT_CalcPacketbitmapSize</A>
 <a href="command/WBT_GetBlock.html">WBT_GetBlock</a>
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/02/18 packet_bitmap���u��M�����L�^�p�r�b�g�}�b�v�o�b�t�@�v�Ƃ��������ɕύX<BR>
-2004/09/21 ����<BR>
+2005/02/18 packet_bitmapを「受信履歴記録用ビットマップバッファ」という説明に変更<BR>
+2004/09/21 初版<BR>
 </P>
 </body>
 </html>

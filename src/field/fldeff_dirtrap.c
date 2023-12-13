@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_dirtrap.c
- * @brief	ˆê–‡ƒ|ƒŠƒSƒ“ •ûŒü–îˆóã©
+ * @brief	ä¸€æšãƒãƒªã‚´ãƒ³ æ–¹å‘çŸ¢å°ç½ 
  * @author	k.ohno
  * @data	05.11.29
  *
@@ -18,18 +18,18 @@
 //	define
 //==============================================================================
 
-#define DIRTRAP_DRAW_Z_OFFSET (FX32_ONE*(5))			///<ã©•`‰æƒIƒtƒZƒbƒgZ²
+#define DIRTRAP_DRAW_Z_OFFSET (FX32_ONE*(5))			///<ç½ æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆZè»¸
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_DIRTRAPŒ^
+///	FE_DIRTRAPå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_DIRTRAP * FE_DIRTRAP_PTR;
 
 //--------------------------------------------------------------
-///	FE_DIRTRAP\‘¢‘Ì
+///	FE_DIRTRAPæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_DIRTRAP
 {
@@ -38,10 +38,10 @@ typedef struct _TAG_FE_DIRTRAP
 	FRO_OBJ robj;
 }FE_DIRTRAP;
 
-#define FE_DIRTRAP_SIZE (sizeof(FE_DIRTRAP)) ///<FE_DIRTRAPƒTƒCƒY
+#define FE_DIRTRAP_SIZE (sizeof(FE_DIRTRAP)) ///<FE_DIRTRAPã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	DIRTRAP_ADD_H\‘¢‘Ì
+///	DIRTRAP_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -52,25 +52,25 @@ typedef struct
 	FE_DIRTRAP_PTR dirtrap;						///<FE_DIRTRAP_PTR
 }DIRTRAP_ADD_H;
 
-#define DIRTRAP_ADD_H_SIZE (sizeof(DIRTRAP_ADD_H)) ///<DIRTRAP_ADD_HƒTƒCƒY
+#define DIRTRAP_ADD_H_SIZE (sizeof(DIRTRAP_ADD_H)) ///<DIRTRAP_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	DIRTRAP_WORK\‘¢‘Ì
+///	DIRTRAP_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
     int counter;
     int dir;
-	int obj_id;									///<ã©‘ÎÛOBJID
-	int zone_id;								///<ã©‘ÎÛƒ][ƒ“ID
-	int vanish_sw;								///<”ñ•\¦SW
-	DIRTRAP_ADD_H head;							///<’Ç‰Á‚ÌDIRTRAP_ADD_H
+	int obj_id;									///<ç½ å¯¾è±¡OBJID
+	int zone_id;								///<ç½ å¯¾è±¡ã‚¾ãƒ¼ãƒ³ID
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	DIRTRAP_ADD_H head;							///<è¿½åŠ æ™‚ã®DIRTRAP_ADD_H
 }DIRTRAP_WORK;
 
-#define DIRTRAP_WORK_SIZE (sizeof(DIRTRAP_WORK))	///<DIRTRAP_WORKƒTƒCƒY
+#define DIRTRAP_WORK_SIZE (sizeof(DIRTRAP_WORK))	///<DIRTRAP_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void DirTrap_GraphicInit( FE_DIRTRAP_PTR sd );
 static void DirTrap_GraphicDelete( FE_DIRTRAP_PTR sd );
@@ -78,11 +78,11 @@ static void DirTrap_GraphicDelete( FE_DIRTRAP_PTR sd );
 static const EOA_H_NPP DATA_EoaH_DirTrap;
 
 //==============================================================================
-//	ã©@ƒVƒXƒeƒ€
+//	ç½ ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ã©‰Šú‰»
+ * ç½ åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_DIRTRAP_PTR	FE_DIRTRAP_PTR
  */
@@ -101,7 +101,7 @@ void * FE_DirTrap_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ã©íœ
+ * ç½ å‰Šé™¤
  * @param	sd		FE_DIRTRAP_PTR
  * @retval	nothing
  */
@@ -114,15 +114,15 @@ void FE_DirTrap_Delete( void *work )
 }
 
 //==============================================================================
-//	ã©	ƒp[ƒc
+//	ç½ 	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	ã©@ƒOƒ‰ƒtƒBƒbƒN
+//	ç½ ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ã© ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ç½  ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	sd	FE_DIRTRAP_PTR
  * @retval	nothing
  */
@@ -136,7 +136,7 @@ static void DirTrap_GraphicInit( FE_DIRTRAP_PTR sd )
 
 //--------------------------------------------------------------
 /**
- * ã© ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ç½  ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	sd	FE_DIRTRAP_PTR
  * @retval	nothing
  */
@@ -147,11 +147,11 @@ static void DirTrap_GraphicDelete( FE_DIRTRAP_PTR sd )
 }
 
 //==============================================================================
-//	ã©@EOA
+//	ç½ ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒgƒ‰ƒbƒv’Ç‰Á
+ * ãƒˆãƒ©ãƒƒãƒ—è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	EOA_PTR
  */
@@ -184,10 +184,10 @@ EOA_PTR FE_DirTrap_Add(  FIELDSYS_WORK *fsys, int x, int z, int dir )
 
 //--------------------------------------------------------------
 /**
- * EOA ã©@‰Šú‰»
+ * EOA ç½ ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaDirTrap_Init( EOA_PTR eoa, void *wk )
@@ -213,7 +213,7 @@ static int EoaDirTrap_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ã©@íœ
+ * EOA ç½ ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -225,7 +225,7 @@ static void EoaDirTrap_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ã©@“®ì
+ * EOA ç½ ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -246,7 +246,7 @@ static void EoaDirTrap_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ã©@•`‰æ
+ * EOA ç½ ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -283,7 +283,7 @@ static void EoaDirTrap_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	ã©EOA_H
+///	ç½ EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_DirTrap =
 {

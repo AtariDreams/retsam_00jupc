@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_GetFileImageTop</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_GetFileImageTop</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -23,25 +23,25 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
-      <TD width="87%">FSFile�\���̂̃A�h���X<BR>
-	  ����̓t�@�C������ێ����Ă���K�v������܂��B</TD>
+      <TD width="87%">FSFile構造体のアドレス<BR>
+	  これはファイル情報を保持している必要があります。</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�t�@�C���C���[�W�̈�擪�́A�A�[�J�C�u���ɂ�����I�t�Z�b�g�l��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>ファイルイメージ領域先頭の、アーカイブ内におけるオフセット値を返します。</p>
 
-<H2>����</H2>
-<P>�t�@�C���C���[�W�̈�擪�́A�A�[�J�C�u���ɂ�����I�t�Z�b�g�l��Ԃ��܂��B<BR>
-FS_OpenFile�֐��ȂǂŊJ�����t�@�C���ȊO�ɑ΂��Ă��̊֐����Ăяo�����Ƃ��̕Ԃ�l�͖���`�ł��B<BR>
+<H2>説明</H2>
+<P>ファイルイメージ領域先頭の、アーカイブ内におけるオフセット値を返します。<BR>
+FS_OpenFile関数などで開いたファイル以外に対してこの関数を呼び出したときの返り値は未定義です。<BR>
 <BR>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../fs_file_type.html">FSFile</A>
 <BR>
@@ -49,9 +49,9 @@ FS_OpenFile�֐��ȂǂŊJ�����t�@�C���ȊO�ɑ΂��Ă��̊֐����Ăяo�����Ƃ��̕Ԃ�l�
 <A href="FS_OpenFile.html">FS_OpenFile</A> 
 <A href="../archive/FS_GetArchiveBase.html">FS_GetArchiveBase</A> 
 <BR></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/07/13 ����<BR>
+2004/07/13 初版<BR>
 </P>
 </body>
 </html>

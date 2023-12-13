@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	castle_clact.h
- * @brief	uƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹vƒZƒ‹ƒAƒNƒ^[
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
  * @author	Satoshi Nohara
  * @date	07.07.05
  */
@@ -16,34 +16,34 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚ÌŽí—Þ‚Ì”iƒ}ƒ‹ƒ`ƒZƒ‹Eƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚ÍŽg—p‚µ‚È‚¢j
+//CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ç¨®é¡žã®æ•°ï¼ˆï¼ãƒžãƒ«ãƒã‚»ãƒ«ãƒ»ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã¯ä½¿ç”¨ã—ãªã„ï¼‰
 #define CASTLE_RESOURCE_NUM		(4)
 
 enum{
-	DISP_MAIN	= 0,		//ã‰æ–Ê
-	DISP_SUB	= 1,		//‰º‰æ–Ê
+	DISP_MAIN	= 0,		//ä¸Šç”»é¢
+	DISP_SUB	= 1,		//ä¸‹ç”»é¢
 };
 
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 typedef struct{
-	CLACT_SET_PTR 			ClactSet;							//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	RendData;							//ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	ResMan[CASTLE_RESOURCE_NUM];		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR 	ResObjTbl[RES_OBJ_MAX][CASTLE_RESOURCE_NUM];//resƒIƒuƒWƒFtbl(ã‰º‰æ–Ê)
+	CLACT_SET_PTR 			ClactSet;							//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	RendData;							//ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	ResMan[CASTLE_RESOURCE_NUM];		//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR 	ResObjTbl[RES_OBJ_MAX][CASTLE_RESOURCE_NUM];//resã‚ªãƒ–ã‚¸ã‚§tbl(ä¸Šä¸‹ç”»é¢)
 }CASTLE_CLACT;
 
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
 //extern void		CastleClact_InitCellActor( CASTLE_CLACT* wk );
@@ -51,7 +51,7 @@ extern void			CastleClact_InitCellActor( CASTLE_CLACT* wk, POKEPARTY* party, u8 
 extern CLACT_WORK_PTR CastleClact_SetActor( CASTLE_CLACT* wk, u32 char_no, u32 pltt_no, u32 cell_no, u32 anm_no, u32 pri, int bg_pri, u8 disp );
 extern void			CastleClact_DeleteCellObject( CASTLE_CLACT* wk );
 
-//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 extern void			CastleClact_ItemIconCharChange( CASTLE_CLACT* wk, u16 item );
 extern void			CastleClact_ItemIconPlttChange( CASTLE_CLACT* wk, u16 item );
 

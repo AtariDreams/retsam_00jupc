@@ -13,17 +13,17 @@
 #
 # $Log: Makefile,v $
 # Revision 1.24  2005/05/25 11:45:18  terui
-# ƒ‰ƒCƒuƒ‰ƒŠ‚ğì¬‚·‚éƒRƒA•”•ª‚ğ Makefile.CORE ‚ÉØ‚èo‚µ
-# SUBDIRS ‚É TS-Prototype/undefine ‚ğ’Ç‰Á
+# ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä½œæˆã™ã‚‹ã‚³ã‚¢éƒ¨åˆ†ã‚’ Makefile.CORE ã«åˆ‡ã‚Šå‡ºã—
+# SUBDIRS ã« TS-Prototype/undefine ã‚’è¿½åŠ 
 #
 # Revision 1.23  2005/04/26 08:04:17  terui
 # Fix comment
 #
 # Revision 1.22  2005/04/18 12:25:35  terui
-# SRCS‚Éos_china.c‚ğ’Ç‰Á
+# SRCSã«os_china.cã‚’è¿½åŠ 
 #
 # Revision 1.21  2005/02/08 08:39:00  terui
-# SRCS‚Éos_vramExclusive.c‚ğ’Ç‰ÁB
+# SRCSã«os_vramExclusive.cã‚’è¿½åŠ ã€‚
 #
 # Revision 1.20  2005/01/12 11:10:37  takano_makoto
 # fix copyright header.
@@ -68,7 +68,7 @@
 # fix typo
 #
 # Revision 1.7  2004/04/23 00:28:25  yada
-# BLXCHECKED ’Ç‰Á
+# BLXCHECKED è¿½åŠ 
 #
 # Revision 1.6  2004/04/13 12:21:23  yada
 # add os_callTrace.c
@@ -77,22 +77,22 @@
 # delete os_halt.c
 #
 # Revision 1.4  2004/02/25 11:31:45  yada
-# systemClock¨Tick ‚É”º‚¤•ÏX
+# systemClockâ†’Tick ã«ä¼´ã†å¤‰æ›´
 #
 # Revision 1.3  2004/02/23 11:56:39  yada
-# valarm.c ’Ç‰Á
+# valarm.c è¿½åŠ 
 #
 # Revision 1.2  2004/02/14 06:34:25  yasu
 # add os_halt.c
 #
 # Revision 1.1  2004/02/12 11:09:37  yada
-# ARM9/ARM7 U‚è•ª‚¯ì‹Æ
+# ARM9/ARM7 æŒ¯ã‚Šåˆ†ã‘ä½œæ¥­
 #
 # Revision 1.26  2004/02/10 01:23:41  yada
-# os_utility.c ‚ğíœ
+# os_utility.c ã‚’å‰Šé™¤
 #
 # Revision 1.25  2004/02/09 11:36:34  yada
-# os_system.c ’Ç‰Á
+# os_system.c è¿½åŠ 
 #
 # Revision 1.24  2004/02/09 11:17:49  yasu
 # support thumb version library
@@ -101,70 +101,70 @@
 # change SDK prefix iris -> nitro
 #
 # Revision 1.22  2004/02/05 01:58:55  yada
-# os_utility.c ’Ç‰Á
+# os_utility.c è¿½åŠ 
 #
 # Revision 1.21  2004/02/03 11:20:12  yada
-# os_alarm.c ’Ç‰Á
+# os_alarm.c è¿½åŠ 
 #
 # Revision 1.20  2004/02/02 05:30:02  yada
-# systemClock.c ’Ç‰Á
+# systemClock.c è¿½åŠ 
 #
 # Revision 1.19  2004/01/27 01:47:13  yada
-# os_timer.c ’Ç‰Á
+# os_timer.c è¿½åŠ 
 #
 # Revision 1.18  2004/01/16 07:57:15  yada
-# protectionUnit ‹Lq
+# protectionUnit è¨˜è¿°
 #
 # Revision 1.17  2004/01/14 12:05:39  yada
-# os_tcm.c, os_protecion.c, os_exception.c ‚ğ’Ç‰Á
+# os_tcm.c, os_protecion.c, os_exception.c ã‚’è¿½åŠ 
 #
 # Revision 1.16  2004/01/07 00:21:50  yada
-# src/os_alloc.c ‚ğ’Ç‰Á
+# src/os_alloc.c ã‚’è¿½åŠ 
 #
 # Revision 1.15  2003/12/26 06:42:58  yada
-# os_arena ’Ç‰Á
+# os_arena è¿½åŠ 
 #
 # Revision 1.14  2003/12/22 01:36:34  yada
-# os_cache.c, os_init.c ’Ç‰Á
+# os_cache.c, os_init.c è¿½åŠ 
 #
 # Revision 1.13  2003/12/17 09:33:45  yada
-# os_cache.c ‚ğ’Ç‰Á
+# os_cache.c ã‚’è¿½åŠ 
 #
 # Revision 1.12  2003/11/30 09:35:19  yasu
-# ƒRƒ“ƒpƒCƒ‹—p ROOT ‚ÆƒCƒ“ƒXƒg[ƒ‹—p ROOT ‚ğ“Æ—§‚³‚¹‚½
+# ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ç”¨ ROOT ã¨ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ç”¨ ROOT ã‚’ç‹¬ç«‹ã•ã›ãŸ
 #
 # Revision 1.11  2003/11/29 10:11:09  yada
-# os_mutex.c ‚ğ’Ç‰Á
+# os_mutex.c ã‚’è¿½åŠ 
 #
 # Revision 1.10  2003/11/29 04:37:01  yasu
-# –¼ÌC³
+# åç§°ä¿®æ­£
 #
 # Revision 1.9  2003/11/29 04:04:19  yasu
-# os ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒtƒ@ƒCƒ‹–¼‚Ì•ÏX
+# os ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ã‚¡ã‚¤ãƒ«åã®å¤‰æ›´
 #
 # Revision 1.8  2003/11/29 03:59:51  yasu
-# ƒtƒ@ƒCƒ‹–¼‚Ì•ÏX osInterruptBase.c -> os_irqhandler.c
+# ãƒ•ã‚¡ã‚¤ãƒ«åã®å¤‰æ›´ osInterruptBase.c -> os_irqhandler.c
 #
 # Revision 1.7  2003/11/26 01:50:03  yada
-# osMessage.c ’Ç‰Á
+# osMessage.c è¿½åŠ 
 #
 # Revision 1.6  2003/11/25 11:18:47  yasu
-# emulator.c ‚ğ’Ç‰Á
+# emulator.c ã‚’è¿½åŠ 
 #
 # Revision 1.5  2003/11/25 05:02:28  yasu
-# thread.c / context.c ’Ç‰Á
+# thread.c / context.c è¿½åŠ 
 #
 # Revision 1.4  2003/11/13 11:59:01  yasu
-# ‰”Åì¬
+# åˆç‰ˆä½œæˆ
 #
 # Revision 1.3  2003/11/11 01:52:45  nishida_kenji
-# .cƒtƒ@ƒCƒ‹‚ğ’Ç‰Á
+# .cãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ 
 #
 # Revision 1.2  2003/11/06 13:37:49  yasu
-# osInterruptBase.s ‚ğ .c ‚É•ÏX
+# osInterruptBase.s ã‚’ .c ã«å¤‰æ›´
 #
 # Revision 1.1  2003/11/06 11:34:14  yasu
-# Š„‚è‚İƒnƒ“ƒhƒ‰ü‚è‚Ì’Ç‰Á
+# å‰²ã‚Šè¾¼ã¿ãƒãƒ³ãƒ‰ãƒ©å‘¨ã‚Šã®è¿½åŠ 
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

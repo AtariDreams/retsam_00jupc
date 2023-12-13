@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>MBFakeScanCallbackFunc</TITLE>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MBFakeScanCallbackFunc</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -22,48 +22,48 @@ typedef void (*MBFakeScanCallbackFunc)( u16 type, void* arg );
 </PRE>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1">
   <TBODY>
     <TR>
-      <TD>����</TD>
-      <TD colspan="2">�Ӗ�</TD>
+      <TD>引数</TD>
+      <TD colspan="2">意味</TD>
     </TR>
     <TR>
       <TD rowspan="6"><B><I>type</I></B></TD>
-      <TD colspan="2">�R�[���o�b�N�̎�ʂ������܂��B</TD>
+      <TD colspan="2">コールバックの種別を示します。</TD>
     </TR>
     <TR>
       <TD>MB_FAKESCAN_PARENT_FOUND</TD>
-      <TD>�V�����e�@�̔�����e�@���̍X�V�̒ʒm�ł��B</TD>
+      <TD>新しい親機の発見や親機情報の更新の通知です。</TD>
     </TR>
     <TR>
       <TD>MB_FAKESCAN_PARENT_BEACON</TD>
-      <TD>�����ς݂̐e�@����r�[�R�����󂯂邽�ђʒm����܂��B<br>
-	  �v���C���[���ɉ���X�V�������ꍇ�ł��ʒm�����Ƃ����_��MB_FAKESCAN_PARENT_FOUND�ƈقȂ�܂��B<br>
-	  �e�@����<a href="../common/MB_SetUserVolatData.html">MB_SetUserVolatData</a>�֐���p�ɂɌĂяo���Ă���ꍇ�ɂ͎q�@�������̃R�[���o�b�N����
-	  <a href="../common/MB_GetUserVolatData.html">MB_GetUserVolatData</a>�֐����ĂԂ��Ƃɂ��ŐV�̃f�[�^���擾���邱�Ƃ��ł��܂��B
+      <TD>発見済みの親機からビーコンを受けるたび通知されます。<br>
+	  プレイヤー情報に何ら更新が無い場合でも通知されるという点でMB_FAKESCAN_PARENT_FOUNDと異なります。<br>
+	  親機側で<a href="../common/MB_SetUserVolatData.html">MB_SetUserVolatData</a>関数を頻繁に呼び出している場合には子機側がこのコールバック内で
+	  <a href="../common/MB_GetUserVolatData.html">MB_GetUserVolatData</a>関数を呼ぶことにより最新のデータを取得することができます。
 	  </TD>
     </TR>
     <TR>
       <TD>MB_FAKESCAN_PARENT_LOST</TD>
-      <TD>�e�@�������������e�@��񂪖��������ꂽ�ꍇ�̒ʒm�ł��B</TD>
+      <TD>親機を見失ったか親機情報が無効化された場合の通知です。</TD>
     </TR>
     <TR>
       <TD>MB_FAKESCAN_API_ERROR</TD>
-      <TD>���C�����X���g�p�ł��Ȃ��܂��́A���̂܂܃X�L�����̑��s�����邱�Ƃ��s�\�ȃG���[�����������ꍇ�̒ʒm�ł��B</TD>
+      <TD>ワイヤレスが使用できないまたは、このままスキャンの続行をすることが不能なエラーが発生した場合の通知です。</TD>
     </TR>
     <TR>
       <TD>MB_FAKESCAN_END_SCAN</TD>
-      <TD><A href="MB_FakeEndScan.html">MB_FakeEndScan</A>�ɂ���Đe�@�X�L�����̏I���������������Ƃ�ʒm����R�[���o�b�N�ł��B</TD>
+      <TD><A href="MB_FakeEndScan.html">MB_FakeEndScan</A>によって親機スキャンの終了が完了したことを通知するコールバックです。</TD>
     </TR>
     <TR>
       <TD rowspan="5"><B><I>arg</I></B></TD>
-      <TD colspan="2">�R�[���o�b�N�֐��ɓn�����\���̂ւ̃|�C���^�ł��B</TD>
+      <TD colspan="2">コールバック関数に渡される構造体へのポインタです。</TD>
     </TR>
     <TR>
-      <TD><B>�R�[���o�b�N�̃^�C�v</B></TD>
-      <TD><B>�n�����\����</B></TD>
+      <TD><B>コールバックのタイプ</B></TD>
+      <TD><B>渡される構造体</B></TD>
     </TR>
     <TR>
       <TD>MB_FAKESCAN_PARENT_FOUND<BR>MB_FAKESCAN_PARENT_BEACON<BR>MB_FAKESCAN_PARENT_LOST</TD>
@@ -75,22 +75,22 @@ typedef void (*MBFakeScanCallbackFunc)( u16 type, void* arg );
     </TR>
     <TR>
       <TD>MB_FAKESCAN_END_SCAN</TD>
-      <TD>���NULL</TD>
+      <TD>常にNULL</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
+<h2>返り値</h2>
+<p>なし。</p>
 
-<H2>����</H2>
-<P><A href="MB_FakeInit.html">MB_FakeStartScanParent</A>�֐��Ń}���`�u�[�g�e�@�̃X�L�������J�n����Ă���A<A href="MB_FakeEndScan.html">MB_FakeEndScan</A>�֐��ŃX�L��������������܂ł̊ԁA��Ԃ�ʒm����R�[���o�b�N�̌^�ł��B</p>
-<h2>�Q��</h2>
-<p><A href="MB_FakeStartScanParent.html">MB_FakeStartScanParent</A>�A<A href="MB_FakeEndScan.html">MB_FakeEndScan</A>�A<A href="MBFakeScanCallback.html">MBFakeScanCallback</A>�A<A href="MBFakeScanErrorCallback.html">MBFakeScanErrorCallback</A><CODE><BR>
+<H2>説明</H2>
+<P><A href="MB_FakeInit.html">MB_FakeStartScanParent</A>関数でマルチブート親機のスキャンが開始されてから、<A href="MB_FakeEndScan.html">MB_FakeEndScan</A>関数でスキャンが完了するまでの間、状態を通知するコールバックの型です。</p>
+<h2>参照</h2>
+<p><A href="MB_FakeStartScanParent.html">MB_FakeStartScanParent</A>、<A href="MB_FakeEndScan.html">MB_FakeEndScan</A>、<A href="MBFakeScanCallback.html">MBFakeScanCallback</A>、<A href="MBFakeScanErrorCallback.html">MBFakeScanErrorCallback</A><CODE><BR>
 </CODE></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2006/03/13 MB_FAKESCAN_PARENT_BEACON�̍��ڂ�ǉ�<BR>
-2004/11/25 ����<BR>
+2006/03/13 MB_FAKESCAN_PARENT_BEACONの項目を追加<BR>
+2004/11/25 初版<BR>
 </P>
 </body>
 </html>

@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	roulette_savedata.c
- * @brief	uƒoƒgƒ‹ƒ‹[ƒŒƒbƒgvƒZ[ƒuƒf[ƒ^
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  * @author	Satoshi Nohara
  * @date	2007.09.05
  */
@@ -20,7 +20,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 int ROULETTEDATA_GetWorkSize( void );
@@ -32,7 +32,7 @@ void ROULETTEDATA_SetSaveFlag( ROULETTEDATA* wk, BOOL flag );
 void ROULETTEDATA_PutPlayData( ROULETTEDATA* wk, u8 id, u8 param, u8 param2, const void* buf );
 u32 ROULETTEDATA_GetPlayData( ROULETTEDATA* wk, u8 id, u8 param, u8 param2, void* buf );
 
-//¬Ñ
+//æˆç¸¾
 int ROULETTESCORE_GetWorkSize( void );
 void ROULETTESCORE_Init( ROULETTESCORE* wk );
 ROULETTESCORE * SaveData_GetRouletteScore( SAVEDATA * sv );
@@ -42,17 +42,17 @@ u32 ROULETTESCORE_GetScoreData( ROULETTESCORE* wk, u8 id, u8 param, u8 param2, v
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	(’†’fƒf[ƒ^)ƒ‹[ƒŒƒbƒgƒZ[ƒuƒ[ƒN‚ÌƒTƒCƒYŽæ“¾
+ * @brief	(ä¸­æ–­ãƒ‡ãƒ¼ã‚¿)ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
  *
  * @param	none
  *
- * @return	int		ƒTƒCƒY(ƒoƒCƒg’PˆÊ)
+ * @return	int		ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆå˜ä½)
  */
 //----------------------------------------------------------
 int ROULETTEDATA_GetWorkSize( void )
@@ -62,9 +62,9 @@ int ROULETTEDATA_GetWorkSize( void )
 
 //----------------------------------------------------------
 /**
- * @brief	(’†’fƒf[ƒ^)ƒ‹[ƒŒƒbƒgƒ[ƒN‚Ì‰Šú‰»
+ * @brief	(ä¸­æ–­ãƒ‡ãƒ¼ã‚¿)ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- * @param	wk		ROULETTEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -81,11 +81,11 @@ void ROULETTEDATA_Init( ROULETTEDATA* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ‹[ƒŒƒbƒgƒZ[ƒuƒf[ƒ^‚ÌŽæ“¾(ƒvƒŒƒCƒf[ƒ^)
+ * @brief	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å–å¾—(ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿)
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	ROULETTEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	ROULETTEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 ROULETTEDATA * SaveData_GetRouletteData( SAVEDATA * sv )
@@ -101,18 +101,18 @@ ROULETTEDATA * SaveData_GetRouletteData( SAVEDATA * sv )
 
 //============================================================================================
 //
-//	ƒƒ“ƒoƒAƒNƒZƒX
+//	ãƒ¡ãƒ³ãƒã‚¢ã‚¯ã‚»ã‚¹
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@³‚µ‚­ƒZ[ƒuÏ‚Ý‚©‚Ç‚¤‚©H
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€æ­£ã—ãã‚»ãƒ¼ãƒ–æ¸ˆã¿ã‹ã©ã†ã‹ï¼Ÿ
  *
- * @param	wk		ROULETTEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTEDATAåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	TRUE	³‚µ‚­ƒZ[ƒu‚³‚ê‚Ä‚¢‚é
- * @retval	FALSE	ƒZ[ƒu‚³‚ê‚Ä‚¢‚È‚¢
+ * @retval	TRUE	æ­£ã—ãã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ã‚‹
+ * @retval	FALSE	ã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ãªã„
  */
 //----------------------------------------------------------
 BOOL ROULETTEDATA_GetSaveFlag( ROULETTEDATA* wk )
@@ -122,10 +122,10 @@ BOOL ROULETTEDATA_GetSaveFlag( ROULETTEDATA* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@ƒZ[ƒuó‘Ôƒtƒ‰ƒO‚ðƒZƒbƒg
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒ¼ãƒ–çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	TRUEAFALSE
+ * @param	wk		ROULETTEDATAåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	TRUEã€FALSE
  *
  * @retval	none
  */
@@ -141,11 +141,11 @@ void ROULETTEDATA_SetSaveFlag( ROULETTEDATA* wk, BOOL flag )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@ƒZƒbƒg
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		Žæ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^‚ðŠi”[‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTEDATAåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -158,49 +158,49 @@ void ROULETTEDATA_PutPlayData( ROULETTEDATA* wk, u8 id, u8 param, u8 param2, con
 
 	switch( id ){
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ
 	case ROULETTEDATA_ID_TYPE:
 		wk->type = buf8[0];
 		OS_Printf( "wk->type = %d\n", wk->type );
 		break;
 
-	//ƒJ[ƒ\ƒ‹ƒ‰ƒ“ƒ_ƒ€ˆÚ“®ƒtƒ‰ƒO
+	//ã‚«ãƒ¼ã‚½ãƒ«ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•ãƒ•ãƒ©ã‚°
 	case ROULETTEDATA_ID_RANDOM_FLAG:
 		wk->random_flag = buf8[0];
 		OS_Printf( "wk->random_flag = %d\n", wk->random_flag );
 		break;
 
-	//¡‰½l–ÚH
+	//ä»Šä½•äººç›®ï¼Ÿ
 	case ROULETTEDATA_ID_ROUND:
 		wk->round = buf8[0];
 		OS_Printf( "wk->round = %d\n", wk->round );
 		break;
 
-	//ƒJ[ƒ\ƒ‹‚ÌƒXƒs[ƒhƒŒƒxƒ‹
+	//ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ¬ãƒ™ãƒ«
 	case ROULETTEDATA_ID_CSR_SPEED_LEVEL:
 		wk->csr_speed_level = buf8[0];
 		OS_Printf( "wk->csr_speed_level = %d\n", wk->csr_speed_level );
 		break;
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌITEM
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ITEM
 	case ROULETTEDATA_ID_TEMOTI_ITEM:
 		wk->item[param] = buf16[0];
 		OS_Printf( "wk->item[%d] = %d\n", param, wk->item[param] );
 		break;
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	case ROULETTEDATA_ID_TR_INDEX:
 		wk->tr_index[param] = buf16[0];
 		OS_Printf( "wk->tr_index[%d] = %d\n", param, wk->tr_index[param] );
 		break;
 
-	//ŽQ‰Á‚µ‚Ä‚¢‚éŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	case ROULETTEDATA_ID_MINE_POKE_POS:
 		wk->mine_poke_pos[param] = buf8[0];
 		OS_Printf( "wk->mine_poke_pos[%d] = %d\n", param, wk->mine_poke_pos[param] );
 		break;
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚É•Û‘¶
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«ä¿å­˜
 	case ROULETTEDATA_ID_ENEMY_POKE_INDEX:
 		wk->enemy_poke_index[param] = buf16[0];
 		OS_Printf("wk->enemy_poke_index[%d] = %d\n", param, wk->enemy_poke_index[param] );
@@ -219,50 +219,50 @@ void ROULETTEDATA_PutPlayData( ROULETTEDATA* wk, u8 id, u8 param, u8 param2, con
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@Žæ“¾
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€å–å¾—
  *
- * @param	wk		ROULETTEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		Žæ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^Žæ“¾ƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTEDATAåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * –ß‚è’l‚ðŽæ“¾‚·‚éŽž‚ÉŒ^ƒLƒƒƒXƒg‚ðŽg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒRƒsƒy’ˆÓI
+ * æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹æ™‚ã«åž‹ã‚­ãƒ£ã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚³ãƒ”ãƒšæ³¨æ„ï¼
  */
 //----------------------------------------------------------
 u32 ROULETTEDATA_GetPlayData( ROULETTEDATA* wk, u8 id, u8 param, u8 param2, void* buf )
 {
 	switch( id ){
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ
 	case ROULETTEDATA_ID_TYPE:
 		return (u32)wk->type;
 
-	//ƒJ[ƒ\ƒ‹ƒ‰ƒ“ƒ_ƒ€ˆÚ“®ƒtƒ‰ƒO
+	//ã‚«ãƒ¼ã‚½ãƒ«ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•ãƒ•ãƒ©ã‚°
 	case ROULETTEDATA_ID_RANDOM_FLAG:
 		return (u32)wk->random_flag;
 
-	//¡‰½l–ÚH
+	//ä»Šä½•äººç›®ï¼Ÿ
 	case ROULETTEDATA_ID_ROUND:
 		return (u32)wk->round;
 
-	//ƒJ[ƒ\ƒ‹ƒXƒs[ƒhƒŒƒxƒ‹
+	//ã‚«ãƒ¼ã‚½ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ¬ãƒ™ãƒ«
 	case ROULETTEDATA_ID_CSR_SPEED_LEVEL:
 		return (u32)wk->csr_speed_level;
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌITEM
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ITEM
 	case ROULETTEDATA_ID_TEMOTI_ITEM:
 		return (u32)wk->item[param];
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	case ROULETTEDATA_ID_TR_INDEX:
 		return (u32)wk->tr_index[param];
 
-	//ŽQ‰Á‚µ‚Ä‚¢‚éŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	case ROULETTEDATA_ID_MINE_POKE_POS:
 		return wk->mine_poke_pos[param];
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚É•Û‘¶
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«ä¿å­˜
 	case ROULETTEDATA_ID_ENEMY_POKE_INDEX:
 		return wk->enemy_poke_index[param];
 
@@ -277,17 +277,17 @@ u32 ROULETTEDATA_GetPlayData( ROULETTEDATA* wk, u8 id, u8 param, u8 param2, void
 
 //============================================================================================
 //
-//	¬ÑŠÖ˜A
+//	æˆç¸¾é–¢é€£
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	(¬Ñƒf[ƒ^)ƒ‹[ƒŒƒbƒgƒZ[ƒuƒ[ƒN‚ÌƒTƒCƒYŽæ“¾
+ * @brief	(æˆç¸¾ãƒ‡ãƒ¼ã‚¿)ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
  *
  * @param	none
  *
- * @return	int		ƒTƒCƒY(ƒoƒCƒg’PˆÊ)
+ * @return	int		ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆå˜ä½)
  */
 //----------------------------------------------------------
 int ROULETTESCORE_GetWorkSize( void )
@@ -297,9 +297,9 @@ int ROULETTESCORE_GetWorkSize( void )
 
 //----------------------------------------------------------
 /**
- * @brief	(¬Ñƒf[ƒ^)ƒ‹[ƒŒƒbƒgƒ[ƒN‚Ì‰Šú‰»
+ * @brief	(æˆç¸¾ãƒ‡ãƒ¼ã‚¿)ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- * @param	wk		ROULETTEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -316,11 +316,11 @@ void ROULETTESCORE_Init( ROULETTESCORE* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ‹[ƒŒƒbƒgƒZ[ƒuƒf[ƒ^‚ÌŽæ“¾(¬Ñƒf[ƒ^)
+ * @brief	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å–å¾—(æˆç¸¾ãƒ‡ãƒ¼ã‚¿)
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	ROULETTEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	ROULETTEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 ROULETTESCORE * SaveData_GetRouletteScore( SAVEDATA * sv )
@@ -332,11 +332,11 @@ ROULETTESCORE * SaveData_GetRouletteScore( SAVEDATA * sv )
 
 //----------------------------------------------------------
 /**
- * @brief	¬Ñƒf[ƒ^@ƒZƒbƒg
+ * @brief	æˆç¸¾ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTESCOREŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		Žæ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^‚ðŠi”[‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTESCOREåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -349,13 +349,13 @@ void ROULETTESCORE_PutScoreData( ROULETTESCORE* wk, u8 id, u8 param, u8 param2, 
 
 	switch( id ){
 
-	//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°
 	case ROULETTESCORE_ID_CLEAR_FLAG:
 		OS_Printf( "before clear_flag = %d\n", wk->clear_flag );
 		if( buf8[0] >= 1 ){
-			wk->clear_flag |= (1 << param);					//ƒZƒbƒg
+			wk->clear_flag |= (1 << param);					//ã‚»ãƒƒãƒˆ
 		}else{
-			wk->clear_flag &= (0xff ^ (1 << param));		//ƒŠƒZƒbƒg
+			wk->clear_flag &= (0xff ^ (1 << param));		//ãƒªã‚»ãƒƒãƒˆ
 		}
 		OS_Printf( "after clear_flag = %d\n", wk->clear_flag );
 		break;
@@ -373,15 +373,15 @@ void ROULETTESCORE_PutScoreData( ROULETTESCORE* wk, u8 id, u8 param, u8 param2, 
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@Žæ“¾
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€å–å¾—
  *
- * @param	wk		ROULETTESCOREŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		Žæ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^Žæ“¾ƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTESCOREåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * –ß‚è’l‚ðŽæ“¾‚·‚éŽž‚ÉŒ^ƒLƒƒƒXƒg‚ðŽg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒRƒsƒy’ˆÓI
+ * æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹æ™‚ã«åž‹ã‚­ãƒ£ã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚³ãƒ”ãƒšæ³¨æ„ï¼
  */
 //----------------------------------------------------------
 u32 ROULETTESCORE_GetScoreData( ROULETTESCORE* wk, u8 id, u8 param, u8 param2, void* buf )
@@ -391,7 +391,7 @@ u32 ROULETTESCORE_GetScoreData( ROULETTESCORE* wk, u8 id, u8 param, u8 param2, v
 
 	switch( id ){
 
-	//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°
 	case ROULETTESCORE_ID_CLEAR_FLAG:
 		OS_Printf( "get clear_flag = %d\n", wk->clear_flag );
 		return (u32)((wk->clear_flag >> param) & 0x01);

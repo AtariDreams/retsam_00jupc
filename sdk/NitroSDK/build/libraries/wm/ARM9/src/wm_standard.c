@@ -12,19 +12,19 @@
 
   $Log: wm_standard.c,v $
   Revision 1.28.2.1  2008/01/18 00:58:32  seiki_masashi
-  HEAD ‚Æƒ}[ƒW
+  HEAD ã¨ãƒãƒ¼ã‚¸
 
   Revision 1.29  2008/01/17 08:32:09  seiki_masashi
-  WM_EnableForListening ŠÖ”‚Ì blink ˆø”‚Ì‰ğß‚ğC³
+  WM_EnableForListening é–¢æ•°ã® blink å¼•æ•°ã®è§£é‡ˆã‚’ä¿®æ­£
 
   Revision 1.28  2007/11/12 09:49:23  seiki_masashi
   fix copyright header.
 
   Revision 1.27  2007/11/09 14:05:46  seiki_masashi
-  •s‹ï‡C³
+  ä¸å…·åˆä¿®æ­£
 
   Revision 1.26  2007/11/09 13:08:43  seiki_masashi
-  “d”g‚ÌóM‚Ì‚İ‰Â”\‚Èó‘Ô‚É–³ü‚ğ‰Šú‰»‚·‚éŠÖ”‚ğ’Ç‰Á
+  é›»æ³¢ã®å—ä¿¡ã®ã¿å¯èƒ½ãªçŠ¶æ…‹ã«ç„¡ç·šã‚’åˆæœŸåŒ–ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.25  2006/07/06 11:20:52  okubata_ryoma
   undo
@@ -33,70 +33,70 @@
   do-indent
 
   Revision 1.22  2005/11/22 09:00:52  seiki_masashi
-  WM_SendCommandDirect ŠÖ”‚ğg—p‚·‚é‚æ‚¤‚É•ÏX
+  WM_SendCommandDirect é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.21  2005/11/01 11:48:42  seiki_masashi
-  ƒfƒoƒbƒOƒR[ƒh‚Ì’Ç‰Á
+  ãƒ‡ãƒãƒƒã‚°ã‚³ãƒ¼ãƒ‰ã®è¿½åŠ 
 
   Revision 1.20  2005/09/08 00:49:06  seiki_masashi
-  WM_StartScanEx ŠÖ”‚Ì param ‚Ì ssidMatchLength w’è‚É‘Î‰
+  WM_StartScanEx é–¢æ•°ã® param ã® ssidMatchLength æŒ‡å®šã«å¯¾å¿œ
 
   Revision 1.19  2005/04/11 01:15:20  seiki_masashi
-  WMi_StartParentEx ‚ğ’Ç‰Á
+  WMi_StartParentEx ã‚’è¿½åŠ 
 
   Revision 1.18  2005/03/16 06:18:16  terui
-  WM_StartScanEx‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”“o˜^ƒe[ƒuƒ‹index‚ğC³B
+  WM_StartScanExã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«indexã‚’ä¿®æ­£ã€‚
 
   Revision 1.17  2005/03/06 23:59:31  terui
-  WM_StartConnectExŠÖ”‚É‚ÄƒLƒƒƒbƒVƒ…ƒXƒgƒA‚·‚éƒTƒCƒY‚ğ“K³’l‚ÉC³B
+  WM_StartConnectExé–¢æ•°ã«ã¦ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚¹ãƒˆã‚¢ã™ã‚‹ã‚µã‚¤ã‚ºã‚’é©æ­£å€¤ã«ä¿®æ­£ã€‚
 
   Revision 1.16  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.15  2005/02/14 11:43:06  terui
-  WM_StartScan[Ex]‚É‚ÄAparamƒpƒ‰ƒ[ƒ^‚ÌƒLƒƒƒbƒVƒ…ƒXƒgƒA‚Í•s•K—v‚È‚Ì‚ÅíœB
+  WM_StartScan[Ex]ã«ã¦ã€paramãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚¹ãƒˆã‚¢ã¯ä¸å¿…è¦ãªã®ã§å‰Šé™¤ã€‚
 
   Revision 1.14  2005/02/14 06:38:45  terui
-  ƒf[ƒ^“]‘—Š—vŠÔ‚ğƒ`ƒFƒbƒN‚·‚é‹@”\‚ğMPŠJn‚ÉˆÚ“®B
+  ãƒ‡ãƒ¼ã‚¿è»¢é€æ‰€è¦æ™‚é–“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹æ©Ÿèƒ½ã‚’MPé–‹å§‹æ™‚ã«ç§»å‹•ã€‚
 
   Revision 1.13  2005/02/08 06:50:15  ooe
-  WM_StartScanEx‚ğd—l•ÏXB
+  WM_StartScanExã‚’ä»•æ§˜å¤‰æ›´ã€‚
 
   Revision 1.12  2005/01/25 01:57:25  yasu
-  Copyright •\‹L‚ÌC³
+  Copyright è¡¨è¨˜ã®ä¿®æ­£
 
   Revision 1.11  2005/01/17 00:59:36  ooe
-  WM_StartConnect‚ğAWM_StartConnectEx‚É·‚µ‘Ö‚¦B
+  WM_StartConnectã‚’ã€WM_StartConnectExã«å·®ã—æ›¿ãˆã€‚
 
   Revision 1.10  2004/10/29 02:53:25  terui
-  WM_StartScanEx‚ğˆê“I‚É”ñŒöŠJŠÖ”‚É•ÏXB
+  WM_StartScanExã‚’ä¸€æ™‚çš„ã«éå…¬é–‹é–¢æ•°ã«å¤‰æ›´ã€‚
 
   Revision 1.9  2004/10/27 04:23:57  ooe
-  •s—v‚ÈOS_Printf‚ğíœB
+  ä¸è¦ãªOS_Printfã‚’å‰Šé™¤ã€‚
 
   Revision 1.8  2004/10/26 08:21:44  ooe
-  WM_StartScanEx‚ğ’Ç‰Á
+  WM_StartScanExã‚’è¿½åŠ 
 
   Revision 1.7  2004/10/22 04:37:28  terui
-  WMErrCode‚Æ‚µ‚ÄintŒ^‚ğ•Ô‚µ‚Ä‚¢‚½ŠÖ”‚É‚Â‚¢‚ÄAWMErrCode—ñ‹“Œ^‚ğ•Ô‚·‚æ‚¤‚É•ÏXB
+  WMErrCodeã¨ã—ã¦intå‹ã‚’è¿”ã—ã¦ã„ãŸé–¢æ•°ã«ã¤ã„ã¦ã€WMErrCodeåˆ—æŒ™å‹ã‚’è¿”ã™ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.6  2004/10/05 09:45:28  terui
-  MACƒAƒhƒŒƒX‚ğu8Œ^‚Ì”z—ñ‚É“ˆêB
+  MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’u8å‹ã®é…åˆ—ã«çµ±ä¸€ã€‚
 
   Revision 1.5  2004/10/01 11:05:22  terui
-  ŒxƒƒbƒZ[ƒW‚ğ”÷–­‚ÉC³B
+  è­¦å‘Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¾®å¦™ã«ä¿®æ­£ã€‚
 
   Revision 1.4  2004/09/15 08:31:43  terui
-  Debugƒrƒ‹ƒh‚ÌƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚Ì”»’è•û–@‚ªŠÔˆá‚Á‚Ä‚¢‚½“_‚ğC³B
+  Debugãƒ“ãƒ«ãƒ‰æ™‚ã®ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã®åˆ¤å®šæ–¹æ³•ãŒé–“é•ã£ã¦ã„ãŸç‚¹ã‚’ä¿®æ­£ã€‚
 
   Revision 1.3  2004/09/15 02:19:48  terui
-  MP‘—óMƒTƒCƒY‚ÌŒx‚ğMPƒpƒPƒbƒg‘—óM‚É—v‚·‚éŠÔ‚ÌŒx‚É·‘Ö‚¦B
+  MPé€å—ä¿¡ã‚µã‚¤ã‚ºã®è­¦å‘Šã‚’MPãƒ‘ã‚±ãƒƒãƒˆé€å—ä¿¡ã«è¦ã™ã‚‹æ™‚é–“ã®è­¦å‘Šã«å·®æ›¿ãˆã€‚
 
   Revision 1.2  2004/09/10 12:05:40  seiki_masashi
-  ƒL[ƒVƒFƒAƒŠƒ“ƒO‚Ì‘—MƒoƒCƒg”‚ğƒ‰ƒCƒuƒ‰ƒŠ“à‚Å‰B•Á‚·‚é‚æ‚¤‚É•ÏX
+  ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°ã®é€ä¿¡ãƒã‚¤ãƒˆæ•°ã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§éš è”½ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.1  2004/09/10 11:03:30  terui
-  wm.c‚Ì•ªŠ„‚É”º‚¢AV‹KuploadB
+  wm.cã®åˆ†å‰²ã«ä¼´ã„ã€æ–°è¦uploadã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -106,7 +106,7 @@
 
 
 /*---------------------------------------------------------------------------*
-    “à•”ŠÖ”’è‹`
+    å†…éƒ¨é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 static BOOL WmCheckParentParameter(const WMParentParam *param);
 
@@ -114,14 +114,14 @@ static BOOL WmCheckParentParameter(const WMParentParam *param);
 /*---------------------------------------------------------------------------*
   Name:         WM_Enable
 
-  Description:  –³üƒn[ƒhƒEƒFƒA‚ğg—p‰Â”\‚Èó‘Ô‚É‚·‚éB
-                “à•”ó‘Ô‚ÍREADYó‘Ô‚©‚çSTOPó‘Ô‚É‘JˆÚ‚³‚ê‚éB
+  Description:  ç„¡ç·šãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ä½¿ç”¨å¯èƒ½ãªçŠ¶æ…‹ã«ã™ã‚‹ã€‚
+                å†…éƒ¨çŠ¶æ…‹ã¯READYçŠ¶æ…‹ã‹ã‚‰STOPçŠ¶æ…‹ã«é·ç§»ã•ã‚Œã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Enable(WMCallbackFunc callback)
 {
@@ -131,16 +131,16 @@ WMErrCode WM_Enable(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WM_EnableForListening
 
-  Description:  –³üƒn[ƒhƒEƒFƒA‚ğg—p‰Â”\‚Èó‘Ô‚É‚·‚éB
-                “à•”ó‘Ô‚ÍREADYó‘Ô‚©‚çSTOPó‘Ô‚É‘JˆÚ‚³‚ê‚éB
-                “d”g‚ğ‘—o‚·‚éƒIƒyƒŒ[ƒVƒ‡ƒ“‚Í‚Å‚«‚È‚¢B
+  Description:  ç„¡ç·šãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ä½¿ç”¨å¯èƒ½ãªçŠ¶æ…‹ã«ã™ã‚‹ã€‚
+                å†…éƒ¨çŠ¶æ…‹ã¯READYçŠ¶æ…‹ã‹ã‚‰STOPçŠ¶æ…‹ã«é·ç§»ã•ã‚Œã‚‹ã€‚
+                é›»æ³¢ã‚’é€å‡ºã™ã‚‹ã‚ªãƒšãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã¯ã§ããªã„ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                blink       -   LED ‚ğ“_–Å‚³‚¹‚é‚©
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                blink       -   LED ã‚’ç‚¹æ»…ã•ã›ã‚‹ã‹
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EnableForListening(WMCallbackFunc callback, BOOL blink)
 {
@@ -157,28 +157,28 @@ WMErrCode WM_EnableForListening(WMCallbackFunc callback, BOOL blink)
 /*---------------------------------------------------------------------------*
   Name:         WMi_EnableEx
 
-  Description:  –³üƒn[ƒhƒEƒFƒA‚ğg—p‰Â”\‚Èó‘Ô‚É‚·‚éB
-                “à•”ó‘Ô‚ÍREADYó‘Ô‚©‚çSTOPó‘Ô‚É‘JˆÚ‚³‚ê‚éB
+  Description:  ç„¡ç·šãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ä½¿ç”¨å¯èƒ½ãªçŠ¶æ…‹ã«ã™ã‚‹ã€‚
+                å†…éƒ¨çŠ¶æ…‹ã¯READYçŠ¶æ…‹ã‹ã‚‰STOPçŠ¶æ…‹ã«é·ç§»ã•ã‚Œã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                miscFlags   -   ‰Šú‰»‚Ìƒtƒ‰ƒO
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                miscFlags   -   åˆæœŸåŒ–æ™‚ã®ãƒ•ãƒ©ã‚°
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_EnableEx(WMCallbackFunc callback, u32 miscFlags)
 {
     WMErrCode result;
 
-    // READYƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // READYã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckState(WM_STATE_READY);
     WM_CHECK_RESULT(result);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_ENABLE, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     {
         WMArm9Buf *p = WMi_GetSystemWork();
 
@@ -187,34 +187,34 @@ WMErrCode WMi_EnableEx(WMCallbackFunc callback, u32 miscFlags)
         WM_CHECK_RESULT(result);
     }
 
-    // ³íI—¹
+    // æ­£å¸¸çµ‚äº†
     return WM_ERRCODE_OPERATING;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WM_Disable
 
-  Description:  –³üƒn[ƒhƒEƒFƒA‚ğg—p‹Ö~ó‘Ô‚É‚·‚éB
-                “à•”ó‘Ô‚ÍSTOPó‘Ô‚©‚çREADYó‘Ô‚É‘JˆÚ‚³‚ê‚éB
+  Description:  ç„¡ç·šãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ä½¿ç”¨ç¦æ­¢çŠ¶æ…‹ã«ã™ã‚‹ã€‚
+                å†…éƒ¨çŠ¶æ…‹ã¯STOPçŠ¶æ…‹ã‹ã‚‰READYçŠ¶æ…‹ã«é·ç§»ã•ã‚Œã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Disable(WMCallbackFunc callback)
 {
     WMErrCode result;
 
-    // STOPƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // STOPã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckState(WM_STATE_STOP);
     WM_CHECK_RESULT(result);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_DISABLE, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_DISABLE, 0);
     WM_CHECK_RESULT(result);
 
@@ -224,27 +224,27 @@ WMErrCode WM_Disable(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WM_PowerOn
 
-  Description:  –³üƒn[ƒhƒEƒFƒA‚ğ‹N“®‚·‚éB
-                “à•”ó‘Ô‚ÍSTOPó‘Ô‚©‚çIDLEó‘Ô‚É‘JˆÚ‚³‚ê‚éB
+  Description:  ç„¡ç·šãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’èµ·å‹•ã™ã‚‹ã€‚
+                å†…éƒ¨çŠ¶æ…‹ã¯STOPçŠ¶æ…‹ã‹ã‚‰IDLEçŠ¶æ…‹ã«é·ç§»ã•ã‚Œã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_PowerOn(WMCallbackFunc callback)
 {
     WMErrCode result;
 
-    // STOPƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // STOPã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckState(WM_STATE_STOP);
     WM_CHECK_RESULT(result);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_POWER_ON, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_POWER_ON, 0);
     WM_CHECK_RESULT(result);
 
@@ -254,27 +254,27 @@ WMErrCode WM_PowerOn(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WM_PowerOff
 
-  Description:  –³üƒn[ƒhƒEƒFƒA‚ğƒVƒƒƒbƒgƒ_ƒEƒ“‚·‚éB
-                “à•”ó‘Ô‚ÍIDLEó‘Ô‚©‚çSTOPó‘Ô‚É‘JˆÚ‚³‚ê‚éB
+  Description:  ç„¡ç·šãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã™ã‚‹ã€‚
+                å†…éƒ¨çŠ¶æ…‹ã¯IDLEçŠ¶æ…‹ã‹ã‚‰STOPçŠ¶æ…‹ã«é·ç§»ã•ã‚Œã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_PowerOff(WMCallbackFunc callback)
 {
     WMErrCode result;
 
-    // IDLEƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // IDLEã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckState(WM_STATE_IDLE);
     WM_CHECK_RESULT(result);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_POWER_OFF, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_POWER_OFF, 0);
     WM_CHECK_RESULT(result);
 
@@ -284,16 +284,16 @@ WMErrCode WM_PowerOff(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WM_Initialize
 
-  Description:  WM‰Šú‰»ˆ—‚ğs‚¤B
+  Description:  WMåˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã†ã€‚
 
-  Arguments:    wmSysBuf    -   ŒÄ‚Ño‚µŒ³‚É‚æ‚Á‚ÄŠm•Û‚³‚ê‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                ƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ÍWM_SYSTEM_BUF_SIZE‚¾‚¯•K—vB
-                callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                dmaNo       -   WM‚ªg—p‚·‚éDMA”Ô†B
+  Arguments:    wmSysBuf    -   å‘¼ã³å‡ºã—å…ƒã«ã‚ˆã£ã¦ç¢ºä¿ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã¯WM_SYSTEM_BUF_SIZEã ã‘å¿…è¦ã€‚
+                callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                dmaNo       -   WMãŒä½¿ç”¨ã™ã‚‹DMAç•ªå·ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Initialize(void *wmSysBuf, WMCallbackFunc callback, u16 dmaNo)
 {
@@ -303,18 +303,18 @@ WMErrCode WM_Initialize(void *wmSysBuf, WMCallbackFunc callback, u16 dmaNo)
 /*---------------------------------------------------------------------------*
   Name:         WM_InitializeForListening
 
-  Description:  WM‰Šú‰»ˆ—‚ğs‚¤B
-                “d”g‚ğ‘—o‚·‚éƒIƒyƒŒ[ƒVƒ‡ƒ“‚Í‚Å‚«‚È‚¢B
+  Description:  WMåˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã†ã€‚
+                é›»æ³¢ã‚’é€å‡ºã™ã‚‹ã‚ªãƒšãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã¯ã§ããªã„ã€‚
 
-  Arguments:    wmSysBuf    -   ŒÄ‚Ño‚µŒ³‚É‚æ‚Á‚ÄŠm•Û‚³‚ê‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                ƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ÍWM_SYSTEM_BUF_SIZE‚¾‚¯•K—vB
-                callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                dmaNo       -   WM‚ªg—p‚·‚éDMA”Ô†B
-                blink       -   LED ‚ğ“_–Å‚³‚¹‚é‚©‚Ç‚¤‚©
+  Arguments:    wmSysBuf    -   å‘¼ã³å‡ºã—å…ƒã«ã‚ˆã£ã¦ç¢ºä¿ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã¯WM_SYSTEM_BUF_SIZEã ã‘å¿…è¦ã€‚
+                callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                dmaNo       -   WMãŒä½¿ç”¨ã™ã‚‹DMAç•ªå·ã€‚
+                blink       -   LED ã‚’ç‚¹æ»…ã•ã›ã‚‹ã‹ã©ã†ã‹
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_InitializeForListening(void *wmSysBuf, WMCallbackFunc callback, u16 dmaNo, BOOL blink)
 {
@@ -331,30 +331,30 @@ WMErrCode WM_InitializeForListening(void *wmSysBuf, WMCallbackFunc callback, u16
 /*---------------------------------------------------------------------------*
   Name:         WMi_InitializeEx
 
-  Description:  WM‰Šú‰»ˆ—‚ğs‚¤B
+  Description:  WMåˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã†ã€‚
 
-  Arguments:    wmSysBuf    -   ŒÄ‚Ño‚µŒ³‚É‚æ‚Á‚ÄŠm•Û‚³‚ê‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                ƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ÍWM_SYSTEM_BUF_SIZE‚¾‚¯•K—vB
-                callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                dmaNo       -   WM‚ªg—p‚·‚éDMA”Ô†B
-                miscFlags   -   ‰Šú‰»‚Ìƒtƒ‰ƒO
+  Arguments:    wmSysBuf    -   å‘¼ã³å‡ºã—å…ƒã«ã‚ˆã£ã¦ç¢ºä¿ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã¯WM_SYSTEM_BUF_SIZEã ã‘å¿…è¦ã€‚
+                callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                dmaNo       -   WMãŒä½¿ç”¨ã™ã‚‹DMAç•ªå·ã€‚
+                miscFlags   -   åˆæœŸåŒ–æ™‚ã®ãƒ•ãƒ©ã‚°
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_InitializeEx(void *wmSysBuf, WMCallbackFunc callback, u16 dmaNo, u32 miscFlags)
 {
     WMErrCode result;
 
-    // ‰Šú‰»‚ğÀs
+    // åˆæœŸåŒ–ã‚’å®Ÿè¡Œ
     result = WM_Init(wmSysBuf, dmaNo);
     WM_CHECK_RESULT(result);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_INITIALIZE, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     {
         WMArm9Buf *p = WMi_GetSystemWork();
 
@@ -363,33 +363,33 @@ WMErrCode WMi_InitializeEx(void *wmSysBuf, WMCallbackFunc callback, u16 dmaNo, u
         WM_CHECK_RESULT(result);
     }
 
-    // ³íI—¹
+    // æ­£å¸¸çµ‚äº†
     return WM_ERRCODE_OPERATING;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WM_Reset
 
-  Description:  –³üƒ‰ƒCƒuƒ‰ƒŠ‚ğƒŠƒZƒbƒg‚µA‰Šú‰»’¼Œã‚Ìó‘Ô‚É–ß‚·B
+  Description:  ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ãƒªã‚»ãƒƒãƒˆã—ã€åˆæœŸåŒ–ç›´å¾Œã®çŠ¶æ…‹ã«æˆ»ã™ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Reset(WMCallbackFunc callback)
 {
     WMErrCode result;
 
-    // –³üƒn[ƒh‹N“®Ï‚İ‚ğŠm”F
+    // ç„¡ç·šãƒãƒ¼ãƒ‰èµ·å‹•æ¸ˆã¿ã‚’ç¢ºèª
     result = WMi_CheckIdle();
     WM_CHECK_RESULT(result);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_RESET, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_RESET, 0);
     WM_CHECK_RESULT(result);
 
@@ -399,30 +399,30 @@ WMErrCode WM_Reset(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WM_End
 
-  Description:  –³üƒ‰ƒCƒuƒ‰ƒŠ‚ğI—¹‚·‚éB
+  Description:  ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’çµ‚äº†ã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_End(WMCallbackFunc callback)
 {
     WMErrCode result;
 
-    // IDLEƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // IDLEã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckState(WM_STATE_IDLE);
     WM_CHECK_RESULT(result);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_END, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_END, 0);
     WM_CHECK_RESULT(result);
 
-    // ARM9‘¤WMƒ‰ƒCƒuƒ‰ƒŠ‚ÌI—¹ˆ—‚ÍƒR[ƒ‹ƒoƒbƒN“à‚Ås‚¤
+    // ARM9å´WMãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®çµ‚äº†å‡¦ç†ã¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å†…ã§è¡Œã†
 
     return WM_ERRCODE_OPERATING;
 }
@@ -430,26 +430,26 @@ WMErrCode WM_End(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WM_SetParentParameter
 
-  Description:  e‹@î•ñ‚ğİ’è‚·‚éB
+  Description:  è¦ªæ©Ÿæƒ…å ±ã‚’è¨­å®šã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                pparaBuf    -   e‹@î•ñ‚ğ¦‚·\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                pparaBuf‹y‚ÑpparaBuf->userGameInfo‚ÌÀ‘Ì‚Í‹­§“I‚É
-                                ƒLƒƒƒbƒVƒ…ƒXƒgƒA‚³‚ê‚é“_‚É’ˆÓB
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                pparaBuf    -   è¦ªæ©Ÿæƒ…å ±ã‚’ç¤ºã™æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                pparaBufåŠã³pparaBuf->userGameInfoã®å®Ÿä½“ã¯å¼·åˆ¶çš„ã«
+                                ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚¹ãƒˆã‚¢ã•ã‚Œã‚‹ç‚¹ã«æ³¨æ„ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetParentParameter(WMCallbackFunc callback, const WMParentParam *pparaBuf)
 {
     WMErrCode result;
 
-    // IDLEƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // IDLEã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckState(WM_STATE_IDLE);
     WM_CHECK_RESULT(result);
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (pparaBuf == NULL)
     {
         WM_WARNING("Parameter \"pparaBuf\" must not be NULL.\n");
@@ -457,7 +457,7 @@ WMErrCode WM_SetParentParameter(WMCallbackFunc callback, const WMParentParam *pp
     }
     if ((u32)pparaBuf & 0x01f)
     {
-        // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+        // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
         WM_WARNING("Parameter \"pparaBuf\" is not 32-byte aligned.\n");
     }
     if (pparaBuf->userGameInfoLength > 0)
@@ -469,12 +469,12 @@ WMErrCode WM_SetParentParameter(WMCallbackFunc callback, const WMParentParam *pp
         }
         if ((u32)(pparaBuf->userGameInfo) & 0x01f)
         {
-            // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+            // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
             WM_WARNING("Parameter \"pparaBuf->userGameInfo\" is not 32-byte aligned.\n");
         }
     }
 
-    // “]‘—ƒf[ƒ^Å‘å’·‚ğƒ`ƒFƒbƒN
+    // è»¢é€ãƒ‡ãƒ¼ã‚¿æœ€å¤§é•·ã‚’ãƒã‚§ãƒƒã‚¯
     if ((pparaBuf->parentMaxSize +
          (pparaBuf->KS_Flag ? WM_SIZE_KS_PARENT_DATA + WM_SIZE_MP_PARENT_PADDING : 0) >
          WM_SIZE_MP_DATA_MAX)
@@ -487,17 +487,17 @@ WMErrCode WM_SetParentParameter(WMCallbackFunc callback, const WMParentParam *pp
     }
     (void)WmCheckParentParameter(pparaBuf);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_SET_P_PARAM, callback);
 
-    // w’èƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…‚ğ‘‚«o‚µ
+    // æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’æ›¸ãå‡ºã—
     DC_StoreRange((void *)pparaBuf, WM_PARENT_PARAM_SIZE);
     if (pparaBuf->userGameInfoLength > 0)
     {
         DC_StoreRange(pparaBuf->userGameInfo, pparaBuf->userGameInfoLength);
     }
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_SET_P_PARAM, 1, (u32)pparaBuf);
     WM_CHECK_RESULT(result);
 
@@ -507,29 +507,29 @@ WMErrCode WM_SetParentParameter(WMCallbackFunc callback, const WMParentParam *pp
 /*---------------------------------------------------------------------------*
   Name:         WmCheckParentParameter
 
-  Description:  e‹@İ’èƒpƒ‰ƒ[ƒ^‚ªƒKƒCƒhƒ‰ƒCƒ“‚É¦‚³‚ê‚é‹–—e”ÍˆÍ“à‚©‚Ç‚¤‚©
-                ‚ğƒ`ƒFƒbƒN‚·‚éƒfƒoƒbƒO—pŠÖ”B
+  Description:  è¦ªæ©Ÿè¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒã‚¬ã‚¤ãƒ‰ãƒ©ã‚¤ãƒ³ã«ç¤ºã•ã‚Œã‚‹è¨±å®¹ç¯„å›²å†…ã‹ã©ã†ã‹
+                ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ‡ãƒãƒƒã‚°ç”¨é–¢æ•°ã€‚
 
-  Arguments:    param   -   ƒ`ƒFƒbƒN‚·‚ée‹@İ’èƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    param   -   ãƒã‚§ãƒƒã‚¯ã™ã‚‹è¦ªæ©Ÿè¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      BOOL    -   –â‘è‚È‚¢ê‡‚ÍTRUE‚ğA‹–—e‚Å‚«‚È‚¢İ’è’l‚Ìê‡‚Í
-                            FALSE‚ğ•Ô‚·B
+  Returns:      BOOL    -   å•é¡Œãªã„å ´åˆã¯TRUEã‚’ã€è¨±å®¹ã§ããªã„è¨­å®šå€¤ã®å ´åˆã¯
+                            FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static BOOL WmCheckParentParameter(const WMParentParam *param)
 {
-    // ƒ†[ƒU[ƒQ[ƒ€î•ñ‚Í 112 ƒoƒCƒg‚Ü‚Å
+    // ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚²ãƒ¼ãƒ æƒ…å ±ã¯ 112 ãƒã‚¤ãƒˆã¾ã§
     if (param->userGameInfoLength > WM_SIZE_USER_GAMEINFO)
     {
         OS_TWarning("User gameInfo length must be less than %d .\n", WM_SIZE_USER_GAMEINFO);
         return FALSE;
     }
-    // ƒr[ƒRƒ“‘—MŠÔŠu‚Í 10 ` 1000
+    // ãƒ“ãƒ¼ã‚³ãƒ³é€ä¿¡é–“éš”ã¯ 10 ã€œ 1000
     if ((param->beaconPeriod < 10) || (param->beaconPeriod > 1000))
     {
         OS_TWarning("Beacon send period must be between 10 and 1000 .\n");
         return FALSE;
     }
-    // Ú‘±ƒ`ƒƒƒ“ƒlƒ‹‚Í 1 ` 14
+    // æ¥ç¶šãƒãƒ£ãƒ³ãƒãƒ«ã¯ 1 ã€œ 14
     if ((param->channel < 1) || (param->channel > 14))
     {
         OS_TWarning("Channel must be between 1 and 14 .\n");
@@ -541,20 +541,20 @@ static BOOL WmCheckParentParameter(const WMParentParam *param)
 /*---------------------------------------------------------------------------*
   Name:         WMi_StartParentEx
 
-  Description:  e‹@‚Æ‚µ‚Ä’ÊM‚ğŠJn‚·‚éB
+  Description:  è¦ªæ©Ÿã¨ã—ã¦é€šä¿¡ã‚’é–‹å§‹ã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                powerSave   -   È“d—Íƒ‚[ƒh‚ğg—p‚·‚éê‡‚ÍTRUEA‚µ‚È‚¢ê‡‚ÍFALSEB
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                powerSave   -   çœé›»åŠ›ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯TRUEã€ã—ãªã„å ´åˆã¯FALSEã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_StartParentEx(WMCallbackFunc callback, BOOL powerSave)
 {
     WMErrCode result;
 
-    // IDLEƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // IDLEã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckState(WM_STATE_IDLE);
     WM_CHECK_RESULT(result);
 
@@ -571,10 +571,10 @@ WMErrCode WMi_StartParentEx(WMCallbackFunc callback, BOOL powerSave)
         w9b->connectedAidBitmap = 0;
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_START_PARENT, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_START_PARENT, 1, (u32)powerSave);
     WM_CHECK_RESULT(result);
 
@@ -584,13 +584,13 @@ WMErrCode WMi_StartParentEx(WMCallbackFunc callback, BOOL powerSave)
 /*---------------------------------------------------------------------------*
   Name:         WM_StartParent
 
-  Description:  e‹@‚Æ‚µ‚Ä’ÊM‚ğŠJn‚·‚éB
+  Description:  è¦ªæ©Ÿã¨ã—ã¦é€šä¿¡ã‚’é–‹å§‹ã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartParent(WMCallbackFunc callback)
 {
@@ -600,26 +600,26 @@ WMErrCode WM_StartParent(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WM_EndParent
 
-  Description:  e‹@‚Æ‚µ‚Ä‚Ì’ÊM‚ğ’â~‚·‚éB
+  Description:  è¦ªæ©Ÿã¨ã—ã¦ã®é€šä¿¡ã‚’åœæ­¢ã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndParent(WMCallbackFunc callback)
 {
     WMErrCode result;
 
-    // PARENTƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // PARENTã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckState(WM_STATE_PARENT);
     WM_CHECK_RESULT(result);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_END_PARENT, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_END_PARENT, 0);
     WM_CHECK_RESULT(result);
 
@@ -629,28 +629,28 @@ WMErrCode WM_EndParent(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WM_StartScan
 
-  Description:  q‹@‚Æ‚µ‚Äe‹@‚ÌƒXƒLƒƒƒ“‚ğŠJn‚·‚éB
-                ˆê“x‚ÌŒÄ‚Ño‚µ‚Åˆê‘ä‚Ìe‹@î•ñ‚ğæ“¾‚·‚éB
-                WM_EndScan‚ğŒÄ‚Ño‚³‚¸‚É˜A‘±‚µ‚ÄŒÄ‚Ño‚µ‚Ä‚à—Ç‚¢B
+  Description:  å­æ©Ÿã¨ã—ã¦è¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³ã‚’é–‹å§‹ã™ã‚‹ã€‚
+                ä¸€åº¦ã®å‘¼ã³å‡ºã—ã§ä¸€å°ã®è¦ªæ©Ÿæƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€‚
+                WM_EndScanã‚’å‘¼ã³å‡ºã•ãšã«é€£ç¶šã—ã¦å‘¼ã³å‡ºã—ã¦ã‚‚è‰¯ã„ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                param       -   ƒXƒLƒƒƒ“î•ñ‚ğ¦‚·\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                ƒXƒLƒƒƒ“Œ‹‰Ê‚Ìî•ñ‚Íparam->scanBuf‚ÉARM7‚ª’¼Ú‘‚«o‚·
-                                ‚Ì‚ÅAƒLƒƒƒbƒVƒ…ƒ‰ƒCƒ“‚É‡‚í‚¹‚Ä‚¨‚­•K—v‚ª‚ ‚éB
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                param       -   ã‚¹ã‚­ãƒ£ãƒ³æƒ…å ±ã‚’ç¤ºã™æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                ã‚¹ã‚­ãƒ£ãƒ³çµæœã®æƒ…å ±ã¯param->scanBufã«ARM7ãŒç›´æ¥æ›¸ãå‡ºã™
+                                ã®ã§ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ©ã‚¤ãƒ³ã«åˆã‚ã›ã¦ãŠãå¿…è¦ãŒã‚ã‚‹ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartScan(WMCallbackFunc callback, const WMScanParam *param)
 {
     WMErrCode result;
 
-    // IDLE CALSS1 SCAN ƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // IDLE CALSS1 SCAN ã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckStateEx(3, WM_STATE_IDLE, WM_STATE_CLASS1, WM_STATE_SCAN);
     WM_CHECK_RESULT(result);
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (param == NULL)
     {
         WM_WARNING("Parameter \"param\" must not be NULL.\n");
@@ -668,14 +668,14 @@ WMErrCode WM_StartScan(WMCallbackFunc callback, const WMScanParam *param)
     }
     if ((u32)(param->scanBuf) & 0x01f)
     {
-        // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+        // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
         WM_WARNING("Parameter \"param->scanBuf\" is not 32-byte aligned.\n");
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_START_SCAN, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     {
         WMStartScanReq Req;
 
@@ -699,26 +699,26 @@ WMErrCode WM_StartScan(WMCallbackFunc callback, const WMScanParam *param)
 /*---------------------------------------------------------------------------*
   Name:         WM_StartScanEx
 
-  Description:  q‹@‚Æ‚µ‚Äe‹@‚ÌƒXƒLƒƒƒ“‚ğŠJn‚·‚éB
-                ˆê“x‚ÌŒÄ‚Ño‚µ‚Å•¡”‘ä‚Ìe‹@î•ñ‚ğæ“¾‚·‚éB
-                WM_EndScan‚ğŒÄ‚Ño‚³‚¸‚É˜A‘±‚µ‚ÄŒÄ‚Ño‚µ‚Ä‚à—Ç‚¢B
+  Description:  å­æ©Ÿã¨ã—ã¦è¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³ã‚’é–‹å§‹ã™ã‚‹ã€‚
+                ä¸€åº¦ã®å‘¼ã³å‡ºã—ã§è¤‡æ•°å°ã®è¦ªæ©Ÿæƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€‚
+                WM_EndScanã‚’å‘¼ã³å‡ºã•ãšã«é€£ç¶šã—ã¦å‘¼ã³å‡ºã—ã¦ã‚‚è‰¯ã„ã€‚
 
-  Arguments:    callback - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                param    - ƒXƒLƒƒƒ“î•ñ‚ğ¦‚·\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                           ƒXƒLƒƒƒ“Œ‹‰Ê‚Ìî•ñ‚Íparam->scanBuf‚ÉARM7‚ª’¼Ú‘‚«o‚·
-                           ‚Ì‚ÅAƒLƒƒƒbƒVƒ…ƒ‰ƒCƒ“‚É‡‚í‚¹‚Ä‚¨‚­•K—v‚ª‚ ‚éB
+  Arguments:    callback - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                param    - ã‚¹ã‚­ãƒ£ãƒ³æƒ…å ±ã‚’ç¤ºã™æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                           ã‚¹ã‚­ãƒ£ãƒ³çµæœã®æƒ…å ±ã¯param->scanBufã«ARM7ãŒç›´æ¥æ›¸ãå‡ºã™
+                           ã®ã§ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ©ã‚¤ãƒ³ã«åˆã‚ã›ã¦ãŠãå¿…è¦ãŒã‚ã‚‹ã€‚
 
-  Returns:      int      - WM_ERRCODE_*Œ^‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      int      - WM_ERRCODE_*å‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartScanEx(WMCallbackFunc callback, const WMScanExParam *param)
 {
     WMErrCode result;
 
-    // IDLE CALSS1 SCAN ƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // IDLE CALSS1 SCAN ã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckStateEx(3, WM_STATE_IDLE, WM_STATE_CLASS1, WM_STATE_SCAN);
     WM_CHECK_RESULT(result);
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (param == NULL)
     {
         WM_WARNING("Parameter \"param\" must not be NULL.\n");
@@ -737,7 +737,7 @@ WMErrCode WM_StartScanEx(WMCallbackFunc callback, const WMScanExParam *param)
     }
     if ((u32)(param->scanBuf) & 0x01f)
     {
-        // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+        // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
         WM_WARNING("Parameter \"param->scanBuf\" is not 32-byte aligned.\n");
     }
     if (param->ssidLength > WM_SIZE_SSID)
@@ -761,10 +761,10 @@ WMErrCode WM_StartScanEx(WMCallbackFunc callback, const WMScanExParam *param)
         return WM_ERRCODE_INVALID_PARAM;
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_START_SCAN_EX, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     {
         WMStartScanExReq Req;
 
@@ -789,26 +789,26 @@ WMErrCode WM_StartScanEx(WMCallbackFunc callback, const WMScanExParam *param)
 /*---------------------------------------------------------------------------*
   Name:         WM_EndScan
 
-  Description:  q‹@‚Æ‚µ‚Ä‚ÌƒXƒLƒƒƒ“ˆ—‚ğ’â~‚·‚éB
+  Description:  å­æ©Ÿã¨ã—ã¦ã®ã‚¹ã‚­ãƒ£ãƒ³å‡¦ç†ã‚’åœæ­¢ã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndScan(WMCallbackFunc callback)
 {
     WMErrCode result;
 
-    // SCANƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // SCANã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckState(WM_STATE_SCAN);
     WM_CHECK_RESULT(result);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_END_SCAN, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_END_SCAN, 0);
     WM_CHECK_RESULT(result);
 
@@ -818,22 +818,22 @@ WMErrCode WM_EndScan(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WM_StartConnectEx
 
-  Description:  q‹@‚Æ‚µ‚Äe‹@‚Ö‚ÌÚ‘±‚ğŠJn‚·‚éB
+  Description:  å­æ©Ÿã¨ã—ã¦è¦ªæ©Ÿã¸ã®æ¥ç¶šã‚’é–‹å§‹ã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                pInfo       -   Ú‘±‚·‚ée‹@‚Ìî•ñB
-                                WM_StartScan‚É‚Äæ“¾‚µ‚½\‘¢‘Ì‚ğw’è‚·‚éB
-                                ‚±‚Ì\‘¢‘Ì‚ÌÀ‘Ì‚Í‹­§“I‚ÉƒLƒƒƒbƒVƒ…ƒXƒgƒA
-                                ‚³‚ê‚é“_‚É’ˆÓB
-                ssid        -   e‹@‚É’Ê’m‚·‚éq‹@î•ñ(24Byte(WM_SIZE_CHILD_SSID)ŒÅ’èƒTƒCƒY)
-                powerSave   -   È“d—Íƒ‚[ƒh‚ğg—p‚·‚éê‡‚ÍTRUEA‚µ‚È‚¢ê‡‚ÍFALSEB
-                authMode    -   Authentication‚Ìƒ‚[ƒh‘I‘ğB
-                                  WM_AUTHMODE_OPEN_SYSTEM : OPEN SYSTEMƒ‚[ƒh
-                                  WM_AUTHMODE_SHARED_KEY  : SHARED KEY ƒ‚[ƒh
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                pInfo       -   æ¥ç¶šã™ã‚‹è¦ªæ©Ÿã®æƒ…å ±ã€‚
+                                WM_StartScanã«ã¦å–å¾—ã—ãŸæ§‹é€ ä½“ã‚’æŒ‡å®šã™ã‚‹ã€‚
+                                ã“ã®æ§‹é€ ä½“ã®å®Ÿä½“ã¯å¼·åˆ¶çš„ã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚¹ãƒˆã‚¢
+                                ã•ã‚Œã‚‹ç‚¹ã«æ³¨æ„ã€‚
+                ssid        -   è¦ªæ©Ÿã«é€šçŸ¥ã™ã‚‹å­æ©Ÿæƒ…å ±(24Byte(WM_SIZE_CHILD_SSID)å›ºå®šã‚µã‚¤ã‚º)
+                powerSave   -   çœé›»åŠ›ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯TRUEã€ã—ãªã„å ´åˆã¯FALSEã€‚
+                authMode    -   Authenticationã®ãƒ¢ãƒ¼ãƒ‰é¸æŠã€‚
+                                  WM_AUTHMODE_OPEN_SYSTEM : OPEN SYSTEMãƒ¢ãƒ¼ãƒ‰
+                                  WM_AUTHMODE_SHARED_KEY  : SHARED KEY ãƒ¢ãƒ¼ãƒ‰
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode
 WM_StartConnectEx(WMCallbackFunc callback, const WMBssDesc *pInfo, const u8 *ssid,
@@ -841,11 +841,11 @@ WM_StartConnectEx(WMCallbackFunc callback, const WMBssDesc *pInfo, const u8 *ssi
 {
     WMErrCode result;
 
-    // IDLE ƒXƒe[ƒgˆÈŠO‚Å‚ÍÀs•s‰Â
+    // IDLE ã‚¹ãƒ†ãƒ¼ãƒˆä»¥å¤–ã§ã¯å®Ÿè¡Œä¸å¯
     result = WMi_CheckState(WM_STATE_IDLE);
     WM_CHECK_RESULT(result);
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (pInfo == NULL)
     {
         WM_WARNING("Parameter \"pInfo\" must not be NULL.\n");
@@ -853,7 +853,7 @@ WM_StartConnectEx(WMCallbackFunc callback, const WMBssDesc *pInfo, const u8 *ssi
     }
     if ((u32)pInfo & 0x01f)
     {
-        // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+        // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
         WM_WARNING("Parameter \"pInfo\" is not 32-byte aligned.\n");
     }
     if ((authMode != WM_AUTHMODE_OPEN_SYSTEM) && (authMode != WM_AUTHMODE_SHARED_KEY))
@@ -862,7 +862,7 @@ WM_StartConnectEx(WMCallbackFunc callback, const WMBssDesc *pInfo, const u8 *ssi
             ("Parameter \"authMode\" must be WM_AUTHMODE_OPEN_SYSTEM or WM_AUTHMODE_SHARED_KEY.\n");
     }
 
-    // w’èƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…‚ğ‘‚«o‚µ
+    // æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’æ›¸ãå‡ºã—
     DC_StoreRange((void *)pInfo, (u32)(pInfo->length * 2));
 
     {
@@ -878,10 +878,10 @@ WM_StartConnectEx(WMCallbackFunc callback, const WMBssDesc *pInfo, const u8 *ssi
         w9b->connectedAidBitmap = 0;
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_START_CONNECT, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     {
         WMStartConnectReq Req;
 
@@ -908,32 +908,32 @@ WM_StartConnectEx(WMCallbackFunc callback, const WMBssDesc *pInfo, const u8 *ssi
 /*---------------------------------------------------------------------------*
   Name:         WM_Disconnect
 
-  Description:  Šm—§‚³‚ê‚Ä‚¢‚éÚ‘±‚ğØ’f‚·‚éB
+  Description:  ç¢ºç«‹ã•ã‚Œã¦ã„ã‚‹æ¥ç¶šã‚’åˆ‡æ–­ã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                aid         -   Ø’f‚·‚é’ÊM‘Šè‚ÌAIDB
-                                e‹@‚Ìê‡AID‚ª1`15‚Ìq‹@‚ğŒÂ•Ê‚ÉØ’fB
-                                q‹@‚Ìê‡AID‚ª0‚Ìe‹@‚Æ‚Ì’ÊM‚ğI—¹B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                aid         -   åˆ‡æ–­ã™ã‚‹é€šä¿¡ç›¸æ‰‹ã®AIDã€‚
+                                è¦ªæ©Ÿã®å ´åˆã€IDãŒ1ã€œ15ã®å­æ©Ÿã‚’å€‹åˆ¥ã«åˆ‡æ–­ã€‚
+                                å­æ©Ÿã®å ´åˆã€IDãŒ0ã®è¦ªæ©Ÿã¨ã®é€šä¿¡ã‚’çµ‚äº†ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Disconnect(WMCallbackFunc callback, u16 aid)
 {
     WMErrCode result;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckStateEx(5,
                               WM_STATE_PARENT, WM_STATE_MP_PARENT,
                               WM_STATE_CHILD, WM_STATE_MP_CHILD, WM_STATE_DCF_CHILD);
     WM_CHECK_RESULT(result);
 
-    if (                               // p->status->state‚ÌƒLƒƒƒbƒVƒ…‚Í”jŠüÏ‚İ
+    if (                               // p->status->stateã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¯ç ´æ£„æ¸ˆã¿
            (p->status->state == WM_STATE_PARENT) || (p->status->state == WM_STATE_MP_PARENT))
     {
-        // e‹@‚Ìê‡
+        // è¦ªæ©Ÿã®å ´åˆ
         if ((aid < 1) || (aid > WM_NUM_MAX_CHILD))
         {
             WM_WARNING("Parameter \"aid\" must be between 1 and %d.\n", WM_NUM_MAX_CHILD);
@@ -948,7 +948,7 @@ WMErrCode WM_Disconnect(WMCallbackFunc callback, u16 aid)
     }
     else
     {
-        // q‹@‚Ìê‡
+        // å­æ©Ÿã®å ´åˆ
         if (aid != 0)
         {
             WM_WARNING("Now child mode , so aid must be 0.\n");
@@ -956,10 +956,10 @@ WMErrCode WM_Disconnect(WMCallbackFunc callback, u16 aid)
         }
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_DISCONNECT, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_DISCONNECT, 1, (u32)(0x0001 << aid));
     WM_CHECK_RESULT(result);
 
@@ -969,29 +969,29 @@ WMErrCode WM_Disconnect(WMCallbackFunc callback, u16 aid)
 /*---------------------------------------------------------------------------*
   Name:         WM_DisconnectChildren
 
-  Description:  Ú‘±Šm—§‚³‚ê‚Ä‚¢‚éq‹@‚ğ‚»‚ê‚¼‚êØ’f‚·‚éBe‹@ê—pŠÖ”B
+  Description:  æ¥ç¶šç¢ºç«‹ã•ã‚Œã¦ã„ã‚‹å­æ©Ÿã‚’ãã‚Œãã‚Œåˆ‡æ–­ã™ã‚‹ã€‚è¦ªæ©Ÿå°‚ç”¨é–¢æ•°ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                aidBitmap   -   Ø’f‚·‚éq‹@‚ÌAIDƒrƒbƒgƒtƒB[ƒ‹ƒhB
-                                Å‰ºˆÊƒrƒbƒg‚Í–³‹‚³‚êAbit 1`15 ‚ªAID 1`15 ‚Ìq‹@
-                                ‚ğ‚»‚ê‚¼‚ê¦‚·B
-                                Ú‘±‚³‚ê‚Ä‚¢‚È‚¢q‹@‚ğ¦‚·ƒrƒbƒg‚Í–³‹‚³‚ê‚é‚Ì‚ÅA
-                                Ú‘±ó‹µ‚ÉŠÖ‚í‚ç‚¸‘Sq‹@‚ğØ’f‚·‚éê‡‚Í0xFFFF‚ğw’èB
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                aidBitmap   -   åˆ‡æ–­ã™ã‚‹å­æ©Ÿã®AIDãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€‚
+                                æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆã¯ç„¡è¦–ã•ã‚Œã€bit 1ã€œ15 ãŒAID 1ã€œ15 ã®å­æ©Ÿ
+                                ã‚’ãã‚Œãã‚Œç¤ºã™ã€‚
+                                æ¥ç¶šã•ã‚Œã¦ã„ãªã„å­æ©Ÿã‚’ç¤ºã™ãƒ“ãƒƒãƒˆã¯ç„¡è¦–ã•ã‚Œã‚‹ã®ã§ã€
+                                æ¥ç¶šçŠ¶æ³ã«é–¢ã‚ã‚‰ãšå…¨å­æ©Ÿã‚’åˆ‡æ–­ã™ã‚‹å ´åˆã¯0xFFFFã‚’æŒ‡å®šã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_DisconnectChildren(WMCallbackFunc callback, u16 aidBitmap)
 {
     WMErrCode result;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckStateEx(2, WM_STATE_PARENT, WM_STATE_MP_PARENT);
     WM_CHECK_RESULT(result);
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     DC_InvalidateRange(&(p->status->child_bitmap), 2);
     if (!(p->status->child_bitmap & aidBitmap & 0xfffe))
     {
@@ -999,10 +999,10 @@ WMErrCode WM_DisconnectChildren(WMCallbackFunc callback, u16 aidBitmap)
         return WM_ERRCODE_NO_CHILD;
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_DISCONNECT, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_DISCONNECT, 1, (u32)aidBitmap);
     WM_CHECK_RESULT(result);
 

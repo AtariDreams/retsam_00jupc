@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  *	@file	fld_debst.c
- *	@brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[@í’“—Ìˆæ
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€å¸¸é§é ˜åŸŸ
  *	@author	Miyuki Iwasawa
  *	@date	06.03.16
  *
- *	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[ƒ\[ƒX‚Åí’“‚µ‚Ä—~‚µ‚¢‚à‚Ì‚Í‚±‚±
+ *	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚½ãƒ¼ã‚¹ã§å¸¸é§ã—ã¦æ¬²ã—ã„ã‚‚ã®ã¯ã“ã“
  */
 //============================================================================================
 
@@ -34,7 +34,7 @@
 #include "system/arc_util.h"
 
 
-//—LŒø‚É‚·‚é‚ÆƒfƒoƒbƒOƒƒjƒ…[u‚»‚ç‚ð‚Æ‚Ôv‚ÉƒJƒbƒgƒCƒ“‚ª“ü‚é 060505 kaga
+//æœ‰åŠ¹ã«ã™ã‚‹ã¨ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œãã‚‰ã‚’ã¨ã¶ã€ã«ã‚«ãƒƒãƒˆã‚¤ãƒ³ãŒå…¥ã‚‹ 060505 kaga
 //#define DEBUG_SKYJUMP_CUTIN_ON
 
 #ifdef DEBUG_SKYJUMP_CUTIN_ON
@@ -59,12 +59,12 @@ typedef struct _DEB_SKYJUMP{
 }DEB_SKYJUMP;
 #endif
 
-//ƒvƒƒgƒ^ƒCƒv
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 void DebugSkyJump_CreateTask(FIELDSYS_WORK* fsys);
 void DBJump_JumpMapControl(struct _FIELDSYS_WORK * fsys);
 
 /**
- *	@brief	ƒfƒoƒbƒO‹ó‚ð”ò‚ÔƒRƒ“ƒgƒ[ƒ‹ƒ^ƒXƒN
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ç©ºã‚’é£›ã¶ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯
  */
 
 extern void FieldTMap_CallDataSet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,int mode);
@@ -87,29 +87,29 @@ static void DebugSkyjumpTask(TCB_PTR tcb,void* work)
 		if(!WIPE_SYS_EndCheck()){
 			return;
 		}
-		//ƒ^ƒEƒ“ƒ}ƒbƒv@‹ó‚ð”ò‚Ôƒ‚[ƒhŒÄ‚Ño‚µ
+		//ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—ã€€ç©ºã‚’é£›ã¶ãƒ¢ãƒ¼ãƒ‰å‘¼ã³å‡ºã—
 		wp->pWork = sys_AllocMemory(HEAPID_BASE_DEBUG,sizeof(TOWNMAP_PARAM));
 		FieldTMap_CallDataSet(wp->fsys,wp->pWork,TMAP_MJUMP);
-		//ƒfƒoƒbƒOƒ‚[ƒhƒtƒ‰ƒOON
+		//ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ON
 		twork = (TOWNMAP_PARAM*)wp->pWork;
 		twork->debug_f = TRUE;
 		FieldTMap_SetProc(wp->fsys,wp->pWork);
 		break;
 	case 2:
-		//ƒ^ƒEƒ“ƒ}ƒbƒvƒvƒƒZƒXI—¹‘Ò‚¿
+		//ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 		if(FieldEvent_Cmd_WaitSubProcEnd(wp->fsys)){
 			return;
 		}
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒX•œ‹A
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		FieldEvent_Cmd_SetMapProc(wp->fsys);
 		break;
 	case 3:
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJŽnI—¹‘Ò‚¿
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹çµ‚äº†å¾…ã¡
 		if(!FieldEvent_Cmd_WaitMapProcStart(wp->fsys)){
 			return;
 		}
 		
-		//ƒuƒ‰ƒbƒNƒCƒ“ƒŠƒNƒGƒXƒg
+		//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		wp->wipe_f = 0;
 		WIPE_SYS_Start(WIPE_PATTERN_WMS,
 				WIPE_TYPE_FADEIN,
@@ -117,19 +117,19 @@ static void DebugSkyjumpTask(TCB_PTR tcb,void* work)
 				);
 		break;
 	case 4:
-		//ƒtƒF[ƒhƒCƒ“‘Ò‚¿
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 		if(!WIPE_SYS_EndCheck()){
 			return;
 		}
 		
-		//ƒpƒ‰ƒ[ƒ^Žæ“¾
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 		twork = (TOWNMAP_PARAM*)wp->pWork;
 		if(!twork->retval){
 			wp->seq = 6;
 			return;
 		}
 		
-		//ƒJƒbƒgƒCƒ“ƒŠƒNƒGƒXƒg
+		//ã‚«ãƒƒãƒˆã‚¤ãƒ³ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		{
 			POKEMON_PARAM *param =
 				PokeParty_GetMemberPointer(
@@ -143,7 +143,7 @@ static void DebugSkyjumpTask(TCB_PTR tcb,void* work)
 		break;
 	case 5:
 		
-		//ƒJƒbƒgƒCƒ“I—¹‘Ò‚¿
+		//ã‚«ãƒƒãƒˆã‚¤ãƒ³çµ‚äº†å¾…ã¡
 		if( FieldCutIn_EndCheck(wp->tcb_cutin) == FALSE ){
 			return;
 		}
@@ -151,7 +151,7 @@ static void DebugSkyjumpTask(TCB_PTR tcb,void* work)
 		
 		twork = (TOWNMAP_PARAM*)wp->pWork;
 		
-		//ƒWƒƒƒ“ƒv
+		//ã‚¸ãƒ£ãƒ³ãƒ—
 		EventSet_MapChangeBySky(wp->fsys,
 			twork->ret_zone,DOOR_ID_JUMP_CODE,
 			twork->ret_x*32+16,twork->ret_z*32+16, DIR_DOWN);
@@ -182,28 +182,28 @@ static void DebugSkyjumpTask(TCB_PTR tcb,void* work)
 		if(!WIPE_SYS_EndCheck()){
 			return;
 		}
-		//ƒ^ƒEƒ“ƒ}ƒbƒv@‹ó‚ð”ò‚Ôƒ‚[ƒhŒÄ‚Ño‚µ
+		//ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—ã€€ç©ºã‚’é£›ã¶ãƒ¢ãƒ¼ãƒ‰å‘¼ã³å‡ºã—
 		wp->pWork = sys_AllocMemory(HEAPID_BASE_DEBUG,sizeof(TOWNMAP_PARAM));
 		FieldTMap_CallDataSet(wp->fsys,wp->pWork,TMAP_MJUMP);
-		//ƒfƒoƒbƒOƒ‚[ƒhƒtƒ‰ƒOON
+		//ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ON
 		twork = (TOWNMAP_PARAM*)wp->pWork;
 		twork->debug_f = TRUE;
 		FieldTMap_SetProc(wp->fsys,wp->pWork);
 		break;
 	case 2:
-		//ƒ^ƒEƒ“ƒ}ƒbƒvƒvƒƒZƒXI—¹‘Ò‚¿
+		//ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 		if(FieldEvent_Cmd_WaitSubProcEnd(wp->fsys)){
 			return;
 		}
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒX•œ‹A
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		FieldEvent_Cmd_SetMapProc(wp->fsys);
 		break;
 	case 3:
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJŽnI—¹‘Ò‚¿
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹çµ‚äº†å¾…ã¡
 		if(!FieldEvent_Cmd_WaitMapProcStart(wp->fsys)){
 			return;
 		}
-		//ƒuƒ‰ƒbƒNƒCƒ“ƒŠƒNƒGƒXƒg
+		//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		wp->wipe_f = 0;
 		WIPE_SYS_Start(WIPE_PATTERN_WMS,
 				WIPE_TYPE_FADEIN,
@@ -211,17 +211,17 @@ static void DebugSkyjumpTask(TCB_PTR tcb,void* work)
 				);
 		break;
 	case 4:
-		//ƒtƒF[ƒhƒCƒ“‘Ò‚¿
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 		if(!WIPE_SYS_EndCheck()){
 			return;
 		}
-		//ƒpƒ‰ƒ[ƒ^Žæ“¾
+		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 		twork = (TOWNMAP_PARAM*)wp->pWork;
 		if(!twork->retval){
 			break;
 		}
 	
-		//ƒWƒƒƒ“ƒv
+		//ã‚¸ãƒ£ãƒ³ãƒ—
 		EventSet_EasyMapChange(wp->fsys,
 			twork->ret_zone,DOOR_ID_JUMP_CODE,
 			twork->ret_x*32+16,twork->ret_z*32+16, DIR_DOWN);
@@ -237,13 +237,13 @@ static void DebugSkyjumpTask(TCB_PTR tcb,void* work)
 #endif
 
 /**
- *	@brief	ƒfƒoƒbƒO‹ó‚ð”ò‚Ô@ƒ^ƒXƒN“o˜^
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ç©ºã‚’é£›ã¶ã€€ã‚¿ã‚¹ã‚¯ç™»éŒ²
  */
 void DebugSkyJump_CreateTask(FIELDSYS_WORK* fsys)
 {
 	DEB_SKYJUMP *wp;
 
-	//‹ó‚ð”ò‚Ôƒ^ƒXƒNì¬
+	//ç©ºã‚’é£›ã¶ã‚¿ã‚¹ã‚¯ä½œæˆ
 	wp = sys_AllocMemory(HEAPID_BASE_DEBUG,sizeof(DEB_SKYJUMP));
 	MI_CpuClear8(wp,sizeof(DEB_SKYJUMP));
 
@@ -264,13 +264,13 @@ typedef struct {
 typedef struct {
 	GF_BGL_BMPWIN	win;//BMP
 	u8 cur_pos;
-	int grid_val[2];	// 0=xA1=Z
+	int grid_val[2];	// 0=xã€1=Z
 	FIELDSYS_WORK * fsys;
 	BMPCURSOR *Cursor;
 }JUMP_CONT;
 
 /**
- *	@brief	À•WŽw’èƒWƒƒƒ“ƒvƒtƒF[ƒhƒAƒEƒg
+ *	@brief	åº§æ¨™æŒ‡å®šã‚¸ãƒ£ãƒ³ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  */
 static BOOL Sub_FadeOut(GMEVENT_CONTROL * event)
 {
@@ -293,7 +293,7 @@ static BOOL Sub_FadeOut(GMEVENT_CONTROL * event)
 }
 
 /**
- *	@brief	À•WŽw’èƒWƒƒƒ“ƒvƒtƒF[ƒhƒCƒ“
+ *	@brief	åº§æ¨™æŒ‡å®šã‚¸ãƒ£ãƒ³ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  */
 static BOOL Sub_FadeIn(GMEVENT_CONTROL * event)
 {
@@ -317,7 +317,7 @@ static BOOL Sub_FadeIn(GMEVENT_CONTROL * event)
 
 
 /**
- *	@brief	À•WŽw’èƒWƒƒƒ“ƒv•`‰æ
+ *	@brief	åº§æ¨™æŒ‡å®šã‚¸ãƒ£ãƒ³ãƒ—æç”»
  */
 static void DrawJumpCont(JUMP_CONT *work)
 {
@@ -342,7 +342,7 @@ static void DrawJumpCont(JUMP_CONT *work)
 }
 
 /**
- *	@brief	À•WŽw’èƒWƒƒƒ“ƒvƒCƒxƒ“ƒg
+ *	@brief	åº§æ¨™æŒ‡å®šã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 static BOOL GMEVENT_JumpMap(GMEVENT_CONTROL * event)
 {
@@ -351,7 +351,7 @@ static BOOL GMEVENT_JumpMap(GMEVENT_CONTROL * event)
 		
 	switch (mcw->seq) {
 	case 0:
-		if(Sub_FadeOut(event)){		// ƒvƒƒbƒNChange
+		if(Sub_FadeOut(event)){		// ãƒ—ãƒ­ãƒƒã‚¯Change
 			(mcw->seq) ++;
 		}
 		break;
@@ -362,12 +362,12 @@ static BOOL GMEVENT_JumpMap(GMEVENT_CONTROL * event)
 		(mcw->seq) ++;
 		break;
 	case 2:
-		if(Sub_FadeIn(event)){		// ƒvƒƒbƒNChange
+		if(Sub_FadeIn(event)){		// ãƒ—ãƒ­ãƒƒã‚¯Change
 			(mcw->seq) ++;
 		}
 		break;
 	case 3:
-		///PlaceNameRequest(fsys->place_name_cont,0);//’n–¼•\Ž¦
+		///PlaceNameRequest(fsys->place_name_cont,0);//åœ°åè¡¨ç¤º
 		sys_FreeMemoryEz(mcw);
 		return TRUE;
 	}
@@ -375,7 +375,7 @@ static BOOL GMEVENT_JumpMap(GMEVENT_CONTROL * event)
 }
 
 /**
- *	@brief	À•WŽw’èƒWƒƒƒ“ƒvƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	åº§æ¨™æŒ‡å®šã‚¸ãƒ£ãƒ³ãƒ—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  */
 static void DebugJumpControlTask(TCB_PTR tcb,void* work)
 {
@@ -385,16 +385,16 @@ static void DebugJumpControlTask(TCB_PTR tcb,void* work)
 	wp = (JUMP_CONT*)work;
 
 	write = FALSE;
-	//ƒL[‘€ì”»’è
+	//ã‚­ãƒ¼æ“ä½œåˆ¤å®š
 	if ( (sys.trg & PAD_KEY_DOWN) ||
 			(sys.trg & PAD_KEY_UP) ){
-		//ƒJ[ƒ\ƒ‹‚ðÁ‚·
-		//ƒJ[ƒ\ƒ‹ˆÚ“®
+		//ã‚«ãƒ¼ã‚½ãƒ«ã‚’æ¶ˆã™
+		//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 		wp->cur_pos = (wp->cur_pos+1)%2;
-		//ƒJ[ƒ\ƒ‹‚ð•`‚­
+		//ã‚«ãƒ¼ã‚½ãƒ«ã‚’æã
 		write = TRUE;
 	}else if(sys.trg & PAD_KEY_LEFT){
-		//’l‚ðŒ¸‚ç‚·
+		//å€¤ã‚’æ¸›ã‚‰ã™
 		if (wp->grid_val[wp->cur_pos]-1<0){
 			wp->grid_val[wp->cur_pos] = 29;
 		}else{
@@ -402,7 +402,7 @@ static void DebugJumpControlTask(TCB_PTR tcb,void* work)
 		}
 		write = TRUE;
 	}else if(sys.trg & PAD_KEY_RIGHT){
-		//’l‚ð‘‚â‚·
+		//å€¤ã‚’å¢—ã‚„ã™
 		wp->grid_val[wp->cur_pos] = (wp->grid_val[wp->cur_pos]+1)%30;
 		write = TRUE;
 	}
@@ -413,10 +413,10 @@ static void DebugJumpControlTask(TCB_PTR tcb,void* work)
 
 
 	if(sys.trg & PAD_BUTTON_A){
-		//ƒWƒƒƒ“ƒv
+		//ã‚¸ãƒ£ãƒ³ãƒ—
 		EVENT_UGCHG_WORK * mcw;
 
-		//ƒCƒxƒ“ƒg¶¬
+		//ã‚¤ãƒ™ãƒ³ãƒˆç”Ÿæˆ
 		mcw = sys_AllocMemoryLo(HEAPID_BASE_DEBUG, sizeof(EVENT_UGCHG_WORK));
 		mcw->seq = 0;
 		mcw->subseq = 0;
@@ -431,11 +431,11 @@ static void DebugJumpControlTask(TCB_PTR tcb,void* work)
 			mcw->next_z = z*32+16;
 			//mcw->next_dir = DIR_DOWN;
 		
-			if (wp->fsys->location->zone_id == ZONE_ID_UG){//¡’n‰º
+			if (wp->fsys->location->zone_id == ZONE_ID_UG){//ä»Šåœ°ä¸‹
 				mcw->next_zone_id = ZONE_ID_UG;
 				///FieldEvent_Set(wp->fsys, GMEVENT_JumpMapForUG, mcw);
 				JumpUnderGroundDirect(wp->fsys,x,z);
-			}else{											//¡’nã
+			}else{											//ä»Šåœ°ä¸Š
 				mcw->next_zone_id = GetZoneIDFromMatrixID(	wp->fsys->World,
 															MATRIX_ID_SINOU,
 															wp->grid_val[0],
@@ -446,60 +446,60 @@ static void DebugJumpControlTask(TCB_PTR tcb,void* work)
 		}
 		GF_BGL_BmpWinOff( &wp->win );
 		GF_BGL_BmpWinDel( &wp->win );
-		//ƒ[ƒNƒƒ‚ƒŠŠJ•ú
+		//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 		BMPCURSOR_Delete(  wp->Cursor );
 		sys_FreeMemoryEz(work);
-		//ƒ^ƒXƒNÁ‹Ž
+		//ã‚¿ã‚¹ã‚¯æ¶ˆåŽ»
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’âŽ~‰ðœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 		return;
 	}
-	//ƒƒjƒ…[ƒLƒƒƒ“ƒZƒ‹
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if(sys.trg & PAD_BUTTON_B){
 		GF_BGL_BmpWinOff( &wp->win );
 		GF_BGL_BmpWinDel( &wp->win );
-		//ƒ[ƒNƒƒ‚ƒŠŠJ•ú
+		//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 		BMPCURSOR_Delete(  wp->Cursor );
 		sys_FreeMemoryEz(work);
-		//ƒ^ƒXƒNÁ‹Ž
+		//ã‚¿ã‚¹ã‚¯æ¶ˆåŽ»
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’âŽ~‰ðœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 		return;
 	}
 }
 
 /**
- *	@brief	À•WŽw’èƒWƒƒƒ“ƒv
+ *	@brief	åº§æ¨™æŒ‡å®šã‚¸ãƒ£ãƒ³ãƒ—
  */
 void DBJump_JumpMapControl(struct _FIELDSYS_WORK * fsys)
 {
 	JUMP_CONT *d_work;
 
-	//’nãˆÈŠO‚Í–³Ž‹
+	//åœ°ä¸Šä»¥å¤–ã¯ç„¡è¦–
 	if ( (ZoneData_GetMatrixID(fsys->location->zone_id) != MATRIX_ID_FIELD)&&
 			(ZoneData_GetMatrixID(fsys->location->zone_id) != MATRIX_ID_UNDER_GROUND) ){
-		//OBJ“™‚Ì“®ì’âŽ~‰ðœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 		return;
 	}
 
 	d_work = sys_AllocMemory(HEAPID_BASE_DEBUG,sizeof(JUMP_CONT));
 	d_work->fsys = fsys;
-	//ƒJ[ƒ\ƒ‹‰Šú‰»
+	//ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–
 	d_work->cur_pos = 0;
 	d_work->Cursor = BMPCURSOR_Create(HEAPID_BASE_DEBUG);
-	//Œ»ÝƒuƒƒbƒNŽæ“¾
+	//ç¾åœ¨ãƒ–ãƒ­ãƒƒã‚¯å–å¾—
 	d_work->grid_val[0] = Player_NowGPosXGet( fsys->player ) / 32;
 	d_work->grid_val[1] = Player_NowGPosZGet( fsys->player ) / 32;
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	TCB_Add(DebugJumpControlTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 6, 4, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_BASE_DEBUG );
-	//Œ»ÝƒuƒƒbƒNAƒJ[ƒ\ƒ‹•\Ž¦
+	//ç¾åœ¨ãƒ–ãƒ­ãƒƒã‚¯ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º
 	DrawJumpCont(d_work);
 
 	return;
@@ -508,7 +508,7 @@ void DBJump_JumpMapControl(struct _FIELDSYS_WORK * fsys)
 //============================================================================================
 //
 //
-//		RTC‘€ìŒÄ‚Ño‚µ
+//		RTCæ“ä½œå‘¼ã³å‡ºã—
 //
 //
 //============================================================================================

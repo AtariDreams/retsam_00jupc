@@ -1,11 +1,11 @@
 /**
 	@file	porucase.dat
-	@brief	ƒ|ƒ‹ƒgƒP[ƒX@’è”’è‹`
+	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€å®šæ•°å®šç¾©
 	@author	Miyuki Iwasawa
 	@date	06.03.15
 */
 
-///ƒ^ƒbƒ`ƒpƒlƒ‹À•W
+///ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 #define TP_SX	(32)
 #define TP_SY	(14)
 #define TP_SPICY_NX	(16*8)
@@ -14,13 +14,13 @@
 #define TP_ASTR_NY	(12*8)
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/15
-// •¶š‚ªƒ{ƒ^ƒ“‚Ì’†‰›‚É—ˆ‚é‚æ‚¤‚ÉAƒ{ƒ^ƒ“‚Ì x À•W‚ğ8‚Ì”{”‚É
+// æ–‡å­—ãŒãƒœã‚¿ãƒ³ã®ä¸­å¤®ã«æ¥ã‚‹ã‚ˆã†ã«ã€ãƒœã‚¿ãƒ³ã® x åº§æ¨™ã‚’8ã®å€æ•°ã«
 #define TP_SWEET_NX	(21*8)
 // ----------------------------------------------------------------------------
 #define TP_SWEET_NY	(20*8+2)
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/15
-// •¶š‚ªƒ{ƒ^ƒ“‚Ì’†‰›‚É—ˆ‚é‚æ‚¤‚ÉAƒ{ƒ^ƒ“‚Ì x À•W‚ğ8‚Ì”{”‚É
+// æ–‡å­—ãŒãƒœã‚¿ãƒ³ã®ä¸­å¤®ã«æ¥ã‚‹ã‚ˆã†ã«ã€ãƒœã‚¿ãƒ³ã® x åº§æ¨™ã‚’8ã®å€æ•°ã«
 #define TP_BITTER_NX	(11*8)
 // ----------------------------------------------------------------------------
 #define TP_BITTER_NY	(20*8+4)
@@ -58,7 +58,7 @@ typedef enum{
 #define SWITCH_PAL	(5)
 #define PCASE_BMPCHAR_BASE	(1)
 
-///ƒƒjƒ…[ƒEƒBƒ“ƒhƒE
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_TALK_WIN_CGX	(PCASE_BMPCHAR_BASE)
 #define BMPL_MENU_WIN_CGX	(BMPL_TALK_WIN_CGX+TALK_WIN_CGX_SIZ)
 #define BMPL_TALK_WIN_FRM	(GF_BGL_FRAME1_M)
@@ -67,7 +67,7 @@ typedef enum{
 #define BMPL_MENU_WIN_PAL	(15)
 #define PCASE_BMPLCHAR_BASE	(BMPL_MENU_WIN_CGX+MENU_WIN_CGX_SIZ)
 
-///ƒ|ƒ‹ƒgƒŠƒXƒgƒEƒBƒ“ƒhƒE
+///ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_PLIST_PX	(2)
 #define BMPL_PLIST_PY	(4)
 #define BMPL_PLIST_SX	(22)//(15)
@@ -77,7 +77,7 @@ typedef enum{
 #define BMPL_PLIST_PAL	(SYSFONT_PAL)
 #define BMPL_PLIST_CGX	(PCASE_BMPLCHAR_BASE)
 
-//ƒ|ƒ‹ƒgƒŠƒXƒgƒŒƒxƒ‹ƒEƒBƒ“ƒhƒE
+//ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆãƒ¬ãƒ™ãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_PLISTLV_PX	(19)
 #define BMPL_PLISTLV_PY	(4)
 #define BMPL_PLISTLV_SX	(1)//(5)
@@ -87,7 +87,7 @@ typedef enum{
 #define BMPL_PLISTLV_PAL	(SYSFONT_PAL)
 #define BMPL_PLISTLV_CGX	(BMPL_PLIST_CGX+BMPL_PLIST_SIZ)
 
-///ƒ|ƒ‹ƒg‚È‚ß‚ç‚©‚³ƒEƒBƒ“ƒhƒE
+///ãƒãƒ«ãƒˆãªã‚ã‚‰ã‹ã•ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_TASTE_PX	(11)
 #define BMPL_TASTE_PY	(20)
 #define BMPL_TASTE_SX	(10)
@@ -97,7 +97,7 @@ typedef enum{
 #define BMPL_TASTE_PAL	(SYSFONT_PAL)
 #define BMPL_TASTE_CGX	(BMPL_PLISTLV_CGX+BMPL_PLISTLV_SIZ)
 
-///ƒ|ƒ‹ƒgƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
+///ãƒãƒ«ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_MSG_PX	(2)
 #define BMPL_MSG_PY	(19)
 #define BMPL_MSG_SX	(27)
@@ -107,7 +107,7 @@ typedef enum{
 #define BMPL_MSG_PAL	(MSGFONT_PAL)
 #define BMPL_MSG_CGX	(BMPL_TASTE_CGX+BMPL_TASTE_SIZ)
 
-///ƒ|ƒ‹ƒg‘I‘ğƒEƒBƒ“ƒhƒE
+///ãƒãƒ«ãƒˆé¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_MSEL_PX	(26)
 #define BMPL_MSEL_PY	(17)
 #define BMPL_MSEL_SX	(5)
@@ -117,7 +117,7 @@ typedef enum{
 #define BMPL_MSEL_PAL	(SYSFONT_PAL)
 #define BMPL_MSEL_CGX	(BMPL_MSG_CGX+BMPL_MSG_SIZ)
 
-///YNƒEƒBƒ“ƒhƒE
+///YNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_MYN_PX	(26)
 #define BMPL_MYN_PY	(13)
 #define BMPL_MYN_SX	(5)
@@ -127,7 +127,7 @@ typedef enum{
 #define BMPL_MYN_PAL	(SYSFONT_PAL)
 #define BMPL_MYN_CGX	(BMPL_MSEL_CGX+BMPL_MSEL_SIZ)
 
-//ƒƒCƒ“‰æ–Êƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE
+//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_EXPM_PX	(0)
 #define BMPL_EXPM_PY	(0)
 #define BMPL_EXPM_SX	(16)
@@ -137,10 +137,10 @@ typedef enum{
 #define BMPL_EXPM_PAL	(SYSFONT_PAL)
 #define BMPL_EXPM_CGX	(BMPL_MYN_CGX+BMPL_MYN_SIZ)
 
-//ƒTƒu‰æ–Êƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE
+//ã‚µãƒ–ç”»é¢ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/15
-// g ‚â y ‚Ì‰º‚ªŒ‡‚¯‚é‚Ì‚ÅAƒEƒBƒ“ƒhƒE‚Ì¶‰E‚ğk‚ß‚Ä‰º‚ÉŠg‘å
+// g ã‚„ y ã®ä¸‹ãŒæ¬ ã‘ã‚‹ã®ã§ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å·¦å³ã‚’ç¸®ã‚ã¦ä¸‹ã«æ‹¡å¤§
 #define BMPL_EXPS_PX	(6)
 #define BMPL_EXPS_PY	(0)
 #define BMPL_EXPS_SX	(20)
@@ -153,7 +153,7 @@ typedef enum{
 #define BMPL_EXPS_CGX	(PCASE_BMPCHAR_BASE)
 // ----------------------------------------------------------------------------
 
-//ƒXƒEƒBƒbƒ`ƒEƒBƒ“ƒhƒE
+//ã‚¹ã‚¦ã‚£ãƒƒãƒã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_SW01_PX	(12)
 #define BMPL_SW01_PY	(5)
 #define BMPL_SW01_SX	(8)
@@ -164,7 +164,7 @@ typedef enum{
 #define BMPL_SW01_CGX	(BMPL_EXPS_CGX+BMPL_EXPS_SIZ)
 
 #define BMPL_SW02_PX	(20)
-#define BMPL_SW02_PY	(10)		//(11) ã‚É‚µ‚½ goto 0512
+#define BMPL_SW02_PY	(10)		//(11) ä¸Šã«ã—ãŸ goto 0512
 #define BMPL_SW02_SX	(8)
 #define BMPL_SW02_SY	(3)
 #define BMPL_SW02_SIZ	(BMPL_SW02_SX*BMPL_SW02_SY)
@@ -191,7 +191,7 @@ typedef enum{
 #define BMPL_SW04_CGX	(BMPL_SW03_CGX+BMPL_SW03_SIZ)
 
 #define BMPL_SW05_PX	(4)
-#define BMPL_SW05_PY	(10)	//(11) ã‚É‚µ‚½ goto 0512
+#define BMPL_SW05_PY	(10)	//(11) ä¸Šã«ã—ãŸ goto 0512
 #define BMPL_SW05_SX	(8)
 #define BMPL_SW05_SY	(3)
 #define BMPL_SW05_SIZ	(BMPL_SW05_SX*BMPL_SW05_SY)

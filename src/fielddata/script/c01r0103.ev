@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_c01r0103evc.h"
 
 //--------------------------------------------------------------------
-//					     ÉXÉNÉäÉvÉgñ{ëÃ
+//					     „Çπ„ÇØ„É™„Éó„ÉàÊú¨‰Ωì
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ÉXÉNÉäÉvÉgÉeÅ[ÉuÉã
+//					     „Çπ„ÇØ„É™„Éó„Éà„ÉÜ„Éº„Éñ„É´
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c01r0103_babyboy1
 _EVENT_DATA		ev_c01r0103_middlewoman1
@@ -25,28 +25,28 @@ _EVENT_DATA		ev_c01r0103_poketch_pc4
 _EVENT_DATA_END
 
 /********************************************************************/
-/*							íjÇÃéq		Å@							*/
+/*							Áî∑„ÅÆÂ≠ê		„ÄÄ							*/
 /********************************************************************/
 ev_c01r0103_babyboy1:
 	_EASY_OBJ_MSG	msg_c01r0103_babyboy1_01
 	_END
 
 /********************************************************************/
-/*							Ç®ÇŒÇ≥ÇÒ	Å@							*/
+/*							„Åä„Å∞„Åï„Çì	„ÄÄ							*/
 /********************************************************************/
 ev_c01r0103_middlewoman1:
 	_EASY_OBJ_MSG	msg_c01r0103_middlewoman1_01
 	_END
 
 /********************************************************************/
-/*							òaïóîkÇ≥ÇÒ	Å@							*/
+/*							ÂíåÈ¢®Â©Ü„Åï„Çì	„ÄÄ							*/
 /********************************************************************/
 ev_c01r0103_oldwoman1:
 	_EASY_OBJ_MSG	msg_c01r0103_oldwoman1_01
 	_END
 
 /********************************************************************/
-/*							PC			Å@							*/
+/*							PC			„ÄÄ							*/
 /********************************************************************/
 ev_c01r0103_poketch_pc1:
 	_TALK_OBJ_START
@@ -55,9 +55,9 @@ ev_c01r0103_poketch_pc1:
 ev_c01r0103_poketch_pc1_return:
 	_TALKMSG			msg_poketch_pc1_02
 	
-	_BMPMENU_INIT		1,1,0,1,SCWK_TEMP0			//BÉLÉÉÉìÉZÉãóLå¯
+	_BMPMENU_INIT		1,1,0,1,SCWK_TEMP0			//B„Ç≠„É£„É≥„Çª„É´ÊúâÂäπ
 
-	// É|ÉPÉbÉ`éÊìæÇµÇƒÇ¢ÇÈÇ©
+	// „Éù„Ç±„ÉÉ„ÉÅÂèñÂæó„Åó„Å¶„ÅÑ„Çã„Åã
 	_GET_POKETCH_FLAG	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c01r0103_poketch_noget_pc1
 
@@ -70,7 +70,7 @@ ev_c01r0103_poketch_pc1_return:
 
 ev_c01r0103_poketch_noget_pc1:
 
-	_BMPMENU_MAKE_LIST16	msg_poketch_26,0			//Ç‚ÇﬂÇÈ
+	_BMPMENU_MAKE_LIST16	msg_poketch_26,0			//„ÇÑ„ÇÅ„Çã
 	_BMPMENU_START
 	
 	_IFVAL_JUMP			SCWK_TEMP0,EQ,1,ev_c01r0103_poketch_pc1_talk0
@@ -84,7 +84,7 @@ ev_c01r0103_poketch_noget_pc1:
 	_TALK_OBJ_END
 	_END
 
-//ÉfÉWÉ^Éãéûåv
+//„Éá„Ç∏„Çø„É´ÊôÇË®à
 ev_c01r0103_poketch_pc1_menu0:
 	_POKETCH_CHECK	POKETCH_APPID_DWATCH,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc1_menu_ret
@@ -95,7 +95,7 @@ ev_c01r0103_poketch_pc1_talk0:
 	_TALKMSG			msg_poketch_guide_01
 	_JUMP				ev_c01r0103_poketch_pc1_return
 	
-//ÉAÉiÉçÉOéûåv
+//„Ç¢„Éä„É≠„Ç∞ÊôÇË®à
 ev_c01r0103_poketch_pc1_menu1:
 	_POKETCH_CHECK	POKETCH_APPID_AWATCH,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc1_menu_ret
@@ -106,7 +106,7 @@ ev_c01r0103_poketch_pc1_talk1:
 	_TALKMSG			msg_poketch_guide_02
 	_JUMP				ev_c01r0103_poketch_pc1_return
 
-//ÉXÉgÉbÉvÉEÉHÉbÉ`
+//„Çπ„Éà„ÉÉ„Éó„Ç¶„Ç©„ÉÉ„ÉÅ
 ev_c01r0103_poketch_pc1_menu2:
 	_POKETCH_CHECK	POKETCH_APPID_STOPWATCH,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc1_menu_ret
@@ -117,7 +117,7 @@ ev_c01r0103_poketch_pc1_talk2:
 	_TALKMSG			msg_poketch_guide_04
 	_JUMP				ev_c01r0103_poketch_pc1_return
 
-//ÉLÉbÉ`ÉìÉ^ÉCÉ}Å[
+//„Ç≠„ÉÉ„ÉÅ„É≥„Çø„Ç§„Éû„Éº
 ev_c01r0103_poketch_pc1_menu3:
 	_POKETCH_CHECK	POKETCH_APPID_KITCHEN_TIMER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc1_menu_ret
@@ -128,7 +128,7 @@ ev_c01r0103_poketch_pc1_talk3:
 	_TALKMSG			msg_poketch_guide_05
 	_JUMP				ev_c01r0103_poketch_pc1_return
 
-//ÉAÉâÅ[ÉÄéûåv
+//„Ç¢„É©„Éº„É†ÊôÇË®à
 ev_c01r0103_poketch_pc1_menu4:
 	_POKETCH_CHECK	POKETCH_APPID_ALARM_WATCH,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc1_menu_ret
@@ -139,7 +139,7 @@ ev_c01r0103_poketch_pc1_talk4:
 	_TALKMSG			msg_poketch_guide_03
 	_JUMP				ev_c01r0103_poketch_pc1_return
 
-//ÉJÉåÉìÉ_Å[
+//„Ç´„É¨„É≥„ÉÄ„Éº
 ev_c01r0103_poketch_pc1_menu5:
 	_POKETCH_CHECK	POKETCH_APPID_CALENDER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc1_menu_ret
@@ -154,7 +154,7 @@ ev_c01r0103_poketch_pc1_menu_ret:
 	_RET
 
 /********************************************************************/
-/*							PC			Å@							*/
+/*							PC			„ÄÄ							*/
 /********************************************************************/
 ev_c01r0103_poketch_pc2:
 	_TALK_OBJ_START
@@ -163,9 +163,9 @@ ev_c01r0103_poketch_pc2:
 ev_c01r0103_poketch_pc2_return:
 	_TALKMSG			msg_poketch_pc2_02
 
-	_BMPMENU_INIT		1,1,0,1,SCWK_TEMP0			//BÉLÉÉÉìÉZÉãóLå¯
+	_BMPMENU_INIT		1,1,0,1,SCWK_TEMP0			//B„Ç≠„É£„É≥„Çª„É´ÊúâÂäπ
 
-	// É|ÉPÉbÉ`éÊìæÇµÇƒÇ¢ÇÈÇ©
+	// „Éù„Ç±„ÉÉ„ÉÅÂèñÂæó„Åó„Å¶„ÅÑ„Çã„Åã
 	_GET_POKETCH_FLAG	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c01r0103_poketch_noget_pc2
 
@@ -179,7 +179,7 @@ ev_c01r0103_poketch_pc2_return:
 
 ev_c01r0103_poketch_noget_pc2:
 
-	_BMPMENU_MAKE_LIST16	msg_poketch_26,0			//Ç‚ÇﬂÇÈ
+	_BMPMENU_MAKE_LIST16	msg_poketch_26,0			//„ÇÑ„ÇÅ„Çã
 	_BMPMENU_START
 	
 	_IFVAL_JUMP			SCWK_TEMP0,EQ,1,ev_c01r0103_poketch_pc2_talk0
@@ -194,7 +194,7 @@ ev_c01r0103_poketch_noget_pc2:
 	_TALK_OBJ_END
 	_END
 
-//åvéZã@
+//Ë®àÁÆóÊ©ü
 ev_c01r0103_poketch_pc2_menu0:
 	_POKETCH_CHECK	POKETCH_APPID_CALC,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc2_menu_ret
@@ -205,7 +205,7 @@ ev_c01r0103_poketch_pc2_talk0:
 	_TALKMSG			msg_poketch_guide_07
 	_JUMP				ev_c01r0103_poketch_pc2_return
 	
-//ÉÅÉÇópéÜ
+//„É°„É¢Áî®Á¥ô
 ev_c01r0103_poketch_pc2_menu1:
 	_POKETCH_CHECK	POKETCH_APPID_MEMO,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc2_menu_ret
@@ -216,7 +216,7 @@ ev_c01r0103_poketch_pc2_talk1:
 	_TALKMSG			msg_poketch_guide_14
 	_JUMP				ev_c01r0103_poketch_pc2_return
 
-//Ç»Ç¬Ç´Ç«É`ÉFÉbÉJÅ[
+//„Å™„Å§„Åç„Å©„ÉÅ„Çß„ÉÉ„Ç´„Éº
 ev_c01r0103_poketch_pc2_menu2:
 	_POKETCH_CHECK	POKETCH_APPID_NATSUKI_CHECK,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc2_menu_ret
@@ -227,7 +227,7 @@ ev_c01r0103_poketch_pc2_talk2:
 	_TALKMSG			msg_poketch_guide_09
 	_JUMP				ev_c01r0103_poketch_pc2_return
 
-//ÇªÇæÇƒÇ‚ÉJÉÅÉâ
+//„Åù„Å†„Å¶„ÇÑ„Ç´„É°„É©
 ev_c01r0103_poketch_pc2_menu3:
 	_POKETCH_CHECK	POKETCH_APPID_SODATEYA_CAMERA,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc2_menu_ret
@@ -238,7 +238,7 @@ ev_c01r0103_poketch_pc2_talk3:
 	_TALKMSG			msg_poketch_guide_10
 	_JUMP				ev_c01r0103_poketch_pc2_return
 
-//É|ÉPÉÇÉìÉâÉuÉeÉXÉ^Å[
+//„Éù„Ç±„É¢„É≥„É©„Éñ„ÉÜ„Çπ„Çø„Éº
 ev_c01r0103_poketch_pc2_menu4:
 	_POKETCH_CHECK	POKETCH_APPID_LOVETESTER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc2_menu_ret
@@ -249,7 +249,7 @@ ev_c01r0103_poketch_pc2_talk4:
 	_TALKMSG			msg_poketch_guide_11
 	_JUMP				ev_c01r0103_poketch_pc2_return
 
-//É|ÉPÉÇÉìÉqÉXÉgÉäÅ[
+//„Éù„Ç±„É¢„É≥„Éí„Çπ„Éà„É™„Éº
 ev_c01r0103_poketch_pc2_menu5:
 	_POKETCH_CHECK	POKETCH_APPID_POKEMON_HISTORY,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc2_menu_ret
@@ -260,7 +260,7 @@ ev_c01r0103_poketch_pc2_talk5:
 	_TALKMSG			msg_poketch_guide_12
 	_JUMP				ev_c01r0103_poketch_pc2_return
 
-//Ç´ÇÃÇ›ÉTÅ[É`ÉÉÅ[
+//„Åç„ÅÆ„Åø„Çµ„Éº„ÉÅ„É£„Éº
 ev_c01r0103_poketch_pc2_menu6:
 	_POKETCH_CHECK	POKETCH_APPID_SEED_SEARCHER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc2_menu_ret
@@ -275,7 +275,7 @@ ev_c01r0103_poketch_pc2_menu_ret:
 	_RET
 
 /********************************************************************/
-/*							PC			Å@							*/
+/*							PC			„ÄÄ							*/
 /********************************************************************/
 ev_c01r0103_poketch_pc3:
 	_TALK_OBJ_START
@@ -284,9 +284,9 @@ ev_c01r0103_poketch_pc3:
 ev_c01r0103_poketch_pc3_return:
 	_TALKMSG			msg_poketch_pc3_02
 
-	_BMPMENU_INIT		1,1,0,1,SCWK_TEMP0			//BÉLÉÉÉìÉZÉãóLå¯
+	_BMPMENU_INIT		1,1,0,1,SCWK_TEMP0			//B„Ç≠„É£„É≥„Çª„É´ÊúâÂäπ
 
-	// É|ÉPÉbÉ`éÊìæÇµÇƒÇ¢ÇÈÇ©
+	// „Éù„Ç±„ÉÉ„ÉÅÂèñÂæó„Åó„Å¶„ÅÑ„Çã„Åã
 	_GET_POKETCH_FLAG	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c01r0103_poketch_noget_pc3
 
@@ -299,7 +299,7 @@ ev_c01r0103_poketch_pc3_return:
 
 ev_c01r0103_poketch_noget_pc3:
 
-	_BMPMENU_MAKE_LIST16	msg_poketch_26,0			//Ç‚ÇﬂÇÈ
+	_BMPMENU_MAKE_LIST16	msg_poketch_26,0			//„ÇÑ„ÇÅ„Çã
 	_BMPMENU_START
 	
 	_IFVAL_JUMP			SCWK_TEMP0,EQ,1,ev_c01r0103_poketch_pc3_talk0
@@ -313,7 +313,7 @@ ev_c01r0103_poketch_noget_pc3:
 	_TALK_OBJ_END
 	_END
 
-//É|ÉPÉÇÉìÉäÉXÉg
+//„Éù„Ç±„É¢„É≥„É™„Çπ„Éà
 ev_c01r0103_poketch_pc3_menu0:
 	_POKETCH_CHECK	POKETCH_APPID_POKELIST,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc3_menu_ret
@@ -324,7 +324,7 @@ ev_c01r0103_poketch_pc3_talk0:
 	_TALKMSG			msg_poketch_guide_08
 	_JUMP				ev_c01r0103_poketch_pc3_return
 	
-//ÉhÉbÉgÉAÅ[Ég
+//„Éâ„ÉÉ„Éà„Ç¢„Éº„Éà
 ev_c01r0103_poketch_pc3_menu1:
 	_POKETCH_CHECK	POKETCH_APPID_DOTART,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc3_menu_ret
@@ -335,7 +335,7 @@ ev_c01r0103_poketch_pc3_talk1:
 	_TALKMSG			msg_poketch_guide_15
 	_JUMP				ev_c01r0103_poketch_pc3_return
 
-//ÉRÉCÉìÉgÉX
+//„Ç≥„Ç§„É≥„Éà„Çπ
 ev_c01r0103_poketch_pc3_menu2:
 	_POKETCH_CHECK	POKETCH_APPID_COINTOSS,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc3_menu_ret
@@ -346,7 +346,7 @@ ev_c01r0103_poketch_pc3_talk2:
 	_TALKMSG			msg_poketch_guide_19
 	_JUMP				ev_c01r0103_poketch_pc3_return
 
-//ÉãÅ[ÉåÉbÉg
+//„É´„Éº„É¨„ÉÉ„Éà
 ev_c01r0103_poketch_pc3_menu3:
 	_POKETCH_CHECK	POKETCH_APPID_ROULETTE,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc3_menu_ret
@@ -357,7 +357,7 @@ ev_c01r0103_poketch_pc3_talk3:
 	_TALKMSG			msg_poketch_guide_18
 	_JUMP				ev_c01r0103_poketch_pc3_return
 
-//ÉJÉâÅ[É`ÉFÉìÉWÉÉÅ[
+//„Ç´„É©„Éº„ÉÅ„Çß„É≥„Ç∏„É£„Éº
 ev_c01r0103_poketch_pc3_menu4:
 	_POKETCH_CHECK	POKETCH_APPID_COLOR_CHANGER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc3_menu_ret
@@ -368,7 +368,7 @@ ev_c01r0103_poketch_pc3_talk4:
 	_TALKMSG			msg_poketch_guide_16
 	_JUMP				ev_c01r0103_poketch_pc3_return
 
-//É}ÉbÉvÉ}Å[ÉLÉìÉO
+//„Éû„ÉÉ„Éó„Éû„Éº„Ç≠„É≥„Ç∞
 ev_c01r0103_poketch_pc3_menu5:
 	_POKETCH_CHECK	POKETCH_APPID_MAP_MARKING,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc3_menu_ret
@@ -383,7 +383,7 @@ ev_c01r0103_poketch_pc3_menu_ret:
 	_RET
 
 /********************************************************************/
-/*							PC			Å@							*/
+/*							PC			„ÄÄ							*/
 /********************************************************************/
 ev_c01r0103_poketch_pc4:
 	_TALK_OBJ_START
@@ -392,9 +392,9 @@ ev_c01r0103_poketch_pc4:
 ev_c01r0103_poketch_pc4_return:
 	_TALKMSG			msg_poketch_pc4_02
 
-	_BMPMENU_INIT		1,1,0,1,SCWK_TEMP0			//BÉLÉÉÉìÉZÉãóLå¯
+	_BMPMENU_INIT		1,1,0,1,SCWK_TEMP0			//B„Ç≠„É£„É≥„Çª„É´ÊúâÂäπ
 
-	// É|ÉPÉbÉ`éÊìæÇµÇƒÇ¢ÇÈÇ©
+	// „Éù„Ç±„ÉÉ„ÉÅÂèñÂæó„Åó„Å¶„ÅÑ„Çã„Åã
 	_GET_POKETCH_FLAG	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c01r0103_poketch_noget_pc4
 
@@ -407,7 +407,7 @@ ev_c01r0103_poketch_pc4_return:
 
 ev_c01r0103_poketch_noget_pc4:
 
-	_BMPMENU_MAKE_LIST16	msg_poketch_26,0			//Ç‚ÇﬂÇÈ
+	_BMPMENU_MAKE_LIST16	msg_poketch_26,0			//„ÇÑ„ÇÅ„Çã
 	_BMPMENU_START
 	
 	_IFVAL_JUMP			SCWK_TEMP0,EQ,1,ev_c01r0103_poketch_pc4_talk0
@@ -421,7 +421,7 @@ ev_c01r0103_poketch_noget_pc4:
 	_TALK_OBJ_END
 	_END
 
-//Ç‹ÇÒÇ€ÇØÇ¢
+//„Åæ„Çì„ÅΩ„Åë„ÅÑ
 ev_c01r0103_poketch_pc4_menu0:
 	_POKETCH_CHECK	POKETCH_APPID_PEDOMETER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc4_menu_ret
@@ -432,7 +432,7 @@ ev_c01r0103_poketch_pc4_talk0:
 	_TALKMSG			msg_poketch_guide_20
 	_JUMP				ev_c01r0103_poketch_pc4_return
 	
-//ÉJÉEÉìÉ^Å[
+//„Ç´„Ç¶„É≥„Çø„Éº
 ev_c01r0103_poketch_pc4_menu1:
 	_POKETCH_CHECK	POKETCH_APPID_COUNTER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc4_menu_ret
@@ -443,7 +443,7 @@ ev_c01r0103_poketch_pc4_talk1:
 	_TALKMSG			msg_poketch_guide_22
 	_JUMP				ev_c01r0103_poketch_pc4_return
 
-//É|ÉPÉÇÉìÉJÉEÉìÉ^Å[
+//„Éù„Ç±„É¢„É≥„Ç´„Ç¶„É≥„Çø„Éº
 ev_c01r0103_poketch_pc4_menu2:
 	_POKETCH_CHECK	POKETCH_APPID_POKEMON_COUNTER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc4_menu_ret
@@ -454,7 +454,7 @@ ev_c01r0103_poketch_pc4_talk2:
 	_TALKMSG			msg_poketch_guide_23
 	_JUMP				ev_c01r0103_poketch_pc4_return
 
-//í êMÉTÅ[É`ÉÉÅ[
+//ÈÄö‰ø°„Çµ„Éº„ÉÅ„É£„Éº
 ev_c01r0103_poketch_pc4_menu3:
 	_POKETCH_CHECK	POKETCH_APPID_COMM_SEARCHER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc4_menu_ret
@@ -465,7 +465,7 @@ ev_c01r0103_poketch_pc4_talk3:
 	_TALKMSG			msg_poketch_guide_24
 	_JUMP				ev_c01r0103_poketch_pc4_return
 
-//ãZå¯â É`ÉFÉbÉJÅ[
+//ÊäÄÂäπÊûú„ÉÅ„Çß„ÉÉ„Ç´„Éº
 ev_c01r0103_poketch_pc4_menu4:
 	_POKETCH_CHECK	POKETCH_APPID_WAZA_EFF_CHECK,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc4_menu_ret
@@ -476,7 +476,7 @@ ev_c01r0103_poketch_pc4_talk4:
 	_TALKMSG			msg_poketch_guide_25
 	_JUMP				ev_c01r0103_poketch_pc4_return
 
-//É_ÉEÉWÉìÉOÉ}ÉVÉì
+//„ÉÄ„Ç¶„Ç∏„É≥„Ç∞„Éû„Ç∑„É≥
 ev_c01r0103_poketch_pc4_menu5:
 	_POKETCH_CHECK	POKETCH_APPID_DOWSING,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c01r0103_poketch_pc4_menu_ret

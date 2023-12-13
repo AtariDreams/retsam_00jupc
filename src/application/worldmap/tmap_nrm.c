@@ -1,6 +1,6 @@
 /**
  *	@file	tmap_nrm.c
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒv@ƒm[ƒ}ƒ‹ƒ‚[ƒh§Œä
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ã€€ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰åˆ¶å¾¡
  *	@date	05.11.02
  *	@author	Miyuki Iwasawa
  */
@@ -34,17 +34,17 @@
 #include "tmap_nrm.dat"
 #include "fielddata/maptable/zone_id.h"
 
-//À‘Ì‚Íplace_name_core.c
+//å®Ÿä½“ã¯place_name_core.c
 extern void PNC_GetPlaceNameFromZoneID(	const int inZoneID,
 										const u32 inHeapID,
 										STRBUF *outName);
 
-///‘«Õ•\¦\‘¢‘Ì
-#define DIR_NOT			(-1)	///<Œü‚«‚ª‚È‚¢ê‡
-#define DIR_UP			(0)		///<ãŒü‚«
-#define DIR_DOWN		(1)		///<‰ºŒü‚«
-#define DIR_LEFT		(2)		///<¶Œü‚«
-#define DIR_RIGHT		(3)		///<‰EŒü‚«
+///è¶³è·¡è¡¨ç¤ºæ§‹é€ ä½“
+#define DIR_NOT			(-1)	///<å‘ããŒãªã„å ´åˆ
+#define DIR_UP			(0)		///<ä¸Šå‘ã
+#define DIR_DOWN		(1)		///<ä¸‹å‘ã
+#define DIR_LEFT		(2)		///<å·¦å‘ã
+#define DIR_RIGHT		(3)		///<å³å‘ã
 #define DIR_ROT_UP		(0)
 #define DIR_ROT_LEFT	(1)
 #define DIR_ROT_DOWN	(2)
@@ -53,58 +53,58 @@ extern void PNC_GetPlaceNameFromZoneID(	const int inZoneID,
 typedef struct _TMAP_FVIEW{
 	int	x;
 	int	z;
-	u16	dir;	//•ûŒü
+	u16	dir;	//æ–¹å‘
 	u8	idx;
 	u8	valid;
 	
-	CLACT_WORK_PTR	pAct;	///<ƒAƒNƒ^[ƒ[ƒN
+	CLACT_WORK_PTR	pAct;	///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 }TMAP_FVIEW;
 typedef struct _TMAP_FOOTVIEW{
-	int	num;	//—LŒøƒf[ƒ^”
-	TCB_PTR	tcb;	///ƒAƒjƒƒ^ƒXƒN
-	u16	anmct;	///<ƒAƒjƒƒJƒEƒ“ƒ^
+	int	num;	//æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿æ•°
+	TCB_PTR	tcb;	///ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯
+	u16	anmct;	///<ã‚¢ãƒ‹ãƒ¡ã‚«ã‚¦ãƒ³ã‚¿
 	u8	now;
 	u8	old;
 	TMAP_FVIEW	foot[TMAP_FVIEW_MAX];
 }TMAP_FOOTVIEW;
 
 typedef struct _TMAP_MODE_NORMAL{
-	int	seq;		///<ƒV[ƒN§Œä
-	int	sub_seq;	///<ƒV[ƒN§Œä
-	int	sub_ct;	///<ƒV[ƒN§Œä
-	int	main_ct;	///<ƒV[ƒN§Œä
-	u8	forcus;	///<ã‰º‰æ–Ê‚Ç‚¿‚ç‚É§Œä‚ª‚¢‚é‚©H
-	u8	key_f;	///<ƒL[ƒtƒ‰ƒO
-	u8	view_f;	///<ƒrƒ…[XVƒtƒ‰ƒO
-	u8	cmove_f;	///<ƒJ[ƒ\ƒ‹‚ªˆÚ“®’†‚©‚Ç‚¤‚©H
-	u8	tp_f;	///<ƒ^ƒbƒ`ƒpƒlƒ‹ƒRƒ“ƒgƒ[ƒ‹ƒtƒ‰ƒO
-	u8	guide_f:4;	///<ƒKƒCƒhXVƒtƒ‰ƒO	
-	u8	board_f:4;	///<ƒ{[ƒhƒ^ƒCƒv¯•Êƒtƒ‰ƒO	
-	u16	repeat_f;	///<ƒŠƒs[ƒg
-	int cposX;		///<Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u(ƒuƒƒbƒN)
-	int cposZ;		///<Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u(ƒuƒƒbƒN)
-	int	czoneID;	///<Œ»İ‚Ìƒ][ƒ“ID
-	int	ozoneID;	///<ŒÃ‚¢ƒ][ƒ“ID
+	int	seq;		///<ã‚·ãƒ¼ã‚¯åˆ¶å¾¡
+	int	sub_seq;	///<ã‚·ãƒ¼ã‚¯åˆ¶å¾¡
+	int	sub_ct;	///<ã‚·ãƒ¼ã‚¯åˆ¶å¾¡
+	int	main_ct;	///<ã‚·ãƒ¼ã‚¯åˆ¶å¾¡
+	u8	forcus;	///<ä¸Šä¸‹ç”»é¢ã©ã¡ã‚‰ã«åˆ¶å¾¡ãŒã„ã‚‹ã‹ï¼Ÿ
+	u8	key_f;	///<ã‚­ãƒ¼ãƒ•ãƒ©ã‚°
+	u8	view_f;	///<ãƒ“ãƒ¥ãƒ¼æ›´æ–°ãƒ•ãƒ©ã‚°
+	u8	cmove_f;	///<ã‚«ãƒ¼ã‚½ãƒ«ãŒç§»å‹•ä¸­ã‹ã©ã†ã‹ï¼Ÿ
+	u8	tp_f;	///<ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ•ãƒ©ã‚°
+	u8	guide_f:4;	///<ã‚¬ã‚¤ãƒ‰æ›´æ–°ãƒ•ãƒ©ã‚°	
+	u8	board_f:4;	///<ãƒœãƒ¼ãƒ‰ã‚¿ã‚¤ãƒ—è­˜åˆ¥ãƒ•ãƒ©ã‚°	
+	u16	repeat_f;	///<ãƒªãƒ”ãƒ¼ãƒˆ
+	int cposX;		///<ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®(ãƒ–ãƒ­ãƒƒã‚¯)
+	int cposZ;		///<ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®(ãƒ–ãƒ­ãƒƒã‚¯)
+	int	czoneID;	///<ç¾åœ¨ã®ã‚¾ãƒ¼ãƒ³ID
+	int	ozoneID;	///<å¤ã„ã‚¾ãƒ¼ãƒ³ID
 	
-	GF_BGL_BMPWIN	win[WIN_MAX];	///<BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
-	GF_BGL_BMPWIN*	pBoardWin;	///<ƒ{[ƒh—pƒEƒBƒ“ƒhƒE
+	GF_BGL_BMPWIN	win[WIN_MAX];	///<BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+	GF_BGL_BMPWIN*	pBoardWin;	///<ãƒœãƒ¼ãƒ‰ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-	TMAP_SCROLLPRM	scrBGM0;	///<ƒXƒNƒ[ƒ‹ƒpƒ‰ƒ[ƒ^
-	TMAP_SCROLLPRM	scrBGS0;	///<ƒXƒNƒ[ƒ‹ƒpƒ‰ƒ[ƒ^
+	TMAP_SCROLLPRM	scrBGM0;	///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	TMAP_SCROLLPRM	scrBGS0;	///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	TMAP_VIEW_DAT*	pTView;	///<ƒ^ƒEƒ“Viewƒf[ƒ^
-	TMAP_GDAT*		pBlock;	///<ƒuƒƒbƒNƒf[ƒ^
+	TMAP_VIEW_DAT*	pTView;	///<ã‚¿ã‚¦ãƒ³Viewãƒ‡ãƒ¼ã‚¿
+	TMAP_GDAT*		pBlock;	///<ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 
-	TMAP_FOOTVIEW	fView;	///<‘«Õ•`‰æ
+	TMAP_FOOTVIEW	fView;	///<è¶³è·¡æç”»
 
-	CLACT_WORK_PTR	pCAW_btn;	///<ƒAƒNƒ^[ƒ[ƒN
-	CLACT_WORK_PTR	pCAW_cur;	///<ƒAƒNƒ^[ƒ[ƒN
-	CLACT_WORK_PTR	pCAW_hero;	///<ƒAƒNƒ^[ƒ[ƒN
+	CLACT_WORK_PTR	pCAW_btn;	///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	CLACT_WORK_PTR	pCAW_cur;	///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	CLACT_WORK_PTR	pCAW_hero;	///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 
-	TCB_PTR			tcb;	//ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
+	TCB_PTR			tcb;	//ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
 }TMAP_MODE_NORMAL;
 
-///ƒvƒƒgƒ^ƒCƒv
+///ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 int	TMapNormal_Init(TMAP_MAIN_DAT* pMain);
 int	TMapNormal_Build(TMAP_MAIN_DAT* pMain);
 int	TMapNormal_KeyIn(TMAP_MAIN_DAT* pMain);
@@ -150,7 +150,7 @@ static void TMapNS_SVForcusOutTask(TCB_PTR tcb,void* work);
 static int TMapJ_CheckJumpPos(TMAP_MAIN_DAT* pMain);
 
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒh‰Šú‰»
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰åˆæœŸåŒ–
  */
 int	TMapNormal_Init(TMAP_MAIN_DAT* pMain)
 {
@@ -164,13 +164,13 @@ int	TMapNormal_Init(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒh‰ğ•ú
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰è§£æ”¾
  */
 int TMapNormal_Release(TMAP_MAIN_DAT *pMain)
 {
 	TMAP_MODE_NORMAL* wk = pMain->pSwork;
 
-	//ƒrƒ…[ƒNƒŠƒA
+	//ãƒ“ãƒ¥ãƒ¼ã‚¯ãƒªã‚¢
 	TMapN_2DGrapClear(pMain);
 	if(pMain->mode != TMAP_MBG){
 		TMapN_FootViewRelease(pMain);
@@ -182,7 +182,7 @@ int TMapNormal_Release(TMAP_MAIN_DAT *pMain)
 }
 
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒhƒf[ƒ^\’z
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿æ§‹ç¯‰
  */
 int	TMapNormal_Build(TMAP_MAIN_DAT* pMain)
 {
@@ -190,20 +190,20 @@ int	TMapNormal_Build(TMAP_MAIN_DAT* pMain)
 	
 	switch(wk->seq){
 	case 0:
-		//ƒƒCƒ“‚©‚ç‚Ìƒf[ƒ^ˆøŒp‚¬
+		//ãƒ¡ã‚¤ãƒ³ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿å¼•ç¶™ã
 		wk->cposX = pMain->cposX;
 		wk->cposZ = pMain->cposZ;
-		wk->czoneID = -1;	//ƒ_ƒ~[’l
-		//ƒTƒu‰æ–ÊƒJ[ƒ\ƒ‹ˆÊ’u•`‰æ
+		wk->czoneID = -1;	//ãƒ€ãƒŸãƒ¼å€¤
+		//ã‚µãƒ–ç”»é¢ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®æç”»
 		wk->scrBGS0.scrX = (wk->cposX*TMAP_SBLOCK_UNIT+8)	- 128+16;
 		wk->scrBGS0.scrY = (wk->cposZ*TMAP_SBLOCK_UNIT)	- 96;
 
 		TMapN_SubScrollSet(pMain,wk->scrBGS0.scrX,wk->scrBGS0.scrY);
 
-		//BmpƒEƒBƒ“ƒhƒE‰Šú‰»
+		//Bmpã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 		TMapN_BmpWinSet(pMain);
 		
-		//‘«Õƒ}[ƒN
+		//è¶³è·¡ãƒãƒ¼ã‚¯
 		if(pMain->mode != TMAP_MBG){
 			TMapN_FootViewInit(pMain);
 		}
@@ -212,10 +212,10 @@ int	TMapNormal_Build(TMAP_MAIN_DAT* pMain)
 		//2DGrapSet
 		TMapN_2DGrapDefSet(pMain);
 
-		//ƒZƒ‹ƒAƒNƒ^[’Ç‰Á
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
 		TMapN_CellActSet(pMain);
 		
-		//ƒ^ƒEƒ“Viewì¬
+		//ã‚¿ã‚¦ãƒ³Viewä½œæˆ
 		wk->pTView = TownViewDataCreate(pMain->pCActSys,pMain->pCActRes,
 				pMain->param->arrive,TOWN_VIEW_MAX,pMain->heapID);
 	
@@ -229,7 +229,7 @@ int	TMapNormal_Build(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒh@ƒtƒF[ƒhƒCƒ“
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  */
 int TMapNormal_FadeInSet(TMAP_MAIN_DAT* pMain)
 {
@@ -242,12 +242,12 @@ int TMapNormal_FadeInSet(TMAP_MAIN_DAT* pMain)
 
 	WIPE_ResetBrightness(WIPE_DISP_MAIN);
 	WIPE_ResetBrightness(WIPE_DISP_SUB);
-	//ƒuƒŒƒ“ƒhİ’è
+	//ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®š
 	G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2,GX_BLEND_PLANEMASK_BG3,28,4);
 	return TMAP_SEQ_CONTINUE;
 }
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒh@ƒtƒF[ƒhƒAƒEƒg
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  */
 int TMapNormal_FadeOutSet(TMAP_MAIN_DAT* pMain)
 {
@@ -261,7 +261,7 @@ int TMapNormal_FadeOutSet(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	BGƒ‚[ƒh@ƒtƒF[ƒhƒCƒ“
+ *	@brief	BGãƒ¢ãƒ¼ãƒ‰ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  */
 int TMapBG_FadeInSet(TMAP_MAIN_DAT* pMain)
 {
@@ -274,12 +274,12 @@ int TMapBG_FadeInSet(TMAP_MAIN_DAT* pMain)
 
 	WIPE_ResetBrightness(WIPE_DISP_MAIN);
 //	WIPE_ResetBrightness(WIPE_DISP_SUB);
-	//ƒuƒŒƒ“ƒhİ’è
+	//ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®š
 	G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2,GX_BLEND_PLANEMASK_BG3,28,4);
 	return TMAP_SEQ_CONTINUE;
 }
 /**
- *	@brief	BGƒ‚[ƒh@ƒtƒF[ƒhƒAƒEƒg
+ *	@brief	BGãƒ¢ãƒ¼ãƒ‰ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  */
 int TMapBG_FadeOutSet(TMAP_MAIN_DAT* pMain)
 {
@@ -294,7 +294,7 @@ int TMapBG_FadeOutSet(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒhƒL[æ“¾
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚­ãƒ¼å–å¾—
  */
 int	TMapNormal_KeyIn(TMAP_MAIN_DAT* pMain)
 {
@@ -306,7 +306,7 @@ int	TMapNormal_KeyIn(TMAP_MAIN_DAT* pMain)
 		return TMAP_SEQ_FINISH;	
 	}
 	if(wk->tp_f > 1){
-		//ƒTƒu‰æ–ÊØ‚è‘Ö‚¦’†‚ÍƒL[ŒŸ’m‚µ‚È‚¢
+		//ã‚µãƒ–ç”»é¢åˆ‡ã‚Šæ›¿ãˆä¸­ã¯ã‚­ãƒ¼æ¤œçŸ¥ã—ãªã„
 		return TMAP_SEQ_CONTINUE;
 	}
 	TMapN_CheckKeyCursor(pMain,sys.cont);
@@ -315,13 +315,13 @@ int	TMapNormal_KeyIn(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒWƒƒƒ“ƒvƒ‚[ƒhƒL[æ“¾	ƒL[ƒEƒFƒCƒgƒ‚[ƒh
+ *	@brief	ã‚¸ãƒ£ãƒ³ãƒ—ãƒ¢ãƒ¼ãƒ‰ã‚­ãƒ¼å–å¾—	ã‚­ãƒ¼ã‚¦ã‚§ã‚¤ãƒˆãƒ¢ãƒ¼ãƒ‰
  */
 int	TMapJump_KeyIn(TMAP_MAIN_DAT* pMain)
 {
 	TMAP_MODE_NORMAL* wk = pMain->pSwork;
 
-	if(wk->tp_f <= 1){	//ƒ^ƒbƒ`ƒpƒlƒ‹ƒ^ƒXƒN‚ª“®‚¢‚Ä‚¢‚é‚Æ‚«‚ÍI—¹‚µ‚È‚¢
+	if(wk->tp_f <= 1){	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚¿ã‚¹ã‚¯ãŒå‹•ã„ã¦ã„ã‚‹ã¨ãã¯çµ‚äº†ã—ãªã„
 		if(sys.trg & PAD_BUTTON_DECIDE){
 			if(TMapJ_CheckJumpPos(pMain)){
 				Snd_SePlay(SND_TMAP_DECIDE);
@@ -334,7 +334,7 @@ int	TMapJump_KeyIn(TMAP_MAIN_DAT* pMain)
 		}
 	}
 	if(wk->tp_f > 1){
-		//ƒTƒu‰æ–ÊØ‚è‘Ö‚¦’†‚ÍƒL[ŒŸ’m‚µ‚È‚¢
+		//ã‚µãƒ–ç”»é¢åˆ‡ã‚Šæ›¿ãˆä¸­ã¯ã‚­ãƒ¼æ¤œçŸ¥ã—ãªã„
 		return TMAP_SEQ_CONTINUE;
 	}
 
@@ -343,7 +343,7 @@ int	TMapJump_KeyIn(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	BGƒ‚[ƒhƒL[æ“¾
+ *	@brief	BGãƒ¢ãƒ¼ãƒ‰ã‚­ãƒ¼å–å¾—
  */
 int	TMapBG_KeyIn(TMAP_MAIN_DAT* pMain)
 {
@@ -359,15 +359,15 @@ int	TMapBG_KeyIn(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒh@ƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‹
- *	@param	pMain TMAP_MAIN_DAT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€€ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+ *	@param	pMain TMAP_MAIN_DATã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 int TMapNormal_Main(TMAP_MAIN_DAT* pMain)
 {
 	TMAP_MODE_NORMAL* wk = pMain->pSwork;
 	
 	if(wk->view_f & VIEW_UP){
-		//ƒuƒƒbƒNXV
+		//ãƒ–ãƒ­ãƒƒã‚¯æ›´æ–°
 		if(wk->guide_f >= 2){
 			TMapN_BlockChange(pMain);
 			wk->view_f = VIEW_CLEAR;
@@ -383,8 +383,8 @@ int TMapNormal_Main(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒh@DrawƒV[ƒPƒ“ƒX
- *	@param	pMain TMAP_MAIN_DAT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€€Drawã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *	@param	pMain TMAP_MAIN_DATã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 int TMapNormal_Draw(TMAP_MAIN_DAT* pMain)
 {
@@ -392,7 +392,7 @@ int TMapNormal_Draw(TMAP_MAIN_DAT* pMain)
 	TMAP_FVIEW *wp;
 	int i;
 
-	//‘«Õ•`‰æ
+	//è¶³è·¡æç”»
 	for(i = 0;i < wk->fView.num;i++){
 		wp = &(wk->fView.foot[i]);
 	}
@@ -402,8 +402,8 @@ int TMapNormal_Draw(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ŠÅ”ÂƒtƒŒ[ƒ€ VBlank“]‘—
- *	@param	pMain TMAP_MAIN_DAT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	çœ‹æ¿ãƒ•ãƒ¬ãƒ¼ãƒ  VBlankè»¢é€
+ *	@param	pMain TMAP_MAIN_DATã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 int TMapNormal_VBlank(TMAP_MAIN_DAT* pMain)
 {
@@ -419,19 +419,19 @@ int TMapNormal_VBlank(TMAP_MAIN_DAT* pMain)
 	if(!pMain->vb_trans){
 		return TMAP_SEQ_CONTINUE;
 	}
-	//ƒtƒ‰ƒOOff
+	//ãƒ•ãƒ©ã‚°Off
 	pMain->vb_trans = 0;
 
-	//ˆ—
+	//å‡¦ç†
 	if(pBlock == NULL){
-		//ƒuƒƒbƒNƒf[ƒ^–³‚µ
+		//ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç„¡ã—
 		TMapN_BlockExpWrite(pMain,&(wk->win[WIN_BLOCK]),NULL);
 		TMap_BoardGraphicOff(pMain);
 		return TMAP_SEQ_CONTINUE;
 	}
 	TMapN_BlockExpWrite(pMain,&(wk->win[WIN_BLOCK]),pBlock);
 	
-	//ƒ{[ƒhƒƒbƒZ[ƒW•`‰æ
+	//ãƒœãƒ¼ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 	STRBUF_Clear(pMain->placeName);
 	TMapN_ZoneNameGet(pMain,zoneID,wk->cposX,wk->cposZ);
 	
@@ -444,7 +444,7 @@ int TMapNormal_VBlank(TMAP_MAIN_DAT* pMain)
 	}else{
 		win = &wk->win[WIN_BOARD1];
 	}
-	//‚±‚ê‚©‚ç•`‚­ƒEƒBƒ“ƒhƒE‚ğ‰¯‚¦‚Ä‚¨‚­
+	//ã“ã‚Œã‹ã‚‰æãã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ†¶ãˆã¦ãŠã
 	wk->pBoardWin = win;
 	wk->board_f = pBlock->kType;
 	
@@ -464,7 +464,7 @@ int TMapNormal_VBlank(TMAP_MAIN_DAT* pMain)
 	return TMAP_SEQ_CONTINUE;
 }
 /**
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹ƒ`ƒFƒbƒN
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒã‚§ãƒƒã‚¯
  */
 static int TMapNS_TPCheck(TMAP_MAIN_DAT* pMain,int mode)
 {
@@ -480,7 +480,7 @@ static int TMapNS_TPCheck(TMAP_MAIN_DAT* pMain,int mode)
 	if(ret == RECT_HIT_NONE || mode == TMAPN_FORCUS_SUB){
 		return ret;
 	}
-	pat = 0x0012;	//0000 0011 1111 1111	–³ŒøƒpƒŒƒbƒgbit(on‚É‚È‚Á‚Ä‚¢‚éFNo‚Í”½‰‚³‚¹‚È‚¢)
+	pat = 0x0012;	//0000 0011 1111 1111	ç„¡åŠ¹ãƒ‘ãƒ¬ãƒƒãƒˆbit(onã«ãªã£ã¦ã„ã‚‹è‰²Noã¯åå¿œã•ã›ãªã„)
 	if(GF_BGL_DotCheck(pMain->bgl,GF_BGL_FRAME1_S,sys.tp_x,sys.tp_y,&pat) == FALSE){
 		return ret;
 	}
@@ -488,14 +488,14 @@ static int TMapNS_TPCheck(TMAP_MAIN_DAT* pMain,int mode)
 }
 
 /**
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹ƒ`ƒFƒbƒN
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒã‚§ãƒƒã‚¯
  */
 static BOOL TMapNS_TPCheckCall(TMAP_MAIN_DAT* pMain)
 {
 	TMAP_MODE_NORMAL* wk = pMain->pSwork;
 
 	if(pMain->param->mode == TMAP_MBG){
-		return FALSE;	//BGƒ‚[ƒh‚Íƒ^ƒbƒ`ƒpƒlƒ‹ƒ`ƒFƒbƒN–³‚µ
+		return FALSE;	//BGãƒ¢ãƒ¼ãƒ‰ã¯ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒã‚§ãƒƒã‚¯ç„¡ã—
 	}
 	if(GF_TP_GetCont()){
 		if(wk->tp_f == 0 && TMapNS_TPCheck(pMain,wk->forcus) != RECT_HIT_NONE){
@@ -510,7 +510,7 @@ static BOOL TMapNS_TPCheckCall(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ˆÚ“®ƒL[ƒ`ƒFƒbƒN
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
  */
 static void TMapN_CheckKeyCursor(TMAP_MAIN_DAT* pMain,int key)
 {
@@ -518,14 +518,14 @@ static void TMapN_CheckKeyCursor(TMAP_MAIN_DAT* pMain,int key)
 
 	if(wk->key_f){
 		if(!(key & (PAD_KEY_UP|PAD_KEY_DOWN|PAD_KEY_RIGHT|PAD_KEY_LEFT))){
-			if(wk->guide_f == 1){	//‰Ÿ‚µ‚Á‚Ï‚È‚µƒ`ƒFƒbƒN
+			if(wk->guide_f == 1){	//æŠ¼ã—ã£ã±ãªã—ãƒã‚§ãƒƒã‚¯
 				++wk->guide_f;
 			}
 		}
-		return;	//ƒJ[ƒ\ƒ‹ˆÚ“®’†
+		return;	//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ä¸­
 	}
 
-	//ƒ^ƒbƒ`ƒpƒlƒ‹ƒ`ƒFƒbƒN
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒã‚§ãƒƒã‚¯
 	if(TMapNS_TPCheckCall(pMain)){
 		return;
 	}
@@ -561,7 +561,7 @@ static void TMapN_CheckKeyCursor(TMAP_MAIN_DAT* pMain,int key)
 		}
 	}
 	wk->cmove_f = CMOVE_COUNT;
-	wk->key_f |= KEYS_FREEZE;	//ƒL[ƒtƒbƒN
+	wk->key_f |= KEYS_FREEZE;	//ã‚­ãƒ¼ãƒ•ãƒƒã‚¯
 
 	if(wk->view_f != 0){
 		wk->repeat_f++;
@@ -574,21 +574,21 @@ static void TMapN_CheckKeyCursor(TMAP_MAIN_DAT* pMain,int key)
 }
 
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ˆÚ“®ƒuƒƒbƒNØ‚è‘Ö‚¦
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ–ãƒ­ãƒƒã‚¯åˆ‡ã‚Šæ›¿ãˆ
  */
 static void TMapN_BlockChange(TMAP_MAIN_DAT* pMain)
 {
 	TMAP_MODE_NORMAL* wk = pMain->pSwork;
 	
-	//’n–¼•\¦‘‚«Š·‚¦
+	//åœ°åè¡¨ç¤ºæ›¸ãæ›ãˆ
 	TMapN_ZoneNameWrite(
 		pMain,&(wk->win[WIN_M01]),wk->czoneID,wk->cposX,wk->cposZ);
 	
-	//‹ó‚ğ”ò‚Ôƒ|ƒWƒVƒ‡ƒ“ƒ`ƒFƒbƒN
+	//ç©ºã‚’é£›ã¶ãƒã‚¸ã‚·ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
 	TownViewDataSelectPos(wk->pTView,wk->czoneID,wk->cposX,wk->cposZ);
 	
 	if(wk->forcus == TMAPN_FORCUS_SUB){
-		//ƒuƒƒbƒNà–¾‘‚«Š·‚¦
+		//ãƒ–ãƒ­ãƒƒã‚¯èª¬æ˜æ›¸ãæ›ãˆ
 		TMap_BoardMsgSet(pMain,wk->pBlock,wk->czoneID);
 		GF_BGL_LoadScreenV_Req(pMain->bgl,GF_BGL_FRAME0_S);
 		GF_BGL_LoadScreenV_Req(pMain->bgl,GF_BGL_FRAME1_S);
@@ -596,17 +596,17 @@ static void TMapN_BlockChange(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ˆÚ“®ƒuƒƒbƒNØ‚è‘Ö‚¦
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ–ãƒ­ãƒƒã‚¯åˆ‡ã‚Šæ›¿ãˆ
  */
 static void TMapN_BlockReset(TMAP_MAIN_DAT* pMain)
 {
 	TMAP_MODE_NORMAL* wk = pMain->pSwork;
 	
-	//Œ»İ‚Ìƒ][ƒ“‚ğæ“¾
+	//ç¾åœ¨ã®ã‚¾ãƒ¼ãƒ³ã‚’å–å¾—
 	wk->ozoneID = wk->czoneID;
 	wk->czoneID = GetFieldMatrixZoneID((FMZ_CONST_PTR)pMain->pZone,wk->cposX,wk->cposZ);
 
-	//Œ»İ‚ÌƒuƒƒbƒNƒf[ƒ^‚ğæ“¾
+	//ç¾åœ¨ã®ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	wk->pBlock = TMapBlockDataGet(pMain->pBDat,wk->cposX,wk->cposZ,pMain->mapView);
 }
 
@@ -617,7 +617,7 @@ typedef struct _SP_ZONE_NAME{
 }SP_ZONE_NAME;
 
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒ}ƒgƒŠƒNƒXƒ][ƒ“ID‚Æx,zÀ•W‚©‚çA•\¦‚·‚é’n–¼•¶š—ñ‚ğŒˆ‚ß‚é
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒˆãƒªã‚¯ã‚¹ã‚¾ãƒ¼ãƒ³IDã¨x,zåº§æ¨™ã‹ã‚‰ã€è¡¨ç¤ºã™ã‚‹åœ°åæ–‡å­—åˆ—ã‚’æ±ºã‚ã‚‹
  */
 static void TMapN_ZoneNameGet(TMAP_MAIN_DAT *pMain,int zoneID,int x,int z)
 {
@@ -639,26 +639,26 @@ static void TMapN_ZoneNameGet(TMAP_MAIN_DAT *pMain,int zoneID,int x,int z)
 		{20,12,ZONE_ID_D32R0101},
 	};
 	if(zoneID != 0)	{
-		//ƒtƒB[ƒ‹ƒhƒ}ƒgƒŠƒNƒXƒ][ƒ“ID‚©‚çæ“¾
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒˆãƒªã‚¯ã‚¹ã‚¾ãƒ¼ãƒ³IDã‹ã‚‰å–å¾—
 		PNC_GetPlaceNameFromZoneID(zoneID,pMain->heapID,pMain->placeName);
 		return;
 	}
-	//ƒtƒB[ƒ‹ƒhƒ}ƒgƒŠƒNƒXã‚É‚È‚¢ƒ][ƒ“–¼‚ğÀ•W‚©‚çæ“¾‚·‚é
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒˆãƒªã‚¯ã‚¹ä¸Šã«ãªã„ã‚¾ãƒ¼ãƒ³åã‚’åº§æ¨™ã‹ã‚‰å–å¾—ã™ã‚‹
 	for(i = 0;i < NELEMS(spZone);i++){
 		if(spZone[i].x !=  x || spZone[i].z != z){
 			continue;
 		}
-		//ŠY“–êŠŒ©‚Â‚©‚Á‚½
+		//è©²å½“å ´æ‰€è¦‹ã¤ã‹ã£ãŸ
 		PNC_GetPlaceNameFromZoneID(spZone[i].zoneID,pMain->heapID,pMain->placeName);
 		return;	
 	}
-	//–¼‘O‚Ì‚È‚¢êŠ—p‚Ì•¶š—ñ‚ğ•\¦
+	//åå‰ã®ãªã„å ´æ‰€ç”¨ã®æ–‡å­—åˆ—ã‚’è¡¨ç¤º
 	PNC_GetPlaceNameFromZoneID(0,pMain->heapID,pMain->placeName);
 	return;
 }
 
 /**
- *	@brief	ƒ][ƒ“–¼‚Ì•\¦ŠÖ”
+ *	@brief	ã‚¾ãƒ¼ãƒ³åã®è¡¨ç¤ºé–¢æ•°
  *
  */
 static void TMapN_ZoneNameWrite(TMAP_MAIN_DAT *pMain,GF_BGL_BMPWIN* win,int zoneID,int x,int z)
@@ -681,7 +681,7 @@ static void TMapN_ZoneNameWrite(TMAP_MAIN_DAT *pMain,GF_BGL_BMPWIN* win,int zone
 		}else{
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2006/11/28
-			// ’n–¼‚Ì•\¦ˆÊ’u‚ğAƒEƒBƒ“ƒhƒE‚Ì’†S‚Å‚Í‚È‚­ƒXƒNƒŠ[ƒ“‚Ì’†S‚É
+			// åœ°åã®è¡¨ç¤ºä½ç½®ã‚’ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸­å¿ƒã§ã¯ãªãã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ä¸­å¿ƒã«
 			siz = (BMPL_M01_SX-BMPL_M01_PX)*8-FontProc_GetPrintStrWidth(FONT_SYSTEM,pMain->placeName,0);
 			// ----------------------------------------------------------------------------
 			siz/=2;
@@ -695,7 +695,7 @@ static void TMapN_ZoneNameWrite(TMAP_MAIN_DAT *pMain,GF_BGL_BMPWIN* win,int zone
 							NULL );
 	}
 
-	//‚Ç‚±‚Ö”ò‚Ñ‚Ü‚·‚©H
+	//ã©ã“ã¸é£›ã³ã¾ã™ã‹ï¼Ÿ
 	if(pMain->mode == TMAP_MJUMP){
 		STRBUF* buf_q = MSGMAN_AllocString(pMain->pMsgTMap,mes_townmap_01_01);
 		GF_STR_PrintColor(	win,
@@ -712,7 +712,7 @@ static void TMapN_ZoneNameWrite(TMAP_MAIN_DAT *pMain,GF_BGL_BMPWIN* win,int zone
 }
 
 /**
- *	@brief	ƒuƒƒbƒNà–¾‚Ì•\¦ŠÖ”
+ *	@brief	ãƒ–ãƒ­ãƒƒã‚¯èª¬æ˜ã®è¡¨ç¤ºé–¢æ•°
  *
  */
 static void TMapN_BlockExpWrite(TMAP_MAIN_DAT *pMain,GF_BGL_BMPWIN* win,TMAP_GDAT* pBlock)
@@ -723,9 +723,9 @@ static void TMapN_BlockExpWrite(TMAP_MAIN_DAT *pMain,GF_BGL_BMPWIN* win,TMAP_GDA
 	STRBUF *ex2;
 	
 	if(pBlock == NULL){
-		//ƒEƒBƒ“ƒhƒEƒNƒŠƒA
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
 #if	S2410_060815_FIX
-		/*ƒ}ƒXƒ^[ŒãƒoƒOfix à–¾ƒeƒLƒXƒgƒ`ƒ‰‚Â‚«•s‹ï‡‰ğÁ*/
+		/*ãƒã‚¹ã‚¿ãƒ¼å¾Œãƒã‚°fix èª¬æ˜ãƒ†ã‚­ã‚¹ãƒˆãƒãƒ©ã¤ãä¸å…·åˆè§£æ¶ˆ*/
 		GF_BGL_BmpWinDataFill(win,0);
 		GF_BGL_BmpWinOn(win);
 #endif
@@ -763,7 +763,7 @@ static void TMapN_BlockExpWrite(TMAP_MAIN_DAT *pMain,GF_BGL_BMPWIN* win,TMAP_GDA
 	}
 }
 /**
- *	@brief	ƒJ[ƒ\ƒ‹‚Ì•`‰æêŠXV
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ã®æç”»å ´æ‰€æ›´æ–°
  */
 static void TMapN_CursorDrawUp(TMAP_MAIN_DAT* pMain)
 {
@@ -774,16 +774,16 @@ static void TMapN_CursorDrawUp(TMAP_MAIN_DAT* pMain)
 		return;
 	}
 	if(wk->cmove_f-- == CMOVE_COUNT){
-		//ƒJ[ƒ\ƒ‹ˆÚ“®
+		//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 		CATS_ObjectPosSet(wk->pCAW_cur,
 				wk->cposX*CMOVE_UNIT+CMOVE_OFSX,
 				wk->cposZ*CMOVE_UNIT+CMOVE_OFSZ);
-		CLACT_AnmFrameChg(wk->pCAW_cur,FX32_ONE);	//ƒAƒjƒƒpƒ^[ƒ“ƒŠƒZƒbƒg
+		CLACT_AnmFrameChg(wk->pCAW_cur,FX32_ONE);	//ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒªã‚»ãƒƒãƒˆ
 
-		//ƒuƒƒbƒNƒf[ƒ^ƒŠƒZƒbƒg
+		//ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 		TMapN_BlockReset(pMain);
 
-		//ã‰æ–Êƒ][ƒ“–¼•\¦ƒŠƒ‰ƒCƒg
+		//ä¸Šç”»é¢ã‚¾ãƒ¼ãƒ³åè¡¨ç¤ºãƒªãƒ©ã‚¤ãƒˆ
 		TMapN_ZoneNameWrite(
 			pMain,&(wk->win[WIN_M01]),
 			GetFieldMatrixZoneID((FMZ_CONST_PTR)pMain->pZone,wk->cposX,wk->cposZ),wk->cposX,wk->cposZ);
@@ -807,8 +807,8 @@ static void TMapN_CursorDrawUp(TMAP_MAIN_DAT* pMain)
 	if(wk->cmove_f > 0){
 		return;
 	}
-	wk->view_f = VIEW_UP;	//viewXV
-	wk->key_f = 0;	//ƒL[ƒtƒbƒN‰ğœ
+	wk->view_f = VIEW_UP;	//viewæ›´æ–°
+	wk->key_f = 0;	//ã‚­ãƒ¼ãƒ•ãƒƒã‚¯è§£é™¤
 
 	if(wk->ozoneID != wk->czoneID){
 		TownViewDataSelectPos(wk->pTView,-1,0,0);
@@ -816,8 +816,8 @@ static void TMapN_CursorDrawUp(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ŠÅ”ÂƒtƒŒ[ƒ€ƒƒbƒZ[ƒW•\¦
- *	@param	pMain TMAP_MAIN_DAT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	çœ‹æ¿ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+ *	@param	pMain TMAP_MAIN_DATã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 static void TMap_BoardMsgSet(TMAP_MAIN_DAT* pMain,TMAP_GDAT* pBlock,int zoneID)
 {
@@ -827,7 +827,7 @@ static void TMap_BoardMsgSet(TMAP_MAIN_DAT* pMain,TMAP_GDAT* pBlock,int zoneID)
 	GF_PRINTCOLOR col;
 	STRBUF *name;
 
-	//ƒpƒ‰ƒ[ƒ^•Û‘¶(ÀÛ‚ÌXV‚ÍVBlank’†‚És‚¤)
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿å­˜(å®Ÿéš›ã®æ›´æ–°ã¯VBlankä¸­ã«è¡Œã†)
 	pMain->vb_zoneID = zoneID;
 	pMain->vb_block = pBlock;
 	pMain->vb_trans = 1;
@@ -835,8 +835,8 @@ static void TMap_BoardMsgSet(TMAP_MAIN_DAT* pMain,TMAP_GDAT* pBlock,int zoneID)
 }
 
 /**
- *	@brief	ŠÅ”ÂƒtƒŒ[ƒ€•\¦Off
- *	@param	pMain TMAP_MAIN_DAT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	çœ‹æ¿ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤ºOff
+ *	@param	pMain TMAP_MAIN_DATã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 static void TMap_BoardGraphicOff(TMAP_MAIN_DAT* pMain)
 {
@@ -858,8 +858,8 @@ static void TMap_BoardGraphicOff(TMAP_MAIN_DAT* pMain)
 
 
 /**
- *	@brief	ƒKƒCƒhƒ^ƒO•\¦
- *	@param	pMain TMAP_MAIN_DAT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	ã‚¬ã‚¤ãƒ‰ã‚¿ã‚°è¡¨ç¤º
+ *	@param	pMain TMAP_MAIN_DATã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 static void TMap_GuideTagSet(TMAP_MAIN_DAT* pMain,GF_BGL_BMPWIN* win)
 {
@@ -867,14 +867,14 @@ static void TMap_GuideTagSet(TMAP_MAIN_DAT* pMain,GF_BGL_BMPWIN* win)
 	GF_PRINTCOLOR col;
 	STRBUF *buf;
 
-	//BG•`‰æ
+	//BGæç”»
 	GF_BGL_ScrWriteFree(pMain->bgl,GF_BGL_FRAME1_S,
 			TMSCR_DSWMG_DPX,TMSCR_DSWMG_DPY,TMSCR_DSWMG_DSX,TMSCR_DSWMG_DSY,
 			pMain->pScr02_dswm->rawData,
 			TMSCR_DSWMG_SPX,TMSCR_DSWMG_SPY,
 			pMain->pScr02_dswm->screenWidth/8,pMain->pScr02_dswm->screenHeight/8);
 
-	//ƒƒbƒZ[ƒW•`‰æ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 	buf = MSGMAN_AllocString(pMain->pMsgTMap,mes_townmap_02_01);
 
 	siz = BMPL_GUIDE_NSX-FontProc_GetPrintStrWidth( FONT_SYSTEM,buf, 0 );
@@ -895,8 +895,8 @@ static void TMap_GuideTagSet(TMAP_MAIN_DAT* pMain,GF_BGL_BMPWIN* win)
 }
 
 /**
- *	@brief	BmpWindow‰Šú‰»
- *	@param	pMain TMAP_MAIN_DAT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	BmpWindowåˆæœŸåŒ–
+ *	@param	pMain TMAP_MAIN_DATã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 static void TMapN_BmpWinSet(TMAP_MAIN_DAT* pMain)
 {
@@ -922,7 +922,7 @@ static void TMapN_BmpWinSet(TMAP_MAIN_DAT* pMain)
 		pMain->bgl, &wk->win[WIN_GUIDE], BMPL_GUIDE_FRM,
 		BMPL_GUIDE_PX, BMPL_GUIDE_PY, BMPL_GUIDE_SX, BMPL_GUIDE_SY, BMPL_GUIDE_PAL, BMPL_GUIDE_CGX );
 
-	//ƒEƒBƒ“ƒhƒEƒNƒŠƒA
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill(&(wk->win[WIN_M01]),0);
 	GF_BGL_BmpWinDataFill(&(wk->win[WIN_BOARD0]),0);
 	GF_BGL_BmpWinDataFill(&(wk->win[WIN_BOARD1]),0);
@@ -938,8 +938,8 @@ static void TMapN_BmpWinSet(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	BmpWindow‰ğ•ú
- *	@param	pMain TMAP_MAIN_DAT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	BmpWindowè§£æ”¾
+ *	@param	pMain TMAP_MAIN_DATã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 static void TMapN_BmpWinExit(TMAP_MAIN_DAT* pMain)
 {
@@ -951,11 +951,11 @@ static void TMapN_BmpWinExit(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒXƒNƒŠ[ƒ“•`‰æ
+ *	@brief	ãƒœã‚¿ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»
  *
  *	@param	pMain	TMAP_MAIN_DAT*
- *	@param	frm		ƒAƒjƒƒtƒŒ[ƒ€No
- *	@param	mode	ƒoƒbƒN‚ğ‘‚«‚Ş‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(‘‚«‚Ş‚Æ‚«‚ÍOn)
+ *	@param	frm		ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ No
+ *	@param	mode	ãƒãƒƒã‚¯ã‚’æ›¸ãè¾¼ã‚€ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(æ›¸ãè¾¼ã‚€ã¨ãã¯On)
  */
 static void TMapN_SubButtonSet(TMAP_MAIN_DAT* pMain,u8 frm,u8 mode)
 {
@@ -974,7 +974,7 @@ static void TMapN_SubButtonSet(TMAP_MAIN_DAT* pMain,u8 frm,u8 mode)
 }
 
 /**
- *	@brief	”z•zƒ}ƒbƒv•`‰æ@ƒTƒuƒ‹[ƒ`ƒ“
+ *	@brief	é…å¸ƒãƒãƒƒãƒ—æç”»ã€€ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
  *	
  */
 	typedef struct _HMAP{
@@ -1027,7 +1027,7 @@ static void TMap_HaifuMapSet(TMAP_MAIN_DAT* pMain,int mode)
 	if(mode == HIDEMAP_ID_L04){
 		return;
 	}
-	//”wŒiƒ}ƒbƒv
+	//èƒŒæ™¯ãƒãƒƒãƒ—
 	GF_BGL_ScrWriteExpand(pMain->bgl,GF_BGL_FRAME3_M,
 			mback->px,mback->py,mback->sx,mback->sy,
 			pMain->pScr01_dis->rawData,
@@ -1039,20 +1039,20 @@ static void TMap_HaifuMapSet(TMAP_MAIN_DAT* pMain,int mode)
 }
 
 /**
- *	@brief ƒm[ƒ}ƒ‹ƒ‚[ƒh@BGƒf[ƒ^ƒZƒbƒg
+ *	@brief ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€€BGãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  */
 static void TMapN_2DGrapDefSet(TMAP_MAIN_DAT* pMain)
 {
 	TMAP_MODE_NORMAL* wk = pMain->pSwork;
 	int sp = 0;
 	
-	//ƒ[ƒh
+	//ãƒ­ãƒ¼ãƒ‰
 	GF_BGL_ScrWriteExpand(pMain->bgl,GF_BGL_FRAME2_M,
 			0,0,32,24,
 			pMain->pScr01->rawData,
 			0,0,SCWS_GET(pMain->pScr01),SCHS_GET(pMain->pScr01));	
 
-	//”wŒiƒ}ƒbƒv
+	//èƒŒæ™¯ãƒãƒƒãƒ—
 	GF_BGL_ScrWriteExpand(pMain->bgl,GF_BGL_FRAME3_M,
 			0,0,32,24,
 			pMain->pScr01_back->rawData,
@@ -1066,7 +1066,7 @@ static void TMapN_2DGrapDefSet(TMAP_MAIN_DAT* pMain)
 				0,ZONEN_BG_PY,SCWS_GET(pMain->pScr01_back),SCHS_GET(pMain->pScr01_back));	
 	}
 	
-	//ƒTƒu
+	//ã‚µãƒ–
 	TMapN_SubButtonSet(pMain,0,1);
 	
 	GF_BGL_ScrWriteFree(pMain->bgl,GF_BGL_FRAME2_S,0,0,64,64,pMain->pScr02_dr->rawData,
@@ -1074,18 +1074,18 @@ static void TMapN_2DGrapDefSet(TMAP_MAIN_DAT* pMain)
 	GF_BGL_ScrWriteFree(pMain->bgl,GF_BGL_FRAME3_S,0,0,64,64,pMain->pScr02_dm->rawData,
 			0,0,pMain->pScr02_dm->screenWidth/8,pMain->pScr02_dm->screenHeight/8);
 
-	//”z•zƒ}ƒbƒv‚Ì•`‰æ
+	//é…å¸ƒãƒãƒƒãƒ—ã®æç”»
 //	pMain->mapView = 0x0F;
-	if(pMain->mapView & 0x0001){	//”z•zƒ}ƒbƒv1 D15
+	if(pMain->mapView & 0x0001){	//é…å¸ƒãƒãƒƒãƒ—1 D15
 		TMap_HaifuMapSet(pMain,0);
 	}
-	if(pMain->mapView & 0x0002){	//”z•zƒ}ƒbƒv2 D30
+	if(pMain->mapView & 0x0002){	//é…å¸ƒãƒãƒƒãƒ—2 D30
 		TMap_HaifuMapSet(pMain,1);
 	}
-	if(pMain->mapView & 0x0004){	//”z•zƒ}ƒbƒv3 L4
+	if(pMain->mapView & 0x0004){	//é…å¸ƒãƒãƒƒãƒ—3 L4
 		TMap_HaifuMapSet(pMain,2);
 	}
-	if(pMain->mapView & 0x0008){	//”z•zƒ}ƒbƒv4 D18
+	if(pMain->mapView & 0x0008){	//é…å¸ƒãƒãƒƒãƒ—4 D18
 		TMap_HaifuMapSet(pMain,3);
 	}
 	
@@ -1100,7 +1100,7 @@ static void TMapN_2DGrapClear(TMAP_MAIN_DAT* pMain)
 {
 	TMAP_MODE_NORMAL* wk = pMain->pSwork;
 
-	//ƒXƒNƒ[ƒ‹ƒŠƒZƒbƒg
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒªã‚»ãƒƒãƒˆ
 	GF_BGL_ScrollSet(pMain->bgl,GF_BGL_FRAME2_S,GF_BGL_SCROLL_Y_SET,0);
 	GF_BGL_ScrollSet(pMain->bgl,GF_BGL_FRAME3_S,GF_BGL_SCROLL_Y_SET,0);
 	GF_BGL_ScrollSet(pMain->bgl,GF_BGL_FRAME2_S,GF_BGL_SCROLL_X_SET,0);
@@ -1127,23 +1127,23 @@ static void TMapN_2DGrapClear(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief ƒm[ƒ}ƒ‹ƒ‚[ƒh@ƒAƒNƒ^[ƒZƒbƒg
+ *	@brief ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€€ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  */
 static const TCATS_OBJECT_ADD_PARAM	ActAddParam[] =
 {
-	{	// ƒ{ƒ^ƒ“ƒGƒtƒFƒNƒg
+	{	// ãƒœã‚¿ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		0,	//ID
 		0, 0, 0,	//x,y,z
 		0, TMAP_SPRI_BTN, 0, NNS_G2D_VRAM_TYPE_2DSUB,	//anmNO,pri,pal,d_area
 		0, 0, 0, 0	//prm1,prm2,prm3,prm4
 	},
-	{	// ƒƒCƒ“ƒJ[ƒ\ƒ‹ 
+	{	// ãƒ¡ã‚¤ãƒ³ã‚«ãƒ¼ã‚½ãƒ« 
 		1,
 		0, 0, 0,
 		0, TMAP_SPRI_CUR, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒƒCƒ“©‹@ 
+	{	// ãƒ¡ã‚¤ãƒ³è‡ªæ©Ÿ 
 		2,
 		0, 0, 0,
 		0, TMAP_SPRI_HERO, 1, NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1156,7 +1156,7 @@ static void TMapN_CellActSet(TMAP_MAIN_DAT* pMain)
 	TMAP_MODE_NORMAL* wk = pMain->pSwork;
 	TCATS_OBJECT_ADD_PARAM jiki_act = ActAddParam[2];
 	
-	//ƒTƒu‰æ–Ê—pƒ{ƒ^ƒ“
+	//ã‚µãƒ–ç”»é¢ç”¨ãƒœã‚¿ãƒ³
 	wk->pCAW_btn =	CATS_ObjectAdd( pMain->pCActSys,
 			pMain->pCActRes,
 			&ActAddParam[0] );
@@ -1165,7 +1165,7 @@ static void TMapN_CellActSet(TMAP_MAIN_DAT* pMain)
 	CLACT_SetAnmFrame(wk->pCAW_btn,FX32_ONE);
 	CATS_ObjectPosSet(wk->pCAW_btn,128,108);
 
-	//ƒƒCƒ“ƒJ[ƒ\ƒ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚«ãƒ¼ã‚½ãƒ«
 	wk->pCAW_cur =	CATS_ObjectAdd( pMain->pCActSys,
 			pMain->pCActRes,
 			&ActAddParam[1] );
@@ -1176,7 +1176,7 @@ static void TMapN_CellActSet(TMAP_MAIN_DAT* pMain)
 	CATS_ObjectPosSet(wk->pCAW_cur,
 			wk->cposX*CMOVE_UNIT+CMOVE_OFSX,wk->cposZ*CMOVE_UNIT+CMOVE_OFSZ);
 
-	//ƒƒCƒ“©‹@
+	//ãƒ¡ã‚¤ãƒ³è‡ªæ©Ÿ
 	if(pMain->param->player_sex == 0){
 		jiki_act.pal = 1;
 	}
@@ -1194,7 +1194,7 @@ static void TMapN_CellActSet(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒhƒTƒu‰æ–ÊƒXƒNƒ[ƒ‹’lƒZƒbƒg	
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚µãƒ–ç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤ã‚»ãƒƒãƒˆ	
  */
 static void TMapN_SubScrollSet(TMAP_MAIN_DAT* pMain,int x,int y)
 {
@@ -1222,7 +1222,7 @@ static void TMapN_SubScrollSet(TMAP_MAIN_DAT* pMain,int x,int y)
 }
 
 /**
- *	@brief ƒm[ƒ}ƒ‹ƒ‚[ƒh@‘«Õƒf[ƒ^‰Šú‰»
+ *	@brief ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€€è¶³è·¡ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  */
 static int TMapNS_IsFootMarkHit(TMAP_FOOTVIEW* pv,int x,int z)
 {
@@ -1237,7 +1237,7 @@ static int TMapNS_IsFootMarkHit(TMAP_FOOTVIEW* pv,int x,int z)
 }
 
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒh@‘«Õƒ}[ƒNƒŠƒ\[ƒXì¬
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€€è¶³è·¡ãƒãƒ¼ã‚¯ãƒªã‚½ãƒ¼ã‚¹ä½œæˆ
  */
 static void TMapN_FootViewInit(TMAP_MAIN_DAT* pMain)
 {
@@ -1246,7 +1246,7 @@ static void TMapN_FootViewInit(TMAP_MAIN_DAT* pMain)
 	TMAP_FVIEW	*dest;
 	int i = 0,ret,idx;
 
-	//ã,‰º,‰E,¶
+	//ä¸Š,ä¸‹,å³,å·¦
 	static const u16 dirTable[4] = {DIR_ROT_UP,DIR_ROT_DOWN,DIR_ROT_RIGHT,DIR_ROT_LEFT};
 	static const TCATS_OBJECT_ADD_PARAM	ActAddParam =
 	{
@@ -1256,7 +1256,7 @@ static void TMapN_FootViewInit(TMAP_MAIN_DAT* pMain)
 		0, 0, 0, 0	//prm1,prm2,prm3,prm4
 	};
 
-	//ƒf[ƒ^‰ğÍ
+	//ãƒ‡ãƒ¼ã‚¿è§£æ
 	MI_CpuClear8(&(wk->fView),sizeof(TMAP_FOOTVIEW));
 	for(i = 0;i < TMAP_FVIEW_MAX;i++){
 		wp = &(pMain->param->foot[i]);
@@ -1264,7 +1264,7 @@ static void TMapN_FootViewInit(TMAP_MAIN_DAT* pMain)
 			break;
 		}
 		if(wp->x == pMain->gx && wp->z == pMain->gz){
-			continue;	//Œ»İ‚Ì©‹@ˆÊ’u‚ÍƒXƒ‹[
+			continue;	//ç¾åœ¨ã®è‡ªæ©Ÿä½ç½®ã¯ã‚¹ãƒ«ãƒ¼
 		}
 		ret = TMapNS_IsFootMarkHit(&(wk->fView),wp->x,wp->z);
 		if(ret < 0){
@@ -1298,7 +1298,7 @@ static void TMapN_FootViewInit(TMAP_MAIN_DAT* pMain)
 	if(wk->fView.num == 0){
 		return;
 	}
-	//ƒAƒjƒƒ^ƒXƒN“o˜^
+	//ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	wk->fView.now = wk->fView.num-1;
 	wk->fView.tcb = TCB_Add(TMapN_FootViewTask,&wk->fView,1);
 }
@@ -1311,7 +1311,7 @@ static void TMapN_FootViewTask(TCB_PTR tcb,void* work)
 		return;
 	}
 
-	//ŒÃ‚¢ˆÊ’u‚ğÁ‚µ‚ÄV‚µ‚¢ˆÊ’u‚ğo‚·
+	//å¤ã„ä½ç½®ã‚’æ¶ˆã—ã¦æ–°ã—ã„ä½ç½®ã‚’å‡ºã™
 	CLACT_SetDrawFlag(wk->foot[wk->old].pAct,FALSE);
 	CLACT_SetDrawFlag(wk->foot[wk->now].pAct,TRUE);
 
@@ -1324,7 +1324,7 @@ static void TMapN_FootViewTask(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒ‚[ƒh@‘«Õƒ}[ƒNƒŠƒ\[ƒX‰ğ•ú
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€€è¶³è·¡ãƒãƒ¼ã‚¯ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 static void TMapN_FootViewRelease(TMAP_MAIN_DAT* pMain)
 {
@@ -1342,7 +1342,7 @@ static void TMapN_FootViewRelease(TMAP_MAIN_DAT* pMain)
 }
 
 /**
- *	@brief	ƒTƒu‰æ–ÊƒtƒH[ƒJƒXƒ^ƒXƒN“o˜^
+ *	@brief	ã‚µãƒ–ç”»é¢ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚¿ã‚¹ã‚¯ç™»éŒ²
  */
 static void TMapNS_AddSVForcusTask(TMAP_MAIN_DAT* pMain,int mode)
 {
@@ -1358,7 +1358,7 @@ static void TMapNS_AddSVForcusTask(TMAP_MAIN_DAT* pMain,int mode)
 }
 
 /**
- *	@brief	ƒTƒu‰æ–ÊƒtƒH[ƒJƒXInƒ^ƒXƒN
+ *	@brief	ã‚µãƒ–ç”»é¢ãƒ•ã‚©ãƒ¼ã‚«ã‚¹Inã‚¿ã‚¹ã‚¯
  */
 static void TMapNS_SVForcusInTask(TCB_PTR tcb,void* work)
 {
@@ -1369,14 +1369,14 @@ static void TMapNS_SVForcusInTask(TCB_PTR tcb,void* work)
 	switch(wk->sub_seq){
 	case 0:
 		CLACT_SetDrawFlag(wk->pCAW_btn, 1 );
-		CLACT_SetAnmFlag(wk->pCAW_btn,1);	//ƒI[ƒgƒAƒjƒƒZƒbƒg
-		CLACT_AnmFrameSet(wk->pCAW_btn,1);	//ƒAƒjƒƒXƒ^[ƒgƒtƒŒ[ƒ€ƒZƒbƒg
+		CLACT_SetAnmFlag(wk->pCAW_btn,1);	//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
+		CLACT_AnmFrameSet(wk->pCAW_btn,1);	//ã‚¢ãƒ‹ãƒ¡ã‚¹ã‚¿ãƒ¼ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚»ãƒƒãƒˆ
 
 		Snd_SePlay(SND_TMAP_SOPEN);
 		wk->sub_seq++;
 		break;
 	case 1:
-		//ƒ{ƒ^ƒ“ƒAƒjƒ
+		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡
 		if(wk->sub_ct % 2){
 			TMapN_SubButtonSet(pMain,btnAnmTbl[wk->sub_ct/2],0);
 			GF_BGL_LoadScreenV_Req(pMain->bgl,GF_BGL_FRAME1_S);
@@ -1387,8 +1387,8 @@ static void TMapNS_SVForcusInTask(TCB_PTR tcb,void* work)
 		break;
 	case 2:
 		CLACT_SetDrawFlag(wk->pCAW_btn, 0);
-		CLACT_SetAnmFlag(wk->pCAW_btn,0);	//ƒI[ƒgƒAƒjƒ‚ğ~‚ß‚é
-		//ƒtƒF[ƒhƒAƒEƒgˆ—
+		CLACT_SetAnmFlag(wk->pCAW_btn,0);	//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚’æ­¢ã‚ã‚‹
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå‡¦ç†
 		pMain->wipe_f = 0;
 		WIPE_SYS_Start(WIPE_PATTERN_S,
 				WIPE_TYPE_SPLITIN_HCENTER,
@@ -1397,11 +1397,11 @@ static void TMapNS_SVForcusInTask(TCB_PTR tcb,void* work)
 		wk->sub_seq++;
 		break;
 	case 3:
-		//ƒtƒF[ƒh‘Ò‚¿
+		//ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		if(!WIPE_SYS_EndCheck()){
 			return;
 		}
-		//‰æ–Ê‘‚«Š·‚¦
+		//ç”»é¢æ›¸ãæ›ãˆ
 		wk->forcus = TMAPN_FORCUS_SUB;
 		GF_BGL_ScrFill(pMain->bgl,GF_BGL_FRAME0_S,0x0000,0,0,32,32,GF_BGL_SCRWRT_PALIN);
 		GF_BGL_ScrFill(pMain->bgl,GF_BGL_FRAME1_S,0x0000,0,0,32,32,GF_BGL_SCRWRT_PALIN);
@@ -1431,7 +1431,7 @@ static void TMapNS_SVForcusInTask(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒTƒu‰æ–ÊƒtƒH[ƒJƒXƒAƒEƒgƒ^ƒXƒN
+ *	@brief	ã‚µãƒ–ç”»é¢ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚¢ã‚¦ãƒˆã‚¿ã‚¹ã‚¯
  */
 static void TMapNS_SVForcusOutTask(TCB_PTR tcb,void* work)
 {
@@ -1440,7 +1440,7 @@ static void TMapNS_SVForcusOutTask(TCB_PTR tcb,void* work)
 	
 	switch(wk->sub_seq){
 	case 0:
-		//ƒtƒF[ƒhƒAƒEƒgˆ—
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå‡¦ç†
 		pMain->wipe_f = 0;
 		WIPE_SYS_Start(WIPE_PATTERN_S,
 				WIPE_TYPE_SPLITIN_HCENTER,
@@ -1450,7 +1450,7 @@ static void TMapNS_SVForcusOutTask(TCB_PTR tcb,void* work)
 		wk->sub_seq++;
 		break;
 	case 1:
-		//ƒtƒF[ƒh‘Ò‚¿
+		//ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		if(!WIPE_SYS_EndCheck()){
 			return;
 		}
@@ -1483,8 +1483,8 @@ static void TMapNS_SVForcusOutTask(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒWƒƒƒ“ƒvƒ‚[ƒhAAŒˆ’èƒ`ƒFƒbƒN
- *	@param	pMain TMAP_MAIN_DAT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	ã‚¸ãƒ£ãƒ³ãƒ—ãƒ¢ãƒ¼ãƒ‰ã€Aæ±ºå®šãƒã‚§ãƒƒã‚¯
+ *	@param	pMain TMAP_MAIN_DATã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 static int TMapJ_CheckJumpPos(TMAP_MAIN_DAT* pMain)
 {
@@ -1493,19 +1493,19 @@ static int TMapJ_CheckJumpPos(TMAP_MAIN_DAT* pMain)
 	u8	jump_f = 1;
 
 	if(wk->pBlock == NULL){
-		return 0;	//‹ó‚ğ”ò‚Ô‚Å”ò‚×‚È‚¢êŠ
+		return 0;	//ç©ºã‚’é£›ã¶ã§é£›ã¹ãªã„å ´æ‰€
 	}
 	pd = TownViewDataSearchPos(wk->pTView,wk->czoneID,wk->cposX,wk->cposZ);
 
 #ifdef PM_DEBUG
 	if(pd == NULL || pd->flag == 0){
 		if(pMain->param->debug_f == 0){
-			return 0;	//‚Ü‚¾”ò‚×‚È‚¢
+			return 0;	//ã¾ã é£›ã¹ãªã„
 		}
 	}
 #else	//ifdef PM_DEBUG
 	if(pd == NULL || pd->flag == 0){
-		return 0;	//‚Ü‚¾”ò‚×‚È‚¢
+		return 0;	//ã¾ã é£›ã¹ãªã„
 	}
 #endif	//ifdef PM_DEBUG
 	

@@ -1,16 +1,16 @@
 enum {
-	WO_PAL_MENU_WIN = 12,	// ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg
-	WO_PAL_TALK_WIN,		// isƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg
-	WO_PAL_TALK_FONT,		// isƒtƒHƒ“ƒgƒpƒŒƒbƒg
-	WO_PAL_SYS_FONT,		// ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒg
+	WO_PAL_MENU_WIN = 12,	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆ
+	WO_PAL_TALK_WIN,		// é€²è¡Œã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆ
+	WO_PAL_TALK_FONT,		// é€²è¡Œãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
+	WO_PAL_SYS_FONT,		// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
 };
 
-// ƒƒjƒ…[ƒEƒBƒ“ƒhƒE“]‘—ˆÊ’u
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è»¢é€ä½ç½®
 #define	WO_MENU_WIN_CGX		( 1 )
-// isƒEƒBƒ“ƒhƒE“]‘—ˆÊ’u
+// é€²è¡Œã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è»¢é€ä½ç½®
 #define	WO_TALK_WIN_CGX		( WO_MENU_WIN_CGX + MENU_WIN_CGX_SIZ )
 
-// u‚½‚½‚©‚¤‚í‚´v
+// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
 #define	WIN_STR_BATTLE_PX	( 19 )
 #define	WIN_STR_BATTLE_PY	( 0 )
 #define	WIN_STR_BATTLE_SX	( 11 )
@@ -18,7 +18,7 @@ enum {
 #define	WIN_STR_BATTLE_PAL	( WO_PAL_SYS_FONT )
 #define	WIN_STR_BATTLE_CGX	( WO_TALK_WIN_CGX + TALK_WIN_CGX_SIZ )
 
-// uƒRƒ“ƒeƒXƒg‚í‚´v
+// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
 #define	WIN_STR_CONTEST_PX	( 19 )
 #define	WIN_STR_CONTEST_PY	( 0 )
 #define	WIN_STR_CONTEST_SX	( 11 )
@@ -26,7 +26,7 @@ enum {
 #define	WIN_STR_CONTEST_PAL	( WO_PAL_SYS_FONT )
 #define	WIN_STR_CONTEST_CGX	( WIN_STR_BATTLE_CGX + WIN_STR_BATTLE_SX * WIN_STR_BATTLE_SY )
 
-// u‚Ô‚ñ‚é‚¢v
+// ã€Œã¶ã‚“ã‚‹ã„ã€
 #define	WIN_STR_CLASS_PX	( 1 )
 #define	WIN_STR_CLASS_PY	( 0 )
 #define	WIN_STR_CLASS_SX	( 6 )
@@ -34,7 +34,7 @@ enum {
 #define	WIN_STR_CLASS_PAL	( WO_PAL_SYS_FONT )
 #define	WIN_STR_CLASS_CGX	( WIN_STR_CONTEST_CGX + WIN_STR_CONTEST_SX * WIN_STR_CONTEST_SY )
 
-// u‚¢‚è‚å‚­v
+// ã€Œã„ã‚Šã‚‡ãã€
 #define	WIN_STR_ATTACK_PX	( 1 )
 #define	WIN_STR_ATTACK_PY	( 2 )
 #define	WIN_STR_ATTACK_SX	( 6 )
@@ -42,7 +42,7 @@ enum {
 #define	WIN_STR_ATTACK_PAL	( WO_PAL_SYS_FONT )
 #define	WIN_STR_ATTACK_CGX	( WIN_STR_CLASS_CGX + WIN_STR_CLASS_SX * WIN_STR_CLASS_SY )
 
-// u‚ß‚¢‚¿‚ã‚¤v
+// ã€Œã‚ã„ã¡ã‚…ã†ã€
 #define	WIN_STR_HIT_PX		( 1 )
 #define	WIN_STR_HIT_PY		( 4 )
 #define	WIN_STR_HIT_SX		( 8 )
@@ -50,7 +50,7 @@ enum {
 #define	WIN_STR_HIT_PAL		( WO_PAL_SYS_FONT )
 #define	WIN_STR_HIT_CGX		( WIN_STR_ATTACK_CGX + WIN_STR_ATTACK_SX * WIN_STR_ATTACK_SY )
 
-// uPPv
+// ã€ŒPPã€
 #define	WIN_STR_PP_PX		( 1 )
 #define	WIN_STR_PP_PY		( 6 )
 #define	WIN_STR_PP_SX		( 3 )
@@ -58,7 +58,7 @@ enum {
 #define	WIN_STR_PP_PAL		( WO_PAL_SYS_FONT )
 #define	WIN_STR_PP_CGX		( WIN_STR_HIT_CGX + WIN_STR_HIT_SX * WIN_STR_HIT_SY )
 
-// uƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgv
+// ã€Œã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã€
 #define	WIN_STR_APP_PX		( 2 )
 #define	WIN_STR_APP_PY		( 2 )
 #define	WIN_STR_APP_SX		( 12 )
@@ -66,7 +66,7 @@ enum {
 #define	WIN_STR_APP_PAL		( WO_PAL_SYS_FONT )
 #define	WIN_STR_APP_CGX		( WIN_STR_PP_CGX + WIN_STR_PP_SX * WIN_STR_PP_SY )
 
-// ˆÐ—Í’l
+// å¨åŠ›å€¤
 #define	WIN_PRM_ATTACK_PX	( 13 )
 #define	WIN_PRM_ATTACK_PY	( 2 )
 #define	WIN_PRM_ATTACK_SX	( 3 )
@@ -74,7 +74,7 @@ enum {
 #define	WIN_PRM_ATTACK_PAL	( WO_PAL_SYS_FONT )
 #define	WIN_PRM_ATTACK_CGX	( WIN_STR_APP_CGX + WIN_STR_APP_SX * WIN_STR_APP_SY )
 
-// –½’†’l
+// å‘½ä¸­å€¤
 #define	WIN_PRM_HIT_PX		( 13 )
 #define	WIN_PRM_HIT_PY		( 4 )
 #define	WIN_PRM_HIT_SX		( 3 )
@@ -82,7 +82,7 @@ enum {
 #define	WIN_PRM_HIT_PAL		( WO_PAL_SYS_FONT )
 #define	WIN_PRM_HIT_CGX		( WIN_PRM_ATTACK_CGX + WIN_PRM_ATTACK_SX * WIN_PRM_ATTACK_SY )
 
-// PP’l
+// PPå€¤
 #define	WIN_PRM_PP_PX		( 11 )
 #define	WIN_PRM_PP_PY		( 6 )
 #define	WIN_PRM_PP_SX		( 5 )
@@ -90,7 +90,7 @@ enum {
 #define	WIN_PRM_PP_PAL		( WO_PAL_SYS_FONT )
 #define	WIN_PRM_PP_CGX		( WIN_PRM_HIT_CGX + WIN_PRM_HIT_SX * WIN_PRM_HIT_SY )
 
-// í“¬à–¾
+// æˆ¦é—˜èª¬æ˜Ž
 #define	WIN_BTL_INFO_PX		( 1 )
 #define	WIN_BTL_INFO_PY		( 8 )
 #define	WIN_BTL_INFO_SX		( 15 )
@@ -98,7 +98,7 @@ enum {
 #define	WIN_BTL_INFO_PAL	( WO_PAL_SYS_FONT )
 #define	WIN_BTL_INFO_CGX	( WIN_PRM_PP_CGX + WIN_PRM_PP_SX * WIN_PRM_PP_SY )
 
-// ƒRƒ“ƒeƒXƒgà–¾
+// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆèª¬æ˜Ž
 #define	WIN_CON_INFO_PX		( 1 )
 #define	WIN_CON_INFO_PY		( 9 )
 #define	WIN_CON_INFO_SX		( 15 )
@@ -106,7 +106,7 @@ enum {
 #define	WIN_CON_INFO_PAL	( WO_PAL_SYS_FONT )
 #define	WIN_CON_INFO_CGX	( WIN_BTL_INFO_CGX + WIN_BTL_INFO_SX * WIN_BTL_INFO_SY )
 
-// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	WIN_MSG_PX		( 2 )
 #define	WIN_MSG_PY		( 19 )
 #define	WIN_MSG_SX		( 27 )
@@ -114,7 +114,7 @@ enum {
 #define	WIN_MSG_PAL		( WO_PAL_TALK_FONT )
 #define	WIN_MSG_CGX		( WIN_CON_INFO_CGX + WIN_CON_INFO_SX * WIN_CON_INFO_SY )
 
-// ‹ZƒŠƒXƒg
+// æŠ€ãƒªã‚¹ãƒˆ
 #define	WIN_LIST_PX		( 21 )
 #define	WIN_LIST_PY		( 3 )
 #define	WIN_LIST_SX		( 11 )
@@ -122,7 +122,7 @@ enum {
 #define	WIN_LIST_PAL	( WO_PAL_SYS_FONT )
 #define	WIN_LIST_CGX	( WIN_MSG_CGX + WIN_MSG_SX * WIN_MSG_SY )
 
-// ‚Í‚¢/‚¢‚¢‚¦
+// ã¯ã„/ã„ã„ãˆ
 #define	WIN_YESNO_PX	( 23 )
 #define	WIN_YESNO_PY	( 13 )
 #define	WIN_YESNO_SX	( 7 )

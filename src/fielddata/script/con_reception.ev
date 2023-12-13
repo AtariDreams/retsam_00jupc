@@ -1,12 +1,12 @@
 //====================================================================
 //							con_reception
 //
-//	SCWK_TEMP0	ƒ‰ƒ“ƒN(ƒm[ƒ}ƒ‹“™)AƒRƒ“ƒeƒXƒgI—¹ŒãA—ûK‚Å‚ÍŒ‹‰Ê‡ˆÊAƒVƒ“ƒOƒ‹‚Å‚ÍƒAƒNƒZƒTƒŠ”Ô†‚ª“ü‚è‚Ü‚·
-//	SCWK_TEMP1	ƒRƒ“ƒfƒBƒVƒ‡ƒ“(‚©‚Á‚±‚æ‚³“™)
-//	SCWK_TEMP3	ƒRƒ“ƒeƒXƒgƒ‚[ƒh(ƒ`ƒƒ[ƒ€“™)
+//	SCWK_TEMP0	ãƒ©ãƒ³ã‚¯(ãƒŽãƒ¼ãƒžãƒ«ç­‰)ã€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆçµ‚äº†å¾Œã€ç·´ç¿’ã§ã¯çµæžœé †ä½ã€ã‚·ãƒ³ã‚°ãƒ«ã§ã¯ã‚¢ã‚¯ã‚»ã‚µãƒªç•ªå·ãŒå…¥ã‚Šã¾ã™
+//	SCWK_TEMP1	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³(ã‹ã£ã“ã‚ˆã•ç­‰)
+//	SCWK_TEMP3	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰(ãƒãƒ£ãƒ¼ãƒ ç­‰)
 //
-//	LOCALWORK2	ŽèŽ‚¿‚Ì‰½”Ô–Ú‚©‚ð•ÛŽ
-//	LOCALWORK3	Žó•tƒiƒ“ƒo[(ƒVƒ“ƒOƒ‹DESK_SINGLEAƒ}ƒ‹ƒ`DESK_MULTI, —ûKDESK_PRACTICE)
+//	LOCALWORK2	æ‰‹æŒã¡ã®ä½•ç•ªç›®ã‹ã‚’ä¿æŒ
+//	LOCALWORK3	å—ä»˜ãƒŠãƒ³ãƒãƒ¼(ã‚·ãƒ³ã‚°ãƒ«DESK_SINGLEã€ãƒžãƒ«ãƒDESK_MULTI, ç·´ç¿’DESK_PRACTICE)
 //
 //====================================================================
 
@@ -18,12 +18,12 @@
 	.include	"../eventdata/zone_c05r1102evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
-//#define DEBUG_CONTEST		//ƒRƒ“ƒeƒXƒgŠJŽn
+//#define DEBUG_CONTEST		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé–‹å§‹
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_connect_contest_return
 _EVENT_DATA		ev_con_reception_init_change
@@ -40,27 +40,27 @@ _EVENT_DATA		ev_con_reception_front06
 _EVENT_DATA		ev_con_reception_disp
 _EVENT_DATA_END
 
-//¦contest.c‚É‚ ‚é“¯–¼‚Ì’è‹`‚Æ”Ô†‚¸‚ê‚ª‚¨‚«‚È‚¢‚æ‚¤‚É’ˆÓII
-///Žó•tFƒVƒ“ƒOƒ‹
+//â€»contest.cã«ã‚ã‚‹åŒåã®å®šç¾©ã¨ç•ªå·ãšã‚ŒãŒãŠããªã„ã‚ˆã†ã«æ³¨æ„ï¼ï¼
+///å—ä»˜ï¼šã‚·ãƒ³ã‚°ãƒ«
 #define DESK_SINGLE			(0)
-///Žó•tFƒ}ƒ‹ƒ`
+///å—ä»˜ï¼šãƒžãƒ«ãƒ
 #define DESK_MULTI			(1)
-///Žó•tF—ûK
+///å—ä»˜ï¼šç·´ç¿’
 #define DESK_PRACTICE		(2)
 
-///Žó•t‚ÌƒQ[ƒg‚ÌXˆÊ’u(ƒVƒ“ƒOƒ‹)
+///å—ä»˜ã®ã‚²ãƒ¼ãƒˆã®Xä½ç½®(ã‚·ãƒ³ã‚°ãƒ«)
 #define INFOMATION_GATE_SINGLE_X		(19)
-///Žó•t‚ÌƒQ[ƒg‚ÌXˆÊ’u(ƒ}ƒ‹ƒ`)
+///å—ä»˜ã®ã‚²ãƒ¼ãƒˆã®Xä½ç½®(ãƒžãƒ«ãƒ)
 #define INFOMATION_GATE_MULTI_X			(7)
-///Žó•t‚ÌƒQ[ƒg‚ÌXˆÊ’u(—ûK)
+///å—ä»˜ã®ã‚²ãƒ¼ãƒˆã®Xä½ç½®(ç·´ç¿’)
 #define INFOMATION_GATE_PRACTICE_X		(28)
 
-///’è‹`‚ª—LŒø‚¾‚ÆƒfƒoƒbƒO—LŒø
+///å®šç¾©ãŒæœ‰åŠ¹ã ã¨ãƒ‡ãƒãƒƒã‚°æœ‰åŠ¹
 //#define MATSUDA_DEBUG
 
 /********************************************************************/
 //
-/*	’ÊMƒRƒ“ƒeƒXƒgŒ‹‰Ê‰æ–Ê‚ÅƒZ[ƒu‚µ‚ÄAƒŠƒZƒbƒg‚µ‚½Žž‚Ì•œ‹Aˆ—	*/
+/*	é€šä¿¡ã‚³ãƒ³ãƒ†ã‚¹ãƒˆçµæžœç”»é¢ã§ã‚»ãƒ¼ãƒ–ã—ã¦ã€ãƒªã‚»ãƒƒãƒˆã—ãŸæ™‚ã®å¾©å¸°å‡¦ç†	*/
 //
 /********************************************************************/
 ev_connect_contest_return:
@@ -69,7 +69,7 @@ ev_connect_contest_return:
 	_LDVAL		SCWK_ANSWER,INFOMATION_GATE_MULTI_X
 	_CALL		ev_contest_return_door
 
-	_FLAG_RESET	SYS_FLAG_COMM_COUNTER			//’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO(ƒVƒXƒeƒ€)
+	_FLAG_RESET	SYS_FLAG_COMM_COUNTER			//é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°(ã‚·ã‚¹ãƒ†ãƒ )
 	_LDVAL		WK_SCENE_COMM_ID,SCR_COMM_ID_NOTHING
 
 	_EVENT_END
@@ -77,18 +77,18 @@ ev_connect_contest_return:
 
 
 //--------------------------------------------------------------
-//	ƒhƒA‚©‚ç–ß‚Á‚Ä‚­‚éƒAƒjƒF‹¤’Êˆ—
-//		SCWK_ANSWERFƒhƒAÀ•WX
+//	ãƒ‰ã‚¢ã‹ã‚‰æˆ»ã£ã¦ãã‚‹ã‚¢ãƒ‹ãƒ¡ï¼šå…±é€šå‡¦ç†
+//		SCWK_ANSWERï¼šãƒ‰ã‚¢åº§æ¨™X
 //--------------------------------------------------------------
 ev_contest_return_door:
-	/*‚Ç‚ÌƒJƒEƒ“ƒ^[‚ð’Ê‰ß‚µ‚½‚©‚ðŠo‚¦‚Ä‚¨‚¢‚ÄAƒhƒA‚ÌÀ•W‚ðƒZƒbƒg‚·‚é*/
-	/*‚±‚Ì‹­§ƒXƒNƒŠƒvƒg‚Í•K‚¸”­“®‚µ‚Ä‚µ‚Ü‚Á‚Ä‚æ‚³‚»‚¤H*/
-	/*o‚Ä‚­‚éƒAƒjƒ‚Í‹¤’Ê‚Å‚æ‚³‚»‚¤H*/
+	/*ã©ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚’é€šéŽã—ãŸã‹ã‚’è¦šãˆã¦ãŠã„ã¦ã€ãƒ‰ã‚¢ã®åº§æ¨™ã‚’ã‚»ãƒƒãƒˆã™ã‚‹*/
+	/*ã“ã®å¼·åˆ¶ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¯å¿…ãšç™ºå‹•ã—ã¦ã—ã¾ã£ã¦ã‚ˆã•ãã†ï¼Ÿ*/
+	/*å‡ºã¦ãã‚‹ã‚¢ãƒ‹ãƒ¡ã¯å…±é€šã§ã‚ˆã•ãã†ï¼Ÿ*/
 
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_connect_contest_return_player_00
 	_OBJ_ANIME_WAIT
 
-	//ƒJƒEƒ“ƒ^[ŠJ‚­
+	//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é–‹ã
 	_SET_UP_DOOR_ANIME	0,0,SCWK_ANSWER,5,77
 	_CALL			connect_contest_door_open
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_connect_contest_return_player_02
@@ -98,9 +98,9 @@ ev_contest_return_door:
 	_RET
 
 //--------------------------------------------------------------
-//	ƒhƒA‚©‚ço‚Ä‚«‚½Š‚©‚çƒJƒEƒ“ƒ^[‚Ì‘O‚É–ß‚éƒAƒjƒ
-//			ƒVƒ“ƒOƒ‹A’ÊM‚ÅŽg—po—ˆ‚é(—ûK‚ÍˆÚ“®‹——£‚ªˆá‚¤)
-//		SCWK_ANSWERFƒhƒAÀ•WX
+//	ãƒ‰ã‚¢ã‹ã‚‰å‡ºã¦ããŸæ‰€ã‹ã‚‰ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®å‰ã«æˆ»ã‚‹ã‚¢ãƒ‹ãƒ¡
+//			ã‚·ãƒ³ã‚°ãƒ«ã€é€šä¿¡ã§ä½¿ç”¨å‡ºæ¥ã‚‹(ç·´ç¿’ã¯ç§»å‹•è·é›¢ãŒé•ã†)
+//		SCWK_ANSWERï¼šãƒ‰ã‚¢åº§æ¨™X
 //--------------------------------------------------------------
 ev_contest_return_door_to_counter:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_connect_contest_return_player_03_2
@@ -108,9 +108,9 @@ ev_contest_return_door_to_counter:
 	_RET
 	
 //--------------------------------------------------------------
-//	—ûKŽó•tF–ß‚èƒAƒjƒ
-//		ˆø”FSCWK_TEMP0@‡ˆÊ
-//		–ß‚è’lFSCWK_ANSWER@‚O‚Í‚¢A‚P‚¢‚¢‚¦
+//	ç·´ç¿’å—ä»˜ï¼šæˆ»ã‚Šã‚¢ãƒ‹ãƒ¡
+//		å¼•æ•°ï¼šSCWK_TEMP0ã€€é †ä½
+//		æˆ»ã‚Šå€¤ï¼šSCWK_ANSWERã€€ï¼ï¼ã¯ã„ã€ï¼‘ï¼ã„ã„ãˆ
 //--------------------------------------------------------------
 ev_contest_return_door_practice:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_connect_contest_return_player_03
@@ -121,57 +121,57 @@ ev_contest_return_door_practice:
 	
 	_LDVAL		SCWK_TEMP0,CONRANK_NORMAL
 
-	//‚Í‚¢E‚¢‚¢‚¦@‘I‘ð
+	//ã¯ã„ãƒ»ã„ã„ãˆã€€é¸æŠž
 	_YES_NO_WIN		SCWK_ANSWER
 	_RET
 
-//—ûKŽó•tF–ß‚èƒAƒjƒFƒrƒWƒ…ƒAƒ‹
+//ç·´ç¿’å—ä»˜ï¼šæˆ»ã‚Šã‚¢ãƒ‹ãƒ¡ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«
 ev_connect_contest_practice_visual:
 	_IFVAL_JUMP		SCWK_TEMP0,GT,1,ev_connect_contest_practice_visual_low
 	_TALK_KEYWAIT	msg_prac_v_06
 	_RET
 	
-ev_connect_contest_practice_visual_low:	//‡ˆÊ‚ª’á‚©‚Á‚½
+ev_connect_contest_practice_visual_low:	//é †ä½ãŒä½Žã‹ã£ãŸ
 	_TALK_KEYWAIT	msg_prac_v_07
 	_RET
 
-//—ûKŽó•tF–ß‚èƒAƒjƒFƒ_ƒ“ƒX
+//ç·´ç¿’å—ä»˜ï¼šæˆ»ã‚Šã‚¢ãƒ‹ãƒ¡ï¼šãƒ€ãƒ³ã‚¹
 ev_connect_contest_practice_dance:
 	_IFVAL_JUMP		SCWK_TEMP0,GT,1,ev_connect_contest_practice_dance_low
 	_TALK_KEYWAIT	msg_prac_d_06
 	_RET
 
-ev_connect_contest_practice_dance_low:	//‡ˆÊ‚ª’á‚©‚Á‚½
+ev_connect_contest_practice_dance_low:	//é †ä½ãŒä½Žã‹ã£ãŸ
 	_TALK_KEYWAIT	msg_prac_d_07
 	_RET
 
-//—ûKŽó•tF–ß‚èƒAƒjƒF‰‰‹Z
+//ç·´ç¿’å—ä»˜ï¼šæˆ»ã‚Šã‚¢ãƒ‹ãƒ¡ï¼šæ¼”æŠ€
 ev_connect_contest_practice_actin:
 	_IFVAL_JUMP		SCWK_TEMP0,GT,1,ev_connect_contest_practice_actin_low
 	_TALK_KEYWAIT	msg_prac_a_06
 	_RET
 	
-ev_connect_contest_practice_actin_low:	//‡ˆÊ‚ª’á‚©‚Á‚½
+ev_connect_contest_practice_actin_low:	//é †ä½ãŒä½Žã‹ã£ãŸ
 	_TALK_KEYWAIT	msg_prac_a_07
 	_RET
 
 
 //--------------------------------------------------------------
-//	ƒhƒAƒAƒjƒ
+//	ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 connect_contest_door_open:
-	_SEQ_OPEN_DOOR	77	//ƒhƒAŠJ‚¯‚é
-	_WAIT_3D_ANIME	77	//ƒAƒjƒI—¹‘Ò‚¿
+	_SEQ_OPEN_DOOR	77	//ãƒ‰ã‚¢é–‹ã‘ã‚‹
+	_WAIT_3D_ANIME	77	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	_RET
 
 connect_contest_door_close:
-	_SEQ_CLOSE_DOOR	77	//ƒhƒA•Â‚ß‚é
-	_WAIT_3D_ANIME	77	//ƒAƒjƒI—¹‘Ò‚¿
-	_FREE_3D_ANIME	77	//ƒhƒAƒAƒjƒ‰ð•ú
+	_SEQ_CLOSE_DOOR	77	//ãƒ‰ã‚¢é–‰ã‚ã‚‹
+	_WAIT_3D_ANIME	77	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
+	_FREE_3D_ANIME	77	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡è§£æ”¾
 	_RET
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒhƒA‚Ì•û‚Ö
+//ä¸»äººå…¬	ãƒ‰ã‚¢ã®æ–¹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_connect_contest_return_player_00
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -181,13 +181,13 @@ _ANIME_LABEL anm_connect_contest_return_player_02
 	_ANIME_DATA	AC_WALK_D_8F,2
 	_ANIME_DATA	ACMD_END,0
 
-//¶‚ÉŒü‚©‚Á‚Ä(1•à)ƒJƒEƒ“ƒ^[‚Ì•û‚ðŒü‚­
+//å·¦ã«å‘ã‹ã£ã¦(1æ­©)ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®æ–¹ã‚’å‘ã
 _ANIME_LABEL anm_connect_contest_return_player_03
 	_ANIME_DATA	AC_WALK_L_8F,1
 	_ANIME_DATA	AC_STAY_WALK_U_4F,1
 	_ANIME_DATA	ACMD_END,0
 
-//¶‚ÉŒü‚©‚Á‚Ä(2•à)ƒJƒEƒ“ƒ^[‚Ì•û‚ðŒü‚­
+//å·¦ã«å‘ã‹ã£ã¦(2æ­©)ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®æ–¹ã‚’å‘ã
 _ANIME_LABEL anm_connect_contest_return_player_03_2
 	_ANIME_DATA	AC_WALK_L_8F,2
 	_ANIME_DATA	AC_STAY_WALK_U_4F,1
@@ -202,7 +202,7 @@ _ANIME_LABEL anm_connect_contest_return_player_03_2
 /*						INIT_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_con_reception_init_change:
-	//ƒRƒ“ƒeƒXƒg‚ÉŽQ‰Á’†‚¾‚Á‚½‚ç
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«å‚åŠ ä¸­ã ã£ãŸã‚‰
 	_END
 
 
@@ -210,30 +210,30 @@ ev_con_reception_init_change:
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_c05r1102_flag_change:
-	//ƒRƒ“ƒeƒXƒg‚ÉŽQ‰Á‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«å‚åŠ ã—ã¦ã„ãªã‹ã£ãŸã‚‰
 	_IFVAL_CALL		WK_SCENE_CONTEST,EQ,0,ev_con_reception_flag_clear
 	_IFVAL_JUMP		WK_SCENE_CONTEST,EQ,0,ev_con_poketch_hook_skip
-	_POKETCH_HOOK_SET	//ƒRƒ“ƒeƒXƒg‚ÉŽQ‰Á‚µ‚Ä‚¢‚é‚È‚çƒ|ƒPƒbƒ`ƒtƒbƒN
+	_POKETCH_HOOK_SET	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«å‚åŠ ã—ã¦ã„ã‚‹ãªã‚‰ãƒã‚±ãƒƒãƒãƒ•ãƒƒã‚¯
 ev_con_poketch_hook_skip:
 	_END
 
-//ƒRƒ“ƒeƒXƒg‚ÉŽQ‰Á‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç
+//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«å‚åŠ ã—ã¦ã„ãªã‹ã£ãŸã‚‰
 ev_con_reception_flag_clear:
-	_LDVAL			WK_SCENE_CONTEST,0	//ŽQ‰Á’†‚Å‚Í‚È‚¢
-	_FLAG_SET		FV_C05R1102_CON1	//ŽQ‰ÁŽÒ‚ðÁ‚·
-	_FLAG_SET		FV_C05R1102_CON2	//ŽQ‰ÁŽÒ‚ðÁ‚·
-	_FLAG_SET		FV_C05R1102_CON3	//ŽQ‰ÁŽÒ‚ðÁ‚·
-	_FLAG_SET		FV_C05R1102_CON4	//ŽQ‰ÁŽÒ‚ðÁ‚·
-	_FLAG_SET		FV_C05R1102_CON5	//ŽQ‰ÁŽÒ‚ðÁ‚·
+	_LDVAL			WK_SCENE_CONTEST,0	//å‚åŠ ä¸­ã§ã¯ãªã„
+	_FLAG_SET		FV_C05R1102_CON1	//å‚åŠ è€…ã‚’æ¶ˆã™
+	_FLAG_SET		FV_C05R1102_CON2	//å‚åŠ è€…ã‚’æ¶ˆã™
+	_FLAG_SET		FV_C05R1102_CON3	//å‚åŠ è€…ã‚’æ¶ˆã™
+	_FLAG_SET		FV_C05R1102_CON4	//å‚åŠ è€…ã‚’æ¶ˆã™
+	_FLAG_SET		FV_C05R1102_CON5	//å‚åŠ è€…ã‚’æ¶ˆã™
 	_RET
 
 //--------------------------------------------------------------
-//	c05r1101.ev“à‚Å‚ÌFLAG_CHANGE_LABEL‚Ìˆ—
+//	c05r1101.evå†…ã§ã®FLAG_CHANGE_LABELã®å‡¦ç†
 //--------------------------------------------------------------
 ev_c05r1101_flag_change:
-	_POKETCH_HOOK_RESET		//ƒ|ƒPƒbƒ`‚ÌƒtƒbƒN‰ðœ
+	_POKETCH_HOOK_RESET		//ãƒã‚±ãƒƒãƒã®ãƒ•ãƒƒã‚¯è§£é™¤
 
-	_CALL			ev_c05r1102_flag_change_pofin_event	//ƒS[ƒWƒƒƒXŒZ‚³‚ñ
+	_CALL			ev_c05r1102_flag_change_pofin_event	//ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹å…„ã•ã‚“
 	
 	_CALL			ev_con_reception_flag_clear
 
@@ -248,7 +248,7 @@ ev_c05r1101_flag_change_vanish:
 	_END
 
 //--------------------------------------------------------------
-//	c05r1101.ev:ƒS[ƒWƒƒƒXŒZ‚³‚ñˆÚ“®ˆ—
+//	c05r1101.ev:ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹å…„ã•ã‚“ç§»å‹•å‡¦ç†
 //--------------------------------------------------------------
 ev_c05r1102_flag_change_pofin_event:
 	_IF_FLAGON_JUMP		FE_C05R1101_POFIN_INFOMATION,ev_c05r1102_flag_change_pofin_event_move
@@ -265,19 +265,19 @@ ev_c05r1102_flag_change_pofin_event_move:
 /*						OBJ_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_con_reception_obj_change:
-	//ƒI[ƒvƒjƒ“ƒO‰ïê‚ÅŽålŒö‚ðƒoƒjƒbƒVƒ…‚·‚é
+	//ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ä¼šå ´ã§ä¸»äººå…¬ã‚’ãƒãƒ‹ãƒƒã‚·ãƒ¥ã™ã‚‹
 	_IFVAL_CALL		WK_SCENE_CONTEST,EQ,1,ev_con_reception_flag_change_player_vanish
 
 	_END
 
-//ƒI[ƒvƒjƒ“ƒO‰ïê‚ÅŽålŒö‚ðƒoƒjƒbƒVƒ…‚·‚é
+//ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ä¼šå ´ã§ä¸»äººå…¬ã‚’ãƒãƒ‹ãƒƒã‚·ãƒ¥ã™ã‚‹
 ev_con_reception_flag_change_player_vanish:
 	_OBJ_INVISIBLE	FLDOBJ_ID_PLAYER
 	_RET
 
 
 /********************************************************************/
-/*							“ü‚èŒû•t‹ß								*/
+/*							å…¥ã‚Šå£ä»˜è¿‘								*/
 /********************************************************************/
 ev_con_reception_npc01:
 	_EASY_OBJ_MSG	msg_con_reception_npc01_01
@@ -285,8 +285,8 @@ ev_con_reception_npc01:
 
 
 /********************************************************************/
-/*							Žó•t‚P									*/
-//	ƒVƒ“ƒOƒ‹ƒvƒŒƒC
+/*							å—ä»˜ï¼‘									*/
+//	ã‚·ãƒ³ã‚°ãƒ«ãƒ—ãƒ¬ã‚¤
 /********************************************************************/
 ev_con_reception_front01:
 	_TALK_OBJ_START
@@ -310,8 +310,8 @@ ev_con_reception_front01:
 
 
 /********************************************************************/
-/*							Žó•t‚Q									*/
-//	ƒ}ƒ‹ƒ`ƒvƒŒƒC
+/*							å—ä»˜ï¼’									*/
+//	ãƒžãƒ«ãƒãƒ—ãƒ¬ã‚¤
 /********************************************************************/
 ev_con_reception_front02:
 	_TALK_OBJ_START
@@ -324,34 +324,34 @@ ev_con_reception_front02:
 	_END
 
 //--------------------------------------------------------------------
-//‹¤’Êƒƒjƒ…[
+//å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //--------------------------------------------------------------------
 ev_con_reception_menu_01:
 	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_MULTI,ev_con_reception_menu_01_multi_msg
-	_TALKMSG		msg_con_reception_front04_01	//ƒVƒ“ƒOƒ‹—pƒƒbƒZ[ƒW
+	_TALKMSG		msg_con_reception_front04_01	//ã‚·ãƒ³ã‚°ãƒ«ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	_JUMP			ev_con_reception_menu_01_msg_skip
 ev_con_reception_menu_01_multi_msg:
-	_TALKMSG		msg_con_reception_front06_06	//ƒ}ƒ‹ƒ`—pƒƒbƒZ[ƒW
+	_TALKMSG		msg_con_reception_front06_06	//ãƒžãƒ«ãƒç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 ev_con_reception_menu_01_msg_skip:
-	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_con_reception_front06_02,0			//‚³‚ñ‚©‚·‚é
-	_BMPMENU_MAKE_LIST	msg_con_reception_front06_03,1			//‚¹‚Â‚ß‚¢‚ð‚«‚­
-	_BMPMENU_MAKE_LIST	msg_con_reception_front06_04,2			//‚â‚ß‚é
+	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_con_reception_front06_02,0			//ã•ã‚“ã‹ã™ã‚‹
+	_BMPMENU_MAKE_LIST	msg_con_reception_front06_03,1			//ã›ã¤ã‚ã„ã‚’ãã
+	_BMPMENU_MAKE_LIST	msg_con_reception_front06_04,2			//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP		0,ev_con_reception_menu_01_01
 	_CASE_JUMP		1,ev_con_reception_menu_01_02
-	_JUMP			ev_con_reception_end			//I—¹
+	_JUMP			ev_con_reception_end			//çµ‚äº†
 	_END
 
 //--------------------------------------------------------------------
-//‹¤’ÊI—¹u‚Ü‚½‚ÌŽQ‰Á‚ð‚¨‘Ò‚¿‚µ‚Ä‚¨‚è‚Ü‚·v
+//å…±é€šçµ‚äº†ã€Œã¾ãŸã®å‚åŠ ã‚’ãŠå¾…ã¡ã—ã¦ãŠã‚Šã¾ã™ã€
 //--------------------------------------------------------------------
 ev_con_reception_end:
 	_COMM_DIRECT_END
 	_LDVAL		WK_SCENE_COMM_ID,SCR_COMM_ID_NOTHING
-	_FLAG_RESET	SYS_FLAG_COMM_COUNTER			//’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO(ƒVƒXƒeƒ€)
+	_FLAG_RESET	SYS_FLAG_COMM_COUNTER			//é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°(ã‚·ã‚¹ãƒ†ãƒ )
 
 	_TALK_KEYWAIT	msg_con_reception_front06_05
 	_LAST_KEYWAIT
@@ -360,117 +360,117 @@ ev_con_reception_end:
 	_END
 
 //--------------------------------------------------------------------
-//‚³‚ñ‚©‚·‚é
+//ã•ã‚“ã‹ã™ã‚‹
 //--------------------------------------------------------------------
 ev_con_reception_menu_01_01:
 
-	/*’ÊMŽó•t‚ÌŽž‚ÍAƒZ[ƒuŒã‚É’ÊMŽó•tƒtƒ‰ƒOƒZƒbƒg*/
+	/*é€šä¿¡å—ä»˜ã®æ™‚ã¯ã€ã‚»ãƒ¼ãƒ–å¾Œã«é€šä¿¡å—ä»˜ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ*/
 	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_MULTI,ev_con_reception_report
 
 	_JUMP		ev_con_reception_menu_04
 	_END
 
 //--------------------------------------------------------------------
-/*’ÊMŽó•t‚ÌŽž‚ÍAƒZ[ƒuŒã‚É’ÊMŽó•tƒtƒ‰ƒOƒZƒbƒg*/
+/*é€šä¿¡å—ä»˜ã®æ™‚ã¯ã€ã‚»ãƒ¼ãƒ–å¾Œã«é€šä¿¡å—ä»˜ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ*/
 //--------------------------------------------------------------------
 ev_con_reception_report:
 
     //k.ohno
-	// ‘Sƒ|ƒPƒ‚ƒ“‰ñ•œ
+	// å…¨ãƒã‚±ãƒ¢ãƒ³å›žå¾©
 	_PC_KAIFUKU
 
 #ifndef MATSUDA_DEBUG
-	//ƒZ[ƒu‚µ‚Ü‚·‚©H(LOCALWORK0‚ÉŒ‹‰Ê‚ª‘ã“ü‚³‚ê‚é)
-	_FLAG_RESET		SYS_FLAG_COMM_COUNTER					/*’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO(ƒVƒXƒeƒ€)*/
+	//ã‚»ãƒ¼ãƒ–ã—ã¾ã™ã‹ï¼Ÿ(LOCALWORK0ã«çµæžœãŒä»£å…¥ã•ã‚Œã‚‹)
+	_FLAG_RESET		SYS_FLAG_COMM_COUNTER					/*é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°(ã‚·ã‚¹ãƒ†ãƒ )*/
 	_CHG_COMMON_SCR	SCRID_REPORT_CALL
 	_LDWK			SCWK_ANSWER,LOCALWORK0
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_con_reception_report__02	//¬Œ÷
-	_JUMP			ev_con_reception_end							//I—¹‚Ö
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_con_reception_report__02	//æˆåŠŸ
+	_JUMP			ev_con_reception_end							//çµ‚äº†ã¸
 	_END
 #endif
 
-/*ƒZ[ƒu¬Œ÷*/
+/*ã‚»ãƒ¼ãƒ–æˆåŠŸ*/
 ev_con_reception_report__02:
-//	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_CONTEST/*’ÊMŽó•tIDƒZƒbƒg*/
-//	_FLAG_SET		SYS_FLAG_COMM_COUNTER					/*’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO(ƒVƒXƒeƒ€)*/
-#if 0	//’ÊM‘Îí‚ÌŽž‚Íƒ‰ƒ“ƒN‚ÍƒnƒCƒp[ŒÅ’è
+//	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_CONTEST/*é€šä¿¡å—ä»˜IDã‚»ãƒƒãƒˆ*/
+//	_FLAG_SET		SYS_FLAG_COMM_COUNTER					/*é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°(ã‚·ã‚¹ãƒ†ãƒ )*/
+#if 0	//é€šä¿¡å¯¾æˆ¦ã®æ™‚ã¯ãƒ©ãƒ³ã‚¯ã¯ãƒã‚¤ãƒ‘ãƒ¼å›ºå®š
 //	_JUMP		ev_con_reception_menu_04
 #else
-	_LDVAL			SCWK_TEMP0,CONRANK_HYPER		//ƒ‰ƒ“ƒNƒZƒbƒg
+	_LDVAL			SCWK_TEMP0,CONRANK_HYPER		//ãƒ©ãƒ³ã‚¯ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_05
 #endif
 	_END
 
 //--------------------------------------------------------------------
-//‚¹‚Â‚ß‚¢‚ð‚«‚­
+//ã›ã¤ã‚ã„ã‚’ãã
 //--------------------------------------------------------------------
 ev_con_reception_menu_01_02:
-	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_MULTI,ev_con_reception_menu_02_multi	//ƒ}ƒ‹ƒ`
-	_JUMP			ev_con_reception_menu_02	//ƒVƒ“ƒOƒ‹
+	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_MULTI,ev_con_reception_menu_02_multi	//ãƒžãƒ«ãƒ
+	_JUMP			ev_con_reception_menu_02	//ã‚·ãƒ³ã‚°ãƒ«
 	_END
 
 //--------------------------------------------------------------
-//	’ÊMŽó•t‚Å‚Ì@‚¹‚Â‚ß‚¢‚ð‚«‚­
+//	é€šä¿¡å—ä»˜ã§ã®ã€€ã›ã¤ã‚ã„ã‚’ãã
 //--------------------------------------------------------------
 ev_con_reception_menu_02_multi:
 	_TALK_KEYWAIT	msg_con_reception_front06_08
 	_JUMP			ev_con_reception_menu_01
 
 //--------------------------------------------------------------------
-//‹¤’Êƒƒjƒ…[
+//å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //--------------------------------------------------------------------
 ev_con_reception_menu_02:
 	_TALKMSG		msg_con_reception_front04_02
 ev_con_reception_menu_02_msg_skip:
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_093,0			//ƒRƒ“ƒeƒXƒg‚Ì‚«‚Ù‚ñ
-	_BMPMENU_MAKE_LIST	msg_ev_win_094,1			//ƒRƒ“ƒeƒXƒg‚Ì‚µ‚ã‚é‚¢
-	_BMPMENU_MAKE_LIST	msg_ev_win_095,2			//ƒ‰ƒ“ƒN‚É‚Â‚¢‚Ä
-	_BMPMENU_MAKE_LIST	msg_ev_win_096,3			//‚à‚Ç‚é
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_093,0			//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãã»ã‚“
+	_BMPMENU_MAKE_LIST	msg_ev_win_094,1			//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ã—ã‚…ã‚‹ã„
+	_BMPMENU_MAKE_LIST	msg_ev_win_095,2			//ãƒ©ãƒ³ã‚¯ã«ã¤ã„ã¦
+	_BMPMENU_MAKE_LIST	msg_ev_win_096,3			//ã‚‚ã©ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP		0,ev_con_reception_menu_02_01
 	_CASE_JUMP		1,ev_con_reception_menu_02_02
 	_CASE_JUMP		2,ev_con_reception_menu_02_03
-	_JUMP			ev_con_reception_menu_01		//menu01‚Ö–ß‚é
+	_JUMP			ev_con_reception_menu_01		//menu01ã¸æˆ»ã‚‹
 	_END
 
 //--------------------------------------------------------------------
-//ƒRƒ“ƒeƒXƒg‚Ì‚«‚Ù‚ñ
+//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãã»ã‚“
 //--------------------------------------------------------------------
 ev_con_reception_menu_02_01:
 	_JUMP			ev_con_reception_menu_03_msg_skip
 	_END
 
 //--------------------------------------------------------------------
-//ƒRƒ“ƒeƒXƒg‚Ì‚µ‚ã‚é‚¢
+//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ã—ã‚…ã‚‹ã„
 //--------------------------------------------------------------------
 ev_con_reception_menu_02_02:
 	_TALK_KEYWAIT	msg_con_reception_info_05
-	_JUMP			ev_con_reception_menu_02		//menu02‚Ö–ß‚é
+	_JUMP			ev_con_reception_menu_02		//menu02ã¸æˆ»ã‚‹
 	_END
 
 //--------------------------------------------------------------------
-//ƒ‰ƒ“ƒN‚É‚Â‚¢‚Ä
+//ãƒ©ãƒ³ã‚¯ã«ã¤ã„ã¦
 //--------------------------------------------------------------------
 ev_con_reception_menu_02_03:
 	_TALK_KEYWAIT	msg_con_reception_info_06
-	_JUMP			ev_con_reception_menu_02		//menu02‚Ö–ß‚é
+	_JUMP			ev_con_reception_menu_02		//menu02ã¸æˆ»ã‚‹
 	_END
 
 //--------------------------------------------------------------------
-//‹¤’Êƒƒjƒ…[
+//å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //--------------------------------------------------------------------
 ev_con_reception_menu_03:
 	_TALKMSG		msg_prac_recep_06	//msg_con_reception_info_07
 ev_con_reception_menu_03_msg_skip:
-	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_con_reception_selp_27,0			//ƒRƒ“ƒeƒXƒg‚Æ‚ÍH
-	_BMPMENU_MAKE_LIST	msg_con_reception_selp_28,1			//ƒrƒWƒ…ƒAƒ‹‚Ô‚à‚ñ
-	_BMPMENU_MAKE_LIST	msg_con_reception_selp_29,2			//ƒ_ƒ“ƒX‚Ô‚à‚ñ
-	_BMPMENU_MAKE_LIST	msg_con_reception_selp_30,3			//‚¦‚ñ‚¬‚Ô‚à‚ñ
-	_BMPMENU_MAKE_LIST	msg_con_reception_selp_31,4			//‚à‚Ç‚é
+	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_con_reception_selp_27,0			//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã¨ã¯ï¼Ÿ
+	_BMPMENU_MAKE_LIST	msg_con_reception_selp_28,1			//ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã¶ã‚‚ã‚“
+	_BMPMENU_MAKE_LIST	msg_con_reception_selp_29,2			//ãƒ€ãƒ³ã‚¹ã¶ã‚‚ã‚“
+	_BMPMENU_MAKE_LIST	msg_con_reception_selp_30,3			//ãˆã‚“ãŽã¶ã‚‚ã‚“
+	_BMPMENU_MAKE_LIST	msg_con_reception_selp_31,4			//ã‚‚ã©ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -478,52 +478,52 @@ ev_con_reception_menu_03_msg_skip:
 	_CASE_JUMP		1,ev_con_reception_menu_03_02
 	_CASE_JUMP		2,ev_con_reception_menu_03_03
 	_CASE_JUMP		3,ev_con_reception_menu_03_04
-	_JUMP			ev_con_reception_menu_02_msg_skip		//menu02‚Ö–ß‚é
+	_JUMP			ev_con_reception_menu_02_msg_skip		//menu02ã¸æˆ»ã‚‹
 	_END
 
 //--------------------------------------------------------------------
-//ƒRƒ“ƒeƒXƒg‚Æ‚ÍH
+//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã¨ã¯ï¼Ÿ
 //--------------------------------------------------------------------
 ev_con_reception_menu_03_01:
 	_TALK_KEYWAIT	msg_con_reception_info_01
-	_JUMP			ev_con_reception_menu_03		//menu03‚Ö–ß‚é
+	_JUMP			ev_con_reception_menu_03		//menu03ã¸æˆ»ã‚‹
 	_END
 
 //--------------------------------------------------------------------
-//ƒrƒWƒ…ƒAƒ‹‚Ô‚à‚ñ
+//ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã¶ã‚‚ã‚“
 //--------------------------------------------------------------------
 ev_con_reception_menu_03_02:
 	_TALK_KEYWAIT	msg_con_reception_info_02
-	_JUMP			ev_con_reception_menu_03		//menu03‚Ö–ß‚é
+	_JUMP			ev_con_reception_menu_03		//menu03ã¸æˆ»ã‚‹
 	_END
 
 //--------------------------------------------------------------------
-//ƒ_ƒ“ƒX‚Ô‚à‚ñ
+//ãƒ€ãƒ³ã‚¹ã¶ã‚‚ã‚“
 //--------------------------------------------------------------------
 ev_con_reception_menu_03_03:
 	_TALK_KEYWAIT	msg_con_reception_info_03
-	_JUMP			ev_con_reception_menu_03		//menu03‚Ö–ß‚é
+	_JUMP			ev_con_reception_menu_03		//menu03ã¸æˆ»ã‚‹
 	_END
 
 //--------------------------------------------------------------------
-//‚¦‚ñ‚¬‚Ô‚à‚ñ
+//ãˆã‚“ãŽã¶ã‚‚ã‚“
 //--------------------------------------------------------------------
 ev_con_reception_menu_03_04:
 	_TALK_KEYWAIT	msg_con_reception_info_04
-	_JUMP			ev_con_reception_menu_03		//menu03‚Ö–ß‚é
+	_JUMP			ev_con_reception_menu_03		//menu03ã¸æˆ»ã‚‹
 	_END
 
 //====================================================================
-//‹¤’Êƒƒjƒ…[
+//å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //====================================================================
 ev_con_reception_menu_04:
 	_TALKMSG		msg_con_reception_selp_18
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_102,0			//ƒm[ƒ}ƒ‹
-	_BMPMENU_MAKE_LIST	msg_ev_win_103,1			//ƒX[ƒp[
-	_BMPMENU_MAKE_LIST	msg_ev_win_104,2			//ƒnƒCƒp[
-	_BMPMENU_MAKE_LIST	msg_ev_win_105,3			//ƒ}ƒXƒ^[
-	_BMPMENU_MAKE_LIST	msg_ev_win_106,4			//‚â‚ß‚é
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_102,0			//ãƒŽãƒ¼ãƒžãƒ«
+	_BMPMENU_MAKE_LIST	msg_ev_win_103,1			//ã‚¹ãƒ¼ãƒ‘ãƒ¼
+	_BMPMENU_MAKE_LIST	msg_ev_win_104,2			//ãƒã‚¤ãƒ‘ãƒ¼
+	_BMPMENU_MAKE_LIST	msg_ev_win_105,3			//ãƒžã‚¹ã‚¿ãƒ¼
+	_BMPMENU_MAKE_LIST	msg_ev_win_106,4			//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -531,53 +531,53 @@ ev_con_reception_menu_04:
 	_CASE_JUMP		1,ev_con_reception_menu_04_02
 	_CASE_JUMP		2,ev_con_reception_menu_04_03
 	_CASE_JUMP		3,ev_con_reception_menu_04_04
-	_JUMP			ev_con_reception_end			//I—¹
+	_JUMP			ev_con_reception_end			//çµ‚äº†
 	_END
 
 //--------------------------------------------------------------------
-//ƒm[ƒ}ƒ‹
+//ãƒŽãƒ¼ãƒžãƒ«
 //--------------------------------------------------------------------
 ev_con_reception_menu_04_01:
-	_LDVAL			SCWK_TEMP0,CONRANK_NORMAL		//ƒ‰ƒ“ƒNƒZƒbƒg
+	_LDVAL			SCWK_TEMP0,CONRANK_NORMAL		//ãƒ©ãƒ³ã‚¯ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_05
 	_END
 
 //--------------------------------------------------------------------
-//ƒX[ƒp[
+//ã‚¹ãƒ¼ãƒ‘ãƒ¼
 //--------------------------------------------------------------------
 ev_con_reception_menu_04_02:
-	_LDVAL			SCWK_TEMP0,CONRANK_SUPER		//ƒ‰ƒ“ƒNƒZƒbƒg
+	_LDVAL			SCWK_TEMP0,CONRANK_SUPER		//ãƒ©ãƒ³ã‚¯ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_05
 	_END
 
 //--------------------------------------------------------------------
-//ƒnƒCƒp[
+//ãƒã‚¤ãƒ‘ãƒ¼
 //--------------------------------------------------------------------
 ev_con_reception_menu_04_03:
-	_LDVAL			SCWK_TEMP0,CONRANK_HYPER		//ƒ‰ƒ“ƒNƒZƒbƒg
+	_LDVAL			SCWK_TEMP0,CONRANK_HYPER		//ãƒ©ãƒ³ã‚¯ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_05
 	_END
 
 //--------------------------------------------------------------------
-//ƒ}ƒXƒ^[
+//ãƒžã‚¹ã‚¿ãƒ¼
 //--------------------------------------------------------------------
 ev_con_reception_menu_04_04:
-	_LDVAL			SCWK_TEMP0,CONRANK_MASTER		//ƒ‰ƒ“ƒNƒZƒbƒg
+	_LDVAL			SCWK_TEMP0,CONRANK_MASTER		//ãƒ©ãƒ³ã‚¯ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_05
 	_END
 
 //====================================================================
-//‹¤’Êƒƒjƒ…[
+//å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //====================================================================
 ev_con_reception_menu_05:
 	_TALKMSG		msg_con_reception_selp_19
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_107,0			//‚©‚Á‚±‚æ‚³
-	_BMPMENU_MAKE_LIST	msg_ev_win_108,1			//‚¤‚Â‚­‚µ‚³
-	_BMPMENU_MAKE_LIST	msg_ev_win_109,2			//‚©‚í‚¢‚³
-	_BMPMENU_MAKE_LIST	msg_ev_win_110,3			//‚©‚µ‚±‚³
-	_BMPMENU_MAKE_LIST	msg_ev_win_111,4			//‚½‚­‚Ü‚µ‚³
-	_BMPMENU_MAKE_LIST	msg_ev_win_112,5			//‚â‚ß‚é
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_107,0			//ã‹ã£ã“ã‚ˆã•
+	_BMPMENU_MAKE_LIST	msg_ev_win_108,1			//ã†ã¤ãã—ã•
+	_BMPMENU_MAKE_LIST	msg_ev_win_109,2			//ã‹ã‚ã„ã•
+	_BMPMENU_MAKE_LIST	msg_ev_win_110,3			//ã‹ã—ã“ã•
+	_BMPMENU_MAKE_LIST	msg_ev_win_111,4			//ãŸãã¾ã—ã•
+	_BMPMENU_MAKE_LIST	msg_ev_win_112,5			//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -586,74 +586,74 @@ ev_con_reception_menu_05:
 	_CASE_JUMP		2,ev_con_reception_menu_05_03
 	_CASE_JUMP		3,ev_con_reception_menu_05_04
 	_CASE_JUMP		4,ev_con_reception_menu_05_05
-	_JUMP			ev_con_reception_end			//I—¹
+	_JUMP			ev_con_reception_end			//çµ‚äº†
 	_END
 
 //--------------------------------------------------------------------
-//‚©‚Á‚±‚æ‚³
+//ã‹ã£ã“ã‚ˆã•
 //--------------------------------------------------------------------
 ev_con_reception_menu_05_01:
-	_LDVAL			SCWK_TEMP1,CONTYPE_STYLE		//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	_LDVAL			SCWK_TEMP1,CONTYPE_STYLE		//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_common_02
 	_END
 
 //--------------------------------------------------------------------
-//‚¤‚Â‚­‚µ‚³
+//ã†ã¤ãã—ã•
 //--------------------------------------------------------------------
 ev_con_reception_menu_05_02:
-	_LDVAL			SCWK_TEMP1,CONTYPE_BEAUTIFUL	//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	_LDVAL			SCWK_TEMP1,CONTYPE_BEAUTIFUL	//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_common_02
 	_END
 
 //--------------------------------------------------------------------
-//‚©‚í‚¢‚³
+//ã‹ã‚ã„ã•
 //--------------------------------------------------------------------
 ev_con_reception_menu_05_03:
-	_LDVAL			SCWK_TEMP1,CONTYPE_CUTE			//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	_LDVAL			SCWK_TEMP1,CONTYPE_CUTE			//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_common_02
 	_END
 
 //--------------------------------------------------------------------
-//‚©‚µ‚±‚³
+//ã‹ã—ã“ã•
 //--------------------------------------------------------------------
 ev_con_reception_menu_05_04:
-	_LDVAL			SCWK_TEMP1,CONTYPE_CLEVER		//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	_LDVAL			SCWK_TEMP1,CONTYPE_CLEVER		//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_common_02
 	_END
 
 //--------------------------------------------------------------------
-//‚½‚­‚Ü‚µ‚³
+//ãŸãã¾ã—ã•
 //--------------------------------------------------------------------
 ev_con_reception_menu_05_05:
-	_LDVAL			SCWK_TEMP1,CONTYPE_STRONG		//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	_LDVAL			SCWK_TEMP1,CONTYPE_STRONG		//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_common_02
 	_END
 
 //--------------------------------------------------------------------
-//LOCALWORK2Žg—pI
+//LOCALWORK2ä½¿ç”¨ï¼
 //--------------------------------------------------------------------
 ev_con_reception_common_02:
-	/*u‚Ç‚Ìƒ|ƒPƒ‚ƒ“‚ð‚³‚ñ‚©‚³‚¹‚Ü‚·‚©Hv*/
+	/*ã€Œã©ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ã•ã‚“ã‹ã•ã›ã¾ã™ã‹ï¼Ÿã€*/
 	_TALK_KEYWAIT	msg_con_reception_selp_11
 
-	/*uƒ|ƒPƒ‚ƒ“‚ð‚¦‚ç‚ñ‚Å‚­‚¾‚³‚¢v*/
+	/*ã€Œãƒã‚±ãƒ¢ãƒ³ã‚’ãˆã‚‰ã‚“ã§ãã ã•ã„ã€*/
 	_TALK_KEYWAIT	msg_con_reception_selp_12
 	_TALK_CLOSE
 
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//ƒVƒ“ƒOƒ‹ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒtƒ‰ƒOƒZƒbƒg
+	//ã‚·ãƒ³ã‚°ãƒ«ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	_IFVAL_CALL		LOCALWORK3,EQ,DESK_SINGLE,ev_con_reception_pokelist_single
-	//’ÊMƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒtƒ‰ƒOƒZƒbƒg
+	//é€šä¿¡ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	_IFVAL_CALL		LOCALWORK3,EQ,DESK_MULTI,ev_con_reception_pokelist_multi
 
-	_LDVAL			SCWK_ANSWER,0		/*ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰ŠúƒJ[ƒ\ƒ‹ˆÊ’u*/
-ev_con_reception_common_02_list_back:	/*ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊŒÄ‚Ño‚µ–ß‚èæ*/
-	//ƒ|ƒPƒ‚ƒ“‘I‘ð‰æ–ÊŒÄ‚Ño‚µ
+	_LDVAL			SCWK_ANSWER,0		/*ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆåˆæœŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®*/
+ev_con_reception_common_02_list_back:	/*ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢å‘¼ã³å‡ºã—æˆ»ã‚Šå…ˆ*/
+	//ãƒã‚±ãƒ¢ãƒ³é¸æŠžç”»é¢å‘¼ã³å‡ºã—
 	_CON_POKELIST_SET_PROC	SCWK_ANSWER,SCWK_TEMP0,SCWK_TEMP1,LOCALWORK4
 
-	//‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì•À‚Ñ”Ô†Žæ“¾
+	//é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ä¸¦ã³ç•ªå·å–å¾—
 	_CON_POKELIST_GET_RESULT	LOCALWORK2,SCWK_ANSWER
 
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_con_reception_common_02_list_select_end
@@ -661,125 +661,125 @@ ev_con_reception_common_02_list_back:	/*ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊŒÄ‚Ño‚µ–ß‚èæ*/
 	_POKESTATUS_GET_RESULT		SCWK_ANSWER
 	_JUMP			ev_con_reception_common_02_list_back
 
-ev_con_reception_common_02_list_select_end:	//ƒŠƒXƒg‘I‘ðŒã
+ev_con_reception_common_02_list_select_end:	//ãƒªã‚¹ãƒˆé¸æŠžå¾Œ
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN
-	_IFVAL_JUMP		LOCALWORK2,EQ,0xff,ev_con_reception_end_pre	//I—¹Šm”F
+	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯
+	_IFVAL_JUMP		LOCALWORK2,EQ,0xff,ev_con_reception_end_pre	//çµ‚äº†ç¢ºèª
 
 	_JUMP			ev_con_reception_common_02_01
 	_END
 
 ev_con_reception_end_pre:
-    //‚³‚ñ‚©‚ð‚Æ‚è‚â‚ß‚Ü‚·‚©H
+    //ã•ã‚“ã‹ã‚’ã¨ã‚Šã‚„ã‚ã¾ã™ã‹ï¼Ÿ
 	_TALK_KEYWAIT	msg_con_recep_wireless_04
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_con_reception_end   // ‚±‚Ìê‡"‚Í‚¢"‚È‚ç‚â‚ß‚é
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_con_reception_end   // ã“ã®å ´åˆ"ã¯ã„"ãªã‚‰ã‚„ã‚ã‚‹
     _JUMP			ev_con_reception_common_02
 	_END
 	
 
 //--------------------------------------------------------------------
-//ƒ|ƒPƒ‚ƒ“‘I‘ð
+//ãƒã‚±ãƒ¢ãƒ³é¸æŠž
 //--------------------------------------------------------------------
-//ƒVƒ“ƒOƒ‹ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ö
+//ã‚·ãƒ³ã‚°ãƒ«ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã¸
 ev_con_reception_pokelist_single:
-	_LDVAL			LOCALWORK4,0		//”ñ’ÊM
+	_LDVAL			LOCALWORK4,0		//éžé€šä¿¡
 	_RET
 
-//’ÊMƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ö
+//é€šä¿¡ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã¸
 ev_con_reception_pokelist_multi:
-	_LDVAL			LOCALWORK4,1		//’ÊM
+	_LDVAL			LOCALWORK4,1		//é€šä¿¡
 	_RET
 
 //--------------------------------------------------------------------
-//ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒNŠm•Û
+//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 //--------------------------------------------------------------------
 ev_con_reception_common_02_01:
-	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_MULTI,ev_con_reception_menu_06	//’ÊM‚Ö
-	_JUMP			ev_con_reception_common_05					//ƒVƒ“ƒOƒ‹‚Ö
+	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_MULTI,ev_con_reception_menu_06	//é€šä¿¡ã¸
+	_JUMP			ev_con_reception_common_05					//ã‚·ãƒ³ã‚°ãƒ«ã¸
 	_END
 
 //====================================================================
-//ƒOƒ‹[ƒvAƒŠ[ƒ_[‘I‘ðƒƒjƒ…[
+//ã‚°ãƒ«ãƒ¼ãƒ—ã€ãƒªãƒ¼ãƒ€ãƒ¼é¸æŠžãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //====================================================================
 ev_con_reception_menu_06:
 
-	_TALKMSG		msg_con_recep_wireless_08   //‚Ý‚ñ‚È‚Å‚Í‚È‚µ‚ ‚Á‚Ä@‚Ð‚Æ‚è‚ªƒŠ[ƒ_[EEE
+	_TALKMSG		msg_con_recep_wireless_08   //ã¿ã‚“ãªã§ã¯ãªã—ã‚ã£ã¦ã€€ã²ã¨ã‚ŠãŒãƒªãƒ¼ãƒ€ãƒ¼ãƒ»ãƒ»ãƒ»
 
-	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER		//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_014,0			//ƒOƒ‹[ƒv
-	_BMPMENU_MAKE_LIST	msg_ev_win_015,1			//ƒŠ[ƒ_[
+	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER		//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_014,0			//ã‚°ãƒ«ãƒ¼ãƒ—
+	_BMPMENU_MAKE_LIST	msg_ev_win_015,1			//ãƒªãƒ¼ãƒ€ãƒ¼
 	_BMPMENU_MAKE_LIST	msg_ev_win_006,2			//
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_con_reception_06_01		//ƒOƒ‹[ƒv
-	_CASE_JUMP		1,ev_con_reception_06_02		//ƒŠ[ƒ_[
-	_JUMP			ev_con_reception_end			//I—¹
+	_CASE_JUMP		0,ev_con_reception_06_01		//ã‚°ãƒ«ãƒ¼ãƒ—
+	_CASE_JUMP		1,ev_con_reception_06_02		//ãƒªãƒ¼ãƒ€ãƒ¼
+	_JUMP			ev_con_reception_end			//çµ‚äº†
 	_END
 
 //--------------------------------------------------------------------
-//ƒOƒ‹[ƒv
+//ã‚°ãƒ«ãƒ¼ãƒ—
 //--------------------------------------------------------------------
 ev_con_reception_06_01:
-	//DSƒƒCƒ„ƒŒƒX’ÊM‚ðŽn‚ß‚Ü‚·‚©H
+	//DSãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿ
 	_TALKMSG		msg_con_recep_wireless_01
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_con_reception_menu_06
 
 	_TALK_CLOSE
 
-	//e‹@‚ð‘I‘ð‚·‚éƒEƒBƒ“ƒhƒE‚ðŠJ‚­
+	//è¦ªæ©Ÿã‚’é¸æŠžã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 	_SEL_PARENT_WIN	COMM_MODE_CONTEST,SCWK_TEMP1,SCWK_TEMP0,SCWK_ANSWER
 
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_con_reception_group_cancel	//ƒLƒƒƒ“ƒZƒ‹
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_con_reception_group_error	//ƒGƒ‰[
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_con_reception_group_cancel	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_con_reception_group_error	//ã‚¨ãƒ©ãƒ¼
 
-	//‚»‚êˆÈŠO
-	_JUMP			ev_con_reception_common_05		//¬Œ÷
+	//ãã‚Œä»¥å¤–
+	_JUMP			ev_con_reception_common_05		//æˆåŠŸ
 	_END
 
-//ƒLƒƒƒ“ƒZƒ‹
+//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_con_reception_group_cancel:
-	_JUMP			ev_con_reception_menu_06		//ƒOƒ‹[ƒvAƒŠ[ƒ_[‘I‘ð‚Ö
+	_JUMP			ev_con_reception_menu_06		//ã‚°ãƒ«ãƒ¼ãƒ—ã€ãƒªãƒ¼ãƒ€ãƒ¼é¸æŠžã¸
 	_END
 
-//ƒGƒ‰[
+//ã‚¨ãƒ©ãƒ¼
 ev_con_reception_group_error:
-	_JUMP			ev_con_reception_menu_06		//ƒOƒ‹[ƒvAƒŠ[ƒ_[‘I‘ð‚Ö
+	_JUMP			ev_con_reception_menu_06		//ã‚°ãƒ«ãƒ¼ãƒ—ã€ãƒªãƒ¼ãƒ€ãƒ¼é¸æŠžã¸
 	_END
 
 //--------------------------------------------------------------------
-//ƒŠ[ƒ_[
+//ãƒªãƒ¼ãƒ€ãƒ¼
 //--------------------------------------------------------------------
 ev_con_reception_06_02:
-	//DSƒƒCƒ„ƒŒƒX’ÊM‚ðŽn‚ß‚Ü‚·‚©H
+	//DSãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿ
 	_TALKMSG		msg_con_recep_wireless_01
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_con_reception_menu_06
 
 	_TALK_CLOSE
 
-	//Žq‹@‚ð‘I‘ð‚·‚éƒEƒBƒ“ƒhƒE‚ðŠJ‚­
+	//å­æ©Ÿã‚’é¸æŠžã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 	_SEL_CHILD_WIN	COMM_MODE_CONTEST,SCWK_TEMP1,SCWK_TEMP0,SCWK_ANSWER
 
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_con_reception_leader_cancel	//ƒLƒƒƒ“ƒZƒ‹
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_con_reception_leader_error		//ƒGƒ‰[
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_con_reception_leader_cancel	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_con_reception_leader_error		//ã‚¨ãƒ©ãƒ¼
 
-	//‚»‚êˆÈŠO
-	_JUMP			ev_con_reception_common_05		//¬Œ÷
+	//ãã‚Œä»¥å¤–
+	_JUMP			ev_con_reception_common_05		//æˆåŠŸ
 	_END
 
-//ƒLƒƒƒ“ƒZƒ‹
+//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_con_reception_leader_cancel:
-	_JUMP			ev_con_reception_menu_06		//ƒOƒ‹[ƒvAƒŠ[ƒ_[‘I‘ð‚Ö
+	_JUMP			ev_con_reception_menu_06		//ã‚°ãƒ«ãƒ¼ãƒ—ã€ãƒªãƒ¼ãƒ€ãƒ¼é¸æŠžã¸
 	_END
 
-//ƒGƒ‰[
+//ã‚¨ãƒ©ãƒ¼
 ev_con_reception_leader_error:
 	_COMM_DIRECT_END
 
@@ -789,22 +789,22 @@ ev_con_reception_leader_error:
 	_END
 
 //====================================================================
-//¬Œ÷
+//æˆåŠŸ
 //====================================================================
 ev_con_reception_common_05:
 	_CON_SYSTEM_CREATE	SCWK_TEMP0,SCWK_TEMP1,SCWK_TEMP3,LOCALWORK2
 
-	//’ÊM‚ÌŽž‚ÍA’ÊM—p‚Ìƒ[ƒN‰Šú‰»
+	//é€šä¿¡ã®æ™‚ã¯ã€é€šä¿¡ç”¨ã®ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	_IFVAL_CALL		LOCALWORK3,EQ,DESK_MULTI,ev_con_sio_param_init_set
 
-/*«‰ïê‚É“ü‚Á‚Ä‚©‚ç‚â‚é‚æ‚¤‚É‚µ‚½BŽÀŽ¿‚±‚ê‚Ì‹@”\‚Íƒ^ƒbƒ`ƒpƒlƒ‹‚Å‚Ì‘—‚è‚Ì‚Ý‚È‚Ì‚ÅB*/
+/*â†“ä¼šå ´ã«å…¥ã£ã¦ã‹ã‚‰ã‚„ã‚‹ã‚ˆã†ã«ã—ãŸã€‚å®Ÿè³ªã“ã‚Œã®æ©Ÿèƒ½ã¯ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§ã®é€ã‚Šã®ã¿ãªã®ã§ã€‚*/
 //	_CON_MSGPRINT_FLAG_SET
 	
-	//—ûK‚ÌŽž‚Í“ÆŽ©ƒƒbƒZ[ƒW
+	//ç·´ç¿’ã®æ™‚ã¯ç‹¬è‡ªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_PRACTICE,ev_con_reception_common_05_setsumei
 	
 	_CON_MY_ENTRY_NO_GET	SCWK_ANSWER
-	_ADD_WK					SCWK_ANSWER,1	//ƒGƒ“ƒgƒŠ[”Ô†‚ð1ƒIƒŠƒWƒ“‚É•ÏX
+	_ADD_WK					SCWK_ANSWER,1	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç•ªå·ã‚’1ã‚ªãƒªã‚¸ãƒ³ã«å¤‰æ›´
 	_CON_NUM_TAG_SET		SCWK_ANSWER,0
 	_TALKMSG_CON_SIO	msg_con_reception_selp_13
 
@@ -812,26 +812,26 @@ ev_con_reception_common_05:
 	_CON_BREEDER_NAME_GET	SCWK_ANSWER,0
 	_CON_NICK_NAME_GET		SCWK_ANSWER,1
 	_TALKMSG_CON_SIO	msg_con_reception_enter_01
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	_CONSIO_TIMING_SEND		CONSIO_TIMING_SCR_5
 	_CONSIO_TIMING_CHECK	CONSIO_TIMING_SCR_5
 	_TALK_CLOSE
 
-ev_con_reception_common_05_setsumei_return:	//—ûK“ÆŽ©ƒƒbƒZ[ƒWI‚í‚Á‚½Œã‚Ì–ß‚èêŠ
+ev_con_reception_common_05_setsumei_return:	//ç·´ç¿’ç‹¬è‡ªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚ã‚ã£ãŸå¾Œã®æˆ»ã‚Šå ´æ‰€
 	
-	//ƒJƒEƒ“ƒ^[‚ªŠJ‚­
+	//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãŒé–‹ã
 	//
 
-	//˜b‚µ‚©‚¯Žó•t‚É‚æ‚Á‚Ä•ªŠò
+	//è©±ã—ã‹ã‘å—ä»˜ã«ã‚ˆã£ã¦åˆ†å²
 	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_SINGLE,ev_con_reception_no_0
 	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_MULTI,ev_con_reception_no_1
 	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_PRACTICE,ev_con_reception_no_2
 	_END
 
-//—ûK‚ÌŽž‚Ì‰ï˜b•ª
+//ç·´ç¿’ã®æ™‚ã®ä¼šè©±åˆ†
 ev_con_reception_common_05_setsumei:
 	_CON_MY_ENTRY_NO_GET	SCWK_ANSWER
-	_ADD_WK					SCWK_ANSWER,1	//ƒGƒ“ƒgƒŠ[”Ô†‚ð1ƒIƒŠƒWƒ“‚É•ÏX
+	_ADD_WK					SCWK_ANSWER,1	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç•ªå·ã‚’1ã‚ªãƒªã‚¸ãƒ³ã«å¤‰æ›´
 	_CON_NUM_TAG_SET		SCWK_ANSWER,0
 	_TALK_KEYWAIT			msg_prac_pkmn_sel_03
 
@@ -842,14 +842,14 @@ ev_con_reception_common_05_setsumei:
 	_TALK_CLOSE
 	_JUMP		ev_con_reception_common_05_setsumei_return
 
-//ƒVƒ“ƒOƒ‹‚Å‚È‚¢Žž‚ÍA’ÊM—p‚Ìƒ[ƒN‰Šú‰»(012,345‚Å•ª‚©‚ê‚Ä‚¢‚é)
+//ã‚·ãƒ³ã‚°ãƒ«ã§ãªã„æ™‚ã¯ã€é€šä¿¡ç”¨ã®ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–(012,345ã§åˆ†ã‹ã‚Œã¦ã„ã‚‹)
 ev_con_sio_param_init_set:
 	_TALKMSG	msg_con_caution_01
 	_CON_SIO_PARAM_INIT_SET
 	_RET
 
 //--------------------------------------------------------------------
-//Žó•t‚ªˆÄ“à‚·‚é
+//å—ä»˜ãŒæ¡ˆå†…ã™ã‚‹
 //--------------------------------------------------------------------
 ev_con_reception_no_0:
 	_SET_UP_DOOR_ANIME	0,0,INFOMATION_GATE_SINGLE_X,5,77
@@ -867,8 +867,8 @@ ev_con_reception_no_0:
 	_END
 
 ev_con_reception_no_1:
-	_FLAG_SET		SYS_FLAG_COMM_COUNTER					/*’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO(ƒVƒXƒeƒ€)*/
-	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_CONTEST/*’ÊMŽó•tIDƒZƒbƒg*/
+	_FLAG_SET		SYS_FLAG_COMM_COUNTER					/*é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°(ã‚·ã‚¹ãƒ†ãƒ )*/
+	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_CONTEST/*é€šä¿¡å—ä»˜IDã‚»ãƒƒãƒˆ*/
 	_SET_UP_DOOR_ANIME	0,0,INFOMATION_GATE_MULTI_X,5,77
 	_CALL			connect_contest_door_open
 	_OBJ_ANIME_WAIT
@@ -904,24 +904,24 @@ ev_con_reception_no_2:
 ev_con_reception_common_03:
 	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_PRACTICE,ev_con_reception_practice
 //	_TALKMSG_CON_SIO	msg_con_reception_enter_02
-	//‚«‚ª‚¦
+	//ããŒãˆ
 	_CON_HERO_CHANGE
 	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_con_reception_player_20
 	//_OBJ_ANIME_WAIT
 
 	_GET_MY_SEX		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_con_reception_male_01		//ƒvƒŒƒCƒ„[’j
-	_JUMP			ev_con_reception_female_01						//ƒvƒŒƒCƒ„[—
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_con_reception_male_01		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”·
+	_JUMP			ev_con_reception_female_01						//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å¥³
 	_END
 
-//ƒvƒŒƒCƒ„[’j
+//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”·
 ev_con_reception_male_01:
 	_PLAYER_NAME	0
 	_TALKMSG_CON_SIO	msg_con_reception_enter_03
 	_JUMP			ev_con_reception_common_04
 	_END
 
-//ƒvƒŒƒCƒ„[—
+//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å¥³
 ev_con_reception_female_01:
 	_PLAYER_NAME	0
 	_TALKMSG_CON_SIO	msg_con_reception_enter_04
@@ -929,12 +929,12 @@ ev_con_reception_female_01:
 	_END
 
 ev_con_reception_common_04:
-	//Œü‚«‚ð’¼‚·
+	//å‘ãã‚’ç›´ã™
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_con_reception_player_21
 	_OBJ_ANIME_WAIT
 
 	_TALKMSG_CON_SIO	msg_con_reception_enter_05
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	_CONSIO_TIMING_SEND		CONSIO_TIMING_SCR_6
 	_CONSIO_TIMING_CHECK	CONSIO_TIMING_SCR_6
 	_TALK_CLOSE
@@ -943,17 +943,17 @@ ev_con_reception_common_04:
 	_END
 
 //====================================================================
-//—ûKƒ‚[ƒh(‰ïê‚Ìˆ—‚È‚µ)
+//ç·´ç¿’ãƒ¢ãƒ¼ãƒ‰(ä¼šå ´ã®å‡¦ç†ãªã—)
 //====================================================================
 ev_con_reception_practice:
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_CONTEST_PROC
-	//FieldFinish‚µ‚Ä‚½‚Ì‚ÅŽæ“¾‚µ‚È‚¨‚·
+	//FieldFinishã—ã¦ãŸã®ã§å–å¾—ã—ãªãŠã™
 	_CON_ENTRY_PARAM_GET	SCWK_TEMP0,SCWK_TEMP1,SCWK_TEMP3,LOCALWORK2
 
-	//Žó•t‰ïê‚ÖˆÚ“®
+	//å—ä»˜ä¼šå ´ã¸ç§»å‹•
 	_LDVAL			WK_SCENE_CONTEST,0
 	_MAP_CHANGE_NONE_FADE		ZONE_ID_C05R1101,0,28,3,DIR_DOWN
 
@@ -962,9 +962,9 @@ ev_con_reception_practice:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	_CON_DESK_MODE_GET		LOCALWORK3	//‰æ–ÊØ‚è‘Ö‚¦‚µ‚½‚Ì‚ÅŽó•tƒiƒ“ƒo[Žæ“¾‚µ‚È‚¨‚·
+	_CON_DESK_MODE_GET		LOCALWORK3	//ç”»é¢åˆ‡ã‚Šæ›¿ãˆã—ãŸã®ã§å—ä»˜ãƒŠãƒ³ãƒãƒ¼å–å¾—ã—ãªãŠã™
 	_CON_ENTRY_PARAM_GET	SCWK_TEMP0,SCWK_TEMP1,SCWK_TEMP3,LOCALWORK2
-	_CON_RANKING_CHECK		SCWK_TEMP0	//ÅI‡ˆÊƒZƒbƒg
+	_CON_RANKING_CHECK		SCWK_TEMP0	//æœ€çµ‚é †ä½ã‚»ãƒƒãƒˆ
 	_CON_MSGPRINT_FLAG_RESET
 	_CON_SYSTEM_EXIT		LOCALWORK2
 
@@ -972,9 +972,9 @@ ev_con_reception_practice:
 	_CALL			ev_contest_return_door
 	_CALL			ev_contest_return_door_practice
 	
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_con_reception_common_05	//Ä‚Ñ—ûK‚Ö
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_con_reception_common_05	//å†ã³ç·´ç¿’ã¸
 	
-	//‚¨”æ‚ê—l‚Å‚µ‚½
+	//ãŠç–²ã‚Œæ§˜ã§ã—ãŸ
 	_TALKMSG		msg_prac_recep_05_01
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -983,24 +983,24 @@ ev_con_reception_practice:
 	_END		//
 	
 //====================================================================
-//‰ïê‚Ö
+//ä¼šå ´ã¸
 //====================================================================
 ev_con_reception_common_06:
 
-	//ƒI[ƒvƒjƒ“ƒO‰ïê‚ÖˆÚ“®
+	//ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ä¼šå ´ã¸ç§»å‹•
 	
-	//-- ƒRƒ“ƒeƒXƒg‚ÉŽQ‰Á‚µ‚½Ž–‚Å”­¶‚·‚éƒCƒxƒ“ƒgŠÖ˜A‚Ìƒtƒ‰ƒOƒZƒbƒg --//
-	_FLAG_RESET		FV_C05_EGG			/*ƒ^ƒ}ƒS‚­‚ê‚éloŒ»*/
+	//-- ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«å‚åŠ ã—ãŸäº‹ã§ç™ºç”Ÿã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆé–¢é€£ã®ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ --//
+	_FLAG_RESET		FV_C05_EGG			/*ã‚¿ãƒžã‚´ãã‚Œã‚‹äººå‡ºç¾*/
 	//_FLAG_SET		FE_CON_CHALLENGE
-	//-- ‚±‚±‚Ü‚Å --//
+	//-- ã“ã“ã¾ã§ --//
 	
 	_LDVAL			WK_SCENE_CONTEST,1
 	_CALL			ev_con_reception_init_change_02
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
-	_FLAG_RESET		FV_C05R1102_CON1	//ŽQ‰ÁŽÒ‚ðo‚·
-	_FLAG_RESET		FV_C05R1102_CON2	//ŽQ‰ÁŽÒ‚ðo‚·
-	_FLAG_RESET		FV_C05R1102_CON3	//ŽQ‰ÁŽÒ‚ðo‚·
-	_FLAG_RESET		FV_C05R1102_CON4	//ŽQ‰ÁŽÒ‚ðo‚·
+	_FLAG_RESET		FV_C05R1102_CON1	//å‚åŠ è€…ã‚’å‡ºã™
+	_FLAG_RESET		FV_C05R1102_CON2	//å‚åŠ è€…ã‚’å‡ºã™
+	_FLAG_RESET		FV_C05R1102_CON3	//å‚åŠ è€…ã‚’å‡ºã™
+	_FLAG_RESET		FV_C05R1102_CON4	//å‚åŠ è€…ã‚’å‡ºã™
 	
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
@@ -1008,116 +1008,116 @@ ev_con_reception_common_06:
 	_MAP_CHANGE_NONE_FADE		ZONE_ID_C05R1102,0,29,7,DIR_UP
 
 	_CON_MSGPRINT_FLAG_SET
-	_CON_DESK_MODE_GET		LOCALWORK3	//‰æ–ÊØ‚è‘Ö‚¦‚µ‚½‚Ì‚ÅŽó•tƒiƒ“ƒo[Žæ“¾‚µ‚È‚¨‚·
+	_CON_DESK_MODE_GET		LOCALWORK3	//ç”»é¢åˆ‡ã‚Šæ›¿ãˆã—ãŸã®ã§å—ä»˜ãƒŠãƒ³ãƒãƒ¼å–å¾—ã—ãªãŠã™
 	_CON_HBLANK_STOP
 //	_WIPE_FADE_START		SCR_WIPE_DIV,SCR_WIPE_SYNC,WIPE_TYPE_CURTAININ,WIPE_FADE_BLACK
 	_BLACK_IN				SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	_CON_HBLANK_START
 
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	_CONSIO_TIMING_SEND	CONSIO_TIMING_SCR_START
 	_CONSIO_TIMING_CHECK	CONSIO_TIMING_SCR_START
 
 	_SE_PLAY		SEQ_SE_DP_CON_F007
 
-	//Ži‰ïŽü‚è‚ðŒ©‚é
+	//å¸ä¼šå‘¨ã‚Šã‚’è¦‹ã‚‹
 	_OBJ_ANIME		C05R1102_PCWOMAN1,anm_con_reception_pcwoman1_01
 	_OBJ_ANIME_WAIT
 
-	_CON_RANK_NAME_GET	0			//ƒ‰ƒ“ƒN–¼
-	_CON_TYPE_NAME_GET	1			//ƒRƒ“ƒfƒBƒVƒ‡ƒ“–¼
-	_TALKMSG_CON_SIO	msg_con_opening_host_01		/*–{”Ô—pƒI[ƒvƒjƒ“ƒOƒƒbƒZ[ƒW*/
+	_CON_RANK_NAME_GET	0			//ãƒ©ãƒ³ã‚¯å
+	_CON_TYPE_NAME_GET	1			//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å
+	_TALKMSG_CON_SIO	msg_con_opening_host_01		/*æœ¬ç•ªç”¨ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	_CONSIO_TIMING_SEND		CONSIO_TIMING_SCR_0
 	_CONSIO_TIMING_CHECK	CONSIO_TIMING_SCR_0
 	
-	/*Ži‰ïŽÒ¶‚ðŒü‚­*/
+	/*å¸ä¼šè€…å·¦ã‚’å‘ã*/
 	_OBJ_ANIME		C05R1102_PCWOMAN1,anm_con_reception_pcwoman1_left
 	_OBJ_ANIME_WAIT
 
 	_CON_BREEDER_NAME_GET	0,0
 	_TALKMSG_CON_SIO	msg_con_opening_host_02
 
-	/*Š½ºAŒû“J*/
+	/*æ­“å£°ã€å£ç¬›*/
 	_CON_POPULARITY_GET	0,SCWK_ANSWER
 	_CON_CAMERA_FLASH_SET		0
 	_CALL	con_call_whistle
 	_CON_CAMERA_FLASH_CHECK
 
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	_CONSIO_TIMING_SEND		CONSIO_TIMING_SCR_1
 	_CONSIO_TIMING_CHECK	CONSIO_TIMING_SCR_1
 
-	/*Ži‰ïŽÒŒã‚ë‚ðŒü‚­*/
+	/*å¸ä¼šè€…å¾Œã‚ã‚’å‘ã*/
 	_OBJ_ANIME		C05R1102_PCWOMAN1,anm_con_reception_pcwoman1_up
 	_OBJ_ANIME_WAIT
 
 	_CON_BREEDER_NAME_GET	1,0
 	_TALKMSG_CON_SIO	msg_con_opening_host_03
 
-	/*Š½ºAŒû“J*/
+	/*æ­“å£°ã€å£ç¬›*/
 	_CON_POPULARITY_GET	1,SCWK_ANSWER
 	_CON_CAMERA_FLASH_SET		1
 	_CALL	con_call_whistle
 	_CON_CAMERA_FLASH_CHECK
 
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	_CONSIO_TIMING_SEND		CONSIO_TIMING_SCR_2
 	_CONSIO_TIMING_CHECK	CONSIO_TIMING_SCR_2
 
-	/*•K—v‚È‚çŠÔ‚Æ‚©*/
+	/*å¿…è¦ãªã‚‰é–“ã¨ã‹*/
 	_TIME_WAIT		8,SCWK_ANSWER
 
-	/*Ži‰ïŽÒŒã‚ë‚ðŒü‚­*/
+	/*å¸ä¼šè€…å¾Œã‚ã‚’å‘ã*/
 	//_OBJ_ANIME		C05R1102_PCWOMAN1,anm_con_reception_pcwoman1_01
 	//_OBJ_ANIME_WAIT
 
 	_CON_BREEDER_NAME_GET	2,0
 	_TALKMSG_CON_SIO	msg_con_opening_host_04
 
-	/*Š½ºAŒû“J*/
+	/*æ­“å£°ã€å£ç¬›*/
 	_CON_POPULARITY_GET	2,SCWK_ANSWER
 	_CON_CAMERA_FLASH_SET		2
 	_CALL	con_call_whistle
 	_CON_CAMERA_FLASH_CHECK
 
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	_CONSIO_TIMING_SEND		CONSIO_TIMING_SCR_3
 	_CONSIO_TIMING_CHECK	CONSIO_TIMING_SCR_3
 
-	/*Ži‰ïŽÒ‰E‚ðŒü‚­*/
+	/*å¸ä¼šè€…å³ã‚’å‘ã*/
 	_OBJ_ANIME		C05R1102_PCWOMAN1,anm_con_reception_pcwoman1_right
 	_OBJ_ANIME_WAIT
 
 	_CON_BREEDER_NAME_GET	3,0
 	_TALKMSG_CON_SIO	msg_con_opening_host_05
 
-	/*Š½ºAŒû“J*/
+	/*æ­“å£°ã€å£ç¬›*/
 	_CON_POPULARITY_GET	3,SCWK_ANSWER
 	_CON_CAMERA_FLASH_SET		3
 	_CALL	con_call_whistle
 	_CON_CAMERA_FLASH_CHECK
 
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	_CONSIO_TIMING_SEND		CONSIO_TIMING_SCR_4
 	_CONSIO_TIMING_CHECK	CONSIO_TIMING_SCR_4
 
-	/*Ži‰ïŽÒ‰º‚ðŒü‚­*/
+	/*å¸ä¼šè€…ä¸‹ã‚’å‘ã*/
 	_OBJ_ANIME		C05R1102_PCWOMAN1,anm_con_reception_pcwoman1_down
 	_OBJ_ANIME_WAIT
 
 	_TALKMSG_CON_SIO	msg_con_opening_host_06
 	_TALK_CLOSE
 
-	/*Š½º*/
+	/*æ­“å£°*/
 	//_SE_PLAY		SEQ_SE_
 	//_SE_WAIT		SEQ_SE_
 
-	//ƒRƒ“ƒeƒXƒgŒÄ‚Ño‚µ
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‘¼ã³å‡ºã—
 
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	_CONSIO_TIMING_SEND		CONSIO_TIMING_SCR_IMC
 	_CONSIO_TIMING_CHECK	CONSIO_TIMING_SCR_IMC
 
@@ -1131,12 +1131,12 @@ ev_con_reception_common_06:
 	_WIRELESS_ICON_EASY_END
 
 	_CONTEST_PROC
-	//FieldFinish‚µ‚Ä‚½‚Ì‚ÅŽæ“¾‚µ‚È‚¨‚·
+	//FieldFinishã—ã¦ãŸã®ã§å–å¾—ã—ãªãŠã™
 	_CON_MSGPRINT_FLAG_SET
 	_CON_ENTRY_PARAM_GET	SCWK_TEMP0,SCWK_TEMP1,SCWK_TEMP3,LOCALWORK2
 
-	//ƒGƒ“ƒfƒBƒ“ƒO
-	_CON_DESK_MODE_GET		LOCALWORK3	//‰æ–ÊØ‚è‘Ö‚¦‚µ‚½‚Ì‚ÅŽó•tƒiƒ“ƒo[Žæ“¾‚µ‚È‚¨‚·
+	//ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°
+	_CON_DESK_MODE_GET		LOCALWORK3	//ç”»é¢åˆ‡ã‚Šæ›¿ãˆã—ãŸã®ã§å—ä»˜ãƒŠãƒ³ãƒãƒ¼å–å¾—ã—ãªãŠã™
 //	_LDVAL			WK_SCENE_CONTEST,2
 	_CALL			ev_con_reception_init_change_03
 
@@ -1151,10 +1151,10 @@ ev_con_reception_common_06:
 	_CALL	con_call_whistle
 	_CON_CAMERA_FLASH_CHECK
 
-	/*u‚¨‚ß‚Å‚Æ‚¤‚²‚´‚¢‚Ü‚·Iv*/
+	/*ã€ŒãŠã‚ã§ã¨ã†ã”ã–ã„ã¾ã™ï¼ã€*/
 	_TALKMSG_CON_SIO	msg_con_ending_host_01	
 
-	/*CPU‚ª—DŸ‚µ‚½ŽžA’ÊM‘Îí‚ÌŽž*/
+	/*CPUãŒå„ªå‹ã—ãŸæ™‚ã€é€šä¿¡å¯¾æˆ¦ã®æ™‚*/
 	_CON_ENDING_SKIP_CHECK		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_con_ending_skip
 
@@ -1169,7 +1169,7 @@ ev_con_ribbon_not_have:
 	_TALKMSG_CON_SIO	msg_con_ending_host_02
 	_TALK_CLOSE
 
-	/*Ži‰ïŽÒ‚Æ—DŸŽÒŒü‚«‡‚¤*/
+	/*å¸ä¼šè€…ã¨å„ªå‹è€…å‘ãåˆã†*/
 	_OBJ_ANIME		C05R1102_PCWOMAN1,anm_con_reception_pcwoman1_right
 	_OBJ_ANIME		C05R1102_CON5,anm_con_reception_pcwoman1_left
 	_OBJ_ANIME_WAIT
@@ -1179,13 +1179,13 @@ ev_con_ribbon_not_have:
 	_ME_PLAY		SEQ_FANFA1
 	_ME_WAIT
 
-	/*Ži‰ïŽÒ‚Æ—DŸŽÒA³–Ê‚ðŒü‚­*/
+	/*å¸ä¼šè€…ã¨å„ªå‹è€…ã€æ­£é¢ã‚’å‘ã*/
 	_OBJ_ANIME		C05R1102_PCWOMAN1,anm_con_reception_pcwoman1_down
 	_OBJ_ANIME		C05R1102_CON5,anm_con_reception_pcwoman1_down
 	_OBJ_ANIME_WAIT
 
-ev_con_ribbon_event_skip:	//Šù‚ÉƒŠƒ{ƒ“‚ðŠŽ‚µ‚Ä‚¢‚éŽž‚Í‚±‚±‚Ü‚ÅƒXƒLƒbƒv‚µ‚Ä‚­‚é
-ev_con_ending_skip:	/*CPU‚ª—DŸ‚µ‚½ŽžA’ÊM‘Îí‚ÌŽž‚Í‚±‚±‚Ü‚ÅƒXƒLƒbƒv‚µ‚Ä‚­‚é*/
+ev_con_ribbon_event_skip:	//æ—¢ã«ãƒªãƒœãƒ³ã‚’æ‰€æŒã—ã¦ã„ã‚‹æ™‚ã¯ã“ã“ã¾ã§ã‚¹ã‚­ãƒƒãƒ—ã—ã¦ãã‚‹
+ev_con_ending_skip:	/*CPUãŒå„ªå‹ã—ãŸæ™‚ã€é€šä¿¡å¯¾æˆ¦ã®æ™‚ã¯ã“ã“ã¾ã§ã‚¹ã‚­ãƒƒãƒ—ã—ã¦ãã‚‹*/
 
 	_TALKMSG_CON_SIO	msg_con_ending_host_03
 	_TALK_CLOSE
@@ -1195,7 +1195,7 @@ ev_con_ending_skip:	/*CPU‚ª—DŸ‚µ‚½ŽžA’ÊM‘Îí‚ÌŽž‚Í‚±‚±‚Ü‚ÅƒXƒLƒbƒv‚µ‚Ä‚­‚é*/
 	//_TALKMSG_CON_SIO	msg_con_ending_host_04
 
 	//_CON_VICTORY_ITEM_NO_GET	SCWK_ANSWER
-	//_ITEM_NAME			2,SCWK_ANSWER				//“¹‹ï–¼
+	//_ITEM_NAME			2,SCWK_ANSWER				//é“å…·å
 	//_TALKMSG		msg_con_ending_host_02
 
 	_SE_PLAY		SEQ_SE_DP_CON_F007
@@ -1208,13 +1208,13 @@ ev_con_ending_skip:	/*CPU‚ª—DŸ‚µ‚½ŽžA’ÊM‘Îí‚ÌŽž‚Í‚±‚±‚Ü‚ÅƒXƒLƒbƒv‚µ‚Ä‚­‚é*/
 	
 	_TIME_WAIT		30,SCWK_ANSWER
 
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	_CONSIO_TIMING_SEND		CONSIO_TIMING_SCR_END
 	_CONSIO_TIMING_CHECK	CONSIO_TIMING_SCR_END
-	//’ÊMØ’f
+	//é€šä¿¡åˆ‡æ–­
 //	_COMM_DIRECT_END
-	_COMM_DIRECT_END_TIMING	//’ÊMØ’f‚ÉŽ¸”s‚·‚éŽž‚ª‚ ‚é‚Á‚Û‚¢‚Ì‚Å‚±‚ê‚É•Ï‚¦‚Ä‚Ý‚é
-	_TIME_WAIT		10,SCWK_ANSWER	//’ÊMØ’f‚ÉŽ¸”s‚·‚éŽž‚ª‚ ‚é‚Á‚Û‚¢‚Ì‚ÅØ’fŒãƒEƒFƒCƒg“ü‚ê‚Ä‚Ý‚é
+	_COMM_DIRECT_END_TIMING	//é€šä¿¡åˆ‡æ–­ã«å¤±æ•—ã™ã‚‹æ™‚ãŒã‚ã‚‹ã£ã½ã„ã®ã§ã“ã‚Œã«å¤‰ãˆã¦ã¿ã‚‹
+	_TIME_WAIT		10,SCWK_ANSWER	//é€šä¿¡åˆ‡æ–­ã«å¤±æ•—ã™ã‚‹æ™‚ãŒã‚ã‚‹ã£ã½ã„ã®ã§åˆ‡æ–­å¾Œã‚¦ã‚§ã‚¤ãƒˆå…¥ã‚Œã¦ã¿ã‚‹
 	_WIRELESS_ICON_EASY_END
 	
 	_CON_HBLANK_STOP
@@ -1223,38 +1223,38 @@ ev_con_ending_skip:	/*CPU‚ª—DŸ‚µ‚½ŽžA’ÊM‘Îí‚ÌŽž‚Í‚±‚±‚Ü‚ÅƒXƒLƒbƒv‚µ‚Ä‚­‚é*/
 	_CON_HBLANK_START
 
 	_CON_ENTRY_PARAM_GET	SCWK_TEMP0,SCWK_TEMP1,SCWK_TEMP3,LOCALWORK2
-//	_CON_RANKING_CHECK	SCWK_TEMP0	//ÅI‡ˆÊƒZƒbƒg
-	_CON_ACCE_NO_GET	SCWK_TEMP0	//ƒAƒNƒZƒTƒŠ”Ô†Žæ“¾
+//	_CON_RANKING_CHECK	SCWK_TEMP0	//æœ€çµ‚é †ä½ã‚»ãƒƒãƒˆ
+	_CON_ACCE_NO_GET	SCWK_TEMP0	//ã‚¢ã‚¯ã‚»ã‚µãƒªç•ªå·å–å¾—
 	_CON_MSGPRINT_FLAG_RESET
 	_CON_SYSTEM_EXIT	LOCALWORK2
 
 	_LDVAL			WK_SCENE_CONTEST,0
 	_IFVAL_JUMP		LOCALWORK3,EQ,DESK_SINGLE,ev_con_door_return_single
-	//’ÊMŽó•tFŽó•t‰ïê‚ÖˆÚ“®
+	//é€šä¿¡å—ä»˜ï¼šå—ä»˜ä¼šå ´ã¸ç§»å‹•
 	_MAP_CHANGE_NONE_FADE		ZONE_ID_C05R1101,0,7,3,DIR_DOWN
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
-	//’ÊMŽó•tƒhƒA‚©‚ço‚Ä‚­‚éƒAƒjƒ
+	//é€šä¿¡å—ä»˜ãƒ‰ã‚¢ã‹ã‚‰å‡ºã¦ãã‚‹ã‚¢ãƒ‹ãƒ¡
 	_LDVAL			SCWK_ANSWER,INFOMATION_GATE_MULTI_X
 	_CALL			ev_contest_return_door
-	_FLAG_RESET	SYS_FLAG_COMM_COUNTER			//’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO(ƒVƒXƒeƒ€)
+	_FLAG_RESET	SYS_FLAG_COMM_COUNTER			//é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°(ã‚·ã‚¹ãƒ†ãƒ )
 	_LDVAL		WK_SCENE_COMM_ID,SCR_COMM_ID_NOTHING
 	_JUMP			ev_con_door_return_end
 ev_con_door_return_single:
-	//ƒVƒ“ƒOƒ‹Žó•tFŽó•t‰ïê‚ÖˆÚ“®
+	//ã‚·ãƒ³ã‚°ãƒ«å—ä»˜ï¼šå—ä»˜ä¼šå ´ã¸ç§»å‹•
 	_MAP_CHANGE_NONE_FADE		ZONE_ID_C05R1101,0,18,3,DIR_DOWN
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
-	//ƒVƒ“ƒOƒ‹Žó•tƒhƒA‚©‚ço‚Ä‚­‚éƒAƒjƒ
+	//ã‚·ãƒ³ã‚°ãƒ«å—ä»˜ãƒ‰ã‚¢ã‹ã‚‰å‡ºã¦ãã‚‹ã‚¢ãƒ‹ãƒ¡
 	_LDVAL			SCWK_ANSWER,INFOMATION_GATE_SINGLE_X
 	_CALL			ev_contest_return_door
-	//ƒVƒ“ƒOƒ‹Žó•tFƒJƒEƒ“ƒ^[‚ÅƒAƒNƒZƒTƒŠ[‚ð‚à‚ç‚¤
+	//ã‚·ãƒ³ã‚°ãƒ«å—ä»˜ï¼šã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã§ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚’ã‚‚ã‚‰ã†
 	_CALL			ev_contest_return_door_to_counter
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,0xffff,ev_con_acce_not_get
 	_PLAYER_NAME	0
 	_ACCE_NAME		1,SCWK_TEMP0
 	_TALK_KEYWAIT	msg_con_ending_host_05
-#if 0	//‹¤’Êƒ‹[ƒ`ƒ“‚ðŽg—p‚·‚é‚æ‚¤‚É‚µ‚½
+#if 0	//å…±é€šãƒ«ãƒ¼ãƒãƒ³ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 //	_ME_PLAY		SEQ_FANFA4
 //	_TALK_KEYWAIT	msg_con_ending_host_06
 //	_ME_WAIT
@@ -1271,7 +1271,7 @@ ev_con_door_return_end:
 	_END		//
 
 //--------------------------------------------------------------
-//	Ð‰î‚³‚ê‚½Žž‚ÌŠ½º‚ÆŒû“J(SCWK_ANSWER‚É‚ ‚ç‚©‚¶‚ßl‹C‚ð“ü‚ê‚Ä‚¨‚­Ž–)
+//	ç´¹ä»‹ã•ã‚ŒãŸæ™‚ã®æ­“å£°ã¨å£ç¬›(SCWK_ANSWERã«ã‚ã‚‰ã‹ã˜ã‚äººæ°—ã‚’å…¥ã‚Œã¦ãŠãäº‹)
 //--------------------------------------------------------------
 con_call_whistle:
 	_SE_PLAY		SEQ_SE_DP_CON_F007
@@ -1330,23 +1330,23 @@ con_whistle_play5:
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-//ƒRƒ“ƒeƒXƒg‚ÉŽQ‰Á’†‚¾‚Á‚½‚ç
+//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«å‚åŠ ä¸­ã ã£ãŸã‚‰
 ev_con_reception_init_change_02:
-	//ƒLƒƒƒ‰ƒR[ƒh‚ðÝ’è
+	//ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®š
 	_CON_OBJ_CODE_GET	0,OBJCHRWORK0
 	_CON_OBJ_CODE_GET	1,OBJCHRWORK1
 	_CON_OBJ_CODE_GET	2,OBJCHRWORK2
 	_CON_OBJ_CODE_GET	3,OBJCHRWORK3
 	_RET
 
-//ƒGƒ“ƒfƒBƒ“ƒO’†‚¾‚Á‚½‚ç
+//ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¸­ã ã£ãŸã‚‰
 ev_con_reception_init_change_03:
-	/*—DŸ‚µ‚½l*/
+	/*å„ªå‹ã—ãŸäºº*/
 	_CON_VICTORY_ENTRY_NO_GET	SCWK_ANSWER
 	_CON_OBJ_CODE_GET	SCWK_ANSWER,OBJCHRWORK4
 	_FLAG_RESET			FV_C05R1102_CON5
 	_OBJ_ADD			C05R1102_CON5
-	/*—DŸ‚µ‚½ƒGƒ“ƒgƒŠ[ƒiƒ“ƒo[‚ðŽæ“¾*/
+	/*å„ªå‹ã—ãŸã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—*/
 	_CON_VICTORY_ENTRY_NO_GET	LOCALWORK0
 	_IFVAL_JUMP			LOCALWORK0,EQ,0,ev_con_reception_victory_entry_del_01
 	_IFVAL_JUMP			LOCALWORK0,EQ,1,ev_con_reception_victory_entry_del_02
@@ -1371,7 +1371,7 @@ ev_con_reception_victory_entry_del_04:
 	_RET
 
 //--------------------------------------------------------------------
-//ŽålŒö	Žó•t‚ÉˆÄ“à‚³‚ê‚é
+//ä¸»äººå…¬	å—ä»˜ã«æ¡ˆå†…ã•ã‚Œã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_con_reception_player_01
 	_ANIME_DATA	AC_WALK_R_8F,2
@@ -1392,7 +1392,7 @@ _ANIME_LABEL	anm_con_reception_player_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	’…‘Ö‚¦
+//ä¸»äººå…¬	ç€æ›¿ãˆ
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_con_reception_player_20
 	_ANIME_DATA	AC_WAIT_4F,1
@@ -1410,14 +1410,14 @@ _ANIME_LABEL	anm_con_reception_player_20
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	Œü‚«‚ð’¼‚·
+//ä¸»äººå…¬	å‘ãã‚’ç›´ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_con_reception_player_21
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Žó•t	ŽålŒö‚ðˆÄ“à‚·‚é
+//å—ä»˜	ä¸»äººå…¬ã‚’æ¡ˆå†…ã™ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_con_reception_guide_01
 	_ANIME_DATA	AC_WAIT_8F,2
@@ -1443,7 +1443,7 @@ _ANIME_LABEL	anm_con_reception_guide_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Ži‰ï	Žü‚è‚ðŒ©‚é
+//å¸ä¼š	å‘¨ã‚Šã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_con_reception_pcwoman1_01
 	_ANIME_DATA	AC_WAIT_8F,2
@@ -1455,28 +1455,28 @@ _ANIME_LABEL	anm_con_reception_pcwoman1_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Ži‰ï	¶‚ðŒü‚­
+//å¸ä¼š	å·¦ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_con_reception_pcwoman1_left
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Ži‰ï	ã‚ðŒü‚­
+//å¸ä¼š	ä¸Šã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_con_reception_pcwoman1_up
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Ži‰ï	‰E‚ðŒü‚­
+//å¸ä¼š	å³ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_con_reception_pcwoman1_right
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Ži‰ï	‰º‚ðŒü‚­
+//å¸ä¼š	ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_con_reception_pcwoman1_down
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -1484,8 +1484,8 @@ _ANIME_LABEL	anm_con_reception_pcwoman1_down
 
 
 /********************************************************************/
-/*							Žó•t‚R									*/
-//	—ûKAƒ`ƒ…[ƒgƒŠƒAƒ‹
+/*							å—ä»˜ï¼“									*/
+//	ç·´ç¿’ã€ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«
 /********************************************************************/
 ev_con_reception_front03:
 ev_con_reception_front04:
@@ -1494,7 +1494,7 @@ ev_con_reception_front06:
 	_TALK_OBJ_START
 
 	_LDVAL			LOCALWORK3,DESK_PRACTICE
-	_LDVAL			SCWK_TEMP0,CONRANK_NORMAL		//ƒ‰ƒ“ƒNƒZƒbƒg(—ûK‚Íƒm[ƒ}ƒ‹ŒÅ’è)
+	_LDVAL			SCWK_TEMP0,CONRANK_NORMAL		//ãƒ©ãƒ³ã‚¯ã‚»ãƒƒãƒˆ(ç·´ç¿’ã¯ãƒŽãƒ¼ãƒžãƒ«å›ºå®š)
 //	_LDVAL			SCWK_TEMP3,CONMODE_GRAND
 
 	_TALK_KEYWAIT	msg_prac_recep_01	//msg_con_recep_tut_01
@@ -1502,70 +1502,70 @@ ev_con_reception_front06:
 	_END
 
 //--------------------------------------------------------------------
-//‹¤’Êƒƒjƒ…[
+//å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //--------------------------------------------------------------------
 ev_con_reception_tit_menu_01:
 	_TALKMSG		msg_prac_recep_02	//msg_con_recep_tut_07
 ev_con_reception_tit_menu_01_msg_skip:
-	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_prac_recep_03,0			//‚ê‚ñ‚µ‚ã‚¤‚·‚é
-	_BMPMENU_MAKE_LIST	msg_prac_recep_04,1			//‚¹‚Â‚ß‚¢‚ð‚«‚­
-	_BMPMENU_MAKE_LIST	msg_prac_recep_05,2			//‚â‚ß‚é
+	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_prac_recep_03,0			//ã‚Œã‚“ã—ã‚…ã†ã™ã‚‹
+	_BMPMENU_MAKE_LIST	msg_prac_recep_04,1			//ã›ã¤ã‚ã„ã‚’ãã
+	_BMPMENU_MAKE_LIST	msg_prac_recep_05,2			//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP		0,ev_con_reception_tit_menu_01_rensyuu
 	_CASE_JUMP		1,ev_con_reception_tit_menu_01_setsumei_msg
 	_CASE_JUMP		2,ev_con_reception_tit_menu_01_yameru
-	_JUMP			ev_con_reception_tit_menu_01_yameru	//I—¹
+	_JUMP			ev_con_reception_tit_menu_01_yameru	//çµ‚äº†
 	_END
 
 //==============================================================================
-//	—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚é
+//	ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹
 //==============================================================================
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚é*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹*/
 ev_con_reception_tit_menu_01_rensyuu:
-	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_prac_recep_vpra,0			//ƒrƒWƒ…ƒAƒ‹‚Ì‚ê‚ñ‚µ‚ã‚¤
-	_BMPMENU_MAKE_LIST	msg_prac_recep_dpra,1			//ƒ_ƒ“ƒX‚Ì‚ê‚ñ‚µ‚ã‚¤
-	_BMPMENU_MAKE_LIST	msg_prac_recep_apra,2			//‚¦‚ñ‚¬‚Ì‚ê‚ñ‚µ‚ã‚¤
-	_BMPMENU_MAKE_LIST	msg_prac_recep_exit,3			//‚â‚ß‚é
+	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_prac_recep_vpra,0			//ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã®ã‚Œã‚“ã—ã‚…ã†
+	_BMPMENU_MAKE_LIST	msg_prac_recep_dpra,1			//ãƒ€ãƒ³ã‚¹ã®ã‚Œã‚“ã—ã‚…ã†
+	_BMPMENU_MAKE_LIST	msg_prac_recep_apra,2			//ãˆã‚“ãŽã®ã‚Œã‚“ã—ã‚…ã†
+	_BMPMENU_MAKE_LIST	msg_prac_recep_exit,3			//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP		0,ev_con_reception_menu_rensyuu_visual
 	_CASE_JUMP		1,ev_con_reception_menu_rensyuu_dance
 	_CASE_JUMP		2,ev_con_reception_menu_rensyuu_actin
-	_JUMP			ev_con_reception_menu_rensyuu_yameru			//I—¹
+	_JUMP			ev_con_reception_menu_rensyuu_yameru			//çµ‚äº†
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éFƒrƒWƒ…ƒAƒ‹‚Ì‚ê‚ñ‚µ‚ã‚¤*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã®ã‚Œã‚“ã—ã‚…ã†*/
 ev_con_reception_menu_rensyuu_visual:
-	_LDVAL			LOCALWORK4,0	/*ƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð‚ð”ò‚Î‚³‚È‚¢*/
+	_LDVAL			LOCALWORK4,0	/*ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠžã‚’é£›ã°ã•ãªã„*/
 	_LDVAL			SCWK_TEMP3,CONMODE_VISUAL_PRACTICE
 //	_JUMP			ev_con_reception_menu_rensyuu_rank_select
-	_JUMP			ev_con_reception_menu_rensyuu_type_select_before	//ƒm[ƒ}ƒ‹ŒÅ’è‚É‚È‚Á‚½‚Ì‚Å
+	_JUMP			ev_con_reception_menu_rensyuu_type_select_before	//ãƒŽãƒ¼ãƒžãƒ«å›ºå®šã«ãªã£ãŸã®ã§
 	_END
 	
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éFƒ_ƒ“ƒX‚Ì‚ê‚ñ‚µ‚ã‚¤*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šãƒ€ãƒ³ã‚¹ã®ã‚Œã‚“ã—ã‚…ã†*/
 ev_con_reception_menu_rensyuu_dance:
-	/*ƒ_ƒ“ƒX‚Å‚Íƒ^ƒCƒv‘I‘ð‚È‚µ‚È‚Ì‚ÅA‚©‚Á‚±‚æ‚³ŒÅ’è‚Å“ü‚ê‚é*/
-	_LDVAL			LOCALWORK4,1	/*ƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð‚ð”ò‚Î‚·*/
-	_LDVAL			SCWK_TEMP1,CONTYPE_STYLE		//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	/*ãƒ€ãƒ³ã‚¹ã§ã¯ã‚¿ã‚¤ãƒ—é¸æŠžãªã—ãªã®ã§ã€ã‹ã£ã“ã‚ˆã•å›ºå®šã§å…¥ã‚Œã‚‹*/
+	_LDVAL			LOCALWORK4,1	/*ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠžã‚’é£›ã°ã™*/
+	_LDVAL			SCWK_TEMP1,CONTYPE_STYLE		//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP3,CONMODE_DANCE_PRACTICE
 //	_JUMP			ev_con_reception_menu_rensyuu_rank_select
 	_JUMP			ev_con_reception_menu_rensyuu_type_select_before
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‚¦‚ñ‚¬‚Ì‚ê‚ñ‚µ‚ã‚¤*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šãˆã‚“ãŽã®ã‚Œã‚“ã—ã‚…ã†*/
 ev_con_reception_menu_rensyuu_actin:
-	_LDVAL			LOCALWORK4,0	/*ƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð‚ð”ò‚Î‚³‚È‚¢*/
+	_LDVAL			LOCALWORK4,0	/*ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠžã‚’é£›ã°ã•ãªã„*/
 	_LDVAL			SCWK_TEMP3,CONMODE_ACTIN_PRACTICE
 //	_JUMP			ev_con_reception_menu_rensyuu_rank_select
 	_JUMP			ev_con_reception_menu_rensyuu_type_select_before
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‚à‚Ç‚é*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šã‚‚ã©ã‚‹*/
 ev_con_reception_menu_rensyuu_yameru:
 #if 0
 	_JUMP			ev_con_reception_tit_menu_01_msg_skip
@@ -1579,15 +1579,15 @@ ev_con_reception_menu_rensyuu_yameru:
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN‘I‘ð*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯é¸æŠž*/
 ev_con_reception_menu_rensyuu_rank_select:
 	_TALKMSG		msg_prac_rank_sel_01
-	_BMPMENU_INIT_EX		1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_prac_rank_sel_02,0			//ƒm[ƒ}ƒ‹
-	_BMPMENU_MAKE_LIST	msg_prac_rank_sel_03,1			//ƒX[ƒp[
-	_BMPMENU_MAKE_LIST	msg_prac_rank_sel_04,2			//ƒnƒCƒp[
-	_BMPMENU_MAKE_LIST	msg_prac_rank_sel_05,3			//ƒ}ƒXƒ^[
-	_BMPMENU_MAKE_LIST	msg_prac_rank_sel_06,4			//‚â‚ß‚é
+	_BMPMENU_INIT_EX		1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_prac_rank_sel_02,0			//ãƒŽãƒ¼ãƒžãƒ«
+	_BMPMENU_MAKE_LIST	msg_prac_rank_sel_03,1			//ã‚¹ãƒ¼ãƒ‘ãƒ¼
+	_BMPMENU_MAKE_LIST	msg_prac_rank_sel_04,2			//ãƒã‚¤ãƒ‘ãƒ¼
+	_BMPMENU_MAKE_LIST	msg_prac_rank_sel_05,3			//ãƒžã‚¹ã‚¿ãƒ¼
+	_BMPMENU_MAKE_LIST	msg_prac_rank_sel_06,4			//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -1595,41 +1595,41 @@ ev_con_reception_menu_rensyuu_rank_select:
 	_CASE_JUMP		1,ev_con_reception_menu_rensyuu_rank_select_01
 	_CASE_JUMP		2,ev_con_reception_menu_rensyuu_rank_select_02
 	_CASE_JUMP		3,ev_con_reception_menu_rensyuu_rank_select_03
-	_JUMP			ev_con_reception_menu_rensyuu_rank_select_yameru			//I—¹
+	_JUMP			ev_con_reception_menu_rensyuu_rank_select_yameru			//çµ‚äº†
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN‘I‘ð„ƒm[ƒ}ƒ‹*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯é¸æŠžï¼žãƒŽãƒ¼ãƒžãƒ«*/
 ev_con_reception_menu_rensyuu_rank_select_00:
-	_LDVAL			SCWK_TEMP0,CONRANK_NORMAL		//ƒ‰ƒ“ƒNƒZƒbƒg
+	_LDVAL			SCWK_TEMP0,CONRANK_NORMAL		//ãƒ©ãƒ³ã‚¯ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_rensyuu_type_select_before
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN‘I‘ð„ƒX[ƒp[*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯é¸æŠžï¼žã‚¹ãƒ¼ãƒ‘ãƒ¼*/
 ev_con_reception_menu_rensyuu_rank_select_01:
-	_LDVAL			SCWK_TEMP0,CONRANK_SUPER		//ƒ‰ƒ“ƒNƒZƒbƒg
+	_LDVAL			SCWK_TEMP0,CONRANK_SUPER		//ãƒ©ãƒ³ã‚¯ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_rensyuu_type_select_before
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN‘I‘ð„ƒnƒCƒp[*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯é¸æŠžï¼žãƒã‚¤ãƒ‘ãƒ¼*/
 ev_con_reception_menu_rensyuu_rank_select_02:
-	_LDVAL			SCWK_TEMP0,CONRANK_HYPER		//ƒ‰ƒ“ƒNƒZƒbƒg
+	_LDVAL			SCWK_TEMP0,CONRANK_HYPER		//ãƒ©ãƒ³ã‚¯ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_rensyuu_type_select_before
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN‘I‘ð„ƒ}ƒXƒ^[*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯é¸æŠžï¼žãƒžã‚¹ã‚¿ãƒ¼*/
 ev_con_reception_menu_rensyuu_rank_select_03:
-	_LDVAL			SCWK_TEMP0,CONRANK_MASTER		//ƒ‰ƒ“ƒNƒZƒbƒg
+	_LDVAL			SCWK_TEMP0,CONRANK_MASTER		//ãƒ©ãƒ³ã‚¯ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_rensyuu_type_select_before
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN‘I‘ð„‚â‚ß‚é*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯é¸æŠžï¼žã‚„ã‚ã‚‹*/
 ev_con_reception_menu_rensyuu_rank_select_yameru:
 	_TALK_KEYWAIT	msg_prac_rank_sel_07
 	_LAST_KEYWAIT
 	_JUMP			ev_con_reception_tit_menu_common_yameru
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð‘O‚Ì”»’è*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠžå‰ã®åˆ¤å®š*/
 ev_con_reception_menu_rensyuu_type_select_before:
 	_IFVAL_JUMP		LOCALWORK4,EQ,1,ev_con_reception_menu_rensyuu_pokemon_select
 	_JUMP			ev_con_reception_menu_rensyuu_type_select
@@ -1637,16 +1637,16 @@ ev_con_reception_menu_rensyuu_type_select_before:
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠž*/
 ev_con_reception_menu_rensyuu_type_select:
 	_TALKMSG		msg_prac_con_sel_01
-	_BMPMENU_INIT_EX		1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_prac_con_sel_02,0			//‚©‚Á‚±‚æ‚³
-	_BMPMENU_MAKE_LIST	msg_prac_con_sel_03,1			//‚¤‚Â‚­‚µ‚³
-	_BMPMENU_MAKE_LIST	msg_prac_con_sel_04,2			//‚©‚í‚¢‚³
-	_BMPMENU_MAKE_LIST	msg_prac_con_sel_05,3			//‚©‚µ‚±‚³
-	_BMPMENU_MAKE_LIST	msg_prac_con_sel_06,4			//‚½‚­‚Ü‚µ‚³
-	_BMPMENU_MAKE_LIST	msg_prac_con_sel_07,5			//‚â‚ß‚é
+	_BMPMENU_INIT_EX		1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_prac_con_sel_02,0			//ã‹ã£ã“ã‚ˆã•
+	_BMPMENU_MAKE_LIST	msg_prac_con_sel_03,1			//ã†ã¤ãã—ã•
+	_BMPMENU_MAKE_LIST	msg_prac_con_sel_04,2			//ã‹ã‚ã„ã•
+	_BMPMENU_MAKE_LIST	msg_prac_con_sel_05,3			//ã‹ã—ã“ã•
+	_BMPMENU_MAKE_LIST	msg_prac_con_sel_06,4			//ãŸãã¾ã—ã•
+	_BMPMENU_MAKE_LIST	msg_prac_con_sel_07,5			//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -1655,65 +1655,65 @@ ev_con_reception_menu_rensyuu_type_select:
 	_CASE_JUMP		2,ev_con_reception_menu_rensyuu_type_select_02
 	_CASE_JUMP		3,ev_con_reception_menu_rensyuu_type_select_03
 	_CASE_JUMP		4,ev_con_reception_menu_rensyuu_type_select_04
-	_JUMP			ev_con_reception_menu_rensyuu_type_select_yameru			//I—¹
+	_JUMP			ev_con_reception_menu_rensyuu_type_select_yameru			//çµ‚äº†
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð„‚©‚Á‚±‚æ‚³*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠžï¼žã‹ã£ã“ã‚ˆã•*/
 ev_con_reception_menu_rensyuu_type_select_00:
-	_LDVAL			SCWK_TEMP1,CONTYPE_STYLE		//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	_LDVAL			SCWK_TEMP1,CONTYPE_STYLE		//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_rensyuu_pokemon_select
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð„‚¤‚Â‚­‚µ‚³*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠžï¼žã†ã¤ãã—ã•*/
 ev_con_reception_menu_rensyuu_type_select_01:
-	_LDVAL			SCWK_TEMP1,CONTYPE_BEAUTIFUL		//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	_LDVAL			SCWK_TEMP1,CONTYPE_BEAUTIFUL		//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_rensyuu_pokemon_select
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð„‚©‚í‚¢‚³*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠžï¼žã‹ã‚ã„ã•*/
 ev_con_reception_menu_rensyuu_type_select_02:
-	_LDVAL			SCWK_TEMP1,CONTYPE_CUTE		//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	_LDVAL			SCWK_TEMP1,CONTYPE_CUTE		//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_rensyuu_pokemon_select
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð„‚©‚µ‚±‚³*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠžï¼žã‹ã—ã“ã•*/
 ev_con_reception_menu_rensyuu_type_select_03:
-	_LDVAL			SCWK_TEMP1,CONTYPE_CLEVER		//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	_LDVAL			SCWK_TEMP1,CONTYPE_CLEVER		//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_rensyuu_pokemon_select
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð„‚½‚­‚Ü‚µ‚³*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠžï¼žãŸãã¾ã—ã•*/
 ev_con_reception_menu_rensyuu_type_select_04:
-	_LDVAL			SCWK_TEMP1,CONTYPE_STRONG		//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+	_LDVAL			SCWK_TEMP1,CONTYPE_STRONG		//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	_JUMP			ev_con_reception_menu_rensyuu_pokemon_select
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰ÁƒRƒ“ƒeƒXƒgƒ^ƒCƒv‘I‘ð„‚â‚ß‚é*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—é¸æŠžï¼žã‚„ã‚ã‚‹*/
 ev_con_reception_menu_rensyuu_type_select_yameru:
 	_TALK_KEYWAIT	msg_prac_con_sel_08
 	_LAST_KEYWAIT
 	_JUMP			ev_con_reception_tit_menu_common_yameru
 	_END
 
-/*—ûKF‚ê‚ñ‚µ‚ã‚¤‚ð‚·‚éF‹¤’Êƒƒjƒ…[AŽQ‰Áƒ|ƒPƒ‚ƒ“‘I‘ð*/
-/*LOCALWORK2Žg—pI*/
+/*ç·´ç¿’ï¼šã‚Œã‚“ã—ã‚…ã†ã‚’ã™ã‚‹ï¼šå…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€å‚åŠ ãƒã‚±ãƒ¢ãƒ³é¸æŠž*/
+/*LOCALWORK2ä½¿ç”¨ï¼*/
 ev_con_reception_menu_rensyuu_pokemon_select:
-	/*u‚Ç‚Ìƒ|ƒPƒ‚ƒ“‚ð‚³‚ñ‚©‚³‚¹‚Ü‚·‚©Hv*/
+	/*ã€Œã©ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ã•ã‚“ã‹ã•ã›ã¾ã™ã‹ï¼Ÿã€*/
 	_TALK_KEYWAIT	msg_prac_pkmn_sel_01
 
-	/*uƒ|ƒPƒ‚ƒ“‚ð‚¦‚ç‚ñ‚Å‚­‚¾‚³‚¢v*/
+	/*ã€Œãƒã‚±ãƒ¢ãƒ³ã‚’ãˆã‚‰ã‚“ã§ãã ã•ã„ã€*/
 	_TALK_KEYWAIT	msg_prac_pkmn_sel_02
 	_TALK_CLOSE
 
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	_LDVAL			SCWK_ANSWER,0		//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰ŠúƒJ[ƒ\ƒ‹ˆÊ’u
-ev_con_reception_menu_list_back:	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊŒÄ‚Ño‚µ–ß‚èæ
-	//ƒ|ƒPƒ‚ƒ“‘I‘ð‰æ–ÊŒÄ‚Ño‚µ
+	_LDVAL			SCWK_ANSWER,0		//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆåˆæœŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ev_con_reception_menu_list_back:	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢å‘¼ã³å‡ºã—æˆ»ã‚Šå…ˆ
+	//ãƒã‚±ãƒ¢ãƒ³é¸æŠžç”»é¢å‘¼ã³å‡ºã—
 	_CON_POKELIST_SET_PROC	SCWK_ANSWER,SCWK_TEMP0,SCWK_TEMP1,0
 
-	//‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì•À‚Ñ”Ô†‚Æƒ‚[ƒhŽæ“¾
+	//é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ä¸¦ã³ç•ªå·ã¨ãƒ¢ãƒ¼ãƒ‰å–å¾—
 	_CON_POKELIST_GET_RESULT	LOCALWORK2,SCWK_ANSWER
 
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_con_reception_menu_list_select_end
@@ -1721,32 +1721,32 @@ ev_con_reception_menu_list_back:	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊŒÄ‚Ño‚µ–ß‚èæ
 	_POKESTATUS_GET_RESULT		SCWK_ANSWER
 	_JUMP			ev_con_reception_menu_list_back
 	
-ev_con_reception_menu_list_select_end:	//ƒŠƒXƒg‘I‘ðŒã
+ev_con_reception_menu_list_select_end:	//ãƒªã‚¹ãƒˆé¸æŠžå¾Œ
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN
-	_IFVAL_JUMP		LOCALWORK2,EQ,0xff,ev_con_reception_menu_rensyuu_type_select_yameru	//I—¹
+	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯
+	_IFVAL_JUMP		LOCALWORK2,EQ,0xff,ev_con_reception_menu_rensyuu_type_select_yameru	//çµ‚äº†
 
 	_JUMP			ev_con_reception_common_05
 	_END
 
 
 //==============================================================================
-//	—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­
+//	ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ãã
 //==============================================================================
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ãã*/
 ev_con_reception_tit_menu_01_setsumei_msg:
 	_TALKMSG			msg_prac_recep_06
 ev_con_reception_tit_menu_01_setsumei:
-	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_q,0			//‚ê‚ñ‚µ‚ã‚¤‚Á‚ÄH
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_v,1			//ƒrƒWƒ…ƒAƒ‹‚Ì‚¹‚Â‚ß‚¢
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_d,2			//ƒ_ƒ“ƒX‚Ì‚¹‚Â‚ß‚¢
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_a,3			//‚¦‚ñ‚¬‚Ì‚¹‚Â‚ß‚¢
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_e,4			//‚à‚Ç‚é
+	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_q,0			//ã‚Œã‚“ã—ã‚…ã†ã£ã¦ï¼Ÿ
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_v,1			//ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã®ã›ã¤ã‚ã„
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_d,2			//ãƒ€ãƒ³ã‚¹ã®ã›ã¤ã‚ã„
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_a,3			//ãˆã‚“ãŽã®ã›ã¤ã‚ã„
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_e,4			//ã‚‚ã©ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -1758,18 +1758,18 @@ ev_con_reception_tit_menu_01_setsumei:
 	_END
 
 //--------------------------------------------------------------
-//	ƒrƒWƒ…ƒAƒ‹‚Ì‚¹‚Â‚ß‚¢
+//	ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã®ã›ã¤ã‚ã„
 //--------------------------------------------------------------
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­FƒrƒWƒ…ƒAƒ‹‚Ì‚¹‚Â‚ß‚¢*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã®ã›ã¤ã‚ã„*/
 ev_con_reception_menu_setsumei_visual_msg:
 	_TALKMSG			msg_prac_recep_06	//msg_con_reception_info_07
 ev_con_reception_menu_setsumei_visual:
-	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_v_01,0			//‚º‚ñ‚½‚¢‚Ì‚È‚ª‚ê
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_v_02,1			//ƒ|ƒPƒ‚ƒ“‚Ð‚å‚¤‚©
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_v_03,2			//ƒhƒŒƒXƒAƒbƒv‚Ð‚å‚¤‚©
-//	_BMPMENU_MAKE_LIST	msg_prac_xplain_v_04,3			//ƒe[ƒ}
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_v_05,3			//‚à‚Ç‚é
+	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_v_01,0			//ãœã‚“ãŸã„ã®ãªãŒã‚Œ
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_v_02,1			//ãƒã‚±ãƒ¢ãƒ³ã²ã‚‡ã†ã‹
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_v_03,2			//ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã²ã‚‡ã†ã‹
+//	_BMPMENU_MAKE_LIST	msg_prac_xplain_v_04,3			//ãƒ†ãƒ¼ãƒž
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_v_05,3			//ã‚‚ã©ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -1777,52 +1777,52 @@ ev_con_reception_menu_setsumei_visual:
 	_CASE_JUMP		1,ev_con_reception_menu_setsumei_visual_01
 	_CASE_JUMP		2,ev_con_reception_menu_setsumei_visual_02
 //	_CASE_JUMP		3,ev_con_reception_menu_setsumei_visual_03
-	_JUMP			ev_con_reception_menu_setsumei_visual_04			//I—¹
+	_JUMP			ev_con_reception_menu_setsumei_visual_04			//çµ‚äº†
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­FƒrƒWƒ…ƒAƒ‹‚Ì‚¹‚Â‚ß‚¢F‚º‚ñ‚½‚¢‚Ì‚È‚ª‚ê*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã®ã›ã¤ã‚ã„ï¼šãœã‚“ãŸã„ã®ãªãŒã‚Œ*/
 ev_con_reception_menu_setsumei_visual_00:
 	_TALK_KEYWAIT	msg_prac_xplain_v_01_01
 	_JUMP			ev_con_reception_menu_setsumei_visual_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­FƒrƒWƒ…ƒAƒ‹‚Ì‚¹‚Â‚ß‚¢Fƒ|ƒPƒ‚ƒ“‚Ð‚å‚¤‚©*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã®ã›ã¤ã‚ã„ï¼šãƒã‚±ãƒ¢ãƒ³ã²ã‚‡ã†ã‹*/
 ev_con_reception_menu_setsumei_visual_01:
 	_TALK_KEYWAIT	msg_prac_xplain_v_02_01
 	_JUMP			ev_con_reception_menu_setsumei_visual_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­FƒrƒWƒ…ƒAƒ‹‚Ì‚¹‚Â‚ß‚¢FƒhƒŒƒXƒAƒbƒv‚Ð‚å‚¤‚©*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã®ã›ã¤ã‚ã„ï¼šãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã²ã‚‡ã†ã‹*/
 ev_con_reception_menu_setsumei_visual_02:
 	_TALK_KEYWAIT	msg_prac_xplain_v_03_01
 	_JUMP			ev_con_reception_menu_setsumei_visual_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­FƒrƒWƒ…ƒAƒ‹‚Ì‚¹‚Â‚ß‚¢Fƒe[ƒ}*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã®ã›ã¤ã‚ã„ï¼šãƒ†ãƒ¼ãƒž*/
 //ev_con_reception_menu_setsumei_visual_03:
 //	_TALK_KEYWAIT	msg_prac_xplain_v_04_01
 //	_JUMP			ev_con_reception_menu_setsumei_visual_msg
 //	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­FƒrƒWƒ…ƒAƒ‹‚Ì‚¹‚Â‚ß‚¢F‚à‚Ç‚é*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã®ã›ã¤ã‚ã„ï¼šã‚‚ã©ã‚‹*/
 ev_con_reception_menu_setsumei_visual_04:
 //	_TALK_KEYWAIT	msg_prac_xplain_v_05_01
 	_JUMP			ev_con_reception_tit_menu_01_setsumei
 	_END
 
 //--------------------------------------------------------------
-//	ƒ_ƒ“ƒX‚Ì‚¹‚Â‚ß‚¢
+//	ãƒ€ãƒ³ã‚¹ã®ã›ã¤ã‚ã„
 //--------------------------------------------------------------
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­Fƒ_ƒ“ƒX‚Ì‚¹‚Â‚ß‚¢*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ€ãƒ³ã‚¹ã®ã›ã¤ã‚ã„*/
 ev_con_reception_menu_setsumei_dance_msg:
 	_TALKMSG			msg_prac_recep_06	//msg_con_reception_info_07
 ev_con_reception_menu_setsumei_dance:
-	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_d_01,0			//‚º‚ñ‚½‚¢‚Ì‚È‚ª‚ê
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_d_02,1			//ƒ|ƒPƒ‚ƒ“‚Ð‚å‚¤‚©
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_d_03,2			//ƒhƒŒƒXƒAƒbƒv‚Ð‚å‚¤‚©
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_d_04,3			//ƒe[ƒ}
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_d_05,4			//‚â‚ß‚é
+	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_d_01,0			//ãœã‚“ãŸã„ã®ãªãŒã‚Œ
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_d_02,1			//ãƒã‚±ãƒ¢ãƒ³ã²ã‚‡ã†ã‹
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_d_03,2			//ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã²ã‚‡ã†ã‹
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_d_04,3			//ãƒ†ãƒ¼ãƒž
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_d_05,4			//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -1830,52 +1830,52 @@ ev_con_reception_menu_setsumei_dance:
 	_CASE_JUMP		1,ev_con_reception_menu_setsumei_dance_01
 	_CASE_JUMP		2,ev_con_reception_menu_setsumei_dance_02
 	_CASE_JUMP		3,ev_con_reception_menu_setsumei_dance_03
-	_JUMP			ev_con_reception_menu_setsumei_dance_04			//I—¹
+	_JUMP			ev_con_reception_menu_setsumei_dance_04			//çµ‚äº†
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­Fƒ_ƒ“ƒX‚Ì‚¹‚Â‚ß‚¢F‚º‚ñ‚½‚¢‚Ì‚È‚ª‚ê*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ€ãƒ³ã‚¹ã®ã›ã¤ã‚ã„ï¼šãœã‚“ãŸã„ã®ãªãŒã‚Œ*/
 ev_con_reception_menu_setsumei_dance_00:
 	_TALK_KEYWAIT	msg_prac_xplain_d_01_01
 	_JUMP			ev_con_reception_menu_setsumei_dance_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­Fƒ_ƒ“ƒX‚Ì‚¹‚Â‚ß‚¢Fƒ|ƒPƒ‚ƒ“‚Ð‚å‚¤‚©*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ€ãƒ³ã‚¹ã®ã›ã¤ã‚ã„ï¼šãƒã‚±ãƒ¢ãƒ³ã²ã‚‡ã†ã‹*/
 ev_con_reception_menu_setsumei_dance_01:
 	_TALK_KEYWAIT	msg_prac_xplain_d_02_01
 	_JUMP			ev_con_reception_menu_setsumei_dance_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­Fƒ_ƒ“ƒX‚Ì‚¹‚Â‚ß‚¢FƒhƒŒƒXƒAƒbƒv‚Ð‚å‚¤‚©*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ€ãƒ³ã‚¹ã®ã›ã¤ã‚ã„ï¼šãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã²ã‚‡ã†ã‹*/
 ev_con_reception_menu_setsumei_dance_02:
 	_TALK_KEYWAIT	msg_prac_xplain_d_03_01
 	_JUMP			ev_con_reception_menu_setsumei_dance_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­Fƒ_ƒ“ƒX‚Ì‚¹‚Â‚ß‚¢Fƒe[ƒ}*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ€ãƒ³ã‚¹ã®ã›ã¤ã‚ã„ï¼šãƒ†ãƒ¼ãƒž*/
 ev_con_reception_menu_setsumei_dance_03:
 	_TALK_KEYWAIT	msg_prac_xplain_d_04_01
 	_JUMP			ev_con_reception_menu_setsumei_dance_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­Fƒ_ƒ“ƒX‚Ì‚¹‚Â‚ß‚¢F‚à‚Ç‚é*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãƒ€ãƒ³ã‚¹ã®ã›ã¤ã‚ã„ï¼šã‚‚ã©ã‚‹*/
 ev_con_reception_menu_setsumei_dance_04:
 //	_TALK_KEYWAIT	msg_prac_xplain_d_05_01
 	_JUMP			ev_con_reception_tit_menu_01_setsumei
 	_END
 
 //--------------------------------------------------------------
-//	‚¦‚ñ‚¬‚Ì‚¹‚Â‚ß‚¢
+//	ãˆã‚“ãŽã®ã›ã¤ã‚ã„
 //--------------------------------------------------------------
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­F‚¦‚ñ‚¬‚Ì‚¹‚Â‚ß‚¢*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãˆã‚“ãŽã®ã›ã¤ã‚ã„*/
 ev_con_reception_menu_setsumei_actin_msg:
 	_TALKMSG			msg_prac_recep_06	//msg_con_reception_info_07
 ev_con_reception_menu_setsumei_actin:
-	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_a_01,0			//‚º‚ñ‚½‚¢‚Ì‚È‚ª‚ê
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_a_02,1			//ƒ|ƒPƒ‚ƒ“‚Ð‚å‚¤‚©
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_a_03,2			//ƒhƒŒƒXƒAƒbƒv‚Ð‚å‚¤‚©
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_a_04,3			//ƒe[ƒ}
-	_BMPMENU_MAKE_LIST	msg_prac_xplain_a_05,4			//‚â‚ß‚é
+	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_a_01,0			//ãœã‚“ãŸã„ã®ãªãŒã‚Œ
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_a_02,1			//ãƒã‚±ãƒ¢ãƒ³ã²ã‚‡ã†ã‹
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_a_03,2			//ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã²ã‚‡ã†ã‹
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_a_04,3			//ãƒ†ãƒ¼ãƒž
+	_BMPMENU_MAKE_LIST	msg_prac_xplain_a_05,4			//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
@@ -1883,43 +1883,43 @@ ev_con_reception_menu_setsumei_actin:
 	_CASE_JUMP		1,ev_con_reception_menu_setsumei_actin_01
 	_CASE_JUMP		2,ev_con_reception_menu_setsumei_actin_02
 	_CASE_JUMP		3,ev_con_reception_menu_setsumei_actin_03
-	_JUMP			ev_con_reception_menu_setsumei_actin_04			//I—¹
+	_JUMP			ev_con_reception_menu_setsumei_actin_04			//çµ‚äº†
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­F‚¦‚ñ‚¬‚Ì‚¹‚Â‚ß‚¢F‚º‚ñ‚½‚¢‚Ì‚È‚ª‚ê*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãˆã‚“ãŽã®ã›ã¤ã‚ã„ï¼šãœã‚“ãŸã„ã®ãªãŒã‚Œ*/
 ev_con_reception_menu_setsumei_actin_00:
 	_TALK_KEYWAIT	msg_prac_xplain_a_01_01
 	_JUMP			ev_con_reception_menu_setsumei_actin_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­F‚¦‚ñ‚¬‚Ì‚¹‚Â‚ß‚¢Fƒ|ƒPƒ‚ƒ“‚Ð‚å‚¤‚©*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãˆã‚“ãŽã®ã›ã¤ã‚ã„ï¼šãƒã‚±ãƒ¢ãƒ³ã²ã‚‡ã†ã‹*/
 ev_con_reception_menu_setsumei_actin_01:
 	_TALK_KEYWAIT	msg_prac_xplain_a_02_01
 	_JUMP			ev_con_reception_menu_setsumei_actin_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­F‚¦‚ñ‚¬‚Ì‚¹‚Â‚ß‚¢FƒhƒŒƒXƒAƒbƒv‚Ð‚å‚¤‚©*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãˆã‚“ãŽã®ã›ã¤ã‚ã„ï¼šãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã²ã‚‡ã†ã‹*/
 ev_con_reception_menu_setsumei_actin_02:
 	_TALK_KEYWAIT	msg_prac_xplain_a_03_01
 	_JUMP			ev_con_reception_menu_setsumei_actin_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­F‚¦‚ñ‚¬‚Ì‚¹‚Â‚ß‚¢Fƒe[ƒ}*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãˆã‚“ãŽã®ã›ã¤ã‚ã„ï¼šãƒ†ãƒ¼ãƒž*/
 ev_con_reception_menu_setsumei_actin_03:
 	_TALK_KEYWAIT	msg_prac_xplain_a_04_01
 	_JUMP			ev_con_reception_menu_setsumei_actin_msg
 	_END
 
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­F‚¦‚ñ‚¬‚Ì‚¹‚Â‚ß‚¢F‚à‚Ç‚é*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šãˆã‚“ãŽã®ã›ã¤ã‚ã„ï¼šã‚‚ã©ã‚‹*/
 ev_con_reception_menu_setsumei_actin_04:
 //	_TALK_KEYWAIT	msg_prac_xplain_a_05_01
 	_JUMP			ev_con_reception_tit_menu_01_setsumei
 	_END
 
 //--------------------------------------------------------------
-//	‚ê‚ñ‚µ‚ã‚¤‚Á‚ÄH
+//	ã‚Œã‚“ã—ã‚…ã†ã£ã¦ï¼Ÿ
 //--------------------------------------------------------------
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­F‚ê‚ñ‚µ‚ã‚¤‚Á‚ÄH*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šã‚Œã‚“ã—ã‚…ã†ã£ã¦ï¼Ÿ*/
 ev_con_reception_menu_setsumei_question:
 	_TALK_KEYWAIT	msg_prac_xplain_q_01
 	_TALKMSG			msg_prac_recep_06	//msg_con_reception_info_07
@@ -1927,27 +1927,27 @@ ev_con_reception_menu_setsumei_question:
 	_END
 
 //--------------------------------------------------------------
-//	—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­F‚â‚ß‚é
+//	ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šã‚„ã‚ã‚‹
 //--------------------------------------------------------------
-/*—ûKF‚¹‚Â‚ß‚¢‚ð‚«‚­F‚â‚ß‚é*/
+/*ç·´ç¿’ï¼šã›ã¤ã‚ã„ã‚’ããï¼šã‚„ã‚ã‚‹*/
 ev_con_reception_menu_setsumei_yameru:
 	_TALK_KEYWAIT	msg_prac_xplain_e_01
 	_JUMP			ev_con_reception_tit_menu_common_yameru
 	_END
 
 
-/*‚â‚ß‚é*/
+/*ã‚„ã‚ã‚‹*/
 ev_con_reception_tit_menu_01_yameru:
 	_TALKMSG		msg_prac_recep_05_01	//msg_con_recep_tut_09
 	_LAST_KEYWAIT
-ev_con_reception_tit_menu_common_yameru:	/*•à‚«‰ñ‚è‰Â”\ó‘Ô‚É‚·‚éŽž‚ÌƒWƒƒƒ“ƒvæ*/
+ev_con_reception_tit_menu_common_yameru:	/*æ­©ãå›žã‚Šå¯èƒ½çŠ¶æ…‹ã«ã™ã‚‹æ™‚ã®ã‚¸ãƒ£ãƒ³ãƒ—å…ˆ*/
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
 
 /********************************************************************/
-/*							ƒfƒBƒXƒvƒŒƒC							*/
+/*							ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤							*/
 /********************************************************************/
 ev_con_reception_disp:
 	_TALK_START

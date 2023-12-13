@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_c08r0801evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c08r0801_seaman
 _EVENT_DATA		ev_c08r0801_boy2
@@ -22,14 +22,14 @@ _EVENT_DATA		ev_c08r0801_leader
 _EVENT_DATA_END
 
 /********************************************************************/
-/*							‘Dæ‚è									*/
+/*							èˆ¹ä¹—ã‚Š									*/
 /********************************************************************/
 ev_c08r0801_seaman:
 	_EASY_OBJ_MSG		msg_c08r0801_seaman_01
 	_END
 
 /********************************************************************/
-/*							Šˆ”­­”N								*/
+/*							æ´»ç™ºå°‘å¹´								*/
 /********************************************************************/
 ev_c08r0801_boy2:
 	_EASY_OBJ_MSG		msg_c08r0801_boy2_01
@@ -44,7 +44,7 @@ ev_c08r0801_telescope1:
 	_TALKMSG	msg_c08r0801_telescope_01	
 	_TALK_CLOSE
 
-	// ƒJƒƒ‰Ý’è
+	// ã‚«ãƒ¡ãƒ©è¨­å®š
 	_C08R0801SCOPECAMERASET
 
 	_TALK_END
@@ -52,7 +52,7 @@ ev_c08r0801_telescope1:
 
 
 /********************************************************************/
-/*							ƒWƒ€ƒŠ[ƒ_[							*/
+/*							ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼							*/
 /********************************************************************/
 ev_c08r0801_leader:
 	_TALK_OBJ_START
@@ -66,7 +66,7 @@ ev_c08r0801_leader:
 
 	_TIME_WAIT		15,SCWK_ANSWER
 
-	/*Œü‚«‚É‚æ‚Á‚ÄƒAƒjƒ‚ð‚©‚¦‚é*/
+	/*å‘ãã«ã‚ˆã£ã¦ã‚¢ãƒ‹ãƒ¡ã‚’ã‹ãˆã‚‹*/
 	_PLAYER_DIR_GET	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_UP,ev_c08r0801_leader_dir_up
 	//_IFVAL_JUMP	SCWK_ANSWER,EQ,DIR_DOWN,ev_c08r0801_leader_dir_down
@@ -74,7 +74,7 @@ ev_c08r0801_leader:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_RIGHT,ev_c08r0801_leader_dir_right
 	_END
 
-/*ƒGƒŒƒx[ƒ^‚Éæ‚èž‚Þ*/
+/*ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ã«ä¹—ã‚Šè¾¼ã‚€*/
 ev_c08r0801_leader_dir_up:
 	_OBJ_ANIME		C08R0801_LEADER,anm_c08r0801_leader_03
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c08r0801_player_03
@@ -95,15 +95,15 @@ ev_c08r0801_leader_dir_right:
 common_c08r0801_leader_01:
 
 	_SET_UP_DOOR_ANIME	0,0,6,9,77
-	_SEQ_OPEN_DOOR	77						//ƒhƒAŠJ‚¯‚é
-	_WAIT_3D_ANIME	77						//ƒAƒjƒI—¹‘Ò‚¿
+	_SEQ_OPEN_DOOR	77						//ãƒ‰ã‚¢é–‹ã‘ã‚‹
+	_WAIT_3D_ANIME	77						//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 
 	_OBJ_ANIME		C08R0801_LEADER,anm_c08r0801_leader_05
 	_OBJ_ANIME_WAIT
 
-	_SEQ_CLOSE_DOOR	77						//ƒhƒA•Â‚ß‚é
-	_WAIT_3D_ANIME	77						//ƒAƒjƒI—¹‘Ò‚¿
-	_FREE_3D_ANIME	77						//ƒhƒAƒAƒjƒ‰ð•ú
+	_SEQ_CLOSE_DOOR	77						//ãƒ‰ã‚¢é–‰ã‚ã‚‹
+	_WAIT_3D_ANIME	77						//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
+	_FREE_3D_ANIME	77						//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡è§£æ”¾
 
 	_OBJ_DEL		C08R0801_LEADER
 	_FLAG_SET		FE_C08R0801_TALK
@@ -112,7 +112,7 @@ common_c08r0801_leader_01:
 	_END
 
 //--------------------------------------------------------------------
-//ƒŠ[ƒ_[	‹Ž‚Á‚Ä‚¢‚­
+//ãƒªãƒ¼ãƒ€ãƒ¼	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08r0801_leader_03
 	_ANIME_DATA	AC_WALK_R_8F,3
@@ -130,7 +130,7 @@ _ANIME_LABEL	anm_c08r0801_leader_04
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒŠ[ƒ_[	ƒGƒŒƒx[ƒ^‚É‚Ì‚é
+//ãƒªãƒ¼ãƒ€ãƒ¼	ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ã«ã®ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08r0801_leader_05
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -138,7 +138,7 @@ _ANIME_LABEL	anm_c08r0801_leader_05
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	Œ©‘—‚é
+//ä¸»äººå…¬	è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c08r0801_player_03
 	_ANIME_DATA	AC_WAIT_8F,1

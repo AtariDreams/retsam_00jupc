@@ -18,19 +18,19 @@
   add systemWork header.
 
   Revision 1.36  2005/07/27 07:37:55  seiki_masashi
-  entropy.h ‚Ì’Ç‰Á
+  entropy.h ã®è¿½åŠ 
 
   Revision 1.35  2005/07/21 07:06:09  yada
   add argument.h
 
   Revision 1.34  2005/04/25 08:25:01  terui
-  ARM9‚É‚Ächina.h‚ğƒCƒ“ƒNƒ‹[ƒh‚·‚éƒwƒbƒ_‚É’Ç‰Á
+  ARM9ã«ã¦china.hã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ˜ãƒƒãƒ€ã«è¿½åŠ 
 
   Revision 1.33  2005/02/28 05:26:02  yosizaki
   do-indent.
 
   Revision 1.32  2005/02/09 09:15:36  terui
-  ARM9‚É‚ÄvramExclusive.h‚ğƒCƒ“ƒNƒ‹[ƒh‚·‚éƒwƒbƒ_‚É’Ç‰ÁB
+  ARM9ã«ã¦vramExclusive.hã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ˜ãƒƒãƒ€ã«è¿½åŠ ã€‚
 
   Revision 1.31  2004/09/02 07:12:37  yada
   add ownerInfo.h
@@ -48,82 +48,82 @@
   add OS_SpinWait, move OS_Halt into os_system.c
 
   Revision 1.26  2004/02/25 11:29:25  yada
-  systemClock¨Tick ‚É”º‚¤•ÏX
+  systemClockâ†’Tick ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.25  2004/02/23 12:30:33  yada
-  valarm.h ‚ğ A9/7—¼•û‚É
+  valarm.h ã‚’ A9/7ä¸¡æ–¹ã«
 
   Revision 1.24  2004/02/23 11:55:38  yada
-  valarm.h ’Ç‰Á
+  valarm.h è¿½åŠ 
 
   Revision 1.23  2004/02/12 11:41:25  yada
-  alloc.h ’Ç‰Á
+  alloc.h è¿½åŠ 
 
   Revision 1.22  2004/02/12 10:56:04  yasu
   new location of include files ARM9/ARM7
 
   Revision 1.21  2004/02/10 01:59:29  yada
-  system.h ‚ğ’Ç‰Á
+  system.h ã‚’è¿½åŠ 
 
   Revision 1.20  2004/02/10 01:45:39  yada
-  utility.h ‚ğíœ
+  utility.h ã‚’å‰Šé™¤
 
   Revision 1.19  2004/02/10 01:28:38  yada
-  utility.h ‚ğíœ
+  utility.h ã‚’å‰Šé™¤
 
   Revision 1.18  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.17  2004/02/05 01:59:45  yada
-  utility.h ’Ç‰Á
+  utility.h è¿½åŠ 
 
   Revision 1.16  2004/02/03 11:18:44  yada
-  alarm.h ‚ğ’Ç‰Á
+  alarm.h ã‚’è¿½åŠ 
 
   Revision 1.15  2004/02/02 05:29:35  yada
-  systemClock.h ’Ç‰Á
+  systemClock.h è¿½åŠ 
 
   Revision 1.14  2003/12/26 06:44:26  yada
-  arena.h ’Ç‰Á
+  arena.h è¿½åŠ 
 
   Revision 1.13  2003/12/22 01:34:39  yada
-  os/init.h ‚ğ’Ç‰Á‚µ‚½
+  os/init.h ã‚’è¿½åŠ ã—ãŸ
 
   Revision 1.12  2003/12/18 07:18:04  yada
-  os/writeBuffer.h ‚ÌƒCƒ“ƒNƒ‹[ƒh‚ğŠO‚µ‚½
+  os/writeBuffer.h ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚’å¤–ã—ãŸ
 
   Revision 1.11  2003/12/12 01:27:14  yada
-  include‚Ì–¼Ì•ÏX(os/system.h ‚Æ hw/armArch.h) ‚É‚æ‚éC³
+  includeã®åç§°å¤‰æ›´(os/system.h ã¨ hw/armArch.h) ã«ã‚ˆã‚‹ä¿®æ­£
 
   Revision 1.10  2003/12/08 12:21:31  yada
-  include ‚·‚éƒtƒ@ƒCƒ‹‚ğ’Ç‰Á
+  include ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ 
 
   Revision 1.9  2003/11/30 04:20:42  yasu
-  cpsr.h ‚Ì’Ç‰Á
+  cpsr.h ã®è¿½åŠ 
 
   Revision 1.8  2003/11/29 10:11:29  yada
-  mutex.h ‚ğ’Ç‰Á
+  mutex.h ã‚’è¿½åŠ 
 
   Revision 1.7  2003/11/26 01:50:58  yada
-  message.h ‚ğ’Ç‰Á
+  message.h ã‚’è¿½åŠ 
 
   Revision 1.6  2003/11/25 11:18:36  yasu
-  emulator.h ‚ğ’Ç‰Á
+  emulator.h ã‚’è¿½åŠ 
 
   Revision 1.5  2003/11/25 05:53:10  yada
-  os‰ñ‚è•ÏX
+  oså›ã‚Šå¤‰æ›´
 
   Revision 1.4  2003/11/25 05:00:39  yasu
-  thread.h/context.h ‚Ì’Ç‰Á
+  thread.h/context.h ã®è¿½åŠ 
 
   Revision 1.3  2003/11/17 00:23:22  yasu
-  OS_Printf ‚È‚Ç‚ğ iris/os/printf.h ‚Ö•ª—£
+  OS_Printf ãªã©ã‚’ iris/os/printf.h ã¸åˆ†é›¢
 
   Revision 1.2  2003/11/14 06:14:12  yasu
-  OS_Warning() OS_Panic() ‚Ì’Ç‰Á
+  OS_Warning() OS_Panic() ã®è¿½åŠ 
 
   Revision 1.1  2003/11/13 11:59:25  yasu
-  OS_Printf ŠÖŒWŠÖ”ì¬
+  OS_Printf é–¢ä¿‚é–¢æ•°ä½œæˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

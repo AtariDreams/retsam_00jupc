@@ -41,66 +41,66 @@ GetTexSRTAnmVectorVal_(const NNSG3dResTexSRTAnm* pTexAnm,
 
     if (!(info & NNS_G3D_TEXSRTANM_ELEM_STEP_MASK))
     {
-        // NNS_G3D_TEXSRTANM_ELEM_STEP_1���I������Ă���
+        // NNS_G3D_TEXSRTANM_ELEM_STEP_1が選択されている
         idx = frame;
         goto TEXSRT_VAL_NONINTERP;
     }
 
-    // last_interp�ȍ~��1�R�}���f�[�^�������Ă���
-    // last_interp��2�̔{����4�̔{���ł���B
+    // last_interp以降は1コマずつデータが入っている
+    // last_interpは2の倍数か4の倍数である。
     last_interp = (NNS_G3D_TEXSRTANM_ELEM_LAST_INTERP_MASK & info) >>
                                 NNS_G3D_TEXSRTANM_ELEM_LAST_INTERP_SHIFT;
 
     if (info & NNS_G3D_TEXSRTANM_ELEM_STEP_2)
     {
-        // NNS_G3D_TEXSRTANM_ELEM_STEP_2���I������Ă���
+        // NNS_G3D_TEXSRTANM_ELEM_STEP_2が選択されている
         if (frame & 1)
         {
             if (frame > last_interp)
             {
-                // �ŏI�t���[���ȊO���肦�Ȃ�
+                // 最終フレーム以外ありえない
                 idx = (last_interp >> 1) + 1;
                 goto TEXSRT_VAL_NONINTERP;
             }
             else
             {
-                // ��ōŏI�t���[���łȂ��̂�50:50�̕�ԏ���������B
+                // 奇数で最終フレームでないので50:50の補間処理がいる。
                 idx = frame >> 1;
                 goto TEXSRT_VAL_INTERP_2;
             }
         }
         else
         {
-            // �����t���[���Ȃ̂ŕ�ԏ����͂���Ȃ�
+            // 偶数フレームなので補間処理はいらない
             idx = frame >> 1;
             goto TEXSRT_VAL_NONINTERP;
         }
     }
     else
     {
-        // NNS_G3D_TEXSRTANM_ELEM_STEP_4���I������Ă���
+        // NNS_G3D_TEXSRTANM_ELEM_STEP_4が選択されている
         if (frame & 3)
         {
             if (frame > last_interp)
             {
-                // last_interp�ȍ~�͕�ԏ����Ȃ�
+                // last_interp以降は補間処理なし
                 idx = (last_interp >> 2) + (frame & 3);
                 goto TEXSRT_VAL_NONINTERP;
             }
 
-            // ��ԏ�������
+            // 補間処理あり
             if (frame & 1)
             {
                 fx32 v, v_sub;
                 if (frame & 2)
                 {
-                    // 3:1�̈ʒu�ŕ��
+                    // 3:1の位置で補間
                     idx_sub = (frame >> 2);
                     idx = idx_sub + 1;
                 }
                 else
                 {
-                    // 1:3�̈ʒu�ŕ��
+                    // 1:3の位置で補間
                     idx = (frame >> 2);
                     idx_sub = idx + 1;
                 }
@@ -119,14 +119,14 @@ GetTexSRTAnmVectorVal_(const NNSG3dResTexSRTAnm* pTexAnm,
             }
             else
             {
-                // 50:50�̕�ԂɂȂ�
+                // 50:50の補間になる
                 idx = frame >> 2;
                 goto TEXSRT_VAL_INTERP_2;
             }
         }
         else
         {
-            // �t���[���͒��x4�̔{���ɂȂ��Ă���
+            // フレームは丁度4の倍数になっている
             idx = frame >> 2;
             goto TEXSRT_VAL_NONINTERP;
         }
@@ -181,54 +181,54 @@ GetTexSRTAnmSinCosVal_(const NNSG3dResTexSRTAnm* pTexAnm,
 
     if (!(info & NNS_G3D_TEXSRTANM_ELEM_STEP_MASK))
     {
-        // NNS_G3D_TEXSRTANM_ELEM_STEP_1���I������Ă���
+        // NNS_G3D_TEXSRTANM_ELEM_STEP_1が選択されている
         idx = frame;
         goto TEXSRT_SINCOS_NONINTERP;
     }
 
-    // last_interp�ȍ~��1�R�}���f�[�^�������Ă���
-    // last_interp��2�̔{����4�̔{���ł���B
+    // last_interp以降は1コマずつデータが入っている
+    // last_interpは2の倍数か4の倍数である。
     last_interp = (NNS_G3D_TEXSRTANM_ELEM_LAST_INTERP_MASK & info) >>
                                 NNS_G3D_TEXSRTANM_ELEM_LAST_INTERP_SHIFT;
 
     if (info & NNS_G3D_TEXSRTANM_ELEM_STEP_2)
     {
-        // NNS_G3D_TEXSRTANM_ELEM_STEP_2���I������Ă���
+        // NNS_G3D_TEXSRTANM_ELEM_STEP_2が選択されている
         if (frame & 1)
         {
             if (frame > last_interp)
             {
-                // �ŏI�t���[���ȊO���肦�Ȃ�
+                // 最終フレーム以外ありえない
                 idx = (last_interp >> 1) + 1;
                 goto TEXSRT_SINCOS_NONINTERP;
             }
             else
             {
-                // ��ōŏI�t���[���łȂ��̂�50:50�̕�ԏ���������B
+                // 奇数で最終フレームでないので50:50の補間処理がいる。
                 idx = frame >> 1;
                 goto TEXSRT_SINCOS_INTERP_2;
             }
         }
         else
         {
-            // �����t���[���Ȃ̂ŕ�ԏ����͂���Ȃ�
+            // 偶数フレームなので補間処理はいらない
             idx = frame >> 1;
             goto TEXSRT_SINCOS_NONINTERP;
         }
     }
     else
     {
-        // NNS_G3D_TEXSRTANM_ELEM_STEP_4���I������Ă���
+        // NNS_G3D_TEXSRTANM_ELEM_STEP_4が選択されている
         if (frame & 3)
         {
             if (frame > last_interp)
             {
-                // last_interp�ȍ~�͕�ԏ����Ȃ�
+                // last_interp以降は補間処理なし
                 idx = (last_interp >> 2) + (frame & 3);
                 goto TEXSRT_SINCOS_NONINTERP;
             }
 
-            // ��ԏ�������
+            // 補間処理あり
             if (frame & 1)
             {
                 fx32 s, s_sub;
@@ -236,13 +236,13 @@ GetTexSRTAnmSinCosVal_(const NNSG3dResTexSRTAnm* pTexAnm,
 
                 if (frame & 2)
                 {
-                    // 3:1�̈ʒu�ŕ��
+                    // 3:1の位置で補間
                     idx_sub = (frame >> 2);
                     idx = idx_sub + 1;
                 }
                 else
                 {
-                    // 1:3�̈ʒu�ŕ��
+                    // 1:3の位置で補間
                     idx = (frame >> 2);
                     idx_sub = idx + 1;
                 }
@@ -258,14 +258,14 @@ GetTexSRTAnmSinCosVal_(const NNSG3dResTexSRTAnm* pTexAnm,
             }
             else
             {
-                // 50:50�̕�ԂɂȂ�
+                // 50:50の補間になる
                 idx = frame >> 2;
                 goto TEXSRT_SINCOS_INTERP_2;
             }
         }
         else
         {
-            // �t���[���͒��x4�̔{���ɂȂ��Ă���
+            // フレームは丁度4の倍数になっている
             idx = frame >> 2;
             goto TEXSRT_SINCOS_NONINTERP;
         }
@@ -318,8 +318,8 @@ GetTexSRTAnm_(const NNSG3dResTexSRTAnm* pTexAnm,
                                             pAnmData->transTEx,
                                             frame);
             //
-            // �f�[�^�̓������L�q���Ă���A�t���O�l��ݒ肷��B
-            // ���̐ݒ�ɂ���āA��ɍs���A�e�N�X�`���s��v�Z�̃R�X�g���팸���邱�Ƃ��\�ƂȂ�B
+            // データの特性を記述している、フラグ値を設定する。
+            // この設定によって、後に行う、テクスチャ行列計算のコストを削減することが可能となる。
             // 
             if (transS == 0 && transT == 0 )
             {
@@ -344,7 +344,7 @@ GetTexSRTAnm_(const NNSG3dResTexSRTAnm* pTexAnm,
                                              frame); 
 
             //
-            // �f�[�^�̓������L�q���Ă���A�t���O�l��ݒ肷��B
+            // データの特性を記述している、フラグ値を設定する。
             //
             if (data == ((FX32_ONE << 16) | 0)) // sin = 0, cos = 1
             {
@@ -374,7 +374,7 @@ GetTexSRTAnm_(const NNSG3dResTexSRTAnm* pTexAnm,
                                             frame);    
            
             //
-            // �f�[�^�̓������L�q���Ă���A�t���O�l��ݒ肷��B
+            // データの特性を記述している、フラグ値を設定する。
             //
             if (scaleS == FX32_ONE && scaleT == FX32_ONE )
             {
@@ -396,8 +396,8 @@ GetTexSRTAnm_(const NNSG3dResTexSRTAnm* pTexAnm,
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmObjInitNsBta
 
-    NNSG3dAnmObj��.nsbta���\�[�X�p�ɃC�j�V�����C�Y���܂��B
-    NNS_G3dInitAnmObj����Ăяo����܂��B
+    NNSG3dAnmObjを.nsbtaリソース用にイニシャライズします。
+    NNS_G3dInitAnmObjから呼び出されます。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dAnmObjInitNsBta(NNSG3dAnmObj* pAnmObj,
@@ -417,7 +417,7 @@ NNSi_G3dAnmObjInitNsBta(NNSG3dAnmObj* pAnmObj,
     pAnmObj->funcAnm = (void*) NNS_G3dFuncAnmMatNsBtaDefault;
     pAnmObj->numMapData = pResMdl->info.numMat;
 
-    // �܂���mapData���[���N���A
+    // まずはmapDataをゼロクリア
     MI_CpuClear16(&pAnmObj->mapData[0], sizeof(u16) * pAnmObj->numMapData);
     
     for (i = 0; i < srtAnm->dict.numEntry; ++i)
@@ -426,8 +426,8 @@ NNSi_G3dAnmObjInitNsBta(NNSG3dAnmObj* pAnmObj,
         int idx = NNS_G3dGetMatIdxByName(mat, name);
         if (!(idx < 0))
         {
-            // ���\�[�XID i�ɑΉ����郊�\�[�X�����݂���ꍇ�́A
-            // �}�e���A��ID idx�Ƀ��\�[�XID i���֘A�t����B
+            // リソースID iに対応するリソースが存在する場合は、
+            // マテリアルID idxにリソースID iを関連付ける。
             pAnmObj->mapData[idx] = (u16)(i | NNS_G3D_ANMOBJ_MAPDATA_EXIST);
         }
     }
@@ -437,9 +437,9 @@ NNSi_G3dAnmObjInitNsBta(NNSG3dAnmObj* pAnmObj,
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmCalcNsBta
 
-    pResult: �}�e���A���A�j���[�V�����̌��ʂ��i�[���܂��B
-    pAnmObj: �A�j���[�V�����I�u�W�F�N�g�ւ̃|�C���^
-    dataIdx: ���\�[�X���f�[�^�̊i�[�ꏊ�������C���f�b�N�X�ł�
+    pResult: マテリアルアニメーションの結果を格納します。
+    pAnmObj: アニメーションオブジェクトへのポインタ
+    dataIdx: リソース内データの格納場所を示すインデックスです
  *---------------------------------------------------------------------------*/
 void NNSi_G3dAnmCalcNsBta(NNSG3dMatAnmResult* pResult,
                           const NNSG3dAnmObj* pAnmObj,
@@ -457,14 +457,14 @@ void NNSi_G3dAnmCalcNsBta(NNSG3dMatAnmResult* pResult,
                        (u32)FX_Whole( pAnmObj->frame ),
                        pResult );
         //
-        // Texture SRT �g�p���ɂ͋����I�Ƀe�N�X�`�����W�������[�h��
-        // GX_TEXGEN_TEXCOORD �ɐݒ肵�܂��B
+        // Texture SRT 使用時には強制的にテクスチャ座標生成モードを
+        // GX_TEXGEN_TEXCOORD に設定します。
         //
         pResult->prmTexImage &= ~REG_G3_TEXIMAGE_PARAM_TGEN_MASK;
         pResult->prmTexImage |= GX_TEXGEN_TEXCOORD << REG_G3_TEXIMAGE_PARAM_TGEN_SHIFT;
         
         //
-        // �{�t���O��ݒ肵�Ȃ��ƁATexture�s�񂪃O���t�B�b�N�X�G���W���ɑ��M����Ȃ��B
+        // 本フラグを設定しないと、Texture行列がグラフィックスエンジンに送信されない。
         //
         pResult->flag |= NNS_G3D_MATANM_RESULTFLAG_TEXMTX_SET;        
         

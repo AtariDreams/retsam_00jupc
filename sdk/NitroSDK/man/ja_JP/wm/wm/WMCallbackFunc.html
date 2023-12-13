@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WMCallbackFunc</title>
@@ -13,7 +13,7 @@
 
 <h1 align="left">WMCallbackFunc</h1>
 
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -21,18 +21,18 @@
   <PRE><CODE>typedef void ( *WMCallbackFunc )( void* arg );</CODE></PRE>
   </dd>
 
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="200" rowspan="15"><em><strong><font face="Courier New">arg</font></strong></em></TD>
-      <TD colspan="2">�R�[���o�b�N�֐��ɓn�����\���̂ւ̃|�C���^�ł��B<BR>
-      �R�[���o�b�N�Ăяo���̌��ƂȂ���API�ɂ��A�n�����\���̂��ȉ��̂悤�ɕω����܂��B
+      <TD colspan="2">コールバック関数に渡される構造体へのポインタです。<BR>
+      コールバック呼び出しの元となったAPIにより、渡される構造体が以下のように変化します。
       </TD>
     </TR>
     <TR>
-      <TD width="400"><center><B>�Ăяo�����ƂȂ���API</B></center></TD>
-      <TD width="400"><center>�n�����\����</center></TD>
+      <TD width="400"><center><B>呼び出し元となったAPI</B></center></TD>
+      <TD width="400"><center>渡される構造体</center></TD>
     </TR>
     <TR>
       <TD><B><A href="WM_StartParent.html">WM_StartParent</A></B></TD>
@@ -95,28 +95,28 @@
       <TD><A href="WMPortRecvCallback.html">WMPortRecvCallback</A>*</TD>
     </TR>
     <TR>
-      <TD><B>���̑��̔񓯊�API����</B></TD>
+      <TD><B>その他の非同期API共通</B></TD>
       <TD><A href="WMCallback.html">WMCallback</A>*</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
+<h2>返り値</h2>
+<p>なし。</p>
 
-<H2>����</H2>
-<P>WM�񓯊�����֐��ɂ���ċN�����ꂽ�񓯊����������������ہA�y�ѓr���o�߂ŌĂяo����郆�[�U�R�[���o�b�N�֐��̌`���ł��B<BR>
-�񓯊������̏������ʂȂǂ��i�[���ꂽ�\���̂ւ̃|�C���^�������Ɏ��܂��B</P>
+<H2>説明</H2>
+<P>WM非同期操作関数によって起動された非同期処理が完了した際、及び途中経過で呼び出されるユーザコールバック関数の形式です。<BR>
+非同期処理の処理結果などが格納された構造体へのポインタを引数に取ります。</P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/11/24 WM_SetMPParameter�֐��̃R�[���o�b�N��ǉ�<BR>
-2005/03/04 WM_SetMPData*�֐��̃R�[���o�b�N��ǉ�<BR>
-2005/02/14 WM_StartScanEx���̃R�[���o�b�N��ǉ�<BR>
-2004/10/26 Disconnect���̃R�[���o�b�N��ǉ�<BR>
-2004/08/11 �R�[���o�b�N�̎�ޒǉ�<BR>
-2004/08/02 �\���̖��̓���<BR>
-2004/07/29 ����<BR>
+2005/11/24 WM_SetMPParameter関数のコールバックを追加<BR>
+2005/03/04 WM_SetMPData*関数のコールバックを追加<BR>
+2005/02/14 WM_StartScanEx時のコールバックを追加<BR>
+2004/10/26 Disconnect時のコールバックを追加<BR>
+2004/08/11 コールバックの種類追加<BR>
+2004/08/02 構造体名の統一<BR>
+2004/07/29 初版<BR>
 </P>
 </body>
 </html>

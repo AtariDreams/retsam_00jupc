@@ -938,15 +938,15 @@ not compile with this parser. The old 2.4.x parser is still available to
 compile existing code. This document describes the changes and it has some
 examples that demonstrate how to port existing template code.
 
-The new parser is enabled by the preference panel option “ISO C++ template
-parser”. The current default for this option is “off”. Some parts of this
+The new parser is enabled by the preference panel option Â§òSO C++ template
+parser„É¢. The current default for this option is „É°off„É¢. Some parts of this
 new parser have already been used by the 2.4.x class template parser, so
 the changes in the 3.0 mostly affect bodies of (member-) function
 templates.
 
-The correct use of the “typename” keyword is required in many contexts.
+The correct use of the „É°typename„É¢ keyword is required in many contexts.
 A qualified name that refers to a type and that depends on a template
-parameter must be prefixed by a “typename” keyword (14.6).
+parameter must be prefixed by a „É°typename„É¢ keyword (14.6).
 
 	template<typename T> void f()
 	{
@@ -954,7 +954,7 @@ parameter must be prefixed by a “typename” keyword (14.6).
 		typename T::name *ptr;	// OK
 	}
 
-Similarly, the correct use of a “template” keyword prefix is now required
+Similarly, the correct use of a „É°template„É¢ keyword prefix is now required
 in . or -> postfix expressions or in qualified ids that depend on a
 template parameter.
 
@@ -993,7 +993,7 @@ Names in template argument dependent base classes are not found (14.6.2).
 	}
 
 The identifier in an function call expression of the form
-“identifier ( expression-list )”, where at least one of the expressions
+„É°identifier ( expression-list )„É¢, where at least one of the expressions
 is type-dependent (see 14.6.2.2), is looked up in the context of the
 template definition (unqualified lookup) and instantiation (associated
 namespace lookup) see 14.6.4.2.

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>RTC_SetAlarmInterrupt</title>
@@ -12,34 +12,34 @@
 <body>
 
 <h1 align="left">RTC_SetAlarmInterrupt</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
 <CODE>#include &lt;nitro/rtc.h&gt;</CODE><BR>
   <PRE><CODE>void RTC_SetAlarmInterrupt( <A href="RTCInterrupt.html">RTCInterrupt</A> interrupt );</CODE></PRE>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="300"><em><strong><font face="Courier New">interrupt</font></strong></em></TD>
-      <TD width="700">�R�[���o�b�N�֐��ւ̃|�C���^<br>���̃R�[���o�b�N�͊��荞�݃n���h��������Ăяo����܂��B</TD>
+      <TD width="700">コールバック関数へのポインタ<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
-<H2>����</H2>
-<P>���A���^�C���N���b�N�̃A���[�����荞�݂����������ۂɌĂяo����郆�[�U�R�[���o�b�N�֐����w�肵�܂��B<BR>
-���̊֐��ɂ���ăR�[���o�b�N�֐����w�肵�Ă��Ȃ��ꍇ�͊��荞�݂͖�������܂��B<BR>
-�A���[���`�����l���͂Q����܂����A���荞�݂͋��ʂłP�ɂȂ�܂��B</P>
-<h2>�Q��</h2>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>リアルタイムクロックのアラーム割り込みが発生した際に呼び出されるユーザコールバック関数を指定します。<BR>
+この関数によってコールバック関数を指定していない場合は割り込みは無視されます。<BR>
+アラームチャンネルは２つありますが、割り込みは共通で１つになります。</P>
+<h2>参照</h2>
 <P><CODE><A href="RTCInterrupt.html">RTCInterrupt</A>, <A href="RTC_GetAlarmStatus.html">RTC_GetAlarmStatus</A>, <A href="RTC_GetAlarmParam.html">RTC_GetAlarmParam</A>, <A href="RTC_SetAlarmStatus.html">RTC_SetAlarmStatus</A>, <A href="RTC_SetAlarmParam.html">RTC_SetAlarmParam</A></CODE></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-Ver. 2005/06/27 �R�[���o�b�N�����荞�݃n���h������Ăяo�����|��⑫<br>
-Ver. 2005/03/08 �p�ꓝ�� [������] �� [���荞��]<br>
-Ver. 2004/05/18 ����</P>
+Ver. 2005/06/27 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+Ver. 2005/03/08 用語統一 [割込み] → [割り込み]<br>
+Ver. 2004/05/18 初版</P>
 </body>
 </html>

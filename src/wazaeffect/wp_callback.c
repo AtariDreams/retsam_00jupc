@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	wp_callback.c
- * @brief	‹ZƒGƒtƒFƒNƒgƒGƒ~ƒbƒ^¶¬‚ÉŒÄ‚Ño‚³‚ê‚é”Ä—pƒR[ƒ‹ƒoƒbƒNŠÖ”‚È‚Ç
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¨ãƒŸãƒƒã‚¿ç”Ÿæˆæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹æ±ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãªã©
  * @author	matsuda
- * @date	2005.08.03(…)
+ * @date	2005.08.03(æ°´)
  */
 //==============================================================================
 #include "common.h"
@@ -16,7 +16,7 @@
 #include "we_def.h"
 
 //==============================================================================
-//	ƒf[ƒ^’è‹`
+//	ãƒ‡ãƒ¼ã‚¿å®šç¾©
 //==============================================================================
 static const VecFx32 EnemyEye = {
 	0x1700, 0x4d00, -0x1000
@@ -42,7 +42,7 @@ static s8 SignCheck(WE_SYS_PTR we_sys, int start_client, int end_client);
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚©‚çA”½“]ƒtƒ‰ƒO‚ğæ“¾‚·‚é
+ * @brief	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã‹ã‚‰ã€åè»¢ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  *
  * @param	start_client	
  * @param	end_client	
@@ -94,10 +94,10 @@ void EmitCall_Debug(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”Ä—pŠÖ”F–¡•ûA“G‚ÌUŒ‚‚ÅƒJƒƒ‰‚Ìã•ûŒü‚ğ‹t‚Éİ’è‚·‚é(UŒ‚‘¤‚É‡‚í‚¹‚é)
- * @param   emit		¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ±ç”¨é–¢æ•°ï¼šå‘³æ–¹ã€æ•µã®æ”»æ’ƒã§ã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘ã‚’é€†ã«è¨­å®šã™ã‚‹(æ”»æ’ƒå´ã«åˆã‚ã›ã‚‹)
+ * @param   emit		ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  
- g‚Á‚Ä‚È‚¢
+ ä½¿ã£ã¦ãªã„
  
  */
 //--------------------------------------------------------------
@@ -125,8 +125,8 @@ void EmitCall_CameraReverseAttack(EMIT_PTR emit)
 		if(WET_SideCheck(we_sys, attack) == SIDE_MINE){
 			WET_PokeParticlePosGet(we_sys, attack, &vex);
 		}
-		else{	//ƒJƒƒ‰‚ğ‚®‚é‚Á‚Æ‰ñ‚·‚Ì‚ÅÅ‰‚ÌƒIƒtƒZƒbƒgÀ•W‚Í
-				//‘ÎŠpüã‚Ì”½‘Î‘¤‚É‚ ‚éÀ•W‚Éİ’è‚·‚é•K—v‚ª‚ ‚é
+		else{	//ã‚«ãƒ¡ãƒ©ã‚’ãã‚‹ã£ã¨å›ã™ã®ã§æœ€åˆã®ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™ã¯
+				//å¯¾è§’ç·šä¸Šã®åå¯¾å´ã«ã‚ã‚‹åº§æ¨™ã«è¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 			client_type = WET_ClientTypeGet(we_sys, attack);
 			diagonal_client_type = WazaTool_DiagonalClientTypeGet_ClientType(client_type);
 			//camera_type = WeSysCameraTypeGet(we_sys);
@@ -148,7 +148,7 @@ void EmitCall_CameraReverseAttack(EMIT_PTR emit)
 //	Particle_SetEye(ptc, &eye);
 //	Particle_SetVup(ptc, &v_up);
 
-	{//ƒJƒƒ‰Œö“]
+	{//ã‚«ãƒ¡ãƒ©å…¬è»¢
 		CAMERA_ANGLE angle;
 		GF_CAMERA_PTR p_camera;
 		
@@ -182,8 +182,8 @@ void EmitCall_CameraReverseAttack(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”Ä—pŠÖ”F–¡•ûA“G‚ÌUŒ‚‚ÅƒJƒƒ‰‚Ìã•ûŒü‚ğ‹t‚Éİ’è‚·‚é(–hŒä‘¤‚É‡‚í‚¹‚é)
- * @param   emit		¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ±ç”¨é–¢æ•°ï¼šå‘³æ–¹ã€æ•µã®æ”»æ’ƒã§ã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘ã‚’é€†ã«è¨­å®šã™ã‚‹(é˜²å¾¡å´ã«åˆã‚ã›ã‚‹)
+ * @param   emit		ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void EmitCall_CameraReverseDefence(EMIT_PTR emit)
@@ -209,8 +209,8 @@ void EmitCall_CameraReverseDefence(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”Ä—pŠÖ”FƒGƒ~ƒbƒ^‚Ì¶¬À•W‚ğ–hŒä‘¤‚Ìƒ|ƒPƒ‚ƒ“‚ÌÀ•W‚Éİ’è‚·‚é
- * @param   emit		¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ±ç”¨é–¢æ•°ï¼šã‚¨ãƒŸãƒƒã‚¿ã®ç”Ÿæˆåº§æ¨™ã‚’é˜²å¾¡å´ã®ãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™ã«è¨­å®šã™ã‚‹
+ * @param   emit		ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void EmitCall_DefencePos(EMIT_PTR emit)
@@ -230,8 +230,8 @@ void EmitCall_DefencePos(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”Ä—pŠÖ”FƒGƒ~ƒbƒ^‚Ì¶¬À•W‚ğUŒ‚‘¤‚Ìƒ|ƒPƒ‚ƒ“‚ÌÀ•W‚Éİ’è‚·‚é
- * @param   emit		¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ±ç”¨é–¢æ•°ï¼šã‚¨ãƒŸãƒƒã‚¿ã®ç”Ÿæˆåº§æ¨™ã‚’æ”»æ’ƒå´ã®ãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™ã«è¨­å®šã™ã‚‹
+ * @param   emit		ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void EmitCall_AttackPos(EMIT_PTR emit)
@@ -262,7 +262,7 @@ void EmitCall_AttackPosSet(EMIT_PTR emit)
 	SPL_SetEmitterPositionZ(emit, vex.z);
 }
 
-///< ‚¾‚¢‚à‚ñ‚¶ê—pŠÖ”B
+///< ã ã„ã‚‚ã‚“ã˜å°‚ç”¨é–¢æ•°ã€‚
 void EmitCall_ATPosCR(EMIT_PTR emit)
 {
 	WE_SYS_PTR we_sys;
@@ -296,7 +296,7 @@ void EmitCall_ATPosCR(EMIT_PTR emit)
 			defence = CLIENT_TYPE_B;
 			break;
 		default:
-			OS_Printf("—áŠO\n");
+			OS_Printf("ä¾‹å¤–\n");
 			break;
 		}
 	}
@@ -309,7 +309,7 @@ void EmitCall_ATPosCR(EMIT_PTR emit)
 	SPL_SetEmitterPositionZ(emit, vex.z);	
 }
 
-///< –hŒä‘¤‚Ì’†S(BB‚ÌˆÊ’u)
+///< é˜²å¾¡å´ã®ä¸­å¿ƒ(BBã®ä½ç½®)
 void EmitCall_DFsidePos(EMIT_PTR emit)
 {
 	WE_SYS_PTR wsp;
@@ -340,7 +340,7 @@ void EmitCall_DFsidePos(EMIT_PTR emit)
 	SPL_SetEmitterPositionZ(emit, vec.z);
 }
 
-///< UŒ‚‘¤‚Ì’†S(AA‚ÌˆÊ’u)
+///< æ”»æ’ƒå´ã®ä¸­å¿ƒ(AAã®ä½ç½®)
 void EmitCall_ATsidePos(EMIT_PTR emit)
 {
 	WE_SYS_PTR wsp;
@@ -372,7 +372,7 @@ void EmitCall_ATsidePos(EMIT_PTR emit)
 	SPL_SetEmitterPositionZ(emit, vec.z);
 }
 
-///< ƒpƒ^[ƒ“‚²‚Æ‚ÌÀ•W•â³
+///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã”ã¨ã®åº§æ¨™è£œæ­£
 void EmitCall_SepPos(EMIT_PTR emit)
 {
 	WE_SYS_PTR wsp;
@@ -464,33 +464,33 @@ static void ExMode_PosReverse(int mode, s8 flag, VecFx32* p)
 
 static void ExMode_Convergence(WE_SYS_PTR we_sys, EMIT_PTR emit, int start_client,int end_client, int ex_mode, s8 flag, VecFx32* epos)
 {
-	///< Šg’£ƒ‚[ƒh‚ÅW‘©ˆÊ’u‚ğŒˆ‚ß‚é
-	VecFx32 p = { 0,0,0 };		///< ƒ}ƒOƒlƒbƒg—p
+	///< æ‹¡å¼µãƒ¢ãƒ¼ãƒ‰ã§é›†æŸä½ç½®ã‚’æ±ºã‚ã‚‹
+	VecFx32 p = { 0,0,0 };		///< ãƒã‚°ãƒãƒƒãƒˆç”¨
 	
 	switch(ex_mode){
 	case AXIS_EX_MODE_NONE:
-		OS_Printf("w’è‚È‚µ\n");
+		OS_Printf("æŒ‡å®šãªã—\n");
 		break;
 		
 	case AXIS_EX_MODE_DEFAULT_CNV:
-		SplSub_GetSPLField_ConvergencePos(emit, &p);		///< W‘©ˆÊ’uæ“¾
-		p.x *= flag;										///< ƒtƒ‰ƒO‚Å”½“]‚·‚é‚©‚Ç‚¤‚©‚ğŒˆ‚ß‚é
+		SplSub_GetSPLField_ConvergencePos(emit, &p);		///< é›†æŸä½ç½®å–å¾—
+		p.x *= flag;										///< ãƒ•ãƒ©ã‚°ã§åè»¢ã™ã‚‹ã‹ã©ã†ã‹ã‚’æ±ºã‚ã‚‹
 		p.y *= flag;
 		p.z *= flag;
 		break;
 		
 	case AXIS_EX_MODE_CENTER_CNV:
-		p.x = WP_DEF_CENTER_X * flag;						///< ƒtƒ‰ƒO‚Å”½“]‚·‚é‚©‚Ç‚¤‚©‚ğŒˆ‚ß‚é
+		p.x = WP_DEF_CENTER_X * flag;						///< ãƒ•ãƒ©ã‚°ã§åè»¢ã™ã‚‹ã‹ã©ã†ã‹ã‚’æ±ºã‚ã‚‹
 		p.y = WP_DEF_CENTER_Y * flag;
 		p.z = WP_DEF_CENTER_Z * flag;
 		break;
 		
 	case AXIS_EX_MODE_TP_CNV:
-		WET_PokeParticlePosGet(we_sys, end_client, &p);		///< ‘ÎÛƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u
+		WET_PokeParticlePosGet(we_sys, end_client, &p);		///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®
 		break;
 		
 	case AXIS_EX_MODE_PP_CNV:	
-		WET_PokeParticlePosGet(we_sys, start_client, &p);	///< Šî“_ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u
+		WET_PokeParticlePosGet(we_sys, start_client, &p);	///< åŸºç‚¹ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®
 		break;
 	case AXIS_EX_MODE_SET_CNV:
 		{
@@ -506,34 +506,34 @@ static void ExMode_Convergence(WE_SYS_PTR we_sys, EMIT_PTR emit, int start_clien
 	p.y -= epos->y;
 	p.z -= epos->z;
 
-	SplSub_SetSPLField_ConvergencePos(emit, &p);			///< W‘©ˆÊ’u”½‰f
+	SplSub_SetSPLField_ConvergencePos(emit, &p);			///< é›†æŸä½ç½®åæ˜ 
 }
 
 static void ExMode_Magnet(WE_SYS_PTR we_sys, EMIT_PTR emit, int start_client,int end_client, int ex_mode, s8 flag, VecFx32* epos)
 {
-	///< Šg’£ƒ‚[ƒh‚ÅW‘©ˆÊ’u‚ğŒˆ‚ß‚é
-	VecFx32 p = { 0,0,0 };		///< ƒ}ƒOƒlƒbƒg—p
+	///< æ‹¡å¼µãƒ¢ãƒ¼ãƒ‰ã§é›†æŸä½ç½®ã‚’æ±ºã‚ã‚‹
+	VecFx32 p = { 0,0,0 };		///< ãƒã‚°ãƒãƒƒãƒˆç”¨
 
 	switch(ex_mode){
 	case AXIS_EX_MODE_NONE:
-		OS_Printf("w’è‚È‚µ\n");
+		OS_Printf("æŒ‡å®šãªã—\n");
 		break;
 	case AXIS_EX_MODE_DEFAULT_MAG:
-		SplSub_GetSPLField_MagnetPos(emit, &p);				///< W‘©ˆÊ’uæ“¾
-		p.x *= flag;										///< ƒtƒ‰ƒO‚Å”½“]‚·‚é‚©‚Ç‚¤‚©‚ğŒˆ‚ß‚é
+		SplSub_GetSPLField_MagnetPos(emit, &p);				///< é›†æŸä½ç½®å–å¾—
+		p.x *= flag;										///< ãƒ•ãƒ©ã‚°ã§åè»¢ã™ã‚‹ã‹ã©ã†ã‹ã‚’æ±ºã‚ã‚‹
 		p.y *= flag;
 		p.z *= flag;
 		break;
 	case AXIS_EX_MODE_CENTER_MAG:
-		p.x = WP_DEF_CENTER_X * flag;						///< ƒtƒ‰ƒO‚Å”½“]‚·‚é‚©‚Ç‚¤‚©‚ğŒˆ‚ß‚é
+		p.x = WP_DEF_CENTER_X * flag;						///< ãƒ•ãƒ©ã‚°ã§åè»¢ã™ã‚‹ã‹ã©ã†ã‹ã‚’æ±ºã‚ã‚‹
 		p.y = WP_DEF_CENTER_Y * flag;
 		p.z = WP_DEF_CENTER_Z * flag;
 		break;
 	case AXIS_EX_MODE_TP_MAG:
-		WET_PokeParticlePosGet(we_sys, end_client, &p);		///< ‘ÎÛƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u
+		WET_PokeParticlePosGet(we_sys, end_client, &p);		///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®
 		break;
 	case AXIS_EX_MODE_PP_MAG:	
-		WET_PokeParticlePosGet(we_sys, start_client, &p);	///< Šî“_ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u
+		WET_PokeParticlePosGet(we_sys, start_client, &p);	///< åŸºç‚¹ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®
 		break;
 	case AXIS_EX_MODE_SET_MAG:
 		{
@@ -547,8 +547,8 @@ static void ExMode_Magnet(WE_SYS_PTR we_sys, EMIT_PTR emit, int start_client,int
 	p.x -= epos->x;
 	p.y -= epos->y;
 	p.z -= epos->z;
-	OS_Printf("ƒ}ƒOƒlƒbƒgˆÊ’u x = %d y = %d z = %d\n", p.x,p.y,p.z);
-	SplSub_SetSPLField_MagnetPos(emit, &p);					///< W‘©ˆÊ’u”½‰f
+	OS_Printf("ãƒã‚°ãƒãƒƒãƒˆä½ç½® x = %d y = %d z = %d\n", p.x,p.y,p.z);
+	SplSub_SetSPLField_MagnetPos(emit, &p);					///< é›†æŸä½ç½®åæ˜ 
 }
 
 enum {
@@ -559,12 +559,12 @@ enum {
 
 //--------------------------------------------------------------
 /**
- * @brief   AxisAttack,AxisDefence‹¤’Êˆ—ƒTƒuŠÖ”
+ * @brief   AxisAttack,AxisDefenceå…±é€šå‡¦ç†ã‚µãƒ–é–¢æ•°
  *
- * @param   emit				ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   start_client		ƒGƒtƒFƒNƒgoŒ»ˆÊ’u‚ÌƒNƒ‰ƒCƒAƒ“ƒgNo
- * @param   end_client			ƒGƒtƒFƒNƒgI—¹ˆÊ’u‚ÌƒNƒ‰ƒCƒAƒ“ƒgNo
- * @param	ex_mode				Šg’£ƒ‚[ƒh
+ * @param   emit				ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   start_client		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‡ºç¾ä½ç½®ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNo
+ * @param   end_client			ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†ä½ç½®ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNo
+ * @param	ex_mode				æ‹¡å¼µãƒ¢ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 static void Sub_AxisAttackCommon(WE_SYS_PTR we_sys, EMIT_PTR emit, int start_client,int end_client, int ex_type, int ex_mode)
@@ -573,15 +573,15 @@ static void Sub_AxisAttackCommon(WE_SYS_PTR we_sys, EMIT_PTR emit, int start_cli
 	VecFx32 vex;
 	int attack_type, defence_type;
 	VecFx16 axis;
-	s8	flag = 1;	///< ƒ}ƒOƒlƒbƒg—p
+	s8	flag = 1;	///< ãƒã‚°ãƒãƒƒãƒˆç”¨
 	
 	ptc = WeSysPTCPointerGet(we_sys);
 	
-	//ƒGƒ~ƒbƒ^‚Ì•ûŒü‚ğİ’è
+	//ã‚¨ãƒŸãƒƒã‚¿ã®æ–¹å‘ã‚’è¨­å®š
 	attack_type  = WET_ClientTypeGet(we_sys, start_client);
 	defence_type = WET_ClientTypeGet(we_sys, end_client);
 
-	//ˆÚ“®•ûŒüæ“¾
+	//ç§»å‹•æ–¹å‘å–å¾—
 	{
 		int aa_bb[3], a_b[3], a_c[3], a_d[3], c_a[3], c_b[3], c_d[3];
 		
@@ -653,7 +653,7 @@ static void Sub_AxisAttackCommon(WE_SYS_PTR we_sys, EMIT_PTR emit, int start_cli
 
 	flag = SignCheck(we_sys, start_client, end_client);
 	{
-		///< À•Wİ’è
+		///< åº§æ¨™è¨­å®š
 
 		int pt[3] = { 0, 0, 0 };
 		VecFx32 tmp;
@@ -666,12 +666,12 @@ static void Sub_AxisAttackCommon(WE_SYS_PTR we_sys, EMIT_PTR emit, int start_cli
 			SPL_SetEmitterPositionX(emit, tmp.x);
 			SPL_SetEmitterPositionY(emit, tmp.y);
 			SPL_SetEmitterPositionZ(emit, tmp.z);
-			OS_Printf("Šî–{À•W\n");
+			OS_Printf("åŸºæœ¬åº§æ¨™\n");
 			OS_Printf("pos x = %d y = %d, z = %d\n", tmp.x,tmp.y,tmp.z);
 		}
 		else {
 			VEC_Set(&vex, pt[0],pt[1],pt[2]);
-			if (pt[0] == WP_DEF_CENTER_X && pt[1] == WP_DEF_CENTER_Y){		///< ’†Sw’è‚È‚çA”½“]‚µ‚È‚¢
+			if (pt[0] == WP_DEF_CENTER_X && pt[1] == WP_DEF_CENTER_Y){		///< ä¸­å¿ƒæŒ‡å®šãªã‚‰ã€åè»¢ã—ãªã„
 				flag = 1;
 			}
 			vex.x *= flag;
@@ -680,25 +680,25 @@ static void Sub_AxisAttackCommon(WE_SYS_PTR we_sys, EMIT_PTR emit, int start_cli
 			SPL_SetEmitterPositionX(emit, vex.x);
 			SPL_SetEmitterPositionY(emit, vex.y);
 			SPL_SetEmitterPositionZ(emit, vex.z);
-			OS_Printf("w’èÀ•W\n");
+			OS_Printf("æŒ‡å®šåº§æ¨™\n");
 			OS_Printf("pos x = %d y = %d, z = %d\n", vex.x,vex.y,vex.z);
 		}
 	}
 
 	{
-		///< Šg’£ƒ‚[ƒh
+		///< æ‹¡å¼µãƒ¢ãƒ¼ãƒ‰
 		switch(ex_type){
 		case WP_EX_TYPE_NONE:
-			OS_Printf("Šg’£ƒ^ƒCƒv‚È‚µ\n");
+			OS_Printf("æ‹¡å¼µã‚¿ã‚¤ãƒ—ãªã—\n");
 			break;
 		
 		case WP_EX_TYPE_CNV:
-			OS_Printf("ƒRƒ“ƒo[ƒWƒFƒ“ƒX\n");
+			OS_Printf("ã‚³ãƒ³ãƒãƒ¼ã‚¸ã‚§ãƒ³ã‚¹\n");
 			ExMode_Convergence(we_sys, emit, start_client, end_client, ex_mode, flag, &vex);
 			break;
 		
 		case WP_EX_TYPE_MAG:
-			OS_Printf("ƒ}ƒOƒlƒbƒg\n");
+			OS_Printf("ãƒã‚°ãƒãƒƒãƒˆ\n");
 			ExMode_Magnet(we_sys, emit, start_client, end_client, ex_mode, flag, &vex);
 			break;
 		}
@@ -713,7 +713,7 @@ static void Sub_AxisAttackCommon(WE_SYS_PTR we_sys, EMIT_PTR emit, int start_cli
 	SPL_SetEmitterAxis(emit, &axis);
 }
 
-// ‹¤’Ê‰Šú‰»Šî–{ŠÖ”
+// å…±é€šåˆæœŸåŒ–åŸºæœ¬é–¢æ•°
 static void Sub_AxisAttackCommonDefaultInit(EMIT_PTR emit, int type, int mode)
 {
 	int attack, defence;
@@ -728,8 +728,8 @@ static void Sub_AxisAttackCommonDefaultInit(EMIT_PTR emit, int type, int mode)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”Ä—pŠÖ”F–¡•ûA“G‚ÌUŒ‚‚ÅƒGƒ~ƒbƒ^‚Ì•ûŒü‚ğ•ÏX‚·‚é(UŒ‚‘¤„–hŒä‘¤‚Ö‚Ì’¼ü‚ğ‘z’è)
- * @param   emit		¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ±ç”¨é–¢æ•°ï¼šå‘³æ–¹ã€æ•µã®æ”»æ’ƒã§ã‚¨ãƒŸãƒƒã‚¿ã®æ–¹å‘ã‚’å¤‰æ›´ã™ã‚‹(æ”»æ’ƒå´ï¼é˜²å¾¡å´ã¸ã®ç›´ç·šã‚’æƒ³å®š)
+ * @param   emit		ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void EmitCall_AxisAttack(EMIT_PTR emit)
@@ -763,7 +763,7 @@ void EmitCall_AxisAttack_PosSetCNV(EMIT_PTR emit)
 }
 
 
-/// ƒ}ƒOƒlƒbƒg
+/// ãƒã‚°ãƒãƒƒãƒˆ
 void EmitCall_AxisAttack_DefaultMAG(EMIT_PTR emit)
 {
 	Sub_AxisAttackCommonDefaultInit(emit, WP_EX_TYPE_MAG, AXIS_EX_MODE_DEFAULT_MAG);
@@ -791,8 +791,8 @@ void EmitCall_AxisAttack_PosSetMAG(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”Ä—pŠÖ”F–¡•ûA“G‚ÌUŒ‚‚ÅƒGƒ~ƒbƒ^‚Ì•ûŒü‚ğ•ÏX‚·‚é(–hŒä‘¤„UŒ‚‘¤‚Ö‚Ì’¼ü‚ğ‘z’è)
- * @param   emit		¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ±ç”¨é–¢æ•°ï¼šå‘³æ–¹ã€æ•µã®æ”»æ’ƒã§ã‚¨ãƒŸãƒƒã‚¿ã®æ–¹å‘ã‚’å¤‰æ›´ã™ã‚‹(é˜²å¾¡å´ï¼æ”»æ’ƒå´ã¸ã®ç›´ç·šã‚’æƒ³å®š)
+ * @param   emit		ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void EmitCall_AxisDefence(EMIT_PTR emit)
@@ -809,8 +809,8 @@ void EmitCall_AxisDefence(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒBƒNƒ‹‚ÌƒXƒs[ƒh‚ğ•ÏX‚·‚é
- * @param	emit		¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
+ * @param	emit		ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void EmitCall_InitSpeedSet(EMIT_PTR emit)

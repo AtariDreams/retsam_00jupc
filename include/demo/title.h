@@ -15,7 +15,7 @@ extern const PROC_DATA TitleProcData;
 extern const PROC_DATA StartMenuProcData;		// system/startmenu.c
 
 #ifdef	PM_DEBUG
-//��p�̃w�b�_��p�ӂ���قǂł͂Ȃ��̂ŁA�Ԏ؂肵�Ă܂�
+//専用のヘッダを用意するほどではないので、間借りしてます
 extern const PROC_DATA SoundTestProcData;		//debug/snd_test.c
 extern const PROC_DATA PokeGraTestProcData;		//debug/poke_test.c
 extern const PROC_DATA PokeAnimeEditorProcData;	//debug/poke_anime.c

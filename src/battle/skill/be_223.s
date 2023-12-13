@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_223.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			223�@�u�܂���v�u�݂���v�����Ă��鑊��ɂ̂ݍU����������A�܂�����ʂ���������B
- *				 ����́A�܂���͉�������邪�����I�ɂ͐����������ƂɂȂ�B�܂���쓮��Ƀt�F�C���g�̓�������s�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			223　「まもる」「みきり」をしている相手にのみ攻撃が当たり、まもる効果を解除する。
+ *				 相手は、まもるは解除されるが内部的には成功したことになる。まもる作動後にフェイントの動作を実行。
  *
  *@author	HisashiSogabe
  *@data		2006.02.16

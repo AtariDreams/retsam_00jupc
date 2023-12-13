@@ -2,7 +2,7 @@
 /**
  *
  *@file		union_board.h
- *@brief	ƒ†ƒjƒIƒ“ƒ‹[ƒ€ŒfŽ¦”ÂiƒTƒu‰æ–Êjƒwƒbƒ_ƒtƒ@ƒCƒ‹
+ *@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ æŽ²ç¤ºæ¿ï¼ˆã‚µãƒ–ç”»é¢ï¼‰ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
  *@author	Akito Mori
  *@data		2006.02.04
  *

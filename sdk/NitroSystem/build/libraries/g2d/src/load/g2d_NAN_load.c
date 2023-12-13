@@ -81,7 +81,7 @@ static BOOL GetUnpackedAnimBankImpl_( void* pNanrFile, NNSG2dAnimBankData** ppAn
 
 //------------------------------------------------------------------------------
 //
-// Ä¶ŽžŠÔ‚ªƒ[ƒ‚ÌƒtƒŒ[ƒ€‚µ‚©Ž‚½‚È‚¢ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚Í•s³‚Å‚·
+// å†ç”Ÿæ™‚é–“ãŒã‚¼ãƒ­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã—ã‹æŒãŸãªã„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¯ä¸æ­£ã§ã™
 //
 static BOOL CheckAnimSequenceValidity_( const NNSG2dAnimSequenceData* pSeq )
 {
@@ -164,14 +164,14 @@ void NNS_G2dUnpackNAN( NNSG2dAnimBankData* pData )
                     NNS_G2D_UNPACK_OFFSET_PTR( pSeq[i].pAnmFrameArray[j].pContent , pContentsBase );
             }
             //
-            // •s³‚ÈƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ðƒ`ƒFƒbƒN‚µ‚Ü‚·
+            // ä¸æ­£ãªã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™
             //
             NNS_G2D_ASSERTMSG( CheckAnimSequenceValidity_( &pSeq[i] ), "An invalid anim-sequence is detected." );
         }
     }
     
     //
-    // ƒ†[ƒUŠg’£î•ñ
+    // ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µæƒ…å ±
     //
     if( pData->pExtendedData != NULL )
     {
@@ -228,7 +228,7 @@ const NNSG2dAnimSequenceData* NNS_G2dGetAnimSequenceByIdx( const NNSG2dAnimBankD
 #ifndef SDK_FINALROM
 
 //------------------------------------------------------------------------------
-// ƒ†[ƒUŠg’£ƒAƒgƒŠƒrƒ…[ƒg‚Ì•\Ž¦
+// ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®è¡¨ç¤º
 static void PrintAnimUserExAttr_( const void* pUserEx )
 {
     u32 i = 0;
@@ -359,7 +359,7 @@ void NNS_G2dPrintAnimBank( const NNSG2dAnimBankData* pAnimBank )
         NNS_G2dPrintAnimSequence( &pAnimBank->pSequenceArrayHead[i] );
     }
     //
-    // ƒ†[ƒUŠg’£ƒAƒgƒŠƒrƒ…[ƒg
+    // ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
     //
     if( pAnimBank->pExtendedData != NULL )
     {

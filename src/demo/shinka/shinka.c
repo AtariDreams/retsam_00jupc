@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	shinka.c
- * @bfief	i‰»ƒfƒ‚ƒvƒƒOƒ‰ƒ€
+ * @bfief	é€²åŒ–ãƒ‡ãƒ¢ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	06.04.08
  */
@@ -60,7 +60,7 @@
 
 #include "shinka_snd_def.h"
 
-#define	SHINKA_BMP_WIN_MAX	(1)		///<i‰»ƒfƒ‚‚ÅŽg—p‚·‚éBMPWIN‚ÌMAX
+#define	SHINKA_BMP_WIN_MAX	(1)		///<é€²åŒ–ãƒ‡ãƒ¢ã§ä½¿ç”¨ã™ã‚‹BMPWINã®MAX
 
 #define	SHINKA_BEFORE		(0)
 #define	SHINKA_AFTER		(1)
@@ -71,7 +71,7 @@
 
 //============================================================================================
 /**
- * ƒvƒƒgƒ^ƒCƒvéŒ¾
+ * ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //============================================================================================
 
@@ -97,27 +97,27 @@ static	BOOL	ShinkaMSG_CallBack(MSG_PRINT_HEADER *mph,u16 value);
 static	void	ShinkaWazaWasureProcSet(SHINKA_WORK *sw);
 
 //============================================================================================
-//	BMPWINƒf[ƒ^
+//	BMPWINãƒ‡ãƒ¼ã‚¿
 //============================================================================================
 static const BMPWIN_DAT YesNoBmpWin = {
 	GF_BGL_FRAME2_M, 23, 13, 7, 4, MENU_MSG_PAL_NO, MENU_MSG_START
 };
 
-// ‹ZŠo‚¦—pƒXƒe[ƒ^ƒX‰æ–Êƒy[ƒW
+// æŠ€è¦šãˆç”¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒšãƒ¼ã‚¸
 static const u8 PST_PageTbl_WazaSet[] = {
-	PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-	PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
+	PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+	PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
 	PST_PAGE_MAX
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	í“¬i‰»ƒfƒ‚‰Šú‰»
+ * @brief	æˆ¦é—˜é€²åŒ–ãƒ‡ãƒ¢åˆæœŸåŒ–
  *
- * @param[in]	pp				i‰»‘Oƒ|ƒPƒ‚ƒ“‚ÌPOKEMON_PARAM\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	after_mons_no	i‰»Œãƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	config			ƒQ[ƒ€ƒRƒ“ƒtƒBƒOƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	heapID			Žg—pƒq[ƒvID
+ * @param[in]	pp				é€²åŒ–å‰ãƒã‚±ãƒ¢ãƒ³ã®POKEMON_PARAMæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	after_mons_no	é€²åŒ–å¾Œãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	config			ã‚²ãƒ¼ãƒ ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	heapID			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 SHINKA_WORK		*ShinkaInit(POKEPARTY *ppt,POKEMON_PARAM *pp,int after_mons_no,
@@ -157,13 +157,13 @@ SHINKA_WORK		*ShinkaInit(POKEPARTY *ppt,POKEMON_PARAM *pp,int after_mons_no,
 	sw->bgl=GF_BGL_BglIniAlloc(heapID);
 	sw->win=GF_BGL_BmpWinAllocGet(heapID,SHINKA_BMP_WIN_MAX);
 
-	//ƒRƒ“ƒtƒBƒOƒRƒs[
+	//ã‚³ãƒ³ãƒ•ã‚£ã‚°ã‚³ãƒ”ãƒ¼
 	sw->config=config;
 
 	sw->g3Dman=ShinkaDisp_3D_Init(heapID);
-	ShinkaDisp_SystemInit();						///< ƒVƒXƒeƒ€‰Šú‰»
-	ShinkaDisp_DefaultBlendSet();					///< BlendÝ’è
-	ShinkaDisp_3DVramInit();						///< 3DÝ’è
+	ShinkaDisp_SystemInit();						///< ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
+	ShinkaDisp_DefaultBlendSet();					///< Blendè¨­å®š
+	ShinkaDisp_3DVramInit();						///< 3Dè¨­å®š
 
 	ShinkaBGCreate(sw,sw->bgl);
 
@@ -178,33 +178,33 @@ SHINKA_WORK		*ShinkaInit(POKEPARTY *ppt,POKEMON_PARAM *pp,int after_mons_no,
 	sw->end_flag=0;
 	sw->wait=2;
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	sw->msg_man=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_fightmsg_dp_dat,heapID);
-	//’PŒêƒoƒbƒtƒ@ì¬
+	//å˜èªžãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	sw->wordset=WORDSET_Create(heapID);
 	sw->msg_buf=STRBUF_Create(BATTLE_MESSAGE_BUF_SIZE,heapID);
 
-	//‹Z–Y‚ê—pƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒNì¬
+	//æŠ€å¿˜ã‚Œç”¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	sw->psd=sys_AllocMemory(heapID,sizeof(PSTATUS_DATA));
 	MI_CpuClearFast(sw->psd,sizeof(PSTATUS_DATA));
 	sw->psd->ev_contest=contest_see_flag;
 
-	//}ŠÓƒ[ƒNƒRƒs[
+	//å›³é‘‘ãƒ¯ãƒ¼ã‚¯ã‚³ãƒ”ãƒ¼
 	sw->zw=zw;
 
-	//ƒAƒCƒeƒ€ƒ[ƒNƒRƒs[
+	//ã‚¢ã‚¤ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã‚³ãƒ”ãƒ¼
 	sw->my_item=my_item;
 
-	//ƒŒƒR[ƒhƒ[ƒNƒRƒs[
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯ã‚³ãƒ”ãƒ¼
 	sw->record=record;
 
-	//ƒ|ƒPƒbƒ`ƒ[ƒNƒRƒs[
+	//ãƒã‚±ãƒƒãƒãƒ¯ãƒ¼ã‚¯ã‚³ãƒ”ãƒ¼
 	sw->poketch_data=poketch_data;
 
-	//i‰»ðŒƒ[ƒNƒRƒs[
+	//é€²åŒ–æ¡ä»¶ãƒ¯ãƒ¼ã‚¯ã‚³ãƒ”ãƒ¼
 	sw->shinka_cond=shinka_cond;
 
-	//i‰»ƒXƒe[ƒ^ƒXƒtƒ‰ƒOƒRƒs[
+	//é€²åŒ–ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ•ãƒ©ã‚°ã‚³ãƒ”ãƒ¼
 	sw->shinka_status_flag=shinka_status_flag;
 
 	ShinkaOBJCreate(sw);
@@ -217,10 +217,10 @@ SHINKA_WORK		*ShinkaInit(POKEPARTY *ppt,POKEMON_PARAM *pp,int after_mons_no,
 
 	TCB_Add(ShinkaMain,sw,0);
 
-	//ƒƒbƒZ[ƒWƒXƒLƒbƒvON
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ON
 	MsgPrintSkipFlagSet(MSG_SKIP_ON);
 
-	//’ÊMƒAƒCƒRƒ“‚Ì‹N“®(’ÊM‚µ‚Ä‚È‚¢ê‡‚Í‚Å‚Ü‚¹‚ñj
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã®èµ·å‹•(é€šä¿¡ã—ã¦ãªã„å ´åˆã¯ã§ã¾ã›ã‚“ï¼‰
 	WirelessIconEasy();
 
 	return sw;
@@ -228,7 +228,7 @@ SHINKA_WORK		*ShinkaInit(POKEPARTY *ppt,POKEMON_PARAM *pp,int after_mons_no,
 
 //--------------------------------------------------------------
 /**
- * @brief	í“¬i‰»ƒfƒ‚
+ * @brief	æˆ¦é—˜é€²åŒ–ãƒ‡ãƒ¢
  */
 //--------------------------------------------------------------
 static	void	ShinkaMain(TCB_PTR tcb,void *work)
@@ -249,11 +249,11 @@ static	void	ShinkaMain(TCB_PTR tcb,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	í“¬i‰»ƒfƒ‚I—¹‚Ü‚¿
+ * @brief	æˆ¦é—˜é€²åŒ–ãƒ‡ãƒ¢çµ‚äº†ã¾ã¡
  *
- * @param[in]	sw	i‰»ƒfƒ‚ƒ[ƒN\‘¢‘Ì
+ * @param[in]	sw	é€²åŒ–ãƒ‡ãƒ¢ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * @retval	FALSE:ƒfƒ‚’† TRUE:ƒfƒ‚I—¹
+ * @retval	FALSE:ãƒ‡ãƒ¢ä¸­ TRUE:ãƒ‡ãƒ¢çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL	ShinkaEndCheck(SHINKA_WORK *sw)
@@ -263,9 +263,9 @@ BOOL	ShinkaEndCheck(SHINKA_WORK *sw)
 
 //--------------------------------------------------------------
 /**
- * @brief	í“¬i‰»ƒfƒ‚I—¹ˆ—
+ * @brief	æˆ¦é—˜é€²åŒ–ãƒ‡ãƒ¢çµ‚äº†å‡¦ç†
  *
- * @param[in]	sw	i‰»ƒfƒ‚ƒ[ƒN\‘¢‘Ì
+ * @param[in]	sw	é€²åŒ–ãƒ‡ãƒ¢ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 void	ShinkaEnd(SHINKA_WORK *sw)
@@ -279,7 +279,7 @@ void	ShinkaEnd(SHINKA_WORK *sw)
 
 	GF_BGL_BmpWinFree(sw->win,SHINKA_BMP_WIN_MAX);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(sw->pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(sw->pfd, FADE_SUB_BG);
 	PaletteFadeWorkAllocFree(sw->pfd, FADE_MAIN_OBJ);
@@ -292,17 +292,17 @@ void	ShinkaEnd(SHINKA_WORK *sw)
 
 	ShinkaBGEnd(sw->bgl);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ã®å‰Šé™¤
 	MSGMAN_Delete(sw->msg_man);
 
-	//’PŒêƒoƒbƒtƒ@íœ
+	//å˜èªžãƒãƒƒãƒ•ã‚¡å‰Šé™¤
 	WORDSET_Delete(sw->wordset);
 	sys_FreeMemoryEz(sw->msg_buf);
 
-	//‹Z–Y‚ê—pƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒNíœ
+	//æŠ€å¿˜ã‚Œç”¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
 	sys_FreeMemoryEz(sw->psd);
 
-	//DSƒAƒCƒRƒ“ƒpƒŒƒbƒgƒAƒjƒíœ
+	//DSã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡å‰Šé™¤
 	MSG_DsIconFlashDelete(sw->msg_icon);
 
 	sys_FreeMemoryEz(sw->bgl);
@@ -311,13 +311,13 @@ void	ShinkaEnd(SHINKA_WORK *sw)
 
 	sys_FreeMemoryEz(sw);
 
-	//ƒƒbƒZ[ƒWƒXƒLƒbƒvOFF
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—OFF
 	MsgPrintSkipFlagSet(MSG_SKIP_OFF);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	í“¬i‰»ƒfƒ‚
+ * @brief	æˆ¦é—˜é€²åŒ–ãƒ‡ãƒ¢
  */
 //--------------------------------------------------------------
 enum{
@@ -396,7 +396,7 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 		}
 	}
 
-	//i‰»ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN
+	//é€²åŒ–ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯
 	if((sw->shinka_status_flag&SHINKA_STATUS_FLAG_CANCEL_ON)&&
 	   (sw->seq_no==SEQ_SHINKA_MORPH)&&
 	   (sys.trg & PAD_BUTTON_B)){
@@ -469,7 +469,7 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 		   (PokeAnm_IsFinished(sw->pasp,0)==TRUE)&&
 		   (SoftSpriteAnimeEndCheck(sw->ss[0])==FALSE)){
 			MSG_DsIconFlashReq(sw->msg_icon,MSG_DSI_REQ_STOP);
-			Snd_BgmPlayBasicData( SEQ_SHINKA );	//“ÁŽê
+			Snd_BgmPlayBasicData( SEQ_SHINKA );	//ç‰¹æ®Š
 			sw->wait=20;
 			sw->seq_no=SEQ_SHINKA_BGM_WAIT;
 		}
@@ -486,7 +486,7 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 				ShinkaParticle_SprSet(sw->shinka_pt, SHINKA_DEMO_000_DM001_A);
 				SoftSpritePalFadeSet(sw->ss[SHINKA_BEFORE],0,16,4,0x7fff);
 				SoftSpritePalFadeSet(sw->ss[SHINKA_AFTER],0,16,4,0x7fff);
-				//ƒp[ƒeƒBƒNƒ‹‚ð¶¬‚µ‚½Žž“_‚ÅŽc‚èƒƒ‚ƒŠ‚ª0x8000‚ð‚«‚Á‚Ä‚¢‚½‚çƒAƒT[ƒg‚ðo‚·i‹Z–Y‚ê‘Îôj
+				//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’ç”Ÿæˆã—ãŸæ™‚ç‚¹ã§æ®‹ã‚Šãƒ¡ãƒ¢ãƒªãŒ0x8000ã‚’ãã£ã¦ã„ãŸã‚‰ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ï¼ˆæŠ€å¿˜ã‚Œå¯¾ç­–ï¼‰
 				GF_ASSERT(sys_GetHeapFreeSize(sw->heapID)>0x8000);
 				Snd_SePlay( SHINKA_SE_QUEEN );
 			}
@@ -568,7 +568,7 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 				SoftSpriteAnimeDataSet(sw->ss[1],&ssa[0]);
 				SoftSpriteAnimeSet(sw->ss[1],NULL);
 			}
-			//Snd_BgmStop(SEQ_SHINKA,0);			//060803@’âŽ~ˆ—‚ðŠO‚µ‚Ü‚µ‚½
+			//Snd_BgmStop(SEQ_SHINKA,0);			//060803ã€€åœæ­¢å‡¦ç†ã‚’å¤–ã—ã¾ã—ãŸ
 			Snd_PMVoiceWaitPlay(sw->after_mons_no, sw->after_wait, sw->form_no);
 			sw->seq_no++;
 		}
@@ -577,7 +577,7 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 		if((Snd_PMVoicePlayCheck()==0)&&
 		   (PokeAnm_IsFinished(sw->pasp,0)==TRUE)&&
 		   (SoftSpriteAnimeEndCheck(sw->ss[1])==FALSE)){
-				//“ÁŽê”\—ÍƒZƒbƒg
+				//ç‰¹æ®Šèƒ½åŠ›ã‚»ãƒƒãƒˆ
 				PokeParaPut(sw->pp,ID_PARA_monsno,(u8 *)&sw->after_mons_no);
 				PokeParaSpeabiSet(sw->pp);
 				PokeParaCalc(sw->pp);
@@ -592,12 +592,12 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 		if(GF_MSG_PrintEndCheck(sw->msg_index)==0){
 			if(--sw->wait==0){
 
-				//}ŠÓ“o˜^
+				//å›³é‘‘ç™»éŒ²
 				ZukanWork_SetPokeGet(sw->zw,sw->pp);
-				//ŠeŽíƒJƒEƒ“ƒgƒAƒbƒv
+				//å„ç¨®ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 				RECORD_Inc(sw->record,RECID_POKE_EVOLUTION);
 				RECORD_Score_Add(sw->record,SCORE_ID_ZUKAN_ENTRY);
-				//ƒ|ƒPƒbƒ`ƒf[ƒ^“o˜^
+				//ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 				PoketchData_PokeHistory_Add(sw->poketch_data,PPPPointerGet(sw->pp));
 
 				if(PokeParaGet(sw->pp,ID_PARA_nickname_flag,NULL)==0){
@@ -613,7 +613,7 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 
 			switch(PokeWazaOboeCheck(sw->pp,&sw->waza_cnt,&wazano)){
 			case SAME_WAZA_SET:
-				//“¯‚¶‹Z‚ÍŠo‚¦‚ç‚ê‚È‚¢‚Ì‚ÅAÄ“xƒ`ƒFƒbƒN‚Ìƒ‹[ƒv‚É‰ñ‚·
+				//åŒã˜æŠ€ã¯è¦šãˆã‚‰ã‚Œãªã„ã®ã§ã€å†åº¦ãƒã‚§ãƒƒã‚¯ã®ãƒ«ãƒ¼ãƒ—ã«å›žã™
 				break;
 			case NO_WAZA_OBOE:
 				sw->seq_no=SEQ_SHINKA_END_INIT;
@@ -669,12 +669,12 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 		break;
 	case SEQ_SHINKA_WAZAWASURE_YES_NO:
 		switch(BmpYesNoSelectMain(sw->work_p,sw->heapID)){
-		case 0:					//‚Í‚¢‚ð‘I‘ð
+		case 0:					//ã¯ã„ã‚’é¸æŠž
 			sw->seq_no=SEQ_SHINKA_WAZAWASURE_SELECT_INIT;
 			PaletteFadeReq(sw->pfd,SHINKA_BG,0xffff,1,0,16,0x0000);
 			SoftSpritePalFadeSetAll(sw->ssm,0,16,0,0x0000);
 			break;
-		case BMPMENU_CANCEL:	//‚¢‚¢‚¦orƒLƒƒƒ“ƒZƒ‹
+		case BMPMENU_CANCEL:	//ã„ã„ãˆorã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			sw->seq_no=SEQ_SHINKA_WAZAAKIRAME_MSG1;
 			break;
 		}
@@ -710,7 +710,7 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 			SoftSpriteRecoverSS(sw->ss[SHINKA_AFTER]);
 			PaletteFadeReq(sw->pfd,SHINKA_BG,0xffff,1,16,0,0x0000);
 			SoftSpritePalFadeSetAll(sw->ssm,16,0,0,0x0000);
-			//’ÊMƒAƒCƒRƒ“‚Ì‹N“®(’ÊM‚µ‚Ä‚È‚¢ê‡‚Í‚Å‚Ü‚¹‚ñj
+			//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã®èµ·å‹•(é€šä¿¡ã—ã¦ãªã„å ´åˆã¯ã§ã¾ã›ã‚“ï¼‰
 			WirelessIconEasy();
 
 			sw->seq_no++;
@@ -741,14 +741,14 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 		break;
 	case SEQ_SHINKA_WAZAAKIRAME:
 		switch(BmpYesNoSelectMain(sw->work_p,sw->heapID)){
-		case 0:					//‚Í‚¢‚ð‘I‘ð
+		case 0:					//ã¯ã„ã‚’é¸æŠž
 			WORDSET_RegisterPokeNickName(sw->wordset,STR_TEMP_BUF0,PPPPointerGet(sw->pp));
 			WORDSET_RegisterWazaName(sw->wordset,STR_TEMP_BUF1,sw->waza_no);
 			sw->msg_index=ShinkaMSG_Print(sw,sinkademo_WazaAkirameMsg2);
 			sw->wait=MSG_WAIT;
 			sw->seq_no=SEQ_SHINKA_WAZAAKIRAME_ACT;
 			break;
-		case BMPMENU_CANCEL:	//‚¢‚¢‚¦orƒLƒƒƒ“ƒZƒ‹
+		case BMPMENU_CANCEL:	//ã„ã„ãˆorã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			sw->seq_no=SEQ_SHINKA_WAZAWASURE_MSG1;
 			break;
 		}
@@ -783,7 +783,7 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 		WORDSET_RegisterWazaName(sw->wordset,STR_TEMP_BUF1,sw->waza_no);
 		sw->msg_index=ShinkaMSG_Print(sw,sinkademo_WazaOboeMsg4);
 		sw->wait=0;
-		PokeParaPut(sw->pp,ID_PARA_pp_count1+sw->waza_pos,&sw->wait);	//pp_count‚ðƒNƒŠƒA
+		PokeParaPut(sw->pp,ID_PARA_pp_count1+sw->waza_pos,&sw->wait);	//pp_countã‚’ã‚¯ãƒªã‚¢
 		PokeWazaSetPos(sw->pp,sw->waza_no,sw->waza_pos);
 		sw->wait=MSG_WAIT;
 		sw->seq_no=SEQ_SHINKA_WAZAOBOE_MSG_INDEX_WAIT;
@@ -884,7 +884,7 @@ static void ShinkaSequence(SHINKA_WORK *sw)
 
 //============================================================================================
 /**
- *	i‰»Œã‚ÌŒãˆ—
+ *	é€²åŒ–å¾Œã®å¾Œå‡¦ç†
  */
 //============================================================================================
 static	void	ShinkaAfterAct(SHINKA_WORK *sw)
@@ -892,10 +892,10 @@ static	void	ShinkaAfterAct(SHINKA_WORK *sw)
 	int	i;
 
 	switch(sw->shinka_cond){
-	//ƒkƒPƒjƒ“i‰»
+	//ãƒŒã‚±ãƒ‹ãƒ³é€²åŒ–
 	case SHINKA_SPECIAL_LEVELUP:
 	case SHINKA_SPECIAL_NUKENIN:
-		//ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚ð1ŒÂŠŽ‚µ‚Ä‚¢‚ÄAŽèŽ‚¿‚É‹ó‚«‚ª‚ ‚ê‚ÎAŠk‚ðŽc‚·
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã‚’1å€‹æ‰€æŒã—ã¦ã„ã¦ã€æ‰‹æŒã¡ã«ç©ºããŒã‚ã‚Œã°ã€æ®»ã‚’æ®‹ã™
 		if(MyItem_GetItemNum(sw->my_item,ITEM_MONSUTAABOORU,sw->heapID)&&
 		  (PokeParty_GetPokeCount(sw->ppt)<POKEMON_TEMOTI_MAX)){
 			{
@@ -907,22 +907,22 @@ static	void	ShinkaAfterAct(SHINKA_WORK *sw)
 				pp=PokemonParam_AllocWork(sw->heapID);
 				PokeCopyPPtoPP(sw->pp,pp);
 
-				//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ðƒkƒPƒjƒ“‚É
+				//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’ãƒŒã‚±ãƒ‹ãƒ³ã«
 				work=MONSNO_NUKENIN;
 				PokeParaPut(pp,ID_PARA_monsno,&work);
 
-				//Žæ“¾ƒ{[ƒ‹‚ðƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚É
+				//å–å¾—ãƒœãƒ¼ãƒ«ã‚’ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã«
 				work=ITEM_MONSUTAABOORU;
 				PokeParaPut(pp,ID_PARA_get_ball,&work);
 
 				work=0;
 
-				//‘•”õƒAƒCƒeƒ€‚ð‚È‚­‚·
+				//è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãªãã™
 				PokeParaPut(pp,ID_PARA_item,&work);
-				//ƒ|ƒPƒ‚ƒ“‚É‚Â‚¯‚éƒ}[ƒN‚ðÁ‚·
+				//ãƒã‚±ãƒ¢ãƒ³ã«ã¤ã‘ã‚‹ãƒžãƒ¼ã‚¯ã‚’æ¶ˆã™
 				PokeParaPut(pp,ID_PARA_mark,&work);
 
-				//ƒŠƒ{ƒ“Œn‚ðƒNƒŠƒA
+				//ãƒªãƒœãƒ³ç³»ã‚’ã‚¯ãƒªã‚¢
 				for(i=ID_PARA_sinou_champ_ribbon;i<ID_PARA_sinou_amari_ribbon+1;i++){
 					PokeParaPut(pp,i,&work);
 				}
@@ -935,42 +935,42 @@ static	void	ShinkaAfterAct(SHINKA_WORK *sw)
 					PokeParaPut(pp,i,&work);
 				}
 
-				//ƒjƒbƒNƒl[ƒ€‚ðƒfƒtƒHƒ‹ƒg–¼‚É
+				//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåã«
 				PokeParaPut(pp,ID_PARA_default_name,NULL);
 				PokeParaPut(pp,ID_PARA_nickname_flag,&work);
 
 
-				//ó‘ÔˆÙí‚ð’¼‚·
+				//çŠ¶æ…‹ç•°å¸¸ã‚’ç›´ã™
 				PokeParaPut(pp,ID_PARA_condition,&work);
 
-				//ƒ[ƒ‹ƒf[ƒ^
+				//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 				mail_data=MailData_CreateWork(sw->heapID);
 				PokeParaPut(pp,ID_PARA_mail_data,mail_data);
 				sys_FreeMemoryEz(mail_data);
 
-				//ƒJƒXƒ^ƒ€ƒ{[ƒ‹ID
+				//ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ID
 				PokeParaPut(pp,ID_PARA_cb_id,&work);
 
-				//ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒf[ƒ^
+				//ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 				MI_CpuClearFast(&cb_core, sizeof(CB_CORE));
 				PokeParaPut(pp,	ID_PARA_cb_core, (CB_CORE*)&cb_core);
 
-				//“Á«ƒZƒbƒg
+				//ç‰¹æ€§ã‚»ãƒƒãƒˆ
 				PokeParaSpeabiSet(pp);
 
-				//«•Ê‚ðƒZƒbƒg
+				//æ€§åˆ¥ã‚’ã‚»ãƒƒãƒˆ
 				i=PokeSexGet(pp);
 				PokeParaPut(pp, ID_PARA_sex, &i);
 
 				PokeParaCalc(pp);
 				PokeParty_Add(sw->ppt,pp);
 
-				//}ŠÓ“o˜^
+				//å›³é‘‘ç™»éŒ²
 				ZukanWork_SetPokeGet(sw->zw,pp);
-				//ŠeŽíƒJƒEƒ“ƒgƒAƒbƒv
+				//å„ç¨®ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 				RECORD_Inc(sw->record,RECID_POKE_EVOLUTION);
 				RECORD_Score_Add(sw->record,SCORE_ID_ZUKAN_ENTRY);
-				//ƒ|ƒPƒbƒ`ƒf[ƒ^“o˜^
+				//ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 				PoketchData_PokeHistory_Add(sw->poketch_data,PPPPointerGet(pp));
 
 				sys_FreeMemoryEz(pp);
@@ -979,7 +979,7 @@ static	void	ShinkaAfterAct(SHINKA_WORK *sw)
 			}
 		}
 		break;
-	//‘•”õƒAƒCƒeƒ€‚ðÁ‚·Œn
+	//è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¶ˆã™ç³»
 	case SHINKA_TUUSHIN_ITEM:
 	case SHINKA_SOUBI_NOON:
 	case SHINKA_SOUBI_NIGHT:
@@ -991,30 +991,30 @@ static	void	ShinkaAfterAct(SHINKA_WORK *sw)
 
 //============================================================================================
 /**
- *	i‰»ƒfƒ‚”wŒi‰æ–Ê‰Šú‰»•‰æ–Ê¶¬
+ *	é€²åŒ–ãƒ‡ãƒ¢èƒŒæ™¯ç”»é¢åˆæœŸåŒ–ï¼†ç”»é¢ç”Ÿæˆ
  */
 //============================================================================================
 static	void	ShinkaBGCreate(SHINKA_WORK *sw,GF_BGL_INI *bgl)
 {
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -1029,7 +1029,7 @@ static	void	ShinkaBGCreate(SHINKA_WORK *sw,GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -1061,7 +1061,7 @@ static	void	ShinkaBGCreate(SHINKA_WORK *sw,GF_BGL_INI *bgl)
 		G2_SetBG0Priority(0x01);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			{	///< BG
@@ -1074,7 +1074,7 @@ static	void	ShinkaBGCreate(SHINKA_WORK *sw,GF_BGL_INI *bgl)
 		GF_BGL_ScrClear(bgl, GF_BGL_FRAME0_S);
 	}
 
-	//ƒƒCƒ“‰æ–Ê”wŒiƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒh
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	{
 		WINTYPE	win_type;
 		int arc_index = ARC_EGGDEMO_GRA;
@@ -1097,7 +1097,7 @@ static	void	ShinkaBGCreate(SHINKA_WORK *sw,GF_BGL_INI *bgl)
 		MenuWinCgxSet(sw->bgl,GF_BGL_FRAME2_M,MENU_WIN_CGX_START,MENU_TYPE_SYSTEM,sw->heapID);
 		PaletteWorkSet_Arc(sw->pfd, ARC_WINFRAME, MenuWinPalArcGet(), sw->heapID, FADE_MAIN_BG, 0x20, MENU_WIN_PAL_NO*0x10);
 	}
-	//ƒTƒu‰æ–Ê”wŒiƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒh
+	//ã‚µãƒ–ç”»é¢èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	{
 		int arc_index = ARC_POKETCH_IMG;
 		int chr_index = NARC_poketch_before_lz_ncgr;
@@ -1162,9 +1162,9 @@ static	void	ShinkaOBJCreate(SHINKA_WORK *sw)
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
- * @param	work	VBLank‚É‚Íˆø”‚ª•K—v‚È‚Ì‚Å’è‹`‚µ‚Ä‚ ‚é‚ªŽÀÛ‚É‚ÍNULL‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅAƒAƒNƒZƒX‚Í‹ÖŽ~I
+ * @param	work	VBLankã«ã¯å¼•æ•°ãŒå¿…è¦ãªã®ã§å®šç¾©ã—ã¦ã‚ã‚‹ãŒå®Ÿéš›ã«ã¯NULLãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã€ã‚¢ã‚¯ã‚»ã‚¹ã¯ç¦æ­¢ï¼
  *
  * @retval	none	
  *
@@ -1178,7 +1178,7 @@ static	void	ShinkaVBlank(void *work)
 	
 	SoftSpriteTextureTrans(sw->ssm);
 
-	DoVramTransferManager();					///< Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	DoVramTransferManager();					///< Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	PaletteFadeTrans(sw->pfd);
 	
 	GF_BGL_VBlankFunc(sw->bgl);
@@ -1188,11 +1188,11 @@ static	void	ShinkaVBlank(void *work)
 
 //============================================================================================
 /**
- *	i‰»ƒƒbƒZ[ƒW•\Ž¦ŠÖ”
+ *	é€²åŒ–ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–¢æ•°
  *
- * @param[in]	sw			i‰»ƒfƒ‚ƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	msg_id		•\Ž¦‚·‚éƒƒbƒZ[ƒWID
- * @param[in]	wait		ƒƒbƒZ[ƒW•\Ž¦ƒEƒGƒCƒg
+ * @param[in]	sw			é€²åŒ–ãƒ‡ãƒ¢ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	msg_id		è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param[in]	wait		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚¦ã‚¨ã‚¤ãƒˆ
  *
  */
 //============================================================================================
@@ -1211,7 +1211,7 @@ static	u8	ShinkaMSG_Print(SHINKA_WORK *sw,int msg_id)
 
 //============================================================================================
 /**
- *	i‰»ƒƒbƒZ[ƒWƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *	é€²åŒ–ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  */
 //============================================================================================
 static	BOOL	ShinkaMSG_CallBack(MSG_PRINT_HEADER *mph,u16 value)
@@ -1221,11 +1221,11 @@ static	BOOL	ShinkaMSG_CallBack(MSG_PRINT_HEADER *mph,u16 value)
 	ret=FALSE;
 
 	switch(value){
-	//SEI—¹‘Ò‚¿
+	//SEçµ‚äº†å¾…ã¡
 	case 1:
 		ret=Snd_SePlayCheckAll();
 		break;
-	//MEI—¹‘Ò‚¿
+	//MEçµ‚äº†å¾…ã¡
 	case 2:
 		ret=Snd_MePlayCheckBgmPlay();
 		break;
@@ -1247,9 +1247,9 @@ static	BOOL	ShinkaMSG_CallBack(MSG_PRINT_HEADER *mph,u16 value)
 
 //============================================================================================
 /**
- *	i‰»‹Z–Y‚êProcƒZƒbƒgŠÖ”
+ *	é€²åŒ–æŠ€å¿˜ã‚ŒProcã‚»ãƒƒãƒˆé–¢æ•°
  *
- * @param[in]	sw			i‰»ƒfƒ‚ƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	sw			é€²åŒ–ãƒ‡ãƒ¢ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ShinkaWazaWasureProcSet(SHINKA_WORK *sw)

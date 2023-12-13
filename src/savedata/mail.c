@@ -1,16 +1,16 @@
 /**
  *	@file	mail.c
- *	@brief	���[���Z�[�u�f�[�^�@����
+ *	@brief	メールセーブデータ　制御
  *	@author	Miyuki Iwasawa
  *	@date	06.02.09
  *
- *	���[���Z�[�u�f�[�^���f�菇
- *	1,MAIL_SearchNullID()�ŋ󂫗̈�������A�f�[�^ID�擾
- *	2,MailData_CreateWork()�Ń_�~�[�f�[�^�쐬�p���[�N�G���A���擾
- *	3,MailData_CreateDataFromSave()�Ȃǂ��g���ă��[�N�Ƀf�[�^���\�z
- *	4,MAIL_AddDataFromWork()�Ǝ擾�ς݂̃f�[�^ID,���[�N�̃f�[�^���g���āA
- *	�@�Z�[�u�̈�Ƀf�[�^�𔽉f������
- *	5,�_�~�[���[�N�G���A���J������
+ *	メールセーブデータ反映手順
+ *	1,MAIL_SearchNullID()で空き領域を検索、データID取得
+ *	2,MailData_CreateWork()でダミーデータ作成用ワークエリアを取得
+ *	3,MailData_CreateDataFromSave()などを使ってワークにデータを構築
+ *	4,MAIL_AddDataFromWork()と取得済みのデータID,ワークのデータを使って、
+ *	　セーブ領域にデータを反映させる
+ *	5,ダミーワークエリアを開放する
  */
 
 #include "common.h"
@@ -28,17 +28,17 @@
 #include "poketool/monsno.h"
 
 
-///�|�P�����A�C�R���̍ő�CGXID(����ŃA�C�R����������Ȃ炱�����ς���K�v������)
+///ポケモンアイコンの最大CGXID(金銀でアイコンが増えるならここも変える必要がある)
 #define ICON_CGXID_MAX		(NARC_poke_icon_poke_icon_519_05_NCGR)
 
-///�v���`�i�ȍ~�Œǉ����ꂽ�|�P������cgx_id�ϊ��e�[�u��
-///(����ŃA�C�R����������Ȃ炱�̃e�[�u�������₷�K�v������)
+///プラチナ以降で追加されたポケモンのcgx_id変換テーブル
+///(金銀でアイコンが増えるならこのテーブルも増やす必要がある)
 static const struct{
-	u16 normal_cgx_id;		///<�t�H����0�̎���cgxID
-	u16 form_cgx_id;		///<�t�H�������ς���Ă��鎞��cgxID
-	u16 monsno;				///<�|�P�����ԍ�
-	u8 form_no;				///<form_cgx_id�̓t�H����No������cgxID�Ȃ̂�
-	u8 padding;			//�_�~�[
+	u16 normal_cgx_id;		///<フォルム0の時のcgxID
+	u16 form_cgx_id;		///<フォルムが変わっている時のcgxID
+	u16 monsno;				///<ポケモン番号
+	u8 form_no;				///<form_cgx_idはフォルムNoいくつのcgxIDなのか
+	u8 padding;			//ダミー
 } MailIcon_CgxID_ConvTbl[] = {
 	{
 		NARC_poke_icon_poke_icon_509_NCGR,
@@ -86,16 +86,16 @@ static const struct{
 
 
 /**
- *	@brief	���[���f�[�^�T�C�Y�擾
+ *	@brief	メールデータサイズ取得
  *
- *	�����[���f�[�^��ʂ̃T�C�Y
+ *	＊メールデータ一通のサイズ
  */
 int MailData_GetDataWorkSize(void)
 {
 	return sizeof(MAIL_DATA);
 }
 /**
- *	@brief	���[���f�[�^�N���A(�����f�[�^�Z�b�g)
+ *	@brief	メールデータクリア(初期データセット)
  */
 void MailData_Clear(MAIL_DATA* dat)
 {
@@ -122,9 +122,9 @@ void MailData_Clear(MAIL_DATA* dat)
 }
 
 /**
- *	@brief	���[���f�[�^���L�����ǂ����Ԃ�
- *	@retval	FALSE	����
- *	@retval	TRUE	�L��
+ *	@brief	メールデータが有効かどうか返す
+ *	@retval	FALSE	無効
+ *	@retval	TRUE	有効
  */
 BOOL MailData_IsEnable(MAIL_DATA* dat)
 {
@@ -136,9 +136,9 @@ BOOL MailData_IsEnable(MAIL_DATA* dat)
 }
 
 /**
- *	@brief	���[���f�[�^�̃��[�N���擾���ĕԂ�
+ *	@brief	メールデータのワークを取得して返す
  *
- *	���Ăяo�������ӔC�����ĉ�����邱��
+ *	＊呼び出し側が責任もって解放すること
  *	
  */
 MAIL_DATA* MailData_CreateWork(int heapID)
@@ -152,7 +152,7 @@ MAIL_DATA* MailData_CreateWork(int heapID)
 }
 
 /**
- *	@brief	���[���f�[�^�̍\���̃R�s�[
+ *	@brief	メールデータの構造体コピー
  */
 void MailData_Copy(MAIL_DATA* src,MAIL_DATA* dest)
 {
@@ -163,11 +163,11 @@ void MailData_Copy(MAIL_DATA* src,MAIL_DATA* dest)
 }
 
 /**
- *	@brief	�f�U�C��No,�|�P�����̃|�W�V�����A�Z�[�u�f�[�^�w�肵�ă��[����V�K�쐬��Ԃɏ�����
- *	@param	dat	�f�[�^���쐬����MAIL_DATA�\���̌^�ւ̃|�C���^
- *	@param	design_no	���[���̃C���[�WNo
- *	@param	pos		���[������������|�P�����̎莝�����̃|�W�V����
- *	@param	save	�Z�[�u�f�[�^�ւ̃|�C���^
+ *	@brief	デザインNo,ポケモンのポジション、セーブデータ指定してメールを新規作成状態に初期化
+ *	@param	dat	データを作成するMAIL_DATA構造体型へのポインタ
+ *	@param	design_no	メールのイメージNo
+ *	@param	pos		メールを持たせるポケモンの手持ち内のポジション
+ *	@param	save	セーブデータへのポインタ
  */
 void MailData_CreateFromSaveData(MAIL_DATA* dat,u8 design_no,u8 pos,SAVEDATA* save)
 {
@@ -181,18 +181,18 @@ void MailData_CreateFromSaveData(MAIL_DATA* dat,u8 design_no,u8 pos,SAVEDATA* sa
 	MailData_Clear(dat);
 	dat->design = design_no;
 
-	//�Z�[�u�f�[�^����
+	//セーブデータから
 	party = SaveData_GetTemotiPokemon(save);
 	my = SaveData_GetMyStatus(save);
 
-	//���@�̖��O
+	//自機の名前
 	PM_strcpy(dat->name,MyStatus_GetMyName(my));
-	//����
+	//性別
 	dat->sex = (u8)MyStatus_GetMySex(my);
-	//�g���[�i�[ID
+	//トレーナーID
 	dat->writerID = MyStatus_GetID(my);
 
-	//�|�P�����A�C�R���擾
+	//ポケモンアイコン取得
 	dat->form_bit = 0;
 	for(i=pos,ct = 0;i < PokeParty_GetPokeCount(party);i++){
 		pp = PokeParty_GetMemberPointer(party,i);
@@ -205,12 +205,12 @@ void MailData_CreateFromSaveData(MAIL_DATA* dat,u8 design_no,u8 pos,SAVEDATA* sa
 		
 		dat->icon[ct].cgxID = (u16)icon;
 		dat->icon[ct].palID = pal;
-		//�v���`�i�ȍ~�Œǉ����ꂽ�A�C�R���̏ꍇ�̃m�[�}���t�H�����ϊ�(�t�H�����ԍ��͕ʗ̈�֑ޔ�)
+		//プラチナ以降で追加されたアイコンの場合のノーマルフォルム変換(フォルム番号は別領域へ退避)
 		for(s = 0; s < NELEMS(MailIcon_CgxID_ConvTbl); s++){
 			if(MailIcon_CgxID_ConvTbl[s].form_cgx_id == dat->icon[ct].cgxID && 
 					MailIcon_CgxID_ConvTbl[s].form_no == form){
 				dat->icon[ct].cgxID = MailIcon_CgxID_ConvTbl[s].normal_cgx_id;
-				dat->icon[ct].palID = PokeIconPalNumGet( monsno, 0, egg );	//�t�H����0�̃p���b�g
+				dat->icon[ct].palID = PokeIconPalNumGet( monsno, 0, egg );	//フォルム0のパレット
 				dat->form_bit |= MailIcon_CgxID_ConvTbl[s].form_no << (ct*5);
 				break;
 			}
@@ -227,14 +227,14 @@ void MailData_CreateFromSaveData(MAIL_DATA* dat,u8 design_no,u8 pos,SAVEDATA* sa
 }
 
 /**
- *	@brief	���[���f�[�^�@�g���[�i�[ID�擾
+ *	@brief	メールデータ　トレーナーID取得
  */
 u32	MailData_GetWriterID(const MAIL_DATA* dat)
 {
 	return dat->writerID;
 }
 /**
- *	@brief	���[���f�[�^�@�g���[�i�[ID�K�p
+ *	@brief	メールデータ　トレーナーID適用
  */
 void MailData_SetWriterID(MAIL_DATA* dat,u32 id)
 {
@@ -245,14 +245,14 @@ void MailData_SetWriterID(MAIL_DATA* dat,u32 id)
 }
 
 /**
- *	@brief	���[���f�[�^�@���C�^�[���擾
+ *	@brief	メールデータ　ライター名取得
  */
 STRCODE* MailData_GetWriterName(MAIL_DATA* dat)
 {
 	return &(dat->name[0]);
 }
 /**
- *	@brief	���[���f�[�^�@���C�^�[���K�p
+ *	@brief	メールデータ　ライター名適用
  */
 void MailData_SetWriterName(MAIL_DATA* dat,STRCODE* name)
 {
@@ -263,14 +263,14 @@ void MailData_SetWriterName(MAIL_DATA* dat,STRCODE* name)
 }
 
 /**
- *	@brief	���[���f�[�^�@���C�^�[�̐��ʂ��擾
+ *	@brief	メールデータ　ライターの性別を取得
  */
 u8	MailData_GetWriterSex(const MAIL_DATA* dat)
 {
 	return dat->sex;
 }
 /**
- *	@brief	���[���f�[�^�@���C�^�[�̐��ʂ�K�p
+ *	@brief	メールデータ　ライターの性別を適用
  */
 void MailData_SetWriterSex(MAIL_DATA* dat,const u8 sex)
 {
@@ -281,14 +281,14 @@ void MailData_SetWriterSex(MAIL_DATA* dat,const u8 sex)
 }
 
 /**
- *	@brief	���[���f�[�^�@�f�U�C��No�擾
+ *	@brief	メールデータ　デザインNo取得
  */
 u8	MailData_GetDesignNo(const MAIL_DATA* dat)
 {
 	return dat->design;
 }
 /**
- *	@brief	���[���f�[�^�@�f�U�C��No�K�p
+ *	@brief	メールデータ　デザインNo適用
  */
 void MailData_SetDesignNo(MAIL_DATA* dat,const u8 design)
 {
@@ -302,14 +302,14 @@ void MailData_SetDesignNo(MAIL_DATA* dat,const u8 design)
 }
 
 /**
- *	@brief	���[���f�[�^�@���R�[�h�擾
+ *	@brief	メールデータ　国コード取得
  */
 u8	MailData_GetCountryCode(const MAIL_DATA* dat)
 {
 	return dat->region;
 }
 /**
- *	@brief	���[���f�[�^�@���R�[�h�K�p
+ *	@brief	メールデータ　国コード適用
  */
 void MailData_SetCountryCode(MAIL_DATA* dat,const u8 code)
 {
@@ -320,14 +320,14 @@ void MailData_SetCountryCode(MAIL_DATA* dat,const u8 code)
 }
 
 /**
- *	@brief	���[���f�[�^�@�J�Z�b�g�o�[�W�����擾
+ *	@brief	メールデータ　カセットバージョン取得
  */
 u8	MailData_GetCasetteVersion(const MAIL_DATA* dat)
 {
 	return dat->version;
 }
 /**
- *	@brief	���[���f�[�^�@�J�Z�b�g�o�[�W�����K�p
+ *	@brief	メールデータ　カセットバージョン適用
  */
 void MailData_SetCasetteVersion(MAIL_DATA* dat,const u8 version)
 {
@@ -338,13 +338,13 @@ void MailData_SetCasetteVersion(MAIL_DATA* dat,const u8 version)
 }
 
 /**
- *	@brief	���[���f�[�^�@���[���A�C�R���p�����[�^�̎擾(�C���f�b�N�X�w���)
+ *	@brief	メールデータ　メールアイコンパラメータの取得(インデックス指定版)
  *
- *	@param	mode	MAIL_ICONPRM_CGX:cgxNo�̎擾
- *					MAIL_ICONPRM_PAL:pltNo�̎擾
- *					MAIL_ICONPRM_ALL:u16�^(MAIL_ICON�^�փL���X�g��)�őo���̒l��Ԃ�
+ *	@param	mode	MAIL_ICONPRM_CGX:cgxNoの取得
+ *					MAIL_ICONPRM_PAL:pltNoの取得
+ *					MAIL_ICONPRM_ALL:u16型(MAIL_ICON型へキャスト可)で双方の値を返す
  *
- *	���A�C�R��CgxID�ƃ����X�^�[No�͓���ł͂���܂���B���ӁI
+ *	＊アイコンCgxIDとモンスターNoは同一ではありません。注意！
  */
 u16	MailData_GetIconParamByIndex(const MAIL_DATA* dat,u8 index,u8 mode, u16 form_bit)
 {
@@ -353,7 +353,7 @@ u16	MailData_GetIconParamByIndex(const MAIL_DATA* dat,u8 index,u8 mode, u16 form
 	
 	if(index < MAILDAT_ICONMAX){
 		mi = dat->icon[index];
-		//�v���`�i�ȍ~�Œǉ����ꂽ�A�C�R���̃t�H����Index�֕ϊ�
+		//プラチナ以降で追加されたアイコンのフォルムIndexへ変換
 		for(s = 0; s < NELEMS(MailIcon_CgxID_ConvTbl); s++){
 			if(MailIcon_CgxID_ConvTbl[s].normal_cgx_id == mi.cgxID && 
 					MailIcon_CgxID_ConvTbl[s].form_no == ((form_bit >> (index*5)) & 0x1f)){
@@ -382,7 +382,7 @@ u16	MailData_GetIconParamByIndex(const MAIL_DATA* dat,u8 index,u8 mode, u16 form
 }
 
 /**
- *	@brief	���[���f�[�^�@form_bit�擾
+ *	@brief	メールデータ　form_bit取得
  */
 u16	MailData_GetFormBit(const MAIL_DATA* dat)
 {
@@ -390,7 +390,7 @@ u16	MailData_GetFormBit(const MAIL_DATA* dat)
 }
 
 /**
- *	@brief	���[���f�[�^�@�ȈՕ��擾(�C���f�b�N�X�w���)
+ *	@brief	メールデータ　簡易文取得(インデックス指定版)
  */
 PMS_DATA*	MailData_GetMsgByIndex(MAIL_DATA* dat,u8 index)
 {
@@ -401,7 +401,7 @@ PMS_DATA*	MailData_GetMsgByIndex(MAIL_DATA* dat,u8 index)
 	}
 }
 /**
- *	@brief	���[���f�[�^�@�ȈՕ��Z�b�g(�C���f�b�N�X�w���)
+ *	@brief	メールデータ　簡易文セット(インデックス指定版)
  */
 void MailData_SetMsgByIndex(MAIL_DATA* dat,PMS_DATA* pms,u8 index)
 {
@@ -415,16 +415,16 @@ void MailData_SetMsgByIndex(MAIL_DATA* dat,PMS_DATA* pms,u8 index)
 }
 
 /**
- *	@brief	���[���f�[�^�@�ȈՕ�������擾(�C���f�b�N�X�w��)
+ *	@brief	メールデータ　簡易文文字列取得(インデックス指定)
  *
  *	@param	dat	MAIL_DATA*
- *	@param	index	�ȈՕ��C���f�b�N�X
- *	@param	buf		�擾����������|�C���^�̊i�[�ꏊ
+ *	@param	index	簡易文インデックス
+ *	@param	buf		取得した文字列ポインタの格納場所
  *
- *	@retval	FALSE	������̎擾�Ɏ��s(�܂��͊ȈՕ����L���ȃf�[�^�ł͂Ȃ�)
+ *	@retval	FALSE	文字列の取得に失敗(または簡易文が有効なデータではない)
  *	
- *	@li	buf�ɑ΂��ē����Ń��������m�ۂ��Ă���̂ŁA�Ăяo�����������I�ɉ�����邱��
- *	@li	FALSE���Ԃ����ꍇ�Abuf��NULL�N���A�����
+ *	@li	bufに対して内部でメモリを確保しているので、呼び出し側が明示的に解放すること
+ *	@li	FALSEが返った場合、bufはNULLクリアされる
  */
 BOOL MailData_GetMsgStrByIndex(const MAIL_DATA* dat,u8 index,STRBUF* buf,int heapID)
 {
@@ -445,13 +445,13 @@ BOOL MailData_GetMsgStrByIndex(const MAIL_DATA* dat,u8 index,STRBUF* buf,int hea
 //=================================================================
 //
 //=================================================================
-//���[�J���֐��v���g�^�C�v
+//ローカル関数プロトタイプ
 static int mail_GetNullData(MAIL_DATA* array,int num);
 static int mail_GetNumEnable(MAIL_DATA* array,int num);
 static MAIL_DATA* mail_GetAddress(MAIL_BLOCK* bloc,MAILBLOCK_ID blockID,int dataID);
 
 /**
- *	@brief	�Z�[�u�f�[�^�u���b�N�ւ̃|�C���^���擾
+ *	@brief	セーブデータブロックへのポインタを取得
  */
 MAIL_BLOCK* SaveData_GetMailBlock(SAVEDATA* sv)
 {
@@ -462,16 +462,16 @@ MAIL_BLOCK* SaveData_GetMailBlock(SAVEDATA* sv)
 }
 
 /**
- *	@brief	���[���Z�[�u�f�[�^�u���b�N�T�C�Y�擾
+ *	@brief	メールセーブデータブロックサイズ取得
  *
- *	�����[���f�[�^��ʂ̃T�C�Y�ł͂Ȃ��̂Œ��ӁI
+ *	＊メールデータ一通のサイズではないので注意！
  */
 int MAIL_GetBlockWorkSize(void)
 {
 	return sizeof(MAIL_DATA)*MAIL_STOCK_MAX;
 }
 /**
- *	@brief	���[���Z�[�u�f�[�^�u���b�N������
+ *	@brief	メールセーブデータブロック初期化
  */
 void MAIL_Init(MAIL_BLOCK* dat)
 {
@@ -494,12 +494,12 @@ void MAIL_Init(MAIL_BLOCK* dat)
 }
 
 /**
- *	@brief	�󂢂Ă��郁�[���f�[�^ID���擾
+ *	@brief	空いているメールデータIDを取得
  *
- *	@param	id �ǉ����������[���u���b�NID
+ *	@param	id 追加したいメールブロックID
  *
- *	@return	int	�f�[�^��ǉ��ł���ꍇ�͎Q��ID
- *				�ǉ��ł��Ȃ��ꍇ�̓}�C�i�X�l���Ԃ�
+ *	@return	int	データを追加できる場合は参照ID
+ *				追加できない場合はマイナス値が返る
  */
 int MAIL_SearchNullID(MAIL_BLOCK* block,MAILBLOCK_ID id)
 {
@@ -521,10 +521,10 @@ int MAIL_SearchNullID(MAIL_BLOCK* block,MAILBLOCK_ID id)
 }
 
 /**
- *	@brief	���[���f�[�^���폜
+ *	@brief	メールデータを削除
  *
- *	@param	blockID	�u���b�N��ID
- *	@param	dataID	�f�[�^ID
+ *	@param	blockID	ブロックのID
+ *	@param	dataID	データID
  */
 void MAIL_DelMailData(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID)
 {
@@ -537,10 +537,10 @@ void MAIL_DelMailData(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID)
 }
 
 /**
- *	@brief	���[���f�[�^���Z�[�u�u���b�N�ɒǉ�
+ *	@brief	メールデータをセーブブロックに追加
  *
- *	�������n����MAIL_DATA�\���̌^�f�[�^�̒��g���Z�[�u�f�[�^�ɔ��f�����̂�
- *	�@�������ȃf�[�^�����Ȃ��悤�ɒ��ӁI
+ *	＊引き渡したMAIL_DATA構造体型データの中身がセーブデータに反映されるので
+ *	　おかしなデータを入れないように注意！
  */
 void MAIL_AddMailFormWork(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID,MAIL_DATA* src)
 {
@@ -553,7 +553,7 @@ void MAIL_AddMailFormWork(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID,MAIL
 }
 
 /**
- *	@brief	�w��u���b�N�ɗL���f�[�^���������邩�Ԃ�
+ *	@brief	指定ブロックに有効データがいくつあるか返す
  */
 int MAIL_GetEnableDataNum(MAIL_BLOCK* block,MAILBLOCK_ID blockID)
 {
@@ -576,10 +576,10 @@ int MAIL_GetEnableDataNum(MAIL_BLOCK* block,MAILBLOCK_ID blockID)
 }
 
 /**
- *	@brief	���[���f�[�^�̃R�s�[���擾
+ *	@brief	メールデータのコピーを取得
  *
- *	�������Ń��������m�ۂ���̂ŁA�Ăяo�������ӔC�����ė̈���J�����邱��
- *	������ID���w�肵���ꍇ�A��f�[�^��Ԃ�
+ *	＊内部でメモリを確保するので、呼び出し側が責任持って領域を開放すること
+ *	＊無効IDを指定した場合、空データを返す
  */
 MAIL_DATA* MAIL_AllocMailData(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID,int heapID)
 {
@@ -595,9 +595,9 @@ MAIL_DATA* MAIL_AllocMailData(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID,
 }
 
 /**
- *	@brief	���[���f�[�^�̃R�s�[���擾
+ *	@brief	メールデータのコピーを取得
  *
- *	�����炩���ߊm�ۂ���MAIL_DATA�^�������ɃZ�[�u�f�[�^���R�s�[���Ď擾
+ *	＊あらかじめ確保したMAIL_DATA型メモリにセーブデータをコピーして取得
  */
 void MAIL_GetMailData(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID,MAIL_DATA* dest)
 {
@@ -616,10 +616,10 @@ void MAIL_GetMailData(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID,MAIL_DAT
 //=================================================================
 
 /**
- *	@brief	�莝���u���b�N�̋󂫂�T���ĕԂ�
+ *	@brief	手持ちブロックの空きを探して返す
  *
- *	@param	array	���[���f�[�^�z��ւ̃|�C���^
- *	@param	num		�������œn�����z��̗v�f��
+ *	@param	array	メールデータ配列へのポインタ
+ *	@param	num		第一引数で渡した配列の要素数
  */
 static int mail_GetNullData(MAIL_DATA* array,int num)
 {
@@ -634,7 +634,7 @@ static int mail_GetNullData(MAIL_DATA* array,int num)
 }
 
 /**
- *	@brief	�L���f�[�^�̐���T���ĕԂ�
+ *	@brief	有効データの数を探して返す
  */
 static int mail_GetNumEnable(MAIL_DATA* array,int num)
 {
@@ -650,7 +650,7 @@ static int mail_GetNumEnable(MAIL_DATA* array,int num)
 }
 
 /**
- *	@brief	�w��ID�����u���b�N���̃��[���f�[�^�ւ̃|�C���^��Ԃ�
+ *	@brief	指定IDを持つブロック内のメールデータへのポインタを返す
  */
 static MAIL_DATA* mail_GetAddress(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID)
 {

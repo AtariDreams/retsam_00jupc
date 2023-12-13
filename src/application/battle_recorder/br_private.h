@@ -3,9 +3,9 @@
  * @file	br_private.h
  * @brief	
  * @author	goto
- * @date	2007.07.27(‹à)
+ * @date	2007.07.27(é‡‘)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -52,31 +52,31 @@
 
 #include "br_snd_def.h"
 
-#include "br_define.h"			///< ‚¢‚ë‚ñ‚È’è‹`‚ª‚Ü‚Æ‚ß‚Ä‚ ‚é
+#include "br_define.h"			///< ã„ã‚ã‚“ãªå®šç¾©ãŒã¾ã¨ã‚ã¦ã‚ã‚‹
 
 
 // -----------------------------------------
 //
-//	 ƒƒjƒ…[ƒf[ƒ^ŠÇ—
+//	â–¡ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿ç®¡ç†
 //
 // -----------------------------------------
 typedef struct _BR_MENU_DATA BR_MENU_DATA;
 typedef struct _BR_MENU_DATA {	
-	BOOL			active;		///< —LŒø‚Èƒf[ƒ^‚©‚Ç‚¤‚©	
-	BOOL			seamless;	///< ƒV[ƒ€ƒŒƒX
+	BOOL			active;		///< æœ‰åŠ¹ãªãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹	
+	BOOL			seamless;	///< ã‚·ãƒ¼ãƒ ãƒ¬ã‚¹
 	int				msgID;		///< message
-	int				ID;			///< ¯•Ê—p	
-	int				seq;		///< Ÿ‚ÌƒV[ƒPƒ“ƒX
-	int				tag_seq;	///< ƒ^ƒO‚Ì“®‚«
-	int				ex_param1;	///< Šg’£ƒf[ƒ^
+	int				ID;			///< è­˜åˆ¥ç”¨	
+	int				seq;		///< æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	int				tag_seq;	///< ã‚¿ã‚°ã®å‹•ã
+	int				ex_param1;	///< æ‹¡å¼µãƒ‡ãƒ¼ã‚¿
 	int				ex_param2;
-	const BR_MENU_DATA*	data;	///< ƒf[ƒ^	
+	const BR_MENU_DATA*	data;	///< ãƒ‡ãƒ¼ã‚¿	
 } BR_MENU_DATA;
 
 
 // -----------------------------------------
 //
-//	 ƒXƒ‰ƒCƒ_[ŠÇ—
+//	â–¡ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ç®¡ç†
 //
 // -----------------------------------------
 typedef struct {
@@ -92,7 +92,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	 ƒŠƒXƒg•`‰æî•ñ
+//	â–¡ãƒªã‚¹ãƒˆæç”»æƒ…å ±
 //
 // -----------------------------------------
 typedef struct {
@@ -104,13 +104,13 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	 ƒŠƒXƒg“o˜^ƒwƒbƒ_[
+//	â–¡ãƒªã‚¹ãƒˆç™»éŒ²ãƒ˜ãƒƒãƒ€ãƒ¼
 //
 // -----------------------------------------
 typedef struct {	
-	const TL_INFO*	info;			///< î•ñ
-	int			data_max;		///< ƒf[ƒ^‚ÌŒÂ”
-	int			list_height;	///< ‚PŒ‚Ì‚‚³( 2s‚È‚ç2 )	
+	const TL_INFO*	info;			///< æƒ…å ±
+	int			data_max;		///< ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
+	int			list_height;	///< ï¼‘ä»¶ã®é«˜ã•( 2è¡Œãªã‚‰2 )	
 	int			px;
 	int			py;
 	int			sx;
@@ -124,20 +124,20 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	 ‰Â‹”ÍˆÍ‚Å‚ÌƒŠƒXƒg‘€ì—pƒ[ƒN
+//	â–¡å¯è¦–ç¯„å›²ã§ã®ãƒªã‚¹ãƒˆæ“ä½œç”¨ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
-	int			this;		///< Œ»İ’l
-	int			l_pos;		///< ÅŒã‚ÌˆÚ“®ˆÊ’u
-	int			t_stoper;	///< ã‚ÌƒXƒgƒbƒp[ˆÊ’u(‰º‚Ös‚­‚Æ‚«QÆ)
-	int			b_stoper;	///< ‰º‚ÌƒXƒgƒbƒp[ˆÊ’u(ã‚Ös‚­‚Æ‚«QÆ)
+	int			this;		///< ç¾åœ¨å€¤
+	int			l_pos;		///< æœ€å¾Œã®ç§»å‹•ä½ç½®
+	int			t_stoper;	///< ä¸Šã®ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ä½ç½®(ä¸‹ã¸è¡Œãã¨ãå‚ç…§)
+	int			b_stoper;	///< ä¸‹ã®ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ä½ç½®(ä¸Šã¸è¡Œãã¨ãå‚ç…§)
 } TOUCH_LIST_VIEW_MODE;
 
 
 // -----------------------------------------
 //
-//	 ƒ^ƒbƒ`ƒŠƒXƒgŠÇ—\‘¢‘Ì
+//	â–¡ã‚¿ãƒƒãƒãƒªã‚¹ãƒˆç®¡ç†æ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct {
@@ -149,16 +149,16 @@ typedef struct {
 	int	page;
 	GF_BGL_BMPWIN		win;
 	const TOUCH_LIST_HEADER*	head;
-	CATS_ACT_PTR		cap[ 2 ];		///< ã‰ºƒJ[ƒ\ƒ‹
-	MSGDATA_MANAGER*	man;			///< ‚Ç‚ÌƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[‚ğg‚¤‚©	
-	TOUCH_LIST_VIEW_MODE view;			///< ‰Â‹”ÍˆÍ‚Å‚ÌƒŠƒXƒg‘€ì—p	
+	CATS_ACT_PTR		cap[ 2 ];		///< ä¸Šä¸‹ã‚«ãƒ¼ã‚½ãƒ«
+	MSGDATA_MANAGER*	man;			///< ã©ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ä½¿ã†ã‹	
+	TOUCH_LIST_VIEW_MODE view;			///< å¯è¦–ç¯„å›²ã§ã®ãƒªã‚¹ãƒˆæ“ä½œç”¨	
 	BOOL bView;
 	int	 dmy;	
 } TOUCH_LIST;
 
 // -------------------------------------
 //
-//	 ƒGƒ‰[ˆ—
+//	â–¡ã‚¨ãƒ©ãƒ¼å‡¦ç†
 //
 // -------------------------------------
 typedef struct {	
@@ -182,42 +182,42 @@ typedef struct {
 
 // -------------------------------------
 //
-//	 ƒVƒXƒeƒ€ƒ[ƒN
+//	â–¡ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 //
 // -------------------------------------
 typedef struct {
 	
-	ARCHANDLE*				p_handle;			///< ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	ARCHANDLE*				p_handle;			///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	
-	CATS_SYS_PTR			csp;				///< OAMƒVƒXƒeƒ€
-	CATS_RES_PTR			crp;				///< ƒŠƒ\[ƒXˆêŠ‡ŠÇ—
+	CATS_SYS_PTR			csp;				///< OAMã‚·ã‚¹ãƒ†ãƒ 
+	CATS_RES_PTR			crp;				///< ãƒªã‚½ãƒ¼ã‚¹ä¸€æ‹¬ç®¡ç†
 	CATS_RES_PTR			vintr_crp;			///< VBlank
 	GF_BGL_INI*				bgl;				///< BGL
-	PALETTE_FADE_PTR		pfd;				///< ƒpƒŒƒbƒgƒtƒF[ƒh
+	PALETTE_FADE_PTR		pfd;				///< ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 	
-	BUTTON_MAN*				btn;				///< ƒ{ƒ^ƒ“	
-	RECT_HIT_TBL			rht[ eHRT_MAX ];	///< “–‚½‚è”»’è(manager‚É“o˜^‚·‚é)		
+	BUTTON_MAN*				btn;				///< ãƒœã‚¿ãƒ³	
+	RECT_HIT_TBL			rht[ eHRT_MAX ];	///< å½“ãŸã‚Šåˆ¤å®š(managerã«ç™»éŒ²ã™ã‚‹)		
 	BOOL					touch;
 	
 	MSGDATA_MANAGER*		man;
 	MSGDATA_MANAGER*		man_ranking;
 	FONTOAM_SYS_PTR			fontoam_sys;
 	
-	int						master_color;		///< ƒJƒ‰[
-	int						logo_color;			///< ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚ÌFw’è
+	int						master_color;		///< ã‚«ãƒ©ãƒ¼
+	int						logo_color;			///< ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã®è‰²æŒ‡å®š
 	u8						color_type;
 	u8						dummy[ 3 ];
 	
 	GF_G3DMAN*				g3Dman;
 	SOFT_SPRITE_MANAGER*	ssm_p;
 	
-	GDS_RAP_WORK			gdsrap;				///<GDSƒ‰ƒCƒuƒ‰ƒŠANitroDWCŠÖ˜A‚Ìƒ[ƒN\‘¢‘Ì
+	GDS_RAP_WORK			gdsrap;				///<GDSãƒ©ã‚¤ãƒ–ãƒ©ãƒªã€NitroDWCé–¢é€£ã®ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 	
-	BR_SLIDER				slider;				///< ƒXƒ‰ƒCƒ_[ƒ[ƒN@‚Ç‚¤‚©‚Æv‚Á‚½‚ª‚n‚`‚l‚à“ü‚ê‚½
-	TOUCH_LIST				touch_list;			///< ƒ^ƒbƒ`ƒŠƒXƒgƒ[ƒN
+	BR_SLIDER				slider;				///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ãƒ¯ãƒ¼ã‚¯ã€€ã©ã†ã‹ã¨æ€ã£ãŸãŒï¼¯ï¼¡ï¼­ã‚‚å…¥ã‚ŒãŸ
+	TOUCH_LIST				touch_list;			///< ã‚¿ãƒƒãƒãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
 	
 	ERROR_WORK				err_wk;
-	COMM_ERROR_WORK			comm_err_wk;		///< ’ÊMƒGƒ‰[ƒ[ƒN
+	COMM_ERROR_WORK			comm_err_wk;		///< é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒ¯ãƒ¼ã‚¯
 	
 	BOOL					bDraw;
 	BOOL					bCATS;
@@ -227,7 +227,7 @@ typedef struct {
 
 // -------------------------------------
 //
-//	 ƒTƒCƒhƒo[
+//	â–¡ã‚µã‚¤ãƒ‰ãƒãƒ¼
 //
 // -------------------------------------
 typedef struct {
@@ -254,7 +254,7 @@ typedef struct {
 
 // -------------------------------------
 //
-//	 ƒ^ƒbƒ`ƒAƒNƒVƒ‡ƒ“
+//	â–¡ã‚¿ãƒƒãƒã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 //
 // -------------------------------------
 typedef struct {
@@ -267,15 +267,15 @@ typedef struct {
 
 // -------------------------------------
 //
-//	 ƒ^ƒO
+//	â–¡ã‚¿ã‚°
 //
 // -------------------------------------
 typedef struct {	
 	CATS_ACT_PTR	cap;				///< OAM
 	TCB_PTR			tcb;				///< TCB	
-	int				id;					///< ŠÇ——pID	
-	BOOL			active;				///< ©—¥ƒtƒ‰ƒO@TRUE = ŠO‰e‹¿‚Íó‚¯‚È‚¢	
-	RECT_HIT_TBL*	hit;				///< “–‚½‚è”»’è‚Ìƒ|ƒCƒ“ƒ^	
+	int				id;					///< ç®¡ç†ç”¨ID	
+	BOOL			active;				///< è‡ªå¾‹ãƒ•ãƒ©ã‚°ã€€TRUE = å¤–å½±éŸ¿ã¯å—ã‘ãªã„	
+	RECT_HIT_TBL*	hit;				///< å½“ãŸã‚Šåˆ¤å®šã®ãƒã‚¤ãƒ³ã‚¿	
 	FONTOAM_OBJ_PTR				font_obj;	///< font oam
 	FONTOAM_OAM_DATA_PTR		font_data;
 	CHAR_MANAGER_ALLOCDATA		font_vram;	
@@ -284,28 +284,28 @@ typedef struct {
 
 // -------------------------------------
 //
-//	 ƒ^ƒOŠÇ—
+//	â–¡ã‚¿ã‚°ç®¡ç†
 //
 // -------------------------------------
 typedef struct {	
-	TAG			tag_s[ TAG_MAX ];		///< ã‚ÌTAG
-	TAG			tag_m[ TAG_MAX ];		///< ‰º‚ÌTAG	
+	TAG			tag_s[ TAG_MAX ];		///< ä¸Šã®TAG
+	TAG			tag_m[ TAG_MAX ];		///< ä¸‹ã®TAG	
 	const BR_MENU_DATA*	menu_data_stack[ TAG_MAX ];	
-	int			stack_s;				///< ‚Ç‚±‚Ü‚ÅÏ‚ñ‚Å‚é‚©
-	int			page;					///< ƒy[ƒW
-	int			item_max;				///< ƒy[ƒWƒAƒCƒeƒ€”
-	int			cur_pos;				///< ƒJ[ƒ\ƒ‹ˆÊ’u
+	int			stack_s;				///< ã©ã“ã¾ã§ç©ã‚“ã§ã‚‹ã‹
+	int			page;					///< ãƒšãƒ¼ã‚¸
+	int			item_max;				///< ãƒšãƒ¼ã‚¸ã‚¢ã‚¤ãƒ†ãƒ æ•°
+	int			cur_pos;				///< ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	int			hit_state;	
 	BOOL		bHit;	
 } TAG_MANAGER;
 
 // -------------------------------------
 //
-//	 ƒ}ƒl[ƒWƒƒ‚ªŠÄ‹‚·‚é‚½‚ß‚Ìƒ[ƒN
+//	â–¡ãƒãƒãƒ¼ã‚¸ãƒ£ãŒç›£è¦–ã™ã‚‹ãŸã‚ã®ãƒ¯ãƒ¼ã‚¯
 //
 // -------------------------------------
 typedef struct {	
-	BOOL	bFlag;			///< ‚Æ‚è‚ ‚¦‚¸ATRUE=˜^‰æÄ¶ FALSE=’ÊíI—¹
+	BOOL	bFlag;			///< ã¨ã‚Šã‚ãˆãšã€TRUE=éŒ²ç”»å†ç”Ÿ FALSE=é€šå¸¸çµ‚äº†
 	int		state;	
 	int		ID;
 	int		dummy;	
@@ -314,7 +314,7 @@ typedef struct {
 
 // -------------------------------------
 //
-//	 ƒŠƒJƒo[ƒ[ƒN
+//	â–¡ãƒªã‚«ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯
 //
 // -------------------------------------
 typedef struct {	
@@ -326,26 +326,26 @@ typedef struct {
 
 // -------------------------------------
 //
-//	 í“¬‚©‚ç•œ‹A‚µ‚½Û‚Éc‚µ‚Ä‚¨‚«‚½‚¢óMƒf[ƒ^
+//	â–¡æˆ¦é—˜ã‹ã‚‰å¾©å¸°ã—ãŸéš›ã«æ®‹ã—ã¦ãŠããŸã„å—ä¿¡ãƒ‡ãƒ¼ã‚¿
 //
 // -------------------------------------
 typedef struct {
-	GT_BATTLE_REC_RECV*			rec_data_tmp;				///< ƒŒƒR[ƒhƒf[ƒ^
+	GT_BATTLE_REC_RECV*			rec_data_tmp;				///< ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 	GT_BATTLE_REC_RECV			rec_data;
 	u8							rec_secure_flag;			///< 
 	u8							dmy[ 3 ];
 	
-	GT_BATTLE_REC_OUTLINE_RECV*	outline_data_tmp[ 30 ];		///< DL ‚µ‚½ŠT—vˆê——
-	GT_BATTLE_REC_OUTLINE_RECV	outline_data[ 30 ];			///< DL ‚µ‚½ŠT—vˆê——
-	int							outline_data_num;			///< DL ‚µ‚½ŠT—vˆê——‚ÌŒ”
-	u8							outline_secure_flag[ 30 ];	///< DL ‚µ‚½ŠT—v‚Ìƒtƒ‰ƒO
+	GT_BATTLE_REC_OUTLINE_RECV*	outline_data_tmp[ 30 ];		///< DL ã—ãŸæ¦‚è¦ä¸€è¦§
+	GT_BATTLE_REC_OUTLINE_RECV	outline_data[ 30 ];			///< DL ã—ãŸæ¦‚è¦ä¸€è¦§
+	int							outline_data_num;			///< DL ã—ãŸæ¦‚è¦ä¸€è¦§ã®ä»¶æ•°
+	u8							outline_secure_flag[ 30 ];	///< DL ã—ãŸæ¦‚è¦ã®ãƒ•ãƒ©ã‚°
 	
 } BR_RECV_DATA;
 
 
 // ------------------------------------
 //
-//	 VBLANKŠúŠÔ’†‚É‰æ–Ê‚ğØ‚è‘Ö‚¦‚éƒ[ƒN
+//	â–¡VBLANKæœŸé–“ä¸­ã«ç”»é¢ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ãƒ¯ãƒ¼ã‚¯
 //
 // ------------------------------------
 typedef struct {	
@@ -355,7 +355,7 @@ typedef struct {
 
 // -------------------------------------
 //
-//	ƒƒCƒ“ƒ[ƒN
+//	ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 //
 // -------------------------------------
 typedef struct {	
@@ -363,64 +363,64 @@ typedef struct {
 	int					main_seq;
 	int					sub_seq;
 	int					wait;
-	int*				proc_seq;					///< ƒvƒƒbƒN‚Ì*seq
+	int*				proc_seq;					///< ãƒ—ãƒ­ãƒƒã‚¯ã®*seq
 	
-	BR_SYS				sys;						///< ƒVƒXƒeƒ€	
-	BR_DISP_SW			disp;						///< •\¦–Ê
+	BR_SYS				sys;						///< ã‚·ã‚¹ãƒ†ãƒ 	
+	BR_DISP_SW			disp;						///< è¡¨ç¤ºé¢
 	
-	TAG_MANAGER			tag_man;					///< ƒ^ƒOŠÇ—	
-	CURSOR_WORK*		cur_wk;						///< ƒz[ƒ~ƒ“ƒOƒJ[ƒ\ƒ‹		
-	CURSOR_WORK*		cur_wk_top;					///< ƒz[ƒ~ƒ“ƒOƒJ[ƒ\ƒ‹	(ã‰æ–Ê—p)
-	SIDE_BAR			bar[ SIDE_BAR_TOTAL ];		///< ƒTƒCƒhƒo[
+	TAG_MANAGER			tag_man;					///< ã‚¿ã‚°ç®¡ç†	
+	CURSOR_WORK*		cur_wk;						///< ãƒ›ãƒ¼ãƒŸãƒ³ã‚°ã‚«ãƒ¼ã‚½ãƒ«		
+	CURSOR_WORK*		cur_wk_top;					///< ãƒ›ãƒ¼ãƒŸãƒ³ã‚°ã‚«ãƒ¼ã‚½ãƒ«	(ä¸Šç”»é¢ç”¨)
+	SIDE_BAR			bar[ SIDE_BAR_TOTAL ];		///< ã‚µã‚¤ãƒ‰ãƒãƒ¼
 	
-	const BR_MENU_DATA*	menu_data;					///< ƒƒjƒ…[ƒf[ƒ^
-	const BR_MENU_DATA*	menu_data_mem[ TAG_MAX ];	///< ƒƒjƒ…[ƒf[ƒ^
+	const BR_MENU_DATA*	menu_data;					///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	const BR_MENU_DATA*	menu_data_mem[ TAG_MAX ];	///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	
-	SAVEDATA*			save;						///< •K—v‚É‚È‚Á‚½
-	u16					save_work1;					///< •ªŠ„ƒZ[ƒu—p
-	u16					save_work2;					///< •ªŠ„ƒZ[ƒu—p
+	SAVEDATA*			save;						///< å¿…è¦ã«ãªã£ãŸ
+	u16					save_work1;					///< åˆ†å‰²ã‚»ãƒ¼ãƒ–ç”¨
+	u16					save_work2;					///< åˆ†å‰²ã‚»ãƒ¼ãƒ–ç”¨
 	
-	BR_RECOVER_WORK		recover_wk;					///< •œ‹A—pƒ[ƒN
+	BR_RECOVER_WORK		recover_wk;					///< å¾©å¸°ç”¨ãƒ¯ãƒ¼ã‚¯
 	
-	void*				sub_work;					///< “à•”‚Å”Ä—p“I‚Ég‚¤ƒ[ƒN
-	void*				app_work;					///< “à•”‚ÅƒAƒvƒŠ‚ğ‹N“®‚µ‚½‚Æ‚«‚Ég‚¤ƒ[ƒN
-	POST_MESSAGE*		message;					///< ŠÇ—•”•ª‚Æ‚Ì‚â‚èæ‚è
+	void*				sub_work;					///< å†…éƒ¨ã§æ±ç”¨çš„ã«ä½¿ã†ãƒ¯ãƒ¼ã‚¯
+	void*				app_work;					///< å†…éƒ¨ã§ã‚¢ãƒ—ãƒªã‚’èµ·å‹•ã—ãŸã¨ãã«ä½¿ã†ãƒ¯ãƒ¼ã‚¯
+	POST_MESSAGE*		message;					///< ç®¡ç†éƒ¨åˆ†ã¨ã®ã‚„ã‚Šå–ã‚Š
 		
-	int					ex_param1;					///< ƒƒjƒ…[‚©‚ç‚à‚ç‚¤ƒf[ƒ^
-	BOOL				ex_param2;					///< ‹N“®Œã1“x‚µ‚©‚Å‚«‚È‚¢‚à‚Ì‚ğŠÇ—‚·‚éƒtƒ‰ƒO
-	u32					ex_param3;					///< ƒoƒgƒ‹ƒrƒfƒIˆÀ‘Sƒtƒ‰ƒO TRUE=ŠëŒ¯	
-	u8*					secure_addrs;				///< secure_flag ‚Ì ƒAƒhƒŒƒX
+	int					ex_param1;					///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã‚‚ã‚‰ã†ãƒ‡ãƒ¼ã‚¿
+	BOOL				ex_param2;					///< èµ·å‹•å¾Œ1åº¦ã—ã‹ã§ããªã„ã‚‚ã®ã‚’ç®¡ç†ã™ã‚‹ãƒ•ãƒ©ã‚°
+	u32					ex_param3;					///< ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªå®‰å…¨ãƒ•ãƒ©ã‚° TRUE=å±é™º	
+	u8*					secure_addrs;				///< secure_flag ã® ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-	BATTLE_REC_HEADER_PTR	br_head[ 4 ];			///< ˜^‰æƒf[ƒ^ƒwƒbƒ_
-	GDS_PROFILE_PTR			br_gpp[ 4 ];			///< ˜^‰æƒf[ƒ^ƒvƒƒtƒB[ƒ‹
+	BATTLE_REC_HEADER_PTR	br_head[ 4 ];			///< éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€
+	GDS_PROFILE_PTR			br_gpp[ 4 ];			///< éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 	
-	///< info—p
-	BOOL				bWiFiEnd;					///< wifi I—¹‚Ìƒtƒ‰ƒO
+	///< infoç”¨
+	BOOL				bWiFiEnd;					///< wifi çµ‚äº†æ™‚ã®ãƒ•ãƒ©ã‚°
 	BOOL				bInfo;						///< info win
 	GF_BGL_BMPWIN		info_win;					///< info win
 	
-	BR_RECV_DATA		recv_data;					///< ’ÊM‘ÎíŒã‚à•Û‚·‚é‚½‚ß	
-	TOUCH_ACTION		touch_work;					///< ƒ^ƒbƒ`ƒAƒNƒVƒ‡ƒ“
+	BR_RECV_DATA		recv_data;					///< é€šä¿¡å¯¾æˆ¦å¾Œã‚‚ä¿æŒã™ã‚‹ãŸã‚	
+	TOUCH_ACTION		touch_work;					///< ã‚¿ãƒƒãƒã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	
 	TCB_PTR				view_tcb;
-//	FIELDSYS_WORK*		fsys;						///< ‚¢‚ç‚È‚­‚È‚Á‚½
+//	FIELDSYS_WORK*		fsys;						///< ã„ã‚‰ãªããªã£ãŸ
 
 } BR_WORK;
 
 // -------------------------------------------------------------
 //
-//	¡ ƒTƒuƒ[ƒNŠÖ˜A ‚¢‚ë‚ñ‚ÈƒV[ƒPƒ“ƒX‚Ì’†‚Åƒƒ‚ƒŠŠm•Û‚³‚ê‚é
+//	â–  ã‚µãƒ–ãƒ¯ãƒ¼ã‚¯é–¢é€£ ã„ã‚ã‚“ãªã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ä¸­ã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã•ã‚Œã‚‹
 //
 // -------------------------------------------------------------
 // -----------------------------------------
 //
-//	y ƒTƒuƒ[ƒN‚É“o˜^ zƒ^ƒO‚ÌˆÚ“®—pƒ[ƒN
+//	ã€ ã‚µãƒ–ãƒ¯ãƒ¼ã‚¯ã«ç™»éŒ² ã€‘ã‚¿ã‚°ã®ç§»å‹•ç”¨ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {	
 	
-	int		wait;		///< ƒEƒFƒCƒg
-	int		rad;		///< Šp“x
+	int		wait;		///< ã‚¦ã‚§ã‚¤ãƒˆ
+	int		rad;		///< è§’åº¦
 	s16		ty;
 	s16		dmy;
 	fx32	ox;
@@ -429,7 +429,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	y ƒTƒuƒ[ƒN‚É“o˜^ zƒ^ƒOê—pƒ[ƒN
+//	ã€ ã‚µãƒ–ãƒ¯ãƒ¼ã‚¯ã«ç™»éŒ² ã€‘ã‚¿ã‚°å°‚ç”¨ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
@@ -443,7 +443,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	y ƒTƒuƒ[ƒN‚É“o˜^ zƒ^ƒOê—p‘I‘ğƒ[ƒN
+//	ã€ ã‚µãƒ–ãƒ¯ãƒ¼ã‚¯ã«ç™»éŒ² ã€‘ã‚¿ã‚°å°‚ç”¨é¸æŠãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
@@ -458,28 +458,28 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	y ƒTƒuƒ[ƒN‚É“o˜^ zƒ^ƒOê—pTCBƒ[ƒN
+//	ã€ ã‚µãƒ–ãƒ¯ãƒ¼ã‚¯ã«ç™»éŒ² ã€‘ã‚¿ã‚°å°‚ç”¨TCBãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
 	
-	s16		s_px;		///< ŠJnˆÊ’u X
-	s16		s_py;		///< ŠJnˆÊ’u Y
-	s16		t_px;		///< –Ú“IˆÊ’u X
-	s16		t_py;		///< –Ú“IˆÊ’u Y
+	s16		s_px;		///< é–‹å§‹ä½ç½® X
+	s16		s_py;		///< é–‹å§‹ä½ç½® Y
+	s16		t_px;		///< ç›®çš„ä½ç½® X
+	s16		t_py;		///< ç›®çš„ä½ç½® Y
 	s16		mx;
 	s16		my;
-	int		s_rad;		///< Šp“x
-	int		t_rad;		///< Šp“x
+	int		s_rad;		///< è§’åº¦
+	int		t_rad;		///< è§’åº¦
 	int		add_rad;
 	int		temp;
 	
 	u8		wait;		///< wait
-	u8		seq;		///< ƒV[ƒPƒ“ƒX
+	u8		seq;		///< ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	u8		tag_max;
 	u8		dmy;
 	
-	CATS_ACT_PTR cap;	///< ‘ÎÛ‚ÌOAM
+	CATS_ACT_PTR cap;	///< å¯¾è±¡ã®OAM
 	FONTOAM_OBJ_PTR	font_obj;
 	
 	CURSOR_WORK* cur_wk;
@@ -494,7 +494,7 @@ typedef struct {
 // =============================================================================
 //
 //
-//	¡ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	â– ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //
 // =============================================================================
@@ -593,13 +593,13 @@ extern void PaletteFadeClear( BR_WORK* wk );
 extern void BG2_Recover( BR_WORK* wk );
 
 
-///< ‚ ‚©‚³‚½‚È`æ“¾
+///< ã‚ã‹ã•ãŸãªã€œå–å¾—
 extern u16* ZukanSortDataGet_50on( int heap, int idx, int* p_arry_num );
 
 // =============================================================================
 //
 //
-//	¡ FONT OAM
+//	â–  FONT OAM
 //
 //
 // =============================================================================
@@ -661,12 +661,12 @@ extern void Recoder_ColorChange( BR_WORK* wk, int color );
 // =============================================================================
 //
 //
-//	¡	ƒ{ƒbƒNƒX
+//	â– 	ãƒœãƒƒã‚¯ã‚¹
 //
 //
 // =============================================================================
-extern BOOL (* const BR_BoxS_MainTable[])( BR_WORK* wk );	///< ©•ª‚Ì‘—M
-extern BOOL (* const BR_BoxR_MainTable[])( BR_WORK* wk );	///< ƒ‰ƒ“ƒLƒ“ƒO‚©‚çóM
+extern BOOL (* const BR_BoxS_MainTable[])( BR_WORK* wk );	///< è‡ªåˆ†ã®é€ä¿¡
+extern BOOL (* const BR_BoxR_MainTable[])( BR_WORK* wk );	///< ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‹ã‚‰å—ä¿¡
 
 extern void HitTbl_to_Center( const RECT_HIT_TBL* tbl, s16* x, s16* y );
 extern BOOL Cursor_Panel_Check( BR_WORK* wk );
@@ -720,7 +720,7 @@ extern void VideoData_IconEnable( VIDEO_WORK* vwk, int flag );
 // =============================================================================
 //
 //
-//	¡ƒ‰ƒ“ƒLƒ“ƒO
+//	â– ãƒ©ãƒ³ã‚­ãƒ³ã‚°
 //
 //
 // =============================================================================
@@ -729,7 +729,7 @@ extern BOOL (* const BR_WeeklyRanking_MainTable[])( BR_WORK* wk );
 // =============================================================================
 //
 //
-//	¡ƒrƒfƒIƒ‰ƒ“ƒLƒ“ƒO
+//	â– ãƒ“ãƒ‡ã‚ªãƒ©ãƒ³ã‚­ãƒ³ã‚°
 //
 //
 // =============================================================================
@@ -738,7 +738,7 @@ extern BOOL (* const BR_VideoRanking_MainTable[])( BR_WORK* wk );
 // =============================================================================
 //
 //
-//	¡ƒrƒfƒIŒŸõ
+//	â– ãƒ“ãƒ‡ã‚ªæ¤œç´¢
 //
 //
 // =============================================================================
@@ -753,7 +753,7 @@ extern int Number_to_Unit_Get( u64 num );
 // =============================================================================
 //
 //
-//	¡@Wi-Fi ŠÖ˜A
+//	â– ã€€Wi-Fi é–¢é€£
 //
 //
 // =============================================================================
@@ -781,7 +781,7 @@ extern void BR_Response_VideoDL( void *work, const GDS_RAP_ERROR_INFO* error_inf
 // =============================================================================
 //
 //
-//	¡FŠ·‚¦
+//	â– è‰²æ›ãˆ
 //
 //
 // =============================================================================
@@ -792,7 +792,7 @@ extern void BR_ColorPaletteChange( BR_WORK* wk, int type );
 // =============================================================================
 //
 //
-//	¡ƒXƒ‰ƒCƒ_[
+//	â– ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼
 //
 //
 // =============================================================================
@@ -807,7 +807,7 @@ extern void Slider_AnimeCheck( BR_SLIDER* wk, TOUCH_LIST* tl );
 // =============================================================================
 //
 //
-//	¡ƒ^ƒbƒ`ƒŠƒXƒg
+//	â– ã‚¿ãƒƒãƒãƒªã‚¹ãƒˆ
 //
 //
 // =============================================================================
@@ -835,7 +835,7 @@ extern int TouchList_ViewMode_Main( TOUCH_LIST* tl, BR_WORK* wk );
 // =============================================================================
 //
 //
-//	¡
+//	â– 
 //
 //
 // =============================================================================
@@ -869,15 +869,15 @@ extern void		  PokemonGraphic_ArcClose( ARCHANDLE* hdl );
 // =============================================================================
 //
 //
-//	¡ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ŠÇ—
+//	â– ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç®¡ç†
 //
 //
 // =============================================================================
 typedef struct {
 	
-	int	 poke_list_num;	///< ƒŠƒXƒg‚É•\¦‚Å‚«‚éŒ”
-	int	 poke_num;		///< æ“¾ƒf[ƒ^Œ”
-	u16* poke_data;		///< ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	int	 poke_list_num;	///< ãƒªã‚¹ãƒˆã«è¡¨ç¤ºã§ãã‚‹ä»¶æ•°
+	int	 poke_num;		///< å–å¾—ãƒ‡ãƒ¼ã‚¿ä»¶æ•°
+	u16* poke_data;		///< ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	MSGDATA_MANAGER* man;
 	
@@ -895,9 +895,9 @@ typedef struct {
 typedef struct {
 	
 	ARCHANDLE*	 handle;
-	int 		 view_start;		///< ƒŠƒXƒg‚ÌQÆˆÊ’u
-	int			 global_gra_id;		///< ƒOƒ‰ƒtƒBƒbƒNID
-	POKE_ICON 	 poke[ 5 ][ 6 ];	///< 5Œ 6ŒÂ
+	int 		 view_start;		///< ãƒªã‚¹ãƒˆã®å‚ç…§ä½ç½®
+	int			 global_gra_id;		///< ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ID
+	POKE_ICON 	 poke[ 5 ][ 6 ];	///< 5ä»¶ 6å€‹
 	
 } POKE_ICON_WORK;
 
@@ -905,7 +905,7 @@ typedef struct {
 // =============================================================================
 //
 //
-//	¡ƒGƒ‰[ˆ—
+//	â– ã‚¨ãƒ©ãƒ¼å‡¦ç†
 //
 //
 // =============================================================================

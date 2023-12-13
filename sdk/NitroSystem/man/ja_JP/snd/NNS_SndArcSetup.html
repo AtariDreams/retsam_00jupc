@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndArcSetup</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndArcSetup</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndArcSetup(
@@ -20,7 +20,7 @@
         BOOL <var>symbolLoadFlag</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA4LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -28,15 +28,15 @@
 <tbody>
 <tr>
 <td><em><strong><code>arc</code></strong></em></td>
-<td>�T�E���h�A�[�J�C�u�\���̂̃|�C���^�ł��B</td>
+<td>サウンドアーカイブ構造体のポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>heap</code></strong></em></td>
-<td>�T�E���h�q�[�v�n���h���ł��B</td>
+<td>サウンドヒープハンドルです。</td>
 </tr>
 <tr>
 <td><em><strong><code>symbolLoadFlag</code></strong></em></td>
-<td>�V���{���f�[�^�����[�h���邩�ǂ����̃t���O�ł��B</td>
+<td>シンボルデータをロードするかどうかのフラグです。</td>
 </tr>
 </tbody>
 </table>
@@ -44,36 +44,36 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDA1MWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Z�b�g�A�b�v�ɐ����������ǂ�����Ԃ��܂��B</p>
+      <p>セットアップに成功したかどうかを返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDACNWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�T�E���h�A�[�J�C�u���Z�b�g�A�b�v���܂��B
+サウンドアーカイブをセットアップします。
 </p>
       <p>
-���̊֐��́A
-<tt class="function"><a href="NNS_SndArcInit.html">NNS_SndArcInit</a></tt>�֐�����Ăт�����܂��̂ŁA
-�ʏ�͌Ăт����K�v�͂���܂���B
+この関数は、
+<tt class="function"><a href="NNS_SndArcInit.html">NNS_SndArcInit</a></tt>関数から呼びだされますので、
+通常は呼びだす必要はありません。
 </p>
       <p>
-�֐����ł́A�T�E���h�A�[�J�C�u�Ǘ��ɕK�v�ȃf�[�^�����[�h���Ă��܂��B
-<em><strong><code>heap</code></strong></em>�Ŏw�肵���T�E���h�q�[�v����A�Ǘ��f�[�^���i�[���邽�߂�
-���������m�ۂ��Ă��܂��B
-�\���ȃ��������m�ۂł��Ȃ��ꍇ�A�֐��͎��s���܂��B
+関数内では、サウンドアーカイブ管理に必要なデータをロードしています。
+<em><strong><code>heap</code></strong></em>で指定したサウンドヒープから、管理データを格納するための
+メモリを確保しています。
+十分なメモリが確保できない場合、関数は失敗します。
 </p>
      <p>
-�V���{���f�[�^�����[�h���邩�ǂ����̃t���O<em><strong><code>symbolLoadFlag</code></strong></em>��TRUE������ƁA
-<tt class="function"><a href="NNS_SndArcGetSymbol.html">NNS_SndArcGet*Symbol</a></tt>�֐����g���āA
-�V���{�������擾�ł���悤�ɂȂ�܂����A��葽���A�T�E���h�q�[�v<em><strong><code>heap</code></strong></em>������܂��B
+シンボルデータをロードするかどうかのフラグ<em><strong><code>symbolLoadFlag</code></strong></em>にTRUEを入れると、
+<tt class="function"><a href="NNS_SndArcGetSymbol.html">NNS_SndArcGet*Symbol</a></tt>関数を使って、
+シンボル名を取得できるようになりますが、より多く、サウンドヒープ<em><strong><code>heap</code></strong></em>を消費します。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcInit.html">NNS_SndArcInit</a>, <a href="NNS_SndArcGetSymbol.html">NNS_SndArcGet*Symbol</a></p>
-<h2>����</h2>
-<p>2004/09/02 ����<br></p>
+<h2>履歴</h2>
+<p>2004/09/02 初版<br></p>
 </div>
 </body>
 </html>

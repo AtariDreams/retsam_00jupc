@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_242.s
- *@brief	�퓬�V�[�P���X
- *			�ł񂶂ӂ䂤�I��������b�Z�[�W�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			でんじふゆう終わったメッセージシーケンス
  *@author	HisashiSogabe
  *@data		2006.05.04
  *
@@ -18,6 +18,6 @@ SUB_242:
 	MESSAGE		DenzihuyuuEndMineMsg,TAG_NICK,SIDE_WORK
 	SERVER_WAIT
 	WAIT		MSG_WAIT
-	//�ł񂶂ӂ䂤�t���O�𗎂Ƃ�
+	//でんじふゆうフラグを落とす
 	PSP_VALUE	VAL_NBIT,SIDE_WORK,ID_PSP_waza_kouka,WAZAKOUKA_DENZIHUYUU
 	SEQ_END

@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	poke_tool.h
- * @bfief	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^ƒc[ƒ‹ŒS
+ * @bfief	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ„ãƒ¼ãƒ«éƒ¡
  * @author	HisashiSogabe
  * @date	05.05.31
  */
@@ -11,105 +11,105 @@
 #ifndef	__POKE_TOOL_H_
 #define	__POKE_TOOL_H_
 
-//	PokeGraArcDataGet‚Ìˆø”‚Ìdefine’è‹`iPOKEMON_PARAM‚ÌID_PARA_sex‚É“ü‚Á‚Ä‚¢‚é«•Ê’è‹`j
-#define	PARA_MALE		(0)		///<ƒIƒX
-#define	PARA_FEMALE		(1)		///<ƒƒX
-#define	PARA_UNK		(2)		///<«•Ê‚È‚µ
+//	PokeGraArcDataGetã®å¼•æ•°ã®defineå®šç¾©ï¼ˆPOKEMON_PARAMã®ID_PARA_sexã«å…¥ã£ã¦ã„ã‚‹æ€§åˆ¥å®šç¾©ï¼‰
+#define	PARA_MALE		(0)		///<ã‚ªã‚¹
+#define	PARA_FEMALE		(1)		///<ãƒ¡ã‚¹
+#define	PARA_UNK		(2)		///<æ€§åˆ¥ãªã—
 
-#define	PARA_BACK		(0)		///<”w–Ê
-#define	PARA_FRONT		(2)		///<³–Ê
+#define	PARA_BACK		(0)		///<èƒŒé¢
+#define	PARA_FRONT		(2)		///<æ­£é¢
 
-#define	PARA_NORMAL		(0)		///<ƒm[ƒ}ƒ‹ƒJƒ‰[
-#define	PARA_RARE		(1)		///<ƒŒƒAƒJƒ‰[
+#define	PARA_NORMAL		(0)		///<ãƒãƒ¼ãƒãƒ«ã‚«ãƒ©ãƒ¼
+#define	PARA_RARE		(1)		///<ãƒ¬ã‚¢ã‚«ãƒ©ãƒ¼
 
-//PokePrgAnmDataSet‚ÉŠÖ‚·‚é’è‹`
-#define	PARA_HFLIP_OFF	(0)		///<HFLIP‚È‚µ
-#define	PARA_HFLIP_ON	(1)		///<HFLIP‚ ‚è
+//PokePrgAnmDataSetã«é–¢ã™ã‚‹å®šç¾©
+#define	PARA_HFLIP_OFF	(0)		///<HFLIPãªã—
+#define	PARA_HFLIP_ON	(1)		///<HFLIPã‚ã‚Š
 
-//“w—Í’l‚ÉŠÖ‚·‚é’è‹`
-#define	PARA_EXP_TOTAL_MAX	(510)		//6ŒÂ‚Ìƒpƒ‰ƒ[ƒ^‚Ì‡Œv’l‚ÌMAX
-#define	PARA_EXP_ITEM_MAX	(100)		//ƒAƒCƒeƒ€‚Åã¸‚Å‚«‚éŒÀŠE’l
-#define	PARA_EXP_MAX		(255)		//6ŒÂ‚Ìƒpƒ‰ƒ[ƒ^‚ÌMAX
+//åŠªåŠ›å€¤ã«é–¢ã™ã‚‹å®šç¾©
+#define	PARA_EXP_TOTAL_MAX	(510)		//6å€‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åˆè¨ˆå€¤ã®MAX
+#define	PARA_EXP_ITEM_MAX	(100)		//ã‚¢ã‚¤ãƒ†ãƒ ã§ä¸Šæ˜‡ã§ãã‚‹é™ç•Œå€¤
+#define	PARA_EXP_MAX		(255)		//6å€‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®MAX
 
-// ƒ}[ƒLƒ“ƒO‚ÉŠÖ‚·‚é’è‹`
-#define POKEPARA_MARKING_ELEMS_MAX	(6)	///< ƒ}[ƒLƒ“ƒO‚Ég—p‚·‚é‹L†‚Ì‘”
+// ãƒãƒ¼ã‚­ãƒ³ã‚°ã«é–¢ã™ã‚‹å®šç¾©
+#define POKEPARA_MARKING_ELEMS_MAX	(6)	///< ãƒãƒ¼ã‚­ãƒ³ã‚°ã«ä½¿ç”¨ã™ã‚‹è¨˜å·ã®ç·æ•°
 
-// ‹ZŠo‚¦ƒe[ƒuƒ‹‚ÉŠÖ‚·‚é’è‹`
-#define LEVELUPWAZA_OBOE_MAX	( 44     )	///<i‹Z20ŒÂ{I’[ƒR[ƒh:1+4ƒoƒCƒg‹«ŠE•â³:1j* 2ƒoƒCƒg
+// æŠ€è¦šãˆãƒ†ãƒ¼ãƒ–ãƒ«ã«é–¢ã™ã‚‹å®šç¾©
+#define LEVELUPWAZA_OBOE_MAX	( 44     )	///<ï¼ˆæŠ€20å€‹ï¼‹çµ‚ç«¯ã‚³ãƒ¼ãƒ‰:1+4ãƒã‚¤ãƒˆå¢ƒç•Œè£œæ­£:1ï¼‰* 2ãƒã‚¤ãƒˆ
 #define LEVELUPWAZA_OBOE_END	( 0xffff )
 #define LEVELUPWAZA_LEVEL_MASK  ( 0xfe00 )
 #define LEVELUPWAZA_WAZA_MASK   ( 0x01ff )
 #define LEVELUPWAZA_LEVEL_SHIFT (      9 )
 
-//PokeItemSet‚Ìrangeˆø”’è‹`
-#define	ITEM_RANGE_NORMAL		(0)	//’ÊíŠm—¦
-#define	ITEM_RANGE_HUKUGAN		(1)	//“Á«‚Ó‚­‚ª‚ñŒø‰ÊŠm—¦
+//PokeItemSetã®rangeå¼•æ•°å®šç¾©
+#define	ITEM_RANGE_NORMAL		(0)	//é€šå¸¸ç¢ºç‡
+#define	ITEM_RANGE_HUKUGAN		(1)	//ç‰¹æ€§ãµããŒã‚“åŠ¹æœç¢ºç‡
 
-//ƒoƒgƒ‹ƒ^ƒ[‚ÅŸ•‰‚ÉQ‰Á‚Å‚«‚È‚¢ƒ|ƒPƒ‚ƒ“‚Ìí—Ş”
+//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã§å‹è² ã«å‚åŠ ã§ããªã„ãƒã‚±ãƒ¢ãƒ³ã®ç¨®é¡æ•°
 #define BTOWER_EXPOKE_NUM	(18)
 
-//ƒ|ƒPƒ‚ƒ“‚Ì«Ši’è‹`
-#define POKE_PERSONALITY_GANBARIYA		(0)		//‚ª‚ñ‚Î‚è‚â
-#define POKE_PERSONALITY_SAMISHIGARI	(1)		//‚³‚İ‚µ‚ª‚è
-#define POKE_PERSONALITY_YUUKAN			(2)		//‚ä‚¤‚©‚ñ
-#define POKE_PERSONALITY_IJIPPARI		(3)		//‚¢‚¶‚Á‚Ï‚è
-#define POKE_PERSONALITY_YANTYA			(4)		//‚â‚ñ‚¿‚á
-#define POKE_PERSONALITY_ZUBUTOI		(5)		//‚¸‚Ô‚Æ‚¢
-#define POKE_PERSONALITY_SUNAO			(6)		//‚·‚È‚¨
-#define POKE_PERSONALITY_NONKI			(7)		//‚Ì‚ñ‚«
-#define POKE_PERSONALITY_WANPAKU		(8)		//‚í‚ñ‚Ï‚­
-#define POKE_PERSONALITY_NOUTENKI		(9)		//‚Ì‚¤‚Ä‚ñ‚«
-#define POKE_PERSONALITY_OKUBYOU		(10)	//‚¨‚­‚Ñ‚å‚¤
-#define POKE_PERSONALITY_SEKKATI		(11)	//‚¹‚Á‚©‚¿
-#define POKE_PERSONALITY_MAJIME			(12)	//‚Ü‚¶‚ß
-#define POKE_PERSONALITY_YOUKI			(13)	//‚æ‚¤‚«
-#define POKE_PERSONALITY_MUJYAKI		(14)	//‚Ş‚¶‚á‚«
-#define POKE_PERSONALITY_HIKAEME		(15)	//‚Ğ‚©‚¦‚ß
-#define POKE_PERSONALITY_OTTORI			(16)	//‚¨‚Á‚Æ‚è
-#define POKE_PERSONALITY_REISEI			(17)	//‚ê‚¢‚¹‚¢
-#define POKE_PERSONALITY_TEREYA			(18)	//‚Ä‚ê‚â
-#define POKE_PERSONALITY_UKKARIYA		(19)	//‚¤‚Á‚©‚è‚â
-#define POKE_PERSONALITY_ODAYAKA		(20)	//‚¨‚¾‚â‚©
-#define POKE_PERSONALITY_OTONASHII		(21)	//‚¨‚Æ‚È‚µ‚¢
-#define POKE_PERSONALITY_NAMAIKI		(22)	//‚È‚Ü‚¢‚«
-#define POKE_PERSONALITY_SINTYOU		(23)	//‚µ‚ñ‚¿‚å‚¤
-#define POKE_PERSONALITY_KIMAGURE		(24)	//‚«‚Ü‚®‚ê
+//ãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼å®šç¾©
+#define POKE_PERSONALITY_GANBARIYA		(0)		//ãŒã‚“ã°ã‚Šã‚„
+#define POKE_PERSONALITY_SAMISHIGARI	(1)		//ã•ã¿ã—ãŒã‚Š
+#define POKE_PERSONALITY_YUUKAN			(2)		//ã‚†ã†ã‹ã‚“
+#define POKE_PERSONALITY_IJIPPARI		(3)		//ã„ã˜ã£ã±ã‚Š
+#define POKE_PERSONALITY_YANTYA			(4)		//ã‚„ã‚“ã¡ã‚ƒ
+#define POKE_PERSONALITY_ZUBUTOI		(5)		//ãšã¶ã¨ã„
+#define POKE_PERSONALITY_SUNAO			(6)		//ã™ãªãŠ
+#define POKE_PERSONALITY_NONKI			(7)		//ã®ã‚“ã
+#define POKE_PERSONALITY_WANPAKU		(8)		//ã‚ã‚“ã±ã
+#define POKE_PERSONALITY_NOUTENKI		(9)		//ã®ã†ã¦ã‚“ã
+#define POKE_PERSONALITY_OKUBYOU		(10)	//ãŠãã³ã‚‡ã†
+#define POKE_PERSONALITY_SEKKATI		(11)	//ã›ã£ã‹ã¡
+#define POKE_PERSONALITY_MAJIME			(12)	//ã¾ã˜ã‚
+#define POKE_PERSONALITY_YOUKI			(13)	//ã‚ˆã†ã
+#define POKE_PERSONALITY_MUJYAKI		(14)	//ã‚€ã˜ã‚ƒã
+#define POKE_PERSONALITY_HIKAEME		(15)	//ã²ã‹ãˆã‚
+#define POKE_PERSONALITY_OTTORI			(16)	//ãŠã£ã¨ã‚Š
+#define POKE_PERSONALITY_REISEI			(17)	//ã‚Œã„ã›ã„
+#define POKE_PERSONALITY_TEREYA			(18)	//ã¦ã‚Œã‚„
+#define POKE_PERSONALITY_UKKARIYA		(19)	//ã†ã£ã‹ã‚Šã‚„
+#define POKE_PERSONALITY_ODAYAKA		(20)	//ãŠã ã‚„ã‹
+#define POKE_PERSONALITY_OTONASHII		(21)	//ãŠã¨ãªã—ã„
+#define POKE_PERSONALITY_NAMAIKI		(22)	//ãªã¾ã„ã
+#define POKE_PERSONALITY_SINTYOU		(23)	//ã—ã‚“ã¡ã‚‡ã†
+#define POKE_PERSONALITY_KIMAGURE		(24)	//ãã¾ãã‚Œ
 
-#define	ID_PER_basic_hp		(0)		//Šî–{‚g‚o
-#define	ID_PER_basic_pow	(1)		//Šî–{UŒ‚—Í
-#define	ID_PER_basic_def	(2)		//Šî–{–hŒä—Í
-#define	ID_PER_basic_agi	(3)		//Šî–{‘f‘‚³
-#define	ID_PER_basic_spepow	(4)		//Šî–{“ÁêUŒ‚—Í
-#define	ID_PER_basic_spedef	(5)		//Šî–{“Áê–hŒä—Í
-#define	ID_PER_type1		(6)		//‘®«‚P
-#define	ID_PER_type2		(7)		//‘®«‚Q
-#define	ID_PER_get_rate		(8)		//•ßŠl—¦
-#define	ID_PER_give_exp		(9)		//‘¡—^ŒoŒ±’l
-#define	ID_PER_pains_hp		(10)	//‘¡—^“w—Í’l‚g‚o
-#define	ID_PER_pains_pow	(11)	//‘¡—^“w—Í’lUŒ‚—Í
-#define	ID_PER_pains_def	(12)	//‘¡—^“w—Í’l–hŒä—Í
-#define	ID_PER_pains_agi	(13)	//‘¡—^“w—Í’l‘f‘‚³
-#define	ID_PER_pains_spepow	(14)	//‘¡—^“w—Í’l“ÁêUŒ‚—Í
-#define	ID_PER_pains_spedef	(15)	//‘¡—^“w—Í’l“Áê–hŒä—Í
-#define	ID_PER_item1		(16)	//ƒAƒCƒeƒ€‚P
-#define	ID_PER_item2		(17)	//ƒAƒCƒeƒ€‚Q
-#define	ID_PER_sex			(18)	//«•ÊƒxƒNƒgƒ‹
-#define	ID_PER_egg_birth	(19)	//ƒ^ƒ}ƒS‚Ì›z‰»•à”
-#define	ID_PER_friend		(20)	//‚È‚Â‚«“x‰Šú’l
-#define	ID_PER_grow			(21)	//¬’·‹Èü¯•Ê
-#define	ID_PER_egg_group1	(22)	//‚±‚Ã‚­‚èƒOƒ‹[ƒv1
-#define	ID_PER_egg_group2	(23)	//‚±‚Ã‚­‚èƒOƒ‹[ƒv2
-#define	ID_PER_speabi1		(24)	//“Áê”\—Í‚P
-#define	ID_PER_speabi2		(25)	//“Áê”\—Í‚Q
-#define	ID_PER_escape		(26)	//“¦‚°‚é—¦
-#define	ID_PER_color		(27)	//Fi}ŠÓ‚Åg—pj
-#define	ID_PER_reverse		(28)	//”½“]ƒtƒ‰ƒO
-#define	ID_PER_machine1		(29)	//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚P
-#define	ID_PER_machine2		(30)	//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚Q
-#define	ID_PER_machine3		(31)	//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚R
-#define	ID_PER_machine4		(32)	//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚S
+#define	ID_PER_basic_hp		(0)		//åŸºæœ¬ï¼¨ï¼°
+#define	ID_PER_basic_pow	(1)		//åŸºæœ¬æ”»æ’ƒåŠ›
+#define	ID_PER_basic_def	(2)		//åŸºæœ¬é˜²å¾¡åŠ›
+#define	ID_PER_basic_agi	(3)		//åŸºæœ¬ç´ æ—©ã•
+#define	ID_PER_basic_spepow	(4)		//åŸºæœ¬ç‰¹æ®Šæ”»æ’ƒåŠ›
+#define	ID_PER_basic_spedef	(5)		//åŸºæœ¬ç‰¹æ®Šé˜²å¾¡åŠ›
+#define	ID_PER_type1		(6)		//å±æ€§ï¼‘
+#define	ID_PER_type2		(7)		//å±æ€§ï¼’
+#define	ID_PER_get_rate		(8)		//æ•ç²ç‡
+#define	ID_PER_give_exp		(9)		//è´ˆä¸çµŒé¨“å€¤
+#define	ID_PER_pains_hp		(10)	//è´ˆä¸åŠªåŠ›å€¤ï¼¨ï¼°
+#define	ID_PER_pains_pow	(11)	//è´ˆä¸åŠªåŠ›å€¤æ”»æ’ƒåŠ›
+#define	ID_PER_pains_def	(12)	//è´ˆä¸åŠªåŠ›å€¤é˜²å¾¡åŠ›
+#define	ID_PER_pains_agi	(13)	//è´ˆä¸åŠªåŠ›å€¤ç´ æ—©ã•
+#define	ID_PER_pains_spepow	(14)	//è´ˆä¸åŠªåŠ›å€¤ç‰¹æ®Šæ”»æ’ƒåŠ›
+#define	ID_PER_pains_spedef	(15)	//è´ˆä¸åŠªåŠ›å€¤ç‰¹æ®Šé˜²å¾¡åŠ›
+#define	ID_PER_item1		(16)	//ã‚¢ã‚¤ãƒ†ãƒ ï¼‘
+#define	ID_PER_item2		(17)	//ã‚¢ã‚¤ãƒ†ãƒ ï¼’
+#define	ID_PER_sex			(18)	//æ€§åˆ¥ãƒ™ã‚¯ãƒˆãƒ«
+#define	ID_PER_egg_birth	(19)	//ã‚¿ãƒã‚´ã®å­µåŒ–æ­©æ•°
+#define	ID_PER_friend		(20)	//ãªã¤ãåº¦åˆæœŸå€¤
+#define	ID_PER_grow			(21)	//æˆé•·æ›²ç·šè­˜åˆ¥
+#define	ID_PER_egg_group1	(22)	//ã“ã¥ãã‚Šã‚°ãƒ«ãƒ¼ãƒ—1
+#define	ID_PER_egg_group2	(23)	//ã“ã¥ãã‚Šã‚°ãƒ«ãƒ¼ãƒ—2
+#define	ID_PER_speabi1		(24)	//ç‰¹æ®Šèƒ½åŠ›ï¼‘
+#define	ID_PER_speabi2		(25)	//ç‰¹æ®Šèƒ½åŠ›ï¼’
+#define	ID_PER_escape		(26)	//é€ƒã’ã‚‹ç‡
+#define	ID_PER_color		(27)	//è‰²ï¼ˆå›³é‘‘ã§ä½¿ç”¨ï¼‰
+#define	ID_PER_reverse		(28)	//åè»¢ãƒ•ãƒ©ã‚°
+#define	ID_PER_machine1		(29)	//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼‘
+#define	ID_PER_machine2		(30)	//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼’
+#define	ID_PER_machine3		(31)	//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼“
+#define	ID_PER_machine4		(32)	//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼”
 
-//ƒAƒZƒ“ƒuƒ‰‚Åinclude‚³‚ê‚Ä‚¢‚éê‡‚ÍA‰º‚ÌéŒ¾‚ğ–³‹‚Å‚«‚é‚æ‚¤‚Éifndef‚ÅˆÍ‚ñ‚Å‚ ‚é
+//ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§includeã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€ä¸‹ã®å®£è¨€ã‚’ç„¡è¦–ã§ãã‚‹ã‚ˆã†ã«ifndefã§å›²ã‚“ã§ã‚ã‚‹
 #ifndef	__ASM_NO_DEF_
 
 #include	"system/arc_tool.h"
@@ -117,43 +117,43 @@
 #include	"system/softsprite.h"
 #include	"savedata/mystatus.h"
 
-//ƒ|ƒPƒ‚ƒ“ƒvƒƒOƒ‰ƒ€ƒAƒjƒ
+//ãƒã‚±ãƒ¢ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡
 typedef struct POKE_ANIME_SYS_tag * POKE_ANM_SYS_PTR;
 typedef struct PERAPVOICE PERAPVOICE;
 typedef struct _POKEPARTY POKEPARTY;
 
-//	•¶š—ñŠÖ˜A‚Ì’·‚³’è‹`
+//	æ–‡å­—åˆ—é–¢é€£ã®é•·ã•å®šç¾©
 #include "system/gamedata.h"
 
-//ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ÌF’è‹`
+//ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã®è‰²å®šç¾©
 enum{
-	COLOR_RED=0,		//Ô
-	COLOR_BLUE,			//Â
-	COLOR_YELLOW,		//‰©
-	COLOR_GREEN,		//—Î
-	COLOR_BLACK,		//•
-	COLOR_BROWN,		//’ƒ
-	COLOR_PERPLE,		//‡
-	COLOR_GRAY,			//ŠD
-	COLOR_WHITE,		//”’
-	COLOR_PINK,			//“
+	COLOR_RED=0,		//èµ¤
+	COLOR_BLUE,			//é’
+	COLOR_YELLOW,		//é»„
+	COLOR_GREEN,		//ç·‘
+	COLOR_BLACK,		//é»’
+	COLOR_BROWN,		//èŒ¶
+	COLOR_PERPLE,		//ç´«
+	COLOR_GRAY,			//ç°
+	COLOR_WHITE,		//ç™½
+	COLOR_PINK,			//æ¡ƒ
 };
 
-//‚È‚Â‚«ŒvZ
+//ãªã¤ãè¨ˆç®—
 enum{
-	FRIEND_LEVELUP=0,		//ƒŒƒxƒ‹ƒAƒbƒv
-	FRIEND_PARAEXP_ITEM,	//“w—Í’lƒAƒCƒeƒ€	
-	FRIEND_BATTLE_ITEM,		//í“¬’†ƒAƒCƒeƒ€
-	FRIEND_BOSS_BATTLE,		//ƒ{ƒXí“¬	
-	FRIEND_WAZA_MACHINE,	//‹Zƒ}ƒVƒ“g—p
-	FRIEND_TSUREARUKI,		//˜A‚ê•à‚«	
-	FRIEND_HINSHI,			//•m€
-	FRIEND_DOKU_HINSHI,		//“Å‚É‚æ‚é•m€
-	FRIEND_LEVEL30_HINSHI,	//ƒŒƒxƒ‹·30ˆÈã‚Ì•m€
-	FRIEND_CONTEST_VICTORY,	//ƒRƒ“ƒeƒXƒg—DŸ
+	FRIEND_LEVELUP=0,		//ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
+	FRIEND_PARAEXP_ITEM,	//åŠªåŠ›å€¤ã‚¢ã‚¤ãƒ†ãƒ 	
+	FRIEND_BATTLE_ITEM,		//æˆ¦é—˜ä¸­ã‚¢ã‚¤ãƒ†ãƒ 
+	FRIEND_BOSS_BATTLE,		//ãƒœã‚¹æˆ¦é—˜	
+	FRIEND_WAZA_MACHINE,	//æŠ€ãƒã‚·ãƒ³ä½¿ç”¨
+	FRIEND_TSUREARUKI,		//é€£ã‚Œæ­©ã	
+	FRIEND_HINSHI,			//ç€•æ­»
+	FRIEND_DOKU_HINSHI,		//æ¯’ã«ã‚ˆã‚‹ç€•æ­»
+	FRIEND_LEVEL30_HINSHI,	//ãƒ¬ãƒ™ãƒ«å·®30ä»¥ä¸Šã®ç€•æ­»
+	FRIEND_CONTEST_VICTORY,	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹
 };
 
-///<ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“•ª‚Ì\‘¢‘Ì
+///<ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³åˆ†ã®æ§‹é€ ä½“
 typedef struct pokemon_paso_param POKEMON_PASO_PARAM;
 typedef struct pokemon_paso_param1 POKEMON_PASO_PARAM1;
 typedef struct pokemon_paso_param2 POKEMON_PASO_PARAM2;
@@ -185,266 +185,266 @@ typedef struct pokemon_para_data44 POKEMON_PARA_DATA44;
 typedef struct pokemon_para_data45 POKEMON_PARA_DATA45;
 typedef struct pokemon_para_data46 POKEMON_PARA_DATA46;
 
-///<ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“•ªˆÈŠO‚Ì\‘¢‘Ì
+///<ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³åˆ†ä»¥å¤–ã®æ§‹é€ ä½“
 typedef struct pokemon_calc_param POKEMON_CALC_PARAM;
 
-///<è‚¿ƒ|ƒPƒ‚ƒ“‚Ì\‘¢‘Ì
+///<æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®æ§‹é€ ä½“
 typedef struct pokemon_param POKEMON_PARAM;
 
-///<ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^ƒf[ƒ^æ“¾‚Ì‚½‚ß‚ÌƒCƒ“ƒfƒbƒNƒX
+///<ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum{
-	ID_PARA_personal_rnd=0,						//ŒÂ«—”
+	ID_PARA_personal_rnd=0,						//å€‹æ€§ä¹±æ•°
 	ID_PARA_pp_fast_mode,						//
 	ID_PARA_ppp_fast_mode,						//
-	ID_PARA_fusei_tamago_flag,					//ƒ_ƒƒ^ƒ}ƒSƒtƒ‰ƒO
-	ID_PARA_checksum,							//ƒ`ƒFƒbƒNƒTƒ€
+	ID_PARA_fusei_tamago_flag,					//ãƒ€ãƒ¡ã‚¿ãƒã‚´ãƒ•ãƒ©ã‚°
+	ID_PARA_checksum,							//ãƒã‚§ãƒƒã‚¯ã‚µãƒ 
 
-	ID_PARA_monsno,								//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-	ID_PARA_item,								//ŠƒAƒCƒeƒ€ƒiƒ“ƒo[
+	ID_PARA_monsno,								//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	ID_PARA_item,								//æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
 	ID_PARA_id_no,								//IDNo
-	ID_PARA_exp,								//ŒoŒ±’l
-	ID_PARA_friend,								//‚È‚Â‚«“x
-	ID_PARA_speabino,							//“Áê”\—Í
-	ID_PARA_mark,								//ƒ|ƒPƒ‚ƒ“‚É‚Â‚¯‚éƒ}[ƒNiƒ{ƒbƒNƒXj
-	ID_PARA_country_code,						//‘ƒR[ƒh
-	ID_PARA_hp_exp,								//HP“w—Í’l
-	ID_PARA_pow_exp,							//UŒ‚—Í“w—Í’l
-	ID_PARA_def_exp,							//–hŒä—Í“w—Í’l
-	ID_PARA_agi_exp,							//‘f‘‚³“w—Í’l
-	ID_PARA_spepow_exp,							//“ÁU“w—Í’l
-	ID_PARA_spedef_exp,							//“Á–h“w—Í’l
-	ID_PARA_style,								//‚©‚Á‚±‚æ‚³
-	ID_PARA_beautiful,							//‚¤‚Â‚­‚µ‚³
-	ID_PARA_cute,								//‚©‚í‚¢‚³
-	ID_PARA_clever,								//‚©‚µ‚±‚³
-	ID_PARA_strong,								//‚½‚­‚Ü‚µ‚³
-	ID_PARA_fur,								//–Ñ‰
-	ID_PARA_sinou_champ_ribbon,					//ƒVƒ“ƒIƒEƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
-	ID_PARA_sinou_battle_tower_ttwin_first,		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜1‰ñ–Ú
-	ID_PARA_sinou_battle_tower_ttwin_second,	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜2‰ñ–Ú
-	ID_PARA_sinou_battle_tower_2vs2_win50,		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ_ƒuƒ‹50˜AŸ
-	ID_PARA_sinou_battle_tower_aimulti_win50,	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[AIƒ}ƒ‹ƒ`50˜AŸ
-	ID_PARA_sinou_battle_tower_siomulti_win50,	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[’ÊMƒ}ƒ‹ƒ`50˜AŸ
-	ID_PARA_sinou_battle_tower_wifi_rank5,		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[Wifiƒ‰ƒ“ƒN‚T“ü‚è
-	ID_PARA_sinou_syakki_ribbon,				//ƒVƒ“ƒIƒE‚µ‚á‚Á‚«ƒŠƒ{ƒ“
-	ID_PARA_sinou_dokki_ribbon,					//ƒVƒ“ƒIƒE‚Ç‚Á‚«ƒŠƒ{ƒ“
-	ID_PARA_sinou_syonbo_ribbon,				//ƒVƒ“ƒIƒE‚µ‚å‚ñ‚ÚƒŠƒ{ƒ“
-	ID_PARA_sinou_ukka_ribbon,					//ƒVƒ“ƒIƒE‚¤‚Á‚©ƒŠƒ{ƒ“
-	ID_PARA_sinou_sukki_ribbon,					//ƒVƒ“ƒIƒE‚·‚Á‚«ƒŠƒ{ƒ“
-	ID_PARA_sinou_gussu_ribbon,					//ƒVƒ“ƒIƒE‚®‚Á‚·ƒŠƒ{ƒ“
-	ID_PARA_sinou_nikko_ribbon,					//ƒVƒ“ƒIƒE‚É‚Á‚±ƒŠƒ{ƒ“
-	ID_PARA_sinou_gorgeous_ribbon,				//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒŠƒ{ƒ“
-	ID_PARA_sinou_royal_ribbon,					//ƒVƒ“ƒIƒEƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-	ID_PARA_sinou_gorgeousroyal_ribbon,			//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-	ID_PARA_sinou_ashiato_ribbon,				//ƒVƒ“ƒIƒE‚ ‚µ‚ ‚ÆƒŠƒ{ƒ“
-	ID_PARA_sinou_record_ribbon,				//ƒVƒ“ƒIƒEƒŒƒR[ƒhƒŠƒ{ƒ“
-	ID_PARA_sinou_history_ribbon,				//ƒVƒ“ƒIƒEƒqƒXƒgƒŠ[ƒŠƒ{ƒ“
-	ID_PARA_sinou_legend_ribbon,				//ƒVƒ“ƒIƒEƒŒƒWƒFƒ“ƒhƒŠƒ{ƒ“
-	ID_PARA_sinou_red_ribbon,					//ƒVƒ“ƒIƒEƒŒƒbƒhƒŠƒ{ƒ“
-	ID_PARA_sinou_green_ribbon,					//ƒVƒ“ƒIƒEƒOƒŠ[ƒ“ƒŠƒ{ƒ“
-	ID_PARA_sinou_blue_ribbon,					//ƒVƒ“ƒIƒEƒuƒ‹[ƒŠƒ{ƒ“
-	ID_PARA_sinou_festival_ribbon,				//ƒVƒ“ƒIƒEƒtƒFƒXƒeƒBƒoƒ‹ƒŠƒ{ƒ“
-	ID_PARA_sinou_carnival_ribbon,				//ƒVƒ“ƒIƒEƒJ[ƒjƒoƒ‹ƒŠƒ{ƒ“
-	ID_PARA_sinou_classic_ribbon,				//ƒVƒ“ƒIƒEƒNƒ‰ƒVƒbƒNƒŠƒ{ƒ“
-	ID_PARA_sinou_premiere_ribbon,				//ƒVƒ“ƒIƒEƒvƒŒƒ~ƒAƒŠƒ{ƒ“
-	ID_PARA_sinou_amari_ribbon,					//‚ ‚Ü‚è
+	ID_PARA_exp,								//çµŒé¨“å€¤
+	ID_PARA_friend,								//ãªã¤ãåº¦
+	ID_PARA_speabino,							//ç‰¹æ®Šèƒ½åŠ›
+	ID_PARA_mark,								//ãƒã‚±ãƒ¢ãƒ³ã«ã¤ã‘ã‚‹ãƒãƒ¼ã‚¯ï¼ˆãƒœãƒƒã‚¯ã‚¹ï¼‰
+	ID_PARA_country_code,						//å›½ã‚³ãƒ¼ãƒ‰
+	ID_PARA_hp_exp,								//HPåŠªåŠ›å€¤
+	ID_PARA_pow_exp,							//æ”»æ’ƒåŠ›åŠªåŠ›å€¤
+	ID_PARA_def_exp,							//é˜²å¾¡åŠ›åŠªåŠ›å€¤
+	ID_PARA_agi_exp,							//ç´ æ—©ã•åŠªåŠ›å€¤
+	ID_PARA_spepow_exp,							//ç‰¹æ”»åŠªåŠ›å€¤
+	ID_PARA_spedef_exp,							//ç‰¹é˜²åŠªåŠ›å€¤
+	ID_PARA_style,								//ã‹ã£ã“ã‚ˆã•
+	ID_PARA_beautiful,							//ã†ã¤ãã—ã•
+	ID_PARA_cute,								//ã‹ã‚ã„ã•
+	ID_PARA_clever,								//ã‹ã—ã“ã•
+	ID_PARA_strong,								//ãŸãã¾ã—ã•
+	ID_PARA_fur,								//æ¯›è‰¶
+	ID_PARA_sinou_champ_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
+	ID_PARA_sinou_battle_tower_ttwin_first,		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©1å›ç›®
+	ID_PARA_sinou_battle_tower_ttwin_second,	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©2å›ç›®
+	ID_PARA_sinou_battle_tower_2vs2_win50,		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ãƒ€ãƒ–ãƒ«50é€£å‹
+	ID_PARA_sinou_battle_tower_aimulti_win50,	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼AIãƒãƒ«ãƒ50é€£å‹
+	ID_PARA_sinou_battle_tower_siomulti_win50,	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒãƒ«ãƒ50é€£å‹
+	ID_PARA_sinou_battle_tower_wifi_rank5,		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼Wifiãƒ©ãƒ³ã‚¯ï¼•å…¥ã‚Š
+	ID_PARA_sinou_syakki_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚ƒã£ããƒªãƒœãƒ³
+	ID_PARA_sinou_dokki_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ã©ã£ããƒªãƒœãƒ³
+	ID_PARA_sinou_syonbo_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚‡ã‚“ã¼ãƒªãƒœãƒ³
+	ID_PARA_sinou_ukka_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ã†ã£ã‹ãƒªãƒœãƒ³
+	ID_PARA_sinou_sukki_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ã™ã£ããƒªãƒœãƒ³
+	ID_PARA_sinou_gussu_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ãã£ã™ãƒªãƒœãƒ³
+	ID_PARA_sinou_nikko_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ã«ã£ã“ãƒªãƒœãƒ³
+	ID_PARA_sinou_gorgeous_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒªãƒœãƒ³
+	ID_PARA_sinou_royal_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+	ID_PARA_sinou_gorgeousroyal_ribbon,			//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+	ID_PARA_sinou_ashiato_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ã‚ã—ã‚ã¨ãƒªãƒœãƒ³
+	ID_PARA_sinou_record_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒªãƒœãƒ³
+	ID_PARA_sinou_history_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ãƒ’ã‚¹ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+	ID_PARA_sinou_legend_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚¸ã‚§ãƒ³ãƒ‰ãƒªãƒœãƒ³
+	ID_PARA_sinou_red_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ãƒƒãƒ‰ãƒªãƒœãƒ³
+	ID_PARA_sinou_green_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ã‚°ãƒªãƒ¼ãƒ³ãƒªãƒœãƒ³
+	ID_PARA_sinou_blue_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ãƒ–ãƒ«ãƒ¼ãƒªãƒœãƒ³
+	ID_PARA_sinou_festival_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ãƒ•ã‚§ã‚¹ãƒ†ã‚£ãƒãƒ«ãƒªãƒœãƒ³
+	ID_PARA_sinou_carnival_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ã‚«ãƒ¼ãƒ‹ãƒãƒ«ãƒªãƒœãƒ³
+	ID_PARA_sinou_classic_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ã‚¯ãƒ©ã‚·ãƒƒã‚¯ãƒªãƒœãƒ³
+	ID_PARA_sinou_premiere_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ãƒ—ãƒ¬ãƒŸã‚¢ãƒªãƒœãƒ³
+	ID_PARA_sinou_amari_ribbon,					//ã‚ã¾ã‚Š
 
-	ID_PARA_waza1,								//Š‹Z1
-	ID_PARA_waza2,								//Š‹Z2
-	ID_PARA_waza3,								//Š‹Z3
-	ID_PARA_waza4,								//Š‹Z4
-	ID_PARA_pp1,								//Š‹ZPP1
-	ID_PARA_pp2,								//Š‹ZPP2
-	ID_PARA_pp3,								//Š‹ZPP3
-	ID_PARA_pp4,								//Š‹ZPP4
-	ID_PARA_pp_count1,							//Š‹ZPP_COUNT1
-	ID_PARA_pp_count2,							//Š‹ZPP_COUNT2
-	ID_PARA_pp_count3,							//Š‹ZPP_COUNT3
-	ID_PARA_pp_count4,							//Š‹ZPP_COUNT4
-	ID_PARA_pp_max1,							//Š‹ZPPMAX1
-	ID_PARA_pp_max2,							//Š‹ZPPMAX2
-	ID_PARA_pp_max3,							//Š‹ZPPMAX3
-	ID_PARA_pp_max4,							//Š‹ZPPMAX4
-	ID_PARA_hp_rnd,								//HP—”
-	ID_PARA_pow_rnd,							//UŒ‚—Í—”
-	ID_PARA_def_rnd,							//–hŒä—Í—”
-	ID_PARA_agi_rnd,							//‘f‘‚³—”
-	ID_PARA_spepow_rnd,							//“ÁU—”
-	ID_PARA_spedef_rnd,							//“Á–h—”
-	ID_PARA_tamago_flag,						//ƒ^ƒ}ƒSƒtƒ‰ƒO
-	ID_PARA_nickname_flag,						//ƒjƒbƒNƒl[ƒ€‚ğ‚Â‚¯‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	ID_PARA_stylemedal_normal,					//‚©‚Á‚±‚æ‚³ŒMÍ(ƒm[ƒ}ƒ‹)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_stylemedal_super,					//‚©‚Á‚±‚æ‚³ŒMÍ(ƒX[ƒp[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_stylemedal_hyper,					//‚©‚Á‚±‚æ‚³ŒMÍ(ƒnƒCƒp[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_stylemedal_master,					//‚©‚Á‚±‚æ‚³ŒMÍ(ƒ}ƒXƒ^[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_beautifulmedal_normal,				//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_beautifulmedal_super,				//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒX[ƒp[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_beautifulmedal_hyper,				//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒnƒCƒp[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_beautifulmedal_master,				//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_cutemedal_normal,					//‚©‚í‚¢‚³ŒMÍ(ƒm[ƒ}ƒ‹)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_cutemedal_super,					//‚©‚í‚¢‚³ŒMÍ(ƒX[ƒp[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_cutemedal_hyper,					//‚©‚í‚¢‚³ŒMÍ(ƒnƒCƒp[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_cutemedal_master,					//‚©‚í‚¢‚³ŒMÍ(ƒ}ƒXƒ^[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_clevermedal_normal,					//‚©‚µ‚±‚³ŒMÍ(ƒm[ƒ}ƒ‹)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_clevermedal_super,					//‚©‚µ‚±‚³ŒMÍ(ƒX[ƒp[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_clevermedal_hyper,					//‚©‚µ‚±‚³ŒMÍ(ƒnƒCƒp[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_clevermedal_master,					//‚©‚µ‚±‚³ŒMÍ(ƒ}ƒXƒ^[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_strongmedal_normal,					//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_strongmedal_super,					//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒX[ƒp[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_strongmedal_hyper,					//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒnƒCƒp[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_strongmedal_master,					//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)AGBƒRƒ“ƒeƒXƒg
-	ID_PARA_champ_ribbon,						//ƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
-	ID_PARA_winning_ribbon,						//ƒEƒBƒjƒ“ƒOƒŠƒ{ƒ“
-	ID_PARA_victory_ribbon,						//ƒrƒNƒgƒŠ[ƒŠƒ{ƒ“
-	ID_PARA_bromide_ribbon,						//ƒuƒƒ}ƒCƒhƒŠƒ{ƒ“
-	ID_PARA_ganba_ribbon,						//‚ª‚ñ‚ÎƒŠƒ{ƒ“
-	ID_PARA_marine_ribbon,						//ƒ}ƒŠƒ“ƒŠƒ{ƒ“
-	ID_PARA_land_ribbon,						//ƒ‰ƒ“ƒhƒŠƒ{ƒ“
-	ID_PARA_sky_ribbon,							//ƒXƒJƒCƒŠƒ{ƒ“
-	ID_PARA_country_ribbon,						//ƒJƒ“ƒgƒŠ[ƒŠƒ{ƒ“
-	ID_PARA_national_ribbon,					//ƒiƒVƒ‡ƒiƒ‹ƒŠƒ{ƒ“
-	ID_PARA_earth_ribbon,						//ƒA[ƒXƒŠƒ{ƒ“
-	ID_PARA_world_ribbon,						//ƒ[ƒ‹ƒhƒŠƒ{ƒ“
-	ID_PARA_event_get_flag,						//ƒCƒxƒ“ƒg‚Å”z•z‚³‚ê‚½‚±‚Æ‚ğ¦‚·ƒtƒ‰ƒO
-	ID_PARA_sex,								//«•Ê
-	ID_PARA_form_no,							//Œ`óƒiƒ“ƒo[iƒAƒ“ƒm[ƒ“AƒfƒIƒLƒVƒXAƒ~ƒmƒƒX‚È‚Ç—pj
-	ID_PARA_dummy_p2_1,							//‚ ‚Ü‚è
-	ID_PARA_dummy_p2_2,							//‚ ‚Ü‚è
-	ID_PARA_new_get_place,						//1eh	•ß‚Ü‚¦‚½êŠi‚È‚¼‚ÌêŠ‘Î‰—pj
-	ID_PARA_new_birth_place,					//20h	¶‚Ü‚ê‚½êŠi‚È‚¼‚ÌêŠ‘Î‰—pj
+	ID_PARA_waza1,								//æ‰€æŒæŠ€1
+	ID_PARA_waza2,								//æ‰€æŒæŠ€2
+	ID_PARA_waza3,								//æ‰€æŒæŠ€3
+	ID_PARA_waza4,								//æ‰€æŒæŠ€4
+	ID_PARA_pp1,								//æ‰€æŒæŠ€PP1
+	ID_PARA_pp2,								//æ‰€æŒæŠ€PP2
+	ID_PARA_pp3,								//æ‰€æŒæŠ€PP3
+	ID_PARA_pp4,								//æ‰€æŒæŠ€PP4
+	ID_PARA_pp_count1,							//æ‰€æŒæŠ€PP_COUNT1
+	ID_PARA_pp_count2,							//æ‰€æŒæŠ€PP_COUNT2
+	ID_PARA_pp_count3,							//æ‰€æŒæŠ€PP_COUNT3
+	ID_PARA_pp_count4,							//æ‰€æŒæŠ€PP_COUNT4
+	ID_PARA_pp_max1,							//æ‰€æŒæŠ€PPMAX1
+	ID_PARA_pp_max2,							//æ‰€æŒæŠ€PPMAX2
+	ID_PARA_pp_max3,							//æ‰€æŒæŠ€PPMAX3
+	ID_PARA_pp_max4,							//æ‰€æŒæŠ€PPMAX4
+	ID_PARA_hp_rnd,								//HPä¹±æ•°
+	ID_PARA_pow_rnd,							//æ”»æ’ƒåŠ›ä¹±æ•°
+	ID_PARA_def_rnd,							//é˜²å¾¡åŠ›ä¹±æ•°
+	ID_PARA_agi_rnd,							//ç´ æ—©ã•ä¹±æ•°
+	ID_PARA_spepow_rnd,							//ç‰¹æ”»ä¹±æ•°
+	ID_PARA_spedef_rnd,							//ç‰¹é˜²ä¹±æ•°
+	ID_PARA_tamago_flag,						//ã‚¿ãƒã‚´ãƒ•ãƒ©ã‚°
+	ID_PARA_nickname_flag,						//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ã¤ã‘ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	ID_PARA_stylemedal_normal,					//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_stylemedal_super,					//ã‹ã£ã“ã‚ˆã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_stylemedal_hyper,					//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_stylemedal_master,					//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_beautifulmedal_normal,				//ã†ã¤ãã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_beautifulmedal_super,				//ã†ã¤ãã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_beautifulmedal_hyper,				//ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_beautifulmedal_master,				//ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_cutemedal_normal,					//ã‹ã‚ã„ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_cutemedal_super,					//ã‹ã‚ã„ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_cutemedal_hyper,					//ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_cutemedal_master,					//ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_clevermedal_normal,					//ã‹ã—ã“ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_clevermedal_super,					//ã‹ã—ã“ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_clevermedal_hyper,					//ã‹ã—ã“ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_clevermedal_master,					//ã‹ã—ã“ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_strongmedal_normal,					//ãŸãã¾ã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_strongmedal_super,					//ãŸãã¾ã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_strongmedal_hyper,					//ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_strongmedal_master,					//ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	ID_PARA_champ_ribbon,						//ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
+	ID_PARA_winning_ribbon,						//ã‚¦ã‚£ãƒ‹ãƒ³ã‚°ãƒªãƒœãƒ³
+	ID_PARA_victory_ribbon,						//ãƒ“ã‚¯ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+	ID_PARA_bromide_ribbon,						//ãƒ–ãƒ­ãƒã‚¤ãƒ‰ãƒªãƒœãƒ³
+	ID_PARA_ganba_ribbon,						//ãŒã‚“ã°ãƒªãƒœãƒ³
+	ID_PARA_marine_ribbon,						//ãƒãƒªãƒ³ãƒªãƒœãƒ³
+	ID_PARA_land_ribbon,						//ãƒ©ãƒ³ãƒ‰ãƒªãƒœãƒ³
+	ID_PARA_sky_ribbon,							//ã‚¹ã‚«ã‚¤ãƒªãƒœãƒ³
+	ID_PARA_country_ribbon,						//ã‚«ãƒ³ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+	ID_PARA_national_ribbon,					//ãƒŠã‚·ãƒ§ãƒŠãƒ«ãƒªãƒœãƒ³
+	ID_PARA_earth_ribbon,						//ã‚¢ãƒ¼ã‚¹ãƒªãƒœãƒ³
+	ID_PARA_world_ribbon,						//ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒªãƒœãƒ³
+	ID_PARA_event_get_flag,						//ã‚¤ãƒ™ãƒ³ãƒˆã§é…å¸ƒã•ã‚ŒãŸã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°
+	ID_PARA_sex,								//æ€§åˆ¥
+	ID_PARA_form_no,							//å½¢çŠ¶ãƒŠãƒ³ãƒãƒ¼ï¼ˆã‚¢ãƒ³ãƒãƒ¼ãƒ³ã€ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã€ãƒŸãƒãƒ¡ã‚¹ãªã©ç”¨ï¼‰
+	ID_PARA_dummy_p2_1,							//ã‚ã¾ã‚Š
+	ID_PARA_dummy_p2_2,							//ã‚ã¾ã‚Š
+	ID_PARA_new_get_place,						//1eh	æ•ã¾ãˆãŸå ´æ‰€ï¼ˆãªãã®å ´æ‰€å¯¾å¿œç”¨ï¼‰
+	ID_PARA_new_birth_place,					//20h	ç”Ÿã¾ã‚ŒãŸå ´æ‰€ï¼ˆãªãã®å ´æ‰€å¯¾å¿œç”¨ï¼‰
 
-	ID_PARA_nickname,							//ƒjƒbƒNƒl[ƒ€
-	ID_PARA_nickname_code_flag,					//ƒjƒbƒNƒl[ƒ€iSTRCODEg—p,nickname_flag‚àƒIƒ“‚É‚·‚éj
-	ID_PARA_nickname_buf,						//ƒjƒbƒNƒl[ƒ€iSTRBUFg—pj
-	ID_PARA_nickname_buf_flag,					//ƒjƒbƒNƒl[ƒ€iSTRBUFg—p,nickname_flag‚àƒIƒ“‚É‚·‚éj
-	ID_PARA_pref_code,							//“s“¹•{Œ§ƒR[ƒh
-	ID_PARA_get_cassette,						//•ß‚Ü‚¦‚½ƒJƒZƒbƒgiƒJƒ‰[ƒo[ƒWƒ‡ƒ“j
-	ID_PARA_trial_stylemedal_normal,			//‚©‚Á‚±‚æ‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_stylemedal_super,				//‚©‚Á‚±‚æ‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_stylemedal_hyper,				//‚©‚Á‚±‚æ‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_stylemedal_master,			//‚©‚Á‚±‚æ‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_beautifulmedal_normal,		//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_beautifulmedal_super,			//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_beautifulmedal_hyper,			//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_beautifulmedal_master,		//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_cutemedal_normal,				//‚©‚í‚¢‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_cutemedal_super,				//‚©‚í‚¢‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_cutemedal_hyper,				//‚©‚í‚¢‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_cutemedal_master,				//‚©‚í‚¢‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_clevermedal_normal,			//‚©‚µ‚±‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_clevermedal_super,			//‚©‚µ‚±‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_clevermedal_hyper,			//‚©‚µ‚±‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_clevermedal_master,			//‚©‚µ‚±‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_strongmedal_normal,			//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_strongmedal_super,			//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_strongmedal_hyper,			//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_strongmedal_master,			//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_amari_ribbon,						//—]‚èƒŠƒ{ƒ“
+	ID_PARA_nickname,							//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+	ID_PARA_nickname_code_flag,					//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼ˆSTRCODEä½¿ç”¨,nickname_flagã‚‚ã‚ªãƒ³ã«ã™ã‚‹ï¼‰
+	ID_PARA_nickname_buf,						//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼ˆSTRBUFä½¿ç”¨ï¼‰
+	ID_PARA_nickname_buf_flag,					//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼ˆSTRBUFä½¿ç”¨,nickname_flagã‚‚ã‚ªãƒ³ã«ã™ã‚‹ï¼‰
+	ID_PARA_pref_code,							//éƒ½é“åºœçœŒã‚³ãƒ¼ãƒ‰
+	ID_PARA_get_cassette,						//æ•ã¾ãˆãŸã‚«ã‚»ãƒƒãƒˆï¼ˆã‚«ãƒ©ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼‰
+	ID_PARA_trial_stylemedal_normal,			//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_stylemedal_super,				//ã‹ã£ã“ã‚ˆã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_stylemedal_hyper,				//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_stylemedal_master,			//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_beautifulmedal_normal,		//ã†ã¤ãã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_beautifulmedal_super,			//ã†ã¤ãã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_beautifulmedal_hyper,			//ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_beautifulmedal_master,		//ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_cutemedal_normal,				//ã‹ã‚ã„ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_cutemedal_super,				//ã‹ã‚ã„ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_cutemedal_hyper,				//ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_cutemedal_master,				//ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_clevermedal_normal,			//ã‹ã—ã“ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_clevermedal_super,			//ã‹ã—ã“ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_clevermedal_hyper,			//ã‹ã—ã“ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_clevermedal_master,			//ã‹ã—ã“ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_strongmedal_normal,			//ãŸãã¾ã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_strongmedal_super,			//ãŸãã¾ã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_strongmedal_hyper,			//ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_strongmedal_master,			//ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_amari_ribbon,						//ä½™ã‚Šãƒªãƒœãƒ³
 
-	ID_PARA_oyaname,							//e‚Ì–¼‘O
-	ID_PARA_oyaname_buf,						//e‚Ì–¼‘OiSTRBUFg—pj
-	ID_PARA_get_year,							//•ß‚Ü‚¦‚½”N
-	ID_PARA_get_month,							//•ß‚Ü‚¦‚½Œ
-	ID_PARA_get_day,							//•ß‚Ü‚¦‚½“ú
-	ID_PARA_birth_year,							//¶‚Ü‚ê‚½”N
-	ID_PARA_birth_month,						//¶‚Ü‚ê‚½Œ
-	ID_PARA_birth_day,							//¶‚Ü‚ê‚½“ú
-	ID_PARA_get_place,							//•ß‚Ü‚¦‚½êŠ
-	ID_PARA_birth_place,						//¶‚Ü‚ê‚½êŠ
-	ID_PARA_pokerus,							//ƒ|ƒPƒ‹ƒX
-	ID_PARA_get_ball,							//•ß‚Ü‚¦‚½ƒ{[ƒ‹
-	ID_PARA_get_level,							//•ß‚Ü‚¦‚½ƒŒƒxƒ‹
-	ID_PARA_oyasex,								//e‚Ì«•Ê
-	ID_PARA_get_ground_id,						//•ß‚Ü‚¦‚½êŠ‚Ì’nŒ`ƒAƒgƒŠƒrƒ…[ƒgiƒ~ƒmƒbƒ`—pj
-	ID_PARA_dummy_p4_1,							//‚ ‚Ü‚è
+	ID_PARA_oyaname,							//è¦ªã®åå‰
+	ID_PARA_oyaname_buf,						//è¦ªã®åå‰ï¼ˆSTRBUFä½¿ç”¨ï¼‰
+	ID_PARA_get_year,							//æ•ã¾ãˆãŸå¹´
+	ID_PARA_get_month,							//æ•ã¾ãˆãŸæœˆ
+	ID_PARA_get_day,							//æ•ã¾ãˆãŸæ—¥
+	ID_PARA_birth_year,							//ç”Ÿã¾ã‚ŒãŸå¹´
+	ID_PARA_birth_month,						//ç”Ÿã¾ã‚ŒãŸæœˆ
+	ID_PARA_birth_day,							//ç”Ÿã¾ã‚ŒãŸæ—¥
+	ID_PARA_get_place,							//æ•ã¾ãˆãŸå ´æ‰€
+	ID_PARA_birth_place,						//ç”Ÿã¾ã‚ŒãŸå ´æ‰€
+	ID_PARA_pokerus,							//ãƒã‚±ãƒ«ã‚¹
+	ID_PARA_get_ball,							//æ•ã¾ãˆãŸãƒœãƒ¼ãƒ«
+	ID_PARA_get_level,							//æ•ã¾ãˆãŸãƒ¬ãƒ™ãƒ«
+	ID_PARA_oyasex,								//è¦ªã®æ€§åˆ¥
+	ID_PARA_get_ground_id,						//æ•ã¾ãˆãŸå ´æ‰€ã®åœ°å½¢ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼ˆãƒŸãƒãƒƒãƒç”¨ï¼‰
+	ID_PARA_dummy_p4_1,							//ã‚ã¾ã‚Š
 
-	ID_PARA_condition,							//ƒRƒ“ƒfƒBƒVƒ‡ƒ“
-	ID_PARA_level,								//ƒŒƒxƒ‹
-	ID_PARA_cb_id,								//ƒJƒXƒ^ƒ€ƒ{[ƒ‹ID
+	ID_PARA_condition,							//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³
+	ID_PARA_level,								//ãƒ¬ãƒ™ãƒ«
+	ID_PARA_cb_id,								//ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ID
 	ID_PARA_hp,									//HP
 	ID_PARA_hpmax,								//HPMAX
-	ID_PARA_pow,								//UŒ‚—Í
-	ID_PARA_def,								//–hŒä—Í
-	ID_PARA_agi,								//‘f‘‚³
-	ID_PARA_spepow,								//“ÁU
-	ID_PARA_spedef,								//“Á–h
-	ID_PARA_mail_data,							//ƒ[ƒ‹ƒf[ƒ^
-	ID_PARA_cb_core,							//ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒf[ƒ^
+	ID_PARA_pow,								//æ”»æ’ƒåŠ›
+	ID_PARA_def,								//é˜²å¾¡åŠ›
+	ID_PARA_agi,								//ç´ æ—©ã•
+	ID_PARA_spepow,								//ç‰¹æ”»
+	ID_PARA_spedef,								//ç‰¹é˜²
+	ID_PARA_mail_data,							//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ID_PARA_cb_core,							//ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 	
-	ID_PARA_poke_exist,							//ƒ|ƒPƒ‚ƒ“‘¶İƒtƒ‰ƒO
-	ID_PARA_tamago_exist,						//ƒ^ƒ}ƒS‘¶İƒtƒ‰ƒO
+	ID_PARA_poke_exist,							//ãƒã‚±ãƒ¢ãƒ³å­˜åœ¨ãƒ•ãƒ©ã‚°
+	ID_PARA_tamago_exist,						//ã‚¿ãƒã‚´å­˜åœ¨ãƒ•ãƒ©ã‚°
 
-	ID_PARA_monsno_egg,							//ƒ^ƒ}ƒS‚©‚Ç‚¤‚©‚à“¯‚Éƒ`ƒFƒbƒN
+	ID_PARA_monsno_egg,							//ã‚¿ãƒã‚´ã‹ã©ã†ã‹ã‚‚åŒæ™‚ã«ãƒã‚§ãƒƒã‚¯
 
-	ID_PARA_power_rnd,							//ƒpƒ[—”‚ğu32‚Åˆµ‚¤
-	ID_PARA_nidoran_nickname,					//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ªƒjƒhƒ‰ƒ“‚Ì‚Énickname_flag‚ª—§‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	ID_PARA_power_rnd,							//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã‚’u32ã§æ‰±ã†
+	ID_PARA_nidoran_nickname,					//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ãŒãƒ‹ãƒ‰ãƒ©ãƒ³ã®æ™‚ã«nickname_flagãŒç«‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 
-	ID_PARA_type1,								//ƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒCƒv‚P‚ğæ“¾iƒAƒEƒXAƒ}ƒ‹ƒ`ƒ^ƒCƒvƒ`ƒFƒbƒN‚à‚ ‚èj
-	ID_PARA_type2,								//ƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒCƒv‚Q‚ğæ“¾iƒAƒEƒXAƒ}ƒ‹ƒ`ƒ^ƒCƒvƒ`ƒFƒbƒN‚à‚ ‚èj
+	ID_PARA_type1,								//ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ã‚¤ãƒ—ï¼‘ã‚’å–å¾—ï¼ˆã‚¢ã‚¦ã‚¹ã€ãƒãƒ«ãƒã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯ã‚‚ã‚ã‚Šï¼‰
+	ID_PARA_type2,								//ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ã‚¤ãƒ—ï¼’ã‚’å–å¾—ï¼ˆã‚¢ã‚¦ã‚¹ã€ãƒãƒ«ãƒã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯ã‚‚ã‚ã‚Šï¼‰
 
-	ID_PARA_default_name,						//ƒ|ƒPƒ‚ƒ“‚ÌƒfƒtƒHƒ‹ƒg–¼
+	ID_PARA_default_name,						//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå
 
-	ID_PARA_end									//ƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á‚·‚é‚Æ‚«‚ÍA‚±‚±‚©‚çã‚É’Ç‰Á
+	ID_PARA_end									//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹ã¨ãã¯ã€ã“ã“ã‹ã‚‰ä¸Šã«è¿½åŠ 
 };
 
-///<ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚Ì\‘¢‘Ì
+///<ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ§‹é€ ä½“
 typedef struct pokemon_personal_data POKEMON_PERSONAL_DATA;
 
-///<ƒAƒZƒ“ƒuƒ‰ƒ\[ƒX‚©‚ç‚à—˜—p‚³‚ê‚é‚æ‚¤‚É‚È‚Á‚½‚Ì‚ÅAdefine’è‹`‚É•ÏX
+///<ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚‚åˆ©ç”¨ã•ã‚Œã‚‹ã‚ˆã†ã«ãªã£ãŸã®ã§ã€defineå®šç¾©ã«å¤‰æ›´
 #if 0
-///<ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹ƒf[ƒ^æ“¾‚Ì‚½‚ß‚ÌƒCƒ“ƒfƒbƒNƒX
+///<ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum{
-	ID_PER_basic_hp=0,			//Šî–{‚g‚o
-	ID_PER_basic_pow,			//Šî–{UŒ‚—Í
-	ID_PER_basic_def,			//Šî–{–hŒä—Í
-	ID_PER_basic_agi,			//Šî–{‘f‘‚³
-	ID_PER_basic_spepow,		//Šî–{“ÁêUŒ‚—Í
-	ID_PER_basic_spedef,		//Šî–{“Áê–hŒä—Í
-	ID_PER_type1,				//‘®«‚P
-	ID_PER_type2,				//‘®«‚Q
-	ID_PER_get_rate,			//•ßŠl—¦
-	ID_PER_give_exp,			//‘¡—^ŒoŒ±’l
-	ID_PER_pains_hp,			//‘¡—^“w—Í’l‚g‚o
-	ID_PER_pains_pow,			//‘¡—^“w—Í’lUŒ‚—Í
-	ID_PER_pains_def,			//‘¡—^“w—Í’l–hŒä—Í
-	ID_PER_pains_agi,			//‘¡—^“w—Í’l‘f‘‚³
-	ID_PER_pains_spepow,		//‘¡—^“w—Í’l“ÁêUŒ‚—Í
-	ID_PER_pains_spedef,		//‘¡—^“w—Í’l“Áê–hŒä—Í
-	ID_PER_item1,				//ƒAƒCƒeƒ€‚P
-	ID_PER_item2,				//ƒAƒCƒeƒ€‚Q
-	ID_PER_sex,					//«•ÊƒxƒNƒgƒ‹
-	ID_PER_egg_birth,			//ƒ^ƒ}ƒS‚Ì›z‰»•à”
-	ID_PER_friend,				//‚È‚Â‚«“x‰Šú’l
-	ID_PER_grow,				//¬’·‹Èü¯•Ê
-	ID_PER_egg_group1,			//‚±‚Ã‚­‚èƒOƒ‹[ƒv1
-	ID_PER_egg_group2,			//‚±‚Ã‚­‚èƒOƒ‹[ƒv2
-	ID_PER_speabi1,				//“Áê”\—Í‚P
-	ID_PER_speabi2,				//“Áê”\—Í‚Q
-	ID_PER_escape,				//“¦‚°‚é—¦
-	ID_PER_color,				//Fi}ŠÓ‚Åg—pj
-	ID_PER_reverse,				//”½“]ƒtƒ‰ƒO
-	ID_PER_machine1,			//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚P
-	ID_PER_machine2,			//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚Q
-	ID_PER_machine3,			//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚R
-	ID_PER_machine4				//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚S
+	ID_PER_basic_hp=0,			//åŸºæœ¬ï¼¨ï¼°
+	ID_PER_basic_pow,			//åŸºæœ¬æ”»æ’ƒåŠ›
+	ID_PER_basic_def,			//åŸºæœ¬é˜²å¾¡åŠ›
+	ID_PER_basic_agi,			//åŸºæœ¬ç´ æ—©ã•
+	ID_PER_basic_spepow,		//åŸºæœ¬ç‰¹æ®Šæ”»æ’ƒåŠ›
+	ID_PER_basic_spedef,		//åŸºæœ¬ç‰¹æ®Šé˜²å¾¡åŠ›
+	ID_PER_type1,				//å±æ€§ï¼‘
+	ID_PER_type2,				//å±æ€§ï¼’
+	ID_PER_get_rate,			//æ•ç²ç‡
+	ID_PER_give_exp,			//è´ˆä¸çµŒé¨“å€¤
+	ID_PER_pains_hp,			//è´ˆä¸åŠªåŠ›å€¤ï¼¨ï¼°
+	ID_PER_pains_pow,			//è´ˆä¸åŠªåŠ›å€¤æ”»æ’ƒåŠ›
+	ID_PER_pains_def,			//è´ˆä¸åŠªåŠ›å€¤é˜²å¾¡åŠ›
+	ID_PER_pains_agi,			//è´ˆä¸åŠªåŠ›å€¤ç´ æ—©ã•
+	ID_PER_pains_spepow,		//è´ˆä¸åŠªåŠ›å€¤ç‰¹æ®Šæ”»æ’ƒåŠ›
+	ID_PER_pains_spedef,		//è´ˆä¸åŠªåŠ›å€¤ç‰¹æ®Šé˜²å¾¡åŠ›
+	ID_PER_item1,				//ã‚¢ã‚¤ãƒ†ãƒ ï¼‘
+	ID_PER_item2,				//ã‚¢ã‚¤ãƒ†ãƒ ï¼’
+	ID_PER_sex,					//æ€§åˆ¥ãƒ™ã‚¯ãƒˆãƒ«
+	ID_PER_egg_birth,			//ã‚¿ãƒã‚´ã®å­µåŒ–æ­©æ•°
+	ID_PER_friend,				//ãªã¤ãåº¦åˆæœŸå€¤
+	ID_PER_grow,				//æˆé•·æ›²ç·šè­˜åˆ¥
+	ID_PER_egg_group1,			//ã“ã¥ãã‚Šã‚°ãƒ«ãƒ¼ãƒ—1
+	ID_PER_egg_group2,			//ã“ã¥ãã‚Šã‚°ãƒ«ãƒ¼ãƒ—2
+	ID_PER_speabi1,				//ç‰¹æ®Šèƒ½åŠ›ï¼‘
+	ID_PER_speabi2,				//ç‰¹æ®Šèƒ½åŠ›ï¼’
+	ID_PER_escape,				//é€ƒã’ã‚‹ç‡
+	ID_PER_color,				//è‰²ï¼ˆå›³é‘‘ã§ä½¿ç”¨ï¼‰
+	ID_PER_reverse,				//åè»¢ãƒ•ãƒ©ã‚°
+	ID_PER_machine1,			//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼‘
+	ID_PER_machine2,			//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼’
+	ID_PER_machine3,			//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼“
+	ID_PER_machine4				//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼”
 };
 #endif
 
-//	ƒ|ƒPƒ‚ƒ“‚Ì«•Ê’è‹`iƒp[ƒ\ƒiƒ‹ã‚ÌƒIƒXƒƒX”ä—¦j(1`253‚ÅƒIƒXƒƒX‚Ì”ä—¦‚ª•Ï‚í‚éj
-#define	MONS_MALE		(0)				///<ƒIƒX‚Ì‚İ
-#define	MONS_FEMALE		(254)			///<ƒƒX‚Ì‚İ
-#define	MONS_UNKNOWN	(255)			///<«•Ê‚È‚µ
+//	ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥å®šç¾©ï¼ˆãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ä¸Šã®ã‚ªã‚¹ãƒ¡ã‚¹æ¯”ç‡ï¼‰(1ã€œ253ã§ã‚ªã‚¹ãƒ¡ã‚¹ã®æ¯”ç‡ãŒå¤‰ã‚ã‚‹ï¼‰
+#define	MONS_MALE		(0)				///<ã‚ªã‚¹ã®ã¿
+#define	MONS_FEMALE		(254)			///<ãƒ¡ã‚¹ã®ã¿
+#define	MONS_UNKNOWN	(255)			///<æ€§åˆ¥ãªã—
 
-#define	POW_RND			(32)		//PokeParaSet‚ğg‚¤‚Æ‚«‚Éƒpƒ[—”‚ğƒ‰ƒ“ƒ_ƒ€‚Å‚Æ‚é‚½‚ß‚Ì’l
-#define	RND_NO_SET		(0)			//PokeParaSet‚ğg‚¤‚Æ‚«‚ÉŒÂ«—”‚ğƒ‰ƒ“ƒ_ƒ€‚ÅƒZƒbƒg‚·‚é‚½‚ß‚Ì’l
-#define	RND_SET			(1)			//PokeParaSet‚ğg‚¤‚Æ‚«‚ÉŒÂ«—”‚ğŒÅ’è’l‚ÅƒZƒbƒg‚·‚é‚½‚ß‚Ì’l
-#define	ID_NO_SET		(0)			//PokeParaSet‚ğg‚¤‚Æ‚«‚ÉID‚ğƒ‰ƒ“ƒ_ƒ€‚ÅƒZƒbƒg‚·‚é‚½‚ß‚Ì’l
-#define	ID_SET			(1)			//PokeParaSet‚ğg‚¤‚Æ‚«‚ÉID‚ğŒÅ’è’l‚ÅƒZƒbƒg‚·‚é‚½‚ß‚Ì’l
-#define	ID_NO_RARE		(2)			//PokeParaSet‚ğg‚¤‚Æ‚«‚ÉID‚ğŒÂ«—”‚Æ‚Ì‘g‚İ‡‚í‚¹‚ÅƒŒƒA‚ªo‚È‚¢‚æ‚¤‚É‚·‚é‚Ì’l
-#define	NO_WAZA_SET		(0xffff)	//‹Z‚ÌƒZƒbƒg‚ª‚Å‚«‚È‚©‚Á‚½‚Æ‚«‚Ì•Ô‚è’l
-#define	SAME_WAZA_SET	(0xfffe)	//‚·‚Å‚ÉŠo‚¦‚Ä‚¢‚½‹Z‚Ì‚Æ‚«‚Ì•Ô‚è’l
+#define	POW_RND			(32)		//PokeParaSetã‚’ä½¿ã†ã¨ãã«ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§ã¨ã‚‹ãŸã‚ã®å€¤
+#define	RND_NO_SET		(0)			//PokeParaSetã‚’ä½¿ã†ã¨ãã«å€‹æ€§ä¹±æ•°ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§ã‚»ãƒƒãƒˆã™ã‚‹ãŸã‚ã®å€¤
+#define	RND_SET			(1)			//PokeParaSetã‚’ä½¿ã†ã¨ãã«å€‹æ€§ä¹±æ•°ã‚’å›ºå®šå€¤ã§ã‚»ãƒƒãƒˆã™ã‚‹ãŸã‚ã®å€¤
+#define	ID_NO_SET		(0)			//PokeParaSetã‚’ä½¿ã†ã¨ãã«IDã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§ã‚»ãƒƒãƒˆã™ã‚‹ãŸã‚ã®å€¤
+#define	ID_SET			(1)			//PokeParaSetã‚’ä½¿ã†ã¨ãã«IDã‚’å›ºå®šå€¤ã§ã‚»ãƒƒãƒˆã™ã‚‹ãŸã‚ã®å€¤
+#define	ID_NO_RARE		(2)			//PokeParaSetã‚’ä½¿ã†ã¨ãã«IDã‚’å€‹æ€§ä¹±æ•°ã¨ã®çµ„ã¿åˆã‚ã›ã§ãƒ¬ã‚¢ãŒå‡ºãªã„ã‚ˆã†ã«ã™ã‚‹ã®å€¤
+#define	NO_WAZA_SET		(0xffff)	//æŠ€ã®ã‚»ãƒƒãƒˆãŒã§ããªã‹ã£ãŸã¨ãã®è¿”ã‚Šå€¤
+#define	SAME_WAZA_SET	(0xfffe)	//ã™ã§ã«è¦šãˆã¦ã„ãŸæŠ€ã®ã¨ãã®è¿”ã‚Šå€¤
 
-///<ƒ|ƒPƒ‚ƒ“i‰»ƒf[ƒ^‚Ì\‘¢‘Ì
+///<ãƒã‚±ãƒ¢ãƒ³é€²åŒ–ãƒ‡ãƒ¼ã‚¿ã®æ§‹é€ ä½“
 typedef struct pokemon_shinka_data POKEMON_SHINKA_DATA;
 
 typedef struct pokemon_shinka_table POKEMON_SHINKA_TABLE;
@@ -455,7 +455,7 @@ enum{
 	ID_EVO_Mons
 };
 
-//ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^æ“¾Œn‚Ì’è‹`
+//ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—ç³»ã®å®šç¾©
 enum{
 	ID_POKEPARADATA11=0,	//0
 	ID_POKEPARADATA12,		//1
@@ -532,17 +532,17 @@ enum{
 	UNK_END
 };
 
-//TrCLACTGraDataGet‚Åg—p‚³‚ê‚é\‘¢‘Ì
+//TrCLACTGraDataGetã§ä½¿ç”¨ã•ã‚Œã‚‹æ§‹é€ ä½“
 typedef struct{
-	int	arcID;		//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌArcID
-	int	ncgrID;		//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌƒLƒƒƒ‰ID
-	int	nclrID;		//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌƒpƒŒƒbƒgID
-	int	ncerID;		//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌƒZƒ‹ID
-	int	nanrID;		//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌƒZƒ‹ƒAƒjƒID
-	int	ncbrID;		//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌƒLƒƒƒ‰IDiƒ\ƒtƒgƒXƒvƒ‰ƒCƒg—pj
+	int	arcID;		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ArcID
+	int	ncgrID;		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒ©ID
+	int	nclrID;		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+	int	ncerID;		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ«ID
+	int	nanrID;		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
+	int	ncbrID;		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒ©IDï¼ˆã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ï¼‰
 }TR_CLACT_GRA;
 
-//externéŒ¾
+//externå®£è¨€
 extern	void	PokeParaInit(POKEMON_PARAM *pp);
 extern	void	PokePasoParaInit(POKEMON_PASO_PARAM *ppp);
 
@@ -759,7 +759,7 @@ extern void PokePara_CustomBallDataInit( POKEMON_PARAM * pp );
 extern void PokePasoPara_RecoverPP( POKEMON_PASO_PARAM* ppp );
 
 
-///< ”w–ÊƒAƒjƒ—p‚ÌŠg’£ŠÖ”ŒQ
+///< èƒŒé¢ã‚¢ãƒ‹ãƒ¡ç”¨ã®æ‹¡å¼µé–¢æ•°ç¾¤
 typedef struct TPoke_Anime_Data POKE_ANIME_DATA;
 
 extern void PokeEditData_AnimeSet( ARCHANDLE* handle, SOFT_SPRITE_ANIME* ssanm, u16 mons_no, u16 client_type );
@@ -771,11 +771,11 @@ extern void PokeEditData_ShadowOfsXSet( ARCHANDLE* handle, s8* ofs, u16 mons_no 
 extern void PokeEditData_ShadowSizeSet( ARCHANDLE* handle, u8* size, u16 mons_no );
 
 
-///< ƒJƒXƒ^ƒ€ƒ{[ƒ‹
+///< ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
 extern BOOL TrainerCBSet( int index, POKEMON_PARAM* pp, int heap );
 
-//í“¬˜^‰æ—pƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
-///<í“¬˜^‰æ—pƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ì
+//æˆ¦é—˜éŒ²ç”»ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+///<æˆ¦é—˜éŒ²ç”»ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“
 typedef struct rec_pokepara REC_POKEPARA;
 extern void PokePara_to_RecPokePara(POKEMON_PARAM *pp, REC_POKEPARA *rec);
 extern void RecPokePara_to_PokePara(REC_POKEPARA *rec, POKEMON_PARAM *pp);

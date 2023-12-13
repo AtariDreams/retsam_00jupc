@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_259.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			259�@�U�����鏇�Ԃ�f�������x�����ɂ���B�����Z�v���C�I���e�B�Ԃ݂̂œ���ւ�������B
- *				 �������Ƃ����ɑ΂��Ă͋Z�����B�c���n�̓�������܂��B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			259　攻撃する順番を素早さが遅い順にする。同じ技プライオリティ間のみで入れ替えをする。
+ *				 特性あとだしに対しては技無効。ツメ系の道具発動します。
  *
  *@author	HisashiSogabe
  *@data		2006.02.15

@@ -20,7 +20,7 @@ extern const PROC_DATA AfterOpeningProcData;
 extern const PROC_DATA DebugNewGameStartProcData;
 extern const PROC_DATA ContinueGameStartProcData;
 
-//–{—ˆ‚Íê—p‚Ìƒwƒbƒ_‚É’è‹`‚·‚é‚×‚«H
+//æœ¬æ¥ã¯å°‚ç”¨ã®ãƒ˜ãƒƒãƒ€ã«å®šç¾©ã™ã‚‹ã¹ãï¼Ÿ
 extern const PROC_DATA OpeningProcData;
 
 #endif	/* __GAMESTART_H__ */

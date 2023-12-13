@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_command_frontier.h
- * @brief	í êMÇÃÉRÉ}ÉìÉhàÍóó  ÉtÉçÉìÉeÉBÉAóp
+ * @brief	ÈÄö‰ø°„ÅÆ„Ç≥„Éû„É≥„Éâ‰∏ÄË¶ß  „Éï„É≠„É≥„ÉÜ„Ç£„Ç¢Áî®
  * @author	nohara
  * @date    2007.07.18
  */
@@ -18,10 +18,10 @@
 
 //==============================================================================
 //
-//  externêÈåæ
+//  externÂÆ£Ë®Ä
 //
 //==============================================================================
-//ÉtÉ@ÉNÉgÉäÅ[
+//„Éï„Ç°„ÇØ„Éà„É™„Éº
 extern BOOL		CommFactorySendBasicData( FACTORY_SCRWORK* wk );
 extern void CommFactoryRecvBasicData(int id_no,int size,void *pData,void *work);
 extern BOOL		CommFactorySendTrData( FACTORY_SCRWORK* wk );
@@ -37,7 +37,7 @@ extern void CommFactoryRecvTradeYesNoFlag(int id_no,int size,void *pData,void *w
 extern BOOL		CommFactorySendTemotiPokeData( FACTORY_SCRWORK* wk );
 extern void CommFactoryRecvTemotiPokeData(int id_no,int size,void *pData,void *work);
 
-//ÉXÉeÅ[ÉW
+//„Çπ„ÉÜ„Éº„Ç∏
 extern BOOL		CommStageSendMonsNo( STAGE_SCRWORK* wk, const POKEMON_PARAM* pp );
 extern void CommStageRecvMonsNo(int id_no,int size,void *pData,void *work);
 extern BOOL		CommStageSendBasicData( STAGE_SCRWORK* wk );
@@ -52,7 +52,7 @@ extern BOOL		CommStageSendBufTemotiPokeData( STAGE_SCRWORK* wk );
 extern void CommStageRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work);
 extern u8* CommStageGetRecvDataBuff( int netID, void*pWork, int size );
 
-//ÉLÉÉÉbÉXÉã
+//„Ç≠„É£„ÉÉ„Çπ„É´
 extern BOOL		CommCastleSendBufBasicData( CASTLE_SCRWORK* wk );
 extern void CommCastleRecvBufBasicData(int id_no,int size,void *pData,void *work);
 extern BOOL		CommCastleSendBufTrData( CASTLE_SCRWORK* wk );
@@ -69,7 +69,7 @@ extern BOOL		CommCastleSendBufTemotiPokeData( CASTLE_SCRWORK* wk );
 extern void CommCastleRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work);
 extern u8* CommCastleGetRecvDataBuff( int netID, void*pWork, int size );
 
-//WiFiéÛït
+//WiFiÂèó‰ªò
 #if 0
 extern BOOL CommFrWiFiCounterSendBufBFNo( FRWIFI_SCRWORK* wk );
 extern void CommFrWiFiCounterRecvBufBFNo(int id_no,int size,void *pData,void *work);
@@ -83,7 +83,7 @@ extern BOOL CommFrWiFiCounterSendBufGameContinue( FRWIFI_SCRWORK* wk, u16 flag )
 extern void CommFrWiFiCounterRecvBufGameContinue(int id_no,int size,void *pData,void *work);
 #endif
 
-//ÉãÅ[ÉåÉbÉg
+//„É´„Éº„É¨„ÉÉ„Éà
 extern BOOL		CommRouletteSendBufBasicData( ROULETTE_SCRWORK* wk );
 extern void CommRouletteRecvBufBasicData(int id_no,int size,void *pData,void *work);
 extern BOOL		CommRouletteSendBufTrData( ROULETTE_SCRWORK* wk );

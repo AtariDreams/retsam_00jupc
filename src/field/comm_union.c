@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_union.c
- * @brief	ƒ†ƒjƒIƒ“ƒ‹[ƒ€§Œäˆ—
+ * @brief	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ åˆ¶å¾¡å‡¦ç†
  * @author	Akito Mori
  * @date    2005.12.10
  */
@@ -53,12 +53,12 @@
 #endif
 
 #if defined(DEBUG_ONLY_FOR_ohno) | defined(DEBUG_ONLY_FOR_tomoya_takahashi)
-#define COMM_UNION_DEBUG_STATE_CHANGE	// ƒXƒe[ƒg‚Ì•Ï‰»‚ğƒfƒoƒbƒNo—Í‚·‚é	080608 tomoya
+#define COMM_UNION_DEBUG_STATE_CHANGE	// ã‚¹ãƒ†ãƒ¼ãƒˆã®å¤‰åŒ–ã‚’ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã™ã‚‹	080608 tomoya
 #endif
 
 
 //-------------------------------------
-///	ƒXƒe[ƒg‚Ì•Ï‰»‚ğƒfƒoƒbƒNo—Í‚·‚é	080608 tomoya
+///	ã‚¹ãƒ†ãƒ¼ãƒˆã®å¤‰åŒ–ã‚’ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã™ã‚‹	080608 tomoya
 //=====================================
 #ifdef COMM_UNION_DEBUG_STATE_CHANGE
 #define _changeState_func(cuw, state, time)	_changeState((cuw), (state), (time)); OHNO_PRINT( "union_state change %d\n", __LINE__ );
@@ -68,11 +68,11 @@
 
 
 //==============================================================================
-//	’è”éŒ¾
+//	å®šæ•°å®£è¨€
 //==============================================================================
 #define TALK_OBJ_MAX			( 10 )
 #define SUB_OBJ_MAX				( TALK_OBJ_MAX*4 )
-#define _PARENT_WAIT_TIME 	 	( 40 ) ///e‚Æ‚µ‚Ä‚Ì‚ñ‚Ñ‚è‘Ò‚ÂŠÔ
+#define _PARENT_WAIT_TIME 	 	( 40 ) ///è¦ªã¨ã—ã¦ã®ã‚“ã³ã‚Šå¾…ã¤æ™‚é–“
 #define _CHILD_P_SEARCH_TIME 	( 12 )
 #define _FINALIZE_TIME 			(  2 )
 #define _EXIT_SENDING_TIME 		(  5 )
@@ -91,7 +91,7 @@ enum{
 };
 
 #define START_TIME ( 40 )
-#define _TCB_UNIONSTATE_PRT   (10)    ///< ƒtƒB[ƒ‹ƒh‚ğ•à‚­’ÊM‚ÌŠÄ‹ƒ‹[ƒ`ƒ“‚ÌPRI
+#define _TCB_UNIONSTATE_PRT   (10)    ///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’æ­©ãé€šä¿¡ã®ç›£è¦–ãƒ«ãƒ¼ãƒãƒ³ã®PRI
 
 enum{
 	DS_CONNECT_START=1,
@@ -99,26 +99,26 @@ enum{
 };
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
 
-// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ì‘®
+// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®æ›¸å¼
 typedef void (*PUnionRoomFunc)(COMM_UNIONROOM_WORK *cuw);
 
 
-// ˜b‚µ‚©‚¯‚ç‚ê‚éOBJ‚Ì\‘¢‘Ì
+// è©±ã—ã‹ã‘ã‚‰ã‚Œã‚‹OBJã®æ§‹é€ ä½“
 typedef struct{
 	u16 arrow;
 	u16 status;
 }MAIN_OBJ_CONT;
 
-// ˜b‚µ‚©‚¯OBJ‚Ìü‚è‚É‚Â‚­ƒTƒuOBJ‚Ì\‘¢‘Ì
+// è©±ã—ã‹ã‘OBJã®å‘¨ã‚Šã«ã¤ãã‚µãƒ–OBJã®æ§‹é€ ä½“
 typedef struct{
 	u16 arrow;
 	u16 status;
 }SUB_OBJ_CONT;
 
-// ƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒ[ƒN\‘¢‘Ì
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 struct COMM_UNIONROOM_WORK{
 	FIELDSYS_WORK		*fsys;
 	SAVEDATA			*savedata;
@@ -128,38 +128,38 @@ struct COMM_UNIONROOM_WORK{
 	PUnionRoomFunc     state;
 	int                timer;
 
-	u32					CommConnectId;				// Ú‘±‚µ‚É‚¢‚­OBJID
-	u32					CommConnectResult;			// Ú‘±Œ‹‰Ê‚ğ•Ô‚·
+	u32					CommConnectId;				// æ¥ç¶šã—ã«ã„ãOBJID
+	u32					CommConnectResult;			// æ¥ç¶šçµæœã‚’è¿”ã™
 	int 				CommConnectStartFlag;
 	int 				CommConnectStartWait;
 	int					CommConnectRetry;
 	int					CommNextProcOn;
 	u32					CommChildSelectEvent;
-	u32					ScriptSelectWork;			// ‘I‘ğŒ‹‰Ê‚ğ•Û‘¶
-	u32					InviteWork;					// ’ÊM‚Å’ñ¦‚³‚ê‚½“à—e‚ğ•Û‘¶
-	u32					ScriptYesNoWork;			// ‚Í‚¢E‚¢‚¢‚¦‚ÌŒ‹‰Ê‚ğ•Û‘¶
+	u32					ScriptSelectWork;			// é¸æŠçµæœã‚’ä¿å­˜
+	u32					InviteWork;					// é€šä¿¡ã§æç¤ºã•ã‚ŒãŸå†…å®¹ã‚’ä¿å­˜
+	u32					ScriptYesNoWork;			// ã¯ã„ãƒ»ã„ã„ãˆã®çµæœã‚’ä¿å­˜
 
-	u32					UnionEventWork;				// s‚¤“à—eiƒJ[ƒhEí“¬EŒğŠ·Eƒ`ƒƒƒbƒgj
-	u32					UnionEndConnectFlag;		// ’ÊMI—¹
+	u32					UnionEventWork;				// è¡Œã†å†…å®¹ï¼ˆã‚«ãƒ¼ãƒ‰ãƒ»æˆ¦é—˜ãƒ»äº¤æ›ãƒ»ãƒãƒ£ãƒƒãƒˆï¼‰
+	u32					UnionEndConnectFlag;		// é€šä¿¡çµ‚äº†
 	
-	MAIN_OBJ_CONT	   MainObjCont[TALK_OBJ_MAX];		// ˜b‚µ‚©‚¯‚ç‚ê‚é‚P‚Ol
-	SUB_OBJ_CONT	   SubObjCont[SUB_OBJ_MAX];		// ƒƒCƒ“‚Ìü‚è‚É‚¢‚é‚Sli‚˜‚P‚Oj
+	MAIN_OBJ_CONT	   MainObjCont[TALK_OBJ_MAX];		// è©±ã—ã‹ã‘ã‚‰ã‚Œã‚‹ï¼‘ï¼äºº
+	SUB_OBJ_CONT	   SubObjCont[SUB_OBJ_MAX];		// ãƒ¡ã‚¤ãƒ³ã®å‘¨ã‚Šã«ã„ã‚‹ï¼”äººï¼ˆï½˜ï¼‘ï¼ï¼‰
 	WMBssDesc		   *UnionBeaconTbl[SCAN_PARENT_COUNT_MAX];
 
-	MATHRandContext32  pRand;						// WEPƒL[—”
+	MATHRandContext32  pRand;						// WEPã‚­ãƒ¼ä¹±æ•°
 	int connectIndex;
 
 	int objwork;
 	int objwait;
 
 	u16 busyflag;
-	u8  battleSelect[2];							// í“¬‘O‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ÌŒ‹‰Ê‚ğóM‚·‚é
+	u8  battleSelect[2];							// æˆ¦é—˜å‰ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®çµæœã‚’å—ä¿¡ã™ã‚‹
 
-	PMS_DATA			MyPmsData;					// ƒXƒ^[ƒgƒƒjƒ…[‚Ìuƒ`ƒƒƒbƒgv‚ÅŠÈˆÕ‰ï˜b‚ğİ’è‚µ‚½ê‡
-	BOOL				MyPmsPutFlag;				// ‚±‚Ì—Ìˆæ‚Éì¬‚µ‚½ŠÈˆÕ‰ï˜b‚ªƒRƒs[‚³‚ê‚é
+	PMS_DATA			MyPmsData;					// ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã€Œãƒãƒ£ãƒƒãƒˆã€ã§ç°¡æ˜“ä¼šè©±ã‚’è¨­å®šã—ãŸå ´åˆ
+	BOOL				MyPmsPutFlag;				// ã“ã®é ˜åŸŸã«ä½œæˆã—ãŸç°¡æ˜“ä¼šè©±ãŒã‚³ãƒ”ãƒ¼ã•ã‚Œã‚‹
 
-	TR_CARD_DATA 		*my_trcard;					// ©•ª‚ÌƒgƒŒ[ƒi[ƒJ[ƒh
-	TR_CARD_DATA 		*recv_trcard[2];			// ‘Šè‚ÌƒgƒŒ[ƒi[ƒJ[ƒh
+	TR_CARD_DATA 		*my_trcard;					// è‡ªåˆ†ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰
+	TR_CARD_DATA 		*recv_trcard[2];			// ç›¸æ‰‹ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰
 
 #ifdef PM_DEBUG
     u32					debugTimer;
@@ -168,7 +168,7 @@ struct COMM_UNIONROOM_WORK{
 
 
 
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static COMM_UNIONROOM_WORK* _commStateInitialize(FIELDSYS_WORK* fsys);
 static void _UnionStart(COMM_UNIONROOM_WORK *cuw);
 static void _UnionRestart( COMM_UNIONROOM_WORK *cuw );
@@ -199,7 +199,7 @@ static void UnionBeaconClear( UNION_BEACON_STATE *beacon );
 
 //==============================================================================
 /**
- * ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚É‚Í‚¢‚Á‚½‚Ì’ÊMˆ—
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã«ã¯ã„ã£ãŸæ™‚ã®é€šä¿¡å‡¦ç†
  * @param   pFSys FIELDSYS_WORK
  * @retval  none
  */
@@ -209,33 +209,33 @@ COMM_UNIONROOM_WORK *Comm_UnionRoomInit(FIELDSYS_WORK* fsys)
 
 	COMM_UNIONROOM_WORK *cuw = NULL;
 
-	GF_ASSERT(fsys!=NULL && "fsys‚ªNULL");
+	GF_ASSERT(fsys!=NULL && "fsysãŒNULL");
 
-    if(fsys->union_work!=NULL){ // ‚Â‚È‚ª‚Á‚Ä‚¢‚éê‡¡‚ÍœŠO‚·‚é
+    if(fsys->union_work!=NULL){ // ã¤ãªãŒã£ã¦ã„ã‚‹å ´åˆä»Šã¯é™¤å¤–ã™ã‚‹
         return NULL;
     }
-    // ’ÊMƒq[ƒvì¬
+    // é€šä¿¡ãƒ’ãƒ¼ãƒ—ä½œæˆ
     if(sys_CreateHeapLo( HEAPID_BASE_APP, HEAPID_UNIONROOM, 0xa80 )){
-		OS_Printf("HEAPID_UNION ì¬¬Œ÷\n");
+		OS_Printf("HEAPID_UNION ä½œæˆæˆåŠŸ\n");
 	}
 
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ[ƒNŠm•Û
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
     cuw = _commStateInitialize(fsys);
 	if(cuw==NULL){
 		cuw = fsys->union_work;
 	}
 
-	// ƒtƒB[ƒ‹ƒh—p’ÊMƒRƒ}ƒ“ƒhƒR[ƒ‹ƒoƒbƒNİ’è
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è¨­å®š
     CommCommandFieldInitialize((void*)fsys);
 
-	// ’ÊMÚ‘±l”‚ğ‚Ql‚É§ŒÀ
+	// é€šä¿¡æ¥ç¶šäººæ•°ã‚’ï¼’äººã«åˆ¶é™
     CommStateSetLimitNum(2);
 	
 
 //  CommStateUnionBconCollection( SaveData_GetMyStatus(GameSystem_GetSaveData(fsys)) );
 
-    // ’n‰ºƒXƒe[ƒg‚Ì‘JˆÚ‚Ì‚½‚ß‰Šú‰»
-	PRINT("Unionq‹@ŒŸõŠJn\n");
+    // åœ°ä¸‹ã‚¹ãƒ†ãƒ¼ãƒˆã®é·ç§»ã®ãŸã‚åˆæœŸåŒ–
+	PRINT("Unionå­æ©Ÿæ¤œç´¢é–‹å§‹\n");
     _changeState_func(cuw, _UnionBeaconSet, START_TIME);
 	OS_Printf("sizeof(MYSTATUS)=%d \n",MyStatus_GetWorkSize());
 
@@ -250,7 +250,7 @@ static COMM_UNIONROOM_WORK *debug_cuw;
 #endif
 //==============================================================================
 /**
- * ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚©‚ço‚é‚Æ‚«
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‹ã‚‰å‡ºã‚‹ã¨ã
  *
  * @param   fsys		
  *
@@ -259,7 +259,7 @@ static COMM_UNIONROOM_WORK *debug_cuw;
 //==============================================================================
 void Comm_UnionFinalize(FIELDSYS_WORK *fsys)
 {
-    if(fsys->union_work==NULL){  // ‚·‚Å‚ÉI—¹‚µ‚Ä‚¢‚é
+    if(fsys->union_work==NULL){  // ã™ã§ã«çµ‚äº†ã—ã¦ã„ã‚‹
        return;
     }
     _changeState_func(fsys->union_work, _stateConnectEnd, _EXIT_SENDING_TIME);
@@ -268,7 +268,7 @@ void Comm_UnionFinalize(FIELDSYS_WORK *fsys)
 
 //------------------------------------------------------------------
 /**
- * ƒ†ƒjƒIƒ“ƒ‹[ƒ€‰Šú‰»ƒV[ƒPƒ“ƒX
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  * @param   fsys		
  *
@@ -281,19 +281,19 @@ static COMM_UNIONROOM_WORK* _commStateInitialize(FIELDSYS_WORK* fsys)
 	SAVEDATA *savedata;
 	COMM_UNIONROOM_WORK *cuw = NULL;
 
-    if(fsys->union_work!=NULL){   // ‚·‚Å‚Éƒ†ƒjƒIƒ““®ì’†‚Ìê‡‚ÍŒã‚ë‚Ìƒƒ‚ƒŠŠm•Û‰Šú‰»•K—v‚È‚¢
+    if(fsys->union_work!=NULL){   // ã™ã§ã«ãƒ¦ãƒ‹ã‚ªãƒ³å‹•ä½œä¸­ã®å ´åˆã¯å¾Œã‚ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿åˆæœŸåŒ–å¿…è¦ãªã„
         return NULL;
     }
 	savedata    = GameSystem_GetSaveData(fsys);
 
-    // UNIONƒ‹[ƒ€BCONûWŠJn
+    // UNIONãƒ«ãƒ¼ãƒ BCONåé›†é–‹å§‹
     CommStateUnionBconCollection( savedata );
 
 
-    // ‰Šú‰»
+    // åˆæœŸåŒ–
     cuw = (COMM_UNIONROOM_WORK*)sys_AllocMemory(HEAPID_UNIONROOM, sizeof(COMM_UNIONROOM_WORK));
 	MI_CpuClear8(cuw, sizeof(COMM_UNIONROOM_WORK) );
-    cuw->state = NULL;   // ‰½‚à‚µ‚È‚¢
+    cuw->state = NULL;   // ä½•ã‚‚ã—ãªã„
     cuw->timer = START_TIME;
     cuw->UnionStateTask = TCB_Add(_commCheckFunc, cuw, _TCB_UNIONSTATE_PRT);
     cuw->fsys     = fsys;
@@ -318,7 +318,7 @@ static COMM_UNIONROOM_WORK* _commStateInitialize(FIELDSYS_WORK* fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€ŠJn‚Éƒr[ƒRƒ“‚ğ‘ã“ü‚·‚é
+ * @brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ é–‹å§‹æ™‚ã«ãƒ“ãƒ¼ã‚³ãƒ³ã‚’ä»£å…¥ã™ã‚‹
  *
  * @param   cuw		
  *
@@ -330,11 +330,11 @@ static void _UnionBeaconSet( COMM_UNIONROOM_WORK *cuw )
 	PMS_DATA pmsdata;
 
 	if(CommMPIsInitialize()){
-		// ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒfƒtƒHƒ‹ƒg‰ï˜bƒZƒbƒg
+		// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä¼šè©±ã‚»ãƒƒãƒˆ
 		PMSDAT_SetupDefaultUnionMessage( &pmsdata );
-		// ƒr[ƒRƒ“ƒf[ƒ^‚É”½‰f‚³‚¹‚é
+		// ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã«åæ˜ ã•ã›ã‚‹
 		Union_PMSReWrite( &pmsdata );		
-		Union_SetMyPmsData( cuw, &pmsdata );		// ƒ†ƒjƒIƒ“ƒ[ƒN‚Å•Û‘¶‚µ‚Ä‚¨‚«‰º‰æ–Ê‚É•\¦‚³‚¹‚é
+		Union_SetMyPmsData( cuw, &pmsdata );		// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ¯ãƒ¼ã‚¯ã§ä¿å­˜ã—ã¦ãŠãä¸‹ç”»é¢ã«è¡¨ç¤ºã•ã›ã‚‹
 	    _changeState_func(cuw, _UnionStart, START_TIME);
 	}
 }
@@ -343,7 +343,7 @@ static int debug_parent;
 
 //==============================================================================
 /**
- * ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒXƒ^[ƒgyƒ†ƒjƒIƒ“ƒ^ƒXƒN‘JˆÚz
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆã€ãƒ¦ãƒ‹ã‚ªãƒ³ã‚¿ã‚¹ã‚¯é·ç§»ã€‘
  * @param   none
  * @retval  none
  */
@@ -353,32 +353,32 @@ static int debug_parent;
 
 static void _UnionStart(COMM_UNIONROOM_WORK *cuw)
 {
-	// e‹@Ú‘±‚³‚ê‚½‚©H
+	// è¦ªæ©Ÿæ¥ç¶šã•ã‚ŒãŸã‹ï¼Ÿ
     if(CommStateIsUnionParentConnectSuccess()){
-        OS_TPrintf("e‹@Ú‘±\n");
+        OS_TPrintf("è¦ªæ©Ÿæ¥ç¶š\n");
 		debug_parent = 0;
 		_changeState_func(cuw, _underParentInfoSend, _FIRST_SEND);
         return;
     }
 
-	// ˜b‚µ‚©‚¯‚ğn‚ß‚½‚©H
+	// è©±ã—ã‹ã‘ã‚’å§‹ã‚ãŸã‹ï¼Ÿ
     if(cuw->CommConnectStartFlag!=0){
         cuw->CommConnectRetry = _CONNECT_RETRY_NUM;
-        /// index‚ÅÚ‘±‚ğŠJn‚µ‚Ü‚·
+        /// indexã§æ¥ç¶šã‚’é–‹å§‹ã—ã¾ã™
 		if(cuw->CommConnectStartFlag == DS_CONNECT_START){
 			if(cuw->CommChildSelectEvent==UNION_CHILD_SELECT_RECORD){
-				// ƒŒƒR[ƒhƒR[ƒi[q‹@—“üÚ‘±ŠJn
+				// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼å­æ©Ÿä¹±å…¥æ¥ç¶šé–‹å§‹
 				CommStateUnionRecordCornerChild(cuw->CommConnectId);
 			}else if(cuw->CommChildSelectEvent==UNION_CHILD_SELECT_GURUGURU){
-				// ‚®‚é‚®‚éŒğŠ·q‹@—“üÚ‘±ŠJn
-				OS_Printf( "‚®‚é‚®‚éŒğŠ·@q‹@—“üÚ‘±ŠJn\n" );
+				// ãã‚‹ãã‚‹äº¤æ›å­æ©Ÿä¹±å…¥æ¥ç¶šé–‹å§‹
+				OS_Printf( "ãã‚‹ãã‚‹äº¤æ›ã€€å­æ©Ÿä¹±å…¥æ¥ç¶šé–‹å§‹\n" );
 				CommStateUnionGuru2Child(cuw->CommConnectId);
 			}else{
-				// ’Êíq‹@Ú‘±ŠJn
+				// é€šå¸¸å­æ©Ÿæ¥ç¶šé–‹å§‹
 		        CommStateUnionConnectStart(cuw->CommConnectId);   
 			}
 		}else if(cuw->CommConnectStartFlag == MP_CONNECT_START){
-            // ’ÊMƒRƒ}ƒ“ƒh‚ğŒğŠ·ƒŠƒXƒg—p‚É•ÏX
+            // é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ã‚’äº¤æ›ãƒªã‚¹ãƒˆç”¨ã«å¤‰æ›´
             CommCommandOekakiBoardInitialize( NULL );
 			CommStateUnionPictureBoardChild(cuw->CommConnectId);
 		}
@@ -390,7 +390,7 @@ static void _UnionStart(COMM_UNIONROOM_WORK *cuw)
 
 //------------------------------------------------------------------
 /**
- * $brief   ’ÊMI—¹ŒãØ’f‚·‚é—V‚Ñ‚©‚ç–ß‚Á‚Ä‚«‚½‚Æ‚«‚ÌƒV[ƒPƒ“ƒX
+ * $brief   é€šä¿¡çµ‚äº†å¾Œåˆ‡æ–­ã™ã‚‹éŠã³ã‹ã‚‰æˆ»ã£ã¦ããŸã¨ãã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  * @param   cuw		
  *
@@ -399,10 +399,10 @@ static void _UnionStart(COMM_UNIONROOM_WORK *cuw)
 //------------------------------------------------------------------
 static void _UnionRestart( COMM_UNIONROOM_WORK *cuw )
 {
-	// ’ÊMƒVƒXƒeƒ€ÄŠJ‚ğ‚Ü‚Â
+	// é€šä¿¡ã‚·ã‚¹ãƒ†ãƒ å†é–‹ã‚’ã¾ã¤
     if(CommStateUnionIsRestartSuccess()==TRUE){
 		
-	    // ƒtƒB[ƒ‹ƒh—p’ÊMƒRƒ}ƒ“ƒhƒR[ƒ‹ƒoƒbƒN‚É–ß‚·
+	    // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«æˆ»ã™
     	CommCommandFieldInitialize((void*)cuw->fsys);
 
         _changeState_func(cuw, _UnionStart, _FINALIZE_TIME);
@@ -412,7 +412,7 @@ static void _UnionRestart( COMM_UNIONROOM_WORK *cuw )
 
 //------------------------------------------------------------------
 /**
- * $brief   Œ»İq‹@‚ª‰½lÚ‘±‚µ‚Ä‚¢‚é‚©H
+ * $brief   ç¾åœ¨å­æ©ŸãŒä½•äººæ¥ç¶šã—ã¦ã„ã‚‹ã‹ï¼Ÿ
  *
  * @param   none		
  *
@@ -426,7 +426,7 @@ static int MyStatusCheck( void )
 
 	result = 0;
 
-	// 1`‚S‚È‚Ì‚Åq‹@‚ÌƒXƒe[ƒ^ƒX‚ğóM‚·‚é‚Ì‚ğŒŸ’m‚µ‚½‚¢
+	// 1ã€œï¼”ãªã®ã§å­æ©Ÿã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å—ä¿¡ã™ã‚‹ã®ã‚’æ¤œçŸ¥ã—ãŸã„
 	for(i=1;i<5;i++){
 		status = CommInfoGetMyStatus(i);
 		if(status!=NULL){
@@ -434,14 +434,14 @@ static int MyStatusCheck( void )
 		}
 	}
 
-	// ’N‚©q‹@‚©‚ç‚«‚½‚©H
+	// èª°ã‹å­æ©Ÿã‹ã‚‰ããŸã‹ï¼Ÿ
 	return (result>=1);
 }
 
 
 //==============================================================================
 /**
- * e‹@‚É‚È‚é ‰ï˜b‚ğ‚·‚éyƒ†ƒjƒIƒ“ƒ^ƒXƒN‘JˆÚz
+ * è¦ªæ©Ÿã«ãªã‚‹ ä¼šè©±ã‚’ã™ã‚‹ã€ãƒ¦ãƒ‹ã‚ªãƒ³ã‚¿ã‚¹ã‚¯é·ç§»ã€‘
  * @param   none
  * @retval  none
  */
@@ -455,27 +455,27 @@ static void _underParentInfoSend(COMM_UNIONROOM_WORK *cuw)
         return;
     }
 	
-	OS_Printf("e‹@Ú‘±%d‰ñ–Ú\n", debug_parent);
+	OS_Printf("è¦ªæ©Ÿæ¥ç¶š%då›ç›®\n", debug_parent);
 	debug_parent++;
     pUBState = CommMPGetMyRegulation();
 
     if(CommIsChildsConnecting() && MyStatusCheck()==1 &&  pUBState->mode!=UNION_PARENT_MODE_BUSY){   // 
-		// e‚ÌŠî–{ƒf[ƒ^‘—M
+		// è¦ªã®åŸºæœ¬ãƒ‡ãƒ¼ã‚¿é€ä¿¡
         CommInfoSendPokeData();
 		
-		// q‹@‚ª‚¢‚È‚¢‚Ì‚ğƒGƒ‰[ˆµ‚¢‚É‚·‚é‚©‚Ç‚¤‚©‚ğSET
+		// å­æ©ŸãŒã„ãªã„ã®ã‚’ã‚¨ãƒ©ãƒ¼æ‰±ã„ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’SET
         CommStateSetErrorCheck(TRUE,TRUE);
 
-		// ‚±‚±‚Ìfsys‚ªNULL‚Ì‚±‚Æ‚ª‚ ‚éB
-		// e‹@‚Æ‚µ‚Ä‚ÌÚ‘±ƒCƒxƒ“ƒgŠJn
+		// ã“ã“ã®fsysãŒNULLã®ã“ã¨ãŒã‚ã‚‹ã€‚
+		// è¦ªæ©Ÿã¨ã—ã¦ã®æ¥ç¶šã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
 //		EventSet_Script( cuw->fsys, SCRID_CONNECT_UNION_RECEIVE_OBJ, NULL );
 
-		// uƒp[ƒeƒB[‚É‚È‚Á‚½‚ævƒr[ƒRƒ“‚É•Ï‚¦‚é
+		// ã€Œãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã«ãªã£ãŸã‚ˆã€ãƒ“ãƒ¼ã‚³ãƒ³ã«å¤‰ãˆã‚‹
 		Union_BeaconChange( UNION_PARENT_MODE_PARTY );
 		_changeState_func(cuw,_underParentConnect, _FIRST_SEND);
 	}
 
-	// Ø’f‚µ‚Ä‚¢‚½‚çŒ³‚É‚à‚Ç‚·
+	// åˆ‡æ–­ã—ã¦ã„ãŸã‚‰å…ƒã«ã‚‚ã©ã™
 	if(CommStateIsUnionParentConnectSuccess()==0){
     	CommStateUnionBconCollectionRestart();
 		CommUnion_EventFlagClear(cuw);
@@ -489,7 +489,7 @@ static void _underParentInfoSend(COMM_UNIONROOM_WORK *cuw)
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@Ú‘±’†(‚ ‚Æ‚ÍƒR[ƒ‹ƒoƒbƒN‚É‚¨‚Ü‚©‚¹j
+ * $brief   è¦ªæ©Ÿæ¥ç¶šä¸­(ã‚ã¨ã¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«ãŠã¾ã‹ã›ï¼‰
  *
  * @param   cuw		
  *
@@ -499,15 +499,15 @@ static void _underParentInfoSend(COMM_UNIONROOM_WORK *cuw)
 static void _underParentConnect(COMM_UNIONROOM_WORK *cuw)
 {
     if(CommStateGetErrorCheck() && (0 == CommIsChildsConnecting())){
-        // ƒGƒ‰[ŒŸ¸‚µ‚Ä‚Ù‚µ‚¢ó‘Ô‚Ì‚ÉØ’f‚µ‚½‚çƒGƒ‰[‚É’ÊM‚ªs‚¤‚Ì‚ÅA‚±‚±‚Íˆ—‚µ‚È‚¢  BTS0405
+        // ã‚¨ãƒ©ãƒ¼æ¤œæŸ»ã—ã¦ã»ã—ã„çŠ¶æ…‹ã®æ™‚ã«åˆ‡æ–­ã—ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã«é€šä¿¡ãŒè¡Œã†ã®ã§ã€ã“ã“ã¯å‡¦ç†ã—ãªã„  BTS0405
         return;
     }
 
-	// Ø’f‚µ‚½‚Ì‚ÅŒ³‚Ì‘€ì‚É–ß‚é
+	// åˆ‡æ–­ã—ãŸã®ã§å…ƒã®æ“ä½œã«æˆ»ã‚‹
     if(0 == CommIsChildsConnecting()){
-		// Ú‘±¸”s‚µ‚½‚Ì‚ÅAI—¹‚µ‚ÄŒ³‚ÌeqØ‚è‘Ö‚¦‚Ì—¬‚ê‚É–ß‚é
+		// æ¥ç¶šå¤±æ•—ã—ãŸã®ã§ã€çµ‚äº†ã—ã¦å…ƒã®è¦ªå­åˆ‡ã‚Šæ›¿ãˆã®æµã‚Œã«æˆ»ã‚‹
 //    	CommCommandFieldInitialize((void*)cuw->fsys);
-		OS_TPrintf("q‹@‚ªØ‚ê‚½‚©‚ç bitmap=%02x status=%d connectnum=%d childconnect=%d\n", WH_GetBitmap(), MyStatusCheck(), CommGetConnectNum(), CommIsChildsConnecting());
+		OS_TPrintf("å­æ©ŸãŒåˆ‡ã‚ŒãŸã‹ã‚‰ bitmap=%02x status=%d connectnum=%d childconnect=%d\n", WH_GetBitmap(), MyStatusCheck(), CommGetConnectNum(), CommIsChildsConnecting());
     	CommStateUnionBconCollectionRestart();
 		CommUnion_EventFlagClear(cuw);
 		Union_BeaconChange( UNION_PARENT_MODE_FREE );
@@ -519,9 +519,9 @@ static void _underParentConnect(COMM_UNIONROOM_WORK *cuw)
 
 //==============================================================================
 /**
- * ’ÊMŠÇ—ƒXƒe[ƒg‚Ì•ÏX
- * @param   state  •Ï‚¦‚éƒXƒe[ƒg‚ÌŠÖ”
- * @param   time   ƒXƒe[ƒg•ÛŠÔ
+ * é€šä¿¡ç®¡ç†ã‚¹ãƒ†ãƒ¼ãƒˆã®å¤‰æ›´
+ * @param   state  å¤‰ãˆã‚‹ã‚¹ãƒ†ãƒ¼ãƒˆã®é–¢æ•°
+ * @param   time   ã‚¹ãƒ†ãƒ¼ãƒˆä¿æŒæ™‚é–“
  * @retval  none
  */
 //==============================================================================
@@ -534,7 +534,7 @@ static void _changeState(COMM_UNIONROOM_WORK *cuw, PUnionRoomFunc state, int tim
 
 //==============================================================================
 /**
- * ’ÊMŠÇ—ƒXƒe[ƒg‚Ìˆ—
+ * é€šä¿¡ç®¡ç†ã‚¹ãƒ†ãƒ¼ãƒˆã®å‡¦ç†
  * @param
  * @retval  none
  */
@@ -564,12 +564,12 @@ void _commCheckFunc(TCB_PTR tcb, void* work)
 //			cuw->busyflag = UNION_PARENT_MODE_FREE;
 //			state.mode = UNION_PARENT_MODE_FREE;
 //		}
-//		CommMPSetMyRegulation(&state);	// u–Z‚µ‚¢v‚Éƒr[ƒRƒ“‘‚«Š·‚¦
+//		CommMPSetMyRegulation(&state);	// ã€Œå¿™ã—ã„ã€ã«ãƒ“ãƒ¼ã‚³ãƒ³æ›¸ãæ›ãˆ
 //		CommMPFlashMyBss();
 	}
 
 	if(sys.trg&PAD_BUTTON_SELECT){
-		OS_Printf("©•ª‚Ì‘”Ô† %d \n",MyStatus_GetRegionCode( cuw->mystatus ));
+		OS_Printf("è‡ªåˆ†ã®å›½ç•ªå· %d \n",MyStatus_GetRegionCode( cuw->mystatus ));
 	}
 #endif
 
@@ -595,7 +595,7 @@ void _commCheckFunc(TCB_PTR tcb, void* work)
 
 //==============================================================================
 /**
- * @brief  I—¹ˆ—ŠJn
+ * @brief  çµ‚äº†å‡¦ç†é–‹å§‹
  * @param   none
  * @retval  none
  */
@@ -606,14 +606,14 @@ static void _stateConnectEnd(COMM_UNIONROOM_WORK *cuw)
         cuw->timer--;
         return;
     }
-    // Ø’f‚·‚é
+    // åˆ‡æ–­ã™ã‚‹
     CommStateExitUnion();
     _changeState_func(cuw,_stateEnd, 0);
 }
 
 //------------------------------------------------------------------
 /**
- * ’ÊMI—¹ƒV[ƒPƒ“ƒX
+ * é€šä¿¡çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  * @param   cuw		
  *
@@ -630,7 +630,7 @@ static void _stateEnd(COMM_UNIONROOM_WORK *cuw)
 
 //==============================================================================
 /**
- * q‹@‚Æ‚È‚Á‚ÄÚ‘±’†yƒ†ƒjƒIƒ“ƒ^ƒXƒN‘JˆÚz
+ * å­æ©Ÿã¨ãªã£ã¦æ¥ç¶šä¸­ã€ãƒ¦ãƒ‹ã‚ªãƒ³ã‚¿ã‚¹ã‚¯é·ç§»ã€‘
  * @param   none
  * @retval  none
  */
@@ -641,25 +641,25 @@ static void _underChildConnecting(COMM_UNIONROOM_WORK *cuw)
         
 //      CommStateSetErrorCheck(TRUE,TRUE);
 
-		// Ú‘±¬Œ÷‚È‚çe‹@‚Éî•ñ‚ğ‘—‚é
+		// æ¥ç¶šæˆåŠŸãªã‚‰è¦ªæ©Ÿã«æƒ…å ±ã‚’é€ã‚‹
         CommInfoSendPokeData();
 		_changeState_func(cuw,_underChildInfoSendSuccess, 3);
-        OS_TPrintf("e‹@‚ÉÚ‘±‚µ‚½‚Ì‚Åq‹@î•ñ‘—M\n");
+        OS_TPrintf("è¦ªæ©Ÿã«æ¥ç¶šã—ãŸã®ã§å­æ©Ÿæƒ…å ±é€ä¿¡\n");
         return;
     }else if(CommIsChildsConnecting()){   
-		// ‹t‚Ée‚Æ‚µ‚ÄŒq‚ª‚Á‚½B(‚à‚¤–³‚¢j
+		// é€†ã«è¦ªã¨ã—ã¦ç¹‹ãŒã£ãŸã€‚(ã‚‚ã†ç„¡ã„ï¼‰
 		cuw->CommConnectStartFlag = 0;
 		cuw->CommConnectResult    = UNION_CONNECT_PARENT;
 		
-        OS_TPrintf("Ú‘±‚É‚¢‚Á‚½‚Â‚à‚è‚ªe‹@Ú‘±\n");
+        OS_TPrintf("æ¥ç¶šã«ã„ã£ãŸã¤ã‚‚ã‚ŠãŒè¦ªæ©Ÿæ¥ç¶š\n");
         _changeState_func(cuw,_underParentInfoSend, 0);
 	}
     if(0 == CommStateIsUnionConnectSuccess()){
-		// Ú‘±‘Ò‹@’†
-        OS_TPrintf("Ú‘±‚ª¬Œ÷‚µ‚È‚¢\n");
+		// æ¥ç¶šå¾…æ©Ÿä¸­
+        OS_TPrintf("æ¥ç¶šãŒæˆåŠŸã—ãªã„\n");
         return;
     }
-	// Ú‘±¸”s‚µ‚½‚Ì‚ÅAƒCƒxƒ“ƒg‚ÌI—¹‘Ò‚¿‚ğ‚µ‚ÄŒ³‚ÌeqØ‚è‘Ö‚¦‚Ì—¬‚ê‚É–ß‚é
+	// æ¥ç¶šå¤±æ•—ã—ãŸã®ã§ã€ã‚¤ãƒ™ãƒ³ãƒˆã®çµ‚äº†å¾…ã¡ã‚’ã—ã¦å…ƒã®è¦ªå­åˆ‡ã‚Šæ›¿ãˆã®æµã‚Œã«æˆ»ã‚‹
    	_changeState_func(cuw,_underChildEndEventState, _FINALIZE_TIME);
 	cuw->CommConnectStartWait = 0;
 	cuw->CommConnectResult    = UNION_CONNECT_FAILED;
@@ -669,7 +669,7 @@ static void _underChildConnecting(COMM_UNIONROOM_WORK *cuw)
 
 //------------------------------------------------------------------
 /**
- * @brief   q‹@Ú‘±‚É¸”s‚µ‚½‚çƒCƒxƒ“ƒgI—¹‚ğ‘Ò‚Â
+ * @brief   å­æ©Ÿæ¥ç¶šã«å¤±æ•—ã—ãŸã‚‰ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã‚’å¾…ã¤
  *
  * @param   cuw		
  *
@@ -691,7 +691,7 @@ static void _underChildEndEventState( COMM_UNIONROOM_WORK *cuw )
 
 //------------------------------------------------------------------
 /**
- * @brief   q‹@‚Ìî•ñ‘—M‚ª¬Œ÷‚µ‚½
+ * @brief   å­æ©Ÿã®æƒ…å ±é€ä¿¡ãŒæˆåŠŸã—ãŸ
  *
  * @param   cuw		
  *
@@ -701,10 +701,10 @@ static void _underChildEndEventState( COMM_UNIONROOM_WORK *cuw )
 static void _underChildInfoSendSuccess( COMM_UNIONROOM_WORK *cuw )
 {
 
-	// Ú‘±’†
+	// æ¥ç¶šä¸­
     if(1 == CommStateIsUnionConnectSuccess()){
 		if(CommInfoGetMyStatus(CommGetCurrentID())!=NULL){
-			PRINT("Ú‘±¬Œ÷IIII\n");
+			PRINT("æ¥ç¶šæˆåŠŸï¼ï¼ï¼ï¼\n");
 			cuw->CommConnectStartFlag = 0;
 			cuw->CommConnectResult    = UNION_CONNECT_SUCCESS;
 			cuw->UnionEndConnectFlag  = 0;
@@ -712,11 +712,11 @@ static void _underChildInfoSendSuccess( COMM_UNIONROOM_WORK *cuw )
 	        CommStateSetErrorCheck(TRUE,TRUE);
 			_changeState_func(cuw,_underChildSelectWait, 3);
 		}
-		OS_Printf("q‹@Ú‘±’†\n");
+		OS_Printf("å­æ©Ÿæ¥ç¶šä¸­\n");
     }else if(0 == CommStateIsUnionConnectSuccess()){
-	// Ú‘±‚ªØ‚ê‚½
+	// æ¥ç¶šãŒåˆ‡ã‚ŒãŸ
 		
-		OS_Printf("Ú‘±‚ªØ‚ê‚½‚¯‚Ç‚à‚µ‚©‚µ‚ÄƒCƒxƒ“ƒg’†‚¶‚á‚È‚¢H\n");
+		OS_Printf("æ¥ç¶šãŒåˆ‡ã‚ŒãŸã‘ã©ã‚‚ã—ã‹ã—ã¦ã‚¤ãƒ™ãƒ³ãƒˆä¸­ã˜ã‚ƒãªã„ï¼Ÿ\n");
 		
     	//CommCommandFieldInitialize((void*)cuw->fsys);
 	    CommStateUnionBconCollectionRestart();
@@ -733,8 +733,8 @@ static void _underChildInfoSendSuccess( COMM_UNIONROOM_WORK *cuw )
 
 //------------------------------------------------------------------
 /**
- * $brief   q‹@‚Æ‚µ‚Ä’ÊMÚ‘±‚µ‚½Œã‚ÍƒR[ƒ‹ƒoƒbƒNŠÖ”“à‚Å
- *          ˆ—‚·‚é‚±‚Æ‚ª‘½‚¢‚Ì‚ÅAØ’f‚¾‚¯‚ÍŒŸ’n‚·‚é‚æ‚¤‚É‚·‚éyƒ†ƒjƒIƒ“ƒ^ƒXƒN‘JˆÚz
+ * $brief   å­æ©Ÿã¨ã—ã¦é€šä¿¡æ¥ç¶šã—ãŸå¾Œã¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…ã§
+ *          å‡¦ç†ã™ã‚‹ã“ã¨ãŒå¤šã„ã®ã§ã€åˆ‡æ–­ã ã‘ã¯æ¤œåœ°ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã€ãƒ¦ãƒ‹ã‚ªãƒ³ã‚¿ã‚¹ã‚¯é·ç§»ã€‘
  *
  * @param   cuw		
  *
@@ -754,7 +754,7 @@ static void  _underChildSelectWait(COMM_UNIONROOM_WORK *cuw)
     	_changeState_func(cuw,_UnionRestart, _FINALIZE_TIME);
 		return ;
 	}
-    // Ú‘±ƒ^ƒCƒ€ƒAƒEƒg
+    // æ¥ç¶šã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 //    if(cuw->timer!=0){
 //        cuw->timer--;
 //        return;
@@ -763,7 +763,7 @@ static void  _underChildSelectWait(COMM_UNIONROOM_WORK *cuw)
 
 //------------------------------------------------------------------
 /**
- * ƒ†ƒjƒIƒ“’ÊM—pƒ[ƒN‰ğ•ú
+ * ãƒ¦ãƒ‹ã‚ªãƒ³é€šä¿¡ç”¨ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   cuw		
  *
@@ -774,7 +774,7 @@ static void CommStateFinalize(COMM_UNIONROOM_WORK *cuw)
 {
     void* pWork;
 
-    if(cuw==NULL){  // ‚·‚Å‚ÉI—¹‚µ‚Ä‚¢‚é
+    if(cuw==NULL){  // ã™ã§ã«çµ‚äº†ã—ã¦ã„ã‚‹
         return;
     }
     TCB_Delete(cuw->UnionStateTask);
@@ -789,7 +789,7 @@ static void CommStateFinalize(COMM_UNIONROOM_WORK *cuw)
 
 //==============================================================================
 /**
- * COMM_UNIONROOM_WORK‚ª‚Á‚Ä‚¢‚éFIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * COMM_UNIONROOM_WORKãŒæŒã£ã¦ã„ã‚‹FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
  * @param   cuw		
  *
@@ -803,7 +803,7 @@ FIELDSYS_WORK* Union_FielsSysPtrGet(COMM_UNIONROOM_WORK *cuw)
 
 //==============================================================================
 /**
- * ’ÊM‚©‚çæ“¾‚µ‚½ƒr[ƒRƒ“‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·(comm_union_view.c—p)
+ * é€šä¿¡ã‹ã‚‰å–å¾—ã—ãŸãƒ“ãƒ¼ã‚³ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™(comm_union_view.cç”¨)
  *
  * @param   cuw		
  * @param   no		
@@ -834,15 +834,15 @@ static UNION_BEACON_STATE *debug_beacon;
 
 //==============================================================================
 /**
- * ˜b‚µ‚©‚¯OBJ‚ÌID‚ğ–á‚Á‚ÄÚ‘±‚Ì‚½‚ß‚Éî•ñ‚Æ‚µ‚Äg‚¤
+ * è©±ã—ã‹ã‘OBJã®IDã‚’è²°ã£ã¦æ¥ç¶šã®ãŸã‚ã«æƒ…å ±ã¨ã—ã¦ä½¿ã†
  *
  * @param   cuw			COMM_UNIONROOM_WORK
- * @param   no			OBJID(ˆµ‚¤‚Æ‚«‚Í-1‚·‚éj
+ * @param   no			OBJID(æ‰±ã†ã¨ãã¯-1ã™ã‚‹ï¼‰
  *
- * @retval  int			’ÊMŠJn‚Å‚«‚é‚©H‚Ç‚¤‚©‚ğ•Ô‚·
- *						UNION_PARENT_CONNECT_OK:˜bŠ|‚¯’ÊM‚ª‚Å‚«‚é
- *						UNION_PARENT_OEKAKI_OK:‚¨ŠG‚©‚«—“ü’ÊM‚ª‚Å‚«‚é
- *						UNION_PARENT_CONNECT_NG:’ÊM‚Å‚«‚È‚¢
+ * @retval  int			é€šä¿¡é–‹å§‹ã§ãã‚‹ã‹ï¼Ÿã©ã†ã‹ã‚’è¿”ã™
+ *						UNION_PARENT_CONNECT_OK:è©±æ›ã‘é€šä¿¡ãŒã§ãã‚‹
+ *						UNION_PARENT_OEKAKI_OK:ãŠçµµã‹ãä¹±å…¥é€šä¿¡ãŒã§ãã‚‹
+ *						UNION_PARENT_CONNECT_NG:é€šä¿¡ã§ããªã„
  */
 //==============================================================================
 int Union_ConnectIdSet( COMM_UNIONROOM_WORK *cuw, int no )
@@ -850,20 +850,20 @@ int Union_ConnectIdSet( COMM_UNIONROOM_WORK *cuw, int no )
 	MYSTATUS *status;
 	_GF_BSS_DATA_INFO *gfbssdata;
 	UNION_BEACON_STATE *beaconState;
-	// ƒXƒNƒŠƒvƒg‚©‚ç‚Í{‚P‚Å‚­‚é‚Ì‚Å‚Pˆø‚­
+	// ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã¯ï¼‹ï¼‘ã§ãã‚‹ã®ã§ï¼‘å¼•ã
 	no--;
 	
 	status       = CommMPGetBconMyStatus( no );
 
-	// ˜b‚µŠ|‚¯‘O‚àƒ[ƒNƒNƒŠƒA
+	// è©±ã—æ›ã‘å‰ã‚‚ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
 	Union_CommWorkClear( cuw );
 
-	// status‚ªNULL‚¾‚Á‚½ê‡‚Í˜b‚µŠ|‚¯‚É¸”s‚·‚éi‚²‚ß‚ñ‚¢‚»‚ª‚µ‚¢‚ñ‚¾j
+	// statusãŒNULLã ã£ãŸå ´åˆã¯è©±ã—æ›ã‘ã«å¤±æ•—ã™ã‚‹ï¼ˆã”ã‚ã‚“ã„ããŒã—ã„ã‚“ã ï¼‰
 	if(status==NULL){
 		return UNION_PARENT_CONNECT_NG;
 	}
 
-	// NULLQÆ‚Ì‰Â”\«‚ª‚ ‚é‚Ì‚ÅC³
+	// NULLå‚ç…§ã®å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ä¿®æ­£
 	// 0806015 tomoya
 	if( cuw->UnionBeaconTbl[no] == NULL ){
 		return UNION_PARENT_CONNECT_NG;
@@ -873,7 +873,7 @@ int Union_ConnectIdSet( COMM_UNIONROOM_WORK *cuw, int no )
 	beaconState  = (UNION_BEACON_STATE *)gfbssdata->regulationBuff;
 	debug_beacon = beaconState;
 
-	OS_Printf("ƒr[ƒRƒ“‚Í%d \n",beaconState->mode);
+	OS_Printf("ãƒ“ãƒ¼ã‚³ãƒ³ã¯%d \n",beaconState->mode);
 
 #ifdef OEKAKI_ONLY_TALK
 	return UNION_PARENT_OEKAKI_OK;
@@ -904,12 +904,12 @@ int Union_ConnectIdSet( COMM_UNIONROOM_WORK *cuw, int no )
 
 //==============================================================================
 /**
- * $brief   ‘Šè‚Ìƒr[ƒRƒ“ó‘Ô‚ğŠm”F‚µ‚½ã‚ÅÚ‘±‚És‚­
+ * $brief   ç›¸æ‰‹ã®ãƒ“ãƒ¼ã‚³ãƒ³çŠ¶æ…‹ã‚’ç¢ºèªã—ãŸä¸Šã§æ¥ç¶šã«è¡Œã
  *
  * @param   cuw		
- * @param   no		OBJIDi{‚P‚³‚ê‚Ä‚¢‚é‚Ì‚Å-1‚µ‚Äˆµ‚¤j
+ * @param   no		OBJIDï¼ˆï¼‹ï¼‘ã•ã‚Œã¦ã„ã‚‹ã®ã§-1ã—ã¦æ‰±ã†ï¼‰
  *
- * @retval  int		UNION_CONNECT_OK‚©UNION_CONNECT_NG
+ * @retval  int		UNION_CONNECT_OKã‹UNION_CONNECT_NG
  */
 //==============================================================================
 int Union_ConnectStart( COMM_UNIONROOM_WORK *cuw, int objno, u16 type )
@@ -917,27 +917,27 @@ int Union_ConnectStart( COMM_UNIONROOM_WORK *cuw, int objno, u16 type )
 	MYSTATUS *status;
 	_GF_BSS_DATA_INFO *gfbssdata;
 	UNION_BEACON_STATE *beaconState;
-	// ƒXƒNƒŠƒvƒg‚©‚ç‚Í{‚P‚Å‚­‚é‚Ì‚Å‚Pˆø‚­
+	// ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã¯ï¼‹ï¼‘ã§ãã‚‹ã®ã§ï¼‘å¼•ã
 	objno--;
 
-	// NULLQÆ‚Ì‰Â”\«‚ª‚ ‚é‚Ì‚ÅC³
+	// NULLå‚ç…§ã®å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ä¿®æ­£
 	// 0806015 tomoya
 	if( cuw->UnionBeaconTbl[objno] == NULL ){
 		return UNION_PARENT_CONNECT_NG;
 	}
 	
-//	status      = CommMPGetBconMyStatus( objno );  //QÆ‚µ‚Ä‚È‚¢‚Ì‚ÅƒRƒƒ“ƒg 080619
+//	status      = CommMPGetBconMyStatus( objno );  //å‚ç…§ã—ã¦ãªã„ã®ã§ã‚³ãƒ¡ãƒ³ãƒˆ 080619
 	gfbssdata   = (_GF_BSS_DATA_INFO *)cuw->UnionBeaconTbl[objno]->gameInfo.userGameInfo;
 	beaconState = (UNION_BEACON_STATE *)gfbssdata->regulationBuff;
 	debug_beacon = beaconState;
 
-	OS_Printf( "Union_ConnectStart() Ú‘±ŠJn" );
-	OS_Printf( "ƒr[ƒRƒ“ = %d", beaconState->mode );
-	OS_Printf( "ƒ^ƒCƒv = %d\n", type );
+	OS_Printf( "Union_ConnectStart() æ¥ç¶šé–‹å§‹" );
+	OS_Printf( "ãƒ“ãƒ¼ã‚³ãƒ³ = %d", beaconState->mode );
+	OS_Printf( "ã‚¿ã‚¤ãƒ— = %d\n", type );
 			
-	// ‘Šè‚Ì’ÊMó‘Ô‚ğŠm”F‚µ‚ÄÚ‘±ON‚©NG‚©‚ğ”»’f‚·‚é
+	// ç›¸æ‰‹ã®é€šä¿¡çŠ¶æ…‹ã‚’ç¢ºèªã—ã¦æ¥ç¶šONã‹NGã‹ã‚’åˆ¤æ–­ã™ã‚‹
 	switch(beaconState->mode){
-	// ƒtƒŠ[EƒŒƒR[ƒhƒR[ƒi[•åW’†E‚®‚é‚®‚éŒğŠ·•åW’†‚Ìê‡‚Íƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒO’ÊM
+	// ãƒ•ãƒªãƒ¼ãƒ»ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼å‹Ÿé›†ä¸­ãƒ»ãã‚‹ãã‚‹äº¤æ›å‹Ÿé›†ä¸­ã®å ´åˆã¯ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°é€šä¿¡
 	case UNION_PARENT_MODE_RECORD_FREE:
 		if(type!=UNION_PARENT_RECORD_OK){
 			return UNION_PARENT_CONNECT_NG;
@@ -959,7 +959,7 @@ int Union_ConnectStart( COMM_UNIONROOM_WORK *cuw, int objno, u16 type )
 		cuw->CommConnectResult    = UNION_CONNECT_BUSY;
 		return UNION_PARENT_CONNECT_OK;
 		break;
-	// ‚¨‚¦‚©‚«•åW’†‚Ìê‡‚ÍMP’ÊM
+	// ãŠãˆã‹ãå‹Ÿé›†ä¸­ã®å ´åˆã¯MPé€šä¿¡
 	case UNION_PARENT_MODE_OEKAKI_FREE:
 		if(type!=UNION_PARENT_OEKAKI_OK){
 			return UNION_PARENT_CONNECT_NG;
@@ -970,22 +970,22 @@ int Union_ConnectStart( COMM_UNIONROOM_WORK *cuw, int objno, u16 type )
 		cuw->CommConnectResult    = UNION_CONNECT_BUSY;
 		return UNION_PARENT_CONNECT_OK;
 		break;
-	//‚®‚é‚®‚éŒğŠ·•åW’†‚Ìê‡‚Íƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒO’ÊM
+	//ãã‚‹ãã‚‹äº¤æ›å‹Ÿé›†ä¸­ã®å ´åˆã¯ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°é€šä¿¡
 	case UNION_PARENT_MODE_GURU2_FREE:
 	case UNION_PARENT_MODE_GURUGURU_FREE:
 		if(type!=UNION_PARENT_GURUGURU_OK){
-			OS_Printf( "‚®‚é‚®‚éŒğŠ·Ú‘±¸”s================================\n" );
+			OS_Printf( "ãã‚‹ãã‚‹äº¤æ›æ¥ç¶šå¤±æ•—================================\n" );
 			return UNION_PARENT_CONNECT_NG;
 		}
 		
-		OS_Printf( "‚®‚é‚®‚éŒğŠ·Ú‘±¬Œ÷II=======================================\n" );
+		OS_Printf( "ãã‚‹ãã‚‹äº¤æ›æ¥ç¶šæˆåŠŸï¼ï¼=======================================\n" );
 		cuw->CommChildSelectEvent = UNION_CHILD_SELECT_GURUGURU;
 		cuw->CommConnectId        = objno;
 		cuw->CommConnectStartFlag = DS_CONNECT_START; //MP_CONNECT_START;
 		cuw->CommConnectResult    = UNION_CONNECT_BUSY;
 		return UNION_PARENT_CONNECT_OK;
 		break;
-	// ‚à‚¤’ÊM’†‚Ìê‡‚à‚µ‚­‚Íó‚¯“ü‚êó‘Ô‚É–³‚¢‚Æ‚«‚ÍÚ‘±‚µ‚È‚¢
+	// ã‚‚ã†é€šä¿¡ä¸­ã®å ´åˆã‚‚ã—ãã¯å—ã‘å…¥ã‚ŒçŠ¶æ…‹ã«ç„¡ã„ã¨ãã¯æ¥ç¶šã—ãªã„
 	case UNION_PARENT_MODE_BUSY:
 	case UNION_PARENT_MODE_CARDNOW:
 	case UNION_PARENT_MODE_BATTLENOW:
@@ -1006,11 +1006,11 @@ int Union_ConnectStart( COMM_UNIONROOM_WORK *cuw, int objno, u16 type )
 
 //==============================================================================
 /**
- * ˜b‚µ‚©‚¯‚ÅÚ‘±‚µ‚Ä‚İ‚½Œ‹‰Ê‚ğ•Ô‚·
+ * è©±ã—ã‹ã‘ã§æ¥ç¶šã—ã¦ã¿ãŸçµæœã‚’è¿”ã™
  *
  * @param   cuw		COMM_UNIONROOM_WORK
  *
- * @retval  u32		0:“r’†	1:¬Œ÷	2:¸”s	3:©•ª‚ªe‚É‚È‚Á‚½
+ * @retval  u32		0:é€”ä¸­	1:æˆåŠŸ	2:å¤±æ•—	3:è‡ªåˆ†ãŒè¦ªã«ãªã£ãŸ
  */
 //==============================================================================
 u32 Union_ConnectResultGet(COMM_UNIONROOM_WORK *cuw )
@@ -1022,7 +1022,7 @@ u32 Union_ConnectResultGet(COMM_UNIONROOM_WORK *cuw )
 
 //==============================================================================
 /**
- * ƒXƒNƒŠƒvƒg‚Éƒ†ƒjƒIƒ“ƒ‹[ƒ€‚©‚çÀs‚·‚é“à—e‚ğ•Ô‚·
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‹ã‚‰å®Ÿè¡Œã™ã‚‹å†…å®¹ã‚’è¿”ã™
  *
  * @param   cuw		
  *
@@ -1038,7 +1038,7 @@ u32 Union_ParentStartCommandSet( COMM_UNIONROOM_WORK *cuw )
 //		return cuw->UnionEventWork;
 //	}
 
-	// ’ÊM‚ªŒq‚ª‚Á‚Ä‚¢‚éŠÔ‚Íe‹@‚ÌƒRƒ}ƒ“ƒh‚ğ•Ô‚·‚ªAØ’f‚³‚ê‚½ê‡‚Í‚·‚®‚ÉI—¹‚ğ“n‚·
+	// é€šä¿¡ãŒç¹‹ãŒã£ã¦ã„ã‚‹é–“ã¯è¦ªæ©Ÿã®ã‚³ãƒãƒ³ãƒ‰ã‚’è¿”ã™ãŒã€åˆ‡æ–­ã•ã‚ŒãŸå ´åˆã¯ã™ãã«çµ‚äº†ã‚’æ¸¡ã™
 	if(cuw->UnionEndConnectFlag){
 		return UNION_CHILD_SELECT_CANCEL;
 	}
@@ -1048,12 +1048,12 @@ u32 Union_ParentStartCommandSet( COMM_UNIONROOM_WORK *cuw )
 	}
 
 	if(CommGetCurrentID()==0){
-		// e‹@Ú‘±‚Ì‚ÌÚ‘±Šm”F
+		// è¦ªæ©Ÿæ¥ç¶šã®æ™‚ã®æ¥ç¶šç¢ºèª
 		if(CommStateIsUnionParentConnectSuccess()==TRUE){
 			return cuw->UnionEventWork;
 		}
 	}else{
-		// q‹@Ú‘±‚Ì‚ÌÚ‘±Šm”F
+		// å­æ©Ÿæ¥ç¶šã®æ™‚ã®æ¥ç¶šç¢ºèª
 		if(CommStateIsUnionConnectSuccess()==TRUE){
 			return cuw->UnionEventWork;
 		}
@@ -1065,7 +1065,7 @@ u32 Union_ParentStartCommandSet( COMM_UNIONROOM_WORK *cuw )
 
 //==============================================================================
 /**
- * q‹@‚Ì‘I‘ğ“à—e‚ğƒXƒNƒŠƒvƒg‚É’Ê’m‚·‚é
+ * å­æ©Ÿã®é¸æŠå†…å®¹ã‚’ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«é€šçŸ¥ã™ã‚‹
  *
  * @param   cuw		
  *
@@ -1074,23 +1074,23 @@ u32 Union_ParentStartCommandSet( COMM_UNIONROOM_WORK *cuw )
 //==============================================================================
 u32 Union_ChildSelectCommandSet( COMM_UNIONROOM_WORK *cuw )
 {
-	OS_TPrintf("e‹@‚ªq‹@‚Ì‘I‘ğ‘Ò‚¿ Ú‘±ó‘Ô=%d\n",CommStateIsUnionParentConnectSuccess());
+	OS_TPrintf("è¦ªæ©ŸãŒå­æ©Ÿã®é¸æŠå¾…ã¡ æ¥ç¶šçŠ¶æ…‹=%d\n",CommStateIsUnionParentConnectSuccess());
 
-	// e‹@Ú‘±‚Ì‚ÌÚ‘±Šm”F
+	// è¦ªæ©Ÿæ¥ç¶šã®æ™‚ã®æ¥ç¶šç¢ºèª
 	if(CommStateIsUnionParentConnectSuccess()==TRUE){
 		return cuw->CommChildSelectEvent;
 	}
 	
-	// Œq‚ª‚Á‚Ä‚¢‚È‚¢‚Ì‚ÅAƒLƒƒƒ“ƒZƒ‹
+	// ç¹‹ãŒã£ã¦ã„ãªã„ã®ã§ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	return UNION_CHILD_SELECT_CANCEL;
 }
 //==============================================================================
 /**
- * ƒXƒNƒŠƒvƒg“à‚Åˆ—‚³‚ê‚½‘I‘ğˆ‚ÌŒ‹‰Ê‚ğ‚à‚ç‚¤
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã§å‡¦ç†ã•ã‚ŒãŸé¸æŠè‚¢ã®çµæœã‚’ã‚‚ã‚‰ã†
  *
  * @param   cuw			COMM_UNIONROOM_WORK
- * @param   var			ƒXƒNƒŠƒvƒg‚ªÀs‚µ‚½‘I‘ğ‚Ìí—Ş
- * @param   result		Œ‹‰Êi‘I‘ğ‚É‚æ‚Á‚Äˆá‚¤j
+ * @param   var			ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒå®Ÿè¡Œã—ãŸé¸æŠã®ç¨®é¡
+ * @param   result		çµæœï¼ˆé¸æŠã«ã‚ˆã£ã¦é•ã†ï¼‰
  *
  * @retval  none		
  */
@@ -1102,19 +1102,19 @@ void Union_ScriptResultGet( COMM_UNIONROOM_WORK *cuw, int var, u32 result)
 	switch(var){
 	case 0:
 		if(cuw->UnionEndConnectFlag==0){
-			PRINT2("‘I‘ğ“à—e‚Í%d\n",result);
+			PRINT2("é¸æŠå†…å®¹ã¯%d\n",result);
 			cuw->ScriptSelectWork = command;
 			CommSendData(CU_PLAYER_SELECT,&command,1);
 		}
 		break;
 	case 1:
-		// e‚Ì‚Í‚¢E‚¢‚¢‚¦‚É‚æ‚é
+		// è¦ªã®ã¯ã„ãƒ»ã„ã„ãˆã«ã‚ˆã‚‹
 		if(result==0){
 			u8 start = cuw->CommChildSelectEvent;
 			CommSendData_ServerSide(CU_START_NEXT, &start, 1);
 			cuw->ScriptYesNoWork = result;
 		}else{
-			u8 start = UNION_CHILD_SELECT_CANCEL;					//e‹@‚Í‚¢‚¢‚¦‚ğ‘I‚ñ‚¾‚Ì‚ÅuƒLƒƒƒ“ƒZƒ‹v‚ğ‘—M
+			u8 start = UNION_CHILD_SELECT_CANCEL;					//è¦ªæ©Ÿã¯ã„ã„ãˆã‚’é¸ã‚“ã ã®ã§ã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚’é€ä¿¡
 			CommSendData_ServerSide(CU_START_NEXT, &start, 1);
 			cuw->ScriptYesNoWork = result;
 		}
@@ -1146,24 +1146,24 @@ void Union_ScriptResultGet( COMM_UNIONROOM_WORK *cuw, int var, u32 result)
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-// comm_command_field.c‚É“o˜^‚µ‚Ä‚¢‚é’ÊMƒR[ƒ‹ƒoƒbƒNŠÖ”ŒQ
+// comm_command_field.cã«ç™»éŒ²ã—ã¦ã„ã‚‹é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ç¾¤
 //------------------------------------------------------------------------------
 
 
 void CommUnionRecvStatus(int netID, int size, void* pBuff, void* pWork)
 {
-	PRINT("ƒXƒe[ƒ^ƒXóMŠ®—¹\n");
+	PRINT("ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å—ä¿¡å®Œäº†\n");
 }
 
 void CommUnionRecvTalk(int netID, int size, void* pBuff, void* pWork)
 {
-	PRINT2("%d‚©‚ç‚Ì‰ï˜bóMŠ®—¹\n",netID);	
+	PRINT2("%dã‹ã‚‰ã®ä¼šè©±å—ä¿¡å®Œäº†\n",netID);	
 }
 
 
 //==============================================================================
 /**
- * $brief   e‚ªƒCƒGƒXi¡‚Í‚¢‚Á‚Ä‚È‚¢j
+ * $brief   è¦ªãŒã‚¤ã‚¨ã‚¹ï¼ˆä»Šã¯ã„ã£ã¦ãªã„ï¼‰
  *
  * @param   netID		
  * @param   size		
@@ -1175,12 +1175,12 @@ void CommUnionRecvTalk(int netID, int size, void* pBuff, void* pWork)
 //==============================================================================
 void CommUnionRecvYes(int netID, int size, void* pBuff, void* pWork)
 {
-	PRINT2("%d‚©‚ç‚Ì  ‚x‚d‚r\n",netID);	
+	PRINT2("%dã‹ã‚‰ã®  ï¼¹ï¼¥ï¼³\n",netID);	
 	
 }
 //==============================================================================
 /**
- * $brief   e‚ª‚m‚n‚ÆŒ¾‚Á‚Ä‚«‚½‚Æ‚«‚ÌƒR[ƒ‹ƒoƒbƒN
+ * $brief   è¦ªãŒï¼®ï¼¯ã¨è¨€ã£ã¦ããŸã¨ãã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param   netID		
  * @param   size		
@@ -1194,8 +1194,8 @@ void CommUnionRecvNo(int netID, int size, void* pBuff, void* pWork)
 {
 	FIELDSYS_WORK *fsys = (FIELDSYS_WORK *)pWork;
 
-	PRINT2("%d‚©‚ç‚Ì  ‚m‚n\n",netID);
-	// ƒLƒƒƒ“ƒZƒ‹‚µ‚½‚Ì‚ÅØ’fEƒr[ƒRƒ“ûW‚Ö•œ‹A
+	PRINT2("%dã‹ã‚‰ã®  ï¼®ï¼¯\n",netID);
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸã®ã§åˆ‡æ–­ãƒ»ãƒ“ãƒ¼ã‚³ãƒ³åé›†ã¸å¾©å¸°
 	//	CommStateExitUnion();
    	_changeState_func(fsys->union_work, _UnionStart, _FINALIZE_TIME);
 	CommUnion_EventFlagClear(fsys->union_work);
@@ -1206,7 +1206,7 @@ static int debug_union_select;
 
 //==============================================================================
 /**
- * q‹@‚Ì‘I‘ğ“à—e‚ğóM‚·‚é
+ * å­æ©Ÿã®é¸æŠå†…å®¹ã‚’å—ä¿¡ã™ã‚‹
  *
  * @param   netID		
  * @param   size		
@@ -1221,20 +1221,20 @@ void CommUnionRecvSelect(int netID, int size, void* pBuff, void* pWork)
 	FIELDSYS_WORK *fsys = (FIELDSYS_WORK *)pWork;
 	u8 *no = (u8*)pBuff;
 	
-	// I—¹ƒRƒ}ƒ“ƒh‚ğó‚¯æ‚Á‚Ä‚¢‚È‚¯‚ê‚Î‘I‘ğƒCƒxƒ“ƒg‚ğÌ—p‚·‚é
+	// çµ‚äº†ã‚³ãƒãƒ³ãƒ‰ã‚’å—ã‘å–ã£ã¦ã„ãªã‘ã‚Œã°é¸æŠã‚¤ãƒ™ãƒ³ãƒˆã‚’æ¡ç”¨ã™ã‚‹
 	if(fsys->union_work->UnionEndConnectFlag==0){
 		fsys->union_work->CommChildSelectEvent = *no;
 		debug_union_select = *no;
 	}
 
-	PRINT("‘I‘ğˆóMŠ®—¹\n");
+	PRINT("é¸æŠè‚¢å—ä¿¡å®Œäº†\n");
 	
 
 }
 
 //==============================================================================
 /**
- * ƒXƒ^[ƒgƒf[ƒ^óMƒR[ƒ‹ƒoƒbƒN
+ * ã‚¹ã‚¿ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param   netID		
  * @param   size		
@@ -1249,12 +1249,12 @@ void CommUnionStartNext(int netID ,int size, void* pBuff, void* pWork)
 	FIELDSYS_WORK *fsys = (FIELDSYS_WORK *)pWork;
 	u8 *no = (u8*)pBuff;
 	
-	PRINT("ƒCƒxƒ“ƒgŠJnƒRƒ}ƒ“ƒh“’…\n");
+	PRINT("ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹ã‚³ãƒãƒ³ãƒ‰åˆ°ç€\n");
 
-	// ƒCƒxƒ“ƒgŠJnƒtƒ‰ƒO‚ğ‚½‚Ä‚éie‹@‚ÉƒCƒxƒ“ƒgŠJnƒRƒ}ƒ“ƒh‚ğ”­s‚³‚¹‚éj
+	// ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹ãƒ•ãƒ©ã‚°ã‚’ãŸã¦ã‚‹ï¼ˆè¦ªæ©Ÿã«ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã•ã›ã‚‹ï¼‰
 	fsys->union_work->CommNextProcOn = 1;
 
-	// e‹@‚©‚çŠJn‚·‚éƒCƒxƒ“ƒg‚Ìí—Ş‚ª‘—‚ç‚ê‚Ä‚­‚éie‹@‚É‚à“Í‚­j
+	// è¦ªæ©Ÿã‹ã‚‰é–‹å§‹ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡ãŒé€ã‚‰ã‚Œã¦ãã‚‹ï¼ˆè¦ªæ©Ÿã«ã‚‚å±Šãï¼‰
 	fsys->union_work->UnionEventWork = *no;
 
 	if(*no == UNION_CHILD_SELECT_OEKAKI){
@@ -1266,7 +1266,7 @@ void CommUnionStartNext(int netID ,int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * ’ÊMI—¹ƒf[ƒ^óMƒR[ƒ‹ƒoƒbƒN
+ * é€šä¿¡çµ‚äº†ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param   netID		
  * @param   size		
@@ -1280,16 +1280,16 @@ void CommUnionEndConnect(int netID ,int size, void* pBuff, void* pWork)
 {
 	FIELDSYS_WORK *fsys = (FIELDSYS_WORK *)pWork;
 
-	// ’ÊMI—¹ƒRƒ}ƒ“ƒh
+	// é€šä¿¡çµ‚äº†ã‚³ãƒãƒ³ãƒ‰
 	fsys->union_work->UnionEndConnectFlag = 1;
 
-	OS_TPrintf("e‹@‚©‚çI—¹ƒRƒ}ƒ“ƒh‚ğó‚¯æ‚Á‚½\n");
+	OS_TPrintf("è¦ªæ©Ÿã‹ã‚‰çµ‚äº†ã‚³ãƒãƒ³ãƒ‰ã‚’å—ã‘å–ã£ãŸ\n");
 }
 
 
 //==============================================================================
 /**
- * @brief   Ú‘±I—¹ƒtƒ‰ƒO‚ğ•Ô‚·
+ * @brief   æ¥ç¶šçµ‚äº†ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
  *
  * @param   cuw		
  *
@@ -1303,7 +1303,7 @@ int Union_CancelRecv( COMM_UNIONROOM_WORK *cuw )
 
 //==============================================================================
 /**
- * @brief   e‹@‚©‚çƒLƒƒƒ“ƒZƒ‹‚ğ‘—M‚·‚é
+ * @brief   è¦ªæ©Ÿã‹ã‚‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã‚’é€ä¿¡ã™ã‚‹
  *
  * @param   core->fsys->union_work		
  *
@@ -1312,7 +1312,7 @@ int Union_CancelRecv( COMM_UNIONROOM_WORK *cuw )
 //==============================================================================
 int Union_ParentSendCancel( COMM_UNIONROOM_WORK *cuw, int mes )
 {
-	// q‹@‚©‚ç‚ÌƒCƒxƒ“ƒg‘I‘ğ‚ª“’…‚µ‚Ä‚¢‚È‚¯‚ê‚Î‘—M‚·‚é
+	// å­æ©Ÿã‹ã‚‰ã®ã‚¤ãƒ™ãƒ³ãƒˆé¸æŠãŒåˆ°ç€ã—ã¦ã„ãªã‘ã‚Œã°é€ä¿¡ã™ã‚‹
 	if(cuw->CommChildSelectEvent==0){
 		CommSendData( CU_END_CONNECT_SERVER, NULL, 0);
 		return mes;
@@ -1323,7 +1323,7 @@ int Union_ParentSendCancel( COMM_UNIONROOM_WORK *cuw, int mes )
 
 //==============================================================================
 /**
- * $brief   ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^‚ÌƒRƒs[
+ * $brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼
  *
  * @param   netID		
  * @param   size		
@@ -1341,7 +1341,7 @@ void CommUnionRecvTrainerCard(int netID ,int size, void* pBuff, void* pWork )
 	void          *fnoteWork;
 
 //	OS_Printf("id = %d  size = %d ",netID, size);
-	// ©•ª‚Æˆá‚¤‚h‚c‚Ìl‚ÌƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^‚ğƒRƒs[
+	// è‡ªåˆ†ã¨é•ã†ï¼©ï¼¤ã®äººã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 //	if(netID!=CommGetCurrentID()){
 //		MI_CpuCopyFast( pBuff, fsys->union_work->recv_trcard[ne,  size );
 //	}
@@ -1356,7 +1356,7 @@ void CommUnionRecvTrainerCard(int netID ,int size, void* pBuff, void* pWork )
 	}
 	trcard->reached = 1;
 
-	// –`Œ¯ƒm[ƒgˆ—
+	// å†’é™ºãƒãƒ¼ãƒˆå‡¦ç†
 	if(netID!=CommGetCurrentID()){
 		fnoteWork = FNOTE_SioUnionGreetDataMake(  (STRCODE*)MyStatus_GetMyName(friend),  MyStatus_GetMySex(friend), HEAPID_UNIONROOM );
 		FNOTE_DataSave( fsys->fnote, fnoteWork, FNOTE_TYPE_SIO );
@@ -1366,7 +1366,7 @@ void CommUnionRecvTrainerCard(int netID ,int size, void* pBuff, void* pWork )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^óMƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * $brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
  * @param   netID		
  * @param   pWork		
@@ -1387,7 +1387,7 @@ u8* getTrainerCardRecvBuff( int netID, void* pWork, int size)
 
 //------------------------------------------------------------------
 /**
- * $brief   í“¬‘Oƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒ‹‰Êæ“¾ŠÖ”
+ * $brief   æˆ¦é—˜å‰ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµæœå–å¾—é–¢æ•°
  *
  * @param   netID		
  * @param   pWork		
@@ -1402,7 +1402,7 @@ void CommUnionRecvBattlePokeListResult(int netID ,int size, void* pBuff, void* p
 	COMM_UNIONROOM_WORK *cuw  = fsys->union_work;
 	u8 *result				  = (u8*)pBuff;
 
-	OS_TPrintf("id = %d ‚Í  %d\n", netID, *result);
+	OS_TPrintf("id = %d ã¯  %d\n", netID, *result);
 
 	cuw->battleSelect[netID] = *result;
 
@@ -1412,7 +1412,7 @@ void CommUnionRecvBattlePokeListResult(int netID ,int size, void* pBuff, void* p
 
 //==============================================================================
 /**
- * @brief   í“¬‘Oƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ğŒÄ‚ñ‚¾Œ‹‰Ê‚Í‚Ç‚¤‚¾‚Á‚½‚©H
+ * @brief   æˆ¦é—˜å‰ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚’å‘¼ã‚“ã çµæœã¯ã©ã†ã ã£ãŸã‹ï¼Ÿ
  *
  * @param   cuw		
  *
@@ -1423,23 +1423,23 @@ u16  Union_GetBattleStartCheckResult( COMM_UNIONROOM_WORK *cuw )
 {
 	int myid = CommGetCurrentID();
 	
-	// ©•ª‚ªƒLƒƒƒ“ƒZƒ‹‚µ‚½
+	// è‡ªåˆ†ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸ
 	if(cuw->battleSelect[myid]==UNION_BATTLE_POKELIST_NG){
 		return UNION_BATTLE_MY_CANCEL;
 	}
 
-	// ‘Šè‚ÉƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
+	// ç›¸æ‰‹ã«ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
 	if(cuw->battleSelect[myid^1]==UNION_BATTLE_POKELIST_NG){
 		return UNION_BATTLE_PARTNER_CANCEL;
 	}
 
-	// ‘o•ûOK
+	// åŒæ–¹OK
 	return UNION_BATTLE_OK;
 }
 
 //==============================================================================
 /**
- * @brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€‘O‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ì‘I‘ğŒ‹‰Ê‚ğ‘—M‚·‚é
+ * @brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å‰ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®é¸æŠçµæœã‚’é€ä¿¡ã™ã‚‹
  *
  * @param   result		
  *
@@ -1468,7 +1468,7 @@ void Union_BattlePokeListResult( int result )
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-// ƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒc[ƒ‹
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒ„ãƒ¼ãƒ«
 //------------------------------------------------------------------------------
 
 
@@ -1511,26 +1511,26 @@ static const talk_table_guruguru[TALK_GURUGURU_MAX][2]={
 	{	msg_union_talkboy_07_12,msg_union_talkgirl_07_12},
 	{	msg_union_talkboy_07_13,msg_union_talkgirl_07_13},
 };
-// ƒQ[ƒ€ŠJn‚ÌƒƒbƒZ[ƒW
+// ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 static const talk_start_table[][2]={
-	{ msg_union_talkboy_01_03,msg_union_talkgirl_01_03,},	// ƒJ[ƒh
-	{ msg_union_talkboy_03_02,msg_union_talkgirl_03_02,},	// ‚½‚¢‚¹‚ñ
-	{ msg_union_talkboy_04_02,msg_union_talkgirl_04_02,},	// ‚±‚¤‚©‚ñ
-	{ msg_union_talkboy_02_02,msg_union_talkgirl_02_02,},	// ‚¨‚¦‚©‚«v
-	{ msg_union_talkboy_06_02,msg_union_talkgirl_06_02,},	// ƒŒƒR[ƒhv
-	{ msg_union_talkboy_07_02,msg_union_talkgirl_07_02,},	// ‚®‚é‚®‚éŒğŠ·v
-	{ msg_union_talkboy_07_02,msg_union_talkgirl_07_02,},	// ‚®‚é‚®‚éŒğŠ·v
+	{ msg_union_talkboy_01_03,msg_union_talkgirl_01_03,},	// ã‚«ãƒ¼ãƒ‰
+	{ msg_union_talkboy_03_02,msg_union_talkgirl_03_02,},	// ãŸã„ã›ã‚“
+	{ msg_union_talkboy_04_02,msg_union_talkgirl_04_02,},	// ã“ã†ã‹ã‚“
+	{ msg_union_talkboy_02_02,msg_union_talkgirl_02_02,},	// ãŠãˆã‹ãã€
+	{ msg_union_talkboy_06_02,msg_union_talkgirl_06_02,},	// ãƒ¬ã‚³ãƒ¼ãƒ‰ã€
+	{ msg_union_talkboy_07_02,msg_union_talkgirl_07_02,},	// ãã‚‹ãã‚‹äº¤æ›ã€
+	{ msg_union_talkboy_07_02,msg_union_talkgirl_07_02,},	// ãã‚‹ãã‚‹äº¤æ›ã€
 };
-// ˜b‚µ‚©‚¯‚ª¬Œ÷‚µ‚½‚Æ‚«
+// è©±ã—ã‹ã‘ãŒæˆåŠŸã—ãŸã¨ã
 static const talk_start_child_table[2]={
 	msg_union_talkboy_00_02,msg_union_talkgirl_00_02
 };
-// ˜b‚µ‚©‚¯‚ª‚µ‚Á‚Ï‚¢‚µ‚½‚Æ‚«
+// è©±ã—ã‹ã‘ãŒã—ã£ã±ã„ã—ãŸã¨ã
 static const talk_failed_child_table[2]={
 	msg_union_talkboy_00_05,msg_union_talkgirl_00_05
 };
 
-// —V‚Ñ‚ğ’f‚ç‚ê‚½‚Æ‚«
+// éŠã³ã‚’æ–­ã‚‰ã‚ŒãŸã¨ã
 static const talk_failed_table[][2]={
 	{msg_union_talkboy_01_02,msg_union_talkgirl_01_02},
 	{msg_union_talkboy_02_03,msg_union_talkgirl_02_03},
@@ -1540,44 +1540,44 @@ static const talk_failed_table[][2]={
 	{msg_union_talkboy_06_03,msg_union_talkgirl_06_03},
 };
 
-// ğŒ‚ğ–‚½‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA—U‚¦‚È‚¢
+// æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ãªã„ã®ã§ã€èª˜ãˆãªã„
 static const event_reject_table[][2]={
-	{msg_union_talkboy_03_04,msg_union_talkgirl_03_04},	// LV30ˆÈ‰º‚ª‚Q•C‚¢‚È‚¢‚Ì‚Å‘Îí‚Å‚«‚È‚¢
-	{msg_union_talkboy_04_06,msg_union_talkgirl_04_06},	// 2•CˆÈã‚Ä‚à‚¿‚ª‚¢‚È‚¢‚Ì‚ÅŒğŠ·‚Å‚«‚È‚¢
-	{msg_union_talkboy_07_04,msg_union_talkgirl_07_04},	// ƒ^ƒ}ƒS‚ğ‚Á‚Ä‚¢‚È‚¢‚Ì‚Å‚®‚é‚®‚é‚Å‚«‚È‚¢
+	{msg_union_talkboy_03_04,msg_union_talkgirl_03_04},	// LV30ä»¥ä¸‹ãŒï¼’åŒ¹ã„ãªã„ã®ã§å¯¾æˆ¦ã§ããªã„
+	{msg_union_talkboy_04_06,msg_union_talkgirl_04_06},	// 2åŒ¹ä»¥ä¸Šã¦ã‚‚ã¡ãŒã„ãªã„ã®ã§äº¤æ›ã§ããªã„
+	{msg_union_talkboy_07_04,msg_union_talkgirl_07_04},	// ã‚¿ãƒã‚´ã‚’æŒã£ã¦ã„ãªã„ã®ã§ãã‚‹ãã‚‹ã§ããªã„
 };
 
 static const talk_anster_wait_table[][2]={
-	{ msg_union_talkboy_01_01,msg_union_talkgirl_01_01,},	// ƒJ[ƒh
-	{ msg_union_talkboy_03_01,msg_union_talkgirl_03_01,},	// ‚½‚¢‚¹‚ñ
-	{ msg_union_talkboy_04_01,msg_union_talkgirl_04_01,},	// ‚±‚¤‚©‚ñ
-	{ msg_union_talkboy_02_01,msg_union_talkgirl_02_01,},	// ‚¨‚¦‚©‚«v
-	{ msg_union_talkboy_06_01,msg_union_talkgirl_06_01,},	// ƒŒƒR[ƒhv
-	{ msg_union_talkboy_07_01,msg_union_talkgirl_07_01,},	// ‚®‚é‚®‚éŒğŠ·v
-	{ msg_union_talkboy_07_01,msg_union_talkgirl_07_01,},	// ‚®‚é‚®‚éŒğŠ·v
+	{ msg_union_talkboy_01_01,msg_union_talkgirl_01_01,},	// ã‚«ãƒ¼ãƒ‰
+	{ msg_union_talkboy_03_01,msg_union_talkgirl_03_01,},	// ãŸã„ã›ã‚“
+	{ msg_union_talkboy_04_01,msg_union_talkgirl_04_01,},	// ã“ã†ã‹ã‚“
+	{ msg_union_talkboy_02_01,msg_union_talkgirl_02_01,},	// ãŠãˆã‹ãã€
+	{ msg_union_talkboy_06_01,msg_union_talkgirl_06_01,},	// ãƒ¬ã‚³ãƒ¼ãƒ‰ã€
+	{ msg_union_talkboy_07_01,msg_union_talkgirl_07_01,},	// ãã‚‹ãã‚‹äº¤æ›ã€
+	{ msg_union_talkboy_07_01,msg_union_talkgirl_07_01,},	// ãã‚‹ãã‚‹äº¤æ›ã€
 
 };
 static const talk_joinus_table[][2]={
-	{ msg_union_talkboy_02_05,msg_union_talkgirl_02_05,},	// ‚¨‚¦‚©‚«v
-	{ msg_union_talkboy_06_05,msg_union_talkgirl_06_05,},	// ƒŒƒR[ƒhv
-	{ msg_union_talkboy_07_05,msg_union_talkgirl_07_05,},	// ‚®‚é‚®‚éŒğŠ·v
+	{ msg_union_talkboy_02_05,msg_union_talkgirl_02_05,},	// ãŠãˆã‹ãã€
+	{ msg_union_talkboy_06_05,msg_union_talkgirl_06_05,},	// ãƒ¬ã‚³ãƒ¼ãƒ‰ã€
+	{ msg_union_talkboy_07_05,msg_union_talkgirl_07_05,},	// ãã‚‹ãã‚‹äº¤æ›ã€
 };
 static const talk_join_success_table[][2]={
-	{ msg_union_talkboy_02_07,msg_union_talkgirl_02_07,},	// ‚¨‚¦‚©‚«v
-	{ msg_union_talkboy_06_07,msg_union_talkgirl_06_07,},	// ƒŒƒR[ƒhv
-	{ msg_union_talkboy_07_07,msg_union_talkgirl_07_07,},	// ‚®‚é‚®‚éŒğŠ·v
+	{ msg_union_talkboy_02_07,msg_union_talkgirl_02_07,},	// ãŠãˆã‹ãã€
+	{ msg_union_talkboy_06_07,msg_union_talkgirl_06_07,},	// ãƒ¬ã‚³ãƒ¼ãƒ‰ã€
+	{ msg_union_talkboy_07_07,msg_union_talkgirl_07_07,},	// ãã‚‹ãã‚‹äº¤æ›ã€
 };
 static const talk_join_no_table[][2]={
-	{ msg_union_talkboy_02_06,msg_union_talkgirl_02_06,},	// ‚¨‚¦‚©‚«v
-	{ msg_union_talkboy_06_06,msg_union_talkgirl_06_06,},	// ƒŒƒR[ƒhv
-	{ msg_union_talkboy_07_06,msg_union_talkgirl_07_06,},	// ‚®‚é‚®‚éŒğŠ·v
+	{ msg_union_talkboy_02_06,msg_union_talkgirl_02_06,},	// ãŠãˆã‹ãã€
+	{ msg_union_talkboy_06_06,msg_union_talkgirl_06_06,},	// ãƒ¬ã‚³ãƒ¼ãƒ‰ã€
+	{ msg_union_talkboy_07_06,msg_union_talkgirl_07_06,},	// ãã‚‹ãã‚‹äº¤æ›ã€
 };
-// ‚Ù‚©‚É‚à‚È‚É‚©‚·‚éH
+// ã»ã‹ã«ã‚‚ãªã«ã‹ã™ã‚‹ï¼Ÿ
 static const int talk_next_selct_table[]={
 	msg_union_talkboy_00_04,msg_union_talkgirl_00_04
 };
 
-//‚Ü‚½‚±‚¦‚ğ‚©‚¯‚Ä‚­‚ê‚æ
+//ã¾ãŸã“ãˆã‚’ã‹ã‘ã¦ãã‚Œã‚ˆ
 static const int talk_connect_cancel_table[2]={
 	msg_union_talkboy_05_01,msg_union_talkgirl_05_01
 };
@@ -1586,19 +1586,19 @@ static const int talk_connect_canceled_table[2]={
 	msg_union_talkboy_00_03,msg_union_talkgirl_00_03
 };
 
-//‚Ä‚à‚¿‚É ‚±‚¤‚©‚ñ ‚Å‚«‚È‚¢ ƒ^ƒ}ƒS‚ª ‚ ‚è‚Ü‚·
+//ã¦ã‚‚ã¡ã« ã“ã†ã‹ã‚“ ã§ããªã„ ã‚¿ãƒã‚´ãŒ ã‚ã‚Šã¾ã™
 static const int talk_dametamago_cancel_table[2]={
 	msg_union_talkboy_07_14,	msg_union_talkgirl_07_14,
 };
 
-// SXYã‚Å‚ÌOBJ‚Ì”z’u‚ª³‚µ‚­‚È‚¢‚Ì‚Å•â³—pƒe[ƒuƒ‹
+// SXYä¸Šã§ã®OBJã®é…ç½®ãŒæ­£ã—ããªã„ã®ã§è£œæ­£ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
 const u16 Union_GroupObjTable[]={
 	10,14,18,22,26,30,34,38,42,46
 };
 
 //------------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚½OBJ‚Ìe‹@‚ÌID‚ğ•Ô‚·
+ * @brief   è©±ã—ã‹ã‘ãŸOBJã®è¦ªæ©Ÿã®IDã‚’è¿”ã™
  *
  * @param   no		
  *
@@ -1619,7 +1619,7 @@ static int ChildToParentNo(int no)
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚É‚Í‚È‚ç‚È‚¢‘Šè‚Æ‚Ì‰ï˜b”Ô†‚ğæ“¾
+ * $brief   æ¥ç¶šã«ã¯ãªã‚‰ãªã„ç›¸æ‰‹ã¨ã®ä¼šè©±ç•ªå·ã‚’å–å¾—
  *
  * @param   cuw		
  * @param   no		
@@ -1634,47 +1634,47 @@ static int GetGroupTalk_ListenNo( COMM_UNIONROOM_WORK *cuw, int no )
 	_GF_BSS_DATA_INFO *gfbssdata;
 	UNION_BEACON_STATE *beaconState;
 
-	// 10ˆÈã‚Íq‹@‚È‚Ì‚ÅAe‹@‚Ì‰ï˜b‚É‚Ô‚ç‚³‚ª‚é‚æ‚¤‚É‚·‚é
+	// 10ä»¥ä¸Šã¯å­æ©Ÿãªã®ã§ã€è¦ªæ©Ÿã®ä¼šè©±ã«ã¶ã‚‰ã•ãŒã‚‹ã‚ˆã†ã«ã™ã‚‹
 	if(no>9){
-		// ’N‚Ìq‹@‚©
+		// èª°ã®å­æ©Ÿã‹
 		target = ChildToParentNo( no );
-		GF_ASSERT( no!=-1 && "q‹@OBJID‚Íe‹@‚ğ‚Ğ‚¯‚È‚©‚Á‚½" );
-		OS_Printf("‘ã‘Ö•Ô– %d ¨  %d\n",no, target);
+		GF_ASSERT( no!=-1 && "å­æ©ŸOBJIDã¯è¦ªæ©Ÿã‚’ã²ã‘ãªã‹ã£ãŸ" );
+		OS_Printf("ä»£æ›¿è¿”äº‹ %d â†’  %d\n",no, target);
 	}else{
 		target = no;
 	}
 
-	// NULLQÆ‚Ì‰Â”\«‚ª‚ ‚é‚Ì‚ÅC³
+	// NULLå‚ç…§ã®å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ä¿®æ­£
 	// 080615	tomoya
 	if( cuw->UnionBeaconTbl[target] == NULL ){
 		return msg_union_talkboy_00_05;
 	}
 	
-	// ‰ï˜bæ“¾ŠJn
+	// ä¼šè©±å–å¾—é–‹å§‹
 	status      = CommMPGetBconMyStatus( target );
 	gfbssdata   = (_GF_BSS_DATA_INFO *)cuw->UnionBeaconTbl[target]->gameInfo.userGameInfo;
 	beaconState = (UNION_BEACON_STATE *)gfbssdata->regulationBuff;
 
-	// ƒr[ƒRƒ“î•ñ‚ª–³‚©‚Á‚½
+	// ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ãŒç„¡ã‹ã£ãŸ
 	if(status==NULL){
 		return msg_union_talkboy_00_05;
 	}
 
-	// e‚Ì‚Ì‚Íe‚Ì«•ÊAq‚Ì‚Íq‚Ì«•Ê
+	// è¦ªã®æ™‚ã®ã¯è¦ªã®æ€§åˆ¥ã€å­ã®æ™‚ã¯å­ã®æ€§åˆ¥
 	if(no>9){
 		sex = beaconState->c_face[(no-10)%4];
-		sex = sex>>7;	// ÅãˆÊ‚ª«•Ê
+		sex = sex>>7;	// æœ€ä¸Šä½ãŒæ€§åˆ¥
 	}else{
 		sex = MyStatus_GetMySex(status);
 	}
 	
-	OS_Printf("•Ô–ƒ‚[ƒh %d \n",beaconState->mode);
+	OS_Printf("è¿”äº‹ãƒ¢ãƒ¼ãƒ‰ %d \n",beaconState->mode);
 	switch(beaconState->mode){
-	// ‚Æ‚è‚±‚İ’†‚Ì‚æ‚¤‚¾c
+	// ã¨ã‚Šã“ã¿ä¸­ã®ã‚ˆã†ã â€¦
 	case UNION_PARENT_MODE_BUSY:
 	case UNION_PARENT_MODE_PARTY:
 
-//		OS_Printf("‘”Ô† = %d   ’nˆæ = %d \n",beaconState->nation, beaconState->city);
+//		OS_Printf("å›½ç•ªå· = %d   åœ°åŸŸ = %d \n",beaconState->nation, beaconState->city);
 
 		return talk_failed_child_table[sex];
 		break;
@@ -1704,7 +1704,7 @@ static int GetGroupTalk_ListenNo( COMM_UNIONROOM_WORK *cuw, int no )
 		return talk_table_guruguru[gf_rand()%TALK_GURUGURU_MAX][sex];
 		break;
 	}
-	// e‹@‚ÌÚ‘±ƒ‚[ƒh‚ª‚¨‚©‚µ‚¢
+	// è¦ªæ©Ÿã®æ¥ç¶šãƒ¢ãƒ¼ãƒ‰ãŒãŠã‹ã—ã„
 	return msg_union_talkboy_00_05;
 
 }
@@ -1712,7 +1712,7 @@ static int GetGroupTalk_ListenNo( COMM_UNIONROOM_WORK *cuw, int no )
 
 //==============================================================================
 /**
- * $brief   ƒJ[ƒh‚ğŒ©‚¹‚é‘O‚Ì•¶š—ñİ’èi‘E’nˆæ‚ğQÆ‚µ‚Ä”»’è‚·‚éj
+ * $brief   ã‚«ãƒ¼ãƒ‰ã‚’è¦‹ã›ã‚‹å‰ã®æ–‡å­—åˆ—è¨­å®šï¼ˆå›½ãƒ»åœ°åŸŸã‚’å‚ç…§ã—ã¦åˆ¤å®šã™ã‚‹ï¼‰
  *
  * @param   wordset		
  *
@@ -1724,89 +1724,89 @@ int Union_GetCardTalkNo( WORDSET *wordset )
 	u8 myNation,partnerNation;
 	u8 myArea,  partnerArea; 
 
-	//©•ª‚Æ‘Šè‚Ì‘E‹Z’n‚ğ“¾‚é
+	//è‡ªåˆ†ã¨ç›¸æ‰‹ã®å›½ãƒ»å±…ä½åœ°ã‚’å¾—ã‚‹
 	myNation      = CommInfoGetMyNation(CommGetCurrentID());
 	partnerNation = CommInfoGetMyNation(CommGetCurrentID()^1);
 	myArea        = CommInfoGetMyArea(CommGetCurrentID());
 	partnerArea   = CommInfoGetMyArea(CommGetCurrentID()^1);
 
-	OS_Printf("©•ª‚Ì‘   %d ‘Šè‚Ì‘   %d\n",myNation, partnerNation);
-	OS_Printf("©•ª‚Ì’nˆæ %d ‘Šè‚Ì’nˆæ %d\n",myArea, partnerArea);
+	OS_Printf("è‡ªåˆ†ã®å›½   %d ç›¸æ‰‹ã®å›½   %d\n",myNation, partnerNation);
+	OS_Printf("è‡ªåˆ†ã®åœ°åŸŸ %d ç›¸æ‰‹ã®åœ°åŸŸ %d\n",myArea, partnerArea);
 
-	// ‘Šè‚ª‘‚ğ“ü—Í‚µ‚Ä‚¢‚È‚¢
+	// ç›¸æ‰‹ãŒå›½ã‚’å…¥åŠ›ã—ã¦ã„ãªã„
 	if(partnerNation==0){
 		return msg_union_connect_01_02_3;
 	}
 
-	// ‘”Ô†‚ª‘¶İ‚µ‚Ä‚¢‚éê‡‚Í•¶š—ñ‚ğƒZƒbƒg
+	// å›½ç•ªå·ãŒå­˜åœ¨ã—ã¦ã„ã‚‹å ´åˆã¯æ–‡å­—åˆ—ã‚’ã‚»ãƒƒãƒˆ
 	if(partnerNation!=0){
 		WORDSET_RegisterCountryName( wordset, 3, partnerNation );
 
-		// ’nˆæ”Ô†‚ª‘¶İ‚µ‚Ä‚¢‚éê‡‚Í•¶š—ñ‚ğƒZƒbƒg
+		// åœ°åŸŸç•ªå·ãŒå­˜åœ¨ã—ã¦ã„ã‚‹å ´åˆã¯æ–‡å­—åˆ—ã‚’ã‚»ãƒƒãƒˆ
 		if(partnerArea!=0){
 			WORDSET_RegisterLocalPlaceName( wordset, 4, partnerNation, partnerArea );
 		}
 
 	}
 
-	// •\¦•¶š—ñ”»’è
+	// è¡¨ç¤ºæ–‡å­—åˆ—åˆ¤å®š
 	
-	// ‘‚ªˆá‚¤
+	// å›½ãŒé•ã†
 	if(myNation!=partnerNation){
-		// ’nˆæ‚ª‚È‚¢
+		// åœ°åŸŸãŒãªã„
 		if(partnerArea==0){
 			return msg_union_connect_01_02_1;
 		}
-		// ’nˆæ‚ª‚¨‚È‚¶
+		// åœ°åŸŸãŒãŠãªã˜
 		if(myArea==partnerArea){
 			return msg_union_connect_01_02_1; 
 		}
-		// ’nˆæ‚ªˆá‚¤
+		// åœ°åŸŸãŒé•ã†
 		return msg_union_connect_01_02;
 	}
 
-	// ‘‚ª“¯‚¶
+	// å›½ãŒåŒã˜
 	if(myArea!=partnerArea){
-		// ’nˆæ‚ªˆá‚¤
+		// åœ°åŸŸãŒé•ã†
 		return msg_union_connect_01_02_2;
 	}
 	
-	//’nˆæ‚ª“¯‚¶
+	//åœ°åŸŸãŒåŒã˜
 	return msg_union_connect_01_02_3;
 
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   —V‚Ñn‚ß‚é‚Æ‚«‚Ì‰ï˜biƒJ[ƒh‚Ì‚¾‚¯Z‚ñ‚Å‚¢‚éêŠ‚É‘Î‰‚·‚éj
+ * $brief   éŠã³å§‹ã‚ã‚‹ã¨ãã®ä¼šè©±ï¼ˆã‚«ãƒ¼ãƒ‰ã®æ™‚ã ã‘ä½ã‚“ã§ã„ã‚‹å ´æ‰€ã«å¯¾å¿œã™ã‚‹ï¼‰
  *
- * @param   event		ƒ†ƒjƒIƒ“‚ğs‚¤—V‚Ñ
- * @param   sex			«•Ê
+ * @param   event		ãƒ¦ãƒ‹ã‚ªãƒ³ã‚’è¡Œã†éŠã³
+ * @param   sex			æ€§åˆ¥
  *
- * @retval  int			‰ï˜b”Ô†
+ * @retval  int			ä¼šè©±ç•ªå·
  */
 //------------------------------------------------------------------
 static int GetStartTalk_No(int event, int sex, WORDSET *wordset )
 {
 	
-	// ƒJ[ƒh‚¶‚á‚È‚¢‚Æ‚«‚Íƒe[ƒuƒ‹‚©‚ç‚»‚ê‚¼‚êQÆ‚·‚é
+	// ã‚«ãƒ¼ãƒ‰ã˜ã‚ƒãªã„ã¨ãã¯ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ãã‚Œãã‚Œå‚ç…§ã™ã‚‹
 	if( event!=(UNION_CHILD_SELECT_CARD-1) ){
 		OS_Printf("eventno = %d \n", event);
 		return talk_start_table[event][sex];
 	}
 
-	// ƒJ[ƒh‚ğŒ©‚¹‚é‘O‚É‘E’nˆæî•ñ‚©‚ç”»’è‚µ‚Ä•¶š—ñ‚ğİ’è‚·‚é
+	// ã‚«ãƒ¼ãƒ‰ã‚’è¦‹ã›ã‚‹å‰ã«å›½ãƒ»åœ°åŸŸæƒ…å ±ã‹ã‚‰åˆ¤å®šã—ã¦æ–‡å­—åˆ—ã‚’è¨­å®šã™ã‚‹
 	return Union_GetCardTalkNo( wordset );
 
 }
 //==============================================================================
 /**
- * $brief   ˜bŠ|‚¯‚Å’ÊMÚ‘±‚Å‚«‚È‚¢‚Éo‚·‰ï˜b‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ“n‚·ˆ—
+ * $brief   è©±æ›ã‘ã§é€šä¿¡æ¥ç¶šã§ããªã„æ™‚ã«å‡ºã™ä¼šè©±ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ¸¡ã™å‡¦ç†
  *
- * @param   cuw		ƒ†ƒjƒIƒ“ƒ[ƒN
- * @param   no		˜b‚µ‚©‚¯‚é‘ÎÛ‚ÌOBJ‚Ì”Ô†
+ * @param   cuw		ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ¯ãƒ¼ã‚¯
+ * @param   no		è©±ã—ã‹ã‘ã‚‹å¯¾è±¡ã®OBJã®ç•ªå·
  *
- * @retval  int		ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @retval  int		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //==============================================================================
 int Union_GetTalkNumber( COMM_UNIONROOM_WORK *cuw, int no, int mode, WORDSET *wordset )
@@ -1814,12 +1814,12 @@ int Union_GetTalkNumber( COMM_UNIONROOM_WORK *cuw, int no, int mode, WORDSET *wo
 	int sex;
 	MYSTATUS *status;
 
-	// ƒXƒNƒŠƒvƒg‚©‚ç‚Í{‚P‚Å‚­‚é‚Ì‚Å‚Pˆø‚­
+	// ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã¯ï¼‹ï¼‘ã§ãã‚‹ã®ã§ï¼‘å¼•ã
 	no--;
 
-	OS_Printf("‰ï˜bæ“¾s“® OBJNO = %d  mode=%d  ScriptWork=%d \n",no,mode,cuw->ScriptSelectWork-1);
+	OS_Printf("ä¼šè©±å–å¾—è¡Œå‹• OBJNO = %d  mode=%d  ScriptWork=%d \n",no,mode,cuw->ScriptSelectWork-1);
 
-	// Ú‘±‚Í‚Å‚«‚È‚¢ƒOƒ‹[ƒv‚Æ‚Ì‰ï˜b
+	// æ¥ç¶šã¯ã§ããªã„ã‚°ãƒ«ãƒ¼ãƒ—ã¨ã®ä¼šè©±
 	if(mode==UNION_NO_CONNECT_TALK){
 		return GetGroupTalk_ListenNo( cuw, no );
 	}
@@ -1828,93 +1828,93 @@ int Union_GetTalkNumber( COMM_UNIONROOM_WORK *cuw, int no, int mode, WORDSET *wo
     if(status==NULL){
         CommStateSetErrorCheck(TRUE,TRUE);
         CommStateSetError(COMM_ERROR_RESET_SAVEPOINT);
-        return 0;   //080619 NULLƒAƒNƒZƒXC³ ƒGƒ‰[ˆµ‚¢‚É‚µ‚Ü‚·
+        return 0;   //080619 NULLã‚¢ã‚¯ã‚»ã‚¹ä¿®æ­£ ã‚¨ãƒ©ãƒ¼æ‰±ã„ã«ã—ã¾ã™
     }
 	sex    = MyStatus_GetMySex(status);
 
 	switch(mode){
-	// Ú‘±‚ª¬Œ÷‚µ‚½Œã‚ÅAs‚¤“à—e‚ª‚«‚Ü‚Á‚½‚Ì‰ï˜b
+	// æ¥ç¶šãŒæˆåŠŸã—ãŸå¾Œã§ã€è¡Œã†å†…å®¹ãŒãã¾ã£ãŸæ™‚ã®ä¼šè©±
 	case UNION_CONNECTED_START_TALK:
 		return GetStartTalk_No( cuw->ScriptSelectWork-1, sex, wordset );
 //		return talk_start_table[cuw->ScriptSelectWork-1][sex];
 		break;
 
-	// ˜b‚µ‚©‚¯‚ÅÚ‘±‚Å‚«‚½‚Æ‚«iq‹@‘¤‚Åj
+	// è©±ã—ã‹ã‘ã§æ¥ç¶šã§ããŸã¨ãï¼ˆå­æ©Ÿå´ã§ï¼‰
 	case UNION_CONNECT_SUCCESS_TALK:
 		return talk_start_child_table[sex];
 		break;
-	// ‚½‚¢‚¹‚ñE‚±‚¤‚©‚ñ“™‚ğ‚¿‚©‚¯‚½‚Æ‚«‚É—¬‚ê‚éƒZƒŠƒt(q‹@‘¤‚Åj
+	// ãŸã„ã›ã‚“ãƒ»ã“ã†ã‹ã‚“ç­‰ã‚’æŒã¡ã‹ã‘ãŸã¨ãã«æµã‚Œã‚‹ã‚»ãƒªãƒ•(å­æ©Ÿå´ã§ï¼‰
 	case UNION_CONNECT_ANSWER_WAIT:
-		// Šù‚ÉƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ä‚¢‚é
+		// æ—¢ã«ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¦ã„ã‚‹
 		if(cuw->ScriptSelectWork==0){
-			OS_Printf("ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ä‚¢‚é‚Ì‚ÅƒXƒLƒbƒv\n");
+			OS_Printf("ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¦ã„ã‚‹ã®ã§ã‚¹ã‚­ãƒƒãƒ—\n");
 			return 0;
 		}
-		// ©•ª‚Ì‘I‘ğ‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚é
+		// è‡ªåˆ†ã®é¸æŠãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹
 		return talk_anster_wait_table[cuw->ScriptSelectWork-1][sex];
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“‚ğ‚Q•CˆÈã‚Á‚Ä‚¢‚È‚¢‚ÆŒğŠ·‚Í‚Å‚«‚È‚¢‚æ
+	//ãƒã‚±ãƒ¢ãƒ³ã‚’ï¼’åŒ¹ä»¥ä¸ŠæŒã£ã¦ã„ãªã„ã¨äº¤æ›ã¯ã§ããªã„ã‚ˆ
 	case UNION_CONNECT_BATTLE_REJECT:
 	case UNION_CONNECT_TRADE_REJECT:
 	case UNION_CONNECT_GURUGURU_REJECT:
 		return event_reject_table[mode-UNION_CONNECT_BATTLE_REJECT][sex];
 		break;
-	// u‚¤[‚ñA‚¢‚Ü‚Í‚Â‚²‚¤‚í‚é‚¢‚ñ‚¾A‚Ü‚½¡“x‚Ëv
+	// ã€Œã†ãƒ¼ã‚“ã€ã„ã¾ã¯ã¤ã”ã†ã‚ã‚‹ã„ã‚“ã ã€ã¾ãŸä»Šåº¦ã­ã€
 	case UNION_TALK_CANCEL_CARD:	case UNION_TALK_CANCEL_OEKAKI:
 	case UNION_TALK_CANCEL_BATTLE:	case UNION_TALK_CANCEL_TRADE:
 	case UNION_TALK_CANCEL_GURUGURU:	case UNION_TALK_CANCEL_RECORD:
 		return talk_failed_table[mode-UNION_TALK_CANCEL_CARD][sex];
 		break;
 
-	// u‚¢‚Á‚µ‚å‚Éœœ‚µ‚È‚¢Hv
+	// ã€Œã„ã£ã—ã‚‡ã«â—â—ã—ãªã„ï¼Ÿã€
 	case  UNION_JOIN_OEKAKI_TALK:
 	case  UNION_JOIN_RECORD_TALK:
 	case  UNION_JOIN_GURUGURU_TALK:
 		return talk_joinus_table[mode-UNION_JOIN_OEKAKI_TALK][sex];
 		break;
 
-	// u‚¶‚áA‚Í‚¢‚Á‚Ä‚«‚È‚æIv
+	// ã€Œã˜ã‚ƒã€ã¯ã„ã£ã¦ããªã‚ˆï¼ã€
 	case  UNION_SUCCESS_OEKAKI_JOIN:
 	case  UNION_SUCCESS_RECORD_JOIN	:
 	case  UNION_SUCCESS_GURUGURU_JOIN:
 		return talk_join_success_table[mode-UNION_SUCCESS_OEKAKI_JOIN][sex];
 		break;
 
-	// u‚»‚¤A‚¶‚á‚Ü‚½‚«‚Ä‚Ëcv
+	// ã€Œãã†ã€ã˜ã‚ƒã¾ãŸãã¦ã­â€¦ã€
 	case  UNION_JOIN_OEKAKI_NO:
 	case  UNION_JOIN_RECORD_NO:
 	case  UNION_JOIN_GURUGURU_NO:
 		return talk_join_no_table[mode-UNION_JOIN_OEKAKI_NO][sex];
 		break;
 
-	// ‚Ù‚©‚É‚à‚È‚É‚©‚·‚éH
+	// ã»ã‹ã«ã‚‚ãªã«ã‹ã™ã‚‹ï¼Ÿ
 	case UNION_SELECT_NEXT_TALK:
 		return talk_next_selct_table[sex];
 		break;
 
-	// u‚È‚É‚©‚µ‚½‚­‚È‚Á‚½‚ç‚Ü‚½º‚ğ‚©‚¯‚Ä‚­‚ê‚æv
+	// ã€Œãªã«ã‹ã—ãŸããªã£ãŸã‚‰ã¾ãŸå£°ã‚’ã‹ã‘ã¦ãã‚Œã‚ˆã€
 	case UNION_TALK_CONNECT_CANCEL:
 		return talk_connect_cancel_table[sex];
 		break;
 
-	// u‚ A‚²‚ß‚ñ‚æ‚¤‚¶‚ª‚ ‚é‚©‚çv
+	// ã€Œã‚ã€ã”ã‚ã‚“ã‚ˆã†ã˜ãŒã‚ã‚‹ã‹ã‚‰ã€
 	case UNION_TALK_CONNECT_CANCELED:
 		return talk_connect_canceled_table[sex];
 		break;
 
-	// ƒ_ƒCƒ„Eƒp[ƒ‹‚Æ‚Í@‚®‚é‚®‚éŒğŠ·‚ğ‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñB
+	// ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ã¨ã¯ã€€ãã‚‹ãã‚‹äº¤æ›ã‚’ã™ã‚‹ã“ã¨ãŒã§ãã¾ã›ã‚“ã€‚
 	case UNION_TALK_CONNECT_VERCHK_DP:
 		return msg_connect_union_20;
 		break;
 
-	// ‚Ä‚à‚¿‚É ‚±‚¤‚©‚ñ ‚Å‚«‚È‚¢ ƒ^ƒ}ƒS‚ª ‚ ‚è‚Ü‚·
+	// ã¦ã‚‚ã¡ã« ã“ã†ã‹ã‚“ ã§ããªã„ ã‚¿ãƒã‚´ãŒ ã‚ã‚Šã¾ã™
 	case UNION_TALK_DAMETAMAGO_CANCEL:
 		return talk_dametamago_cancel_table[sex];
 		break;
 	}
 	
-	// ‚±‚±‚Ü‚Å~‚è‚Ä‚­‚é–‚ª‚ ‚Á‚Ä‚Í‚¢‚¯‚È‚¢
+	// ã“ã“ã¾ã§é™ã‚Šã¦ãã‚‹äº‹ãŒã‚ã£ã¦ã¯ã„ã‘ãªã„
 	GF_ASSERT(0);
 	return msg_union_talkboy_00_05;
 
@@ -1923,7 +1923,7 @@ int Union_GetTalkNumber( COMM_UNIONROOM_WORK *cuw, int no, int mode, WORDSET *wo
 
 //--------------------------------------------------------------
 /**
- * @brief	Ú‘±’†‚Ì‘Šè‚ÌVersion‚ğæ“¾
+ * @brief	æ¥ç¶šä¸­ã®ç›¸æ‰‹ã®Versionã‚’å–å¾—
  *
  * @param	none	
  *
@@ -1947,10 +1947,10 @@ u8 Union_GetRomCode( void )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±’†‚Ì—F’B‚Ìp‚ğŒ»‚·ƒr[ƒRƒ“‚ğì¬‚·‚é
+ * $brief   æ¥ç¶šä¸­ã®å‹é”ã®å§¿ã‚’ç¾ã™ãƒ“ãƒ¼ã‚³ãƒ³ã‚’ä½œæˆã™ã‚‹
  *
  * @param   state	
- * @param   num		Ú‘±l”
+ * @param   num		æ¥ç¶šäººæ•°
  *
  * @retval  none		
  */
@@ -1960,7 +1960,7 @@ static void ConnectChildViewSet( UNION_BEACON_STATE  *state, int num )
 	MYSTATUS *friendstatus;
 	int i,count=0;
 
-	// 2lÚ‘±‚Å‚àID‚Í1‚¶‚á‚È‚¢‚©‚à‚µ‚ê‚È‚¢
+	// 2äººæ¥ç¶šã§ã‚‚IDã¯1ã˜ã‚ƒãªã„ã‹ã‚‚ã—ã‚Œãªã„
 	for(i=1;i<UNION_CONNECT_CHILD_MAX+1;i++){
 		int pos = i-1;
 		friendstatus = CommInfoGetMyStatus(i);
@@ -1979,7 +1979,7 @@ static void ConnectChildViewSet( UNION_BEACON_STATE  *state, int num )
 
 //------------------------------------------------------------------
 /**
- * $brief   Œ»İs‚Á‚Ä‚¢‚éƒr[ƒRƒ“‚É‘‚«Š·‚¦‚é
+ * $brief   ç¾åœ¨è¡Œã£ã¦ã„ã‚‹ãƒ“ãƒ¼ã‚³ãƒ³ã«æ›¸ãæ›ãˆã‚‹
  *
  * @param   flag		
  *
@@ -1992,47 +1992,47 @@ void Union_BeaconChange( int flag )
 
 	MI_CpuClear8( &state, sizeof(UNION_BEACON_STATE) );
 	switch(flag){
-	// ˜b‚µ‚©‚¯‰Â”\ó‘Ô
+	// è©±ã—ã‹ã‘å¯èƒ½çŠ¶æ…‹
 	case UNION_PARENT_MODE_FREE:
 		break;
-	// ƒƒjƒ…[“™ŠJ‚¢‚Ä‘Šè‚ª‚Å‚«‚È‚¢
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç­‰é–‹ã„ã¦ç›¸æ‰‹ãŒã§ããªã„
 	case UNION_PARENT_MODE_BUSY:
 		break;
-	// ˜b‚µ‚©‚¯‚É¬Œ÷‚µA2lÚ‘±‚É‚È‚Á‚½ó‘Ô
+	// è©±ã—ã‹ã‘ã«æˆåŠŸã—ã€2äººæ¥ç¶šã«ãªã£ãŸçŠ¶æ…‹
 	case UNION_PARENT_MODE_PARTY:	
 		ConnectChildViewSet( &state, 2 );
 		break;
-	// Œ»İŒğŠ·‰æ–Ê‚É‚¢‚éi‚Ì‚Å‚à‚¤Œq‚ª‚ç‚È‚¢j
+	// ç¾åœ¨äº¤æ›ç”»é¢ã«ã„ã‚‹ï¼ˆã®ã§ã‚‚ã†ç¹‹ãŒã‚‰ãªã„ï¼‰
 	case UNION_PARENT_MODE_TRADENOW:
 	case UNION_PARENT_MODE_CARDNOW:
 	case UNION_PARENT_MODE_BATTLENOW:
 		ConnectChildViewSet( &state, 2 );
 		break;
 
-	// Œ»İ‚¨‚¦‚©‚«ƒ{[ƒh‚É‚¢‚ÄA‚·‚Å‚É5l–„‚Ü‚Á‚Ä‚¢‚éi‚Ì‚Å‚à‚¤Œq‚ª‚ç‚È‚¢j
+	// ç¾åœ¨ãŠãˆã‹ããƒœãƒ¼ãƒ‰ã«ã„ã¦ã€ã™ã§ã«5äººåŸ‹ã¾ã£ã¦ã„ã‚‹ï¼ˆã®ã§ã‚‚ã†ç¹‹ãŒã‚‰ãªã„ï¼‰
 	case UNION_PARENT_MODE_OEKAKINOW:
 		ConnectChildViewSet( &state, 5 );
 		break;
-	// Œ»İ‚¨ŠG‚©‚«ƒ{[ƒh‚É‚¢‚Ä‚Ü‚¾‹ó‚«‚ª‚ ‚é‚Ì‚ÅA˜b‚µ‚©‚¯‚ê‚é
+	// ç¾åœ¨ãŠçµµã‹ããƒœãƒ¼ãƒ‰ã«ã„ã¦ã¾ã ç©ºããŒã‚ã‚‹ã®ã§ã€è©±ã—ã‹ã‘ã‚Œã‚‹
 	case UNION_PARENT_MODE_OEKAKI_FREE:
 		ConnectChildViewSet( &state, 4 );
 		break;
 
-	// Œ»İƒŒƒR[ƒhƒR[ƒi[‚É‚¢‚ÄA‚·‚Å‚É5l–„‚Ü‚Á‚Ä‚¢‚éi‚Ì‚Å‚à‚¤Œq‚ª‚ç‚È‚¢j
+	// ç¾åœ¨ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã«ã„ã¦ã€ã™ã§ã«5äººåŸ‹ã¾ã£ã¦ã„ã‚‹ï¼ˆã®ã§ã‚‚ã†ç¹‹ãŒã‚‰ãªã„ï¼‰
 	case UNION_PARENT_MODE_RECORDNOW:
 		ConnectChildViewSet( &state, 5 );
 		break;
-	// Œ»İƒŒƒR[ƒhƒR[ƒi[‚É‚¢‚Ä‚Ü‚¾‹ó‚«‚ª‚ ‚é‚Ì‚ÅA˜b‚µ‚©‚¯‚ê‚é
+	// ç¾åœ¨ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã«ã„ã¦ã¾ã ç©ºããŒã‚ã‚‹ã®ã§ã€è©±ã—ã‹ã‘ã‚Œã‚‹
 	case UNION_PARENT_MODE_RECORD_FREE:
 		ConnectChildViewSet( &state, 4 );
 		break;
 
-	// Œ»İ‚®‚é‚®‚éŒğŠ·‚É‚¢‚ÄA‚·‚Å‚É5l–„‚Ü‚Á‚Ä‚¢‚éi‚Ì‚Å‚à‚¤Œq‚ª‚ç‚È‚¢j
+	// ç¾åœ¨ãã‚‹ãã‚‹äº¤æ›ã«ã„ã¦ã€ã™ã§ã«5äººåŸ‹ã¾ã£ã¦ã„ã‚‹ï¼ˆã®ã§ã‚‚ã†ç¹‹ãŒã‚‰ãªã„ï¼‰
 	case UNION_PARENT_MODE_GURUGURUNOW:
 	case UNION_PARENT_MODE_GURU2:
 		ConnectChildViewSet( &state, 5 );
 		break;
-	// Œ»İ‚®‚é‚®‚éŒğŠ·‚É‚¢‚Ä‚Ü‚¾‹ó‚«‚ª‚ ‚é‚Ì‚ÅA˜b‚µ‚©‚¯‚ê‚é
+	// ç¾åœ¨ãã‚‹ãã‚‹äº¤æ›ã«ã„ã¦ã¾ã ç©ºããŒã‚ã‚‹ã®ã§ã€è©±ã—ã‹ã‘ã‚Œã‚‹
 	case UNION_PARENT_MODE_GURUGURU_FREE:
 	case UNION_PARENT_MODE_GURU2_FREE:
 		ConnectChildViewSet( &state, 4 );
@@ -2040,14 +2040,14 @@ void Union_BeaconChange( int flag )
 	}
 	state.mode    = flag;
 
-	CommMPSetMyRegulation(&state);	// ƒr[ƒRƒ“‘‚«Š·‚¦
+	CommMPSetMyRegulation(&state);	// ãƒ“ãƒ¼ã‚³ãƒ³æ›¸ãæ›ãˆ
 	CommMPFlashMyBss();
 	
 }
 
 
 //==============================================================================
-// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Ì¶ã‚Ìl‚Ìu‚¨‚Í‚È‚µv‘I‘ğ‚Ì‰ï˜b“à—eƒe[ƒuƒ‹
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã®å·¦ä¸Šã®äººã®ã€ŒãŠã¯ãªã—ã€é¸æŠæ™‚ã®ä¼šè©±å†…å®¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
 static const int InfomationTalkTable[]={
 	msg_union_info_02_04,
@@ -2072,16 +2072,16 @@ static const int InfomationTalkTable[]={
 	msg_union_info_02_23,
 };
 
-// ŠÈˆÕ‰ï˜b‚Ìƒ†ƒjƒIƒ“ƒ‹[ƒ€—p‚ ‚¢‚³‚Â‚ÌãŒÀ
+// ç°¡æ˜“ä¼šè©±ã®ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ã‚ã„ã•ã¤ã®ä¸Šé™
 #define PMS_DATA_UNION_TALK_NO_MAX		( 20 )
 
 //==============================================================================
 /**
- * $brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Ì¶ã‚Ìl‚ª’‚é“à—e‚ğ‚«‚ß‚é
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã®å·¦ä¸Šã®äººãŒå–‹ã‚‹å†…å®¹ã‚’ãã‚ã‚‹
  *
  * @param   cuw		
  *
- * @retval  int		‘Î‰‚µ‚½ƒƒbƒZ[ƒWNO‚ª•Ô‚é
+ * @retval  int		å¯¾å¿œã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸NOãŒè¿”ã‚‹
  */
 //==============================================================================
 int Union_GetInfomationTalkNo( COMM_UNIONROOM_WORK *cuw,  WORDSET *wordset )
@@ -2089,34 +2089,34 @@ int Union_GetInfomationTalkNo( COMM_UNIONROOM_WORK *cuw,  WORDSET *wordset )
 	int i,ret=0,pmsid;
 	PMS_WORD pmsword;
 
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Åƒr[ƒRƒ“‚ğ‚Â‚©‚ñ‚Å‚¢‚é‚©H
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ãƒ“ãƒ¼ã‚³ãƒ³ã‚’ã¤ã‹ã‚“ã§ã„ã‚‹ã‹ï¼Ÿ
 	for(i=0;i<10;i++){
 		if(cuw->UnionBeaconTbl[i]!=NULL){
 			ret++;
 		}
 	}
 	
-	// ‚¾‚ê‚©‚¢‚é
+	// ã ã‚Œã‹ã„ã‚‹
 	if(ret!=0){
-		// u‚Æ‚à‚¾‚¿‚ª‚¢‚é‚æIv‚ÆI—¹
+		// ã€Œã¨ã‚‚ã ã¡ãŒã„ã‚‹ã‚ˆï¼ã€ã¨çµ‚äº†
 		return msg_union_info_02_01;
 	}
 
-	// ’N‚à‚¢‚È‚¢‚Ì‚ÅŠÈˆÕ‰ï˜b‚ğŒ©‚És‚­
+	// èª°ã‚‚ã„ãªã„ã®ã§ç°¡æ˜“ä¼šè©±ã‚’è¦‹ã«è¡Œã
 	
-	OS_Printf("ŠÈˆÕ‰ï˜b‚h‚c = %d\n",PMSDAT_GetSentenceType( &cuw->MyPmsData ));
+	OS_Printf("ç°¡æ˜“ä¼šè©±ï¼©ï¼¤ = %d\n",PMSDAT_GetSentenceType( &cuw->MyPmsData ));
 
-	// —LŒø‚È•¶Í‚©H
+	// æœ‰åŠ¹ãªæ–‡ç« ã‹ï¼Ÿ
 	if(!PMSDAT_IsEnabled( &cuw->MyPmsData )){
 		
 		return msg_union_info_02_02;
 	}
 	
-	// ƒ†ƒjƒIƒ“‰ï˜b‚©H
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ä¼šè©±ã‹ï¼Ÿ
 	if(PMSDAT_GetSentenceType( &cuw->MyPmsData )!=PMS_TYPE_UNION){
-		// ƒ†ƒjƒIƒ“‰ï˜b‚¶‚á‚È‚¢
+		// ãƒ¦ãƒ‹ã‚ªãƒ³ä¼šè©±ã˜ã‚ƒãªã„
 
-		//ƒgƒŒ[ƒi[‚ÌŒ©‚½–Ú•¶š—ñ‚ğŠi”[‚·‚é
+		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®è¦‹ãŸç›®æ–‡å­—åˆ—ã‚’æ ¼ç´ã™ã‚‹
 		int view_type = MyStatus_GetTrainerView(cuw->mystatus);
 		int sex       = MyStatus_GetMySex(cuw->mystatus);
 		
@@ -2127,27 +2127,27 @@ int Union_GetInfomationTalkNo( COMM_UNIONROOM_WORK *cuw,  WORDSET *wordset )
 	
 	pmsid = PMSDAT_GetSentenceID( &cuw->MyPmsData );
 	
-	// ƒ†ƒjƒIƒ“‰ï˜b‚Í‚Q‚OŒÂ‚ç‚µ‚¢‚Ì‚ÅA’´‚¦‚Ä‚¢‚½‚ç•â³‚·‚é
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ä¼šè©±ã¯ï¼’ï¼å€‹ã‚‰ã—ã„ã®ã§ã€è¶…ãˆã¦ã„ãŸã‚‰è£œæ­£ã™ã‚‹
 	if(pmsid >= PMS_DATA_UNION_TALK_NO_MAX){
 		pmsid = 0;
 	}
 	
-	// ‚«‚¿‚ñ‚ÆŠÈˆÕ‰ï˜b’PŒê‚ª“ü‚Á‚Ä‚¢‚é‚È‚ç‚Î“o˜^‚·‚é
-	// (ƒ†ƒjƒIƒ“‰ï˜b‚É‚Í’PŒê‚ª–³‚¢‚à‚Ì‚à‘¶İ‚·‚éj
+	// ãã¡ã‚“ã¨ç°¡æ˜“ä¼šè©±å˜èªãŒå…¥ã£ã¦ã„ã‚‹ãªã‚‰ã°ç™»éŒ²ã™ã‚‹
+	// (ãƒ¦ãƒ‹ã‚ªãƒ³ä¼šè©±ã«ã¯å˜èªãŒç„¡ã„ã‚‚ã®ã‚‚å­˜åœ¨ã™ã‚‹ï¼‰
 	if((pmsword=PMSDAT_GetWordNumber( &cuw->MyPmsData, 0 ))!=PMS_WORD_NULL){
-		// ŠÈˆÕ‰ï˜bŒ¾—t‚ğŠi”[‚·‚é
+		// ç°¡æ˜“ä¼šè©±è¨€è‘‰ã‚’æ ¼ç´ã™ã‚‹
 //		WORDSET_RegisterTrTypeName( wordset, 0, PMSDAT_GetWordNumber( &cuw->MyPmsData, 0 ) );
 		WORDSET_RegisterPMSWord( wordset, 0, pmsword );
 	}
 	
-	// ƒ†ƒjƒIƒ“‰ï˜b”Ô†‚É‘Î‰‚µ‚½ƒƒbƒZ[ƒWNO‚ğ•Ô‚·
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ä¼šè©±ç•ªå·ã«å¯¾å¿œã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸NOã‚’è¿”ã™
 	return InfomationTalkTable[ pmsid ];
 }
 
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚Ì‚Ìü‚èƒƒ“ƒo[‚ğ•\‚·ƒr[ƒRƒ“î•ñ‚ğƒNƒŠƒA‚·‚é
+ * $brief   è¦ªæ©Ÿã®æ™‚ã®å‘¨ã‚Šãƒ¡ãƒ³ãƒãƒ¼ã‚’è¡¨ã™ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  *
  * @param   beacon		
  *
@@ -2168,10 +2168,10 @@ static void UnionBeaconClear( UNION_BEACON_STATE *beacon )
 
 //==============================================================================
 /**
- * $brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚ÅƒXƒ^[ƒgƒƒjƒ…[‚©‚çƒ`ƒƒƒbƒg‚ª’Ç‰Á‚³‚ê‚½‚Ìˆ—
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ãƒãƒ£ãƒƒãƒˆãŒè¿½åŠ ã•ã‚ŒãŸæ™‚ã®å‡¦ç†
  *
  * @param   cuw		
- * @param   pms		uƒ`ƒƒƒbƒgvƒƒjƒ…[‚Åì¬‚µ‚½ŠÈˆÕ‰ï˜b
+ * @param   pms		ã€Œãƒãƒ£ãƒƒãƒˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½œæˆã—ãŸç°¡æ˜“ä¼šè©±
  *
  * @retval  none
  */
@@ -2184,11 +2184,11 @@ void Union_SetMyPmsData( COMM_UNIONROOM_WORK *cuw, PMS_DATA *pms )
 
 //==============================================================================
 /**
- * $brief   ©•ª‚Åì¬‚µ‚½ŠÈˆÕ‰ï˜b‚ª‰º‰æ–Ê‚©‚çQÆ‚³‚ê‚é‚æ‚¤‚É‚·‚é
+ * $brief   è‡ªåˆ†ã§ä½œæˆã—ãŸç°¡æ˜“ä¼šè©±ãŒä¸‹ç”»é¢ã‹ã‚‰å‚ç…§ã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
  *
  * @param   cuw			
  *
- * @retval  PMS_DATA *	©•ª‚Åì¬‚µ‚½ŠÈˆÕ‰ï˜b•¶
+ * @retval  PMS_DATA *	è‡ªåˆ†ã§ä½œæˆã—ãŸç°¡æ˜“ä¼šè©±æ–‡
  */
 //==============================================================================
 PMS_DATA * Union_GetMyPmsData( COMM_UNIONROOM_WORK *cuw )
@@ -2203,12 +2203,12 @@ PMS_DATA * Union_GetMyPmsData( COMM_UNIONROOM_WORK *cuw )
 
 //==============================================================================
 /**
- * $brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€“à‚Åg—p‚·‚é‰ï˜b—p‚ÉƒgƒŒ[ƒi[–¼‚ğƒZƒbƒg‚·‚é
- *          ©•ª‚Ì–¼‘O‚àƒZƒbƒg‚·‚é
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹ä¼šè©±ç”¨ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ *          è‡ªåˆ†ã®åå‰ã‚‚ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   wordset		WORDSET‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   type		UNION_TRAINER_REGIST_CHILD:u˜b‚µ‚©‚¯—pv	1:u˜b‚µ‚©‚¯‚ç‚ê—pv
- * @param   no			u˜b‚µ‚©‚¯—pv‚Ì‚Éw’è‚µ‚Ä‚¢‚éOBJ‚ğ‚à‚ç‚¤‚½‚ß‚É•K—v
+ * @param   wordset		WORDSETã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   type		UNION_TRAINER_REGIST_CHILD:ã€Œè©±ã—ã‹ã‘ç”¨ã€	1:ã€Œè©±ã—ã‹ã‘ã‚‰ã‚Œç”¨ã€
+ * @param   no			ã€Œè©±ã—ã‹ã‘ç”¨ã€ã®æ™‚ã«æŒ‡å®šã—ã¦ã„ã‚‹OBJã‚’ã‚‚ã‚‰ã†ãŸã‚ã«å¿…è¦
  *
  * @retval  none		
  */
@@ -2221,57 +2221,57 @@ void Union_TrainerNameRegist( WORDSET *wordset, int type, int no, MYSTATUS *myst
 	int      region,msgno;
 
 	OS_Printf("NameRegist type=%d objid=%d\n",type, no);
-	no--;		// ƒXƒNƒŠƒvƒg‚Í{‚P‚Å‚­‚é‚Ì‚Å‚Pˆø‚­
+	no--;		// ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¯ï¼‹ï¼‘ã§ãã‚‹ã®ã§ï¼‘å¼•ã
 	
-	// ˜b‚µ‚©‚¯‚Íƒr[ƒRƒ“‚©‚çMYSTATUS‚ğæ“¾
+	// è©±ã—ã‹ã‘ã¯ãƒ“ãƒ¼ã‚³ãƒ³ã‹ã‚‰MYSTATUSã‚’å–å¾—
 	if(type==UNION_TALK_CHILD){
 		status      = CommMPGetBconMyStatus( no );
 	}else{
-	// ˜b‚µ‚©‚¯‚ç‚ê‚ÍÚ‘±Ï‚İ‚È‚Ì‚ÅConnectID^1‚©‚çMYSTATUS‚ğæ“¾
+	// è©±ã—ã‹ã‘ã‚‰ã‚Œã¯æ¥ç¶šæ¸ˆã¿ãªã®ã§ConnectID^1ã‹ã‚‰MYSTATUSã‚’å–å¾—
 		status = CommInfoGetMyStatus(CommGetCurrentID()^1);
 
 	}
 
-//	OS_Printf("–¼‘O“o˜^@%d\n", type);
-//	GF_ASSERT(status!=NULL && "æ“¾‚µ‚½MYSTATUS‚ÍNULL");
+//	OS_Printf("åå‰ç™»éŒ²ã€€%d\n", type);
+//	GF_ASSERT(status!=NULL && "å–å¾—ã—ãŸMYSTATUSã¯NULL");
 
 	if(status==NULL){
-        MSGMAN_Delete( msgman );  // ŠJ•ú–Y‚êC³ 08/06/10
+        MSGMAN_Delete( msgman );  // é–‹æ”¾å¿˜ã‚Œä¿®æ­£ 08/06/10
 		return;
 	}
 
-	// ƒgƒŒ[ƒi[–¼‚ğ“o˜^
-	WORDSET_RegisterPlayerName( wordset, 0, status );		// ‘Šè‚Ì–¼‘O‚ğ“o˜^
-	WORDSET_RegisterPlayerName( wordset, 1, mystatus );		// ©•ª‚Ì–¼‘O‚à“o˜^‚·‚é
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’ç™»éŒ²
+	WORDSET_RegisterPlayerName( wordset, 0, status );		// ç›¸æ‰‹ã®åå‰ã‚’ç™»éŒ²
+	WORDSET_RegisterPlayerName( wordset, 1, mystatus );		// è‡ªåˆ†ã®åå‰ã‚‚ç™»éŒ²ã™ã‚‹
 
-	// ‘ƒR[ƒhæ“¾
+	// å›½ã‚³ãƒ¼ãƒ‰å–å¾—
 	region   = MyStatus_GetRegionCode( status );
 
-	OS_Printf("‘”Ô† %d \n", region);
+	OS_Printf("å›½ç•ªå· %d \n", region);
 
-	// ŠeŒ¾ŒêƒJ[ƒgƒŠƒbƒW‚É‚ ‚í‚¹‚ÄŠÈˆÕ‰ï˜bƒtƒ‰ƒO‚ğ’Ç‰Á‚·‚é
+	// å„è¨€èªã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã«ã‚ã‚ã›ã¦ç°¡æ˜“ä¼šè©±ãƒ•ãƒ©ã‚°ã‚’è¿½åŠ ã™ã‚‹
 	if(region>=LANG_JAPAN && region <=LANG_SPAIN){
 		static const int AisatsuFlagTable[] = {
-			PMSW_AISATSU_JP,	// “ú–{Œê
-			PMSW_AISATSU_EN,	// ‰pŒê
-			PMSW_AISATSU_FR,	// ƒtƒ‰ƒ“ƒXŒê
-			PMSW_AISATSU_IT,	// ƒCƒ^ƒŠƒAŒê
-			PMSW_AISATSU_GE,	// ƒhƒCƒcŒê
-			-1,					// –³ŒøŒ¾Œêƒiƒ“ƒo[
-			PMSW_AISATSU_SP,	// ƒXƒyƒCƒ“Œê
+			PMSW_AISATSU_JP,	// æ—¥æœ¬èª
+			PMSW_AISATSU_EN,	// è‹±èª
+			PMSW_AISATSU_FR,	// ãƒ•ãƒ©ãƒ³ã‚¹èª
+			PMSW_AISATSU_IT,	// ã‚¤ã‚¿ãƒªã‚¢èª
+			PMSW_AISATSU_GE,	// ãƒ‰ã‚¤ãƒ„èª
+			-1,					// ç„¡åŠ¹è¨€èªãƒŠãƒ³ãƒãƒ¼
+			PMSW_AISATSU_SP,	// ã‚¹ãƒšã‚¤ãƒ³èª
 		};
 
 		u16 lang = region - LANG_JAPAN;
 		if( (lang < NELEMS(AisatsuFlagTable)) && (AisatsuFlagTable[lang] >= 0) )
 		{
 			PMSW_SetAisatsuFlag( pmssave,  AisatsuFlagTable[lang] );
-			OS_Printf("ŠÈˆÕ‰ï˜b‚É %d@‚ğ’Ç‰Á\n", PMSW_AISATSU_JP+( region - LANG_JAPAN ) );
+			OS_Printf("ç°¡æ˜“ä¼šè©±ã« %dã€€ã‚’è¿½åŠ \n", PMSW_AISATSU_JP+( region - LANG_JAPAN ) );
 		}
 	}
 
-	OS_Printf("ƒNƒŠƒAƒtƒ‰ƒO = %d, ‘S‘}ŠÓƒtƒ‰ƒO = %d\n", MyStatus_GetDpClearFlag(status),MyStatus_GetDpZenkokuFlag(status));
+	OS_Printf("ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚° = %d, å…¨å›½å›³é‘‘ãƒ•ãƒ©ã‚° = %d\n", MyStatus_GetDpClearFlag(status),MyStatus_GetDpZenkokuFlag(status));
 
-	// ‘Šè‚ÌŒ¾Œê‚É‚æ‚Á‚Äˆ¥A‚ª•Ï‚í‚é
+	// ç›¸æ‰‹ã®è¨€èªã«ã‚ˆã£ã¦æŒ¨æ‹¶ãŒå¤‰ã‚ã‚‹
 	switch(region){
 	case LANG_JAPAN: 	msgno = msg_union_greeting_01;	break;
 	case LANG_ENGLISH: 	msgno = msg_union_greeting_02;	break;
@@ -2284,7 +2284,7 @@ void Union_TrainerNameRegist( WORDSET *wordset, int type, int no, MYSTATUS *myst
 	}
 	greeting = MSGMAN_AllocString( msgman, msgno );
 
-	// Še‘‚Ìu‚±‚ñ‚É‚¿‚Ív‚ğŠi”[‚·‚é
+	// å„å›½ã®ã€Œã“ã‚“ã«ã¡ã¯ã€ã‚’æ ¼ç´ã™ã‚‹
 	WORDSET_RegisterWord( wordset, 2, greeting, 0, 1, region );
 
 	sys_FreeMemoryEz(greeting);
@@ -2293,7 +2293,7 @@ void Union_TrainerNameRegist( WORDSET *wordset, int type, int no, MYSTATUS *myst
 
 //==============================================================================
 /**
- * $brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚ÅŠÈˆÕ‰ï˜b‚ğ‘‚«Š·‚¦‚éi˜b‚µ‚©‚¯OK‚µ‚©‚È‚¢‚Æv‚¤‚Ì‚Å‚P‘ğ‚Åj
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ç°¡æ˜“ä¼šè©±ã‚’æ›¸ãæ›ãˆã‚‹ï¼ˆè©±ã—ã‹ã‘OKã—ã‹ãªã„ã¨æ€ã†ã®ã§ï¼‘æŠã§ï¼‰
  *
  * @param   pms		
  *
@@ -2309,14 +2309,14 @@ void Union_PMSReWrite( PMS_DATA *pms )
 	
 
 	CommMPSetMyPMS( pms );
-	CommMPSetMyRegulation(&state);	// ƒr[ƒRƒ“‘‚«Š·‚¦
+	CommMPSetMyRegulation(&state);	// ãƒ“ãƒ¼ã‚³ãƒ³æ›¸ãæ›ãˆ
 	CommMPFlashMyBss();
 	
 }
 
 //==============================================================================
 /**
- * $brief   ‚±‚¤‚©‚ñE‚½‚¢‚¹‚ñ‚©‚ç–ß‚Á‚Ä‚«‚½—p‚Éƒ[ƒN‚ğ‰Šú‰»‚µ‚Ä‚¨‚­
+ * $brief   ã“ã†ã‹ã‚“ãƒ»ãŸã„ã›ã‚“ã‹ã‚‰æˆ»ã£ã¦ããŸæ™‚ç”¨ã«ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–ã—ã¦ãŠã
  *
  * @param   cuw		
  *
@@ -2331,7 +2331,7 @@ void Union_CommWorkClear( COMM_UNIONROOM_WORK *cuw)
 }
 //------------------------------------------------------------------
 /**
- * $brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€’ÊMŠJn—p‚Ìƒ[ƒNƒNƒŠƒA
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ é€šä¿¡é–‹å§‹ç”¨ã®ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
  *
  * @param   cuw		
  *
@@ -2352,16 +2352,16 @@ static void CommUnion_EventFlagClear( COMM_UNIONROOM_WORK *cuw)
 
 //==============================================================================
 /**
- * $brief   ƒgƒŒ[ƒi[ƒJ[ƒh—Ìˆæ‚ğalloc‚·‚é
+ * $brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰é ˜åŸŸã‚’allocã™ã‚‹
  *
  * @param   cuw		
  *
  * @retval  void *		
  *
- *  ƒgƒŒ[ƒi[ƒJ[ƒh‚ğŠm•Û‚·‚é—Ìˆæ‚ªHEAPID_UNIONROOM‚©‚çì‚ê‚È‚©‚Á‚½‚Ì‚ÅA
- *  BASE_SYSTEM‚©‚çæ‚é–‚É‚µ‚½B
- *  •ÊƒAƒvƒŠ‚Ö‚Ì‰e‹¿‚ª•|‚¢‚Ì‚ÅAƒgƒŒ[ƒi[ƒJ[ƒh‚ğŒ©‚é’¼‘O‚ÉŠm•Û‚µ‚Ä
- *  ƒJ[ƒh‰{——’¼Œã‚É‰ğ•ú‚·‚é
+ *  ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã‚’ç¢ºä¿ã™ã‚‹é ˜åŸŸãŒHEAPID_UNIONROOMã‹ã‚‰ä½œã‚Œãªã‹ã£ãŸã®ã§ã€
+ *  BASE_SYSTEMã‹ã‚‰å–ã‚‹äº‹ã«ã—ãŸã€‚
+ *  åˆ¥ã‚¢ãƒ—ãƒªã¸ã®å½±éŸ¿ãŒæ€–ã„ã®ã§ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã‚’è¦‹ã‚‹ç›´å‰ã«ç¢ºä¿ã—ã¦
+ *  ã‚«ãƒ¼ãƒ‰é–²è¦§ç›´å¾Œã«è§£æ”¾ã™ã‚‹
  */
 //==============================================================================
 void *Union_TrainerCardWorkInit( COMM_UNIONROOM_WORK *cuw )
@@ -2379,14 +2379,14 @@ void *Union_TrainerCardWorkInit( COMM_UNIONROOM_WORK *cuw )
 	OS_Printf("trcard[0] = %08x\n",cuw->recv_trcard[0]);
 	OS_Printf("trcard[1] = %08x\n",cuw->recv_trcard[1]);
 
-	//©•ª‚Ì‚h‚c‚Æˆá‚¤ƒoƒbƒtƒ@‚ğ•Ô‚·i‘Šè‚ÌƒgƒŒ[ƒi[ƒJ[ƒh“’…‚ğŠÄ‹‚Å‚«‚é‚æ‚¤‚Éj
+	//è‡ªåˆ†ã®ï¼©ï¼¤ã¨é•ã†ãƒãƒƒãƒ•ã‚¡ã‚’è¿”ã™ï¼ˆç›¸æ‰‹ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰åˆ°ç€ã‚’ç›£è¦–ã§ãã‚‹ã‚ˆã†ã«ï¼‰
 	return (void*)cuw->recv_trcard[CommGetCurrentID()^1];
 }
 
 
 //==============================================================================
 /**
- * $brief   ƒgƒŒ[ƒi[ƒJ[ƒh‚Ì‚½‚ß‚ÉŠm•Û‚µ‚½—Ìˆæ‚ğ‰ğ•ú‚·‚é
+ * $brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã®ãŸã‚ã«ç¢ºä¿ã—ãŸé ˜åŸŸã‚’è§£æ”¾ã™ã‚‹
  *
  * @param   cuw		
  *
@@ -2404,7 +2404,7 @@ void Union_trainerCardWorkFree( COMM_UNIONROOM_WORK *cuw )
 
 //==============================================================================
 /**
- * $brief   ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^‚ğ‘—M‚·‚é
+ * $brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹
  *
  * @param   cuw		
  *
@@ -2414,7 +2414,7 @@ void Union_trainerCardWorkFree( COMM_UNIONROOM_WORK *cuw )
 void Union_SendTrainerCardData( COMM_UNIONROOM_WORK *cuw )
 {
 
-	// e‚¾‚¯‘—M‚·‚é
+	// è¦ªã ã‘é€ä¿¡ã™ã‚‹
 //	if(CommGetCurrentID()==0){
 		CommSendHugeData( CU_TRAINER_CARD, cuw->my_trcard, sizeof(TR_CARD_DATA) );
 

@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_175.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			175�@�T�^�[���̊ԁA����͍U���Z�����o���Ȃ��Ȃ�B
- *				 ���̋Z��I�ڂ��Ƃ���Ɓu�����������́@���傤�͂@����ā@���������������@�������Ȃ��I�v�ƂȂ�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			175　５ターンの間、相手は攻撃技しか出せなくなる。
+ *				 他の技を選ぼうとすると「○○○○○は　ちょうはつ　されて　○○○○○○○　がだせない！」となる。
  *
  *@author	HisashiSogabe
  *@data		2006.02.07

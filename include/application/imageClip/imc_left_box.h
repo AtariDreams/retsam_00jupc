@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_left_box.h
- *	@brief		¶ƒ{ƒbƒNƒXƒVƒXƒeƒ€
+ *	@brief		å·¦ãƒœãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2005.09.23
  *
@@ -29,13 +29,13 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
 //	
-//	¶ƒ{ƒbƒNƒXƒAƒNƒZƒTƒŠ•\Ž¦—Dæ‡ˆÊŠJŽn
+//	å·¦ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºå„ªå…ˆé †ä½é–‹å§‹
 //	
 //=====================================
 #define IMC_LBOX_ACCE_PRIORITY_START	(-1)
@@ -44,7 +44,7 @@
 
 //-------------------------------------
 //	
-//	BG—p
+//	BGç”¨
 //	
 //=====================================
 #define	IMC_LBOX_BG_PLTT_NUM	(1)
@@ -52,17 +52,17 @@
 
 //-------------------------------------
 //	
-//	¡‚Ì“®ìó‘Ô
+//	ä»Šã®å‹•ä½œçŠ¶æ…‹
 //	
 //=====================================
 enum{
-	IMC_LBOX_STATE_NORM,	// ’Êí
-	IMC_LBOX_STATE_FADE,	// ƒpƒŒƒbƒgƒtƒF[ƒh’†
+	IMC_LBOX_STATE_NORM,	// é€šå¸¸
+	IMC_LBOX_STATE_FADE,	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 };
 
 //-------------------------------------
 //	
-//	ƒtƒF[ƒh•ûŒü
+//	ãƒ•ã‚§ãƒ¼ãƒ‰æ–¹å‘
 //	
 //=====================================
 enum{
@@ -72,7 +72,7 @@ enum{
 
 //-------------------------------------
 //	
-//	ƒŠƒXƒg‘«‚µŽZÓ°ÄÞ
+//	ãƒªã‚¹ãƒˆè¶³ã—ç®—ãƒ¢ãƒ¼ãƒ‰
 //	
 //=====================================
 enum{
@@ -82,13 +82,13 @@ enum{
 
 //-------------------------------------
 //
-//	¶ƒpƒŒƒbƒgƒtƒF[ƒhƒAƒEƒg—p
-//	ƒŠƒXƒgƒ‚[ƒh
+//	å·¦ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆç”¨
+//	ãƒªã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰
 //
-//	ƒtƒF[ƒhƒAƒEƒg—pƒŠƒXƒg‚Í
-//	‚PŒÂ‚µ‚©‚È‚¢‚Å‚·
+//	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆç”¨ãƒªã‚¹ãƒˆã¯
+//	ï¼‘å€‹ã—ã‹ãªã„ã§ã™
 //	
-//	ƒtƒF[ƒhŽž‰½‚à‚È‚¢ƒŠƒXƒg‚ð•`‰æ‚³‚¹‚é‚½‚ß
+//	ãƒ•ã‚§ãƒ¼ãƒ‰æ™‚ä½•ã‚‚ãªã„ãƒªã‚¹ãƒˆã‚’æç”»ã•ã›ã‚‹ãŸã‚
 //=====================================
 #define IMC_LBOX_FADELIST_MODE		(IMC_OBJLIST_ACCE_MAX)
 #define IMC_LBOX_FADELIST_LISTNUM	(1)
@@ -97,79 +97,79 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	¶ƒpƒŒƒbƒgƒŠƒXƒg
+//	å·¦ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚¹ãƒˆ
 //	
 //=====================================
 typedef struct {
-	IMC_OBJLIST*			dummyTbl;		// ƒŠƒXƒgƒ_ƒ~[ƒe[ƒuƒ‹
-	int						dummyNum;		// ƒ_ƒ~[ƒe[ƒuƒ‹”
-	int						dummyCurrent;	// ¡‚ÌƒJƒŒƒ“ƒgƒ_ƒ~[ƒe[ƒuƒ‹
+	IMC_OBJLIST*			dummyTbl;		// ãƒªã‚¹ãƒˆãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
+	int						dummyNum;		// ãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+	int						dummyCurrent;	// ä»Šã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
 } IMC_LEFT_LIST_DATA;
 
 //-------------------------------------
 //	
-//	¶ƒ{ƒbƒNƒX\‘¢‘Ì	
-//	•`‰æ•”
+//	å·¦ãƒœãƒƒã‚¯ã‚¹æ§‹é€ ä½“	
+//	æç”»éƒ¨
 //	
 //=====================================
 typedef struct {
-	// •`‰æƒVƒXƒeƒ€ƒf[ƒ^
-	SWSP_SYS_PTR	SWSP_drawSys;		// ƒXƒvƒ‰ƒCƒg•`‰æƒVƒXƒeƒ€
-	SWSP_CHAR_PTR*	SWSP_charData;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”z—ñ
-	SWSP_PLTT_PTR*	SWSP_plttData;		// ƒpƒŒƒbƒgƒf[ƒ^”z—ñ
-	u8* accePlttOfsTbl;						// ƒAƒNƒZƒTƒŠƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+	SWSP_SYS_PTR	SWSP_drawSys;		// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 
+	SWSP_CHAR_PTR*	SWSP_charData;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿é…åˆ—
+	SWSP_PLTT_PTR*	SWSP_plttData;		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—
+	u8* accePlttOfsTbl;						// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	
-	// BGƒf[ƒ^
+	// BGãƒ‡ãƒ¼ã‚¿
 	GF_BGL_INI*		BG_Ini;
 	
-	// ƒAƒNƒZƒTƒŠƒf[ƒ^
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
 	IMC_ACCESSORIE_OBJ_TBL*	acce;
 	
-	// ”wŒiƒf[ƒ^ƒŠƒXƒg
+	// èƒŒæ™¯ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
 	IMC_BG	bg;
-	IMC_ACCESSORIE_OBJ_TBL*	bg_acce;	// BGƒTƒ€ƒlƒCƒ‹
+	IMC_ACCESSORIE_OBJ_TBL*	bg_acce;	// BGã‚µãƒ ãƒã‚¤ãƒ«
 	
-	// ‰¹ºƒf[ƒ^ƒŠƒXƒg
+	// éŸ³å£°ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
 	
 } IMC_LEFT_BOXDRAW;
 
 //-------------------------------------
 //	
-//	¶ƒ{ƒbƒNƒX\‘¢‘Ìƒf[ƒ^•”
+//	å·¦ãƒœãƒƒã‚¯ã‚¹æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿éƒ¨
 //	
 //=====================================
 typedef struct {
 
-	// ¡‚Ì•ÒWƒ‚[ƒh
-	// ƒAƒNƒZƒTƒŠ	BG	ƒTƒEƒ“ƒh
+	// ä»Šã®ç·¨é›†ãƒ¢ãƒ¼ãƒ‰
+	// ã‚¢ã‚¯ã‚»ã‚µãƒª	BG	ã‚µã‚¦ãƒ³ãƒ‰
 	int		mode;
 
-	// BGƒTƒ€ƒlƒCƒ‹•\Ž¦‡ƒf[ƒ^
+	// BGã‚µãƒ ãƒã‚¤ãƒ«è¡¨ç¤ºé †ãƒ‡ãƒ¼ã‚¿
 	IMC_ITEM_BUFF* p_item_buff;
 
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒg
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆ
 	IMC_OBJLIST_TBL* objListTbl;
 	
-	// ƒAƒNƒZƒTƒŠƒ‚[ƒh•ª‚ÌƒŠƒXƒgƒf[ƒ^
-	// æ“ªƒ_ƒ~[ƒf[ƒ^
-	// æ“ªƒ_ƒ~[ƒf[ƒ^”
-	// ¡‚ÌƒJƒŒƒ“ƒgƒ_ƒ~[ƒf[ƒ^
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰åˆ†ã®ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	// å…ˆé ­ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
+	// å…ˆé ­ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
+	// ä»Šã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 	//
 	IMC_LEFT_LIST_DATA	acce_list[ IMC_LBOX_LIST_NUM ];
 
-	int	state;		// ¡‚Ì“®ìó‘Ô 
-	int back_no;	// ¡‚Ì”wŒiƒiƒ“ƒo[
+	int	state;		// ä»Šã®å‹•ä½œçŠ¶æ…‹ 
+	int back_no;	// ä»Šã®èƒŒæ™¯ãƒŠãƒ³ãƒãƒ¼
 } IMC_LEFT_BOXDATA;
 
 
 //-------------------------------------
 //	
-//	¶ƒ{ƒbƒNƒXƒf[ƒ^
+//	å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
@@ -182,39 +182,39 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	¶ƒ{ƒbƒNƒX‰Šú‰»\‘¢‘Ì	
+//	å·¦ãƒœãƒƒã‚¯ã‚¹åˆæœŸåŒ–æ§‹é€ ä½“	
 //	
 //=====================================
 typedef struct {
-	SWSP_SYS_PTR	SWSP_drawSys;		// ƒXƒvƒ‰ƒCƒg•`‰æƒVƒXƒeƒ€
-	SWSP_CHAR_PTR*	SWSP_charData;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”z—ñ
-	SWSP_PLTT_PTR*	SWSP_plttData;		// ƒpƒŒƒbƒgƒf[ƒ^”z—ñ
-	u8* accePlttOfsTbl;						// ƒAƒNƒZƒTƒŠƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+	SWSP_SYS_PTR	SWSP_drawSys;		// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 
+	SWSP_CHAR_PTR*	SWSP_charData;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿é…åˆ—
+	SWSP_PLTT_PTR*	SWSP_plttData;		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—
+	u8* accePlttOfsTbl;						// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	
-	// BGƒf[ƒ^
+	// BGãƒ‡ãƒ¼ã‚¿
 	GF_BGL_INI*		BG_Ini;
 
-	IMC_ACCESSORIE_OBJ_TBL* acce;			// ƒAƒNƒZƒTƒŠƒŠƒXƒgƒf[ƒ^
-	IMC_OBJLIST_TBL*		objListTbl;		// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹
-	int						accelist_num;	// ì¬‚·‚éƒAƒNƒZƒTƒŠƒŠƒXƒg”
-	int						bglist_num;		// ì¬‚·‚éBGƒTƒ€ƒlƒCƒ‹ƒŠƒXƒg”
-	int						sndlist_num;	// ì¬‚·‚éƒTƒEƒ“ƒhƒTƒ€ƒlƒCƒ‹ƒŠƒXƒg”
+	IMC_ACCESSORIE_OBJ_TBL* acce;			// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	IMC_OBJLIST_TBL*		objListTbl;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+	int						accelist_num;	// ä½œæˆã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆæ•°
+	int						bglist_num;		// ä½œæˆã™ã‚‹BGã‚µãƒ ãƒã‚¤ãƒ«ãƒªã‚¹ãƒˆæ•°
+	int						sndlist_num;	// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã‚µãƒ ãƒã‚¤ãƒ«ãƒªã‚¹ãƒˆæ•°
 
-	IMC_ITEM_BUFF* p_item_buff;		// BG‚Ì•\Ž¦‡ƒf[ƒ^
+	IMC_ITEM_BUFF* p_item_buff;		// BGã®è¡¨ç¤ºé †ãƒ‡ãƒ¼ã‚¿
 } IMC_LEFT_BOX_INIT;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒ{ƒbƒNƒX—p—Ìˆæì¬
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹ç”¨é ˜åŸŸä½œæˆ
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	init		¶ƒ{ƒbƒNƒX‰Šú‰»ƒf[ƒ^
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	init		å·¦ãƒœãƒƒã‚¯ã‚¹åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -226,9 +226,9 @@ GLOBAL void IMC_LBOX_InitSys( IMC_LEFT_BOX* lbox, IMC_LEFT_BOX_INIT* init );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒ{ƒbƒN—p—Ìˆæ”jŠü
+ *	@brief	å·¦ãƒœãƒƒã‚¯ç”¨é ˜åŸŸç ´æ£„
  *
- *	@param	lbox		”jŠü‚·‚é¶ƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	lbox		ç ´æ£„ã™ã‚‹å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -240,12 +240,12 @@ GLOBAL void IMC_LBOX_DeleteSys( IMC_LEFT_BOX* lbox );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ[ƒiƒ“ƒo[‚©‚çƒŠƒXƒgƒiƒ“ƒo[‚ðŽæ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- *	@param	mode			ƒ‚[ƒh
- *	@param	accessorie_no	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@param	mode			ãƒ¢ãƒ¼ãƒ‰
+ *	@param	accessorie_no	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	int		ƒAƒNƒZƒTƒŠ[ƒŠƒXƒgƒiƒ“ƒo[
+ *	@return	int		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼
  *
  *
  */
@@ -255,12 +255,12 @@ GLOBAL int IMC_LBOX_GetListNo( int mode, int accessorie_no, IMC_ITEM_BUFF* p_ite
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‚[ƒh‚ÆƒAƒNƒZƒTƒŠƒiƒ“ƒo[‚©‚ç“o˜^‚³‚ê‚Ä‚¨‚­‚×‚«À•W‚ðŽæ“¾
+ *	@brief	ãƒ¢ãƒ¼ãƒ‰ã¨ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ç™»éŒ²ã•ã‚Œã¦ãŠãã¹ãåº§æ¨™ã‚’å–å¾—
  *
- *	@param	mode			ƒ‚[ƒh
- *	@param	accessorie_no	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
- *	@param	x				‚˜À•WŠi”[æ
- *	@param	y				‚™À•WŠi”[æ
+ *	@param	mode			ãƒ¢ãƒ¼ãƒ‰
+ *	@param	accessorie_no	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+ *	@param	x				ï½˜åº§æ¨™æ ¼ç´å…ˆ
+ *	@param	y				ï½™åº§æ¨™æ ¼ç´å…ˆ
  *
  *	@return	none
  *	
@@ -272,19 +272,19 @@ GLOBAL void IMC_LBOX_GetMat( int mode, int accessorie_no, int* x, int* y, int si
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚ÌV‹K’Ç‰Á
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã®æ–°è¦è¿½åŠ 
  *
- *	@param	lbox				¶ƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	mode				ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	accessorie_no		’Ç‰Á‚·‚éƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@param	lbox				å·¦ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	mode				ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	accessorie_no		è¿½åŠ ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
  * mode
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠƒ^ƒCƒv
-	IMC_OBJLIST_BG,		// BGƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_SND,		// ƒTƒEƒ“ƒhƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_ACCE_MAX		// ƒ‚[ƒhÅ‘å”
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_BG,		// BGã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_SND,		// ã‚µã‚¦ãƒ³ãƒ‰ã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_ACCE_MAX		// ãƒ¢ãƒ¼ãƒ‰æœ€å¤§æ•°
  *
  */
 //-----------------------------------------------------------------------------
@@ -293,12 +293,12 @@ GLOBAL void IMC_LBOX_AddAccessorie( IMC_LEFT_BOX* lbox, int mode, int accessorie
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚ÌˆÚ“®’Ç‰Á
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã®ç§»å‹•è¿½åŠ 
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	acce_obj	ƒAƒNƒZƒTƒŠƒf[ƒ^
- *	@param	mode		ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	list_num	“o˜^‚·‚éƒŠƒXƒg
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	acce_obj	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	mode		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	list_num	ç™»éŒ²ã™ã‚‹ãƒªã‚¹ãƒˆ
  *
  *	@return	none
  * 
@@ -310,9 +310,9 @@ GLOBAL void IMC_LBOX_AddAccessorieMove( IMC_LEFT_BOX* lbox, int mode, int list_n
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒIƒuƒWƒF”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
  *
- *	@param	acce_obj	”jŠü‚·‚éƒAƒNƒZƒTƒŠ
+ *	@param	acce_obj	ç ´æ£„ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒª
  *
  *	@return	none
  *
@@ -324,9 +324,9 @@ GLOBAL void IMC_LBOX_DeleteAccessorie( IMC_OBJLIST* acce_obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ˆÚ“®‚³‚¹‚é‚½‚ß‚ÌƒŠƒXƒg‚©‚ç‚Ìíœ
+ *	@brief	ç§»å‹•ã•ã›ã‚‹ãŸã‚ã®ãƒªã‚¹ãƒˆã‹ã‚‰ã®å‰Šé™¤
  *
- *	@param	acce_obj	ˆÚ“®‚³‚¹‚é‚½‚ß‚ÉƒŠƒXƒg‚©‚çíœ‚·‚éƒAƒNƒZƒTƒŠƒf[ƒ^
+ *	@param	acce_obj	ç§»å‹•ã•ã›ã‚‹ãŸã‚ã«ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -337,9 +337,9 @@ GLOBAL void IMC_LBOX_DeleteAccessorieMove( IMC_OBJLIST* acce_obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“o˜^‚³‚ê‚Ä‚¢‚éƒAƒNƒZƒTƒŠ‘S‚Ä‚ð‚Í‚«
+ *	@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªå…¨ã¦ã‚’ã¯ã
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒX
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹
  *
  *	@return	none
  *
@@ -351,13 +351,13 @@ GLOBAL void IMC_LBOX_DeleteAccessorieAll( IMC_LEFT_BOX* lbox );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒŠƒXƒg‘S‚Ä‚ÌÀ•W‚ð“®‚©‚·
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆå…¨ã¦ã®åº§æ¨™ã‚’å‹•ã‹ã™
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX
- *	@param	mode		ƒ‚[ƒh
- *	@param	list_no		ƒŠƒXƒgƒiƒ“ƒo[
- *	@param	x			“®‚©‚·‚˜À•W
- *	@param	y			“®‚©‚·‚™À•W
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹
+ *	@param	mode		ãƒ¢ãƒ¼ãƒ‰
+ *	@param	list_no		ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼
+ *	@param	x			å‹•ã‹ã™ï½˜åº§æ¨™
+ *	@param	y			å‹•ã‹ã™ï½™åº§æ¨™
  *
  *	@return	none
  *
@@ -369,9 +369,9 @@ GLOBAL void IMC_LBOX_AccessorieListMove( IMC_LEFT_BOX* lbox, int mode, int list_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒ{ƒbƒNƒXƒAƒNƒZƒTƒŠ‚Ì•\Ž¦—Dæ‡‚ðÝ’è
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚»ã‚µãƒªã®è¡¨ç¤ºå„ªå…ˆé †ã‚’è¨­å®š
  *
- *	@param	lbox	¶ƒuƒƒbƒN
+ *	@param	lbox	å·¦ãƒ–ãƒ­ãƒƒã‚¯
  *
  *	@return	none
  *
@@ -383,22 +383,22 @@ GLOBAL void IMC_LBOX_SetAccessoriePriority( IMC_LEFT_BOX* lbox );
 //----------------------------------------------------------------------------
 /**
  *
- * œŽ©“®‚ÅƒGƒtƒFƒNƒg‚ðs‚¢‚Ü‚·B
+ * â—è‡ªå‹•ã§ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¡Œã„ã¾ã™ã€‚
  *
- *	@brief	ƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg‚ð•ÏX
+ *	@brief	ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã‚’å¤‰æ›´
  *
- *	@param	lbox			¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	mode			ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	list_num		Ý’è‚·‚éƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg
+ *	@param	lbox			å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	mode			ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	list_num		è¨­å®šã™ã‚‹ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆ
  *
- *	@retval	TRUE			¬Œ÷
- *	@retval	FALSE			Ž¸”s
+ *	@retval	TRUE			æˆåŠŸ
+ *	@retval	FALSE			å¤±æ•—
  *
  * mode
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠƒ^ƒCƒv
-	IMC_OBJLIST_BG,			// BGƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_SND,		// ƒTƒEƒ“ƒhƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_LBOX_FADELIST_MODE	// ƒtƒF[ƒhŽž—pƒŠƒXƒg	list_num‚Í‚OŒÅ’è
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_BG,			// BGã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_SND,		// ã‚µã‚¦ãƒ³ãƒ‰ã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_LBOX_FADELIST_MODE	// ãƒ•ã‚§ãƒ¼ãƒ‰æ™‚ç”¨ãƒªã‚¹ãƒˆ	list_numã¯ï¼å›ºå®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -406,22 +406,22 @@ GLOBAL BOOL IMC_LBOX_ChangeCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int 
 
 //----------------------------------------------------------------------------
 /**
- * œŽ©“®‚ÅƒGƒtƒFƒNƒg‚ðs‚¢‚Ü‚·B
+ * â—è‡ªå‹•ã§ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¡Œã„ã¾ã™ã€‚
  *
- *	@brief	ƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg‚Ì‘«‚µŽZ
+ *	@brief	ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã®è¶³ã—ç®—
  *
- *	@param	lbox			¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	mode			ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	add_mode		‘«‚·ƒ‚[ƒh
+ *	@param	lbox			å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	mode			ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	add_mode		è¶³ã™ãƒ¢ãƒ¼ãƒ‰
  *
- *	@retval	TRUE			¬Œ÷
- *	@retval	FALSE			Ž¸”s
+ *	@retval	TRUE			æˆåŠŸ
+ *	@retval	FALSE			å¤±æ•—
  *
  * mode
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠƒ^ƒCƒv
-	IMC_OBJLIST_BG,			// BGƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_SND,		// ƒTƒEƒ“ƒhƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_LBOX_FADELIST_MODE	// ƒtƒF[ƒhŽž—pƒŠƒXƒg	list_num‚Í‚OŒÅ’è
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_BG,			// BGã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_SND,		// ã‚µã‚¦ãƒ³ãƒ‰ã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_LBOX_FADELIST_MODE	// ãƒ•ã‚§ãƒ¼ãƒ‰æ™‚ç”¨ãƒªã‚¹ãƒˆ	list_numã¯ï¼å›ºå®š
 
 	add_mode
 		IMC_LBOX_ADD_ONE,		// +1
@@ -433,21 +433,21 @@ GLOBAL BOOL IMC_LBOX_AddCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int add
 //----------------------------------------------------------------------------
 /**
  *
- * œƒGƒtƒFƒNƒg‚È‚µ
+ * â—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãªã—
  *
- *	@brief	ƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg‚ðÝ’è
+ *	@brief	ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã‚’è¨­å®š
  *
- *	@param	lbox			¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	mode			ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	list_num		Ý’è‚·‚éƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg
+ *	@param	lbox			å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	mode			ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	list_num		è¨­å®šã™ã‚‹ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆ
  *
  *	@return	none
  *
  * mode
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠƒ^ƒCƒv
-	IMC_OBJLIST_BG,			// BGƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_SND,		// ƒTƒEƒ“ƒhƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_LBOX_FADELIST_MODE	// ƒtƒF[ƒhŽž—pƒŠƒXƒg	list_num‚Í‚OŒÅ’è
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_BG,			// BGã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_SND,		// ã‚µã‚¦ãƒ³ãƒ‰ã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_LBOX_FADELIST_MODE	// ãƒ•ã‚§ãƒ¼ãƒ‰æ™‚ç”¨ãƒªã‚¹ãƒˆ	list_numã¯ï¼å›ºå®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -456,12 +456,12 @@ GLOBAL void IMC_LBOX_SetCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int lis
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚ª¶ƒ{ƒbƒNƒX‚É“–‚½‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãŒå·¦ãƒœãƒƒã‚¯ã‚¹ã«å½“ãŸã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE		ƒqƒbƒg
- *	@retval	FALSE		”ñƒqƒbƒg
+ *	@retval	TRUE		ãƒ’ãƒƒãƒˆ
+ *	@retval	FALSE		éžãƒ’ãƒƒãƒˆ
  *
  *
  */
@@ -471,14 +471,14 @@ GLOBAL BOOL IMC_LBOX_TPHit( IMC_LEFT_BOX* lbox );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Žw’èÀ•W‚ª¶ƒ{ƒbƒNƒX‚É“–‚½‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	æŒ‡å®šåº§æ¨™ãŒå·¦ãƒœãƒƒã‚¯ã‚¹ã«å½“ãŸã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	x			”»’è‚˜À•W
- *	@param	y			”»’è‚™À•W
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	x			åˆ¤å®šï½˜åº§æ¨™
+ *	@param	y			åˆ¤å®šï½™åº§æ¨™
  *
- *	@retval	TRUE		ƒqƒbƒg
- *	@retval	FALSE		”ñƒqƒbƒg
+ *	@retval	TRUE		ãƒ’ãƒƒãƒˆ
+ *	@retval	FALSE		éžãƒ’ãƒƒãƒˆ
  *
  *
  */
@@ -488,13 +488,13 @@ GLOBAL BOOL IMC_LBOX_TPHitSelf( IMC_LEFT_BOX* lbox, int x, int y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚²‚Æ‚Ì“–‚½‚è”»’è‚ðs‚¤
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã”ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒX
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹
  *
  *	@return	none
  *
- *	ƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg‚ðƒ`ƒFƒbƒN‚µ‚Ü‚·B
+ *	ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -503,16 +503,16 @@ GLOBAL IMC_OBJLIST* IMC_LBOX_TPHitAccessorie( IMC_LEFT_BOX* lbox );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚²‚Æ‚Ì“–‚½‚è”»’è‚ð×‚©‚­s‚¤
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã”ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’ç´°ã‹ãè¡Œã†
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒX
- *	@param	offset_x	ƒIƒtƒZƒbƒg‚˜À•W
- *	@param	offset_y	ƒIƒtƒZƒbƒg‚™À•W
- *	@param	SWSP_UPchar	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXƒe[ƒuƒ‹
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹
+ *	@param	offset_x	ã‚ªãƒ•ã‚»ãƒƒãƒˆï½˜åº§æ¨™
+ *	@param	offset_y	ã‚ªãƒ•ã‚»ãƒƒãƒˆï½™åº§æ¨™
+ *	@param	SWSP_UPchar	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *	@return	none
  *
- *	ƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg‚ðƒ`ƒFƒbƒN‚µ‚Ü‚·B
+ *	ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -521,10 +521,10 @@ GLOBAL IMC_OBJLIST* IMC_LBOX_TPHitAccessorieEx( IMC_LEFT_BOX* lbox, int* offset_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG‚ð•\Ž¦
+ *	@brief	BGã‚’è¡¨ç¤º
  *
- *	@param	rbox		¶ƒ{ƒbƒNƒX
- *	@param	bg_num		¶ƒ{ƒbƒNƒXBGƒiƒ“ƒo[
+ *	@param	rbox		å·¦ãƒœãƒƒã‚¯ã‚¹
+ *	@param	bg_num		å·¦ãƒœãƒƒã‚¯ã‚¹BGãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
@@ -535,15 +535,15 @@ GLOBAL void IMC_LBOX_BGSet( IMC_LEFT_BOX* lbox, int bg_num );
 
 //----------------------------------------------------------------------------
 /**
- * œƒGƒtƒFƒNƒg•t‚«
+ * â—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä»˜ã
  *
- *	@brief	¶ƒ{ƒbƒNƒX”wŒi‚ð•ÏX
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹èƒŒæ™¯ã‚’å¤‰æ›´
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒf[ƒ^
- *	@param	bg_num		•ÏXŒã‚ÌBGƒiƒ“ƒo[
- *	@param	fade_way	ƒtƒF[ƒh•ûŒü
- *	@param	sync		‰½ƒVƒ“ƒN‚Ås‚¤‚©
- *	@param	end_flg		I—¹ŒŸ’mƒtƒ‰ƒO
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+ *	@param	bg_num		å¤‰æ›´å¾Œã®BGãƒŠãƒ³ãƒãƒ¼
+ *	@param	fade_way	ãƒ•ã‚§ãƒ¼ãƒ‰æ–¹å‘
+ *	@param	sync		ä½•ã‚·ãƒ³ã‚¯ã§è¡Œã†ã‹
+ *	@param	end_flg		çµ‚äº†æ¤œçŸ¥ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  *
@@ -558,9 +558,9 @@ GLOBAL void IMC_LBOX_BGChange( IMC_LEFT_BOX* lbox, int bg_num, int fade_way, int
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG‚ðƒNƒŠ[ƒ“‚·‚é
+ *	@brief	BGã‚’ã‚¯ãƒªãƒ¼ãƒ³ã™ã‚‹
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹
  *
  *	@return	none
  *
@@ -572,17 +572,17 @@ GLOBAL void IMC_LBOX_BGClean( IMC_LEFT_BOX* lbox );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Œ»Ý‚Ìƒ‚[ƒh
+ *	@brief	ç¾åœ¨ã®ãƒ¢ãƒ¼ãƒ‰
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒX
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹
  *
- *	@return	ƒAƒNƒZƒTƒŠƒ‚[ƒh
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
  *
  * mode
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠƒ^ƒCƒv
-	IMC_OBJLIST_BG,			// BGƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_SND,		// ƒTƒEƒ“ƒhƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_LBOX_FADELIST_MODE	// ƒtƒF[ƒhŽž—pƒŠƒXƒg	list_num‚Í‚OŒÅ’è
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_BG,			// BGã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_SND,		// ã‚µã‚¦ãƒ³ãƒ‰ã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_LBOX_FADELIST_MODE	// ãƒ•ã‚§ãƒ¼ãƒ‰æ™‚ç”¨ãƒªã‚¹ãƒˆ	list_numã¯ï¼å›ºå®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -591,12 +591,12 @@ GLOBAL int IMC_LBOX_GetMode( IMC_LEFT_BOX* lbox );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‚[ƒh‚²‚Æ‚ÌƒJƒŒƒ“ƒgƒ_ƒ~[ƒe[ƒuƒ‹ƒiƒ“ƒo[‚ðŽæ“¾
+ *	@brief	ãƒ¢ãƒ¼ãƒ‰ã”ã¨ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	mode	’²‚×‚½‚¢ƒ‚[ƒh
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	mode	èª¿ã¹ãŸã„ãƒ¢ãƒ¼ãƒ‰
  *	
- *	@return	ƒJƒŒƒ“ƒgƒ_ƒ~[ƒe[ƒuƒ‹ƒiƒ“ƒo[
+ *	@return	ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
  *
  */
@@ -606,12 +606,12 @@ GLOBAL int IMC_LBOX_GetCurrentNo( IMC_LEFT_BOX* lbox, int mode  );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ_ƒ~[ƒe[ƒuƒ‹”‚ðŽæ“¾
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ã‚’å–å¾—
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒXƒIƒuƒWƒF
- *	@param	mode		ƒAƒNƒZƒTƒŠƒ‚[ƒh
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	mode		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
  *
- *	@return	ƒ_ƒ~[ƒe[ƒuƒ‹”
+ *	@return	ãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
  *
  */
@@ -621,12 +621,12 @@ GLOBAL int IMC_LBOX_GetDummyTblNum( IMC_LEFT_BOX* lbox, int mode );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¡¶ƒ{ƒbƒN‚ð‰ó‚µ‚Ä‚æ‚¢ó‘Ô‚È‚Ì‚©‚ðƒ`ƒFƒbƒN
+ *	@brief	ä»Šå·¦ãƒœãƒƒã‚¯ã‚’å£Šã—ã¦ã‚ˆã„çŠ¶æ…‹ãªã®ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *	@retval	TRUE	OK
- *	@retval FALSE	NG		ƒtƒF[ƒh’†‚Å‚·
+ *	@retval FALSE	NG		ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã§ã™
  *
  *
  */

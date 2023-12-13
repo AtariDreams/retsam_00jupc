@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	factory_tool.c
- * @brief	ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ŠÖ˜Aƒc[ƒ‹—Þ
+ * @brief	ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼é–¢é€£ãƒ„ãƒ¼ãƒ«é¡ž
  * @author	Satoshi Nohara
  * @date	2007.08.31
  *
- * ¼“c‚³‚ñ‚©‚çˆøŒp‚¬
+ * æ¾ç”°ã•ã‚“ã‹ã‚‰å¼•ç¶™ãŽ
  */
 //==============================================================================
 #include "common.h"
@@ -19,22 +19,22 @@
 #include "factory_def.h"
 #include "factory_tool.h"
 
-#include "msgdata/msg.naix"			//Žb’è
+#include "msgdata/msg.naix"			//æš«å®š
 
 
-#define FACTORY_LEADER_TR_INDEX_1ST	(309)	//21í–Ú(0ƒIƒŠƒWƒ“)
-#define FACTORY_LEADER_TR_INDEX_2ND	(310)	//42í–Ú
+#define FACTORY_LEADER_TR_INDEX_1ST	(309)	//21æˆ¦ç›®(0ã‚ªãƒªã‚¸ãƒ³)
+#define FACTORY_LEADER_TR_INDEX_2ND	(310)	//42æˆ¦ç›®
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-//šƒgƒŒ[ƒi[ƒf[ƒ^‚Í0ƒIƒŠƒWƒ“‚È‚Ì‚ÅAƒf[ƒ^ì¬Žž‚Ìƒiƒ“ƒo[‚©‚ç-1‚µ‚ÄŽQÆ‚·‚é
-///T‰ñ”A‰½l–Ú‚Ì‘ŠŽè‚©A‚É‚æ‚éƒgƒŒ[ƒi[‚Ì‘Ioƒf[ƒ^\‘¢‘Ì
+//â˜…ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã¯0ã‚ªãƒªã‚¸ãƒ³ãªã®ã§ã€ãƒ‡ãƒ¼ã‚¿ä½œæˆæ™‚ã®ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰-1ã—ã¦å‚ç…§ã™ã‚‹
+///é€±å›žæ•°ã€ä½•äººç›®ã®ç›¸æ‰‹ã‹ã€ã«ã‚ˆã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®é¸å‡ºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 static const struct{
-	u16 start_no;		///<‚P`‚Ul–Ú‚ÌŠJŽnNo
-	u16 end_no;			///<‚P`‚Ul–Ú‚ÌI—¹No
-	u16 boss_start;		///<7l–Ú‚ÌŠJŽnNo
-	u16 boss_end;		///<7l–Ú‚ÌI—¹No
+	u16 start_no;		///<ï¼‘ã€œï¼–äººç›®ã®é–‹å§‹No
+	u16 end_no;			///<ï¼‘ã€œï¼–äººç›®ã®çµ‚äº†No
+	u16 boss_start;		///<7äººç›®ã®é–‹å§‹No
+	u16 boss_end;		///<7äººç›®ã®çµ‚äº†No
 }TrainerSelectRange[] = {
 	{1-1,	100-1,	101-1,	120-1},
 	{81-1,	120-1,	121-1,	140-1},
@@ -46,8 +46,8 @@ static const struct{
 	{201-1,	300-1,	201-1,	300-1},
 };
 
-//šƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Í1ƒIƒŠƒWƒ“‚ÅŽn‚Ü‚é(0‚Í–³Œø‚Èƒf[ƒ^‚È‚Ì‚ÅŽQÆ‚µ‚Ä‚Íƒ_ƒI)
-///ƒŒƒxƒ‹50‚Ì“G‚ªŽg—p‚µ‚Ä‚­‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌIndexŽæ“¾”ÍˆÍ(ƒ|ƒPƒ‚ƒ“‚Í1ƒIƒŠƒWƒ“)
+//â˜…ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã¯1ã‚ªãƒªã‚¸ãƒ³ã§å§‹ã¾ã‚‹(0ã¯ç„¡åŠ¹ãªãƒ‡ãƒ¼ã‚¿ãªã®ã§å‚ç…§ã—ã¦ã¯ãƒ€ãƒ¡ï¼)
+///ãƒ¬ãƒ™ãƒ«50ã®æ•µãŒä½¿ç”¨ã—ã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®Indexå–å¾—ç¯„å›²(ãƒã‚±ãƒ¢ãƒ³ã¯1ã‚ªãƒªã‚¸ãƒ³)
 static const FACTORY_POKE_RANGE Level50EnemyPokemonRange[] = {
 	{100,	1,		150,	0,		1},
 	{120,	151,	250,	4,		1},
@@ -56,13 +56,13 @@ static const FACTORY_POKE_RANGE Level50EnemyPokemonRange[] = {
 	{180,	487,	622,	16,		1},
 	{200,	623,	758,	20,		1},
 	{220,	759,	894,	24,		1},
-	{300,	351,	950,	31,		0},		//ƒm[ƒ}ƒ‹“G‚ÌI’[
-//	{312,	351,	486,	31,		0},		//ƒuƒŒ[ƒ“—p
-	{(FACTORY_LEADER_TR_INDEX_1ST+1),	351,	486,	12,		0},		//ƒuƒŒ[ƒ“—p
-	{(FACTORY_LEADER_TR_INDEX_2ND+1),	351,	486,	31,		0},		//ƒuƒŒ[ƒ“—p
+	{300,	351,	950,	31,		0},		//ãƒŽãƒ¼ãƒžãƒ«æ•µã®çµ‚ç«¯
+//	{312,	351,	486,	31,		0},		//ãƒ–ãƒ¬ãƒ¼ãƒ³ç”¨
+	{(FACTORY_LEADER_TR_INDEX_1ST+1),	351,	486,	12,		0},		//ãƒ–ãƒ¬ãƒ¼ãƒ³ç”¨
+	{(FACTORY_LEADER_TR_INDEX_2ND+1),	351,	486,	31,		0},		//ãƒ–ãƒ¬ãƒ¼ãƒ³ç”¨
 };
 
-///ƒI[ƒvƒ“ƒŒƒxƒ‹‚Ì“G‚ªŽg—p‚µ‚Ä‚­‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌIndexŽæ“¾”ÍˆÍ(ƒ|ƒPƒ‚ƒ“‚Í1ƒIƒŠƒWƒ“)
+///ã‚ªãƒ¼ãƒ—ãƒ³ãƒ¬ãƒ™ãƒ«ã®æ•µãŒä½¿ç”¨ã—ã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®Indexå–å¾—ç¯„å›²(ãƒã‚±ãƒ¢ãƒ³ã¯1ã‚ªãƒªã‚¸ãƒ³)
 static const FACTORY_POKE_RANGE OpenLevelEnemyPokemonRange[] = {
 	{100,	351,	486,	0,		1},
 	{120,	487,	622,	4,		1},
@@ -71,13 +71,13 @@ static const FACTORY_POKE_RANGE OpenLevelEnemyPokemonRange[] = {
 	{180,	351,	950,	16,		1},
 	{200,	351,	950,	20,		1},
 	{220,	351,	950,	24,		1},
-	{300,	351,	950,	31,		0},		//ƒm[ƒ}ƒ‹“G‚ÌI’[
-//	{312,	759,	950,	31,		0},		//ƒuƒŒ[ƒ“—p
-	{(FACTORY_LEADER_TR_INDEX_1ST+1),	759,	950,	12,		0},		//ƒuƒŒ[ƒ“—p
-	{(FACTORY_LEADER_TR_INDEX_2ND+1),	759,	950,	31,		0},		//ƒuƒŒ[ƒ“—p
+	{300,	351,	950,	31,		0},		//ãƒŽãƒ¼ãƒžãƒ«æ•µã®çµ‚ç«¯
+//	{312,	759,	950,	31,		0},		//ãƒ–ãƒ¬ãƒ¼ãƒ³ç”¨
+	{(FACTORY_LEADER_TR_INDEX_1ST+1),	759,	950,	12,		0},		//ãƒ–ãƒ¬ãƒ¼ãƒ³ç”¨
+	{(FACTORY_LEADER_TR_INDEX_2ND+1),	759,	950,	31,		0},		//ãƒ–ãƒ¬ãƒ¼ãƒ³ç”¨
 };
 
-///ƒI[ƒvƒ“ƒŒƒxƒ‹‚Ì–¡•ûƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌIndexŽæ“¾”ÍˆÍ(ƒ|ƒPƒ‚ƒ“‚Í1ƒIƒŠƒWƒ“)
+///ã‚ªãƒ¼ãƒ—ãƒ³ãƒ¬ãƒ™ãƒ«ã®å‘³æ–¹ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®Indexå–å¾—ç¯„å›²(ãƒã‚±ãƒ¢ãƒ³ã¯1ã‚ªãƒªã‚¸ãƒ³)
 static const FACTORY_POKE_RANGE OpenLevelMinePokemonRange[] = {
 	{100,	351,	486,	0,		1},
 	{120,	487,	622,	4,		1},
@@ -86,24 +86,24 @@ static const FACTORY_POKE_RANGE OpenLevelMinePokemonRange[] = {
 	{180,	623,	950,	16,		1},
 	{200,	623,	950,	20,		1},
 	{220,	623,	950,	24,		1},
-	{300,	351,	950,	31,		0},		//ƒm[ƒ}ƒ‹“G‚ÌI’[
-//	{312,	759,	950,	31,		0},		//ƒuƒŒ[ƒ“—p
-	{(FACTORY_LEADER_TR_INDEX_1ST+1),	759,	950,	12,		0},		//ƒuƒŒ[ƒ“—p
-	{(FACTORY_LEADER_TR_INDEX_2ND+1),	759,	950,	31,		0},		//ƒuƒŒ[ƒ“—p
+	{300,	351,	950,	31,		0},		//ãƒŽãƒ¼ãƒžãƒ«æ•µã®çµ‚ç«¯
+//	{312,	759,	950,	31,		0},		//ãƒ–ãƒ¬ãƒ¼ãƒ³ç”¨
+	{(FACTORY_LEADER_TR_INDEX_1ST+1),	759,	950,	12,		0},		//ãƒ–ãƒ¬ãƒ¼ãƒ³ç”¨
+	{(FACTORY_LEADER_TR_INDEX_2ND+1),	759,	950,	31,		0},		//ãƒ–ãƒ¬ãƒ¼ãƒ³ç”¨
 };
 
-///ƒŒƒxƒ‹50‚ÅŽ©•ª‚ªŽg—po—ˆ‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌIndexŽæ“¾”ÍˆÍ(Œ»ó“G‚Æ”ÍˆÍ‚Íˆê)
+///ãƒ¬ãƒ™ãƒ«50ã§è‡ªåˆ†ãŒä½¿ç”¨å‡ºæ¥ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®Indexå–å¾—ç¯„å›²(ç¾çŠ¶æ•µã¨ç¯„å›²ã¯ä¸€ç·’)
 #define Level50MinePokemonRange		Level50EnemyPokemonRange
 
 /******************************************************************************/
-//31‚ªƒe[ƒuƒ‹‚É•¡”‚ ‚é‚Æƒ_ƒ‚È‚Ì‚Å’ˆÓI(FACTORY_POKE_RANGE‚Å”äŠr‚µ‚Ä‚à‚æ‚³‚»‚¤)
+//31ãŒãƒ†ãƒ¼ãƒ–ãƒ«ã«è¤‡æ•°ã‚ã‚‹ã¨ãƒ€ãƒ¡ãªã®ã§æ³¨æ„ï¼(FACTORY_POKE_RANGEã§æ¯”è¼ƒã—ã¦ã‚‚ã‚ˆã•ãã†)
 /******************************************************************************/
-//ŒðŠ·‰ñ”‚É‚æ‚Á‚Ä1‚Âã‚ÌƒŒƒxƒ‹‚ð’Šo‚·‚éŽž‚ÉŽg—p‚µ‚Ä‚¢‚é
-#define LV50_ENEMY_POKE_RANGE_MAX	( NELEMS(Level50MinePokemonRange) )	//Å‘å”
+//äº¤æ›å›žæ•°ã«ã‚ˆã£ã¦1ã¤ä¸Šã®ãƒ¬ãƒ™ãƒ«ã‚’æŠ½å‡ºã™ã‚‹æ™‚ã«ä½¿ç”¨ã—ã¦ã„ã‚‹
+#define LV50_ENEMY_POKE_RANGE_MAX	( NELEMS(Level50MinePokemonRange) )	//æœ€å¤§æ•°
 //#define MINE_POKE_RANGE_END		( Level50MinePokemonRange[LV50_ENEMY_POKE_RANGE_MAX-1].end )
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static int Factory_EnemyTrainerIndexGet( u8 type, int lap, int enemy_number);
 const FACTORY_POKE_RANGE *Factory_EnemyPokemonRangeGet(int trainer_index, 
@@ -119,14 +119,14 @@ void Factory_EnemyLapAllTrainerIndexGet( u8 type, int lap, u16 trainer_index[], 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   oŒ»‚·‚é“GƒgƒŒ[ƒi[‚ÌƒgƒŒ[ƒi[ƒf[ƒ^No‚ðŽæ“¾‚·‚é
+ * @brief   å‡ºç¾ã™ã‚‹æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿Noã‚’å–å¾—ã™ã‚‹
  *
- * @param   lap					T‰ñ”(0`)
- * @param   enemy_number		‰½”Ô–Ú‚É“oê‚·‚é“G‚©(‚O`FACTORY_LAP_ENEMY_MAX-1)
+ * @param   lap					é€±å›žæ•°(0ã€œ)
+ * @param   enemy_number		ä½•ç•ªç›®ã«ç™»å ´ã™ã‚‹æ•µã‹(ï¼ã€œFACTORY_LAP_ENEMY_MAX-1)
  *
- * @retval  ƒgƒŒ[ƒi[ƒf[ƒ^No
+ * @retval  ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿No
  *
- * Lv50AƒI[ƒvƒ“‹¤’Ê‚Å‚·
+ * Lv50ã€ã‚ªãƒ¼ãƒ—ãƒ³å…±é€šã§ã™
  */
 //--------------------------------------------------------------
 static int Factory_EnemyTrainerIndexGet( u8 type, int lap, int enemy_number)
@@ -137,7 +137,7 @@ static int Factory_EnemyTrainerIndexGet( u8 type, int lap, int enemy_number)
 		lap = NELEMS(TrainerSelectRange) - 1;
 	}
 	
-	//ƒuƒŒ[ƒ“(ƒVƒ“ƒOƒ‹‚Ì‚Ý)
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³(ã‚·ãƒ³ã‚°ãƒ«ã®ã¿)
 	if( type == FACTORY_TYPE_SINGLE ){
 		check_num = (lap * FACTORY_LAP_ENEMY_MAX) + (enemy_number + 1);
 		if( check_num == FACTORY_LEADER_SET_1ST ){
@@ -162,10 +162,10 @@ static int Factory_EnemyTrainerIndexGet( u8 type, int lap, int enemy_number)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚»‚ÌŽü‚É“oê‚·‚é“GƒgƒŒ[ƒi[Index‚ð‘Sˆõ•ª”í‚ç‚È‚¢‚æ‚¤‚ÉŽæ“¾‚·‚é
+ * @brief   ãã®å‘¨ã«ç™»å ´ã™ã‚‹æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Indexã‚’å…¨å“¡åˆ†è¢«ã‚‰ãªã„ã‚ˆã†ã«å–å¾—ã™ã‚‹
  *
- * @param   lap					Žü‰ñ”(0`)
- * @param   trainer_index		ƒgƒŒ[ƒi[Index‘ã“üæ(FACTORY_LAP_ENEMY_MAX•ª‚Ì—v‘f”‚ª•K—v)
+ * @param   lap					å‘¨å›žæ•°(0ã€œ)
+ * @param   trainer_index		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Indexä»£å…¥å…ˆ(FACTORY_LAP_ENEMY_MAXåˆ†ã®è¦ç´ æ•°ãŒå¿…è¦)
  */
 //--------------------------------------------------------------
 void Factory_EnemyLapAllTrainerIndexGet( u8 type, int lap, u16 trainer_index[], u8 num )
@@ -175,7 +175,7 @@ void Factory_EnemyLapAllTrainerIndexGet( u8 type, int lap, u16 trainer_index[], 
 	
 	do{
 		trainer_index[set_count] = Factory_EnemyTrainerIndexGet( type, lap, set_count);
-		//”í‚èƒ`ƒFƒbƒN
+		//è¢«ã‚Šãƒã‚§ãƒƒã‚¯
 		for(i = 0; i < set_count; i++){
 			if(trainer_index[i] == trainer_index[set_count]){
 				break;
@@ -190,12 +190,12 @@ void Factory_EnemyLapAllTrainerIndexGet( u8 type, int lap, u16 trainer_index[], 
 
 //--------------------------------------------------------------
 /**
- * @brief   “G‚ªŽg—p‚µ‚Ä‚­‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ì’Šo”ÍˆÍ‚ðŽæ“¾‚·‚é
+ * @brief   æ•µãŒä½¿ç”¨ã—ã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æŠ½å‡ºç¯„å›²ã‚’å–å¾—ã™ã‚‹
  *
- * @param   trainer_index		ƒgƒŒ[ƒi[Index
+ * @param   trainer_index		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Index
  * @param   factory_level		FACTORY_LEVEL_???
  *
- * @retval  ’Šo”ÍˆÍƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  æŠ½å‡ºç¯„å›²ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 const FACTORY_POKE_RANGE *Factory_EnemyPokemonRangeGet(int trainer_index, int factory_level)
@@ -228,18 +228,18 @@ const FACTORY_POKE_RANGE *Factory_EnemyPokemonRangeGet(int trainer_index, int fa
 
 //--------------------------------------------------------------
 /**
- * @brief   Å‰‚ÉƒŒƒ“ƒ^ƒ‹‚·‚é6‘Ì‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ì’Šo”ÍˆÍ‚ðŽæ“¾‚·‚é
+ * @brief   æœ€åˆã«ãƒ¬ãƒ³ã‚¿ãƒ«ã™ã‚‹6ä½“ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æŠ½å‡ºç¯„å›²ã‚’å–å¾—ã™ã‚‹
  *
- * @param   lap					Žü‰ñ”
+ * @param   lap					å‘¨å›žæ•°
  * @param   factory_level		FACTORY_LEVEL_???
  *
- * @retval  ’Šo”ÍˆÍƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  æŠ½å‡ºç¯„å›²ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 const FACTORY_POKE_RANGE *Factory_MinePokemonRangeGet(int lap, int factory_level)
 {
-	//«‚ÅƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“‚Ì’Šo‚ªƒuƒŒ[ƒ“‚Ìƒf[ƒ^‚Éˆø‚Á‚©‚©‚ç‚È‚¢
-	//ƒf[ƒ^‚ªÅ‘åŽü‰ñ”(8)‚Ü‚Å‚µ‚©—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Å§ŒÀ‚·‚é
+	//â†“ã§ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ã®æŠ½å‡ºãŒãƒ–ãƒ¬ãƒ¼ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã«å¼•ã£ã‹ã‹ã‚‰ãªã„
+	//ãƒ‡ãƒ¼ã‚¿ãŒæœ€å¤§å‘¨å›žæ•°(8)ã¾ã§ã—ã‹ç”¨æ„ã•ã‚Œã¦ã„ãªã„ã®ã§åˆ¶é™ã™ã‚‹
 	if(lap >= FACTORY_LAP_MAX){
 		lap = FACTORY_LAP_MAX - 1;
 	}
@@ -254,13 +254,13 @@ const FACTORY_POKE_RANGE *Factory_MinePokemonRangeGet(int lap, int factory_level
 
 //--------------------------------------------------------------
 /**
- * @brief   “GƒgƒŒ[ƒi[‚ªŽg‚Á‚Ä‚­‚éƒ|ƒPƒ‚ƒ“Index‚ðŽæ“¾
+ * @brief   æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒä½¿ã£ã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³Indexã‚’å–å¾—
  *
- * @param   trd					ƒgƒŒ[ƒi[ƒf[ƒ^
- * @param   trainer_index		ƒgƒŒ[ƒi[Index
+ * @param   trd					ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+ * @param   trainer_index		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Index
  * @param   factory_level		FACTORY_LEVEL_???
  *
- * @retval  ƒ|ƒPƒ‚ƒ“ƒf[ƒ^Index
+ * @retval  ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿Index
  */
 //--------------------------------------------------------------
 static int Factory_EnemyPokemonIndexGet(B_TOWER_TRAINER_ROM_DATA *trd, int trainer_index, 
@@ -272,8 +272,8 @@ static int Factory_EnemyPokemonIndexGet(B_TOWER_TRAINER_ROM_DATA *trd, int train
 		poke_index = trd->use_poke_table[gf_rand() % trd->use_poke_cnt];
 	}
 	else{
-		//ƒI[ƒvƒ“ƒŒƒxƒ‹‚ÍƒgƒŒ[ƒi[ƒf[ƒ^‚É“ü‚Á‚Ä‚¢‚éŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ˆê——‚©‚ç‚Å‚Í‚È‚­
-		//ƒgƒŒ[ƒi[”Ô†‚ðƒL[‚Éˆê’è”ÍˆÍ‚Ìƒ|ƒPƒ‚ƒ“‚©‚çƒ‰ƒ“ƒ_ƒ€‚Å’Šo
+		//ã‚ªãƒ¼ãƒ—ãƒ³ãƒ¬ãƒ™ãƒ«ã¯ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã«å…¥ã£ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ä¸€è¦§ã‹ã‚‰ã§ã¯ãªã
+		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç•ªå·ã‚’ã‚­ãƒ¼ã«ä¸€å®šç¯„å›²ã®ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã§æŠ½å‡º
 		int tbl_no, offset;
 		
 		for(tbl_no = 0; tbl_no < NELEMS(OpenLevelEnemyPokemonRange); tbl_no++){
@@ -293,38 +293,38 @@ static int Factory_EnemyPokemonIndexGet(B_TOWER_TRAINER_ROM_DATA *trd, int train
 	return poke_index;
 }
 
-//ŒðŠ·‰ñ”ƒe[ƒuƒ‹
+//äº¤æ›å›žæ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const trade_count_tbl[] = {
-	//‰ñ”  //«‚¨“¾‚É‚È‚éƒ|ƒPƒ‚ƒ“”(Žü‰ñ”‚Å‚Í‚È‚¢I)
+	//å›žæ•°  //â†“ãŠå¾—ã«ãªã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°(å‘¨å›žæ•°ã§ã¯ãªã„ï¼)
 	6,		//0
 	13,		//1
 	20,		//2
 	27,		//3
 	34,		//4
-	//35ˆÈã//5
+	//35ä»¥ä¸Š//5
 };
 #define TRADE_COUNT_TBL_MAX		( NELEMS(trade_count_tbl) )
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒ@ƒNƒgƒŠ[‚ÅŽg—p‚·‚éƒ|ƒPƒ‚ƒ“‚ÌIndex‚ðŒˆ‚ß‚é
- *			“¯‚¶ƒ|ƒPƒ‚ƒ“A‘•”õ“¹‹ï‚É‚È‚ç‚È‚¢‚æ‚¤‚ÉIndex‚ðŽæ“¾‚µ‚Ü‚·
+ * @brief   ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã§ä½¿ç”¨ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®Indexã‚’æ±ºã‚ã‚‹
+ *			åŒã˜ãƒã‚±ãƒ¢ãƒ³ã€è£…å‚™é“å…·ã«ãªã‚‰ãªã„ã‚ˆã†ã«Indexã‚’å–å¾—ã—ã¾ã™
  *
- * @param   check_pokeno[]		”í‚è–hŽ~‚Åƒ`ƒFƒbƒN‚·‚éƒ|ƒPƒ‚ƒ“”Ô†(Index‚Å‚Í‚È‚¢Ž–‚É’ˆÓ)
- * @param   check_itemno[]		”í‚è–hŽ~‚Åƒ`ƒFƒbƒN‚·‚éƒAƒCƒeƒ€”Ô†
- * @param   check_num			check_pokeno‚Æcheck_itemno‚Ìƒf[ƒ^”
- * @param   get_count			‰½‘Ì‚Ìƒ|ƒPƒ‚ƒ“Index‚ðŽæ“¾‚·‚é‚©
- * @param   ret_pokeindex[]		Œˆ‚Ü‚Á‚½ƒ|ƒPƒ‚ƒ“Index‚ÌŒ‹‰Ê‘ã“üæ(get_count•ª‚Ì”z—ñ”‚ª‚ ‚éŽ–!)
- * @param   heap_id				ƒq[ƒvID
- * @param   range				ƒ|ƒPƒ‚ƒ“Index’Šo”ÍˆÍ
- * @param   trade_count			ŒðŠ·‰ñ”(0ˆÈŠO‚ð“n‚·‚ÆƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“’Šo‚É‚È‚è‚Ü‚·)
- * @param   pow_rnd				ƒpƒ[—”(0-31)
+ * @param   check_pokeno[]		è¢«ã‚Šé˜²æ­¢ã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·(Indexã§ã¯ãªã„äº‹ã«æ³¨æ„)
+ * @param   check_itemno[]		è¢«ã‚Šé˜²æ­¢ã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param   check_num			check_pokenoã¨check_itemnoã®ãƒ‡ãƒ¼ã‚¿æ•°
+ * @param   get_count			ä½•ä½“ã®ãƒã‚±ãƒ¢ãƒ³Indexã‚’å–å¾—ã™ã‚‹ã‹
+ * @param   ret_pokeindex[]		æ±ºã¾ã£ãŸãƒã‚±ãƒ¢ãƒ³Indexã®çµæžœä»£å…¥å…ˆ(get_countåˆ†ã®é…åˆ—æ•°ãŒã‚ã‚‹äº‹!)
+ * @param   heap_id				ãƒ’ãƒ¼ãƒ—ID
+ * @param   range				ãƒã‚±ãƒ¢ãƒ³IndexæŠ½å‡ºç¯„å›²
+ * @param   trade_count			äº¤æ›å›žæ•°(0ä»¥å¤–ã‚’æ¸¡ã™ã¨ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³æŠ½å‡ºã«ãªã‚Šã¾ã™)
+ * @param   pow_rnd				ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°(0-31)
  *
- * @retval	FALSE	’Š‘Iƒ‹[ƒv‚ª50‰ñˆÈ“à‚ÅI‚í‚Á‚½
- * @retval	TRUE	’Š‘Iƒ‹[ƒv‚ª50‰ñˆÈ“à‚ÅI‚í‚ç‚È‚©‚Á‚½
+ * @retval	FALSE	æŠ½é¸ãƒ«ãƒ¼ãƒ—ãŒ50å›žä»¥å†…ã§çµ‚ã‚ã£ãŸ
+ * @retval	TRUE	æŠ½é¸ãƒ«ãƒ¼ãƒ—ãŒ50å›žä»¥å†…ã§çµ‚ã‚ã‚‰ãªã‹ã£ãŸ
  *
- * ”í‚è–hŽ~‚ðŽg—p‚µ‚È‚¢ê‡‚Ícheck_num‚ð0‚É‚µ‚Ä‚­‚¾‚³‚¢B(check_pokeno, check_itemno‚ÍNULL)
+ * è¢«ã‚Šé˜²æ­¢ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã¯check_numã‚’0ã«ã—ã¦ãã ã•ã„ã€‚(check_pokeno, check_itemnoã¯NULL)
  */
 //--------------------------------------------------------------
 BOOL Factory_PokemonIndexCreate(const u16 check_pokeno[], const u16 check_itemno[], 
@@ -336,22 +336,22 @@ BOOL Factory_PokemonIndexCreate(const u16 check_pokeno[], const u16 check_itemno
 	int i,range_up;
 	const FACTORY_POKE_RANGE* range;
 	
-	//‘ã“ü
+	//ä»£å…¥
 	range = poke_range;
 
-	GF_ASSERT(get_count <= 6);	//prd_d‚Ì”z—ñ”‚ð’´‚¦‚Ä‚¢‚ê‚ÎASSERT
+	GF_ASSERT(get_count <= 6);	//prd_dã®é…åˆ—æ•°ã‚’è¶…ãˆã¦ã„ã‚Œã°ASSERT
 	
 	range_offset = range->end - range->start;
 	set_count = 0;
 	range_up = 0;
 	
-	//ŒðŠ·‰ñ”‚ª0ˆÈŠO‚ª“n‚³‚ê‚½Žž‚ÍAƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“’Šo‚Æ”»’f‚·‚éI
+	//äº¤æ›å›žæ•°ãŒ0ä»¥å¤–ãŒæ¸¡ã•ã‚ŒãŸæ™‚ã¯ã€ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³æŠ½å‡ºã¨åˆ¤æ–­ã™ã‚‹ï¼
 	if( trade_count != 0 ){
 
-		//1‚Âã‚ÌƒŒƒ“ƒW‚©‚ç‘Io‚·‚éƒ|ƒPƒ‚ƒ“”
+		//1ã¤ä¸Šã®ãƒ¬ãƒ³ã‚¸ã‹ã‚‰é¸å‡ºã™ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
 		range_up = TRADE_COUNT_TBL_MAX;
 
-		//ŒðŠ·‰ñ”‚Æ”äŠr‚µ‚ÄA1‚Âã‚ÌƒŒƒ“ƒW‚©‚ç‘Io‚·‚éƒ|ƒPƒ‚ƒ“”‚ðŒˆ’è
+		//äº¤æ›å›žæ•°ã¨æ¯”è¼ƒã—ã¦ã€1ã¤ä¸Šã®ãƒ¬ãƒ³ã‚¸ã‹ã‚‰é¸å‡ºã™ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°ã‚’æ±ºå®š
 		for( i=0; i < TRADE_COUNT_TBL_MAX; i++ ){
 			if( trade_count <= trade_count_tbl[i] ){
 				range_up = i;
@@ -361,63 +361,63 @@ BOOL Factory_PokemonIndexCreate(const u16 check_pokeno[], const u16 check_itemno
 	}
 
 	while(set_count != get_count){
-		//ƒŒƒ“ƒ^ƒ‹‰ñ”‚ðl—¶
+		//ãƒ¬ãƒ³ã‚¿ãƒ«å›žæ•°ã‚’è€ƒæ…®
 		//
-		//—á  get_count = ƒZƒbƒg‚·‚é”
-		//    set_count = ƒZƒbƒg‚µ‚½”
-		//    range_up  = 1‚Âã‚ðƒZƒbƒg‚·‚é”
-		//    range_up‚·‚é”‚Ü‚Å‚Í’Êí‘IoA‚»‚ÌŒã‚Í1‚Âã‚Ìƒ‰ƒ“ƒN‚©‚ç‘Io
+		//ä¾‹  get_count = ã‚»ãƒƒãƒˆã™ã‚‹æ•°
+		//    set_count = ã‚»ãƒƒãƒˆã—ãŸæ•°
+		//    range_up  = 1ã¤ä¸Šã‚’ã‚»ãƒƒãƒˆã™ã‚‹æ•°
+		//    range_upã™ã‚‹æ•°ã¾ã§ã¯é€šå¸¸é¸å‡ºã€ãã®å¾Œã¯1ã¤ä¸Šã®ãƒ©ãƒ³ã‚¯ã‹ã‚‰é¸å‡º
 		if( (set_count >= get_count - range_up) && (range->rankup_flag == 1) ){
 
-			range_offset = (range+1)->end - (range+1)->start;		//’Šo”ÍˆÍ1‚Âã
+			range_offset = (range+1)->end - (range+1)->start;		//æŠ½å‡ºç¯„å›²1ã¤ä¸Š
 			set_index = (range+1)->end - (gf_rand() % (range_offset+1));
 			set_pow_rnd = (range+1)->pow_rnd;
 
-			//—á  start       = 251
-			//  @end         = 350 
+			//ä¾‹  start       = 251
+			//  ã€€end         = 350 
 			//    range_offset= 350 - 251 + 1 = 100
 			//    rand        = 0_99
 			//    set_index   = 350 - 99 = 251_350
-			//    rankup_flag = 1 //ƒuƒŒ[ƒ“‚Æ’ÊíTR‚ÌÅ‹­‚ÌŽž‚ÍA1‚Âã‚Ìƒf[ƒ^‚ðŒ©‚È‚¢I
-			//                               //ƒe[ƒuƒ‹ƒI[ƒo[‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+			//    rankup_flag = 1 //ãƒ–ãƒ¬ãƒ¼ãƒ³ã¨é€šå¸¸TRã®æœ€å¼·ã®æ™‚ã¯ã€1ã¤ä¸Šã®ãƒ‡ãƒ¼ã‚¿ã‚’è¦‹ãªã„ï¼
+			//                               //ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ¼ãƒãƒ¼ã—ãªã„ã‚ˆã†ã«ã™ã‚‹
 		}else{
 			set_index = range->end - (gf_rand() % (range_offset+1));
 			set_pow_rnd = range->pow_rnd;
 
-			//—á  start       = 151
-			//  @end         = 250 
+			//ä¾‹  start       = 151
+			//  ã€€end         = 250 
 			//    range_offset= 250 - 151 + 1 = 100
 			//    rand        = 0_99
 			//    set_index   = 250 - 99 = 151_250
 		}
 
-		//ƒoƒgƒ‹ƒ^ƒ[ƒ|ƒPƒ‚ƒ“ƒƒ€ƒf[ƒ^‚Ì“Ç‚Ýo‚µ
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—
 		Frontier_PokemonRomDataGet(&prd_d[set_count], set_index, ARC_PL_BTD_PM);
 		
-		//¡‚Ü‚Å¶¬‚µ‚Ä‚«‚½ƒ|ƒPƒ‚ƒ“‚Æ”í‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+		//ä»Šã¾ã§ç”Ÿæˆã—ã¦ããŸãƒã‚±ãƒ¢ãƒ³ã¨è¢«ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		for(i = 0; i < set_count; i++){
 			if(prd_d[i].mons_no == prd_d[set_count].mons_no 
 					|| prd_d[i].item_no == prd_d[set_count].item_no){
-				break;	//”í‚Á‚½
+				break;	//è¢«ã£ãŸ
 			}
 		}
 		if(i != set_count){
 			continue;
 		}
 		
-		//ƒ`ƒFƒbƒN—p‚É“n‚³‚ê‚Ä‚¢‚éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[A‘•”õƒAƒCƒeƒ€‚Ì”í‚èƒ`ƒFƒbƒN
+		//ãƒã‚§ãƒƒã‚¯ç”¨ã«æ¸¡ã•ã‚Œã¦ã„ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã€è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã®è¢«ã‚Šãƒã‚§ãƒƒã‚¯
 		for(i = 0; i < check_num; i++){
 			if(prd_d[set_count].mons_no == check_pokeno[i] 
 					|| prd_d[set_count].item_no ==  check_itemno[i]){
-				break;	//”í‚Á‚½
+				break;	//è¢«ã£ãŸ
 			}
 		}
 		if(i != check_num){
 			continue;
 		}
 
-		//OS_Printf( "ƒZƒbƒg‚µ‚½poke index = %d\n", set_index );
-		OS_Printf( "ƒZƒbƒg‚µ‚½pow rnd = %d\n", set_pow_rnd );
+		//OS_Printf( "ã‚»ãƒƒãƒˆã—ãŸpoke index = %d\n", set_index );
+		OS_Printf( "ã‚»ãƒƒãƒˆã—ãŸpow rnd = %d\n", set_pow_rnd );
 		get_pokeindex[set_count] = set_index;
 		get_pow_rnd[set_count] = set_pow_rnd;
 		set_count++;
@@ -446,7 +446,7 @@ BOOL Factory_PokemonIndexCreate(const u16 check_pokeno[], const u16 check_itemno
 /******************************************************************************/
 //==============================================================================
 //
-//	07.04.10’Ç‰Á
+//	07.04.10è¿½åŠ 
 //
 //==============================================================================
 #include "gflib/strbuf_family.h"
@@ -470,7 +470,7 @@ BOOL Factory_PokemonIndexCreate(const u16 check_pokeno[], const u16 check_itemno
 
 //==============================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================
 u8 Factory_GetMinePokeNum( u8 type );
@@ -489,28 +489,28 @@ u16 FactoryScr_CommGetLap( FACTORY_SCRWORK* wk );
 
 //==============================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================
-//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬iŽ©•ª‘¤j
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆè‡ªåˆ†å´ï¼‰
 extern void BattleParam_TrainerDataMake( BATTLE_PARAM* bp );
-//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬i“G‘¤j
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆæ•µå´ï¼‰
 extern void BattleParam_EnemyTrainerDataMake( BATTLE_PARAM* bp );
 
 
 //==============================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒCƒv‚É‚æ‚Á‚ÄŽ©•ª‚Ìƒ|ƒPƒ‚ƒ“‚Ì”‚ðŽæ“¾
+ * @brief   ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
  *
  * @param   type
  *
- * @param   "ƒ|ƒPƒ‚ƒ“‚Ì”"
+ * @param   "ãƒã‚±ãƒ¢ãƒ³ã®æ•°"
  */
 //--------------------------------------------------------------
 u8 Factory_GetMinePokeNum( u8 type )
@@ -526,18 +526,18 @@ u8 Factory_GetMinePokeNum( u8 type )
 		return 2;
 	};
 
-	//ƒGƒ‰[
+	//ã‚¨ãƒ©ãƒ¼
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒCƒv‚É‚æ‚Á‚Ä“Gƒ|ƒPƒ‚ƒ“‚Ì”‚ðŽæ“¾
+ * @brief   ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦æ•µãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
  *
  * @param   type
  * @param   flag
  *
- * @param   "ƒ|ƒPƒ‚ƒ“‚Ì”"
+ * @param   "ãƒã‚±ãƒ¢ãƒ³ã®æ•°"
  */
 //--------------------------------------------------------------
 u8 Factory_GetEnemyPokeNum( u8 type, BOOL flag )
@@ -557,13 +557,13 @@ u8 Factory_GetEnemyPokeNum( u8 type, BOOL flag )
 		}
 	};
 
-	//ƒGƒ‰[
+	//ã‚¨ãƒ©ãƒ¼
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	Ž©•ª‚ªƒŒƒ“ƒ^ƒ‹o—ˆ‚éƒ|ƒPƒ‚ƒ“6•C‚ðŒˆ‚ß‚é
+ * @brief	è‡ªåˆ†ãŒãƒ¬ãƒ³ã‚¿ãƒ«å‡ºæ¥ã‚‹ãƒã‚±ãƒ¢ãƒ³6åŒ¹ã‚’æ±ºã‚ã‚‹
  *
  * @param	lap
  * @param	level
@@ -575,10 +575,10 @@ u8 Factory_GetEnemyPokeNum( u8 type, BOOL flag )
  *
  * @return	
  *
- * ˆÈ‰º‚Ì‡‚Åˆ—‚µ‚Ä‚¢‚­
- * ƒŒƒ“ƒ^ƒ‹6
- * (”í‚èƒ`ƒFƒbƒN:ƒŒƒ“ƒ^ƒ‹6) “G3
- * (”í‚èƒ`ƒFƒbƒN:ŽèŽ‚¿3)(”í‚èƒ`ƒFƒbƒN:‘O‚Ì“G3) “G3
+ * ä»¥ä¸‹ã®é †ã§å‡¦ç†ã—ã¦ã„ã
+ * ãƒ¬ãƒ³ã‚¿ãƒ«6
+ * (è¢«ã‚Šãƒã‚§ãƒƒã‚¯:ãƒ¬ãƒ³ã‚¿ãƒ«6) æ•µ3
+ * (è¢«ã‚Šãƒã‚§ãƒƒã‚¯:æ‰‹æŒã¡3)(è¢«ã‚Šãƒã‚§ãƒƒã‚¯:å‰ã®æ•µ3) æ•µ3
  * ...
  */
 //--------------------------------------------------------------
@@ -591,20 +591,20 @@ void Factory_RentalPokeMake( u16 lap, u8 level, u16* rental_poke_index, B_TOWER_
 	poke_range = Factory_MinePokemonRangeGet( lap, level );
 
 #if 0
-	//ƒpƒ[—”‘ã“ü
+	//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ä»£å…¥
 	for( i=0; i < FACTORY_RENTAL_POKE_MAX; i++ ){
 		pow_rnd[i] = poke_range->pow_rnd;
 	}
 #endif
 	
-	//’ÊM‚È‚µA”í‚èƒ`ƒFƒbƒN‚Ì•K—v‚Í‚È‚¢‚Ì‚ÅNULL‚ð“n‚·
-	//’ÊM‚ ‚èAe‹@‚ÌƒŒƒ“ƒ^ƒ‹‚Å’Šo‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚ðœŠO‚µ‚½6•C‚ðŽq‹@—p‚É‘I‚Ô
+	//é€šä¿¡ãªã—ã€è¢«ã‚Šãƒã‚§ãƒƒã‚¯ã®å¿…è¦ã¯ãªã„ã®ã§NULLã‚’æ¸¡ã™
+	//é€šä¿¡ã‚ã‚Šã€è¦ªæ©Ÿã®ãƒ¬ãƒ³ã‚¿ãƒ«ã§æŠ½å‡ºã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã‚’é™¤å¤–ã—ãŸ6åŒ¹ã‚’å­æ©Ÿç”¨ã«é¸ã¶
 
-	//”í‚èƒ|ƒPAƒAƒCƒeƒ€Aƒf[ƒ^”AŽæ“¾‚·‚é”A‘ã“üæ
+	//è¢«ã‚Šãƒã‚±ã€ã‚¢ã‚¤ãƒ†ãƒ ã€ãƒ‡ãƒ¼ã‚¿æ•°ã€å–å¾—ã™ã‚‹æ•°ã€ä»£å…¥å…ˆ
 	if( poke_check_tbl == NULL ){
 		Factory_PokemonIndexCreate( NULL, NULL, 0,
 									FACTORY_RENTAL_POKE_MAX, rental_poke_index, 
-									HEAPID_WORLD, poke_range, trade_count, pow_rnd );//”í‚èchk–³‚µ
+									HEAPID_WORLD, poke_range, trade_count, pow_rnd );//è¢«ã‚Šchkç„¡ã—
 	}else{
 
 		OS_Printf( "poke_check_tbl[0] = %d\n", poke_check_tbl[0] );
@@ -614,15 +614,15 @@ void Factory_RentalPokeMake( u16 lap, u8 level, u16* rental_poke_index, B_TOWER_
 
 		Factory_PokemonIndexCreate( poke_check_tbl, poke_check_tbl, FACTORY_RENTAL_POKE_MAX,
 									FACTORY_RENTAL_POKE_MAX, rental_poke_index, 
-									HEAPID_WORLD, poke_range, trade_count, pow_rnd );//”í‚èchk—L‚è
+									HEAPID_WORLD, poke_range, trade_count, pow_rnd );//è¢«ã‚Šchkæœ‰ã‚Š
 	}
 
-	//0‚ª“ü‚é‚Æ‚¨‚©‚µ‚­‚È‚é‚©‚Ìƒ`ƒFƒbƒN
+	//0ãŒå…¥ã‚‹ã¨ãŠã‹ã—ããªã‚‹ã‹ã®ãƒã‚§ãƒƒã‚¯
 	//for( i=0; i < 6 ;i++ ){
 	//	rental_poke_index[i] = 0;
 	//}
 
-	//ƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“‚ðˆê“x‚É¶¬(personal‚È‚µ)
+	//ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ(personalãªã—)
 	Frontier_PokemonParamCreateAll(	rental_poke, rental_poke_index, pow_rnd,
 									NULL, personal_rnd, FACTORY_RENTAL_POKE_MAX, HEAPID_WORLD,
 									ARC_PL_BTD_PM );
@@ -631,7 +631,7 @@ void Factory_RentalPokeMake( u16 lap, u8 level, u16* rental_poke_index, B_TOWER_
 
 //--------------------------------------------------------------
 /**
- * @brief	“G‚ªo‚·Å‰‚Ìƒ|ƒPƒ‚ƒ“3(4)•C‚ðŒˆ‚ß‚é
+ * @brief	æ•µãŒå‡ºã™æœ€åˆã®ãƒã‚±ãƒ¢ãƒ³3(4)åŒ¹ã‚’æ±ºã‚ã‚‹
  *
  * @param	set_num
  * @param	tr_index
@@ -640,14 +640,14 @@ void Factory_RentalPokeMake( u16 lap, u8 level, u16* rental_poke_index, B_TOWER_
  * @param	rental_poke
  * @param	enemy_poke
  * @param	personal_rnd
- * @param	check_count			”í‚èƒ`ƒFƒbƒN‚·‚é”
+ * @param	check_count			è¢«ã‚Šãƒã‚§ãƒƒã‚¯ã™ã‚‹æ•°
  *
  * @return	
  *
- * ˆÈ‰º‚Ì‡‚Åˆ—‚µ‚Ä‚¢‚­
- * ƒŒƒ“ƒ^ƒ‹6
- * (”í‚èƒ`ƒFƒbƒN:ƒŒƒ“ƒ^ƒ‹6) “G3
- * (”í‚èƒ`ƒFƒbƒN:ŽèŽ‚¿3)(”í‚èƒ`ƒFƒbƒN:‘O‚Ì“G3) “G3
+ * ä»¥ä¸‹ã®é †ã§å‡¦ç†ã—ã¦ã„ã
+ * ãƒ¬ãƒ³ã‚¿ãƒ«6
+ * (è¢«ã‚Šãƒã‚§ãƒƒã‚¯:ãƒ¬ãƒ³ã‚¿ãƒ«6) æ•µ3
+ * (è¢«ã‚Šãƒã‚§ãƒƒã‚¯:æ‰‹æŒã¡3)(è¢«ã‚Šãƒã‚§ãƒƒã‚¯:å‰ã®æ•µ3) æ•µ3
  * ...
  */
 //--------------------------------------------------------------
@@ -662,13 +662,13 @@ void Factory_EnemyPokeMake( u8 set_num, u16 tr_index, u8 level, B_TOWER_POKEMON*
 	poke_range = Factory_EnemyPokemonRangeGet( tr_index, level );
 
 #if 0
-	//ƒpƒ[—”‘ã“ü
+	//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ä»£å…¥
 	for( i=0; i < set_num; i++ ){
 		pow_rnd[i] = poke_range->pow_rnd;
 	}
 #endif
 	
-	//ƒ`ƒFƒbƒNƒe[ƒuƒ‹ì¬
+	//ãƒã‚§ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	//for( i=0; i < FACTORY_RENTAL_POKE_MAX ;i++ ){
 	for( i=0; i < check_count ;i++ ){
 		poke = *(B_TOWER_POKEMON*)(&rental_poke[i]);
@@ -676,13 +676,13 @@ void Factory_EnemyPokeMake( u8 set_num, u16 tr_index, u8 level, B_TOWER_POKEMON*
 		item_check_tbl[i] = poke.item_no;
 	}
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ÌƒCƒ“ƒfƒbƒNƒXŽæ“¾(”í‚èƒ|ƒPAƒAƒCƒeƒ€Aƒf[ƒ^”AŽæ“¾‚·‚é”A‘ã“üæ)
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—(è¢«ã‚Šãƒã‚±ã€ã‚¢ã‚¤ãƒ†ãƒ ã€ãƒ‡ãƒ¼ã‚¿æ•°ã€å–å¾—ã™ã‚‹æ•°ã€ä»£å…¥å…ˆ)
 	//Factory_PokemonIndexCreate( poke_check_tbl, item_check_tbl, FACTORY_RENTAL_POKE_MAX,
 	Factory_PokemonIndexCreate( poke_check_tbl, item_check_tbl, check_count,
 								set_num, enemy_poke_index, 
 								HEAPID_WORLD, poke_range, 0, pow_rnd );
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ðˆê“x‚É¶¬(personal‚È‚µ)
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ(personalãªã—)
 	Frontier_PokemonParamCreateAll(	enemy_poke, enemy_poke_index, 
 									pow_rnd, NULL, personal_rnd, set_num, HEAPID_WORLD,
 									ARC_PL_BTD_PM );
@@ -691,7 +691,7 @@ void Factory_EnemyPokeMake( u8 set_num, u16 tr_index, u8 level, B_TOWER_POKEMON*
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[—p@ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^¶¬
+ * @brief	ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ç”¨ã€€ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç”Ÿæˆ
  */
 //--------------------------------------------------------------
 BATTLE_PARAM* BtlFactory_CreateBattleParam( FACTORY_SCRWORK* wk, FRONTIER_EX_PARAM* ex_param )
@@ -707,18 +707,18 @@ BATTLE_PARAM* BtlFactory_CreateBattleParam( FACTORY_SCRWORK* wk, FRONTIER_EX_PAR
 	STRBUF* msg;
 	MYSTATUS* my;
 
-	//ŽQ‰Áƒ|ƒPƒ‚ƒ“”‚ðŽæ“¾
+	//å‚åŠ ãƒã‚±ãƒ¢ãƒ³æ•°ã‚’å–å¾—
 	m_max = Factory_GetMinePokeNum( wk->type );
 	e_max = Factory_GetEnemyPokeNum( wk->type, FACTORY_FLAG_SOLO );
 
-	//‰ñ•œˆ—
+	//å›žå¾©å‡¦ç†
 	PokeParty_RecoverAll( wk->p_m_party );
 	PokeParty_RecoverAll( wk->p_e_party );
 
-	//í“¬ƒpƒ‰ƒ[ƒ^‚Ì¶¬ˆ—(field_battle.c)(fssc_factory.c FSSC_FactoryCallGetResult‚ÅDelete)
+	//æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ç”Ÿæˆå‡¦ç†(field_battle.c)(fssc_factory.c FSSC_FactoryCallGetResultã§Delete)
 	bp = BattleParam_Create( HEAPID_WORLD, Factory_GetFightType(wk->type) );
 	
-	//í“¬ƒpƒ‰ƒ[ƒ^‚ÌŽûWƒRƒA(ƒtƒB[ƒ‹ƒh)
+	//æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åŽé›†ã‚³ã‚¢(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰)
 	BattleParam_SetParamByGameDataCore( bp, NULL, 
 										ex_param->savedata,
 										ex_param->zone_id,
@@ -726,22 +726,22 @@ BATTLE_PARAM* BtlFactory_CreateBattleParam( FACTORY_SCRWORK* wk, FRONTIER_EX_PAR
 										ex_param->bag_cursor,
 										ex_param->battle_cursor);
 
-	//Œ»ó‚ÍŒÅ’èI
-	bp->bg_id		= BG_ID_FACTORY;		//Šî–{”wŒiŽw’è
-	bp->ground_id	= GROUND_ID_FACTORY;	//Šî–{’n–ÊŽw’è
+	//ç¾çŠ¶ã¯å›ºå®šï¼
+	bp->bg_id		= BG_ID_FACTORY;		//åŸºæœ¬èƒŒæ™¯æŒ‡å®š
+	bp->ground_id	= GROUND_ID_FACTORY;	//åŸºæœ¬åœ°é¢æŒ‡å®š
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//MINEF‘I‚ñ‚¾ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ðƒZƒbƒg
+	//MINEï¼šé¸ã‚“ã æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	PokeParty_Init( bp->poke_party[POKEPARTY_MINE], m_max );
 
-	//MINEFŽ©•ª‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒZƒbƒg
+	//MINEï¼šè‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	pp = PokemonParam_AllocWork( HEAPID_WORLD );
 	for( i=0; i < m_max ;i++ ){
 
-		//POKEMON_PARAM\‘¢‘Ì‚©‚çPOKEMON_PARAM\‘¢‘Ì‚ÖƒRƒs[
+		//POKEMON_PARAMæ§‹é€ ä½“ã‹ã‚‰POKEMON_PARAMæ§‹é€ ä½“ã¸ã‚³ãƒ”ãƒ¼
 		PokeCopyPPtoPP( PokeParty_GetMemberPointer(wk->p_m_party,i), pp );
 
-		//í“¬ƒpƒ‰ƒ[ƒ^ƒZƒbƒg:ƒ|ƒPƒ‚ƒ“‚ð‰Á‚¦‚é
+		//æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ:ãƒã‚±ãƒ¢ãƒ³ã‚’åŠ ãˆã‚‹
 		BattleParam_AddPokemon( bp, pp, POKEPARTY_MINE );
 		OS_Printf( "MINE1 power_rnd = %d\n", PokeParaGet(pp,ID_PARA_power_rnd,NULL) );
 		OS_Printf( "MINE1 power_rnd = %d\n", PokeParaGet(pp,ID_PARA_power_rnd,NULL) );
@@ -752,33 +752,33 @@ BATTLE_PARAM* BtlFactory_CreateBattleParam( FACTORY_SCRWORK* wk, FRONTIER_EX_PAR
 	sys_FreeMemoryEz( pp );
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//MINEFƒgƒŒ[ƒi[ƒf[ƒ^¶¬
+	//MINEï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	BattleParam_TrainerDataMake( bp );
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//ENEMY1FROM‚©‚çƒgƒŒ[ƒi[ƒf[ƒ^‚ðŠm•Û
+	//ENEMY1ï¼šROMã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 	p_rom_tr = Frontier_TrainerDataGet( &bt_trd, wk->tr_index[wk->round], HEAPID_WORLD,
 										ARC_PL_BTD_TR );
 	sys_FreeMemoryEz( p_rom_tr );
 
-	//ENEMY1FƒgƒŒ[ƒi[ƒf[ƒ^‚ðƒZƒbƒg
+	//ENEMY1ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	BattleParamTrainerDataSet( bp, &bt_trd, e_max, CLIENT_NO_ENEMY, HEAPID_WORLD );
 
-	//ENEMY1F‘I‚ñ‚¾ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ðƒZƒbƒg
+	//ENEMY1ï¼šé¸ã‚“ã æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	PokeParty_Init( bp->poke_party[POKEPARTY_ENEMY], 
 					Factory_GetEnemyPokeNum(wk->type,FACTORY_FLAG_SOLO) );
 
-	//AIƒZƒbƒg
+	//AIã‚»ãƒƒãƒˆ
 	for( i=0; i < CLIENT_MAX ;i++ ){
 		bp->trainer_data[i].aibit = Factory_GetTrAI( wk );
 	}
-	OS_Printf( "ƒgƒŒ[ƒi[‚ÌAI = %d\n", Factory_GetTrAI(wk) );
+	OS_Printf( "ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®AI = %d\n", Factory_GetTrAI(wk) );
 
-	//ENEMY1Fí“¬ƒpƒ‰ƒ[ƒ^ƒZƒbƒg:ƒ|ƒPƒ‚ƒ“‚ð‰Á‚¦‚é
+	//ENEMY1ï¼šæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ:ãƒã‚±ãƒ¢ãƒ³ã‚’åŠ ãˆã‚‹
 	pp = PokemonParam_AllocWork( HEAPID_WORLD );
 	for( i=0; i < e_max ;i++ ){
 
-		//POKEMON_PARAM\‘¢‘Ì‚©‚çPOKEMON_PARAM\‘¢‘Ì‚ÖƒRƒs[
+		//POKEMON_PARAMæ§‹é€ ä½“ã‹ã‚‰POKEMON_PARAMæ§‹é€ ä½“ã¸ã‚³ãƒ”ãƒ¼
 		PokeCopyPPtoPP( PokeParty_GetMemberPointer(wk->p_e_party,i), pp );
 		BattleParam_AddPokemon( bp, pp, POKEPARTY_ENEMY );
 		OS_Printf( "ENEMY1 power_rnd = %d\n", PokeParaGet(pp,ID_PARA_power_rnd,NULL) );
@@ -789,7 +789,7 @@ BATTLE_PARAM* BtlFactory_CreateBattleParam( FACTORY_SCRWORK* wk, FRONTIER_EX_PAR
 	sys_FreeMemoryEz( pp );
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//ƒfƒoƒbƒNî•ñ•\Ž¦
+	//ãƒ‡ãƒãƒƒã‚¯æƒ…å ±è¡¨ç¤º
 //OS_Printf("p_party count = %d\n", PokeParty_GetPokeCount(wk->p_party) );
 //OS_Printf("bp_party[mine]count= %d\n",PokeParty_GetPokeCount(bp->poke_party[POKEPARTY_MINE]));
 //OS_Printf("bp_party[enemy]count= %d\n",PokeParty_GetPokeCount(bp->poke_party[POKEPARTY_ENEMY]));
@@ -801,37 +801,37 @@ BATTLE_PARAM* BtlFactory_CreateBattleParam( FACTORY_SCRWORK* wk, FRONTIER_EX_PAR
 	case FACTORY_TYPE_WIFI_MULTI:
 
 		//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-		//ƒp[ƒgƒi[‚Ìƒf[ƒ^‚ðŠi”[‚µ‚Ä‚¨‚©‚È‚¢‚Æƒ_ƒI
+		//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ã¦ãŠã‹ãªã„ã¨ãƒ€ãƒ¡ï¼
 		//B_TOWER_PARTNER_DATA	tr_data[2];
 
-		//MINE2FƒgƒŒ[ƒi[ƒf[ƒ^¶¬
+		//MINE2ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 		BattleParam_TrainerDataMake( bp );
 
-		//MINE2Fƒp[ƒgƒi[‚ÌMyStatus‚ðŽæ“¾‚µ‚ÄƒRƒs[
+		//MINE2ï¼šãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®MyStatusã‚’å–å¾—ã—ã¦ã‚³ãƒ”ãƒ¼
 		my = CommInfoGetMyStatus( 1 - CommGetCurrentID() );
 		MyStatus_Copy( my, bp->my_status[CLIENT_NO_MINE2] );
 
 		//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-		//ƒp[ƒgƒi[‚Ìƒf[ƒ^‚ðŠi”[‚µ‚Ä‚¨‚©‚È‚¢‚Æƒ_ƒI
+		//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ã¦ãŠã‹ãªã„ã¨ãƒ€ãƒ¡ï¼
 		//B_TOWER_PARTNER_DATA	tr_data[2];
 
-		//ENEMY2FROM‚©‚çƒgƒŒ[ƒi[ƒf[ƒ^‚ðŠm•Û
+		//ENEMY2ï¼šROMã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 		p_rom_tr = Frontier_TrainerDataGet( &bt_trd, wk->tr_index[wk->round+FACTORY_LAP_ENEMY_MAX],
 											HEAPID_WORLD, ARC_PL_BTD_TR );
 		sys_FreeMemoryEz( p_rom_tr );
 
-		//ENEMY2FƒgƒŒ[ƒi[ƒf[ƒ^‚ðƒZƒbƒg
+		//ENEMY2ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		BattleParamTrainerDataSet( bp, &bt_trd, e_max, CLIENT_NO_ENEMY2, HEAPID_WORLD );
 
-		//ENEMY2F‘I‚ñ‚¾ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ðƒZƒbƒg
+		//ENEMY2ï¼šé¸ã‚“ã æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 		PokeParty_Init( bp->poke_party[POKEPARTY_ENEMY_PAIR], 
 						Factory_GetEnemyPokeNum(wk->type,FACTORY_FLAG_SOLO) );
 
-		//ENEMY2Fí“¬ƒpƒ‰ƒ[ƒ^ƒZƒbƒg:ƒ|ƒPƒ‚ƒ“‚ð‰Á‚¦‚é
+		//ENEMY2ï¼šæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ:ãƒã‚±ãƒ¢ãƒ³ã‚’åŠ ãˆã‚‹
 		pp = PokemonParam_AllocWork( HEAPID_WORLD );
 		for( i=0; i < e_max ;i++ ){
 
-			//POKEMON_PARAM\‘¢‘Ì‚©‚çPOKEMON_PARAM\‘¢‘Ì‚ÖƒRƒs[
+			//POKEMON_PARAMæ§‹é€ ä½“ã‹ã‚‰POKEMON_PARAMæ§‹é€ ä½“ã¸ã‚³ãƒ”ãƒ¼
 			PokeCopyPPtoPP( PokeParty_GetMemberPointer(wk->p_e_party,(e_max+i)), pp );
 			BattleParam_AddPokemon( bp, pp, POKEPARTY_ENEMY_PAIR );
 			OS_Printf( "ENEMY2 power_rnd = %d\n", PokeParaGet(pp,ID_PARA_power_rnd,NULL) );
@@ -851,14 +851,14 @@ BATTLE_PARAM* BtlFactory_CreateBattleParam( FACTORY_SCRWORK* wk, FRONTIER_EX_PAR
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ‚[ƒh‚©‚çFIGHT_TYPE‚ð•Ô‚·
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰FIGHT_TYPEã‚’è¿”ã™
  */
 //--------------------------------------------------------------
 static u32 Factory_GetFightType( u8 type )
 {
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	//
-	//ƒtƒ@ƒNƒgƒŠ[—p‚ÌFIGHT_TYPE‚ðì¬‚·‚é‚©Šm”F‚·‚éI
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ç”¨ã®FIGHT_TYPEã‚’ä½œæˆã™ã‚‹ã‹ç¢ºèªã™ã‚‹ï¼
 	//
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 
@@ -884,11 +884,11 @@ static u32 Factory_GetFightType( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŒƒxƒ‹‚Ì’è‹`‚©‚çŽÀÛ‚ÌƒŒƒxƒ‹‚ðŽæ“¾
+ * @brief	ãƒ¬ãƒ™ãƒ«ã®å®šç¾©ã‹ã‚‰å®Ÿéš›ã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
  *
  * @param	wk		
  *
- * @retval	"ŽÀÛ‚ÌƒŒƒxƒ‹"
+ * @retval	"å®Ÿéš›ã®ãƒ¬ãƒ™ãƒ«"
  */
 //--------------------------------------------------------------
 u8 Factory_GetLevel( FACTORY_SCRWORK* wk )
@@ -902,7 +902,7 @@ u8 Factory_GetLevel( FACTORY_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŒƒ“ƒ^ƒ‹€”õƒf[ƒ^ŽóMŒãAƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“‚ðˆê“x‚É¶¬
+ * @brief	ãƒ¬ãƒ³ã‚¿ãƒ«æº–å‚™ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾Œã€ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ
  *
  * @param	wk
  *
@@ -914,16 +914,16 @@ void Factory_RentalPokeMake2( FACTORY_SCRWORK* wk )
 	int i;
 	POKEMON_PARAM* temp_poke;
 
-	//ƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“‚ðˆê“x‚É¶¬(personal‚ ‚è)
+	//ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ(personalã‚ã‚Š)
 	Frontier_PokemonParamCreateAll(	wk->rental_poke, wk->rental_poke_index, wk->rental_pow_rnd,
 									wk->rental_personal_rnd, NULL,
 									FACTORY_RENTAL_POKE_MAX, HEAPID_WORLD, 
 									ARC_PL_BTD_PM );
 
-	PokeParty_InitWork( wk->p_m_party );		//POKEPARTY‚ð‰Šú‰»
+	PokeParty_InitWork( wk->p_m_party );		//POKEPARTYã‚’åˆæœŸåŒ–
 
 	temp_poke = PokemonParam_AllocWork( HEAPID_WORLD );
-	for( i=0; i < FACTORY_RENTAL_POKE_MAX ;i++ ){			//ƒŒƒ“ƒ^ƒ‹6•C
+	for( i=0; i < FACTORY_RENTAL_POKE_MAX ;i++ ){			//ãƒ¬ãƒ³ã‚¿ãƒ«6åŒ¹
 		Frontier_PokeParaMake( &wk->rental_poke[i], temp_poke, Factory_GetLevel(wk) );
 		Frontier_PokePartyAdd( wk->sv, wk->p_m_party, temp_poke );
 	}
@@ -934,7 +934,7 @@ void Factory_RentalPokeMake2( FACTORY_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ŽóMŒãAƒp[ƒgƒi[‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ðˆê“x‚É¶¬
+ * @brief	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾Œã€ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ
  *
  * @param	wk
  *
@@ -946,18 +946,18 @@ void Factory_PairPokeMake( FACTORY_SCRWORK* wk )
 	int i,poke_count;
 	POKEMON_PARAM* temp_poke;
 
-	//[2,3]	(‘ŠŽè‚ªƒŒƒ“ƒ^ƒ‹‚Å‘I‚ñ‚¾2‚Â)
+	//[2,3]	(ç›¸æ‰‹ãŒãƒ¬ãƒ³ã‚¿ãƒ«ã§é¸ã‚“ã 2ã¤)
 	B_TOWER_POKEMON bt_poke[FACTORY_COMM_POKE_NUM];
 
-	//ƒ|ƒPƒ‚ƒ“”Žæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³æ•°å–å¾—
 	poke_count = PokeParty_GetPokeCount( wk->p_m_party );
 
-	//[2,3]‚ª‚·‚Å‚ÉŽg‚í‚ê‚Ä‚¢‚½‚çíœ
+	//[2,3]ãŒã™ã§ã«ä½¿ã‚ã‚Œã¦ã„ãŸã‚‰å‰Šé™¤
 	for( i=poke_count; i > FACTORY_COMM_POKE_NUM ;i-- ){ 
-		PokeParty_Delete( wk->p_m_party, (i-1) );			//pos=0ƒIƒŠƒWƒ“
+		PokeParty_Delete( wk->p_m_party, (i-1) );			//pos=0ã‚ªãƒªã‚¸ãƒ³
 	}
 
-	//ƒp[ƒgƒi[‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ðˆê“x‚É¶¬(personal‚ ‚è)
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ(personalã‚ã‚Š)
 	Frontier_PokemonParamCreateAll(	bt_poke, wk->pair_rental_poke_index, 
 									wk->pair_rental_pow_rnd,
 									wk->pair_rental_personal_rnd, NULL,
@@ -967,27 +967,27 @@ void Factory_PairPokeMake( FACTORY_SCRWORK* wk )
 	temp_poke = PokemonParam_AllocWork( HEAPID_WORLD );
 	for( i=0; i < FACTORY_COMM_POKE_NUM ;i++ ){
 
-		//ƒoƒgƒ‹ƒ^ƒ[—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çPOKEMON_PARAM‚ð¶¬
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰POKEMON_PARAMã‚’ç”Ÿæˆ
 		Frontier_PokeParaMake( &bt_poke[i], temp_poke, Factory_GetLevel(wk) );
 		Frontier_PokePartyAdd( wk->sv, wk->p_m_party, temp_poke );
 
-		//ŽèŽ‚¿‚Éƒ|ƒPƒ‚ƒ“‚ÌƒCƒ“ƒfƒbƒNƒXŠi”[
+		//æ‰‹æŒã¡ã«ãƒã‚±ãƒ¢ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´
 		wk->temoti_poke_index[i+FACTORY_COMM_POKE_NUM] = wk->pair_rental_poke_index[i];
 	}
 	sys_FreeMemoryEz( temp_poke );
 
-	OS_Printf( "ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB” = %d\n",	PokeParty_GetPokeCount(wk->p_m_party) );
+	OS_Printf( "ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£æ•° = %d\n",	PokeParty_GetPokeCount(wk->p_m_party) );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	’ÊMƒ^ƒCƒv‚©ƒ`ƒFƒbƒN
+ * @brief	é€šä¿¡ã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	type		ƒ^ƒCƒv
+ * @param	type		ã‚¿ã‚¤ãƒ—
  *
- * @return	"FALSE = ’ÊM‚Å‚Í‚È‚¢"
- * @return	"TRUE  = ’ÊM‚Å‚ ‚é"
+ * @return	"FALSE = é€šä¿¡ã§ã¯ãªã„"
+ * @return	"TRUE  = é€šä¿¡ã§ã‚ã‚‹"
  */
 //--------------------------------------------------------------
 BOOL Factory_CommCheck( u8 type )
@@ -1004,11 +1004,11 @@ BOOL Factory_CommCheck( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	Žü‰ñ”‚É‚æ‚Á‚ÄƒgƒŒ[ƒi[AI‚ðŒˆ’è‚µ‚ÄŽæ“¾
+ * @brief	å‘¨å›žæ•°ã«ã‚ˆã£ã¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼AIã‚’æ±ºå®šã—ã¦å–å¾—
  *
  * @param	
  *
- * @return	"ƒgƒŒ[ƒi[AI"
+ * @return	"ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼AI"
  */
 //--------------------------------------------------------------
 static u16 Factory_GetTrAI( FACTORY_SCRWORK* wk )
@@ -1016,7 +1016,7 @@ static u16 Factory_GetTrAI( FACTORY_SCRWORK* wk )
 	u16 ai,lap;
 
 #if 1
-	//ƒuƒŒ[ƒ“
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³
 	if( wk->type == FACTORY_TYPE_SINGLE ){
 		if( (wk->tr_index[wk->round] == FACTORY_LEADER_TR_INDEX_1ST) ||
 			(wk->tr_index[wk->round] == FACTORY_LEADER_TR_INDEX_2ND) ){
@@ -1025,13 +1025,13 @@ static u16 Factory_GetTrAI( FACTORY_SCRWORK* wk )
 	}
 #endif
 
-	//Žü‰ñ”‚ðŽæ“¾
+	//å‘¨å›žæ•°ã‚’å–å¾—
 	lap = FactoryScr_CommGetLap( wk );
 
-	//5Žü–ÚˆÈ~‚Í‘S‚ÄƒGƒLƒXƒp[ƒg
+	//5å‘¨ç›®ä»¥é™ã¯å…¨ã¦ã‚¨ã‚­ã‚¹ãƒ‘ãƒ¼ãƒˆ
 	ai = FR_AI_EXPERT;
 
-	//0ƒIƒŠƒWƒ“‚È‚Ì‚Å+1‚µ‚ÄŒvŽZ
+	//0ã‚ªãƒªã‚¸ãƒ³ãªã®ã§+1ã—ã¦è¨ˆç®—
 	switch( (lap+1) ){
 
 	case 1:
@@ -1050,11 +1050,11 @@ static u16 Factory_GetTrAI( FACTORY_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	"eŽq"‚ÌŽü‰ñ”‚ð”äŠr‚µ‚ÄAŽg—p‚·‚éŽü‰ñ”‚ðŽæ“¾
+ * @brief	"è¦ªå­"ã®å‘¨å›žæ•°ã‚’æ¯”è¼ƒã—ã¦ã€ä½¿ç”¨ã™ã‚‹å‘¨å›žæ•°ã‚’å–å¾—
  *
- * @param	wk		FACTORY_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_SCRWORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"Žü‰ñ”"
+ * @return	"å‘¨å›žæ•°"
  */
 //--------------------------------------------------------------
 u16 FactoryScr_CommGetLap( FACTORY_SCRWORK* wk )
@@ -1065,7 +1065,7 @@ u16 FactoryScr_CommGetLap( FACTORY_SCRWORK* wk )
 
 	if( Factory_CommCheck(wk->type) == TRUE ){
 
-		//’ÊMŽž‚É‚ÍŽü‰ñ”‚Ì‘½‚¢‚Ù‚¤‚Å’Š‘I
+		//é€šä¿¡æ™‚ã«ã¯å‘¨å›žæ•°ã®å¤šã„ã»ã†ã§æŠ½é¸
 		if( wk->pair_lap > wk->lap ){
 			lap = wk->pair_lap;
 		}

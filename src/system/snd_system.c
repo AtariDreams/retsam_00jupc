@@ -1,24 +1,24 @@
 //==============================================================================================
 /**
  * @file	snd_system.c
- * @brief	�T�E���h�V�X�e��
+ * @brief	サウンドシステム
  * @author	Satoshi Nohara
  * @date	2005.11.08
  *
- * ��snd_tool,snd_play,(main)����̂݃A�N�Z�X�����
+ * ●snd_tool,snd_play,(main)からのみアクセスされる
  * snd_system
  *     |
  *     |
- * ���f�[�^�Z�b�g�Ȃǂ̏������܂Ƃ߂�	���Đ��A��~�Ȃǂ̏������܂Ƃ߂�
+ * ●データセットなどの処理をまとめた	●再生、停止などの処理をまとめた
  * snd_tool								snd_play
  *     |
  *     |
- * ���e��f������Ă΂��(��Ƀt�B�[���h�C�x���g)
+ * ●各種デモから呼ばれる(主にフィールドイベント)
  * fld_bgm
  *
- * ��������
- * �퓬�ŃQ�[���I�[�o�[�ɂȂ��āA�|�P�Z���ɖ߂鎞�Ȃǂ́A
- * Snd_PauseClearAll���Ă�ŁA�|�[�Y�t���O���N���A���Ȃ��Ƃ����Ȃ��I
+ * ＜メモ＞
+ * 戦闘でゲームオーバーになって、ポケセンに戻る時などは、
+ * Snd_PauseClearAllを呼んで、ポーズフラグをクリアしないといけない！
  */
 //==============================================================================================
 #include "common.h"
@@ -34,148 +34,148 @@
 
 //==============================================================================================
 //
-//	��`
+//	定義
 //
 //==============================================================================================
-//sound_data.smap�̃T�C�Y��菭���傫�߂Ɋm�ۂ���
-#define SOUND_HEAP_SIZE		(0xbbc00)				//�T�E���h�q�[�v�T�C�Y(��750k)
-//#define SOUND_HEAP_SIZE	(0xbd000)				//�T�E���h�q�[�v�T�C�Y(��750k)
-//#define SOUND_HEAP_SIZE	(0xc0000)				//�T�E���h�q�[�v�T�C�Y(��750k)
-//#define SOUND_HEAP_SIZE	(0x80000)				//�T�E���h�q�[�v�T�C�Y(��500k)
+//sound_data.smapのサイズより少し大きめに確保する
+#define SOUND_HEAP_SIZE		(0xbbc00)				//サウンドヒープサイズ(約750k)
+//#define SOUND_HEAP_SIZE	(0xbd000)				//サウンドヒープサイズ(約750k)
+//#define SOUND_HEAP_SIZE	(0xc0000)				//サウンドヒープサイズ(約750k)
+//#define SOUND_HEAP_SIZE	(0x80000)				//サウンドヒープサイズ(約500k)
 
 
 //==============================================================================================
 //
-//	�\���̐錾
+//	構造体宣言
 //
 //==============================================================================================
-//�T�E���h�V�X�e�����[�N
+//サウンドシステムワーク
 struct _SND_WORK{
 
-	//�V�X�e���֘A
-	NNSSndArc arc;									//�T�E���h�A�[�J�C�u
-	NNSSndHeapHandle heap;							//�T�E���h�q�[�v�n���h��
-	u8 sndHeap[ SOUND_HEAP_SIZE ];					//�T�E���h�q�[�v
-	NNSSndHandle Handle[ SND_HANDLE_MAX ];			//�T�E���h�n���h��
-	NNSSndWaveOutHandle sWaveOutHandle[2];			//�g�`�n���h��
-	const NNSSndArcBankInfo* info;					//�o���N���\����
+	//システム関連
+	NNSSndArc arc;									//サウンドアーカイブ
+	NNSSndHeapHandle heap;							//サウンドヒープハンドル
+	u8 sndHeap[ SOUND_HEAP_SIZE ];					//サウンドヒープ
+	NNSSndHandle Handle[ SND_HANDLE_MAX ];			//サウンドハンドル
+	NNSSndWaveOutHandle sWaveOutHandle[2];			//波形ハンドル
+	const NNSSndArcBankInfo* info;					//バンク情報構造体
 
-	//�L���v�`���֘A
-	u8 sCaptureBuffer[ CAPTURE_BUFSIZE ] ATTRIBUTE_ALIGN(32);	//�L���v�`���o�b�t�@
-	EffectCallbackInfo callbackInfo;				//�G�t�F�N�g�̃R�[���o�b�N�ϐ�
+	//キャプチャ関連
+	u8 sCaptureBuffer[ CAPTURE_BUFSIZE ] ATTRIBUTE_ALIGN(32);	//キャプチャバッファ
+	EffectCallbackInfo callbackInfo;				//エフェクトのコールバック変数
 
 #ifdef STREAM_ON
-	//�X�g���[���֘A
+	//ストリーム関連
 	NNSSndStrmHandle strmHandle;
 #endif
 	
-	u16 seq;										//�V�[�P���X
-	u8	ctrl_bgm_flag;								//�t�B�[���hBGM�Œ�t���O(�Z�[�u����Ȃ�)
-	u8	pv_wait_work;								//2�C���̃��[�N�̂ǂ�����g�p���邩
+	u16 seq;										//シーケンス
+	u8	ctrl_bgm_flag;								//フィールドBGM固定フラグ(セーブされない)
+	u8	pv_wait_work;								//2匹分のワークのどちらを使用するか
 
-	int fade_count;									//�t�F�[�h�J�E���^�[
-	int next_wait;									//����BGM��炷�܂ł̃E�F�C�g
-	int next_frame;									//����BGM�̃t�F�[�h�C���t���[��
+	int fade_count;									//フェードカウンター
+	int next_wait;									//次のBGMを鳴らすまでのウェイト
+	int next_frame;									//次のBGMのフェードインフレーム
 
-	u16 now_bgm_no;									//����BGM�i���o�[
-	u16 next_bgm_no;								//����BGM�i���o�[
+	u16 now_bgm_no;									//今のBGMナンバー
+	u16 next_bgm_no;								//次のBGMナンバー
 
-	u8	field_pause_flag;							//PLAYER_FIELD���|�[�Y���Ă��邩�t���O
-	u8	bgm_pause_flag;								//PLAYER_BGM���|�[�Y���Ă��邩�t���O
-	u16 me_wait;									//ME�E�F�C�g
+	u8	field_pause_flag;							//PLAYER_FIELDをポーズしているかフラグ
+	u8	bgm_pause_flag;								//PLAYER_BGMをポーズしているかフラグ
+	u16 me_wait;									//MEウェイト
 
-	u8  reverse_flag;								//�t�Đ��g�p�t���O
-	u8  waveout_ch_normal_flag;						//�g�`�Ŏg�p����CH���m�ۂ������t���O
-	u8  waveout_ch_chorus_flag;						//�g�`�Ŏg�p����CH���m�ۂ������t���O(CHORUS)
-	u8  chorus_flag;								//�R�[���X�g�p�t���O
+	u8  reverse_flag;								//逆再生使用フラグ
+	u8  waveout_ch_normal_flag;						//波形で使用するCHを確保したかフラグ
+	u8  waveout_ch_chorus_flag;						//波形で使用するCHを確保したかフラグ(CHORUS)
+	u8  chorus_flag;								//コーラス使用フラグ
 
-	u8  bank_flag;									//�����邩�t���O
-	//u8	wavearc_count;							//�ǂݍ��񂾔g�`�A�[�J�C�u��
-	u8	filter_size;								//�t�B���^�[�T�C�Y
-	u8	scene_main;									//���݂̃��C���V�[��
-	u8  scene_sub;									//���݂̃T�u�V�[��
+	u8  bank_flag;									//昼か夜かフラグ
+	//u8	wavearc_count;							//読み込んだ波形アーカイブ数
+	u8	filter_size;								//フィルターサイズ
+	u8	scene_main;									//現在のメインシーン
+	u8  scene_sub;									//現在のサブシーン
 
-	int heap_save[SND_HEAP_SAVE_MAX];				//�T�E���h�q�[�v�K�w���x��
+	int heap_save[SND_HEAP_SAVE_MAX];				//サウンドヒープ階層レベル
 
-	u8	perap_play_flag;							//�y���b�v�̘^�������������Đ����Ă��邩�t���O
-	u8	perap_default_flag;							//�y���b�v�̃f�t�H���g�̖������Đ�����t���O
-	u16	zone_bgm;									//�]�[��BGM�i���o�[
+	u8	perap_play_flag;							//ペラップの録音した鳴き声を再生しているかフラグ
+	u8	perap_default_flag;							//ペラップのデフォルトの鳴き声を再生するフラグ
+	u16	zone_bgm;									//ゾーンBGMナンバー
 
-	const SNDWaveData* wave_data;					//�g�`�f�[�^�̃|�C���^
+	const SNDWaveData* wave_data;					//波形データのポインタ
 
-	void* reverse_buf;								//�t�Đ��p�̃o�b�t�@�̃|�C���^
+	void* reverse_buf;								//逆再生用のバッファのポインタ
 
-	int volume;										//BGM�{�����[��
+	int volume;										//BGMボリューム
 
-	TCB_PTR length_tcb;								//�����Đ�����TCB
+	TCB_PTR length_tcb;								//鳴き声再生時間TCB
 
-	PERAPVOICE*	my_perap_ptr;						//�����̂؃��b�v�{�C�X�̃|�C���^
-	PERAPVOICE*	perap_ptr[4];						//�؃��b�v�{�C�X�̃|�C���^
+	PERAPVOICE*	my_perap_ptr;						//自分のぺラップボイスのポインタ
+	PERAPVOICE*	perap_ptr[4];						//ぺラップボイスのポインタ
 
-	//Snd_PMVoicePlayEx�̏���ۑ����Ă����K�v������I
+	//Snd_PMVoicePlayExの情報を保存しておく必要がある！
 #if 0
-	int pv_ptn;										//�p�^�[��(snd_tool.h�Q��)
-	int pv_pan;										//-128�`127
-	int pv_vol;										//�{�����[��(0-127)
-	int pv_heap_id;									//�q�[�vID
-	u16 pv_no;										//�|�P�����i���o�[
-	u8	pv_wait;									//�Đ�����܂ł̃E�F�C�g
+	int pv_ptn;										//パターン(snd_tool.h参照)
+	int pv_pan;										//-128〜127
+	int pv_vol;										//ボリューム(0-127)
+	int pv_heap_id;									//ヒープID
+	u16 pv_no;										//ポケモンナンバー
+	u8	pv_wait;									//再生するまでのウェイト
 #else
-	int pv_ptn[SND_PV_WORK_MAX];					//�p�^�[��(snd_tool.h�Q��)
-	int pv_pan[SND_PV_WORK_MAX];					//-128�`127
-	int pv_vol[SND_PV_WORK_MAX];					//�{�����[��(0-127)
-	int pv_heap_id[SND_PV_WORK_MAX];				//�q�[�vID
-	u16 pv_no[SND_PV_WORK_MAX];						//�|�P�����i���o�[
-	u8	pv_wait[SND_PV_WORK_MAX];					//�Đ�����܂ł̃E�F�C�g
+	int pv_ptn[SND_PV_WORK_MAX];					//パターン(snd_tool.h参照)
+	int pv_pan[SND_PV_WORK_MAX];					//-128〜127
+	int pv_vol[SND_PV_WORK_MAX];					//ボリューム(0-127)
+	int pv_heap_id[SND_PV_WORK_MAX];				//ヒープID
+	u16 pv_no[SND_PV_WORK_MAX];						//ポケモンナンバー
+	u8	pv_wait[SND_PV_WORK_MAX];					//再生するまでのウェイト
 #endif
 
-	u8	pv_double_flag;								//�|�P����������2�Đ��o����悤�ɂ���t���O
-	u8	battle_rec_flag;							//�o�g���^��Đ��𔻕ʂ���t���O
+	u8	pv_double_flag;								//ポケモン鳴き声を2つ再生出来るようにするフラグ
+	u8	battle_rec_flag;							//バトル録画再生を判別するフラグ
 };
 
 
 //==============================================================================================
 //
-//	��`
+//	定義
 //
 //==============================================================================================
 
 
 //==============================================================================================
 //
-//	�ϐ�
+//	変数
 //
 //==============================================================================================
-static SND_WORK snd_work;							//�T�E���h�V�X�e�����[�N
-static int snd_status;								//�T�E���h�X�e�[�^�X
+static SND_WORK snd_work;							//サウンドシステムワーク
+static int snd_status;								//サウンドステータス
 
-//�g�p���Ȃ������B�B
-static NNSSndCaptureOutputEffectType stereo_mono;	//�X�e���I�����m������
+//使用しないかも。。
+static NNSSndCaptureOutputEffectType stereo_mono;	//ステレオかモノラルか
 
-//�f�o�b�N�p
-u32 aki_size;										//�T�E���h�q�[�v�T�C�Y�m�F
+//デバック用
+u32 aki_size;										//サウンドヒープサイズ確認
 
 
 //==============================================================================================
 //
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //
 //==============================================================================================
-//���C��
+//メイン
 void Snd_AllInit( PERAPVOICE* perap, CONFIG* config );
 void Snd_Main(void);
 void Snd_StatusSet( int status );
 
-//�A�N�Z�X���\�b�h
+//アクセスメソッド
 SND_WORK* Snd_GetSystemAdrs();
 void* Snd_GetParamAdrs( int type );
 NNSSndHeapHandle* Snd_HeapHandleGet(void);
 
-//�q�[�v������
+//ヒープメモリ
 int Snd_HeapSaveState(int* heap_lv);
 void Snd_HeapLoadState( int level );
 
-//�f�[�^���[�h
+//データロード
 BOOL Snd_ArcLoadGroup( u16 no );
 BOOL Snd_ArcLoadSeq( u16 no );
 BOOL Snd_ArcLoadSeqEx( u16 no, u32 flag );
@@ -183,14 +183,14 @@ BOOL Snd_ArcLoadSeqArc( u16 no );
 BOOL Snd_ArcLoadWaveArc( u16 no );
 BOOL Snd_ArcLoadBank( u16 no );
 
-//�T�E���h�n���h���A�g�`�n���h��
+//サウンドハンドル、波形ハンドル
 NNSSndHandle * Snd_HandleGet( int type );
 int Snd_GetHandleNoByPlayerNo( int player_no );
 
 //BOOL Snd_StatusCheck( int chg_status );
 //void Snd_PlayerPauseAll( BOOL flag );
 
-//���[�J���֐�
+//ローカル関数
 static void Snd_WorkInit( SND_WORK* wk );
 static void Snd_HandleInit( SND_WORK* wk );
 static void Snd_GameStartLoad( SND_WORK* wk );
@@ -198,51 +198,51 @@ static void Snd_MicInit(void);
 static void Snd_UseHeapSizeOsPrint(void);
 static BOOL Snd_MeUseCheck(void);
 static void Snd_StatusCall(void);
-static void Snd_PlayerBgmStop( void );			//PLAYER_BGM�̒�~�A�n���h�������[�X
+static void Snd_PlayerBgmStop( void );			//PLAYER_BGMの停止、ハンドルリリース
 
 
 //==============================================================================================
 //
-//	�v���O����
+//	プログラム
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h������
+ * @brief	サウンド初期化
  *
  * @param	none
  *
  * @retval	none
  *
- * ���̑S�ẴT�E���h�֐�����ɌĂт����Ă��������B
- * �������A���炩���߁AOS�����������Ă����K�v������܂��B 
+ * 他の全てのサウンド関数より先に呼びだしてください。
+ * ただし、あらかじめ、OSを初期化しておく必要があります。 
  *
- * IRQ���荞�݂͗L���ɂ��Ă��������B�܂��A���̊֐��̌�ŁA
- * OS_SetIrqMask�֐� �ȂǂŊ��荞�݂̐ݒ���㏑�����Ȃ��悤�ɂ��Ă��������B 
+ * IRQ割り込みは有効にしてください。また、この関数の後で、
+ * OS_SetIrqMask関数 などで割り込みの設定を上書きしないようにしてください。 
  */
 //--------------------------------------------------------------
 void Snd_AllInit( PERAPVOICE* perap, CONFIG* config )
 {
 	SND_WORK* wk = Snd_GetSystemAdrs();
 
-	//Snd_LocalWorkCreate();				//�T�E���h���[�J�����[�N�m��
+	//Snd_LocalWorkCreate();				//サウンドローカルワーク確保
 	
-    NNS_SndInit();							//�T�E���h���C�u�����̏�����
+    NNS_SndInit();							//サウンドライブラリの初期化
 
-	Snd_MicInit();							//MIC������
+	Snd_MicInit();							//MIC初期化
 
-	Snd_WorkInit(wk);						//�T�E���h�V�X�e�����[�N������
+	Snd_WorkInit(wk);						//サウンドシステムワーク初期化
 
-	//�T�E���h�q�[�v�̍쐬
+	//サウンドヒープの作成
     wk->heap = NNS_SndHeapCreate( &wk->sndHeap, sizeof(wk->sndHeap) );
 
-	//�T�E���h�A�[�J�C�u�̏�����(�v���`�i�f�[�^�ǂݍ��݂ɕύX)
+	//サウンドアーカイブの初期化(プラチナデータ読み込みに変更)
 	//NNS_SndArcInit( &wk->arc, "data/sound/sound_data.sdat", wk->heap, FALSE );
     NNS_SndArcInit( &wk->arc, "data/sound/pl_sound_data.sdat", wk->heap, FALSE );
 
-	//�v���C���[�̃Z�b�g�A�b�v
-	//�T�E���h�A�[�J�C�u���Œ�`����Ă���v���C���[�ݒ�Ɋ�Â��Z�b�g�A�b�v�����
+	//プレイヤーのセットアップ
+	//サウンドアーカイブ中で定義されているプレイヤー設定に基づきセットアップされる
     (void)NNS_SndArcPlayerSetup( wk->heap );
 
 #ifdef STREAM_ON
@@ -251,33 +251,33 @@ void Snd_AllInit( PERAPVOICE* perap, CONFIG* config )
     NNS_SndStrmHandleInit( &wk->strmHandle );
 #endif
 
-    //�T�E���h�n���h��������
+    //サウンドハンドル初期化
     Snd_HandleInit(wk);
 
 #ifdef SOUND_OS_PRINT_ON
 	//aki_size = NNS_SndHeapGetFreeSize( wk->heap );
 	aki_size = NNS_SndHeapGetSize( wk->heap );
 	OS_Printf( "\n\n//========================================\n" );
-	OS_Printf( "//\t�T�E���h\n" );
+	OS_Printf( "//\tサウンド\n" );
 	OS_Printf( "//========================================\n" );
-	OS_Printf( "�����e�ʁ��T�E���h�q�[�v = %d\n", aki_size );
+	OS_Printf( "＜総容量＞サウンドヒープ = %d\n", aki_size );
 
-	OS_Printf( "\n���v���C���[�q�[�v���蓖�ĕ�\n" );
-	Snd_UseHeapSizeOsPrint();							//�ǉ������T�E���h�q�[�v�̗e�ʂ��o�͂���
+	OS_Printf( "\n↓プレイヤーヒープ割り当て分\n" );
+	Snd_UseHeapSizeOsPrint();							//追加したサウンドヒープの容量を出力する
 
-	OS_Printf( "���Q�[���J�n���̃T�E���h�f�[�^���[�h��\n" );
+	OS_Printf( "＜ゲーム開始時のサウンドデータロード＞\n" );
 #endif
 
-	Snd_GameStartLoad(wk);								//�Q�[���J�n���̃T�E���h�f�[�^�̃��[�h
+	Snd_GameStartLoad(wk);								//ゲーム開始時のサウンドデータのロード
 
-	//�o�̓G�t�F�N�g�ݒ�
-	stereo_mono = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;	//�ʏ�̃X�e���I���[�h
+	//出力エフェクト設定
+	stereo_mono = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;	//通常のステレオモード
 	//Snd_CaptureStartOutputEffect( stereo_mono );
 	
-	//�����̂؃��b�v�̃|�C���^����ɂ����Ă���(06.04.20)
+	//自分のぺラップのポインタを常にもっておく(06.04.20)
 	wk->my_perap_ptr = perap;
 
-	//�R���t�B�O�ݒ�ɕύX
+	//コンフィグ設定に変更
 	Snd_SetMonoFlag( config->sound_mode );
 
 	return;
@@ -285,13 +285,13 @@ void Snd_AllInit( PERAPVOICE* perap, CONFIG* config )
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�t���[�����[�N
+ * @brief	サウンドフレームワーク
  *
  * @param	none
  *
  * @retval	none
  *
- * 1�t���[����1�x�Ăяo����������΁A�ǂ��ŃR�[�����Ă��\��Ȃ�
+ * 1フレームに1度呼び出しさえすれば、どこでコールしても構わない
  */
 //--------------------------------------------------------------
 void Snd_Main(void)
@@ -299,44 +299,44 @@ void Snd_Main(void)
 	int i;
 	SND_WORK* wk = Snd_GetSystemAdrs();
 
-	//ME�g�p���̎��́ABGM�X�e�[�^�X�����͂��Ȃ��I
+	//ME使用中の時は、BGMステータス処理はしない！
 	if( Snd_MeUseCheck() == FALSE ){
 
-		//�t�F�[�h�J�E���g�f�N�������g
+		//フェードカウントデクリメント
 		if( wk->fade_count > 0 ){
 			wk->fade_count--;
 		}
 	
-		//�T�E���h�X�e�[�^�X�Ăяo��
+		//サウンドステータス呼び出し
 		Snd_StatusCall();
 	}
 
-	//�؃��b�v�̘^�������������Đ����Ă��邩�t���O�������Ă�����A
-	//�g�`�Đ����I�����Ă��邩�`�F�b�N���āA�g�`�Đ��`�����l�����J������
+	//ぺラップの録音した鳴き声を再生しているかフラグが立っていたら、
+	//波形再生が終了しているかチェックして、波形再生チャンネルを開放する
 	Snd_MainPerapCheck();
 
 #ifdef SND_PV_070213
 #if 0
-	//�E�F�C�g�w�肵�ă|�P�����������Đ����悤�Ƃ��Ă�����
+	//ウェイト指定してポケモン鳴き声を再生しようとしていたら
 	if( wk->pv_wait != 0 ){
 		wk->pv_wait--;
 		if( wk->pv_wait == 0 ){
-			//�X�J�C�t�H�����g�`�i���o�[�ɂȂ��Ă���͂��Ȃ̂�form_no��0�ł悢�B
+			//スカイフォルム波形ナンバーになっているはずなのでform_noは0でよい。
 			Snd_PMVoicePlayEx( wk->pv_ptn, wk->pv_no, wk->pv_pan, wk->pv_vol, wk->pv_heap_id, 0 );
 		}
 	}
 #else
-	//2�C���m��(08.05.08)
+	//2匹分確保(08.05.08)
 	for( i=0; i < SND_PV_WORK_MAX ;i++ ){
 
-		//�E�F�C�g�w�肵�ă|�P�����������Đ����悤�Ƃ��Ă�����
+		//ウェイト指定してポケモン鳴き声を再生しようとしていたら
 		if( wk->pv_wait[i] != 0 ){
 
 			wk->pv_wait[i]--;
 
 			if( wk->pv_wait[i] == 0 ){
 
-				//�X�J�C�t�H�����g�`�i���o�[�ɂȂ��Ă���͂��Ȃ̂�form_no��0�ł悢�B
+				//スカイフォルム波形ナンバーになっているはずなのでform_noは0でよい。
 				Snd_PMVoicePlayEx(	wk->pv_ptn[i], wk->pv_no[i], wk->pv_pan[i], 
 									wk->pv_vol[i], wk->pv_heap_id[i], 0 );
 			}
@@ -351,9 +351,9 @@ void Snd_Main(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�X�e�[�^�X�Ăяo��
+ * @brief	サウンドステータス呼び出し
  *
- * @param	status		�X�e�[�^�X(snd_system.h�Q��)
+ * @param	status		ステータス(snd_system.h参照)
  *
  * @retval	none
  */
@@ -365,41 +365,41 @@ static void Snd_StatusCall(void)
 
 	switch( snd_status ){
 
-	//������
+	//初期化
 	//case SND_STATUS_INIT:
 	//	break;
 
-	//��~
+	//停止
 	case SND_STATUS_STOP:
-		//�������Ȃ�
+		//何もしない
 		break;
 
 	//
 	//case SND_STATUS_PLAYSTART:
 	//	break;
 
-	//�Đ�
+	//再生
 	case SND_STATUS_PLAY:
-		Snd_StatusSet( SND_STATUS_PLAING );					//�X�e�[�^�X(�Đ���)
+		Snd_StatusSet( SND_STATUS_PLAING );					//ステータス(再生中)
 		break;
 
-	//�Đ���
+	//再生中
 	case SND_STATUS_PLAING:
-		//�������Ȃ�
+		//何もしない
 		break;
 
-	//�t�F�[�h�C��
+	//フェードイン
 	case SND_STATUS_FADEIN:
-		if( Snd_FadeCheck() == 0 ){							//�t�F�[�h�I�����Ă�����
-			Snd_StatusSet( SND_STATUS_PLAING );				//�X�e�[�^�X(�Đ���)
+		if( Snd_FadeCheck() == 0 ){							//フェード終了していたら
+			Snd_StatusSet( SND_STATUS_PLAING );				//ステータス(再生中)
 		}
 		break;
 
-	//�t�F�[�h�A�E�g
+	//フェードアウト
 	case SND_STATUS_FADEOUT:
-		//�����ɂ��鎞�ƁA���ʏ��������鎞������I
-		if( Snd_FadeCheck() == 0 ){							//�t�F�[�h�I�����Ă�����
-			Snd_StatusSet( SND_STATUS_PLAING );				//�X�e�[�^�X(�Đ���)
+		//無音にする時と、音量小さくする時がある！
+		if( Snd_FadeCheck() == 0 ){							//フェード終了していたら
+			Snd_StatusSet( SND_STATUS_PLAING );				//ステータス(再生中)
 		}
 		break;
 
@@ -411,36 +411,36 @@ static void Snd_StatusCall(void)
 	//case SND_STATUS_FADENEXTFADE:
 	//	break;
 
-	//�t�F�[�h�A�E�g �� BGM�Đ�
+	//フェードアウト → BGM再生
 	case SND_STATUS_FADEOUT_NEXT_PLAY:
-		if( Snd_FadeCheck() == 0 ){							//�t�F�[�h�I���҂�
-			if( Snd_NextWaitCheck() == 0 ){					//����BGM��炷�܂ł̃E�F�C�g�`�F�b�N
+		if( Snd_FadeCheck() == 0 ){							//フェード終了待ち
+			if( Snd_NextWaitCheck() == 0 ){					//次のBGMを鳴らすまでのウェイトチェック
 
-				//PLAYER_BGM��炵�Ȃ���}�b�v�J�ڂ������̑Ή�
-				//PLAYER_BGM���|�[�Y���Ă��������󋵂́A
-				//ME�Ɍ��肳��AME�͕K����~�A�|�[�Y����������I
-				//�����ŕK���APLAYER_BGM���~���Ă����Ȃ��I
+				//PLAYER_BGMを鳴らしながらマップ遷移した時の対応
+				//PLAYER_BGMをポーズしておきたい状況は、
+				//MEに限定され、MEは必ず停止、ポーズ解除がくる！
+				//ここで必ず、PLAYER_BGMを停止しても問題ない！
 				Snd_PlayerBgmStop();
 
-				Snd_BgmPlay( wk->next_bgm_no );				//BGM�Đ�(�X�e�[�^�X���Đ�)
+				Snd_BgmPlay( wk->next_bgm_no );				//BGM再生(ステータス＝再生)
 			}
 		}
 		break;
 
-	//�t�F�[�h�A�E�g �� BGM�t�F�[�h�C��
+	//フェードアウト → BGMフェードイン
 	case SND_STATUS_FADEOUT_NEXT_FADEIN:
-		if( Snd_FadeCheck() == 0 ){							//�t�F�[�h�I���҂�
-			if( Snd_NextWaitCheck() == 0 ){					//����BGM��炷�܂ł̃E�F�C�g�`�F�b�N
+		if( Snd_FadeCheck() == 0 ){							//フェード終了待ち
+			if( Snd_NextWaitCheck() == 0 ){					//次のBGMを鳴らすまでのウェイトチェック
 
-				//PLAYER_BGM��炵�Ȃ���}�b�v�J�ڂ������̑Ή�
-				//PLAYER_BGM���|�[�Y���Ă��������󋵂́A
-				//ME�Ɍ��肳��AME�͕K����~�A�|�[�Y����������I
-				//�����ŕK���APLAYER_BGM���~���Ă����Ȃ��I
+				//PLAYER_BGMを鳴らしながらマップ遷移した時の対応
+				//PLAYER_BGMをポーズしておきたい状況は、
+				//MEに限定され、MEは必ず停止、ポーズ解除がくる！
+				//ここで必ず、PLAYER_BGMを停止しても問題ない！
 				Snd_PlayerBgmStop();
 
-				Snd_BgmPlay( wk->next_bgm_no );				//BGM�Đ�(�X�e�[�^�X���Đ�)
+				Snd_BgmPlay( wk->next_bgm_no );				//BGM再生(ステータス＝再生)
 
-				//�t�F�[�h�C��(�X�e�[�^�X���t�F�[�h�C��)
+				//フェードイン(ステータス＝フェードイン)
 				Snd_BgmFadeIn( BGM_VOL_MAX, wk->next_frame, BGM_FADEIN_START_VOL_MIN );
 			}
 		}
@@ -453,9 +453,9 @@ static void Snd_StatusCall(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�X�e�[�^�X�Z�b�g
+ * @brief	サウンドステータスセット
  *
- * @param	status		�X�e�[�^�X(snd_system.h�Q��)
+ * @param	status		ステータス(snd_system.h参照)
  *
  * @retval	none
  */
@@ -467,7 +467,7 @@ void Snd_StatusSet( int status )
 	snd_status = status;
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n���݂̃T�E���h�X�e�[�^�X = %d\n\n", snd_status );
+	OS_Printf( "\n現在のサウンドステータス = %d\n\n", snd_status );
 #endif
 
 	return;
@@ -475,17 +475,17 @@ void Snd_StatusSet( int status )
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�X�e�[�^�X�`�F�b�N
+ * @brief	サウンドステータスチェック
  *
- * @param	chg_status	�X�e�[�^�X(snd_system.h�Q��)
+ * @param	chg_status	ステータス(snd_system.h参照)
  *
- * @retval	"TRUE=���AFALSE=�s��"
+ * @retval	"TRUE=許可、FALSE=不可"
  */
 //--------------------------------------------------------------
 #if 0
 BOOL Snd_StatusCheck( int chg_status )
 {
-	//�X�e�[�^�X(�t�F�[�h�A�E�g���Đ�)�̎��ɁA�g���b�N�t�F�[�h�ɐ؂�ւ��邱�Ƃ͕s�I
+	//ステータス(フェードアウト→再生)の時に、トラックフェードに切り替えることは不可！
 	if( (snd_status == SND_STATUS_FADEOUT_NEXT_PLAY) && (chg_status == SND_STATUS_TRACKFADE ) ){
 		return FALSE;
 	}
@@ -496,19 +496,19 @@ BOOL Snd_StatusCheck( int chg_status )
 
 //--------------------------------------------------------------
 /**
- * @brief	ME�g�p�����`�F�b�N
+ * @brief	ME使用中かチェック
  *
  * @param	none
  *
- * @retval	"TRUE=�g�p���AFALSE=�g�p���Ă��Ȃ�"
+ * @retval	"TRUE=使用中、FALSE=使用していない"
  */
 //--------------------------------------------------------------
 static BOOL Snd_MeUseCheck(void)
 {
 	SND_WORK* wk = Snd_GetSystemAdrs();
 
-	if( Snd_PlayerCountPlayingSeq(PLAYER_ME) != 0 ){ return TRUE; }		//ME�V�[�P���X�`�F�b�N
-	if( wk->me_wait != 0 ){ return TRUE; }								//ME�E�F�C�g�`�F�b�N
+	if( Snd_PlayerCountPlayingSeq(PLAYER_ME) != 0 ){ return TRUE; }		//MEシーケンスチェック
+	if( wk->me_wait != 0 ){ return TRUE; }								//MEウェイトチェック
 
 	return FALSE;
 }
@@ -516,17 +516,17 @@ static BOOL Snd_MeUseCheck(void)
 
 //==============================================================================================
 //
-//	�T�E���h�V�X�e�����[�N�A�N�Z�X�֘A
+//	サウンドシステムワークアクセス関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�V�X�e�����[�N�̃A�h���X���擾
+ * @brief	サウンドシステムワークのアドレスを取得
  *
  * @param	none
  *
- * @retval	"�T�E���h�V�X�e�����[�N�̃A�h���X"
+ * @retval	"サウンドシステムワークのアドレス"
  */
 //--------------------------------------------------------------
 SND_WORK* Snd_GetSystemAdrs()
@@ -536,11 +536,11 @@ SND_WORK* Snd_GetSystemAdrs()
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�V�X�e�����[�N�̃����o�̃A�h���X���擾
+ * @brief	サウンドシステムワークのメンバのアドレスを取得
  *
- * @param	type	�����oID
+ * @param	type	メンバID
  *
- * @retval	"�����o�̃A�h���X"
+ * @retval	"メンバのアドレス"
  */
 //--------------------------------------------------------------
 void* Snd_GetParamAdrs( int type )
@@ -549,201 +549,201 @@ void* Snd_GetParamAdrs( int type )
 
 	switch( type ){
 
-	case SND_W_ID_CTRL_BGM_FLAG:				//�t�B�[���hBGM�Œ�t���O
+	case SND_W_ID_CTRL_BGM_FLAG:				//フィールドBGM固定フラグ
 		return &wk->ctrl_bgm_flag;
 
-	case SND_W_ID_PV_WAIT_WORK:					//2�C���̂ǂ���̃��[�N���g�p���邩
+	case SND_W_ID_PV_WAIT_WORK:					//2匹分のどちらのワークを使用するか
 		return &wk->pv_wait_work;
 
-	case SND_W_ID_WAVEOUT_HANDLE_NORMAL:		//�g�`�n���h��
+	case SND_W_ID_WAVEOUT_HANDLE_NORMAL:		//波形ハンドル
 		return &wk->sWaveOutHandle[0];
 
-	case SND_W_ID_WAVEOUT_HANDLE_CHORUS:		//�g�`�n���h��
+	case SND_W_ID_WAVEOUT_HANDLE_CHORUS:		//波形ハンドル
 		return &wk->sWaveOutHandle[1];
 
-	case SND_W_ID_BANK_INFO:					//�o���N���\����
+	case SND_W_ID_BANK_INFO:					//バンク情報構造体
 		return &wk->info;
 
-	case SND_W_ID_CAPTURE_BUF:					//�L���v�`���o�b�t�@
+	case SND_W_ID_CAPTURE_BUF:					//キャプチャバッファ
 		return &wk->sCaptureBuffer;
 
-	case SND_W_ID_CALLBACK_INFO:				//�G�t�F�N�g�̃R�[���o�b�N�ϐ�
+	case SND_W_ID_CALLBACK_INFO:				//エフェクトのコールバック変数
 		return &wk->callbackInfo;
 
-	case SND_W_ID_FADE_COUNT:					//�t�F�[�h�J�E���^�[
+	case SND_W_ID_FADE_COUNT:					//フェードカウンター
 		return &wk->fade_count;
 
-	case SND_W_ID_NEXT_WAIT:					//����BGM��炷�܂ł̃E�F�C�g
+	case SND_W_ID_NEXT_WAIT:					//次のBGMを鳴らすまでのウェイト
 		return &wk->next_wait;
 
-	case SND_W_ID_NEXT_FRAME:					//����BGM�̃t�F�[�h�C���t���[����
+	case SND_W_ID_NEXT_FRAME:					//次のBGMのフェードインフレーム数
 		return &wk->next_frame;
 
-	case SND_W_ID_NOW_BGM_NO:					//����BGM�i���o�[
-		return &wk->now_bgm_no;					//�Z�[�u����K�v����I(���Ƃňړ�����)
+	case SND_W_ID_NOW_BGM_NO:					//今のBGMナンバー
+		return &wk->now_bgm_no;					//セーブする必要あり！(あとで移動する)
 
-	case SND_W_ID_NEXT_BGM_NO:					//����BGM�i���o�[
-		return &wk->next_bgm_no;				//�Z�[�u����K�v����I(���Ƃňړ�����)
+	case SND_W_ID_NEXT_BGM_NO:					//次のBGMナンバー
+		return &wk->next_bgm_no;				//セーブする必要あり！(あとで移動する)
 
-	case SND_W_ID_FIELD_PAUSE_FLAG:				//PLAYER_FIELD���|�[�Y���Ă��邩�t���O
+	case SND_W_ID_FIELD_PAUSE_FLAG:				//PLAYER_FIELDをポーズしているかフラグ
 		return &wk->field_pause_flag;
 
-	case SND_W_ID_BGM_PAUSE_FLAG:				//PLAYER_BGM���|�[�Y���Ă��邩�t���O
+	case SND_W_ID_BGM_PAUSE_FLAG:				//PLAYER_BGMをポーズしているかフラグ
 		return &wk->bgm_pause_flag;
 
-	case SND_W_ID_ME_WAIT:						//ME�E�F�C�g
+	case SND_W_ID_ME_WAIT:						//MEウェイト
 		return &wk->me_wait;
 
-	case SND_W_ID_REVERSE_FLAG:					//�t�Đ��g�p�t���O
+	case SND_W_ID_REVERSE_FLAG:					//逆再生使用フラグ
 		return &wk->reverse_flag;
 
-	case SND_W_ID_WAVEOUT_CH_NORMAL_FLAG:		//�g�`�Ŏg�p����CH���m�ۂ������t���O
+	case SND_W_ID_WAVEOUT_CH_NORMAL_FLAG:		//波形で使用するCHを確保したかフラグ
 		return &wk->waveout_ch_normal_flag;
 
-	case SND_W_ID_WAVEOUT_CH_CHORUS_FLAG:		//�g�`�Ŏg�p����CH���m�ۂ������t���O(CHORUS)
+	case SND_W_ID_WAVEOUT_CH_CHORUS_FLAG:		//波形で使用するCHを確保したかフラグ(CHORUS)
 		return &wk->waveout_ch_chorus_flag;
 
-	case SND_W_ID_CHORUS_FLAG:					//�R�[���X�g�p�t���O
+	case SND_W_ID_CHORUS_FLAG:					//コーラス使用フラグ
 		return &wk->chorus_flag;
 
-	case SND_W_ID_BANK_FLAG:					//�o���N�؂�ւ��邩�t���O
+	case SND_W_ID_BANK_FLAG:					//バンク切り替えるかフラグ
 		return &wk->bank_flag;
 
-	case SND_W_ID_FILTER_SIZE:					//�t�B���^�[�T�C�Y
+	case SND_W_ID_FILTER_SIZE:					//フィルターサイズ
 		return &wk->filter_size;
 
-	case SND_W_ID_SCENE_MAIN:					//���݂̃��C���V�[��
+	case SND_W_ID_SCENE_MAIN:					//現在のメインシーン
 		return &wk->scene_main;
 
-	case SND_W_ID_SCENE_SUB:					//���݂̃T�u�V�[��
+	case SND_W_ID_SCENE_SUB:					//現在のサブシーン
 		return &wk->scene_sub;
 
-	case SND_W_ID_HEAP_SAVE_START:				//�T�E���h�q�[�v�K�w���x��
+	case SND_W_ID_HEAP_SAVE_START:				//サウンドヒープ階層レベル
 		return &wk->heap_save[SND_HEAP_SAVE_START];
 
-	case SND_W_ID_HEAP_SAVE_GLOBAL:				//�T�E���h�q�[�v�K�w���x��
+	case SND_W_ID_HEAP_SAVE_GLOBAL:				//サウンドヒープ階層レベル
 		return &wk->heap_save[SND_HEAP_SAVE_GLOBAL];
 
-	case SND_W_ID_HEAP_SAVE_BGM_BANK:			//�T�E���h�q�[�v�K�w���x��
+	case SND_W_ID_HEAP_SAVE_BGM_BANK:			//サウンドヒープ階層レベル
 		return &wk->heap_save[SND_HEAP_SAVE_BGM_BANK];
 
-	case SND_W_ID_HEAP_SAVE_SE:					//�T�E���h�q�[�v�K�w���x��
+	case SND_W_ID_HEAP_SAVE_SE:					//サウンドヒープ階層レベル
 		return &wk->heap_save[SND_HEAP_SAVE_SE];
 
-	case SND_W_ID_HEAP_SAVE_BGM:				//�T�E���h�q�[�v�K�w���x��
+	case SND_W_ID_HEAP_SAVE_BGM:				//サウンドヒープ階層レベル
 		return &wk->heap_save[SND_HEAP_SAVE_BGM];
 
-	case SND_W_ID_HEAP_SAVE_SUB_SE:				//�T�E���h�q�[�v�K�w���x��
+	case SND_W_ID_HEAP_SAVE_SUB_SE:				//サウンドヒープ階層レベル
 		return &wk->heap_save[SND_HEAP_SAVE_SUB_SE];
 
-	case SND_W_ID_HEAP_SAVE_ME:					//�T�E���h�q�[�v�K�w���x��
+	case SND_W_ID_HEAP_SAVE_ME:					//サウンドヒープ階層レベル
 		return &wk->heap_save[SND_HEAP_SAVE_ME];
 
-	case SND_W_ID_PERAP_PLAY_FLAG:				//�y���b�v�̘^�������������Đ����Ă��邩�t���O
+	case SND_W_ID_PERAP_PLAY_FLAG:				//ペラップの録音した鳴き声を再生しているかフラグ
 		return &wk->perap_play_flag;
 
-	case SND_W_ID_PERAP_DEFAULT_FLAG:			//�y���b�v�̃f�t�H���g�̖������Đ�����t���O
+	case SND_W_ID_PERAP_DEFAULT_FLAG:			//ペラップのデフォルトの鳴き声を再生するフラグ
 		return &wk->perap_default_flag;
 
-	case SND_W_ID_ZONE_BGM:						//�]�[��BGM�i���o�[
+	case SND_W_ID_ZONE_BGM:						//ゾーンBGMナンバー
 		return &wk->zone_bgm;
 
-	case SND_W_ID_WAVE_DATA:					//�g�`�f�[�^�̃|�C���^
+	case SND_W_ID_WAVE_DATA:					//波形データのポインタ
 		return &wk->wave_data;
 
-	case SND_W_ID_REVERSE_BUF:					//�t�Đ��p�̃o�b�t�@�̃|�C���^
+	case SND_W_ID_REVERSE_BUF:					//逆再生用のバッファのポインタ
 		return &wk->reverse_buf;
 
-	case SND_W_ID_LENGTH_TCB:					//�����Đ�����TCB
+	case SND_W_ID_LENGTH_TCB:					//鳴き声再生時間TCB
 		return &wk->length_tcb;
 
-	case SND_W_ID_MY_PERAP_PTR:					//�����̂؃��b�v�{�C�X�̃|�C���^
+	case SND_W_ID_MY_PERAP_PTR:					//自分のぺラップボイスのポインタ
 		return &wk->my_perap_ptr;
 
-	case SND_W_ID_PERAP_PTR1:					//�؃��b�v�{�C�X�̃|�C���^
+	case SND_W_ID_PERAP_PTR1:					//ぺラップボイスのポインタ
 		return &wk->perap_ptr[0];
 
-	case SND_W_ID_PERAP_PTR2:					//�؃��b�v�{�C�X�̃|�C���^
+	case SND_W_ID_PERAP_PTR2:					//ぺラップボイスのポインタ
 		return &wk->perap_ptr[1];
 
-	case SND_W_ID_PERAP_PTR3:					//�؃��b�v�{�C�X�̃|�C���^
+	case SND_W_ID_PERAP_PTR3:					//ぺラップボイスのポインタ
 		return &wk->perap_ptr[2];
 
-	case SND_W_ID_PERAP_PTR4:					//�؃��b�v�{�C�X�̃|�C���^
+	case SND_W_ID_PERAP_PTR4:					//ぺラップボイスのポインタ
 		return &wk->perap_ptr[3];
 
-	//2�C���m�ۂɕύX 08.05.08
-	case SND_W_ID_PV_PTN:						//�p�^�[��(snd_tool.h�Q��)
+	//2匹分確保に変更 08.05.08
+	case SND_W_ID_PV_PTN:						//パターン(snd_tool.h参照)
 		return &wk->pv_ptn[0];
 
-	case SND_W_ID_PV_PAN:						//-128�`127
+	case SND_W_ID_PV_PAN:						//-128〜127
 		return &wk->pv_pan[0];
 
-	case SND_W_ID_PV_VOL:						//�{�����[��(0-127)
+	case SND_W_ID_PV_VOL:						//ボリューム(0-127)
 		return &wk->pv_vol[0];
 
-	case SND_W_ID_PV_HEAP_ID:					//�q�[�vID
+	case SND_W_ID_PV_HEAP_ID:					//ヒープID
 		return &wk->pv_heap_id[0];
 
-	case SND_W_ID_PV_NO:						//�|�P�����i���o�[
+	case SND_W_ID_PV_NO:						//ポケモンナンバー
 		return &wk->pv_no[0];
 
-	case SND_W_ID_PV_WAIT:						//�Đ�����܂ł̃E�F�C�g
+	case SND_W_ID_PV_WAIT:						//再生するまでのウェイト
 		return &wk->pv_wait[0];
 
-	//2�C��//////////////////////
-	case SND_W_ID_PV_PTN_2:						//�p�^�[��(snd_tool.h�Q��)
+	//2匹目//////////////////////
+	case SND_W_ID_PV_PTN_2:						//パターン(snd_tool.h参照)
 		return &wk->pv_ptn[1];
 
-	case SND_W_ID_PV_PAN_2:						//-128�`127
+	case SND_W_ID_PV_PAN_2:						//-128〜127
 		return &wk->pv_pan[1];
 
-	case SND_W_ID_PV_VOL_2:						//�{�����[��(0-127)
+	case SND_W_ID_PV_VOL_2:						//ボリューム(0-127)
 		return &wk->pv_vol[1];
 
-	case SND_W_ID_PV_HEAP_ID_2:					//�q�[�vID
+	case SND_W_ID_PV_HEAP_ID_2:					//ヒープID
 		return &wk->pv_heap_id[1];
 
-	case SND_W_ID_PV_NO_2:						//�|�P�����i���o�[
+	case SND_W_ID_PV_NO_2:						//ポケモンナンバー
 		return &wk->pv_no[1];
 
-	case SND_W_ID_PV_WAIT_2:					//�Đ�����܂ł̃E�F�C�g
+	case SND_W_ID_PV_WAIT_2:					//再生するまでのウェイト
 		return &wk->pv_wait[1];
 	/////////////////////////////
 
-	case SND_W_ID_PV_DOUBLE_FLAG:				//�|�P����������2�Đ��o����悤�ɂ���t���O
+	case SND_W_ID_PV_DOUBLE_FLAG:				//ポケモン鳴き声を2つ再生出来るようにするフラグ
 		return &wk->pv_double_flag;
 
-	case SND_W_ID_BATTLE_REC_FLAG:				//�o�g���^��Đ��𔻕ʂ���t���O
+	case SND_W_ID_BATTLE_REC_FLAG:				//バトル録画再生を判別するフラグ
 		return &wk->battle_rec_flag;
 
 	};
 
-	GF_ASSERT( (0) && "�������s���ł��I" );
+	GF_ASSERT( (0) && "引数が不正です！" );
 	return NULL;
 }
 
 
 //==============================================================================================
 //
-//	�q�[�v�������֘A
+//	ヒープメモリ関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�������̏�Ԃ�ۑ�
+ * @brief	メモリの状態を保存
  *
- * @param	heap_lv		�ۑ���̏�Ԃ̊K�w���x�����Ƃ��Ă������[�N�ւ̃|�C���^
- *						(NULL���Ɖ������Ȃ�)
+ * @param	heap_lv		保存後の状態の階層レベルをとっておくワークへのポインタ
+ *						(NULLだと何もしない)
  *
- * @retval	"�ۑ���̊K�w���x���A���s�����-1"
+ * @retval	"保存後の階層レベル、失敗すると-1"
  *
- * �q�[�v�쐬����̊K�w���x����0�ŁA���̊֐����ĂԖ��ɁA�K�w���x�����P�����܂��B 
- * NNS_SndHeapLoadState�֐����Ăт������ƂŁA
- * �w�肵���K�w���x���̕ۑ�����̏�Ԃɕ��������邱�Ƃ��ł��܂��B 
+ * ヒープ作成直後の階層レベルは0で、この関数を呼ぶ毎に、階層レベルが１つ増えます。 
+ * NNS_SndHeapLoadState関数を呼びだすことで、
+ * 指定した階層レベルの保存直後の状態に復元させることができます。 
  *
- * ��Ԃ̕ۑ��ɂ́A�q�[�v����������܂��B�q�[�v�̋󂫗e�ʂ����Ȃ��ꍇ�́A�֐��Ɏ��s���܂��B 
+ * 状態の保存には、ヒープを少し消費します。ヒープの空き容量が少ない場合は、関数に失敗します。 
  */
 //--------------------------------------------------------------
 int Snd_HeapSaveState( int* heap_lv )
@@ -753,9 +753,9 @@ int Snd_HeapSaveState( int* heap_lv )
 
 	ret = NNS_SndHeapSaveState(wk->heap);
 
-	//���s�`�F�b�N
+	//失敗チェック
 	if( ret == -1 ){
-		GF_ASSERT( (0) && "NNS_SndHeapSaveState ERROR�I" );
+		GF_ASSERT( (0) && "NNS_SndHeapSaveState ERROR！" );
 	}
 
 	if( heap_lv != NULL ){
@@ -763,8 +763,8 @@ int Snd_HeapSaveState( int* heap_lv )
 	}
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "��ԕۑ��ɂ̓q�[�v������܂�\n�ۑ���̊K�w���x�� = %d\n", ret );
-	Snd_UseHeapSizeOsPrint();						//��ԕۑ��ɂ̓q�[�v�������
+	OS_Printf( "状態保存にはヒープを消費します\n保存後の階層レベル = %d\n", ret );
+	Snd_UseHeapSizeOsPrint();						//状態保存にはヒープを消費する
 #endif
 
 	return ret;
@@ -772,15 +772,15 @@ int Snd_HeapSaveState( int* heap_lv )
 
 //--------------------------------------------------------------
 /**
- * @brief	�������̏�Ԃ𕜌�
+ * @brief	メモリの状態を復元
  *
- * @param	level	��������K�w���x��
+ * @param	level	復元する階層レベル
  *
  * @retval	none
  *
- * NNS_SndHeapSaveState�֐����Ă񂾒���̏�Ԃɖ߂����Ƃ��o����
- * ���Ȃ킿�ANNS_SndHeapSaveState�֐����Ă񂾌�Ƀ��[�h�����f�[�^���폜�����
- * ���̎��A���[�h�ς݃T�E���h�f�[�^���g���čĐ�����Ă��鉹�͎~�܂�܂���
+ * NNS_SndHeapSaveState関数を呼んだ直後の状態に戻すことが出来る
+ * すなわち、NNS_SndHeapSaveState関数を呼んだ後にロードしたデータが削除される
+ * この時、ロード済みサウンドデータを使って再生されている音は止まりません
  */
 //--------------------------------------------------------------
 void Snd_HeapLoadState( int level )
@@ -790,7 +790,7 @@ void Snd_HeapLoadState( int level )
 	NNS_SndHeapLoadState( wk->heap, level );
 
 #ifdef SOUND_OS_PRINT_ON
-	Snd_UseHeapSizeOsPrint();	//�ǉ������T�E���h�q�[�v�̗e�ʂ��o�͂���
+	Snd_UseHeapSizeOsPrint();	//追加したサウンドヒープの容量を出力する
 #endif
 
 	return;
@@ -798,13 +798,13 @@ void Snd_HeapLoadState( int level )
 
 //--------------------------------------------------------------
 /**
- * @brief	�ǉ������T�E���h�q�[�v�̗e�ʂƁA�󂫗e�ʂ��o�͂���
+ * @brief	追加したサウンドヒープの容量と、空き容量を出力する
  *
  * @param	none
  *
  * @retval	none
  *
- * �v���C���[�q�[�v���m�ۂ���ƁA���̕��e�ʂ������Ă���̂Œ��ӁI
+ * プレイヤーヒープを確保すると、その分容量が減っているので注意！
  */
 //--------------------------------------------------------------
 static void Snd_UseHeapSizeOsPrint(void)
@@ -813,30 +813,30 @@ static void Snd_UseHeapSizeOsPrint(void)
 	SND_WORK* wk = Snd_GetSystemAdrs();
 
 #ifdef SOUND_OS_PRINT_ON
-	size = NNS_SndHeapGetFreeSize( wk->heap );							//���݂̋󂫗e�ʂ��擾
+	size = NNS_SndHeapGetFreeSize( wk->heap );							//現在の空き容量を取得
 
-	//�T�C�Y��r
+	//サイズ比較
 	if( aki_size < size ){
-		OS_Printf( "�J�������T�E���h�q�[�v�� = %d\n", (size-aki_size) );//�J�������e�ʂ�\��
+		OS_Printf( "開放したサウンドヒープ量 = %d\n", (size-aki_size) );//開放した容量を表示
 	}else if( aki_size == size ){
-		OS_Printf( "�T�E���h�q�[�v�ʂɕω��Ȃ�\n" );
+		OS_Printf( "サウンドヒープ量に変化なし\n" );
 	}else{
-		OS_Printf( "�ǉ������T�E���h�q�[�v�� = %d\n", (aki_size-size) );//�ǉ������e�ʂ�\��
+		OS_Printf( "追加したサウンドヒープ量 = %d\n", (aki_size-size) );//追加した容量を表示
 	}
 
 	aki_size = size;
-	OS_Printf( "�T�E���h�q�[�v�̋󂫗e�� = %d\n\n", aki_size );			//�󂫗e�ʂ�\��
+	OS_Printf( "サウンドヒープの空き容量 = %d\n\n", aki_size );			//空き容量を表示
 #endif
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�q�[�v�̃A�h���X���擾
+ * @brief	サウンドヒープのアドレスを取得
  *
  * @param	none
  *
- * @retval	"�T�E���h�q�[�v�̃A�h���X"
+ * @retval	"サウンドヒープのアドレス"
  */
 //--------------------------------------------------------------
 NNSSndHeapHandle* Snd_HeapHandleGet(void)
@@ -848,20 +848,20 @@ NNSSndHeapHandle* Snd_HeapHandleGet(void)
 
 //==============================================================================================
 //
-//	�f�[�^���[�h�֘A
+//	データロード関連
 //
 //	snd_tool.c
-//	FILED,BATTLE�Ȃǂ̃f�[�^�Z�b�g�֐������ɌĂ΂��
+//	FILED,BATTLEなどのデータセット関数から主に呼ばれる
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�O���[�v���[�h
+ * @brief	グループロード
  *
- * @param	no		�O���[�v�i���o�[
+ * @param	no		グループナンバー
  *
- * @retval	"����=TRUE�A���s=FALSE"
+ * @retval	"成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_ArcLoadGroup( u16 no )
@@ -872,8 +872,8 @@ BOOL Snd_ArcLoadGroup( u16 no )
 	ret = NNS_SndArcLoadGroup( no, wk->heap );
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "�����O���[�v���[�h�� �O���[�vNo = %d ����=TRUE�A���s=FALSE ����=%d\n", no, ret );
-	Snd_UseHeapSizeOsPrint();							//�ǉ������T�E���h�q�[�v�̗e�ʂ��o�͂���
+	OS_Printf( "＜●グループロード＞ グループNo = %d 成功=TRUE、失敗=FALSE 結果=%d\n", no, ret );
+	Snd_UseHeapSizeOsPrint();							//追加したサウンドヒープの容量を出力する
 #endif
 
 	return ret;
@@ -881,11 +881,11 @@ BOOL Snd_ArcLoadGroup( u16 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�f�[�^�A�o���N�f�[�^�A�g�`�f�[�^��(����)�Ƀ��[�h
+ * @brief	シーケンスデータ、バンクデータ、波形データを(同時)にロード
  *
- * @param	no		�V�[�P���X�i���o�[
+ * @param	no		シーケンスナンバー
  *
- * @retval	"����=TRUE�A���s=FALSE"
+ * @retval	"成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_ArcLoadSeq( u16 no )
@@ -896,8 +896,8 @@ BOOL Snd_ArcLoadSeq( u16 no )
     ret = NNS_SndArcLoadSeq( no, wk->heap );
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "�����V�[�P���X���[�h�� �V�[�P���XNo = %d ����=TRUE�A���s=FALSE ����=%d\n", no, ret );
-	Snd_UseHeapSizeOsPrint();							//�ǉ������T�E���h�q�[�v�̗e�ʂ��o�͂���
+	OS_Printf( "＜▲シーケンスロード＞ シーケンスNo = %d 成功=TRUE、失敗=FALSE 結果=%d\n", no, ret );
+	Snd_UseHeapSizeOsPrint();							//追加したサウンドヒープの容量を出力する
 #endif
 
 	return ret;
@@ -905,17 +905,17 @@ BOOL Snd_ArcLoadSeq( u16 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�f�[�^�A�o���N�f�[�^�A�g�`�f�[�^��(�I���)���[�h
+ * @brief	シーケンスデータ、バンクデータ、波形データを(選んで)ロード
  *
- * @param	no		�V�[�P���X�i���o�[
- * @param	flag	�ǂ̃f�[�^�����[�h���邩
+ * @param	no		シーケンスナンバー
+ * @param	flag	どのデータをロードするか
  *
- * @retval	"����=TRUE�A���s=FALSE"
+ * @retval	"成功=TRUE、失敗=FALSE"
  *
- * �����[�h��`��
- * �V�[�P���X�f�[�^	NNS_SND_ARC_LOAD_SEQ 
- * �o���N�f�[�^		NNS_SND_ARC_LOAD_BANK
- * �g�`�A�[�J�C�u	NNS_SND_ARC_LOAD_WAVE
+ * ＜ロード定義＞
+ * シーケンスデータ	NNS_SND_ARC_LOAD_SEQ 
+ * バンクデータ		NNS_SND_ARC_LOAD_BANK
+ * 波形アーカイブ	NNS_SND_ARC_LOAD_WAVE
  */
 //--------------------------------------------------------------
 BOOL Snd_ArcLoadSeqEx( u16 no, u32 flag )
@@ -926,8 +926,8 @@ BOOL Snd_ArcLoadSeqEx( u16 no, u32 flag )
     ret = NNS_SndArcLoadSeqEx( no, flag, wk->heap );
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "�����V�[�P���X���[�h���ꁄ �V�[�P���XNo = %d ����=TRUE�A���s=FALSE ����=%d\n", no, ret );
-	Snd_UseHeapSizeOsPrint();							//�ǉ������T�E���h�q�[�v�̗e�ʂ��o�͂���
+	OS_Printf( "＜▲シーケンスロード特殊＞ シーケンスNo = %d 成功=TRUE、失敗=FALSE 結果=%d\n", no, ret );
+	Snd_UseHeapSizeOsPrint();							//追加したサウンドヒープの容量を出力する
 #endif
 
 	return ret;
@@ -935,14 +935,14 @@ BOOL Snd_ArcLoadSeqEx( u16 no, u32 flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�A�[�J�C�u�����[�h
+ * @brief	シーケンスアーカイブをロード
  *
- * @param	no		�V�[�P���X�A�[�J�C�u�i���o�[
+ * @param	no		シーケンスアーカイブナンバー
  *
- * @retval	"����=TRUE�A���s=FALSE"
+ * @retval	"成功=TRUE、失敗=FALSE"
  *
- * �V�[�P���X�A�[�J�C�u�́A�����̃o���N�Ɗ֘A�����邽�߁A
- * �����I�Ƀo���N�f�[�^��g�`�f�[�^�̓��[�h����Ȃ�
+ * シーケンスアーカイブは、複数のバンクと関連があるため、
+ * 自動的にバンクデータや波形データはロードされない
  */
 //--------------------------------------------------------------
 BOOL Snd_ArcLoadSeqArc( u16 no )
@@ -953,8 +953,8 @@ BOOL Snd_ArcLoadSeqArc( u16 no )
     ret = NNS_SndArcLoadSeqArc( no, wk->heap );
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "�����V�[�P���XARC���[�h�� SEQ_ARCNo = %d ����=TRUE�A���s=FALSE ����=%d\n", no, ret );
-	Snd_UseHeapSizeOsPrint();							//�ǉ������T�E���h�q�[�v�̗e�ʂ��o�͂���
+	OS_Printf( "＜★シーケンスARCロード＞ SEQ_ARCNo = %d 成功=TRUE、失敗=FALSE 結果=%d\n", no, ret );
+	Snd_UseHeapSizeOsPrint();							//追加したサウンドヒープの容量を出力する
 #endif
 
 	return ret;
@@ -962,11 +962,11 @@ BOOL Snd_ArcLoadSeqArc( u16 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�g�`�A�[�J�C�u�����[�h
+ * @brief	波形アーカイブをロード
  *
- * @param	no		�g�`�A�[�J�C�u�i���o�[
+ * @param	no		波形アーカイブナンバー
  *
- * @retval	"����=TRUE�A���s=FALSE"
+ * @retval	"成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_ArcLoadWaveArc( u16 no )
@@ -977,8 +977,8 @@ BOOL Snd_ArcLoadWaveArc( u16 no )
     ret = NNS_SndArcLoadWaveArc( no, wk->heap );
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf("�����g�`�A�[�J�C�u���[�h�� �o���NNo = %d ����=TRUE�A���s=FALSE ����=%d\n", no, ret );
-	Snd_UseHeapSizeOsPrint();							//�ǉ������T�E���h�q�[�v�̗e�ʂ��o�͂���
+	OS_Printf("＜◆波形アーカイブロード＞ バンクNo = %d 成功=TRUE、失敗=FALSE 結果=%d\n", no, ret );
+	Snd_UseHeapSizeOsPrint();							//追加したサウンドヒープの容量を出力する
 #endif
 
 	return ret;
@@ -986,12 +986,12 @@ BOOL Snd_ArcLoadWaveArc( u16 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�o���N�f�[�^�����[�h(�K�v�Ȕg�`�f�[�^�����[�h�����)
+ * @brief	バンクデータをロード(必要な波形データもロードされる)
  *
- * @param	no		�o���N�i���o�[
- * @param	heap	�q�[�v�A�h���X
+ * @param	no		バンクナンバー
+ * @param	heap	ヒープアドレス
  *
- * @retval	"����=TRUE�A���s=FALSE"
+ * @retval	"成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_ArcLoadBank( u16 no )
@@ -1002,8 +1002,8 @@ BOOL Snd_ArcLoadBank( u16 no )
     ret = NNS_SndArcLoadBank( no, wk->heap );
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "�����o���N���[�h�� �o���NNo = %d ����=TRUE�A���s=FALSE ����=%d\n", no, ret );
-	Snd_UseHeapSizeOsPrint();							//�ǉ������T�E���h�q�[�v�̗e�ʂ��o�͂���
+	OS_Printf( "＜■バンクロード＞ バンクNo = %d 成功=TRUE、失敗=FALSE 結果=%d\n", no, ret );
+	Snd_UseHeapSizeOsPrint();							//追加したサウンドヒープの容量を出力する
 #endif
 
 	return ret;
@@ -1012,20 +1012,20 @@ BOOL Snd_ArcLoadBank( u16 no )
 
 //==============================================================================================
 //
-//	�T�E���h�n���h���A�g�`�n���h���֘A
+//	サウンドハンドル、波形ハンドル関連
 //
 //	snd_play.c
-//	BGM,ME,SE,PMVOICE�̍Đ��֐������ɌĂ΂��
+//	BGM,ME,SE,PMVOICEの再生関数から主に呼ばれる
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�n���h���̃A�h���X���擾
+ * @brief	サウンドハンドルのアドレスを取得
  *
- * @param	type	�T�E���h�n���h���^�C�v
+ * @param	type	サウンドハンドルタイプ
  *
- * @retval	"�T�E���h�n���h���̃A�h���X"
+ * @retval	"サウンドハンドルのアドレス"
  */
 //--------------------------------------------------------------
 NNSSndHandle * Snd_HandleGet( int type )
@@ -1033,7 +1033,7 @@ NNSSndHandle * Snd_HandleGet( int type )
 	SND_WORK* wk = Snd_GetSystemAdrs();
 
 	if( type >= SND_HANDLE_MAX ){
-		GF_ASSERT( (0) && "�T�E���h�n���h���^�C�v���s���ł��I" );
+		GF_ASSERT( (0) && "サウンドハンドルタイプが不正です！" );
 		type = SND_HANDLE_FIELD;
 	}
 
@@ -1042,30 +1042,30 @@ NNSSndHandle * Snd_HandleGet( int type )
 
 //--------------------------------------------------------------
 /**
- * @brief	�v���C���[�i���o�[����A�n���h���i���o�[�擾(�n���h���̃A�h���X�ł͂Ȃ��̂Œ��ӁI)
+ * @brief	プレイヤーナンバーから、ハンドルナンバー取得(ハンドルのアドレスではないので注意！)
  *
- * @param	player_no	�v���C���[�i���o�[
+ * @param	player_no	プレイヤーナンバー
  *
- * @retval	"�n���h���i���o�["
+ * @retval	"ハンドルナンバー"
  */
 //--------------------------------------------------------------
 int Snd_GetHandleNoByPlayerNo( int player_no )
 {
 	int type;
 
-	//SE�n���h���i���o�[�擾
+	//SEハンドルナンバー取得
 	switch( player_no ){
 
 	case PLAYER_FIELD:
-		type = SND_HANDLE_FIELD;				//�t�B�[���hBGM�T�E���h�n���h��
+		type = SND_HANDLE_FIELD;				//フィールドBGMサウンドハンドル
 		break;
 		
 	case PLAYER_PV:
-		type = SND_HANDLE_PMVOICE;				//�|�P���������T�E���h�n���h��
+		type = SND_HANDLE_PMVOICE;				//ポケモン鳴き声サウンドハンドル
 		break;
 
 	case PLAYER_ME:
-		type = SND_HANDLE_ME;					//ME�T�E���h�n���h��
+		type = SND_HANDLE_ME;					//MEサウンドハンドル
 		break;
 
 	case PLAYER_SE_1:
@@ -1085,16 +1085,16 @@ int Snd_GetHandleNoByPlayerNo( int player_no )
 		break;
 
 	case PLAYER_BGM:
-		type = SND_HANDLE_BGM;					//�t�B�[���h�ȊO��BGM�n���h��
+		type = SND_HANDLE_BGM;					//フィールド以外のBGMハンドル
 		break;
 
-	//case PLAYER_CHORUS:						//PLAYER�Ƃ��Ă͑��݂��Ȃ��I
-	//	type = SND_HANDLE_CHORUS;				//�R�[���X(������p)�n���h��
+	//case PLAYER_CHORUS:						//PLAYERとしては存在しない！
+	//	type = SND_HANDLE_CHORUS;				//コーラス(鳴き声専用)ハンドル
 	//	break;
 
 	default:
-		GF_ASSERT( (0) && "�v���C���[�i���o�[���s���ł��I" );
-		type = SND_HANDLE_SE_1;					//�G���[���
+		GF_ASSERT( (0) && "プレイヤーナンバーが不正です！" );
+		type = SND_HANDLE_SE_1;					//エラー回避
 		break;
 	};
 
@@ -1104,25 +1104,25 @@ int Snd_GetHandleNoByPlayerNo( int player_no )
 
 //==============================================================================================
 //
-//	�V�[�P���X�֘A
+//	シーケンス関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ă̍Đ����̃V�[�P���X���ꎞ��~�܂��͍ĊJ
+ * @brief	全ての再生中のシーケンスを一時停止または再開
  *
- * @param	flag	TRUE=�ꎞ��~�AFALSE=�ĊJ
+ * @param	flag	TRUE=一時停止、FALSE=再開
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
- * ��Ԃ��ς��Ȃ��ꍇ�A�Ⴆ�΁A���łɈꎞ��~��Ԃ̎��Ɉꎞ��~���s���Ă��A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
+ * 状態が変わらない場合、例えば、すでに一時停止状態の時に一時停止を行っても、何もしません。 
  *
- * ����
- * �ꎞ��~���s���ƁA�������̉��͋����I�ɒ�~�������܂��B
- * �ĊJ���s���Ă��A�������̉�����������Đ�����邱�Ƃ͂���܂���̂Œ��ӂ��Ă��������B
- * �ĊJ��́A���̃m�[�g�I�����特����n�߂܂��B 
+ * 注意
+ * 一時停止を行うと、発音中の音は強制的に停止させられます。
+ * 再開を行っても、発音中の音が続きから再生されることはありませんので注意してください。
+ * 再開後は、次のノートオンから音が鳴り始めます。 
  */
 //--------------------------------------------------------------
 #if 0
@@ -1136,15 +1136,15 @@ void Snd_PlayerPauseAll( BOOL flag )
 
 //==============================================================================================
 //
-//	���[�J���֐�
+//	ローカル関数
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�V�X�e�����[�N�̏�����
+ * @brief	サウンドシステムワークの初期化
  *
- * @param	wk		SND_WORK�^�̃A�h���X
+ * @param	wk		SND_WORK型のアドレス
  *
  * @retval	none
  */
@@ -1155,10 +1155,10 @@ static void Snd_WorkInit( SND_WORK* wk )
 
 	memset( wk, 0, sizeof(SND_WORK) );
 
-	//�K�w���x��
+	//階層レベル
 	for( i=0; i < SND_HEAP_SAVE_MAX ;i++ ){
-		//�J�n=1,�풓=2,BGM_BANK=3,SE=4,BGM=5,SUB_SE=6,ME=7
-		wk->heap_save[i] = (i+1);						//�����l�Z�b�g
+		//開始=1,常駐=2,BGM_BANK=3,SE=4,BGM=5,SUB_SE=6,ME=7
+		wk->heap_save[i] = (i+1);						//初期値セット
 	}
 
 	return;
@@ -1166,9 +1166,9 @@ static void Snd_WorkInit( SND_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h�n���h��������
+ * @brief	サウンドハンドル初期化
  *
- * @param	wk		SND_WORK�^�̃A�h���X
+ * @param	wk		SND_WORK型のアドレス
  *
  * @retval	none
  */
@@ -1186,9 +1186,9 @@ static void Snd_HandleInit( SND_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	�Q�[���J�n���̃T�E���h�f�[�^�̃��[�h
+ * @brief	ゲーム開始時のサウンドデータのロード
  *
- * @param	wk		SND_WORK�^�̃A�h���X
+ * @param	wk		SND_WORK型のアドレス
  *
  * @retval	none
  */
@@ -1197,26 +1197,26 @@ static void Snd_GameStartLoad( SND_WORK* wk )
 {
 	int ret;
 
-	//�O���[�v���[�h(����=TRUE�A���s=FALSE)
+	//グループロード(成功=TRUE、失敗=FALSE)
 	
-	Snd_HeapSaveState(&wk->heap_save[SND_HEAP_SAVE_START]);		//�K�w�ۑ�(�S�ď������Ɏg�p)
-	ret = Snd_ArcLoadGroup( GROUP_GLOBAL );	//�풓
+	Snd_HeapSaveState(&wk->heap_save[SND_HEAP_SAVE_START]);		//階層保存(全て消す時に使用)
+	ret = Snd_ArcLoadGroup( GROUP_GLOBAL );	//常駐
 
-	//basic.bnk�́A�S�풓�ɂ��Ă���
+	//basic.bnkは、全常駐にしている
 	
-	Snd_HeapSaveState(&wk->heap_save[SND_HEAP_SAVE_GLOBAL]);	//�K�w�ۑ�(�풓�ȊO���������Ɏg�p)
+	Snd_HeapSaveState(&wk->heap_save[SND_HEAP_SAVE_GLOBAL]);	//階層保存(常駐以外を消す時に使用)
 
-	//�������́A�^�C�g���Ȃ�ǂݍ��ނ��ƂɂȂ�I
-	//�V�[��(���)���ς�鎞�̃T�E���h�f�[�^�Z�b�g
+	//↓ここは、タイトル曲を読み込むことになる！
+	//シーン(場面)が変わる時のサウンドデータセット
 	//Snd_SceneDataSet( SND_SCENE_FIELD, SEQ_DP_TITLE, 0 );
-	//title.c�ɓ������������Ă���̂ŊO����
+	//title.cに同じ処理を入れてあるので外した
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�}�C�N������(�Ƃ肠�����Q�C���ȂǌŒ�)
+ * @brief	マイク初期化(とりあえずゲインなど固定)
  *
  * @param	none
  *
@@ -1225,31 +1225,31 @@ static void Snd_GameStartLoad( SND_WORK* wk )
 //--------------------------------------------------------------
 static void Snd_MicInit(void)
 {
-	//MIC_Init�֐��̏������́A2��ڈȍ~�̌Ăяo���͖����ɂȂ�悤�ɁA
-	//�����t���O�Ń`�F�b�N����Ă��܂�
-    MIC_Init();								//MIC_API������
+	//MIC_Init関数の初期化は、2回目以降の呼び出しは無効になるように、
+	//内部フラグでチェックされています
+    MIC_Init();								//MIC_API初期化
     
-	//OS_Init()���Ăԏꍇ�́A���̒�����Ă΂�܂��̂ŕK�v����܂���B
-    //PM_Init();							//PMIC�}�l�[�W��������(OS_INIT���ł��Ă΂�Ă���)
+	//OS_Init()を呼ぶ場合は、その中から呼ばれますので必要ありません。
+    //PM_Init();							//PMICマネージャ初期化(OS_INIT内でも呼ばれている)
 	
-    (void)PM_SetAmp( PM_AMP_ON );			//�v���O���}�u���Q�C���A���v�̃X�C�b�`ON
-    (void)PM_SetAmpGain( PM_AMPGAIN_80 );	//�v���O���}�u���Q�C���A���v�̃Q�C����ݒ�
+    (void)PM_SetAmp( PM_AMP_ON );			//プログラマブルゲインアンプのスイッチON
+    (void)PM_SetAmpGain( PM_AMPGAIN_80 );	//プログラマブルゲインアンプのゲインを設定
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	PLAYER_BGM�̒�~
+ * @brief	PLAYER_BGMの停止
  *
  * @param	none
  *
  * @retval	none
  *
- * �T�E���h�n���h���Ɍ��т����Ă���V�[�P���X��������܂��B
- * �V�[�P���X�����т����Ă��Ȃ��ꍇ�́A�������܂���B
+ * サウンドハンドルに結びつけられているシーケンスを解放します。
+ * シーケンスが結びつけられていない場合は、何もしません。
  *
- * PLAYER�ɑ΂��Ă̂ݒ�~�A�����[�X�����Ă���
+ * PLAYERに対してのみ停止、リリースをしている
  */
 //--------------------------------------------------------------
 static void Snd_PlayerBgmStop( void )

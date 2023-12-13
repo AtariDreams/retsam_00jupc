@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	shinka.h
- * @bfief	í“¬i‰»ƒfƒ‚ƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜é€²åŒ–ãƒ‡ãƒ¢ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.10.25
  */
@@ -15,9 +15,9 @@
 #include "system/procsys.h"
 
 //shinka_status_flag
-#define	SHINKA_STATUS_FLAG_CANCEL_ON	(0x00000001)	//i‰»ƒLƒƒƒ“ƒZƒ‹ON
-#define	SHINKA_STATUS_FLAG_BATTLE_MODE	(0x00000002)	//í“¬‚©‚ç‚Ìi‰»
-#define	SHINKA_STATUS_FLAG_SIO_MODE		(0x00000004)	//’ÊM‚©‚ç‚Ìi‰»
+#define	SHINKA_STATUS_FLAG_CANCEL_ON	(0x00000001)	//é€²åŒ–ã‚­ãƒ£ãƒ³ã‚»ãƒ«ON
+#define	SHINKA_STATUS_FLAG_BATTLE_MODE	(0x00000002)	//æˆ¦é—˜ã‹ã‚‰ã®é€²åŒ–
+#define	SHINKA_STATUS_FLAG_SIO_MODE		(0x00000004)	//é€šä¿¡ã‹ã‚‰ã®é€²åŒ–
 
 extern	SHINKA_WORK		*ShinkaInit(POKEPARTY *ppt,POKEMON_PARAM *pp,int after_mons_no,
 									CONFIG *config,int contest_see_flag,ZUKAN_WORK *zw,MYITEM *my_item,

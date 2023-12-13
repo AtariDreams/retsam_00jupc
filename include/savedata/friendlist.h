@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	friendlist.h
- * @brief	‚µ‚è‚ ‚¢ƒOƒ‹[ƒvƒf[ƒ^’è‹`iWiFI—p‚Í•ÊB‚c‚r’ÊM‚Å‚Ì’m‚è‡‚¢j
+ * @brief	ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿å®šç¾©ï¼ˆWiFIç”¨ã¯åˆ¥ã€‚ï¼¤ï¼³é€šä¿¡ã§ã®çŸ¥ã‚Šåˆã„ï¼‰
  * @author	mori GAME FREAK inc.
  * @date	2006.02.10
  */
@@ -9,18 +9,18 @@
 #ifndef __FRIENDLIST_H__
 #define __FRIENDLIST_H__
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
-#include "gflib/msg_print.h"		//STRCODEQÆ‚Ì‚½‚ß
-#include "gflib/strbuf.h"			//STRBUFQÆ‚Ì‚½‚ß
+#include "gflib/msg_print.h"		//STRCODEå‚ç…§ã®ãŸã‚
+#include "gflib/strbuf.h"			//STRBUFå‚ç…§ã®ãŸã‚
 
 
 #define FRIENDLIST_MAX			( 16 )
-#define FRIENDLIST_FRIEND_MAX	( 16 )	// ’m‚è‡‚¢ƒŠƒXƒg‚ª‚Âu—F’B‚Ì—F’Bv‚Ì”
+#define FRIENDLIST_FRIEND_MAX	( 16 )	// çŸ¥ã‚Šåˆã„ãƒªã‚¹ãƒˆãŒæŒã¤ã€Œå‹é”ã®å‹é”ã€ã®æ•°
 
 
-#define DIRECT_FRIEND			(  1 )	// ’¼Ú‚Ì’m‚è‡‚¢
-#define INDIRECT_FRIEND			(  2 )	// ’m‚è‡‚¢‚Ì’m‚è‡‚¢
+#define DIRECT_FRIEND			(  1 )	// ç›´æ¥ã®çŸ¥ã‚Šåˆã„
+#define INDIRECT_FRIEND			(  2 )	// çŸ¥ã‚Šåˆã„ã®çŸ¥ã‚Šåˆã„
 
 #define FRIEND_LIST_SIZE		( 136 )
 
@@ -28,7 +28,7 @@
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	‚µ‚è‚ ‚¢ƒOƒ‹[ƒvƒf[ƒ^Œ^’è‹`
+ * @brief	ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿å‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct _FRIEND_LIST FRIEND_LIST;
@@ -36,75 +36,75 @@ typedef struct _FRIEND_LIST FRIEND_LIST;
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //----------------------------------------------------------
 extern int           FriendList_GetWorkSize(void);
 extern FRIEND_LIST  *FriendList_AllocWork(u32 heapID);
 extern void          FriendList_Copy(const FRIEND_LIST * from, FRIEND_LIST * to);
 
 //----------------------------------------------------------
-//	FRIEND_LIST‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	FRIEND_LISTæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern void  FriendList_Init(FRIEND_LIST * flist);
 
-//–¼‘O
+//åå‰
 extern void  FriendList_SetName(FRIEND_LIST * flist, int no, const STRCODE * name);
 extern const STRCODE * FriendList_GetName(const FRIEND_LIST * flist, int no);
 //ID
 extern void FriendList_SetID(FRIEND_LIST * flist, int no, u32 id);
 extern u32  FriendList_GetID(const FRIEND_LIST * flist, int no);
 
-// «•Ê
+// æ€§åˆ¥
 extern void FriendList_SetSex(FRIEND_LIST * flist, int no, u32 sex);
 extern u32 FriendList_GetSex(const FRIEND_LIST * flist, int no);
 
-// ROMƒR[ƒhi0:ƒ_ƒCƒ„ 1:ƒp[ƒ‹j
+// ROMã‚³ãƒ¼ãƒ‰ï¼ˆ0:ãƒ€ã‚¤ãƒ¤ 1:ãƒ‘ãƒ¼ãƒ«ï¼‰
 extern void FriendList_SetRomCode( FRIEND_LIST * flist , int no, u8 rom);
 extern u8   FriendList_GetRomCode( const FRIEND_LIST * flist ,int no );
 
 
-// ƒOƒ‹[ƒvƒŠƒXƒgID
+// ã‚°ãƒ«ãƒ¼ãƒ—ãƒªã‚¹ãƒˆID
 extern void FriendList_SetGroupListId( FRIEND_LIST * flist , int no, u32 id );
 extern u8   FriendList_GetGroupListId( const FRIEND_LIST * flist , int no );
 
-// ƒOƒ‹[ƒvƒŠƒXƒgROMƒR[ƒh
+// ã‚°ãƒ«ãƒ¼ãƒ—ãƒªã‚¹ãƒˆROMã‚³ãƒ¼ãƒ‰
 extern void FriendList_SetGroupListRomCode( FRIEND_LIST * flist , int no, u8 rom );
 extern u8   FriendList_GetGroupListRomCode( const FRIEND_LIST * flist , int no );
 
-// ƒOƒ‹[ƒvƒŠƒXƒg‘ƒR[ƒh
+// ã‚°ãƒ«ãƒ¼ãƒ—ãƒªã‚¹ãƒˆå›½ã‚³ãƒ¼ãƒ‰
 extern void FriendList_SetGroupListRegion( FRIEND_LIST * flist , int no, u8 code );
 extern u8   FriendList_GetGroupListRegion( const FRIEND_LIST * flist , int no );
 
-// ƒOƒ‹[ƒvƒŠ[ƒ_[«•Ê
+// ã‚°ãƒ«ãƒ¼ãƒ—ãƒªãƒ¼ãƒ€ãƒ¼æ€§åˆ¥
 u8    FriendList_GetGroupListSex( const FRIEND_LIST * flist , int no );
 void  FriendList_SetGroupListSex( FRIEND_LIST * flist , int no, u8 code );
 
-// ƒOƒ‹[ƒvƒ`ƒFƒbƒN
+// ã‚°ãƒ«ãƒ¼ãƒ—ãƒã‚§ãƒƒã‚¯
 int   FriendList_Check( FRIEND_LIST * list, u32 id, STRCODE *name);
 
 
 //--------------------------------------------------------------------------------
-// w’è‚ÌID‚Í’m‚è‡‚¢‚©‚ğŒŸõ‚·‚é(Œƒdj
+// æŒ‡å®šã®IDã¯çŸ¥ã‚Šåˆã„ã‹ã‚’æ¤œç´¢ã™ã‚‹(æ¿€é‡ï¼‰
 //
-// •Ô‚è’l‚Í0‚¾‚Æ’m‚è‡‚¢–³‚µ
-// DIRECT_FRIEND‚¾‚Æ©•ª‚Ì‚µ‚è‚ ‚¢
-// INDIRECT_FRIEND‚¾‚Æ—F’B‚Ì‚µ‚è‚ ‚¢iINDIRECT_FRIEND + —F’B‚Ì”z—ñ‚Ì“Y‚¦š‚ª•Ô‚éj
+// è¿”ã‚Šå€¤ã¯0ã ã¨çŸ¥ã‚Šåˆã„ç„¡ã—
+// DIRECT_FRIENDã ã¨è‡ªåˆ†ã®ã—ã‚Šã‚ã„
+// INDIRECT_FRIENDã ã¨å‹é”ã®ã—ã‚Šã‚ã„ï¼ˆINDIRECT_FRIEND + å‹é”ã®é…åˆ—ã®æ·»ãˆå­—ãŒè¿”ã‚‹ï¼‰
 //--------------------------------------------------------------------------------
 extern int FriendList_IdFullCheck( FRIEND_LIST *mylist, u32 id );
 
-// ‚µ‚è‚ ‚¢ƒOƒ‹[ƒvƒf[ƒ^‚ğˆêl•ª“n‚·‚Æ©•ª‚Ì‚µ‚è‚ ‚¢ƒOƒ‹[ƒv‚ğXV‚·‚é
+// ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€äººåˆ†æ¸¡ã™ã¨è‡ªåˆ†ã®ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ã‚’æ›´æ–°ã™ã‚‹
 extern void FriendList_Update( FRIEND_LIST *mylist, FRIEND_LIST *friends, int num, int heapID);
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^æ“¾‚Ì‚½‚ß‚ÌŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern FRIEND_LIST * SaveData_GetFriendList(SAVEDATA * sv);
 
 
-//	flistStatus“¯m‚ª“¯‚¶‚à‚Ì‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+//	flistStatusåŒå£«ãŒåŒã˜ã‚‚ã®ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 BOOL FriendList_Compare(const FRIEND_LIST * flist, const FRIEND_LIST * target);
 
 //----------------------------------------------------------
-//	ƒfƒoƒbƒO—pƒf[ƒ^¶¬‚Ì‚½‚ß‚ÌŠÖ”
+//	ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern void Debug_FriendList_Make(FRIEND_LIST * fliststatus, const STRCODE * name, int id);
 extern void Debug_FriendListAllPrint( FRIEND_LIST * flist );

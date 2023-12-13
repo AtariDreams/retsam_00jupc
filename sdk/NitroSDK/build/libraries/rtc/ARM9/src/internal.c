@@ -25,7 +25,7 @@
 
 
 /*---------------------------------------------------------------------------*
-	�����֐���`
+	内部関数定義
  *---------------------------------------------------------------------------*/
 static BOOL RtcSendPxiCommand(u32 command);
 
@@ -33,13 +33,13 @@ static BOOL RtcSendPxiCommand(u32 command);
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ResetAsync
 
-  Description:  RTC�̃��Z�b�g��񓯊��ōs���B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
+  Description:  RTCのリセットを非同期で行う。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ResetAsync(void)
 {
@@ -49,14 +49,14 @@ BOOL RTCi_ResetAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_SetHourFormatAsync
 
-  Description:  �����t�H�[�}�b�g��񓯊��ŕύX����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���status1�ň�����ݒ肷��B
+  Description:  時刻フォーマットを非同期で変更する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるstatus1で引数を設定する。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_SetHourFormatAsync(void)
 {
@@ -66,14 +66,14 @@ BOOL RTCi_SetHourFormatAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ReadRawDateTimeAsync
 
-  Description:  �����H�̓��t�E�����f�[�^��񓯊��Ŏ擾����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                �f�[�^��OS_GetSystemWork()->real_time_clock�Ɋi�[�����B
+  Description:  未加工の日付・時刻データを非同期で取得する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                データはOS_GetSystemWork()->real_time_clockに格納される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ReadRawDateTimeAsync(void)
 {
@@ -83,14 +83,14 @@ BOOL RTCi_ReadRawDateTimeAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_WriteRawDateTimeAsync
 
-  Description:  �����H�̓��t�E�����f�[�^��񓯊��Ńf�o�C�X�ɏ������ށB
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���f�[�^���������܂��B
+  Description:  未加工の日付・時刻データを非同期でデバイスに書き込む。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるデータが書き込まれる。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_WriteRawDateTimeAsync(void)
 {
@@ -100,14 +100,14 @@ BOOL RTCi_WriteRawDateTimeAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ReadRawDateAsync
 
-  Description:  �����H�̓��t�f�[�^��񓯊��Ŏ擾����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                �f�[�^��OS_GetSystemWork()->real_time_clock�Ɋi�[�����B
+  Description:  未加工の日付データを非同期で取得する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                データはOS_GetSystemWork()->real_time_clockに格納される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ReadRawDateAsync(void)
 {
@@ -117,14 +117,14 @@ BOOL RTCi_ReadRawDateAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_WriteRawDateAsync
 
-  Description:  �����H�̓��t�f�[�^��񓯊��Ńf�o�C�X�ɏ������ށB
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���f�[�^���������܂��B
+  Description:  未加工の日付データを非同期でデバイスに書き込む。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるデータが書き込まれる。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_WriteRawDateAsync(void)
 {
@@ -134,14 +134,14 @@ BOOL RTCi_WriteRawDateAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ReadRawTimeAsync
 
-  Description:  �����H�̎����f�[�^��񓯊��Ŏ擾����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                �f�[�^��OS_GetSystemWork()->real_time_clock�Ɋi�[�����B
+  Description:  未加工の時刻データを非同期で取得する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                データはOS_GetSystemWork()->real_time_clockに格納される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ReadRawTimeAsync(void)
 {
@@ -151,14 +151,14 @@ BOOL RTCi_ReadRawTimeAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_WriteRawTimeAsync
 
-  Description:  �����H�̎����f�[�^��񓯊��Ńf�o�C�X�ɏ������ށB
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���f�[�^���������܂��B
+  Description:  未加工の時刻データを非同期でデバイスに書き込む。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるデータが書き込まれる。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_WriteRawTimeAsync(void)
 {
@@ -168,14 +168,14 @@ BOOL RTCi_WriteRawTimeAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ReadRawPulseAsync
 
-  Description:  �����H�̎��g����튄���ݐݒ�l��񓯊��Ŏ擾����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                �f�[�^��OS_GetSystemWork()->real_time_clock�Ɋi�[�����B
+  Description:  未加工の周波数定常割込み設定値を非同期で取得する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                データはOS_GetSystemWork()->real_time_clockに格納される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ReadRawPulseAsync(void)
 {
@@ -185,14 +185,14 @@ BOOL RTCi_ReadRawPulseAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_WriteRawPulseAsync
 
-  Description:  �����H�̎��g����튄���ݐݒ�l��񓯊��Ńf�o�C�X�ɏ������ށB
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���f�[�^���������܂��B
+  Description:  未加工の周波数定常割込み設定値を非同期でデバイスに書き込む。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるデータが書き込まれる。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_WriteRawPulseAsync(void)
 {
@@ -202,14 +202,14 @@ BOOL RTCi_WriteRawPulseAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ReadRawAlarm1Async
 
-  Description:  �����H�̃A���[���P�����ݐݒ�l��񓯊��Ŏ擾����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                �f�[�^��OS_GetSystemWork()->real_time_clock�Ɋi�[�����B
+  Description:  未加工のアラーム１割込み設定値を非同期で取得する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                データはOS_GetSystemWork()->real_time_clockに格納される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ReadRawAlarm1Async(void)
 {
@@ -219,14 +219,14 @@ BOOL RTCi_ReadRawAlarm1Async(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_WriteRawAlarm1Async
 
-  Description:  �����H�̃A���[���P�����ݐݒ�l��񓯊��Ńf�o�C�X�ɏ������ށB
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���f�[�^���������܂��B
+  Description:  未加工のアラーム１割込み設定値を非同期でデバイスに書き込む。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるデータが書き込まれる。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_WriteRawAlarm1Async(void)
 {
@@ -236,14 +236,14 @@ BOOL RTCi_WriteRawAlarm1Async(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ReadRawAlarm2Async
 
-  Description:  �����H�̃A���[���Q�����ݐݒ�l��񓯊��Ŏ擾����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                �f�[�^��OS_GetSystemWork()->real_time_clock�Ɋi�[�����B
+  Description:  未加工のアラーム２割込み設定値を非同期で取得する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                データはOS_GetSystemWork()->real_time_clockに格納される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ReadRawAlarm2Async(void)
 {
@@ -253,14 +253,14 @@ BOOL RTCi_ReadRawAlarm2Async(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_WriteRawAlarm2Async
 
-  Description:  �����H�̃A���[���Q�����ݐݒ�l��񓯊��Ńf�o�C�X�ɏ������ށB
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���f�[�^���������܂��B
+  Description:  未加工のアラーム２割込み設定値を非同期でデバイスに書き込む。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるデータが書き込まれる。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_WriteRawAlarm2Async(void)
 {
@@ -270,14 +270,14 @@ BOOL RTCi_WriteRawAlarm2Async(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ReadRawStatus1Async
 
-  Description:  �����H�̃X�e�[�^�X�P���W�X�^�ݒ�l��񓯊��Ŏ擾����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                �f�[�^��OS_GetSystemWork()->real_time_clock�Ɋi�[�����B
+  Description:  未加工のステータス１レジスタ設定値を非同期で取得する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                データはOS_GetSystemWork()->real_time_clockに格納される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ReadRawStatus1Async(void)
 {
@@ -287,14 +287,14 @@ BOOL RTCi_ReadRawStatus1Async(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_WriteRawStatus1Async
 
-  Description:  �����H�̃X�e�[�^�X�P���W�X�^�ݒ�l��񓯊��Ńf�o�C�X�ɏ������ށB
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���f�[�^���������܂��B
+  Description:  未加工のステータス１レジスタ設定値を非同期でデバイスに書き込む。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるデータが書き込まれる。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_WriteRawStatus1Async(void)
 {
@@ -304,14 +304,14 @@ BOOL RTCi_WriteRawStatus1Async(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ReadRawStatus2Async
 
-  Description:  �����H�̃X�e�[�^�X�Q���W�X�^�ݒ�l��񓯊��Ŏ擾����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                �f�[�^��OS_GetSystemWork()->real_time_clock�Ɋi�[�����B
+  Description:  未加工のステータス２レジスタ設定値を非同期で取得する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                データはOS_GetSystemWork()->real_time_clockに格納される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ReadRawStatus2Async(void)
 {
@@ -321,14 +321,14 @@ BOOL RTCi_ReadRawStatus2Async(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_WriteRawStatus2Async
 
-  Description:  �����H�̃X�e�[�^�X�Q���W�X�^�ݒ�l��񓯊��Ńf�o�C�X�ɏ������ށB
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���f�[�^���������܂��B
+  Description:  未加工のステータス２レジスタ設定値を非同期でデバイスに書き込む。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるデータが書き込まれる。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_WriteRawStatus2Async(void)
 {
@@ -338,14 +338,14 @@ BOOL RTCi_WriteRawStatus2Async(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ReadRawAdjustAsync
 
-  Description:  �����H�̃N���b�N�����p���W�X�^�ݒ�l��񓯊��Ŏ擾����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                �f�[�^��OS_GetSystemWork()->real_time_clock�Ɋi�[�����B
+  Description:  未加工のクロック調整用レジスタ設定値を非同期で取得する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                データはOS_GetSystemWork()->real_time_clockに格納される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ReadRawAdjustAsync(void)
 {
@@ -355,14 +355,14 @@ BOOL RTCi_ReadRawAdjustAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_WriteRawAdjustAsync
 
-  Description:  �����H�̃N���b�N�����p���W�X�^�ݒ�l��񓯊��Ńf�o�C�X�ɏ������ށB
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���f�[�^���������܂��B
+  Description:  未加工のクロック調整用レジスタ設定値を非同期でデバイスに書き込む。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるデータが書き込まれる。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_WriteRawAdjustAsync(void)
 {
@@ -372,14 +372,14 @@ BOOL RTCi_WriteRawAdjustAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_ReadRawFreeAsync
 
-  Description:  �����H�̃t���[���W�X�^�ݒ�l��񓯊��Ŏ擾����B
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                �f�[�^��OS_GetSystemWork()->real_time_clock�Ɋi�[�����B
+  Description:  未加工のフリーレジスタ設定値を非同期で取得する。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                データはOS_GetSystemWork()->real_time_clockに格納される。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_ReadRawFreeAsync(void)
 {
@@ -389,14 +389,14 @@ BOOL RTCi_ReadRawFreeAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RTCi_WriteRawFreeAsync
 
-  Description:  �����H�̃t���[���W�X�^�ݒ�l��񓯊��Ńf�o�C�X�ɏ������ށB
-                ARM7����̉�����PXI�R�[���o�b�N(tag:RTC)�ɂĒʒm�����B
-                OS_GetSystemWork()->real_time_clock�ɂ���f�[�^���������܂��B
+  Description:  未加工のフリーレジスタ設定値を非同期でデバイスに書き込む。
+                ARM7からの応答はPXIコールバック(tag:RTC)にて通知される。
+                OS_GetSystemWork()->real_time_clockにあるデータが書き込まれる。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL RTCi_WriteRawFreeAsync(void)
 {
@@ -406,12 +406,12 @@ BOOL RTCi_WriteRawFreeAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         RtcSendPxiCommand
 
-  Description:  �w��R�}���h��PXI�o�R��ARM7�ɑ��M����B
+  Description:  指定コマンドをPXI経由でARM7に送信する。
 
   Arguments:    None.
 
-  Returns:      BOOL     - PXI�ɑ΂��đ��M�����������ꍇTRUE���A
-                           PXI�ɂ�鑗�M�Ɏ��s�����ꍇFALSE��Ԃ��B
+  Returns:      BOOL     - PXIに対して送信が完了した場合TRUEを、
+                           PXIによる送信に失敗した場合FALSEを返す。
  *---------------------------------------------------------------------------*/
 static BOOL RtcSendPxiCommand(u32 command)
 {

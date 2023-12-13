@@ -15,7 +15,7 @@
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	�e���r�ԑg�f�[�^�ւ̕s���S�^��`
+ * @brief	テレビ番組データへの不完全型定義
  */
 //----------------------------------------------------------
 typedef struct TV_WORK TV_WORK;
@@ -29,23 +29,23 @@ typedef OTHER_TOPIC SEND_TOPIC;
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	�e���r�g�s�b�N�̎��(�o���G�e�B�^�g�s�b�N�𑝂₵����)
+ * @brief	テレビトピックの種類(バラエティ型トピックを増やした★)
  */
 //----------------------------------------------------------
 typedef enum {
 	TVTOPICTYPE_NOTHING = 0,
-	TVTOPICTYPE_INTERVIEW,		///<����^�g�s�b�N
-	TVTOPICTYPE_WATCH,			///<�Ď��^�g�s�b�N
-	TVTOPICTYPE_RECORD,			///<�M�l�X�^�g�s�b�N
-	TVTOPICTYPE_EVENT,			///<�C�x���g�^�g�s�b�N
-	TVTOPICTYPE_VARIETY,		///<�o���G�e�B�^�g�s�b�N��
+	TVTOPICTYPE_INTERVIEW,		///<質問型トピック
+	TVTOPICTYPE_WATCH,			///<監視型トピック
+	TVTOPICTYPE_RECORD,			///<ギネス型トピック
+	TVTOPICTYPE_EVENT,			///<イベント型トピック
+	TVTOPICTYPE_VARIETY,		///<バラエティ型トピック★
 
 	TVTOPICTYPE_MAX,
 }TVTOPICTYPE;
 
 //----------------------------------------------------------
 /**
- * @brief	�ėp�g�s�b�N���e�ێ����[�N�̃T�C�Y
+ * @brief	汎用トピック内容保持ワークのサイズ
  */
 //----------------------------------------------------------
 enum {
@@ -54,7 +54,7 @@ enum {
 
 //----------------------------------------------------------
 /**
- * @brief	�R���e�X�g�p�󋵕ێ����[�N��`
+ * @brief	コンテスト用状況保持ワーク定義
  */
 //----------------------------------------------------------
 typedef struct TOPICTEMP_CONTEST{
@@ -70,17 +70,17 @@ typedef struct TOPICTEMP_CONTEST{
 
 //----------------------------------------------------------
 /**
- * @brief	�A����������ł̏E������
+ * @brief	連れ歩き公園での拾い物状況
  */
 //----------------------------------------------------------
 enum {
-	PARKPICK_ID_NOTHING = 0,	///<�E���Ă��Ȃ�
-	PARKPICK_ID_ITEM,			///<�A�C�e���E����
-	PARKPICK_ID_ACCESSORIES,	///<�A�N�Z�T���E����
+	PARKPICK_ID_NOTHING = 0,	///<拾っていない
+	PARKPICK_ID_ITEM,			///<アイテム拾った
+	PARKPICK_ID_ACCESSORIES,	///<アクセサリ拾った
 };
 //----------------------------------------------------------
 /**
- * @brief	���R�����p�󋵕ێ����[�N��`
+ * @brief	自然公園用状況保持ワーク定義
  */
 //----------------------------------------------------------
 typedef struct TOPICTEMP_PARK {
@@ -91,36 +91,36 @@ typedef struct TOPICTEMP_PARK {
 	u8 mons_rom;
 	u8 nickname_flag;
 	STRCODE nickname[MONS_NAME_SIZE + EOM_SIZE];
-	u8 poke_character;			///<�|�P�����̐��i
-	u8 pick_type;				///<�Ō�ɏE�������̂̎��
-	u8 accessories;				///<�E�����A�N�Z�T��
-	u16 item_no;				///<�E�����A�C�e��
+	u8 poke_character;			///<ポケモンの性格
+	u8 pick_type;				///<最後に拾ったものの種類
+	u8 accessories;				///<拾ったアクセサリ
+	u16 item_no;				///<拾ったアイテム
 }TOPICTEMP_PARK;
 
 //----------------------------------------------------------
 /**
- * @brief	�|���g�~�j�Q�[���p�󋵕ێ����[�N��`
+ * @brief	ポルトミニゲーム用状況保持ワーク定義
  */
 //----------------------------------------------------------
 typedef struct TOPICTEMP_PORUTO {
-	u8 exist_flag;		///<�f�[�^���݃`�F�b�N
-	u8 taste_type;		///<�|���g�̎�ށi���j
+	u8 exist_flag;		///<データ存在チェック
+	u8 taste_type;		///<ポルトの種類（味）
 }TOPICTEMP_PORUTO;
 
 //----------------------------------------------------------
 /**
- * @brief	�o�g���^���[�p�󋵕ێ����[�N��`
+ * @brief	バトルタワー用状況保持ワーク定義
  */
 //----------------------------------------------------------
 typedef struct TOPICTEMP_BTOWER {
-	u8 exist_flag;		///<�f�[�^���݃`�F�b�N
-	u8 continue_flag;	///<�A�������ǂ����̃`�F�b�N
-	u16 win_count;		///<���̎��_�ł̘A����
+	u8 exist_flag;		///<データ存在チェック
+	u8 continue_flag;	///<連勝中かどうかのチェック
+	u16 win_count;		///<その時点での連勝数
 } TOPICTEMP_BTOWER;
 
 //----------------------------------------------------------
 /**
- * @brief	�T�t�@���p�󋵕ێ����[�N��`
+ * @brief	サファリ用状況保持ワーク定義
  */
 //----------------------------------------------------------
 typedef struct TOPICTEMP_SAFARI {
@@ -134,12 +134,12 @@ typedef struct TOPICTEMP_SAFARI {
 
 //----------------------------------------------------------
 /**
- * @brief	�o�g���X�e�[�W�p�󋵕ێ����[�N��`��
+ * @brief	バトルステージ用状況保持ワーク定義★
  */
 //----------------------------------------------------------
 typedef struct TOPICTEMP_STAGE {
-	u8 exist_flag;		///<�f�[�^���݃`�F�b�N
-	u16 monsno;			//���킵���|�P����
+	u8 exist_flag;		///<データ存在チェック
+	u16 monsno;			//挑戦したポケモン
 	u8 mons_sex;
 	u8 mons_region;
 	u8 mons_rom;
@@ -149,53 +149,53 @@ typedef struct TOPICTEMP_STAGE {
 
 //----------------------------------------------------------
 /**
- * @brief	�t�����e�B�A�Œ��ǂ��p�󋵕ێ����[�N��`��
+ * @brief	フロンティアで仲良し用状況保持ワーク定義★
  */
 //----------------------------------------------------------
 typedef struct TOPICTEMP_FRIEND {
-	u8 exist_flag;		///<�f�[�^���݃`�F�b�N
-	u8 bf_no;											//�V�񂾎{��
+	u8 exist_flag;		///<データ存在チェック
+	u8 bf_no;											//遊んだ施設
 	u8 friend_sex;
 	u8 region;
 	u8 rom;
-	STRCODE friend_name[PERSON_NAME_SIZE + EOM_SIZE];	//�F�B�̖��O
+	STRCODE friend_name[PERSON_NAME_SIZE + EOM_SIZE];	//友達の名前
 }TOPICTEMP_FRIEND;
 
 //----------------------------------------------------------
 /**
- * @brief	�o�g���|�C���g���l�p�󋵕ێ����[�N��`��
+ * @brief	バトルポイント名人用状況保持ワーク定義★
  */
 //----------------------------------------------------------
 typedef struct TOPICTEMP_BP {
-	u8 exist_flag;		///<�f�[�^���݃`�F�b�N
-	u32 bp_num;											//����ɉ҂����o�g���|�C���g
+	u8 exist_flag;		///<データ存在チェック
+	u32 bp_num;											//一日に稼いだバトルポイント
 }TOPICTEMP_BP;
 
 //----------------------------------------------------------
 /**
- * @brief	GTS���l�p�󋵕ێ����[�N��`��
+ * @brief	GTS名人用状況保持ワーク定義★
  */
 //----------------------------------------------------------
 typedef struct TOPICTEMP_GTS {
-	u8 exist_flag;		///<�f�[�^���݃`�F�b�N
-	u16 trade_num;										//����������
+	u8 exist_flag;		///<データ存在チェック
+	u16 trade_num;										//交換した回数
 }TOPICTEMP_GTS;
 
 
 //============================================================================================
 //
-//			�֐��O���Q�Ɛ錾
+//			関数外部参照宣言
 //
 //============================================================================================
 //----------------------------------------------------------
-//	�Z�[�u�f�[�^�֘A����
+//	セーブデータ関連処理
 //----------------------------------------------------------
 extern int TVWORK_GetWorkSize(void);
 extern void TVWORK_Init(TV_WORK * tv);
 extern TV_WORK * SaveData_GetTvWork(SAVEDATA * sv);
 
 //----------------------------------------------------------
-//	���Ԃɂ��ԑg�X�V����
+//	時間による番組更新処理
 //----------------------------------------------------------
 extern void TVWORK_UpdateMinuteCount(TV_WORK * tvwk, int min_diff, int now_minute);
 
@@ -203,12 +203,12 @@ extern MY_TOPIC * TVWORK_GetMyTopicByIndex(TV_WORK * tvwk, TVTOPICTYPE topic_typ
 extern OTHER_TOPIC * TVWORK_GetOtherTopicByIndex(TV_WORK * tvwk, TVTOPICTYPE topic_type, int index);
 
 //----------------------------------------------------------
-//�g�s�b�N�̒ǉ�����
+//トピックの追加処理
 //----------------------------------------------------------
 extern BOOL TVWORK_MakeTopic(TV_WORK * tvwk, TVTOPICTYPE topic_type, int topic_id, const u8 * data);
 
 //----------------------------------------------------------
-//	�ԑg���e����֘A
+//	番組内容制御関連
 //----------------------------------------------------------
 extern int TVWORK_SearchTopics(const TV_WORK * tvwk, TVTOPICTYPE topic_type,
 		int topic_id, BOOL mine, BOOL see, u8 * array);
@@ -222,13 +222,13 @@ extern void TVWORK_StartProgram(TV_WORK * tvwk);
 extern int TVWORK_GetUsedTopicNumber(const TV_WORK * tvwk);
 
 //----------------------------------------------------------
-//	�g�s�b�N�̃N���A
+//	トピックのクリア
 //----------------------------------------------------------
 extern void TVWORK_ClearMyTopic(TV_WORK * tvwk);
 extern void TVWORK_ClearOtherTopic(TV_WORK * tvwk);
 
 //----------------------------------------------------------
-//	OTHER_TOPIC����̎擾����
+//	OTHER_TOPICからの取得処理
 //----------------------------------------------------------
 extern const STRCODE * OTHERTOPIC_GetName(const OTHER_TOPIC * ot);
 extern int OTHERTOPIC_GetSex(const OTHER_TOPIC * ot);
@@ -239,12 +239,12 @@ extern u32 OTHERTOPIC_GetOwnerID(const OTHER_TOPIC * ot);
 extern TVTOPIC * OTHERTOPIC_GetTopicData(OTHER_TOPIC * ot);
 
 //----------------------------------------------------------
-//	MY_TOPIC����̎擾����
+//	MY_TOPICからの取得処理
 //----------------------------------------------------------
 extern TVTOPIC * MYTOPIC_GetTopic(MY_TOPIC * mt);
 
 //----------------------------------------------------------
-//	TVTOPIC�֘A
+//	TVTOPIC関連
 //----------------------------------------------------------
 extern void TVTOPIC_CountUpBroadcast(TVTOPIC * topic);
 extern void * TVTOPIC_GetData(TVTOPIC * topic);
@@ -257,7 +257,7 @@ extern BOOL TVWORK_IsMineIndex(int index);
 extern int TVWORK_MakeOtherIndex(int index);
 
 //----------------------------------------------------------
-//	�󋵕ێ����[�N�̎擾
+//	状況保持ワークの取得
 //----------------------------------------------------------
 extern TOPICTEMP_CONTEST * TVWORK_GetContestTemp(TV_WORK * tvwk);
 extern TOPICTEMP_PARK * TVWORK_GetParkTemp(TV_WORK * tvwk);
@@ -271,9 +271,9 @@ extern TOPICTEMP_GTS * TVWORK_GetGTSTemp(TV_WORK * tvwk);
 
 
 //----------------------------------------------------------
-//	���R�[�h�֘A
+//	レコード関連
 //
-//	���풓�̈�ɔz�u����Ă��Ȃ����߁A���R�[�h���炵���ĂԂ��Ƃ͂ł��Ȃ�
+//	※常駐領域に配置されていないため、レコードからしか呼ぶことはできない
 //----------------------------------------------------------
 extern u32 TVWORK_GetSendQandADataSize(const SAVEDATA * sv);
 extern u32 TVWORK_GetSendWatchDataSize(const SAVEDATA * sv);
@@ -291,7 +291,7 @@ extern void TVWORK_MixRecordData(TV_WORK * tv, int member, int my_id, const void
 extern void TVWORK_MixQandAData(TV_WORK * tv, int member, int my_id, const void ** darray, const void ** dp_darray);
 
 //----------------------------------------------------------
-//		�f�o�b�O�p
+//		デバッグ用
 //----------------------------------------------------------
 #ifdef	PM_DEBUG
 extern void TVWORK_DEBUG_Info(const TV_WORK * tvwk);

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	status_rcv.c
- * @brief	ƒAƒCƒeƒ€g—p‚Ìƒ|ƒPƒ‚ƒ“‰ñ•œˆ—
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨æ™‚ã®ãƒã‚±ãƒ¢ãƒ³å›å¾©å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	05.12.01
  */
@@ -19,21 +19,21 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	TEMP_BUFLEN		( 8 )		// ŒvZ—pƒ[ƒN”
+#define	TEMP_BUFLEN		( 8 )		// è¨ˆç®—ç”¨ãƒ¯ãƒ¼ã‚¯æ•°
 
-#define RCV_25PER		( 253 )		// 25%‰ñ•œ
-#define RCV_HALF		( 254 )		// ”¼‰ñ•œ
-#define RCV_ALL			( 255 )		// ‘S‰ñ•œ
+#define RCV_25PER		( 253 )		// 25%å›å¾©
+#define RCV_HALF		( 254 )		// åŠå›å¾©
+#define RCV_ALL			( 255 )		// å…¨å›å¾©
 
-#define PP_RCV_ALL		( 127 )		// PP‘S‰ñ•œ
+#define PP_RCV_ALL		( 127 )		// PPå…¨å›å¾©
 
-#define	PRMEXP_MAX		( 510 )		// “w—Í’l‚Ì‡Œv‚ÌÅ‘å’l
-#define	ITEM_PRMEXP_MAX	( 100 )		// “¹‹ï‚ÅƒAƒbƒv‚·‚é“w—Í’l‚ÌÅ‘å’l
+#define	PRMEXP_MAX		( 510 )		// åŠªåŠ›å€¤ã®åˆè¨ˆã®æœ€å¤§å€¤
+#define	ITEM_PRMEXP_MAX	( 100 )		// é“å…·ã§ã‚¢ãƒƒãƒ—ã™ã‚‹åŠªåŠ›å€¤ã®æœ€å¤§å€¤
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static u8 PP_RcvCheck( POKEMON_PARAM * pp, u32 pos );
 static u8 PP_Recover( POKEMON_PARAM * pp, u32 pos, u32 rcv );
@@ -46,15 +46,15 @@ static u8 Friend_UpCheck( POKEMON_PARAM * pp, ITEMDATA * dat );
 
 //--------------------------------------------------------------------------------------------
 /**
- * “¹‹ïg—pƒ`ƒFƒbƒNˆ— ( POKEMON_PARAM )
+ * é“å…·ä½¿ç”¨ãƒã‚§ãƒƒã‚¯å‡¦ç† ( POKEMON_PARAM )
  *
- * @param	pp			‰ñ•œ‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param	item		g—p‚·‚éƒAƒCƒeƒ€
- * @param	pos			‰ñ•œˆÊ’ui‹ZˆÊ’u‚È‚Çj
- * @param	heap_id		ƒq[ƒvID
+ * @param	pp			å›å¾©ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param	item		ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ 
+ * @param	pos			å›å¾©ä½ç½®ï¼ˆæŠ€ä½ç½®ãªã©ï¼‰
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"TRUE = g—p‰Â”\"
- * @retval	"FALSE = g—p•s‰Â"
+ * @retval	"TRUE = ä½¿ç”¨å¯èƒ½"
+ * @retval	"FALSE = ä½¿ç”¨ä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
@@ -64,7 +64,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 
 	dat = GetItemArcData( item, ITEM_GET_DATA, heap_id );
 
-	// ƒ[ƒNƒ^ƒCƒv‚ğƒ`ƒFƒbƒN
+	// ãƒ¯ãƒ¼ã‚¯ã‚¿ã‚¤ãƒ—ã‚’ãƒã‚§ãƒƒã‚¯
 	if( ItemBufParamGet( dat, ITEM_PRM_W_TYPE ) != 1 ){
 		sys_FreeMemoryEz( dat );
 		return FALSE;
@@ -72,35 +72,35 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 
 	tmp[0] = PokeParaGet( pp, ID_PARA_condition, NULL );
 
-	// –°‚è‰ñ•œ
+	// çœ ã‚Šå›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_SLEEP_RCV ) != 0 ){
 		if( ( tmp[0] & CONDITION_NEMURI ) != 0 ){
 			sys_FreeMemoryEz( dat );
 			return TRUE;
 		}
 	}
-	// “Å‰ñ•œ
+	// æ¯’å›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_POISON_RCV ) != 0 ){
 		if( ( tmp[0] & (CONDITION_DOKU|CONDITION_DOKUDOKU) ) != 0 ){
 			sys_FreeMemoryEz( dat );
 			return TRUE;
 		}
 	}
-	// ‰Î‰ñ•œ
+	// ç«å‚·å›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_BURN_RCV ) != 0 ){
 		if( ( tmp[0] & CONDITION_YAKEDO ) != 0 ){
 			sys_FreeMemoryEz( dat );
 			return TRUE;
 		}
 	}
-	// •X‰ñ•œ
+	// æ°·å›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_ICE_RCV ) != 0 ){
 		if( ( tmp[0] & CONDITION_KOORI ) != 0 ){
 			sys_FreeMemoryEz( dat );
 			return TRUE;
 		}
 	}
-	// –ƒáƒ‰ñ•œ
+	// éº»ç—ºå›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_PARALYZE_RCV ) != 0 ){
 		if( ( tmp[0] & CONDITION_MAHI ) != 0 ){
 			sys_FreeMemoryEz( dat );
@@ -110,7 +110,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 
 	tmp[0] = PokeParaGet( pp, ID_PARA_hp, NULL );
 
-	// •m€‰ñ•œ or ‘Sˆõ•m€‰ñ•œ
+	// ç€•æ­»å›å¾© or å…¨å“¡ç€•æ­»å›å¾©
 	if( ( ItemBufParamGet( dat, ITEM_PRM_DEATH_RCV ) != 0 ||
 		  ItemBufParamGet( dat, ITEM_PRM_ALL_DEATH_RCV ) != 0 )
 		 && ItemBufParamGet( dat, ITEM_PRM_LV_UP ) == 0 ){
@@ -119,7 +119,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 			sys_FreeMemoryEz( dat );
 			return TRUE;
 		}
-	// HP‰ñ•œ
+	// HPå›å¾©
 	}else if( ItemBufParamGet( dat, ITEM_PRM_HP_RCV ) != 0 ){
 		if( tmp[0] != 0 && tmp[0] < PokeParaGet( pp, ID_PARA_hpmax, NULL ) ){
 			sys_FreeMemoryEz( dat );
@@ -127,7 +127,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 		}
 	}
 
-	// ƒŒƒxƒ‹ƒAƒbƒv
+	// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_LV_UP ) != 0 ){
 		if( PokeParaGet( pp, ID_PARA_level, NULL ) < 100 ){
 			sys_FreeMemoryEz( dat );
@@ -135,7 +135,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 		}
 	}
 
-	// i‰»
+	// é€²åŒ–
 	if( ItemBufParamGet( dat, ITEM_PRM_EVOLUTION ) != 0 ){
 		if( PokeShinkaCheck( NULL, pp, ITEM_SHINKA_CHECK, item ,NULL) != 0 ){
 			sys_FreeMemoryEz( dat );
@@ -143,7 +143,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 		}
 	}
 
-	// PPƒAƒbƒv or PPƒAƒbƒvi‚R’iŠKj
+	// PPã‚¢ãƒƒãƒ— or PPã‚¢ãƒƒãƒ—ï¼ˆï¼“æ®µéšï¼‰
 	if( ItemBufParamGet( dat, ITEM_PRM_PP_UP ) != 0 ||
 		ItemBufParamGet( dat, ITEM_PRM_PP_3UP ) != 0 ){
 
@@ -154,14 +154,14 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 		}
 	}
 
-	// PP‰ñ•œ
+	// PPå›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_PP_RCV ) != 0 ){
 		if( PP_RcvCheck( pp, pos ) == TRUE ){
 			sys_FreeMemoryEz( dat );
 			return TRUE;
 		}
 	}
-	// PP‰ñ•œi‘S‚Ä‚Ì‹Zj
+	// PPå›å¾©ï¼ˆå…¨ã¦ã®æŠ€ï¼‰
 	if( ItemBufParamGet( dat, ITEM_PRM_ALL_PP_RCV ) != 0 ){
 		for( tmp[0]=0; tmp[0]<4; tmp[0]++ ){
 			if( PP_RcvCheck( pp, tmp[0] ) == TRUE ){
@@ -178,7 +178,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 	tmp[4] = PokeParaGet( pp, ID_PARA_spepow_exp, NULL );
 	tmp[5] = PokeParaGet( pp, ID_PARA_spedef_exp, NULL );
 
-	// HP“w—Í’lƒAƒbƒv
+	// HPåŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( PokeParaGet( pp, ID_PARA_monsno, NULL ) != MONSNO_NUKENIN ){
 		if( ItemBufParamGet( dat, ITEM_PRM_HP_EXP ) != 0 ){
 			tmp[6] = ItemBufParamGet( dat, ITEM_PRM_HP_EXP_POINT );
@@ -201,7 +201,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 			}
 		}
 	}
-	// UŒ‚“w—Í’lƒAƒbƒv
+	// æ”»æ’ƒåŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_POWER_EXP ) != 0 ){
 		tmp[6] = ItemBufParamGet( dat, ITEM_PRM_POWER_EXP_POINT );
 		if( tmp[6] > 0 ){
@@ -221,7 +221,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 			}
 		}
 	}
-	// –hŒä“w—Í’lƒAƒbƒv
+	// é˜²å¾¡åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_DEFENCE_EXP ) != 0 ){
 		tmp[6] = ItemBufParamGet( dat, ITEM_PRM_DEFENCE_EXP_POINT );
 		if( tmp[6] > 0 ){
@@ -241,7 +241,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 			}
 		}
 	}
-	// ‘f‘‚³“w—Í’lƒAƒbƒv
+	// ç´ æ—©ã•åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_AGILITY_EXP ) != 0 ){
 		tmp[6] = ItemBufParamGet( dat, ITEM_PRM_AGILITY_EXP_POINT );
 		if( tmp[6] > 0 ){
@@ -261,7 +261,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 			}
 		}
 	}
-	// “ÁU“w—Í’lƒAƒbƒv
+	// ç‰¹æ”»åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_SP_ATTACK_EXP ) != 0 ){
 		tmp[6] = ItemBufParamGet( dat, ITEM_PRM_SP_ATTACK_EXP_POINT );
 		if( tmp[6] > 0 ){
@@ -281,7 +281,7 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 			}
 		}
 	}
-	// “Á–h“w—Í’lƒAƒbƒv
+	// ç‰¹é˜²åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_SP_DEFENCE_EXP ) != 0 ){
 		tmp[6] = ItemBufParamGet( dat, ITEM_PRM_SP_DEFENCE_EXP_POINT );
 		if( tmp[6] > 0 ){
@@ -309,16 +309,16 @@ u8 StatusRecoverCheck( POKEMON_PARAM * pp, u16 item, u16 pos, u32 heap_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “¹‹ïg—pƒ`ƒFƒbƒNˆ— ( POKEPARTY )
+ * é“å…·ä½¿ç”¨ãƒã‚§ãƒƒã‚¯å‡¦ç† ( POKEPARTY )
  *
- * @param	party		‰ñ•œ‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param	item		g—p‚·‚éƒAƒCƒeƒ€
- * @param	pos1		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ì’†‚ÌˆÊ’u
- * @param	pos2		‰ñ•œˆÊ’ui‹ZˆÊ’u‚È‚Çj
- * @param	heap_id		ƒq[ƒvID
+ * @param	party		å›å¾©ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param	item		ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ 
+ * @param	pos1		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ä¸­ã®ä½ç½®
+ * @param	pos2		å›å¾©ä½ç½®ï¼ˆæŠ€ä½ç½®ãªã©ï¼‰
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"TRUE = g—p‰Â”\"
- * @retval	"FALSE = g—p•s‰Â"
+ * @retval	"TRUE = ä½¿ç”¨å¯èƒ½"
+ * @retval	"FALSE = ä½¿ç”¨ä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 u8 PokeParty_StatusRecoverCheck( POKEPARTY * party, u16 item, u8 pos1, u8 pos2, u32 heap_id )
@@ -331,16 +331,16 @@ u8 PokeParty_StatusRecoverCheck( POKEPARTY * party, u16 item, u8 pos1, u8 pos2, 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ•œˆ— ( POKEMON_PARAM )
+ * å›å¾©å‡¦ç† ( POKEMON_PARAM )
  *
- * @param	pp			‰ñ•œ‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param	item		g—p‚·‚éƒAƒCƒeƒ€
- * @param	pos			‰ñ•œˆÊ’ui‹ZˆÊ’u‚È‚Çj
- * @param	place		êŠ
- * @param	heap_id		ƒq[ƒvID
+ * @param	pp			å›å¾©ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param	item		ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ 
+ * @param	pos			å›å¾©ä½ç½®ï¼ˆæŠ€ä½ç½®ãªã©ï¼‰
+ * @param	place		å ´æ‰€
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"TRUE = g—p‰Â”\"
- * @retval	"FALSE = g—p•s‰Â"
+ * @retval	"TRUE = ä½¿ç”¨å¯èƒ½"
+ * @retval	"FALSE = ä½¿ç”¨ä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id )
@@ -352,7 +352,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 
 	dat = GetItemArcData( item, ITEM_GET_DATA, heap_id );
 
-	// ƒ[ƒNƒ^ƒCƒv‚ğƒ`ƒFƒbƒN
+	// ãƒ¯ãƒ¼ã‚¯ã‚¿ã‚¤ãƒ—ã‚’ãƒã‚§ãƒƒã‚¯
 	if( ItemBufParamGet( dat, ITEM_PRM_W_TYPE ) != 1 ){
 		sys_FreeMemoryEz( dat );
 		return FALSE;
@@ -364,27 +364,27 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 	tmp[0] = PokeParaGet( pp, ID_PARA_condition, NULL );
 	tmp[1] = tmp[0];
 
-	// –°‚è‰ñ•œ
+	// çœ ã‚Šå›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_SLEEP_RCV ) != 0 ){
 		tmp[1] &= CONDITION_NEMURI_OFF;
 		dat_flg = TRUE;
 	}
-	// “Å‰ñ•œ
+	// æ¯’å›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_POISON_RCV ) != 0 ){
 		tmp[1] &= CONDITION_POISON_OFF;
 		dat_flg = TRUE;
 	}
-	// ‰Î‰ñ•œ
+	// ç«å‚·å›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_BURN_RCV ) != 0 ){
 		tmp[1] &= CONDITION_YAKEDO_OFF;
 		dat_flg = TRUE;
 	}
-	// •X‰ñ•œ
+	// æ°·å›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_ICE_RCV ) != 0 ){
 		tmp[1] &= CONDITION_KOORI_OFF;
 		dat_flg = TRUE;
 	}
-	// –ƒáƒ‰ñ•œ
+	// éº»ç—ºå›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_PARALYZE_RCV ) != 0 ){
 		tmp[1] &= CONDITION_MAHI_OFF;
 		dat_flg = TRUE;
@@ -398,7 +398,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 	tmp[1] = PokeParaGet( pp, ID_PARA_hpmax, NULL );
 
 /*
-	// •m€‰ñ•œ or ‘Sˆõ•m€‰ñ•œ
+	// ç€•æ­»å›å¾© or å…¨å“¡ç€•æ­»å›å¾©
 	if( tmp[0] == 0 ){
 		if( ItemBufParamGet( dat, ITEM_PRM_DEATH_RCV ) != 0 ||
 			ItemBufParamGet( dat, ITEM_PRM_ALL_DEATH_RCV ) != 0 ){
@@ -406,7 +406,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 			HP_Recover( pp, tmp[0], tmp[1], ItemBufParamGet(dat,ITEM_PRM_HP_RCV_POINT) );
 			use_flg = TRUE;
 		}
-	// HP‰ñ•œ
+	// HPå›å¾©
 	}else if( tmp[0] < tmp[1] ){
 		if( ItemBufParamGet( dat, ITEM_PRM_HP_RCV ) != 0 ){
 			HP_Recover( pp, tmp[0], tmp[1], ItemBufParamGet(dat,ITEM_PRM_HP_RCV_POINT) );
@@ -414,7 +414,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 		}
 	}
 */
-	// •m€‰ñ•œ or ‘Sˆõ•m€‰ñ•œ
+	// ç€•æ­»å›å¾© or å…¨å“¡ç€•æ­»å›å¾©
 	if( ( ItemBufParamGet(dat,ITEM_PRM_DEATH_RCV) != 0 ||
 		  ItemBufParamGet(dat,ITEM_PRM_ALL_DEATH_RCV) != 0 )
 		&& ItemBufParamGet( dat, ITEM_PRM_LV_UP ) != 0 ){
@@ -423,7 +423,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 			use_flg = TRUE;
 		}
 		dat_flg = TRUE;
-	// HP‰ñ•œ
+	// HPå›å¾©
 	}else if( ItemBufParamGet( dat, ITEM_PRM_HP_RCV ) != 0 ){
 		if( tmp[0] < tmp[1] ){
 			HP_Recover( pp, tmp[0], tmp[1], ItemBufParamGet(dat,ITEM_PRM_HP_RCV_POINT) );
@@ -434,7 +434,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 
 	tmp[2] = PokeParaGet( pp, ID_PARA_level, NULL );
 
-	// ƒŒƒxƒ‹ƒAƒbƒv
+	// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_LV_UP ) != 0 ){
 		if( tmp[2] < 100 ){
 			PokeParaAdd( pp, ID_PARA_exp, PokeParaNextLevelExpGet(pp) );
@@ -448,18 +448,18 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 		dat_flg = TRUE;
 	}
 
-	// i‰»
+	// é€²åŒ–
 	if( ItemBufParamGet( dat, ITEM_PRM_EVOLUTION ) != 0 ){
 		dat_flg = TRUE;
 	}
 
-	// PPƒAƒbƒv
+	// PPã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_PP_UP ) != 0 ){
 		if( PP_Up( pp, pos, 1 ) == TRUE ){
 			use_flg = TRUE;
 		}
 		dat_flg = TRUE;
-	// PPƒAƒbƒvi‚R’iŠKj
+	// PPã‚¢ãƒƒãƒ—ï¼ˆï¼“æ®µéšï¼‰
 	}else if( ItemBufParamGet( dat, ITEM_PRM_PP_3UP ) != 0 ){
 		if( PP_Up( pp, pos, 3 ) == TRUE ){
 			use_flg = TRUE;
@@ -467,13 +467,13 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 		dat_flg = TRUE;
 	}
 
-	// PP‰ñ•œ
+	// PPå›å¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_PP_RCV ) != 0 ){
 		if( PP_Recover( pp, pos, ItemBufParamGet(dat,ITEM_PRM_PP_RCV_POINT) ) == TRUE ){
 			use_flg = TRUE;
 		}
 		dat_flg = TRUE;
-	// PP‰ñ•œi‘S‚Ä‚Ì‹Zj
+	// PPå›å¾©ï¼ˆå…¨ã¦ã®æŠ€ï¼‰
 	}else if( ItemBufParamGet( dat, ITEM_PRM_ALL_PP_RCV ) != 0 ){
 		for( tmp[0]=0; tmp[0]<4; tmp[0]++ ){
 			if( PP_Recover( pp, tmp[0], ItemBufParamGet(dat,ITEM_PRM_PP_RCV_POINT) ) == TRUE ){
@@ -490,7 +490,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 	tmp[4] = PokeParaGet( pp, ID_PARA_spepow_exp, NULL );
 	tmp[5] = PokeParaGet( pp, ID_PARA_spedef_exp, NULL );
 
-	// HP“w—Í’lƒAƒbƒv
+	// HPåŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( PokeParaGet( pp, ID_PARA_monsno, NULL ) != MONSNO_NUKENIN ){
 		if( ItemBufParamGet( dat, ITEM_PRM_HP_EXP ) != 0 ){
 			tmp[7] = ItemBufParamGet( dat,ITEM_PRM_HP_EXP_POINT );
@@ -504,7 +504,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 			if( tmp[7] > 0 ){ dat_flg = TRUE; }
 		}
 	}
-	// UŒ‚“w—Í’lƒAƒbƒv
+	// æ”»æ’ƒåŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_POWER_EXP ) != 0 ){
 		tmp[7] = ItemBufParamGet( dat,ITEM_PRM_POWER_EXP_POINT );
 		tmp[6] = PrmExp_Up( tmp[1], (tmp[0]+tmp[2]+tmp[3]+tmp[4]+tmp[5]), tmp[7] );
@@ -516,7 +516,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 		}
 		if( tmp[7] > 0 ){ dat_flg = TRUE; }
 	}
-	// –hŒä“w—Í’lƒAƒbƒv
+	// é˜²å¾¡åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_DEFENCE_EXP ) != 0 ){
 		tmp[7] = ItemBufParamGet( dat,ITEM_PRM_DEFENCE_EXP_POINT );
 		tmp[6] = PrmExp_Up( tmp[2], (tmp[0]+tmp[1]+tmp[3]+tmp[4]+tmp[5]), tmp[7] );
@@ -528,7 +528,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 		}
 		if( tmp[7] > 0 ){ dat_flg = TRUE; }
 	}
-	// ‘f‘‚³“w—Í’lƒAƒbƒv
+	// ç´ æ—©ã•åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_AGILITY_EXP ) != 0 ){
 		tmp[7] = ItemBufParamGet( dat,ITEM_PRM_AGILITY_EXP_POINT );
 		tmp[6] = PrmExp_Up( tmp[3], (tmp[0]+tmp[1]+tmp[2]+tmp[4]+tmp[5]), tmp[7] );
@@ -540,7 +540,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 		}
 		if( tmp[7] > 0 ){ dat_flg = TRUE; }
 	}
-	// “ÁU“w—Í’lƒAƒbƒv
+	// ç‰¹æ”»åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_SP_ATTACK_EXP ) != 0 ){
 		tmp[7] = ItemBufParamGet( dat,ITEM_PRM_SP_ATTACK_EXP_POINT );
 		tmp[6] = PrmExp_Up( tmp[4], (tmp[0]+tmp[1]+tmp[2]+tmp[3]+tmp[5]), tmp[7] );
@@ -552,7 +552,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 		}
 		if( tmp[7] > 0 ){ dat_flg = TRUE; }
 	}
-	// “Á–h“w—Í’lƒAƒbƒv
+	// ç‰¹é˜²åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 	if( ItemBufParamGet( dat, ITEM_PRM_SP_DEFENCE_EXP ) != 0 ){
 		tmp[7] = ItemBufParamGet( dat,ITEM_PRM_SP_DEFENCE_EXP_POINT );
 		tmp[6] = PrmExp_Up( tmp[5], (tmp[0]+tmp[1]+tmp[2]+tmp[3]+tmp[4]), tmp[7] );
@@ -572,7 +572,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 
 	tmp[0] = PokeParaGet( pp, ID_PARA_friend, NULL );
 
-	// ‚È‚Â‚«“x‚P
+	// ãªã¤ãåº¦ï¼‘
 	if( tmp[0] < 100 ){
 		if( ItemBufParamGet( dat, ITEM_PRM_FRIEND1 ) != 0 ){
 			if( Friend_Up( pp, tmp[0], ItemBufParamGet(dat,ITEM_PRM_FRIEND1_POINT), place, heap_id ) == FALSE ){
@@ -580,7 +580,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 				return use_flg;
 			}
 		}
-	// ‚È‚Â‚«“x‚Q
+	// ãªã¤ãåº¦ï¼’
 	}else if( tmp[0] >= 100 && tmp[0] < 200 ){
 		if( ItemBufParamGet( dat, ITEM_PRM_FRIEND2 ) != 0 ){
 			if( Friend_Up( pp, tmp[0], ItemBufParamGet(dat,ITEM_PRM_FRIEND2_POINT), place, heap_id ) == FALSE ){
@@ -588,7 +588,7 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 				return use_flg;
 			}
 		}
-	// ‚È‚Â‚«“x‚R
+	// ãªã¤ãåº¦ï¼“
 	}else if( tmp[0] >= 200 && tmp[0] <= 255 ){
 		if( ItemBufParamGet( dat, ITEM_PRM_FRIEND3 ) != 0 ){
 			if( Friend_Up( pp, tmp[0], ItemBufParamGet(dat,ITEM_PRM_FRIEND3_POINT), place, heap_id ) == FALSE ){
@@ -604,17 +604,17 @@ u8 StatusRecover( POKEMON_PARAM * pp, u16 item, u16 pos, u16 place, u32 heap_id 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ•œˆ— ( POKEPARTY )
+ * å›å¾©å‡¦ç† ( POKEPARTY )
  *
- * @param	party		‰ñ•œ‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param	item		g—p‚·‚éƒAƒCƒeƒ€
- * @param	pos1		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ì’†‚ÌˆÊ’u
- * @param	pos2		‰ñ•œˆÊ’ui‹ZˆÊ’u‚È‚Çj
- * @param	place		êŠ
- * @param	heap_id		ƒq[ƒvID
+ * @param	party		å›å¾©ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param	item		ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ 
+ * @param	pos1		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ä¸­ã®ä½ç½®
+ * @param	pos2		å›å¾©ä½ç½®ï¼ˆæŠ€ä½ç½®ãªã©ï¼‰
+ * @param	place		å ´æ‰€
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"TRUE = g—p‰Â”\"
- * @retval	"FALSE = g—p•s‰Â"
+ * @retval	"TRUE = ä½¿ç”¨å¯èƒ½"
+ * @retval	"FALSE = ä½¿ç”¨ä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 u8 PokeParty_StatusRecover( POKEPARTY * party, u16 item, u8 pos1, u8 pos2, u16 place, u32 heap_id )
@@ -627,13 +627,13 @@ u8 PokeParty_StatusRecover( POKEPARTY * party, u16 item, u8 pos1, u8 pos2, u16 p
 
 //--------------------------------------------------------------------------------------------
 /**
- * PP‰ñ•œƒ`ƒFƒbƒN
+ * PPå›å¾©ãƒã‚§ãƒƒã‚¯
  *
- * @param	pp		‰ñ•œ‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param	pos		‰ñ•œˆÊ’ui‹ZˆÊ’u‚È‚Çj
+ * @param	pp		å›å¾©ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		å›å¾©ä½ç½®ï¼ˆæŠ€ä½ç½®ãªã©ï¼‰
  *
- * @retval	"TRUE = g—p‰Â”\"
- * @retval	"FALSE = g—p•s‰Â"
+ * @retval	"TRUE = ä½¿ç”¨å¯èƒ½"
+ * @retval	"FALSE = ä½¿ç”¨ä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 static u8 PP_RcvCheck( POKEMON_PARAM * pp, u32 pos )
@@ -657,14 +657,14 @@ static u8 PP_RcvCheck( POKEMON_PARAM * pp, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * PP‰ñ•œ
+ * PPå›å¾©
  *
- * @param	pp		‰ñ•œ‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param	pos		‰ñ•œˆÊ’ui‹ZˆÊ’u‚È‚Çj
- * @param	rcv		‰ñ•œ’l
+ * @param	pp		å›å¾©ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		å›å¾©ä½ç½®ï¼ˆæŠ€ä½ç½®ãªã©ï¼‰
+ * @param	rcv		å›å¾©å€¤
  *
- * @retval	"TRUE = g—p‰Â”\"
- * @retval	"FALSE = g—p•s‰Â"
+ * @retval	"TRUE = ä½¿ç”¨å¯èƒ½"
+ * @retval	"FALSE = ä½¿ç”¨ä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 static u8 PP_Recover( POKEMON_PARAM * pp, u32 pos, u32 rcv )
@@ -697,14 +697,14 @@ static u8 PP_Recover( POKEMON_PARAM * pp, u32 pos, u32 rcv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * PPƒAƒbƒv
+ * PPã‚¢ãƒƒãƒ—
  *
- * @param	pp		‰ñ•œ‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param	pos		‰ñ•œˆÊ’ui‹ZˆÊ’u‚È‚Çj
- * @param	cnt		ƒAƒbƒv’l
+ * @param	pp		å›å¾©ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		å›å¾©ä½ç½®ï¼ˆæŠ€ä½ç½®ãªã©ï¼‰
+ * @param	cnt		ã‚¢ãƒƒãƒ—å€¤
  *
- * @retval	"TRUE = g—p‰Â”\"
- * @retval	"FALSE = g—p•s‰Â"
+ * @retval	"TRUE = ä½¿ç”¨å¯èƒ½"
+ * @retval	"FALSE = ä½¿ç”¨ä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 static u8 PP_Up( POKEMON_PARAM * pp, u32 pos, u32 cnt )
@@ -743,15 +743,15 @@ static u8 PP_Up( POKEMON_PARAM * pp, u32 pos, u32 cnt )
 
 //--------------------------------------------------------------------------------------------
 /**
- * HP‰ñ•œ
+ * HPå›å¾©
  *
- * @param	pp		‰ñ•œ‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param	hp		Œ»İ‚ÌHP
- * @param	max		Å‘åHP
- * @param	rcv		‰ñ•œ’l
+ * @param	pp		å›å¾©ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param	hp		ç¾åœ¨ã®HP
+ * @param	max		æœ€å¤§HP
+ * @param	rcv		å›å¾©å€¤
  *
- * @retval	"TRUE = g—p‰Â”\"
- * @retval	"FALSE = g—p•s‰Â"
+ * @retval	"TRUE = ä½¿ç”¨å¯èƒ½"
+ * @retval	"FALSE = ä½¿ç”¨ä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 static void HP_Recover( POKEMON_PARAM * pp, u32 hp, u32 max, u32 rcv )
@@ -777,14 +777,14 @@ static void HP_Recover( POKEMON_PARAM * pp, u32 hp, u32 max, u32 rcv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “w—Í’lUpŒvZ
+ * åŠªåŠ›å€¤Upè¨ˆç®—
  *
- * @param	exp		Œ»İ‚Ì“w—Í’l
- * @param	other	‚»‚Ì‘¼‚Ì“w—Í’l‚Ì‡Œv
- * @param	up		ƒAƒbƒv‚·‚é’l
+ * @param	exp		ç¾åœ¨ã®åŠªåŠ›å€¤
+ * @param	other	ãã®ä»–ã®åŠªåŠ›å€¤ã®åˆè¨ˆ
+ * @param	up		ã‚¢ãƒƒãƒ—ã™ã‚‹å€¤
  *
- * @retval	"-1 = ƒAƒbƒv‚µ‚È‚¢"
- * @retval	"0 != ŒvZŒ‹‰ÊiƒZƒbƒg‚·‚é“w—Í’lj"
+ * @retval	"-1 = ã‚¢ãƒƒãƒ—ã—ãªã„"
+ * @retval	"0 != è¨ˆç®—çµæœï¼ˆã‚»ãƒƒãƒˆã™ã‚‹åŠªåŠ›å€¤ï¼‰"
  */
 //--------------------------------------------------------------------------------------------
 static s32 PrmExp_Up( s32 exp, s32 other, s32 up )
@@ -813,15 +813,15 @@ static s32 PrmExp_Up( s32 exp, s32 other, s32 up )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚È‚Â‚«“x‚ªã‚ª‚é‚©
+ * ãªã¤ãåº¦ãŒä¸ŠãŒã‚‹ã‹
  *
- * @param	pp		ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param	prm		•ÏX’l
+ * @param	pp		ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param	prm		å¤‰æ›´å€¤
  *
- * @retval	"TRUE = g—p‰Â”\"
- * @retval	"FALSE = g—p•s‰Â"
+ * @retval	"TRUE = ä½¿ç”¨å¯èƒ½"
+ * @retval	"FALSE = ä½¿ç”¨ä¸å¯"
  *
- * @li	‰º‚ª‚éê‡‚Í–³‹
+ * @li	ä¸‹ãŒã‚‹å ´åˆã¯ç„¡è¦–
  */
 //--------------------------------------------------------------------------------------------
 static u8 Friend_UpCheck( POKEMON_PARAM * pp, ITEMDATA * dat )
@@ -832,7 +832,7 @@ static u8 Friend_UpCheck( POKEMON_PARAM * pp, ITEMDATA * dat )
 	now = PokeParaGet( pp, ID_PARA_friend, NULL );
 	if( now >= FRIEND_MAX ){ return FALSE; }
 
-	// ‚È‚Â‚«“x‚P
+	// ãªã¤ãåº¦ï¼‘
 	if( now < 100 ){
 		if( ItemBufParamGet( dat, ITEM_PRM_FRIEND1 ) != 0 ){
 			if( ItemBufParamGet( dat,ITEM_PRM_FRIEND1_POINT ) > 0 ){
@@ -840,7 +840,7 @@ static u8 Friend_UpCheck( POKEMON_PARAM * pp, ITEMDATA * dat )
 			}
 		}
 		return FALSE;
-	// ‚È‚Â‚«“x‚Q
+	// ãªã¤ãåº¦ï¼’
 	}else if( now >= 100 && now < 200 ){
 		if( ItemBufParamGet( dat, ITEM_PRM_FRIEND2 ) != 0 ){
 			if( ItemBufParamGet( dat,ITEM_PRM_FRIEND2_POINT ) > 0 ){
@@ -848,7 +848,7 @@ static u8 Friend_UpCheck( POKEMON_PARAM * pp, ITEMDATA * dat )
 			}
 		}
 		return FALSE;
-	// ‚È‚Â‚«“x‚R
+	// ãªã¤ãåº¦ï¼“
 	}else if( now >= 200 && now < 255 ){
 		if( ItemBufParamGet( dat, ITEM_PRM_FRIEND3 ) != 0 ){
 			if( ItemBufParamGet( dat,ITEM_PRM_FRIEND3_POINT ) > 0 ){
@@ -863,15 +863,15 @@ static u8 Friend_UpCheck( POKEMON_PARAM * pp, ITEMDATA * dat )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚È‚Â‚«“xUp
+ * ãªã¤ãåº¦Up
  *
- * @param	pp		ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param	now		Œ»İ‚Ì’l
- * @param	prm		•ÏX’l
- * @param	place	êŠ
+ * @param	pp		ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param	now		ç¾åœ¨ã®å€¤
+ * @param	prm		å¤‰æ›´å€¤
+ * @param	place	å ´æ‰€
  *
- * @retval	"TRUE = g—p‰Â”\"
- * @retval	"FALSE = g—p•s‰Â"
+ * @retval	"TRUE = ä½¿ç”¨å¯èƒ½"
+ * @retval	"FALSE = ä½¿ç”¨ä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 static u8 Friend_Up( POKEMON_PARAM * pp, s32 now, s32 prm, u16 place, u32 heap )
@@ -884,15 +884,15 @@ static u8 Friend_Up( POKEMON_PARAM * pp, s32 now, s32 prm, u16 place, u32 heap )
 	}
 
 	if( prm > 0 ){
-		// ‘•”õŒø‰Ê
+		// è£…å‚™åŠ¹æœ
 		if( ItemParamGet(PokeParaGet(pp,ID_PARA_item,NULL),ITEM_PRM_EQUIP,heap)==SOUBI_NATUKIDOUP ){
 			prm = prm * 150 / 100;
 		}
-		// •ßŠlƒ{[ƒ‹
+		// æ•ç²ãƒœãƒ¼ãƒ«
 		if( PokeParaGet( pp, ID_PARA_get_ball, NULL ) == ITEM_GOOZYASUBOORU ){
 			prm++;
 		}
-		// •ßŠlêŠ
+		// æ•ç²å ´æ‰€
 		if( PokeParaGet( pp, ID_PARA_get_place, NULL ) == place ){
 			prm++;
 		}
@@ -927,13 +927,13 @@ void PokeParty_RecoverAll(POKEPARTY * party)
 		if (PokeParaGet(pp, ID_PARA_poke_exist, NULL) == FALSE) {
 			continue;
 		}
-		//HP‘S‰ñ•œ
+		//HPå…¨å›å¾©
 		buf = PokeParaGet( pp, ID_PARA_hpmax, NULL );
 		PokeParaPut(pp, ID_PARA_hp, &buf);
-		//ó‘ÔˆÙí‰ñ•œ
+		//çŠ¶æ…‹ç•°å¸¸å›å¾©
 		buf = 0;
 		PokeParaPut(pp, ID_PARA_condition, &buf);
-		//PP‘S‰ñ•œ
+		//PPå…¨å›å¾©
 		for (j = 0; j < 4; j++) {
 			if (PP_RcvCheck(pp,j) == TRUE) {
 				PP_Recover(pp, j, PP_RCV_ALL);

@@ -12,13 +12,13 @@
 
   $Log: lcd.h,v $
   Revision 1.4  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ðC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.3  2005/02/28 05:26:01  yosizaki
   do-indent.
 
   Revision 1.2  2004/11/01 09:14:15  seiki_masashi
-  ŠÖ”ƒ}ƒNƒ‚Ì”’l”ÍˆÍˆì‚ê‚É‘Îˆ
+  é–¢æ•°ãƒžã‚¯ãƒ­ã®æ•°å€¤ç¯„å›²æº¢ã‚Œã«å¯¾å‡¦
 
   Revision 1.1  2004/10/20 06:17:17  terui
   Initial upload.
@@ -37,33 +37,33 @@ extern "C" {
 /*===========================================================================*/
 
 /*---------------------------------------------------------------------------*
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
-// …•½ƒhƒbƒg”
-#define HW_LCD_WIDTH                256 // •\Ž¦‰æ–Ê•ƒhƒbƒg”
-#define HW_LCD_HBLANK               99 // Hƒuƒ‰ƒ“ƒNŠúŠÔƒhƒbƒg”
+// æ°´å¹³ãƒ‰ãƒƒãƒˆæ•°
+#define HW_LCD_WIDTH                256 // è¡¨ç¤ºç”»é¢å¹…ãƒ‰ãƒƒãƒˆæ•°
+#define HW_LCD_HBLANK               99 // Hãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ãƒ‰ãƒƒãƒˆæ•°
 #define HW_LCD_COLUMNS              ( HW_LCD_WIDTH + HW_LCD_HBLANK )
 
-// ‚’¼ƒ‰ƒCƒ“”
-#define HW_LCD_HEIGHT               192 // •\Ž¦‰æ–Ê‚ƒ‰ƒCƒ“”
-#define HW_LCD_VBLANK               71 // Vƒuƒ‰ƒ“ƒNŠúŠÔƒ‰ƒCƒ“”
+// åž‚ç›´ãƒ©ã‚¤ãƒ³æ•°
+#define HW_LCD_HEIGHT               192 // è¡¨ç¤ºç”»é¢é«˜ãƒ©ã‚¤ãƒ³æ•°
+#define HW_LCD_VBLANK               71 // Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ãƒ©ã‚¤ãƒ³æ•°
 #define HW_LCD_LINES                ( HW_LCD_HEIGHT + HW_LCD_VBLANK )
 
-// LCDƒNƒƒbƒN
+// LCDã‚¯ãƒ­ãƒƒã‚¯
 #define HW_LCD_CLOCK                33513982    // 33.513982MHz
-#define HW_LCD_CLOCK_PER_DOT        6  // LCDƒNƒƒbƒN 6•ªŽü
+#define HW_LCD_CLOCK_PER_DOT        6  // LCDã‚¯ãƒ­ãƒƒã‚¯ 6åˆ†å‘¨
 
-// HƒTƒCƒNƒ‹( 63.5556us )
+// Hã‚µã‚¤ã‚¯ãƒ«( 63.5556us )
 #define HW_LCD_H_CYCLE_NS           ((u32)( 1000000000ULL * HW_LCD_COLUMNS * HW_LCD_CLOCK_PER_DOT / HW_LCD_CLOCK ))
 #define HW_LCD_H_CYCLE_US           ((u32)(    1000000ULL * HW_LCD_COLUMNS * HW_LCD_CLOCK_PER_DOT / HW_LCD_CLOCK ))
 #define HW_LCD_H_CYCLE_MS           ((u32)(       1000ULL * HW_LCD_COLUMNS * HW_LCD_CLOCK_PER_DOT / HW_LCD_CLOCK )
 
-// VƒTƒCƒNƒ‹( 16.7151ms )
+// Vã‚µã‚¤ã‚¯ãƒ«( 16.7151ms )
 #define HW_LCD_V_CYCLE_NS           ((u32)( 1000000000ULL * HW_LCD_LINES * HW_LCD_COLUMNS * HW_LCD_CLOCK_PER_DOT / HW_LCD_CLOCK ))
 #define HW_LCD_V_CYCLE_US           ((u32)(    1000000ULL * HW_LCD_LINES * HW_LCD_COLUMNS * HW_LCD_CLOCK_PER_DOT / HW_LCD_CLOCK ))
 #define HW_LCD_V_CYCLE_MS           ((u32)(       1000ULL * HW_LCD_LINES * HW_LCD_COLUMNS * HW_LCD_CLOCK_PER_DOT / HW_LCD_CLOCK ))
 
-// nƒ‰ƒCƒ“‘–¸‚É—v‚·‚éŽžŠÔ
+// nãƒ©ã‚¤ãƒ³èµ°æŸ»ã«è¦ã™ã‚‹æ™‚é–“
 #define HW_LCD_LINES_CYCLE_NS(n)    ((u32)( 1000000000ULL * (n) * HW_LCD_COLUMNS * HW_LCD_CLOCK_PER_DOT / HW_LCD_CLOCK ))
 #define HW_LCD_LINES_CYCLE_US(n)    ((u32)(    1000000ULL * (n) * HW_LCD_COLUMNS * HW_LCD_CLOCK_PER_DOT / HW_LCD_CLOCK ))
 #define HW_LCD_LINES_CYCLE_MS(n)    ((u32)(       1000ULL * (n) * HW_LCD_COLUMNS * HW_LCD_CLOCK_PER_DOT / HW_LCD_CLOCK ))

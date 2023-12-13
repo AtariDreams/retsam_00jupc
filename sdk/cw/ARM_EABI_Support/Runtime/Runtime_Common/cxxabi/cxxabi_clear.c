@@ -1,5 +1,5 @@
 /* Metrowerks Runtime Library
- * Copyright © 2004-2005 Metrowerks Corporation.  All rights reserved.
+ * Copyright 2004-2005 Metrowerks Corporation.  All rights reserved.
  *
  * Purpose:  Implementation of the portable Itanium C++ ABI
  *           see http://www.codesourcery.com/cxx-abi/

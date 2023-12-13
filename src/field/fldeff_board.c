@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_board.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJŠÅ”Â
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJçœ‹æ¿
  * @author	kagaya
  * @data	05.07.13
  *
@@ -20,29 +20,29 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-///	ŠÅ”Â¯•Ê
+///	çœ‹æ¿è­˜åˆ¥
 //--------------------------------------------------------------
 enum
 {
-	BOARDNO_A = 0,											///<ŠÅ”ÂA
-	BOARDNO_B,												///<ŠÅ”ÂB
-	BOARDNO_C,												///<ŠÅ”ÂC
-	BOARDNO_D,												///<ŠÅ”ÂD
-	BOARDNO_E,												///<ŠÅ”ÂE
-	BOARDNO_F,												///<ŠÅ”ÂF
-	BOARDNO_MAX,											///<ŠÅ”ÂÅ‘å
+	BOARDNO_A = 0,											///<çœ‹æ¿A
+	BOARDNO_B,												///<çœ‹æ¿B
+	BOARDNO_C,												///<çœ‹æ¿C
+	BOARDNO_D,												///<çœ‹æ¿D
+	BOARDNO_E,												///<çœ‹æ¿E
+	BOARDNO_F,												///<çœ‹æ¿F
+	BOARDNO_MAX,											///<çœ‹æ¿æœ€å¤§
 };
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_BOARDŒ^
+///	FE_BOARDå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_BOARD * FE_BOARD_PTR;
 
 //--------------------------------------------------------------
-///	FE_BOARD\‘¢‘Ì
+///	FE_BOARDæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_BOARD
 {
@@ -51,21 +51,21 @@ typedef struct _TAG_FE_BOARD
 	FRO_MDL rmdl[BOARDNO_MAX];
 }FE_BOARD;
 
-#define FE_BOARD_SIZE (sizeof(FE_BOARD)) 					///<FE_BOARDƒTƒCƒY
+#define FE_BOARD_SIZE (sizeof(FE_BOARD)) 					///<FE_BOARDã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	BOARD_ADD_H\‘¢‘Ì
+///	BOARD_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	int board_no;
 	FE_SYS *fes;
 	FRO_OBJ *robj;
-	FIELD_OBJ_PTR fldobj;									///<ŠÅ”Â‘ÎÛ‚Å‚ ‚éƒtƒB[ƒ‹ƒhOBJ
+	FIELD_OBJ_PTR fldobj;									///<çœ‹æ¿å¯¾è±¡ã§ã‚ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ
 }BOARD_ADD_H;
 
 //--------------------------------------------------------------
-///	EOA_BOARD_WORK\‘¢‘Ì
+///	EOA_BOARD_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -78,7 +78,7 @@ typedef struct
 #define EOA_BOARD_WORK_SIZE (sizeof(EOA_BOARD_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Board_GraphicInit( FE_BOARD_PTR bd );
 static void Board_GraphicDelete( FE_BOARD_PTR bd );
@@ -89,11 +89,11 @@ static const u32 DATA_3DModelArcID_Board[BOARDNO_MAX];
 static const EOA_H_NPP DATA_EoaH_Board;
 
 //==============================================================================
-//	ŠÅ”Â@ƒVƒXƒeƒ€
+//	çœ‹æ¿ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ŠÅ”Â‰Šú‰»
+ * çœ‹æ¿åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_BOARD_PTR		FE_FOOTMARK_PTR
  */
@@ -111,7 +111,7 @@ void * FE_Board_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ŠÅ”Âíœ
+ * çœ‹æ¿å‰Šé™¤
  * @param	bd		FE_BOARD_PTR
  * @retval	nothing
  */
@@ -124,11 +124,11 @@ void FE_Board_Delete( void *work )
 }
 
 //==============================================================================
-//	ŠÅ”Â@ƒOƒ‰ƒtƒBƒbƒN
+//	çœ‹æ¿ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ŠÅ”Â ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * çœ‹æ¿ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	bd		FE_BOARD_PTR
  * @retval	nothing
  */
@@ -145,7 +145,7 @@ static void Board_GraphicInit( FE_BOARD_PTR bd )
 
 //--------------------------------------------------------------
 /**
- * ŠÅ”Â@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * çœ‹æ¿ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	bd		FE_BOARD_PTR
  * @retval	nothing
  */
@@ -160,10 +160,10 @@ static void Board_GraphicDelete( FE_BOARD_PTR bd )
 
 //--------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚ÌƒŒƒ“ƒ_æ“¾
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ãƒ¬ãƒ³ãƒ€å–å¾—
  * @param	bd		FE_BOARD_PTR
- * @param	no		BOARDNO_A“™
- * @retval	NNSG3dRenderObj w’è‚ÌƒŒƒ“ƒ_
+ * @param	no		BOARDNO_Aç­‰
+ * @retval	NNSG3dRenderObj æŒ‡å®šã®ãƒ¬ãƒ³ãƒ€
  */
 //--------------------------------------------------------------
 static FRO_OBJ * Board_NoOBJGet( FE_BOARD_PTR bd, int no )
@@ -173,9 +173,9 @@ static FRO_OBJ * Board_NoOBJGet( FE_BOARD_PTR bd, int no )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ OBJƒR[ƒh‚©‚çƒ{[ƒhí—Ş
- * @param	code	OBJ ƒR[ƒh
- * @retval	int		BOARDNO_A“™
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ OBJã‚³ãƒ¼ãƒ‰ã‹ã‚‰ãƒœãƒ¼ãƒ‰ç¨®é¡
+ * @param	code	OBJ ã‚³ãƒ¼ãƒ‰
+ * @retval	int		BOARDNO_Aç­‰
  */
 //--------------------------------------------------------------
 static int Board_OBJCodeBoardNo( int code )
@@ -189,16 +189,16 @@ static int Board_OBJCodeBoardNo( int code )
 	case BOARD_F:	return( BOARDNO_F );
 	}
 	
-	GF_ASSERT( 0 && "Board_OBJCodeBoardNo()–³ŒøOBJƒR[ƒh" );
+	GF_ASSERT( 0 && "Board_OBJCodeBoardNo()ç„¡åŠ¹OBJã‚³ãƒ¼ãƒ‰" );
 	return( 0 );
 }
 
 //==============================================================================
-//	ŠÅ”Â@EOA
+//	çœ‹æ¿ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJŠÅ”Â’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJçœ‹æ¿è¿½åŠ 
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -229,10 +229,10 @@ EOA_PTR FE_FldOBJBoard_Add( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA ŠÅ”Â@‰Šú‰»
+ * EOA çœ‹æ¿ã€€åˆæœŸåŒ–
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
- * @retval	int TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaBoard_Init( EOA_PTR eoa, void *wk )
@@ -257,7 +257,7 @@ static int EoaBoard_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ŠÅ”Â@íœ
+ * EOA çœ‹æ¿ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -269,7 +269,7 @@ static void EoaBoard_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ŠÅ”Â@“®ì
+ * EOA çœ‹æ¿ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -304,7 +304,7 @@ static void EoaBoard_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ŠÅ”Â@•`‰æ
+ * EOA çœ‹æ¿ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -322,7 +322,7 @@ static void EoaBoard_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ŠÅ”Âimdƒe[ƒuƒ‹@•À‚Ñ‚ÍBOARD_WALK_UP“™‚Ì’l‚Éˆê’v
+///	çœ‹æ¿imdãƒ†ãƒ¼ãƒ–ãƒ«ã€€ä¸¦ã³ã¯BOARD_WALK_UPç­‰ã®å€¤ã«ä¸€è‡´
 //--------------------------------------------------------------
 static const u32 DATA_3DModelArcID_Board[BOARDNO_MAX] =
 {
@@ -335,7 +335,7 @@ static const u32 DATA_3DModelArcID_Board[BOARDNO_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ŠÅ”ÂEOA_H
+///	çœ‹æ¿EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Board =
 {

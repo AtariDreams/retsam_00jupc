@@ -15,19 +15,19 @@
   *** empty log message ***
 
   Revision 1.5  2006/03/08 04:19:58  seiki_masashi
-  RC4FastDecrypt ŠÖ”‚ğ RC4FastEncrypt ŠÖ”‚Ì•Ê–¼‚Æ‚µ‚Ä’Ç‰Á
+  RC4FastDecrypt é–¢æ•°ã‚’ RC4FastEncrypt é–¢æ•°ã®åˆ¥åã¨ã—ã¦è¿½åŠ 
 
   Revision 1.4  2006/03/07 04:42:45  seiki_masashi
-  RC4Decrypt ŠÖ”‚ğ RC4Encrypt ŠÖ”‚Ì•Ê–¼‚Æ‚µ‚Ä’Ç‰Á
+  RC4Decrypt é–¢æ•°ã‚’ RC4Encrypt é–¢æ•°ã®åˆ¥åã¨ã—ã¦è¿½åŠ 
 
   Revision 1.3  2006/03/07 01:25:25  okubata_ryoma
-  CRYPTO_RC4Crypto ‚ğ CRYPTO_RC4En‚ƒ‚’‚™‚‚” ‚É•ÏX
+  CRYPTO_RC4Crypto ã‚’ CRYPTO_RC4Enï½ƒï½’ï½™ï½ï½” ã«å¤‰æ›´
 
   Revision 1.2  2006/02/24 01:21:27  okubata_ryoma
-  NitroCrypto ‚ÌVİ@Crypt ‚©‚ç Crypto ‚Ö
+  NitroCrypto ã®æ–°è¨­ã€€Crypt ã‹ã‚‰ Crypto ã¸
 
   Revision 1.1  2005/12/27 12:43:56  seiki_masashi
-  RC4 ŠÖ”‚Ì’Ç‰Á
+  RC4 é–¢æ•°ã®è¿½åŠ 
 
 
   $NoKeywords: $
@@ -50,13 +50,13 @@ typedef struct CRYPTORC4Context
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_RC4Init
 
-  Description:  RC4 ƒAƒ‹ƒSƒŠƒYƒ€‚ÅˆÃ†‰»/•œ†‚ğs‚¤‚½‚ß‚Ì‰Šú‰»‚ğs‚¤
+  Description:  RC4 ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã§æš—å·åŒ–/å¾©å·ã‚’è¡Œã†ãŸã‚ã®åˆæœŸåŒ–ã‚’è¡Œã†
 
-  Arguments:    context - RC4 ‚ÌŒ®î•ñ‚È‚Ç‚ğû‚ß‚éƒRƒ“ƒeƒLƒXƒg\‘¢‘Ì
-                key - Œ®ƒf[ƒ^
-                key_len - Œ®’·
+  Arguments:    context - RC4 ã®éµæƒ…å ±ãªã©ã‚’åã‚ã‚‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæ§‹é€ ä½“
+                key - éµãƒ‡ãƒ¼ã‚¿
+                key_len - éµé•·
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void CRYPTO_RC4Init(
     CRYPTORC4Context* context,
@@ -67,14 +67,14 @@ void CRYPTO_RC4Init(
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_RC4Encrypt
 
-  Description:  RC4 ƒAƒ‹ƒSƒŠƒYƒ€‚ÅˆÃ†‰»/•œ†‚ğs‚¤
+  Description:  RC4 ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã§æš—å·åŒ–/å¾©å·ã‚’è¡Œã†
 
-  Arguments:    context - RC4 ‚ÌŒ®î•ñ‚È‚Ç‚ğû‚ß‚½ƒRƒ“ƒeƒLƒXƒg\‘¢‘Ì
-                in      - “ü—Íƒf[ƒ^
-                length  - ƒf[ƒ^’·
-                out     - o—Íƒf[ƒ^
+  Arguments:    context - RC4 ã®éµæƒ…å ±ãªã©ã‚’åã‚ãŸã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæ§‹é€ ä½“
+                in      - å…¥åŠ›ãƒ‡ãƒ¼ã‚¿
+                length  - ãƒ‡ãƒ¼ã‚¿é•·
+                out     - å‡ºåŠ›ãƒ‡ãƒ¼ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void CRYPTO_RC4Encrypt(
     CRYPTORC4Context* context,
@@ -86,14 +86,14 @@ void CRYPTO_RC4Encrypt(
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_RC4Decrypt
 
-  Description:  RC4 ƒAƒ‹ƒSƒŠƒYƒ€‚ÅˆÃ†‰»/•œ†‚ğs‚¤
+  Description:  RC4 ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã§æš—å·åŒ–/å¾©å·ã‚’è¡Œã†
 
-  Arguments:    context - RC4 ‚ÌŒ®î•ñ‚È‚Ç‚ğû‚ß‚½ƒRƒ“ƒeƒLƒXƒg\‘¢‘Ì
-                in      - “ü—Íƒf[ƒ^
-                length  - ƒf[ƒ^’·
-                out     - o—Íƒf[ƒ^
+  Arguments:    context - RC4 ã®éµæƒ…å ±ãªã©ã‚’åã‚ãŸã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæ§‹é€ ä½“
+                in      - å…¥åŠ›ãƒ‡ãƒ¼ã‚¿
+                length  - ãƒ‡ãƒ¼ã‚¿é•·
+                out     - å‡ºåŠ›ãƒ‡ãƒ¼ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 static inline void CRYPTO_RC4Decrypt(
     CRYPTORC4Context* context,
@@ -108,14 +108,14 @@ static inline void CRYPTO_RC4Decrypt(
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_RC4
 
-  Description:  RC4 ƒAƒ‹ƒSƒŠƒYƒ€‚ÅˆÃ†‰»/•œ†‚ğs‚¤
+  Description:  RC4 ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã§æš—å·åŒ–/å¾©å·ã‚’è¡Œã†
 
-  Arguments:    key - Œ®ƒf[ƒ^
-                key_len - Œ®ƒf[ƒ^’·
-                data - •ÏŠ·‚·‚éƒf[ƒ^iã‘‚«‚³‚ê‚éj
-                data_len - ƒf[ƒ^’·
+  Arguments:    key - éµãƒ‡ãƒ¼ã‚¿
+                key_len - éµãƒ‡ãƒ¼ã‚¿é•·
+                data - å¤‰æ›ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼ˆä¸Šæ›¸ãã•ã‚Œã‚‹ï¼‰
+                data_len - ãƒ‡ãƒ¼ã‚¿é•·
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 static inline void CRYPTO_RC4(
     const void* key,
@@ -134,7 +134,7 @@ static inline void CRYPTO_RC4(
 // RC4 Fast
 ///////////////////////////////////////////////////////////////////////////////
 
-// CRYPTORC4Context ‚É”ä‚×Ag—pƒƒ‚ƒŠ‚ª–ñ4”{
+// CRYPTORC4Context ã«æ¯”ã¹ã€ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãŒç´„4å€
 typedef struct CRYPTORC4FastContext
 {
     u32 i, j;
@@ -144,13 +144,13 @@ typedef struct CRYPTORC4FastContext
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_RC4FastInit
 
-  Description:  RC4 ƒAƒ‹ƒSƒŠƒYƒ€‚ÅˆÃ†‰»/•œ†‚ğs‚¤‚½‚ß‚Ì‰Šú‰»‚ğs‚¤
+  Description:  RC4 ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã§æš—å·åŒ–/å¾©å·ã‚’è¡Œã†ãŸã‚ã®åˆæœŸåŒ–ã‚’è¡Œã†
 
-  Arguments:    context - RC4 ‚ÌŒ®î•ñ‚È‚Ç‚ğû‚ß‚éƒRƒ“ƒeƒLƒXƒg\‘¢‘Ì
-                key - Œ®ƒf[ƒ^
-                key_len - Œ®’·
+  Arguments:    context - RC4 ã®éµæƒ…å ±ãªã©ã‚’åã‚ã‚‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæ§‹é€ ä½“
+                key - éµãƒ‡ãƒ¼ã‚¿
+                key_len - éµé•·
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void CRYPTO_RC4FastInit(
     CRYPTORC4FastContext* context,
@@ -161,15 +161,15 @@ void CRYPTO_RC4FastInit(
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_RC4FastEncrypt
 
-  Description:  RC4Fast ƒAƒ‹ƒSƒŠƒYƒ€‚ÅˆÃ†‰»/•œ†‚ğs‚¤
-                CRYPTO_RC4Encrypt ‚É”ä‚×Ag—pƒƒ‚ƒŠ‚ª–ñ4”{‚Å‘¬“x‚Í–ñ1.5”{
+  Description:  RC4Fast ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã§æš—å·åŒ–/å¾©å·ã‚’è¡Œã†
+                CRYPTO_RC4Encrypt ã«æ¯”ã¹ã€ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãŒç´„4å€ã§é€Ÿåº¦ã¯ç´„1.5å€
 
-  Arguments:    context - RC4 ‚ÌŒ®î•ñ‚È‚Ç‚ğû‚ß‚½ƒRƒ“ƒeƒLƒXƒg\‘¢‘Ì
-                in      - “ü—Íƒf[ƒ^
-                length  - ƒf[ƒ^’·
-                out     - o—Íƒf[ƒ^
+  Arguments:    context - RC4 ã®éµæƒ…å ±ãªã©ã‚’åã‚ãŸã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæ§‹é€ ä½“
+                in      - å…¥åŠ›ãƒ‡ãƒ¼ã‚¿
+                length  - ãƒ‡ãƒ¼ã‚¿é•·
+                out     - å‡ºåŠ›ãƒ‡ãƒ¼ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void CRYPTO_RC4FastEncrypt(
     CRYPTORC4FastContext* context,
@@ -181,15 +181,15 @@ void CRYPTO_RC4FastEncrypt(
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_RC4FastDecrypt
 
-  Description:  RC4Fast ƒAƒ‹ƒSƒŠƒYƒ€‚ÅˆÃ†‰»/•œ†‚ğs‚¤
-                CRYPTO_RC4Decrypt ‚É”ä‚×Ag—pƒƒ‚ƒŠ‚ª–ñ4”{‚Å‘¬“x‚Í–ñ1.5”{
+  Description:  RC4Fast ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã§æš—å·åŒ–/å¾©å·ã‚’è¡Œã†
+                CRYPTO_RC4Decrypt ã«æ¯”ã¹ã€ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãŒç´„4å€ã§é€Ÿåº¦ã¯ç´„1.5å€
 
-  Arguments:    context - RC4 ‚ÌŒ®î•ñ‚È‚Ç‚ğû‚ß‚½ƒRƒ“ƒeƒLƒXƒg\‘¢‘Ì
-                in      - “ü—Íƒf[ƒ^
-                length  - ƒf[ƒ^’·
-                out     - o—Íƒf[ƒ^
+  Arguments:    context - RC4 ã®éµæƒ…å ±ãªã©ã‚’åã‚ãŸã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæ§‹é€ ä½“
+                in      - å…¥åŠ›ãƒ‡ãƒ¼ã‚¿
+                length  - ãƒ‡ãƒ¼ã‚¿é•·
+                out     - å‡ºåŠ›ãƒ‡ãƒ¼ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 static inline void CRYPTO_RC4FastDecrypt(
     CRYPTORC4FastContext* context,
@@ -204,15 +204,15 @@ static inline void CRYPTO_RC4FastDecrypt(
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_RC4Fast
 
-  Description:  RC4Fast ƒAƒ‹ƒSƒŠƒYƒ€‚ÅˆÃ†‰»/•œ†‚ğs‚¤
-                CRYPTO_RC4 ‚É”ä‚×Ag—pƒƒ‚ƒŠ‚ª–ñ4”{‚Å‘¬“x‚Í–ñ1.5”{
+  Description:  RC4Fast ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã§æš—å·åŒ–/å¾©å·ã‚’è¡Œã†
+                CRYPTO_RC4 ã«æ¯”ã¹ã€ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãŒç´„4å€ã§é€Ÿåº¦ã¯ç´„1.5å€
 
-  Arguments:    key - Œ®ƒf[ƒ^
-                key_len - Œ®ƒf[ƒ^’·
-                data - •ÏŠ·‚·‚éƒf[ƒ^iã‘‚«‚³‚ê‚éj
-                data_len - ƒf[ƒ^’·
+  Arguments:    key - éµãƒ‡ãƒ¼ã‚¿
+                key_len - éµãƒ‡ãƒ¼ã‚¿é•·
+                data - å¤‰æ›ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼ˆä¸Šæ›¸ãã•ã‚Œã‚‹ï¼‰
+                data_len - ãƒ‡ãƒ¼ã‚¿é•·
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 static inline void CRYPTO_RC4Fast(
     const void* key,

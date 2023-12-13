@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndHeapLoadState</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>NNS_SndHeapLoadState</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndHeapLoadState( NNSSndHeapHandle <var>heap</var>, int <var>level</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDADMWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,54 +25,54 @@
 <tbody>
 <tr>
 <td><em><strong><code>heap</code></strong></em></td>
-<td>�T�E���h�q�[�v�n���h���ł��B</td>
+<td>サウンドヒープハンドルです。</td>
 </tr>
 <tr>
 <td><em><strong><code>level</code></strong></em></td>
-<td>��������K�w���x���ł��B</td>
+<td>復元する階層レベルです。</td>
 </tr>
 </tbody>
 </table>
 </div>
      </div>
 <div class="refsection" lang="ja"><a name="IDAZMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAANWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�T�E���h�q�[�v�̏�Ԃ𕜌����܂��B
+サウンドヒープの状態を復元します。
 </p>
       <p>
-<tt class="function"><a href="NNS_SndHeapSaveState.html">NNS_SndHeapSaveState</a></tt>�֐���
-�ۑ���������̏�Ԃɖ߂��܂��B
-��Ԃ�ۑ����Ă��猻�݂܂łɊm�ۂ��ꂽ�������u���b�N�́A�S�ĉ������܂��B
-��������������u���b�N���ꂼ��ɑ΂��āA
-<tt class="function"><a href="NNS_SndHeapAlloc.html">NNS_SndHeapAlloc</a></tt>�֐��Őݒ肵��
-�R�[���o�b�N�֐����Ăт�����܂��B
+<tt class="function"><a href="NNS_SndHeapSaveState.html">NNS_SndHeapSaveState</a></tt>関数で
+保存した直後の状態に戻します。
+状態を保存してから現在までに確保されたメモリブロックは、全て解放されます。
+解放したメモリブロックそれぞれに対して、
+<tt class="function"><a href="NNS_SndHeapAlloc.html">NNS_SndHeapAlloc</a></tt>関数で設定した
+コールバック関数が呼びだされます。
 </p>
       <p>
-�K�w���x��<em><strong><code>level</code></strong></em>�́A���݂̊K�w���x���̒l�Ɠ������A��菬�����l���w�肵�܂��B
-0���w�肷��ƁA<tt class="function"><a href="NNS_SndHeapClear.html">NNS_SndHeapClear</a></tt>�֐��Ɠ����Ӗ��ɂȂ�܂��B
-�q�[�v�́A��Ԃ��ۑ����ꂽ����̏�Ԃɖ߂�A���݂̊K�w���x�����w�肵���l�ɂȂ�܂��B
+階層レベル<em><strong><code>level</code></strong></em>は、現在の階層レベルの値と同じか、より小さい値を指定します。
+0を指定すると、<tt class="function"><a href="NNS_SndHeapClear.html">NNS_SndHeapClear</a></tt>関数と同じ意味になります。
+ヒープは、状態が保存された直後の状態に戻り、現在の階層レベルも指定した値になります。
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-�q�[�v���ɁA
-<tt class="function"><a href="NNS_SndArcStrmInit.html">NNS_SndArcStrmInit</a></tt>�֐��܂��́A
-<tt class="function"><a href="NNS_SndArcStrmSetupPlayer.html">NNS_SndArcStrmSetupPlayer</a></tt>�֐���
-�m�ۂ����X�g���[���o�b�t�@���܂܂�Ă���ꍇ�A
-���̊֐����ŁA�X�g���[���X���b�h�Ɠ������Ƃ�܂��B
+ヒープ中に、
+<tt class="function"><a href="NNS_SndArcStrmInit.html">NNS_SndArcStrmInit</a></tt>関数または、
+<tt class="function"><a href="NNS_SndArcStrmSetupPlayer.html">NNS_SndArcStrmSetupPlayer</a></tt>関数で
+確保したストリームバッファが含まれている場合、
+この関数中で、ストリームスレッドと同期をとります。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndHeapSaveState.html">NNS_SndHeapSaveState</a>, <a href="NNS_SndHeapAlloc.html">NNS_SndHeapAlloc</a>, <a href="NNS_SndHeapClear.html">NNS_SndHeapClear</a>, <a href="NNS_SndArcStrmInit.html">NNS_SndArcStrmInit</a>, <a href="NNS_SndArcStrmSetupPlayer.html">NNS_SndArcStrmSetupPlayer</a></p>
-<h2>����</h2>
-<p>2004/09/02 �X���b�h�����Ɋւ��钍�ӏ����ǉ�<br>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/09/02 スレッド同期に関する注意書き追加<br>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

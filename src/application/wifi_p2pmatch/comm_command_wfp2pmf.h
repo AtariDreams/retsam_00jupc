@@ -2,7 +2,7 @@
 /**
  *
  *	@file		comm_command_wfp2pmf.h
- *	@brief		‚Q`‚Slê—p‘Ò‡º	’ÊMƒRƒ}ƒ“ƒh
+ *	@brief		ï¼’ã€œï¼”äººå°‚ç”¨å¾…åˆå®¤	é€šä¿¡ã‚³ãƒãƒ³ãƒ‰
  *	@author		tomoya takahashi
  *	@data		2007.05.24
  *
@@ -23,19 +23,19 @@
 enum CommCommandTradeList_e {
 
 	//-------------------------------------
-	//@ƒQ[ƒ€—p
+	//ã€€ã‚²ãƒ¼ãƒ ç”¨
 	//=====================================
-	// “¯Šú—p	
-	CNM_WFP2PMF_RESULT = CS_COMMAND_MAX,	///< ’ÊMKONG		e[„q
-	CNM_WFP2PMF_START,						///< ƒQ[ƒ€ŠJn		e[„q
-	CNM_WFP2PMF_VCHAT,						///< VCHATƒf[ƒ^	e[„q
+	// åŒæœŸç”¨	
+	CNM_WFP2PMF_RESULT = CS_COMMAND_MAX,	///< é€šä¿¡KONG		è¦ªãƒ¼ï¼å­
+	CNM_WFP2PMF_START,						///< ã‚²ãƒ¼ãƒ é–‹å§‹		è¦ªãƒ¼ï¼å­
+	CNM_WFP2PMF_VCHAT,						///< VCHATãƒ‡ãƒ¼ã‚¿	è¦ªãƒ¼ï¼å­
 
 	//-------------------------------------
 	//	
 	//=====================================
 	
-	//------------------------------------------------‚±‚±‚Ü‚Å
-	CNM_COMMAND_MAX   // I’[--------------‚±‚ê‚ÍˆÚ“®‚³‚¹‚È‚¢‚Å‚­‚¾‚³‚¢
+	//------------------------------------------------ã“ã“ã¾ã§
+	CNM_COMMAND_MAX   // çµ‚ç«¯--------------ã“ã‚Œã¯ç§»å‹•ã•ã›ãªã„ã§ãã ã•ã„
 };
 
 GLOBAL const CommPacketTbl* WFP2PMF_CommCommandTclGet( void );

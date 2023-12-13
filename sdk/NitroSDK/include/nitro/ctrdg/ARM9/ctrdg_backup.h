@@ -15,13 +15,13 @@
   indent source
 
   Revision 1.3  2006/04/07 07:56:11  okubata_ryoma
-  ���ӃR�����g�ǉ�
+  注意コメント追加
 
   Revision 1.2  2006/04/07 03:29:03  okubata_ryoma
-  �R�����g�̏C��
+  コメントの修正
 
   Revision 1.1  2006/04/05 10:34:15  okubata_ryoma
-  AGB�o�b�N�A�b�v���C�u������SDK���^�̂��߂̕ύX
+  AGBバックアップライブラリのSDK収録のための変更
 
 
   $NoKeywords: $
@@ -49,7 +49,7 @@
 #define CTRDG_BACKUP_RESULT_Q5TIMEOUT       0x2000
 #define CTRDG_BACKUP_RESULT_PULLEDOUT       0x1000
 
-/* �f�o�b�O�p */
+/* デバッグ用 */
 //#ifndef   __FLASH_DEBUG
 #define CTRDG_BACKUP_VENDER_ID_ADR      (CTRDG_AGB_FLASH_ADR+0x00000000)
 #define CTRDG_BACKUP_DEVICE_ID_ADR      (CTRDG_AGB_FLASH_ADR+0x00000001)
@@ -83,8 +83,8 @@ CTRDGiFlashTypePlus;
 
 typedef enum
 {
-    CTRDG_BACKUP_TYPE_FLASH_512K,      /* 512k�t���b�V�� */
-    CTRDG_BACKUP_TYPE_FLASH_1M,        /* 1M�t���b�V�� */
+    CTRDG_BACKUP_TYPE_FLASH_512K,      /* 512kフラッシュ */
+    CTRDG_BACKUP_TYPE_FLASH_1M,        /* 1Mフラッシュ */
     CTRDG_BACKUP_TYPE_SRAM             /* 256kSRAM */
 }
 CTRDGBackupType;
@@ -105,42 +105,42 @@ extern void (*CTRDGi_EraseAgbFlashSectorAsync) (u16 secNo, CTRDG_TASK_FUNC callb
 extern u16 (*pollingSR) (u16 phase, u8 *adr, u16 lastData);
 
 /*------------------------------------------------------------------*/
-/*          �f�o�C�X�̎��ʂ���я����ݒ�                            */
+/*          デバイスの識別および初期設定                            */
 /*------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_IdentifyAgbBackup
                 
-                �Ή�����AGB���̊֐��Fextern u16 IdentifyFlash_512K()
-                �Ή�����AGB���̊֐��Fextern u16 IdentifyFlash_1M()
+                対応するAGB時の関数：extern u16 IdentifyFlash_512K()
+                対応するAGB時の関数：extern u16 IdentifyFlash_1M()
                 
-  Description:  NITRO-CTRDG �ɓ��ڂ���Ă���o�b�N�A�b�v�f�o�C�X���w�肵�܂��B
-                �o�b�N�A�b�v�f�o�C�X���t���b�V���̏ꍇ�̓t���b�V���� ID ��ǂݏo���A
-                �ǂ̃t���b�V�����J�[�g���b�W�ɓ��ڂ���Ă��邩�����ʂ��āA
-                �t���b�V���̗e�ʂ�Z�N�^�T�C�Y�̎擾�A�A�N�Z�X�X�s�[�h�̐ݒ�A
-                �X�ɑΉ�����t���b�V���p�̊e�A�N�Z�X�֐��̃Z�b�g���s���܂��B
-                �擾�����t���b�V���̃f�[�^�̓O���[�o���ϐ� CTRDGFlashType *AgbFlash �ŎQ�Ƃ��邱�Ƃ��ł��܂��B
-                (CTRDGFlashType�̏ڍׂ͏�L��`�����Q�ƁB)
+  Description:  NITRO-CTRDG に搭載されているバックアップデバイスを指定します。
+                バックアップデバイスがフラッシュの場合はフラッシュの ID を読み出し、
+                どのフラッシュがカートリッジに搭載されているかを識別して、
+                フラッシュの容量やセクタサイズの取得、アクセススピードの設定、
+                更に対応するフラッシュ用の各アクセス関数のセットを行います。
+                取得したフラッシュのデータはグローバル変数 CTRDGFlashType *AgbFlash で参照することができます。
+                (CTRDGFlashTypeの詳細は上記定義部を参照。)
                 
-                �{�֐��̓o�b�N�A�b�v�f�o�C�X�ɃA�N�Z�X������ȑO�i���[�h���܂߂āj�ɂP��R�[������K�v������܂��B
-                �f�o�C�X�����ʂł��Ȃ������ꍇ�̓G���[��Ԃ��A�ȉ��̃A�N�Z�X�֐��͎g�p�s�ƂȂ�܂��B
+                本関数はバックアップデバイスにアクセスするより以前（リードも含めて）に１回コールする必要があります。
+                デバイスを識別できなかった場合はエラーを返し、以下のアクセス関数は使用不可となります。
                 
-                �A�N�Z�X�T�C�N���̐ݒ�͊֐����ōs���܂��̂ŁA���O�ɍs���K�v�͂���܂���B
-                ���̊֐��ł̓^�C���A�E�g����p�Ƀ`�b�N���g�p���܂��̂Ŏ��O�� 
-                OS_InitTick �֐����Ă�ł����K�v������܂��B
+                アクセスサイクルの設定は関数内で行いますので、事前に行う必要はありません。
+                この関数ではタイムアウト測定用にチックを使用しますので事前に 
+                OS_InitTick 関数を呼んでおく必要があります。
 
-                �����̊֐����ł͈����ԑS�Ă̊��荞�݂��֎~����A�J�[�g���b�W�o�X�����b�N����܂��̂Œ��ӂ��ĉ������B
-                ���ɁA�{�֐��R�[�����̓_�C���N�g�T�E���h����тu�E�g�u�����N�����A�\�������A
-                �J�[�g���b�W���N�G�X�g���̓���̃^�C�~���O�Ŏ����N������c�l�`�͎g�p���Ȃ��ŉ������B
+                ※この関数内では一定期間全ての割り込みが禁止され、カートリッジバスがロックされますので注意して下さい。
+                特に、本関数コール時はダイレクトサウンドおよびＶ・Ｈブランク同期、表示同期、
+                カートリッジリクエスト等の特定のタイミングで自動起動するＤＭＡは使用しないで下さい。
                 
-                �܂�������CTRDG_BACKUP_TYPE_FLASH_512K�܂��́ACTRDG_BACKUP_TYPE_FLASH_1M��^�����ꍇ�A
-                �f�o�C�X�ւ̏������ݓ��삪�������܂��̂ŁA�^��������ƈقȂ��ނ̃f�o�C�X��NITRO-CTRDG�ɓ��ڂ���Ă����
-                �o�b�N�A�b�v�f�[�^���j�󂳂�邱�Ƃ�����܂��̂Œ��ӂ��Ă��������B
+                また引数にCTRDG_BACKUP_TYPE_FLASH_512Kまたは、CTRDG_BACKUP_TYPE_FLASH_1Mを与えた場合、
+                デバイスへの書き込み動作が発生しますので、与える引数と異なる種類のデバイスがNITRO-CTRDGに搭載されていると
+                バックアップデータが破壊されることがありますので注意してください。
 
 
-  Arguments:    type  : NITRO-CTRDG�ɓ��ڂ���Ă���o�b�N�A�b�v�f�o�C�X�̎��
+  Arguments:    type  : NITRO-CTRDGに搭載されているバックアップデバイスの種類
 
-  Returns:      0     : ����I��
-                0�ȊO : ���ʃG���[
+  Returns:      0     : 正常終了
+                0以外 : 識別エラー
  *---------------------------------------------------------------------------*/
 extern u16 CTRDG_IdentifyAgbBackup(CTRDGBackupType type);
 

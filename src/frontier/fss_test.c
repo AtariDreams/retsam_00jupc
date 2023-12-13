@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	fss_test.c
- * @brief	FSSŒnƒVƒXƒeƒ€ƒeƒXƒg
+ * @brief	FSSç³»ã‚·ã‚¹ãƒ†ãƒ ãƒ†ã‚¹ãƒˆ
  * @author	matsuda
- * @date	2007.04.04(…)
+ * @date	2007.04.04(æ°´)
  */
 //==============================================================================
 #include "common.h"
@@ -34,14 +34,14 @@
 FS_EXTERN_OVERLAY(frontier_common);
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€‰æ–Ê‚ð\¬‚·‚é‚½‚ß‚É•K—v‚ÈƒVƒXƒeƒ€ƒf[ƒ^—Þ‚ðŽ‚Â\‘¢‘Ì
+ * @brief   ã‚²ãƒ¼ãƒ ç”»é¢ã‚’æ§‹æˆã™ã‚‹ãŸã‚ã«å¿…è¦ãªã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿é¡žã‚’æŒã¤æ§‹é€ ä½“
  *
- * ’ÊMŽž‚Å‚à‘S‚Ä‚Ìƒ}ƒVƒ“‚ÅŒÂ•Ê‚Éì¬‚³‚ê‚Ü‚·
- * ŠeƒXƒ^ƒbƒt‚ª–½—ßŽóMŽžA‚»‚Ìƒ}ƒVƒ“ŒÂX‚Å¶¬‚µ‚½‚±‚Ìƒ[ƒNƒoƒbƒtƒ@‚ð“n‚·Ž–‚É‚È‚è‚Ü‚·
+ * é€šä¿¡æ™‚ã§ã‚‚å…¨ã¦ã®ãƒžã‚·ãƒ³ã§å€‹åˆ¥ã«ä½œæˆã•ã‚Œã¾ã™
+ * å„ã‚¹ã‚¿ãƒƒãƒ•ãŒå‘½ä»¤å—ä¿¡æ™‚ã€ãã®ãƒžã‚·ãƒ³å€‹ã€…ã§ç”Ÿæˆã—ãŸã“ã®ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’æ¸¡ã™äº‹ã«ãªã‚Šã¾ã™
  */
 //--------------------------------------------------------------
 typedef struct{
@@ -50,40 +50,40 @@ typedef struct{
 	GF_BGL_INI *bgl;
 //	GF_BGL_BMPWIN win[CONRES_BMPWIN_MAX];
 
-//	MSGDATA_MANAGER *conres_msg;	///<ƒ_ƒ“ƒX•”–åƒƒbƒZ[ƒW—pƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìƒ|ƒCƒ“ƒ^
+//	MSGDATA_MANAGER *conres_msg;	///<ãƒ€ãƒ³ã‚¹éƒ¨é–€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ãƒã‚¤ãƒ³ã‚¿
 //	WORDSET *wordset;
-//	STRBUF *msg_buf;				///<Alloc‚µ‚½•¶Žš—ñƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+//	STRBUF *msg_buf;				///<Allocã—ãŸæ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	PALETTE_FADE_PTR pfd;			///<ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	PALETTE_FADE_PTR pfd;			///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
 	FSS_PTR fss;
 }TEST_SYSTEM_PARAM;
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN
+ * @brief   ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯
  *
- * ƒ_ƒ“ƒX•”–å‘S‘Ì‚ðŠÇ—‚·‚é‘åŒ³‚Ìƒ[ƒN‚É‚È‚è‚Ü‚·B
- * ’ÊMŽž‚Å‚à‘S‚Ä‚Ìƒ}ƒVƒ“‚ÅŒÂ•Ê‚Éì¬‚³‚ê‚Ü‚·
+ * ãƒ€ãƒ³ã‚¹éƒ¨é–€å…¨ä½“ã‚’ç®¡ç†ã™ã‚‹å¤§å…ƒã®ãƒ¯ãƒ¼ã‚¯ã«ãªã‚Šã¾ã™ã€‚
+ * é€šä¿¡æ™‚ã§ã‚‚å…¨ã¦ã®ãƒžã‚·ãƒ³ã§å€‹åˆ¥ã«ä½œæˆã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 typedef struct _TEST_PROC_WORK{
-	TCB_PTR update_tcb;				///<ƒVƒXƒeƒ€XVˆ—
-	TCB_PTR vintr_tcb;				///<Vƒuƒ‰ƒ“ƒNŠ„‚èž‚Ýƒ^ƒXƒN
+	TCB_PTR update_tcb;				///<ã‚·ã‚¹ãƒ†ãƒ æ›´æ–°å‡¦ç†
+	TCB_PTR vintr_tcb;				///<Vãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿ã‚¿ã‚¹ã‚¯
 	GF_G3DMAN *g3Dman;
 	
 	u16 seq;
-	u16 tbl_seq_no;					///<ƒƒCƒ“ƒV[ƒPƒ“ƒXƒe[ƒuƒ‹‚Ì”Ô†
-	u8 proc_mode;					///<Œ»Ý‚Ì“®ìó‹µ
+	u16 tbl_seq_no;					///<ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç•ªå·
+	u8 proc_mode;					///<ç¾åœ¨ã®å‹•ä½œçŠ¶æ³
 
-	u8 main_end;					///<TRUE:ƒƒCƒ“ˆ—I—¹
+	u8 main_end;					///<TRUE:ãƒ¡ã‚¤ãƒ³å‡¦ç†çµ‚äº†
 	
 	TEST_SYSTEM_PARAM sys;
 }TEST_PROC_WORK;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void FssTestVBlank(void *work);
 static void FssTestHBlank(void *work);
@@ -103,12 +103,12 @@ PROC_RESULT FssTestProc_End( PROC * proc, int * seq );
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT FssTestProc_Init( PROC * proc, int * seq )
@@ -117,8 +117,8 @@ PROC_RESULT FssTestProc_Init( PROC * proc, int * seq )
 
 	Overlay_Load(FS_OVERLAY_ID(frontier_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -136,7 +136,7 @@ PROC_RESULT FssTestProc_Init( PROC * proc, int * seq )
 
 //	tpw->g3Dman = ADV_Contest_3D_Init(HEAPID_CONRES);
 	
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	tpw->sys.pfd = PaletteFadeInit(HEAPID_CONRES);
 	PaletteTrans_AutoSet(tpw->sys.pfd, TRUE);
 	PaletteFadeWorkAllocSet(tpw->sys.pfd, FADE_MAIN_BG, 0x200, HEAPID_CONRES);
@@ -150,10 +150,10 @@ PROC_RESULT FssTestProc_Init( PROC * proc, int * seq )
 
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-	//VRAMŠ„‚è“–‚ÄÝ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	FssTest_VramBankSet(tpw->sys.bgl);
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
@@ -166,19 +166,19 @@ PROC_RESULT FssTestProc_Init( PROC * proc, int * seq )
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 
-	//ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒRƒ“ƒeƒXƒg)
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
 	Snd_DataSetByScene( SND_SCENE_CONTEST, SEQ_CON_TEST, 1 );
 
 	MsgPrintAutoFlagSet(MSG_AUTO_ON);
 	MsgPrintSkipFlagSet(MSG_SKIP_OFF);
 	MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
 	
-	//¦ƒXƒNƒŠƒvƒgÝ’è
+	//â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆè¨­å®š
 	tpw->sys.fss = FSS_SystemCreate(HEAPID_CONRES, FSS_SCENEID_TESTSCR);
 	FSS_ScrTaskAdd(tpw->sys.fss, FSS_SCENEID_TESTSCR, 2);
 
 	sys_VBlankFuncChange(FssTestVBlank, tpw);
-	//«Wipe‚ÅHƒuƒ‰ƒ“ƒN‚ðŽg—p‚·‚é‚Ì‚ÅAWipe‚ªI—¹‚µ‚½‚çƒZƒbƒg‚·‚é‚æ‚¤‚É•ÏX
+	//â†“Wipeã§Hãƒ–ãƒ©ãƒ³ã‚¯ã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ã€WipeãŒçµ‚äº†ã—ãŸã‚‰ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 //	sys_HBlankIntrSet(FssTestHBlank, tpw);
 	tpw->vintr_tcb = VIntrTCB_Add(VBlankTCB_IntrTask, tpw, 10);
 	
@@ -187,12 +187,12 @@ PROC_RESULT FssTestProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT FssTestProc_Main( PROC * proc, int * seq )
@@ -215,7 +215,7 @@ PROC_RESULT FssTestProc_Main( PROC * proc, int * seq )
 		break;
 
 	case SEQ_MAIN:
-		//¦ƒXƒNƒŠƒvƒgŽÀs
+		//â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œ
 		if(FSS_ScriptMain(tpw->sys.fss) == TRUE){
 			if(sys.trg & PAD_BUTTON_B){
 				WIPE_SYS_Start(WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
@@ -238,12 +238,12 @@ PROC_RESULT FssTestProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT FssTestProc_End( PROC * proc, int * seq )
@@ -251,35 +251,35 @@ PROC_RESULT FssTestProc_End( PROC * proc, int * seq )
 	TEST_PROC_WORK * tpw = PROC_GetWork( proc );
 	int i;
 
-	//BMPŠJ•ú
+	//BMPé–‹æ”¾
 //	for(i = 0; i < CONRES_BMPWIN_MAX; i++){
 //		GF_BGL_BmpWinDel(&tpw->sys.win[i]);
 //	}
 
-	//ƒƒCƒ“‰æ–ÊBGíœ
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢BGå‰Šé™¤
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_BGL_BGControlExit(tpw->sys.bgl, FSSTEST_FRAME_WIN );
 	GF_BGL_BGControlExit(tpw->sys.bgl, FSSTEST_FRAME_EFF );
 	GF_BGL_BGControlExit(tpw->sys.bgl, FSSTEST_FRAME_BACKGROUND );
-	//ƒTƒu‰æ–ÊBGíœ
+	//ã‚µãƒ–ç”»é¢BGå‰Šé™¤
 	GF_BGL_VisibleSet(FSSTEST_FRAME_SUB_AUDIENCE, VISIBLE_OFF);
 	GF_BGL_BGControlExit(tpw->sys.bgl, FSSTEST_FRAME_SUB_AUDIENCE);
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(tpw->sys.pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(tpw->sys.pfd, FADE_SUB_BG);
 	PaletteFadeWorkAllocFree(tpw->sys.pfd, FADE_MAIN_OBJ);
 	PaletteFadeWorkAllocFree(tpw->sys.pfd, FADE_SUB_OBJ);
 	PaletteFadeFree(tpw->sys.pfd);
 
-	//BGLŠJ•ú
+	//BGLé–‹æ”¾
 	sys_FreeMemoryEz(tpw->sys.bgl);
 
-	//¦ƒXƒNƒŠƒvƒg‰ð•ú
+	//â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆè§£æ”¾
 	FSS_SystemFree(tpw->sys.fss);
 
 	TCB_Delete(tpw->update_tcb);
@@ -287,15 +287,15 @@ PROC_RESULT FssTestProc_End( PROC * proc, int * seq )
 	
 //	ADV_Contest_3D_Exit(tpw->g3Dman);
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
-	PROC_FreeWork(proc);				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork(proc);				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	
 	GX_SetVisibleWnd(GX_WNDMASK_NONE);
 	GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 	
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	sys_DeleteHeap(HEAPID_CONRES);
 
@@ -317,7 +317,7 @@ PROC_RESULT FssTestProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
  * @param	work	
  *
@@ -329,7 +329,7 @@ static void FssTestVBlank(void *work)
 {
 	TEST_PROC_WORK *tpw = work;
 
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	DoVramTransferManager();	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	PaletteFadeTrans(tpw->sys.pfd);
 	
 	GF_BGL_VBlankFunc(tpw->sys.bgl);
@@ -339,7 +339,7 @@ static void FssTestVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	HBLANKŠÖ”
+ * @brief	HBLANKé–¢æ•°
  *
  * @param	work	
  *
@@ -355,10 +355,10 @@ static void FssTestHBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   VBlankƒ^ƒXƒNŠÖ”(1/60‚Å‰ñ‚è‚Ü‚·)
+ * @brief   VBlankã‚¿ã‚¹ã‚¯é–¢æ•°(1/60ã§å›žã‚Šã¾ã™)
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VBlankTCB_IntrTask(TCB_PTR tcb, void *work)
@@ -369,9 +369,9 @@ static void VBlankTCB_IntrTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚És‚¤ƒVƒXƒeƒ€ŠÖ˜A‚ÌXVˆ—
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã«è¡Œã†ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ã®æ›´æ–°å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		tpw
  */
 //--------------------------------------------------------------
@@ -384,32 +384,32 @@ static void FssTestUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNÝ’è‚ðs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void FssTest_VramBankSet(GF_BGL_INI *bgl)
 {
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -424,24 +424,24 @@ static void FssTest_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME1_M	ƒEƒBƒ“ƒhƒE
+			///<FRAME1_M	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 //				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
 				FSSTEST_BGPRI_WIN, 0, 0, FALSE
 			},
-			///<FRAME2_M	ƒGƒtƒFƒNƒg
+			///<FRAME2_M	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 //				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
 				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
 				FSSTEST_BGPRI_EFF, 0, 0, FALSE
 			},
-			///<FRAME3_M	”wŒi
+			///<FRAME3_M	èƒŒæ™¯
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -464,10 +464,10 @@ static void FssTest_VramBankSet(GF_BGL_INI *bgl)
 		G2_SetBG0Priority(FSSTEST_3DBG_PRIORITY);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER SubBgCntDat[] = {
-			///<FRAME0_S	ŠÏ‹q
+			///<FRAME0_S	è¦³å®¢
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,

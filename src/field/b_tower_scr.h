@@ -1,6 +1,6 @@
 /**
  *	@file	btower_scr.h
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒXƒNƒŠƒvƒgŒn
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆç³»
  *	@author	Miyuki Iwasawa
  *	@date	06.04.17
  */
@@ -21,273 +21,273 @@
 #include "b_tower_scr_def.h"
 #include "tower_scr_common.h"
 
-///ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒh‚©‚çŒÄ‚Ño‚·ƒ‹[ƒ`ƒ“ŒQ
+///ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‹ã‚‰å‘¼ã³å‡ºã™ãƒ«ãƒ¼ãƒãƒ³ç¾¤
 ///////////////////////////////////////////////////////
 /**
- *	@brief	ƒvƒŒƒCƒ‚[ƒh•Ê‚Ìƒƒ“ƒo[”‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰åˆ¥ã®ãƒ¡ãƒ³ãƒãƒ¼æ•°ã‚’å–å¾—ã™ã‚‹
  */
 GLOBAL u16	TowerScrTools_GetMemberNum(u16 mode);
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ŽQ‰Á‰Â”\‚Èƒ|ƒPƒ‚ƒ“”‚Ìƒ`ƒFƒbƒN
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€å‚åŠ å¯èƒ½ãªãƒã‚±ãƒ¢ãƒ³æ•°ã®ãƒã‚§ãƒƒã‚¯
  *
- *	@param	num			ŽQ‰Á‚É•K—v‚Èƒ|ƒPƒ‚ƒ“”
- *	@param	item_flag	ƒAƒCƒeƒ€ƒ`ƒFƒbƒN‚·‚é‚©ƒtƒ‰ƒO
+ *	@param	num			å‚åŠ ã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³æ•°
+ *	@param	item_flag	ã‚¢ã‚¤ãƒ†ãƒ ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‹ãƒ•ãƒ©ã‚°
  *
- *	@retval	true	ŽQ‰Á‰Â”\
- *	@retval	false	ŽQ‰Á•s‰Â
+ *	@retval	true	å‚åŠ å¯èƒ½
+ *	@retval	false	å‚åŠ ä¸å¯
  */
 //GLOBAL BOOL TowerScrTools_CheckEntryPokeNum(u16 num,SAVEDATA *savedata);
 GLOBAL BOOL TowerScrTools_CheckEntryPokeNum(u16 num,SAVEDATA *savedata,u8 item_flag);
 
 /**
- *	@brief	ƒŠƒZƒbƒg‚µ‚Äƒ^ƒCƒgƒ‹‚É–ß‚é
+ *	@brief	ãƒªã‚»ãƒƒãƒˆã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
  */
 GLOBAL void TowerScrTools_SystemReset(void);
 
 /**
- *	@brief	new gameŽž‚ÉƒvƒŒƒCƒf[ƒ^‚ðƒNƒŠƒA‚·‚é
+ *	@brief	new gameæ™‚ã«ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  */
 GLOBAL void TowerScrTools_ClearPlaySaveData(BTLTOWER_PLAYWORK* playSave);
 
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©•Ô‚·
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹è¿”ã™
  */
 GLOBAL BOOL TowerScrTools_IsSaveDataEnable(BTLTOWER_PLAYWORK* playSave);
 
 /**
- *	@brief	’Eo—p‚ÉŒ»Ý‚ÌƒƒP[ƒVƒ‡ƒ“‚ð‹L‰¯‚·‚é
+ *	@brief	è„±å‡ºç”¨ã«ç¾åœ¨ã®ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¨˜æ†¶ã™ã‚‹
  */
 GLOBAL void TowerScrTools_PushNowLocation(FIELDSYS_WORK* fsys);
 
 /**
- *	@brief	ƒQ[ƒg‚©‚ço‚éŽž‚É“ÁŽêÚ‘±æ‚ðŒ³‚É–ß‚·
+ *	@brief	ã‚²ãƒ¼ãƒˆã‹ã‚‰å‡ºã‚‹æ™‚ã«ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‚’å…ƒã«æˆ»ã™
  */
 GLOBAL void TowerScrTools_PopNowLocation(FIELDSYS_WORK* fsys);
 
 /**
- *	@brief	“ü‚Á‚½ƒQ[ƒg‚ÌˆÊ’u‚ðŽæ“¾‚·‚é
+ *	@brief	å…¥ã£ãŸã‚²ãƒ¼ãƒˆã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
  */
 GLOBAL void TowerScrTools_GetGateLocation(FIELDSYS_WORK* fsys,u16* x,u16* y);
 
 /**
- *	@brief	ƒvƒŒƒCƒ‚[ƒh•ÊƒŒƒR[ƒhƒZ[ƒuƒf[ƒ^˜AŸ”‚ð•Ô‚·
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰åˆ¥ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿é€£å‹æ•°ã‚’è¿”ã™
  */
 GLOBAL u16	TowerScrTools_GetRenshouRecord(SAVEDATA* sv,u16 play_mode);
 
 /**
- *	@brief	ƒXƒRƒAƒf[ƒ^‚Ìƒtƒ‰ƒO‚ð•Ô‚·
+ *	@brief	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
  */
 GLOBAL u16 TowerScrTools_GetScoreFlags(SAVEDATA* sv,BTWR_SFLAG_ID flagid);
 
 /**
- *	@brief	Wifi¬Ñ‚Ì–¢ƒAƒbƒvƒ[ƒhƒtƒ‰ƒO‚ð§Œä‚·‚é
+ *	@brief	Wifiæˆç¸¾ã®æœªã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’åˆ¶å¾¡ã™ã‚‹
  */
 GLOBAL void TowerScrTools_SetWifiUploadFlag(SAVEDATA* sv,u8 flag);
 
 /**
- *	@brief	WiFiƒvƒŒƒC¬Ñ‚Ì–¢ƒAƒbƒvƒ[ƒhƒtƒ‰ƒO‚ðŽæ“¾‚·‚é
+ *	@brief	WiFiãƒ—ãƒ¬ã‚¤æˆç¸¾ã®æœªã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  */
 GLOBAL u16 TowerScrTools_GetWifiUploadFlag(SAVEDATA* sv);
 
 /**
- *	@brief	ƒZ[ƒu‚¹‚¸‚ÉŽ~‚ß‚½‚Æ‚«‚ÌƒGƒ‰[ˆ—
+ *	@brief	ã‚»ãƒ¼ãƒ–ã›ãšã«æ­¢ã‚ãŸã¨ãã®ã‚¨ãƒ©ãƒ¼å‡¦ç†
  *
- *	@return	ƒvƒŒƒC‚µ‚Ä‚¢‚½ƒ‚[ƒh‚ð•Ô‚·
+ *	@return	ãƒ—ãƒ¬ã‚¤ã—ã¦ã„ãŸãƒ¢ãƒ¼ãƒ‰ã‚’è¿”ã™
  */
 GLOBAL u16 TowerScrTools_SetNGScore(SAVEDATA* savedata);
 
 /**
- *	@brief	WIFI‚ÌƒvƒŒƒCƒ„[DLƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ *	@brief	WIFIã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼DLãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  */
 GLOBAL u16	TowerScrTools_IsPlayerDataEnable(SAVEDATA* sv);
 
 
 //*****************************************************
 //=====================================================
-//ƒ[ƒN‚Ì‰Šú‰»‚Æ‰ð•ú
+//ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–ã¨è§£æ”¾
 //=====================================================
 //*****************************************************
 /**
- *	@brief	fsys“à‚Ìƒoƒgƒ‹ƒ^ƒ[§Œäƒ[ƒNƒ|ƒCƒ“ƒ^‚ð‰Šú‰»‚·‚é
- *			ƒoƒgƒ‹ƒ^ƒ[ŠJŽnŽž‚É•K‚¸ŒÄ‚Ño‚·
+ *	@brief	fsyså†…ã®ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
+ *			ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é–‹å§‹æ™‚ã«å¿…ãšå‘¼ã³å‡ºã™
  */
 GLOBAL void TowerScr_WorkClear(BTOWER_SCRWORK** pp);
 
 /**
- *	@brief	ƒ[ƒNƒGƒŠƒA‚ðŽæ“¾‚µ‚Ä‰Šú‰»‚·‚é
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’å–å¾—ã—ã¦åˆæœŸåŒ–ã™ã‚‹
  *
- *	@param	savedata	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	init		‰Šú‰»ƒ‚[ƒh BTWR_PLAY_NEW:‰‚ß‚©‚çABTWR_PLAY_CONTINE:‘±‚«‚©‚ç
- *	@param	playmode	ƒvƒŒƒCƒ‚[ƒhŽw’è BTWR_MODE_`
+ *	@param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	init		åˆæœŸåŒ–ãƒ¢ãƒ¼ãƒ‰ BTWR_PLAY_NEW:åˆã‚ã‹ã‚‰ã€BTWR_PLAY_CONTINE:ç¶šãã‹ã‚‰
+ *	@param	playmode	ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š BTWR_MODE_ã€œ
  *	
- *	–‚©‚È‚ç‚¸ TowerScr_WorkRelease()‚Å—Ìˆæ‚ðŠJ•ú‚·‚é‚±‚Æ
+ *	ï¼Šã‹ãªã‚‰ãš TowerScr_WorkRelease()ã§é ˜åŸŸã‚’é–‹æ”¾ã™ã‚‹ã“ã¨
  */
 GLOBAL BTOWER_SCRWORK* TowerScr_WorkInit(SAVEDATA* savedata,u16 init,u16 playmode);
 
 /**
- *	@brief	ƒ[ƒNƒGƒŠƒA‚ðŠJ•ú‚·‚é
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’é–‹æ”¾ã™ã‚‹
  */
 GLOBAL void TowerScr_WorkRelease(BTOWER_SCRWORK* wk);
 
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[—pƒ|ƒPƒ‚ƒ“‘I‘ðŒÄo‚µ
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒã‚±ãƒ¢ãƒ³é¸æŠžå‘¼å‡ºã—
  */
 GLOBAL void TowerScr_SelectPoke(BTOWER_SCRWORK* wk,
 				GMEVENT_CONTROL *ev_work,void** proc_wk);
 
 /**
- *	@brief	‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚ðŽæ“¾
+ *	@brief	é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ã‚’å–å¾—
  *	
- *	@retval	TRUE	‘I‘ð‚µ‚½
- *	@retval	FALSE	‘I‘ð‚¹‚¸‚É‚â‚ß‚½
+ *	@retval	TRUE	é¸æŠžã—ãŸ
+ *	@retval	FALSE	é¸æŠžã›ãšã«ã‚„ã‚ãŸ
  */
 GLOBAL BOOL TowerScr_GetEntryPoke(BTOWER_SCRWORK* wk,void** app_work,SAVEDATA* sv);
 
 /**
- *	@brief	ŽQ‰ÁŽw’è‚µ‚½ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌðŒƒ`ƒFƒbƒN
+ *	@brief	å‚åŠ æŒ‡å®šã—ãŸæ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®æ¡ä»¶ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	0	ŽQ‰ÁOK
- *	@retval	1	“¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é
- *	@retval 2	“¯‚¶ƒAƒCƒeƒ€‚ðŽ‚Á‚Ä‚¢‚é
+ *	@retval	0	å‚åŠ OK
+ *	@retval	1	åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹
+ *	@retval 2	åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ã‚‹
  */
 GLOBAL int TowerScr_CheckEntryPoke(BTOWER_SCRWORK* wk,SAVEDATA* savedata);
 
 /**
- *	@brief@‘ÎíƒgƒŒ[ƒi[No’Š‘I
+ *	@briefã€€å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼NoæŠ½é¸
  */
 GLOBAL void TowerScr_BtlTrainerNoSet(BTOWER_SCRWORK* wk,SAVEDATA* sv);
 
 /**
- *	@brief	Œ»Ý‚Ìƒ‰ƒEƒ“ƒh”‚ðƒXƒNƒŠƒvƒgƒ[ƒN‚ÉŽæ“¾‚·‚é
+ *	@brief	ç¾åœ¨ã®ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯ã«å–å¾—ã™ã‚‹
  */
 GLOBAL u16	TowerScr_GetNowRound(BTOWER_SCRWORK* wk);
 
 /**
- *	@brief	ƒ‰ƒEƒ“ƒh”‚ðƒCƒ“ƒNƒŠƒƒ“ƒg
+ *	@brief	ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  */
 GLOBAL u16	TowerScr_IncRound(BTOWER_SCRWORK* wk);
 
 /**
- *	@brief	7˜AŸ‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ *	@brief	7é€£å‹ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  */
 GLOBAL BOOL TowerScr_IsClear(BTOWER_SCRWORK* wk);
 
 /**
- *	@brief	Œ»Ý‚Ì˜AŸ”‚ðŽæ“¾‚·‚é
+ *	@brief	ç¾åœ¨ã®é€£å‹æ•°ã‚’å–å¾—ã™ã‚‹
  */
 GLOBAL u16 TowerScr_GetRenshouCount(BTOWER_SCRWORK* wk);
 
 /**
- *	@brief	”síˆ—	
+ *	@brief	æ•—æˆ¦å‡¦ç†	
  */
 GLOBAL void TowerScr_SetLoseScore(BTOWER_SCRWORK* wk,SAVEDATA* savedata);
 
 /**
- *	@brief	ƒNƒŠƒAˆ—
+ *	@brief	ã‚¯ãƒªã‚¢å‡¦ç†
  */
 GLOBAL void TowerScr_SetClearScore(BTOWER_SCRWORK* wk,SAVEDATA* savedata, FNOTE_DATA* fnote);
 
 
 /**
- *	@brief	‹x‚Þ‚Æ‚«‚ÉŒ»Ý‚ÌƒvƒŒƒCó‹µ‚ðƒZ[ƒu‚É‘‚«o‚·
+ *	@brief	ä¼‘ã‚€ã¨ãã«ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤çŠ¶æ³ã‚’ã‚»ãƒ¼ãƒ–ã«æ›¸ãå‡ºã™
  */
 GLOBAL void TowerScr_SaveRestPlayData(BTOWER_SCRWORK* wk);
 
 
 /**
- *	@brief	‘ÎíƒgƒŒ[ƒi[’Š‘I
+ *	@brief	å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸
  */
 GLOBAL void TowerScr_ChoiceBtlPartner(BTOWER_SCRWORK* wk,SAVEDATA* sv);
 /**
- *	@brief	AIƒ}ƒ‹ƒ`ƒyƒAƒ|ƒPƒ‚ƒ“’Š‘I
+ *	@brief	AIãƒžãƒ«ãƒãƒšã‚¢ãƒã‚±ãƒ¢ãƒ³æŠ½é¸
  */
 GLOBAL void TowerScr_ChoiceBtlSeven(BTOWER_SCRWORK* wk);
 
 /**
- *	@brief	‘ÎíƒgƒŒ[ƒi[OBJƒR[ƒhŽæ“¾
+ *	@brief	å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼OBJã‚³ãƒ¼ãƒ‰å–å¾—
  */
 GLOBAL u16 TowerScr_GetEnemyObj(BTOWER_SCRWORK* wk,u16 idx);
 
 /**
- *	@brief	í“¬ŒÄ‚Ño‚µ
+ *	@brief	æˆ¦é—˜å‘¼ã³å‡ºã—
  */
 GLOBAL void TowerScr_LocalBattleCall(GMEVENT_CONTROL* event,BTOWER_SCRWORK* wk,BOOL* win_flag);
 
 /**
- *	@brief	Œ»Ý‚ÌƒvƒŒƒCƒ‚[ƒh‚ð•Ô‚·
+ *	@brief	ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã‚’è¿”ã™
  */
 GLOBAL u16	TowerScr_GetPlayMode(BTOWER_SCRWORK* wk);
 
 /**
- *	@brief	ƒŠ[ƒ_[ƒNƒŠƒAƒtƒ‰ƒO‚ð—§‚Ä‚é
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
  */
 GLOBAL void TowerScr_SetLeaderClearFlag(BTOWER_SCRWORK* wk,u16 mode);
 
 /**
- *	@brief	ƒŠ[ƒ_[ƒNƒŠƒAƒtƒ‰ƒO‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  */
 GLOBAL	u16	TowerScr_GetLeaderClearFlag(BTOWER_SCRWORK* wk);
 
 /**
- *	@brief	ƒ^ƒ[ƒNƒŠƒAŽž‚Éƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ð‰ÁŽZ‚·‚é
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã‚¯ãƒªã‚¢æ™‚ã«ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’åŠ ç®—ã™ã‚‹
  *
- *	@return	V‚½‚ÉŽæ“¾‚µ‚½ƒoƒgƒ‹ƒ|ƒCƒ“ƒg
+ *	@return	æ–°ãŸã«å–å¾—ã—ãŸãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆ
  */
 GLOBAL u16	TowerScr_AddBtlPoint(BTOWER_SCRWORK* wk);
 
 /**
- *	@brief	ƒVƒ“ƒOƒ‹‚Å˜AŸ‚µ‚½Žž‚Ì‚²–J”ü‚ÌƒgƒƒtƒB[‚ð‚ ‚°‚éƒtƒ‰ƒO‚ð—§‚Ä‚Ä‚¨‚­
+ *	@brief	ã‚·ãƒ³ã‚°ãƒ«ã§é€£å‹ã—ãŸæ™‚ã®ã”è¤’ç¾Žã®ãƒˆãƒ­ãƒ•ã‚£ãƒ¼ã‚’ã‚ã’ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦ãŠã
  */
 GLOBAL	u16	TowerScr_GoodsFlagSet(BTOWER_SCRWORK* wk,SAVEDATA* sv);
 
 /**
- *	@brief	Œ»Ý‚ÌWIFIƒ‰ƒ“ƒN‚ð‘€ì‚µ‚Ä•Ô‚·
+ *	@brief	ç¾åœ¨ã®WIFIãƒ©ãƒ³ã‚¯ã‚’æ“ä½œã—ã¦è¿”ã™
  */
 GLOBAL u16	TowerScr_SetWifiRank(BTOWER_SCRWORK* wk,SAVEDATA* sv,u8 mode);
 
 
 /**
- *	@brief	ƒŠ[ƒ_[‚ð“|‚µ‚½‚²–J”üƒŠƒ{ƒ“‚ð‚ ‚°‚é
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã—ãŸã”è¤’ç¾Žãƒªãƒœãƒ³ã‚’ã‚ã’ã‚‹
  */
 GLOBAL u16 TowerScr_LeaderRibbonSet(BTOWER_SCRWORK* wk,SAVEDATA* sv);
 
 /**
- *	@brief	˜AŸ‚Ì‚²–J”üƒŠƒ{ƒ“‚ð‚ ‚°‚é	
+ *	@brief	é€£å‹ã®ã”è¤’ç¾Žãƒªãƒœãƒ³ã‚’ã‚ã’ã‚‹	
  */
 GLOBAL u16 TowerScr_RenshouRibbonSet(BTOWER_SCRWORK* wk,SAVEDATA* sv);
 
 /**
- *	@biref	ƒvƒŒƒCƒ‰ƒ“ƒ_ƒ€ƒV[ƒh‚ðXV‚·‚é
+ *	@biref	ãƒ—ãƒ¬ã‚¤ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰ã‚’æ›´æ–°ã™ã‚‹
  */
 GLOBAL u16 TowerScr_PlayRandUpdate(BTOWER_SCRWORK* wk,SAVEDATA* sv);
 
 
 //=============================================================================================
 //
-//	ƒtƒƒ“ƒeƒBƒA‚ÆƒtƒB[ƒ‹ƒh‚Å‹¤’Ê‚ÅŽg—p‚·‚é‚à‚Ì‚ðˆÚ“®
+//	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§å…±é€šã§ä½¿ç”¨ã™ã‚‹ã‚‚ã®ã‚’ç§»å‹•
 //
 //=============================================================================================
 
 //---------------------------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi[‚ÌŽ‚¿ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”‚ðŒˆ’è‚·‚é
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã‚’æ±ºå®šã™ã‚‹
  *
- * @param	tr_no	ƒgƒŒ[ƒi[ƒiƒ“ƒo[
+ * @param	tr_no	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	ƒpƒ[—”
+ * @return	ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
  *
- * b_tower_fld.c¨b_tower_scr‚ÉˆÚ“®
+ * b_tower_fld.câ†’b_tower_scrã«ç§»å‹•
  */
 //---------------------------------------------------------------------------------------------
 GLOBAL u8	BattleTowerPowRndGet(u16 tr_no);
 
 //---------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒ[ƒvƒŒƒCXVƒ‰ƒ“ƒ_ƒ€ƒV[ƒhŽæ“¾ ƒ‰ƒEƒ“ƒhXVŽž‚ÉŒÄ‚Ô
+ * @brief	ã‚¿ãƒ¯ãƒ¼ãƒ—ãƒ¬ã‚¤æ›´æ–°ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰å–å¾— ãƒ©ã‚¦ãƒ³ãƒ‰æ›´æ–°æ™‚ã«å‘¼ã¶
  *
- * b_tower_fld.c¨b_tower_scr‚ÉˆÚ“®
+ * b_tower_fld.câ†’b_tower_scrã«ç§»å‹•
  */
 //---------------------------------------------------------------------------------------------
 GLOBAL u16	btower_rand(BTOWER_SCRWORK* wk);

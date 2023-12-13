@@ -3,13 +3,13 @@
  *  GAME FREAK inc.
  *
  *  @file       bct_cllient.c
- *  @brief		‹Ê“Š‚°	ƒNƒ‰ƒCƒAƒ“ƒgƒVƒXƒeƒ€
+ *  @brief		çŽ‰æŠ•ã’	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
  *  @author		tomoya takahashi
  *  @data       2007.06.19
  *
  *
- *  ŽŽì‚Ì˜A‘±‚È‚Ì‚Å‚ß‚Á‚¿‚á’è”‘½‚¢‚Å‚·B
- *  ‚²‚ß‚ñ‚È‚³‚¢B
+ *  è©¦ä½œã®é€£ç¶šãªã®ã§ã‚ã£ã¡ã‚ƒå®šæ•°å¤šã„ã§ã™ã€‚
+ *  ã”ã‚ã‚“ãªã•ã„ã€‚
  *
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -47,19 +47,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *                  ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *      œŠÖ”–¼
- *              ‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *      œ•Ï”–¼
- *              E•Ï”‹¤’Ê
- *                      const‚É‚Í c_ ‚ð•t‚¯‚é
- *                      static‚É‚Í s_ ‚ð•t‚¯‚é
- *                      ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *                      ‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *              EƒOƒ[ƒoƒ‹•Ï”
- *                      ‚P•¶Žš–Ú‚Í‘å•¶Žš
- *              EŠÖ”“à•Ï”
- *                      ¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *                  ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *      â—é–¢æ•°å
+ *              ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *      â—å¤‰æ•°å
+ *              ãƒ»å¤‰æ•°å…±é€š
+ *                      constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *                      staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *                      ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *                      å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *              ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *                      ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *              ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *                      å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
@@ -71,65 +71,65 @@ static s16  BCT_DEBUG_NutsDrawNum = 0;
 
 //-----------------------------------------------------------------------------
 /**
- *                  ’è”éŒ¾
+ *                  å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define BCT_NUTSBUFF_NUM    ( 96 )  // ‘—M—p–Ø‚ÌŽÀƒf[ƒ^ƒoƒbƒtƒ@”
-#define BCT_NUTSBUFFOAM_NUM ( 96 )  // ŽÀ•`‰æƒoƒbƒtƒ@”
+#define BCT_NUTSBUFF_NUM    ( 96 )  // é€ä¿¡ç”¨æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡æ•°
+#define BCT_NUTSBUFFOAM_NUM ( 96 )  // å®Ÿæç”»ãƒãƒƒãƒ•ã‚¡æ•°
 #define BCT_MAINOAM_CONTID  ( 200 )
 #define BCT_MAINOAM_BGPRI  ( 0 )
-#define BCT_STRBUF_NUM      ( 128 ) // STRBUF‚ðì‚é‚Æ‚«‚Ìƒoƒbƒtƒ@”
-#define BCT_FONTOAM_WKNUM	( 8 )	// FONTOAMƒ[ƒN”
+#define BCT_STRBUF_NUM      ( 128 ) // STRBUFã‚’ä½œã‚‹ã¨ãã®ãƒãƒƒãƒ•ã‚¡æ•°
+#define BCT_FONTOAM_WKNUM	( 8 )	// FONTOAMãƒ¯ãƒ¼ã‚¯æ•°
 
-#define BCT_COL_N_BLACK ( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )      // ƒtƒHƒ“ƒgƒJƒ‰[F•
-#define BCT_COL_N_WHITE ( GF_PRINTCOLOR_MAKE( 15, 14, 15 ) )        // ƒtƒHƒ“ƒgƒJƒ‰[F”’
-#define BCT_COL_N_RED       ( GF_PRINTCOLOR_MAKE( 3, 4, 15 ) )      // ƒtƒHƒ“ƒgƒJƒ‰[FÂ
-#define BCT_COL_N_BLUE      ( GF_PRINTCOLOR_MAKE( 5, 6, 15 ) )      // ƒtƒHƒ“ƒgƒJƒ‰[FÔ
-#define BCT_COL_N_GRAY      ( GF_PRINTCOLOR_MAKE( 2, 14, 15 ) )     // ƒtƒHƒ“ƒgƒJƒ‰[FŠD
+#define BCT_COL_N_BLACK ( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )      // ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+#define BCT_COL_N_WHITE ( GF_PRINTCOLOR_MAKE( 15, 14, 15 ) )        // ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+#define BCT_COL_N_RED       ( GF_PRINTCOLOR_MAKE( 3, 4, 15 ) )      // ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé’
+#define BCT_COL_N_BLUE      ( GF_PRINTCOLOR_MAKE( 5, 6, 15 ) )      // ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šèµ¤
+#define BCT_COL_N_GRAY      ( GF_PRINTCOLOR_MAKE( 2, 14, 15 ) )     // ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç°
 
-#define BCT_COL_OAM_BLACK     ( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )     // ƒtƒHƒ“ƒgƒJƒ‰[F•
+#define BCT_COL_OAM_BLACK     ( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )     // ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
 
 
 //-------------------------------------
-/// –Ø‚ÌŽÀ“®ìƒV[ƒPƒ“ƒX
+/// æœ¨ã®å®Ÿå‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
     BCT_NUTSSEQ_NONE,
-    BCT_NUTSSEQ_MOVE,       // “®ì
-    BCT_NUTSSEQ_MOVEOTHER,  // ‘¼l‚Ì–Ø‚ÌŽÀ‚Æ‚µ‚Ä“®ì
-	BCT_NUTSSEQ_INMOVE,		// “ü‚Á‚Ä‚©‚ç‚Ì“®ì
-    BCT_NUTSSEQ_END,        // ‘—M‘Ò‚¿
-    BCT_NUTSSEQ_MOVEAWAY,   // êŠO‚Ö
+    BCT_NUTSSEQ_MOVE,       // å‹•ä½œ
+    BCT_NUTSSEQ_MOVEOTHER,  // ä»–äººã®æœ¨ã®å®Ÿã¨ã—ã¦å‹•ä½œ
+	BCT_NUTSSEQ_INMOVE,		// å…¥ã£ã¦ã‹ã‚‰ã®å‹•ä½œ
+    BCT_NUTSSEQ_END,        // é€ä¿¡å¾…ã¡
+    BCT_NUTSSEQ_MOVEAWAY,   // å ´å¤–ã¸
     BCT_NUTSSEQ_NUM,
 } ;
 
 //-------------------------------------
-/// ŠJŽnŽž
+/// é–‹å§‹æ™‚
 //=====================================
 enum{
-    BCT_STARTSEQ_TOUCHPEN_START,   // ƒ^ƒbƒ`ƒyƒ“ŠJŽn
-    BCT_STARTSEQ_TOUCHPEN_MAIN,   // ƒ^ƒbƒ`ƒyƒ“ƒƒCƒ“
-    BCT_STARTSEQ_MARUNOMU_SND,   // ƒ}ƒ‹ƒm[ƒ€‚ªã‚Á‚Ä‚­‚é‘Ò‚¿
-    BCT_STARTSEQ_MARUNOMU_OPEN, // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚ªŠJ‚­‘Ò‚¿
-    BCT_STARTSEQ_WAIT,          // ƒJƒEƒ“ƒgƒ_ƒEƒ“ŠJŽn‘Ò‚¿
-    BCT_STARTSEQ_TEXTINIT,      // ƒeƒLƒXƒg‚Ì€”õ
-    BCT_STARTSEQ_COUNTDOWNWAIT, // ƒJƒEƒ“ƒgƒ_ƒEƒ“‘Ò‚¿
-    BCT_STARTSEQ_GAMESTARTWAIT, // ƒQ[ƒ€‚ªo—ˆ‚éó‘Ô‚É‚È‚é‚Ü‚Å‘Ò‚Â
-    BCT_STARTSEQ_END,           // ŠJŽnI‚í‚è
+    BCT_STARTSEQ_TOUCHPEN_START,   // ã‚¿ãƒƒãƒãƒšãƒ³é–‹å§‹
+    BCT_STARTSEQ_TOUCHPEN_MAIN,   // ã‚¿ãƒƒãƒãƒšãƒ³ãƒ¡ã‚¤ãƒ³
+    BCT_STARTSEQ_MARUNOMU_SND,   // ãƒžãƒ«ãƒŽãƒ¼ãƒ ãŒä¸Šã£ã¦ãã‚‹å¾…ã¡
+    BCT_STARTSEQ_MARUNOMU_OPEN, // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ãŒé–‹ãå¾…ã¡
+    BCT_STARTSEQ_WAIT,          // ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³é–‹å§‹å¾…ã¡
+    BCT_STARTSEQ_TEXTINIT,      // ãƒ†ã‚­ã‚¹ãƒˆã®æº–å‚™
+    BCT_STARTSEQ_COUNTDOWNWAIT, // ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³å¾…ã¡
+    BCT_STARTSEQ_GAMESTARTWAIT, // ã‚²ãƒ¼ãƒ ãŒå‡ºæ¥ã‚‹çŠ¶æ…‹ã«ãªã‚‹ã¾ã§å¾…ã¤
+    BCT_STARTSEQ_END,           // é–‹å§‹çµ‚ã‚ã‚Š
 };
 #define BCT_START_MARU_MOUTH_OPEN_WAIT	( 65 )
   
 
 //-------------------------------------
-///	ƒQ[ƒ€“àó‘Ô
+///	ã‚²ãƒ¼ãƒ å†…çŠ¶æ…‹
 //=====================================
 typedef enum {
-    BCT_MARUNOMU_MOVE_EASY,			// ŠÈ’P“®ì
-    BCT_MARUNOMU_MOVE_FEVER_EFF,	// FEVER‘OƒGƒtƒFƒNƒg
+    BCT_MARUNOMU_MOVE_EASY,			// ç°¡å˜å‹•ä½œ
+    BCT_MARUNOMU_MOVE_FEVER_EFF,	// FEVERå‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
     BCT_MARUNOMU_MOVE_FEVER,		// FEVER
-    BCT_MARUNOMU_MOVE_NUM,			// ƒ^ƒCƒv”
+    BCT_MARUNOMU_MOVE_NUM,			// ã‚¿ã‚¤ãƒ—æ•°
 } BCT_MARUNOMU_MOVE_TYPE;
-// “®ìŠJŽnŽžŠÔ
+// å‹•ä½œé–‹å§‹æ™‚é–“
 static const u32 sc_BCT_MARUNOMU_MOVE_STARTTIME[ BCT_MARUNOMU_MOVE_NUM ] = {
 	0 * 30,
 	(22 * 30),
@@ -139,29 +139,29 @@ static const u32 sc_BCT_MARUNOMU_MOVE_STARTTIME[ BCT_MARUNOMU_MOVE_NUM ] = {
 
 
 //-------------------------------------
-/// ƒ}ƒ‹ƒm[ƒ€
+/// ãƒžãƒ«ãƒŽãƒ¼ãƒ 
 //=====================================
-enum{   // ƒ}ƒ‹ƒm[ƒ€ƒ‚ƒfƒ‹ƒIƒuƒWƒF
-	BCT_MARUNOMU_MDL_NORMAL,	// ’Êí
-	BCT_MARUNOMU_MDL_OPEN,		// ƒI[ƒvƒ“ƒAƒjƒ—p
-	BCT_MARUNOMU_MDL_FEVER,		// ƒtƒB[ƒo[ƒAƒjƒ—p
+enum{   // ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ¢ãƒ‡ãƒ«ã‚ªãƒ–ã‚¸ã‚§
+	BCT_MARUNOMU_MDL_NORMAL,	// é€šå¸¸
+	BCT_MARUNOMU_MDL_OPEN,		// ã‚ªãƒ¼ãƒ—ãƒ³ã‚¢ãƒ‹ãƒ¡ç”¨
+	BCT_MARUNOMU_MDL_FEVER,		// ãƒ•ã‚£ãƒ¼ãƒãƒ¼ã‚¢ãƒ‹ãƒ¡ç”¨
     BCT_MARUNOMU_MDL_NUM,
 };
-enum{   // ƒ}ƒ‹ƒm[ƒ€ƒAƒjƒƒIƒuƒWƒF
-    BCT_MARUNOMU_ANM_WALK,  // •à‚«ƒAƒjƒ
-    BCT_MARUNOMU_ANM_ROTA,  // ‰ñ“]ƒAƒjƒ
-    BCT_MARUNOMU_ANM_PURU,  // Œûƒvƒ‹ƒvƒ‹ƒAƒjƒ
-    BCT_MARUNOMU_ANM_FEV,	// FEVER‘OƒAƒjƒ
-    BCT_MARUNOMU_ANM_OPEN,  // ŒûŠJ‚«ƒAƒjƒ
-    BCT_MARUNOMU_ANM_CLOSE, // Œû•Â‚¶ƒAƒjƒ
+enum{   // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§
+    BCT_MARUNOMU_ANM_WALK,  // æ­©ãã‚¢ãƒ‹ãƒ¡
+    BCT_MARUNOMU_ANM_ROTA,  // å›žè»¢ã‚¢ãƒ‹ãƒ¡
+    BCT_MARUNOMU_ANM_PURU,  // å£ãƒ—ãƒ«ãƒ—ãƒ«ã‚¢ãƒ‹ãƒ¡
+    BCT_MARUNOMU_ANM_FEV,	// FEVERå‰ã‚¢ãƒ‹ãƒ¡
+    BCT_MARUNOMU_ANM_OPEN,  // å£é–‹ãã‚¢ãƒ‹ãƒ¡
+    BCT_MARUNOMU_ANM_CLOSE, // å£é–‰ã˜ã‚¢ãƒ‹ãƒ¡
     BCT_MARUNOMU_ANM_NUM,
 };
 enum{
-	BCT_MARUNOMU_ANM_COLANM_NORMAL,		//@’Êíƒ‚ƒfƒ‹—pƒJƒ‰[ƒAƒjƒiBCT_MARUNOMU_MDL_NORMAL—pj
-//	BCT_MARUNOMU_ANM_COLANM_FEVER,		//@ƒtƒB[ƒo[ƒGƒtƒFƒNƒgƒ‚ƒfƒ‹—pƒJƒ‰[ƒAƒjƒiBCT_MARUNOMU_MDL_FEVER—pj
+	BCT_MARUNOMU_ANM_COLANM_NORMAL,		//ã€€é€šå¸¸ãƒ¢ãƒ‡ãƒ«ç”¨ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ï¼ˆBCT_MARUNOMU_MDL_NORMALç”¨ï¼‰
+//	BCT_MARUNOMU_ANM_COLANM_FEVER,		//ã€€ãƒ•ã‚£ãƒ¼ãƒãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¢ãƒ‡ãƒ«ç”¨ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ï¼ˆBCT_MARUNOMU_MDL_FEVERç”¨ï¼‰
 	BCT_MARUNOMU_ANM_COLANM_NUM,
 };
-enum{	// FŠGƒAƒjƒƒtƒŒ[ƒ€ŠÇ—
+enum{	// è‰²é¦™çµµã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ç®¡ç†
 	BCT_MARUNOMU_ANM_COL_NORMAL,
 	BCT_MARUNOMU_ANM_COL_1P,
 	BCT_MARUNOMU_ANM_COL_2P,
@@ -169,11 +169,11 @@ enum{	// FŠGƒAƒjƒƒtƒŒ[ƒ€ŠÇ—
 	BCT_MARUNOMU_ANM_COL_4P,
 	BCT_MARUNOMU_ANM_COL_NUM,
 
-	BCT_MARUNOMU_ANM_COL_DATA_START = 0,	// ŠJŽnƒtƒŒ[ƒ€
-	BCT_MARUNOMU_ANM_COL_DATA_END,			// I—¹ƒtƒŒ[ƒ€
+	BCT_MARUNOMU_ANM_COL_DATA_START = 0,	// é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	BCT_MARUNOMU_ANM_COL_DATA_END,			// çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 
 	BCT_MARUNOMU_ANM_COL_DATA_NUM,
 };
-// ƒJƒ‰[ƒtƒŒ[ƒ€@ŠJŽnI—¹ƒtƒŒ[ƒ€
+// ã‚«ãƒ©ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã€€é–‹å§‹çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 
 static const u8 sc_BCT_MARUNOMU_ANM_COL_DATA[BCT_MARUNOMU_ANM_COL_NUM][BCT_MARUNOMU_ANM_COL_DATA_NUM] = {
 	// BCT_MARUNOMU_ANM_COL_NORMAL,
 	{  0,  0},
@@ -189,7 +189,7 @@ static const u8 sc_BCT_MARUNOMU_ANM_COL_DATA[BCT_MARUNOMU_ANM_COL_NUM][BCT_MARUN
 #define BCT_MARUNOMU_ANM_COL_1PSTART	( sc_BCT_MARUNOMU_ANM_COL_DATA[BCT_MARUNOMU_ANM_COL_1P][BCT_MARUNOMU_ANM_COL_DATA_START]*FX32_ONE )
 #define BCT_MARUNOMU_ANM_COL_END		( sc_BCT_MARUNOMU_ANM_COL_DATA[BCT_MARUNOMU_ANM_COL_4P][BCT_MARUNOMU_ANM_COL_DATA_END]*FX32_ONE )
 
-// ƒAƒjƒ‚Ìƒm[ƒh–¼
+// ã‚¢ãƒ‹ãƒ¡ã®ãƒŽãƒ¼ãƒ‰å
 #define BCT_MARUNOMU_ANM_NODE_NUM	( 15 )
 static const NNSG3dResName sc_AnmNodeName[ BCT_MARUNOMU_ANM_NUM ][ BCT_MARUNOMU_ANM_NODE_NUM ] = {
 	{	// BCT_MARUNOMU_ANM_WALK
@@ -250,7 +250,7 @@ static const NNSG3dResName sc_AnmNodeName[ BCT_MARUNOMU_ANM_NUM ][ BCT_MARUNOMU_
 		"pSphere7",
 	},
 };
-// ƒAƒjƒ‚Æƒ‚ƒfƒ‹‚Ì‘Î‰ž•\ 
+// ã‚¢ãƒ‹ãƒ¡ã¨ãƒ¢ãƒ‡ãƒ«ã®å¯¾å¿œè¡¨ 
 static const u8 sc_BCT_MARUNOMU_ANM_MDL[ BCT_MARUNOMU_ANM_NUM ] = {
 	BCT_MARUNOMU_MDL_NORMAL,
 	BCT_MARUNOMU_MDL_NORMAL,
@@ -260,113 +260,113 @@ static const u8 sc_BCT_MARUNOMU_ANM_MDL[ BCT_MARUNOMU_ANM_NUM ] = {
 	BCT_MARUNOMU_MDL_NORMAL,
 };
 
-// ƒJƒ‰[ƒAƒjƒ‚Æƒ‚ƒfƒ‹‚Ì‘Î‰ž•\ 
+// ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ã¨ãƒ¢ãƒ‡ãƒ«ã®å¯¾å¿œè¡¨ 
 static const u8 sc_BCT_MARUNOMU_COLANM_MDL[ BCT_MARUNOMU_ANM_COLANM_NUM ] = {
 	BCT_MARUNOMU_MDL_NORMAL,
 //	BCT_MARUNOMU_MDL_FEVER,
 };
-#define BCT_MARUNOMU_ANM_FRAME_MAX		( FX32_CONST(180) )	// ƒ}ƒ‹ƒm[ƒ€ƒAƒjƒÅ‘åƒtƒŒ[ƒ€
-#define BCT_MARUNOMU_ANM_SPEED		( FX32_CONST(2) )	// ƒAƒjƒƒXƒs[ƒh
-#define BCT_MARUNOMU_ANM_STARTSPEED	( FX32_CONST(1.0) )	// ƒAƒjƒƒXƒs[ƒh
-#define BCT_MARUNOMU_ANM_FEVERSPEED	( FX32_CONST(1.0) )	// ƒAƒjƒƒXƒs[ƒh
-#define BCT_MARUNOMU_ANM_SLOWSPEED	( FX32_CONST(1) )	// ƒAƒjƒƒXƒs[ƒh
-// ƒ}ƒ‹ƒm[ƒ€“–‚½‚è”»’èƒf[ƒ^
-#define BCT_FIELD_MARUNOMU_X    ( FX32_CONST(0) )   // ƒ}ƒ‹ƒm[ƒ€‚ª‚¢‚éêŠ
-#define BCT_FIELD_MARUNOMU_Z    ( FX32_CONST(0) )  // ƒ}ƒ‹ƒm[ƒ€‚ª‚¢‚éêŠ
-#define BCT_FIELD_MARUNOMU_Y    ( FX32_CONST(-90) )   // ƒ}ƒ‹ƒm[ƒ€‚ª‚¢‚éêŠ
-#define BCT_FIELD_MIN			( FX32_CONST(-50) )	// °‚ÌˆÊ’u
-#define BCT_FIELD_Y_DEL			( FX32_CONST(-100) )	// ”jŠü‚·‚é°‚ÌˆÊ’u
+#define BCT_MARUNOMU_ANM_FRAME_MAX		( FX32_CONST(180) )	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚¢ãƒ‹ãƒ¡æœ€å¤§ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define BCT_MARUNOMU_ANM_SPEED		( FX32_CONST(2) )	// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BCT_MARUNOMU_ANM_STARTSPEED	( FX32_CONST(1.0) )	// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BCT_MARUNOMU_ANM_FEVERSPEED	( FX32_CONST(1.0) )	// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BCT_MARUNOMU_ANM_SLOWSPEED	( FX32_CONST(1) )	// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
+// ãƒžãƒ«ãƒŽãƒ¼ãƒ å½“ãŸã‚Šåˆ¤å®šãƒ‡ãƒ¼ã‚¿
+#define BCT_FIELD_MARUNOMU_X    ( FX32_CONST(0) )   // ãƒžãƒ«ãƒŽãƒ¼ãƒ ãŒã„ã‚‹å ´æ‰€
+#define BCT_FIELD_MARUNOMU_Z    ( FX32_CONST(0) )  // ãƒžãƒ«ãƒŽãƒ¼ãƒ ãŒã„ã‚‹å ´æ‰€
+#define BCT_FIELD_MARUNOMU_Y    ( FX32_CONST(-90) )   // ãƒžãƒ«ãƒŽãƒ¼ãƒ ãŒã„ã‚‹å ´æ‰€
+#define BCT_FIELD_MIN			( FX32_CONST(-50) )	// åºŠã®ä½ç½®
+#define BCT_FIELD_Y_DEL			( FX32_CONST(-100) )	// ç ´æ£„ã™ã‚‹åºŠã®ä½ç½®
 
-// °‚Ì•`‰æˆÊ’u
+// åºŠã®æç”»ä½ç½®
 #define BCT_FIELD_YUKA_DRAW_Y	( BCT_FIELD_MARUNOMU_Y - FX32_CONST(8) )
 
 #define BCT_SHADOW_Y_FLOOR		( BCT_FIELD_MIN - FX32_CONST( 1 ) )
 #define BCT_SHADOW_Y_DEL		( FX32_CONST( -300 ) )
-#define BCT_SHADOW_Y_SIZE_DIF	( FX32_CONST( 300 ) )	// –Ø‚ÌŽÀ‚Ì‚‚³Å‘å
-#define BCT_SHADOW_SIZE_MIN		( FX32_CONST( 1 ) )		// ‰A‚ÌƒTƒCƒY
-#define BCT_SHADOW_SIZE_DIV		( FX32_CONST( 1 ) )		// ‰A‚ÌƒTƒCƒY
-#define BCT_SHADOW_ALPHA_MIN	( 8 )	// Å¬
-#define BCT_SHADOW_ALPHA_DIV	( 16 )	// ·
+#define BCT_SHADOW_Y_SIZE_DIF	( FX32_CONST( 300 ) )	// æœ¨ã®å®Ÿã®é«˜ã•æœ€å¤§
+#define BCT_SHADOW_SIZE_MIN		( FX32_CONST( 1 ) )		// é™°ã®ã‚µã‚¤ã‚º
+#define BCT_SHADOW_SIZE_DIV		( FX32_CONST( 1 ) )		// é™°ã®ã‚µã‚¤ã‚º
+#define BCT_SHADOW_ALPHA_MIN	( 8 )	// æœ€å°
+#define BCT_SHADOW_ALPHA_DIV	( 16 )	// å·®
 
 static const VecFx32 sc_MARUNOMU_MAT = { BCT_FIELD_MARUNOMU_X, BCT_FIELD_MARUNOMU_Y, BCT_FIELD_MARUNOMU_Z };
 
-#define BCT_MARUNOMU_HIT_DIS_DIV    ( FX32_CONST(30) )  // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚Ì‘å‚«‚³•Ï“®’l
-#define BCT_MARUNOMU_HIT_DIS_MIN    ( FX32_CONST(50) )   // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚Ì‘å‚«‚³Å¬
-#define BCT_MARUNOMU_HIT_DIS_MAX    ( BCT_MARUNOMU_HIT_DIS_MIN+BCT_MARUNOMU_HIT_DIS_DIV )  // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚Ì‘å‚«‚³Å‘å
-#define BCT_MARUNOMU_SCALE_INIT		( 2500 )	// ƒ}ƒ‹ƒm[ƒ€‚Ì‘å‚«‚³ŠJŽn
-#define BCT_MARUNOMU_SCALE_END		( 4516 )	// ƒ}ƒ‹ƒm[ƒ€‚Ì‘å‚«‚³I—¹
-#define BCT_MARUNOMU_INRYOKU_DIST   ( FX32_CONST(200) ) // ƒ}ƒ‹ƒm[ƒ€‚ÉŒü‚©‚Á‚Ä“­‚­ˆø—Í
-#define BCT_MARUNOMU_INRYOKU_POWER_PAR  ( FX32_CONST(0.03) )    // ‹——£‚Ì‚±‚ê•ªˆø—Í‚ð“­‚©‚¹‚é
-static const VecFx32 BCT_MARUNOMU_HIT_PLANE_N = { 0, FX32_CONST(2500), 0 }; // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû“–‚½‚è”»’è‚Ì–@üƒxƒNƒgƒ‹
-#define BCT_MARUNOMU_HIT_X	( 0 )	// “–‚½‚è”»’è‚˜À•W
-#define BCT_MARUNOMU_HIT_Y	( FX32_CONST(55) )	// “–‚½‚è”»’è‚™À•W
-#define BCT_MARUNOMU_HITBODY_Y_MIN	( FX32_CONST(150) )	// ƒ}ƒ‹ƒm[ƒ€‘Ì‚ ‚½‚è”»’èŠJŽn
-#define BCT_MARUNOMU_HITBODY_Y_DIF	( FX32_CONST(60) )	// Šp“x‚ª‚O`‚X‚O‚É‚È‚éŠÔ‚É•Ï‚í‚é‚‚³
-#define BCT_MARUNOMU_HITBODY_R		( FX32_CONST(80) )	// “–‚½‚è”»’è”¼Œa
-#define BCT_MARUNOMU_HITBODY_R_MAX	( FX32_CONST(120) )	// “–‚½‚è”»’è”¼Œa
+#define BCT_MARUNOMU_HIT_DIS_DIV    ( FX32_CONST(30) )  // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ã®å¤§ãã•å¤‰å‹•å€¤
+#define BCT_MARUNOMU_HIT_DIS_MIN    ( FX32_CONST(50) )   // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ã®å¤§ãã•æœ€å°
+#define BCT_MARUNOMU_HIT_DIS_MAX    ( BCT_MARUNOMU_HIT_DIS_MIN+BCT_MARUNOMU_HIT_DIS_DIV )  // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ã®å¤§ãã•æœ€å¤§
+#define BCT_MARUNOMU_SCALE_INIT		( 2500 )	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å¤§ãã•é–‹å§‹
+#define BCT_MARUNOMU_SCALE_END		( 4516 )	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å¤§ãã•çµ‚äº†
+#define BCT_MARUNOMU_INRYOKU_DIST   ( FX32_CONST(200) ) // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã«å‘ã‹ã£ã¦åƒãå¼•åŠ›
+#define BCT_MARUNOMU_INRYOKU_POWER_PAR  ( FX32_CONST(0.03) )    // è·é›¢ã®ã“ã‚Œåˆ†å¼•åŠ›ã‚’åƒã‹ã›ã‚‹
+static const VecFx32 BCT_MARUNOMU_HIT_PLANE_N = { 0, FX32_CONST(2500), 0 }; // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£å½“ãŸã‚Šåˆ¤å®šã®æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«
+#define BCT_MARUNOMU_HIT_X	( 0 )	// å½“ãŸã‚Šåˆ¤å®šï½˜åº§æ¨™
+#define BCT_MARUNOMU_HIT_Y	( FX32_CONST(55) )	// å½“ãŸã‚Šåˆ¤å®šï½™åº§æ¨™
+#define BCT_MARUNOMU_HITBODY_Y_MIN	( FX32_CONST(150) )	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ä½“ã‚ãŸã‚Šåˆ¤å®šé–‹å§‹
+#define BCT_MARUNOMU_HITBODY_Y_DIF	( FX32_CONST(60) )	// è§’åº¦ãŒï¼ã€œï¼™ï¼ã«ãªã‚‹é–“ã«å¤‰ã‚ã‚‹é«˜ã•
+#define BCT_MARUNOMU_HITBODY_R		( FX32_CONST(80) )	// å½“ãŸã‚Šåˆ¤å®šåŠå¾„
+#define BCT_MARUNOMU_HITBODY_R_MAX	( FX32_CONST(120) )	// å½“ãŸã‚Šåˆ¤å®šåŠå¾„
 #define BCT_MARUNOMU_HITBODY_R_DIS	( BCT_MARUNOMU_HITBODY_R_MAX - BCT_MARUNOMU_HITBODY_R )
 enum{
-    BCT_MARUNOMU_MOUTH_HIT_NONE,    // ‚Ü‚¾Œû‚Ü‚Å‚¢‚Á‚Ä‚¢‚È‚¢
-    BCT_MARUNOMU_MOUTH_HIT_OK,  // “ü‚Á‚½I
-    BCT_MARUNOMU_MOUTH_HIT_NG,  // ‚Í‚¸‚ê‚½I
-    BCT_MARUNOMU_MOUTH_HIT_NEAR,// ˆø—Í”­¶I
+    BCT_MARUNOMU_MOUTH_HIT_NONE,    // ã¾ã å£ã¾ã§ã„ã£ã¦ã„ãªã„
+    BCT_MARUNOMU_MOUTH_HIT_OK,  // å…¥ã£ãŸï¼
+    BCT_MARUNOMU_MOUTH_HIT_NG,  // ã¯ãšã‚ŒãŸï¼
+    BCT_MARUNOMU_MOUTH_HIT_NEAR,// å¼•åŠ›ç™ºç”Ÿï¼
 } ;
 #define BCT_MARUNOMU_SCALE      (FX32_CONST(1.50f))
-#define BCT_MARUNOMU_ROTA_X_MIN			( FX_GET_ROTA_NUM( 20 ) )	// ŒXŽÎÅ¬’l
-#define BCT_MARUNOMU_ROTA_X_INIT        ( FX_GET_ROTA_NUM( 20 ) )    // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚ÌŒX‚«
-#define BCT_MARUNOMU_ROTA_X_ADD         ( FX_GET_ROTA_NUM( 30 ) )   // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚ÌŒX‚«
-#define BCT_MARUNOMU_ROTA_X_MAX_360		( 90 )	// Å‘åŒXŽÎ
-#define BCT_MARUNOMU_ROTA_X_MAX			( FX_GET_ROTA_NUM( BCT_MARUNOMU_ROTA_X_MAX_360 ) )	// Å‘åŒXŽÎ
-#define BCT_MARUNOMU_ROTA_X_DIF			( BCT_MARUNOMU_ROTA_X_MAX - BCT_MARUNOMU_ROTA_X_MIN )	// MIN‚ÆMAX‚Ì·
-#define BCT_MARUNOMU_ROTA_X_ADD_SUB ( FX_GET_ROTA_NUM( 8 ) )    // •â³’n
-#define BCT_MARUNOMU_ROTA_INIT			( FX_GET_ROTA_NUM( 180 ) )	// YŽ²‰ñ“]‰Šú’l
+#define BCT_MARUNOMU_ROTA_X_MIN			( FX_GET_ROTA_NUM( 20 ) )	// å‚¾æ–œæœ€å°å€¤
+#define BCT_MARUNOMU_ROTA_X_INIT        ( FX_GET_ROTA_NUM( 20 ) )    // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ã®å‚¾ã
+#define BCT_MARUNOMU_ROTA_X_ADD         ( FX_GET_ROTA_NUM( 30 ) )   // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ã®å‚¾ã
+#define BCT_MARUNOMU_ROTA_X_MAX_360		( 90 )	// æœ€å¤§å‚¾æ–œ
+#define BCT_MARUNOMU_ROTA_X_MAX			( FX_GET_ROTA_NUM( BCT_MARUNOMU_ROTA_X_MAX_360 ) )	// æœ€å¤§å‚¾æ–œ
+#define BCT_MARUNOMU_ROTA_X_DIF			( BCT_MARUNOMU_ROTA_X_MAX - BCT_MARUNOMU_ROTA_X_MIN )	// MINã¨MAXã®å·®
+#define BCT_MARUNOMU_ROTA_X_ADD_SUB ( FX_GET_ROTA_NUM( 8 ) )    // è£œæ­£åœ°
+#define BCT_MARUNOMU_ROTA_INIT			( FX_GET_ROTA_NUM( 180 ) )	// Yè»¸å›žè»¢åˆæœŸå€¤
 #define BCT_MARUNOMU_ROTA_SPEED_INIT    ( 128 )
-#define BCT_MARUNOMU_ROTA_SPEED_ADD     ( 360 ) // INIT‚É‘«‚·Å‘å’l
-#define BCT_MARUNOMU_ROTA_SPEED_ADD_SUB ( 96 )  // •â³’n
-#define BCT_MARUNOMU_DRAWROTA_ADD       ( FX_GET_ROTA_NUM( 0 ) )  // •\Ž¦‚Å•â³‚·‚é‰ñ“]Šp
+#define BCT_MARUNOMU_ROTA_SPEED_ADD     ( 360 ) // INITã«è¶³ã™æœ€å¤§å€¤
+#define BCT_MARUNOMU_ROTA_SPEED_ADD_SUB ( 96 )  // è£œæ­£åœ°
+#define BCT_MARUNOMU_DRAWROTA_ADD       ( FX_GET_ROTA_NUM( 0 ) )  // è¡¨ç¤ºã§è£œæ­£ã™ã‚‹å›žè»¢è§’
 #define BCT_MARUNOMU_ROTACOUNT_ONE		( 1000 )
 #define BCT_MARUNOMU_ROTACOUNT_GETNUM(x) ((x)*BCT_MARUNOMU_ROTACOUNT_ONE)
 
-// ƒ}ƒ‹ƒm[ƒ€ƒoƒNƒoƒN“®ì
-#define BCT_MARUNOMU_BAKUBAKU_ONE_SYNC	( 50 )	// ‚P‰ñŠJ‚¢‚Ä•Â‚¶‚éŠÔŠu
+// ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒã‚¯ãƒã‚¯å‹•ä½œ
+#define BCT_MARUNOMU_BAKUBAKU_ONE_SYNC	( 50 )	// ï¼‘å›žé–‹ã„ã¦é–‰ã˜ã‚‹é–“éš”
 
-// “¾“_ƒf[ƒ^
-#define BCT_MARUNOMU_SCORE_TYPENUM  (3) // ƒXƒRƒA‚Ìƒ^ƒCƒv
+// å¾—ç‚¹ãƒ‡ãƒ¼ã‚¿
+#define BCT_MARUNOMU_SCORE_TYPENUM  (3) // ã‚¹ã‚³ã‚¢ã®ã‚¿ã‚¤ãƒ—
 static const u32 BCT_SCORE_NUM[ BCT_MARUNOMU_SCORE_TYPENUM ] = {
     100, 200, 300
 };
-#define BCT_MARUNOMU_SCORE_FEVER_MUL	(3)	// FEVERƒ^ƒCƒ€‚ÌŽž‚É‚©‚¯‚é’l
+#define BCT_MARUNOMU_SCORE_FEVER_MUL	(3)	// FEVERã‚¿ã‚¤ãƒ ã®æ™‚ã«ã‹ã‘ã‚‹å€¤
 
-// ƒtƒB[ƒ‹ƒhƒf[ƒ^
-#define BCT_FIELD_ZDIS  ( FX32_CONST(600) )     // ƒtƒB[ƒ‹ƒh‚Ì‘å‚«‚³
-#define BCT_FIELD_XDIS  ( FX32_CONST(600) )     // ƒtƒB[ƒ‹ƒh‚Ì‘å‚«‚³
-#define BCT_FIELD_ZDISHALF  ( BCT_FIELD_ZDIS/2 )    // ƒtƒB[ƒ‹ƒh‚Ì‘å‚«‚³
-#define BCT_FIELD_XDISHALF  ( BCT_FIELD_XDIS/2 )    // ƒtƒB[ƒ‹ƒh‚Ì‘å‚«‚³
-#define BCT_FIELD_PLAYER_X  ( FX32_CONST(0) )   // ƒvƒŒƒCƒ„[‚Ì‚¢‚éêŠ
-#define BCT_FIELD_PLAYER_Z  ( FX32_CONST(-300) )    // ƒvƒŒƒCƒ„[‚Ì‚¢‚éêŠ
-#define BCT_FIELD_PLAYER_Y  ( FX32_CONST(0) )   // ƒvƒŒƒCƒ„[‚Ì‚¢‚éêŠ
-#define BCT_FIELD_DOT256TOMAT   ( FX32_CONST(150) ) // DOTÀ•W‚Ì256‚ð‚RD‚Ì`‚Æ‚·‚é‚©
+// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+#define BCT_FIELD_ZDIS  ( FX32_CONST(600) )     // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å¤§ãã•
+#define BCT_FIELD_XDIS  ( FX32_CONST(600) )     // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å¤§ãã•
+#define BCT_FIELD_ZDISHALF  ( BCT_FIELD_ZDIS/2 )    // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å¤§ãã•
+#define BCT_FIELD_XDISHALF  ( BCT_FIELD_XDIS/2 )    // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å¤§ãã•
+#define BCT_FIELD_PLAYER_X  ( FX32_CONST(0) )   // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã„ã‚‹å ´æ‰€
+#define BCT_FIELD_PLAYER_Z  ( FX32_CONST(-300) )    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã„ã‚‹å ´æ‰€
+#define BCT_FIELD_PLAYER_Y  ( FX32_CONST(0) )   // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã„ã‚‹å ´æ‰€
+#define BCT_FIELD_DOT256TOMAT   ( FX32_CONST(150) ) // DOTåº§æ¨™ã®256ã‚’ï¼“Dã®ã€œã¨ã™ã‚‹ã‹
 #define BCT_FIELD_DOT256MATHALF (BCT_FIELD_DOT256TOMAT / 2)
-#define BCT_FIELD_DOT2MAT(x)        ( ((x)*(BCT_FIELD_DOT256TOMAT/256))-BCT_FIELD_DOT256MATHALF )   // DS1dot‚Ì‚RDÀ•W
-#define BCT_FIELD_MAT2DOT(x)        ( ((x)+BCT_FIELD_DOT256MATHALF)/(BCT_FIELD_DOT256TOMAT/256) )   // ‚RDÀ•W‚ÌDS1dotÀ•W
-#define BCT_NUTS_COMM_SCALE     ( FX32_CONST(0.16) )    // ’ÊMƒf[ƒ^‚É‚·‚é‚Æ‚«‚Ì”’l‚Ìˆ³k—¦
+#define BCT_FIELD_DOT2MAT(x)        ( ((x)*(BCT_FIELD_DOT256TOMAT/256))-BCT_FIELD_DOT256MATHALF )   // DS1dotã®ï¼“Dåº§æ¨™
+#define BCT_FIELD_MAT2DOT(x)        ( ((x)+BCT_FIELD_DOT256MATHALF)/(BCT_FIELD_DOT256TOMAT/256) )   // ï¼“Dåº§æ¨™ã®DS1dotåº§æ¨™
+#define BCT_NUTS_COMM_SCALE     ( FX32_CONST(0.16) )    // é€šä¿¡ãƒ‡ãƒ¼ã‚¿ã«ã™ã‚‹ã¨ãã®æ•°å€¤ã®åœ§ç¸®çŽ‡
 static const u16 BCT_NUTS_FIELD_NetIDRota[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ] = {
-    {   // 1l
+    {   // 1äºº
         0,
         0,0,0
     },
-    {   // 2l
+    {   // 2äºº
         0,
         FX_GET_ROTA_NUM( 180 ),
         0,0
     },
-    {   // 3l
+    {   // 3äºº
         0,
         FX_GET_ROTA_NUM( 120 ),
         FX_GET_ROTA_NUM( 240 ),
         0
     },
-    {   // 4l
+    {   // 4äºº
         0,
         FX_GET_ROTA_NUM( 180 ),
         FX_GET_ROTA_NUM( 90 ),
@@ -374,7 +374,7 @@ static const u16 BCT_NUTS_FIELD_NetIDRota[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ] = 
     }
 };
 
-// ƒJƒƒ‰ƒf[ƒ^
+// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 #define BCT_CAMERA_TARGET_X ( 0 )
 #define BCT_CAMERA_TARGET_Y ( 0 )
 #define BCT_CAMERA_TARGET_Z ( 0 )
@@ -386,21 +386,21 @@ static const u16 BCT_NUTS_FIELD_NetIDRota[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ] = 
 #define BCT_CAMERA_NEAR		( FX32_CONST(200) )
 #define BCT_CAMERA_FAR		( FX32_CONST(1000) )
 static const u16 BCT_CAMERA_ANGLEY_NetID[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ] = {
-    {   // 1l
+    {   // 1äºº
         0,0,0,0,
 	},
-    {   // 2l
+    {   // 2äºº
         FX_GET_ROTA_NUM( 180 ),
         0,
         0,0,
     },
-    {   // 3l
+    {   // 3äºº
         FX_GET_ROTA_NUM( 180 ),
         FX_GET_ROTA_NUM( 300 ),
         FX_GET_ROTA_NUM( 60 ),
         0,
     },
-    {   // 4l
+    {   // 4äºº
         FX_GET_ROTA_NUM( 180 ),
         0,
         FX_GET_ROTA_NUM( 270 ),
@@ -408,37 +408,37 @@ static const u16 BCT_CAMERA_ANGLEY_NetID[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ] = {
     },
 };
 
-// –Ø‚ÌŽÀ“®ìƒf[ƒ^
-#define BCT_NUTS_POWER_MIN  ( 0x8000 )    // ƒpƒ[Å¬
-#define BCT_NUTS_POWER_DIS  ( 0x16200 )    // ƒpƒ[Å‘å‚ÆÅ¬‚Ì·
-#define BCT_NUTS_POWER_MAX  ( BCT_NUTS_POWER_MIN+BCT_NUTS_POWER_DIS )// ƒpƒ[Å‘å
+// æœ¨ã®å®Ÿå‹•ä½œãƒ‡ãƒ¼ã‚¿
+#define BCT_NUTS_POWER_MIN  ( 0x8000 )    // ãƒ‘ãƒ¯ãƒ¼æœ€å°
+#define BCT_NUTS_POWER_DIS  ( 0x16200 )    // ãƒ‘ãƒ¯ãƒ¼æœ€å¤§ã¨æœ€å°ã®å·®
+#define BCT_NUTS_POWER_MAX  ( BCT_NUTS_POWER_MIN+BCT_NUTS_POWER_DIS )// ãƒ‘ãƒ¯ãƒ¼æœ€å¤§
 
-#define BCT_NUTS_POWER_RES  ( 0x670 )   // ‹ó‹C’ïR
-#define BCT_NUTS_POWER_G    ( 0xffffeccc )  // d—Í
-#define BCT_NUTS_POWRT_YPOWER ( 0x26000 )   // Y•ûŒü‚Ì—Í‚ÍXZ•ûŒü‚Ì‰½”{‚©
-#define BCT_NUTS_POWER_MUL  ( FX32_CONST(0.6) )     // ƒpƒ[‚ð‘å‚«‚­‚·‚é”{—¦
-#define BCT_NUTS_AWAYPOWER_MUL	( FX32_CONST( 0.850f ) )	// ‚Á”ò‚Ñƒpƒ[‚É‚©‚¯‚é’l
-#define BCT_NUTS_AWAYPOWERFIELD_MUL	( FX32_CONST( 0.80f ) )	// ’n–Ê‚Á”ò‚Ñƒpƒ[‚É‚©‚¯‚é’l
-#define BCT_NUTS_AWAYWAY_MUL	( FX32_CONST( 1.0f ) )	// ‚Á”ò‚Ô•ûŒü‚ð”hŽè‚É‚·‚é‚½‚ß‚É‚©‚¯‚é‚ ‚½‚¢
-#define BCT_NUTS_AWAYPOWER_DITCHMUL	( FX32_CONST( 0.250f ) )	// ‚Á”ò‚Ô•ûŒü‚ð”hŽè‚É‚·‚é‚½‚ß‚É‚©‚¯‚é‚ ‚½‚¢
-#define BCT_NUTS_AWAYDEL_POWER	( 0x1000 )	// ƒ{[ƒ‹‚ð”jŠü‚·‚éƒpƒ[
-#define BCT_NUTS_AWAYDEL_POWER2	( 0x2000 )	// ƒ{[ƒ‹‚ð”jŠü‚·‚éƒpƒ[
+#define BCT_NUTS_POWER_RES  ( 0x670 )   // ç©ºæ°—æŠµæŠ—
+#define BCT_NUTS_POWER_G    ( 0xffffeccc )  // é‡åŠ›
+#define BCT_NUTS_POWRT_YPOWER ( 0x26000 )   // Yæ–¹å‘ã®åŠ›ã¯XZæ–¹å‘ã®ä½•å€ã‹
+#define BCT_NUTS_POWER_MUL  ( FX32_CONST(0.6) )     // ãƒ‘ãƒ¯ãƒ¼ã‚’å¤§ããã™ã‚‹å€çŽ‡
+#define BCT_NUTS_AWAYPOWER_MUL	( FX32_CONST( 0.850f ) )	// å¹ã£é£›ã³ãƒ‘ãƒ¯ãƒ¼ã«ã‹ã‘ã‚‹å€¤
+#define BCT_NUTS_AWAYPOWERFIELD_MUL	( FX32_CONST( 0.80f ) )	// åœ°é¢å¹ã£é£›ã³ãƒ‘ãƒ¯ãƒ¼ã«ã‹ã‘ã‚‹å€¤
+#define BCT_NUTS_AWAYWAY_MUL	( FX32_CONST( 1.0f ) )	// å¹ã£é£›ã¶æ–¹å‘ã‚’æ´¾æ‰‹ã«ã™ã‚‹ãŸã‚ã«ã‹ã‘ã‚‹ã‚ãŸã„
+#define BCT_NUTS_AWAYPOWER_DITCHMUL	( FX32_CONST( 0.250f ) )	// å¹ã£é£›ã¶æ–¹å‘ã‚’æ´¾æ‰‹ã«ã™ã‚‹ãŸã‚ã«ã‹ã‘ã‚‹ã‚ãŸã„
+#define BCT_NUTS_AWAYDEL_POWER	( 0x1000 )	// ãƒœãƒ¼ãƒ«ã‚’ç ´æ£„ã™ã‚‹ãƒ‘ãƒ¯ãƒ¼
+#define BCT_NUTS_AWAYDEL_POWER2	( 0x2000 )	// ãƒœãƒ¼ãƒ«ã‚’ç ´æ£„ã™ã‚‹ãƒ‘ãƒ¯ãƒ¼
 
-#define BCT_NUTS_AWAY_DITCH_MIN_R	( FX32_CONST( 188 ) )		// a‚Ì”¼ŒaƒGƒŠƒAƒf[ƒ^
+#define BCT_NUTS_AWAY_DITCH_MIN_R	( FX32_CONST( 188 ) )		// æºã®åŠå¾„ã‚¨ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿
 #define BCT_NUTS_AWAY_DITCH_MAX_R	( FX32_CONST( 240 ) )
 #define BCT_NUTS_AWAY_DITCH_DIV_R	( BCT_NUTS_AWAY_DITCH_MAX_R - BCT_NUTS_AWAY_DITCH_MIN_R )
 #define BCT_NUTS_AWAY_BLOCK_R		( FX32_CONST( 240 ) )
 #define BCT_NUTS_AWAY_MARUNOMU_R	( FX32_CONST( 120 ) )
-#define BCT_NUTS_INMOVE_COUNT	( 8 )	// “ü‚Á‚½Œã‚É“®‚©‚·‚©ƒEƒ“ƒg”
+#define BCT_NUTS_INMOVE_COUNT	( 8 )	// å…¥ã£ãŸå¾Œã«å‹•ã‹ã™ã‹ã‚¦ãƒ³ãƒˆæ•°
 
-#define BCT_NUTSDRAW_ROTA_MIN	( 512 )	// –Ø‚ÌŽÀ‰ñ“]ƒXƒs[ƒh’lÅ’á
-#define BCT_NUTSDRAW_ROTA_MAX	( 1024 )	// –Ø‚ÌŽÀ‰ñ“]ƒXƒs[ƒh’lÅ‘å
+#define BCT_NUTSDRAW_ROTA_MIN	( 512 )	// æœ¨ã®å®Ÿå›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰å€¤æœ€ä½Ž
+#define BCT_NUTSDRAW_ROTA_MAX	( 1024 )	// æœ¨ã®å®Ÿå›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰å€¤æœ€å¤§
 #define BCT_NUTSDRAW_ROTA_DIS	( BCT_NUTSDRAW_ROTA_MAX - BCT_NUTSDRAW_ROTA_MIN )
-#define BCT_NUTSDRAW_ROTA_CHG_TIMING	( 8 )	// ‰ñ“]ƒXƒs[ƒh‚ð•Ï‚¦‚éƒ^ƒCƒ~ƒ“ƒO
-#define BCT_NUTS_BONUS_COUNT_MAX	( 99 )	// ƒ{[ƒiƒXƒJƒEƒ“ƒg‚ÌÅ‘å
+#define BCT_NUTSDRAW_ROTA_CHG_TIMING	( 8 )	// å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰ãˆã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define BCT_NUTS_BONUS_COUNT_MAX	( 99 )	// ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ãƒˆã®æœ€å¤§
 
 
-// –Ø‚ÌŽÀƒŠƒ\[ƒX
+// æœ¨ã®å®Ÿãƒªã‚½ãƒ¼ã‚¹
 typedef enum{
 	BCT_NUTSRES_MDLPLNO00,
 	BCT_NUTSRES_MDLPLNO01,
@@ -448,55 +448,55 @@ typedef enum{
 	BCT_NUTSRES_MDLNUM,
 } BCT_NUTSRES_MDLTYPE;
 
-// ƒXƒ[
-#define BCT_NUTS_SLOW_Q ( 8 )   // “Š‚°‹O“¹ƒLƒ…[‚ÌƒLƒ…[‚Ì”
-#define BCT_NUTS_SLOW_USE_VECNUM    ( 2 )   // •K—v‚È’¸“_‚Ì”
-#define BCT_NUTS_SLOW_TOUCH_AREA_CENTER_X	( 128 )	// –Ø‚ÌŽÀ‚ðE‚¦‚éƒGƒŠƒA‚Ì’†SÀ•W
-#define BCT_NUTS_SLOW_TOUCH_AREA_CENTER_Y	( -96 )	// ’†S
-#define BCT_NUTS_SLOW_TOUCH_AREA_R			( 190-BCT_NUTS_SLOW_TOUCH_AREA_CENTER_Y )	// ”¼Œa
-#define BCT_NUTS_SLOW_RENSYA_TIME	( 2 )	// Å¬ŽŸ”­ŽË‘Ò‚¿ŽžŠÔ
+// ã‚¹ãƒ­ãƒ¼
+#define BCT_NUTS_SLOW_Q ( 8 )   // æŠ•ã’è»Œé“ã‚­ãƒ¥ãƒ¼ã®ã‚­ãƒ¥ãƒ¼ã®æ•°
+#define BCT_NUTS_SLOW_USE_VECNUM    ( 2 )   // å¿…è¦ãªé ‚ç‚¹ã®æ•°
+#define BCT_NUTS_SLOW_TOUCH_AREA_CENTER_X	( 128 )	// æœ¨ã®å®Ÿã‚’æ‹¾ãˆã‚‹ã‚¨ãƒªã‚¢ã®ä¸­å¿ƒåº§æ¨™
+#define BCT_NUTS_SLOW_TOUCH_AREA_CENTER_Y	( -96 )	// ä¸­å¿ƒ
+#define BCT_NUTS_SLOW_TOUCH_AREA_R			( 190-BCT_NUTS_SLOW_TOUCH_AREA_CENTER_Y )	// åŠå¾„
+#define BCT_NUTS_SLOW_RENSYA_TIME	( 2 )	// æœ€å°æ¬¡ç™ºå°„å¾…ã¡æ™‚é–“
 
-// OAM–Ø‚ÌŽÀ‰æ–ÊŠOƒGƒtƒFƒNƒg
-#define BCT_OAMAWAYNUTS_BUFFNUM	( 8 )	// OAM–Ø‚ÌŽÀ‰æ–ÊŠOƒGƒtƒFƒNƒgƒoƒbƒtƒ@”
-#define BCT_OAMAWAYNUTS_DEL_XMIN (-FX32_CONST(32))	// ƒGƒtƒFƒNƒg‚ð”jŠü‚·‚éÀ•W
-#define BCT_OAMAWAYNUTS_DEL_XMAX (FX32_CONST(288))	// ƒGƒtƒFƒNƒg‚ð”jŠü‚·‚éÀ•W
-#define BCT_OAMAWAYNUTS_DEL_YMIN (-FX32_CONST(32))	// ƒGƒtƒFƒNƒg‚ð”jŠü‚·‚éÀ•W
-#define BCT_OAMAWAYNUTS_DEL_YMAX (FX32_CONST(224))	// ƒGƒtƒFƒNƒg‚ð”jŠü‚·‚éÀ•W
-#define BCT_OAMAWAYNUTS_MOVE0_COUNT	( 16 )	// 1ƒoƒEƒ“ƒh–Ú‚ÌƒJƒEƒ“ƒg
-#define BCT_OAMAWAYNUTS_MOVE0_SPEED	( 8 )	// 1ƒoƒEƒ“ƒh–Ú‚ÌƒXƒs[ƒh
-#define BCT_OAMAWAYNUTS_MOVE0_SROTA	( 190 )	// ¶Šî€‚ÌŠJŽn‰ñ“]Šp“x
-#define BCT_OAMAWAYNUTS_MOVE0_EROTA	( 125 )	// ¶Šî€‚ÌŠJŽn‰ñ“]Šp“x
-#define BCT_OAMAWAYNUTS_MOVE1_COUNT	( 10 )	// 1ƒoƒEƒ“ƒh–Ú‚ÌƒJƒEƒ“ƒg
-#define BCT_OAMAWAYNUTS_MOVE1_SPEED	( 4 )	// 1ƒoƒEƒ“ƒh–Ú‚ÌƒXƒs[ƒh
-#define BCT_OAMAWAYNUTS_MOVE1_SROTA	( 182 )	// ¶Šî€‚ÌŠJŽn‰ñ“]Šp“x
-#define BCT_OAMAWAYNUTS_MOVE1_EROTA	( 140 )	// ¶Šî€‚ÌŠJŽn‰ñ“]Šp“x
-#define BCT_OAMAWAYNUTS_MOVE2_COUNT	( 6 )	// 1ƒoƒEƒ“ƒh–Ú‚ÌƒJƒEƒ“ƒg
-#define BCT_OAMAWAYNUTS_MOVE2_SPEED	( 3 )	// 1ƒoƒEƒ“ƒh–Ú‚ÌƒXƒs[ƒh
-#define BCT_OAMAWAYNUTS_MOVE2_SROTA	( 180 )	// ¶Šî€‚ÌŠJŽn‰ñ“]Šp“x
-#define BCT_OAMAWAYNUTS_MOVE2_EROTA	( 160 )	// ¶Šî€‚ÌŠJŽn‰ñ“]Šp“x
-#define BCT_OAMAWAYNUTS_SCALE	( 9 )	// OAM‚¿‚å‚Á‚Æ¬‚³‚­‚·‚é
-#define BCT_OAMAWAYNUTS_SCALE_DIV ( 3 )	// OAM’ßŽñ‹æ•Ï‰»’n
-#define BCT_OAMAWATNUTS_MOVE_COUNT	( BCT_OAMAWAYNUTS_MOVE0_COUNT+BCT_OAMAWAYNUTS_MOVE1_COUNT+BCT_OAMAWAYNUTS_MOVE2_COUNT )	// ‘S•”‚ÌƒJƒEƒ“ƒ^
+// OAMæœ¨ã®å®Ÿç”»é¢å¤–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+#define BCT_OAMAWAYNUTS_BUFFNUM	( 8 )	// OAMæœ¨ã®å®Ÿç”»é¢å¤–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒƒãƒ•ã‚¡æ•°
+#define BCT_OAMAWAYNUTS_DEL_XMIN (-FX32_CONST(32))	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç ´æ£„ã™ã‚‹åº§æ¨™
+#define BCT_OAMAWAYNUTS_DEL_XMAX (FX32_CONST(288))	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç ´æ£„ã™ã‚‹åº§æ¨™
+#define BCT_OAMAWAYNUTS_DEL_YMIN (-FX32_CONST(32))	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç ´æ£„ã™ã‚‹åº§æ¨™
+#define BCT_OAMAWAYNUTS_DEL_YMAX (FX32_CONST(224))	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç ´æ£„ã™ã‚‹åº§æ¨™
+#define BCT_OAMAWAYNUTS_MOVE0_COUNT	( 16 )	// 1ãƒã‚¦ãƒ³ãƒ‰ç›®ã®ã‚«ã‚¦ãƒ³ãƒˆ
+#define BCT_OAMAWAYNUTS_MOVE0_SPEED	( 8 )	// 1ãƒã‚¦ãƒ³ãƒ‰ç›®ã®ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BCT_OAMAWAYNUTS_MOVE0_SROTA	( 190 )	// å·¦åŸºæº–ã®é–‹å§‹å›žè»¢è§’åº¦
+#define BCT_OAMAWAYNUTS_MOVE0_EROTA	( 125 )	// å·¦åŸºæº–ã®é–‹å§‹å›žè»¢è§’åº¦
+#define BCT_OAMAWAYNUTS_MOVE1_COUNT	( 10 )	// 1ãƒã‚¦ãƒ³ãƒ‰ç›®ã®ã‚«ã‚¦ãƒ³ãƒˆ
+#define BCT_OAMAWAYNUTS_MOVE1_SPEED	( 4 )	// 1ãƒã‚¦ãƒ³ãƒ‰ç›®ã®ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BCT_OAMAWAYNUTS_MOVE1_SROTA	( 182 )	// å·¦åŸºæº–ã®é–‹å§‹å›žè»¢è§’åº¦
+#define BCT_OAMAWAYNUTS_MOVE1_EROTA	( 140 )	// å·¦åŸºæº–ã®é–‹å§‹å›žè»¢è§’åº¦
+#define BCT_OAMAWAYNUTS_MOVE2_COUNT	( 6 )	// 1ãƒã‚¦ãƒ³ãƒ‰ç›®ã®ã‚«ã‚¦ãƒ³ãƒˆ
+#define BCT_OAMAWAYNUTS_MOVE2_SPEED	( 3 )	// 1ãƒã‚¦ãƒ³ãƒ‰ç›®ã®ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BCT_OAMAWAYNUTS_MOVE2_SROTA	( 180 )	// å·¦åŸºæº–ã®é–‹å§‹å›žè»¢è§’åº¦
+#define BCT_OAMAWAYNUTS_MOVE2_EROTA	( 160 )	// å·¦åŸºæº–ã®é–‹å§‹å›žè»¢è§’åº¦
+#define BCT_OAMAWAYNUTS_SCALE	( 9 )	// OAMã¡ã‚‡ã£ã¨å°ã•ãã™ã‚‹
+#define BCT_OAMAWAYNUTS_SCALE_DIV ( 3 )	// OAMé¶´é¦–åŒºå¤‰åŒ–åœ°
+#define BCT_OAMAWATNUTS_MOVE_COUNT	( BCT_OAMAWAYNUTS_MOVE0_COUNT+BCT_OAMAWAYNUTS_MOVE1_COUNT+BCT_OAMAWAYNUTS_MOVE2_COUNT )	// å…¨éƒ¨ã®ã‚«ã‚¦ãƒ³ã‚¿
 
 
 
-// •`‰æƒf[ƒ^
-#define BCT_GRA_CHARMAN_NUM ( 16 )  // ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒŠÇ—”
-#define BCT_GRA_PLTTMAN_NUM ( 16 )  // ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒŠÇ—”
-#define BCT_GRA_OAMVRAM_MAIN    ( 128*1024 )    // ƒƒCƒ“OAMVRAM
-#define BCT_GRA_OAMVRAM_SUB     ( 16*1024 ) // ƒTƒuOAMVRAM
-#define BCT_GRA_CLACTNUM        ( 128 ) // ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN”
-#define BCT_GRA_RESMAN_NUM      ( 4 )   // ŠÇ—‚·‚éƒŠƒ\[ƒXŽí—Þ”
-#define BCT_GRA_RESMAN_LOADNUM  ( 16 )  // ƒŠƒ\[ƒXŠÇ—”
+// æç”»ãƒ‡ãƒ¼ã‚¿
+#define BCT_GRA_CHARMAN_NUM ( 16 )  // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ç®¡ç†æ•°
+#define BCT_GRA_PLTTMAN_NUM ( 16 )  // ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ç®¡ç†æ•°
+#define BCT_GRA_OAMVRAM_MAIN    ( 128*1024 )    // ãƒ¡ã‚¤ãƒ³OAMVRAM
+#define BCT_GRA_OAMVRAM_SUB     ( 16*1024 ) // ã‚µãƒ–OAMVRAM
+#define BCT_GRA_CLACTNUM        ( 128 ) // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯æ•°
+#define BCT_GRA_RESMAN_NUM      ( 4 )   // ç®¡ç†ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¨®é¡žæ•°
+#define BCT_GRA_RESMAN_LOADNUM  ( 16 )  // ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†æ•°
 #define BCT_GRA_OAMSUBSURFACE_Y ( 512<<FX32_SHIFT )
 
-#define BCT_GRA_NUTS_OAM_RESID  ( 100 ) // –Ø‚ÌŽÀOAMŠÇ—ID
+#define BCT_GRA_NUTS_OAM_RESID  ( 100 ) // æœ¨ã®å®ŸOAMç®¡ç†ID
 #define BCT_GRA_NUTS_OAM_PRI    ( 32 )
 #define BCT_GRA_NUTS_OAM_BGPRI  ( 0 )
 
-#define BCT_GRA_SUBBRIGHT_OFFNUM    (-14) // ƒTƒu–Ê‚ðOFF‚µ‚Ä‚¢‚é‚Æ‚«‚Ìƒuƒ‰ƒCƒgƒlƒX’l
+#define BCT_GRA_SUBBRIGHT_OFFNUM    (-14) // ã‚µãƒ–é¢ã‚’OFFã—ã¦ã„ã‚‹ã¨ãã®ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤
 
-enum{   // MAINƒpƒŒƒbƒg
+enum{   // MAINãƒ‘ãƒ¬ãƒƒãƒˆ
     BCT_GRA_BGMAIN_PAL_NAME_PL00,
     BCT_GRA_BGMAIN_PAL_NAME_PL01,
     BCT_GRA_BGMAIN_PAL_NAME_PL02,
@@ -519,24 +519,24 @@ enum{
 	BCT_GRA_BGSUB_PAL_BACK_NETID3,
 	BCT_GRA_BGSUB_PAL_NUM,
 };
-enum{   // MAIN–ÊOAMƒAƒjƒƒV[ƒPƒ“ƒX
-    BCT_GRA_OAMMAIN_ANM_COUNTDOWN,  // ƒJƒEƒ“ƒgƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_END,        // I—¹ ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_100,        // 100 ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_200,        // 200 ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_300,        // 300 ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_FE100,        // FEVER300 ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_FE200,        // FEVER600 ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_FE300,        // FEVER900 ƒAƒjƒ
+enum{   // MAINé¢OAMã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+    BCT_GRA_OAMMAIN_ANM_COUNTDOWN,  // ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_END,        // çµ‚äº† ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_100,        // 100 ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_200,        // 200 ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_300,        // 300 ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_FE100,        // FEVER300 ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_FE200,        // FEVER600 ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_FE300,        // FEVER900 ã‚¢ãƒ‹ãƒ¡
 
-    BCT_GRA_OAMMAIN_ANM_100_OTHER,		// ‘ŠŽè—p100 ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_200_OTHER,		// ‘ŠŽè—p200 ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_300_OTHER,		// ‘ŠŽè—p300 ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_FE100_OTHER,	// ‘ŠŽè—pFEVER300 ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_FE200_OTHER,	// ‘ŠŽè—pFEVER600 ƒAƒjƒ
-    BCT_GRA_OAMMAIN_ANM_FE300_OTHER,	// ‘ŠŽè—pFEVER900 ƒAƒjƒ
+    BCT_GRA_OAMMAIN_ANM_100_OTHER,		// ç›¸æ‰‹ç”¨100 ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_200_OTHER,		// ç›¸æ‰‹ç”¨200 ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_300_OTHER,		// ç›¸æ‰‹ç”¨300 ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_FE100_OTHER,	// ç›¸æ‰‹ç”¨FEVER300 ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_FE200_OTHER,	// ç›¸æ‰‹ç”¨FEVER600 ã‚¢ãƒ‹ãƒ¡
+    BCT_GRA_OAMMAIN_ANM_FE300_OTHER,	// ç›¸æ‰‹ç”¨FEVER900 ã‚¢ãƒ‹ãƒ¡
 };
-enum{	// MAIN–ÊOAMƒpƒŒƒbƒg
+enum{	// MAINé¢OAMãƒ‘ãƒ¬ãƒƒãƒˆ
 	BCT_GRA_OAMMAIN_PAL_BACK,
 	BCT_GRA_OAMMAIN_PAL_BACK00,
 	BCT_GRA_OAMMAIN_PAL_BACK01,
@@ -547,12 +547,12 @@ enum{	// MAIN–ÊOAMƒpƒŒƒbƒg
 	BCT_GRA_OAMMAIN_PAL_SCOREEX,
 	BCT_GRA_OAMMAIN_PAL_NUM,
 };
-// ƒƒCƒ“‰æ–Êƒƒjƒ…[ƒEƒBƒ“ƒhƒE
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BCT_GRA_SYSWND_CGX      ( 1 )
 #define BCT_GRA_SYSWND_CGXEND   ( BCT_GRA_SYSWND_CGX+MENU_WIN_CGX_SIZ )
 
-// ŠJŽn‰æ–Ê
-// ŠJŽn‰æ–ÊƒEƒBƒ“ƒhƒE
+// é–‹å§‹ç”»é¢
+// é–‹å§‹ç”»é¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BCT_GRA_STARTWIN_X      ( 2 )
 #define BCT_GRA_STARTWIN_Y      ( 19 )
 #define BCT_GRA_STARTWIN_SIZX   ( 28 )
@@ -560,49 +560,49 @@ enum{	// MAIN–ÊOAMƒpƒŒƒbƒg
 #define BCT_GRA_STARTWIN_CGX    ( BCT_GRA_SYSWND_CGXEND )
 #define BCT_GRA_STARTWIN_MSGX   ( 0 )
 #define BCT_GRA_STARTWIN_MSGY   ( 0 )
-// ƒ}ƒ‹ƒm[ƒ€
+// ãƒžãƒ«ãƒŽãƒ¼ãƒ 
 #define BCT_START_MARUNOMUROTA  ( 120 )
-#define BCT_START_MARUNOMU_OPEN_COUNT   ( 24 )  // ŠJŽnŽžŒû‚ð‚ ‚¯‚é‚Ì‚ÉŠ|‚¯‚éŽžŠÔ
+#define BCT_START_MARUNOMU_OPEN_COUNT   ( 24 )  // é–‹å§‹æ™‚å£ã‚’ã‚ã‘ã‚‹ã®ã«æŽ›ã‘ã‚‹æ™‚é–“
 // OAM
-#define BCT_START_COUNTDOWN_X   ( 128 ) // ”z’uXÀ•W
-#define BCT_START_COUNTDOWN_Y   ( 96 )  // ”z’uYÀ•W
+#define BCT_START_COUNTDOWN_X   ( 128 ) // é…ç½®Xåº§æ¨™
+#define BCT_START_COUNTDOWN_Y   ( 96 )  // é…ç½®Yåº§æ¨™
 #define BCT_START_COUNTDOWN_STARTFRAME	( 4 )
-// ƒXƒNƒ[ƒ‹
-#define BCT_START_SCRLL3D_COUNT	( 64 )	// “®ìƒJƒEƒ“ƒ^
-#define BCT_START_SCRLL3D_Y_S		( -FX32_CONST( 200 ) )	// ƒ}ƒ‹ƒm[ƒ€‚ð“®‚©‚·‹——£
-#define BCT_START_SCRLL3D_Y_E		( FX32_CONST( 0 ) )		// ƒ}ƒ‹ƒm[ƒ€‚ð“®‚©‚·‹——£
-#define BCT_START_SCRLL3D_Y_A		( FX32_CONST( 2 ) )	// ƒ}ƒ‹ƒm[ƒ€‚ð“®‚©‚·‹——£
-//ƒuƒ‰ƒCƒgƒlƒX
-#define BCT_START_BRIGHTNESS_COUNT	( 8 )	// “®ìƒJƒEƒ“ƒ^
-// –¼‘O•\Ž¦
-// –¼‘OƒtƒŒ[ƒ€ƒTƒCƒY
+// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+#define BCT_START_SCRLL3D_COUNT	( 64 )	// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
+#define BCT_START_SCRLL3D_Y_S		( -FX32_CONST( 200 ) )	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚’å‹•ã‹ã™è·é›¢
+#define BCT_START_SCRLL3D_Y_E		( FX32_CONST( 0 ) )		// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚’å‹•ã‹ã™è·é›¢
+#define BCT_START_SCRLL3D_Y_A		( FX32_CONST( 2 ) )	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚’å‹•ã‹ã™è·é›¢
+//ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹
+#define BCT_START_BRIGHTNESS_COUNT	( 8 )	// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
+// åå‰è¡¨ç¤º
+// åå‰ãƒ•ãƒ¬ãƒ¼ãƒ ã‚µã‚¤ã‚º
 #define BCT_START_NAME_FRAMESIZ_X	( 10 )
 #define BCT_START_NAME_FRAMESIZ_Y	( 4 )
-// –¼‘Oƒrƒbƒgƒ}ƒbƒvƒTƒCƒY
+// åå‰ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚º
 #define BCT_START_NAME_BMP_WINSIZ_X			( 8 )
 #define BCT_START_NAME_BMP_WINSIZ_Y			( 2 )
 #define BCT_START_NAME_BMP_WINCGX_START		( 256 )
 #define BCT_START_NAME_BMP_WINCGX_ONENUM	( BCT_START_NAME_BMP_WINSIZ_X*BCT_START_NAME_BMP_WINSIZ_Y )
 #define BCT_START_NAME_STRBUF_NUM			( 128 )
-// ƒLƒƒƒ‰ƒNƒ^’PˆÊ@ˆÊ’u
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã€€ä½ç½®
 //											// plno				commnum			 draw plno
 static const Vec2DS32 sc_BCT_START_NAME_TBL[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ] = {
-	// Ž©•ª‚ÌPLNO‚ª0
+	// è‡ªåˆ†ã®PLNOãŒ0
 	{	
-		// Ž©•ª‚¾‚¯‚Ì‚Æ‚«‚Í‚È‚¢
+		// è‡ªåˆ†ã ã‘ã®ã¨ãã¯ãªã„
 		{0},
-		// 2l‘Îí
+		// 2äººå¯¾æˆ¦
 		{
 			{0,0},
 			{12,2},
 		},
-		// 3l‘Îí
+		// 3äººå¯¾æˆ¦
 		{
 			{0,0},
 			{23,4},
 			{1,4},
 		},
-		// 4l‘Îí
+		// 4äººå¯¾æˆ¦
 		{
 			{0,0},
 			{12,2},
@@ -611,22 +611,22 @@ static const Vec2DS32 sc_BCT_START_NAME_TBL[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ][
 		},
 	},
 
-	// Ž©•ª‚ÌPLNO‚ª1
+	// è‡ªåˆ†ã®PLNOãŒ1
 	{	
-		// Ž©•ª‚¾‚¯‚Ì‚Æ‚«‚Í‚È‚¢
+		// è‡ªåˆ†ã ã‘ã®ã¨ãã¯ãªã„
 		{0},
-		// 2l‘Îí
+		// 2äººå¯¾æˆ¦
 		{
 			{12,2},
 			{0,0},
 		},
-		// 3l‘Îí
+		// 3äººå¯¾æˆ¦
 		{
 			{1,4},
 			{0,0},
 			{23,4},
 		},
-		// 4l‘Îí
+		// 4äººå¯¾æˆ¦
 		{
 			{12,2},
 			{0,0},
@@ -635,21 +635,21 @@ static const Vec2DS32 sc_BCT_START_NAME_TBL[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ][
 		},
 	},
 
-	// Ž©•ª‚ÌPLNO‚ª2
+	// è‡ªåˆ†ã®PLNOãŒ2
 	{	
-		// Ž©•ª‚¾‚¯‚Ì‚Æ‚«‚Í‚È‚¢
+		// è‡ªåˆ†ã ã‘ã®ã¨ãã¯ãªã„
 		{0},
-		// 2l‚È‚µ
+		// 2äººãªã—
 		{
 			{0},
 		},
-		// 3l‘Îí
+		// 3äººå¯¾æˆ¦
 		{
 			{23,4},
 			{1,4},
 			{0,0},
 		},
-		// 4l‘Îí
+		// 4äººå¯¾æˆ¦
 		{
 			{1,6},
 			{23,6},
@@ -658,19 +658,19 @@ static const Vec2DS32 sc_BCT_START_NAME_TBL[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ][
 		},
 	},
 
-	// Ž©•ª‚ÌPLNO‚ª3
+	// è‡ªåˆ†ã®PLNOãŒ3
 	{	
-		// Ž©•ª‚¾‚¯‚Ì‚Æ‚«‚Í‚È‚¢
+		// è‡ªåˆ†ã ã‘ã®ã¨ãã¯ãªã„
 		{0},
-		// 2l‚È‚µ
+		// 2äººãªã—
 		{
 			{0},
 		},
-		// 3l‚È‚µ
+		// 3äººãªã—
 		{
 			{0,0},
 		},
-		// 4l‘Îí
+		// 4äººå¯¾æˆ¦
 		{
 			{23,6},
 			{1,6},
@@ -680,7 +680,7 @@ static const Vec2DS32 sc_BCT_START_NAME_TBL[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ][
 	},
 };
 
-// Œ‹‰Ê‰æ–Ê
+// çµæžœç”»é¢
 enum{
     BCT_RESULT_SEQ_ENDINIT,
     BCT_RESULT_SEQ_ENDDRAW,
@@ -691,14 +691,14 @@ enum{
     BCT_RESULT_OAM_TIMEUP,
     BCT_RESULT_OAM_NUM,
 };
-#define BCT_RESULT_ENDOAM_X ( FX32_CONST(128) ) // ƒIƒƒŠOAM•\Ž¦À•W
+#define BCT_RESULT_ENDOAM_X ( FX32_CONST(128) ) // ã‚ªãƒ¯ãƒªOAMè¡¨ç¤ºåº§æ¨™
 #define BCT_RESULT_ENDOAM_Y ( FX32_CONST(128) )
 #define BCT_RESULT_MARUNOMU_MOVE_TIMING ( 60 )
 #define BCT_RESULT_MARUNOMU_CLOSE_TIME  ( 24 )
 #define BCT_RESULT_ENDBRIGHTNESS_SYNC	( 24 )
 #define BCT_RESULT_ENDWAIT	( 64 )
 
-// ”wŒi
+// èƒŒæ™¯
 enum{
 	BCT_MAINBACK_MDL_WALL_N,
 	BCT_MAINBACK_MDL_WALL_F,
@@ -715,21 +715,21 @@ enum{
 };
 #define BCT_MAINBACK_FEVER_ANM_FRAME_NUM	(FX32_CONST(100))
 #define BCT_MAINBACK_FEVER_ANM_FRAME_LOOPS	(FX32_CONST(51))
-#define BCT_MARUNOMU_ANM_FEVERWALLSPEED_S	( FX32_CONST(1.0) )		// ƒAƒjƒƒXƒs[ƒh
-#define BCT_MARUNOMU_ANM_FEVERWALLSPEED_E	( FX32_CONST(2.30) )		// ƒAƒjƒƒXƒs[ƒh
-#define BCT_MARUNOMU_ANM_FEVERWALLSPEED_ADD	( FX32_CONST(0.10) )	// ƒAƒjƒƒXƒs[ƒh
-#define BCT_MARUNOMU_ANM_FEVERWALLSPEED_SPEED	( FX32_CONST(1.0) )		// ƒAƒjƒƒXƒs[ƒh
+#define BCT_MARUNOMU_ANM_FEVERWALLSPEED_S	( FX32_CONST(1.0) )		// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BCT_MARUNOMU_ANM_FEVERWALLSPEED_E	( FX32_CONST(2.30) )		// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BCT_MARUNOMU_ANM_FEVERWALLSPEED_ADD	( FX32_CONST(0.10) )	// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define BCT_MARUNOMU_ANM_FEVERWALLSPEED_SPEED	( FX32_CONST(1.0) )		// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
 
 
-// ƒXƒRƒAƒGƒtƒFƒNƒg
-#define BCT_SCORE_EFFECT_BUF		( 3 )	// ƒXƒRƒAƒGƒtƒFƒNƒgƒoƒbƒtƒ@
-#define BCT_SCORE_EFFECT_MOVE_COUTN	( 16 )	// “®ìƒJƒEƒ“ƒ^
-#define BCT_SCORE_EFFECT_MOVE_Y		( -FX32_CONST(16) )	// “®ì’l
+// ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+#define BCT_SCORE_EFFECT_BUF		( 3 )	// ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒƒãƒ•ã‚¡
+#define BCT_SCORE_EFFECT_MOVE_COUTN	( 16 )	// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
+#define BCT_SCORE_EFFECT_MOVE_Y		( -FX32_CONST(16) )	// å‹•ä½œå€¤
 #define BCT_SCORE_EFFECT_PRI_START	(0)
 
 
 //-------------------------------------
-///	ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
+///	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
 #define BCT_TOUCH_SYNC		( 4 )
 #define BCT_TOUCH_BUFFNUM	( 8 )
@@ -738,7 +738,7 @@ static TPData BCT_TOUCH_BUFF[ BCT_TOUCH_BUFFNUM ];
 
 
 //-------------------------------------
-/// BG—Dæ‡ˆÊƒXƒNƒ[ƒ‹
+/// BGå„ªå…ˆé †ä½ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 //=====================================
 enum {
 	BCT_BGPRI_SCRL_SEQ_NORMAL,
@@ -757,26 +757,26 @@ enum {
 
 
 //-------------------------------------
-///	ƒQ[ƒ€ƒf[ƒ^”½‰fƒVƒXƒeƒ€
+///	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿åæ˜ ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 #define BCT_CONT_GAMEDATA_COUNT_MAX			( 16 )
-#define BCT_CONT_GAMEDATA_RAREGAME_BIGSTART	( 6 )	// ‘å¬‹t“]‚Ìƒe[ƒuƒ‹‚ðŽQÆ‚·‚éŠJŽnˆÊ’u
+#define BCT_CONT_GAMEDATA_RAREGAME_BIGSTART	( 6 )	// å¤§å°é€†è»¢ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å‚ç…§ã™ã‚‹é–‹å§‹ä½ç½®
 
 
 
 //-------------------------------------
-///	ƒ^ƒbƒ`ƒyƒ“ƒVƒXƒeƒ€
+///	ã‚¿ãƒƒãƒãƒšãƒ³ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
-#define BCT_TOUCHPEN_OAM_RESID		( 120 )		// ƒŠƒ\[ƒXID[
-#define BCT_TOUCHPEN_OAM_BGPRI		( 0 )		// BG—Dæ‡ˆÊ
-#define BCT_TOUCHPEN_OAM_SOFPRI		( 0 )		// ƒ\ƒtƒg—Dæ‡ˆÊ
-#define BCT_TOUCHPEN_OAM_X			( 128 )		// •\Ž¦À•W
+#define BCT_TOUCHPEN_OAM_RESID		( 120 )		// ãƒªã‚½ãƒ¼ã‚¹ID[
+#define BCT_TOUCHPEN_OAM_BGPRI		( 0 )		// BGå„ªå…ˆé †ä½
+#define BCT_TOUCHPEN_OAM_SOFPRI		( 0 )		// ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½
+#define BCT_TOUCHPEN_OAM_X			( 128 )		// è¡¨ç¤ºåº§æ¨™
 #define BCT_TOUCHPEN_OAM_Y			( 120 )		
 #define BCT_TOUCHPEN_WAIT			( 16 )
-// ƒ^ƒbƒ`OAMƒAƒjƒ’è”
+// ã‚¿ãƒƒãƒOAMã‚¢ãƒ‹ãƒ¡å®šæ•°
 enum{
 	BCT_TOUCHPEN_ANM_FRAME_START,
-	BCT_TOUCHPEN_ANM_FRAME_MOVE00,	// ˆÚ“®’†
+	BCT_TOUCHPEN_ANM_FRAME_MOVE00,	// ç§»å‹•ä¸­
 	BCT_TOUCHPEN_ANM_FRAME_MOVE01,
 	BCT_TOUCHPEN_ANM_FRAME_MOVE02,
 	BCT_TOUCHPEN_ANM_FRAME_MOVE03,
@@ -784,20 +784,20 @@ enum{
 	BCT_TOUCHPEN_ANM_FRAME_MOVE05,
 	BCT_TOUCHPEN_ANM_FRAME_MOVE06,
 	BCT_TOUCHPEN_ANM_FRAME_MOVE07,
-	BCT_TOUCHPEN_ANM_FRAME_MOVEOK,	// ã‚É‚¢‚«‚Á‚½
-	BCT_TOUCHPEN_ANM_FRAME_FADEOUT,	// ‚±‚±‚Å”­ŽË‚³‚¹‚é
-	BCT_TOUCHPEN_ANM_FRAME_END,		// Á‚¦‚½
-	BCT_TOUCHPEN_ANM_FRAME_NUM,		// Á‚¦‚½
+	BCT_TOUCHPEN_ANM_FRAME_MOVEOK,	// ä¸Šã«ã„ãã£ãŸ
+	BCT_TOUCHPEN_ANM_FRAME_FADEOUT,	// ã“ã“ã§ç™ºå°„ã•ã›ã‚‹
+	BCT_TOUCHPEN_ANM_FRAME_END,		// æ¶ˆãˆãŸ
+	BCT_TOUCHPEN_ANM_FRAME_NUM,		// æ¶ˆãˆãŸ
 };
-// “®ì‚ÌƒV[ƒPƒ“ƒX
+// å‹•ä½œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
-	BCT_TOUCHPEN_ANM_SEQ_MOVE_START,	// ŠJŽn
-	BCT_TOUCHPEN_ANM_SEQ_MOVE_MAIN,		// “®ìƒƒCƒ“
-	BCT_TOUCHPEN_ANM_SEQ_MOVE_WAIT,		// ŽŸ‚ÌŠJŽn‚Ü‚Å‚ÌƒEƒGƒCƒg
-	BCT_TOUCHPEN_ANM_SEQ_END_WAIT,		// I—¹‘Ò‚¿i–Ø‚ÌŽÀ‚ª‘S•”“®ìI‚í‚é‚Ì‚ð‘Ò‚Âj
+	BCT_TOUCHPEN_ANM_SEQ_MOVE_START,	// é–‹å§‹
+	BCT_TOUCHPEN_ANM_SEQ_MOVE_MAIN,		// å‹•ä½œãƒ¡ã‚¤ãƒ³
+	BCT_TOUCHPEN_ANM_SEQ_MOVE_WAIT,		// æ¬¡ã®é–‹å§‹ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
+	BCT_TOUCHPEN_ANM_SEQ_END_WAIT,		// çµ‚äº†å¾…ã¡ï¼ˆæœ¨ã®å®ŸãŒå…¨éƒ¨å‹•ä½œçµ‚ã‚ã‚‹ã®ã‚’å¾…ã¤ï¼‰
 };
 #define BCT_TOUCHPEN_ANM_ROOP_NUM	( 2 )
-// ƒ^ƒbƒ`“®ìƒpƒ‰ƒ[ƒ^
+// ã‚¿ãƒƒãƒå‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 static const s16 sc_BCT_TOUCHPEN_ANM_FRAME_Y[ BCT_TOUCHPEN_ANM_FRAME_NUM ] = {
 	BCT_TOUCHPEN_OAM_Y+57, 
 	BCT_TOUCHPEN_OAM_Y+47, 
@@ -816,45 +816,45 @@ static const s16 sc_BCT_TOUCHPEN_ANM_FRAME_Y[ BCT_TOUCHPEN_ANM_FRAME_NUM ] = {
 
 
 //-------------------------------------
-///	“r’†“¾“_ŠÇ—ƒVƒXƒeƒ€
+///	é€”ä¸­å¾—ç‚¹ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
-#define BCT_MDLSCR_TOP_DEF	( 0xffff )	// –³Œø‚ÈˆêˆÊ‚ÌƒCƒ“ƒfƒbƒNƒX
+#define BCT_MDLSCR_TOP_DEF	( 0xffff )	// ç„¡åŠ¹ãªä¸€ä½ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
 
 
 //-------------------------------------
-///	–Ø‚ÌŽÀƒJƒEƒ“ƒ^[ƒVƒXƒeƒ€
+///	æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
-// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒY
+// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚º
 #define BCT_NUTS_COUNT_BMP_SIZX		( 3 )
 #define BCT_NUTS_COUNT_BMP_SIZY		( 2 )
-// ƒrƒbƒgƒ}ƒbƒvƒpƒŒƒbƒgŠÇ—ID
+// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆç®¡ç†ID
 #define BCT_NUTS_COUNT_FONTOAM_PLTT_ID	( 150 )
-// FONTOAM‚Ì•\Ž¦ƒpƒ‰ƒ[ƒ^
+// FONTOAMã®è¡¨ç¤ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 #define BCT_NUTS_COUNT_FONTOAM_X		( -7 )
 #define BCT_NUTS_COUNT_FONTOAM_Y		( -5 )
 #define BCT_NUTS_COUNT_FONTOAM_BG_PRI	( 0 )
 #define BCT_NUTS_COUNT_FONTOAM_SF_PRI	( 0 )
-// “®ì’è”
+// å‹•ä½œå®šæ•°
 enum{
 	BCT_NUTS_COUNT_SEQ_WAIT,
 	BCT_NUTS_COUNT_SEQ_IN,
 	BCT_NUTS_COUNT_SEQ_MAIN,
 	BCT_NUTS_COUNT_SEQ_OUT,
 };
-// ƒZƒ‹•\Ž¦ƒpƒ‰ƒ[ƒ^
+// ã‚»ãƒ«è¡¨ç¤ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 #define BCT_NUTS_COUNT_DRAW_X		( 32 )
 #define BCT_NUTS_COUNT_DRAW_Y		( 48 )
 #define BCT_NUTS_COUNT_DRAW_RESID	( 140 )
 #define BCT_NUTS_COUNT_DRAW_BGPRI	( BCT_NUTS_COUNT_FONTOAM_BG_PRI )
 #define BCT_NUTS_COUNT_DRAW_SFPRI	( BCT_NUTS_COUNT_FONTOAM_SF_PRI+1 )
-// “üo“®ìƒpƒ‰ƒ[ƒ^
+// å…¥å‡ºå‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 #define BCT_NUTS_COUNT_INOUT_SX			( -FX32_CONST(64) )
 #define BCT_NUTS_COUNT_INOUT_EX			( FX32_CONST(BCT_NUTS_COUNT_DRAW_X) )
 #define BCT_NUTS_COUNT_INOUT_SS			( FX32_CONST(36) )
 #define	BCT_NUTS_COUNT_INOUT_COUNTMAX	( 8 )
 #define BCT_NUTS_COUNT_OUT_WAIT			( 12 )
-// ‚ä‚ê“®ìƒpƒ‰ƒ[ƒ^
+// ã‚†ã‚Œå‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 #define BCT_NUTS_COUNT_YURE_SY			( FX32_CONST(BCT_NUTS_COUNT_DRAW_Y) )
 #define BCT_NUTS_COUNT_YURE_EY			( FX32_CONST(BCT_NUTS_COUNT_DRAW_Y) )
 #define BCT_NUTS_COUNT_YURE_SS			( FX32_CONST(12) )
@@ -862,7 +862,7 @@ enum{
 
  
 //-------------------------------------
-///	FEVERƒGƒtƒFƒNƒg
+///	FEVERã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //=====================================
 enum{
 	BCT_FEVER_EFF_SEQ_BGM_WAIT,
@@ -886,110 +886,110 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *                  \‘¢‘ÌéŒ¾
+ *                  æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-//	”Ä—p‰Á‘¬“®ì
+//	æ±Žç”¨åŠ é€Ÿå‹•ä½œ
 //=====================================
 typedef struct {
 	fx32 x;
 	fx32 s_x;
-	fx32 s_s;	// ‰‘¬“x
-	fx32 s_a;	// ‰Á‘¬“x
+	fx32 s_s;	// åˆé€Ÿåº¦
+	fx32 s_a;	// åŠ é€Ÿåº¦
 	int count;
 	int count_max;
 } BCT_ADDMOVE_WORK;
 
 //-------------------------------------
-/// ŠJŽnƒJƒEƒ“ƒgƒ_ƒEƒ“ƒ[ƒN
+/// é–‹å§‹ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
     u32 seq;
     s32 count;
 	s32 wait;
-    GF_BGL_BMPWIN   helpwin;    // ƒQ[ƒ€à–¾ƒEƒBƒ“ƒhƒE
+    GF_BGL_BMPWIN   helpwin;    // ã‚²ãƒ¼ãƒ èª¬æ˜Žã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 } BCT_COUNTDOWN_DRAW;
 
 
 //-------------------------------------
-/// ƒ}ƒ‹ƒm[ƒ€ƒ[ƒN
+/// ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	u8 hit;				// “–‚½‚è”»’èˆ—‚Ì—L–³
-	u8 eat_flag;		// H‚×‚é‹–‰Âƒtƒ‰ƒO
-    u16 rota;           // yŽ²‚Ì‰ñ“]Šp“x
-    u16 rotax;          // xŽ²‚Ì‰ñ“]Šp“x
-    u16 speed;          // ‰ñ“]ƒXƒs[ƒh
-    fx32 mouth_size;    // Œû‚ÌƒTƒCƒY
-    MtxFx33 rotax_mtx;  // X‰ñ“]‚Ìƒ}ƒgƒŠƒNƒX
-    MtxFx33 rotay_mtx; // Y‰ñ“]‚Ìƒ}ƒgƒŠƒNƒX
-    MtxFx33 rotaxy_mtx; // XY‰ñ“]‚Ìƒ}ƒgƒŠƒNƒX
-    VecFx32 hit_plane_n;    // •½–Ê‚Ì–@ü
-    VecFx32 center_mat; // •½–Ê‚Ì’†S
-    fx32    d;          // •½–Ê‚Ì•û’öŽ® D
-    fx32    inryoku_area;   // ˆø—Í‚Ì“­‚­ƒGƒŠƒA‚ÌƒTƒCƒY
-    fx32    inryoku_power;  // ˆø—Í‚Ì—Í
+	u8 hit;				// å½“ãŸã‚Šåˆ¤å®šå‡¦ç†ã®æœ‰ç„¡
+	u8 eat_flag;		// é£Ÿã¹ã‚‹è¨±å¯ãƒ•ãƒ©ã‚°
+    u16 rota;           // yè»¸ã®å›žè»¢è§’åº¦
+    u16 rotax;          // xè»¸ã®å›žè»¢è§’åº¦
+    u16 speed;          // å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰
+    fx32 mouth_size;    // å£ã®ã‚µã‚¤ã‚º
+    MtxFx33 rotax_mtx;  // Xå›žè»¢ã®ãƒžãƒˆãƒªã‚¯ã‚¹
+    MtxFx33 rotay_mtx; // Yå›žè»¢ã®ãƒžãƒˆãƒªã‚¯ã‚¹
+    MtxFx33 rotaxy_mtx; // XYå›žè»¢ã®ãƒžãƒˆãƒªã‚¯ã‚¹
+    VecFx32 hit_plane_n;    // å¹³é¢ã®æ³•ç·š
+    VecFx32 center_mat; // å¹³é¢ã®ä¸­å¿ƒ
+    fx32    d;          // å¹³é¢ã®æ–¹ç¨‹å¼ D
+    fx32    inryoku_area;   // å¼•åŠ›ã®åƒãã‚¨ãƒªã‚¢ã®ã‚µã‚¤ã‚º
+    fx32    inryoku_power;  // å¼•åŠ›ã®åŠ›
 
-	// Šî–{‚Æ‚È‚éƒ}ƒ‹ƒm[ƒ€À•W
+	// åŸºæœ¬ã¨ãªã‚‹ãƒžãƒ«ãƒŽãƒ¼ãƒ åº§æ¨™
 	VecFx32 marunomu_mat;	
 
-	// Šg‘åk¬
-	fx32	scale;				// ‘S‘ÌŠg‘å—¦
-	fx32	mouth_div;			// Œû‚Ì‘å‚«‚³•Ï“®’l
-	fx32	mouth_min;			// Œû‚Ì‘å‚«‚³Å¬
-	fx32	mouth_max;			// Œû‚Ì‘å‚«‚³Å‘å
-	fx32	hit_x;				// “–‚½‚è”»’è‚˜À•W
-	fx32	hit_y;				// “–‚½‚è”»’è‚™À•W
-	fx32	hitbody_y_min;		// ‘Ì‚Ì“–‚½‚è”»’è‚‚³Å¬
-	fx32	hitbody_y_dif;		// ‘Ì‚Ì“–‚½‚è”»’è‚‚³‹——£
-	fx32	hitbody_r;			// ‘Ì‚Ì“–‚½‚è”»’è”¼Œa
-	fx32	hitbody_r_max;		// ‘Ì‚Ì“–‚½‚è”»’è”¼ŒaÅ‘å
-	fx32	hitbody_r_dis;		// ‘Ì‚Ì“–‚½‚è”»’è”¼Œa•Ï“®’l
-	fx32	draw_scale;			// •`‰æŠg‘å—¦
+	// æ‹¡å¤§ç¸®å°
+	fx32	scale;				// å…¨ä½“æ‹¡å¤§çŽ‡
+	fx32	mouth_div;			// å£ã®å¤§ãã•å¤‰å‹•å€¤
+	fx32	mouth_min;			// å£ã®å¤§ãã•æœ€å°
+	fx32	mouth_max;			// å£ã®å¤§ãã•æœ€å¤§
+	fx32	hit_x;				// å½“ãŸã‚Šåˆ¤å®šï½˜åº§æ¨™
+	fx32	hit_y;				// å½“ãŸã‚Šåˆ¤å®šï½™åº§æ¨™
+	fx32	hitbody_y_min;		// ä½“ã®å½“ãŸã‚Šåˆ¤å®šé«˜ã•æœ€å°
+	fx32	hitbody_y_dif;		// ä½“ã®å½“ãŸã‚Šåˆ¤å®šé«˜ã•è·é›¢
+	fx32	hitbody_r;			// ä½“ã®å½“ãŸã‚Šåˆ¤å®šåŠå¾„
+	fx32	hitbody_r_max;		// ä½“ã®å½“ãŸã‚Šåˆ¤å®šåŠå¾„æœ€å¤§
+	fx32	hitbody_r_dis;		// ä½“ã®å½“ãŸã‚Šåˆ¤å®šåŠå¾„å¤‰å‹•å€¤
+	fx32	draw_scale;			// æç”»æ‹¡å¤§çŽ‡
 
 
-	// “·‘Ì‚ ‚½‚è”»’è
+	// èƒ´ä½“ã‚ãŸã‚Šåˆ¤å®š
 	VecFx32 matrix;
 	fx32 height;
 } BCT_MARUNOMU;
 
 //-------------------------------------
-/// ƒ}ƒ‹ƒm[ƒ€•`‰æƒf[ƒ^
+/// ãƒžãƒ«ãƒŽãƒ¼ãƒ æç”»ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
     D3DOBJ      obj[BCT_MARUNOMU_MDL_NUM];
     D3DOBJ_MDL  mdl[BCT_MARUNOMU_MDL_NUM];
     D3DOBJ_ANM  anm[BCT_MARUNOMU_ANM_NUM];
 
-	u16 set_mouthanm;	// Œ»ÝÝ’è‚µ‚Ä‚¢‚éŒû‚Ì“®‚«‚ÌƒAƒjƒƒf[ƒ^
+	u16 set_mouthanm;	// ç¾åœ¨è¨­å®šã—ã¦ã„ã‚‹å£ã®å‹•ãã®ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 	u16	walk_anm_flag;
 
-	// ƒJƒ‰[ƒAƒjƒ
-	D3DOBJ_ANM	colanm[BCT_MARUNOMU_ANM_COLANM_NUM];// ƒJƒ‰[ƒAƒjƒ
-	fx32 colanm_frame;	// ƒJƒ‰[ƒAƒjƒƒtƒŒ[ƒ€
-	u16 col_top;		// ƒJƒ‰[•\Ž¦‚·‚éƒgƒbƒv‚Ìplno	BCT_PLAYER_NUM‚È‚ç•
-	u16 col_rand;		// ƒ‰ƒ“ƒ_ƒ€ƒJƒ‰[•\Ž¦‚·‚é‚Ì‚©
+	// ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡
+	D3DOBJ_ANM	colanm[BCT_MARUNOMU_ANM_COLANM_NUM];// ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡
+	fx32 colanm_frame;	// ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ 
+	u16 col_top;		// ã‚«ãƒ©ãƒ¼è¡¨ç¤ºã™ã‚‹ãƒˆãƒƒãƒ—ã®plno	BCT_PLAYER_NUMãªã‚‰é»’
+	u16 col_rand;		// ãƒ©ãƒ³ãƒ€ãƒ ã‚«ãƒ©ãƒ¼è¡¨ç¤ºã™ã‚‹ã®ã‹
 } BCT_MARUNOMU_DRAW;
 
 
 //-------------------------------------
-/// –Ø‚ÌŽÀƒf[ƒ^
+/// æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-    u16 plno;      // ƒlƒbƒgID
-    u16 in_flag;    // –Ø‚ÌŽÀ‚ªƒ}ƒ‹ƒm[ƒ€‚É“ü‚Á‚½‚© 
-    VecFx32 way;    // •ûˆÊ                         
-    fx32    power;      // ƒpƒ[                   
-    VecFx32 mat;    // À•W
-    s32 bonus;		// ƒ{[ƒiƒXƒJƒEƒ“ƒ^	i˜A‘±‚Å“ü‚Á‚½–Ø‚ÌŽÀ‚Ì”j
-	BOOL special;	// “ÁŽêƒ{[ƒ‹ƒf[ƒ^
+    u16 plno;      // ãƒãƒƒãƒˆID
+    u16 in_flag;    // æœ¨ã®å®ŸãŒãƒžãƒ«ãƒŽãƒ¼ãƒ ã«å…¥ã£ãŸã‹ 
+    VecFx32 way;    // æ–¹ä½                         
+    fx32    power;      // ãƒ‘ãƒ¯ãƒ¼                   
+    VecFx32 mat;    // åº§æ¨™
+    s32 bonus;		// ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ã‚¿	ï¼ˆé€£ç¶šã§å…¥ã£ãŸæœ¨ã®å®Ÿã®æ•°ï¼‰
+	BOOL special;	// ç‰¹æ®Šãƒœãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 } BCT_NUT_DATA;
 
 //-------------------------------------
-/// –Ø‚ÌŽÀƒf[ƒ^
+/// æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
     u8 seq;
@@ -999,41 +999,41 @@ typedef struct {
     VecFx32 mat;
 	s16 inmove_count;
 	u16 inmove_bonus;
-	BOOL blockhit;	//@•Ç“–‚½‚è”»’è‚ª•K—v‚È‚Ì‚©‚Ìƒtƒ‰ƒO
+	BOOL blockhit;	//ã€€å£å½“ãŸã‚Šåˆ¤å®šãŒå¿…è¦ãªã®ã‹ã®ãƒ•ãƒ©ã‚°
 	fx32 xz_dist;
 } BCT_CLIENT_NUTS;
 
 //-------------------------------------
-/// “Š‚°ƒf[ƒ^
+/// æŠ•ã’ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-    u32 hand;           // ‚à‚Á‚Ä‚¢‚é‚©
-    NNSG2dSVec2 tp_q[ BCT_NUTS_SLOW_Q ];// “Š‚°ƒf[ƒ^ƒLƒ…[
-    u16 top;        // æ“ª
-    u16 tail;       // ––”ö
+    u32 hand;           // ã‚‚ã£ã¦ã„ã‚‹ã‹
+    NNSG2dSVec2 tp_q[ BCT_NUTS_SLOW_Q ];// æŠ•ã’ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ¥ãƒ¼
+    u16 top;        // å…ˆé ­
+    u16 tail;       // æœ«å°¾
 	u32 time;
 } BCT_CLIENT_SLOW;
 
 //-------------------------------------
-/// –Ø‚ÌŽÀ•`‰æƒf[ƒ^
+/// æœ¨ã®å®Ÿæç”»ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
     D3DOBJ_MDL  mdl[ BCT_NUTSRES_MDLNUM ];
-    D3DOBJ_MDL  shadowmdl;	// ‰e
+    D3DOBJ_MDL  shadowmdl;	// å½±
 
-    CLACT_U_RES_OBJ_PTR     resobj[4];      // “Ç‚Ýž‚ñ‚¾‚èƒ\[ƒX‚ÌƒIƒuƒWƒFƒNƒg
-    CLACT_HEADER            header;         // ƒAƒNƒ^[ì¬—pƒwƒbƒ_[
+    CLACT_U_RES_OBJ_PTR     resobj[4];      // èª­ã¿è¾¼ã‚“ã ã‚Šã‚½ãƒ¼ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    CLACT_HEADER            header;         // ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆç”¨ãƒ˜ãƒƒãƒ€ãƒ¼
 } BCT_CLIENT_NUTS_RES;
 
 
 //-------------------------------------
-/// OAM–Ø‚ÌŽÀ•`‰æ
+/// OAMæœ¨ã®å®Ÿæç”»
 //=====================================
 typedef struct {
     CLACT_WORK_PTR p_clwk;
     D3DOBJ      obj;
-    D3DOBJ      shadow;	// ‚©‚°‚æ‚¤
-    BOOL draw2d;                    // 2d•`‰æ‚³‚¹‚é‚©
+    D3DOBJ      shadow;	// ã‹ã’ã‚ˆã†
+    BOOL draw2d;                    // 2dæç”»ã•ã›ã‚‹ã‹
     const BCT_CLIENT_NUTS* cp_data;
 	u16 rota_x;
 	u16 rota_z;
@@ -1043,7 +1043,7 @@ typedef struct {
 } BCT_CLIENT_NUTS_DRAW;
 
 //-------------------------------------
-/// Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ•`‰æ—p
+/// æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿæç”»ç”¨
 //=====================================
 typedef struct {
     BOOL draw;
@@ -1051,7 +1051,7 @@ typedef struct {
 } BCT_CLIENT_HANDNUTS_DRAW;
 
 //-------------------------------------
-///	Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ‚ª‚±‚Ú‚ê—Ž‚¿‚Ü‚µ‚½ƒGƒtƒFƒNƒg
+///	æŒã£ã¦ã„ã‚‹æœ¨ã®å®ŸãŒã“ã¼ã‚Œè½ã¡ã¾ã—ãŸã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //=====================================
 typedef struct {
     BOOL draw;
@@ -1065,7 +1065,7 @@ typedef struct {
 } BCT_CLIENT_OAMAWAYNUTS_DRAW;
 
 //-------------------------------------
-///	SCOREƒGƒtƒFƒNƒgƒ[ƒN
+///	SCOREã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR  p_clwk[ BCT_SCORE_EFFECT_BUF ];
@@ -1075,14 +1075,14 @@ typedef struct {
 } BCT_CLIENT_SCORE_EFFECT_WK;
 
 //-------------------------------------
-/// SCOREƒGƒtƒFƒNƒg
+/// SCOREã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //=====================================
 typedef struct {
     BCT_CLIENT_SCORE_EFFECT_WK wk[ BCT_PLAYER_NUM ];
 } BCT_CLIENT_SCORE_EFFECT;
 
 //-------------------------------------
-/// Œ‹‰Ê”­•\•\Ž¦ƒ[ƒN
+/// çµæžœç™ºè¡¨è¡¨ç¤ºãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
     u32 seq;
@@ -1091,7 +1091,7 @@ typedef struct {
 } BCT_CLIENT_RESULT;
 
 //-------------------------------------
-///	”wŒi•\Ž¦ƒOƒ‰ƒtƒBƒbƒN
+///	èƒŒæ™¯è¡¨ç¤ºã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //=====================================
 typedef struct {
     D3DOBJ      obj[BCT_MAINBACK_MDL_NUM];
@@ -1107,74 +1107,74 @@ typedef struct {
 
 
 //-------------------------------------
-/// BG—Dæ‡ˆÊƒXƒNƒ[ƒ‹
+/// BGå„ªå…ˆé †ä½ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 //=====================================
 typedef struct {
-    u16 seq;		// ƒV[ƒPƒ“ƒX
-	s16 count;		// ƒGƒtƒFƒNƒgƒJƒEƒ“ƒ^
-	s16 most_back;	// ˆê”Ô‰º‚ÌBG–Ê
-	u8 plno;		// ƒvƒŒƒCƒ„[ƒiƒ“ƒo[
-	u8 req_num;		// ƒŠƒNƒGƒXƒg”
+    u16 seq;		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	s16 count;		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ã‚¿
+	s16 most_back;	// ä¸€ç•ªä¸‹ã®BGé¢
+	u8 plno;		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u8 req_num;		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ•°
 } BCT_CLIENT_BGPRI_SCRL;
 
 //-------------------------------------
-///	ƒQ[ƒ€ƒf[ƒ^Ý’èƒVƒXƒeƒ€
+///	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿è¨­å®šã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
-	BCT_GAMEDATA_ONE		set;		// Ý’è’l
-	BCT_GAMEDATA_ONE		last;	// ‘O‚Ìƒf[ƒ^
-	BCT_GAMEDATA_ONE		dif;		// •Ï“®’l
-	s32						count;		// ƒJƒEƒ“ƒ^
+	BCT_GAMEDATA_ONE		set;		// è¨­å®šå€¤
+	BCT_GAMEDATA_ONE		last;	// å‰ã®ãƒ‡ãƒ¼ã‚¿
+	BCT_GAMEDATA_ONE		dif;		// å¤‰å‹•å€¤
+	s32						count;		// ã‚«ã‚¦ãƒ³ã‚¿
 } BCT_CLIENT_CONT_GAMEDATA;
 
 
 //-------------------------------------
-///	ƒ^ƒbƒ`ƒyƒ“ƒ[ƒN
+///	ã‚¿ãƒƒãƒãƒšãƒ³ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-    CLACT_U_RES_OBJ_PTR     resobj[4];      // “Ç‚Ýž‚ñ‚¾‚èƒ\[ƒX‚ÌƒIƒuƒWƒFƒNƒg
-    CLACT_HEADER            header;         // ƒAƒNƒ^[ì¬—pƒwƒbƒ_[
+    CLACT_U_RES_OBJ_PTR     resobj[4];      // èª­ã¿è¾¼ã‚“ã ã‚Šã‚½ãƒ¼ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    CLACT_HEADER            header;         // ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆç”¨ãƒ˜ãƒƒãƒ€ãƒ¼
     CLACT_WORK_PTR p_clwk;
 
-	u8					move;			// “®ìƒtƒ‰ƒO
-	u8					roop;			// ƒ‹[ƒv”
-	u8					seq;			// ƒV[ƒPƒ“ƒX
-	u8					nut_set;		// –Ø‚ÌŽÀÝ’è‚µ‚½‚©
-	s32					wait;			// ƒEƒGƒCƒg
+	u8					move;			// å‹•ä½œãƒ•ãƒ©ã‚°
+	u8					roop;			// ãƒ«ãƒ¼ãƒ—æ•°
+	u8					seq;			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8					nut_set;		// æœ¨ã®å®Ÿè¨­å®šã—ãŸã‹
+	s32					wait;			// ã‚¦ã‚¨ã‚¤ãƒˆ
 } BCT_CLIENT_TOUCHPEN_MOVE;
 
 //-------------------------------------
-///	MiddleƒXƒRƒA
+///	Middleã‚¹ã‚³ã‚¢
 //=====================================
 typedef struct {
-	u32				score[ BCT_PLAYER_NUM ];	// “¾“_ƒoƒbƒtƒ@
-	u32				score_msk;					// Žó‚¯Žæ‚Á‚½ƒ}ƒXƒN
-	u32				top_idx;					// ¡‚Ì‚Æ‚±‚ë‚Ì‚PˆÊ
+	u32				score[ BCT_PLAYER_NUM ];	// å¾—ç‚¹ãƒãƒƒãƒ•ã‚¡
+	u32				score_msk;					// å—ã‘å–ã£ãŸãƒžã‚¹ã‚¯
+	u32				top_idx;					// ä»Šã®ã¨ã“ã‚ã®ï¼‘ä½
 } BCT_CLIENT_MIDDLE_SCORE;
 
 
 //-------------------------------------
-///	–Ø‚ÌŽÀƒJƒEƒ“ƒ^[
+///	æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 //=====================================
 typedef struct {
 
-    CLACT_U_RES_OBJ_PTR     resobj[4];			// “Ç‚Ýž‚ñ‚¾‚èƒ\[ƒX‚ÌƒIƒuƒWƒFƒNƒg
-    CLACT_HEADER            header;				// ƒAƒNƒ^[ì¬—pƒwƒbƒ_[
-	CLACT_WORK_PTR			p_tblwk;			// ƒe[ƒuƒ‹ƒ[ƒN
+    CLACT_U_RES_OBJ_PTR     resobj[4];			// èª­ã¿è¾¼ã‚“ã ã‚Šã‚½ãƒ¼ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+    CLACT_HEADER            header;				// ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆç”¨ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_WORK_PTR			p_tblwk;			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¯ãƒ¼ã‚¯
 	
-	GF_BGL_BMPWIN			objbmp;				// •¶Žš—ñƒrƒbƒgƒ}ƒbƒvƒf[ƒ^
-	FONTOAM_OBJ_PTR			p_fontoam;			// ƒtƒHƒ“ƒgOAMƒ[ƒN
-	FONTOAM_OAM_DATA_PTR	p_fontoam_data;		// ƒtƒHƒ“ƒgOAM\¬ƒf[ƒ^
-	CHAR_MANAGER_ALLOCDATA	fontoam_chardata;	// ƒLƒƒƒ‰ƒNƒ^Šm•Ûƒf[ƒ^
-	STRBUF*					p_str;				// •¶Žš—ñƒf[ƒ^
-	CLACT_U_RES_OBJ_PTR		p_fontoam_pltt;		// ƒpƒŒƒbƒgƒŠƒ\[ƒX
+	GF_BGL_BMPWIN			objbmp;				// æ–‡å­—åˆ—ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+	FONTOAM_OBJ_PTR			p_fontoam;			// ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ¯ãƒ¼ã‚¯
+	FONTOAM_OAM_DATA_PTR	p_fontoam_data;		// ãƒ•ã‚©ãƒ³ãƒˆOAMæ§‹æˆãƒ‡ãƒ¼ã‚¿
+	CHAR_MANAGER_ALLOCDATA	fontoam_chardata;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç¢ºä¿ãƒ‡ãƒ¼ã‚¿
+	STRBUF*					p_str;				// æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_OBJ_PTR		p_fontoam_pltt;		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
 
-	BCT_ADDMOVE_WORK		inout_data;		// “üoˆÚ“®ƒf[ƒ^
-	BCT_ADDMOVE_WORK		yure_data;		// ‚ä‚êˆÚ“®ƒf[ƒ^
-	s16						inout_count;	// “®ìƒJƒEƒ“ƒ^
-	s16						yure_count;		// ‚ä‚êƒJƒEƒ“ƒ^
-	u16						seq;			// “®ìƒV[ƒPƒ“ƒX
-	s16						out_wait;		// oŒûƒEƒGƒCƒg
+	BCT_ADDMOVE_WORK		inout_data;		// å…¥å‡ºç§»å‹•ãƒ‡ãƒ¼ã‚¿
+	BCT_ADDMOVE_WORK		yure_data;		// ã‚†ã‚Œç§»å‹•ãƒ‡ãƒ¼ã‚¿
+	s16						inout_count;	// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
+	s16						yure_count;		// ã‚†ã‚Œã‚«ã‚¦ãƒ³ã‚¿
+	u16						seq;			// å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	s16						out_wait;		// å‡ºå£ã‚¦ã‚¨ã‚¤ãƒˆ
 
 
 	u32 heapID;
@@ -1183,7 +1183,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	FEVERƒGƒtƒFƒNƒg
+///	FEVERã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //=====================================
 typedef struct {
 	u16 seq;
@@ -1194,63 +1194,63 @@ typedef struct {
 
 
 //-------------------------------------
-/// •`‰æƒVƒXƒeƒ€
+/// æç”»ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
     GF_BGL_INI*         p_bgl;              // GF_BGL_INI
-    WORDSET*            p_wordset;          // ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-    MSGDATA_MANAGER*    p_msgman;           // ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-    STRBUF*             p_msgstr;           // ƒƒbƒZ[ƒW—p•¶Žš—ñƒoƒbƒtƒ@
-    STRBUF*             p_msgtmp;           // ƒƒbƒZ[ƒW—p•¶Žš—ñƒoƒbƒtƒ@
-    u16                 msg_no;             // ƒƒbƒZ[ƒWŠ®—¹ŒŸ¸ƒiƒ“ƒo[
-    u16                 msg_speed;          // ƒƒbƒZ[ƒWƒXƒs[ƒh
+    WORDSET*            p_wordset;          // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+    MSGDATA_MANAGER*    p_msgman;           // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+    STRBUF*             p_msgstr;           // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+    STRBUF*             p_msgtmp;           // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+    u16                 msg_no;             // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å®Œäº†æ¤œæŸ»ãƒŠãƒ³ãƒãƒ¼
+    u16                 msg_speed;          // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰
 
 	GF_G3DMAN* p_3dman;
 
-    CLACT_SET_PTR           clactSet;                       // ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-    CLACT_U_EASYRENDER_DATA renddata;                       // ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-    CLACT_U_RES_MANAGER_PTR resMan[BCT_GRA_RESMAN_NUM]; // ƒLƒƒƒ‰EƒpƒŒƒbƒgƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-    CLACT_HEADER            mainoamheader;      // ƒAƒNƒ^[ì¬—pƒwƒbƒ_[
+    CLACT_SET_PTR           clactSet;                       // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+    CLACT_U_EASYRENDER_DATA renddata;                       // ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+    CLACT_U_RES_MANAGER_PTR resMan[BCT_GRA_RESMAN_NUM]; // ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
+    CLACT_HEADER            mainoamheader;      // ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆç”¨ãƒ˜ãƒƒãƒ€ãƒ¼
     CLACT_U_RES_OBJ_PTR     mainoamresobj[BCT_GRA_RESMAN_NUM];
 
-	FONTOAM_SYS_PTR	p_fontoam_sys;	// FONTOAM‚ÌƒVƒXƒeƒ€
+	FONTOAM_SYS_PTR	p_fontoam_sys;	// FONTOAMã®ã‚·ã‚¹ãƒ†ãƒ 
 
     GF_CAMERA_PTR p_camera;
     VecFx32 target;
 
-	// ƒƒCƒ“‰æ–Ê”wŒi
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯
 	BCT_CLIENT_MAINBACK mainback;
 
-    // ƒXƒRƒAƒGƒtƒFƒNƒg
+    // ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
     BCT_CLIENT_SCORE_EFFECT score_effect;
 
-    // ŠJŽnƒAƒjƒ
+    // é–‹å§‹ã‚¢ãƒ‹ãƒ¡
     BCT_COUNTDOWN_DRAW start;
 
-    // Œ‹‰Ê”­•\ 
+    // çµæžœç™ºè¡¨ 
     BCT_CLIENT_RESULT result;
 
-    // ƒ}ƒ‹ƒm[ƒ€
-    BCT_MARUNOMU_DRAW marunomu; // ƒ}ƒ‹ƒm[ƒ€•`‰æƒf[ƒ^
+    // ãƒžãƒ«ãƒŽãƒ¼ãƒ 
+    BCT_MARUNOMU_DRAW marunomu; // ãƒžãƒ«ãƒŽãƒ¼ãƒ æç”»ãƒ‡ãƒ¼ã‚¿
 
-	// START	TIMEUP	ƒGƒtƒFƒNƒg
+	// START	TIMEUP	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	MNGM_COUNTWK*  p_countwk;
 
-	// BG—Dæ‡ˆÊ@ƒGƒtƒFƒNƒg
+	// BGå„ªå…ˆé †ä½ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	BCT_CLIENT_BGPRI_SCRL bgpri_scrl;	
 
-    // –Ø‚ÌŽÀƒŠƒ\[ƒX
+    // æœ¨ã®å®Ÿãƒªã‚½ãƒ¼ã‚¹
     BCT_CLIENT_NUTS_RES nutsres;
     BCT_CLIENT_NUTS_DRAW nuts[BCT_NUTSBUFFOAM_NUM];
-    BCT_CLIENT_HANDNUTS_DRAW handnuts;  // Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ—p
-	BCT_CLIENT_OAMAWAYNUTS_DRAW oamnutsaway;	//  Ž‚Á‚Ä‚¢‚½–Ø‚ÌŽÀ‚ð—Ž‚Æ‚µ‚½‚Æ‚«‚ÌƒGƒtƒFƒNƒg
+    BCT_CLIENT_HANDNUTS_DRAW handnuts;  // æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿç”¨
+	BCT_CLIENT_OAMAWAYNUTS_DRAW oamnutsaway;	//  æŒã£ã¦ã„ãŸæœ¨ã®å®Ÿã‚’è½ã¨ã—ãŸã¨ãã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
 
-	// –Ø‚ÌŽÀƒJƒEƒ“ƒ^[
+	// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	BCT_CLIENT_NUTS_COUNT nutscount;
 
 
-    // ƒAƒƒP[ƒ^
+    // ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
     NNSFndAllocator allocator;
 
 
@@ -1260,36 +1260,36 @@ typedef struct {
 
 
 //-------------------------------------
-/// ƒNƒ‰ƒCƒAƒ“ƒgƒ[ƒN
+/// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _BCT_CLIENT{
-	u32	move_type;	// “®ìƒ^ƒCƒv		ŽžŠÔ‚Å‘JˆÚ‚·‚é“®ì‚Ìƒ^ƒCƒv	BCT_MARUNOMU_MOVE_TYPE
+	u32	move_type;	// å‹•ä½œã‚¿ã‚¤ãƒ—		æ™‚é–“ã§é·ç§»ã™ã‚‹å‹•ä½œã®ã‚¿ã‚¤ãƒ—	BCT_MARUNOMU_MOVE_TYPE
 	BOOL time_count_flag;
     s32 time;
     s32 time_max;
-    u32 comm_num;   // ’ÊMl”
+    u32 comm_num;   // é€šä¿¡äººæ•°
 	u32 plno;	// NETID
-    s32 score;  // “¾“_
-    s32 bonus;  // ƒ{[ƒiƒXƒJƒEƒ“ƒ^
-    BCT_CLIENT_SLOW slow;                       // “Š‚°ƒf[ƒ^
-    BCT_CLIENT_NUTS nuts[BCT_NUTSBUFF_NUM];     // –Ø‚ÌŽÀƒf[ƒ^
-    BCT_MARUNOMU marunomu;                      // ƒ}ƒ‹ƒm[ƒ€
-    BCT_CLIENT_GRAPHIC graphic;                 // ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-    BCT_SCORE_COMM  all_score;                      // ‚Ý‚ñ‚È‚ÌƒXƒRƒA
-	TP_ONE_DATA tp_one;							// ƒ^ƒbƒ`ƒpƒlƒ‹‚P‚Âƒf[ƒ^
-	BCT_CLIENT_CONT_GAMEDATA gamedata_cont;		// ƒQ[ƒ€ƒf[ƒ^ƒRƒ“ƒgƒ[ƒ‹
-	const BCT_GAMEDATA* cp_gamedata;			// ƒQ[ƒ€ƒf[ƒ^
-	u16	gamedata_now;							// ¡‚ÌƒQ[ƒ€ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
-	u16	gamedata_last;							// ‘O‚ÌƒQ[ƒ€ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
-	BCT_GAME_TYPE_WK gametype;					// ƒQ[ƒ€ƒ^ƒCƒv
-	BOOL gametype_flag;							// ƒQ[ƒ€ƒ^ƒCƒvŽóMƒ`ƒFƒbƒNƒtƒ‰ƒO
+    s32 score;  // å¾—ç‚¹
+    s32 bonus;  // ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ã‚¿
+    BCT_CLIENT_SLOW slow;                       // æŠ•ã’ãƒ‡ãƒ¼ã‚¿
+    BCT_CLIENT_NUTS nuts[BCT_NUTSBUFF_NUM];     // æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
+    BCT_MARUNOMU marunomu;                      // ãƒžãƒ«ãƒŽãƒ¼ãƒ 
+    BCT_CLIENT_GRAPHIC graphic;                 // ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+    BCT_SCORE_COMM  all_score;                      // ã¿ã‚“ãªã®ã‚¹ã‚³ã‚¢
+	TP_ONE_DATA tp_one;							// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ï¼‘ã¤ãƒ‡ãƒ¼ã‚¿
+	BCT_CLIENT_CONT_GAMEDATA gamedata_cont;		// ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+	const BCT_GAMEDATA* cp_gamedata;			// ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+	u16	gamedata_now;							// ä»Šã®ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u16	gamedata_last;							// å‰ã®ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	BCT_GAME_TYPE_WK gametype;					// ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
+	BOOL gametype_flag;							// ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—å—ä¿¡ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°
 
-	BCT_CLIENT_TOUCHPEN_MOVE touchpen_wk;		// ƒ^ƒbƒ`ƒyƒ“ƒVƒXƒeƒ€
+	BCT_CLIENT_TOUCHPEN_MOVE touchpen_wk;		// ã‚¿ãƒƒãƒãƒšãƒ³ã‚·ã‚¹ãƒ†ãƒ 
 
-	BCT_CLIENT_MIDDLE_SCORE	middle_score;		// “r’†‚Ì“¾“_ŠÇ—ƒVƒXƒeƒ€
+	BCT_CLIENT_MIDDLE_SCORE	middle_score;		// é€”ä¸­ã®å¾—ç‚¹ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 
 	
-	// FEVERƒGƒtƒFƒNƒg
+	// FEVERã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	BCT_CLIENT_FEVER_EFF_WK fever_eff;
 
 } ;
@@ -1298,13 +1298,13 @@ typedef struct _BCT_CLIENT{
 
 //-----------------------------------------------------------------------------
 /**
- *                  ƒp[ƒZƒ“ƒe[ƒW‚É‘Î‰ž‚µ‚½‰ñ“]ƒXƒs[ƒh
+ *                  ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ã«å¯¾å¿œã—ãŸå›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 
 #ifdef BCT_DEBUG_HITZONE
 //-------------------------------------
-/// “–‚½‚è”»’èˆÊ’u•\Ž¦ƒIƒuƒWƒFƒNƒg
+/// å½“ãŸã‚Šåˆ¤å®šä½ç½®è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //=====================================
 typedef struct {
     D3DOBJ_MDL  mdl;
@@ -1331,23 +1331,23 @@ static int BCT_DEBUG_in_num = 0;
 
 //-----------------------------------------------------------------------------
 /**
- *                  ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *                  ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void BCT_AddMoveReqFx( BCT_ADDMOVE_WORK* p_work, fx32 s_x, fx32 e_x, fx32 s_s, int count_max );
 static BOOL	BCT_AddMoveMainFx( BCT_ADDMOVE_WORK* p_work );
 
-// 2DÀ•WŒn‚Ì•\Ž¦ˆÊ’u‚ðŽæ“¾‚·‚é
+// 2Dåº§æ¨™ç³»ã®è¡¨ç¤ºä½ç½®ã‚’å–å¾—ã™ã‚‹
 static void BCT_netID2DMatrixGet( u32 comm_num, u32 myplno, u32 targetplno, s32* p_x,  s32* p_y );
 
 
-// ŠÈ’P–Ø‚ÌŽÀ”­ŽËŠÖ”
+// ç°¡å˜æœ¨ã®å®Ÿç™ºå°„é–¢æ•°
 static void BCT_EasyNutsSet( BCT_CLIENT* p_wk, u16 t0_x, u16 t0_y, u16 t1_x, u16 t1_y, u32 moveseq );
 
-// ƒ{[ƒiƒXƒiƒ“ƒo[‚ÌƒXƒRƒAŽæ“¾
+// ãƒœãƒ¼ãƒŠã‚¹ãƒŠãƒ³ãƒãƒ¼ã®ã‚¹ã‚³ã‚¢å–å¾—
 static u32 BCT_AddScoreGet( BCT_CLIENT* cp_wk );
 
-// ƒXƒRƒAƒGƒtƒFƒNƒg
+// ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 static void BCT_CLIENT_ScoreEffectInit( BCT_CLIENT_SCORE_EFFECT* p_wk, BCT_CLIENT_GRAPHIC* p_drawsys, u32 comm_num, u32 plno, u32 heapID );
 static void BCT_CLIENT_ScoreEffectExit( BCT_CLIENT_SCORE_EFFECT* p_wk, BCT_CLIENT_GRAPHIC* p_drawsys);
 static void BCT_CLIENT_ScoreEffectStart( BCT_CLIENT_SCORE_EFFECT* p_wk, u32 plno, u32 bonus, BCT_MARUNOMU_MOVE_TYPE movetype );
@@ -1359,7 +1359,7 @@ static void BCT_CLIENT_ScoreEffectWkMain( BCT_CLIENT_SCORE_EFFECT_WK* p_wk );
 static void BCT_CLIENT_ScoreEffectWkSetMatrix( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, u32 idx );
 static void BCT_CLIENT_ScoreEffectWkEnd( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, u32 idx );
 
-// ŠJŽnƒ[ƒN
+// é–‹å§‹ãƒ¯ãƒ¼ã‚¯
 static void BCT_CLIENT_StartSysInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_GRAPHIC* p_drawsys, const BCT_GAMEDATA* cp_param, u32 commnum, u32 myplno, ARCHANDLE* p_handle, u32 heapID );
 static void BCT_CLIENT_StartSysExit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_GRAPHIC* p_drawsys );
 static void BCT_CLIENT_StartSysCountDownInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_GRAPHIC* p_drawsys );
@@ -1370,14 +1370,14 @@ static BOOL BCT_CLIENT_StartSysGameStart( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLI
 static s32 BCT_CLIENT_StartSysScrllYGet( BCT_COUNTDOWN_DRAW* p_graphic );
 static void BCT_CLIENT_StartSysMarunomuMatrixSet( BCT_CLIENT_GRAPHIC* p_drawsys, const BCT_MARUNOMU* cp_data );
 
-// Œ‹‰Ê”­•\ƒ[ƒN
+// çµæžœç™ºè¡¨ãƒ¯ãƒ¼ã‚¯
 static void BCT_CLIENT_EndSysInit( BCT_CLIENT_GRAPHIC* p_graphic, u32 comm_num, u32 plno, u32 heapID );
 static void BCT_CLIENT_EndSysExit( BCT_CLIENT_GRAPHIC* p_graphic, u32 comm_num );
 static void BCT_CLIENT_EndSysMarunomuAnmChg( BCT_CLIENT_GRAPHIC* p_graphic );
 static BOOL BCT_CLIENT_EndSysMarunomuAnm( BCT_CLIENT_GRAPHIC* p_graphic );
 static BOOL BCT_CLIENT_EndSysTimeUpAnm( BCT_CLIENT_GRAPHIC* p_graphic );
 
-// ƒ}ƒ‹ƒm[ƒ€
+// ãƒžãƒ«ãƒŽãƒ¼ãƒ 
 static void BCT_CLIENT_MarunomuInit( const BCT_CLIENT* cp_wk, BCT_MARUNOMU* p_maru );
 static void BCT_CLIENT_MarunomuMain( const BCT_CLIENT* cp_wk, BCT_MARUNOMU* p_maru );
 static void BCT_CLIENT_MarunomuSetHitFlag( BCT_MARUNOMU* p_maru, BOOL flag );
@@ -1394,7 +1394,7 @@ static u16 BCT_CLIENT_MarunomuGetRotaX_Easy( const BCT_MARUNOMU* cp_maru, s32 ti
 static u16 BCT_CLIENT_MarunomuGetRotaX_FeverEff( const BCT_MARUNOMU* cp_maru, s32 time, s32 max_time );
 static u16 BCT_CLIENT_MarunomuGetRotaX_Fever( const BCT_MARUNOMU* cp_maru, s32 time, s32 max_time );
 
-//////// “®ì‚³‚¹‚È‚¢ŠÖ”
+//////// å‹•ä½œã•ã›ãªã„é–¢æ•°
 #if 0
 static u16 BCT_CLIENT_MarunomuParRotaGet( s32 par, s32 max_par );
 static u16 BCT_CLIENT_MarunomuParRotaGetEx( s32 par, s32 max_par, u16 start, u16 div );
@@ -1408,11 +1408,11 @@ static u16 BCT_CLIENT_MarunomuXRotaGet3( s32 time, s32 max_time );
 //////////////////////////
 
 
-// ’ÊM–Ø‚ÌŽÀƒf[ƒ^‚Æ–Ø‚ÌŽÀ
+// é€šä¿¡æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã¨æœ¨ã®å®Ÿ
 static void BCT_CLIENT_NutsDataToComm( const BCT_NUT_DATA* cp_data, BCT_NUT_COMM* p_comm );
 static void BCT_CLIENT_NutsCommToData( const BCT_NUT_COMM* cp_comm, BCT_NUT_DATA* p_data );
 
-// –Ø‚ÌŽÀ
+// æœ¨ã®å®Ÿ
 static void BCT_CLIENT_NutsSet( BCT_CLIENT* p_wk, const BCT_NUT_DATA* cp_data, u32 seq );
 static void BCT_CLIENT_NutsEnd( BCT_CLIENT* p_wk, BCT_CLIENT_NUTS* p_data, BOOL in_flag, u32 bonus );
 static void BCT_CLIENT_NutsDel( BCT_CLIENT_NUTS* p_data );
@@ -1437,7 +1437,7 @@ static void BCT_CLIENT_NutsInMove( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk );
 static void BCT_CLIENT_NutsMatrixMove( BCT_CLIENT_NUTS* p_nuts, const VecFx32* cp_add );
 
 
-// ƒ^ƒbƒ`‚É‚æ‚é“®ì
+// ã‚¿ãƒƒãƒã«ã‚ˆã‚‹å‹•ä½œ
 static void BCT_CLIENT_NutsSlow( BCT_CLIENT* p_wk );
 static void BCT_CLIENT_NutsSlowEnd( BCT_CLIENT* p_wk );
 static void BCT_CLIENT_NutsSlowMain( BCT_CLIENT* p_wk );
@@ -1451,7 +1451,7 @@ static u32 BCT_CLIENT_NutsSlowQGetInNum( BCT_CLIENT_SLOW* p_wk );
 static void BCT_CLIENT_NutsSlowClear( BCT_CLIENT* p_wk );
 
 
-// ƒQ[ƒ€ƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€
+// ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 static void BCT_CLIENT_ContGameData_Init( BCT_CLIENT_CONT_GAMEDATA* p_wk, const BCT_GAMEDATA* cp_gamedata, const BCT_GAME_TYPE_WK* cp_gametype );
 static void BCT_CLIENT_ContGameData_Start( BCT_CLIENT_CONT_GAMEDATA* p_wk, const BCT_GAMEDATA* cp_gamedata, const BCT_GAME_TYPE_WK* cp_gametype, u16 last, u16 next );
 static BOOL BCT_CLIENT_ContGameData_Main( BCT_CLIENT_CONT_GAMEDATA* p_wk );
@@ -1460,14 +1460,14 @@ static void BCT_CLIENT_GameDataOne_Reflect( BCT_CLIENT* p_wk, const BCT_GAMEDATA
 static void BCT_CLIENT_GameData_GetGameTypeOneData( const BCT_GAMEDATA* cp_gamedata, const BCT_GAME_TYPE_WK* cp_gametype, u32 idx, BCT_GAMEDATA_ONE* p_buff );
 
 
-// ƒ^ƒbƒ`ƒyƒ““®ìˆ—
+// ã‚¿ãƒƒãƒãƒšãƒ³å‹•ä½œå‡¦ç†
 static void BCT_CLIENT_TOUCHPEN_Init( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT_GRAPHIC* p_graphic, u32 heapID );
 static void BCT_CLIENT_TOUCHPEN_Exit( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT_GRAPHIC* p_graphic );
 static void BCT_CLIENT_TOUCHPEN_Start( BCT_CLIENT_TOUCHPEN_MOVE* p_wk );
 static BOOL BCT_CLIENT_TOUCHPEN_Main( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT* p_sys );
 
 
-// “r’†Œo‰ßŠÇ—ƒVƒXƒeƒ€
+// é€”ä¸­çµŒéŽç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 static void BCT_CLIENT_MDLSCR_Init( BCT_CLIENT_MIDDLE_SCORE* p_wk );
 static void BCT_CLIENT_MDLSCR_Set( BCT_CLIENT_MIDDLE_SCORE* p_wk, u32 score, u32 idx );
 static void BCT_CLIENT_MDLSCR_Reset( BCT_CLIENT_MIDDLE_SCORE* p_wk );
@@ -1476,7 +1476,7 @@ static BOOL BCT_CLIENT_MDLSCR_CheckInNum( const BCT_CLIENT_MIDDLE_SCORE* cp_wk, 
 
 
 
-// ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 static void BCT_CLIENT_GraphicInit( BCT_CLIENT* p_wk, u32 heapID );
 static void BCT_CLIENT_GraphicDelete( BCT_CLIENT* p_wk );
 static void BCT_CLIENT_GraphicMain( const BCT_CLIENT* cp_wk, BCT_CLIENT_GRAPHIC* p_wk );
@@ -1568,14 +1568,14 @@ static void BCT_CLIENT_CameraTargetYSet( BCT_CLIENT_GRAPHIC* p_gra, fx32 y );
 static void BCT_CLIENT_CameraAngleXSet( BCT_CLIENT_GRAPHIC* p_gra, u16 angle );
 
 
-// BG—Dæ‡ˆÊƒXƒNƒ[ƒ‹
+// BGå„ªå…ˆé †ä½ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 static void BCT_CLIENT_BGPRISCRL_Init( BCT_CLIENT_BGPRI_SCRL* p_wk, u8 plno );
 static void BCT_CLIENT_BGPRISCRL_Main( BCT_CLIENT_BGPRI_SCRL* p_wk, BCT_CLIENT_GRAPHIC* p_gra );
 static void BCT_CLIENT_BGPRISCRL_Req( BCT_CLIENT_BGPRI_SCRL* p_wk );
 static void BCT_CLIENT_BGPRISCRL_SetPri( BCT_CLIENT_GRAPHIC* p_gra, s16 most_back, u16 plno );
 
 
-// –Ø‚ÌŽÀƒJƒEƒ“ƒ^[
+// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 static void BCT_CLIENT_NUTS_COUNT_Init( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_GRAPHIC* p_gra, ARCHANDLE* p_handle, u32 heapID );
 static void BCT_CLIENT_NUTS_COUNT_Exit( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_GRAPHIC* p_gra );
 static void BCT_CLIENT_NUTS_COUNT_Start( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_GRAPHIC* p_gra, u32 count );
@@ -1584,21 +1584,21 @@ static void BCT_CLIENT_NUTS_COUNT_SetData( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIE
 static void BCT_CLIENT_NUTS_COUNT_Main( BCT_CLIENT_NUTS_COUNT* p_wk );
 
 
-// FEVERƒGƒtƒFƒNƒg
+// FEVERã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 static void BCT_CLIENT_FEVER_EFF_Start( BCT_CLIENT_FEVER_EFF_WK* p_wk );
 static void BCT_CLIENT_FEVER_EFF_Main( BCT_CLIENT_FEVER_EFF_WK* p_wk, BCT_CLIENT_MAINBACK* p_mainback, BCT_MARUNOMU_DRAW* p_marunomudraw );
 static void BCT_CLIENT_FEVER_EFF_Reset( BCT_CLIENT_FEVER_EFF_WK* p_wk );
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒNƒ‰ƒCƒAƒ“ƒg‰Šú‰»
+ *  @brief  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆåˆæœŸåŒ–
  *
- *  @param  heapID      ƒq[ƒvID
- *  @param  timeover    ƒ^ƒCƒ€ƒŠƒ~ƒbƒg
- *  @param  comm_num    ’ÊMl”
- *  @param	cp_gamedata	ƒQ[ƒ€ƒf[ƒ^
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—ID
+ *  @param  timeover    ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆ
+ *  @param  comm_num    é€šä¿¡äººæ•°
+ *  @param	cp_gamedata	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
  *
- *  @return ì¬‚µ‚½ƒ[ƒN
+ *  @return ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 BCT_CLIENT* BCT_CLIENT_Init( u32 heapID, u32 timeover, u32 comm_num, u32 plno, BCT_GAMEDATA* cp_gamedata )
@@ -1617,19 +1617,19 @@ BCT_CLIENT* BCT_CLIENT_Init( u32 heapID, u32 timeover, u32 comm_num, u32 plno, B
 	p_wk->cp_gamedata		= cp_gamedata;
     
 
-    // ƒ}ƒ‹ƒm[ƒ€‰Šú‰»
+    // ãƒžãƒ«ãƒŽãƒ¼ãƒ åˆæœŸåŒ–
     BCT_CLIENT_MarunomuInit( p_wk, &p_wk->marunomu );
 
-    // ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+    // ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
     BCT_CLIENT_GraphicInit( p_wk, heapID );
 
-	// ƒ^ƒbƒ`ƒyƒ“ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒšãƒ³ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	BCT_CLIENT_TOUCHPEN_Init( &p_wk->touchpen_wk, &p_wk->graphic, heapID );
 
-	// “r’†Œo‰ßƒf[ƒ^	‰Šú‰»
+	// é€”ä¸­çµŒéŽãƒ‡ãƒ¼ã‚¿	åˆæœŸåŒ–
 	BCT_CLIENT_MDLSCR_Init( &p_wk->middle_score );
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«
 	check = InitTP( BCT_TOUCH_BUFF, BCT_TOUCH_BUFFNUM, 4 );
 	GF_ASSERT( check == TP_OK );
 
@@ -1639,44 +1639,44 @@ BCT_CLIENT* BCT_CLIENT_Init( u32 heapID, u32 timeover, u32 comm_num, u32 plno, B
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒNƒ‰ƒCƒAƒ“ƒg@”jŠü
+ *  @brief  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã€€ç ´æ£„
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void BCT_CLIENT_Delete( BCT_CLIENT* p_wk )
 {
 	u32 check;
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒTƒ“ƒvƒŠƒ“ƒOI—¹
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°çµ‚äº†
 	check = StopTP();
 	GF_ASSERT( check == TP_OK );
 
-	// ƒ^ƒbƒ`ƒyƒ“ƒVƒXƒeƒ€”jŠü
+	// ã‚¿ãƒƒãƒãƒšãƒ³ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	BCT_CLIENT_TOUCHPEN_Exit( &p_wk->touchpen_wk, &p_wk->graphic );
 
-    // ƒOƒ‰ƒtƒBƒbƒN”jŠü
+    // ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
     BCT_CLIENT_GraphicDelete( p_wk );
     
     sys_FreeMemoryEz( p_wk );
 
 #ifdef PM_DEBUG
-	// H‚Á‚½”‚ð•\Ž¦
-	OS_Printf( "¡‰ñ‚ÌH‚×‚½”	%d\n", BCT_DEBUG_in_num );
+	// é£Ÿã£ãŸæ•°ã‚’è¡¨ç¤º
+	OS_Printf( "ä»Šå›žã®é£Ÿã¹ãŸæ•°	%d\n", BCT_DEBUG_in_num );
 #endif
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒNƒ‰ƒCƒAƒ“ƒg@ŠJŽnˆ—
+ *  @brief  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã€€é–‹å§‹å‡¦ç†
  *
- *  @param  p_wk    ƒ[ƒN
- *  @param  event   Žg‚¤l‚©‚çŽó‚¯‚éŽwŽ¦
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
+ *  @param  event   ä½¿ã†äººã‹ã‚‰å—ã‘ã‚‹æŒ‡ç¤º
  *
- *  @retval TRUE    “r’†
- *  @retval FALSE   I‚í‚è
+ *  @retval TRUE    é€”ä¸­
+ *  @retval FALSE   çµ‚ã‚ã‚Š
  *
  *  event
- *      BCT_CLIENT_STARTEVENT_COUNT_START   ƒJƒEƒ“ƒg‚ðŠJŽn‚·‚é‚Æ‚«‚É“n‚µ‚Ä‚­‚¾‚³‚¢E
+ *      BCT_CLIENT_STARTEVENT_COUNT_START   ã‚«ã‚¦ãƒ³ãƒˆã‚’é–‹å§‹ã™ã‚‹ã¨ãã«æ¸¡ã—ã¦ãã ã•ã„ãƒ»
  *
  */
 //-----------------------------------------------------------------------------
@@ -1686,7 +1686,7 @@ BOOL BCT_CLIENT_StartMain( BCT_CLIENT* p_wk, u32 event )
     BOOL ret = TRUE;
 	s32 speed;
 
-    // ƒ}ƒ‹ƒm[ƒ€‚ðí‚É‚ä‚Á‚­‚è“®‚©‚·
+    // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚’å¸¸ã«ã‚†ã£ãã‚Šå‹•ã‹ã™
     if(  p_wk->graphic.start.seq >= BCT_STARTSEQ_WAIT ){
 		if( p_wk->gametype.rota_rev ){
 			speed = -BCT_START_MARUNOMUROTA;
@@ -1696,30 +1696,30 @@ BOOL BCT_CLIENT_StartMain( BCT_CLIENT* p_wk, u32 event )
         BCT_CLIENT_MarunomuRotaYSet( &p_wk->marunomu, p_wk->marunomu.rota + speed );
 	}
 
-	// À•W‚ÆŠp“x‚ðÝ’è
+	// åº§æ¨™ã¨è§’åº¦ã‚’è¨­å®š
 	BCT_CLIENT_StartSysMarunomuMatrixSet( &p_wk->graphic, &p_wk->marunomu );
 	BCT_CLIENT_MarunomuDrawRotaSet( &p_wk->graphic.marunomu, &p_wk->marunomu );
 	BCT_CLIENT_MarunomuDrawScaleSet( &p_wk->graphic.marunomu, &p_wk->marunomu );
 
     switch( p_wk->graphic.start.seq ){
-    case BCT_STARTSEQ_TOUCHPEN_START:   // ƒ^ƒbƒ`ƒyƒ“ŠJŽn
+    case BCT_STARTSEQ_TOUCHPEN_START:   // ã‚¿ãƒƒãƒãƒšãƒ³é–‹å§‹
 		BCT_CLIENT_TOUCHPEN_Start( &p_wk->touchpen_wk );
 		p_wk->graphic.start.seq ++;
 		break;
 		
-    case BCT_STARTSEQ_TOUCHPEN_MAIN:   // ƒ^ƒbƒ`ƒyƒ“ƒƒCƒ“
+    case BCT_STARTSEQ_TOUCHPEN_MAIN:   // ã‚¿ãƒƒãƒãƒšãƒ³ãƒ¡ã‚¤ãƒ³
 		result = BCT_CLIENT_TOUCHPEN_Main( &p_wk->touchpen_wk, p_wk );
 		if( result == TRUE ){
 			p_wk->graphic.start.seq ++;
 
-			// “¯ŠúŠJŽn
+			// åŒæœŸé–‹å§‹
 			CommTimingSyncStart(BCT_SYNCID_CLIENT_TOUCHPEN_END);
 		}
 		break;
 
-	case BCT_STARTSEQ_MARUNOMU_SND:   // ‰¹‚ð–Â‚ç‚·
+	case BCT_STARTSEQ_MARUNOMU_SND:   // éŸ³ã‚’é³´ã‚‰ã™
 
-		// “¯Šú‚ªŠ®—¹‚·‚é‚Ü‚Å‘Ò‚Â
+		// åŒæœŸãŒå®Œäº†ã™ã‚‹ã¾ã§å¾…ã¤
 		if(!CommIsTimingSync(BCT_SYNCID_CLIENT_TOUCHPEN_END)){
 			break;
 		}
@@ -1728,17 +1728,17 @@ BOOL BCT_CLIENT_StartMain( BCT_CLIENT* p_wk, u32 event )
 		p_wk->graphic.start.wait = BCT_START_MARU_MOUTH_OPEN_WAIT;
 		break;
 		
-	case BCT_STARTSEQ_MARUNOMU_OPEN: // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚ªŠJ‚­‘Ò‚¿
+	case BCT_STARTSEQ_MARUNOMU_OPEN: // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ãŒé–‹ãå¾…ã¡
 
 		p_wk->graphic.start.wait--;
 		if( p_wk->graphic.start.wait == 50 ){
-			Snd_SePlay( BCT_SND_MARUIN3 );	// ‚Í‚Ü‚é
+			Snd_SePlay( BCT_SND_MARUIN3 );	// ã¯ã¾ã‚‹
 		}
 		if( p_wk->graphic.start.wait == 20 ){
-			Snd_SePlay( BCT_SND_MARUIN2 );	// ŒûŠJ‚«
+			Snd_SePlay( BCT_SND_MARUIN2 );	// å£é–‹ã
 		}
 		
-		// ‚P‰ñƒAƒjƒ
+		// ï¼‘å›žã‚¢ãƒ‹ãƒ¡
 		BCT_CLIENT_MarunomuDrawNoLoopMouthAnm_Speed( &p_wk->graphic.marunomu, BCT_MARUNOMU_ANM_STARTSPEED );
 		if( p_wk->graphic.start.wait == 0 ){
 			BCT_CLIENT_StartSysMarunomuChange( &p_wk->graphic.start, &p_wk->graphic );
@@ -1746,41 +1746,41 @@ BOOL BCT_CLIENT_StartMain( BCT_CLIENT* p_wk, u32 event )
 		}
 		break;
 
-    case BCT_STARTSEQ_WAIT:         // ƒJƒEƒ“ƒgƒ_ƒEƒ“ŠJŽn‘Ò‚¿
+    case BCT_STARTSEQ_WAIT:         // ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³é–‹å§‹å¾…ã¡
         if( event == BCT_CLIENT_STARTEVENT_COUNT_START ){
             p_wk->graphic.start.seq = BCT_STARTSEQ_TEXTINIT;
         }
         break;
 
-    case BCT_STARTSEQ_TEXTINIT:     // ƒeƒLƒXƒg‚Ì€”õ
+    case BCT_STARTSEQ_TEXTINIT:     // ãƒ†ã‚­ã‚¹ãƒˆã®æº–å‚™
         BCT_CLIENT_StartSysCountDownInit( &p_wk->graphic.start, &p_wk->graphic );
 		Snd_SePlay( BCT_SND_COUNT );
         p_wk->graphic.start.seq = BCT_STARTSEQ_COUNTDOWNWAIT;
         break;
         
-    case BCT_STARTSEQ_COUNTDOWNWAIT:    // ƒJƒEƒ“ƒgƒ_ƒEƒ“‘Ò‚¿
+    case BCT_STARTSEQ_COUNTDOWNWAIT:    // ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³å¾…ã¡
         result = BCT_CLIENT_StartSysCountDown( &p_wk->graphic.start, &p_wk->graphic );
         if( result == FALSE ){
             p_wk->graphic.start.seq = BCT_STARTSEQ_GAMESTARTWAIT;
         }
         break;
         
-    case BCT_STARTSEQ_GAMESTARTWAIT:    // ƒQ[ƒ€‚ªo—ˆ‚éó‘Ô‚É‚È‚é‚Ü‚Å‘Ò‚Â
+    case BCT_STARTSEQ_GAMESTARTWAIT:    // ã‚²ãƒ¼ãƒ ãŒå‡ºæ¥ã‚‹çŠ¶æ…‹ã«ãªã‚‹ã¾ã§å¾…ã¤
         result = BCT_CLIENT_StartSysGameStart( &p_wk->graphic.start, &p_wk->graphic );
         if( result == FALSE ){
             p_wk->graphic.start.seq = BCT_STARTSEQ_END;
         }
         break;
         
-    case BCT_STARTSEQ_END:          // ŠJŽnI‚í‚è
-        BCT_CLIENT_StartSysDrawOff( &p_wk->graphic.start, &p_wk->graphic ); // à–¾‚Æ‚©Á‚·
-		// ƒ}ƒ‹ƒm[ƒ€‚ ‚½‚è”»’è‰ïŽ
+    case BCT_STARTSEQ_END:          // é–‹å§‹çµ‚ã‚ã‚Š
+        BCT_CLIENT_StartSysDrawOff( &p_wk->graphic.start, &p_wk->graphic ); // èª¬æ˜Žã¨ã‹æ¶ˆã™
+		// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚ãŸã‚Šåˆ¤å®šä¼šæ°
 		BCT_CLIENT_MarunomuSetHitFlag( &p_wk->marunomu, TRUE );
         ret = FALSE;
         break;
         
     }
-	// •\Ž¦
+	// è¡¨ç¤º
 	BCT_CLIENT_MarunomuDrawAnmMain( &p_wk->graphic.marunomu, &p_wk->marunomu, p_wk->move_type );
 	BCT_CLIENT_GraphicDrawCore( p_wk, &p_wk->graphic );
     return ret;
@@ -1788,13 +1788,13 @@ BOOL BCT_CLIENT_StartMain( BCT_CLIENT* p_wk, u32 event )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  Œ‹‰Ê”­•\
+ *  @brief  çµæžœç™ºè¡¨
  *  
- *  @param  p_wk    ƒ[ƒN
- *  @param  event   ƒCƒxƒ“ƒg    ŠO‚©‚ç‰½‚©ŽwŽ¦‚ðŽó‚¯Žæ‚é‚Æ‚«
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
+ *  @param  event   ã‚¤ãƒ™ãƒ³ãƒˆ    å¤–ã‹ã‚‰ä½•ã‹æŒ‡ç¤ºã‚’å—ã‘å–ã‚‹ã¨ã
  *
- *  @retval TRUE    “r’†
- *  @retval FALSE   Š®—¹
+ *  @retval TRUE    é€”ä¸­
+ *  @retval FALSE   å®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL BCT_CLIENT_EndMain( BCT_CLIENT* p_wk, u32 event )
@@ -1805,25 +1805,25 @@ BOOL BCT_CLIENT_EndMain( BCT_CLIENT* p_wk, u32 event )
 
     switch( p_wk->graphic.result.seq ){
     case BCT_RESULT_SEQ_ENDINIT:
-        // “Š‚°‚Ä‚¢‚é“r’†‚Ì–Ø‚ÌŽÀ‚ð‚·‚×‚Äl‚Ì“Š‚°‚½‚à‚Ì‚É‚·‚é
+        // æŠ•ã’ã¦ã„ã‚‹é€”ä¸­ã®æœ¨ã®å®Ÿã‚’ã™ã¹ã¦äººã®æŠ•ã’ãŸã‚‚ã®ã«ã™ã‚‹
         BCT_CLIENT_NutsSeqOtherChange( p_wk );
-        // Ž‚Á‚Ä‚¢‚é“r’†‚Ì‚à‚Ì‚à”jŠü‚·‚é
+        // æŒã£ã¦ã„ã‚‹é€”ä¸­ã®ã‚‚ã®ã‚‚ç ´æ£„ã™ã‚‹
         BCT_CLIENT_NutsSlowClear( p_wk );
 
-		// ‚µ‚½‰æ–Êƒuƒ‰ƒCƒgƒlƒXƒ`ƒFƒ“ƒW
+		// ã—ãŸç”»é¢ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒã‚§ãƒ³ã‚¸
         ChangeBrightnessRequest( BCT_RESULT_ENDBRIGHTNESS_SYNC, 
                 BCT_GRA_SUBBRIGHT_OFFNUM, BRIGHTNESS_NORMAL, PLANEMASK_ALL, MASK_SUB_DISPLAY );
 
-		// ƒ}ƒ‹ƒm[ƒ€‚ÌƒAƒjƒ‚ð•ÏX
+		// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®ã‚¢ãƒ‹ãƒ¡ã‚’å¤‰æ›´
 		BCT_CLIENT_EndSysMarunomuAnmChg( &p_wk->graphic );
 
-		// ƒ^ƒCƒ€ƒAƒbƒv
+		// ã‚¿ã‚¤ãƒ ã‚¢ãƒƒãƒ—
 		MNGM_COUNT_StartTimeUp( p_wk->graphic.p_countwk );
 
-		// BGM‚ðŒ³‚É–ß‚·
+		// BGMã‚’å…ƒã«æˆ»ã™
 		BCT_CLIENT_FEVER_EFF_Reset( &p_wk->fever_eff );
 
-		// –Ø‚ÌŽÀƒJƒEƒ“ƒ^[‚ð•Â‚¶‚é
+		// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚’é–‰ã˜ã‚‹
 		BCT_CLIENT_NUTS_COUNT_End( &p_wk->graphic.nutscount );
 
         p_wk->graphic.result.seq ++;
@@ -1831,29 +1831,29 @@ BOOL BCT_CLIENT_EndMain( BCT_CLIENT* p_wk, u32 event )
         
     case BCT_RESULT_SEQ_ENDDRAW:
         result = TRUE;
-        // ƒ}ƒ‹ƒm[ƒ€‚ðROTA‚X‚O‚É–ß‚·
+        // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚’ROTAï¼™ï¼ã«æˆ»ã™
         if( BCT_CLIENT_EndSysMarunomuAnm( &p_wk->graphic ) == FALSE ){
             result = FALSE;
         }
 
-        // ƒ{[ƒ‹‚ð‘S•”“®‚©‚·i‘S•”‚Í‚¸‚êj 
+        // ãƒœãƒ¼ãƒ«ã‚’å…¨éƒ¨å‹•ã‹ã™ï¼ˆå…¨éƒ¨ã¯ãšã‚Œï¼‰ 
         BCT_CLIENT_AllNutsMove( p_wk );
 		BCT_CLIENT_AllNutsEndContAllDel( p_wk );
         if( BCT_CLIENT_NutsMoveCheck( p_wk ) == TRUE ){
             result = FALSE;
         }
 
-        // ƒ^ƒCƒ€ƒAƒbƒv‚ð•\Ž¦
+        // ã‚¿ã‚¤ãƒ ã‚¢ãƒƒãƒ—ã‚’è¡¨ç¤º
         if( BCT_CLIENT_EndSysTimeUpAnm( &p_wk->graphic ) == FALSE ){
             result = FALSE;
         }
 
-		// ƒTƒu‰æ–Êƒuƒ‰ƒCƒgƒlƒX
+		// ã‚µãƒ–ç”»é¢ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹
 		if( IsFinishedBrightnessChg( MASK_SUB_DISPLAY ) == FALSE ){
 			result = FALSE;
 		}
         
-        // ‚·‚×‚Ä‚Ì“®‚«‚ªI‚í‚Á‚ÄAevent‚ªƒXƒRƒA•\Ž¦‚É‚È‚Á‚½‚çŽŸ‚Öi‚Þ
+        // ã™ã¹ã¦ã®å‹•ããŒçµ‚ã‚ã£ã¦ã€eventãŒã‚¹ã‚³ã‚¢è¡¨ç¤ºã«ãªã£ãŸã‚‰æ¬¡ã¸é€²ã‚€
         if( (result == TRUE) && (event == BCT_CLIENT_ENDEVENT_RESULTON) ){
 			p_wk->graphic.result.count = 0;
             p_wk->graphic.result.seq++;
@@ -1861,7 +1861,7 @@ BOOL BCT_CLIENT_EndMain( BCT_CLIENT* p_wk, u32 event )
         break;
 
 	case BCT_RESULT_SEQ_ENDWAIT:
-		// ƒEƒGƒCƒg
+		// ã‚¦ã‚¨ã‚¤ãƒˆ
 		p_wk->graphic.result.count++;
 		if( p_wk->graphic.result.count >= BCT_RESULT_ENDWAIT ){
             p_wk->graphic.result.seq++;
@@ -1873,24 +1873,24 @@ BOOL BCT_CLIENT_EndMain( BCT_CLIENT* p_wk, u32 event )
         break;
     }
 
-	// ‰ñ“]
+	// å›žè»¢
 	if( p_wk->gametype.rota_rev ){
 		speed = -BCT_START_MARUNOMUROTA;
 	}else{
 		speed = BCT_START_MARUNOMUROTA;
 	}
 	BCT_CLIENT_MarunomuRotaYSet( &p_wk->marunomu, p_wk->marunomu.rota + speed );
-	// À•W‚ÆŠp“x‚ðÝ’è
+	// åº§æ¨™ã¨è§’åº¦ã‚’è¨­å®š
 	BCT_CLIENT_MarunomuDrawMatrixSet( &p_wk->graphic.marunomu, &p_wk->marunomu );
 	BCT_CLIENT_MarunomuDrawRotaSet( &p_wk->graphic.marunomu, &p_wk->marunomu );
 
-	// ƒ}ƒ‹ƒm[ƒ€ƒAƒjƒ
+	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚¢ãƒ‹ãƒ¡
 	BCT_CLIENT_MarunomuDrawAnmMain( &p_wk->graphic.marunomu, &p_wk->marunomu, p_wk->move_type );
 
-    //‚R‚c•`‰æŠJŽn
+    //ï¼“ï¼¤æç”»é–‹å§‹
 	BCT_CLIENT_GraphicDrawCore( p_wk, &p_wk->graphic );
 
-	// –Ø‚ÌŽÀƒJƒEƒ“ƒ^[
+	// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	BCT_CLIENT_NUTS_COUNT_Main( &p_wk->graphic.nutscount );
 	
     return ret;
@@ -1898,40 +1898,40 @@ BOOL BCT_CLIENT_EndMain( BCT_CLIENT* p_wk, u32 event )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒƒCƒ“ŠÖ”
+ *  @brief  ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
  *  @param  p_wk 
  *
- *  @retval TRUE    “r’†
- *  @retval FALSE   I‚í‚è
+ *  @retval TRUE    é€”ä¸­
+ *  @retval FALSE   çµ‚ã‚ã‚Š
  */
 //-----------------------------------------------------------------------------
 BOOL BCT_CLIENT_Main( BCT_CLIENT* p_wk )
 {
 	BOOL result;
 		
-	// ƒQ[ƒ€ó‘Ôƒ`ƒFƒbƒN
+	// ã‚²ãƒ¼ãƒ çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
 	if( p_wk->move_type < BCT_MARUNOMU_MOVE_NUM-1 ){
 		if( sc_BCT_MARUNOMU_MOVE_STARTTIME[ p_wk->move_type+1 ] <= p_wk->time ){
-			p_wk->move_type ++;	// ŽžŠÔ‚ª—ˆ‚½‚çŽŸ‚ÌƒQ[ƒ€ƒ^ƒCƒv‚Ö
+			p_wk->move_type ++;	// æ™‚é–“ãŒæ¥ãŸã‚‰æ¬¡ã®ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—ã¸
 
-			// FEVERƒ`ƒFƒbƒN
+			// FEVERãƒã‚§ãƒƒã‚¯
 			if( p_wk->move_type == BCT_MARUNOMU_MOVE_FEVER_EFF ){
 
-				// FEVERƒGƒtƒFƒNƒg”­“®
+				// FEVERã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•
 				BCT_CLIENT_FEVER_EFF_Start( &p_wk->fever_eff );
 			}
 		}
 	}
 	
 	
-	// ƒ^ƒbƒ`ƒƒCƒ“
+	// ã‚¿ãƒƒãƒãƒ¡ã‚¤ãƒ³
 	MainTP( &p_wk->tp_one, TP_BUFFERING, 0 );
 	
-    // ƒ^ƒbƒ`ƒpƒlƒ‹“®ì
+    // ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å‹•ä½œ
     BCT_CLIENT_NutsSlow( p_wk );
 
-	// ƒQ[ƒ€ƒf[ƒ^ŠÇ—
+	// ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ç®¡ç†
 	{
 		result = BCT_CLIENT_ContGameData_Main( &p_wk->gamedata_cont );
 		if( result == FALSE ){
@@ -1939,38 +1939,38 @@ BOOL BCT_CLIENT_Main( BCT_CLIENT* p_wk )
 		}
 	}
 
-	// “r’†‚Ì“¾“_ŠÇ—
+	// é€”ä¸­ã®å¾—ç‚¹ç®¡ç†
 	{
 		u32 top_idx;
 		
 		result = BCT_CLIENT_MDLSCR_CheckInNum( &p_wk->middle_score, p_wk->comm_num );
 		if( result == TRUE ){
 
-			// ƒ}ƒ‹ƒm[ƒ€‚Ì‰º‚ÌŠG‚ð•Ï‚¦‚é
+			// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®ä¸‹ã®çµµã‚’å¤‰ãˆã‚‹
 			top_idx = BCT_CLIENT_MDLSCR_GetTop( &p_wk->middle_score );
 //			OS_TPrintf( "now top %d\n", top_idx );
 			if( top_idx != BCT_MDLSCR_TOP_DEF ){
 				BCT_CLIENT_MarunomuDrawSetColAnmTop( &p_wk->graphic.marunomu, top_idx );
 			}
 
-			// “r’†Œo‰ß‚ðÄŽæ“¾
+			// é€”ä¸­çµŒéŽã‚’å†å–å¾—
 			BCT_CLIENT_MDLSCR_Reset( &p_wk->middle_score );
 		}
 	}
     
-    // –Ø‚ÌŽÀ“®ì
+    // æœ¨ã®å®Ÿå‹•ä½œ
     BCT_CLIENT_AllNutsMove( p_wk );
 
-    // ƒ}ƒ‹ƒm[ƒ€‚ð“®ì‚³‚¹‚é
+    // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚’å‹•ä½œã•ã›ã‚‹
     BCT_CLIENT_MarunomuMain( p_wk, &p_wk->marunomu );
 
-    // •`‰æ
+    // æç”»
     BCT_CLIENT_GraphicMain( p_wk, &p_wk->graphic ); 
 
-    // –Ø‚ÌŽÀI—¹ŠÇ—
+    // æœ¨ã®å®Ÿçµ‚äº†ç®¡ç†
     BCT_CLIENT_AllNutsEndCont( p_wk );
 
-	// FEVERƒGƒtƒFƒNƒg
+	// FEVERã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	BCT_CLIENT_FEVER_EFF_Main( &p_wk->fever_eff, &p_wk->graphic.mainback, &p_wk->graphic.marunomu );
 	
 #ifndef BCT_DEBUG_NOT_TIMECOUNT
@@ -1988,31 +1988,31 @@ BOOL BCT_CLIENT_Main( BCT_CLIENT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  VBlankŠÖ”
+ *  @brief  VBlanké–¢æ•°
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void BCT_CLIENT_VBlank( BCT_CLIENT* p_wk )
 {
     
-    // BG‘‚«Š·‚¦
+    // BGæ›¸ãæ›ãˆ
     GF_BGL_VBlankFunc( p_wk->graphic.p_bgl );
 
-    // Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+    // Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
     DoVramTransferManager();
 
-    // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+    // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
     REND_OAMTrans();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚ÌŒo‰ßŽžŠÔ‚ðŽæ“¾‚·‚é
+ *	@brief	ä»Šã®çµŒéŽæ™‚é–“ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ŽžŠÔ
+ *	@return	æ™‚é–“
  */
 //-----------------------------------------------------------------------------
 s32	BCT_CLIENT_GetTime( const BCT_CLIENT* cp_wk )
@@ -2022,27 +2022,27 @@ s32	BCT_CLIENT_GetTime( const BCT_CLIENT* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀƒf[ƒ^‚ÌŽóM
+ *  @brief  æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  cp_data     ŽóMƒf[ƒ^
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_data     å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void BCT_CLIENT_NutsDataSet( BCT_CLIENT* p_wk, const BCT_NUT_COMM* cp_data )
 {
     BCT_NUT_DATA data;
     
-    // Ž©•ª‚Ìƒf[ƒ^‚Å‚Í‚È‚¢‚©ƒ`ƒFƒbƒN
+    // è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã„ã‹ãƒã‚§ãƒƒã‚¯
     if( p_wk->plno != cp_data->pl_no ){
 
 
-        // ƒNƒ‰ƒCƒAƒ“ƒg–Ø‚ÌŽÀƒf[ƒ^‚É•ÏŠ·‚µ‚ÄÝ’è
+        // ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›ã—ã¦è¨­å®š
         BCT_CLIENT_NutsCommToData( cp_data, &data );
         BCT_CLIENT_NutsSet( p_wk, &data, BCT_NUTSSEQ_MOVEOTHER );
 
-        // H‚×‚½‚È‚çƒ}ƒ‹ƒm[ƒ€‚ðH‚×‚½“®ì‚É‚·‚é
+        // é£Ÿã¹ãŸãªã‚‰ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚’é£Ÿã¹ãŸå‹•ä½œã«ã™ã‚‹
         if( cp_data->in_flag ){
-            // ƒXƒRƒAƒGƒtƒFƒNƒg‚ðo‚·
+            // ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™
             BCT_CLIENT_ScoreEffectStart( &p_wk->graphic.score_effect, cp_data->pl_no, cp_data->bonus, p_wk->move_type );
         }
     }
@@ -2050,13 +2050,13 @@ void BCT_CLIENT_NutsDataSet( BCT_CLIENT* p_wk, const BCT_NUT_COMM* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀƒf[ƒ^Žæ“¾
+ *  @brief  æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  p_data      ƒf[ƒ^
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_data      ãƒ‡ãƒ¼ã‚¿
  *
- *  @retval TRUE    ‚Ü‚¾‚ ‚é
- *  @retval FALSE   ‚à‚¤‚È‚¢
+ *  @retval TRUE    ã¾ã ã‚ã‚‹
+ *  @retval FALSE   ã‚‚ã†ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL BCT_CLIENT_NutsDataGet( BCT_CLIENT* p_wk, BCT_NUT_COMM* p_data )
@@ -2065,7 +2065,7 @@ BOOL BCT_CLIENT_NutsDataGet( BCT_CLIENT* p_wk, BCT_NUT_COMM* p_data )
 
     for( i=0; i<BCT_NUTSBUFF_NUM; i++ ){
         if( p_wk->nuts[ i ].seq == BCT_NUTSSEQ_END ){
-            // ’ÊMƒf[ƒ^‚É•ÏŠ·‚µ‚ÄÝ’è
+            // é€šä¿¡ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›ã—ã¦è¨­å®š
             BCT_CLIENT_NutsDataToComm( &p_wk->nuts[i].data, p_data );
             BCT_CLIENT_NutsDel( &p_wk->nuts[ i ] );
             return TRUE;
@@ -2076,10 +2076,10 @@ BOOL BCT_CLIENT_NutsDataGet( BCT_CLIENT* p_wk, BCT_NUT_COMM* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ‚Ý‚ñ‚È‚ÌƒXƒRƒA‚ðÝ’è‚·‚é
+ *  @brief  ã¿ã‚“ãªã®ã‚¹ã‚³ã‚¢ã‚’è¨­å®šã™ã‚‹
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  cp_data     ƒf[ƒ^
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_data     ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void BCT_CLIENT_AllScoreSet( BCT_CLIENT* p_wk, const BCT_SCORE_COMM* cp_data )
@@ -2089,11 +2089,11 @@ void BCT_CLIENT_AllScoreSet( BCT_CLIENT* p_wk, const BCT_SCORE_COMM* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  Ž©•ª‚ÌƒXƒRƒA‚ð•Ô‚·
+ *  @brief  è‡ªåˆ†ã®ã‚¹ã‚³ã‚¢ã‚’è¿”ã™
  *
- *  @param  cp_wk       ƒ[ƒN
+ *  @param  cp_wk       ãƒ¯ãƒ¼ã‚¯
  *
- *  @return ƒXƒRƒA
+ *  @return ã‚¹ã‚³ã‚¢
  */
 //-----------------------------------------------------------------------------
 u32 BCT_CLIENT_ScoreGet( const BCT_CLIENT* cp_wk )
@@ -2103,10 +2103,10 @@ u32 BCT_CLIENT_ScoreGet( const BCT_CLIENT* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX	Ý’è
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 void BCT_CLIENT_GameDataIdxSet( BCT_CLIENT* p_wk, u32 idx )
@@ -2114,17 +2114,17 @@ void BCT_CLIENT_GameDataIdxSet( BCT_CLIENT* p_wk, u32 idx )
 	p_wk->gamedata_last	= p_wk->gamedata_now;
 	p_wk->gamedata_now	= idx;
 
-	// ƒf[ƒ^•ÏX‚ðƒŠƒNƒGƒXƒg
+	// ãƒ‡ãƒ¼ã‚¿å¤‰æ›´ã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	BCT_CLIENT_ContGameData_Start( &p_wk->gamedata_cont, p_wk->cp_gamedata, &p_wk->gametype, p_wk->gamedata_last, p_wk->gamedata_now );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“r’†Œo‰ßƒXƒRƒA‚ðÝ’è‚·‚é
+ *	@brief	é€”ä¸­çµŒéŽã‚¹ã‚³ã‚¢ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	score		ƒXƒRƒA
- *	@param	plno		ƒvƒŒƒCƒ„[ƒiƒ“ƒo[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	score		ã‚¹ã‚³ã‚¢
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 void BCT_CLIENT_MiddleScoreSet( BCT_CLIENT* p_wk, u32 score, u32 plno )
@@ -2134,10 +2134,10 @@ void BCT_CLIENT_MiddleScoreSet( BCT_CLIENT* p_wk, u32 score, u32 plno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒ^ƒCƒv‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒQ[ƒ€ƒ^ƒCƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void BCT_CLIENT_GameTypeSet( BCT_CLIENT* p_wk, const BCT_GAME_TYPE_WK* cp_data )
@@ -2146,21 +2146,21 @@ void BCT_CLIENT_GameTypeSet( BCT_CLIENT* p_wk, const BCT_GAME_TYPE_WK* cp_data )
 	p_wk->gametype_flag		= TRUE;
 
 
-	//  ƒQ[ƒ€ƒf[ƒ^•ÏXƒVƒXƒeƒ€‰Šú‰»
+	//  ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	BCT_CLIENT_ContGameData_Init( &p_wk->gamedata_cont, p_wk->cp_gamedata, &p_wk->gametype );
-	// ƒQ[ƒ€‰Šúƒf[ƒ^Ý’è
+	// ã‚²ãƒ¼ãƒ åˆæœŸãƒ‡ãƒ¼ã‚¿è¨­å®š
 	BCT_CLIENT_ContGameData_Reflect( p_wk, &p_wk->gamedata_cont );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒ^ƒCƒvÝ’èÏ‚Ý‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—è¨­å®šæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *		
- *	@retval	TRUE	Ý’èÏ‚Ý
- *	@retval	FALSE	Ý’è‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	è¨­å®šæ¸ˆã¿
+ *	@retval	FALSE	è¨­å®šã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL BCT_CLIENT_GameTypeSetCheck( const BCT_CLIENT* cp_wk )
@@ -2170,10 +2170,10 @@ BOOL BCT_CLIENT_GameTypeSetCheck( const BCT_CLIENT* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒJƒEƒ“ƒgƒtƒ‰ƒO‚ðÝ’è‚·‚é
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		ƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void BCT_CLIENT_TimeCountFlagSet( BCT_CLIENT* p_wk, BOOL flag )
@@ -2188,32 +2188,32 @@ void BCT_CLIENT_TimeCountFlagSet( BCT_CLIENT* p_wk, BOOL flag )
 
 //-----------------------------------------------------------------------------
 /**
- *          ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *          ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Á‘¬“®ì”Ä—p@‰Šú‰»
+ *	@brief	åŠ é€Ÿå‹•ä½œæ±Žç”¨ã€€åˆæœŸåŒ–
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	s_x		ŠJŽnÀ•W
- *	@param	e_x		I—¹À•W
- *	@param	s_s		ŠJŽn‘¬“x
- *	@param	count_max ¶³ÝÀ’l
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x		é–‹å§‹åº§æ¨™
+ *	@param	e_x		çµ‚äº†åº§æ¨™
+ *	@param	s_s		é–‹å§‹é€Ÿåº¦
+ *	@param	count_max ã‚«ã‚¦ãƒ³ã‚¿å€¤
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void BCT_AddMoveReqFx( BCT_ADDMOVE_WORK* p_work, fx32 s_x, fx32 e_x, fx32 s_s, int count_max )
 {
-	fx32 t_x_t;	// ƒ^ƒCƒ€‚Ì‚Qæ
-	fx32 vot;	// ‰‘¬“x–ƒ^ƒCƒ€
+	fx32 t_x_t;	// ã‚¿ã‚¤ãƒ ã®ï¼’ä¹—
+	fx32 vot;	// åˆé€Ÿåº¦ï¼Šã‚¿ã‚¤ãƒ 
 	fx32 dis;
 	fx32 a;
 
 	dis = e_x - s_x;
 	
-	// ‰Á‘¬’l‚ð‹‚ß‚é
+	// åŠ é€Ÿå€¤ã‚’æ±‚ã‚ã‚‹
 	// a = 2(x - vot)/(t*t)
 	t_x_t = (count_max * count_max) << FX32_SHIFT;
 	vot = FX_Mul( s_s, count_max * FX32_ONE );
@@ -2230,12 +2230,12 @@ static void BCT_AddMoveReqFx( BCT_ADDMOVE_WORK* p_work, fx32 s_x, fx32 e_x, fx32
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Á‘¬“®ìƒƒCƒ“
+ *	@brief	åŠ é€Ÿå‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL	BCT_AddMoveMainFx( BCT_ADDMOVE_WORK* p_work )
@@ -2245,13 +2245,13 @@ static BOOL	BCT_AddMoveMainFx( BCT_ADDMOVE_WORK* p_work )
 	fx32 calc_work;
 	fx32 vot;
 	
-	// “™‰Á‘¬“x‰^“®
+	// ç­‰åŠ é€Ÿåº¦é‹å‹•
 	// dis = vot + 1/2( a*(t*t) )
 	vot = FX_Mul( p_work->s_s, p_work->count << FX32_SHIFT );
 	t_x_t = (p_work->count * p_work->count) << FX32_SHIFT;
 	calc_work = FX_Mul( p_work->s_a, t_x_t );
 	calc_work = FX_Div( calc_work, 2*FX32_ONE );	// 1/2(a*(t*t))
-	dis = vot + calc_work;	///<ˆÚ“®‹——£
+	dis = vot + calc_work;	///<ç§»å‹•è·é›¢
 
 	p_work->x = p_work->s_x + dis;
 
@@ -2267,13 +2267,13 @@ static BOOL	BCT_AddMoveMainFx( BCT_ADDMOVE_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒlƒbƒgID‚É‘Î‰ž‚µ‚½‚QDƒXƒRƒA•\Ž¦ˆÊ’u‚ðŽæ“¾‚·‚é
+ *  @brief  ãƒãƒƒãƒˆIDã«å¯¾å¿œã—ãŸï¼’Dã‚¹ã‚³ã‚¢è¡¨ç¤ºä½ç½®ã‚’å–å¾—ã™ã‚‹
  *
- *  @param  comm_num        ’ÊMl”
- *  @param  myplno         Ž©•ª‚ÌNETID
- *  @param  targetplno     À•W‚ª‚Ù‚µ‚¢l‚ÌNETID
- *  @param  p_x             ‚˜À•WŠi”[æ
- *  @param  p_y             ‚™À•WŠi”[æ
+ *  @param  comm_num        é€šä¿¡äººæ•°
+ *  @param  myplno         è‡ªåˆ†ã®NETID
+ *  @param  targetplno     åº§æ¨™ãŒã»ã—ã„äººã®NETID
+ *  @param  p_x             ï½˜åº§æ¨™æ ¼ç´å…ˆ
+ *  @param  p_y             ï½™åº§æ¨™æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void BCT_netID2DMatrixGet( u32 comm_num, u32 myplno, u32 targetplno, s32* p_x,  s32* p_y )
@@ -2281,22 +2281,22 @@ static void BCT_netID2DMatrixGet( u32 comm_num, u32 myplno, u32 targetplno, s32*
 
 	//											// plno				commnum			 draw plno
 	static const Vec2DS32 sc_BCT_2DMAT_TBL[ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ][ BCT_PLAYER_NUM ] = {
-		// Ž©•ª‚ÌPLNO‚ª0
+		// è‡ªåˆ†ã®PLNOãŒ0
 		{	
-			// Ž©•ª‚¾‚¯‚Ì‚Æ‚«‚Í‚È‚¢
+			// è‡ªåˆ†ã ã‘ã®ã¨ãã¯ãªã„
 			{0},
-			// 2l‘Îí
+			// 2äººå¯¾æˆ¦
 			{
 				{128,144},
 				{128,48},
 			},
-			// 3l‘Îí
+			// 3äººå¯¾æˆ¦
 			{
 				{128,144},
 				{208,64},
 				{48,64},
 			},
-			// 4l‘Îí
+			// 4äººå¯¾æˆ¦
 			{
 				{128,144},
 				{128,48},
@@ -2305,22 +2305,22 @@ static void BCT_netID2DMatrixGet( u32 comm_num, u32 myplno, u32 targetplno, s32*
 			},
 		},
 
-		// Ž©•ª‚ÌPLNO‚ª1
+		// è‡ªåˆ†ã®PLNOãŒ1
 		{	
-			// Ž©•ª‚¾‚¯‚Ì‚Æ‚«‚Í‚È‚¢
+			// è‡ªåˆ†ã ã‘ã®ã¨ãã¯ãªã„
 			{0},
-			// 2l‘Îí
+			// 2äººå¯¾æˆ¦
 			{
 				{128,48},
 				{128,144},
 			},
-			// 3l‘Îí
+			// 3äººå¯¾æˆ¦
 			{
 				{48,64},
 				{128,144},
 				{208,64},
 			},
-			// 4l‘Îí
+			// 4äººå¯¾æˆ¦
 			{
 				{128,48},
 				{128,144},
@@ -2329,21 +2329,21 @@ static void BCT_netID2DMatrixGet( u32 comm_num, u32 myplno, u32 targetplno, s32*
 			},
 		},
 
-		// Ž©•ª‚ÌPLNO‚ª2
+		// è‡ªåˆ†ã®PLNOãŒ2
 		{	
-			// Ž©•ª‚¾‚¯‚Ì‚Æ‚«‚Í‚È‚¢
+			// è‡ªåˆ†ã ã‘ã®ã¨ãã¯ãªã„
 			{0},
-			// 2l‚È‚µ
+			// 2äººãªã—
 			{
 				{0},
 			},
-			// 3l‘Îí
+			// 3äººå¯¾æˆ¦
 			{
 				{208,64},
 				{48,64},
 				{128,144},
 			},
-			// 4l‘Îí
+			// 4äººå¯¾æˆ¦
 			{
 				{48,96},
 				{208,96},
@@ -2352,19 +2352,19 @@ static void BCT_netID2DMatrixGet( u32 comm_num, u32 myplno, u32 targetplno, s32*
 			},
 		},
 
-		// Ž©•ª‚ÌPLNO‚ª3
+		// è‡ªåˆ†ã®PLNOãŒ3
 		{	
-			// Ž©•ª‚¾‚¯‚Ì‚Æ‚«‚Í‚È‚¢
+			// è‡ªåˆ†ã ã‘ã®ã¨ãã¯ãªã„
 			{0},
-			// 2l‚È‚µ
+			// 2äººãªã—
 			{
 				{0},
 			},
-			// 3l‚È‚µ
+			// 3äººãªã—
 			{
 				{0,0},
 			},
-			// 4l‘Îí
+			// 4äººå¯¾æˆ¦
 			{
 				{208,96},
 				{48,96},
@@ -2381,14 +2381,14 @@ static void BCT_netID2DMatrixGet( u32 comm_num, u32 myplno, u32 targetplno, s32*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÈ’P–Ø‚ÌŽÀ”­ŽËƒVƒXƒeƒ€
+ *	@brief	ç°¡å˜æœ¨ã®å®Ÿç™ºå°„ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@param	p_wk		ƒNƒ‰ƒCƒAƒ“ƒgƒ[ƒN
- *	@param	t0_x		ƒ^ƒbƒ`Žn“_	À•W
+ *	@param	p_wk		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	t0_x		ã‚¿ãƒƒãƒå§‹ç‚¹	åº§æ¨™
  *	@param	t0_y
- *	@param	t1_x		ƒ^ƒbƒ`I“_@À•W
+ *	@param	t1_x		ã‚¿ãƒƒãƒçµ‚ç‚¹ã€€åº§æ¨™
  *	@param	t1_y
- *	@pram	moveseq		“®ìƒV[ƒPƒ“ƒX
+ *	@pram	moveseq		å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void BCT_EasyNutsSet( BCT_CLIENT* p_wk, u16 t0_x, u16 t0_y, u16 t1_x, u16 t1_y, u32 moveseq )
@@ -2401,11 +2401,11 @@ static void BCT_EasyNutsSet( BCT_CLIENT* p_wk, u16 t0_x, u16 t0_y, u16 t1_x, u16
 	fx32 xz_power;
 
 	
-	//  “Š‚°ƒf[ƒ^‚ðì¬‚·‚é
+	//  æŠ•ã’ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 	data.plno = p_wk->plno;
 	data.in_flag = FALSE;
 
-	// “Š‚°‚½•ûŒü‚ð‹‚ß‚é
+	// æŠ•ã’ãŸæ–¹å‘ã‚’æ±‚ã‚ã‚‹
 	vec.x = (t0_x - t1_x) / 2;
 	vec.y = (t0_y - t1_y) / 2;
 
@@ -2413,12 +2413,12 @@ static void BCT_EasyNutsSet( BCT_CLIENT* p_wk, u16 t0_x, u16 t0_y, u16 t1_x, u16
 	data.way.x = vec.x << FX32_SHIFT;
 	data.way.z = vec.y << FX32_SHIFT;
 	data.way.y = 0;
-	xz_power = VEC_Mag( &data.way );	// ‚¢‚Á‚½‚ñ•½–Êó‚Ìƒpƒ[‚ðŒvŽZ
+	xz_power = VEC_Mag( &data.way );	// ã„ã£ãŸã‚“å¹³é¢çŠ¶ã®ãƒ‘ãƒ¯ãƒ¼ã‚’è¨ˆç®—
 
 
-	// —Í‚Ì’l’²ß
+	// åŠ›ã®å€¤èª¿ç¯€
 	if( xz_power > BCT_NUTS_POWER_MAX ){
-		// —Í‚ð’²ß‚µ‚Ä–Ø‚ÌŽÀÝ’è
+		// åŠ›ã‚’èª¿ç¯€ã—ã¦æœ¨ã®å®Ÿè¨­å®š
 		VEC_Normalize( &data.way, &data.way );
 		data.way.x = FX_Mul( data.way.x, BCT_NUTS_POWER_MAX );
 		data.way.z = FX_Mul( data.way.z, BCT_NUTS_POWER_MAX );
@@ -2426,32 +2426,32 @@ static void BCT_EasyNutsSet( BCT_CLIENT* p_wk, u16 t0_x, u16 t0_y, u16 t1_x, u16
 
 	data.way.y = BCT_NUTS_POWRT_YPOWER;
 	data.power = VEC_Mag( &data.way );
-	data.power = FX_Mul( data.power, BCT_NUTS_POWER_MUL );  // ƒpƒ[‘•
+	data.power = FX_Mul( data.power, BCT_NUTS_POWER_MUL );  // ãƒ‘ãƒ¯ãƒ¼å¢—å¹…
 	VEC_Normalize( &data.way, &data.way );
 
-	// À•WˆÊ’uA“Š‚°‚é•ûŒü‚ðNETID‚ÆŠÖ˜A‚Ã‚¯‚é
-	// À•W‚Íƒ^ƒbƒ`‚µ‚Ä‚¢‚éˆÊ’u‚É‚æ‚Á‚Ä•Ï‚í‚é
+	// åº§æ¨™ä½ç½®ã€æŠ•ã’ã‚‹æ–¹å‘ã‚’NETIDã¨é–¢é€£ã¥ã‘ã‚‹
+	// åº§æ¨™ã¯ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ä½ç½®ã«ã‚ˆã£ã¦å¤‰ã‚ã‚‹
 	BCT_CLIENT_2DMATto3DMAT( t1_x, t1_y, &data.mat );
 	data.mat.y = BCT_FIELD_PLAYER_Y;
 
 
-	// •ûŒü‚ÆÀ•W‚ðNETID‚ÉŠÖ˜A•t‚¯‚é
+	// æ–¹å‘ã¨åº§æ¨™ã‚’NETIDã«é–¢é€£ä»˜ã‘ã‚‹
 	BCT_CLIENT_VecNetIDRot( &data.mat, &data.mat, data.plno, p_wk->comm_num );
 	BCT_CLIENT_VecNetIDRot( &data.way, &data.way, data.plno, p_wk->comm_num );
 
 	data.special = FALSE;
 	
-	// “o˜^
+	// ç™»éŒ²
 	BCT_CLIENT_NutsSet( p_wk, &data, moveseq );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒXƒRƒA‚É‘«‚·’l‚ðŽæ“¾‚·‚é
+ *  @brief  ã‚¹ã‚³ã‚¢ã«è¶³ã™å€¤ã‚’å–å¾—ã™ã‚‹
  *
- *  @param  cp_wk   ƒ[ƒN
+ *  @param  cp_wk   ãƒ¯ãƒ¼ã‚¯
  *
- *  @return ƒXƒRƒA‚É‘«‚·’l
+ *  @return ã‚¹ã‚³ã‚¢ã«è¶³ã™å€¤
  */
 //-----------------------------------------------------------------------------
 static u32 BCT_AddScoreGet( BCT_CLIENT* cp_wk )
@@ -2467,7 +2467,7 @@ static u32 BCT_AddScoreGet( BCT_CLIENT* cp_wk )
 //	OS_Printf( "BCT_SCORE_NUM[ idx ] %d\n", BCT_SCORE_NUM[ idx ] );
 	score = BCT_SCORE_NUM[ idx ];
 
-	// FEVERƒ`ƒFƒbƒN
+	// FEVERãƒã‚§ãƒƒã‚¯
 	if( cp_wk->move_type == BCT_MARUNOMU_MOVE_FEVER ){
 		score *= BCT_MARUNOMU_SCORE_FEVER_MUL;
 	}
@@ -2476,13 +2476,13 @@ static u32 BCT_AddScoreGet( BCT_CLIENT* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒXƒRƒAƒGƒtƒFƒNƒgƒVƒXƒeƒ€    ‰Šú‰»
+ *  @brief  ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ     åˆæœŸåŒ–
  *
- *  @param  p_wk            ƒ[ƒN
- *  @param  p_drawsys       •`‰æƒVƒXƒeƒ€
- *  @param  comm_num        ’ÊMl”
- *  @param	plno			’ÊMID
- *  @param  heapID          ƒq[ƒvID
+ *  @param  p_wk            ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_drawsys       æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *  @param  comm_num        é€šä¿¡äººæ•°
+ *  @param	plno			é€šä¿¡ID
+ *  @param  heapID          ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ScoreEffectInit( BCT_CLIENT_SCORE_EFFECT* p_wk, BCT_CLIENT_GRAPHIC* p_drawsys, u32 comm_num, u32 plno, u32 heapID )
@@ -2491,17 +2491,17 @@ static void BCT_CLIENT_ScoreEffectInit( BCT_CLIENT_SCORE_EFFECT* p_wk, BCT_CLIEN
     int i, j;
     u32 myplno;
 
-    add.ClActSet    = p_drawsys->clactSet;  // ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-    add.ClActHeader = &p_drawsys->mainoamheader;// ƒwƒbƒ_[ƒf[ƒ^
-    add.sca.x       = FX32_ONE;     // Šg‘å’l
-    add.sca.y       = FX32_ONE;     // Šg‘å’l
-    add.sca.z       = FX32_ONE;     // Šg‘å’l
-    add.rot         = 0;        // ‰ñ“]     (0`65535)
-    add.pri         = 0;        // —Dæ‡ˆÊ
-    add.DrawArea    = NNS_G2D_VRAM_TYPE_2DMAIN; // •`‰æ–Ê
-    add.heap        = heapID;       // Žg—p‚·‚éƒq[ƒv
+    add.ClActSet    = p_drawsys->clactSet;  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+    add.ClActHeader = &p_drawsys->mainoamheader;// ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+    add.sca.x       = FX32_ONE;     // æ‹¡å¤§å€¤
+    add.sca.y       = FX32_ONE;     // æ‹¡å¤§å€¤
+    add.sca.z       = FX32_ONE;     // æ‹¡å¤§å€¤
+    add.rot         = 0;        // å›žè»¢     (0ã€œ65535)
+    add.pri         = 0;        // å„ªå…ˆé †ä½
+    add.DrawArea    = NNS_G2D_VRAM_TYPE_2DMAIN; // æç”»é¢
+    add.heap        = heapID;       // ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 
-    // ’ÊMl”•ª’Ç‰Á
+    // é€šä¿¡äººæ•°åˆ†è¿½åŠ 
     myplno = plno;
     for( i=0; i<BCT_PLAYER_NUM; i++ ){
 		BCT_CLIENT_ScoreEffectWkInit( &p_wk->wk[i], &add, p_drawsys, comm_num, i, myplno, heapID );
@@ -2510,10 +2510,10 @@ static void BCT_CLIENT_ScoreEffectInit( BCT_CLIENT_SCORE_EFFECT* p_wk, BCT_CLIEN
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒXƒRƒAƒGƒtƒFƒNƒgƒVƒXƒeƒ€    ”jŠü
+ *  @brief  ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ     ç ´æ£„
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  p_drawsys   •`‰æƒVƒXƒeƒ€
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_drawsys   æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ScoreEffectExit( BCT_CLIENT_SCORE_EFFECT* p_wk, BCT_CLIENT_GRAPHIC* p_drawsys)
@@ -2527,12 +2527,12 @@ static void BCT_CLIENT_ScoreEffectExit( BCT_CLIENT_SCORE_EFFECT* p_wk, BCT_CLIEN
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒXƒRƒAƒGƒtƒFƒNƒgŠJŽn
+ *  @brief  ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *  @param  p_wk    ƒ[ƒN
- *  @param  plno   ƒlƒbƒgID
- *  @param  bonus   ƒ{[ƒiƒXƒiƒ“ƒo[
- *  @param	movetype“®ìƒ^ƒCƒv
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
+ *  @param  plno   ãƒãƒƒãƒˆID
+ *  @param  bonus   ãƒœãƒ¼ãƒŠã‚¹ãƒŠãƒ³ãƒãƒ¼
+ *  @param	movetypeå‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ScoreEffectStart( BCT_CLIENT_SCORE_EFFECT* p_wk, u32 plno, u32 bonus, BCT_MARUNOMU_MOVE_TYPE movetype )
@@ -2542,9 +2542,9 @@ static void BCT_CLIENT_ScoreEffectStart( BCT_CLIENT_SCORE_EFFECT* p_wk, u32 plno
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒRƒAƒGƒtƒFƒNƒgƒƒCƒ“
+ *	@brief	ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ScoreEffectMain( BCT_CLIENT_SCORE_EFFECT* p_wk )
@@ -2558,15 +2558,15 @@ static void BCT_CLIENT_ScoreEffectMain( BCT_CLIENT_SCORE_EFFECT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒRƒAƒGƒtƒFƒNƒgƒ[ƒN	‰Šú‰»
+ *	@brief	ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_ad		ƒAƒbƒhƒf[ƒ^
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	comm_num	’ÊMl”
- *	@param	plno		ƒlƒbƒgID
- *	@param	myplno		Ž©•ª‚¨NETID
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_ad		ã‚¢ãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	comm_num	é€šä¿¡äººæ•°
+ *	@param	plno		ãƒãƒƒãƒˆID
+ *	@param	myplno		è‡ªåˆ†ãŠNETID
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ScoreEffectWkInit( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, CLACT_ADD* p_ad, BCT_CLIENT_GRAPHIC* p_drawsys, u32 comm_num, u32 plno, u32 myplno, u32 heapID )
@@ -2581,21 +2581,21 @@ static void BCT_CLIENT_ScoreEffectWkInit( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, CLAC
 		p_wk->mat[i] = p_ad->mat;
 		p_wk->p_clwk[i] = CLACT_Add( p_ad );
 
-		// ƒAƒjƒÝ’è
+		// ã‚¢ãƒ‹ãƒ¡è¨­å®š
 		CLACT_AnmChg( p_wk->p_clwk[i], BCT_GRA_OAMMAIN_ANM_100 );
 
-		// •\Ž¦OFF
+		// è¡¨ç¤ºOFF
 		CLACT_SetDrawFlag( p_wk->p_clwk[i], FALSE );
 
-		// ƒI[ƒgƒAƒjƒÝ’è
+		// ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡è¨­å®š
 		CLACT_SetAnmFlag( p_wk->p_clwk[i], TRUE );
 		CLACT_SetAnmFrame( p_wk->p_clwk[i], FX32_CONST(1.5) );
 
-		// “®ìƒJƒEƒ“ƒ^
+		// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
 		p_wk->count[i] = 0;
 	}
 
-	// Ž©•ª‚ÌƒGƒtƒFƒNƒg‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‹ãƒã‚§ãƒƒã‚¯
 	if( myplno == plno ){
 		p_wk->mydata = TRUE;
 	}else{
@@ -2606,9 +2606,9 @@ static void BCT_CLIENT_ScoreEffectWkInit( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, CLAC
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”jŠüˆ—
+ *	@brief	ç ´æ£„å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ScoreEffectWkExit( BCT_CLIENT_SCORE_EFFECT_WK* p_wk )
@@ -2622,12 +2622,12 @@ static void BCT_CLIENT_ScoreEffectWkExit( BCT_CLIENT_SCORE_EFFECT_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒŠJŽn
+ *	@brief	ã‚¢ãƒ‹ãƒ¡é–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	plno	ƒvƒŒƒCƒ„[ƒiƒ“ƒo[
- *	@param	bonus	ƒ{[ƒiƒX
- *	@param	movetype“®ìƒ^ƒCƒv
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	plno	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	bonus	ãƒœãƒ¼ãƒŠã‚¹
+ *	@param	movetypeå‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ScoreEffectWkStart( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, u32 plno, u32 bonus, BCT_MARUNOMU_MOVE_TYPE movetype )
@@ -2640,37 +2640,37 @@ static void BCT_CLIENT_ScoreEffectWkStart( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, u32
 	u32 anm_seq;
 	u32 palno;
 
-	// ‹ó‚¢‚Ä‚é‚Æ‚±‚ë‚ð’T‚µ‚È‚ª‚ç
-	// ‚Ý‚ñ‚È‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ð‚P‚Â‰º‚°‚é
-	// ‹ó‚«‚ª–³‚¢‚È‚çƒvƒ‰ƒCƒIƒŠƒeƒB‚ªÅ‘å‚Ìƒ[ƒN‚ðŽg‚¤
+	// ç©ºã„ã¦ã‚‹ã¨ã“ã‚ã‚’æŽ¢ã—ãªãŒã‚‰
+	// ã¿ã‚“ãªã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’ï¼‘ã¤ä¸‹ã’ã‚‹
+	// ç©ºããŒç„¡ã„ãªã‚‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãŒæœ€å¤§ã®ãƒ¯ãƒ¼ã‚¯ã‚’ä½¿ã†
 	clean_in = FALSE;
 	max_pri = 0;
 	idx = -1;
 	for( i=0; i<BCT_SCORE_EFFECT_BUF; i++ ){
 		if( CLACT_GetDrawFlag( p_wk->p_clwk[i] ) == FALSE ){
-			idx = i;	// ‚±‚ê‚ðŽg‚¤
+			idx = i;	// ã“ã‚Œã‚’ä½¿ã†
 			clean_in = TRUE;
 		}else{
-			// —Dæ‡ˆÊ‚ð‚P‚Â‰º‚°‚é
+			// å„ªå…ˆé †ä½ã‚’ï¼‘ã¤ä¸‹ã’ã‚‹
 			pri = CLACT_DrawPriorityGet( p_wk->p_clwk[i] );
 			pri ++;
 			CLACT_DrawPriorityChg( p_wk->p_clwk[i], pri );
 
-			// ‹ó‚«ƒ[ƒN‚ªŒ©‚Â‚©‚Á‚Ä‚È‚¢‚È‚ç
-			// Å‘åƒvƒ‰ƒCƒIƒŠƒeƒBƒ[ƒN‚ðÝ’è
+			// ç©ºããƒ¯ãƒ¼ã‚¯ãŒè¦‹ã¤ã‹ã£ã¦ãªã„ãªã‚‰
+			// æœ€å¤§ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¯ãƒ¼ã‚¯ã‚’è¨­å®š
 			if( (clean_in == FALSE) && (max_pri <= pri) ){
 				max_pri = pri;
 				idx = i;
 			}
 		}
 	}
-	GF_ASSERT( idx >= 0 );	// ”­Œ©‚Å‚«‚È‚¢
+	GF_ASSERT( idx >= 0 );	// ç™ºè¦‹ã§ããªã„
 
 	if( bonus >= BCT_MARUNOMU_SCORE_TYPENUM ){
 		bonus = BCT_MARUNOMU_SCORE_TYPENUM - 1;
 	}
 
-	// ƒf[ƒ^Ý’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	if( movetype != BCT_MARUNOMU_MOVE_FEVER ){
 		if( p_wk->mydata == TRUE ){
 			anm_seq = bonus + BCT_GRA_OAMMAIN_ANM_100;
@@ -2688,16 +2688,16 @@ static void BCT_CLIENT_ScoreEffectWkStart( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, u32
 	}
 	CLACT_AnmChg( p_wk->p_clwk[idx], anm_seq );
 	p_wk->count[idx] = 0;
-	CLACT_SetDrawFlag( p_wk->p_clwk[idx], TRUE );	// •`‰æŠJŽn
-	BCT_CLIENT_ScoreEffectWkSetMatrix( p_wk, idx );	// À•W
-	CLACT_DrawPriorityChg( p_wk->p_clwk[idx], BCT_SCORE_EFFECT_PRI_START );	// —Dæ‡ˆÊ
-	CLACT_PaletteNoChg( p_wk->p_clwk[idx], palno );	// ƒpƒŒƒbƒg
+	CLACT_SetDrawFlag( p_wk->p_clwk[idx], TRUE );	// æç”»é–‹å§‹
+	BCT_CLIENT_ScoreEffectWkSetMatrix( p_wk, idx );	// åº§æ¨™
+	CLACT_DrawPriorityChg( p_wk->p_clwk[idx], BCT_SCORE_EFFECT_PRI_START );	// å„ªå…ˆé †ä½
+	CLACT_PaletteNoChg( p_wk->p_clwk[idx], palno );	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
  *	@param	p_wk 
  */
@@ -2710,7 +2710,7 @@ static void BCT_CLIENT_ScoreEffectWkMain( BCT_CLIENT_SCORE_EFFECT_WK* p_wk )
 		if( CLACT_GetDrawFlag( p_wk->p_clwk[i] ) == TRUE ){
 			p_wk->count[i] ++;
 			if( p_wk->count[i] > BCT_SCORE_EFFECT_MOVE_COUTN ){
-				// ”jŠü
+				// ç ´æ£„
 				BCT_CLIENT_ScoreEffectWkEnd( p_wk, i );
 			}else{
 				BCT_CLIENT_ScoreEffectWkSetMatrix( p_wk, i );
@@ -2721,10 +2721,10 @@ static void BCT_CLIENT_ScoreEffectWkMain( BCT_CLIENT_SCORE_EFFECT_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•WÝ’è
+ *	@brief	åº§æ¨™è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ScoreEffectWkSetMatrix( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, u32 idx )
@@ -2741,10 +2741,10 @@ static void BCT_CLIENT_ScoreEffectWkSetMatrix( BCT_CLIENT_SCORE_EFFECT_WK* p_wk,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒtƒFƒNƒg‚ðÁ‚·
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æ¶ˆã™
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ScoreEffectWkEnd( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, u32 idx )
@@ -2757,12 +2757,12 @@ static void BCT_CLIENT_ScoreEffectWkEnd( BCT_CLIENT_SCORE_EFFECT_WK* p_wk, u32 i
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ŠJŽnƒAƒjƒ  ‰Šú‰»
+ *  @brief  é–‹å§‹ã‚¢ãƒ‹ãƒ¡  åˆæœŸåŒ–
  *
- *  @param  p_graphic       ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *  @param  p_drawsys       •`‰æƒVƒXƒeƒ€
- *  @param	p_handle		ƒnƒ“ƒhƒ‹
- *  @param  heapID          ƒq[ƒvID
+ *  @param  p_graphic       ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_drawsys       æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *  @param	p_handle		ãƒãƒ³ãƒ‰ãƒ«
+ *  @param  heapID          ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_StartSysInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_GRAPHIC* p_drawsys, const BCT_GAMEDATA* cp_param, u32 commnum, u32 myplno, ARCHANDLE* p_handle, u32 heapID )
@@ -2772,7 +2772,7 @@ static void BCT_CLIENT_StartSysInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_G
 
     memset( p_graphic, 0, sizeof(BCT_COUNTDOWN_DRAW) );
 
-    // ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒEì¬
+    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
     GF_BGL_BmpWinAdd( p_drawsys->p_bgl , &p_graphic->helpwin, GF_BGL_FRAME1_M,
             BCT_GRA_STARTWIN_X, BCT_GRA_STARTWIN_Y,
             BCT_GRA_STARTWIN_SIZX, BCT_GRA_STARTWIN_SIZY, 
@@ -2781,7 +2781,7 @@ static void BCT_CLIENT_StartSysInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_G
     GF_BGL_BmpWinFill( &p_graphic->helpwin, 15, 0, 0, 
             BCT_GRA_STARTWIN_SIZX*8, BCT_GRA_STARTWIN_SIZY*8 );
 
-    // ƒƒbƒZ[ƒW‚ð‘‚«ž‚Þ
+    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ›¸ãè¾¼ã‚€
     p_str = STRBUF_Create( BCT_STRBUF_NUM, heapID );
     MSGMAN_GetString( p_drawsys->p_msgman, msg_a_001, p_str );
     GF_STR_PrintColor( &p_graphic->helpwin, FONT_SYSTEM, p_str, 
@@ -2790,7 +2790,7 @@ static void BCT_CLIENT_StartSysInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_G
     STRBUF_Delete( p_str );
 
 
-	// –¼‘OƒXƒNƒŠ[ƒ““Ç‚Ýž‚Ý
+	// åå‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³èª­ã¿è¾¼ã¿
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_bucket_ent_win_bg_NCGR, 
 			p_drawsys->p_bgl, GF_BGL_FRAME2_M, 0, 0, FALSE, heapID );
 	ArcUtil_HDL_ScrnSet( p_handle, NARC_bucket_ent_win_bg02_NSCR+(commnum-2),
@@ -2800,7 +2800,7 @@ static void BCT_CLIENT_StartSysInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_G
 			heapID );
 
 
-	// –¼‘O‘‚«ž‚Ý—pƒrƒbƒgƒ}ƒbƒvì¬
+	// åå‰æ›¸ãè¾¼ã¿ç”¨ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆ
 	{
 		int i;
 		s32 name_x, name_y;
@@ -2820,28 +2820,28 @@ static void BCT_CLIENT_StartSysInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_G
 		p_namestr = STRBUF_Create( BCT_START_NAME_STRBUF_NUM, heapID );
 
 		for( i=0; i<commnum; i++ ){
-			// Ž©•ª‚Ì–¼‘O‚Í‚¾‚³‚È‚¢
+			// è‡ªåˆ†ã®åå‰ã¯ã ã•ãªã„
 			if( i != myplno ){
 				name_x = sc_BCT_START_NAME_TBL[ myplno ][ commnum-1 ][ i ].x;
 				name_y = sc_BCT_START_NAME_TBL[ myplno ][ commnum-1 ][ i ].y;
 //				OS_TPrintf( "my_plno=%d comm_num=%d plno=%d name_x=%d name_y=%d\n", myplno, commnum, i, name_x, name_y );
-				// –¼‘O‚Ì‘‚«ž‚Ý‚ÆƒtƒŒ[ƒ€ƒJƒ‰[•ÏX
+				// åå‰ã®æ›¸ãè¾¼ã¿ã¨ãƒ•ãƒ¬ãƒ¼ãƒ ã‚«ãƒ©ãƒ¼å¤‰æ›´
 				GF_BGL_ScrPalChange( p_drawsys->p_bgl, GF_BGL_FRAME2_M, name_x-1, name_y-1,
 						BCT_START_NAME_FRAMESIZ_X, BCT_START_NAME_FRAMESIZ_Y, BCT_GRA_BGMAIN_PAL_NAME_PL00+i );
 
-				// –¼‘O‘‚«ž‚Ý
+				// åå‰æ›¸ãè¾¼ã¿
 				GF_BGL_BmpWinDataFill( &namebmpwin, 15 );
-				if( cp_param->vip[i] == TRUE ){	// •¶Žš—ñƒJƒ‰[Œˆ’è
+				if( cp_param->vip[i] == TRUE ){	// æ–‡å­—åˆ—ã‚«ãƒ©ãƒ¼æ±ºå®š
 					col = BCT_COL_N_BLUE;
 				}else{
 					col = BCT_COL_N_BLACK;
 				}
-				MyStatus_CopyNameString( cp_param->cp_status[i], p_namestr );	// –¼‘OŽæ“¾
-				GF_BGL_BmpWinSet_PosX( &namebmpwin, name_x );	// ˆÊ’uÝ’è
+				MyStatus_CopyNameString( cp_param->cp_status[i], p_namestr );	// åå‰å–å¾—
+				GF_BGL_BmpWinSet_PosX( &namebmpwin, name_x );	// ä½ç½®è¨­å®š
 				GF_BGL_BmpWinSet_PosY( &namebmpwin, name_y );
-				namebmpwin.chrofs = namebmp_cgx;				// cgxÝ’è
-				namestrsize = FontProc_GetPrintStrWidth( FONT_SYSTEM, p_namestr, 0 );	// •\Ž¦ˆÊ’uÝ’è
-				draw_x		= ((BCT_START_NAME_BMP_WINSIZ_X*8) - namestrsize) / 2;	// ’†‰›•\Ž¦
+				namebmpwin.chrofs = namebmp_cgx;				// cgxè¨­å®š
+				namestrsize = FontProc_GetPrintStrWidth( FONT_SYSTEM, p_namestr, 0 );	// è¡¨ç¤ºä½ç½®è¨­å®š
+				draw_x		= ((BCT_START_NAME_BMP_WINSIZ_X*8) - namestrsize) / 2;	// ä¸­å¤®è¡¨ç¤º
 				GF_STR_PrintColor( &namebmpwin, FONT_SYSTEM, p_namestr, 
 						draw_x, 0,
 						MSG_ALLPUT, col, NULL);
@@ -2857,11 +2857,11 @@ static void BCT_CLIENT_StartSysInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_G
 	}
 
 
-    // ‚µ‚½‰æ–Ê‚ð”–ˆÃ‚­‚µ‚Ä‚¨‚­
+    // ã—ãŸç”»é¢ã‚’è–„æš—ãã—ã¦ãŠã
 //    SetBrightness( BCT_GRA_SUBBRIGHT_OFFNUM, PLANEMASK_ALL, MASK_SUB_DISPLAY );
 
 
-	// ƒJƒEƒ“ƒ^ŒS
+	// ã‚«ã‚¦ãƒ³ã‚¿éƒ¡
     p_graphic->count = 0;
 
 
@@ -2871,48 +2871,48 @@ static void BCT_CLIENT_StartSysInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_G
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ŠJŽn‰æ–ÊƒOƒ‰ƒtƒBƒbƒN”jŠü
+ *  @brief  é–‹å§‹ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
  *
- *  @param  p_graphic       ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *  @param  p_drawsys       •\Ž¦ƒVƒXƒeƒ€ƒ[ƒN
+ *  @param  p_graphic       ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_drawsys       è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */ 
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_StartSysExit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_GRAPHIC* p_drawsys )
 {
-    // BMP”jŠü
+    // BMPç ´æ£„
     GF_BGL_BmpWinDel( &p_graphic->helpwin );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒJƒEƒ“ƒgƒ_ƒEƒ“ˆ—‰Šú‰»
+ *  @brief  ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³å‡¦ç†åˆæœŸåŒ–
  *
- *  @param  p_graphic       ƒ[ƒN
- *  @param  p_drawsys       •`‰æƒVƒXƒeƒ€
+ *  @param  p_graphic       ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_drawsys       æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_StartSysCountDownInit( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_GRAPHIC* p_drawsys )
 {
-    // ƒOƒ‰ƒtƒBƒbƒN‚Ì•\Ž¦ON
+    // ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®è¡¨ç¤ºON
     BmpMenuWinWrite(&p_graphic->helpwin, WINDOW_TRANS_ON,
         BCT_GRA_SYSWND_CGX, BCT_GRA_BGMAIN_PAL_SYSWND );
 
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
-	//  ƒJƒEƒ“ƒgƒ_ƒEƒ“ŠJŽn
+	//  ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³é–‹å§‹
 	MNGM_COUNT_StartStart( p_drawsys->p_countwk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒJƒEƒ“ƒgƒ_ƒEƒ“
+ *  @brief  ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
  *
- *  @param  p_graphic       ƒ[ƒN
- *  @param  p_drawsys       •\Ž¦ƒVƒXƒeƒ€
+ *  @param  p_graphic       ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_drawsys       è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
  *
- *  @retval TRUE    “r’†
- *  @retval FALSE   Š®—¹
+ *  @retval TRUE    é€”ä¸­
+ *  @retval FALSE   å®Œäº†
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_StartSysCountDown( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_GRAPHIC* p_drawsys )
@@ -2928,10 +2928,10 @@ static BOOL BCT_CLIENT_StartSysCountDown( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLI
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ŠJŽn‰æ–Ê•\Ž¦‚ðOFF‚·‚é
+ *  @brief  é–‹å§‹ç”»é¢è¡¨ç¤ºã‚’OFFã™ã‚‹
  *
- *  @param  p_graphic       ƒ[ƒN
- *  @param  p_drawsys       •`‰æƒVƒXƒeƒ€
+ *  @param  p_graphic       ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_drawsys       æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_StartSysDrawOff( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_GRAPHIC* p_drawsys )
@@ -2945,7 +2945,7 @@ static void BCT_CLIENT_StartSysDrawOff( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIEN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€•ÏXˆ—
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ å¤‰æ›´å‡¦ç†
  *
  *	@param	p_graphic		
  *	@param	p_drawsys 
@@ -2954,31 +2954,31 @@ static void BCT_CLIENT_StartSysDrawOff( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIEN
 static void BCT_CLIENT_StartSysMarunomuChange( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_GRAPHIC* p_drawsys )
 {
 
-	// ’ÊíƒAƒjƒ
+	// é€šå¸¸ã‚¢ãƒ‹ãƒ¡
 	BCT_CLIENT_MarunomuDrawSetMouthAnm( &p_drawsys->marunomu, BCT_MARUNOMU_ANM_ROTA );
 
-	// Šp“x‚Í‘S‰õ
+	// è§’åº¦ã¯å…¨å¿«
 	D3DOBJ_AnmSet( &p_drawsys->marunomu.anm[ BCT_MARUNOMU_ANM_ROTA ], BCT_MARUNOMU_ANM_FRAME_MAX );
 
-	// •à‚«ƒAƒjƒÝ’è
+	// æ­©ãã‚¢ãƒ‹ãƒ¡è¨­å®š
 	BCT_CLIENT_MarunomuDrawSetWalkAnm( &p_drawsys->marunomu, TRUE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ŠJŽn‰æ–Ê    ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚ð‚ ‚¯‚½‚è@‚µ‚½‰æ–Ê‚Ì”¼“§–¾‚ð‰ðœ
+ *  @brief  é–‹å§‹ç”»é¢    ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ã‚’ã‚ã‘ãŸã‚Šã€€ã—ãŸç”»é¢ã®åŠé€æ˜Žã‚’è§£é™¤
  *
- *  @param  p_graphic   ƒ[ƒN
- *  @param  p_drawsys   •`‰æƒVƒXƒeƒ€
+ *  @param  p_graphic   ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_drawsys   æç”»ã‚·ã‚¹ãƒ†ãƒ 
  *
- *  @retval TRUE    “r’†
- *  @retval FALSE   Š®—¹
+ *  @retval TRUE    é€”ä¸­
+ *  @retval FALSE   å®Œäº†
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_StartSysGameStart( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLIENT_GRAPHIC* p_drawsys )
 {
 /*
-    // ƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒhŠJŽn
+    // ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
     if( p_graphic->count == 0 ){
         ChangeBrightnessRequest( BCT_START_BRIGHTNESS_COUNT, 
                 BRIGHTNESS_NORMAL, BCT_GRA_SUBBRIGHT_OFFNUM, PLANEMASK_ALL, MASK_SUB_DISPLAY );
@@ -2996,7 +2996,7 @@ static BOOL BCT_CLIENT_StartSysGameStart( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠJŽn‰æ–Ê‚RDƒ}ƒ‹ƒm[ƒ€ˆÊ’uÝ’è
+ *	@brief	é–‹å§‹ç”»é¢ï¼“Dãƒžãƒ«ãƒŽãƒ¼ãƒ ä½ç½®è¨­å®š
  *
  *	@param	p_drawsys
  *	@param	cp_data 
@@ -3005,18 +3005,18 @@ static BOOL BCT_CLIENT_StartSysGameStart( BCT_COUNTDOWN_DRAW* p_graphic, BCT_CLI
 static void BCT_CLIENT_StartSysMarunomuMatrixSet( BCT_CLIENT_GRAPHIC* p_drawsys, const BCT_MARUNOMU* cp_data )
 {
 
-    // À•W‚ðÝ’è
+    // åº§æ¨™ã‚’è¨­å®š
 	BCT_CLIENT_MarunomuDrawMatrixSet( &p_drawsys->marunomu, cp_data );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  Œ‹‰Ê”­•\    ‰Šú‰»
+ *  @brief  çµæžœç™ºè¡¨    åˆæœŸåŒ–
  *
- *  @param  p_graphic   ƒOƒ‰ƒtƒBƒbƒN
- *  @param  comm_num    ’ÊMl”
- *  @param	plno		’ÊMID
- *  @param  heapID      ƒq[ƒvID
+ *  @param  p_graphic   ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+ *  @param  comm_num    é€šä¿¡äººæ•°
+ *  @param	plno		é€šä¿¡ID
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_EndSysInit( BCT_CLIENT_GRAPHIC* p_graphic, u32 comm_num, u32 plno, u32 heapID )
@@ -3028,10 +3028,10 @@ static void BCT_CLIENT_EndSysInit( BCT_CLIENT_GRAPHIC* p_graphic, u32 comm_num, 
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  Œ‹‰Ê”­•\    ”jŠü
+ *  @brief  çµæžœç™ºè¡¨    ç ´æ£„
  *
- *  @param  p_graphic   ƒOƒ‰ƒtƒBƒbƒN
- *  @param  comm_num    ’ÊMl”
+ *  @param  p_graphic   ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+ *  @param  comm_num    é€šä¿¡äººæ•°
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_EndSysExit( BCT_CLIENT_GRAPHIC* p_graphic, u32 comm_num )
@@ -3040,25 +3040,25 @@ static void BCT_CLIENT_EndSysExit( BCT_CLIENT_GRAPHIC* p_graphic, u32 comm_num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€‚ÌƒAƒjƒ‚ð•ÏX‚·‚é
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®ã‚¢ãƒ‹ãƒ¡ã‚’å¤‰æ›´ã™ã‚‹
  *
- *	@param	p_graphic	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	p_graphic	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_EndSysMarunomuAnmChg( BCT_CLIENT_GRAPHIC* p_graphic )
 {
-	// ƒ}ƒ‹ƒm[ƒ€‚ÌƒAƒjƒ‚ð•ÏX
+	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®ã‚¢ãƒ‹ãƒ¡ã‚’å¤‰æ›´
 	BCT_CLIENT_MarunomuDrawSetMouthAnm( &p_graphic->marunomu, BCT_MARUNOMU_ANM_CLOSE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€Œû‚Æ‚¶ƒAƒjƒ
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ å£ã¨ã˜ã‚¢ãƒ‹ãƒ¡
  *
- *  @param  p_graphic   ƒ[ƒN
+ *  @param  p_graphic   ãƒ¯ãƒ¼ã‚¯
  *
- *  @retval TRUE    Š®—¹
- *  @retval FALSE   “r’†
+ *  @retval TRUE    å®Œäº†
+ *  @retval FALSE   é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_EndSysMarunomuAnm( BCT_CLIENT_GRAPHIC* p_graphic )
@@ -3066,8 +3066,8 @@ static BOOL BCT_CLIENT_EndSysMarunomuAnm( BCT_CLIENT_GRAPHIC* p_graphic )
 	BOOL result;
 	
     p_graphic->result.count ++;
-    // BCT_RESULT_MARUNOMU_MOVE_TIMING‚Ü‚Å‘Ò‹@
-    // anmtime‚Ì’l‚ÅƒAƒjƒ‚³‚¹‚é
+    // BCT_RESULT_MARUNOMU_MOVE_TIMINGã¾ã§å¾…æ©Ÿ
+    // anmtimeã®å€¤ã§ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹
     if( p_graphic->result.count >= BCT_RESULT_MARUNOMU_MOVE_TIMING ){
 		result = D3DOBJ_AnmNoLoop( &p_graphic->marunomu.anm[BCT_MARUNOMU_ANM_CLOSE],
 				BCT_MARUNOMU_ANM_SPEED );	
@@ -3080,12 +3080,12 @@ static BOOL BCT_CLIENT_EndSysMarunomuAnm( BCT_CLIENT_GRAPHIC* p_graphic )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€  ƒ^ƒCƒ€ƒAƒbƒvƒAƒjƒ
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ   ã‚¿ã‚¤ãƒ ã‚¢ãƒƒãƒ—ã‚¢ãƒ‹ãƒ¡
  *
- *  @param  p_graphic   ƒ[ƒN
+ *  @param  p_graphic   ãƒ¯ãƒ¼ã‚¯
  *
- *  @retval TRUE    Š®—¹
- *  @retval FALSE   “r’†
+ *  @retval TRUE    å®Œäº†
+ *  @retval FALSE   é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_EndSysTimeUpAnm( BCT_CLIENT_GRAPHIC* p_graphic )
@@ -3102,51 +3102,51 @@ static BOOL BCT_CLIENT_EndSysTimeUpAnm( BCT_CLIENT_GRAPHIC* p_graphic )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€ƒ[ƒN‚ð‰Šú‰»
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
  *  
- *  @param  cp_wk   ƒ[ƒN
- *  @param  p_maru  ƒ}ƒ‹ƒm[ƒ€ƒ[ƒN
+ *  @param  cp_wk   ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_maru  ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuInit( const BCT_CLIENT* cp_wk, BCT_MARUNOMU* p_maru )
 {
-    // ƒXƒs[ƒhÝ’è
+    // ã‚¹ãƒ”ãƒ¼ãƒ‰è¨­å®š
     p_maru->speed = 0;
 
-    // ‰ñ“]Šm“x
+    // å›žè»¢ç¢ºåº¦
     BCT_CLIENT_MarunomuRotaYSet( p_maru, BCT_MARUNOMU_ROTA_INIT );
 
-    // XŽ²‚Ì‰ñ“]Šp“xÝ’è
+    // Xè»¸ã®å›žè»¢è§’åº¦è¨­å®š
     BCT_CLIENT_MarunomuRotaXSet( p_maru, BCT_MARUNOMU_ROTA_X_INIT );
 
-	// “–‚½‚è”»’èŠÖŒWƒtƒ‰ƒO
-	p_maru->hit			= FALSE;	// “–‚½‚è”»’è‚È‚µ
-	p_maru->eat_flag	= TRUE;		// H‚×‚éƒtƒ‰ƒOON
+	// å½“ãŸã‚Šåˆ¤å®šé–¢ä¿‚ãƒ•ãƒ©ã‚°
+	p_maru->hit			= FALSE;	// å½“ãŸã‚Šåˆ¤å®šãªã—
+	p_maru->eat_flag	= TRUE;		// é£Ÿã¹ã‚‹ãƒ•ãƒ©ã‚°ON
 
-    // ˆø—Í‚Ì—Í
+    // å¼•åŠ›ã®åŠ›
     p_maru->inryoku_area = BCT_MARUNOMU_INRYOKU_DIST;
     p_maru->inryoku_power = BCT_MARUNOMU_INRYOKU_POWER_PAR;
 
-	// Œû‚Ì‘å‚«‚³
+	// å£ã®å¤§ãã•
     p_maru->mouth_size = BCT_MARUNOMU_HIT_DIS_MAX;
 
-	// Šî–{ƒf[ƒ^
+	// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿
 	p_maru->marunomu_mat	= sc_MARUNOMU_MAT;
 
-	// Šg‘åk¬
+	// æ‹¡å¤§ç¸®å°
 	BCT_CLIENT_MaruScaleSet( p_maru, BCT_MARUNOMU_SCALE_INIT );
 
-	// À•W
+	// åº§æ¨™
 	p_maru->matrix = sc_MARUNOMU_MAT;
 	p_maru->height = p_maru->hitbody_y_min;
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€“®ìƒƒCƒ“
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *  @param  cp_wk       ƒ[ƒN
- *  @param  p_maru      ƒ}ƒ‹ƒm[ƒ€ƒ[ƒN
+ *  @param  cp_wk       ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_maru      ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuMain( const BCT_CLIENT* cp_wk, BCT_MARUNOMU* p_maru )
@@ -3156,43 +3156,43 @@ static void BCT_CLIENT_MarunomuMain( const BCT_CLIENT* cp_wk, BCT_MARUNOMU* p_ma
 		BCT_CLIENT_MarunomuGetRotaX_FeverEff,
 		BCT_CLIENT_MarunomuGetRotaX_Fever,
 	};
-    u16 rota_x; // xŽ²‰ñ“]Šp“x
+    u16 rota_x; // xè»¸å›žè»¢è§’åº¦
 
-	// H‚×‚éƒtƒ‰ƒOÝ’è
+	// é£Ÿã¹ã‚‹ãƒ•ãƒ©ã‚°è¨­å®š
 	switch( cp_wk->move_type ){
-	// FEVER‘OƒGƒtƒFƒNƒg
+	// FEVERå‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	case BCT_MARUNOMU_MOVE_FEVER_EFF:	
 		p_maru->eat_flag = FALSE;
 		break;
 	
-	// ‚»‚Ì‘¼
+	// ãã®ä»–
 	default:
 		p_maru->eat_flag = TRUE;
 		break;
 	}
 	
 	
-    // ‰ñ“]ƒXƒs[ƒhŽæ“¾
+    // å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰å–å¾—
 	rota_x = cp_func[ cp_wk->move_type ]( p_maru, cp_wk->time, cp_wk->time_max );
     BCT_CLIENT_MarunomuRotaXSet( p_maru, rota_x );
 
-	// ƒ}ƒEƒXƒTƒCƒYÝ’è
+	// ãƒžã‚¦ã‚¹ã‚µã‚¤ã‚ºè¨­å®š
 	p_maru->mouth_size = BCT_CLIENT_MarunomuMouthSizeGet( p_maru, p_maru->rotax );
 
 
-	// ‘Ì“–‚½‚è”»’è‚Ì‚‚³‚ðÝ’è‚·‚é
+	// ä½“å½“ãŸã‚Šåˆ¤å®šã®é«˜ã•ã‚’è¨­å®šã™ã‚‹
 	p_maru->height = BCT_CLIENT_MarunomuBodyHeightGet( p_maru, p_maru->rotax );
 
-    // ‰ñ“]
+    // å›žè»¢
 	BCT_CLIENT_MarunomuRotaYSet( p_maru, p_maru->rota + p_maru->speed );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€‚ ‚½‚è”»’èƒtƒ‰ƒO‚ðÝ’è
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ ã‚ãŸã‚Šåˆ¤å®šãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  *
- *	@param	p_maru		ƒ}ƒ‹ƒm[ƒ€ƒ[ƒN
- *	@param	flag		ƒtƒ‰ƒO
+ *	@param	p_maru		ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuSetHitFlag( BCT_MARUNOMU* p_maru, BOOL flag )
@@ -3203,17 +3203,17 @@ static void BCT_CLIENT_MarunomuSetHitFlag( BCT_MARUNOMU* p_maru, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€‰ñ“]XÝ’è
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ å›žè»¢Xè¨­å®š
  *
- *  @param  p_maru      ƒ}ƒ‹ƒm[ƒ€ƒ[ƒN
- *  @param  rota_x      ‰ñ“]X
+ *  @param  p_maru      ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
+ *  @param  rota_x      å›žè»¢X
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuRotaXSet( BCT_MARUNOMU* p_maru, u16 rota_x )
 {
     p_maru->rotax = rota_x;
 
-    // –@üƒxƒNƒgƒ‹‚ð‰ñ“]‚³‚¹‚é
+    // æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«ã‚’å›žè»¢ã•ã›ã‚‹
     MTX_Identity33( &p_maru->rotax_mtx );
     MTX_RotX33( &p_maru->rotax_mtx, FX_SinIdx(rota_x), 
             FX_CosIdx(rota_x) );
@@ -3221,10 +3221,10 @@ static void BCT_CLIENT_MarunomuRotaXSet( BCT_MARUNOMU* p_maru, u16 rota_x )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€‚Ì‰ñ“]YÝ’è
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å›žè»¢Yè¨­å®š
  *
- *  @param  p_maru  ƒ}ƒ‹ƒm[ƒ€
- *  @param  rota_y  ‰ñ“]Y
+ *  @param  p_maru  ãƒžãƒ«ãƒŽãƒ¼ãƒ 
+ *  @param  rota_y  å›žè»¢Y
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuRotaYSet( BCT_MARUNOMU* p_maru, u16 rota_y )
@@ -3233,21 +3233,21 @@ static void BCT_CLIENT_MarunomuRotaYSet( BCT_MARUNOMU* p_maru, u16 rota_y )
 	
     p_maru->rota = rota_y;
 
-    // –@üƒxƒNƒgƒ‹‚ð‰ñ“]‚³‚¹‚é
+    // æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«ã‚’å›žè»¢ã•ã›ã‚‹
     MTX_Identity33( &p_maru->rotaxy_mtx );
     MTX_Identity33( &p_maru->rotay_mtx );
     MTX_RotY33( &p_maru->rotay_mtx, FX_SinIdx(rota_y), 
             FX_CosIdx(rota_y) );
 
-    // ƒ}ƒgƒŠƒNƒX‚ðŠ|‚¯‡‚í‚¹‚é
+    // ãƒžãƒˆãƒªã‚¯ã‚¹ã‚’æŽ›ã‘åˆã‚ã›ã‚‹
     MTX_Concat33( &p_maru->rotax_mtx, &p_maru->rotay_mtx, &p_maru->rotaxy_mtx );
     MTX_MultVec33( &BCT_MARUNOMU_HIT_PLANE_N, &p_maru->rotaxy_mtx, &p_maru->hit_plane_n );
 
 	
-	// ’†S‚ÌŒvŽZ
-	// “–‚½‚è”»’èƒGƒŠƒA‚Ì‰º‚ð’†S‚É‰ñ“]‚·‚é‚æ‚¤‚ÉA”»’èƒGƒŠƒA‚Ì‚µ‚½•”•ª‚ðŒ´“_‚É‚µ‚½
-	// ‚´‚Ð‚å‚¤‚ÅXYŽ²‰ñ“]‚ð‚©‚¯‚é
-	// ‚»‚ÌŒãAYŽ²‰ñ“]‚³‚¹‚½‚ ‚½‚è”»’è‚ÌÀ•W‚ð‘«‚µ‚±‚Þ
+	// ä¸­å¿ƒã®è¨ˆç®—
+	// å½“ãŸã‚Šåˆ¤å®šã‚¨ãƒªã‚¢ã®ä¸‹ã‚’ä¸­å¿ƒã«å›žè»¢ã™ã‚‹ã‚ˆã†ã«ã€åˆ¤å®šã‚¨ãƒªã‚¢ã®ã—ãŸéƒ¨åˆ†ã‚’åŽŸç‚¹ã«ã—ãŸ
+	// ã–ã²ã‚‡ã†ã§XYè»¸å›žè»¢ã‚’ã‹ã‘ã‚‹
+	// ãã®å¾Œã€Yè»¸å›žè»¢ã•ã›ãŸã‚ãŸã‚Šåˆ¤å®šã®åº§æ¨™ã‚’è¶³ã—ã“ã‚€
 	center_mat.x = 0;
 	center_mat.y = 0;
 	center_mat.z = -p_maru->mouth_size;
@@ -3258,10 +3258,10 @@ static void BCT_CLIENT_MarunomuRotaYSet( BCT_MARUNOMU* p_maru, u16 rota_y )
     MTX_MultVec33( &center_mat, &p_maru->rotay_mtx, &center_mat );
 	VEC_Add( &center_mat, &p_maru->center_mat, &p_maru->center_mat  );
 
-    // •½–Ê‚Ì•û’öŽ®D‚Ì’l‚ð‹‚ß‚é
+    // å¹³é¢ã®æ–¹ç¨‹å¼Dã®å€¤ã‚’æ±‚ã‚ã‚‹
     p_maru->d = FX_Mul( p_maru->hit_plane_n.x, p_maru->center_mat.x ) + FX_Mul( p_maru->hit_plane_n.y, p_maru->center_mat.y ) + FX_Mul( p_maru->hit_plane_n.z, p_maru->center_mat.z );
 
-	// •\Ž¦À•W‚ðˆÚ“®‚³‚¹‚é
+	// è¡¨ç¤ºåº§æ¨™ã‚’ç§»å‹•ã•ã›ã‚‹
     MTX_MultVec33( &p_maru->marunomu_mat, &p_maru->rotay_mtx, &p_maru->matrix );
 	
 
@@ -3270,17 +3270,17 @@ static void BCT_CLIENT_MarunomuRotaYSet( BCT_MARUNOMU* p_maru, u16 rota_y )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚É“ü‚Á‚½‚©ƒ`ƒFƒbƒN
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ã«å…¥ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- *  @param  cp_maru     ƒ}ƒ‹ƒm[ƒ€ƒ[ƒN
- *  @param  cp_mat      “–‚½‚è”»’è‚·‚é‚à‚Ì‚ÌŒ»ÝˆÊ’u
- *  @param  cp_move     “–‚½‚è”»’è‚·‚é‚à‚Ì‚Ì¡‚ÌˆÚ“®’l
- *  @param  p_inryoku   ˆø—Í
+ *  @param  cp_maru     ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_mat      å½“ãŸã‚Šåˆ¤å®šã™ã‚‹ã‚‚ã®ã®ç¾åœ¨ä½ç½®
+ *  @param  cp_move     å½“ãŸã‚Šåˆ¤å®šã™ã‚‹ã‚‚ã®ã®ä»Šã®ç§»å‹•å€¤
+ *  @param  p_inryoku   å¼•åŠ›
  *
- *  @retval BCT_MARUNOMU_MOUTH_HIT_NONE,    // ‚Ü‚¾Œû‚Ü‚Å‚¢‚Á‚Ä‚¢‚È‚¢
- *  @retval BCT_MARUNOMU_MOUTH_HIT_OK,  // “ü‚Á‚½I
- *  @retval BCT_MARUNOMU_MOUTH_HIT_NG,  // ‚Í‚¸‚ê‚½I
- *  @retval BCT_MARUNOMU_MOUTH_HIT_NEAR,// ˆø—Í”­¶I
+ *  @retval BCT_MARUNOMU_MOUTH_HIT_NONE,    // ã¾ã å£ã¾ã§ã„ã£ã¦ã„ãªã„
+ *  @retval BCT_MARUNOMU_MOUTH_HIT_OK,  // å…¥ã£ãŸï¼
+ *  @retval BCT_MARUNOMU_MOUTH_HIT_NG,  // ã¯ãšã‚ŒãŸï¼
+ *  @retval BCT_MARUNOMU_MOUTH_HIT_NEAR,// å¼•åŠ›ç™ºç”Ÿï¼
  */
 //-----------------------------------------------------------------------------
 static u32 BCT_CLIENT_MarunomuMouthHitCheck( const BCT_MARUNOMU* cp_maru, const VecFx32* cp_mat, const VecFx32* cp_move, VecFx32* p_inryoku )
@@ -3293,35 +3293,35 @@ static u32 BCT_CLIENT_MarunomuMouthHitCheck( const BCT_MARUNOMU* cp_maru, const 
     VecFx32 inryoku_way;
     u32 ret = BCT_MARUNOMU_MOUTH_HIT_NONE;
 
-	// ”»’èƒXƒLƒbƒv
+	// åˆ¤å®šã‚¹ã‚­ãƒƒãƒ—
 	if( cp_maru->hit == FALSE ){
 		return BCT_MARUNOMU_MOUTH_HIT_NONE;
 	}
 
-    // “–‚½‚é‚Ü‚Å‚ÌŽžŠÔ‚ÆˆÊ’u‚ðŽæ“¾
-    // •½–Ê‚Æ•½s‚É‹Ê‚ª“®‚¢‚Ä‚¢‚é‚Æ‚«³Šm‚È’l‚ð
-    // •Ô‚³‚È‚¢‰Â”\«‚ª‚ ‚é
+    // å½“ãŸã‚‹ã¾ã§ã®æ™‚é–“ã¨ä½ç½®ã‚’å–å¾—
+    // å¹³é¢ã¨å¹³è¡Œã«çŽ‰ãŒå‹•ã„ã¦ã„ã‚‹ã¨ãæ­£ç¢ºãªå€¤ã‚’
+    // è¿”ã•ãªã„å¯èƒ½æ€§ãŒã‚ã‚‹
     BCT_CLIENT_CalcPlaneVecHitCheck( cp_mat, cp_move, 
             &cp_maru->hit_plane_n,
             cp_maru->d, &hitmat, &time );
 
 
-    // Œð“_‚Æ‚Ì‹——£‚ð‹‚ß‚é
+    // äº¤ç‚¹ã¨ã®è·é›¢ã‚’æ±‚ã‚ã‚‹
 //  VEC_Subtract( &cp_maru->center_mat, &hitmat, &sub_mat );
 
-    // ŽŸ‚Í¡‚ÌˆÊ’u‚Æ’†S‚Æ‚Ì‹——£‚ð‹‚ß‚é
+    // æ¬¡ã¯ä»Šã®ä½ç½®ã¨ä¸­å¿ƒã¨ã®è·é›¢ã‚’æ±‚ã‚ã‚‹
     VEC_Subtract( &cp_maru->center_mat, cp_mat, &sub_mat );
     
     dist = VEC_Mag( &sub_mat );
 
-    // time‚Ì•ûŒü‚ª‚Ç‚Á‚¿‚É‚È‚ê‚Î‚æ‚¢‚Ì‚©‚í‚©‚ç‚È‚¢‚Ì‚Å‚Æ‚è‚ ‚¦‚¸{•ûŒü‚Ål‚¦‚é
+    // timeã®æ–¹å‘ãŒã©ã£ã¡ã«ãªã‚Œã°ã‚ˆã„ã®ã‹ã‚ã‹ã‚‰ãªã„ã®ã§ã¨ã‚Šã‚ãˆãšï¼‹æ–¹å‘ã§è€ƒãˆã‚‹
     if( (time >= 0) && (time <= FX32_ONE) ){
 
-        // ŽžŠÔ‚ð•\Ž¦
+        // æ™‚é–“ã‚’è¡¨ç¤º
 //      OS_Printf( "time 0x%x\n", time );
 //      OS_Printf( "dist = 0x%x limit = 0x%x \n", dist, cp_maru->mouth_size );
 
-        // •½–Ê‚Æ‚Í“–‚½‚Á‚Ä‚¢‚é‚Ì‚ÅA’†S‚©‚ç‚Ì‹——£‚ðŽæ“¾‚·‚é
+        // å¹³é¢ã¨ã¯å½“ãŸã£ã¦ã„ã‚‹ã®ã§ã€ä¸­å¿ƒã‹ã‚‰ã®è·é›¢ã‚’å–å¾—ã™ã‚‹
         if( dist <= cp_maru->mouth_size ){
 			if( cp_maru->eat_flag == TRUE ){
 	            ret = BCT_MARUNOMU_MOUTH_HIT_OK;
@@ -3329,15 +3329,15 @@ static u32 BCT_CLIENT_MarunomuMouthHitCheck( const BCT_MARUNOMU* cp_maru, const 
 	            ret = BCT_MARUNOMU_MOUTH_HIT_NG;
 			}
         }else{
-            // NG‚É‚È‚Á‚½‚ç‚±‚ÌŒã‚Ìˆ—‚ðs‚¤•K—v‚Í‚È‚¢
+            // NGã«ãªã£ãŸã‚‰ã“ã®å¾Œã®å‡¦ç†ã‚’è¡Œã†å¿…è¦ã¯ãªã„
             return BCT_MARUNOMU_MOUTH_HIT_NG;
         }
     }
 
-    // time ‚ª‹ß‚Ã‚¢‚Ä‚«‚ÄA‹——£‚à‹ß‚©‚Á‚½‚çˆø—Í”­¶
+    // time ãŒè¿‘ã¥ã„ã¦ãã¦ã€è·é›¢ã‚‚è¿‘ã‹ã£ãŸã‚‰å¼•åŠ›ç™ºç”Ÿ
     if( (time > 0) && (dist < cp_maru->inryoku_area) ){
 
-        // Å‰‚Í­‚µ‹t•ûŒü‚É”½”­‚µA‚»‚ÌŒãˆê‹C‚É‹z‚¢ž‚Þ
+        // æœ€åˆã¯å°‘ã—é€†æ–¹å‘ã«åç™ºã—ã€ãã®å¾Œä¸€æ°—ã«å¸ã„è¾¼ã‚€
         in_power = FX_Mul( (cp_maru->inryoku_area - dist), cp_maru->inryoku_power );
         VEC_Normalize( &sub_mat, &inryoku_way );
         p_inryoku->x = FX_Mul( inryoku_way.x, in_power );
@@ -3347,8 +3347,8 @@ static u32 BCT_CLIENT_MarunomuMouthHitCheck( const BCT_MARUNOMU* cp_maru, const 
 //      OS_Printf( "dist = 0x%x in_power = 0x%x dist - in_power 0x%x \n", dist, in_power, (dist - in_power) );
 //      OS_Printf( "in x 0x%x y 0x%x z 0x%x\n", p_inryoku->x, p_inryoku->y, p_inryoku->z );
 
-        // ˆø—Í‚É‚æ‚Á‚ÄŒû‚Ü‚Å‚Ì‹——£‚ðÁ‰»‚µ‚Ä‚µ‚Ü‚¤‚Ì‚Å‚ ‚ê‚Î
-        // Œû‚É“ü‚Á‚½‚±‚Æ‚É‚·‚é
+        // å¼•åŠ›ã«ã‚ˆã£ã¦å£ã¾ã§ã®è·é›¢ã‚’æ¶ˆåŒ–ã—ã¦ã—ã¾ã†ã®ã§ã‚ã‚Œã°
+        // å£ã«å…¥ã£ãŸã“ã¨ã«ã™ã‚‹
         if( (dist - in_power) <= cp_maru->mouth_size ){
 			if( cp_maru->eat_flag == TRUE ){
 	            ret = BCT_MARUNOMU_MOUTH_HIT_OK;
@@ -3365,12 +3365,12 @@ static u32 BCT_CLIENT_MarunomuMouthHitCheck( const BCT_MARUNOMU* cp_maru, const 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€‚Ì‘Ì‚Æ‚Ì“–‚½‚è”»’è
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®ä½“ã¨ã®å½“ãŸã‚Šåˆ¤å®š
  *
- *	@param	cp_maru		ƒ}ƒ‹ƒm[ƒ€ƒf[ƒ^
- *	@param	cp_mat		À•W
+ *	@param	cp_maru		ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_mat		åº§æ¨™
  *
- *	@retval	TRUE	ƒqƒbƒg
+ *	@retval	TRUE	ãƒ’ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_MarunomuBodyHitCheck( const BCT_MARUNOMU* cp_maru, const VecFx32* cp_mat )
@@ -3381,17 +3381,17 @@ static BOOL BCT_CLIENT_MarunomuBodyHitCheck( const BCT_MARUNOMU* cp_maru, const 
 	fx32 r;
 	s32 y_dis;
 
-	// ”»’èƒXƒLƒbƒv
+	// åˆ¤å®šã‚¹ã‚­ãƒƒãƒ—
 	if( cp_maru->hit == FALSE ){
 		return FALSE;
 	}
 
-	// ‰~’Œ‚Æ“_‚Ì“–‚½‚è”»’è
+	// å††æŸ±ã¨ç‚¹ã®å½“ãŸã‚Šåˆ¤å®š
 	
-	// ‚‚³‚ª‚ ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// é«˜ã•ãŒã‚ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( (cp_maru->matrix.y < cp_mat->y) && ((cp_maru->matrix.y+cp_maru->height) > cp_mat->y) ){
 		
-		// XZ•½–Ê‚Ì”¼Œa‹——£ƒ`ƒFƒbƒN
+		// XZå¹³é¢ã®åŠå¾„è·é›¢ãƒã‚§ãƒƒã‚¯
 		vec0.x = cp_maru->matrix.x;
 		vec0.z = cp_maru->matrix.z;
 		vec0.y = 0;
@@ -3401,7 +3401,7 @@ static BOOL BCT_CLIENT_MarunomuBodyHitCheck( const BCT_MARUNOMU* cp_maru, const 
 		VEC_Subtract( &vec0, &vec1, &sub_vec );
 		dist = VEC_Mag( &sub_vec );
 
-		// “–‚½‚è”»’è”¼Œa‚ð‹‚ß‚é
+		// å½“ãŸã‚Šåˆ¤å®šåŠå¾„ã‚’æ±‚ã‚ã‚‹
 		y_dis = cp_mat->y - cp_maru->matrix.y;
 		y_dis = y_dis>>FX32_SHIFT;
 		r = ( y_dis*cp_maru->hitbody_r_dis ) / (cp_maru->height >> FX32_SHIFT);
@@ -3416,12 +3416,12 @@ static BOOL BCT_CLIENT_MarunomuBodyHitCheck( const BCT_MARUNOMU* cp_maru, const 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œû‚ÌƒTƒCƒY‚ðŽæ“¾‚·‚é
+ *	@brief	å£ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_maru	ƒ}ƒ‹ƒm[ƒ€ƒ[ƒN
- *	@param	rota_x	‚˜‰ñ“]Šp
+ *	@param	cp_maru	ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	rota_x	ï½˜å›žè»¢è§’
  *
- *	@return	ƒTƒCƒY
+ *	@return	ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static fx32 BCT_CLIENT_MarunomuMouthSizeGet( const BCT_MARUNOMU* cp_maru, u16 rota_x )
@@ -3437,12 +3437,12 @@ static fx32 BCT_CLIENT_MarunomuMouthSizeGet( const BCT_MARUNOMU* cp_maru, u16 ro
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘Ì‚Ì‚‚³‚ðŽæ“¾‚·‚é
+ *	@brief	ä½“ã®é«˜ã•ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_maru	ƒ}ƒ‹ƒm[ƒ€ƒ[ƒN
- *	@param	rota_x	‚˜‰ñ“]Šp
+ *	@param	cp_maru	ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	rota_x	ï½˜å›žè»¢è§’
  *
- *	@return	ƒTƒCƒY
+ *	@return	ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static fx32 BCT_CLIENT_MarunomuBodyHeightGet( const BCT_MARUNOMU* cp_maru,  u16 rota_x )
@@ -3458,12 +3458,12 @@ static fx32 BCT_CLIENT_MarunomuBodyHeightGet( const BCT_MARUNOMU* cp_maru,  u16 
 #if 0
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒp[ƒZƒ“ƒe[ƒW‚É‚ ‚í‚¹‚Ä	BCT_MARUNOMU_ROTA_X_INIT->BCT_MARUNOMU_ROTA_X_ADD->BCT_MARUNOMU_ROTA_X_INIT	‚ÌŠp“x‚ð•Ô‚·
+ *	@brief	ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ã«ã‚ã‚ã›ã¦	BCT_MARUNOMU_ROTA_X_INIT->BCT_MARUNOMU_ROTA_X_ADD->BCT_MARUNOMU_ROTA_X_INIT	ã®è§’åº¦ã‚’è¿”ã™
  *
- *	@param	par			Œ»Ýƒp[ƒZƒ“ƒg
- *	@param	max_par		ƒ}ƒbƒNƒXƒp[ƒZƒ“ƒg
+ *	@param	par			ç¾åœ¨ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
+ *	@param	max_par		ãƒžãƒƒã‚¯ã‚¹ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
  *
- *	@return	‰ñ“]Šp“x
+ *	@return	å›žè»¢è§’åº¦
  */
 //-----------------------------------------------------------------------------
 static u16 BCT_CLIENT_MarunomuParRotaGet( s32 par, s32 max_par )
@@ -3473,14 +3473,14 @@ static u16 BCT_CLIENT_MarunomuParRotaGet( s32 par, s32 max_par )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒp[ƒZƒ“ƒe[ƒW‚É‚ ‚í‚¹‚Ä	start->start+div->start	‚ÌŠp“x‚ð•Ô‚·
+ *	@brief	ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ã«ã‚ã‚ã›ã¦	start->start+div->start	ã®è§’åº¦ã‚’è¿”ã™
  *
- *	@param	par			Œ»Ýƒp[ƒZƒ“ƒg
- *	@param	max_par		ƒ}ƒbƒNƒXƒp[ƒZƒ“ƒg
- *	@param	start		ŠJŽn‰ñ“]Šp“x
- *	@param	div			•Ï‰»’l
+ *	@param	par			ç¾åœ¨ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
+ *	@param	max_par		ãƒžãƒƒã‚¯ã‚¹ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
+ *	@param	start		é–‹å§‹å›žè»¢è§’åº¦
+ *	@param	div			å¤‰åŒ–å€¤
  *
- *	@return	‰ñ“]Šp“x
+ *	@return	å›žè»¢è§’åº¦
  */
 //-----------------------------------------------------------------------------
 static u16 BCT_CLIENT_MarunomuParRotaGetEx( s32 par, s32 max_par, u16 start, u16 div )
@@ -3488,7 +3488,7 @@ static u16 BCT_CLIENT_MarunomuParRotaGetEx( s32 par, s32 max_par, u16 start, u16
     fx32 add;
     s32 rota;
 
-	//  •â³’l‚ð‹‚ß‚é
+	//  è£œæ­£å€¤ã‚’æ±‚ã‚ã‚‹
 	rota = (par*180) / max_par;
 	add = FX_Mul( Sin360( rota ), FX32_CONST( BCT_MARUNOMU_ROTA_X_ADD_SUB ) ) >> FX32_SHIFT;
 	rota = ((par*div) / max_par) + add;
@@ -3498,12 +3498,12 @@ static u16 BCT_CLIENT_MarunomuParRotaGetEx( s32 par, s32 max_par, u16 start, u16
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ¡‚ÌŽžŠÔ‚Ì‰ñ“]ƒXƒs[ƒhŽæ“¾
+ *  @brief  ä»Šã®æ™‚é–“ã®å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰å–å¾—
  *
- *  @param  time        ¡‚ÌŽžŠÔ
- *  @param  max_time    ‰ñ“]ŽžŠÔ
+ *  @param  time        ä»Šã®æ™‚é–“
+ *  @param  max_time    å›žè»¢æ™‚é–“
  *
- *  @return Œ»Ý‚ÌŽžŠÔ‚Ì‰ñ“]ƒXƒs[ƒh
+ *  @return ç¾åœ¨ã®æ™‚é–“ã®å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 static u16 BCT_CLIENT_MarunomuRotaSpeedGet( s32 time, s32 max_time )
@@ -3515,34 +3515,34 @@ static u16 BCT_CLIENT_MarunomuRotaSpeedGet( s32 time, s32 max_time )
     par = (time*BCT_MARUNOMU_ROTACOUNT_GETNUM(2)) / max_time;
     
 
-    // 0`99‚Ü‚Å‘å‚«‚­
-    // 100`199‚Ü‚Å¬‚³‚­
+    // 0ã€œ99ã¾ã§å¤§ãã
+    // 100ã€œ199ã¾ã§å°ã•ã
     if( par < BCT_MARUNOMU_ROTACOUNT_GETNUM(1) ){
-        //  •â³’l‚ð‹‚ß‚é
+        //  è£œæ­£å€¤ã‚’æ±‚ã‚ã‚‹
         rota = (par*180) / BCT_MARUNOMU_ROTACOUNT_GETNUM(1);
         add = FX_Mul( Sin360( rota ), FX32_CONST( BCT_MARUNOMU_ROTA_SPEED_ADD_SUB ) ) >> FX32_SHIFT;
         rota = ((par*BCT_MARUNOMU_ROTA_SPEED_ADD) / BCT_MARUNOMU_ROTACOUNT_GETNUM(1)) + add;
     }else{
         par -= BCT_MARUNOMU_ROTACOUNT_GETNUM(1);
-        //  •â³’l‚ð‹‚ß‚é
+        //  è£œæ­£å€¤ã‚’æ±‚ã‚ã‚‹
         rota = ((par)*180) / BCT_MARUNOMU_ROTACOUNT_GETNUM(1);
         add = FX_Mul( Sin360( rota ), FX32_CONST( BCT_MARUNOMU_ROTA_SPEED_ADD_SUB ) ) >> FX32_SHIFT;
         rota = ((par*BCT_MARUNOMU_ROTA_SPEED_ADD) / BCT_MARUNOMU_ROTACOUNT_GETNUM(1));
         rota = BCT_MARUNOMU_ROTA_SPEED_ADD - rota + add;
     }
 
-    // ‚Æ‚è‚ ‚¦‚¸A˜Š‚É‘‚­‚È‚Á‚ÄA¬‚³‚­‚È‚Á‚Ä‚¢‚­
+    // ã¨ã‚Šã‚ãˆãšã€åºæ‰€ã«æ—©ããªã£ã¦ã€å°ã•ããªã£ã¦ã„ã
     return (rota + BCT_MARUNOMU_ROTA_SPEED_INIT);
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€‚ÌXŽ²‰ñ“]Šp“xŽæ“¾
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®Xè»¸å›žè»¢è§’åº¦å–å¾—
  *  
- *  @param  time        ¡‚ÌŽžŠÔ
- *  @param  max_time    ‰ñ“]ŽžŠÔ
+ *  @param  time        ä»Šã®æ™‚é–“
+ *  @param  max_time    å›žè»¢æ™‚é–“
  *
- *  @return Œ»Ý‚ÌŽžŠÔ‚ÌXŽ²‰ñ“]Šp
+ *  @return ç¾åœ¨ã®æ™‚é–“ã®Xè»¸å›žè»¢è§’
  */
 //-----------------------------------------------------------------------------
 static u16 BCT_CLIENT_MarunomuXRotaGet( s32 time, s32 max_time )
@@ -3552,32 +3552,32 @@ static u16 BCT_CLIENT_MarunomuXRotaGet( s32 time, s32 max_time )
 
     par = (time*BCT_MARUNOMU_ROTACOUNT_GETNUM(2)) / max_time;
 
-    // 0`99‚Ü‚Å‘å‚«‚­
-    // 100`199‚Ü‚Å¬‚³‚­
+    // 0ã€œ99ã¾ã§å¤§ãã
+    // 100ã€œ199ã¾ã§å°ã•ã
     if( par < BCT_MARUNOMU_ROTACOUNT_GETNUM(1) ){
 		rota = BCT_CLIENT_MarunomuParRotaGet( par, BCT_MARUNOMU_ROTACOUNT_GETNUM(1) );
     }else{
         par -= BCT_MARUNOMU_ROTACOUNT_GETNUM(1);
 		rota = BCT_CLIENT_MarunomuParRotaGet( par, BCT_MARUNOMU_ROTACOUNT_GETNUM(1) );
-		// ”½“]‚³‚¹‚é
+		// åè»¢ã•ã›ã‚‹
 		rota = (BCT_MARUNOMU_ROTA_X_INIT+BCT_MARUNOMU_ROTA_X_ADD) - rota;
 		if( rota < BCT_MARUNOMU_ROTA_X_MIN ){
 			rota = BCT_MARUNOMU_ROTA_X_MIN;
 		}
     }
 
-    // ‚Æ‚è‚ ‚¦‚¸A˜Š‚É‘‚­‚È‚Á‚ÄA¬‚³‚­‚È‚Á‚Ä‚¢‚­
+    // ã¨ã‚Šã‚ãˆãšã€åºæ‰€ã«æ—©ããªã£ã¦ã€å°ã•ããªã£ã¦ã„ã
     return rota;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€‰ñ“]ƒXƒs[ƒhŽæ“¾	ƒVƒXƒeƒ€‚Q
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰å–å¾—	ã‚·ã‚¹ãƒ†ãƒ ï¼’
  *
  *	@param	time
  *	@param	max_time 
  *
- *	@return	‰ñ“]ƒXƒs[ƒh
+ *	@return	å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 static u16 BCT_CLIENT_MarunomuRotaSpeedGet2( s32 time, s32 max_time )
@@ -3590,19 +3590,19 @@ static u16 BCT_CLIENT_MarunomuRotaSpeedGet2( s32 time, s32 max_time )
     
 
     if( par < BCT_MARUNOMU_ROTACOUNT_GETNUM(1) ){
-        //  •â³’l‚ð‹‚ß‚é
+        //  è£œæ­£å€¤ã‚’æ±‚ã‚ã‚‹
         rota = (par*180) / BCT_MARUNOMU_ROTACOUNT_GETNUM(1);
         add = FX_Mul( Sin360( rota ), FX32_CONST( BCT_MARUNOMU_ROTA_SPEED_ADD_SUB ) ) >> FX32_SHIFT;
         rota = ((par*BCT_MARUNOMU_ROTA_SPEED_ADD) / BCT_MARUNOMU_ROTACOUNT_GETNUM(1)) + add;
     }else if( par < BCT_MARUNOMU_ROTACOUNT_GETNUM(2) ){
 		par -= BCT_MARUNOMU_ROTACOUNT_GETNUM(1);
 
-		// ˆê’èƒXƒs[ƒh‚Å“®‚©‚·
+		// ä¸€å®šã‚¹ãƒ”ãƒ¼ãƒ‰ã§å‹•ã‹ã™
 		rota = BCT_MARUNOMU_ROTA_SPEED_ADD;
 	}else{
 
         par -= BCT_MARUNOMU_ROTACOUNT_GETNUM(2);
-        //  •â³’l‚ð‹‚ß‚é
+        //  è£œæ­£å€¤ã‚’æ±‚ã‚ã‚‹
         rota = ((par)*180) / BCT_MARUNOMU_ROTACOUNT_GETNUM(1);
         add = FX_Mul( Sin360( rota ), FX32_CONST( BCT_MARUNOMU_ROTA_SPEED_ADD_SUB ) ) >> FX32_SHIFT;
         rota = ((par*BCT_MARUNOMU_ROTA_SPEED_ADD) / BCT_MARUNOMU_ROTACOUNT_GETNUM(1));
@@ -3614,12 +3614,12 @@ static u16 BCT_CLIENT_MarunomuRotaSpeedGet2( s32 time, s32 max_time )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€‚ÌXŽ²‰ñ“]ŠpŽæ“¾	ƒVƒXƒeƒ€‚Q
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®Xè»¸å›žè»¢è§’å–å¾—	ã‚·ã‚¹ãƒ†ãƒ ï¼’
  *
  *	@param	time		
  *	@param	max_time 
  *
- *	@return	XŽ²‰ñ“]Šp
+ *	@return	Xè»¸å›žè»¢è§’
  */
 //-----------------------------------------------------------------------------
 #define BCT_CLIENT_MARUNOMU_ROTX_2_START	( FX_GET_ROTA_NUM( 20 ) )
@@ -3634,18 +3634,18 @@ static u16 BCT_CLIENT_MarunomuXRotaGet2( s32 time, s32 max_time )
 
     if( par < BCT_MARUNOMU_ROTACOUNT_GETNUM(17) ){
         
-		//  •â³’l‚ð‹‚ß‚é
+		//  è£œæ­£å€¤ã‚’æ±‚ã‚ã‚‹
 		rota = BCT_CLIENT_MarunomuParRotaGet( par, BCT_MARUNOMU_ROTACOUNT_GETNUM(17) );
 		
 	}else if( par < BCT_MARUNOMU_ROTACOUNT_GETNUM(20) ){
 		
-		rota = BCT_MARUNOMU_ROTA_X_MAX;	// •Â‚¶‚¿‚á‚¤
+		rota = BCT_MARUNOMU_ROTA_X_MAX;	// é–‰ã˜ã¡ã‚ƒã†
 		
     }else if( par < BCT_MARUNOMU_ROTACOUNT_GETNUM(30) ){
 		
 		par -= BCT_MARUNOMU_ROTACOUNT_GETNUM(20);
 		
-		//  ƒKƒRƒKƒRŠç‚ð“®‚©‚·	‚Æ‚è‚ ‚¦‚¸BCT_CLIENT_MARUNOMU_ROTAX_EX_TIME‚²‚Æ‚É“®‚©‚µ‚Ä‚Ý‚é
+		//  ã‚¬ã‚³ã‚¬ã‚³é¡”ã‚’å‹•ã‹ã™	ã¨ã‚Šã‚ãˆãšBCT_CLIENT_MARUNOMU_ROTAX_EX_TIMEã”ã¨ã«å‹•ã‹ã—ã¦ã¿ã‚‹
 		rota = BCT_CLIENT_MarunomuParRotaGetEx( par%BCT_CLIENT_MARUNOMU_ROTAX_EX_TIME,
 				BCT_CLIENT_MARUNOMU_ROTAX_EX_TIME, 0, BCT_CLIENT_MARUNOMU_ROTX_2_DIV );
 		if( ((par/BCT_CLIENT_MARUNOMU_ROTAX_EX_TIME)%2)==0 ){
@@ -3656,9 +3656,9 @@ static u16 BCT_CLIENT_MarunomuXRotaGet2( s32 time, s32 max_time )
 	}else{
 		
         par -= BCT_MARUNOMU_ROTACOUNT_GETNUM(30);
-        //  •â³’l‚ð‹‚ß‚é
+        //  è£œæ­£å€¤ã‚’æ±‚ã‚ã‚‹
 		rota = BCT_CLIENT_MarunomuParRotaGet( par, BCT_MARUNOMU_ROTACOUNT_GETNUM(10) );
-		// ”½“]‚³‚¹‚é
+		// åè»¢ã•ã›ã‚‹
 		rota = (BCT_MARUNOMU_ROTA_X_INIT+BCT_MARUNOMU_ROTA_X_ADD) - rota;
 		if( rota < BCT_MARUNOMU_ROTA_X_MIN ){
 			rota = BCT_MARUNOMU_ROTA_X_MIN;
@@ -3671,34 +3671,34 @@ static u16 BCT_CLIENT_MarunomuXRotaGet2( s32 time, s32 max_time )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ¡‚ÌŽžŠÔ‚Ì‰ñ“]ƒXƒs[ƒhŽæ“¾		ƒ^ƒCƒv‚R
+ *  @brief  ä»Šã®æ™‚é–“ã®å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰å–å¾—		ã‚¿ã‚¤ãƒ—ï¼“
  *
- *  @param  time        ¡‚ÌŽžŠÔ
- *  @param  max_time    ‰ñ“]ŽžŠÔ
+ *  @param  time        ä»Šã®æ™‚é–“
+ *  @param  max_time    å›žè»¢æ™‚é–“
  *
- *  @return Œ»Ý‚ÌŽžŠÔ‚Ì‰ñ“]ƒXƒs[ƒh
+ *  @return ç¾åœ¨ã®æ™‚é–“ã®å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 #define BCT_MARUNOMU_ROTASPEED3_MIN	( 160 )
 #define BCT_MARUNOMU_ROTASPEED3_MAX	( 720 )
 #define BCT_MARUNOMU_ROTASPEED3_MIN_COUNT	( 500 )
-#define BCT_MARUNOMU_ROTASPEED3_MAX_COUNT	( 400 )	// –{“–‚Í‚T‚O‚O‚¾‚ª‚S‚O‚O‚É‚·‚é
-													// Œã‚Ì‚P‚O‚O‚ÍMAXƒXƒs[ƒh‚Å‰ñ‚·
+#define BCT_MARUNOMU_ROTASPEED3_MAX_COUNT	( 400 )	// æœ¬å½“ã¯ï¼•ï¼ï¼ã ãŒï¼”ï¼ï¼ã«ã™ã‚‹
+													// å¾Œã®ï¼‘ï¼ï¼ã¯MAXã‚¹ãƒ”ãƒ¼ãƒ‰ã§å›žã™
 static u16 BCT_CLIENT_MarunomuRotaSpeedGet3( s32 time, s32 max_time )
 {
     s32 par;
     fx32 add;
     s32 rota;
 
-	// ‘O”¼‚Í™X‚É‘‚­‚È‚Á‚Ä‚¢‚­A
-	// Œã”¼‚ÍA‚Ü‚¸’x‚­‚È‚èA‚»‚ÌŒãˆê‹C‚É‰Á‘¬AŒ¸‘¬‚ðŒJ‚è•Ô‚µA
-	// ÅŒã‚Í‚ä‚Á‚­‚è‚Æ‚Ü‚é
+	// å‰åŠã¯å¾ã€…ã«æ—©ããªã£ã¦ã„ãã€
+	// å¾ŒåŠã¯ã€ã¾ãšé…ããªã‚Šã€ãã®å¾Œä¸€æ°—ã«åŠ é€Ÿã€æ¸›é€Ÿã‚’ç¹°ã‚Šè¿”ã—ã€
+	// æœ€å¾Œã¯ã‚†ã£ãã‚Šã¨ã¾ã‚‹
 	
     par = (time*(BCT_MARUNOMU_ROTACOUNT_GETNUM(4))) / max_time;
     
 
     if( par < BCT_MARUNOMU_ROTACOUNT_GETNUM(2) ){
-        //  •â³’l‚ð‹‚ß‚é
+        //  è£œæ­£å€¤ã‚’æ±‚ã‚ã‚‹
         rota = (par*180) / BCT_MARUNOMU_ROTACOUNT_GETNUM(2);
         add = FX_Mul( Sin360( rota ), FX32_CONST( BCT_MARUNOMU_ROTA_SPEED_ADD_SUB ) ) >> FX32_SHIFT;
         rota = ((par*BCT_MARUNOMU_ROTA_SPEED_ADD) / BCT_MARUNOMU_ROTACOUNT_GETNUM(2)) + add;
@@ -3719,7 +3719,7 @@ static u16 BCT_CLIENT_MarunomuRotaSpeedGet3( s32 time, s32 max_time )
 	}else{
 
         par -= BCT_MARUNOMU_ROTACOUNT_GETNUM(3);
-        //  •â³’l‚ð‹‚ß‚é
+        //  è£œæ­£å€¤ã‚’æ±‚ã‚ã‚‹
         rota = ((par)*180) / BCT_MARUNOMU_ROTACOUNT_GETNUM(1);
         add = FX_Mul( Sin360( rota ), FX32_CONST( BCT_MARUNOMU_ROTA_SPEED_ADD_SUB ) ) >> FX32_SHIFT;
         rota = ((par*BCT_MARUNOMU_ROTASPEED3_MAX) / BCT_MARUNOMU_ROTACOUNT_GETNUM(1));
@@ -3731,12 +3731,12 @@ static u16 BCT_CLIENT_MarunomuRotaSpeedGet3( s32 time, s32 max_time )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€‚ÌXŽ²‰ñ“]ŠpŽæ“¾	ƒ^ƒCƒv‚R
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®Xè»¸å›žè»¢è§’å–å¾—	ã‚¿ã‚¤ãƒ—ï¼“
  *
  *	@param	time		
  *	@param	max_time 
  *
- *	@return	XŽ²‰ñ“]Šp
+ *	@return	Xè»¸å›žè»¢è§’
  */
 //-----------------------------------------------------------------------------
 static u16 BCT_CLIENT_MarunomuXRotaGet3( s32 time, s32 max_time )
@@ -3746,39 +3746,39 @@ static u16 BCT_CLIENT_MarunomuXRotaGet3( s32 time, s32 max_time )
 
     par = (time*BCT_MARUNOMU_ROTACOUNT_GETNUM(2)) / max_time;
 
-    // 0`99‚Ü‚Å‘å‚«‚­
-    // 100`199‚Ü‚Å¬‚³‚­
+    // 0ã€œ99ã¾ã§å¤§ãã
+    // 100ã€œ199ã¾ã§å°ã•ã
     if( par < BCT_MARUNOMU_ROTACOUNT_GETNUM(1) ){
 		rota = BCT_CLIENT_MarunomuParRotaGet( par, BCT_MARUNOMU_ROTACOUNT_GETNUM(1) );
     }else{
         par -= BCT_MARUNOMU_ROTACOUNT_GETNUM(1);
 		rota = BCT_CLIENT_MarunomuParRotaGet( par, BCT_MARUNOMU_ROTACOUNT_GETNUM(1) );
-		// ”½“]‚³‚¹‚é
+		// åè»¢ã•ã›ã‚‹
 		rota = (BCT_MARUNOMU_ROTA_X_INIT+BCT_MARUNOMU_ROTA_X_ADD) - rota;
 		if( rota < BCT_MARUNOMU_ROTA_X_MIN ){
 			rota = BCT_MARUNOMU_ROTA_X_MIN;
 		}
     }
 
-    // ‚Æ‚è‚ ‚¦‚¸A˜Š‚É‘‚­‚È‚Á‚ÄA¬‚³‚­‚È‚Á‚Ä‚¢‚­
+    // ã¨ã‚Šã‚ãˆãšã€åºæ‰€ã«æ—©ããªã£ã¦ã€å°ã•ããªã£ã¦ã„ã
     return rota;
 }
 #endif
 
 //----------------------------------------------------------------------------
 /**BCT_MARUNOMU_MOVE_NUM
- *	@brief	ƒ}ƒ‹ƒm[ƒ€‚ÌŠg‘å—¦‚ðÝ’è‚·‚é
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®æ‹¡å¤§çŽ‡ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_maru		ƒ[ƒN
- *	@param	scale		Šg‘å—¦
+ *	@param	p_maru		ãƒ¯ãƒ¼ã‚¯
+ *	@param	scale		æ‹¡å¤§çŽ‡
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MaruScaleSet( BCT_MARUNOMU* p_maru, fx32 scale )
 {
 	p_maru->scale			= scale;
-	p_maru->mouth_div		= FX_Mul( BCT_MARUNOMU_HIT_DIS_DIV, scale );  // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚Ì‘å‚«‚³•Ï‰»’l
-	p_maru->mouth_min		= FX_Mul( BCT_MARUNOMU_HIT_DIS_MIN, scale );   // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚Ì‘å‚«‚³Å¬
-	p_maru->mouth_max		= FX_Mul( BCT_MARUNOMU_HIT_DIS_MAX, scale );  // ƒ}ƒ‹ƒm[ƒ€‚ÌŒû‚Ì‘å‚«‚³Å‘å
+	p_maru->mouth_div		= FX_Mul( BCT_MARUNOMU_HIT_DIS_DIV, scale );  // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ã®å¤§ãã•å¤‰åŒ–å€¤
+	p_maru->mouth_min		= FX_Mul( BCT_MARUNOMU_HIT_DIS_MIN, scale );   // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ã®å¤§ãã•æœ€å°
+	p_maru->mouth_max		= FX_Mul( BCT_MARUNOMU_HIT_DIS_MAX, scale );  // ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®å£ã®å¤§ãã•æœ€å¤§
 	p_maru->hit_x			= FX_Mul( BCT_MARUNOMU_HIT_X, scale );
 	p_maru->hit_y			= FX_Mul( BCT_MARUNOMU_HIT_Y, scale );
 	p_maru->hitbody_y_min	= FX_Mul( BCT_MARUNOMU_HITBODY_Y_MIN, scale );
@@ -3792,10 +3792,10 @@ static void BCT_CLIENT_MaruScaleSet( BCT_MARUNOMU* p_maru, fx32 scale )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]ƒXƒs[ƒhÝ’è
+ *	@brief	å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰è¨­å®š
  *
- *	@param	p_maru	ƒ[ƒN	
- *	@param	speed	ƒXƒs[ƒh
+ *	@param	p_maru	ãƒ¯ãƒ¼ã‚¯	
+ *	@param	speed	ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MaruRotSpeedSet( BCT_MARUNOMU* p_maru, u16 speed )
@@ -3805,10 +3805,10 @@ static void BCT_CLIENT_MaruRotSpeedSet( BCT_MARUNOMU* p_maru, u16 speed )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•½–ÊˆÊ’u‚ðÝ’è
+ *	@brief	å¹³é¢ä½ç½®ã‚’è¨­å®š
  *
- *	@param	p_maru	ƒ[ƒN
- *	@param	z		•½–ÊˆÊ’u
+ *	@param	p_maru	ãƒ¯ãƒ¼ã‚¯
+ *	@param	z		å¹³é¢ä½ç½®
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MaruMatZSet( BCT_MARUNOMU* p_maru, fx32 z )
@@ -3819,13 +3819,13 @@ static void BCT_CLIENT_MaruMatZSet( BCT_MARUNOMU* p_maru, fx32 z )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€	ƒC[ƒW[“®ìŽž‚ÌXÀ•WŽæ“¾ƒ‹[ƒ`ƒ“
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ 	ã‚¤ãƒ¼ã‚¸ãƒ¼å‹•ä½œæ™‚ã®Xåº§æ¨™å–å¾—ãƒ«ãƒ¼ãƒãƒ³
  *
- *	@param	cp_maru		ƒ}ƒ‹ƒm[ƒ€ƒf[ƒ^
- *	@param	time		¡‚ÌŽžŠÔ
- *	@param	max_time	ŽžŠÔ‚ÌÅ‘å’l
+ *	@param	cp_maru		ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	time		ä»Šã®æ™‚é–“
+ *	@param	max_time	æ™‚é–“ã®æœ€å¤§å€¤
  *
- *	@return	¡‚ÌŽžŠÔ‚ÌX‰ñ“]Šp“x
+ *	@return	ä»Šã®æ™‚é–“ã®Xå›žè»¢è§’åº¦
  */
 //-----------------------------------------------------------------------------
 static u16 BCT_CLIENT_MarunomuGetRotaX_Easy( const BCT_MARUNOMU* cp_maru, s32 time, s32 max_time )
@@ -3835,13 +3835,13 @@ static u16 BCT_CLIENT_MarunomuGetRotaX_Easy( const BCT_MARUNOMU* cp_maru, s32 ti
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€	ƒtƒB[ƒo[ƒGƒtƒFƒNƒgŽž
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ 	ãƒ•ã‚£ãƒ¼ãƒãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ™‚
  *
- *	@param	cp_maru		ƒ}ƒ‹ƒm[ƒ€ƒf[ƒ^
- *	@param	time		¡‚ÌŽžŠÔ
- *	@param	max_time	ŽžŠÔ‚ÌÅ‘å’l
+ *	@param	cp_maru		ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	time		ä»Šã®æ™‚é–“
+ *	@param	max_time	æ™‚é–“ã®æœ€å¤§å€¤
  *
- *	@return	¡‚ÌŽžŠÔ‚ÌX‰ñ“]Šp“x
+ *	@return	ä»Šã®æ™‚é–“ã®Xå›žè»¢è§’åº¦
  */
 //-----------------------------------------------------------------------------
 static u16 BCT_CLIENT_MarunomuGetRotaX_FeverEff( const BCT_MARUNOMU* cp_maru, s32 time, s32 max_time )
@@ -3851,35 +3851,35 @@ static u16 BCT_CLIENT_MarunomuGetRotaX_FeverEff( const BCT_MARUNOMU* cp_maru, s3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€	ƒtƒB[ƒo[“®ìŽž‚ÌXÀ•WŽæ“¾ƒ‹[ƒ`ƒ“
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ 	ãƒ•ã‚£ãƒ¼ãƒãƒ¼å‹•ä½œæ™‚ã®Xåº§æ¨™å–å¾—ãƒ«ãƒ¼ãƒãƒ³
  *
- *	@param	cp_maru		ƒ}ƒ‹ƒm[ƒ€ƒf[ƒ^
- *	@param	time		¡‚ÌŽžŠÔ
- *	@param	max_time	ŽžŠÔ‚ÌÅ‘å’l
+ *	@param	cp_maru		ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	time		ä»Šã®æ™‚é–“
+ *	@param	max_time	æ™‚é–“ã®æœ€å¤§å€¤
  *
- *	@return	¡‚ÌŽžŠÔ‚ÌX‰ñ“]Šp“x
+ *	@return	ä»Šã®æ™‚é–“ã®Xå›žè»¢è§’åº¦
  */
 //-----------------------------------------------------------------------------
 static u16 BCT_CLIENT_MarunomuGetRotaX_Fever( const BCT_MARUNOMU* cp_maru, s32 time, s32 max_time )
 {
-	s32 baku_time;	// ƒoƒNƒoƒN‚µ‚Ä‚éŽžŠÔ
+	s32 baku_time;	// ãƒã‚¯ãƒã‚¯ã—ã¦ã‚‹æ™‚é–“
 	s32 rota;
 	
-	//  ŽžŠÔ‚ÌŒo‰ß‚©‚ç¡‚ÌŠp“x‚ðŠ„‚èo‚·
+	//  æ™‚é–“ã®çµŒéŽã‹ã‚‰ä»Šã®è§’åº¦ã‚’å‰²ã‚Šå‡ºã™
 	baku_time = (time - sc_BCT_MARUNOMU_MOVE_STARTTIME[ BCT_MARUNOMU_MOVE_FEVER ]) % BCT_MARUNOMU_BAKUBAKU_ONE_SYNC;
 
-	// ‰ñ“]Šp“x‚Í‚P‰ñmax->min->max‚Æ‚È‚é•K—v‚ª‚ ‚é‚Ì‚Å
-	// ˆÚ“®‹——£‚Í‚Q”{‚È‚Ì‚Ådif*2‚·‚é
+	// å›žè»¢è§’åº¦ã¯ï¼‘å›žmax->min->maxã¨ãªã‚‹å¿…è¦ãŒã‚ã‚‹ã®ã§
+	// ç§»å‹•è·é›¢ã¯ï¼’å€ãªã®ã§dif*2ã™ã‚‹
 	rota = (baku_time * (BCT_MARUNOMU_ROTA_X_DIF*2)) / BCT_MARUNOMU_BAKUBAKU_ONE_SYNC;
 
-	// dif‚æ‚è‘å‚«‚¢‚Æ‚«‚Í%dif‚µ‚½’l‚ðdif‚©‚çˆø‚­
+	// difã‚ˆã‚Šå¤§ãã„ã¨ãã¯%difã—ãŸå€¤ã‚’difã‹ã‚‰å¼•ã
 	if( rota > BCT_MARUNOMU_ROTA_X_DIF ){
 		rota = BCT_MARUNOMU_ROTA_X_DIF - (rota % BCT_MARUNOMU_ROTA_X_DIF);
 	}
 
 	/*
-	// ¡‚Ì‚Ü‚Ü‚¾‚Æmin->max->min‚È‚Ì‚ÅBCT_MARUNOMU_ROTA_X_DIF‚©‚çrota‚ðˆø‚¢‚½’l‚ð
-	// rota‚Æ‚·‚é
+	// ä»Šã®ã¾ã¾ã ã¨min->max->minãªã®ã§BCT_MARUNOMU_ROTA_X_DIFã‹ã‚‰rotaã‚’å¼•ã„ãŸå€¤ã‚’
+	// rotaã¨ã™ã‚‹
 	rota = BCT_MARUNOMU_ROTA_X_DIF - rota;
 
 	OS_TPrintf( "baku_time=%d  rota=%d\n",  baku_time, rota );
@@ -3891,10 +3891,10 @@ static u16 BCT_CLIENT_MarunomuGetRotaX_Fever( const BCT_MARUNOMU* cp_maru, s32 t
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀƒf[ƒ^‚ð’ÊMƒf[ƒ^‚É•ÏX
+ *  @brief  æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’é€šä¿¡ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›´
  *
- *  @param  cp_data     ƒ[ƒN
- *  @param  p_comm      ƒc[ƒVƒ“ƒf[ƒ^Ši”[æ
+ *  @param  cp_data     ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_comm      ãƒ„ãƒ¼ã‚·ãƒ³ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDataToComm( const BCT_NUT_DATA* cp_data, BCT_NUT_COMM* p_comm )
@@ -3913,19 +3913,19 @@ static void BCT_CLIENT_NutsDataToComm( const BCT_NUT_DATA* cp_data, BCT_NUT_COMM
 
 
     /*
-    OS_Printf( "‘Oƒf[ƒ^ power=%x\n", cp_data->power );
-    OS_Printf( "‘Oƒf[ƒ^ x=%x\n", cp_data->mat.x );
-    OS_Printf( "‘Oƒf[ƒ^ y=%x\n", cp_data->mat.y );
-    OS_Printf( "‘Oƒf[ƒ^ z=%x\n", cp_data->mat.z );
+    OS_Printf( "å‰ãƒ‡ãƒ¼ã‚¿ power=%x\n", cp_data->power );
+    OS_Printf( "å‰ãƒ‡ãƒ¼ã‚¿ x=%x\n", cp_data->mat.x );
+    OS_Printf( "å‰ãƒ‡ãƒ¼ã‚¿ y=%x\n", cp_data->mat.y );
+    OS_Printf( "å‰ãƒ‡ãƒ¼ã‚¿ z=%x\n", cp_data->mat.z );
     //*/
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ’ÊMƒf[ƒ^‚ðƒNƒ‰ƒCƒAƒ“ƒg“à‚Ìƒf[ƒ^‚É•ÏŠ·
+ *  @brief  æœ¨ã®å®Ÿé€šä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå†…ã®ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›
  *
- *  @param  cp_comm     ’ÊMƒf[ƒ^
- *  @param  p_data      ƒNƒ‰ƒCƒAƒ“ƒg“àƒf[ƒ^
+ *  @param  cp_comm     é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ *  @param  p_data      ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå†…ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsCommToData( const BCT_NUT_COMM* cp_comm, BCT_NUT_DATA* p_data )
@@ -3942,27 +3942,27 @@ static void BCT_CLIENT_NutsCommToData( const BCT_NUT_COMM* cp_comm, BCT_NUT_DATA
 	p_data->special = cp_comm->special;
 
     /*
-    OS_Printf( "Œãƒf[ƒ^ power=%x\n", p_data->power );
-    OS_Printf( "Œãƒf[ƒ^ x=%x\n", p_data->mat.x );
-    OS_Printf( "Œãƒf[ƒ^ y=%x\n", p_data->mat.y );
-    OS_Printf( "Œãƒf[ƒ^ z=%x\n", p_data->mat.z );
+    OS_Printf( "å¾Œãƒ‡ãƒ¼ã‚¿ power=%x\n", p_data->power );
+    OS_Printf( "å¾Œãƒ‡ãƒ¼ã‚¿ x=%x\n", p_data->mat.x );
+    OS_Printf( "å¾Œãƒ‡ãƒ¼ã‚¿ y=%x\n", p_data->mat.y );
+    OS_Printf( "å¾Œãƒ‡ãƒ¼ã‚¿ z=%x\n", p_data->mat.z );
     //*/
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀÝ’è
+ *  @brief  æœ¨ã®å®Ÿè¨­å®š
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  cp_data     Ý’èƒf[ƒ^
- *  @param  seq         Ý’è‚·‚éƒV[ƒPƒ“ƒX
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_data     è¨­å®šãƒ‡ãƒ¼ã‚¿
+ *  @param  seq         è¨­å®šã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */ 
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsSet( BCT_CLIENT* p_wk, const BCT_NUT_DATA* cp_data, u32 seq )
 {
     int i;
 
-    // ‹ó‚¢‚Ä‚¢‚é‚Æ‚±‚ë‚É“ü‚ê‚é
+    // ç©ºã„ã¦ã„ã‚‹ã¨ã“ã‚ã«å…¥ã‚Œã‚‹
     for( i=0; i<BCT_NUTSBUFF_NUM; i++ ){
         
         if( p_wk->nuts[i].seq == BCT_NUTSSEQ_NONE ){
@@ -3982,18 +3982,18 @@ static void BCT_CLIENT_NutsSet( BCT_CLIENT* p_wk, const BCT_NUT_DATA* cp_data, u
         }
     }
     
-    // ƒoƒbƒtƒ@[ƒI[ƒo[‚µ‚½ê‡Ž©•ª‚Ìƒf[ƒ^‚È‚ç‹­§“I‚É“ü‚ê‚é
+    // ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚ªãƒ¼ãƒãƒ¼ã—ãŸå ´åˆè‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ãªã‚‰å¼·åˆ¶çš„ã«å…¥ã‚Œã‚‹
     if( seq == BCT_NUTSSEQ_MOVE ){
         for( i=0; i<BCT_NUTSBUFF_NUM; i++ ){
             
             if( ( p_wk->nuts[i].seq == BCT_NUTSSEQ_MOVEOTHER ) ||
 				( p_wk->nuts[i].seq == BCT_NUTSSEQ_MOVEAWAY ) ){
 
-                // ƒf[ƒ^‚ðÁ‚·
+                // ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
                 BCT_CLIENT_NutsDrawSysEnd( &p_wk->graphic, &p_wk->nuts[i] );
                 BCT_CLIENT_NutsDel( &p_wk->nuts[i] );
                 
-                // Ý’è
+                // è¨­å®š
                 p_wk->nuts[i].data = *cp_data;
                 p_wk->nuts[i].seq = seq;
                 p_wk->nuts[i].mat = cp_data->mat;
@@ -4011,37 +4011,37 @@ static void BCT_CLIENT_NutsSet( BCT_CLIENT* p_wk, const BCT_NUT_DATA* cp_data, u
             }
         }
 
-        // ‚»‚ê‚Å‚à‚Í‚¢‚ç‚È‚¢‚Ì‚©H
+        // ãã‚Œã§ã‚‚ã¯ã„ã‚‰ãªã„ã®ã‹ï¼Ÿ
         GF_ASSERT(0);
     }
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ“®ìI—¹
+ *  @brief  æœ¨ã®å®Ÿå‹•ä½œçµ‚äº†
  *
- *  @param  p_data      ƒ[ƒN
- *  @param  in_flag     Œû‚É‚Í‚¢‚Á‚½‚©
- *  @param	bonus		ƒ{[ƒiƒX
+ *  @param  p_data      ãƒ¯ãƒ¼ã‚¯
+ *  @param  in_flag     å£ã«ã¯ã„ã£ãŸã‹
+ *  @param	bonus		ãƒœãƒ¼ãƒŠã‚¹
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsEnd( BCT_CLIENT* p_wk, BCT_CLIENT_NUTS* p_data, BOOL in_flag, u32 bonus )
 {
-    // I—¹ƒtƒ‰ƒO‚ð—§‚Ä‚é
+    // çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
     p_data->end_flag = TRUE;
     
-    // “ü‚Á‚½ƒtƒ‰ƒO‚ðÝ’è
+    // å…¥ã£ãŸãƒ•ãƒ©ã‚°ã‚’è¨­å®š
     p_data->data.in_flag = in_flag;
 
-    // “ü‚Á‚½‚Æ‚«‚Ìƒ{[ƒiƒX
+    // å…¥ã£ãŸã¨ãã®ãƒœãƒ¼ãƒŠã‚¹
     p_data->data.bonus = bonus;
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀƒf[ƒ^”jŠü
+ *  @brief  æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *  
- *  @param  p_data  ƒ[ƒN
+ *  @param  p_data  ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDel( BCT_CLIENT_NUTS* p_data )
@@ -4055,9 +4055,9 @@ static void BCT_CLIENT_NutsDel( BCT_CLIENT_NUTS* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ[ƒN
+ *  @brief  ãƒ¯ãƒ¼ã‚¯
  *
- *  @param  p_wk    –Ø‚ÌŽÀ“®ì
+ *  @param  p_wk    æœ¨ã®å®Ÿå‹•ä½œ
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_AllNutsMove( BCT_CLIENT* p_wk )
@@ -4065,7 +4065,7 @@ static void BCT_CLIENT_AllNutsMove( BCT_CLIENT* p_wk )
     int i;
 
     for( i=0; i<BCT_NUTSBUFF_NUM; i++ ){
-        // “®ì‚³‚¹‚é
+        // å‹•ä½œã•ã›ã‚‹
 		if( (p_wk->nuts[i].seq == BCT_NUTSSEQ_MOVE) ||
 	        (p_wk->nuts[i].seq == BCT_NUTSSEQ_MOVEOTHER) ){
 	        BCT_CLIENT_NutsMove( p_wk, &p_wk->nuts[i] );
@@ -4081,10 +4081,10 @@ static void BCT_CLIENT_AllNutsMove( BCT_CLIENT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ‚Ð‚Æ‚Â‚Ð‚Æ‚Â‚Ì“®ì
+ *  @brief  æœ¨ã®å®Ÿã²ã¨ã¤ã²ã¨ã¤ã®å‹•ä½œ
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  p_nuts      –Ø‚ÌŽÀ
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_nuts      æœ¨ã®å®Ÿ
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsMove( BCT_CLIENT* p_wk, BCT_CLIENT_NUTS* p_nuts )
@@ -4096,23 +4096,23 @@ static void BCT_CLIENT_NutsMove( BCT_CLIENT* p_wk, BCT_CLIENT_NUTS* p_nuts )
 	fx32 tmp_y;
 	u32 last_seq;
     
-    // “®ì‚·‚é•K—v‚ª‚ ‚é‚©H
+    // å‹•ä½œã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ï¼Ÿ
     if( (p_nuts->seq != BCT_NUTSSEQ_MOVE) &&
         (p_nuts->seq != BCT_NUTSSEQ_MOVEOTHER) ){
         return ;
     }
 
-	// YÀ•W‚ð•Û‘¶
+	// Yåº§æ¨™ã‚’ä¿å­˜
 	tmp_y = p_nuts->mat.y;
 
-	// ƒV[ƒPƒ“ƒX•Û‘¶
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿å­˜
 	last_seq = p_nuts->seq;
 
-    // ‹ó‹C’ïR‚ð‰Á‚¦‚½—Í‚ðŒvŽZ
+    // ç©ºæ°—æŠµæŠ—ã‚’åŠ ãˆãŸåŠ›ã‚’è¨ˆç®—
 	BCT_CLIENT_NutsMoveGet( p_nuts, &move );
 
     if( p_nuts->seq == BCT_NUTSSEQ_MOVE ){
-        // Œû‚Æ‚Ì“–‚½‚è”»’è
+        // å£ã¨ã®å½“ãŸã‚Šåˆ¤å®š
         result = BCT_CLIENT_MarunomuMouthHitCheck( &p_wk->marunomu, 
                 &p_nuts->mat, &move, &inryoku );
     }else{
@@ -4125,20 +4125,20 @@ static void BCT_CLIENT_NutsMove( BCT_CLIENT* p_wk, BCT_CLIENT_NUTS* p_nuts )
     }
 #endif
 
-    // ˆÚ“®æŒvŽZ
+    // ç§»å‹•å…ˆè¨ˆç®—
 	BCT_CLIENT_NutsMatrixMove( p_nuts, &move );
 
-    // ˆø—Í•â³
+    // å¼•åŠ›è£œæ­£
     if( (result == BCT_MARUNOMU_MOUTH_HIT_NEAR) || (result == BCT_MARUNOMU_MOUTH_HIT_OK) ){
 		BCT_CLIENT_NutsMatrixMove( p_nuts, &inryoku );
     }
 
-    // ƒJƒEƒ“ƒg
+    // ã‚«ã‚¦ãƒ³ãƒˆ
     p_nuts->count ++;
 
 //  OS_Printf( "nuts move   x=0x%x y=0x%x z=0x%x\n", p_nuts->mat.x, p_nuts->mat.y, p_nuts->mat.z );
 
-    // ˆÚ“®æ‚ªŒû‚É“ü‚Á‚½‚©ƒ`ƒFƒbƒN
+    // ç§»å‹•å…ˆãŒå£ã«å…¥ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
     if( result == BCT_MARUNOMU_MOUTH_HIT_OK ){
 #ifdef PM_DEBUG
 		BCT_DEBUG_in_num ++;
@@ -4165,33 +4165,33 @@ static void BCT_CLIENT_NutsMove( BCT_CLIENT* p_wk, BCT_CLIENT_NUTS* p_nuts )
 			break;
 		}
 
-		// Œû‚Í‚¢‚è“®ìŠJŽn
+		// å£ã¯ã„ã‚Šå‹•ä½œé–‹å§‹
 		BCT_CLIENT_NutsInMoveStart( p_nuts, p_wk );
 
-        // ƒXƒRƒAƒGƒtƒFƒNƒg‚ðo‚·
+        // ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™
         BCT_CLIENT_ScoreEffectStart( &p_wk->graphic.score_effect, p_wk->plno, p_wk->bonus, p_wk->move_type );
 
-		// ƒ{[ƒiƒXƒJƒEƒ“ƒ^
+		// ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ã‚¿
 		if( p_wk->bonus < BCT_NUTS_BONUS_COUNT_MAX ){
 			p_wk->bonus ++; 
 
 		}
 
-		// –Ø‚ÌŽÀƒJƒEƒ“ƒ^‚ðo‚·‚©ƒ`ƒFƒbƒN
+		// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ã‚’å‡ºã™ã‹ãƒã‚§ãƒƒã‚¯
 		if( p_wk->bonus == BCT_NUTS_COUNT_START_BONUS_NUM ){
 			BCT_CLIENT_NUTS_COUNT_Start( &p_wk->graphic.nutscount, &p_wk->graphic, p_wk->bonus );
 		}else{
-			// –Ø‚ÌŽÀƒJƒEƒ“ƒ^’lÝ’è
+			// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿å€¤è¨­å®š
 			BCT_CLIENT_NUTS_COUNT_SetData( &p_wk->graphic.nutscount, &p_wk->graphic, p_wk->bonus );
 		}
 
     }else{
 		bounus_del = FALSE;
 
-		// ƒ}ƒ‹ƒm[ƒ€‚Æ‚Ì“–‚½‚è”»’è
+		// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã¨ã®å½“ãŸã‚Šåˆ¤å®š
 		result = BCT_CLIENT_MarunomuBodyHitCheck( &p_wk->marunomu, &p_nuts->mat );
 		if( result == TRUE ){
-			// ƒ{[ƒiƒXƒJƒEƒ“ƒ^‚ð”jŠü
+			// ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ã‚¿ã‚’ç ´æ£„
 			bounus_del = TRUE;
 
 
@@ -4201,46 +4201,46 @@ static void BCT_CLIENT_NutsMove( BCT_CLIENT* p_wk, BCT_CLIENT_NUTS* p_nuts )
 			
 			BCT_CLIENT_NutsAwayStart( p_nuts, p_wk, TRUE );
 		}
-		//	’n–Ê‚É‚¨‚¿‚½‚©ƒ`ƒFƒbƒN
+		//	åœ°é¢ã«ãŠã¡ãŸã‹ãƒã‚§ãƒƒã‚¯
 		else if( p_nuts->mat.y <= BCT_FIELD_MIN ){
 			
-			// —Ž‚¿‚½ˆÊ’u‚ªa‚È‚ç”jŠü
+			// è½ã¡ãŸä½ç½®ãŒæºãªã‚‰ç ´æ£„
 			result = BCT_CLIENT_NutsAwayDitchHitCheck( p_nuts );
 			if( result == FALSE ){
-				// ƒ{[ƒiƒXƒJƒEƒ“ƒ^‚ð”jŠü
+				// ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ã‚¿ã‚’ç ´æ£„
 				bounus_del = TRUE;
 
-				if( tmp_y <= BCT_FIELD_MIN ){	//@aˆÈŠO‚ÅAˆÈ‘O‚ÌYÀ•W‚ªBCT_FIELD_MINˆÈ‰º‚È‚ç”jŠü
+				if( tmp_y <= BCT_FIELD_MIN ){	//ã€€æºä»¥å¤–ã§ã€ä»¥å‰ã®Yåº§æ¨™ãŒBCT_FIELD_MINä»¥ä¸‹ãªã‚‰ç ´æ£„
 					BCT_CLIENT_NutsEnd( p_wk, p_nuts, FALSE, p_wk->bonus );
 				}else{
 					BCT_CLIENT_NutsAwayStart( p_nuts, p_wk, FALSE );
 				}
 			}else if( p_nuts->mat.y <= BCT_NUTS_AWAYPOWER_DITCHMUL ){
-				// ƒ{[ƒiƒXƒJƒEƒ“ƒ^‚ð”jŠü
+				// ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ã‚¿ã‚’ç ´æ£„
 				bounus_del = TRUE;
 				BCT_CLIENT_NutsEnd( p_wk, p_nuts, FALSE, p_wk->bonus );
 			}
 		}else{
-			// ŠO•Ç‚Æ‚Ì“–‚½‚è”»’è
+			// å¤–å£ã¨ã®å½“ãŸã‚Šåˆ¤å®š
 			result = BCT_CLIENT_NutsAwayBlockHitCheck( p_nuts );
 			if( result == TRUE ){
 
 				bounus_del = TRUE;
 
-				// •Ç‚É“–‚½‚é‘O‚ÉÀ•W‚ÉˆÚ“®‚·‚é
+				// å£ã«å½“ãŸã‚‹å‰ã«åº§æ¨™ã«ç§»å‹•ã™ã‚‹
 				VEC_Subtract( &p_nuts->mat, &move, &p_nuts->mat );
 				
-				// —Í‚ð‚È‚­‚µ‚Ä—Ž‚¿‚Ä‚¢‚­`
+				// åŠ›ã‚’ãªãã—ã¦è½ã¡ã¦ã„ãã€œ
 				BCT_CLIENT_NutsAwayStartPowerReq( p_nuts, p_wk, TRUE, BCT_NUTS_AWAYPOWER_DITCHMUL, FALSE );
 
 			}
 		}
 
-		// ƒ{[ƒiƒXƒf[ƒ^”jŠü
+		// ãƒœãƒ¼ãƒŠã‚¹ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		if( (bounus_del == TRUE) && (last_seq == BCT_NUTSSEQ_MOVE) ){
 			p_wk->bonus = 0;
 
-			// –Ø‚ÌŽÀƒJƒEƒ“ƒ^ƒNƒŠƒA
+			// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ã‚¯ãƒªã‚¢
 			BCT_CLIENT_NUTS_COUNT_End( &p_wk->graphic.nutscount );
 		}
     }
@@ -4248,9 +4248,9 @@ static void BCT_CLIENT_NutsMove( BCT_CLIENT* p_wk, BCT_CLIENT_NUTS* p_nuts )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ‚·‚×‚Ä‚Ì–Ø‚ÌŽÀ‚ÌI—¹ŠÇ—
+ *  @brief  ã™ã¹ã¦ã®æœ¨ã®å®Ÿã®çµ‚äº†ç®¡ç†
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_AllNutsEndCont( BCT_CLIENT* p_wk )
@@ -4264,9 +4264,9 @@ static void BCT_CLIENT_AllNutsEndCont( BCT_CLIENT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚·‚×‚Ä‚Ì–Ø‚ÌŽÀ‚ÌI—¹ŠÇ—	‘—Mƒf[ƒ^‚Í•K‚¸‚È‚µ
+ *	@brief	ã™ã¹ã¦ã®æœ¨ã®å®Ÿã®çµ‚äº†ç®¡ç†	é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã¯å¿…ãšãªã—
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_AllNutsEndContAllDel( BCT_CLIENT* p_wk )
@@ -4283,37 +4283,37 @@ static void BCT_CLIENT_AllNutsEndContAllDel( BCT_CLIENT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ‚ÌI—¹ŠÇ—
+ *  @brief  æœ¨ã®å®Ÿã®çµ‚äº†ç®¡ç†
  *  
- *  @param  p_nuts  ƒ[ƒN
+ *  @param  p_nuts  ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsEndCont( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk )
 {
     if( p_nuts->end_flag ){
         if( (p_nuts->seq == BCT_NUTSSEQ_INMOVE) && (p_nuts->data.in_flag == TRUE) ){
-            p_nuts->seq = BCT_NUTSSEQ_END;  // ‘—Mƒf[ƒ^‚É‚·‚é
+            p_nuts->seq = BCT_NUTSSEQ_END;  // é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã«ã™ã‚‹
         }else{
-            //ƒf[ƒ^‚ðÁ‚·
+            //ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
             BCT_CLIENT_NutsDel( p_nuts );
         }
-        // •\Ž¦I—¹
+        // è¡¨ç¤ºçµ‚äº†
         BCT_CLIENT_NutsDrawSysEnd( &p_wk->graphic, p_nuts );
     }
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ“®ì•û–@‚ð‘¼l—p‚É•ÏX‚·‚é
+ *  @brief  æœ¨ã®å®Ÿå‹•ä½œæ–¹æ³•ã‚’ä»–äººç”¨ã«å¤‰æ›´ã™ã‚‹
  *
- *  @param  p_wk        ƒ[ƒN
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsSeqOtherChange( BCT_CLIENT* p_wk )
 {
     int i;
 
-    // “®ìƒV[ƒPƒ“ƒX‚ð•ÏX‚·‚é
+    // å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
     for( i=0; i<BCT_NUTSBUFF_NUM; i++ ){
         
         if( (p_wk->nuts[i].seq == BCT_NUTSSEQ_MOVE) ){
@@ -4324,12 +4324,12 @@ static void BCT_CLIENT_NutsSeqOtherChange( BCT_CLIENT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  “®‚¢‚Ä‚¢‚é–Ø‚ÌŽÀ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *  @brief  å‹•ã„ã¦ã„ã‚‹æœ¨ã®å®ŸãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *  @param  cp_wk   ƒ[ƒN
+ *  @param  cp_wk   ãƒ¯ãƒ¼ã‚¯
  *
- *  @retval TRUE    “®‚¢‚Ä‚¢‚é–Ø‚ÌŽÀ‚ª‚ ‚é
- *  @retval FALSE   “®‚¢‚Ä‚¢‚é–Ø‚ÌŽÀ‚Í‚È‚¢
+ *  @retval TRUE    å‹•ã„ã¦ã„ã‚‹æœ¨ã®å®ŸãŒã‚ã‚‹
+ *  @retval FALSE   å‹•ã„ã¦ã„ã‚‹æœ¨ã®å®Ÿã¯ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_NutsMoveCheck( const BCT_CLIENT* cp_wk )
@@ -4350,17 +4350,17 @@ static BOOL BCT_CLIENT_NutsMoveCheck( const BCT_CLIENT* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚Ìƒpƒ[‚ðŽæ“¾‚·‚é
+ *	@brief	ä»Šã®ãƒ‘ãƒ¯ãƒ¼ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_nuts		–Ø‚ÌŽÀ
+ *	@param	cp_nuts		æœ¨ã®å®Ÿ
  *
- *	@return	ƒpƒ[
+ *	@return	ãƒ‘ãƒ¯ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static fx32 BCT_CLIENT_NutsNowPowerGet( const BCT_CLIENT_NUTS* cp_nuts )
 {
     fx32 power_num;
-    // ‹ó‹C’ïR‚ð‰Á‚¦‚½—Í‚ðŒvŽZ
+    // ç©ºæ°—æŠµæŠ—ã‚’åŠ ãˆãŸåŠ›ã‚’è¨ˆç®—
     power_num = cp_nuts->data.power - FX_Mul( BCT_NUTS_POWER_RES, cp_nuts->count*FX32_ONE );
     if( power_num < 0 ){
         power_num = 0;
@@ -4370,10 +4370,10 @@ static fx32 BCT_CLIENT_NutsNowPowerGet( const BCT_CLIENT_NUTS* cp_nuts )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚Ì–Ø‚ÌŽÀ‚ÌˆÚ“®‚·‚é’l‚ðŽæ“¾‚·‚é
+ *	@brief	ä»Šã®æœ¨ã®å®Ÿã®ç§»å‹•ã™ã‚‹å€¤ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_nuts		–Ø‚ÌŽÀƒ[ƒN
- *	@param	p_move		ˆÚ“®‚·‚é’l
+ *	@param	cp_nuts		æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯
+ *	@param	p_move		ç§»å‹•ã™ã‚‹å€¤
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsMoveGet( const BCT_CLIENT_NUTS* cp_nuts, VecFx32* p_move )
@@ -4381,23 +4381,23 @@ static void BCT_CLIENT_NutsMoveGet( const BCT_CLIENT_NUTS* cp_nuts, VecFx32* p_m
     fx32 power_num;
     VecFx32 move;
 
-    // ‹ó‹C’ïR‚ð‰Á‚¦‚½—Í‚ðŒvŽZ
+    // ç©ºæ°—æŠµæŠ—ã‚’åŠ ãˆãŸåŠ›ã‚’è¨ˆç®—
     power_num = BCT_CLIENT_NutsNowPowerGet( cp_nuts );
 
-    // Œ»Ý‚ÌÀ•W‚ðŽæ“¾‚·‚é
-    p_move->x = FX_Mul( cp_nuts->data.way.x, power_num );   // ‘¬“x
-    p_move->y = FX_Mul( cp_nuts->data.way.y, power_num );   // ‘¬“x
+    // ç¾åœ¨ã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹
+    p_move->x = FX_Mul( cp_nuts->data.way.x, power_num );   // é€Ÿåº¦
+    p_move->y = FX_Mul( cp_nuts->data.way.y, power_num );   // é€Ÿåº¦
     p_move->y += FX_Mul( BCT_NUTS_POWER_G, cp_nuts->count*FX32_ONE );   // G
-    p_move->z = FX_Mul( cp_nuts->data.way.z, power_num );   // ‘¬“x
+    p_move->z = FX_Mul( cp_nuts->data.way.z, power_num );   // é€Ÿåº¦
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀ‰æ–ÊŠOƒtƒbƒg‚Î‚µ
+ *	@brief	æœ¨ã®å®Ÿç”»é¢å¤–ãƒ•ãƒƒãƒˆã°ã—
  *
- *	@param	p_nuts		–Ø‚ÌŽÀƒ[ƒN
- *	@param	p_wk		ƒNƒ‰ƒCƒAƒ“ƒgƒ[ƒN
+ *	@param	p_nuts		æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsAwayStart( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk, BOOL maru_hit )
@@ -4416,13 +4416,13 @@ static void BCT_CLIENT_NutsAwayStart( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—Í”{—¦Žw’èƒo[ƒWƒ‡ƒ“
+ *	@brief	åŠ›å€çŽ‡æŒ‡å®šãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *
- *	@param	p_nuts		–Ø‚ÌŽÀ
- *	@param	p_wk		ƒ[ƒN
- *	@param	maru_hit	ƒ}ƒ‹ƒm[ƒ€–”‚ÍAáŠQ•¨‚É“–‚½‚Á‚½‚Ì‚©
- *	@param	mul_power	‚©‚¯‚éƒpƒ[
- *	@param	move_size	ƒTƒCƒh‚ÉØ‚ê‚Ä‚¢‚­‚©H
+ *	@param	p_nuts		æœ¨ã®å®Ÿ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	maru_hit	ãƒžãƒ«ãƒŽãƒ¼ãƒ åˆã¯ã€éšœå®³ç‰©ã«å½“ãŸã£ãŸã®ã‹
+ *	@param	mul_power	ã‹ã‘ã‚‹ãƒ‘ãƒ¯ãƒ¼
+ *	@param	move_size	ã‚µã‚¤ãƒ‰ã«åˆ‡ã‚Œã¦ã„ãã‹ï¼Ÿ
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsAwayStartPowerReq( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk, BOOL maru_hit, fx32 mul_power, BOOL move_side )
@@ -4432,7 +4432,7 @@ static void BCT_CLIENT_NutsAwayStartPowerReq( BCT_CLIENT_NUTS* p_nuts, BCT_CLIEN
     VecFx32 move;
 	u32 rand;
 	
-	// ƒ}ƒ‹ƒm[ƒ€‚É‚ ‚½‚Á‚Ä‚¢‚½‚çway‚ð”½“]‚³‚¹‚é
+	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã«ã‚ãŸã£ã¦ã„ãŸã‚‰wayã‚’åè»¢ã•ã›ã‚‹
 	if( maru_hit ){
 		p_nuts->data.way.x = -p_nuts->data.way.x;
 		p_nuts->data.way.z = -p_nuts->data.way.z;
@@ -4441,17 +4441,17 @@ static void BCT_CLIENT_NutsAwayStartPowerReq( BCT_CLIENT_NUTS* p_nuts, BCT_CLIEN
 
 			rand  = gf_mtRand();
 			
-			// ‚¿‚å‚Á‚Æ•ûŒü‚ð‚ä‚ª‚Ü‚·	o—ˆ‚é‚¾‚¯‰¡‚ÉØ‚ê‚Ä‚¢‚­	•’Ê‰¡‚Í¬‚³‚¢‚Ì‚Å¬‚³‚¢‚Ù‚¤‚ð‘å‚«‚­‚µ‚¿‚á‚¤
+			// ã¡ã‚‡ã£ã¨æ–¹å‘ã‚’ã‚†ãŒã¾ã™	å‡ºæ¥ã‚‹ã ã‘æ¨ªã«åˆ‡ã‚Œã¦ã„ã	æ™®é€šæ¨ªã¯å°ã•ã„ã®ã§å°ã•ã„ã»ã†ã‚’å¤§ããã—ã¡ã‚ƒã†
 			if( MATH_ABS( p_nuts->data.way.x ) <= MATH_ABS( p_nuts->data.way.z ) ){
 				power = FX_Mul( p_nuts->data.way.z, BCT_NUTS_AWAYWAY_MUL );
-				if( (rand % 2) == 1 ){	// ‹öŠï”‚Å•ûŒü‚ð•Ï‚¦‚¿‚á‚¤@‚±‚Ì•Ó‚Í“K“–‚ÅOK
+				if( (rand % 2) == 1 ){	// é‡å¥‡æ•°ã§æ–¹å‘ã‚’å¤‰ãˆã¡ã‚ƒã†ã€€ã“ã®è¾ºã¯é©å½“ã§OK
 					p_nuts->data.way.x = -power;
 				}else{
 					p_nuts->data.way.x = power;
 				}
 			}else{
 				power = FX_Mul( p_nuts->data.way.x, BCT_NUTS_AWAYWAY_MUL );
-				if( (rand % 2) == 1 ){	// ‹öŠï”‚Å•ûŒü‚ð•Ï‚¦‚¿‚á‚¤@‚±‚Ì•Ó‚Í“K“–‚ÅOK
+				if( (rand % 2) == 1 ){	// é‡å¥‡æ•°ã§æ–¹å‘ã‚’å¤‰ãˆã¡ã‚ƒã†ã€€ã“ã®è¾ºã¯é©å½“ã§OK
 					p_nuts->data.way.z = -power;
 				}else{
 					p_nuts->data.way.z = power;
@@ -4460,21 +4460,21 @@ static void BCT_CLIENT_NutsAwayStartPowerReq( BCT_CLIENT_NUTS* p_nuts, BCT_CLIEN
 		}
 	}
 
-	// ƒpƒ[‚à‚©‚¦‚é
+	// ãƒ‘ãƒ¯ãƒ¼ã‚‚ã‹ãˆã‚‹
 	p_nuts->data.power = FX_Mul( p_nuts->data.power, mul_power );
 
-	// “®ìƒJƒEƒ“ƒ^‚ð‚P‚É–ß‚·	‚O‚¾‚ÆˆÚ“®‚µ‚½’l‚ª¬‚³‚·‚¬‚ÄA’µ‚Ë•Ô‚è‚«‚ç‚È‚¢ê‡‚ª‚ ‚é‚Ì‚Å‚P‚É‚·‚é
+	// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿ã‚’ï¼‘ã«æˆ»ã™	ï¼ã ã¨ç§»å‹•ã—ãŸå€¤ãŒå°ã•ã™ãŽã¦ã€è·³ã­è¿”ã‚Šãã‚‰ãªã„å ´åˆãŒã‚ã‚‹ã®ã§ï¼‘ã«ã™ã‚‹
 	p_nuts->count = 0;
 
-	// ƒV[ƒPƒ“ƒX‚ð•ÏX
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´
 	p_nuts->seq = BCT_NUTSSEQ_MOVEAWAY;
 
 
-	// 1‰ñ“®‚©‚·
-    // ‹ó‹C’ïR‚ð‰Á‚¦‚½—Í‚ðŒvŽZ
+	// 1å›žå‹•ã‹ã™
+    // ç©ºæ°—æŠµæŠ—ã‚’åŠ ãˆãŸåŠ›ã‚’è¨ˆç®—
 	BCT_CLIENT_NutsMoveGet( p_nuts, &move );
 
-    // ˆÚ“®æŒvŽZ
+    // ç§»å‹•å…ˆè¨ˆç®—
 	BCT_CLIENT_NutsMatrixMove( p_nuts, &move );
 
     p_nuts->count ++;
@@ -4482,10 +4482,10 @@ static void BCT_CLIENT_NutsAwayStartPowerReq( BCT_CLIENT_NUTS* p_nuts, BCT_CLIEN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀ‰æ–Ê‚ªƒtƒbƒg‚Î‚µ@ƒƒCƒ“
+ *	@brief	æœ¨ã®å®Ÿç”»é¢ãŒãƒ•ãƒƒãƒˆã°ã—ã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_nuts		–Ø‚ÌŽÀƒ[ƒN	
- *	@param	p_wk		ƒNƒ‰ƒCƒAƒ“ƒgƒ[ƒN
+ *	@param	p_nuts		æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯	
+ *	@param	p_wk		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsAwayMove( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk )
@@ -4495,72 +4495,72 @@ static void BCT_CLIENT_NutsAwayMove( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk )
 	BOOL nutsdel = FALSE;
 	fx32 tmp_y;
 
-    // “®ì‚·‚é•K—v‚ª‚ ‚é‚©H
+    // å‹•ä½œã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ï¼Ÿ
     if( (p_nuts->seq != BCT_NUTSSEQ_MOVEAWAY) ){
         return ;
     }
 
-	// yÀ•W
+	// yåº§æ¨™
 	tmp_y = p_nuts->mat.y;
 
-    // ‹ó‹C’ïR‚ð‰Á‚¦‚½—Í‚ðŒvŽZ
+    // ç©ºæ°—æŠµæŠ—ã‚’åŠ ãˆãŸåŠ›ã‚’è¨ˆç®—
 	BCT_CLIENT_NutsMoveGet( p_nuts, &move );
 
-    // ˆÚ“®æŒvŽZ
+    // ç§»å‹•å…ˆè¨ˆç®—
 	BCT_CLIENT_NutsMatrixMove( p_nuts, &move );
 
     p_nuts->count ++;
 
-	// ƒ}ƒ‹ƒm[ƒ€‚Æ“–‚½‚è”»’è
+	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã¨å½“ãŸã‚Šåˆ¤å®š
 	result = BCT_CLIENT_MarunomuBodyHitCheck( &p_wk->marunomu, &p_nuts->mat );
 	if( result == TRUE ){
-		// ’µ‚Ë•Ô‚è
+		// è·³ã­è¿”ã‚Š
 		BCT_CLIENT_NutsAwayStart( p_nuts, p_wk, TRUE );
 	}else{
 
-		// ’n–Ê‚É—Ž‚¿‚½‚ç‚³‚ç‚É’µ‚Ë•Ô‚è
+		// åœ°é¢ã«è½ã¡ãŸã‚‰ã•ã‚‰ã«è·³ã­è¿”ã‚Š
 		if( p_nuts->mat.y <= BCT_FIELD_MIN ){
 
-			// °”²‚¯ƒ`ƒFƒbƒN
+			// åºŠæŠœã‘ãƒã‚§ãƒƒã‚¯
 			result = BCT_CLIENT_NutsAwayDitchHitCheck( p_nuts );
 
-			if( result == FALSE ){	// °‚ª‚ ‚é‚È‚ç’µ‚Ë•Ô‚é
+			if( result == FALSE ){	// åºŠãŒã‚ã‚‹ãªã‚‰è·³ã­è¿”ã‚‹
 				if( tmp_y <= BCT_FIELD_MIN ){
-					// ”jŠüˆ—‚Ö
+					// ç ´æ£„å‡¦ç†ã¸
 					nutsdel = TRUE;
 				}else{
 					BCT_CLIENT_NutsAwayStart( p_nuts, p_wk, FALSE );
 				}
 			}else if( p_nuts->mat.y <= BCT_FIELD_Y_DEL ){
-				// ”jŠüˆ—‚Ö
+				// ç ´æ£„å‡¦ç†ã¸
 				nutsdel = TRUE;
 			}
 
-			// —Í‚ª‚È‚­‚È‚Á‚½‚çƒIƒƒŠ
+			// åŠ›ãŒãªããªã£ãŸã‚‰ã‚ªãƒ¯ãƒª
 			if( p_nuts->data.power <= BCT_NUTS_AWAYDEL_POWER2 ){
 				nutsdel = TRUE;
 			}
 
 		}else{
-			// ŠO•Ç‚Æ‚Ì“–‚½‚è”»’è
+			// å¤–å£ã¨ã®å½“ãŸã‚Šåˆ¤å®š
 			result = BCT_CLIENT_NutsAwayBlockHitCheck( p_nuts );
 			if( result == TRUE ){
-				// •Ç‚É“–‚½‚é‘O‚ÉÀ•W‚ÉˆÚ“®‚·‚é
+				// å£ã«å½“ãŸã‚‹å‰ã«åº§æ¨™ã«ç§»å‹•ã™ã‚‹
 				VEC_Subtract( &p_nuts->mat, &move, &p_nuts->mat );
 				
-				// —Í‚ð‚È‚­‚µ‚Ä—Ž‚¿‚Ä‚¢‚­`
+				// åŠ›ã‚’ãªãã—ã¦è½ã¡ã¦ã„ãã€œ
 				BCT_CLIENT_NutsAwayStartPowerReq( p_nuts, p_wk, TRUE, BCT_NUTS_AWAYPOWER_DITCHMUL, FALSE );
 
 			}
 		}
 	}
 
-	// —Í‚ª‚È‚­‚È‚Á‚½‚çƒIƒƒŠ
+	// åŠ›ãŒãªããªã£ãŸã‚‰ã‚ªãƒ¯ãƒª
 	if( p_nuts->data.power <= BCT_NUTS_AWAYDEL_POWER ){
 		nutsdel = TRUE;
 	}
 
-	// ‚¨‚í‚èƒ`ƒFƒbƒN
+	// ãŠã‚ã‚Šãƒã‚§ãƒƒã‚¯
 	if( nutsdel == TRUE ){
 		BCT_CLIENT_NutsEnd( p_wk, p_nuts, FALSE, p_wk->bonus );
 	}
@@ -4569,12 +4569,12 @@ static void BCT_CLIENT_NutsAwayMove( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	a‚Éƒ{[ƒ‹‚ª‚Í‚¢‚Á‚½‚©ƒ`ƒFƒbƒN
+ *	@brief	æºã«ãƒœãƒ¼ãƒ«ãŒã¯ã„ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_nuts		–Ø‚ÌŽÀ
+ *	@param	cp_nuts		æœ¨ã®å®Ÿ
  *
- *	@retval	TRUE	“ü‚Á‚½
- *	@retval	FALSE	“ü‚ç‚È‚¢
+ *	@retval	TRUE	å…¥ã£ãŸ
+ *	@retval	FALSE	å…¥ã‚‰ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_NutsAwayDitchHitCheck( const BCT_CLIENT_NUTS* cp_nuts )
@@ -4588,12 +4588,12 @@ static BOOL BCT_CLIENT_NutsAwayDitchHitCheck( const BCT_CLIENT_NUTS* cp_nuts )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒ‹ƒm[ƒ€‚ÌƒGƒŠƒA‚Éƒ{[ƒ‹‚ª‚Í‚¢‚Á‚½‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®ã‚¨ãƒªã‚¢ã«ãƒœãƒ¼ãƒ«ãŒã¯ã„ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_nuts			–Ø‚ÌŽÀ
+ *	@param	cp_nuts			æœ¨ã®å®Ÿ
  *
- *	@retval	TRUE	“ü‚Á‚½
- *	@retval	FALSE	“ü‚ç‚È‚¢
+ *	@retval	TRUE	å…¥ã£ãŸ
+ *	@retval	FALSE	å…¥ã‚‰ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_NutsAwayMarunomuHitCheck( const BCT_CLIENT_NUTS* cp_nuts )
@@ -4606,12 +4606,12 @@ static BOOL BCT_CLIENT_NutsAwayMarunomuHitCheck( const BCT_CLIENT_NUTS* cp_nuts 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠO•Ç‚Æ‚Ì“–‚½‚è”»’è
+ *	@brief	å¤–å£ã¨ã®å½“ãŸã‚Šåˆ¤å®š
  *
- *	@param	p_nuts		–Ø‚ÌŽÀ
+ *	@param	p_nuts		æœ¨ã®å®Ÿ
  *
- *	@retval	TRUE	“–‚½‚é
- *	@retval	FALSE	“–‚½‚ç‚È‚¢
+ *	@retval	TRUE	å½“ãŸã‚‹
+ *	@retval	FALSE	å½“ãŸã‚‰ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_NutsAwayBlockHitCheck( BCT_CLIENT_NUTS* p_nuts )
@@ -4621,7 +4621,7 @@ static BOOL BCT_CLIENT_NutsAwayBlockHitCheck( BCT_CLIENT_NUTS* p_nuts )
 			return TRUE;
 		}
 	}else if( p_nuts->blockhit == FALSE ){
-		p_nuts->blockhit = TRUE;	// 1‰ñƒGƒŠƒA“à‚É“ü‚Á‚½‚çŽŸ‚©‚ç‚Í‚¿‚á‚ñ‚Æ“–‚½‚è”»’è
+		p_nuts->blockhit = TRUE;	// 1å›žã‚¨ãƒªã‚¢å†…ã«å…¥ã£ãŸã‚‰æ¬¡ã‹ã‚‰ã¯ã¡ã‚ƒã‚“ã¨å½“ãŸã‚Šåˆ¤å®š
 		
 	}
 	return FALSE;
@@ -4629,10 +4629,10 @@ static BOOL BCT_CLIENT_NutsAwayBlockHitCheck( BCT_CLIENT_NUTS* p_nuts )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹t•ûŒü‚ÉˆÚ“®‚³‚¹‚é
+ *	@brief	é€†æ–¹å‘ã«ç§»å‹•ã•ã›ã‚‹
  *
- *	@param	p_nuts	–Ø‚ÌŽÀ
- *	@param	dist	‹——£
+ *	@param	p_nuts	æœ¨ã®å®Ÿ
+ *	@param	dist	è·é›¢
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsAwayRetWayMove( BCT_CLIENT_NUTS* p_nuts, fx32 dist )
@@ -4643,16 +4643,16 @@ static void BCT_CLIENT_NutsAwayRetWayMove( BCT_CLIENT_NUTS* p_nuts, fx32 dist )
 	move.y = 0;
 	move.z = FX_Mul( p_nuts->data.way.z, -dist );
 
-    // ˆÚ“®æŒvŽZ
+    // ç§»å‹•å…ˆè¨ˆç®—
 	BCT_CLIENT_NutsMatrixMove( p_nuts, &move );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀ@Œû‚É‚Í‚¢‚Á‚½Œã“®ì	ŠJŽn
+ *	@brief	æœ¨ã®å®Ÿã€€å£ã«ã¯ã„ã£ãŸå¾Œå‹•ä½œ	é–‹å§‹
  *
- *	@param	p_nuts		–Ø‚ÌŽÀ
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_nuts		æœ¨ã®å®Ÿ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsInMoveStart( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk )
@@ -4664,10 +4664,10 @@ static void BCT_CLIENT_NutsInMoveStart( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀ@Œû‚É“ü‚Á‚½Œã“®ì@ƒƒCƒ“
+ *	@brief	æœ¨ã®å®Ÿã€€å£ã«å…¥ã£ãŸå¾Œå‹•ä½œã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_nuts		–Ø‚ÌŽÀ
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_nuts		æœ¨ã®å®Ÿ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsInMove( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk )
@@ -4676,25 +4676,25 @@ static void BCT_CLIENT_NutsInMove( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk )
     u32 result;
     VecFx32 inryoku;
     
-    // ‹ó‹C’ïR‚ð‰Á‚¦‚½—Í‚ðŒvŽZ
+    // ç©ºæ°—æŠµæŠ—ã‚’åŠ ãˆãŸåŠ›ã‚’è¨ˆç®—
 	BCT_CLIENT_NutsMoveGet( p_nuts, &move );
 
-	// Œû‚Æ‚Ì“–‚½‚è”»’è
+	// å£ã¨ã®å½“ãŸã‚Šåˆ¤å®š
 	result = BCT_CLIENT_MarunomuMouthHitCheck( &p_wk->marunomu, 
 			&p_nuts->mat, &move, &inryoku );
 
-    // ˆÚ“®æŒvŽZ
+    // ç§»å‹•å…ˆè¨ˆç®—
 	BCT_CLIENT_NutsMatrixMove( p_nuts, &move );
 
-    // ˆø—Í•â³
+    // å¼•åŠ›è£œæ­£
     if( (result == BCT_MARUNOMU_MOUTH_HIT_NEAR) || (result == BCT_MARUNOMU_MOUTH_HIT_OK) ){
 		BCT_CLIENT_NutsMatrixMove( p_nuts, &inryoku );
     }
 
-    // ƒJƒEƒ“ƒg
+    // ã‚«ã‚¦ãƒ³ãƒˆ
     p_nuts->count ++;
 
-	// ”jŠüƒJƒEƒ“ƒg
+	// ç ´æ£„ã‚«ã‚¦ãƒ³ãƒˆ
 	p_nuts->inmove_count --;
 	if( p_nuts->inmove_count <= 0 ){
         BCT_CLIENT_NutsEnd( p_wk, p_nuts, TRUE, p_nuts->inmove_bonus );
@@ -4703,10 +4703,10 @@ static void BCT_CLIENT_NutsInMove( BCT_CLIENT_NUTS* p_nuts, BCT_CLIENT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀ‚ÌÀ•W‚ð“®‚©‚·
+ *	@brief	æœ¨ã®å®Ÿã®åº§æ¨™ã‚’å‹•ã‹ã™
  *
- *	@param	p_nuts		–Ø‚ÌŽÀ	
- *	@param	cp_add		ˆÚ“®
+ *	@param	p_nuts		æœ¨ã®å®Ÿ	
+ *	@param	cp_add		ç§»å‹•
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsMatrixMove( BCT_CLIENT_NUTS* p_nuts, const VecFx32* cp_add )
@@ -4716,7 +4716,7 @@ static void BCT_CLIENT_NutsMatrixMove( BCT_CLIENT_NUTS* p_nuts, const VecFx32* c
     VEC_Add( &p_nuts->mat, cp_add, &p_nuts->mat );
 
 	
-	// XZ•½–Ê‚Ì’†S‚©‚ç‚Ì‹——£‚ð‹‚ß‚é
+	// XZå¹³é¢ã®ä¸­å¿ƒã‹ã‚‰ã®è·é›¢ã‚’æ±‚ã‚ã‚‹
 	sub_mat.y = 0;
 	sub_mat.x = p_nuts->mat.x;
 	sub_mat.z = p_nuts->mat.z;
@@ -4726,9 +4726,9 @@ static void BCT_CLIENT_NutsMatrixMove( BCT_CLIENT_NUTS* p_nuts, const VecFx32* c
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  “Š‚°‚éˆ—
+ *  @brief  æŠ•ã’ã‚‹å‡¦ç†
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsSlow( BCT_CLIENT* p_wk )
@@ -4737,21 +4737,21 @@ static void BCT_CLIENT_NutsSlow( BCT_CLIENT* p_wk )
 	BCT_DEBUG_AutoSlow( p_wk );
 	return ;
 #endif
-    // ƒ^ƒbƒ`‚µ‚Ä‚¢‚é‚©
+    // ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‹
     if( sys.tp_cont == FALSE ){
-        // —£‚µ‚½‚Æ‚«‚Ìˆ—
+        // é›¢ã—ãŸã¨ãã®å‡¦ç†
         BCT_CLIENT_NutsSlowEnd( p_wk );
     }else{
-        // ƒ^ƒbƒ`Žž‚Ìˆ—
+        // ã‚¿ãƒƒãƒæ™‚ã®å‡¦ç†
         BCT_CLIENT_NutsSlowMain( p_wk );
     }
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  “Š‚°‚é‚ÌŠ®—¹Žž
+ *  @brief  æŠ•ã’ã‚‹ã®å®Œäº†æ™‚
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsSlowEnd( BCT_CLIENT* p_wk )
@@ -4765,24 +4765,24 @@ static void BCT_CLIENT_NutsSlowEnd( BCT_CLIENT* p_wk )
 	fx32 xz_power;
 
 
-    // ƒ^ƒbƒ`ŠJŽn‚µ‚Ä‚¢‚½‚ç“Š‚°‚é
+    // ã‚¿ãƒƒãƒé–‹å§‹ã—ã¦ã„ãŸã‚‰æŠ•ã’ã‚‹
     if( p_wk->slow.hand == FALSE ){
-		// ‹Ê”­ŽËŠÔŠuƒJƒEƒ“ƒg
+		// çŽ‰ç™ºå°„é–“éš”ã‚«ã‚¦ãƒ³ãƒˆ
 		p_wk->slow.time ++;
         return ;
     }
 
-    // ÅV‚ÌÀ•W‚ÆÌ‚ÌÀ•W‚ðŽæ“¾
+    // æœ€æ–°ã®åº§æ¨™ã¨æ˜”ã®åº§æ¨™ã‚’å–å¾—
     result = BCT_CLIENT_NutsSlowQGetTop( &p_wk->slow, &vec0 );
     GF_ASSERT( result );
     result = BCT_CLIENT_NutsSlowQGetTail( &p_wk->slow, &vec1 );
     GF_ASSERT( result );
     vec_num = BCT_CLIENT_NutsSlowQGetInNum( &p_wk->slow );
 
-    // ’¸“_‚ªBCT_NUTS_SLOW_USE_VECNUMˆÈã‚È‚¢‚Æ‚¾‚ß
+    // é ‚ç‚¹ãŒBCT_NUTS_SLOW_USE_VECNUMä»¥ä¸Šãªã„ã¨ã ã‚
     if( vec_num >= BCT_NUTS_SLOW_USE_VECNUM ){
 
-        //  “Š‚°ƒf[ƒ^‚ðì¬‚·‚é
+        //  æŠ•ã’ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
         data.plno = p_wk->plno;
         data.in_flag = FALSE;
 
@@ -4790,7 +4790,7 @@ static void BCT_CLIENT_NutsSlowEnd( BCT_CLIENT* p_wk )
 //        OS_Printf( "sx=%d sy=%d  ex=%d ex=%d", vec0.x, vec0.y, vec1.x, vec1.y );
 #endif
 
-        // “Š‚°‚½•ûŒü‚ð‹‚ß‚é
+        // æŠ•ã’ãŸæ–¹å‘ã‚’æ±‚ã‚ã‚‹
         vec.x = (vec0.x - vec1.x) / vec_num;
         vec.y = (vec0.y - vec1.y) / vec_num;
 
@@ -4801,28 +4801,28 @@ static void BCT_CLIENT_NutsSlowEnd( BCT_CLIENT* p_wk )
         data.way.x = vec.x << FX32_SHIFT;
         data.way.z = vec.y << FX32_SHIFT;
         data.way.y = 0;
-        xz_power = VEC_Mag( &data.way );	// ‚¢‚Á‚½‚ñ•½–Êó‚Ìƒpƒ[‚ðŒvŽZ
+        xz_power = VEC_Mag( &data.way );	// ã„ã£ãŸã‚“å¹³é¢çŠ¶ã®ãƒ‘ãƒ¯ãƒ¼ã‚’è¨ˆç®—
 
 
-        // —Í‚Ì’l’²ß
-        if( xz_power < BCT_NUTS_POWER_MIN ){	// ‚±‚ê‚¾‚Æ‚Ï‚í[‚ª‘«‚è‚È‚¢‚Ì‚Åƒ~ƒX“Š‚°
-			// “Š‚°‚é‚ÌŽ¸”s
+        // åŠ›ã®å€¤èª¿ç¯€
+        if( xz_power < BCT_NUTS_POWER_MIN ){	// ã“ã‚Œã ã¨ã±ã‚ãƒ¼ãŒè¶³ã‚Šãªã„ã®ã§ãƒŸã‚¹æŠ•ã’
+			// æŠ•ã’ã‚‹ã®å¤±æ•—
 /*
 			miss_slow = TRUE;
 //*/
 			if( xz_power != 0 ){
-				// —Í‚ð’²ß‚µ‚Ä–Ø‚ÌŽÀÝ’è
+				// åŠ›ã‚’èª¿ç¯€ã—ã¦æœ¨ã®å®Ÿè¨­å®š
 				VEC_Normalize( &data.way, &data.way );
 				data.way.x = FX_Mul( data.way.x, BCT_NUTS_POWER_MIN );
 				data.way.z = FX_Mul( data.way.z, BCT_NUTS_POWER_MIN );
 //				OS_Printf( "slow power low\n" );
 			}else{
-				// “Š‚°‚é‚ÌŽ¸”s
+				// æŠ•ã’ã‚‹ã®å¤±æ•—
 				miss_slow = TRUE;
 //				OS_Printf( "slow point none\n" );
 			}
         }else if( xz_power > BCT_NUTS_POWER_MAX ){
-			// —Í‚ð’²ß‚µ‚Ä–Ø‚ÌŽÀÝ’è
+			// åŠ›ã‚’èª¿ç¯€ã—ã¦æœ¨ã®å®Ÿè¨­å®š
 			VEC_Normalize( &data.way, &data.way );
 			data.way.x = FX_Mul( data.way.x, BCT_NUTS_POWER_MAX );
 			data.way.z = FX_Mul( data.way.z, BCT_NUTS_POWER_MAX );
@@ -4831,59 +4831,59 @@ static void BCT_CLIENT_NutsSlowEnd( BCT_CLIENT* p_wk )
 		if( miss_slow == FALSE ){
 			data.way.y = BCT_NUTS_POWRT_YPOWER;
 			data.power = VEC_Mag( &data.way );
-			data.power = FX_Mul( data.power, BCT_NUTS_POWER_MUL );  // ƒpƒ[‘•
+			data.power = FX_Mul( data.power, BCT_NUTS_POWER_MUL );  // ãƒ‘ãƒ¯ãƒ¼å¢—å¹…
 			VEC_Normalize( &data.way, &data.way );
 
-			// À•WˆÊ’uA“Š‚°‚é•ûŒü‚ðNETID‚ÆŠÖ˜A‚Ã‚¯‚é
-			// À•W‚Íƒ^ƒbƒ`‚µ‚Ä‚¢‚éˆÊ’u‚É‚æ‚Á‚Ä•Ï‚í‚é
+			// åº§æ¨™ä½ç½®ã€æŠ•ã’ã‚‹æ–¹å‘ã‚’NETIDã¨é–¢é€£ã¥ã‘ã‚‹
+			// åº§æ¨™ã¯ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ä½ç½®ã«ã‚ˆã£ã¦å¤‰ã‚ã‚‹
 			BCT_CLIENT_2DMATto3DMAT( vec1.x, vec1.y, &data.mat );
 			data.mat.y = BCT_FIELD_PLAYER_Y;
 
 
-			// –Ø‚ÌŽÀ”­ŽËƒpƒ[
+			// æœ¨ã®å®Ÿç™ºå°„ãƒ‘ãƒ¯ãƒ¼
 #ifdef BCT_DEBUG
 //			OS_Printf( "---xz_power--- 0x%x\n", xz_power );
 //			OS_Printf( "---power--- 0x%x\n", data.power );
 #endif
 
-			// •ûŒü‚ÆÀ•W‚ðNETID‚ÉŠÖ˜A•t‚¯‚é
+			// æ–¹å‘ã¨åº§æ¨™ã‚’NETIDã«é–¢é€£ä»˜ã‘ã‚‹
 			BCT_CLIENT_VecNetIDRot( &data.mat, &data.mat, data.plno, p_wk->comm_num );
 			BCT_CLIENT_VecNetIDRot( &data.way, &data.way, data.plno, p_wk->comm_num );
 
-			// ƒ{[ƒiƒX‚ðŒ©‚ÄAƒXƒyƒVƒƒƒ‹ƒ{[ƒ‹‚É‚·‚é
+			// ãƒœãƒ¼ãƒŠã‚¹ã‚’è¦‹ã¦ã€ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒœãƒ¼ãƒ«ã«ã™ã‚‹
 			if( p_wk->bonus >= BCT_SPECIAL_BALL_COUNT ){
 				data.special = TRUE;
 			}else{
 				data.special = FALSE;
 			}
 			
-			// “o˜^
+			// ç™»éŒ²
 			BCT_CLIENT_NutsSet( p_wk, &data, BCT_NUTSSEQ_MOVE );
 			Snd_SePlay( BCT_SND_SLOW );
 
 		}
     }else{
-        // “Š‚°‚é‚ÌŽ¸”s
+        // æŠ•ã’ã‚‹ã®å¤±æ•—
 		miss_slow = TRUE;
 //		OS_Printf( "slow point none\n" );
     }
 
-	// MISSƒXƒ[ƒGƒtƒFƒNƒgŠJŽn
+	// MISSã‚¹ãƒ­ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
 	if( miss_slow == TRUE ){
 		BCT_CLIENT_OamAwayNutsStart( &p_wk->graphic.oamnutsaway, vec1.x, vec1.y );
 	}
 
-    // ƒNƒŠƒA‚Æ•\Ž¦OFF
+    // ã‚¯ãƒªã‚¢ã¨è¡¨ç¤ºOFF
     BCT_CLIENT_NutsSlowClear( p_wk );
 
-	// ŽŸ‚Ì‹…”­ŽËŠÔŠuƒ^ƒCƒ}[ƒŠƒZƒbƒg
+	// æ¬¡ã®çƒç™ºå°„é–“éš”ã‚¿ã‚¤ãƒžãƒ¼ãƒªã‚»ãƒƒãƒˆ
 	p_wk->slow.time = 0;
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ“Š‚°ƒƒCƒ“
+ *  @brief  æœ¨ã®å®ŸæŠ•ã’ãƒ¡ã‚¤ãƒ³
  *
  *  @param  p_wk 
  */
@@ -4895,26 +4895,26 @@ static void BCT_CLIENT_NutsSlowMain( BCT_CLIENT* p_wk )
     
     if( p_wk->slow.hand == FALSE ){
 
-		// ƒ^ƒbƒ`ŠJŽnOKƒ`ƒFƒbƒN
+		// ã‚¿ãƒƒãƒé–‹å§‹OKãƒã‚§ãƒƒã‚¯
 		result = BCT_CLIENT_NutsSlowStartCheck( p_wk );
 		if( result == TRUE ){
 			
 			p_wk->slow.hand = TRUE;
-			// Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ•`‰æŠJŽn
+			// æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿæç”»é–‹å§‹
 			BCT_CLIENT_HandNutsDrawStart( &p_wk->graphic.handnuts );
 
-			// ‚µ‚½‰æ–Ê‚ÌBG—Dæ‡ˆÊƒXƒNƒ[ƒ‹
+			// ã—ãŸç”»é¢ã®BGå„ªå…ˆé †ä½ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 			BCT_CLIENT_BGPRISCRL_Req( &p_wk->graphic.bgpri_scrl );
 		}
     }
 
 	if( p_wk->slow.hand == TRUE ){
-		// ƒ^ƒbƒ`ƒf[ƒ^‚ðƒLƒ…[‚ÉŠi”[
-		if( p_wk->tp_one.Size == 1 ){ // ƒTƒ“ƒvƒŠƒ“ƒO‚Å‚«‚½’¸“_‚ª‚P‚Â‚Ìê‡
+		// ã‚¿ãƒƒãƒãƒ‡ãƒ¼ã‚¿ã‚’ã‚­ãƒ¥ãƒ¼ã«æ ¼ç´
+		if( p_wk->tp_one.Size == 1 ){ // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã§ããŸé ‚ç‚¹ãŒï¼‘ã¤ã®å ´åˆ
 			data.x = p_wk->tp_one.TPDataTbl[0].x;
 			data.y = p_wk->tp_one.TPDataTbl[0].y;
 			BCT_CLIENT_NutsSlowQPush( &p_wk->slow, data );
-		}else if( p_wk->tp_one.Size >= 2 ){	// ƒTƒ“ƒvƒŠƒ“ƒO‚ª‚QˆÈã
+		}else if( p_wk->tp_one.Size >= 2 ){	// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãŒï¼’ä»¥ä¸Š
 			data.x = p_wk->tp_one.TPDataTbl[0].x;
 			data.y = p_wk->tp_one.TPDataTbl[0].y;
 			BCT_CLIENT_NutsSlowQPush( &p_wk->slow, data );
@@ -4923,7 +4923,7 @@ static void BCT_CLIENT_NutsSlowMain( BCT_CLIENT* p_wk )
 			data.y = p_wk->tp_one.TPDataTbl[p_wk->tp_one.Size-1].y;
 			BCT_CLIENT_NutsSlowQPush( &p_wk->slow, data );
 		}else{
-			// ‚P‚Â‚à–³‚¢‚È‚çtp_x tp_y‚ð‚µ‚æ‚¤
+			// ï¼‘ã¤ã‚‚ç„¡ã„ãªã‚‰tp_x tp_yã‚’ã—ã‚ˆã†
 			data.x = sys.tp_x;
 			data.y = sys.tp_y;
 			BCT_CLIENT_NutsSlowQPush( &p_wk->slow, data );
@@ -4933,9 +4933,9 @@ static void BCT_CLIENT_NutsSlowMain( BCT_CLIENT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀ‚ð“Š‚°‚ê‚éí‘Ô‚©ƒ`ƒFƒbƒN
+ *	@brief	æœ¨ã®å®Ÿã‚’æŠ•ã’ã‚Œã‚‹å¸¸æ…‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_NutsSlowStartCheck( BCT_CLIENT* p_wk )
@@ -4944,17 +4944,17 @@ static BOOL BCT_CLIENT_NutsSlowStartCheck( BCT_CLIENT* p_wk )
 	s32 y;
 	s32 dist;
 
-	// ƒ{[ƒ‹‚ð—£‚µ‚Ä‚©‚çˆê’èŽžŠÔ‚½‚½‚È‚¢‚Æo‚¹‚È‚¢
+	// ãƒœãƒ¼ãƒ«ã‚’é›¢ã—ã¦ã‹ã‚‰ä¸€å®šæ™‚é–“ãŸãŸãªã„ã¨å‡ºã›ãªã„
 	if( p_wk->slow.time < BCT_NUTS_SLOW_RENSYA_TIME ){
 		return FALSE;
 	}
 	
-	// ’†S‚©‚ç‚Ì‹——£‚ð‹‚ß‚é
+	// ä¸­å¿ƒã‹ã‚‰ã®è·é›¢ã‚’æ±‚ã‚ã‚‹
 	x = BCT_NUTS_SLOW_TOUCH_AREA_CENTER_X - sys.tp_x;
 	y = BCT_NUTS_SLOW_TOUCH_AREA_CENTER_Y - sys.tp_y;
 	dist = FX_Sqrt( ((x*x)+(y*y))<<FX32_SHIFT ) >> FX32_SHIFT;
 	
-	// ”ÍˆÍ‚Ì“–‚½‚è”»’è
+	// ç¯„å›²ã®å½“ãŸã‚Šåˆ¤å®š
 	if( dist <= BCT_NUTS_SLOW_TOUCH_AREA_R ){
 		return TRUE;
 	}
@@ -4964,9 +4964,9 @@ static BOOL BCT_CLIENT_NutsSlowStartCheck( BCT_CLIENT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ“Š‚°Q‰Šú‰»
+ *  @brief  æœ¨ã®å®ŸæŠ•ã’QåˆæœŸåŒ–
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsSlowQInit( BCT_CLIENT_SLOW* p_wk )
@@ -4978,48 +4978,48 @@ static void BCT_CLIENT_NutsSlowQInit( BCT_CLIENT_SLOW* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  “Š‚°ƒf[ƒ^Ši”[
+ *  @brief  æŠ•ã’ãƒ‡ãƒ¼ã‚¿æ ¼ç´
  *
- *  @param  p_wk    ƒ[ƒN
- *  @param  data    ƒf[ƒ^
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
+ *  @param  data    ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsSlowQPush( BCT_CLIENT_SLOW* p_wk, NNSG2dSVec2 data )
 {
-    // ––”ö+1‚ªæ“ª‚ÌŽž–ž”t
+    // æœ«å°¾+1ãŒå…ˆé ­ã®æ™‚æº€æ¯
     if( ((p_wk->tail + 1)%BCT_NUTS_SLOW_Q) == p_wk->top ){
-        NNSG2dSVec2 tmp;    // ŽÌ‚Ä‚éƒRƒ}ƒ“ƒh
+        NNSG2dSVec2 tmp;    // æ¨ã¦ã‚‹ã‚³ãƒžãƒ³ãƒ‰
          
-        // –ž”t
-        // 1‚Âƒf[ƒ^‚ðƒ|ƒbƒv‚µ‚Äƒf[ƒ^Ši”[
+        // æº€æ¯
+        // 1ã¤ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ—ã—ã¦ãƒ‡ãƒ¼ã‚¿æ ¼ç´
         BCT_CLIENT_NutsSlowQPop( p_wk, &tmp );
     }
 
-    // ƒf[ƒ^Ý’è
+    // ãƒ‡ãƒ¼ã‚¿è¨­å®š
     p_wk->tp_q[ p_wk->tail ] = data;
 
-    // ––”öˆÊ’u‚ð“®‚©‚·
+    // æœ«å°¾ä½ç½®ã‚’å‹•ã‹ã™
     p_wk->tail = (p_wk->tail + 1)%BCT_NUTS_SLOW_Q;
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  Ši”[ƒf[ƒ^‚ðŽæ“¾
+ *  @brief  æ ¼ç´ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *  @param  p_wk    ƒ[ƒN
- *  @param  p_data  Ši”[æ
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_data  æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_NutsSlowQPop( BCT_CLIENT_SLOW* p_wk, NNSG2dSVec2* p_data )
 {
-    // æ“ª=––”ö    ƒf[ƒ^‚ª‚È‚¢
+    // å…ˆé ­=æœ«å°¾    ãƒ‡ãƒ¼ã‚¿ãŒãªã„
     if( p_wk->tail == p_wk->top ){
         return FALSE;
     }
 
     *p_data = p_wk->tp_q[ p_wk->top ];
 
-    // æ“ªˆÊ’u‚ð“®‚©‚·
+    // å…ˆé ­ä½ç½®ã‚’å‹•ã‹ã™
     p_wk->top = (p_wk->top + 1)%BCT_NUTS_SLOW_Q;
 
     return TRUE;
@@ -5027,18 +5027,18 @@ static BOOL BCT_CLIENT_NutsSlowQPop( BCT_CLIENT_SLOW* p_wk, NNSG2dSVec2* p_data 
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  æ“ª‚Ìƒf[ƒ^‚ðŽæ“¾‚·‚é  iˆê”Ô‰ß‹Ž‚Ìƒf[ƒ^j
+ *  @brief  å…ˆé ­ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹  ï¼ˆä¸€ç•ªéŽåŽ»ã®ãƒ‡ãƒ¼ã‚¿ï¼‰
  *  
- *  @param  p_wk    ƒ[ƒN
- *  @param  p_data  ƒf[ƒ^Ši”[æ
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_data  ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- *  @retval TRUE    ƒf[ƒ^‚ªŠi”[‚Å‚«‚Ü‚µ‚½
- *  @retval FALSE   ƒf[ƒ^‚ªŠi”[o—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½
+ *  @retval TRUE    ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã§ãã¾ã—ãŸ
+ *  @retval FALSE   ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_NutsSlowQGetTop( BCT_CLIENT_SLOW* p_wk, NNSG2dSVec2* p_data )
 {
-    // æ“ª=––”ö    ƒf[ƒ^‚ª‚È‚¢
+    // å…ˆé ­=æœ«å°¾    ãƒ‡ãƒ¼ã‚¿ãŒãªã„
     if( p_wk->tail == p_wk->top ){
         return FALSE;
     }
@@ -5050,20 +5050,20 @@ static BOOL BCT_CLIENT_NutsSlowQGetTop( BCT_CLIENT_SLOW* p_wk, NNSG2dSVec2* p_da
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  I’[‚Ìƒf[ƒ^‚ðŽæ“¾‚·‚é  iˆê”ÔÅV‚Ìƒf[ƒ^j
+ *  @brief  çµ‚ç«¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹  ï¼ˆä¸€ç•ªæœ€æ–°ã®ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  p_data      ƒf[ƒ^Ši”[æ
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_data      ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- *  @retval TRUE    ƒf[ƒ^‚ªŠi”[‚Å‚«‚Ü‚µ‚½
- *  @retval FALSE   ƒf[ƒ^‚ªŠi”[o—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½
+ *  @retval TRUE    ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã§ãã¾ã—ãŸ
+ *  @retval FALSE   ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_NutsSlowQGetTail( BCT_CLIENT_SLOW* p_wk, NNSG2dSVec2* p_data )
 {
     s32 idx;
     
-    // æ“ª=––”ö    ƒf[ƒ^‚ª‚È‚¢
+    // å…ˆé ­=æœ«å°¾    ãƒ‡ãƒ¼ã‚¿ãŒãªã„
     if( p_wk->tail == p_wk->top ){
         return FALSE;
     }
@@ -5080,11 +5080,11 @@ static BOOL BCT_CLIENT_NutsSlowQGetTail( BCT_CLIENT_SLOW* p_wk, NNSG2dSVec2* p_d
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ¡Ši”[‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚Ì”‚ðŽæ“¾‚·‚é
+ *  @brief  ä»Šæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®æ•°ã‚’å–å¾—ã™ã‚‹
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  *
- *  @return Ši”[‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚Ì”
+ *  @return æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®æ•°
  */
 //-----------------------------------------------------------------------------
 static u32 BCT_CLIENT_NutsSlowQGetInNum( BCT_CLIENT_SLOW* p_wk )
@@ -5097,24 +5097,24 @@ static u32 BCT_CLIENT_NutsSlowQGetInNum( BCT_CLIENT_SLOW* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀƒXƒ[ƒ[ƒN‚ÌƒNƒŠƒA  •\Ž¦‚àOFF
+ *  @brief  æœ¨ã®å®Ÿã‚¹ãƒ­ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢  è¡¨ç¤ºã‚‚OFF
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsSlowClear( BCT_CLIENT* p_wk )
 {
-    // ƒ[ƒN‚ÌƒNƒŠƒA
+    // ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
     p_wk->slow.hand = FALSE;
     BCT_CLIENT_NutsSlowQInit( &p_wk->slow );
 
-    // Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ•`‰æOFF
+    // æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿæç”»OFF
     BCT_CLIENT_HandNutsDrawEnd( &p_wk->graphic.handnuts );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒf[ƒ^•ÏXƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
  *	@param	p_wk
  */
@@ -5123,20 +5123,20 @@ static void BCT_CLIENT_ContGameData_Init( BCT_CLIENT_CONT_GAMEDATA* p_wk, const 
 {
 	p_wk->count = BCT_CONT_GAMEDATA_COUNT_MAX;
 
-	// ‰Šúƒf[ƒ^‚ðÝ’è
+	// åˆæœŸãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	BCT_CLIENT_GameData_GetGameTypeOneData( cp_gamedata, cp_gametype, 0, &p_wk->set );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒf[ƒ^•ÏXƒVƒXƒeƒ€	•ÏXˆ—ŠJŽn
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ 	å¤‰æ›´å‡¦ç†é–‹å§‹
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	cp_gamedata		ƒQ[ƒ€ƒf[ƒ^
- *	@param	cp_gametype		ƒQ[ƒ€ƒ^ƒCƒvƒf[ƒ^
- *	@param	last			‘O‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	next			ŽŸ‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_gamedata		ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_gametype		ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
+ *	@param	last			å‰ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	next			æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ContGameData_Start( BCT_CLIENT_CONT_GAMEDATA* p_wk, const BCT_GAMEDATA* cp_gamedata, const BCT_GAME_TYPE_WK* cp_gametype, u16 last, u16 next )
@@ -5144,21 +5144,21 @@ static void BCT_CLIENT_ContGameData_Start( BCT_CLIENT_CONT_GAMEDATA* p_wk, const
 	BCT_GAMEDATA_ONE	last_one, next_one;
 
 	
-	// ƒQ[ƒ€ƒ^ƒCƒv‚Ì”½‰f
+	// ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—ã®åæ˜ 
 	BCT_CLIENT_GameData_GetGameTypeOneData( cp_gamedata, cp_gametype, last, &last_one );
 	BCT_CLIENT_GameData_GetGameTypeOneData( cp_gamedata, cp_gametype, next, &next_one );
 	
-	// ŠJŽn’l
+	// é–‹å§‹å€¤
 	p_wk->last				= last_one;
 	p_wk->set				= last_one;
 
-	// •Ï“®’lŽæ“¾
+	// å¤‰å‹•å€¤å–å¾—
 	p_wk->dif.nuts_num		= next_one.nuts_num - last_one.nuts_num;
 	p_wk->dif.camera_ta_y	= next_one.camera_ta_y - last_one.camera_ta_y;
 	p_wk->dif.pos_z			= next_one.pos_z - last_one.pos_z;
 	p_wk->dif.size			= next_one.size - last_one.size;
 	
-	// ƒAƒ“ƒOƒ‹A‰ñ“]ƒXƒs[ƒh‚Í·•ª‚ª‹——£‚ª¬‚³‚¢‚Ù‚¤‚ð‘I‚Ô
+	// ã‚¢ãƒ³ã‚°ãƒ«ã€å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰ã¯å·®åˆ†ãŒè·é›¢ãŒå°ã•ã„ã»ã†ã‚’é¸ã¶
 	if( (next_one.rota_speed - last_one.rota_speed) < ((0xffff + next_one.rota_speed) - last_one.rota_speed) ){	
 		p_wk->dif.rota_speed	= next_one.rota_speed - last_one.rota_speed;
 	}else{
@@ -5175,12 +5175,12 @@ static void BCT_CLIENT_ContGameData_Start( BCT_CLIENT_CONT_GAMEDATA* p_wk, const
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒf[ƒ^•ÏXƒVƒXƒeƒ€	ƒƒCƒ“ˆ—
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *		
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•ÏXI—¹
- *	@retval	FALSE	•ÏX“r’†
+ *	@retval	TRUE	å¤‰æ›´çµ‚äº†
+ *	@retval	FALSE	å¤‰æ›´é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_ContGameData_Main( BCT_CLIENT_CONT_GAMEDATA* p_wk )
@@ -5189,7 +5189,7 @@ static BOOL BCT_CLIENT_ContGameData_Main( BCT_CLIENT_CONT_GAMEDATA* p_wk )
 		return TRUE;
 	}
 
-	// ŒvŽZˆ—
+	// è¨ˆç®—å‡¦ç†
 	p_wk->count ++;
 
 	p_wk->set.nuts_num		= p_wk->last.nuts_num + ( (p_wk->dif.nuts_num * p_wk->count) / BCT_CONT_GAMEDATA_COUNT_MAX );
@@ -5203,10 +5203,10 @@ static BOOL BCT_CLIENT_ContGameData_Main( BCT_CLIENT_CONT_GAMEDATA* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒf[ƒ^•ÏXƒVƒXƒeƒ€	ƒf[ƒ^”½‰f
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ 	ãƒ‡ãƒ¼ã‚¿åæ˜ 
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_ContGameData_Reflect( BCT_CLIENT* p_wk, const BCT_CLIENT_CONT_GAMEDATA* cp_data )
@@ -5216,15 +5216,15 @@ static void BCT_CLIENT_ContGameData_Reflect( BCT_CLIENT* p_wk, const BCT_CLIENT_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒf[ƒ^‚Ì‚P‚Â‚ðÝ’è‚·‚é
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®ï¼‘ã¤ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_GameDataOne_Reflect( BCT_CLIENT* p_wk, const BCT_GAMEDATA_ONE* cp_data )
 {
-	// Ý’èƒf[ƒ^•\Ž¦
+	// è¨­å®šãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
 #if 0
 	OS_TPrintf( "speed %d\n", cp_data->rota_speed );
 	OS_TPrintf( "ta_y %d\n", cp_data->camera_ta_y );
@@ -5233,30 +5233,30 @@ static void BCT_CLIENT_GameDataOne_Reflect( BCT_CLIENT* p_wk, const BCT_GAMEDATA
 	OS_TPrintf( "size %d\n", cp_data->size );
 #endif
 	
-	//@‰ñ“]ƒXƒs[ƒh
+	//ã€€å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰
 	BCT_CLIENT_MaruRotSpeedSet( &p_wk->marunomu, cp_data->rota_speed );
 
-	// ƒJƒƒ‰ƒ^[ƒQƒbƒgYÀ•W
+	// ã‚«ãƒ¡ãƒ©ã‚¿ãƒ¼ã‚²ãƒƒãƒˆYåº§æ¨™
 	BCT_CLIENT_CameraTargetYSet( &p_wk->graphic, cp_data->camera_ta_y );
 
-	// ƒJƒƒ‰ƒAƒ“ƒOƒ‹X
+	// ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«X
 	BCT_CLIENT_CameraAngleXSet( &p_wk->graphic, cp_data->camera_an_x );
 
-	// •½–ÊˆÊ’u
+	// å¹³é¢ä½ç½®
 	BCT_CLIENT_MaruMatZSet( &p_wk->marunomu, cp_data->pos_z );
 
-	// ƒXƒP[ƒ‹
+	// ã‚¹ã‚±ãƒ¼ãƒ«
 	BCT_CLIENT_MaruScaleSet( &p_wk->marunomu, cp_data->size );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	gamedata‚©‚çgametype‚É‚ ‚í‚¹‚½ƒQ[ƒ€\¬‚Pƒf[ƒ^‚ðŽæ“¾‚·‚é
+ *	@brief	gamedataã‹ã‚‰gametypeã«ã‚ã‚ã›ãŸã‚²ãƒ¼ãƒ æ§‹æˆï¼‘ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_gamedata		ƒQ[ƒ€ƒf[ƒ^
- *	@param	cp_gametype		ƒQ[ƒ€ƒ^ƒCƒv
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
- *	@param	p_buff			ƒf[ƒ^Ši”[æ
+ *	@param	cp_gamedata		ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_gametype		ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	p_buff			ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_GameData_GetGameTypeOneData( const BCT_GAMEDATA* cp_gamedata, const BCT_GAME_TYPE_WK* cp_gametype, u32 idx, BCT_GAMEDATA_ONE* p_buff )
@@ -5268,7 +5268,7 @@ static void BCT_CLIENT_GameData_GetGameTypeOneData( const BCT_GAMEDATA* cp_gamed
 	
 	*p_buff = cp_gamedata->p_tbl[ idx ];
 
-	// ‰ñ“]Œnƒpƒ‰ƒ[ƒ^‚ðu16“à‚Å“®‚­’l‚É•ÏX
+	// å›žè»¢ç³»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’u16å†…ã§å‹•ãå€¤ã«å¤‰æ›´
 	rota				= p_buff->rota_speed;
 	p_buff->rota_speed	= rota;
 
@@ -5276,7 +5276,7 @@ static void BCT_CLIENT_GameData_GetGameTypeOneData( const BCT_GAMEDATA* cp_gamed
 	p_buff->camera_an_x	= rota;
 
 
-	// Šg‘å—¦‚Ìƒe[ƒuƒ‹‹tŽQÆ
+	// æ‹¡å¤§çŽ‡ã®ãƒ†ãƒ¼ãƒ–ãƒ«é€†å‚ç…§
 	if( cp_gametype->scale_rev ){
 		scale_tbl = BCT_CONT_GAMEDATA_RAREGAME_BIGSTART - (idx+1);
 		if( scale_tbl < 0 ){
@@ -5286,7 +5286,7 @@ static void BCT_CLIENT_GameData_GetGameTypeOneData( const BCT_GAMEDATA* cp_gamed
 //		OS_TPrintf( "cp_gamedata->tblnum=%d  size=%d\n", cp_gamedata->tblnum, p_buff->size );
 	}
 
-	// ‰ñ“]ƒXƒs[ƒh‚Ì”½“]
+	// å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰ã®åè»¢
 	if( cp_gametype->rota_rev ){
 		p_buff->rota_speed	= -p_buff->rota_speed;
 	}
@@ -5297,11 +5297,11 @@ static void BCT_CLIENT_GameData_GetGameTypeOneData( const BCT_GAMEDATA* cp_gamed
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒyƒ“	‰Šú‰»	
+ *	@brief	ã‚¿ãƒƒãƒãƒšãƒ³	åˆæœŸåŒ–	
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_graphic		ƒOƒ‰ƒtƒBƒbƒN
- *	@param	heapID			ƒq[ƒvID
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_graphic		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_TOUCHPEN_Init( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT_GRAPHIC* p_graphic, u32 heapID )
@@ -5314,9 +5314,9 @@ static void BCT_CLIENT_TOUCHPEN_Init( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT
 	p_handle = ArchiveDataHandleOpen( ARC_WLMNGM_TOOL_GRA, heapID );
 	
 
-	// ƒOƒ‰ƒtƒBƒbƒN‚Ì“Ç‚Ýž‚Ý
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®èª­ã¿è¾¼ã¿
 	{
-        // OAMƒŠƒ\[ƒX“Çž‚Ý
+        // OAMãƒªã‚½ãƒ¼ã‚¹èª­è¾¼ã¿
         p_wk->resobj[ 0 ] = CLACT_U_ResManagerResAddArcChar_ArcHandle(
                     p_graphic->resMan[ 0 ], p_handle,
                     NARC_wlmngm_tool_touchpen_NCGR,
@@ -5337,17 +5337,17 @@ static void BCT_CLIENT_TOUCHPEN_Init( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT
                 NARC_wlmngm_tool_touchpen_NANR, FALSE,
                 BCT_TOUCHPEN_OAM_RESID, CLACT_U_CELLANM_RES, heapID );
 
-        // “]‘—
+        // è»¢é€
         result = CLACT_U_CharManagerSetCharModeAdjustAreaCont( p_wk->resobj[ 0 ] );
         GF_ASSERT( result );
         result = CLACT_U_PlttManagerSetCleanArea( p_wk->resobj[ 1 ] );
         GF_ASSERT( result );
 
-        // ƒŠƒ\[ƒX‚¾‚¯”jŠü
+        // ãƒªã‚½ãƒ¼ã‚¹ã ã‘ç ´æ£„
         CLACT_U_ResManagerResOnlyDelete( p_wk->resobj[ 0 ] );
         CLACT_U_ResManagerResOnlyDelete( p_wk->resobj[ 1 ] );
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 		CLACT_U_MakeHeader( &p_wk->header, 
 				BCT_TOUCHPEN_OAM_RESID, BCT_TOUCHPEN_OAM_RESID,
 				BCT_TOUCHPEN_OAM_RESID, BCT_TOUCHPEN_OAM_RESID,
@@ -5359,7 +5359,7 @@ static void BCT_CLIENT_TOUCHPEN_Init( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT
 
 	}
 
-	// ƒ^ƒbƒ`ƒyƒ“ƒAƒNƒ^[“o˜^
+	// ã‚¿ãƒƒãƒãƒšãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	{
 		CLACT_ADD_SIMPLE add;
 
@@ -5380,96 +5380,96 @@ static void BCT_CLIENT_TOUCHPEN_Init( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒyƒ“	”jŠü
+ *	@brief	ã‚¿ãƒƒãƒãƒšãƒ³	ç ´æ£„
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_graphic		ƒOƒ‰ƒtƒBƒbƒN
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_graphic		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_TOUCHPEN_Exit( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT_GRAPHIC* p_graphic )
 {
-	// ƒAƒNƒ^[ƒ[ƒN‚Ì”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
 	{
 		CLACT_Delete( p_wk->p_clwk );
 	}
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	{
-        // VRAMŠÇ—‚©‚ç”jŠü
+        // VRAMç®¡ç†ã‹ã‚‰ç ´æ£„
         CLACT_U_CharManagerDelete( p_wk->resobj[0] );
         CLACT_U_PlttManagerDelete( p_wk->resobj[1] );
         
-        // ƒŠƒ\[ƒX”jŠü
+        // ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
         CLACT_U_ResManagerResDelete( p_graphic->resMan[0], p_wk->resobj[0] );
         CLACT_U_ResManagerResDelete( p_graphic->resMan[1], p_wk->resobj[1] );
         CLACT_U_ResManagerResDelete( p_graphic->resMan[2], p_wk->resobj[2] );
         CLACT_U_ResManagerResDelete( p_graphic->resMan[3], p_wk->resobj[3] );
 	}
 
-	//ƒNƒŠƒA
+	//ã‚¯ãƒªã‚¢
 	memset( p_wk, 0, sizeof(BCT_CLIENT_TOUCHPEN_MOVE) );
 }
  
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒyƒ“	ŠJŽn
+ *	@brief	ã‚¿ãƒƒãƒãƒšãƒ³	é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_TOUCHPEN_Start( BCT_CLIENT_TOUCHPEN_MOVE* p_wk )
 {
-	//  “®ìŠJŽn
+	//  å‹•ä½œé–‹å§‹
 	{
 		p_wk->move		= TRUE;
 		p_wk->seq		= 0;
 		p_wk->roop		= 0;
 	}
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	CLACT_SetDrawFlag( p_wk->p_clwk, TRUE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒyƒ“	ƒƒCƒ“
+ *	@brief	ã‚¿ãƒƒãƒãƒšãƒ³	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒNƒ‰ƒCƒAƒ“ƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_TOUCHPEN_Main( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT* p_sys )
 {
 	switch( p_wk->seq ){
-	// “®ìŠJŽn
+	// å‹•ä½œé–‹å§‹
 	case BCT_TOUCHPEN_ANM_SEQ_MOVE_START:
-		// ƒ^ƒbƒ`ƒyƒ“‚Ì“®‚«‚ð‚È‚¼‚Á‚ÄŽ‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ‚ð•`‰æ‚·‚é
+		// ã‚¿ãƒƒãƒãƒšãƒ³ã®å‹•ãã‚’ãªãžã£ã¦æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿã‚’æç”»ã™ã‚‹
 		CLACT_AnmFrameSet( p_wk->p_clwk, BCT_TOUCHPEN_ANM_FRAME_START );
 
-		// ƒAƒjƒƒtƒŒ[ƒ€‚É‚ ‚í‚¹‚ÄŽ‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ‚ðo‚·
+		// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã«ã‚ã‚ã›ã¦æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿã‚’å‡ºã™
 		BCT_CLIENT_HandNutsDrawStart( &p_sys->graphic.handnuts );
 		BCT_CLIENT_HandNutsDrawSetMatrix( &p_sys->graphic.handnuts, 
 				BCT_TOUCHPEN_OAM_X,
 				sc_BCT_TOUCHPEN_ANM_FRAME_Y[ BCT_TOUCHPEN_ANM_FRAME_START ] );
 
-		// –Ø‚ÌŽÀ”­ŽË‘O
+		// æœ¨ã®å®Ÿç™ºå°„å‰
 		p_wk->nut_set = FALSE;
 		p_wk->seq++;
 		break;
 
-	// ƒƒCƒ“
+	// ãƒ¡ã‚¤ãƒ³
 	case BCT_TOUCHPEN_ANM_SEQ_MOVE_MAIN:
 		CLACT_AnmFrameChg( p_wk->p_clwk, FX32_CONST(2) );
 
-		// ƒAƒjƒƒtƒŒ[ƒ€‚É‚ ‚í‚¹‚ÄŽ‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ‚ðo‚·
+		// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã«ã‚ã‚ã›ã¦æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿã‚’å‡ºã™
 		{
 			u32 frame;
 
 			frame = CLACT_AnmFrameGet( p_wk->p_clwk );
 
-			// “®ìƒ`ƒFƒbƒN
+			// å‹•ä½œãƒã‚§ãƒƒã‚¯
 			switch( frame ){
-			// ‚±‚±‚Å”­ŽË‚³‚¹‚é
+			// ã“ã“ã§ç™ºå°„ã•ã›ã‚‹
 			case BCT_TOUCHPEN_ANM_FRAME_FADEOUT:
 				if( p_wk->nut_set == FALSE ){
 					BCT_EasyNutsSet( p_sys, 128, 96, 128, 64, BCT_NUTSSEQ_MOVEOTHER );
@@ -5478,14 +5478,14 @@ static BOOL BCT_CLIENT_TOUCHPEN_Main( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT
 				}
 				break;
 				
-			// Á‚¦‚½
+			// æ¶ˆãˆãŸ
 			case BCT_TOUCHPEN_ANM_FRAME_END:
 				p_wk->roop ++ ;
 				if( p_wk->roop >= BCT_TOUCHPEN_ANM_ROOP_NUM ){
-					// ƒIƒƒŠ
+					// ã‚ªãƒ¯ãƒª
 					p_wk->seq = BCT_TOUCHPEN_ANM_SEQ_END_WAIT;
 				}else{
-					// ‚à‚¤ˆê‰ñ
+					// ã‚‚ã†ä¸€å›ž
 					p_wk->seq	= BCT_TOUCHPEN_ANM_SEQ_MOVE_WAIT;
 					p_wk->wait	= BCT_TOUCHPEN_WAIT;
 				}
@@ -5495,14 +5495,14 @@ static BOOL BCT_CLIENT_TOUCHPEN_Main( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT
 			default:
 				break;
 			}
-			// –Ø‚ÌŽÀÀ•W‚ðÝ’è
+			// æœ¨ã®å®Ÿåº§æ¨™ã‚’è¨­å®š
 			BCT_CLIENT_HandNutsDrawSetMatrix( &p_sys->graphic.handnuts, 
 					BCT_TOUCHPEN_OAM_X,
 					sc_BCT_TOUCHPEN_ANM_FRAME_Y[ frame ] );
 		}
 		break;
 
-	// ŽŸ‚ÌŠJŽn‚Ü‚Å‚ÌƒEƒGƒCƒg
+	// æ¬¡ã®é–‹å§‹ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
 	case BCT_TOUCHPEN_ANM_SEQ_MOVE_WAIT:		
 		p_wk->wait--;
 		if( p_wk->wait <= 0 ){
@@ -5510,21 +5510,21 @@ static BOOL BCT_CLIENT_TOUCHPEN_Main( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT
 		}
 		break;
 
-	// I—¹‘Ò‚¿
+	// çµ‚äº†å¾…ã¡
 	case BCT_TOUCHPEN_ANM_SEQ_END_WAIT:
 		if( BCT_CLIENT_NutsMoveCheck( p_sys ) == FALSE ){
 
-			// •`‰æŠJŽn
+			// æç”»é–‹å§‹
 			CLACT_SetDrawFlag( p_wk->p_clwk, FALSE );
 			return TRUE;
 		}
 		break;
 	}
 
-	// –Ø‚ÌŽÀ“®ìˆ—
+	// æœ¨ã®å®Ÿå‹•ä½œå‡¦ç†
 	BCT_CLIENT_AllNutsMove( p_sys );
 
-	// –Ø‚ÌŽÀ‚ÌI—¹ŠÇ—
+	// æœ¨ã®å®Ÿã®çµ‚äº†ç®¡ç†
     BCT_CLIENT_AllNutsEndCont( p_sys );
 
 	return FALSE;
@@ -5534,9 +5534,9 @@ static BOOL BCT_CLIENT_TOUCHPEN_Main( BCT_CLIENT_TOUCHPEN_MOVE* p_wk, BCT_CLIENT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“r’†Œo‰ß	ƒXƒRƒA	‰Šú‰»
+ *	@brief	é€”ä¸­çµŒéŽ	ã‚¹ã‚³ã‚¢	åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MDLSCR_Init( BCT_CLIENT_MIDDLE_SCORE* p_wk )
@@ -5547,11 +5547,11 @@ static void BCT_CLIENT_MDLSCR_Init( BCT_CLIENT_MIDDLE_SCORE* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“r’†Œo‰ß	ƒXƒRƒA	Ý’è
+ *	@brief	é€”ä¸­çµŒéŽ	ã‚¹ã‚³ã‚¢	è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	score		“¾“_
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	score		å¾—ç‚¹
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MDLSCR_Set( BCT_CLIENT_MIDDLE_SCORE* p_wk, u32 score, u32 idx )
@@ -5566,24 +5566,24 @@ static void BCT_CLIENT_MDLSCR_Set( BCT_CLIENT_MIDDLE_SCORE* p_wk, u32 score, u32
 	
 	if( p_wk->top_idx != BCT_MDLSCR_TOP_DEF ){
 
-		// 1ˆÊ‚Æ“¾“_‚ð”äŠr
-		// 1ˆÊ‚Í‘‚¢‚à‚ñ‚ª‚¿‚É‚·‚é
-		// score‚Í1ˆÈã
+		// 1ä½ã¨å¾—ç‚¹ã‚’æ¯”è¼ƒ
+		// 1ä½ã¯æ—©ã„ã‚‚ã‚“ãŒã¡ã«ã™ã‚‹
+		// scoreã¯1ä»¥ä¸Š
 		if( p_wk->score[ p_wk->top_idx ] < score ){
 			p_wk->top_idx = idx;
 		}
 	}else{
 
-		//  ‚Ü‚¾’N‚Ì“_‚à“ü‚Á‚Ä‚È‚¢‚Ì‚Å‚»‚Ìl‚ªˆêˆÊ
+		//  ã¾ã èª°ã®ç‚¹ã‚‚å…¥ã£ã¦ãªã„ã®ã§ãã®äººãŒä¸€ä½
 		p_wk->top_idx = idx;
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“r’†Œo‰ß	“r’†Œo‰ßÄŽæ“¾ŠJŽn
+ *	@brief	é€”ä¸­çµŒéŽ	é€”ä¸­çµŒéŽå†å–å¾—é–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MDLSCR_Reset( BCT_CLIENT_MIDDLE_SCORE* p_wk )
@@ -5594,12 +5594,12 @@ static void BCT_CLIENT_MDLSCR_Reset( BCT_CLIENT_MIDDLE_SCORE* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“r’†Œo‰ß	¡‚Ì‚Æ‚±‚ë‚Ì‚PˆÊ‚ð•Ô‚·
+ *	@brief	é€”ä¸­çµŒéŽ	ä»Šã®ã¨ã“ã‚ã®ï¼‘ä½ã‚’è¿”ã™
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	BCT_MDLSCR_TOP_DEF	‚¢‚È‚¢
- *	@retval	¡‚ÌˆÊ’u‚Ìl‚ÌƒCƒ“ƒfƒbƒNƒX
+ *	@retval	BCT_MDLSCR_TOP_DEF	ã„ãªã„
+ *	@retval	ä»Šã®ä½ç½®ã®äººã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static u32 BCT_CLIENT_MDLSCR_GetTop( const BCT_CLIENT_MIDDLE_SCORE* cp_wk )
@@ -5609,13 +5609,13 @@ static u32 BCT_CLIENT_MDLSCR_GetTop( const BCT_CLIENT_MIDDLE_SCORE* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l”•ª‚Ì“¾“_‚ðŽæ“¾‚µ‚Ä‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	äººæ•°åˆ†ã®å¾—ç‚¹ã‚’å–å¾—ã—ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	num			”
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	num			æ•°
  *
- *	@retval	TRUE	‘Sˆõ‚Ì“_‚ðŽæ“¾‚µ‚½
- *	@retval	FALSE	‚Ü‚¾‘Sˆõ•ª‚ÍŽ‚Á‚Ä‚È‚¢
+ *	@retval	TRUE	å…¨å“¡ã®ç‚¹ã‚’å–å¾—ã—ãŸ
+ *	@retval	FALSE	ã¾ã å…¨å“¡åˆ†ã¯æŒã£ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_MDLSCR_CheckInNum( const BCT_CLIENT_MIDDLE_SCORE* cp_wk, u32 num )
@@ -5639,59 +5639,59 @@ static BOOL BCT_CLIENT_MDLSCR_CheckInNum( const BCT_CLIENT_MIDDLE_SCORE* cp_wk, 
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒoƒ“ƒNÝ’è
+ *  @brief  ãƒãƒ³ã‚¯è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_BankSet( void )
 {
     GF_BGL_DISPVRAM vramSetTable = {
-        GX_VRAM_BG_32_FG,               // ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-        GX_VRAM_BGEXTPLTT_NONE,         // ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-        GX_VRAM_SUB_BG_128_C,           // ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-        GX_VRAM_SUB_BGEXTPLTT_NONE,     // ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-        GX_VRAM_OBJ_128_B,              // ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-        GX_VRAM_OBJEXTPLTT_NONE,        // ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-        GX_VRAM_SUB_OBJ_16_I,           // ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-        GX_VRAM_SUB_OBJEXTPLTT_NONE,    // ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-        GX_VRAM_TEX_0_A,                // ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-        GX_VRAM_TEXPLTT_0123_E          // ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+        GX_VRAM_BG_32_FG,               // ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+        GX_VRAM_BGEXTPLTT_NONE,         // ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+        GX_VRAM_SUB_BG_128_C,           // ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+        GX_VRAM_SUB_BGEXTPLTT_NONE,     // ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+        GX_VRAM_OBJ_128_B,              // ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+        GX_VRAM_OBJEXTPLTT_NONE,        // ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+        GX_VRAM_SUB_OBJ_16_I,           // ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+        GX_VRAM_SUB_OBJEXTPLTT_NONE,    // ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+        GX_VRAM_TEX_0_A,                // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+        GX_VRAM_TEXPLTT_0123_E          // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
     };
     GF_Disp_SetBank( &vramSetTable );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒPƒbƒgƒQ[ƒ€‚Ì‚RDƒZƒbƒgƒAƒbƒv
+ *	@brief	ãƒã‚±ãƒƒãƒˆã‚²ãƒ¼ãƒ ã®ï¼“Dã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_3DSetUp( void )
 {
-	// ‚R‚cŽg—p–Ê‚ÌÝ’è(•\Ž¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(2);
 
-	// ŠeŽí•`‰æƒ‚[ƒh‚ÌÝ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜Ž)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( TRUE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚ÌÝ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(26,26,26),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
-	// ƒrƒ…[ƒ|[ƒg‚ÌÝ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ‚RD‰Šú‰»
+ *  @brief  ï¼“DåˆæœŸåŒ–
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  comm_num    ’ÊMl”
- *  @param	plno		’ÊMID
- *  @param  heapID      ƒq[ƒvID
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  comm_num    é€šä¿¡äººæ•°
+ *  @param	plno		é€šä¿¡ID
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_3DInit( BCT_CLIENT_GRAPHIC* p_wk, u32 comm_num, u32 plno, u32 heapID )
@@ -5699,18 +5699,18 @@ static void BCT_CLIENT_3DInit( BCT_CLIENT_GRAPHIC* p_wk, u32 comm_num, u32 plno,
 	p_wk->p_3dman = GF_G3DMAN_Init( heapID, GF_G3DMAN_LNK, GF_G3DTEX_128K, 
 			GF_G3DMAN_LNK, GF_G3DPLT_64K, BCT_CLIENT_3DSetUp );
 	
-    // ƒJƒƒ‰Ý’è
+    // ã‚«ãƒ¡ãƒ©è¨­å®š
     BCT_CLIENT_CameraInit( p_wk, comm_num, plno, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ‚RD”jŠü
+ *  @brief  ï¼“Dç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_3DExit( BCT_CLIENT_GRAPHIC* p_wk )
 {
-    // ƒJƒƒ‰”jŠü
+    // ã‚«ãƒ¡ãƒ©ç ´æ£„
     BCT_CLIENT_CameraExit( p_wk );
     
     GF_G3D_Exit( p_wk->p_3dman );
@@ -5718,71 +5718,71 @@ static void BCT_CLIENT_3DExit( BCT_CLIENT_GRAPHIC* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰Šú‰»
+ *  @brief  ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  heapID      ƒq[ƒvID
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_GraphicInit( BCT_CLIENT* p_wk, u32 heapID )
 {
     ARCHANDLE* p_handle;
 
-    // ƒAƒƒP[ƒ^ì¬
+    // ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆ
     sys_InitAllocator( &p_wk->graphic.allocator, heapID, 32 );
     
-    // ƒoƒ“ƒNÝ’è
+    // ãƒãƒ³ã‚¯è¨­å®š
     BCT_CLIENT_BankSet();
 
-    // ‚RD‰Šú‰»
+    // ï¼“DåˆæœŸåŒ–
     BCT_CLIENT_3DInit( &p_wk->graphic, p_wk->comm_num, p_wk->plno, heapID );
 
-    // BG‰Šú‰»
+    // BGåˆæœŸåŒ–
     BCT_CLIENT_BgInit( &p_wk->graphic, heapID );
 
-    // OAM‰Šú‰»
+    // OAMåˆæœŸåŒ–
     BCT_CLIENT_OamInit( &p_wk->graphic, heapID );
 
-    // MSG‰Šú‰»
+    // MSGåˆæœŸåŒ–
     BCT_CLIENT_MsgInit( &p_wk->graphic, heapID );
 
-    // ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+    // ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
     p_handle = ArchiveDataHandleOpen( ARC_BUCKET_GRAPHIC, heapID );
 
-    // ƒƒCƒ“–ÊOAMƒŠƒ\[ƒX‰Šú‰»
+    // ãƒ¡ã‚¤ãƒ³é¢OAMãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
     BCT_CLIENT_MainOamInit( &p_wk->graphic, p_handle, heapID );
 
-	// ƒƒCƒ“–Ê”wŒi‰Šú‰»
+	// ãƒ¡ã‚¤ãƒ³é¢èƒŒæ™¯åˆæœŸåŒ–
 	BCT_CLIENT_MainBackInit( &p_wk->graphic.mainback, &p_wk->graphic, p_handle, p_wk->comm_num, p_wk->plno, heapID, &p_wk->graphic.allocator );
 
-    // ƒ}ƒ‹ƒm[ƒ€‰Šú‰»
+    // ãƒžãƒ«ãƒŽãƒ¼ãƒ åˆæœŸåŒ–
     BCT_CLIENT_MarunomuDrawInit( &p_wk->graphic.marunomu, p_handle, heapID, &p_wk->graphic.allocator );
 
-    // –Ø‚ÌŽÀ‰Šú‰»
+    // æœ¨ã®å®ŸåˆæœŸåŒ–
     BCT_CLIENT_NutsDrawSysInit( &p_wk->graphic, p_handle, heapID );
 
-    // Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ‰Šú‰»
+    // æŒã£ã¦ã„ã‚‹æœ¨ã®å®ŸåˆæœŸåŒ–
     BCT_CLIENT_HandNutsDrawInit( &p_wk->graphic, &p_wk->graphic.handnuts, p_wk->plno, heapID );
 
-	// OAM–Ø‚ÌŽÀ‰æ–ÊŠOˆÚ“®ƒGƒtƒFƒNƒg‰Šú‰»
+	// OAMæœ¨ã®å®Ÿç”»é¢å¤–ç§»å‹•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
 	BCT_CLIENT_OamAwayNutsInit( &p_wk->graphic, &p_wk->graphic.oamnutsaway, p_wk->plno, heapID );
 
-    // BG–Ê‚Ì•`‰æ
+    // BGé¢ã®æç”»
     BCT_CLIENT_BgResLoad( &p_wk->graphic, p_handle, p_wk->plno, heapID );
 
-    // ŠJŽn‰æ–Êƒ[ƒN‰Šú‰»
+    // é–‹å§‹ç”»é¢ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
     BCT_CLIENT_StartSysInit( &p_wk->graphic.start, &p_wk->graphic, p_wk->cp_gamedata, p_wk->comm_num, p_wk->plno, p_handle, heapID );
 
-    // I—¹ƒ[ƒN‰Šú‰»
+    // çµ‚äº†ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
     BCT_CLIENT_EndSysInit( &p_wk->graphic, p_wk->comm_num, p_wk->plno, heapID );
 
-    // ƒXƒRƒAƒGƒtƒFƒNƒg‰Šú‰»
+    // ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
     BCT_CLIENT_ScoreEffectInit( &p_wk->graphic.score_effect, &p_wk->graphic, p_wk->comm_num, p_wk->plno, heapID );
 
-	// BG—Dæ‡ˆÊƒXƒNƒ[ƒ‹‚Ì‰Šú‰»
+	// BGå„ªå…ˆé †ä½ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã®åˆæœŸåŒ–
 	BCT_CLIENT_BGPRISCRL_Init( &p_wk->graphic.bgpri_scrl, p_wk->plno );	
 
-	// –Ø‚ÌŽÀƒJƒEƒ“ƒ^[
+	// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	BCT_CLIENT_NUTS_COUNT_Init( &p_wk->graphic.nutscount, &p_wk->graphic, p_handle, heapID );
 
 #ifdef BCT_DEBUG_HITZONE
@@ -5792,16 +5792,16 @@ static void BCT_CLIENT_GraphicInit( BCT_CLIENT* p_wk, u32 heapID )
     ArchiveDataHandleClose( p_handle );
 
 
-	// ƒJƒEƒ“ƒgƒ[ƒN‰Šú‰»
+	// ã‚«ã‚¦ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	p_wk->graphic.p_countwk = MNGM_COUNT_Init( p_wk->graphic.clactSet, heapID );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^”jŠü
+ *  @brief  ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *  @param  p_wk        ƒ[ƒN
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_GraphicDelete( BCT_CLIENT* p_wk )
@@ -5811,133 +5811,133 @@ static void BCT_CLIENT_GraphicDelete( BCT_CLIENT* p_wk )
     BCT_DEBUG_PositionExit();
 #endif
 
-	// –Ø‚ÌŽÀƒJƒEƒ“ƒ^[
+	// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	BCT_CLIENT_NUTS_COUNT_Exit( &p_wk->graphic.nutscount, &p_wk->graphic );
 
-    // ƒXƒRƒAƒGƒtƒFƒNƒg”jŠü
+    // ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
     BCT_CLIENT_ScoreEffectExit( &p_wk->graphic.score_effect, &p_wk->graphic );
 
-    // I—¹ƒ[ƒN”jŠü
+    // çµ‚äº†ãƒ¯ãƒ¼ã‚¯ç ´æ£„
     BCT_CLIENT_EndSysExit( &p_wk->graphic, p_wk->comm_num );
 
-    // ŠJŽn‰æ–Êƒ[ƒN”jŠü
+    // é–‹å§‹ç”»é¢ãƒ¯ãƒ¼ã‚¯ç ´æ£„
     BCT_CLIENT_StartSysExit( &p_wk->graphic.start, &p_wk->graphic );
     
-    // BG–Ê”jŠü
+    // BGé¢ç ´æ£„
     BCT_CLIENT_BgResRelease( &p_wk->graphic );
 
-	// OAM–Ø‚ÌŽÀ‰æ–ÊŠOˆÚ“®ƒGƒtƒFƒNƒg”jŠü
+	// OAMæœ¨ã®å®Ÿç”»é¢å¤–ç§»å‹•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
 	BCT_CLIENT_OamAwayNutsExit( &p_wk->graphic, &p_wk->graphic.oamnutsaway );
 
-    // Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ”jŠü
+    // æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿç ´æ£„
     BCT_CLIENT_HandNutsDrawExit( &p_wk->graphic.handnuts );
 
-    // –Ø‚ÌŽÀ”jŠü
+    // æœ¨ã®å®Ÿç ´æ£„
     BCT_CLIENT_NutsDrawSysExit( &p_wk->graphic );
     
-    // ƒ}ƒ‹ƒm[ƒ€”jŠü
+    // ãƒžãƒ«ãƒŽãƒ¼ãƒ ç ´æ£„
     BCT_CLIENT_MarunomuDrawExit( &p_wk->graphic.marunomu, &p_wk->graphic.allocator );
 
-	// ƒƒCƒ“–Ê”wŒi”jŠü
+	// ãƒ¡ã‚¤ãƒ³é¢èƒŒæ™¯ç ´æ£„
 	BCT_CLIENT_MainBackExit( &p_wk->graphic.mainback, &p_wk->graphic, &p_wk->graphic.allocator );
 
-    // ƒƒCƒ“–ÊOAMƒŠƒ\[ƒX”jŠü
+    // ãƒ¡ã‚¤ãƒ³é¢OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
     BCT_CLIENT_MainOamExit( &p_wk->graphic );
 
-	// ƒJƒEƒ“ƒgƒ[ƒN”jŠü
+	// ã‚«ã‚¦ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	MNGM_COUNT_Exit( p_wk->graphic.p_countwk );
     
-    // BG”jŠü
+    // BGç ´æ£„
     BCT_CLIENT_BgExit( &p_wk->graphic );
 
-    // OAM”jŠü
+    // OAMç ´æ£„
     BCT_CLIENT_OamExit( &p_wk->graphic );
 
-    // ƒƒbƒZ[ƒW”jŠü
+    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç ´æ£„
     BCT_CLIENT_MsgExit( &p_wk->graphic );
 
-    // ‚RD”jŠü
+    // ï¼“Dç ´æ£„
     BCT_CLIENT_3DExit( &p_wk->graphic );
 
-	// ƒuƒ‰ƒCƒgƒlƒX”jŠü
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ç ´æ£„
 	G2_BlendNone();
 	G2S_BlendNone();
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  •`‰æƒƒCƒ“
+ *  @brief  æç”»ãƒ¡ã‚¤ãƒ³
  *
- *  @param  cp_wk   ƒf[ƒ^ƒ[ƒN
- *  @param  p_wk    •`‰æƒ[ƒN
+ *  @param  cp_wk   ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_wk    æç”»ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_GraphicMain( const BCT_CLIENT* cp_wk, BCT_CLIENT_GRAPHIC* p_wk )
 {
-    // ƒ}ƒ‹ƒm[ƒ€•`‰æƒf[ƒ^XV
+    // ãƒžãƒ«ãƒŽãƒ¼ãƒ æç”»ãƒ‡ãƒ¼ã‚¿æ›´æ–°
     BCT_CLIENT_MarunomuDrawMain( &p_wk->marunomu, &cp_wk->marunomu, cp_wk->move_type );
 	BCT_CLIENT_MarunomuDrawAnmMain( &p_wk->marunomu, &cp_wk->marunomu, cp_wk->move_type );
 
-    // Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ•`‰æƒƒCƒ“
+    // æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿæç”»ãƒ¡ã‚¤ãƒ³
     BCT_CLIENT_HandNutsDrawMain( &p_wk->handnuts );
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	BCT_CLIENT_GraphicDrawCore( cp_wk, p_wk );
 
-	// BG—Dæ‡ˆÊƒXƒNƒ[ƒ‹ƒƒCƒ“
+	// BGå„ªå…ˆé †ä½ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¡ã‚¤ãƒ³
 	BCT_CLIENT_BGPRISCRL_Main( &p_wk->bgpri_scrl, p_wk );
 
-	// –Ø‚ÌŽÀƒJƒEƒ“ƒ^[
+	// æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	BCT_CLIENT_NUTS_COUNT_Main( &p_wk->nutscount );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽÀÛ‚É•\Ž¦‚Ì‚Ýs‚¤êŠ
+ *	@brief	å®Ÿéš›ã«è¡¨ç¤ºã®ã¿è¡Œã†å ´æ‰€
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_wk		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_GraphicDrawCore( const BCT_CLIENT* cp_wk, BCT_CLIENT_GRAPHIC* p_wk )
 {
 
-	// OAM–Ø‚ÌŽÀ‰æ–ÊŠOƒGƒtƒFƒNƒg•`‰æƒƒCƒ“
+	// OAMæœ¨ã®å®Ÿç”»é¢å¤–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæç”»ãƒ¡ã‚¤ãƒ³
 	BCT_CLIENT_OamAwayNutsMain( &p_wk->oamnutsaway );
 	
-	// ƒXƒRƒAƒGƒtƒFƒNƒgƒƒCƒ“
+	// ã‚¹ã‚³ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³
 	BCT_CLIENT_ScoreEffectMain( &p_wk->score_effect );
 	
-    //‚R‚c•`‰æŠJŽn
+    //ï¼“ï¼¤æç”»é–‹å§‹
     GF_G3X_Reset();
 
-    // ƒJƒƒ‰Ý’è
+    // ã‚«ãƒ¡ãƒ©è¨­å®š
     BCT_CLIENT_CameraMain( p_wk );
 
-    // ƒ‰ƒCƒg‚ÆƒAƒ“ƒrƒGƒ“ƒg
+    // ãƒ©ã‚¤ãƒˆã¨ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
     NNS_G3dGlbLightVector( 0, 0, -FX32_ONE, 0 );
     NNS_G3dGlbLightColor( 0, GX_RGB( 31,31,31 ) );
     NNS_G3dGlbMaterialColorDiffAmb( GX_RGB( 31,31,31 ), GX_RGB( 31,31,31 ), FALSE );
     NNS_G3dGlbMaterialColorSpecEmi( GX_RGB( 31,31,31 ), GX_RGB( 31,31,31 ), FALSE );
 
-    // •`‰æ
+    // æç”»
     NNS_G3dGePushMtx();
     {
-		// ƒƒCƒ“–Ê”wŒi
+		// ãƒ¡ã‚¤ãƒ³é¢èƒŒæ™¯
 		BCT_CLIENT_MainBackDraw( &p_wk->mainback );
     }
     NNS_G3dGePopMtx(1);
 	
     NNS_G3dGePushMtx();
     {
-        // ƒ}ƒ‹ƒm[ƒ€•`‰æ
+        // ãƒžãƒ«ãƒŽãƒ¼ãƒ æç”»
         BCT_CLIENT_MarunomuDrawDraw( &p_wk->marunomu, &cp_wk->marunomu );
     }
     NNS_G3dGePopMtx(1);
 
     NNS_G3dGePushMtx();
     {
-        // –Ø‚ÌŽÀ•`‰æ
+        // æœ¨ã®å®Ÿæç”»
         BCT_CLIENT_NutsDrawSysMain( p_wk, cp_wk->comm_num );
     }
     NNS_G3dGePopMtx(1);
@@ -5951,19 +5951,19 @@ static void BCT_CLIENT_GraphicDrawCore( const BCT_CLIENT* cp_wk, BCT_CLIENT_GRAP
 #endif
     
 
-    /* ƒWƒIƒƒgƒŠ•ƒŒƒ“ƒ_ƒŠƒ“ƒOƒGƒ“ƒWƒ“ŠÖ˜Aƒƒ‚ƒŠ‚ÌƒXƒƒbƒv */
+    /* ã‚¸ã‚ªãƒ¡ãƒˆãƒªï¼†ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ãƒ¡ãƒ¢ãƒªã®ã‚¹ãƒ¯ãƒƒãƒ— */
     GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 
-    // ƒZƒ‹ƒAƒNƒ^[•`‰æ
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»
     CLACT_Draw( p_wk->clactSet );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  BG–Ê‚Ì‰Šú‰»
+ *  @brief  BGé¢ã®åˆæœŸåŒ–
  *
- *  @param  p_wk    ƒ[ƒN
- *  @param  heapID  ƒq[ƒvID
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
+ *  @param  heapID  ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_BgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
@@ -5978,8 +5978,8 @@ static void BCT_CLIENT_BgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
         GF_BGL_InitBG( &BGsys_data );
     }
 
-    // ƒƒCƒ“‰æ–Ê1
-    {   // ƒEƒBƒ“ƒhƒE
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢1
+    {   // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
             GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -5990,8 +5990,8 @@ static void BCT_CLIENT_BgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
         GF_BGL_ScrClear( p_wk->p_bgl, GF_BGL_FRAME1_M );
     }
 
-    // ƒƒCƒ“‰æ–Ê2
-    {   // ƒEƒBƒ“ƒhƒE
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢2
+    {   // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
             GX_BG_SCRBASE_0x7000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -6002,7 +6002,7 @@ static void BCT_CLIENT_BgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
         GF_BGL_ScrClear( p_wk->p_bgl, GF_BGL_FRAME2_M );
     }
 
-    // ƒTƒu‰æ–Ê0
+    // ã‚µãƒ–ç”»é¢0
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -6014,7 +6014,7 @@ static void BCT_CLIENT_BgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
         GF_BGL_ScrClear( p_wk->p_bgl, GF_BGL_FRAME0_S );
     }
 
-    // ƒTƒu‰æ–Ê1   
+    // ã‚µãƒ–ç”»é¢1   
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -6026,7 +6026,7 @@ static void BCT_CLIENT_BgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
         GF_BGL_ScrClear( p_wk->p_bgl, GF_BGL_FRAME1_S );
     }
 
-	// ƒTƒu‰æ–Ê2	
+	// ã‚µãƒ–ç”»é¢2	
 	{
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -6038,7 +6038,7 @@ static void BCT_CLIENT_BgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
         GF_BGL_ScrClear( p_wk->p_bgl, GF_BGL_FRAME2_S );
 	}
 
-	// ƒTƒu‰æ–Ê3	
+	// ã‚µãƒ–ç”»é¢3	
 	{
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -6051,21 +6051,21 @@ static void BCT_CLIENT_BgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
 	}
 
 
-    // ƒƒCƒ“‰æ–ÊÝ’è
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢è¨­å®š
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-    // ƒTƒu–Ê‚Í•\Ž¦OFF
+    // ã‚µãƒ–é¢ã¯è¡¨ç¤ºOFF
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-    // ƒƒCƒ“–Ê‚ÉƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN‚ðÝ’è
+    // ãƒ¡ã‚¤ãƒ³é¢ã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’è¨­å®š
     TalkFontPaletteLoad( PALTYPE_MAIN_BG, BCT_GRA_BGMAIN_PAL_FONT*0x20, heapID );
     MenuWinGraphicSet(
         p_wk->p_bgl, GF_BGL_FRAME1_M, BCT_GRA_SYSWND_CGX, BCT_GRA_BGMAIN_PAL_SYSWND, 0, heapID );
@@ -6075,9 +6075,9 @@ static void BCT_CLIENT_BgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  BG–Ê‚Ì”jŠü
+ *  @brief  BGé¢ã®ç ´æ£„
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_BgExit( BCT_CLIENT_GRAPHIC* p_wk )
@@ -6094,31 +6094,31 @@ static void BCT_CLIENT_BgExit( BCT_CLIENT_GRAPHIC* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  OAM–Ê‚Ì‰Šú‰»
+ *  @brief  OAMé¢ã®åˆæœŸåŒ–
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  heapID      ƒq[ƒvID
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_OamInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
 {
     int i;
 
-    // OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+    // OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
     NNS_G2dInitOamManagerModule();
 
-    // ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-    // ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-    // ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+    // å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
     REND_OAMInit(
-        0, 126,     // ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,      // ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-        0, 126,     // ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,      // ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+        0, 126,     // ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,      // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+        0, 126,     // ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,      // ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
         heapID);
 
 
-    // ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     {
         CHAR_MANAGER_MAKE cm = {
             BCT_GRA_CHARMAN_NUM,
@@ -6129,49 +6129,49 @@ static void BCT_CLIENT_OamInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
         cm.heap = heapID;
         InitCharManagerReg(&cm, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K );
     }
-    // ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     InitPlttManager(BCT_GRA_PLTTMAN_NUM, heapID);
 
-    // “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+    // èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
     CharLoadStartAll();
     PlttLoadStartAll();
 
-    //’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+    //é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
     CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
     
 
-    // ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
     p_wk->clactSet = CLACT_U_SetEasyInit( BCT_GRA_CLACTNUM, &p_wk->renddata, heapID );
 
-    // ƒT[ƒtƒF[ƒXˆÊ’u‚ðˆÚ“®‚³‚¹‚é
+    // ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ä½ç½®ã‚’ç§»å‹•ã•ã›ã‚‹
     CLACT_U_SetSubSurfaceMatrix( &p_wk->renddata, 0, BCT_GRA_OAMSUBSURFACE_Y );
     
-    // ƒLƒƒƒ‰‚ÆƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+    // ã‚­ãƒ£ãƒ©ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
     for( i=0; i<BCT_GRA_RESMAN_NUM; i++ ){
         p_wk->resMan[i] = CLACT_U_ResManagerInit(BCT_GRA_RESMAN_LOADNUM, i, heapID);
     }
 
 
-	// ƒtƒHƒ“ƒgOAM
+	// ãƒ•ã‚©ãƒ³ãƒˆOAM
 	p_wk->p_fontoam_sys = FONTOAM_SysInit( BCT_FONTOAM_WKNUM, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  OAM–Ê‚Ì”jŠü
+ *  @brief  OAMé¢ã®ç ´æ£„
  *
- *  @param  p_wk        ƒ[ƒN
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_OamExit( BCT_CLIENT_GRAPHIC* p_wk )
 {
     int i;
 
-	// ƒtƒHƒ“ƒgOAM
+	// ãƒ•ã‚©ãƒ³ãƒˆOAM
 	FONTOAM_SysDelete( p_wk->p_fontoam_sys );
 
-    // ƒAƒNƒ^[‚Ì”jŠü
+    // ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç ´æ£„
     CLACT_DestSet( p_wk->clactSet );
 
 
@@ -6179,29 +6179,29 @@ static void BCT_CLIENT_OamExit( BCT_CLIENT_GRAPHIC* p_wk )
         CLACT_U_ResManagerDelete( p_wk->resMan[i] );
     }
 
-    // ƒŠƒ\[ƒX‰ð•ú
+    // ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
     DeleteCharManager();
     DeletePlttManager();
 
-    //OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+    //OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
     REND_OAM_Delete();
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒƒCƒ“–¼OAMƒŠƒ\[ƒX ‰Šú‰»
+ *  @brief  ãƒ¡ã‚¤ãƒ³åOAMãƒªã‚½ãƒ¼ã‚¹ åˆæœŸåŒ–
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  p_handle    ƒA[ƒNƒnƒ“ƒhƒ‹
- *  @param  heapID      ƒq[ƒvID
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_handle    ã‚¢ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MainOamInit( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_handle, u32 heapID )
 {
     BOOL result;
-    // ƒƒCƒ“‰æ–ÊOAMƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢OAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
     {
-        // OAMƒŠƒ\[ƒX“Çž‚Ý
+        // OAMãƒªã‚½ãƒ¼ã‚¹èª­è¾¼ã¿
         p_wk->mainoamresobj[ 0 ] = CLACT_U_ResManagerResAddArcChar_ArcHandle(
                     p_wk->resMan[ 0 ], p_handle,
                     NARC_bucket_font_boad_NCGR,
@@ -6223,17 +6223,17 @@ static void BCT_CLIENT_MainOamInit( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_handl
                 NARC_bucket_font_boad_NANR, FALSE,
                 BCT_MAINOAM_CONTID, CLACT_U_CELLANM_RES, heapID );
 
-        // “]‘—
+        // è»¢é€
         result = CLACT_U_CharManagerSetCharModeAdjustAreaCont( p_wk->mainoamresobj[ 0 ] );
         GF_ASSERT( result );
         result = CLACT_U_PlttManagerSetCleanArea( p_wk->mainoamresobj[ 1 ] );
         GF_ASSERT( result );
 
-        // ƒŠƒ\[ƒX‚¾‚¯”jŠü
+        // ãƒªã‚½ãƒ¼ã‚¹ã ã‘ç ´æ£„
         CLACT_U_ResManagerResOnlyDelete( p_wk->mainoamresobj[ 0 ] );
         CLACT_U_ResManagerResOnlyDelete( p_wk->mainoamresobj[ 1 ] );
 
-        // ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+        // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
         CLACT_U_MakeHeader( &p_wk->mainoamheader, 
                 BCT_MAINOAM_CONTID, BCT_MAINOAM_CONTID,
                 BCT_MAINOAM_CONTID, BCT_MAINOAM_CONTID,
@@ -6247,20 +6247,20 @@ static void BCT_CLIENT_MainOamInit( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_handl
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒƒCƒ“–Ê@OAMƒŠƒ\[ƒX”jŠü
+ *  @brief  ãƒ¡ã‚¤ãƒ³é¢ã€€OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MainOamExit( BCT_CLIENT_GRAPHIC* p_wk )
 {
-    // ƒƒCƒ“‰æ–ÊOAMƒŠƒ\[ƒX”jŠü
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
     {
-        // VRAMŠÇ—‚©‚ç”jŠü
+        // VRAMç®¡ç†ã‹ã‚‰ç ´æ£„
         CLACT_U_CharManagerDelete( p_wk->mainoamresobj[0] );
         CLACT_U_PlttManagerDelete( p_wk->mainoamresobj[1] );
         
-        // ƒŠƒ\[ƒX”jŠü
+        // ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
         CLACT_U_ResManagerResDelete( p_wk->resMan[0], p_wk->mainoamresobj[0] );
         CLACT_U_ResManagerResDelete( p_wk->resMan[1], p_wk->mainoamresobj[1] );
         CLACT_U_ResManagerResDelete( p_wk->resMan[2], p_wk->mainoamresobj[2] );
@@ -6271,10 +6271,10 @@ static void BCT_CLIENT_MainOamExit( BCT_CLIENT_GRAPHIC* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒƒbƒZ[ƒWƒf[ƒ^‰Šú‰»
+ *  @brief  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  heapID      ƒq[ƒvID
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MsgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
@@ -6288,9 +6288,9 @@ static void BCT_CLIENT_MsgInit( BCT_CLIENT_GRAPHIC* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+ *  @brief  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MsgExit( BCT_CLIENT_GRAPHIC* p_wk )
@@ -6303,12 +6303,12 @@ static void BCT_CLIENT_MsgExit( BCT_CLIENT_GRAPHIC* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒJƒƒ‰‰Šú‰»
+ *  @brief  ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  comm_num    ’ÊMl”
- *  @param	plno		’ÊŽjID
- *  @param  heapID      ƒq[ƒv
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  comm_num    é€šä¿¡äººæ•°
+ *  @param	plno		é€šå²ID
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_CameraInit( BCT_CLIENT_GRAPHIC* p_wk, u32 comm_num, u32 plno, u32 heapID )
@@ -6317,7 +6317,7 @@ static void BCT_CLIENT_CameraInit( BCT_CLIENT_GRAPHIC* p_wk, u32 comm_num, u32 p
     VecFx32 up;
     MtxFx33 rot;
     
-    // ƒJƒƒ‰ƒAƒƒbƒN
+    // ã‚«ãƒ¡ãƒ©ã‚¢ãƒ­ãƒƒã‚¯
     p_wk->p_camera = GFC_AllocCamera( heapID );
 
     p_wk->target.x = BCT_CAMERA_TARGET_X;
@@ -6343,15 +6343,15 @@ static void BCT_CLIENT_CameraInit( BCT_CLIENT_GRAPHIC* p_wk, u32 comm_num, u32 p
     
     GFC_AttachCamera( p_wk->p_camera );
 
-	// Near FarÝ’è
+	// Near Farè¨­å®š
 	GFC_SetCameraClip( BCT_CAMERA_NEAR, BCT_CAMERA_FAR, p_wk->p_camera );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒJƒƒ‰”jŠü
+ *  @brief  ã‚«ãƒ¡ãƒ©ç ´æ£„
  *
- *  @param  p_wk        ƒ[ƒN
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_CameraExit( BCT_CLIENT_GRAPHIC* p_wk )
@@ -6361,25 +6361,25 @@ static void BCT_CLIENT_CameraExit( BCT_CLIENT_GRAPHIC* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒJƒƒ‰ƒƒCƒ“
+ *  @brief  ã‚«ãƒ¡ãƒ©ãƒ¡ã‚¤ãƒ³
  *
- *  @param  p_wk        ƒ[ƒN
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_CameraMain( BCT_CLIENT_GRAPHIC* p_wk )
 {
-    // ƒJƒƒ‰Ý’è
+    // ã‚«ãƒ¡ãƒ©è¨­å®š
     GFC_CameraLookAt();
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  BG‰æ–Ê‚ÌÝ’è
+ *  @brief  BGç”»é¢ã®è¨­å®š
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  p_handle    ƒnƒ“ƒhƒ‹
- *  @param	plno		’ÊMID
- *  @param  heapID      ƒq[ƒvID
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_handle    ãƒãƒ³ãƒ‰ãƒ«
+ *  @param	plno		é€šä¿¡ID
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_BgResLoad( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_handle, u32 plno, u32 heapID )
@@ -6391,7 +6391,7 @@ static void BCT_CLIENT_BgResLoad( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_handle,
 		BCT_GRA_BGSUB_PAL_BACK_NETID3,
 	};
 	
-    // ƒTƒu‰æ–Ê‚ÌBG
+    // ã‚µãƒ–ç”»é¢ã®BG
     ArcUtil_HDL_BgCharSet( p_handle, NARC_bucket_tamaire_bg_NCGR, p_wk->p_bgl, GF_BGL_FRAME0_S, 0, 0, FALSE, heapID );
     ArcUtil_HDL_ScrnSet( p_handle, NARC_bucket_tamaire_bg0_NSCR, p_wk->p_bgl,GF_BGL_FRAME3_S, 0, 0, FALSE, heapID );
     ArcUtil_HDL_ScrnSet( p_handle, NARC_bucket_tamaire_bg1_NSCR, p_wk->p_bgl,GF_BGL_FRAME2_S, 0, 0, FALSE, heapID );
@@ -6399,7 +6399,7 @@ static void BCT_CLIENT_BgResLoad( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_handle,
     ArcUtil_HDL_ScrnSet( p_handle, NARC_bucket_tamaire_bg3_NSCR, p_wk->p_bgl,GF_BGL_FRAME0_S, 0, 0, FALSE, heapID );
     ArcUtil_HDL_PalSet( p_handle, NARC_bucket_tamaire_bg_NCLR, PALTYPE_SUB_BG, 0, BCT_GRA_BGSUB_PAL_NUM*32, heapID );
 
-	// ƒpƒŒƒbƒg‚ð‡‚í‚¹‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’åˆã‚ã›ã‚‹
 	GF_BGL_ScrPalChange( p_wk->p_bgl, GF_BGL_FRAME3_S, 0, 0, 32, 32, sc_SubPal[plno] );	
 	GF_BGL_ScrPalChange( p_wk->p_bgl, GF_BGL_FRAME2_S, 0, 0, 32, 32, BCT_GRA_BGSUB_PAL_NETID0_BACK+(plno*2) );	
 	GF_BGL_ScrPalChange( p_wk->p_bgl, GF_BGL_FRAME1_S, 0, 0, 32, 32, BCT_GRA_BGSUB_PAL_NETID0_TOP+(plno*2) );	
@@ -6413,9 +6413,9 @@ static void BCT_CLIENT_BgResLoad( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_handle,
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  BG‰æ–Ê‚Ì”jŠü
+ *  @brief  BGç”»é¢ã®ç ´æ£„
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_BgResRelease( BCT_CLIENT_GRAPHIC* p_wk )
@@ -6424,11 +6424,11 @@ static void BCT_CLIENT_BgResRelease( BCT_CLIENT_GRAPHIC* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€•`‰æƒIƒuƒWƒFƒNƒg‰Šú‰»
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  p_handle    ƒnƒ“ƒhƒ‹
- *  @param  heapID      ƒq[ƒvID
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_handle    ãƒãƒ³ãƒ‰ãƒ«
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawInit( BCT_MARUNOMU_DRAW* p_wk, ARCHANDLE* p_handle, u32 heapID, NNSFndAllocator* p_allocator )
@@ -6452,17 +6452,17 @@ static void BCT_CLIENT_MarunomuDrawInit( BCT_MARUNOMU_DRAW* p_wk, ARCHANDLE* p_h
 
 	memset( p_wk, 0, sizeof(BCT_MARUNOMU_DRAW) );
     
-    // ƒ‚ƒfƒ‹ÃÞ°À“Ç‚Ýž‚Ý
+    // ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	for( i=0; i<BCT_MARUNOMU_MDL_NUM; i++ ){
 	    D3DOBJ_MdlLoadH( &p_wk->mdl[i], p_handle, Mdl[i], heapID );
 
-		// ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+		// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 		D3DOBJ_Init( &p_wk->obj[i], &p_wk->mdl[i] );
 
-		// •`‰æOFF
+		// æç”»OFF
 		D3DOBJ_SetDraw( &p_wk->obj[i], FALSE );
 
-		// À•WAŠg‘å—¦‚ÌÝ’è
+		// åº§æ¨™ã€æ‹¡å¤§çŽ‡ã®è¨­å®š
 	    D3DOBJ_SetMatrix( &p_wk->obj[i], sc_MARUNOMU_MAT.x, sc_MARUNOMU_MAT.y + BCT_START_SCRLL3D_Y_S, sc_MARUNOMU_MAT.z );
 		D3DOBJ_SetScale( &p_wk->obj[i], BCT_MARUNOMU_SCALE, BCT_MARUNOMU_SCALE, BCT_MARUNOMU_SCALE );
 
@@ -6470,15 +6470,15 @@ static void BCT_CLIENT_MarunomuDrawInit( BCT_MARUNOMU_DRAW* p_wk, ARCHANDLE* p_h
         
 
     
-    // ƒAƒjƒÃÞ°À“Ç‚Ýž‚Ý
+    // ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
     for( i=0; i<BCT_MARUNOMU_ANM_NUM; i++ ){
         D3DOBJ_AnmLoadH( &p_wk->anm[i], &p_wk->mdl[ sc_BCT_MARUNOMU_ANM_MDL[i] ], p_handle, 
                 Anm[i], heapID, p_allocator );
-		// ƒAƒjƒó‘Ô‚ðÝ’è
+		// ã‚¢ãƒ‹ãƒ¡çŠ¶æ…‹ã‚’è¨­å®š
 		D3DOBJ_AnmSet( &p_wk->anm[i], 0 );
 
-		// ƒAƒjƒ‚Ì”½‰fƒm[ƒhÝ’è
-		// ‚Ü‚¸‘Sƒm[ƒh‚Ö‚ÌƒAƒjƒ‚Ì‰e‹¿‚ðOFF
+		// ã‚¢ãƒ‹ãƒ¡ã®åæ˜ ãƒŽãƒ¼ãƒ‰è¨­å®š
+		// ã¾ãšå…¨ãƒŽãƒ¼ãƒ‰ã¸ã®ã‚¢ãƒ‹ãƒ¡ã®å½±éŸ¿ã‚’OFF
 		j = 0;
 		cp_nodeinfo = NNS_G3dGetNodeInfo( p_wk->mdl[ sc_BCT_MARUNOMU_ANM_MDL[i] ].pModel );
 		while( (cp_node_name = NNS_G3dGetNodeNameByIdx( cp_nodeinfo, j )) != NULL ){
@@ -6486,7 +6486,7 @@ static void BCT_CLIENT_MarunomuDrawInit( BCT_MARUNOMU_DRAW* p_wk, ARCHANDLE* p_h
 			j++;
 		}
 
-		// ”½‰f‚·‚×‚«ƒm[ƒh‚ðÝ’è
+		// åæ˜ ã™ã¹ããƒŽãƒ¼ãƒ‰ã‚’è¨­å®š
 		for( j=0; j<BCT_MARUNOMU_ANM_NODE_NUM; j++ ){
 			idx = NNS_G3dGetNodeIdxByName( cp_nodeinfo, &sc_AnmNodeName[i][j] );
 			if( idx != -1 ){
@@ -6496,25 +6496,25 @@ static void BCT_CLIENT_MarunomuDrawInit( BCT_MARUNOMU_DRAW* p_wk, ARCHANDLE* p_h
 		}
     }
 
-	// ƒJƒ‰[ƒAƒjƒ“Ç‚Ýž‚Ý
+	// ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡èª­ã¿è¾¼ã¿
 	for( i=0; i<BCT_MARUNOMU_ANM_COLANM_NUM; i++ ){
 		D3DOBJ_AnmLoadH( &p_wk->colanm[i], &p_wk->mdl[ sc_BCT_MARUNOMU_COLANM_MDL[i] ], p_handle, 
 				NARC_bucket_maru_robo_col_nsbtp, heapID, p_allocator );
 
-		// ƒJƒ‰[ƒAƒjƒÝ’è
+		// ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡è¨­å®š
 		D3DOBJ_AddAnm( &p_wk->obj[ sc_BCT_MARUNOMU_COLANM_MDL[i] ], &p_wk->colanm[i] );
 	}
 
 
-	// ƒJƒ‰[ƒAƒjƒƒpƒ‰ƒ[ƒ^‰Šú‰»
+	// ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	p_wk->col_top	= BCT_PLAYER_NUM;
 	p_wk->col_rand	= FALSE;
 
 
-	// •à‚«ƒAƒjƒÝ’è
+	// æ­©ãã‚¢ãƒ‹ãƒ¡è¨­å®š
 	BCT_CLIENT_MarunomuDrawSetWalkAnm( p_wk, FALSE );
 
-	// ƒI[ƒvƒ“ƒAƒjƒ‚ð“o˜^
+	// ã‚ªãƒ¼ãƒ—ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚’ç™»éŒ²
 	D3DOBJ_AddAnm( &p_wk->obj[ BCT_MARUNOMU_MDL_OPEN ], &p_wk->anm[ BCT_MARUNOMU_ANM_OPEN ] );
 	D3DOBJ_AnmSet( &p_wk->anm[ BCT_MARUNOMU_ANM_OPEN ], 0 );
 	D3DOBJ_SetDraw( &p_wk->obj[ BCT_MARUNOMU_MDL_OPEN ], TRUE );	
@@ -6523,9 +6523,9 @@ static void BCT_CLIENT_MarunomuDrawInit( BCT_MARUNOMU_DRAW* p_wk, ARCHANDLE* p_h
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€•`‰æƒIƒuƒWƒFƒNƒg”jŠü
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawExit( BCT_MARUNOMU_DRAW* p_wk, NNSFndAllocator* p_allocator )
@@ -6533,7 +6533,7 @@ static void BCT_CLIENT_MarunomuDrawExit( BCT_MARUNOMU_DRAW* p_wk, NNSFndAllocato
     int i;
 	
     
-    // ‘SƒŠƒ\[ƒX”jŠü
+    // å…¨ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	for( i=0; i<BCT_MARUNOMU_MDL_NUM; i++ ){
 	    D3DOBJ_MdlDelete( &p_wk->mdl[i] ); 
 	}
@@ -6552,24 +6552,24 @@ static void BCT_CLIENT_MarunomuDrawExit( BCT_MARUNOMU_DRAW* p_wk, NNSFndAllocato
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€•`‰æƒIƒuƒWƒFƒNƒgƒƒCƒ““®ì
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *  @param  p_wk		ƒ[ƒN
- *  @param  cp_data		ƒf[ƒ^
- *  @param	movetype	ŽžŠÔ‚Å‘JˆÚ‚·‚é“®ìƒ^ƒCƒv
+ *  @param  p_wk		ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_data		ãƒ‡ãƒ¼ã‚¿
+ *  @param	movetype	æ™‚é–“ã§é·ç§»ã™ã‚‹å‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawMain( BCT_MARUNOMU_DRAW* p_wk, const BCT_MARUNOMU* cp_data, BCT_MARUNOMU_MOVE_TYPE movetype )
 {
-    // À•W‚ÆŠp“x‚ÆŠg‘å—¦‚ðÝ’è
+    // åº§æ¨™ã¨è§’åº¦ã¨æ‹¡å¤§çŽ‡ã‚’è¨­å®š
     BCT_CLIENT_MarunomuDrawMatrixSet( p_wk, cp_data );
 	BCT_CLIENT_MarunomuDrawRotaSet( p_wk, cp_data );
 	BCT_CLIENT_MarunomuDrawScaleSet( p_wk, cp_data );
 
-	// ƒAƒjƒÝ’è
+	// ã‚¢ãƒ‹ãƒ¡è¨­å®š
 	switch( movetype ){
-	// rotax‚Ì’l‚ðÝ’è
-    case BCT_MARUNOMU_MOVE_EASY:			// ŠÈ’P“®ì
+	// rotaxã®å€¤ã‚’è¨­å®š
+    case BCT_MARUNOMU_MOVE_EASY:			// ç°¡å˜å‹•ä½œ
     case BCT_MARUNOMU_MOVE_FEVER:		// FEVER
 		BCT_CLIENT_MarunomuDrawSetMouthAnm( p_wk, BCT_MARUNOMU_ANM_ROTA );
 		BCT_CLIENT_MarunomuDrawAnmRotaSet( p_wk, cp_data->rotax );
@@ -6577,13 +6577,13 @@ static void BCT_CLIENT_MarunomuDrawMain( BCT_MARUNOMU_DRAW* p_wk, const BCT_MARU
 		break;
 
 	/*
-	// “ÆŽ©ƒAƒjƒ
-    case BCT_MARUNOMU_MOVE_BAKUBAKU_EFF:	// ‚Î‚­‚Î‚­‘OƒGƒtƒFƒNƒg
+	// ç‹¬è‡ªã‚¢ãƒ‹ãƒ¡
+    case BCT_MARUNOMU_MOVE_BAKUBAKU_EFF:	// ã°ãã°ãå‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		BCT_CLIENT_MarunomuDrawSetMouthAnm( p_wk, BCT_MARUNOMU_ANM_PURU );
 		BCT_CLIENT_MarunomuDrawLoopMouthAnm( p_wk );
 		break;
 	//*/
-    case BCT_MARUNOMU_MOVE_FEVER_EFF:	// FEVER‘OƒGƒtƒFƒNƒg
+    case BCT_MARUNOMU_MOVE_FEVER_EFF:	// FEVERå‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		BCT_CLIENT_MarunomuDrawSetMouthAnm( p_wk, BCT_MARUNOMU_ANM_FEV );
 		BCT_CLIENT_MarunomuDrawSetWalkAnm( p_wk, FALSE );
 		BCT_CLIENT_MarunomuDrawNoLoopMouthAnm_Speed( p_wk, BCT_MARUNOMU_ANM_FEVERSPEED );
@@ -6594,7 +6594,7 @@ static void BCT_CLIENT_MarunomuDrawMain( BCT_MARUNOMU_DRAW* p_wk, const BCT_MARU
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒAƒjƒƒƒCƒ“
+ *	@brief	æç”»ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
  *	@param	p_wk
  *	@param	cp_data
@@ -6603,7 +6603,7 @@ static void BCT_CLIENT_MarunomuDrawMain( BCT_MARUNOMU_DRAW* p_wk, const BCT_MARU
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawAnmMain( BCT_MARUNOMU_DRAW* p_wk, const BCT_MARUNOMU* cp_data, BCT_MARUNOMU_MOVE_TYPE movetype )
 {
-	// í‚É•à‚«ƒAƒjƒ
+	// å¸¸ã«æ­©ãã‚¢ãƒ‹ãƒ¡
 	D3DOBJ_AnmLoop( &p_wk->anm[ BCT_MARUNOMU_ANM_WALK ], BCT_MARUNOMU_ANM_SLOWSPEED );
 
 	BCT_CLIENT_MarunomuDrawColAnmMain( p_wk );
@@ -6611,17 +6611,17 @@ static void BCT_CLIENT_MarunomuDrawAnmMain( BCT_MARUNOMU_DRAW* p_wk, const BCT_M
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€‚É‰ñ“]Šp“x@À•W‚ðÝ’è
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ ã«å›žè»¢è§’åº¦ã€€åº§æ¨™ã‚’è¨­å®š
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  cp_data     ƒ}ƒ‹ƒm[ƒ€ƒf[ƒ^
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_data     ãƒžãƒ«ãƒŽãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawMatrixSet( BCT_MARUNOMU_DRAW* p_wk, const BCT_MARUNOMU* cp_data )
 {
 	int i;
 
-    // À•W‚ðÝ’è
+    // åº§æ¨™ã‚’è¨­å®š
 	for( i=0; i<BCT_MARUNOMU_MDL_NUM; i++ ){
 	    D3DOBJ_SetMatrix( &p_wk->obj[i], cp_data->matrix.x, cp_data->matrix.y, cp_data->matrix.z );
 	}
@@ -6630,7 +6630,7 @@ static void BCT_CLIENT_MarunomuDrawMatrixSet( BCT_MARUNOMU_DRAW* p_wk, const BCT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šp“x‚ðÝ’è
+ *	@brief	è§’åº¦ã‚’è¨­å®š
  *
  *	@param	p_wk
  *	@param	cp_data 
@@ -6642,7 +6642,7 @@ static void BCT_CLIENT_MarunomuDrawRotaSet( BCT_MARUNOMU_DRAW* p_wk, const BCT_M
     fx32 scale;
     u32 setrota;
 	
-    // •½–ÊŠp“xÝ’è
+    // å¹³é¢è§’åº¦è¨­å®š
     setrota = cp_data->rota + BCT_MARUNOMU_DRAWROTA_ADD;
 
 	for( i=0; i<BCT_MARUNOMU_MDL_NUM; i++ ){
@@ -6652,7 +6652,7 @@ static void BCT_CLIENT_MarunomuDrawRotaSet( BCT_MARUNOMU_DRAW* p_wk, const BCT_M
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šg‘å—¦‚ðÝ’è
+ *	@brief	æ‹¡å¤§çŽ‡ã‚’è¨­å®š
  *
  *	@param	p_wk
  *	@param	cp_data 
@@ -6662,7 +6662,7 @@ static void BCT_CLIENT_MarunomuDrawScaleSet( BCT_MARUNOMU_DRAW* p_wk, const BCT_
 {
 	int i;
 	
-	// ƒ}ƒ‹ƒm[ƒ€‚Ì•`‰æ‚É”½‰f
+	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®æç”»ã«åæ˜ 
 	for( i=0; i<BCT_MARUNOMU_MDL_NUM; i++ ){
 	    D3DOBJ_SetScale( &p_wk->obj[i], cp_data->draw_scale, cp_data->draw_scale, cp_data->draw_scale );
 	}
@@ -6670,9 +6670,9 @@ static void BCT_CLIENT_MarunomuDrawScaleSet( BCT_MARUNOMU_DRAW* p_wk, const BCT_
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ}ƒ‹ƒm[ƒ€•`‰æ
+ *  @brief  ãƒžãƒ«ãƒŽãƒ¼ãƒ æç”»
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawDraw( BCT_MARUNOMU_DRAW* p_wk, const BCT_MARUNOMU* cp_data )
@@ -6703,10 +6703,10 @@ static void BCT_CLIENT_MarunomuDrawDraw( BCT_MARUNOMU_DRAW* p_wk, const BCT_MARU
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ‰ñ“]Šp“x‚É‘Î‰ž‚µ‚½ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ðÝ’è
+ *  @brief  å›žè»¢è§’åº¦ã«å¯¾å¿œã—ãŸã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®š
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  rotax       XŽ²‰ñ“]Šp“x
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  rotax       Xè»¸å›žè»¢è§’åº¦
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawAnmRotaSet( BCT_MARUNOMU_DRAW* p_wk, u32 rotax )
@@ -6714,10 +6714,10 @@ static void BCT_CLIENT_MarunomuDrawAnmRotaSet( BCT_MARUNOMU_DRAW* p_wk, u32 rota
     fx32 frame;
 
 
-    // XŽ²‰ñ“]Šp“x‚ÌƒAƒjƒƒtƒŒ[ƒ€‚ðÝ’è
-	// 90‚ªBCT_MARUNOMU_ANM_FRAME_MAX
+    // Xè»¸å›žè»¢è§’åº¦ã®ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®š
+	// 90ãŒBCT_MARUNOMU_ANM_FRAME_MAX
 	rotax -= BCT_MARUNOMU_ROTA_X_MIN;
-    frame = (rotax * 90) / RotKeyR( BCT_MARUNOMU_ROTA_X_MAX_360-BCT_MARUNOMU_ROTA_X_MIN );	// 0`90‚Ì’l‚É‚·‚é
+    frame = (rotax * 90) / RotKeyR( BCT_MARUNOMU_ROTA_X_MAX_360-BCT_MARUNOMU_ROTA_X_MIN );	// 0ã€œ90ã®å€¤ã«ã™ã‚‹
 	frame = (frame * BCT_MARUNOMU_ANM_FRAME_MAX) / 90;
 	frame = BCT_MARUNOMU_ANM_FRAME_MAX - frame;
     D3DOBJ_AnmSet( &p_wk->anm[BCT_MARUNOMU_ANM_ROTA], frame );
@@ -6725,10 +6725,10 @@ static void BCT_CLIENT_MarunomuDrawAnmRotaSet( BCT_MARUNOMU_DRAW* p_wk, u32 rota
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œû‚ÌƒAƒjƒ‚ð•ÏX‚·‚é
+ *	@brief	å£ã®ã‚¢ãƒ‹ãƒ¡ã‚’å¤‰æ›´ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	anmno		ƒAƒjƒƒiƒ“ƒo[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	anmno		ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawSetMouthAnm( BCT_MARUNOMU_DRAW* p_wk, u32 anmno )
@@ -6742,7 +6742,7 @@ static void BCT_CLIENT_MarunomuDrawSetMouthAnm( BCT_MARUNOMU_DRAW* p_wk, u32 anm
 
 		D3DOBJ_AnmSet( &p_wk->anm[ anmno ], 0 );
 
-		// ƒIƒuƒWƒF‚Ì•\Ž¦ONOFF
+		// ã‚ªãƒ–ã‚¸ã‚§ã®è¡¨ç¤ºONOFF
 		D3DOBJ_SetDraw( &p_wk->obj[ sc_BCT_MARUNOMU_ANM_MDL[p_wk->set_mouthanm] ], FALSE );	
 		D3DOBJ_SetDraw( &p_wk->obj[ sc_BCT_MARUNOMU_ANM_MDL[anmno] ], TRUE );	
 
@@ -6752,9 +6752,9 @@ static void BCT_CLIENT_MarunomuDrawSetMouthAnm( BCT_MARUNOMU_DRAW* p_wk, u32 anm
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒûƒAƒjƒ‚Ìƒ‹[ƒvÄ¶
+ *	@brief	å£ã‚¢ãƒ‹ãƒ¡ã®ãƒ«ãƒ¼ãƒ—å†ç”Ÿ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawLoopMouthAnm( BCT_MARUNOMU_DRAW* p_wk )
@@ -6764,12 +6764,12 @@ static void BCT_CLIENT_MarunomuDrawLoopMouthAnm( BCT_MARUNOMU_DRAW* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒûƒAƒjƒ‚Ìƒ‹[ƒv‚È‚µÄ¶
+ *	@brief	å£ã‚¢ãƒ‹ãƒ¡ã®ãƒ«ãƒ¼ãƒ—ãªã—å†ç”Ÿ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_MarunomuDrawNoLoopMouthAnm( BCT_MARUNOMU_DRAW* p_wk )
@@ -6779,10 +6779,10 @@ static BOOL BCT_CLIENT_MarunomuDrawNoLoopMouthAnm( BCT_MARUNOMU_DRAW* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒûƒAƒjƒ‚Ìƒ‹[ƒv‚È‚µÄ¶	ƒAƒjƒƒXƒs[ƒhŽw’è
+ *	@brief	å£ã‚¢ãƒ‹ãƒ¡ã®ãƒ«ãƒ¼ãƒ—ãªã—å†ç”Ÿ	ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰æŒ‡å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	speed		ƒXƒs[ƒh
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	speed		ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_MarunomuDrawNoLoopMouthAnm_Speed( BCT_MARUNOMU_DRAW* p_wk, fx32 speed )
@@ -6792,10 +6792,10 @@ static BOOL BCT_CLIENT_MarunomuDrawNoLoopMouthAnm_Speed( BCT_MARUNOMU_DRAW* p_wk
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•à‚«ƒAƒjƒÝ’è
+ *	@brief	æ­©ãã‚¢ãƒ‹ãƒ¡è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		ƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawSetWalkAnm( BCT_MARUNOMU_DRAW* p_wk, BOOL flag )
@@ -6814,10 +6814,10 @@ static void BCT_CLIENT_MarunomuDrawSetWalkAnm( BCT_MARUNOMU_DRAW* p_wk, BOOL fla
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒ‰[ƒAƒjƒ	ƒ‰ƒ“ƒ_ƒ€ƒJƒ‰[ƒAƒjƒ‚ðÝ’è‚·‚é‚©
+ *	@brief	ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡	ãƒ©ãƒ³ãƒ€ãƒ ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ã‚’è¨­å®šã™ã‚‹ã‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		ƒtƒ‰ƒO	TRUEFƒ‰ƒ“ƒ_ƒ€ƒAƒjƒÄ¶
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ãƒ•ãƒ©ã‚°	TRUEï¼šãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ‹ãƒ¡å†ç”Ÿ
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawSetColAnmRand( BCT_MARUNOMU_DRAW* p_wk, BOOL flag )
@@ -6827,10 +6827,10 @@ static void BCT_CLIENT_MarunomuDrawSetColAnmRand( BCT_MARUNOMU_DRAW* p_wk, BOOL 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒ‰[ƒAƒjƒ	‚PˆÊ‚ÌF•ÏX
+ *	@brief	ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡	ï¼‘ä½ã®è‰²å¤‰æ›´
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	plno		ƒvƒŒƒCƒ„[ƒiƒ“ƒo[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MarunomuDrawSetColAnmTop( BCT_MARUNOMU_DRAW* p_wk, u32 plno )
@@ -6840,7 +6840,7 @@ static void BCT_CLIENT_MarunomuDrawSetColAnmTop( BCT_MARUNOMU_DRAW* p_wk, u32 pl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒ‰[ƒAƒjƒƒƒCƒ“
+ *	@brief	ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
  *	@param	p_wk 
  */
@@ -6850,7 +6850,7 @@ static void BCT_CLIENT_MarunomuDrawColAnmMain( BCT_MARUNOMU_DRAW* p_wk )
 	int i;
 
 	if( p_wk->col_rand == TRUE ){
-		// F‚ðƒ‹[ƒvÄ¶
+		// è‰²ã‚’ãƒ«ãƒ¼ãƒ—å†ç”Ÿ
 		if( (p_wk->colanm_frame + BCT_MARUNOMU_ANM_SPEED) < BCT_MARUNOMU_ANM_COL_END ){
 			p_wk->colanm_frame += BCT_MARUNOMU_ANM_SPEED;
 		}else{
@@ -6864,16 +6864,16 @@ static void BCT_CLIENT_MarunomuDrawColAnmMain( BCT_MARUNOMU_DRAW* p_wk )
 		}else{
 			anm_idx = BCT_MARUNOMU_ANM_COL_1P + p_wk->col_top;
 		}
-		// ƒgƒbƒvƒJƒ‰[‚Ì‚Æ‚±‚ë‚Åƒ‹[ƒvÄ¶
-		// ŠJŽnƒtƒŒ[ƒ€‚É‚È‚à‚È‚Á‚Ä‚È‚¢‚Æ‚«
+		// ãƒˆãƒƒãƒ—ã‚«ãƒ©ãƒ¼ã®ã¨ã“ã‚ã§ãƒ«ãƒ¼ãƒ—å†ç”Ÿ
+		// é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ ã«ãªã‚‚ãªã£ã¦ãªã„ã¨ã
 		if( p_wk->colanm_frame < (sc_BCT_MARUNOMU_ANM_COL_DATA[anm_idx][BCT_MARUNOMU_ANM_COL_DATA_START] * FX32_ONE) ){
 			p_wk->colanm_frame = sc_BCT_MARUNOMU_ANM_COL_DATA[anm_idx][BCT_MARUNOMU_ANM_COL_DATA_START] * FX32_ONE;
 		}
-		// I—¹ƒtƒŒ[ƒ€‚É‚È‚é‚Ü‚ÅÄ¶
+		// çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ ã«ãªã‚‹ã¾ã§å†ç”Ÿ
 		else if( (p_wk->colanm_frame + BCT_MARUNOMU_ANM_SPEED) < (sc_BCT_MARUNOMU_ANM_COL_DATA[anm_idx][BCT_MARUNOMU_ANM_COL_DATA_END] * FX32_ONE) ){
 			p_wk->colanm_frame += BCT_MARUNOMU_ANM_SPEED;
 		}
-		// Å‰‚Ì‚Æ‚±‚ë‚Éƒ‹[ƒv
+		// æœ€åˆã®ã¨ã“ã‚ã«ãƒ«ãƒ¼ãƒ—
 		else{
 			p_wk->colanm_frame = sc_BCT_MARUNOMU_ANM_COL_DATA[anm_idx][BCT_MARUNOMU_ANM_COL_DATA_START] * FX32_ONE;
 		}
@@ -6886,11 +6886,11 @@ static void BCT_CLIENT_MarunomuDrawColAnmMain( BCT_MARUNOMU_DRAW* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒ^ƒbƒ`ƒpƒlƒ‹2DÀ•W‚ð‚RDÀ•W‚É•ÏX‚·‚é
+ *  @brief  ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«2Dåº§æ¨™ã‚’ï¼“Dåº§æ¨™ã«å¤‰æ›´ã™ã‚‹
  *
- *  @param  x           ‚˜À•W
- *  @param  y           ‚™À•W
- *  @param  p_mat       3DÀ•WŠi”[æ
+ *  @param  x           ï½˜åº§æ¨™
+ *  @param  y           ï½™åº§æ¨™
+ *  @param  p_mat       3Dåº§æ¨™æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_2DMATto3DMAT( s16 x, s16 y, VecFx32* p_mat )
@@ -6901,10 +6901,10 @@ static void BCT_CLIENT_2DMATto3DMAT( s16 x, s16 y, VecFx32* p_mat )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ‚RDÀ•W‚ðƒ^ƒbƒ`ƒpƒlƒ‹À•W‚É•ÏX
+ *  @brief  ï¼“Dåº§æ¨™ã‚’ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™ã«å¤‰æ›´
  *
- *  @param  cp_mat      ‚RDÀ•W
- *  @param  p_2dmat     ‚QDÀ•WŠi”[æ 
+ *  @param  cp_mat      ï¼“Dåº§æ¨™
+ *  @param  p_2dmat     ï¼’Dåº§æ¨™æ ¼ç´å…ˆ 
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_3DMATto2DMAT( const VecFx32* cp_mat, NNSG2dSVec2* p_2dmat )
@@ -6915,9 +6915,9 @@ static void BCT_CLIENT_3DMATto2DMAT( const VecFx32* cp_mat, NNSG2dSVec2* p_2dmat
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒxƒNƒgƒ‹‚ðNETID‚ÉŠÖ˜A•t‚¯‚Ä‰ñ“]‚³‚¹‚é
+ *  @brief  ãƒ™ã‚¯ãƒˆãƒ«ã‚’NETIDã«é–¢é€£ä»˜ã‘ã¦å›žè»¢ã•ã›ã‚‹
  *
- *  @param  p_vec   ƒxƒNƒgƒ‹
+ *  @param  p_vec   ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_VecNetIDRot( const VecFx32* cp_vec, VecFx32* p_invec, u32 plno, u32 comm_num )
@@ -6932,8 +6932,8 @@ static void BCT_CLIENT_VecNetIDRot( const VecFx32* cp_vec, VecFx32* p_invec, u32
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ƒxƒNƒgƒ‹‚ðNETID‚ÉŠÖ˜A•t‚¯‚Ä‹t‰ñ“]‚³‚¹‚é
- *          ‰ñ“]‚µ‚½À•W‚ðŒ³‚É–ß‚·‚Æ‚«‚È‚Ç‚ÉŽg—p
+ *  @brief  ãƒ™ã‚¯ãƒˆãƒ«ã‚’NETIDã«é–¢é€£ä»˜ã‘ã¦é€†å›žè»¢ã•ã›ã‚‹
+ *          å›žè»¢ã—ãŸåº§æ¨™ã‚’å…ƒã«æˆ»ã™ã¨ããªã©ã«ä½¿ç”¨
  *
  *  @param  cp_vec
  *  @param  p_invec
@@ -6954,11 +6954,11 @@ static void BCT_CLIENT_VecNetIDRetRot( const VecFx32* cp_vec, VecFx32* p_invec, 
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ•`‰æƒVƒXƒeƒ€@‰Šú‰»
+ *  @brief  æœ¨ã®å®Ÿæç”»ã‚·ã‚¹ãƒ†ãƒ ã€€åˆæœŸåŒ–
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  p_handle    ƒnƒ“ƒhƒ‹
- *  @param  heapID      ƒq[ƒv
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_handle    ãƒãƒ³ãƒ‰ãƒ«
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawSysInit( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_handle, u32 heapID  )
@@ -6973,17 +6973,17 @@ static void BCT_CLIENT_NutsDrawSysInit( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_h
 		NARC_bucket_kinomi_ex_nsbmd,
 	};
     
-    // •`‰æƒf[ƒ^ì¬
+    // æç”»ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<BCT_NUTSRES_MDLNUM; i++ ){
 	    D3DOBJ_MdlLoadH( &p_wk->nutsres.mdl[i], p_handle, sc_BCT_NUTSRES_MDL_TBL[i], heapID );
 	}
 
-	// ‰A“Ç‚Ýž‚Ý
+	// é™°èª­ã¿è¾¼ã¿
 	D3DOBJ_MdlLoadH( &p_wk->nutsres.shadowmdl, p_handle, NARC_bucket_maru_kage_nsbmd, heapID );
-	NNS_G3dMdlUseGlbAlpha( p_wk->nutsres.shadowmdl.pModel );	// ƒAƒ‹ƒtƒ@’l‚ÍƒvƒƒOƒ‰ƒ€‚Ì‚à‚Ì‚ðŽQÆ
+	NNS_G3dMdlUseGlbAlpha( p_wk->nutsres.shadowmdl.pModel );	// ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¯ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ã‚‚ã®ã‚’å‚ç…§
 
     {
-        // OAMƒŠƒ\[ƒX“Çž‚Ý
+        // OAMãƒªã‚½ãƒ¼ã‚¹èª­è¾¼ã¿
         p_wk->nutsres.resobj[ 0 ] = CLACT_U_ResManagerResAddArcChar_ArcHandle(
                     p_wk->resMan[ 0 ], p_handle,
                     NARC_bucket_kinomi_01_NCGR,
@@ -7004,18 +7004,18 @@ static void BCT_CLIENT_NutsDrawSysInit( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_h
                 NARC_bucket_kinomi_01_NANR, FALSE,
                 BCT_GRA_NUTS_OAM_RESID, CLACT_U_CELLANM_RES, heapID );
 
-        // “]‘—
+        // è»¢é€
         result = CLACT_U_CharManagerSetCharModeAdjustAreaCont( p_wk->nutsres.resobj[ 0 ] );
         GF_ASSERT( result );
         result = CLACT_U_PlttManagerSetCleanArea( p_wk->nutsres.resobj[ 1 ] );
         GF_ASSERT( result );
 
-        // ƒŠƒ\[ƒX‚¾‚¯”jŠü
+        // ãƒªã‚½ãƒ¼ã‚¹ã ã‘ç ´æ£„
         CLACT_U_ResManagerResOnlyDelete( p_wk->nutsres.resobj[ 0 ] );
         CLACT_U_ResManagerResOnlyDelete( p_wk->nutsres.resobj[ 1 ] );
     }
 
-    // ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
     CLACT_U_MakeHeader( &p_wk->nutsres.header, 
             BCT_GRA_NUTS_OAM_RESID, BCT_GRA_NUTS_OAM_RESID,
             BCT_GRA_NUTS_OAM_RESID, BCT_GRA_NUTS_OAM_RESID,
@@ -7025,7 +7025,7 @@ static void BCT_CLIENT_NutsDrawSysInit( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_h
             p_wk->resMan[2], p_wk->resMan[3],
             NULL, NULL );
 
-    // Šeƒ[ƒN‚Ì‰Šú‰»
+    // å„ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
     for( i=0; i<BCT_NUTSBUFFOAM_NUM; i++ ){
         BCT_CLIENT_NutsDrawInit( p_wk, &p_wk->nuts[i], heapID );
     }
@@ -7033,28 +7033,28 @@ static void BCT_CLIENT_NutsDrawSysInit( BCT_CLIENT_GRAPHIC* p_wk, ARCHANDLE* p_h
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ•`‰æƒVƒXƒeƒ€”jŠü
+ *  @brief  æœ¨ã®å®Ÿæç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawSysExit( BCT_CLIENT_GRAPHIC* p_wk )
 {
     int i;
 
-    // Še–Ø‚ÌŽÀ”jŠü
+    // å„æœ¨ã®å®Ÿç ´æ£„
     for( i=0; i<BCT_NUTSBUFFOAM_NUM; i++ ){
         BCT_CLIENT_NutsDrawExit( p_wk, &p_wk->nuts[i] );
     }
 
-    // ƒŠƒ\[ƒX”jŠü
+    // ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
     {
 
-        // VRAMŠÇ—‚©‚ç”jŠü
+        // VRAMç®¡ç†ã‹ã‚‰ç ´æ£„
         CLACT_U_CharManagerDelete( p_wk->nutsres.resobj[0] );
         CLACT_U_PlttManagerDelete( p_wk->nutsres.resobj[1] );
         
-        // ƒŠƒ\[ƒX”jŠü
+        // ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
         CLACT_U_ResManagerResDelete( p_wk->resMan[0], p_wk->nutsres.resobj[0] );
         CLACT_U_ResManagerResDelete( p_wk->resMan[1], p_wk->nutsres.resobj[1] );
         CLACT_U_ResManagerResDelete( p_wk->resMan[2], p_wk->nutsres.resobj[2] );
@@ -7065,18 +7065,18 @@ static void BCT_CLIENT_NutsDrawSysExit( BCT_CLIENT_GRAPHIC* p_wk )
     }
     D3DOBJ_MdlDelete( &p_wk->nutsres.shadowmdl );
 
-    // ‘Sƒf[ƒ^”jŠü
+    // å…¨ãƒ‡ãƒ¼ã‚¿ç ´æ£„
     memset( &p_wk->nutsres, 0, sizeof(BCT_CLIENT_NUTS_RES) );
     memset( &p_wk->nuts, 0, sizeof(BCT_CLIENT_NUTS_DRAW)*BCT_NUTSBUFFOAM_NUM );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ•`‰æÝ’è
+ *  @brief  æœ¨ã®å®Ÿæç”»è¨­å®š
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  cp_data     •\Ž¦‚·‚é–Ø‚ÌŽÀƒf[ƒ^
- *  @param  comm_num    ’ÊMl”
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_data     è¡¨ç¤ºã™ã‚‹æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
+ *  @param  comm_num    é€šä¿¡äººæ•°
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawSysStart( BCT_CLIENT_GRAPHIC* p_wk, const BCT_CLIENT_NUTS* cp_data, u32 comm_num, u32 plno )
@@ -7094,10 +7094,10 @@ static void BCT_CLIENT_NutsDrawSysStart( BCT_CLIENT_GRAPHIC* p_wk, const BCT_CLI
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  •`‰æ’âŽ~
+ *  @brief  æç”»åœæ­¢
  *  
- *  @param  p_wk        ƒ[ƒN
- *  @param  cp_data     –Ø‚ÌŽÀƒf[ƒ^
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_data     æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawSysEnd( BCT_CLIENT_GRAPHIC* p_wk, const BCT_CLIENT_NUTS* cp_data )
@@ -7106,7 +7106,7 @@ static void BCT_CLIENT_NutsDrawSysEnd( BCT_CLIENT_GRAPHIC* p_wk, const BCT_CLIEN
 
     for( i=0; i<BCT_NUTSBUFFOAM_NUM; i++ ){
         if( p_wk->nuts[i].cp_data == cp_data ){
-            // ’âŽ~
+            // åœæ­¢
             BCT_CLIENT_NutsDrawEnd( &p_wk->nuts[i] );
             return ;
         }
@@ -7117,10 +7117,10 @@ static void BCT_CLIENT_NutsDrawSysEnd( BCT_CLIENT_GRAPHIC* p_wk, const BCT_CLIEN
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ•`‰æƒƒCƒ“
+ *  @brief  æœ¨ã®å®Ÿæç”»ãƒ¡ã‚¤ãƒ³
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  comm_num    ’ÊMl”
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  comm_num    é€šä¿¡äººæ•°
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawSysMain( BCT_CLIENT_GRAPHIC* p_wk, u32 comm_num )
@@ -7137,15 +7137,15 @@ static void BCT_CLIENT_NutsDrawSysMain( BCT_CLIENT_GRAPHIC* p_wk, u32 comm_num )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  •`‰æì¬
+ *  @brief  æç”»ä½œæˆ
  *
- *  @param  p_wk        ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
- *  @param  p_data      ƒ[ƒN
+ *  @param  p_wk        ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+ *  @param  p_data      ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawInit( BCT_CLIENT_GRAPHIC* p_wk, BCT_CLIENT_NUTS_DRAW* p_data, u32 heapID )
 {
-    // OAMì¬
+    // OAMä½œæˆ
     {
         CLACT_ADD add = {0};
 
@@ -7161,17 +7161,17 @@ static void BCT_CLIENT_NutsDrawInit( BCT_CLIENT_GRAPHIC* p_wk, BCT_CLIENT_NUTS_D
         CLACT_SetDrawFlag( p_data->p_clwk, FALSE );
     }
 
-	// ‰AƒOƒ‰ƒtƒBƒbƒNÝ’è
+	// é™°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
     D3DOBJ_Init( &p_data->shadow, &p_wk->nutsres.shadowmdl );
 	D3DOBJ_SetDraw( &p_data->shadow, FALSE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ•`‰æƒf[ƒ^@”jŠü
+ *  @brief  æœ¨ã®å®Ÿæç”»ãƒ‡ãƒ¼ã‚¿ã€€ç ´æ£„
  *
- *  @param  p_wk        ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *  @param  p_data      –Ø‚ÌŽÀƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *  @param  p_wk        ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_data      æœ¨ã®å®Ÿã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawExit( BCT_CLIENT_GRAPHIC* p_wk, BCT_CLIENT_NUTS_DRAW* p_data )
@@ -7182,29 +7182,29 @@ static void BCT_CLIENT_NutsDrawExit( BCT_CLIENT_GRAPHIC* p_wk, BCT_CLIENT_NUTS_D
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ•`‰æŠJŽn
+ *  @brief  æœ¨ã®å®Ÿæç”»é–‹å§‹
  *
- *  @param  p_wk    ƒ[ƒN
- *  @param  p_data  –Ø‚ÌŽÀƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *  @param  cp_data –Ø‚ÌŽÀƒf[ƒ^
- *  @param  comm_num’ÊMl”
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_data  æœ¨ã®å®Ÿã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_data æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
+ *  @param  comm_numé€šä¿¡äººæ•°
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawStart( BCT_CLIENT_GRAPHIC* p_wk, BCT_CLIENT_NUTS_DRAW* p_data, const BCT_CLIENT_NUTS* cp_data, u32 comm_num )
 {
-    // ŠÖ˜A•t‚¯‚é–Ø‚ÌŽÀƒf[ƒ^•Û‘¶
+    // é–¢é€£ä»˜ã‘ã‚‹æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ä¿å­˜
     p_data->cp_data = cp_data;
     p_data->draw2d = TRUE;
 
 	p_data->rota_chg_count = 0;
 
-	// ƒpƒŒƒbƒgƒIƒtƒZƒbƒgÝ’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
 	CLACT_PaletteNoChg( p_data->p_clwk, cp_data->data.plno );
     
-    // À•WÝ’è
+    // åº§æ¨™è¨­å®š
     BCT_CLIENT_NutsDrawMatrixSet( p_data, cp_data, comm_num );
 
-    // •\Ž¦ŠJŽn
+    // è¡¨ç¤ºé–‹å§‹
     CLACT_SetDrawFlag( p_data->p_clwk, TRUE );
 
 
@@ -7216,21 +7216,21 @@ static void BCT_CLIENT_NutsDrawStart( BCT_CLIENT_GRAPHIC* p_wk, BCT_CLIENT_NUTS_
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ‚¢‚«‚È‚è‚RD•`‰æƒ‚[ƒh
+ *  @brief  ã„ããªã‚Šï¼“Dæç”»ãƒ¢ãƒ¼ãƒ‰
  *
- *  @param  p_wk    ƒ[ƒN
- *  @param  p_data  –Ø‚ÌŽÀƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *  @param  cp_data –Ø‚ÌŽÀƒf[ƒ^
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_data  æœ¨ã®å®Ÿã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_data æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawStartNoOam( BCT_CLIENT_GRAPHIC* p_wk, BCT_CLIENT_NUTS_DRAW* p_data, const BCT_CLIENT_NUTS* cp_data )
 {
-    // ŠÖ˜A•t‚¯‚é–Ø‚ÌŽÀƒf[ƒ^•Û‘¶
+    // é–¢é€£ä»˜ã‘ã‚‹æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ä¿å­˜
     p_data->cp_data = cp_data;
 
 	p_data->rota_chg_count = 0;
 
-    // •\Ž¦ŠJŽn
+    // è¡¨ç¤ºé–‹å§‹
     CLACT_SetDrawFlag( p_data->p_clwk, FALSE );
     BCT_CLIENT_Nuts3DDrawOn( p_data, p_wk );
 
@@ -7242,10 +7242,10 @@ static void BCT_CLIENT_NutsDrawStartNoOam( BCT_CLIENT_GRAPHIC* p_wk, BCT_CLIENT_
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  –Ø‚ÌŽÀ•`‰æƒƒCƒ“
+ *  @brief  æœ¨ã®å®Ÿæç”»ãƒ¡ã‚¤ãƒ³
  *
- *  @param  p_data  ƒ[ƒN
- *  @param  comm_num’ÊMl”
+ *  @param  p_data  ãƒ¯ãƒ¼ã‚¯
+ *  @param  comm_numé€šä¿¡äººæ•°
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawMain( BCT_CLIENT_NUTS_DRAW* p_data, BCT_CLIENT_GRAPHIC* p_wk, u32 comm_num )
@@ -7253,12 +7253,12 @@ static void BCT_CLIENT_NutsDrawMain( BCT_CLIENT_NUTS_DRAW* p_data, BCT_CLIENT_GR
     BOOL result;
 	D3DOBJ_MDL* p_mdl;
 
-    // 2D•\Ž¦‚©‚Rd•\Ž¦‚©
+    // 2Dè¡¨ç¤ºã‹ï¼“dè¡¨ç¤ºã‹
     if( p_data->draw2d == TRUE ){
-        // À•W‚ð‚ ‚í‚¹‚é
+        // åº§æ¨™ã‚’ã‚ã‚ã›ã‚‹
         result = BCT_CLIENT_NutsDrawMatrixSet( p_data, p_data->cp_data, comm_num );
 
-        //  2DÀ•W‚ª‚OˆÈ‰º‚É‚È‚Á‚½‚ç‚RD•\Ž¦‚ÉØ‚è‘Ö‚¦‚é
+        //  2Dåº§æ¨™ãŒï¼ä»¥ä¸‹ã«ãªã£ãŸã‚‰ï¼“Dè¡¨ç¤ºã«åˆ‡ã‚Šæ›¿ãˆã‚‹
         if( result == FALSE ){
             BCT_CLIENT_Nuts3DDrawOn( p_data, p_wk );
         }
@@ -7267,27 +7267,27 @@ static void BCT_CLIENT_NutsDrawMain( BCT_CLIENT_NUTS_DRAW* p_data, BCT_CLIENT_GR
 	if( p_data->draw2d == FALSE ){
 		p_mdl = BCT_CLIENT_Nuts3DMdlGet( p_data->cp_data, &p_wk->nutsres );
 
-		// –Ø‚ÌŽÀ‚ªêŠO“®ì‚È‚çˆÃ‚­•\Ž¦A‚»‚¤‚Å‚È‚¯‚ê‚Î–¾‚é‚­•\Ž¦
+		// æœ¨ã®å®ŸãŒå ´å¤–å‹•ä½œãªã‚‰æš—ãè¡¨ç¤ºã€ãã†ã§ãªã‘ã‚Œã°æ˜Žã‚‹ãè¡¨ç¤º
 		if( p_data->cp_data->seq == BCT_NUTSSEQ_MOVEAWAY ){
 			
-			// ˆÃ‚­‚·‚é
+			// æš—ãã™ã‚‹
 			NNS_G3dMdlSetMdlAmbAll( p_mdl->pModel, GX_RGB( 31,31,31 ) );
 //			NNS_G3dMdlSetMdlAmbAll( p_mdl->pModel, GX_RGB( 24,24,24 ) );
 		}else{
-			// –¾‚é‚­‚·‚é
+			// æ˜Žã‚‹ãã™ã‚‹
 			NNS_G3dMdlSetMdlAmbAll( p_mdl->pModel, GX_RGB( 18,18,18 ) );
 		}
 		
 
-		// •`‰æ
-		// i‚ñ‚Å‚¢‚é•ûŒü‚É‰ñ“]‚ð‚©‚¯‚é
+		// æç”»
+		// é€²ã‚“ã§ã„ã‚‹æ–¹å‘ã«å›žè»¢ã‚’ã‹ã‘ã‚‹
 		BCT_CLIENT_NutsDrawRotaSet( p_data );
-		// À•W‚ÌÝ’è
+		// åº§æ¨™ã®è¨­å®š
 		D3DOBJ_SetMatrix( &p_data->obj, 
 				p_data->cp_data->mat.x, p_data->cp_data->mat.y, p_data->cp_data->mat.z  );
 		D3DOBJ_Draw( &p_data->obj );
 
-		// ‰A‚Ì•\Ž¦
+		// é™°ã®è¡¨ç¤º
 		if( D3DOBJ_GetDraw( &p_data->shadow ) == TRUE ){
 			BCT_CLIENT_NutsDrawShadowMatrixSet( p_data );
 			D3DOBJ_Draw( &p_data->shadow );
@@ -7299,9 +7299,9 @@ static void BCT_CLIENT_NutsDrawMain( BCT_CLIENT_NUTS_DRAW* p_data, BCT_CLIENT_GR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰A‚ÌÀ•W‚ðÝ’è‚·‚é
+ *	@brief	é™°ã®åº§æ¨™ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawShadowMatrixSet( BCT_CLIENT_NUTS_DRAW* p_data )
@@ -7312,20 +7312,20 @@ static void BCT_CLIENT_NutsDrawShadowMatrixSet( BCT_CLIENT_NUTS_DRAW* p_data )
 	fx32 scale;
 	int alpha;
 
-	// ƒ}ƒ‹ƒm[ƒ€”ÍˆÍ“à‚©ƒ`ƒFƒbƒN
+	// ãƒžãƒ«ãƒŽãƒ¼ãƒ ç¯„å›²å†…ã‹ãƒã‚§ãƒƒã‚¯
 	result = BCT_CLIENT_NutsAwayMarunomuHitCheck( p_data->cp_data );
 	if( result == TRUE ){
-		// ƒ}ƒ‹ƒm[ƒ€‚Ì‰A‚ÌˆÊ’u‚ÉˆÚ“®
+		// ãƒžãƒ«ãƒŽãƒ¼ãƒ ã®é™°ã®ä½ç½®ã«ç§»å‹•
 		y = BCT_SHADOW_Y_DEL;
 	}else{
 
-		// XZÀ•W‚Í‚»‚Ì‚Ü‚Ü‚ ‚í‚¹‚ÄAYÀ•W‚ð°‚É‚·‚é
+		// XZåº§æ¨™ã¯ãã®ã¾ã¾ã‚ã‚ã›ã¦ã€Yåº§æ¨™ã‚’åºŠã«ã™ã‚‹
 		result = BCT_CLIENT_NutsAwayDitchHitCheck( p_data->cp_data );
 		if( result == FALSE ){
-			// °‚ÌˆÊ’u‚É‰A‚ðo‚·
+			// åºŠã®ä½ç½®ã«é™°ã‚’å‡ºã™
 			y = BCT_SHADOW_Y_FLOOR;
 		}else{
-			// a‚ÌˆÊ’u‚É‰A‚ðo‚·
+			// æºã®ä½ç½®ã«é™°ã‚’å‡ºã™
 			y = BCT_SHADOW_Y_DEL;
 		}
 	}
@@ -7333,7 +7333,7 @@ static void BCT_CLIENT_NutsDrawShadowMatrixSet( BCT_CLIENT_NUTS_DRAW* p_data )
 	D3DOBJ_SetMatrix( &p_data->shadow, 
 			p_data->cp_data->mat.x, y, p_data->cp_data->mat.z  );
 
-	// °‚©‚ç‚Ì‚‚³‚Å‘å‚«‚³‚ðŒˆ‚ß‚é
+	// åºŠã‹ã‚‰ã®é«˜ã•ã§å¤§ãã•ã‚’æ±ºã‚ã‚‹
 	y_dif = p_data->cp_data->mat.y - y;
 	scale = FX32_ONE + (FX_Div(FX_Mul( y_dif, BCT_SHADOW_SIZE_DIV ), BCT_SHADOW_Y_SIZE_DIF));
 	D3DOBJ_SetScale( &p_data->shadow, 
@@ -7342,7 +7342,7 @@ static void BCT_CLIENT_NutsDrawShadowMatrixSet( BCT_CLIENT_NUTS_DRAW* p_data )
 	alpha = (FX_Div(FX_Mul( y_dif, FX32_CONST(BCT_SHADOW_ALPHA_DIV) ), BCT_SHADOW_Y_SIZE_DIF)) >> FX32_SHIFT;
 	alpha = BCT_SHADOW_ALPHA_MIN + BCT_SHADOW_ALPHA_DIV - alpha;
 
-	// ALPHA‚à‚©‚¦‚é
+	// ALPHAã‚‚ã‹ãˆã‚‹
 	NNS_G3dGlbPolygonAttr(
 		0,
 		0,
@@ -7354,9 +7354,9 @@ static void BCT_CLIENT_NutsDrawShadowMatrixSet( BCT_CLIENT_NUTS_DRAW* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰A‚ÅÝ’è‚µ‚½ƒAƒ‹ƒtƒ@’l‚ðƒŠƒZƒbƒg
+ *	@brief	é™°ã§è¨­å®šã—ãŸã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_data		ƒf[ƒ^
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawShadowAlpahReset( BCT_CLIENT_NUTS_DRAW* p_data )
@@ -7372,9 +7372,9 @@ static void BCT_CLIENT_NutsDrawShadowAlpahReset( BCT_CLIENT_NUTS_DRAW* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  •\Ž¦‚Ì’âŽ~
+ *  @brief  è¡¨ç¤ºã®åœæ­¢
  *
- *  @param  p_data  ƒ[ƒN
+ *  @param  p_data  ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawEnd( BCT_CLIENT_NUTS_DRAW* p_data )
@@ -7394,11 +7394,11 @@ static void BCT_CLIENT_NutsDrawEnd( BCT_CLIENT_NUTS_DRAW* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  ‹ó‚¢‚Ä‚¢‚éƒ[ƒN‚ðŽæ“¾‚·‚é
+ *  @brief  ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹
  *
- *  @param  p_wk    ƒ[ƒN
+ *  @param  p_wk    ãƒ¯ãƒ¼ã‚¯
  *
- *  @return –Ø‚ÌŽÀƒ[ƒN
+ *  @return æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static BCT_CLIENT_NUTS_DRAW* BCT_CLIENT_NutsDrawWkGet( BCT_CLIENT_GRAPHIC* p_wk )
@@ -7416,13 +7416,13 @@ static BCT_CLIENT_NUTS_DRAW* BCT_CLIENT_NutsDrawWkGet( BCT_CLIENT_GRAPHIC* p_wk 
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  •`‰æÀ•W‚ðÝ’è
+ *  @brief  æç”»åº§æ¨™ã‚’è¨­å®š
  *
- *  @param  p_data  ƒ[ƒN
- *  @param  cp_data –Ø‚ÌŽÀƒf[ƒ^
+ *  @param  p_data  ãƒ¯ãƒ¼ã‚¯
+ *  @param  cp_data æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
  *
- *  @retval TRUE    ‰æ–Ê”ÍˆÍ“à
- *  @retval FALSE   ‰æ–Ê”ÍˆÍŠO
+ *  @retval TRUE    ç”»é¢ç¯„å›²å†…
+ *  @retval FALSE   ç”»é¢ç¯„å›²å¤–
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_CLIENT_NutsDrawMatrixSet( BCT_CLIENT_NUTS_DRAW* p_data, const BCT_CLIENT_NUTS* cp_data, u32 comm_num )
@@ -7431,7 +7431,7 @@ static BOOL BCT_CLIENT_NutsDrawMatrixSet( BCT_CLIENT_NUTS_DRAW* p_data, const BC
     NNSG2dSVec2 vec2d;
 
     mat = p_data->cp_data->mat;
-    BCT_CLIENT_VecNetIDRetRot( &mat, &mat, p_data->cp_data->data.plno, comm_num ); // ‰ñ“]‚µ‚Ä‚¢‚é‚Ì‚ðŒ³‚É–ß‚·
+    BCT_CLIENT_VecNetIDRetRot( &mat, &mat, p_data->cp_data->data.plno, comm_num ); // å›žè»¢ã—ã¦ã„ã‚‹ã®ã‚’å…ƒã«æˆ»ã™
     BCT_CLIENT_3DMATto2DMAT( &mat, &vec2d );
 
     mat.x = vec2d.x << FX32_SHIFT;
@@ -7448,9 +7448,9 @@ static BOOL BCT_CLIENT_NutsDrawMatrixSet( BCT_CLIENT_NUTS_DRAW* p_data, const BC
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  3D•`‰æŠJŽn
+ *  @brief  3Dæç”»é–‹å§‹
  *
- *  @param  p_data  ƒ[ƒN
+ *  @param  p_data  ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_Nuts3DDrawOn( BCT_CLIENT_NUTS_DRAW* p_data, BCT_CLIENT_GRAPHIC* p_wk )
@@ -7465,7 +7465,7 @@ static void BCT_CLIENT_Nuts3DDrawOn( BCT_CLIENT_NUTS_DRAW* p_data, BCT_CLIENT_GR
 	D3DOBJ_Init( &p_data->obj, p_mdl );
 	D3DOBJ_SetDraw( &p_data->obj, TRUE );
 
-	// Ž©•ª‚Ì–Ø‚ÌŽÀ‚È‚ç‰e‚ðo‚·
+	// è‡ªåˆ†ã®æœ¨ã®å®Ÿãªã‚‰å½±ã‚’å‡ºã™
 	if( p_data->cp_data->seq == BCT_NUTSSEQ_MOVE ){
 		D3DOBJ_SetDraw( &p_data->shadow, TRUE );
 	}
@@ -7473,21 +7473,21 @@ static void BCT_CLIENT_Nuts3DDrawOn( BCT_CLIENT_NUTS_DRAW* p_data, BCT_CLIENT_GR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀƒf[ƒ^‚©‚ç	•\Ž¦‚·‚éƒ‚ƒfƒ‹‚ÌƒŠƒ\[ƒX‚ðŽæ“¾‚·‚é
+ *	@brief	æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã‹ã‚‰	è¡¨ç¤ºã™ã‚‹ãƒ¢ãƒ‡ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹
  *	
- *	@param	cp_data		ƒf[ƒ^
- *	@param	p_nutsres	–Ø‚ÌŽÀƒŠƒ\[ƒXƒf[ƒ^
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_nutsres	æœ¨ã®å®Ÿãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒ‚ƒfƒ‹ƒ[ƒN
+ *	@return	ãƒ¢ãƒ‡ãƒ«ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static D3DOBJ_MDL* BCT_CLIENT_Nuts3DMdlGet( const BCT_CLIENT_NUTS* cp_data, BCT_CLIENT_NUTS_RES* p_nutsres )
 {
 	u32 mdlno;
 
-    // 3Dì¬
-	// ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
-	if( cp_data->data.special == TRUE ){	// “ÁŽê–Ø‚ÌŽÀ
+    // 3Dä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
+	if( cp_data->data.special == TRUE ){	// ç‰¹æ®Šæœ¨ã®å®Ÿ
 		mdlno = BCT_NUTSRES_MDLSPECIAL;
 	}else{
 		mdlno = cp_data->data.plno;
@@ -7498,9 +7498,9 @@ static D3DOBJ_MDL* BCT_CLIENT_Nuts3DMdlGet( const BCT_CLIENT_NUTS* cp_data, BCT_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀ•`‰æ@‰ñ“]Šp“xÝ’è
+ *	@brief	æœ¨ã®å®Ÿæç”»ã€€å›žè»¢è§’åº¦è¨­å®š
  *
- *	@param	p_data	ƒf[ƒ^
+ *	@param	p_data	ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NutsDrawRotaSet( BCT_CLIENT_NUTS_DRAW* p_data )
@@ -7509,13 +7509,13 @@ static void BCT_CLIENT_NutsDrawRotaSet( BCT_CLIENT_NUTS_DRAW* p_data )
 	u16 move_rota;
 	u16 rota_speed;
 
-	// –ˆ‰ñ‰ñ“]Šp“x‚ð•Ï‚¦‚Ä‚é‚ÆAˆ—‚ªd‚¢‚Ì‚Å‚½‚Ü‚És‚¤
+	// æ¯Žå›žå›žè»¢è§’åº¦ã‚’å¤‰ãˆã¦ã‚‹ã¨ã€å‡¦ç†ãŒé‡ã„ã®ã§ãŸã¾ã«è¡Œã†
 	p_data->rota_chg_count --;
 	if( p_data->rota_chg_count < 0 ){
 		power = BCT_CLIENT_NutsNowPowerGet( p_data->cp_data );
 		rota_speed = ((power*BCT_NUTSDRAW_ROTA_DIS) / BCT_NUTS_POWER_MAX);
 
-		// ˆÚ“®•ûŒü‚ÌŠ„‡‚Å‰ñ“]•ûŒü‚ð•Ï‚¦‚é
+		// ç§»å‹•æ–¹å‘ã®å‰²åˆã§å›žè»¢æ–¹å‘ã‚’å¤‰ãˆã‚‹
 		move_rota = FX_Atan2Idx( p_data->cp_data->data.way.z, p_data->cp_data->data.way.x );
 		p_data->rota_speed_x = BCT_NUTSDRAW_ROTA_MIN+(FX_Mul( FX_SinIdx( move_rota ), rota_speed<<FX32_SHIFT ) >> FX32_SHIFT);
 		p_data->rota_speed_z = BCT_NUTSDRAW_ROTA_MIN+(FX_Mul( FX_CosIdx( move_rota ), rota_speed<<FX32_SHIFT ) >> FX32_SHIFT);
@@ -7532,12 +7532,12 @@ static void BCT_CLIENT_NutsDrawRotaSet( BCT_CLIENT_NUTS_DRAW* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ@‰Šú‰»
+ *  @brief  æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿã€€åˆæœŸåŒ–
  *
- *  @param  p_wk        ƒ[ƒN
- *  @param  p_nuts      –Ø‚ÌŽÀƒ[ƒN
- *  @param	plno		’ÊMID
- *  @param  heapID      ƒq[ƒvID
+ *  @param  p_wk        ãƒ¯ãƒ¼ã‚¯
+ *  @param  p_nuts      æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯
+ *  @param	plno		é€šä¿¡ID
+ *  @param  heapID      ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_HandNutsDrawInit( BCT_CLIENT_GRAPHIC* p_wk, BCT_CLIENT_HANDNUTS_DRAW* p_nuts, u32 plno, u32 heapID )
@@ -7560,9 +7560,9 @@ static void BCT_CLIENT_HandNutsDrawInit( BCT_CLIENT_GRAPHIC* p_wk, BCT_CLIENT_HA
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ•`‰æƒf[ƒ^@”jŠü
+ *  @brief  æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿæç”»ãƒ‡ãƒ¼ã‚¿ã€€ç ´æ£„
  *
- *  @param  p_nuts  –Ø‚ÌŽÀƒ[ƒN
+ *  @param  p_nuts  æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_HandNutsDrawExit( BCT_CLIENT_HANDNUTS_DRAW* p_nuts )
@@ -7572,9 +7572,9 @@ static void BCT_CLIENT_HandNutsDrawExit( BCT_CLIENT_HANDNUTS_DRAW* p_nuts )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ•`‰æŠJŽn
+ *  @brief  æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿæç”»é–‹å§‹
  *
- *  @param   p_nuts     –Ø‚ÌŽÀƒ[ƒN
+ *  @param   p_nuts     æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_HandNutsDrawStart( BCT_CLIENT_HANDNUTS_DRAW* p_nuts )
@@ -7585,31 +7585,31 @@ static void BCT_CLIENT_HandNutsDrawStart( BCT_CLIENT_HANDNUTS_DRAW* p_nuts )
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ•`‰æ@ƒƒCƒ“
+ *  @brief  æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿæç”»ã€€ãƒ¡ã‚¤ãƒ³
  *
- *  @param  p_nuts      –Ø‚ÌŽÀƒ[ƒN
+ *  @param  p_nuts      æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_HandNutsDrawMain( BCT_CLIENT_HANDNUTS_DRAW* p_nuts )
 {   
     VecFx32 mat;
     
-    // •\Ž¦’†‚µ‚©“®‚©‚È‚¢
+    // è¡¨ç¤ºä¸­ã—ã‹å‹•ã‹ãªã„
     if( p_nuts->draw == FALSE ){
         return ;
     }
 
-    // ¡‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W‚ÉÝ’è‚·‚é
+    // ä»Šã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™ã«è¨­å®šã™ã‚‹
 	BCT_CLIENT_HandNutsDrawSetMatrix( p_nuts, sys.tp_x, sys.tp_y );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•W‚ÌÝ’è
+ *	@brief	åº§æ¨™ã®è¨­å®š
  *
- *	@param	p_nuts		ƒ[ƒN
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
+ *	@param	p_nuts		ãƒ¯ãƒ¼ã‚¯
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_HandNutsDrawSetMatrix( BCT_CLIENT_HANDNUTS_DRAW* p_nuts, s32 x, s32 y )
@@ -7623,9 +7623,9 @@ static void BCT_CLIENT_HandNutsDrawSetMatrix( BCT_CLIENT_HANDNUTS_DRAW* p_nuts, 
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  Ž‚Á‚Ä‚¢‚é–Ø‚ÌŽÀ•`‰æ@I—¹
+ *  @brief  æŒã£ã¦ã„ã‚‹æœ¨ã®å®Ÿæç”»ã€€çµ‚äº†
  *
- *  @param  p_nuts      –Ø‚ÌŽÀƒ[ƒN
+ *  @param  p_nuts      æœ¨ã®å®Ÿãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_HandNutsDrawEnd( BCT_CLIENT_HANDNUTS_DRAW* p_nuts )
@@ -7636,11 +7636,11 @@ static void BCT_CLIENT_HandNutsDrawEnd( BCT_CLIENT_HANDNUTS_DRAW* p_nuts )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM‚Ì–Ø‚ÌŽÀ‚ð‰æ–ÊŠO‚Öo‚·ƒGƒtƒFƒNƒg	ƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	OAMã®æœ¨ã®å®Ÿã‚’ç”»é¢å¤–ã¸å‡ºã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ	ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_drawsys		•`‰æƒVƒXƒeƒ€
- *	@param	p_wk			‚±‚ÌƒVƒXƒeƒ€‚Ìƒ[ƒN
- *	@param	heapID			ƒq[ƒvID
+ *	@param	p_drawsys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk			ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_OamAwayNutsInit( BCT_CLIENT_GRAPHIC* p_drawsys, BCT_CLIENT_OAMAWAYNUTS_DRAW* p_wk, u32 plno, u32 heapID )
@@ -7668,10 +7668,10 @@ static void BCT_CLIENT_OamAwayNutsInit( BCT_CLIENT_GRAPHIC* p_drawsys, BCT_CLIEN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM‚Ì–Ø‚ÌŽÀ‚ð‰æ–ÊŠO‚Öo‚·ƒGƒtƒFƒNƒg	ƒVƒXƒeƒ€”jŠü
+ *	@brief	OAMã®æœ¨ã®å®Ÿã‚’ç”»é¢å¤–ã¸å‡ºã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ	ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_drawsys		•`‰æƒVƒXƒeƒ€
- *	@param	p_wk			‚±‚ÌƒVƒXƒeƒ€‚Ìƒ[ƒN
+ *	@param	p_drawsys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk			ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_OamAwayNutsExit( BCT_CLIENT_GRAPHIC* p_drawsys, BCT_CLIENT_OAMAWAYNUTS_DRAW* p_wk )
@@ -7685,9 +7685,9 @@ static void BCT_CLIENT_OamAwayNutsExit( BCT_CLIENT_GRAPHIC* p_drawsys, BCT_CLIEN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰æ–ÊŠO‚ÖˆÚ“®‚µ‚Ä‚¢‚­ˆ—
+ *	@brief	ç”»é¢å¤–ã¸ç§»å‹•ã—ã¦ã„ãå‡¦ç†
  *
- *	@param	p_wk	‚±‚ÌƒVƒXƒeƒ€‚Ìƒ[ƒN
+ *	@param	p_wk	ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_OamAwayNutsMain( BCT_CLIENT_OAMAWAYNUTS_DRAW* p_wk )
@@ -7698,23 +7698,23 @@ static void BCT_CLIENT_OamAwayNutsMain( BCT_CLIENT_OAMAWAYNUTS_DRAW* p_wk )
 	fx32 scale;
 	VecFx32 scale_vec;
 	
-	// power•ª–ˆ‰ñÀ•W‚ð‘«‚µ‚ÄA‰æ–ÊŠO‚ÖŒ¾‚Á‚½‚çI‚í‚è	
+	// poweråˆ†æ¯Žå›žåº§æ¨™ã‚’è¶³ã—ã¦ã€ç”»é¢å¤–ã¸è¨€ã£ãŸã‚‰çµ‚ã‚ã‚Š	
 	for( i=0; i<BCT_OAMAWAYNUTS_BUFFNUM; i++ ){
 		if( p_wk->nutsbuff[i].draw == TRUE ){
 
-			// ‚RƒoƒEƒ“ƒh‚µ‚È‚ª‚ç—Ž‚¿‚Ä‚¢‚­
-			// 1ƒoƒEƒ“ƒh
+			// ï¼“ãƒã‚¦ãƒ³ãƒ‰ã—ãªãŒã‚‰è½ã¡ã¦ã„ã
+			// 1ãƒã‚¦ãƒ³ãƒ‰
 			if( p_wk->nutsbuff[i].count < BCT_OAMAWAYNUTS_MOVE0_COUNT ){
 				count_sub = p_wk->nutsbuff[i].count;
 				BCT_CLIENT_OamAwayNutsMoveXY( count_sub, BCT_OAMAWAYNUTS_MOVE0_COUNT, BCT_OAMAWAYNUTS_MOVE0_SPEED, BCT_OAMAWAYNUTS_MOVE0_SROTA, BCT_OAMAWAYNUTS_MOVE0_EROTA, &x, &y );
 			}
-			// 2ƒoƒEƒ“ƒh
+			// 2ãƒã‚¦ãƒ³ãƒ‰
 			else if( p_wk->nutsbuff[i].count < (BCT_OAMAWAYNUTS_MOVE0_COUNT+BCT_OAMAWAYNUTS_MOVE1_COUNT) ){
 				count_sub = p_wk->nutsbuff[i].count - BCT_OAMAWAYNUTS_MOVE0_COUNT;
 				
 				BCT_CLIENT_OamAwayNutsMoveXY( count_sub, BCT_OAMAWAYNUTS_MOVE1_COUNT, BCT_OAMAWAYNUTS_MOVE1_SPEED, BCT_OAMAWAYNUTS_MOVE1_SROTA, BCT_OAMAWAYNUTS_MOVE1_EROTA, &x, &y );
 			}
-			// 3ƒoƒEƒ“ƒh
+			// 3ãƒã‚¦ãƒ³ãƒ‰
 			else{
 				count_sub = p_wk->nutsbuff[i].count - (BCT_OAMAWAYNUTS_MOVE0_COUNT+BCT_OAMAWAYNUTS_MOVE1_COUNT);
 
@@ -7723,7 +7723,7 @@ static void BCT_CLIENT_OamAwayNutsMain( BCT_CLIENT_OAMAWAYNUTS_DRAW* p_wk )
 
 			p_wk->nutsbuff[i].count++;
 
-			// ¬‚³‚­‚µ‚Ä‚¢‚­
+			// å°ã•ãã—ã¦ã„ã
 			scale = BCT_OAMAWAYNUTS_SCALE - ( (p_wk->nutsbuff[i].count * BCT_OAMAWAYNUTS_SCALE_DIV) / BCT_OAMAWATNUTS_MOVE_COUNT);
 			scale = FX_Div( scale << FX32_SHIFT, FX32_CONST(10) ); 
 			scale_vec.x = scale;
@@ -7752,9 +7752,9 @@ static void BCT_CLIENT_OamAwayNutsMain( BCT_CLIENT_OAMAWAYNUTS_DRAW* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰æ–ÊŠO‚ÖˆÚ“®‚µ‚Ä‚¢‚­ˆ—	ŠJŽn–½—ß
+ *	@brief	ç”»é¢å¤–ã¸ç§»å‹•ã—ã¦ã„ãå‡¦ç†	é–‹å§‹å‘½ä»¤
  *
- *	@param	p_wk	‚±‚ÌƒVƒXƒeƒ€‚Ìƒ[ƒN
+ *	@param	p_wk	ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_OamAwayNutsStart( BCT_CLIENT_OAMAWAYNUTS_DRAW* p_wk, s32 x, s32 y )
@@ -7762,7 +7762,7 @@ static void BCT_CLIENT_OamAwayNutsStart( BCT_CLIENT_OAMAWAYNUTS_DRAW* p_wk, s32 
 	int i;
 	BCT_CLIENT_OAMAWAYNUTS* p_obj = NULL;
 
-	// ‹ó‚¢‚Ä‚éƒ[ƒNŽæ“¾
+	// ç©ºã„ã¦ã‚‹ãƒ¯ãƒ¼ã‚¯å–å¾—
 	for( i=0; i<BCT_OAMAWAYNUTS_BUFFNUM; i++ ){
 		if( p_wk->nutsbuff[i].draw == FALSE ){
 			p_obj = &p_wk->nutsbuff[i];
@@ -7771,40 +7771,40 @@ static void BCT_CLIENT_OamAwayNutsStart( BCT_CLIENT_OAMAWAYNUTS_DRAW* p_wk, s32 
 	}
 	if( p_obj == NULL ){
 //		GF_ASSERT(0);
-		return ;	// ‚±‚êˆÈã‚¾‚¹‚È‚¢
+		return ;	// ã“ã‚Œä»¥ä¸Šã ã›ãªã„
 	}
 
-	// ¶‰E‚Ç‚Á‚¿‚É‚¢‚é‚©‚ÅƒGƒtƒFƒNƒg‚ð•Ï‚¦‚é‚­‚ç‚¢
+	// å·¦å³ã©ã£ã¡ã«ã„ã‚‹ã‹ã§ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å¤‰ãˆã‚‹ãã‚‰ã„
 	if( x < 128 ){
 		p_obj->left = TRUE;
 	}else{
 		p_obj->left = FALSE;
 	}
 	
-	// À•W‚ðÝ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	p_obj->mat.x = x << FX32_SHIFT;
 	p_obj->mat.y = (y << FX32_SHIFT) + BCT_GRA_OAMSUBSURFACE_Y;
 	CLACT_SetMatrix( p_obj->p_clwk, &p_obj->mat );
 
-	// •\Ž¦A“®ìŠJŽn
+	// è¡¨ç¤ºã€å‹•ä½œé–‹å§‹
 	p_obj->draw = TRUE;
 	CLACT_SetDrawFlag( p_obj->p_clwk, TRUE );
 
-	// ƒJƒEƒ“ƒ^‰Šú‰»
+	// ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 	p_obj->count = 0;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰æ–ÊŠO‚ÖˆÚ“®‚µ‚Ä‚¢‚­ˆ—	ˆÚ“®’l‚ð‹‚ß‚é
+ *	@brief	ç”»é¢å¤–ã¸ç§»å‹•ã—ã¦ã„ãå‡¦ç†	ç§»å‹•å€¤ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	count		ƒJƒEƒ“ƒg
- *	@param	countmax	ƒJƒEƒ“ƒgÅ‘å’l
- *	@param	speed		ƒXƒs[ƒh
- *	@param	srota		ŠJŽn‰ñ“]Šp“x
- *	@param	erota		I—¹‰ñ“]Šp“x
- *	@param	p_x			‚˜ˆÚ“®’lŠi”[æ
- *	@param	p_y			‚™ˆÚ“®’lŠi”[æ
+ *	@param	count		ã‚«ã‚¦ãƒ³ãƒˆ
+ *	@param	countmax	ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
+ *	@param	speed		ã‚¹ãƒ”ãƒ¼ãƒ‰
+ *	@param	srota		é–‹å§‹å›žè»¢è§’åº¦
+ *	@param	erota		çµ‚äº†å›žè»¢è§’åº¦
+ *	@param	p_x			ï½˜ç§»å‹•å€¤æ ¼ç´å…ˆ
+ *	@param	p_y			ï½™ç§»å‹•å€¤æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_OamAwayNutsMoveXY( int count, int countmax, int speed, int srota, int erota, s32* p_x, s32* p_y )
@@ -7812,36 +7812,36 @@ static void BCT_CLIENT_OamAwayNutsMoveXY( int count, int countmax, int speed, in
 	s16 rota;
 	s32 rota_div;
 
-	// Šp“x‚Ì·‚ð‹‚ß‚é
+	// è§’åº¦ã®å·®ã‚’æ±‚ã‚ã‚‹
 	rota_div = erota - srota;
 
-	// ƒJƒEƒ“ƒg—ÍŒ»Ý‚Ì‰ñ“]Šp“x‚ð‹‚ß‚é
+	// ã‚«ã‚¦ãƒ³ãƒˆåŠ›ç¾åœ¨ã®å›žè»¢è§’åº¦ã‚’æ±‚ã‚ã‚‹
 	rota = srota + ( (count * rota_div) / countmax );
 
-	// Šp“x‚©‚çˆÚ“®’l‚ð‹‚ß‚é
+	// è§’åº¦ã‹ã‚‰ç§»å‹•å€¤ã‚’æ±‚ã‚ã‚‹
 	*p_x = FX_Mul( Cos360( rota ), speed << FX32_SHIFT ) >> FX32_SHIFT;
 	*p_y = FX_Mul( Sin360( rota ), speed << FX32_SHIFT ) >> FX32_SHIFT;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“‰æ–Ê”wŒi@•\Ž¦	‰Šú‰»
+ *	@brief	ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯ã€€è¡¨ç¤º	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_graphic	•`‰æƒVƒXƒeƒ€
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	comm_num	’ÊMl”
- *	@param	plno		’ÊMID
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_graphic	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	comm_num	é€šä¿¡äººæ•°
+ *	@param	plno		é€šä¿¡ID
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MainBackInit( BCT_CLIENT_MAINBACK* p_wk, BCT_CLIENT_GRAPHIC* p_graphic, ARCHANDLE* p_handle, int comm_num, u32 plno, u32 heapID, NNSFndAllocator* p_allocator )
 {
 	static const u16 CommNumNSBMD[ BCT_PLAYER_NUM ] = {
-		NARC_bucket_maru_stage_2p_nsbmd,	// 1l—p
-		NARC_bucket_maru_stage_2p_nsbmd,	// 2l—p
-		NARC_bucket_maru_stage_3p_nsbmd,	// 3l—p
-		NARC_bucket_maru_stage_4p_nsbmd,	// 4l—p
+		NARC_bucket_maru_stage_2p_nsbmd,	// 1äººç”¨
+		NARC_bucket_maru_stage_2p_nsbmd,	// 2äººç”¨
+		NARC_bucket_maru_stage_3p_nsbmd,	// 3äººç”¨
+		NARC_bucket_maru_stage_4p_nsbmd,	// 4äººç”¨
 	};
 	static const u16 sc_MainBackAnm[ BCT_MAINBACK_ANM_NUM ] = {
 		NARC_bucket_maru_wall_n_nsbta,
@@ -7867,46 +7867,46 @@ static void BCT_CLIENT_MainBackInit( BCT_CLIENT_MAINBACK* p_wk, BCT_CLIENT_GRAPH
 			idx = CommNumNSBMD[ comm_num-1 ];
 		}
 		
-		// ƒ‚ƒfƒ‹ÃÞ°À“Ç‚Ýž‚Ý
+		// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		D3DOBJ_MdlLoadH( &p_wk->mdl[ i ], p_handle, idx, heapID );
-		// ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+		// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 		D3DOBJ_Init( &p_wk->obj[ i ], &p_wk->mdl[ i ] );
-		//@À•WÝ’è
+		//ã€€åº§æ¨™è¨­å®š
 		D3DOBJ_SetMatrix( &p_wk->obj[ i ], 0, BCT_FIELD_YUKA_DRAW_Y, 0 );
 		D3DOBJ_SetScale( &p_wk->obj[ i ], BCT_MAINBACK_SCALE, BCT_MAINBACK_SCALE, BCT_MAINBACK_SCALE );
 		
-		// FEVER—p‚Ì•Ç‚¾‚¯”ñ•\Ž¦
+		// FEVERç”¨ã®å£ã ã‘éžè¡¨ç¤º
 		if( i == BCT_MAINBACK_MDL_WALL_F ){
 			D3DOBJ_SetDraw( &p_wk->obj[ i ], FALSE );
 		}
 
-		// •Ç‚Í‚Ý‚ñ‚È‹¤’Ê‚Ì•\Ž¦Šp“x‚ÅŽÊ‚é‚æ‚¤‚É‚·‚é
+		// å£ã¯ã¿ã‚“ãªå…±é€šã®è¡¨ç¤ºè§’åº¦ã§å†™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 		if( (i==BCT_MAINBACK_MDL_WALL_N) || (i==BCT_MAINBACK_MDL_WALL_F) ){
-			D3DOBJ_SetRota( &p_wk->obj[ i ], BCT_CAMERA_ANGLEY_NetID[ comm_num-1 ][ plno ], D3DOBJ_ROTA_WAY_Y );	// ‚P’ö‚ÌŠp“x
+			D3DOBJ_SetRota( &p_wk->obj[ i ], BCT_CAMERA_ANGLEY_NetID[ comm_num-1 ][ plno ], D3DOBJ_ROTA_WAY_Y );	// ï¼‘ç¨‹ã®è§’åº¦
 		}else{
-			D3DOBJ_SetRota( &p_wk->obj[ i ], BCT_MAINBACK_ROT, D3DOBJ_ROTA_WAY_Y );	// ‚P’ö‚ÌŠp“x
+			D3DOBJ_SetRota( &p_wk->obj[ i ], BCT_MAINBACK_ROT, D3DOBJ_ROTA_WAY_Y );	// ï¼‘ç¨‹ã®è§’åº¦
 		}
 	}
 
-	// ƒAƒjƒ“Ç‚Ýž‚Ý
+	// ã‚¢ãƒ‹ãƒ¡èª­ã¿è¾¼ã¿
 	for( i=0; i<BCT_MAINBACK_ANM_NUM; i++ ){
 		D3DOBJ_AnmLoadH( &p_wk->anm[i], &p_wk->mdl[sc_AnmSetModel[i]], p_handle, 
 				sc_MainBackAnm[i], heapID, p_allocator );
 
-		// “o˜^
+		// ç™»éŒ²
 		D3DOBJ_AddAnm( &p_wk->obj[sc_AnmSetModel[i]], &p_wk->anm[i] );
 	}
 
-	// ƒAƒjƒƒXƒs[ƒhÝ’è
+	// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰è¨­å®š
 	p_wk->anm_speed = BCT_FEVER_BACK_ANM_SPEED_START;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“‰æ–Ê”wŒi@•\Ž¦	”jŠü
+ *	@brief	ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯ã€€è¡¨ç¤º	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_graphic	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_graphic	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MainBackExit( BCT_CLIENT_MAINBACK* p_wk, BCT_CLIENT_GRAPHIC* p_graphic, NNSFndAllocator* p_allocator )
@@ -7924,31 +7924,31 @@ static void BCT_CLIENT_MainBackExit( BCT_CLIENT_MAINBACK* p_wk, BCT_CLIENT_GRAPH
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“‰æ–Ê”wŒi@•\Ž¦ˆ—
+ *	@brief	ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯ã€€è¡¨ç¤ºå‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MainBackDraw( BCT_CLIENT_MAINBACK* p_wk )
 {
 	int i;
 
-	// í‚Éƒ‹[ƒvƒAƒjƒ
+	// å¸¸ã«ãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡
 	D3DOBJ_AnmLoop( &p_wk->anm[BCT_MAINBACK_ANM_WALL_N], p_wk->anm_speed );
 
-	// ¡‚Ìó‘Ô‚É‡‚í‚¹‚ÄƒAƒjƒ
+	// ä»Šã®çŠ¶æ…‹ã«åˆã‚ã›ã¦ã‚¢ãƒ‹ãƒ¡
 	if( p_wk->fever ){
 		
 		switch( p_wk->fever_anm_seq ){
 		case 0:
-			// ƒtƒB[ƒo[ƒAƒjƒ‚ÍA“r’†‚©‚çƒAƒjƒ‚ðƒ‹[ƒv‚³‚¹‚é
+			// ãƒ•ã‚£ãƒ¼ãƒãƒ¼ã‚¢ãƒ‹ãƒ¡ã¯ã€é€”ä¸­ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡ã‚’ãƒ«ãƒ¼ãƒ—ã•ã›ã‚‹
 			if( (p_wk->fever_anm_frame + p_wk->fever_anm_speed) < BCT_MAINBACK_FEVER_ANM_FRAME_LOOPS ){
 				p_wk->fever_anm_frame += p_wk->fever_anm_speed;
 			}else{
 				p_wk->fever_anm_frame = 0;
 			}
 
-			// ƒAƒjƒƒXƒs[ƒh‰Á‘¬
+			// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰åŠ é€Ÿ
 /*			if( sys.trg & PAD_BUTTON_A ){
 				p_wk->fever_anm_speed += FX32_HALF;
 				OS_TPrintf( "anm_speed 0x%x\n", p_wk->fever_anm_speed );
@@ -7965,7 +7965,7 @@ static void BCT_CLIENT_MainBackDraw( BCT_CLIENT_MAINBACK* p_wk )
 
 		case 1:
 
-			// ƒtƒB[ƒo[ƒAƒjƒ‚ÍA“r’†‚©‚çƒAƒjƒ‚ðƒ‹[ƒv‚³‚¹‚é
+			// ãƒ•ã‚£ãƒ¼ãƒãƒ¼ã‚¢ãƒ‹ãƒ¡ã¯ã€é€”ä¸­ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡ã‚’ãƒ«ãƒ¼ãƒ—ã•ã›ã‚‹
 			if( (p_wk->fever_anm_frame + p_wk->fever_anm_speed) < BCT_MAINBACK_FEVER_ANM_FRAME_LOOPS ){
 				p_wk->fever_anm_frame += p_wk->fever_anm_speed;
 			}else{
@@ -7980,7 +7980,7 @@ static void BCT_CLIENT_MainBackDraw( BCT_CLIENT_MAINBACK* p_wk )
 			break;
 			
 		case 2:
-			// ƒtƒB[ƒo[ƒAƒjƒ‚ÍA“r’†‚©‚çƒAƒjƒ‚ðƒ‹[ƒv‚³‚¹‚é
+			// ãƒ•ã‚£ãƒ¼ãƒãƒ¼ã‚¢ãƒ‹ãƒ¡ã¯ã€é€”ä¸­ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡ã‚’ãƒ«ãƒ¼ãƒ—ã•ã›ã‚‹
 			if( (p_wk->fever_anm_frame + BCT_MARUNOMU_ANM_FEVERWALLSPEED_SPEED) < BCT_MAINBACK_FEVER_ANM_FRAME_NUM ){
 				p_wk->fever_anm_frame += BCT_MARUNOMU_ANM_FEVERWALLSPEED_SPEED;
 			}else{
@@ -8004,14 +8004,14 @@ static void BCT_CLIENT_MainBackDraw( BCT_CLIENT_MAINBACK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Ç‚Á‚¿‚Ì•Ç‚ð•\Ž¦‚·‚é‚Ì‚©‚ðÝ’è‚·‚é
+ *	@brief	ã©ã£ã¡ã®å£ã‚’è¡¨ç¤ºã™ã‚‹ã®ã‹ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MainBackSetDrawFever( BCT_CLIENT_MAINBACK* p_wk )
 {
-	// •Ç‚ðØ‚è‘Ö‚¦‚é
+	// å£ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	D3DOBJ_SetDraw( &p_wk->obj[BCT_MAINBACK_MDL_WALL_N], FALSE );
 	D3DOBJ_SetDraw( &p_wk->obj[BCT_MAINBACK_MDL_WALL_F], TRUE );
 
@@ -8024,10 +8024,10 @@ static void BCT_CLIENT_MainBackSetDrawFever( BCT_CLIENT_MAINBACK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒXƒs[ƒh‚ðÝ’è‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	speed		ƒXƒs[ƒh
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	speed		ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_MainBackSetAnmSpeed( BCT_CLIENT_MAINBACK* p_wk, fx32 speed )
@@ -8038,14 +8038,14 @@ static void BCT_CLIENT_MainBackSetAnmSpeed( BCT_CLIENT_MAINBACK* p_wk, fx32 spee
 
 //----------------------------------------------------------------------------
 /**
- *  @brief  •½–Ê‚Æü•ª‚Ì“–‚½‚è”»’è
+ *  @brief  å¹³é¢ã¨ç·šåˆ†ã®å½“ãŸã‚Šåˆ¤å®š
  *
- *  @param  cp_mat          ü•ª@ŠJŽnÀ•W
- *  @param  cp_move         ü•ª@ˆÚ“®’l
- *  @param  cp_n            •½–Ê@–@üƒxƒNƒgƒ‹
- *  @param  d               Œ´“_‚©‚ç‚Ì•½–Ê‚Ì‹——£
- *  @param  p_hitmat        ‚Ô‚Â‚©‚Á‚½À•W
- *  @param  p_time          ‚Ô‚Â‚©‚éŽžŠÔ
+ *  @param  cp_mat          ç·šåˆ†ã€€é–‹å§‹åº§æ¨™
+ *  @param  cp_move         ç·šåˆ†ã€€ç§»å‹•å€¤
+ *  @param  cp_n            å¹³é¢ã€€æ³•ç·šãƒ™ã‚¯ãƒˆãƒ«
+ *  @param  d               åŽŸç‚¹ã‹ã‚‰ã®å¹³é¢ã®è·é›¢
+ *  @param  p_hitmat        ã¶ã¤ã‹ã£ãŸåº§æ¨™
+ *  @param  p_time          ã¶ã¤ã‹ã‚‹æ™‚é–“
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_CalcPlaneVecHitCheck( const VecFx32* cp_mat, const VecFx32* cp_move, const VecFx32* cp_n, fx32 d, VecFx32* p_hitmat, fx32* p_time )
@@ -8054,15 +8054,15 @@ static void BCT_CLIENT_CalcPlaneVecHitCheck( const VecFx32* cp_mat, const VecFx3
     fx32 move_num;
     fx32 mat_num;
 
-    // –@ü         (a,b,c)
-    // ü•ªŽn“_ (x0,y0,z0)
-    // ü•ªˆÚ“® (xv,yv,zv)
-    // ‚©‚©‚éŽžŠÔ t
-    // •½–Ê‚ÌˆÊ’u d
+    // æ³•ç·š         (a,b,c)
+    // ç·šåˆ†å§‹ç‚¹ (x0,y0,z0)
+    // ç·šåˆ†ç§»å‹• (xv,yv,zv)
+    // ã‹ã‹ã‚‹æ™‚é–“ t
+    // å¹³é¢ã®ä½ç½® d
     // t( axv + byv + czv ) = -ax0 - by0 - cz0 + d
     //    move_num              mat_num
     //  t = (mat_num + d) / move_num
-    // ‚ðŽg—p‚µ‚Ät‚ð‹‚ß‚é
+    // ã‚’ä½¿ç”¨ã—ã¦tã‚’æ±‚ã‚ã‚‹
     move_num = FX_Mul( cp_n->x, cp_move->x ) + FX_Mul( cp_n->y, cp_move->y ) + FX_Mul( cp_n->z, cp_move->z );
     mat_num = -FX_Mul( cp_n->x, cp_mat->x ) - FX_Mul( cp_n->y, cp_mat->y ) - FX_Mul( cp_n->z, cp_mat->z );
     time = FX_Div( (mat_num + d), move_num );
@@ -8070,7 +8070,7 @@ static void BCT_CLIENT_CalcPlaneVecHitCheck( const VecFx32* cp_mat, const VecFx3
 //  OS_Printf( "move_num 0x%x\n", move_num );
 //  OS_Printf( "mat_num 0x%x\n", mat_num );
 
-    // t‚©‚çÀ•W‚ð‹‚ß‚é
+    // tã‹ã‚‰åº§æ¨™ã‚’æ±‚ã‚ã‚‹
     p_hitmat->x = cp_mat->x + FX_Mul( cp_move->x, time );
     p_hitmat->y = cp_mat->y + FX_Mul( cp_move->y, time );
     p_hitmat->x = cp_mat->z + FX_Mul( cp_move->z, time );
@@ -8081,7 +8081,7 @@ static void BCT_CLIENT_CalcPlaneVecHitCheck( const VecFx32* cp_mat, const VecFx3
 #if 0
 
 #ifdef BCT_DEBUG
-    // Œ‹‰ÊŠm”F
+    // çµæžœç¢ºèª
     {
         fx32 test_d;
 
@@ -8096,10 +8096,10 @@ static void BCT_CLIENT_CalcPlaneVecHitCheck( const VecFx32* cp_mat, const VecFx3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰ƒ^[ƒQƒbƒgYÀ•W‚ðÝ’è
+ *	@brief	ã‚«ãƒ¡ãƒ©ã‚¿ãƒ¼ã‚²ãƒƒãƒˆYåº§æ¨™ã‚’è¨­å®š
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	y		‚™À•W
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	y		ï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_CameraTargetYSet( BCT_CLIENT_GRAPHIC* p_gra, fx32 y )
@@ -8109,10 +8109,10 @@ static void BCT_CLIENT_CameraTargetYSet( BCT_CLIENT_GRAPHIC* p_gra, fx32 y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰ƒAƒ“ƒOƒ‹‚˜‚ðÝ’è
+ *	@brief	ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ï½˜ã‚’è¨­å®š
  *
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	angle		ƒAƒ“ƒOƒ‹
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	angle		ã‚¢ãƒ³ã‚°ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_CameraAngleXSet( BCT_CLIENT_GRAPHIC* p_gra, u16 angle )
@@ -8126,10 +8126,10 @@ static void BCT_CLIENT_CameraAngleXSet( BCT_CLIENT_GRAPHIC* p_gra, u16 angle )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG—Dæ‡ˆÊ	ƒXƒNƒ[ƒ‹ƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	BGå„ªå…ˆé †ä½	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	plno	ƒvƒŒƒCƒ„[‚È‚ñ‚Î[
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	plno	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãªã‚“ã°ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_BGPRISCRL_Init( BCT_CLIENT_BGPRI_SCRL* p_wk, u8 plno )
@@ -8141,37 +8141,37 @@ static void BCT_CLIENT_BGPRISCRL_Init( BCT_CLIENT_BGPRI_SCRL* p_wk, u8 plno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG—Dæ‡ˆÊ	ƒXƒNƒ[ƒ‹ƒVƒXƒeƒ€	ƒƒCƒ“
+ *	@brief	BGå„ªå…ˆé †ä½	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_BGPRISCRL_Main( BCT_CLIENT_BGPRI_SCRL* p_wk, BCT_CLIENT_GRAPHIC* p_gra )
 {
 	switch( p_wk->seq ){
-	// ‘Ò‹@ó‘Ô
+	// å¾…æ©ŸçŠ¶æ…‹
 	case BCT_BGPRI_SCRL_SEQ_NORMAL:
 		break;
 
-	// ƒGƒtƒFƒNƒgŠJŽn
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
 	case BCT_BGPRI_SCRL_SEQ_START:
-		// ƒGƒtƒFƒNƒg‚ð‚©‚¯‚ÄAmost_back‚Ìó‘Ô‚É‚·‚é‚Ì‚Å
-		// most_back‚Ì°‚Ì‚à‚¤‚Ð‚Æ‚Â‘O‚Ìó‘Ô‚ÅBG—Dæ‡ˆÊ‚ð‚Â‚¯‚é
+		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‹ã‘ã¦ã€most_backã®çŠ¶æ…‹ã«ã™ã‚‹ã®ã§
+		// most_backã®åºŠã®ã‚‚ã†ã²ã¨ã¤å‰ã®çŠ¶æ…‹ã§BGå„ªå…ˆé †ä½ã‚’ã¤ã‘ã‚‹
 		BCT_CLIENT_BGPRISCRL_SetPri( p_gra, p_wk->most_back-1, p_wk->plno );
 
 		// 
 		p_wk->seq	++;
 		p_wk->count	= 0;
 		
-	// ƒGƒtƒFƒNƒgƒƒCƒ“
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³
 	case BCT_BGPRI_SCRL_SEQ_TOPFADE:
 		if( p_wk->count >= BCT_BGPRI_SCRL_COUNT_MAX ){
-			// ‰º‚É·‚µž‚Þˆ—‚Ö
+			// ä¸‹ã«å·®ã—è¾¼ã‚€å‡¦ç†ã¸
 			p_wk->seq	= BCT_BGPRI_SCRL_SEQ_BOTTOMFADE;
 			p_wk->count = 0;
 
-			// —Dæ‡ˆÊ‚ðÝ’è	–{“–‚ÍVƒuƒ‰ƒ“ƒN‚Ås‚Á‚½‚Ù‚¤‚ª‚«‚ê‚¢‚Å‚·‚æ
+			// å„ªå…ˆé †ä½ã‚’è¨­å®š	æœ¬å½“ã¯Vãƒ–ãƒ©ãƒ³ã‚¯ã§è¡Œã£ãŸã»ã†ãŒãã‚Œã„ã§ã™ã‚ˆ
 			BCT_CLIENT_BGPRISCRL_SetPri( p_gra, p_wk->most_back, p_wk->plno );
 			G2S_SetBlendAlpha( 1<<p_wk->most_back,
 					GX_BLEND_PLANEMASK_BG3,
@@ -8179,7 +8179,7 @@ static void BCT_CLIENT_BGPRISCRL_Main( BCT_CLIENT_BGPRI_SCRL* p_wk, BCT_CLIENT_G
 		}else{
 			p_wk->count ++;
 
-			// ƒAƒ‹ƒtƒ@’lÝ’è
+			// ã‚¢ãƒ«ãƒ•ã‚¡å€¤è¨­å®š
 			{
 				s32 top, two, three;
 				s32 alpha;
@@ -8205,10 +8205,10 @@ static void BCT_CLIENT_BGPRISCRL_Main( BCT_CLIENT_BGPRI_SCRL* p_wk, BCT_CLIENT_G
 		break;
 
 		
-	// ‰º‚É·‚µž‚Þˆ—
+	// ä¸‹ã«å·®ã—è¾¼ã‚€å‡¦ç†
 	case BCT_BGPRI_SCRL_SEQ_BOTTOMFADE:
 		if( p_wk->count >= BCT_BGPRI_SCRL_BOTTOMCOUNT_MAX ){
-			// I—¹
+			// çµ‚äº†
 			p_wk->seq	= BCT_BGPRI_SCRL_SEQ_NORMAL;
 
 			G2S_BlendNone();
@@ -8216,7 +8216,7 @@ static void BCT_CLIENT_BGPRISCRL_Main( BCT_CLIENT_BGPRI_SCRL* p_wk, BCT_CLIENT_G
 		}else{
 			p_wk->count ++;
 
-			// ƒAƒ‹ƒtƒ@’lÝ’è
+			// ã‚¢ãƒ«ãƒ•ã‚¡å€¤è¨­å®š
 			{
 				s32 alpha;
 				alpha	= (p_wk->count * 16) / BCT_BGPRI_SCRL_BOTTOMCOUNT_MAX;
@@ -8231,9 +8231,9 @@ static void BCT_CLIENT_BGPRISCRL_Main( BCT_CLIENT_BGPRI_SCRL* p_wk, BCT_CLIENT_G
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG—Dæ‡ˆÊ	ƒXƒNƒ[ƒ‹ƒVƒXƒeƒ€	ƒŠƒNƒGƒXƒg
+ *	@brief	BGå„ªå…ˆé †ä½	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 	ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_BGPRISCRL_Req( BCT_CLIENT_BGPRI_SCRL* p_wk )
@@ -8248,11 +8248,11 @@ static void BCT_CLIENT_BGPRISCRL_Req( BCT_CLIENT_BGPRI_SCRL* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆê”Ô‰º‚ÌBG–Ê‚ðŽw’è‚µ‚ÄA—Dæ‡ˆÊ‚ðÝ’è‚·‚é
+ *	@brief	ä¸€ç•ªä¸‹ã®BGé¢ã‚’æŒ‡å®šã—ã¦ã€å„ªå…ˆé †ä½ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€
- *	@param	most_back	ˆê”Ô‰º‚ÌBG–Ê
- *	@param	plno		ƒvƒŒƒCƒ„[—Dæ‡ˆÊ
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	most_back	ä¸€ç•ªä¸‹ã®BGé¢
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_BGPRISCRL_SetPri( BCT_CLIENT_GRAPHIC* p_gra, s16 most_back, u16 plno )
@@ -8260,27 +8260,27 @@ static void BCT_CLIENT_BGPRISCRL_SetPri( BCT_CLIENT_GRAPHIC* p_gra, s16 most_bac
 	int i;
 	s32 bgno;
 
-	// ƒ}ƒCƒiƒX‚Ì‚Ü‚Ümost_back‚ª‚í‚½‚Á‚Ä‚­‚é‰Â”\«‚à‚ ‚é‚Å‚à‘åä•v
+	// ãƒžã‚¤ãƒŠã‚¹ã®ã¾ã¾most_backãŒã‚ãŸã£ã¦ãã‚‹å¯èƒ½æ€§ã‚‚ã‚ã‚‹ã§ã‚‚å¤§ä¸ˆå¤«
 	
 	for( i=0; i<BCT_BGPRI_SCRL_MOSTBACK_MAX; i++ ){
 		bgno = most_back - i;
 
-		// BGƒtƒŒ[ƒ€ŒvŽZ
+		// BGãƒ•ãƒ¬ãƒ¼ãƒ è¨ˆç®—
 		if( bgno < 0 ){
 			bgno += BCT_BGPRI_SCRL_MOSTBACK_MAX;
 		}
 		bgno += GF_BGL_FRAME0_S;
 
 		
-		// —Dæ‡ˆÊÝ’è
+		// å„ªå…ˆé †ä½è¨­å®š
 		GF_BGL_PrioritySet( bgno, (BCT_BGPRI_SCRL_PRI_MAX - i) );
 
-		// ƒpƒŒƒbƒgÝ’è
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
 		if( i==0 ){
-			// ˆê”Ô‰º
+			// ä¸€ç•ªä¸‹
 			GF_BGL_ScrPalChange( p_gra->p_bgl, bgno, 0, 0, 32, 32, BCT_GRA_BGSUB_PAL_NETID0_BACK+(plno*2) );
 		}else{
-			// ‚»‚êˆÈŠO
+			// ãã‚Œä»¥å¤–
 			GF_BGL_ScrPalChange( p_gra->p_bgl, bgno, 0, 0, 32, 32, BCT_GRA_BGSUB_PAL_NETID0_TOP+(plno*2) );
 		}
 
@@ -8293,25 +8293,25 @@ static void BCT_CLIENT_BGPRISCRL_SetPri( BCT_CLIENT_GRAPHIC* p_gra, s16 most_bac
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀƒJƒEƒ“ƒ^[	‰Šú‰»
+ *	@brief	æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NUTS_COUNT_Init( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_GRAPHIC* p_gra, ARCHANDLE* p_handle, u32 heapID )
 {
-	// ƒq[ƒvID•Û‘¶
+	// ãƒ’ãƒ¼ãƒ—IDä¿å­˜
 	p_wk->heapID	= heapID;
 
 	
-	// ƒe[ƒuƒ‹‚Æ‚È‚éOAM‚Ì“Ç‚Ýž‚Ý
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ã¨ãªã‚‹OAMã®èª­ã¿è¾¼ã¿
 	{
 		BOOL result;
 
-        // OAMƒŠƒ\[ƒX“Çž‚Ý
+        // OAMãƒªã‚½ãƒ¼ã‚¹èª­è¾¼ã¿
         p_wk->resobj[ 0 ] = CLACT_U_ResManagerResAddArcChar_ArcHandle(
                     p_gra->resMan[ 0 ], p_handle,
                     NARC_bucket_counter_NCGR,
@@ -8332,17 +8332,17 @@ static void BCT_CLIENT_NUTS_COUNT_Init( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_
                 NARC_bucket_counter_NANR, FALSE,
                 BCT_NUTS_COUNT_DRAW_RESID, CLACT_U_CELLANM_RES, heapID );
 
-        // “]‘—
+        // è»¢é€
         result = CLACT_U_CharManagerSetCharModeAdjustAreaCont( p_wk->resobj[ 0 ] );
         GF_ASSERT( result );
         result = CLACT_U_PlttManagerSetCleanArea( p_wk->resobj[ 1 ] );
         GF_ASSERT( result );
 
-        // ƒŠƒ\[ƒX‚¾‚¯”jŠü
+        // ãƒªã‚½ãƒ¼ã‚¹ã ã‘ç ´æ£„
         CLACT_U_ResManagerResOnlyDelete( p_wk->resobj[ 0 ] );
         CLACT_U_ResManagerResOnlyDelete( p_wk->resobj[ 1 ] );
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 		CLACT_U_MakeHeader( &p_wk->header, 
 				BCT_NUTS_COUNT_DRAW_RESID, BCT_NUTS_COUNT_DRAW_RESID,
 				BCT_NUTS_COUNT_DRAW_RESID, BCT_NUTS_COUNT_DRAW_RESID,
@@ -8353,7 +8353,7 @@ static void BCT_CLIENT_NUTS_COUNT_Init( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_
 				NULL, NULL );
 	}
 
-	// ƒe[ƒuƒ‹•”•ª‚ÌOAMì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«éƒ¨åˆ†ã®OAMä½œæˆ
 	{
 		CLACT_ADD_SIMPLE add;
 		
@@ -8369,31 +8369,31 @@ static void BCT_CLIENT_NUTS_COUNT_Init( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_
 		CLACT_SetDrawFlag( p_wk->p_tblwk, FALSE );
 	}
 	
-	// ƒtƒHƒ“ƒgOAMƒf[ƒ^ì¬
+	// ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	{
 		int char_size;
 		BOOL result;
 		FONTOAM_INIT fontoam_init;
 
-		// •¶Žš—ñƒoƒbƒtƒ@ì¬
+		// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 		p_wk->p_str = STRBUF_Create( 16, heapID );
 		
-		// ƒrƒbƒgƒ}ƒbƒv
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
 		GF_BGL_BmpWinObjAdd( p_gra->p_bgl, 
 				&p_wk->objbmp, 
 				BCT_NUTS_COUNT_BMP_SIZX, BCT_NUTS_COUNT_BMP_SIZY, 
 				0, 0 );
 
-		// OAM\¬ƒf[ƒ^‚ðì¬
+		// OAMæ§‹æˆãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 		p_wk->p_fontoam_data	= FONTOAM_OAMDATA_Make( &p_wk->objbmp, heapID );
 		char_size				= FONTOAM_OAMDATA_NeedCharSize( p_wk->p_fontoam_data, NNS_G2D_VRAM_TYPE_2DMAIN );
 
-		// ƒLƒƒƒ‰ƒNƒ^—Ìˆæ‚ðŠm•Û
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é ˜åŸŸã‚’ç¢ºä¿
 		result = CharVramAreaAlloc( char_size, CHARM_CONT_AREACONT,
 				NNS_G2D_VRAM_TYPE_2DMAIN, &p_wk->fontoam_chardata );
 		GF_ASSERT( result == TRUE );
 
-		// ƒtƒHƒ“ƒg—pƒpƒŒƒbƒg
+		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
 		p_wk->p_fontoam_pltt = CLACT_U_ResManagerResAddArcPltt(
                     p_gra->resMan[1], ARC_FONT,
                     NARC_font_system_ncrl,
@@ -8402,11 +8402,11 @@ static void BCT_CLIENT_NUTS_COUNT_Init( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_
         result = CLACT_U_PlttManagerSetCleanArea( p_wk->p_fontoam_pltt );
         GF_ASSERT( result );
 
-        // ƒŠƒ\[ƒX‚¾‚¯”jŠü
+        // ãƒªã‚½ãƒ¼ã‚¹ã ã‘ç ´æ£„
         CLACT_U_ResManagerResOnlyDelete( p_wk->p_fontoam_pltt );
 
 
-		// FONTOAMƒ[ƒN‚ðì¬
+		// FONTOAMãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆ
 		fontoam_init.fontoam_sys	= p_gra->p_fontoam_sys;
 		fontoam_init.bmp			= &p_wk->objbmp;
 		fontoam_init.clact_set		= p_gra->clactSet;
@@ -8423,15 +8423,15 @@ static void BCT_CLIENT_NUTS_COUNT_Init( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_
 		p_wk->p_fontoam				= FONTOAM_OAMDATA_Init( 
 				&fontoam_init, p_wk->p_fontoam_data );
 
-		// •\Ž¦OFF
+		// è¡¨ç¤ºOFF
 		FONTOAM_SetDrawFlag( p_wk->p_fontoam, FALSE );
 
-		// ƒrƒbƒgƒ}ƒbƒv
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
 		GF_BGL_BmpWinDel( &p_wk->objbmp );
 
 	}
 
-	// “®ìƒpƒ‰ƒ[ƒ^‰Šú‰»
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	BCT_AddMoveReqFx( &p_wk->inout_data, 
 			BCT_NUTS_COUNT_INOUT_SX, BCT_NUTS_COUNT_INOUT_EX,
 			BCT_NUTS_COUNT_INOUT_SS, BCT_NUTS_COUNT_INOUT_COUNTMAX );
@@ -8439,52 +8439,52 @@ static void BCT_CLIENT_NUTS_COUNT_Init( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_
 			BCT_NUTS_COUNT_YURE_SY, BCT_NUTS_COUNT_YURE_EY,
 			BCT_NUTS_COUNT_YURE_SS, BCT_NUTS_COUNT_YURE_COUNTMAX );
 
-	// ƒJƒEƒ“ƒ^‰Šú‰»
+	// ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 	p_wk->inout_count	= 0;
 	p_wk->yure_count	= BCT_NUTS_COUNT_YURE_COUNTMAX;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀƒJƒEƒ“ƒ^[	”jŠü
+ *	@brief	æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NUTS_COUNT_Exit( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_GRAPHIC* p_gra )
 {
-	// ƒtƒHƒ“ƒgOAMƒf[ƒ^ì¬
+	// ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	{
 		
-		// FONTOAMƒ[ƒN‚ð”jŠü
+		// FONTOAMãƒ¯ãƒ¼ã‚¯ã‚’ç ´æ£„
 		FONTOAM_OAMDATA_Delete( p_wk->p_fontoam ); 
 
-		// ƒpƒŒƒbƒg”jŠü
+		// ãƒ‘ãƒ¬ãƒƒãƒˆç ´æ£„
         CLACT_U_PlttManagerDelete( p_wk->p_fontoam_pltt );
         CLACT_U_ResManagerResDelete( p_gra->resMan[1], p_wk->p_fontoam_pltt );
 
 
-		// ƒLƒƒƒ‰ƒNƒ^—Ìˆæ‚ð”jŠü
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é ˜åŸŸã‚’ç ´æ£„
 		CharVramAreaFree( &p_wk->fontoam_chardata );
 
-		// OAM\¬ƒf[ƒ^‚ðì¬
+		// OAMæ§‹æˆãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 		FONTOAM_OAMDATA_Free( p_wk->p_fontoam_data );
 		
-		// •¶Žš—ñƒoƒbƒtƒ@”jŠü
+		// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 		STRBUF_Delete( p_wk->p_str );
 	}
 
-	// ƒe[ƒuƒ‹”jŠü
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
 	CLACT_Delete( p_wk->p_tblwk );
 
-	// ƒe[ƒuƒ‹‚Æ‚È‚éOAM‚ÌƒŠƒ\[ƒX”jŠü
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ã¨ãªã‚‹OAMã®ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	{
-        // VRAMŠÇ—‚©‚ç”jŠü
+        // VRAMç®¡ç†ã‹ã‚‰ç ´æ£„
         CLACT_U_CharManagerDelete( p_wk->resobj[0] );
         CLACT_U_PlttManagerDelete( p_wk->resobj[1] );
         
-        // ƒŠƒ\[ƒX”jŠü
+        // ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
         CLACT_U_ResManagerResDelete( p_gra->resMan[0], p_wk->resobj[0] );
         CLACT_U_ResManagerResDelete( p_gra->resMan[1], p_wk->resobj[1] );
         CLACT_U_ResManagerResDelete( p_gra->resMan[2], p_wk->resobj[2] );
@@ -8494,38 +8494,38 @@ static void BCT_CLIENT_NUTS_COUNT_Exit( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀƒJƒEƒ“ƒ^[	ŠJŽn
+ *	@brief	æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼	é–‹å§‹
  *		
- *	@param	p_wk		ƒ[ƒN
- *	@param	count		ŠJŽnŽž‚ÌƒJƒEƒ“ƒg’l
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	count		é–‹å§‹æ™‚ã®ã‚«ã‚¦ãƒ³ãƒˆå€¤
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NUTS_COUNT_Start( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_GRAPHIC* p_gra, u32 count )
 {
-	// ”Žš‚ð‘‚«ž‚ñ‚Å“]‘—
+	// æ•°å­—ã‚’æ›¸ãè¾¼ã‚“ã§è»¢é€
 	{
 		STRBUF_SetNumber( p_wk->p_str, count, 2, 
 				NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
 
-		// ƒrƒbƒgƒ}ƒbƒv
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
 		GF_BGL_BmpWinObjAdd( p_gra->p_bgl, 
 				&p_wk->objbmp, 
 				BCT_NUTS_COUNT_BMP_SIZX, BCT_NUTS_COUNT_BMP_SIZY, 
 				0, 0 );
 
-		// ‘‚«ž‚Þ
+		// æ›¸ãè¾¼ã‚€
 		GF_STR_PrintColor( &p_wk->objbmp, FONT_SYSTEM, p_wk->p_str,
 				0, 0, MSG_NO_PUT, BCT_COL_OAM_BLACK, NULL );
 
-		// “]‘—
+		// è»¢é€
 		FONTOAM_OAMDATA_ResetBmp( p_wk->p_fontoam, p_wk->p_fontoam_data, &p_wk->objbmp, p_wk->heapID );
 
 
-		// ƒrƒbƒgƒ}ƒbƒv
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
 		GF_BGL_BmpWinDel( &p_wk->objbmp );
 	}
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	FONTOAM_SetDrawFlag( p_wk->p_fontoam, TRUE );
 	CLACT_SetDrawFlag( p_wk->p_tblwk, TRUE );
 
@@ -8537,18 +8537,18 @@ static void BCT_CLIENT_NUTS_COUNT_Start( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀƒJƒEƒ“ƒ^[	I—¹
+ *	@brief	æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼	çµ‚äº†
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NUTS_COUNT_End( BCT_CLIENT_NUTS_COUNT* p_wk )
 {
-	// –ß‚ç‚¹‚é
+	// æˆ»ã‚‰ã›ã‚‹
 	if( p_wk->seq != BCT_NUTS_COUNT_SEQ_OUT ){
 
-		// ƒƒCƒ““®ì’†‚Ì‚Æ‚«‚Ì‚ÝA‚¿‚å‚Á‚Æ•\Ž¦‚µ‚Ä‚©‚ç
-		// I—¹‚³‚¹‚é
+		// ãƒ¡ã‚¤ãƒ³å‹•ä½œä¸­ã®ã¨ãã®ã¿ã€ã¡ã‚‡ã£ã¨è¡¨ç¤ºã—ã¦ã‹ã‚‰
+		// çµ‚äº†ã•ã›ã‚‹
 		if( p_wk->seq == BCT_NUTS_COUNT_SEQ_MAIN ){
 			p_wk->out_wait	= BCT_NUTS_COUNT_OUT_WAIT;
 		}
@@ -8559,58 +8559,58 @@ static void BCT_CLIENT_NUTS_COUNT_End( BCT_CLIENT_NUTS_COUNT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀƒJƒEƒ“ƒ^[	”ŽšXV
+ *	@brief	æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼	æ•°å­—æ›´æ–°
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	count		ƒJƒEƒ“ƒg’l
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	count		ã‚«ã‚¦ãƒ³ãƒˆå€¤
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NUTS_COUNT_SetData( BCT_CLIENT_NUTS_COUNT* p_wk, BCT_CLIENT_GRAPHIC* p_gra, u32 count )
 {
-	// ‘ÞŽº’†‚Å‚È‚¯‚ê‚ÎÝ’è
+	// é€€å®¤ä¸­ã§ãªã‘ã‚Œã°è¨­å®š
 	if( p_wk->seq != BCT_NUTS_COUNT_SEQ_OUT ){
 		
-		// ”Žš‚ðXV
+		// æ•°å­—ã‚’æ›´æ–°
 		{
 			STRBUF_SetNumber( p_wk->p_str, count, 2, 
 					NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
 
-			// ƒrƒbƒgƒ}ƒbƒv
+			// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
 			GF_BGL_BmpWinObjAdd( p_gra->p_bgl, 
 					&p_wk->objbmp, 
 					BCT_NUTS_COUNT_BMP_SIZX, BCT_NUTS_COUNT_BMP_SIZY, 
 					0, 0 );
 
-			// ‘‚«ž‚Þ
+			// æ›¸ãè¾¼ã‚€
 			GF_STR_PrintColor( &p_wk->objbmp, FONT_SYSTEM, p_wk->p_str,
 					0, 0, MSG_NO_PUT, BCT_COL_OAM_BLACK, NULL );
 
-			// “]‘—
+			// è»¢é€
 			FONTOAM_OAMDATA_ResetBmp( p_wk->p_fontoam, p_wk->p_fontoam_data, &p_wk->objbmp, p_wk->heapID );
 
-			// ƒrƒbƒgƒ}ƒbƒv
+			// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
 			GF_BGL_BmpWinDel( &p_wk->objbmp );
 		}
 
-		// ‚ä‚êƒAƒjƒŠJŽn
+		// ã‚†ã‚Œã‚¢ãƒ‹ãƒ¡é–‹å§‹
 		p_wk->yure_count = 0;
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀƒJƒEƒ“ƒ^[	ƒƒCƒ“
+ *	@brief	æœ¨ã®å®Ÿã‚«ã‚¦ãƒ³ã‚¿ãƒ¼	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_NUTS_COUNT_Main( BCT_CLIENT_NUTS_COUNT* p_wk )
 {
 	switch( p_wk->seq ){
-	// ‘Ò‹@ó‘Ô
+	// å¾…æ©ŸçŠ¶æ…‹
 	case BCT_NUTS_COUNT_SEQ_WAIT:
 		break;
-	// “ü‚Á‚Ä‚­‚é“®ì
+	// å…¥ã£ã¦ãã‚‹å‹•ä½œ
 	case BCT_NUTS_COUNT_SEQ_IN:
 		if( p_wk->inout_count < BCT_NUTS_COUNT_INOUT_COUNTMAX ){
 			p_wk->inout_count ++;
@@ -8618,10 +8618,10 @@ static void BCT_CLIENT_NUTS_COUNT_Main( BCT_CLIENT_NUTS_COUNT* p_wk )
 			p_wk->seq = BCT_NUTS_COUNT_SEQ_MAIN;
 		}
 		break;
-	// ƒƒCƒ“
+	// ãƒ¡ã‚¤ãƒ³
 	case BCT_NUTS_COUNT_SEQ_MAIN:
 		break;
-	// ‘ÞŽº“®ì
+	// é€€å®¤å‹•ä½œ
 	case BCT_NUTS_COUNT_SEQ_OUT:
 		if( p_wk->out_wait > 0 ){
 			p_wk->out_wait --;
@@ -8632,32 +8632,32 @@ static void BCT_CLIENT_NUTS_COUNT_Main( BCT_CLIENT_NUTS_COUNT* p_wk )
 			p_wk->inout_count --;
 		}else{
 			p_wk->seq = BCT_NUTS_COUNT_SEQ_WAIT;
-			// •\Ž¦OFF
+			// è¡¨ç¤ºOFF
 			FONTOAM_SetDrawFlag( p_wk->p_fontoam, FALSE );
 			CLACT_SetDrawFlag( p_wk->p_tblwk, FALSE );
 		}
 		break;
 	}
 
-	// í‚É“®‚­‚à‚Ì
+	// å¸¸ã«å‹•ãã‚‚ã®
 	
-	// ‚½‚Ä‚ä‚ê“®ì
+	// ãŸã¦ã‚†ã‚Œå‹•ä½œ
 	if( p_wk->yure_count < BCT_NUTS_COUNT_YURE_COUNTMAX ){	
 		p_wk->yure_count ++;
 		p_wk->yure_data.count = p_wk->yure_count;
-		// ŒvŽZ
+		// è¨ˆç®—
 		BCT_AddMoveMainFx( &p_wk->yure_data );
 	}
 
-	// ‰¡—h‚ê
+	// æ¨ªæºã‚Œ
 	{
 		p_wk->inout_data.count = p_wk->inout_count;
-		// ŒvŽZ
+		// è¨ˆç®—
 		BCT_AddMoveMainFx( &p_wk->inout_data );
 	}
 
 
-	// À•WÝ’è
+	// åº§æ¨™è¨­å®š
 	{
 		VecFx32 matrix;
 		matrix.x = p_wk->inout_data.x;
@@ -8671,9 +8671,9 @@ static void BCT_CLIENT_NUTS_COUNT_Main( BCT_CLIENT_NUTS_COUNT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒgŠJŽn
+ *	@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_FEVER_EFF_Start( BCT_CLIENT_FEVER_EFF_WK* p_wk )
@@ -8681,17 +8681,17 @@ static void BCT_CLIENT_FEVER_EFF_Start( BCT_CLIENT_FEVER_EFF_WK* p_wk )
 	p_wk->seq	= 0;
 	p_wk->move	= TRUE;
 	p_wk->wait	= 0; 
-	Snd_SePlay( BCT_SND_FEVER_CHIME );// FEVERƒ`ƒƒƒCƒ€
+	Snd_SePlay( BCT_SND_FEVER_CHIME );// FEVERãƒãƒ£ã‚¤ãƒ 
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒgƒƒCƒ“
+ *	@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_mainback		”wŒiƒOƒ‰ƒtƒBƒbƒN
- *	@param	p_marunomudraw	ƒ}ƒ‹ƒm[ƒ€•`‰æƒ[ƒN
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_mainback		èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+ *	@param	p_marunomudraw	ãƒžãƒ«ãƒŽãƒ¼ãƒ æç”»ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_FEVER_EFF_Main( BCT_CLIENT_FEVER_EFF_WK* p_wk, BCT_CLIENT_MAINBACK* p_mainback, BCT_MARUNOMU_DRAW* p_marunomudraw )
@@ -8699,27 +8699,27 @@ static void BCT_CLIENT_FEVER_EFF_Main( BCT_CLIENT_FEVER_EFF_WK* p_wk, BCT_CLIENT
 	fx32 speed;
 	u32 tempo;
 	
-	// “®ì’†‚¶‚á‚È‚©‚Á‚½‚ç‚È‚ñ‚à‚µ‚È‚¢
+	// å‹•ä½œä¸­ã˜ã‚ƒãªã‹ã£ãŸã‚‰ãªã‚“ã‚‚ã—ãªã„
 	if( p_wk->move == FALSE ){
 		return ;
 	}
 	
 	switch( p_wk->seq ){
-	// ƒGƒtƒFƒNƒgŠJŽnƒEƒGƒCƒg
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹ã‚¦ã‚¨ã‚¤ãƒˆ
 	case BCT_FEVER_EFF_SEQ_BGM_WAIT:
 		p_wk->wait ++;
 
-		// ”wŒiƒAƒjƒƒXƒs[ƒh‚ð•ÏX
+		// èƒŒæ™¯ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´
 		speed = (p_wk->wait*BCT_FEVER_BACK_ANM_SPEED_DIF) / BCT_FEVER_EFF_FLASHOUT_FLASHOUT_WAIT;
 		speed += BCT_FEVER_BACK_ANM_SPEED_START;
 		BCT_CLIENT_MainBackSetAnmSpeed( p_mainback, speed );
 
-		// BGM‚Ìƒeƒ“ƒ|ƒAƒbƒv
+		// BGMã®ãƒ†ãƒ³ãƒã‚¢ãƒƒãƒ—
 		tempo = (p_wk->wait*BCT_FEVER_EFF_BGM_TEMPO_DIF) / BCT_FEVER_EFF_FLASHOUT_FLASHOUT_WAIT;
 		tempo += BCT_FEVER_EFF_BGM_TEMPO_START;
 		Snd_PlayerSetTempoRatio( SND_HANDLE_BGM, tempo );
 
-		// ƒ}ƒ‹ƒm[ƒ€‚ª“®‚­‰¹
+		// ãƒžãƒ«ãƒŽãƒ¼ãƒ ãŒå‹•ãéŸ³
 		if( BCT_FEVER_EFF_SE_MARUNOMUMOVE == p_wk->wait ){
 			Snd_SePlay( BCT_SND_FEVER_MOVE );
 		}
@@ -8729,7 +8729,7 @@ static void BCT_CLIENT_FEVER_EFF_Main( BCT_CLIENT_FEVER_EFF_WK* p_wk, BCT_CLIENT
 			p_wk->seq ++;
 		}
 		break;
-	// ƒtƒ‰ƒbƒVƒ…ƒAƒEƒg
+	// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆ
 	case BCT_FEVER_EFF_SEQ_BGM_FLASH_OUT:
 		ChangeBrightnessRequest( BCT_FEVER_EFF_FLASHOUT_FLASHOUT_SYNC,
 				BRIGHTNESS_WHITE, BRIGHTNESS_NORMAL, 
@@ -8739,16 +8739,16 @@ static void BCT_CLIENT_FEVER_EFF_Main( BCT_CLIENT_FEVER_EFF_WK* p_wk, BCT_CLIENT
 	case BCT_FEVER_EFF_SEQ_BGM_FLASH_OUTWAIT:
 		if( IsFinishedBrightnessChg( MASK_MAIN_DISPLAY ) == TRUE ){
 
-			// ”wŒi•ÏX
+			// èƒŒæ™¯å¤‰æ›´
 			BCT_CLIENT_MainBackSetDrawFever( p_mainback );
 			BCT_CLIENT_MainBackSetAnmSpeed( p_mainback, BCT_MARUNOMU_ANM_SPEED ); 
-			// FEVER‚É‚È‚Á‚½‚çƒ‰ƒ“ƒ_ƒ€•\Ž¦
+			// FEVERã«ãªã£ãŸã‚‰ãƒ©ãƒ³ãƒ€ãƒ è¡¨ç¤º
 			BCT_CLIENT_MarunomuDrawSetColAnmRand( p_marunomudraw, TRUE );
 			p_wk->seq ++;
 		}
 		break;
 
-	// ƒtƒ‰ƒbƒVƒ…ƒCƒ“
+	// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¤ãƒ³
 	case BCT_FEVER_EFF_SEQ_BGM_FLASH_IN:
 		ChangeBrightnessRequest( BCT_FEVER_EFF_FLASHOUT_FLASHIN_SYNC,
 				BRIGHTNESS_NORMAL, BRIGHTNESS_WHITE, 
@@ -8761,7 +8761,7 @@ static void BCT_CLIENT_FEVER_EFF_Main( BCT_CLIENT_FEVER_EFF_WK* p_wk, BCT_CLIENT
 		}
 		break;
 
-	// I—¹
+	// çµ‚äº†
 	case BCT_FEVER_EFF_SEQ_BGM_FLASH_END:
 		p_wk->move	= FALSE;
 		p_wk->seq	= 0;
@@ -8772,9 +8772,9 @@ static void BCT_CLIENT_FEVER_EFF_Main( BCT_CLIENT_FEVER_EFF_WK* p_wk, BCT_CLIENT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	FEVERƒGƒtƒFƒNƒg	‚Ì‚©‚©‚Á‚Ä‚¢‚éó‘Ô‚ðƒŠƒZƒbƒg	iBGM‚Ìƒeƒ“ƒ|j
+ *	@brief	FEVERã‚¨ãƒ•ã‚§ã‚¯ãƒˆ	ã®ã‹ã‹ã£ã¦ã„ã‚‹çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆ	ï¼ˆBGMã®ãƒ†ãƒ³ãƒï¼‰
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BCT_CLIENT_FEVER_EFF_Reset( BCT_CLIENT_FEVER_EFF_WK* p_wk )
@@ -8799,9 +8799,9 @@ static void BCT_DEBUG_PositionInit( ARCHANDLE* p_handle, u32 heapID )
     }
 }
 
-#define BCT_DEBUG_HITZONE_MOUTH		// Œû‚ÌƒGƒŠƒA•\Ž¦
-#define BCT_DEBUG_HITZONE_BODY		// ƒ{ƒfƒBƒGƒŠƒA•\Ž¦
-//#define BCT_DEBUG_HITZONE_DITCH		// aƒGƒŠƒA•\Ž¦
+#define BCT_DEBUG_HITZONE_MOUTH		// å£ã®ã‚¨ãƒªã‚¢è¡¨ç¤º
+#define BCT_DEBUG_HITZONE_BODY		// ãƒœãƒ‡ã‚£ã‚¨ãƒªã‚¢è¡¨ç¤º
+//#define BCT_DEBUG_HITZONE_DITCH		// æºã‚¨ãƒªã‚¢è¡¨ç¤º
 
 static void BCT_DEBUG_PositionDraw( const BCT_CLIENT* cp_client )
 {
@@ -8822,18 +8822,18 @@ static void BCT_DEBUG_PositionDraw( const BCT_CLIENT* cp_client )
     for( i=0; i<4; i++ ){
         NNS_G3dGePushMtx();
 
-        // ˆÊ’uÝ’è
+        // ä½ç½®è¨­å®š
         NNS_G3dGlbSetBaseTrans(&matrix);
-        // Šp“xÝ’è
+        // è§’åº¦è¨­å®š
         NNS_G3dGlbSetBaseRot(&workmtx);
-        // ƒXƒP[ƒ‹Ý’è
+        // ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
         NNS_G3dGlbSetBaseScale(&BCT_DPD.obj[i].scale);
 
         NNS_G3dGlbFlush();
 
         MTX_Identity43( &mtx );
 
-		// 4’¸“_‚ðì¬‚·‚é
+		// 4é ‚ç‚¹ã‚’ä½œæˆã™ã‚‹
 		switch( i ){
 		case 0:
 			setmat.x = -cp_client->marunomu.mouth_size;
@@ -8858,10 +8858,10 @@ static void BCT_DEBUG_PositionDraw( const BCT_CLIENT* cp_client )
 		}
 		
 
-		// ‘«Œ³‚Å‰ñ“]‚³‚¹‚é
+		// è¶³å…ƒã§å›žè»¢ã•ã›ã‚‹
 		MTX_MultVec33( &setmat, &cp_client->marunomu.rotaxy_mtx, &setmat );
 
-		// •\Ž¦ˆÊ’u‚ÉˆÚ“®‚·‚é
+		// è¡¨ç¤ºä½ç½®ã«ç§»å‹•ã™ã‚‹
 		testmat.x = BCT_FIELD_MARUNOMU_X;
 		testmat.y = cp_client->marunomu.hit_y;
 		testmat.z = cp_client->marunomu.marunomu_mat.z + BCT_MARUNOMU_HIT_DIS_MAX;
@@ -8872,29 +8872,29 @@ static void BCT_DEBUG_PositionDraw( const BCT_CLIENT* cp_client )
 		setmat.z += testmat.z;
 		
 
-        // ˆÚ“®
+        // ç§»å‹•
         NNS_G3dGeTranslateVec( &setmat );
         NNS_G3dDraw(&BCT_DPD.obj[i].render);
     
         NNS_G3dGePopMtx(1);
     }
 
-	// ƒZƒ“ƒ^[À•W‚ð•\Ž¦
+	// ã‚»ãƒ³ã‚¿ãƒ¼åº§æ¨™ã‚’è¡¨ç¤º
 	{
         NNS_G3dGePushMtx();
 
-        // ˆÊ’uÝ’è
+        // ä½ç½®è¨­å®š
         NNS_G3dGlbSetBaseTrans(&matrix);
-        // Šp“xÝ’è
+        // è§’åº¦è¨­å®š
         NNS_G3dGlbSetBaseRot(&workmtx);
-        // ƒXƒP[ƒ‹Ý’è
+        // ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
         NNS_G3dGlbSetBaseScale(&BCT_DPD.obj[0].scale);
 
         NNS_G3dGlbFlush();
 
         MTX_Identity43( &mtx );
 
-        // ˆÚ“®
+        // ç§»å‹•
         NNS_G3dGeTranslateVec( &cp_client->marunomu.center_mat );
         NNS_G3dDraw(&BCT_DPD.obj[0].render);
     
@@ -8903,7 +8903,7 @@ static void BCT_DEBUG_PositionDraw( const BCT_CLIENT* cp_client )
 #endif
 
 #ifdef BCT_DEBUG_HITZONE_BODY
-	// ƒ{ƒfƒB‚ ‚½‚è”»’è‚à•\Ž¦
+	// ãƒœãƒ‡ã‚£ã‚ãŸã‚Šåˆ¤å®šã‚‚è¡¨ç¤º
 	for( i=0; i<2; i++ ){
 
 		if( i==0 ){
@@ -8916,24 +8916,24 @@ static void BCT_DEBUG_PositionDraw( const BCT_CLIENT* cp_client )
 
 			NNS_G3dGePushMtx();
 
-			// ˆÊ’uÝ’è
+			// ä½ç½®è¨­å®š
 			NNS_G3dGlbSetBaseTrans(&matrix);
-			// Šp“xÝ’è
+			// è§’åº¦è¨­å®š
 			NNS_G3dGlbSetBaseRot(&workmtx);
-			// ƒXƒP[ƒ‹Ý’è
+			// ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
 			NNS_G3dGlbSetBaseScale(&BCT_DPD.obj[i].scale);
 
 			NNS_G3dGlbFlush();
 
 			MTX_Identity43( &mtx );
 
-			// “–‚½‚è”»’è”¼Œa‚ð‹‚ß‚é
+			// å½“ãŸã‚Šåˆ¤å®šåŠå¾„ã‚’æ±‚ã‚ã‚‹
 			y_dis = setmat.y - cp_client->marunomu.marunomu_mat.y;
 			y_dis = y_dis>>FX32_SHIFT;
 			r = ( y_dis*cp_client->marunomu.hitbody_r_dis ) / (cp_client->marunomu.height >> FX32_SHIFT);
 			r = cp_client->marunomu.hitbody_r_max - r;
 
-			// 4’¸“_‚ðì¬‚·‚é
+			// 4é ‚ç‚¹ã‚’ä½œæˆã™ã‚‹
 			switch( j ){
 			case 0:
 				setmat.x = cp_client->marunomu.marunomu_mat.x - r;
@@ -8953,10 +8953,10 @@ static void BCT_DEBUG_PositionDraw( const BCT_CLIENT* cp_client )
 				break;
 			}
 			
-			// •\Ž¦ˆÊ’u‚ÉˆÚ“®‚·‚é
+			// è¡¨ç¤ºä½ç½®ã«ç§»å‹•ã™ã‚‹
 			MTX_MultVec33( &setmat, &cp_client->marunomu.rotay_mtx, &setmat );
 
-			// ˆÚ“®
+			// ç§»å‹•
 			NNS_G3dGeTranslateVec( &setmat );
 			NNS_G3dDraw(&BCT_DPD.obj[i].render);
 		
@@ -8967,22 +8967,22 @@ static void BCT_DEBUG_PositionDraw( const BCT_CLIENT* cp_client )
 #endif
 
 #ifdef BCT_DEBUG_HITZONE_DITCH
-	// a‚ÌˆÊ’u‚à•\Ž¦
+	// æºã®ä½ç½®ã‚‚è¡¨ç¤º
     for( i=0; i<8; i++ ){
         NNS_G3dGePushMtx();
 
-        // ˆÊ’uÝ’è
+        // ä½ç½®è¨­å®š
         NNS_G3dGlbSetBaseTrans(&matrix);
-        // Šp“xÝ’è
+        // è§’åº¦è¨­å®š
         NNS_G3dGlbSetBaseRot(&workmtx);
-        // ƒXƒP[ƒ‹Ý’è
+        // ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
         NNS_G3dGlbSetBaseScale(&BCT_DPD.obj[i%4].scale);
 
         NNS_G3dGlbFlush();
 
         MTX_Identity43( &mtx );
 
-		// 4’¸“_‚ðì¬‚·‚é
+		// 4é ‚ç‚¹ã‚’ä½œæˆã™ã‚‹
 		switch( i ){
 		case 0:
 			setmat.x = BCT_CAMERA_TARGET_X - BCT_NUTS_AWAY_DITCH_MIN_R;
@@ -9027,7 +9027,7 @@ static void BCT_DEBUG_PositionDraw( const BCT_CLIENT* cp_client )
 			break;
 		}
 		
-        // ˆÚ“®
+        // ç§»å‹•
         NNS_G3dGeTranslateVec( &setmat );
         NNS_G3dDraw(&BCT_DPD.obj[i%4].render);
     
@@ -9047,26 +9047,26 @@ static void BCT_DEBUG_PositionExit( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ž©“®“Š‚°
+ *	@brief	è‡ªå‹•æŠ•ã’
  *
  *	@param	p_wk 
  */
 //-----------------------------------------------------------------------------
-#define BCT_NUTS_SLOW_RENSYA_TIME_AUTOSLOW	( 18 )	// Å¬ŽŸ”­ŽË‘Ò‚¿ŽžŠÔ
+#define BCT_NUTS_SLOW_RENSYA_TIME_AUTOSLOW	( 18 )	// æœ€å°æ¬¡ç™ºå°„å¾…ã¡æ™‚é–“
 static void BCT_DEBUG_AutoSlow( BCT_CLIENT* p_wk )
 {
-	// ‹Ê”­ŽËŠÔŠuƒJƒEƒ“ƒg
+	// çŽ‰ç™ºå°„é–“éš”ã‚«ã‚¦ãƒ³ãƒˆ
 	p_wk->slow.time += 1+(gf_mtRand()%4);
 
-	// ”­ŽËŠÔŠu
+	// ç™ºå°„é–“éš”
 	if( p_wk->slow.time < BCT_NUTS_SLOW_RENSYA_TIME_AUTOSLOW ){
 		return ;
 	}
 
-	// –Ø‚ÌŽÀ”­ŽË
+	// æœ¨ã®å®Ÿç™ºå°„
 	BCT_EasyNutsSet( p_wk, 128, 96, 128, 66, BCT_NUTSSEQ_MOVE );
 
-	// ŽŸ‚Ì‹…”­ŽËŠÔŠuƒ^ƒCƒ}[ƒŠƒZƒbƒg
+	// æ¬¡ã®çƒç™ºå°„é–“éš”ã‚¿ã‚¤ãƒžãƒ¼ãƒªã‚»ãƒƒãƒˆ
 	p_wk->slow.time = 0;
 }
 

@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	wm_icon.c
- * @brief	’ÊM’†‚É•\¦‚³‚ê‚éƒAƒCƒRƒ“‚ğVBlankƒ^ƒXƒN‚Å•`‰æ‚·‚é
+ * @brief	é€šä¿¡ä¸­ã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã‚’VBlankã‚¿ã‚¹ã‚¯ã§æç”»ã™ã‚‹
  * @author	Akito Mori
  * @date    2005.11.07
  */
@@ -11,20 +11,20 @@
 #include "communication/communication.h"
 #include "communication/wm_icon.h"
 
-// ƒpƒŒƒbƒgƒtƒ@ƒCƒ‹‚Ì‘å‚«‚³
+// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®å¤§ãã•
 #define WM_ICON_PALFILE_SIZE	( 600 )
 #define WM_ICON_CHARFILE_SIZE	( 600 )
 
-// ’ÊMƒAƒCƒRƒ“‚¾‚·‚½‚ß‚É“]‘—‚·‚éPAL_VRAM‚ÌˆÊ’uE‘å‚«‚³(14”ÔƒpƒŒƒbƒgg—pj
+// é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã ã™ãŸã‚ã«è»¢é€ã™ã‚‹PAL_VRAMã®ä½ç½®ãƒ»å¤§ãã•(14ç•ªãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨ï¼‰
 #define WM_ICON_PAL_POS		( 14 )
 #define WM_ICON_PAL_OFFSET	( 16*2*WM_ICON_PAL_POS )
 #define WM_ICON_PAL_SIZE	( 16* 2 )
 
 
-// “]‘—ƒTƒCƒY
+// è»¢é€ã‚µã‚¤ã‚º
 #define WM_ICON_CHAR_SIZE    ( 4*4*32  )		
 
-// ƒAƒjƒƒpƒ^[ƒ“‚Ì”
+// ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ã®æ•°
 #define WM_ICON_ANIME_MAX	 ( 4 )
 
 
@@ -33,16 +33,16 @@
 #define WM_ICON_MAIN_OAM_ADRS	(GXOamAttr*)(HW_OAM)
 #define WM_ICON_SUB_OAM_ADRS	(GXOamAttr*)(HW_OAM_END)
 
-// ƒƒCƒ“‰æ–ÊEƒTƒu‰æ–Ê‚ÌØ‚è‘Ö‚¦‚É‡‚í‚¹‚é“®ìƒ‚[ƒh
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ»ã‚µãƒ–ç”»é¢ã®åˆ‡ã‚Šæ›¿ãˆã«åˆã‚ã›ã‚‹å‹•ä½œãƒ¢ãƒ¼ãƒ‰
 enum {
-	MAIN_SUB_MODE_DEFAULT,	///< ‰½‚à‚µ‚È‚¢iƒƒCƒ“‚Éo‘±‚¯‚éj
-	MAIN_SUB_MODE_TOP,		///< ã‰æ–Ê‚Éo‘±‚¯‚é
-	MAIN_SUB_MODE_BOTTOM,	///< ‰º‰æ–Ê‚Éo‘±‚¯‚é
+	MAIN_SUB_MODE_DEFAULT,	///< ä½•ã‚‚ã—ãªã„ï¼ˆãƒ¡ã‚¤ãƒ³ã«å‡ºç¶šã‘ã‚‹ï¼‰
+	MAIN_SUB_MODE_TOP,		///< ä¸Šç”»é¢ã«å‡ºç¶šã‘ã‚‹
+	MAIN_SUB_MODE_BOTTOM,	///< ä¸‹ç”»é¢ã«å‡ºç¶šã‘ã‚‹
 };
 
 //----------------------------------------------
 /**
- *	ŠÇ——p\‘¢‘Ì’è‹`
+ *	ç®¡ç†ç”¨æ§‹é€ ä½“å®šç¾©
  */
 //----------------------------------------------
 struct _VINTR_WIRELESS_ICON {
@@ -78,24 +78,24 @@ static void IconOamTrans( VINTR_WIRELESS_ICON* work );
 
 //==============================================================================
 /**
- * Vblank’ÊMƒAƒCƒRƒ“ƒAƒjƒŠJnŠÖ”
+ * Vblanké€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡é–‹å§‹é–¢æ•°
  *
  * @param   objVRAM		
- * @param   HeapId		ƒq[ƒv
+ * @param   HeapId		ãƒ’ãƒ¼ãƒ—
  *
  * @retval  VINTR_WIRELESS_ICON *		
  */
 //==============================================================================
 //==============================================================================
 /**
- * $brief   Vblank’ÊMƒAƒCƒRƒ“ƒAƒjƒŠJnŠÖ”
+ * $brief   Vblanké€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡é–‹å§‹é–¢æ•°
  *
- * @param   objVRAM		–¢g—piÁ‚µ‚Ü‚·j
+ * @param   objVRAM		æœªä½¿ç”¨ï¼ˆæ¶ˆã—ã¾ã™ï¼‰
  * @param   HeapId		
- * @param   x			•\¦ˆÊ’uX
- * @param   y			•\¦ˆÊ’uY
- * @param   bWifi		DS’ÊMƒAƒCƒRƒ“‚©Hwifi’ÊMƒAƒCƒRƒ“‚©H
- * @param   tbl[]		ƒAƒjƒƒe[ƒuƒ‹iÁ‚·‚©‚àj
+ * @param   x			è¡¨ç¤ºä½ç½®X
+ * @param   y			è¡¨ç¤ºä½ç½®Y
+ * @param   bWifi		DSé€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‹ï¼Ÿwifié€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‹ï¼Ÿ
+ * @param   tbl[]		ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆæ¶ˆã™ã‹ã‚‚ï¼‰
  * @param   vramtype	NNS_G2D_VRAM_TYPE_2DMAIN or NNS_G2D_VRAM_TYPE_2DSUB
  *
  * @retval  VINTR_WIRELESS_ICON *		
@@ -105,27 +105,27 @@ VINTR_WIRELESS_ICON *AddWirelessIconOAM(u32 objVRAM, u32 HeapId, int x, int y, B
 {
 	VINTR_WIRELESS_ICON *vwi;
 
-	// ƒpƒŒƒbƒg“Ç‚İ‚İƒƒCƒ“14”Ô‚É“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ãƒ¡ã‚¤ãƒ³14ç•ªã«è»¢é€
 	trans_palette_data( vramType, bWifi, WM_ICON_PAL_OFFSET, HeapId );
 
-	// VRAM‚ÌÅŒã‚ÉCGXƒf[ƒ^“]‘—
+	// VRAMã®æœ€å¾Œã«CGXãƒ‡ãƒ¼ã‚¿è»¢é€
 	trans_cgx_data( vramType, bWifi, HeapId );
 
-	// ƒ^ƒXƒN“o˜^Eƒ[ƒN‰Šú‰»
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²ãƒ»ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	vwi        = (VINTR_WIRELESS_ICON*)sys_AllocMemoryLo(HeapId, sizeof(VINTR_WIRELESS_ICON));
 
-	// CLACT_OamTrans‚ªOAM‚ğ‘S•”ƒNƒŠƒA‚µ‚Ä‚µ‚Ü‚¤‚Ì‚ÅAVWaitTCB‚É‚µ‚Ä‚µ‚Ü‚¢‚Ü‚µ‚½B
+	// CLACT_OamTransãŒOAMã‚’å…¨éƒ¨ã‚¯ãƒªã‚¢ã—ã¦ã—ã¾ã†ã®ã§ã€VWaitTCBã«ã—ã¦ã—ã¾ã„ã¾ã—ãŸã€‚
 	vwi->tcb   = VWaitTCB_Add( WirelessIconAnimeFunc, vwi, 5 );
 	vwi->x     = x;
 	vwi->y     = y;
 	vwi->anime_seq = 0;
 
 /*
-  ’ÊM‰Šú‰»‚ğ‚µ‚½’¼Œã‚ÉƒAƒCƒRƒ“•\¦‚ğs‚¤‚ÆAƒAƒjƒ‚ªÚ‘±‚à‚µ‚Ä‚¢‚È‚¢‚Ì‚É
-  ƒAƒ“ƒeƒi‚R–{‚Ìó‘Ô‚É‚È‚Á‚Ä•\¦‚³‚ê‚Ä‚µ‚Ü‚¤ƒoƒO‚ÌC³
+  é€šä¿¡åˆæœŸåŒ–ã‚’ã—ãŸç›´å¾Œã«ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºã‚’è¡Œã†ã¨ã€ã‚¢ãƒ‹ãƒ¡ãŒæ¥ç¶šã‚‚ã—ã¦ã„ãªã„ã®ã«
+  ã‚¢ãƒ³ãƒ†ãƒŠï¼“æœ¬ã®çŠ¶æ…‹ã«ãªã£ã¦è¡¨ç¤ºã•ã‚Œã¦ã—ã¾ã†ãƒã‚°ã®ä¿®æ­£
  */
 #if  AFTERMASTER_070220_WM_ICON_INIT_FIX
-    vwi->anime     = 3;		// 0:3–{ 1:2–{ 2:1–{ 0:Ø’f (‚Ì’ÊMƒAƒCƒRƒ“j
+    vwi->anime     = 3;		// 0:3æœ¬ 1:2æœ¬ 2:1æœ¬ 0:åˆ‡æ–­ (ã®é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ï¼‰
 #else
     vwi->anime     = 0;
 #endif
@@ -143,7 +143,7 @@ VINTR_WIRELESS_ICON *AddWirelessIconOAM(u32 objVRAM, u32 HeapId, int x, int y, B
 
 //------------------------------------------------------------------
 /**
- * ’ÊMƒAƒCƒRƒ“TCBƒƒCƒ“yƒ^ƒXƒNz
+ * é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³TCBãƒ¡ã‚¤ãƒ³ã€ã‚¿ã‚¹ã‚¯ã€‘
  *
  * @param   tcb		
  * @param   work	
@@ -200,7 +200,7 @@ static void WirelessIconAnimeFunc( TCB_PTR tcb, void *work )
 		vwi->prevOamPtr = pOam;
 	}
 
-	// ƒAƒjƒƒV[ƒPƒ“ƒXˆ—
+	// ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å‡¦ç†
 /*	if(++vwi->wait>20){
 		vwi->wait  = 0;
 		vwi->anime++;
@@ -212,7 +212,7 @@ static void WirelessIconAnimeFunc( TCB_PTR tcb, void *work )
 }
 //------------------------------------------------------------------
 /**
- * Œ»İ‚Ìƒ^[ƒQƒbƒgVRAM‚ğæ“¾
+ * ç¾åœ¨ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆVRAMã‚’å–å¾—
  *
  * @param   vwi		
  *
@@ -235,12 +235,12 @@ static int inline get_target_vram( VINTR_WIRELESS_ICON* vwi )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒjƒƒCƒ“ƒfƒbƒNƒXŒvZ
+ * ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹è¨ˆç®—
  *
  * @param   targetVram		
  * @param   anime_ptn		
  *
- * @retval  int 			ƒAƒjƒƒCƒ“ƒfƒbƒNƒX
+ * @retval  int 			ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //------------------------------------------------------------------
 static int inline calc_anime_index( int targetVram, int anime_ptn )
@@ -287,9 +287,9 @@ static int inline calc_anime_index( int targetVram, int anime_ptn )
 }
 //------------------------------------------------------------------
 /**
- * Œã‚ªc‚ç‚È‚¢‚æ‚¤‚ÉAƒAƒCƒRƒ“‚ªÁ‚¦‚½ó‘Ô‚ÌOAM‚ğ’¼‘‚«‚µ‚Ä‚¨‚­
+ * å¾ŒãŒæ®‹ã‚‰ãªã„ã‚ˆã†ã«ã€ã‚¢ã‚¤ã‚³ãƒ³ãŒæ¶ˆãˆãŸçŠ¶æ…‹ã®OAMã‚’ç›´æ›¸ãã—ã¦ãŠã
  *
- * @param   oam		‘‚«‚İæƒAƒhƒŒƒX
+ * @param   oam		æ›¸ãè¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -315,7 +315,7 @@ static inline void clear_oam( GXOamAttr* oam )
 
 //==============================================================================
 /**
- * ’ÊMƒAƒCƒRƒ“ƒAƒjƒƒ`ƒFƒ“ƒW
+ * é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒã‚§ãƒ³ã‚¸
  *
  * @param   vwi		
  * @param   anime		
@@ -325,7 +325,7 @@ static inline void clear_oam( GXOamAttr* oam )
 //==============================================================================
 void WirelessIconAnimeChange(VINTR_WIRELESS_ICON *vwi, int anime)
 {
-	// ƒAƒjƒƒ`ƒFƒ“ƒW
+	// ã‚¢ãƒ‹ãƒ¡ãƒã‚§ãƒ³ã‚¸
 	if(anime<WM_ICON_ANIME_MAX)
 	{
 		vwi->anime = anime;
@@ -335,7 +335,7 @@ void WirelessIconAnimeChange(VINTR_WIRELESS_ICON *vwi, int anime)
 
 //==============================================================================
 /**
- * Vblank’ÊMƒAƒCƒRƒ“•\¦ˆ—I—¹
+ * Vblanké€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºå‡¦ç†çµ‚äº†
  *
  * @param   vwi		
  *
@@ -344,7 +344,7 @@ void WirelessIconAnimeChange(VINTR_WIRELESS_ICON *vwi, int anime)
 //==============================================================================
 void WirelessIconEnd(VINTR_WIRELESS_ICON *vwi)
 {
-	// ƒ^ƒXƒNI—¹
+	// ã‚¿ã‚¹ã‚¯çµ‚äº†
 	TCB_Delete(vwi->tcb);
 
 	clear_oam( WM_ICON_MAIN_OAM_ADRS );
@@ -353,18 +353,18 @@ void WirelessIconEnd(VINTR_WIRELESS_ICON *vwi)
 		clear_oam( WM_ICON_SUB_OAM_ADRS );
 	}
 
-	// ƒ[ƒN‰ğ•ú
+	// ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	sys_FreeMemoryEz( vwi );
 }
 
 
 //==============================================================================
 /**
- * ’ÊMƒAƒCƒRƒ“‚Ì•\¦LCD‚ğã‰æ–Ê or ‰º‰æ–Ê‚ÉŒÅ’è‚·‚é
+ * é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºLCDã‚’ä¸Šç”»é¢ or ä¸‹ç”»é¢ã«å›ºå®šã™ã‚‹
  *
- * @param   vwi			ƒAƒCƒRƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   bTop		TRUE‚¾‚Æã‰æ–Ê‚ÉŒÅ’è^FALSE‚¾‚Æ‰º‰æ–Ê‚ÉŒÅ’è
- * @param   heapID		ƒeƒ“ƒ|ƒ‰ƒŠg—pƒq[ƒvID
+ * @param   vwi			ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   bTop		TRUEã ã¨ä¸Šç”»é¢ã«å›ºå®šï¼FALSEã ã¨ä¸‹ç”»é¢ã«å›ºå®š
+ * @param   heapID		ãƒ†ãƒ³ãƒãƒ©ãƒªä½¿ç”¨ãƒ’ãƒ¼ãƒ—ID
  *
  */
 //==============================================================================
@@ -379,9 +379,9 @@ void WirelessIconHoldLCD( VINTR_WIRELESS_ICON *vwi, BOOL bTop, u32 heapID )
 
 //==============================================================================
 /**
- * ’ÊMƒAƒCƒRƒ“ˆÊ’u‚Ì•\¦LCDŒÅ’è‚ğ‚â‚ß‚ÄƒfƒtƒHƒ‹ƒg‚Ì‹““®‚É–ß‚·
+ * é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ä½ç½®ã®è¡¨ç¤ºLCDå›ºå®šã‚’ã‚„ã‚ã¦ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®æŒ™å‹•ã«æˆ»ã™
  *
- * @param   vwi			ƒAƒCƒRƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   vwi			ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //==============================================================================
@@ -405,9 +405,9 @@ void WirelessIconDefaultLCD( VINTR_WIRELESS_ICON* vwi )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒpƒŒƒbƒgƒŠƒ\[ƒXæ“¾
- * @param	heap_id	ƒpƒŒƒbƒgƒŠƒ\[ƒX‚ğŠm•Û‚·‚éƒq[ƒvID
- * @retval	void*	ƒpƒŒƒbƒgƒf[ƒ^B “à—e‚ÍƒAƒCƒRƒ“—pNCLR‚Å‚·Bg—pŒã‚ÍŠJ•ú‚µ‚Ä‰º‚³‚¢B
+ * ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹å–å¾—
+ * @param	heap_id	ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
+ * @retval	void*	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã€‚ å†…å®¹ã¯ã‚¢ã‚¤ã‚³ãƒ³ç”¨NCLRã§ã™ã€‚ä½¿ç”¨å¾Œã¯é–‹æ”¾ã—ã¦ä¸‹ã•ã„ã€‚
  */
 //--------------------------------------------------------------
 void * WirelessIconPlttResGet( u32 heap_id )
@@ -420,12 +420,12 @@ void * WirelessIconPlttResGet( u32 heap_id )
 
 //------------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
  *
- * @param   vramType	VRAMƒ^ƒCƒviMAIN or SUBj
- * @param   bWifi		TRUE‚È‚çWi-Fi’ÊMƒAƒCƒRƒ“^FALSE‚È‚çDS’ÊMƒAƒCƒRƒ“
- * @param   offset		“]‘—ˆÊ’uƒoƒCƒgƒIƒtƒZƒbƒg
- * @param   HeapId		ƒeƒ“ƒ|ƒ‰ƒŠƒq[ƒvID
+ * @param   vramType	VRAMã‚¿ã‚¤ãƒ—ï¼ˆMAIN or SUBï¼‰
+ * @param   bWifi		TRUEãªã‚‰Wi-Fié€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ï¼FALSEãªã‚‰DSé€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
+ * @param   offset		è»¢é€ä½ç½®ãƒã‚¤ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   HeapId		ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ’ãƒ¼ãƒ—ID
  */
 //------------------------------------------------------------------
 static void trans_palette_data( int vramType, BOOL bWifi, u32 offset, u32 HeapId )
@@ -438,7 +438,7 @@ static void trans_palette_data( int vramType, BOOL bWifi, u32 offset, u32 HeapId
 //		sys_LoadFileNoMem( "data/wm.NCLR", &pal );	
 		sys_LoadFileNoMem( "data/pl_wm.NCLR", &pal );	
 		DC_FlushRange( pal, WM_ICON_PALFILE_SIZE );
-		NNS_G2dGetUnpackedPaletteData( pal, &palData );    // “WŠJ
+		NNS_G2dGetUnpackedPaletteData( pal, &palData );    // å±•é–‹
 
 		if( vramType == NNS_G2D_VRAM_TYPE_2DMAIN )
 		{
@@ -456,11 +456,11 @@ static void trans_palette_data( int vramType, BOOL bWifi, u32 offset, u32 HeapId
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“CGXƒf[ƒ^“]‘—
+ * ã‚¢ã‚¤ã‚³ãƒ³CGXãƒ‡ãƒ¼ã‚¿è»¢é€
  *
- * @param   vramType	VRAMƒ^ƒCƒviMAIN or SUBj
- * @param   bWifi		TRUE‚È‚çWi-Fi’ÊMƒAƒCƒRƒ“^FALSE‚È‚çDS’ÊMƒAƒCƒRƒ“
- * @param   HeapId		ƒeƒ“ƒ|ƒ‰ƒŠƒq[ƒvID
+ * @param   vramType	VRAMã‚¿ã‚¤ãƒ—ï¼ˆMAIN or SUBï¼‰
+ * @param   bWifi		TRUEãªã‚‰Wi-Fié€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ï¼FALSEãªã‚‰DSé€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
+ * @param   HeapId		ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ’ãƒ¼ãƒ—ID
  */
 //------------------------------------------------------------------
 static void trans_cgx_data( int vramType, BOOL bWifi, u32 heapID )
@@ -472,7 +472,7 @@ static void trans_cgx_data( int vramType, BOOL bWifi, u32 heapID )
 		NNSG2dCharacterData *ppCharData;
 		int offset, vramMode, objBank;
 
-		// DS’ÊMƒAƒCƒRƒ“‚©AwifiƒAƒCƒRƒ“‚ğ“Ç‚İ‚Ş
+		// DSé€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‹ã€wifiã‚¢ã‚¤ã‚³ãƒ³ã‚’èª­ã¿è¾¼ã‚€
 	    if(bWifi)
 	    {
 //	        sys_LoadFileNoMem( "data/wifi.NCGR", &ncg );
@@ -484,9 +484,9 @@ static void trans_cgx_data( int vramType, BOOL bWifi, u32 heapID )
 	        sys_LoadFileNoMem( "data/pl_wm.NCGR", &ncg );
 	    }
 		DC_FlushRange( ncg, WM_ICON_CHARFILE_SIZE );
-		NNS_G2dGetUnpackedBGCharacterData( ncg, &ppCharData );   // “WŠJ
+		NNS_G2dGetUnpackedBGCharacterData( ncg, &ppCharData );   // å±•é–‹
 
-		// VRAMİ’è‚É‡‚í‚¹‚Ä“]‘—ˆÊ’u‚ğŒˆ’è
+		// VRAMè¨­å®šã«åˆã‚ã›ã¦è»¢é€ä½ç½®ã‚’æ±ºå®š
 		if( vramType == NNS_G2D_VRAM_TYPE_2DMAIN )
 		{
 			vramMode = GX_GetOBJVRamModeChar();
@@ -527,7 +527,7 @@ static void trans_cgx_data( int vramType, BOOL bWifi, u32 heapID )
 			break;
 		}
 
-		// OBJƒLƒƒƒ‰‚ğVRAM‚Ö“]‘—
+		// OBJã‚­ãƒ£ãƒ©ã‚’VRAMã¸è»¢é€
 		if( vramType == NNS_G2D_VRAM_TYPE_2DMAIN )
 		{
 			GX_LoadOBJ( ppCharData->pRawData, offset, WM_ICON_CHAR_SIZE );
@@ -562,7 +562,7 @@ static void trans_cgx_data( int vramType, BOOL bWifi, u32 heapID )
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
-// ƒeƒXƒg—p
+// ãƒ†ã‚¹ãƒˆç”¨
 static const VOamAnm WM_IconAnim0[]={
 	{512-16,   20},
 	{512-16+4, 20},
@@ -600,7 +600,7 @@ static VINTR_WIRELESS_ICON *VintrWirelessIconPtr = NULL;
 
 //--------------------------------------------------------------
 /**
- * @brief	Icon‚ğƒƒCƒ“‚Ìó‹µ‚Å•`‰æ‚µ•ª‚¯‚é
+ * @brief	Iconã‚’ãƒ¡ã‚¤ãƒ³ã®çŠ¶æ³ã§æç”»ã—åˆ†ã‘ã‚‹
  *
  * @param	work	
  *
@@ -657,7 +657,7 @@ static void IconOamTrans( VINTR_WIRELESS_ICON* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒRƒ“‚ğ•`‰æƒ‚[ƒh‚É‚æ‚Á‚Ä•ª‚¯‚é
+ * @brief	ã‚¢ã‚¤ã‚³ãƒ³ã‚’æç”»ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦åˆ†ã‘ã‚‹
  *
  * @param	none	
  *
@@ -676,7 +676,7 @@ void WirelessIconOAM_Trans( void )
 
 //==============================================================================
 /**
- * $brief   ’´â‚ç‚­‚¿‚ñ’ÊMƒAƒCƒRƒ“
+ * $brief   è¶…çµ¶ã‚‰ãã¡ã‚“é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
  *
  * @param   mode		
  *
@@ -695,7 +695,7 @@ void WirelessIconEasy(void)
 
 //==============================================================================
 /**
- * $brief   ’´â‚ç‚­‚¿‚ñ’ÊMƒAƒCƒRƒ“(ƒfƒBƒXƒvƒŒƒC‘I‘ğ”Å)
+ * $brief   è¶…çµ¶ã‚‰ãã¡ã‚“é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³(ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤é¸æŠç‰ˆ)
  *
  * @param   vramtype 		NNS_G2D_VRAM_TYPE_2DMAIN or NNS_G2D_VRAM_TYPE_2DSUB
  *
@@ -714,7 +714,7 @@ void WirelessIconEasyDisp(int vramtype)
 
 //==============================================================================
 /**
- * $brief   ’´â‚ç‚­‚¿‚ñ’ÊMƒAƒCƒRƒ“ ˆø”‚ ‚è”Å
+ * $brief   è¶…çµ¶ã‚‰ãã¡ã‚“é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ å¼•æ•°ã‚ã‚Šç‰ˆ
  *
  * @param   mode		
  * @param   vramtype 		NNS_G2D_VRAM_TYPE_2DMAIN or NNS_G2D_VRAM_TYPE_2DSUB
@@ -724,7 +724,7 @@ void WirelessIconEasyDisp(int vramtype)
 //==============================================================================
 void WirelessIconEasyXY(int x,int y, BOOL bWifi, int vramtype)
 {
-    if(!CommIsVRAMDStart()){  // ƒCƒNƒjƒ…[ƒ‚ƒ“‚ª–³‚¢ê‡’ÊM‚µ‚Ä‚È‚¢
+    if(!CommIsVRAMDStart()){  // ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³ãŒç„¡ã„å ´åˆé€šä¿¡ã—ã¦ãªã„
         return ;
     }
     if(VintrWirelessIconPtr){
@@ -736,7 +736,7 @@ void WirelessIconEasyXY(int x,int y, BOOL bWifi, int vramtype)
 
 //==============================================================================
 /**
- * $brief   ’´â‚ç‚­‚¿‚ñ’ÊMƒAƒCƒRƒ“íœ
+ * $brief   è¶…çµ¶ã‚‰ãã¡ã‚“é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
  *
  * @param   none		
  *
@@ -753,7 +753,7 @@ void WirelessIconEasyEnd(void)
 
 //==============================================================================
 /**
- * $brief   ’ÊMƒŒƒxƒ‹‚ğƒZƒbƒg‚·‚é
+ * $brief   é€šä¿¡ãƒ¬ãƒ™ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  * @param   level
  * @retval  none
  */
@@ -767,10 +767,10 @@ void WirelessIconEasy_SetLevel(int level)
 
 //------------------------------------------------------------------
 /**
- * ’´â‚ç‚­‚¿‚ñ’ÊMƒAƒCƒRƒ“F•\¦LCD‚ğã‰æ–Êor‰º‰æ–Ê‚ÉŒÅ’è‚·‚é
+ * è¶…çµ¶ã‚‰ãã¡ã‚“é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ï¼šè¡¨ç¤ºLCDã‚’ä¸Šç”»é¢orä¸‹ç”»é¢ã«å›ºå®šã™ã‚‹
  *
- * @param   bTop		TRUE‚¾‚Æã‰æ–Ê^FALSE‚¾‚Æ‰º‰æ–Ê
- * @param   heapID		ƒeƒ“ƒ|ƒ‰ƒŠg—pƒq[ƒvID
+ * @param   bTop		TRUEã ã¨ä¸Šç”»é¢ï¼FALSEã ã¨ä¸‹ç”»é¢
+ * @param   heapID		ãƒ†ãƒ³ãƒãƒ©ãƒªä½¿ç”¨ãƒ’ãƒ¼ãƒ—ID
  *
  */
 //------------------------------------------------------------------
@@ -784,7 +784,7 @@ void WirelessIconEasy_HoldLCD( BOOL bTop, u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * ’´â‚ç‚­‚¿‚ñ’ÊMƒAƒCƒRƒ“F•\¦LCD‚ÌŒÅ’è‚ğ~‚ßAƒfƒtƒHƒ‹ƒg‚Ì‹““®‚É–ß‚·
+ * è¶…çµ¶ã‚‰ãã¡ã‚“é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ï¼šè¡¨ç¤ºLCDã®å›ºå®šã‚’æ­¢ã‚ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®æŒ™å‹•ã«æˆ»ã™
  */
 //------------------------------------------------------------------
 void WirelessIconEasy_DefaultLCD( void )
@@ -797,7 +797,7 @@ void WirelessIconEasy_DefaultLCD( void )
 
 //==============================================================================
 /**
- * @brief   Ú‘±l”‚ğŠÄ‹‚µ‚ÄƒAƒCƒRƒ“’Ç‰Á‚ğs‚¤i‚¾‚³‚È‚¢‚à‚ ‚éj
+ * @brief   æ¥ç¶šäººæ•°ã‚’ç›£è¦–ã—ã¦ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ ã‚’è¡Œã†ï¼ˆã ã•ãªã„æ™‚ã‚‚ã‚ã‚‹ï¼‰
  *
  * @param   none		
  *
@@ -807,7 +807,7 @@ void WirelessIconEasy_DefaultLCD( void )
 void WirelessIconEasyUnion( void )
 {
     if(CommIsInitialize()){
-		// DS’ÊM‚Å‚Í‚QlˆÈãAWifi’ÊM’†‚Í‚¢‚Â‚Å‚à’ÊMƒAƒCƒRƒ“‚ğo‚·
+		// DSé€šä¿¡ã§ã¯ï¼’äººä»¥ä¸Šã€Wifié€šä¿¡ä¸­ã¯ã„ã¤ã§ã‚‚é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‡ºã™
 		OS_Printf( "ConnectNum = %d, IsWifi = %d", CommGetConnectNum(),CommStateIsWifiConnect() );
 	
 		if(CommGetConnectNum()>1 || CommStateIsWifiConnect()){

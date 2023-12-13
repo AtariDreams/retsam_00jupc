@@ -21,7 +21,7 @@
   do-indent
 
   Revision 1.24  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ðC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.23  2005/02/28 05:26:13  yosizaki
   do-indent.
@@ -579,7 +579,7 @@ void MTX_FrustumW(fx32 t, fx32 b, fx32 l, fx32 r, fx32 n, fx32 f, fx32 scaleW, M
     SDK_MINMAX_ASSERT(f, -0x10000 * FX32_ONE, 0x10000 * FX32_ONE - 1);
     SDK_MINMAX_ASSERT(n, -0x10000 * FX32_ONE, 0x10000 * FX32_ONE - 1);
 
-    /* ”ñ“¯ŠúœŽZ‚Æ•½s‚µ‚Äs—ñ‚ð‰Šú‰» */
+    /* éžåŒæœŸé™¤ç®—ã¨å¹³è¡Œã—ã¦è¡Œåˆ—ã‚’åˆæœŸåŒ– */
     {
         FX_InvAsync(r - l);
         mtx->_01 = 0;

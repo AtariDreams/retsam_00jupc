@@ -1,7 +1,7 @@
 #ifndef _C04_DEF_H_
 #define _C04_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_POS_C04_CHAMP		(1)
 #define	SCRID_C04_GINGAM		(2)
 #define	SCRID_C04_GINGAM2		(3)
@@ -30,6 +30,6 @@
 #define	SCRID_POS_C04_CHAMP_TAMAGO		(26)
 #define	SCRID_POS_C04_CHAMP_TAMAGO_STOP		(27)
 #define	SCRID_C04_CHAMP		(28)
-#define	SCRID_C04_DATA_MAX		(28)		//最大数
+#define	SCRID_C04_DATA_MAX		(28)		//譛螟ｧ謨ｰ
 
 #endif //_C04_DEF_H_

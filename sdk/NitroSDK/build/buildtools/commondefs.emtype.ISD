@@ -13,19 +13,19 @@
 #
 # $Log: commondefs.emtype.ISD,v $
 # Revision 1.23  2005/08/07 13:15:37  yasu
-# ���C�u�����p�X�� vpath �ɐݒ肷�邽�߂̑΍�
+# ライブラリパスを vpath に設定するための対策
 #
 # Revision 1.22  2005/08/02 00:46:51  okubata_ryoma
 # change definition of ISD_NITRO_DEBUGGER
 #
 # Revision 1.21  2005/06/21 06:36:27  yasu
-# �g�p�c�[����؂�ւ��\�ɂ���
+# 使用ツールを切り替え可能にする
 #
 # Revision 1.20  2005/06/17 03:14:16  yasu
-# copyright �\�L�̏C��
+# copyright 表記の修正
 #
 # Revision 1.19  2005/06/15 06:27:33  yasu
-# �p�X�̈����Ɋւ��鏬���ȏC��
+# パスの扱いに関する小さな修正
 #
 # Revision 1.18  2004/09/04 10:38:15  yasu
 # Support nitload in "make run"
@@ -67,21 +67,21 @@
 # Support a target "make run"
 #
 # Revision 1.5  2003/12/10 12:20:04  yasu
-# ISD ���C�u�����̖������̂��߂� libstubsisd �����N�̐ݒ�D
+# ISD ライブラリの無い環境のための libstubsisd リンクの設定．
 #
 # Revision 1.4  2003/12/10 05:12:48  yasu
-# �\�[�X�t�@�C���w��� xxxx/src.c �̌`�����g����悤�ɕύX
-# Makefile.srcs �̒ǉ�
-# IS_NITRO_DIR ����`���Ă���ꍇ�� IS Debugger ���C�u�����������N����悤�C��
+# ソースファイル指定に xxxx/src.c の形式を使えるように変更
+# Makefile.srcs の追加
+# IS_NITRO_DIR が定義してある場合に IS Debugger ライブラリをリンクするよう修正
 #
 # Revision 1.3  2003/12/09 12:08:46  yasu
-# ARM/THUMB ����~�X�̏C��
+# ARM/THUMB 判定ミスの修正
 #
 # Revision 1.2  2003/12/02 04:54:02  yasu
-# NITROSDK_ROOT �̃p�X��؂蕶���� \ �ւ̑Ή�
+# NITROSDK_ROOT のパス区切り文字の \ への対応
 #
 # Revision 1.1  2003/12/02 03:59:47  yasu
-# IS-NITRO-EMULATOR ��`�t�@�C��
+# IS-NITRO-EMULATOR 定義ファイル
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

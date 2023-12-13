@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	dendou_data.h
- * @brief	�a������Z�[�u�f�[�^
+ * @brief	殿堂入りセーブデータ
  * @author	taya
  * @date	2006.04.20
  */
@@ -16,17 +16,17 @@
 
 //--------------------------------------------------------------
 /**
- *	�֘A�萔
+ *	関連定数
  */
 //--------------------------------------------------------------
 enum {
-	DENDOU_RECORD_MAX = 30,		// �Z�[�u�̈�ɕۑ������a������f�[�^�̍ő匏��
-	DENDOU_NUMBER_MAX = 9999,	// �f�[�^�ǉ������ʎZ�񐔂̍ő�i����ȏ�͓a�����肵�Ă��ǉ�����Ȃ��j
+	DENDOU_RECORD_MAX = 30,		// セーブ領域に保存される殿堂入りデータの最大件数
+	DENDOU_NUMBER_MAX = 9999,	// データ追加される通算回数の最大（これ以上は殿堂入りしても追加されない）
 };
 
 //--------------------------------------------------------------
 /**
- *	�a������Z�[�u�f�[�^�̕s���S�^�\���̐錾
+ *	殿堂入りセーブデータの不完全型構造体宣言
  */
 //--------------------------------------------------------------
 typedef struct _DENDOU_SAVEDATA		DENDOU_SAVEDATA;
@@ -34,8 +34,8 @@ typedef struct _DENDOU_SAVEDATA		DENDOU_SAVEDATA;
 
 //--------------------------------------------------------------
 /**
- *	�a������Z�[�u�f�[�^����|�P�����f�[�^���擾���邽�߂̍\����
- *�i������󂯎��p�� STRBUF �͍쐬���Ă������ƁI�j
+ *	殿堂入りセーブデータからポケモンデータを取得するための構造体
+ *（文字列受け取り用の STRBUF は作成しておくこと！）
  */
 //--------------------------------------------------------------
 typedef struct {
@@ -62,7 +62,7 @@ extern int DendouData_GetWorkSize( void );
 extern void DendouData_Init( DENDOU_SAVEDATA* data );
 
 //extern DENDOU_SAVEDATA* SaveData_GetDendouData( SAVEDATA* sv );
-//�a������f�[�^�͒ʏ�Z�[�u�f�[�^�łȂ����߁A�A�N�Z�X���ɂ͉��L�֐����g�p���ăt���b�V������ǂݏ�������
+//殿堂入りデータは通常セーブデータでないため、アクセス時には下記関数を使用してフラッシュから読み書きする
 extern DENDOU_SAVEDATA * SaveData_Extra_LoadDendouData(SAVEDATA * sv,
 		int heap_id, LOAD_RESULT * result);
 extern SAVE_RESULT SaveData_Extra_SaveDendouData(SAVEDATA * sv, DENDOU_SAVEDATA * data);
@@ -70,11 +70,11 @@ extern SAVE_RESULT SaveData_Extra_SaveDendouData(SAVEDATA * sv, DENDOU_SAVEDATA 
 
 //------------------------------------------------------------------
 /**
- * �a������f�[�^�P���ǉ�
+ * 殿堂入りデータ１件追加
  *
- * @param   data		�a������Z�[�u�f�[�^�|�C���^
- * @param   party		�a������p�[�e�B�[�̃f�[�^
- * @param   date		�a��������t�f�[�^
+ * @param   data		殿堂入りセーブデータポインタ
+ * @param   party		殿堂入りパーティーのデータ
+ * @param   date		殿堂入り日付データ
  *
  */
 //------------------------------------------------------------------

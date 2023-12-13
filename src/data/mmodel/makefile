@@ -1,6 +1,6 @@
 #----------------------------------------------------------------------------
 #
-#	“®ìƒ‚ƒfƒ‹ƒA[ƒJƒCƒu—pMakefile
+#	å‹•ä½œãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨Makefile
 #
 #	2006.03.10
 #	tamada GAME FREAK inc.
@@ -16,102 +16,102 @@ HEADER_FE	=	$(TARGET_FE:.narc=.naix)
 
 SRCDIR	:= ../rsc
 
-#ƒRƒ“ƒo[ƒg‘ÎÛ‚Ìimd‚ðŽw’è‚·‚é
+#ã‚³ãƒ³ãƒãƒ¼ãƒˆå¯¾è±¡ã®imdã‚’æŒ‡å®šã™ã‚‹
 include	mmodel_list
 include	fldeff_list
 
-#G3DƒRƒ“ƒo[ƒ^‚Ö‚ÌƒpƒX
+#G3Dã‚³ãƒ³ãƒãƒ¼ã‚¿ã¸ã®ãƒ‘ã‚¹
 G3DCVTR	= $(WINE) $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
 
-#G2DƒRƒ“ƒo[ƒ^‚Ö‚ÌƒpƒX
+#G2Dã‚³ãƒ³ãƒãƒ¼ã‚¿ã¸ã®ãƒ‘ã‚¹
 G2DCVTR	= $(NITROSYSTEM_ROOT)/tools/win/bin/g2dcvtr.exe
 
-#itpƒRƒ“ƒo[ƒ^‚Ö‚ÌƒpƒX
+#itpã‚³ãƒ³ãƒãƒ¼ã‚¿ã¸ã®ãƒ‘ã‚¹
 ITPCVTR = $(WINE) ./itp_conv.exe
 
 #--------------------------------------------------
-#	ƒtƒ@ƒCƒ‹ƒŠƒXƒg’u‚«Š·‚¦
+#	ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆç½®ãæ›ãˆ
 #--------------------------------------------------
-#G3D_MMODEL_MDL‚©‚çƒfƒBƒŒƒNƒgƒŠ–¼•”•ª‚ðíœ‚µ‚ÄAŠg’£Žq‚ðimd‚©‚çnsbmd‚É’u‚«Š·‚¦‚é
+#G3D_MMODEL_MDLã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåéƒ¨åˆ†ã‚’å‰Šé™¤ã—ã¦ã€æ‹¡å¼µå­ã‚’imdã‹ã‚‰nsbmdã«ç½®ãæ›ãˆã‚‹
 MDATA_MDL	= $(notdir $(G3D_MMODEL_MDL:.imd=.nsbmd))
 FEDATA_MDL	= $(notdir $(G3D_FE_MDL:.imd=.nsbmd))
 
-#G3D_MMODEL_TEX‚©‚çƒfƒBƒŒƒNƒgƒŠ–¼•”•ª‚ðíœ‚µ‚ÄAŠg’£Žq‚ðimd‚©‚çnsbtx‚É’u‚«Š·‚¦‚é
+#G3D_MMODEL_TEXã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåéƒ¨åˆ†ã‚’å‰Šé™¤ã—ã¦ã€æ‹¡å¼µå­ã‚’imdã‹ã‚‰nsbtxã«ç½®ãæ›ãˆã‚‹
 MDATA_TEX	= $(notdir $(G3D_MMODEL_TEX:.imd=.nsbtx))
 FEDATA_TEX	= $(notdir $(G3D_FE_TEX:.imd=.nsbtx))
 
-#G3D_MMODEL_ANMDAT‚©‚çƒfƒBƒŒƒNƒgƒŠ–¼•”•ª‚ðíœ‚µ‚ÄAŠg’£Žq‚ðitp‚©‚çnsbtp‚É’u‚«Š·‚¦‚é
+#G3D_MMODEL_ANMDATã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåéƒ¨åˆ†ã‚’å‰Šé™¤ã—ã¦ã€æ‹¡å¼µå­ã‚’itpã‹ã‚‰nsbtpã«ç½®ãæ›ãˆã‚‹
 FEDATA_ANMITP	= $(notdir $(G3D_FE_ANMITP:.itp=.nsbtp))
 
-#G3D_MMODEL_ANMDAT‚©‚çƒfƒBƒŒƒNƒgƒŠ–¼•”•ª‚ðíœ‚µ‚ÄAŠg’£Žq‚ðitp‚©‚ç_itpcv.dat‚É’u‚«Š·‚¦‚é
+#G3D_MMODEL_ANMDATã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåéƒ¨åˆ†ã‚’å‰Šé™¤ã—ã¦ã€æ‹¡å¼µå­ã‚’itpã‹ã‚‰_itpcv.datã«ç½®ãæ›ãˆã‚‹
 MDATA_ANM	= $(notdir $(G3D_MMODEL_ANM:.itp=_itpcv.dat))
 FEDATA_ANMITPCV	= $(notdir $(G3D_FE_ANMITPCV:.itp=_itpcv.dat))
 
-#G3D_FE_ANMICA‚©‚çƒfƒBƒŒƒNƒgƒŠ–¼•”•ª‚ðíœ‚µ‚ÄAŠg’£Žq‚ðica‚©‚çnsbca‚É’u‚«Š·‚¦‚é
+#G3D_FE_ANMICAã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåéƒ¨åˆ†ã‚’å‰Šé™¤ã—ã¦ã€æ‹¡å¼µå­ã‚’icaã‹ã‚‰nsbcaã«ç½®ãæ›ãˆã‚‹
 FEDATA_ANMICA = $(notdir $(G3D_FE_ANMICA:.ica=.nsbca))
 
-#G3D_FE_ANMIMA‚©‚çƒfƒBƒŒƒNƒgƒŠ–¼•”•ª‚ðíœ‚µ‚ÄAŠg’£Žq‚ðima‚©‚çnsbma‚É’u‚«Š·‚¦‚é
+#G3D_FE_ANMIMAã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåéƒ¨åˆ†ã‚’å‰Šé™¤ã—ã¦ã€æ‹¡å¼µå­ã‚’imaã‹ã‚‰nsbmaã«ç½®ãæ›ãˆã‚‹
 FEDATA_ANMIMA = $(notdir $(G3D_FE_ANMIMA:.ima=.nsbma))
 
-#G3D_FE_ANMITA‚©‚çƒfƒBƒŒƒNƒgƒŠ–¼•”•ª‚ðíœ‚µ‚ÄAŠg’£Žq‚ðita‚©‚çnsbta‚É’u‚«Š·‚¦‚é
+#G3D_FE_ANMITAã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåéƒ¨åˆ†ã‚’å‰Šé™¤ã—ã¦ã€æ‹¡å¼µå­ã‚’itaã‹ã‚‰nsbtaã«ç½®ãæ›ãˆã‚‹
 FEDATA_ANMITA = $(notdir $(G3D_FE_ANMITA:.ita=.nsbta))
 
-#G3D_FE_ANMIVA‚©‚çƒfƒBƒŒƒNƒgƒŠ–¼•”•ª‚ðíœ‚µ‚ÄAŠg’£Žq‚ðiva‚©‚çnsbva‚É’u‚«Š·‚¦‚é
+#G3D_FE_ANMIVAã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåéƒ¨åˆ†ã‚’å‰Šé™¤ã—ã¦ã€æ‹¡å¼µå­ã‚’ivaã‹ã‚‰nsbvaã«ç½®ãæ›ãˆã‚‹
 FEDATA_ANMIVA = $(notdir $(G3D_FE_ANMIVA:.iva=.nsbva))
 
 #G3D_FE_NONCV
 FEDATA_NONCV = $(G3D_FE_NONCV)
 
 #--------------------------------------------------
-#	Šg’£Žq‚Å¶¬ƒ‹[ƒ‹‚ðŽw’è‚·‚é
+#	æ‹¡å¼µå­ã§ç”Ÿæˆãƒ«ãƒ¼ãƒ«ã‚’æŒ‡å®šã™ã‚‹
 #--------------------------------------------------
-#imd --> nsbmd‚Ö‚Ì•ÏŠ·ƒ‹[ƒ‹’è‹`
+#imd --> nsbmdã¸ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«å®šç¾©
 %.nsbmd: $(SRCDIR)/%.imd
-	@echo Model Data Convert: $^ ¨ $@
+	@echo Model Data Convert: $^ â†’ $@
 	@$(G3DCVTR) $(SRCDIR)/$(@:.nsbmd=.imd) -o $@
 	
-#imd --> nsbtx‚Ö‚Ì•ÏŠ·ƒ‹[ƒ‹’è‹`
+#imd --> nsbtxã¸ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«å®šç¾©
 %.nsbtx: $(SRCDIR)/%.imd
-	@echo Texture Data Convert: $^ ¨ $@
+	@echo Texture Data Convert: $^ â†’ $@
 	@$(G3DCVTR) $(SRCDIR)/$(@:.nsbtx=.imd) -o $@ -etex
 
-#itp --> nsbtp‚Ö‚Ì•ÏŠ·ƒ‹[ƒ‹’è‹`
+#itp --> nsbtpã¸ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«å®šç¾©
 %.nsbtp: $(SRCDIR)/%.itp
-	@echo Anime itp File Convert: $^ ¨ $@
+	@echo Anime itp File Convert: $^ â†’ $@
 	@$(G3DCVTR) $(SRCDIR)/$(@:.nsbtp=.itp) -o $@ 
 
-#itp --> itpcv.dat‚Ö‚Ì•ÏŠ·ƒ‹[ƒ‹’è‹`
+#itp --> itpcv.datã¸ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«å®šç¾©
 %_itpcv.dat: $(SRCDIR)/%.itp
-	@echo Anime itp convert File Convert: $^ ¨ $@
+	@echo Anime itp convert File Convert: $^ â†’ $@
 	@$(ITPCVTR) $(SRCDIR)/$(@:_itpcv.dat=.itp) $@
 
-#ica --> nsbca‚Ö‚Ì•ÏŠ·ƒ‹[ƒ‹’è‹`
+#ica --> nsbcaã¸ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«å®šç¾©
 %.nsbca: $(SRCDIR)/%.ica
-	@echo Anime ica File Convert: $^ ¨ $@
+	@echo Anime ica File Convert: $^ â†’ $@
 	@$(G3DCVTR) $(SRCDIR)/$(@:.nsbca=.ica) -o $@ 
 
-#ima --> nsbma‚Ö‚Ì•ÏŠ·ƒ‹[ƒ‹’è‹`
+#ima --> nsbmaã¸ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«å®šç¾©
 %.nsbma: $(SRCDIR)/%.ima
-	@echo Anime ima File Convert: $^ ¨ $@
+	@echo Anime ima File Convert: $^ â†’ $@
 	@$(G3DCVTR) $(SRCDIR)/$(@:.nsbma=.ima) -o $@ 
 
-#ita --> nsbta‚Ö‚Ì•ÏŠ·ƒ‹[ƒ‹’è‹`
+#ita --> nsbtaã¸ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«å®šç¾©
 %.nsbta: $(SRCDIR)/%.ita
-	@echo Anime ita File Convert: $^ ¨ $@
+	@echo Anime ita File Convert: $^ â†’ $@
 	@$(G3DCVTR) $(SRCDIR)/$(@:.nsbta=.ita) -o $@ 
 
-#iva --> nsbva‚Ö‚Ì•ÏŠ·ƒ‹[ƒ‹’è‹`
+#iva --> nsbvaã¸ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«å®šç¾©
 %.nsbva: $(SRCDIR)/%.vai
-	@echo Anime iva File Convert: $^ ¨ $@
+	@echo Anime iva File Convert: $^ â†’ $@
 	@$(G3DCVTR) $(SRCDIR)/$(@:.nsbva=.iva) -o $@ 
 
 #-------------------------------------------------
-#	¶¬ƒ‹[ƒ‹’è‹`
+#	ç”Ÿæˆãƒ«ãƒ¼ãƒ«å®šç¾©
 #-------------------------------------------------
 do-build: $(TARGET) $(TARGET_FE)
 
-#	$(TARGET)=mmodel.narc‚Í$(MDATA_TEX)=nsbtxƒtƒ@ƒCƒ‹‚ÉˆË‘¶‚µ‚Ä‚¢‚é
-#	‚³‚ç‚ÉˆË‘¶ŠÖŒW‚ð‰ðŒˆ‚µ‚½‚çAnnsarc‚ÅƒA[ƒJƒCƒu‚ðs‚¤
+#	$(TARGET)=mmodel.narcã¯$(MDATA_TEX)=nsbtxãƒ•ã‚¡ã‚¤ãƒ«ã«ä¾å­˜ã—ã¦ã„ã‚‹
+#	ã•ã‚‰ã«ä¾å­˜é–¢ä¿‚ã‚’è§£æ±ºã—ãŸã‚‰ã€nnsarcã§ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’è¡Œã†
 $(TARGET): $(MDATA_TEX) $(MDATA_MDL) $(MDATA_ANM)
 	nnsarc -i -c -l -n $(TARGET) $(MDATA_TEX) $(MDATA_MDL) $(MDATA_ANM) > arc_result.txt
 
@@ -123,18 +123,18 @@ all:
 	$(MAKE) clean
 	$(MAKE)
 
-#‘SÁ‹Ž
+#å…¨æ¶ˆåŽ»
 clean:
-	-rm $(TARGET) $(HEADER)					#ƒA[ƒJƒCƒu‚Æƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ðíœ
-	-rm $(TARGET_FE) $(HEADER_FE)	#ƒA[ƒJƒCƒu‚Æƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ðíœ
-	-rm $(MDATA_TEX)						#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*.nsbtx‚ðíœ
-	-rm $(FEDATA_TEX)						#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*.nsbtx‚ðíœ
-	-rm $(MDATA_MDL)						#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*.nsbmd‚ðíœ
-	-rm $(FEDATA_MDL)						#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*.nsbmd‚ðíœ
-	-rm $(MDATA_ANM)						#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*_itpcv.dat‚ðíœ
-	-rm $(FEDATA_ANMITP)					#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*.nsbtp‚ðíœ
-	-rm $(FEDATA_ANMITPCV)			#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*_itpcv.dat‚ðíœ
-	-rm $(FEDATA_ANMICA)			#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*.nsbca‚ðíœ
-	-rm $(FEDATA_ANMIMA)			#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*.nsbma‚ðíœ
-	-rm $(FEDATA_ANMITA)			#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*.nsbta‚ðíœ
-	-rm $(FEDATA_ANMIVA)			#ƒA[ƒJƒCƒu‘ÎÛ‚Ì*.nsbva‚ðíœ
+	-rm $(TARGET) $(HEADER)					#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¨ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
+	-rm $(TARGET_FE) $(HEADER_FE)	#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¨ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
+	-rm $(MDATA_TEX)						#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*.nsbtxã‚’å‰Šé™¤
+	-rm $(FEDATA_TEX)						#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*.nsbtxã‚’å‰Šé™¤
+	-rm $(MDATA_MDL)						#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*.nsbmdã‚’å‰Šé™¤
+	-rm $(FEDATA_MDL)						#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*.nsbmdã‚’å‰Šé™¤
+	-rm $(MDATA_ANM)						#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*_itpcv.datã‚’å‰Šé™¤
+	-rm $(FEDATA_ANMITP)					#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*.nsbtpã‚’å‰Šé™¤
+	-rm $(FEDATA_ANMITPCV)			#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*_itpcv.datã‚’å‰Šé™¤
+	-rm $(FEDATA_ANMICA)			#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*.nsbcaã‚’å‰Šé™¤
+	-rm $(FEDATA_ANMIMA)			#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*.nsbmaã‚’å‰Šé™¤
+	-rm $(FEDATA_ANMITA)			#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*.nsbtaã‚’å‰Šé™¤
+	-rm $(FEDATA_ANMIVA)			#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡ã®*.nsbvaã‚’å‰Šé™¤

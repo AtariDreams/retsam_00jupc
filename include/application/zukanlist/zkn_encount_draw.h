@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_encount_draw.h
- *	@brief		�G���J�E���g�f�[�^�`��V�X�e��
+ *	@brief		エンカウントデータ描画システム
  *	@author		tomoya takahashi
  *	@data		2006.02.09
  *
@@ -20,15 +20,15 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
-//T���΂�
+//Tが斜め
 
 enum{
 	ZKN_ENCOUNT_DRAW_MUDDY_NONE,
 	ZKN_ENCOUNT_DRAW_MUDDY_NORMAL,
-	ZKN_ENCOUNT_DRAW_MUDDY_U,		// �㉺���E
+	ZKN_ENCOUNT_DRAW_MUDDY_U,		// 上下左右
 	ZKN_ENCOUNT_DRAW_MUDDY_D,
 	ZKN_ENCOUNT_DRAW_MUDDY_L,
 	ZKN_ENCOUNT_DRAW_MUDDY_R,
@@ -43,7 +43,7 @@ enum{
 	ZKN_ENCOUNT_DRAW_MUDDY_ULR,
 	ZKN_ENCOUNT_DRAW_MUDDY_DLR,
 	ZKN_ENCOUNT_DRAW_MUDDY_UDLR,
-	ZKN_ENCOUNT_DRAW_MUDDY_TUL,		// �΂ߒǉ�
+	ZKN_ENCOUNT_DRAW_MUDDY_TUL,		// 斜め追加
 	ZKN_ENCOUNT_DRAW_MUDDY_TUR,
 	ZKN_ENCOUNT_DRAW_MUDDY_TDL,
 	ZKN_ENCOUNT_DRAW_MUDDY_TDR,
@@ -58,15 +58,15 @@ enum{
 	ZKN_ENCOUNT_DRAW_MUDDY_TULTDLTDR,
 	ZKN_ENCOUNT_DRAW_MUDDY_TURTDLTDR,
 	ZKN_ENCOUNT_DRAW_MUDDY_TULTURTDLTDR,
-	ZKN_ENCOUNT_DRAW_MUDDY_UTDLTDR,	// �㉺���E1���΂�2
+	ZKN_ENCOUNT_DRAW_MUDDY_UTDLTDR,	// 上下左右1＆斜め2
 	ZKN_ENCOUNT_DRAW_MUDDY_DTULTUR,	
 	ZKN_ENCOUNT_DRAW_MUDDY_LTURTDR,	
 	ZKN_ENCOUNT_DRAW_MUDDY_RTULTDL,	
-	ZKN_ENCOUNT_DRAW_MUDDY_ULTDR,	// �㉺���E2���΂�1
+	ZKN_ENCOUNT_DRAW_MUDDY_ULTDR,	// 上下左右2＆斜め1
 	ZKN_ENCOUNT_DRAW_MUDDY_URTDL,
 	ZKN_ENCOUNT_DRAW_MUDDY_DLTUR,
 	ZKN_ENCOUNT_DRAW_MUDDY_DRTUL,
-	ZKN_ENCOUNT_DRAW_MUDDY_UTDL,	// �㉺���E1���΂�1
+	ZKN_ENCOUNT_DRAW_MUDDY_UTDL,	// 上下左右1＆斜め1
 	ZKN_ENCOUNT_DRAW_MUDDY_UTDR,
 	ZKN_ENCOUNT_DRAW_MUDDY_DTUL,
 	ZKN_ENCOUNT_DRAW_MUDDY_DTUR,
@@ -79,13 +79,13 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_ENCOUNTDRAW_PrintChar( GF_BGL_BMPWIN * win, u8* char_buff, u16 char_sizex, u16 char_sizey, u8 grid_size, u8* p_buff, u8 size_x, u8 size_y, u16 win_x, u16 win_y );

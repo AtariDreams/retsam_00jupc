@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_ex.h
- * @brief	�o�g���t�����e�B�A�O���f�[�^(�i�s�Ɋ֌W�Ȃ��L�^�̂�)�̃w�b�_
+ * @brief	バトルフロンティア外部データ(進行に関係ない記録のみ)のヘッダ
  * @author	matsuda
- * @date	2007.07.18(��)
+ * @date	2007.07.18(水)
  */
 //==============================================================================
 #ifndef	__FRONTIER_EX_H__
@@ -14,27 +14,27 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
 
-//�o�g���X�e�[�W�̃f�[�^�擾ID
+//バトルステージのデータ取得ID
 enum{
-	FREXID_STAGE_RENSHOU_SINGLE,		///<�X�e�[�W�F�V���O���ő�A����
-	FREXID_STAGE_RENSHOU_DOUBLE,		///<�X�e�[�W�F�_�u���ő�A����
-	FREXID_STAGE_RENSHOU_MULTI,			///<�X�e�[�W�F���C�����X�ő�A����
-//	FREXID_STAGE_RENSHOU_WIFI,			///<�X�e�[�W�FWIFI�ő�A����
+	FREXID_STAGE_RENSHOU_SINGLE,		///<ステージ：シングル最大連勝数
+	FREXID_STAGE_RENSHOU_DOUBLE,		///<ステージ：ダブル最大連勝数
+	FREXID_STAGE_RENSHOU_MULTI,			///<ステージ：ワイヤレス最大連勝数
+//	FREXID_STAGE_RENSHOU_WIFI,			///<ステージ：WIFI最大連勝数
 };
 
 //--------------------------------------------------------------
 /**
- *	�퓬�^��Z�[�u�f�[�^�̕s���S�^�\���̐錾
+ *	戦闘録画セーブデータの不完全型構造体宣言
  */
 //--------------------------------------------------------------
 typedef struct _FRONTIER_EX_SAVEDATA		FRONTIER_EX_SAVEDATA;
 
 
 //==============================================================================
-//	�O���֐��錾
+//	外部関数宣言
 //==============================================================================
 extern int FrontierEx_GetWorkSize( void );
 extern void FrontierEx_Init(FRONTIER_EX_SAVEDATA *work);
@@ -50,7 +50,7 @@ extern BOOL FrontierEx_StageRenshou_RenshouCopyExtra(SAVEDATA *sv,
 extern FRONTIER_EX_SAVEDATA * SaveData_Extra_LoadFrontierEx(SAVEDATA * sv, int heap_id, LOAD_RESULT * result);
 extern SAVE_RESULT SaveData_Extra_SaveFrontierEx(SAVEDATA * sv, FRONTIER_EX_SAVEDATA * data);
 
-//�f�o�b�N�p
+//デバック用
 extern u16 Debug_FrontierEx_StageRenshou_Set(FRONTIER_EX_SAVEDATA *fes, int id, int monsno, u16 data);
 
 

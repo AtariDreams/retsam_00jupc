@@ -24,7 +24,7 @@
   do-indent
 
   Revision 1.108  2005/12/12 02:23:35  okubata_ryoma
-  mutexQueue.head,tail‚ðNULL‚Å‰Šú‰»‚·‚éˆ—‚ð’Ç‰Á
+  mutexQueue.head,tailã‚’NULLã§åˆæœŸåŒ–ã™ã‚‹å‡¦ç†ã‚’è¿½åŠ 
 
   Revision 1.107  2005/10/27 00:41:01  yada
   when create thread, clear specific area.
@@ -39,7 +39,7 @@
   modified functions for stack overflow check
 
   Revision 1.103  2005/09/06 10:17:40  yasu
-  ƒCƒ“ƒfƒ“ƒgC³
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆä¿®æ­£
 
   Revision 1.102  2005/09/06 05:10:36  yada
   consider for const OSThread*.
@@ -70,7 +70,7 @@
   fix around quiting thread.
 
   Revision 1.93  2005/07/07 05:21:49  yasu
-  OS_ExitThread Œo—R‚Å‚ÌƒXƒŒƒbƒhƒfƒXƒgƒ‰ƒNƒ^ŒÄ‚Ño‚µ‚ÍŠ„‚èž‚Ý‹ÖŽ~‚Ås‚È‚¤
+  OS_ExitThread çµŒç”±ã§ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å‘¼ã³å‡ºã—ã¯å‰²ã‚Šè¾¼ã¿ç¦æ­¢ã§è¡Œãªã†
 
   Revision 1.92  2005/07/07 01:53:04  yada
   consider for stack check number in initalize context in killing thread
@@ -79,22 +79,22 @@
   fix bug around thread queue link
 
   Revision 1.90  2005/07/06 08:39:12  yasu
-  OSi_ExitThread_Destroy() ‚ð SDK2.x ‚Å‚à—LŒø‚É‚·‚é
+  OSi_ExitThread_Destroy() ã‚’ SDK2.x ã§ã‚‚æœ‰åŠ¹ã«ã™ã‚‹
 
   Revision 1.89  2005/07/06 08:19:08  yasu
-  SDK_VERSION_MAJOR=2 ‚Ì‚Æ‚«‚Éƒrƒ‹ƒhŽ¸”s‚µ‚Ä‚¢‚½‚Ì‚ðC³
+  SDK_VERSION_MAJOR=2 ã®ã¨ãã«ãƒ“ãƒ«ãƒ‰å¤±æ•—ã—ã¦ã„ãŸã®ã‚’ä¿®æ­£
 
   Revision 1.88  2005/07/06 06:32:23  yasu
-  OS_ExitThread ‚Æ OS_KillThread ‚Ì‹@”\‚Ì’²’â
+  OS_ExitThread ã¨ OS_KillThread ã®æ©Ÿèƒ½ã®èª¿åœ
 
   Revision 1.87  2005/07/06 04:06:23  yada
   in OS_ExitThread(), stop setting null to current thread
 
   Revision 1.86  2005/07/05 10:56:51  yasu
-  utest.h ‚ÌƒCƒ“ƒNƒ‹[ƒh‚ð’Ç‰Á
+  utest.h ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 
   Revision 1.85  2005/07/05 09:46:19  yasu
-  OS_KillThread ‚Ì’Ç‰Á
+  OS_KillThread ã®è¿½åŠ 
 
   Revision 1.84  2005/07/01 04:18:13  yada
   add system error number.
@@ -125,7 +125,7 @@
   do-indent.
 
   Revision 1.75  2005/02/18 06:21:55  yasu
-  OS_DisableInterrupts •Ô’l‚ÌŒ^C³
+  OS_DisableInterrupts è¿”å€¤ã®åž‹ä¿®æ­£
 
   Revision 1.74  2005/01/21 04:20:21  yada
   add OS_Enable/DisableScheduler()
@@ -230,26 +230,26 @@
   fix in OS_ExitThread
 
   Revision 1.40  2004/04/02 12:47:18  yada
-  OSThread‚Émutex‚Ìqueue‚ð’Ç‰ÁB
-  OS_ExitThread()‚Ålock’†‚Ìmutex‚ð‰ð•ú‚·‚é‚æ‚¤‚É‚µ‚½B
+  OSThreadã«mutexã®queueã‚’è¿½åŠ ã€‚
+  OS_ExitThread()ã§lockä¸­ã®mutexã‚’è§£æ”¾ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.39  2004/03/31 09:25:14  yada
   add thread switch callback function
 
   Revision 1.38  2004/03/30 05:58:29  yada
-  OS_IsThreadAvailable’Ç‰Á
+  OS_IsThreadAvailableè¿½åŠ 
 
   Revision 1.37  2004/03/18 13:00:08  yada
-  MI ‚ÌƒCƒ“ƒNƒ‹[ƒh‚ðC³‚µ‚½
+  MI ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚’ä¿®æ­£ã—ãŸ
 
   Revision 1.36  2004/03/03 04:06:14  yada
-  OS_Sleep() ‚ÉTick ‚Æ Alarm ‚ª‹N“®‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚«‚ÌƒAƒT[ƒVƒ‡ƒ“‚ð’Ç‰Á
+  OS_Sleep() ã«Tick ã¨ Alarm ãŒèµ·å‹•ã•ã‚Œã¦ã„ãªã„ã¨ãã®ã‚¢ã‚µãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ 
 
   Revision 1.35  2004/03/02 11:54:29  yada
-  OS_Sleep() ’Ç‰Á
+  OS_Sleep() è¿½åŠ 
 
   Revision 1.34  2004/02/26 12:13:15  yada
-  priority‚Ì”ÍˆÍassert’Ç‰Á
+  priorityã®ç¯„å›²assertè¿½åŠ 
 
   Revision 1.33  2004/02/26 10:52:11  yasu
   RollBack to 1.31
@@ -258,10 +258,10 @@
   Add idle thread
 
   Revision 1.31  2004/02/26 09:42:04  yada
-  ƒXƒŒƒbƒh‚ðA—Dæ“xƒŠƒXƒgŠÇ—‚·‚é‚æ‚¤‚É•ÏX
+  ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ã€å„ªå…ˆåº¦ãƒªã‚¹ãƒˆç®¡ç†ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.30  2004/02/26 05:49:21  yada
-  OS_CreateThread() ‚É‹N“®ŠÖ”‚Ìˆø”’Ç‰Á
+  OS_CreateThread() ã«èµ·å‹•é–¢æ•°ã®å¼•æ•°è¿½åŠ 
 
   Revision 1.29  2004/02/25 11:30:46  yada
   only fix comment
@@ -270,19 +270,19 @@
   MI_CpuClearFast -> MI_CpuClear32
 
   Revision 1.27  2004/02/19 02:41:15  yada
-  ƒXƒ^ƒbƒNƒ`ƒFƒbƒN‚Ìƒ}ƒWƒbƒNƒiƒ“ƒo[Ý’è
+  ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚§ãƒƒã‚¯ã®ãƒžã‚¸ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼è¨­å®š
 
   Revision 1.26  2004/02/17 09:30:44  yada
-  ARM9 ‚Æ 7 ‚ÅƒXƒŒƒbƒhî•ñŠi”[ˆÊ’u‚ð•Ï‚¦‚é‚æ‚¤‚É‚µ‚½
+  ARM9 ã¨ 7 ã§ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±æ ¼ç´ä½ç½®ã‚’å¤‰ãˆã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.25  2004/02/17 08:22:48  yada
-  IRQƒXƒ^ƒbƒNˆÊ’u’è‹`C³
+  IRQã‚¹ã‚¿ãƒƒã‚¯ä½ç½®å®šç¾©ä¿®æ­£
 
   Revision 1.24  2004/02/16 00:18:32  yada
-  stack clear •”•ª‚ðƒ`ƒFƒbƒNƒR[ƒh‚ðl—¶‚µ‚½‚à‚Ì‚É
+  stack clear éƒ¨åˆ†ã‚’ãƒã‚§ãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ã‚’è€ƒæ…®ã—ãŸã‚‚ã®ã«
 
   Revision 1.23  2004/02/13 02:26:46  yada
-  idleƒXƒŒƒbƒhƒXƒ^ƒbƒN‚Ì’è‹`‚É×H
+  idleã‚¹ãƒ¬ãƒƒãƒ‰ã‚¹ã‚¿ãƒƒã‚¯ã®å®šç¾©ã«ç´°å·¥
 
   Revision 1.22  2004/02/09 11:17:22  yasu
   include code32.h
@@ -291,94 +291,94 @@
   change SDK prefix iris -> nitro
 
   Revision 1.20  2004/01/21 12:02:05  yada
-  ƒXƒ^ƒbƒNˆì‚êƒ`ƒFƒbƒN‚ðì¬
+  ã‚¹ã‚¿ãƒƒã‚¯æº¢ã‚Œãƒã‚§ãƒƒã‚¯ã‚’ä½œæˆ
 
   Revision 1.19  2004/01/18 02:25:37  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.18  2004/01/16 11:48:14  yada
-  DTCMƒq[ƒv”ÍˆÍ‚ÌŠÔˆá‚¢‚ðC³
+  DTCMãƒ’ãƒ¼ãƒ—ç¯„å›²ã®é–“é•ã„ã‚’ä¿®æ­£
 
   Revision 1.17  2004/01/16 04:07:13  yada
-  idle Thread ‚ÌƒXƒ^ƒbƒN‚ð lcf’è‹`‚©‚çŽæ‚é‚æ‚¤‚É•ÏX
+  idle Thread ã®ã‚¹ã‚¿ãƒƒã‚¯ã‚’ lcfå®šç¾©ã‹ã‚‰å–ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.16  2004/01/07 10:57:23  yada
-  ƒRƒƒ“ƒg‚ðC³‚µ‚½‚Ì‚Ý
+  ã‚³ãƒ¡ãƒ³ãƒˆã‚’ä¿®æ­£ã—ãŸã®ã¿
 
   Revision 1.15  2003/12/29 04:27:24  yasu
   workaround for OS_Warning, OS_Panic
 
   Revision 1.14  2003/12/25 07:31:26  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  åž‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.13  2003/12/17 08:19:05  yasu
-  OSi_isNeedRescheduling ‚ð OS_ThreadInfo ‚Ö“‡
-  OS_InitContext ‚Ìˆø”•ÏX
+  OSi_isNeedRescheduling ã‚’ OS_ThreadInfo ã¸çµ±åˆ
+  OS_InitContext ã®å¼•æ•°å¤‰æ›´
 
   Revision 1.12  2003/12/17 06:07:48  yasu
-  ’è”–¼•ÏX‚É”º‚È‚¤C³
+  å®šæ•°åå¤‰æ›´ã«ä¼´ãªã†ä¿®æ­£
 
   Revision 1.11  2003/12/16 11:28:07  yada
-  threadî•ñ‚ð‚Ü‚Æ‚ß‚½‚±‚Æ‚É‚æ‚é•ÏX
+  threadæƒ…å ±ã‚’ã¾ã¨ã‚ãŸã“ã¨ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.10  2003/12/16 08:13:06  yada
-  ƒXƒ^ƒbƒNˆì‚êƒ`ƒFƒbƒN‚ð SDK_ASSERTMSG() ‚É•ÏXB
+  ã‚¹ã‚¿ãƒƒã‚¯æº¢ã‚Œãƒã‚§ãƒƒã‚¯ã‚’ SDK_ASSERTMSG() ã«å¤‰æ›´ã€‚
 
   Revision 1.9  2003/12/16 07:16:06  yada
-  ƒXƒŒƒbƒh”ÍˆÍî•ñ‚ÍƒRƒ“ƒeƒLƒXƒg‚Å‚Í‚È‚­AƒXƒŒƒbƒh\‘¢‘Ì‚ÉˆÚ‚µ‚½
+  ã‚¹ãƒ¬ãƒƒãƒ‰ç¯„å›²æƒ…å ±ã¯ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã§ã¯ãªãã€ã‚¹ãƒ¬ãƒƒãƒ‰æ§‹é€ ä½“ã«ç§»ã—ãŸ
 
   Revision 1.8  2003/12/16 00:17:44  yada
-  thread‚ÉAƒXƒ^ƒbƒN”ÍˆÍî•ñ‚ðŠÜ‚ß‚½B
+  threadã«ã€ã‚¹ã‚¿ãƒƒã‚¯ç¯„å›²æƒ…å ±ã‚’å«ã‚ãŸã€‚
 
   Revision 1.7  2003/12/12 04:40:06  yada
-  ƒvƒƒZƒbƒTƒ‚[ƒh‚Ì’è‹`•ÏX‚É”º‚¤C³
+  ãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ¢ãƒ¼ãƒ‰ã®å®šç¾©å¤‰æ›´ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.6  2003/12/11 11:55:08  yada
-  OS_GetMaxThreadId() ‚ð inline ‚Å‚Í‚È‚¢‚æ‚¤‚É‚µ‚½‚Ì‚ÅAŠÖ”‚ÌŽÀ‘Ì‚ð‹Lq
+  OS_GetMaxThreadId() ã‚’ inline ã§ã¯ãªã„ã‚ˆã†ã«ã—ãŸã®ã§ã€é–¢æ•°ã®å®Ÿä½“ã‚’è¨˜è¿°
 
   Revision 1.5  2003/12/01 04:14:52  yasu
-  ƒXƒ^ƒbƒN‚Ì align ‚ð 4 ‚É•ÏX
-  ƒXƒ^ƒbƒN‚ÌƒNƒŠƒA‚ðŽ©—Í‚Ås‚È‚¤‚æ‚¤‚ÉˆêŽž‚Ä‚«‚É•ÏX
+  ã‚¹ã‚¿ãƒƒã‚¯ã® align ã‚’ 4 ã«å¤‰æ›´
+  ã‚¹ã‚¿ãƒƒã‚¯ã®ã‚¯ãƒªã‚¢ã‚’è‡ªåŠ›ã§è¡Œãªã†ã‚ˆã†ã«ä¸€æ™‚ã¦ãã«å¤‰æ›´
 
   Revision 1.4  2003/11/30 05:10:42  yasu
-  thread ŠÖŒW‚ÌŠÖ”‚ðŠ„‚èž‚ÝƒT[ƒrƒX‚©‚çŒÄ‚Ño‚µ‰Â”\‚É‚µ‚½D
+  thread é–¢ä¿‚ã®é–¢æ•°ã‚’å‰²ã‚Šè¾¼ã¿ã‚µãƒ¼ãƒ“ã‚¹ã‹ã‚‰å‘¼ã³å‡ºã—å¯èƒ½ã«ã—ãŸï¼Ž
 
   Revision 1.3  2003/11/30 04:19:25  yasu
-  OS_EnableInterrupt/DisableInterrupt ‚Ì–ß‚è’l‚ÌŒ^‚Ì•ÏX
+  OS_EnableInterrupt/DisableInterrupt ã®æˆ»ã‚Šå€¤ã®åž‹ã®å¤‰æ›´
 
   Revision 1.2  2003/11/30 02:08:12  yada
-  OS_CreateThread() ‚Ìˆø”‚ÉƒXƒ^ƒbƒNƒTƒCƒY‚ð‰Á‚¦AƒXƒŒƒbƒhì¬Žž‚ÉƒXƒ^ƒbƒN‚ðƒNƒŠƒA‚·‚é‚æ‚¤‚É‚µ‚½B
+  OS_CreateThread() ã®å¼•æ•°ã«ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚ºã‚’åŠ ãˆã€ã‚¹ãƒ¬ãƒƒãƒ‰ä½œæˆæ™‚ã«ã‚¹ã‚¿ãƒƒã‚¯ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.1  2003/11/29 01:25:46  yada
-  ƒtƒ@ƒCƒ‹–¼Ì•ÏX
+  ãƒ•ã‚¡ã‚¤ãƒ«åç§°å¤‰æ›´
 
   Revision 1.9  2003/11/28 08:31:27  yada
-  ƒfƒoƒbƒO’†
+  ãƒ‡ãƒãƒƒã‚°ä¸­
 
   Revision 1.8  2003/11/26 10:51:42  yasu
-  OS_GetCurrentThread/OS_SetCurrentThread ‚ðŒöŠJ‚µ inline ‰»
+  OS_GetCurrentThread/OS_SetCurrentThread ã‚’å…¬é–‹ã— inline åŒ–
 
   Revision 1.7  2003/11/26 09:31:15  yasu
-  OS_Reschedule ‚ð•ª—£‚µAOS_SelectThread ‚ðì¬
+  OS_Reschedule ã‚’åˆ†é›¢ã—ã€OS_SelectThread ã‚’ä½œæˆ
 
   Revision 1.6  2003/11/26 01:27:13  yasu
-  OS_CreateThread ‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒX•ÏX
-  OS_InitThread ‚Ì’Ç‰Á
+  OS_CreateThread ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹å¤‰æ›´
+  OS_InitThread ã®è¿½åŠ 
 
   Revision 1.5  2003/11/25 13:31:56  yasu
-  ThreadQueue ‚Ì’Ç‰Á
+  ThreadQueue ã®è¿½åŠ 
 
   Revision 1.4  2003/11/25 09:26:37  yasu
-  IdleThread ‚Ì‘ÌÙ‚ ‚í‚¹
+  IdleThread ã®ä½“è£ã‚ã‚ã›
 
   Revision 1.3  2003/11/25 06:28:32  yasu
-  OS_CreateThread ‚Ìˆø”‚ÌŒ^•ÏX
+  OS_CreateThread ã®å¼•æ•°ã®åž‹å¤‰æ›´
 
   Revision 1.2  2003/11/25 05:02:11  yasu
-  ƒoƒOC³
+  ãƒã‚°ä¿®æ­£
 
   Revision 1.1  2003/11/25 04:31:57  yasu
-  ‰”Å’Ç‰Á
+  åˆç‰ˆè¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -1091,8 +1091,8 @@ void OS_ExitThread(void)
 
 #ifdef  SDK_THREAD_INFINITY
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// ƒfƒXƒgƒ‰ƒNƒ^ƒXƒ^ƒbƒN‚ðl—¶‚·‚é OSi_ExitThread
-// Š„ž‚Ý‹ÖŽ~ó‘Ô‚ÅŒÄ‚Ño‚·‚±‚Æ
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚¹ã‚¿ãƒƒã‚¯ã‚’è€ƒæ…®ã™ã‚‹ OSi_ExitThread
+// å‰²è¾¼ã¿ç¦æ­¢çŠ¶æ…‹ã§å‘¼ã³å‡ºã™ã“ã¨
 static void OSi_ExitThread_ArgSpecified(OSThread *thread, void *arg)
 {
     if (OSi_StackForDestructor)
@@ -1115,8 +1115,8 @@ static void OSi_ExitThread_ArgSpecified(OSThread *thread, void *arg)
 
 #ifdef	SDK_THREAD_INFINITY
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// OS_KillThread ‚É‚¨‚¢‚ÄŽQÆ‚³‚ê‚éƒRƒ“ƒeƒLƒXƒgƒXƒCƒbƒ`æ
-// Š„‚èž‚Ý‹ÖŽ~ó‘Ô‚ÅŒÄ‚Ño‚·‚±‚Æ
+// OS_KillThread ã«ãŠã„ã¦å‚ç…§ã•ã‚Œã‚‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚¹ã‚¤ãƒƒãƒå…ˆ
+// å‰²ã‚Šè¾¼ã¿ç¦æ­¢çŠ¶æ…‹ã§å‘¼ã³å‡ºã™ã“ã¨
 static void OSi_ExitThread(void *arg)
 {
     OSThread *currentThread = OSi_GetCurrentThread();
@@ -1124,13 +1124,13 @@ static void OSi_ExitThread(void *arg)
 
     SDK_ASSERT(currentThread);
 
-    // ƒfƒXƒgƒ‰ƒNƒ^‚Ìˆ—
+    // ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®å‡¦ç†
     destructor = currentThread->destructor;
     if (destructor)
     {
         currentThread->destructor = NULL;
         destructor(arg);
-        (void)OS_DisableInterrupts();  // Ä‚ÑŠ„‚èž‚Ý‹ÖŽ~‚Ö
+        (void)OS_DisableInterrupts();  // å†ã³å‰²ã‚Šè¾¼ã¿ç¦æ­¢ã¸
     }
 
     OSi_ExitThread_Destroy();          // Never return
@@ -1138,8 +1138,8 @@ static void OSi_ExitThread(void *arg)
 #endif
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// OS_DestroyThread ‚©‚çƒJƒŒƒ“ƒgƒXƒŒƒbƒh‚ð destroy ‚·‚é‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚é
-// Š„‚èž‚Ý‹ÖŽ~ó‘Ô‚ÅŒÄ‚Ño‚·‚±‚Æ
+// OS_DestroyThread ã‹ã‚‰ã‚«ãƒ¬ãƒ³ãƒˆã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ destroy ã™ã‚‹ã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹
+// å‰²ã‚Šè¾¼ã¿ç¦æ­¢çŠ¶æ…‹ã§å‘¼ã³å‡ºã™ã“ã¨
 static void OSi_ExitThread_Destroy(void)
 {
     OSThread *currentThread = OSi_GetCurrentThread();
@@ -1297,7 +1297,7 @@ static inline void OSi_KillThreadWithPriority(OSThread *thread, void *arg, u32 p
         OS_InitContext(&thread->context, (u32)OSi_ExitThread, stack);
     }
     thread->context.r[0] = (u32)arg;
-    thread->context.cpsr |= HW_PSR_IRQ_DISABLE; // ƒfƒXƒgƒ‰ƒNƒ^“à‚Å‚Í IRQ Š„‚èž‚Ý‚ð‹ÖŽ~‚·‚é
+    thread->context.cpsr |= HW_PSR_IRQ_DISABLE; // ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å†…ã§ã¯ IRQ å‰²ã‚Šè¾¼ã¿ã‚’ç¦æ­¢ã™ã‚‹
 
     thread->state = OS_THREAD_STATE_READY;
 
@@ -1348,14 +1348,14 @@ void UTEST_OS_KillThread_1(void)
     t->state = OS_THREAD_STATE_TERMINATED;
     OSi_KillThreadWithPriority(t, (void *)0x12345678, 16);
 
-    // ƒRƒ“ƒeƒNƒXƒg“à‚ÌŽå—vƒŒƒWƒXƒ^ƒ`ƒFƒbƒN
+    // ã‚³ãƒ³ãƒ†ã‚¯ã‚¹ãƒˆå†…ã®ä¸»è¦ãƒ¬ã‚¸ã‚¹ã‚¿ãƒã‚§ãƒƒã‚¯
     UT_AssertEq(t->context.pc_plus4, (u32)OSi_ExitThread + 4);  // OS_ExitThread
     UT_AssertEq(t->context.r[0], (u32)0x12345678);      // arg
     flag = ((u32)OS_ExitThread & 1) ? (u32)HW_PSR_THUMB_STATE : (u32)HW_PSR_ARM_STATE;
     UT_AssertEq(t->context.cpsr, (u32)HW_PSR_IRQ_DISABLE | HW_PSR_SYS_MODE | flag);
     UT_AssertEq(t->context.sp, (u32)0x6789abcd - HW_SVC_STACK_SIZE);
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     UT_AssertEq(t->state, OS_THREAD_STATE_READY);
     UT_AssertAsserted(OSi_KillThreadWithPriority(0, 0, 16));
 }

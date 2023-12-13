@@ -1,12 +1,12 @@
 //==============================================================================
 /**
  * @file	connect_anm.h
- * @brief	WifiÚ‘±‰æ–Ê‚ÌBGƒAƒjƒ‚ÌinlineŠÖ”
+ * @brief	Wifiæ¥ç¶šç”»é¢ã®BGã‚¢ãƒ‹ãƒ¡ã®inlineé–¢æ•°
  * @author	matsuda
- * @date	2007.12.26(…)
+ * @date	2007.12.26(æ°´)
  *
- * WifiÚ‘±BG‰æ–Ê‚ªŠeƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŒÂX‚Åì¬‚³‚ê‚Ä‚¢‚é‚Ì‚ÅAƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚éˆ×‚ÌŠÖ”‚ğ
- * ‚±‚±‚É‘S‚ÄinlineŠÖ”‚Æ‚µ‚Ä—pˆÓB(•¡”‚ÌƒI[ƒo[ƒŒƒC‚É‚Ü‚½‚ª‚Á‚Ä‚¢‚éˆ×)
+ * Wifiæ¥ç¶šBGç”»é¢ãŒå„ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å€‹ã€…ã§ä½œæˆã•ã‚Œã¦ã„ã‚‹ã®ã§ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹ç‚ºã®é–¢æ•°ã‚’
+ * ã“ã“ã«å…¨ã¦inlineé–¢æ•°ã¨ã—ã¦ç”¨æ„ã€‚(è¤‡æ•°ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã«ã¾ãŸãŒã£ã¦ã„ã‚‹ç‚º)
  */
 //==============================================================================
 #ifndef __CONNECT_ANM_H__
@@ -19,19 +19,19 @@ static inline void ConnectBGPalAnm_IntrTCB(TCB_PTR tcb, void *work);
 
 //==============================================================================
 //
-//	inlineŠÖ”
+//	inlineé–¢æ•°
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   WifiÚ‘±BGƒAƒjƒF‰Šú‰»
+ * @brief   Wifiæ¥ç¶šBGã‚¢ãƒ‹ãƒ¡ï¼šåˆæœŸåŒ–
  *
- * @param   cbp				WifiÚ‘±BG‚ÌƒpƒŒƒbƒgƒAƒjƒ§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   p_hdl			BGƒpƒŒƒbƒg‚ª“ü‚Á‚Ä‚¢‚éƒA[ƒJƒCƒu‚Ìƒnƒ“ƒhƒ‹
- * @param   pal_index		BGƒpƒŒƒbƒg‚ÌIndex
- * @param   heap_id			ƒq[ƒvID(‚±‚ÌêŒÀ‚è‚Ìƒeƒ“ƒ|ƒ‰ƒŠ‚Åg—p)
+ * @param   cbp				Wifiæ¥ç¶šBGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   p_hdl			BGãƒ‘ãƒ¬ãƒƒãƒˆãŒå…¥ã£ã¦ã„ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒãƒ³ãƒ‰ãƒ«
+ * @param   pal_index		BGãƒ‘ãƒ¬ãƒƒãƒˆã®Index
+ * @param   heap_id			ãƒ’ãƒ¼ãƒ—ID(ã“ã®å ´é™ã‚Šã®ãƒ†ãƒ³ãƒãƒ©ãƒªã§ä½¿ç”¨)
  *
- * ƒ[ƒN‚ÌŠm•Û‚âTCB‚Ì¶¬“™‚Ís‚Á‚Ä‚¢‚È‚¢ˆ×AI—¹ŠÖ”‚Í‚ ‚è‚Ü‚¹‚ñB
+ * ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿ã‚„TCBã®ç”Ÿæˆç­‰ã¯è¡Œã£ã¦ã„ãªã„ç‚ºã€çµ‚äº†é–¢æ•°ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 static inline void ConnectBGPalAnm_Init(CONNECT_BG_PALANM *cbp, ARCHANDLE *p_hdl, int pal_index, int heap_id)
@@ -43,7 +43,7 @@ static inline void ConnectBGPalAnm_Init(CONNECT_BG_PALANM *cbp, ARCHANDLE *p_hdl
 
 	p_work = ArcUtil_HDL_PalDataGet(p_hdl, pal_index, &palData, heap_id);
 	
-	//ƒoƒbƒtƒ@‚ÉƒpƒŒƒbƒgƒf[ƒ^‚ğƒRƒs[
+	//ãƒãƒƒãƒ•ã‚¡ã«ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 	MI_CpuCopy16(&((u16*)(palData->pRawData))[CBP_PAL_START_NUMBER * 16], 
 		cbp->src_color, CBP_PAL_NUM * 0x20);
 	MI_CpuCopy16(&((u16*)(palData->pRawData))[CBP_PAL_START_NUMBER * 16], 
@@ -53,9 +53,9 @@ static inline void ConnectBGPalAnm_Init(CONNECT_BG_PALANM *cbp, ARCHANDLE *p_hdl
 
 	ConnectBGPalAnm_TblCreate(cbp);
 	
-	//—LŒøƒtƒ‰ƒOON
+	//æœ‰åŠ¹ãƒ•ãƒ©ã‚°ON
 	cbp->occ = TRUE;
-	//VIntroTCB¶¬
+	//VIntroTCBç”Ÿæˆ
 #ifdef PM_DEBUG
 	GF_ASSERT(DebugTCB_VintrFuncCheck(ConnectBGPalAnm_IntrTCB) == FALSE);
 #endif
@@ -64,9 +64,9 @@ static inline void ConnectBGPalAnm_Init(CONNECT_BG_PALANM *cbp, ARCHANDLE *p_hdl
 
 //--------------------------------------------------------------
 /**
- * @brief   WifiÚ‘±BGƒAƒjƒFƒƒCƒ“ˆ—
+ * @brief   Wifiæ¥ç¶šBGã‚¢ãƒ‹ãƒ¡ï¼šãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param   cbp		WifiÚ‘±BG‚ÌƒpƒŒƒbƒgƒAƒjƒ§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   cbp		Wifiæ¥ç¶šBGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static inline void ConnectBGPalAnm_End(CONNECT_BG_PALANM *cbp)
@@ -80,9 +80,9 @@ static inline void ConnectBGPalAnm_End(CONNECT_BG_PALANM *cbp)
 
 //--------------------------------------------------------------
 /**
- * @brief   WifiÚ‘±BGƒAƒjƒFƒƒCƒ“ˆ—
+ * @brief   Wifiæ¥ç¶šBGã‚¢ãƒ‹ãƒ¡ï¼šãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param   cbp		WifiÚ‘±BG‚ÌƒpƒŒƒbƒgƒAƒjƒ§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   cbp		Wifiæ¥ç¶šBGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static inline void ConnectBGPalAnm_Main(CONNECT_BG_PALANM *cbp)
@@ -92,11 +92,11 @@ static inline void ConnectBGPalAnm_Main(CONNECT_BG_PALANM *cbp)
 
 //--------------------------------------------------------------
 /**
- * @brief   WifiÚ‘±BGƒAƒjƒF“]‘—
+ * @brief   Wifiæ¥ç¶šBGã‚¢ãƒ‹ãƒ¡ï¼šè»¢é€
  *
- * @param   cbp		WifiÚ‘±BG‚ÌƒpƒŒƒbƒgƒAƒjƒ§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   cbp		Wifiæ¥ç¶šBGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * VBlank’†‚ÉŒÄ‚Ño‚·‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢
+ * VBlankä¸­ã«å‘¼ã³å‡ºã™ã‚ˆã†ã«ã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------
 static inline void ConnectBGPalAnm_VBlank(CONNECT_BG_PALANM *cbp)
@@ -129,10 +129,10 @@ static inline void ConnectBGPalAnm_VBlank(CONNECT_BG_PALANM *cbp)
 
 //--------------------------------------------------------------
 /**
- * @brief   WifiÚ‘±BGƒAƒjƒF—LŒøA–³Œøƒtƒ‰ƒO‚ğƒZƒbƒg
+ * @brief   Wifiæ¥ç¶šBGã‚¢ãƒ‹ãƒ¡ï¼šæœ‰åŠ¹ã€ç„¡åŠ¹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   cbp		WifiÚ‘±BG‚ÌƒpƒŒƒbƒgƒAƒjƒ§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   occ		TRUE:—LŒø‰»B@FALSEF–³Œø‰»
+ * @param   cbp		Wifiæ¥ç¶šBGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   occ		TRUE:æœ‰åŠ¹åŒ–ã€‚ã€€FALSEï¼šç„¡åŠ¹åŒ–
  */
 //--------------------------------------------------------------
 static inline void ConnectBGPalAnm_OccSet(CONNECT_BG_PALANM *cbp, BOOL occ)
@@ -142,9 +142,9 @@ static inline void ConnectBGPalAnm_OccSet(CONNECT_BG_PALANM *cbp, BOOL occ)
 
 //--------------------------------------------------------------
 /**
- * @brief   WifiÚ‘±BGƒAƒjƒFƒƒCƒ“ˆ—
+ * @brief   Wifiæ¥ç¶šBGã‚¢ãƒ‹ãƒ¡ï¼šãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param   cbp		WifiÚ‘±BG‚ÌƒpƒŒƒbƒgƒAƒjƒ§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   cbp		Wifiæ¥ç¶šBGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static inline void ConnectBGPalAnm_TblCreate(CONNECT_BG_PALANM *cbp)
@@ -178,7 +178,7 @@ static inline void ConnectBGPalAnm_TblCreate(CONNECT_BG_PALANM *cbp)
 
 //--------------------------------------------------------------
 /**
- * @brief   VIntr‚ÅƒpƒŒƒbƒg“]‘—
+ * @brief   VIntrã§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
  *
  * @param   tcb		
  * @param   work		

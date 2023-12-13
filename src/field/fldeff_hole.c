@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_hole.c
- * @brief	�t�B�[���hOBJ HOLE   �n���n�ʂɒu�����̂͂܂Ƃ߂ĊǗ��ɕύX
+ * @brief	フィールドOBJ HOLE   地下地面に置くものはまとめて管理に変更
  * @author	k.ohno
  * @data	05.11.29
  *
@@ -17,18 +17,18 @@
 //==============================================================================
 //	define
 //==============================================================================
-#define HOLE_DRAW_Z_OFFSET (FX32_ONE*(5))			///<㩕`��I�t�Z�b�gZ��
+#define HOLE_DRAW_Z_OFFSET (FX32_ONE*(5))			///<罠描画オフセットZ軸
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_HOLE_PTR��`
+///	FE_HOLE_PTR定義
 //--------------------------------------------------------------
 typedef struct _TAG_FE_HOLE * FE_HOLE_PTR;
 
 //--------------------------------------------------------------
-///	FE_HOLE�\����
+///	FE_HOLE構造体
 //--------------------------------------------------------------
 typedef struct _TAG_FE_HOLE
 {
@@ -37,10 +37,10 @@ typedef struct _TAG_FE_HOLE
 	FRO_OBJ robj[33];
 }FE_HOLE;
 
-#define FE_HOLE_SIZE (sizeof(FE_HOLE)) ///<FE_HOLE�T�C�Y
+#define FE_HOLE_SIZE (sizeof(FE_HOLE)) ///<FE_HOLEサイズ
 
 //--------------------------------------------------------------
-///	HOLE_ADD_H�\����
+///	HOLE_ADD_H構造体
 //--------------------------------------------------------------
 typedef struct
 {
@@ -51,27 +51,27 @@ typedef struct
 	FE_HOLE_PTR hole;						///<FE_HOLE_PTR
 }HOLE_ADD_H;
 
-#define HOLE_ADD_H_SIZE (sizeof(HOLE_ADD_H)) ///<HOLE_ADD_H�T�C�Y
+#define HOLE_ADD_H_SIZE (sizeof(HOLE_ADD_H)) ///<HOLE_ADD_Hサイズ
 
 //--------------------------------------------------------------
-///	HOLE_WORK�\����
+///	HOLE_WORK構造体
 //--------------------------------------------------------------
 typedef struct
 {
-	NNSG3dRenderObj render;  //�G
+	NNSG3dRenderObj render;  //絵
     int modelNo;
     float scale;
     float maxScale;
-	int obj_id;									///<㩑Ώ�OBJID
-	int zone_id;								///<㩑Ώۃ]�[��ID
-	int vanish_sw;								///<��\��SW
-	HOLE_ADD_H head;							///<�ǉ�����HOLE_ADD_H
+	int obj_id;									///<罠対象OBJID
+	int zone_id;								///<罠対象ゾーンID
+	int vanish_sw;								///<非表示SW
+	HOLE_ADD_H head;							///<追加時のHOLE_ADD_H
 }HOLE_WORK;
 
-#define HOLE_WORK_SIZE (sizeof(HOLE_WORK))	///<HOLE_WORK�T�C�Y
+#define HOLE_WORK_SIZE (sizeof(HOLE_WORK))	///<HOLE_WORKサイズ
 
 //==============================================================================
-//	�v���g�^�C�v
+//	プロトタイプ
 //==============================================================================
 static void Hole_GraphicInit( FE_HOLE_PTR sd );
 static void Hole_GraphicDelete( FE_HOLE_PTR sd );
@@ -79,11 +79,11 @@ static void Hole_GraphicDelete( FE_HOLE_PTR sd );
 static const EOA_H_NPP DATA_EoaH_Hole;
 
 //==============================================================================
-//	㩁@�V�X�e��
+//	罠　システム
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * 㩏�����
+ * 罠初期化
  * @param	fes		FE_SYS_PTR
  * @retval	FE_HOLE_PTR	FE_HOLE_PTR
  */
@@ -102,7 +102,7 @@ void * FE_Hole_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * 㩍폜
+ * 罠削除
  * @param	sd		FE_HOLE_PTR
  * @retval	nothing
  */
@@ -115,15 +115,15 @@ void FE_Hole_Delete( void *work )
 }
 
 //==============================================================================
-//	�	�p�[�c
+//	罠	パーツ
 //==============================================================================
 
 //==============================================================================
-//	㩁@�O���t�B�b�N
+//	罠　グラフィック
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * � �O���t�B�b�N������
+ * 罠 グラフィック初期化
  * @param	sd	FE_HOLE_PTR
  * @retval	nothing
  */
@@ -145,7 +145,7 @@ static void Hole_GraphicInit( FE_HOLE_PTR sd )
 
 //--------------------------------------------------------------
 /**
- * � �O���t�B�b�N�폜
+ * 罠 グラフィック削除
  * @param	sd	FE_HOLE_PTR
  * @retval	nothing
  */
@@ -159,11 +159,11 @@ static void Hole_GraphicDelete( FE_HOLE_PTR sd )
 }
 
 //==============================================================================
-//	㩁@EOA
+//	罠　EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * �g���b�v�ǉ�
+ * トラップ追加
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	EOA_PTR
  */
@@ -200,7 +200,7 @@ EOA_PTR FE_Hole_Add(  FIELDSYS_WORK *fsys, int x, int z, int scale, int modelNo)
 
 //--------------------------------------------------------------
 /**
- * �傫�����ω�����g���b�v�ǉ�
+ * 大きさが変化するトラップ追加
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	EOA_PTR
  */
@@ -219,10 +219,10 @@ EOA_PTR FE_ScaleHole_Add(  FIELDSYS_WORK *fsys, int x, int z, int scale,int mode
 
 //--------------------------------------------------------------
 /**
- * EOA 㩁@������
+ * EOA 罠　初期化
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=����I���BFALSE=�ُ�I��
+ * @retval	int		TRUE=正常終了。FALSE=異常終了
  */
 //--------------------------------------------------------------
 static int EoaHole_Init( EOA_PTR eoa, void *wk )
@@ -246,7 +246,7 @@ static int EoaHole_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA 㩁@�폜
+ * EOA 罠　削除
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -258,7 +258,7 @@ static void EoaHole_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA 㩁@����
+ * EOA 罠　動作
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -276,7 +276,7 @@ static void EoaHole_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA 㩁@�`��
+ * EOA 罠　描画
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -308,7 +308,7 @@ static void EoaHole_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	�EOA_H
+///	罠EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Hole =
 {

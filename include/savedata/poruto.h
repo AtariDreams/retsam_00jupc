@@ -1,44 +1,44 @@
 /**
  *  @file	poruto.h
- *	@brief	�|���g�@�Z�[�u�f�[�^�\����`�@�O���[�o���w�b�_
+ *	@brief	ポルト　セーブデータ構造定義　グローバルヘッダ
  *	@date	06.02.28
  *	@author	Miyuki Iwasawa
  *	
- *	���f�[�^���̂��`����ӏ��ȊO�ł͎Q�Ƃ��Ă͂����܂���
- *	���z�|�C���^�o�R�Ńf�[�^�A�N�Z�X�ł���Ηǂ��ӏ��ł�
- *	savedata/poruto_util.h��include���Ă�������
+ *	＊データ実体を定義する箇所以外では参照してはいけません
+ *	仮想ポインタ経由でデータアクセスできれば良い箇所では
+ *	savedata/poruto_util.hをincludeしてください
  */
 
 #ifndef __H_PORUTO_H__
 #define __H_PORUTO_H__
 
-///�|���g�f�[�^�^
+///ポルトデータ型
 //=============================================================
-//	�O�����J���Ă��܂����A���ڍ\���̃����o�փA�N�Z�X���邱�Ƃ�
-//	�����Ă��܂���B
+//	外部公開していますが、直接構造体メンバへアクセスすることは
+//	許可していません。
 //
-//	�����o�A�N�Z�X��savedata/poruto_util.h�ɒ�`���ꂽ
-//	�A�N�Z�X�n�֐�����Ă�������
+//	メンバアクセスはsavedata/poruto_util.hに定義された
+//	アクセス系関数を介してください
 //
 //=============================================================
 typedef struct _PORUTO_DATA{
  union{
 	struct{		
-	u8	flavor;		///<���̎��
-	u8	spicy;		///<�h�ݒl
-	u8	astringent;	///<�a�ݒl
-	u8	sweet;		///<�Ö�
-	u8	bitter;		///<�ꖡ
-	u8	sour;		///<�_��
-	u8	taste;		///<�|���l
-	u8	pad_dmy;	///<�p�f�B���O�p�_�~�[
+	u8	flavor;		///<味の種類
+	u8	spicy;		///<辛み値
+	u8	astringent;	///<渋み値
+	u8	sweet;		///<甘味
+	u8	bitter;		///<苦味
+	u8	sour;		///<酸味
+	u8	taste;		///<旨味値
+	u8	pad_dmy;	///<パディング用ダミー
 	};
 	u8 param[8];
  };
 }_PORUTO_DATA;
 
 //============================================================
-///�|���g�f�[�^�A�N�Z�X�n�֐�
+///ポルトデータアクセス系関数
 //============================================================
 #include "savedata/poruto_util.h"
 

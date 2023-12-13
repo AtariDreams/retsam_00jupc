@@ -1,32 +1,32 @@
 //==============================================================================
 /**
  * @file	balloon_control.dat
- * @brief	•—‘Dƒ~ƒjƒQ[ƒ€‚Ìƒf[ƒ^Ý’èƒtƒ@ƒCƒ‹
+ * @brief	é¢¨èˆ¹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®ãƒ‡ãƒ¼ã‚¿è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
  * @author	matsuda
- * @date	2008.02.21(–Ø)
+ * @date	2008.02.21(æœ¨)
  */
 //==============================================================================
 
-///ŽQ‰Ál”–ˆ‚É’è‚Ü‚Á‚Ä‚¢‚éƒf[ƒ^
+///å‚åŠ äººæ•°æ¯Žã«å®šã¾ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿
 static const BALLOON_NUM_PARTICIPATION_DATA BalloonParicipationData[] = {
-	{3000,  6000,  8000},		//1origin‰»‚Ìˆ×‚Ìƒ_ƒ~[
-	{1000,  1000,  1000},		//ŽQ‰Ál”1l@¦ƒfƒoƒbƒO—p
-	{6566, 8442, 10318},		//ŽQ‰Ál”2l	HP-LV1,2,3
-	{8428, 10836, 13244},		//ŽQ‰Ál”3l
-	{9800, 12600, 15400},		//ŽQ‰Ál”4l
+	{3000,  6000,  8000},		//1originåŒ–ã®ç‚ºã®ãƒ€ãƒŸãƒ¼
+	{1000,  1000,  1000},		//å‚åŠ äººæ•°1äººã€€â€»ãƒ‡ãƒãƒƒã‚°ç”¨
+	{6566, 8442, 10318},		//å‚åŠ äººæ•°2äºº	HP-LV1,2,3
+	{8428, 10836, 13244},		//å‚åŠ äººæ•°3äºº
+	{9800, 12600, 15400},		//å‚åŠ äººæ•°4äºº
 };
 
-///•—‘DƒŒƒxƒ‹–ˆ‚É’è‚Ü‚Á‚Ä‚¢‚éƒf[ƒ^
+///é¢¨èˆ¹ãƒ¬ãƒ™ãƒ«æ¯Žã«å®šã¾ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿
 static const BALLOON_LEVEL_DATA BalloonLevelData[] = {
 	{
 		MINI_FUSEN_MIDORIFUSEN_NCGR,
 		MINI_FUSEN_MIDORIFUSEN_NSCR,
-		0x1400 - BALLOON_SCALE_MIN,		//LV1Å‘åƒXƒP[ƒ‹
+		0x1400 - BALLOON_SCALE_MIN,		//LV1æœ€å¤§ã‚¹ã‚±ãƒ¼ãƒ«
 	},
 	{
 		MINI_FUSEN_KIIROFUSEN_NCGR, 
 		MINI_FUSEN_KIIROFUSEN_NSCR, 
-		0x1a00 - BALLOON_SCALE_MIN,		//LV2Å‘åƒXƒP[ƒ‹
+		0x1a00 - BALLOON_SCALE_MIN,		//LV2æœ€å¤§ã‚¹ã‚±ãƒ¼ãƒ«
 	},
 	{
 		MINI_FUSEN_AKAFUSEN_NCGR, 
@@ -38,24 +38,24 @@ static const BALLOON_LEVEL_DATA BalloonLevelData[] = {
 
 
 //==============================================================================
-//	ƒu[ƒXƒ^[
+//	ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼
 //==============================================================================
-///ƒu[ƒXƒ^[‚ÌˆÚ“®ƒf[ƒ^(Žü‰ñ–ˆ)
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®ç§»å‹•ãƒ‡ãƒ¼ã‚¿(å‘¨å›žæ¯Ž)
 static const BOOSTER_MOVE_DATA BoosterMoveDataTbl[] = {
-	{8, 20, 7},	//1Žü–Ú		move, wait, hit_anime_time(move‚æ‚è•K‚¸¬‚³‚­‚·‚é‚±‚ÆI)
-	{8, 17, 7},	//2Žü–Ú		move, wait
-	{8, 14, 6},	//3Žü–Ú
-	{8, 10, 6},	//4Žü–Ú
-	{8, 6, 5},	//5Žü–Ú
+	{8, 20, 7},	//1å‘¨ç›®		move, wait, hit_anime_time(moveã‚ˆã‚Šå¿…ãšå°ã•ãã™ã‚‹ã“ã¨ï¼)
+	{8, 17, 7},	//2å‘¨ç›®		move, wait
+	{8, 14, 6},	//3å‘¨ç›®
+	{8, 10, 6},	//4å‘¨ç›®
+	{8, 6, 5},	//5å‘¨ç›®
 };
 
 
 //==============================================================================
-//	‹ó‹C—Ê
+//	ç©ºæ°—é‡
 //==============================================================================
-///ƒ\[ƒiƒ“ƒX‚ÌƒŒƒAƒQ[ƒ€‚É‚æ‚é‹ó‹C—Ê•â³(ƒp[ƒZƒ“ƒe[ƒW‚ÅŽw’è)
+///ã‚½ãƒ¼ãƒŠãƒ³ã‚¹ã®ãƒ¬ã‚¢ã‚²ãƒ¼ãƒ ã«ã‚ˆã‚‹ç©ºæ°—é‡è£œæ­£(ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ã§æŒ‡å®š)
 const s32 AirRareRevision[] = {
-	100,				//ƒm[ƒ}ƒ‹	MNGM_RAREGAME_BALLOON_NORMAL
-	125,				//ƒŒƒA(‘¾)
-	88,					//ƒŒƒA(×)
+	100,				//ãƒŽãƒ¼ãƒžãƒ«	MNGM_RAREGAME_BALLOON_NORMAL
+	125,				//ãƒ¬ã‚¢(å¤ª)
+	88,					//ãƒ¬ã‚¢(ç´°)
 };

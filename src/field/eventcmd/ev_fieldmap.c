@@ -1,9 +1,9 @@
 //============================================================================================
 /**
  * @file	ev_fieldmap.c
- * @brief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvØ‘Ö‚ÌƒCƒxƒ“ƒg‚Æ‚»‚Ì¶¬ƒ`ƒFƒbƒN
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—åˆ‡æ›¿ã®ã‚¤ãƒ™ãƒ³ãƒˆã¨ãã®ç”Ÿæˆãƒã‚§ãƒƒã‚¯
  * @date	2005.08.01
- * @date	2005.12.17	ev_mapchange.c‚©‚çØ‚è—£‚µ
+ * @date	2005.12.17	ev_mapchange.cã‹ã‚‰åˆ‡ã‚Šé›¢ã—
  * @author	tamada
  */
 //============================================================================================
@@ -32,15 +32,15 @@ static BOOL GMEVENT_Sub_FieldEnd(GMEVENT_CONTROL * event)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒvƒƒZƒXI—¹
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_FinishFieldMap(GMEVENT_CONTROL * event)
 {
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	if (!GameSystem_CheckFieldProcExists(fsys)) {
-		GF_ASSERT("mainproc‚ª‚È‚¢‚Ì‚É~‚ß‚æ‚¤‚Æ‚µ‚Ä‚¢‚é\n" && 0);
+		GF_ASSERT("mainprocãŒãªã„ã®ã«æ­¢ã‚ã‚ˆã†ã¨ã—ã¦ã„ã‚‹\n" && 0);
 		return;
 	}
 	GameSystem_FinishFieldProc(fsys);
@@ -62,15 +62,15 @@ static BOOL GMEVENT_Sub_FieldStart(GMEVENT_CONTROL * event)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJn
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_StartFieldMap(GMEVENT_CONTROL * event)
 {
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	if (GameSystem_CheckFieldProcExists(fsys)) {
-		GF_ASSERT("mainproc‚ª‚ ‚é‚Ì‚ÉŠJn‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é\n" && 0);
+		GF_ASSERT("mainprocãŒã‚ã‚‹ã®ã«é–‹å§‹ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹\n" && 0);
 		return;
 	}
 	FieldEvent_Cmd_SetMapProc(fsys);
@@ -94,15 +94,15 @@ static BOOL GMEVENT_Sub_WaitFade(GMEVENT_CONTROL * event)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒAƒEƒg
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_FieldFadeOut(GMEVENT_CONTROL * event)
 {
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	if (!GameSystem_CheckFieldProcExists(fsys)) {
-		GF_ASSERT("mainproc‚ª‚È‚¢‚Ì‚ÉƒtƒF[ƒh‚ğÀs\n" && 0);
+		GF_ASSERT("mainprocãŒãªã„ã®ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å®Ÿè¡Œ\n" && 0);
 		return;
 	}
 	
@@ -123,15 +123,15 @@ void EventCmd_FieldFadeOut(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒCƒ“
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_FieldFadeIn(GMEVENT_CONTROL * event)
 {
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	if (!GameSystem_CheckFieldProcExists(fsys)) {
-		GF_ASSERT("mainproc‚ª‚È‚¢‚Ì‚ÉƒtƒF[ƒh‚ğÀs\n" && 0);
+		GF_ASSERT("mainprocãŒãªã„ã®ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å®Ÿè¡Œ\n" && 0);
 		return;
 	}
 
@@ -170,8 +170,8 @@ static BOOL GMEVENT_Sub_FadeOut_FinishField(GMEVENT_CONTROL * event)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒAƒEƒg¨ƒtƒB[ƒ‹ƒhƒvƒƒZƒXI—¹
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆâ†’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_FadeOut_FinishField(GMEVENT_CONTROL * event)
@@ -194,7 +194,7 @@ static BOOL GMEVENT_Sub_StartField_FadeIn(GMEVENT_CONTROL * event)
 		(*seq) ++;
 		break;
 	case 1:
-		//’n–¼•\¦
+		//åœ°åè¡¨ç¤º
 		PlaceNameRequestByFsys(fsys);
 		
 		EventCmd_FieldFadeIn(event);
@@ -207,8 +207,8 @@ static BOOL GMEVENT_Sub_StartField_FadeIn(GMEVENT_CONTROL * event)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJn¨ƒtƒF[ƒhƒCƒ“
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹â†’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_StartField_FadeIn(GMEVENT_CONTROL * event)

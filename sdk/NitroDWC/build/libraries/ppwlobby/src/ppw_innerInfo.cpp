@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ‰ƒbƒp[ƒ†[ƒeƒBƒŠƒeƒB[ ƒ\[ƒX
+ * @brief ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ©ãƒƒãƒ‘ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ¼ ã‚½ãƒ¼ã‚¹
  */
 
 #include <lobby/dwci_lobby.h>
@@ -68,7 +68,7 @@ BOOL PPW_LobbyInnerInfoManager::GetVipRecords(PPW_LobbyVipRecord* records, u32& 
     num = vipRecords.size();
     if(orgSize < num || !records)
     {
-        // •K—vŒÂ”‚Ì‚İ’Ê’m
+        // å¿…è¦å€‹æ•°ã®ã¿é€šçŸ¥
         return FALSE;
     }
     
@@ -104,12 +104,12 @@ BOOL PPW_LobbyInnerInfoManager::SetLobbyInfo(const u8* buf, u32 size)
     random = info->random;
     scheduleRecords.assign(info->scheduleRecords, info->scheduleRecords + info->scheduleRecordNum);
     std::stable_sort(scheduleRecords.begin(), scheduleRecords.end(), LessScheduleRecord());
-    // c‚èƒCƒxƒ“ƒgƒLƒ…[‚ğ‰Šú‰»
+    // æ®‹ã‚Šã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¥ãƒ¼ã‚’åˆæœŸåŒ–
     scheduleRecordsRemain.assign(scheduleRecords.begin(), scheduleRecords.end());
     return TRUE;
 }
 
-// ‚±‚ÌŠÖ”‚Åƒ`ƒFƒbƒN‚ğ’Ê‚Á‚½ƒf[ƒ^‚ÍSetLobbyInfoŠÖ”‚Å•K‚¸TRUE‚ğ•Ô‚·
+// ã“ã®é–¢æ•°ã§ãƒã‚§ãƒƒã‚¯ã‚’é€šã£ãŸãƒ‡ãƒ¼ã‚¿ã¯SetLobbyInfoé–¢æ•°ã§å¿…ãšTRUEã‚’è¿”ã™
 BOOL PPW_LobbyInnerInfoManager::CheckLobbyInfo(const u8* buf, u32 size)
 {
     if(size < sizeof(PPW_LobbySchedule) - sizeof(PPW_LobbyScheduleRecord))
@@ -155,7 +155,7 @@ BOOL PPW_LobbyInnerInfoManager::CheckVipRecord(const u8* buf, u32 size)
     return TRUE;
 }
 
-// ƒAƒ“ƒP[ƒgî•ñ‚ğæ“¾‚·‚éB‚Ü‚¾æ“¾‚µ‚Ä‚¢‚È‚©‚Á‚½‚çFALSE‚ğ•Ô‚·
+// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€‚ã¾ã å–å¾—ã—ã¦ã„ãªã‹ã£ãŸã‚‰FALSEã‚’è¿”ã™
 BOOL PPW_LobbyInnerInfoManager::GetQuestionnaire(PPW_LobbyQuestionnaire* questionnaire_)
 {
     if(!bSetQuestionnaire)
@@ -190,18 +190,18 @@ void PPW_LobbyInnerInfoManager::Process()
         {
             DWCi_LobbySetChannelMode(PPW_GetLobby()->GetMainChannel().GetName().c_str(), &PPW_LOBBY_CHANNEL_MODE_MAIN_LOCK);
             
-            // ‚İ‚ñ‚È‚É’Ê’m‚·‚é
+            // ã¿ã‚“ãªã«é€šçŸ¥ã™ã‚‹
             PPW_LobbyDummyData dummyData;
             PPW_LobbySendMessage(PPW_LOBBY_INVALID_USER_ID, PPW_LOBBY_CHANNEL_KIND_MAIN, PPW_LobbyMessage::FORMAT_BASE64, PPW_LobbyMessage::TARGET_SYSTEM,
                                  PPW_LOBBY_MESSAGE_TYPE_LOCK, (u8*)&dummyData, sizeof(dummyData));
             
-            // ©”­“I‚ÉƒƒbƒN‚·‚é
+            // è‡ªç™ºçš„ã«ãƒ­ãƒƒã‚¯ã™ã‚‹
             Lock();
         }
         break;
     case LOCKED:
     {
-        // ƒCƒxƒ“ƒg‚ÌŠÔ‚©ƒ`ƒFƒbƒN‚·‚é
+        // ã‚¤ãƒ™ãƒ³ãƒˆã®æ™‚é–“ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
         if(scheduleRecordsRemain.empty())
         {
             break;
@@ -226,10 +226,10 @@ void PPW_LobbyInnerInfoManager::Process()
     }
 }
 
-// •”‰®‚ğ•Â‚¶‚é•K—v‚ª‚ ‚é‚©
+// éƒ¨å±‹ã‚’é–‰ã˜ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹
 BOOL PPW_LobbyInnerInfoManager::NeedLock() const
 {
-    // ƒƒr[‚ÌƒXƒe[ƒg‚ªReady‚É‚È‚é‚Ü‚ÅƒƒbƒN‚ğ‰„Šú‚·‚é
+    // ãƒ­ãƒ“ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ãƒˆãŒReadyã«ãªã‚‹ã¾ã§ãƒ­ãƒƒã‚¯ã‚’å»¶æœŸã™ã‚‹
     if(state == LOCKED || PPW_GetLobby()->GetState() != PPW_LOBBY_STATE_READY)
     {
         return FALSE;
@@ -240,19 +240,19 @@ BOOL PPW_LobbyInnerInfoManager::NeedLock() const
         return FALSE;
     }
     
-    // ƒƒbƒN—\–ñÏ‚İ‚È‚çƒƒbƒN‚³‚¹‚é
+    // ãƒ­ãƒƒã‚¯äºˆç´„æ¸ˆã¿ãªã‚‰ãƒ­ãƒƒã‚¯ã•ã›ã‚‹
     if(bLockReserved)
     {
         return TRUE;
     }
     
-    // Q‰Ál”‚ğŠm”F
+    // å‚åŠ äººæ•°ã‚’ç¢ºèª
     if(PPW_GetLobby()->GetProfileManager().IsFull())
     {
         return TRUE;
     }
     
-    // ŠÔ’´‰ß‚ğŠm”F
+    // æ™‚é–“è¶…éã‚’ç¢ºèª
     if(DWCi_Np_GetCurrentSecondByUTC() > timeData.openedTime + lockTime)
     {
         return TRUE;
@@ -260,24 +260,24 @@ BOOL PPW_LobbyInnerInfoManager::NeedLock() const
     return FALSE;
 }
 
-// •”‰®‚ª•Â‚¶‚ç‚ê‚½
-// @retval TRUE ƒƒbƒN‚µ‚½
-// @retval FALSE ƒƒbƒN‚ğ—\–ñ‚µ‚½‚Ì‚Å‚ ‚Æ‚ÅƒƒbƒN‚³‚ê‚é
+// éƒ¨å±‹ãŒé–‰ã˜ã‚‰ã‚ŒãŸ
+// @retval TRUE ãƒ­ãƒƒã‚¯ã—ãŸ
+// @retval FALSE ãƒ­ãƒƒã‚¯ã‚’äºˆç´„ã—ãŸã®ã§ã‚ã¨ã§ãƒ­ãƒƒã‚¯ã•ã‚Œã‚‹
 BOOL PPW_LobbyInnerInfoManager::Lock()
 {
-    // ƒƒr[‚ÌƒXƒe[ƒg‚ªReady‚É‚È‚é‚Ü‚ÅƒƒbƒN‚ğ‰„Šú‚·‚é
+    // ãƒ­ãƒ“ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ãƒˆãŒReadyã«ãªã‚‹ã¾ã§ãƒ­ãƒƒã‚¯ã‚’å»¶æœŸã™ã‚‹
     if(state != LOCKED && PPW_GetLobby()->GetState() == PPW_LOBBY_STATE_READY)
     {
         lockedTime = DWCi_Np_GetCurrentSecondByUTC();
         state = LOCKED;
         bLockReserved = FALSE;
         
-        // ƒƒbƒN‚ğ’Ê’m
+        // ãƒ­ãƒƒã‚¯ã‚’é€šçŸ¥
         PPW_GetLobby()->GetCallbacks().lobbyScheduleProgressCallback(PPW_LOBBY_TIME_EVENT_LOCK);
         return TRUE;
     }
     
-    // ƒƒbƒN‚·‚é‚±‚Æ‚ğ—\–ñ‚·‚é
+    // ãƒ­ãƒƒã‚¯ã™ã‚‹ã“ã¨ã‚’äºˆç´„ã™ã‚‹
     bLockReserved = TRUE;
     
     return FALSE;

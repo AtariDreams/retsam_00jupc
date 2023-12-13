@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MATH_QSort</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MATH_QSort</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -25,7 +25,7 @@ void MATH_QSort( void *head,
                     void *stackBuf );<BR>
 </CODE></PRE>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   
@@ -33,39 +33,39 @@ void MATH_QSort( void *head,
     
     <TR>
       <TD width="176"><em><strong><font face="Courier New">head</font></strong></em></TD>
-      <TD width="670">�\�[�g����f�[�^�ւ̃|�C���^��n���܂��B</TD>
+      <TD width="670">ソートするデータへのポインタを渡します。</TD>
     </TR>
     <TR>
       <TD><em><strong><font face="Courier New">num</font></strong></em></TD>
-      <TD>�\�[�g����f�[�^�̌����w�肵�܂��B</TD>
+      <TD>ソートするデータの個数を指定します。</TD>
     </TR>
     <TR>
       <TD><em><strong><font face="Courier New">width</font></strong></em></TD>
-      <TD>�f�[�^�P���̃f�[�^�T�C�Y���w�肵�܂��B</TD>
+      <TD>データ１つ分のデータサイズを指定します。</TD>
     </TR>
     <TR>
       <TD><em><strong><font face="Courier New">comp</font></strong></em></TD>
-      <TD>�z��v�f�̔�r�֐����w�肵�܂��B</TD>
+      <TD>配列要素の比較関数を指定します。</TD>
     </TR>
     <TR>
       <TD><em><strong><font face="Courier New">stackBuf</font></strong></em></TD>
-      <TD>�����Ŏg�p����o�b�t�@��^���܂��B�K�v�ȃo�b�t�@�̃T�C�Y��<A href="MATH_QSortStackSize.html">MATH_QSortStackSize</A>�֐��Ŏ擾���邱�Ƃ��ł��܂��B<BR>
-      ���������̈�����NULL�̏ꍇ�ɂ̓X�^�b�N���烁�������m�ۂ���܂����A�X�^�b�N�I�[�o�[�t���[�ɒ��ӂ���K�v������܂��B</TD>
+      <TD>内部で使用するバッファを与えます。必要なバッファのサイズは<A href="MATH_QSortStackSize.html">MATH_QSortStackSize</A>関数で取得することができます。<BR>
+      もしもこの引数がNULLの場合にはスタックからメモリが確保されますが、スタックオーバーフローに注意する必要があります。</TD>
     </TR>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
-<H2>����</H2>
-<P>�N�C�b�N�\�[�g�������Ȃ��֐��ł��B<BR>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>クイックソートをおこなう関数です。<BR>
 <BR>
-���̊֐��ł͍ċA�Ăяo���͎g�p����܂��񂪁A�ւ��Ɉ���stackBuf�Ń\�[�g�p�̍�Ɨ̈��^����K�v������܂��B<BR>
-��������Ɨ̈悪NULL�ŗ^����ꂽ�ꍇ�ɂ̓X�^�b�N���g�p���ă\�[�g���s�Ȃ��܂��̂ŁA�X�^�b�N�̃I�[�o�[�t���[�ɒ��ӂ��Ă��������B<BR>
+この関数では再帰呼び出しは使用されませんが、替わりに引数stackBufでソート用の作業領域を与える必要があります。<BR>
+もしも作業領域がNULLで与えられた場合にはスタックを使用してソートを行ないますので、スタックのオーバーフローに注意してください。<BR>
 <BR>
-��Ɨ̈�ɂ�(Log2(num)+1) * 8 byte�̗e�ʂ��K�v�ƂȂ�A���̒l��<A href="MATH_QSortStackSize.html">MATH_QSortStackSize</A>�֐��Ŏ擾���邱�Ƃ��\�ł��B<BR>
+作業領域には(Log2(num)+1) * 8 byteの容量が必要となり、この値は<A href="MATH_QSortStackSize.html">MATH_QSortStackSize</A>関数で取得することが可能です。<BR>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><A href="MATH_QSortStackSize.html">MATH_QSortStackSize</A>, <A href="MATHCompareFunc.html">MATHCompareFunc</A></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>Ver. 2005/04/12</P>
 </body>
 </html>

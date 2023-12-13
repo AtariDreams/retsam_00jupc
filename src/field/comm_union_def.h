@@ -2,60 +2,60 @@
 #define	__COMM_UNION_DEF_H__
 
 //----------------------------------------------
-// Union_ConnectResultGet‚ª•Ô‚·’l
+// Union_ConnectResultGetãŒè¿”ã™å€¤
 //----------------------------------------------
-#define UNION_CONNECT_BUSY			( 0	) ///< “r’†
-#define UNION_CONNECT_SUCCESS   	( 1	) ///< Ú‘±¬Œ÷
-#define UNION_CONNECT_FAILED		( 2	) ///< Ú‘±¸”s
-#define UNION_CONNECT_PARENT		( 3 ) ///< q‹@‚Æ‚µ‚ÄÚ‘±‚µ‚É‚¢‚Á‚½‚Ì‚Ée‹@‚É‚È‚Á‚½
+#define UNION_CONNECT_BUSY			( 0	) ///< é€”ä¸­
+#define UNION_CONNECT_SUCCESS   	( 1	) ///< æ¥ç¶šæˆåŠŸ
+#define UNION_CONNECT_FAILED		( 2	) ///< æ¥ç¶šå¤±æ•—
+#define UNION_CONNECT_PARENT		( 3 ) ///< å­æ©Ÿã¨ã—ã¦æ¥ç¶šã—ã«ã„ã£ãŸã®ã«è¦ªæ©Ÿã«ãªã£ãŸ
 
-#define UNION_SELECT_EVENT			( 0 ) ///< ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Ås‚¤“à—e
-#define UNION_YESNO_RESULT			( 1 ) ///< ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Å•·‚¢‚½‚Í‚¢E‚¢‚¢‚¦‚ÌŒ‹‰Ê
+#define UNION_SELECT_EVENT			( 0 ) ///< ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§è¡Œã†å†…å®¹
+#define UNION_YESNO_RESULT			( 1 ) ///< ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§èã„ãŸã¯ã„ãƒ»ã„ã„ãˆã®çµæœ
 
-// q‹@‚Ì‘I‘ğˆ•ŠJnƒCƒxƒ“ƒgˆ—‚Ì”Ô†
-#define UNION_CHILD_SELECT_CARD		( 1 ) ///< Ú‘±Œã‚Ì‘I‘ğˆ‚Åu‚ ‚¢‚³‚Âv
-#define UNION_CHILD_SELECT_BATTLE	( 2 ) ///< Ú‘±Œã‚Ì‘I‘ğˆ‚Åu‚½‚¢‚¹‚ñv
-#define UNION_CHILD_SELECT_TRDE		( 3 ) ///< Ú‘±Œã‚Ì‘I‘ğˆ‚Åu‚±‚¤‚©‚ñv
-#define UNION_CHILD_SELECT_OEKAKI	( 4 ) ///< Ú‘±Œã‚Ì‘I‘ğˆ‚Åu‚¨‚¦‚©‚«v
-#define UNION_CHILD_SELECT_RECORD	( 5 ) ///< Ú‘±Œã‚Ì‘I‘ğˆ‚ÅuƒŒƒR[ƒhv
-#define UNION_CHILD_SELECT_GURUGURU	( 6 ) ///< Ú‘±Œã‚Ì‘I‘ğˆ‚Åu‚®‚é‚®‚éŒğŠ·v
-#define UNION_CHILD_SELECT_CANCEL	( 7 ) ///< Ú‘±Œã‚Ì‘I‘ğˆ‚Åu‚â‚ß‚év
-#define UNION_PARENT_SELECT_CANCEL	( 8 ) ///< e‹@‚©‚çƒLƒƒƒ“ƒZƒ‹‚ª—ˆ‚½
+// å­æ©Ÿã®é¸æŠè‚¢ï¼†é–‹å§‹ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ã®ç•ªå·
+#define UNION_CHILD_SELECT_CARD		( 1 ) ///< æ¥ç¶šå¾Œã®é¸æŠè‚¢ã§ã€Œã‚ã„ã•ã¤ã€
+#define UNION_CHILD_SELECT_BATTLE	( 2 ) ///< æ¥ç¶šå¾Œã®é¸æŠè‚¢ã§ã€ŒãŸã„ã›ã‚“ã€
+#define UNION_CHILD_SELECT_TRDE		( 3 ) ///< æ¥ç¶šå¾Œã®é¸æŠè‚¢ã§ã€Œã“ã†ã‹ã‚“ã€
+#define UNION_CHILD_SELECT_OEKAKI	( 4 ) ///< æ¥ç¶šå¾Œã®é¸æŠè‚¢ã§ã€ŒãŠãˆã‹ãã€
+#define UNION_CHILD_SELECT_RECORD	( 5 ) ///< æ¥ç¶šå¾Œã®é¸æŠè‚¢ã§ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰ã€
+#define UNION_CHILD_SELECT_GURUGURU	( 6 ) ///< æ¥ç¶šå¾Œã®é¸æŠè‚¢ã§ã€Œãã‚‹ãã‚‹äº¤æ›ã€
+#define UNION_CHILD_SELECT_CANCEL	( 7 ) ///< æ¥ç¶šå¾Œã®é¸æŠè‚¢ã§ã€Œã‚„ã‚ã‚‹ã€
+#define UNION_PARENT_SELECT_CANCEL	( 8 ) ///< è¦ªæ©Ÿã‹ã‚‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãŒæ¥ãŸ
 
-//#define UNION_CHILD_SELECT_PL_GURUGURU	( 9 ) ///< Ú‘±Œã‚Ì‘I‘ğˆ‚Åu‚®‚é‚®‚éŒğŠ·v
+//#define UNION_CHILD_SELECT_PL_GURUGURU	( 9 ) ///< æ¥ç¶šå¾Œã®é¸æŠè‚¢ã§ã€Œãã‚‹ãã‚‹äº¤æ›ã€
 
 
-// ˜b‚µ‚©‚¯ŠJn‚Ìƒr[ƒRƒ“Šm”FŒ‹‰Ê—p’è‹`
-#define UNION_PARENT_CONNECT_OK			(  1 )	// ƒ†ƒjƒIƒ“Ú‘±ƒgƒ‰ƒCŠJn
-#define UNION_PARENT_OEKAKI_OK			(  2 )	// ‚¨ŠG‚©‚«—“ü’ÊMƒgƒ‰ƒCŠJn
-#define UNION_PARENT_RECORD_OK			(  3 )	// ƒŒƒR[ƒh—“ü’ÊMƒgƒ‰ƒCŠJn
-#define UNION_PARENT_GURUGURU_OK		(  4 )	// ‚®‚é‚®‚éŒğŠ·—“ü’ÊMƒgƒ‰ƒCŠJn
-#define UNION_PARENT_CONNECT_NG			(  5 )	// Šù‚ÉÚ‘±Ï‚İ‚È‚Ì‚ÅŒq‚ª‚ç‚È‚¢ ¨ ‰ï˜b‚Ö
+// è©±ã—ã‹ã‘é–‹å§‹æ™‚ã®ãƒ“ãƒ¼ã‚³ãƒ³ç¢ºèªçµæœç”¨å®šç¾©
+#define UNION_PARENT_CONNECT_OK			(  1 )	// ãƒ¦ãƒ‹ã‚ªãƒ³æ¥ç¶šãƒˆãƒ©ã‚¤é–‹å§‹
+#define UNION_PARENT_OEKAKI_OK			(  2 )	// ãŠçµµã‹ãä¹±å…¥é€šä¿¡ãƒˆãƒ©ã‚¤é–‹å§‹
+#define UNION_PARENT_RECORD_OK			(  3 )	// ãƒ¬ã‚³ãƒ¼ãƒ‰ä¹±å…¥é€šä¿¡ãƒˆãƒ©ã‚¤é–‹å§‹
+#define UNION_PARENT_GURUGURU_OK		(  4 )	// ãã‚‹ãã‚‹äº¤æ›ä¹±å…¥é€šä¿¡ãƒˆãƒ©ã‚¤é–‹å§‹
+#define UNION_PARENT_CONNECT_NG			(  5 )	// æ—¢ã«æ¥ç¶šæ¸ˆã¿ãªã®ã§ç¹‹ãŒã‚‰ãªã„ â†’ ä¼šè©±ã¸
 
-// ƒgƒŒ[ƒi[–¼‚ğİ’è‚·‚é‚Æ‚«‚Ég—p‚·‚é’è‹`		
-#define UNION_TALK_CHILD				( 0 )	// ˜b‚µ‚©‚¯‚é•û‚Ì–¼‘Oİ’èi“ü‚ê‚é‚Ì‚Í˜b‚µ‚©‚¯‚é‘Šè‚Ì–¼‘Oj
-#define UNION_TALK_PARENT				( 1 )	// ˜b‚µ‚©‚¯‚ç‚ê‚é•û‚Ì–¼‘Oİ’èi“ü‚ê‚é‚Ì‚Í˜b‚µ‚©‚¯‚Ä‚«‚½‘Šè‚Ì–¼‘Oj
+// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’è¨­å®šã™ã‚‹ã¨ãã«ä½¿ç”¨ã™ã‚‹å®šç¾©		
+#define UNION_TALK_CHILD				( 0 )	// è©±ã—ã‹ã‘ã‚‹æ–¹ã®åå‰è¨­å®šï¼ˆå…¥ã‚Œã‚‹ã®ã¯è©±ã—ã‹ã‘ã‚‹ç›¸æ‰‹ã®åå‰ï¼‰
+#define UNION_TALK_PARENT				( 1 )	// è©±ã—ã‹ã‘ã‚‰ã‚Œã‚‹æ–¹ã®åå‰è¨­å®šï¼ˆå…¥ã‚Œã‚‹ã®ã¯è©±ã—ã‹ã‘ã¦ããŸç›¸æ‰‹ã®åå‰ï¼‰
 
-// ƒoƒgƒ‹ŠJn‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‘I‘ğ‚ÌŒ‹‰Ê‚ğ•Ô‚·
-#define UNION_BATTLE_POKELIST_OK		( 1 )	// ƒ|ƒPƒ‚ƒ“‚ğ‘I‘ğ‚µ‚½
-#define UNION_BATTLE_POKELIST_NG		( 2 )	// ‚â‚ß‚é‚ğ‘I‘ğ‚µ‚½
+// ãƒãƒˆãƒ«é–‹å§‹æ™‚ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆé¸æŠã®çµæœã‚’è¿”ã™
+#define UNION_BATTLE_POKELIST_OK		( 1 )	// ãƒã‚±ãƒ¢ãƒ³ã‚’é¸æŠã—ãŸ
+#define UNION_BATTLE_POKELIST_NG		( 2 )	// ã‚„ã‚ã‚‹ã‚’é¸æŠã—ãŸ
 
-// ƒoƒgƒ‹ŠJn‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‘I‘ğ‚ÌŒ‹‰Ê‚ğ•Ô‚·
+// ãƒãƒˆãƒ«é–‹å§‹æ™‚ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆé¸æŠã®çµæœã‚’è¿”ã™
 #define UNION_BATTLE_OK					( 0 )	
-#define UNION_BATTLE_MY_CANCEL			( 1 )	// ©•ª‚ªí“¬‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚½
-#define UNION_BATTLE_PARTNER_CANCEL		( 2 )	// ‘Šè‚ªí“¬‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚½
+#define UNION_BATTLE_MY_CANCEL			( 1 )	// è‡ªåˆ†ãŒæˆ¦é—˜ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸ
+#define UNION_BATTLE_PARTNER_CANCEL		( 2 )	// ç›¸æ‰‹ãŒæˆ¦é—˜ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸ
 
-// ó‹µ‚É‰‚¶‚Ä‰ï˜b”Ô†‚ğæ“¾‚·‚é‚½‚ß‚Ìó‹µİ’è’è‹`
-#define UNION_NO_CONNECT_TALK			( 0 )	// ’P‚È‚é—§‚¿˜biÚ‘±‚Å‚«‚È‚¢‘Šè‚Ì˜b‚ğ•·‚­j
-#define UNION_CONNECTED_START_TALK		( 1 )	// —V‚Ô–‚É‚È‚Á‚½‚Ì‚Åu‚¶‚á‚ A‚Í‚¶‚ß‚æ‚¤v‚Æ‚¢‚¤‰ï˜b
-#define UNION_CONNECT_SUCCESS_TALK		( 2 )	// Ú‘±‚É¬Œ÷‚µ‚½
-#define UNION_TALK_CANCEL_CARD			( 3 )   // ƒJ[ƒh‚ğ’f‚ç‚ê‚½
-#define UNION_TALK_CANCEL_OEKAKI		( 4 )   // ‚¨‚¦‚©‚«‚ğ’f‚ç‚ê‚½
-#define UNION_TALK_CANCEL_BATTLE		( 5 )   // ‚½‚¢‚¹‚ñ‚ğ’f‚ç‚ê‚½
-#define UNION_TALK_CANCEL_TRADE			( 6 )   // ‚±‚¤‚©‚ñ‚ğ’f‚ç‚ê‚½
-#define UNION_TALK_CANCEL_GURUGURU		( 7 )   // ‚®‚é‚®‚é‚ğ’f‚ç‚ê‚½
-#define UNION_TALK_CANCEL_RECORD		( 8 )   // ƒŒƒR[ƒh‚ğ’f‚ç‚ê‚½
-#define UNION_CONNECT_ANSWER_WAIT		( 9 )   // —V‚Ñ‚ğŒˆ‚ß‚½ŒãA‘Šè‚Ì•Ô–‚ğ‘Ò‚Â
+// çŠ¶æ³ã«å¿œã˜ã¦ä¼šè©±ç•ªå·ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®çŠ¶æ³è¨­å®šå®šç¾©
+#define UNION_NO_CONNECT_TALK			( 0 )	// å˜ãªã‚‹ç«‹ã¡è©±ï¼ˆæ¥ç¶šã§ããªã„ç›¸æ‰‹ã®è©±ã‚’èãï¼‰
+#define UNION_CONNECTED_START_TALK		( 1 )	// éŠã¶äº‹ã«ãªã£ãŸã®ã§ã€Œã˜ã‚ƒã‚ã€ã¯ã˜ã‚ã‚ˆã†ã€ã¨ã„ã†ä¼šè©±
+#define UNION_CONNECT_SUCCESS_TALK		( 2 )	// æ¥ç¶šã«æˆåŠŸã—ãŸ
+#define UNION_TALK_CANCEL_CARD			( 3 )   // ã‚«ãƒ¼ãƒ‰ã‚’æ–­ã‚‰ã‚ŒãŸ
+#define UNION_TALK_CANCEL_OEKAKI		( 4 )   // ãŠãˆã‹ãã‚’æ–­ã‚‰ã‚ŒãŸ
+#define UNION_TALK_CANCEL_BATTLE		( 5 )   // ãŸã„ã›ã‚“ã‚’æ–­ã‚‰ã‚ŒãŸ
+#define UNION_TALK_CANCEL_TRADE			( 6 )   // ã“ã†ã‹ã‚“ã‚’æ–­ã‚‰ã‚ŒãŸ
+#define UNION_TALK_CANCEL_GURUGURU		( 7 )   // ãã‚‹ãã‚‹ã‚’æ–­ã‚‰ã‚ŒãŸ
+#define UNION_TALK_CANCEL_RECORD		( 8 )   // ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’æ–­ã‚‰ã‚ŒãŸ
+#define UNION_CONNECT_ANSWER_WAIT		( 9 )   // éŠã³ã‚’æ±ºã‚ãŸå¾Œã€ç›¸æ‰‹ã®è¿”äº‹ã‚’å¾…ã¤
 
 #define UNION_JOIN_OEKAKI_TALK			( 10 )
 #define UNION_JOIN_RECORD_TALK			( 11 )
@@ -74,27 +74,27 @@
 #define UNION_CONNECT_GURUGURU_REJECT	( 21 )
 
 #define UNION_SELECT_NEXT_TALK			( 22 )
-#define UNION_TALK_CONNECT_CANCEL		( 23 )	// ©•ª‚Åq‹@‚ªØ‚Á‚½i˜b‚µ‚©‚¯‚½•ûj
-#define UNION_TALK_CONNECT_CANCELED		( 24 )	// ‘Šè‚ÉØ‚ç‚ê‚½i˜b‚µ‚©‚¯‚½•ûj
+#define UNION_TALK_CONNECT_CANCEL		( 23 )	// è‡ªåˆ†ã§å­æ©ŸãŒåˆ‡ã£ãŸï¼ˆè©±ã—ã‹ã‘ãŸæ–¹ï¼‰
+#define UNION_TALK_CONNECT_CANCELED		( 24 )	// ç›¸æ‰‹ã«åˆ‡ã‚‰ã‚ŒãŸï¼ˆè©±ã—ã‹ã‘ãŸæ–¹ï¼‰
 
-#define UNION_TALK_CONNECT_VERCHK_DP	( 25 )	// Version‚ªDP‚¾‚Á‚½ê‡
-#define UNION_TALK_DAMETAMAGO_CANCEL	( 26 )  // è‚¿‚Éƒ_ƒƒ^ƒ}ƒS‚ª‚ ‚Á‚½ê‡
+#define UNION_TALK_CONNECT_VERCHK_DP	( 25 )	// VersionãŒDPã ã£ãŸå ´åˆ
+#define UNION_TALK_DAMETAMAGO_CANCEL	( 26 )  // æ‰‹æŒã¡ã«ãƒ€ãƒ¡ã‚¿ãƒã‚´ãŒã‚ã£ãŸå ´åˆ
 
-// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Å’ÊM‚Å—V‚Ô“à—e‚ª‚«‚Ü‚Á‚½‚ÉƒtƒF[ƒhƒAƒEƒg‚·‚é‚Ü‚Å‚ÌŠÔ
-#define UNION_EVNET_PRE_WAIT			( 30 )  // 1•bŠÔ
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§é€šä¿¡ã§éŠã¶å†…å®¹ãŒãã¾ã£ãŸæ™‚ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã™ã‚‹ã¾ã§ã®é–“
+#define UNION_EVNET_PRE_WAIT			( 30 )  // 1ç§’é–“
 
 
 
-// ’ÊMŠJn‚µ‚½‚Ì“¯Šú”Ô†
+// é€šä¿¡é–‹å§‹ã—ãŸæ™‚ã®åŒæœŸç•ªå·
 #define UNION_SYNCHRO_CONNECTSTART		( 100 )
 
-// ’ÊMI—¹‚Ì‚Ì“¯Šú”Ô†
+// é€šä¿¡çµ‚äº†ã®æ™‚ã®åŒæœŸç•ªå·
 #define UNION_SYNCHRO_CONNECTEND		( 101 )
 
-// ‚½‚¢‚¹‚ñ‚ª¬—§‚µ‚½ŒãAƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚©‚ç–ß‚Á‚Ä‚­‚é‚Ì‚ğ‘Ò‚Â‚½‚ß‚Ì“¯Šú
+// ãŸã„ã›ã‚“ãŒæˆç«‹ã—ãŸå¾Œã€ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‹ã‚‰æˆ»ã£ã¦ãã‚‹ã®ã‚’å¾…ã¤ãŸã‚ã®åŒæœŸ
 #define UNION_SYNCHRO_POKELIST			( 102 )
 
-// ƒJ[ƒh‚ğŒ©‚¹‚é‘O‚Ì“¯Šú
+// ã‚«ãƒ¼ãƒ‰ã‚’è¦‹ã›ã‚‹å‰ã®åŒæœŸ
 #define UNION_SYNCHRO_CARDEND			( 103 )
 
 #endif //__COMM_UNION_DEF_H__

@@ -15,60 +15,60 @@
   INDENT SOURCE
 
   Revision 1.17  2005/10/05 11:15:45  yasu
-  ƒo[ƒWƒ‡ƒ“ƒXƒgƒŠƒ“ƒO‚Ì–„‚ß‚İ
+  ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¹ãƒˆãƒªãƒ³ã‚°ã®åŸ‹ã‚è¾¼ã¿
 
   Revision 1.16  2005/09/28 11:44:37  yasu
-  ƒR[ƒh‚ğ®—
-  SOCL_CalmDown() ‚ğ’Ç‰Á
-  CPS ƒ‰ƒCƒuƒ‰ƒŠ‚Ì³®‘Î‰‚ª‚Ü‚¾‚È‚Ì‚Å SOC ‘¤‚Åˆ—‚ğƒJƒo[‚µ‚Ä‚¢‚é
+  ã‚³ãƒ¼ãƒ‰ã‚’æ•´ç†
+  SOCL_CalmDown() ã‚’è¿½åŠ 
+  CPS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æ­£å¼å¯¾å¿œãŒã¾ã ãªã®ã§ SOC å´ã§å‡¦ç†ã‚’ã‚«ãƒãƒ¼ã—ã¦ã„ã‚‹
 
   Revision 1.15  2005/09/21 11:19:40  yasu
-  SOCL_SetYieldWait() ‚Ì’Ç‰Á
+  SOCL_SetYieldWait() ã®è¿½åŠ 
 
   Revision 1.14  2005/09/15 13:14:46  yasu
-  DHCP ƒ^ƒCƒ€ƒAƒEƒgƒTƒ|[ƒg
+  DHCP ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.13  2005/09/15 12:51:01  yasu
-  DHCP Requested IP ƒTƒ|[ƒg
+  DHCP Requested IP ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.12  2005/09/02 08:47:05  yasu
-  SOCLConfig “à‚Ì IP ƒAƒhƒŒƒX‚Ìİ’è‚ğ•ÏX‚Å‚«‚é API ‚ğ—pˆÓ
+  SOCLConfig å†…ã® IP ã‚¢ãƒ‰ãƒ¬ã‚¹ã®è¨­å®šã‚’å¤‰æ›´ã§ãã‚‹ API ã‚’ç”¨æ„
 
   Revision 1.11  2005/08/22 04:33:02  yasu
-  UDP ‚ÌóMƒoƒbƒtƒ@ƒTƒCƒY‚ğŒÅ’è‚É‚µ‚½
+  UDP ã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å›ºå®šã«ã—ãŸ
 
   Revision 1.10  2005/08/19 05:05:36  yasu
-  mtu/rwin ‘Î‰
+  mtu/rwin å¯¾å¿œ
 
   Revision 1.9  2005/08/18 13:17:59  yasu
-  cleanup API ‚ğ•Êƒtƒ@ƒCƒ‹‚ÖˆÚ“®
+  cleanup API ã‚’åˆ¥ãƒ•ã‚¡ã‚¤ãƒ«ã¸ç§»å‹•
 
   Revision 1.8  2005/08/08 14:15:38  yasu
-  CPS ƒXƒŒƒbƒh‚Ì—Dæ“xİ’è
+  CPS ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆåº¦è¨­å®š
 
   Revision 1.7  2005/07/30 22:30:14  yasu
-  ƒfƒ‚‚ª“®‚­‚æ‚¤‚ÉC³
+  ãƒ‡ãƒ¢ãŒå‹•ãã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.6  2005/07/30 15:33:45  yasu
-  ƒRƒ}ƒ“ƒhƒpƒCƒv•ª—£‚É‚Æ‚à‚È‚¤C³
+  ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—åˆ†é›¢ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.5  2005/07/25 14:22:24  yasu
-  SOC_Startup ‚Æ SOCL_Startup ‚Ì˜AŒ‹
+  SOC_Startup ã¨ SOCL_Startup ã®é€£çµ
 
   Revision 1.4  2005/07/23 14:16:49  yasu
-  Debug ƒƒbƒZ[ƒW‚ğ‰B“½
+  Debug ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’éš åŒ¿
 
   Revision 1.3  2005/07/22 12:44:56  yasu
-  ”ñ“¯Šúˆ—‰¼À‘•
+  éåŒæœŸå‡¦ç†ä»®å®Ÿè£…
 
   Revision 1.2  2005/07/19 14:06:33  yasu
-  SOCL_Read/Write ’Ç‰Á
+  SOCL_Read/Write è¿½åŠ 
 
   Revision 1.1  2005/07/18 13:16:28  yasu
-  ‘—MóMƒXƒŒƒbƒh‚ğì¬‚·‚é
+  é€ä¿¡å—ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã™ã‚‹
 
   Revision 1.1  2005/07/15 13:33:11  yasu
-  soc ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒX’²®
+  soc ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹èª¿æ•´
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -77,8 +77,8 @@
 
 //---------------------------------------------------------------------------*
 //
-//  SOCL ‚Ì Config ’l‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Ì•Û‘¶
-//  SOCL ŠÖ”‚ÌŒÄ‚Ño‚µ‘O‚É‚±‚±‚É’l‚ªİ’è‚·‚é•K—v‚ª‚ ‚é
+//  SOCL ã® Config å€¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã®ä¿å­˜
+//  SOCL é–¢æ•°ã®å‘¼ã³å‡ºã—å‰ã«ã“ã“ã«å€¤ãŒè¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 //
 CPSConfig       SOCLiCPSConfig;
 const SOCLConfig*   SOCLiConfigPtr = NULL;
@@ -102,16 +102,16 @@ static char id_string[] = SDK_MIDDLEWARE_STRING("NINTENDO", MODULE);
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Startup
 
-  Description:  ƒ‰ƒCƒuƒ‰ƒŠ‚ğ‰Šú‰»‚µ‚Ü‚·B
-                ŠÖ”‚ğŒÄ‚Ño‚·‘O‚É SOCLConfig ƒpƒ‰ƒ[ƒ^‚ğƒ‰ƒCƒuƒ‰ƒŠd—l‚É
-                ‡‚í‚¹‚Ä‰Šú‰»‚µ‚Ä‚­‚¾‚³‚¢.
+  Description:  ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
+                é–¢æ•°ã‚’å‘¼ã³å‡ºã™å‰ã« SOCLConfig ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä»•æ§˜ã«
+                åˆã‚ã›ã¦åˆæœŸåŒ–ã—ã¦ãã ã•ã„.
 
-  Arguments:    socl_config     \‘¢‘ÌSOCLConfig‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                socl_hostip     IP ƒAƒhƒŒƒX‚Ìİ’è’l
-                                NULL ‚È‚ç DHCP ‚Åæ“¾‚·‚é
+  Arguments:    socl_config     æ§‹é€ ä½“SOCLConfigã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                socl_hostip     IP ã‚¢ãƒ‰ãƒ¬ã‚¹ã®è¨­å®šå€¤
+                                NULL ãªã‚‰ DHCP ã§å–å¾—ã™ã‚‹
 
-  Returns:      0  ‚È‚ç³íI—¹
-                -1 ‚È‚çƒƒ‚ƒŠ•s‘«
+  Returns:      0  ãªã‚‰æ­£å¸¸çµ‚äº†
+                -1 ãªã‚‰ãƒ¡ãƒ¢ãƒªä¸è¶³
  *---------------------------------------------------------------------------*/
 int SOCL_Startup(const SOCLConfig* socl_config)
 {
@@ -124,18 +124,18 @@ int SOCL_Startup(const SOCLConfig* socl_config)
     }
 
     SOCLiConfigPtr = socl_config;
-    SOCLi_StartupCPS();                     // CPS     ƒT[ƒrƒX‹N“®
-    return SOCLi_StartupSOCL();             // SOCL    ƒT[ƒrƒX‹N“®
+    SOCLi_StartupCPS();                     // CPS     ã‚µãƒ¼ãƒ“ã‚¹èµ·å‹•
+    return SOCLi_StartupSOCL();             // SOCL    ã‚µãƒ¼ãƒ“ã‚¹èµ·å‹•
 }
 
 static int SOCLi_StartupSOCL(void)
 {
     int r;
 
-    // Command ƒT[ƒrƒX‹N“®
+    // Command ã‚µãƒ¼ãƒ“ã‚¹èµ·å‹•
     r = SOCLi_StartupCommandPacketQueue((int)SOCLiConfigPtr->cmd_packet_max);
 
-    // UDP Send ƒ\ƒPƒbƒg‚Ìì¬
+    // UDP Send ã‚½ã‚±ãƒƒãƒˆã®ä½œæˆ
     if (r >= 0)
     {
         SOCLiUDPSendSocket = SOCL_UdpSendSocket();
@@ -147,7 +147,7 @@ static int SOCLi_StartupSOCL(void)
 static void SOCLi_StartupCPS(void)
 {
     //
-    //  CPS ŠÖ”‚ğg—p‚·‚é‚½‚ß‚Ìİ’èƒpƒ‰ƒ[ƒ^
+    //  CPS é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã®è¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
     //
     CPSConfig*          cps_config = &SOCLiCPSConfig;
     const SOCLConfig*   socl_config = SOCLiConfigPtr;
@@ -158,12 +158,12 @@ static void SOCLi_StartupCPS(void)
     MI_CpuClear8(cps_config, sizeof(CPSConfig));
     cps_config->alloc = socl_config->alloc;
     cps_config->free = socl_config->free;
-    cps_config->link_is_on = SOCL_LinkIsOn; // •¨—ƒŠƒ“ƒN‚Ìó‘Ô‚ğ•Ô‚·ŠÖ”
-    cps_config->random_seed = 0;            // 0 ‚È‚ç—”‚Ìí‚ğ OS_Tick ‚©‚çæ“¾
-    cps_config->yield_wait = SOCLiYieldWait;    // CPS ƒ‰ƒCƒuƒ‰ƒŠ‚Ì yield ‚Ì sleep ŠÔ
+    cps_config->link_is_on = SOCL_LinkIsOn; // ç‰©ç†ãƒªãƒ³ã‚¯ã®çŠ¶æ…‹ã‚’è¿”ã™é–¢æ•°
+    cps_config->random_seed = 0;            // 0 ãªã‚‰ä¹±æ•°ã®ç¨®ã‚’ OS_Tick ã‹ã‚‰å–å¾—
+    cps_config->yield_wait = SOCLiYieldWait;    // CPS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã® yield æ™‚ã® sleep æ™‚é–“
 
-    // socl_config->lan_buffer_size ‚ª 0    ‚È‚ç default ’l‚ğİ’è
-    // socl_config->lan_buffer      ‚ª NULL ‚È‚ç alloc ‚Å©—ÍŠm•Û‚·‚é
+    // socl_config->lan_buffer_size ãŒ 0    ãªã‚‰ default å€¤ã‚’è¨­å®š
+    // socl_config->lan_buffer      ãŒ NULL ãªã‚‰ alloc ã§è‡ªåŠ›ç¢ºä¿ã™ã‚‹
     if (socl_config->lan_buffer_size)
     {
         cps_config->lan_buflen = socl_config->lan_buffer_size;
@@ -182,8 +182,8 @@ static void SOCLi_StartupCPS(void)
         cps_config->lan_buf = SOCLi_Alloc(cps_config->lan_buflen);
     }
 
-    // MTU/MSS ‚Ìİ’è
-    //  socl_config->mtu ‚ª 0 ‚È‚ç default ’l‚ğİ’è
+    // MTU/MSS ã®è¨­å®š
+    //  socl_config->mtu ãŒ 0 ãªã‚‰ default å€¤ã‚’è¨­å®š
     {
         s32 mtu, mss, rwin;
 
@@ -196,8 +196,8 @@ static void SOCLi_StartupCPS(void)
         SOCLSocketParamTCP.buffer.rcvbuf_consume_min = (u16) (rwin / 2);
     }
 
-    // HostIP ‚Ìİ’è hostip ‚ª 0 ‚È‚ç DHCP ‚ğg—p‚·‚é
-    // DHCP ‚ªˆø‚¯‚È‚¢ê‡ASOCLiDhcpState ‚Å”»’è‚Å‚«‚é
+    // HostIP ã®è¨­å®š hostip ãŒ 0 ãªã‚‰ DHCP ã‚’ä½¿ç”¨ã™ã‚‹
+    // DHCP ãŒå¼•ã‘ãªã„å ´åˆã€SOCLiDhcpState ã§åˆ¤å®šã§ãã‚‹
     CPSMyIp = 0x00000000;
 
     if (socl_config->use_dhcp)
@@ -214,12 +214,12 @@ static void SOCLi_StartupCPS(void)
         cps_config->dhcp_callback = SOCLi_SetMyIP;
     }
 
-    // CPS ƒXƒŒƒbƒh‚Ì—Dæ“x
+    // CPS ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆåº¦
     CPS_SetThreadPriority(socl_config->cps_thread_prio ? socl_config->cps_thread_prio : (u32) SOCL_CPS_SOCKET_THREAD_PRIORITY);
 
     WCM_SetRecvDCFCallback(CPSi_RecvCallbackFunc);
 
-    {   // ”ñ“¯Šú Cleanup ‚É‘Î‚·‚éˆê“I‚È‘Îô
+    {   // éåŒæœŸ Cleanup ã«å¯¾ã™ã‚‹ä¸€æ™‚çš„ãªå¯¾ç­–
         extern void CPS_SetScavengerCallback(void (*f) (void));
         CPS_SetScavengerCallback(SOCLi_TrashSocket);
     }
@@ -235,11 +235,11 @@ static void SOCLi_StartupCPS(void)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_SetMyIPinConfig
 
-  Description:  SOCLConfig “à‚É“o˜^‚³‚ê‚Ä‚¢‚é IP ƒAƒhƒŒƒXƒtƒB[ƒ‹ƒh‚Ì‘‚«Š·‚¦
+  Description:  SOCLConfig å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ IP ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æ›¸ãæ›ãˆ
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 SDK_WEAK_SYMBOL void SOCLi_SetMyIPinConfig(SOCLInAddr ip, SOCLInAddr mask, SOCLInAddr gateway)
 {
@@ -258,11 +258,11 @@ SDK_WEAK_SYMBOL void SOCLi_SetMyIPinConfig(SOCLInAddr ip, SOCLInAddr mask, SOCLI
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_SetMyIP
 
-  Description:  IP ƒAƒhƒŒƒX‚Ìè“®İ’è
+  Description:  IP ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ‰‹å‹•è¨­å®š
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 SDK_WEAK_SYMBOL void SOCLi_SetMyIP(void)
 {
@@ -281,11 +281,11 @@ SDK_WEAK_SYMBOL void SOCLi_SetMyIP(void)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_DhcpTimeout
 
-  Description:  DHCP ‚Ì Timeout ‚ÌƒR[ƒ‹ƒoƒbƒN
+  Description:  DHCP ã® Timeout ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 SDK_WEAK_SYMBOL void SOCLi_DhcpTimeout(void)
 {
@@ -296,11 +296,11 @@ SDK_WEAK_SYMBOL void SOCLi_DhcpTimeout(void)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_LinkIsOn
 
-  Description:  •¨—ƒŠƒ“ƒN‚ÌÚ‘±”»’è
+  Description:  ç‰©ç†ãƒªãƒ³ã‚¯ã®æ¥ç¶šåˆ¤å®š
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      Ú‘±‚µ‚Ä‚¢‚é‚È‚ç TRUE
+  Returns:      æ¥ç¶šã—ã¦ã„ã‚‹ãªã‚‰ TRUE
  *---------------------------------------------------------------------------*/
 SDK_WEAK_SYMBOL BOOL SOCL_LinkIsOn(void)
 {

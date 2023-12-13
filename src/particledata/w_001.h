@@ -4,7 +4,7 @@
 #define W_001_B_BURN_RED		0
 #define W_001_HIT_MARK01		1
 
-//w_001.spa“à‚ÌƒŠƒ\[ƒXŒÂ”
+//w_001.spaå†…ã®ãƒªã‚½ãƒ¼ã‚¹å€‹æ•°
 #define W_001_SPAMAX	(2)
 
 #endif

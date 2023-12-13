@@ -15,22 +15,22 @@
   INDENT SOURCE
 
   Revision 1.6  2006/01/13 07:26:50  yasu
-  SOCL ŠÖ”‚Ìƒpƒ‰ƒ[ƒ^’²®
+  SOCL é–¢æ•°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿èª¿æ•´
 
   Revision 1.5  2005/08/24 09:25:13  yasu
-  SOCL_SocketIsInvalid ’Ç‰Á
+  SOCL_SocketIsInvalid è¿½åŠ 
 
   Revision 1.4  2005/08/01 13:23:00  yasu
-  SOCL_Listen/Accept ‚Ì’Ç‰Á
+  SOCL_Listen/Accept ã®è¿½åŠ 
 
   Revision 1.3  2005/07/30 15:30:43  yasu
-  ƒRƒ}ƒ“ƒhƒpƒCƒv•ª—£‚É‚Æ‚à‚È‚¤C³
+  ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—åˆ†é›¢ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.2  2005/07/27 12:20:04  yasu
-  ƒf[ƒ^o—Í‚ÌÛ‚Éƒlƒbƒgƒ[ƒNƒoƒCƒgƒI[ƒ_[‚ğ‘I‘ğ‰Â”\‚É‚·‚é
+  ãƒ‡ãƒ¼ã‚¿å‡ºåŠ›ã®éš›ã«ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒˆã‚ªãƒ¼ãƒ€ãƒ¼ã‚’é¸æŠå¯èƒ½ã«ã™ã‚‹
 
   Revision 1.1  2005/07/22 13:55:35  yasu
-  listen accept ‚Ì’Ç‰Á
+  listen accept ã®è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -43,13 +43,13 @@ static int  SOCLi_ListenAcceptCallBack(void* arg);
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Listen
 
-  Description:  TCP ‚ÌƒpƒbƒVƒuƒRƒlƒNƒVƒ‡ƒ“‚ğŠm—§‚·‚é”‚ğw’è‚µA
-                ‘Ò‚¿‚¤‚¯‚Ì€”õ‚ğ‚·‚é. Œ»İ‚Í‰½‚à‚µ‚È‚¢
+  Description:  TCP ã®ãƒ‘ãƒƒã‚·ãƒ–ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’ç¢ºç«‹ã™ã‚‹æ•°ã‚’æŒ‡å®šã—ã€
+                å¾…ã¡ã†ã‘ã®æº–å‚™ã‚’ã™ã‚‹. ç¾åœ¨ã¯ä½•ã‚‚ã—ãªã„
   
-  Arguments:    s               ƒ\ƒPƒbƒg
-                backlog         ‘Ò‚¿ó‚¯‰Â”\‚ÈÚ‘±‚Ì”
+  Arguments:    s               ã‚½ã‚±ãƒƒãƒˆ
+                backlog         å¾…ã¡å—ã‘å¯èƒ½ãªæ¥ç¶šã®æ•°
   
-  Returns:      ³or 0: ¬Œ÷ (accept ‚³‚ê‚½
+  Returns:      æ­£or 0: æˆåŠŸ (accept ã•ã‚ŒãŸ
  *---------------------------------------------------------------------------*/
 int SOCL_Listen(int s, int backlog)
 {
@@ -57,31 +57,31 @@ int SOCL_Listen(int s, int backlog)
 
     if (SOCL_SocketIsInvalid(socket))
     {
-        return SOCL_EINVAL;         // ‹K’èŠO‚Ì’l
+        return SOCL_EINVAL;         // è¦å®šå¤–ã®å€¤
     }
 
     if (!SOCL_SocketIsCreated(socket))
     {
-        return SOCL_ENETRESET;      // ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_ENETRESET;      // åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
     }
 
     if (SOCL_SocketIsConnecting(socket))
     {
-        return SOCL_EINVAL;         // Ú‘±ˆ—‚ğŠJn‚µ‚Ä‚¢‚é
+        return SOCL_EINVAL;         // æ¥ç¶šå‡¦ç†ã‚’é–‹å§‹ã—ã¦ã„ã‚‹
     }
 
     if (!SOCL_SocketIsTCP(socket))
     {
-        return SOCL_EINVAL;         // TCP ƒ\ƒPƒbƒg‚Å‚È‚¢
+        return SOCL_EINVAL;         // TCP ã‚½ã‚±ãƒƒãƒˆã§ãªã„
     }
 
     if (!SOCL_SocketIsBlock(socket))
     {
-        return SOCL_EWOULDBLOCK;    // BLOCK ‚ÌÀ‘•‚Ì‚İ
+        return SOCL_EWOULDBLOCK;    // BLOCK ã®å®Ÿè£…ã®ã¿
     }
 
-    // Œ»ó‚Å‚Í‰½‚à‚µ‚È‚¢
-    // ”ñ“¯Šú‚Ì Listen/Accept ‚ğƒTƒ|[ƒg‚·‚éê‡Aˆ—‚ğ’Ç‰Á‚·‚é•K—v‚ª‚ ‚éD
+    // ç¾çŠ¶ã§ã¯ä½•ã‚‚ã—ãªã„
+    // éåŒæœŸã® Listen/Accept ã‚’ã‚µãƒãƒ¼ãƒˆã™ã‚‹å ´åˆã€å‡¦ç†ã‚’è¿½åŠ ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ï¼
     (void)backlog;
     (void)socket;
 
@@ -91,20 +91,20 @@ int SOCL_Listen(int s, int backlog)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Accept
 
-  Description:  TCP ‚ÌƒpƒbƒVƒuƒRƒlƒNƒVƒ‡ƒ“‚ğŠm—§‚·‚é
-                CPS ‚Ìd—l‚É‚ ‚í‚¹‚Ä Listen ‚Æ Accept ‚ª“¯‚És‚È‚í‚ê‚é
-                ƒ\ƒPƒbƒg‚ğV‚µ‚­ì¬‚·‚é
+  Description:  TCP ã®ãƒ‘ãƒƒã‚·ãƒ–ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’ç¢ºç«‹ã™ã‚‹
+                CPS ã®ä»•æ§˜ã«ã‚ã‚ã›ã¦ Listen ã¨ Accept ãŒåŒæ™‚ã«è¡Œãªã‚ã‚Œã‚‹
+                ã‚½ã‚±ãƒƒãƒˆã‚’æ–°ã—ãä½œæˆã™ã‚‹
   
-  Arguments:    s               ƒ\ƒPƒbƒg
-                remote_port     ƒŠƒ‚[ƒg‚Ìƒ|[ƒg”Ô†‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                remote_ip       ƒŠƒ‚[ƒg‚Ì IP ƒAƒhƒŒƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    s               ã‚½ã‚±ãƒƒãƒˆ
+                remote_port     ãƒªãƒ¢ãƒ¼ãƒˆã®ãƒãƒ¼ãƒˆç•ªå·ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                remote_ip       ãƒªãƒ¢ãƒ¼ãƒˆã® IP ã‚¢ãƒ‰ãƒ¬ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
   
-  Returns:      ³or 0: ¬Œ÷ (accept ‚³‚ê‚½
-                •‰    : ƒGƒ‰[
-                Œ»óƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒGƒ‰[’l‚ÍˆÈ‰º
+  Returns:      æ­£or 0: æˆåŠŸ (accept ã•ã‚ŒãŸ
+                è²     : ã‚¨ãƒ©ãƒ¼
+                ç¾çŠ¶ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼å€¤ã¯ä»¥ä¸‹
   
-                ƒGƒ‰[’l‚Í’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ßA‘¼‚Ì•‰‚Ì’l‚à‘S‚Ä”Ä—p
-                ƒGƒ‰[‚Æ‚µ‚Äˆµ‚¤‚±‚ÆD
+                ã‚¨ãƒ©ãƒ¼å€¤ã¯è¿½åŠ ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€ä»–ã®è² ã®å€¤ã‚‚å…¨ã¦æ±ç”¨
+                ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦æ‰±ã†ã“ã¨ï¼
  *---------------------------------------------------------------------------*/
 int SOCL_Accept(int s_listen, vu16* remote_port_ptr, volatile SOCLInAddr* remote_ip_ptr)
 {
@@ -114,27 +114,27 @@ int SOCL_Accept(int s_listen, vu16* remote_port_ptr, volatile SOCLInAddr* remote
 
     if (SOCL_SocketIsInvalid(socket_listen))
     {
-        return SOCL_EINVAL;         // ‹K’èŠO‚Ì’l
+        return SOCL_EINVAL;         // è¦å®šå¤–ã®å€¤
     }
 
     if (!SOCL_SocketIsCreated(socket_listen))
     {
-        return SOCL_ENETRESET;      // ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_ENETRESET;      // åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
     }
 
     if (SOCL_SocketIsConnecting(socket_listen))
     {
-        return SOCL_EINVAL;         // Ú‘±ˆ—‚ğŠJn‚µ‚Ä‚¢‚é
+        return SOCL_EINVAL;         // æ¥ç¶šå‡¦ç†ã‚’é–‹å§‹ã—ã¦ã„ã‚‹
     }
 
     if (!SOCL_SocketIsTCP(socket_listen))
     {
-        return SOCL_EINVAL;         // TCP ƒ\ƒPƒbƒg‚Å‚È‚¢
+        return SOCL_EINVAL;         // TCP ã‚½ã‚±ãƒƒãƒˆã§ãªã„
     }
 
     if (!SOCL_SocketIsBlock(socket_listen))
     {
-        return SOCL_EWOULDBLOCK;    // BLOCK ‚ÌÀ‘•‚Ì‚İ
+        return SOCL_EWOULDBLOCK;    // BLOCK ã®å®Ÿè£…ã®ã¿
     }
 
     s_accept = SOCL_TcpSocket();
@@ -143,7 +143,7 @@ int SOCL_Accept(int s_listen, vu16* remote_port_ptr, volatile SOCLInAddr* remote
     {
         return s_accept;
 
-        // SOCL_ENOMEM    : ƒƒ‚ƒŠ[•s‘«
+        // SOCL_ENOMEM    : ãƒ¡ãƒ¢ãƒªãƒ¼ä¸è¶³
     }
 
     result = SOCL_Bind(s_accept, socket_listen->local_port);
@@ -152,12 +152,12 @@ int SOCL_Accept(int s_listen, vu16* remote_port_ptr, volatile SOCLInAddr* remote
     {
         return result;
 
-        // SOCL_Bind ‚Ì•Ô‚è’l
-        //   SOCL_EINVAL;      ‹K’èŠO‚Ì’l             -> ‚±‚±‚Å‚Í‚ ‚è‚¦‚È‚¢
-        //   SOCL_ENETRESET;   ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢     -> ‚±‚±‚Å‚Í‚ ‚è‚¦‚È‚¢
-        //   SOCL_EALREADY;    Ú‘±ˆ—‚ğŠJn‚µ‚Ä‚¢‚é -> ‚±‚±‚Å‚Í‚ ‚è‚¦‚È‚¢
-        //   SOCL_EMFILE;      ƒ\ƒPƒbƒgƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚ğŠm•Û‚Å‚«‚È‚©‚Á‚½
-        //   SOCL_ETIMEDOUT;   Ú‘±ƒ^ƒCƒ€ƒAƒEƒg
+        // SOCL_Bind ã®è¿”ã‚Šå€¤
+        //   SOCL_EINVAL;      è¦å®šå¤–ã®å€¤             -> ã“ã“ã§ã¯ã‚ã‚Šãˆãªã„
+        //   SOCL_ENETRESET;   åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„     -> ã“ã“ã§ã¯ã‚ã‚Šãˆãªã„
+        //   SOCL_EALREADY;    æ¥ç¶šå‡¦ç†ã‚’é–‹å§‹ã—ã¦ã„ã‚‹ -> ã“ã“ã§ã¯ã‚ã‚Šãˆãªã„
+        //   SOCL_EMFILE;      ã‚½ã‚±ãƒƒãƒˆã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã‚’ç¢ºä¿ã§ããªã‹ã£ãŸ
+        //   SOCL_ETIMEDOUT;   æ¥ç¶šã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
     }
 
     result = SOCL_ListenAccept(s_accept, remote_port_ptr, remote_ip_ptr);
@@ -166,13 +166,13 @@ int SOCL_Accept(int s_listen, vu16* remote_port_ptr, volatile SOCLInAddr* remote
     {
         return result;
 
-        // SOCL_ListenAccept ‚Ì•Ô‚è’l
-        //   SOCL_EINVAL;       ‹K’èŠO‚Ì’l             -> ‚±‚±‚Å‚Í‚ ‚è‚¦‚È‚¢
-        //   SOCL_ENETRESET;    ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢     -> ‚±‚±‚Å‚Í‚ ‚è‚¦‚È‚¢
-        //   SOCL_EINVAL;       Ú‘±ˆ—‚ğŠJn‚µ‚Ä‚¢‚é -> ‚±‚±‚Å‚Í‚ ‚è‚¦‚È‚¢
-        //   SOCL_EINVAL;       TCP ƒ\ƒPƒbƒg‚Å‚È‚¢     -> ‚±‚±‚Å‚Í‚ ‚è‚¦‚È‚¢
-        //   SOCL_EWOULDBLOCK;  BLOCK ƒ‚[ƒh‚Å‚È‚¢     -> ‚±‚±‚Å‚Í‚ ‚è‚¦‚È‚¢
-        //   SOCL_EINVAL;       Listen —p‚Ìƒ|[ƒg‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ -> ‚±‚±‚Å‚Í‚ ‚è‚¦‚È‚¢
+        // SOCL_ListenAccept ã®è¿”ã‚Šå€¤
+        //   SOCL_EINVAL;       è¦å®šå¤–ã®å€¤             -> ã“ã“ã§ã¯ã‚ã‚Šãˆãªã„
+        //   SOCL_ENETRESET;    åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„     -> ã“ã“ã§ã¯ã‚ã‚Šãˆãªã„
+        //   SOCL_EINVAL;       æ¥ç¶šå‡¦ç†ã‚’é–‹å§‹ã—ã¦ã„ã‚‹ -> ã“ã“ã§ã¯ã‚ã‚Šãˆãªã„
+        //   SOCL_EINVAL;       TCP ã‚½ã‚±ãƒƒãƒˆã§ãªã„     -> ã“ã“ã§ã¯ã‚ã‚Šãˆãªã„
+        //   SOCL_EWOULDBLOCK;  BLOCK ãƒ¢ãƒ¼ãƒ‰ã§ãªã„     -> ã“ã“ã§ã¯ã‚ã‚Šãˆãªã„
+        //   SOCL_EINVAL;       Listen ç”¨ã®ãƒãƒ¼ãƒˆãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ -> ã“ã“ã§ã¯ã‚ã‚Šãˆãªã„
     }
 
     return s_accept;
@@ -181,21 +181,21 @@ int SOCL_Accept(int s_listen, vu16* remote_port_ptr, volatile SOCLInAddr* remote
 /*---------------------------------------------------------------------------*
   Name:         SOCL_ListenAccept
 
-  Description:  TCP ‚ÌƒpƒbƒVƒuƒRƒlƒNƒVƒ‡ƒ“‚ğŠm—§‚·‚é
-                CPS ‚Ìd—l‚É‚ ‚í‚¹‚Ä Listen ‚Æ Accept ‚ª“¯‚És‚È‚í‚ê‚é
-                ˆø”‚Åw’è‚³‚ê‚½ƒ\ƒPƒbƒg‚ğ accept —p‚Æ‚µ‚Äg‚¤
+  Description:  TCP ã®ãƒ‘ãƒƒã‚·ãƒ–ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’ç¢ºç«‹ã™ã‚‹
+                CPS ã®ä»•æ§˜ã«ã‚ã‚ã›ã¦ Listen ã¨ Accept ãŒåŒæ™‚ã«è¡Œãªã‚ã‚Œã‚‹
+                å¼•æ•°ã§æŒ‡å®šã•ã‚ŒãŸã‚½ã‚±ãƒƒãƒˆã‚’ accept ç”¨ã¨ã—ã¦ä½¿ã†
   
-  Arguments:    s               ƒ\ƒPƒbƒg
-                remote_port     ƒŠƒ‚[ƒg‚Ìƒ|[ƒg”Ô†‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                remote_ip       ƒŠƒ‚[ƒg‚Ì IP ƒAƒhƒŒƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                net_byte_order  ƒoƒCƒgƒI[ƒ_[ TRUE ‚È‚ç NetwrokByteOrder
+  Arguments:    s               ã‚½ã‚±ãƒƒãƒˆ
+                remote_port     ãƒªãƒ¢ãƒ¼ãƒˆã®ãƒãƒ¼ãƒˆç•ªå·ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                remote_ip       ãƒªãƒ¢ãƒ¼ãƒˆã® IP ã‚¢ãƒ‰ãƒ¬ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                net_byte_order  ãƒã‚¤ãƒˆã‚ªãƒ¼ãƒ€ãƒ¼ TRUE ãªã‚‰ NetwrokByteOrder
   
-  Returns:      ³or 0: ¬Œ÷
-                •‰    : ƒGƒ‰[
-                Œ»óƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒGƒ‰[’l‚ÍˆÈ‰º
+  Returns:      æ­£or 0: æˆåŠŸ
+                è²     : ã‚¨ãƒ©ãƒ¼
+                ç¾çŠ¶ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼å€¤ã¯ä»¥ä¸‹
   
-                ƒGƒ‰[’l‚Í’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ßA‘¼‚Ì•‰‚Ì’l‚à‘S‚Ä”Ä—p
-                ƒGƒ‰[‚Æ‚µ‚Äˆµ‚¤‚±‚ÆD
+                ã‚¨ãƒ©ãƒ¼å€¤ã¯è¿½åŠ ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€ä»–ã®è² ã®å€¤ã‚‚å…¨ã¦æ±ç”¨
+                ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦æ‰±ã†ã“ã¨ï¼
  *---------------------------------------------------------------------------*/
 int SOCL_ListenAccept(int s, vu16* remote_port_ptr, volatile SOCLInAddr* remote_ip_ptr)
 {
@@ -205,48 +205,48 @@ int SOCL_ListenAccept(int s, vu16* remote_port_ptr, volatile SOCLInAddr* remote_
 
     if (SOCL_SocketIsInvalid(socket))
     {
-        return SOCL_EINVAL;         // ‹K’èŠO‚Ì’l
+        return SOCL_EINVAL;         // è¦å®šå¤–ã®å€¤
     }
 
     if (!SOCL_SocketIsCreated(socket))
     {
-        return SOCL_ENETRESET;      // ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_ENETRESET;      // åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
     }
 
     if (SOCL_SocketIsConnecting(socket))
     {
-        return SOCL_EINVAL;         // Ú‘±ˆ—‚ğŠJn‚µ‚Ä‚¢‚é
+        return SOCL_EINVAL;         // æ¥ç¶šå‡¦ç†ã‚’é–‹å§‹ã—ã¦ã„ã‚‹
     }
 
     if (!SOCL_SocketIsTCP(socket))
     {
-        return SOCL_EINVAL;         // TCP ƒ\ƒPƒbƒg‚Å‚È‚¢
+        return SOCL_EINVAL;         // TCP ã‚½ã‚±ãƒƒãƒˆã§ãªã„
     }
 
     if (!SOCL_SocketIsBlock(socket))
     {
-        return SOCL_EWOULDBLOCK;    // BLOCK ƒ‚[ƒh‚Å‚È‚¢
+        return SOCL_EWOULDBLOCK;    // BLOCK ãƒ¢ãƒ¼ãƒ‰ã§ãªã„
     }
 
     if (socket->local_port == 0)
     {
-        return SOCL_EINVAL;         // Listen —p‚Ìƒ|[ƒg‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_EINVAL;         // Listen ç”¨ã®ãƒãƒ¼ãƒˆãŒè¨­å®šã•ã‚Œã¦ã„ãªã„
     }
 
-    // óMƒXƒŒƒbƒh‚ÉƒRƒ}ƒ“ƒh‚ğ“Š‚°AƒR[ƒ‹ƒoƒbƒNŠÖ”“à•”‚Å CPS_Listen
-    // ‚¨‚æ‚Ñ CPS_SocWho ‚ğ‹N“®‚·‚éD
-    // Œ»İAƒ\ƒPƒbƒgƒ^ƒCƒv NOBLOCK ‚ÍƒTƒ|[ƒg‚µ‚Ä‚¢‚È‚¢
+    // å—ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚³ãƒãƒ³ãƒ‰ã‚’æŠ•ã’ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…éƒ¨ã§ CPS_Listen
+    // ãŠã‚ˆã³ CPS_SocWho ã‚’èµ·å‹•ã™ã‚‹ï¼
+    // ç¾åœ¨ã€ã‚½ã‚±ãƒƒãƒˆã‚¿ã‚¤ãƒ— NOBLOCK ã¯ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ãªã„
     command = SOCLi_CreateCommandPacket(SOCLi_ListenAcceptCallBack, socket, socket->flag_block);
 
     SDK_ASSERT(command);
 
-    // listen_accept —p‚Ìƒpƒ‰ƒ[ƒ^İ’è
+    // listen_accept ç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
     command->listen_accept.local_port = socket->local_port;
     command->listen_accept.remote_port_ptr = remote_port_ptr;
     command->listen_accept.remote_ip_ptr = remote_ip_ptr;
     socket->state |= SOCL_STATUS_CONNECTING;
 
-    // ƒRƒ}ƒ“ƒhÀs
+    // ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
     result = SOCLi_ExecCommandPacketInRecvPipe(socket, command);
 
     return result;
@@ -255,11 +255,11 @@ int SOCL_ListenAccept(int s, vu16* remote_port_ptr, volatile SOCLInAddr* remote_
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ListenAcceptCallBack
 
-  Description:  Listen & Accept ˆ—‚ÌƒR[ƒ‹ƒoƒbƒN
+  Description:  Listen & Accept å‡¦ç†ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
   
-  Arguments:    arg  ƒRƒ}ƒ“ƒhƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    arg  ã‚³ãƒãƒ³ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
   
-  Returns:      SOCLi_ExecCommand* ‚É“n‚³‚ê‚é’l(BLOCKƒ‚[ƒh‚Ì‚Æ‚«)
+  Returns:      SOCLi_ExecCommand* ã«æ¸¡ã•ã‚Œã‚‹å€¤(BLOCKãƒ¢ãƒ¼ãƒ‰ã®ã¨ã)
  *---------------------------------------------------------------------------*/
 static int SOCLi_ListenAcceptCallBack(void* arg)
 {
@@ -276,13 +276,13 @@ static int SOCLi_ListenAcceptCallBack(void* arg)
 
     OS_LockMutex(&recv_pipe->h.in_use); // BLOCKED
     {
-        // ƒ[ƒJƒ‹ƒ|[ƒg‘Ò‚¿ó‚¯İ’è  ƒŠƒ‚[ƒg‚Í any İ’è
+        // ãƒ­ãƒ¼ã‚«ãƒ«ãƒãƒ¼ãƒˆå¾…ã¡å—ã‘è¨­å®š  ãƒªãƒ¢ãƒ¼ãƒˆã¯ any è¨­å®š
 #ifdef SDK_MY_DEBUG
         OS_TPrintf("CPS_SocBind(%d,0,0)\n", cpacket->local_port);
 #endif
         CPS_SocBind(cpacket->local_port, 0, 0);
 
-        // ‘¼‚Ìƒ\ƒPƒbƒg‚©‚çÚ‘±ˆ—‚ª“ü‚é‚Ü‚Å‘Ò‚Â
+        // ä»–ã®ã‚½ã‚±ãƒƒãƒˆã‹ã‚‰æ¥ç¶šå‡¦ç†ãŒå…¥ã‚‹ã¾ã§å¾…ã¤
 #ifdef SDK_MY_DEBUG
         OS_TPrintf("CPS_TcpListen()\n");
 #endif
@@ -290,7 +290,7 @@ static int SOCLi_ListenAcceptCallBack(void* arg)
 
         recv_pipe->consumed = 0;
 
-        // Ú‘±æ‚Ìæ“¾
+        // æ¥ç¶šå…ˆã®å–å¾—
 #ifdef SDK_MY_DEBUG
         OS_TPrintf("CPS_SocWho()\n");
 #endif
@@ -304,5 +304,5 @@ static int SOCLi_ListenAcceptCallBack(void* arg)
 
     OS_UnlockMutex(&recv_pipe->h.in_use);
 
-    return SOCL_ESUCCESS;               // ¬Œ÷
+    return SOCL_ESUCCESS;               // æˆåŠŸ
 }

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_214.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			214�@�g�o�������񕜂��邪�A���̃^�[���͒n�ʋZ���P�{�œ�����B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			214　ＨＰが半分回復するが、そのターンは地面技が１倍で当たる。
  *
  *@author	HisashiSogabe
  *@data		2006.02.10

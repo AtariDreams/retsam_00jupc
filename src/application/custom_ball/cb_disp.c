@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	cb_disp.c
- * @brief	å‚É•`‰æŠÖ˜A‚ÌŠÖ”‚ğ‚¨‚¢‚Æ‚­
+ * @brief	ä¸»ã«æç”»é–¢é€£ã®é–¢æ•°ã‚’ãŠã„ã¨ã
  * @author	goto
- * @date	2006.04.25(‰Î)
+ * @date	2006.04.25(ç«)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -103,12 +103,12 @@ static void HitRectSet(RECT_HIT_TBL* tbl, CATS_ACT_PTR cap, int w, int h)
 // =============================================================================
 //
 //
-//	¡ƒtƒHƒ“ƒgOAM
+//	â– ãƒ•ã‚©ãƒ³ãƒˆOAM
 //
 //
 // =============================================================================
-#define	PRINT_COL_BLACK		(GF_PRINTCOLOR_MAKE(15, 13, 2))		// ƒtƒHƒ“ƒgƒJƒ‰[F”’
-#define	PRINT_COL_NUM		(GF_PRINTCOLOR_MAKE( 1,  2, 0))		// ƒtƒHƒ“ƒgƒJƒ‰[F•
+#define	PRINT_COL_BLACK		(GF_PRINTCOLOR_MAKE(15, 13, 2))		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+#define	PRINT_COL_NUM		(GF_PRINTCOLOR_MAKE( 1,  2, 0))		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
 #define PRINT_NUM_CLEAR		(0x00)
 #define PRINT_NUM_CLEAR_2	(0xEE)
 
@@ -145,7 +145,7 @@ void FontOam_Add(CB_MAIN_WORK* cbmw)
 	FontOam_ResourceLoad(cbmw);
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/03/26
-	// ƒ{ƒ^ƒ“‚ÌƒeƒLƒXƒg‚ğ©“®‚Å’†‰›Šñ‚¹‚É
+	// ãƒœã‚¿ãƒ³ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã«
 	FontOam_Create(cbmw, CB_ENUM_WIN_B_BTN_1, 104, 165, 0);
 	FontOam_Create(cbmw, CB_ENUM_WIN_B_BTN_2, 192, 165, 0);
 	// ----------------------------------------------------------------------------
@@ -173,7 +173,7 @@ void FontOam_Create(CB_MAIN_WORK* cbmw, int no, int x, int y, int pal_offset)
 		
 	///< BMP
 	{
-		///< FONT_BUTTON ‚Í 2dot‚Å‚©‚¢
+		///< FONT_BUTTON ã¯ 2dotã§ã‹ã„
 		GF_BGL_BmpWinInit(&bmpwin);
 		GF_BGL_BmpWinObjAdd(cbmw->sys.bgl, &bmpwin, 10, 2, 0, 0);
 		GF_STR_PrintColor(&bmpwin, FONT_BUTTON, str, 0, 0,
@@ -193,7 +193,7 @@ void FontOam_Create(CB_MAIN_WORK* cbmw, int no, int x, int y, int pal_offset)
 	finit.char_ofs		= cbmw->sys.font_vram[ no ].alloc_ofs;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/03/26
-	// ƒ{ƒ^ƒ“‚ÌƒeƒLƒXƒg‚ğ©“®‚Å’†‰›Šñ‚¹‚É
+	// ãƒœã‚¿ãƒ³ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã«
 	finit.x				= x - FontProc_GetPrintStrWidth( FONT_BUTTON, str, 0 ) / 2;
 	// ----------------------------------------------------------------------------
 	finit.y				= y + 192;
@@ -214,11 +214,11 @@ void FontOam_Create(CB_MAIN_WORK* cbmw, int no, int x, int y, int pal_offset)
 // =============================================================================
 //
 //
-//	¡ƒy[ƒWƒf[ƒ^
+//	â– ãƒšãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
 //
 //
 // =============================================================================
-///< ƒy[ƒW“o˜^
+///< ãƒšãƒ¼ã‚¸ç™»éŒ²
 void PageData_Create(CB_MAIN_WORK* cbmw, int page_no)
 {
 	int i,j;
@@ -233,11 +233,11 @@ void PageData_Create(CB_MAIN_WORK* cbmw, int page_no)
 	add_start  = page_no;
 	add_start *= CB_DEF_PAGE_ITEMS;
 	
-	for (i = 0; i < CB_DEF_PAGE_ITEMS; i++){						///< ƒy[ƒWƒf[ƒ^‰Šú‰»
+	for (i = 0; i < CB_DEF_PAGE_ITEMS; i++){						///< ãƒšãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 		cbmw->page.item[ i ] = 0;
 	}
 	
-	///< ƒZ[ƒuƒf[ƒ^‚É‚ ‚éA‚à‚µ‚­‚ÍƒoƒbƒNƒAƒbƒvƒf[ƒ^‚ªŠ—L‚µ‚Ä‚¢‚éê‡
+	///< ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ã‚ã‚‹ã€ã‚‚ã—ãã¯ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãŒæ‰€æœ‰ã—ã¦ã„ã‚‹å ´åˆ
 #if 0
 	for (i = 0; i < CB_DEF_ITEM_DATA_NUM; i++){
 		
@@ -247,9 +247,9 @@ void PageData_Create(CB_MAIN_WORK* cbmw, int page_no)
 		if (num != 0 || have == TRUE){
 			add++;
 			
-			if (add <= add_start){ continue; }						///< ƒy[ƒWŠJnˆÊ’u‚ğ‰z‚¦–³‚¯‚ê‚Î“o˜^‚Å‚«‚È‚¢
+			if (add <= add_start){ continue; }						///< ãƒšãƒ¼ã‚¸é–‹å§‹ä½ç½®ã‚’è¶Šãˆç„¡ã‘ã‚Œã°ç™»éŒ²ã§ããªã„
 			
-			cbmw->page.item[ no ] = (i + 1);						///< 1ƒIƒŠƒWƒ“‚È‚Ì‚Å + 1	
+			cbmw->page.item[ no ] = (i + 1);						///< 1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§ + 1	
 			no++;
 			
 			if (no >= CB_DEF_PAGE_ITEMS){ break; }
@@ -269,9 +269,9 @@ void PageData_Create(CB_MAIN_WORK* cbmw, int page_no)
 		if (num != 0 || have == TRUE){
 			add++;
 			
-			if (add <= add_start){ continue; }						///< ƒy[ƒWŠJnˆÊ’u‚ğ‰z‚¦–³‚¯‚ê‚Î“o˜^‚Å‚«‚È‚¢
+			if (add <= add_start){ continue; }						///< ãƒšãƒ¼ã‚¸é–‹å§‹ä½ç½®ã‚’è¶Šãˆç„¡ã‘ã‚Œã°ç™»éŒ²ã§ããªã„
 			
-			cbmw->page.item[ no ] = (i + 1);						///< 1ƒIƒŠƒWƒ“‚È‚Ì‚Å + 1	
+			cbmw->page.item[ no ] = (i + 1);						///< 1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§ + 1	
 			no++;
 			
 			if (no >= CB_DEF_PAGE_ITEMS){ break; }
@@ -281,7 +281,7 @@ void PageData_Create(CB_MAIN_WORK* cbmw, int page_no)
 #endif
 }
 
-///< OBJ“o˜^
+///< OBJç™»éŒ²
 void PageData_ResourceLoad(CB_MAIN_WORK* cbmw)
 {
 	int i;
@@ -342,7 +342,7 @@ void PageData_Add(CB_MAIN_WORK* cbmw)
 	coap.id[4]	= CLACT_U_HEADER_DATA_NONE;
 	coap.id[5]	= CLACT_U_HEADER_DATA_NONE;
 
-	///< ƒV[ƒ‹
+	///< ã‚·ãƒ¼ãƒ«
 	coap.pal	= 0;
 	coap.id[1]	= CB_ENUM_BTN_PLTT_ID + CB_LI_SEAL_NCLR;
 	coap.id[2]	= CB_ENUM_BTN_CELL_ID + CB_LI_SEAL_01_NCER_BIN;
@@ -353,7 +353,7 @@ void PageData_Add(CB_MAIN_WORK* cbmw)
 	}
 	{
 	#ifdef SEAL_SBS
-		///< ‰¡•À‚Ñ
+		///< æ¨ªä¸¦ã³
 		const s16 pos[][2] = {
 			{ 19, 23 },{ 75, 23 },
 			{ 19, 47 },{ 75, 47 },
@@ -361,7 +361,7 @@ void PageData_Add(CB_MAIN_WORK* cbmw)
 			{ 19, 95 },{ 75, 95 },
 		};
 	#else
-		///< c•À‚Ñ
+		///< ç¸¦ä¸¦ã³
 		const s16 pos[][2] = {
 			{ 19, 23 },{ 19, 47 },	
 			{ 19, 71 },{ 19, 95 },	
@@ -390,7 +390,7 @@ void PageData_Del(CB_MAIN_WORK* cbmw)
 // =============================================================================
 //
 //
-//	¡
+//	â– 
 //
 //
 // =============================================================================
@@ -492,7 +492,7 @@ void CB_View_Scroll(CB_MAIN_WORK* cbmw, s8 r_vec, int wait)
 // =============================================================================
 //
 //
-//	¡ƒp[ƒeƒBƒNƒ‹
+//	â– ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 //
 //
 // =============================================================================
@@ -509,22 +509,22 @@ GF_G3DMAN * CB_3D_Init(void)
 
 void CBSimpleSetUp(void)
 {
-	// ‚R‚cg—p–Ê‚Ìİ’è(•\¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
@@ -542,7 +542,7 @@ void CB_Particle_Init(void)
 	NNSGfdPlttKey pltt_key;
 	u32 tex_addrs, pltt_addrs;
 	
-	//ƒ|ƒPƒ‚ƒ“‚Åg—p‚·‚é•ª‚ğŠm•Û
+	//ãƒã‚±ãƒ¢ãƒ³ã§ä½¿ç”¨ã™ã‚‹åˆ†ã‚’ç¢ºä¿
 	tex_key = NNS_GfdAllocTexVram(0x2000 * CLIENT_MAX, 0, 0);
 	pltt_key = NNS_GfdAllocPlttVram(0x20 * CLIENT_MAX, 0, 0);
 	
@@ -550,8 +550,8 @@ void CB_Particle_Init(void)
 	GF_ASSERT(pltt_key != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 	tex_addrs = NNS_GfdGetTexKeyAddr(tex_key);
 	pltt_addrs = NNS_GfdGetPlttKeyAddr(pltt_key);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒeƒNƒXƒ`ƒƒVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", tex_addrs);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒpƒŒƒbƒgVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", pltt_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", tex_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆVramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", pltt_addrs);
 #endif
 	Particle_SystemWorkInit();	
 }
@@ -563,14 +563,14 @@ void CB_Particle_Main(void)
 
 	GF_G3X_Reset();
 
-	draw_num = Particle_DrawAll();	//ƒp[ƒeƒBƒNƒ‹•`‰æ
+	draw_num = Particle_DrawAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æç”»
 
 	if(draw_num > 0){
 		GF_G3X_Reset();
 		NNS_G2dSetupSoftwareSpriteCamera();
 	}
 
-	Particle_CalcAll();	//ƒp[ƒeƒBƒNƒ‹ŒvZ
+	Particle_CalcAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è¨ˆç®—
 	GF_G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
@@ -578,7 +578,7 @@ void CB_Particle_Main(void)
 // =============================================================================
 //
 //
-//	¡BG/BMPŠÖ˜A
+//	â– BG/BMPé–¢é€£
 //
 //
 // =============================================================================
@@ -679,7 +679,7 @@ void CB_BMP_SelectWinDel(CB_MAIN_WORK* cbmw)
 // =============================================================================
 //
 //
-//	¡OBJ‚È‚Ç‚ÌƒAƒCƒRƒ“
+//	â– OBJãªã©ã®ã‚¢ã‚¤ã‚³ãƒ³
 //
 //
 // =============================================================================
@@ -702,15 +702,15 @@ void CB_Tool_PokeIcon_Load(CB_MAIN_WORK* cbmw)
 	crp = cbmw->sys.crp;
 	pfd = cbmw->sys.pfd;
 
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	CATS_LoadResourcePlttWorkArc(pfd, FADE_MAIN_OBJ, csp, crp,
 		ARC_POKEICON, PokeIconPalArcIndexGet(), 0, POKEICON_PAL_MAX, NNS_G2D_VRAM_TYPE_2DMAIN, CB_ENUM_ICON_PLTT_ID);
-	//ƒZƒ‹
+	//ã‚»ãƒ«
 	{
 		int arc = PokeIcon64kCellArcIndexGet();
 		CATS_LoadResourceCellArc(csp, crp, ARC_POKEICON, arc, 0, CB_ENUM_ICON_CELL_ID);
 	}
-	//ƒZƒ‹ƒAƒjƒ
+	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	{
 		int arc = PokeIcon64kCellAnmArcIndexGet();
 		CATS_LoadResourceCellAnmArc(csp, crp, ARC_POKEICON, arc, 0, CB_ENUM_ICON_CELLANM_ID);
@@ -808,16 +808,16 @@ void CB_Tool_MarkObj_SetUp(CB_MAIN_WORK* cbmw)
 	
 	CB_CORE* core;
 	
-	///< ƒ{[ƒ‹‚ª•ÒWÏ‚İ‚©‚Ç‚¤‚©
+	///< ãƒœãƒ¼ãƒ«ãŒç·¨é›†æ¸ˆã¿ã‹ã©ã†ã‹
 	for (i = 0; i < CB_DEF_CORE_MAX; i++){
 		core = cbmw->cb_edit_data[i].core;
 		cbmw->mo[ i ].edit_flag = CB_Tool_IsEdit(core);
 		cbmw->mo[ i ].poke_idx  = cbmw->cb_edit_data[ i ].poke_idx;
 		
-		///< •ÒW‚µ‚Ä‚È‚¢‚¯‚ÇAƒ|ƒPƒ‚ƒ“‚É‚Â‚¢‚Ä‚éê‡‚Í‚¸‚·	
+		///< ç·¨é›†ã—ã¦ãªã„ã‘ã©ã€ãƒã‚±ãƒ¢ãƒ³ã«ã¤ã„ã¦ã‚‹å ´åˆã¯ãšã™	
 		if (cbmw->mo[ i ].edit_flag == CB_DEF_EDIT_OFF
 		&&	cbmw->mo[ i ].poke_idx  != CB_DEF_POKE_NOT_INDEX){
-			OS_Printf("Á‚·@ID = %d\n", i);
+			OS_Printf("æ¶ˆã™ã€€ID = %d\n", i);
 			OS_Printf("poke idx = %3d\n", cbmw->mo[ i ].poke_idx);
 			
 			CB_Tool_CoreDataRemove(cbmw, i);
@@ -834,7 +834,7 @@ void CB_Tool_CatsInit(CB_SYS* sys)
 			0, 128, 0, 32,
 		};
 		const TCATS_CHAR_MANAGER_MAKE CB_Ccmm = {
-			48 + 48,			///< IDŠÇ— main + sub
+			48 + 48,			///< IDç®¡ç† main + sub
 			1024 * 0x40,		///< 64k
 			 512 * 0x20,		///< 32k
 			GX_OBJVRAMMODE_CHAR_1D_64K,
@@ -846,12 +846,12 @@ void CB_Tool_CatsInit(CB_SYS* sys)
 	{
 		BOOL active;
 		const TCATS_RESOURCE_NUM_LIST CB_ResourceList = {
-			48 + 48,	///< ƒLƒƒƒ‰“o˜^” 	main + sub
-			16 + 16,	///< ƒpƒŒƒbƒg“o˜^”	main + sub
-			64,			///< ƒZƒ‹
-			64,			///< ƒZƒ‹ƒAƒjƒ
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+			48 + 48,	///< ã‚­ãƒ£ãƒ©ç™»éŒ²æ•° 	main + sub
+			16 + 16,	///< ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æ•°	main + sub
+			64,			///< ã‚»ãƒ«
+			64,			///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		};
 		
 		sys->crp = CATS_ResourceCreate(sys->csp);
@@ -1069,11 +1069,11 @@ void SubSelect_ObjRefrect(CB_MAIN_WORK* cbmw)
 	for (i = 0; i < CB_DEF_CORE_MAX; i++){
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/25
-// ƒXƒCƒbƒ`‚Ì 0/1 ‚ÅC³‚ªƒIƒ“^ƒIƒt‚³‚ê‚é‚æ‚¤‚É•ÏX‚µ‚½ã‚Å”½‰f
+// ã‚¹ã‚¤ãƒƒãƒã® 0/1 ã§ä¿®æ­£ãŒã‚ªãƒ³ï¼ã‚ªãƒ•ã•ã‚Œã‚‹ã‚ˆã†ã«å¤‰æ›´ã—ãŸä¸Šã§åæ˜ 
 
 #if AFTERMASTER_061220_CUSTOMBALL_NODEL_BUG_FIX
 
-		///< ƒf[ƒ^‚ªæ“¾‚Å‚«‚È‚¢ê‡‚Í”ò‚Î‚·B
+		///< ãƒ‡ãƒ¼ã‚¿ãŒå–å¾—ã§ããªã„å ´åˆã¯é£›ã°ã™ã€‚
 		if (cbmw->mo[i].cap == NULL){ continue; }
 
 #endif
@@ -1092,7 +1092,7 @@ void CB_Tool_CoreDataChange(CB_MAIN_WORK* cbmw, int from, int to)
 	int set_from;
 	CB_CORE temp;
 	
-	///< ƒ|ƒPƒpƒ‰‘€ì
+	///< ãƒã‚±ãƒ‘ãƒ©æ“ä½œ
 	poke_from = cbmw->cb_edit_data[ from ].poke_idx;
 	poke_to	  = cbmw->cb_edit_data[ to ].poke_idx;
 	
@@ -1104,18 +1104,18 @@ void CB_Tool_CoreDataChange(CB_MAIN_WORK* cbmw, int from, int to)
 	if (poke_from != CB_DEF_POKE_NOT_INDEX){
 		set_to = to + 1;
 		PokeParaPut(cbmw->cb_pw->poke_para[ poke_from ], ID_PARA_cb_id, (u8*)&set_to);
-		OS_Printf("poke_from ‘‚«Š·‚¦\n");
+		OS_Printf("poke_from æ›¸ãæ›ãˆ\n");
 	}
 	if (poke_to != CB_DEF_POKE_NOT_INDEX){
 		set_from = from + 1;
 		PokeParaPut(cbmw->cb_pw->poke_para[ poke_to ], ID_PARA_cb_id, (u8*)&set_from);
-		OS_Printf("poke_to ‘‚«Š·‚¦\n");
+		OS_Printf("poke_to æ›¸ãæ›ãˆ\n");
 	}
 	poke_idx = cbmw->cb_edit_data[ from ].poke_idx;
 	cbmw->cb_edit_data[ from ].poke_idx = cbmw->cb_edit_data[ to ].poke_idx;
 	cbmw->cb_edit_data[ to ].poke_idx = poke_idx;
 	
-	///< ƒRƒAƒf[ƒ^“ü‚ê‘Ö‚¦
+	///< ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿å…¥ã‚Œæ›¿ãˆ
 	CB_Tool_CoreData_Copy(cbmw->cb_edit_data[from].core, &temp);
 	CB_Tool_CoreData_Copy(cbmw->cb_edit_data[to].core, cbmw->cb_edit_data[from].core);
 	CB_Tool_CoreData_Copy(&temp, cbmw->cb_edit_data[to].core);
@@ -1145,7 +1145,7 @@ void SubSelect_ObjDelete(CB_MAIN_WORK* cbmw)
 	CATS_ActorPointerDelete_S(cbmw->cap_cur[1]);
 }
 
-///< ƒƒCƒ“‰æ–Ê@ƒEƒBƒ“ƒhƒEƒŠƒ\[ƒX“Ç‚İ‚İ
+///< ãƒ¡ã‚¤ãƒ³ç”»é¢ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 void CB_BMP_WindowResLoad(GF_BGL_INI* bgl, PALETTE_FADE_PTR pfd, int wintype)
 {
 //	TalkWinGraphicSet(bgl, CB_DEF_STRING_BG_FRM, CB_DEF_WIN_T_TALK_CHAR_OFS,
@@ -1159,12 +1159,12 @@ void CB_BMP_WindowResLoad(GF_BGL_INI* bgl, PALETTE_FADE_PTR pfd, int wintype)
 	PaletteWorkSet_Arc(pfd, ARC_WINFRAME, MenuWinPalArcGet(),
 					   HEAPID_CUSTOM_BALL, FADE_MAIN_BG, 0x20, CB_ENUM_PAL_MENU * 16);
 
-	///< ƒtƒHƒ“ƒg
+	///< ãƒ•ã‚©ãƒ³ãƒˆ
 	PaletteWorkSet_Arc(pfd, ARC_FONT, NARC_font_talk_ncrl, 
 					   HEAPID_CUSTOM_BALL, FADE_MAIN_BG, 0x20, CB_ENUM_PAL_FONT * 16);
 }
 
-///< ƒTƒu‰æ–Ê@ƒEƒBƒ“ƒhƒEƒŠƒ\[ƒX“Ç‚İ‚İ
+///< ã‚µãƒ–ç”»é¢ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 void CB_BMP_WindowResLoad_Sub(GF_BGL_INI* bgl, PALETTE_FADE_PTR pfd, int wintype)
 {
 //	TalkWinGraphicSet(bgl, CB_DEF_STRING_SUB_BG_FRM, CB_DEF_WIN_T_TALK_CHAR_OFS,
@@ -1178,7 +1178,7 @@ void CB_BMP_WindowResLoad_Sub(GF_BGL_INI* bgl, PALETTE_FADE_PTR pfd, int wintype
 	PaletteWorkSet_Arc(pfd, ARC_WINFRAME, MenuWinPalArcGet(),
 					   HEAPID_CUSTOM_BALL, FADE_SUB_BG, 0x20, CB_ENUM_PAL_MENU * 16);
 
-	///< ƒtƒHƒ“ƒg
+	///< ãƒ•ã‚©ãƒ³ãƒˆ
 	PaletteWorkSet_Arc(pfd, ARC_FONT, NARC_font_talk_ncrl, 
 					   HEAPID_CUSTOM_BALL, FADE_SUB_BG, 0x20, CB_ENUM_PAL_FONT * 16);
 
@@ -1512,15 +1512,15 @@ void CB_Tool_BTN_ResLoad(CB_MAIN_WORK* cbmw, ARCHANDLE* p_handle)
 	crp = cbmw->sys.crp;
 	pfd = cbmw->sys.pfd;
 	
-	///< ƒV[ƒ‹ƒ{ƒ^ƒ“
+	///< ã‚·ãƒ¼ãƒ«ãƒœã‚¿ãƒ³
 //	CB_Tool_SealBTN_ResLoad(cbmw);
 
-	///< ƒ{ƒ^ƒ“—pƒpƒŒƒbƒg
+	///< ãƒœã‚¿ãƒ³ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
 	CATS_LoadResourcePlttWorkArcH(pfd, FADE_SUB_OBJ, csp, crp,
 								 p_handle, CB_BUTTON_NCLR, FALSE,
 								 CB_DEF_BTN_PAL_NUM, NNS_G2D_VRAM_TYPE_2DSUB,
 								 CB_ENUM_BTN_PLTT_ID + CB_BUTTON_NCLR);	
-	///< ª‰Ÿ‚µƒ{ƒ^ƒ“
+	///< â†‘æŠ¼ã—ãƒœã‚¿ãƒ³
 	CATS_LoadResourceCharArcH(csp, crp,
 							 p_handle, CB_BUTTON_SC01_NCGR_BIN, TRUE,
 							 NNS_G2D_VRAM_TYPE_2DSUB,
@@ -1534,7 +1534,7 @@ void CB_Tool_BTN_ResLoad(CB_MAIN_WORK* cbmw, ARCHANDLE* p_handle)
 								p_handle, CB_BUTTON_SC01_NANR_BIN, TRUE,
 								CB_ENUM_BTN_CELLANM_ID + CB_BUTTON_SC01_NANR_BIN);
 	
-	///< «‰Ÿ‚µƒ{ƒ^ƒ“
+	///< â†“æŠ¼ã—ãƒœã‚¿ãƒ³
 	CATS_LoadResourceCharArcH(csp, crp,
 							 p_handle, CB_BUTTON_SC02_NCGR_BIN, TRUE,
 							 NNS_G2D_VRAM_TYPE_2DSUB,
@@ -1548,7 +1548,7 @@ void CB_Tool_BTN_ResLoad(CB_MAIN_WORK* cbmw, ARCHANDLE* p_handle)
 								p_handle, CB_BUTTON_SC02_NANR_BIN, TRUE,
 								CB_ENUM_BTN_CELLANM_ID + CB_BUTTON_SC02_NANR_BIN);
 
-	///< ‰º‚Ìƒ{ƒ^ƒ“
+	///< ä¸‹ã®ãƒœã‚¿ãƒ³
 	CATS_LoadResourceCharArcH(csp, crp,
 							 p_handle, CB_BUTTON_01_NCGR_BIN, TRUE,
 							 NNS_G2D_VRAM_TYPE_2DSUB,
@@ -1601,7 +1601,7 @@ void CB_Tool_BTN_Add(CB_MAIN_WORK* cbmw)
 	coap.id[4]	= CLACT_U_HEADER_DATA_NONE;
 	coap.id[5]	= CLACT_U_HEADER_DATA_NONE;
 #if 0
-	///< ƒV[ƒ‹
+	///< ã‚·ãƒ¼ãƒ«
 	coap.pal	= 0;
 	coap.id[1]	= CB_ENUM_BTN_PLTT_ID + CB_LI_SEAL_NCLR;
 	coap.id[2]	= CB_ENUM_BTN_CELL_ID + CB_LI_SEAL_01_NCER_BIN;
@@ -1612,7 +1612,7 @@ void CB_Tool_BTN_Add(CB_MAIN_WORK* cbmw)
 	}
 #endif
 	i = CB_DEF_PAGE_ITEMS;
-	///< ã‰ºƒ{ƒ^ƒ“
+	///< ä¸Šä¸‹ãƒœã‚¿ãƒ³
 	coap.pal	= CB_DEF_UD_BTN_PAL_NO;
 	coap.id[0]	= CB_ENUM_BTN_CHAR_ID + CB_BUTTON_SC01_NCGR_BIN;
 	coap.id[1]	= CB_ENUM_BTN_PLTT_ID + CB_BUTTON_NCLR;
@@ -1626,7 +1626,7 @@ void CB_Tool_BTN_Add(CB_MAIN_WORK* cbmw)
 	coap.id[3]	= CB_ENUM_BTN_CELLANM_ID + CB_BUTTON_SC02_NANR_BIN;
 	btn->cap[i++] = CATS_ObjectAdd_S(csp, crp, &coap);
 
-	///< Šm”F
+	///< ç¢ºèª
 	coap.bg_pri = CB_ENUM_BG_PRI_B_OBJ2;
 	coap.pal	= CB_DEF_EYE_BTN_PAL_NO;
 	coap.id[0]	= CB_ENUM_BTN_EYE_CHAR_ID + CB_BUTTON_KAKU01_NCGR_BIN;

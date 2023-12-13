@@ -29,20 +29,20 @@
 /*---------------------------------------------------------------------------*
     NNSi_G3dSendJointSRTMaya
 
-    ƒWƒ‡ƒCƒ“ƒgs—ñ‚ğƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‚Éİ’è‚·‚éB
-    ’ÊíANNS_G3dSendJointSRT_FuncArray‚Éƒ|ƒCƒ“ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚ÄA
-    NNS_G3D_SCALINGRULE_MAYA(<model_info>::scaling_rule‚ªmaya‚Ìê‡)
-    ‚ªw’è‚³‚ê‚Ä‚¢‚½ê‡‚ÉŒÄ‚Ño‚³‚ê‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚éB
+    ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆè¡Œåˆ—ã‚’ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³ã«è¨­å®šã™ã‚‹ã€‚
+    é€šå¸¸ã€NNS_G3dSendJointSRT_FuncArrayã«ãƒã‚¤ãƒ³ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã¦ã€
+    NNS_G3D_SCALINGRULE_MAYA(<model_info>::scaling_ruleãŒmayaã®å ´åˆ)
+    ãŒæŒ‡å®šã•ã‚Œã¦ã„ãŸå ´åˆã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã‚‹ã€‚
 
-    ‚Ü‚½AŒÄ‚Ño‚µ‚É‚ÍAPosition/Vectorƒ‚[ƒh‚Å‚ ‚èA‰ÁH‘ÎÛ‚Ìs—ñ‚ª
-    ƒJƒŒƒ“ƒgs—ñ‚É“ü‚Á‚Ä‚¢‚é•K—v‚ª‚ ‚éB
+    ã¾ãŸã€å‘¼ã³å‡ºã—æ™‚ã«ã¯ã€Position/Vectorãƒ¢ãƒ¼ãƒ‰ã§ã‚ã‚Šã€åŠ å·¥å¯¾è±¡ã®è¡Œåˆ—ãŒ
+    ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ã«å…¥ã£ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dSendJointSRTMaya(const NNSG3dJntAnmResult* result)
 {
-    // ‚±‚Ì“_‚Å
-    // s—ñƒ‚[ƒh‚ÍPosition/Vectorƒ‚[ƒh‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
-    // ‰ÁH‘ÎÛ‚Ìs—ñ‚ªƒJƒŒƒ“ƒgs—ñ‚É‚È‚Á‚Ä‚¢‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
+    // ã“ã®æ™‚ç‚¹ã§
+    // è¡Œåˆ—ãƒ¢ãƒ¼ãƒ‰ã¯Position/Vectorãƒ¢ãƒ¼ãƒ‰ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚
+    // åŠ å·¥å¯¾è±¡ã®è¡Œåˆ—ãŒã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ã«ãªã£ã¦ã„ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚
 
     // T->IS->R->S
 
@@ -73,8 +73,8 @@ NNSi_G3dSendJointSRTMaya(const NNSG3dJntAnmResult* result)
         if (trFlag)
         {
             // HACK ALLERT
-            // rot‚Ætrans‚Í˜A‘±‚µ‚Ä‚¢‚é‚Æ‚¢‚¤‚±‚Æ‚ª‘O’ñ
-            // ‚Â‚Ü‚èAƒR[ƒh‚ÍNNSG3dJntAnmResult‚Ìƒƒ“ƒo‚Ì‡”Ô‚ÉˆË‘¶‚µ‚Ä‚¢‚éB
+            // rotã¨transã¯é€£ç¶šã—ã¦ã„ã‚‹ã¨ã„ã†ã“ã¨ãŒå‰æ
+            // ã¤ã¾ã‚Šã€ã‚³ãƒ¼ãƒ‰ã¯NNSG3dJntAnmResultã®ãƒ¡ãƒ³ãƒã®é †ç•ªã«ä¾å­˜ã—ã¦ã„ã‚‹ã€‚
             NNS_G3dGeBufferOP_N(G3OP_MTX_MULT_4x3,
                                 (u32*)&result->rot._00,
                                 G3OP_MTX_MULT_4x3_NPARAMS);
@@ -108,10 +108,10 @@ NNSi_G3dSendJointSRTMaya(const NNSG3dJntAnmResult* result)
 /*---------------------------------------------------------------------------*
     NNSi_G3dGetJointScaleMaya
 
-    Maya‚ÌSegment Scale Compensate‚ğl—¶‚µ‚½ƒXƒP[ƒŠƒ“ƒO‚ğs‚¢‚Ü‚·B
-    SSC‚ğs‚¤ƒm[ƒh‚Ìê‡ApResult->scaleEx0‚Ée‚ÌƒXƒP[ƒ‹‚Ì‹t”ƒxƒNƒgƒ‹‚ª“ü‚è‚Ü‚·B
-    SSC‚ğs‚¤ƒm[ƒh‚Ìe‚Ìê‡ANNS_G3dRSOnGlb.scaleCache“à‚ÉƒXƒP[ƒ‹‚Ì
-    ‹t”ƒxƒNƒgƒ‹‚ª“ü‚è‚Ü‚·B
+    Mayaã®Segment Scale Compensateã‚’è€ƒæ…®ã—ãŸã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã„ã¾ã™ã€‚
+    SSCã‚’è¡Œã†ãƒãƒ¼ãƒ‰ã®å ´åˆã€pResult->scaleEx0ã«è¦ªã®ã‚¹ã‚±ãƒ¼ãƒ«ã®é€†æ•°ãƒ™ã‚¯ãƒˆãƒ«ãŒå…¥ã‚Šã¾ã™ã€‚
+    SSCã‚’è¡Œã†ãƒãƒ¼ãƒ‰ã®è¦ªã®å ´åˆã€NNS_G3dRSOnGlb.scaleCacheå†…ã«ã‚¹ã‚±ãƒ¼ãƒ«ã®
+    é€†æ•°ãƒ™ã‚¯ãƒˆãƒ«ãŒå…¥ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dGetJointScaleMaya(NNSG3dJntAnmResult* pResult,
@@ -120,8 +120,8 @@ NNSi_G3dGetJointScaleMaya(NNSG3dJntAnmResult* pResult,
                           u32 srtflag)
 {
     //
-    // srtflag‚ÍNNSG3dResNodeData::flag‚Å‚ ‚éB
-    // cmd‚ÍŒ»İˆ—‚µ‚Ä‚¢‚éSBC‚ğw‚·(NODEDESCƒRƒ}ƒ“ƒh)
+    // srtflagã¯NNSG3dResNodeData::flagã§ã‚ã‚‹ã€‚
+    // cmdã¯ç¾åœ¨å‡¦ç†ã—ã¦ã„ã‚‹SBCã‚’æŒ‡ã™(NODEDESCã‚³ãƒãƒ³ãƒ‰)
     //
     u8 opFlag;
 
@@ -138,7 +138,7 @@ NNSi_G3dGetJointScaleMaya(NNSG3dJntAnmResult* pResult,
         {
             u32 nodeID = *(cmd + 1);
 
-            // SSC‚ğs‚¤ƒm[ƒh‚Ìe‚Å’PˆÊƒXƒP[ƒ‹‚È‚Ì‚Åƒrƒbƒg‚ğƒŠƒZƒbƒg
+            // SSCã‚’è¡Œã†ãƒãƒ¼ãƒ‰ã®è¦ªã§å˜ä½ã‚¹ã‚±ãƒ¼ãƒ«ãªã®ã§ãƒ“ãƒƒãƒˆã‚’ãƒªã‚»ãƒƒãƒˆ
             NNSi_G3dBitVecSet(&NNS_G3dRS->isScaleCacheOne[0], nodeID);
         }
     }
@@ -152,10 +152,10 @@ NNSi_G3dGetJointScaleMaya(NNSG3dJntAnmResult* pResult,
         {
             u32 nodeID = *(cmd + 1);
 
-            // SSC‚ğs‚¤ƒm[ƒh‚Ìe‚Å’PˆÊƒXƒP[ƒ‹‚Å‚È‚¢‚Ì‚Åƒrƒbƒg‚ğƒŠƒZƒbƒg
+            // SSCã‚’è¡Œã†ãƒãƒ¼ãƒ‰ã®è¦ªã§å˜ä½ã‚¹ã‚±ãƒ¼ãƒ«ã§ãªã„ã®ã§ãƒ“ãƒƒãƒˆã‚’ãƒªã‚»ãƒƒãƒˆ
             NNSi_G3dBitVecReset(&NNS_G3dRS->isScaleCacheOne[0], nodeID);
 
-            // ©•ª‚ªSSC‚Ìparent‚É‚È‚é‚Ì‚ÅnodeID‚ÌscaleCache‚É‚¢‚ê‚é
+            // è‡ªåˆ†ãŒSSCã®parentã«ãªã‚‹ã®ã§nodeIDã®scaleCacheã«ã„ã‚Œã‚‹
             NNS_G3dRSOnGlb.scaleCache[nodeID].inv.x = *(p + 3);
             NNS_G3dRSOnGlb.scaleCache[nodeID].inv.y = *(p + 4);
             NNS_G3dRSOnGlb.scaleCache[nodeID].inv.z = *(p + 5);
@@ -173,12 +173,12 @@ NNSi_G3dGetJointScaleMaya(NNSG3dJntAnmResult* pResult,
         }
         else
         {
-            // scaleEx0‚É‚¢‚ê‚éB
+            // scaleEx0ã«ã„ã‚Œã‚‹ã€‚
             pResult->scaleEx0 = NNS_G3dRSOnGlb.scaleCache[parentID].inv;
         }
     }
 
-    // g—p‚µ‚È‚¢‚ªƒZƒbƒg‚µ‚Ä‚¨‚­‚Ì‚ª–³“ï(ƒuƒŒƒ“ƒh‚Æ‚ÌŒ“‚Ë‡‚¢)
+    // ä½¿ç”¨ã—ãªã„ãŒã‚»ãƒƒãƒˆã—ã¦ãŠãã®ãŒç„¡é›£(ãƒ–ãƒ¬ãƒ³ãƒ‰ã¨ã®å…¼ã­åˆã„)
     pResult->flag |= NNS_G3D_JNTANM_RESULTFLAG_SCALEEX1_ONE;
 }
 
@@ -186,13 +186,13 @@ NNSi_G3dGetJointScaleMaya(NNSG3dJntAnmResult* pResult,
 
 //
 //
-// ƒeƒNƒXƒ`ƒƒs—ñŠÖŒW
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—é–¢ä¿‚
 //
 //
 #include <nitro/code32.h>
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÌSRT‚ª‘S‚Ä0‚âIdentityˆÈŠO‚Éİ’è‚³‚ê‚Ä‚¢‚éê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã®SRTãŒå…¨ã¦0ã‚„Identityä»¥å¤–ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹å ´åˆ
 //
 static void
 texmtxCalc_flag_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -226,7 +226,7 @@ texmtxCalc_flag_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉScale‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«ScaleãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -253,7 +253,7 @@ texmtxCalc_flagS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉRotation‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«RotationãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagR_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -272,7 +272,7 @@ texmtxCalc_flagR_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉRotation‚ÆScale‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«Rotationã¨ScaleãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagRS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -290,7 +290,7 @@ texmtxCalc_flagRS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉTranslation‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«TranslationãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagT_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -322,7 +322,7 @@ texmtxCalc_flagT_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉTranslation‚ÆScale‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«Translationã¨ScaleãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagTS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -347,7 +347,7 @@ texmtxCalc_flagTS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉTranslation‚ÆRotation‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«Translationã¨RotationãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagTR_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -365,7 +365,7 @@ texmtxCalc_flagTR_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ª’PˆÊs—ñ‚Ìê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ãŒå˜ä½è¡Œåˆ—ã®å ´åˆ
 //
 static void
 texmtxCalc_flagTRS_(MtxFx44* m, const NNSG3dMatAnmResult*)
@@ -396,7 +396,7 @@ static void
 /*---------------------------------------------------------------------------*
     NNSi_G3dSendTexSRTMaya
 
-    Maya‚Åì¬‚³‚ê‚½ƒ‚ƒfƒ‹ƒf[ƒ^‚ÌƒeƒNƒXƒ`ƒƒs—ñ‚ğİ’è‚µ‚Ü‚·B
+    Mayaã§ä½œæˆã•ã‚ŒãŸãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã‚’è¨­å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dSendTexSRTMaya(const NNSG3dMatAnmResult* anm)

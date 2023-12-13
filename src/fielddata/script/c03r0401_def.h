@@ -1,7 +1,7 @@
 #ifndef _C03R0401_DEF_H_
 #define _C03R0401_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C03R0401_WOMAN6		(1)
 #define	SCRID_C03R0401_ASSISTANTM		(2)
 #define	SCRID_C03R0401_MOUNT		(3)
@@ -18,6 +18,6 @@
 #define	SCRID_C03R0401_WOMAN		(14)
 #define	SCRID_C03R0401_BIGMAN		(15)
 #define	SCRID_C03R0401_OLDMAN		(16)
-#define	SCRID_C03R0401_DATA_MAX		(16)		//最大数
+#define	SCRID_C03R0401_DATA_MAX		(16)		//譛螟ｧ謨ｰ
 
 #endif //_C03R0401_DEF_H_

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>OS_InitVAlarm</TITLE>
@@ -9,30 +9,30 @@
 </HEAD>
 <BODY>
 <H1 align="left">OS_InitVAlarm</H1>
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
   <PRE><CODE>void OS_InitVAlarm( void );
  </CODE></PRE>
 </DL>
-<H2>����</H2>
-<P>�Ȃ��B</P>
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
-<H2>����</H2>
-<P>V�J�E���g�A���[���V�X�e�������������܂��B<BR>
-<CODE><A href="../alarm/OS_InitAlarm.html">OS_InitAlarm() </A></CODE>�ƈႢ�A�`�b�N�͎g�p���܂���B</P>
-<P>V�J�E���g�A���[���֘A�̊֐����g�p����O�ɂ͂��� <CODE>OS_InitVAlarm()</CODE> ���Ăяo���Ă��������B��x�Ăяo���Ώ\���ŁA��x�ڈȍ~�̌Ăяo���͉������܂���B</P>
-<P>V�J�E���g�A���[���V�X�e�����I������ꍇ�́A<CODE><A href="OS_EndVAlarm.html">OS_EndVAlarm()</A></CODE> ���Ăяo���Ă��������B���̌�Ă�V�J�E���g�A���[�����g�p����ꍇ�͏��������s�Ȃ��Ă��������B</P>
-<H2>�Q��</H2>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>Vカウントアラームシステムを初期化します。<BR>
+<CODE><A href="../alarm/OS_InitAlarm.html">OS_InitAlarm() </A></CODE>と違い、チックは使用しません。</P>
+<P>Vカウントアラーム関連の関数を使用する前にはこの <CODE>OS_InitVAlarm()</CODE> を呼び出してください。一度呼び出せば十分で、二度目以降の呼び出しは何もしません。</P>
+<P>Vカウントアラームシステムを終了する場合は、<CODE><A href="OS_EndVAlarm.html">OS_EndVAlarm()</A></CODE> を呼び出してください。その後再びVカウントアラームを使用する場合は初期化を行なってください。</P>
+<H2>参照</H2>
 <P><CODE><A href="OS_EndVAlarm.html">OS_EndVAlarm</A>, 
 <A href="OS_CreateVAlarm.html">OS_CreateVAlarm</A>, <A href="OS_SetVAlarm.html">OS_SetVAlarm</A>,
  <A href="../alarm/OS_InitAlarm.html">OS_InitAlarm</A><BR>
 </CODE></P>
-<H2>����</H2>
-<P>2004/10/25 VAlarm �̏ڍׂ�ʃt�@�C���ɕ���<BR>
-2004/10/22 VAlarm �̏ڍׂ�}����ŒǋL<BR>
-2004/02/24 ����</P>
+<H2>履歴</H2>
+<P>2004/10/25 VAlarm の詳細を別ファイルに分離<BR>
+2004/10/22 VAlarm の詳細を図入りで追記<BR>
+2004/02/24 初版</P>
 </BODY>
 </HTML>

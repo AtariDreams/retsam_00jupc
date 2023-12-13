@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	bb_local.h
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	goto
- * @date	2007.09.25(‰Î)
+ * @date	2007.09.25(ç«)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -47,7 +47,7 @@
 
 /// palette
 enum {
-	eBB_OAM_PAL_TD_MANENE	= 0,		///< ã‰æ–Ê ƒ}ƒlƒl
+	eBB_OAM_PAL_TD_MANENE	= 0,		///< ä¸Šç”»é¢ ãƒžãƒãƒ
 	eBB_OAM_PAL_TD_MANENE_2,
 	eBB_OAM_PAL_TD_MANENE_3,
 	eBB_OAM_PAL_TD_MANENE_4,
@@ -63,7 +63,7 @@ enum {
 	
 	eBB_OAM_PAL_TD_MAX,
 	
-//	eBB_OAM_PAL_BD_CD		= 0,		///< ‰º‰æ–Ê ƒJƒEƒ“ƒgƒ_ƒEƒ“
+//	eBB_OAM_PAL_BD_CD		= 0,		///< ä¸‹ç”»é¢ ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
 	eBB_OAM_PAL_BD_STAR		= 0,
 	eBB_OAM_PAL_BD_HAND,
 	eBB_OAM_PAL_BD_KAMI,
@@ -87,7 +87,7 @@ enum {
 	eBB_ID_PEN,
 };
 
-///< ƒZƒ‹ƒAƒjƒ‚Ì’è‹`
+///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®å®šç¾©
 enum {	
 	eANM_MANENE_ARUKU = 0,
 	eANM_MANENE_OCHIRU,
@@ -104,19 +104,19 @@ enum {
 	eANM_CODE_OCHIRU,
 };
 
-///< ƒ‚ƒfƒ‹ƒAƒjƒ‚Ì’è‹`
+///< ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ã®å®šç¾©
 enum {
-	eANM_CODE_DEFAULT = 0,	///< ’Êí
-	eANM_CODE_FALL,			///< —Ž‰º
-	eANM_CODE_RECOVER,		///< •œ‹A
+	eANM_CODE_DEFAULT = 0,	///< é€šå¸¸
+	eANM_CODE_FALL,			///< è½ä¸‹
+	eANM_CODE_RECOVER,		///< å¾©å¸°
 
-	ePAT_3D_ARUKU	  = 0,	///< ‚ ‚é‚«
-	ePAT_3D_ARARA,			///< ‚ ‚ç‚ç
-	ePAT_3D_OTTOTTO,		///< ‚¨‚Á‚Æ
+	ePAT_3D_ARUKU	  = 0,	///< ã‚ã‚‹ã
+	ePAT_3D_ARARA,			///< ã‚ã‚‰ã‚‰
+	ePAT_3D_OTTOTTO,		///< ãŠã£ã¨
 };
 
 
-///< ’ÊMƒGƒ‰[—p
+///< é€šä¿¡ã‚¨ãƒ©ãƒ¼ç”¨
 typedef struct {
 	
 	u8	dis_err;
@@ -127,22 +127,22 @@ typedef struct {
 
 typedef struct {
 	
-	ARCHANDLE*			p_handle_bb;		///< ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ ( ‹Êæ‚è—p )
-	ARCHANDLE*			p_handle_cr;		///< ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ ( ‹¤’ÊƒŠƒ\[ƒX )
+	ARCHANDLE*			p_handle_bb;		///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ« ( çŽ‰ä¹—ã‚Šç”¨ )
+	ARCHANDLE*			p_handle_cr;		///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ« ( å…±é€šãƒªã‚½ãƒ¼ã‚¹ )
 	
-	CATS_SYS_PTR		csp;				///< OAMƒVƒXƒeƒ€
-	CATS_RES_PTR		crp;				///< ƒŠƒ\[ƒXˆêŠ‡ŠÇ—
+	CATS_SYS_PTR		csp;				///< OAMã‚·ã‚¹ãƒ†ãƒ 
+	CATS_RES_PTR		crp;				///< ãƒªã‚½ãƒ¼ã‚¹ä¸€æ‹¬ç®¡ç†
 
 	GF_BGL_INI*			bgl;				///< BGL
-	PALETTE_FADE_PTR	pfd;				///< ƒpƒŒƒbƒgƒtƒF[ƒh
+	PALETTE_FADE_PTR	pfd;				///< ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 	
 	GF_G3DMAN*			g3Dman;				///< 3D
-	GF_CAMERA_PTR		camera_p;			///< ƒJƒƒ‰
+	GF_CAMERA_PTR		camera_p;			///< ã‚«ãƒ¡ãƒ©
 	
-	BUTTON_MAN*			btn;				///< ƒ{ƒ^ƒ“
+	BUTTON_MAN*			btn;				///< ãƒœã‚¿ãƒ³
 	
-//	BUTTON_MAN*			btn;				///< ƒ{ƒ^ƒ“	
-//	RECT_HIT_TBL		rht[ eHRT_MAX ];	///< “–‚½‚è”»’è(manager‚É“o˜^‚·‚é)
+//	BUTTON_MAN*			btn;				///< ãƒœã‚¿ãƒ³	
+//	RECT_HIT_TBL		rht[ eHRT_MAX ];	///< å½“ãŸã‚Šåˆ¤å®š(managerã«ç™»éŒ²ã™ã‚‹)
 //	MSGDATA_MANAGER*	man;
 //	FONTOAM_SYS_PTR		fontoam_sys;
 //	int					logo_color;

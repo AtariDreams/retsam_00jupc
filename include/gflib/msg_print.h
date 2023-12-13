@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	msg_print.h
- * @brief	ƒrƒbƒgƒ}ƒbƒv•¶Žš—ñ•\Ž¦—pƒVƒXƒeƒ€
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—æ–‡å­—åˆ—è¡¨ç¤ºç”¨ã‚·ã‚¹ãƒ†ãƒ 
  * @author	tomo
  * @date	2004.10.28
  */
@@ -25,13 +25,13 @@
 
 //---------------------------------------------------------------------------------------------
 /**
-	’è”’è‹`
+	å®šæ•°å®šç¾©
  */
 //---------------------------------------------------------------------------------------------
 typedef u16		STRCODE;
 
 //---------------------------------------------------------------------------------------------
-/// F”Ô†Žw’è PRINT ‚Ì‚½‚ß‚Ì’è”Eƒ}ƒNƒ’è‹`
+/// è‰²ç•ªå·æŒ‡å®š PRINT ã®ãŸã‚ã®å®šæ•°ãƒ»ãƒžã‚¯ãƒ­å®šç¾©
 
 typedef u32		GF_PRINTCOLOR;
 
@@ -40,24 +40,24 @@ typedef u32		GF_PRINTCOLOR;
 #define  GF_PRINTCOLOR_SHADOW_SHIFT	(8)
 #define  GF_PRINTCOLOR_GROUND_SHIFT	(0)
 
-// GF_MSG_PrintColor ‚Ìˆø” GF_PRINT_COLOR ‚ðì¬‚·‚é‚½‚ß‚Ìƒ}ƒNƒi •¶ŽšFA‰eFA”wŒiF‚Ì‡‚É”Ô†‚ð“n‚· j
+// GF_MSG_PrintColor ã®å¼•æ•° GF_PRINT_COLOR ã‚’ä½œæˆã™ã‚‹ãŸã‚ã®ãƒžã‚¯ãƒ­ï¼ˆ æ–‡å­—è‰²ã€å½±è‰²ã€èƒŒæ™¯è‰²ã®é †ã«ç•ªå·ã‚’æ¸¡ã™ ï¼‰
 #define  GF_PRINTCOLOR_MAKE(letter, shadow, ground)	(GF_PRINTCOLOR)(	(((letter)&GF_PRINTCOLOR_MASK) << GF_PRINTCOLOR_LETTER_SHIFT)|\
 																		(((shadow)&GF_PRINTCOLOR_MASK) << GF_PRINTCOLOR_SHADOW_SHIFT)|\
 																		(((ground)&GF_PRINTCOLOR_MASK) << GF_PRINTCOLOR_GROUND_SHIFT)	)
 
-// GF_PRINTCOLOR_MAKE ‚Åì‚Á‚½’l‚©‚çŠeF”Ô†‚ðŽæ‚èo‚·ƒ}ƒNƒ
+// GF_PRINTCOLOR_MAKE ã§ä½œã£ãŸå€¤ã‹ã‚‰å„è‰²ç•ªå·ã‚’å–ã‚Šå‡ºã™ãƒžã‚¯ãƒ­
 #define GF_PRINTCOLOR_GET_LETTER(c)		(((c)>>GF_PRINTCOLOR_LETTER_SHIFT)&GF_PRINTCOLOR_MASK)
 #define GF_PRINTCOLOR_GET_SHADOW(c)		(((c)>>GF_PRINTCOLOR_SHADOW_SHIFT)&GF_PRINTCOLOR_MASK)
 #define GF_PRINTCOLOR_GET_GROUND(c)		(((c)>>GF_PRINTCOLOR_GROUND_SHIFT)&GF_PRINTCOLOR_MASK)
 
 //---------------------------------------------------------------------------------------------
-///ƒƒbƒZ[ƒW•\Ž¦wait’è‹`
+///ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºwaitå®šç¾©
 
-#define	MSG_NO_PUT	(0xff)	//ƒfƒBƒXƒvƒŒƒC“]‘—‚È‚µ
-#define	MSG_ALLPUT	(0)		//ƒfƒBƒXƒvƒŒƒCˆêŠ‡“]‘—
+#define	MSG_NO_PUT	(0xff)	//ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤è»¢é€ãªã—
+#define	MSG_ALLPUT	(0)		//ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ä¸€æ‹¬è»¢é€
 
 //---------------------------------------------------------------------------------------------
-///ƒtƒHƒ“ƒgƒf[ƒ^ì¬ƒvƒƒOƒ‰ƒ€—p•Ô‚è’l’è‹`
+///ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆãƒ—ãƒ­ã‚°ãƒ©ãƒ ç”¨è¿”ã‚Šå€¤å®šç¾©
 
 typedef enum {
 	PRINT_RESULT_WRITE = 0,
@@ -68,123 +68,123 @@ typedef enum {
 
 
 //---------------------------------------------------------------------------------------------
-/// FntDataColorGe() —pƒ‚[ƒh’è‹`
+/// FntDataColorGe() ç”¨ãƒ¢ãƒ¼ãƒ‰å®šç¾©
 enum COLOR_GET_MODE {
 	COLOR_F,
 	COLOR_S,
 	COLOR_B
 };
 
-///•\Ž¦•¶Žš—ñÝ’è\‘¢‘Ì
+///è¡¨ç¤ºæ–‡å­—åˆ—è¨­å®šæ§‹é€ ä½“
 typedef struct mph_tag{
 	union {
-		const u16* msg;		//•\Ž¦ƒƒbƒZ[ƒW
+		const u16* msg;		//è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		const STRBUF* strbuf;
 	};
-	GF_BGL_BMPWIN * bmpwin;	//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_BMPWIN * bmpwin;	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	u8		msg_index;		//ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+	u8		msg_index;		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	u8		fnt_index;		//Žg—pƒtƒHƒ“ƒgINDEX
-	u8		start_x;		//ƒEƒCƒ“ƒhƒE“à•\Ž¦ŠJŽnXƒIƒtƒZƒbƒg
-	u8		start_y;		//ƒEƒCƒ“ƒhƒE“à•\Ž¦ŠJŽnYƒIƒtƒZƒbƒg
+	u8		fnt_index;		//ä½¿ç”¨ãƒ•ã‚©ãƒ³ãƒˆINDEX
+	u8		start_x;		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u8		start_y;		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-	u16		write_x;	//ƒEƒCƒ“ƒhƒE“à•`‰æXƒIƒtƒZƒbƒg
-	u16		write_y;	//ƒEƒCƒ“ƒhƒE“à•`‰æYƒIƒtƒZƒbƒg
-	u16		space_x;	//•¶ŽšŠÔŠu
-	u16		space_y;	//•¶ŽšŠÔŠu
+	u16		write_x;	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…æç”»Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u16		write_y;	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…æç”»Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u16		space_x;	//æ–‡å­—é–“éš”
+	u16		space_y;	//æ–‡å­—é–“éš”
 
-	u8		style;		//ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
-	u8		f_col;		//•¶ŽšFƒiƒ“ƒo[
-	u8		b_col;		//”wŒiFƒiƒ“ƒo[
-	u8		s_col;		//‰eF@ƒiƒ“ƒo[
+	u8		style;		//ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
+	u8		f_col;		//æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼
+	u8		b_col;		//èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+	u8		s_col;		//å½±è‰²ã€€ãƒŠãƒ³ãƒãƒ¼
 
-	u16		dot_tbl;	//Šg‘å—pƒhƒbƒgƒe[ƒuƒ‹
-	u8		dot_wy;		//Šg‘åŽž‚ÌYÀ•W‚Ì•`‰æ•â³’l
+	u16		dot_tbl;	//æ‹¡å¤§ç”¨ãƒ‰ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+	u8		dot_wy;		//æ‹¡å¤§æ™‚ã®Yåº§æ¨™ã®æç”»è£œæ­£å€¤
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/06
-	// ‚ ‚ç‚©‚¶‚ß“o˜^‚µ‚Ä‚¨‚¢‚½F‚ÉŒã‚Å•ÏX‚·‚éŽd‘g‚Ý‚ðŽÀ‘•
+	// ã‚ã‚‰ã‹ã˜ã‚ç™»éŒ²ã—ã¦ãŠã„ãŸè‰²ã«å¾Œã§å¤‰æ›´ã™ã‚‹ä»•çµ„ã¿ã‚’å®Ÿè£…
 	u8		color_stack;
 	// ----------------------------------------------------------------------------
 
 /*	4bit color mode
-u8		style:4;	//ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
-u8		f_col:4;	//•¶ŽšFƒiƒ“ƒo[
-u8		b_col:4;	//”wŒiFƒiƒ“ƒo[
-u8		s_col:4;	//‰eF@ƒiƒ“ƒo[
-u8		work[2];	//¦”‚ ‚í‚¹‚Å’Ç‰Á
+u8		style:4;	//ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
+u8		f_col:4;	//æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼
+u8		b_col:4;	//èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+u8		s_col:4;	//å½±è‰²ã€€ãƒŠãƒ³ãƒãƒ¼
+u8		work[2];	//â€»æ•°ã‚ã‚ã›ã§è¿½åŠ 
 */
 }MSG_PRINT_HEADER;
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/06
-// mph_tag.color_stack ‚Ì‰Šú’l
+// mph_tag.color_stack ã®åˆæœŸå€¤
 #define COLORSTACK_NOENTRY		(0xFF)
 // ----------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------------------------
 /**
- *	•\Ž¦ƒVƒXƒeƒ€Žg—pƒ[ƒN\‘¢‘Ì
+ *	è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //---------------------------------------------------------------------------------------------
 #define MDH_WORKSIZE	(7)
 
-// FALSE‚ð•Ô‚¹‚ÎPrintˆ—‚ðŒp‘±BTRUE‚ð•Ô‚·‚ÆPrint‚ð’†’f‚µ‚ÄCallback‚ðŒÄ‚Ñ‘±‚¯‚é
+// FALSEã‚’è¿”ã›ã°Printå‡¦ç†ã‚’ç¶™ç¶šã€‚TRUEã‚’è¿”ã™ã¨Printã‚’ä¸­æ–­ã—ã¦Callbackã‚’å‘¼ã³ç¶šã‘ã‚‹
 typedef  BOOL (*pStrPrintCallBack)(MSG_PRINT_HEADER*, u16);
 
 typedef struct {
 	MSG_PRINT_HEADER		mph;
 	pStrPrintCallBack		call_back;
-	u8		userwork[MDH_WORKSIZE];//ƒ†[ƒU[ƒ[ƒN
-	u8		sw;			//“®ìƒXƒCƒbƒ`
-	u8		seq;		//ƒV[ƒPƒ“ƒX
-	u8		wait:7;		//•¶Žš•`‰æƒEƒFƒCƒg(0:ˆêŠ‡`)
-	u8		wait_flg:1;	//ƒEƒFƒCƒgƒtƒ‰ƒO 0=ˆêŠ‡•\Ž¦, 1=‚P•¶Žš‚¸‚Â•\Ž¦
-	u8		waitwork;	//ƒ[ƒN(ƒEƒFƒCƒg)
-	u8		scrwork;	//ƒ[ƒN(ƒXƒNƒ[ƒ‹)
-	u8		msg_index;	//ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
-	u8		callback_cont_flag;	// ˜A‘±ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µƒtƒ‰ƒO
-	u16		callback_arg;	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Éˆø‚«“n‚·’l
+	u8		userwork[MDH_WORKSIZE];//ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	u8		sw;			//å‹•ä½œã‚¹ã‚¤ãƒƒãƒ
+	u8		seq;		//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8		wait:7;		//æ–‡å­—æç”»ã‚¦ã‚§ã‚¤ãƒˆ(0:ä¸€æ‹¬ã€œ)
+	u8		wait_flg:1;	//ã‚¦ã‚§ã‚¤ãƒˆãƒ•ãƒ©ã‚° 0=ä¸€æ‹¬è¡¨ç¤º, 1=ï¼‘æ–‡å­—ãšã¤è¡¨ç¤º
+	u8		waitwork;	//ãƒ¯ãƒ¼ã‚¯(ã‚¦ã‚§ã‚¤ãƒˆ)
+	u8		scrwork;	//ãƒ¯ãƒ¼ã‚¯(ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«)
+	u8		msg_index;	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8		callback_cont_flag;	// é€£ç¶šã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—ãƒ•ãƒ©ã‚°
+	u16		callback_arg;	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«å¼•ãæ¸¡ã™å€¤
 //	void * trg_wk;
-	void * disp_icon;	//‘€ì‰æ–Ê•ÏXƒAƒCƒRƒ“
+	void * disp_icon;	//æ“ä½œç”»é¢å¤‰æ›´ã‚¢ã‚¤ã‚³ãƒ³
 }MSG_DATA_HEADER;
 
 //---------------------------------------------------------------------------------------------
 /**
- *	•\Ž¦•¶Žšƒf[ƒ^\‘¢‘ÌiƒNƒ‰ƒCƒAƒ“ƒgÝ’èj
+ *	è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ï¼ˆã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆè¨­å®šï¼‰
  */
 //---------------------------------------------------------------------------------------------
 typedef struct {
-u8		size_x;		//ƒtƒHƒ“ƒgXƒTƒCƒYŽw’è
-u8		size_y;		//ƒtƒHƒ“ƒgYƒTƒCƒYŽw’è
-u8		space_x;	//•¶ŽšŠÔŠu(‰ŠúÝ’è)
-u8		space_y;	//•¶ŽšŠÔŠu(‰ŠúÝ’è)
-u8		style;	//ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹(‰ŠúÝ’è)
-u8		f_col;	//•¶ŽšFƒiƒ“ƒo[
-u8		b_col;	//”wŒiFƒiƒ“ƒo[
-u8		s_col;	//‰eF@ƒiƒ“ƒo[
-//u8		work[2];	//¦”‚ ‚í‚¹‚Å’Ç‰Á
+u8		size_x;		//ãƒ•ã‚©ãƒ³ãƒˆXã‚µã‚¤ã‚ºæŒ‡å®š
+u8		size_y;		//ãƒ•ã‚©ãƒ³ãƒˆYã‚µã‚¤ã‚ºæŒ‡å®š
+u8		space_x;	//æ–‡å­—é–“éš”(åˆæœŸè¨­å®š)
+u8		space_y;	//æ–‡å­—é–“éš”(åˆæœŸè¨­å®š)
+u8		style;	//ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«(åˆæœŸè¨­å®š)
+u8		f_col;	//æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼
+u8		b_col;	//èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+u8		s_col;	//å½±è‰²ã€€ãƒŠãƒ³ãƒãƒ¼
+//u8		work[2];	//â€»æ•°ã‚ã‚ã›ã§è¿½åŠ 
 }MSG_FONT_HEADER;
 
 
 //---------------------------------------------------------------------------------------------
 /**
- *	•¶Žšƒf[ƒ^Ši”[\‘¢‘Ì
+ *	æ–‡å­—ãƒ‡ãƒ¼ã‚¿æ ¼ç´æ§‹é€ ä½“
  */
 //---------------------------------------------------------------------------------------------
 typedef struct {
 u8		data[0x20*4];
-u8		size_x;	//•\Ž¦XƒTƒCƒY
-u8		size_y;	//•\Ž¦YƒTƒCƒY
+u8		size_x;	//è¡¨ç¤ºXã‚µã‚¤ã‚º
+u8		size_y;	//è¡¨ç¤ºYã‚µã‚¤ã‚º
 }MSG_FONT_DATA;
 
 
 
 //---------------------------------------------------------------------------------------------
 /**
- *	•¶Žš•\Ž¦ƒVƒXƒeƒ€‰Šú‰»ŠÖ”(ƒ†[ƒU[Ý’è)
+ *	æ–‡å­—è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–é–¢æ•°(ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®š)
  *
- * @param	ƒtƒHƒ“ƒgŠÖ”ŒQƒwƒbƒ_
+ * @param	ãƒ•ã‚©ãƒ³ãƒˆé–¢æ•°ç¾¤ãƒ˜ãƒƒãƒ€
  *
  */
 //---------------------------------------------------------------------------------------------
@@ -209,24 +209,24 @@ extern u8 GF_STR_Print( const MSG_PRINT_HEADER* mph_p, u32 wait, pStrPrintCallBa
 
 
 //=============================================================================================
-//•¶Žš•\Ž¦ƒVƒXƒeƒ€ŠÖ”
+//æ–‡å­—è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ é–¢æ•°
 //=============================================================================================
 //---------------------------------------------------------------------------------------------
 /**
- *	•¶Žš•\Ž¦‰Šú‰»ŠÖ”
+ *	æ–‡å­—è¡¨ç¤ºåˆæœŸåŒ–é–¢æ•°
  *
- * @param	‚È‚µ
+ * @param	ãªã—
  *
- * @retval	‚È‚µ
+ * @retval	ãªã—
  */
 //---------------------------------------------------------------------------------------------
 GLOBAL void	MSG_PrintInit(void);
 //---------------------------------------------------------------------------------------------
 /*
- *	•¶Žšƒf[ƒ^Ý’è
+ *	æ–‡å­—ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- * @param	radrs		“Ç‚Ýž‚Ýƒf[ƒ^ŠJŽnƒAƒhƒŒƒX
- * @param	wadrs		‘‚«ž‚Ýƒf[ƒ^ƒoƒbƒtƒ@ƒAƒhƒŒƒX
+ * @param	radrs		èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	wadrs		æ›¸ãè¾¼ã¿ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -235,11 +235,11 @@ GLOBAL void FntDataSet8x8_2bit(u32 radrs,u32 wadrs);
 
 //---------------------------------------------------------------------------------------------
 /*
- *	FntDataSet8x8_2bit ‚ðŒÄ‚Ô‘O‚ÉAF”Ô†‚ðƒZƒbƒg‚µ‚Ä‚¨‚­i‚‘¬‰»‚Ì‚½‚ßj
+ *	FntDataSet8x8_2bit ã‚’å‘¼ã¶å‰ã«ã€è‰²ç•ªå·ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠãï¼ˆé«˜é€ŸåŒ–ã®ãŸã‚ï¼‰
  *
- * @param	col_f	•¶ŽšF”Ô†
- * @param	col_b	”wŒiF”Ô†
- * @param	col_s	‰eF”Ô†
+ * @param	col_f	æ–‡å­—è‰²ç•ªå·
+ * @param	col_b	èƒŒæ™¯è‰²ç•ªå·
+ * @param	col_s	å½±è‰²ç•ªå·
  */
 //---------------------------------------------------------------------------------------------
 GLOBAL void FntDataColorSet(u8 col_f, u8 col_b, u8 col_s);
@@ -248,11 +248,11 @@ GLOBAL void FntDataColorBackUp(u8* col_f, u8* col_b, u8* col_s);
 GLOBAL void FntDataColorRecover(u8* col_f, u8* col_b, u8* col_s);
 //---------------------------------------------------------------------------------------------
 /*
- *	FntDataColorSet ‚ÅÝ’è‚µ‚½F”Ô†‚ðŽæ“¾
+ *	FntDataColorSet ã§è¨­å®šã—ãŸè‰²ç•ªå·ã‚’å–å¾—
  *
- * @param	mode	ƒ‚[ƒhienum COLOR_GET_MODE : msg_print.hj
+ * @param	mode	ãƒ¢ãƒ¼ãƒ‰ï¼ˆenum COLOR_GET_MODE : msg_print.hï¼‰
  *
- * @retval	F”Ô†
+ * @retval	è‰²ç•ªå·
  */
 //---------------------------------------------------------------------------------------------
 GLOBAL u8 FntDataColorGet(u8 mode);
@@ -265,21 +265,21 @@ GLOBAL u8 FntDataColorGet(u8 mode);
 
 //---------------------------------------------------------------------------------------------
 /*
- * I—¹ƒ`ƒFƒbƒNŠÖ”
+ * çµ‚äº†ãƒã‚§ãƒƒã‚¯é–¢æ•°
  *
- * @param	msg_index	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @param	msg_index	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @retval	0	I—¹
- * @retval	1	ˆ—’†
+ * @retval	0	çµ‚äº†
+ * @retval	1	å‡¦ç†ä¸­
  */
 //---------------------------------------------------------------------------------------------
 GLOBAL u8 GF_MSG_PrintEndCheck( u8 msg_index );
 
 //---------------------------------------------------------------------------------------------
 /*
- * ‚P•¶Žš‚²‚Æ‚Ì•\Ž¦ƒ^ƒXƒN‚ð‹­§“I‚É’âŽ~‚·‚é
+ * ï¼‘æ–‡å­—ã”ã¨ã®è¡¨ç¤ºã‚¿ã‚¹ã‚¯ã‚’å¼·åˆ¶çš„ã«åœæ­¢ã™ã‚‹
  *
- * @param	msg_index	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @param	msg_index	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //---------------------------------------------------------------------------------------------
 GLOBAL void GF_STR_PrintForceStop( u8 msg_index );

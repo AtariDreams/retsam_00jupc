@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerSetPlayerPriority</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerSetPlayerPriority</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetPlayerPriority(
@@ -19,7 +19,7 @@
         int <var>priority</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA0LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -27,41 +27,41 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�T�E���h�n���h���̃|�C���^�ł��B</td>
+<td>サウンドハンドルのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>priority</code></strong></em></td>
-<td>�v���C���[�v���C�I���e�B�̒l�ł��B�l�͈̔͂� 0�`127�ŁA�傫���قǗD��x�������Ȃ�܂��B</td>
+<td>プレイヤープライオリティの値です。値の範囲は 0〜127で、大きいほど優先度が高くなります。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAQMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAXMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�V�[�P���X�̃v���C���[�v���C�I���e�B��ύX���܂��B</p>
+シーケンスのプレイヤープライオリティを変更します。</p>
       <p>
-�T�E���h�n���h��<em><strong><code>handle</code></strong></em>�Ɍ��т���ꂽ�V�[�P���X�̃v���C���[�v���C�I���e�B��ύX���܂��B
-�T�E���h�n���h���������̏ꍇ�́A�������܂���B
+サウンドハンドル<em><strong><code>handle</code></strong></em>に結びつけられたシーケンスのプレイヤープライオリティを変更します。
+サウンドハンドルが無効の場合は、何もしません。
 </p>
       <p>
-�V�[�P���X�Đ����Ƀv���C���[�v���C�I���e�B���w�肷��Ƃ��́A
-<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeqEx</a></tt>�֐��܂��́A
-<tt class="function"><a href="NNS_SndArcPlayerStartSeqArc.html">NNS_SndArcPlayerStartSeqArcEx</a></tt>�֐�
-���g���܂��B
-���̊֐��́A�Đ���Ƀv���C���[�v���C�I���e�B��ύX�������ꍇ�ɁA�g�p���܂��B
+シーケンス再生時にプレイヤープライオリティを指定するときは、
+<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeqEx</a></tt>関数または、
+<tt class="function"><a href="NNS_SndArcPlayerStartSeqArc.html">NNS_SndArcPlayerStartSeqArcEx</a></tt>関数
+を使います。
+この関数は、再生後にプレイヤープライオリティを変更したい場合に、使用します。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeqEx</a>, <a href="NNS_SndArcPlayerStartSeqArc.html">NNS_SndArcPlayerStartSeqArcEx</a></p>
-<h2>����</h2>
-<p>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

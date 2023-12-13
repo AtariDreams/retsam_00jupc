@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wifi_note_snd.h
- *	@brief		—F’BŽè’ @ƒTƒEƒ“ƒh
+ *	@brief		å‹é”æ‰‹å¸³ã€€ã‚µã‚¦ãƒ³ãƒ‰
  *	@author		tomoya takahshi
  *	@data		2007.07.24
  *
@@ -16,28 +16,28 @@
 
 
 
-// SE—p’è‹`
+// SEç”¨å®šç¾©
 //#define WIFINOTE_MOVE_SE		(SEQ_SE_DP_SELECT)
 #define WIFINOTE_MOVE_SE		(SEQ_SE_DP_BUTTON3)
 
-#define WIFINOTE_MENU_MOVE_SE	(SEQ_SE_DP_SELECT)	// ƒƒjƒ…[‚ÌˆÚ“®‰¹
+#define WIFINOTE_MENU_MOVE_SE	(SEQ_SE_DP_SELECT)	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ç§»å‹•éŸ³
 
 //#define WIFINOTE_DECIDE_SE	(SEQ_SE_DP_SELECT)
 //#define WIFINOTE_DECIDE_SE	(SEQ_SE_DP_BUTTON3)
 #define WIFINOTE_DECIDE_SE		(SEQ_SE_DP_DECIDE)
 
-#define WIFINOTE_MENU_DECIDE_SE	(SEQ_SE_DP_SELECT)	// ƒƒjƒ…[‚ÌŒˆ’è
+#define WIFINOTE_MENU_DECIDE_SE	(SEQ_SE_DP_SELECT)	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æ±ºå®š
 
 //#define WIFINOTE_BS_SE		(SEQ_SE_DP_SELECT)
 //#define WIFINOTE_BS_SE		(SEQ_SE_DP_BUTTON3)
 #define WIFINOTE_BS_SE			(SEQ_SE_DP_DECIDE)
 
-#define WIFINOTE_MENU_BS_SE		(SEQ_SE_DP_SELECT)	// ƒƒjƒ…[‚ÌƒLƒƒƒ“ƒZƒ‹
+#define WIFINOTE_MENU_BS_SE		(SEQ_SE_DP_SELECT)	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
-#define WIFINOTE_CLEAN_SE		(SEQ_SE_DP_UG_025)	// Á‚µƒSƒ€‚ÅÁ‚·‰¹
+#define WIFINOTE_CLEAN_SE		(SEQ_SE_DP_UG_025)	// æ¶ˆã—ã‚´ãƒ ã§æ¶ˆã™éŸ³
 
-//#define WIFINOTE_SCRLL_SE		(SEQ_SE_DP_BOX02)	// ƒXƒNƒ[ƒ‹‰¹
-#define WIFINOTE_SCRLL_SE		(SEQ_SE_DP_SELECT5)	// ƒXƒNƒ[ƒ‹‰¹
+//#define WIFINOTE_SCRLL_SE		(SEQ_SE_DP_BOX02)	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«éŸ³
+#define WIFINOTE_SCRLL_SE		(SEQ_SE_DP_SELECT5)	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«éŸ³
 
 #endif		// __WIFI_NOTE_SND_H__
 

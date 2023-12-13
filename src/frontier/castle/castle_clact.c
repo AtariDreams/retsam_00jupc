@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	castle_clact.c
- * @brief	uƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹vƒZƒ‹ƒAƒNƒ^[
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
  * @author	Satoshi Nohara
  * @date	06.07.05
  */
@@ -24,11 +24,11 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒLƒƒƒ‰ƒNƒ^[ƒ}ƒl[ƒWƒƒ[
-#define CHAR_CONT_NUM						(32)//(8)//(6)//(16)//(3)		//ƒLƒƒƒ‰ƒNƒ^§Œä”
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+#define CHAR_CONT_NUM						(32)//(8)//(6)//(16)//(3)		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ¶å¾¡æ•°
 #if 0
 #define CHAR_VRAMTRANS_MAIN_SIZE			(2048)
 #define CHAR_VRAMTRANS_SUB_SIZE				(2048)
@@ -39,8 +39,8 @@
 //#define CHAR_VRAMTRANS_SUB_SIZE				(4096)
 #endif
 
-//ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[
-#define PLTT_ITEMKEEP_NUM					(1)			//ƒAƒCƒeƒ€‚Á‚Ä‚¢‚éƒAƒCƒRƒ“ƒpƒŒƒbƒg
+//ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+#define PLTT_ITEMKEEP_NUM					(1)			//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆ
 
 enum{
 	DISP_MAIN_OBJ_PAL = 4,
@@ -49,38 +49,38 @@ enum{
 
 //==============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//ƒŠƒ\[ƒXƒ^ƒCƒv—ñ‹“‚É‡‚í‚¹‚é(include/system/clact_util_res.h)
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[“o˜^”ƒe[ƒuƒ‹
+//ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—åˆ—æŒ™ã«åˆã‚ã›ã‚‹(include/system/clact_util_res.h)
+//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç™»éŒ²æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 ResEntryNumTbl[CASTLE_RESOURCE_NUM] = {
 #if 0
-	2,			//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	3,			//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	2,			//ƒZƒ‹ƒŠƒ\[ƒX
-	2,			//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	2,			//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	3,			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	2,			//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	2,			//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 #else
-	RES_OBJ_MAX,		//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	RES_OBJ_MAX,		//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	RES_OBJ_MAX,		//ƒZƒ‹ƒŠƒ\[ƒX
-	RES_OBJ_MAX,		//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	RES_OBJ_MAX,		//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	RES_OBJ_MAX,		//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	RES_OBJ_MAX,		//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	RES_OBJ_MAX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 #endif
 };
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
-//CastleClactŠÖ”
+//CastleClacté–¢æ•°
 //void			CastleClact_InitCellActor( CASTLE_CLACT* wk );
 void			CastleClact_InitCellActor( CASTLE_CLACT* wk, POKEPARTY* party, u8 type );
 CLACT_WORK_PTR	CastleClact_SetActor( CASTLE_CLACT* wk, u32 char_no, u32 pltt_no, u32 cell_no, u32 anm_no, u32 pri, int bg_pri, u8 disp );
 void			CastleClact_DeleteCellObject( CASTLE_CLACT* wk );
 
-//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 void			CastleClact_ItemIconCharChange( CASTLE_CLACT* wk, u16 item );
 void			CastleClact_ItemIconPlttChange( CASTLE_CLACT* wk, u16 item );
 
@@ -91,15 +91,15 @@ static void		CastleClact_ItemKeepLoad( CASTLE_CLACT* wk );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		CASTLE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_CLACTå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -113,65 +113,65 @@ void CastleClact_InitCellActor( CASTLE_CLACT* wk, POKEPARTY* party, u8 type )
 
 	initVramTransferManagerHeap( 32, HEAPID_CASTLE );
 
-	//ƒLƒƒƒ‰ƒNƒ^[EƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitCharPlttManager();
 
-	//OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	//OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	//‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	//ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	//‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
-	REND_OAMInit(	0, 128,				//ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-					0, 32,				//ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-					0, 128,				//ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-					0, 32,				//ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+	//å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	//ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	//ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
+	REND_OAMInit(	0, 128,				//ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+					0, 32,				//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+					0, 128,				//ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+					0, 32,				//ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 					HEAPID_CASTLE);
 	
-	//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚ÌŠÈ’P‰Šú‰»(ì¬‚³‚ê‚½ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚ª•Ô‚é)
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ç°¡å˜åˆæœŸåŒ–(ä½œæˆã•ã‚ŒãŸã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãŒè¿”ã‚‹)
 	wk->ClactSet = CLACT_U_SetEasyInit( CLACT_OBJ_MAX, &wk->RendData, HEAPID_CASTLE );
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for( i=0; i < CASTLE_RESOURCE_NUM ;i++ ){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for( i=0; i < CASTLE_RESOURCE_NUM ;i++ ){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->ResMan[i] = CLACT_U_ResManagerInit( ResEntryNumTbl[i], i, HEAPID_CASTLE );
 	}
 
 	/***************/
-	//	‰º‰æ–Ê
+	//	ä¸‹ç”»é¢
 	/***************/
 
 	/***************/
-	//	ã‰æ–Ê
+	//	ä¸Šç”»é¢
 	/***************/
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_CSR][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 					wk->ResMan[CLACT_U_CHAR_RES],
 					ARC_FRONTIER_OBJ, BC_OBJ_NCGR_BIN,
 					1, ID_OBJ_CSR, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_CASTLE);
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_CSR][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 					wk->ResMan[CLACT_U_PLTT_RES],
 					ARC_FRONTIER_OBJ, BC_OBJ_NCLR,
 					FALSE, ID_OBJ_CSR, NNS_G2D_VRAM_TYPE_2DMAIN, DISP_MAIN_OBJ_PAL,HEAPID_CASTLE);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_CSR][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELL_RES],
 					ARC_FRONTIER_OBJ, BC_OBJ_NCER_BIN,
 					1, ID_OBJ_CSR, CLACT_U_CELL_RES, HEAPID_CASTLE);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_CSR][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELLANM_RES],
 					ARC_FRONTIER_OBJ, BC_OBJ_NANR_BIN,
 					1, ID_OBJ_CSR, CLACT_U_CELLANM_RES, HEAPID_CASTLE);
 
 	/******************************/
-	//	ã‰æ–Ê(ƒAƒCƒeƒ€ƒAƒCƒRƒ“)
+	//	ä¸Šç”»é¢(ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³)
 	/******************************/
 #if 1
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	p_handle = ArchiveDataHandleOpen( ARC_ITEMICON, HEAPID_CASTLE );	
 
 	wk->ResObjTbl[RES_OBJ_ITEMICON][CLACT_U_CHAR_RES] = 
@@ -179,19 +179,19 @@ void CastleClact_InitCellActor( CASTLE_CLACT* wk, POKEPARTY* party, u8 type )
 		wk->ResMan[CLACT_U_CHAR_RES], p_handle, GetItemIndex(0,ITEM_GET_ICON_CGX),
 		0, ID_OBJ_ITEMICON, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_CASTLE );
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_ITEMICON][CLACT_U_PLTT_RES] = 
 		CLACT_U_ResManagerResAddArcPltt(
 		wk->ResMan[CLACT_U_PLTT_RES], ARC_ITEMICON, GetItemIndex(0,ITEM_GET_ICON_PAL),
 		FALSE, ID_OBJ_ITEMICON, NNS_G2D_VRAM_TYPE_2DMAIN,POKEICON_PAL_MAX,HEAPID_CASTLE );
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_ITEMICON][CLACT_U_CELL_RES] =
 		CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 		wk->ResMan[CLACT_U_CELL_RES], p_handle, ItemIconCellGet(),
 		0, ID_OBJ_ITEMICON, CLACT_U_CELL_RES, HEAPID_CASTLE );
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_ITEMICON][CLACT_U_CELLANM_RES] = 
 		CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 		wk->ResMan[CLACT_U_CELLANM_RES], p_handle, ItemIconCAnmGet(),
@@ -201,26 +201,26 @@ void CastleClact_InitCellActor( CASTLE_CLACT* wk, POKEPARTY* party, u8 type )
 #endif
 
 	/******************************/
-	//	ã‰æ–Ê(ƒAƒCƒeƒ€‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“)
+	//	ä¸Šç”»é¢(ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³)
 	/******************************/
 
 	CastleClact_ItemKeepLoad( wk );
 
 	/******************************/
-	//	ã‰æ–Ê(ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“)
+	//	ä¸Šç”»é¢(ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³)
 	/******************************/
 
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	p_handle = ArchiveDataHandleOpen( ARC_POKEICON, HEAPID_CASTLE );	
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_ICON1][CLACT_U_PLTT_RES] = 
 			CLACT_U_ResManagerResAddArcPltt(
 				wk->ResMan[CLACT_U_PLTT_RES],
 				ARC_POKEICON, PokeIconPalArcIndexGet(),
 				FALSE, ID_PLTT_ICON, NNS_G2D_VRAM_TYPE_2DMAIN,POKEICON_PAL_MAX,HEAPID_CASTLE);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_ICON1][CLACT_U_CELL_RES] = 
 			CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 				wk->ResMan[CLACT_U_CELL_RES],
@@ -229,7 +229,7 @@ void CastleClact_InitCellActor( CASTLE_CLACT* wk, POKEPARTY* party, u8 type )
 				p_handle, PokeIconAnmCellArcIndexGet(),
 				0, ID_CELL_ICON, CLACT_U_CELL_RES, HEAPID_CASTLE);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_ICON1][CLACT_U_CELLANM_RES] = 
 			CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 				wk->ResMan[CLACT_U_CELLANM_RES],
@@ -242,9 +242,9 @@ void CastleClact_InitCellActor( CASTLE_CLACT* wk, POKEPARTY* party, u8 type )
 
 		if( i == 3 ){
 
-			//’ÊMƒ^ƒCƒv‚Å‚È‚¢
+			//é€šä¿¡ã‚¿ã‚¤ãƒ—ã§ãªã„æ™‚
 			if( type == FALSE ){
-				poke =  PokeParty_GetMemberPointer( party, 0 );		//g—p‚µ‚È‚¢‚ª‘ã“ü‚Ì‚İ‚µ‚Ä‚¨‚­
+				poke =  PokeParty_GetMemberPointer( party, 0 );		//ä½¿ç”¨ã—ãªã„ãŒä»£å…¥ã®ã¿ã—ã¦ãŠã
 			}else{
 				poke =  PokeParty_GetMemberPointer( party, i );
 			}
@@ -264,17 +264,17 @@ void CastleClact_InitCellActor( CASTLE_CLACT* wk, POKEPARTY* party, u8 type )
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 	//for( i=0; i < RES_OBJ_MAX ;i++ ){
 	for( i=0; i < ID_CHAR_MAX ;i++ ){
-		CLACT_U_CharManagerSet( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );	//Char“]‘—
-		//CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ƒpƒŒƒbƒg“]‘—
+		CLACT_U_CharManagerSet( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );	//Charè»¢é€
+		//CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	}
 
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 	//for( i=0; i < RES_OBJ_MAX ;i++ ){
 	for( i=0; i < ID_PLTT_MAX ;i++ ){
-		CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ƒpƒŒƒbƒg“]‘—
+		CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	}
 
 
@@ -286,9 +286,9 @@ void CastleClact_InitCellActor( CASTLE_CLACT* wk, POKEPARTY* party, u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‚ğƒZƒbƒg
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_CLACTå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -301,13 +301,13 @@ CLACT_WORK_PTR	CastleClact_SetActor( CASTLE_CLACT* wk, u32 char_no, u32 pltt_no,
 	
 	//OS_Printf( "cell_no = %d\n", cell_no );
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬	
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ	
 	CLACT_U_MakeHeader(	&cl_act_header,
-						//“o˜^‚µ‚½ƒŠƒ\[ƒX‚ÌID(ResObjTbl[id])
+						//ç™»éŒ²ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã®ID(ResObjTbl[id])
 						//data_no, data_no, data_no, data_no,
 						char_no, pltt_no, cell_no, cell_no,
 						CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
-						0, bg_pri,						//VRAM“]‘—‚©ƒtƒ‰ƒOABG‚Æ‚Ì—Dæ‡ˆÊ
+						0, bg_pri,						//VRAMè»¢é€ã‹ãƒ•ãƒ©ã‚°ã€BGã¨ã®å„ªå…ˆé †ä½
 						wk->ResMan[CLACT_U_CHAR_RES],
 						wk->ResMan[CLACT_U_PLTT_RES],
 						wk->ResMan[CLACT_U_CELL_RES],
@@ -315,16 +315,16 @@ CLACT_WORK_PTR	CastleClact_SetActor( CASTLE_CLACT* wk, u32 char_no, u32 pltt_no,
 						NULL,NULL);
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 
 		add.ClActSet	= wk->ClactSet;
 		add.ClActHeader	= &cl_act_header;
 
 		//add.mat.x		= 0;//FX32_CONST(32) ;
-		//add.mat.y		= 0;//FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		//add.mat.y		= 0;//FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.x		= 0;
-		add.mat.y		= 0;						//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		add.mat.y		= 0;						//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.z		= 0;
 		add.sca.x		= FX32_ONE;
 		add.sca.y		= FX32_ONE;
@@ -340,16 +340,16 @@ CLACT_WORK_PTR	CastleClact_SetActor( CASTLE_CLACT* wk, u32 char_no, u32 pltt_no,
 
 		add.heap		= HEAPID_CASTLE;
 
-		if( disp == DISP_SUB ){						//À•W‚ğ•â³
+		if( disp == DISP_SUB ){						//åº§æ¨™ã‚’è£œæ­£
 			add.mat.y += SUB_SURFACE_Y;
 		}
 
-		//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 		act = CLACT_Add(&add);
-		//CLACT_SetAnmFlag( act, 0 );				//”ñƒAƒjƒ
-		CLACT_SetAnmFlag( act, 1 );					//ƒI[ƒgƒAƒjƒ
-		CLACT_SetAnmFrame( act, FX32_ONE );			//ƒI[ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ğİ’è
-		CLACT_AnmChg( act, anm_no );				//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ğƒ`ƒFƒ“ƒW‚·‚é
+		//CLACT_SetAnmFlag( act, 0 );				//éã‚¢ãƒ‹ãƒ¡
+		CLACT_SetAnmFlag( act, 1 );					//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
+		CLACT_SetAnmFrame( act, FX32_ONE );			//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®š
+		CLACT_AnmChg( act, anm_no );				//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸ã™ã‚‹
 	}	
 
 	return act;
@@ -357,9 +357,9 @@ CLACT_WORK_PTR	CastleClact_SetActor( CASTLE_CLACT* wk, u32 char_no, u32 pltt_no,
 
 //--------------------------------------------------------------
 /**
- * @brief	2DƒZƒ‹ƒIƒuƒWƒFƒNƒg‰ğ•ú
+ * @brief	2Dã‚»ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè§£æ”¾
  *
- * @param	wk		CASTLE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_CLACTå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -368,26 +368,26 @@ void CastleClact_DeleteCellObject(CASTLE_CLACT* wk)
 {
 	u8 i;
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ğ•ú
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	//for( i=0; i < RES_OBJ_MAX ;i++ ){
 	for( i=0; i < ID_CHAR_MAX ;i++ ){
-		CLACT_U_CharManagerDelete( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );//char“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		CLACT_U_CharManagerDelete( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );//charè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	}
 
 	//for( i=0; i < RES_OBJ_MAX ;i++ ){
 	for( i=0; i < ID_PLTT_MAX ;i++ ){
-		CLACT_U_PlttManagerDelete( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );//pltt“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		CLACT_U_PlttManagerDelete( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );//plttè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	}
 		
-	//ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	//ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for( i=0; i < CASTLE_RESOURCE_NUM ;i++ ){
 		CLACT_U_ResManagerDelete( wk->ResMan[i] );
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->ClactSet);
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
 	DeleteCharManager();
@@ -399,16 +399,16 @@ void CastleClact_DeleteCellObject(CASTLE_CLACT* wk)
 
 //==============================================================================================
 //
-//	ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+//	ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 //
 //==============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“•ÏX(CHAR)
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³å¤‰æ›´(CHAR)
  *
- * @param	wk		CASTLE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	wk		CASTLE_CLACTå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
  * @return	none
  */
@@ -423,17 +423,17 @@ void CastleClact_ItemIconCharChange( CASTLE_CLACT* wk, u16 item )
 										ARC_ITEMICON, GetItemIndex(item,ITEM_GET_ICON_CGX), 
 										0, HEAPID_CASTLE );
 
-	//‚±‚ÌŠÖ”‚©‚çACharDataChg¨AddVramTransferManager‚ªŒÄ‚Î‚ê‚é(gflib/vram_transfer_manager.c)
+	//ã“ã®é–¢æ•°ã‹ã‚‰ã€CharDataChgâ†’AddVramTransferManagerãŒå‘¼ã°ã‚Œã‚‹(gflib/vram_transfer_manager.c)
 	CLACT_U_CharManagerReTrans( obj );
 	return;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“•ÏX(PAL)
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³å¤‰æ›´(PAL)
  *
- * @param	wk		CASTLE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	wk		CASTLE_CLACTå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
  * @return	none
  */
@@ -461,7 +461,7 @@ void CastleClact_ItemIconPlttChange( CASTLE_CLACT* wk, u16 item )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰ƒNƒ^[EƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+ * @brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -470,16 +470,16 @@ void CastleClact_ItemIconPlttChange( CASTLE_CLACT* wk, u16 item )
 //--------------------------------------------------------------
 static void InitCharPlttManager(void)
 {
-	//ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
-			CHAR_CONT_NUM,						//ƒLƒƒƒ‰ƒNƒ^§Œä”
-			CHAR_VRAMTRANS_MAIN_SIZE,			//ƒƒCƒ“‰æ–Ê‚ÌVram“]‘——p‚É—pˆÓ‚·‚éVramƒTƒCƒY
-			CHAR_VRAMTRANS_SUB_SIZE,			//ƒTƒu‰æ–Ê‚ÌVram“]‘——p‚É—pˆÓ‚·‚éVramƒTƒCƒY
-			HEAPID_CASTLE						//g—p‚·‚éƒq[ƒv
+			CHAR_CONT_NUM,						//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ¶å¾¡æ•°
+			CHAR_VRAMTRANS_MAIN_SIZE,			//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®Vramè»¢é€ç”¨ã«ç”¨æ„ã™ã‚‹Vramã‚µã‚¤ã‚º
+			CHAR_VRAMTRANS_SUB_SIZE,			//ã‚µãƒ–ç”»é¢ã®Vramè»¢é€ç”¨ã«ç”¨æ„ã™ã‚‹Vramã‚µã‚¤ã‚º
+			HEAPID_CASTLE						//ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 		};
 #if 1
-		//InitCharManager( &cm );				//OBJƒ}ƒbƒsƒ“ƒOƒ‚[ƒhİ’è
+		//InitCharManager( &cm );				//OBJãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 		InitCharManagerReg( &cm, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K );
 		//InitCharManagerReg( &cm, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K );
 #else
@@ -488,14 +488,14 @@ static void InitCharPlttManager(void)
 #endif
 	}
 
-	//ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 #if 0
 	InitPlttManager( DISP_MAIN_OBJ_PAL, HEAPID_CASTLE );
 #else
 	InitPlttManager( (DISP_MAIN_OBJ_PAL + PLTT_ITEMKEEP_NUM + POKEICON_PAL_MAX), HEAPID_CASTLE );
 #endif
 
-	//“Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+	//èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 
@@ -504,9 +504,9 @@ static void InitCharPlttManager(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚Ìƒ[ƒh
+ * ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -518,25 +518,25 @@ static void CastleClact_ItemKeepLoad( CASTLE_CLACT* wk )
 	
 	p_handle = ArchiveDataHandleOpen( ARC_PLIST_GRA,  HEAPID_CASTLE ); 
 	
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_ITEMKEEP][CLACT_U_CHAR_RES] = 
 		CLACT_U_ResManagerResAddArcChar_ArcHandle(
 		wk->ResMan[CLACT_U_CHAR_RES], p_handle, Pokelist_ItemIconCgxArcGet(),
 		0, ID_OBJ_ITEMKEEP, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_CASTLE );
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_ITEMKEEP][CLACT_U_PLTT_RES] = 
 		CLACT_U_ResManagerResAddArcPltt(
 		wk->ResMan[CLACT_U_PLTT_RES], ARC_PLIST_GRA, Pokelist_ItemIconPalArcGet(),
 		FALSE, ID_OBJ_ITEMKEEP, NNS_G2D_VRAM_TYPE_2DMAIN,POKEICON_PAL_MAX,HEAPID_CASTLE );
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_ITEMKEEP][CLACT_U_CELL_RES] =
 		CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 		wk->ResMan[CLACT_U_CELL_RES], p_handle, Pokelist_ItemIconCellArcGet(),
 		0, ID_OBJ_ITEMKEEP, CLACT_U_CELL_RES, HEAPID_CASTLE );
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[RES_OBJ_ITEMKEEP][CLACT_U_CELLANM_RES] = 
 		CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 		wk->ResMan[CLACT_U_CELLANM_RES], p_handle, Pokelist_ItemIconCAnmArcGet(),

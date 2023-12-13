@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	scr_wazaoshie.c
- * @bfief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhF‹Z‹³‚¦ŠÖ˜A(”ñí’†ƒtƒB[ƒ‹ƒh)
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæŠ€æ•™ãˆé–¢é€£(éžå¸¸ä¸­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰)
  * @author	Satoshi Nohara
  * @date	07.12.17
  *
- * ƒŠƒXƒgˆ—‚ÌŽ—‚½‚à‚Ì‚ªscr_field.c‚É‚à‘¶Ý‚µ‚Ä‚¢‚é
+ * ãƒªã‚¹ãƒˆå‡¦ç†ã®ä¼¼ãŸã‚‚ã®ãŒscr_field.cã«ã‚‚å­˜åœ¨ã—ã¦ã„ã‚‹
  */
 //============================================================================================
 #include "common.h"
@@ -24,7 +24,7 @@
 #include "itemtool/itemsym.h"
 
 #include "battle/wazano_def.h"
-#include "battle/battle_server.h"		//ƒtƒHƒ‹ƒ€’è‹`
+#include "battle/battle_server.h"		//ãƒ•ã‚©ãƒ«ãƒ å®šç¾©
 
 #include "system/wipe.h"
 #include "system/fontproc.h"
@@ -41,35 +41,35 @@
 
 //==============================================================================================
 //
-//	‹Z‹³‚¦\‘¢‘Ì
+//	æŠ€æ•™ãˆæ§‹é€ ä½“
 //
 //==============================================================================================
 #define WAZA_NUM_MAX			(5)
 typedef struct{
-	u8 waza_1[WAZA_NUM_MAX];	//ƒrƒbƒg’PˆÊ‚Å‹Z‹³‚¦‚ç‚ê‚é‚©‚ðŽ‚Á‚Ä‚¢‚é
+	u8 waza_1[WAZA_NUM_MAX];	//ãƒ“ãƒƒãƒˆå˜ä½ã§æŠ€æ•™ãˆã‚‰ã‚Œã‚‹ã‹ã‚’æŒã£ã¦ã„ã‚‹
 }WAZA_OSHIE_DATA;
 #include "../fielddata/wazaoshie/waza_oshie.dat"
 
 #if 0
-	ƒtƒHƒ‹ƒ€ˆá‚¢ˆê——(07.12.17 ¼–ì‚³‚ñ‚æ‚è)	
+	ãƒ•ã‚©ãƒ«ãƒ é•ã„ä¸€è¦§(07.12.17 è¥¿é‡Žã•ã‚“ã‚ˆã‚Š)	
 
-	ƒ|ƒPƒ‚ƒ“–¼	ƒpƒ^[ƒ“	ƒp[ƒ\ƒiƒ‹
-	ƒAƒ“ƒm[ƒ“	‚Q‚WŽí		~			
-	ƒfƒIƒLƒVƒX	‚SŽí		›			
-	ƒGƒEƒŠƒX	‚QŽí		›			
-	ƒvƒ‰ƒYƒ}	‚UŽí		›			
-	ƒLƒ}ƒCƒ‰ƒ“	‚QŽí		›
-	ƒ~ƒmƒƒX	‚RŽí		›
-	ƒ~ƒmƒ€ƒbƒ`	‚RŽí		~
-	ƒV[ƒEƒV	‚QŽí		~
-	ƒV[ƒhƒ‹ƒS	‚QŽí		~
-	ƒ|ƒƒ‹ƒ“	‚SŽí		~
-	ƒ`ƒFƒŠƒVƒ…	‚QŽí		~
-	ƒAƒEƒX		‚P‚VŽí		~
+	ãƒã‚±ãƒ¢ãƒ³å	ãƒ‘ã‚¿ãƒ¼ãƒ³	ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«
+	ã‚¢ãƒ³ãƒŽãƒ¼ãƒ³	ï¼’ï¼˜ç¨®		Ã—			
+	ãƒ‡ã‚ªã‚­ã‚·ã‚¹	ï¼”ç¨®		â—‹			
+	ã‚¨ã‚¦ãƒªã‚¹	ï¼’ç¨®		â—‹			
+	ãƒ—ãƒ©ã‚ºãƒž	ï¼–ç¨®		â—‹			
+	ã‚­ãƒžã‚¤ãƒ©ãƒ³	ï¼’ç¨®		â—‹
+	ãƒŸãƒŽãƒ¡ã‚¹	ï¼“ç¨®		â—‹
+	ãƒŸãƒŽãƒ ãƒƒãƒ	ï¼“ç¨®		Ã—
+	ã‚·ãƒ¼ã‚¦ã‚·	ï¼’ç¨®		Ã—
+	ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´	ï¼’ç¨®		Ã—
+	ãƒãƒ¯ãƒ«ãƒ³	ï¼”ç¨®		Ã—
+	ãƒã‚§ãƒªã‚·ãƒ¥	ï¼’ç¨®		Ã—
+	ã‚¢ã‚¦ã‚¹		ï¼‘ï¼—ç¨®		Ã—
 
-	ƒp[ƒ\ƒiƒ‹‚ª•¡”‚ ‚é‚à‚Ì‚Ì‚ÝA‹ZŠo‚¦‚Ì‘Î‰ž‚à•¡”‚ ‚é
+	ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãŒè¤‡æ•°ã‚ã‚‹ã‚‚ã®ã®ã¿ã€æŠ€è¦šãˆã®å¯¾å¿œã‚‚è¤‡æ•°ã‚ã‚‹
 
-	ƒf[ƒ^ƒŠƒXƒg‚Ìˆê”Ô‰º‚ÉA•ÊƒtƒHƒ‹ƒ€(‚Æ‚¢‚Á‚Ä‚¢‚¢‚Ì‚©”÷–­‚¾‚ª)‚Í‚Ü‚Æ‚Ü‚Á‚Ä‚¢‚é
+	ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã®ä¸€ç•ªä¸‹ã«ã€åˆ¥ãƒ•ã‚©ãƒ«ãƒ (ã¨ã„ã£ã¦ã„ã„ã®ã‹å¾®å¦™ã ãŒ)ã¯ã¾ã¨ã¾ã£ã¦ã„ã‚‹
 #endif
 
 typedef struct{
@@ -78,10 +78,10 @@ typedef struct{
 	u8 ao;
 	u8 ki;
 	u8 midori;
-	u32 color;				//Â‹ZAÔ—ÍA‰©S
+	u32 color;				//é’ï¼æŠ€ã€èµ¤ï¼åŠ›ã€é»„ï¼å¿ƒ
 }WAZA_OSHIE_LIST;
 
-//‹³‚¦‚Ä‚­‚ê‚é‹Z‚ÌƒŠƒXƒg(šƒ|ƒPƒ‚ƒ“•Ê‹ZK“¾ƒŠƒXƒg‚É‚ ‚í‚¹‚é)
+//æ•™ãˆã¦ãã‚Œã‚‹æŠ€ã®ãƒªã‚¹ãƒˆ(â˜…ãƒã‚±ãƒ¢ãƒ³åˆ¥æŠ€ç¿’å¾—ãƒªã‚¹ãƒˆã«ã‚ã‚ã›ã‚‹)
 static const WAZA_OSHIE_LIST waza_oshie_tbl[] = {
 	{ WAZANO_DAIBINGU,		2,	4,	2,	0, WAZA_OSHIE_COL_BLUE },
 	{ WAZANO_DOROKAKE,		4,	4,	0,	0, WAZA_OSHIE_COL_RED },
@@ -132,7 +132,7 @@ static const WAZA_OSHIE_LIST waza_oshie_tbl[] = {
 
 //============================================================================================
 //
-//	ƒvƒƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL EvCmdWazaOshieDataCount(VM_MACHINE * core );
@@ -153,15 +153,15 @@ static u16 GetWazaOshieDataCount( POKEMON_PARAM* poke, u16 color );
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒžãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šo‚¦‚ç‚ê‚é‹Z‚ª‚ ‚é‚©
+ * è¦šãˆã‚‰ã‚Œã‚‹æŠ€ãŒã‚ã‚‹ã‹
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -173,7 +173,7 @@ BOOL EvCmdWazaOshieDataCount( VM_MACHINE * core )
 	u16 color	= VMGetWorkValue(core);
 	u16* ret_wk	= VMGetWork( core );
 
-	//ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^Žæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), pos );
 
 	*ret_wk = GetWazaOshieDataCount( poke, color );
@@ -183,13 +183,13 @@ BOOL EvCmdWazaOshieDataCount( VM_MACHINE * core )
 #if 0
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–ÊŒÄ‚Ño‚µ
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢å‘¼ã³å‡ºã—
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	1		ƒXƒNƒŠƒvƒg‚©‚çƒƒCƒ“§Œä‚É–ß‚é
+ * @return	1		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡ã«æˆ»ã‚‹
  *
- * @li EvCmdPokeStatusGetResult‚ÅA‘I‘ð‚µ‚½ˆÊ’u‚ðŽæ“¾‚µ‚ÄAƒ[ƒNŠJ•ú‚ª•K—v
+ * @li EvCmdPokeStatusGetResultã§ã€é¸æŠžã—ãŸä½ç½®ã‚’å–å¾—ã—ã¦ã€ãƒ¯ãƒ¼ã‚¯é–‹æ”¾ãŒå¿…è¦
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdWazaOshiePokeStatusSetProc(VM_MACHINE * core)
@@ -207,9 +207,9 @@ BOOL EvCmdWazaOshiePokeStatusSetProc(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–ÊŒÄ‚Ño‚µŒã‚ÌŒ‹‰ÊŽæ“¾‚Æƒ[ƒN‰ð•ú
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	1		ƒXƒNƒŠƒvƒg‚©‚çƒƒCƒ“§Œä‚É–ß‚é
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢å‘¼ã³å‡ºã—å¾Œã®çµæžœå–å¾—ã¨ãƒ¯ãƒ¼ã‚¯è§£æ”¾
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	1		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡ã«æˆ»ã‚‹
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdWazaOshiePokeStatusGetResult(VM_MACHINE * core)
@@ -224,7 +224,7 @@ BOOL EvCmdWazaOshiePokeStatusGetResult(VM_MACHINE * core)
 	GF_ASSERT(*buf != 0);
 
 	psd = *buf;
-	*ret_wk = psd->ret_sel;				//‘I‘ð‚³‚ê‚½‹ZˆÊ’u
+	*ret_wk = psd->ret_sel;				//é¸æŠžã•ã‚ŒãŸæŠ€ä½ç½®
 	OS_Printf( "*ret_wk = %d\n", *ret_wk );
 //	if (*ret_wk == PL_SEL_POS_EXIT) {
 //		*ret_wk = 0xff;
@@ -239,9 +239,9 @@ BOOL EvCmdWazaOshiePokeStatusGetResult(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚Ì‹Z‚ð’u‚«Š·‚¦‚é(ƒƒgƒ€‚Å‚àŽg—p)
+ * æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®æŠ€ã‚’ç½®ãæ›ãˆã‚‹(ãƒ­ãƒˆãƒ ã§ã‚‚ä½¿ç”¨)
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -259,9 +259,9 @@ BOOL EvCmdWazaOshieChgPokeWaza( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Žw’è‚µ‚½‹Z‚ðŠo‚¦‚éƒAƒCƒeƒ€‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ * æŒ‡å®šã—ãŸæŠ€ã‚’è¦šãˆã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -288,7 +288,7 @@ BOOL EvCmdWazaOshieItemCheck( VM_MACHINE * core )
 	}
 
 	if( i == WAZA_OSHIE_TBL_MAX ){
-		OS_Printf( "‹Zƒiƒ“ƒo[‚ª•s³‚Å‚·I\n" );
+		OS_Printf( "æŠ€ãƒŠãƒ³ãƒãƒ¼ãŒä¸æ­£ã§ã™ï¼\n" );
 		GF_ASSERT( 0 );
 		*ret_wk = 0;
 		return 0;
@@ -296,7 +296,7 @@ BOOL EvCmdWazaOshieItemCheck( VM_MACHINE * core )
 
 	*ret_wk = 1;
 
-	//ƒAƒCƒeƒ€‚ÌŒÂ”ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ ã®å€‹æ•°ãƒã‚§ãƒƒã‚¯
     if (aka) {
         if( MyItem_CheckItem(my_item,ITEM_AKAIKAKERA,aka,HEAPID_EVENT) == FALSE ){
             *ret_wk = 0;
@@ -323,9 +323,9 @@ BOOL EvCmdWazaOshieItemCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Žw’è‚µ‚½‹Z‚ðŠo‚¦‚éƒAƒCƒeƒ€‚ðŒ¸‚ç‚·
+ * æŒ‡å®šã—ãŸæŠ€ã‚’è¦šãˆã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¸›ã‚‰ã™
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -351,11 +351,11 @@ BOOL EvCmdWazaOshieItemSub( VM_MACHINE * core )
 	}
 
 	if( i == WAZA_OSHIE_TBL_MAX ){
-		OS_Printf( "‹Zƒiƒ“ƒo[‚ª•s³‚Å‚·I\n" );
+		OS_Printf( "æŠ€ãƒŠãƒ³ãƒãƒ¼ãŒä¸æ­£ã§ã™ï¼\n" );
 		GF_ASSERT( 0 );
 	}
 
-	//ƒAƒCƒeƒ€Œ¸‚ç‚·
+	//ã‚¢ã‚¤ãƒ†ãƒ æ¸›ã‚‰ã™
 	MyItem_SubItem( my_item, ITEM_AKAIKAKERA, aka, HEAPID_EVENT );
 	MyItem_SubItem( my_item, ITEM_AOIKAKERA, ao, HEAPID_EVENT );
 	MyItem_SubItem( my_item, ITEM_KIIROIKAKERA, ki, HEAPID_EVENT );
@@ -372,11 +372,11 @@ BOOL EvCmdWazaOshieItemSub( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * “n‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚©‚ç‹Z‹³‚¦‚Ì‹Zƒiƒ“ƒo[‚ðŽæ“¾
+ * æ¸¡ã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰æŠ€æ•™ãˆã®æŠ€ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param   index	ƒŠƒXƒg‚Ì‰½”Ô–Ú‚©
+ * @param   index	ãƒªã‚¹ãƒˆã®ä½•ç•ªç›®ã‹
  *
- * @retval  "‹Zƒiƒ“ƒo["
+ * @retval  "æŠ€ãƒŠãƒ³ãƒãƒ¼"
  */
 //--------------------------------------------------------------
 static u16 GetWazaOshieWazaNo( u16 index )
@@ -386,11 +386,11 @@ static u16 GetWazaOshieWazaNo( u16 index )
 
 //--------------------------------------------------------------
 /**
- * “n‚³‚ê‚½‹Zƒiƒ“ƒo[‚©‚ç‹Z‹³‚¦‚Ì‹Zƒiƒ“ƒo[‚ðŽæ“¾
+ * æ¸¡ã•ã‚ŒãŸæŠ€ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰æŠ€æ•™ãˆã®æŠ€ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param   waza	‹Zƒiƒ“ƒo[
+ * @param   waza	æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  "‹Zƒiƒ“ƒo["
+ * @retval  "æŠ€ãƒŠãƒ³ãƒãƒ¼"
  */
 //--------------------------------------------------------------
 static u16 GetWazaOshieWazaNoByWazaNo( u16 waza )
@@ -403,17 +403,17 @@ static u16 GetWazaOshieWazaNoByWazaNo( u16 waza )
 		}
 	}
 
-	GF_ASSERT( (0) && "‹Zƒiƒ“ƒo[‚ª•s³‚Å‚·I" );
+	GF_ASSERT( (0) && "æŠ€ãƒŠãƒ³ãƒãƒ¼ãŒä¸æ­£ã§ã™ï¼" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * ‹Z‹³‚¦‚ÌƒŠƒXƒg‚ÌÅ‘å”‚ðŽæ“¾
+ * æŠ€æ•™ãˆã®ãƒªã‚¹ãƒˆã®æœ€å¤§æ•°ã‚’å–å¾—
  *
  * @param   none
  *
- * @retval  "Å‘å”"
+ * @retval  "æœ€å¤§æ•°"
  */
 //--------------------------------------------------------------
 static u16 GetWazaOshieMax( void )
@@ -421,7 +421,7 @@ static u16 GetWazaOshieMax( void )
 	return WAZA_OSHIE_TBL_MAX;
 }
 
-//šƒGƒNƒZƒ‹ƒf[ƒ^‚Ì•À‚Ñ‚ª‚¸‚ê‚½‚ç‘Î‰ž‚µ‚È‚¢‚Æƒ_ƒI(ŽQÆ‚·‚éŽž‚É-1‚µ‚Ä‚¢‚é)
+//â˜…ã‚¨ã‚¯ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ä¸¦ã³ãŒãšã‚ŒãŸã‚‰å¯¾å¿œã—ãªã„ã¨ãƒ€ãƒ¡ï¼(å‚ç…§ã™ã‚‹æ™‚ã«-1ã—ã¦ã„ã‚‹)
 enum{
 	WAZAOSHIE_DEO_A		= 494,
 	WAZAOSHIE_DEO_D		= 495,
@@ -443,11 +443,11 @@ enum{
 
 //--------------------------------------------------------------
 /**
- * ƒGƒNƒZƒ‹‚ðƒRƒ“ƒo[ƒg‚µ‚½ƒf[ƒ^ƒŠƒXƒg‚©‚çAƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ðŽæ“¾
+ * ã‚¨ã‚¯ã‚»ãƒ«ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ãŸãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‹ã‚‰ã€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @param   monsno	Žæ“¾‚µ‚½‚¢ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ * @param   monsno	å–å¾—ã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  "ƒf[ƒ^"
+ * @retval  "ãƒ‡ãƒ¼ã‚¿"
  */
 //--------------------------------------------------------------
 static u8 GetWazaOshieDataAdrs( POKEMON_PARAM* poke, u8 no )
@@ -459,11 +459,11 @@ static u8 GetWazaOshieDataAdrs( POKEMON_PARAM* poke, u8 no )
 	form	= PokeParaGet( poke, ID_PARA_form_no, NULL );
 	index	= monsno;
 
-	//ƒtƒHƒ‹ƒ€ƒ`ƒFƒbƒN‚µ‚Ä•K—v‚ÈƒCƒ“ƒfƒbƒNƒX‚ðŽæ“¾
+	//ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒƒã‚¯ã—ã¦å¿…è¦ãªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 		
 	switch( monsno ){
 
-	//ƒfƒIƒLƒVƒX
+	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_DEOKISISU:
 		if( form == FORMNO_DEOKISISU_ATTACK ){
 			index = WAZAOSHIE_DEO_A;
@@ -474,7 +474,7 @@ static u8 GetWazaOshieDataAdrs( POKEMON_PARAM* poke, u8 no )
 		}
 		break;
 
-	//ƒ~ƒmƒƒX
+	//ãƒŸãƒŽãƒ¡ã‚¹
 	case MONSNO_MINOMESU:
 		if( form == FORMNO_MINOMUTTI_SUNA ){
 			index = WAZAOSHIE_MINO_G;
@@ -483,21 +483,21 @@ static u8 GetWazaOshieDataAdrs( POKEMON_PARAM* poke, u8 no )
 		}
 		break;
 
-	//ƒLƒ}ƒCƒ‰ƒ“
+	//ã‚­ãƒžã‚¤ãƒ©ãƒ³
 	case MONSNO_KIMAIRAN:
 		if( form == FORMNO_GIRATINA_ORIGIN ){
 			index = WAZAOSHIE_KIMA;
 		}
 		break;
 
-	//ƒGƒEƒŠƒX
+	//ã‚¨ã‚¦ãƒªã‚¹
 	case MONSNO_EURISU:
 		if( form == FORMNO_SHEIMI_FLOWER ){
 			index = WAZAOSHIE_EU;
 		}
 		break;
 
-	//ƒvƒ‰ƒYƒ}
+	//ãƒ—ãƒ©ã‚ºãƒž
 	case MONSNO_PURAZUMA:
 		if( form == FORMNO_ROTOMU_HOT ){
 			index = WAZAOSHIE_PURA_1;
@@ -520,11 +520,11 @@ static u8 GetWazaOshieDataAdrs( POKEMON_PARAM* poke, u8 no )
 
 //--------------------------------------------------------------
 /**
- * ‹Z‹³‚¦‚ÅŠo‚¦‚ç‚ê‚é‹Z‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ * æŠ€æ•™ãˆã§è¦šãˆã‚‰ã‚Œã‚‹æŠ€ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   monsno	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ * @param   monsno	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  "TRUE = ‚ ‚éAFALSE = ‚È‚¢"
+ * @retval  "TRUE = ã‚ã‚‹ã€FALSE = ãªã„"
  */
 //--------------------------------------------------------------
 static u16 GetWazaOshieDataCount( POKEMON_PARAM* poke, u16 color )
@@ -536,12 +536,12 @@ static u16 GetWazaOshieDataCount( POKEMON_PARAM* poke, u16 color )
 
 	monsno = PokeParaGet( poke, ID_PARA_monsno, NULL );
 
-	//ƒ|ƒPƒ‚ƒ“‚ªŠo‚¦‚Ä‚é‹Z‚ðŽæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ãŒè¦šãˆã¦ã‚‹æŠ€ã‚’å–å¾—
 	for( waza_i=0; waza_i < 4 ;waza_i++ ){
 		poke_waza[waza_i] = PokeParaGet( poke, (ID_PARA_waza1 + waza_i), NULL );
 	}
 
-	//ƒf[ƒ^Žæ“¾
+	//ãƒ‡ãƒ¼ã‚¿å–å¾—
 
 	for( i=0; i < WAZA_NUM_MAX ;i++ ){
 		data = GetWazaOshieDataAdrs( poke, i );
@@ -550,10 +550,10 @@ static u16 GetWazaOshieDataCount( POKEMON_PARAM* poke, u16 color )
 
 			num = ( (data >> bit) & 0x01 );
 
-			//Šo‚¦‚ç‚ê‚éƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚ÄA“n‚³‚ê‚½ƒJƒ‰[‚Æ“¯‚¶‚©ƒ`ƒFƒbƒN
+			//è¦šãˆã‚‰ã‚Œã‚‹ãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã¦ã€æ¸¡ã•ã‚ŒãŸã‚«ãƒ©ãƒ¼ã¨åŒã˜ã‹ãƒã‚§ãƒƒã‚¯
 			if( (num == 1) && (color == waza_oshie_tbl[i*8+bit].color) ){
 
-				//‚·‚Å‚Éƒ|ƒPƒ‚ƒ“‚ªŠo‚¦‚Ä‚é‹Z‚ÍœŠO
+				//ã™ã§ã«ãƒã‚±ãƒ¢ãƒ³ãŒè¦šãˆã¦ã‚‹æŠ€ã¯é™¤å¤–
 				for( waza_i=0; waza_i < 4 ;waza_i++ ){
 					if( poke_waza[waza_i] == waza_oshie_tbl[i*8+bit].waza ){
 						break;
@@ -573,11 +573,11 @@ static u16 GetWazaOshieDataCount( POKEMON_PARAM* poke, u16 color )
 
 //==============================================================================================
 //
-//	ev_win‚ÌƒŠƒXƒgˆ—‚ðŒ³‚É‚µ‚Ä‚¢‚é
+//	ev_winã®ãƒªã‚¹ãƒˆå‡¦ç†ã‚’å…ƒã«ã—ã¦ã„ã‚‹
 //
 //==============================================================================================
-//—LŒø‚ÅA•\Ž¦”‚æ‚è€–Ú”‚ª‘½‚¢ƒŠƒXƒgˆ—‚ÍAã‰º‚ÉƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹‚ð•\Ž¦
-//ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ª‚È‚¢‚Ì‚ÅA‚»‚Ì•Ó‚Í‰¼‚Å‚·B
+//æœ‰åŠ¹ã§ã€è¡¨ç¤ºæ•°ã‚ˆã‚Šé …ç›®æ•°ãŒå¤šã„ãƒªã‚¹ãƒˆå‡¦ç†ã¯ã€ä¸Šä¸‹ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤º
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ã€ãã®è¾ºã¯ä»®ã§ã™ã€‚
 //#define EV_WIN_SCROLL_CURSOR
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
@@ -585,19 +585,19 @@ static u16 GetWazaOshieDataCount( POKEMON_PARAM* poke, u16 color )
 #include "system/arc_util.h"
 #include "system/clact_tool.h"
 #include "field_clact.h"
-#include "field/ranking.naix"			//ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ª‚È‚¢‚Ì‚Å‰¼
+#include "field/ranking.naix"			//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ä»®
 #endif
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 static void EvWin_MsgManSet( WAZA_OSHIE_WORK* wk, MSGDATA_MANAGER* msgman );
 static void EvWin_Init( FIELDSYS_WORK* fsys, WAZA_OSHIE_WORK* wk, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman );
 
-//BMPƒŠƒXƒg
+//BMPãƒªã‚¹ãƒˆ
 WAZA_OSHIE_WORK * CmdWazaOshieBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman );
 void CmdWazaOshieBmpList_MakeList( WAZA_OSHIE_WORK* wk, u32 msg_id, u32 talk_msg_id, u32 param  );
 static void CmdWazaOshieBmpList_Start( WAZA_OSHIE_WORK* wk );
@@ -617,13 +617,13 @@ static void EvWin_ActorRelease( WAZA_OSHIE_WORK* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	‰Šú‰»AƒŠƒXƒgì¬AŠJŽn
+ * @brief	BMPãƒªã‚¹ãƒˆ	åˆæœŸåŒ–ã€ãƒªã‚¹ãƒˆä½œæˆã€é–‹å§‹
  *
  * @param	none
  *
  * @retval	1
  *
- * pos = 0xff‚ÌŽž‚ÍAƒ{[ƒh—p‚É‘S‚Ä‚Ì‹Z‚ðƒZƒbƒg
+ * pos = 0xffã®æ™‚ã¯ã€ãƒœãƒ¼ãƒ‰ç”¨ã«å…¨ã¦ã®æŠ€ã‚’ã‚»ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 BOOL EvCmdWazaOshieBmpListStart( VM_MACHINE * core )
@@ -642,34 +642,34 @@ BOOL EvCmdWazaOshieBmpListStart( VM_MACHINE * core )
 	u16 color					= VMGetWorkValue( core );
 	u16 wk_id					= VMGetU16( core );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ðŠi”[
+	//ä»®æƒ³ãƒžã‚·ãƒ³ã®æ±Žç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
-	//ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^Žæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	if( pos != 0xff ){
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), pos );
 	}
 
-	//‹Z–¼
+	//æŠ€å
 	man = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wazaname_dat, HEAPID_EVENT );
 
-	//evwin‰Šú‰»
+	//evwinåˆæœŸåŒ–
 	waza_oshie_win	= CmdWazaOshieBmpList_Init(	fsys, 20, 1, 0, 1, 
 									GetEventWorkAdrs(fsys,wk_id), *wordset, 
 									GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_MSGWINDAT),
 									man );
 
-	//ƒNƒŠƒA
+	//ã‚¯ãƒªã‚¢
 	for( i=0; i < WAZA_OSHIE_TBL_MAX ;i++ ){
 		waza[i] = 0;
 	}
 
 	set_pos = 0;
 
-	//Šo‚¦‚ç‚ê‚é‹Z‚ðƒZƒbƒg
+	//è¦šãˆã‚‰ã‚Œã‚‹æŠ€ã‚’ã‚»ãƒƒãƒˆ
 	if( pos != 0xff ){
 
-		//ƒ|ƒPƒ‚ƒ“‚ªŠo‚¦‚Ä‚é‹Z‚ðŽæ“¾
+		//ãƒã‚±ãƒ¢ãƒ³ãŒè¦šãˆã¦ã‚‹æŠ€ã‚’å–å¾—
 		for( waza_i=0; waza_i < 4 ;waza_i++ ){
 			poke_waza[waza_i] = PokeParaGet( poke, (ID_PARA_waza1 + waza_i), NULL );
 		}
@@ -678,16 +678,16 @@ BOOL EvCmdWazaOshieBmpListStart( VM_MACHINE * core )
 			data = GetWazaOshieDataAdrs( poke, i );
 			OS_Printf( "data = %d\n", data );
 			for( bit=0; bit < 8 ;bit++ ){
-				//OS_Printf( "—v‘f = %d\n", i*8+bit );
+				//OS_Printf( "è¦ç´  = %d\n", i*8+bit );
 				//OS_Printf( "wazano = %d\n", waza_oshie_tbl[i*8+bit] );
 				//OS_Printf( "data = %d\n", data );
 				num = ( (data >> bit) & 0x01 );
 
-				//Šo‚¦‚ç‚ê‚éƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚ÄA“n‚³‚ê‚½ƒJƒ‰[‚Æ“¯‚¶‚©ƒ`ƒFƒbƒN
+				//è¦šãˆã‚‰ã‚Œã‚‹ãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã¦ã€æ¸¡ã•ã‚ŒãŸã‚«ãƒ©ãƒ¼ã¨åŒã˜ã‹ãƒã‚§ãƒƒã‚¯
 				if( (num == 1) && (color == waza_oshie_tbl[i*8+bit].color) ){
 				//if( num == 1 ){
 				
-					//‚·‚Å‚Éƒ|ƒPƒ‚ƒ“‚ªŠo‚¦‚Ä‚é‹Z‚ÍœŠO
+					//ã™ã§ã«ãƒã‚±ãƒ¢ãƒ³ãŒè¦šãˆã¦ã‚‹æŠ€ã¯é™¤å¤–
 					for( waza_i=0; waza_i < 4 ;waza_i++ ){
 						if( poke_waza[waza_i] == waza_oshie_tbl[i*8+bit].waza ){
 							break;
@@ -702,10 +702,10 @@ BOOL EvCmdWazaOshieBmpListStart( VM_MACHINE * core )
 			}
 		}
 	}else{
-		//ƒ{[ƒh—p‚É‘S‚ÄƒZƒbƒg
+		//ãƒœãƒ¼ãƒ‰ç”¨ã«å…¨ã¦ã‚»ãƒƒãƒˆ
 		for( i=0; i < WAZA_OSHIE_TBL_MAX ;i++ ){
 			//waza[i] = GetWazaOshieWazaNo( i );
-			//“n‚³‚ê‚½ƒJƒ‰[‚Æ“¯‚¶‚©ƒ`ƒFƒbƒN
+			//æ¸¡ã•ã‚ŒãŸã‚«ãƒ©ãƒ¼ã¨åŒã˜ã‹ãƒã‚§ãƒƒã‚¯
 			if( color == waza_oshie_tbl[i].color ){
 				waza[set_pos] = GetWazaOshieWazaNo( i );
 				set_pos++;
@@ -714,13 +714,13 @@ BOOL EvCmdWazaOshieBmpListStart( VM_MACHINE * core )
 		//set_pos = WAZA_OSHIE_TBL_MAX;
 	}
 
-	//ƒŠƒXƒgì¬
+	//ãƒªã‚¹ãƒˆä½œæˆ
 	for( i=0; i < set_pos ;i++ ){
 		CmdWazaOshieBmpList_MakeList( waza_oshie_win, waza[i], EV_WIN_TALK_MSG_NONE, waza[i] );
 	}
 
 #if 1
-	//ev_win.gmm‚©‚çu‚â‚ß‚év‚ðŽg—p‚µ‚Ä‚¢‚é
+	//ev_win.gmmã‹ã‚‰ã€Œã‚„ã‚ã‚‹ã€ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹
 	
 	ev_win_man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_ev_win_dat, HEAPID_EVENT );
 	EvWin_MsgManSet( waza_oshie_win, ev_win_man );
@@ -728,11 +728,11 @@ BOOL EvCmdWazaOshieBmpListStart( VM_MACHINE * core )
 									EV_WIN_TALK_MSG_NONE, EV_WIN_B_CANCEL );
 	MSGMAN_Delete( ev_win_man );
 
-	//ˆê‰ž–ß‚·
+	//ä¸€å¿œæˆ»ã™
 	EvWin_MsgManSet( waza_oshie_win, man );
 #endif
 
-	//ƒŠƒXƒgŠJŽn
+	//ãƒªã‚¹ãƒˆé–‹å§‹
 	CmdWazaOshieBmpList_Start( waza_oshie_win );
 	
 	VM_SetWait( core, EvWazaOshieSelWinWait );
@@ -741,46 +741,46 @@ BOOL EvCmdWazaOshieBmpListStart( VM_MACHINE * core )
 	return 1;
 }
 
-//ƒEƒFƒCƒgŠÖ”
+//ã‚¦ã‚§ã‚¤ãƒˆé–¢æ•°
 static BOOL EvWazaOshieSelWinWait(VM_MACHINE * core)
 {
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16* ret_wk = GetEventWorkAdrs( fsys, core->reg[0] );	//’ˆÓI
+	u16* ret_wk = GetEventWorkAdrs( fsys, core->reg[0] );	//æ³¨æ„ï¼
 
 	if( *ret_wk == EV_WIN_NOTHING ){
-		return FALSE;	//Œp‘±
+		return FALSE;	//ç¶™ç¶š
 	}
 
-	return TRUE;		//I—¹
+	return TRUE;		//çµ‚äº†
 }
 
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-#define EV_WIN_FONT				(FONT_SYSTEM)	//ƒtƒHƒ“ƒgŽw’è
+#define EV_WIN_FONT				(FONT_SYSTEM)	//ãƒ•ã‚©ãƒ³ãƒˆæŒ‡å®š
 
-#define EVWIN_MSG_BUF_SIZE		(40*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define EVWIN_MSG_BUF_SIZE		(40*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define EV_WIN_LIST_MAX			(WAZA_OSHIE_TBL_MAX+1)			//BMPƒŠƒXƒg€–Ú‚ÌÅ‘å”
-#define	EV_WIN_MSG_MAX			(WAZA_OSHIE_TBL_MAX+1)			//MSGƒoƒbƒtƒ@‚ÌÅ‘å”
+#define EV_WIN_LIST_MAX			(WAZA_OSHIE_TBL_MAX+1)			//BMPãƒªã‚¹ãƒˆé …ç›®ã®æœ€å¤§æ•°
+#define	EV_WIN_MSG_MAX			(WAZA_OSHIE_TBL_MAX+1)			//MSGãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ•°
 
-//BMPƒŠƒXƒgƒwƒbƒ_[’è‹`
-#define EV_LIST_LINE			(8)				//•\Ž¦Å‘å€–Ú”
-#define EV_LIST_RABEL_X			(1)				//ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-#define EV_LIST_DATA_X			(12)			//€–Ú•\Ž¦‚wÀ•W
-#define EV_LIST_CURSOR_X		(2)				//ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-#define EV_LIST_LINE_Y			(1)				//•\Ž¦‚xÀ•W
+//BMPãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼å®šç¾©
+#define EV_LIST_LINE			(8)				//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+#define EV_LIST_RABEL_X			(1)				//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_DATA_X			(12)			//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_CURSOR_X		(2)				//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_LINE_Y			(1)				//è¡¨ç¤ºï¼¹åº§æ¨™
 
-//ƒJ[ƒ\ƒ‹•
-#define EV_WIN_CURSOR_WIDTH		(12)			//ƒJ[ƒ\ƒ‹•
+//ã‚«ãƒ¼ã‚½ãƒ«å¹…
+#define EV_WIN_CURSOR_WIDTH		(12)			//ã‚«ãƒ¼ã‚½ãƒ«å¹…
 
-#define EV_WIN_DEFAULT_WAIT		(3)				//ƒL[‘€ì‚ª‚·‚®‚É“ü‚ç‚È‚¢‚æ‚¤‚ÉŠî–{ƒEƒFƒCƒg
+#define EV_WIN_DEFAULT_WAIT		(3)				//ã‚­ãƒ¼æ“ä½œãŒã™ãã«å…¥ã‚‰ãªã„ã‚ˆã†ã«åŸºæœ¬ã‚¦ã‚§ã‚¤ãƒˆ
 
-// «‚±‚±‚©‚çŽg‚Á‚Ä‰º‚³‚¢II
-#define	EVWIN_FREE_CGX			( 1 )			//ƒtƒŠ[‚ÌƒLƒƒƒ‰ˆÊ’u
+// â†“ã“ã“ã‹ã‚‰ä½¿ã£ã¦ä¸‹ã•ã„ï¼ï¼
+#define	EVWIN_FREE_CGX			( 1 )			//ãƒ•ãƒªãƒ¼ã®ã‚­ãƒ£ãƒ©ä½ç½®
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 #define CURSOR_ANMNO				(0)
@@ -792,11 +792,11 @@ static BOOL EvWazaOshieSelWinWait(VM_MACHINE * core)
 #define EVWIN_CEL_H_ID_CURSOR		(13528)
 #define EVWIN_ANM_H_ID_CURSOR		(13528)
 
-#define EVWIN_ACTMAX				(2)			//ƒAƒNƒ^[”(ãŒü‚«‚Æ‰ºŒü‚«‚Ì‚Q‚Â)
+#define EVWIN_ACTMAX				(2)			//ã‚¢ã‚¯ã‚¿ãƒ¼æ•°(ä¸Šå‘ãã¨ä¸‹å‘ãã®ï¼’ã¤)
 
 #define ACT_RES_PAL_NUM				(3)
 
-//ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ª‚È‚¢‚Ì‚Å’u‚«Š·‚¦
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ç½®ãæ›ãˆ
 enum{
 	ARC_EVWIN_GRA	= ARC_RANKING_GRA,
 	NARC_evwin_nclr = NARC_ranking_ranking_nclr,
@@ -809,64 +809,64 @@ enum{
 
 //==============================================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //
 //==============================================================================================
 struct _WAZA_OSHIE_WORK{
-	FIELDSYS_WORK * fsys;						//FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
+	FIELDSYS_WORK * fsys;						//FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
 	TCB_PTR	tcb;
 
- 	GF_BGL_BMPWIN bmpwin;						//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- 	GF_BGL_BMPWIN* talk_bmpwin;					//BMP‰ï˜bƒEƒBƒ“ƒhƒEƒf[ƒ^
+ 	GF_BGL_BMPWIN bmpwin;						//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ 	GF_BGL_BMPWIN* talk_bmpwin;					//BMPä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 	
-	STRBUF* msg_buf[EV_WIN_MSG_MAX];			//ƒƒbƒZ[ƒWƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-	MSGDATA_MANAGER* msgman;					//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;							//’PŒêƒZƒbƒg
+	STRBUF* msg_buf[EV_WIN_MSG_MAX];			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+	MSGDATA_MANAGER* msgman;					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;							//å˜èªžã‚»ãƒƒãƒˆ
 
-	u8  wait;									//ƒEƒFƒCƒg
-	u8  menu_id;								//BMPƒƒjƒ…[ID
-	u8  cursor_pos;								//ƒJ[ƒ\ƒ‹ˆÊ’u
-	u8  cancel:1;								//ƒLƒƒƒ“ƒZƒ‹
-	u8  msgman_del_flag:1;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[íœƒtƒ‰ƒO
+	u8  wait;									//ã‚¦ã‚§ã‚¤ãƒˆ
+	u8  menu_id;								//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ID
+	u8  cursor_pos;								//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8  cancel:1;								//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	u8  msgman_del_flag:1;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤ãƒ•ãƒ©ã‚°
 	u8  dmy:6;									//
 
-	u8  x;										//ƒEƒBƒ“ƒhƒEˆÊ’uX
-	u8  y;										//ƒEƒBƒ“ƒhƒEˆÊ’uY
-	u8  dmyy;									//ƒƒjƒ…[ƒiƒ“ƒo[
-	u8  list_no;								//ƒƒjƒ…[€–Ú‚Ì‰½”Ô–Ú‚©
+	u8  x;										//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®X
+	u8  y;										//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®Y
+	u8  dmyy;									//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u8  list_no;								//ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®ä½•ç•ªç›®ã‹
 
-	u16* pMsg;									//ƒƒbƒZ[ƒWƒf[ƒ^
-	u16* work;									//Œ‹‰ÊŽæ“¾ƒ[ƒN
+	u16* pMsg;									//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+	u16* work;									//çµæžœå–å¾—ãƒ¯ãƒ¼ã‚¯
  
-	//BMPƒŠƒXƒg
-	BMPLIST_HEADER ListH;						//BMPƒŠƒXƒgƒwƒbƒ_[
-	BMPLIST_WORK* lw;							//BMPƒŠƒXƒgƒf[ƒ^
-	u16 list_bak;								//ƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒv
-	u16 cursor_bak;								//ƒJ[ƒ\ƒ‹ˆÊ’uƒoƒbƒNƒAƒbƒv
-	BMPLIST_DATA list_Data[EV_WIN_LIST_MAX];	//ƒŠƒXƒgƒf[ƒ^
-	u16 talk_msg_id[EV_WIN_LIST_MAX];			//ƒŠƒXƒgƒf[ƒ^‚É‘Î‚É‚È‚é‰ï˜bƒƒbƒZ[ƒWID
+	//BMPãƒªã‚¹ãƒˆ
+	BMPLIST_HEADER ListH;						//BMPãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼
+	BMPLIST_WORK* lw;							//BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	u16 list_bak;								//ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	u16 cursor_bak;								//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	BMPLIST_DATA list_Data[EV_WIN_LIST_MAX];	//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	u16 talk_msg_id[EV_WIN_LIST_MAX];			//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã«å¯¾ã«ãªã‚‹ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 
 	u16 pos_bak;
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-	FIELD_CLACT		fcat;						//ƒtƒB[ƒ‹ƒh—pƒZƒ‹ƒAƒNƒ^[Ý’è
-	CATS_ACT_PTR	act[EVWIN_ACTMAX];			//CATS‚ðŽg‚¤Žž‚Ìê—pƒAƒNƒ^[\‘¢‘Ì
+	FIELD_CLACT		fcat;						//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®š
+	CATS_ACT_PTR	act[EVWIN_ACTMAX];			//CATSã‚’ä½¿ã†æ™‚ã®å°‚ç”¨ã‚¢ã‚¯ã‚¿ãƒ¼æ§‹é€ ä½“
 #endif
 };
 
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE@ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[ƒZƒbƒg
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚»ãƒƒãƒˆ
  *
- * @param	wk			WAZA_OSHIE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msgman		MSGDATA_MANAGERŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			WAZA_OSHIE_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msgman		MSGDATA_MANAGERåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -879,15 +879,15 @@ static void EvWin_MsgManSet( WAZA_OSHIE_WORK* wk, MSGDATA_MANAGER* msgman )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE@ƒ[ƒN‰Šú‰»
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param	wk			WAZA_OSHIE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	x			ƒEƒBƒ“ƒhƒE•\Ž¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\Ž¦XÀ•W
- * @param	cursor		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	cancel		BƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO(TRUE=—LŒøAFALSE=–³Œø)
- * @param	work		Œ‹‰Ê‚ð‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			WAZA_OSHIE_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	cursor		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	cancel		Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°(TRUE=æœ‰åŠ¹ã€FALSE=ç„¡åŠ¹)
+ * @param	work		çµæžœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -896,9 +896,9 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, WAZA_OSHIE_WORK* wk, u8 x, u8 y, u8
 {
 	int i;
 
-	wk->msgman		= msgman;		//ˆøŒp‚¬
+	wk->msgman		= msgman;		//å¼•ç¶™ãŽ
 	wk->msgman_del_flag = 0;
-	wk->wordset		= wordset;		//ƒXƒNƒŠƒvƒg‚ðˆø‚«Œp‚®
+	wk->wordset		= wordset;		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å¼•ãç¶™ã
 
 	wk->fsys		= fsys;
 	wk->work		= work;
@@ -917,12 +917,12 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, WAZA_OSHIE_WORK* wk, u8 x, u8 y, u8
 		wk->talk_msg_id[i] = EV_WIN_TALK_MSG_NONE;
 	}
 
-	//MSGMAN_Create‚ÌŒã‚Éˆ—
+	//MSGMAN_Createã®å¾Œã«å‡¦ç†
 	for( i=0; i < EV_WIN_MSG_MAX ;i++ ){
 		wk->msg_buf[i] = STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );
 	}
 
-	//‘I‘ð‚µ‚½’l‚ðŽæ“¾‚·‚éƒ[ƒN‚ð‰Šú‰»
+	//é¸æŠžã—ãŸå€¤ã‚’å–å¾—ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
 	*wk->work = EV_WIN_NOTHING;
 
 	return;
@@ -931,22 +931,22 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, WAZA_OSHIE_WORK* wk, u8 x, u8 y, u8
 
 //==============================================================================================
 //
-//	BMPƒŠƒXƒgŠÖ˜A
+//	BMPãƒªã‚¹ãƒˆé–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@‰Šú‰»
+ * @brief	BMPãƒªã‚¹ãƒˆã€€åˆæœŸåŒ–
  *
- * @param	x			ƒEƒBƒ“ƒhƒE•\Ž¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\Ž¦XÀ•W
- * @param	cursor		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	cancel		BƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO(TRUE=—LŒøAFALSE=–³Œø)
- * @param	work		Œ‹‰Ê‚ð‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	cursor		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	cancel		Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°(TRUE=æœ‰åŠ¹ã€FALSE=ç„¡åŠ¹)
+ * @param	work		çµæžœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"WAZA_OSHIE_WORKŒ^‚ÌƒAƒhƒŒƒXANULL‚ÍŽ¸”s"
+ * @retval	"WAZA_OSHIE_WORKåž‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€NULLã¯å¤±æ•—"
  */
 //--------------------------------------------------------------
 WAZA_OSHIE_WORK * CmdWazaOshieBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, GF_BGL_BMPWIN* talk_bmpwin, MSGDATA_MANAGER* msgman )
@@ -961,7 +961,7 @@ WAZA_OSHIE_WORK * CmdWazaOshieBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 
 	}
 	memset( wk, 0, sizeof(WAZA_OSHIE_WORK) );
 
-	//ƒ[ƒN‰Šú‰»	
+	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–	
 	EvWin_Init( fsys, wk, x, y, cursor, cancel, work, wordset, talk_bmpwin, msgman );
 
 	return wk;
@@ -969,12 +969,12 @@ WAZA_OSHIE_WORK * CmdWazaOshieBmpList_Init( FIELDSYS_WORK* fsys, u8 x, u8 y, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgì¬
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			WAZA_OSHIE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	param		BMPLISTƒpƒ‰ƒ[ƒ^
+ * @param	wk			WAZA_OSHIE_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPLISTãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -987,16 +987,16 @@ void CmdWazaOshieBmpList_MakeList( WAZA_OSHIE_WORK* wk, u32 msg_id, u32 talk_msg
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ŠJŽn
+ * @brief	BMPãƒªã‚¹ãƒˆã€€é–‹å§‹
  *
- * @param	wk			WAZA_OSHIE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			WAZA_OSHIE_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void CmdWazaOshieBmpList_Start( WAZA_OSHIE_WORK* wk )
 {
-	//•\Ž¦Å‘å€–Ú”ƒ`ƒFƒbƒN
+	//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°ãƒã‚§ãƒƒã‚¯
 	if( wk->list_no > EV_LIST_LINE ){
 		GF_BGL_BmpWinAdd( wk->fsys->bgl, &wk->bmpwin, FLD_MBGFRM_FONT, wk->x, wk->y, 
 									11, EV_LIST_LINE*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
@@ -1005,23 +1005,23 @@ static void CmdWazaOshieBmpList_Start( WAZA_OSHIE_WORK* wk )
 									11, wk->list_no*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
 	}
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ðƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(
 		wk->fsys->bgl, FLD_MBGFRM_FONT, MENU_WIN_CGX_NUM, MENU_WIN_PAL, 0, HEAPID_FIELD );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ð•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite(&wk->bmpwin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL);
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 	EvWin_ActorInit( wk );
 #endif
 
-	//ƒŠƒXƒgƒwƒbƒ_[‰ŠúÝ’è
+	//ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
 	BmpList_h_default_set(wk);
 
 	wk->lw = BmpListSet( (const BMPLIST_HEADER*)&wk->ListH, 0, wk->cursor_pos, HEAPID_FIELD );
 
-	//TCB’Ç‰Á
+	//TCBè¿½åŠ 
 	wk->tcb	= TCB_Add( EvBmpList_MainTCB, wk, 0 );
 
 	return;
@@ -1029,12 +1029,12 @@ static void CmdWazaOshieBmpList_Start( WAZA_OSHIE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒŠƒXƒgì¬
+ * @brief	BMPãƒªã‚¹ãƒˆ	ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			WAZA_OSHIE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	param		BMPLISTƒpƒ‰ƒ[ƒ^
+ * @param	wk			WAZA_OSHIE_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPLISTãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -1044,15 +1044,15 @@ static void BmpList_list_make( WAZA_OSHIE_WORK* wk, u32 msg_id, u32 talk_msg_id,
 	int i;
 	void* msg;
 
-	SDK_ASSERTMSG( wk->list_no < EV_WIN_LIST_MAX, "ƒŠƒXƒg€–Ú”ƒI[ƒo[I" );
+	SDK_ASSERTMSG( wk->list_no < EV_WIN_LIST_MAX, "ãƒªã‚¹ãƒˆé …ç›®æ•°ã‚ªãƒ¼ãƒãƒ¼ï¼" );
 
 	{
-		//“WŠJž‚Ý
+		//å±•é–‹è¾¼ã¿
 		
-		STRBUF* tmp_buf2= STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );	//ƒRƒs[—pƒoƒbƒtƒ@
+		STRBUF* tmp_buf2= STRBUF_Create( EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );	//ã‚³ãƒ”ãƒ¼ç”¨ãƒãƒƒãƒ•ã‚¡
 
 		MSGMAN_GetString( wk->msgman, msg_id, tmp_buf2 );
-		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//“WŠJ
+		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//å±•é–‹
 		wk->list_Data[ wk->list_no ].str = (const void *)wk->msg_buf[wk->list_no];
 
 		STRBUF_Delete( tmp_buf2 );
@@ -1074,9 +1074,9 @@ static void BmpList_list_make( WAZA_OSHIE_WORK* wk, u32 msg_id, u32 talk_msg_id,
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	€–Ú‚Ì’†‚©‚çÅ‘å•¶Žš”‚ðŽæ“¾
+ * @brief	BMPãƒªã‚¹ãƒˆ	é …ç›®ã®ä¸­ã‹ã‚‰æœ€å¤§æ–‡å­—æ•°ã‚’å–å¾—
  *
- * @param	wk			WAZA_OSHIE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			WAZA_OSHIE_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1106,9 +1106,9 @@ static u32 BmpList_length_get( WAZA_OSHIE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒwƒbƒ_[‰ŠúÝ’è
+ * @brief	BMPãƒªã‚¹ãƒˆ	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk			WAZA_OSHIE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			WAZA_OSHIE_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1144,7 +1144,7 @@ static void BmpList_h_default_set(WAZA_OSHIE_WORK* wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒN
+ * @brief	BMPãƒªã‚¹ãƒˆ	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	
  *
@@ -1160,34 +1160,34 @@ static void BmpList_CursorMoveCallBack( BMPLIST_WORK* wk, u32 param, u8 mode )
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 
-	//‰Šú‰»Žž
+	//åˆæœŸåŒ–æ™‚
 	if( mode == 1 ){
 		//
 	}
 
-	count = BmpListParamGet( wk, BMPLIST_ID_COUNT );	//ƒŠƒXƒg€–Ú”
-	line  = BmpListParamGet( wk, BMPLIST_ID_LINE );		//•\Ž¦Å‘å€–Ú”
+	count = BmpListParamGet( wk, BMPLIST_ID_COUNT );	//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	line  = BmpListParamGet( wk, BMPLIST_ID_LINE );		//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	//‘S‚Ä‚Ì€–Ú‚ð•\Ž¦‚µ‚Ä‚¢‚È‚¢Žž
+	//å…¨ã¦ã®é …ç›®ã‚’è¡¨ç¤ºã—ã¦ã„ãªã„æ™‚
 	if( count > line ){
 
 		BmpListPosGet( wk, &list_bak, &cursor_bak );
 
 		if( list_bak == 0 ){
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹”ñ•\Ž¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\Ž¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], FALSE );	//OBJ‚Ì”ñ•\Ž¦Ý’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJ‚Ì•\Ž¦Ý’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«éžè¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], FALSE );	//OBJã®éžè¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
 		}else if( list_bak == (count-line) ){
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\Ž¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹”ñ•\Ž¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJ‚Ì•\Ž¦Ý’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], FALSE );	//OBJ‚Ì”ñ•\Ž¦Ý’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«éžè¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], FALSE );	//OBJã®éžè¡¨ç¤ºè¨­å®š
 		}else{
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\Ž¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\Ž¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJ‚Ì•\Ž¦Ý’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJ‚Ì•\Ž¦Ý’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
 		}
 	}
 
@@ -1198,10 +1198,10 @@ static void BmpList_CursorMoveCallBack( BMPLIST_WORK* wk, u32 param, u8 mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgƒƒCƒ“
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆãƒ¡ã‚¤ãƒ³
  *
  * @param	tcb			TCB_PTR
- * @param	wk			ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -1213,24 +1213,24 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 	WAZA_OSHIE_WORK* swk;
 	swk = (WAZA_OSHIE_WORK*)wk;
 
-	//ƒEƒFƒCƒg
+	//ã‚¦ã‚§ã‚¤ãƒˆ
 	if( swk->wait != 0 ){
 		swk->wait--;
 		return;
 	}
 
-	//ƒƒCƒv’†‚Íˆ—‚µ‚È‚¢
+	//ãƒ¯ã‚¤ãƒ—ä¸­ã¯å‡¦ç†ã—ãªã„
 	if( WIPE_SYS_EndCheck() == FALSE ){
 		return;
 	}
 
 	ret = BmpListMain( swk->lw );
 
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ðŽæ“¾
-	tmp_pos_bak = swk->pos_bak;		//‘Þ”ð
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = swk->pos_bak;		//é€€é¿
 	BmpListDirectPosGet( swk->lw, &swk->pos_bak );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != swk->pos_bak ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
@@ -1243,20 +1243,20 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 	case BMPLIST_NULL:
 		break;
 	case BMPLIST_CANCEL:
-		if( swk->cancel == TRUE ){			//TRUE = BƒLƒƒƒ“ƒZƒ‹—LŒø
+		if( swk->cancel == TRUE ){			//TRUE = Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 			Snd_SePlay( SEQ_SE_DP_SELECT );
-			*swk->work = EV_WIN_B_CANCEL;	//‘I‘ð‚µ‚½’l‚ðƒ[ƒN‚É‘ã“ü
+			*swk->work = EV_WIN_B_CANCEL;	//é¸æŠžã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-			EvWin_ActorRelease( wk );		//íœ
+			EvWin_ActorRelease( wk );		//å‰Šé™¤
 #endif
 			EvBmpList_Del(wk);
 		}
 		break;
 	default:
 		Snd_SePlay( SEQ_SE_DP_SELECT );
-		*swk->work = ret;					//‘I‘ð‚µ‚½’l‚ðƒ[ƒN‚É‘ã“ü
+		*swk->work = ret;					//é¸æŠžã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-		EvWin_ActorRelease( wk );			//íœ
+		EvWin_ActorRelease( wk );			//å‰Šé™¤
 #endif
 		EvBmpList_Del(wk);
 		break;
@@ -1267,20 +1267,20 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgI—¹
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆçµ‚äº†
  *
- * @param	wk			WAZA_OSHIE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			WAZA_OSHIE_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * SEQ_SE_DP_SELECT‚ð–Â‚ç‚µ‚Ä‚¢‚éI
+ * SEQ_SE_DP_SELECTã‚’é³´ã‚‰ã—ã¦ã„ã‚‹ï¼
  */
 //--------------------------------------------------------------
 static void EvBmpList_Del( WAZA_OSHIE_WORK* wk )
 {
 	int i;
 
-	Snd_SePlay(SEQ_SE_DP_SELECT);	//’ˆÓI
+	Snd_SePlay(SEQ_SE_DP_SELECT);	//æ³¨æ„ï¼
 
 	BmpListExit( wk->lw, NULL, NULL );
 	BmpMenuWinClear( wk->ListH.win, WINDOW_TRANS_ON );
@@ -1303,24 +1303,24 @@ static void EvBmpList_Del( WAZA_OSHIE_WORK* wk )
 
 //==============================================================================================
 //
-//	ƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹
+//	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«
 //
 //==============================================================================================
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 
-//ƒAƒNƒ^[‰Šú‰»
+//ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 static void EvWin_ActorInit( WAZA_OSHIE_WORK* wk )
 {
 	int i;
 	s16 x = (wk->x * 8) + (BmpList_length_get(wk) / 2);
 
-	//ƒŠƒ\[ƒX“o˜^Å‘å”’è‹`\‘¢‘Ì
+	//ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²æœ€å¤§æ•°å®šç¾©æ§‹é€ ä½“
 	TCATS_RESOURCE_NUM_LIST	crnl = { 1, 1, 1, 1 };
 
-	//“o˜^—p\‘¢‘Ì ’P‘Ì“o˜^—p(À•W‚ÍŒã‚ÅÝ’è‚µ’¼‚·)
+	//ç™»éŒ²ç”¨æ§‹é€ ä½“ å˜ä½“ç™»éŒ²ç”¨(åº§æ¨™ã¯å¾Œã§è¨­å®šã—ç›´ã™)
 	static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 	{
-		//ãŒü‚«
+		//ä¸Šå‘ã
 		{
 			0, 0, 0,
 			CURSOR_ANMNO, CURSOR_SPRI, CURSOR_PALT, NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1331,7 +1331,7 @@ static void EvWin_ActorInit( WAZA_OSHIE_WORK* wk )
 			0, 0
 		},
 
-		//‰ºŒü‚«
+		//ä¸‹å‘ã
 		{
 			0, 0, 0,
 			CURSOR_ANMNO, CURSOR_SPRI, CURSOR_PALT, NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1343,7 +1343,7 @@ static void EvWin_ActorInit( WAZA_OSHIE_WORK* wk )
 		},
 	};
 	
-	//ƒtƒB[ƒ‹ƒhƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	FieldCellActSet_S( &wk->fcat, &crnl, EVWIN_ACTMAX, HEAPID_FIELD );
 	
 	{
@@ -1351,7 +1351,7 @@ static void EvWin_ActorInit( WAZA_OSHIE_WORK* wk )
 		
 		hdl = ArchiveDataHandleOpen( ARC_EVWIN_GRA, HEAPID_FIELD );
 
-		//ƒŠƒ\[ƒXÝ’è
+		//ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
 		FldClact_LoadResPlttArcH(	&wk->fcat, hdl, NARC_evwin_nclr,
 									0, ACT_RES_PAL_NUM, NNS_G2D_VRAM_TYPE_2DMAIN, 
 									EVWIN_PAL_H_ID );
@@ -1368,41 +1368,41 @@ static void EvWin_ActorInit( WAZA_OSHIE_WORK* wk )
 		ArchiveDataHandleClose( hdl );
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[’Ç‰Á(’P”­—p)
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ (å˜ç™ºç”¨)
 	for( i=0; i < EVWIN_ACTMAX; i++ ){
 		wk->act[i] = FieldCellActAdd_S( &wk->fcat, &ActAddParam_S[i] );
-		CLACT_SetAnmFlag( wk->act[i]->act, 1 );				//ƒI[ƒgƒAƒjƒ
-		CATS_ObjectEnableCap( wk->act[i], FALSE );			//OBJ‚Ì”ñ•\Ž¦Ý’è
+		CLACT_SetAnmFlag( wk->act[i]->act, 1 );				//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
+		CATS_ObjectEnableCap( wk->act[i], FALSE );			//OBJã®éžè¡¨ç¤ºè¨­å®š
 	}
 
-	//À•W‚ÌÝ’è
+	//åº§æ¨™ã®è¨­å®š
 	//OS_Printf( "x = %d\n", x );
 	//OS_Printf( "wk->y = %d\n", (wk->y*8) );
 	//OS_Printf( "y = %d\n", (wk->list_no*8) );
 	CATS_ObjectPosSetCap( wk->act[0], x, (wk->y*8) );
 	CATS_ObjectPosSetCap( wk->act[1], x, (wk->list_no*8) );
 
-	//ƒI[ƒgƒAƒjƒ‚Å‘Î‰ž‚¶‚á‚È‚­‚ÄAÀ•W‚ð“®‚©‚µ‚ÄƒAƒjƒ‚Å‚à‚¢‚¢‚Ì‚©‚àBB•Û—¯
+	//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã§å¯¾å¿œã˜ã‚ƒãªãã¦ã€åº§æ¨™ã‚’å‹•ã‹ã—ã¦ã‚¢ãƒ‹ãƒ¡ã§ã‚‚ã„ã„ã®ã‹ã‚‚ã€‚ã€‚ä¿ç•™
 	
-	//‘I‘ðƒJ[ƒ\ƒ‹‚ÌF•ÏX
+	//é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ã®è‰²å¤‰æ›´
 	//CATS_ObjectPaletteSetCap(wk->act[ACT_CURSOR],CURSOR_PALF);
 	
 	return;
 }
 
-//ƒAƒNƒ^[íœ
+//ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 static void EvWin_ActorRelease( WAZA_OSHIE_WORK* wk )
 {
 	int i;
 
-	//ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^‚Ìíœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿ã®å‰Šé™¤
 	for( i=0; i < EVWIN_ACTMAX; i++ ){
 		if( wk->act[i] != NULL ){
 			CATS_ActorPointerDelete_S( wk->act[i] );
 		}
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[íœi’P”­—pj
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ï¼ˆå˜ç™ºç”¨ï¼‰
 	FieldCellActDelete_S( &wk->fcat );
 	return;
 }
@@ -1410,9 +1410,9 @@ static void EvWin_ActorRelease( WAZA_OSHIE_WORK* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‹³‚¦ƒ{[ƒh•\Ž¦
+ * æŠ€æ•™ãˆãƒœãƒ¼ãƒ‰è¡¨ç¤º
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1421,7 +1421,7 @@ BOOL EvCmdWazaOshieBoardWrite( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys = core->fsys;
 	WORDSET** wordset	= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKŽæ“¾
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKå–å¾—
 	u8 x				= VMGetU8(core);
 	u8 y				= VMGetU8(core);
 	u16 no				= VMGetWorkValue(core);
@@ -1440,9 +1440,9 @@ BOOL EvCmdWazaOshieBoardWrite( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‹³‚¦ƒ{[ƒhíœ
+ * æŠ€æ•™ãˆãƒœãƒ¼ãƒ‰å‰Šé™¤
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1450,7 +1450,7 @@ BOOL EvCmdWazaOshieBoardWrite( VM_MACHINE * core )
 BOOL EvCmdWazaOshieBoardDel( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys = core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKŽæ“¾
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKå–å¾—
 	WazaOshieBoardDel( *ev_win );
 	return 0;
 }

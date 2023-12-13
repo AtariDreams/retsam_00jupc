@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_269.s
- * @brief	‚¿‚å‚¤‚Í‚Â			269
+ * @brief	ã¡ã‚‡ã†ã¯ã¤			269
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚¿‚å‚¤‚Í‚Â			269
+//	â– ã¡ã‚‡ã†ã¯ã¤			269
 //
 //
 // =============================================================================
@@ -47,9 +47,9 @@ WEST_TYOUHATU:
 	WAIT_FLAG
 	CATS_RES_FREE			0
 
-	/// ‚¨‚±‚ç‚¹‚éB
+	/// ãŠã“ã‚‰ã›ã‚‹ã€‚
 	
-	///<‰Šú‰»ˆ—@“Ç‚Ýž‚Ýˆ—
+	///<åˆæœŸåŒ–å‡¦ç†ã€€èª­ã¿è¾¼ã¿å‡¦ç†
 	CATS_RES_INIT		ITYAMON_RES_NO, ITYAMON_ACT_NUM, ITYAMON_RES_NUM, ITYAMON_RES_NUM, ITYAMON_RES_NUM, ITYAMON_RES_NUM, 0, 0
 
 	CATS_CAHR_RES_LOAD	ITYAMON_RES_NO, EFFECT_207_NCGR_BIN
@@ -66,7 +66,7 @@ WEST_TYOUHATU:
 	WAIT	10
 	WAIT_FLAG
 
-	///<”jŠüˆ—
+	///<ç ´æ£„å‡¦ç†
 	CATS_RES_FREE		ITYAMON_RES_NO
 
 	WAIT_PARTICLE

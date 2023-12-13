@@ -18,10 +18,10 @@
   do-indent
 
   Revision 1.2  2005/07/27 12:15:36  seiki_masashi
-  MAC ƒAƒhƒŒƒX‚à’Ç‰Á
+  MAC ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚‚è¿½åŠ 
 
   Revision 1.1  2005/07/27 07:36:41  seiki_masashi
-  V‹K’Ç‰Á
+  æ–°è¦è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -35,15 +35,15 @@ extern vu64 OSi_TickCounter;
 /*---------------------------------------------------------------------------*
   Name:         OS_GetLowEntropyData
 
-  Description:  ƒVƒXƒeƒ€ó‘Ô‚É‚æ‚Á‚Ä•Ï‰»‚·‚é’áƒGƒ“ƒgƒƒs[‚Ìƒf[ƒ^—ñ‚ðŽæ“¾‚·‚é
+  Description:  ã‚·ã‚¹ãƒ†ãƒ çŠ¶æ…‹ã«ã‚ˆã£ã¦å¤‰åŒ–ã™ã‚‹ä½Žã‚¨ãƒ³ãƒˆãƒ­ãƒ”ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿åˆ—ã‚’å–å¾—ã™ã‚‹
 
-  Arguments:    buffer - ƒf[ƒ^—ñ‚ðŽó‚¯Žæ‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    buffer - ãƒ‡ãƒ¼ã‚¿åˆ—ã‚’å—ã‘å–ã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void OS_GetLowEntropyData(u32 buffer[OS_LOW_ENTROPY_DATA_SIZE / sizeof(u32)])
 {
-    // System Work Memory ã‚Ì RTC ‚Ìƒ[ƒN—Ìˆæ
+    // System Work Memory ä¸Šã® RTC ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
     const OSSystemWork *work = OS_GetSystemWork();
     const u8 *macAddress =
         (u8 *)((u32)(work->nvramUserInfo) + ((sizeof(NVRAMConfig) + 3) & ~0x00000003));

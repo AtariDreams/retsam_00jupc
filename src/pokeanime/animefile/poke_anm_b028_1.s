@@ -18,7 +18,7 @@
 // =============================================================================
 //
 //
-//	”w–Ê		‘«“¥‚Ý
+//	èƒŒé¢		è¶³è¸ã¿
 //
 //
 // =============================================================================
@@ -27,18 +27,18 @@
 #define SHAKE_NUM	(8)
 #define SHAKE_SIZE	(3)
 PAST_ANIME_B028_1:
-	//‰ñ“]’†S‚ð¶‚É‚¸‚ç‚·
+	//å›žè»¢ä¸­å¿ƒã‚’å·¦ã«ãšã‚‰ã™
 	SET_ADD_VAL		 PARA_ROT_CX,USE_VAL,-32,PARAM_SET
-	//ŒX‚©‚¹‚é
-	//CALC_NUM‰ñ‚Ìˆ—‚Å90‹‚ðˆ—
+	//å‚¾ã‹ã›ã‚‹
+	//CALC_NUMå›žã®å‡¦ç†ã§90Â°ã‚’å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_ROT,TILT,0x4000,0,CALC_NUM
 	HOLD_CMD
-	//­‚µƒEƒFƒCƒg
+	//å°‘ã—ã‚¦ã‚§ã‚¤ãƒˆ
 	SET_WAIT	1
-	//ŒX‚«‚ð–ß‚·(CALC_NUM/2‰ñ)
+	//å‚¾ãã‚’æˆ»ã™(CALC_NUM/2å›ž)
 	CALL_MF_CURVE_DIVTIME	APPLY_ADD,0,CURVE_SIN,TARGET_ROT,TILT,0x4000,0,CALC_NUM/2
 	HOLD_CMD
-	//U“®
+	//æŒ¯å‹•
 	CALL_MF_CURVE APPLY_SET,0,CURVE_COS,TARGET_DY,SHAKE_SIZE,0x8000,0,SHAKE_NUM
 	HOLD_CMD
 

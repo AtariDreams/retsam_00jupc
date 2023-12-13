@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_026.s
- *@brief	�퓬�V�[�P���X
- *			�₯�ǂɂ��_���[�W�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			やけどによるダメージシーケンス
  *@author	HisashiSogabe
  *@data		2005.12.05
  *
@@ -15,11 +15,11 @@
 	.include	"waza_seq_def.h"
 
 SUB_026:
-	//�����}�W�b�N�K�[�h�́A�_���[�W�Ȃ�
+	//特性マジックガードは、ダメージなし
 	TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_WORK,TOKUSYU_MAZIKKUGAADO,SUB_026_END
 	PSP_VALUE_WORK	VAL_GET,SIDE_WORK,ID_PSP_hpmax,BUF_PARA_HP_CALC_WORK
 	DAMAGE_DIV		BUF_PARA_HP_CALC_WORK,8 
-	//���������˂́A�_���[�W��1/16��
+	//特性たいねつは、ダメージを1/16に
 	TOKUSEI_CHECK	TOKUSEI_NO_HAVE,SIDE_WORK,TOKUSYU_TAINETU,SUB_026_NEXT
 	DAMAGE_DIV		BUF_PARA_HP_CALC_WORK,2 
 SUB_026_NEXT:

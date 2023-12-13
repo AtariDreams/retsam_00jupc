@@ -1,75 +1,75 @@
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
-¡                                                                          ¡
-¡  Readme-NitroWiFi-2_1-patch-plus3-070920.txt                             ¡
-¡                                                                          ¡
-¡  Plus Patch for NITRO-SDK Wi-Fi ƒ‰ƒCƒuƒ‰ƒŠ 2.1                           ¡
-¡                                                                          ¡
-¡  Sep. 20, 2007                                                           ¡
-¡                                                                          ¡
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
+â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– 
+â–                                                                           â– 
+â–   Readme-NitroWiFi-2_1-patch-plus3-070920.txt                             â– 
+â–                                                                           â– 
+â–   Plus Patch for NITRO-SDK Wi-Fi ãƒ©ã‚¤ãƒ–ãƒ©ãƒª 2.1                           â– 
+â–                                                                           â– 
+â–   Sep. 20, 2007                                                           â– 
+â–                                                                           â– 
+â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– 
 
 
-y ‚Í‚¶‚ß‚É z
+ã€ ã¯ã˜ã‚ã« ã€‘
 
-    ‚±‚Ìƒpƒbƒ`‚ÍANITRO-SDK Wi-Fi ƒ‰ƒCƒuƒ‰ƒŠ 2.1 ‚ÌƒŠƒŠ[ƒXˆÈ~‚É
-    ”­Œ©‚³‚ê‚½•s‹ï‡‚ðC³‚·‚é‚½‚ß‚Ì‚à‚Ì‚Å‚·BƒCƒ“ƒXƒg[ƒ‹‚·‚é‚½‚ß‚É‚ÍA
-    “¯«‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ð NITRO-SDK Wi-Fi ƒ‰ƒCƒuƒ‰ƒŠ 2.1 (070710)‚ª
-    ƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚éƒfƒBƒŒƒNƒgƒŠ‚Éã‘‚«ƒRƒs[‚µ‚Ä‚­‚¾‚³‚¢B
+    ã“ã®ãƒ‘ãƒƒãƒã¯ã€NITRO-SDK Wi-Fi ãƒ©ã‚¤ãƒ–ãƒ©ãƒª 2.1 ã®ãƒªãƒªãƒ¼ã‚¹ä»¥é™ã«
+    ç™ºè¦‹ã•ã‚ŒãŸä¸å…·åˆã‚’ä¿®æ­£ã™ã‚‹ãŸã‚ã®ã‚‚ã®ã§ã™ã€‚ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ãŸã‚ã«ã¯ã€
+    åŒæ¢±ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ NITRO-SDK Wi-Fi ãƒ©ã‚¤ãƒ–ãƒ©ãƒª 2.1 (070710)ãŒ
+    ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ä¸Šæ›¸ãã‚³ãƒ”ãƒ¼ã—ã¦ãã ã•ã„ã€‚
 
-    ¦ NITRO-SDK Wi-Fi ƒ‰ƒCƒuƒ‰ƒŠ 2.1 ‚ð‚²Žg—p‚Ìê‡A
-       •K‚¸‚±‚Ìplusƒpƒbƒ`‚ð“K—p‚µ‚Ä‰º‚³‚¢B
+    â€» NITRO-SDK Wi-Fi ãƒ©ã‚¤ãƒ–ãƒ©ãƒª 2.1 ã‚’ã”ä½¿ç”¨ã®å ´åˆã€
+       å¿…ãšã“ã®plusãƒ‘ãƒƒãƒã‚’é©ç”¨ã—ã¦ä¸‹ã•ã„ã€‚
 
-y ’ˆÓ z
+ã€ æ³¨æ„ ã€‘
 
-@@@NITRO-SDK Wi-Fi ƒ‰ƒCƒuƒ‰ƒŠ 2.1 ‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ðƒrƒ‹ƒh‚µ‚½Ž–‚ª‚ ‚éê‡A
-    –{ƒpƒbƒ`‚ð“–‚Ä‚½‚¾‚¯‚¾‚ÆƒLƒƒƒbƒVƒ…‚Ì‰e‹¿‚ÅƒvƒƒOƒ‰ƒ€‚ðƒrƒ‹ƒh‚·‚é‚Æ‚«‚É
-    ƒGƒ‰[‚ª”­¶‚·‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B
-@@@‚à‚µƒrƒ‹ƒhŽž‚ÉƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚ÍANitroWiFi‚Ìƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ‚Å
-@@umake clobberv‚ðŽÀs‚·‚é‚±‚Æ‚ÅƒLƒƒƒbƒVƒ…‚ªíœ‚³‚ê‚Ü‚·B
-@@‚»‚ÌŒãA“¯‚¶NitroWiFi‚Ìƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ‚Åumakev‚·‚é‚±‚Æ‚ÅA
-@@‚±‚ÌÇó‚Í‰ü‘P‚³‚ê‚Ü‚·B
+ã€€ã€€ã€€NITRO-SDK Wi-Fi ãƒ©ã‚¤ãƒ–ãƒ©ãƒª 2.1 ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ãƒ“ãƒ«ãƒ‰ã—ãŸäº‹ãŒã‚ã‚‹å ´åˆã€
+    æœ¬ãƒ‘ãƒƒãƒã‚’å½“ã¦ãŸã ã‘ã ã¨ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®å½±éŸ¿ã§ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ãƒ“ãƒ«ãƒ‰ã™ã‚‹ã¨ãã«
+    ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚
+ã€€ã€€ã€€ã‚‚ã—ãƒ“ãƒ«ãƒ‰æ™‚ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã¯ã€NitroWiFiã®ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§
+ã€€ã€€ã€Œmake clobberã€ã‚’å®Ÿè¡Œã™ã‚‹ã“ã¨ã§ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒå‰Šé™¤ã•ã‚Œã¾ã™ã€‚
+ã€€ã€€ãã®å¾Œã€åŒã˜NitroWiFiã®ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã€Œmakeã€ã™ã‚‹ã“ã¨ã§ã€
+ã€€ã€€ã“ã®ç—‡çŠ¶ã¯æ”¹å–„ã•ã‚Œã¾ã™ã€‚
 
-y C³“à—e z 
+ã€ ä¿®æ­£å†…å®¹ ã€‘ 
     
-    NitroWiFi-2_1-patch-plus3-070920 ‚ÅC³‚³‚ê‚½“à—e
+    NitroWiFi-2_1-patch-plus3-070920 ã§ä¿®æ­£ã•ã‚ŒãŸå†…å®¹
     --------------------------------------------------------------------------
     
-    E(CPS/WCM) TCP ‘—M‚É‚¨‚¯‚éƒf[ƒ^‰»‚¯‚ÌC³
+    ãƒ»(CPS/WCM) TCP é€ä¿¡ã«ãŠã‘ã‚‹ãƒ‡ãƒ¼ã‚¿åŒ–ã‘ã®ä¿®æ­£
 
-    NitroWiFi ‚É‚Í‘å‚«‚ÈƒTƒCƒY‚Ì TCP ƒf[ƒ^‚ð‘—M‚µ‚½ê‡‚ÉA
-    ƒf[ƒ^‚ª‰»‚¯‚é‚±‚Æ‚ª‚ ‚é‚Æ‚¢‚¤•s‹ï‡‚ª‚ ‚èA‚±‚ê‚ðC³‚µ‚Ü‚µ‚½B
+    NitroWiFi ã«ã¯å¤§ããªã‚µã‚¤ã‚ºã® TCP ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã—ãŸå ´åˆã«ã€
+    ãƒ‡ãƒ¼ã‚¿ãŒåŒ–ã‘ã‚‹ã“ã¨ãŒã‚ã‚‹ã¨ã„ã†ä¸å…·åˆãŒã‚ã‚Šã€ã“ã‚Œã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
 
-    NitroWiFi-2_1-patch-plus2-070912 ‚ÅC³‚³‚ê‚½“à—e
+    NitroWiFi-2_1-patch-plus2-070912 ã§ä¿®æ­£ã•ã‚ŒãŸå†…å®¹
     --------------------------------------------------------------------------
     
-    E(CPS) Ú‘±Žž‚Éƒ^ƒCƒ€ƒAƒEƒg‚µ‚È‚­‚È‚é•s‹ï‡‚ÌC³
+    ãƒ»(CPS) æŽ¥ç¶šæ™‚ã«ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã—ãªããªã‚‹ä¸å…·åˆã®ä¿®æ­£
 
-    Ú‘±Žž‚É RST ƒpƒPƒbƒg‚ðŽóM‚µ‚½ê‡‚ÉAÚ‘±‚ªƒ^ƒCƒ€ƒAƒEƒg‚µ‚È‚­‚È‚é
-    ‚Æ‚¢‚¤•s‹ï‡‚ª‚ ‚è‚Ü‚µ‚½‚Ì‚ÅA‚±‚ê‚ðC³‚µ‚Ü‚µ‚½B
+    æŽ¥ç¶šæ™‚ã« RST ãƒ‘ã‚±ãƒƒãƒˆã‚’å—ä¿¡ã—ãŸå ´åˆã«ã€æŽ¥ç¶šãŒã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã—ãªããªã‚‹
+    ã¨ã„ã†ä¸å…·åˆãŒã‚ã‚Šã¾ã—ãŸã®ã§ã€ã“ã‚Œã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
 
-    NitroWiFi-2_1-patch-plus-070829-1321 ‚ÅC³‚³‚ê‚½“à—e
+    NitroWiFi-2_1-patch-plus-070829-1321 ã§ä¿®æ­£ã•ã‚ŒãŸå†…å®¹
     --------------------------------------------------------------------------
     
-    E(CPS/SSL) ƒAƒNƒZƒX—áŠO‚ÌC³
+    ãƒ»(CPS/SSL) ã‚¢ã‚¯ã‚»ã‚¹ä¾‹å¤–ã®ä¿®æ­£
 
-    ’ÊMŠÂ‹«‚É‚æ‚èA‹H‚ÉƒAƒNƒZƒX—áŠO‚ª”­¶‚·‚é‚±‚Æ‚ª‚ ‚è‚Ü‚µ‚½‚Ì‚ÅA
-    ‚±‚ê‚ðC³‚µ‚Ü‚µ‚½B
-    ‚±‚ÌC³‚É‚ÍAWarning:mac mismatch ‚Æ•\Ž¦‚³‚ê‚Ä
-    ƒf[ƒ^ƒAƒNƒZƒX—áŠO‚ª”­¶‚·‚é–â‘è‚ÌC³‚àŠÜ‚Ü‚ê‚Ü‚·B
+    é€šä¿¡ç’°å¢ƒã«ã‚ˆã‚Šã€ç¨€ã«ã‚¢ã‚¯ã‚»ã‚¹ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹ã“ã¨ãŒã‚ã‚Šã¾ã—ãŸã®ã§ã€
+    ã“ã‚Œã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+    ã“ã®ä¿®æ­£ã«ã¯ã€Warning:mac mismatch ã¨è¡¨ç¤ºã•ã‚Œã¦
+    ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹å•é¡Œã®ä¿®æ­£ã‚‚å«ã¾ã‚Œã¾ã™ã€‚
 
 
-y ƒtƒ@ƒCƒ‹ƒŠƒXƒg z
+ã€ ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆ ã€‘
 
-    ¡ƒ\[ƒXƒtƒ@ƒCƒ‹
+    â– ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
 	/NitroWiFi/build/libraries/wcm/src/cpsif.c
 
-    ¡ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+    â– ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 	/NitroWiFi/build/libraries/wcm/include/wcm_cpsif.h
 	/NitroWiFi/include/nitroWiFi/version.h
 
-    ¡ƒ‰ƒCƒuƒ‰ƒŠƒtƒ@ƒCƒ‹
+    â– ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«
 	/NitroWiFi/lib/ARM9-TS/Debug/libcps.a
 	/NitroWiFi/lib/ARM9-TS/Debug/libcps.thumb.a
 	/NitroWiFi/lib/ARM9-TS/Debug/libsoc.a
@@ -95,4 +95,4 @@
 	/NitroWiFi/lib/ARM9-TS/Rom/libwcm.a
 	/NitroWiFi/lib/ARM9-TS/Rom/libwcm.thumb.a
 
-ˆÈã
+ä»¥ä¸Š

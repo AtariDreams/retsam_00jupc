@@ -1,20 +1,20 @@
 //============================================================================================
 /**
  * @file	worldtrade_upload.c
- * @bfief	���E�����|�P�����f�[�^�A�b�v���[�h�f��
+ * @bfief	世界交換ポケモンデータアップロードデモ
  * @author	Akito Mori
  * @date	06.05.04
  */
 //============================================================================================
 
-//#define TEST_DEMO_OFF	// ���̓f���ɍs���Ǝ~�܂�̂Ń^�C�g���ɖ߂�悤�ɂ��Ă���
+//#define TEST_DEMO_OFF	// 今はデモに行くと止まるのでタイトルに戻るようにしておく
 
 #ifdef PM_DEBUG
-// �R�����g���͂����ƕK���A�b�v���[�h�Ŏ��s����
+// コメントをはずすと必ずアップロードで失敗する
 //#define DEBUG_UPLOAD_ERROR
 #endif
 
-// �T�[�o�[�m�F����_�E�����[�h�ɗ���鎞��̪��ޱ�Ă��Ȃ��悤�ɂ����
+// サーバー確認からダウンロードに流れる時にフェードアウトしないようにする版
 #define REPAIR_060804
 
 #include "common.h"
@@ -60,23 +60,23 @@
 
 #include "savedata/misc.h"
 
-#include "worldtrade.naix"			// �O���t�B�b�N�A�[�J�C�u��`
+#include "worldtrade.naix"			// グラフィックアーカイブ定義
 
 #include "savedata/tv_work.h"
-#include "../../field/tv_topic.h"	//�e���r�g�s�b�N�����p
+#include "../../field/tv_topic.h"	//テレビトピック生成用
 #include "field/tvtopic_extern.h"
 #include "msgdata/msg_place_name.h"
 #include "field/eventflag.h"
 #include "field/syswork.h"
 
-#define FIRST_NATUKIDO  (70)		///�������ꂽ�|�P�����ɓ����Ȃ��x
+#define FIRST_NATUKIDO  (70)		///交換されたポケモンに入れるなつき度
 
 
 
 //============================================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //============================================================================================
-/*** �֐��v���g�^�C�v ***/
+/*** 関数プロトタイプ ***/
 static void BgInit( GF_BGL_INI * ini );
 static void BgExit( GF_BGL_INI * ini );
 static void BgGraphicSet( WORLDTRADE_WORK * wk );
@@ -179,8 +179,8 @@ enum{
 	
 #if GTS_DUPLICATE_BUG_FIX
 
-	SUBSEQ_SERVER_POKE_DELETE,			// �T�[�o�[���|�P���������폜�V�[�P���X
-	SUBSEQ_SERVER_POKE_DELETE_WAIT,		// �T�[�o�[�폜�R�}���h�V�[�P���X�҂�
+	SUBSEQ_SERVER_POKE_DELETE,			// サーバー側ポケモン自動削除シーケンス
+	SUBSEQ_SERVER_POKE_DELETE_WAIT,		// サーバー削除コマンドシーケンス待ち
 
 #endif
 
@@ -271,16 +271,16 @@ static int (*Functable[])( WORLDTRADE_WORK *wk ) = {
 #define	POKEMON_ALL_FULL					( 1 )
 #define POKEMON_NOT_FULL_BUT_MAIL_NORECV	( 2 )
 
-///�����^�C���A�E�g�܂ł̎���
-#define TIMEOUT_TIME			(30*60*2)	//2��
+///強制タイムアウトまでの時間
+#define TIMEOUT_TIME			(30*60*2)	//2分
 
 //============================================================================================
-//	�v���Z�X�֐�
+//	プロセス関数
 //============================================================================================
 
 //==============================================================================
 /**
- * $brief   ���E�����������ʏ�����
+ * $brief   世界交換入り口画面初期化
  *
  * @param   wk		
  * @param   seq		
@@ -290,25 +290,25 @@ static int (*Functable[])( WORLDTRADE_WORK *wk ) = {
 //==============================================================================
 int WorldTrade_Upload_Init(WORLDTRADE_WORK *wk, int seq)
 {
-	// ���[�N������
+	// ワーク初期化
 	InitWork( wk );
 	
-	// BG�ݒ�
+	// BG設定
 	BgInit( wk->bgl );
 
-	// BG�O���t�B�b�N�]��
+	// BGグラフィック転送
 	BgGraphicSet( wk );
 
-	// BMPWIN�m��
+	// BMPWIN確保
 	BmpWinInit( wk );
 
-	// ���C�v�t�F�[�h�J�n
+	// ワイプフェード開始
 	WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, WORLDTRADE_WIPE_SPPED, 1, HEAPID_WORLDTRADE );
 #ifdef GTS_FADE_OSP
 	OS_Printf( "******************** worldtrade_upload.c [250] M ********************\n" );
 #endif
 
-	// Wifi�ʐM�A�C�R��
+	// Wifi通信アイコン
 	WorldTrade_WifiIconAdd( wk );
 
 	wk->subprocess_seq = SUBSEQ_START;
@@ -319,7 +319,7 @@ int WorldTrade_Upload_Init(WORLDTRADE_WORK *wk, int seq)
 }
 //==============================================================================
 /**
- * $brief   ���E�����������ʃ��C��
+ * $brief   世界交換入り口画面メイン
  *
  * @param   wk		
  * @param   seq		
@@ -331,10 +331,10 @@ int WorldTrade_Upload_Main(WORLDTRADE_WORK *wk, int seq)
 {
 	int ret;
 
-	// �ʐM��Ԃ��m�F���ăA�C�R���̕\����ς���
+	// 通信状態を確認してアイコンの表示を変える
     WirelessIconEasy_SetLevel(WorldTrade_WifiLinkLevel());
 
-	// �V�[�P���X�J�ڂŎ��s
+	// シーケンス遷移で実行
 	ret = (*Functable[wk->subprocess_seq])( wk );
 
 	return ret;
@@ -343,7 +343,7 @@ int WorldTrade_Upload_Main(WORLDTRADE_WORK *wk, int seq)
 
 //==============================================================================
 /**
- * $brief   ���E�����������ʏI��
+ * $brief   世界交換入り口画面終了
  *
  * @param   wk		
  * @param   seq		
@@ -359,19 +359,19 @@ int WorldTrade_Upload_End(WORLDTRADE_WORK *wk, int seq)
 	
 	BgExit( wk->bgl );
 
-	// ���̃T�u�v���Z�X��ݒ肷��
+	// 次のサブプロセスを設定する
 	WorldTrade_SubProcessUpdate( wk );
 	
-	// �����ݒ肳��Ă����珉������
+	// 次が設定されていたら初期化へ
 	return SEQ_INIT;
 }
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG�ݒ�
+ * BG設定
  *
- * @param	ini		BGL�f�[�^
+ * @param	ini		BGLデータ
  *
  * @return	none
  */
@@ -387,7 +387,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	// ���C����ʃe�L�X�g��
+	// メイン画面テキスト面
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -398,7 +398,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME0_M );
 	}
 
-	// ���C����ʔw�i��
+	// メイン画面背景面
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -409,7 +409,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME1_M );
 	}
 
-	// ���C����ʔw�i��2
+	// メイン画面背景面2
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -422,7 +422,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 
 
-	// �T�u��ʕ�����0
+	// サブ画面文字版0
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -435,7 +435,7 @@ static void BgInit( GF_BGL_INI * ini )
 	}
 
 
-	// �T�u��ʔw�i( ���̖ʂ�256�F )
+	// サブ画面背景( この面は256色 )
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
@@ -450,16 +450,16 @@ static void BgInit( GF_BGL_INI * ini )
 	GF_BGL_ClearCharSet( GF_BGL_FRAME1_M, 32, 0, HEAPID_WORLDTRADE );
 	GF_BGL_ClearCharSet( GF_BGL_FRAME0_S, 32, 0, HEAPID_WORLDTRADE );
 
-	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//���C�����OBJ�ʂn�m
-	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//�T�u���OBJ�ʂn�m
+	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//メイン画面OBJ面ＯＮ
+	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//サブ画面OBJ面ＯＮ
 
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG���
+ * BG解放
  *
- * @param	ini		BGL�f�[�^
+ * @param	ini		BGLデータ
  *
  * @return	none
  */
@@ -478,9 +478,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �O���t�B�b�N�f�[�^�Z�b�g
+ * グラフィックデータセット
  *
- * @param	wk		�|�P�������X�g��ʂ̃��[�N
+ * @param	wk		ポケモンリスト画面のワーク
  *
  * @return	none
  */
@@ -489,28 +489,28 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 {
 	GF_BGL_INI *bgl = wk->bgl;
 
-	// ���ʂa�f�p���b�g�]��
+	// 上画面ＢＧパレット転送
 	ArcUtil_PalSet(    ARC_WORLDTRADE_GRA, NARC_worldtrade_conect_nclr, PALTYPE_MAIN_BG, 0, 16*3*2,  HEAPID_WORLDTRADE);
 	
-	// ��b�t�H���g�p���b�g�]��
+	// 会話フォントパレット転送
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, WORLDTRADE_TALKFONT_PAL*0x20, HEAPID_WORLDTRADE );
 //	TalkFontPaletteLoad( PALTYPE_SUB_BG,  WORLDTRADE_TALKFONT_PAL*0x20, HEAPID_WORLDTRADE );
 
-	// ��b�E�C���h�E�O���t�B�b�N�]��
+	// 会話ウインドウグラフィック転送
 	TalkWinGraphicSet(	bgl, GF_BGL_FRAME0_M, WORLDTRADE_MESFRAME_CHR, 
 						WORLDTRADE_MESFRAME_PAL,  CONFIG_GetWindowType(wk->param->config), HEAPID_WORLDTRADE );
 
 	MenuWinGraphicSet(	bgl, GF_BGL_FRAME0_M, WORLDTRADE_MENUFRAME_CHR,
 						WORLDTRADE_MENUFRAME_PAL, 0, HEAPID_WORLDTRADE );
 
-	// ��l�����o�ꂵ�ĂȂ��Ƃ��̓T�u��ʂ�\�����Ȃ�
+	// 主人公が登場してないときはサブ画面を表示しない
 	if(wk->demo_end==0){
 		GF_BGL_VisibleSet( GF_BGL_FRAME0_S, VISIBLE_OFF );
 		GF_BGL_VisibleSet( GF_BGL_FRAME1_S, VISIBLE_OFF );
-		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_OFF );	//�T�u���OBJ�ʂn�m
+		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_OFF );	//サブ画面OBJ面ＯＮ
 	}
 
-	// �f������J�ڂ��Ă������͔w�i�����Ă���̂ōē]��
+	// デモから遷移してきた時は背景が壊れているので再転送
 	if(wk->old_sub_process==WORLDTRADE_DEMO){
 		WorldTrade_SubLcdBgGraphicSet( wk );
 	}
@@ -533,7 +533,7 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 //#define TITLE_MESSAGE_OFFSET ( TALK_MESSAGE_OFFSET + SUB_TEXT_SX*SUB_TEXT_SY )
 //------------------------------------------------------------------
 /**
- * BMPWIN�����i�����p�l���Ƀt�H���g�`��j
+ * BMPWIN処理（文字パネルにフォント描画）
  *
  * @param   wk		
  *
@@ -542,9 +542,9 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 //------------------------------------------------------------------
 static void BmpWinInit( WORLDTRADE_WORK *wk )
 {
-	// ---------- ���C����� ------------------
+	// ---------- メイン画面 ------------------
 
-	// BG0��BMP�i��b�E�C���h�E�j�m��
+	// BG0面BMP（会話ウインドウ）確保
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		TALK_WIN_X, TALK_WIN_Y, TALK_WIN_SX, TALK_WIN_SY, WORLDTRADE_TALKFONT_PAL,  TALK_MESSAGE_OFFSET );
 	GF_BGL_BmpWinDataFill( &wk->MsgWin, 0x0000 );
@@ -553,7 +553,7 @@ static void BmpWinInit( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �m�ۂ���BMPWIN�����
+ * $brief   確保したBMPWINを解放
  *
  * @param   wk		
  *
@@ -570,7 +570,7 @@ static void BmpWinDelete( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * ���E�������[�N������
+ * 世界交換ワーク初期化
  *
  * @param   wk		WORLDTRADE_WORK*
  *
@@ -580,10 +580,10 @@ static void BmpWinDelete( WORLDTRADE_WORK *wk )
 static void InitWork( WORLDTRADE_WORK *wk )
 {
 
-	// ������o�b�t�@�쐬
+	// 文字列バッファ作成
 	wk->TalkString   = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_WORLDTRADE );
 
-	// ���R�[�h��������ڂ��イ���I������擾
+	// レコードこうかんぼしゅう中！文字列取得
 //	MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_002, wk->TitleString );
 
 }
@@ -591,7 +591,7 @@ static void InitWork( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ���[�N���
+ * $brief   ワーク解放
  *
  * @param   wk		
  *
@@ -617,7 +617,7 @@ static void FreeWork( WORLDTRADE_WORK *wk )
 //--------------------------------------------------------------------
 //------------------------------------------------------------------
 /**
- * $brief   �T�u�v���Z�X�V�[�P���X�X�^�[�g����
+ * $brief   サブプロセスシーケンススタート処理
  *
  * @param   wk		
  *
@@ -626,26 +626,26 @@ static void FreeWork( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Subseq_Start( WORLDTRADE_WORK *wk)
 {
-	// �a����̂��H�������̂��H�������͌������H
+	// 預けるのか？引き取るのか？もしくは交換か？
 
 	switch(wk->sub_process_mode){
 	case MODE_UPLOAD:
-		// �������Ă��܂�
+		// おくっています
 		Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_01_025, 1, 0x0f0f );
 		WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_UPLOAD_START );
 		break;
 	case MODE_DOWNLOAD:
-		// �����Ƃ��Ă��܂��B
+		// うけとっています。
 		Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_01_025, 1, 0x0f0f );
 		WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_DOWNLOAD_START );
 		break;
 	case MODE_EXCHANGE:
-		// �������܂�
+		// 交換します
  		Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_01_025, 1, 0x0f0f );
  		WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_EXCHANGE_START );
 		break;
 
-		// �������I������|�P�������󂯎��܂�
+		// 交換が終わったポケモンを受け取ります
 	case MODE_DOWNLOAD_EX:
  		Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_01_025, 1, 0x0f0f );
  		WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_DOWNLOAD_EX_START );
@@ -654,22 +654,22 @@ static int Subseq_Start( WORLDTRADE_WORK *wk)
 		
 	case MODE_SERVER_CHECK:	
 		Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_01_025, MSG_ALLPUT, 0x0f0f );
-		// �u�悤�����݂�v�ɍs���O�ɃT�[�o�[�`�F�b�N���s��
+		// 「ようすをみる」に行く前にサーバーチェックを行う
 		wk->subprocess_seq = SUBSEQ_SERVER_TRADE_CHECK;
 		break;
 	case MODE_POKEMON_EVO_SAVE:
-		// �u�|�P�������|�[�g�������Ă��܂��B�ł񂰂������Ȃ��ł��������v
+		// 「ポケモンレポートをかいています。でんげんをきらないでください」
 		Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_15_004, 1, 0x0f0f );
 		wk->sub_nextprocess = WORLDTRADE_TITLE;
 
-		// �u�Z�[�u���Ă��܂��v�ƕ\�����Ă���Z�[�u
+		// 「セーブしています」と表示してからセーブ
 		wk->subprocess_seq  = SUBSEQ_NOW_SAVE_MES;
 		break;
 	default:
-		OS_TPrintf("���[�h�w�肪�Ȃ�\n");
+		OS_TPrintf("モード指定がない\n");
 		GF_ASSERT(0);
 	}
-	// �K�����ԃA�C�R����ǉ�(upload.c�̒��ł͂P�񂵂���΂Ȃ��͂��j
+	// 必ず時間アイコンを追加(upload.cの中では１回しかよばないはず）
 	WorldTrade_TimeIconAdd(wk);
 
 	return SEQ_MAIN;
@@ -684,7 +684,7 @@ static int Subseq_Start( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ���E�������C�u�����ڑ��󋵎擾�J�n
+ * $brief   世界交換ライブラリ接続状況取得開始
  *
  * @param   wk		
  *
@@ -694,15 +694,15 @@ static int Subseq_Start( WORLDTRADE_WORK *wk)
 static int Subseq_UploadStart( WORLDTRADE_WORK *wk )
 {
 	
-	// �J�X�^���{�[���̈���N���A
+	// カスタムボール領域をクリア
 	PokePara_CustomBallDataInit( (POKEMON_PARAM*)wk->UploadPokemonData.postData.data );
 	
-	// �|�P�����f�[�^�A�b�v���[�h�J�n
+	// ポケモンデータアップロード開始
 	Dpw_Tr_UploadAsync( &wk->UploadPokemonData );
 
-	OS_TPrintf("Dpw Trade �f�[�^�A�b�v���[�h�J�n\n");
+	OS_TPrintf("Dpw Trade データアップロード開始\n");
 
-	// �T�[�o�[��Ԋm�F�҂���
+	// サーバー状態確認待ちへ
 	wk->subprocess_seq = SUBSEQ_UPLOAD_RESULT;
 	wk->timeout_count = 0;
 	
@@ -714,7 +714,7 @@ static int Subseq_UploadStart( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �T�[�o�[��Ԋm�F�҂�
+ * $brief   サーバー状態確認待ち
  *
  * @param   wk		
  *
@@ -728,18 +728,18 @@ static int Subseq_UploadResult( WORLDTRADE_WORK *wk )
 		s32 result = Dpw_Tr_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		case 0:		// ����ɓ��삵�Ă���
+		case 0:		// 正常に動作している
 			OS_TPrintf(" upload is right!\n");
 
-			// �f�[�^�ޔ�
+			// データ退避
 			UploadPokemonDataDelete( wk, 1 );
-			// ���R�[�h�p����
+			// レコード用処理
 			RECORD_Inc( wk->param->record, RECID_GTS_PUT );
 
 			wk->subprocess_seq = SUBSEQ_SAVE;
 			break;
 		case DPW_TR_ERROR_SERVER_FULL:
-			// �T�[�o�[�����t�Ȃ̂ŃA�N�Z�X�ł��܂��񁨏I��
+			// サーバーが満杯なのでアクセスできません→終了
 			OS_TPrintf(" server full.\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_ERROR_MESSAGE;
@@ -751,28 +751,28 @@ static int Subseq_UploadResult( WORLDTRADE_WORK *wk )
 		case DPW_TR_ERROR_NG_MAIL_NAME :
 		case DPW_TR_ERROR_NG_OWNER_NAME:
 		case DPW_TR_ERROR_ILLIGAL_REQUEST :
-			// �u���̃|�P�����͂������鎖���ł��܂���v���^�C�g����
+			// 「このポケモンはあずける事ができません」→タイトルへ
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_RETURN_TITLE_MESSAGE;
 			break;		
 		case DPW_TR_ERROR_CANCEL :
 		case DPW_TR_ERROR_DATA_TIMEOUT :
-			// ������ŗa���邩�m�F���Ă��炱���R�O���O�|�P�����͂���Ȃ̂��H
+			// 入り口で預けるか確認してからここ３０日前ポケモンはありなのか？
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_RETURN_TITLE_MESSAGE;
 			break;
 
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
-			// �uGTS�̂����ɂ�ɂ����ς����܂����v
+			// 「GTSのかくにんにしっぱいしました」
 		case DPW_TR_ERROR_FAILURE :
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_ERROR_MESSAGE;
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
-			// ���ӂ��Ƃ΂�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
+			// 即ふっとばし
 			CommFatalErrorFunc_NoNumber();
 			break;
 		}
@@ -781,7 +781,7 @@ static int Subseq_UploadResult( WORLDTRADE_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 	return SEQ_MAIN;
@@ -790,7 +790,7 @@ static int Subseq_UploadResult( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �T�[�o�[�ɃA�b�v���[�h�����f�[�^��L���ɂ���
+ * @brief   サーバーにアップロードしたデータを有効にする
  *
  * @param   wk		
  *
@@ -804,8 +804,8 @@ static int Subseq_UploadFinish( WORLDTRADE_WORK *wk )
 	wk->subprocess_seq = SUBSEQ_UPLOAD_FINISH_RESULT;
 	wk->timeout_count = 0;
 	
-	// �����ɗ��Ă��鎞�_�ŃZ�[�u�ɂ͐������Ă���̂ŁADepsitFlag�𗧂ĂĂ����Ȃ���
-	// �ʐM�G���[�ɂȂ������ɂ�����x�u�a����v���\������Ă��܂�
+	// ここに来ている時点でセーブには成功しているので、DepsitFlagを立てておかないと
+	// 通信エラーになった時にもう一度「預ける」が表示されてしまう
 	wk->DepositFlag = 1;
 	
 	return SEQ_MAIN;
@@ -814,7 +814,7 @@ static int Subseq_UploadFinish( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �f�[�^�L�������҂�
+ * $brief   データ有効処理待ち
  *
  * @param   wk		
  *
@@ -830,40 +830,40 @@ static int Subseq_UploadFinishResult( WORLDTRADE_WORK *wk )
 #endif
 		wk->timeout_count = 0;
 		switch(result){
-		case 0:		// ����ɓ��삵�Ă���
-			// �A�b�v���[�h�����B�Z�[�u����B
+		case 0:		// 正常に動作している
+			// アップロード成功。セーブする。
 			OS_TPrintf(" upload success.\n");
 			wk->subprocess_seq = SUBSEQ_SAVE_LAST;
 			break;
 
 		case DPW_TR_ERROR_CANCEL :
 		case DPW_TR_ERROR_DATA_TIMEOUT :
-			// ������ŗa���邩�m�F���Ă��炱���R�O���O�|�P�����͂���Ȃ̂��H
+			// 入り口で預けるか確認してからここ３０日前ポケモンはありなのか？
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_RETURN_TITLE_MESSAGE;
 			break;
 
 		case DPW_TR_ERROR_SERVER_FULL:
-			// �T�[�o�[�����t�Ȃ̂ŃA�N�Z�X�ł��܂��񁨏I��
-			// �i��������́H�j
+			// サーバーが満杯なのでアクセスできません→終了
+			// （ここくるの？）
 			OS_TPrintf(" server full.\n");
 		case DPW_TR_ERROR_NO_DATA:
 		case DPW_TR_ERROR_ILLIGAL_REQUEST :
-			// �u���̃|�P�����͂������鎖���ł��܂���v���^�C�g����
+			// 「このポケモンはあずける事ができません」→タイトルへ
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
 		case DPW_TR_ERROR_FAILURE :
-			// �uGTS�̂����ɂ�ɂ����ς����܂����v
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// 「GTSのかくにんにしっぱいしました」
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 //			wk->ConnectErrorNo = result;
 //			wk->subprocess_seq = SUBSEQ_ERROR_MESSAGE;
-			// �����͂������ɖ߂��Ă͂����Ȃ��B������ʐM�G���[
+			// ここはうけつけに戻ってはいけない。無理矢理通信エラー
 			CommStateSetError(COMM_ERROR_RESET_OTHER);
 			break;
 
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
-			// ���ӂ��Ƃ΂�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
+			// 即ふっとばし
 			CommFatalErrorFunc_NoNumber();
 			break;
 		}
@@ -872,7 +872,7 @@ static int Subseq_UploadFinishResult( WORLDTRADE_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 	return SEQ_MAIN;
@@ -883,7 +883,7 @@ static int Subseq_UploadFinishResult( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ���E�������C�u�����ڑ��󋵎擾�J�n
+ * $brief   世界交換ライブラリ接続状況取得開始
  *
  * @param   wk		
  *
@@ -893,16 +893,16 @@ static int Subseq_UploadFinishResult( WORLDTRADE_WORK *wk )
 static int Subseq_DownloadStart( WORLDTRADE_WORK *wk )
 {
 	
-	// �|�P�����f�[�^�_�E�����[�h�J�n
+	// ポケモンデータダウンロード開始
 
 	Dpw_Tr_DownloadAsync( &wk->UploadPokemonData );
-	OS_TPrintf("Dpw Trade �f�[�^�_�E�����[�h�J�n\n");
+	OS_TPrintf("Dpw Trade データダウンロード開始\n");
 
-	// �T�[�o�[��Ԋm�F�҂���
+	// サーバー状態確認待ちへ
 	wk->subprocess_seq = SUBSEQ_DOWNLOAD_RESULT;
 	wk->timeout_count = 0;
 
-	// �Z�[�u���݃V�[�P���X�\��
+	// セーブ込みシーケンス予約
 	SetSaveNextSequence( wk, SUBSEQ_DOWNLOAD_FINISH, SUBSEQ_DOWNLOAD_SUCCESS_MESSAGE);
 
 
@@ -912,7 +912,7 @@ static int Subseq_DownloadStart( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �T�[�o�[��Ԋm�F�҂�
+ * $brief   サーバー状態確認待ち
  *
  * @param   wk		
  *
@@ -925,17 +925,17 @@ static int Subseq_DownloadResult( WORLDTRADE_WORK *wk )
 		s32 result = Dpw_Tr_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		case 0:		// ����ɓ��삵�Ă���
+		case 0:		// 正常に動作している
 
-			// ����������|�P�����������������Ă�����Ђ��Ƃ����|�P�����f�[�^�͊Ԉ���Ă���̂ŕ���
-			// ������x�T�[�o�[�`�F�b�N�ɖ߂�
+			// 引き取ったポケモンが交換成立していたらひきとったポケモンデータは間違っているので放棄
+			// もう一度サーバーチェックに戻る
 			if(wk->UploadPokemonData.isTrade){
 				OS_TPrintf(" download is right! but traded\n");
 
 				wk->subprocess_seq = SUBSEQ_SERVER_TRADE_CHECK;
 			}else{
 				OS_TPrintf(" download is right!\n");
-				// �f�[�^����
+				// データ復元
 				DownloadPokemonDataAdd( wk, (POKEMON_PARAM*)wk->UploadPokemonData.postData.data,
 										WorldTradeData_GetBoxNo( wk->param->worldtrade_data ), 
 										wk->UploadPokemonData.isTrade );
@@ -945,20 +945,20 @@ static int Subseq_DownloadResult( WORLDTRADE_WORK *wk )
 
 			break;
 
-		// �f�[�^�������i���Ȃ肨�������󋵁A�������͗��Ƃ����̂Ɂj
+		// データが無い（かなりおかしい状況、さっきは落とせたのに）
 		case DPW_TR_ERROR_NO_DATA :	
 			OS_TPrintf(" download server stop service.\n");
 			wk->subprocess_seq = SUBSEQ_ERROR_MESSAGE;
 			break;
 
-		// 1�����߂��Ă��܂���
+		// 1ヶ月過ぎてしまった
 		case DPW_TR_ERROR_DATA_TIMEOUT :
 			OS_TPrintf(" server full.\n");
 			wk->subprocess_seq = SUBSEQ_ERROR_MESSAGE;
 			break;
 
 	// -----------------------------------------
-	// ���ʃG���[����
+	// 共通エラー処理
 	// -----------------------------------------
 		case DPW_TR_ERROR_CANCEL :
 			wk->ConnectErrorNo = result;
@@ -966,16 +966,16 @@ static int Subseq_DownloadResult( WORLDTRADE_WORK *wk )
 			break;
 
 		case DPW_TR_ERROR_FAILURE :
-			// �uGTS�̂����ɂ�ɂ����ς����܂����v
+			// 「GTSのかくにんにしっぱいしました」
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_ERROR_MESSAGE;
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
-			// ���ӂ��Ƃ΂�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
+			// 即ふっとばし
 			CommFatalErrorFunc_NoNumber();
 			break;
 	// -----------------------------------------
@@ -985,7 +985,7 @@ static int Subseq_DownloadResult( WORLDTRADE_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 	return SEQ_MAIN;
@@ -994,7 +994,7 @@ static int Subseq_DownloadResult( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �T�[�o�[����f�[�^���폜����
+ * @brief   サーバーからデータを削除する
  *
  * @param   wk		
  *
@@ -1004,7 +1004,7 @@ static int Subseq_DownloadResult( WORLDTRADE_WORK *wk )
 static int Subseq_DownloadFinish( WORLDTRADE_WORK *wk )
 {
 	Dpw_Tr_ReturnAsync();
-	OS_TPrintf("-------------------------------------Dpw_Tr_ReturnAsync��т���\n");
+	OS_TPrintf("-------------------------------------Dpw_Tr_ReturnAsyncよびだし\n");
 	
 	wk->subprocess_seq = SUBSEQ_DOWNLOAD_FINISH_RESULT;
 	wk->timeout_count = 0;
@@ -1015,7 +1015,7 @@ static int Subseq_DownloadFinish( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �f�[�^�L�������҂�
+ * $brief   データ有効処理待ち
  *
  * @param   wk		
  *
@@ -1029,42 +1029,42 @@ static int Subseq_DownloadFinishResult( WORLDTRADE_WORK *wk )
 		wk->timeout_count = 0;
 		switch(result){
 		case 0:
-			// �T�[�o�[����_�E�����[�h�����B�Z�[�u����B
+			// サーバーからダウンロード成功。セーブする。
 			OS_TPrintf(" download success.\n");
 			wk->subprocess_seq = SUBSEQ_SAVE_LAST;
 
 			break;
-		// �f�[�^�������i���Ȃ肨�������󋵁A�������͗��Ƃ����̂Ɂj
+		// データが無い（かなりおかしい状況、さっきは落とせたのに）
 		case DPW_TR_ERROR_NO_DATA :	
 			OS_TPrintf(" download server stop service.\n");
 
-		// 1�����߂��Ă��܂���(���Ȃ��悤�ȋC������j
+		// 1ヶ月過ぎてしまった(来ないような気がする）
 		case DPW_TR_ERROR_DATA_TIMEOUT :
 			OS_TPrintf(" server full.\n");
 
-		// �Ō�̂߂��s�����Ƃ�����������������Ă��܂����B
-		// �G���[���N�������ɂ��ĊO�ɂ����Ă��܂������ǂ��Ă���Ό������������Ă܂��B
+		// 最後のつめを行おうとしたら交換が成立してしまった。
+		// エラーが起きた事にして外にだしてしまう→もどってくれば交換が成立してます。
 		case DPW_TR_ERROR_ILLIGAL_REQUEST:
 			CommStateSetError(COMM_ERROR_RESET_GTS);
 			break;
 	// -----------------------------------------
-	// ���ʃG���[����
+	// 共通エラー処理
 	// -----------------------------------------
 		case DPW_TR_ERROR_CANCEL :
 
 		case DPW_TR_ERROR_FAILURE :
-			// �uGTS�̂����ɂ�ɂ����ς����܂����v
+			// 「GTSのかくにんにしっぱいしました」
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 
-			// �Z�[�u���قƂ�Ǐ������܂�Ă���󋵂ł̓f�[�^�����ɖ߂��Ȃ�
-			// ������ʐM�G���[��
+			// セーブがほとんど書き込まれている状況ではデータを元に戻せない
+			// 無理矢理通信エラーへ
 			CommStateSetError(COMM_ERROR_RESET_OTHER);
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
-			// ���ӂ��Ƃ΂�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
+			// 即ふっとばし
 			CommFatalErrorFunc_NoNumber();
 			break;
 	// -----------------------------------------
@@ -1075,7 +1075,7 @@ static int Subseq_DownloadFinishResult( WORLDTRADE_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 	return SEQ_MAIN;
@@ -1089,7 +1089,7 @@ static int Subseq_DownloadFinishResult( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ���E�������C�u�����ڑ��󋵎擾�J�n
+ * $brief   世界交換ライブラリ接続状況取得開始
  *
  * @param   wk		
  *
@@ -1099,22 +1099,22 @@ static int Subseq_DownloadFinishResult( WORLDTRADE_WORK *wk )
 static int Subseq_ExchangeStart( WORLDTRADE_WORK *wk )
 {
 
-	// �J�X�^���{�[���̈���N���A
+	// カスタムボール領域をクリア
 	PokePara_CustomBallDataInit( (POKEMON_PARAM*)wk->UploadPokemonData.postData.data );
 
 	
-	// �|�P�����f�[�^�����J�n
+	// ポケモンデータ交換開始
 	Dpw_Tr_TradeAsync ( wk->DownloadPokemonData[wk->TouchTrainerPos].id,
 						&wk->UploadPokemonData,
 						&wk->ExchangePokemonData );
 
-	OS_TPrintf("Dpw Trade �f�[�^�����J�n id = %08x\n", wk->DownloadPokemonData[wk->TouchTrainerPos].id);
+	OS_TPrintf("Dpw Trade データ交換開始 id = %08x\n", wk->DownloadPokemonData[wk->TouchTrainerPos].id);
 
 
-	// �Z�[�u���݃V�[�P���X�\��
+	// セーブ込みシーケンス予約
 	SetSaveNextSequence( wk, SUBSEQ_EXCHANGE_FINISH, SUBSEQ_EXCHANGE_SUCCESS_MESSAGE);
 
-	// �T�[�o�[��Ԋm�F�҂���
+	// サーバー状態確認待ちへ
 	wk->subprocess_seq = SUBSEQ_EXCHANGE_RESULT;
 	wk->timeout_count = 0;
 
@@ -1124,7 +1124,7 @@ static int Subseq_ExchangeStart( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �T�[�o�[��Ԋm�F�҂�
+ * $brief   サーバー状態確認待ち
  *
  * @param   wk		
  *
@@ -1138,7 +1138,7 @@ static int Subseq_ExchangeResult( WORLDTRADE_WORK *wk )
 		s32 result = Dpw_Tr_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		case 0:		// ����ɓ��삵�Ă���
+		case 0:		// 正常に動作している
 			OS_TPrintf(" exchange is right!\n");
 			wk->subprocess_seq = SUBSEQ_SAVE;
 
@@ -1146,19 +1146,19 @@ static int Subseq_ExchangeResult( WORLDTRADE_WORK *wk )
 			ExchangePokemonDataAdd(  wk, (POKEMON_PARAM*)wk->ExchangePokemonData.postData.data,
 										wk->BoxTrayNo);
 
-			// �n���V���o�^
+			// 地球儀情報登録
 			WifiHistoryDataSet( wk->param->wifihistory, &wk->ExchangePokemonData );
 
-			// �X�R�A���Z
+			// スコア加算
 			RECORD_Score_Add( wk->param->record, SCORE_ID_WORLD_TRADE );
 
-			// �`���m�[�g�f�[�^�o�^����
+			// 冒険ノートデータ登録処理
 			SetFnoteData( wk->param->fnote,  &wk->ExchangePokemonData );
 
-			// ���R�[�h�p����
+			// レコード用処理
 			RECORD_Inc( wk->param->record, RECID_WIFI_TRADE );
 
-			// TV�f�[�^
+			// TVデータ
 			{
 				TV_WORK* tvwk;
 				tvwk = SaveData_GetTvWork( wk->param->savedata );
@@ -1168,29 +1168,29 @@ static int Subseq_ExchangeResult( WORLDTRADE_WORK *wk )
 
 			break;
 
-		// �g���[�h���s���s
+		// トレード発行失敗
 		case DPW_TR_ERROR_ILLIGAL_REQUEST :	
 			OS_TPrintf(" exchange is failed.\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_EXCHANGE_FAILED_MESSAGE;
 			break;
 
-		// �s���f�[�^������
+		// 不正データだった
 		case DPW_TR_ERROR_ILLEGAL_DATA:
 		case DPW_TR_ERROR_CHEAT_DATA:
 		case DPW_TR_ERROR_NG_POKEMON_NAME :
 		case DPW_TR_ERROR_NG_PARENT_NAME :
 		case DPW_TR_ERROR_NG_MAIL_NAME :
 		case DPW_TR_ERROR_NG_OWNER_NAME:
-			// �u���̃|�P�����͂������鎖���ł��܂���v���^�C�g����
+			// 「このポケモンはあずける事ができません」→タイトルへ
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_RETURN_TITLE_MESSAGE;
 			break;		
 	// -----------------------------------------
-	// ���ʃG���[����
+	// 共通エラー処理
 	// -----------------------------------------
 		case DPW_TR_ERROR_CANCEL :
-			// �uGTS�̂����ɂ�ɂ����ς����܂����v���^�C�g����
+			// 「GTSのかくにんにしっぱいしました」→タイトルへ
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_RETURN_TITLE_MESSAGE;
 			break;
@@ -1198,13 +1198,13 @@ static int Subseq_ExchangeResult( WORLDTRADE_WORK *wk )
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
 		case DPW_TR_ERROR_FAILURE :
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_ERROR_MESSAGE;
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
-			// ���ӂ��Ƃ΂�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
+			// 即ふっとばし
 			CommFatalErrorFunc_NoNumber();
 			break;
 	// -----------------------------------------
@@ -1214,7 +1214,7 @@ static int Subseq_ExchangeResult( WORLDTRADE_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 	return SEQ_MAIN;
@@ -1223,7 +1223,7 @@ static int Subseq_ExchangeResult( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �T�[�o�[����f�[�^���폜����
+ * @brief   サーバーからデータを削除する
  *
  * @param   wk		
  *
@@ -1233,7 +1233,7 @@ static int Subseq_ExchangeResult( WORLDTRADE_WORK *wk )
 static int Subseq_ExchangeFinish( WORLDTRADE_WORK *wk )
 {
 	Dpw_Tr_TradeFinishAsync();
-	OS_TPrintf("�����I�������J�n\n");
+	OS_TPrintf("交換終了処理開始\n");
 	
 	wk->subprocess_seq = SUBSEQ_EXCHANGE_FINISH_RESULT;
 	wk->timeout_count = 0;
@@ -1244,7 +1244,7 @@ static int Subseq_ExchangeFinish( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �f�[�^�L�������҂�
+ * $brief   データ有効処理待ち
  *
  * @param   wk		
  *
@@ -1263,30 +1263,30 @@ static int Subseq_ExchangeFinishResult( WORLDTRADE_WORK *wk )
 
 			break;
 
-		// ��������Ă��܂���
+		// 引き取られてしまった
 		case DPW_TR_ERROR_ILLIGAL_REQUEST:
 			CommStateSetError(COMM_ERROR_RESET_GTS);
 			break;
 	// -----------------------------------------
-	// ���ʃG���[����
+	// 共通エラー処理
 	// -----------------------------------------
 		case DPW_TR_ERROR_CANCEL :
-			// �uGTS�̂����ɂ�ɂ����ς����܂����v���^�C�g����
+			// 「GTSのかくにんにしっぱいしました」→タイトルへ
 
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
 		case DPW_TR_ERROR_FAILURE :
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 	
-			// �X�X���܂ŃZ�[�u���������܂ꂽ�󋵂ł͌��ɖ߂��Ȃ��̂�
-			// ������ʐM�G���[��
+			// ９９％までセーブが書き込まれた状況では元に戻せないので
+			// 無理矢理通信エラーへ
 			CommStateSetError(COMM_ERROR_RESET_OTHER);
 			break;
 
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
-			// ���ӂ��Ƃ΂�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
+			// 即ふっとばし
 			CommFatalErrorFunc_NoNumber();
 			break;
 	// -----------------------------------------
@@ -1296,7 +1296,7 @@ static int Subseq_ExchangeFinishResult( WORLDTRADE_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 	return SEQ_MAIN;
@@ -1307,7 +1307,7 @@ static int Subseq_ExchangeFinishResult( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �������������Ă��邩�m�F����
+ * @brief   交換が成立しているか確認する
  *
  * @param   wk		
  *
@@ -1318,7 +1318,7 @@ static int Subseq_ServerTradeCheck( WORLDTRADE_WORK *wk )
 {
 	Dpw_Tr_GetUploadResultAsync( &wk->UploadPokemonData );
 
-	OS_Printf("�T�[�o�[��Ԋm�F�J�n\n");
+	OS_Printf("サーバー状態確認開始\n");
 
 	wk->subprocess_seq  = SUBSEQ_SERVER_TRADECHECK_RESULT;
 	wk->timeout_count = 0;
@@ -1329,7 +1329,7 @@ static int Subseq_ServerTradeCheck( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �����|�P�����T�[�o�[�m�F�����҂�
+ * @brief   交換ポケモンサーバー確認処理待ち
  *
  * @param   wk		
  *
@@ -1338,12 +1338,12 @@ static int Subseq_ServerTradeCheck( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Subseq_ServerTradeCheckResult( WORLDTRADE_WORK *wk )
 {
-	// �T�[�o�[�₢���킹�I���҂�
+	// サーバー問い合わせ終了待ち
 	if (Dpw_Tr_IsAsyncEnd()){
 		s32 result = Dpw_Tr_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		// �����͐������Ă��Ȃ������̂ŁA�����̃f�[�^�擾��
+		// 交換は成立していなかったので、自分のデータ取得へ
 		case 0:
 //			OS_TPrintf(" no exchange.\n");
 			wk->subprocess_seq = SUBSEQ_SERVER_DOWNLOAD;
@@ -1359,13 +1359,13 @@ static int Subseq_ServerTradeCheckResult( WORLDTRADE_WORK *wk )
 						dtd->wantSimple.characterNo, dtd->wantSimple.gender, dtd->wantSimple.level_min,dtd->wantSimple.level_max);
 			}
 #endif
-			// �a���Ă��邩�H
+			// 預けているか？
 			break;
 
-		// �����͐������Ă���
+		// 交換は成立していた
 		case 1:
 			OS_TPrintf(" download exchange pokemon on sever.\n");
-			// �T�[�o�[�Ƀ|�P������a���Ă���̂͊m���B
+			// サーバーにポケモンを預けているのは確か。
 			wk->DepositFlag = 1;
 
 #ifdef PM_DEBUG
@@ -1380,22 +1380,22 @@ static int Subseq_ServerTradeCheckResult( WORLDTRADE_WORK *wk )
 			}
 #endif
 			switch(MyPokemonPocketFullCheck(wk, &wk->UploadPokemonData)){
-			// �󂫂�����
+			// 空きが無い
 			case POKEMON_ALL_FULL:
 				WorldTrade_TimeIconDel(wk);
 		 		Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_01_030, 1, 0x0f0f );
  				WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_SERVER_TRADE_CHECK_END );
 				break;
-			// ���[�����󂯎��Ȃ�
+			// メールが受け取れない
 			case POKEMON_NOT_FULL_BUT_MAIL_NORECV:
 				WorldTrade_TimeIconDel(wk);
 		 		Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_01_036, 1, 0x0f0f );
  				WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_SERVER_TRADE_CHECK_END );
 				break;
-			// �󂯎���
+			// 受け取れる
 			case POKEMON_RECV_OK:
 #ifdef REPAIR_060804
-				// ���������o�O�C�����Ă���ق�
+				// こっちがバグ修正しているほう
 				wk->subprocess_seq   = SUBSEQ_DOWNLOAD_EX_START;
 				wk->sub_out_flg = 1;
 #else
@@ -1406,7 +1406,7 @@ static int Subseq_ServerTradeCheckResult( WORLDTRADE_WORK *wk )
 				break;
 			}
 			break;
-		// �|�P�������������Ă���ꍇ�̓^�C���A�E�g���������Ă��܂��Ă���i�Ă����ɖ߂��j
+		// ポケモンをあずけている場合はタイムアウトが発生してしまっている（てもちに戻す）
 		case DPW_TR_ERROR_NO_DATA :	
 			OS_TPrintf(" no data on sever.\n");
 			wk->DepositFlag = 0;
@@ -1418,26 +1418,26 @@ static int Subseq_ServerTradeCheckResult( WORLDTRADE_WORK *wk )
 				wk->error_mes_no   = msg_gtc_01_003;
 				wk->subprocess_seq = SUBSEQ_TIMEOUT_SAVE;
 				
-				// �ۑ����Ă������|�P������߂�
+				// 保存してあったポケモンを戻す
 				DownloadPokemonDataAdd( wk, pp, WorldTradeData_GetBoxNo( wk->param->worldtrade_data ), 0 );
-				// �a���Ă���t���O������
+				// 預けてあるフラグを解除
 				WorldTradeData_SetFlag(wk->param->worldtrade_data, 0);
 				sys_FreeMemoryEz(pp);
 			}else{
-				// �T�[�o�[�m�F�����I����̍s�����ݒ�
+				// サーバー確認処理終了後の行き先を設定
 				AfterTradeCheck_ProcessControl( wk );
 			}
 			break;
 
-		// �a�����|�P����������������Ƀ^�C���A�E�g�����B���̂܂܍폜
+		// 預けたポケモンが交換成立後にタイムアウトした。そのまま削除
 		case DPW_TR_ERROR_DATA_TIMEOUT :
 			OS_TPrintf(" your data on server is timeout.\n");
 
-			// �T�[�o�[�m�F�����I����̍s�����ݒ�
+			// サーバー確認処理終了後の行き先を設定
 //			AfterTradeCheck_ProcessControl( wk );
 
 			wk->DepositFlag = 0;
-			// ��Ηa���Ă���͂������ǔO�̂��߁A�t���O�m�F
+			// 絶対預けてあるはずだけど念のため、フラグ確認
 			if(WorldTradeData_GetFlag(wk->param->worldtrade_data)){
 				POKEMON_PARAM *pp = PokemonParam_AllocWork(HEAPID_WORLDTRADE);
 				WorldTradeData_GetPokemonData( wk->param->worldtrade_data, pp );
@@ -1446,28 +1446,28 @@ static int Subseq_ServerTradeCheckResult( WORLDTRADE_WORK *wk )
 				wk->error_mes_no   = msg_gtc_01_004;
 				wk->subprocess_seq = SUBSEQ_TIMEOUT_SAVE;
 				
-				// �a���Ă���t���O������
+				// 預けてあるフラグを解除
 				WorldTradeData_SetFlag(wk->param->worldtrade_data, 0);
 
 				sys_FreeMemoryEz(pp);
 			}
 			break;
 	// -----------------------------------------
-	// ���ʃG���[����
+	// 共通エラー処理
 	// -----------------------------------------
 		case DPW_TR_ERROR_CANCEL :
 		case DPW_TR_ERROR_FAILURE :
-			// ���̏ꍇ�̓^�C�g���ɖ߂����A�����Ŏ��s�����
-			// ���̌�̑�������s����\���������̂ŁB
+			// 他の場合はタイトルに戻すが、ここで失敗すると
+			// その後の操作も失敗する可能性が高いので。
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_ERROR_MESSAGE;
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
-			// ���ӂ��Ƃ΂�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
+			// 即ふっとばし
 			ComErrorWarningResetCall(HEAPID_BASE_APP,COMM_ERRORTYPE_POWEROFF,0);
 			break;
 	// -----------------------------------------
@@ -1478,7 +1478,7 @@ static int Subseq_ServerTradeCheckResult( WORLDTRADE_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 	return SEQ_MAIN;
@@ -1486,7 +1486,7 @@ static int Subseq_ServerTradeCheckResult( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �󂯎�邱�Ƃ��ł��Ȃ������̂Ń^�C�g���ɂ��ǂ�
+ * @brief   受け取ることができなかったのでタイトルにもどる
  *
  * @param   wk		
  *
@@ -1495,7 +1495,7 @@ static int Subseq_ServerTradeCheckResult( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Subseq_ServerTradeCheckEnd( WORLDTRADE_WORK *wk )
 {
-	// �|�P�������󂯎�邱�Ƃ��ł��Ȃ��̂ŁA�^�C�g���ɂ��ǂ�
+	// ポケモンを受け取ることができないので、タイトルにもどる
 	WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 	wk->subprocess_seq = SUBSEQ_END;
 
@@ -1505,7 +1505,7 @@ static int Subseq_ServerTradeCheckEnd( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ���ɃT�[�o�[�ɗa���Ă��邩�m�F
+ * @brief   既にサーバーに預けているか確認
  *
  * @param   wk		
  *
@@ -1525,7 +1525,7 @@ static int Subseq_ServerDownload( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �����|�P�����T�[�o�[�m�F�����҂�
+ * @brief   交換ポケモンサーバー確認処理待ち
  *
  * @param   wk		
  *
@@ -1534,28 +1534,28 @@ static int Subseq_ServerDownload( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Subseq_ServerDownloadResult( WORLDTRADE_WORK *wk )
 {
-	// �T�[�o�[�₢���킹�I���҂�
+	// サーバー問い合わせ終了待ち
 	if (Dpw_Tr_IsAsyncEnd()){
 		s32 result = Dpw_Tr_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		// �a���Ă���|�P�����̃f�[�^���擾����
+		// 預けているポケモンのデータを取得した
 		case 0:
 			OS_TPrintf(" download data on sever.\n");
 
 #if GTS_DUPLICATE_BUG_FIX
 			
-			// �����`�F�b�N�̌��ʂ��A���������ꍇ�̓T�[�o�[�|�P����������
+			// 複製チェックの結果が陰性だった場合はサーバーポケモン消去へ
 			if(DupulicateCheck( wk )){
 				wk->subprocess_seq = SUBSEQ_SERVER_POKE_DELETE;
 				wk->DepositFlag    = 0;
 				return SEQ_MAIN;
 			}else{
-				// ����
+				// 正常
 				wk->DepositFlag = 1;
 			}
 #else
-			// �a���Ă���t���O�n�m
+			// 預けてあるフラグＯＮ
 			wk->DepositFlag = 1;
 
 #endif
@@ -1572,44 +1572,44 @@ static int Subseq_ServerDownloadResult( WORLDTRADE_WORK *wk )
 
 			}
 			break;
-		// �|�P�����͗a�����Ă��Ȃ�
+		// ポケモンは預けられていない
 		case DPW_TR_ERROR_NO_DATA :	
 			OS_TPrintf(" no data on sever.\n");
 			wk->DepositFlag = 0;
 			break;
-		// �a�����|�P�������^�C���A�E�g���Ă��܂����̂ŁA�B���Ă���|�P�����𕜊�������
+		// 預けたポケモンがタイムアウトしてしまったので、隠しているポケモンを復活させる
 		case DPW_TR_ERROR_DATA_TIMEOUT :
 			OS_TPrintf(" your data on server is timeout.\n");
 			break;
 	// -----------------------------------------
-	// ���ʃG���[����
+	// 共通エラー処理
 	// -----------------------------------------
 		case DPW_TR_ERROR_CANCEL :
 		case DPW_TR_ERROR_FAILURE :
-			// �uGTS�̂����ɂ�ɂ����ς����܂����v
+			// 「GTSのかくにんにしっぱいしました」
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = SUBSEQ_ERROR_MESSAGE;
 			return SEQ_MAIN;
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
-			// ���ӂ��Ƃ΂�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
+			// 即ふっとばし
 			CommFatalErrorFunc_NoNumber();
 			return SEQ_MAIN;
 	// -----------------------------------------
 
 		}
 
-		// �T�[�o�[�m�F�����I����̍s�����ݒ�
+		// サーバー確認処理終了後の行き先を設定
 		AfterTradeCheck_ProcessControl( wk );
 
 	}
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 	return SEQ_MAIN;
@@ -1619,7 +1619,7 @@ static int Subseq_ServerDownloadResult( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �T�[�o�[�m�F�����I����̖߂���ݒ�
+ * @brief   サーバー確認処理終了後の戻り先を設定
  *
  * @param   wk		
  *
@@ -1630,12 +1630,12 @@ static void AfterTradeCheck_ProcessControl( WORLDTRADE_WORK *wk )
 {
 	switch( wk->sub_returnprocess ){
 	case WORLDTRADE_TITLE:
-		// GTC�������ʂ�
+		// GTC入り口画面へ
 		WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 		wk->subprocess_seq  = SUBSEQ_END;
 		break;
 
-	// �����̃|�P�����m�F��ʂ�	
+	// 自分のポケモン確認画面へ	
 	case WORLDTRADE_MYPOKE:
 		WorldTrade_SubProcessChange( wk, WORLDTRADE_MYPOKE, MODE_VIEW );
 		wk->subprocess_seq  = SUBSEQ_END;
@@ -1647,7 +1647,7 @@ static void AfterTradeCheck_ProcessControl( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �����ς݃|�P�������T�[�o�[����폜����
+ * @brief   交換済みポケモンをサーバーから削除する
  *
  * @param   wk		
  *
@@ -1657,24 +1657,24 @@ static void AfterTradeCheck_ProcessControl( WORLDTRADE_WORK *wk )
 static int Subseq_DownloadExStart( WORLDTRADE_WORK *wk)
 {
 
-	// �f�[�^����
+	// データ復元
 	DownloadPokemonDataAdd( wk, (POKEMON_PARAM*)wk->UploadPokemonData.postData.data,
 							WorldTradeData_GetBoxNo( wk->param->worldtrade_data ), 
 							wk->UploadPokemonData.isTrade );
 
-	// �n���V���o�^
+	// 地球儀情報登録
 	WifiHistoryDataSet( wk->param->wifihistory, &wk->UploadPokemonData );
 
-	// �X�R�A���Z
+	// スコア加算
 	RECORD_Score_Add( wk->param->record, SCORE_ID_WORLD_TRADE );
 
-	// �`���m�[�g�f�[�^�o�^����
+	// 冒険ノートデータ登録処理
 	SetFnoteData( wk->param->fnote,  &wk->UploadPokemonData );
 
-	// ���R�[�h�p����
+	// レコード用処理
 	RECORD_Inc( wk->param->record, RECID_WIFI_TRADE );
 
-	// TV�f�[�^
+	// TVデータ
 	{
 		TV_WORK* tvwk;
 		tvwk = SaveData_GetTvWork( wk->param->savedata );
@@ -1682,13 +1682,13 @@ static int Subseq_DownloadExStart( WORLDTRADE_WORK *wk)
 		//TVTOPIC_Entry_Record_GTS( wk->param->savedata );
 	}
 
-	// ������������ɂ���
+	// 引き取った事にする
 	WorldTradeData_SetFlag( wk->param->worldtrade_data, 0 );
 
-	// �Z�[�u��
+	// セーブへ
 	wk->subprocess_seq = SUBSEQ_SAVE;
 
-	// �Z�[�u���݃V�[�P���X�\��
+	// セーブ込みシーケンス予約
 	SetSaveNextSequence( wk, SUBSEQ_DOWNLOAD_EX_FINISH, SUBSEQ_DOWNLOAD_SUCCESS_MESSAGE);
 	
 	return SEQ_MAIN;
@@ -1697,7 +1697,7 @@ static int Subseq_DownloadExStart( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   �����ς݃f�[�^���菈���J�n
+ * @brief   交換済みデータ安定処理開始
  *
  * @param   wk		
  *
@@ -1707,12 +1707,12 @@ static int Subseq_DownloadExStart( WORLDTRADE_WORK *wk)
 static int Subseq_DownloadExFinish( WORLDTRADE_WORK *wk )
 {
 
-	// �����ς݃|�P�����T�[�o�[����폜����
+	// 交換済みポケモンサーバーから削除処理
 	Dpw_Tr_DeleteAsync();
-	OS_TPrintf("-------------------------------------Dpw_Tr_DeleteAsync��т���\n");
-	OS_TPrintf("�_�E�����[�h�I�������J�n\n");
+	OS_TPrintf("-------------------------------------Dpw_Tr_DeleteAsyncよびだし\n");
+	OS_TPrintf("ダウンロード終了処理開始\n");
 
-	// �Z�[�u��
+	// セーブへ
 	wk->subprocess_seq = SUBSEQ_DOWNLOAD_EX_FINISH_RESULT;
 	wk->timeout_count = 0;
 	
@@ -1722,7 +1722,7 @@ static int Subseq_DownloadExFinish( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ���ʑ҂�
+ * @brief   結果待ち
  *
  * @param   wk		
  *
@@ -1735,46 +1735,46 @@ static int Subseq_DownloadExFinishResult( WORLDTRADE_WORK *wk)
 		s32 result = Dpw_Tr_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		case 0:		// ����ɓ��삵�Ă���
+		case 0:		// 正常に動作している
 
-			// ����������|�P�����������������Ă�����Ђ��Ƃ����|�P�����f�[�^�͊Ԉ���Ă���̂ŕ���
-			// ������x�T�[�o�[�`�F�b�N�ɖ߂�
+			// 引き取ったポケモンが交換成立していたらひきとったポケモンデータは間違っているので放棄
+			// もう一度サーバーチェックに戻る
 			OS_TPrintf(" downloadEx is right!\n");
 
 			wk->subprocess_seq = SUBSEQ_SAVE_LAST;
 			break;
 
-		// �f�[�^�������i���Ȃ肨�������󋵁A�������͗��Ƃ����̂Ɂj
+		// データが無い（かなりおかしい状況、さっきは落とせたのに）
 		case DPW_TR_ERROR_NO_DATA :	
 			OS_TPrintf(" download server stop service.\n");
 			CommStateSetError(COMM_ERROR_RESET_GTS);
 			break;
 
-		// 1�����߂��Ă��܂���
+		// 1ヶ月過ぎてしまった
 		case DPW_TR_ERROR_DATA_TIMEOUT :
 			OS_TPrintf(" server full.\n");
 
 
 	// -----------------------------------------
-	// ���ʃG���[����
+	// 共通エラー処理
 	// -----------------------------------------
 		case DPW_TR_ERROR_CANCEL :
 			wk->ConnectErrorNo = result;
 
 		case DPW_TR_ERROR_FAILURE :
-			// �uGTS�̂����ɂ�ɂ����ς����܂����v
+			// 「GTSのかくにんにしっぱいしました」
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 
-			// �X�X���܂ŃZ�[�u���������܂ꂽ�󋵂ł͌��ɖ߂��Ȃ��̂�
-			// ������ʐM�G���[��
+			// ９９％までセーブが書き込まれた状況では元に戻せないので
+			// 無理矢理通信エラーへ
 			CommStateSetError(COMM_ERROR_RESET_OTHER);
 
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
-			// ���ӂ��Ƃ΂�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
+			// 即ふっとばし
 			CommFatalErrorFunc_NoNumber();
 			break;
 	// -----------------------------------------
@@ -1784,7 +1784,7 @@ static int Subseq_DownloadExFinishResult( WORLDTRADE_WORK *wk)
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 	return SEQ_MAIN;
@@ -1795,7 +1795,7 @@ static int Subseq_DownloadExFinishResult( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   �T�u�v���Z�X�V�[�P���X���C��
+ * $brief   サブプロセスシーケンスメイン
  *
  * @param   wk		
  *
@@ -1813,7 +1813,7 @@ static int Subseq_Main( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   ��������̂ɐ������܂������b�Z�[�W
+ * @brief   あずけるのに成功しましたメッセージ
  *
  * @param   wk		
  *
@@ -1825,10 +1825,10 @@ static int Subseq_UploadSuccessMessage( WORLDTRADE_WORK *wk )
 //	Enter_MessagePrint( wk, wk->MsgManager,msg_gtc_13_002, 1, 0x0f0f );
 //	WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_NOW_SAVE_MES );
 	
-	// ���������t���O�𗧂Ă�
+	// あずけたフラグを立てる
 	wk->DepositFlag     = 1;
 
-	// �f���֍s���\������Ă���
+	// デモへ行く予約をしておく
 	WorldTrade_SubProcessChange( wk, WORLDTRADE_DEMO, MODE_UPLOAD );
 	
 	wk->subprocess_seq = SUBSEQ_END;
@@ -1838,7 +1838,7 @@ static int Subseq_UploadSuccessMessage( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �Ђ��Ƃ�̂ɐ������܂������b�Z�[�W
+ * @brief   ひきとるのに成功しましたメッセージ
  *
  * @param   wk		
  *
@@ -1850,11 +1850,11 @@ static int Subseq_DownloadSuccessMessage( WORLDTRADE_WORK *wk)
 //	Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_14_002, 1, 0x0f0f );
 //	WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_NOW_SAVE_MES );
 	
-	// ���������t���O�𗎂Ƃ�
+	// あずけたフラグを落とす
 	 wk->DepositFlag     = 0;
 
 
-	// �f���֍s���\������Ă���
+	// デモへ行く予約をしておく
 	WorldTrade_SubProcessChange( wk, WORLDTRADE_DEMO, MODE_DOWNLOAD );
 	
 	wk->subprocess_seq = SUBSEQ_END;
@@ -1864,7 +1864,7 @@ static int Subseq_DownloadSuccessMessage( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   �����ɐ������܂������b�Z�[�W
+ * @brief   交換に成功しましたメッセージ
  *
  * @param   wk		
  *
@@ -1876,7 +1876,7 @@ static int Subseq_ExchangeSuccessMessage( WORLDTRADE_WORK *wk)
 //	Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_15_002, 1, 0x0f0f );
 //	WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_NOW_SAVE_MES );
 	
-	// �f���֍s���\������Ă���
+	// デモへ行く予約をしておく
 	WorldTrade_SubProcessChange( wk, WORLDTRADE_DEMO, MODE_EXCHANGE );
 
 	wk->subprocess_seq = SUBSEQ_END;
@@ -1888,7 +1888,7 @@ static int Subseq_ExchangeSuccessMessage( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   �����炵���|�P����������Ă��܂���
+ * @brief   あたらしいポケモンがやってきました
  *
  * @param   wk		
  *
@@ -1900,10 +1900,10 @@ static int Subseq_DownloadExSuccessMessage( WORLDTRADE_WORK *wk)
 //	Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_14_002, 1, 0x0f0f );
 //	WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_NOW_SAVE_MES );
 	
-	// ���������t���O�𗎂Ƃ�
+	// あずけたフラグを落とす
 	 wk->DepositFlag     = 0;
 
-	// �f���֍s���\������Ă���
+	// デモへ行く予約をしておく
 	WorldTrade_SubProcessChange( wk, WORLDTRADE_DEMO, MODE_DOWNLOAD_EX );
 	
 	wk->subprocess_seq = SUBSEQ_SAVE;
@@ -1919,7 +1919,7 @@ static int Subseq_DownloadExSuccessMessage( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   �|�P�����������m�F���ꂽ�̂ŁA�T�[�o�[�̃|�P��������������
+ * @brief   ポケモン複製が確認されたので、サーバーのポケモンを消去する
  *
  * @param   wk		
  *
@@ -1929,7 +1929,7 @@ static int Subseq_DownloadExSuccessMessage( WORLDTRADE_WORK *wk)
 static int Subseq_ServerPokeDelete( WORLDTRADE_WORK *wk)
 {
 	Dpw_Tr_ReturnAsync();
-	OS_TPrintf("----------------------------------�����|�P�����폜����-Dpw_Tr_ReturnAsync��т���\n");
+	OS_TPrintf("----------------------------------強制ポケモン削除命令-Dpw_Tr_ReturnAsyncよびだし\n");
 	
 	wk->subprocess_seq = SUBSEQ_SERVER_POKE_DELETE_WAIT;
 	wk->timeout_count = 0;
@@ -1942,11 +1942,11 @@ static int Subseq_ServerPokeDelete( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   �T�[�o�[���|�P�������������̏I���҂�
+ * @brief   サーバー内ポケモン強制消去の終了待ち
  *
  * @param   wk		
  *
- * @retval  int		�i���Ȃ݂ɂ��̌�A�f�s�r���C�����j���[�ɖ߂�j
+ * @retval  int		（ちなみにこの後、ＧＴＳメインメニューに戻る）
  */
 //------------------------------------------------------------------
 static int Subseq_ServerPokeDeleteWait( WORLDTRADE_WORK *wk)
@@ -1957,43 +1957,43 @@ static int Subseq_ServerPokeDeleteWait( WORLDTRADE_WORK *wk)
 		wk->timeout_count = 0;
 		switch(result){
 		case 0:
-			// �T�[�o�[����̍폜����
+			// サーバーからの削除成功
 			OS_TPrintf(" duplicate pokemon delete success.\n");
 			AfterTradeCheck_ProcessControl( wk );
 			break;
-		// �f�[�^�������i���Ȃ肨�������󋵁A�������͗��Ƃ����̂Ɂj
+		// データが無い（かなりおかしい状況、さっきは落とせたのに）
 		case DPW_TR_ERROR_NO_DATA :	
 			OS_TPrintf(" download server stop service.\n");
 			AfterTradeCheck_ProcessControl( wk );
 
-		// 1�����߂��Ă��܂���(���Ȃ��悤�ȋC������j
+		// 1ヶ月過ぎてしまった(来ないような気がする）
 		case DPW_TR_ERROR_DATA_TIMEOUT :
 			OS_TPrintf(" timeout.\n");
 			AfterTradeCheck_ProcessControl( wk );
 
-		// �Ō�̂߂��s�����Ƃ�����������������Ă��܂����B
-		// �G���[���N�������ɂ��ĊO�ɂ����Ă��܂������ǂ��Ă���Ό������������Ă܂��B
+		// 最後のつめを行おうとしたら交換が成立してしまった。
+		// エラーが起きた事にして外にだしてしまう→もどってくれば交換が成立してます。
 		case DPW_TR_ERROR_ILLIGAL_REQUEST:
 			CommStateSetError(COMM_ERROR_RESET_GTS);
 			break;
 	// -----------------------------------------
-	// ���ʃG���[����
+	// 共通エラー処理
 	// -----------------------------------------
 		case DPW_TR_ERROR_CANCEL :
 
 		case DPW_TR_ERROR_FAILURE :
-			// �uGTS�̂����ɂ�ɂ����ς����܂����v
+			// 「GTSのかくにんにしっぱいしました」
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 
-			// �Z�[�u���قƂ�Ǐ������܂�Ă���󋵂ł̓f�[�^�����ɖ߂��Ȃ�
-			// ������ʐM�G���[��
+			// セーブがほとんど書き込まれている状況ではデータを元に戻せない
+			// 無理矢理通信エラーへ
 			CommStateSetError(COMM_ERROR_RESET_OTHER);
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
-			// ���ӂ��Ƃ΂�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
+			// 即ふっとばし
 			CommFatalErrorFunc_NoNumber();
 			break;
 	// -----------------------------------------
@@ -2004,7 +2004,7 @@ static int Subseq_ServerPokeDeleteWait( WORLDTRADE_WORK *wk)
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 	return SEQ_MAIN;
@@ -2015,7 +2015,7 @@ static int Subseq_ServerPokeDeleteWait( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   �������悤�Ƃ����|�P���������Ɍ�������Ă��܂���
+ * @brief   交換しようとしたポケモンが既に交換されてしまった
  *
  * @param   wk		
  *
@@ -2029,10 +2029,10 @@ static int Subseq_ExchangeFailedMessage( WORLDTRADE_WORK *wk)
 	
 	WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 
-	// ���ԃA�C�R������(�Q�d����ɂȂ�̂�NULL�`�F�b�N�͂���j
+	// 時間アイコン消去(２重解放になるのでNULLチェックはする）
 	WorldTrade_TimeIconDel( wk );
 
-	// �������s�Ȃ̂ŉ���ʂ̂n�a�i���B��
+	// 交換失敗なので下画面のＯＢＪを隠す
 	WorldTrade_SubLcdMatchObjHide( wk );
 	
 	return SEQ_MAIN;
@@ -2041,7 +2041,7 @@ static int Subseq_ExchangeFailedMessage( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   �G���[�ɑΉ��������b�Z�[�W�Ńv�����g
+ * @brief   エラーに対応したメッセージでプリント
  *
  * @param   wk		
  *
@@ -2052,39 +2052,39 @@ static void PrintError( WORLDTRADE_WORK *wk )
 {
 	int msgno = msg_gtc_error_004_01;
 
-	// �G���[���������܂����B
+	// エラーが発生しました。
 	switch(wk->ConnectErrorNo){
 	case DPW_TR_ERROR_ILLEGAL_DATA :
-	case DPW_TR_ERROR_CHEAT_DATA:		//!< �A�b�v���[�h���ꂽ�f�[�^���s��
-	case DPW_TR_ERROR_NG_POKEMON_NAME:	//!< �A�b�v���[�h���ꂽ�|�P�����̖��O��NG���[�h���܂�ł���
-	case DPW_TR_ERROR_NG_PARENT_NAME:	//!< �A�b�v���[�h���ꂽ�|�P�����̐e�̖��O��NG���[�h���܂�ł���
-	case DPW_TR_ERROR_NG_MAIL_NAME:	//!< �A�b�v���[�h���ꂽ���[���̖��O��NG���[�h���܂�ł���
-	case DPW_TR_ERROR_NG_OWNER_NAME:	//!< �A�b�v���[�h���ꂽ��l������NG���[�h���܂�ł���
+	case DPW_TR_ERROR_CHEAT_DATA:		//!< アップロードされたデータが不正
+	case DPW_TR_ERROR_NG_POKEMON_NAME:	//!< アップロードされたポケモンの名前がNGワードを含んでいる
+	case DPW_TR_ERROR_NG_PARENT_NAME:	//!< アップロードされたポケモンの親の名前がNGワードを含んでいる
+	case DPW_TR_ERROR_NG_MAIL_NAME:	//!< アップロードされたメールの名前がNGワードを含んでいる
+	case DPW_TR_ERROR_NG_OWNER_NAME:	//!< アップロードされた主人公名がNGワードを含んでいる
 
-		// ���̃|�P�����͗a���邱�Ƃ��ł��܂���I
+		// このポケモンは預けることができません！
 		msgno = msg_gtc_01_027;
 		break;
 	case DPW_TR_ERROR_SERVER_FULL:
-		// �T�[�o�[�������ς��ł��B���΂炭���Ă��炫�Ă�������
+		// サーバーがいっぱいです。しばらくしてからきてください
 		msgno = msg_gtc_error_002;
 		break;
 	case DPW_TR_ERROR_SERVER_TIMEOUT:
 	case DPW_TR_ERROR_DISCONNECTED:
-		// �f�s�r�Ƃ̂�����������܂����B�������ɂ��ǂ�܂�
+		// ＧＴＳとのせつぞくがきれました。うけつけにもどります
 		msgno = msg_gtc_error_006;
 		break;
 	case DPW_TR_ERROR_CANCEL  :
 	case DPW_TR_ERROR_FAILURE :
 	case DPW_TR_ERROR_NO_DATA:
 	case DPW_TR_ERROR_ILLIGAL_REQUEST :
-		//�@������G���[���������܂����B
+		//　つうしんエラーが発生しました。
 		msgno = msg_gtc_error_004_01;
 		break;
 	
 	}
 
 	OS_TPrintf("error %d\n", wk->ConnectErrorNo);
-	// �G���[�ɑΉ������v�����g
+	// エラーに対応したプリント
 	Enter_MessagePrint( wk, wk->MsgManager, msgno, 1, 0x0f0f );
 
 	
@@ -2093,7 +2093,7 @@ static void PrintError( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   GTS�I���G���[�̃��b�Z�[�W�\���i���̌㋭���I���j
+ * @brief   GTS終了エラーのメッセージ表示（この後強制終了）
  *
  * @param   wk		
  *
@@ -2103,12 +2103,12 @@ static void PrintError( WORLDTRADE_WORK *wk )
 static int Subseq_ErrorMessage( WORLDTRADE_WORK *wk )
 {
 
-	// �G���[�ɑΉ������v�����g
+	// エラーに対応したプリント
 	PrintError(wk);
 	WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_END );
 	WorldTrade_SubProcessChange( wk, WORLDTRADE_ENTER, 0 );
 	
-	// ���ԃA�C�R������(�Q�d����ɂȂ�̂��C������j
+	// 時間アイコン消去(２重解放になるのを気をつける）
 	WorldTrade_TimeIconDel(wk);
 
 	return SEQ_MAIN;
@@ -2117,7 +2117,7 @@ static int Subseq_ErrorMessage( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �A�N�Z�X�Ɏ��s���āA�G���[��\�����ă^�C�g����
+ * @brief   アクセスに失敗して、エラーを表示してタイトルへ
  *
  * @param   wk		
  *
@@ -2126,12 +2126,12 @@ static int Subseq_ErrorMessage( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Subseq_ReturnTitleMessage( WORLDTRADE_WORK *wk )
 {	
-	// �G���[�ɑΉ������v�����g
+	// エラーに対応したプリント
 	PrintError(wk);
 	WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_END );
 	WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 	
-	// ���ԃA�C�R������(SUBSEQ_END�ƂQ�d����ɂȂ�̂�NULL�`�F�b�N�͕K�v
+	// 時間アイコン消去(SUBSEQ_ENDと２重解放になるのでNULLチェックは必要
 	WorldTrade_TimeIconDel(wk);
 		
 	// goto
@@ -2143,7 +2143,7 @@ static int Subseq_ReturnTitleMessage( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �i����Ɂu�Z�[�u���v�\�����ďI�����闬��̍ŏ�
+ * @brief   進化後に「セーブ中」表示して終了する流れの最初
  *
  * @param   wk		
  *
@@ -2154,7 +2154,7 @@ static int SubSeq_NowSaveMessage( WORLDTRADE_WORK *wk )
 {
 	WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_SAVE );
 
-	// �i����Z�[�u�̓T�[�o�[�A�N�Z�X�͂Ȃ��̂ŁA�f���ɃZ�[�u���ďI���
+	// 進化後セーブはサーバーアクセスはないので、素直にセーブして終わる
 	SetSaveNextSequence( wk, SUBSEQ_SAVE_LAST, SUBSEQ_END);
 	
 	return SEQ_MAIN;
@@ -2164,7 +2164,7 @@ static int SubSeq_NowSaveMessage( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �Z�[�u�����Ăяo��
+ * @brief   セーブ処理呼び出し
  *
  * @param   wk		
  *
@@ -2174,16 +2174,16 @@ static int SubSeq_NowSaveMessage( WORLDTRADE_WORK *wk )
 static int SubSeq_Save( WORLDTRADE_WORK *wk )
 {
 
-	// �K���S�̃Z�[�u�ɂ���
+	// 必ず全体セーブにする
 	SaveData_RequestTotalSave();
 	
-	// �Z�[�u������
+	// セーブ初期化
 	SaveData_DivSave_Init( wk->param->savedata,SVBLK_ID_MAX);
 
 	wk->subprocess_seq = SUBSEQ_SAVE_RANDOM_WAIT;
 	wk->wait           = gf_p_rand(60)+2;
 
-	OS_TPrintf("�Z�[�u�J�n wait=%d\n", wk->wait);
+	OS_TPrintf("セーブ開始 wait=%d\n", wk->wait);
 
 	return SEQ_MAIN;
 
@@ -2193,7 +2193,7 @@ static int SubSeq_Save( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �Z�[�u�J�n�܂ł̃����_���I���҂�
+ * @brief   セーブ開始までのランダム終了待ち
  *
  * @param   wk		
  *
@@ -2212,7 +2212,7 @@ static int SubSeq_SaveRandomWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �Z�[�u�����I���҂�
+ * @brief   セーブ処理終了待ち
  *
  * @param   wk		
  *
@@ -2223,9 +2223,9 @@ static int SubSeq_SaveWait( WORLDTRADE_WORK *wk )
 {
 	if(SaveData_DivSave_Main(wk->param->savedata)==SAVE_RESULT_LAST){
 
-		// �Z�[�u�V�[�P���X�ɂ���܂łɎ��̐ݒ�͏I���Ă���̂ŁASUBSEQ_END�����ł悢
+		// セーブシーケンスにくるまでに次の設定は終えているので、SUBSEQ_ENDだけでよい
 		wk->subprocess_seq = wk->saveNextSeq1st;
-		OS_TPrintf("�Z�[�u�X�X���I��\n");
+		OS_TPrintf("セーブ９９％終了\n");
 
 	}
 	
@@ -2237,7 +2237,7 @@ static int SubSeq_SaveWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �Z�[�u�Ō�̂P�Z�N�^�������݌Ăяo������
+ * @brief   セーブ最後の１セクタ書き込み呼び出し処理
  *
  * @param   wk		
  *
@@ -2249,8 +2249,8 @@ static int SubSeq_SaveLast( WORLDTRADE_WORK *wk )
 	if(SaveData_DivSave_Main(wk->param->savedata)==SAVE_RESULT_OK){
 		wk->subprocess_seq = wk->saveNextSeq2nd;
 
-		OS_TPrintf("�Z�[�u100���I��\n");
-		// ���ԃA�C�R������
+		OS_TPrintf("セーブ100％終了\n");
+		// 時間アイコン消去
 		WorldTrade_TimeIconDel(wk);
 	}
 	
@@ -2261,7 +2261,7 @@ static int SubSeq_SaveLast( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �Z�[�u�����Ăяo��
+ * @brief   セーブ処理呼び出し
  *
  * @param   wk		
  *
@@ -2271,11 +2271,11 @@ static int SubSeq_SaveLast( WORLDTRADE_WORK *wk )
 static int SubSeq_TimeoutSave( WORLDTRADE_WORK *wk )
 {
 
-	// �K���S�̃Z�[�u�ɂ���
+	// 必ず全体セーブにする
 	SaveData_RequestTotalSave();
 
 	
-	// �Z�[�u������
+	// セーブ初期化
 	SaveData_DivSave_Init( wk->param->savedata,SVBLK_ID_MAX);
 	wk->subprocess_seq = SUBSEQ_TIMEOUT_SAVE_WAIT;
 
@@ -2287,7 +2287,7 @@ static int SubSeq_TimeoutSave( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �Z�[�u�����I���҂�
+ * @brief   セーブ処理終了待ち
  *
  * @param   wk		
  *
@@ -2298,13 +2298,13 @@ static int SubSeq_TimeoutSaveWait( WORLDTRADE_WORK *wk )
 {
 	if(SaveData_DivSave_Main(wk->param->savedata)==SAVE_RESULT_OK){
 
-		// �^�C�g����ʂɖ߂�ݒ�
+		// タイトル画面に戻る設定
 		WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 
-		// ���ԃA�C�R������(�Q�d����ɂȂ�̂��C������j
+		// 時間アイコン消去(２重解放になるのを気をつける）
 		WorldTrade_TimeIconDel(wk);
 
-		// �������͂������񂳂�܂���ł����c
+		// ●●●はこうかんされませんでした…
 		Enter_MessagePrint( wk, wk->MsgManager, wk->error_mes_no, 1, 0x0f0f );
 		WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_SERVER_TRADE_CHECK_END );
 
@@ -2319,7 +2319,7 @@ static int SubSeq_TimeoutSaveWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �T�u�v���Z�X�V�[�P���X�I������
+ * $brief   サブプロセスシーケンス終了処理
  *
  * @param   wk		
  *
@@ -2328,7 +2328,7 @@ static int SubSeq_TimeoutSaveWait( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int Subseq_End( WORLDTRADE_WORK *wk)
 {
-	// �K�����ԃA�C�R��������(�Q�d����΍�͂��Ă����j
+	// 必ず時間アイコンを消去(２重解放対策はしておく）
 	WorldTrade_TimeIconDel(wk);
 	
 	WirelessIconEasyEnd();
@@ -2351,7 +2351,7 @@ static int Subseq_End( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   �͂��E������
+ * $brief   はい・いいえ
  *
  * @param   wk		
  *
@@ -2374,7 +2374,7 @@ static int Subseq_YesNo( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ��b�I����҂��Ď��̃V�[�P���X��
+ * $brief   会話終了を待って次のシーケンスへ
  *
  * @param   wk		
  *
@@ -2395,10 +2395,10 @@ static int Subseq_MessageWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �a�����|�P�����f�[�^��BOX���Ă��������������
+ * @brief   預けたポケモンデータをBOXかてもちから消去する
  *
  * @param   pp		
- * @param   flag	�i�[�t���O�𗧂Ă邩?(1:���Ă� 0:���ĂȂ��j
+ * @param   flag	格納フラグを立てるか?(1:立てる 0:立てない）
  *
  * @retval  none		
  */
@@ -2407,7 +2407,7 @@ static void UploadPokemonDataDelete( WORLDTRADE_WORK *wk, int flag )
 {
 //	BOXDAT_PutPokemonBox( BOX_DATA* box, u32 boxNum, POKEMON_PASO_PARAM* poke );
 
-	// �莝������łȂ����BOX�̃|�P��������������
+	// 手持ちからでなければBOXのポケモンを消去する
 	if(wk->BoxTrayNo!=18){
 		POKEMON_PARAM *pp = PokemonParam_AllocWork(HEAPID_WORLDTRADE);
 		PokeReplace(
@@ -2417,27 +2417,27 @@ static void UploadPokemonDataDelete( WORLDTRADE_WORK *wk, int flag )
 
 		WorldTradeData_SetPokemonData( wk->param->worldtrade_data, pp, wk->BoxTrayNo );
 
-		// �{�b�N�X�������
+		// ボックスから消去
 		BOXDAT_ClearPokemon( wk->param->mybox, wk->BoxTrayNo, wk->BoxCursorPos );
-		OS_Printf("box %d, %d �̃|�P�����������\n", wk->BoxTrayNo, wk->BoxCursorPos);
+		OS_Printf("box %d, %d のポケモンを削った\n", wk->BoxTrayNo, wk->BoxCursorPos);
 
 		sys_FreeMemoryEz(pp);
 	}else{
-	// �Ă���
+	// てもち
 
 		POKEMON_PARAM *pp = PokeParty_GetMemberPointer(wk->param->myparty, wk->BoxCursorPos);
-		OS_Printf("�Ă���������� pos = %d\n", wk->BoxCursorPos);
+		OS_Printf("てもちから消去 pos = %d\n", wk->BoxCursorPos);
 
-		// �J�X�^���{�[���̈���N���A
+		// カスタムボール領域をクリア
 		PokePara_CustomBallDataInit( pp );
 
-		// �Z�[�u�̈�ɕۑ�
+		// セーブ領域に保存
 		WorldTradeData_SetPokemonData( wk->param->worldtrade_data, pp, wk->BoxTrayNo );
 
-		// �莝���������
+		// 手持ちから消去
 		PokeParty_Delete( wk->param->myparty, wk->BoxCursorPos );
 
-		// �Ă�������y���b�v�����Ȃ��Ȃ����琺�f�[�^����������
+		// てもちからペラップがいなくなったら声データを消去する
 		if(PokeParty_PokemonCheck( wk->param->myparty, MONSNO_PERAPPU )==0){
 			PERAPVOICE *pv = SaveData_GetPerapVoice( wk->param->savedata );
 			PERAPVOICE_ClearExistFlag( pv );
@@ -2446,14 +2446,14 @@ static void UploadPokemonDataDelete( WORLDTRADE_WORK *wk, int flag )
 	}
 	
 	if(flag){
-		// �a�����t���O
+		// 預けたフラグ
 		WorldTradeData_SetFlag( wk->param->worldtrade_data, 1 );
 	}
 }
 
 //------------------------------------------------------------------
 /**
- * @brief   ������鏈��
+ * @brief   引き取る処理
  *
  * @param   wk		
  * @param   pp		
@@ -2465,24 +2465,24 @@ static void DownloadPokemonDataAdd( WORLDTRADE_WORK *wk, POKEMON_PARAM *pp, int 
 {
 	int itemno = PokeParaGet(pp, ID_PARA_item, NULL);
 
-	// �}�ӓ��̓o�^����
+	// 図鑑等の登録処理
 	SaveData_GetPokeRegister( wk->param->savedata, pp );
 
-	// �Ȃɂ͂Ƃ�����Ă����ɓ���悤�Ƃ���
-	// �{�b�N�X�ɓ���悤�Ƃ��Ă��鎞�Ƀ|�P�����Ƀ��[�������Ă���ꍇ��
-	// �Ă����ɓ����悤�ɂ���
+	// なにはともあれてもちに入れようとする
+	// ボックスに入れようとしている時にポケモンにメールがついている場合は
+	// てもちに入れるようにする
 	boxno = 18;
 
 	if(PokeParty_GetPokeCount(wk->param->myparty)==6){
-		// �Ă����������ς���������{�b�N�X��
+		// てもちがいっぱいだったらボックスに
 		boxno = 0;
 	}
 
-	// �������������Ă���
+	// 交換が成立していた
 	if(flag){
 		u8 friend = FIRST_NATUKIDO;
 
-		//�󂯎��|�P�������A���Z�E�X�C�x���g�N�������𖞂����Ă���Ȃ�t���O�Z�b�g
+		//受け取るポケモンがアルセウスイベント起動条件を満たしているならフラグセット
 		if(PokeParaGet(pp, ID_PARA_monsno, NULL) == MONSNO_AUSU){
 			if(PokeParaGet(pp, ID_PARA_event_get_flag, NULL) || 
 					(PokeParaGet(pp, ID_PARA_birth_place, NULL) == MAPNAME_D5ROOM 
@@ -2494,23 +2494,23 @@ static void DownloadPokemonDataAdd( WORLDTRADE_WORK *wk, POKEMON_PARAM *pp, int 
 			}
 		}
 
-		// �Ȃ��x�������l�V�O�ɂ���
+		// なつき度を初期値７０にする
 		PokeParaPut( pp, ID_PARA_friend, &friend );
 
-		// ����������擾����鐫�ʂ�POKEPARA�Ɋi�[����Ă��鐫�ʂ�������ꍇ�ɏC������
-		// �z�z�u�[�o�[���E�G���L�u���E�y���b�v�E�G���u�[�E�u�[�o�[�΍�
-		// ���ʍČv�Z
+		// 個性乱数から取得される性別とPOKEPARAに格納されている性別が違った場合に修正する
+		// 配布ブーバーン・エレキブル・ペラップ・エレブー・ブーバー対策
+		// 性別再計算
 		PokeParaPut( pp, ID_PARA_sex, NULL );
 
-		// �|�P�����̌��������ŏI�����Z�[�u����
+		// ポケモンの交換成立最終日をセーブする
 		TradeDateUpDate( wk->param->worldtrade_data, TRADE_TYPE_DEPOSIT );
 	}
 
-	// �Ă���(�Ă�������t�͂��̎��_���Ƃǂ����悤���Ȃ��̂ł��Ȃ��悤�ɂ��Ȃ��Ɓj
+	// てもち(てもちが一杯はこの時点だとどうしようもないのでこないようにしないと）
 	if(boxno==18){
 		int num;
 
-		// ���[�������Ă���̂ŁA�莝���ɂ����󂯎��Ȃ�
+		// メールがついているので、手持ちにしか受け取れない
 		PokeParty_Add(wk->param->myparty, pp);
 		num = PokeParty_GetPokeCount( wk->param->myparty );
 
@@ -2518,22 +2518,22 @@ static void DownloadPokemonDataAdd( WORLDTRADE_WORK *wk, POKEMON_PARAM *pp, int 
 		wk->EvoPokeInfo.pos   = num-1;
 
 	}else{
-	// �{�b�N�X
+	// ボックス
 		
 		int boxpos=0;
-		// ���[�����������BOX�ɓ����
+		// メールが無ければBOXに入れる
 
-		// �{�b�N�X�̋󂢂Ă���Ƃ����T��
+		// ボックスの空いているところを探す
 		BOXDAT_GetEmptyTrayNumberAndPos( wk->param->mybox, &boxno, &boxpos );
 
-		// �󂯎�����|�P�������i�[����
+		// 受け取ったポケモンを格納する
 		BOXDAT_PutPokemonBox( wk->param->mybox, boxno, PPPPointerGet(pp) );
 		
 		wk->EvoPokeInfo.boxno = boxno;
 		wk->EvoPokeInfo.pos   = boxpos;
 	}
 
-	// ���E�������[�N����a���Ă�t���O�𗎂Ƃ�
+	// 世界交換ワークから預けてるフラグを落とす
 	WorldTradeData_SetFlag( wk->param->worldtrade_data, 0 );
 
 
@@ -2543,7 +2543,7 @@ static void DownloadPokemonDataAdd( WORLDTRADE_WORK *wk, POKEMON_PARAM *pp, int 
 
 //------------------------------------------------------------------
 /**
- * @brief   �������Ă݂����|�P�����ƌ������鎞�̏���
+ * @brief   検索してみつけたポケモンと交換する時の処理
  *
  * @param   wk		
  * @param   pp		
@@ -2556,17 +2556,17 @@ static void DownloadPokemonDataAdd( WORLDTRADE_WORK *wk, POKEMON_PARAM *pp, int 
 static void ExchangePokemonDataAdd( WORLDTRADE_WORK *wk, POKEMON_PARAM *pp, int boxno )
 {
 
-	// �}�ӓo�^����
+	// 図鑑登録処理
 	SaveData_GetPokeRegister( wk->param->savedata, pp );
 
 	boxno = 18;
 	if(PokeParty_GetPokeCount(wk->param->myparty)==6){
-		// �Ă����������ς���������i�[����{�b�N�X��
-		OS_Printf("�i�[���BOX\n");
+		// てもちがいっぱいだったら格納先をボックスに
+		OS_Printf("格納先はBOX\n");
 		boxno = 0;
 	}
 
-	//�󂯎��|�P�������A���Z�E�X�C�x���g�N�������𖞂����Ă���Ȃ�t���O�Z�b�g
+	//受け取るポケモンがアルセウスイベント起動条件を満たしているならフラグセット
 	if(PokeParaGet(pp, ID_PARA_monsno, NULL) == MONSNO_AUSU){
 		if(PokeParaGet(pp, ID_PARA_event_get_flag, NULL) || 
 				(PokeParaGet(pp, ID_PARA_birth_place, NULL) == MAPNAME_D5ROOM 
@@ -2579,66 +2579,66 @@ static void ExchangePokemonDataAdd( WORLDTRADE_WORK *wk, POKEMON_PARAM *pp, int 
 	}
 
 	{
-		// �������ꂽ�|�P�����ɓ����Ȃ��x
+		// 交換されたポケモンに入れるなつき度
 		u8 friend = FIRST_NATUKIDO;
 		PokeParaPut(pp, ID_PARA_friend, &friend);
 	}
 
 	
-	// ����������擾����鐫�ʂ�POKEPARA�Ɋi�[����Ă��鐫�ʂ�������ꍇ�ɏC������
-	// �z�z�u�[�o�[���E�G���L�u���E�y���b�v�E�G���u�[�E�u�[�o�[�΍�
-	// ���ʍČv�Z
+	// 個性乱数から取得される性別とPOKEPARAに格納されている性別が違った場合に修正する
+	// 配布ブーバーン・エレキブル・ペラップ・エレブー・ブーバー対策
+	// 性別再計算
 	PokeParaPut( pp, ID_PARA_sex, NULL );
 
-	// �Ă���(�Ă�������t�͂��̎��_���Ƃǂ����悤���Ȃ��̂Łj
+	// てもち(てもちが一杯はこの時点だとどうしようもないので）
 	if(boxno==18){
 		int num;
 
-		// ���[�������Ă���̂ŁA�莝���ɂ����󂯎��Ȃ�
+		// メールがついているので、手持ちにしか受け取れない
 		PokeParty_Add(wk->param->myparty, pp);
 		num = PokeParty_GetPokeCount( wk->param->myparty );
 
 		wk->EvoPokeInfo.boxno = 18;
 		wk->EvoPokeInfo.pos   = num-1;
-		OS_Printf("�Ă����ɒǉ�����\n");
+		OS_Printf("てもちに追加した\n");
 
 	}else{
-	// �{�b�N�X
+	// ボックス
 		
 		int boxpos=0;
-		// ���[�����������BOX�ɓ����
+		// メールが無ければBOXに入れる
 
-		// �{�b�N�X�̋󂢂Ă���Ƃ����T��
+		// ボックスの空いているところを探す
 		BOXDAT_GetEmptyTrayNumberAndPos( wk->param->mybox, &boxno, &boxpos );
 
-		// �󂯎�����|�P�������i�[����
+		// 受け取ったポケモンを格納する
 		BOXDAT_PutPokemonBox( wk->param->mybox, boxno, PPPPointerGet(pp) );
 
 		wk->EvoPokeInfo.boxno = boxno;
 		wk->EvoPokeInfo.pos   = boxpos;
 
-		OS_Printf("BOX�� %d �g���C�ɒǉ�����\n", boxno);
+		OS_Printf("BOXの %d トレイに追加した\n", boxno);
 
 	}
 
-/* GTS�Ŏ����Ń|�P������a���Ă��鎞�ɁA�������猟�����ă|�P����������������
-   �Z�[�u�f�[�^�́u�|�P������GTS�ɗa���Ă���t���O�v�𗎂Ƃ��Ă��܂��Ă���o�O�ɑΏ� */
+/* GTSで自分でポケモンを預けている時に、自分から検索してポケモンを交換した際
+   セーブデータの「ポケモンをGTSに預けているフラグ」を落としてしまっているバグに対処 */
 
 #if AFTER_MASTER_070510_GTS_MENU_FIX
-	// ���̏����͂���Ȃ�
+	// この処理はいらない
 #else
 	WorldTradeData_SetFlag( wk->param->worldtrade_data, 0 );
 #endif
 
 
-	// �|�P�����̌��������ŏI�����Z�[�u����
+	// ポケモンの交換成立最終日をセーブする
 	TradeDateUpDate( wk->param->worldtrade_data, TRADE_TYPE_SEARCH );
 	
 }
 
 //------------------------------------------------------------------
 /**
- * @brief   �ŏI�������t���X�V
+ * @brief   最終交換日付を更新
  *
  * @param   worldtrade_data		
  * @param   trade_type			(TRADE_TYPE_SEARCH or TRADE_TYPE_DEPOSIT)
@@ -2652,27 +2652,27 @@ static void TradeDateUpDate( WORLDTRADE_DATA *worldtrade_data, int trade_type )
 	RTCTime time;
 	GF_DATE gfDate;
 
-	// �T�[�o�[��̌��ݎ������擾
+	// サーバー基準の現在時刻を取得
 	DWC_GetDateTime( &date, &time);
 
-	// �ŏI�������t�Ƃ��ĕۑ�
+	// 最終交換日付として保存
 	gfDate = RTCDate2GFDate( &date );
 	if(trade_type == TRADE_TYPE_SEARCH){
 		WorldTradeData_SetLastDate_Search( worldtrade_data, gfDate );
-		OS_TPrintf("�������Đ��� ");
+		OS_TPrintf("検索して成立 ");
 	}
 	else{
 		WorldTradeData_SetLastDate_Deposit( worldtrade_data, gfDate );
-		OS_TPrintf("�a���Đ��� ");
+		OS_TPrintf("預けて成立 ");
 	}
-	OS_Printf(" %d�N %d�� %d���Ɍ�������\n",
+	OS_Printf(" %d年 %d月 %d日に交換成立\n",
 				GFDate_GetYear( gfDate ),GFDate_GetMonth( gfDate ),GFDate_GetDay( gfDate ));
 
 }
 
 //------------------------------------------------------------------
 /**
- * @brief   ����̌��������Q�Ƃ��Ēn���V����o�^����
+ * @brief   相手の交換情報を参照して地球儀情報を登録する
  *
  * @param   wifiHistory		
  * @param   trData		
@@ -2689,7 +2689,7 @@ static void WifiHistoryDataSet( WIFI_HISTORY *wifiHistory, Dpw_Tr_Data *trData )
 
 //------------------------------------------------------------------
 /**
- * @brief   �`���m�[�g�f�[�^�o�^����
+ * @brief   冒険ノートデータ登録処理
  *
  * @param   fnote		
  * @param   trData		
@@ -2715,7 +2715,7 @@ static void SetFnoteData( FNOTE_DATA *fnote,  Dpw_Tr_Data *trData )
 
 //------------------------------------------------------------------
 /**
- * @brief   �����̓|�P�������󂯎��邩�H���[�������Ă��Ă��󂯎���H
+ * @brief   自分はポケモンを受け取れるか？メールがついていても受け取れる？
  *
  * @param   wk		
  * @param   trData		
@@ -2726,14 +2726,14 @@ static void SetFnoteData( FNOTE_DATA *fnote,  Dpw_Tr_Data *trData )
 static int MyPokemonPocketFullCheck( WORLDTRADE_WORK *wk, Dpw_Tr_Data *trData)
 {
 	
-	// �����Ƃ�|�P���������[���������Ă��鎞�͂Ă����ɋ󂫖����Ƃ����Ȃ�
+	// うけとるポケモンがメールをもっている時はてもちに空き無いといけない
 	if( WorldTrade_PokemonMailCheck( (POKEMON_PARAM*)trData->postData.data ) 
 		&&  PokeParty_GetPokeCount(wk->param->myparty) == 6){
 		return POKEMON_NOT_FULL_BUT_MAIL_NORECV;
 	}
 
 	OS_Printf("boxnum = %d, temochi = %d\n", wk->boxPokeNum, PokeParty_GetPokeCount(wk->param->myparty));
-	// �Ƃɂ����Ă������{�b�N�X���󂫂��Ȃ�
+	// とにかくてもちもボックスも空きがない
 	if(wk->boxPokeNum == BOX_MAX_NUM && PokeParty_GetPokeCount(wk->param->myparty) == 6){
 		return POKEMON_ALL_FULL;
 	}
@@ -2745,10 +2745,10 @@ static int MyPokemonPocketFullCheck( WORLDTRADE_WORK *wk, Dpw_Tr_Data *trData)
 
 //------------------------------------------------------------------
 /**
- * @brief   �Z�[�u�V�[�P���X��Ɉړ�������\�񂷂�
+ * @brief   セーブシーケンス後に移動する先を予約する
  *
- * @param   nextSeq1st		�Z�[�u�O���I����ɑJ�ڂ���V�[�P���X
- * @param   nextSeq2nd		�Z�[�u�㔼�I����ɑJ�ڂ���V�[�P���X
+ * @param   nextSeq1st		セーブ前半終了後に遷移するシーケンス
+ * @param   nextSeq2nd		セーブ後半終了後に遷移するシーケンス
  *
  * @retval  none		
  */
@@ -2765,23 +2765,23 @@ static void SetSaveNextSequence( WORLDTRADE_WORK *wk, int nextSeq1st, int nextSe
 
 //------------------------------------------------------------------
 /**
- * @brief   ��������`�F�b�N
+ * @brief   複製操作チェック
  *
  * @param   wk		
  *
- * @retval  int		�����Ȃ�P�A����Ȃ�O
+ * @retval  int		複製なら１、正常なら０
  */
 //------------------------------------------------------------------
 static int DupulicateCheck( WORLDTRADE_WORK *wk )
 {
 	POKEMON_PARAM *pp = (POKEMON_PARAM *)wk->UploadPokemonData.postData.data;
 
-	// �����`�F�b�N�̓��e��
-	// �u�f�s�r�̃Z�[�u�̈�ɑޔ��|�P�����������Ă��Ȃ��̂ɁA
-	// �@�T�[�o�[�ɂ͗a���Ă����ԂɂȂ��Ă�����v���m�F���鎖
+	// 複製チェックの内容は
+	// 「ＧＴＳのセーブ領域に退避ポケモンが入っていないのに、
+	// 　サーバーには預けてある状態になっていたら」を確認する事
 	if(WorldTradeData_GetFlag( wk->param->worldtrade_data )==0){
 		if(wk->DepositFlag){
-			OS_Printf("�Z�[�u�f�[�^�ł͗a���Ă��Ȃ��̂ɁA�T�[�o�[�͗a���Ă���Ɣ��f���Ă���\n");
+			OS_Printf("セーブデータでは預けていないのに、サーバーは預けていると判断している\n");
 			return 1;
 		}
 	}

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>GX_SetBankForTex</title>
@@ -12,96 +12,96 @@
 <body>
 
 <h1 align="left">GX_SetBankForTex</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
 <CODE>#include &lt;nitro/gx/gx_vramcnt.h&gt;</CODE><BR>
   <BR>
   <CODE>void GX_SetBankForTex(GXVRamTex tex);</CODE></dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">tex</font></strong></em></td>
-    <td width="87%">�e�N�X�`���C���[�W�X���b�g�Ɋ��蓖�Ă�VRAM�o���N���w��</td>
+    <td width="87%">テクスチャイメージスロットに割り当てるVRAMバンクを指定</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
-<H2>����</H2>
-<P>�w�肳�ꂽVRAM�o���N���e�N�X�`���C���[�W�X���b�g�Ɋ��蓖�Ă܂��B�w�肳�ꂽVRAM�o���N��Disable�ɂȂ��Ă��邩�ALCDC�Ɋ��蓖�Ă��Ă���ꍇ�ɁA����VRAM�o���N���e�N�X�`���C���[�W�X���b�g�Ɋ��蓖�Ă܂��B<BR>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>指定されたVRAMバンクをテクスチャイメージスロットに割り当てます。指定されたVRAMバンクがDisableになっているか、LCDCに割り当てられている場合に、そのVRAMバンクをテクスチャイメージスロットに割り当てます。<BR>
 </P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD><CODE>GX_VRAM_TEX_NONE</CODE></TD>
-      <TD>�e�N�X�`���C���[�W��VRAM�o���N�����蓖�Ă܂���B</TD>
+      <TD>テクスチャイメージにVRAMバンクを割り当てません。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_0_A</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0���m�ۂ��܂��BVRAM-A�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0を確保します。VRAM-Aを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_0_B</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0���m�ۂ��܂��BVRAM-B�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0を確保します。VRAM-Bを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_0_C</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0���m�ۂ��܂��BVRAM-C�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0を確保します。VRAM-Cを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_0_D</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0���m�ۂ��܂��BVRAM-D�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0を確保します。VRAM-Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_01_AB</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1���m�ۂ��܂��BVRAM-A,B�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1を確保します。VRAM-A,Bを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_01_BC</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1���m�ۂ��܂��BVRAM-B,C�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1を確保します。VRAM-B,Cを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_01_CD</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1���m�ۂ��܂��BVRAM-C,D�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1を確保します。VRAM-C,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_012_ABC</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1,2���m�ۂ��܂��BVRAM-A,B,C�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1,2を確保します。VRAM-A,B,Cを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_012_BCD</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1,2���m�ۂ��܂��BVRAM-B,C,D�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1,2を確保します。VRAM-B,C,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_0123_ABCD</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1,2,3���m�ۂ��܂��BVRAM-A,B,C,D�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1,2,3を確保します。VRAM-A,B,C,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_01_AC</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1���m�ۂ��܂��BVRAM-A,C�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1を確保します。VRAM-A,Cを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_01_AD</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1���m�ۂ��܂��BVRAM-A,D�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1を確保します。VRAM-A,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_01_BD</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1���m�ۂ��܂��BVRAM-B,D�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1を確保します。VRAM-B,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_012_ABD</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1,2���m�ۂ��܂��BVRAM-A,B,D�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1,2を確保します。VRAM-A,B,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEX_012_ACD</CODE></TD>
-      <TD>�e�N�X�`���C���[�W�̃X���b�g0,1,2���m�ۂ��܂��BVRAM-A,C,D�����蓖�Ă܂��B</TD>
+      <TD>テクスチャイメージのスロット0,1,2を確保します。VRAM-A,C,Dを割り当てます。</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-�ȉ���<CODE>GXVRamTex</CODE>�^�̌^��`�������Ă����܂��B</P>
+以下に<CODE>GXVRamTex</CODE>型の型定義を示しておきます。</P>
 <PRE><CODE>typedef enum
 {
     GX_VRAM_TEX_NONE  = 0x0000,                               // none
@@ -116,7 +116,7 @@
     GX_VRAM_TEX_012_BCD = GX_VRAM_B | GX_VRAM_C | GX_VRAM_D,  // TextureImageSlot 012
     GX_VRAM_TEX_0123_ABCD = GX_VRAM_A | GX_VRAM_B | GX_VRAM_C | GX_VRAM_D,  // TextureImageSlot 0123
 
-    // �ȉ��̐ݒ�̏ꍇ�ALCDC��ł͕s�A���ɂȂ�܂�
+    // 以下の設定の場合、LCDC上では不連続になります
     GX_VRAM_TEX_01_AC = GX_VRAM_A | GX_VRAM_C,                // TextureImageSlot 01
     GX_VRAM_TEX_01_AD = GX_VRAM_A | GX_VRAM_D,                // TextureImageSlot 01
     GX_VRAM_TEX_01_BD = GX_VRAM_B | GX_VRAM_D,                // TextureImageSlot 01
@@ -124,9 +124,9 @@
     GX_VRAM_TEX_012_ACD = GX_VRAM_A | GX_VRAM_C | GX_VRAM_D   // TextureImageSlot 012
 }
 GXVRamTex;</CODE></PRE>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><A href="GX_GetBankForTex.html">GX_GetBankForTex</A>, <A href="GX_ResetBankForTex.html">GX_ResetBankForTex</A>, <A href="GX_DisableBankForTex.html">GX_DisableBankForTex</A>, <A href="GX_GetSizeOfTex.html">GX_GetSizeOfTex</A></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>Ver. 2004/01/19</P>
 </body>
 </html>

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	temoti_gauge.h
- * @brief	�莝���Q�[�W�̃w�b�_
+ * @brief	手持ちゲージのヘッダ
  * @author	matsuda
- * @date	2006.06.14(��)
+ * @date	2006.06.14(水)
  */
 //==============================================================================
 #ifndef __TEMOTI_GAUGE_H__
@@ -11,51 +11,51 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�莝���Q�[�W�������ɏo��ő吔
-#define TEMOTIGAUGE_MAX			(2)		//���@���{�G��
+///手持ちゲージが同時に出る最大数
+#define TEMOTIGAUGE_MAX			(2)		//自機側＋敵側
 
 typedef enum{
-	TEMOTI_MINE,	///<���@���莝���Q�[�W
-	TEMOTI_ENEMY,	///<�G���莝���Q�[�W
+	TEMOTI_MINE,	///<自機側手持ちゲージ
+	TEMOTI_ENEMY,	///<敵側手持ちゲージ
 }TEMOTI_SIDE;
 
-///���ޏꓮ��w��
+///矢印退場動作指定
 typedef enum{
-	ARROW_OUT_TYPE_SCROLL,		///<�X�N���[�����Ȃ��������
-	ARROW_OUT_TYPE_SPOT,		///<���̏�ŏ�����
+	ARROW_OUT_TYPE_SCROLL,		///<スクロールしながら消える
+	ARROW_OUT_TYPE_SPOT,		///<その場で消える
 }ARROW_OUT_TYPE;
 
-///�{�[���o�ꓮ��w��
+///ボール登場動作指定
 typedef enum{
-	BALL_IN_TYPE_ENCOUNT,		///<�G���J�E���g���̃{�[���C��
-	BALL_IN_TYPE_CHANGE,		///<����ւ����̃{�[���C��
+	BALL_IN_TYPE_ENCOUNT,		///<エンカウント時のボールイン
+	BALL_IN_TYPE_CHANGE,		///<入れ替え時のボールイン
 }BALL_IN_TYPE;
 
-///�{�[���ޏꓮ��w��
+///ボール退場動作指定
 typedef enum{
-	BALL_OUT_TYPE_ENCOUNT,		///<�G���J�E���g���̃{�[���A�E�g
-	BALL_OUT_TYPE_CHANGE,		///<����ւ����̃{�[���A�E�g
+	BALL_OUT_TYPE_ENCOUNT,		///<エンカウント時のボールアウト
+	BALL_OUT_TYPE_CHANGE,		///<入れ替え時のボールアウト
 }BALL_OUT_TYPE;
 
-///�{�[���o��ʒu�w��
+///ボール登場位置指定
 typedef enum{
-	BALL_POS_HIGH,				///<��i�ɕ\��
-	BALL_POS_MIDDLE,			///<���f�ɕ\��
-	BALL_POS_LOW,				///<���i�ɕ\��
+	BALL_POS_HIGH,				///<上段に表示
+	BALL_POS_MIDDLE,			///<中断に表示
+	BALL_POS_LOW,				///<下段に表示
 }BALL_POS_TYPE;
 
 
 //==============================================================================
-//	�^��`
+//	型定義
 //==============================================================================
-///TEMOTIGAUGE_WORK�̕s��`�|�C���^
+///TEMOTIGAUGE_WORKの不定形ポインタ
 typedef struct _TEMOTIGAUGE_WORK * TEMOTIGAUGE_PTR;
 
 
 //==============================================================================
-//	�O���֐��錾
+//	外部関数宣言
 //==============================================================================
 extern void TEMOTI_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, PALETTE_FADE_PTR pfd);
 extern void TEMOTI_ResourceFree(CATS_RES_PTR crp);

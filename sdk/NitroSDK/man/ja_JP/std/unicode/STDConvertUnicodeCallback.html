@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>STDConvertUnicodeCallback</title>
@@ -13,7 +13,7 @@
 
 <h1 align="left">STDConvertUnicodeCallback</h1>
 
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -21,56 +21,56 @@
   <PRE><CODE>typedef <a href="STDResult.html">STDResult</a> (*STDConvertUnicodeCallback) (u16 *dst, int *dst_len, const char *src, int *src_len);</CODE></PRE>
   </dd>
 
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="30%"><em><strong>dst</strong></em></TD>
-      <TD width="70%">�ϊ�����Unicode�`���̕������i�[����|�C���^</TD>
+      <TD width="70%">変換したUnicode形式の文字を格納するポインタ</TD>
     </TR>
     <TR>
       <TD width="30%"><em><strong>dst_len</strong></em></TD>
-      <TD width="70%">�ϊ���o�b�t�@�Ɋi�[�ł���ő啶�������󂯁A���ۂɊi�[���ꂽ��������Ԃ����߂̃|�C���^<br>
-      �o�C�g�T�C�Y�łȂ��_�ɒ��ӂ��Ă��������B</TD>
+      <TD width="70%">変換先バッファに格納できる最大文字数を受け、実際に格納された文字数を返すためのポインタ<br>
+      バイトサイズでない点に注意してください。</TD>
     </TR>
     <TR>
       <TD width="30%"><em><strong>src</strong></em></TD>
-      <TD width="70%">ShiftJIS�`���̕�����ŕϊ��Ɏ��s�����ʒu���w���|�C���^</TD>
+      <TD width="70%">ShiftJIS形式の文字列で変換に失敗した位置を指すポインタ</TD>
     </TR>
     <TR>
       <TD width="30%"><em><strong>srclen</strong></em></TD>
-      <TD width="70%">src���w�����ϊ��̎c��̃o�C�g�T�C�Y���󂯁A���ۂɕϊ��ɗv�����o�C�g�T�C�Y��Ԃ����߂̃|�C���^</TD>
+      <TD width="70%">srcが指す未変換の残りのバイトサイズを受け、実際に変換に要したバイトサイズを返すためのポインタ</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�ϊ�������������<a href="STDResult.html">STD_RESULT_SUCCESS</a>���A�ϊ��Ɏ��s������<a href="STDResult.html">STD_RESULT_CONVERSION_FAILED</a>��Ԃ��Ă��������B<br>
-����dst_len��src_len�ɂ͂��ꂼ��A���ۂɕϊ��Ŏg�p�������������i�[���ĕԂ��Ă��������B</p>
+<h2>返り値</h2>
+<p>変換が成功したら<a href="STDResult.html">STD_RESULT_SUCCESS</a>を、変換に失敗したら<a href="STDResult.html">STD_RESULT_CONVERSION_FAILED</a>を返してください。<br>
+引数dst_lenとsrc_lenにはそれぞれ、実際に変換で使用した文字数を格納して返してください。</p>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-<A href="STD_ConvertStringSjisToUnicode.html"><CODE>STD_ConvertStringSjisToUnicode</CODE></A>�֐��Őݒ肷��R�[���o�b�N�֐��̌^�ł��B<BR>
-<A href="STD_ConvertStringSjisToUnicode.html"><CODE>STD_ConvertStringSjisToUnicode</CODE></A>�֐����ŕϊ��ł��Ȃ����������o���邽�тɌĂяo����A
-�����ŕϊ����������R�ɋK�肷�邱�Ƃ��ł��܂��B<BR>
+<A href="STD_ConvertStringSjisToUnicode.html"><CODE>STD_ConvertStringSjisToUnicode</CODE></A>関数で設定するコールバック関数の型です。<BR>
+<A href="STD_ConvertStringSjisToUnicode.html"><CODE>STD_ConvertStringSjisToUnicode</CODE></A>関数内で変換できない文字を検出するたびに呼び出され、
+ここで変換処理を自由に規定することができます。<BR>
 <br>
-dst�ɂ͏��4�������̔z�񂪕ۏ؂���Ă���A�����֕ϊ����ʂ̕������i�[���Ă��������B�I�[��t������K�v�͂���܂���B<br>
-srclen�ɂ͍���̕ϊ��ɂ���ēǂݐi�߂�ׂ�src��1�������̃o�C�g�T�C�Y���i�[���Ă��������B<br>
+dstには常に4文字分の配列が保証されており、ここへ変換結果の文字を格納してください。終端を付加する必要はありません。<br>
+srclenには今回の変換によって読み進めるべきsrcの1文字分のバイトサイズを格納してください。<br>
 <br>
-src�����dst��������A�ϊ����ʂ�2�����ȏ�ƂȂ�o�b�t�@�I�[���z����ꍇ�ɂ́A�ϊ����ʂ𖳎����ďI�[�ɒB�������̂Ƃ݂Ȃ��܂��B<br>
+srcおよびdstいずれも、変換結果が2文字以上となりつつバッファ終端を越える場合には、変換結果を無視して終端に達したものとみなします。<br>
 </P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <a href="STDResult.html">STDResult</a><br>
 <A href="STD_ConvertStringSjisToUnicode.html">STD_ConvertStringSjisToUnicode</A>
 </p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2006/08/10 �C���^�t�F�[�X�ύX�B<br>
-2006/07/24 �C���^�t�F�[�X�ύX�B�Ԃ�l�̐����Ɋւ���ǋL�B<br>
-2006/07/05 ����<br>
+2006/08/10 インタフェース変更。<br>
+2006/07/24 インタフェース変更。返り値の制限に関する追記。<br>
+2006/07/05 初版<br>
 </P>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNSSndSeqParam</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNSSndSeqParam</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcsynopsisinfo"><code>typedef struct NNSSndSeqParam
@@ -27,7 +27,7 @@
 <dd><pre class="funcprototype"></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAPLWT"></a>
-      <h2>�v�f</h2>
+      <h2>要素</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -35,48 +35,48 @@
 <tbody>
 <tr>
 <td><em><strong><code>bankNo</code></strong></em></td>
-<td>�o���N�ԍ��ł��B</td>
+<td>バンク番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>volume</code></strong></em></td>
-<td>�����{�����[���l�ł��B</td>
+<td>初期ボリューム値です。</td>
 </tr>
 <tr>
 <td><em><strong><code>channelPrio</code></strong></em></td>
-<td>�����v���C�I���e�B�ł��B</td>
+<td>発音プライオリティです。</td>
 </tr>
 <tr>
 <td><em><strong><code>playerPrio</code></strong></em></td>
-<td>�v���C���[�v���C�I���e�B�ł��B</td>
+<td>プレイヤープライオリティです。</td>
 </tr>
 <tr>
 <td><em><strong><code>playerNo</code></strong></em></td>
-<td>�v���C���[�ԍ��ł��B</td>
+<td>プレイヤー番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>reserved</code></strong></em></td>
-<td>�\��̈�ł��B</td>
+<td>予約領域です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDABNWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�V�[�P���X�p�����[�^�\���̂ł��B�V�[�P���X�Đ����ɐݒ肷��p�����[�^��ێ����Ă��܂��B
+シーケンスパラメータ構造体です。シーケンス再生時に設定するパラメータを保持しています。
 </p>
       <p>
-���̍\���̂́A
-<tt class="function"><a href="NNS_SndArcGetSeqParam.html">NNS_SndArcGetSeqParam</a></tt>�֐��܂��́A
-<tt class="function"><a href="NNS_SndArcGetSeqArcParam.html">NNS_SndArcGetSeqArcParam</a></tt>�֐���
-�擾���邱�Ƃ��ł��܂��B
+この構造体は、
+<tt class="function"><a href="NNS_SndArcGetSeqParam.html">NNS_SndArcGetSeqParam</a></tt>関数または、
+<tt class="function"><a href="NNS_SndArcGetSeqArcParam.html">NNS_SndArcGetSeqArcParam</a></tt>関数で
+取得することができます。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcGetSeqParam.html">NNS_SndArcGetSeqParam</a>, <a href="NNS_SndArcGetSeqArcParam.html">NNS_SndArcGetSeqArcParam</a></p>
-<h2>����</h2>
-<p>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

@@ -2,47 +2,47 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<title>�������t�@�C���A�[�J�C�u</title>
+<title>メモリファイルアーカイブ</title>
 <LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
 </head>
 
 <body>
 
-<h1 align="left">�������t�@�C���A�[�J�C�u</h1>
-<h2>�T�v</h2>
+<h1 align="left">メモリファイルアーカイブ</h1>
+<h2>概要</h2>
 <p>
-���̍��ł́A�t�@�C���V�X�e���Ƀf�t�H���g�ŗp�ӂ����u�������t�@�C���A�[�J�C�u�v�ɂ��Đ������܂��B
+この項では、ファイルシステムにデフォルトで用意される「メモリファイルアーカイブ」について説明します。
 </p>
-<H2>�d�l</H2>
+<H2>仕様</H2>
 <P>
-�������t�@�C���A�[�J�C�u�̊�{�I�ȓ���͈ȉ��̒ʂ�ł��B<br>
+メモリファイルアーカイブの基本的な動作は以下の通りです。<br>
 <br>
-�E<a href="file/FS_CreateFileFromMemory.html">FS_CreateFileFromMemory<a>�֐��̏���Ăяo�����Ɏ����I�Ƀ��[�h����܂��B<br>
+・<a href="file/FS_CreateFileFromMemory.html">FS_CreateFileFromMemory<a>関数の初回呼び出し時に自動的にロードされます。<br>
 <br>
-�E�w�肳�ꂽ��������<a href="../mi/memory/MI_CpuCopy.html">MI_CpuCopy8</a>�֐��ŃA�N�Z�X���A�t�@�C���Ƃ��Ă̑�����������܂��B�����ŃL���b�V���̖�������N���[���͍s���܂���B<br>
+・指定されたメモリに<a href="../mi/memory/MI_CpuCopy.html">MI_CpuCopy8</a>関数でアクセスし、ファイルとしての操作を実現します。内部でキャッシュの無効化やクリーンは行われません。<br>
 <br>
-�E�t�@�C���̃��[�h/���C�g����ȊO(�f�B���N�g����p�X���Ɋւ���R�}���h�S��)�ɑΉ����܂���B�t�@�C���V�X�e���փA�[�J�C�u�����o�^����܂���B<br>
+・ファイルのリード/ライト操作以外(ディレクトリやパス名に関するコマンド全般)に対応しません。ファイルシステムへアーカイブ名も登録されません。<br>
 <br>
-�E�񓯊��ł̊֐����Ăяo���ꂽ�ꍇ�ɂ��A��ɓ����łƂ��ē��삵�܂��B<br>
+・非同期版の関数を呼び出された場合にも、常に同期版として動作します。<br>
 <br>
 <BR>
 </p>
-<H2>����</H2>
+<H2>実装</H2>
 <P>
-�������t�@�C���A�[�J�C�u�̋�̓I�Ȏ����͈ȉ��̒ʂ�ł��B<br>
+メモリファイルアーカイブの具体的な実装は以下の通りです。<br>
 <br>
-[���[�h�R�[���o�b�N]<br>
-<a href="../mi/memory/MI_CpuCopy.html">MI_CpuCopy8</a>�֐��ɂ���ă���������f�[�^��ǂݏo���܂��B<br>
-��� FS_RESULT_SUCCESS ���������܂��B<br>
+[リードコールバック]<br>
+<a href="../mi/memory/MI_CpuCopy.html">MI_CpuCopy8</a>関数によってメモリからデータを読み出します。<br>
+常に FS_RESULT_SUCCESS を応答します。<br>
 <br>
-[���C�g�R�[���o�b�N]<br>
-<a href="../mi/memory/MI_CpuCopy.html">MI_CpuCopy8</a>�֐��ɂ���ă������փf�[�^���������݂܂��B<br>
-��� FS_RESULT_SUCCESS ���������܂��B<br>
+[ライトコールバック]<br>
+<a href="../mi/memory/MI_CpuCopy.html">MI_CpuCopy8</a>関数によってメモリへデータを書き込みます。<br>
+常に FS_RESULT_SUCCESS を応答します。<br>
 <br>
-[���[�U�v���V�[�W��]<br>
+[ユーザプロシージャ]<br>
 <TABLE border="0" height="310">
   <TBODY>
     <TR>
@@ -53,11 +53,11 @@
 	  <A href="command/fs_command_getpath_spec.html">FS_COMMAND_GETPATH</A><br>
 	  <A href="command/fs_command_openfilefast_spec.html">FS_COMMAND_OPENFILEFAST</A><br>
 	  </TD>
-      <TD height="5">�����̃R�}���h�ɂ͑Ή������A��� FS_RESULT_UNSUPPORTED ��Ԃ��܂��B</TD>
+      <TD height="5">これらのコマンドには対応せず、常に FS_RESULT_UNSUPPORTED を返します。</TD>
     </TR>
     <TR>
-      <TD width="207" height="15" style="background-color : white;">���̑�</TD>
-      <TD height="15">FS_RESULT_PROC_UNKNOWN��Ԃ��A�f�t�H���g�̃R�}���h�����ɔC���܂��B</TD>
+      <TD width="207" height="15" style="background-color : white;">その他</TD>
+      <TD height="15">FS_RESULT_PROC_UNKNOWNを返し、デフォルトのコマンド実装に任せます。</TD>
     </TR>
 
   </TBODY>
@@ -65,7 +65,7 @@
 
 </P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="fs_archive_type.html">FSArchive</A>
 <A href="fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
@@ -73,9 +73,9 @@
 <A href="archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/06/28 ����<br>
+2005/06/28 初版<br>
 </P>
 </body>
 </html>

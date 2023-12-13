@@ -87,15 +87,15 @@ extern "C" {
 
 
 /*---------------------------------------------------------------------------*
-    �}�e���A���E�V�F�C�v�̎�ʃC���f�b�N�X
+    マテリアル・シェイプの種別インデックス
 
-    �}�e���A���E�V�F�C�v�ɂ��Ă̓f�[�^�t�H�[�}�b�g���������݂��邱�Ƃ��\�Ȃ悤��
-    ���Ă���B���_�A�j���[�V�������s�����ߒ��_�f�[�^���C���f�b�N�X��������悤�ȃV�F�C�v��
-    �K�v���A�Ƃ������ꍇ�̊g����z�肵�Ă���B
+    マテリアル・シェイプについてはデータフォーマットが複数存在することが可能なように
+    してある。頂点アニメーションを行うため頂点データをインデックス持ちするようなシェイプが
+    必要だ、といった場合の拡張を想定している。
 
     NOTICE:
-        �֐��e�[�u���ւ̃C���f�b�N�X�ɂȂ��Ă���̂ŁA
-        ���p�\�Ȓl�͊֐��e�[�u���̃T�C�Y�ɂ��B
+        関数テーブルへのインデックスになっているので、
+        利用可能な値は関数テーブルのサイズによる。
  *---------------------------------------------------------------------------*/
 typedef u16 NNSG3dItemTag;
 #define NNS_G3D_ITEMTAG_MAT_STANDARD  0
@@ -178,8 +178,8 @@ NNSG3dResDictTreeNode;
 /*---------------------------------------------------------------------------*
    Name:        NNSG3dResDict:
 
-   Description: ���O�����p�̎����w�b�_
-                �C���f�b�N�X��&NNSG3dResDict����̃I�t�Z�b�g
+   Description: 名前検索用の辞書ヘッダ
+                インデックスは&NNSG3dResDictからのオフセット
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDict_
 {
@@ -215,14 +215,14 @@ NNSG3dResName;
 /*---------------------------------------------------------------------------*
    Name:        NNSG3dResDictEntryHeader
 
-   Description: ���O�����p�̎����G���g���w�b�_
-                ���O�̌��sizeUnit-16�o�C�g�̃f�[�^������
+   Description: 名前検索用の辞書エントリヘッダ
+                名前の後にsizeUnit-16バイトのデータがある
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictEntryHeader_
 {
-    u16 sizeUnit;      // �f�[�^�G���g��1���̃T�C�Y�i�o�C�g�j
+    u16 sizeUnit;      // データエントリ1つ分のサイズ（バイト）
     u16 ofsName;       // 
-    u8  data[4];       // NNSG3dResDictEntryItem�̕���(1������̑傫����sizeUnit)
+    u8  data[4];       // NNSG3dResDictEntryItemの並び(1つあたりの大きさはsizeUnit)
 }
 NNSG3dResDictEntryHeader;
 
@@ -238,8 +238,8 @@ NNSG3dResDictEntryHeader;
 /*---------------------------------------------------------------------------*
     NNSG3dTexImageParam
 
-    �e�N�X�`���u���b�N���̃e�N�X�`���C���[�W���
-    ���f���̃}�e���A���Ɗ֘A�t�����s���Ƃ��ɂ����̏�񂪃R�s�[�����
+    テクスチャブロック内のテクスチャイメージ情報
+    モデルのマテリアルと関連付けを行うときにここの情報がコピーされる
  *---------------------------------------------------------------------------*/
 typedef enum
 {
@@ -261,9 +261,9 @@ NNSG3dTexImageParam;
 /*---------------------------------------------------------------------------*
     NNSG3dTexImageParamEx
 
-    ORIGW��ORIGH�̓e�N�X�`���s��̌v�Z�ɂ����ĕK�v
-    NNSG3dTexImageParam�̒l�Ɠ����ł���Όv�Z���������ł���̂ŁA
-    �t���O(WHSAME)�������Ă���
+    ORIGWとORIGHはテクスチャ行列の計算において必要
+    NNSG3dTexImageParamの値と同じであれば計算を高速化できるので、
+    フラグ(WHSAME)も持っておく
  *---------------------------------------------------------------------------*/
 typedef enum
 {
@@ -281,14 +281,14 @@ NNSG3dTexImageParamEx;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictTexData
 
-    �e�N�X�`���������̃f�[�^�G���g��
-    �ʏ�A�����̃f�[�^�ɂ͉ϒ��f�[�^�ւ̃I�t�Z�b�g�������Ă��邱�Ƃ��������A
-    �Œ蒷�̏ꍇ�͎����̃G���g���Ƃ��ē��ꍞ�ނ��Ƃ��ł���B
+    テクスチャ名辞書のデータエントリ
+    通常、辞書のデータには可変長データへのオフセットが入っていることが多いが、
+    固定長の場合は辞書のエントリとして入れ込むことができる。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictTexData_
 {
     // 31 30 29     28  26 25 23 22 20 19   16 15                       0
-    //       Pltt0  TexFmt TSize SSize         3bit�E�V�t�g���ꂽ�I�t�Z�b�g
+    //       Pltt0  TexFmt TSize SSize         3bit右シフトされたオフセット
     u32           texImageParam;  // NNSG3dTexImageParam
 
     // 31      30           22 21     11 10     0
@@ -301,9 +301,9 @@ NNSG3dResDictTexData;
 /*---------------------------------------------------------------------------*
     NNSG3dResTexFlag
 
-    �e�N�X�`���C���[�W(4x4�t�H�[�}�b�g�ȊO)���e�N�X�`���C���[�W�X���b�g�Ƀ��[�h�����Ƃ��ɁA
-    NNS_G3D_RESTEX_LOADED���Z�b�g�����B�A�����[�h�����Ƃ��ɂ̓��Z�b�g�����B
-    NNSG3dResTexInfo::flag�p�̒l�ł���B
+    テクスチャイメージ(4x4フォーマット以外)をテクスチャイメージスロットにロードしたときに、
+    NNS_G3D_RESTEX_LOADEDがセットされる。アンロードしたときにはリセットされる。
+    NNSG3dResTexInfo::flag用の値である。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
@@ -315,19 +315,19 @@ NNSG3dResTexFlag;
 /*---------------------------------------------------------------------------*
     NNSG3dResTexInfo
 
-    NNSG3dResTex�����L����\���́B
-    4x4COMP�t�H�[�}�b�g�ȊO�̃e�N�X�`���C���[�W�Ɋւ������ێ����Ă���B
-    nsbmd/nsbtx�t�@�C�����Ƀe�N�X�`���C���[�W�f�[�^�͂P�ɂ܂Ƃ߂��Ă��āA
-    �܂Ƃ܂育�ƂɃ��[�h�^�A�����[�h����悤�ɂȂ��Ă���B
+    NNSG3dResTexが所有する構造体。
+    4x4COMPフォーマット以外のテクスチャイメージに関する情報を保持している。
+    nsbmd/nsbtxファイル毎にテクスチャイメージデータは１つにまとめられていて、
+    まとまりごとにロード／アンロードするようになっている。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResTexInfo_
 {
-    NNSGfdTexKey vramKey;         // gfd���C�u�����d�l��VRAM�L�[���i�[����B
-    u16          sizeTex;         // �e�N�X�`���f�[�^�̃T�C�Y���E��3bit�V�t�g�������̂��\�ߓ����Ă���
+    NNSGfdTexKey vramKey;         // gfdライブラリ仕様のVRAMキーを格納する。
+    u16          sizeTex;         // テクスチャデータのサイズを右に3bitシフトしたものが予め入っている
     u16          ofsDict;
     u16          flag;            // NNSG3dResTexFlag
     u16          dummy_;
-    u32          ofsTex;          // �e�N�X�`���f�[�^�ւ̃I�t�Z�b�g(&NNSG3dResTexImage����̃I�t�Z�b�g)
+    u32          ofsTex;          // テクスチャデータへのオフセット(&NNSG3dResTexImageからのオフセット)
 }
 NNSG3dResTexInfo;
 
@@ -335,13 +335,13 @@ NNSG3dResTexInfo;
 /*---------------------------------------------------------------------------*
     NNSG3dResTex4x4Flag
 
-    4x4COMP�t�H�[�}�b�g�̃e�N�X�`���C���[�W���e�N�X�`���C���[�W�X���b�g�Ƀ��[�h�����Ƃ��ɁA
-    NNS_G3D_RESTEX4x4_LOADED���Z�b�g�����B�A�����[�h�����Ƃ��ɂ̓��Z�b�g�����B
-    NNSG3dResTex4x4Info::flag�p�̒l�ł���B
+    4x4COMPフォーマットのテクスチャイメージをテクスチャイメージスロットにロードしたときに、
+    NNS_G3D_RESTEX4x4_LOADEDがセットされる。アンロードしたときにはリセットされる。
+    NNSG3dResTex4x4Info::flag用の値である。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_RESTEX4x4_LOADED   = 0x0001   // VRAM�Ƀ��[�h���ꂽ���ǂ���
+    NNS_G3D_RESTEX4x4_LOADED   = 0x0001   // VRAMにロードされたかどうか
 }
 NNSG3dResTex4x4Flag;
 
@@ -349,20 +349,20 @@ NNSG3dResTex4x4Flag;
 /*---------------------------------------------------------------------------*
     NNSG3dResTex4x4Info:
 
-    NNSG3dResTex�����L����\���́B
-    4x4COMP�t�H�[�}�b�g�̃e�N�X�`���C���[�W�Ɋւ������ێ����Ă���B
-    nsbmd/nsbtx�t�@�C�����Ƀe�N�X�`���C���[�W�f�[�^�͂P�ɂ܂Ƃ߂��Ă��āA
-    �܂Ƃ܂育�ƂɃ��[�h�^�A�����[�h����悤�ɂȂ��Ă���B   
+    NNSG3dResTexが所有する構造体。
+    4x4COMPフォーマットのテクスチャイメージに関する情報を保持している。
+    nsbmd/nsbtxファイル毎にテクスチャイメージデータは１つにまとめられていて、
+    まとまりごとにロード／アンロードするようになっている。   
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResTex4x4Info_
 {
-    NNSGfdTexKey vramKey;         // gfd���C�u�����d�l��VRAM�L�[���i�[����B
-    u16          sizeTex;         // �e�N�X�`���f�[�^�̃T�C�Y���E��3bit�V�t�g��������(�p���b�g�C���f�b�N�X�̏ꍇ��2bit)
+    NNSGfdTexKey vramKey;         // gfdライブラリ仕様のVRAMキーを格納する。
+    u16          sizeTex;         // テクスチャデータのサイズを右に3bitシフトしたもの(パレットインデックスの場合は2bit)
     u16          ofsDict;
-    u16          flag;            // 0�r�b�g�ڂ̓e�N�X�`����VRAM�Ƀ��[�h���ꂽ���ǂ����̃t���O
+    u16          flag;            // 0ビット目はテクスチャがVRAMにロードされたかどうかのフラグ
     u16          dummy_;
-    u32          ofsTex;          // �e�N�X�`���f�[�^�ւ̃I�t�Z�b�g(&NNSG3dResTexImage����̃o�C�g)
-    u32          ofsTexPlttIdx;   // �e�N�X�`���p���b�g�C���f�b�N�X�f�[�^�ւ̃I�t�Z�b�g(&NNSG3dResTexImage����̃o�C�g)
+    u32          ofsTex;          // テクスチャデータへのオフセット(&NNSG3dResTexImageからのバイト)
+    u32          ofsTexPlttIdx;   // テクスチャパレットインデックスデータへのオフセット(&NNSG3dResTexImageからのバイト)
 }
 NNSG3dResTex4x4Info;
 
@@ -370,12 +370,12 @@ NNSG3dResTex4x4Info;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictPlttData
 
-    �p���b�g�������̃f�[�^�G���g��
+    パレット名辞書のデータエントリ
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictPlttData_
 {
-    u16 offset;          // �p���b�g�f�[�^�̋N�_�ɑ΂���I�t�Z�b�g��3bit�E�V�t�g��������
-    u16 flag;            // 0�r�b�g�ڂ�Tex4Pltt���ǂ����������t���O
+    u16 offset;          // パレットデータの起点に対するオフセットを3bit右シフトしたもの
+    u16 flag;            // 0ビット目がTex4Plttかどうかを示すフラグ
 }
 NNSG3dResDictPlttData;
 
@@ -383,15 +383,15 @@ NNSG3dResDictPlttData;
 /*---------------------------------------------------------------------------*
     NNSG3dResPlttFlag
 
-    �e�N�X�`���p���b�g���e�N�X�`���p���b�g�X���b�g�Ƀ��[�h�����Ƃ���
-    NNS_G3D_RESPLTT_LOADED���Z�b�g�����B�A�����[�h�����Ƃ��ɂ̓��Z�b�g�����B
-    NNS_G3D_RESPLTT_USEPLTT4�́A�p���b�g�f�[�^��4�F�J���[�p���b�g���܂܂�Ă���
-    �ꍇ�ɃZ�b�g����Ă���B4�F�J���[�p���b�g�̃��[�h��ɂ͐��������邩��ł���B
+    テクスチャパレットをテクスチャパレットスロットにロードしたときに
+    NNS_G3D_RESPLTT_LOADEDがセットされる。アンロードしたときにはリセットされる。
+    NNS_G3D_RESPLTT_USEPLTT4は、パレットデータに4色カラーパレットが含まれている
+    場合にセットされている。4色カラーパレットのロード先には制限があるからである。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_RESPLTT_LOADED   = 0x0001,   // VRAM�Ƀ��[�h���ꂽ���ǂ���
-    NNS_G3D_RESPLTT_USEPLTT4 = 0x8000    // �u���b�N����4�F�p���b�g�������Ă��邩�ǂ���
+    NNS_G3D_RESPLTT_LOADED   = 0x0001,   // VRAMにロードされたかどうか
+    NNS_G3D_RESPLTT_USEPLTT4 = 0x8000    // ブロック内に4色パレットが入っているかどうか
 }
 NNSG3dResPlttFlag;
 
@@ -399,15 +399,15 @@ NNSG3dResPlttFlag;
 /*---------------------------------------------------------------------------*
     NNSG3dResPlttInfo
 
-    NNSG3dResTex�����L����\���́B
-    �e�N�X�`���p���b�g�Ɋւ������ێ����Ă���B
-    nsbmd/nsbtx�t�@�C�����Ƀe�N�X�`���p���b�g�f�[�^�͂P�ɂ܂Ƃ߂��Ă��āA
-    �܂Ƃ܂育�ƂɃ��[�h�^�A�����[�h����悤�ɂȂ��Ă���B
+    NNSG3dResTexが所有する構造体。
+    テクスチャパレットに関する情報を保持している。
+    nsbmd/nsbtxファイル毎にテクスチャパレットデータは１つにまとめられていて、
+    まとまりごとにロード／アンロードするようになっている。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResPlttInfo_
 {
-    NNSGfdTexKey vramKey;      // gfd���C�u�����d�l��VRAM�L�[���i�[����B
-    u16          sizePltt;     // �e�N�X�`���p���b�g�̃f�[�^�T�C�Y���E��3bit�V�t�g�������̂�����
+    NNSGfdTexKey vramKey;      // gfdライブラリ仕様のVRAMキーを格納する。
+    u16          sizePltt;     // テクスチャパレットのデータサイズを右に3bitシフトしたものが入る
     u16          flag;         // NNSG3dResPlttFlag
     u16          ofsDict;
     u16          dummy_;
@@ -419,8 +419,8 @@ NNSG3dResPlttInfo;
 /*---------------------------------------------------------------------------*
     NNSG3dResTex
    
-    �i�[����Ă���e��I�t�Z�b�g�́AVRAM���̃X���b�g�ɑ΂���I�t�Z�b�g�f�[�^�ȊO�́A
-    &NNSG3dResTex���x�[�X�ɂ��Ă���B
+    格納されている各種オフセットは、VRAM内のスロットに対するオフセットデータ以外は、
+    &NNSG3dResTexをベースにしている。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResTex_
 {
@@ -428,13 +428,13 @@ typedef struct NNSG3dResTex_
     NNSG3dResTexInfo         texInfo;
     NNSG3dResTex4x4Info      tex4x4Info;
     NNSG3dResPlttInfo        plttInfo;
-    NNSG3dResDict            dict;       // �e�N�X�`���p����
-    // �p���b�g�p����
-    // �e�N�X�`���f�[�^(4x4�ȊO)
-    // �e�N�X�`���f�[�^(4x4)
-    // �e�N�X�`���p���b�g�C���f�b�N�X�f�[�^
-    // �e�N�X�`���p���b�g�f�[�^
-    // �Ƒ���
+    NNSG3dResDict            dict;       // テクスチャ用辞書
+    // パレット用辞書
+    // テクスチャデータ(4x4以外)
+    // テクスチャデータ(4x4)
+    // テクスチャパレットインデックスデータ
+    // テクスチャパレットデータ
+    // と続く
 }
 NNSG3dResTex;
 
@@ -442,19 +442,19 @@ NNSG3dResTex;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// �}�e���A��
+// マテリアル
 //
 //
 
 /*---------------------------------------------------------------------------*
     NNSG3dResDictMatData
 
-    �}�e���A���������f�[�^�B
-    �}�e���A���f�[�^�͉ϒ��Ȃ̂�NNSG3dResMatData(��)�ւ̃I�t�Z�b�g���������Ă���B
+    マテリアル名辞書データ。
+    マテリアルデータは可変長なのでNNSG3dResMatData(他)へのオフセットを所持している。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictMatData_
 {
-    u32           offset;       // &NNSG3dResMat����̃I�t�Z�b�g�f�[�^
+    u32           offset;       // &NNSG3dResMatからのオフセットデータ
 }
 NNSG3dResDictMatData;
 
@@ -462,13 +462,13 @@ NNSG3dResDictMatData;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictTexToMatIdxData
 
-    �e�N�X�`����->�}�e���A���C���f�b�N�X�񎫏��f�[�^
+    テクスチャ名->マテリアルインデックス列辞書データ
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictTexToMatIdxData_
 {
-    u16           offset;       // NNSG3dResMat����̃I�t�Z�b�g
-    u8            numIdx;       // �e�N�X�`�����ɑΉ�����}�e���A���h�c�̐�
-    u8            flag;         // �e�N�X�`��<->�}�e���A���̃o�C���h�����ꂽ���ǂ����̃t���O
+    u16           offset;       // NNSG3dResMatからのオフセット
+    u8            numIdx;       // テクスチャ名に対応するマテリアルＩＤの数
+    u8            flag;         // テクスチャ<->マテリアルのバインドがされたかどうかのフラグ
 }
 NNSG3dResDictTexToMatIdxData;
 
@@ -476,13 +476,13 @@ NNSG3dResDictTexToMatIdxData;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictPlttToMatIdxData
 
-    �p���b�g��->�}�e���A���C���f�b�N�X�񎫏��f�[�^
+    パレット名->マテリアルインデックス列辞書データ
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictPlttToMatIdxData_
 {
-    u16           offset;       // NNSG3dResMat����̃I�t�Z�b�g
-    u8            numIdx;       // �p���b�g���ɑΉ�����}�e���A���h�c�̐�
-    u8            flag;         // �p���b�g<->�}�e���A���̃o�C���h�����ꂽ���ǂ����̃t���O
+    u16           offset;       // NNSG3dResMatからのオフセット
+    u8            numIdx;       // パレット名に対応するマテリアルＩＤの数
+    u8            flag;         // パレット<->マテリアルのバインドがされたかどうかのフラグ
 }
 NNSG3dResDictPlttToMatIdxData;
 
@@ -490,26 +490,26 @@ NNSG3dResDictPlttToMatIdxData;
 /*---------------------------------------------------------------------------*
     NNSG3dMatFlag
 
-    �}�e���A���Ɋւ���t���O���
-    �r�b�g���Z�b�g����Ă���΁AX���g�p����A�Ƃ������t���O�ɂȂ��Ă���B
-    ���������ɁA�e�N�X�`���f�[�^�Ɗ֘A�t����Ƃ��ɑ��삳���t���O������B
+    マテリアルに関するフラグ情報
+    ビットがセットされていれば、Xを使用する、といったフラグになっている。
+    初期化時に、テクスチャデータと関連付けるときに操作されるフラグもある。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_MATFLAG_TEXMTX_USE       = 0x0001, // �e�N�X�`���s����g�p���邩�ǂ���
-    NNS_G3D_MATFLAG_TEXMTX_SCALEONE  = 0x0002, // �X�P�[����1.0�Ȃ�ON(�e�N�X�`���s��g�p��)
-    NNS_G3D_MATFLAG_TEXMTX_ROTZERO   = 0x0004, // ��]���Ȃ��Ȃ�ON(�e�N�X�`���s��g�p��)
-    NNS_G3D_MATFLAG_TEXMTX_TRANSZERO = 0x0008, // ���s�ړ����Ȃ��Ȃ�ON(�e�N�X�`���s��g�p��)
-    NNS_G3D_MATFLAG_ORIGWH_SAME      = 0x0010, // �e�N�X�`����Width/Height���V�X�e���Ɠ����ꍇ�Z�b�g�����
-    NNS_G3D_MATFLAG_WIREFRAME        = 0x0020, // ���C���[�t���[���\���Ȃ�ON
-    NNS_G3D_MATFLAG_DIFFUSE          = 0x0040, // �}�e���A����diffuse���w�肷��Ȃ�ON
-    NNS_G3D_MATFLAG_AMBIENT          = 0x0080, // �}�e���A����ambient���w�肷��Ȃ�ON
-    NNS_G3D_MATFLAG_VTXCOLOR         = 0x0100, // �}�e���A����vtxcolor�t���O���w�肷��Ȃ�ON
-    NNS_G3D_MATFLAG_SPECULAR         = 0x0200, // �}�e���A����specular���w�肷��Ȃ�ON
-    NNS_G3D_MATFLAG_EMISSION         = 0x0400, // �}�e���A����emission���w�肷��Ȃ�ON
-    NNS_G3D_MATFLAG_SHININESS        = 0x0800, // �}�e���A����shininess�t���O���w�肷��Ȃ�ON
-    NNS_G3D_MATFLAG_TEXPLTTBASE      = 0x1000, // �e�N�X�`���p���b�g�x�[�X�A�h���X���w�肷��Ȃ�ON
-    NNS_G3D_MATFLAG_EFFECTMTX        = 0x2000  // effect_mtx�����݂���Ȃ�ON
+    NNS_G3D_MATFLAG_TEXMTX_USE       = 0x0001, // テクスチャ行列を使用するかどうか
+    NNS_G3D_MATFLAG_TEXMTX_SCALEONE  = 0x0002, // スケールが1.0ならON(テクスチャ行列使用時)
+    NNS_G3D_MATFLAG_TEXMTX_ROTZERO   = 0x0004, // 回転しないならON(テクスチャ行列使用時)
+    NNS_G3D_MATFLAG_TEXMTX_TRANSZERO = 0x0008, // 平行移動しないならON(テクスチャ行列使用時)
+    NNS_G3D_MATFLAG_ORIGWH_SAME      = 0x0010, // テクスチャのWidth/Heightがシステムと同じ場合セットされる
+    NNS_G3D_MATFLAG_WIREFRAME        = 0x0020, // ワイヤーフレーム表示ならON
+    NNS_G3D_MATFLAG_DIFFUSE          = 0x0040, // マテリアルでdiffuseを指定するならON
+    NNS_G3D_MATFLAG_AMBIENT          = 0x0080, // マテリアルでambientを指定するならON
+    NNS_G3D_MATFLAG_VTXCOLOR         = 0x0100, // マテリアルでvtxcolorフラグを指定するならON
+    NNS_G3D_MATFLAG_SPECULAR         = 0x0200, // マテリアルでspecularを指定するならON
+    NNS_G3D_MATFLAG_EMISSION         = 0x0400, // マテリアルでemissionを指定するならON
+    NNS_G3D_MATFLAG_SHININESS        = 0x0800, // マテリアルでshininessフラグを指定するならON
+    NNS_G3D_MATFLAG_TEXPLTTBASE      = 0x1000, // テクスチャパレットベースアドレスを指定するならON
+    NNS_G3D_MATFLAG_EFFECTMTX        = 0x2000  // effect_mtxが存在するならON
 }
 NNSG3dMatFlag;
 
@@ -517,25 +517,25 @@ NNSG3dMatFlag;
 /*---------------------------------------------------------------------------*
     NNSG3dResMatData
 
-    �X�̃}�e���A���̃f�[�^�B
-    �f�[�^���g������ꍇ�́AitemTag�̒l��ς��āA�\���̂̌���Ƀf�[�^��z�u����
-    �悤�ɂ���B
+    個々のマテリアルのデータ。
+    データを拡張する場合は、itemTagの値を変えて、構造体の後方にデータを配置する
+    ようにする。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResMatData_
 {
-    NNSG3dItemTag itemTag;                // �}�e���A����ʔF���^�O(���̍\���̂̏ꍇ��NNS_G3D_ITEMTAG_MAT_STANDARD�ł���K�v������)
-    u16           size;                   // �T�C�Y
-    u32           diffAmb;                // MaterialColor0�R�}���h�ւ̃p�����^
-    u32           specEmi;                // MaterialColor1�R�}���h�ւ̃p�����^
-    u32           polyAttr;               // PolygonAttr�R�}���h�ւ̃p�����^
-    u32           polyAttrMask;           // �}�e���A���Ŏw�肷��r�b�g��1�ɂȂ��Ă���
-    u32           texImageParam;          // TexImageParam�R�}���h�ւ̃p�����^
-    u32           texImageParamMask;      // �}�e���A���Ŏw�肷��r�b�g��1�ɂȂ��Ă���
-    u16           texPlttBase;            // TexPlttBase�R�}���h�ւ̃p�����^
-    u16           flag;                   // NNSG3dMatFlag�փL���X�g
-    u16           origWidth, origHeight;  // ���������Ƀe�N�X�`���C���[�W����]�������
-    fx32          magW;                   // �o�C���h���ꂽ�e�N�X�`���̕�/origWidth
-    fx32          magH;                   // �o�C���h���ꂽ�e�N�X�`���̍���/origHeight
+    NNSG3dItemTag itemTag;                // マテリアル種別認識タグ(この構造体の場合はNNS_G3D_ITEMTAG_MAT_STANDARDである必要がある)
+    u16           size;                   // サイズ
+    u32           diffAmb;                // MaterialColor0コマンドへのパラメタ
+    u32           specEmi;                // MaterialColor1コマンドへのパラメタ
+    u32           polyAttr;               // PolygonAttrコマンドへのパラメタ
+    u32           polyAttrMask;           // マテリアルで指定するビットは1になっている
+    u32           texImageParam;          // TexImageParamコマンドへのパラメタ
+    u32           texImageParamMask;      // マテリアルで指定するビットは1になっている
+    u16           texPlttBase;            // TexPlttBaseコマンドへのパラメタ
+    u16           flag;                   // NNSG3dMatFlagへキャスト
+    u16           origWidth, origHeight;  // 初期化時にテクスチャイメージから転送される
+    fx32          magW;                   // バインドされたテクスチャの幅/origWidth
+    fx32          magH;                   // バインドされたテクスチャの高さ/origHeight
 //    fx32 scaleS, scaleT;                // exists if NNS_G3D_MATFLAG_TEXMTX_SCALEONE is off
 //    fx16 rotSin, rotCos;                // exists if NNS_G3D_MATFLAG_TEXMTX_ROTZERO is off
 //    fx32 transS, transT;                // exists if NNS_G3D_MATFLAG_TEXMTX_TRANSZERO is off
@@ -547,13 +547,13 @@ NNSG3dResMatData;
 /*---------------------------------------------------------------------------*
     NNSG3dResMat
 
-    �P�̃��f�������}�e���A���̏W���𑩂˂�\����
+    １つのモデルが持つマテリアルの集合を束ねる構造体
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResMat_
 {
-    u16              ofsDictTexToMatList;  // �e�N�X�`��->�}�e���A��ID�񎫏��ւ̃I�t�Z�b�g
-    u16              ofsDictPlttToMatList; // �p���b�g->�}�e���A��ID�񎫏��ւ̃I�t�Z�b�g
-    NNSG3dResDict    dict;                 // NNSG3dResDictMatData�ւ̎���
+    u16              ofsDictTexToMatList;  // テクスチャ->マテリアルID列辞書へのオフセット
+    u16              ofsDictPlttToMatList; // パレット->マテリアルID列辞書へのオフセット
+    NNSG3dResDict    dict;                 // NNSG3dResDictMatDataへの辞書
 //  NNSG3dResDict    dictTexToMatList;     // (u8*)this + idxDictTexToMatList
 //  NNSG3dResDict    dictPlttToMatList;    // (u8*)this + idxDictPlttToMatList
 //  u8[]             matIdxData;           // (u8*)this + idxMatIdxData
@@ -565,15 +565,15 @@ NNSG3dResMat;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// �V�F�C�v
+// シェイプ
 //
 //
 
 /*---------------------------------------------------------------------------*
     NNSG3dResDictShpData
 
-    �V�F�C�v�������f�[�^�B
-    �V�F�C�v�f�[�^�͉ϒ��Ȃ̂�NNSG3dResShpData(��)�ւ̃I�t�Z�b�g���������Ă���
+    シェイプ名辞書データ。
+    シェイプデータは可変長なのでNNSG3dResShpData(他)へのオフセットを所持している
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictShpData_
 {
@@ -585,14 +585,14 @@ NNSG3dResDictShpData;
 /*---------------------------------------------------------------------------*
     NNSG3dShpFlag
 
-    �V�F�C�v�̃f�B�X�v���C���X�g�̓��F��\���t���O�ł��B
+    シェイプのディスプレイリストの特色を表すフラグです。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_SHPFLAG_USE_NORMAL     = 0x00000001,    // DL����Normal�R�}���h�����݂��܂��B
-    NNS_G3D_SHPFLAG_USE_COLOR      = 0x00000002,    // DL����Color�R�}���h�����݂��܂��B
-    NNS_G3D_SHPFLAG_USE_TEXCOORD   = 0x00000004,    // DL����TexCoord�R�}���h�����݂��܂��B
-    NNS_G3D_SHPFLAG_USE_RESTOREMTX = 0x00000008     // DL����RestoreMtx�R�}���h�����݂��܂��B
+    NNS_G3D_SHPFLAG_USE_NORMAL     = 0x00000001,    // DL内にNormalコマンドが存在します。
+    NNS_G3D_SHPFLAG_USE_COLOR      = 0x00000002,    // DL内にColorコマンドが存在します。
+    NNS_G3D_SHPFLAG_USE_TEXCOORD   = 0x00000004,    // DL内にTexCoordコマンドが存在します。
+    NNS_G3D_SHPFLAG_USE_RESTOREMTX = 0x00000008     // DL内にRestoreMtxコマンドが存在します。
 }
 NNSG3dShpFlag;
 
@@ -600,16 +600,16 @@ NNSG3dShpFlag;
 /*---------------------------------------------------------------------------*
     NNSG3dResShpData
 
-    �X�̃V�F�C�v�f�[�^�B
-    �قȂ�f�[�^�\���ŃV�F�C�v���L�q����ꍇ�ł��AitemTag��size�����͏�������K�v������B
+    個々のシェイプデータ。
+    異なるデータ構造でシェイプを記述する場合でも、itemTagとsizeだけは所持する必要がある。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResShpData_
 {
-    NNSG3dItemTag itemTag;          // �V�F�C�v��ʔF���^�O(���̍\���̂̏ꍇ��NNS_G3D_ITEMTAG_SHP_STANDARD�ł���K�v������)
-    u16           size;             // �T�C�Y
+    NNSG3dItemTag itemTag;          // シェイプ種別認識タグ(この構造体の場合はNNS_G3D_ITEMTAG_SHP_STANDARDである必要がある)
+    u16           size;             // サイズ
     u32           flag;             // NNSG3dShpFlag
-    u32           ofsDL;            // �f�B�X�v���C���X�g�ւ̃I�t�Z�b�g
-    u32           sizeDL;           // �f�B�X�v���C���X�g�̃T�C�Y
+    u32           ofsDL;            // ディスプレイリストへのオフセット
+    u32           sizeDL;           // ディスプレイリストのサイズ
 }
 NNSG3dResShpData;
 
@@ -617,11 +617,11 @@ NNSG3dResShpData;
 /*---------------------------------------------------------------------------*
     NNSG3dResShp
 
-    �P�̃��f�������V�F�C�v�̏W���𑩂˂�\����
+    １つのモデルが持つシェイプの集合を束ねる構造体
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResShp_
 {
-    NNSG3dResDict dict;             // NNSG3dResDictShpData�ւ̎���
+    NNSG3dResDict dict;             // NNSG3dResDictShpDataへの辞書
     // NNSG3dResShpData[] shpData;
     // u32[]              DL;
 }
@@ -647,11 +647,11 @@ NNSG3dResEvpMtx;
 /*---------------------------------------------------------------------------*
     NNSG3dSbcType
 
-    ���f������������Structure Byte Code�̃^�C�v���w�肷��
+    モデルが所持するStructure Byte Codeのタイプを指定する
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_SBCTYPE_NORMAL       = 0        // ���݂̂Ƃ���P��̃^�C�v�����Ȃ�
+    NNS_G3D_SBCTYPE_NORMAL       = 0        // 現在のところ単一のタイプしかない
 }
 NNSG3dSbcType;
 
@@ -659,14 +659,14 @@ NNSG3dSbcType;
 /*---------------------------------------------------------------------------*
     NNSG3dScalingRule
 
-    ���f���̃X�P�[�����O���[�����w�肷��
-    ���ԃt�@�C���t�H�[�}�b�g��<model_info>::scaling_rule�ɑΉ�����B
+    モデルのスケーリングルールを指定する
+    中間ファイルフォーマットの<model_info>::scaling_ruleに対応する。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_SCALINGRULE_STANDARD = 0,   // ��ʓI�ȍs��v�Z�ł悢
-    NNS_G3D_SCALINGRULE_MAYA     = 1,   // Maya��Segment Scaling Compensate�̍l�����s��Ȃ���΂Ȃ�Ȃ��m�[�h�����݂���
-    NNS_G3D_SCALINGRULE_SI3D     = 2    // Softimage3D�̃X�P�[�����O�v�Z���s��Ȃ��Ă͂Ȃ�Ȃ�
+    NNS_G3D_SCALINGRULE_STANDARD = 0,   // 一般的な行列計算でよい
+    NNS_G3D_SCALINGRULE_MAYA     = 1,   // MayaのSegment Scaling Compensateの考慮を行わなければならないノードが存在する
+    NNS_G3D_SCALINGRULE_SI3D     = 2    // Softimage3Dのスケーリング計算を行わなくてはならない
 }
 NNSG3dScalingRule;
 
@@ -674,15 +674,15 @@ NNSG3dScalingRule;
 /*---------------------------------------------------------------------------*
     NNSG3dTexMtxMode
 
-    �e�N�X�`���s��̌v�Z���@���w�肷��
-    ���ԃt�@�C���t�H�[�}�b�g��<model_info>::tex_mtx_mode�ɑΉ�����B
+    テクスチャ行列の計算方法を指定する
+    中間ファイルフォーマットの<model_info>::tex_mtx_modeに対応する。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_TEXMTXMODE_MAYA      = 0x00, // Maya�̌v�Z���@��K�p����B
-    NNS_G3D_TEXMTXMODE_SI3D      = 0x01, // Softimage3D�̌v�Z���@��K�p����B
-    NNS_G3D_TEXMTXMODE_3DSMAX    = 0x02, // 3dsMax�̌v�Z���@��K�p����B
-    NNS_G3D_TEXMTXMODE_XSI       = 0x03  // XSI�̌v�Z���@��K�p����B
+    NNS_G3D_TEXMTXMODE_MAYA      = 0x00, // Mayaの計算方法を適用する。
+    NNS_G3D_TEXMTXMODE_SI3D      = 0x01, // Softimage3Dの計算方法を適用する。
+    NNS_G3D_TEXMTXMODE_3DSMAX    = 0x02, // 3dsMaxの計算方法を適用する。
+    NNS_G3D_TEXMTXMODE_XSI       = 0x03  // XSIの計算方法を適用する。
 }
 NNSG3dTexMtxMode;
 
@@ -690,13 +690,13 @@ NNSG3dTexMtxMode;
 /*---------------------------------------------------------------------------*
    Name:        NNSG3dResMdlInfo
 
-   Description: ���f���̕t�����
+   Description: モデルの付随情報
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResMdlInfo_
 {
-    u8         sbcType;       // Structure Byte Code�^�C�v���ʎq(NNSG3dSbcType)
-    u8         scalingRule;   // �X�P�[�����O���[�����ʎq(NNSG3dScalingRule)
-    u8         texMtxMode;    // �e�N�X�`���s��v�Z�������ʎq(NNSG3dTexMtxMode)
+    u8         sbcType;       // Structure Byte Codeタイプ識別子(NNSG3dSbcType)
+    u8         scalingRule;   // スケーリングルール識別子(NNSG3dScalingRule)
+    u8         texMtxMode;    // テクスチャ行列計算方式識別子(NNSG3dTexMtxMode)
     u8         numNode;
 
     u8         numMat;
@@ -704,20 +704,20 @@ typedef struct NNSG3dResMdlInfo_
     u8         firstUnusedMtxStackID;
     u8         dummy_;
 
-    // ���_�ʒu���W�ɂ�����X�P�[���l�Ƃ��̋t��
-    // FX32_ONE�ȊO�������ꍇ�A�W�I���g���G���W���̃X�P�[���R�}���h�𗘗p����
-    // ���_�ʒu���W�����H����B�V�F�C�v�̃f�B�X�v���C���X�g���ōs�񂪃��X�g�A����Ă���
-    // (�G���x���[�v���p)�ꍇ�A���X�g�A��AposScale�ŃX�P�[�����O����悤�ɂȂ��Ă���
+    // 頂点位置座標にかけるスケール値とその逆数
+    // FX32_ONE以外だった場合、ジオメトリエンジンのスケールコマンドを利用して
+    // 頂点位置座標を加工する。シェイプのディスプレイリスト内で行列がリストアされている
+    // (エンベロープ利用)場合、リストア後、posScaleでスケーリングするようになっている
     fx32       posScale;      
     fx32       invPosScale;
 
-    u16        numVertex;    // IMD�t�@�C��<output_info>::vertex_size�̒l
-    u16        numPolygon;   // IMD�t�@�C��<output_info>::polygon_size�̒l
-    u16        numTriangle;  // IMD�t�@�C��<output_info>::triangle_size�̒l
-    u16        numQuad;      // IMD�t�@�C��<output_info>::quad_size�̒l
+    u16        numVertex;    // IMDファイル<output_info>::vertex_sizeの値
+    u16        numPolygon;   // IMDファイル<output_info>::polygon_sizeの値
+    u16        numTriangle;  // IMDファイル<output_info>::triangle_sizeの値
+    u16        numQuad;      // IMDファイル<output_info>::quad_sizeの値
 
-    fx16       boxX, boxY, boxZ; // boxPosScale�ł�����Ǝ��ۂ̍��W�ɂȂ�
-    fx16       boxW, boxH, boxD; // boxPosScale�ł�����Ǝ��ۂ̍��W�ɂȂ�
+    fx16       boxX, boxY, boxZ; // boxPosScaleでかけると実際の座標になる
+    fx16       boxW, boxH, boxD; // boxPosScaleでかけると実際の座標になる
 
     fx32       boxPosScale;
     fx32       boxInvPosScale;
@@ -728,19 +728,19 @@ NNSG3dResMdlInfo;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// �m�[�h
+// ノード
 //
 //
 
 /*---------------------------------------------------------------------------*
     NNSG3dResDictNodeData
 
-    �m�[�h�������f�[�^�B
-    NNSG3dResNodeData�ւ̃I�t�Z�b�g���������Ă���B
+    ノード名辞書データ。
+    NNSG3dResNodeDataへのオフセットを所持している。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictNodeData_
 {
-    u32       offset;       // &NNSG3dResNodeInfo����̃I�t�Z�b�g�f�[�^
+    u32       offset;       // &NNSG3dResNodeInfoからのオフセットデータ
 }
 NNSG3dResDictNodeData;
 
@@ -748,21 +748,21 @@ NNSG3dResDictNodeData;
 /*---------------------------------------------------------------------------*
     NNSG3dSRTFlag
 
-    �m�[�h��SRT�f�[�^�Ɋւ���t���O���
-    ���̃t���O�ɂ���Č㑱�ɂǂ̂悤�ȃf�[�^�����݂��邩�����肷��B
-    �f�[�^�ʂ̍팸�Ɨ]���Ȍv�Z�̏ȗ���ړI�Ƃ��Ă���B
+    ノードのSRTデータに関するフラグ情報
+    このフラグによって後続にどのようなデータが存在するかが決定する。
+    データ量の削減と余分な計算の省略を目的としている。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_SRTFLAG_TRANS_ZERO       = 0x0001, // Trans=(0,0,0), �ړ��f�[�^�̏o�͂��ȗ������B
-    NNS_G3D_SRTFLAG_ROT_ZERO         = 0x0002, // Rot=Identity, ��]�s��f�[�^�̏o�͂��ȗ������B
-    NNS_G3D_SRTFLAG_SCALE_ONE        = 0x0004, // Scale=(1,1,1), �X�P�[���f�[�^�̏o�͂��ȗ������B
-    NNS_G3D_SRTFLAG_PIVOT_EXIST      = 0x0008, // ��]�s�����+1��-1�̗v�f(Pivot)�����݂���B
-    NNS_G3D_SRTFLAG_IDXPIVOT_MASK    = 0x00f0, // +1,-1�v�f(Pivot)�̏ꏊ
-    NNS_G3D_SRTFLAG_PIVOT_MINUS      = 0x0100, // ON�Ȃ��Pivot��-1, OFF�Ȃ��+1
-    NNS_G3D_SRTFLAG_SIGN_REVC        = 0x0200, // �Z�b�g����Ă����C��B�̔��΂̕���
-    NNS_G3D_SRTFLAG_SIGN_REVD        = 0x0400, // �Z�b�g����Ă����D��A�̔��΂̕���
-    NNS_G3D_SRTFLAG_IDXMTXSTACK_MASK = 0xf800, // 0-30���ƃX�^�b�N�ɂ���,31���ƃX�^�b�N�ɂȂ�
+    NNS_G3D_SRTFLAG_TRANS_ZERO       = 0x0001, // Trans=(0,0,0), 移動データの出力が省略される。
+    NNS_G3D_SRTFLAG_ROT_ZERO         = 0x0002, // Rot=Identity, 回転行列データの出力が省略される。
+    NNS_G3D_SRTFLAG_SCALE_ONE        = 0x0004, // Scale=(1,1,1), スケールデータの出力が省略される。
+    NNS_G3D_SRTFLAG_PIVOT_EXIST      = 0x0008, // 回転行列内に+1か-1の要素(Pivot)が存在する。
+    NNS_G3D_SRTFLAG_IDXPIVOT_MASK    = 0x00f0, // +1,-1要素(Pivot)の場所
+    NNS_G3D_SRTFLAG_PIVOT_MINUS      = 0x0100, // ONならばPivotは-1, OFFならば+1
+    NNS_G3D_SRTFLAG_SIGN_REVC        = 0x0200, // セットされていればCはBの反対の符号
+    NNS_G3D_SRTFLAG_SIGN_REVD        = 0x0400, // セットされていればDはAの反対の符号
+    NNS_G3D_SRTFLAG_IDXMTXSTACK_MASK = 0xf800, // 0-30だとスタックにある,31だとスタックにない
 
     NNS_G3D_SRTFLAG_IDENTITY         = NNS_G3D_SRTFLAG_TRANS_ZERO |
                                        NNS_G3D_SRTFLAG_ROT_ZERO   |
@@ -777,7 +777,7 @@ NNSG3dSRTFlag;
 /*---------------------------------------------------------------------------*
     NNSG3dResNodeData
 
-    flag(NNSG3dSRTFlag)�̒l�ɂ���Č㑱�ɂǂ̂悤�ȃf�[�^�����邩���ω�����B
+    flag(NNSG3dSRTFlag)の値によって後続にどのようなデータがくるかが変化する。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResNodeData_
 {
@@ -802,7 +802,7 @@ NNSG3dResNodeData;
 /*---------------------------------------------------------------------------*
     NNSG3dResNodeInfo
 
-    �P�̃��f�������m�[�h�r�q�s���̏W���𑩂˂�\����
+    １つのモデルが持つノードＳＲＴ情報の集合を束ねる構造体
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResNodeInfo_
 {
@@ -815,24 +815,24 @@ NNSG3dResNodeInfo;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// ���f��
+// モデル
 //
 //
 
 /*---------------------------------------------------------------------------*
     NNSG3dResMdl
 
-    �P�̃��f���Ɋւ���i�e�N�X�`���ȊO�́j�S�Ă̏��𑩂˂�\���� 
+    １つのモデルに関する（テクスチャ以外の）全ての情報を束ねる構造体 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResMdl_
 {
-    u32                size;        // ���f���̃T�C�Y
-    u32                ofsSbc;      // &NNSG3dResMdl���N�_�Ƃ���Sbc�ւ̃I�t�Z�b�g
-    u32                ofsMat;      // &NNSG3dResMdl���N�_�Ƃ���NNSG3dResMat�ւ̃I�t�Z�b�g
-    u32                ofsShp;      // &NNSG3dResMdl���N�_�Ƃ���NNSG3dResShp�ւ̃I�t�Z�b�g
-    u32                ofsEvpMtx;   // &NNSG3dResMdl���N�_�Ƃ���NNSG3dEvpMtx�ւ̃I�t�Z�b�g
-    NNSG3dResMdlInfo   info;        // ���f�����(�Œ蒷)
-    NNSG3dResNodeInfo  nodeInfo;    // �m�[�h���
+    u32                size;        // モデルのサイズ
+    u32                ofsSbc;      // &NNSG3dResMdlを起点としたSbcへのオフセット
+    u32                ofsMat;      // &NNSG3dResMdlを起点としたNNSG3dResMatへのオフセット
+    u32                ofsShp;      // &NNSG3dResMdlを起点としたNNSG3dResShpへのオフセット
+    u32                ofsEvpMtx;   // &NNSG3dResMdlを起点としたNNSG3dEvpMtxへのオフセット
+    NNSG3dResMdlInfo   info;        // モデル情報(固定長)
+    NNSG3dResNodeInfo  nodeInfo;    // ノード情報
     // SBC
     // Materials
     // Shapes
@@ -844,14 +844,14 @@ NNSG3dResMdl;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// ���f���Z�b�g
+// モデルセット
 //
 //
 
 /*---------------------------------------------------------------------------*
     NNSG3dResDictMdlSetData
 
-    �X�̃��f���ւ̃I�t�Z�b�g(&NNSG3dResMdlSet���N�_)���i�[���Ă���
+    個々のモデルへのオフセット(&NNSG3dResMdlSetを起点)を格納している
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictMdlSetData_
 {
@@ -863,7 +863,7 @@ NNSG3dResDictMdlSetData;
 /*---------------------------------------------------------------------------*
     NNSG3dResMdlSet
 
-    ���f���Z�b�g�u���b�N�̍\���́B�f�[�^�u���b�N�w�b�_���܂ލ\���̂ł��邱�Ƃɒ���
+    モデルセットブロックの構造体。データブロックヘッダを含む構造体であることに注意
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResMdlSet_
 {
@@ -883,7 +883,7 @@ NNSG3dResMdlSet;
 //
 
 /*---------------------------------------------------------------------------*
-    SBC���߃Z�b�g
+    SBC命令セット
 
  *---------------------------------------------------------------------------*/
 #define NNS_G3D_SBC_NOP           0x00     // NOP
@@ -933,21 +933,21 @@ NNSG3dSbcNodeDescFlag;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// �A�j���[�V����
+// アニメーション
 //
 //
 
 //
 // REQUIREMENT:
-// �A�j���[�V�����t�@�C���̃u���b�N�͂P�ŁANNSG3dResAnmSet����f�B�N�V���i������A
-// NNSG3dResDictAnmSetData��ʂ���NNSG3dResAnmHeader��擪�Ɏ��e�A�j���[�V������
-// �\���̂ɒB���邱�Ƃ��ł��Ȃ��Ă͂Ȃ�Ȃ��B
+// アニメーションファイルのブロックは１つで、NNSG3dResAnmSetからディクショナリから、
+// NNSG3dResDictAnmSetDataを通してNNSG3dResAnmHeaderを先頭に持つ各アニメーションの
+// 構造体に達することができなくてはならない。
 //
 
 /*---------------------------------------------------------------------------*
     NNSG3dResAnmHeader
     
-    �e�A�j���[�V�������\�[�X�̐擪�ɂ���w�b�_���
+    各アニメーションリソースの先頭にくるヘッダ情報
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResAnmHeader_
 {
@@ -968,7 +968,7 @@ NNSG3dResAnmHeader;
 /*---------------------------------------------------------------------------*
     NNSG3dResAnmCommon
 
-    �S�ẴA�j���[�V�����̓w�b�_��numFrame�������Ȃ��Ă͂Ȃ�Ȃ��B
+    全てのアニメーションはヘッダとnumFrameを持たなくてはならない。
  *---------------------------------------------------------------------------*/
 typedef struct
 {
@@ -982,11 +982,11 @@ NNSG3dResAnmCommon;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictAnmSetData
 
-    (u8*)&NNSG3dResAnmSet+offset�ŌX�̃A�j���[�V�����ɒB���邱�Ƃ��ł���B
+    (u8*)&NNSG3dResAnmSet+offsetで個々のアニメーションに達することができる。
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-    u32 offset;                      // �X�̃A�j���[�V�����ɒB���邽�߂̃I�t�Z�b�g���i�[����Ă���B
+    u32 offset;                      // 個々のアニメーションに達するためのオフセットが格納されている。
 }
 NNSG3dResDictAnmSetData;
 
@@ -994,12 +994,12 @@ NNSG3dResDictAnmSetData;
 /*---------------------------------------------------------------------------*
     NNSG3dResAnmSet
 
-    �A�j���[�V�����̏W���𑩂˂邽�߂̍\���́B
+    アニメーションの集合を束ねるための構造体。
  *---------------------------------------------------------------------------*/
 typedef struct
 {
     NNSG3dResDataBlockHeader header;
-    NNSG3dResDict            dict;   // �t�@�C����->�eAnmSetData
+    NNSG3dResDict            dict;   // ファイル名->各AnmSetData
 }
 NNSG3dResAnmSet;
 
@@ -1008,14 +1008,14 @@ NNSG3dResAnmSet;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// �r�W�r���e�B�A�j���[�V����
+// ビジビリティアニメーション
 //
 //
 
 /*---------------------------------------------------------------------------*
     NNSG3dResVisAnm
 
-    �r�W�r���e�B�A�j���[�V����1���̃f�[�^�𑩂˂�\����
+    ビジビリティアニメーション1つ分のデータを束ねる構造体
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResVisAnm_
 {
@@ -1032,18 +1032,18 @@ NNSG3dResVisAnm;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictVisAnmSetData
 
-    �X�̃r�W�r���e�B�A�j���[�V����(NNSG3dResVisAnm)�̃f�[�^�ւ̃I�t�Z�b�g���i�[����Ă���B
-    &NNSG3dResVisAnmSet���N�_�Ƃ���B
+    個々のビジビリティアニメーション(NNSG3dResVisAnm)のデータへのオフセットが格納されている。
+    &NNSG3dResVisAnmSetを起点とする。
  *---------------------------------------------------------------------------*/
 typedef NNSG3dResDictAnmSetData NNSG3dResDictVisAnmSetData;
 
 /*---------------------------------------------------------------------------*
     NNSG3dResVisAnmSet
 
-    �r�W�r���e�B�A�j���[�V�����̃Z�b�g�𑩂˂�\����
-    ����ɂ�NNSG3dResVisAnm������ł���B
-    ������NNSG3dResDictVisAnmSetData�o�R��NNSG3dResVisAnm���Q�Ƃ��鎫��
-    kind==NNS_G3D_SIGNATURE_NSBVA�łȂ��Ă͂Ȃ�Ȃ��B
+    ビジビリティアニメーションのセットを束ねる構造体
+    後方にはNNSG3dResVisAnmが並んでいる。
+    辞書はNNSG3dResDictVisAnmSetData経由でNNSG3dResVisAnmを参照する辞書
+    kind==NNS_G3D_SIGNATURE_NSBVAでなくてはならない。
  *---------------------------------------------------------------------------*/
 typedef NNSG3dResAnmSet NNSG3dResVisAnmSet;
 
@@ -1051,23 +1051,23 @@ typedef NNSG3dResAnmSet NNSG3dResVisAnmSet;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// �}�e���A���J���[�A�j���[�V����
+// マテリアルカラーアニメーション
 //
 //
 
 /*---------------------------------------------------------------------------*
     NNSG3dMatCElem
 
-    NNSG3dResDictMatCAnmData�̊e�f�[�^�����o�̒l
-    NNS_G3D_MATCANM_ELEM_CONST���Z�b�g����Ă���΁A����16bit�͒萔�J���[�l�A
-    �Z�b�g����Ă��Ȃ���΁A�J���[�f�[�^��ւ̃I�t�Z�b�g�A�ƂȂ�B
+    NNSG3dResDictMatCAnmDataの各データメンバの値
+    NNS_G3D_MATCANM_ELEM_CONSTがセットされていれば、下位16bitは定数カラー値、
+    セットされていなければ、カラーデータ列へのオフセット、となる。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_MATCANM_ELEM_CONST                 = 0x20000000, // �f�[�^���A�j���[�V�������Ȃ��ꍇ��ON
-    NNS_G3D_MATCANM_ELEM_STEP_1                = 0x00000000, // �f�[�^�����t���[������Ƃ�
-    NNS_G3D_MATCANM_ELEM_STEP_2                = 0x40000000, // �f�[�^��2�t���[�����ɂ���Ƃ�
-    NNS_G3D_MATCANM_ELEM_STEP_4                = 0x80000000, // �f�[�^��4�t���[�����ɂ���Ƃ�
+    NNS_G3D_MATCANM_ELEM_CONST                 = 0x20000000, // データがアニメーションしない場合にON
+    NNS_G3D_MATCANM_ELEM_STEP_1                = 0x00000000, // データが毎フレームあるとき
+    NNS_G3D_MATCANM_ELEM_STEP_2                = 0x40000000, // データが2フレーム毎にあるとき
+    NNS_G3D_MATCANM_ELEM_STEP_4                = 0x80000000, // データが4フレーム毎にあるとき
 
     NNS_G3D_MATCANM_ELEM_STEP_MASK             = 0xc0000000,
     NNS_G3D_MATCANM_ELEM_LAST_INTERP_MASK      = 0x1fff0000,
@@ -1082,7 +1082,7 @@ NNSG3dMatCElem;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictMatCAnmData
 
-    �}�e���A���J���[�A�j���[�V�����̊e�v�f�ɂ��Ă̏��
+    マテリアルカラーアニメーションの各要素についての情報
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictMatCAnmData_
 {
@@ -1101,12 +1101,12 @@ NNSG3dResDictMatCAnmData;
 /*---------------------------------------------------------------------------*
     NNSG3dMatCAnmOption
 
-    �}�e���A���J���[�A�j���[�V�����̃I�v�V����(���ԃt�@�C���Ŏw��)
+    マテリアルカラーアニメーションのオプション(中間ファイルで指定)
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_MATCANM_OPTION_INTERPOLATION              = 0x0001, // <mat_color_info>::interpolation�ɑΉ�
-    NNS_G3D_MATCANM_OPTION_END_TO_START_INTERPOLATION = 0x0002  // <mat_color_info>::interp_end_to_start�ɑΉ�
+    NNS_G3D_MATCANM_OPTION_INTERPOLATION              = 0x0001, // <mat_color_info>::interpolationに対応
+    NNS_G3D_MATCANM_OPTION_END_TO_START_INTERPOLATION = 0x0002  // <mat_color_info>::interp_end_to_startに対応
 }
 NNSG3dMatCAnmOption;
 
@@ -1114,7 +1114,7 @@ NNSG3dMatCAnmOption;
 /*---------------------------------------------------------------------------*
     NNSG3dResMatCAnm
 
-    �}�e���A���J���[�A�j���[�V����1���̃f�[�^�𑩂˂�\����
+    マテリアルカラーアニメーション1つ分のデータを束ねる構造体
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResMatCAnm_
 {
@@ -1129,8 +1129,8 @@ NNSG3dResMatCAnm;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictMatCAnmSetData
 
-    �X�̃}�e���A���J���[�A�j���[�V�����̃f�[�^�ւ̃I�t�Z�b�g���i�[����Ă���B
-    &NNSG3dResMatCAnmSet���N�_�Ƃ���B
+    個々のマテリアルカラーアニメーションのデータへのオフセットが格納されている。
+    &NNSG3dResMatCAnmSetを起点とする。
  *---------------------------------------------------------------------------*/
 typedef NNSG3dResDictAnmSetData NNSG3dResDictMatCAnmSetData;
 
@@ -1138,10 +1138,10 @@ typedef NNSG3dResDictAnmSetData NNSG3dResDictMatCAnmSetData;
 /*---------------------------------------------------------------------------*
     NNSG3dResMatCAnmSet
 
-    �}�e���A���J���[�A�j���[�V�����̃Z�b�g�𑩂˂�\����
-    ����ɂ�NNSG3dResMatCAnm������ł���B
-    ������NNSG3dResDictMatCAnmSetData�o�R��NNSG3dResMatCAnm���Q�Ƃ��鎫��
-    kind = NNS_G3D_DATABLK_MATC_ANM�łȂ��Ă͂Ȃ�Ȃ��B
+    マテリアルカラーアニメーションのセットを束ねる構造体
+    後方にはNNSG3dResMatCAnmが並んでいる。
+    辞書はNNSG3dResDictMatCAnmSetData経由でNNSG3dResMatCAnmを参照する辞書
+    kind = NNS_G3D_DATABLK_MATC_ANMでなくてはならない。
  *---------------------------------------------------------------------------*/
 typedef NNSG3dResAnmSet NNSG3dResMatCAnmSet;
 
@@ -1149,7 +1149,7 @@ typedef NNSG3dResAnmSet NNSG3dResMatCAnmSet;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// �e�N�X�`���p�^�[���A�j���[�V����
+// テクスチャパターンアニメーション
 //
 //
 
@@ -1157,10 +1157,10 @@ typedef NNSG3dResAnmSet NNSG3dResMatCAnmSet;
 /*---------------------------------------------------------------------------*
     NNSG3dResTexPatAnmFV
 
-    �t���[��->(�e�N�X�`��, �p���b�g)�f�[�^�ł��B
-    ���̃f�[�^�̕��т��e�N�X�`���p�^���A�j���[�V�������\�����܂��B
-    idxFrame����e�N�X�`����idTex��,�p���b�g��idPltt�ɐ؂�ւ��A
-    �Ƃ����Ӗ��ɂȂ�܂��B
+    フレーム->(テクスチャ, パレット)データです。
+    このデータの並びがテクスチャパタンアニメーションを構成します。
+    idxFrameからテクスチャはidTexに,パレットはidPlttに切り替わる、
+    という意味になります。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResTexPatAnmFV_
 {
@@ -1174,11 +1174,11 @@ NNSG3dResTexPatAnmFV;
 /*---------------------------------------------------------------------------*
     NNSG3dTexPatAnmOption
 
-    �e�N�X�`���p�^�[���A�j���[�V�����̃I�v�V�����ł��B
+    テクスチャパターンアニメーションのオプションです。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_TEXPATANM_OPTION_NOPLTT = 0x0001    // �p���b�g�̓A�j���[�V�������Ȃ��ꍇ��ON
+    NNS_G3D_TEXPATANM_OPTION_NOPLTT = 0x0001    // パレットはアニメーションしない場合にON
 }
 NNSG3dTexPatAnmOption;
 
@@ -1186,14 +1186,14 @@ NNSG3dTexPatAnmOption;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictTexPatAnmData
 
-    �e�}�e���A�����Ɏ��e�N�X�`���p�^�[���A�j���[�V�����̃f�[�^�ł��B
+    各マテリアル毎に持つテクスチャパターンアニメーションのデータです。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictTexPatAnmData_
 {
-    u16  numFV;           // NNSG3dResTexPatAnmFV�̐�
-    u16  flag;            // NNSG3dTexPatAnmOption (���݂͎g�p����Ă��܂���)
-    fx16 ratioDataFrame;  // numFV / numFrame�ł��B�f�[�^�T���p�̃q���g�ł��B
-    u16  offset;          // &NNSG3dResTexPatAnm���N�_�Ƃ���FV�f�[�^�ւ̃I�t�Z�b�g
+    u16  numFV;           // NNSG3dResTexPatAnmFVの数
+    u16  flag;            // NNSG3dTexPatAnmOption (現在は使用されていません)
+    fx16 ratioDataFrame;  // numFV / numFrameです。データ探索用のヒントです。
+    u16  offset;          // &NNSG3dResTexPatAnmを起点としたFVデータへのオフセット
 }
 NNSG3dResDictTexPatAnmData;
 
@@ -1201,20 +1201,20 @@ NNSG3dResDictTexPatAnmData;
 /*---------------------------------------------------------------------------*
     NNSG3dResTexPatAnm
 
-    �e�N�X�`���p�^�[���A�j���[�V����1���̃f�[�^�𑩂˂�\����
+    テクスチャパターンアニメーション1つ分のデータを束ねる構造体
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResTexPatAnm_
 {
     NNSG3dResAnmHeader anmHeader;
     u16                numFrame;
-    u8                 numTex;       // �g�p�e�N�X�`���̐�
-    u8                 numPltt;      // �g�p�p���b�g�̐�
-    u16                ofsTexName;   // �e�N�X�`�����z��ւ̃I�t�Z�b�g(NNSG3dResName��numTex����ł���)
-    u16                ofsPlttName;  // �p���b�g���z��ւ̃I�t�Z�b�g(NNSG3dResName��numPltt����ł���)
-    NNSG3dResDict      dict;         // �}�e���A��������NNSG3dResDictTexPatAnmData���Ђ�����
+    u8                 numTex;       // 使用テクスチャの数
+    u8                 numPltt;      // 使用パレットの数
+    u16                ofsTexName;   // テクスチャ名配列へのオフセット(NNSG3dResNameがnumTex個並んでいる)
+    u16                ofsPlttName;  // パレット名配列へのオフセット(NNSG3dResNameがnumPltt個並んでいる)
+    NNSG3dResDict      dict;         // マテリアル名からNNSG3dResDictTexPatAnmDataをひく辞書
     // Frame-Value data
-    // �e�N�X�`�����z��
-    // �p���b�g���z��
+    // テクスチャ名配列
+    // パレット名配列
 }
 NNSG3dResTexPatAnm;
 
@@ -1222,8 +1222,8 @@ NNSG3dResTexPatAnm;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictTexPatAnmSetData
 
-    �X�̃e�N�X�`���p�^�[���A�j���[�V�����̃f�[�^�ւ̃I�t�Z�b�g���i�[����Ă���B
-    &NNSG3dResTexPatAnmSet���N�_�Ƃ���B
+    個々のテクスチャパターンアニメーションのデータへのオフセットが格納されている。
+    &NNSG3dResTexPatAnmSetを起点とする。
  *---------------------------------------------------------------------------*/
 typedef NNSG3dResDictAnmSetData NNSG3dResDictTexPatAnmSetData;
 
@@ -1231,10 +1231,10 @@ typedef NNSG3dResDictAnmSetData NNSG3dResDictTexPatAnmSetData;
 /*---------------------------------------------------------------------------*
     NNSG3dResTexPatAnmSet
 
-    �e�N�X�`���p�^�[���A�j���[�V�����̃Z�b�g�𑩂˂�\����
-    ����ɂ�NNSG3dResTexPatAnm������ł���B
-    ������NNSG3dResDictTexPatAnmSetData�o�R��NNSG3dResTexPatAnm���Q�Ƃ��鎫��
-    kind = NNS_G3D_DATABLK_TEXPAT_ANM�łȂ��Ă͂Ȃ�Ȃ�
+    テクスチャパターンアニメーションのセットを束ねる構造体
+    後方にはNNSG3dResTexPatAnmが並んでいる。
+    辞書はNNSG3dResDictTexPatAnmSetData経由でNNSG3dResTexPatAnmを参照する辞書
+    kind = NNS_G3D_DATABLK_TEXPAT_ANMでなくてはならない
  *---------------------------------------------------------------------------*/
 typedef NNSG3dResAnmSet NNSG3dResTexPatAnmSet;
 
@@ -1242,22 +1242,22 @@ typedef NNSG3dResAnmSet NNSG3dResTexPatAnmSet;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// �e�N�X�`��SRT�A�j���[�V����
+// テクスチャSRTアニメーション
 //
 //
 
 /*---------------------------------------------------------------------------*
     NNSG3dTexSRTElem
 
-    �e�N�X�`��SRT�A�j���[�V�����̊e��t���O�B
+    テクスチャSRTアニメーションの各種フラグ。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_TEXSRTANM_ELEM_FX16   = 0x10000000, // �f�[�^��fx16�̃x�N�^�Ŏ��ꍇ��ON(rot�̂Ƃ��͏��OFF)
-    NNS_G3D_TEXSRTANM_ELEM_CONST  = 0x20000000, // �f�[�^���A�j���[�V�������Ȃ��ꍇ��ON
-    NNS_G3D_TEXSRTANM_ELEM_STEP_1 = 0x00000000, // �f�[�^�����t���[������Ƃ�
-    NNS_G3D_TEXSRTANM_ELEM_STEP_2 = 0x40000000, // �f�[�^��2�t���[�����ɂ���Ƃ�
-    NNS_G3D_TEXSRTANM_ELEM_STEP_4 = 0x80000000, // �f�[�^��4�t���[�����ɂ���Ƃ�
+    NNS_G3D_TEXSRTANM_ELEM_FX16   = 0x10000000, // データをfx16のベクタで持つ場合はON(rotのときは常にOFF)
+    NNS_G3D_TEXSRTANM_ELEM_CONST  = 0x20000000, // データがアニメーションしない場合にON
+    NNS_G3D_TEXSRTANM_ELEM_STEP_1 = 0x00000000, // データが毎フレームあるとき
+    NNS_G3D_TEXSRTANM_ELEM_STEP_2 = 0x40000000, // データが2フレーム毎にあるとき
+    NNS_G3D_TEXSRTANM_ELEM_STEP_4 = 0x80000000, // データが4フレーム毎にあるとき
 
     NNS_G3D_TEXSRTANM_ELEM_STEP_MASK         = 0xc0000000,
     NNS_G3D_TEXSRTANM_ELEM_LAST_INTERP_MASK  = 0x0000ffff,
@@ -1270,7 +1270,7 @@ NNSG3dTexSRTElem;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictTexSRTAnmData
 
-    �e�}�e���A�����̃e�N�X�`���r�q�s�A�j���[�V�����̏��
+    各マテリアル毎のテクスチャＳＲＴアニメーションの情報
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResDictTexSRTAnmData_
 {
@@ -1281,24 +1281,24 @@ typedef struct NNSG3dResDictTexSRTAnmData_
     // 31               0
     // offset/constantVal
     u32 scaleS;             // NNSG3dTexSRTElem
-    u32 scaleSEx;           // NNS_G3D_TEXSRTANM_ELEM_CONST�̂Ƃ��͒萔�l�A����ȊO�̏ꍇ�̓f�[�^��ւ̃I�t�Z�b�g
+    u32 scaleSEx;           // NNS_G3D_TEXSRTANM_ELEM_CONSTのときは定数値、それ以外の場合はデータ列へのオフセット
 
     u32 scaleT;             // NNSG3dTexSRTElem
-    u32 scaleTEx;           // NNS_G3D_TEXSRTANM_ELEM_CONST�̂Ƃ��͒萔�l�A����ȊO�̏ꍇ�̓f�[�^��ւ̃I�t�Z�b�g
+    u32 scaleTEx;           // NNS_G3D_TEXSRTANM_ELEM_CONSTのときは定数値、それ以外の場合はデータ列へのオフセット
 
     u32 rot;                // NNSG3dTexSRTElem
-    u32 rotEx;              // NNS_G3D_TEXSRTANM_ELEM_CONST�̂Ƃ��͒萔�l�A����ȊO�̏ꍇ�̓f�[�^��ւ̃I�t�Z�b�g
+    u32 rotEx;              // NNS_G3D_TEXSRTANM_ELEM_CONSTのときは定数値、それ以外の場合はデータ列へのオフセット
                             //
-                            // rot �� cos �l sin �l���y�A�ƂȂ��Ċi�[����Ă���
+                            // rot は cos 値 sin 値がペアとなって格納されている
                             // 31          15          0
                             // cos in fx16   sin in fx16
                             
                             
     u32 transS;             // NNSG3dTexSRTElem
-    u32 transSEx;           // NNS_G3D_TEXSRTANM_ELEM_CONST�̂Ƃ��͒萔�l�A����ȊO�̏ꍇ�̓f�[�^��ւ̃I�t�Z�b�g
+    u32 transSEx;           // NNS_G3D_TEXSRTANM_ELEM_CONSTのときは定数値、それ以外の場合はデータ列へのオフセット
 
     u32 transT;             // NNSG3dTexSRTElem
-    u32 transTEx;           // NNS_G3D_TEXSRTANM_ELEM_CONST�̂Ƃ��͒萔�l�A����ȊO�̏ꍇ�̓f�[�^��ւ̃I�t�Z�b�g
+    u32 transTEx;           // NNS_G3D_TEXSRTANM_ELEM_CONSTのときは定数値、それ以外の場合はデータ列へのオフセット
 }
 NNSG3dResDictTexSRTAnmData;
 
@@ -1306,12 +1306,12 @@ NNSG3dResDictTexSRTAnmData;
 /*---------------------------------------------------------------------------*
     NNSG3dTexSRTAnmOption
 
-    �e�N�X�`��SRT�A�j���[�V�����̃I�v�V����(���ԃt�@�C���Ŏw��)
+    テクスチャSRTアニメーションのオプション(中間ファイルで指定)
  *---------------------------------------------------------------------------*/
 typedef enum NNSG3dTexSRTAnmOption_
 {
-    NNS_G3D_TEXSRTANM_OPTION_INTERPOLATION              = 0x01, // <tex_srt_info>::interpolation�ɑΉ�
-    NNS_G3D_TEXSRTANM_OPTION_END_TO_START_INTERPOLATION = 0x02  // <tex_srt_info>::interp_end_to_start�ɑΉ�
+    NNS_G3D_TEXSRTANM_OPTION_INTERPOLATION              = 0x01, // <tex_srt_info>::interpolationに対応
+    NNS_G3D_TEXSRTANM_OPTION_END_TO_START_INTERPOLATION = 0x02  // <tex_srt_info>::interp_end_to_startに対応
 }
 NNSG3dTexSRTAnmOption;
 
@@ -1319,7 +1319,7 @@ NNSG3dTexSRTAnmOption;
 /*---------------------------------------------------------------------------*
     NNSG3dResTexSRTAnm
 
-    �e�N�X�`��SRT�A�j���[�V����1���̃f�[�^�𑩂˂�\����
+    テクスチャSRTアニメーション1つ分のデータを束ねる構造体
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResTexSRTAnm_
 {
@@ -1327,7 +1327,7 @@ typedef struct NNSG3dResTexSRTAnm_
     u16                numFrame;
     u8                 flag;             // NNSG3dTexSRTAnmOption
     u8                 texMtxMode;       // NNSG3dTexMtxMode
-    NNSG3dResDict      dict;             // �}�e���A����->NNSG3dResDictTexSRTAnmData�̎���
+    NNSG3dResDict      dict;             // マテリアル名->NNSG3dResDictTexSRTAnmDataの辞書
 }
 NNSG3dResTexSRTAnm;
 
@@ -1335,8 +1335,8 @@ NNSG3dResTexSRTAnm;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictTexSRTAnmSetData
 
-    �X�̃e�N�X�`���r�q�s�A�j���[�V�����̃f�[�^�ւ̃I�t�Z�b�g���i�[����Ă���B
-    &NNSG3dResTexSRTAnmSet���N�_�Ƃ���B
+    個々のテクスチャＳＲＴアニメーションのデータへのオフセットが格納されている。
+    &NNSG3dResTexSRTAnmSetを起点とする。
  *---------------------------------------------------------------------------*/
 typedef NNSG3dResDictAnmSetData NNSG3dResDictTexSRTAnmSetData;
 
@@ -1344,10 +1344,10 @@ typedef NNSG3dResDictAnmSetData NNSG3dResDictTexSRTAnmSetData;
 /*---------------------------------------------------------------------------*
     NNSG3dResTexSRTAnmSet
 
-    �e�N�X�`��SRT�A�j���[�V�����̃Z�b�g�𑩂˂�\����
-    ����ɂ�NNSG3dResTexSRTAnm������ł���B
-    ������NNSG3dResDictTexSRTAnmSetData�o�R��NNSG3dResTexSRTAnm���Q�Ƃ��鎫��
-    kind == NNS_G3D_SIGNATURE_NSBTA�łȂ��Ă͂Ȃ�Ȃ��B
+    テクスチャSRTアニメーションのセットを束ねる構造体
+    後方にはNNSG3dResTexSRTAnmが並んでいる。
+    辞書はNNSG3dResDictTexSRTAnmSetData経由でNNSG3dResTexSRTAnmを参照する辞書
+    kind == NNS_G3D_SIGNATURE_NSBTAでなくてはならない。
  *---------------------------------------------------------------------------*/
 typedef NNSG3dResAnmSet NNSG3dResTexSRTAnmSet;
 
@@ -1355,81 +1355,81 @@ typedef NNSG3dResAnmSet NNSG3dResTexSRTAnmSet;
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
-// �W���C���g�A�j���[�V����
+// ジョイントアニメーション
 //
 //
 
 /*---------------------------------------------------------------------------*
-    NNSG3dResJntAnmSRT�Ƃ��̒��Ԃ���
+    NNSG3dResJntAnmSRTとその仲間たち
 
-    �W���C���g�P��SRT�A�j���[�V���������L�q����
-    info�̂ǂ̃r�b�g��ON���ɂ���Ă��̌�̃��������C�A�E�g�����肷��B
-    �㑱�f�[�^��TRS�̏��Ԃɕ���ł���B
+    ジョイント１つのSRTアニメーション情報を記述する
+    infoのどのビットがONかによってこの後のメモリレイアウトが決定する。
+    後続データはTRSの順番に並んでいる。
     
     NNS_G3D_JNTANM_SRTINFO_IDENTITY
-        --> �ȍ~�̃f�[�^�͑��݂��Ȃ��B
+        --> 以降のデータは存在しない。
         NNS_G3D_JNTANM_SRTINFO_IDENTITY_T -- Trans = (0, 0, 0)
-        NNS_G3D_JNTANM_SRTINFO_BASE_T     -- ���f����Trans���Q��
-            --> Translation�̃f�[�^�͑��݂��Ȃ��B
-            NNS_G3D_JNTANM_SRTINFO_CONST_TX -- Trans��X������const
-                --> 1wd����Tx�f�[�^���擾 / otherwise NNSG3dJntAnmTInfo(2wd)
-            NNS_G3D_JNTANM_SRTINFO_CONST_TY -- Trans��Y������const
-                --> 1wd����Ty�f�[�^���擾 / otherwise NNSG3dJntAnmTInfo(2wd)
-            NNS_G3D_JNTANM_SRTINFO_CONST_TZ -- Trans��Z������const
-                --> 1wd����Tz�f�[�^���擾 / otherwise NNSG3dJntAnmTInfo(2wd)
+        NNS_G3D_JNTANM_SRTINFO_BASE_T     -- モデルのTransを参照
+            --> Translationのデータは存在しない。
+            NNS_G3D_JNTANM_SRTINFO_CONST_TX -- TransのX成分がconst
+                --> 1wd分のTxデータを取得 / otherwise NNSG3dJntAnmTInfo(2wd)
+            NNS_G3D_JNTANM_SRTINFO_CONST_TY -- TransのY成分がconst
+                --> 1wd分のTyデータを取得 / otherwise NNSG3dJntAnmTInfo(2wd)
+            NNS_G3D_JNTANM_SRTINFO_CONST_TZ -- TransのZ成分がconst
+                --> 1wd分のTzデータを取得 / otherwise NNSG3dJntAnmTInfo(2wd)
         NNS_G3D_JNTANM_SRTINFO_IDENTITY_R -- Rot = I
-        NNS_G3D_JNTANM_SRTINFO_BASE_R     -- ���f����Rot���Q��
-            --> Rotation�̃f�[�^�͑��݂��Ȃ�
-            NNS_G3D_JNTANM_SRTINFO_CONST_R -- Rot��const
-                --> 1wd����RIdx�ւ̃C���f�b�N�X�f�[�^ / otherwise NNSG3dJntAnmRInfo(2wd)
+        NNS_G3D_JNTANM_SRTINFO_BASE_R     -- モデルのRotを参照
+            --> Rotationのデータは存在しない
+            NNS_G3D_JNTANM_SRTINFO_CONST_R -- Rotがconst
+                --> 1wd分のRIdxへのインデックスデータ / otherwise NNSG3dJntAnmRInfo(2wd)
         NNS_G3D_JNTANM_SRTINFO_IDENTITY_S -- Scale = (1, 1, 1)
-        NNS_G3D_JNTANM_SRTINFO_BASE_S     -- ���f����Scale���Q��
-            NNS_G3D_JNTANM_SRTINFO_CONST_SX -- Scale��X������const
-                --> 2wd����Sx,InvSx�f�[�^���擾 / otherwise NNSG3dJntAnmSInfo(2wd)
-            NNS_G3D_JNTANM_SRTINFO_CONST_SY -- Scale��Y������const
-                --> 2wd����Sy,InvSy�f�[�^���擾 / otherwise NNSG3dJntAnmSInfo(2wd)
-            NNS_G3D_JNTANM_SRTINFO_CONST_SZ -- Scale��Z������const
-                --> 2wd����Sz,InvSz�f�[�^���擾 / otherwise NNSG3dJntAnmSInfo(2wd)
+        NNS_G3D_JNTANM_SRTINFO_BASE_S     -- モデルのScaleを参照
+            NNS_G3D_JNTANM_SRTINFO_CONST_SX -- ScaleのX成分がconst
+                --> 2wd分のSx,InvSxデータを取得 / otherwise NNSG3dJntAnmSInfo(2wd)
+            NNS_G3D_JNTANM_SRTINFO_CONST_SY -- ScaleのY成分がconst
+                --> 2wd分のSy,InvSyデータを取得 / otherwise NNSG3dJntAnmSInfo(2wd)
+            NNS_G3D_JNTANM_SRTINFO_CONST_SZ -- ScaleのZ成分がconst
+                --> 2wd分のSz,InvSzデータを取得 / otherwise NNSG3dJntAnmSInfo(2wd)
 
-    �ȉ��ł̓I�t�Z�b�g�́ASRT�f�[�^�̈悩��̃I�t�Z�b�g�ƂȂ�B
+    以下ではオフセットは、SRTデータ領域からのオフセットとなる。
     NNSG3dJntAnmTInfo
-        NNS_G3D_JNTANM_TINFO_FX16ARRAY�Ȃ�΁A
-        �I�t�Z�b�g�ŎQ�Ƃ���Ă���̂�fx16�^�̔z��ł���
+        NNS_G3D_JNTANM_TINFO_FX16ARRAYならば、
+        オフセットで参照されているのはfx16型の配列である
 
     NNSG3dJntAnmRInfo
-        �I�t�Z�b�g�ŎQ�Ƃ���Ă���̂�RotIdx�z��ł���B
-        RotIdx������f�[�^�ɃA�N�Z�X���邱�ƂɂȂ�B
+        オフセットで参照されているのはRotIdx配列である。
+        RotIdxから実データにアクセスすることになる。
 
     NNSG3dJntAnmSInfo
 
-    RotIdx�z��
-        16bit�̒l�̕��тŁA0x8000��ON�Ȃ��Rot3�z��(���k3x3�s��)�ւ̃C���f�b�N�X
-        OFF�Ȃ��Rot9�z��ւ̃C���f�b�N�X
+    RotIdx配列
+        16bitの値の並びで、0x8000がONならばRot3配列(圧縮3x3行列)へのインデックス
+        OFFならばRot9配列へのインデックス
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
     NNSG3dJntAnmSRTTag
 
-    SRT�f�[�^�̐������L�q����Ă���
+    SRTデータの性質が記述されている
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_JNTANM_SRTINFO_IDENTITY    = 0x00000001,    // SRT�ɉ����ύX���Ȃ��Ƃ�ON
-    NNS_G3D_JNTANM_SRTINFO_IDENTITY_T  = 0x00000002,    // Trans��(0,0,0)�̂܂܂̂Ƃ�ON
-    NNS_G3D_JNTANM_SRTINFO_BASE_T      = 0x00000004,    // Trans�Ƀ��f���̒l���g���Ƃ�ON
-    NNS_G3D_JNTANM_SRTINFO_CONST_TX    = 0x00000008,    // Tx���萔�̏ꍇON
-    NNS_G3D_JNTANM_SRTINFO_CONST_TY    = 0x00000010,    // Ty���萔�̏ꍇON
-    NNS_G3D_JNTANM_SRTINFO_CONST_TZ    = 0x00000020,    // Tz���萔�̏ꍇON
-    NNS_G3D_JNTANM_SRTINFO_IDENTITY_R  = 0x00000040,    // Rot���Ȃ��ꍇON
-    NNS_G3D_JNTANM_SRTINFO_BASE_R      = 0x00000080,    // Rot�Ƀ��f���̒l���g���Ƃ�ON
-    NNS_G3D_JNTANM_SRTINFO_CONST_R     = 0x00000100,    // Rot���萔�̏ꍇON
-    NNS_G3D_JNTANM_SRTINFO_IDENTITY_S  = 0x00000200,    // Scale��������Ȃ��ꍇON
-    NNS_G3D_JNTANM_SRTINFO_BASE_S      = 0x00000400,    // Scale�Ƀ��f���̒l���g���ꍇON
-    NNS_G3D_JNTANM_SRTINFO_CONST_SX    = 0x00000800,    // Sx���萔�̏ꍇON
-    NNS_G3D_JNTANM_SRTINFO_CONST_SY    = 0x00001000,    // Sy���萔�̏ꍇON
-    NNS_G3D_JNTANM_SRTINFO_CONST_SZ    = 0x00002000,    // Sz���萔�̏ꍇON
+    NNS_G3D_JNTANM_SRTINFO_IDENTITY    = 0x00000001,    // SRTに何も変更がないときON
+    NNS_G3D_JNTANM_SRTINFO_IDENTITY_T  = 0x00000002,    // Transが(0,0,0)のままのときON
+    NNS_G3D_JNTANM_SRTINFO_BASE_T      = 0x00000004,    // Transにモデルの値を使うときON
+    NNS_G3D_JNTANM_SRTINFO_CONST_TX    = 0x00000008,    // Txが定数の場合ON
+    NNS_G3D_JNTANM_SRTINFO_CONST_TY    = 0x00000010,    // Tyが定数の場合ON
+    NNS_G3D_JNTANM_SRTINFO_CONST_TZ    = 0x00000020,    // Tzが定数の場合ON
+    NNS_G3D_JNTANM_SRTINFO_IDENTITY_R  = 0x00000040,    // Rotがない場合ON
+    NNS_G3D_JNTANM_SRTINFO_BASE_R      = 0x00000080,    // Rotにモデルの値を使うときON
+    NNS_G3D_JNTANM_SRTINFO_CONST_R     = 0x00000100,    // Rotが定数の場合ON
+    NNS_G3D_JNTANM_SRTINFO_IDENTITY_S  = 0x00000200,    // Scaleがかからない場合ON
+    NNS_G3D_JNTANM_SRTINFO_BASE_S      = 0x00000400,    // Scaleにモデルの値を使う場合ON
+    NNS_G3D_JNTANM_SRTINFO_CONST_SX    = 0x00000800,    // Sxが定数の場合ON
+    NNS_G3D_JNTANM_SRTINFO_CONST_SY    = 0x00001000,    // Syが定数の場合ON
+    NNS_G3D_JNTANM_SRTINFO_CONST_SZ    = 0x00002000,    // Szが定数の場合ON
     
-    NNS_G3D_JNTANM_SRTINFO_NODE_MASK   = 0xff000000,    // �m�[�hID������B�S�Ẵm�[�h�Œ�`����Ă��Ȃ��Ă������悤�ɂ��Ă���
+    NNS_G3D_JNTANM_SRTINFO_NODE_MASK   = 0xff000000,    // ノードIDが入る。全てのノードで定義されていなくてもいいようにしておく
     NNS_G3D_JNTANM_SRTINFO_NODE_SHIFT  = 24
 }
 NNSG3dJntAnmSRTTag;
@@ -1438,14 +1438,14 @@ NNSG3dJntAnmSRTTag;
 /*---------------------------------------------------------------------------*
     NNSG3dJntAnmTInfo
 
-    Trans�f�[�^�ɂ��Ă̏��
+    Transデータについての情報
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_JNTANM_TINFO_STEP_1            = 0x00000000,    // �f�[�^�����t���[������Ƃ�
-    NNS_G3D_JNTANM_TINFO_STEP_2            = 0x40000000,    // �f�[�^��2�t���[�����ɂ���Ƃ�
-    NNS_G3D_JNTANM_TINFO_STEP_4            = 0x80000000,    // �f�[�^��4�t���[�����ɂ���Ƃ�
-    NNS_G3D_JNTANM_TINFO_FX16ARRAY         = 0x20000000,    // �A�j���[�V�����f�[�^��fx16�̔z��̏ꍇON
+    NNS_G3D_JNTANM_TINFO_STEP_1            = 0x00000000,    // データが毎フレームあるとき
+    NNS_G3D_JNTANM_TINFO_STEP_2            = 0x40000000,    // データが2フレーム毎にあるとき
+    NNS_G3D_JNTANM_TINFO_STEP_4            = 0x80000000,    // データが4フレーム毎にあるとき
+    NNS_G3D_JNTANM_TINFO_FX16ARRAY         = 0x20000000,    // アニメーションデータがfx16の配列の場合ON
 
     NNS_G3D_JNTANM_TINFO_LAST_INTERP_MASK  = 0x1fff0000,
     NNS_G3D_JNTANM_TINFO_STEP_MASK         = 0xc0000000,
@@ -1459,13 +1459,13 @@ NNSG3dJntAnmTInfo;
 /*---------------------------------------------------------------------------*
     NNSG3dJntAnmRInfo
 
-    ��]�f�[�^�ɂ��Ă̏��
+    回転データについての情報
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_JNTANM_RINFO_STEP_1            = 0x00000000,    // �f�[�^�����t���[������Ƃ�
-    NNS_G3D_JNTANM_RINFO_STEP_2            = 0x40000000,    // �f�[�^��2�t���[�����ɂ���Ƃ�
-    NNS_G3D_JNTANM_RINFO_STEP_4            = 0x80000000,    // �f�[�^��4�t���[�����ɂ���Ƃ�
+    NNS_G3D_JNTANM_RINFO_STEP_1            = 0x00000000,    // データが毎フレームあるとき
+    NNS_G3D_JNTANM_RINFO_STEP_2            = 0x40000000,    // データが2フレーム毎にあるとき
+    NNS_G3D_JNTANM_RINFO_STEP_4            = 0x80000000,    // データが4フレーム毎にあるとき
 
     NNS_G3D_JNTANM_RINFO_LAST_INTERP_MASK  = 0x1fff0000,
     NNS_G3D_JNTANM_RINFO_STEP_MASK         = 0xc0000000,
@@ -1479,21 +1479,21 @@ NNSG3dJntAnmRInfo;
 /*---------------------------------------------------------------------------*
     NNSG3dJntAnmPivotInfo
 
-    ���k���ꂽ��]�s��ɂ��Ă̏��
-    +1/-1�ɂȂ��Ă���v�f�̍s�E�����菜���ƁA2x2�s��ɂȂ��āA������
+    圧縮された回転行列についての情報
+    +1/-1になっている要素の行・列を取り除くと、2x2行列になって、それらを
     A B
     C D
-    �̂悤�ɖ��Â���BC=+B/-B D=+A/-A�ƂȂ�̂ŁA
+    のように名づける。C=+B/-B D=+A/-Aとなるので、
     NNS_G3D_JNTANM_PIVOTINFO_SIGN_REVC
     NNS_G3D_JNTANM_PIVOTINFO_SIGN_REVD
-    �ɕ����̏��������Ă����B
+    に符号の情報を持っておく。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_JNTANM_PIVOTINFO_IDXPIVOT_MASK = 0x000f,    // +1/-1�ɂȂ��Ă���v�f�̏ꏊ
-    NNS_G3D_JNTANM_PIVOTINFO_MINUS         = 0x0010,    // ON�Ȃ�-1/ OFF�Ȃ�+1
-    NNS_G3D_JNTANM_PIVOTINFO_SIGN_REVC     = 0x0020,    // C=-B�Ȃ�ON
-    NNS_G3D_JNTANM_PIVOTINFO_SIGN_REVD     = 0x0040,    // D=-A�Ȃ�ON
+    NNS_G3D_JNTANM_PIVOTINFO_IDXPIVOT_MASK = 0x000f,    // +1/-1になっている要素の場所
+    NNS_G3D_JNTANM_PIVOTINFO_MINUS         = 0x0010,    // ONなら-1/ OFFなら+1
+    NNS_G3D_JNTANM_PIVOTINFO_SIGN_REVC     = 0x0020,    // C=-BならON
+    NNS_G3D_JNTANM_PIVOTINFO_SIGN_REVD     = 0x0040,    // D=-AならON
 
     NNS_G3D_JNTANM_PIVOT_INFO_IDXPIVOT_SHIFT = 0
 }
@@ -1503,9 +1503,9 @@ NNSG3dJntAnmPivotInfo;
 /*---------------------------------------------------------------------------*
     NNSG3dJntAnmRIdx
 
-    ��]�s��f�[�^�ւ̃C���f�b�N�X
-    NNS_G3D_JNTANM_RIDX_PIVOT��ON�̂Ƃ��́Apivot���k�s��ւ̃C���f�b�N�X
-    OFF�̏ꍇ�́A�ʏ�̉�]�s��f�[�^�ւ̃C���f�b�N�X�ƂȂ�B
+    回転行列データへのインデックス
+    NNS_G3D_JNTANM_RIDX_PIVOTがONのときは、pivot圧縮行列へのインデックス
+    OFFの場合は、通常の回転行列データへのインデックスとなる。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
@@ -1523,10 +1523,10 @@ NNSG3dJntAnmRIdx;
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_JNTANM_SINFO_STEP_1            = 0x00000000,    // �f�[�^�����t���[������Ƃ�
-    NNS_G3D_JNTANM_SINFO_STEP_2            = 0x40000000,    // �f�[�^��2�t���[�����ɂ���Ƃ�
-    NNS_G3D_JNTANM_SINFO_STEP_4            = 0x80000000,    // �f�[�^��4�t���[�����ɂ���Ƃ�
-    NNS_G3D_JNTANM_SINFO_FX16ARRAY         = 0x20000000,    // �f�[�^�l��fx16�^�̂Ƃ�
+    NNS_G3D_JNTANM_SINFO_STEP_1            = 0x00000000,    // データが毎フレームあるとき
+    NNS_G3D_JNTANM_SINFO_STEP_2            = 0x40000000,    // データが2フレーム毎にあるとき
+    NNS_G3D_JNTANM_SINFO_STEP_4            = 0x80000000,    // データが4フレーム毎にあるとき
+    NNS_G3D_JNTANM_SINFO_FX16ARRAY         = 0x20000000,    // データ値がfx16型のとき
 
     NNS_G3D_JNTANM_SINFO_LAST_INTERP_MASK  = 0x1fff0000,
     NNS_G3D_JNTANM_SINFO_STEP_MASK         = 0xc0000000,
@@ -1544,7 +1544,7 @@ NNSG3dJntAnmSInfo;
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dResJntAnmSRTInfo_
 {
-    u32 info;    // NNSG3dJntAnmTInfo �� NNSG3dJntAnmRInfo �� NNSG3dJntAnmSInfo
+    u32 info;    // NNSG3dJntAnmTInfo か NNSG3dJntAnmRInfo か NNSG3dJntAnmSInfo
     u32 offset;
 }
 NNSG3dResJntAnmSRTInfo;
@@ -1565,7 +1565,7 @@ NNSG3dResJntAnmSRTTag;
 /*---------------------------------------------------------------------------*
     NNSG3dJntAnmOption
 
-    �W���C���g�A�j���[�V�����̃I�v�V����(���ԃt�@�C���Ŏw��)
+    ジョイントアニメーションのオプション(中間ファイルで指定)
  *---------------------------------------------------------------------------*/
 typedef enum
 {
@@ -1592,8 +1592,8 @@ NNSG3dResJntAnm;
 /*---------------------------------------------------------------------------*
     NNSG3dResDictJntAnmSetData
 
-    �X�̃W���C���g�A�j���[�V����(NNSG3dResJntAnm)�̃f�[�^�ւ̃I�t�Z�b�g���i�[����Ă���B
-    &NNSG3dResJntAnmSet���N�_�Ƃ���B
+    個々のジョイントアニメーション(NNSG3dResJntAnm)のデータへのオフセットが格納されている。
+    &NNSG3dResJntAnmSetを起点とする。
  *---------------------------------------------------------------------------*/
 typedef NNSG3dResDictAnmSetData NNSG3dResDictJntAnmSetData;
 
@@ -1601,10 +1601,10 @@ typedef NNSG3dResDictAnmSetData NNSG3dResDictJntAnmSetData;
 /*---------------------------------------------------------------------------*
     NNSG3dResJntAnmSet
 
-    �W���C���g�A�j���[�V�����̃Z�b�g�𑩂˂�\����
-    ����ɂ�NNSG3dResJntAnm������ł���B
-    ������NNSG3dResDictJntAnmSetData�o�R��NNSG3dResJntAnm���Q�Ƃ��鎫��
-    kind==NNS_G3D_SIGNATURE_NSBCA�łȂ��Ă͂Ȃ�Ȃ��B
+    ジョイントアニメーションのセットを束ねる構造体
+    後方にはNNSG3dResJntAnmが並んでいる。
+    辞書はNNSG3dResDictJntAnmSetData経由でNNSG3dResJntAnmを参照する辞書
+    kind==NNS_G3D_SIGNATURE_NSBCAでなくてはならない。
  *---------------------------------------------------------------------------*/
 typedef NNSG3dResAnmSet NNSG3dResJntAnmSet;
 

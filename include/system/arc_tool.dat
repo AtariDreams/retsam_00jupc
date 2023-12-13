@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	arc_tool.dat
- * @bfief	ƒA[ƒJƒCƒo—pƒe[ƒuƒ‹ƒf[ƒ^’è‹`
+ * @bfief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿å®šç¾©
  * @author	HisashiSogabe
  * @date	05.05.30
  */
@@ -13,218 +13,218 @@
 
 //============================================================================================
 /**
- *	file_kind‚Éw’è‚·‚édefine’è‹`
+ *	file_kindã«æŒ‡å®šã™ã‚‹defineå®šç¾©
  */
 //============================================================================================
 
 enum{
-	ARC_WAZA_SEQ=0,		///< ‹ZƒV[ƒPƒ“ƒX
-	ARC_SUB_SEQ,		///< ƒT[ƒoƒV[ƒPƒ“ƒX
-	ARC_PERSONAL,		///< ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹ƒf[ƒ^
-	ARC_GROW_TBL,		///< ƒ|ƒPƒ‚ƒ“¬’·ƒe[ƒuƒ‹
-	ARC_POKE_GRA,		///< ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN
-	ARC_POKE_HEIGHT,	///< ƒ|ƒPƒ‚ƒ“‚‚³î•ñ
-	ARC_TRB_GRA,		///< ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNi”w–Êj
-	ARC_BATT_BG,		///< í“¬”wŒiƒOƒ‰ƒtƒBƒbƒN
-	ARC_WAZA_EFF,		///< ‹ZƒGƒtƒFƒNƒg
-	ARC_WAZA_TBL,		///< ‹Zƒe[ƒuƒ‹
-	ARC_SCRIPT,			///< ƒ}ƒbƒvƒXƒNƒŠƒvƒg
-	ARC_SCRIPT_MSG,		///< ƒ}ƒbƒvƒƒbƒZ[ƒW
-	ARC_POKETCH_IMG,	///< ƒ|ƒPƒbƒ`‰æ‘œ
-	ARC_BAG_GRA,		///< ƒoƒbƒO‰æ–ÊƒOƒ‰ƒtƒBƒbƒN
-	ARC_FONT,			///< ƒtƒHƒ“ƒgƒOƒ‰ƒtƒBƒbƒN
-	ARC_ITEMDATA,		///< ƒAƒCƒeƒ€ƒf[ƒ^
-	ARC_ITEMICON,		///< ƒAƒCƒeƒ€ƒAƒCƒRƒ“
-	ARC_TMAP_GRA,		///< ƒ^ƒEƒ“ƒ}ƒbƒv2DƒOƒ‰ƒtƒBƒbƒN
-	ARC_BOX_GRA,		///< ƒ{ƒbƒNƒXƒOƒ‰ƒtƒBƒbƒN
-	ARC_POKEICON,		///< ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
-	ARC_PLIST_GRA,		///< ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg
-	ARC_WER_CHAR,		///< ‹ZƒGƒtƒFƒNƒgƒLƒƒƒ‰
-	ARC_WER_PLTT,		///< ‹ZƒGƒtƒFƒNƒgƒpƒŒƒbƒg
-	ARC_WER_CELL,		///< ‹ZƒGƒtƒFƒNƒgƒZƒ‹
-	ARC_WER_CELLANM,	///< ‹ZƒGƒtƒFƒNƒgƒZƒ‹ƒAƒjƒ
-	ARC_IMAGECLIP_GRA,	///< ƒCƒ[ƒWƒNƒŠƒbƒvƒOƒ‰ƒtƒBƒbƒN
-	ARC_MSG,			///< ƒƒbƒZ[ƒWƒf[ƒ^
-	ARC_BATT_OBJ,		///< í“¬OBJƒOƒ‰ƒtƒBƒbƒN
-	ARC_UG_RADAR_GRA,	///< ’YzƒŒ[ƒ_[‰æ–ÊƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_WAZA_PARTICLE,	///< ‹ZƒGƒtƒFƒNƒg—pƒp[ƒeƒBƒNƒ‹
-	ARC_BE_SEQ,			///< í“¬Œø‰ÊƒV[ƒPƒ“ƒX
-	ARC_NAMEIN_GRA,		///< –¼‘O“ü—Í‰æ–ÊƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_EVENTDATA,		///< ƒ][ƒ“–ˆƒCƒxƒ“ƒgƒf[ƒ^
-	ARC_WOTBL,			///< ‹ZŠo‚¦ƒe[ƒuƒ‹ƒf[ƒ^
-	ARC_EVO,			///< i‰»ƒe[ƒuƒ‹ƒf[ƒ^
-	ARC_FONTOAM,		///< OAMƒtƒHƒ“ƒg•`‰æƒVƒXƒeƒ€ƒZƒ‹ƒf[ƒ^
-	ARC_FIELD_BOARD,	///< ŠÅ”Â
-	ARC_D_ENCOUNT,		///< ƒ_ƒCƒAƒo[ƒWƒ‡ƒ“ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
-	ARC_WINFRAME,		///< ŠeíƒEƒBƒ“ƒhƒE‚ÌƒtƒŒ[ƒ€ƒOƒ‰ƒtƒBƒbƒN
-	ARC_PSTATUS_GRA,	///< ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–ÊƒOƒ‰ƒtƒBƒbƒN
-	ARC_3D_STRUCT,		///< 3D”z’uƒ‚ƒfƒ‹
-	ARC_MAP_MATRIX,		///< ƒ}ƒbƒvƒ}ƒgƒŠƒbƒNƒX
-	ARC_AREA_DATA,		///< ƒGƒŠƒAƒf[ƒ^
-	ARC_AREA_BUILD_MODEL,	///< ƒGƒŠƒA“àg—p”z’uƒ‚ƒfƒ‹
-	ARC_AREA_TEX_SET,		///< ƒGƒŠƒAƒeƒNƒXƒ`ƒƒƒZƒbƒg
-	ARC_CONTEST_BG,			///< ƒRƒ“ƒeƒXƒgBGƒOƒ‰ƒtƒBƒbƒN
-	ARC_CONTEST_OBJ,		///< ƒRƒ“ƒeƒXƒgOBJƒOƒ‰ƒtƒBƒbƒN
-	ARC_UGEFFECT_GRA,		///< ’n‰ºƒtƒF[ƒh—pOBJƒOƒ‰ƒtƒBƒbƒN
-	ARC_TITLE_PL,				///< ƒ^ƒCƒgƒ‹‰æ–ÊƒOƒ‰ƒtƒBƒbƒN
-	ARC_MMDL,				///< ƒGƒŠƒA•Ê“®ìƒ‚ƒfƒ‹ƒŠƒXƒg
-    ARC_UG_TRAP_GRA,        ///< ’Yzã©ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_TR_CASE_GRA,        ///< ƒgƒŒ[ƒi[ƒP[ƒXƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-    ARC_UG_FOSSIL_GRA,      ///< ’Yz‰»ÎƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-    ARC_NTAG_GRA,			///< –Ø‚ÌÀƒ^ƒO‰æ–ÊƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_TRADELIST_GRA,		///< ƒ|ƒPƒ‚ƒ“ŒğŠ·ƒŠƒXƒgƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-    ARC_UG_PARTS_GRA,  	    ///< ’Yz‰»Îƒp[ƒcƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-    ARC_OPENING_GRA,		///< ƒI[ƒvƒjƒ“ƒOƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-    ARC_TRDATA,				///< ƒGƒ“ƒJƒEƒ“ƒgƒgƒŒ[ƒi[ƒf[ƒ^
-    ARC_TRPOKE,				///< ƒGƒ“ƒJƒEƒ“ƒgƒgƒŒ[ƒi[‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-    ARC_TRTBL,				///< ƒGƒ“ƒJƒEƒ“ƒgƒgƒŒ[ƒi[ƒƒbƒZ[ƒWƒe[ƒuƒ‹ƒf[ƒ^
-	ARC_TRF_GRA,			///< ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNi³–Êj
-	ARC_PARTICLE_DATA,		///< ƒAƒvƒŠ—pƒp[ƒeƒBƒNƒ‹
-    ARC_SHOP_GRA,			///< ƒVƒ‡ƒbƒv‰æ–ÊƒOƒ‰ƒtƒBƒbƒN
-    ARC_WAZA_EFF_SUB,		///< ó‘ÔˆÙí‚È‚Ç‚ÌƒGƒtƒFƒNƒg—p
-    ARC_UG_ANIM_GRA,	    ///< ’n‰º‰»ÎŒ@‚è‚ÌƒAƒjƒ
-    ARC_WEATHER_SYS_GRA,	///< “V‹CƒVƒXƒeƒ€ƒOƒ‰ƒtƒBƒbƒN
-	ARC_MENU_GRA,			///< ƒƒjƒ…[ƒOƒ‰ƒtƒBƒbƒN
-	ARC_FIELD_MAP_DATA,		///< ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒf[ƒ^
-	ARC_NUTSDATA,			///< –Ø‚ÌÀƒf[ƒ^
-	ARC_ZUKAN_GRA,			///< }ŠÓƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_POKEFOOT_GRA,		///< ƒ|ƒPƒ‚ƒ“‘«ÕƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_BM_TEX_SET,			///< ”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒƒZƒbƒg
-	ARC_BPLIST_GRA,			///< í“¬—pƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒOƒ‰ƒtƒBƒbƒN
-	ARC_CONFIG_GRA,			///< ƒRƒ“ƒtƒBƒO‰æ–Ê2DƒŠƒ\[ƒX
-	ARC_UNIONROOM_GRA,		///< ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒTƒu‰æ–Ê—pƒOƒ‰ƒtƒBƒbƒN
-	ARC_ZUKAN_DATA,			///< }ŠÓƒf[ƒ^
-	ARC_PMSI_GRAPHIC,		///< ŠÈˆÕ‰ï˜b“ü—Í‰æ–ÊƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_BBAG_GRA,			///< í“¬—pƒoƒbƒOƒOƒ‰ƒtƒBƒbƒN
-	ARC_OEKAKI_GRA,			///< ‚¨ŠG‚©‚«ƒ{[ƒhƒOƒ‰ƒtƒBƒbƒN
-	ARC_MAIL_GRA,			///< ƒ[ƒ‹‰æ–ÊƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_FNOTE_GRA,			///< –`Œ¯ƒm[ƒg‰æ–ÊƒOƒ‰ƒtƒBƒbƒN
-	ARC_MMODEL,				///< ƒtƒB[ƒ‹ƒhOBJ“®ìƒ‚ƒfƒ‹ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_EV_POKESELECT_GRA,	///< ƒ|ƒPƒ‚ƒ“ƒZƒŒƒNƒg‰æ–Ê
-	ARC_PORUTO_GRA,			///< ƒ|ƒ‹ƒgƒP[ƒX‰æ–ÊƒOƒ‰ƒtƒBƒbƒN
-	ARC_TOUCH_SUBWINDOW_GRA,///< ƒTƒu‰æ–Ê@G‚ê‚éƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN
-	ARC_FLDCOMACT_GRA,		///< ƒtƒB[ƒ‹ƒhƒRƒ‚ƒ“ƒAƒNƒ^[
-	ARC_RECORD_GRA,			///< ƒŒƒR[ƒhƒR[ƒi[—p‰æ‘œƒf[ƒ^
-	ARC_PORUDEMO_GRA,		///< ƒ|ƒ‹ƒgƒfƒ‚ƒOƒ‰ƒtƒBƒbƒN
-	ARC_PORUACT_GRA,		///< ƒ|ƒ‹ƒgOAMƒOƒ‰ƒtƒBƒbƒN
-	ARC_WIFINOTE_GRA,       ///< WIFI‚Æ‚à‚¾‚¿è’ ƒOƒ‰ƒtƒBƒbƒN
-	ARC_CONTEST_DATA,		///< ƒRƒ“ƒeƒXƒg—pŠO•”ƒf[ƒ^
-	ARC_CUSTOM_BALL_GRA,	///< ƒJƒXƒ^ƒ€ƒ{[ƒ‹—p
-	ARC_WIFIP2PMATCH_GRA,       ///< WIFIP2Pƒ}ƒbƒ`ƒ“ƒOƒOƒ‰ƒtƒBƒbƒN
-	ARC_DEMO_TRADE_GRA,		///< ƒ|ƒPƒ‚ƒ“ŒğŠ·ƒfƒ‚ƒOƒ‰ƒtƒBƒbƒN
-	ARC_POKE_ANM,			///<ƒ|ƒPƒ‚ƒ“ƒAƒjƒ
-	ARC_MYSIGN_GRA,			///<©•ªƒTƒCƒ“ì¬‰æ–ÊƒOƒ‰ƒtƒBƒbƒN
-	ARC_MMODEL_LIST,		///<“®ìƒ‚ƒfƒ‹Š„‚èU‚èƒf[ƒ^
-	ARC_FIELD_CUTIN_GRA,	///<ƒtƒB[ƒ‹ƒhƒJƒbƒgƒCƒ“ƒOƒ‰ƒtƒBƒbƒN
-	ARC_FIELD_DEMO_CLI_GRA,	///<climaxƒfƒ‚ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_BALL_PARTICLE,		///< ƒ{[ƒ‹ƒGƒtƒFƒNƒg—pƒp[ƒeƒBƒNƒ‹
-	ARC_SAMPLE_PARTICLE,	///< ƒGƒtƒFƒNƒg—pƒp[ƒeƒBƒNƒ‹
-	ARC_DENDOU_PC_GRA,		///< “a“°“ü‚èPC‰æ–ÊƒOƒ‰ƒtƒBƒbƒN
-	ARC_WIFI_EARCH_PLACE,	///< WI-FI’n‹…‰æ–Ê‚Ì’nˆæƒf[ƒ^
-	ARC_TR_AI,				///< ƒgƒŒ[ƒi[AI
-	ARC_WORLDTRADE_GRA,		///< wifi¢ŠEŒğŠ·ƒOƒ‰ƒtƒBƒbƒN
-	ARC_DENDOU_DEMO,		///< “a“°“ü‚èƒfƒ‚ƒOƒ‰ƒtƒBƒbƒN
-	ARC_ENCDATA_EX,			///< “ÁêƒGƒ“ƒJƒEƒ“ƒgŠÖ˜A
-	ARC_FLDEFF,				///< ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgŠÖ˜A
-	ARC_VS_DEMO_GRA,		///< ’ÊM‘ÎíŠJnƒfƒ‚ƒOƒ‰ƒtƒBƒbƒN
-	ARC_POKE_ZUKAN,			///< ‘S‘}ŠÓƒiƒ“ƒo[‚©‚çƒVƒ“ƒIƒE}ŠÓƒiƒ“ƒo[‚ğˆø‚­ƒe[ƒuƒ‹
-	ARC_BM_ANM,				///< 3‚cƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^ƒAƒjƒ
-	ARC_BM_ANM_LIST,		///< 3‚cƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^ƒAƒjƒƒŠƒXƒg
-	ARC_ENCOUNTEFFECT,		///< ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
-	ARC_WAZAOSHIE_GRA,		///< ‹Z‹³‚¦/v‚¢o‚µ‰æ–ÊƒOƒ‰ƒtƒBƒbƒN
-	ARC_POKE_ANM_TBL,		///< ƒ|ƒPƒ‚ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
-	ARC_FIELD_TRADE_POKE,	///< ƒQ[ƒ€“àƒ|ƒPƒ‚ƒ“ŒğŠ·ƒf[ƒ^
-	ARC_MYSTERY_GRA,		///< ‚Ó‚µ‚¬‚È‚Å‚«‚²‚Æ—p‰æ‘œƒf[ƒ^
-	ARC_OTHER_POKE,			///< •¡”ƒtƒHƒ‹ƒ€‚ğ‚Âƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_EGGDEMO_GRA,		///< ‚½‚Ü‚²ƒfƒ‚
-	ARC_EGGDEMO_PARTICLE,	///< ‚½‚Ü‚²ƒfƒ‚
-	ARC_SHIP_DEMO,			///< ‘Dƒfƒ‚
-	ARC_OTHER_HEIGHT,		///< •¡”ƒtƒHƒ‹ƒ€‚ğ‚Âƒ|ƒPƒ‚ƒ“‚Ì‚‚³î•ñ
-	ARC_NUTMIXER_GRA,		///< –Ø‚ÌÀƒ~ƒLƒT[@‰æ‘œ
-	ARC_BTOWER_APP,			///< ƒoƒgƒ‹ƒ^ƒ[ƒAƒvƒŠ2DƒOƒ‰ƒtƒBƒbƒN
-	ARC_SHINKA_DEMO,		///< i‰»ƒfƒ‚ƒp[ƒeƒBƒNƒ‹
-	ARC_INTRO,				///< V‹KŠJn“±“ü•”
-	ARC_TV,					///< ƒeƒŒƒr”Ô‘gƒf[ƒ^
-	ARC_ENDING,				///< ƒGƒ“ƒfƒBƒ“ƒOƒfƒ‚ƒOƒ‰ƒtƒBƒbƒN
-	ARC_OP_DEMO,			///< ƒI[ƒvƒjƒ“ƒOƒfƒ‚
-	ARC_WIFI_EARTH,			///< WI-FI’n‹…‰æ–Ê
-	ARC_RANKING_GRA,		///< ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒO‰æ‘œ
-	ARC_PPARK_DATA,			///< ƒ|ƒPƒp[ƒN—p“¾“_ƒf[ƒ^‚È‚Ç
-	ARC_SYOUJYOU,			///< •\²ó
-	ARC_SLOT,				///< ƒ~ƒjƒQ[ƒ€@ƒXƒƒbƒg
-	ARC_BTD_TR,				///< ƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi[ƒf[ƒ^
-	ARC_BTD_PM,				///< ƒoƒgƒ‹ƒ^ƒ[ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	ARC_INTRO_TV,			///< V‹KŠJn“±“ü•”(TV)
-	ARC_TRTBL_OFS,			///< ƒgƒŒ[ƒi[ƒƒbƒZ[ƒWŒŸõ—pƒe[ƒuƒ‹
-	ARC_POKE_YOFS,			///< ƒ|ƒPƒ‚ƒ“‚‚³î•ñ
-	ARC_ZUKAN_ENC_DIAMOND,	///< ƒ_ƒCƒ„ƒGƒ“ƒJƒEƒ“ƒg}ŠÓƒf[ƒ^
-	ARC_ZUKAN_ENC_PEARL,	///< ƒp[ƒ‹ƒGƒ“ƒJƒEƒ“ƒg}ŠÓƒf[ƒ^
-	ARC_HIDEN_EFFECT,		///< ƒtƒB[ƒ‹ƒh”é“`‹ZƒGƒtƒFƒNƒgƒOƒ‰ƒtƒBƒbƒN
-	ARC_POKE_SHADOW,		///< ƒ|ƒPƒ‚ƒ“‰eƒTƒCƒY
-	ARC_P_ENCOUNT,			///< ƒp[ƒ‹ƒo[ƒWƒ‡ƒ“ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
-	ARC_POKE_SHADOW_OFX,	///< ƒ|ƒPƒ‚ƒ“‰eXƒIƒtƒZƒbƒg
-	ARC_SHIN_ZUKAN,			///< ƒVƒ“ƒIƒE}ŠÓƒiƒ“ƒo[‚©‚ç‘S‘}ŠÓƒiƒ“ƒo[‚ğæ“¾
+	ARC_WAZA_SEQ=0,		///< æŠ€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	ARC_SUB_SEQ,		///< ã‚µãƒ¼ãƒã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	ARC_PERSONAL,		///< ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿
+	ARC_GROW_TBL,		///< ãƒã‚±ãƒ¢ãƒ³æˆé•·ãƒ†ãƒ¼ãƒ–ãƒ«
+	ARC_POKE_GRA,		///< ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_POKE_HEIGHT,	///< ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±
+	ARC_TRB_GRA,		///< ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼ˆèƒŒé¢ï¼‰
+	ARC_BATT_BG,		///< æˆ¦é—˜èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_WAZA_EFF,		///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	ARC_WAZA_TBL,		///< æŠ€ãƒ†ãƒ¼ãƒ–ãƒ«
+	ARC_SCRIPT,			///< ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+	ARC_SCRIPT_MSG,		///< ãƒãƒƒãƒ—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	ARC_POKETCH_IMG,	///< ãƒã‚±ãƒƒãƒç”»åƒ
+	ARC_BAG_GRA,		///< ãƒãƒƒã‚°ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_FONT,			///< ãƒ•ã‚©ãƒ³ãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_ITEMDATA,		///< ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+	ARC_ITEMICON,		///< ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
+	ARC_TMAP_GRA,		///< ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—2Dã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_BOX_GRA,		///< ãƒœãƒƒã‚¯ã‚¹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_POKEICON,		///< ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
+	ARC_PLIST_GRA,		///< ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ
+	ARC_WER_CHAR,		///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚­ãƒ£ãƒ©
+	ARC_WER_PLTT,		///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
+	ARC_WER_CELL,		///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒ«
+	ARC_WER_CELLANM,	///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+	ARC_IMAGECLIP_GRA,	///< ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_MSG,			///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+	ARC_BATT_OBJ,		///< æˆ¦é—˜OBJã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_UG_RADAR_GRA,	///< ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_WAZA_PARTICLE,	///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
+	ARC_BE_SEQ,			///< æˆ¦é—˜åŠ¹æœã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	ARC_NAMEIN_GRA,		///< åå‰å…¥åŠ›ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_EVENTDATA,		///< ã‚¾ãƒ¼ãƒ³æ¯ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+	ARC_WOTBL,			///< æŠ€è¦šãˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ARC_EVO,			///< é€²åŒ–ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ARC_FONTOAM,		///< OAMãƒ•ã‚©ãƒ³ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ARC_FIELD_BOARD,	///< çœ‹æ¿
+	ARC_D_ENCOUNT,		///< ãƒ€ã‚¤ã‚¢ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+	ARC_WINFRAME,		///< å„ç¨®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_PSTATUS_GRA,	///< ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_3D_STRUCT,		///< 3Dé…ç½®ãƒ¢ãƒ‡ãƒ«
+	ARC_MAP_MATRIX,		///< ãƒãƒƒãƒ—ãƒãƒˆãƒªãƒƒã‚¯ã‚¹
+	ARC_AREA_DATA,		///< ã‚¨ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿
+	ARC_AREA_BUILD_MODEL,	///< ã‚¨ãƒªã‚¢å†…ä½¿ç”¨é…ç½®ãƒ¢ãƒ‡ãƒ«
+	ARC_AREA_TEX_SET,		///< ã‚¨ãƒªã‚¢ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆ
+	ARC_CONTEST_BG,			///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆBGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_CONTEST_OBJ,		///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆOBJã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_UGEFFECT_GRA,		///< åœ°ä¸‹ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨OBJã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_TITLE_PL,				///< ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_MMDL,				///< ã‚¨ãƒªã‚¢åˆ¥å‹•ä½œãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆ
+    ARC_UG_TRAP_GRA,        ///< ç‚­é‰±ç½ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_TR_CASE_GRA,        ///< ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚±ãƒ¼ã‚¹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+    ARC_UG_FOSSIL_GRA,      ///< ç‚­é‰±åŒ–çŸ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+    ARC_NTAG_GRA,			///< æœ¨ã®å®Ÿã‚¿ã‚°ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_TRADELIST_GRA,		///< ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒªã‚¹ãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+    ARC_UG_PARTS_GRA,  	    ///< ç‚­é‰±åŒ–çŸ³ãƒ‘ãƒ¼ãƒ„ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+    ARC_OPENING_GRA,		///< ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+    ARC_TRDATA,				///< ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+    ARC_TRPOKE,				///< ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+    ARC_TRTBL,				///< ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ARC_TRF_GRA,			///< ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼ˆæ­£é¢ï¼‰
+	ARC_PARTICLE_DATA,		///< ã‚¢ãƒ—ãƒªç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
+    ARC_SHOP_GRA,			///< ã‚·ãƒ§ãƒƒãƒ—ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+    ARC_WAZA_EFF_SUB,		///< çŠ¶æ…‹ç•°å¸¸ãªã©ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨
+    ARC_UG_ANIM_GRA,	    ///< åœ°ä¸‹åŒ–çŸ³æ˜ã‚Šã®ã‚¢ãƒ‹ãƒ¡
+    ARC_WEATHER_SYS_GRA,	///< å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_MENU_GRA,			///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_FIELD_MAP_DATA,		///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+	ARC_NUTSDATA,			///< æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
+	ARC_ZUKAN_GRA,			///< å›³é‘‘ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_POKEFOOT_GRA,		///< ãƒã‚±ãƒ¢ãƒ³è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_BM_TEX_SET,			///< é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆ
+	ARC_BPLIST_GRA,			///< æˆ¦é—˜ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_CONFIG_GRA,			///< ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢2Dãƒªã‚½ãƒ¼ã‚¹
+	ARC_UNIONROOM_GRA,		///< ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‚µãƒ–ç”»é¢ç”¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_ZUKAN_DATA,			///< å›³é‘‘ãƒ‡ãƒ¼ã‚¿
+	ARC_PMSI_GRAPHIC,		///< ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_BBAG_GRA,			///< æˆ¦é—˜ç”¨ãƒãƒƒã‚°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_OEKAKI_GRA,			///< ãŠçµµã‹ããƒœãƒ¼ãƒ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_MAIL_GRA,			///< ãƒ¡ãƒ¼ãƒ«ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_FNOTE_GRA,			///< å†’é™ºãƒãƒ¼ãƒˆç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_MMODEL,				///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‹•ä½œãƒ¢ãƒ‡ãƒ«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_EV_POKESELECT_GRA,	///< ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¬ã‚¯ãƒˆç”»é¢
+	ARC_PORUTO_GRA,			///< ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_TOUCH_SUBWINDOW_GRA,///< ã‚µãƒ–ç”»é¢ã€€è§¦ã‚Œã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_FLDCOMACT_GRA,		///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚³ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼
+	ARC_RECORD_GRA,			///< ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ç”¨ç”»åƒãƒ‡ãƒ¼ã‚¿
+	ARC_PORUDEMO_GRA,		///< ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_PORUACT_GRA,		///< ãƒãƒ«ãƒˆOAMã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_WIFINOTE_GRA,       ///< WIFIã¨ã‚‚ã ã¡æ‰‹å¸³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_CONTEST_DATA,		///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
+	ARC_CUSTOM_BALL_GRA,	///< ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ç”¨
+	ARC_WIFIP2PMATCH_GRA,       ///< WIFIP2Pãƒãƒƒãƒãƒ³ã‚°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_DEMO_TRADE_GRA,		///< ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_POKE_ANM,			///<ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡
+	ARC_MYSIGN_GRA,			///<è‡ªåˆ†ã‚µã‚¤ãƒ³ä½œæˆç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_MMODEL_LIST,		///<å‹•ä½œãƒ¢ãƒ‡ãƒ«å‰²ã‚ŠæŒ¯ã‚Šãƒ‡ãƒ¼ã‚¿
+	ARC_FIELD_CUTIN_GRA,	///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚«ãƒƒãƒˆã‚¤ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_FIELD_DEMO_CLI_GRA,	///<climaxãƒ‡ãƒ¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_BALL_PARTICLE,		///< ãƒœãƒ¼ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
+	ARC_SAMPLE_PARTICLE,	///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
+	ARC_DENDOU_PC_GRA,		///< æ®¿å ‚å…¥ã‚ŠPCç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_WIFI_EARCH_PLACE,	///< WI-FIåœ°çƒç”»é¢ã®åœ°åŸŸãƒ‡ãƒ¼ã‚¿
+	ARC_TR_AI,				///< ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼AI
+	ARC_WORLDTRADE_GRA,		///< wifiä¸–ç•Œäº¤æ›ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_DENDOU_DEMO,		///< æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_ENCDATA_EX,			///< ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£
+	ARC_FLDEFF,				///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£
+	ARC_VS_DEMO_GRA,		///< é€šä¿¡å¯¾æˆ¦é–‹å§‹ãƒ‡ãƒ¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_POKE_ZUKAN,			///< å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‚’å¼•ããƒ†ãƒ¼ãƒ–ãƒ«
+	ARC_BM_ANM,				///< 3ï¼¤ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‹ãƒ¡
+	ARC_BM_ANM_LIST,		///< 3ï¼¤ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‹ãƒ¡ãƒªã‚¹ãƒˆ
+	ARC_ENCOUNTEFFECT,		///< ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	ARC_WAZAOSHIE_GRA,		///< æŠ€æ•™ãˆ/æ€ã„å‡ºã—ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_POKE_ANM_TBL,		///< ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+	ARC_FIELD_TRADE_POKE,	///< ã‚²ãƒ¼ãƒ å†…ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¼ã‚¿
+	ARC_MYSTERY_GRA,		///< ãµã—ããªã§ãã”ã¨ç”¨ç”»åƒãƒ‡ãƒ¼ã‚¿
+	ARC_OTHER_POKE,			///< è¤‡æ•°ãƒ•ã‚©ãƒ«ãƒ ã‚’æŒã¤ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_EGGDEMO_GRA,		///< ãŸã¾ã”ãƒ‡ãƒ¢
+	ARC_EGGDEMO_PARTICLE,	///< ãŸã¾ã”ãƒ‡ãƒ¢
+	ARC_SHIP_DEMO,			///< èˆ¹ãƒ‡ãƒ¢
+	ARC_OTHER_HEIGHT,		///< è¤‡æ•°ãƒ•ã‚©ãƒ«ãƒ ã‚’æŒã¤ãƒã‚±ãƒ¢ãƒ³ã®é«˜ã•æƒ…å ±
+	ARC_NUTMIXER_GRA,		///< æœ¨ã®å®ŸãƒŸã‚­ã‚µãƒ¼ã€€ç”»åƒ
+	ARC_BTOWER_APP,			///< ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒª2Dã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_SHINKA_DEMO,		///< é€²åŒ–ãƒ‡ãƒ¢ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
+	ARC_INTRO,				///< æ–°è¦é–‹å§‹å°å…¥éƒ¨
+	ARC_TV,					///< ãƒ†ãƒ¬ãƒ“ç•ªçµ„ãƒ‡ãƒ¼ã‚¿
+	ARC_ENDING,				///< ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ‡ãƒ¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_OP_DEMO,			///< ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒ‡ãƒ¢
+	ARC_WIFI_EARTH,			///< WI-FIåœ°çƒç”»é¢
+	ARC_RANKING_GRA,		///< ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»åƒ
+	ARC_PPARK_DATA,			///< ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨å¾—ç‚¹ãƒ‡ãƒ¼ã‚¿ãªã©
+	ARC_SYOUJYOU,			///< è¡¨å½°çŠ¶
+	ARC_SLOT,				///< ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã€€ã‚¹ãƒ­ãƒƒãƒˆ
+	ARC_BTD_TR,				///< ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	ARC_BTD_PM,				///< ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ARC_INTRO_TV,			///< æ–°è¦é–‹å§‹å°å…¥éƒ¨(TV)
+	ARC_TRTBL_OFS,			///< ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ¤œç´¢ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
+	ARC_POKE_YOFS,			///< ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±
+	ARC_ZUKAN_ENC_DIAMOND,	///< ãƒ€ã‚¤ãƒ¤ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå›³é‘‘ãƒ‡ãƒ¼ã‚¿
+	ARC_ZUKAN_ENC_PEARL,	///< ãƒ‘ãƒ¼ãƒ«ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå›³é‘‘ãƒ‡ãƒ¼ã‚¿
+	ARC_HIDEN_EFFECT,		///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç§˜ä¼æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_POKE_SHADOW,		///< ãƒã‚±ãƒ¢ãƒ³å½±ã‚µã‚¤ã‚º
+	ARC_P_ENCOUNT,			///< ãƒ‘ãƒ¼ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+	ARC_POKE_SHADOW_OFX,	///< ãƒã‚±ãƒ¢ãƒ³å½±Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	ARC_SHIN_ZUKAN,			///< ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	
-	ARC_WIFI2DCHAR,			///< wifiã‚Åo‚·ƒLƒƒƒ‰ƒNƒ^[ƒOƒ‰ƒtƒBƒbƒN
-	ARC_PM_EDIT,			///< ƒ|ƒPƒ‚ƒ“•ÒWƒf[ƒ^
+	ARC_WIFI2DCHAR,			///< wifiä¸Šã§å‡ºã™ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_PM_EDIT,			///< ãƒã‚±ãƒ¢ãƒ³ç·¨é›†ãƒ‡ãƒ¼ã‚¿
 	
-	ARC_TEST_FILE,			///< ƒeƒXƒg—pƒtƒ@ƒCƒ‹ƒA[ƒJƒCƒu
+	ARC_TEST_FILE,			///< ãƒ†ã‚¹ãƒˆç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 
-	ARC_FRONTIER_SCRIPT,	///< ƒtƒƒ“ƒeƒBƒAƒXƒNƒŠƒvƒg
-	ARC_FRONTIER_BG,		///< ƒtƒƒ“ƒeƒBƒAƒOƒ‰ƒtƒBƒbƒNBG
-	ARC_FRONTIER_OBJ,		///< ƒtƒƒ“ƒeƒBƒAƒOƒ‰ƒtƒBƒbƒNOBJ
+	ARC_FRONTIER_SCRIPT,	///< ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+	ARC_FRONTIER_BG,		///< ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯BG
+	ARC_FRONTIER_OBJ,		///< ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯OBJ
 
-	ARC_CB_EDIT,			///< ƒIƒŠƒWƒiƒ‹ƒJƒXƒ^ƒ€ƒ{[ƒ‹
-	ARC_WIFIUNIONCHAR,		///< wifiã‚Åo‚·ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚ÌƒLƒƒƒ‰ƒNƒ^[ƒOƒ‰ƒtƒBƒbƒN
-	ARC_GURU2,				///< ‚®‚é‚®‚éŒğŠ·
-	ARC_FIELD_TRANS_ANIME,	///< ƒtƒB[ƒ‹ƒhVRAM“]‘—ƒAƒjƒ[ƒVƒ‡ƒ“—pƒf[ƒ^
+	ARC_CB_EDIT,			///< ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
+	ARC_WIFIUNIONCHAR,		///< wifiä¸Šã§å‡ºã™ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_GURU2,				///< ãã‚‹ãã‚‹äº¤æ›
+	ARC_FIELD_TRANS_ANIME,	///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰VRAMè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ãƒ‡ãƒ¼ã‚¿
 	
-	ARC_SHIP_DEMO_PL,		///< ‘Dƒfƒ‚ ƒKƒŠƒ“ƒR†
-	ARC_FRONTIER_PARTICLE,	///< ƒtƒƒ“ƒeƒBƒA—pƒp[ƒeƒBƒNƒ‹ƒf[ƒ^
-	ARC_BUCKET_GRAPHIC,		///< WiFiƒoƒPƒbƒgƒ~ƒjƒQ[ƒ€ƒOƒ‰ƒtƒBƒbƒN
-	ARC_CODE_GRA,			///< ƒR[ƒh“ü—Í—p
-	ARC_AREA_WIN_GRA,		///< ƒ}ƒbƒvƒEƒBƒ“ƒhƒE
-	ARC_PL_ENCOUNT,			///< ƒvƒ‰ƒ`ƒiƒo[ƒWƒ‡ƒ“ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
-	ARC_BR_GRA,				///< ƒoƒgƒ‹ƒŒƒR[ƒ_[
-	ARC_WORLDTIMER,			///< ¢ŠEŒvƒOƒ‰ƒtƒBƒbƒN
-	ARC_BALANCE_BALL_GRA,	///< ‹Êæ‚è
-	ARC_DP_POKE_GRA,		///< uƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNv(DPƒOƒ‰ƒtƒBƒbƒN)
-	ARC_DP_OTHER_POKE,		///< u•¡”ƒtƒHƒ‹ƒ€‚ğ‚Âƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^v(DPƒOƒ‰ƒtƒBƒbƒN)
-	ARC_DP_POKE_HEIGHT,		///< ƒ|ƒPƒ‚ƒ“‚‚³î•ñ(DPƒOƒ‰ƒtƒBƒbƒN)
-	ARC_DP_OTHER_HEIGHT,	///< •¡”ƒtƒHƒ‹ƒ€‚ğ‚Âƒ|ƒPƒ‚ƒ“‚Ì‚‚³î•ñ(DPƒOƒ‰ƒtƒBƒbƒN)
-	ARC_LOBBY_NEWS,			///< WiFiƒƒr[ƒjƒ…[ƒXƒOƒ‰ƒtƒBƒbƒN
+	ARC_SHIP_DEMO_PL,		///< èˆ¹ãƒ‡ãƒ¢ ã‚¬ãƒªãƒ³ã‚³å·
+	ARC_FRONTIER_PARTICLE,	///< ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ARC_BUCKET_GRAPHIC,		///< WiFiãƒã‚±ãƒƒãƒˆãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_CODE_GRA,			///< ã‚³ãƒ¼ãƒ‰å…¥åŠ›ç”¨
+	ARC_AREA_WIN_GRA,		///< ãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	ARC_PL_ENCOUNT,			///< ãƒ—ãƒ©ãƒãƒŠãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+	ARC_BR_GRA,				///< ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
+	ARC_WORLDTIMER,			///< ä¸–ç•Œæ™‚è¨ˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_BALANCE_BALL_GRA,	///< ç‰ä¹—ã‚Š
+	ARC_DP_POKE_GRA,		///< ã€Œãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã€(DPã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯)
+	ARC_DP_OTHER_POKE,		///< ã€Œè¤‡æ•°ãƒ•ã‚©ãƒ«ãƒ ã‚’æŒã¤ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã€(DPã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯)
+	ARC_DP_POKE_HEIGHT,		///< ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±(DPã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯)
+	ARC_DP_OTHER_HEIGHT,	///< è¤‡æ•°ãƒ•ã‚©ãƒ«ãƒ ã‚’æŒã¤ãƒã‚±ãƒ¢ãƒ³ã®é«˜ã•æƒ…å ±(DPã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯)
+	ARC_LOBBY_NEWS,			///< WiFiãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 	ARC_EMAIL_GRA,			///< E-Mail
-	ARC_WLMNGM_TOOL_GRA,	///< WiFiƒƒr[ƒ~ƒjƒQ[ƒ€ƒc[ƒ‹ƒOƒ‰ƒtƒBƒbƒN
-	ARC_DEMO_TENGAN_GRA,	///< ƒeƒ“ƒKƒ“ƒUƒ“ƒfƒ‚
-	ARC_BALLOON_GRA,		///< •—‘DŠ„‚è2DƒOƒ‰ƒtƒBƒbƒN
-	ARC_WFLBY_MAP,			///< WiFiƒƒr[ƒ}ƒbƒvƒf[ƒ^
-	ARC_WFLBY_GRA,			///< WiFiƒƒr[ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	ARC_FIELD_LIGHT,		///< ƒtƒB[ƒ‹ƒhƒ‰ƒCƒgƒe[ƒuƒ‹ƒf[ƒ^
-	ARC_UGROUNDEFF_DATA,	///< ’n‰º‚¦‚Á‚Ó‚¥‚­‚Æ
-	ARC_PL_BTD_TR,			///< ƒvƒ‰ƒ`ƒi—pƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi[ƒf[ƒ^
-	ARC_PL_BTD_PM,			///< ƒvƒ‰ƒ`ƒi—pƒoƒgƒ‹ƒ^ƒ[ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	ARC_PL_STAGE_PM,		///< ƒvƒ‰ƒ`ƒi—pƒoƒgƒ‹ƒXƒe[ƒWƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	ARC_TWORLD,				///< ‚â‚Ô‚ê‚½‚¹‚©‚¢
-	ARC_TWORLD_ATTR,		///< ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒAƒgƒŠƒrƒ…[ƒg
-	ARC_TWORLD_ETC,			///< ‚â‚Ô‚ê‚½‚¹‚©‚¢@‚»‚Ì‘¼ƒf[ƒ^
-	ARC_SCRATCH,			///< ƒXƒNƒ‰ƒbƒ`
-	ARC_POKELIST_PARTICLE,	///< ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒp[ƒeƒBƒNƒ‹ƒf[ƒ^
-	ARC_WIFILOBBY_OTHER_GRA,///< Wi-Fiƒƒr[‚RDƒtƒB[ƒ‹ƒhˆÈŠO‚ÌƒOƒ‰ƒtƒBƒbƒN
-	ARC_FOOTPRINT_GRA,		///< ‘«Õƒ{[ƒhƒOƒ‰ƒtƒBƒbƒN
-	ARC_ZUKAN_ENC_PLATINUM,	///< ƒvƒ‰ƒ`ƒiƒGƒ“ƒJƒEƒ“ƒg}ŠÓƒf[ƒ^
-	ARC_BUCKET_DATA,		///< ƒ^ƒ}“Š‚°ƒf[ƒ^
-	ARC_PL_ETC_PARTICLE,	///< FX‚ÈƒV[ƒ“‚Åg—p‚·‚éƒp[ƒeƒBƒNƒ‹ƒf[ƒ^
-	ARC_PMS_AIKOTOBA_DATA,	///< ‚ ‚¢‚±‚Æ‚ÎŠÈˆÕ‰ï˜b’PŒêƒe[ƒuƒ‹
-	ARC_2DUNIONOBJ_FRONT,	///< 2dƒ†ƒjƒIƒ“ƒIƒuƒWƒF	•\Œü‚«‚Ì‚İ‚Ìƒf[ƒ^
-	ARC_LIBRARY_TV,			///< }‘ŠÙTV
-	ARC_ZUKAN_DATA_GIRA,	///< }ŠÓƒf[ƒ^	ƒMƒ‰ƒeƒBƒiƒAƒiƒU[ƒtƒHƒ‹ƒ€—p
+	ARC_WLMNGM_TOOL_GRA,	///< WiFiãƒ­ãƒ“ãƒ¼ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ„ãƒ¼ãƒ«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_DEMO_TENGAN_GRA,	///< ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³ãƒ‡ãƒ¢
+	ARC_BALLOON_GRA,		///< é¢¨èˆ¹å‰²ã‚Š2Dã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_WFLBY_MAP,			///< WiFiãƒ­ãƒ“ãƒ¼ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+	ARC_WFLBY_GRA,			///< WiFiãƒ­ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	ARC_FIELD_LIGHT,		///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ©ã‚¤ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ARC_UGROUNDEFF_DATA,	///< åœ°ä¸‹ãˆã£ãµã‡ãã¨
+	ARC_PL_BTD_TR,			///< ãƒ—ãƒ©ãƒãƒŠç”¨ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	ARC_PL_BTD_PM,			///< ãƒ—ãƒ©ãƒãƒŠç”¨ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ARC_PL_STAGE_PM,		///< ãƒ—ãƒ©ãƒãƒŠç”¨ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ARC_TWORLD,				///< ã‚„ã¶ã‚ŒãŸã›ã‹ã„
+	ARC_TWORLD_ATTR,		///< ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+	ARC_TWORLD_ETC,			///< ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ãã®ä»–ãƒ‡ãƒ¼ã‚¿
+	ARC_SCRATCH,			///< ã‚¹ã‚¯ãƒ©ãƒƒãƒ
+	ARC_POKELIST_PARTICLE,	///< ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ARC_WIFILOBBY_OTHER_GRA,///< Wi-Fiãƒ­ãƒ“ãƒ¼ï¼“Dãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä»¥å¤–ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_FOOTPRINT_GRA,		///< è¶³è·¡ãƒœãƒ¼ãƒ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	ARC_ZUKAN_ENC_PLATINUM,	///< ãƒ—ãƒ©ãƒãƒŠã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå›³é‘‘ãƒ‡ãƒ¼ã‚¿
+	ARC_BUCKET_DATA,		///< ã‚¿ãƒæŠ•ã’ãƒ‡ãƒ¼ã‚¿
+	ARC_PL_ETC_PARTICLE,	///< è‰²ã€…ãªã‚·ãƒ¼ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ARC_PMS_AIKOTOBA_DATA,	///< ã‚ã„ã“ã¨ã°ç°¡æ˜“ä¼šè©±å˜èªãƒ†ãƒ¼ãƒ–ãƒ«
+	ARC_2DUNIONOBJ_FRONT,	///< 2dãƒ¦ãƒ‹ã‚ªãƒ³ã‚ªãƒ–ã‚¸ã‚§	è¡¨å‘ãã®ã¿ã®ãƒ‡ãƒ¼ã‚¿
+	ARC_LIBRARY_TV,			///< å›³æ›¸é¤¨TV
+	ARC_ZUKAN_DATA_GIRA,	///< å›³é‘‘ãƒ‡ãƒ¼ã‚¿	ã‚®ãƒ©ãƒ†ã‚£ãƒŠã‚¢ãƒŠã‚¶ãƒ¼ãƒ•ã‚©ãƒ«ãƒ ç”¨
 };
 
 #ifdef	__ARC_TOOL_DAT_TBL_
 
 //============================================================================================
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìƒe[ƒuƒ‹’è‹`
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ†ãƒ¼ãƒ–ãƒ«å®šç¾©
  */
 //============================================================================================
 // pokeplatinum_us.nds

@@ -12,7 +12,7 @@
 
   $Log: stream.h,v $
   Revision 1.4  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.3  2005/02/28 05:26:02  yosizaki
   do-indent.

@@ -1,6 +1,6 @@
 /**
  *	@file	b_tower_wifi.c
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[ WiFiŠÖ˜Aƒf[ƒ^ûW
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ WiFié–¢é€£ãƒ‡ãƒ¼ã‚¿åé›†
  *	@author	Miyuki Iwasawa
  *	@date	06.05.10
  *	
@@ -30,10 +30,10 @@
 void BtlTowerData_MakeUpdatePlayerData(SAVEDATA* sv,BTWR_SCORE_POKE_DATA mode,Dpw_Bt_Player* dat);
 
 /**
- *	@brief	’ÊM—p‚ÉƒAƒbƒvƒf[ƒg‚·‚éƒvƒŒƒCƒ„[ƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‚©‚çì¬‚·‚é
+ *	@brief	é€šä¿¡ç”¨ã«ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã™ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œæˆã™ã‚‹
  *
- *	@param	mode	0:ƒVƒ“ƒOƒ‹—p(ƒgƒŒ[ƒi[ƒ[ƒh—p)
- *					1:wifi—p(ƒ^ƒ[wifi—p)
+ *	@param	mode	0:ã‚·ãƒ³ã‚°ãƒ«ç”¨(ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ­ãƒ¼ãƒ‰ç”¨)
+ *					1:wifiç”¨(ã‚¿ãƒ¯ãƒ¼wifiç”¨)
  */
 void BtlTowerData_MakeUpdatePlayerData(SAVEDATA* sv,BTWR_SCORE_POKE_DATA mode,Dpw_Bt_Player* dat)
 {
@@ -62,30 +62,30 @@ void BtlTowerData_MakeUpdatePlayerData(SAVEDATA* sv,BTWR_SCORE_POKE_DATA mode,Dp
 	dat->trainerType = UnionView_GetTrainerInfo(
 			dat->gender,MyStatus_GetTrainerView(my),UNIONVIEW_TRTYPE);
  
-	//ƒƒbƒZ[ƒWƒf[ƒ^æ“¾
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿å–å¾—
 	for(i = 0;i < 3;i++){
 		MI_CpuCopy8(TowerPlayerMsg_Get(sv,BTWR_MSG_PLAYER_READY+i),&(dat->message[8*i]),8);
 	}
 	MI_CpuCopy8(TowerPlayerMsg_Get(sv,BTWR_MSG_LEADER),dat->leaderMessage,8);
 
-	//ƒ^ƒ[ƒZ[ƒuƒf[ƒ^æ“¾
+	//ã‚¿ãƒ¯ãƒ¼ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	if(mode==BTWR_SCORE_POKE_SINGLE){
-		//ƒf[ƒ^‚ª—LŒø‚È‚çresult‚É1,–³Œø‚È‚çfalse
+		//ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ãªã‚‰resultã«1,ç„¡åŠ¹ãªã‚‰false
 		dat->result = TowerScoreData_SetFlags(score,BTWR_SFLAG_SINGLE_POKE_DATA,BTWR_DATA_get);
 		if(dat->result){
-			//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^æ“¾
+			//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
 			TowerScoreData_GetUsePokeDataDpw(score,mode,(DPW_BT_POKEMON_DATA*)dat->pokemon);
 		}
 	}else{
 		dat->result =  TowerScoreData_GetWifiScore(score);
-		//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^æ“¾
+		//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
 		TowerScoreData_GetUsePokeDataDpw(score,mode,(DPW_BT_POKEMON_DATA*)dat->pokemon);
 	}
 }
 
 #ifdef PM_DEBUG
 /**
- *	@brie	Wifiƒoƒgƒ‹ƒ^ƒ[ƒ_ƒ~[ƒf[ƒ^‚ğbino—Í‚·‚é‚½‚ß‚ÌŠÖ”
+ *	@brie	Wifiãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’binå‡ºåŠ›ã™ã‚‹ãŸã‚ã®é–¢æ•°
  */
 static void* debug_btower_wifi_data = NULL;
 void DebugWifiBTower_DummyDataMake(SAVEDATA* sv);

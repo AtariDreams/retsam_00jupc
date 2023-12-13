@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_footmark.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ‘«Õ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¶³è·¡
  * @author	kagaya
  * @data	05.07.13
  *
@@ -17,55 +17,55 @@
 //==============================================================================
 //	define
 //==============================================================================
-#define FOOTMARK_SNOWCYCLE_OFF	///<’è‹`‚Å‰eá‚Ì©“]Ô‘«Õ‚ğ–³Œø‚É
+#define FOOTMARK_SNOWCYCLE_OFF	///<å®šç¾©ã§å½±é›ªã®è‡ªè»¢è»Šè¶³è·¡ã‚’ç„¡åŠ¹ã«
 
-#define FOOTMARK_VANISH_START_FRAME (16)			///<“_–ÅŠJnƒtƒŒ[ƒ€(Ô—Î40)
-#define FOOTMARK_VANISH_END_FRAME (28)				///<“_–ÅI—¹ƒtƒŒ[ƒ€(Ô—Î56)
+#define FOOTMARK_VANISH_START_FRAME (16)			///<ç‚¹æ»…é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ (èµ¤ç·‘40)
+#define FOOTMARK_VANISH_END_FRAME (28)				///<ç‚¹æ»…çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ (èµ¤ç·‘56)
 
 //--------------------------------------------------------------
-///	‘«Õ¯•Ê
+///	è¶³è·¡è­˜åˆ¥
 //--------------------------------------------------------------
 enum
 {
-	FOOTMARK_WALK_UP = 0,							///<‘«Õ@ã
-	FOOTMARK_WALK_DOWN,								///<‘«Õ@‰º
-	FOOTMARK_WALK_LEFT,								///<‘«Õ@¶
-	FOOTMARK_WALK_RIGHT,							///<‘«Õ@‰E
-	FOOTMARK_CYCLE_UD,								///<©“]Ô‘«Õ ã‰º
-	FOOTMARK_CYCLE_LR,								///<©“]Ô‘«Õ ¶‰E
-	FOOTMARK_CYCLE_UL,								///<©“]Ô‘«Õ ã¶
-	FOOTMARK_CYCLE_UR,								///<©“]Ô‘«Õ ã‰E
-	FOOTMARK_CYCLE_DL,								///<©“]Ô‘«Õ ‰º¶
-	FOOTMARK_CYCLE_DR,								///<©“]Ô‘«Õ ‰º‰E
-	FOOTMARK_MAX,									///<‘«ÕÅ‘å”
+	FOOTMARK_WALK_UP = 0,							///<è¶³è·¡ã€€ä¸Š
+	FOOTMARK_WALK_DOWN,								///<è¶³è·¡ã€€ä¸‹
+	FOOTMARK_WALK_LEFT,								///<è¶³è·¡ã€€å·¦
+	FOOTMARK_WALK_RIGHT,							///<è¶³è·¡ã€€å³
+	FOOTMARK_CYCLE_UD,								///<è‡ªè»¢è»Šè¶³è·¡ ä¸Šä¸‹
+	FOOTMARK_CYCLE_LR,								///<è‡ªè»¢è»Šè¶³è·¡ å·¦å³
+	FOOTMARK_CYCLE_UL,								///<è‡ªè»¢è»Šè¶³è·¡ ä¸Šå·¦
+	FOOTMARK_CYCLE_UR,								///<è‡ªè»¢è»Šè¶³è·¡ ä¸Šå³
+	FOOTMARK_CYCLE_DL,								///<è‡ªè»¢è»Šè¶³è·¡ ä¸‹å·¦
+	FOOTMARK_CYCLE_DR,								///<è‡ªè»¢è»Šè¶³è·¡ ä¸‹å³
+	FOOTMARK_MAX,									///<è¶³è·¡æœ€å¤§æ•°
 };
 
 #define FOOTMARK_CYCLE_START (FOOTMARK_CYCLE_UD)
 #define FOOTMARK_MAX_CYCLE (FOOTMARK_MAX-FOOTMARK_CYCLE_START)
 
 //--------------------------------------------------------------
-///	‘«Õƒ^ƒCƒv	ƒŒƒ“ƒ_OBJ‚Ìí—Ş‚Æ•\¦ˆÊ’u‚É‰e‹¿‚·‚é
+///	è¶³è·¡ã‚¿ã‚¤ãƒ—	ãƒ¬ãƒ³ãƒ€OBJã®ç¨®é¡ã¨è¡¨ç¤ºä½ç½®ã«å½±éŸ¿ã™ã‚‹
 //--------------------------------------------------------------
 typedef enum
 {
-	FOOTMARKTYPE_NORMAL = 0,		///<‘«Õƒ^ƒCƒv@‚Q‘«
-	FOOTMARKTYPE_CYCLE,				///<‘«Õƒ^ƒCƒv@©“]Ô
-	FOOTMARKTYPE_SNOW,				///<‘«Õƒ^ƒCƒv@á
-	FOOTMARKTYPE_SNOWDEEP,			///<‘«Õƒ^ƒCƒv@[‚¢á
-	FOOTMARKTYPE_SHADOWSNOW,		///<‘«Õƒ^ƒCƒv@‰e•\¦á@“ñ‘«
-	FOOTMARKTYPE_SHADOWSNOW_CYCLE,	///<‘«Õƒ^ƒCƒv@‰e•\¦á@©“]Ô
+	FOOTMARKTYPE_NORMAL = 0,		///<è¶³è·¡ã‚¿ã‚¤ãƒ—ã€€ï¼’è¶³
+	FOOTMARKTYPE_CYCLE,				///<è¶³è·¡ã‚¿ã‚¤ãƒ—ã€€è‡ªè»¢è»Š
+	FOOTMARKTYPE_SNOW,				///<è¶³è·¡ã‚¿ã‚¤ãƒ—ã€€é›ª
+	FOOTMARKTYPE_SNOWDEEP,			///<è¶³è·¡ã‚¿ã‚¤ãƒ—ã€€æ·±ã„é›ª
+	FOOTMARKTYPE_SHADOWSNOW,		///<è¶³è·¡ã‚¿ã‚¤ãƒ—ã€€å½±è¡¨ç¤ºé›ªã€€äºŒè¶³
+	FOOTMARKTYPE_SHADOWSNOW_CYCLE,	///<è¶³è·¡ã‚¿ã‚¤ãƒ—ã€€å½±è¡¨ç¤ºé›ªã€€è‡ªè»¢è»Š
 }FOOTMARKTYPE;
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_FOOTMARKŒ^
+///	FE_FOOTMARKå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_FOOTMARK * FE_FOOTMARK_PTR;
 
 //--------------------------------------------------------------
-///	FE_FOOTMARK\‘¢‘Ì
+///	FE_FOOTMARKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_FOOTMARK
 {
@@ -83,10 +83,10 @@ typedef struct _TAG_FE_FOOTMARK
 	#endif
 }FE_FOOTMARK;
 
-#define FE_FOOTMARK_SIZE (sizeof(FE_FOOTMARK)) ///<FE_FOOTMARKƒTƒCƒY
+#define FE_FOOTMARK_SIZE (sizeof(FE_FOOTMARK)) ///<FE_FOOTMARKã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	FOOTMARK_ADD_H\‘¢‘Ì
+///	FOOTMARK_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -96,7 +96,7 @@ typedef struct
 }FOOTMARK_ADD_H;
 
 //--------------------------------------------------------------
-///	FOOTMARK_WORK\‘¢‘Ì
+///	FOOTMARK_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -112,7 +112,7 @@ typedef struct
 #define FOOTMARK_WORK_SIZE (sizeof(FOOTMARK_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void FootMark_GraphicInit( FE_FOOTMARK_PTR fm );
 static void FootMark_GraphicDelete( FE_FOOTMARK_PTR fm );
@@ -134,11 +134,11 @@ static const int DATA_FootMarkCycleDirTbl[DIR_4_MAX][DIR_4_MAX];
 static const EOA_H_NPP DATA_EoaH_FootMark;
 
 //==============================================================================
-//	‘«Õ@ƒVƒXƒeƒ€
+//	è¶³è·¡ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘«Õ‰Šú‰»
+ * è¶³è·¡åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_FOOTMARK_PTR		FE_FOOTMARK_PTR
  */
@@ -156,7 +156,7 @@ void * FE_FootMark_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ‘«Õíœ
+ * è¶³è·¡å‰Šé™¤
  * @param	fm		FE_FOOTMARK_PTR
  * @retval	nothing
  */
@@ -169,11 +169,11 @@ void FE_FootMark_Delete( void *work )
 }
 
 //==============================================================================
-//	‘«Õ@ƒOƒ‰ƒtƒBƒbƒN
+//	è¶³è·¡ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘«Õ ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * è¶³è·¡ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	fm		FE_FOOTMARK_PTR
  * @retval	nothing
  */
@@ -220,7 +220,7 @@ static void FootMark_GraphicInit( FE_FOOTMARK_PTR fm )
 
 //--------------------------------------------------------------
 /**
- * ‘«Õ@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * è¶³è·¡ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	fm		FE_FOOTMARK_PTR
  * @retval	nothing
  */
@@ -243,13 +243,13 @@ static void FootMark_GraphicDelete( FE_FOOTMARK_PTR fm )
 
 //--------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚ÌƒŒƒ“ƒ_æ“¾
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ãƒ¬ãƒ³ãƒ€å–å¾—
  * @param	fm		FE_FOOTMARK_PTR
- * @param	type	FOOTMARK_TYPE_NORMAL“™
- * @param	now_dir	Œ»İ‚ÌŒü‚« DIR_UP“™
- * @param	old_dir	‰ß‹‚ÌŒü‚« DIR_UP“™
+ * @param	type	FOOTMARK_TYPE_NORMALç­‰
+ * @param	now_dir	ç¾åœ¨ã®å‘ã DIR_UPç­‰
+ * @param	old_dir	éå»ã®å‘ã DIR_UPç­‰
  * @param	attr	FOOTMARK_ATTR
- * @retval	NNSG3dRenderObj w’è‚ÌƒŒƒ“ƒ_
+ * @retval	NNSG3dRenderObj æŒ‡å®šã®ãƒ¬ãƒ³ãƒ€
  */
 //--------------------------------------------------------------
 static FRO_OBJ * FootMark_TypeObjGet(
@@ -292,13 +292,13 @@ static FRO_OBJ * FootMark_TypeObjGet(
 
 //--------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚Ìƒ‚ƒfƒ‹æ“¾
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ãƒ¢ãƒ‡ãƒ«å–å¾—
  * @param	fm		FE_FOOTMARK_PTR
- * @param	type	FOOTMARK_TYPE_NORMAL“™
- * @param	now_dir	Œ»İ‚ÌŒü‚« DIR_UP“™
- * @param	old_dir	‰ß‹‚ÌŒü‚« DIR_UP“™
+ * @param	type	FOOTMARK_TYPE_NORMALç­‰
+ * @param	now_dir	ç¾åœ¨ã®å‘ã DIR_UPç­‰
+ * @param	old_dir	éå»ã®å‘ã DIR_UPç­‰
  * @param	attr	FOOTMARK_ATTR
- * @retval	NNSG3dMdl w’è‚ÌƒŒƒ“ƒ_
+ * @retval	NNSG3dMdl æŒ‡å®šã®ãƒ¬ãƒ³ãƒ€
  */
 //--------------------------------------------------------------
 static FRO_MDL * FootMark_TypeMdlGet(
@@ -340,11 +340,11 @@ static FRO_MDL * FootMark_TypeMdlGet(
 }
 
 //==============================================================================
-//	‘«Õ@EOA
+//	è¶³è·¡ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ ‚Q‘¬‘«Õ’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ï¼’é€Ÿè¶³è·¡è¿½åŠ 
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -356,7 +356,7 @@ EOA_PTR FE_FldOBJFootMarkNormal_Add( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ ©“]Ô‘«Õ’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ è‡ªè»¢è»Šè¶³è·¡è¿½åŠ 
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -368,7 +368,7 @@ EOA_PTR FE_FldOBJFootMarkCycle_Add( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ á‘«Õ’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ é›ªè¶³è·¡è¿½åŠ 
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -380,7 +380,7 @@ EOA_PTR FE_FldOBJFootMarkSnow_Add( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ [‚¢á‘«Õ’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æ·±ã„é›ªè¶³è·¡è¿½åŠ 
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -392,7 +392,7 @@ EOA_PTR FE_FldOBJFootMarkSnowDeep_Add( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ ‰e•\¦•t‚«á‘«Õ’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ å½±è¡¨ç¤ºä»˜ãé›ªè¶³è·¡è¿½åŠ 
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -404,7 +404,7 @@ EOA_PTR FE_FldOBJFootMarkShadowSnow_Add( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ ‰e•\¦•t‚«á©“]Ô‘«Õ’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ å½±è¡¨ç¤ºä»˜ãé›ªè‡ªè»¢è»Šè¶³è·¡è¿½åŠ 
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -420,7 +420,7 @@ EOA_PTR FE_FldOBJFootMarkShadowSnowCycle_Add( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‘«Õ’Ç‰Á@ƒƒCƒ“
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¶³è·¡è¿½åŠ ã€€ãƒ¡ã‚¤ãƒ³
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	attr	FOOTMARK_ATTR
  * @retval	eoa		EOA_PTR
@@ -478,10 +478,10 @@ static EOA_PTR FldOBJFootMark_AddMain( CONST_FIELD_OBJ_PTR fldobj, FOOTMARKTYPE 
 
 //--------------------------------------------------------------
 /**
- * EOA ‘«Õ@‰Šú‰»
+ * EOA è¶³è·¡ã€€åˆæœŸåŒ–
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
- * @retval	int TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaFootMark_Init( EOA_PTR eoa, void *wk )
@@ -504,7 +504,7 @@ static int EoaFootMark_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘«Õ@íœ
+ * EOA è¶³è·¡ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -516,7 +516,7 @@ static void EoaFootMark_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘«Õ@“®ì
+ * EOA è¶³è·¡ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -549,7 +549,7 @@ static void EoaFootMark_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘«Õ@•`‰æ
+ * EOA è¶³è·¡ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -572,7 +572,7 @@ static void EoaFootMark_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	‘«Õimdƒe[ƒuƒ‹@•À‚Ñ‚ÍFOOTMARK_WALK_UP“™‚Ì’l‚Éˆê’v
+///	è¶³è·¡imdãƒ†ãƒ¼ãƒ–ãƒ«ã€€ä¸¦ã³ã¯FOOTMARK_WALK_UPç­‰ã®å€¤ã«ä¸€è‡´
 //--------------------------------------------------------------
 static const u32 DATA_3DModelArcID_FootMark[FOOTMARK_MAX] =
 {
@@ -589,7 +589,7 @@ static const u32 DATA_3DModelArcID_FootMark[FOOTMARK_MAX] =
 };
 
 //--------------------------------------------------------------
-///	‘«Õimdƒe[ƒuƒ‹@•À‚Ñ‚ÍFOOTMARK_WALK_UP“™‚Ì’l‚Éˆê’v@á
+///	è¶³è·¡imdãƒ†ãƒ¼ãƒ–ãƒ«ã€€ä¸¦ã³ã¯FOOTMARK_WALK_UPç­‰ã®å€¤ã«ä¸€è‡´ã€€é›ª
 //--------------------------------------------------------------
 static const u32 DATA_3DModelArcID_FootMarkSnow[FOOTMARK_MAX] =
 {
@@ -606,7 +606,7 @@ static const u32 DATA_3DModelArcID_FootMarkSnow[FOOTMARK_MAX] =
 };
 
 //--------------------------------------------------------------
-///	‘«Õimdƒe[ƒuƒ‹@•À‚Ñ‚ÍFOOTMARK_WALK_UP“™‚Ì’l‚Éˆê’v@‰e•\¦á@©“]Ô
+///	è¶³è·¡imdãƒ†ãƒ¼ãƒ–ãƒ«ã€€ä¸¦ã³ã¯FOOTMARK_WALK_UPç­‰ã®å€¤ã«ä¸€è‡´ã€€å½±è¡¨ç¤ºé›ªã€€è‡ªè»¢è»Š
 //--------------------------------------------------------------
 #ifndef FOOTMARK_SNOWCYCLE_OFF
 static const u32 DATA_3DModelArcID_FootMarkShadowSnowCycle[FOOTMARK_MAX_CYCLE] =
@@ -621,7 +621,7 @@ static const u32 DATA_3DModelArcID_FootMarkShadowSnowCycle[FOOTMARK_MAX_CYCLE] =
 #endif
 
 //--------------------------------------------------------------
-///	©“]Ô‘«Õƒe[ƒuƒ‹ [‰ß‹•ûŒü][Œ»İ•ûŒü]
+///	è‡ªè»¢è»Šè¶³è·¡ãƒ†ãƒ¼ãƒ–ãƒ« [éå»æ–¹å‘][ç¾åœ¨æ–¹å‘]
 //--------------------------------------------------------------
 static const int DATA_FootMarkCycleDirTbl[DIR_4_MAX][DIR_4_MAX] =
 {
@@ -632,7 +632,7 @@ static const int DATA_FootMarkCycleDirTbl[DIR_4_MAX][DIR_4_MAX] =
 };
 
 //--------------------------------------------------------------
-///	‘«ÕEOA_H
+///	è¶³è·¡EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_FootMark =
 {

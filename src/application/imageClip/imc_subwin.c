@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_subwin.c
- *	@brief		ƒTƒu‰æ–Ê‚Ì•\¦ƒf[ƒ^
+ *	@brief		ã‚µãƒ–ç”»é¢ã®è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿
  *	@author		
  *	@data		2005.10.24
  *
@@ -25,17 +25,17 @@
 #include "include/system/window.h"
 
 
-// imc_subwin.h‚È‚¢‚Ì"contest.h"‚ğƒCƒ“ƒNƒ‹[ƒh‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚é‚Ì‚Å
-// ‚±‚±‚ÅƒCƒ“ƒNƒ‹[ƒh
+// imc_subwin.hãªã„ã®"contest.h"ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹ã®ã§
+// ã“ã“ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include "src/contest/comm_command_contest.h"
 
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒAƒNƒZƒTƒŠƒAƒCƒRƒ“•\¦À•W’è”
+// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºåº§æ¨™å®šæ•°
 #define IMC_SUBWIN_ACCEICON_X_NUM	( 10 )
 #define IMC_SUBWIN_ACCEICON_Y_NUM	( IMC_SUBWIN_ACCECOUNT_ICON_MAX / IMC_SUBWIN_ACCEICON_X_NUM )
 #define IMC_SUBWIN_ACCEICON_X_DEF	( 38 )
@@ -43,33 +43,33 @@
 #define IMC_SUBWIN_ACCEICON_X_OFS	( 18 )
 #define IMC_SUBWIN_ACCEICON_Y_OFS	( 18 )
 #define IMC_SUBWIN_ACCEICON_RES_ID	( 2000 )
-#define IMC_SUBWIN_ACCEICON_ANM_ON	(0)		// ONƒAƒjƒ
-#define IMC_SUBWIN_ACCEICON_ANM_OFF	(1)		// OFFƒAƒjƒ
+#define IMC_SUBWIN_ACCEICON_ANM_ON	(0)		// ONã‚¢ãƒ‹ãƒ¡
+#define IMC_SUBWIN_ACCEICON_ANM_OFF	(1)		// OFFã‚¢ãƒ‹ãƒ¡
 
 
-// ƒe[ƒ}•¶š—ñ
+// ãƒ†ãƒ¼ãƒæ–‡å­—åˆ—
 #define IMC_SUBWIN_THEMA_DEFX ( 0 )
 #define IMC_SUBWIN_THEMA_X	( 72 )
 
 //---------------------------------------------------------
-//	ƒ^ƒCƒ€¶³İÀŠÖŒW
+//	ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿é–¢ä¿‚
 //---------------------------------------------------------
-// ¶³İÀ—p
+// ã‚«ã‚¦ãƒ³ã‚¿ç”¨
 #define IMC_SUBWIN_TIMENUM_RES_ID	( 3000 )
-// ”šƒIƒuƒWƒFƒV[ƒPƒ“ƒX
+// æ•°å­—ã‚ªãƒ–ã‚¸ã‚§ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	IMC_SUBWIN_NUM_SEQ_00 = 0,
 	IMC_SUBWIN_NUM_SEQ_MAX	= 10,
 };
-#define IMC_SUBWIN_NUM_DEFX	( 103 )	// XÀ•W
-#define IMC_SUBWIN_NUM_DEFY	( 58 )	// YÀ•W
-#define IMC_SUBWIN_NUM_OFSX	( 24 )	// XƒIƒtƒZƒbƒg
-#define IMC_SUBWIN_NUM_ONE_SYNC	( 30 )	// 1•b‚Ì¶³İÀ•ÏX’l
-#define IMC_SUBWIN_NUM_PLTT_CHG	( 10 )	// ƒpƒŒƒbƒg•ÏX‚Ìƒ^ƒCƒ~ƒ“ƒO
+#define IMC_SUBWIN_NUM_DEFX	( 103 )	// Xåº§æ¨™
+#define IMC_SUBWIN_NUM_DEFY	( 58 )	// Yåº§æ¨™
+#define IMC_SUBWIN_NUM_OFSX	( 24 )	// Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define IMC_SUBWIN_NUM_ONE_SYNC	( 30 )	// 1ç§’ã®ã‚«ã‚¦ãƒ³ã‚¿å¤‰æ›´å€¤
+#define IMC_SUBWIN_NUM_PLTT_CHG	( 10 )	// ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 #define IMC_SUBWIN_NUM_BMP_DRAW_XDEF	( 0 )
 #define IMC_SUBWIN_NUM_BMP_DRWA_YDEF	( 4 )
 #define IMC_SUBWIN_NUM_BMP_DRAW_XOFS	( 72 )
-// ¶³İÀ´Ìª¸Ä
+// ã‚«ã‚¦ãƒ³ã‚¿ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 #define IMC_SUBWIN_NUM_EFFE_SCAL_DEF	( FX32_CONST(1.0f) )
 #define IMC_SUBWIN_NUM_EFFE_SCAL_END	( FX32_CONST(1.0f) )
 #define IMC_SUBWIN_NUM_EFFE_SCAL_OFS	( FX32_CONST(0.150f) )
@@ -83,13 +83,13 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void initBG( IMC_BG* bg, GF_BGL_INI* ini );
@@ -126,11 +126,11 @@ static BOOL	imc_UTIL_MoveMain( IMC_SUBWIN_MOVE_WORK* p_work );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
  *
- *	@param	subwin		ƒTƒuƒEƒBƒ“ƒhƒE\‘¢‘Ì
- *	@param	init		‰Šú‰»ƒf[ƒ^
- *	@param	init_mask	‰Šú‰»ƒ}ƒXƒN
+ *	@param	subwin		ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹é€ ä½“
+ *	@param	init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	init_mask	åˆæœŸåŒ–ãƒã‚¹ã‚¯
  *
  *	@return	none
  *
@@ -159,18 +159,18 @@ void IMC_SUBWIN_Init( IMC_SUBWIN* subwin, IMC_SUBWIN_INIT* init, int init_mask )
 				TRUE );
 	}
 
-	// ƒAƒCƒRƒ“”¶³İÀ
+	// ã‚¢ã‚¤ã‚³ãƒ³æ•°ã‚«ã‚¦ãƒ³ã‚¿
 	if( init_mask & IMC_SUBWIN_INITMASK_ACCE_COUNT ){
 
 		initAcceIconWork( &subwin->acce_icon, init->clactSet, init->p_resMan, init->acce_max, init->p_handle );
 	}
 
-	// ƒ^ƒCƒ€¶³İÀ
+	// ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿
 	if( init_mask & IMC_SUBWIN_INITMASK_TIME_COUNT ){
 		InitCounterWork( &subwin->counter, init->clactSet, init->p_resMan, init->count_max, init->bg_ini, init->p_comm_data, init->p_handle );
 	}
 
-	// ƒ‰ƒ“ƒNSTR•`‰æ
+	// ãƒ©ãƒ³ã‚¯STRæç”»
 	if( init_mask & IMC_SUBWIN_INITMASK_RANKBMP ){
 		initBmp( &subwin->rankbmp, init->bg_ini, 
 				IMC_SUBWIN_RANKBMP_X, IMC_SUBWIN_RANKBMP_Y,
@@ -178,10 +178,10 @@ void IMC_SUBWIN_Init( IMC_SUBWIN* subwin, IMC_SUBWIN_INIT* init, int init_mask )
 				TALK_WIN_CGX_SIZ + IMC_SUBWIN_RANKBMP_FRAME_CHAR_OFS,
 				TRUE );
 
-		// ƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—åˆæœŸåŒ–
 		GF_BGL_BmpWinDataFill( subwin->rankbmp, 15 );
 
-		// ˜gˆÈŠO‚ğ‘‚«‚Ş
+		// æ ä»¥å¤–ã‚’æ›¸ãè¾¼ã‚€
 		printBmp_NoWaku( subwin->rankbmp, ARC_MSG, init->rank_msgid, imgclip_subwin_theme, IMC_SUBWIN_THEMA_DEFX, 0, GF_PRINTCOLOR_MAKE(1,2,15), MSG_NO_PUT );
 		printBmp_NoWaku( subwin->rankbmp, ARC_MSG, init->rank_msgid, init->rank_strid, IMC_SUBWIN_THEMA_X, 0, GF_PRINTCOLOR_MAKE(1,2,15), MSG_NO_PUT );
 
@@ -189,14 +189,14 @@ void IMC_SUBWIN_Init( IMC_SUBWIN* subwin, IMC_SUBWIN_INIT* init, int init_mask )
 	}
 
 
-	///ƒf[ƒ^İ’è
+	///ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	subwin->clactSet	= init->clactSet;
 	subwin->p_resMan	= init->p_resMan;
 
-	// ‰ï˜bƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^“Ç‚İ‚İ
+	// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	initTalkWinGra( init->bg_ini, init->cp_config );
 	
-	// ƒRƒ“ƒtƒBƒOƒf[ƒ^
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
 	subwin->wnd_no = CONFIG_GetWindowType( init->cp_config );
 	subwin->wait = CONFIG_GetMsgPrintSpeed( init->cp_config );
 	
@@ -206,9 +206,9 @@ void IMC_SUBWIN_Init( IMC_SUBWIN* subwin, IMC_SUBWIN_INIT* init, int init_mask )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	subwin	ƒTƒuƒEƒBƒ“ƒhƒE
+ *	@param	subwin	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  *	@return	none
  *
@@ -229,20 +229,20 @@ void IMC_SUBWIN_Delete( IMC_SUBWIN* subwin )
 		subwin->init_flg &= ~IMC_SUBWIN_INITMASK_BMP;
 	}
 
-	// ƒAƒNƒZƒTƒŠ¶³İÀ
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚«ã‚¦ãƒ³ã‚¿
 	if( subwin->init_flg & IMC_SUBWIN_INITMASK_ACCE_COUNT ){
 
 		deleteAcceIconWork( &subwin->acce_icon, subwin->p_resMan );
 		subwin->init_flg &= ~IMC_SUBWIN_INITMASK_ACCE_COUNT;
 	}
 
-	// ƒ^ƒCƒ€¶³İÀ
+	// ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿
 	if( subwin->init_flg & IMC_SUBWIN_INITMASK_TIME_COUNT ){
 		deleteCounterWork( &subwin->counter, subwin->p_resMan );
 		subwin->init_flg &= ~IMC_SUBWIN_INITMASK_TIME_COUNT;
 	}
 
-	// ƒ‰ƒ“ƒNSTR 
+	// ãƒ©ãƒ³ã‚¯STR 
 	if( subwin->init_flg & IMC_SUBWIN_INITMASK_RANKBMP ){
 		deleteBmp( subwin->rankbmp );
 		subwin->init_flg &= ~IMC_SUBWIN_INITMASK_RANKBMP;
@@ -255,9 +255,9 @@ void IMC_SUBWIN_Delete( IMC_SUBWIN* subwin )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒƒCƒ“ŠÖ”
+ *	@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	subwin	ƒTƒuƒEƒBƒ“ƒhƒE
+ *	@param	subwin	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  *	@return	none
  *
@@ -266,7 +266,7 @@ void IMC_SUBWIN_Delete( IMC_SUBWIN* subwin )
 //-----------------------------------------------------------------------------
 void IMC_SUBWIN_Main( IMC_SUBWIN* subwin )
 {
-	// ƒ^ƒCƒ€¶³İÀ
+	// ã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿
 	if( subwin->init_flg & IMC_SUBWIN_INITMASK_TIME_COUNT ){
 		mainCounterWork( &subwin->counter );
 	}
@@ -275,12 +275,12 @@ void IMC_SUBWIN_Main( IMC_SUBWIN* subwin )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒbƒgƒ}ƒbƒv‚É•¶š—ñ‚ğ•\¦
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«æ–‡å­—åˆ—ã‚’è¡¨ç¤º
  *
- *	@param	subwin	ƒTƒuƒEƒBƒ“ƒhƒEƒIƒuƒWƒF
- *	@param	arcID	ƒA[ƒJƒCƒuID
- *	@param	dataID	ƒf[ƒ^ID
- *	@param	msgID	•\¦‚·‚éƒƒbƒZ[ƒWID
+ *	@param	subwin	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	arcID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ *	@param	dataID	ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	msgID	è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *	
  *	@return	none
  *
@@ -289,19 +289,19 @@ void IMC_SUBWIN_Main( IMC_SUBWIN* subwin )
 //-----------------------------------------------------------------------------
 void IMC_SUBWIN_SetBmpWin( IMC_SUBWIN* subwin, int arcID, int dataID, int msgID )
 {
-	GF_ASSERT_MSG( (subwin->init_flg & IMC_SUBWIN_INITMASK_BMP), "ƒoƒ“ƒvƒEƒBƒ“ƒhƒE‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ" )
+	GF_ASSERT_MSG( (subwin->init_flg & IMC_SUBWIN_INITMASK_BMP), "ãƒãƒ³ãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“" )
 	printBmp( subwin->bmp, arcID, dataID, msgID, 0, 0, MSG_NO_PUT );
 }
 s32 IMC_SUBWIN_SetBmpWinWait( IMC_SUBWIN* subwin, int arcID, int dataID, int msgID )
 {
-	GF_ASSERT_MSG( (subwin->init_flg & IMC_SUBWIN_INITMASK_BMP), "ƒoƒ“ƒvƒEƒBƒ“ƒhƒE‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ" )
+	GF_ASSERT_MSG( (subwin->init_flg & IMC_SUBWIN_INITMASK_BMP), "ãƒãƒ³ãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“" )
 	return printBmp_Buff( subwin->bmp, arcID, dataID, msgID, 0, 0, subwin->wait, &subwin->p_glb_str );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Waitƒo[ƒWƒ‡ƒ“‚ÅŠm•Û‚µ‚Ä‚¢‚½ƒoƒbƒtƒ@‚ğ‚Í‚«
+ *	@brief	Waitãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ç¢ºä¿ã—ã¦ã„ãŸãƒãƒƒãƒ•ã‚¡ã‚’ã¯ã
  */
 //-----------------------------------------------------------------------------
 void IMC_SUBWIN_EndBmpWinWait( IMC_SUBWIN* subwin )
@@ -312,10 +312,10 @@ void IMC_SUBWIN_EndBmpWinWait( IMC_SUBWIN* subwin )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒJƒEƒ“ƒgƒAƒCƒRƒ“•`‰æİ’è
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚«ã‚¦ãƒ³ãƒˆã‚¢ã‚¤ã‚³ãƒ³æç”»è¨­å®š
  *
- *	@param	subwin		ƒ[ƒN
- *	@param	acce_num	Œ»İ‚ÌƒAƒNƒZƒTƒŠ”
+ *	@param	subwin		ãƒ¯ãƒ¼ã‚¯
+ *	@param	acce_num	ç¾åœ¨ã®ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
  *
  *	@return	none
  */	
@@ -327,11 +327,11 @@ void IMC_SUBWIN_SetAcceIcon( IMC_SUBWIN* subwin, int acce_num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚ÌƒJƒEƒ“ƒ^[’læ“¾ŠÖ”
+ *	@brief	ä»Šã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼å€¤å–å¾—é–¢æ•°
  *
- *	@param	subwin	ƒTƒuƒEƒBƒ“ƒhƒE
+ *	@param	subwin	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	@return	ƒJƒEƒ“ƒ^[‚Ì’l
+ *	@return	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®å€¤
  */
 //-----------------------------------------------------------------------------
 int IMC_SUBWIN_GetCounterNowNum( const IMC_SUBWIN* subwin )
@@ -341,13 +341,13 @@ int IMC_SUBWIN_GetCounterNowNum( const IMC_SUBWIN* subwin )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»İƒJƒEƒ“ƒg’lİ’è
+ *	@brief	ç¾åœ¨ã‚«ã‚¦ãƒ³ãƒˆå€¤è¨­å®š
  *
  *	@param	subwin
  *	@param	count 
  *
  *
- * "‘—Mƒf[ƒ^ƒJƒEƒ“ƒg‚ğİ’è‚·‚éŠÖ”‚Å‚·
+ * "é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚«ã‚¦ãƒ³ãƒˆã‚’è¨­å®šã™ã‚‹é–¢æ•°ã§ã™
  */
 //-----------------------------------------------------------------------------
 void IMC_SUBWIN_SetCounterNowNum( IMC_SUBWIN* subwin, int count )
@@ -358,12 +358,12 @@ void IMC_SUBWIN_SetCounterNowNum( IMC_SUBWIN* subwin, int count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒ^[´Ìª¸Ä‚ÌI—¹ƒ`ƒFƒbƒN
+ *	@brief	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	subwin	ƒTƒuƒEƒBƒ“ƒhƒE
+ *	@param	subwin	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_SUBWIN_GetCounterEffectEnd( const IMC_SUBWIN* subwin )
@@ -373,21 +373,21 @@ BOOL IMC_SUBWIN_GetCounterEffectEnd( const IMC_SUBWIN* subwin )
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+*		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG–Ê‚Ì‰Šú‰»
+ *	@brief	BGé¢ã®åˆæœŸåŒ–
  *
- *	@param	bg	BGƒIƒuƒWƒF
- *	@param	ini	BGƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	bg	BGã‚ªãƒ–ã‚¸ã‚§
+ *	@param	ini	BGã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
  *
- * "‘—Mƒf[ƒ^ƒJƒEƒ“ƒg‚ğİ’è‚·‚éŠÖ”‚Å‚·
+ * "é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚«ã‚¦ãƒ³ãƒˆã‚’è¨­å®šã™ã‚‹é–¢æ•°ã§ã™
  *
  *
  */
@@ -414,10 +414,10 @@ static void initBG( IMC_BG* bg, GF_BGL_INI* ini )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE—pƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- *	@param	ini			BGƒf[ƒ^	
- *	@param	cp_config	ƒRƒ“ƒtƒBƒOƒf[ƒ^
+ *	@param	ini			BGãƒ‡ãƒ¼ã‚¿	
+ *	@param	cp_config	ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -426,25 +426,25 @@ static void initTalkWinGra( GF_BGL_INI* ini, const CONFIG* cp_config )
 {
 	WINTYPE win_no = CONFIG_GetWindowType( cp_config );
 	
-	// ˜gƒOƒ‰ƒtƒBƒbƒN“Ç‚İ‚İ
+	// æ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
 	TalkWinGraphicSet( ini, GF_BGL_FRAME1_S, IMC_SUBWIN_BMP_FRAME_CHAR_OFS, IMC_SUBWIN_BMP_WAKU_PLTT_NO, win_no, HEAPID_IMAGECLIP_DRAW );
 
-	// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg“Ç‚İ‚İ
+	// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	TalkFontPaletteLoad( PALTYPE_SUB_BG, IMC_SUBWIN_BMP_PLTT_NO*32, HEAPID_IMAGECLIP_DRAW );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE–Ê‚Ì‰Šú‰»
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢ã®åˆæœŸåŒ–
  *
- *	@param	bmp		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- *	@param	ini		BGƒVƒXƒeƒ€ƒ[ƒN
- *	@param	x		‚˜À•W	ƒLƒƒƒ‰ƒNƒ^’PˆÊ
- *	@param	x		‚™À•W	ƒLƒƒƒ‰ƒNƒ^’PˆÊ
- *	@param	scx		‚˜ƒTƒCƒY	ƒLƒƒƒ‰ƒNƒ^’PˆÊ
- *	@param	scy		‚™ƒTƒCƒY	ƒLƒƒƒ‰ƒNƒ^’PˆÊ
- *	@param	cofs	ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
+ *	@param	bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	ini		BGã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜åº§æ¨™	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½
+ *	@param	x		ï½™åº§æ¨™	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½
+ *	@param	scx		ï½˜ã‚µã‚¤ã‚º	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½
+ *	@param	scy		ï½™ã‚µã‚¤ã‚º	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½
+ *	@param	cofs	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  *	@return	none
  *
@@ -470,7 +470,7 @@ static void initBmp( GF_BGL_BMPWIN** bmp, GF_BGL_INI* ini, int x, int y, int scx
 	GF_BGL_BmpWinDataFill( *bmp, 15 );
 	
 	if( waku_write ){
-		// ƒJƒ‰‚Ìƒrƒbƒgƒ}ƒbƒv‘‚«‚İ
+		// ã‚«ãƒ©ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æ›¸ãè¾¼ã¿
 		BmpTalkWinWrite( *bmp, WINDOW_TRANS_ON, IMC_SUBWIN_BMP_FRAME_CHAR_OFS, IMC_SUBWIN_BMP_WAKU_PLTT_NO );
 	}
 
@@ -480,9 +480,9 @@ static void initBmp( GF_BGL_BMPWIN** bmp, GF_BGL_INI* ini, int x, int y, int scx
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG–Ê‚Ì”jŠü
+ *	@brief	BGé¢ã®ç ´æ£„
  *
- *	@param	bg		BGƒIƒuƒWƒF
+ *	@param	bg		BGã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
@@ -497,9 +497,9 @@ static void deleteBG( IMC_BG* bg )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒbƒgƒ}ƒbƒv–Ê‚Ì”jŠü
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—é¢ã®ç ´æ£„
  *
- *	@param	bmp		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ *	@param	bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  *	@return	none
  *
@@ -508,20 +508,20 @@ static void deleteBG( IMC_BG* bg )
 //-----------------------------------------------------------------------------
 static void deleteBmp( GF_BGL_BMPWIN* bmp )
 {
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	GF_BGL_BmpWinFree( bmp, 1 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•`‰æŠÖ”
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»é–¢æ•°
  *
- *	@param	bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	arcID	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *	@param	dataID	ƒf[ƒ^ID
- *	@param	msgID	ƒƒbƒZ[ƒWID
- *	@param	x		xÀ•W
- *	@param	y		yÀ•W
+ *	@param	bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	arcID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *	@param	dataID	ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	msgID	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ *	@param	x		xåº§æ¨™
+ *	@param	y		yåº§æ¨™
  *
  *	@return	none
  */
@@ -530,10 +530,10 @@ static s32 printBmp( GF_BGL_BMPWIN* bmp, int arcID, int dataID, int msgID, int x
 {
 	s32 msg_idx;
 	
-	// ƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( bmp, 15 );
 
-	// ˜gˆÈŠO‚ğ‘‚«‚Ş
+	// æ ä»¥å¤–ã‚’æ›¸ãè¾¼ã‚€
 	msg_idx = printBmp_NoWaku( bmp, arcID, dataID, msgID, x, y, GF_PRINTCOLOR_MAKE(1,2,15), wait );
 
 	BmpTalkWinWrite( bmp, WINDOW_TRANS_ON, IMC_SUBWIN_BMP_FRAME_CHAR_OFS, IMC_SUBWIN_BMP_WAKU_PLTT_NO );
@@ -543,28 +543,28 @@ static s32 printBmp( GF_BGL_BMPWIN* bmp, int arcID, int dataID, int msgID, int x
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•`‰æŠÖ”
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»é–¢æ•°
  *
- *	@param	bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	arcID	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *	@param	dataID	ƒf[ƒ^ID
- *	@param	msgID	ƒƒbƒZ[ƒWID
- *	@param	x		xÀ•W
- *	@param	y		yÀ•W
- *	@param	wait	ƒEƒGƒCƒg
- *	@param	pp_glb_str	ƒOƒ[ƒoƒ‹•¶š—ñ
+ *	@param	bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	arcID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *	@param	dataID	ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	msgID	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ *	@param	x		xåº§æ¨™
+ *	@param	y		yåº§æ¨™
+ *	@param	wait	ã‚¦ã‚¨ã‚¤ãƒˆ
+ *	@param	pp_glb_str	ã‚°ãƒ­ãƒ¼ãƒãƒ«æ–‡å­—åˆ—
  *
- *	@return	ƒƒbƒZ[ƒWIDX
+ *	@return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
  */
 //-----------------------------------------------------------------------------
 static s32 printBmp_Buff( GF_BGL_BMPWIN* bmp, int arcID, int dataID, int msgID, int x, int y, u32 wait, STRBUF** pp_glb_str )
 {
 	s32 msg_idx;
 	
-	// ƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( bmp, 15 );
 
-	// ˜gˆÈŠO‚ğ‘‚«‚Ş
+	// æ ä»¥å¤–ã‚’æ›¸ãè¾¼ã‚€
 	msg_idx = printBmp_NoWaku_Buff( bmp, arcID, dataID, msgID, x, y, GF_PRINTCOLOR_MAKE(1,2,15), wait, pp_glb_str );
 
 	BmpTalkWinWrite( bmp, WINDOW_TRANS_ON, IMC_SUBWIN_BMP_FRAME_CHAR_OFS, IMC_SUBWIN_BMP_WAKU_PLTT_NO );
@@ -574,15 +574,15 @@ static s32 printBmp_Buff( GF_BGL_BMPWIN* bmp, int arcID, int dataID, int msgID, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜g‚È‚µ•¶š—ñ•`‰æ
+ *	@brief	æ ãªã—æ–‡å­—åˆ—æç”»
  *
- *	@param	bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	arcID	‚ [‚­ID 
- *	@param	dataID	ƒf[ƒ^ID
- *	@param	msgID	ƒƒbƒZ[ƒWID
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
- *	@param	col		•\¦ƒJƒ‰[
+ *	@param	bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	arcID	ã‚ãƒ¼ãID 
+ *	@param	dataID	ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	msgID	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
+ *	@param	col		è¡¨ç¤ºã‚«ãƒ©ãƒ¼
  *
  *	@return	none
  */
@@ -593,14 +593,14 @@ static s32 printBmp_NoWaku( GF_BGL_BMPWIN* bmp, int arcID, int dataID, int msgID
 	STRBUF* str;
 	s32 msg_idx;
 
-	// •¶š—ñæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	msg_data = MSGMAN_Create( MSGMAN_TYPE_NORMAL, arcID, dataID, HEAPID_IMAGECLIP_DATA );
 	GF_ASSERT( msg_data );
 	str = MSGMAN_AllocString( msg_data, msgID );
 
-	// •¶š—ñ‘‚«‚İ
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
 	msg_idx = GF_STR_PrintColor( bmp, FONT_TALK, str, x, y, wait, col, NULL );
-												// ª•`‰æˆÊ’u
+												// â†‘æç”»ä½ç½®
 	STRBUF_Delete( str );
 	MSGMAN_Delete( msg_data );
 
@@ -609,19 +609,19 @@ static s32 printBmp_NoWaku( GF_BGL_BMPWIN* bmp, int arcID, int dataID, int msgID
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•¶š—ñƒoƒbƒtƒ@•Û‘¶	•¶š•\¦
+ *	@brief	æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä¿å­˜	æ–‡å­—è¡¨ç¤º
  *
- *	@param	bmp			ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- *	@param	arcID		ƒA[ƒJƒCƒu
- *	@param	dataID		ƒf[ƒ^IDX
- *	@param	msgID		ƒƒbƒZ[ƒWIDX
- *	@param	x			‚˜
- *	@param	y			‚™
- *	@param	col			ƒJƒ‰[
- *	@param	wait		ƒEƒGƒCƒg
- *	@param	pp_glb_str	ƒOƒ[ƒoƒ‹•¶š—ñ
+ *	@param	bmp			ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	arcID		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+ *	@param	dataID		ãƒ‡ãƒ¼ã‚¿IDX
+ *	@param	msgID		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
+ *	@param	x			ï½˜
+ *	@param	y			ï½™
+ *	@param	col			ã‚«ãƒ©ãƒ¼
+ *	@param	wait		ã‚¦ã‚¨ã‚¤ãƒˆ
+ *	@param	pp_glb_str	ã‚°ãƒ­ãƒ¼ãƒãƒ«æ–‡å­—åˆ—
  *
- *	@return	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ *	@return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static s32 printBmp_NoWaku_Buff( GF_BGL_BMPWIN* bmp, int arcID, int dataID, int msgID, int x, int y, GF_PRINTCOLOR col, u32 wait, STRBUF** pp_glb_str )
@@ -631,14 +631,14 @@ static s32 printBmp_NoWaku_Buff( GF_BGL_BMPWIN* bmp, int arcID, int dataID, int 
 
 	GF_ASSERT( *pp_glb_str == NULL );
 
-	// •¶š—ñæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	msg_data = MSGMAN_Create( MSGMAN_TYPE_NORMAL, arcID, dataID, HEAPID_IMAGECLIP_DATA );
 	GF_ASSERT( msg_data );
 	*pp_glb_str = MSGMAN_AllocString( msg_data, msgID );
 
-	// •¶š—ñ‘‚«‚İ
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
 	msg_idx = GF_STR_PrintColor( bmp, FONT_TALK, *pp_glb_str, x, y, wait, col, NULL );
-												// ª•`‰æˆÊ’u
+												// â†‘æç”»ä½ç½®
 	MSGMAN_Delete( msg_data );
 
 	return msg_idx;
@@ -646,12 +646,12 @@ static s32 printBmp_NoWaku_Buff( GF_BGL_BMPWIN* bmp, int arcID, int dataID, int 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒAƒCƒRƒ“ƒ[ƒN‰Šú‰»
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- *	@param	p_data		ƒAƒNƒZƒTƒŠƒAƒCƒRƒ“ƒ[ƒN
- *	@param	clact_set	ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
- *	@param	p_res_man	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	acce_max	ƒAƒNƒZƒTƒŠÅ‘å”
+ *	@param	p_data		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯
+ *	@param	clact_set	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *	@param	p_res_man	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	acce_max	ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°
  *
  *	@return	none
  */
@@ -662,13 +662,13 @@ static void initAcceIconWork( IMC_SUBWIN_ACCEICON* p_data, CLACT_SET_PTR clact_s
 	CLACT_ADD_SIMPLE		clact_add;
 	int i, j;
 	
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	imcSubWin_DefaultClactResLoad( p_data->res_obj, p_res_man, HEAPID_IMAGECLIP_DRAW, p_handle, NARC_imageclip_imgclip_access_ma_00_NCGR, NARC_imageclip_imgclip_top_00_NCLR, NARC_imageclip_imgclip_access_ma_00_NCER, NARC_imageclip_imgclip_access_ma_00_NANR, 2, IMC_SUBWIN_ACCEICON_RES_ID );
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	imcSubWin_DefaultClactHeaderMake( p_data->res_obj, p_res_man, &clact_head, 0 );
 	
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	clact_add.ClActSet		= clact_set;
 	clact_add.ClActHeader	= &clact_head;
 	clact_add.DrawArea		= NNS_G2D_VRAM_TYPE_2DSUB;
@@ -689,7 +689,7 @@ static void initAcceIconWork( IMC_SUBWIN_ACCEICON* p_data, CLACT_SET_PTR clact_s
 			p_data->icon[ (i*IMC_SUBWIN_ACCEICON_X_NUM)+j ] = CLACT_AddSimple( &clact_add );
 			CLACT_AnmChg( p_data->icon[ (i*IMC_SUBWIN_ACCEICON_X_NUM)+j ], IMC_SUBWIN_ACCEICON_ANM_OFF );
 
-			// Å‘å”ˆÈã‚Ìê‡‚ÍOFF
+			// æœ€å¤§æ•°ä»¥ä¸Šã®å ´åˆã¯OFF
 			if( ((i*IMC_SUBWIN_ACCEICON_X_NUM)+j) >= acce_max ){
 				CLACT_SetDrawFlag( p_data->icon[ (i*IMC_SUBWIN_ACCEICON_X_NUM)+j ], FALSE );
 			}
@@ -699,10 +699,10 @@ static void initAcceIconWork( IMC_SUBWIN_ACCEICON* p_data, CLACT_SET_PTR clact_s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒRƒ“ƒ[ƒN‚Ì•`‰æƒf[ƒ^İ’è
+ *	@brief	ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯ã®æç”»ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_data		ƒ[ƒN
- *	@param	acce_num	ƒAƒNƒZƒTƒŠ•Û”
+ *	@param	p_data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	acce_num	ã‚¢ã‚¯ã‚»ã‚µãƒªä¿æŒæ•°
  *	
  *	@return	none
  */
@@ -730,10 +730,10 @@ static void setAcceIconWork( IMC_SUBWIN_ACCEICON* p_data, int acce_num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒRƒ“ƒ[ƒN”jŠü
+ *	@brief	ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_data		•`‰æƒ[ƒN
- *	@param	p_res_man	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+ *	@param	p_data		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_res_man	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
  *
  *	@return	none
  */
@@ -741,66 +741,66 @@ static void setAcceIconWork( IMC_SUBWIN_ACCEICON* p_data, int acce_num )
 static void deleteAcceIconWork( IMC_SUBWIN_ACCEICON* p_data, CLACT_U_RES_MANAGER_PTR* p_res_man )
 {
 	int i;
-	// ƒAƒNƒ^[”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	for( i=0; i<IMC_SUBWIN_ACCECOUNT_ICON_MAX; i++ ){
 		CLACT_Delete( p_data->icon[i] );
 	}
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	imcSubWin_DefaultClactResDelete( p_data->res_obj, p_res_man );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šî–{“I‚ÈƒAƒNƒ^[ƒŠƒ\[ƒX“Ç‚İ‚İŠÖ”
+ *	@brief	åŸºæœ¬çš„ãªã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿é–¢æ•°
  *
- *	@param	p_res_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
- *	@param	pp_res_manager	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	heap			ƒq[ƒv
- *	@param	charidx			ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	plttidx			ƒpƒŒƒbƒgƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	cellidx			ƒZƒ‹ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	cellanmidx		ƒZƒ‹ƒAƒjƒƒCƒ“ƒfƒbƒNƒX
- *	@param	plttload_num	ƒpƒŒƒbƒg“Ç‚İ‚İ–{”
+ *	@param	p_res_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	pp_res_manager	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	charidx			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	plttidx			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	cellidx			ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	cellanmidx		ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	plttload_num	ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æœ¬æ•°
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void imcSubWin_DefaultClactResLoad( CLACT_U_RES_OBJ_PTR* p_res_obj, CLACT_U_RES_MANAGER_PTR* pp_res_manager, int heap, ARCHANDLE* p_handle, int charidx, int plttidx, int cellidx, int cellanmidx, int plttload_num, int common_res_id )
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			pp_res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			charidx, FALSE,
 			common_res_id + charidx,
 			NNS_G2D_VRAM_TYPE_2DSUB, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			pp_res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			plttidx, FALSE, 
 			common_res_id + plttidx,
 			NNS_G2D_VRAM_TYPE_2DSUB, 
 			plttload_num, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			pp_res_manager[ CLACT_U_CELL_RES ], p_handle,
 			cellidx, FALSE,
 			common_res_id + cellidx,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			pp_res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			cellanmidx, FALSE,
@@ -811,10 +811,10 @@ static void imcSubWin_DefaultClactResLoad( CLACT_U_RES_OBJ_PTR* p_res_obj, CLACT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šî–{“I‚ÈƒŠƒ\[ƒX”jŠü
+ *	@brief	åŸºæœ¬çš„ãªãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_res_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF	
- *	@param	pp_res_manager	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+ *	@param	p_res_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§	
+ *	@param	pp_res_manager	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
  *
  *	@return	none
  */
@@ -824,7 +824,7 @@ static void imcSubWin_DefaultClactResDelete( CLACT_U_RES_OBJ_PTR* p_res_obj, CLA
 	CLACT_U_CharManagerDelete( p_res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			pp_res_manager[ CLACT_U_CHAR_RES ],
 			p_res_obj[ CLACT_U_CHAR_RES ] );
@@ -841,11 +841,11 @@ static void imcSubWin_DefaultClactResDelete( CLACT_U_RES_OBJ_PTR* p_res_obj, CLA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ƒf[ƒ^ì¬
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_res_obj			ƒŠƒ\[ƒXƒIƒuƒWƒF
- *	@param	pp_res_manager		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	p_head				ƒwƒbƒ_[ƒ[ƒN
+ *	@param	p_res_obj			ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	pp_res_manager		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	p_head				ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -853,8 +853,8 @@ static void imcSubWin_DefaultClactResDelete( CLACT_U_RES_OBJ_PTR* p_res_obj, CLA
 static void imcSubWin_DefaultClactHeaderMake( CLACT_U_RES_OBJ_PTR* p_res_obj, CLACT_U_RES_MANAGER_PTR* pp_res_manager, CLACT_HEADER* p_head, int bg_pri )
 {
 	
-	// Šeƒ{ƒ^ƒ“‚ğ“o˜^
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// å„ãƒœã‚¿ãƒ³ã‚’ç™»éŒ²
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( p_head,
 			CLACT_U_ResManagerGetResObjID( p_res_obj[ CLACT_U_CHAR_RES ] ),
 			CLACT_U_ResManagerGetResObjID( p_res_obj[ CLACT_U_PLTT_RES ] ),
@@ -870,14 +870,14 @@ static void imcSubWin_DefaultClactHeaderMake( CLACT_U_RES_OBJ_PTR* p_res_obj, CL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒ^[ƒ[ƒN‚Ì‰Šú‰»	ì¬
+ *	@brief	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–	ä½œæˆ
  *
- *	@param	p_data		ƒf[ƒ^Ši”[æ
- *	@param	clact_set	ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
- *	@param	p_res_man	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	count_max	ƒJƒEƒ“ƒ^[Å‘å’l
- *	@param	p_bgini		BGƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^
- *	@param	p_comm_data	’ÊMƒf[ƒ^
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	clact_set	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *	@param	p_res_man	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	count_max	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼æœ€å¤§å€¤
+ *	@param	p_bgini		BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_comm_data	é€šä¿¡ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -888,13 +888,13 @@ static void InitCounterWork( IMC_SUBWIN_TIMECOUNT* p_data, CLACT_SET_PTR clact_s
 	CLACT_ADD_SIMPLE add;
 	int i;
 	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^“Ç‚İ‚İ
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	imcSubWin_DefaultClactResLoad( p_data->res_obj, p_res_man, HEAPID_IMAGECLIP_DRAW, p_handle, NARC_imageclip_imgclip_top_num00_NCGR, NARC_imageclip_imgclip_top_num00_NCLR, NARC_imageclip_imgclip_top_num00_NCER, NARC_imageclip_imgclip_top_num00_NANR, 2, IMC_SUBWIN_TIMENUM_RES_ID );
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	imcSubWin_DefaultClactHeaderMake( p_data->res_obj, p_res_man, &head, 0 );
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	add.ClActSet	= clact_set;
 	add.ClActHeader	= &head;
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DSUB;
@@ -919,10 +919,10 @@ static void InitCounterWork( IMC_SUBWIN_TIMECOUNT* p_data, CLACT_SET_PTR clact_s
 
 	p_data->pal_chg = FALSE;
 
-	// ¶³İÀ‚Ì’l‚Ìƒf[ƒ^‚ğƒ[ƒN‚Éİ’è
+	// ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¯ãƒ¼ã‚¯ã«è¨­å®š
 	setCounterClactAnm( p_data );
 
-	// ‚ ‚Æ@@‚Ñ‚ã‚¤@‚ğ•`‰æ
+	// ã‚ã¨ã€€ã€€ã³ã‚…ã†ã€€ã‚’æç”»
 	initBmp( &p_data->bmp, p_bgini, 
 			IMC_SUBWIN_COUNTBMP_X, IMC_SUBWIN_COUNTBMP_Y,
 			IMC_SUBWIN_COUNTBMP_SIZE_X, IMC_SUBWIN_COUNTBMP_SIZE_Y,
@@ -937,17 +937,17 @@ static void InitCounterWork( IMC_SUBWIN_TIMECOUNT* p_data, CLACT_SET_PTR clact_s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒ^[ƒf[ƒ^‚Ì”jŠü
+ *	@brief	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ç ´æ£„
  *
- *	@param	p_data		ƒ[ƒN
- *	@param	p_res_man	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+ *	@param	p_data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_res_man	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void deleteCounterWork( IMC_SUBWIN_TIMECOUNT* p_data, CLACT_U_RES_MANAGER_PTR* p_res_man )
 {
-	// ƒ^ƒXƒN”jŠü
+	// ã‚¿ã‚¹ã‚¯ç ´æ£„
 	if( p_data->CountTCB ){
 		TCB_Delete( p_data->CountTCB );
 	}
@@ -955,10 +955,10 @@ static void deleteCounterWork( IMC_SUBWIN_TIMECOUNT* p_data, CLACT_U_RES_MANAGER
 		TCB_Delete( p_data->MstTransTCB );
 	}
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	imcSubWin_DefaultClactResDelete( p_data->res_obj, p_res_man );
 
-	// BMP”jŠü
+	// BMPç ´æ£„
 	deleteBmp( p_data->bmp );
 
 	memset( p_data, 0, sizeof(IMC_SUBWIN_TIMECOUNT) );
@@ -966,9 +966,9 @@ static void deleteCounterWork( IMC_SUBWIN_TIMECOUNT* p_data, CLACT_U_RES_MANAGER
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒ^[ƒf[ƒ^‚ÌƒƒCƒ“
+ *	@brief	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -977,29 +977,29 @@ static void mainCounterWork( IMC_SUBWIN_TIMECOUNT* p_data )
 {
 	u32 num;
 	
-	// ƒJƒEƒ“ƒgƒ_ƒEƒ“
+	// ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
 	countDownCounterData( p_data );
 
 	num = p_data->master_count / IMC_SUBWIN_NUM_ONE_SYNC;
 
-	// “]‘—
+	// è»¢é€
 	CommContestSendImcLocal( p_data->p_comm_data, num );
 
-	// óMˆ—
+	// å—ä¿¡å‡¦ç†
 	popCounterData( p_data );
 
-	// ¶³İÀ‚Ì’l‚Ìƒf[ƒ^‚ğƒ[ƒN‚Éİ’è
+	// ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¯ãƒ¼ã‚¯ã«è¨­å®š
 	setCounterClactAnm( p_data );
 
-	// ƒJƒEƒ“ƒg´Ìª¸ÄƒƒCƒ“ˆ—
+	// ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³å‡¦ç†
 	mainCounterEffect( &p_data->counter_eff );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒ^[ƒf[ƒ^‚ÌóMˆ—
+ *	@brief	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡å‡¦ç†
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1007,14 +1007,14 @@ static void mainCounterWork( IMC_SUBWIN_TIMECOUNT* p_data )
 static void popCounterData( IMC_SUBWIN_TIMECOUNT* p_data )
 {
 	if( p_data->count != p_data->p_comm_data->recieve_sio.counter ){
-		// óM
+		// å—ä¿¡
 		p_data->count = p_data->p_comm_data->recieve_sio.counter;
 
 		if( p_data->count <= IMC_SUBWIN_NUM_PLTT_CHG ){
-			//ƒAƒjƒ
+			//ã‚¢ãƒ‹ãƒ¡
 			initCounterEffect( p_data, &p_data->counter_eff );
 
-			// ‰¹‚ğ–Â‚ç‚·
+			// éŸ³ã‚’é³´ã‚‰ã™
 			Snd_SePlay( IMC_SE_CON_10COUNT );
 		}
 	}
@@ -1022,9 +1022,9 @@ static void popCounterData( IMC_SUBWIN_TIMECOUNT* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[‚Ì•`‰æ‚ğ@ƒJƒEƒ“ƒg’l‚É‚ ‚í‚¹‚é
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®æç”»ã‚’ã€€ã‚«ã‚¦ãƒ³ãƒˆå€¤ã«ã‚ã‚ã›ã‚‹
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1036,7 +1036,7 @@ static void setCounterClactAnm( IMC_SUBWIN_TIMECOUNT* p_data )
 	int count = p_data->count;
 	int keta_num;
 
-	// Œ…‚Ì’l‚ğƒAƒNƒ^[‚Éİ’è
+	// æ¡ã®å€¤ã‚’ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®š
 	keta_num = 1;
 	for( i=1; i<IMC_SUBWIN_NUM_KETA; i++ ){
 		keta_num *= 10;
@@ -1049,7 +1049,7 @@ static void setCounterClactAnm( IMC_SUBWIN_TIMECOUNT* p_data )
 		count -= num*keta_num;
 		keta_num /= 10;
 
-		// F‚ğ•Ï‚¦‚é
+		// è‰²ã‚’å¤‰ãˆã‚‹
 		if( p_data->pal_chg == FALSE ){
 			if( p_data->count <= IMC_SUBWIN_NUM_PLTT_CHG ){
 				CLACT_PaletteNoChgAddTransPlttNo( p_data->num[i], 1 );	
@@ -1065,12 +1065,12 @@ static void setCounterClactAnm( IMC_SUBWIN_TIMECOUNT* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ï½À°¶³İÀ@ƒJƒEƒ“ƒgƒ_ƒEƒ“ŠÖ”
+ *	@brief	ãƒã‚¹ã‚¿ãƒ¼ã‚«ã‚¦ãƒ³ã‚¿ã€€ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³é–¢æ•°
  *
- *	@param	p_data		ƒ[ƒN
+ *	@param	p_data		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	’l‚ª•Ï‚í‚Á‚½
- *	@retval	FALSE	’l‚ª•Ï‚í‚ç‚È‚©‚Á‚½
+ *	@retval	TRUE	å€¤ãŒå¤‰ã‚ã£ãŸ
+ *	@retval	FALSE	å€¤ãŒå¤‰ã‚ã‚‰ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static void countDownCounterData( IMC_SUBWIN_TIMECOUNT* p_data )
@@ -1082,12 +1082,12 @@ static void countDownCounterData( IMC_SUBWIN_TIMECOUNT* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‰Šú‰»
+ *	@brief	å‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work			“®ìƒ[ƒN
- *	@param	s_x				ŠJnxÀ•W
- *	@param	e_x				I—¹xÀ•W
- *	@param	count_max		ƒJƒEƒ“ƒgÅ‘å’l
+ *	@param	p_work			å‹•ä½œãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x				é–‹å§‹xåº§æ¨™
+ *	@param	e_x				çµ‚äº†xåº§æ¨™
+ *	@param	count_max		ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
  *
  *	@return	none
  */
@@ -1104,19 +1104,19 @@ static void imc_UTIL_MoveReq( IMC_SUBWIN_MOVE_WORK* p_work, fx32 s_x, fx32 e_x, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL	imc_UTIL_MoveMain( IMC_SUBWIN_MOVE_WORK* p_work )
 {
 	fx32 w_x;
 
-	// Œ»İÀ•Wæ“¾
+	// ç¾åœ¨åº§æ¨™å–å¾—
 	w_x = FX_Mul( p_work->dis_x, p_work->count << FX32_SHIFT );
 	w_x = FX_Div( w_x, p_work->count_max << FX32_SHIFT );
 
@@ -1134,10 +1134,10 @@ static BOOL	imc_UTIL_MoveMain( IMC_SUBWIN_MOVE_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒ^[—p´Ìª¸Ä‚Ì‰Šú‰»
+ *	@brief	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ç”¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–
  *
- *	@param	p_data			ƒJƒEƒ“ƒ^[ƒ[ƒN
- *	@param	effect_work		´Ìª¸Äƒ[ƒN
+ *	@param	p_data			ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	effect_work		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1160,7 +1160,7 @@ static void initCounterEffect( IMC_SUBWIN_TIMECOUNT* p_data, IMC_SUBWIN_TIME_EFF
 		effect_work->mat[i] = get_mat;
 	}
 
-	// ŠJnŠgk’l‚ğ‹‚ß‚é
+	// é–‹å§‹æ‹¡ç¸®å€¤ã‚’æ±‚ã‚ã‚‹
 	count = IMC_SUBWIN_NUM_PLTT_CHG - p_data->count;
 	
 	if( count > 0 ){
@@ -1171,7 +1171,7 @@ static void initCounterEffect( IMC_SUBWIN_TIMECOUNT* p_data, IMC_SUBWIN_TIME_EFF
 	
 	imc_UTIL_MoveReq( &effect_work->scale, scale_start, IMC_SUBWIN_NUM_EFFE_SCAL_END, IMC_SUBWIN_NUM_EFFE_COUNT_MAX );
 
-	// ŠJnŠgk’l‚©‚çX“®ì’lY“®ì’l‚ğ‹‚ß‚é
+	// é–‹å§‹æ‹¡ç¸®å€¤ã‹ã‚‰Xå‹•ä½œå€¤Yå‹•ä½œå€¤ã‚’æ±‚ã‚ã‚‹
 	move_x = FX_Mul( IMC_SUBWIN_NUM_SIZE_X, scale_start );
 	move_y = FX_Mul( IMC_SUBWIN_NUM_SIZE_Y, scale_start );
 	move_x = move_x - IMC_SUBWIN_NUM_SIZE_X;
@@ -1179,15 +1179,15 @@ static void initCounterEffect( IMC_SUBWIN_TIMECOUNT* p_data, IMC_SUBWIN_TIME_EFF
 	imc_UTIL_MoveReq( &effect_work->x, move_x, 0, IMC_SUBWIN_NUM_EFFE_COUNT_MAX );
 	imc_UTIL_MoveReq( &effect_work->y, move_y, 0, IMC_SUBWIN_NUM_EFFE_COUNT_MAX );
 
-	// ‰Šú‰»Ï‚İ
+	// åˆæœŸåŒ–æ¸ˆã¿
 	effect_work->init_flg = TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒ^[´Ìª¸ÄƒƒCƒ““®ì
+ *	@brief	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	effect_work		ƒ[ƒN
+ *	@param	effect_work		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1201,19 +1201,19 @@ static void mainCounterEffect( IMC_SUBWIN_TIME_EFFECT* effect_work )
 		return ;
 	}
 
-	// “®ì
+	// å‹•ä½œ
 	check = imc_UTIL_MoveMain( &effect_work->scale );	
 	imc_UTIL_MoveMain( &effect_work->x );	
 	imc_UTIL_MoveMain( &effect_work->y );	
 
-	// Šgk’lİ’è
+	// æ‹¡ç¸®å€¤è¨­å®š
 	scale.x = effect_work->scale.x;
 	scale.y = effect_work->scale.x;
 	scale.z = effect_work->scale.x;
 	CLACT_SetScale( effect_work->num[0], &scale );
 	CLACT_SetScale( effect_work->num[1], &scale );
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	mat = effect_work->mat[0];
 	mat.x -= effect_work->x.x;
 	mat.y -= effect_work->y.x;
@@ -1222,7 +1222,7 @@ static void mainCounterEffect( IMC_SUBWIN_TIME_EFFECT* effect_work )
 	mat.y -= effect_work->y.x;
 	CLACT_SetMatrix( effect_work->num[1], &mat );
 
-	// I—¹
+	// çµ‚äº†
 	if( check ){
 		effect_work->init_flg = FALSE;
 	}
@@ -1230,12 +1230,12 @@ static void mainCounterEffect( IMC_SUBWIN_TIME_EFFECT* effect_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒ^[´Ìª¸Ä“®ìƒ`ƒFƒbƒN
+ *	@brief	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_effect_work	ƒ[ƒN
+ *	@param	cp_effect_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL checkCounterEffectEnd( const IMC_SUBWIN_TIME_EFFECT* cp_effect_work )
@@ -1250,7 +1250,7 @@ static BOOL checkCounterEffectEnd( const IMC_SUBWIN_TIME_EFFECT* cp_effect_work 
 #ifdef PM_DEBUG
 void IMC_SUBWIN_DEBUG_SetBmpWin( IMC_SUBWIN* p_data, int msgID_1, int msgID_2 )
 {
-	GF_ASSERT_MSG( (p_data->init_flg & IMC_SUBWIN_INITMASK_BMP), "ƒoƒ“ƒvƒEƒBƒ“ƒhƒE‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ" )
+	GF_ASSERT_MSG( (p_data->init_flg & IMC_SUBWIN_INITMASK_BMP), "ãƒãƒ³ãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“" )
 
 	GF_BGL_BmpWinDataFill( p_data->bmp, 15 );
 	printBmp_NoWaku( p_data->bmp, ARC_MSG, NARC_msg_debug_tomoya_dat, msgID_1, 0, 0, GF_PRINTCOLOR_MAKE(1,2,15), MSG_NO_PUT );

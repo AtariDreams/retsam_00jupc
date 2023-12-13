@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_arrow.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@©‹@oŒû–îˆó
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€è‡ªæ©Ÿå‡ºå£çŸ¢å°
  * @author	kagaya
  * @data	05.07.13
  *
@@ -17,10 +17,10 @@
 //==============================================================================
 //	define
 //==============================================================================
-//#define DEBUG_ARROW_WRITE_OFF	//’è‹`‚Å–îˆó•`‰æOFF
+//#define DEBUG_ARROW_WRITE_OFF	//å®šç¾©ã§çŸ¢å°æç”»OFF
 
 //#define ARROW_DRAW_Z_OFFSET (FX32_ONE*(3))
-//#define ARROW_DRAW_Z_OFFSET (FX32_ONE*(5))			///<–îˆó•`‰æƒIƒtƒZƒbƒgZ²
+//#define ARROW_DRAW_Z_OFFSET (FX32_ONE*(5))			///<çŸ¢å°æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆZè»¸
 #define ARROW_DRAW_Z_OFFSET (FX32_ONE*(3))				
 
 #define ARROW_OFFSET_FRAME (15)
@@ -30,12 +30,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_ARROWŒ^
+///	FE_ARROWå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_ARROW * FE_ARROW_PTR;
 
 //--------------------------------------------------------------
-///	FE_ARROW\‘¢‘Ì
+///	FE_ARROWæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_ARROW
 {
@@ -44,10 +44,10 @@ typedef struct _TAG_FE_ARROW
 	FRO_OBJ robj;
 }FE_ARROW;
 
-#define FE_ARROW_SIZE (sizeof(FE_ARROW)) ///<FE_ARROWƒTƒCƒY
+#define FE_ARROW_SIZE (sizeof(FE_ARROW)) ///<FE_ARROWã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	ARROW_ADD_H\‘¢‘Ì
+///	ARROW_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -56,29 +56,29 @@ typedef struct
 	PLAYER_STATE_PTR jiki;			///<PLAYER_STATE_PTR
 }ARROW_ADD_H;
 
-#define ARROW_ADD_H_SIZE (sizeof(ARROW_ADD_H)) ///<ARROW_ADD_HƒTƒCƒY
+#define ARROW_ADD_H_SIZE (sizeof(ARROW_ADD_H)) ///<ARROW_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	ARROW_WORK\‘¢‘Ì
+///	ARROW_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int vanish_sw;								///<”ñ•\¦SW
-	int dir;									///<•ûŒü
-	MATR attr;									///<Œ»İ‚ÌƒAƒgƒŠƒrƒ…[ƒg
-	int gx;										///<Œ»İ‚ÌGX
-	int gz;										///<Œ»İ‚ÌGZ
-	int obj_id;									///<©‹@OBJ ID
-	int zone_id;								///<©‹@ZONE ID
-	int frame;									///<•\¦ƒtƒŒ[ƒ€
-	int draw_offs_no;							///<ˆÚ“®ƒIƒtƒZƒbƒg
-	ARROW_ADD_H head;							///<’Ç‰Á‚ÌARROW_ADD_H
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	int dir;									///<æ–¹å‘
+	MATR attr;									///<ç¾åœ¨ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+	int gx;										///<ç¾åœ¨ã®GX
+	int gz;										///<ç¾åœ¨ã®GZ
+	int obj_id;									///<è‡ªæ©ŸOBJ ID
+	int zone_id;								///<è‡ªæ©ŸZONE ID
+	int frame;									///<è¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ 
+	int draw_offs_no;							///<ç§»å‹•ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	ARROW_ADD_H head;							///<è¿½åŠ æ™‚ã®ARROW_ADD_H
 }ARROW_WORK;
 
-#define ARROW_WORK_SIZE (sizeof(ARROW_WORK))	///<ARROW_WORKƒTƒCƒY
+#define ARROW_WORK_SIZE (sizeof(ARROW_WORK))	///<ARROW_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Arrow_GraphicInit( FE_ARROW_PTR arrow );
 static void Arrow_GraphicDelete( FE_ARROW_PTR arrow );
@@ -89,11 +89,11 @@ static const EOA_H_NPP DATA_EoaH_Arrow;
 static const VecFx32 DATA_ArrowDrawOffsTbl[DIR_4_MAX][ARROW_OFFSET_NUM_MAX];
 
 //==============================================================================
-//	–îˆó@ƒVƒXƒeƒ€
+//	çŸ¢å°ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * –îˆó‰Šú‰»
+ * çŸ¢å°åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_ARROW_PTR	FE_ARROW_PTR
  */
@@ -111,7 +111,7 @@ void * FE_Arrow_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * –îˆóíœ
+ * çŸ¢å°å‰Šé™¤
  * @param	arrow		FE_ARROW_PTR
  * @retval	nothing
  */
@@ -124,11 +124,11 @@ void FE_Arrow_Delete( void *work )
 }
 
 //==============================================================================
-//	–îˆó@ƒOƒ‰ƒtƒBƒbƒN
+//	çŸ¢å°ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * –îˆó ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * çŸ¢å° ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	arrow	FE_ARROW_PTR
  * @retval	nothing
  */
@@ -142,7 +142,7 @@ static void Arrow_GraphicInit( FE_ARROW_PTR arrow )
 
 //--------------------------------------------------------------
 /**
- * –îˆó ƒOƒ‰ƒtƒBƒbƒNíœ
+ * çŸ¢å° ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	arrow	FE_ARROW_PTR
  * @retval	nothing
  */
@@ -153,11 +153,11 @@ static void Arrow_GraphicDelete( FE_ARROW_PTR arrow )
 }
 
 //==============================================================================
-//	–îˆó@EOA
+//	çŸ¢å°ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@oŒû–îˆó’Ç‰Á
+ * è‡ªæ©Ÿå‡ºå£çŸ¢å°è¿½åŠ 
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -183,10 +183,10 @@ void FE_PlayerExitArrow_Add( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * EOA –îˆó@‰Šú‰»
+ * EOA çŸ¢å°ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaArrow_Init( EOA_PTR eoa, void *wk )
@@ -209,7 +209,7 @@ static int EoaArrow_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA –îˆó@íœ
+ * EOA çŸ¢å°ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -221,7 +221,7 @@ static void EoaArrow_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA –îˆó@“®ì
+ * EOA çŸ¢å°ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -235,7 +235,7 @@ static void EoaArrow_Move( EOA_PTR eoa, void *wk )
 	FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
 	
 	if( FieldOBJ_CheckSameID(fldobj,work->obj_id,work->zone_id) == FALSE ){
-		FE_EoaDelete( eoa );										//“¯ˆê‚Å‚Í‚È‚¢
+		FE_EoaDelete( eoa );										//åŒä¸€ã§ã¯ãªã„
 		return;
 	}
 	
@@ -280,7 +280,7 @@ static void EoaArrow_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA –îˆó@•`‰æ
+ * EOA çŸ¢å°ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -318,13 +318,13 @@ static void EoaArrow_Draw( EOA_PTR eoa, void *wk )
 }
 
 //==============================================================================
-//	–îˆóƒAƒNƒ^[ƒp[ƒc
+//	çŸ¢å°ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒAƒgƒŠƒrƒ…[ƒg‚©‚ç•\¦•ûŒü‚ğæ“¾
+ * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‹ã‚‰è¡¨ç¤ºæ–¹å‘ã‚’å–å¾—
  * @param	attr	MATR
- * @retval	int		DIR_UP“™ DIR_NOT=ƒ}ƒbƒg‚Å‚Í‚È‚¢
+ * @retval	int		DIR_UPç­‰ DIR_NOT=ãƒãƒƒãƒˆã§ã¯ãªã„
  */
 //--------------------------------------------------------------
 static int Arrow_AttrDirGet( MATR attr )
@@ -341,7 +341,7 @@ static int Arrow_AttrDirGet( MATR attr )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	–îˆóEOA_H
+///	çŸ¢å°EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Arrow =
 {
@@ -353,7 +353,7 @@ static const EOA_H_NPP DATA_EoaH_Arrow =
 };
 
 //--------------------------------------------------------------
-///	•ûŒü•Ê•\¦ƒIƒtƒZƒbƒg
+///	æ–¹å‘åˆ¥è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const VecFx32 DATA_ArrowDrawOffsTbl[DIR_4_MAX][ARROW_OFFSET_NUM_MAX] =
 {

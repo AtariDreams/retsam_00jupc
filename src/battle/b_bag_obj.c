@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_bag_obj.c
- * @brief	í“¬—pƒoƒbƒO‰æ–Ê OBJŠÖ˜A
+ * @brief	æˆ¦é—˜ç”¨ãƒãƒƒã‚°ç”»é¢ OBJé–¢é€£
  * @author	Hiroyuki Nakamura
  * @date	05.02.15
  */
@@ -26,62 +26,62 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	CLACT_ID_COMMON		( 46263 )	// ‚±‚Ì‰æ–Ê‚Åg—p‚·‚éƒZƒ‹ƒAƒNƒ^[‚ÌID
+#define	CLACT_ID_COMMON		( 46263 )	// ã“ã®ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ID
 
-// ƒLƒƒƒ‰ƒŠƒ\[ƒXID
+// ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ID
 enum {
-	CHR_ID_ITEM1 = CLACT_ID_COMMON,		// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚P
-	CHR_ID_ITEM2,						// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚Q
-	CHR_ID_ITEM3,						// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚R
-	CHR_ID_ITEM4,						// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚S
-	CHR_ID_ITEM5,						// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚T
-	CHR_ID_ITEM6,						// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚U
-	CHR_ID_GETDEMO,						// •ßŠlƒfƒ‚ƒJ[ƒ\ƒ‹
-	CHR_ID_CURSOR,						// ƒJ[ƒ\ƒ‹
+	CHR_ID_ITEM1 = CLACT_ID_COMMON,		// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼‘
+	CHR_ID_ITEM2,						// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼’
+	CHR_ID_ITEM3,						// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼“
+	CHR_ID_ITEM4,						// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼”
+	CHR_ID_ITEM5,						// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼•
+	CHR_ID_ITEM6,						// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼–
+	CHR_ID_GETDEMO,						// æ•ç²ãƒ‡ãƒ¢ã‚«ãƒ¼ã‚½ãƒ«
+	CHR_ID_CURSOR,						// ã‚«ãƒ¼ã‚½ãƒ«
 
 	CHR_ID_MAX = CHR_ID_CURSOR - CLACT_ID_COMMON + 1
 };
 
-// ƒpƒŒƒbƒgƒŠƒ\[ƒXID
+// ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ID
 enum {
-	PAL_ID_ITEM1 = CLACT_ID_COMMON,		// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚P
-	PAL_ID_ITEM2,						// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚Q
-	PAL_ID_ITEM3,						// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚R
-	PAL_ID_ITEM4,						// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚S
-	PAL_ID_ITEM5,						// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚T
-	PAL_ID_ITEM6,						// ƒAƒCƒeƒ€ƒAƒCƒRƒ“F‚U
-	PAL_ID_GETDEMO,						// •ßŠlƒfƒ‚ƒJ[ƒ\ƒ‹
-	PAL_ID_CURSOR,						// ƒJ[ƒ\ƒ‹
+	PAL_ID_ITEM1 = CLACT_ID_COMMON,		// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼‘
+	PAL_ID_ITEM2,						// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼’
+	PAL_ID_ITEM3,						// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼“
+	PAL_ID_ITEM4,						// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼”
+	PAL_ID_ITEM5,						// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼•
+	PAL_ID_ITEM6,						// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šï¼–
+	PAL_ID_GETDEMO,						// æ•ç²ãƒ‡ãƒ¢ã‚«ãƒ¼ã‚½ãƒ«
+	PAL_ID_CURSOR,						// ã‚«ãƒ¼ã‚½ãƒ«
 
 	PAL_ID_MAX = PAL_ID_CURSOR - CLACT_ID_COMMON + 1
 };
 
-// ƒZƒ‹ƒŠƒ\[ƒXID
+// ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ID
 enum {
-	CEL_ID_ITEM = CLACT_ID_COMMON,		// ƒAƒCƒeƒ€ƒAƒCƒRƒ“
-	CEL_ID_GETDEMO,						// •ßŠlƒfƒ‚ƒJ[ƒ\ƒ‹
-	CEL_ID_CURSOR,						// ƒJ[ƒ\ƒ‹
+	CEL_ID_ITEM = CLACT_ID_COMMON,		// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
+	CEL_ID_GETDEMO,						// æ•ç²ãƒ‡ãƒ¢ã‚«ãƒ¼ã‚½ãƒ«
+	CEL_ID_CURSOR,						// ã‚«ãƒ¼ã‚½ãƒ«
 
 	CEL_ID_MAX = CEL_ID_CURSOR - CLACT_ID_COMMON + 1
 };
 
-// ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒXID
+// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ID
 enum {
-	ANM_ID_ITEM = CLACT_ID_COMMON,		// ƒAƒCƒeƒ€ƒAƒCƒRƒ“
-	ANM_ID_GETDEMO,						// •ßŠlƒfƒ‚ƒJ[ƒ\ƒ‹
-	ANM_ID_CURSOR,						// ƒJ[ƒ\ƒ‹
+	ANM_ID_ITEM = CLACT_ID_COMMON,		// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
+	ANM_ID_GETDEMO,						// æ•ç²ãƒ‡ãƒ¢ã‚«ãƒ¼ã‚½ãƒ«
+	ANM_ID_CURSOR,						// ã‚«ãƒ¼ã‚½ãƒ«
 
 	ANM_ID_MAX = ANM_ID_CURSOR - CLACT_ID_COMMON + 1
 };
 
-#define	CURSOR_CLA_MAX		( 5 )		// ƒJ[ƒ\ƒ‹‚ÌOBJ”
-#define	FINGER_CLA_MAX		( 1 )		// wƒJ[ƒ\ƒ‹‚ÌOBJ”
+#define	CURSOR_CLA_MAX		( 5 )		// ã‚«ãƒ¼ã‚½ãƒ«ã®OBJæ•°
+#define	FINGER_CLA_MAX		( 1 )		// æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ã®OBJæ•°
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void BBAG_ClactResManInit( BBAG_WORK * wk );
 static void BBAG_ClactItemLoad( BBAG_WORK * wk );
@@ -99,12 +99,12 @@ static void BBAG_GetDemoCursorDel( BBAG_WORK * wk );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ƒy[ƒW‚P‚Ìƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌÀ•W
+// ãƒšãƒ¼ã‚¸ï¼‘ã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®åº§æ¨™
 static const int P1_ItemIconPos[2] = { 24, 178 };
 
-// ƒy[ƒW‚Q‚ÌƒAƒCƒeƒ€ƒAƒCƒRƒ“‚ÌÀ•W
+// ãƒšãƒ¼ã‚¸ï¼’ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã®åº§æ¨™
 static const int P2_ItemIconPos[][2] =
 {
 	{  44,  45 }, { 172,  45 },
@@ -112,10 +112,10 @@ static const int P2_ItemIconPos[][2] =
 	{  44, 141 }, { 172, 141 },
 };
 
-// ƒy[ƒW‚R‚Ìƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌÀ•W
+// ãƒšãƒ¼ã‚¸ï¼“ã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®åº§æ¨™
 static const int P3_ItemIconPos[2] = { 40, 44 };
 
-// ƒZƒ‹ƒAƒNƒ^[‚Ìƒf[ƒ^
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿
 static const int ClactDat[][5] =
 {	// char, pal, cell, anm, obj_pri
 	{ CHR_ID_ITEM1, PAL_ID_ITEM1, CEL_ID_ITEM, ANM_ID_ITEM, 1 },
@@ -131,9 +131,9 @@ static const int ClactDat[][5] =
 
 //--------------------------------------------------------------------------------------------
 /**
- * í“¬—pƒoƒbƒOOBJ‰Šú‰»
+ * æˆ¦é—˜ç”¨ãƒãƒƒã‚°OBJåˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -152,9 +152,9 @@ void BattleBag_ObjInit( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -171,9 +171,9 @@ static void BBAG_ClactResManInit( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚ÌƒOƒ‰ƒtƒBƒbƒNƒ[ƒh
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -189,18 +189,18 @@ static void BBAG_ClactItemLoad( BBAG_WORK * wk )
 	csp = BattleWorkCATS_SYS_PTRGet( wk->dat->bw );
 
 	for( i=0; i<6; i++ ){
-		// ƒLƒƒƒ‰
+		// ã‚­ãƒ£ãƒ©
 		CATS_LoadResourceCharArcH(
 			csp, wk->crp, hdl,
 			GetItemIndex(1,ITEM_GET_ICON_CGX), 0, NNS_G2D_VRAM_TYPE_2DSUB, CHR_ID_ITEM1+i );
-		// ƒpƒŒƒbƒg
+		// ãƒ‘ãƒ¬ãƒƒãƒˆ
 		CATS_LoadResourcePlttWorkArcH(
 			wk->pfd, FADE_SUB_OBJ, csp, wk->crp, hdl,
 			GetItemIndex(1,ITEM_GET_ICON_PAL), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, PAL_ID_ITEM1+i );
 	}
-	// ƒZƒ‹
+	// ã‚»ãƒ«
 	CATS_LoadResourceCellArcH( csp, wk->crp, hdl, ItemIconCellGet(), 0, CEL_ID_ITEM );
-	// ƒZƒ‹ƒAƒjƒ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	CATS_LoadResourceCellAnmArcH( csp, wk->crp, hdl, ItemIconCAnmGet(), 0, ANM_ID_ITEM );
 	
 	ArchiveDataHandleClose( hdl );
@@ -208,11 +208,11 @@ static void BBAG_ClactItemLoad( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“ƒLƒƒƒ‰Ø‚è‘Ö‚¦
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã‚­ãƒ£ãƒ©åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€”Ô†
- * @param	res_id	ƒLƒƒƒ‰ƒŠƒ\[ƒXID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	res_id	ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ID
  *
  * @return	none
  */
@@ -228,12 +228,12 @@ static void BBAG_ItemIconCharChg( BBAG_WORK * wk, u16 item, u32 res_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“ƒpƒŒƒbƒgØ‚è‘Ö‚¦
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€”Ô†
- * @param	pos		ˆÊ’u
- * @param	res_id	ƒpƒŒƒbƒgƒŠƒ\[ƒXID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	pos		ä½ç½®
+ * @param	res_id	ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ID
  *
  * @return	none
  */
@@ -248,9 +248,9 @@ static void BBAG_ItemIconPlttChg( BBAG_WORK * wk, u16 item, u16 pos, u32 res_id 
 
 //--------------------------------------------------------------------------------------------
 /**
- * •ßŠlƒfƒ‚ƒJ[ƒ\ƒ‹‚ÌƒOƒ‰ƒtƒBƒbƒNƒ[ƒh
+ * æ•ç²ãƒ‡ãƒ¢ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -260,19 +260,19 @@ static void BBAG_ClactGetDemoLoad( BBAG_WORK * wk )
 {
 	CATS_SYS_PTR	csp = BattleWorkCATS_SYS_PTRGet( wk->dat->bw );
 
-	// ƒLƒƒƒ‰
+	// ã‚­ãƒ£ãƒ©
 	CATS_LoadResourceCharArc(
 		csp, wk->crp, ARC_EV_POKESELECT_GRA,
 		NARC_ev_pokeselect_psel_cursol_NCGR, 0, NNS_G2D_VRAM_TYPE_2DSUB, CHR_ID_GETDEMO );
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	CATS_LoadResourcePlttWorkArc(
 		wk->pfd, FADE_SUB_OBJ, csp, wk->crp, ARC_EV_POKESELECT_GRA,
 		NARC_ev_pokeselect_psel_cursol_NCLR, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, PAL_ID_GETDEMO );
-	// ƒZƒ‹
+	// ã‚»ãƒ«
 	CATS_LoadResourceCellArc(
 		csp, wk->crp, ARC_EV_POKESELECT_GRA,
 		NARC_ev_pokeselect_psel_cursol_NCER, 0, CEL_ID_GETDEMO );
-	// ƒZƒ‹ƒAƒjƒ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	CATS_LoadResourceCellAnmArc(
 		csp, wk->crp, ARC_EV_POKESELECT_GRA,
 		NARC_ev_pokeselect_psel_cursol_NANR, 0, ANM_ID_GETDEMO );
@@ -281,12 +281,12 @@ static void BBAG_ClactGetDemoLoad( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[’Ç‰ÁiŒÂ•Êj
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ï¼ˆå€‹åˆ¥ï¼‰
  *
- * @param	wk		ƒ[ƒN
- * @param	id		’Ç‰Á‚·‚éƒZƒ‹ƒAƒNƒ^[‚ÌID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	id		è¿½åŠ ã™ã‚‹ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ID
  *
- * @return	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^
+ * @return	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static CATS_ACT_PTR BBAG_ClactAdd( BBAG_WORK * wk, u32 id )
@@ -318,9 +318,9 @@ static CATS_ACT_PTR BBAG_ClactAdd( BBAG_WORK * wk, u32 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[’Ç‰Ái‘S‚Äj
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ï¼ˆå…¨ã¦ï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -336,9 +336,9 @@ static void BBAG_ClactAddAll( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * í“¬—pƒoƒbƒOOBJíœ
+ * æˆ¦é—˜ç”¨ãƒãƒƒã‚°OBJå‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -362,9 +362,9 @@ void BattleBag_ObjFree( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ğ•\¦‚µ‚ÄÀ•W•ÏX
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’è¡¨ç¤ºã—ã¦åº§æ¨™å¤‰æ›´
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -377,10 +377,10 @@ static void BBAG_ClactOn( CATS_ACT_PTR cap, const int x, const int y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚²‚Æ‚ÉOBJ‚ğƒZƒbƒg
+ * ãƒšãƒ¼ã‚¸ã”ã¨ã«OBJã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒW
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸
  *
  * @return	none
  */
@@ -394,19 +394,19 @@ void BattleBag_PageObjSet( BBAG_WORK * wk, u32 page )
 	}
 
 	switch( page ){
-	case BBAG_PAGE_POCKET:		// ƒ|ƒPƒbƒg‘I‘ğƒy[ƒW
+	case BBAG_PAGE_POCKET:		// ãƒã‚±ãƒƒãƒˆé¸æŠãƒšãƒ¼ã‚¸
 		BBAG_Page1ObjSet( wk );
 		break;
-	case BBAG_PAGE_MAIN:		// ƒAƒCƒeƒ€‘I‘ğƒy[ƒW
+	case BBAG_PAGE_MAIN:		// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠãƒšãƒ¼ã‚¸
 		BBAG_Page2ObjSet( wk );
 		break;
-	case BBAG_PAGE_ITEM:		// ƒAƒCƒeƒ€g—pƒy[ƒW
+	case BBAG_PAGE_ITEM:		// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸
 		BBAG_Page3ObjSet( wk );
 		break;
 	}
 }
 
-// •ßŠlƒfƒ‚‚ÌƒJ[ƒ\ƒ‹•\¦À•W
+// æ•ç²ãƒ‡ãƒ¢ã®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºåº§æ¨™
 #define	P1_GETDEMO_CURSOR_X		( 192 )
 #define	P1_GETDEMO_CURSOR_Y		( 24 )
 #define	P2_GETDEMO_CURSOR_X		( 64 )
@@ -416,9 +416,9 @@ void BattleBag_PageObjSet( BBAG_WORK * wk, u32 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒg‘I‘ğƒy[ƒW‚ÌOBJ‚ğƒZƒbƒg
+ * ãƒã‚±ãƒƒãƒˆé¸æŠãƒšãƒ¼ã‚¸ã®OBJã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -441,9 +441,9 @@ static void BBAG_Page1ObjSet( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€‘I‘ğƒy[ƒW‚ÌOBJ‚ğƒZƒbƒg
+ * ã‚¢ã‚¤ãƒ†ãƒ é¸æŠãƒšãƒ¼ã‚¸ã®OBJã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -469,9 +469,9 @@ static void BBAG_Page2ObjSet( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒy[ƒW‚ÌOBJ‚ğƒZƒbƒg
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸ã®OBJã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -493,14 +493,14 @@ static void BBAG_Page3ObjSet( BBAG_WORK * wk )
 
 
 //============================================================================================
-//	ƒJ[ƒ\ƒ‹
+//	ã‚«ãƒ¼ã‚½ãƒ«
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ğƒJ[ƒ\ƒ‹’Ç‰Á
+ * é¸æŠã‚«ãƒ¼ã‚½ãƒ«è¿½åŠ 
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -524,9 +524,9 @@ static void BBAG_ClactCursorAdd( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ğƒJ[ƒ\ƒ‹íœ
+ * é¸æŠã‚«ãƒ¼ã‚½ãƒ«å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -539,37 +539,37 @@ static void BBAG_CursorDel( BBAG_WORK * wk )
 }
 
 
-// ƒ|ƒPƒbƒg‘I‘ğ‰æ–ÊˆÚ“®ƒe[ƒuƒ‹
+// ãƒã‚±ãƒƒãƒˆé¸æŠç”»é¢ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 static const POINTER_WORK P1_CursorPosTbl[] =
 {
-	{   8,  16, 120,  72, 0, 1, 0, 2 },					// 0 : HP‰ñ•œƒ|ƒPƒbƒg
-	{   8,  88, 120, 144, 0, 4, 1, 3 },					// 1 : ó‘Ô‰ñ•œƒ|ƒPƒbƒg
-	{ 136,  16, 248,  72, 2, 3, 0, 2 },					// 2 : ƒ{[ƒ‹ƒ|ƒPƒbƒg
-	{ 136,  88, 248, 144, 2, 5, 1, 3 },					// 3 : í“¬—pƒ|ƒPƒbƒg
-	{   8, 160, 200, 184, 1, 4, 4, 5 },					// 4 : ÅŒã‚Ég—p‚µ‚½“¹‹ï
-	{ 224, 160, 248, 184, BAPP_CMV_RETBIT|3, 5, 4, 5 },	// 5 : –ß‚é
-//	{ 224, 160, 248, 184, BAPP_CMV_RETBIT|3, 5, 4, 5 },	// 5 : –ß‚é
+	{   8,  16, 120,  72, 0, 1, 0, 2 },					// 0 : HPå›å¾©ãƒã‚±ãƒƒãƒˆ
+	{   8,  88, 120, 144, 0, 4, 1, 3 },					// 1 : çŠ¶æ…‹å›å¾©ãƒã‚±ãƒƒãƒˆ
+	{ 136,  16, 248,  72, 2, 3, 0, 2 },					// 2 : ãƒœãƒ¼ãƒ«ãƒã‚±ãƒƒãƒˆ
+	{ 136,  88, 248, 144, 2, 5, 1, 3 },					// 3 : æˆ¦é—˜ç”¨ãƒã‚±ãƒƒãƒˆ
+	{   8, 160, 200, 184, 1, 4, 4, 5 },					// 4 : æœ€å¾Œã«ä½¿ç”¨ã—ãŸé“å…·
+	{ 224, 160, 248, 184, BAPP_CMV_RETBIT|3, 5, 4, 5 },	// 5 : æˆ»ã‚‹
+//	{ 224, 160, 248, 184, BAPP_CMV_RETBIT|3, 5, 4, 5 },	// 5 : æˆ»ã‚‹
 };
 
-// ƒAƒCƒeƒ€‘I‘ğ‰æ–ÊˆÚ“®ƒe[ƒuƒ‹
+// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠç”»é¢ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 static const POINTER_WORK P2_CursorPosTbl[] =
 {
-	{   8,  16, 120,  48, 0, 2, 0, 1 },					// 0 : ƒAƒCƒeƒ€‚P
-	{ 136,  16, 248,  48, 1, 3, 0, 1 },					// 1 : ƒAƒCƒeƒ€‚Q
-	{   8,  64, 120,  96, 0, 4, 2, 3 },					// 2 : ƒAƒCƒeƒ€‚R
-	{ 136,  64, 248,  96, 1, 5, 2, 3 },					// 3 : ƒAƒCƒeƒ€‚S
-	{   8, 112, 120, 144, 2, BAPP_CMV_RETBIT|6, 4, 5 },	// 4 : ƒAƒCƒeƒ€‚T
-	{ 136, 112, 248, 144, 3, 8, 4, 5 },					// 5 : ƒAƒCƒeƒ€‚U
-	{   8, 160,  32, 184, 4, 6, 6, 7 },					// 6 : ‘O‚Ö
-	{  48, 160,  72, 184, 4, 7, 6, 8 },					// 7 : Ÿ‚Ö
-	{ 224, 160, 248, 184, 5, 8, 7, 8 },					// 8 : –ß‚é
+	{   8,  16, 120,  48, 0, 2, 0, 1 },					// 0 : ã‚¢ã‚¤ãƒ†ãƒ ï¼‘
+	{ 136,  16, 248,  48, 1, 3, 0, 1 },					// 1 : ã‚¢ã‚¤ãƒ†ãƒ ï¼’
+	{   8,  64, 120,  96, 0, 4, 2, 3 },					// 2 : ã‚¢ã‚¤ãƒ†ãƒ ï¼“
+	{ 136,  64, 248,  96, 1, 5, 2, 3 },					// 3 : ã‚¢ã‚¤ãƒ†ãƒ ï¼”
+	{   8, 112, 120, 144, 2, BAPP_CMV_RETBIT|6, 4, 5 },	// 4 : ã‚¢ã‚¤ãƒ†ãƒ ï¼•
+	{ 136, 112, 248, 144, 3, 8, 4, 5 },					// 5 : ã‚¢ã‚¤ãƒ†ãƒ ï¼–
+	{   8, 160,  32, 184, 4, 6, 6, 7 },					// 6 : å‰ã¸
+	{  48, 160,  72, 184, 4, 7, 6, 8 },					// 7 : æ¬¡ã¸
+	{ 224, 160, 248, 184, 5, 8, 7, 8 },					// 8 : æˆ»ã‚‹
 };
 
-// ƒAƒCƒeƒ€‘I‘ğ‰æ–ÊˆÚ“®ƒe[ƒuƒ‹
+// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠç”»é¢ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 static const POINTER_WORK P3_CursorPosTbl[] =
 {
-	{   8, 160, 200, 184, 0, 0, 0, 1 },	// 0 : g‚¤
-	{ 224, 160, 248, 184, 1, 1, 0, 1 },	// 1 : –ß‚é
+	{   8, 160, 200, 184, 0, 0, 0, 1 },	// 0 : ä½¿ã†
+	{ 224, 160, 248, 184, 1, 1, 0, 1 },	// 1 : æˆ»ã‚‹
 };
 
 static const POINTER_WORK * const CursorPosTable[] = {
@@ -579,10 +579,10 @@ static const POINTER_WORK * const CursorPosTable[] = {
 };
 
 
-#define	P1_DEF_CMV_TBL	( 0x3f )	// ƒy[ƒW‚P‚ÌƒfƒtƒHƒ‹ƒgƒJ[ƒ\ƒ‹ˆÚ“®ƒe[ƒuƒ‹
-#define	P1_LST_CMV_TBL	( 0x2f )	// ƒy[ƒW‚P‚ÌÅŒã‚Ég‚Á‚½“¹‹ï—L‚ÌƒJ[ƒ\ƒ‹ˆÚ“®ƒe[ƒuƒ‹
-#define	P2_DEF_CMV_TBL	( 0x100 )	// ƒy[ƒW‚Q‚ÌƒfƒtƒHƒ‹ƒgƒJ[ƒ\ƒ‹ˆÚ“®ƒe[ƒuƒ‹
-#define	P2_PAGE_TBL		( 0xc0 )	// ƒy[ƒW‚Q‚Ìƒy[ƒWØ‚è‘Ö‚¦ƒJ[ƒ\ƒ‹ˆÚ“®ƒe[ƒuƒ‹
+#define	P1_DEF_CMV_TBL	( 0x3f )	// ãƒšãƒ¼ã‚¸ï¼‘ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
+#define	P1_LST_CMV_TBL	( 0x2f )	// ãƒšãƒ¼ã‚¸ï¼‘ã®æœ€å¾Œã«ä½¿ã£ãŸé“å…·æœ‰ã®ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
+#define	P2_DEF_CMV_TBL	( 0x100 )	// ãƒšãƒ¼ã‚¸ï¼’ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
+#define	P2_PAGE_TBL		( 0xc0 )	// ãƒšãƒ¼ã‚¸ï¼’ã®ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 
 /*
 void BBAG_P1CursorMvTblMake( BBAG_WORK * wk )
@@ -597,9 +597,9 @@ void BBAG_P1CursorMvTblMake( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ğƒJ[ƒ\ƒ‹ˆÚ“®ƒe[ƒuƒ‹ì¬
+ * é¸æŠã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -624,10 +624,10 @@ void BBAG_P2CursorMvTblMake( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ğƒJ[ƒ\ƒ‹ƒZƒbƒg
+ * é¸æŠã‚«ãƒ¼ã‚½ãƒ«ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒWID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸ID
  *
  * @return	none
  */
@@ -637,30 +637,30 @@ void BattleBag_CursorMoveSet( BBAG_WORK * wk, u8 page )
 	BAPP_CursorMvWkSetPoint( wk->cmv_wk, CursorPosTable[page] );
 
 	switch( page ){
-	case BBAG_PAGE_POCKET:		// ƒ|ƒPƒbƒg‘I‘ğƒy[ƒW
+	case BBAG_PAGE_POCKET:		// ãƒã‚±ãƒƒãƒˆé¸æŠãƒšãƒ¼ã‚¸
 //		if( BAPP_CursorMvWkGetFlag( wk->cmv_wk ) == 1 ){
 			BAPP_CursorMvWkSetPos( wk->cmv_wk, wk->poke_id );
 //		}
 //		BBAG_P1CursorMvTblMake( wk );
 		break;
 
-	case BBAG_PAGE_MAIN:		// ƒAƒCƒeƒ€‘I‘ğƒy[ƒW
+	case BBAG_PAGE_MAIN:		// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠãƒšãƒ¼ã‚¸
 //		if( BAPP_CursorMvWkGetFlag( wk->cmv_wk ) == 1 ){
 			BAPP_CursorMvWkSetPos( wk->cmv_wk, wk->dat->item_pos[wk->poke_id] );
 //		}
 //		BBAG_P2CursorMvTblMake( wk );
 		break;
 
-	case BBAG_PAGE_ITEM:		// ƒAƒCƒeƒ€g—pƒy[ƒW
+	case BBAG_PAGE_ITEM:		// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸
 		break;
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ğƒJ[ƒ\ƒ‹”ñ•\¦
+ * é¸æŠã‚«ãƒ¼ã‚½ãƒ«éè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -675,7 +675,7 @@ void BattleBag_CursorOff( BBAG_WORK * wk )
 
 
 //============================================================================================
-//	•ßŠlƒfƒ‚ƒJ[ƒ\ƒ‹
+//	æ•ç²ãƒ‡ãƒ¢ã‚«ãƒ¼ã‚½ãƒ«
 //============================================================================================
 /*
 void BattleBag_GetDemoCursorAnm( BBAG_WORK * wk )
@@ -696,9 +696,9 @@ void BattleBag_GetDemoCursorPush( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •ßŠlƒfƒ‚ƒJ[ƒ\ƒ‹’Ç‰Á
+ * æ•ç²ãƒ‡ãƒ¢ã‚«ãƒ¼ã‚½ãƒ«è¿½åŠ 
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -721,9 +721,9 @@ static void BBAG_ClactGetDemoCursorAdd( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •ßŠlƒfƒ‚ƒJ[ƒ\ƒ‹íœ
+ * æ•ç²ãƒ‡ãƒ¢ã‚«ãƒ¼ã‚½ãƒ«å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -736,9 +736,9 @@ static void BBAG_GetDemoCursorDel( BBAG_WORK * wk )
 }
 
 
-#define	GET_DEMO_FINGER_WAIT	( 60 )		// ƒAƒjƒƒEƒFƒCƒg
+#define	GET_DEMO_FINGER_WAIT	( 60 )		// ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 
-// ƒJ[ƒ\ƒ‹•\¦À•Wƒe[ƒuƒ‹
+// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºåº§æ¨™ãƒ†ãƒ¼ãƒ–ãƒ«
 static const int GetDemoCursorPos[3][2] =
 {
 	{ P1_GETDEMO_CURSOR_X, P1_GETDEMO_CURSOR_Y },
@@ -748,10 +748,10 @@ static const int GetDemoCursorPos[3][2] =
 
 //--------------------------------------------------------------------------------------------
 /**
- * •ßŠlƒfƒ‚ƒJ[ƒ\ƒ‹ƒZƒbƒg
+ * æ•ç²ãƒ‡ãƒ¢ã‚«ãƒ¼ã‚½ãƒ«ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒWID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸ID
  *
  * @return	none
  */

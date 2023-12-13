@@ -26,32 +26,32 @@ static char *clip_whitespace(char *str);
 
 
 //---------------------------------------------------------------------------
-//  ’è‹`’l•ÛƒŠƒXƒg
+//  å®šç¾©å€¤ä¿æŒãƒªã‚¹ãƒˆ
 //---------------------------------------------------------------------------
 tDefineValue *gDefineValueTop = NULL;
 
 /*---------------------------------------------------------------------------*
   Name:         add_dvalue
   
-  Description:  ’è‹`’lƒŠƒXƒg‚ÉV‚µ‚¢’l‚ğ’Ç‰Á‚·‚é
+  Description:  å®šç¾©å€¤ãƒªã‚¹ãƒˆã«æ–°ã—ã„å€¤ã‚’è¿½åŠ ã™ã‚‹
   
-  Arguments:    name  •Ï”‚Ì–¼‘O
-                value •Ï”‚Ì’l
+  Arguments:    name  å¤‰æ•°ã®åå‰
+                value å¤‰æ•°ã®å€¤
   
-                name  ‚ª NULL ‚ ‚é‚¢‚Í "" ‚È‚ç‰½‚à‚¹‚¸‚ÉI—¹(•Ô’l FALSE)
-                value ‚ª NULL ‚È‚ç "" ‚ª’è‹`‚³‚ê‚Ä‚¢‚é‚Æ‚İ‚È‚·B
+                name  ãŒ NULL ã‚ã‚‹ã„ã¯ "" ãªã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†(è¿”å€¤ FALSE)
+                value ãŒ NULL ãªã‚‰ "" ãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ã¨ã¿ãªã™ã€‚
   
-  Returns:      TRUE   V‹K‚É’Ç‰Á‚µ‚½
-                FALSE  Šù‚É“¯–¼‚Ì’l‚ª“o˜^Ï‚İ(Œã‚Ì‚à‚Ì‚Éã‘‚«‚³‚ê‚é)
+  Returns:      TRUE   æ–°è¦ã«è¿½åŠ ã—ãŸ
+                FALSE  æ—¢ã«åŒåã®å€¤ãŒç™»éŒ²æ¸ˆã¿(å¾Œã®ã‚‚ã®ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)
  *---------------------------------------------------------------------------*/
 static BOOL add_dvalue(const char *name, const char *value)
 {
     tDefineValue *t;
 
     //
-    // NULL ‚Ì‚Æ‚«‚Ì‘Îˆ
-    //   name  ‚ª NULL ‚ ‚é‚¢‚Í "" ‚È‚ç‰½‚à‚¹‚¸‚ÉI—¹(•Ô’l TRUE)
-    //   value ‚ª NULL ‚È‚ç "" ‚ª’è‹`‚³‚ê‚Ä‚¢‚é‚Æ‚İ‚È‚·B
+    // NULL ã®ã¨ãã®å¯¾å‡¦
+    //   name  ãŒ NULL ã‚ã‚‹ã„ã¯ "" ãªã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†(è¿”å€¤ TRUE)
+    //   value ãŒ NULL ãªã‚‰ "" ãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ã¨ã¿ãªã™ã€‚
     //
     if (name == NULL || name[0] == '\0')
     {
@@ -64,7 +64,7 @@ static BOOL add_dvalue(const char *name, const char *value)
 
     DebugPrintf("DEFINE:$(%s)=\"%s\"\n", name, value);
 
-    // “¯–¼‚Ì’è‹`–¼‚ª‚ ‚ê‚ÎV‚µ‚¢’l‚Æ·‚µ‘Ö‚¦‚é
+    // åŒåã®å®šç¾©åãŒã‚ã‚Œã°æ–°ã—ã„å€¤ã¨å·®ã—æ›¿ãˆã‚‹
     if (NULL != (t = get_dvalue_listptr(name)))
     {
         if (t->value)
@@ -73,7 +73,7 @@ static BOOL add_dvalue(const char *name, const char *value)
         return FALSE;
     }
 
-    // V‚µ‚¢’è‹`–¼‚È‚çƒŠƒXƒg‚ğ‰„’·‚µ“o˜^‚·‚é
+    // æ–°ã—ã„å®šç¾©åãªã‚‰ãƒªã‚¹ãƒˆã‚’å»¶é•·ã—ç™»éŒ²ã™ã‚‹
     t = Calloc(sizeof(tDefineValue));
     t->name = StrDup(name);
     t->value = StrDup(value);
@@ -86,14 +86,14 @@ static BOOL add_dvalue(const char *name, const char *value)
 /*---------------------------------------------------------------------------*
   Name:         add_dvalue_by_equality
   
-  Description:  ’è‹`’lƒŠƒXƒg‚É“™®‚ÅV‚µ‚¢’l‚ğ’Ç‰Á‚·‚é
+  Description:  å®šç¾©å€¤ãƒªã‚¹ãƒˆã«ç­‰å¼ã§æ–°ã—ã„å€¤ã‚’è¿½åŠ ã™ã‚‹
   
-  Arguments:    equality “™® "DEFINE=VALUE"
+  Arguments:    equality ç­‰å¼ "DEFINE=VALUE"
   
-                equality ‚ª NULL ‚Ü‚½‚Í "" ‚Ì‚Æ‚«‚Í‰½‚à‚µ‚Ü‚¹‚ñB
+                equality ãŒ NULL ã¾ãŸã¯ "" ã®ã¨ãã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
   
-  Returns:      TRUE   V‹K‚É’Ç‰Á‚µ‚½
-                FALSE  Šù‚É“¯–¼‚Ì’l‚ª“o˜^Ï‚İ(Œã‚Ì‚à‚Ì‚Éã‘‚«‚³‚ê‚é)
+  Returns:      TRUE   æ–°è¦ã«è¿½åŠ ã—ãŸ
+                FALSE  æ—¢ã«åŒåã®å€¤ãŒç™»éŒ²æ¸ˆã¿(å¾Œã®ã‚‚ã®ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)
  *---------------------------------------------------------------------------*/
 BOOL add_dvalue_by_equality(const char *equality)
 {
@@ -103,7 +103,7 @@ BOOL add_dvalue_by_equality(const char *equality)
     BOOL    result;
 
     //
-    //  “™®‚ğ•ÏX‰»‰Â”\‚È—Ìˆæ‚ÉƒRƒs[‚µ '=' ‚Ì‘OŒã‚Å name ‚Æ value ‚É•ª‚¯‚é
+    //  ç­‰å¼ã‚’å¤‰æ›´åŒ–å¯èƒ½ãªé ˜åŸŸã«ã‚³ãƒ”ãƒ¼ã— '=' ã®å‰å¾Œã§ name ã¨ value ã«åˆ†ã‘ã‚‹
     //
     scratch = StrDup(equality);
     name = scratch;
@@ -112,17 +112,17 @@ BOOL add_dvalue_by_equality(const char *equality)
     {
         if ('=' == *value)
         {
-            *value = '\0';             // '=' ‚ÌˆÊ’u‚É '\0' ‚ğ“ü‚ê‚é‚±‚Æ‚Å•ªŠ„
+            *value = '\0';             // '=' ã®ä½ç½®ã« '\0' ã‚’å…¥ã‚Œã‚‹ã“ã¨ã§åˆ†å‰²
             value++;
             break;
         }
         value++;
     }
-    name = clip_whitespace(name);      // ‘OŒã‚Ì‹ó”’‚ğíœ‚·‚é
+    name = clip_whitespace(name);      // å‰å¾Œã®ç©ºç™½ã‚’å‰Šé™¤ã™ã‚‹
     value = clip_whitespace(value);
 
     //
-    //  ’l‚ğ“o˜^‚·‚é
+    //  å€¤ã‚’ç™»éŒ²ã™ã‚‹
     //
     result = add_dvalue(name, value);
     free(scratch);
@@ -133,13 +133,13 @@ BOOL add_dvalue_by_equality(const char *equality)
 /*---------------------------------------------------------------------------*
   Name:         add_dvalue_from_file
   
-  Description:  ’è‹`’lƒŠƒXƒg‚Éƒtƒ@ƒCƒ‹“à‚Ì“™®‚ğ’Ç‰Á‚·‚é
+  Description:  å®šç¾©å€¤ãƒªã‚¹ãƒˆã«ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ç­‰å¼ã‚’è¿½åŠ ã™ã‚‹
   
-  Arguments:    filename ƒtƒ@ƒCƒ‹–¼
-                "DEFINE=VALUE" ‚Ì—…—ñ
+  Arguments:    filename ãƒ•ã‚¡ã‚¤ãƒ«å
+                "DEFINE=VALUE" ã®ç¾…åˆ—
   
-  Returns:      TRUE   ¬Œ÷‚µ‚½
-                FALSE  Šù‚É“¯–¼‚Ì’l‚ª“o˜^Ï‚İ(Œã‚Ì‚à‚Ì‚Éã‘‚«‚³‚ê‚é)
+  Returns:      TRUE   æˆåŠŸã—ãŸ
+                FALSE  æ—¢ã«åŒåã®å€¤ãŒç™»éŒ²æ¸ˆã¿(å¾Œã®ã‚‚ã®ã«ä¸Šæ›¸ãã•ã‚Œã‚‹)
  *---------------------------------------------------------------------------*/
 BOOL add_dvalue_from_file(const char *filename)
 {
@@ -159,7 +159,7 @@ BOOL add_dvalue_from_file(const char *filename)
     }
 
     //
-    // ƒtƒ@ƒCƒ‹‚ğˆês‚¸‚Â“Ç‚İ‚İA•Ï”“o˜^‚·‚é
+    // ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸€è¡Œãšã¤èª­ã¿è¾¼ã¿ã€å¤‰æ•°ç™»éŒ²ã™ã‚‹
     //
     buffer = NULL;
     buffer_size = line_num = 0;
@@ -181,19 +181,19 @@ BOOL add_dvalue_from_file(const char *filename)
 /*---------------------------------------------------------------------------*
   Name:         chip_whitespace
   
-  Description:  •¶š—ñ‘OŒã‚Ì‹ó”’‚ğíœ‚·‚é
+  Description:  æ–‡å­—åˆ—å‰å¾Œã®ç©ºç™½ã‚’å‰Šé™¤ã™ã‚‹
   
-  Arguments:    str    ˆ—‘ÎÛ•¶š—ñ‚Ìæ“ª
+  Arguments:    str    å‡¦ç†å¯¾è±¡æ–‡å­—åˆ—ã®å…ˆé ­
   
-                ‚±‚Ì str “à•”‚Íã‘‚«‚³‚ê‚é‚Ì‚Å const —Ìˆæ‚Å‚Í“®ì‚µ‚È‚¢
+                ã“ã® str å†…éƒ¨ã¯ä¸Šæ›¸ãã•ã‚Œã‚‹ã®ã§ const é ˜åŸŸã§ã¯å‹•ä½œã—ãªã„
   
-  Returns:      V‚µ‚¢æ“ªˆÊ’u
+  Returns:      æ–°ã—ã„å…ˆé ­ä½ç½®
  *---------------------------------------------------------------------------*/
 static char *clip_whitespace(char *str)
 {
     int     n;
 
-    // Œã‚Ì‹ó”’‚É '\0' ‚ğ–„‚ß‚é
+    // å¾Œã®ç©ºç™½ã« '\0' ã‚’åŸ‹ã‚ã‚‹
     for (n = strlen(str) - 1; n >= 0; n--)
     {
         if (!isspace(str[n]))
@@ -203,7 +203,7 @@ static char *clip_whitespace(char *str)
         }
     }
 
-    // ‘O‚Ì‹ó”’‚ğƒXƒLƒbƒv‚µAæ“ª‚Ì•¶š‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+    // å‰ã®ç©ºç™½ã‚’ã‚¹ã‚­ãƒƒãƒ—ã—ã€å…ˆé ­ã®æ–‡å­—ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
     for (n = 0; str[n] != '\0'; n++)
     {
         if (!isspace(str[n]))

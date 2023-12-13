@@ -1,7 +1,7 @@
 #ifndef _SAFARI_DEF_H_
 #define _SAFARI_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_SAFARI_FLAG_CHANGE		(8800)
 #define	SCRID_SAFARI_ANNOUNCE_TIME		(8801)
 #define	SCRID_SAFARI_ANNOUNCE_BALL		(8802)
@@ -25,6 +25,6 @@
 #define	SCRID_SAFARI_TRAIN_GO_AREA6		(8820)
 #define	SCRID_SAFARI_RETIRE		(8821)
 #define	SCRID_SAFARI_ANNOUNCE_BOX_FULL		(8822)
-#define	SCRID_SAFARI_DATA_MAX		(23)		//最大数
+#define	SCRID_SAFARI_DATA_MAX		(23)		//譛螟ｧ謨ｰ
 
 #endif //_SAFARI_DEF_H_

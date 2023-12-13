@@ -13,28 +13,28 @@
 
   $Log: spec.l,v $
   Revision 1.28  2006/05/10 02:06:00  yasu
-  CodeWarrior 2.x ‚Ö‚Ì‘Î‰
+  CodeWarrior 2.x ã¸ã®å¯¾å¿œ
 
   Revision 1.27  2006/04/09 23:46:03  kitase_hirotake
-  Copyright C³
+  Copyright ä¿®æ­£
 
   Revision 1.26  2006/04/06 09:22:38  kitase_hirotake
-  •s•K—v‚È•”•ª‚Ìíœ
+  ä¸å¿…è¦ãªéƒ¨åˆ†ã®å‰Šé™¤
 
   Revision 1.25  2006/04/06 09:05:31  kitase_hirotake
-  .itcm.bss .dtcm.bss .wram.bss ‚É‘Î‰
+  .itcm.bss .dtcm.bss .wram.bss ã«å¯¾å¿œ
 
   Revision 1.24  2005/09/01 04:30:52  yasu
-  Overlay Group ‚ÌƒTƒ|[ƒg
+  Overlay Group ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.23  2005/07/26 08:49:27  yasu
-  ‰ß‹‚Ìƒo[ƒWƒ‡ƒ“‚Æ‚ÌŒİŠ·‚½‚ß‚ÉƒL[ƒ[ƒh surffix ‚àƒTƒ|[ƒg‚·‚é
+  éå»ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¨ã®äº’æ›ãŸã‚ã«ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ surffix ã‚‚ã‚µãƒãƒ¼ãƒˆã™ã‚‹
 
   Revision 1.22  2005/06/22 00:50:06  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.21  2005/06/20 12:21:48  yasu
-  Surffix -> Suffix C³
+  Surffix -> Suffix ä¿®æ­£
 
   Revision 1.20  2004/07/10 04:06:17  yasu
   Support command 'Library'
@@ -78,7 +78,7 @@
   change SDK prefix iris -> nitro
 
   Revision 1.7  2004/01/15 10:47:56  yasu
-  Static StackSize ‚ÌÀ‘•
+  Static StackSize ã®å®Ÿè£…
 
   Revision 1.6  2004/01/14 13:05:44  yasu
   Handle '\r?\n' as newline

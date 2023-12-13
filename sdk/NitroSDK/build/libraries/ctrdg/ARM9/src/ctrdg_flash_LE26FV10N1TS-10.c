@@ -18,7 +18,7 @@
   small fix
 
   Revision 1.1  2006/04/05 10:48:30  okubata_ryoma
-  AGBバックアップライブラリのSDK収録のための変更
+  AGB繝舌ャ繧ｯ繧｢繝�繝励Λ繧､繝悶Λ繝ｪ縺ｮSDK蜿朱鹸縺ｮ縺溘ａ縺ｮ螟画峩
 
 
   $NoKeywords: $
@@ -58,7 +58,7 @@ const CTRDGiFlashTypePlus LE26FV10N1TS_10 = {
     CTRDGi_PollingSR1MCOMMON,
     LeMaxTime,
     {
-/* デバッグ用 */
+/* 繝�繝舌ャ繧ｰ逕ｨ */
 //#ifndef   __FLASH_DEBUG
         0x00020000,                       // ROM size
         {0x00001000, 12, 32, 0},          // sector size,shift,count,top

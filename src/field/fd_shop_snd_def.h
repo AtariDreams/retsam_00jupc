@@ -1,19 +1,19 @@
 //============================================================================================
 /**
  * @file	fd_shop_snd_def.h
- * @brief	ƒVƒ‡ƒbƒv‰æ–ÊSE’è‹`
+ * @brief	ã‚·ãƒ§ãƒƒãƒ—ç”»é¢SEå®šç¾©
  * @author	Hiroyuki Nakamura
  * @date	2006.02.17
  */
 //============================================================================================
 #include "system/snd_tool.h"
 
-//#define	FD_SHOP_SE_DECIDE		( SEQ_SE_DP_DECIDE )// Œˆ’è
-#define	FD_SHOP_SE_DECIDE		( SEQ_SE_DP_SELECT )	// Œˆ’è
+//#define	FD_SHOP_SE_DECIDE		( SEQ_SE_DP_DECIDE )// æ±ºå®š
+#define	FD_SHOP_SE_DECIDE		( SEQ_SE_DP_SELECT )	// æ±ºå®š
 
-//#define	FD_SHOP_SE_CANCEL		( SEQ_SE_DP_DECIDE )// ƒLƒƒƒ“ƒZƒ‹
-#define	FD_SHOP_SE_CANCEL		( SEQ_SE_DP_SELECT )	// ƒLƒƒƒ“ƒZƒ‹
+//#define	FD_SHOP_SE_CANCEL		( SEQ_SE_DP_DECIDE )// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+#define	FD_SHOP_SE_CANCEL		( SEQ_SE_DP_SELECT )	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
-//#define	FD_SHOP_SE_CURSOR_MOVE	( SEQ_SE_DP_SELECT )// ƒJ[ƒ\ƒ‹ˆÚ“®
-#define	FD_SHOP_SE_CURSOR_MOVE	( SEQ_SE_DP_BAG_004 )	// ƒJ[ƒ\ƒ‹ˆÚ“®
+//#define	FD_SHOP_SE_CURSOR_MOVE	( SEQ_SE_DP_SELECT )// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+#define	FD_SHOP_SE_CURSOR_MOVE	( SEQ_SE_DP_BAG_004 )	// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 

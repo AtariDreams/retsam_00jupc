@@ -1,25 +1,25 @@
 arg = $*
 
-$model_list = arg[0]	#”z’uƒ‚ƒfƒ‹ŠÇ—ƒeƒLƒXƒgƒpƒX
-$bmarc_list = arg[1]	#”z’uƒ‚ƒfƒ‹ƒf[ƒ^ƒA[ƒJƒCƒuƒŠƒXƒgƒeƒLƒXƒgƒpƒX
-$tsarc_path = arg[2] #”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒƒZƒbƒgƒA[ƒJƒCƒuƒŠƒXƒgƒeƒLƒXƒgo—ÍƒpƒX
-$texmag_path = arg[3]	#ƒeƒNƒXƒ`ƒƒƒ}[ƒWƒvƒƒOƒ‰ƒ€ÀsƒpƒX
-$orgimd_path = arg[4]	#ƒIƒŠƒWƒiƒ‹imdƒŠƒ\[ƒXƒpƒX
-$dmytex_path = arg[5]	#ƒ_ƒ~[¶¬—pƒeƒ“ƒvƒŒ[ƒgƒtƒ@ƒCƒ‹ƒpƒX
+$model_list = arg[0]	#é…ç½®ãƒ¢ãƒ‡ãƒ«ç®¡ç†ãƒ†ã‚­ã‚¹ãƒˆãƒ‘ã‚¹
+$bmarc_list = arg[1]	#é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒªã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆãƒ‘ã‚¹
+$tsarc_path = arg[2] #é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒªã‚¹ãƒˆãƒ†ã‚­ã‚¹ãƒˆå‡ºåŠ›ãƒ‘ã‚¹
+$texmag_path = arg[3]	#ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ¼ã‚¸ãƒ—ãƒ­ã‚°ãƒ©ãƒ å®Ÿè¡Œãƒ‘ã‚¹
+$orgimd_path = arg[4]	#ã‚ªãƒªã‚¸ãƒŠãƒ«imdãƒªã‚½ãƒ¼ã‚¹ãƒ‘ã‚¹
+$dmytex_path = arg[5]	#ãƒ€ãƒŸãƒ¼ç”Ÿæˆç”¨ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 
-#ƒ‰ƒCƒuƒ‰ƒŠ
+#ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 require "fileutils"
 $KCODE = "SJIS"
 
-#’è”
-$TEXSIZE_LIMIT = "71680"	#ƒŠƒ~ƒbƒg‚Í70kbyte
-#$TEXSIZE_LIMIT = "60000"	#ƒŠƒ~ƒbƒg‚Í70kbyte
+#å®šæ•°
+$TEXSIZE_LIMIT = "71680"	#ãƒªãƒŸãƒƒãƒˆã¯70kbyte
+#$TEXSIZE_LIMIT = "60000"	#ãƒªãƒŸãƒƒãƒˆã¯70kbyte
 
-#\‘¢‘Ì’è‹`
+#æ§‹é€ ä½“å®šç¾©
 $_imdList = Struct.new("ImdList", :num, :lst, :outpath, :imdpath)
 $_bmList = Struct.new("BuildModelList", :sID, :imdName)
 
-#ƒA[ƒJƒCƒuEƒeƒNƒXƒ`ƒƒƒZƒbƒg¶¬ƒŠƒXƒgì¬
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ»ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆç”Ÿæˆãƒªã‚¹ãƒˆä½œæˆ
 $tsArc_list = Array.new
 $tsSet_list = Array.new
 $bmSet_list = Array.new
@@ -37,7 +37,7 @@ File.open($bmarc_list,"r"){ |file|
   end
 }
 
-#”z’uƒ‚ƒfƒ‹ŠÇ—ƒeƒLƒXƒg‚©‚çimdƒŠƒXƒg‚ğo—Í
+#é…ç½®ãƒ¢ãƒ‡ãƒ«ç®¡ç†ãƒ†ã‚­ã‚¹ãƒˆã‹ã‚‰imdãƒªã‚¹ãƒˆã‚’å‡ºåŠ›
 class CImdManager
   @@imd_num = 0
   @@imd_name = nil
@@ -47,7 +47,7 @@ class CImdManager
 	@@imd_num = 0
 	@@imd_name = Array.new
 	File.open(fpath){ |file|
-	  file.gets	#ˆês–Ú“Ç‚İ”ò‚Î‚µ
+	  file.gets	#ä¸€è¡Œç›®èª­ã¿é£›ã°ã—
 	  while @line=file.gets
 		@work = @line.split(",")
 		if @work[0] == "#END" then
@@ -126,7 +126,7 @@ class CImdManager
   def texMagExe
 	for m in @@area_imd do
 	  if m.num == 0 then
-		#ƒ_ƒ~[ƒRƒs[
+		#ãƒ€ãƒŸãƒ¼ã‚³ãƒ”ãƒ¼
 		puts $dmytex_path
 		puts m.imdpath
 		@dmy = m.imdpath.sub(/\.imd/,".nsbtx")
@@ -135,7 +135,7 @@ class CImdManager
 		next
 	  end
 
-	  #ƒ}[ƒW
+	  #ãƒãƒ¼ã‚¸
 	  @exe_cmd = $texmag_path + " -q -n -o " + m.imdpath + " -S " +  m.outpath + " -L " + $TEXSIZE_LIMIT
 	  puts @exe_cmd
 	  system(@exe_cmd)
@@ -175,7 +175,7 @@ class CImdManager
 end
 #end class CIMdManager
 
-#ƒƒCƒ“Às
+#ãƒ¡ã‚¤ãƒ³å®Ÿè¡Œ
 def convert
   c_bmObj = CImdManager.new($model_list)
   c_bmObj.getImdList($bmSet_list)
@@ -184,6 +184,6 @@ def convert
   c_bmObj.outputList("g3_texlist",$tsarc_path)
 end
 #end main
-convert	#Às
+convert	#å®Ÿè¡Œ
 
 

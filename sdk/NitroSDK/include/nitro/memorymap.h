@@ -12,16 +12,16 @@
 
   $Log: memorymap.h,v $
   Revision 1.10  2005/06/23 12:16:39  yasu
-  SDK_LITTLE_ENDIAN ’è‹`‚ğ types.h ‚Ö
+  SDK_LITTLE_ENDIAN å®šç¾©ã‚’ types.h ã¸
 
   Revision 1.9  2005/06/23 12:04:49  yasu
-  SDK_LITTLE_ENDIAN ‚Ì’Ç‰Á
+  SDK_LITTLE_ENDIAN ã®è¿½åŠ 
 
   Revision 1.8  2005/02/28 05:26:02  yosizaki
   do-indent.
 
   Revision 1.7  2004/02/18 07:51:20  yada
-  mmap_shared.h ‚ğ A7/9‹¤’Ê‚É
+  mmap_shared.h ã‚’ A7/9å…±é€šã«
 
   Revision 1.6  2004/02/13 01:51:58  yada
   mmap_main.h, mmap_shared added, for ARM7
@@ -36,10 +36,10 @@
   change SDK prefix iris -> nitro
 
   Revision 1.2  2003/12/17 06:05:39  yasu
-  mmap_reserved.h ‚ğ mmap_tcm.h ‚Æ mmap_shared.h ‚É•ªŠ„
+  mmap_reserved.h ã‚’ mmap_tcm.h ã¨ mmap_shared.h ã«åˆ†å‰²
 
   Revision 1.1  2003/12/09 08:35:26  yasu
-  ƒƒ‚ƒŠƒ}ƒbƒvü‚è‚ğüV
+  ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—å‘¨ã‚Šã‚’åˆ·æ–°
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

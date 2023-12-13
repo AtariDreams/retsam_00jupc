@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fnote_mem.h
- * @brief	–`Œ¯ƒm[ƒg@ƒf[ƒ^ŠÇ—ˆ—
+ * @brief	å†’é™ºãƒŽãƒ¼ãƒˆã€€ãƒ‡ãƒ¼ã‚¿ç®¡ç†å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2006.03.06
  */
@@ -17,117 +17,117 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// €–Ú
-#define	FNOTE_TYPE_START		( 0 )	// ŠJŽn
-#define	FNOTE_TYPE_ACTION		( 1 )	// s“®
-#define	FNOTE_TYPE_POKEMON		( 2 )	// ƒ|ƒPƒ‚ƒ“
-#define	FNOTE_TYPE_TRAINER		( 3 )	// ƒgƒŒ[ƒi[
-#define	FNOTE_TYPE_SIO			( 4 )	// ’ÊM
+// é …ç›®
+#define	FNOTE_TYPE_START		( 0 )	// é–‹å§‹
+#define	FNOTE_TYPE_ACTION		( 1 )	// è¡Œå‹•
+#define	FNOTE_TYPE_POKEMON		( 2 )	// ãƒã‚±ãƒ¢ãƒ³
+#define	FNOTE_TYPE_TRAINER		( 3 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+#define	FNOTE_TYPE_SIO			( 4 )	// é€šä¿¡
 
-// ƒf[ƒ^ID
-#define	FNOTE_ID_MYHOUSE		( 1 )		// s“®FŽ©‘î
-#define	FNOTE_ID_LABO			( 2 )		// s“®FŒ¤‹†Š
-#define	FNOTE_ID_POKECENTER		( 3 )		// s“®Fƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[
-#define	FNOTE_ID_FDSHOP_BUY		( 4 )		// s“®FƒVƒ‡ƒbƒvE”ƒ‚¤
-#define	FNOTE_ID_FDSHOP_BUY2	( 5 )		// s“®FƒVƒ‡ƒbƒvE”ƒ‚¤i•¡”j
-#define	FNOTE_ID_FDSHOP_SALE	( 6 )		// s“®FƒVƒ‡ƒbƒvE”„‚é
-#define	FNOTE_ID_FDSHOP_SALE2	( 7 )		// s“®FƒVƒ‡ƒbƒvE”„‚éi•¡”j
-#define	FNOTE_ID_FDSHOP_TRADE	( 8 )		// s“®FƒVƒ‡ƒbƒvE”„”ƒ
-#define	FNOTE_ID_GYMBEFORE		( 9 )		// s“®FƒWƒ€iƒŠ[ƒ_[‚ð“|‚·‘Oj
-#define	FNOTE_ID_GYMAFTER		( 10 )		// s“®FƒWƒ€iƒŠ[ƒ_[‚ð“|‚µ‚½Œãj
-#define	FNOTE_ID_SITENNOU		( 11 )		// s“®FŽl“V‰¤
-#define	FNOTE_ID_CHAMPION		( 12 )		// s“®Fƒ`ƒƒƒ“ƒsƒIƒ“
-#define	FNOTE_ID_CITY			( 13 )		// s“®FŠX
-#define	FNOTE_ID_DUNGEON		( 14 )		// s“®Fƒ_ƒ“ƒWƒ‡ƒ“
-#define	FNOTE_ID_BUILD			( 15 )		// s“®FŒš•¨
-#define	FNOTE_ID_GAMECORNER		( 16 )		// s“®FƒQ[ƒ€ƒR[ƒi[
-#define	FNOTE_ID_SAFARIZONE		( 17 )		// s“®FƒTƒtƒ@ƒŠƒ][ƒ“
-#define	FNOTE_ID_ITEMGET		( 18 )		// s“®FƒAƒCƒeƒ€Žæ“¾
-/** ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Æ“¯‚¶•À‚Ñ‚É‚·‚é‚±‚ÆI **/
-#define	FNOTE_ID_IAIGIRI		( 19 )		// s“®F‹ZE‚¢‚ ‚¢‚¬‚è
-#define	FNOTE_ID_SORAWOTOBU		( 20 )		// s“®F‹ZE‚»‚ç‚ð‚Æ‚Ô
-#define	FNOTE_ID_NAMINORI		( 21 )		// s“®F‹ZE‚È‚Ý‚Ì‚è
-#define	FNOTE_ID_KAIRIKI		( 22 )		// s“®F‹ZE‚©‚¢‚è‚«
-#define	FNOTE_ID_KIRIBARAI		( 23 )		// s“®F‹ZE‚«‚è‚Î‚ç‚¢
-#define	FNOTE_ID_IWAKUDAKI		( 24 )		// s“®F‹ZE‚¢‚í‚­‚¾‚«
-#define	FNOTE_ID_TAKINOBORI		( 25 )		// s“®F‹ZE‚½‚«‚Ì‚Ú‚è
-#define	FNOTE_ID_ROCKCLIMB		( 26 )		// s“®F‹ZEƒƒbƒNƒNƒ‰ƒCƒ€
-#define	FNOTE_ID_FLASH			( 27 )		// s“®F‹ZEƒtƒ‰ƒbƒVƒ…
-#define	FNOTE_ID_TELEPORT		( 28 )		// s“®F‹ZEƒeƒŒƒ|[ƒg
-#define	FNOTE_ID_ANAWOHORU		( 29 )		// s“®F‹ZE‚ ‚È‚ð‚Ù‚é
-#define	FNOTE_ID_AMAIKAORI		( 30 )		// s“®F‹ZE‚ ‚Ü‚¢‚©‚¨‚è
-#define	FNOTE_ID_OSYABERI		( 31 )		// s“®F‹ZE‚¨‚µ‚á‚×‚èiƒ_ƒ~[j
-#define	FNOTE_ID_MIRUKUNOMI		( 32 )		// s“®F‹ZEƒ~ƒ‹ƒN‚Ì‚Ý
-#define	FNOTE_ID_TAMAGOUMI		( 33 )		// s“®F‹ZEƒ^ƒ}ƒS‚¤‚Ý
+// ãƒ‡ãƒ¼ã‚¿ID
+#define	FNOTE_ID_MYHOUSE		( 1 )		// è¡Œå‹•ï¼šè‡ªå®…
+#define	FNOTE_ID_LABO			( 2 )		// è¡Œå‹•ï¼šç ”ç©¶æ‰€
+#define	FNOTE_ID_POKECENTER		( 3 )		// è¡Œå‹•ï¼šãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼
+#define	FNOTE_ID_FDSHOP_BUY		( 4 )		// è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»è²·ã†
+#define	FNOTE_ID_FDSHOP_BUY2	( 5 )		// è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»è²·ã†ï¼ˆè¤‡æ•°ï¼‰
+#define	FNOTE_ID_FDSHOP_SALE	( 6 )		// è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²ã‚‹
+#define	FNOTE_ID_FDSHOP_SALE2	( 7 )		// è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²ã‚‹ï¼ˆè¤‡æ•°ï¼‰
+#define	FNOTE_ID_FDSHOP_TRADE	( 8 )		// è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²è²·
+#define	FNOTE_ID_GYMBEFORE		( 9 )		// è¡Œå‹•ï¼šã‚¸ãƒ ï¼ˆãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã™å‰ï¼‰
+#define	FNOTE_ID_GYMAFTER		( 10 )		// è¡Œå‹•ï¼šã‚¸ãƒ ï¼ˆãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã—ãŸå¾Œï¼‰
+#define	FNOTE_ID_SITENNOU		( 11 )		// è¡Œå‹•ï¼šå››å¤©çŽ‹
+#define	FNOTE_ID_CHAMPION		( 12 )		// è¡Œå‹•ï¼šãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
+#define	FNOTE_ID_CITY			( 13 )		// è¡Œå‹•ï¼šè¡—
+#define	FNOTE_ID_DUNGEON		( 14 )		// è¡Œå‹•ï¼šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
+#define	FNOTE_ID_BUILD			( 15 )		// è¡Œå‹•ï¼šå»ºç‰©
+#define	FNOTE_ID_GAMECORNER		( 16 )		// è¡Œå‹•ï¼šã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒŠãƒ¼
+#define	FNOTE_ID_SAFARIZONE		( 17 )		// è¡Œå‹•ï¼šã‚µãƒ•ã‚¡ãƒªã‚¾ãƒ¼ãƒ³
+#define	FNOTE_ID_ITEMGET		( 18 )		// è¡Œå‹•ï¼šã‚¢ã‚¤ãƒ†ãƒ å–å¾—
+/** ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã¨åŒã˜ä¸¦ã³ã«ã™ã‚‹ã“ã¨ï¼ **/
+#define	FNOTE_ID_IAIGIRI		( 19 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ã„ã‚ã„ãŽã‚Š
+#define	FNOTE_ID_SORAWOTOBU		( 20 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ãã‚‰ã‚’ã¨ã¶
+#define	FNOTE_ID_NAMINORI		( 21 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ãªã¿ã®ã‚Š
+#define	FNOTE_ID_KAIRIKI		( 22 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ã‹ã„ã‚Šã
+#define	FNOTE_ID_KIRIBARAI		( 23 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ãã‚Šã°ã‚‰ã„
+#define	FNOTE_ID_IWAKUDAKI		( 24 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ã„ã‚ãã ã
+#define	FNOTE_ID_TAKINOBORI		( 25 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ãŸãã®ã¼ã‚Š
+#define	FNOTE_ID_ROCKCLIMB		( 26 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ 
+#define	FNOTE_ID_FLASH			( 27 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
+#define	FNOTE_ID_TELEPORT		( 28 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ
+#define	FNOTE_ID_ANAWOHORU		( 29 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ã‚ãªã‚’ã»ã‚‹
+#define	FNOTE_ID_AMAIKAORI		( 30 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ã‚ã¾ã„ã‹ãŠã‚Š
+#define	FNOTE_ID_OSYABERI		( 31 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ãŠã—ã‚ƒã¹ã‚Šï¼ˆãƒ€ãƒŸãƒ¼ï¼‰
+#define	FNOTE_ID_MIRUKUNOMI		( 32 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ãƒŸãƒ«ã‚¯ã®ã¿
+#define	FNOTE_ID_TAMAGOUMI		( 33 )		// è¡Œå‹•ï¼šæŠ€ãƒ»ã‚¿ãƒžã‚´ã†ã¿
 
-#define	FNOTE_ID_UG_FOSSIL		( 34 )		// s“®F’n‰ºE‰»ÎŒ@‚è
-#define	FNOTE_ID_UG_BASE		( 35 )		// s“®F’n‰ºE”é–§Šî’n
+#define	FNOTE_ID_UG_FOSSIL		( 34 )		// è¡Œå‹•ï¼šåœ°ä¸‹ãƒ»åŒ–çŸ³æŽ˜ã‚Š
+#define	FNOTE_ID_UG_BASE		( 35 )		// è¡Œå‹•ï¼šåœ°ä¸‹ãƒ»ç§˜å¯†åŸºåœ°
 
-#define	FNOTE_ID_PL_TOWER		( 36 )		// s“®Fƒtƒƒ“ƒeƒBƒAŽ{ÝEƒ^ƒ[
-#define	FNOTE_ID_PL_FACTORY		( 37 )		// s“®Fƒtƒƒ“ƒeƒBƒAŽ{ÝEƒtƒ@ƒNƒgƒŠ[
-#define	FNOTE_ID_PL_CASTLE		( 38 )		// s“®Fƒtƒƒ“ƒeƒBƒAŽ{ÝEƒLƒƒƒbƒXƒ‹
-#define	FNOTE_ID_PL_STAGE		( 39 )		// s“®Fƒtƒƒ“ƒeƒBƒAŽ{ÝEƒXƒe[ƒW
-#define	FNOTE_ID_PL_ROULETTE	( 40 )		// s“®Fƒtƒƒ“ƒeƒBƒAŽ{ÝEƒ‹[ƒŒƒbƒg
+#define	FNOTE_ID_PL_TOWER		( 36 )		// è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ãƒ»ã‚¿ãƒ¯ãƒ¼
+#define	FNOTE_ID_PL_FACTORY		( 37 )		// è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ãƒ»ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+#define	FNOTE_ID_PL_CASTLE		( 38 )		// è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ãƒ»ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+#define	FNOTE_ID_PL_STAGE		( 39 )		// è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ãƒ»ã‚¹ãƒ†ãƒ¼ã‚¸
+#define	FNOTE_ID_PL_ROULETTE	( 40 )		// è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ãƒ»ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 
-#define	FNOTE_ID_POKEGET		( 1 )		// ƒ|ƒPƒ‚ƒ“F•ßŠl
-#define	FNOTE_ID_POKEDOWN		( 2 )		// ƒ|ƒPƒ‚ƒ“F“|‚µ‚½
+#define	FNOTE_ID_POKEGET		( 1 )		// ãƒã‚±ãƒ¢ãƒ³ï¼šæ•ç²
+#define	FNOTE_ID_POKEDOWN		( 2 )		// ãƒã‚±ãƒ¢ãƒ³ï¼šå€’ã—ãŸ
 
-#define	FNOTE_ID_SB_SINGLE		( 1 )		// ’ÊMF’ÊM‘ÎíEƒVƒ“ƒOƒ‹
-#define	FNOTE_ID_SB_DOUBLE		( 2 )		// ’ÊMF’ÊM‘ÎíEƒ_ƒuƒ‹
-#define	FNOTE_ID_SB_MULTI		( 3 )		// ’ÊMF’ÊM‘ÎíEƒ}ƒ‹ƒ`
-#define	FNOTE_ID_SB_MIX1		( 4 )		// ’ÊMF’ÊM‘ÎíEƒ~ƒbƒNƒX1vs1
-#define	FNOTE_ID_SB_MIX2		( 5 )		// ’ÊMF’ÊM‘ÎíEƒ~ƒbƒNƒX2vs2
-#define	FNOTE_ID_U_GREETING		( 6 )		// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€Eˆ¥ŽA
-#define	FNOTE_ID_U_POKECHG		( 7 )		// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€EŒðŠ·
-#define	FNOTE_ID_U_PICTURE		( 8 )		// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E‚¨ŠG‚©‚«
-#define	FNOTE_ID_U_MLTCHG		( 9 )		// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E•¡”lŒðŠ·
-#define	FNOTE_ID_U_TRANSCEIVER	( 10 )		// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€Eƒgƒ‰ƒ“ƒV[ƒo[
-#define	FNOTE_ID_U_BATTLE		( 11 )		// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E‘Îí
-#define	FNOTE_ID_RECORD			( 12 )		// ’ÊMFƒŒƒR[ƒhƒR[ƒi[
-#define	FNOTE_ID_CONTEST		( 13 )		// ’ÊMFƒRƒ“ƒeƒXƒg
-#define	FNOTE_ID_PORUTO			( 14 )		// ’ÊMFƒ|ƒ‹ƒgì¬
-#define	FNOTE_ID_GTC			( 15 )		// ’ÊMFGTC
-#define	FNOTE_ID_BTLTOWER		( 16 )		// ’ÊMFƒoƒgƒ‹ƒ^ƒ[
-#define	FNOTE_ID_PL_GURUGURU	( 17 )		// ’ÊMF‚®‚é‚®‚éŒðŠ·
-#define	FNOTE_ID_PL_GDS_VIDEO	( 18 )		// ’ÊMFGDSƒoƒgƒ‹ƒrƒfƒI
-#define	FNOTE_ID_PL_GDS_RANKING	( 19 )		// ’ÊMFGDSƒ‰ƒ“ƒLƒ“ƒO
-#define	FNOTE_ID_PL_GDS_DRESS	( 20 )		// ’ÊMFGDSƒhƒŒƒXƒAƒbƒv
-#define	FNOTE_ID_PL_GDS_BOX		( 21 )		// ’ÊMFGDSƒ{ƒbƒNƒXƒVƒ‡ƒbƒg
-#define	FNOTE_ID_PL_LOBBY_CHAT			( 22 )		// ’ÊMFWIFILê‚¨‚µ‚á‚×‚è
-#define	FNOTE_ID_PL_LOBBY_TOY_GET		( 23 )		// ’ÊMFWIFILêƒ^ƒbƒ`ƒgƒC‚ð‚à‚ç‚Á‚½
-#define	FNOTE_ID_PL_LOBBY_MINIGAME		( 24 )		// ’ÊMFWIFILêƒ~ƒjƒQ[ƒ€
-#define	FNOTE_ID_PL_LOBBY_FOOT_BOARD	( 25 )		// ’ÊMFWIFILê‘«Õƒ{[ƒh
-#define	FNOTE_ID_PL_LOBBY_WORLDTIMER	( 26 )		// ’ÊMFWIFILê¢ŠEŽžŒv
-#define	FNOTE_ID_PL_LOBBY_NEWS			( 27 )		// ’ÊMFWIFILêƒjƒ…[ƒX
-#define	FNOTE_ID_PL_LOBBY_PARADE		( 28 )		// ’ÊMFWIFILêƒpƒŒ[ƒh
-#define	FNOTE_ID_PL_WIFICLUB		( 29 )		// ’ÊMFWIFIƒNƒ‰ƒu
+#define	FNOTE_ID_SB_SINGLE		( 1 )		// é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ã‚·ãƒ³ã‚°ãƒ«
+#define	FNOTE_ID_SB_DOUBLE		( 2 )		// é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒ€ãƒ–ãƒ«
+#define	FNOTE_ID_SB_MULTI		( 3 )		// é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒžãƒ«ãƒ
+#define	FNOTE_ID_SB_MIX1		( 4 )		// é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒŸãƒƒã‚¯ã‚¹1vs1
+#define	FNOTE_ID_SB_MIX2		( 5 )		// é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒŸãƒƒã‚¯ã‚¹2vs2
+#define	FNOTE_ID_U_GREETING		( 6 )		// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»æŒ¨æ‹¶
+#define	FNOTE_ID_U_POKECHG		( 7 )		// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»äº¤æ›
+#define	FNOTE_ID_U_PICTURE		( 8 )		// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»ãŠçµµã‹ã
+#define	FNOTE_ID_U_MLTCHG		( 9 )		// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»è¤‡æ•°äººäº¤æ›
+#define	FNOTE_ID_U_TRANSCEIVER	( 10 )		// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»ãƒˆãƒ©ãƒ³ã‚·ãƒ¼ãƒãƒ¼
+#define	FNOTE_ID_U_BATTLE		( 11 )		// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»å¯¾æˆ¦
+#define	FNOTE_ID_RECORD			( 12 )		// é€šä¿¡ï¼šãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼
+#define	FNOTE_ID_CONTEST		( 13 )		// é€šä¿¡ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+#define	FNOTE_ID_PORUTO			( 14 )		// é€šä¿¡ï¼šãƒãƒ«ãƒˆä½œæˆ
+#define	FNOTE_ID_GTC			( 15 )		// é€šä¿¡ï¼šGTC
+#define	FNOTE_ID_BTLTOWER		( 16 )		// é€šä¿¡ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+#define	FNOTE_ID_PL_GURUGURU	( 17 )		// é€šä¿¡ï¼šãã‚‹ãã‚‹äº¤æ›
+#define	FNOTE_ID_PL_GDS_VIDEO	( 18 )		// é€šä¿¡ï¼šGDSãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ª
+#define	FNOTE_ID_PL_GDS_RANKING	( 19 )		// é€šä¿¡ï¼šGDSãƒ©ãƒ³ã‚­ãƒ³ã‚°
+#define	FNOTE_ID_PL_GDS_DRESS	( 20 )		// é€šä¿¡ï¼šGDSãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—
+#define	FNOTE_ID_PL_GDS_BOX		( 21 )		// é€šä¿¡ï¼šGDSãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ
+#define	FNOTE_ID_PL_LOBBY_CHAT			( 22 )		// é€šä¿¡ï¼šWIFIåºƒå ´ãŠã—ã‚ƒã¹ã‚Š
+#define	FNOTE_ID_PL_LOBBY_TOY_GET		( 23 )		// é€šä¿¡ï¼šWIFIåºƒå ´ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’ã‚‚ã‚‰ã£ãŸ
+#define	FNOTE_ID_PL_LOBBY_MINIGAME		( 24 )		// é€šä¿¡ï¼šWIFIåºƒå ´ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
+#define	FNOTE_ID_PL_LOBBY_FOOT_BOARD	( 25 )		// é€šä¿¡ï¼šWIFIåºƒå ´è¶³è·¡ãƒœãƒ¼ãƒ‰
+#define	FNOTE_ID_PL_LOBBY_WORLDTIMER	( 26 )		// é€šä¿¡ï¼šWIFIåºƒå ´ä¸–ç•Œæ™‚è¨ˆ
+#define	FNOTE_ID_PL_LOBBY_NEWS			( 27 )		// é€šä¿¡ï¼šWIFIåºƒå ´ãƒ‹ãƒ¥ãƒ¼ã‚¹
+#define	FNOTE_ID_PL_LOBBY_PARADE		( 28 )		// é€šä¿¡ï¼šWIFIåºƒå ´ãƒ‘ãƒ¬ãƒ¼ãƒ‰
+#define	FNOTE_ID_PL_WIFICLUB		( 29 )		// é€šä¿¡ï¼šWIFIã‚¯ãƒ©ãƒ–
 
-// Ÿ”s
-#define	FNOTE_RESULT_WIN		( 0 )	// Ÿ‚¿
-#define	FNOTE_RESULT_LOSE		( 1 )	// •‰‚¯
-#define	FNOTE_RESULT_DRAW		( 2 )	// ˆø‚«•ª‚¯
+// å‹æ•—
+#define	FNOTE_RESULT_WIN		( 0 )	// å‹ã¡
+#define	FNOTE_RESULT_LOSE		( 1 )	// è² ã‘
+#define	FNOTE_RESULT_DRAW		( 2 )	// å¼•ãåˆ†ã‘
 
-// ‹ZƒCƒ“ƒfƒbƒNƒX
-#define	FNOTE_IAIGIRI			( FNOTE_ID_IAIGIRI-FNOTE_ID_IAIGIRI )		// ‚¢‚ ‚¢‚¬‚è
-#define	FNOTE_SORAWOTOBU		( FNOTE_ID_SORAWOTOBU-FNOTE_ID_IAIGIRI )	// ‚»‚ç‚ð‚Æ‚Ô
-#define	FNOTE_NAMINORI			( FNOTE_ID_NAMINORI-FNOTE_ID_IAIGIRI )		// ‚È‚Ý‚Ì‚è
-#define	FNOTE_KAIRIKI			( FNOTE_ID_KAIRIKI-FNOTE_ID_IAIGIRI )		// ‚©‚¢‚è‚«
-#define	FNOTE_KIRIBARAI			( FNOTE_ID_KIRIBARAI-FNOTE_ID_IAIGIRI )		// ‚«‚è‚Î‚ç‚¢
-#define	FNOTE_IWAKUDAKI			( FNOTE_ID_IWAKUDAKI-FNOTE_ID_IAIGIRI )		// ‚¢‚í‚­‚¾‚«
-#define	FNOTE_TAKINOBORI		( FNOTE_ID_TAKINOBORI-FNOTE_ID_IAIGIRI )	// ‚½‚«‚Ì‚Ú‚è
-#define	FNOTE_ROCKCLIMB			( FNOTE_ID_ROCKCLIMB-FNOTE_ID_IAIGIRI )		// ƒƒbƒNƒNƒ‰ƒCƒ€
-#define	FNOTE_FLASH				( FNOTE_ID_FLASH-FNOTE_ID_IAIGIRI )			// ƒtƒ‰ƒbƒVƒ…
-#define	FNOTE_TELEPORT			( FNOTE_ID_TELEPORT-FNOTE_ID_IAIGIRI )		// ƒeƒŒƒ|[ƒg
-#define	FNOTE_ANAWOHORU			( FNOTE_ID_ANAWOHORU-FNOTE_ID_IAIGIRI )		// ‚ ‚È‚ð‚Ù‚é
-#define	FNOTE_AMAIKAORI			( FNOTE_ID_AMAIKAORI-FNOTE_ID_IAIGIRI )		// ‚ ‚Ü‚¢‚©‚¨‚è
-#define	FNOTE_OSYABERI			( FNOTE_ID_OSYABERI-FNOTE_ID_IAIGIRI )		// ‚¨‚µ‚á‚×‚èiƒ_ƒ~[j
-#define	FNOTE_MIRUKUNOMI		( FNOTE_ID_MIRUKUNOMI-FNOTE_ID_IAIGIRI )	// ƒ~ƒ‹ƒN‚Ì‚Ý
-#define	FNOTE_TAMAGOUMI			( FNOTE_ID_TAMAGOUMI-FNOTE_ID_IAIGIRI )		// ƒ^ƒ}ƒS‚¤‚Ý
+// æŠ€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+#define	FNOTE_IAIGIRI			( FNOTE_ID_IAIGIRI-FNOTE_ID_IAIGIRI )		// ã„ã‚ã„ãŽã‚Š
+#define	FNOTE_SORAWOTOBU		( FNOTE_ID_SORAWOTOBU-FNOTE_ID_IAIGIRI )	// ãã‚‰ã‚’ã¨ã¶
+#define	FNOTE_NAMINORI			( FNOTE_ID_NAMINORI-FNOTE_ID_IAIGIRI )		// ãªã¿ã®ã‚Š
+#define	FNOTE_KAIRIKI			( FNOTE_ID_KAIRIKI-FNOTE_ID_IAIGIRI )		// ã‹ã„ã‚Šã
+#define	FNOTE_KIRIBARAI			( FNOTE_ID_KIRIBARAI-FNOTE_ID_IAIGIRI )		// ãã‚Šã°ã‚‰ã„
+#define	FNOTE_IWAKUDAKI			( FNOTE_ID_IWAKUDAKI-FNOTE_ID_IAIGIRI )		// ã„ã‚ãã ã
+#define	FNOTE_TAKINOBORI		( FNOTE_ID_TAKINOBORI-FNOTE_ID_IAIGIRI )	// ãŸãã®ã¼ã‚Š
+#define	FNOTE_ROCKCLIMB			( FNOTE_ID_ROCKCLIMB-FNOTE_ID_IAIGIRI )		// ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ 
+#define	FNOTE_FLASH				( FNOTE_ID_FLASH-FNOTE_ID_IAIGIRI )			// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
+#define	FNOTE_TELEPORT			( FNOTE_ID_TELEPORT-FNOTE_ID_IAIGIRI )		// ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ
+#define	FNOTE_ANAWOHORU			( FNOTE_ID_ANAWOHORU-FNOTE_ID_IAIGIRI )		// ã‚ãªã‚’ã»ã‚‹
+#define	FNOTE_AMAIKAORI			( FNOTE_ID_AMAIKAORI-FNOTE_ID_IAIGIRI )		// ã‚ã¾ã„ã‹ãŠã‚Š
+#define	FNOTE_OSYABERI			( FNOTE_ID_OSYABERI-FNOTE_ID_IAIGIRI )		// ãŠã—ã‚ƒã¹ã‚Šï¼ˆãƒ€ãƒŸãƒ¼ï¼‰
+#define	FNOTE_MIRUKUNOMI		( FNOTE_ID_MIRUKUNOMI-FNOTE_ID_IAIGIRI )	// ãƒŸãƒ«ã‚¯ã®ã¿
+#define	FNOTE_TAMAGOUMI			( FNOTE_ID_TAMAGOUMI-FNOTE_ID_IAIGIRI )		// ã‚¿ãƒžã‚´ã†ã¿
 
 
-#ifndef	__ASM_NO_DEF_	// «‚±‚êˆÈ~‚ÍAƒAƒZƒ“ƒuƒ‰‚Å‚Í–³Ž‹
+#ifndef	__ASM_NO_DEF_	// â†“ã“ã‚Œä»¥é™ã¯ã€ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§ã¯ç„¡è¦–
 #include "system/savedata_def.h"
 #include "system/buflen.h"
 #include "savedata/mystatus.h"
@@ -136,78 +136,78 @@
 
 typedef struct _FNOTE_DATA FNOTE_DATA;
 
-// ŠJŽnƒf[ƒ^
+// é–‹å§‹ãƒ‡ãƒ¼ã‚¿
 typedef struct {
-	u32	year:7;		// ”N
-	u32	month:4;	// ŒŽ
-	u32	week:3;		// —j“ú
-	u32	day:5;		// “ú
-	u32	start:13;	// ŠJŽnˆÊ’u
+	u32	year:7;		// å¹´
+	u32	month:4;	// æœˆ
+	u32	week:3;		// æ›œæ—¥
+	u32	day:5;		// æ—¥
+	u32	start:13;	// é–‹å§‹ä½ç½®
 }FNOTE_WK_START;
 
-// s“®ƒ[ƒN
+// è¡Œå‹•ãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	u8	id;			// ‰ñ‘zID
-	u16	map;		// ƒ}ƒbƒvID
-	u16	trainer;	// ƒgƒŒ[ƒi[ID
-	u16	item;		// ƒAƒCƒeƒ€ID
+	u8	id;			// å›žæƒ³ID
+	u16	map;		// ãƒžãƒƒãƒ—ID
+	u16	trainer;	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+	u16	item;		// ã‚¢ã‚¤ãƒ†ãƒ ID
 }FNOTE_WK_ACTION;
 
-// ƒ|ƒPƒ‚ƒ“ƒ[ƒN
+// ãƒã‚±ãƒ¢ãƒ³ãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	u8	id;			// ‰ñ‘zID
-	u8	type:2;		// •\Ž¦ƒ^ƒCƒv
-	u8	time:4;		// ŽžŠÔ
-	u8	sex:2;		// «•Ê
-	u16	mons;		// ƒ|ƒPƒ‚ƒ“ID
+	u8	id;			// å›žæƒ³ID
+	u8	type:2;		// è¡¨ç¤ºã‚¿ã‚¤ãƒ—
+	u8	time:4;		// æ™‚é–“
+	u8	sex:2;		// æ€§åˆ¥
+	u16	mons;		// ãƒã‚±ãƒ¢ãƒ³ID
 }FNOTE_WK_POKE;
 
-// ƒgƒŒ[ƒi[ƒ[ƒN
+// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	u16	id:1;		// ‰ñ‘zID
-	u16	trid:15;	// ƒgƒŒ[ƒi[ID
-	u16	map;		// ƒ}ƒbƒvID
+	u16	id:1;		// å›žæƒ³ID
+	u16	trid:15;	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+	u16	map;		// ãƒžãƒƒãƒ—ID
 }FNOTE_WK_TRAINER;
 
-// ’ÊMƒ[ƒN
+// é€šä¿¡ãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	u8	id;									// ‰ñ‘zID
-	u8	result:4;							// Ÿ”s
-	u8	sex1:1;								// ’ÊM‘ŠŽè‚P‚Ì«•Ê
-	u8	sex2:1;								// ’ÊM‘ŠŽè‚Q‚Ì«•Ê
-	u8	poke_sex:2;							// ƒ|ƒPƒ‚ƒ“‚Ì«•Ê
-	u16	name1[BUFLEN_PERSON_NAME];			// ’ÊM‘ŠŽè‚P‚Ì–¼‘O
-	u16	name2[BUFLEN_PERSON_NAME];			// ’ÊM‘ŠŽè‚Q‚Ì–¼‘O
-	u16	nickname[BUFLEN_POKEMON_NAME];		// ƒ|ƒPƒ‚ƒ“‚ÌƒjƒbƒNƒl[ƒ€
+	u8	id;									// å›žæƒ³ID
+	u8	result:4;							// å‹æ•—
+	u8	sex1:1;								// é€šä¿¡ç›¸æ‰‹ï¼‘ã®æ€§åˆ¥
+	u8	sex2:1;								// é€šä¿¡ç›¸æ‰‹ï¼’ã®æ€§åˆ¥
+	u8	poke_sex:2;							// ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥
+	u16	name1[BUFLEN_PERSON_NAME];			// é€šä¿¡ç›¸æ‰‹ï¼‘ã®åå‰
+	u16	name2[BUFLEN_PERSON_NAME];			// é€šä¿¡ç›¸æ‰‹ï¼’ã®åå‰
+	u16	nickname[BUFLEN_POKEMON_NAME];		// ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
 }FNOTE_WK_SIO;
 
 
-#define	FNOTE_PAGE_MAX		( 10 )		///< –`Œ¯ƒm[ƒgƒy[ƒWMAX
-#define	FNOTE_ACTION_MAX	( 4 )		///< –`Œ¯ƒm[ƒgs“®ƒ[ƒN”
-#define	FNOTE_SIO_MAX		( 2 )		///< –`Œ¯ƒm[ƒg’ÊMƒ[ƒN”
+#define	FNOTE_PAGE_MAX		( 10 )		///< å†’é™ºãƒŽãƒ¼ãƒˆãƒšãƒ¼ã‚¸MAX
+#define	FNOTE_ACTION_MAX	( 4 )		///< å†’é™ºãƒŽãƒ¼ãƒˆè¡Œå‹•ãƒ¯ãƒ¼ã‚¯æ•°
+#define	FNOTE_SIO_MAX		( 2 )		///< å†’é™ºãƒŽãƒ¼ãƒˆé€šä¿¡ãƒ¯ãƒ¼ã‚¯æ•°
 
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * –`Œ¯ƒm[ƒg—pƒ[ƒN‚ÌƒTƒCƒYŽæ“¾
+ * å†’é™ºãƒŽãƒ¼ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
  *
  * @param	none
  *
- * @return	ƒ[ƒNƒTƒCƒY
+ * @return	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL int FNOTE_GetWorkSize(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * –`Œ¯ƒm[ƒg—pƒ[ƒN‰Šú‰»i‘S‘Ìj
+ * å†’é™ºãƒŽãƒ¼ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ï¼ˆå…¨ä½“ï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -216,23 +216,23 @@ GLOBAL void FNOTE_InitAll( FNOTE_DATA * dat );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZ[ƒuƒf[ƒ^‚©‚ç–`Œ¯ƒm[ƒg‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å†’é™ºãƒŽãƒ¼ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
- * @return	–`Œ¯ƒm[ƒgƒf[ƒ^
+ * @return	å†’é™ºãƒŽãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL FNOTE_DATA * SaveData_GetFNote( SAVEDATA * sv );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZ[ƒuƒy[ƒWŽæ“¾
+ * ã‚»ãƒ¼ãƒ–ãƒšãƒ¼ã‚¸å–å¾—
  *
- * @param	dat		ƒZ[ƒuƒf[ƒ^
- * @param	flg		ƒZ[ƒu‹–‰Âƒtƒ‰ƒO ( TRUE = ‹–‰Â )
+ * @param	dat		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	flg		ã‚»ãƒ¼ãƒ–è¨±å¯ãƒ•ãƒ©ã‚° ( TRUE = è¨±å¯ )
  *
- * @retval	"flg = TRUE : ƒZ[ƒuƒy[ƒW"
+ * @retval	"flg = TRUE : ã‚»ãƒ¼ãƒ–ãƒšãƒ¼ã‚¸"
  * @retval	"flg = FALSE : NULL"
  */
 //--------------------------------------------------------------------------------------------
@@ -240,24 +240,24 @@ GLOBAL FNOTE_DATA * FNOTE_SavePageGet( FNOTE_DATA * dat, BOOL flg );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒQ[ƒ€ŠJŽnŽž‚Ì–`Œ¯ƒm[ƒg•\Ž¦ƒ`ƒFƒbƒN
+ * ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®å†’é™ºãƒŽãƒ¼ãƒˆè¡¨ç¤ºãƒã‚§ãƒƒã‚¯
  *
- * @param	dat		ƒZ[ƒuƒf[ƒ^
- * @param	flg		ƒZ[ƒu‹–‰Âƒtƒ‰ƒO ( TRUE = ‹–‰Â )
+ * @param	dat		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	flg		ã‚»ãƒ¼ãƒ–è¨±å¯ãƒ•ãƒ©ã‚° ( TRUE = è¨±å¯ )
  *
- * @retval	"TRUE = •\Ž¦"
- * @retval	"FALSE = •\Ž¦‚µ‚È‚¢"
+ * @retval	"TRUE = è¡¨ç¤º"
+ * @retval	"FALSE = è¡¨ç¤ºã—ãªã„"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BOOL FNOTE_GameStartOpenCheck( FNOTE_DATA * dat, BOOL flg );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ‘zƒZ[ƒu
+ * å›žæƒ³ã‚»ãƒ¼ãƒ–
  *
- * @param	dat		ƒZ[ƒuƒf[ƒ^
- * @param	wk		ƒZ[ƒu‚·‚éƒf[ƒ^
- * @param	type	‹L˜^ƒ^ƒCƒv
+ * @param	dat		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	wk		ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	type	è¨˜éŒ²ã‚¿ã‚¤ãƒ—
  *
  * @return	none
  */
@@ -266,269 +266,269 @@ GLOBAL void FNOTE_DataSave( FNOTE_DATA * dat, void * wk, u8 type );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ “ú•tEŠJŽnêŠ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ æ—¥ä»˜ãƒ»é–‹å§‹å ´æ‰€ ]
  *
- * @param	start	ŠJŽnêŠ
- * @param	heap	ƒq[ƒvID
+ * @param	start	é–‹å§‹å ´æ‰€
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  *
- * @li	“ú•t‚ÍRTC‚©‚çŽæ“¾
+ * @li	æ—¥ä»˜ã¯RTCã‹ã‚‰å–å¾—
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_StartDataMake( u16 start, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FŽ©‘î ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šè‡ªå®… ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionHouseDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FŒ¤‹†Š ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šç ”ç©¶æ‰€ ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionLaboDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®Fƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼ ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_PokemonCenterDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FƒVƒ‡ƒbƒvE”ƒ‚¤ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»è²·ã† ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionShopBuyDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FƒVƒ‡ƒbƒvE”ƒ‚¤i•¡”j ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»è²·ã†ï¼ˆè¤‡æ•°ï¼‰ ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionShopBuy2DataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FƒVƒ‡ƒbƒvE”„‚é ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²ã‚‹ ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionShopSaleDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FƒVƒ‡ƒbƒvE”„‚éi•¡”j ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²ã‚‹ï¼ˆè¤‡æ•°ï¼‰ ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionShopSale2DataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FƒVƒ‡ƒbƒvE”„”ƒ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²è²· ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionShopTradeDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FƒWƒ€iƒŠ[ƒ_[‚ð“|‚·‘Oj ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šã‚¸ãƒ ï¼ˆãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã™å‰ï¼‰ ]
  *
- * @param	map		ƒ}ƒbƒvID
- * @param	heap	ƒq[ƒvID
+ * @param	map		ãƒžãƒƒãƒ—ID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionGymBeforeDataMake( u16 map, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FƒWƒ€iƒŠ[ƒ_[‚ð“|‚µ‚½Œãj ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šã‚¸ãƒ ï¼ˆãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã—ãŸå¾Œï¼‰ ]
  *
- * @param	map		ƒ}ƒbƒvID
- * @param	trainer	ƒgƒŒ[ƒi[ID
- * @param	heap	ƒq[ƒvID
+ * @param	map		ãƒžãƒƒãƒ—ID
+ * @param	trainer	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionGymAfterDataMake( u16 map, u16 trainer, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FŽl“V‰¤ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šå››å¤©çŽ‹ ]
  *
- * @param	trainer	ƒgƒŒ[ƒi[ID
- * @param	heap	ƒq[ƒvID
+ * @param	trainer	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionSitenouDataMake( u16 trainer, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®Fƒ`ƒƒƒ“ƒsƒIƒ“ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ ]
  *
- * @param	trainer	ƒgƒŒ[ƒi[ID
- * @param	heap	ƒq[ƒvID
+ * @param	trainer	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionChampionDataMake( u16 trainer, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FŠX ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šè¡— ]
  *
- * @param	map		ƒ}ƒbƒvID
- * @param	heap	ƒq[ƒvID
+ * @param	map		ãƒžãƒƒãƒ—ID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionCityDataMake( u16 map, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®Fƒ_ƒ“ƒWƒ‡ƒ“ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ ]
  *
- * @param	map		ƒ}ƒbƒvID
- * @param	heap	ƒq[ƒvID
+ * @param	map		ãƒžãƒƒãƒ—ID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionDungeonDataMake( u16 map, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FŒš•¨ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šå»ºç‰© ]
  *
- * @param	map		ƒ}ƒbƒvID
- * @param	heap	ƒq[ƒvID
+ * @param	map		ãƒžãƒƒãƒ—ID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionBuildDataMake( u16 map, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FƒQ[ƒ€ƒR[ƒi[ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒŠãƒ¼ ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionGameCornerDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FƒTƒtƒ@ƒŠƒ][ƒ“ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šã‚µãƒ•ã‚¡ãƒªã‚¾ãƒ¼ãƒ³ ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionSafariDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®FƒAƒCƒeƒ€Žæ“¾ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šã‚¢ã‚¤ãƒ†ãƒ å–å¾— ]
  *
- * @param	item	ƒAƒCƒeƒ€ID
- * @param	heap	ƒq[ƒvID
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionItemDataMake( u16 item, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®F‹Z ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šæŠ€ ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionSkillDataMake( u8 waza, u16 map, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®F’n‰ºE‰»ÎŒ@‚è ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šåœ°ä¸‹ãƒ»åŒ–çŸ³æŽ˜ã‚Š ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionUGFossilDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ s“®F’n‰ºE”é–§Šî’n ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ è¡Œå‹•ï¼šåœ°ä¸‹ãƒ»ç§˜å¯†åŸºåœ° ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_ActionUGBaseDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ƒ|ƒPƒ‚ƒ“F•ßŠl ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ ãƒã‚±ãƒ¢ãƒ³ï¼šæ•ç² ]
  *
- * @param	ptime	ƒvƒŒƒCŽžŠÔ
- * @param	mons	ƒ|ƒPƒ‚ƒ“ID
- * @param	sex		«•Ê
- * @param	time	ŽžŠÔ‘Ñ
- * @param	heap	ƒq[ƒvID
+ * @param	ptime	ãƒ—ãƒ¬ã‚¤æ™‚é–“
+ * @param	mons	ãƒã‚±ãƒ¢ãƒ³ID
+ * @param	sex		æ€§åˆ¥
+ * @param	time	æ™‚é–“å¸¯
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_PokemonGetDataMake(
@@ -536,15 +536,15 @@ GLOBAL void * FNOTE_PokemonGetDataMake(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ƒ|ƒPƒ‚ƒ“F“|‚· ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ ãƒã‚±ãƒ¢ãƒ³ï¼šå€’ã™ ]
  *
- * @param	ptyme	ƒvƒŒƒCŽžŠÔ
- * @param	mons	ƒ|ƒPƒ‚ƒ“ID
- * @param	sex		«•Ê
- * @param	time	ŽžŠÔ‘Ñ
- * @param	heap	ƒq[ƒvID
+ * @param	ptyme	ãƒ—ãƒ¬ã‚¤æ™‚é–“
+ * @param	mons	ãƒã‚±ãƒ¢ãƒ³ID
+ * @param	sex		æ€§åˆ¥
+ * @param	time	æ™‚é–“å¸¯
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_PokemonDownDataMake(
@@ -552,57 +552,57 @@ GLOBAL void * FNOTE_PokemonDownDataMake(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ƒgƒŒ[ƒi[ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ ]
  *
- * @param	map		ƒ}ƒbƒvID
- * @param	trainer	ƒgƒŒ[ƒi[ID
- * @param	heap	ƒq[ƒvID
+ * @param	map		ãƒžãƒƒãƒ—ID
+ * @param	trainer	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_TrainerDataMake( u16 map, u16 trainer, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMF’ÊM‘ÎíEƒVƒ“ƒOƒ‹ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ã‚·ãƒ³ã‚°ãƒ« ]
  *
- * @param	name	‘Îí‘ŠŽè‚Ì–¼‘O
- * @param	sex		‘Îí‘ŠŽè‚Ì«•Ê
- * @param	result	Ÿ”s
- * @param	heap	ƒq[ƒvID
+ * @param	name	å¯¾æˆ¦ç›¸æ‰‹ã®åå‰
+ * @param	sex		å¯¾æˆ¦ç›¸æ‰‹ã®æ€§åˆ¥
+ * @param	result	å‹æ•—
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioSingleBtlDataMake( STRCODE * name, u8 sex, u8 result, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMF’ÊM‘ÎíEƒ_ƒuƒ‹ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒ€ãƒ–ãƒ« ]
  *
- * @param	name	‘Îí‘ŠŽè‚Ì–¼‘O
- * @param	sex		‘Îí‘ŠŽè‚Ì«•Ê
- * @param	result	Ÿ”s
- * @param	heap	ƒq[ƒvID
+ * @param	name	å¯¾æˆ¦ç›¸æ‰‹ã®åå‰
+ * @param	sex		å¯¾æˆ¦ç›¸æ‰‹ã®æ€§åˆ¥
+ * @param	result	å‹æ•—
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioDoubleBtlDataMake( STRCODE * name, u8 sex, u8 result, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMF’ÊM‘ÎíEƒ}ƒ‹ƒ` ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒžãƒ«ãƒ ]
  *
- * @param	name1	‘Îí‘ŠŽè‚P‚Ì–¼‘O
- * @param	name2	‘Îí‘ŠŽè‚Q‚Ì–¼‘O
- * @param	sex1	‘Îí‘ŠŽè‚P‚Ì«•Ê
- * @param	sex2	‘Îí‘ŠŽè‚Q‚Ì«•Ê
- * @param	result	Ÿ”s
- * @param	heap	ƒq[ƒvID
+ * @param	name1	å¯¾æˆ¦ç›¸æ‰‹ï¼‘ã®åå‰
+ * @param	name2	å¯¾æˆ¦ç›¸æ‰‹ï¼’ã®åå‰
+ * @param	sex1	å¯¾æˆ¦ç›¸æ‰‹ï¼‘ã®æ€§åˆ¥
+ * @param	sex2	å¯¾æˆ¦ç›¸æ‰‹ï¼’ã®æ€§åˆ¥
+ * @param	result	å‹æ•—
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioMultiBtlDataMake(
@@ -610,30 +610,30 @@ GLOBAL void * FNOTE_SioMultiBtlDataMake(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMF’ÊM‘ÎíEƒ~ƒbƒNƒX1vs1 ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒŸãƒƒã‚¯ã‚¹1vs1 ]
  *
- * @param	name	‘Îí‘ŠŽè‚Ì–¼‘O
- * @param	sex		‘Îí‘ŠŽè‚Ì«•Ê
- * @param	result	Ÿ”s
- * @param	heap	ƒq[ƒvID
+ * @param	name	å¯¾æˆ¦ç›¸æ‰‹ã®åå‰
+ * @param	sex		å¯¾æˆ¦ç›¸æ‰‹ã®æ€§åˆ¥
+ * @param	result	å‹æ•—
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioMixBtl1DataMake( STRCODE * name, u8 sex, u8 result, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMF’ÊM‘ÎíEƒ~ƒbƒNƒX2vs2 ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒŸãƒƒã‚¯ã‚¹2vs2 ]
  *
- * @param	name1	‘Îí‘ŠŽè‚P‚Ì–¼‘O
- * @param	name2	‘Îí‘ŠŽè‚Q‚Ì–¼‘O
- * @param	sex1	‘Îí‘ŠŽè‚P‚Ì«•Ê
- * @param	sex2	‘Îí‘ŠŽè‚Q‚Ì«•Ê
- * @param	result	Ÿ”s
- * @param	heap	ƒq[ƒvID
+ * @param	name1	å¯¾æˆ¦ç›¸æ‰‹ï¼‘ã®åå‰
+ * @param	name2	å¯¾æˆ¦ç›¸æ‰‹ï¼’ã®åå‰
+ * @param	sex1	å¯¾æˆ¦ç›¸æ‰‹ï¼‘ã®æ€§åˆ¥
+ * @param	sex2	å¯¾æˆ¦ç›¸æ‰‹ï¼’ã®æ€§åˆ¥
+ * @param	result	å‹æ•—
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioMixBtl2DataMake(
@@ -641,28 +641,28 @@ GLOBAL void * FNOTE_SioMixBtl2DataMake(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€Eˆ¥ŽA ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»æŒ¨æ‹¶ ]
  *
- * @param	name	‘ŠŽè‚Ì–¼‘O
- * @param	sex		‘ŠŽè‚Ì«•Ê
- * @param	heap	ƒq[ƒvID
+ * @param	name	ç›¸æ‰‹ã®åå‰
+ * @param	sex		ç›¸æ‰‹ã®æ€§åˆ¥
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioUnionGreetDataMake( STRCODE * name, u8 sex, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€EŒðŠ· ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»äº¤æ› ]
  *
- * @param	name		ŒðŠ·‘ŠŽè‚Ì–¼‘O
- * @param	sex			ŒðŠ·‘ŠŽè‚Ì«•Ê
- * @param	nickname	ŒðŠ·‚Å‚«‚½ƒ|ƒPƒ‚ƒ“‚ÌƒjƒbƒNƒl[ƒ€
- * @param	poke_sex	ŒðŠ·‚Å‚«‚½ƒ|ƒPƒ‚ƒ“‚Ì«•Ê
- * @param	heap		ƒq[ƒvID
+ * @param	name		äº¤æ›ç›¸æ‰‹ã®åå‰
+ * @param	sex			äº¤æ›ç›¸æ‰‹ã®æ€§åˆ¥
+ * @param	nickname	äº¤æ›ã§ããŸãƒã‚±ãƒ¢ãƒ³ã®ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+ * @param	poke_sex	äº¤æ›ã§ããŸãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioUnionChangeDataMake(
@@ -670,99 +670,99 @@ GLOBAL void * FNOTE_SioUnionChangeDataMake(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E‚¨ŠG‚©‚« ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»ãŠçµµã‹ã ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioUnionPictureDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E•¡”lŒðŠ· ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»è¤‡æ•°äººäº¤æ› ]
  *
- * @param	nickname	ŒðŠ·‚Å‚«‚½ƒ|ƒPƒ‚ƒ“‚ÌƒjƒbƒNƒl[ƒ€
- * @param	poke_sex	ŒðŠ·‚Å‚«‚½ƒ|ƒPƒ‚ƒ“‚Ì«•Ê
- * @param	heap		ƒq[ƒvID
+ * @param	nickname	äº¤æ›ã§ããŸãƒã‚±ãƒ¢ãƒ³ã®ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+ * @param	poke_sex	äº¤æ›ã§ããŸãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioUnionMltChgDataMake( STRCODE * nickname, u8 poke_sex, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€Eƒgƒ‰ƒ“ƒV[ƒo[ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»ãƒˆãƒ©ãƒ³ã‚·ãƒ¼ãƒãƒ¼ ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioUnionTransceiverDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E‘Îí ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»å¯¾æˆ¦ ]
  *
- * @param	name	‘Îí‘ŠŽè‚Ì–¼‘O
- * @param	sex		‘Îí‘ŠŽè‚Ì«•Ê
- * @param	result	Ÿ”s
- * @param	heap	ƒq[ƒvID
+ * @param	name	å¯¾æˆ¦ç›¸æ‰‹ã®åå‰
+ * @param	sex		å¯¾æˆ¦ç›¸æ‰‹ã®æ€§åˆ¥
+ * @param	result	å‹æ•—
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioUnionBattleDataMake( STRCODE * name, u8 sex, u8 result, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFƒŒƒR[ƒhƒR[ƒi[ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ ]
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioRecordDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFƒRƒ“ƒeƒXƒg ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆ ]
  *
- * @param	result	‡ˆÊ
- * @param	heap	ƒq[ƒvID
+ * @param	result	é †ä½
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioContestDataMake( u8 result, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFƒ|ƒ‹ƒgì¬ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šãƒãƒ«ãƒˆä½œæˆ ]
  *
- * @param	name	‘ŠŽè‚Ì–¼‘O
- * @param	heap	ƒq[ƒvID
+ * @param	name	ç›¸æ‰‹ã®åå‰
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioPorutoDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFGTC ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šGTC ]
  *
- * @param	name		ŒðŠ·‘ŠŽè‚Ì–¼‘O
- * @param	sex			ŒðŠ·‘ŠŽè‚Ì«•Ê
- * @param	nickname	ŒðŠ·‚Å‚«‚½ƒ|ƒPƒ‚ƒ“‚ÌƒjƒbƒNƒl[ƒ€
- * @param	poke_sex	ŒðŠ·‚Å‚«‚½ƒ|ƒPƒ‚ƒ“‚Ì«•Ê
- * @param	heap		ƒq[ƒvID
+ * @param	name		äº¤æ›ç›¸æ‰‹ã®åå‰
+ * @param	sex			äº¤æ›ç›¸æ‰‹ã®æ€§åˆ¥
+ * @param	nickname	äº¤æ›ã§ããŸãƒã‚±ãƒ¢ãƒ³ã®ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+ * @param	poke_sex	äº¤æ›ã§ããŸãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioGTCDataMake(
@@ -770,24 +770,24 @@ GLOBAL void * FNOTE_SioGTCDataMake(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬ [ ’ÊMFƒoƒgƒ‹ƒ^ƒ[ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ [ é€šä¿¡ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ ]
  *
- * @param	name	‘ŠŽè‚Ì–¼‘O
- * @param	heap	ƒq[ƒvID
+ * @param	name	ç›¸æ‰‹ã®åå‰
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ì¬‚µ‚½ƒ[ƒN
+ * @return	ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FNOTE_SioBattleTowerDataMake( u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ‘zƒf[ƒ^Žæ“¾
+ * å›žæƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param	dat		ƒZ[ƒuƒf[ƒ^
- * @param	wk		Žæ“¾êŠ
- * @param	type	‹L˜^ƒ^ƒCƒv
- * @param	page	Žæ“¾ƒy[ƒW
+ * @param	dat		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	wk		å–å¾—å ´æ‰€
+ * @param	type	è¨˜éŒ²ã‚¿ã‚¤ãƒ—
+ * @param	page	å–å¾—ãƒšãƒ¼ã‚¸
  *
  * @return	none
  */
@@ -797,13 +797,13 @@ GLOBAL void FNOTE_DataGet( FNOTE_DATA * dat, void * wk, u8 type, u8 page );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬/ƒZ[ƒu [ s“®FŽ©‘îAŒ¤‹†ŠAŒš•¨Aƒ_ƒ“ƒWƒ‡ƒ“‚©‚ço‚½ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ/ã‚»ãƒ¼ãƒ– [ è¡Œå‹•ï¼šè‡ªå®…ã€ç ”ç©¶æ‰€ã€å»ºç‰©ã€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‹ã‚‰å‡ºãŸ ]
  *
- * @param	my		ƒvƒŒ[ƒ„[ƒf[ƒ^
- * @param	dat		–`Œ¯ƒm[ƒg‚ÌƒZ[ƒuƒf[ƒ^
- * @param	now		Œ»Ý‚Ìƒ}ƒbƒv
- * @param	before	‘O‚É‚¢‚½ƒ}ƒbƒv
- * @param	heap	ƒq[ƒvID
+ * @param	my		ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ * @param	dat		å†’é™ºãƒŽãƒ¼ãƒˆã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	now		ç¾åœ¨ã®ãƒžãƒƒãƒ—
+ * @param	before	å‰ã«ã„ãŸãƒžãƒƒãƒ—
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -813,22 +813,22 @@ GLOBAL void FNOTE_DataMakeSaveMapChg(
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ÁŽê‚ÈŒš•¨‚Ì•\Ž¦ƒ^ƒCƒvŽæ“¾
+ * ç‰¹æ®Šãªå»ºç‰©ã®è¡¨ç¤ºã‚¿ã‚¤ãƒ—å–å¾—
  *
- * @param	name	–¼‘OID
+ * @param	name	åå‰ID
  *
- * @return	•\Ž¦ƒ^ƒCƒv
+ * @return	è¡¨ç¤ºã‚¿ã‚¤ãƒ—
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 FNOTE_ExBuildPutTypeGet( u32 name );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬/ƒZ[ƒu [ s“®FŠX‚É“ž’… ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ/ã‚»ãƒ¼ãƒ– [ è¡Œå‹•ï¼šè¡—ã«åˆ°ç€ ]
  *
- * @param	dat		ƒZ[ƒuƒf[ƒ^
- * @param	map		Œ»Ý‚Ìƒ}ƒbƒv
- * @param	heap	ƒq[ƒvID
+ * @param	dat		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	map		ç¾åœ¨ã®ãƒžãƒƒãƒ—
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -837,12 +837,12 @@ GLOBAL void FNOTE_DataMakeSaveCity( FNOTE_DATA * dat, u32 map, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ì¬/ƒZ[ƒu [ s“®FƒWƒ€ƒŠ[ƒ_[Aƒ`ƒƒƒ“ƒsƒIƒ“AŽl“V‰¤ & ƒgƒŒ[ƒi[FƒgƒŒ[ƒi[ ]
+ * ãƒ‡ãƒ¼ã‚¿ä½œæˆ/ã‚»ãƒ¼ãƒ– [ è¡Œå‹•ï¼šã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã€ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã€å››å¤©çŽ‹ & ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ ]
  *
- * @param	dat			–`Œ¯ƒm[ƒg‚ÌƒZ[ƒuƒf[ƒ^
- * @param	map			ƒ][ƒ“ID
- * @param	trainer		ƒgƒŒ[ƒi[ID
- * @param	heap		ƒq[ƒvID
+ * @param	dat			å†’é™ºãƒŽãƒ¼ãƒˆã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	map			ã‚¾ãƒ¼ãƒ³ID
+ * @param	trainer		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */

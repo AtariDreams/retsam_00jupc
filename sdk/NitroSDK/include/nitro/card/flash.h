@@ -21,7 +21,7 @@
   do-indent
 
   Revision 1.5  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ðC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.4  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -58,11 +58,11 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_IsBackupFlash
 
-  Description:  Œ»ÝÝ’è‚³‚ê‚Ä‚¢‚éƒfƒoƒCƒX‚ªFLASH‚©”»’è
+  Description:  ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒã‚¤ã‚¹ãŒFLASHã‹åˆ¤å®š
 
   Arguments:    None.
 
-  Returns:      Œ»ÝÝ’è‚³‚ê‚Ä‚¢‚éƒfƒoƒCƒX‚ªFLASH‚È‚çTRUE
+  Returns:      ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒã‚¤ã‚¹ãŒFLASHãªã‚‰TRUE
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_IsBackupFlash(void)
 {
@@ -76,13 +76,13 @@ SDK_INLINE BOOL CARD_IsBackupFlash(void)
 /*---------------------------------------------------------------------------*
   Name:         CARD_ReadFlash
 
-  Description:  “¯ŠúFLASH“Ç‚Ýž‚Ý (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "read" ‚É‘Š“–)
+  Description:  åŒæœŸFLASHèª­ã¿è¾¼ã¿ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "read" ã«ç›¸å½“)
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg
-                dst        “]‘—æƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        è»¢é€å…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_ReadFlash(u32 src, void *dst, u32 len)
 {
@@ -92,13 +92,13 @@ SDK_INLINE BOOL CARD_ReadFlash(u32 src, void *dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_ReadFlashAsync
 
-  Description:  ”ñ“¯ŠúFLASH“Ç‚Ýž‚Ý (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "read" ‚É‘Š“–)
+  Description:  éžåŒæœŸFLASHèª­ã¿è¾¼ã¿ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "read" ã«ç›¸å½“)
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg
-                dst        “]‘—æƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        è»¢é€å…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -111,13 +111,13 @@ SDK_INLINE void CARD_ReadFlashAsync(u32 src, void *dst, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteFlash
 
-  Description:  “¯ŠúFLASH‘‚«ž‚Ý (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "write" ‚É‘Š“–)
+  Description:  åŒæœŸFLASHæ›¸ãè¾¼ã¿ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "write" ã«ç›¸å½“)
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_WriteFlash(u32 dst, const void *src, u32 len)
 {
@@ -127,13 +127,13 @@ SDK_INLINE BOOL CARD_WriteFlash(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteFlashAsync
 
-  Description:  ”ñ“¯ŠúFLASH‘‚«ž‚Ý (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "write" ‚É‘Š“–)
+  Description:  éžåŒæœŸFLASHæ›¸ãè¾¼ã¿ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "write" ã«ç›¸å½“)
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -146,13 +146,13 @@ SDK_INLINE void CARD_WriteFlashAsync(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_VerifyFlash
 
-  Description:  “¯ŠúFLASHƒxƒŠƒtƒ@ƒC
+  Description:  åŒæœŸFLASHãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        ”äŠræƒIƒtƒZƒbƒg
-                src        ”äŠrŒ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        ”äŠrƒTƒCƒY
+  Arguments:    dst        æ¯”è¼ƒå…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        æ¯”è¼ƒå…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        æ¯”è¼ƒã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_VerifyFlash(u32 dst, const void *src, u32 len)
 {
@@ -162,13 +162,13 @@ SDK_INLINE BOOL CARD_VerifyFlash(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_VerifyFlashAsync
 
-  Description:  ”ñ“¯ŠúFLASHƒxƒŠƒtƒ@ƒC
+  Description:  éžåŒæœŸFLASHãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        ”äŠræƒIƒtƒZƒbƒg
-                src        ”äŠrŒ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        ”äŠrƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        æ¯”è¼ƒå…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        æ¯”è¼ƒå…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        æ¯”è¼ƒã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -181,13 +181,13 @@ SDK_INLINE void CARD_VerifyFlashAsync(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteAndVerifyFlash
 
-  Description:  “¯ŠúFLASH‘‚«ž‚Ý + ƒxƒŠƒtƒ@ƒC
+  Description:  åŒæœŸFLASHæ›¸ãè¾¼ã¿ + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_WriteAndVerifyFlash(u32 dst, const void *src, u32 len)
 {
@@ -197,13 +197,13 @@ SDK_INLINE BOOL CARD_WriteAndVerifyFlash(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteAndVerifyFlashAsync
 
-  Description:  “¯ŠúFLASH‘‚«ž‚Ý + ƒxƒŠƒtƒ@ƒC
+  Description:  åŒæœŸFLASHæ›¸ãè¾¼ã¿ + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -216,14 +216,14 @@ SDK_INLINE void CARD_WriteAndVerifyFlashAsync(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_EraseFlashSector
 
-  Description:  “¯ŠúƒZƒNƒ^Á‹Ž.
+  Description:  åŒæœŸã‚»ã‚¯ã‚¿æ¶ˆåŽ».
 
-  Arguments:    dst        Á‹ŽæƒIƒtƒZƒbƒg
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
-                len        Á‹ŽƒTƒCƒY
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
+  Arguments:    dst        æ¶ˆåŽ»å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+                len        æ¶ˆåŽ»ã‚µã‚¤ã‚º
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_EraseFlashSector(u32 dst, u32 len)
 {
@@ -233,14 +233,14 @@ SDK_INLINE BOOL CARD_EraseFlashSector(u32 dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_EraseFlashSectorAsync
 
-  Description:  ”ñ“¯ŠúƒZƒNƒ^Á‹Ž
+  Description:  éžåŒæœŸã‚»ã‚¯ã‚¿æ¶ˆåŽ»
 
-  Arguments:    dst        Á‹ŽæƒIƒtƒZƒbƒg
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
-                len        Á‹ŽƒTƒCƒY
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        æ¶ˆåŽ»å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+                len        æ¶ˆåŽ»ã‚µã‚¤ã‚º
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -253,13 +253,13 @@ SDK_INLINE void CARD_EraseFlashSectorAsync(u32 dst, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_ProgramFlash
 
-  Description:  “¯ŠúFLASHƒvƒƒOƒ‰ƒ€ (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "program" ‚É‘Š“–)
+  Description:  åŒæœŸFLASHãƒ—ãƒ­ã‚°ãƒ©ãƒ  (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "program" ã«ç›¸å½“)
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_ProgramFlash(u32 dst, const void *src, u32 len)
 {
@@ -269,13 +269,13 @@ SDK_INLINE BOOL CARD_ProgramFlash(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_ProgramFlashAsync
 
-  Description:  ”ñ“¯ŠúFLASHƒvƒƒOƒ‰ƒ€ (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "program" ‚É‘Š“–)
+  Description:  éžåŒæœŸFLASHãƒ—ãƒ­ã‚°ãƒ©ãƒ  (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "program" ã«ç›¸å½“)
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -288,13 +288,13 @@ SDK_INLINE void CARD_ProgramFlashAsync(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_ProgramAndVerifyFlash
 
-  Description:  “¯ŠúFLASHƒvƒƒOƒ‰ƒ€ + ƒxƒŠƒtƒ@ƒC
+  Description:  åŒæœŸFLASHãƒ—ãƒ­ã‚°ãƒ©ãƒ  + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_ProgramAndVerifyFlash(u32 dst, const void *src, u32 len)
 {
@@ -304,13 +304,13 @@ SDK_INLINE BOOL CARD_ProgramAndVerifyFlash(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_ProgramAndVerifyFlashAsync
 
-  Description:  ”ñ“¯ŠúFLASHƒvƒƒOƒ‰ƒ€ + ƒxƒŠƒtƒ@ƒC
+  Description:  éžåŒæœŸFLASHãƒ—ãƒ­ã‚°ãƒ©ãƒ  + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -323,15 +323,15 @@ SDK_INLINE void CARD_ProgramAndVerifyFlashAsync(u32 dst, const void *src, u32 le
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteFlashSector
 
-  Description:  ƒZƒNƒ^Á‹Ž + ƒvƒƒOƒ‰ƒ€
+  Description:  ã‚»ã‚¯ã‚¿æ¶ˆåŽ» + ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_WriteFlashSector(u32 dst, const void *src, u32 len)
 {
@@ -341,15 +341,15 @@ SDK_INLINE BOOL CARD_WriteFlashSector(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteFlashSectorAsync
 
-  Description:  ƒZƒNƒ^Á‹Ž + ƒvƒƒOƒ‰ƒ€
+  Description:  ã‚»ã‚¯ã‚¿æ¶ˆåŽ» + ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -362,15 +362,15 @@ SDK_INLINE void CARD_WriteFlashSectorAsync(u32 dst, const void *src, u32 len,
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteAndVerifyFlashSector
 
-  Description:  ƒZƒNƒ^Á‹Ž + ƒvƒƒOƒ‰ƒ€ + ƒxƒŠƒtƒ@ƒC
+  Description:  ã‚»ã‚¯ã‚¿æ¶ˆåŽ» + ãƒ—ãƒ­ã‚°ãƒ©ãƒ  + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL CARD_WriteAndVerifyFlashSector(u32 dst, const void *src, u32 len)
 {
@@ -380,15 +380,15 @@ SDK_INLINE BOOL CARD_WriteAndVerifyFlashSector(u32 dst, const void *src, u32 len
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteAndVerifyFlashSectorAsync
 
-  Description:  ƒZƒNƒ^Á‹Ž + ƒvƒƒOƒ‰ƒ€ + ƒxƒŠƒtƒ@ƒC
+  Description:  ã‚»ã‚¯ã‚¿æ¶ˆåŽ» + ãƒ—ãƒ­ã‚°ãƒ©ãƒ  + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                           ƒZƒNƒ^ƒTƒCƒY‚Ì®””{‚Å‚ ‚é•K—v‚ª‚ ‚é
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                           ã‚»ã‚¯ã‚¿ã‚µã‚¤ã‚ºã®æ•´æ•°å€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

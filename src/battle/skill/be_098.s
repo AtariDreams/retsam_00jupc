@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_098.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			098�@���̋Z���g������ɓG�̃_���[�W�Ő퓬�s�\�ɂȂ�ƁA�G�̃|�P�������퓬�s�\�ɂȂ�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			098　この技を使った後に敵のダメージで戦闘不能になると、敵のポケモンも戦闘不能になる
  *
  *@author	HisashiSogabe
  *@data		2006.01.24

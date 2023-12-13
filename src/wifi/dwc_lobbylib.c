@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		dwc_lobbylib.c
- *	@brief		ƒƒr[ƒT[ƒoŠÇ—ŠÖ”
+ *	@brief		ãƒ­ãƒ“ãƒ¼ã‚µãƒ¼ãƒç®¡ç†é–¢æ•°
  *	@author		tomoya takahashi
  *	@data		2007.12.06
  *
@@ -22,62 +22,62 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 
 
 //-------------------------------------
-///	WiFiƒƒr[ƒQ[ƒ€î•ñ
-//	Œ»ó‚ÍDP‚Æ“¯—l
+///	WiFiãƒ­ãƒ“ãƒ¼ã‚²ãƒ¼ãƒ æƒ…å ±
+//	ç¾çŠ¶ã¯DPã¨åŒæ§˜
 //=====================================
-#define DWC_LOBBY_GAMENAME			("pokemonplatds")			// ƒQ[ƒ€–¼
-#define DWC_LOBBY_SECRET_KEY		("IIup73")					// ƒV[ƒNƒŒƒbƒgƒL[
+#define DWC_LOBBY_GAMENAME			("pokemonplatds")			// ã‚²ãƒ¼ãƒ å
+#define DWC_LOBBY_SECRET_KEY		("IIup73")					// ã‚·ãƒ¼ã‚¯ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
 
 
 
 #ifdef  PM_DEBUG
 #define DWC_LOBBY_PRINT(...)		OS_TPrintf(__VA_ARGS__)
-//#define DWC_LOBBY_USERENUM			// USERENUM•\Ž¦
-//#define DWC_LOBBY_ANKETO_DRAW			// ƒAƒ“ƒP[ƒgî•ñ‚ÌƒfƒoƒbƒN•\Ž¦
+//#define DWC_LOBBY_USERENUM			// USERENUMè¡¨ç¤º
+//#define DWC_LOBBY_ANKETO_DRAW			// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±ã®ãƒ‡ãƒãƒƒã‚¯è¡¨ç¤º
 
 
-// ƒfƒoƒbƒNŠJŽnî•ñ
+// ãƒ‡ãƒãƒƒã‚¯é–‹å§‹æƒ…å ±
 extern BOOL D_Tomoya_WiFiLobby_DebugStart;
 extern BOOL D_Tomoya_WiFiLobby_LockTime_Long;
 
 /*
-#if defined(DEBUG_ONLY_FOR_ohno)	// ‘å–ì‚³‚ñê—p
-#define DWC_LOBBY_USE_PREFIX		( PPW_LOBBY_CHANNEL_PREFIX_DEBUG1 )	// ƒfƒoƒbƒN‚ÅŽg—p‚·‚éPREFIX
+#if defined(DEBUG_ONLY_FOR_ohno)	// å¤§é‡Žã•ã‚“å°‚ç”¨
+#define DWC_LOBBY_USE_PREFIX		( PPW_LOBBY_CHANNEL_PREFIX_DEBUG1 )	// ãƒ‡ãƒãƒƒã‚¯ã§ä½¿ç”¨ã™ã‚‹PREFIX
 #endif
 
-#if defined(DEBUG_ONLY_FOR_matsuda)	// ¼“c‚³‚ñê—p
-#define DWC_LOBBY_USE_PREFIX		( PPW_LOBBY_CHANNEL_PREFIX_DEBUG3 )	// ƒfƒoƒbƒN‚ÅŽg—p‚·‚éPREFIX
+#if defined(DEBUG_ONLY_FOR_matsuda)	// æ¾ç”°ã•ã‚“å°‚ç”¨
+#define DWC_LOBBY_USE_PREFIX		( PPW_LOBBY_CHANNEL_PREFIX_DEBUG3 )	// ãƒ‡ãƒãƒƒã‚¯ã§ä½¿ç”¨ã™ã‚‹PREFIX
 #endif
 
-#if defined(lee_hyunjung)	// ‚è‚³‚ñê—p
-#define DWC_LOBBY_USE_PREFIX		( PPW_LOBBY_CHANNEL_PREFIX_DEBUG4 )	// ƒfƒoƒbƒN‚ÅŽg—p‚·‚éPREFIX
+#if defined(lee_hyunjung)	// ã‚Šã•ã‚“å°‚ç”¨
+#define DWC_LOBBY_USE_PREFIX		( PPW_LOBBY_CHANNEL_PREFIX_DEBUG4 )	// ãƒ‡ãƒãƒƒã‚¯ã§ä½¿ç”¨ã™ã‚‹PREFIX
 #endif
 
-#if defined(DEBUG_ONLY_FOR_nohara)	// –ìŒ´‚³‚ñê—p
-#define DWC_LOBBY_USE_PREFIX		( PPW_LOBBY_CHANNEL_PREFIX_DEBUG5 )	// ƒfƒoƒbƒN‚ÅŽg—p‚·‚éPREFIX
+#if defined(DEBUG_ONLY_FOR_nohara)	// é‡ŽåŽŸã•ã‚“å°‚ç”¨
+#define DWC_LOBBY_USE_PREFIX		( PPW_LOBBY_CHANNEL_PREFIX_DEBUG5 )	// ãƒ‡ãƒãƒƒã‚¯ã§ä½¿ç”¨ã™ã‚‹PREFIX
 #endif
 
-#if defined(DEBUG_ONLY_FOR_tomoya_takahashi)	// ‚‹´ê—p
-#define DWC_LOBBY_USE_PREFIX		( PPW_LOBBY_CHANNEL_PREFIX_DEBUG2 )	// ƒfƒoƒbƒN‚ÅŽg—p‚·‚éPREFIX
+#if defined(DEBUG_ONLY_FOR_tomoya_takahashi)	// é«˜æ©‹å°‚ç”¨
+#define DWC_LOBBY_USE_PREFIX		( PPW_LOBBY_CHANNEL_PREFIX_DEBUG2 )	// ãƒ‡ãƒãƒƒã‚¯ã§ä½¿ç”¨ã™ã‚‹PREFIX
 #endif
 //*/
 
@@ -86,8 +86,8 @@ extern BOOL D_Tomoya_WiFiLobby_LockTime_Long;
 #endif
 
 #else
-// »•i”Å
-#define DWC_LOBBY_USE_PREFIX		( GF_DWC_LOBBY_CHANNEL_PREFIX )		// »•i”Å‚ÅŽg—p‚·‚éPREFIX
+// è£½å“ç‰ˆ
+#define DWC_LOBBY_USE_PREFIX		( GF_DWC_LOBBY_CHANNEL_PREFIX )		// è£½å“ç‰ˆã§ä½¿ç”¨ã™ã‚‹PREFIX
 #define DWC_LOBBY_PRINT(...)		((void)0);
 #endif
 
@@ -95,27 +95,27 @@ extern BOOL D_Tomoya_WiFiLobby_LockTime_Long;
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+///	ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
 //=====================================
 enum {
-	DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN,	// ƒƒCƒ“‚Ìƒ`ƒƒƒ“ƒlƒ‹
-	DWC_LOBBY_LOCALCHANNEL_TYPE_SUB,	// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹i‘«Õƒ{[ƒh‚È‚Çj
-	DWC_LOBBY_LOCALCHANNEL_TYPE_NUM,	// ƒ`ƒƒƒ“ƒlƒ‹”
+	DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN,	// ãƒ¡ã‚¤ãƒ³ã®ãƒãƒ£ãƒ³ãƒãƒ«
+	DWC_LOBBY_LOCALCHANNEL_TYPE_SUB,	// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ï¼ˆè¶³è·¡ãƒœãƒ¼ãƒ‰ãªã©ï¼‰
+	DWC_LOBBY_LOCALCHANNEL_TYPE_NUM,	// ãƒãƒ£ãƒ³ãƒãƒ«æ•°
 } ;
 
 
 
 //-------------------------------------
-///	ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^	KEY
+///	ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿	KEY
 //=====================================
 enum{
-	DWC_LOBBY_CHANNEL_KEY_WLDDATA,	//  ‘ÞŽºŽÒ‘A’nˆæƒf[ƒ^
-	DWC_LOBBY_CHANNEL_KEY_NUM,	//  ‘ÞŽºŽÒ‘A’nˆæƒf[ƒ^
+	DWC_LOBBY_CHANNEL_KEY_WLDDATA,	//  é€€å®¤è€…å›½ã€åœ°åŸŸãƒ‡ãƒ¼ã‚¿
+	DWC_LOBBY_CHANNEL_KEY_NUM,	//  é€€å®¤è€…å›½ã€åœ°åŸŸãƒ‡ãƒ¼ã‚¿
 };
 static const char* sc_DWC_LOBBY_CHANNEL_KEY_NAME[ DWC_LOBBY_CHANNEL_KEY_NUM ] = {
 	"b_lby_wlddata",
@@ -123,66 +123,66 @@ static const char* sc_DWC_LOBBY_CHANNEL_KEY_NAME[ DWC_LOBBY_CHANNEL_KEY_NUM ] = 
 
 
 //-------------------------------------
-///	‘ÞŽºŽÒ	¢ŠEƒf[ƒ^
+///	é€€å®¤è€…	ä¸–ç•Œãƒ‡ãƒ¼ã‚¿
 //=====================================
-#define DWC_LOBBY_WLDDATA_NATION_NONE		( country000 )	// –³Œø‚È‘ID
+#define DWC_LOBBY_WLDDATA_NATION_NONE		( country000 )	// ç„¡åŠ¹ãªå›½ID
 
 
 //-------------------------------------
-///	ƒXƒPƒWƒ…[ƒ‹ƒoƒbƒtƒ@ƒTƒCƒY
+///	ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 //=====================================
-// ƒXƒPƒWƒ…[ƒ‹‚ð126Œ“ü‚ê‚é‚±‚Æ‚ªo—ˆ‚éƒTƒCƒY‚È‚Ì‚Å‘åä•v
-// Œ»óƒXƒPƒWƒ…[ƒ‹‚ÌŒ”‚Í18’ö“x
+// ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’126ä»¶å…¥ã‚Œã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹ã‚µã‚¤ã‚ºãªã®ã§å¤§ä¸ˆå¤«
+// ç¾çŠ¶ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ä»¶æ•°ã¯18ç¨‹åº¦
 #define DWC_LOBBY_SCHEDULE_SIZE				( 1024 )	
 
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€•åWî•ñ
-//	•åWó‘Ô
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†æƒ…å ±
+//	å‹Ÿé›†çŠ¶æ…‹
 //=====================================
 enum{
-	DWC_LOBBY_MG_ST_RECRUIT,	// •åW’†
-	DWC_LOBBY_MG_ST_GAMEING,	// —V‚Ñ’†
+	DWC_LOBBY_MG_ST_RECRUIT,	// å‹Ÿé›†ä¸­
+	DWC_LOBBY_MG_ST_GAMEING,	// éŠã³ä¸­
 };
-#define DWC_LOBBY_MG_TIMELIMIT_SEC	( 30 )	//1•b‚Ì’PˆÊ
+#define DWC_LOBBY_MG_TIMELIMIT_SEC	( 30 )	//1ç§’ã®å˜ä½
 
 
 //-------------------------------------
-///	WŒvŒ¾Œêƒtƒ‰ƒO‚Ìƒoƒbƒtƒ@”
+///	é›†è¨ˆè¨€èªžãƒ•ãƒ©ã‚°ã®ãƒãƒƒãƒ•ã‚¡æ•°
 //=====================================
 #define DWC_LOBBY_ANKETO_LANG_SUMMARIZE_FLAG_BUFF_NUM	( 12 )
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 
 //-------------------------------------
-///	‘ÞŽºŽÒ‚Ì¢ŠEƒf[ƒ^
+///	é€€å®¤è€…ã®ä¸–ç•Œãƒ‡ãƒ¼ã‚¿
 //	4byte
 //=====================================
 typedef struct {
-	u16	nation;		///<‘
-	u8	area;		///<’nˆæ
-	u8	flag;		///<ƒf[ƒ^—L–³	iƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚Ì‚©‚Ç‚¤‚©j
+	u16	nation;		///<å›½
+	u8	area;		///<åœ°åŸŸ
+	u8	flag;		///<ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡	ï¼ˆãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã®ã‹ã©ã†ã‹ï¼‰
 } DWC_WLDDATA;
 
 //-------------------------------------
-///	ƒ†[ƒU—ñ‹“
+///	ãƒ¦ãƒ¼ã‚¶åˆ—æŒ™
 //=====================================
 typedef struct {
-	s16			num;			// Œ»Ý‚Ì“o˜^”
-	u16			tblnum;			// ƒe[ƒuƒ‹”
-	s32*		p_tbl;			// ƒ†[ƒUIDƒe[ƒuƒ‹
+	s16			num;			// ç¾åœ¨ã®ç™»éŒ²æ•°
+	u16			tblnum;			// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+	s32*		p_tbl;			// ãƒ¦ãƒ¼ã‚¶IDãƒ†ãƒ¼ãƒ–ãƒ«
 } DWC_LOBBY_USERIDTBL;
 
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒWƒRƒ}ƒ“ƒh
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒžãƒ³ãƒ‰
 //=====================================
 typedef struct {
 	const DWC_LOBBY_MSGCOMMAND*	cp_msgtbl;
@@ -192,7 +192,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€•åWƒf[ƒ^
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	PPW_LobbyRecruitInfo	mg_data;
@@ -203,17 +203,17 @@ typedef struct {
 
 
 //-------------------------------------
-///	VIPî•ñ
+///	VIPæƒ…å ±
 //=====================================
 typedef struct {
 	PPW_LobbyVipRecord* p_vipbuff;
-	u16					num;	// ƒoƒbƒtƒ@‘”
-	u16					datanum;// ŽÀÛ‚Éƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é”
+	u16					num;	// ãƒãƒƒãƒ•ã‚¡ç·æ•°
+	u16					datanum;// å®Ÿéš›ã«ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹æ•°
 } DWC_LOBBY_VIP;
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒgî•ñ
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±
 //=====================================
 typedef struct {
 	PPW_LobbyQuestionnaire	question;
@@ -223,66 +223,66 @@ typedef struct {
 
 
 //-------------------------------------
-///	Wi-Fiƒƒr[ƒ‰ƒCƒuƒ‰ƒŠƒ[ƒN
+///	Wi-Fiãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	//  ƒZ[ƒuƒf[ƒ^
+	//  ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	SAVEDATA*		p_save;	
 	WIFI_LIST*		p_wifilist;
 	WIFI_HISTORY*	p_wifihistory;
 
-	// ƒR[ƒ‹ƒoƒbƒNƒf[ƒ^
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	DWC_LOBBY_CALLBACK	callback;
-	void*				p_callbackwork;	// ƒR[ƒ‹ƒoƒbƒN—pƒ†[ƒUƒ[ƒN
+	void*				p_callbackwork;	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ¦ãƒ¼ã‚¶ãƒ¯ãƒ¼ã‚¯
 
-	// ƒ†[ƒUî•ñ
-	u8*				p_profile;		// ƒvƒƒtƒB[ƒ‹ƒoƒbƒtƒ@	size‚Íprofilesize*PPW_LOBBY_MAX_PLAYER_NUM_MAIN
-	u32				profilesize;	// ƒvƒƒtƒB[ƒ‹ƒTƒCƒY
+	// ãƒ¦ãƒ¼ã‚¶æƒ…å ±
+	u8*				p_profile;		// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒãƒƒãƒ•ã‚¡	sizeã¯profilesize*PPW_LOBBY_MAX_PLAYER_NUM_MAIN
+	u32				profilesize;	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚º
 
-	// ‘Sˆõ•ª‚ÌƒVƒXƒeƒ€“àƒvƒƒtƒB[ƒ‹
+	// å…¨å“¡åˆ†ã®ã‚·ã‚¹ãƒ†ãƒ å†…ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 	PPW_LobbySystemProfile	sysprofile[PPW_LOBBY_MAX_PLAYER_NUM_MAIN];
 
-	// ƒ†[ƒUID—ñ‹“
+	// ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™
 	DWC_LOBBY_USERIDTBL	useridtbl[ DWC_LOBBY_LOCALCHANNEL_TYPE_NUM ];
 
-	// ƒtƒ‰ƒOŒS
-	u8				status;			// ƒXƒe[ƒ^ƒX
-	u8				subchan_type;	// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒvDWC_LOBBY_SUBCHAN_TYPE 
-	u8				subchan_status;	// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒXƒe[ƒ^ƒXDWC_LOBBY_CHANNEL_STATE
-	u8				subchan_login_success;	// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚ÉƒƒOƒCƒ“¬Œ÷‚µ‚½‚©
-	u8				wlddata_send;	// ‘ƒf[ƒ^‘—M’†ƒtƒ‰ƒO
-	u8				excess_flood;	// ’ÊM‰ßèƒGƒ‰[
-	u8				download_error;	// ƒT[ƒoƒf[ƒ^downloadƒGƒ‰[			
-	u8				profile_error;	// ƒvƒƒtƒB[ƒ‹•s³ƒGƒ‰[			
+	// ãƒ•ãƒ©ã‚°éƒ¡
+	u8				status;			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	u8				subchan_type;	// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—DWC_LOBBY_SUBCHAN_TYPE 
+	u8				subchan_status;	// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹DWC_LOBBY_CHANNEL_STATE
+	u8				subchan_login_success;	// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ãƒ­ã‚°ã‚¤ãƒ³æˆåŠŸã—ãŸã‹
+	u8				wlddata_send;	// å›½ãƒ‡ãƒ¼ã‚¿é€ä¿¡ä¸­ãƒ•ãƒ©ã‚°
+	u8				excess_flood;	// é€šä¿¡éŽå‰°ã‚¨ãƒ©ãƒ¼
+	u8				download_error;	// ã‚µãƒ¼ãƒãƒ‡ãƒ¼ã‚¿downloadã‚¨ãƒ©ãƒ¼			
+	u8				profile_error;	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ä¸æ­£ã‚¨ãƒ©ãƒ¼			
 
-	// ‘ÞŽºŽÒ¢ŠEƒf[ƒ^
+	// é€€å®¤è€…ä¸–ç•Œãƒ‡ãƒ¼ã‚¿
 	DWC_WLDDATA		wfldata[ DWC_WLDDATA_MAX ];
 
-	// ’ÊMƒƒbƒZ[ƒWƒRƒ}ƒ“ƒh
+	// é€šä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒžãƒ³ãƒ‰
 	DWC_LOBBY_MSGCMD	msgcmd[ DWC_LOBBY_LOCALCHANNEL_TYPE_NUM ];
 
-	// LOBBYŽžŠÔ
+	// LOBBYæ™‚é–“
 	PPW_LobbyTimeInfo	time;
 
-	// ƒXƒPƒWƒ…[ƒ‹ƒf[ƒ^
+	// ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 	u8			schedulebuff[DWC_LOBBY_SCHEDULE_SIZE];
 	u32			schedulesize;
 
-	// •åWƒf[ƒ^
+	// å‹Ÿé›†ãƒ‡ãƒ¼ã‚¿
 	DWC_LOBBY_MGDATA		mg_data[ DWC_LOBBY_MG_NUM ];
-	u16						mg_myentry;		// ƒGƒ“ƒgƒŠ[‚µ‚Ä‚éƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
-	u8						mg_myparent;	// Ž©•ª‚ªe‚È‚çTRUE
-	u8						mg_myend;		// e‚Å•åW‚ðI—¹‚µ‚È‚­‚Ä‚Í‚¢‚¯‚È‚¢‚Æ‚«TRUE
+	u16						mg_myentry;		// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã—ã¦ã‚‹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
+	u8						mg_myparent;	// è‡ªåˆ†ãŒè¦ªãªã‚‰TRUE
+	u8						mg_myend;		// è¦ªã§å‹Ÿé›†ã‚’çµ‚äº†ã—ãªãã¦ã¯ã„ã‘ãªã„ã¨ãTRUE
 
-	// VIPî•ñ
+	// VIPæƒ…å ±
 	DWC_LOBBY_VIP	vipdata;
 
-	// ƒAƒ“ƒP[ƒgî•ñ
+	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±
 	DWC_ANKETO_DATA anketo;
 	
     PPW_LOBBY_RESULT unk984; // MatchComment: new field, TODO__fix_me what is this? referenced in DWC_LOBBY_GetErr and DWC_LOBBY_LoginEx
 	//
-	// ¡Œã‚Ìƒ|ƒPƒ‚ƒ“ƒo[ƒWƒ‡ƒ“‚Å‚Í‰º‚É’Ç‰Á‚µ‚Ä‚¢‚­
+	// ä»Šå¾Œã®ãƒã‚±ãƒ¢ãƒ³ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã¯ä¸‹ã«è¿½åŠ ã—ã¦ã„ã
 	//
 	
 } DWC_LOBBYLIB_WK;
@@ -291,7 +291,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠƒ[ƒN
+ *					ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static DWC_LOBBYLIB_WK* p_DWC_LOBBYLIB_WK = NULL;
@@ -301,38 +301,38 @@ static DWC_LOBBYLIB_WK* p_DWC_LOBBYLIB_WK = NULL;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	Šî–{ƒGƒ‰[ƒ`ƒFƒbƒN
+///	åŸºæœ¬ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 //=====================================
 static BOOL DWC_LOBBY_CheckCommonErr( PPW_LOBBY_RESULT result );
 
 
 //-------------------------------------
-///	ƒGƒ‰[ó‘Ô‚ÌƒNƒŠƒA
+///	ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ã®ã‚¯ãƒªã‚¢
 //=====================================
 static void DWC_LOBBY_ClearSystemErr( void );
 
 
 //-------------------------------------
-///	PPW‚Ìƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv‚ðDWC_LOBBY‚Ìƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv‚É•ÏX‚·‚é
-//	PPW_LOBBY_CHANNEL_KIND_MAIN	‚Ì‚Æ‚«‚ÍDWC_LOBBY_SUBCHAN_NONE‚ð•Ô‚µ‚Ü‚·@
+///	PPWã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—ã‚’DWC_LOBBYã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—ã«å¤‰æ›´ã™ã‚‹
+//	PPW_LOBBY_CHANNEL_KIND_MAIN	ã®ã¨ãã¯DWC_LOBBY_SUBCHAN_NONEã‚’è¿”ã—ã¾ã™ã€€
 //=====================================
 static DWC_LOBBY_SUBCHAN_TYPE DWC_LOBBY_GetSubChannelType( PPW_LOBBY_CHANNEL_KIND channel );
 static PPW_LOBBY_CHANNEL_KIND DWC_LOBBY_GetChannelKind( DWC_LOBBY_SUBCHAN_TYPE subchan_type );
 
 
 //-------------------------------------
-///	‘ÞŽºŽÒ‘ƒR[ƒh‚ÉŽ©•ª‚Ìƒf[ƒ^‚ðÝ’è‚·‚é
+///	é€€å®¤è€…å›½ã‚³ãƒ¼ãƒ‰ã«è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 //=====================================
 static BOOL DWC_LOBBY_WLDDATA_SetMyData( DWC_LOBBYLIB_WK* p_sys );
 
 
 //-------------------------------------
-///	ƒvƒƒtƒB[ƒ‹ƒoƒbƒtƒ@ƒAƒNƒZƒX
+///	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒãƒƒãƒ•ã‚¡ã‚¢ã‚¯ã‚»ã‚¹
 //=====================================
 static void DWC_LOBBY_Profile_Init( DWC_LOBBYLIB_WK* p_sys, u32 size, u32 heapID );
 static void DWC_LOBBY_Profile_Exit( DWC_LOBBYLIB_WK* p_sys );
@@ -342,7 +342,7 @@ static const void* DWC_LOBBY_Profile_GetData( const DWC_LOBBYLIB_WK* cp_sys, s32
 static void DWC_LOBBY_Profile_CleanData( DWC_LOBBYLIB_WK* p_sys, s32 userid );
 
 //-------------------------------------
-///	ƒVƒXƒeƒ€ƒvƒƒtƒB[ƒ‹ƒoƒbƒtƒ@ƒAƒNƒZƒX
+///	ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒãƒƒãƒ•ã‚¡ã‚¢ã‚¯ã‚»ã‚¹
 //=====================================
 static void DWC_LOBBY_SysProfile_SetData( DWC_LOBBYLIB_WK* p_sys, s32 userid, const PPW_LobbySystemProfile* cp_data );
 static const PPW_LobbySystemProfile* DWC_LOBBY_SysProfile_GetData( const DWC_LOBBYLIB_WK* cp_sys, s32 userid );
@@ -352,7 +352,7 @@ static void DWC_LOBBY_SysProfile_CleanData( DWC_LOBBYLIB_WK* p_sys, s32 userid )
 
 
 //-------------------------------------
-///	ƒ†[ƒU—ñ‹“ƒVƒXƒeƒ€
+///	ãƒ¦ãƒ¼ã‚¶åˆ—æŒ™ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 static void DWC_LOBBY_UserIDTbl_Init( DWC_LOBBYLIB_WK* p_sys, u32 maintblnum, u32 subtblnum, u32 heapID );
 static void DWC_LOBBY_UserIDTbl_Exit( DWC_LOBBYLIB_WK* p_sys );
@@ -365,7 +365,7 @@ static void DWC_LOBBY_UserIDTbl_SUBCHAN_SetSysProfileData( DWC_LOBBYLIB_WK* p_sy
 static BOOL DWC_LOBBY_UserIDTbl_SUBCHAN_CheckSysProfileLogin( const DWC_LOBBYLIB_WK* cp_sys, DWC_LOBBY_SUBCHAN_TYPE subchan_type );
 
 //-------------------------------------
-///	ƒR[ƒ‹ƒoƒbƒNŒS
+///	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯éƒ¡
 //=====================================
 static void DWC_LOBBY_CallBack_JoinChannel( BOOL success, PPW_LOBBY_CHANNEL_KIND channel );
 static void DWC_LOBBY_CallBack_Connect( s32 userid, const PPW_LobbySystemProfile* cp_sysprofile, const u8* cp_userprofile, u32 user_profilesize );
@@ -387,7 +387,7 @@ static void DWC_LOBBY_CallBack_ExcessFlood( u32 floodWeight );
 
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€•åW
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†
 //=====================================
 static void DWC_LOBBY_MG_Init( DWC_LOBBYLIB_WK* p_sys );
 static void DWC_LOBBY_MG_Exit( DWC_LOBBYLIB_WK* p_sys );
@@ -404,14 +404,14 @@ static void DWC_LOBBY_MG_DisConnectCallBack( u16 aid, void* p_work );
 
 
 //-------------------------------------
-///	ƒXƒPƒWƒ…[ƒ‹ƒf[ƒ^ƒAƒNƒZƒXŠÖ”
+///	ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 //=====================================
 static u32 DWC_LOBBY_SCHEDULE_GetEventTime( const PPW_LobbySchedule* cp_schedule, PPW_LOBBY_TIME_EVENT event );
 
 
 
 //-------------------------------------
-///	VIPî•ñ@ŠÖ”
+///	VIPæƒ…å ±ã€€é–¢æ•°
 //=====================================
 static void DWC_LOBBY_VIPDATA_Init( DWC_LOBBY_VIP* p_vip, u32 buffnum, u32 heapID );
 static void DWC_LOBBY_VIPDATA_Exit( DWC_LOBBY_VIP* p_vip );
@@ -421,7 +421,7 @@ static s32 DWC_LOBBY_VIPDATA_GetAikotoba( const DWC_LOBBY_VIP* cp_vip, s32 profi
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒgî•ñ	ŠÖ”
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±	é–¢æ•°
 //=====================================
 static void DWC_LOBBY_ANKETO_Set( DWC_ANKETO_DATA* p_wk, const PPW_LobbyQuestionnaire* cp_question );
 static void DWC_LOBBY_DEBUG_Printf( const PPW_LobbyQuestionnaireRecord* cp_data );
@@ -429,90 +429,90 @@ static void DWC_LOBBY_DEBUG_Printf( const PPW_LobbyQuestionnaireRecord* cp_data 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	DWC	ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠŠÇ—ƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	DWC	ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	heapID			ƒq[ƒvID
- *	@param	p_save			ƒZ[ƒuƒf[ƒ^
- *	@param	profilesize		ƒvƒƒtƒB[ƒ‹‚Pl•ª‚Ìƒ[ƒNƒTƒCƒY
- *	@param	cp_callback		ƒR[ƒ‹ƒoƒbƒNî•ñ
- *	@param	p_callbackwork	ƒR[ƒ‹ƒoƒbƒNƒ[ƒN
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
+ *	@param	p_save			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	profilesize		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ï¼‘äººåˆ†ã®ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+ *	@param	cp_callback		ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æƒ…å ±
+ *	@param	p_callbackwork	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_Init( u32 heapID, SAVEDATA* p_save, u32 profilesize, const DWC_LOBBY_CALLBACK* cp_callback,  void* p_callbackwork )
 {
 	GF_ASSERT( p_DWC_LOBBYLIB_WK == NULL );
-	GF_ASSERT( profilesize < PPW_LOBBY_MAX_BINARY_SIZE );	// ƒvƒƒtƒB[ƒ‹ƒTƒCƒYÅ‘å”ƒ`ƒFƒbƒN
+	GF_ASSERT( profilesize < PPW_LOBBY_MAX_BINARY_SIZE );	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚ºæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
 
-	// ƒ[ƒNŠm•Û
+	// ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	p_DWC_LOBBYLIB_WK = sys_AllocMemory( heapID, sizeof(DWC_LOBBYLIB_WK) );
 	memset( p_DWC_LOBBYLIB_WK, 0, sizeof(DWC_LOBBYLIB_WK) );
 	
-	// ƒZ[ƒuƒf[ƒ^•Û‘¶
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	p_DWC_LOBBYLIB_WK->p_save			= p_save;
 	p_DWC_LOBBYLIB_WK->p_wifilist		= SaveData_GetWifiListData( p_save );
 	p_DWC_LOBBYLIB_WK->p_wifihistory	= SaveData_GetWifiHistory( p_save );
 
-	// ƒR[ƒ‹ƒoƒbƒNƒf[ƒ^
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	p_DWC_LOBBYLIB_WK->callback			= *cp_callback;
 	p_DWC_LOBBYLIB_WK->p_callbackwork	= p_callbackwork;
 
-	//  ƒ†[ƒUî•ñ	ƒvƒƒtƒB[ƒ‹ƒoƒbƒtƒ@ì¬
+	//  ãƒ¦ãƒ¼ã‚¶æƒ…å ±	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	DWC_LOBBY_Profile_Init( p_DWC_LOBBYLIB_WK, profilesize, heapID );
 	
-	// ƒ†[ƒUID—ñ‹“	‰Šú‰»
+	// ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™	åˆæœŸåŒ–
 	DWC_LOBBY_UserIDTbl_Init( p_DWC_LOBBYLIB_WK, PPW_LOBBY_MAX_PLAYER_NUM_MAIN, PPW_LOBBY_MAX_PLAYER_NUM_FOOT, heapID );
 
-	// ƒ~ƒjƒQ[ƒ€ƒ}ƒbƒ`ƒ“ƒOƒf[ƒ^‰Šú‰»
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒžãƒƒãƒãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	DWC_LOBBY_MG_Init( p_DWC_LOBBYLIB_WK );
 
-	// VIPî•ñƒoƒbƒtƒ@‰Šú‰»
+	// VIPæƒ…å ±ãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 	DWC_LOBBY_VIPDATA_Init( &p_DWC_LOBBYLIB_WK->vipdata, DWC_LOBBY_VIP_BUFFNUM, heapID );	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	DWC	ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠŠÇ—ƒVƒXƒeƒ€	”jŠü
+ *	@brief	DWC	ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_Exit( void )
 {
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// VIPî•ñƒoƒbƒtƒ@ ”jŠü
+	// VIPæƒ…å ±ãƒãƒƒãƒ•ã‚¡ ç ´æ£„
 	DWC_LOBBY_VIPDATA_Exit( &p_DWC_LOBBYLIB_WK->vipdata );	
 
-	// ƒ†[ƒUID—ñ‹“	”jŠü
+	// ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™	ç ´æ£„
 	DWC_LOBBY_UserIDTbl_Exit( p_DWC_LOBBYLIB_WK );
 	
-	// ƒ†[ƒUî•ñ	ƒvƒƒtƒB[ƒ‹ƒoƒbƒtƒ@”jŠü
+	// ãƒ¦ãƒ¼ã‚¶æƒ…å ±	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	DWC_LOBBY_Profile_Exit( p_DWC_LOBBYLIB_WK );
 
-	// ‘å–{‚ð”jŠü
+	// å¤§æœ¬ã‚’ç ´æ£„
 	sys_FreeMemoryEz( p_DWC_LOBBYLIB_WK );
 	p_DWC_LOBBYLIB_WK = NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	DWC ƒƒr[	XV
+ *	@brief	DWC ãƒ­ãƒ“ãƒ¼	æ›´æ–°
  *
- *	// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹ó‘Ô
- *	@retval	DWC_LOBBY_CHANNEL_STATE_NONE,           // ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚È‚¢B
- *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGINWAIT,		// ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽº’†B
- *	@retval	DWC_LOBBY_CHANNEL_STATE_CONNECT,		// ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽºÏ‚ÝB
- *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT,     // ƒ`ƒƒƒ“ƒlƒ‹‚É‘ÞŽº’†B
- *	@retval	DWC_LOBBY_CHANNEL_STATE_ERROR           // ƒ`ƒƒƒ“ƒlƒ‹ó‘Ô‚ðŽæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B
+ *	// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«çŠ¶æ…‹
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_NONE,           // ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ãªã„ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGINWAIT,		// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤ä¸­ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_CONNECT,		// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤æ¸ˆã¿ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT,     // ãƒãƒ£ãƒ³ãƒãƒ«ã«é€€å®¤ä¸­ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_ERROR           // ãƒãƒ£ãƒ³ãƒãƒ«çŠ¶æ…‹ã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚
  */
 //-----------------------------------------------------------------------------
 DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_Update( void )
 {
 	PPW_LOBBY_STATE	ppw_state;
 
-	// ƒƒr[“®ì’†‚©ƒ`ƒFƒbƒN
+	// ãƒ­ãƒ“ãƒ¼å‹•ä½œä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_DWC_LOBBYLIB_WK == NULL ){ return DWC_LOBBY_CHANNEL_STATE_NONE; }
 
 
-	// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚Ì“üŽº—ñ‹“‚ð•\Ž¦
+	// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã®å…¥å®¤åˆ—æŒ™ã‚’è¡¨ç¤º
 #if 0
 	{
 		int i;
@@ -524,39 +524,39 @@ DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_Update( void )
 	}
 #endif
 	
-	// ƒƒr[XV
+	// ãƒ­ãƒ“ãƒ¼æ›´æ–°
 	ppw_state = PPW_LobbyProcess();
 	
 //	DWC_LOBBY_PRINT( "ppw_state %d\n", ppw_state );
 	switch( ppw_state ){
-	// ‰½‚às‚Á‚Ä‚¢‚È‚¢ó‘Ô
-    case PPW_LOBBY_STATE_NOTINITIALIZED:         ///< ƒ‰ƒCƒuƒ‰ƒŠ‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢B
+	// ä½•ã‚‚è¡Œã£ã¦ã„ãªã„çŠ¶æ…‹
+    case PPW_LOBBY_STATE_NOTINITIALIZED:         ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã€‚
 		p_DWC_LOBBYLIB_WK->status = DWC_LOBBY_CHANNEL_STATE_NONE;
 		break;
 
-	// ƒƒOƒCƒ“’†
-    case PPW_LOBBY_STATE_CONNECTING:             ///< ƒ`ƒƒƒbƒgƒT[ƒo‚ÉÚ‘±’†B
-    case PPW_LOBBY_STATE_CONNECTED:              ///< ƒ`ƒƒƒbƒgƒT[ƒo‚ÉÚ‘±Š®—¹B
-    case PPW_LOBBY_STATE_DOWNLOAD:               ///< ƒT[ƒo‚©‚çÝ’è‚ðƒ_ƒEƒ“ƒ[ƒhŠJŽnB
-    case PPW_LOBBY_STATE_DOWNLOAD_WAIT:          ///< ƒT[ƒo‚©‚çÝ’è‚ðƒ_ƒEƒ“ƒ[ƒh’†B
-    case PPW_LOBBY_STATE_SEARCHINGCHANNEL:       ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚ðŒŸõ’†B
-    case PPW_LOBBY_STATE_ENTERMAINCHANNEL:       ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽºŠJŽnB
-    case PPW_LOBBY_STATE_PREPARINGMAINCHANNEL:   ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽº‹y‚Ñ€”õ’†B
+	// ãƒ­ã‚°ã‚¤ãƒ³ä¸­
+    case PPW_LOBBY_STATE_CONNECTING:             ///< ãƒãƒ£ãƒƒãƒˆã‚µãƒ¼ãƒã«æŽ¥ç¶šä¸­ã€‚
+    case PPW_LOBBY_STATE_CONNECTED:              ///< ãƒãƒ£ãƒƒãƒˆã‚µãƒ¼ãƒã«æŽ¥ç¶šå®Œäº†ã€‚
+    case PPW_LOBBY_STATE_DOWNLOAD:               ///< ã‚µãƒ¼ãƒã‹ã‚‰è¨­å®šã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰é–‹å§‹ã€‚
+    case PPW_LOBBY_STATE_DOWNLOAD_WAIT:          ///< ã‚µãƒ¼ãƒã‹ã‚‰è¨­å®šã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­ã€‚
+    case PPW_LOBBY_STATE_SEARCHINGCHANNEL:       ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æ¤œç´¢ä¸­ã€‚
+    case PPW_LOBBY_STATE_ENTERMAINCHANNEL:       ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤é–‹å§‹ã€‚
+    case PPW_LOBBY_STATE_PREPARINGMAINCHANNEL:   ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤åŠã³æº–å‚™ä¸­ã€‚
 		p_DWC_LOBBYLIB_WK->status = DWC_LOBBY_CHANNEL_STATE_LOGINWAIT;
 		break;
 
-	// Ú‘±’†
-    case PPW_LOBBY_STATE_READY:                  ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽºŠ®—¹B
+	// æŽ¥ç¶šä¸­
+    case PPW_LOBBY_STATE_READY:                  ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤å®Œäº†ã€‚
 		p_DWC_LOBBYLIB_WK->status = DWC_LOBBY_CHANNEL_STATE_CONNECT;
 		break;
 
-	// ƒƒOƒAƒEƒg’†
-    case PPW_LOBBY_STATE_CLOSING:                ///< ƒ‰ƒCƒuƒ‰ƒŠI—¹ˆ—’†B
+	// ãƒ­ã‚°ã‚¢ã‚¦ãƒˆä¸­
+    case PPW_LOBBY_STATE_CLOSING:                ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªçµ‚äº†å‡¦ç†ä¸­ã€‚
 		p_DWC_LOBBYLIB_WK->status = DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT;
 		break;
 
-	// ƒGƒ‰[’†
-	case PPW_LOBBY_STATE_ERROR:                   ///< ƒ‰ƒCƒuƒ‰ƒŠ‚É’v–½“I‚ÈƒGƒ‰[‚ª”­¶’†B::PPW_LobbyGetLastErrorŠÖ”‚ÅƒGƒ‰[‚ðŽæ“¾ŒãƒVƒƒƒbƒgƒ_ƒEƒ“‚µ‚Ä‚­‚¾‚³‚¢B
+	// ã‚¨ãƒ©ãƒ¼ä¸­
+	case PPW_LOBBY_STATE_ERROR:                   ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«è‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿä¸­ã€‚::PPW_LobbyGetLastErroré–¢æ•°ã§ã‚¨ãƒ©ãƒ¼ã‚’å–å¾—å¾Œã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã—ã¦ãã ã•ã„ã€‚
 		p_DWC_LOBBYLIB_WK->status = DWC_LOBBY_CHANNEL_STATE_ERROR;
 		break;
 	}
@@ -588,45 +588,45 @@ DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_Update( void )
 #endif
 	
 
-	// Ú‘±’†‚Ìˆ—
+	// æŽ¥ç¶šä¸­ã®å‡¦ç†
 	if( p_DWC_LOBBYLIB_WK->status == DWC_LOBBY_CHANNEL_STATE_CONNECT ){
 
 
-		// P2PÚ‘±ƒƒCƒ“
+		// P2PæŽ¥ç¶šãƒ¡ã‚¤ãƒ³
 		{
 			DWC_LOBBY_MG_Update( p_DWC_LOBBYLIB_WK );
 		}
 		
-		// ƒƒr[‚ÌŽžŠÔ‚ðŽæ“¾
+		// ãƒ­ãƒ“ãƒ¼ã®æ™‚é–“ã‚’å–å¾—
 		{
 			PPW_LobbyGetTimeInfo( &p_DWC_LOBBYLIB_WK->time );
 		}
 
 		
-		// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ˆ—’†‚È‚çƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚Ìó‘Ô‚àƒ`ƒFƒbƒN
+		// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«å‡¦ç†ä¸­ãªã‚‰ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã®çŠ¶æ…‹ã‚‚ãƒã‚§ãƒƒã‚¯
 		{
 			PPW_LOBBY_CHANNEL_STATE	subchan_state;
 
 			subchan_state = PPW_LobbyGetSubChannelState();
 			switch( subchan_state ){
-			// ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚È‚¢B
+			// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ãªã„ã€‚
 			case PPW_LOBBY_CHANNEL_STATE_NONE:           
 				p_DWC_LOBBYLIB_WK->subchan_status	= DWC_LOBBY_CHANNEL_STATE_NONE;
 				p_DWC_LOBBYLIB_WK->subchan_type		= DWC_LOBBY_SUBCHAN_NONE;
 				break;
-			// ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽº€”õ’†B
+			// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤æº–å‚™ä¸­ã€‚
 			case PPW_LOBBY_CHANNEL_STATE_UNAVAILABLE:    
 				p_DWC_LOBBYLIB_WK->subchan_status = DWC_LOBBY_CHANNEL_STATE_LOGINWAIT;
 				break;
-			// ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽºÏ‚ÝB
+			// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤æ¸ˆã¿ã€‚
 			case PPW_LOBBY_CHANNEL_STATE_AVAILABLE:
 
-				//  ƒXƒe[ƒ^ƒX‚ÉLOGOUT’†‚ª‚È‚¢‚Ì‚ÅAƒVƒXƒeƒ€“à‚ÅŽè“®‚ÅLOGOUTó‘Ô‚É‚µ‚Ü‚·B@STATE‚ªLOGOUT‚Ì‚Æ‚«‚Í‚±‚±‚ÅCONNECT‚É‘‚«Š·‚¦‚é‚±‚Æ‚Í‚µ‚Ü‚¹‚ñB
+				//  ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«LOGOUTä¸­ãŒãªã„ã®ã§ã€ã‚·ã‚¹ãƒ†ãƒ å†…ã§æ‰‹å‹•ã§LOGOUTçŠ¶æ…‹ã«ã—ã¾ã™ã€‚ã€€STATEãŒLOGOUTã®ã¨ãã¯ã“ã“ã§CONNECTã«æ›¸ãæ›ãˆã‚‹ã“ã¨ã¯ã—ã¾ã›ã‚“ã€‚
 				if( p_DWC_LOBBYLIB_WK->subchan_status != DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT ){
 					p_DWC_LOBBYLIB_WK->subchan_status = DWC_LOBBY_CHANNEL_STATE_CONNECT;
 				}
 				break;
-			// ƒ`ƒƒƒ“ƒlƒ‹ó‘Ô‚ðŽæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B
+			// ãƒãƒ£ãƒ³ãƒãƒ«çŠ¶æ…‹ã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚
 			case PPW_LOBBY_CHANNEL_STATE_ERROR:           
 				p_DWC_LOBBYLIB_WK->subchan_status = DWC_LOBBY_CHANNEL_STATE_ERROR;
 				break;
@@ -641,13 +641,13 @@ DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_Update( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		Œ»Ý‹N‚±‚Á‚Ä‚¢‚éƒGƒ‰[‚ðŽæ“¾‚·‚é
+ *	@brief		ç¾åœ¨èµ·ã“ã£ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
  *	
- *	@retval	PPW_LOBBY_ERROR_NONE,                   ///< ƒGƒ‰[–³‚µB
- *	@retval	PPW_LOBBY_ERROR_UNKNOWN,                ///< •s–¾‚ÈƒGƒ‰[B
- *	@retval	PPW_LOBBY_ERROR_ALLOC,                  ///< ƒƒ‚ƒŠŠm•Û‚ÉŽ¸”sB
- *	@retval	PPW_LOBBY_ERROR_SESSION                 ///< ’v–½“I‚È’ÊMƒGƒ‰[B
- *	@retval	PPW_LOBBY_ERROR_STATS_SESSION			///< ’v–½“I‚È’ÊMƒGƒ‰[(ƒ‹[ƒ€Ý’èƒT[ƒo)B  
+ *	@retval	PPW_LOBBY_ERROR_NONE,                   ///< ã‚¨ãƒ©ãƒ¼ç„¡ã—ã€‚
+ *	@retval	PPW_LOBBY_ERROR_UNKNOWN,                ///< ä¸æ˜Žãªã‚¨ãƒ©ãƒ¼ã€‚
+ *	@retval	PPW_LOBBY_ERROR_ALLOC,                  ///< ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã€‚
+ *	@retval	PPW_LOBBY_ERROR_SESSION                 ///< è‡´å‘½çš„ãªé€šä¿¡ã‚¨ãƒ©ãƒ¼ã€‚
+ *	@retval	PPW_LOBBY_ERROR_STATS_SESSION			///< è‡´å‘½çš„ãªé€šä¿¡ã‚¨ãƒ©ãƒ¼(ãƒ«ãƒ¼ãƒ è¨­å®šã‚µãƒ¼ãƒ)ã€‚  
  */
 //-----------------------------------------------------------------------------
 PPW_LOBBY_ERROR DWC_LOBBY_GetErr( void )
@@ -666,11 +666,11 @@ PPW_LOBBY_ERROR DWC_LOBBY_GetErr( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ‰[’è”‚©‚ç•\Ž¦‚·‚éƒiƒ“ƒo[‚ðŽæ“¾
+ *	@brief	ã‚¨ãƒ©ãƒ¼å®šæ•°ã‹ã‚‰è¡¨ç¤ºã™ã‚‹ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
  *	@param	error	
  *
- *	@return	•\Ž¦‚·‚é”Žš
+ *	@return	è¡¨ç¤ºã™ã‚‹æ•°å­—
  */
 //-----------------------------------------------------------------------------
 s32 DWC_LOBBY_GetErrNo( PPW_LOBBY_ERROR error )
@@ -680,12 +680,12 @@ s32 DWC_LOBBY_GetErrNo( PPW_LOBBY_ERROR error )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒT[ƒo‚ÉƒƒOƒCƒ“
+ *	@brief	ãƒ­ãƒ“ãƒ¼ã‚µãƒ¼ãƒã«ãƒ­ã‚°ã‚¤ãƒ³
  *
- *	@param	cp_loginprofile			ƒƒOƒCƒ“Žž‚ÌƒvƒƒtƒB[ƒ‹subChannelKind
+ *	@param	cp_loginprofile			ãƒ­ã‚°ã‚¤ãƒ³æ™‚ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«subChannelKind
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	Ž¸”s		Ž¸”s‚µ‚½ê‡ƒGƒ‰[ƒ^ƒCƒv‚ðŽæ“¾‚µ‚ÄLogout‚µ‚Ä‚­‚¾‚³‚¢
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—		å¤±æ•—ã—ãŸå ´åˆã‚¨ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã—ã¦Logoutã—ã¦ãã ã•ã„
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_Login( const void* cp_loginprofile )
@@ -695,13 +695,13 @@ BOOL DWC_LOBBY_Login( const void* cp_loginprofile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒT[ƒo‚ÉƒƒOƒCƒ“
+ *	@brief	ãƒ­ãƒ“ãƒ¼ã‚µãƒ¼ãƒã«ãƒ­ã‚°ã‚¤ãƒ³
  *
- *	@param	cp_loginprofile			ƒƒOƒCƒ“Žž‚ÌƒvƒƒtƒB[ƒ‹subChannelKind
- *	@param	prefix					Ú‘±æ‚Ìƒ`ƒƒƒ“ƒlƒ‹Ží—Þ
+ *	@param	cp_loginprofile			ãƒ­ã‚°ã‚¤ãƒ³æ™‚ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«subChannelKind
+ *	@param	prefix					æŽ¥ç¶šå…ˆã®ãƒãƒ£ãƒ³ãƒãƒ«ç¨®é¡ž
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	Ž¸”s		Ž¸”s‚µ‚½ê‡ƒGƒ‰[ƒ^ƒCƒv‚ðŽæ“¾‚µ‚ÄLogout‚µ‚Ä‚­‚¾‚³‚¢
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—		å¤±æ•—ã—ãŸå ´åˆã‚¨ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã—ã¦Logoutã—ã¦ãã ã•ã„
  *
  *
  *	prefix	
@@ -725,7 +725,7 @@ BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix )
 	
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// ƒƒr[ƒR[ƒ‹ƒoƒbƒNƒe[ƒuƒ‹ì¬
+	// ãƒ­ãƒ“ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	{
 		callbacks.lobbyJoinChannelCallback				= DWC_LOBBY_CallBack_JoinChannel;
 		callbacks.lobbyPlayerConnectedCallback			= DWC_LOBBY_CallBack_Connect;
@@ -746,7 +746,7 @@ BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix )
 		callbacks.lobbyExcessFloodCallback				= DWC_LOBBY_CallBack_ExcessFlood;
 	}
 
-	// ƒƒr[‚ÉƒƒOƒCƒ“
+	// ãƒ­ãƒ“ãƒ¼ã«ãƒ­ã‚°ã‚¤ãƒ³
 	{
 		DWCUserData*		p_dwcuser;
 		
@@ -762,7 +762,7 @@ BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix )
 
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
     // MatchComment: use value from p_DWC_LOBBYLIB_WK->unk984 instead of result
 	return DWC_LOBBY_CheckCommonErr( p_DWC_LOBBYLIB_WK->unk984 );
 }
@@ -770,10 +770,10 @@ BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒCƒ“Š®—¹‘Ò‚¿
+ *	@brief	ãƒ­ã‚°ã‚¤ãƒ³å®Œäº†å¾…ã¡
  *
- *	@retval	TRUE	ƒƒOƒCƒ“Š®—¹
- *	@retval	FALSE	ƒƒOƒCƒ“’†orƒƒOƒCƒ“ˆÈŠO‚Ìó‘Ô
+ *	@retval	TRUE	ãƒ­ã‚°ã‚¤ãƒ³å®Œäº†
+ *	@retval	FALSE	ãƒ­ã‚°ã‚¤ãƒ³ä¸­orãƒ­ã‚°ã‚¤ãƒ³ä»¥å¤–ã®çŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_LoginWait( void )
@@ -788,7 +788,7 @@ BOOL DWC_LOBBY_LoginWait( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒT[ƒo‚©‚çƒƒOƒAƒEƒg
+ *	@brief	ãƒ­ãƒ“ãƒ¼ã‚µãƒ¼ãƒã‹ã‚‰ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_Logout( void )
@@ -798,23 +798,23 @@ void DWC_LOBBY_Logout( void )
 		
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// ƒGƒ‰[ó‘Ô‰ñ”ð
+	// ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹å›žé¿
 	DWC_LOBBY_ClearSystemErr();
 
-	// ƒ‰ƒCƒuƒ‰ƒŠI—¹
+	// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªçµ‚äº†
 	result = PPW_LobbyShutdownAsync();
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	retval =  DWC_LOBBY_CheckCommonErr( result );
 	GF_ASSERT( retval );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒƒOƒAƒEƒgŠ®—¹‘Ò‚¿
+ *	@brief		ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå®Œäº†å¾…ã¡
  *
- *	@retval		TRUE	Š®—¹
- *	@retval		FALSE	ƒƒOƒAƒEƒg’†orƒƒOƒAƒEƒgó‘ÔˆÈŠO‚Ìó‘Ô
+ *	@retval		TRUE	å®Œäº†
+ *	@retval		FALSE	ãƒ­ã‚°ã‚¢ã‚¦ãƒˆä¸­orãƒ­ã‚°ã‚¢ã‚¦ãƒˆçŠ¶æ…‹ä»¥å¤–ã®çŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_LogoutWait( void )
@@ -829,32 +829,32 @@ BOOL DWC_LOBBY_LogoutWait( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚Ìó‘Ô‚ð•Ô‚·
+ *	@brief	ãƒ­ãƒ“ãƒ¼ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã®çŠ¶æ…‹ã‚’è¿”ã™
  *
- *	@retval	DWC_LOBBY_CHANNEL_STATE_NONE,           // ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚È‚¢B
- *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGINWAIT,		// ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽº’†B
- *	@retval	DWC_LOBBY_CHANNEL_STATE_CONNECT,		// ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽºÏ‚ÝB
- *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT,     // ƒ`ƒƒƒ“ƒlƒ‹‚É‘ÞŽº’†B
- *	@retval	DWC_LOBBY_CHANNEL_STATE_ERROR           // ƒ`ƒƒƒ“ƒlƒ‹ó‘Ô‚ðŽæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½BƒGƒ‰[Ží—Þ‚ðŽæ“¾‚µ‚ÄƒVƒƒƒbƒgƒ_ƒEƒ“‚µ‚Ä‚­‚¾‚³‚¢
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_NONE,           // ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ãªã„ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGINWAIT,		// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤ä¸­ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_CONNECT,		// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤æ¸ˆã¿ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT,     // ãƒãƒ£ãƒ³ãƒãƒ«ã«é€€å®¤ä¸­ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_ERROR           // ãƒãƒ£ãƒ³ãƒãƒ«çŠ¶æ…‹ã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ã‚¨ãƒ©ãƒ¼ç¨®é¡žã‚’å–å¾—ã—ã¦ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã—ã¦ãã ã•ã„
  */
 //-----------------------------------------------------------------------------
 DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_GetState( void )
 {
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒƒOƒCƒ“’†‚ÅƒGƒ‰[‚É‚È‚Á‚½‚Æ‚«‚àƒGƒ‰[ó‘Ô‚É•ÏX
+	// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ãƒ­ã‚°ã‚¤ãƒ³ä¸­ã§ã‚¨ãƒ©ãƒ¼ã«ãªã£ãŸã¨ãã‚‚ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ã«å¤‰æ›´
 	if( p_DWC_LOBBYLIB_WK->subchan_type	!= DWC_LOBBY_SUBCHAN_NONE ){
 		if( p_DWC_LOBBYLIB_WK->subchan_status == DWC_LOBBY_CHANNEL_STATE_ERROR ){
 			return DWC_LOBBY_CHANNEL_STATE_ERROR;
 		}
 	}
 
-	// ƒvƒƒtƒB[ƒ‹î•ñƒGƒ‰[
+	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æƒ…å ±ã‚¨ãƒ©ãƒ¼
 	if( p_DWC_LOBBYLIB_WK->profile_error ){
 		return DWC_LOBBY_CHANNEL_STATE_ERROR;
 	}
 
-	// VIPƒf[ƒ^‚âƒXƒPƒWƒ…[ƒ‹‚Ìdownload‚ÉŽ¸”s‚µ‚½‚çƒGƒ‰[
+	// VIPãƒ‡ãƒ¼ã‚¿ã‚„ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã®downloadã«å¤±æ•—ã—ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( p_DWC_LOBBYLIB_WK->download_error ){
 		return DWC_LOBBY_CHANNEL_STATE_ERROR;
 	}
@@ -865,10 +865,10 @@ DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_GetState( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[’ÊM‰ßèó‘Ô‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒ­ãƒ“ãƒ¼é€šä¿¡éŽå‰°çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
  *
- *	@retval	TRUE	’ÊM‰ßèó‘Ô
- *	@retval	FALSE	’Êíó‘Ô
+ *	@retval	TRUE	é€šä¿¡éŽå‰°çŠ¶æ…‹
+ *	@retval	FALSE	é€šå¸¸çŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_CheckExcessFlood( void )
@@ -884,12 +884,12 @@ BOOL DWC_LOBBY_CheckExcessFlood( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹•s³ƒ`ƒFƒbƒN
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ä¸æ­£ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	TRUE		•s³
- *	@retval	FALSE		•s³‚¶‚á‚È‚¢
+ *	@retval	TRUE		ä¸æ­£
+ *	@retval	FALSE		ä¸æ­£ã˜ã‚ƒãªã„
  *
- *	–DWC_LOBBY_GetState()‚ÌŒ‹‰Ê‚ªƒGƒ‰[‚É‚È‚Á‚½‚çŒÄ‚ñ‚Å‚­‚¾‚³‚¢
+ *	ï¼ŠDWC_LOBBY_GetState()ã®çµæžœãŒã‚¨ãƒ©ãƒ¼ã«ãªã£ãŸã‚‰å‘¼ã‚“ã§ãã ã•ã„
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_CheckProfileError( void )
@@ -903,10 +903,10 @@ BOOL DWC_LOBBY_CheckProfileError( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUID‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒ¦ãƒ¼ã‚¶IDã‚’å–å¾—ã™ã‚‹
  *
- *	@retval	DWC_LOBBY_INVALID_USER_ID	•s³‚Èƒ†[ƒUID 
- *	@retval	ƒ†[ƒUID
+ *	@retval	DWC_LOBBY_INVALID_USER_ID	ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶ID 
+ *	@retval	ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 s32 DWC_LOBBY_GetMyUserID( void )
@@ -918,9 +918,9 @@ s32 DWC_LOBBY_GetMyUserID( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ž©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ðXV‚·‚é
+ *	@brief	è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’æ›´æ–°ã™ã‚‹
  *
- *	@param	cp_data			ƒvƒƒtƒB[ƒ‹ƒf[ƒ^
+ *	@param	cp_data			ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_SetMyProfile( const void* cp_data )
@@ -933,9 +933,9 @@ void DWC_LOBBY_SetMyProfile( const void* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ž©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ðŽæ“¾‚·‚é
+ *	@brief	è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—ã™ã‚‹
  *
- *	@return	Ž©•ª‚ÌƒvƒƒtƒB[ƒ‹
+ *	@return	è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 const void* DWC_LOBBY_GetMyProfile( void )
@@ -948,9 +948,9 @@ const void* DWC_LOBBY_GetMyProfile( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUID‚ÌƒvƒƒtƒB[ƒ‹‚ðŽæ“¾
+ *	@brief	ãƒ¦ãƒ¼ã‚¶IDã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—
  *	
- *	@param	userid	ƒ†[ƒUID
+ *	@param	userid	ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 const void* DWC_LOBBY_GetUserProfile( s32 userid )
@@ -961,10 +961,10 @@ const void* DWC_LOBBY_GetUserProfile( s32 userid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒCƒ“‚µ‚½ŽžŠÔ‚ðŽæ“¾
+ *	@brief	ãƒ­ã‚°ã‚¤ãƒ³ã—ãŸæ™‚é–“ã‚’å–å¾—
  *
- *	@param	userid		ƒ†[ƒUID
- *	@param	p_time		ŽžŠÔŠi”[æ
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	p_time		æ™‚é–“æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_GetLoginTime( s32 userid, s64* p_time )
@@ -978,21 +978,21 @@ void DWC_LOBBY_GetLoginTime( s32 userid, s64* p_time )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆê”ÔÌ‚©‚ç‚¢‚éƒvƒŒƒCƒ„[‚ðŽæ“¾
+ *	@brief	ä¸€ç•ªæ˜”ã‹ã‚‰ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
  *
- *	@retval	DWC_LOBBY_INVALID_USER_ID	‚¾‚ê‚à‚¢‚È‚¢‚Æ‚«
- *	@retval	ˆê”ÔŒÃ‚­‚©‚ç‚¢‚éƒvƒŒƒCƒ„[
+ *	@retval	DWC_LOBBY_INVALID_USER_ID	ã ã‚Œã‚‚ã„ãªã„ã¨ã
+ *	@retval	ä¸€ç•ªå¤ãã‹ã‚‰ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  */
 //-----------------------------------------------------------------------------
 s32	DWC_LOBBY_GetOldUser( void )
 {
 	int i;
 	s32 old_userid = DWC_LOBBY_INVALID_USER_ID;
-	s64 old_time = 0x0fffffffffffffff;		// ‚ ‚è‚¦‚È‚¢ŽžŠÔ
+	s64 old_time = 0x0fffffffffffffff;		// ã‚ã‚Šãˆãªã„æ™‚é–“
 
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// ƒ†[ƒUID‚ÌŽžŠÔ‚ðŽæ“¾‚µ‚Äˆê”ÔÅ‰‚©‚ç‚¢‚él‚ð“Á’è
+	// ãƒ¦ãƒ¼ã‚¶IDã®æ™‚é–“ã‚’å–å¾—ã—ã¦ä¸€ç•ªæœ€åˆã‹ã‚‰ã„ã‚‹äººã‚’ç‰¹å®š
 	for( i=0; i<PPW_LOBBY_MAX_PLAYER_NUM_MAIN; i++ ){
 		{
 			s32 userid;
@@ -1001,7 +1001,7 @@ s32	DWC_LOBBY_GetOldUser( void )
 			userid = DWC_LOBBY_UserIDTbl_GetUserid( p_DWC_LOBBYLIB_WK, 
 					i, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 			if( userid != DWC_LOBBY_INVALID_USER_ID ){
-				// ŽžŠÔ‚ðŽæ“¾
+				// æ™‚é–“ã‚’å–å¾—
 				DWC_LOBBY_GetLoginTime( userid, &time );
 				if( old_time > time ){
 					old_time = time;
@@ -1016,23 +1016,23 @@ s32	DWC_LOBBY_GetOldUser( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆê”ÔÌ‚©‚ç‚¢‚éƒvƒŒƒCƒ„[‚ðŽæ“¾
+ *	@brief	ä¸€ç•ªæ˜”ã‹ã‚‰ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
  *
- *	@param	desc_user		¡Ø’f‚·‚él
+ *	@param	desc_user		ä»Šåˆ‡æ–­ã™ã‚‹äºº
  * 
- *	@retval	DWC_LOBBY_INVALID_USER_ID	‚¾‚ê‚à‚¢‚È‚¢‚Æ‚«
- *	@retval	ˆê”ÔŒÃ‚­‚©‚ç‚¢‚éƒvƒŒƒCƒ„[
+ *	@retval	DWC_LOBBY_INVALID_USER_ID	ã ã‚Œã‚‚ã„ãªã„ã¨ã
+ *	@retval	ä¸€ç•ªå¤ãã‹ã‚‰ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  */
 //-----------------------------------------------------------------------------
 s32	DWC_LOBBY_GetOldUser_UserDesc( s32 desc_user )
 {
 	int i;
 	s32 old_userid = DWC_LOBBY_INVALID_USER_ID;
-	s64 old_time = 0x0fffffffffffffff;		// ‚ ‚è‚¦‚È‚¢ŽžŠÔ
+	s64 old_time = 0x0fffffffffffffff;		// ã‚ã‚Šãˆãªã„æ™‚é–“
 
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// ƒ†[ƒUID‚ÌŽžŠÔ‚ðŽæ“¾‚µ‚Äˆê”ÔÅ‰‚©‚ç‚¢‚él‚ð“Á’è
+	// ãƒ¦ãƒ¼ã‚¶IDã®æ™‚é–“ã‚’å–å¾—ã—ã¦ä¸€ç•ªæœ€åˆã‹ã‚‰ã„ã‚‹äººã‚’ç‰¹å®š
 	for( i=0; i<PPW_LOBBY_MAX_PLAYER_NUM_MAIN; i++ ){
 		{
 			s32 userid;
@@ -1042,7 +1042,7 @@ s32	DWC_LOBBY_GetOldUser_UserDesc( s32 desc_user )
 					i, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 			if( (userid != DWC_LOBBY_INVALID_USER_ID) && 
 				(userid != desc_user) ){
-				// ŽžŠÔ‚ðŽæ“¾
+				// æ™‚é–“ã‚’å–å¾—
 				DWC_LOBBY_GetLoginTime( userid, &time );
 				if( old_time > time ){
 					old_time = time;
@@ -1058,12 +1058,12 @@ s32	DWC_LOBBY_GetOldUser_UserDesc( s32 desc_user )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒŠƒNƒGƒXƒg
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	channel			ƒ`ƒƒƒ“ƒlƒ‹
+ *	@param	channel			ãƒãƒ£ãƒ³ãƒãƒ«
  *
- *	@retval	TRUE			¬Œ÷
- *	@retval	FALSE			Ž¸”s		ƒGƒ‰[‚ðŽæ“¾‚µ‚ÄƒGƒ‰[ˆ—‚Ö
+ *	@retval	TRUE			æˆåŠŸ
+ *	@retval	FALSE			å¤±æ•—		ã‚¨ãƒ©ãƒ¼ã‚’å–å¾—ã—ã¦ã‚¨ãƒ©ãƒ¼å‡¦ç†ã¸
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_SUBCHAN_Login( DWC_LOBBY_SUBCHAN_TYPE channel )
@@ -1075,13 +1075,13 @@ BOOL DWC_LOBBY_SUBCHAN_Login( DWC_LOBBY_SUBCHAN_TYPE channel )
 	
 	DWC_LOBBY_PRINT( "dwc subchan login %d\n", DWC_LOBBY_GetChannelKind( channel ) );
 	result = PPW_LobbyJoinSubChannelAsync( DWC_LOBBY_GetChannelKind( channel ) );
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	retval = DWC_LOBBY_CheckCommonErr( result );
 
 	if( retval == TRUE ){
 		p_DWC_LOBBYLIB_WK->subchan_type		= channel;
 
-		// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹“üŽºƒ`ƒFƒbƒN
+		// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«å…¥å®¤ãƒã‚§ãƒƒã‚¯
 		p_DWC_LOBBYLIB_WK->subchan_login_success = DWC_LOBBY_SUBCHAN_LOGIN_WAIT;
 	}
 
@@ -1090,11 +1090,11 @@ BOOL DWC_LOBBY_SUBCHAN_Login( DWC_LOBBY_SUBCHAN_TYPE channel )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒƒOƒCƒ“Š®—¹‘Ò‚¿
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ãƒ­ã‚°ã‚¤ãƒ³å®Œäº†å¾…ã¡
  *
- *	@retval	DWC_LOBBY_SUBCHAN_LOGIN_WAIT,			// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚ÉƒƒOƒCƒ“‘Ò‹@’†
- *	@retval	DWC_LOBBY_SUBCHAN_LOGIN_OK,				// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚ÉƒƒOƒCƒ“Š®—¹
- *	@retval	DWC_LOBBY_SUBCHAN_LOGIN_NG,				// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚ÉƒƒOƒCƒ“Ž¸”s
+ *	@retval	DWC_LOBBY_SUBCHAN_LOGIN_WAIT,			// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ãƒ­ã‚°ã‚¤ãƒ³å¾…æ©Ÿä¸­
+ *	@retval	DWC_LOBBY_SUBCHAN_LOGIN_OK,				// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ãƒ­ã‚°ã‚¤ãƒ³å®Œäº†
+ *	@retval	DWC_LOBBY_SUBCHAN_LOGIN_NG,				// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 DWC_LOBBY_SUBCHAN_LOGIN_RESULT DWC_LOBBY_SUBCHAN_LoginWait( void )
@@ -1106,10 +1106,10 @@ DWC_LOBBY_SUBCHAN_LOGIN_RESULT DWC_LOBBY_SUBCHAN_LoginWait( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒƒOƒAƒEƒgƒŠƒNƒGƒXƒg
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ãƒ­ã‚°ã‚¢ã‚¦ãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	Ž¸”s		ƒGƒ‰[‚ðŽæ“¾‚µ‚ÄƒGƒ‰[ˆ—‚Ö
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—		ã‚¨ãƒ©ãƒ¼ã‚’å–å¾—ã—ã¦ã‚¨ãƒ©ãƒ¼å‡¦ç†ã¸
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_SUBCHAN_Logout( void )
@@ -1120,11 +1120,11 @@ BOOL DWC_LOBBY_SUBCHAN_Logout( void )
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 	
 	result = PPW_LobbyLeaveSubChannel();
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	retval = DWC_LOBBY_CheckCommonErr( result );
 
 	if( retval == TRUE ){
-		// ó‘Ô‚ðƒƒOƒAƒEƒgŠ®—¹‘Ò‚¿‚É‚·‚é
+		// çŠ¶æ…‹ã‚’ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå®Œäº†å¾…ã¡ã«ã™ã‚‹
 		p_DWC_LOBBYLIB_WK->subchan_status = DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT;
 	}
 	return retval;
@@ -1132,10 +1132,10 @@ BOOL DWC_LOBBY_SUBCHAN_Logout( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒƒOƒAƒEƒgŠ®—¹‘Ò‚¿
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå®Œäº†å¾…ã¡
  *
- *	@retval	TRUE	ƒƒOƒAƒEƒgŠ®—¹
- *	@retval	FALSE	ƒƒOƒAƒEƒg’†–”‚ÍƒƒOƒAƒEƒgˆÈŠO‚Ìˆ—’†
+ *	@retval	TRUE	ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå®Œäº†
+ *	@retval	FALSE	ãƒ­ã‚°ã‚¢ã‚¦ãƒˆä¸­åˆã¯ãƒ­ã‚°ã‚¢ã‚¦ãƒˆä»¥å¤–ã®å‡¦ç†ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_SUBCHAN_LogoutWait( void )
@@ -1150,13 +1150,13 @@ BOOL DWC_LOBBY_SUBCHAN_LogoutWait( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ó‘Ô‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
  *
- *	@retval	DWC_LOBBY_CHANNEL_STATE_NONE,           // ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚È‚¢B
- *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGINWAIT,		// ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽº’†B
- *	@retval	DWC_LOBBY_CHANNEL_STATE_CONNECT,		// ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽºÏ‚ÝB
- *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT,     // ƒ`ƒƒƒ“ƒlƒ‹‚É‘ÞŽº’†B
- *	@retval	DWC_LOBBY_CHANNEL_STATE_ERROR           // ƒ`ƒƒƒ“ƒlƒ‹ó‘Ô‚ðŽæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_NONE,           // ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ãªã„ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGINWAIT,		// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤ä¸­ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_CONNECT,		// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤æ¸ˆã¿ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT,     // ãƒãƒ£ãƒ³ãƒãƒ«ã«é€€å®¤ä¸­ã€‚
+ *	@retval	DWC_LOBBY_CHANNEL_STATE_ERROR           // ãƒãƒ£ãƒ³ãƒãƒ«çŠ¶æ…‹ã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚
  */
 //-----------------------------------------------------------------------------
 DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_SUBCHAN_GetState( void )
@@ -1167,12 +1167,12 @@ DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_SUBCHAN_GetState( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚él‚Ìl”‚ð’²‚×‚Ä“ü‚ê‚éí‘Ô‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ã‚‹äººã®äººæ•°ã‚’èª¿ã¹ã¦å…¥ã‚Œã‚‹å¸¸æ…‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	channel		ƒ`ƒƒƒ“ƒlƒ‹ƒiƒ“ƒo[
+ *	@param	channel		ãƒãƒ£ãƒ³ãƒãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	TRUE	“ü‚ê‚é
- *	@retval	FALSE	“ü‚ê‚È‚¢
+ *	@retval	TRUE	å…¥ã‚Œã‚‹
+ *	@retval	FALSE	å…¥ã‚Œãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_SUBCHAN_LoginCheck( DWC_LOBBY_SUBCHAN_TYPE channel )
@@ -1185,9 +1185,9 @@ BOOL DWC_LOBBY_SUBCHAN_LoginCheck( DWC_LOBBY_SUBCHAN_TYPE channel )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ†[ƒUIDƒe[ƒuƒ‹‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ¦ãƒ¼ã‚¶IDãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_data	ƒf[ƒ^Ši”[æ
+ *	@param	p_data	ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_GetUserIDTbl( DWC_LOBBY_CHANNEL_USERID* p_data )
@@ -1199,9 +1199,9 @@ void DWC_LOBBY_GetUserIDTbl( DWC_LOBBY_CHANNEL_USERID* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ†[ƒUIDƒe[ƒuƒ‹‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ¦ãƒ¼ã‚¶IDãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_data	ƒf[ƒ^Ši”[æ
+ *	@param	p_data	ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_SUBCHAN_GetUserIDTbl( DWC_LOBBY_CHANNEL_USERID* p_data )
@@ -1213,12 +1213,12 @@ void DWC_LOBBY_SUBCHAN_GetUserIDTbl( DWC_LOBBY_CHANNEL_USERID* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚È‚¢‚Ìƒ†[ƒUID‚©‚ç—ñ‹““à‚ÌINDEX‚ð‹‚ß‚é
+ *	@brief	ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ãªã„ã®ãƒ¦ãƒ¼ã‚¶IDã‹ã‚‰åˆ—æŒ™å†…ã®INDEXã‚’æ±‚ã‚ã‚‹
  *
- *	@param	userid	ƒ†[ƒUID
+ *	@param	userid	ãƒ¦ãƒ¼ã‚¶ID
  *
- *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	‚¢‚È‚¢
- *	@retval	‚»‚êˆÈŠO						‚»‚Ìl‚ÌINDEX
+ *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	ã„ãªã„
+ *	@retval	ãã‚Œä»¥å¤–						ãã®äººã®INDEX
  */
 //-----------------------------------------------------------------------------
 u32	DWC_LOBBY_GetUserIDIdx( s32 userid )
@@ -1228,12 +1228,12 @@ u32	DWC_LOBBY_GetUserIDIdx( s32 userid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚È‚¢‚Ìƒ†[ƒUID‚©‚ç—ñ‹““à‚ÌINDEX‚ð‹‚ß‚é
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ãªã„ã®ãƒ¦ãƒ¼ã‚¶IDã‹ã‚‰åˆ—æŒ™å†…ã®INDEXã‚’æ±‚ã‚ã‚‹
  *
- *	@param	userid	ƒ†[ƒUID
+ *	@param	userid	ãƒ¦ãƒ¼ã‚¶ID
  *
- *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	‚¢‚È‚¢
- *	@retval	‚»‚êˆÈŠO						‚»‚Ìl‚ÌINDEX
+ *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	ã„ãªã„
+ *	@retval	ãã‚Œä»¥å¤–						ãã®äººã®INDEX
  */
 //-----------------------------------------------------------------------------
 u32	DWC_LOBBY_SUBCHAN_GetUserIDIdx( s32 userid )
@@ -1243,12 +1243,12 @@ u32	DWC_LOBBY_SUBCHAN_GetUserIDIdx( s32 userid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ†[ƒUID‚ðƒCƒ“ƒfƒbƒNƒX‚©‚çŽæ“¾
+ *	@brief	ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ¦ãƒ¼ã‚¶IDã‚’ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰å–å¾—
  *
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	DWC_LOBBY_INVALID_USER_ID	‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚É‚Í’N‚à‚¢‚È‚¢ 	
- *	@retval	‚»‚Ì‘¼						ƒ†[ƒUID
+ *	@retval	DWC_LOBBY_INVALID_USER_ID	ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã¯èª°ã‚‚ã„ãªã„ 	
+ *	@retval	ãã®ä»–						ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 s32	DWC_LOBBY_GetUserIdxID( u32 idx )
@@ -1258,12 +1258,12 @@ s32	DWC_LOBBY_GetUserIdxID( u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ†[ƒUID‚ðƒCƒ“ƒfƒbƒN‚©‚çŽæ“¾
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ¦ãƒ¼ã‚¶IDã‚’ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‹ã‚‰å–å¾—
  *
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	DWC_LOBBY_INVALID_USER_ID	‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚É‚Í’N‚à‚¢‚È‚¢ 	
- *	@retval	‚»‚Ì‘¼						ƒ†[ƒUID
+ *	@retval	DWC_LOBBY_INVALID_USER_ID	ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã¯èª°ã‚‚ã„ãªã„ 	
+ *	@retval	ãã®ä»–						ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 s32	DWC_LOBBY_SUBCHAN_GetUserIdxID( u32 idx )
@@ -1273,9 +1273,9 @@ s32	DWC_LOBBY_SUBCHAN_GetUserIdxID( u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	GMTŽžŠÔ‚ðŽæ“¾‚·‚é
+ *	@brief	GMTæ™‚é–“ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_time	ŽžŠÔŠi”[æ
+ *	@param	p_time	æ™‚é–“æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_GetTime( s64* p_time )
@@ -1286,9 +1286,9 @@ void DWC_LOBBY_GetTime( s64* p_time )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®‚ðì¬‚µ‚½ŽžŠÔ‚ðŽæ“¾‚·‚é
+ *	@brief	éƒ¨å±‹ã‚’ä½œæˆã—ãŸæ™‚é–“ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_time	ŽžŠÔŠi”[æ
+ *	@param	p_time	æ™‚é–“æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_GetOpenTime( s64* p_time )
@@ -1299,9 +1299,9 @@ void DWC_LOBBY_GetOpenTime( s64* p_time )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®‚ªƒƒbƒN‚³‚ê‚½ŽžŠÔ‚ðŽæ“¾
+ *	@brief	éƒ¨å±‹ãŒãƒ­ãƒƒã‚¯ã•ã‚ŒãŸæ™‚é–“ã‚’å–å¾—
  *
- *	@param	p_time	ŽžŠÔŠi”[æ
+ *	@param	p_time	æ™‚é–“æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_GetLockTime( s64* p_time )
@@ -1312,21 +1312,21 @@ void DWC_LOBBY_GetLockTime( s64* p_time )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®‚Ìƒf[ƒ^‚ðŽæ“¾
+ *	@brief	éƒ¨å±‹ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *	@param	type	Žæ“¾ƒ^ƒCƒv
+ *	@param	type	å–å¾—ã‚¿ã‚¤ãƒ—
  *
- *	@return	Žæ“¾ƒ^ƒCƒv‚É‘Î‰ž‚µ‚½ƒf[ƒ^
+ *	@return	å–å¾—ã‚¿ã‚¤ãƒ—ã«å¯¾å¿œã—ãŸãƒ‡ãƒ¼ã‚¿
  *
  *	type
- *		DWC_LOBBY_ROOMDATA_LOCKTIME,		// ƒ`ƒƒƒ“ƒlƒ‹‚ðƒƒbƒN‚·‚éŽžŠÔ
- *		DWC_LOBBY_ROOMDATA_RANDOM,			// ƒT[ƒo‚©‚ç¶¬‚³‚ê‚éƒ‰ƒ“ƒ_ƒ€’l
- *		DWC_LOBBY_ROOMDATA_ROOMTYPE,		// •”‰®‚Ìƒ^ƒCƒv
- *		DWC_LOBBY_ROOMDATA_SEASON,			// ‹Gß”Ô†
- *		DWC_LOBBY_ROOMDATA_ARCEUS,			// ƒAƒ‹ƒZƒEƒX‚Ì•\Ž¦‚ð‹–‰Â‚·‚é‚© 
- *		DWC_LOBBY_ROOMDATA_CLOSETIME,		// •”‰®‚ÌƒƒbƒN‚©‚çƒNƒ[ƒY‚Ü‚Å‚ÌŽžŠÔ
- *		DWC_LOBBY_ROOMDATA_FIRESTART,		// •”‰®‚ÌƒƒbƒN‚©‚ç‰Ô‰ÎŠJŽn‚Ü‚Å‚ÌŽžŠÔ
- *		DWC_LOBBY_ROOMDATA_FIREEND,			// •”‰®‚ÌƒƒbƒN‚©‚ç‰Ô‰ÎI—¹‚Ü‚Å‚ÌŽžŠÔ
+ *		DWC_LOBBY_ROOMDATA_LOCKTIME,		// ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹æ™‚é–“
+ *		DWC_LOBBY_ROOMDATA_RANDOM,			// ã‚µãƒ¼ãƒã‹ã‚‰ç”Ÿæˆã•ã‚Œã‚‹ãƒ©ãƒ³ãƒ€ãƒ å€¤
+ *		DWC_LOBBY_ROOMDATA_ROOMTYPE,		// éƒ¨å±‹ã®ã‚¿ã‚¤ãƒ—
+ *		DWC_LOBBY_ROOMDATA_SEASON,			// å­£ç¯€ç•ªå·
+ *		DWC_LOBBY_ROOMDATA_ARCEUS,			// ã‚¢ãƒ«ã‚»ã‚¦ã‚¹ã®è¡¨ç¤ºã‚’è¨±å¯ã™ã‚‹ã‹ 
+ *		DWC_LOBBY_ROOMDATA_CLOSETIME,		// éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã‹ã‚‰ã‚¯ãƒ­ãƒ¼ã‚ºã¾ã§ã®æ™‚é–“
+ *		DWC_LOBBY_ROOMDATA_FIRESTART,		// éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã‹ã‚‰èŠ±ç«é–‹å§‹ã¾ã§ã®æ™‚é–“
+ *		DWC_LOBBY_ROOMDATA_FIREEND,			// éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã‹ã‚‰èŠ±ç«çµ‚äº†ã¾ã§ã®æ™‚é–“
  *
  */
 //-----------------------------------------------------------------------------
@@ -1340,27 +1340,27 @@ u32 DWC_LOBBY_GetRoomData( DWC_LOBBY_ROOMDATA_TYPE type )
 	GF_ASSERT( (p_DWC_LOBBYLIB_WK->status == DWC_LOBBY_CHANNEL_STATE_CONNECT) || (p_DWC_LOBBYLIB_WK->status == DWC_LOBBY_CHANNEL_STATE_ERROR) );
 	GF_ASSERT( type < DWC_LOBBY_ROOMDATA_MAX );
 
-	// ƒXƒPƒWƒ…[ƒ‹ƒoƒbƒtƒ@Žæ“¾
+	// ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒãƒƒãƒ•ã‚¡å–å¾—
 	p_schedule = (PPW_LobbySchedule*)p_DWC_LOBBYLIB_WK->schedulebuff;
 
 	switch( type ){
-	case DWC_LOBBY_ROOMDATA_LOCKTIME:		// ƒ`ƒƒƒ“ƒlƒ‹‚ðƒƒbƒN‚·‚éŽžŠÔ
+	case DWC_LOBBY_ROOMDATA_LOCKTIME:		// ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹æ™‚é–“
 		data = p_schedule->lockTime;
 		break;
 		
-	case DWC_LOBBY_ROOMDATA_RANDOM:			// ƒT[ƒo‚©‚ç¶¬‚³‚ê‚éƒ‰ƒ“ƒ_ƒ€’l
+	case DWC_LOBBY_ROOMDATA_RANDOM:			// ã‚µãƒ¼ãƒã‹ã‚‰ç”Ÿæˆã•ã‚Œã‚‹ãƒ©ãƒ³ãƒ€ãƒ å€¤
 		data = p_schedule->random;
 		break;
 		
-	case DWC_LOBBY_ROOMDATA_ROOMTYPE:		// •”‰®‚Ìƒ^ƒCƒv
+	case DWC_LOBBY_ROOMDATA_ROOMTYPE:		// éƒ¨å±‹ã®ã‚¿ã‚¤ãƒ—
 		data = p_schedule->roomType;
 		break;
 		
-	case DWC_LOBBY_ROOMDATA_SEASON:			// ‹Gß”Ô†
+	case DWC_LOBBY_ROOMDATA_SEASON:			// å­£ç¯€ç•ªå·
 		data = p_schedule->season;
 		break;
 
-	case DWC_LOBBY_ROOMDATA_ARCEUS:			// ƒAƒ‹ƒZƒEƒX•\Ž¦‹–‰Âƒtƒ‰ƒO
+	case DWC_LOBBY_ROOMDATA_ARCEUS:			// ã‚¢ãƒ«ã‚»ã‚¦ã‚¹è¡¨ç¤ºè¨±å¯ãƒ•ãƒ©ã‚°
 		if( p_schedule->roomFlag & PPW_LOBBY_ROOM_FLAG_ARCEUS ){
 			data = TRUE;
 		}else{
@@ -1368,15 +1368,15 @@ u32 DWC_LOBBY_GetRoomData( DWC_LOBBY_ROOMDATA_TYPE type )
 		}
 		break;
 
-	case DWC_LOBBY_ROOMDATA_CLOSETIME:	// •”‰®‚ÌƒƒbƒN‚©‚çƒNƒ[ƒY‚Ü‚Å‚ÌŽžŠÔ
+	case DWC_LOBBY_ROOMDATA_CLOSETIME:	// éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã‹ã‚‰ã‚¯ãƒ­ãƒ¼ã‚ºã¾ã§ã®æ™‚é–“
 		data = DWC_LOBBY_SCHEDULE_GetEventTime( p_schedule, PPW_LOBBY_TIME_EVENT_CLOSE );
 		break;
 
-	case DWC_LOBBY_ROOMDATA_FIRESTART:		// •”‰®‚ÌƒƒbƒN‚©‚ç‰Ô‰ÎŠJŽn‚Ü‚Å‚ÌŽžŠÔ
+	case DWC_LOBBY_ROOMDATA_FIRESTART:		// éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã‹ã‚‰èŠ±ç«é–‹å§‹ã¾ã§ã®æ™‚é–“
 		data = DWC_LOBBY_SCHEDULE_GetEventTime( p_schedule, PPW_LOBBY_TIME_EVENT_FIRE_WORKS_START );
 		break;
 
-	case DWC_LOBBY_ROOMDATA_FIREEND:		// •”‰®‚ÌƒƒbƒN‚©‚ç‰Ô‰ÎI—¹‚Ü‚Å‚ÌŽžŠÔ
+	case DWC_LOBBY_ROOMDATA_FIREEND:		// éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã‹ã‚‰èŠ±ç«çµ‚äº†ã¾ã§ã®æ™‚é–“
 		data = DWC_LOBBY_SCHEDULE_GetEventTime( p_schedule, PPW_LOBBY_TIME_EVENT_FIRE_WORKS_END );
 		break;
 	}
@@ -1386,10 +1386,10 @@ u32 DWC_LOBBY_GetRoomData( DWC_LOBBY_ROOMDATA_TYPE type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ƒf[ƒ^‚ðƒT[ƒo‚ÉƒAƒbƒv
+ *	@brief	å›½ãƒ‡ãƒ¼ã‚¿ã‚’ã‚µãƒ¼ãƒã«ã‚¢ãƒƒãƒ—
  *
- *	@retval	TRUE	ƒT[ƒo‚ÉƒAƒbƒv
- *	@retval	FALSE	ƒT[ƒo‚ÉƒAƒbƒv‚µ‚È‚©‚Á‚½
+ *	@retval	TRUE	ã‚µãƒ¼ãƒã«ã‚¢ãƒƒãƒ—
+ *	@retval	FALSE	ã‚µãƒ¼ãƒã«ã‚¢ãƒƒãƒ—ã—ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_WLDDATA_Send( void )
@@ -1398,7 +1398,7 @@ BOOL DWC_LOBBY_WLDDATA_Send( void )
 
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 	
-	// ‘ÞŽºOK‚È‚Ì‚ÅA‘ÞŽºŽÒ‘ƒf[ƒ^‚ð“o˜^‚·‚é
+	// é€€å®¤OKãªã®ã§ã€é€€å®¤è€…å›½ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã™ã‚‹
 	result = DWC_LOBBY_WLDDATA_SetMyData( p_DWC_LOBBYLIB_WK );
 	if( result ){
 		p_DWC_LOBBYLIB_WK->wlddata_send = TRUE;
@@ -1408,10 +1408,10 @@ BOOL DWC_LOBBY_WLDDATA_Send( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ƒf[ƒ^‚Ì‘—MŠ®—¹‘Ò‚¿
+ *	@brief	å›½ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡å®Œäº†å¾…ã¡
  *
- *	@retval	TRUE	‘—MŠ®—¹
- *	@retval	FALSE	‘—M‚©‚ñ‚è‚å‚¤‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	é€ä¿¡å®Œäº†
+ *	@retval	FALSE	é€ä¿¡ã‹ã‚“ã‚Šã‚‡ã†ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_WLDDATA_SendWait( void )
@@ -1424,11 +1424,11 @@ BOOL DWC_LOBBY_WLDDATA_SendWait( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ÞŽºŽÒ	‘IDŽæ“¾
+ *	@brief	é€€å®¤è€…	å›½IDå–å¾—
  *
- *	@param	index	ƒCƒ“ƒfƒbƒNƒX
+ *	@param	index	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	
- *	@return	‘ID
+ *	@return	å›½ID
  */
 //-----------------------------------------------------------------------------
 u16 DWC_LOBBY_WLDDATA_GetNation( u8 index )
@@ -1441,11 +1441,11 @@ u16 DWC_LOBBY_WLDDATA_GetNation( u8 index )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ÞŽºŽÒ	’nˆæIDŽæ“¾
+ *	@brief	é€€å®¤è€…	åœ°åŸŸIDå–å¾—
  *
- *	@param	index	ƒCƒ“ƒfƒbƒNƒX
+ *	@param	index	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	
- *	@return	’nˆæID
+ *	@return	åœ°åŸŸID
  */
 //-----------------------------------------------------------------------------
 u8 DWC_LOBBY_WLDDATA_GetArea( u8 index )
@@ -1458,12 +1458,12 @@ u8 DWC_LOBBY_WLDDATA_GetArea( u8 index )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ÞŽºŽÒ‘ƒf[ƒ^‚ªindex‚Ìƒoƒbƒtƒ@‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	é€€å®¤è€…å›½ãƒ‡ãƒ¼ã‚¿ãŒindexã®ãƒãƒƒãƒ•ã‚¡ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	index	ƒCƒ“ƒfƒbƒNƒX
+ *	@param	index	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	ƒf[ƒ^‚ª‚ ‚é
- *	@retval	FALSE	ƒf[ƒ^‚ª‚È‚¢
+ *	@retval	TRUE	ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹
+ *	@retval	FALSE	ãƒ‡ãƒ¼ã‚¿ãŒãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_WLDDATA_GetDataFlag( u8 index )
@@ -1477,11 +1477,11 @@ BOOL DWC_LOBBY_WLDDATA_GetDataFlag( u8 index )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹	ƒƒbƒZ[ƒWƒRƒ}ƒ“ƒh‚ðÝ’è
+ *	@brief	ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒžãƒ³ãƒ‰ã‚’è¨­å®š
  *
- *	@param	cp_tbl		ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
- *	@param	tblnum		ƒe[ƒuƒ‹”
- *	@param	p_work		ƒR[ƒ‹ƒoƒbƒN‚É“n‚·ƒ[ƒN
+ *	@param	cp_tbl		ã‚³ãƒžãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	tblnum		ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+ *	@param	p_work		ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«æ¸¡ã™ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_SetMsgCmd( const DWC_LOBBY_MSGCOMMAND* cp_tbl, u32 tblnum, void* p_work )
@@ -1493,7 +1493,7 @@ void DWC_LOBBY_SetMsgCmd( const DWC_LOBBY_MSGCOMMAND* cp_tbl, u32 tblnum, void* 
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹	ƒƒbƒZ[ƒWƒRƒ}ƒ“ƒh‚ðÝ’è
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒžãƒ³ãƒ‰ã‚’è¨­å®š
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_SUBCHAN_SetMsgCmd( const DWC_LOBBY_MSGCOMMAND* cp_tbl, u32 tblnum, void* p_work )
@@ -1506,7 +1506,7 @@ void DWC_LOBBY_SUBCHAN_SetMsgCmd( const DWC_LOBBY_MSGCOMMAND* cp_tbl, u32 tblnum
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWƒRƒ}ƒ“ƒh‚ðƒNƒŠƒA
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒžãƒ³ãƒ‰ã‚’ã‚¯ãƒªã‚¢
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_CleanMsgCmd( void )
@@ -1522,11 +1522,11 @@ void DWC_LOBBY_SUBCHAN_CleanMsgCmd( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹	‘S‘Ì‚ÉƒƒbƒZ[ƒW‚Ì‘—M
+ *	@brief	ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«	å…¨ä½“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®é€ä¿¡
  *
- *	@param	type		ƒƒbƒZ[ƒWƒ^ƒCƒv
- *	@param	cp_data		ƒf[ƒ^
- *	@param	size		ƒTƒCƒY
+ *	@param	type		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	size		ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_SendChannelMsg( u32 type, const void* cp_data, u32 size )
@@ -1536,26 +1536,26 @@ void DWC_LOBBY_SendChannelMsg( u32 type, const void* cp_data, u32 size )
 
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 	
-	// typeƒ`ƒFƒbƒN
+	// typeãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_DWC_LOBBYLIB_WK->msgcmd[ DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN ].msgtblnum > type );
-	// ƒTƒCƒYƒ`ƒFƒbƒN
+	// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_DWC_LOBBYLIB_WK->msgcmd[ DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN ].cp_msgtbl[ type ].size == size );
 
-	// ‘—M
+	// é€ä¿¡
 	result = PPW_LobbySendChannelBinaryMessage( PPW_LOBBY_CHANNEL_KIND_MAIN, type, cp_data, size );
 
 	retval = DWC_LOBBY_CheckCommonErr( result );
-	GF_ASSERT( retval == TRUE );	// Ž¸”s‚µ‚¿‚á‚Á‚½
+	GF_ASSERT( retval == TRUE );	// å¤±æ•—ã—ã¡ã‚ƒã£ãŸ
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹	ƒvƒŒƒCƒ„[‚ÉƒƒbƒZ[ƒW‚Ì‘—M
+ *	@brief	ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®é€ä¿¡
  *
- *	@param	type		ƒƒbƒZ[ƒWƒ^ƒCƒv
- *	@param	userid		ƒ†[ƒUID
- *	@param	cp_data		ƒf[ƒ^
- *	@param	size		ƒTƒCƒY
+ *	@param	type		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	size		ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_SendPlayerMsg( u32 type, s32 userid, const void* cp_data, u32 size )
@@ -1565,25 +1565,25 @@ void DWC_LOBBY_SendPlayerMsg( u32 type, s32 userid, const void* cp_data, u32 siz
 
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 	
-	// typeƒ`ƒFƒbƒN
+	// typeãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_DWC_LOBBYLIB_WK->msgcmd[ DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN ].msgtblnum > type );
-	// ƒTƒCƒYƒ`ƒFƒbƒN
+	// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_DWC_LOBBYLIB_WK->msgcmd[ DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN ].cp_msgtbl[ type ].size == size );
 
-	// ‘—M
+	// é€ä¿¡
 	result = PPW_LobbySendPlayerBinaryMessage( userid, type, cp_data, size );
 
 	retval = DWC_LOBBY_CheckCommonErr( result );
-	GF_ASSERT( retval == TRUE );	// Ž¸”s‚µ‚¿‚á‚Á‚½
+	GF_ASSERT( retval == TRUE );	// å¤±æ•—ã—ã¡ã‚ƒã£ãŸ
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹		‘S‘Ì‚ÉƒƒbƒZ[ƒW‘—M
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«		å…¨ä½“ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
  *
- *	@param	type		ƒƒbƒZ[ƒWƒ^ƒCƒv
- *	@param	cp_data		ƒf[ƒ^
- *	@param	size		ƒTƒCƒY
+ *	@param	type		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	size		ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_SUBCHAN_SendMsg( u32 type, const void* cp_data, u32 size )
@@ -1594,31 +1594,31 @@ void DWC_LOBBY_SUBCHAN_SendMsg( u32 type, const void* cp_data, u32 size )
 
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 	
-	// typeƒ`ƒFƒbƒN
+	// typeãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_DWC_LOBBYLIB_WK->msgcmd[ DWC_LOBBY_LOCALCHANNEL_TYPE_SUB ].msgtblnum > type );
-	// ƒTƒCƒYƒ`ƒFƒbƒN
+	// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_DWC_LOBBYLIB_WK->msgcmd[ DWC_LOBBY_LOCALCHANNEL_TYPE_SUB ].cp_msgtbl[ type ].size == size );
-	// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚É‘®‚µ‚Ä‚¢‚é‚©
+	// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«å±žã—ã¦ã„ã‚‹ã‹
 	GF_ASSERT( p_DWC_LOBBYLIB_WK->subchan_type != DWC_LOBBY_SUBCHAN_NONE );
 
-	// ‘—M
+	// é€ä¿¡
 	channel_kind = DWC_LOBBY_GetChannelKind( p_DWC_LOBBYLIB_WK->subchan_type );
 	result = PPW_LobbySendChannelBinaryMessage( channel_kind, type, cp_data, size );
 
 	retval = DWC_LOBBY_CheckCommonErr( result );
-	GF_ASSERT( retval == TRUE );	// Ž¸”s‚µ‚¿‚á‚Á‚½
+	GF_ASSERT( retval == TRUE );	// å¤±æ•—ã—ã¡ã‚ƒã£ãŸ
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€•åW‚ÌŠJŽn
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†ã®é–‹å§‹
  *
- *	@param	type		ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
- *	@param	maxnum		Å‘åÚ‘±”
+ *	@param	type		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
+ *	@param	maxnum		æœ€å¤§æŽ¥ç¶šæ•°
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	‚·‚Å‚É’N‚©‚ª•åW‚µ‚Ä‚éEŽ©•ª‚ª‚·‚Å‚É‰½‚©‚Ì•åW‚ÉŽQ‰Á‚µ‚Ä‚é
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	ã™ã§ã«èª°ã‹ãŒå‹Ÿé›†ã—ã¦ã‚‹ãƒ»è‡ªåˆ†ãŒã™ã§ã«ä½•ã‹ã®å‹Ÿé›†ã«å‚åŠ ã—ã¦ã‚‹
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_MG_StartRecruit( DWC_LOBBY_MG_TYPE type, u32 maxnum )
@@ -1628,17 +1628,17 @@ BOOL DWC_LOBBY_MG_StartRecruit( DWC_LOBBY_MG_TYPE type, u32 maxnum )
 	
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// ‚»‚Ìƒ~ƒjƒQ[ƒ€‚ª•åW’†‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ãã®ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãŒå‹Ÿé›†ä¸­ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( DWC_LOBBY_MG_Check( p_DWC_LOBBYLIB_WK, type ) == TRUE ){
 		return FALSE;
 	}
 
-	// ‚·‚Å‚ÉƒGƒ“ƒgƒŠ[‚µ‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã—ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_DWC_LOBBYLIB_WK->mg_myentry != DWC_LOBBY_MG_NUM ){
 		return FALSE;
 	}
 
-	// •åWŠJŽn
+	// å‹Ÿé›†é–‹å§‹
 	p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_data.gameKind		= type;
 	p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_data.maxNum		= maxnum;
 	p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_data.currentNum	= 1;
@@ -1649,9 +1649,9 @@ BOOL DWC_LOBBY_MG_StartRecruit( DWC_LOBBY_MG_TYPE type, u32 maxnum )
 	result = PPW_LobbyStartRecruit( &p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_data );
 
 	check = DWC_LOBBY_CheckCommonErr( result );
-	GF_ASSERT( check );	// •åW‚ÉŽ¸”s
+	GF_ASSERT( check );	// å‹Ÿé›†ã«å¤±æ•—
 
-	// •åWŠJŽn
+	// å‹Ÿé›†é–‹å§‹
 	p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_flag		= TRUE;
 	p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_parent	= PPW_LobbyGetMyUserId();
 	p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_timelimit	= DWC_LOBBY_MG_TIMELIMIT * DWC_LOBBY_MG_TIMELIMIT_SEC;
@@ -1664,7 +1664,7 @@ BOOL DWC_LOBBY_MG_StartRecruit( DWC_LOBBY_MG_TYPE type, u32 maxnum )
     DWC_LOBBY_PRINT("match start %s\ntimelimit = %d\n",p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_data.matchMakingString, p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_timelimit / DWC_LOBBY_MG_TIMELIMIT_SEC);
 
     
-	// ƒ}ƒbƒ`ƒ“ƒOŽw•W‚ðŽæ“¾‚µ‚Äƒ}ƒbƒ`ƒ“ƒOŠJŽn
+	// ãƒžãƒƒãƒãƒ³ã‚°æŒ‡æ¨™ã‚’å–å¾—ã—ã¦ãƒžãƒƒãƒãƒ³ã‚°é–‹å§‹
     if(mydwc_startmatch( (u8*)p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_data.matchMakingString, 
 				maxnum, TRUE, 
 				(p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_timelimit / DWC_LOBBY_MG_TIMELIMIT_SEC) )){
@@ -1680,7 +1680,7 @@ BOOL DWC_LOBBY_MG_StartRecruit( DWC_LOBBY_MG_TYPE type, u32 maxnum )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€•åW‚ÌI—¹
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†ã®çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_MG_EndRecruit( void )
@@ -1690,34 +1690,34 @@ void DWC_LOBBY_MG_EndRecruit( void )
 
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// ‰½‚©‚ÉƒGƒ“ƒgƒŠ[‚µ‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ä½•ã‹ã«ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã—ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_DWC_LOBBYLIB_WK->mg_myentry == DWC_LOBBY_MG_NUM ){
 		return ;
 	}
 
 	DWC_LOBBY_PRINT( "dwc lobby end recruit\n" );
 
-	// Ž©•ª‚ª•åW‚ð‚©‚¯‚½‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ãŒå‹Ÿé›†ã‚’ã‹ã‘ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( p_DWC_LOBBYLIB_WK->mg_myparent == FALSE ){
 		return ;
 	}
 
-	// ƒ~ƒjƒQ[ƒ€•åW‚ÌI—¹
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†ã®çµ‚äº†
 	result = PPW_LobbyStopRecruit();
 	check = DWC_LOBBY_CheckCommonErr( result );
-	GF_ASSERT( check );	// •åW‚ÉŽ¸”s
+	GF_ASSERT( check );	// å‹Ÿé›†ã«å¤±æ•—
 
-	// •åWî•ñ‚ðƒŠƒZƒbƒg
+	// å‹Ÿé›†æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆ
 	check = DWC_LOBBY_MG_ResetData( p_DWC_LOBBYLIB_WK, p_DWC_LOBBYLIB_WK->mg_myentry, PPW_LobbyGetMyUserId() );
 	GF_ASSERT( check );
 
-	// e‚Å‚Í‚È‚­‚È‚Á‚½‚Ì‚ÅAe‚Å‚È‚¢‚±‚Æ‚É‚·‚é
+	// è¦ªã§ã¯ãªããªã£ãŸã®ã§ã€è¦ªã§ãªã„ã“ã¨ã«ã™ã‚‹
 	p_DWC_LOBBYLIB_WK->mg_myparent = FALSE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e‚È‚ç•åW‚µ‚Ä‚¢‚éƒ~ƒjƒQ[ƒ€‚ðŠJŽn‚·‚é
+ *	@brief	è¦ªãªã‚‰å‹Ÿé›†ã—ã¦ã„ã‚‹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_MG_StartGame( void )
@@ -1727,24 +1727,24 @@ void DWC_LOBBY_MG_StartGame( void )
 
 	GF_ASSERT( p_DWC_LOBBYLIB_WK );
 	
-	// e‚©ƒ`ƒFƒbƒN
+	// è¦ªã‹ãƒã‚§ãƒƒã‚¯
 	if( p_DWC_LOBBYLIB_WK->mg_myparent == FALSE ){
 		return ;
 	}
 
-	// ƒ~ƒjƒQ[ƒ€‚Ì•åWî•ñ‚ðƒQ[ƒ€ŠJŽn‚É‚·‚é
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®å‹Ÿé›†æƒ…å ±ã‚’ã‚²ãƒ¼ãƒ é–‹å§‹ã«ã™ã‚‹
 	p_DWC_LOBBYLIB_WK->mg_data[ p_DWC_LOBBYLIB_WK->mg_myentry ].mg_data.paramVal = DWC_LOBBY_MG_ST_GAMEING;
 
 	result = PPW_LobbyUpdateRecruitInfo( &p_DWC_LOBBYLIB_WK->mg_data[ p_DWC_LOBBYLIB_WK->mg_myentry ].mg_data );
 	check = DWC_LOBBY_CheckCommonErr( result );
-	GF_ASSERT( check );	// ƒAƒbƒvƒf[ƒg‚ÉŽ¸”s
+	GF_ASSERT( check );	// ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã«å¤±æ•—
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽQ‰Á‚µ‚Ä‚¢‚éƒ~ƒjƒQ[ƒ€‚ðŠJŽn‚·‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	å‚åŠ ã—ã¦ã„ã‚‹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	TRUE	ŽQ‰Á‚µ‚Ä‚¢‚éƒ~ƒjƒQ[ƒ€‚ðŠJŽn‚·‚é
+ *	@retval	TRUE	å‚åŠ ã—ã¦ã„ã‚‹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_MG_CheckStartGame( void )
@@ -1752,12 +1752,12 @@ BOOL DWC_LOBBY_MG_CheckStartGame( void )
 
 	GF_ASSERT( p_DWC_LOBBYLIB_WK );
 	
-	// Ž©•ª‚ª‰½‚©‚ÉŽQ‰Á’†‚©H
+	// è‡ªåˆ†ãŒä½•ã‹ã«å‚åŠ ä¸­ã‹ï¼Ÿ
 	if( p_DWC_LOBBYLIB_WK->mg_myentry == DWC_LOBBY_MG_NUM ){
 		return FALSE;
 	}
 	
-	// ƒQ[ƒ€ŠJŽn‚É‚È‚Á‚½‚©ƒ`ƒFƒbƒN
+	// ã‚²ãƒ¼ãƒ é–‹å§‹ã«ãªã£ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( p_DWC_LOBBYLIB_WK->mg_data[ p_DWC_LOBBYLIB_WK->mg_myentry ].mg_data.paramVal == DWC_LOBBY_MG_ST_GAMEING ){
 		return TRUE;
 	}
@@ -1767,12 +1767,12 @@ BOOL DWC_LOBBY_MG_CheckStartGame( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€‚Ì•åW‚ðI—¹‚·‚é•K—v‚ª‚ ‚é‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®å‹Ÿé›†ã‚’çµ‚äº†ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@retval	TRUE	•åW‚ðI—¹‚·‚é•K—v‚ª‚ ‚é
- *	@retval	FALSE	•åW‚ðI—¹‚·‚é•K—v‚Í‚È‚¢
+ *	@retval	TRUE	å‹Ÿé›†ã‚’çµ‚äº†ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+ *	@retval	FALSE	å‹Ÿé›†ã‚’çµ‚äº†ã™ã‚‹å¿…è¦ã¯ãªã„
  *
- *	•åW‚ÉŽ¸”s‚µ‚½‚Æ‚«@TRUE‚É‚È‚è‚Ü‚·
+ *	å‹Ÿé›†ã«å¤±æ•—ã—ãŸã¨ãã€€TRUEã«ãªã‚Šã¾ã™
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_MG_ForceEnd( void )
@@ -1784,12 +1784,12 @@ BOOL DWC_LOBBY_MG_ForceEnd( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€‚ª•åW’†‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãŒå‹Ÿé›†ä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	type	ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+ *	@param	type	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	type‚Ìƒ~ƒjƒQ[ƒ€‚ª•åW’†
- *	@retval	FALSE	type‚Ìƒ~ƒjƒQ[ƒ€‚Í•åW‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	typeã®ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãŒå‹Ÿé›†ä¸­
+ *	@retval	FALSE	typeã®ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã¯å‹Ÿé›†ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_MG_CheckRecruit( DWC_LOBBY_MG_TYPE type )
@@ -1800,23 +1800,23 @@ BOOL DWC_LOBBY_MG_CheckRecruit( DWC_LOBBY_MG_TYPE type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	type‚Ìƒ~ƒjƒQ[ƒ€‚ÉƒGƒ“ƒgƒŠ[‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	typeã®ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã«ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	type	ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+ *	@param	type	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	ƒGƒ“ƒgƒŠ[‰Â”\
- *	@retval	FALSE	ƒGƒ“ƒgƒŠ[•s‰Â”\
+ *	@retval	TRUE	ã‚¨ãƒ³ãƒˆãƒªãƒ¼å¯èƒ½
+ *	@retval	FALSE	ã‚¨ãƒ³ãƒˆãƒªãƒ¼ä¸å¯èƒ½
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_MG_CheckEntryOk( DWC_LOBBY_MG_TYPE type )
 {
 	GF_ASSERT( p_DWC_LOBBYLIB_WK );
 	
-	// •åW‚ª‚©‚©‚Á‚Ä‚¢‚é‚©H
+	// å‹Ÿé›†ãŒã‹ã‹ã£ã¦ã„ã‚‹ã‹ï¼Ÿ
 	if( DWC_LOBBY_MG_CheckRecruit( type ) == FALSE ){
 		return FALSE;
 	}
-	// •åWó‘Ô‚ªRECRUIT‚©H
+	// å‹Ÿé›†çŠ¶æ…‹ãŒRECRUITã‹ï¼Ÿ
 	if( p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_data.paramVal == DWC_LOBBY_MG_ST_RECRUIT ){
 		return TRUE;
 	}
@@ -1825,11 +1825,11 @@ BOOL DWC_LOBBY_MG_CheckEntryOk( DWC_LOBBY_MG_TYPE type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚Ìƒ~ƒjƒQ[ƒ€‚É‚ ‚Æ‰½lŽQ‰Á‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãã®ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã«ã‚ã¨ä½•äººå‚åŠ ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	type	ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+ *	@param	type	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
  *
- *	@return	l”
+ *	@return	äººæ•°
  */
 //-----------------------------------------------------------------------------
 u32 DWC_LOBBY_MG_GetRest( DWC_LOBBY_MG_TYPE type )
@@ -1839,7 +1839,7 @@ u32 DWC_LOBBY_MG_GetRest( DWC_LOBBY_MG_TYPE type )
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 	GF_ASSERT( type < DWC_LOBBY_MG_NUM );
 	
-	// •åW‚µ‚Ä‚él‚ª‚¢‚È‚¢‚Æ‚«‚ÍA‚O‚ð•Ô‚·
+	// å‹Ÿé›†ã—ã¦ã‚‹äººãŒã„ãªã„ã¨ãã¯ã€ï¼ã‚’è¿”ã™
 	if( DWC_LOBBY_MG_Check( p_DWC_LOBBYLIB_WK, type ) == FALSE ){
 		return 0;
 	}
@@ -1850,11 +1850,11 @@ u32 DWC_LOBBY_MG_GetRest( DWC_LOBBY_MG_TYPE type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	type‚Ì•åW‚É‰½lŽQ‰Á‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	typeã®å‹Ÿé›†ã«ä½•äººå‚åŠ ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	type	ƒ^ƒCƒv
+ *	@param	type	ã‚¿ã‚¤ãƒ—
  *	
- *	@return	•åW‚ÉŽQ‰Á‚µ‚Ä‚¢‚él”
+ *	@return	å‹Ÿé›†ã«å‚åŠ ã—ã¦ã„ã‚‹äººæ•°
  */
 //-----------------------------------------------------------------------------
 u32 DWC_LOBBY_MG_GetEntryNum( DWC_LOBBY_MG_TYPE type )
@@ -1864,7 +1864,7 @@ u32 DWC_LOBBY_MG_GetEntryNum( DWC_LOBBY_MG_TYPE type )
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 	GF_ASSERT( type < DWC_LOBBY_MG_NUM );
 	
-	// •åW‚µ‚Ä‚él‚ª‚¢‚È‚¢‚Æ‚«‚ÍA‚O‚ð•Ô‚·
+	// å‹Ÿé›†ã—ã¦ã‚‹äººãŒã„ãªã„ã¨ãã¯ã€ï¼ã‚’è¿”ã™
 	if( DWC_LOBBY_MG_Check( p_DWC_LOBBYLIB_WK, type ) == FALSE ){
 		return 0;
 	}
@@ -1875,35 +1875,35 @@ u32 DWC_LOBBY_MG_GetEntryNum( DWC_LOBBY_MG_TYPE type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€‚Ì•åW‚É‚³‚ñ‚©‚·‚é
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®å‹Ÿé›†ã«ã•ã‚“ã‹ã™ã‚‹
  *
- *	@param	type	ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+ *	@param	type	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	•åW‚µ‚Ä‚él‚ª‚¢‚È‚¢EŽ©•ª‚ª‚·‚Å‚É‰½‚©‚ÉŽQ‰Á‚µ‚Ä‚é
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å‹Ÿé›†ã—ã¦ã‚‹äººãŒã„ãªã„ãƒ»è‡ªåˆ†ãŒã™ã§ã«ä½•ã‹ã«å‚åŠ ã—ã¦ã‚‹
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_MG_Entry( DWC_LOBBY_MG_TYPE type )
 {
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// •åWŽÒ‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+	// å‹Ÿé›†è€…ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( DWC_LOBBY_MG_Check( p_DWC_LOBBYLIB_WK, type ) == FALSE ){
 		return FALSE;
 	}
-	// ‚·‚Å‚É‰½‚©‚ÉŽQ‰Á‚µ‚Ä‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«ä½•ã‹ã«å‚åŠ ã—ã¦ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_DWC_LOBBYLIB_WK->mg_myentry != DWC_LOBBY_MG_NUM ){
 		return FALSE;
 	}
-	// ‚·‚Å‚É‚»‚Ì•åW‚ÍAƒQ[ƒ€ˆ—‚É‚Í‚¢‚Á‚Ä‚¢‚È‚¢‚©H
+	// ã™ã§ã«ãã®å‹Ÿé›†ã¯ã€ã‚²ãƒ¼ãƒ å‡¦ç†ã«ã¯ã„ã£ã¦ã„ãªã„ã‹ï¼Ÿ
 	if( p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_data.paramVal == DWC_LOBBY_MG_ST_GAMEING ){
 		return FALSE;
 	}
 	
-	// •åW‚ÉŽQ‰Á
+	// å‹Ÿé›†ã«å‚åŠ 
 	p_DWC_LOBBYLIB_WK->mg_myentry = type;
 
-	// ƒ}ƒbƒ`ƒ“ƒOŽw•W‚©‚ç’ÊMŠJŽn
+	// ãƒžãƒƒãƒãƒ³ã‚°æŒ‡æ¨™ã‹ã‚‰é€šä¿¡é–‹å§‹
 //----#if TESTOHNO
 		
     DWC_LOBBY_PRINT("match entry %s\ntimelimit = %d\n",p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_data.matchMakingString, p_DWC_LOBBYLIB_WK->mg_data[ type ].mg_timelimit / DWC_LOBBY_MG_TIMELIMIT_SEC);
@@ -1921,11 +1921,11 @@ BOOL DWC_LOBBY_MG_Entry( DWC_LOBBY_MG_TYPE type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ŠJŽn‚Ü‚Å‚Ìƒ^ƒCƒ€ƒŠƒ~ƒbƒg‚ðŽæ“¾
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é–‹å§‹ã¾ã§ã®ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆã‚’å–å¾—
  *
- *	@param	type		ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+ *	@param	type		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
  *
- *	@return	ƒ^ƒCƒ€ƒŠƒ~ƒbƒgi‚R‚OƒVƒ“ƒN’PˆÊj	‚Ü‚¾’N‚à•åW‚µ‚Ä‚È‚¢ê‡‚ÍÅ‘å’l
+ *	@return	ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆï¼ˆï¼“ï¼ã‚·ãƒ³ã‚¯å˜ä½ï¼‰	ã¾ã èª°ã‚‚å‹Ÿé›†ã—ã¦ãªã„å ´åˆã¯æœ€å¤§å€¤
  */
 //-----------------------------------------------------------------------------
 s32 DWC_LOBBY_MG_GetTimeLimit( DWC_LOBBY_MG_TYPE type )
@@ -1933,7 +1933,7 @@ s32 DWC_LOBBY_MG_GetTimeLimit( DWC_LOBBY_MG_TYPE type )
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 	GF_ASSERT( type < DWC_LOBBY_MG_NUM );
 	
-	// •åW‚µ‚Ä‚él‚ª‚¢‚È‚¢‚Æ‚«‚ÍADWC_LOBBY_MG_TIMELIMIT‚ð•Ô‚·
+	// å‹Ÿé›†ã—ã¦ã‚‹äººãŒã„ãªã„ã¨ãã¯ã€DWC_LOBBY_MG_TIMELIMITã‚’è¿”ã™
 	if( DWC_LOBBY_MG_Check( p_DWC_LOBBYLIB_WK, type ) == FALSE ){
 		return DWC_LOBBY_MG_TIMELIMIT * DWC_LOBBY_MG_TIMELIMIT_SEC;
 	}
@@ -1943,24 +1943,24 @@ s32 DWC_LOBBY_MG_GetTimeLimit( DWC_LOBBY_MG_TYPE type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ƒGƒ“ƒgƒŠ[‘Ò‚¿
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¨ãƒ³ãƒˆãƒªãƒ¼å¾…ã¡
  *
- *	@retval	DWC_LOBBY_MG_ENTRYNONE,			// ‰½‚à‚µ‚Ä‚¢‚È‚¢
- *	@retval	DWC_LOBBY_MG_ENTRYWAIT,			// ƒGƒ“ƒgƒŠ[’†
- *	@retval	DWC_LOBBY_MG_ENTRYOK,			// ƒGƒ“ƒgƒŠ[Š®—¹
- *	@retval	DWC_LOBBY_MG_ENTRYNG,			// ƒGƒ“ƒgƒŠ[Ž¸”s
+ *	@retval	DWC_LOBBY_MG_ENTRYNONE,			// ä½•ã‚‚ã—ã¦ã„ãªã„
+ *	@retval	DWC_LOBBY_MG_ENTRYWAIT,			// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ä¸­
+ *	@retval	DWC_LOBBY_MG_ENTRYOK,			// ã‚¨ãƒ³ãƒˆãƒªãƒ¼å®Œäº†
+ *	@retval	DWC_LOBBY_MG_ENTRYNG,			// ã‚¨ãƒ³ãƒˆãƒªãƒ¼å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 DWC_LOBBY_MG_ENTRYRET DWC_LOBBY_MG_EntryWait( void )
 {
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// ƒGƒ“ƒgƒŠ[’†‚©ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_DWC_LOBBYLIB_WK->mg_myentry == DWC_LOBBY_MG_NUM ){
 		return DWC_LOBBY_MG_ENTRYNONE;
 	}
 
-	// ƒGƒ“ƒgƒŠ[Š®—¹‚ð‘Ò‚Â
+	// ã‚¨ãƒ³ãƒˆãƒªãƒ¼å®Œäº†ã‚’å¾…ã¤
     if(mydwc_getaid() == MYDWC_NONE_AID){
         return DWC_LOBBY_MG_ENTRYWAIT;
     }
@@ -1970,12 +1970,12 @@ DWC_LOBBY_MG_ENTRYRET DWC_LOBBY_MG_EntryWait( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»ÝÚ‘±’†‚Ìƒ~ƒjƒQ[ƒ€‚ðŽæ“¾
+ *	@brief	ç¾åœ¨æŽ¥ç¶šä¸­ã®ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’å–å¾—
  *
- *	@retval	DWC_LOBBY_MG_BALLSLOW,			// ‹Ê‚¢‚ê
- *	@retval	DWC_LOBBY_MG_BALANCEBALL,		// ‹Êæ‚è
- *	@retval	DWC_LOBBY_MG_BALLOON,			// •—‘D‚í‚è
- *	@retval	DWC_LOBBY_MG_NUM,				// ŽQ‰Á‚µ‚Ä‚È‚¢
+ *	@retval	DWC_LOBBY_MG_BALLSLOW,			// çŽ‰ã„ã‚Œ
+ *	@retval	DWC_LOBBY_MG_BALANCEBALL,		// çŽ‰ä¹—ã‚Š
+ *	@retval	DWC_LOBBY_MG_BALLOON,			// é¢¨èˆ¹ã‚ã‚Š
+ *	@retval	DWC_LOBBY_MG_NUM,				// å‚åŠ ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 DWC_LOBBY_MG_TYPE DWC_LOBBY_MG_GetConnectType( void )
@@ -1986,10 +1986,10 @@ DWC_LOBBY_MG_TYPE DWC_LOBBY_MG_GetConnectType( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ú‘±’†‚Ìƒ~ƒjƒQ[ƒ€‚Ìeƒ†[ƒUID
+ *	@brief	æŽ¥ç¶šä¸­ã®ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®è¦ªãƒ¦ãƒ¼ã‚¶ID
  *
- *	@retval DWC_LOBBY_INVALID_USER_ID	Ú‘±‚µ‚Ä‚È‚¢
- *	@retval ‚»‚êˆÈŠO					e‚Ìƒ†[ƒUID
+ *	@retval DWC_LOBBY_INVALID_USER_ID	æŽ¥ç¶šã—ã¦ãªã„
+ *	@retval ãã‚Œä»¥å¤–					è¦ªã®ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 s32 DWC_LOBBY_MG_GetParentUserID( void )
@@ -2004,10 +2004,10 @@ s32 DWC_LOBBY_MG_GetParentUserID( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ž©•ª‚ªe‚©ƒ`ƒFƒbƒN
+ *	@brief	è‡ªåˆ†ãŒè¦ªã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	TRUE	e
- *	@retval	FALSE	Žq
+ *	@retval	TRUE	è¦ª
+ *	@retval	FALSE	å­
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_MG_MyParent( void )
@@ -2018,22 +2018,22 @@ BOOL DWC_LOBBY_MG_MyParent( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»ÝP2PÚ‘±’†‚©ƒ`ƒFƒbƒN
+ *	@brief	ç¾åœ¨P2PæŽ¥ç¶šä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	TRUE	Ú‘±’†
- *	@retval	FALSE	Ú‘±‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	æŽ¥ç¶šä¸­
+ *	@retval	FALSE	æŽ¥ç¶šã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_MG_CheckConnect( void )
 {
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	// LobbyƒVƒXƒeƒ€‚È‚¢‚ÅÚ‘±’†‚©ƒ`ƒFƒbƒN
+	// Lobbyã‚·ã‚¹ãƒ†ãƒ ãªã„ã§æŽ¥ç¶šä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_DWC_LOBBYLIB_WK->mg_myentry == DWC_LOBBY_MG_NUM ){
 		return FALSE;
 	}
 
-	// Ú‘±’†‚©ƒ`ƒFƒbƒN
+	// æŽ¥ç¶šä¸­ã‹ãƒã‚§ãƒƒã‚¯
     if(mydwc_getaid() != MYDWC_NONE_AID){
         return TRUE;
     }
@@ -2043,12 +2043,12 @@ BOOL DWC_LOBBY_MG_CheckConnect( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIP‚©‚Ç‚¤‚©’²‚×‚é
+ *	@brief	VIPã‹ã©ã†ã‹èª¿ã¹ã‚‹
  *
- *	@param	userid	ƒ†[ƒUID
+ *	@param	userid	ãƒ¦ãƒ¼ã‚¶ID
  *
  *	@retval	TRUE	VIP
- *	@retval	FALSE	’Êí‚Ìl
+ *	@retval	FALSE	é€šå¸¸ã®äºº
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_VIP_CheckVip( s32 userid )
@@ -2059,12 +2059,12 @@ BOOL DWC_LOBBY_VIP_CheckVip( s32 userid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIP‡Œ¾—tƒL[Žæ“¾
+ *	@brief	VIPåˆè¨€è‘‰ã‚­ãƒ¼å–å¾—
  *
- *	@param	userid	ƒ†[ƒUID
+ *	@param	userid	ãƒ¦ãƒ¼ã‚¶ID
  *
- *	@retval	DWC_LOBBY_VIP_KEYNONE	‚ ‚¢‚±‚Æ‚Î@‚È‚µ
- *	@retval	‚»‚Ì‘¼					‚ ‚¢‚±‚Æ‚Î@ƒL[’l
+ *	@retval	DWC_LOBBY_VIP_KEYNONE	ã‚ã„ã“ã¨ã°ã€€ãªã—
+ *	@retval	ãã®ä»–					ã‚ã„ã“ã¨ã°ã€€ã‚­ãƒ¼å€¤
  */
 //-----------------------------------------------------------------------------
 s32 DWC_LOBBY_VIP_GetAikotobaKey( s32 userid )
@@ -2075,9 +2075,9 @@ s32 DWC_LOBBY_VIP_GetAikotobaKey( s32 userid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒg“Š•[ƒf[ƒ^‘—M
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæŠ•ç¥¨ãƒ‡ãƒ¼ã‚¿é€ä¿¡
  *
- *	@param	select	‘I‘ð
+ *	@param	select	é¸æŠž
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_ANKETO_SubMit( s32 select )
@@ -2092,19 +2092,19 @@ void DWC_LOBBY_ANKETO_SubMit( s32 select )
 
 	result = PPW_LobbySubmitQuestionnaire( select );
 	retval = DWC_LOBBY_CheckCommonErr( result );
-	GF_ASSERT( retval == TRUE );	// Ž¸”s‚µ‚¿‚á‚Á‚½
+	GF_ASSERT( retval == TRUE );	// å¤±æ•—ã—ã¡ã‚ƒã£ãŸ
 
 	p_DWC_LOBBYLIB_WK->anketo.submit_state = DWC_LOBBY_ANKETO_STATE_SENDING;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒg“Š•[ƒf[ƒ^‘—MŒ‹‰Ê
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæŠ•ç¥¨ãƒ‡ãƒ¼ã‚¿é€ä¿¡çµæžœ
  *
- *	@retval	DWC_LOBBY_ANKETO_STATE_NONE,	// ‘—M‘O	
- *	@retval	DWC_LOBBY_ANKETO_STATE_SENDING,	// ‘—M’†
- *	@retval	DWC_LOBBY_ANKETO_STATE_SENDOK,	// ‘—M¬Œ÷
- *	@retval	DWC_LOBBY_ANKETO_STATE_SENDNG,	// ‘—MŽ¸”s
+ *	@retval	DWC_LOBBY_ANKETO_STATE_NONE,	// é€ä¿¡å‰	
+ *	@retval	DWC_LOBBY_ANKETO_STATE_SENDING,	// é€ä¿¡ä¸­
+ *	@retval	DWC_LOBBY_ANKETO_STATE_SENDOK,	// é€ä¿¡æˆåŠŸ
+ *	@retval	DWC_LOBBY_ANKETO_STATE_SENDNG,	// é€ä¿¡å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 DWC_LOBBY_ANKETO_STATE DWC_LOBBY_ANKETO_WaitSubMit( void )
@@ -2115,24 +2115,24 @@ DWC_LOBBY_ANKETO_STATE DWC_LOBBY_ANKETO_WaitSubMit( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgƒf[ƒ^Žæ“¾
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	type	ƒ^ƒCƒv
+ *	@param	type	ã‚¿ã‚¤ãƒ—
  *
- *	@return	ƒf[ƒ^
+ *	@return	ãƒ‡ãƒ¼ã‚¿
  *
  *	type
- *		DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_SERIAL,	// ¡‚ÌŽ¿–â’Ê‚µ”Ô†
- *		DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NO,		// ¡‚ÌŽ¿–â”Ô†
- *		DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_SPECIAL,	// ¡‚ÌŽ¿–â‚ªƒXƒyƒVƒƒƒ‹‚©
- *		DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NINI,	// ¡‚ÌŽ¿–â‚ª”CˆÓŽ¿–â‚©
- *		DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_SERIAL,	// ‘O‰ñ‚ÌŽ¿–â’Ê‚µ”Ô†
- *		DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_NO,		// ‘O‰ñ‚ÌŽ¿–â”Ô†
- *		DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_SPECIAL,// ‘O‰ñ‚ÌŽ¿–â‚ªƒXƒyƒVƒƒƒ‹‚©
- *		DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_NINI,	// ¡‚ÌŽ¿–â‚ª”CˆÓŽ¿–â‚©
- *		DWC_LOBBY_ANKETO_DATA_LAST_RESULT_A,	// ‘O‰ñ‚ÌŽ¿–â‚ªŒ‹‰ÊA
- *		DWC_LOBBY_ANKETO_DATA_LAST_RESULT_B,	// ‘O‰ñ‚ÌŽ¿–â‚ªŒ‹‰ÊB
- *		DWC_LOBBY_ANKETO_DATA_LAST_RESULT_C,	// ‘O‰ñ‚ÌŽ¿–â‚ªŒ‹‰ÊC
+ *		DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_SERIAL,	// ä»Šã®è³ªå•é€šã—ç•ªå·
+ *		DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NO,		// ä»Šã®è³ªå•ç•ªå·
+ *		DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_SPECIAL,	// ä»Šã®è³ªå•ãŒã‚¹ãƒšã‚·ãƒ£ãƒ«ã‹
+ *		DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NINI,	// ä»Šã®è³ªå•ãŒä»»æ„è³ªå•ã‹
+ *		DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_SERIAL,	// å‰å›žã®è³ªå•é€šã—ç•ªå·
+ *		DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_NO,		// å‰å›žã®è³ªå•ç•ªå·
+ *		DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_SPECIAL,// å‰å›žã®è³ªå•ãŒã‚¹ãƒšã‚·ãƒ£ãƒ«ã‹
+ *		DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_NINI,	// ä»Šã®è³ªå•ãŒä»»æ„è³ªå•ã‹
+ *		DWC_LOBBY_ANKETO_DATA_LAST_RESULT_A,	// å‰å›žã®è³ªå•ãŒçµæžœA
+ *		DWC_LOBBY_ANKETO_DATA_LAST_RESULT_B,	// å‰å›žã®è³ªå•ãŒçµæžœB
+ *		DWC_LOBBY_ANKETO_DATA_LAST_RESULT_C,	// å‰å›žã®è³ªå•ãŒçµæžœC
  */
 //-----------------------------------------------------------------------------
 s32 DWC_LOBBY_ANKETO_GetData( DWC_LOBBY_ANKETO_DATA type )
@@ -2143,19 +2143,19 @@ s32 DWC_LOBBY_ANKETO_GetData( DWC_LOBBY_ANKETO_DATA type )
 	GF_ASSERT( type < DWC_LOBBY_ANKETO_DATA_MAX );
 
 	switch( type ){
-	// ¡‚ÌŽ¿–â’Ê‚µ”Ô†
+	// ä»Šã®è³ªå•é€šã—ç•ªå·
 	case DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_SERIAL:	
 		data = p_DWC_LOBBYLIB_WK->anketo.question.currentQuestionnaireRecord.questionSerialNo;
 		break;
-	// ¡‚ÌŽ¿–â”Ô†
+	// ä»Šã®è³ªå•ç•ªå·
 	case DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NO:		
 		data = p_DWC_LOBBYLIB_WK->anketo.question.currentQuestionnaireRecord.questionNo;
 		break;
-	// ¡‚ÌŽ¿–â‚ªƒXƒyƒVƒƒƒ‹‚©
+	// ä»Šã®è³ªå•ãŒã‚¹ãƒšã‚·ãƒ£ãƒ«ã‹
 	case DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_SPECIAL:
 		data = p_DWC_LOBBYLIB_WK->anketo.question.currentQuestionnaireRecord.isSpecialWeek;
 		break;
-	// ¡‚ÌŽ¿–â‚ª”CˆÓŽ¿–â‚©
+	// ä»Šã®è³ªå•ãŒä»»æ„è³ªå•ã‹
 	case DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NINI:
 		if( p_DWC_LOBBYLIB_WK->anketo.question.currentQuestionnaireRecord.questionNo >= PPW_LOBBY_FREE_QUESTION_START_NO ){
 			data = TRUE;
@@ -2164,19 +2164,19 @@ s32 DWC_LOBBY_ANKETO_GetData( DWC_LOBBY_ANKETO_DATA type )
 		}
 		break;
 
-	// ‘O‰ñ‚ÌŽ¿–â’Ê‚µ”Ô†
+	// å‰å›žã®è³ªå•é€šã—ç•ªå·
 	case DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_SERIAL:
 		data = p_DWC_LOBBYLIB_WK->anketo.question.lastQuestionnaireRecord.questionSerialNo;
 		break;
-	// ‘O‰ñ‚ÌŽ¿–â”Ô†
+	// å‰å›žã®è³ªå•ç•ªå·
 	case DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_NO:	
 		data = p_DWC_LOBBYLIB_WK->anketo.question.lastQuestionnaireRecord.questionNo;
 		break;
-	// ‘O‰ñ‚ÌŽ¿–â‚ªƒXƒyƒVƒƒƒ‹‚©
+	// å‰å›žã®è³ªå•ãŒã‚¹ãƒšã‚·ãƒ£ãƒ«ã‹
 	case DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_SPECIAL:
 		data = p_DWC_LOBBYLIB_WK->anketo.question.lastQuestionnaireRecord.isSpecialWeek;
 		break;
-	// ‘O‰ñ‚ÌŽ¿–â‚ª”CˆÓŽ¿–â‚©
+	// å‰å›žã®è³ªå•ãŒä»»æ„è³ªå•ã‹
 	case DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_NINI:
 		if( p_DWC_LOBBYLIB_WK->anketo.question.lastQuestionnaireRecord.questionNo >= PPW_LOBBY_FREE_QUESTION_START_NO ){
 			data = TRUE;
@@ -2185,9 +2185,9 @@ s32 DWC_LOBBY_ANKETO_GetData( DWC_LOBBY_ANKETO_DATA type )
 		}
 		break;
 
-	// ‘O‰ñ‚ÌŽ¿–â‚ªŒ‹‰ÊA
-	// ‘O‰ñ‚ÌŽ¿–â‚ªŒ‹‰ÊB
-	// ‘O‰ñ‚ÌŽ¿–â‚ªŒ‹‰ÊC
+	// å‰å›žã®è³ªå•ãŒçµæžœA
+	// å‰å›žã®è³ªå•ãŒçµæžœB
+	// å‰å›žã®è³ªå•ãŒçµæžœC
 	case DWC_LOBBY_ANKETO_DATA_LAST_RESULT_A:
 	case DWC_LOBBY_ANKETO_DATA_LAST_RESULT_B:	
 	case DWC_LOBBY_ANKETO_DATA_LAST_RESULT_C:	
@@ -2205,22 +2205,22 @@ s32 DWC_LOBBY_ANKETO_GetData( DWC_LOBBY_ANKETO_DATA type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgƒƒbƒZ[ƒWŽæ“¾
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
  *
- *	@param	type	ƒ^ƒCƒv
+ *	@param	type	ã‚¿ã‚¤ãƒ—
  *	
- *	@retval		ƒƒbƒZ[ƒWƒf[ƒ^	iSTRCODEj
- *	@retval		NULL		‚È‚µ
+ *	@retval		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿	ï¼ˆSTRCODEï¼‰
+ *	@retval		NULL		ãªã—
  *
  *	type
- *		DWC_LOBBY_ANKETO_MESSAGE_NOW_QUESTION,	// ¡‚Ì–â‘è
- *		DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_00,	// ¡‚Ì‰ñ“šA
- *		DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_01,	// ¡‚Ì‰ñ“šB
- *		DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_02,	// ¡‚Ì‰ñ“šC
- *		DWC_LOBBY_ANKETO_MESSAGE_LAST_QUESTION,		// ‘O‰ñ‚Ì–â‘è
- *		DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_00,	// ‘O‰ñ‚Ì‰ñ“šA
- *		DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_01,	// ‘O‰ñ‚Ì‰ñ“šB
- *		DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_02,	// ‘O‰ñ‚Ì‰ñ“šC
+ *		DWC_LOBBY_ANKETO_MESSAGE_NOW_QUESTION,	// ä»Šã®å•é¡Œ
+ *		DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_00,	// ä»Šã®å›žç­”A
+ *		DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_01,	// ä»Šã®å›žç­”B
+ *		DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_02,	// ä»Šã®å›žç­”C
+ *		DWC_LOBBY_ANKETO_MESSAGE_LAST_QUESTION,		// å‰å›žã®å•é¡Œ
+ *		DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_00,	// å‰å›žã®å›žç­”A
+ *		DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_01,	// å‰å›žã®å›žç­”B
+ *		DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_02,	// å‰å›žã®å›žç­”C
  */
 //-----------------------------------------------------------------------------
 u16* DWC_LOBBY_ANKETO_GetMessage( DWC_LOBBY_ANKETO_MESSAGE type )
@@ -2231,26 +2231,26 @@ u16* DWC_LOBBY_ANKETO_GetMessage( DWC_LOBBY_ANKETO_MESSAGE type )
 	GF_ASSERT( type < DWC_LOBBY_ANKETO_MESSAGE_MAX );
 
 	switch( type ){
-	// ¡‚Ì–â‘è
+	// ä»Šã®å•é¡Œ
 	case DWC_LOBBY_ANKETO_MESSAGE_NOW_QUESTION:	
 		p_str = p_DWC_LOBBYLIB_WK->anketo.question.currentQuestionnaireRecord.questionSentence;
 		break;
-	// ¡‚Ì‰ñ“šA
-	// ¡‚Ì‰ñ“šB
-	// ¡‚Ì‰ñ“šC
+	// ä»Šã®å›žç­”A
+	// ä»Šã®å›žç­”B
+	// ä»Šã®å›žç­”C
 	case DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_00:	
 	case DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_01:	
 	case DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_02:	
 		p_str = p_DWC_LOBBYLIB_WK->anketo.question.currentQuestionnaireRecord.answer[ type - DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_00 ];
 		break;
 
-	// ‘O‰ñ‚Ì–â‘è
+	// å‰å›žã®å•é¡Œ
 	case DWC_LOBBY_ANKETO_MESSAGE_LAST_QUESTION:		
 		p_str = p_DWC_LOBBYLIB_WK->anketo.question.lastQuestionnaireRecord.questionSentence;
 		break;
-	// ‘O‰ñ‚Ì‰ñ“šA
-	// ‘O‰ñ‚Ì‰ñ“šB
-	// ‘O‰ñ‚Ì‰ñ“šC
+	// å‰å›žã®å›žç­”A
+	// å‰å›žã®å›žç­”B
+	// å‰å›žã®å›žç­”C
 	case DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_00:	
 	case DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_01:	
 	case DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_02:	
@@ -2268,13 +2268,13 @@ u16* DWC_LOBBY_ANKETO_GetMessage( DWC_LOBBY_ANKETO_MESSAGE type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“¯ŽžWŒv‘‚©ƒ`ƒFƒbƒN
+ *	@brief	åŒæ™‚é›†è¨ˆå›½ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	type		Ž¿–âƒ^ƒCƒv
- *	@param	lang		Œ¾Œêƒ^ƒCƒv
+ *	@param	type		è³ªå•ã‚¿ã‚¤ãƒ—
+ *	@param	lang		è¨€èªžã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE		Ž©•ª‚ÌŒ¾Œê‚Æ“¯ŽžWŒv
- *	@retval	FALSE		Ž©•ª‚ÌŒ¾Œê‚Æ“¯ŽžWŒv‚¶‚á‚È‚¢
+ *	@retval	TRUE		è‡ªåˆ†ã®è¨€èªžã¨åŒæ™‚é›†è¨ˆ
+ *	@retval	FALSE		è‡ªåˆ†ã®è¨€èªžã¨åŒæ™‚é›†è¨ˆã˜ã‚ƒãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL DWC_LOBBY_ANKETO_GetLanguageSummarize( DWC_LOBBY_ANKETO_LANGUAGE_DATA type, u32 lang )
@@ -2305,7 +2305,7 @@ BOOL DWC_LOBBY_ANKETO_GetLanguageSummarize( DWC_LOBBY_ANKETO_LANGUAGE_DATA type,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	P2PÚ‘±I—¹
+ *	@brief	P2PæŽ¥ç¶šçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 void DWC_LOBBY_MG_EndConnect( void )
@@ -2315,7 +2315,7 @@ void DWC_LOBBY_MG_EndConnect( void )
 	mydwc_setConnectCallback( NULL, NULL );
 	mydwc_setDisconnectCallback( NULL, NULL );
 
-	// Lobby“àó‘Ô‚àØ’f‚Ö
+	// Lobbyå†…çŠ¶æ…‹ã‚‚åˆ‡æ–­ã¸
 	p_DWC_LOBBYLIB_WK->mg_myentry	= DWC_LOBBY_MG_NUM;
 	p_DWC_LOBBYLIB_WK->mg_myparent	= FALSE;
 	p_DWC_LOBBYLIB_WK->mg_myend		= FALSE;
@@ -2323,7 +2323,7 @@ void DWC_LOBBY_MG_EndConnect( void )
 
 
 #ifdef PM_DEBUG
-// ƒfƒoƒbƒN—pƒXƒPƒWƒ…[ƒ‹Ý’è
+// ãƒ‡ãƒãƒƒã‚¯ç”¨ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®š
 void DWC_LOBBY_DEBUG_SetRoomData( u32 locktime, u32 random, u8 roomtype, u8 season )
 {
 	PPW_LobbySchedule* p_schedule = (PPW_LobbySchedule*)p_DWC_LOBBYLIB_WK->schedulebuff;
@@ -2343,7 +2343,7 @@ void DWC_LOBBY_DEBUG_SetRoomData( u32 locktime, u32 random, u8 roomtype, u8 seas
 
 	
 	if( D_Tomoya_WiFiLobby_LockTime_Long == TRUE ){
-		p_schedule->lockTime = 0xffffffff;	// ƒƒbƒN’·‚¢
+		p_schedule->lockTime = 0xffffffff;	// ãƒ­ãƒƒã‚¯é•·ã„
 	}else{
 		p_schedule->lockTime = 30;
 	}
@@ -2405,7 +2405,7 @@ void DWC_LOBBY_DEBUG_SetRoomData( u32 locktime, u32 random, u8 roomtype, u8 seas
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚Ìl‚ð‚¢‚é‚±‚Æ‚É‚·‚é
+ *	@brief	ãã®äººã‚’ã„ã‚‹ã“ã¨ã«ã™ã‚‹
  *
  *	@param	cp_data
  *	@param	userid 
@@ -2418,14 +2418,14 @@ void DWC_LOBBY_DEBUG_PlayerIN( const void* cp_data, s32 userid )
 	system.subChannelKind	= PPW_LOBBY_CHANNEL_KIND_INVALID;
 	system.enterTime		= p_DWC_LOBBYLIB_WK->time.currentTime;
 
-	// ‚¢‚é‚±‚Æ‚É‚µ‚Ä‚Ý‚é
+	// ã„ã‚‹ã“ã¨ã«ã—ã¦ã¿ã‚‹
 	DWC_LOBBY_CallBack_Connect( userid, &system, cp_data, p_DWC_LOBBYLIB_WK->profilesize );
 	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚Ìl‚ÌƒvƒƒtƒB[ƒ‹‚ð‚©‚¦‚é
+ *	@brief	ãã®äººã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’ã‹ãˆã‚‹
  *
  *	@param	cp_data
  *	@param	useridx 
@@ -2442,17 +2442,17 @@ void DWC_LOBBY_DEBUG_SetProfile( const void* cp_data, u32 userid )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’ÊƒGƒ‰[ƒ`ƒFƒbƒN
+ *	@brief	å…±é€šã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
  *
- *	@param	result	ƒGƒ‰[ƒ^ƒCƒv
+ *	@param	result	ã‚¨ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	³í
- *	@retval	FALSE	ƒGƒ‰[ó‘Ô
+ *	@retval	TRUE	æ­£å¸¸
+ *	@retval	FALSE	ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 static BOOL DWC_LOBBY_CheckCommonErr( PPW_LOBBY_RESULT result )
@@ -2460,35 +2460,35 @@ static BOOL DWC_LOBBY_CheckCommonErr( PPW_LOBBY_RESULT result )
 	BOOL ret = TRUE;
 	
 	switch( result ){
-	// ¬Œ÷
-	case PPW_LOBBY_RESULT_SUCCESS:               ///< ¬Œ÷B
+	// æˆåŠŸ
+	case PPW_LOBBY_RESULT_SUCCESS:               ///< æˆåŠŸã€‚
 		break;
 
-	// Ž¸”s
-	case PPW_LOBBY_RESULT_ERROR_ALLOC:           ///< ƒƒ‚ƒŠŠm•Û‚ÉŽ¸”sB
-	case PPW_LOBBY_RESULT_ERROR_SESSION:         ///< ’v–½“I‚È’ÊMƒGƒ‰[B
-	case PPW_LOBBY_RESULT_ERROR_CHANNEL:         ///< Žw’è‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚È‚¢B
-	case PPW_LOBBY_RESULT_ERROR_STATE:           ///< ŒÄ‚Ño‚µ‚Ä‚Í‚¢‚¯‚È‚¢ó‘Ô‚ÅŠÖ”‚ðŒÄ‚Ño‚µ‚½B
+	// å¤±æ•—
+	case PPW_LOBBY_RESULT_ERROR_ALLOC:           ///< ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã€‚
+	case PPW_LOBBY_RESULT_ERROR_SESSION:         ///< è‡´å‘½çš„ãªé€šä¿¡ã‚¨ãƒ©ãƒ¼ã€‚
+	case PPW_LOBBY_RESULT_ERROR_CHANNEL:         ///< æŒ‡å®šã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ãªã„ã€‚
+	case PPW_LOBBY_RESULT_ERROR_STATE:           ///< å‘¼ã³å‡ºã—ã¦ã¯ã„ã‘ãªã„çŠ¶æ…‹ã§é–¢æ•°ã‚’å‘¼ã³å‡ºã—ãŸã€‚
 
 		DWC_LOBBY_PRINT("dwc err check %d\n",result);
 		
 		ret = FALSE;
 		break;
 		
-	// ƒpƒ‰ƒ[ƒ^‚ª•s³
-	case PPW_LOBBY_RESULT_ERROR_PARAM:           ///< Žw’è‚µ‚½ˆø”‚ª•s³B
-	case PPW_LOBBY_RESULT_ERROR_NODATA:          ///< Žw’è‚µ‚½î•ñ‚Í‘¶Ý‚µ‚È‚¢B
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒä¸æ­£
+	case PPW_LOBBY_RESULT_ERROR_PARAM:           ///< æŒ‡å®šã—ãŸå¼•æ•°ãŒä¸æ­£ã€‚
+	case PPW_LOBBY_RESULT_ERROR_NODATA:          ///< æŒ‡å®šã—ãŸæƒ…å ±ã¯å­˜åœ¨ã—ãªã„ã€‚
 		GF_ASSERT_MSG( 0, "func param err = %d\n", result );
 		ret = FALSE;
 		break;
 
-	// ‚·‚Å‚ÉƒpƒjƒbƒNó‘Ô
-	case PPW_LOBBY_RESULT_ERROR_CONDITION:       ///< ’v–½“IƒGƒ‰[‚ª”­¶’†‚È‚Ì‚Å‚±‚ÌŠÖ”‚ðŒÄ‚Ño‚¹‚È‚¢B
+	// ã™ã§ã«ãƒ‘ãƒ‹ãƒƒã‚¯çŠ¶æ…‹
+	case PPW_LOBBY_RESULT_ERROR_CONDITION:       ///< è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿä¸­ãªã®ã§ã“ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã›ãªã„ã€‚
 		ret = FALSE;
 		break;
 
 	default:
-		GF_ASSERT(0);	// ‚ ‚è‚¦‚È‚¢
+		GF_ASSERT(0);	// ã‚ã‚Šãˆãªã„
 		ret = FALSE;
 		break;
 	}
@@ -2498,7 +2498,7 @@ static BOOL DWC_LOBBY_CheckCommonErr( PPW_LOBBY_RESULT result )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚±‚ÌƒVƒXƒeƒ€‚È‚¢‚ÅÝ’è‚³‚ê‚½ƒGƒ‰[ó‘Ô‚ðƒNƒŠƒA
+ *	@brief	ã“ã®ã‚·ã‚¹ãƒ†ãƒ ãªã„ã§è¨­å®šã•ã‚ŒãŸã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ã‚’ã‚¯ãƒªã‚¢
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_ClearSystemErr( void )
@@ -2509,15 +2509,15 @@ static void DWC_LOBBY_ClearSystemErr( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PPW‚Ìƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv‚ð“n‚µ‚ÄDWC“à—p‚ÌƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv‚ðŽæ“¾‚·‚é
+ *	@brief	PPWã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—ã‚’æ¸¡ã—ã¦DWCå†…ç”¨ã®ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	channel		PPWƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+ *	@param	channel		PPWãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
  *
- *	@retval	DWC_LOBBY_SUBCHAN_FOOT1,			// ‘«Õƒ{[ƒh‚P
- *	@retval	DWC_LOBBY_SUBCHAN_FOOT2,			// ‘«Õƒ{[ƒh‚Q
- *	@retval	DWC_LOBBY_SUBCHAN_CLOCK,			// ¢ŠEŽžŒv
- *	@retval	DWC_LOBBY_SUBCHAN_NEWS,				// ƒƒr[ƒjƒ…[ƒX
- *	@retval	DWC_LOBBY_SUBCHAN_NONE,				// ƒVƒXƒeƒ€“à‚ÅŽg—p‚µ‚Ü‚·
+ *	@retval	DWC_LOBBY_SUBCHAN_FOOT1,			// è¶³è·¡ãƒœãƒ¼ãƒ‰ï¼‘
+ *	@retval	DWC_LOBBY_SUBCHAN_FOOT2,			// è¶³è·¡ãƒœãƒ¼ãƒ‰ï¼’
+ *	@retval	DWC_LOBBY_SUBCHAN_CLOCK,			// ä¸–ç•Œæ™‚è¨ˆ
+ *	@retval	DWC_LOBBY_SUBCHAN_NEWS,				// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
+ *	@retval	DWC_LOBBY_SUBCHAN_NONE,				// ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã—ã¾ã™
  */
 //-----------------------------------------------------------------------------
 static DWC_LOBBY_SUBCHAN_TYPE DWC_LOBBY_GetSubChannelType( PPW_LOBBY_CHANNEL_KIND channel )
@@ -2533,11 +2533,11 @@ static DWC_LOBBY_SUBCHAN_TYPE DWC_LOBBY_GetSubChannelType( PPW_LOBBY_CHANNEL_KIN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv‚ðPPW‚Ìƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv‚É‚·‚é
+ *	@brief	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—ã‚’PPWã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—ã«ã™ã‚‹
  *
- *	@param	subchan_type	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+ *	@param	subchan_type	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
  *
- *	@return	PPW‚Ìƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+ *	@return	PPWã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static PPW_LOBBY_CHANNEL_KIND DWC_LOBBY_GetChannelKind( DWC_LOBBY_SUBCHAN_TYPE subchan_type )
@@ -2550,12 +2550,12 @@ static PPW_LOBBY_CHANNEL_KIND DWC_LOBBY_GetChannelKind( DWC_LOBBY_SUBCHAN_TYPE s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ž©•ª‚Ì‘ƒf[ƒ^‚ð‘ÞŽºŽÒ‘ƒf[ƒ^ƒoƒbƒtƒ@‚ÉÝ’è
+ *	@brief	è‡ªåˆ†ã®å›½ãƒ‡ãƒ¼ã‚¿ã‚’é€€å®¤è€…å›½ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã«è¨­å®š
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Ý’è‚µ‚½
- *	@retval	FALSE	Ý’è‚µ‚È‚©‚Á‚½
+ *	@retval	TRUE	è¨­å®šã—ãŸ
+ *	@retval	FALSE	è¨­å®šã—ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL DWC_LOBBY_WLDDATA_SetMyData( DWC_LOBBYLIB_WK* p_sys )
@@ -2565,32 +2565,32 @@ static BOOL DWC_LOBBY_WLDDATA_SetMyData( DWC_LOBBYLIB_WK* p_sys )
 	int i;
 	PPW_LOBBY_RESULT result;
 
-	// ‘‚Æ’nˆæID‚ðŽæ“¾
+	// å›½ã¨åœ°åŸŸIDã‚’å–å¾—
 	nation	= WIFIHISTORY_GetMyNation( p_sys->p_wifihistory );
 	area	= WIFIHISTORY_GetMyArea( p_sys->p_wifihistory );
 
-	// ‘‚ª‚È‚¢‚È‚ç‚»‚Ì‚Ü‚Ü”²‚¯‚é
+	// å›½ãŒãªã„ãªã‚‰ãã®ã¾ã¾æŠœã‘ã‚‹
 	if( nation == DWC_LOBBY_WLDDATA_NATION_NONE ){
 		return FALSE;
 	}
 
-	// ‘‚Æ’nˆæ‚Å“¯‚¶ƒf[ƒ^‚ª‚ ‚Á‚½‚ç‰½‚à‚¹‚¸‚É”²‚¯‚é
+	// å›½ã¨åœ°åŸŸã§åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ãŸã‚‰ä½•ã‚‚ã›ãšã«æŠœã‘ã‚‹
 	for( i=0; i<DWC_WLDDATA_MAX; i++ ){
 		if( p_sys->wfldata[i].flag == FALSE ){
-			// ‚»‚±‚Éƒf[ƒ^‚ð“ü‚ê‚Ä”²‚¯‚é
+			// ãã“ã«ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã¦æŠœã‘ã‚‹
 			
 			break;
 		}else{
 
-			// ”äŠr‚·‚é
+			// æ¯”è¼ƒã™ã‚‹
 			if( (p_sys->wfldata[i].nation == nation) && 
 				(p_sys->wfldata[i].area == area) ){
-				return FALSE;	// ˆê‚Ìƒf[ƒ^‚ª‚ ‚Á‚½‚Ì‚Å‰½‚à‚¹‚¸”²‚¯‚é
+				return FALSE;	// ä¸€ç·’ã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ãŸã®ã§ä½•ã‚‚ã›ãšæŠœã‘ã‚‹
 			}
 		}
 	}
 
-	// MAX‚É‚È‚Á‚½‚çƒoƒbƒtƒ@ƒI[ƒo[
+	// MAXã«ãªã£ãŸã‚‰ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ¼ãƒãƒ¼
 	if( i >= DWC_WLDDATA_MAX ){
 		GF_ASSERT( 0 );
 		return FALSE;
@@ -2600,14 +2600,14 @@ static BOOL DWC_LOBBY_WLDDATA_SetMyData( DWC_LOBBYLIB_WK* p_sys )
 	p_sys->wfldata[i].area		= area;
 	p_sys->wfldata[i].flag		= TRUE;
 
-	// ƒf[ƒ^‚ªÝ’è‚³‚ê‚½‚Ì‚Åƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ðXV
+	// ãƒ‡ãƒ¼ã‚¿ãŒè¨­å®šã•ã‚ŒãŸã®ã§ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°
 	result = PPW_LobbySetChannelData( 
-			PPW_LOBBY_INVALID_USER_ID,	// ƒ`ƒƒƒ“ƒlƒ‹Ž©‘Ì‚ÉÝ’è
+			PPW_LOBBY_INVALID_USER_ID,	// ãƒãƒ£ãƒ³ãƒãƒ«è‡ªä½“ã«è¨­å®š
 			PPW_LOBBY_CHANNEL_KIND_MAIN, sc_DWC_LOBBY_CHANNEL_KEY_NAME[DWC_LOBBY_CHANNEL_KEY_WLDDATA],
 			(const u8*)p_sys->wfldata, sizeof(DWC_WLDDATA)*DWC_WLDDATA_MAX );
 
 	OS_TPrintf( "wlddata send\n" );
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	return DWC_LOBBY_CheckCommonErr( result );
 }
 
@@ -2618,11 +2618,11 @@ static BOOL DWC_LOBBY_WLDDATA_SetMyData( DWC_LOBBYLIB_WK* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹‰Šú‰»
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	size		ƒvƒƒtƒB[ƒ‹‚Pƒf[ƒ^ƒTƒCƒY
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	size		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ï¼‘ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_Profile_Init( DWC_LOBBYLIB_WK* p_sys, u32 size, u32 heapID )
@@ -2634,9 +2634,9 @@ static void DWC_LOBBY_Profile_Init( DWC_LOBBYLIB_WK* p_sys, u32 size, u32 heapID
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹”jŠü
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_Profile_Exit( DWC_LOBBYLIB_WK* p_sys )
@@ -2646,11 +2646,11 @@ static void DWC_LOBBY_Profile_Exit( DWC_LOBBYLIB_WK* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹	ƒf[ƒ^Ý’è
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«	ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	userid		Ý’èæ
- *	@param	cp_data		ƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	userid		è¨­å®šå…ˆ
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_Profile_SetData( DWC_LOBBYLIB_WK* p_sys, s32 userid, const void* cp_data )
@@ -2660,12 +2660,12 @@ static void DWC_LOBBY_Profile_SetData( DWC_LOBBYLIB_WK* p_sys, s32 userid, const
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹	ƒf[ƒ^Ý’è	ƒf[ƒ^ƒTƒCƒY’²®‚às‚¤
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«	ãƒ‡ãƒ¼ã‚¿è¨­å®š	ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºèª¿æ•´ã‚‚è¡Œã†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	userid		Ý’èæ
- *	@param	cp_data		ƒf[ƒ^
- *	@param	datasize	ƒvƒƒtƒB[ƒ‹ƒf[ƒ^ƒTƒCƒY
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	userid		è¨­å®šå…ˆ
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	datasize	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_Profile_SetDataEx( DWC_LOBBYLIB_WK* p_sys, s32 userid, const void* cp_data, u32 datasize )
@@ -2674,20 +2674,20 @@ static void DWC_LOBBY_Profile_SetDataEx( DWC_LOBBYLIB_WK* p_sys, s32 userid, con
 	u8* p_buff;
 	u32 copy_size;
 
-	// userid‚©‚çƒoƒbƒtƒ@ƒCƒ“ƒfƒbƒNƒX‚ðŽæ“¾
+	// useridã‹ã‚‰ãƒãƒƒãƒ•ã‚¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( p_sys, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	GF_ASSERT( idx != DWC_LOBBY_USERIDTBL_IDX_NONE );
 
-	// ƒCƒ“ƒfƒbƒNƒXæ‚Ìƒoƒbƒtƒ@‚ÉƒRƒs[
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å…ˆã®ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
 	p_buff = p_sys->p_profile;
 	p_buff = &p_buff[ p_sys->profilesize*idx ];
 
-	// ƒRƒs[ƒTƒCƒY
-	// ƒvƒƒtƒB[ƒ‹ƒTƒCƒY‚ª‘å‚«‚¢‚Æ‚«iŽŸŠúƒo[ƒWƒ‡ƒ“j
-	// Ž©•ª‚ÌƒvƒƒtƒB[ƒ‹ƒTƒCƒY‚ÅƒRƒs[‚·‚é
+	// ã‚³ãƒ”ãƒ¼ã‚µã‚¤ã‚º
+	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚ºãŒå¤§ãã„ã¨ãï¼ˆæ¬¡æœŸãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼‰
+	// è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚ºã§ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	//
-	// ƒvƒƒtƒB[ƒ‹ƒTƒCƒY‚ª¬‚³‚¢‚Æ‚«i‘O‚Ìƒo[ƒWƒ‡ƒ“j
-	// ‚»‚ÌƒTƒCƒY‚ÅƒRƒs[‚·‚é•ƒRƒs[‚·‚é‘O‚É‚OƒNƒŠƒA
+	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚ºãŒå°ã•ã„ã¨ãï¼ˆå‰ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼‰
+	// ãã®ã‚µã‚¤ã‚ºã§ã‚³ãƒ”ãƒ¼ã™ã‚‹ï¼†ã‚³ãƒ”ãƒ¼ã™ã‚‹å‰ã«ï¼ã‚¯ãƒªã‚¢
 	if( p_sys->profilesize > datasize ){
 		copy_size = datasize;
 		memset( p_buff, 0, p_sys->profilesize );
@@ -2699,12 +2699,12 @@ static void DWC_LOBBY_Profile_SetDataEx( DWC_LOBBYLIB_WK* p_sys, s32 userid, con
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹‚ðŽæ“¾
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	userid		ƒ†[ƒUID
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
  *
- *	@return	ƒvƒƒtƒB[ƒ‹ƒf[ƒ^
+ *	@return	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const void* DWC_LOBBY_Profile_GetData( const DWC_LOBBYLIB_WK* cp_sys, s32 userid )
@@ -2712,11 +2712,11 @@ static const void* DWC_LOBBY_Profile_GetData( const DWC_LOBBYLIB_WK* cp_sys, s32
 	s32 idx;
 	const u8* cp_buff;
 
-	// userid‚©‚çƒoƒbƒtƒ@ƒCƒ“ƒfƒbƒNƒX‚ðŽæ“¾
+	// useridã‹ã‚‰ãƒãƒƒãƒ•ã‚¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( cp_sys, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	GF_ASSERT( idx != DWC_LOBBY_USERIDTBL_IDX_NONE );
 
-	// ƒCƒ“ƒfƒbƒNƒXæ‚Ìƒoƒbƒtƒ@‚ÉƒRƒs[
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å…ˆã®ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
 	cp_buff = cp_sys->p_profile;
 	cp_buff = &cp_buff[ cp_sys->profilesize*idx ];
 	return cp_buff;
@@ -2724,9 +2724,9 @@ static const void* DWC_LOBBY_Profile_GetData( const DWC_LOBBYLIB_WK* cp_sys, s32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹ƒNƒŠ[ƒ“ƒf[ƒ^
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *	@param	userid		userID
  */
 //-----------------------------------------------------------------------------
@@ -2735,11 +2735,11 @@ static void DWC_LOBBY_Profile_CleanData( DWC_LOBBYLIB_WK* p_sys, s32 userid )
 	s32 idx;
 	u8* p_buff;
 
-	// userid‚©‚çƒoƒbƒtƒ@ƒCƒ“ƒfƒbƒNƒX‚ðŽæ“¾
+	// useridã‹ã‚‰ãƒãƒƒãƒ•ã‚¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( p_sys, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	GF_ASSERT( idx != DWC_LOBBY_USERIDTBL_IDX_NONE );
 
-	// ƒCƒ“ƒfƒbƒNƒXæ‚Ìƒoƒbƒtƒ@‚ðƒNƒŠƒA
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å…ˆã®ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢
 	p_buff = p_sys->p_profile;
 	p_buff = &p_buff[ p_sys->profilesize*idx ];
 	memset( p_buff, 0, p_sys->profilesize );
@@ -2750,21 +2750,21 @@ static void DWC_LOBBY_Profile_CleanData( DWC_LOBBYLIB_WK* p_sys, s32 userid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒvƒƒtƒB[ƒ‹‚ðÝ’è
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	userid		ƒ†[ƒUID
- *	@param	cp_data		ƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_SysProfile_SetData( DWC_LOBBYLIB_WK* p_sys, s32 userid, const PPW_LobbySystemProfile* cp_data )
 {
 	s32 idx;
 
-	// userid‚©‚çƒoƒbƒtƒ@ƒCƒ“ƒfƒbƒNƒX‚ðŽæ“¾
+	// useridã‹ã‚‰ãƒãƒƒãƒ•ã‚¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( p_sys, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	GF_ASSERT( idx != DWC_LOBBY_USERIDTBL_IDX_NONE );
-	// ƒCƒ“ƒfƒbƒNƒXæ‚Ìƒoƒbƒtƒ@‚ÉƒRƒs[
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å…ˆã®ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
 	p_sys->sysprofile[ idx ] = *cp_data;
 
 	DWC_LOBBY_PRINT( "sys profile channel=%d\n", cp_data->subChannelKind );
@@ -2772,28 +2772,28 @@ static void DWC_LOBBY_SysProfile_SetData( DWC_LOBBYLIB_WK* p_sys, s32 userid, co
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒvƒƒtƒB[ƒ‹‚ðŽæ“¾
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	userid		ƒ†[ƒUID
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 static const PPW_LobbySystemProfile* DWC_LOBBY_SysProfile_GetData( const DWC_LOBBYLIB_WK* cp_sys, s32 userid )
 {
 	s32 idx;
 
-	// userid‚©‚çƒoƒbƒtƒ@ƒCƒ“ƒfƒbƒNƒX‚ðŽæ“¾
+	// useridã‹ã‚‰ãƒãƒƒãƒ•ã‚¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( cp_sys, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	GF_ASSERT( idx != DWC_LOBBY_USERIDTBL_IDX_NONE );
-	// ƒCƒ“ƒfƒbƒNƒXæ‚Ìƒoƒbƒtƒ@‚ð•Ô‚·
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å…ˆã®ãƒãƒƒãƒ•ã‚¡ã‚’è¿”ã™
 	return &cp_sys->sysprofile[ idx ];
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒvƒƒtƒB[ƒ‹‚ÌƒNƒŠƒA
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®ã‚¯ãƒªã‚¢
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *	@param	userid		userID
  */
 //-----------------------------------------------------------------------------
@@ -2801,11 +2801,11 @@ static void DWC_LOBBY_SysProfile_CleanData( DWC_LOBBYLIB_WK* p_sys, s32 userid )
 {
 	s32 idx;
 
-	// userid‚©‚çƒoƒbƒtƒ@ƒCƒ“ƒfƒbƒNƒX‚ðŽæ“¾
+	// useridã‹ã‚‰ãƒãƒƒãƒ•ã‚¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( p_sys, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	GF_ASSERT( idx != DWC_LOBBY_USERIDTBL_IDX_NONE );
 
-	// ƒCƒ“ƒfƒbƒNƒXæ‚Ìƒoƒbƒtƒ@‚ÉƒRƒs[
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å…ˆã®ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
 	memset( &p_sys->sysprofile[ idx ], 0, sizeof(PPW_LobbySystemProfile) );
 }
 
@@ -2815,12 +2815,12 @@ static void DWC_LOBBY_SysProfile_CleanData( DWC_LOBBYLIB_WK* p_sys, s32 userid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUID—ñ‹“	‰Šú‰»
+ *	@brief	ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™	åˆæœŸåŒ–
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	maintblnum		ƒƒCƒ“ƒ†[ƒUÅ‘å”
- *	@param	subtblnum		ƒTƒuƒ†[ƒUÅ‘å”
- *	@param	heapID			ƒq[ƒvID
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	maintblnum		ãƒ¡ã‚¤ãƒ³ãƒ¦ãƒ¼ã‚¶æœ€å¤§æ•°
+ *	@param	subtblnum		ã‚µãƒ–ãƒ¦ãƒ¼ã‚¶æœ€å¤§æ•°
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_UserIDTbl_Init( DWC_LOBBYLIB_WK* p_sys, u32 maintblnum, u32 subtblnum, u32 heapID )
@@ -2844,9 +2844,9 @@ static void DWC_LOBBY_UserIDTbl_Init( DWC_LOBBYLIB_WK* p_sys, u32 maintblnum, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUID—ñ‹“		”jŠü
+ *	@brief	ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™		ç ´æ£„
  *	
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_UserIDTbl_Exit( DWC_LOBBYLIB_WK* p_sys )
@@ -2862,10 +2862,10 @@ static void DWC_LOBBY_UserIDTbl_Exit( DWC_LOBBYLIB_WK* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUID—ñ‹“ƒf[ƒ^ƒNƒŠƒA
+ *	@brief	ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
  *
- *	@param	p_sys				ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	channeltype			ƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+ *	@param	p_sys				ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	channeltype			ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_UserIDTbl_Clear( DWC_LOBBYLIB_WK* p_sys, u32 channeltype )
@@ -2880,11 +2880,11 @@ static void DWC_LOBBY_UserIDTbl_Clear( DWC_LOBBYLIB_WK* p_sys, u32 channeltype )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUID—ñ‹“	ƒ†[ƒUID“o˜^
+ *	@brief	ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™	ãƒ¦ãƒ¼ã‚¶IDç™»éŒ²
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	userid			ƒ†[ƒUID
- *	@param	channeltype		ƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	userid			ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	channeltype		ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_UserIDTbl_AddId( DWC_LOBBYLIB_WK* p_sys, s32 userid, u32 channeltype )
@@ -2892,18 +2892,18 @@ static void DWC_LOBBY_UserIDTbl_AddId( DWC_LOBBYLIB_WK* p_sys, s32 userid, u32 c
 	u32 idx;
 	int i;
 	
-	// ‚·‚Å‚É“o˜^Ï‚Ý‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«ç™»éŒ²æ¸ˆã¿ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( DWC_LOBBY_UserIDTbl_GetIdx( p_sys, userid, channeltype ) != DWC_LOBBY_USERIDTBL_IDX_NONE ){
 		return ;
 	} 
 
-	// ‚Ü‚¾“o˜^‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+	// ã¾ã ç™»éŒ²ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_sys->useridtbl[ channeltype ].num < p_sys->useridtbl[ channeltype ].tblnum );
 	if( p_sys->useridtbl[ channeltype ].num >= p_sys->useridtbl[ channeltype ].tblnum ){
 		return ;
 	}
 
-	// “o˜^ƒCƒ“ƒfƒbƒNƒX‚ð‹‚ß‚é
+	// ç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ±‚ã‚ã‚‹
 	for( i=0; i<p_sys->useridtbl[ channeltype ].tblnum; i++ ){
 		if( p_sys->useridtbl[ channeltype ].p_tbl[ i ] == DWC_LOBBY_INVALID_USER_ID ){
 			idx = i;
@@ -2911,47 +2911,47 @@ static void DWC_LOBBY_UserIDTbl_AddId( DWC_LOBBYLIB_WK* p_sys, s32 userid, u32 c
 		}
 	}
 	
-	// “o˜^
+	// ç™»éŒ²
 	p_sys->useridtbl[ channeltype ].p_tbl[ idx ] = userid;
 	p_sys->useridtbl[ channeltype ].num ++;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUID—ñ‹“	ƒ†[ƒUID”jŠü
+ *	@brief	ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™	ãƒ¦ãƒ¼ã‚¶IDç ´æ£„
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	userid			ƒ†[ƒUID
- *	@param	channeltype		ƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	userid			ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	channeltype		ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_UserIDTbl_DelId( DWC_LOBBYLIB_WK* p_sys, s32 userid, u32 channeltype )
 {
 	u32 idx;
 
-	// “o˜^IDXŽæ“¾
+	// ç™»éŒ²IDXå–å¾—
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( p_sys, userid, channeltype );
 	
-	// ”jŠüÏ‚Ý‚¶‚á‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ç ´æ£„æ¸ˆã¿ã˜ã‚ƒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( idx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
 		return ;
 	} 
 
-	// ”jŠü
+	// ç ´æ£„
 	p_sys->useridtbl[ channeltype ].p_tbl[ idx ] = DWC_LOBBY_INVALID_USER_ID;
 	p_sys->useridtbl[ channeltype ].num --;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUID—ñ‹“		ƒ†[ƒUID‚©‚çƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒX‚ðŽæ“¾
+ *	@brief	ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™		ãƒ¦ãƒ¼ã‚¶IDã‹ã‚‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- *	@param	cp_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	userid			ƒ†[ƒUID
- *	@param	channeltype		ƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+ *	@param	cp_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	userid			ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	channeltype		ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
  *
- *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	‚»‚Ìƒ†[ƒUID‚Ì“o˜^‚³‚ê‚Ä‚¢‚È‚¢
- *	@retval	‚»‚êˆÈŠO						ƒ†[ƒUID‚Ìƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒX
+ *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	ãã®ãƒ¦ãƒ¼ã‚¶IDã®ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
+ *	@retval	ãã‚Œä»¥å¤–						ãƒ¦ãƒ¼ã‚¶IDã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static s32 DWC_LOBBY_UserIDTbl_GetIdx( const DWC_LOBBYLIB_WK* cp_sys, s32 userid, u32 channeltype )
@@ -2968,14 +2968,14 @@ static s32 DWC_LOBBY_UserIDTbl_GetIdx( const DWC_LOBBYLIB_WK* cp_sys, s32 userid
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUID—ñ‹“		ƒCƒ“ƒfƒbƒNƒXˆÊ’u‚Ìƒ†[ƒUID‚ðŽæ“¾
+ *	@brief	ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä½ç½®ã®ãƒ¦ãƒ¼ã‚¶IDã‚’å–å¾—
  *
- *	@param	cp_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
- *	@param	channeltype		ƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+ *	@param	cp_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	channeltype		ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
  *
- *	@retval	DWC_LOBBY_INVALID_USER_ID	‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚É‚Í’N‚à‚¢‚È‚¢ 	
- *	@retval	‚»‚Ì‘¼						ƒ†[ƒUID
+ *	@retval	DWC_LOBBY_INVALID_USER_ID	ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã¯èª°ã‚‚ã„ãªã„ 	
+ *	@retval	ãã®ä»–						ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 static s32 DWC_LOBBY_UserIDTbl_GetUserid( const DWC_LOBBYLIB_WK* cp_sys, s32 idx, u32 channeltype )
@@ -2986,10 +2986,10 @@ static s32 DWC_LOBBY_UserIDTbl_GetUserid( const DWC_LOBBYLIB_WK* cp_sys, s32 idx
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	SystemProfile‚ðŽg—p‚µ‚ÄA¡‚ÌƒvƒŒƒCƒ„[‚Ìƒ`ƒƒƒ“ƒlƒ‹“o˜^ó‹µ‚ðì¬
+ *	@brief	SystemProfileã‚’ä½¿ç”¨ã—ã¦ã€ä»Šã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒãƒ£ãƒ³ãƒãƒ«ç™»éŒ²çŠ¶æ³ã‚’ä½œæˆ
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	subchan_type	Ý’è‚·‚éƒ`ƒƒƒ“ƒlƒ‹
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	subchan_type	è¨­å®šã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_UserIDTbl_SUBCHAN_SetSysProfileData( DWC_LOBBYLIB_WK* p_sys, DWC_LOBBY_SUBCHAN_TYPE subchan_type )
@@ -2998,13 +2998,13 @@ static void DWC_LOBBY_UserIDTbl_SUBCHAN_SetSysProfileData( DWC_LOBBYLIB_WK* p_sy
 	s32 userid;
 	u32 channel_kind;
 
-	// ’Tõ‚·‚éPPWƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv‚É•ÏŠ·‚·‚é
+	// æŽ¢ç´¢ã™ã‚‹PPWãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—ã«å¤‰æ›ã™ã‚‹
 	channel_kind = DWC_LOBBY_GetChannelKind( subchan_type );
 
-	// 1“xƒNƒŠ[ƒ“
+	// 1åº¦ã‚¯ãƒªãƒ¼ãƒ³
 	DWC_LOBBY_UserIDTbl_Clear( p_sys, DWC_LOBBY_LOCALCHANNEL_TYPE_SUB );
 
-	// ‚»‚Ìó‹µ‚ðÝ’è‚·‚é
+	// ãã®çŠ¶æ³ã‚’è¨­å®šã™ã‚‹
 	for( i=0; i<p_sys->useridtbl[ DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN ].tblnum; i++ ){
 		userid = DWC_LOBBY_UserIDTbl_GetUserid( p_sys, i, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 		if( userid != DWC_LOBBY_USERIDTBL_IDX_NONE ){
@@ -3017,13 +3017,13 @@ static void DWC_LOBBY_UserIDTbl_SUBCHAN_SetSysProfileData( DWC_LOBBYLIB_WK* p_sy
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	SystemProfile‚ðŽg—p‚µ‚ÄA¡‚¢‚éƒvƒŒƒCƒ„[‚ÌŽw’èƒ`ƒƒƒ“ƒlƒ‹‚Ö‚ÌÚ‘±”‚ðƒ`ƒFƒbƒN‚µAƒƒOƒCƒ“‚µ‚Ä‚à‘åä•v‚©ƒ`ƒFƒbƒN
+ *	@brief	SystemProfileã‚’ä½¿ç”¨ã—ã¦ã€ä»Šã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æŒ‡å®šãƒãƒ£ãƒ³ãƒãƒ«ã¸ã®æŽ¥ç¶šæ•°ã‚’ãƒã‚§ãƒƒã‚¯ã—ã€ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã‚‚å¤§ä¸ˆå¤«ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys				ƒVƒXƒeƒ€
- *	@param	subchan_type		ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+ *	@param	cp_sys				ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	subchan_type		ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE		LOGIN@OK
- *	@retval	FALSE		LOGIN@NG
+ *	@retval	TRUE		LOGINã€€OK
+ *	@retval	FALSE		LOGINã€€NG
  */
 //-----------------------------------------------------------------------------
 static BOOL DWC_LOBBY_UserIDTbl_SUBCHAN_CheckSysProfileLogin( const DWC_LOBBYLIB_WK* cp_sys, DWC_LOBBY_SUBCHAN_TYPE subchan_type )
@@ -3041,10 +3041,10 @@ static BOOL DWC_LOBBY_UserIDTbl_SUBCHAN_CheckSysProfileLogin( const DWC_LOBBYLIB
 
 	GF_ASSERT( subchan_type < DWC_LOBBY_SUBCHAN_NONE );
 
-	// ’Tõ‚·‚éPPWƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv‚É•ÏŠ·‚·‚é
+	// æŽ¢ç´¢ã™ã‚‹PPWãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—ã«å¤‰æ›ã™ã‚‹
 	channel_kind = DWC_LOBBY_GetChannelKind( subchan_type );
 
-	// Ú‘±”‚ð”‚¦‚é
+	// æŽ¥ç¶šæ•°ã‚’æ•°ãˆã‚‹
 	num = 0;
 	for( i=0; i<cp_sys->useridtbl[ DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN ].tblnum; i++ ){
 		userid = DWC_LOBBY_UserIDTbl_GetUserid( cp_sys, i, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
@@ -3055,7 +3055,7 @@ static BOOL DWC_LOBBY_UserIDTbl_SUBCHAN_CheckSysProfileLogin( const DWC_LOBBYLIB
 		}
 	}
 
-	//  Ú‘±l”ƒI[‚Î[ƒ`ƒFƒbƒN
+	//  æŽ¥ç¶šäººæ•°ã‚ªãƒ¼ã°ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( sc_ChannelMaxNum[ subchan_type ] > num ){
 		return TRUE;
 	}
@@ -3069,19 +3069,19 @@ static BOOL DWC_LOBBY_UserIDTbl_SUBCHAN_CheckSysProfileLogin( const DWC_LOBBYLIB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒR[ƒ‹ƒoƒbƒNŒS
+ *	@brief		ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯éƒ¡
  */
 //-----------------------------------------------------------------------------
-// Ž©•ª‚Ì“üŽºˆ—
+// è‡ªåˆ†ã®å…¥å®¤å‡¦ç†
 static void DWC_LOBBY_CallBack_JoinChannel( BOOL success, PPW_LOBBY_CHANNEL_KIND channel )
 {
 	PPW_LOBBY_RESULT result;
 
 	if( channel == PPW_LOBBY_CHANNEL_KIND_MAIN ){
-		// ƒXƒPƒWƒ…[ƒ‹ƒf[ƒ^‚ðŽæ“¾
+		// ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 		p_DWC_LOBBYLIB_WK->schedulesize = DWC_LOBBY_SCHEDULE_SIZE;
 		result = PPW_LobbyGetSchedule( (PPW_LobbySchedule*)p_DWC_LOBBYLIB_WK->schedulebuff, &p_DWC_LOBBYLIB_WK->schedulesize );
-		GF_ASSERT( DWC_LOBBY_CheckCommonErr( result ) );	// ƒoƒbƒtƒ@ƒTƒCƒYƒGƒ‰[
+		GF_ASSERT( DWC_LOBBY_CheckCommonErr( result ) );	// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚¨ãƒ©ãƒ¼
 
 		{
 			PPW_LobbySchedule* p_schedule;
@@ -3090,7 +3090,7 @@ static void DWC_LOBBY_CallBack_JoinChannel( BOOL success, PPW_LOBBY_CHANNEL_KIND
 			DWC_LOBBY_PRINT( "room = %d		season = %d\n", p_schedule->roomType, p_schedule->season );
 		}
 
-		// ¢ŠEŽžŒvƒf[ƒ^‚ÌŽæ“¾
+		// ä¸–ç•Œæ™‚è¨ˆãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 		PPW_LobbyGetChannelDataAsync(PPW_LOBBY_INVALID_USER_ID, PPW_LOBBY_CHANNEL_KIND_MAIN, 
 				sc_DWC_LOBBY_CHANNEL_KEY_NAME[DWC_LOBBY_CHANNEL_KEY_WLDDATA], NULL );
 	}else{
@@ -3099,10 +3099,10 @@ static void DWC_LOBBY_CallBack_JoinChannel( BOOL success, PPW_LOBBY_CHANNEL_KIND
 			if( success == TRUE ){
 				p_DWC_LOBBYLIB_WK->subchan_login_success = DWC_LOBBY_SUBCHAN_LOGIN_OK;
 
-				// ¡‚ÌƒvƒŒƒCƒ„[‚Ìsubchan_type‚Ö‚Ì“üŽºó‹µ‚ðUserIDTbl‚É‘‚«ž‚Þ
+				// ä»Šã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®subchan_typeã¸ã®å…¥å®¤çŠ¶æ³ã‚’UserIDTblã«æ›¸ãè¾¼ã‚€
 				DWC_LOBBY_UserIDTbl_SUBCHAN_SetSysProfileData( p_DWC_LOBBYLIB_WK, p_DWC_LOBBYLIB_WK->subchan_type );
 
-				// Ž©•ª‚Ì’Ç‰Á
+				// è‡ªåˆ†ã®è¿½åŠ 
 				DWC_LOBBY_UserIDTbl_AddId( p_DWC_LOBBYLIB_WK, PPW_LobbyGetMyUserId(), DWC_LOBBY_LOCALCHANNEL_TYPE_SUB );
 				
 			}else{
@@ -3112,23 +3112,23 @@ static void DWC_LOBBY_CallBack_JoinChannel( BOOL success, PPW_LOBBY_CHANNEL_KIND
 		}else{
 
 			GF_ASSERT( 0 );
-			//  ‚»‚Ìƒ`ƒƒƒ“ƒlƒ‹‚É‚ÍƒAƒNƒZƒX‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA‘ÞŽº‚³‚¹‚é
+			//  ãã®ãƒãƒ£ãƒ³ãƒãƒ«ã«ã¯ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã„ãªã„ã®ã§ã€é€€å®¤ã•ã›ã‚‹
 			DWC_LOBBY_SUBCHAN_Logout();
 		}
 	}
 }
 
-// ƒƒr[“üŽºƒR[ƒ‹ƒoƒbƒN
+// ãƒ­ãƒ“ãƒ¼å…¥å®¤ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 static void DWC_LOBBY_CallBack_Connect( s32 userid, const PPW_LobbySystemProfile* cp_sysprofile, const u8* cp_userprofile, u32 user_profilesize )
 {
 	BOOL myuser;
 	
 	DWC_LOBBY_PRINT( "callback  connect userid = %d\n", userid );
 
-	// Ž©•ª‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ã‹ãƒã‚§ãƒƒã‚¯
 	if( userid == PPW_LobbyGetMyUserId() ){
 
-		// ÅV‚Ìƒƒr[‚ÌŽžŠÔ‚ðŽæ“¾
+		// æœ€æ–°ã®ãƒ­ãƒ“ãƒ¼ã®æ™‚é–“ã‚’å–å¾—
 		{
 			PPW_LobbyGetTimeInfo( &p_DWC_LOBBYLIB_WK->time );
 		}
@@ -3139,22 +3139,22 @@ static void DWC_LOBBY_CallBack_Connect( s32 userid, const PPW_LobbySystemProfile
 		myuser = FALSE;
 	}
 
-	//  ‚»‚Ìƒ†[ƒU‚ðƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹‚É’Ç‰Á
+	//  ãã®ãƒ¦ãƒ¼ã‚¶ã‚’ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã«è¿½åŠ 
 	{
 		DWC_LOBBY_UserIDTbl_AddId( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	}
 
-	// ‚»‚Ìƒ†[ƒU‚ÌƒvƒƒtƒB[ƒ‹‚ðƒRƒs[
+	// ãã®ãƒ¦ãƒ¼ã‚¶ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’ã‚³ãƒ”ãƒ¼
 	{
 		DWC_LOBBY_Profile_SetDataEx( p_DWC_LOBBYLIB_WK, userid, cp_userprofile, user_profilesize );
 	}
 
-	// ‚»‚Ìƒ†[ƒU‚ÌƒVƒXƒeƒ€ƒvƒƒtƒB[ƒ‹‚ðƒRƒs[
+	// ãã®ãƒ¦ãƒ¼ã‚¶ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’ã‚³ãƒ”ãƒ¼
 	{
 		DWC_LOBBY_SysProfile_SetData( p_DWC_LOBBYLIB_WK, userid, cp_sysprofile );
 	}
 
-	// “üŽºƒR[ƒ‹ƒoƒbƒN
+	// å…¥å®¤ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	{
 		p_DWC_LOBBYLIB_WK->callback.p_user_in( userid, 
 				DWC_LOBBY_Profile_GetData( p_DWC_LOBBYLIB_WK, userid ), 
@@ -3164,44 +3164,44 @@ static void DWC_LOBBY_CallBack_Connect( s32 userid, const PPW_LobbySystemProfile
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ø’fƒR[ƒ‹ƒoƒbƒN
+ *	@brief	åˆ‡æ–­ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	userid	ƒ†[ƒUID
+ *	@param	userid	ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_DesconnectedChannel( s32 userid )
 {
 	DWC_LOBBY_PRINT( "callback  desconnect userid = %d\n", userid );
 
-	// ‚±‚Ìl‚ð’m‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã“ã®äººã‚’çŸ¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( DWC_LOBBY_UserIDTbl_GetIdx( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN ) == DWC_LOBBY_USERIDTBL_IDX_NONE ){
-		return ;	// ‚·‚Å‚É‚¢‚È‚¢
+		return ;	// ã™ã§ã«ã„ãªã„
 	}
 
-	// •åWŽÒ‚È‚ç•åWƒf[ƒ^”jŠü
+	// å‹Ÿé›†è€…ãªã‚‰å‹Ÿé›†ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	{
 		int i;
 		for( i=0; i<DWC_LOBBY_MG_NUM; i++ ){
 			if( p_DWC_LOBBYLIB_WK->mg_data[ i ].mg_parent == userid ){
-				// ‚»‚Ì•åW‚ªI‚í‚Á‚½‚±‚Æ‚É‚·‚é
+				// ãã®å‹Ÿé›†ãŒçµ‚ã‚ã£ãŸã“ã¨ã«ã™ã‚‹
 				DWC_LOBBY_CallBack_RecruitStop( userid, &p_DWC_LOBBYLIB_WK->mg_data[ i ].mg_data );
 			}
 		}
 	}
 	
 
-	// ‘ÞŽºƒR[ƒ‹ƒoƒbƒN
+	// é€€å®¤ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	{
 		p_DWC_LOBBYLIB_WK->callback.p_user_out( userid, p_DWC_LOBBYLIB_WK->p_callbackwork );
 	}
 
-	// ƒVƒXƒeƒ€ƒvƒƒtƒB[ƒ‹ƒoƒbƒtƒ@‚ÆƒvƒƒtƒB[ƒ‹ƒoƒbƒtƒ@‚ðƒNƒŠƒA
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒãƒƒãƒ•ã‚¡ã¨ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢
 	{
 		DWC_LOBBY_SysProfile_CleanData( p_DWC_LOBBYLIB_WK, userid );
 		DWC_LOBBY_Profile_CleanData( p_DWC_LOBBYLIB_WK, userid );
 	}
 
-	//  ‚»‚Ìƒ†[ƒU‚ðƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹‚©‚çíœ
+	//  ãã®ãƒ¦ãƒ¼ã‚¶ã‚’ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰å‰Šé™¤
 	{
 		DWC_LOBBY_UserIDTbl_DelId( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 		DWC_LOBBY_UserIDTbl_DelId( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_SUB );
@@ -3211,12 +3211,12 @@ static void DWC_LOBBY_CallBack_DesconnectedChannel( s32 userid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•¶Žš—ñƒƒbƒZ[ƒWŽóM
+ *	@brief	æ–‡å­—åˆ—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡
  *
  *	@param	userid			userID
- *	@param	channel			ƒ`ƒƒƒ“ƒlƒ‹
- *	@param	type			ƒ^ƒCƒv
- *	@param	cp_message		ƒƒbƒZ[ƒWƒf[ƒ^
+ *	@param	channel			ãƒãƒ£ãƒ³ãƒãƒ«
+ *	@param	type			ã‚¿ã‚¤ãƒ—
+ *	@param	cp_message		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_StringMessageRecv( s32 userid, PPW_LOBBY_CHANNEL_KIND channel, s32 type, const char* cp_message )
@@ -3226,13 +3226,13 @@ static void DWC_LOBBY_CallBack_StringMessageRecv( s32 userid, PPW_LOBBY_CHANNEL_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒCƒiƒŠƒƒbƒZ[ƒW‚ÌŽóM
+ *	@brief	ãƒã‚¤ãƒŠãƒªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å—ä¿¡
  *
- *	@param	userid		ƒ†[ƒUID
- *	@param	channel		ƒ`ƒƒƒ“ƒlƒ‹
- *	@param	type		ƒ^ƒCƒv
- *	@param	cp_data		ƒf[ƒ^
- *	@param	datasize	ƒf[ƒ^ƒTƒCƒY
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	channel		ãƒãƒ£ãƒ³ãƒãƒ«
+ *	@param	type		ã‚¿ã‚¤ãƒ—
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	datasize	ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_BynaryMessageRecv( s32 userid, PPW_LOBBY_CHANNEL_KIND channel, s32 type, const u8* cp_data, u32 datasize )
@@ -3243,27 +3243,27 @@ static void DWC_LOBBY_CallBack_BynaryMessageRecv( s32 userid, PPW_LOBBY_CHANNEL_
 	
 	DWC_LOBBY_PRINT( "bin mess recv  user=%d chan=%d type=%d\n", userid, channel, type );
 
-	// ‚»‚Ìƒ†[ƒUID‚ð‚µ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ãƒ¦ãƒ¼ã‚¶IDã‚’ã—ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	if( idx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
-		return ;	// ‚»‚Ì‚Ð‚Æ‚µ‚ç‚È‚¢
+		return ;	// ãã®ã²ã¨ã—ã‚‰ãªã„
 	}
 	
 	
 	switch( channel ){
-    case PPW_LOBBY_CHANNEL_KIND_MAIN:            ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹B
+    case PPW_LOBBY_CHANNEL_KIND_MAIN:            ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã€‚
 		chan_type = DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN;
 		break;
 
-    case PPW_LOBBY_CHANNEL_KIND_FOOT1:           ///< ‘«Õƒ{[ƒh1B
-    case PPW_LOBBY_CHANNEL_KIND_FOOT2:           ///< ‘«Õƒ{[ƒh2B
-    case PPW_LOBBY_CHANNEL_KIND_CLOCK:           ///< ¢ŠEŽžŒvB
-    case PPW_LOBBY_CHANNEL_KIND_NEWS:            ///< ƒƒr[ƒjƒ…[ƒXB
-		subchan_type = DWC_LOBBY_GetSubChannelType( channel );	// MAINƒ`ƒƒƒ“ƒlƒ‹•ª‚ðˆø‚­
+    case PPW_LOBBY_CHANNEL_KIND_FOOT1:           ///< è¶³è·¡ãƒœãƒ¼ãƒ‰1ã€‚
+    case PPW_LOBBY_CHANNEL_KIND_FOOT2:           ///< è¶³è·¡ãƒœãƒ¼ãƒ‰2ã€‚
+    case PPW_LOBBY_CHANNEL_KIND_CLOCK:           ///< ä¸–ç•Œæ™‚è¨ˆã€‚
+    case PPW_LOBBY_CHANNEL_KIND_NEWS:            ///< ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ã€‚
+		subchan_type = DWC_LOBBY_GetSubChannelType( channel );	// MAINãƒãƒ£ãƒ³ãƒãƒ«åˆ†ã‚’å¼•ã
 		if( p_DWC_LOBBYLIB_WK->subchan_type == subchan_type ){
 			chan_type = DWC_LOBBY_LOCALCHANNEL_TYPE_SUB;
 		}else{
-			// ƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv‚ªˆá‚¤‚Ì‚Å‰½‚à‚µ‚È‚¢
+			// ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—ãŒé•ã†ã®ã§ä½•ã‚‚ã—ãªã„
 			return;
 		}
 		break;
@@ -3276,13 +3276,13 @@ static void DWC_LOBBY_CallBack_BynaryMessageRecv( s32 userid, PPW_LOBBY_CHANNEL_
 		return;
 	}
 
-	// ƒ^ƒCƒv‚ª³í‚©ƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ—ãŒæ­£å¸¸ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_DWC_LOBBYLIB_WK->msgcmd[ chan_type ].msgtblnum > type ){
 
-		// ƒAƒbƒp[ƒo[ƒWƒ‡ƒ“‚ÅƒTƒCƒY‚ª‘å‚«‚­‚È‚é‰Â”\«‚à‚ ‚é‚Ì‚ÅAƒTƒCƒY‚ª‘å‚«‚­‚È‚Á‚Ä‚¢‚é‚Ì‚Í‹–‚·
+		// ã‚¢ãƒƒãƒ‘ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã‚µã‚¤ã‚ºãŒå¤§ãããªã‚‹å¯èƒ½æ€§ã‚‚ã‚ã‚‹ã®ã§ã€ã‚µã‚¤ã‚ºãŒå¤§ãããªã£ã¦ã„ã‚‹ã®ã¯è¨±ã™
 		GF_ASSERT( p_DWC_LOBBYLIB_WK->msgcmd[ chan_type ].cp_msgtbl[ type ].size <= datasize );
 
-		// ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—
 		p_DWC_LOBBYLIB_WK->msgcmd[ chan_type ].cp_msgtbl[ type ].p_func( 
 				userid, cp_data, 
 				p_DWC_LOBBYLIB_WK->msgcmd[ chan_type ].cp_msgtbl[ type ].size, 
@@ -3294,16 +3294,16 @@ static void DWC_LOBBY_CallBack_BynaryMessageRecv( s32 userid, PPW_LOBBY_CHANNEL_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^ŽóMˆ—
+ *	@brief	ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿å—ä¿¡å‡¦ç†
  *
- *	@param	success			ŽóM‚É¬Œ÷‚µ‚½‚©
- *	@param	broadcast		ƒuƒ[ƒhƒLƒƒƒXƒgƒtƒ‰ƒO
- *	@param	channel			‘—Mƒ`ƒƒƒ“ƒlƒ‹iƒ`ƒƒƒ“ƒlƒ‹‚©‚çŽóM‚µ‚½‚Æ‚«j
- *	@param	userid			‘—Mƒ†[ƒUIDiƒ†[ƒUƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚©‚çŽóM‚µ‚½‚Æ‚«j
- *	@param	p_key			ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ÌƒL[
- *	@param	cp_data			ƒf[ƒ^
- *	@param	datasize		ƒf[ƒ^ƒTƒCƒY	
- *	@param	param			ŠÖ”‚ÉŽw’è‚µ‚½ƒpƒ‰ƒ[ƒ^
+ *	@param	success			å—ä¿¡ã«æˆåŠŸã—ãŸã‹
+ *	@param	broadcast		ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆãƒ•ãƒ©ã‚°
+ *	@param	channel			é€ä¿¡ãƒãƒ£ãƒ³ãƒãƒ«ï¼ˆãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰å—ä¿¡ã—ãŸã¨ãï¼‰
+ *	@param	userid			é€ä¿¡ãƒ¦ãƒ¼ã‚¶IDï¼ˆãƒ¦ãƒ¼ã‚¶ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å—ä¿¡ã—ãŸã¨ãï¼‰
+ *	@param	p_key			ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ¼
+ *	@param	cp_data			ãƒ‡ãƒ¼ã‚¿
+ *	@param	datasize		ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º	
+ *	@param	param			é–¢æ•°ã«æŒ‡å®šã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_ChannelDataRecv( BOOL success, BOOL broadcast, PPW_LOBBY_CHANNEL_KIND channel, s32 userid, const char* p_key, const u8* cp_data, u32 datasize, void* p_param )
@@ -3311,11 +3311,11 @@ static void DWC_LOBBY_CallBack_ChannelDataRecv( BOOL success, BOOL broadcast, PP
 	s32 myuserid;
 	DWC_LOBBY_PRINT( "channel data recv %s\n", p_key );
 
-	// ŽóMƒ`ƒFƒbƒN
+	// å—ä¿¡ãƒã‚§ãƒƒã‚¯
 	if( strcmp( p_key, sc_DWC_LOBBY_CHANNEL_KEY_NAME[DWC_LOBBY_CHANNEL_KEY_WLDDATA] ) == 0 ){
 		memcpy( p_DWC_LOBBYLIB_WK->wfldata, cp_data, sizeof(DWC_WLDDATA)*DWC_WLDDATA_MAX );
 
-		// ‘—MŠ®—¹‘Ò‚¿’†‚È‚çƒtƒ‰ƒO‚ð‰º‚°‚é
+		// é€ä¿¡å®Œäº†å¾…ã¡ä¸­ãªã‚‰ãƒ•ãƒ©ã‚°ã‚’ä¸‹ã’ã‚‹
 		if( p_DWC_LOBBYLIB_WK->wlddata_send ){
 			p_DWC_LOBBYLIB_WK->wlddata_send = FALSE;
 		}
@@ -3324,10 +3324,10 @@ static void DWC_LOBBY_CallBack_ChannelDataRecv( BOOL success, BOOL broadcast, PP
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒvƒƒtƒB[ƒ‹‚ªXV‚³‚ê‚½
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãŒæ›´æ–°ã•ã‚ŒãŸ
  *	
- *	@param	userid			ƒ†[ƒUID
- *	@param	cp_profile		ƒVƒXƒeƒ€ƒvƒƒtƒB[ƒ‹
+ *	@param	userid			ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_profile		ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_SystemProfileUpdate( s32 userid, const PPW_LobbySystemProfile* cp_profile )
@@ -3336,47 +3336,47 @@ static void DWC_LOBBY_CallBack_SystemProfileUpdate( s32 userid, const PPW_LobbyS
 	const PPW_LobbySystemProfile* cp_before;
 	s32 idx;
 
-	DWC_LOBBY_PRINT( "sys profile update %d@@channelno %d\n", userid, cp_profile->subChannelKind );
+	DWC_LOBBY_PRINT( "sys profile update %dã€€ã€€channelno %d\n", userid, cp_profile->subChannelKind );
 
-	// ‚»‚Ìƒ†[ƒUID‚ð‚µ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ãƒ¦ãƒ¼ã‚¶IDã‚’ã—ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	if( idx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
-		return ;	// ‚»‚Ì‚Ð‚Æ‚µ‚ç‚È‚¢
+		return ;	// ãã®ã²ã¨ã—ã‚‰ãªã„
 	}
 
 	//-------------------------------------
-	// Ž©•ª‚ªƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚É‚¢‚é‚Æ‚«‚ÍAƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚É—ˆ‚½l‚ðŠm”F‚·‚é
+	// è‡ªåˆ†ãŒã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ã„ã‚‹ã¨ãã¯ã€ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«æ¥ãŸäººã‚’ç¢ºèªã™ã‚‹
 	//=====================================
 	if( p_DWC_LOBBYLIB_WK->subchan_type != DWC_LOBBY_SUBCHAN_NONE ){
-		// ƒ`ƒƒƒ“ƒlƒ‹‚ªƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚©‚çƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚É‚È‚Á‚Ä‚È‚¢‚©A
-		// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚©‚çƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚É‚È‚Á‚Ä‚¢‚È‚¢‚©Šm”F‚·‚é
+		// ãƒãƒ£ãƒ³ãƒãƒ«ãŒãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ãªã£ã¦ãªã„ã‹ã€
+		// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«ãªã£ã¦ã„ãªã„ã‹ç¢ºèªã™ã‚‹
 		cp_before = DWC_LOBBY_SysProfile_GetData( p_DWC_LOBBYLIB_WK, userid );
-		before_channel	= cp_before->subChannelKind;		//  PPW‘O‚Ìó‘Ô
-		after_channel	= cp_profile->subChannelKind;		//	XV‚µ‚½‚Æ‚«‚Ìó‘Ô
-		sys_channel		= DWC_LOBBY_GetChannelKind( p_DWC_LOBBYLIB_WK->subchan_type );	// Ž©•ª‚Ìó‘Ô
+		before_channel	= cp_before->subChannelKind;		//  PPWå‰ã®çŠ¶æ…‹
+		after_channel	= cp_profile->subChannelKind;		//	æ›´æ–°ã—ãŸã¨ãã®çŠ¶æ…‹
+		sys_channel		= DWC_LOBBY_GetChannelKind( p_DWC_LOBBYLIB_WK->subchan_type );	// è‡ªåˆ†ã®çŠ¶æ…‹
 		if( (before_channel == PPW_LOBBY_CHANNEL_KIND_INVALID) && (after_channel == sys_channel) ){
-			// ‚»‚Ìƒ†[ƒU‚ªŽ©•ª‚Æ“¯‚¶ƒ`ƒƒƒ“ƒlƒ‹‚É‚â‚Á‚Ä‚«‚½
+			// ãã®ãƒ¦ãƒ¼ã‚¶ãŒè‡ªåˆ†ã¨åŒã˜ãƒãƒ£ãƒ³ãƒãƒ«ã«ã‚„ã£ã¦ããŸ
 			DWC_LOBBY_UserIDTbl_AddId( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_SUB );
-		}else if( (before_channel == sys_channel) && (after_channel != sys_channel) ){	// ðŒ‚ð­‚µŒy‚­‚·‚é
+		}else if( (before_channel == sys_channel) && (after_channel != sys_channel) ){	// æ¡ä»¶ã‚’å°‘ã—è»½ãã™ã‚‹
 //		}else if( (before_channel == sys_channel) && (after_channel == PPW_LOBBY_CHANNEL_KIND_INVALID) ){
-			// ‚»‚Ìƒ†[ƒU‚ÍŽ©•ª‚Æ“¯‚¶ƒ`ƒƒƒ“ƒlƒ‹‚©‚ç‘ÞŽº‚µ‚½
+			// ãã®ãƒ¦ãƒ¼ã‚¶ã¯è‡ªåˆ†ã¨åŒã˜ãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰é€€å®¤ã—ãŸ
 			DWC_LOBBY_UserIDTbl_DelId( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_SUB );
 		}
 
 	}
 	
 
-	// ƒVƒXƒeƒ€ƒvƒƒtƒB[ƒ‹XV
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æ›´æ–°
 	DWC_LOBBY_SysProfile_SetData( p_DWC_LOBBYLIB_WK, userid, cp_profile );	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUƒvƒƒtƒB[ƒ‹XV
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æ›´æ–°
  *
- *	@param	userid		ƒ†[ƒUID
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
- *	@param	size		ƒTƒCƒY
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	size		ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_UserProfileUpdate( s32 userid, const u8* cp_profile, u32 size )
@@ -3385,26 +3385,26 @@ static void DWC_LOBBY_CallBack_UserProfileUpdate( s32 userid, const u8* cp_profi
 
 	DWC_LOBBY_PRINT( "profile update %d\n", userid );
 
-	// ‚»‚Ìƒ†[ƒUID‚ð‚µ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ãƒ¦ãƒ¼ã‚¶IDã‚’ã—ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	if( idx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
-		return ;	// ‚»‚Ì‚Ð‚Æ‚µ‚ç‚È‚¢
+		return ;	// ãã®ã²ã¨ã—ã‚‰ãªã„
 	}
 		
-	// V‚µ‚¢ƒvƒƒtƒB[ƒ‹‚ðÝ’è
+	// æ–°ã—ã„ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’è¨­å®š
 	DWC_LOBBY_Profile_SetData( p_DWC_LOBBYLIB_WK, userid, cp_profile );	
 
-	// ƒvƒƒtƒB[ƒ‹XVƒR[ƒ‹ƒoƒbƒN
+	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æ›´æ–°ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	p_DWC_LOBBYLIB_WK->callback.p_profile_update( userid, cp_profile, 
 			p_DWC_LOBBYLIB_WK->p_callbackwork );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•åW—v€‚ª•Ï‚í‚Á‚½
+ *	@brief	å‹Ÿé›†è¦é …ãŒå¤‰ã‚ã£ãŸ
  *
- *	@param	userid		ƒ†[ƒUID
- *	@param	cp_info		•åWƒf[ƒ^
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_info		å‹Ÿé›†ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_Recruit( s32 userid, const PPW_LobbyRecruitInfo* cp_info )
@@ -3416,47 +3416,47 @@ static void DWC_LOBBY_CallBack_Recruit( s32 userid, const PPW_LobbyRecruitInfo* 
 	
 	DWC_LOBBY_PRINT( "Recruit Recv userid=%d gametype = %d entrynum = %d\n", userid, cp_info->gameKind, cp_info->currentNum );
 
-	// ‚»‚Ìƒ†[ƒUID‚ð‚µ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ãƒ¦ãƒ¼ã‚¶IDã‚’ã—ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	if( idx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
-		return ;	// ‚»‚Ì‚Ð‚Æ‚µ‚ç‚È‚¢
+		return ;	// ãã®ã²ã¨ã—ã‚‰ãªã„
 	}
 
 
 	myuserid = DWC_LOBBY_GetMyUserID();
 
-	// Ž©•ªˆÈŠO‚ªŽ©•ª‚Ìì¬‚µ‚½•åW—v€‚Æ“¯‚¶ƒ~ƒjƒQ[ƒ€‚Ì•åW—v€‚ðo‚µ‚½‚ç–³Ž‹‚·‚é
+	// è‡ªåˆ†ä»¥å¤–ãŒè‡ªåˆ†ã®ä½œæˆã—ãŸå‹Ÿé›†è¦é …ã¨åŒã˜ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®å‹Ÿé›†è¦é …ã‚’å‡ºã—ãŸã‚‰ç„¡è¦–ã™ã‚‹
 	if( myuserid != userid ){
 		if( p_DWC_LOBBYLIB_WK->mg_myparent ){
 			if( p_DWC_LOBBYLIB_WK->mg_myentry == cp_info->gameKind ){
-				// ‚»‚Ì•åW‚ªŽn‚Ü‚Á‚½ŽžŠÔ‚ÆŽ©•ª‚ÌŽžŠÔ‚ð”äŠr‚µ‚ÄAæ‚É—ˆ‚½‚à‚Ì‚ðŽc‚·
+				// ãã®å‹Ÿé›†ãŒå§‹ã¾ã£ãŸæ™‚é–“ã¨è‡ªåˆ†ã®æ™‚é–“ã‚’æ¯”è¼ƒã—ã¦ã€å…ˆã«æ¥ãŸã‚‚ã®ã‚’æ®‹ã™
 				DWC_LOBBY_MG_GetRecruitStartTime( &p_DWC_LOBBYLIB_WK->mg_data[ p_DWC_LOBBYLIB_WK->mg_myentry ].mg_data, &mytime );
 				DWC_LOBBY_MG_GetRecruitStartTime( cp_info, &othertime );
-				if( mytime >= othertime ){	// “¯Žž‚©’x‚©‚Á‚½‚çŽ©•ª‚ªI—¹‚·‚é
-					// Ž©•ª‚ÌI—¹ˆ—–½—ß
+				if( mytime >= othertime ){	// åŒæ™‚ã‹é…ã‹ã£ãŸã‚‰è‡ªåˆ†ãŒçµ‚äº†ã™ã‚‹
+					// è‡ªåˆ†ã®çµ‚äº†å‡¦ç†å‘½ä»¤
 					p_DWC_LOBBYLIB_WK->mg_myend = TRUE;
 
-					// •åW‚ðI—¹‚³‚¹‚é
+					// å‹Ÿé›†ã‚’çµ‚äº†ã•ã›ã‚‹
 					DWC_LOBBY_MG_EndRecruit();
 					DWC_LOBBY_PRINT( "!recruit err end\n" );
 				}else{
-					// ‘ŠŽè‚Ì‚Ù‚¤‚ª’x‚¢‚Ì‚ÅAƒf[ƒ^‚ð–³Ž‹‚·‚é
+					// ç›¸æ‰‹ã®ã»ã†ãŒé…ã„ã®ã§ã€ãƒ‡ãƒ¼ã‚¿ã‚’ç„¡è¦–ã™ã‚‹
 					return ;
 				}
 			}
 		}
 	}
 	
-	// •åWî•ñ‚ð•Û‘¶
+	// å‹Ÿé›†æƒ…å ±ã‚’ä¿å­˜
 	DWC_LOBBY_MG_SetData( p_DWC_LOBBYLIB_WK, cp_info->gameKind, userid, cp_info );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU‚ª•åW‚ðI—¹‚µ‚½‚Æ‚«
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãŒå‹Ÿé›†ã‚’çµ‚äº†ã—ãŸã¨ã
  *
- *	@param	userid		ƒ†[ƒUID
- *	@param	cp_info		•åWƒf[ƒ^
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_info		å‹Ÿé›†ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_RecruitStop( s32 userid, const PPW_LobbyRecruitInfo* cp_info )
@@ -3466,20 +3466,20 @@ static void DWC_LOBBY_CallBack_RecruitStop( s32 userid, const PPW_LobbyRecruitIn
 	
 	DWC_LOBBY_PRINT( "Recruit stop Recv userid=%d  game=%d\n", userid, cp_info->gameKind );
 
-	// ‚»‚Ìƒ†[ƒUID‚ð‚µ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®ãƒ¦ãƒ¼ã‚¶IDã‚’ã—ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	idx = DWC_LOBBY_UserIDTbl_GetIdx( p_DWC_LOBBYLIB_WK, userid, DWC_LOBBY_LOCALCHANNEL_TYPE_MAIN );
 	if( idx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
-		return ;	// ‚»‚Ì‚Ð‚Æ‚µ‚ç‚È‚¢
+		return ;	// ãã®ã²ã¨ã—ã‚‰ãªã„
 	}
 
 	
 	
-	// •åWî•ñ‚ð•Û‘¶
-	// –ß‚è’l‚ÅAƒf[ƒ^‚ðƒŠƒZƒbƒg‚µ‚½‚©Žæ“¾‚Å‚«‚é
-	// ƒŠƒZƒbƒg‚µ‚È‚©‚Á‚½‚Æ‚¢‚¤‚±‚Æ‚ÍAŽ©•ª‚ªŽóM‚µ‚½‚à‚Ì‚Æe‚ªˆá‚¤‚Æ‚¢‚¤‚±‚Æ
+	// å‹Ÿé›†æƒ…å ±ã‚’ä¿å­˜
+	// æˆ»ã‚Šå€¤ã§ã€ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã—ãŸã‹å–å¾—ã§ãã‚‹
+	// ãƒªã‚»ãƒƒãƒˆã—ãªã‹ã£ãŸã¨ã„ã†ã“ã¨ã¯ã€è‡ªåˆ†ãŒå—ä¿¡ã—ãŸã‚‚ã®ã¨è¦ªãŒé•ã†ã¨ã„ã†ã“ã¨
 	result = DWC_LOBBY_MG_ResetData( p_DWC_LOBBYLIB_WK, cp_info->gameKind, userid );
 
-	// Ž©•ª‚Ì‘®‚µ‚Ä‚¢‚é•åW‚ªI—¹‚µ‚½‚ç‹­§I—¹ƒtƒ‰ƒO‚ð—§‚Ä‚é
+	// è‡ªåˆ†ã®å±žã—ã¦ã„ã‚‹å‹Ÿé›†ãŒçµ‚äº†ã—ãŸã‚‰å¼·åˆ¶çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	if( (p_DWC_LOBBYLIB_WK->mg_myentry == cp_info->gameKind) && (result == TRUE) ){
 		p_DWC_LOBBYLIB_WK->mg_myend = TRUE;
 	}
@@ -3487,43 +3487,43 @@ static void DWC_LOBBY_CallBack_RecruitStop( s32 userid, const PPW_LobbyRecruitIn
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒPƒWƒ…[ƒ‹‚Ì‹N“®
+ *	@brief	ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã®èµ·å‹•
  *
- *	@param	event	ƒCƒxƒ“ƒgƒiƒ“ƒo[
+ *	@param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_Schedule( PPW_LOBBY_TIME_EVENT event )
 {
 	DWC_LOBBY_PRINT( "schedule Recv event=%d\n", event );
 	
-	// ƒR[ƒ‹ƒoƒbƒN‚ðŒÄ‚Ô
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã¶
 	p_DWC_LOBBYLIB_WK->callback.p_event( event, p_DWC_LOBBYLIB_WK->p_callbackwork );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒo‚©‚çƒ†[ƒUŠî–{î•ñ‚Ì•s³ƒ`ƒFƒbƒNŒ‹‰Ê‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚µãƒ¼ãƒã‹ã‚‰ãƒ¦ãƒ¼ã‚¶åŸºæœ¬æƒ…å ±ã®ä¸æ­£ãƒã‚§ãƒƒã‚¯çµæžœã‚’å–å¾—ã™ã‚‹
  *
- *	@param	result			’ÊMŒ‹‰Ê
- *	@param	userProfile		ƒ†[ƒUŠî–{î•ñ
- *	@param	userProfileSize	Šî–{î•ñƒTƒCƒY
+ *	@param	result			é€šä¿¡çµæžœ
+ *	@param	userProfile		ãƒ¦ãƒ¼ã‚¶åŸºæœ¬æƒ…å ±
+ *	@param	userProfileSize	åŸºæœ¬æƒ…å ±ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_CheckProfile( PPW_LOBBY_STATS_RESULT result, const u8 *userProfile, u32 userProfileSize )
 {
-	DWC_LOBBY_PRINT( "profile ŽóM@¬Œ÷\n" );
+	DWC_LOBBY_PRINT( "profile å—ä¿¡ã€€æˆåŠŸ\n" );
 	
 	if( result != PPW_LOBBY_STATS_RESULT_SUCCESS ){
 
 		p_DWC_LOBBYLIB_WK->profile_error = TRUE;
 		
-		// ‚»‚Ì‘¼‚Ìê‡‚ÍƒVƒƒƒbƒgƒ_ƒEƒ“‚Ö
-		DWC_LOBBY_PRINT( "profile •s³‚Èƒ†[ƒU\n" );
+		// ãã®ä»–ã®å ´åˆã¯ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã¸
+		DWC_LOBBY_PRINT( "profile ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶\n" );
 		
 	}else{
 
 
-		// ’uŠ·Œã‚ÌƒvƒƒtƒB[ƒ‹‚ð’Ê’B
+		// ç½®æ›å¾Œã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’é€šé”
 		{
 			p_DWC_LOBBYLIB_WK->callback.p_check_profile( userProfile, 
 					userProfileSize,
@@ -3534,19 +3534,19 @@ static void DWC_LOBBY_CallBack_CheckProfile( PPW_LOBBY_STATS_RESULT result, cons
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒo‚©‚çƒXƒPƒWƒ…[ƒ‹‚ðƒ_ƒEƒ“ƒ[ƒh‚µ‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ã‚µãƒ¼ãƒã‹ã‚‰ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	result			’ÊMŒ‹‰Ê
- *	@param	p_schedule		ƒXƒPƒWƒ…[ƒ‹ƒf[ƒ^
+ *	@param	result			é€šä¿¡çµæžœ
+ *	@param	p_schedule		ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static BOOL DWC_LOBBY_CallBack_NotifySchedule( PPW_LOBBY_STATS_RESULT result, const PPW_LobbySchedule* p_schedule )
 {
 	if( result == PPW_LOBBY_STATS_RESULT_SUCCESS ){
-		// ƒ_ƒEƒ“ƒ[ƒh¬Œ÷
-		DWC_LOBBY_PRINT( "Schedule ƒ_ƒEƒ“ƒ[ƒh@¬Œ÷\n" );
+		// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æˆåŠŸ
+		DWC_LOBBY_PRINT( "Schedule ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã€€æˆåŠŸ\n" );
 #ifdef PM_DEBUG
-		// ƒfƒoƒbƒNŠJŽn‚Ìê‡‚ÅƒoƒbƒNÝ’è‚³‚ê‚½ƒpƒ‰ƒ[ƒ^‚ðŽg—p‚·‚é
+		// ãƒ‡ãƒãƒƒã‚¯é–‹å§‹ã®å ´åˆã§ãƒãƒƒã‚¯è¨­å®šã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹
 		if( D_Tomoya_WiFiLobby_DebugStart == TRUE ){
 			return FALSE;
 		}
@@ -3558,62 +3558,62 @@ static BOOL DWC_LOBBY_CallBack_NotifySchedule( PPW_LOBBY_STATS_RESULT result, co
 
 	p_DWC_LOBBYLIB_WK->download_error = TRUE;
 	
-	// ‚»‚Ì‘¼‚Ìê‡‚ÍƒVƒƒƒbƒgƒ_ƒEƒ“‚Ö
-	DWC_LOBBY_PRINT( "Schedule •s³‚Èƒ†[ƒU\n" );
+	// ãã®ä»–ã®å ´åˆã¯ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã¸
+	DWC_LOBBY_PRINT( "Schedule ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶\n" );
 	
 	return FALSE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIPî•ñ‚ðƒ_ƒEƒ“ƒ[ƒh‚µ‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+ *	@brief	VIPæƒ…å ±ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *	
- *	@param	result			’ÊMŒ‹‰Ê
- *	@param	cp_vipRecords	ŽóMƒf[ƒ^
- *	@param	num				VIPƒf[ƒ^”
+ *	@param	result			é€šä¿¡çµæžœ
+ *	@param	cp_vipRecords	å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ *	@param	num				VIPãƒ‡ãƒ¼ã‚¿æ•°
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_Vip( PPW_LOBBY_STATS_RESULT result, const PPW_LobbyVipRecord* cp_vipRecords, u32 num )
 {
-	// ƒ_ƒEƒ“ƒ[ƒh¬Œ÷
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æˆåŠŸ
 	if( result == PPW_LOBBY_STATS_RESULT_SUCCESS ){
-		DWC_LOBBY_PRINT( "VIP ƒ_ƒEƒ“ƒ[ƒh@¬Œ÷\n" );
+		DWC_LOBBY_PRINT( "VIP ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã€€æˆåŠŸ\n" );
 		DWC_LOBBY_VIPDATA_SetData( &p_DWC_LOBBYLIB_WK->vipdata, cp_vipRecords, num );
 	}else{
 
 		p_DWC_LOBBYLIB_WK->download_error = TRUE;
-		// Ž¸”s‚µ‚½‚Ì‚ÅƒVƒƒƒbƒgƒ_ƒEƒ“
-		DWC_LOBBY_PRINT( "VIP ƒ_ƒEƒ“ƒ[ƒh@Ž¸”s\n" );
+		// å¤±æ•—ã—ãŸã®ã§ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³
+		DWC_LOBBY_PRINT( "VIP ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã€€å¤±æ•—\n" );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgî•ñ‚ðƒ_ƒEƒ“ƒ[ƒh‚µ‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	result				’ÊMŒ‹‰Ê
- *	@param	cp_questionnaire	ŽóMƒf[ƒ^
+ *	@param	result				é€šä¿¡çµæžœ
+ *	@param	cp_questionnaire	å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_Anketo( PPW_LOBBY_STATS_RESULT result, const PPW_LobbyQuestionnaire* cp_questionnaire )
 {
-	// ƒ_ƒEƒ“ƒ[ƒh¬Œ÷
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æˆåŠŸ
 	if( result == PPW_LOBBY_STATS_RESULT_SUCCESS ){
-		DWC_LOBBY_PRINT( "ƒAƒ“ƒP[ƒg ƒ_ƒEƒ“ƒ[ƒh@¬Œ÷\n" );
+		DWC_LOBBY_PRINT( "ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã€€æˆåŠŸ\n" );
 		DWC_LOBBY_ANKETO_Set( &p_DWC_LOBBYLIB_WK->anketo, cp_questionnaire );
 	}else{
 
 		p_DWC_LOBBYLIB_WK->download_error = TRUE;
-		// Ž¸”s‚µ‚½‚Ì‚ÅƒVƒƒƒbƒgƒ_ƒEƒ“
-		DWC_LOBBY_PRINT( "ƒAƒ“ƒP[ƒg ƒ_ƒEƒ“ƒ[ƒh@Ž¸”s\n" );
+		// å¤±æ•—ã—ãŸã®ã§ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³
+		DWC_LOBBY_PRINT( "ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã€€å¤±æ•—\n" );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒg‚Ì“Š•[Š®—¹
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã®æŠ•ç¥¨å®Œäº†
  *
- *	@param	result	¬Œ÷‚µ‚½‚©
+ *	@param	result	æˆåŠŸã—ãŸã‹
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_AnketoSubmit( PPW_LOBBY_STATS_RESULT result )
@@ -3621,20 +3621,20 @@ static void DWC_LOBBY_CallBack_AnketoSubmit( PPW_LOBBY_STATS_RESULT result )
 	GF_ASSERT( p_DWC_LOBBYLIB_WK->anketo.submit_state == DWC_LOBBY_ANKETO_STATE_SENDING );
 	
 	if( result == PPW_LOBBY_STATS_RESULT_SUCCESS ){
-		DWC_LOBBY_PRINT( "‚Æ‚¤‚Ð‚å‚¤@¬Œ÷\n" );
+		DWC_LOBBY_PRINT( "ã¨ã†ã²ã‚‡ã†ã€€æˆåŠŸ\n" );
 		p_DWC_LOBBYLIB_WK->anketo.submit_state = DWC_LOBBY_ANKETO_STATE_SENDOK;
 	}else{
-		DWC_LOBBY_PRINT( "‚Æ‚¤‚Ð‚å‚¤@Ž¸”s\n" );
+		DWC_LOBBY_PRINT( "ã¨ã†ã²ã‚‡ã†ã€€å¤±æ•—\n" );
 //		p_DWC_LOBBYLIB_WK->anketo.submit_state = DWC_LOBBY_ANKETO_STATE_SENDNG;
-		p_DWC_LOBBYLIB_WK->anketo.submit_state = DWC_LOBBY_ANKETO_STATE_SENDOK;	// Ž¸”s‚àOK‚ÈŽ–‚É‚µ‚¿‚á‚¤ 080616 tomoya
+		p_DWC_LOBBYLIB_WK->anketo.submit_state = DWC_LOBBY_ANKETO_STATE_SENDOK;	// å¤±æ•—ã‚‚OKãªäº‹ã«ã—ã¡ã‚ƒã† 080616 tomoya
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒo‚Æ‚Ì’ÊM‚ª‰ßè‚És‚í‚ê‚½‚Æ‚«‚ÌƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ã‚µãƒ¼ãƒã¨ã®é€šä¿¡ãŒéŽå‰°ã«è¡Œã‚ã‚ŒãŸã¨ãã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	floodWeight		Š„‡‚ðŽ¦‚·d‚Ý	300‚Åƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ªŽæ“¾‚Å‚«‚È‚­‚È‚èA600‚ÅƒT[ƒo‚©‚çØ’f‚³‚ê‚é
+ *	@param	floodWeight		å‰²åˆã‚’ç¤ºã™é‡ã¿	300ã§ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ãŒå–å¾—ã§ããªããªã‚Šã€600ã§ã‚µãƒ¼ãƒã‹ã‚‰åˆ‡æ–­ã•ã‚Œã‚‹
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_CallBack_ExcessFlood( u32 floodWeight )
@@ -3650,9 +3650,9 @@ static void DWC_LOBBY_CallBack_ExcessFlood( u32 floodWeight )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€•åWƒpƒ‰ƒ[ƒ^‰Šú‰»
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_MG_Init( DWC_LOBBYLIB_WK* p_sys )
@@ -3663,24 +3663,24 @@ static void DWC_LOBBY_MG_Init( DWC_LOBBYLIB_WK* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€•åWƒf[ƒ^Ý’è
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	type		ƒ^ƒCƒv
- *	@param	userid		ƒ†[ƒUID
- *	@param	cp_mg_data	ƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		ã‚¿ã‚¤ãƒ—
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_mg_data	ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_MG_SetData( DWC_LOBBYLIB_WK* p_sys, DWC_LOBBY_MG_TYPE type, s32 userid, const PPW_LobbyRecruitInfo* cp_mg_data )
 {
-	// ƒ^ƒCƒv‚ª‚ ‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ—ãŒã‚ã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( type < DWC_LOBBY_MG_NUM );
 	
-	// ‚·‚Å‚ÉÝ’èÏ‚Ý‚Å‚Í‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«è¨­å®šæ¸ˆã¿ã§ã¯ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( DWC_LOBBY_MG_Check( p_sys, type ) == TRUE ){
-		// “¯‚¶l‚©ƒ`ƒFƒbƒN
+		// åŒã˜äººã‹ãƒã‚§ãƒƒã‚¯
 		if( p_sys->mg_data[ type ].mg_parent != userid ){
-			// XV‚µ‚È‚¢
+			// æ›´æ–°ã—ãªã„
 			DWC_LOBBY_PRINT( "MG Recruit userid err parent=%d, now=%d\n", p_sys->mg_data[ type ].mg_parent,  userid );
 			return ;
 		}
@@ -3692,36 +3692,36 @@ static void DWC_LOBBY_MG_SetData( DWC_LOBBYLIB_WK* p_sys, DWC_LOBBY_MG_TYPE type
 		p_sys->mg_data[ type ].mg_flag		= TRUE;
 		p_sys->mg_data[ type ].mg_parent	= userid;
 
-		// e‚ª•åW‚ð‚©‚¯‚½ŽžŠÔ‚©‚ç¡ŠÔ‚Å‚ÌƒtƒŒ[ƒ€”‚ðˆø‚¢‚½ƒ^ƒCƒ€ƒŠƒ~ƒbƒg‚ðì¬‚·‚é
+		// è¦ªãŒå‹Ÿé›†ã‚’ã‹ã‘ãŸæ™‚é–“ã‹ã‚‰ä»Šé–“ã§ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å¼•ã„ãŸã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆã‚’ä½œæˆã™ã‚‹
 		p_sys->mg_data[ type ].mg_timelimit	= DWC_LOBBY_MG_CalcTimeLimit( p_sys, type );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒf[ƒ^ƒŠƒZƒbƒg
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	type		ƒ^ƒCƒv
- *	@param	userid		ƒ†[ƒUID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		ã‚¿ã‚¤ãƒ—
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
  *
- *	@retval	TRUE	ƒf[ƒ^‚ðƒŠƒZƒbƒg‚µ‚½
- *	@retval	FALSE	ƒf[ƒ^‚ðƒŠƒZƒbƒg‚µ‚È‚©‚Á‚½
+ *	@retval	TRUE	ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã—ãŸ
+ *	@retval	FALSE	ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã—ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL DWC_LOBBY_MG_ResetData( DWC_LOBBYLIB_WK* p_sys, DWC_LOBBY_MG_TYPE type, s32 userid )
 {
-	// ƒ^ƒCƒv‚ª‚ ‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ—ãŒã‚ã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( type < DWC_LOBBY_MG_NUM );
 
 	DWC_LOBBY_PRINT( "MG_ResetData userid=%d  param userid=%d	", p_sys->mg_data[ type ].mg_parent, userid );
 	
-	// ƒf[ƒ^‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( DWC_LOBBY_MG_Check( p_sys, type ) == TRUE ){
-		// ƒ†[ƒUID‚ªˆê‚©ƒ`ƒFƒbƒN
+		// ãƒ¦ãƒ¼ã‚¶IDãŒä¸€ç·’ã‹ãƒã‚§ãƒƒã‚¯
 		if( p_sys->mg_data[ type ].mg_parent == userid ){
 			DWC_LOBBY_PRINT( "data clear\n" );
-			// ˆê‚È‚çƒŠƒZƒbƒg
+			// ä¸€ç·’ãªã‚‰ãƒªã‚»ãƒƒãƒˆ
 			p_sys->mg_data[ type ].mg_flag = FALSE;
 			return TRUE;
 		}
@@ -3731,28 +3731,28 @@ static BOOL DWC_LOBBY_MG_ResetData( DWC_LOBBYLIB_WK* p_sys, DWC_LOBBY_MG_TYPE ty
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•åW’†‚©ƒ`ƒFƒbƒN
+ *	@brief	å‹Ÿé›†ä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	type	ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+ *	@param	cp_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	type	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	•åW’†
- *	@retval	FALSE	•åW‚È‚µ
+ *	@retval	TRUE	å‹Ÿé›†ä¸­
+ *	@retval	FALSE	å‹Ÿé›†ãªã—
  */
 //-----------------------------------------------------------------------------
 static BOOL DWC_LOBBY_MG_Check( const DWC_LOBBYLIB_WK* cp_sys, DWC_LOBBY_MG_TYPE type )
 {
-	// ƒ^ƒCƒv‚ª‚ ‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ—ãŒã‚ã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( type < DWC_LOBBY_MG_NUM );
 	return cp_sys->mg_data[ type ].mg_flag;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒŠƒ~ƒbƒg‚ÌŒvŽZ‚ðs‚¤
+ *	@brief	ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆã®è¨ˆç®—ã‚’è¡Œã†
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	type		ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static u16 DWC_LOBBY_MG_CalcTimeLimit( const DWC_LOBBYLIB_WK* cp_sys, DWC_LOBBY_MG_TYPE type )
@@ -3761,18 +3761,18 @@ static u16 DWC_LOBBY_MG_CalcTimeLimit( const DWC_LOBBYLIB_WK* cp_sys, DWC_LOBBY_
 	s64 now_time;
 	const PPW_LobbyRecruitInfo* cp_info;
 
-	// •åWî•ñ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// å‹Ÿé›†æƒ…å ±ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( DWC_LOBBY_MG_Check( cp_sys, type ) == FALSE ){
 		return 0;
 	}
 		
-	// •åWŠJŽnŽžŠÔŽæ“¾
+	// å‹Ÿé›†é–‹å§‹æ™‚é–“å–å¾—
 	cp_info = DWC_LOBBY_MG_GetData( cp_sys, type );
 	DWC_LOBBY_MG_GetRecruitStartTime( cp_info, &start_time );
 
-	// ‘S‘Ìƒ^ƒCƒ€ƒŠƒ~ƒbƒg‚©‚çŒo‰ß‚µ‚½ŽžŠÔ‚ðˆø‚­
-	now_time = cp_sys->time.currentTime - start_time;	// •b’PˆÊ
-	if( now_time > DWC_LOBBY_MG_TIMELIMIT_SEC ){	// ‘å‚«‚·‚¬‚½‚ç‘Ò‚¿ŽžŠÔ‚¨Å‘å’l‚É‚·‚é
+	// å…¨ä½“ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆã‹ã‚‰çµŒéŽã—ãŸæ™‚é–“ã‚’å¼•ã
+	now_time = cp_sys->time.currentTime - start_time;	// ç§’å˜ä½
+	if( now_time > DWC_LOBBY_MG_TIMELIMIT_SEC ){	// å¤§ãã™ãŽãŸã‚‰å¾…ã¡æ™‚é–“ãŠæœ€å¤§å€¤ã«ã™ã‚‹
 		now_time = DWC_LOBBY_MG_TIMELIMIT_SEC;
 	}else if( now_time < 0 ){
 		now_time = 0;
@@ -3782,19 +3782,19 @@ static u16 DWC_LOBBY_MG_CalcTimeLimit( const DWC_LOBBYLIB_WK* cp_sys, DWC_LOBBY_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•åWî•ñ‚ðŽæ“¾‚·‚é
+ *	@brief	å‹Ÿé›†æƒ…å ±ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_sys		‚µ‚¤‚Ä‚Þƒ[ƒN
- *	@param	type		ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+ *	@param	cp_sys		ã—ã†ã¦ã‚€ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
  *		
- *	@return	•åWî•ñ
+ *	@return	å‹Ÿé›†æƒ…å ±
  */
 //-----------------------------------------------------------------------------
 static const PPW_LobbyRecruitInfo* DWC_LOBBY_MG_GetData( const DWC_LOBBYLIB_WK* cp_sys, DWC_LOBBY_MG_TYPE type )
 {
-	// ƒ^ƒCƒv‚ª‚ ‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ—ãŒã‚ã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( type < DWC_LOBBY_MG_NUM );
-	// ‚·‚Å‚ÉÝ’èÏ‚Ý‚Å‚Í‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«è¨­å®šæ¸ˆã¿ã§ã¯ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( cp_sys->mg_data[ type ].mg_flag == TRUE );
 
 	return &cp_sys->mg_data[ type ].mg_data;
@@ -3803,9 +3803,9 @@ static const PPW_LobbyRecruitInfo* DWC_LOBBY_MG_GetData( const DWC_LOBBYLIB_WK* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€•åW	ƒAƒbƒvƒf[ƒg	P2PÚ‘±’†‚És‚¤ˆ—‚ð‚±‚±‚É‘‚­
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†	ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ	P2PæŽ¥ç¶šä¸­ã«è¡Œã†å‡¦ç†ã‚’ã“ã“ã«æ›¸ã
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_MG_Update( DWC_LOBBYLIB_WK* p_sys )
@@ -3813,34 +3813,34 @@ static void DWC_LOBBY_MG_Update( DWC_LOBBYLIB_WK* p_sys )
 	int i;
 	u16 gmt_timelimit;
 	
-	// Ž©•ª‚ªe‚Ìê‡
+	// è‡ªåˆ†ãŒè¦ªã®å ´åˆ
 	if( p_DWC_LOBBYLIB_WK->mg_myparent == TRUE ){
 		DWC_LOBBY_MGDATA* p_mgdata;
 		u32 connect_num;
 
-		// ’ÊMl”‚ðŽæ“¾
+		// é€šä¿¡äººæ•°ã‚’å–å¾—
 		connect_num = mydwc_AnybodyEvalNum();
 
 		GF_ASSERT( connect_num <= 4 );
 		
-		// V‹KÚ‘±ŽÒ‚ª‚«‚½‚Ì‚Å•åWl”‚ð•ÏX‚µ‚Äƒf[ƒ^‚ð“]‘—
-		p_mgdata = &p_DWC_LOBBYLIB_WK->mg_data[ p_DWC_LOBBYLIB_WK->mg_myentry ];	// ƒ~ƒjƒQ[ƒ€ƒf[ƒ^Žæ“¾
+		// æ–°è¦æŽ¥ç¶šè€…ãŒããŸã®ã§å‹Ÿé›†äººæ•°ã‚’å¤‰æ›´ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
+		p_mgdata = &p_DWC_LOBBYLIB_WK->mg_data[ p_DWC_LOBBYLIB_WK->mg_myentry ];	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å–å¾—
 
 		if( p_mgdata->mg_data.currentNum != connect_num ){
 			p_mgdata->mg_data.currentNum = connect_num;
-			// XV
+			// æ›´æ–°
 			PPW_LobbyUpdateRecruitInfo( &p_mgdata->mg_data );
 			DWC_LOBBY_PRINT( "dwc lobby p2p connect chg %d\n", connect_num );
 		}
 	}
 
-	//  ƒ^ƒCƒ€ƒŠƒ~ƒbƒgŒvŽZ
+	//  ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆè¨ˆç®—
 	for( i=0; i<DWC_LOBBY_MG_NUM; i++ ){
 
-		// ¡‚ÌGMTŽžŠÔ‚Å‚Ì•åWŠJŽn‚©‚ç‚ÌŽžŠÔ{Œo‰ßƒVƒ“ƒN”‚ðÌ‚µ‚Ä×‚©‚­ƒJƒEƒ“ƒgƒ_ƒEƒ“‚·‚é
-		// GMTŽžŠÔ‚ðŽg—p‚µ‚½‚à‚Ì‚Å‚ÍŽžŠÔ‚ÌŒo‰ß‚ÌŽæ“¾‚ª×‚©‚­‚È‚¢‚Ì‚ÅƒVƒ“ƒN”‚àŽg—p‚·‚é
-		// ‚½‚¾ƒVƒ“ƒN”‚¾‚¯‚¾‚Æˆ——Ž‚¿‚Ì‰e‹¿‚ðŽó‚¯‚é‚Ì‚ÅA
-		// GMTŽžŠÔ‚Ì•û‚ª‘‚©‚Á‚½‚ç‚»‚¿‚ç‚ÌŽžŠÔ‚ðŽg—p‚·‚é
+		// ä»Šã®GMTæ™‚é–“ã§ã®å‹Ÿé›†é–‹å§‹ã‹ã‚‰ã®æ™‚é–“ï¼‹çµŒéŽã‚·ãƒ³ã‚¯æ•°ã‚’ç§°ã—ã¦ç´°ã‹ãã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã™ã‚‹
+		// GMTæ™‚é–“ã‚’ä½¿ç”¨ã—ãŸã‚‚ã®ã§ã¯æ™‚é–“ã®çµŒéŽã®å–å¾—ãŒç´°ã‹ããªã„ã®ã§ã‚·ãƒ³ã‚¯æ•°ã‚‚ä½¿ç”¨ã™ã‚‹
+		// ãŸã ã‚·ãƒ³ã‚¯æ•°ã ã‘ã ã¨å‡¦ç†è½ã¡ã®å½±éŸ¿ã‚’å—ã‘ã‚‹ã®ã§ã€
+		// GMTæ™‚é–“ã®æ–¹ãŒæ—©ã‹ã£ãŸã‚‰ãã¡ã‚‰ã®æ™‚é–“ã‚’ä½¿ç”¨ã™ã‚‹
 		if( p_DWC_LOBBYLIB_WK->mg_data[ i ].mg_flag == TRUE ){
 
 			if( p_DWC_LOBBYLIB_WK->mg_data[ i ].mg_timelimit > 0 ){
@@ -3849,7 +3849,7 @@ static void DWC_LOBBY_MG_Update( DWC_LOBBYLIB_WK* p_sys )
 
 			gmt_timelimit = DWC_LOBBY_MG_CalcTimeLimit( p_DWC_LOBBYLIB_WK, i );
 
-			// GMT‚ÌŽžŠÔ‚Ì‚Ù‚¤‚ª¬‚³‚­‚È‚Á‚½‚ç‘ã“ü
+			// GMTã®æ™‚é–“ã®ã»ã†ãŒå°ã•ããªã£ãŸã‚‰ä»£å…¥
 			if( gmt_timelimit < p_DWC_LOBBYLIB_WK->mg_data[ i ].mg_timelimit ){
 				p_DWC_LOBBYLIB_WK->mg_data[ i ].mg_timelimit = gmt_timelimit;
 			}
@@ -3859,10 +3859,10 @@ static void DWC_LOBBY_MG_Update( DWC_LOBBYLIB_WK* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•åWŠJŽnŽžŠÔ‚ðÝ’è‚·‚é
+ *	@brief	å‹Ÿé›†é–‹å§‹æ™‚é–“ã‚’è¨­å®šã™ã‚‹
  *	
- *	@param	p_info		•åWƒf[ƒ^
- *	@param	cp_time		ŽžŠÔ
+ *	@param	p_info		å‹Ÿé›†ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_time		æ™‚é–“
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_MG_SetRecruitStartTime( PPW_LobbyRecruitInfo* p_info, const s64* cp_time )
@@ -3874,10 +3874,10 @@ static void DWC_LOBBY_MG_SetRecruitStartTime( PPW_LobbyRecruitInfo* p_info, cons
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•åWŠJŽnŽžŠÔ‚ðŽæ“¾‚·‚é
+ *	@brief	å‹Ÿé›†é–‹å§‹æ™‚é–“ã‚’å–å¾—ã™ã‚‹
  *	
- *	@param	cp_info		•åWƒf[ƒ^
- *	@param	cp_time		ŽžŠÔ
+ *	@param	cp_info		å‹Ÿé›†ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_time		æ™‚é–“
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_MG_GetRecruitStartTime( const PPW_LobbyRecruitInfo* cp_info, s64* p_time )
@@ -3889,10 +3889,10 @@ static void DWC_LOBBY_MG_GetRecruitStartTime( const PPW_LobbyRecruitInfo* cp_inf
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€P2PV‹KÚ‘±ƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ P2Pæ–°è¦æŽ¥ç¶šã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  *	@param	aid			AID
- *	@param	p_work		ƒ[ƒN
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_MG_ConnectCallBack( u16 aid, void* p_work )
@@ -3901,10 +3901,10 @@ static void DWC_LOBBY_MG_ConnectCallBack( u16 aid, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€P2PØ’fƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ P2Påˆ‡æ–­ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  *	@param	aid		AID
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_MG_DisConnectCallBack( u16 aid, void* p_work )
@@ -3914,12 +3914,12 @@ static void DWC_LOBBY_MG_DisConnectCallBack( u16 aid, void* p_work )
 
 	DWC_LOBBY_PRINT( "dwc lobby p2p disconnect  %d\n", aid );
 	
-	// ’N‚©‚ªØ’f‚µ‚½‚Ì‚ÅA•åWI—¹
+	// èª°ã‹ãŒåˆ‡æ–­ã—ãŸã®ã§ã€å‹Ÿé›†çµ‚äº†
 	if( p_wk->mg_myparent == TRUE ){
 		DWC_LOBBY_MG_EndRecruit();		// 
 	}else{
 
-		// e‚ÌØ’f‚È‚ç‹­§I—¹
+		// è¦ªã®åˆ‡æ–­ãªã‚‰å¼·åˆ¶çµ‚äº†
 		if( aid == 0 ){
 			p_DWC_LOBBYLIB_WK->mg_myend = TRUE;
 		}
@@ -3930,12 +3930,12 @@ static void DWC_LOBBY_MG_DisConnectCallBack( u16 aid, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒPƒWƒ…[ƒ‹‚ÌŽžŠÔ‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã®æ™‚é–“ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_schedule	ƒXƒPƒWƒ…[ƒ‹
- *	@param	event		ƒCƒxƒ“ƒg”Ô†
+ *	@param	cp_schedule	ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆç•ªå·
  *
- *	@return	ˆê”ÔÅ‰‚ÌŠJŽnŽžŠÔ
+ *	@return	ä¸€ç•ªæœ€åˆã®é–‹å§‹æ™‚é–“
  */	
 //-----------------------------------------------------------------------------
 static u32 DWC_LOBBY_SCHEDULE_GetEventTime( const PPW_LobbySchedule* cp_schedule, PPW_LOBBY_TIME_EVENT event )
@@ -3943,7 +3943,7 @@ static u32 DWC_LOBBY_SCHEDULE_GetEventTime( const PPW_LobbySchedule* cp_schedule
 	u32 data;
 	int i;
 
-	data = 0;	// ‚È‚©‚Á‚½‚ç‚¨‚©‚µ‚¢‚ªA‚Æ‚è‚ ‚¦‚¸‚O‚ð“ü‚ê‚é
+	data = 0;	// ãªã‹ã£ãŸã‚‰ãŠã‹ã—ã„ãŒã€ã¨ã‚Šã‚ãˆãšï¼ã‚’å…¥ã‚Œã‚‹
 	for( i=0; i<cp_schedule->scheduleRecordNum; i++ ){
 		if( cp_schedule->scheduleRecords[i].event == event ){
 			data = cp_schedule->scheduleRecords[i].time;
@@ -3956,11 +3956,11 @@ static u32 DWC_LOBBY_SCHEDULE_GetEventTime( const PPW_LobbySchedule* cp_schedule
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIPî•ñƒoƒbƒtƒ@	‰Šú‰»
+ *	@brief	VIPæƒ…å ±ãƒãƒƒãƒ•ã‚¡	åˆæœŸåŒ–
  *
- *	@param	p_vip		VIPƒ[ƒN
- *	@param	buffnum		ƒoƒbƒtƒ@”
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_vip		VIPãƒ¯ãƒ¼ã‚¯
+ *	@param	buffnum		ãƒãƒƒãƒ•ã‚¡æ•°
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_VIPDATA_Init( DWC_LOBBY_VIP* p_vip, u32 buffnum, u32 heapID )
@@ -3973,9 +3973,9 @@ static void DWC_LOBBY_VIPDATA_Init( DWC_LOBBY_VIP* p_vip, u32 buffnum, u32 heapI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIPî•ñƒoƒbƒtƒ@	”jŠü
+ *	@brief	VIPæƒ…å ±ãƒãƒƒãƒ•ã‚¡	ç ´æ£„
  *
- *	@param	p_vip		VIPƒ[ƒN
+ *	@param	p_vip		VIPãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_VIPDATA_Exit( DWC_LOBBY_VIP* p_vip )
@@ -3986,11 +3986,11 @@ static void DWC_LOBBY_VIPDATA_Exit( DWC_LOBBY_VIP* p_vip )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIPî•ñƒoƒbƒtƒ@	ƒf[ƒ^‚ðÝ’è
+ *	@brief	VIPæƒ…å ±ãƒãƒƒãƒ•ã‚¡	ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *	@param	p_vip			VIPƒ[ƒN
- *	@param	cp_vipRecords	ƒf[ƒ^
- *	@param	num				ƒf[ƒ^”
+ *	@param	p_vip			VIPãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_vipRecords	ãƒ‡ãƒ¼ã‚¿
+ *	@param	num				ãƒ‡ãƒ¼ã‚¿æ•°
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_VIPDATA_SetData( DWC_LOBBY_VIP* p_vip, const PPW_LobbyVipRecord* cp_vipRecords, u32 num )
@@ -3999,8 +3999,8 @@ static void DWC_LOBBY_VIPDATA_SetData( DWC_LOBBY_VIP* p_vip, const PPW_LobbyVipR
 	
 	GF_ASSERT( num < p_vip->num );
 
-	// —pˆÓ‚µ‚½ƒoƒbƒtƒ@”‚æ‚èƒ_ƒEƒ“ƒ[ƒhƒf[ƒ^‚ª‘½‚¢ê‡
-	// Ši”[‚Å‚«‚é‚¾‚¯Ši”[‚·‚é
+	// ç”¨æ„ã—ãŸãƒãƒƒãƒ•ã‚¡æ•°ã‚ˆã‚Šãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãŒå¤šã„å ´åˆ
+	// æ ¼ç´ã§ãã‚‹ã ã‘æ ¼ç´ã™ã‚‹
 	if( num < p_vip->num ){
 		datanum = num;
 	}else{
@@ -4014,13 +4014,13 @@ static void DWC_LOBBY_VIPDATA_SetData( DWC_LOBBY_VIP* p_vip, const PPW_LobbyVipR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIPî•ñƒoƒbƒtƒ@	VIPƒ`ƒFƒbƒN
+ *	@brief	VIPæƒ…å ±ãƒãƒƒãƒ•ã‚¡	VIPãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_vip		VIPƒ[ƒN
- *	@param	profileid	ƒvƒƒtƒ@ƒCƒ‹ID
+ *	@param	cp_vip		VIPãƒ¯ãƒ¼ã‚¯
+ *	@param	profileid	ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ID
  *
  *	@retval	TRUE	VIP
- *	@retval	FALSE	’Êí‚Ì‚Ð‚Æ
+ *	@retval	FALSE	é€šå¸¸ã®ã²ã¨
  */
 //-----------------------------------------------------------------------------
 static BOOL DWC_LOBBY_VIPDATA_CheckVip( const DWC_LOBBY_VIP* cp_vip, s32 profileid )
@@ -4037,12 +4037,12 @@ static BOOL DWC_LOBBY_VIPDATA_CheckVip( const DWC_LOBBY_VIP* cp_vip, s32 profile
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIPî•ñƒoƒbƒtƒ@	‚ ‚¢‚±‚Æ‚ÎƒL[Žæ“¾
+ *	@brief	VIPæƒ…å ±ãƒãƒƒãƒ•ã‚¡	ã‚ã„ã“ã¨ã°ã‚­ãƒ¼å–å¾—
  *
- *	@param	cp_vip		VIPƒ[ƒN
- *	@param	profileid	ƒvƒƒtƒ@ƒCƒ‹ID
+ *	@param	cp_vip		VIPãƒ¯ãƒ¼ã‚¯
+ *	@param	profileid	ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ID
  *
- *	@return	‚ ‚¢‚±‚Æ‚Î—pƒL[
+ *	@return	ã‚ã„ã“ã¨ã°ç”¨ã‚­ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static s32 DWC_LOBBY_VIPDATA_GetAikotoba( const DWC_LOBBY_VIP* cp_vip, s32 profileid )
@@ -4061,10 +4061,10 @@ static s32 DWC_LOBBY_VIPDATA_GetAikotoba( const DWC_LOBBY_VIP* cp_vip, s32 profi
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgî•ñ		ƒf[ƒ^Ý’è
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±		ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	cp_question		Ý’èƒf[ƒ^
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_question		è¨­å®šãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_ANKETO_Set( DWC_ANKETO_DATA* p_wk, const PPW_LobbyQuestionnaire* cp_question )
@@ -4092,9 +4092,9 @@ static void DWC_LOBBY_ANKETO_Set( DWC_ANKETO_DATA* p_wk, const PPW_LobbyQuestion
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgî•ñ@ƒfƒoƒbƒN•\Ž¦
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±ã€€ãƒ‡ãƒãƒƒã‚¯è¡¨ç¤º
  *
- *	@param	cp_data		ƒ[ƒN
+ *	@param	cp_data		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void DWC_LOBBY_DEBUG_Printf( const PPW_LobbyQuestionnaireRecord* cp_data )

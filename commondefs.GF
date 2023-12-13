@@ -1,11 +1,11 @@
-#Œx‚ª‚½‚­‚³‚ño‚é‚Ì‚ğ—}~
+#è­¦å‘ŠãŒãŸãã•ã‚“å‡ºã‚‹ã®ã‚’æŠ‘æ­¢
 CCFLAGS_WARNING = -w all,nocmdline,noerr,nopragmas,noempty,nopossible,nounused,noextracomma,nopedantic,nohidevirtual,noimplicit,noimpl_int2float,nonotinlined,unlargeargs,nostructclass,nopadding,nonotused,nounusedexpr,noptrintconv,noanyptrintconv,nofilecaps,nosysfilecaps,notokenpasting
 
 ifeq	($(PM_DEBUG),yes)
 MACRO_FLAGS += -DDEBUG_ONLY_FOR_$(USERNAME)
 endif
 
-#ƒ\[ƒXƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚éƒfƒBƒŒƒNƒgƒŠ‚Ìƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ğQÆ‚És‚­
+#ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‚ç…§ã«è¡Œã
 LINCLUDES	+= $(dir $<)
 
 NITRO_LIBS		?= libfx$(NITRO_LIBSUFFIX).a		\
@@ -32,5 +32,5 @@ NITRO_LIBS		?= libfx$(NITRO_LIBSUFFIX).a		\
 			   $(notdir $(LIBSYSCALL_))		\
 			   $(CRT0_O)
 
-#Šî–{‚Æ‚È‚é”C“V“°»‚Ì•Ï”’è‹`ƒtƒ@ƒCƒ‹‚ğƒCƒ“ƒNƒ‹[ƒh
+#åŸºæœ¬ã¨ãªã‚‹ä»»å¤©å ‚è£½ã®å¤‰æ•°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 include $(NITROSYSTEM_ROOT)/build/buildtools/commondefs

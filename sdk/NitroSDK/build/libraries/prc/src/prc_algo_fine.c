@@ -18,40 +18,40 @@
   do-indent.
 
   Revision 1.7  2005/02/18 07:10:49  seiki_masashi
-  Copyright •\‹L‚ÌC³
+  Copyright è¡¨è¨˜ã®ä¿®æ­£
 
   Revision 1.6  2005/02/18 07:09:52  seiki_masashi
-  warning ‘Îô
+  warning å¯¾ç­–
 
   Revision 1.5  2004/11/04 07:57:46  seiki_masashi
-  regularize ‚ð normalize ‚ÉC³
+  regularize ã‚’ normalize ã«ä¿®æ­£
 
   Revision 1.4  2004/07/19 06:52:06  seiki_masashi
-  Ž¯•ÊŽq–¼‚Ì®—
+  è­˜åˆ¥å­åã®æ•´ç†
 
   Revision 1.3  2004/07/05 13:19:25  seiki_masashi
-  ƒ}ƒNƒ–¼‚Ì•ÏX
-  Šp“xƒXƒRƒA‚ÌŠî€‚ÌÄŒŸ“¢
+  ãƒžã‚¯ãƒ­åã®å¤‰æ›´
+  è§’åº¦ã‚¹ã‚³ã‚¢ã®åŸºæº–ã®å†æ¤œè¨Ž
 
   Revision 1.2  2004/07/05 02:42:01  seiki_masashi
-  •Ï”–¼‚Ì“ˆê
+  å¤‰æ•°åã®çµ±ä¸€
 
   Revision 1.1  2004/06/30 08:49:24  seiki_masashi
   algo_simple -> algo_light
   algo_standard -> algo_fine
   algo_accurate -> algo_superfine
-  V‚µ‚¢ algo_standard ‚Ì’Ç‰Á
+  æ–°ã—ã„ algo_standard ã®è¿½åŠ 
 
   Revision 1.3  2004/06/29 02:14:16  seiki_masashi
   #if NITRO_DEBUG -> #ifdef SDK_DEBUG
-  correction ’l‚É‚æ‚é•â³‚ÌŽÀ‘•
+  correction å€¤ã«ã‚ˆã‚‹è£œæ­£ã®å®Ÿè£…
 
   Revision 1.2  2004/06/28 11:11:36  seiki_masashi
-  Œ©–{ƒpƒ^[ƒ“‚Ìˆê——‚É regularizeSize ‚ð’Ç‰Á
-  ŠeŽíƒpƒ‰ƒ[ƒ^—Þ‚ð®—
+  è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§ã« regularizeSize ã‚’è¿½åŠ 
+  å„ç¨®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡žã‚’æ•´ç†
 
   Revision 1.1  2004/06/28 00:09:30  seiki_masashi
-  ”FŽ¯ƒAƒ‹ƒSƒŠƒYƒ€ 'Fine' ‚Ì’Ç‰Á
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  'Fine' ã®è¿½åŠ 
 
 
   $NoKeywords: $
@@ -86,15 +86,15 @@ PRCi_CalcStrokeDistance_Fine(fx32 *score,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognitionBufferSizeEx_Fine
 
-  Description:  ”FŽ¯ƒAƒ‹ƒSƒŠƒYƒ€‚ª•K—v‚Æ‚·‚éƒ[ƒN—Ìˆæ‚Ì‘å‚«‚³‚ð
-                ŒvŽZ‚µ‚Ü‚·.
+  Description:  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒå¿…è¦ã¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®å¤§ãã•ã‚’
+                è¨ˆç®—ã—ã¾ã™.
 
-  Arguments:    maxPointCount   “ü—Í“_”‚ÌãŒÀ(pen up marker ‚ðŠÜ‚Þ)
-                maxStrokeCount  ‰æ”‚ÌãŒÀ
-                protoDB         Œ©–{DB.
-                param           ”FŽ¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^.
+  Arguments:    maxPointCount   å…¥åŠ›ç‚¹æ•°ã®ä¸Šé™(pen up marker ã‚’å«ã‚€)
+                maxStrokeCount  ç”»æ•°ã®ä¸Šé™
+                protoDB         è¦‹æœ¬DB.
+                param           èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿.
 
-  Returns:      ”FŽ¯ƒAƒ‹ƒSƒŠƒYƒ€‚ª•K—v‚Æ‚·‚éƒƒ‚ƒŠ—Ê.
+  Returns:      èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒå¿…è¦ã¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé‡.
  *---------------------------------------------------------------------------*/
 u32
 PRC_GetRecognitionBufferSizeEx_Fine(int maxPointCount,
@@ -122,23 +122,23 @@ PRC_GetRecognitionBufferSizeEx_Fine(int maxPointCount,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntriesEx_Fine
 
-  Description:  Œ©–{DB‚Ì“Á’è‚Ì kind ‚ÌƒGƒ“ƒgƒŠ‚Æ“ü—Íƒpƒ^[ƒ“‚ð”äŠr‚µ‚Ä”FŽ¯‚µ,
-                Œ‹‰Ê‚ÌãˆÊ numRanking ˆÊ‚ð•Ô‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã®ç‰¹å®šã® kind ã®ã‚¨ãƒ³ãƒˆãƒªã¨å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æ¯”è¼ƒã—ã¦èªè­˜ã—,
+                çµæžœã®ä¸Šä½ numRanking ä½ã‚’è¿”ã—ã¾ã™.
 
-  Arguments:    resultEntries   ”FŽ¯Œ‹‰Ê‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ð“ü‚ê‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                ‹‚ß‚éŒÂ”ˆÈ‰º‚µ‚©”FŽ¯‚Å‚«‚È‚©‚Á‚½ê‡A
-                                Žc‚è‚Í NULL ‚Å–„‚ß‚ç‚ê‚Ü‚·.
-                resultScores    ”FŽ¯Œ‹‰Ê‚ÌƒXƒRƒA‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                numRanking      result* ‚É•Ô‚·ŒÂ”
-                buffer          ”FŽ¯ƒAƒ‹ƒSƒŠƒYƒ€‚ªŽg—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                (—ÌˆæƒTƒCƒY>=PRC_GetRecognitionBufferSize ‚Ì•Ô‚è’l)
-                input           “ü—Íƒpƒ^[ƒ“.
-                protoDB         Œ©–{DB.
-                kindMask        ŠeŒ©–{DBƒGƒ“ƒgƒŠ‚Ì kind ’l‚Æ‚Ì˜_—Ï‚ð‚Æ‚è,
-                                ”ñƒ[ƒ‚Å‚ ‚ê‚Î—LŒø‚Æ‚Ý‚È‚µ‚Ü‚·.
-                param           ”FŽ¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^.
+  Arguments:    resultEntries   èªè­˜çµæžœã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å…¥ã‚Œã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                æ±‚ã‚ã‚‹å€‹æ•°ä»¥ä¸‹ã—ã‹èªè­˜ã§ããªã‹ã£ãŸå ´åˆã€
+                                æ®‹ã‚Šã¯ NULL ã§åŸ‹ã‚ã‚‰ã‚Œã¾ã™.
+                resultScores    èªè­˜çµæžœã®ã‚¹ã‚³ã‚¢ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                numRanking      result* ã«è¿”ã™å€‹æ•°
+                buffer          èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                (é ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetRecognitionBufferSize ã®è¿”ã‚Šå€¤)
+                input           å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³.
+                protoDB         è¦‹æœ¬DB.
+                kindMask        å„è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã® kind å€¤ã¨ã®è«–ç†ç©ã‚’ã¨ã‚Š,
+                                éžã‚¼ãƒ­ã§ã‚ã‚Œã°æœ‰åŠ¹ã¨ã¿ãªã—ã¾ã™.
+                param           èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿.
 
-  Returns:      ”äŠr‚³‚ê‚½Œ©–{DBã‚Ìƒpƒ^[ƒ“”.
+  Returns:      æ¯”è¼ƒã•ã‚ŒãŸè¦‹æœ¬DBä¸Šã®ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°.
  *---------------------------------------------------------------------------*/
 int
 PRC_GetRecognizedEntriesEx_Fine(PRCPrototypeEntry **resultEntries,
@@ -297,7 +297,7 @@ PRCi_CalcStrokeDistance_Fine(fx32 *score,
 #define direction_(x,y) (*(direction + (x) * maxPointCount + (y)))
 #define angleScores_(x,y) (*(angleScores + (x) * (maxPointCount+1) + (y)))
 
-    // ƒXƒgƒ[ƒN“¯Žm‚Ì—ÞŽ—“x‚ðŒvŽZ with DP matching
+    // ã‚¹ãƒˆãƒ­ãƒ¼ã‚¯åŒå£«ã®é¡žä¼¼åº¦ã‚’è¨ˆç®— with DP matching
     int     iInput, iProto;
     int    *nMatches;                  //[STROKE_PACKED_POINT_MAX][STROKE_PACKED_POINT_MAX];
     int    *sumScore;                  //[STROKE_PACKED_POINT_MAX][STROKE_PACKED_POINT_MAX];
@@ -347,7 +347,7 @@ PRCi_CalcStrokeDistance_Fine(fx32 *score,
 #endif
     doubleWidth = normalizeSize * 2;
 
-    // buffer ‚ÌŠ„‚è“–‚Ä
+    // buffer ã®å‰²ã‚Šå½“ã¦
     {
         int     addr;
         addr = 0;
@@ -379,7 +379,7 @@ PRCi_CalcStrokeDistance_Fine(fx32 *score,
     if (protoSize == 0 || inputSize == 0)
         return;
 
-    // ’·‚³‚ª‚ ‚Ü‚è‚É‚àˆá‚¤ü•ª‚Í—ÞŽ—“x0‚Æ‚µ‚Ä‚±‚êˆÈãŒvŽZ‚µ‚È‚¢
+    // é•·ã•ãŒã‚ã¾ã‚Šã«ã‚‚é•ã†ç·šåˆ†ã¯é¡žä¼¼åº¦0ã¨ã—ã¦ã“ã‚Œä»¥ä¸Šè¨ˆç®—ã—ãªã„
     if (inputStrokeLength > lengthFilterThreshold || protoStrokeLength > lengthFilterThreshold)
     {
         if (inputStrokeLength * lengthFilterRatio < protoStrokeLength
@@ -393,7 +393,7 @@ PRCi_CalcStrokeDistance_Fine(fx32 *score,
         }
     }
 
-    // Šp“x‚ÉŠÖ‚·‚éƒXƒRƒA‚Ì angleScores[][] ‚ÌŽ–‘OŒvŽZ
+    // è§’åº¦ã«é–¢ã™ã‚‹ã‚¹ã‚³ã‚¢ã® angleScores[][] ã®äº‹å‰è¨ˆç®—
     if (protoSize == 1 || inputSize == 1)
     {
         for (iInput = 0; iInput < inputSize; iInput++)
@@ -431,7 +431,7 @@ PRCi_CalcStrokeDistance_Fine(fx32 *score,
         }
     }
 
-    // DP Matching ‚ÅƒXƒgƒ[ƒN“¯Žm‚Ì‘Î‰ž“_‚ð’T‚·
+    // DP Matching ã§ã‚¹ãƒˆãƒ­ãƒ¼ã‚¯åŒå£«ã®å¯¾å¿œç‚¹ã‚’æŽ¢ã™
 #if 1
     sumScore_(0, 0) =
         (doubleWidth - CityBlockDistance(&inputPoints[0], &protoPoints[0])) * angleScores_(0,
@@ -502,7 +502,7 @@ PRCi_CalcStrokeDistance_Fine(fx32 *score,
             direction_(iInput, iProto) = dirMax;
         }
     }
-#elif                                  // beam search version. // ‘¬“x‚ªo‚È‚¢‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg’†
+#elif                                  // beam search version. // é€Ÿåº¦ãŒå‡ºãªã„ã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆä¸­
     {
         int     beamThreshold, beamN, beamValue, beamLow, beamHigh, nextBeamHigh;
         int     maxScore, maxScoreN;

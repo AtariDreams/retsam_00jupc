@@ -24,16 +24,16 @@
 //----------------------------------------------------------------------------
 // variable
 //----------------------------------------------------------------------------
-// FriendsMatch����I�u�W�F�N�g�ւ̃|�C���^
+// FriendsMatch制御オブジェクトへのポインタ
 static DWCFriendsMatchControl* stpDwcCnt = NULL;
 
-static int stLastSocketError = 0;  // �Ō�ɔ��������\�P�b�g�G���[�ԍ�
+static int stLastSocketError = 0;  // 最後に発生したソケットエラー番号
 
-// gt2�R�l�N�V�������X�g
+// gt2コネクションリスト
 // [todo]
-// ����InfoList�Ƌ��ɁA�Q�[������w�肳�ꂽ�T�C�Y�������X�g�����悤�ɕύX����
+// 下のInfoListと共に、ゲームから指定されたサイズだけリストを持つように変更する
 static GT2Connection stGt2ConnectionList[DWC_MAX_CONNECTIONS];
-// gt2�R�l�N�V������񃊃X�g
+// gt2コネクション情報リスト
 static DWCConnectionInfo stConnectionInfoList[DWC_MAX_CONNECTIONS];
 
 
@@ -69,18 +69,18 @@ static void DWCi_GT2SocketErrorCallback(GT2Socket socket);
 //----------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
-  FriendsMatch���C�u�����������֐�
-  �����@�Fdwccnt        FriendsMatch����I�u�W�F�N�g�ւ̃|�C���^
-          userdata      ���[�U�f�[�^�I�u�W�F�N�g�ւ̃|�C���^
-          productID     GameSpy����^������v���_�N�gID
-          gameName      GameSpy����^����ꂽ�Q�[�����iNULL�I�[�K�v�j
-          secretKey     GameSpy����^����ꂽ�V�[�N���b�g�L�[�iNULL�I�[�K�v�j
-          sendBufSize   DWC_Transport���g�����M�o�b�t�@�T�C�Y�B0�Ȃ�f�t�H���g8KByte���g�p����B
-          recvBufSize   DWC_Transport���g����M�o�b�t�@�T�C�Y�B0�Ȃ�f�t�H���g8KByte���g�p����B
-          friendList    �F�B���X�g�i�Q�[���Ŏg�p���Ȃ��ꍇ��NULL�ł��ǂ��j
-          friendListLen �F�B���X�g�̍ő咷�i�v�f���j
-  �߂�l�F�Ȃ�
-  �p�r�@�FFriendsMatch���C�u����������������
+  FriendsMatchライブラリ初期化関数
+  引数　：dwccnt        FriendsMatch制御オブジェクトへのポインタ
+          userdata      ユーザデータオブジェクトへのポインタ
+          productID     GameSpyから与えられるプロダクトID
+          gameName      GameSpyから与えられたゲーム名（NULL終端必要）
+          secretKey     GameSpyから与えられたシークレットキー（NULL終端必要）
+          sendBufSize   DWC_Transportが使う送信バッファサイズ。0ならデフォルト8KByteを使用する。
+          recvBufSize   DWC_Transportが使う受信バッファサイズ。0ならデフォルト8KByteを使用する。
+          friendList    友達リスト（ゲームで使用しない場合はNULLでも良い）
+          friendListLen 友達リストの最大長（要素数）
+  戻り値：なし
+  用途　：FriendsMatchライブラリを初期化する
  *---------------------------------------------------------------------------*/
 void DWC_InitFriendsMatch(DWCFriendsMatchControl* dwccnt,
               DWCUserData* userdata,
@@ -102,12 +102,12 @@ void DWC_InitFriendsMatch(DWCFriendsMatchControl* dwccnt,
     // [arakit] main 051013
     DWC_Printf(DWC_REPORTFLAG_DEBUG, "!!DWC_InitFriendsMatch() was called!!\n");
 
-    stpDwcCnt = dwccnt;  // ����\���̂ւ̃|�C���^���Z�b�g
+    stpDwcCnt = dwccnt;  // 制御構造体へのポインタをセット
 
-    DWC_ClearError();  // �����܂ł̃G���[���N���A
+    DWC_ClearError();  // ここまでのエラーをクリア
 
     stpDwcCnt->gt2Socket              = NULL;
-    stpDwcCnt->gt2Callbacks.connected = DWCi_GT2ConnectedCallback;  // dwc_match.c�Œ�`
+    stpDwcCnt->gt2Callbacks.connected = DWCi_GT2ConnectedCallback;  // dwc_match.cで定義
     stpDwcCnt->gt2Callbacks.received  = DWCi_GT2ReceivedCallback;
     stpDwcCnt->gt2Callbacks.closed    = DWCi_GT2ClosedCallback;
     stpDwcCnt->gt2Callbacks.ping      = DWCi_GT2PingCallback;
@@ -122,8 +122,8 @@ void DWC_InitFriendsMatch(DWCFriendsMatchControl* dwccnt,
     stpDwcCnt->aid              = 0;
     stpDwcCnt->ownCloseFlag     = FALSE;
     stpDwcCnt->profileID        = 0;
-    stpDwcCnt->gameName         = gcd_gamename;    // stats�ϐ��ւ̃|�C���^���i�[
-    stpDwcCnt->secretKey        = gcd_secret_key;  // stats�ϐ��ւ̃|�C���^���i�[
+    stpDwcCnt->gameName         = gcd_gamename;    // stats変数へのポインタを格納
+    stpDwcCnt->secretKey        = gcd_secret_key;  // stats変数へのポインタを格納
 
     stpDwcCnt->loginCallback         = NULL;
     stpDwcCnt->loginParam            = NULL;
@@ -136,25 +136,25 @@ void DWC_InitFriendsMatch(DWCFriendsMatchControl* dwccnt,
     stpDwcCnt->closedCallback        = NULL;
     stpDwcCnt->closedParam           = NULL;
 
-    // gt2�R�l�N�V�������X�g��gt2�R�l�N�V������񃊃X�g��������
+    // gt2コネクションリストとgt2コネクション情報リストを初期化
     DWCi_ClearGT2ConnectionList();
 
-    // ���O�C������\���̏�����
+    // ログイン制御構造体初期化
     DWCi_LoginInit(&stpDwcCnt->logcnt, userdata, &stpDwcCnt->gpObj, productID, userdata->gamecode, stpDwcCnt->playerName, DWCi_LoginCallback, NULL);
 
-    // �F�B�Ǘ��\���̏�����
+    // 友達管理構造体初期化
     DWCi_FriendInit(&stpDwcCnt->friendcnt, &stpDwcCnt->gpObj, stpDwcCnt->playerName, friendList, friendListLen);
 
-    // �}�b�`���C�N����\���̏�����
+    // マッチメイク制御構造体初期化
     DWCi_MatchInit(&stpDwcCnt->matchcnt, &stpDwcCnt->gpObj,
                    &stpDwcCnt->gt2Socket, &stpDwcCnt->gt2Callbacks,
                    gcd_gamename, gcd_secret_key,
                    friendList, friendListLen);
 
-    // �g�����X�|�[�g����\���̏�����
+    // トランスポート制御構造体初期化
     DWCi_InitTransport(&stpDwcCnt->transinfo);
 
-    // GameSpy persistent SDK �̂��߂ɃO���[�o���ϐ���ݒ�igcd_gamename, gcd_secret_key�j
+    // GameSpy persistent SDK のためにグローバル変数を設定（gcd_gamename, gcd_secret_key）
     cpySize = strlen(gameName) < sizeof(gcd_gamename) ? strlen(gameName) : sizeof(gcd_gamename)-1;
     MI_CpuCopy8(gameName, gcd_gamename, cpySize);
     gcd_gamename[cpySize] = '\0';
@@ -166,10 +166,10 @@ void DWC_InitFriendsMatch(DWCFriendsMatchControl* dwccnt,
 
 
 /*---------------------------------------------------------------------------*
-  FriendsMatch���C�u�����I���֐�
-  �����@�F�Ȃ�
-  �߂�l�F�Ȃ�
-  �p�r�@�FFriendsMatch���C�u�������I�����AGameSpySDK�̃q�[�v�̈���J������
+  FriendsMatchライブラリ終了関数
+  引数　：なし
+  戻り値：なし
+  用途　：FriendsMatchライブラリを終了し、GameSpySDKのヒープ領域を開放する
  *---------------------------------------------------------------------------*/
 void DWC_ShutdownFriendsMatch(void)
 {
@@ -181,70 +181,70 @@ void DWC_ShutdownFriendsMatch(void)
 
     if (!stpDwcCnt) return;
 
-    // GP�X�e�[�^�X���I�t���C���ɂ���
-    // ��gpDestroy()���̃N���[�Y���M�i����͑����M�����j����������
+    // GPステータスをオフラインにする
+    // →gpDestroy()内のクローズ送信（これは即送信される）が同じ効果
     //if (stpDwcCnt->gpObj){
     //    (void)DWCi_SetGPStatus(DWC_STATUS_OFFLINE, "", "");
-    //    (void)gpProcess(&stpDwcCnt->gpObj);  // GP�T�[�o�ɃA�b�v
+    //    (void)gpProcess(&stpDwcCnt->gpObj);  // GPサーバにアップ
     //}
 
-    // QR2�I�u�W�F�N�g�J��
-    // qr2_shutdown()�͒ʐM����̂�gt2CloseSocket()���O�ɌĂ�
+    // QR2オブジェクト開放
+    // qr2_shutdown()は通信するのでgt2CloseSocket()より前に呼ぶ
     if (stpDwcCnt->matchcnt.qr2Obj){
         qr2_shutdown(stpDwcCnt->matchcnt.qr2Obj);
-        stpDwcCnt->matchcnt.qr2Obj = NULL;  // ������NULL�N���A���Ȃ���΂Ȃ�Ȃ��I
+        stpDwcCnt->matchcnt.qr2Obj = NULL;  // 自分でNULLクリアしなければならない！
     }
 #ifdef DWC_QR2_ALIVE_DURING_MATCHING
-    stpDwcCnt->matchcnt.qr2ShutdownFlag = 0;  // QR2�V���b�g�_�E���t���O�N���A
+    stpDwcCnt->matchcnt.qr2ShutdownFlag = 0;  // QR2シャットダウンフラグクリア
 #endif
 
-    // SB�I�u�W�F�N�g�J��
+    // SBオブジェクト開放
     if (stpDwcCnt->matchcnt.sbObj){
         ServerBrowserFree(stpDwcCnt->matchcnt.sbObj);
-        stpDwcCnt->matchcnt.sbObj = NULL;  // ������NULL�N���A���Ȃ���΂Ȃ�Ȃ��I
+        stpDwcCnt->matchcnt.sbObj = NULL;  // 自分でNULLクリアしなければならない！
     }
 
-    // �l�S�V�G�[�V�������X�g���
+    // ネゴシエーションリスト解放
     DWCi_NNFreeNegotiateList();
 
-    CloseStatsConnection();  // Persistent�I�u�W�F�N�g�̊J��
+    CloseStatsConnection();  // Persistentオブジェクトの開放
 
-    // GP�I�u�W�F�N�g�̊J��
+    // GPオブジェクトの開放
     // [todo]
-    // ������R�[���o�b�N���ŌĂ΂ꂽ�ꍇ�ɖ�肪���邪�A�J������K�v������
+    // これもコールバック内で呼ばれた場合に問題があるが、開放する必要がある
     if (stpDwcCnt->gpObj){
-         // WCM��disconnect���Ă���Ƃ��ɁA�Ō�̑��M�G���[���o��ꍇ������A���̂Ƃ��Ƀ��������[�N����B
+         // WCMがdisconnectしているときに、最後の送信エラーが出る場合があり、そのときにメモリリークする。
         (void)gpSetCallback(&stpDwcCnt->gpObj, GP_ERROR, (GPCallback)NULL, NULL);
         (void)gpSetCallback(&stpDwcCnt->gpObj, GP_RECV_BUDDY_MESSAGE, (GPCallback)NULL, NULL);
         (void)gpSetCallback(&stpDwcCnt->gpObj, GP_RECV_BUDDY_REQUEST, (GPCallback)NULL, NULL);
         (void)gpSetCallback(&stpDwcCnt->gpObj, GP_RECV_BUDDY_STATUS, (GPCallback)NULL, NULL);
-        (void)gpProcess(&stpDwcCnt->gpObj); // ���܂��Ă��郁������f���o���B
+        (void)gpProcess(&stpDwcCnt->gpObj); // たまっているメモリを吐き出す。
         gpDestroy(&stpDwcCnt->gpObj);
         stpDwcCnt->gpObj = NULL;
     }
 
-    // �e���W���[���̃V���b�g�_�E���i��ɐ���I�u�W�F�N�g�̃N���A�j
+    // 各モジュールのシャットダウン（主に制御オブジェクトのクリア）
     DWCi_ShutdownLogin();
     DWCi_ShutdownFriend();
     DWCi_ShutdownMatch();
     DWCi_ShutdownTransport();
 
-    // GT2�\�P�b�g�̊J��
+    // GT2ソケットの開放
     // [todo]
-    // �R�[���o�b�N���Ŋ֐����Ă΂ꂽ�ꍇ�ɃI�u�W�F�N�g���Ȃ��Ď~�܂�
-    // ���Ƃ��Ȃ����m�F
+    // コールバック内で関数が呼ばれた場合にオブジェクトがなくて止まる
+    // ことがないか確認
     if (stpDwcCnt->gt2Socket){
         gt2CloseSocket(stpDwcCnt->gt2Socket);
-        stpDwcCnt->gt2Socket = NULL;  // ������NULL�N���A���Ȃ���΂Ȃ�Ȃ��I
+        stpDwcCnt->gt2Socket = NULL;  // 自分でNULLクリアしなければならない！
     }
 
 #ifdef GSI_MEM_MANAGED
-    gsMemMgrDestroy();  // GameSpy�̃q�[�v�̈�ƃq�[�v�}�l�[�W���J��
+    gsMemMgrDestroy();  // GameSpyのヒープ領域とヒープマネージャ開放
 #endif
 
-    stpDwcCnt = NULL;  // FriendsMatch����I�u�W�F�N�g�N���A
+    stpDwcCnt = NULL;  // FriendsMatch制御オブジェクトクリア
     
-    // �p�����[�^������
+    // パラメータ初期化
     //DWC_InitFriendsMatch(dwccnt, dwccnt->userdata, dwccnt->logcnt.productID, dwccnt->gameName,
     //                     dwccnt->secretKey, dwccnt->gt2SendBufSize,
     //                     dwccnt->gt2RecvBufSize, NULL, NULL);
@@ -252,10 +252,10 @@ void DWC_ShutdownFriendsMatch(void)
 
 
 /*---------------------------------------------------------------------------*
-  FriendsMatch���C�u�����ʐM�����X�V�֐�
-  �����@�F�Ȃ�
-  �߂�l�F�Ȃ�
-  �p�r�@�F���Q�[���t���[���Ăяo���A FriendsMatch���C�u�����̒ʐM�������X�V����
+  FriendsMatchライブラリ通信処理更新関数
+  引数　：なし
+  戻り値：なし
+  用途　：毎ゲームフレーム呼び出し、 FriendsMatchライブラリの通信処理を更新する
  *---------------------------------------------------------------------------*/
 void DWC_ProcessFriendsMatch(void)
 {
@@ -264,7 +264,7 @@ void DWC_ProcessFriendsMatch(void)
 
     if ( DWC_UpdateConnection() )
     {
-        // DCF���ؒf���ꂽ�B
+        // DCFが切断された。
         DWCs_ForceShutdown();
     }
 
@@ -272,12 +272,12 @@ void DWC_ProcessFriendsMatch(void)
         return;
 
     switch (stpDwcCnt->state){
-    case DWC_STATE_AVAILABLE_CHECK:  // �Q�[�����p�\�󋵃`�F�b�N��
-        acResult = GSIAvailableCheckThink();  // AvailableCheck�X�V
+    case DWC_STATE_AVAILABLE_CHECK:  // ゲーム利用可能状況チェック中
+        acResult = GSIAvailableCheckThink();  // AvailableCheck更新
         switch (acResult){
-        case GSIACAvailable:    // ���p�\�B
+        case GSIACAvailable:    // 利用可能。
             DWC_Printf(DWC_REPORTFLAG_ACHECK, "Confirmed the backend of GameSpy server.\n");
-            // GP������
+            // GP初期化
             //
             // Nintendo DS
             //
@@ -288,13 +288,13 @@ void DWC_ProcessFriendsMatch(void)
             gpResult = gpInitialize(&stpDwcCnt->gpObj, stpDwcCnt->logcnt.productID, 0);
             if (DWCi_HandleGPError(gpResult)) return;
 
-#if 0       // �����؂̂��ߕۗ�
-            // GP�̃L���b�V����BUDDY�݂̂Ɍ���
+#if 0       // 未検証のため保留
+            // GPのキャッシュはBUDDYのみに限定
             gpResult = gpDisable(&stpDwcCnt->gpObj, GP_INFO_CACHING_BUDDY_ONLY); 
             if (DWCi_HandleGPError(gpResult)) return;
 #endif
             
-            // GP�̃R�[���o�b�N�֐���ݒ�
+            // GPのコールバック関数を設定
             gpResult = gpSetCallback(&stpDwcCnt->gpObj, GP_ERROR,
                                      (GPCallback)DWCi_GPErrorCallback,
                                      NULL);
@@ -305,13 +305,13 @@ void DWC_ProcessFriendsMatch(void)
                                      NULL);
             if (DWCi_HandleGPError(gpResult)) return;
 
-            // DWCi_GPRecvBuddyRequestCallback()��dwc_friend.c�Œ�`����Ă���
+            // DWCi_GPRecvBuddyRequestCallback()はdwc_friend.cで定義されている
             gpResult = gpSetCallback(&stpDwcCnt->gpObj, GP_RECV_BUDDY_REQUEST,
                                      (GPCallback)DWCi_GPRecvBuddyRequestCallback,
                                      NULL);
             if (DWCi_HandleGPError(gpResult)) return;
 
-            // DWCi_GPRecvBuddyStatusCallback()��dwc_friend.c�Œ�`����Ă���
+            // DWCi_GPRecvBuddyStatusCallback()はdwc_friend.cで定義されている
             gpResult = gpSetCallback(&stpDwcCnt->gpObj, GP_RECV_BUDDY_STATUS,
                                      (GPCallback)DWCi_GPRecvBuddyStatusCallback,
                                      NULL);
@@ -319,17 +319,17 @@ void DWC_ProcessFriendsMatch(void)
 
             DWCi_SetState(DWC_STATE_LOGIN);
 
-            // ���O�C�������֐����Ăяo��
+            // ログイン内部関数を呼び出す
             DWCi_LoginAsync();
             break;
-        case GSIACUnavailable:  // �T�[�r�X�I��
-            // ���O�C�������I��
-            DWCi_StopLogin(DWC_ERROR_AUTH_OUT_OF_SERVICE, -20110); // �T�[�r�X�I���̃G���[�R�[�h�F-20110
+        case GSIACUnavailable:  // サービス終了
+            // ログイン処理終了
+            DWCi_StopLogin(DWC_ERROR_AUTH_OUT_OF_SERVICE, -20110); // サービス終了のエラーコード：-20110
             return;
             break;
-        case GSIACTemporarilyUnavailable:  // �ꎞ�I�ɗ��p�s��
-            // ���O�C�������I��
-            DWCi_StopLogin(DWC_ERROR_AUTH_STOP_SERVICE, -20101); // �T�[�r�X�ꎞ���p�s�̃G���[�R�[�h�F-20101
+        case GSIACTemporarilyUnavailable:  // 一時的に利用不可
+            // ログイン処理終了
+            DWCi_StopLogin(DWC_ERROR_AUTH_STOP_SERVICE, -20101); // サービス一時利用不可のエラーコード：-20101
             return;
             break;
         default:
@@ -337,32 +337,32 @@ void DWC_ProcessFriendsMatch(void)
         }
         break;
         
-    case DWC_STATE_LOGIN:  // ���O�C��������
+    case DWC_STATE_LOGIN:  // ログイン処理中
         DWCi_LoginProcess();
         break;
 
-    case DWC_STATE_UPDATE_SERVERS:  // �F�B���X�g����������
-    case DWC_STATE_ONLINE:          // �I�����C����
+    case DWC_STATE_UPDATE_SERVERS:  // 友達リスト同期処理中
+    case DWC_STATE_ONLINE:          // オンライン中
         DWCi_FriendProcess();
-        DWCi_MatchProcess(FALSE);  // ������qr2_think(), gt2Think()���Ăяo��
+        DWCi_MatchProcess(FALSE);  // ここでqr2_think(), gt2Think()を呼び出す
         break;
 
-    case DWC_STATE_MATCHING:  // �}�b�`���C�N������
+    case DWC_STATE_MATCHING:  // マッチメイク処理中
         DWCi_MatchProcess(TRUE);
         DWCi_FriendProcess();
         break;
 
-    case DWC_STATE_CONNECTED:  // �ڑ��������
+    case DWC_STATE_CONNECTED:  // 接続完了状態
 		DWCi_TransportProcess();
         DWCi_FriendProcess();
 
         if ((stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_SV) ||
             (stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_CL)){
-            // �r���Q������̏ꍇ�̓}�b�`���C�N�������s��
+            // 途中参加ありの場合はマッチメイク処理を行う
             DWCi_MatchProcess(TRUE);
         }
         else if (stpDwcCnt->gt2Socket){
-            // ��L�ȊO�̏ꍇ�͂�����qr2_think(), gt2Think()���Ăяo��
+            // 上記以外の場合はここでqr2_think(), gt2Think()を呼び出す
             DWCi_MatchProcess(FALSE);
         }
         break;
@@ -373,26 +373,26 @@ void DWC_ProcessFriendsMatch(void)
 
 #ifdef DWC_QR2_ALIVE_DURING_MATCHING
     if (stpDwcCnt->matchcnt.qr2ShutdownFlag == 1){
-        // QR2�V���b�g�_�E���t���O�������Ă�����QR2���I������
+        // QR2シャットダウンフラグが立っていたらQR2を終了する
         if (stpDwcCnt->matchcnt.qr2Obj != NULL){
             qr2_shutdown(stpDwcCnt->matchcnt.qr2Obj);
-            stpDwcCnt->matchcnt.qr2Obj = NULL;  // ������NULL�N���A���Ȃ���΂Ȃ�Ȃ��I
+            stpDwcCnt->matchcnt.qr2Obj = NULL;  // 自分でNULLクリアしなければならない！
         }
-        stpDwcCnt->matchcnt.qr2ShutdownFlag = 0;  // QR2�V���b�g�_�E���t���O�N���A
+        stpDwcCnt->matchcnt.qr2ShutdownFlag = 0;  // QR2シャットダウンフラグクリア
     }
 #endif
 }
 
 
 /*---------------------------------------------------------------------------*
-  Wi-Fi�R�l�N�V�������O�C���֐�
-  �����@�Fingamesn �Q�[�����X�N���[���l�[��
-          reserved �ߋ��̎d�l�BNULL��n���B
-          callback ���O�C�������ʒm�p�R�[���o�b�N�֐�
-          param    �R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B���������s�ŃR�[���o�b�N���Ԃ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F�Q�[�������p�\�ł��邩���ׁA�����[�g�F�؁AGP�T�[�o�ւ̐ڑ����s��
+  Wi-Fiコネクションログイン関数
+  引数　：ingamesn ゲーム内スクリーンネーム
+          reserved 過去の仕様。NULLを渡す。
+          callback ログイン完了通知用コールバック関数
+          param    コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。成功か失敗でコールバックが返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：ゲームが利用可能であるか調べ、リモート認証、GPサーバへの接続を行う
  *---------------------------------------------------------------------------*/
 BOOL DWC_LoginAsync(const u16*  ingamesn,
                     const char* reserved,
@@ -411,14 +411,14 @@ BOOL DWC_LoginAsync(const u16*  ingamesn,
     DWC_Printf(DWC_REPORTFLAG_DEBUG, "!!DWC_LoginAsync() was called!!\n");
 
     if (ingamesn == NULL){
-        // ingamesn�͕K���w�肵�Ă��炤�K�v������
+        // ingamesnは必ず指定してもらう必要がある
         DWC_Printf(DWC_REPORTFLAG_WARNING, "ingamesn is NULL!!\n");
         return FALSE;
     }
 
     // [arakit] main 051025
     if (DWCi_IsError() || (stpDwcCnt->state != DWC_STATE_INIT)){
-        // ���Ƀ��O�C���������O�C�����Ă���̂ɌĂ΂ꂽ�牽�����Ȃ�
+        // 既にログイン中かログインしているのに呼ばれたら何もしない
         DWC_Printf(DWC_REPORTFLAG_DEBUG, "But ignored.\n");
         return FALSE;
     }
@@ -429,19 +429,19 @@ BOOL DWC_LoginAsync(const u16*  ingamesn,
     //stpDwcCnt->logcnt.userID   = userID;
     //stpDwcCnt->logcnt.password = password;
 
-    // �Q�[�����X�N���[���l�[����o�^����
+    // ゲーム内スクリーンネームを登録する
     if (!ingamesn || (ingamesn[0] == '\0')){
         len = 0;
     }
     else {
-        // �ő啶�����Ɏ��܂镪�����R�s�[����
+        // 最大文字数に収まる分だけコピーする
         MI_CpuClear16( stpDwcCnt->playerName, DWC_MAX_PLAYER_NAME*2 );
         len = DWCi_WStrLen(ingamesn) <= DWC_MAX_PLAYER_NAME-1 ? DWCi_WStrLen(ingamesn) : DWC_MAX_PLAYER_NAME-1;
         MI_CpuCopy16(ingamesn, stpDwcCnt->playerName, len*2);
     }
     stpDwcCnt->playerName[len] = 0;
 
-    // �܂��C���^�[�l�b�g�ɐڑ����ĂȂ��̂ɁALogin���悤�Ƃ����B
+    // まだインターネットに接続してないのに、Loginしようとした。
     if (DWC_GetInetStatus() != DWC_CONNECTINET_STATE_CONNECTED )
     {
         DWCi_StopLogin( DWC_ERROR_AUTH_ANY, DWC_ECODE_SEQ_LOGIN + DWC_ECODE_TYPE_NETWORK );
@@ -451,9 +451,9 @@ BOOL DWC_LoginAsync(const u16*  ingamesn,
 
     DWCi_SetState(DWC_STATE_AVAILABLE_CHECK);
 
-    // GameSpy API���g�p����O�ɁAGAME_NAME�Ŏw�肵���Q�[����
-    // GameSpy�T�[�o�ŏ����ł��邩�m�F����B
-	// Available�`�F�b�N�J�n
+    // GameSpy APIを使用する前に、GAME_NAMEで指定したゲームが
+    // GameSpyサーバで処理できるか確認する。
+	// Availableチェック開始
 	GSIStartAvailableCheck(stpDwcCnt->gameName);
 
     // [arakit] main 051025
@@ -462,19 +462,19 @@ BOOL DWC_LoginAsync(const u16*  ingamesn,
 
 
 /*---------------------------------------------------------------------------*
-  �F�B���X�g���������֐�
-  �����@�FplayerName     ���̃��[�U���Q�Ƃ��鎩���̃v���C���[��
-                         ���ߋ��̎d�l�ł��B���݂̓Z�b�g���ꂽ�l�𖳎����Ă��܂��B
-          updateCallback �F�B���X�g�������������R�[���o�b�N
-          updateParam    ��L�R�[���o�b�N�p�p�����[�^
-          statusCallback �F�B��ԕω��ʒm�R�[���o�b�N
-          statusParam    ��L�R�[���o�b�N�p�p�����[�^
-          deleteCallback �F�B���X�g�폜�R�[���o�b�N
-          deleteParam    ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B���������s�ŃR�[���o�b�N���Ԃ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F���O�C��������AGP�T�[�o��̗F�B���X�g�i�o�f�B���X�g�j��
-          ���[�J���̗F�B���X�g�̓����������s��
+  友達リスト同期処理関数
+  引数　：playerName     他のユーザも参照する自分のプレイヤー名
+                         →過去の仕様です。現在はセットされた値を無視しています。
+          updateCallback 友達リスト同期処理完了コールバック
+          updateParam    上記コールバック用パラメータ
+          statusCallback 友達状態変化通知コールバック
+          statusParam    上記コールバック用パラメータ
+          deleteCallback 友達リスト削除コールバック
+          deleteParam    上記コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。成功か失敗でコールバックが返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：ログイン完了後、GPサーバ上の友達リスト（バディリスト）と
+          ローカルの友達リストの同期処理を行う
  *---------------------------------------------------------------------------*/
 BOOL DWC_UpdateServersAsync(const char* playerName,
                             DWCUpdateServersCallback updateCallback,
@@ -497,14 +497,14 @@ BOOL DWC_UpdateServersAsync(const char* playerName,
     // [arakit] main 051025
     if (DWCi_IsError() ||
         (stpDwcCnt->state < DWC_STATE_ONLINE) || (stpDwcCnt->state == DWC_STATE_UPDATE_SERVERS)){
-        // ���O�C���R�[���o�b�N���ɌĂ΂���STATE_ONLINE
+        // ログインコールバック中に呼ばれるとSTATE_ONLINE
         // [arakit] main 051013
         DWC_Printf(DWC_REPORTFLAG_DEBUG, "But ignored.\n");
         return FALSE;
     }
 
 #if 0
-    // �v���C���[�����擾���v���C���[���͂����ł̓Z�b�g���Ȃ�
+    // プレイヤー名を取得→プレイヤー名はここではセットしない
     if (!playerName || (playerName[0] == '\0')){
         len = 0;
     }
@@ -512,16 +512,16 @@ BOOL DWC_UpdateServersAsync(const char* playerName,
         len = strlen(playerName) < DWC_MAX_PLAYER_NAME ? strlen(playerName) : DWC_MAX_PLAYER_NAME-1;
         MI_CpuCopy8(playerName, stpDwcCnt->playerName, len);
     }
-    stpDwcCnt->playerName[len] = '\0';  // NULL�I�[��ۏ�
+    stpDwcCnt->playerName[len] = '\0';  // NULL終端を保証
 #endif
 
     stpDwcCnt->updateServersCallback = updateCallback;
     stpDwcCnt->updateServersParam    = updateParam;
 
-    // �F�B���X�g����������ԂɈڍs
+    // 友達リスト同期処理状態に移行
     DWCi_SetState(DWC_STATE_UPDATE_SERVERS);
 
-    // �F�B���X�g���������J�n
+    // 友達リスト同期処理開始
     DWCi_UpdateServersAsync(stpDwcCnt->logcnt.authToken,
                             stpDwcCnt->logcnt.partnerChallenge,
                             DWCi_UpdateServersCallback, NULL,
@@ -533,21 +533,21 @@ BOOL DWC_UpdateServersAsync(const char* playerName,
 
 
 /*---------------------------------------------------------------------------*
-  �F�B���w��s�A�}�b�`���C�N�J�n�֐�
-  �����@�FnumEntry        �v������l�b�g���[�N�\���l���i�������܂ށj
-          addFilter       �Q�[���Œǉ��������}�b�`���C�N����������B
-                          ������ǉ����Ȃ��ꍇ��NULL��n���B
-                          �����̓X�^���_�[�h��SQL�̏����ŏ������Ƃ��ł��܂��B
-                          ���̂Ƃ���ݒ�ł��镶���񒷂͍ő�127�����ŁA
-                          �f�o�b�O�r���h�ł͕������I�[�o�`�F�b�N�����Ă��܂��B
-                          ������̓R�s�[���ă��C�u�������ŕێ����܂��B
-          matchedCallback �}�b�`���C�N�����R�[���o�b�N
-          matehedParam    ��L�R�[���o�b�N�p�p�����[�^
-          evalCallback    �v���C���[�]���R�[���o�b�N
-          evalParam       ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B�}�b�`���C�N�̌��ʂ��R�[���o�b�N�ŕԂ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F�F�B���w�肹���ɁA�l���w��Ń��b�V���^�l�b�g���[�N���쐬����
+  友達無指定ピアマッチメイク開始関数
+  引数　：numEntry        要求するネットワーク構成人数（自分を含む）
+          addFilter       ゲームで追加したいマッチメイク条件文字列。
+                          条件を追加しない場合はNULLを渡す。
+                          条件はスタンダードなSQLの書式で書くことができます。
+                          今のところ設定できる文字列長は最大127文字で、
+                          デバッグビルドでは文字数オーバチェックをしています。
+                          文字列はコピーしてライブラリ内で保持します。
+          matchedCallback マッチメイク完了コールバック
+          matehedParam    上記コールバック用パラメータ
+          evalCallback    プレイヤー評価コールバック
+          evalParam       上記コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。マッチメイクの結果がコールバックで返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：友達を指定せずに、人数指定でメッシュ型ネットワークを作成する
  *---------------------------------------------------------------------------*/
 // [arakit] main 051025
 BOOL DWC_ConnectToAnybodyAsync(u8  numEntry,
@@ -572,7 +572,7 @@ BOOL DWC_ConnectToAnybodyAsync(u8  numEntry,
         return FALSE;
     }
 
-    // gt2�R�l�N�V�������X�g��gt2�R�l�N�V������񃊃X�g��������
+    // gt2コネクションリストとgt2コネクション情報リストを初期化
     DWCi_ClearGT2ConnectionList();
 
     stpDwcCnt->matchedCallback = matchedCallback;
@@ -580,8 +580,8 @@ BOOL DWC_ConnectToAnybodyAsync(u8  numEntry,
 
     DWCi_SetState(DWC_STATE_MATCHING);
 
-    // �}�b�`���C�N�֐��Ăяo��
-    // numEntry�̓}�b�`���C�N�������ł͎������܂܂Ȃ��ڑ��l����\���̂�-1���ēn��
+    // マッチメイク関数呼び出し
+    // numEntryはマッチメイク処理内では自分を含まない接続人数を表すので-1して渡す
     DWCi_ConnectToAnybodyAsync((u8)(numEntry-1),
                                addFilter,
                                DWCi_MatchedCallback, NULL,
@@ -593,19 +593,19 @@ BOOL DWC_ConnectToAnybodyAsync(u8  numEntry,
 
 
 /*---------------------------------------------------------------------------*
-  �F�B�w��s�A�}�b�`���C�N�J�n�֐�
-  �����@�FfriendIdxList    �ڑ��v���F�B�C���f�b�N�X���X�g�B
-                           NULL�Ȃ�F�B���X�g�S�Ă�ڑ��v���ΏۂƂ���B
-          friendIdxListLen �ڑ��v���F�B�C���f�b�N�X���X�g��
-          numEntry         �v������l�b�g���[�N�\���l���i�������܂ށj
-          distantFriend    TRUE:�F�B�̗F�B�Ƃ̐ڑ��������AFALSE:�����Ȃ�
-          matchedCallback  �}�b�`���C�N�����R�[���o�b�N
-          matchedParam     ��L�R�[���o�b�N�p�p�����[�^
-          evalCallback     �v���C���[�]���R�[���o�b�N
-          evalParam        ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B�}�b�`���C�N�̌��ʂ��R�[���o�b�N�ŕԂ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F�F�B���w�肵�Đڑ����A���b�V���^�l�b�g���[�N���쐬����
+  友達指定ピアマッチメイク開始関数
+  引数　：friendIdxList    接続要求友達インデックスリスト。
+                           NULLなら友達リスト全てを接続要求対象とする。
+          friendIdxListLen 接続要求友達インデックスリスト長
+          numEntry         要求するネットワーク構成人数（自分を含む）
+          distantFriend    TRUE:友達の友達との接続を許す、FALSE:許さない
+          matchedCallback  マッチメイク完了コールバック
+          matchedParam     上記コールバック用パラメータ
+          evalCallback     プレイヤー評価コールバック
+          evalParam        上記コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。マッチメイクの結果がコールバックで返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：友達を指定して接続し、メッシュ型ネットワークを作成する
  *---------------------------------------------------------------------------*/
 // [arakit] main 051025
 BOOL DWC_ConnectToFriendsAsync(const u8 friendIdxList[],
@@ -617,7 +617,7 @@ BOOL DWC_ConnectToFriendsAsync(const u8 friendIdxList[],
                                DWCEvalPlayerCallback evalCallback,
                                void* evalParam)
 {
-    // �ꎞ�F�B���X�g�B�Q�[������F�B�ő吔�����炤�悤�ɂȂ�����T�C�Y��ύX����
+    // 一時友達リスト。ゲームから友達最大数をもらうようになったらサイズを変更する
     u8  tmpFriendIdxList[DWC_MAX_MATCH_IDX_LIST];
     u8  idxList[DWC_MAX_MATCH_IDX_LIST];
     u8  i;
@@ -638,7 +638,7 @@ BOOL DWC_ConnectToFriendsAsync(const u8 friendIdxList[],
         return FALSE;
     }
 
-    // gt2�R�l�N�V�������X�g��gt2�R�l�N�V������񃊃X�g��������
+    // gt2コネクションリストとgt2コネクション情報リストを初期化
     DWCi_ClearGT2ConnectionList();
 
     stpDwcCnt->matchedCallback = matchedCallback;
@@ -646,9 +646,9 @@ BOOL DWC_ConnectToFriendsAsync(const u8 friendIdxList[],
 
     DWCi_SetState(DWC_STATE_MATCHING);
 
-    // numEntry�̓}�b�`���C�N�������ł͎������܂܂Ȃ��ڑ��l����\���̂�-1���ēn��
+    // numEntryはマッチメイク処理内では自分を含まない接続人数を表すので-1して渡す
     if (friendIdxList){
-        // �}�b�`���C�N�֐��Ăяo��
+        // マッチメイク関数呼び出し
         DWCi_ConnectToFriendsAsync(friendIdxList, friendIdxListLen,
                                    (u8)(numEntry-1),
                                    distantFriend,
@@ -656,40 +656,40 @@ BOOL DWC_ConnectToFriendsAsync(const u8 friendIdxList[],
                                    evalCallback, evalParam);
     }
     else {
-        // �F�B�C���f�b�N�X���X�g�̎w�肪�����ꍇ�́A�S�Ă̗F�B�̃C���f�b�N�X��
-        // �ꎞ�C���f�b�N�X���X�g�ɓo�^���āA�}�b�`���C�N�֐��ɓn��
+        // 友達インデックスリストの指定が無い場合は、全ての友達のインデックスを
+        // 一時インデックスリストに登録して、マッチメイク関数に渡す
         friendIdxListLen = 0;
         
-        // �C���f�b�N�X�����o�����ƂȂ�C���f�b�N�X���X�g���쐬����
+        // インデックス抜き出し元となるインデックスリストを作成する
         for (i = 0; i < DWCi_GetFriendListLen(); i++){
             idxList[i] = i;
         }
 
-        // �C���f�b�N�X���X�g���烉���_���ɃC���f�b�N�X�l�𔲂��o���A
-        // �F�B�C���f�b�N�X���X�g���쐬����
+        // インデックスリストからランダムにインデックス値を抜き出し、
+        // 友達インデックスリストを作成する
         for (i = 0; i < DWCi_GetFriendListLen(); i++){
             u32 randIdx = DWCi_GetMathRand32((u32)(DWCi_GetFriendListLen()-i));
 
 #ifdef DWC_MATCH_ACCEPT_NO_FRIEND
-            // �����ς݃o�f�B�łȂ��Ă��S�ăZ�b�g����
+            // 成立済みバディでなくても全てセットする
             tmpFriendIdxList[i] = idxList[randIdx];
             friendIdxListLen++;
             
 #else
-            // �����ȗF�B���͑I�΂�Ȃ��悤�ɂ���
+            // 無効な友達情報は選ばれないようにする
             if (DWCi_Acc_IsValidFriendData(&(DWCi_GetFriendList())[idxList[randIdx]])){
                 tmpFriendIdxList[i] = idxList[randIdx];
                 friendIdxListLen++;
             }
 #endif
 
-            // �����o���ꂽ�C���f�b�N�X������̃C���f�b�N�X���X�g��O�ɋl�߂�
+            // 抜き出されたインデックスから後ろのインデックスリストを前に詰める
             for (j = randIdx; j < DWCi_GetFriendListLen()-i-1; j++){
                 idxList[j] = idxList[j+1];
             }
         }
             
-        // �}�b�`���C�N�֐��Ăяo��
+        // マッチメイク関数呼び出し
         DWCi_ConnectToFriendsAsync(tmpFriendIdxList, friendIdxListLen,
                                    (u8)(numEntry-1),
                                    distantFriend,
@@ -703,16 +703,16 @@ BOOL DWC_ConnectToFriendsAsync(const u8 friendIdxList[],
 
 
 /*---------------------------------------------------------------------------*
-  �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�N���֐�
-  �����@�FmaxEntry          �ő�ڑ��l���i�������܂ށj
-          matchedCallback   �}�b�`���C�N�����R�[���o�b�N�B�P�l�ڑ����邲�ƂɌĂ΂��B
-          matchedParam      ��L�R�[���o�b�N�p�p�����[�^
-          newClientCallback �V�K�ڑ��N���C�A���g�ʒm�R�[���o�b�N
-          newClientParam    ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B�}�b�`���C�N�̌��ʂ��R�[���o�b�N�ŕԂ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F�T�[�o�𗧂ĂăN���C�A���g����̗v��������΁A�R�l�N�V������
-          �ڑ��E�ؒf�������s���B
+  サーバクライアントマッチメイクのサーバ起動関数
+  引数　：maxEntry          最大接続人数（自分を含む）
+          matchedCallback   マッチメイク完了コールバック。１人接続するごとに呼ばれる。
+          matchedParam      上記コールバック用パラメータ
+          newClientCallback 新規接続クライアント通知コールバック
+          newClientParam    上記コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。マッチメイクの結果がコールバックで返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：サーバを立ててクライアントからの要求があれば、コネクションの
+          接続・切断処理を行う。
  *---------------------------------------------------------------------------*/
 // [arakit] main 051025 051027
 BOOL DWC_SetupGameServer(u8  maxEntry,
@@ -736,19 +736,19 @@ BOOL DWC_SetupGameServer(u8  maxEntry,
         return FALSE;
     }
 
-    // gt2�R�l�N�V�������X�g��gt2�R�l�N�V������񃊃X�g��������
+    // gt2コネクションリストとgt2コネクション情報リストを初期化
     DWCi_ClearGT2ConnectionList();
 
     stpDwcCnt->matchedSCCallback = matchedCallback;
     stpDwcCnt->matchedSCParam    = matchedParam;
 
-    // �T�[�o�̏ꍇ�͕K��AID = 0
+    // サーバの場合は必ずAID = 0
     stpDwcCnt->aid = 0;
 
     DWCi_SetState(DWC_STATE_MATCHING);
 
-    // �}�b�`���C�N�֐��Ăяo��
-    // maxEntry�̓}�b�`���C�N�������ł͎������܂܂Ȃ��ڑ��l����\���̂�-1���ēn��
+    // マッチメイク関数呼び出し
+    // maxEntryはマッチメイク処理内では自分を含まない接続人数を表すので-1して渡す
     // [arakit] main 051027
     DWCi_SetupGameServer((u8)(maxEntry-1),
                          DWCi_MatchedCallback, NULL,
@@ -760,17 +760,17 @@ BOOL DWC_SetupGameServer(u8  maxEntry,
 
 
 /*---------------------------------------------------------------------------*
-  �T�[�o�N���C�A���g�}�b�`���C�N�̃N���C�A���g�N���֐�
-  �����@�FserverIndex       �ڑ���T�[�o�̗F�B���X�g�C���f�b�N�X
-          matchedCallback   �}�b�`���C�N�����R�[���o�b�N�B�P�l�ڑ����邲�ƂɌĂ΂��B
-          matchedParam      ��L�R�[���o�b�N�p�p�����[�^
-          newClientCallback �V�K�ڑ��N���C�A���g�ʒm�R�[���o�b�N
-          newClientParam    ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B�}�b�`���C�N�̌��ʂ��R�[���o�b�N�ŕԂ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F�F�B���X�g�̃C���f�b�N�X�Őڑ�����T�[�o���w�肵�A�����֐ڑ�����B
-          �܂��A�T�[�o�֐V���ɐڑ������N���C�A���g������΁A���̃N���C�A���g��
-          �̐ڑ��������s���B
+  サーバクライアントマッチメイクのクライアント起動関数
+  引数　：serverIndex       接続先サーバの友達リストインデックス
+          matchedCallback   マッチメイク完了コールバック。１人接続するごとに呼ばれる。
+          matchedParam      上記コールバック用パラメータ
+          newClientCallback 新規接続クライアント通知コールバック
+          newClientParam    上記コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。マッチメイクの結果がコールバックで返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：友達リストのインデックスで接続するサーバを指定し、そこへ接続する。
+          また、サーバへ新たに接続したクライアントがあれば、そのクライアントと
+          の接続処理を行う。
  *---------------------------------------------------------------------------*/
 // [arakit] main 051025
 BOOL DWC_ConnectToGameServerAsync(int serverIndex,
@@ -798,7 +798,7 @@ BOOL DWC_ConnectToGameServerAsync(int serverIndex,
         return FALSE;
     }
 
-    // gt2�R�l�N�V�������X�g��gt2�R�l�N�V������񃊃X�g��������
+    // gt2コネクションリストとgt2コネクション情報リストを初期化
     DWCi_ClearGT2ConnectionList();
 
     stpDwcCnt->matchedSCCallback = matchedCallback;
@@ -808,8 +808,8 @@ BOOL DWC_ConnectToGameServerAsync(int serverIndex,
 
     if (!(profileID = DWCi_GetProfileIDFromList(serverIndex)) ||
         !gpIsBuddy(&stpDwcCnt->gpObj, profileID)){
-        // �w�肳�ꂽ�C���f�b�N�X���v���t�@�C��ID�������Ă��Ȃ��A��������
-        // ���肪�o�f�B�łȂ������ꍇ�̓G���[�ŃR�[���o�b�N���Ăяo��
+        // 指定されたインデックスがプロファイルIDを持っていない、もしくは
+        // 相手がバディでなかった場合はエラーでコールバックを呼び出す
         // [arakit] main 051025
         DWC_Printf(DWC_REPORTFLAG_ERROR, "pid %d is not buddy.\n", profileID);
         dwcError = DWC_ERROR_NOT_FRIEND_SERVER;
@@ -817,13 +817,13 @@ BOOL DWC_ConnectToGameServerAsync(int serverIndex,
         // [arakit] main 051025
     }
 
-    // �G���[�͗L�蓾�Ȃ�
+    // エラーは有り得ない
     (void)gpGetBuddyIndex(&stpDwcCnt->gpObj, profileID, &buddyIdx);
     (void)gpGetBuddyStatus(&stpDwcCnt->gpObj, buddyIdx, &status);
     
     if (status.status != DWC_STATUS_MATCH_SC_SV){
-        // �w�肳�ꂽ���肪�T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�𗧂��グ��
-        // ���Ȃ������ꍇ�̓G���[�ŃR�[���o�b�N���Ăяo��
+        // 指定された相手がサーバクライアントマッチメイクのサーバを立ち上げて
+        // いなかった場合はエラーでコールバックを呼び出す
         // [arakit] main 051025
         DWC_Printf(DWC_REPORTFLAG_ERROR, "pid %d is not game server.\n", profileID);
         dwcError = DWC_ERROR_NOT_FRIEND_SERVER;
@@ -836,14 +836,14 @@ BOOL DWC_ConnectToGameServerAsync(int serverIndex,
         char valueStr[4];
         u8   maxEntry, numEntry;
 
-        valueStr[0] = '0';  // �O�̂���0�l�ŏ�����
+        valueStr[0] = '0';  // 念のため0人で初期化
             
-        // �T�[�o�̍ő�ڑ��l���̐ݒ��ǂݏo��
+        // サーバの最大接続人数の設定を読み出す
         DWC_GetCommonValueString(DWC_GP_SSTR_KEY_MATCH_SC_MAX, valueStr,
                                  status.statusString, '/');
         maxEntry = (u8)strtoul(valueStr, NULL, 10);
 
-        // �T�[�o�̌��ݐڑ��l���̐ݒ��ǂݏo��
+        // サーバの現在接続人数の設定を読み出す
         DWC_GetCommonValueString(DWC_GP_SSTR_KEY_MATCH_SC_NUM, valueStr,
                                  status.statusString, '/');
         numEntry = (u8)strtoul(valueStr, NULL, 10);
@@ -858,7 +858,7 @@ BOOL DWC_ConnectToGameServerAsync(int serverIndex,
     }
     // [arakit] main 051024
 
-    // �}�b�`���C�N�֐��Ăяo��
+    // マッチメイク関数呼び出し
     DWCi_ConnectToGameServerAsync(profileID, DWCi_MatchedCallback, NULL,
                                   newClientCallback, newClientParam);
 
@@ -867,7 +867,7 @@ BOOL DWC_ConnectToGameServerAsync(int serverIndex,
 
     // [arakit] main 051025
 error:
-    // �G���[����
+    // エラー処理
     DWCi_SetError(dwcError, 0);
             
     stpDwcCnt->matchedSCCallback(dwcError,
@@ -875,9 +875,9 @@ error:
                                  0, stpDwcCnt->matchedSCParam);
 
     if ((stpDwcCnt != NULL) && (stpDwcCnt->state == DWC_STATE_MATCHING)){
-        // �}�b�`���C�N��Ԃ̂܂܂Ȃ�I�����C����Ԃɖ߂�
+        // マッチメイク状態のままならオンライン状態に戻す
         DWCi_SetState(DWC_STATE_ONLINE);
-        // GP�X�e�[�^�X���I�����C���ɂ���B
+        // GPステータスをオンラインにする。
         (void)DWCi_SetGPStatus(DWC_STATUS_ONLINE, "", NULL);
     }
 
@@ -887,12 +887,12 @@ error:
 
 
 /*---------------------------------------------------------------------------*
-  �R�l�N�V�����N���[�Y�R�[���o�b�N�ݒ�֐�
-  �����@�Fcallback �R�l�N�V�����P���N���[�Y�����x�ɌĂяo�����R�[���o�b�N
-          param    ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�o�^����
-          FALSE:FriendsMatch���C�u�����񓮍쒆�œo�^���s
-  �p�r�@�F�R�l�N�V�����N���[�Y�R�[���o�b�N��ݒ肷��
+  コネクションクローズコールバック設定関数
+  引数　：callback コネクション１つをクローズされる度に呼び出されるコールバック
+          param    上記コールバック用パラメータ
+  戻り値：TRUE :登録成功
+          FALSE:FriendsMatchライブラリ非動作中で登録失敗
+  用途　：コネクションクローズコールバックを設定する
  *---------------------------------------------------------------------------*/
 BOOL DWC_SetConnectionClosedCallback(DWCConnectionClosedCallback callback, void* param)
 {
@@ -907,21 +907,21 @@ BOOL DWC_SetConnectionClosedCallback(DWCConnectionClosedCallback callback, void*
 
 
 /*---------------------------------------------------------------------------*
-  �S�R�l�N�V�����N���[�Y�֐� (obsolete function)
-  �����@�F�Ȃ�
-  �߂�l�F0�ȏ�Ȃ琬���A���̐��Ȃ玸�s�B
-          0 :�N���[�Y�J�n�B�N���[�Y����������������R�[���o�b�N���Ă΂��B
-          1 :�ڑ��z�X�g��0�Ȃ̂ŁA�N���[�Y�����͍s�������A�R�[���o�b�N�͌Ă΂�Ȃ��B
-             �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�̏ꍇ�̂݁B
-          -1:�ڑ�������łȂ��A�������̓G���[�������Ȃ̂ŉ������Ȃ������B
-  �p�r�@�F�ڑ����̃R�l�N�V������S�ăN���[�Y����B
-          �P�̃R�l�N�V�������N���[�Y���邲�ƂɁA
-          DWC_SetConnectionClosedCallback()�Őݒ肵���R�[���o�b�N�֐���
-          �Ăяo�����BWi-Fi�R�l�N�V�����ɂ̓��O�C�������܂܂ƂȂ�B
-          ���̃N���[�Y�͑���z�X�g�ɂ��ʒm�����B
-          �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�ɂ����āA���ɐڑ����̃z�X�g��
-          �Ȃ��ꍇ�́A�I���������s�������ŁA�R�[���o�b�N�͌Ă΂�Ȃ��B
-          ��DWC_CloseAllConnectionsHard()���g���ĉ�����
+  全コネクションクローズ関数 (obsolete function)
+  引数　：なし
+  戻り値：0以上なら成功、負の数なら失敗。
+          0 :クローズ開始。クローズ処理が完了したらコールバックが呼ばれる。
+          1 :接続ホスト数0なので、クローズ処理は行ったが、コールバックは呼ばれない。
+             サーバクライアントマッチメイクのサーバの場合のみ。
+          -1:接続完了後でない、もしくはエラー発生時なので何もしなかった。
+  用途　：接続中のコネクションを全てクローズする。
+          １つのコネクションをクローズするごとに、
+          DWC_SetConnectionClosedCallback()で設定したコールバック関数が
+          呼び出される。Wi-Fiコネクションにはログインしたままとなる。
+          このクローズは相手ホストにも通知される。
+          サーバクライアントマッチメイクのサーバにおいて、既に接続中のホストが
+          ない場合は、終了処理を行うだけで、コールバックは呼ばれない。
+          →DWC_CloseAllConnectionsHard()を使って下さい
  *---------------------------------------------------------------------------*/
 int  DWC_CloseConnectionsAsync(void)
 {
@@ -937,23 +937,23 @@ int  DWC_CloseConnectionsAsync(void)
     }
 
     if (!stpDwcCnt->matchcnt.gt2NumConnection){
-        // �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�p�ɂ����ŏI���������s��
-        // �i�ڑ��z�X�g��0�ŃN���[�Y���Ăׂ�̂̓T�[�o�N���C�A���g�}�b�`���C�N
-        // �̃T�[�o�����j
+        // サーバクライアントマッチメイクのサーバ用にここで終了処理を行う
+        // （接続ホスト数0でクローズを呼べるのはサーバクライアントマッチメイク
+        // のサーバだけ）
         DWC_Printf(DWC_REPORTFLAG_TRANSPORT, "Closed 0 connection.\n");
 
-        // GP�X�e�[�^�X���I�����C���ɂ���B
+        // GPステータスをオンラインにする。
         (void)DWCi_SetGPStatus(DWC_STATUS_ONLINE, "", NULL);
 
-        // NN�g�p�̈���J������
+        // NN使用領域も開放する
         DWCi_NNFreeNegotiateList();
 
-        DWCi_SetState(DWC_STATE_ONLINE);  // ���O�C����Ԃɖ߂�
+        DWCi_SetState(DWC_STATE_ONLINE);  // ログイン状態に戻す
             
         return 1;
     }
 
-    // �ڑ����̑S�Ẵz�X�g�ɑ΂��ăR�l�N�V�������N���[�Y����
+    // 接続中の全てのホストに対してコネクションをクローズする
     gt2CloseAllConnections(stpDwcCnt->gt2Socket);
 
     return 0;
@@ -961,21 +961,21 @@ int  DWC_CloseConnectionsAsync(void)
 
 
 /*---------------------------------------------------------------------------*
-  �S�R�l�N�V���������N���[�Y�֐�
-  �����@�F�Ȃ�
-  �߂�l�F0�ȏ�Ȃ琬���A���̐��Ȃ玸�s�B
-          0 :�N���[�Y���s�B
-          1 :�ڑ��z�X�g��0�Ȃ̂ŁA�N���[�Y�����͍s�������A�R�[���o�b�N�͌Ă΂�Ȃ��B
-             �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�̏ꍇ�̂݁B
-          -1:�ڑ�������łȂ��A�������̓G���[�������Ȃ̂ŉ������Ȃ������B
-  �p�r�@�F�ڑ����̃R�l�N�V������S�ăN���[�Y����B
-          �N���[�Y�����͖{�֐����Ŋ������A�{�֐��𔲂���O�ɁA
-          �P�̃R�l�N�V�������N���[�Y���邲�ƂɁA
-          DWC_SetConnectionClosedCallback()�Őݒ肵���R�[���o�b�N�֐���
-          �Ăяo�����BWi-Fi�R�l�N�V�����ɂ̓��O�C�������܂܂ƂȂ�B
-          ���̃N���[�Y�͑���z�X�g�ɂ��ʒm�����B
-          �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�ɂ����āA���ɐڑ����̃z�X�g��
-          �Ȃ��ꍇ�́A�I���������s�������ŁA�R�[���o�b�N�͌Ă΂�Ȃ��B
+  全コネクション強制クローズ関数
+  引数　：なし
+  戻り値：0以上なら成功、負の数なら失敗。
+          0 :クローズ実行。
+          1 :接続ホスト数0なので、クローズ処理は行ったが、コールバックは呼ばれない。
+             サーバクライアントマッチメイクのサーバの場合のみ。
+          -1:接続完了後でない、もしくはエラー発生時なので何もしなかった。
+  用途　：接続中のコネクションを全てクローズする。
+          クローズ処理は本関数内で完了し、本関数を抜ける前に、
+          １つのコネクションをクローズするごとに、
+          DWC_SetConnectionClosedCallback()で設定したコールバック関数が
+          呼び出される。Wi-Fiコネクションにはログインしたままとなる。
+          このクローズは相手ホストにも通知される。
+          サーバクライアントマッチメイクのサーバにおいて、既に接続中のホストが
+          ない場合は、終了処理を行うだけで、コールバックは呼ばれない。
  *---------------------------------------------------------------------------*/
 int  DWC_CloseAllConnectionsHard(void)
 {
@@ -991,46 +991,46 @@ int  DWC_CloseAllConnectionsHard(void)
     }
 
     if (!stpDwcCnt->matchcnt.gt2NumConnection){
-        // �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�p�ɂ����ŏI���������s��
-        // �i�ڑ��z�X�g��0�ŃN���[�Y���Ăׂ�̂̓T�[�o�N���C�A���g�}�b�`���C�N
-        // �̃T�[�o�����j
+        // サーバクライアントマッチメイクのサーバ用にここで終了処理を行う
+        // （接続ホスト数0でクローズを呼べるのはサーバクライアントマッチメイク
+        // のサーバだけ）
         DWC_Printf(DWC_REPORTFLAG_TRANSPORT, "Closed 0 connection.\n");
 
-        // GP�X�e�[�^�X���I�����C���ɂ���B
+        // GPステータスをオンラインにする。
         (void)DWCi_SetGPStatus(DWC_STATUS_ONLINE, "", NULL);
 
-        // NN�g�p�̈���J������
+        // NN使用領域も開放する
         DWCi_NNFreeNegotiateList();
 
-        DWCi_SetState(DWC_STATE_ONLINE);  // ���O�C����Ԃɖ߂�
+        DWCi_SetState(DWC_STATE_ONLINE);  // ログイン状態に戻す
             
         return 1;
     }
 
-    stpDwcCnt->ownCloseFlag = TRUE;   // �Q�[��������N���[�Y���ꂽ���Ƃ��L�^
+    stpDwcCnt->ownCloseFlag = TRUE;   // ゲーム側からクローズされたことを記録
 
-    // �ڑ����̑S�Ẵz�X�g�ɑ΂��ăR�l�N�V�������N���[�Y����
+    // 接続中の全てのホストに対してコネクションをクローズする
     gt2CloseAllConnectionsHard(stpDwcCnt->gt2Socket);
 
-    stpDwcCnt->ownCloseFlag = FALSE;  // �t���O�����낷
+    stpDwcCnt->ownCloseFlag = FALSE;  // フラグを下ろす
 
     return 0;
 }
 
 
 /*---------------------------------------------------------------------------*
-  �R�l�N�V���������N���[�Y�֐�
-  �����@�Faid �N���[�Y�������z�X�g��AID
-  �߂�l�F0 :�N���[�Y���s�B
-          -1:�ڑ�������łȂ��A�������̓G���[�������Ȃ̂ŉ������Ȃ������B
-          -2:���ɃN���[�Y�ς݂�AID���w�肳�ꂽ�̂ŉ������Ȃ������B
-  �p�r�@�F�w���AID�Ƃ̃R�l�N�V�����������N���[�Y����B
-          �N���[�Y�����͖{�֐����Ŋ������A�{�֐��𔲂���O��
-          DWC_SetConnectionClosedCallback()�Őݒ肵���R�[���o�b�N�֐���
-          �Ăяo�����BWi-Fi�R�l�N�V�����ɂ̓��O�C�������܂܂ƂȂ�B
-          ���̃N���[�Y�͑���z�X�g�ɂ��ʒm�����B
-          �d����؂�Ȃǂ̗��R�ŒʐM�s�\�ɂȂ����z�X�g�ɑ΂��A�R�l�N�V������
-          �N���[�Y����Ƃ����悤�ȁA�ُ��ԏ����̗p�r�ł݂̂��g�p�������B
+  コネクション強制クローズ関数
+  引数　：aid クローズしたいホストのAID
+  戻り値：0 :クローズ実行。
+          -1:接続完了後でない、もしくはエラー発生時なので何もしなかった。
+          -2:既にクローズ済みのAIDが指定されたので何もしなかった。
+  用途　：指定のAIDとのコネクションを強制クローズする。
+          クローズ処理は本関数内で完了し、本関数を抜ける前に
+          DWC_SetConnectionClosedCallback()で設定したコールバック関数が
+          呼び出される。Wi-Fiコネクションにはログインしたままとなる。
+          このクローズは相手ホストにも通知される。
+          電源を切るなどの理由で通信不能になったホストに対し、コネクションを
+          クローズするというような、異常状態処理の用途でのみご使用下さい。
  *---------------------------------------------------------------------------*/
 int  DWC_CloseConnectionHard(u8 aid)
 {
@@ -1059,20 +1059,20 @@ int  DWC_CloseConnectionHard(u8 aid)
 
 
 /*---------------------------------------------------------------------------*
-  �r�b�g�}�b�v�w��R�l�N�V���������N���[�Y�֐�
-  �����@�Fbitmap �N���[�Y�������z�X�g��AID�r�b�g�}�b�v�ւ̃|�C���^�B
-                 ���ۂɃN���[�Y�ɐ�������AID�̃r�b�g�݂̂𗧂ĂĕԂ��B
-                 �����̃r�b�g�͗����Ă��Ă��K�����낷�B
-  �߂�l�F0 :�N���[�Y�J�n�B�N���[�Y��������������x�ɃR�[���o�b�N���Ă΂��B
-          -1:�ڑ�������łȂ��A�������̓G���[�������Ȃ̂ŉ������Ȃ������B
-          -2:�S�Ă�AID�����ɃN���[�Y�ς݂������̂ŉ������Ȃ������B
-  �p�r�@�F�w���AID�Ƃ̃R�l�N�V�����������N���[�Y����B
-          �N���[�Y�����͖{�֐����Ŋ������A�{�֐��𔲂���O��
-          DWC_SetConnectionClosedCallback()�Őݒ肵���R�[���o�b�N�֐���
-          �Ăяo�����BWi-Fi�R�l�N�V�����ɂ̓��O�C�������܂܂ƂȂ�B
-          ���̃N���[�Y�͑���z�X�g�ɂ��ʒm�����B
-          �d����؂�Ȃǂ̗��R�ŒʐM�s�\�ɂȂ����z�X�g�ɑ΂��A�R�l�N�V������
-          �N���[�Y����Ƃ����悤�ȁA�ُ��ԏ����̗p�r�ł݂̂��g�p�������B
+  ビットマップ指定コネクション強制クローズ関数
+  引数　：bitmap クローズしたいホストのAIDビットマップへのポインタ。
+                 実際にクローズに成功したAIDのビットのみを立てて返す。
+                 自分のビットは立っていても必ず下ろす。
+  戻り値：0 :クローズ開始。クローズ処理が完了する度にコールバックが呼ばれる。
+          -1:接続完了後でない、もしくはエラー発生時なので何もしなかった。
+          -2:全てのAIDが既にクローズ済みだったので何もしなかった。
+  用途　：指定のAIDとのコネクションを強制クローズする。
+          クローズ処理は本関数内で完了し、本関数を抜ける前に
+          DWC_SetConnectionClosedCallback()で設定したコールバック関数が
+          呼び出される。Wi-Fiコネクションにはログインしたままとなる。
+          このクローズは相手ホストにも通知される。
+          電源を切るなどの理由で通信不能になったホストに対し、コネクションを
+          クローズするというような、異常状態処理の用途でのみご使用下さい。
  *---------------------------------------------------------------------------*/
 int  DWC_CloseConnectionHardBitmap(u32* bitmap)
 {
@@ -1096,25 +1096,25 @@ int  DWC_CloseConnectionHardBitmap(u32* bitmap)
 
         if (*bitmap & bitmask){
             if (aid == DWC_GetMyAID()){
-                *bitmap &= ~bitmask;       // ������AID�̃r�b�g�͉��낷
+                *bitmap &= ~bitmask;       // 自分のAIDのビットは下ろす
             }
             else if (DWC_CloseConnectionHard(aid)){
-                *bitmap &= ~bitmask;  // �N���[�Y���s
+                *bitmap &= ~bitmask;  // クローズ失敗
             }
         }
     }
 
-    if (!*bitmap) return -2;  // �S�đ��݂��Ȃ��R�l�N�V����������
-    return 0;  // �N���[�Y����
+    if (!*bitmap) return -2;  // 全て存在しないコネクションだった
+    return 0;  // クローズ成功
 }
 
 
 /*---------------------------------------------------------------------------*
-  �ڑ��z�X�g���擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�F�l�b�g���[�N���\�����Ă���z�X�g���i�������܂ށj�B
-          �I�t���C������0��Ԃ��B
-  �p�r�@�F���b�V���^�l�b�g���[�N�\���z�X�g����Ԃ�
+  接続ホスト数取得関数
+  引数　：なし
+  戻り値：ネットワークを構成しているホスト数（自分を含む）。
+          オフライン時は0を返す。
+  用途　：メッシュ型ネットワーク構成ホスト数を返す
  *---------------------------------------------------------------------------*/
 int DWC_GetNumConnectionHost(void)
 {
@@ -1123,21 +1123,21 @@ int DWC_GetNumConnectionHost(void)
 
     if ((stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_SV) ||
         (stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_CL)){
-        // �r���Q������̏ꍇ�͗L����aid�̐��̂ݕԂ�
+        // 途中参加ありの場合は有効なaidの数のみ返す
         return DWCi_GetNumValidConnection()+1;
     }
     else {
-        // �}�b�`���C�N���ł����݂̎��ېڑ�����Ԃ�
+        // マッチメイク中でも現在の実際接続数を返す
         return DWCi_GetNumAllConnection()+1;
     }
 }
 
 
 /*---------------------------------------------------------------------------*
-  ������AID�擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�F������AID
-  �p�r�@�F������AID�i���b�V���^�l�b�g���[�N���ŌŗL�̃z�X�gID�j��Ԃ�
+  自分のAID取得関数
+  引数　：なし
+  戻り値：自分のAID
+  用途　：自分のAID（メッシュ型ネットワーク内で固有のホストID）を返す
  *---------------------------------------------------------------------------*/
 u8  DWC_GetMyAID(void)
 {
@@ -1149,12 +1149,12 @@ u8  DWC_GetMyAID(void)
 
 
 /*---------------------------------------------------------------------------*
-  �ڑ����z�X�g��AID���X�g�擾�֐�
-  �����@�FaidList AID���X�g�ւ̃|�C���^
-  �߂�l�FAID���X�g���i�������܂ށj
-  �p�r�@�FAID���X�g�ւ̃|�C���^���擾����i�R�s�[�͂��Ȃ��j�B
-          AID���X�g�́A���ݗL����AID���O���珇�ɋl�߂�ꂽ���X�g�ŁA
-          ���̗v�f���͎������܂߂��ڑ����z�X�g���ɂȂ�B
+  接続中ホストのAIDリスト取得関数
+  引数　：aidList AIDリストへのポインタ
+  戻り値：AIDリスト長（自分を含む）
+  用途　：AIDリストへのポインタを取得する（コピーはしない）。
+          AIDリストは、現在有効なAIDが前から順に詰められたリストで、
+          その要素数は自分も含めた接続中ホスト数になる。
  *---------------------------------------------------------------------------*/
 int DWC_GetAIDList(u8** aidList)
 {
@@ -1165,7 +1165,7 @@ int DWC_GetAIDList(u8** aidList)
 
     if ((stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_SV) ||
         (stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_CL)){
-        // �r���Q������̏ꍇ�͗L����aid�̂ݕԂ�
+        // 途中参加ありの場合は有効なaidのみ返す
         return DWCi_GetValidAIDList(aidList);
     }
     else {
@@ -1175,10 +1175,10 @@ int DWC_GetAIDList(u8** aidList)
 
 
 /*---------------------------------------------------------------------------*
-  �ڑ����z�X�g��AID�r�b�g�}�b�v�擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�FAID�r�b�g�}�b�v�B�I�t���C������0��Ԃ��B
-  �p�r�@�F�ڑ����z�X�g��AID�r�b�g�}�b�v���擾����B
+  接続中ホストのAIDビットマップ取得関数
+  引数　：なし
+  戻り値：AIDビットマップ。オフライン時は0を返す。
+  用途　：接続中ホストのAIDビットマップを取得する。
  *---------------------------------------------------------------------------*/
 u32 DWC_GetAIDBitmap(void)
 {
@@ -1190,7 +1190,7 @@ u32 DWC_GetAIDBitmap(void)
 
     numHost = DWC_GetAIDList(&pAidList);
 
-    // AID�r�b�g�}�b�v�擾
+    // AIDビットマップ取得
     bitmap = DWCi_GetAIDBitmapFromList(pAidList, numHost);
 
     return bitmap;
@@ -1198,20 +1198,20 @@ u32 DWC_GetAIDBitmap(void)
 
 
 /*---------------------------------------------------------------------------*
-  AID�L������֐�
-  �����@�Faid AID
-  �߂�l�FTRUE:AID���L���AFALSE:AID������
-  �p�r�@�F�w�肳�ꂽAID���L�����ǂ����i�����ɐڑ�����Ă��邩�ǂ����j�𒲂ׂ�B
-          ������AID���w�肵���ꍇ��FALSE��Ԃ��B
-          �}�b�`���C�N���̐V�K�ڑ��N���C�A���g��AID�͖����Ɣ��肷��B
+  AID有効判定関数
+  引数　：aid AID
+  戻り値：TRUE:AIDが有効、FALSE:AIDが無効
+  用途　：指定されたAIDが有効かどうか（自分に接続されているかどうか）を調べる。
+          自分のAIDを指定した場合はFALSEを返す。
+          マッチメイク中の新規接続クライアントのAIDは無効と判定する。
  *---------------------------------------------------------------------------*/
 BOOL DWC_IsValidAID(u8 aid)
 {
 
     if (!stpDwcCnt) return FALSE;
 
-    // �R�l�N�V�����������Ă��Ȃ��Ă��A�Q�[������̓}�b�`���C�N����������
-    // �z�X�g�����L���ƌ����Ȃ��悤�ɂ���
+    // コネクションがあってもなくても、ゲームからはマッチメイクが完了した
+    // ホストしか有効と見えないようにする
     if (!(stpDwcCnt->matchcnt.validAidBitmap & (1 << aid))) return FALSE;
 
     return DWCi_IsValidAID(aid);
@@ -1219,10 +1219,10 @@ BOOL DWC_IsValidAID(u8 aid)
 
 
 /*---------------------------------------------------------------------------*
-  FriendsMatch���C�u������Ԏ擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�FDWCState�^�񋓎q
-  �p�r�@�FFriendsMatch���C�u�����̏�����Ԃ��擾����
+  FriendsMatchライブラリ状態取得関数
+  引数　：なし
+  戻り値：DWCState型列挙子
+  用途　：FriendsMatchライブラリの処理状態を取得する
  *---------------------------------------------------------------------------*/
 DWCState DWC_GetState(void)
 {
@@ -1237,10 +1237,10 @@ DWCState DWC_GetState(void)
 
 
 /*---------------------------------------------------------------------------*
-  �\�P�b�g�G���[�擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�FGT2�\�P�b�g�G���[���
-  �p�r�@�FGameSpy gt2 SDK �̃\�P�b�g�G���[��ʂ��擾����
+  ソケットエラー取得関数
+  引数　：なし
+  戻り値：GT2ソケットエラー種別
+  用途　：GameSpy gt2 SDK のソケットエラー種別を取得する
  *---------------------------------------------------------------------------*/
 int DWC_GetLastSocketError(void)
 {
@@ -1253,10 +1253,10 @@ int DWC_GetLastSocketError(void)
 // function - internal
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  GT2�������֐�
-  �����@�F�Ȃ�
-  �߂�l�FGT2�̏������ʌ^
-  �p�r�@�FGT2�̏��������s��
+  GT2初期化関数
+  引数　：なし
+  戻り値：GT2の処理結果型
+  用途　：GT2の初期化を行う
  *---------------------------------------------------------------------------*/
 GT2Result DWCi_GT2Startup(void)
 {
@@ -1264,17 +1264,17 @@ GT2Result DWCi_GT2Startup(void)
     GT2Result gt2Result;
 
     if (stpDwcCnt->gt2Socket){
-        // ������gt2�\�P�b�g�����ɂ���̂ɂ����ɗ����ꍇ�͉������Ȃ�
+        // 万が一gt2ソケットが既にあるのにここに来た場合は何もしない
         DWC_Printf(DWC_REPORTFLAG_WARNING, "gt2Socket is already made.\n");
         return GT2Success;
     }
 
-    // GT2�\�P�b�g�Ɏg�p����|�[�g�������_���ɐ�������
+    // GT2ソケットに使用するポートをランダムに生成する
     baseport = (u16)(0xc000+DWCi_GetMathRand32(0x4000));
 
     DWC_Printf(DWC_REPORTFLAG_MATCH_NN, "--- Private port = %d ---\n", baseport);
 
-    // �\�P�b�g�쐬
+    // ソケット作成
     gt2Result = gt2CreateSocket(&stpDwcCnt->gt2Socket,
                                 gt2AddressToString(0, baseport, NULL),
                                 stpDwcCnt->gt2SendBufSize,
@@ -1282,12 +1282,12 @@ GT2Result DWCi_GT2Startup(void)
                                 DWCi_GT2SocketErrorCallback);
     if (DWCi_HandleGT2Error(gt2Result)) return gt2Result;
 
-    // �ڑ��v����M�R�[���o�b�N�֐��Z�b�g
-    // dwc_match.c�Œ�`
+    // 接続要求受信コールバック関数セット
+    // dwc_match.cで定義
     gt2Listen(stpDwcCnt->gt2Socket, DWCi_GT2ConnectAttemptCallback);
 
-    // GT2�F���s�\���b�Z�[�W��M�R�[���o�b�N�֐��o�^
-    // dwc_match.c�Œ�`
+    // GT2認識不能メッセージ受信コールバック関数登録
+    // dwc_match.cで定義
     gt2SetUnrecognizedMessageCallback(stpDwcCnt->gt2Socket, DWCi_GT2UnrecognizedMessageCallback);
 
     return gt2Result;
@@ -1295,10 +1295,10 @@ GT2Result DWCi_GT2Startup(void)
 
 
 /*---------------------------------------------------------------------------*
-  GT2Connection�擾�֐�
-  �����@�Faid �z�X�g��AID
-  �߂�l�FGT2Connection�BAID�ɑΉ�����R�l�N�V�������Ȃ��ꍇ��NULL��Ԃ�
-  �p�r�@�FAID�ɑΉ�����GT2Connection�l���擾����
+  GT2Connection取得関数
+  引数　：aid ホストのAID
+  戻り値：GT2Connection。AIDに対応するコネクションがない場合はNULLを返す
+  用途　：AIDに対応するGT2Connection値を取得する
  *---------------------------------------------------------------------------*/
 GT2Connection DWCi_GetGT2Connection(u8 aid)
 {
@@ -1318,10 +1318,10 @@ GT2Connection DWCi_GetGT2Connection(u8 aid)
 
 
 /*---------------------------------------------------------------------------*
-  GT2Connection�����AID�擾�֐�
-  �����@�Fconnection GT2Connection�^
-  �߂�l�F�R�l�N�V������AID
-  �p�r�@�FGT2Connection����AID���擾����
+  GT2ConnectionからのAID取得関数
+  引数　：connection GT2Connection型
+  戻り値：コネクションのAID
+  用途　：GT2ConnectionからAIDを取得する
  *---------------------------------------------------------------------------*/
 u8  DWCi_GetConnectionAID(GT2Connection connection)
 {
@@ -1331,10 +1331,10 @@ u8  DWCi_GetConnectionAID(GT2Connection connection)
 
 
 /*---------------------------------------------------------------------------*
-  GT2Connection����̃C���f�b�N�X�擾�֐�
-  �����@�Fconnection GT2Connection�^
-  �߂�l�F�R�l�N�V�����́A�R�l�N�V�������X�g���̃C���f�b�N�X
-  �p�r�@�FGT2Connection����R�l�N�V�������X�g���ł̃C���f�b�N�X���擾����
+  GT2Connectionからのインデックス取得関数
+  引数　：connection GT2Connection型
+  戻り値：コネクションの、コネクションリスト内のインデックス
+  用途　：GT2Connectionからコネクションリスト内でのインデックスを取得する
  *---------------------------------------------------------------------------*/
 u8  DWCi_GetConnectionIndex(GT2Connection connection)
 {
@@ -1344,11 +1344,11 @@ u8  DWCi_GetConnectionIndex(GT2Connection connection)
 
 
 /*---------------------------------------------------------------------------*
-  GT2Connection����̃��[�U�f�[�^�擾�֐�
-  �����@�Fconnection GT2Connection�^
-  �߂�l�F�R�l�N�V�����ŗL�̃��[�U�ݒ�f�[�^�ւ̃|�C���^
-  �p�r�@�FGT2Connection����R�l�N�V�����ŗL�̃��[�U�ݒ�f�[�^�ւ̃|�C���^��
-          �擾����
+  GT2Connectionからのユーザデータ取得関数
+  引数　：connection GT2Connection型
+  戻り値：コネクション固有のユーザ設定データへのポインタ
+  用途　：GT2Connectionからコネクション固有のユーザ設定データへのポインタを
+          取得する
  *---------------------------------------------------------------------------*/
 void* DWCi_GetConnectionUserData(GT2Connection connection)
 {
@@ -1358,10 +1358,10 @@ void* DWCi_GetConnectionUserData(GT2Connection connection)
 
 
 /*---------------------------------------------------------------------------*
-  GT2�R�l�N�V�������X�g�̋󂫃C���f�b�N�X�擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�F���X�g�̋󂫃C���f�b�N�X�B�󂫂��������-1��Ԃ��B
-  �p�r�@�FGT2�R�l�N�V�������X�g�̋󂫃C���f�b�N�X���擾����B
+  GT2コネクションリストの空きインデックス取得関数
+  引数　：なし
+  戻り値：リストの空きインデックス。空きが無ければ-1を返す。
+  用途　：GT2コネクションリストの空きインデックスを取得する。
  *---------------------------------------------------------------------------*/
 int  DWCi_GT2GetConnectionListIdx(void)
 {
@@ -1378,10 +1378,10 @@ int  DWCi_GT2GetConnectionListIdx(void)
 
 
 /*---------------------------------------------------------------------------*
-  GT2�R�l�N�V�������X�g�y��GT2�R�l�N�V������񃊃X�g�������֐�
-  �����@�F�Ȃ�
-  �߂�l�F�Ȃ�
-  �p�r�@�FGT2�R�l�N�V�������X�g�y��GT2�R�l�N�V������񃊃X�g������������
+  GT2コネクションリスト及びGT2コネクション情報リスト初期化関数
+  引数　：なし
+  戻り値：なし
+  用途　：GT2コネクションリスト及びGT2コネクション情報リストを初期化する
  *---------------------------------------------------------------------------*/
 void DWCi_ClearGT2ConnectionList(void)
 {
@@ -1392,10 +1392,10 @@ void DWCi_ClearGT2ConnectionList(void)
 
 
 /*---------------------------------------------------------------------------*
-  GT2�R�l�N�V�������X�g�|�C���^�擾�֐�
-  �����@�Findex GT2�R�l�N�V�������X�g�̃C���f�b�N�X
-  �߂�l�FGT2�R�l�N�V�������X�g�ւ̃|�C���^
-  �p�r�@�F�C���f�b�N�X����GT2�R�l�N�V�������X�g�̗v�f�ւ̃|�C���^���擾����
+  GT2コネクションリストポインタ取得関数
+  引数　：index GT2コネクションリストのインデックス
+  戻り値：GT2コネクションリストへのポインタ
+  用途　：インデックスからGT2コネクションリストの要素へのポインタを取得する
  *---------------------------------------------------------------------------*/
 GT2Connection* DWCi_GetGT2ConnectionByIdx(int index)
 {
@@ -1405,12 +1405,12 @@ GT2Connection* DWCi_GetGT2ConnectionByIdx(int index)
 
 
 /*---------------------------------------------------------------------------*
-  GT2�R�l�N�V�������X�g�|�C���^�擾�֐�
-  �����@�FprofileID �z�X�g�̃v���t�@�C��ID
-          numHost   ��������z�X�g��
-  �߂�l�FGT2�R�l�N�V�������X�g�ւ̃|�C���^�B
-          �v���t�@�C��ID�ɑΉ�����R�l�N�V�������Ȃ��ꍇ��NULL��Ԃ��B
-  �p�r�@�F�v���t�@�C��ID����GT2�R�l�N�V�������X�g�̗v�f�ւ̃|�C���^���擾����
+  GT2コネクションリストポインタ取得関数
+  引数　：profileID ホストのプロファイルID
+          numHost   調査するホスト数
+  戻り値：GT2コネクションリストへのポインタ。
+          プロファイルIDに対応するコネクションがない場合はNULLを返す。
+  用途　：プロファイルIDからGT2コネクションリストの要素へのポインタを取得する
  *---------------------------------------------------------------------------*/
 GT2Connection* DWCi_GetGT2ConnectionByProfileID(int profileID, int numHost)
 {
@@ -1420,18 +1420,18 @@ GT2Connection* DWCi_GetGT2ConnectionByProfileID(int profileID, int numHost)
         if (stpDwcCnt->matchcnt.sbPidList[i] == profileID) break;
     }
 
-    if (i >= numHost) return NULL;  // �w��̃z�X�g�Ȃ�
+    if (i >= numHost) return NULL;  // 指定のホストなし
 
     return DWCi_GetGT2ConnectionByIdx(DWCi_GetConnectionIndex(DWCi_GetGT2Connection(stpDwcCnt->matchcnt.aidList[i])));
 }
 
 
 /*---------------------------------------------------------------------------*
-  GT2�R�l�N�V������񃊃X�g�|�C���^�擾�֐�
-  �����@�Findex GT2�R�l�N�V�������X�g�̃C���f�b�N�X
-  �߂�l�FGT2�R�l�N�V������񃊃X�g�ւ̃|�C���^
-  �p�r�@�FGT2�R�l�N�V�������X�g�̃C���f�b�N�X�ɑΉ�����i�����C���f�b�N�X�́j
-          GT2�R�l�N�V������񃊃X�g�̗v�f�ւ̃|�C���^���擾����
+  GT2コネクション情報リストポインタ取得関数
+  引数　：index GT2コネクションリストのインデックス
+  戻り値：GT2コネクション情報リストへのポインタ
+  用途　：GT2コネクションリストのインデックスに対応する（同じインデックスの）
+          GT2コネクション情報リストの要素へのポインタを取得する
  *---------------------------------------------------------------------------*/
 DWCConnectionInfo* DWCi_GetConnectionInfoByIdx(int index)
 {
@@ -1441,13 +1441,13 @@ DWCConnectionInfo* DWCi_GetConnectionInfoByIdx(int index)
 
 
 /*---------------------------------------------------------------------------*
-  AID�L������֐��@�����g�p��
-  �����@�Faid AID
-  �߂�l�FTRUE:AID���L���AFALSE:AID������
-  �p�r�@�F�w�肳�ꂽAID���L�����ǂ����i�ڑ�����Ă��邩�ǂ����j�𒲂ׂ�B
-          ������AID���w�肵���ꍇ��FALSE��Ԃ��B
-          �O�����J�łƈقȂ�A�}�b�`���C�N���̐V�K�ڑ��N���C�A���g��AID��
-          �L���Ɣ��肷��B
+  AID有効判定関数　内部使用版
+  引数　：aid AID
+  戻り値：TRUE:AIDが有効、FALSE:AIDが無効
+  用途　：指定されたAIDが有効かどうか（接続されているかどうか）を調べる。
+          自分のAIDを指定した場合はFALSEを返す。
+          外部公開版と異なり、マッチメイク中の新規接続クライアントのAIDも
+          有効と判定する。
  *---------------------------------------------------------------------------*/
 BOOL DWCi_IsValidAID(u8 aid)
 {
@@ -1468,22 +1468,22 @@ BOOL DWCi_IsValidAID(u8 aid)
 // function - static
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  DCF�ʐM�����I���֐�
-  �����@�F�Ȃ�
-  �߂�l�F�Ȃ�
-  �p�r�@�FDCF���ؒf���ꂽ�Ƃ��ɌĂяo����A�K�v�ȏ���������ꍇ�ɂ����ɋL�q����B
+  DCF通信処理終了関数
+  引数　：なし
+  戻り値：なし
+  用途　：DCFが切断されたときに呼び出され、必要な処理がある場合にここに記述する。
  *---------------------------------------------------------------------------*/
 static void DWCs_ForceShutdown( void )
 {
-    // �����I�ɌĂ�ł��܂��Ă����܂�Ȃ��֐��������ŌĂяo���B
+    // 強制的に呼んでしまってもかまわない関数をここで呼び出す。
 }
 
 
 /*---------------------------------------------------------------------------*
-  FriendsMatch���C�u������ԃZ�b�g�֐�
-  �����@�FDWCState�^�񋓎q
-  �߂�l�F�Ȃ�
-  �p�r�@�FFriendsMatch���C�u�����̏�����Ԃ�ݒ肷��
+  FriendsMatchライブラリ状態セット関数
+  引数　：DWCState型列挙子
+  戻り値：なし
+  用途　：FriendsMatchライブラリの処理状態を設定する
  *---------------------------------------------------------------------------*/
 static void DWCi_SetState(DWCState state)
 {
@@ -1494,11 +1494,11 @@ static void DWCi_SetState(DWCState state)
 
 
 /*---------------------------------------------------------------------------*
-  AID�����֐�
-  �����@�Faid ���X�g�����������AID
-  �߂�l�F�����ꂽAID�ɑΉ�����v���t�@�C��ID
-  �p�r�@�F�w�肳�ꂽAID��AID���X�g����������đO�ɋl�߁A�����ɃC���f�b�N�X��
-          �ˑ��֌W�ɂ���v���t�@�C�����X�g�����O�ɋl�߂�
+  AID消去関数
+  引数　：aid リストから消したいAID
+  戻り値：消されたAIDに対応するプロファイルID
+  用途　：指定されたAIDをAIDリストから消去して前に詰め、同時にインデックスが
+          依存関係にあるプロファイルリスト等も前に詰める
  *---------------------------------------------------------------------------*/
 static int DWCi_DeleteAID(u8 aid)
 {
@@ -1512,18 +1512,18 @@ static int DWCi_DeleteAID(u8 aid)
         if (pAidList[i] == aid) break;
     }
 
-    if (i == numHost) return 0;  // ���݂��Ȃ�AID���w�肳�ꂽ
+    if (i == numHost) return 0;  // 存在しないAIDが指定された
 
     return DWCi_DeleteHostByIndex(i, numHost);
 }
 
 
 /*---------------------------------------------------------------------------*
-  AID�r�b�g�}�b�v�擾�֐�
-  �����@�FaidList    AID�r�b�g�}�b�v�擾�����X�g
-          aidListLen AID���X�g���i�ڑ��z�X�g���{�P�j
-  �߂�l�FAID�r�b�g�}�b�v
-  �p�r�@�F�w�肳�ꂽAID���X�g����AID�r�b�g�}�b�v���쐬����
+  AIDビットマップ取得関数
+  引数　：aidList    AIDビットマップ取得元リスト
+          aidListLen AIDリスト長（接続ホスト数＋１）
+  戻り値：AIDビットマップ
+  用途　：指定されたAIDリストからAIDビットマップを作成する
  *---------------------------------------------------------------------------*/
 static u32 DWCi_GetAIDBitmapFromList(u8* aidList, int aidListLen)
 {
@@ -1539,11 +1539,11 @@ static u32 DWCi_GetAIDBitmapFromList(u8* aidList, int aidListLen)
 
 
 /*---------------------------------------------------------------------------*
-  GPResult�Ή��G���[�����֐�
-  �����@�Fresult GP�̏������ʌ^
-  �߂�l�FGP�̏������ʌ^�i���������̂܂ܕԂ��j
-  �p�r�@�FGPResult�̒l�ɑΉ�����G���[�\���i�������͒�~�j���s���A
-          �Ή�����DWC�G���[��n���āA�Ή�����R�[���o�b�N���Ăяo��
+  GPResult対応エラー処理関数
+  引数　：result GPの処理結果型
+  戻り値：GPの処理結果型（引数をそのまま返す）
+  用途　：GPResultの値に対応するエラー表示（もしくは停止）を行いつつ、
+          対応するDWCエラーを渡して、対応するコールバックを呼び出す
  *---------------------------------------------------------------------------*/
 static GPResult DWCi_HandleGPError(GPResult result)
 {
@@ -1573,7 +1573,7 @@ static GPResult DWCi_HandleGPError(GPResult result)
         break;
     }
 
-    // �x�[�X�G���[�R�[�h��ǉ����Ċe�폈�����̌ŗL�G���[�������Ăяo��
+    // ベースエラーコードを追加して各種処理中の固有エラー処理を呼び出す
     switch (stpDwcCnt->state){
     case DWC_STATE_AVAILABLE_CHECK:
         errorCode += DWC_ECODE_SEQ_LOGIN+DWC_ECODE_GS_GP;
@@ -1583,22 +1583,22 @@ static GPResult DWCi_HandleGPError(GPResult result)
         errorCode += DWC_ECODE_SEQ_LOGIN+DWC_ECODE_GS_GP;
         // [arakit] main 051027
         if (stpDwcCnt->logcnt.state < DWC_LOGIN_STATE_REMOTE_AUTH){
-            // ���O�C������gpConnect�J�n�O�Ȃ�A���O�C�����~����
-            // �Q�[�����̃R�[���o�b�N���Ăяo��
+            // ログイン中でgpConnect開始前なら、ログインを停止して
+            // ゲーム側のコールバックを呼び出す
             DWCi_StopLogin(dwcError, errorCode);
         }
         else {
-            // ���O�C������gpConnect�J�n��Ȃ�A���O�C���̒�~�ƃQ�[������
-            // �R�[���o�b�N�Ăяo���́AGPConnectCallback���ōs�Ȃ���̂�
-            // �����ł͉������Ȃ��i�G���[���Z�b�g����Ə������i�܂Ȃ��̂ł�������Ȃ��j
+            // ログイン中でgpConnect開始後なら、ログインの停止とゲーム側の
+            // コールバック呼び出しは、GPConnectCallback内で行なわれるので
+            // ここでは何もしない（エラーをセットすると処理が進まないのでそれもしない）
             DWC_Printf(DWC_REPORTFLAG_ERROR, "Not handle an error here.\n");
             // [arakit] main 051027
         }
         break;
     case DWC_STATE_MATCHING:
-        // �T�[�o�N���C�A���g�}�b�`���C�N�Ŋ���STATE_CONNECTED�ɂȂ��Ă���
-        // ��Ԃł̃}�b�`���C�N�G���[���́A�ʂɃ}�b�`���C�N�����R�[���o�b�N��
-        // �Ԃ��Ȃ��Ă��ǂ�
+        // サーバクライアントマッチメイクで既にSTATE_CONNECTEDになっている
+        // 状態でのマッチメイクエラー時は、別にマッチメイク完了コールバックを
+        // 返さなくても良い
         errorCode += DWC_ECODE_SEQ_MATCH+DWC_ECODE_GS_GP;
         DWCi_StopMatching(dwcError, errorCode);
         break;
@@ -1610,7 +1610,7 @@ static GPResult DWCi_HandleGPError(GPResult result)
         break;
     }
 
-    // �F�B�Ǘ������͕K���I��
+    // 友達管理処理は必ず終了
     DWCi_StopFriendProcess(dwcError, errorCode);
 
     return result;
@@ -1618,11 +1618,11 @@ static GPResult DWCi_HandleGPError(GPResult result)
 
 
 /*---------------------------------------------------------------------------*
-  GT2Result�Ή��G���[�����֐�
-  �����@�Fresult GT2�̏������ʌ^
-  �߂�l�FGT2�̏������ʌ^�i���������̂܂ܕԂ��j
-  �p�r�@�FGT2Result�̒l�ɑΉ�����G���[�\���i�������͒�~�j���s���A
-          �Ή�����DWC�G���[��n���āA�Ή�����R�[���o�b�N���Ăяo��
+  GT2Result対応エラー処理関数
+  引数　：result GT2の処理結果型
+  戻り値：GT2の処理結果型（引数をそのまま返す）
+  用途　：GT2Resultの値に対応するエラー表示（もしくは停止）を行いつつ、
+          対応するDWCエラーを渡して、対応するコールバックを呼び出す
  *---------------------------------------------------------------------------*/
 static GT2Result DWCi_HandleGT2Error(GT2Result result)
 {
@@ -1662,9 +1662,9 @@ static GT2Result DWCi_HandleGT2Error(GT2Result result)
         break;
     }
 
-    // ���̓��O�C������gt2CreateSocket�̎������Ă΂�Ȃ�
+    // 今はログイン時のgt2CreateSocketの時しか呼ばれない
     if (dwcError){
-        // �x�[�X�G���[�R�[�h��ǉ�
+        // ベースエラーコードを追加
         errorCode += DWC_ECODE_SEQ_LOGIN+DWC_ECODE_GS_GT2;
         DWCi_StopLogin(dwcError, errorCode);
     }
@@ -1674,32 +1674,32 @@ static GT2Result DWCi_HandleGT2Error(GT2Result result)
 
 
 /*---------------------------------------------------------------------------*
-  ���O�C�������R�[���o�b�N�֐�
-  �����@�Ferror     DWC�G���[���
-          profileID ���O�C���̌��ʓ���ꂽ�v���t�@�C��ID
-          param     �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
-  �p�r�@�F���O�C�������R�[���o�b�N�B
-          ���O�C����������dwc_login.c���̊֐�����Ă΂��B
+  ログイン完了コールバック関数
+  引数　：error     DWCエラー種別
+          profileID ログインの結果得られたプロファイルID
+          param     コールバック用パラメータ
+  戻り値：なし
+  用途　：ログイン完了コールバック。
+          ログイン完了時にdwc_login.c内の関数から呼ばれる。
  *---------------------------------------------------------------------------*/
 static void DWCi_LoginCallback(DWCError error, int profileID, void *param)
 {
 #pragma unused(param)
 
     if (error == DWC_ERROR_NONE){
-        // ���O�C�������Ȃ��Ԃ��I�����C���ɂ���
+        // ログイン成功なら状態をオンラインにする
         stpDwcCnt->profileID = profileID;
         DWCi_SetState(DWC_STATE_ONLINE);
 
-        // gpProcess()�Ăяo���񐔃J�E���^������������
+        // gpProcess()呼び出し回数カウンタを初期化する
         DWCi_InitGPProcessCount();
     }
     else {
-        // ���O�C�����s�̏ꍇ
+        // ログイン失敗の場合
         DWCi_SetState(DWC_STATE_INIT);
     }
 
-    // �Q�[������^����ꂽ�R�[���o�b�N�֐����Ăяo��
+    // ゲームから与えられたコールバック関数を呼び出す
     if ( stpDwcCnt->loginCallback != NULL )
     {
         stpDwcCnt->loginCallback(error, profileID, stpDwcCnt->loginParam);
@@ -1708,13 +1708,13 @@ static void DWCi_LoginCallback(DWCError error, int profileID, void *param)
 
 
 /*---------------------------------------------------------------------------*
-  �F�B���X�g�������������R�[���o�b�N�֐�
-  �����@�Ferror     DWC�G���[���
-          isChanged TRUE:�F�B���X�g���ύX���ꂽ�AFALSE:�F�B���X�g�ɕύX�Ȃ�
-          param     �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
-  �p�r�@�F�F�B���X�g�������������R�[���o�b�N�B
-          �F�B���X�g����������������dwc_friend.c���̊֐�����Ă΂��B
+  友達リスト同期処理完了コールバック関数
+  引数　：error     DWCエラー種別
+          isChanged TRUE:友達リストが変更された、FALSE:友達リストに変更なし
+          param     コールバック用パラメータ
+  戻り値：なし
+  用途　：友達リスト同期処理完了コールバック。
+          友達リスト同期処理完了時にdwc_friend.c内の関数から呼ばれる。
  *---------------------------------------------------------------------------*/
 static void DWCi_UpdateServersCallback(DWCError error, BOOL isChanged, void* param)
 {
@@ -1722,32 +1722,32 @@ static void DWCi_UpdateServersCallback(DWCError error, BOOL isChanged, void* par
 
     // [arakit] main 051008
     if (stpDwcCnt->lastState != DWC_STATE_UPDATE_SERVERS){
-        // DWC_UpdateServersAsyn()�ďo����A�ʂ�state�Ɉڂ��Ă��Ȃ���΁A
-        // �Ăяo���O�̏�Ԃɖ߂�
+        // DWC_UpdateServersAsyn()呼出し後、別のstateに移っていなければ、
+        // 呼び出し前の状態に戻す
         // [todo]
-        // �Q�ȏ�state���ς���Ă�����Ή��ł��Ȃ��̂ŁA
-        // UPDATE_SERVERS�̓��C����state����͊O���K�v������
+        // ２つ以上stateが変わっていたら対応できないので、
+        // UPDATE_SERVERSはメインのstateからは外す必要がある
         DWCi_SetState(stpDwcCnt->lastState);
     }
     // [arakit] main 051008
 
-    // �Q�[������^����ꂽ�R�[���o�b�N���Ăяo��
+    // ゲームから与えられたコールバックを呼び出す
     stpDwcCnt->updateServersCallback(error, isChanged, stpDwcCnt->updateServersParam);
 }
 
 
 /*---------------------------------------------------------------------------*
-  �}�b�`���C�N�����R�[���o�b�N�֐�
-  �����@�Ferror  DWC�G���[���
-          cancel TRUE :�L�����Z���ɂ��}�b�`���C�N���I�������A
-                 FALSE:�L�����Z���ł͂Ȃ�
-          self   TRUE:�����̐ڑ����������AFALSE:���l�̐ڑ���������
-          index  �T�[�o�N���C�A���g�}�b�`���C�N�̏ꍇ�̐ڑ��z�X�g��
-                 �F�B���X�g�C���f�b�N�X
-          param  �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
-  �p�r�@�F�}�b�`���C�N�����R�[���o�b�N�B
-          �}�b�`���C�N��������dwc_match.c���̊֐�����Ă΂��B
+  マッチメイク完了コールバック関数
+  引数　：error  DWCエラー種別
+          cancel TRUE :キャンセルによりマッチメイクが終了した、
+                 FALSE:キャンセルではない
+          self   TRUE:自分の接続処理完了、FALSE:他人の接続処理完了
+          index  サーバクライアントマッチメイクの場合の接続ホストの
+                 友達リストインデックス
+          param  コールバック用パラメータ
+  戻り値：なし
+  用途　：マッチメイク完了コールバック。
+          マッチメイク完了時にdwc_match.c内の関数から呼ばれる。
  *---------------------------------------------------------------------------*/
 static void DWCi_MatchedCallback(DWCError error, BOOL cancel, BOOL self, BOOL isServer, int index, void* param)
 {
@@ -1755,25 +1755,25 @@ static void DWCi_MatchedCallback(DWCError error, BOOL cancel, BOOL self, BOOL is
     int i;
 
     if ((error == DWC_ERROR_NONE) && cancel){
-        // �}�b�`���C�N���L�����Z�����ꂽ�ꍇ
+        // マッチメイクがキャンセルされた場合
         if (stpDwcCnt->matchcnt.state == DWC_MATCH_STATE_INIT){
-            // �������L�����Z���Ń}�b�`���C�N�����������ꍇ
-            // �c����QR2�L�[�f�[�^�𑼃N���C�A���g���Q�Ƃ��ė\��R�}���h��
-            // �����Ă��Ȃ��悤�ɁAQR2�L�[�f�[�^���N���A����
+            // 自分がキャンセルでマッチメイクを完了した場合
+            // 残ったQR2キーデータを他クライアントが参照して予約コマンドを
+            // 送ってこないように、QR2キーデータをクリアする
             DWCi_ClearQR2Key();
 
-            // �I�����C����Ԃɖ߂�
+            // オンライン状態に戻す
             DWCi_SetState(DWC_STATE_ONLINE);
         }
-        // �T�[�o�N���C�A���g�}�b�`���C�N�̏ꍇ�͑��z�X�g���L�����Z�����Ă�������
+        // サーバクライアントマッチメイクの場合は他ホストがキャンセルしても続ける
     }
     else if (error == DWC_ERROR_NONE){
-        // ��Ԃ�ڑ���Ԃɂ���
+        // 状態を接続状態にする
         DWCi_SetState(DWC_STATE_CONNECTED);
 
-        // ������AID���擾����
-        // �i�T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�̓}�b�`���C�N�J�n����
-        // �擾���Ă��邪����������ʂ��Ă����j
+        // 自分のAIDを取得する
+        // （サーバクライアントマッチメイクのサーバはマッチメイク開始時に
+        // 取得しているが同じ処理を通しておく）
         for (i = 0; i <= stpDwcCnt->matchcnt.gt2NumConnection; i++){
             if (stpDwcCnt->matchcnt.sbPidList[i] == stpDwcCnt->profileID){
                 stpDwcCnt->aid = stpDwcCnt->matchcnt.aidList[i];
@@ -1786,7 +1786,7 @@ static void DWCi_MatchedCallback(DWCError error, BOOL cancel, BOOL self, BOOL is
     if (!error){
         int i;
         // [test]
-        // �f�o�b�O�\��
+        // デバッグ表示
         for (i = 0; i < stpDwcCnt->matchcnt.gt2NumConnection+1; i++){
             DWC_Printf(DWC_REPORTFLAG_DEBUG,
                        "aid[%d] = %d, pid[%d] = %u\n",
@@ -1796,13 +1796,13 @@ static void DWCi_MatchedCallback(DWCError error, BOOL cancel, BOOL self, BOOL is
     }
 #endif
 
-    // �L����AID�r�b�g�}�b�v���X�V����
+    // 有効なAIDビットマップを更新する
     stpDwcCnt->matchcnt.validAidBitmap =
         DWCi_GetAIDBitmapFromList(stpDwcCnt->matchcnt.aidList, stpDwcCnt->matchcnt.gt2NumConnection+1);
-    // �L���R�l�N�V���������Z�b�g�ōX�V
+    // 有効コネクション数もセットで更新
     DWCi_SetNumValidConnection();
 
-    // �Q�[������^����ꂽ�R�[���o�b�N���Ăяo��
+    // ゲームから与えられたコールバックを呼び出す
     if ((stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_SV) ||
         (stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_CL)){
         stpDwcCnt->matchedSCCallback(error, cancel, self, isServer, index,
@@ -1815,21 +1815,21 @@ static void DWCi_MatchedCallback(DWCError error, BOOL cancel, BOOL self, BOOL is
     // [arakit] main 051007
     if ((error != DWC_ERROR_NONE) &&
         (stpDwcCnt != NULL) && (stpDwcCnt->state == DWC_STATE_MATCHING)){
-        // �G���[�������Ƀ}�b�`���C�N��Ԃ̂܂܂Ȃ�I�����C����Ԃɖ߂�
+        // エラー発生時にマッチメイク状態のままならオンライン状態に戻す
         DWCi_SetState(DWC_STATE_ONLINE);
-        // GP�X�e�[�^�X�͕K��DWCi_StopMatching()���ŃZ�b�g�����
+        // GPステータスは必ずDWCi_StopMatching()内でセットされる
     }
     // [arakit] main 051007
 }
 
 
 /*---------------------------------------------------------------------------*
-  GP�G���[�R�[���o�b�N�֐�
-  �����@�Fpconnection GP�R�l�N�V�����I�u�W�F�N�g�ւ̃|�C���^
-          arg         GP�G���[�\���̂ւ̃|�C���^
-          param       �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
-  �p�r�@�FGP�G���[�R�[���o�b�N
+  GPエラーコールバック関数
+  引数　：pconnection GPコネクションオブジェクトへのポインタ
+          arg         GPエラー構造体へのポインタ
+          param       コールバック用パラメータ
+  戻り値：なし
+  用途　：GPエラーコールバック
  *---------------------------------------------------------------------------*/
 static void DWCi_GPErrorCallback(GPConnection* pconnection, GPErrorArg* arg, void* param)
 {
@@ -1844,7 +1844,7 @@ static void DWCi_GPErrorCallback(GPConnection* pconnection, GPErrorArg* arg, voi
         arg->errorCode == GP_BM_NOT_BUDDY ||
         arg->errorCode == GP_DELBUDDY_NOT_BUDDY
 	){
-        // �o�^�ς݃o�f�B�ւ̃o�f�B�o�^�v���G���[�͖�������
+        // 登録済みバディへのバディ登録要求エラーは無視する
         DWC_Printf(DWC_REPORTFLAG_DEBUG,
                    "Ignore GP ALLREADY_BUDDY or NOT_BUDDY %d.\n",
                    arg->errorCode);
@@ -1925,21 +1925,21 @@ static void DWCi_GPErrorCallback(GPConnection* pconnection, GPErrorArg* arg, voi
 	DWC_Printf(DWC_REPORTFLAG_ERROR, "ERROR CODE: %s (0x%X)\n", errorCodeString, arg->errorCode);
 	DWC_Printf(DWC_REPORTFLAG_ERROR, "ERROR STRING: %s\n", arg->errorString);
 
-    // �S�ăl�b�g���[�N�G���[�Ƃ���
+    // 全てネットワークエラーとする
     gpResult = GP_NETWORK_ERROR;
 
-    // GP�G���[�����֐��Ăяo��
+    // GPエラー処理関数呼び出し
     (void)DWCi_HandleGPError(gpResult);
 }
 
 
 /*---------------------------------------------------------------------------*
-  GP�o�f�B���b�Z�[�W��M�R�[���o�b�N�֐�
-  �����@�Fpconnection GP�R�l�N�V�����I�u�W�F�N�g�ւ̃|�C���^
-          arg         GPRecvBuddyMessageArg�^�I�u�W�F�N�g�ւ̃|�C���^
-          param       �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
-  �p�r�@�FGP�o�f�B���b�Z�[�W��M�R�[���o�b�N
+  GPバディメッセージ受信コールバック関数
+  引数　：pconnection GPコネクションオブジェクトへのポインタ
+          arg         GPRecvBuddyMessageArg型オブジェクトへのポインタ
+          param       コールバック用パラメータ
+  戻り値：なし
+  用途　：GPバディメッセージ受信コールバック
  *---------------------------------------------------------------------------*/
 static void DWCi_GPRecvBuddyMessageCallback(GPConnection* pconnection, GPRecvBuddyMessageArg* arg, void* param)
 {
@@ -1948,14 +1948,14 @@ static void DWCi_GPRecvBuddyMessageCallback(GPConnection* pconnection, GPRecvBud
     char* message = arg->message;
     u32 len;
 
-    // dwc_friend.c�̃o�f�B�o�^���X�|���X�R�[���o�b�N�֔�ԁB
+    // dwc_friend.cのバディ登録レスポンスコールバックへ飛ぶ。
     if ( DWCi_GPRecvBuddyAuthCallback( pconnection, arg, param ) )
     {
         return;
     }
 
     if (memcmp(message, DWC_GP_COMMAND_STRING, strlen(DWC_GP_COMMAND_STRING))){
-        // DWC��GP�R�}���h�ł͂Ȃ��o�f�B���b�Z�[�W����M���Ă��������Ȃ�
+        // DWCのGPコマンドではないバディメッセージを受信しても何もしない
         DWC_Printf(DWC_REPORTFLAG_WARNING,
                    "Received undefined buddy message. '%s'\n",
                    message);
@@ -1966,7 +1966,7 @@ static void DWCi_GPRecvBuddyMessageCallback(GPConnection* pconnection, GPRecvBud
     len = (u32)(strchr(message, 'v')-message);
     strncpy(version, message, len);
     if ((len > 10) || (strtoul(version, NULL, 10) != DWC_MATCHING_VERSION)){
-        // �o�[�W�����Ⴂ�R�}���h����M����
+        // バージョン違いコマンドを受信した
         DWC_Printf(DWC_REPORTFLAG_WARNING,
                    "Received different version buddy message command. '%s'\n",
                    message);
@@ -1976,9 +1976,9 @@ static void DWCi_GPRecvBuddyMessageCallback(GPConnection* pconnection, GPRecvBud
     message += len+1;
     if (memcmp(message, DWC_GP_COMMAND_MATCH_STRING, strlen(DWC_GP_COMMAND_MATCH_STRING)) == 0){
         // [arakit] main 051010
-        // �}�b�`���C�N�p�R�}���h�ŁA�}�b�`���C�N���Ȃ�}�b�`���C�N�p��
-        // �R�[���o�b�N���Ăяo���i�T�[�o�N���C�A���g�}�b�`���C�N�̏ꍇ��
-        // CONNECTED��Ԃł��Ăяo���j
+        // マッチメイク用コマンドで、マッチメイク中ならマッチメイク用の
+        // コールバックを呼び出す（サーバクライアントマッチメイクの場合は
+        // CONNECTED状態でも呼び出す）
         if ((stpDwcCnt->state == DWC_STATE_MATCHING) ||
             ((stpDwcCnt->state == DWC_STATE_CONNECTED) &&
              ((stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_SV) ||
@@ -2000,28 +2000,28 @@ static void DWCi_GPRecvBuddyMessageCallback(GPConnection* pconnection, GPRecvBud
 
 
 /*---------------------------------------------------------------------------*
-  GT2�f�[�^��M�R�[���o�b�N�֐�
-  �����@�Fconnection ��M�����R�l�N�V�����̍\���̃|�C���^
-          message    ��M�f�[�^
-          len        ��M�f�[�^�T�C�Y
-          reliable   �M�����̂���f�[�^���ǂ���
-  �߂�l�F�Ȃ�
-  �p�r�@�FGT2�f�[�^��M�R�[���o�b�N
+  GT2データ受信コールバック関数
+  引数　：connection 受信したコネクションの構造体ポインタ
+          message    受信データ
+          len        受信データサイズ
+          reliable   信頼性のあるデータかどうか
+  戻り値：なし
+  用途　：GT2データ受信コールバック
  *---------------------------------------------------------------------------*/
 static void DWCi_GT2ReceivedCallback(GT2Connection connection, GT2Byte* message, int len, GT2Bool reliable)
 {
 
-	// DWC Transport�̎�M����
+	// DWC Transportの受信処理
     DWCi_RecvCallback( connection, message, len, reliable );
 }
 
 
 /*---------------------------------------------------------------------------*
-  GT2�R�l�N�V�����ؒf�R�[���o�b�N�֐�
-  �����@�Fconnection �ؒf���ꂽ�R�l�N�V�����̍\���̃|�C���^
-          reason     �ؒf���R
-  �߂�l�F�Ȃ�
-  �p�r�@�FGT2�R�l�N�V�����ؒf�R�[���o�b�N
+  GT2コネクション切断コールバック関数
+  引数　：connection 切断されたコネクションの構造体ポインタ
+          reason     切断理由
+  戻り値：なし
+  用途　：GT2コネクション切断コールバック
  *---------------------------------------------------------------------------*/
 static void DWCi_GT2ClosedCallback(GT2Connection connection, GT2CloseReason reason)
 {
@@ -2036,13 +2036,13 @@ static void DWCi_GT2ClosedCallback(GT2Connection connection, GT2CloseReason reas
 
 #if 0
     // [todo]
-    // GOAGetLastError()�̖߂�l�͂������ŁA�����Ƃ��Ďg���Ȃ������B
-    // �\�P�b�g�G���[�̎��ɂ��̂܂ܐؒf�R�[���o�b�N�Ăяo���ɐi�ނ�
-    // �Q�[���̎����ɂ���Ă͕ςȓ���ɂȂ��Ă��܂��Ǝv����B
+    // GOAGetLastError()の戻り値はいつも負で、条件として使えなかった。
+    // ソケットエラーの時にこのまま切断コールバック呼び出しに進むと
+    // ゲームの実装によっては変な動作になってしまうと思われる。
     if (GOAGetLastError(gt2GetSocketSOCKET(stpDwcCnt->gt2Socket)) < 0){
-        // �\�P�b�g�G���[�̍ۂ́Areason��LocalClose�ł����ɗ��邪�A
-        // SocketErrorCallback����������̕�����ɌĂ΂��̂ŁA
-        // GameSpy�̃Z�b�g�����G���[�����āA���̐�ɐi�ނ̂��~�߂�
+        // ソケットエラーの際は、reasonがLocalCloseでここに来るが、
+        // SocketErrorCallbackよりもこちらの方が先に呼ばれるので、
+        // GameSpyのセットしたエラーを見て、この先に進むのを止める
         DWC_Printf(DWC_REPORTFLAG_ERROR,
                    "Connection was closed by socket error.\n");
         return;
@@ -2050,9 +2050,9 @@ static void DWCi_GT2ClosedCallback(GT2Connection connection, GT2CloseReason reas
 #endif
 
     if (DWCi_IsShutdownMatch()){
-        // �ڑ��������A�}�b�`���C�N����DWC_ShutdownFriendsMatch()��
-        // �Ă΂�Ă��܂����ꍇ�i�ʏ�Ă�ł͂����Ȃ��j�A�f�[�^�A�N�Z�X��O��
-        // �Ȃ�Ȃ��悤�ɂ��邽�߁A�����ł͉������Ȃ�
+        // 接続完了後や、マッチメイク中にDWC_ShutdownFriendsMatch()が
+        // 呼ばれてしまった場合（通常呼んではいけない）、データアクセス例外に
+        // ならないようにするため、ここでは何もしない
         // [arakit] main 051013
         DWC_Printf(DWC_REPORTFLAG_WARNING,
                    "Called DWC_ShutdownFriendsMatch() with unexpected status.\n");
@@ -2079,33 +2079,33 @@ static void DWCi_GT2ClosedCallback(GT2Connection connection, GT2CloseReason reas
     DWC_Printf(DWC_REPORTFLAG_DEBUG, "Connection was closed (reason %d).\n", reason);
 
     if (!dwcError){
-        // �R�l�N�V���������擾����
+        // コネクション情報を取得する
 	    conninfo = (DWCConnectionInfo *)gt2GetConnectionData(connection);
 
         if (!conninfo){
-            // �����ꂱ�̃R�[���o�b�N������gt2CloseSocket()���Ă΂�A
-            // �Ăт����ɗ����ꍇ�B�������Ȃ��B
-            // ���C�u�������Ăяo�����Ƃ͂Ȃ����A���[�U���R�[���o�b�N����
-            // DWC_ShutdownFriendsMatch()���Ăяo�����炱���ɗ���B
+            // 万が一このコールバック内からgt2CloseSocket()が呼ばれ、
+            // 再びここに来た場合。何もしない。
+            // ライブラリが呼び出すことはないが、ユーザがコールバック内で
+            // DWC_ShutdownFriendsMatch()を呼び出したらここに来る。
             return;
         }
         
-        aid = conninfo->aid;  // AID��ޔ�
+        aid = conninfo->aid;  // AIDを退避
 
-        // AID�����Ƀ}�b�`���C�N���������z�X�g�̂��̂ł��邩�ǂ������L�^����
+        // AIDが既にマッチメイク完了したホストのものであるかどうかを記録する
         if (stpDwcCnt->matchcnt.validAidBitmap & (1 << aid))
              aidValid = TRUE;
         else aidValid = FALSE;
 
-        // �g�����X�|�[�g�̃R�l�N�V�����\���̂��N���A����
+        // トランスポートのコネクション構造体をクリアする
         DWCi_ClearTransConnection(aid);
 
         DWC_Printf(DWC_REPORTFLAG_DEBUG, "aid = %d (validity %d).\n",
                    aid, aidValid);
 
-        // �T�[�o�N���C�A���g�}�b�`���C�N�̏ꍇ�́A�T�[�o��
-        // �N���[�Y�������Ƃ��L�^����
-        // �N���C�A���g�̏ꍇ�Aaid = 0 �͕K���T�[�o�Ȃ̂ŁA���ꂾ���Ŕ���ł���
+        // サーバクライアントマッチメイクの場合は、サーバが
+        // クローズしたことを記録する
+        // クライアントの場合、aid = 0 は必ずサーバなので、それだけで判定できる
         if (((stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_SV) &&
              (reason == GT2LocalClose)) ||
             ((stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_CL) &&
@@ -2113,12 +2113,12 @@ static void DWCi_GT2ClosedCallback(GT2Connection connection, GT2CloseReason reas
             isServer = TRUE;
         }
 
-        // AID���X�g����AID���������đO�ɋl�߂�B
-        // �v���t�@�C��ID���X�g�������l�̏����������s���B
+        // AIDリストからAIDを消去して前に詰める。
+        // プロファイルIDリスト等も同様の消去処理を行う。
         profileID = DWCi_DeleteAID(aid);
 
         // [todo]
-        // �{���͂����Ń������J��
+        // 本来はここでメモリ開放
         stGt2ConnectionList[conninfo->index] = NULL;
 
         if ( stpDwcCnt->matchcnt.gt2NumConnection > 0 )
@@ -2133,20 +2133,20 @@ static void DWCi_GT2ClosedCallback(GT2Connection connection, GT2CloseReason reas
 
     if (!stpDwcCnt->ownCloseFlag &&
         (stpDwcCnt->state == DWC_STATE_CONNECTED) && !aidValid){
-        // �T�[�o�N���C�A���g�}�b�`���C�N�ŐV�K�ڑ��N���C�A���g��
-        // �}�b�`���C�N���L�����Z�������ꍇ�B
-        // �������́A�}�b�`���C�N�������������������ɐV�K�ڑ��N���C�A���g��
-        // �������Ȃ��Ȃ����ꍇ
+        // サーバクライアントマッチメイクで新規接続クライアントが
+        // マッチメイクをキャンセルした場合。
+        // もしくは、マッチメイク完了同期調整処理中に新規接続クライアントも
+        // 応答がなくなった場合
         if ((stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_SV) &&
             (dwcError == DWC_ERROR_NONE)){
-            // �����������̏ꍇ�ɁA�ڑ��ς݃N���C�A���g���N���[�Y��������
-            // �V�K�ڑ��N���C�A���g���܂߂��l����gpStatus�ɃZ�b�g����
-            // ���܂��Ă���ꍇ������̂ŁA�����Őڑ��l�������߂�
-            // GP�X�e�[�^�X�ɃZ�b�g����
+            // 同期調整中の場合に、接続済みクライアントをクローズした時に
+            // 新規接続クライアントも含めた人数をgpStatusにセットして
+            // しまっている場合があるので、ここで接続人数を改めて
+            // GPステータスにセットする
             (void)DWCi_GPSetServerStatus();
             
-            // �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�͐ڑ��ς݃N���C�A���g�ւ�
-            // �L�����Z���ʒm���s��
+            // サーバクライアントマッチメイクのサーバは接続済みクライアントへの
+            // キャンセル通知を行う
             DWCi_ProcessMatchSCClosing(profileID);
         }
 
@@ -2154,58 +2154,58 @@ static void DWCi_GT2ClosedCallback(GT2Connection connection, GT2CloseReason reas
         return;
     }
     else if (DWCi_ProcessMatchClosing(dwcError, errorCode, profileID)){
-        // �}�b�`���C�N���ɃR�l�N�V�����N���[�Y���ꂽ�ꍇ�́A�}�b�`���C�N�p��
-        // �������s���A���̐�̏����͔�΂��B
+        // マッチメイク中にコネクションクローズされた場合は、マッチメイク用の
+        // 処理を行い、この先の処理は飛ばす。
         DWC_Printf(DWC_REPORTFLAG_DEBUG, "Closing process by matching.\n");
         return;
     }
 
     if (dwcError){
-        // �G���[�̏ꍇ�͂����ŏ�������
+        // エラーの場合はここで処理する
         DWCi_SetError(dwcError,  errorCode+DWC_ECODE_SEQ_MATCH);
         return;
     }
 
 
-    // �����ȉ��́A�F�B�w��A�F�B���w��̏ꍇ�́A�}�b�`���C�N������ɂ������Ȃ��B
-    // �T�[�o�N���C�A���g�̏ꍇ�́A�������ڑ�������A�ڑ��ς݃z�X�g���i���j
-    // �N���[�Y�����ꍇ�̂ݗ���B
+    // ここ以下は、友達指定、友達無指定の場合は、マッチメイク完了後にしか来ない。
+    // サーバクライアントの場合は、自分が接続完了後、接続済みホストが（を）
+    // クローズした場合のみ来る。
 
     // [arakit] main 051010
     if ((!stpDwcCnt->ownCloseFlag) &&
         ((stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_SV) ||
          (stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_CL)) &&
         (stpDwcCnt->matchcnt.sbPidList[stpDwcCnt->matchcnt.gt2NumConnection+2] != 0)){
-        // �T�[�o�N���C�A���g�}�b�`���C�N�ŁA�V�K�ڑ��N���C�A���g���ڑ�����
-        // ����O�ɁA�ڑ��ς݃N���C�A���g���R�l�N�V�������N���[�Y�����ꍇ�A
-        // ���X�g������Ȃ��悤�ɒ������s�Ȃ��B
-        // ���̊֐��ŗL����AID�r�b�g�}�b�v���ύX�����̂ŁAAID = 0 �̃r�b�g��
-        // ���낵�Ă��܂�Ȃ��悤�Ɉꎞ�I��AID���Z�b�g���Ă����B
+        // サーバクライアントマッチメイクで、新規接続クライアントが接続完了
+        // する前に、接続済みクライアントがコネクションをクローズした場合、
+        // リストがずれないように調整を行なう。
+        // 次の関数で有効なAIDビットマップが変更されるので、AID = 0 のビットを
+        // 下ろしてしまわないように一時的にAIDをセットしておく。
         stpDwcCnt->matchcnt.aidList[stpDwcCnt->matchcnt.gt2NumConnection+1] =
             stpDwcCnt->matchcnt.aidList[stpDwcCnt->matchcnt.gt2NumConnection+2];
 
-        // �V�K�ڑ��N���C�A���g�̃f�[�^�����X�g��őO�ɂ��炷
+        // 新規接続クライアントのデータをリスト上で前にずらす
         (void)DWCi_DeleteHostByIndex(stpDwcCnt->matchcnt.gt2NumConnection+1,
                                      stpDwcCnt->matchcnt.gt2NumConnection+3);
     }
     // [arakit] main 051010
         
     if (stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_SV){
-        // �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�̏ꍇ
+        // サーバクライアントマッチメイクのサーバの場合
         if (!stpDwcCnt->ownCloseFlag){
-            // DWC_CloseAllConnectionsHard()�ŃN���[�Y�����̂łȂ��ꍇ�́A
-            // �ڑ��l���̌�����GP�X�e�[�^�X�ɃZ�b�g����
+            // DWC_CloseAllConnectionsHard()でクローズしたのでない場合は、
+            // 接続人数の減少をGPステータスにセットする
             (void)DWCi_GPSetServerStatus();
         }
         else if (stpDwcCnt->matchcnt.gt2NumConnection == 0){
-            // DWC_CloseAllConnectionsHard()�ŃN���[�Y�����������ꍇ��
-            // GP�X�e�[�^�X���I�����C���ɂ���
+            // DWC_CloseAllConnectionsHard()でクローズが完了した場合は
+            // GPステータスをオンラインにする
             (void)DWCi_SetGPStatus(DWC_STATUS_ONLINE, "", NULL);
         }
     }
     else if (stpDwcCnt->matchcnt.gt2NumConnection == 0){
-        // �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�ȊO�ł́A
-        // �S�ẴR�l�N�V�������N���[�Y���ꂽ��GP�X�e�[�^�X���I�����C���ɂ���
+        // サーバクライアントマッチメイクのサーバ以外では、
+        // 全てのコネクションがクローズされたらGPステータスをオンラインにする
         (void)DWCi_SetGPStatus(DWC_STATUS_ONLINE, "", NULL);
     }
 
@@ -2218,18 +2218,18 @@ static void DWCi_GT2ClosedCallback(GT2Connection connection, GT2CloseReason reas
 
     if ((stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_ANYBODY) ||
         (stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_FRIEND)){
-        // �F�B�w��A���w��}�b�`���C�N�̏ꍇ�́A�ڑ���]�l�������݂̐ڑ�����
-        // ���킹�Č��������A�N���C�A���g����̗\�񂪗��Ȃ��悤�ɂ���
+        // 友達指定、無指定マッチメイクの場合は、接続希望人数を現在の接続数に
+        // 合わせて減少させ、クライアントからの予約が来ないようにする
         stpDwcCnt->matchcnt.qr2NumEntry = stpDwcCnt->matchcnt.qr2NNFinishCount;
 
-        // ��Ԃ̕ω����}�X�^�[�T�[�o�ɒʒm����
+        // 状態の変化をマスターサーバに通知する
         qr2_send_statechanged(stpDwcCnt->matchcnt.qr2Obj);
     }
 
     if (stpDwcCnt->closedCallback && aidValid){
-        // �Q�[������^����ꂽ�R�[���o�b�N���Ăяo���B
-        // �T�[�o�N���C�A���g�}�b�`���C�N�Őڑ��������Ă��Ȃ��N���C�A���g��
-        // �ꍇ�̓R�[���o�b�N���Ăяo���Ȃ��B
+        // ゲームから与えられたコールバックを呼び出す。
+        // サーバクライアントマッチメイクで接続完了していないクライアントの
+        // 場合はコールバックを呼び出さない。
         stpDwcCnt->closedCallback(dwcError,
                                   reason == GT2LocalClose ? TRUE : FALSE,
                                   isServer,
@@ -2238,32 +2238,32 @@ static void DWCi_GT2ClosedCallback(GT2Connection connection, GT2CloseReason reas
                                   stpDwcCnt->closedParam);
     }
 
-    // �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�̏ꍇ�́A�N���[�Y�����
-    // �ڑ��z�X�g����0�ɂȂ��Ă��֌W�Ȃ��̂ŁA�����Ŕ�����
+    // サーバクライアントマッチメイクのサーバの場合は、クローズされて
+    // 接続ホスト数が0になっても関係ないので、ここで抜ける
     if (!stpDwcCnt->ownCloseFlag &&
         (stpDwcCnt->matchcnt.qr2MatchType == DWC_MATCH_TYPE_SC_SV))
         return;
 
     if (!stpDwcCnt->matchcnt.gt2NumConnection){
-        // �S�ẴR�l�N�V�������N���[�Y���ꂽ��
-        // �T�[�o�N���C�A���g�}�b�`���C�N�p��NN�g�p�̈���J������
+        // 全てのコネクションがクローズされた時
+        // サーバクライアントマッチメイク用にNN使用領域も開放する
         DWCi_NNFreeNegotiateList();
 
-        // �c����QR2�L�[�f�[�^�𑼃N���C�A���g���Q�Ƃ��ė\��R�}���h��
-        // �����Ă��Ȃ��悤�ɁAQR2�L�[�f�[�^���N���A����
+        // 残ったQR2キーデータを他クライアントが参照して予約コマンドを
+        // 送ってこないように、QR2キーデータをクリアする
         DWCi_ClearQR2Key();
 
-        DWCi_SetState(DWC_STATE_ONLINE);  // ���O�C����Ԃɖ߂�
+        DWCi_SetState(DWC_STATE_ONLINE);  // ログイン状態に戻す
     }
 }
 
 
 /*---------------------------------------------------------------------------*
-  GT2 PING�R�[���o�b�N�֐�
-  �����@�Fconnection PING�����������R�l�N�V�����̍\���̃|�C���^
-          latency    ����z�X�g�ւ̃��C�e���V
-  �߂�l�F�Ȃ�
-  �p�r�@�FGT2 PING�R�[���o�b�N
+  GT2 PINGコールバック関数
+  引数　：connection PINGが完了したコネクションの構造体ポインタ
+          latency    相手ホストへのレイテンシ
+  戻り値：なし
+  用途　：GT2 PINGコールバック
  *---------------------------------------------------------------------------*/
 static void DWCi_GT2PingCallback(GT2Connection connection, int latency)
 {
@@ -2271,16 +2271,16 @@ static void DWCi_GT2PingCallback(GT2Connection connection, int latency)
     
 	DWC_Printf(DWC_REPORTFLAG_TRANSPORT, "Ping: %dms\n", latency);
 
-	// DWC Transport�Őݒ肷��Ping�R�[���o�b�N
+	// DWC Transportで設定するPingコールバック
     DWCi_PingCallback( connection, latency );
 }
 
 
 /*---------------------------------------------------------------------------*
-  GT2�\�P�b�g�G���[�R�[���o�b�N�֐�
-  �����@�Fsocket GT2Socket�I�u�W�F�N�g
-  �߂�l�F�Ȃ�
-  �p�r�@�FGT2�\�P�b�g�G���[�R�[���o�b�N
+  GT2ソケットエラーコールバック関数
+  引数　：socket GT2Socketオブジェクト
+  戻り値：なし
+  用途　：GT2ソケットエラーコールバック
  *---------------------------------------------------------------------------*/
 static void DWCi_GT2SocketErrorCallback(GT2Socket socket)
 {
@@ -2290,11 +2290,11 @@ static void DWCi_GT2SocketErrorCallback(GT2Socket socket)
     DWC_Printf(DWC_REPORTFLAG_ERROR, "Socket fatal error! (%d)\n",
                stLastSocketError);
 
-    // �}�b�`���C�N���ɂ��N���蓾�邪�AFATAL�G���[�Ƃ��ď�������̂�
-    // �}�b�`���C�N�I�������͌Ă΂Ȃ�
+    // マッチメイク中にも起こり得るが、FATALエラーとして処理するので
+    // マッチメイク終了処理は呼ばない
     DWCi_SetError(DWC_ERROR_FATAL, DWC_ECODE_SEQ_ETC+DWC_ECODE_GS_GT2+DWC_ECODE_TYPE_SO_SOCKET);
 
-    // �\�P�b�g�G���[�̏ꍇgti2SocketError()���Ń\�P�b�g���N���[�Y�����̂�
-    // NULL�N���A���Ȃ���΂Ȃ�Ȃ��I
+    // ソケットエラーの場合gti2SocketError()内でソケットがクローズされるので
+    // NULLクリアしなければならない！
     stpDwcCnt->gt2Socket = NULL;
 }

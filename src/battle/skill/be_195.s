@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_195.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			195�@�Ώۂ̑��肪���̃^�[���Ɏg�p�����񕜋Z�A�\�͕ω��Z�̌��ʂ�D���B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			195　対象の相手がそのターンに使用した回復技、能力変化技の効果を奪う。
  *
  *@author	HisashiSogabe
  *@data		2006.02.09

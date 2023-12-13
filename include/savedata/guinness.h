@@ -1,56 +1,56 @@
 /**
- *	@brief	ƒMƒlƒXƒz[ƒ‹@ƒZ[ƒuƒf[ƒ^ƒAƒNƒZƒX
+ *	@brief	ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹
  */
 
 #ifndef __H_GUINNESS_H__
 #define __H_GUINNESS_H__
 
-#define GNS_RECORD_NUM	(13)	//ƒŒƒR[ƒh“à‚Ìƒf[ƒ^”
-#define GNS_BLOCK_NUM	(GNS_RECORD_NUM*2)	//ƒuƒƒbƒN”
-#define GNS_DATA_NUM	(6)		//1ƒuƒƒbƒN‚Ìƒf[ƒ^”
+#define GNS_RECORD_NUM	(13)	//ãƒ¬ã‚³ãƒ¼ãƒ‰å†…ã®ãƒ‡ãƒ¼ã‚¿æ•°
+#define GNS_BLOCK_NUM	(GNS_RECORD_NUM*2)	//ãƒ–ãƒ­ãƒƒã‚¯æ•°
+#define GNS_DATA_NUM	(6)		//1ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿æ•°
 
-///ƒMƒlƒXƒf[ƒ^ƒ^ƒCƒvID
+///ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ID
 typedef enum{
- GNSTYPE_BTL,		///<ƒoƒgƒ‹
- GNSTYPE_POKE,		///<ƒ|ƒPƒ‚ƒ“
- GNSTYPE_CONTEST,	///<ƒRƒ“ƒeƒXƒg
+ GNSTYPE_BTL,		///<ãƒãƒˆãƒ«
+ GNSTYPE_POKE,		///<ãƒã‚±ãƒ¢ãƒ³
+ GNSTYPE_CONTEST,	///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 }GNSTYPE;
 
-///ƒMƒlƒXƒuƒƒbƒNƒf[ƒ^ID
+///ã‚®ãƒã‚¹ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ID
 typedef enum{
- GNSID_GLB_SINGLE,		///<ƒOƒ[ƒoƒ‹@ƒ^ƒ[ƒVƒ“ƒOƒ‹Å‘å˜AŸ
- GNSID_GLB_DOUBLE,		///<ƒOƒ[ƒoƒ‹@ƒ^ƒ[ƒ_ƒuƒ‹Å‘å˜AŸ
- GNSID_GLB_MULTI,		///<ƒOƒ[ƒoƒ‹@ƒ^ƒ[AIƒ}ƒ‹ƒ`Å‘å˜AŸ
- GNSID_GLB_CMULTI,		///<ƒOƒ[ƒoƒ‹@ƒ^ƒ[’ÊMƒ}ƒ‹ƒ`Å‘å˜AŸ
- GNSID_GLB_WIFI,		///<ƒOƒ[ƒoƒ‹@ƒ^ƒ[WifiÅ‘å˜AŸ
- GNSID_GLB_WIN,			///<ƒOƒ[ƒoƒ‹@ƒ^ƒ[•½‹ÏŸ‚¿”²‚«”
- GNSID_GLP_KILL,		///<ƒOƒ[ƒoƒ‹@“|‚µ‚½ƒ|ƒPƒ‚ƒ“”
- GNSID_GLP_CAPUTURE,	///<ƒOƒ[ƒoƒ‹@•ß‚Ü‚¦‚½ƒ|ƒPƒ‚ƒ“”
- GNSID_GLP_HATCHING,	///<ƒOƒ[ƒoƒ‹@›z‚µ‚½ƒ|ƒPƒ‚ƒ“”
- GNSID_GLP_FISHING,		///<ƒOƒ[ƒoƒ‹@’Þ‚èã‚°‚½ƒ|ƒPƒ‚ƒ“”
- GNSID_GLC_GPX,			///<ƒOƒ[ƒoƒ‹@ƒRƒ“ƒeƒXƒg—DŸ
- GNSID_GLC_GPXPER,		///<ƒOƒ[ƒoƒ‹@ƒRƒ“ƒeƒXƒg—DŸ—¦
- GNSID_GLC_RIBBON,		///<ƒOƒ[ƒoƒ‹@ƒRƒ“ƒeƒXƒgƒŠƒ{ƒ“Šl“¾”
+ GNSID_GLB_SINGLE,		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€ã‚¿ãƒ¯ãƒ¼ã‚·ãƒ³ã‚°ãƒ«æœ€å¤§é€£å‹
+ GNSID_GLB_DOUBLE,		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€ã‚¿ãƒ¯ãƒ¼ãƒ€ãƒ–ãƒ«æœ€å¤§é€£å‹
+ GNSID_GLB_MULTI,		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€ã‚¿ãƒ¯ãƒ¼AIãƒžãƒ«ãƒæœ€å¤§é€£å‹
+ GNSID_GLB_CMULTI,		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒžãƒ«ãƒæœ€å¤§é€£å‹
+ GNSID_GLB_WIFI,		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€ã‚¿ãƒ¯ãƒ¼Wifiæœ€å¤§é€£å‹
+ GNSID_GLB_WIN,			///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€ã‚¿ãƒ¯ãƒ¼å¹³å‡å‹ã¡æŠœãæ•°
+ GNSID_GLP_KILL,		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€å€’ã—ãŸãƒã‚±ãƒ¢ãƒ³æ•°
+ GNSID_GLP_CAPUTURE,	///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€æ•ã¾ãˆãŸãƒã‚±ãƒ¢ãƒ³æ•°
+ GNSID_GLP_HATCHING,	///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€å­µã—ãŸãƒã‚±ãƒ¢ãƒ³æ•°
+ GNSID_GLP_FISHING,		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€é‡£ã‚Šä¸Šã’ãŸãƒã‚±ãƒ¢ãƒ³æ•°
+ GNSID_GLC_GPX,			///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹
+ GNSID_GLC_GPXPER,		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹çŽ‡
+ GNSID_GLC_RIBBON,		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒªãƒœãƒ³ç²å¾—æ•°
  
- GNSID_GRB_SINGLE,		///<ƒOƒ‹[ƒv@ƒ^ƒ[ƒVƒ“ƒOƒ‹Å‘å˜AŸ
- GNSID_GRB_DOUBLE,		///<ƒOƒ‹[ƒv@ƒ^ƒ[ƒ_ƒuƒ‹Å‘å˜AŸ
- GNSID_GRB_MULTI,		///<ƒOƒ‹[ƒv@ƒ^ƒ[AIƒ}ƒ‹ƒ`Å‘å˜AŸ
- GNSID_GRB_CMULTI,		///<ƒOƒ‹[ƒv@ƒ^ƒ[’ÊMƒ}ƒ‹ƒ`Å‘å˜AŸ
- GNSID_GRB_WIFI,		///<ƒOƒ‹[ƒv@ƒ^ƒ[WifiÅ‘å˜AŸ
- GNSID_GRB_WIN,			///<ƒOƒ‹[ƒv@ƒ^ƒ[•½‹ÏŸ‚¿”²‚«”
- GNSID_GRP_KILL,		///<ƒOƒ‹[ƒv@“|‚µ‚½ƒ|ƒPƒ‚ƒ“”
- GNSID_GRP_CAPUTURE,	///<ƒOƒ‹[ƒv@•ß‚Ü‚¦‚½ƒ|ƒPƒ‚ƒ“”
- GNSID_GRP_HATCHING,	///<ƒOƒ‹[ƒv@›z‚µ‚½ƒ|ƒPƒ‚ƒ“”
- GNSID_GRP_FISHING,		///<ƒOƒ‹[ƒv@’Þ‚èã‚°‚½ƒ|ƒPƒ‚ƒ“”
- GNSID_GRC_GPX,			///<ƒOƒ‹[ƒv@ƒRƒ“ƒeƒXƒg—DŸ
- GNSID_GRC_GPXPER,		///<ƒOƒ‹[ƒv@ƒRƒ“ƒeƒXƒg—DŸ—¦
- GNSID_GRC_RIBBON,		///<ƒOƒ‹[ƒv@ƒRƒ“ƒeƒXƒgƒŠƒ{ƒ“Šl“¾”
+ GNSID_GRB_SINGLE,		///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€ã‚¿ãƒ¯ãƒ¼ã‚·ãƒ³ã‚°ãƒ«æœ€å¤§é€£å‹
+ GNSID_GRB_DOUBLE,		///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€ã‚¿ãƒ¯ãƒ¼ãƒ€ãƒ–ãƒ«æœ€å¤§é€£å‹
+ GNSID_GRB_MULTI,		///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€ã‚¿ãƒ¯ãƒ¼AIãƒžãƒ«ãƒæœ€å¤§é€£å‹
+ GNSID_GRB_CMULTI,		///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒžãƒ«ãƒæœ€å¤§é€£å‹
+ GNSID_GRB_WIFI,		///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€ã‚¿ãƒ¯ãƒ¼Wifiæœ€å¤§é€£å‹
+ GNSID_GRB_WIN,			///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€ã‚¿ãƒ¯ãƒ¼å¹³å‡å‹ã¡æŠœãæ•°
+ GNSID_GRP_KILL,		///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€å€’ã—ãŸãƒã‚±ãƒ¢ãƒ³æ•°
+ GNSID_GRP_CAPUTURE,	///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€æ•ã¾ãˆãŸãƒã‚±ãƒ¢ãƒ³æ•°
+ GNSID_GRP_HATCHING,	///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€å­µã—ãŸãƒã‚±ãƒ¢ãƒ³æ•°
+ GNSID_GRP_FISHING,		///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€é‡£ã‚Šä¸Šã’ãŸãƒã‚±ãƒ¢ãƒ³æ•°
+ GNSID_GRC_GPX,			///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹
+ GNSID_GRC_GPXPER,		///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹çŽ‡
+ GNSID_GRC_RIBBON,		///<ã‚°ãƒ«ãƒ¼ãƒ—ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒªãƒœãƒ³ç²å¾—æ•°
 }GNSID;
 
 /**
- *	@brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^ŒöŠJƒf[ƒ^Œ^
+ *	@brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿å…¬é–‹ãƒ‡ãƒ¼ã‚¿åž‹
  *
- *	ƒMƒlƒX‚Ìƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‚ðŽæ“¾‚·‚é‚Æ‚«A‚±‚ÌŒ^‚ÅŒÂX‚Ìƒf[ƒ^‚ðˆµ‚¤
+ *	ã‚®ãƒã‚¹ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ã¨ãã€ã“ã®åž‹ã§å€‹ã€…ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ‰±ã†
  */
 typedef struct _GNS_RECORD{
 	u32	groupID;
@@ -59,14 +59,14 @@ typedef struct _GNS_RECORD{
 }GNS_RECORD;
 
 typedef struct _GNS_RANKING{
-	int				num;	//—LŒøƒf[ƒ^”
-	GNS_RECORD	rank[GNS_DATA_NUM];	//ŒÂX‚Ìƒf[ƒ^
+	int				num;	//æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿æ•°
+	GNS_RECORD	rank[GNS_DATA_NUM];	//å€‹ã€…ã®ãƒ‡ãƒ¼ã‚¿
 }GNS_RANKING;
 
 /**
- * @brief	ƒMƒlƒXƒz[ƒ‹ƒZ[ƒuƒf[ƒ^\‘¢‘Ì‚Ö‚Ì•sŠ®‘SŒ^ƒ|ƒCƒ“ƒ^
+ * @brief	ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ä¸å®Œå…¨åž‹ãƒã‚¤ãƒ³ã‚¿
  *
- * ’†g‚ÍŒ©‚¦‚Ü‚¹‚ñ‚ªƒ|ƒCƒ“ƒ^Œo—R‚ÅŽQÆ‚Å‚«‚Ü‚·
+ * ä¸­èº«ã¯è¦‹ãˆã¾ã›ã‚“ãŒãƒã‚¤ãƒ³ã‚¿çµŒç”±ã§å‚ç…§ã§ãã¾ã™
  */
 typedef struct _GUINNESS_DATA	GUINNESS_DATA;
 typedef struct _GUINNESS_BLOCK	GUINNESS_BLOCK;
@@ -81,119 +81,119 @@ typedef struct _GUINNESS	GUINNESS;
 #endif
 
 //===================================================================
-///ƒMƒlƒXƒf[ƒ^ŠÖ˜A
+///ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿é–¢é€£
 //===================================================================
 /**
- *	@brief	ƒMƒlƒXƒf[ƒ^@ƒNƒŠƒA
+ *	@brief	ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿ã€€ã‚¯ãƒªã‚¢
  */
 GLOBAL void GNS_DataClear(GUINNESS_DATA* dat);
 /**
- *	@brief	ƒMƒlƒXƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©H
+ *	@brief	ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ï¼Ÿ
  *
- *	––¼‘O•¶Žš—ñ‚ªNULL•¶Žš—ñ‚È‚ç‹ó
+ *	ï¼Šåå‰æ–‡å­—åˆ—ãŒNULLæ–‡å­—åˆ—ãªã‚‰ç©º
  */
 GLOBAL BOOL GNS_IsEnable(GUINNESS_DATA* dat);
 
 /**
- *	@brief	ƒMƒlƒXƒf[ƒ^@ƒRƒs[
+ *	@brief	ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿ã€€ã‚³ãƒ”ãƒ¼
  */
 GLOBAL void GNS_DataCopy(const GUINNESS_DATA* src,GUINNESS_DATA* dest);
 
 //===================================================================
-///ƒMƒlƒXƒz[ƒ‹ƒf[ƒ^ŠÖ˜A
+///ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿é–¢é€£
 //===================================================================
 /**
- *	@brief	ƒMƒlƒXƒz[ƒ‹@ƒf[ƒ^ƒTƒCƒY
+ *	@brief	ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã€€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 GLOBAL int	GuinnessData_GetWorkSize(void);
 
 /**
- *	@brief	ƒMƒlƒXƒz[ƒ‹@ƒf[ƒ^‰Šú‰»
+ *	@brief	ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã€€ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  */
 GLOBAL void GuinnessData_Init(GUINNESS* dat);
 
 /**
- *	@brief	ƒMƒlƒXƒz[ƒ‹@ƒf[ƒ^ƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+ *	@brief	ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã€€ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  */
 GLOBAL GUINNESS* SaveData_GetGuinnessData(SAVEDATA* sv);
 
 /**
- *	@brief	ƒMƒlƒX@Žw’è‚µ‚½ƒf[ƒ^‚ðÁ‹Ž‚·‚é
+ *	@brief	ã‚®ãƒã‚¹ã€€æŒ‡å®šã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆåŽ»ã™ã‚‹
  */
 GLOBAL void GuinnessData_DelRecord(GUINNESS* dat,GNSID id,u8 idx);
 
 //===================================================================
-///ƒMƒlƒX@ƒŒƒR[ƒhƒf[ƒ^ŠÖ˜A
+///ã‚®ãƒã‚¹ã€€ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿é–¢é€£
 //===================================================================
 /**
- *	@brief	ƒMƒlƒX@ƒŒƒR[ƒh‘—Mƒf[ƒ^ƒTƒCƒYŽæ“¾
+ *	@brief	ã‚®ãƒã‚¹ã€€ãƒ¬ã‚³ãƒ¼ãƒ‰é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  */
 GLOBAL int GuinnessRecord_GetWorkSize(void);
 
 /**
- *	@brief	ƒMƒlƒX@ƒŒƒR[ƒh‘—Mƒf[ƒ^ì¬
+ *	@brief	ã‚®ãƒã‚¹ã€€ãƒ¬ã‚³ãƒ¼ãƒ‰é€ä¿¡ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  */
 GLOBAL void* GuinnessRecord_SendDataAlloc(SAVEDATA* sv,int heapID);
 
 /**
- *	@brief	ƒMƒlƒX@ƒŒƒR[ƒhMix
+ *	@brief	ã‚®ãƒã‚¹ã€€ãƒ¬ã‚³ãƒ¼ãƒ‰Mix
  */
 GLOBAL void GuinnessRecord_RecvDataMix(SAVEDATA* sv,
 		int myid,u8 datanum,const void** array,int heapID);
 
 //===================================================================
-///ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^ŠÖ˜A
+///ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿é–¢é€£
 //===================================================================
-///ƒ^ƒCƒv•Ê‚ÌƒuƒƒbƒN”‚ð•Ô‚·
+///ã‚¿ã‚¤ãƒ—åˆ¥ã®ãƒ–ãƒ­ãƒƒã‚¯æ•°ã‚’è¿”ã™
 GLOBAL u8 GNSRank_GetTypeBlockNum(GNSTYPE type);
-///ƒ^ƒCƒv•Ê‚ÌGNSIDƒIƒtƒZƒbƒg‚ð•Ô‚·
+///ã‚¿ã‚¤ãƒ—åˆ¥ã®GNSIDã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¿”ã™
 GLOBAL u8 GNSRank_GetTypeGNSIDOfs(GNSTYPE type);
 
 /**
- *	@brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^@Ž©•ª‚ÌƒŒƒR[ƒh‚ðŽæ“¾
+ *	@brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã€€è‡ªåˆ†ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
  *
  *	@return	GNS_RANKING*
  *
- *	–GNS_RANKINGƒf[ƒ^Œ^ƒƒ‚ƒŠ‚ðŠm•Û‚µAƒf[ƒ^‚ðŠi”[‚µ‚Ä•Ô‚·
+ *	ï¼ŠGNS_RANKINGãƒ‡ãƒ¼ã‚¿åž‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ã¦è¿”ã™
  *	
- *	@GNSRank_FreeRankingData()ŠÖ”‚ð•K‚¸—p‚¢‚Ä
- *	@ŒÄ‚Ño‚µ‘¤‚ª‚«‚¿‚ñ‚Æƒƒ‚ƒŠ‰ð•ú‚·‚é‚±‚ÆI
- *	  sys_FreeMemory‚Å‰ð•ú‚µ‚¿‚áƒ_ƒ	
+ *	ã€€GNSRank_FreeRankingData()é–¢æ•°ã‚’å¿…ãšç”¨ã„ã¦
+ *	ã€€å‘¼ã³å‡ºã—å´ãŒãã¡ã‚“ã¨ãƒ¡ãƒ¢ãƒªè§£æ”¾ã™ã‚‹ã“ã¨ï¼
+ *	  sys_FreeMemoryã§è§£æ”¾ã—ã¡ã‚ƒãƒ€ãƒ¡	
  */
 GNS_RANKING* GNSRank_AllocMyData(SAVEDATA* sv,GNSTYPE type,int heapID);
 
 /**
- *	@brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^Žæ“¾
+ *	@brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
  *	@return	
- *	–GNS_RANKINGƒf[ƒ^Œ^ƒƒ‚ƒŠ‚ðŠm•Û‚µƒf[ƒ^‚ðƒRƒs[‚µ‚Ä•Ô‚·
+ *	ï¼ŠGNS_RANKINGãƒ‡ãƒ¼ã‚¿åž‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦è¿”ã™
  *
- *	@GNSRank_FreeRankingData()ŠÖ”‚ð•K‚¸—p‚¢‚Ä
- *	@ŒÄ‚Ño‚µ‘¤‚ª‚«‚¿‚ñ‚Æƒƒ‚ƒŠ‰ð•ú‚·‚é‚±‚ÆI
- *	  sys_FreeMemory‚Å‰ð•ú‚µ‚¿‚áƒ_ƒ	
+ *	ã€€GNSRank_FreeRankingData()é–¢æ•°ã‚’å¿…ãšç”¨ã„ã¦
+ *	ã€€å‘¼ã³å‡ºã—å´ãŒãã¡ã‚“ã¨ãƒ¡ãƒ¢ãƒªè§£æ”¾ã™ã‚‹ã“ã¨ï¼
+ *	  sys_FreeMemoryã§è§£æ”¾ã—ã¡ã‚ƒãƒ€ãƒ¡	
  */
 GLOBAL GNS_RANKING* GNSRank_AllocRankingData(GUINNESS* gns,GNSID id,int heapID);
 
 /**
- *	@brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‰ð•ú
+ *	@brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿è§£æ”¾
  *
- *	–GNSRank_GetRankingData()ŠÖ”‚ð—p‚¢‚ÄŽæ“¾‚µ‚½
- *	@ƒƒ‚ƒŠ—Ìˆæ‚ðŠJ•ú‚·‚é
+ *	ï¼ŠGNSRank_GetRankingData()é–¢æ•°ã‚’ç”¨ã„ã¦å–å¾—ã—ãŸ
+ *	ã€€ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’é–‹æ”¾ã™ã‚‹
  */
 GLOBAL void GNSRank_FreeRankingData(GNS_RANKING* dat);
 
 /**
- *	@brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^ƒZƒbƒg
+ *	@brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- *	ƒ‰ƒ“ƒLƒ“ƒOƒ\[ƒgÏ‚Ýƒf[ƒ^‚ðGNS_RANKINGŒ^‚ÉŠi”[‚µ‚Ä
- *	ˆø“n‚µAƒZ[ƒuƒf[ƒ^‚ÉƒZƒbƒg‚·‚é
+ *	ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚½ãƒ¼ãƒˆæ¸ˆã¿ãƒ‡ãƒ¼ã‚¿ã‚’GNS_RANKINGåž‹ã«æ ¼ç´ã—ã¦
+ *	å¼•æ¸¡ã—ã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ã‚»ãƒƒãƒˆã™ã‚‹
  */
 GLOBAL void GNSRank_SetRankingData(GUINNESS* gns,GNSID id,GNS_RANKING* dat);
 
 
 #ifdef PM_DEBUG
 /**
- *	@brief	ƒfƒoƒbƒOê—p@ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^@ƒ_ƒ~[¶¬
+ *	@brief	ãƒ‡ãƒãƒƒã‚°å°‚ç”¨ã€€ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã€€ãƒ€ãƒŸãƒ¼ç”Ÿæˆ
  */
 GLOBAL void DebugGNSRank_MakeDmyRankingData(GUINNESS* gns);
 

@@ -19,13 +19,13 @@
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	WiFi’ÊM—š—ğƒ[ƒN‚ÌƒTƒCƒYæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	WiFié€šä¿¡å±¥æ­´ãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int WIFIHISTORY_GetWorkSize(void)
@@ -35,9 +35,9 @@ int WIFIHISTORY_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	WiFi’ÊM—š—ğƒ[ƒN‚Ì‰Šú‰»
+ * @brief	WiFié€šä¿¡å±¥æ­´ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  * @param	hist
- * @return	WIFI_HISTORY	æ“¾‚µ‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	WIFI_HISTORY	å–å¾—ã—ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void WIFIHISTORY_Init(WIFI_HISTORY * hist)
@@ -52,9 +52,9 @@ void WIFIHISTORY_Init(WIFI_HISTORY * hist)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	WiFi’ÊM—š—ğƒZ[ƒuƒf[ƒ^‚Ìæ“¾
- * @param	sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	WIFI_HISTORYƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	WiFié€šä¿¡å±¥æ­´ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	WIFI_HISTORYãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 WIFI_HISTORY * SaveData_GetWifiHistory(SAVEDATA * sv)
@@ -69,10 +69,10 @@ WIFI_HISTORY * SaveData_GetWifiHistory(SAVEDATA * sv)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	©•ª‚Ì‘A’nˆæ‚ğƒZƒbƒg
- * @param	wh			WIFI—š—ğƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	nation		‘w’èƒR[ƒh
- * @param	area		’nˆæw’èƒR[ƒh
+ * @brief	è‡ªåˆ†ã®å›½ã€åœ°åŸŸã‚’ã‚»ãƒƒãƒˆ
+ * @param	wh			WIFIå±¥æ­´ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	nation		å›½æŒ‡å®šã‚³ãƒ¼ãƒ‰
+ * @param	area		åœ°åŸŸæŒ‡å®šã‚³ãƒ¼ãƒ‰
  */
 //----------------------------------------------------------
 void WIFIHISTORY_SetMyNationArea(WIFI_HISTORY * wh, int nation, int area)
@@ -89,9 +89,9 @@ void WIFIHISTORY_SetMyNationArea(WIFI_HISTORY * wh, int nation, int area)
 
 //----------------------------------------------------------
 /**
- * @brief	©•ª‚Ì‘ƒR[ƒh‚ğæ“¾
- * @param	wh			WIFI—š—ğƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int			‘w’èƒR[ƒh
+ * @brief	è‡ªåˆ†ã®å›½ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
+ * @param	wh			WIFIå±¥æ­´ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int			å›½æŒ‡å®šã‚³ãƒ¼ãƒ‰
  */
 //----------------------------------------------------------
 int WIFIHISTORY_GetMyNation(const WIFI_HISTORY * wh)
@@ -101,9 +101,9 @@ int WIFIHISTORY_GetMyNation(const WIFI_HISTORY * wh)
 
 //----------------------------------------------------------
 /**
- * @brief	©•ª‚Ì’nˆæƒR[ƒh‚ğæ“¾
- * @param	wh			WIFI—š—ğƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int			’nˆæw’èƒR[ƒh
+ * @brief	è‡ªåˆ†ã®åœ°åŸŸã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
+ * @param	wh			WIFIå±¥æ­´ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int			åœ°åŸŸæŒ‡å®šã‚³ãƒ¼ãƒ‰
  */
 //----------------------------------------------------------
 int WIFIHISTORY_GetMyArea(const WIFI_HISTORY * wh)
@@ -113,11 +113,11 @@ int WIFIHISTORY_GetMyArea(const WIFI_HISTORY * wh)
 
 //----------------------------------------------------------
 /**
- * @brief	ó‘ÔƒR[ƒh‚Ìæ“¾
- * @param	wh			WIFI—š—ğƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	nation		‘w’èƒR[ƒh
- * @param	area		’nˆæw’èƒR[ƒh
- * @return	WIFIHIST_STAT	ó‘Ôw’èID
+ * @brief	çŠ¶æ…‹ã‚³ãƒ¼ãƒ‰ã®å–å¾—
+ * @param	wh			WIFIå±¥æ­´ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	nation		å›½æŒ‡å®šã‚³ãƒ¼ãƒ‰
+ * @param	area		åœ°åŸŸæŒ‡å®šã‚³ãƒ¼ãƒ‰
+ * @return	WIFIHIST_STAT	çŠ¶æ…‹æŒ‡å®šID
  */
 //----------------------------------------------------------
 WIFIHIST_STAT WIFIHISTORY_GetStat(const WIFI_HISTORY * wh, int nation, int area)
@@ -136,10 +136,10 @@ WIFIHIST_STAT WIFIHISTORY_GetStat(const WIFI_HISTORY * wh, int nation, int area)
 
 //----------------------------------------------------------
 /**
- * @param	wh			WIFI—š—ğƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	nation		‘w’èƒR[ƒh
- * @param	area		’nˆæw’èƒR[ƒh
- * @param	stat		ó‘Ôw’èID
+ * @param	wh			WIFIå±¥æ­´ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	nation		å›½æŒ‡å®šã‚³ãƒ¼ãƒ‰
+ * @param	area		åœ°åŸŸæŒ‡å®šã‚³ãƒ¼ãƒ‰
+ * @param	stat		çŠ¶æ…‹æŒ‡å®šID
  */
 //----------------------------------------------------------
 void WIFIHISTORY_SetStat(WIFI_HISTORY * wh, int nation, int area, WIFIHIST_STAT stat)
@@ -171,9 +171,9 @@ void WIFIHISTORY_SetStat(WIFI_HISTORY * wh, int nation, int area, WIFIHIST_STAT 
 
 //----------------------------------------------------------
 /**
- * @brief	¢ŠEƒ‚[ƒh‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒOæ“¾
- * @param	wh			WIFI—š—ğƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL		TRUE‚Ì‚Æ‚«A¢ŠEƒ‚[ƒh
+ * @brief	ä¸–ç•Œãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°å–å¾—
+ * @param	wh			WIFIå±¥æ­´ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL		TRUEã®ã¨ãã€ä¸–ç•Œãƒ¢ãƒ¼ãƒ‰
  */
 //----------------------------------------------------------
 BOOL WIFIHISTORY_GetWorldFlag(const WIFI_HISTORY * wh)
@@ -184,9 +184,9 @@ BOOL WIFIHISTORY_GetWorldFlag(const WIFI_HISTORY * wh)
 
 //----------------------------------------------------------
 /**
- * @brief	¢ŠEƒ‚[ƒh‚Ìƒtƒ‰ƒOƒZƒbƒg
- * @param	wh			WIFI—š—ğƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag		İ’è‚·‚é’liTRUE/FALSEj
+ * @brief	ä¸–ç•Œãƒ¢ãƒ¼ãƒ‰ã®ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
+ * @param	wh			WIFIå±¥æ­´ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag		è¨­å®šã™ã‚‹å€¤ï¼ˆTRUE/FALSEï¼‰
  */
 //----------------------------------------------------------
 void WIFIHISTORY_SetWorldFlag(WIFI_HISTORY * wh, BOOL flag)
@@ -200,8 +200,8 @@ void WIFIHISTORY_SetWorldFlag(WIFI_HISTORY * wh, BOOL flag)
 
 //----------------------------------------------------------
 /**
- * @brief	“ú•tXV‚Å“à—eXV
- * @param	wh			WIFI—š—ğƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ—¥ä»˜æ›´æ–°ã§å†…å®¹æ›´æ–°
+ * @param	wh			WIFIå±¥æ­´ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void WIFIHISTORY_Update(WIFI_HISTORY * wh)

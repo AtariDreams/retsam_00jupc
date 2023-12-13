@@ -1,6 +1,6 @@
 /**
  *	@file	poru_3d.h
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚ 3Dƒwƒbƒ_
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ 3Dãƒ˜ãƒƒãƒ€
  *	@author	Miyuki Iwasawa
  *	@date	06.03.28
  */
@@ -16,28 +16,28 @@
 #endif
 
 typedef struct _PORUDEMO_POKE{
-	POKEMON_PARAM*	pp;	///<ŠÛ‚²‚Æ
-	u16	monsno;		///<ƒ|ƒPƒ‚ƒ“No
-	u8	seikaku;	///<ƒ|ƒPƒ‚ƒ“‚Ì«Ši
-	u8	sex;		///<ƒ|ƒPƒ‚ƒ“‚Ì«•Ê
-	u8	flip;		///<ƒtƒŠƒbƒvƒtƒ‰ƒO
-	u8	favolite;	///<D‚«Œ™‚¢
-	STRBUF*	name;	///<ƒ|ƒPƒ‚ƒ“‚ÌƒjƒbƒNƒl[ƒ€
+	POKEMON_PARAM*	pp;	///<ä¸¸ã”ã¨
+	u16	monsno;		///<ãƒã‚±ãƒ¢ãƒ³No
+	u8	seikaku;	///<ãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼
+	u8	sex;		///<ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥
+	u8	flip;		///<ãƒ•ãƒªãƒƒãƒ—ãƒ•ãƒ©ã‚°
+	u8	favolite;	///<å¥½ãå«Œã„
+	STRBUF*	name;	///<ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
 }PORUDEMO_POKE;
 
 typedef struct _PORU3D_WORK{
 	GF_CAMERA_PTR	camera;
 	void*			ssm;
 
-	SOFT_SPRITE_ARC	ssa;	///<ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+	SOFT_SPRITE_ARC	ssa;	///<ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	SOFT_SPRITE	* ss;
 }PORU3D_WORK;
 
-#define POKEA_INI_PX	(128)	///<ƒfƒ‚ƒ|ƒPƒ‚ƒ“‰ŠúÀ•WX
-#define POKEA_INI_PY	(96)	///<ƒfƒ‚ƒ|ƒPƒ‚ƒ“‰ŠúÀ•WY
+#define POKEA_INI_PX	(128)	///<ãƒ‡ãƒ¢ãƒã‚±ãƒ¢ãƒ³åˆæœŸåº§æ¨™X
+#define POKEA_INI_PY	(96)	///<ãƒ‡ãƒ¢ãƒã‚±ãƒ¢ãƒ³åˆæœŸåº§æ¨™Y
 
 /**
- *	@brief	3DŠÖ˜A‰Šú‰»
+ *	@brief	3Dé–¢é€£åˆæœŸåŒ–
  */
 GLOBAL void PoruDemo_3DInit(PORU3D_WORK* wk,PORUDEMO_POKE* poke,int heapID);
 GLOBAL void PoruDemo_3DMain(PORU3D_WORK* wk);

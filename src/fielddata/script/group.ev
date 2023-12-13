@@ -1,6 +1,6 @@
 //====================================================================
 //						group.gmm
-//						�O���[�v
+//						グループ
 //====================================================================
 	.text
 
@@ -9,7 +9,7 @@
 	.include	"../eventdata/zone_c01evc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 #include	"../../field/scr_group.h"
@@ -74,21 +74,21 @@
 	.endm
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_group
-_EVENT_DATA_END						//�I��
+_EVENT_DATA_END						//終了
 
 /********************************************************************/
-/*						�O���[�v�����i�������N�j					*/
+/*						グループ加入（活発少年）					*/
 /********************************************************************/
 ev_group:
 	_TALK_OBJ_START
 
-	_GROUP_EXIST_CHECK	GROUP_ID_MYUSE, SCWK_ANSWER		//�����O���[�v�̗L��
+	_GROUP_EXIST_CHECK	GROUP_ID_MYUSE, SCWK_ANSWER		//所属グループの有無
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_group_not_entry
 
-	//�@�₠�I���傤���́c
+	//　やあ！ちょうしは…
 	//
 	_CALL		sub_group_select_check
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_group_3
@@ -113,7 +113,7 @@ ev_group_no_group:
 	_END
 
 ev_group_not_entry:
-	//�@�˂��˂��Ƃ��񂾂��ǁc
+	//　ねえねえとつぜんだけど…
 	_TALKMSG		msg_group_02
 
 ev_group_command:
@@ -185,26 +185,26 @@ sub_group_select_check_ng:
 /********************************************************************/
 /********************************************************************/
 ev_group_make_group_check:
-	_GROUP_EXIST_CHECK	GROUP_ID_MINE,SCWK_ANSWER		//�����쐬�O���[�v�̗L��
+	_GROUP_EXIST_CHECK	GROUP_ID_MINE,SCWK_ANSWER		//自分作成グループの有無
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_group_make_group
 
-	//�@�O���[�v������񂾂ˁI
-	//�@�܂��Ɂ@�������@�O���[�v��
-	//�@�Ȃ��Ȃ��ā@���܂����ǁ@�����H
+	//　グループをつくるんだね！
+	//　まえに　つくった　グループは
+	//　なくなって　しまうけど　いい？
 	_TALKMSG			msg_group_05
 	_YES_NO_WIN			SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,NE,0,ev_group_cancel
 
 ev_group_make_group:
-	//�@���N���N�I�@���Ⴀ
-	//�@�O���[�v�́@�Ȃ܂��@���񂪂��āI
+	//　ワクワク！　じゃあ
+	//　グループの　なまえ　かんがえて！
 	_TALKMSG			msg_group_06
 	_AB_KEYWAIT
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	_TALK_CLOSE
 
-	//���O����
+	//名前入力
 	_GROUP_NAME_IN		SCWK_ANSWER
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
@@ -212,11 +212,11 @@ ev_group_make_group:
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_group_cancel
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,2,ev_group_namein_same
 
-	_GROUP_MAKE				//�O���[�v���ȊO�̃p�����[�^��ݒ�
-	//�@�`�O���[�v���ˁI
-	//�@����@�����@�Ȃ܂��I
-	//�@���[�_�[�́@�`������ˁI
-	//�@�Ȃ��܂��@�ӂ���Ɓ@�����ˁI
+	_GROUP_MAKE				//グループ名以外のパラメータを設定
+	//　〜グループだね！
+	//　うん　いい　なまえ！
+	//　リーダーは　〜だからね！
+	//　なかまが　ふえると　いいね！
 	_GROUP_NAME			GROUP_ID_MINE,0
 	_GROUP_LEADER_NAME	GROUP_ID_MINE,1
 	_TALKMSG			msg_group_07
@@ -232,7 +232,7 @@ ev_group_namein_same:
 /********************************************************************/
 /********************************************************************/
 ev_group_select:
-	//�@�ǂ̃O���[�v�Ɂ@�͂��肽���H
+	//　どのグループに　はいりたい？
 	_TALKMSG			msg_group_03
 	_BMPMENU_INIT_EX	1,1,0,1,SCWK_TEMP0
 
@@ -289,9 +289,9 @@ ev_group_select_group_05:
 	_IFVAL_JUMP			SCWK_TEMP0,EQ,EV_WIN_B_CANCEL,ev_group_cancel
 
 ev_group_entry_check:
-	//�@�`�O���[�v���ˁI
-	//�@�`�����[�_�[����I
-	//�@���́@�O���[�v�Ɂ@�͂���H
+	//　〜グループだね！
+	//　〜がリーダーだよ！
+	//　この　グループに　はいる？
 	_GROUP_NAME			SCWK_TEMP0, 0
 	_GROUP_LEADER_NAME	SCWK_TEMP0, 1
 	_TALKMSG			msg_group_08
@@ -299,11 +299,11 @@ ev_group_entry_check:
 	_IFVAL_JUMP			SCWK_ANSWER,NE,0,ev_group_select
 
 
-	//�O���[�v�ɓo�^
+	//グループに登録
 	_GROUP_ENTRY		SCWK_TEMP0
 
-	//�@����@�`�́@���傤����
-	//�@�`�O���[�v�́@�����o�[���I
+	//　じゃ　〜は　きょうから
+	//　〜グループの　メンバーだ！
 	_PLAYER_NAME		0
 	_GROUP_NAME			SCWK_TEMP0, 1
 	_TALKMSG			msg_group_09

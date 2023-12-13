@@ -1,15 +1,15 @@
 //====================================================================
-//						ŒÅ’èƒVƒ‡ƒbƒvƒAƒCƒeƒ€ƒf[ƒ^
+//						å›ºå®šã‚·ãƒ§ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 //
 // 06.05.13 Satoshi Nohara
 //
-// œfs_item.xls‚ğƒRƒ“ƒo[ƒg‚µ‚Äo—Í‚µ‚Ä‚¢‚Ü‚·
+// â—fs_item.xlsã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦å‡ºåŠ›ã—ã¦ã„ã¾ã™
 //
 //====================================================================
 
 typedef u16 FS_ITEM_DATA;
 
-//ƒRƒgƒuƒLƒVƒeƒB
+//ã‚³ãƒˆãƒ–ã‚­ã‚·ãƒ†ã‚£
 const FS_ITEM_DATA fs_item_c01_fs[] = {
 	ITEM_EAMEERU,
 	ITEM_HIIRUBOORU,
@@ -17,7 +17,7 @@ const FS_ITEM_DATA fs_item_c01_fs[] = {
 };
 #define FS_ITEM_C01_FS_MAX	( NELEMS(fs_item_c01_fs) )
 
-//ƒNƒƒKƒlƒVƒeƒB
+//ã‚¯ãƒ­ã‚¬ãƒã‚·ãƒ†ã‚£
 const FS_ITEM_DATA fs_item_c03_fs[] = {
 	ITEM_TONNERUMEERU,
 	ITEM_HIIRUBOORU,
@@ -26,7 +26,7 @@ const FS_ITEM_DATA fs_item_c03_fs[] = {
 };
 #define FS_ITEM_C03_FS_MAX	( NELEMS(fs_item_c03_fs) )
 
-//ƒ\ƒmƒIƒ^ƒEƒ“
+//ã‚½ãƒã‚ªã‚¿ã‚¦ãƒ³
 const FS_ITEM_DATA fs_item_t03_fs[] = {
 	ITEM_BURUUMUMEERU,
 	ITEM_HIIRUBOORU,
@@ -35,7 +35,7 @@ const FS_ITEM_DATA fs_item_t03_fs[] = {
 };
 #define FS_ITEM_T03_FS_MAX	( NELEMS(fs_item_t03_fs) )
 
-//ƒnƒNƒ^ƒCƒVƒeƒB
+//ãƒã‚¯ã‚¿ã‚¤ã‚·ãƒ†ã‚£
 const FS_ITEM_DATA fs_item_c04_fs[] = {
 	ITEM_EAMEERU,
 	ITEM_HIIRUBOORU,
@@ -45,7 +45,7 @@ const FS_ITEM_DATA fs_item_c04_fs[] = {
 };
 #define FS_ITEM_C04_FS_MAX	( NELEMS(fs_item_c04_fs) )
 
-//ƒnƒNƒ^ƒCƒVƒeƒBiŠ¿•û‰®j
+//ãƒã‚¯ã‚¿ã‚¤ã‚·ãƒ†ã‚£ï¼ˆæ¼¢æ–¹å±‹ï¼‰
 const FS_ITEM_DATA fs_item_c04r0501[] = {
 	ITEM_BANNOUGONA,
 	ITEM_TIKARANOKONA,
@@ -55,7 +55,7 @@ const FS_ITEM_DATA fs_item_c04r0501[] = {
 };
 #define FS_ITEM_C04R0501_MAX	( NELEMS(fs_item_c04r0501) )
 
-//ƒˆƒXƒKƒVƒeƒB
+//ãƒ¨ã‚¹ã‚¬ã‚·ãƒ†ã‚£
 const FS_ITEM_DATA fs_item_c05_fs[] = {
 	ITEM_RABURABUMEERU,
 	ITEM_HIIRUBOORU,
@@ -65,7 +65,7 @@ const FS_ITEM_DATA fs_item_c05_fs[] = {
 };
 #define FS_ITEM_C05_FS_MAX	( NELEMS(fs_item_c05_fs) )
 
-//ƒYƒCƒ^ƒEƒ“
+//ã‚ºã‚¤ã‚¿ã‚¦ãƒ³
 const FS_ITEM_DATA fs_item_t04_fs[] = {
 	ITEM_EAMEERU,
 	ITEM_NETTOBOORU,
@@ -75,7 +75,7 @@ const FS_ITEM_DATA fs_item_t04_fs[] = {
 };
 #define FS_ITEM_T04_FS_MAX	( NELEMS(fs_item_t04_fs) )
 
-//ƒmƒ‚ƒZƒVƒeƒB
+//ãƒãƒ¢ã‚»ã‚·ãƒ†ã‚£
 const FS_ITEM_DATA fs_item_c06_fs[] = {
 	ITEM_EAMEERU,
 	ITEM_NESUTOBOORU,
@@ -85,7 +85,7 @@ const FS_ITEM_DATA fs_item_c06_fs[] = {
 };
 #define FS_ITEM_C06_FS_MAX	( NELEMS(fs_item_c06_fs) )
 
-//ƒgƒoƒŠƒVƒeƒBiƒfƒp[ƒg‚PŠK¶‘¤j
+//ãƒˆãƒãƒªã‚·ãƒ†ã‚£ï¼ˆãƒ‡ãƒ‘ãƒ¼ãƒˆï¼‘éšå·¦å´ï¼‰
 const FS_ITEM_DATA fs_item_c07_dept_01_01[] = {
 	ITEM_KIZUGUSURI,
 	ITEM_IIKIZUGUSURI,
@@ -102,7 +102,7 @@ const FS_ITEM_DATA fs_item_c07_dept_01_01[] = {
 };
 #define FS_ITEM_C07_DEPT_01_01_MAX	( NELEMS(fs_item_c07_dept_01_01) )
 
-//ƒgƒoƒŠƒVƒeƒBiƒfƒp[ƒg‚PŠK‰E‘¤j
+//ãƒˆãƒãƒªã‚·ãƒ†ã‚£ï¼ˆãƒ‡ãƒ‘ãƒ¼ãƒˆï¼‘éšå³å´ï¼‰
 const FS_ITEM_DATA fs_item_c07_dept_01_02[] = {
 	ITEM_MONSUTAABOORU,
 	ITEM_SUUPAABOORU,
@@ -120,7 +120,7 @@ const FS_ITEM_DATA fs_item_c07_dept_01_02[] = {
 };
 #define FS_ITEM_C07_DEPT_01_02_MAX	( NELEMS(fs_item_c07_dept_01_02) )
 
-//ƒgƒoƒŠƒVƒeƒBiƒfƒp[ƒg‚QŠK¶‘¤j
+//ãƒˆãƒãƒªã‚·ãƒ†ã‚£ï¼ˆãƒ‡ãƒ‘ãƒ¼ãƒˆï¼’éšå·¦å´ï¼‰
 const FS_ITEM_DATA fs_item_c07_dept_02_01[] = {
 	ITEM_SUPIIDAA,
 	ITEM_PURASUPAWAA,
@@ -134,7 +134,7 @@ const FS_ITEM_DATA fs_item_c07_dept_02_01[] = {
 };
 #define FS_ITEM_C07_DEPT_02_01_MAX	( NELEMS(fs_item_c07_dept_02_01) )
 
-//ƒgƒoƒŠƒVƒeƒBiƒfƒp[ƒg‚QŠK‰E‘¤j
+//ãƒˆãƒãƒªã‚·ãƒ†ã‚£ï¼ˆãƒ‡ãƒ‘ãƒ¼ãƒˆï¼’éšå³å´ï¼‰
 const FS_ITEM_DATA fs_item_c07_dept_02_02[] = {
 	ITEM_TAURIN,
 	ITEM_BUROMUHEKISIN,
@@ -146,7 +146,7 @@ const FS_ITEM_DATA fs_item_c07_dept_02_02[] = {
 };
 #define FS_ITEM_C07_DEPT_02_02_MAX	( NELEMS(fs_item_c07_dept_02_02) )
 
-//ƒgƒoƒŠƒVƒeƒBiƒfƒp[ƒg‚RŠK¶‘¤j
+//ãƒˆãƒãƒªã‚·ãƒ†ã‚£ï¼ˆãƒ‡ãƒ‘ãƒ¼ãƒˆï¼“éšå·¦å´ï¼‰
 const FS_ITEM_DATA fs_item_c07_dept_03_01[] = {
 	ITEM_WAZAMASIN83,
 	ITEM_WAZAMASIN17,
@@ -159,7 +159,7 @@ const FS_ITEM_DATA fs_item_c07_dept_03_01[] = {
 };
 #define FS_ITEM_C07_DEPT_03_01_MAX	( NELEMS(fs_item_c07_dept_03_01) )
 
-//ƒgƒoƒŠƒVƒeƒBiƒfƒp[ƒg‚RŠK‰E‘¤j
+//ãƒˆãƒãƒªã‚·ãƒ†ã‚£ï¼ˆãƒ‡ãƒ‘ãƒ¼ãƒˆï¼“éšå³å´ï¼‰
 const FS_ITEM_DATA fs_item_c07_dept_03_02[] = {
 	ITEM_WAZAMASIN38,
 	ITEM_WAZAMASIN25,
@@ -171,7 +171,7 @@ const FS_ITEM_DATA fs_item_c07_dept_03_02[] = {
 };
 #define FS_ITEM_C07_DEPT_03_02_MAX	( NELEMS(fs_item_c07_dept_03_02) )
 
-//ƒJƒ“ƒiƒMƒ^ƒEƒ“
+//ã‚«ãƒ³ãƒŠã‚®ã‚¿ã‚¦ãƒ³
 const FS_ITEM_DATA fs_item_t05_fs[] = {
 	ITEM_EAMEERU,
 	ITEM_DAAKUBOORU,
@@ -181,7 +181,7 @@ const FS_ITEM_DATA fs_item_t05_fs[] = {
 };
 #define FS_ITEM_T05_FS_MAX	( NELEMS(fs_item_t05_fs) )
 
-//ƒLƒbƒTƒLƒVƒeƒB
+//ã‚­ãƒƒã‚µã‚­ã‚·ãƒ†ã‚£
 const FS_ITEM_DATA fs_item_c09_fs[] = {
 	ITEM_BURIZAADOMEERU,
 	ITEM_DAAKUBOORU,
@@ -191,7 +191,7 @@ const FS_ITEM_DATA fs_item_c09_fs[] = {
 };
 #define FS_ITEM_C09_FS_MAX	( NELEMS(fs_item_c09_fs) )
 
-//ƒ~ƒIƒVƒeƒB
+//ãƒŸã‚ªã‚·ãƒ†ã‚£
 const FS_ITEM_DATA fs_item_c02_fs[] = {
 	ITEM_EAMEERU,
 	ITEM_KUIKKUBOORU,
@@ -201,7 +201,7 @@ const FS_ITEM_DATA fs_item_c02_fs[] = {
 };
 #define FS_ITEM_C02_FS_MAX	( NELEMS(fs_item_c02_fs) )
 
-//ƒiƒMƒTƒVƒeƒB
+//ãƒŠã‚®ã‚µã‚·ãƒ†ã‚£
 const FS_ITEM_DATA fs_item_c08_fs[] = {
 	ITEM_SUTIIRUMEERU,
 	ITEM_GOOZYASUBOORU,
@@ -209,7 +209,7 @@ const FS_ITEM_DATA fs_item_c08_fs[] = {
 };
 #define FS_ITEM_C08_FS_MAX	( NELEMS(fs_item_c08_fs) )
 
-//ƒ|ƒPƒ‚ƒ“ƒŠ[ƒO
+//ãƒã‚±ãƒ¢ãƒ³ãƒªãƒ¼ã‚°
 const FS_ITEM_DATA fs_item_pk_fs[] = {
 	ITEM_HIIRUBOORU,
 	ITEM_NETTOBOORU,
@@ -223,7 +223,7 @@ const FS_ITEM_DATA fs_item_pk_fs[] = {
 };
 #define FS_ITEM_PK_FS_MAX	( NELEMS(fs_item_pk_fs) )
 
-//ƒgƒoƒŠƒVƒeƒBiƒfƒp[ƒg’n‰ºj
+//ãƒˆãƒãƒªã‚·ãƒ†ã‚£ï¼ˆãƒ‡ãƒ‘ãƒ¼ãƒˆåœ°ä¸‹ï¼‰
 const FS_ITEM_DATA fs_item_c07_dept_00_00[] = {
 	ITEM_FIRANOMI,
 	ITEM_UINOMI,
@@ -234,7 +234,7 @@ const FS_ITEM_DATA fs_item_c07_dept_00_00[] = {
 };
 #define FS_ITEM_C07_DEPT_00_00_MAX	( NELEMS(fs_item_c07_dept_00_00) )
 
-//ƒf[ƒ^ƒe[ƒuƒ‹
+//ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 const FS_ITEM_DATA* fs_item_data[] = {
 	fs_item_c01_fs,
 	fs_item_c03_fs,

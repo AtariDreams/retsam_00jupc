@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_namipoker.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@©‹@”gæ‚èƒ|ƒPƒ‚ƒ“@‰ñ“]“®ì•t‚«@©‹@ê—p
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€è‡ªæ©Ÿæ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å›è»¢å‹•ä½œä»˜ãã€€è‡ªæ©Ÿå°‚ç”¨
  * @author	kagaya
  * @data	05.07.13
  *
@@ -18,16 +18,16 @@
 //	define
 //==============================================================================
 #ifdef DEBUG_ONLY_FOR_kagaya
-//#define DEBUG_MDL_ROTATE	//’è‹`‚Å‰ñ“]ƒeƒXƒg
-//#define DEBUG_MDL_MOVE	//’è‹`‚ÅÀ•WˆÚ“®
-//#define DEBUG_MDL_REVO	//’è‹`‚ÅŒö“]ƒeƒXƒg
+//#define DEBUG_MDL_ROTATE	//å®šç¾©ã§å›è»¢ãƒ†ã‚¹ãƒˆ
+//#define DEBUG_MDL_MOVE	//å®šç¾©ã§åº§æ¨™ç§»å‹•
+//#define DEBUG_MDL_REVO	//å®šç¾©ã§å…¬è»¢ãƒ†ã‚¹ãƒˆ
 #endif
 
-//“Vˆä–Ê‚Å‚ÌƒIƒtƒZƒbƒg
+//å¤©äº•é¢ã§ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define NAMIPOKER_Y_GRID_OFFS_FX32_ROOF (FX32_ONE*40)
 #define NAMIPOKER_RIDE_Y_OFFSET_ROOF (FX32_ONE*7)
 
-///<‰Šú—h‚ê•
+///<åˆæœŸæºã‚Œå¹…
 #define NAMIPOKER_SHAKE_VALUE (0x0400)
 #define NAMIPOKER_SHAKE_MAX (FX32_ONE*4)
 
@@ -35,7 +35,7 @@
 #define NAMIPOKER_OFF_FRAME (NAMIPOKE_ON_FRAME+30)
 
 //--------------------------------------------------------------
-///	”¼ŒaƒTƒCƒY
+///	åŠå¾„ã‚µã‚¤ã‚º
 //--------------------------------------------------------------
 #define NPOKER_ANGLE_REV_SIZE (20)
 
@@ -52,12 +52,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_NAMIPOKERŒ^
+///	FE_NAMIPOKERå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_NAMIPOKER * FE_NAMIPOKER_PTR;
 
 //--------------------------------------------------------------
-///	FE_NAMIPOKER\‘¢‘Ì
+///	FE_NAMIPOKERæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_NAMIPOKER
 {
@@ -66,16 +66,16 @@ typedef struct _TAG_FE_NAMIPOKER
 	FRO_OBJ robj;
 }FE_NAMIPOKER;
 
-///FE_NAMIPOKEƒTƒCƒY
+///FE_NAMIPOKEã‚µã‚¤ã‚º
 #define FE_NAMIPOKER_SIZE (sizeof(FE_NAMIPOKER))
 
 //--------------------------------------------------------------
-///	NAMIPOKER_ADD_H\‘¢‘Ì
+///	NAMIPOKER_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int init_dir;					///<•\¦•ûŒü
-	HEROTWTYPE tw_type;				///<’nŒ`ƒ^ƒCƒv
+	int init_dir;					///<è¡¨ç¤ºæ–¹å‘
+	HEROTWTYPE tw_type;				///<åœ°å½¢ã‚¿ã‚¤ãƒ—
 	
 	FE_SYS *fes;					///<FE_SYS_PTR
 	FE_NAMIPOKER_PTR namipoke;		///<FE_NAMIPOKER_PTR
@@ -83,27 +83,27 @@ typedef struct
 	PLAYER_STATE_PTR jiki;			///<PLAYER_STATE_PTR
 }NAMIPOKER_ADD_H;
 
-///NAMIPOKER_ADD_HƒTƒCƒY
+///NAMIPOKER_ADD_Hã‚µã‚¤ã‚º
 #define NAMIPOKER_ADD_H_SIZE (sizeof(NAMIPOKER_ADD_H))
 
 //--------------------------------------------------------------
-///	NAMIPOKER_WORK\‘¢‘Ì
+///	NAMIPOKER_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	u32 status_bit;					///<ƒXƒe[ƒ^ƒXƒrƒbƒg
-	s16 dir;						///<•ûŒü
-	u16 frame;						///<•\¦ƒtƒŒ[ƒ€
+	u32 status_bit;					///<ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ
+	s16 dir;						///<æ–¹å‘
+	u16 frame;						///<è¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ 
 	u16 angle_rev;					//270
 	u16 angle_rev_size;				//20
 	ROTATE rotate;
 	VecFx32 shake_outside;
 	VecFx32 offs_outside;
-	fx32 shake_offs;							///<—h‚ê
-	fx32 shake_value;							///<—h‚ê—Ê
+	fx32 shake_offs;							///<æºã‚Œ
+	fx32 shake_value;							///<æºã‚Œé‡
 	
 	HEROTWTYPE tw_type;							///<HEROTWTYPE
-	NAMIPOKER_ADD_H head;						///<’Ç‰Á‚ÌNAMIPOKER_ADD_H
+	NAMIPOKER_ADD_H head;						///<è¿½åŠ æ™‚ã®NAMIPOKER_ADD_H
 	
 	#ifdef DEBUG_MDL_MOVE
 	VecFx32 debug_offs;
@@ -114,11 +114,11 @@ typedef struct
 	#endif
 }NAMIPOKER_WORK;
 
-///NAMIPOKER_WORKƒTƒCƒY
+///NAMIPOKER_WORKã‚µã‚¤ã‚º
 #define NAMIPOKER_WORK_SIZE (sizeof(NAMIPOKER_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void NamiPokeR_GraphicInit( FE_NAMIPOKER_PTR namipoke );
 static void NamiPokeR_GraphicDelete( FE_NAMIPOKER_PTR namipoke );
@@ -150,16 +150,16 @@ static void debug_mdl_revo_pos(
 #endif
 
 //--------------------------------------------------------------
-/// ƒXƒe[ƒ^ƒXƒrƒbƒgƒ}ƒNƒ
+/// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆãƒã‚¯ãƒ­
 //--------------------------------------------------------------
 #define NPOKER_BIT_CHECK(w,b) ((w)->status_bit&(b))
 
 //==============================================================================
-//	”gæ‚èƒ|ƒPƒ‚ƒ“@ƒVƒXƒeƒ€
+//	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“‰Šú‰»
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_NAMIPOKER_PTR	FE_NAMIPOKER_PTR
  */
@@ -177,7 +177,7 @@ void * FE_NamiPokeR_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“íœ
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³å‰Šé™¤
  * @param	namipoke		FE_NAMIPOKER_PTR
  * @retval	nothing
  */
@@ -190,11 +190,11 @@ void FE_NamiPokeR_Delete( void *work )
 }
 
 //==============================================================================
-//	”gæ‚èƒ|ƒPƒ‚ƒ“@ƒOƒ‰ƒtƒBƒbƒN
+//	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“ ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	namipoke	FE_NAMIPOKER_PTR
  * @retval	nothing
  */
@@ -209,7 +209,7 @@ static void NamiPokeR_GraphicInit( FE_NAMIPOKER_PTR namipoke )
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“ ƒOƒ‰ƒtƒBƒbƒNíœ
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	namipoke	FE_NAMIPOKER_PTR
  * @retval	nothing
  */
@@ -220,19 +220,19 @@ static void NamiPokeR_GraphicDelete( FE_NAMIPOKER_PTR namipoke )
 }
 
 //==============================================================================
-//	”gæ‚èƒ|ƒPƒ‚ƒ“@EOA
+//	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“’Ç‰Á
- * @param	jiki	‘ÎÛ‚Æ‚È‚éPLAYER_STATE_PTR
- * @param	gx		•\¦‚·‚éƒOƒŠƒbƒhXÀ•W
- * @param	gy		•\¦‚·‚éƒOƒŠƒbƒhYÀ•W(’n–ÊƒOƒŠƒbƒh’PˆÊ
- * @param	gz		•\¦‚·‚éƒOƒŠƒbƒhZÀ•W
- * @param	dir		•\¦‚·‚é•ûŒü
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³è¿½åŠ 
+ * @param	jiki	å¯¾è±¡ã¨ãªã‚‹PLAYER_STATE_PTR
+ * @param	gx		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	gy		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Yåº§æ¨™(åœ°é¢ã‚°ãƒªãƒƒãƒ‰å˜ä½
+ * @param	gz		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	dir		è¡¨ç¤ºã™ã‚‹æ–¹å‘
  * @param	HEROTWTYPE HEROTWTYPE
- * @param	joint	TRUE=fldobjÀ•W‚ÉÚ‘±@FALSE=Ú‘±‚µ‚È‚¢
- * @retval	EOA_PTR	”gæ‚èƒ|ƒPƒ‚ƒ“EOA_PTR
+ * @param	joint	TRUE=fldobjåº§æ¨™ã«æ¥ç¶šã€€FALSE=æ¥ç¶šã—ãªã„
+ * @retval	EOA_PTR	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_FldOBJNamiPokeRSet( PLAYER_STATE_PTR jiki,
@@ -275,10 +275,10 @@ EOA_PTR FE_FldOBJNamiPokeRSet( PLAYER_STATE_PTR jiki,
 
 //--------------------------------------------------------------
 /**
- * EOA ”gæ‚èƒ|ƒPƒ‚ƒ“@‰Šú‰»
+ * EOA æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaNamiPokeR_Init( EOA_PTR eoa, void *wk )
@@ -305,7 +305,7 @@ static int EoaNamiPokeR_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”gæ‚èƒ|ƒPƒ‚ƒ“@íœ
+ * EOA æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -321,7 +321,7 @@ static void EoaNamiPokeR_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”gæ‚èƒ|ƒPƒ‚ƒ“@“®ì
+ * EOA æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -349,7 +349,7 @@ static void EoaNamiPokeR_Move( EOA_PTR eoa, void *wk )
 	work->tw_type = Player_MoveBitCheck_TWorld( jiki );
 	GF_ASSERT( work->dir != DIR_NOT );
 	
-	{													//—h‚ê•
+	{													//æºã‚Œå¹…
 		work->shake_offs += work->shake_value;
 		
 		if( work->shake_offs >= NAMIPOKER_SHAKE_MAX ){
@@ -425,7 +425,7 @@ static void EoaNamiPokeR_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”gæ‚èƒ|ƒPƒ‚ƒ“@•`‰æ
+ * EOA æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -454,14 +454,14 @@ static void EoaNamiPokeR_Draw( EOA_PTR eoa, void *wk )
 }
 
 //==============================================================================
-//	”gæ‚èƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[ƒp[ƒc
+//	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½’nŒ`‚Æ•ûŒü‚©‚ç‰ñ“]Šp“x‚ğƒZƒbƒg
+ * ç ´ã‚ŒãŸåœ°å½¢ã¨æ–¹å‘ã‹ã‚‰å›è»¢è§’åº¦ã‚’ã‚»ãƒƒãƒˆ
  * @param	tw		HEROTWTYPE
- * @param	dir		DIR_UP“™
- * @param	rotate	Šp“xŠi”[æ
+ * @param	dir		DIR_UPç­‰
+ * @param	rotate	è§’åº¦æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -475,8 +475,8 @@ static void npoke_rotate_set( HEROTWTYPE tw, int dir, ROTATE *rot )
 
 //--------------------------------------------------------------
 /**
- * ©“]Šp“xƒ|ƒCƒ“ƒ^æ“¾
- * @param	eoa		”gæ‚èƒ|ƒPƒ‚ƒ“EOA_PTR
+ * è‡ªè»¢è§’åº¦ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	eoa		æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_PTR
  * @retval	ROTATE*
  */
 //--------------------------------------------------------------
@@ -488,8 +488,8 @@ ROTATE * FE_FldOBJNamiPokeR_RotatePtrGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * w’è•ûŒü‚Å©“]Šp“x‰Šú‰»
- * @param	eoa		”gæ‚èƒ|ƒPƒ‚ƒ“EOA_PTR
+ * æŒ‡å®šæ–¹å‘ã§è‡ªè»¢è§’åº¦åˆæœŸåŒ–
+ * @param	eoa		æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_PTR
  * @retval	ROTATE*
  */
 //--------------------------------------------------------------
@@ -502,8 +502,8 @@ void FE_FldOBJNamiPokeR_RotateDirInit(
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“@ƒXƒe[ƒ^ƒXƒrƒbƒg‚ğ—§‚Ä‚é
- * @param	eoa	”gæ‚èƒ|ƒPƒ‚ƒ“EOA_PTR
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã‚’ç«‹ã¦ã‚‹
+ * @param	eoa	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_PTR
  * @param	bit	NPOKER_BIT
  * @retval	nothing
  */
@@ -516,8 +516,8 @@ void FE_FldOBJNamiPokeR_StatusBitON( EOA_PTR eoa, NPOKER_BIT bit )
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“@ƒXƒe[ƒ^ƒXƒrƒbƒg‚ğ‰º‚ë‚·
- * @param	eoa	”gæ‚èƒ|ƒPƒ‚ƒ“EOA_PTR
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã‚’ä¸‹ã‚ã™
+ * @param	eoa	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_PTR
  * @param	bit	NPOKER_BIT
  * @retval	nothing
  */
@@ -530,8 +530,8 @@ void FE_FldOBJNamiPokeR_StatusBitOFF( EOA_PTR eoa, NPOKER_BIT bit )
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“@ŠO•”w’èÀ•W—h‚êƒIƒtƒZƒbƒgƒ|ƒCƒ“ƒ^æ“¾
- * @param	eoa	”gæ‚èƒ|ƒPƒ‚ƒ“EOA_PTR
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å¤–éƒ¨æŒ‡å®šåº§æ¨™æºã‚Œã‚ªãƒ•ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	eoa	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_PTR
  * @retval	VecFx32 *
  */
 //--------------------------------------------------------------
@@ -543,8 +543,8 @@ VecFx32 * FE_FldOBJNamiPokeR_ShakeOffsetPtrGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“@ŠO•”w’èÀ•W”gæ‚èƒ|ƒPƒ‚ƒ“ƒIƒtƒZƒbƒgƒ|ƒCƒ“ƒ^æ“¾
- * @param	eoa	”gæ‚èƒ|ƒPƒ‚ƒ“EOA_PTR
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å¤–éƒ¨æŒ‡å®šåº§æ¨™æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	eoa	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_PTR
  * @retval	VecFx32 *
  */
 //--------------------------------------------------------------
@@ -556,9 +556,9 @@ VecFx32 * FE_FldOBJNamiPokeR_PokeOffsetPtrGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“@Œö“]Šp“xƒZƒbƒg
- * @param	eoa	”gæ‚èƒ|ƒPƒ‚ƒ“EOA_PTR
- * @param	angle	Šp“x 360
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å…¬è»¢è§’åº¦ã‚»ãƒƒãƒˆ
+ * @param	eoa	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_PTR
+ * @param	angle	è§’åº¦ 360
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -572,7 +572,7 @@ void FE_FldOBJNamiPokeR_AngleRevSet( EOA_PTR eoa, u16 angle )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	”gæ‚èƒ|ƒPƒ‚ƒ“EOA_H
+///	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_NamiPokeR =
 {
@@ -584,7 +584,7 @@ static const EOA_H_NPP DATA_EoaH_NamiPokeR =
 };
 
 //--------------------------------------------------------------
-///	”ñÚ‘±‚Ì’nŒ`•Êƒ|ƒPƒ‚ƒ“ƒIƒtƒZƒbƒgÀ•W
+///	éæ¥ç¶šæ™‚ã®åœ°å½¢åˆ¥ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™
 //--------------------------------------------------------------
 static const VecFx32 DATA_TwDirPokeOffsetTbl[HEROTWTYPE_MAX] =
 {
@@ -607,7 +607,7 @@ static const VecFx32 DATA_TwDirPokeOffsetTbl[HEROTWTYPE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	’nŒ`•Ê©‹@ƒIƒtƒZƒbƒgÀ•W
+///	åœ°å½¢åˆ¥è‡ªæ©Ÿã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™
 //--------------------------------------------------------------
 static const VecFx32 DATA_TwDirJointJikiOffsetTbl[HEROTWTYPE_MAX] =
 {
@@ -626,7 +626,7 @@ static const VecFx32 DATA_TwDirJointJikiOffsetTbl[HEROTWTYPE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	’nŒ`•Êƒ|ƒPƒ‚ƒ“ƒIƒtƒZƒbƒgÀ•W
+///	åœ°å½¢åˆ¥ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™
 //--------------------------------------------------------------
 static const VecFx32 DATA_TwDirJointPokeOffsetTbl[HEROTWTYPE_MAX] =
 {
@@ -645,7 +645,7 @@ static const VecFx32 DATA_TwDirJointPokeOffsetTbl[HEROTWTYPE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	’nŒ`•ÊŒö“]Šp“x
+///	åœ°å½¢åˆ¥å…¬è»¢è§’åº¦
 //--------------------------------------------------------------
 static const u32 DATA_TwJointAngleRevTbl[HEROTWTYPE_MAX] =
 {
@@ -658,7 +658,7 @@ static const u32 DATA_TwJointAngleRevTbl[HEROTWTYPE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒWƒ‡ƒCƒ“ƒg‚Ì’nŒ`•ÊÚ‘±À•W
+///	ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆæ™‚ã®åœ°å½¢åˆ¥æ¥ç¶šåº§æ¨™
 //--------------------------------------------------------------
 #if 0
 static const VecFx32 DATA_TwDirJointPokeOffsetTbl[HEROTWTYPE_MAX] =
@@ -679,15 +679,15 @@ static const VecFx32 DATA_TwDirJointPokeOffsetTbl[HEROTWTYPE_MAX] =
 #endif
 
 //--------------------------------------------------------------
-///	’nŒ`••ûŒü•Ê©“]Šp“x
+///	åœ°å½¢ï¼†æ–¹å‘åˆ¥è‡ªè»¢è§’åº¦
 //--------------------------------------------------------------
 static const ROTATE DATA_TwDirRotateTbl[HEROTWTYPE_MAX][DIR_4_MAX] =
 {
 	{{0,180,0},{0,0,0},{0,270,0},{0,90,0}}, //non
 	{{0,180,0},{0,0,0},{0,270,0},{0,90,0}}, //on
 	{{0,180,0},{0,0,0},{0,270,0},{0,90,0}}, //ground
-	{{0,180,0},{0,0,0},{0,270,0},{0,90,0}}, //wall left  “oêƒV[ƒ“–³‚µ
-	{{0,180,0},{0,0,0},{0,270,0},{0,90,0}}, //wall right “oêƒV[ƒ“–³‚µ
+	{{0,180,0},{0,0,0},{0,270,0},{0,90,0}}, //wall left  ç™»å ´ã‚·ãƒ¼ãƒ³ç„¡ã—
+	{{0,180,0},{0,0,0},{0,270,0},{0,90,0}}, //wall right ç™»å ´ã‚·ãƒ¼ãƒ³ç„¡ã—
 	{{180,180,0},{180,0,0},{180,90,0},{180,270,0}}, //roof
 };
 
@@ -740,7 +740,7 @@ static void debug_mdl_rotate( EOA_PTR eoa, NAMIPOKER_WORK *work )
 		
 		if( PADTRG(PAD_BUTTON_B) ||
 			old.x != rot->x || old.y != rot->y || old.z != rot->z ){
-			OS_Printf( "”gæ‚è‰ñ“] X=%d,Y=%d,Z=%d\n",
+			OS_Printf( "æ³¢ä¹—ã‚Šå›è»¢ X=%d,Y=%d,Z=%d\n",
 					rot->x, rot->y, rot->z );
 		}
 	}
@@ -782,7 +782,7 @@ static void debug_mdl_move( EOA_PTR eoa, NAMIPOKER_WORK *work )
 		
 		if( PADTRG(PAD_BUTTON_B) ||
 			old.x != offs->x || old.y != offs->y || old.z != offs->z ){
-			OS_Printf( "”gæ‚èÀ•W X=%d,Y=%d,Z=%d\n",
+			OS_Printf( "æ³¢ä¹—ã‚Šåº§æ¨™ X=%d,Y=%d,Z=%d\n",
 					FX32_NUM(offs->x), FX32_NUM(offs->y), FX32_NUM(offs->z) );
 		}
 	}
@@ -829,7 +829,7 @@ static void debug_mdl_revo_pos(
 	poswk->z += work->debug_rev_offs.z;
 	
 	if( (sys.trg & PAD_BUTTON_SELECT) ){
-		OS_Printf( "ƒŒƒ{ƒŠƒ…[ƒVƒ‡ƒ“ X=%d,Y=%d,Z=%d,ANGLE=%d\n",
+		OS_Printf( "ãƒ¬ãƒœãƒªãƒ¥ãƒ¼ã‚·ãƒ§ãƒ³ X=%d,Y=%d,Z=%d,ANGLE=%d\n",
 			FX32_NUM(work->debug_rev_offs.x),
 			FX32_NUM(work->debug_rev_offs.y),
 			FX32_NUM(work->debug_rev_offs.z),

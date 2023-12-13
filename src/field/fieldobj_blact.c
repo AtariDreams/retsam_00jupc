@@ -2,7 +2,7 @@
 /**
  *
  * @file	fieldobj_blact.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ŠÖ˜A
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£
  * @author	kagaya
  * @data	05.07.25
  *
@@ -21,22 +21,22 @@
 #ifdef PM_DEBUG
 //#define BLACT_TEXUSE_OLD
 
-#ifdef DEBUG_ONLY_FOR_kagaya		//kagayaê—p
-#define DEBUG_FLDOBJ_PRINTF			//OS_Printf()—LŒø
+#ifdef DEBUG_ONLY_FOR_kagaya		//kagayaå°‚ç”¨
+#define DEBUG_FLDOBJ_PRINTF			//OS_Printf()æœ‰åŠ¹
 #endif
 
-#define DEBUG_FLDOBJ_PRINTF_FORCE	//‘SŠÂ‹«‚Åo‚·Printf()—LŒø
+#define DEBUG_FLDOBJ_PRINTF_FORCE	//å…¨ç’°å¢ƒã§å‡ºã™Printf()æœ‰åŠ¹
 
 #endif //PM_DEBUG
 
 //--------------------------------------------------------------
-///	“o˜^Œ‹‰Ê
+///	ç™»éŒ²çµæœ
 //--------------------------------------------------------------
 typedef enum
 {
-	ADDRES_REGIST = 0,										///<“o˜^Ï‚İ
-	ADDRES_RESERVE,											///<“o˜^‚ğ—\–ñ
-	ADDRES_NOTBLACT,										///<ƒrƒ‹ƒ{[ƒh‚Å‚Í‚È‚¢
+	ADDRES_REGIST = 0,										///<ç™»éŒ²æ¸ˆã¿
+	ADDRES_RESERVE,											///<ç™»éŒ²ã‚’äºˆç´„
+	ADDRES_NOTBLACT,										///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã§ã¯ãªã„
 }ADDRES_TYPE;
 
 //==============================================================================
@@ -44,43 +44,43 @@ typedef enum
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
-///	GUEST_BLACT_ADD_WORK\‘¢‘Ì
+///	GUEST_BLACT_ADD_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int code;												///<•\¦‚·‚éOBJƒR[ƒh
-	FIELD_OBJ_PTR	fldobj;									///<’Ç‰Á‚·‚é‘ÎÛ‚ÌFIELD_OBJ_PTR
-	BLACT_WORK_PTR	*act;									///<’Ç‰Á‚³‚ê‚½ƒrƒ‹ƒ{[ƒh *Ši”[æ
+	int code;												///<è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰
+	FIELD_OBJ_PTR	fldobj;									///<è¿½åŠ ã™ã‚‹å¯¾è±¡ã®FIELD_OBJ_PTR
+	BLACT_WORK_PTR	*act;									///<è¿½åŠ ã•ã‚ŒãŸãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ *æ ¼ç´å…ˆ
 }GUEST_BLACT_ADD_WORK;
 
-///GUEST_BLACT_ADD_WORKƒTƒCƒY
+///GUEST_BLACT_ADD_WORKã‚µã‚¤ã‚º
 #define GUEST_BLACT_ADD_WORK_SIZE (sizeof(GUEST_BLACT_ADD_WORK))
-///BLACT_ADD_TBL‘ƒTƒCƒY
+///BLACT_ADD_TBLç·ã‚µã‚¤ã‚º
 #define GUEST_BLACT_ADD_WORK_ALL_SIZE (GUEST_BLACT_ADD_WORK_SIZE*FLDOBJ_RESM_MAX_TEX)
 #endif
 
 #if 0
 //--------------------------------------------------------------
-///	VINTR_WORK\‘¢‘Ì
+///	VINTR_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	vu32 access_flag;										///<ƒAƒNƒZƒX’†ƒtƒ‰ƒO
+	vu32 access_flag;										///<ã‚¢ã‚¯ã‚»ã‚¹ä¸­ãƒ•ãƒ©ã‚°
 	int max;
 	FIELD_OBJ_BLACT_CONT *cont;								///<FIELD_OBJ_BLACT_CONT *
-	TEXRES_MANAGER_PTR *resm_tex_tbl;						///<“]‘—ƒeƒNƒXƒ`ƒƒƒe[ƒuƒ‹
-	int *resm_tex_id_tbl;									///<“]‘—IDƒe[ƒuƒ‹
+	TEXRES_MANAGER_PTR *resm_tex_tbl;						///<è»¢é€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ†ãƒ¼ãƒ–ãƒ«
+	int *resm_tex_id_tbl;									///<è»¢é€IDãƒ†ãƒ¼ãƒ–ãƒ«
 }VINTR_WORK;
 
-#define VINTR_WORK_SIZE (sizeof(VINTR_WORK))				///<VINTR_WORKƒTƒCƒY
+#define VINTR_WORK_SIZE (sizeof(VINTR_WORK))				///<VINTR_WORKã‚µã‚¤ã‚º
 #endif
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void FldOBJ_BlActAdd_GuestCancel( CONST_FIELD_OBJ_PTR fldobj );
 	
-#if 0 //•s—v
+#if 0 //ä¸è¦
 static void FldOBJ_BlActGuestAddTcbAdd( FIELD_OBJ_BLACT_CONT *cont, int pri );
 static void FldOBJ_BlActGuestAddTcbDelete( FIELD_OBJ_BLACT_CONT *cont );
 static void FldOBJ_GuestBlActAddTcb( TCB_PTR tcb, void *wk );
@@ -242,18 +242,18 @@ static void FldOBJ_BlActVTransWorkDelete( FIELD_OBJ_BLACT_CONT *cont );
 //----
 
 //==============================================================================
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ŠÖ˜A
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒRƒ“ƒgƒ[ƒ‹‰Šú‰»
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	max		ƒAƒNƒ^[Å‘å”
- * @param	pri		ƒQƒXƒgƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰ÁŠÇ—TCBˆ—ƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param	tex_max		ƒeƒNƒXƒ`ƒƒÅ‘å”
- * @param	reg_tex_max	ƒŒƒMƒ…ƒ‰[ƒeƒNƒXƒ`ƒƒ“o˜^Å‘å”
- * @param	rg_tex_tbl	ƒŒƒMƒ…ƒ‰[ƒeƒNƒXƒ`ƒƒƒe[ƒuƒ‹
- * @param	frm_trans_max	1ƒtƒŒ[ƒ€‚Å“]‘—‚Å‚«‚éƒf[ƒ^Å‘å” add pl
+ * @param	max		ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+ * @param	pri		ã‚²ã‚¹ãƒˆãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ç®¡ç†TCBå‡¦ç†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param	tex_max		ãƒ†ã‚¯ã‚¹ãƒãƒ£æœ€å¤§æ•°
+ * @param	reg_tex_max	ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ç™»éŒ²æœ€å¤§æ•°
+ * @param	rg_tex_tbl	ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	frm_trans_max	1ãƒ•ãƒ¬ãƒ¼ãƒ ã§è»¢é€ã§ãã‚‹ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•° add pl
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -291,7 +291,7 @@ void FieldOBJ_BlActCont_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒRƒ“ƒgƒ[ƒ‹íœ
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å‰Šé™¤
  * @param	cont		FIELD_OBJ_BLACT_CONT *
  * @retval	nothing
  */
@@ -307,15 +307,15 @@ void FieldOBJ_BlActCont_Delete( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚çƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰ÁB
- * fldobj‚ÉŠi”[‚³‚ê‚Ä‚¢‚é•\¦ƒR[ƒhAÀ•W‚©‚çƒAƒNƒ^[’Ç‰Á‚·‚éB
- * ƒŒƒMƒ…ƒ‰[AƒQƒXƒgƒ`ƒFƒbƒN‚ğs‚¢AƒQƒXƒg‚Ìê‡‚ÍƒQƒXƒg’Ç‰Áƒe[ƒuƒ‹‚Ö’Ç‰Á—\–ñB
- * ‚±‚ÌŠÖ”‚ğŒÄ‚ñ‚¾ÛAact‚ÍNULL‚Å‰Šú‰»‚³‚ê‚éB
- * ’Ç‰Á‚³‚êŸ‘æAact‚Ö’Ç‰Á‚³‚ê‚½BLACT_WORK_PTR‚ªŠi”[‚³‚ê‚éB
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ã€‚
+ * fldobjã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹è¡¨ç¤ºã‚³ãƒ¼ãƒ‰ã€åº§æ¨™ã‹ã‚‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ã™ã‚‹ã€‚
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€ã‚²ã‚¹ãƒˆãƒã‚§ãƒƒã‚¯ã‚’è¡Œã„ã€ã‚²ã‚¹ãƒˆã®å ´åˆã¯ã‚²ã‚¹ãƒˆè¿½åŠ ãƒ†ãƒ¼ãƒ–ãƒ«ã¸è¿½åŠ äºˆç´„ã€‚
+ * ã“ã®é–¢æ•°ã‚’å‘¼ã‚“ã éš›ã€actã¯NULLã§åˆæœŸåŒ–ã•ã‚Œã‚‹ã€‚
+ * è¿½åŠ ã•ã‚Œæ¬¡ç¬¬ã€actã¸è¿½åŠ ã•ã‚ŒãŸBLACT_WORK_PTRãŒæ ¼ç´ã•ã‚Œã‚‹ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @param	act			BLACT_WORK_PTRŠi”[æ
- * @param	code		•\¦‚·‚éƒR[ƒhBHERO“™
- * @retval	TEXREG_TYPE TEX_REGULAR“™BTEX_REGULAR,TEX_GUESTˆÈŠO=’Ç‰Áƒe[ƒuƒ‹‚Ö—\–ñB
+ * @param	act			BLACT_WORK_PTRæ ¼ç´å…ˆ
+ * @param	code		è¡¨ç¤ºã™ã‚‹ã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
+ * @retval	TEXREG_TYPE TEX_REGULARç­‰ã€‚TEX_REGULAR,TEX_GUESTä»¥å¤–=è¿½åŠ ãƒ†ãƒ¼ãƒ–ãƒ«ã¸äºˆç´„ã€‚
  */
 //--------------------------------------------------------------
 TEXREG_TYPE FieldOBJ_BlActAddRegularGuestCode(
@@ -328,12 +328,12 @@ TEXREG_TYPE FieldOBJ_BlActAddRegularGuestCode(
 	cont = FldOBJ_BlActContGetLocal( fldobj );
 	ret = FldOBJ_BlActResm_TexIDSearchAll( cont, code );
 	
-	if( ret == TEX_NON ){											//–‘O“o˜^‰½‚à–³‚µ
+	if( ret == TEX_NON ){											//äº‹å‰ç™»éŒ²ä½•ã‚‚ç„¡ã—
 		FieldOBJ_BlActAdd_Guest( fldobj, act, code );
 		return( ret );
 	}
 	
-	if( ret == TEX_REGULAR_RESERVE || ret == TEX_GUEST_RESERVE ){	//ƒeƒNƒXƒ`ƒƒ“]‘——\–ñƒAƒŠ
+	if( ret == TEX_REGULAR_RESERVE || ret == TEX_GUEST_RESERVE ){	//ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€äºˆç´„ã‚¢ãƒª
 		FldOBJ_BlActAddReserveSet( cont, fldobj, act, code );
 		return( ret );
 	}
@@ -344,15 +344,15 @@ TEXREG_TYPE FieldOBJ_BlActAddRegularGuestCode(
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚çƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰ÁB
- * fldobj‚ÉŠi”[‚³‚ê‚Ä‚¢‚é•\¦ƒR[ƒhAÀ•W‚©‚çƒAƒNƒ^[’Ç‰Á‚·‚éB
- * OBJƒR[ƒh‚ÍƒtƒB[ƒ‹ƒhOBJ“à‚©‚çæ“¾B
- * ƒŒƒMƒ…ƒ‰[AƒQƒXƒgƒ`ƒFƒbƒN‚ğs‚¢AƒQƒXƒg‚Ìê‡‚ÍƒQƒXƒg’Ç‰Áƒe[ƒuƒ‹‚Ö’Ç‰Á—\–ñB
- * ‚±‚ÌŠÖ”‚ğŒÄ‚ñ‚¾ÛAact‚ÍNULL‚Å‰Šú‰»‚³‚ê‚éB
- * ’Ç‰Á‚³‚êŸ‘æAact‚Ö’Ç‰Á‚³‚ê‚½BLACT_WORK_PTR‚ªŠi”[‚³‚ê‚éB
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ã€‚
+ * fldobjã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹è¡¨ç¤ºã‚³ãƒ¼ãƒ‰ã€åº§æ¨™ã‹ã‚‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ã™ã‚‹ã€‚
+ * OBJã‚³ãƒ¼ãƒ‰ã¯ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå†…ã‹ã‚‰å–å¾—ã€‚
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€ã‚²ã‚¹ãƒˆãƒã‚§ãƒƒã‚¯ã‚’è¡Œã„ã€ã‚²ã‚¹ãƒˆã®å ´åˆã¯ã‚²ã‚¹ãƒˆè¿½åŠ ãƒ†ãƒ¼ãƒ–ãƒ«ã¸è¿½åŠ äºˆç´„ã€‚
+ * ã“ã®é–¢æ•°ã‚’å‘¼ã‚“ã éš›ã€actã¯NULLã§åˆæœŸåŒ–ã•ã‚Œã‚‹ã€‚
+ * è¿½åŠ ã•ã‚Œæ¬¡ç¬¬ã€actã¸è¿½åŠ ã•ã‚ŒãŸBLACT_WORK_PTRãŒæ ¼ç´ã•ã‚Œã‚‹ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @param	act			BLACT_WORK_PTRŠi”[æ
- * @retval	TEXREG_TYPE TEX_REGULAR“™BTEX_REGULAR,TEX_GUESTˆÈŠO=’Ç‰Áƒe[ƒuƒ‹‚Ö—\–ñB 
+ * @param	act			BLACT_WORK_PTRæ ¼ç´å…ˆ
+ * @retval	TEXREG_TYPE TEX_REGULARç­‰ã€‚TEX_REGULAR,TEX_GUESTä»¥å¤–=è¿½åŠ ãƒ†ãƒ¼ãƒ–ãƒ«ã¸äºˆç´„ã€‚ 
  */
 //--------------------------------------------------------------
 TEXREG_TYPE FieldOBJ_BlActAddRegularGuest( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR *act )
@@ -364,11 +364,11 @@ TEXREG_TYPE FieldOBJ_BlActAddRegularGuest( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR 
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚çƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰ÁB•\¦ƒR[ƒhw’èB
- * fldobj‚ÉŠi”[‚³‚ê‚Ä‚¢‚é•\¦ƒR[ƒhAÀ•W‚©‚çƒAƒNƒ^[’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ã€‚è¡¨ç¤ºã‚³ãƒ¼ãƒ‰æŒ‡å®šã€‚
+ * fldobjã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹è¡¨ç¤ºã‚³ãƒ¼ãƒ‰ã€åº§æ¨™ã‹ã‚‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR 
- * @param	code		•\¦‚·‚éƒR[ƒhBHERO“™
- * @retval	BLACT_WORK 	NULL=’Ç‰Á¸”s
+ * @param	code		è¡¨ç¤ºã™ã‚‹ã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
+ * @retval	BLACT_WORK 	NULL=è¿½åŠ å¤±æ•—
  */
 //--------------------------------------------------------------
 BLACT_WORK_PTR FieldOBJ_BlActAddCode( FIELD_OBJ_PTR fldobj, int code )
@@ -398,7 +398,7 @@ BLACT_WORK_PTR FieldOBJ_BlActAddCode( FIELD_OBJ_PTR fldobj, int code )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[íœ
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_HEADER
  * @retval	nothing
@@ -420,7 +420,7 @@ void FieldOBJ_BlActDeleteCode( CONST_FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR *act, 
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[íœ
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_HEADER
  * @retval	nothing
@@ -443,7 +443,7 @@ void FieldOBJ_BlActDelete( CONST_FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR *act )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[íœ
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_HEADER
  * @retval	nothing
@@ -471,8 +471,8 @@ void FieldOBJ_BlActDeleteCodeCancel( CONST_FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR 
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒAƒjƒ‘Ş”ğB
- * ƒAƒjƒ[ƒVƒ‡ƒ“î•ñA•\¦A”ñ•\¦ƒXƒCƒbƒ`‚Ì‘Ş”ğ‚ğs‚¤
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡é€€é¿ã€‚
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±ã€è¡¨ç¤ºã€éè¡¨ç¤ºã‚¹ã‚¤ãƒƒãƒã®é€€é¿ã‚’è¡Œã†
  * @param	act		BLACT_WORK_PTR 
  * @param	push	FIELD_OBJ_BLACTANM_PUSH *
  * @retval	nothing
@@ -487,8 +487,8 @@ void FieldOBJ_BlActAnmPush( BLACT_WORK_PTR act, FIELD_OBJ_BLACTANM_PUSH *push )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒAƒjƒ•œ‹AB
- * FieldOBJ_BlActAnmPush()‚Å‘Ş”ğ‚µ‚½î•ñ‚ğƒAƒNƒ^[‚É”½‰f
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡å¾©å¸°ã€‚
+ * FieldOBJ_BlActAnmPush()ã§é€€é¿ã—ãŸæƒ…å ±ã‚’ã‚¢ã‚¯ã‚¿ãƒ¼ã«åæ˜ 
  * @param	act		BLACT_WORK_PTR 
  * @param	push	FIELD_OBJ_BLACTANM_PUSH *
  * @retval	nothing
@@ -502,16 +502,16 @@ void FieldOBJ_BlActAnmPop( BLACT_WORK_PTR act, FIELD_OBJ_BLACTANM_PUSH *push )
 }
 
 //==============================================================================
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[@ƒQƒXƒg’Ç‰Á
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚²ã‚¹ãƒˆè¿½åŠ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰ÁŠÇ—‚Ö—\–ñB
- * ŒÄ‚ñ‚¾ÛAact‚ÍNULL‚Å‰Šú‰»B
- * ŠÇ—‘¤‚Åƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚ª’Ç‰Á‚³‚ê‚é‚Æ‚»‚ÌƒAƒhƒŒƒX‚ªŠi”[‚³‚ê‚éB
+ * ã‚²ã‚¹ãƒˆãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ç®¡ç†ã¸äºˆç´„ã€‚
+ * å‘¼ã‚“ã éš›ã€actã¯NULLã§åˆæœŸåŒ–ã€‚
+ * ç®¡ç†å´ã§ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãŒè¿½åŠ ã•ã‚Œã‚‹ã¨ãã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ ¼ç´ã•ã‚Œã‚‹ã€‚
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	act		’Ç‰Á‚³‚ê‚½ƒAƒNƒ^[Ši”[æ
- * @param	code	•\¦‚·‚éOBJƒR[ƒh HERO“™
+ * @param	act		è¿½åŠ ã•ã‚ŒãŸã‚¢ã‚¯ã‚¿ãƒ¼æ ¼ç´å…ˆ
+ * @param	code	è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰ HEROç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -528,9 +528,9 @@ void FieldOBJ_BlActAdd_Guest( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR *act, int cod
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰ÁŠÇ——\–ñƒLƒƒƒ“ƒZƒ‹
+ * ã‚²ã‚¹ãƒˆãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ç®¡ç†äºˆç´„ã‚­ãƒ£ãƒ³ã‚»ãƒ«
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	code	•\¦‚·‚éOBJƒR[ƒh HERO“™
+ * @param	code	è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰ HEROç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -543,9 +543,9 @@ static void FldOBJ_BlActAdd_GuestCancel( CONST_FIELD_OBJ_PTR fldobj )
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰ÁŠÇ—TCB’Ç‰Á
+ * ã‚²ã‚¹ãƒˆãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ç®¡ç†TCBè¿½åŠ 
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	pri		’Ç‰ÁŠÇ—TCBˆ—ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param	pri		è¿½åŠ ç®¡ç†TCBå‡¦ç†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -568,7 +568,7 @@ static void FldOBJ_BlActGuestAddTcbAdd( FIELD_OBJ_BLACT_CONT *cont, int pri )
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰ÁŠÇ—TCBíœ
+ * ã‚²ã‚¹ãƒˆãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ç®¡ç†TCBå‰Šé™¤
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @retval	nothing
  */
@@ -596,7 +596,7 @@ static void FldOBJ_BlActGuestAddTcbDelete( FIELD_OBJ_BLACT_CONT *cont )
 #if 0
 //--------------------------------------------------------------
 /**
- * TCB ƒQƒXƒgƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰ÁŠÇ—ˆ—
+ * TCB ã‚²ã‚¹ãƒˆãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ç®¡ç†å‡¦ç†
  * @param	tcb		TCB_PTR
  * @param	wk		work *
  * @retval	nothing
@@ -619,7 +619,7 @@ static void FldOBJ_GuestBlActAddTcb( TCB_PTR tcb, void *wk )
 				FieldOBJ_DrawProcCall( work->fldobj );
 			}
 			
-			{	//’Ç‰Á‚µ‚½OBJƒR[ƒh‚Æ“¯ˆê‚Ì‚à‚Ì‚ğ’¼Œã‚É’Ç‰Á
+			{	//è¿½åŠ ã—ãŸOBJã‚³ãƒ¼ãƒ‰ã¨åŒä¸€ã®ã‚‚ã®ã‚’ç›´å¾Œã«è¿½åŠ 
 				i2 = i + 1;
 				code = work->code;
 				work2 = &work[1];
@@ -662,13 +662,13 @@ static void FldOBJ_GuestBlActAddTcb( TCB_PTR tcb, void *wk )
 #endif
 
 //==============================================================================
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ—
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——ÌˆæŠm•Û
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸç¢ºä¿
  * @param	cont		FIELD_OBJ_BLACT_CONT*
- * @param	max			ƒwƒbƒ_[Å‘å”
+ * @param	max			ãƒ˜ãƒƒãƒ€ãƒ¼æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -701,7 +701,7 @@ static void FldOBJ_BlActHeaderManageInit( FIELD_OBJ_BLACT_CONT *cont, int max )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——Ìˆæíœ
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸå‰Šé™¤
  * @param	cont		FIELD_OBJ_BLACT_CONT*
  * @retval	nothing
  */
@@ -716,10 +716,10 @@ static void FldOBJ_BlActHeaderManageDelete( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——Ìˆææ“¾
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸå–å¾—
  * @param	cont			FIELD_OBJ_BLACT_CONT
- * @param	code			æ“¾‚·‚éOBJƒR[ƒhBHERO“™
- * @retval	BLACT_HEADER	ƒwƒbƒ_[—Ìˆæ‚Ö‚Ì*BNULL=¸”s
+ * @param	code			å–å¾—ã™ã‚‹OBJã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
+ * @retval	BLACT_HEADER	ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸã¸ã®*ã€‚NULL=å¤±æ•—
  */
 //--------------------------------------------------------------
 static BLACT_HEADER * FldOBJ_BlActHeaderManageGet( FIELD_OBJ_BLACT_CONT *cont, u32 code )
@@ -758,11 +758,11 @@ static BLACT_HEADER * FldOBJ_BlActHeaderManageGet( FIELD_OBJ_BLACT_CONT *cont, u
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——Ìˆææ“¾BƒOƒ[ƒoƒ‹
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸå–å¾—ã€‚ã‚°ãƒ­ãƒ¼ãƒãƒ«
  * @param	cont			FIELD_OBJ_BLACT_CONT
- * @param	code			æ“¾‚·‚éOBJƒR[ƒhBHERO“™
- * @param	head			ƒwƒbƒ_[î•ñŠi”[æ
- * @retval	int				TRUE=Ši”[Š®—¹BFALSE=“o˜^‚³‚ê‚Ä‚¢‚È‚¢
+ * @param	code			å–å¾—ã™ã‚‹OBJã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
+ * @param	head			ãƒ˜ãƒƒãƒ€ãƒ¼æƒ…å ±æ ¼ç´å…ˆ
+ * @retval	int				TRUE=æ ¼ç´å®Œäº†ã€‚FALSE=ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActHeaderGetOBJCode( CONST_FIELD_OBJ_SYS_PTR fos, u32 code, BLACT_HEADER *head )
@@ -790,9 +790,9 @@ int FieldOBJ_BlActHeaderGetOBJCode( CONST_FIELD_OBJ_SYS_PTR fos, u32 code, BLACT
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——ÌˆæŠJ•ú
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸé–‹æ”¾
  * @param	cont			FIELD_OBJ_BLACT_CONT
- * @param	code			ŠJ•ú‚·‚éOBJƒR[ƒhBHERO“™
+ * @param	code			é–‹æ”¾ã™ã‚‹OBJã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -823,7 +823,7 @@ static void FldOBJ_BlActHeaderManageFree( FIELD_OBJ_BLACT_CONT *cont, u32 code )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——Ìˆæ‹­§ŠJ•ú
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸå¼·åˆ¶é–‹æ”¾
  * @param	cont			FIELD_OBJ_BLACT_CONT
  * @retval	nothing
  */
@@ -849,11 +849,11 @@ static void FldOBJ_BlActHeaderManageFreeForce( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ”­¶‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒhOBJ‚ÌOBJƒR[ƒh‚ğQÆ
+ * ç¾åœ¨ç™ºç”Ÿã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®OBJã‚³ãƒ¼ãƒ‰ã‚’å‚ç…§
  * @param	sys			FIELD_OBJ_SYS_PTR 
  * @param	fldobj		FIELD_OBJ_PTR 
- * @param	code		ƒ`ƒFƒbƒN‚·‚éƒR[ƒhBHERO“™
- * @retval	int			TRUE=fldobjˆÈŠO‚É‚àcode‚ğ‚Á‚Ä‚¢‚é“z‚ª‚¢‚é
+ * @param	code		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
+ * @retval	int			TRUE=fldobjä»¥å¤–ã«ã‚‚codeã‚’æŒã£ã¦ã„ã‚‹å¥´ãŒã„ã‚‹
  */
 //--------------------------------------------------------------
 static int FldOBJ_OBJCodeUseSearch(
@@ -888,18 +888,18 @@ static int FldOBJ_OBJCodeUseSearch(
 }
 
 //==============================================================================
-//	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒİ’è
+//	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£è¨­å®š
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‰Šú‰»
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	mdl_max		ƒ‚ƒfƒ‹ŠÇ—Å‘å”
- * @param	mdl_reg_max	ƒ‚ƒfƒ‹ŠÇ—ƒŒƒMƒ…ƒ‰[Å‘å”
- * @param	anm_max		ƒAƒjƒŠÇ—Å‘å”
- * @param	anm_reg_max	ƒAƒjƒŠÇ—ƒŒƒMƒ…ƒ‰[Å‘å”
- * @param	tex_max		ƒeƒNƒXƒ`ƒƒŠÇ—Å‘å”
- * @param	tex_reg_max	ƒeƒNƒXƒ`ƒƒƒŒƒMƒ…ƒ‰[ŠÇ—Å‘å”
+ * @param	mdl_max		ãƒ¢ãƒ‡ãƒ«ç®¡ç†æœ€å¤§æ•°
+ * @param	mdl_reg_max	ãƒ¢ãƒ‡ãƒ«ç®¡ç†ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼æœ€å¤§æ•°
+ * @param	anm_max		ã‚¢ãƒ‹ãƒ¡ç®¡ç†æœ€å¤§æ•°
+ * @param	anm_reg_max	ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼æœ€å¤§æ•°
+ * @param	tex_max		ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†æœ€å¤§æ•°
+ * @param	tex_reg_max	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ç®¡ç†æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -943,11 +943,11 @@ static void FldOBJ_BlActResManageInit( FIELD_OBJ_BLACT_CONT *cont,
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‘Síœ
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£å…¨å‰Šé™¤
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	mdl_max	ƒ‚ƒfƒ‹ŠÇ—Å‘å”
- * @param	anm_max	ƒAƒjƒŠÇ—Å‘å”
- * @param	tex_max	ƒeƒNƒXƒ`ƒƒŠÇ—Å‘å”
+ * @param	mdl_max	ãƒ¢ãƒ‡ãƒ«ç®¡ç†æœ€å¤§æ•°
+ * @param	anm_max	ã‚¢ãƒ‹ãƒ¡ç®¡ç†æœ€å¤§æ•°
+ * @param	tex_max	ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -960,10 +960,10 @@ static void FldOBJ_BlActResManageDelete( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_RESMHŒŸõ
- * @param	id				ŒŸõID
- * @param	tbl				ŒŸõƒe[ƒuƒ‹
- * @retval	FIELD_OBJ_RESMH	ˆê’v‚·‚éƒf[ƒ^BNULL=ˆê’v–³‚µ
+ * FIELD_OBJ_RESMHæ¤œç´¢
+ * @param	id				æ¤œç´¢ID
+ * @param	tbl				æ¤œç´¢ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @retval	FIELD_OBJ_RESMH	ä¸€è‡´ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã€‚NULL=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static const FIELD_OBJ_RESMH * FldOBJ_BlActResmH_Search( int id, const FIELD_OBJ_RESMH *tbl )
@@ -981,11 +981,11 @@ static const FIELD_OBJ_RESMH * FldOBJ_BlActResmH_Search( int id, const FIELD_OBJ
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_RESMNARCŒŸõ
- * @param	id				ŒŸõID
- * @param	max_id			I’[ID
- * @param	tbl				ŒŸõƒe[ƒuƒ‹
- * @retval	FIELD_OBJ_RESMNARC	ˆê’v‚·‚éƒf[ƒ^BNULL=ˆê’v–³‚µ
+ * FIELD_OBJ_RESMNARCæ¤œç´¢
+ * @param	id				æ¤œç´¢ID
+ * @param	max_id			çµ‚ç«¯ID
+ * @param	tbl				æ¤œç´¢ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @retval	FIELD_OBJ_RESMNARC	ä¸€è‡´ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã€‚NULL=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static const FIELD_OBJ_RESMNARC * FldOBJ_BlActResmNArc_Search(
@@ -1004,12 +1004,12 @@ static const FIELD_OBJ_RESMNARC * FldOBJ_BlActResmNArc_Search(
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½RES_MANAGER_PTRAIDAFIELD_OBJ_RESMNARC‚©‚ç“o˜^
+ * æŒ‡å®šã•ã‚ŒãŸRES_MANAGER_PTRã€IDã€FIELD_OBJ_RESMNARCã‹ã‚‰ç™»éŒ²
  * @param	resm	RES_MANAGER_PTR
- * @param	id		“o˜^‚·‚éID
- * @param	max		tblI’[ID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
+ * @param	max		tblçµ‚ç«¯ID
  * @param	tbl		FIELD_OBJ_RESMH
- * @retval	int		TRUE=“o˜^BFALSE=“o˜^Ï‚İ
+ * @retval	int		TRUE=ç™»éŒ²ã€‚FALSE=ç™»éŒ²æ¸ˆã¿
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResmNArc_AddResTbl(
@@ -1058,11 +1058,11 @@ static int FldOBJ_BlActLResNArc_AddResTbl(
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½RES_MANAGER_PTRAIDAFIELD_OBJ_RESMH‚©‚ç“o˜^
+ * æŒ‡å®šã•ã‚ŒãŸRES_MANAGER_PTRã€IDã€FIELD_OBJ_RESMHã‹ã‚‰ç™»éŒ²
  * @param	resm	RES_MANAGER_PTR
- * @param	id		“o˜^‚·‚éID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
  * @param	tbl		FIELD_OBJ_RESMH
- * @retval	int		TRUE=“o˜^BFALSE=“o˜^Ï‚İ
+ * @retval	int		TRUE=ç™»éŒ²ã€‚FALSE=ç™»éŒ²æ¸ˆã¿
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_AddResTbl(
@@ -1086,11 +1086,11 @@ static int FldOBJ_BlActResm_AddResTbl(
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½RES_MANAGER_PTRAIDAFIELD_OBJ_RESMH‚©‚ç“o˜^ Noraml
+ * æŒ‡å®šã•ã‚ŒãŸRES_MANAGER_PTRã€IDã€FIELD_OBJ_RESMHã‹ã‚‰ç™»éŒ² Noraml
  * @param	resm	RES_MANAGER_PTR
- * @param	id		“o˜^‚·‚éID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
  * @param	tbl		FIELD_OBJ_RESMH
- * @retval	int		TRUE=“o˜^BFALSE=“o˜^Ï‚İ
+ * @retval	int		TRUE=ç™»éŒ²ã€‚FALSE=ç™»éŒ²æ¸ˆã¿
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_AddResNormalTbl(
@@ -1116,12 +1116,12 @@ static int FldOBJ_BlActResm_AddResNormalTbl(
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒeƒNƒXƒ`ƒƒIDAFIELD_OBJ_RESMNARC‚©‚ç“o˜^
+ * æŒ‡å®šã•ã‚ŒãŸãƒ†ã‚¯ã‚¹ãƒãƒ£IDã€FIELD_OBJ_RESMNARCã‹ã‚‰ç™»éŒ²
  * @param	cont		FIELD_OBJ_BLACT_CONT *
  * @param	reg_type	REGULAR_GUEST
- * @param	id			“o˜^‚·‚éID
+ * @param	id			ç™»éŒ²ã™ã‚‹ID
  * @param	tbl			FIELD_OBJ_RESMNARC
- * @retval	int			ADDRES_FALSE“™
+ * @retval	int			ADDRES_FALSEç­‰
  */
 //--------------------------------------------------------------
 static ADDRES_TYPE FldOBJ_BlActTexResmNArc_AddResTbl( FIELD_OBJ_BLACT_CONT *cont,
@@ -1129,11 +1129,11 @@ static ADDRES_TYPE FldOBJ_BlActTexResmNArc_AddResTbl( FIELD_OBJ_BLACT_CONT *cont
 {
 	TEXRES_MANAGER_PTR resm = cont->tex_res_manage;
 	
-	if( TEXRESM_CheckID(resm,id) == FALSE ){						//“o˜^Ï‚İ
+	if( TEXRESM_CheckID(resm,id) == FALSE ){						//ç™»éŒ²æ¸ˆã¿
 		return( ADDRES_REGIST );
 	}
 	
-	if( FldOBJ_TexLoadReserveCheck(cont,id) != TEX_NON ){			//—\–ñƒAƒŠ
+	if( FldOBJ_TexLoadReserveCheck(cont,id) != TEX_NON ){			//äºˆç´„ã‚¢ãƒª
 		return( ADDRES_RESERVE );
 	}
 	
@@ -1146,18 +1146,18 @@ static ADDRES_TYPE FldOBJ_BlActTexResmNArc_AddResTbl( FIELD_OBJ_BLACT_CONT *cont
 		}
 		
 		if( FldOBJ_TexLoadTransSet(cont,id,head->narc_id,reg_type) == TRUE ){
-			return( ADDRES_REGIST );								//‚»‚Ìê‚Å“o˜^‚Å‚«‚½
+			return( ADDRES_REGIST );								//ãã®å ´ã§ç™»éŒ²ã§ããŸ
 		}
 		
-		return( ADDRES_RESERVE );									//“o˜^—\–ñ
+		return( ADDRES_RESERVE );									//ç™»éŒ²äºˆç´„
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ƒeƒNƒXƒ`ƒƒ“o˜^
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		“o˜^‚·‚éID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
  * @retval	ADDRES_TYPE ADDRES_TYPE
  */
 //--------------------------------------------------------------
@@ -1168,9 +1168,9 @@ static ADDRES_TYPE FldOBJ_BlActResm_RegularAdd_Tex( FIELD_OBJ_BLACT_CONT *cont, 
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ƒeƒNƒXƒ`ƒƒ“o˜^@ƒOƒ[ƒoƒ‹
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ç™»éŒ²ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	id		“o˜^‚·‚éID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1188,9 +1188,9 @@ void FieldOBJ_BlActResmRegularAdd_Tex( CONST_FIELD_OBJ_SYS_PTR fos, int id )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ƒeƒNƒXƒ`ƒƒíœ
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£å‰Šé™¤
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	id		íœ‚·‚éID
+ * @param	id		å‰Šé™¤ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1213,9 +1213,9 @@ void FieldOBJ_BlActResmRegularDelete_Tex( CONST_FIELD_OBJ_SYS_PTR fos, int id )
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgƒeƒNƒXƒ`ƒƒ“o˜^
+ * ã‚²ã‚¹ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		“o˜^‚·‚éID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
  * @retval	ADDRES_TYPE ADDRES_TYPE
  */
 //--------------------------------------------------------------
@@ -1226,9 +1226,9 @@ static ADDRES_TYPE FldOBJ_BlActResm_GuestAdd_Tex( FIELD_OBJ_BLACT_CONT *cont, in
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ƒeƒNƒXƒ`ƒƒ•¡”“o˜^
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£è¤‡æ•°ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	tbl		“o˜^‚·‚éID‚ª“Z‚ß‚ç‚ê‚½ƒe[ƒuƒ‹
+ * @param	tbl		ç™»éŒ²ã™ã‚‹IDãŒçºã‚ã‚‰ã‚ŒãŸãƒ†ãƒ¼ãƒ–ãƒ«
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1243,9 +1243,9 @@ static void FldOBJ_BlActResm_RegularAddTbl_Tex( FIELD_OBJ_BLACT_CONT *cont, cons
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ƒ‚ƒfƒ‹“o˜^
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ¢ãƒ‡ãƒ«ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		“o˜^‚·‚éID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1261,9 +1261,9 @@ static void FldOBJ_BlActResm_RegularAdd_Mdl( FIELD_OBJ_BLACT_CONT *cont, int id 
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgƒ‚ƒfƒ‹“o˜^
+ * ã‚²ã‚¹ãƒˆãƒ¢ãƒ‡ãƒ«ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		“o˜^‚·‚éID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1284,9 +1284,9 @@ static void FldOBJ_BlActResm_GuestAdd_Mdl( FIELD_OBJ_BLACT_CONT *cont, int id )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ƒ‚ƒfƒ‹•¡”“o˜^
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ¢ãƒ‡ãƒ«è¤‡æ•°ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	tbl		“o˜^‚·‚éID‚ª“Z‚ß‚ç‚ê‚½ƒe[ƒuƒ‹
+ * @param	tbl		ç™»éŒ²ã™ã‚‹IDãŒçºã‚ã‚‰ã‚ŒãŸãƒ†ãƒ¼ãƒ–ãƒ«
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1300,9 +1300,9 @@ static void FldOBJ_BlActResm_RegularAddTbl_Mdl( FIELD_OBJ_BLACT_CONT *cont, cons
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ƒAƒjƒ“o˜^
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		“o˜^‚·‚éID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1320,9 +1320,9 @@ static void FldOBJ_BlActResm_RegularAdd_Anm( FIELD_OBJ_BLACT_CONT *cont, int id 
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ƒAƒjƒ“o˜^@ƒOƒ[ƒoƒ‹
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	id		“o˜^‚·‚éID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1342,9 +1342,9 @@ void FieldOBJ_BlActResmRegularAdd_Anm( CONST_FIELD_OBJ_SYS_PTR fos, int id )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ƒAƒjƒíœ
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡å‰Šé™¤
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	id		íœ‚·‚éID
+ * @param	id		å‰Šé™¤ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1365,9 +1365,9 @@ void FieldOBJ_BlActResmRegularDelete_Anm( CONST_FIELD_OBJ_SYS_PTR fos, int id )
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgƒAƒjƒ“o˜^
+ * ã‚²ã‚¹ãƒˆã‚¢ãƒ‹ãƒ¡ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		“o˜^‚·‚éID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1389,9 +1389,9 @@ static void FldOBJ_BlActResm_GuestAdd_Anm( FIELD_OBJ_BLACT_CONT *cont, int id )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ƒAƒjƒ•¡”“o˜^
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡è¤‡æ•°ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	tbl		“o˜^‚·‚éID‚ª“Z‚ß‚ç‚ê‚½ƒe[ƒuƒ‹
+ * @param	tbl		ç™»éŒ²ã™ã‚‹IDãŒçºã‚ã‚‰ã‚ŒãŸãƒ†ãƒ¼ãƒ–ãƒ«
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1405,11 +1405,11 @@ static void FldOBJ_BlActResm_RegularAddTbl_Anm( FIELD_OBJ_BLACT_CONT *cont, cons
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[¨ˆêÄ“o˜^
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼å‹¢ä¸€æ–‰ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	tex_tbl	ƒŒƒMƒ…ƒ‰[ƒeƒNƒXƒ`ƒƒ
- * @param	mdl_tbl	ƒŒƒMƒ…ƒ‰[ƒeƒNƒXƒ`ƒƒ
- * @param	anm_tbl	ƒŒƒMƒ…ƒ‰[ƒeƒNƒXƒ`ƒƒ
+ * @param	tex_tbl	ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£
+ * @param	mdl_tbl	ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£
+ * @param	anm_tbl	ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1423,10 +1423,10 @@ static void FldOBJ_BlActResm_RegularAdd_All(
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXIDŠÇ—@‰Šú‰»
- * @param	tbl		IDƒe[ƒuƒ‹@*
- * @param	init_id	‰Šú‰»ID
- * @param	max		‰Šú‰»”
+ * ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€åˆæœŸåŒ–
+ * @param	tbl		IDãƒ†ãƒ¼ãƒ–ãƒ«ã€€*
+ * @param	init_id	åˆæœŸåŒ–ID
+ * @param	max		åˆæœŸåŒ–æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1441,12 +1441,12 @@ static void FldOBJ_BlActResm_IDTblInit( int *tbl, int init_id, int max )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXIDŠÇ—@“o˜^
- * @param	tbl		IDƒe[ƒuƒ‹@*
- * @param	reg_id	“o˜^ID
- * @param	spc_id@‹ó‚«ID
- * @param	max		ŒŸõ”
- * @retval	int		TRUE=“o˜^@FALSE=‹ó‚«–³‚µ
+ * ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ç™»éŒ²
+ * @param	tbl		IDãƒ†ãƒ¼ãƒ–ãƒ«ã€€*
+ * @param	reg_id	ç™»éŒ²ID
+ * @param	spc_idã€€ç©ºãID
+ * @param	max		æ¤œç´¢æ•°
+ * @retval	int		TRUE=ç™»éŒ²ã€€FALSE=ç©ºãç„¡ã—
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_IDTblReg( int *tbl, int reg_id, int spc_id, int max )
@@ -1466,11 +1466,11 @@ static int FldOBJ_BlActResm_IDTblReg( int *tbl, int reg_id, int spc_id, int max 
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXIDŠÇ—@ŒŸõ
- * @param	tbl		IDƒe[ƒuƒ‹@*
- * @param	chk_id	ŒŸõID
- * @param	max		ŒŸõ”
- * @retval	int		TRUE=“o˜^ƒAƒŠ@FALSE=“o˜^ƒiƒV
+ * ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€æ¤œç´¢
+ * @param	tbl		IDãƒ†ãƒ¼ãƒ–ãƒ«ã€€*
+ * @param	chk_id	æ¤œç´¢ID
+ * @param	max		æ¤œç´¢æ•°
+ * @retval	int		TRUE=ç™»éŒ²ã‚¢ãƒªã€€FALSE=ç™»éŒ²ãƒŠã‚·
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_IDTblSearch( int *tbl, int chk_id, int max )
@@ -1489,12 +1489,12 @@ static int FldOBJ_BlActResm_IDTblSearch( int *tbl, int chk_id, int max )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXIDŠÇ—@íœ
- * @param	tbl		IDƒe[ƒuƒ‹@*
- * @param	del_id		íœ‚·‚éID
- * @param	spc_id	íœŒã‚Ì‹ó‚«ID
- * @param	max		ŒŸõ”
- * @retval	int		TRUE=íœŠ®—¹@FALSE=“o˜^ƒiƒV
+ * ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€å‰Šé™¤
+ * @param	tbl		IDãƒ†ãƒ¼ãƒ–ãƒ«ã€€*
+ * @param	del_id		å‰Šé™¤ã™ã‚‹ID
+ * @param	spc_id	å‰Šé™¤å¾Œã®ç©ºãID
+ * @param	max		æ¤œç´¢æ•°
+ * @retval	int		TRUE=å‰Šé™¤å®Œäº†ã€€FALSE=ç™»éŒ²ãƒŠã‚·
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_IDTblDel( int *tbl, int del_id, int spc_id, int max )
@@ -1514,7 +1514,7 @@ static int FldOBJ_BlActResm_IDTblDel( int *tbl, int del_id, int spc_id, int max 
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXIDŠÇ—@ƒe[ƒuƒ‹‰Šú‰»
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ãƒ†ãƒ¼ãƒ–ãƒ«åˆæœŸåŒ–
  * @param	cont		FIELD_OBJ_BLACT_CONT *
  * @retval	nothing
  */
@@ -1529,10 +1529,10 @@ static void FldOBJ_BlActResm_MdlIDInit( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXIDŠÇ—@ƒŒƒMƒ…ƒ‰[“o˜^B
- * ‹ó‚«‚ª–³‚¢ê‡‚ÍGF_ASSERT()
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ç™»éŒ²ã€‚
+ * ç©ºããŒç„¡ã„å ´åˆã¯GF_ASSERT()
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			“o˜^ID
+ * @param	id			ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1550,10 +1550,10 @@ static void FldOBJ_BlActResm_MdlIDReg_Regular( FIELD_OBJ_BLACT_CONT *cont, int i
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXIDŠÇ—@ƒŒƒMƒ…ƒ‰[ŒŸõ
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼æ¤œç´¢
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			ŒŸõID
- * @retval	int			TRUE=“o˜^Ï‚İID FALSE=ˆê’v–³‚µ
+ * @param	id			æ¤œç´¢ID
+ * @retval	int			TRUE=ç™»éŒ²æ¸ˆã¿ID FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_MdlIDSearch_Regular( FIELD_OBJ_BLACT_CONT *cont, int id )
@@ -1568,10 +1568,10 @@ static int FldOBJ_BlActResm_MdlIDSearch_Regular( FIELD_OBJ_BLACT_CONT *cont, int
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒg“o˜^B
- * ‹ó‚«‚ª–³‚¢ê‡‚ÍGF_ASSERT()
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆç™»éŒ²ã€‚
+ * ç©ºããŒç„¡ã„å ´åˆã¯GF_ASSERT()
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			“o˜^ID
+ * @param	id			ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1590,10 +1590,10 @@ static void FldOBJ_BlActResm_MdlIDReg_Guest( FIELD_OBJ_BLACT_CONT *cont, int id 
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒgŒŸõ
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆæ¤œç´¢
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			ŒŸõID
- * @retval	int			TRUE=“o˜^Ï‚İID FALSE=ˆê’v–³‚µ
+ * @param	id			æ¤œç´¢ID
+ * @retval	int			TRUE=ç™»éŒ²æ¸ˆã¿ID FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_MdlIDSearch_Guest( FIELD_OBJ_BLACT_CONT *cont, int id )
@@ -1610,9 +1610,9 @@ static int FldOBJ_BlActResm_MdlIDSearch_Guest( FIELD_OBJ_BLACT_CONT *cont, int i
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒgíœ
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆå‰Šé™¤
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			íœID
+ * @param	id			å‰Šé™¤ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1630,7 +1630,7 @@ static void FldOBJ_BlActResm_MdlIDDelete_Guest( FIELD_OBJ_BLACT_CONT *cont, int 
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXIDŠÇ—@‘SƒQƒXƒgíœBŒ»‘¶‚·‚éOBJ“à‚Åg—p‚µ‚Ä‚¢‚éê‡‚Ííœ‚¹‚¸
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€å…¨ã‚²ã‚¹ãƒˆå‰Šé™¤ã€‚ç¾å­˜ã™ã‚‹OBJå†…ã§ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‰Šé™¤ã›ãš
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	cont	FIELD_OBJ_BLACT_CONT *
  * @retval	nothing
@@ -1666,7 +1666,7 @@ static void FldOBJ_BlActResm_MdlIDDelete_GuestAll(
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒgíœBŒ»‘¶‚·‚éOBJ“à‚Åg—p‚µ‚Ä‚¢‚éê‡‚Ííœ‚¹‚¸
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆå‰Šé™¤ã€‚ç¾å­˜ã™ã‚‹OBJå†…ã§ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‰Šé™¤ã›ãš
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	cont	FIELD_OBJ_BLACT_CONT *
  * @retval	nothing
@@ -1686,7 +1686,7 @@ static void FldOBJ_BlActResm_MdlIDCheckDelete_Guest(
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒgíœBŒ»‘¶‚·‚éOBJ“à‚Åg—p‚µ‚Ä‚¢‚éê‡‚Ííœ‚¹‚¸BƒOƒ[ƒoƒ‹
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆå‰Šé™¤ã€‚ç¾å­˜ã™ã‚‹OBJå†…ã§ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‰Šé™¤ã›ãšã€‚ã‚°ãƒ­ãƒ¼ãƒãƒ«
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	cont	FIELD_OBJ_BLACT_CONT *
  * @retval	nothing
@@ -1700,7 +1700,7 @@ void FieldOBJ_BlActResm_MdlIDCheckDelete_Guest( CONST_FIELD_OBJ_SYS_PTR fos, int
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXIDŠÇ—@ƒe[ƒuƒ‹‰Šú‰»
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ãƒ†ãƒ¼ãƒ–ãƒ«åˆæœŸåŒ–
  * @param	cont		FIELD_OBJ_BLACT_CONT *
  * @retval	nothing
  */
@@ -1715,10 +1715,10 @@ static void FldOBJ_BlActResm_AnmIDInit( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXIDŠÇ—@ƒŒƒMƒ…ƒ‰[“o˜^B
- * ‹ó‚«‚ª–³‚¢ê‡‚ÍGF_ASSERT()
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ç™»éŒ²ã€‚
+ * ç©ºããŒç„¡ã„å ´åˆã¯GF_ASSERT()
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			“o˜^ID
+ * @param	id			ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1736,10 +1736,10 @@ static void FldOBJ_BlActResm_AnmIDReg_Regular( FIELD_OBJ_BLACT_CONT *cont, int i
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXIDŠÇ—@ƒŒƒMƒ…ƒ‰[ŒŸõ
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼æ¤œç´¢
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			ŒŸõID
- * @retval	int			TRUE=“o˜^Ï‚İID FALSE=ˆê’v–³‚µ
+ * @param	id			æ¤œç´¢ID
+ * @retval	int			TRUE=ç™»éŒ²æ¸ˆã¿ID FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_AnmIDSearch_Regular( FIELD_OBJ_BLACT_CONT *cont, int id )
@@ -1754,10 +1754,10 @@ static int FldOBJ_BlActResm_AnmIDSearch_Regular( FIELD_OBJ_BLACT_CONT *cont, int
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒg“o˜^B
- * ‹ó‚«‚ª–³‚¢ê‡‚ÍGF_ASSERT()
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆç™»éŒ²ã€‚
+ * ç©ºããŒç„¡ã„å ´åˆã¯GF_ASSERT()
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			“o˜^ID
+ * @param	id			ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1776,10 +1776,10 @@ static void FldOBJ_BlActResm_AnmIDReg_Guest( FIELD_OBJ_BLACT_CONT *cont, int id 
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒgŒŸõ
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆæ¤œç´¢
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			ŒŸõID
- * @retval	int			TRUE=“o˜^Ï‚İID FALSE=ˆê’v–³‚µ
+ * @param	id			æ¤œç´¢ID
+ * @retval	int			TRUE=ç™»éŒ²æ¸ˆã¿ID FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_AnmIDSearch_Guest( FIELD_OBJ_BLACT_CONT *cont, int id )
@@ -1795,9 +1795,9 @@ static int FldOBJ_BlActResm_AnmIDSearch_Guest( FIELD_OBJ_BLACT_CONT *cont, int i
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒgíœ
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆå‰Šé™¤
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			íœID
+ * @param	id			å‰Šé™¤ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1814,7 +1814,7 @@ static void FldOBJ_BlActResm_AnmIDDelete_Guest( FIELD_OBJ_BLACT_CONT *cont, int 
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXIDŠÇ—@‘SƒQƒXƒgíœ@Œ»‘¶‚·‚éOBJ‚Åg—p‚µ‚Ä‚¢‚éê‡‚Ííœ‚µ‚È‚¢
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€å…¨ã‚²ã‚¹ãƒˆå‰Šé™¤ã€€ç¾å­˜ã™ã‚‹OBJã§ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‰Šé™¤ã—ãªã„
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	cont	FIELD_OBJ_BLACT_CONT *
  * @retval	nothing
@@ -1850,7 +1850,7 @@ static void FldOBJ_BlActResm_AnmIDDelete_GuestAll(
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXIDŠÇ—@ƒe[ƒuƒ‹‰Šú‰»
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ãƒ†ãƒ¼ãƒ–ãƒ«åˆæœŸåŒ–
  * @param	cont		FIELD_OBJ_BLACT_CONT *
  * @retval	nothing
  */
@@ -1865,10 +1865,10 @@ static void FldOBJ_BlActResm_TexIDInit( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXIDŠÇ—@ƒŒƒMƒ…ƒ‰[“o˜^B
- * ‹ó‚«‚ª–³‚¢ê‡‚ÍGF_ASSERT()
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ç™»éŒ²ã€‚
+ * ç©ºããŒç„¡ã„å ´åˆã¯GF_ASSERT()
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			“o˜^ID
+ * @param	id			ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1886,10 +1886,10 @@ static void FldOBJ_BlActResm_TexIDReg_Regular( FIELD_OBJ_BLACT_CONT *cont, int i
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ\[ƒXIDŠÇ—@ƒŒƒMƒ…ƒ‰[ŒŸõ
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼æ¤œç´¢
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			ŒŸõID
- * @retval	int			TRUE=“o˜^Ï‚İID FALSE=ˆê’v–³‚µ
+ * @param	id			æ¤œç´¢ID
+ * @retval	int			TRUE=ç™»éŒ²æ¸ˆã¿ID FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_TexIDSearch_Regular( FIELD_OBJ_BLACT_CONT *cont, int id )
@@ -1904,9 +1904,9 @@ static int FldOBJ_BlActResm_TexIDSearch_Regular( FIELD_OBJ_BLACT_CONT *cont, int
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ\[ƒXIDŠÇ—@‘‡ŒŸõ
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ç·åˆæ¤œç´¢
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			ŒŸõID
+ * @param	id			æ¤œç´¢ID
  * @retval	TEXREG_TYPE	TEXREG_TYPE
  */
 //--------------------------------------------------------------
@@ -1925,10 +1925,10 @@ static TEXREG_TYPE FldOBJ_BlActResm_TexIDSearchAll( FIELD_OBJ_BLACT_CONT *cont, 
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒg“o˜^B
- * ‹ó‚«‚ª–³‚¢ê‡‚ÍGF_ASSERT()
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆç™»éŒ²ã€‚
+ * ç©ºããŒç„¡ã„å ´åˆã¯GF_ASSERT()
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			“o˜^ID
+ * @param	id			ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1947,9 +1947,9 @@ static void FldOBJ_BlActResm_TexIDReg_Guest( FIELD_OBJ_BLACT_CONT *cont, int id 
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒgíœ
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆå‰Šé™¤
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			íœID
+ * @param	id			å‰Šé™¤ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1967,7 +1967,7 @@ static void FldOBJ_BlActResm_TexIDDelete_Guest( FIELD_OBJ_BLACT_CONT *cont, int 
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXIDŠÇ—@‘SƒQƒXƒgíœBŒ»‘¶‚µ‚Ä‚¢‚éOBJ‚Åg—p‚µ‚Ä‚¢‚éê‡‚Ííœ‚µ‚È‚¢
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€å…¨ã‚²ã‚¹ãƒˆå‰Šé™¤ã€‚ç¾å­˜ã—ã¦ã„ã‚‹OBJã§ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‰Šé™¤ã—ãªã„
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	cont	FIELD_OBJ_BLACT_CONT *
  * @retval	nothing
@@ -2007,10 +2007,10 @@ static void FldOBJ_BlActResm_TexIDDelete_GuestAll(
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ\[ƒXIDŠÇ—@ƒQƒXƒgŒŸõ
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆæ¤œç´¢
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	id			ŒŸõID
- * @retval	int			TRUE=“o˜^Ï‚İID FALSE=ˆê’v–³‚µ
+ * @param	id			æ¤œç´¢ID
+ * @retval	int			TRUE=ç™»éŒ²æ¸ˆã¿ID FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResm_TexIDSearch_Guest( FIELD_OBJ_BLACT_CONT *cont, int id )
@@ -2027,10 +2027,10 @@ static int FldOBJ_BlActResm_TexIDSearch_Guest( FIELD_OBJ_BLACT_CONT *cont, int i
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½OBJƒR[ƒh‚ÌƒŒƒMƒ…ƒ‰[AƒQƒXƒg“o˜^Ï‚İƒ`ƒFƒbƒN
+ * æŒ‡å®šã•ã‚ŒãŸOBJã‚³ãƒ¼ãƒ‰ã®ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€ã‚²ã‚¹ãƒˆç™»éŒ²æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	code	OBJƒR[ƒhBHERO“™
- * @retval	int		REGULAR“™
+ * @param	code	OBJã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
+ * @retval	int		REGULARç­‰
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResManage_OBJCodeRegistCheck( FIELD_OBJ_BLACT_CONT *cont, int code )
@@ -2048,10 +2048,10 @@ static int FldOBJ_BlActResManage_OBJCodeRegistCheck( FIELD_OBJ_BLACT_CONT *cont,
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ‚ƒfƒ‹ID‚ÌƒŒƒMƒ…ƒ‰[AƒQƒXƒg“o˜^Ï‚İƒ`ƒFƒbƒN
+ * æŒ‡å®šã•ã‚ŒãŸãƒ¢ãƒ‡ãƒ«IDã®ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€ã‚²ã‚¹ãƒˆç™»éŒ²æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		BLACT_MDLID_32x32“™
- * @retval	int		REGULAR“™
+ * @param	id		BLACT_MDLID_32x32ç­‰
+ * @retval	int		REGULARç­‰
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResManage_MdlIDRegistCheck( FIELD_OBJ_BLACT_CONT *cont, int id )
@@ -2069,10 +2069,10 @@ static int FldOBJ_BlActResManage_MdlIDRegistCheck( FIELD_OBJ_BLACT_CONT *cont, i
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ‚ƒfƒ‹ID‚ÌƒŒƒMƒ…ƒ‰[AƒQƒXƒg“o˜^Ï‚İƒ`ƒFƒbƒN
+ * æŒ‡å®šã•ã‚ŒãŸãƒ¢ãƒ‡ãƒ«IDã®ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€ã‚²ã‚¹ãƒˆç™»éŒ²æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		BLACT_MDLID_32x32“™
- * @retval	int		REGULAR“™
+ * @param	id		BLACT_MDLID_32x32ç­‰
+ * @retval	int		REGULARç­‰
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActResManage_MdlIDRegistCheck( CONST_FIELD_OBJ_SYS_PTR fos, int id )
@@ -2083,10 +2083,10 @@ int FieldOBJ_BlActResManage_MdlIDRegistCheck( CONST_FIELD_OBJ_SYS_PTR fos, int i
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒAƒjƒID‚ÌƒŒƒMƒ…ƒ‰[AƒQƒXƒg“o˜^Ï‚İƒ`ƒFƒbƒN
+ * æŒ‡å®šã•ã‚ŒãŸã‚¢ãƒ‹ãƒ¡IDã®ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€ã‚²ã‚¹ãƒˆç™»éŒ²æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		BLACT_ANMID_32x32“™
- * @retval	int		REGULAR“™
+ * @param	id		BLACT_ANMID_32x32ç­‰
+ * @retval	int		REGULARç­‰
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActResManage_AnmIDRegistCheck( FIELD_OBJ_BLACT_CONT *cont, int id )
@@ -2104,10 +2104,10 @@ static int FldOBJ_BlActResManage_AnmIDRegistCheck( FIELD_OBJ_BLACT_CONT *cont, i
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½OBJƒR[ƒh‚Ì“o˜^B
- * ƒŒƒMƒ…ƒ‰[AƒQƒXƒgƒ`ƒFƒbƒN‚ğs‚¢AƒŒƒMƒ…ƒ‰[‚Å–³‚¢ê‡‚ÍƒQƒXƒg‚Æ‚µ‚Ä“o˜^
+ * æŒ‡å®šã•ã‚ŒãŸOBJã‚³ãƒ¼ãƒ‰ã®ç™»éŒ²ã€‚
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€ã‚²ã‚¹ãƒˆãƒã‚§ãƒƒã‚¯ã‚’è¡Œã„ã€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã§ç„¡ã„å ´åˆã¯ã‚²ã‚¹ãƒˆã¨ã—ã¦ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	code	OBJƒR[ƒhBHERO“™
+ * @param	code	OBJã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2122,10 +2122,10 @@ static void FldOBJ_BlActResManage_OBJCodeRegist( FIELD_OBJ_BLACT_CONT *cont, int
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ‚ƒfƒ‹ID‚Ì“o˜^B
- * ƒŒƒMƒ…ƒ‰[AƒQƒXƒgƒ`ƒFƒbƒN‚ğs‚¢AƒŒƒMƒ…ƒ‰[‚Å–³‚¢ê‡‚ÍƒQƒXƒg‚Æ‚µ‚Ä“o˜^
+ * æŒ‡å®šã•ã‚ŒãŸãƒ¢ãƒ‡ãƒ«IDã®ç™»éŒ²ã€‚
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€ã‚²ã‚¹ãƒˆãƒã‚§ãƒƒã‚¯ã‚’è¡Œã„ã€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã§ç„¡ã„å ´åˆã¯ã‚²ã‚¹ãƒˆã¨ã—ã¦ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		BLACT_MDLID_32x32“™
+ * @param	id		BLACT_MDLID_32x32ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2138,10 +2138,10 @@ static void FldOBJ_BlActResManage_MdlIDRegist( FIELD_OBJ_BLACT_CONT *cont, int i
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒAƒjƒID‚Ì“o˜^B
- * ƒŒƒMƒ…ƒ‰[AƒQƒXƒgƒ`ƒFƒbƒN‚ğs‚¢AƒŒƒMƒ…ƒ‰[‚Å–³‚¢ê‡‚ÍƒQƒXƒg‚Æ‚µ‚Ä“o˜^
+ * æŒ‡å®šã•ã‚ŒãŸã‚¢ãƒ‹ãƒ¡IDã®ç™»éŒ²ã€‚
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€ã‚²ã‚¹ãƒˆãƒã‚§ãƒƒã‚¯ã‚’è¡Œã„ã€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã§ç„¡ã„å ´åˆã¯ã‚²ã‚¹ãƒˆã¨ã—ã¦ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		BLACT_ANMID_NORMAL_0“™
+ * @param	id		BLACT_ANMID_NORMAL_0ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2154,10 +2154,10 @@ static void FldOBJ_BlActResManage_AnmIDRegist( FIELD_OBJ_BLACT_CONT *cont, int i
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒh‚©‚çAƒ‚ƒfƒ‹AƒeƒNƒXƒ`ƒƒAƒAƒjƒ‚ÌƒŒƒMƒ…ƒ‰[AƒQƒXƒgƒ`ƒFƒbƒNB
- * “o˜^‚³‚ê‚Ä‚¢‚È‚¢‰ÓŠ‚ ‚ê‚ÎƒQƒXƒg‚Æ‚µ‚Ä“o˜^B
+ * OBJã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã€ãƒ¢ãƒ‡ãƒ«ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã€ã‚¢ãƒ‹ãƒ¡ã®ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€ã‚²ã‚¹ãƒˆãƒã‚§ãƒƒã‚¯ã€‚
+ * ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ç®‡æ‰€ã‚ã‚Œã°ã‚²ã‚¹ãƒˆã¨ã—ã¦ç™»éŒ²ã€‚
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	code	OBJƒR[ƒhBHERO“™
+ * @param	code	OBJã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2176,7 +2176,7 @@ static void FldOBJ_BlActResManage_AllIDRegist( FIELD_OBJ_BLACT_CONT *cont, int c
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgƒeƒNƒXƒ`ƒƒAƒ‚ƒfƒ‹AƒAƒjƒ‚ğ‘S‚Äíœ
+ * ã‚²ã‚¹ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã€ãƒ¢ãƒ‡ãƒ«ã€ã‚¢ãƒ‹ãƒ¡ã‚’å…¨ã¦å‰Šé™¤
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @retval	nothing
@@ -2191,10 +2191,10 @@ void FieldOBJ_BlActCont_ResmGuestDeleteAll( FIELD_OBJ_SYS_PTR fos, FIELD_OBJ_BLA
 
 //--------------------------------------------------------------
 /**
- * Œ»‘¶‚·‚éƒtƒB[ƒ‹ƒhOBJ‚ÌOBJƒR[ƒhŒŸõ
+ * ç¾å­˜ã™ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®OBJã‚³ãƒ¼ãƒ‰æ¤œç´¢
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	code	OBJƒR[ƒh
- * @retval	int		TRUE=ˆê’vƒAƒŠ FALSE=ˆê’v–³‚µ
+ * @param	code	OBJã‚³ãƒ¼ãƒ‰
+ * @retval	int		TRUE=ä¸€è‡´ã‚¢ãƒª FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActCont_FldOBJSearch_OBJCode(
@@ -2224,10 +2224,10 @@ static int FldOBJ_BlActCont_FldOBJSearch_OBJCode(
 
 //--------------------------------------------------------------
 /**
- * Œ»‘¶‚·‚éƒtƒB[ƒ‹ƒhOBJ‚ÌOBJƒR[ƒhŒŸõ@ƒOƒ[ƒoƒ‹
+ * ç¾å­˜ã™ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®OBJã‚³ãƒ¼ãƒ‰æ¤œç´¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	code	OBJƒR[ƒh
- * @retval	int		TRUE=ˆê’vƒAƒŠ FALSE=ˆê’v–³‚µ
+ * @param	code	OBJã‚³ãƒ¼ãƒ‰
+ * @retval	int		TRUE=ä¸€è‡´ã‚¢ãƒª FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActCont_FldOBJSearch_OBJCode(
@@ -2238,11 +2238,11 @@ int FieldOBJ_BlActCont_FldOBJSearch_OBJCode(
 
 //--------------------------------------------------------------
 /**
- * Œ»‘¶‚·‚éƒtƒB[ƒ‹ƒhOBJ‚Ìƒ‚ƒfƒ‹IDŒŸõ
+ * ç¾å­˜ã™ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ãƒ¢ãƒ‡ãƒ«IDæ¤œç´¢
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	mdl_id	ƒ‚ƒfƒ‹ ID
- * @param	ignore_obj	–³‹‚·‚éFIELD_OBJ_PTR –³‚¢ê‡‚ÍNULL
- * @retval	int		TRUE=ˆê’vƒAƒŠ FALSE=ˆê’v–³‚µ
+ * @param	mdl_id	ãƒ¢ãƒ‡ãƒ« ID
+ * @param	ignore_obj	ç„¡è¦–ã™ã‚‹FIELD_OBJ_PTR ç„¡ã„å ´åˆã¯NULL
+ * @retval	int		TRUE=ä¸€è‡´ã‚¢ãƒª FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActCont_FldOBJSearch_MdlID(
@@ -2283,11 +2283,11 @@ static int FldOBJ_BlActCont_FldOBJSearch_MdlID(
 
 //--------------------------------------------------------------
 /**
- * Œ»‘¶‚·‚éƒtƒB[ƒ‹ƒhOBJ‚Ìƒ‚ƒfƒ‹IDŒŸõ@ƒOƒ[ƒoƒ‹
+ * ç¾å­˜ã™ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ãƒ¢ãƒ‡ãƒ«IDæ¤œç´¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	mdl_id	ƒ‚ƒfƒ‹ ID
- * @param	ignore_obj	–³‹‚·‚éFIELD_OBJ_PTR –³‚¢ê‡‚ÍNULL
- * @retval	int		TRUE=ˆê’vƒAƒŠ FALSE=ˆê’v–³‚µ
+ * @param	mdl_id	ãƒ¢ãƒ‡ãƒ« ID
+ * @param	ignore_obj	ç„¡è¦–ã™ã‚‹FIELD_OBJ_PTR ç„¡ã„å ´åˆã¯NULL
+ * @retval	int		TRUE=ä¸€è‡´ã‚¢ãƒª FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActCont_FldOBJSearch_MdlID(
@@ -2298,11 +2298,11 @@ int FieldOBJ_BlActCont_FldOBJSearch_MdlID(
 
 //--------------------------------------------------------------
 /**
- * Œ»‘¶‚·‚éƒtƒB[ƒ‹ƒhOBJ‚ÌƒAƒjƒIDŒŸõ
+ * ç¾å­˜ã™ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ã‚¢ãƒ‹ãƒ¡IDæ¤œç´¢
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	anm_id	ƒAƒjƒ ID
- * @param	ignore_obj	–³‹‚·‚éFIELD_OBJ_PTR NULL=–³Œø
- * @retval	int		TRUE=ˆê’vƒAƒŠ FALSE=ˆê’v–³‚µ
+ * @param	anm_id	ã‚¢ãƒ‹ãƒ¡ ID
+ * @param	ignore_obj	ç„¡è¦–ã™ã‚‹FIELD_OBJ_PTR NULL=ç„¡åŠ¹
+ * @retval	int		TRUE=ä¸€è‡´ã‚¢ãƒª FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActCont_FldOBJSearch_AnmID(
@@ -2343,11 +2343,11 @@ static int FldOBJ_BlActCont_FldOBJSearch_AnmID(
 
 //--------------------------------------------------------------
 /**
- * Œ»‘¶‚·‚éƒtƒB[ƒ‹ƒhOBJ‚ÌƒAƒjƒIDŒŸõ@ƒOƒ[ƒoƒ‹
+ * ç¾å­˜ã™ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ã‚¢ãƒ‹ãƒ¡IDæ¤œç´¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	anm_id	ƒAƒjƒ ID
- * @param	ignore_obj	–³‹‚·‚éFIELD_OBJ_PTR NULL=–³Œø
- * @retval	int		TRUE=ˆê’vƒAƒŠ FALSE=ˆê’v–³‚µ
+ * @param	anm_id	ã‚¢ãƒ‹ãƒ¡ ID
+ * @param	ignore_obj	ç„¡è¦–ã™ã‚‹FIELD_OBJ_PTR NULL=ç„¡åŠ¹
+ * @retval	int		TRUE=ä¸€è‡´ã‚¢ãƒª FALSE=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActCont_FldOBJSearch_AnmID(
@@ -2358,9 +2358,9 @@ int FieldOBJ_BlActCont_FldOBJSearch_AnmID(
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXIDŠÇ—@ƒQƒXƒgíœ@Œ»‘¶‚·‚éOBJ“à‚Åg—p‚µ‚Ä‚¢‚é€–Ú‚Ííœ‚¹‚¸
+ * ãƒªã‚½ãƒ¼ã‚¹IDç®¡ç†ã€€ã‚²ã‚¹ãƒˆå‰Šé™¤ã€€ç¾å­˜ã™ã‚‹OBJå†…ã§ä½¿ç”¨ã—ã¦ã„ã‚‹é …ç›®ã¯å‰Šé™¤ã›ãš
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	code	OBJƒR[ƒh
+ * @param	code	OBJã‚³ãƒ¼ãƒ‰
  * @param	fldobj	ignore
  * @retval	nothing
  */
@@ -2411,15 +2411,15 @@ void FieldOBJ_BlActResm_ResIDGuestUseCheckDelete(
 }
 
 //==============================================================================
-//	VIntrƒ^ƒXƒN
+//	VIntrã‚¿ã‚¹ã‚¯
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * VIntr TCB’Ç‰Á
+ * VIntr TCBè¿½åŠ 
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	max		Vƒuƒ‰ƒ“ƒNŠ„‚è‚İ’†‚É“]‘—o—ˆ‚é‰ñ”Å‘å
- * @param	pri		VIntrTCBˆ—ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param	max		Vãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿ä¸­ã«è»¢é€å‡ºæ¥ã‚‹å›æ•°æœ€å¤§
+ * @param	pri		VIntrTCBå‡¦ç†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2431,12 +2431,12 @@ static void FldOBJ_BlActVIntrTcbAdd( FIELD_OBJ_BLACT_CONT *cont, int max, int pr
 	
 	{
 		TCB_PTR check_tcb = FldOBJ_BlActContVIntrTcbPtrGet( cont );
-		GF_ASSERT( check_tcb == NULL &&						//NULL‚Ì‚Í‚¸
-			"FldOBJ_BlActVIntrTcbAdd() •`‰æíœ‚ªÏ‚ñ‚Å‚¢‚È‚¢‚Ì‚É ƒtƒB[ƒ‹ƒhOBJ•`‰æ‰Šú‰»?\n" );
+		GF_ASSERT( check_tcb == NULL &&						//NULLã®ã¯ãš
+			"FldOBJ_BlActVIntrTcbAdd() æç”»å‰Šé™¤ãŒæ¸ˆã‚“ã§ã„ãªã„ã®ã« ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJæç”»åˆæœŸåŒ–?\n" );
 	}
 	
 	work = sys_AllocMemory( HEAPID_FIELD, VINTR_WORK_SIZE );
-	GF_ASSERT( work != NULL && "FldOBJ_BlActVIntrTcbAdd()ƒƒ‚ƒŠŠm•Û¸”s" );
+	GF_ASSERT( work != NULL && "FldOBJ_BlActVIntrTcbAdd()ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—" );
 	memset( work, 0, VINTR_WORK_SIZE );
 	
 	work->max = max;
@@ -2444,16 +2444,16 @@ static void FldOBJ_BlActVIntrTcbAdd( FIELD_OBJ_BLACT_CONT *cont, int max, int pr
 	
 	size = sizeof( TEXRES_MANAGER_PTR ) * max;
 	work->resm_tex_tbl = sys_AllocMemory( HEAPID_FIELD, size );
-	GF_ASSERT( work->resm_tex_tbl != NULL && "FldOBJ_BlActVIntrTcbAdd()TEXƒe[ƒuƒ‹Šm•Û¸”s" );
+	GF_ASSERT( work->resm_tex_tbl != NULL && "FldOBJ_BlActVIntrTcbAdd()TEXãƒ†ãƒ¼ãƒ–ãƒ«ç¢ºä¿å¤±æ•—" );
 	memset( work->resm_tex_tbl, NULL, size );
 	
 	size = sizeof( int ) * max;
 	work->resm_tex_id_tbl = sys_AllocMemory( HEAPID_FIELD, size );
-	GF_ASSERT( work->resm_tex_id_tbl != NULL && "FldOBJ_BlActVIntrTcbAdd()IDƒe[ƒuƒ‹Šm•Û¸”s" );
+	GF_ASSERT( work->resm_tex_id_tbl != NULL && "FldOBJ_BlActVIntrTcbAdd()IDãƒ†ãƒ¼ãƒ–ãƒ«ç¢ºä¿å¤±æ•—" );
 	memset( work->resm_tex_id_tbl, 0, size );
 	
 	tcb = VIntrTCB_Add( FldOBJ_VIntrTcb, work, pri );
-	GF_ASSERT( tcb != NULL && "FldOBJ_BlActVIntrTcbAdd()TCB’Ç‰Á¸”s" );
+	GF_ASSERT( tcb != NULL && "FldOBJ_BlActVIntrTcbAdd()TCBè¿½åŠ å¤±æ•—" );
 	
 	FldOBJ_BlActContVIntrTcbPtrSet( cont, tcb );
 }
@@ -2462,7 +2462,7 @@ static void FldOBJ_BlActVIntrTcbAdd( FIELD_OBJ_BLACT_CONT *cont, int max, int pr
 #if 0
 //--------------------------------------------------------------
 /**
- * VIntr TCBíœ
+ * VIntr TCBå‰Šé™¤
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @retval	nothing
  */
@@ -2492,7 +2492,7 @@ static void FldOBJ_BlActVIntrTcbDelete( FIELD_OBJ_BLACT_CONT *cont )
 #if 0
 //--------------------------------------------------------------
 /**
- * TCB Vƒuƒ‰ƒ“ƒNˆ—
+ * TCB Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†
  * @param	tcb		TCB_PTR
  * @param	work	tcb work *
  * @retval	nothing
@@ -2504,11 +2504,11 @@ static void FldOBJ_VIntrTcb( TCB_PTR tcb, void *wk )
 	VINTR_WORK *work;
 	
 	work = wk;
-	GF_ASSERT( work != NULL && "FldOBJ_VIntrTcb()ƒ[ƒNˆÙí" );
+	GF_ASSERT( work != NULL && "FldOBJ_VIntrTcb()ãƒ¯ãƒ¼ã‚¯ç•°å¸¸" );
 	
 	if( work->access_flag == TRUE ){
-		OS_Printf( "FldOBJ_VIntrTcb()ƒAƒNƒZƒX’†‚ÉŠ„‚è‚İˆ—‚ª”­¶‚µ‚Ü‚µ‚½\n" );
-		OS_Printf( "‚±‚ÌƒƒbƒZ[ƒW‚ğ‚²——‚É‚È‚Á‚½•û‚Í‚¨è”‚Å‚·‚ª‰Á‰ê’J‚Ü‚Å˜A—‰º‚³‚¢\n" );
+		OS_Printf( "FldOBJ_VIntrTcb()ã‚¢ã‚¯ã‚»ã‚¹ä¸­ã«å‰²ã‚Šè¾¼ã¿å‡¦ç†ãŒç™ºç”Ÿã—ã¾ã—ãŸ\n" );
+		OS_Printf( "ã“ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ã”è¦§ã«ãªã£ãŸæ–¹ã¯ãŠæ‰‹æ•°ã§ã™ãŒåŠ è³€è°·ã¾ã§é€£çµ¡ä¸‹ã•ã„\n" );
 		return;
 	}
 	
@@ -2518,10 +2518,10 @@ static void FldOBJ_VIntrTcb( TCB_PTR tcb, void *wk )
 	do{
 		if( work->resm_tex_tbl[i] != NULL ){
 			TEXRESM_TexLoadAndCutTexID( work->resm_tex_tbl[i], work->resm_tex_id_tbl[i] );
-			work->resm_tex_tbl[i] = NULL;						//‹ó‚É
+			work->resm_tex_tbl[i] = NULL;						//ç©ºã«
 			count++;
 			
-			if( count >= FLDOBJ_BLACT_VINTR_TEX_LOAD_MAX ){		//1sync“]‘——ÊÅ‘å
+			if( count >= FLDOBJ_BLACT_VINTR_TEX_LOAD_MAX ){		//1syncè»¢é€é‡æœ€å¤§
 				break;
 			}
 		}
@@ -2534,10 +2534,10 @@ static void FldOBJ_VIntrTcb( TCB_PTR tcb, void *wk )
 #if 0
 //--------------------------------------------------------------
 /**
- * TEXRESM_TexLoad() Vƒuƒ‰ƒ“ƒNˆ—‚Ö“o˜^
+ * TEXRESM_TexLoad() Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†ã¸ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT *
  * @param	resm	TEXRES_MANAGER_PTR
- * @param	id		“]‘—‚·‚éƒeƒNƒXƒ`ƒƒID
+ * @param	id		è»¢é€ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2550,7 +2550,7 @@ static void FldOBJ_VIntrTcb_TexLoadAdd(
 	
 	tcb = FldOBJ_BlActContVIntrTcbPtrGet( cont );
 	
-	GF_ASSERT( tcb != NULL && "FldOBJ_VIntrTcb_TexLoadAdd()TCB–¢’Ç‰Á‚ÅÀs" );
+	GF_ASSERT( tcb != NULL && "FldOBJ_VIntrTcb_TexLoadAdd()TCBæœªè¿½åŠ ã§å®Ÿè¡Œ" );
 	
 	work = TCB_GetWork( tcb );
 	
@@ -2568,7 +2568,7 @@ static void FldOBJ_VIntrTcb_TexLoadAdd(
 		i++;
 	}while( i < work->max );
 	
-	GF_ASSERT( i < work->max && "FldOBJ_VIntrTcb_TexLoadAdd()ƒeƒNƒXƒ`ƒƒ“]‘—Å‘å”‰z‚¦" );
+	GF_ASSERT( i < work->max && "FldOBJ_VIntrTcb_TexLoadAdd()ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€æœ€å¤§æ•°è¶Šãˆ" );
 	work->access_flag = FALSE;
 }
 #endif
@@ -2576,9 +2576,9 @@ static void FldOBJ_VIntrTcb_TexLoadAdd(
 #if 0
 //--------------------------------------------------------------
 /**
- * TEXRESM_TexLoad() Vƒuƒ‰ƒ“ƒNˆ—‚Ö“o˜^‚µ‚Ä‚¢‚½ƒ‚ƒm‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é
+ * TEXRESM_TexLoad() Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†ã¸ç™»éŒ²ã—ã¦ã„ãŸãƒ¢ãƒã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	id		“o˜^‚µ‚½ƒeƒNƒXƒ`ƒƒID
+ * @param	id		ç™»éŒ²ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2590,7 +2590,7 @@ static void FldOBJ_VIntrTcb_TexLoadCancel( FIELD_OBJ_BLACT_CONT *cont, int id )
 	
 	tcb = FldOBJ_BlActContVIntrTcbPtrGet( cont );
 	
-	GF_ASSERT( tcb != NULL && "FldOBJ_VIntrTcb_TexLoadCancel()TCB–¢’Ç‰Á‚ÅÀs" );
+	GF_ASSERT( tcb != NULL && "FldOBJ_VIntrTcb_TexLoadCancel()TCBæœªè¿½åŠ ã§å®Ÿè¡Œ" );
 	
 	work = TCB_GetWork( tcb );
 	work->access_flag = TRUE;
@@ -2614,11 +2614,11 @@ static void FldOBJ_VIntrTcb_TexLoadCancel( FIELD_OBJ_BLACT_CONT *cont, int id )
 #endif
 
 //==============================================================================
-//	FIELD_OBJ_BLACT_CONTQÆ
+//	FIELD_OBJ_BLACT_CONTå‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BLACT_SET_PTRƒZƒbƒg
+ * BLACT_SET_PTRã‚»ãƒƒãƒˆ
  * @param	cont		FIELD_OBJ_BLACT_CONT
  * @param	set			BLACT_SET_PTR
  * @retval	nothing
@@ -2631,7 +2631,7 @@ void FieldOBJ_BlActCont_SetPtrSet( FIELD_OBJ_BLACT_CONT *cont, BLACT_SET_PTR set
 
 //--------------------------------------------------------------
 /**
- * BLACT_SET_PTRæ“¾
+ * BLACT_SET_PTRå–å¾—
  * @param	cont		FIELD_OBJ_BLACT_CONT
  * @retval	BLACT_SET_PTR	BLACT_SET_PTR
  */
@@ -2643,9 +2643,9 @@ BLACT_SET_PTR FieldOBJ_BlActCont_SetPtrGet( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Å‘å”ƒZƒbƒg
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°ã‚»ãƒƒãƒˆ
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	max		Å‘å”
+ * @param	max		æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2656,9 +2656,9 @@ void FieldOBJ_BlActCont_MaxSet( FIELD_OBJ_BLACT_CONT *cont, int max )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Å‘å”æ“¾
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°å–å¾—
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @retval	int		ƒCƒ“ƒfƒbƒNƒX
+ * @retval	int		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActCont_MaxGet( const FIELD_OBJ_BLACT_CONT *cont )
@@ -2668,7 +2668,7 @@ int FieldOBJ_BlActCont_MaxGet( const FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒİ’è
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£è¨­å®š
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @param	mdl		RES_MANAGER_PTR
  * @retval	nothing
@@ -2681,7 +2681,7 @@ void FieldOBJ_BlActCont_MdlResManageSet( FIELD_OBJ_BLACT_CONT *cont, RES_MANAGER
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒæ“¾
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£å–å¾—
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @retval	RES_MANAGER_PTR	RES_MANAGER_PTR
  */
@@ -2693,7 +2693,7 @@ RES_MANAGER_PTR FieldOBJ_BlActCont_MdlResManageGet( const FIELD_OBJ_BLACT_CONT *
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒİ’è
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£è¨­å®š
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @param	anm		RES_MANAGER_PTR
  * @retval	nothing
@@ -2706,7 +2706,7 @@ void FieldOBJ_BlActCont_AnmResManageSet( FIELD_OBJ_BLACT_CONT *cont, RES_MANAGER
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒæ“¾
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£å–å¾—
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @retval	RES_MANAGER_PTR	RES_MANAGER_PTR
  */
@@ -2718,7 +2718,7 @@ RES_MANAGER_PTR FieldOBJ_BlActCont_AnmResManageGet( const FIELD_OBJ_BLACT_CONT *
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒİ’è
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£è¨­å®š
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @param	anm		RES_MANAGER_PTR
  * @retval	nothing
@@ -2731,7 +2731,7 @@ void FieldOBJ_BlActCont_TexResManageSet( FIELD_OBJ_BLACT_CONT *cont, TEXRES_MANA
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒæ“¾
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£å–å¾—
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @retval	RES_MANAGER_PTR	RES_MANAGER_PTR
  */
@@ -2743,9 +2743,9 @@ TEXRES_MANAGER_PTR FieldOBJ_BlActCont_TexResManageGet( const FIELD_OBJ_BLACT_CON
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXID ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì*‚ğæ“¾
+ * ãƒªã‚½ãƒ¼ã‚¹ID ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®*ã‚’å–å¾—
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @retval	int		IDƒe[ƒuƒ‹ int ƒTƒCƒY‚ÍFLDOBJ_RESM_MAX_TEX
+ * @retval	int		IDãƒ†ãƒ¼ãƒ–ãƒ« int ã‚µã‚¤ã‚ºã¯FLDOBJ_RESM_MAX_TEX
  */
 //--------------------------------------------------------------
 static int * FldOBJ_BlActCont_ResmTexIDTblGet( FIELD_OBJ_BLACT_CONT *cont )
@@ -2755,9 +2755,9 @@ static int * FldOBJ_BlActCont_ResmTexIDTblGet( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXID ƒ‚ƒfƒ‹‚Ö‚Ì*‚ğæ“¾
+ * ãƒªã‚½ãƒ¼ã‚¹ID ãƒ¢ãƒ‡ãƒ«ã¸ã®*ã‚’å–å¾—
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @retval	int		IDƒe[ƒuƒ‹ int ƒTƒCƒY‚ÍFLDOBJ_RESM_MAX_TEX
+ * @retval	int		IDãƒ†ãƒ¼ãƒ–ãƒ« int ã‚µã‚¤ã‚ºã¯FLDOBJ_RESM_MAX_TEX
  */
 //--------------------------------------------------------------
 static int * FldOBJ_BlActCont_ResmMdlIDTblGet( FIELD_OBJ_BLACT_CONT *cont )
@@ -2767,9 +2767,9 @@ static int * FldOBJ_BlActCont_ResmMdlIDTblGet( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ID ƒAƒjƒ‚Ö‚Ì*‚ğæ“¾
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ID ã‚¢ãƒ‹ãƒ¡ã¸ã®*ã‚’å–å¾—
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @retval	int		IDƒe[ƒuƒ‹ int ƒTƒCƒY‚ÍFLDOBJ_RESM_MAX_TEX
+ * @retval	int		IDãƒ†ãƒ¼ãƒ–ãƒ« int ã‚µã‚¤ã‚ºã¯FLDOBJ_RESM_MAX_TEX
  */
 //--------------------------------------------------------------
 static int * FldOBJ_BlActCont_ResmAnmIDTblGet( FIELD_OBJ_BLACT_CONT *cont )
@@ -2779,9 +2779,9 @@ static int * FldOBJ_BlActCont_ResmAnmIDTblGet( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ID Å‘åŠÇ—”İ’è@ƒ‚ƒfƒ‹
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ID æœ€å¤§ç®¡ç†æ•°è¨­å®šã€€ãƒ¢ãƒ‡ãƒ«
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	max		Å‘å”
+ * @param	max		æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2792,9 +2792,9 @@ static void FldOBJ_BlActCont_RegularMdlMaxSet( FIELD_OBJ_BLACT_CONT *cont, int m
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ID Å‘åŠÇ—”æ“¾@ƒ‚ƒfƒ‹
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ID æœ€å¤§ç®¡ç†æ•°å–å¾—ã€€ãƒ¢ãƒ‡ãƒ«
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @retval	max		Å‘å”
+ * @retval	max		æœ€å¤§æ•°
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActCont_RegularMdlMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
@@ -2804,9 +2804,9 @@ static int FldOBJ_BlActCont_RegularMdlMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgID Å‘åŠÇ—”İ’è@ƒ‚ƒfƒ‹
+ * ã‚²ã‚¹ãƒˆID æœ€å¤§ç®¡ç†æ•°è¨­å®šã€€ãƒ¢ãƒ‡ãƒ«
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	max		Å‘å”
+ * @param	max		æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2817,9 +2817,9 @@ static void FldOBJ_BlActCont_GuestMdlMaxSet( FIELD_OBJ_BLACT_CONT *cont, int max
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgID Å‘åŠÇ—”æ“¾@ƒ‚ƒfƒ‹
+ * ã‚²ã‚¹ãƒˆID æœ€å¤§ç®¡ç†æ•°å–å¾—ã€€ãƒ¢ãƒ‡ãƒ«
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @retval	int		Å‘å”
+ * @retval	int		æœ€å¤§æ•°
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActCont_GuestMdlMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
@@ -2829,9 +2829,9 @@ static int FldOBJ_BlActCont_GuestMdlMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ID Å‘åŠÇ—”İ’è@ƒAƒjƒ
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ID æœ€å¤§ç®¡ç†æ•°è¨­å®šã€€ã‚¢ãƒ‹ãƒ¡
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	max		Å‘å”
+ * @param	max		æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2842,9 +2842,9 @@ static void FldOBJ_BlActCont_RegularAnmMaxSet( FIELD_OBJ_BLACT_CONT *cont, int m
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ID Å‘åŠÇ—”æ“¾@ƒAƒjƒ
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ID æœ€å¤§ç®¡ç†æ•°å–å¾—ã€€ã‚¢ãƒ‹ãƒ¡
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @retval	max		Å‘å”
+ * @retval	max		æœ€å¤§æ•°
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActCont_RegularAnmMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
@@ -2854,9 +2854,9 @@ static int FldOBJ_BlActCont_RegularAnmMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgID Å‘åŠÇ—”İ’è@ƒAƒjƒ
+ * ã‚²ã‚¹ãƒˆID æœ€å¤§ç®¡ç†æ•°è¨­å®šã€€ã‚¢ãƒ‹ãƒ¡
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	max		Å‘å”
+ * @param	max		æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2867,9 +2867,9 @@ static void FldOBJ_BlActCont_GuestAnmMaxSet( FIELD_OBJ_BLACT_CONT *cont, int max
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgID Å‘åŠÇ—”æ“¾@ƒAƒjƒ
+ * ã‚²ã‚¹ãƒˆID æœ€å¤§ç®¡ç†æ•°å–å¾—ã€€ã‚¢ãƒ‹ãƒ¡
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @retval	int		Å‘å”
+ * @retval	int		æœ€å¤§æ•°
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActCont_GuestAnmMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
@@ -2879,9 +2879,9 @@ static int FldOBJ_BlActCont_GuestAnmMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ID Å‘åŠÇ—”İ’è@ƒeƒNƒXƒ`ƒƒ
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ID æœ€å¤§ç®¡ç†æ•°è¨­å®šã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	max		Å‘å”
+ * @param	max		æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2892,9 +2892,9 @@ static void FldOBJ_BlActCont_RegularTexMaxSet( FIELD_OBJ_BLACT_CONT *cont, int m
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒMƒ…ƒ‰[ID Å‘åŠÇ—”æ“¾@ƒeƒNƒXƒ`ƒƒ
+ * ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ID æœ€å¤§ç®¡ç†æ•°å–å¾—ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @retval	max		Å‘å”
+ * @retval	max		æœ€å¤§æ•°
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActCont_RegularTexMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
@@ -2904,9 +2904,9 @@ static int FldOBJ_BlActCont_RegularTexMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgID Å‘åŠÇ—”İ’è@ƒeƒNƒXƒ`ƒƒ
+ * ã‚²ã‚¹ãƒˆID æœ€å¤§ç®¡ç†æ•°è¨­å®šã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	max		Å‘å”
+ * @param	max		æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2917,9 +2917,9 @@ static void FldOBJ_BlActCont_GuestTexMaxSet( FIELD_OBJ_BLACT_CONT *cont, int max
 
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒgID Å‘åŠÇ—”æ“¾@ƒeƒNƒXƒ`ƒƒ
+ * ã‚²ã‚¹ãƒˆID æœ€å¤§ç®¡ç†æ•°å–å¾—ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @retval	int		Å‘å”
+ * @retval	int		æœ€å¤§æ•°
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActCont_GuestTexMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
@@ -2930,7 +2930,7 @@ static int FldOBJ_BlActCont_GuestTexMaxGet( const FIELD_OBJ_BLACT_CONT *cont )
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒg’Ç‰ÁŠÇ—TCB_PTRƒZƒbƒg
+ * ã‚²ã‚¹ãƒˆè¿½åŠ ç®¡ç†TCB_PTRã‚»ãƒƒãƒˆ
  * @param	cont	FIELD_OBJ_BLACT_CONT *
  * @param	tcb		TCB_PTR
  * @retval	nothing
@@ -2945,7 +2945,7 @@ static void FldOBJ_BlActGuestAddTcbPtrSet( FIELD_OBJ_BLACT_CONT *cont, TCB_PTR t
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒQƒXƒg’Ç‰ÁŠÇ—TCB_PTRæ“¾
+ * ã‚²ã‚¹ãƒˆè¿½åŠ ç®¡ç†TCB_PTRå–å¾—
  * @param	cont	FIELD_OBJ_BLACT_CONT *
  * @retval	TCB_PTR	TCB_PTR
  */
@@ -2959,7 +2959,7 @@ static TCB_PTR FldOBJ_BlActGuestAddTcbPtrGet( FIELD_OBJ_BLACT_CONT *cont )
 #if 0
 //--------------------------------------------------------------
 /**
- * Vƒuƒ‰ƒ“ƒNŠ„‚è‚İTCB_PTRƒZƒbƒg
+ * Vãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿TCB_PTRã‚»ãƒƒãƒˆ
  * @param	cont	FIELD_OBJ_BLACT_CONT *
  * @param	tcb		TCB_PTR
  * @retval	nothing
@@ -2974,7 +2974,7 @@ static void FldOBJ_BlActContVIntrTcbPtrSet( FIELD_OBJ_BLACT_CONT *cont, TCB_PTR 
 #if 0
 //--------------------------------------------------------------
 /**
- * Vƒuƒ‰ƒ“ƒNŠ„‚è‚İTCB_PTRæ“¾
+ * Vãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿TCB_PTRå–å¾—
  * @param	cont	FIELD_OBJ_BLACT_CONT *
  * @retval	TCB_PTR	TCB_PTR
  */
@@ -2987,11 +2987,11 @@ static TCB_PTR FldOBJ_BlActContVIntrTcbPtrGet( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_BLACT_CONT‚©‚çƒA[ƒJƒCƒuƒf[ƒ^æ“¾
+ * FIELD_OBJ_BLACT_CONTã‹ã‚‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
  * @param	cont	FIELD_OBJ_BLACT_CONT *
- * @param	dataID	ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXID
+ * @param	dataID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ID
  * @param	fb		TRUE=sys_AllocMemory() FALSE=sys_AllocMemoryLo()
- * @retval	void*	dataID‚Ìƒf[ƒ^
+ * @retval	void*	dataIDã®ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 static void * FldOBJ_BlActContArcDataAlloc( FIELD_OBJ_BLACT_CONT *cont, u32 datID, int fb )
@@ -3000,12 +3000,12 @@ static void * FldOBJ_BlActContArcDataAlloc( FIELD_OBJ_BLACT_CONT *cont, u32 datI
 }
 
 //==============================================================================
-//	DATA_FieldOBJ_BlActHeaderPathIDTblQÆ
+//	DATA_FieldOBJ_BlActHeaderPathIDTblå‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * DATA_FieldOBJ_BlActHeaderPathIDTblæ“¾
- * @param	code	OBJƒR[ƒhBHERO“™
+ * DATA_FieldOBJ_BlActHeaderPathIDTblå–å¾—
+ * @param	code	OBJã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
  * @retval	FIELD_OBJ_BLACT_HEADER_ID* DATA_FieldOBJ_BlActHeaderPathIDTbl *
  */
 //--------------------------------------------------------------
@@ -3022,9 +3022,9 @@ static const FIELD_OBJ_BLACT_HEADER_ID * FldOBJ_BlActHeaderPathIDTblGet( int cod
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒh‚©‚çƒ‚ƒfƒ‹ID‚ğæ“¾
- * @param	code	HERO“™
- * @retval	int		BLACT_MDLID_32x32“™
+ * OBJã‚³ãƒ¼ãƒ‰ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«IDã‚’å–å¾—
+ * @param	code	HEROç­‰
+ * @retval	int		BLACT_MDLID_32x32ç­‰
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActH_OBJCode_MdlID( int code )
@@ -3037,9 +3037,9 @@ static int FldOBJ_BlActH_OBJCode_MdlID( int code )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒh‚©‚çƒ‚ƒfƒ‹ID‚ğæ“¾@ƒOƒ[ƒoƒ‹
- * @param	code	HERO“™
- * @retval	int		BLACT_MDLID_32x32“™
+ * OBJã‚³ãƒ¼ãƒ‰ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«IDã‚’å–å¾—ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ * @param	code	HEROç­‰
+ * @retval	int		BLACT_MDLID_32x32ç­‰
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActOBJCodeMdlIDGet( int code )
@@ -3049,9 +3049,9 @@ int FieldOBJ_BlActOBJCodeMdlIDGet( int code )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒh‚©‚çƒAƒjƒID‚ğæ“¾
- * @param	code	HERO“™
- * @retval	int		BLACT_ANMID_32x32“™
+ * OBJã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡IDã‚’å–å¾—
+ * @param	code	HEROç­‰
+ * @retval	int		BLACT_ANMID_32x32ç­‰
  */
 //--------------------------------------------------------------
 static int FldOBJ_BlActH_OBJCode_AnmID( int code )
@@ -3064,9 +3064,9 @@ static int FldOBJ_BlActH_OBJCode_AnmID( int code )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒh‚©‚çƒAƒjƒID‚ğæ“¾@ƒOƒ[ƒoƒ‹
- * @param	code	HERO“™
- * @retval	int		BLACT_ANMID_32x32“™
+ * OBJã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡IDã‚’å–å¾—ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ * @param	code	HEROç­‰
+ * @retval	int		BLACT_ANMID_32x32ç­‰
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActOBJCodeAnmIDGet( int code )
@@ -3076,9 +3076,9 @@ int FieldOBJ_BlActOBJCodeAnmIDGet( int code )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒh‚©‚çƒAƒjƒƒe[ƒuƒ‹‚ğæ“¾
- * @param	code	HERO“™
- * @retval	char*	ƒwƒbƒ_[ƒtƒ@ƒCƒ‹ƒpƒX
+ * OBJã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
+ * @param	code	HEROç­‰
+ * @retval	char*	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
  */
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL * FldOBJ_BlActH_OBJCode_AnmTbl( int code )
@@ -3091,10 +3091,10 @@ static const BLACT_ANIME_TBL * FldOBJ_BlActH_OBJCode_AnmTbl( int code )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒh‚©‚çFog—LŒøA–³Œøƒtƒ‰ƒO‚ğæ“¾
- * @param	code	HERO“™
- * @retval	u32		TRUE=—LŒø FALSE=–³Œø
- * @retval	char*	ƒwƒbƒ_[ƒtƒ@ƒCƒ‹ƒpƒX
+ * OBJã‚³ãƒ¼ãƒ‰ã‹ã‚‰Fogæœ‰åŠ¹ã€ç„¡åŠ¹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
+ * @param	code	HEROç­‰
+ * @retval	u32		TRUE=æœ‰åŠ¹ FALSE=ç„¡åŠ¹
+ * @retval	char*	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
  */
 //--------------------------------------------------------------
 static u32 FldOBJ_BlAcOBJCodeFogEnableFlag( int code )
@@ -3112,13 +3112,13 @@ static u32 FldOBJ_BlAcOBJCodeFogEnableFlag( int code )
 }
 
 //==============================================================================
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒp[ƒc
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰Á’†ƒtƒ‰ƒO‚ğƒZƒbƒg
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ä¸­ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=’Ç‰Á’† FALSE=’Ç‰ÁŠ®—¹
+ * @param	flag	TRUE=è¿½åŠ ä¸­ FALSE=è¿½åŠ å®Œäº†
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3133,9 +3133,9 @@ void FieldOBJ_BlActAddPracFlagSet( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰Á’†ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ä¸­ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=’Ç‰Á’† FALSE=’Ç‰ÁÏ‚İ
+ * @retval	int		TRUE=è¿½åŠ ä¸­ FALSE=è¿½åŠ æ¸ˆã¿
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActAddPracFlagCheck( FIELD_OBJ_PTR fldobj )
@@ -3149,10 +3149,10 @@ int FieldOBJ_BlActAddPracFlagCheck( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‰Šú‰»
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  * @param	cont			FIELD_OBJ_BLACT_CONT *
- * @param	max				ƒAƒNƒ^[Å‘å”
- * @retval	BLACT_SET_PTR	ƒAƒNƒ^[ƒZƒbƒgƒ|ƒCƒ“ƒ^
+ * @param	max				ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+ * @retval	BLACT_SET_PTR	ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void FldOBJ_BlActInit( FIELD_OBJ_BLACT_CONT *cont, int max )
@@ -3170,7 +3170,7 @@ static void FldOBJ_BlActInit( FIELD_OBJ_BLACT_CONT *cont, int max )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[@ƒCƒ“ƒfƒbƒNƒXíœ
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å‰Šé™¤
  * @param	set		BLACT_SET_PTR
  * @retval	nothing
  */
@@ -3182,12 +3182,12 @@ static void FldOBJ_BlActDestSet( BLACT_SET_PTR set )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚Ì’Ç‰Á
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã®è¿½åŠ 
  * @param	set			BLACT_SET_PTR
  * @param	head		BLACT_HEADER *
- * @param	vec			À•W
- * @param	fog_on		TRUE=ƒtƒHƒO—LŒø,FALSE=–³Œø
- * @retval	BLACT_WORK	BLACT_WORK_PTR , NULL=’Ç‰Á¸”s
+ * @param	vec			åº§æ¨™
+ * @param	fog_on		TRUE=ãƒ•ã‚©ã‚°æœ‰åŠ¹,FALSE=ç„¡åŠ¹
+ * @retval	BLACT_WORK	BLACT_WORK_PTR , NULL=è¿½åŠ å¤±æ•—
  */
 //--------------------------------------------------------------
 static BLACT_WORK_PTR FldOBJ_BlActAdd( BLACT_SET_PTR set,
@@ -3206,7 +3206,7 @@ static BLACT_WORK_PTR FldOBJ_BlActAdd( BLACT_SET_PTR set,
 	act = BLACT_Add( &add );
 	
 	if( act != NULL ){
-		BLACT_ObjDrawFlagSet( act, FALSE ); //Š®‘S‚É‰Šú‰»Š®—¹‚·‚é‚Ü‚Å”ñ•\¦
+		BLACT_ObjDrawFlagSet( act, FALSE ); //å®Œå…¨ã«åˆæœŸåŒ–å®Œäº†ã™ã‚‹ã¾ã§éè¡¨ç¤º
 		BLACT_AnmOffsChg( act, 0 );
 		BLACT_AnmFrameSetOffs( act, 0 );
 		NNS_G3dMdlSetMdlFogEnableFlagAll( BLACT_MdlResGet(act), fog_on );
@@ -3216,7 +3216,7 @@ static BLACT_WORK_PTR FldOBJ_BlActAdd( BLACT_SET_PTR set,
 	return( act );
 }
 
-#if 0 //old DP ‹­§FOG ON
+#if 0 //old DP å¼·åˆ¶FOG ON
 static BLACT_WORK_PTR FldOBJ_BlActAdd( BLACT_SET_PTR set,
 	const BLACT_HEADER *head, const VecFx32 *vec )
 {
@@ -3233,7 +3233,7 @@ static BLACT_WORK_PTR FldOBJ_BlActAdd( BLACT_SET_PTR set,
 	act = BLACT_Add( &add );
 	
 	if( act != NULL ){
-		BLACT_ObjDrawFlagSet( act, FALSE ); //Š®‘S‚É‰Šú‰»Š®—¹‚·‚é‚Ü‚Å”ñ•\¦
+		BLACT_ObjDrawFlagSet( act, FALSE ); //å®Œå…¨ã«åˆæœŸåŒ–å®Œäº†ã™ã‚‹ã¾ã§éè¡¨ç¤º
 		BLACT_AnmOffsChg( act, 0 );
 		BLACT_AnmFrameSetOffs( act, 0 );
 		NNS_G3dMdlSetMdlFogEnableFlagAll( BLACT_MdlResGet(act), TRUE );
@@ -3246,10 +3246,10 @@ static BLACT_WORK_PTR FldOBJ_BlActAdd( BLACT_SET_PTR set,
 
 //--------------------------------------------------------------
 /**
- * ƒwƒbƒ_[ƒe[ƒuƒ‹‚©‚çƒwƒbƒ_[“Ç‚İ‚İ
+ * ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿
  * @param	cont		FIELD_OBJ_BLACT_CONT *
- * @param	code		HERO“™
- * @param	head		“Ç‚İ‚İæBLACT_HEADER *
+ * @param	code		HEROç­‰
+ * @param	head		èª­ã¿è¾¼ã¿å…ˆBLACT_HEADER *
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3275,8 +3275,8 @@ static void FldOBJ_BlActHeaderLoad(
 #ifdef PM_DEBUG
 		if( reso == NULL ){ 
 			#ifdef DEBUG_FLDOBJ_PRINTF_FORCE
-			OS_Printf( "FldOBJ_BlActHeaderLoad() “o˜^‚³‚ê‚Ä‚¢‚È‚¢ƒeƒNƒXƒ`ƒƒ" );
-			OS_Printf( "OBJƒR[ƒh = 0x%x\n", code );
+			OS_Printf( "FldOBJ_BlActHeaderLoad() ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ãƒ†ã‚¯ã‚¹ãƒãƒ£" );
+			OS_Printf( "OBJã‚³ãƒ¼ãƒ‰ = 0x%x\n", code );
 			#endif
 			GF_ASSERT( 0 );
 		}
@@ -3284,7 +3284,7 @@ static void FldOBJ_BlActHeaderLoad(
 		
 		head->ItxRes = TEXRESM_GetResPTR( reso );
 		
-		{	//Œ»İí’“‚Ì‚İ	“]‘—Œ^‚Ìê‡‚ÍNULL‰Šú‰»
+		{	//ç¾åœ¨å¸¸é§ã®ã¿	è»¢é€å‹ã®å ´åˆã¯NULLåˆæœŸåŒ–
 			head->texKey = TEXRESM_GetTexKeyPTR( reso );
 			head->tex4x4Key = TEXRESM_GetTex4x4KeyPTR( reso );
 			head->plttKey = TEXRESM_GetPlttKeyPTR( reso );
@@ -3298,7 +3298,7 @@ static void FldOBJ_BlActHeaderLoad(
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ‚©‚çFIELD_OBJ_BLACT_CONTæ“¾
+ * FIELD_OBJã‹ã‚‰FIELD_OBJ_BLACT_CONTå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	FIELD_OBJ_BLACT_CONT	FIELD_OBJ_BLACT_CONT *
  */
@@ -3313,7 +3313,7 @@ static const FIELD_OBJ_BLACT_CONT * FldOBJ_BlActContGet( CONST_FIELD_OBJ_PTR fld
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ‚©‚çFIELD_OBJ_BLACT_CONTæ“¾@ƒ[ƒJƒ‹‘€ì”Å
+ * FIELD_OBJã‹ã‚‰FIELD_OBJ_BLACT_CONTå–å¾—ã€€ãƒ­ãƒ¼ã‚«ãƒ«æ“ä½œç‰ˆ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	FIELD_OBJ_BLACT_CONT	FIELD_OBJ_BLACT_CONT *
  */
@@ -3327,13 +3327,13 @@ static FIELD_OBJ_BLACT_CONT * FldOBJ_BlActContGetLocal( CONST_FIELD_OBJ_PTR fldo
 }
 
 //==============================================================================
-//	ƒAƒNƒ^[@ƒp[ƒc
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚ÉŠi”[‚³‚ê‚Ä‚¢‚é3DÀ•W‚ğƒAƒNƒ^[‚É”½‰fB
- * @param	dir		DIR_UP“™
- * @retval	BOOL	FALSE=‚‚³æ“¾¸”s
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹3Dåº§æ¨™ã‚’ã‚¢ã‚¯ã‚¿ãƒ¼ã«åæ˜ ã€‚
+ * @param	dir		DIR_UPç­‰
+ * @retval	BOOL	FALSE=é«˜ã•å–å¾—å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL FieldOBJ_BlActPosSet( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR act )
@@ -3354,7 +3354,7 @@ BOOL FieldOBJ_BlActPosSet( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR act )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒXƒe[ƒ^ƒX‚ğŒ©‚Ä•\¦A”ñ•\¦ƒZƒbƒg
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¦‹ã¦è¡¨ç¤ºã€éè¡¨ç¤ºã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @retval	nothing
@@ -3378,19 +3378,19 @@ void FieldOBJ_BlActFlagVanishSet( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR act )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[@ƒp[ƒc
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
-//	•à‚«@ã‰º¶‰Eƒe[ƒuƒ‹	•ûŒü•Ê
+//	æ­©ãã€€ä¸Šä¸‹å·¦å³ãƒ†ãƒ¼ãƒ–ãƒ«	æ–¹å‘åˆ¥
 //--------------------------------------------------------------
 static const int DATA_BlActAnmOffsNo_WalkTbl[] =
 { 0, 1, 2, 3 };
 
 //--------------------------------------------------------------
 /**
- * •ûŒü‚©‚ç•à‚«ƒAƒjƒƒIƒtƒZƒbƒg”Ô†æ“¾
- * @param	dir		DIR_UP“™
- * @retval	int		ƒAƒjƒƒIƒtƒZƒbƒg”Ô†
+ * æ–¹å‘ã‹ã‚‰æ­©ãã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·å–å¾—
+ * @param	dir		DIR_UPç­‰
+ * @retval	int		ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActAnmOffsNo_DirWalkGet( int dir )
@@ -3399,16 +3399,16 @@ int FieldOBJ_BlActAnmOffsNo_DirWalkGet( int dir )
 }
 
 //--------------------------------------------------------------
-//	ƒ_ƒbƒVƒ…@ã‰º¶‰Eƒe[ƒuƒ‹	•ûŒü•Ê
+//	ãƒ€ãƒƒã‚·ãƒ¥ã€€ä¸Šä¸‹å·¦å³ãƒ†ãƒ¼ãƒ–ãƒ«	æ–¹å‘åˆ¥
 //--------------------------------------------------------------
 static const int DATA_BlActAnmOffsNo_DashTbl[] =
 { 4, 5, 6, 7 };
 
 //--------------------------------------------------------------
 /**
- * •ûŒü‚©‚çƒ_ƒbƒVƒ…ƒAƒjƒƒIƒtƒZƒbƒg”Ô†æ“¾
- * @param	dir		DIR_UP“™
- * @retval	int		ƒAƒjƒƒIƒtƒZƒbƒg”Ô†
+ * æ–¹å‘ã‹ã‚‰ãƒ€ãƒƒã‚·ãƒ¥ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·å–å¾—
+ * @param	dir		DIR_UPç­‰
+ * @retval	int		ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActAnmOffsNo_DirDashGet( int dir )
@@ -3417,16 +3417,16 @@ int FieldOBJ_BlActAnmOffsNo_DirDashGet( int dir )
 }
 
 //--------------------------------------------------------------
-//	ƒWƒƒƒ“ƒv‘ä@ã‰º¶‰Eƒe[ƒuƒ‹	•ûŒü•Ê
+//	ã‚¸ãƒ£ãƒ³ãƒ—å°ã€€ä¸Šä¸‹å·¦å³ãƒ†ãƒ¼ãƒ–ãƒ«	æ–¹å‘åˆ¥
 //--------------------------------------------------------------
 static const int DATA_BlActAnmOffsNo_TakeOFFTbl[] =
 { 4, 5, 4, 5 };
 
 //--------------------------------------------------------------
 /**
- * •ûŒü‚©‚çƒWƒƒƒ“ƒv‘äƒAƒjƒƒIƒtƒZƒbƒg”Ô†æ“¾
- * @param	dir		DIR_UP“™
- * @retval	int		ƒAƒjƒƒIƒtƒZƒbƒg”Ô†
+ * æ–¹å‘ã‹ã‚‰ã‚¸ãƒ£ãƒ³ãƒ—å°ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·å–å¾—
+ * @param	dir		DIR_UPç­‰
+ * @retval	int		ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 int FieldOBJ_BlActAnmOffsNo_DirTakeOFFGet( int dir )
@@ -3435,17 +3435,17 @@ int FieldOBJ_BlActAnmOffsNo_DirTakeOFFGet( int dir )
 }
 
 //==============================================================================
-//	Vd—l@ƒrƒ‹ƒ{[ƒh@ƒeƒNƒXƒ`ƒƒ
+//	æ–°ä»•æ§˜ã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒ[ƒh
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	tex_id	ƒ}ƒl[ƒWƒƒ“o˜^ID
- * @param	arc_id	ƒA[ƒJƒCƒuID
- * @param	reg_type	“o˜^ƒ^ƒCƒv REGULAR? GUEST?
- * @retval	int		TRUE=‚»‚Ìê‚Åƒ[ƒhBFALSE=ƒ[ƒhÅ‘åA—\–ñ‚Ö‰ñ‚·
+ * @param	tex_id	ãƒãƒãƒ¼ã‚¸ãƒ£ç™»éŒ²ID
+ * @param	arc_id	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	reg_type	ç™»éŒ²ã‚¿ã‚¤ãƒ— REGULAR? GUEST?
+ * @retval	int		TRUE=ãã®å ´ã§ãƒ­ãƒ¼ãƒ‰ã€‚FALSE=ãƒ­ãƒ¼ãƒ‰æœ€å¤§ã€äºˆç´„ã¸å›ã™
  */
 //--------------------------------------------------------------
 static int FldOBJ_TexLoadTransSet(
@@ -3496,12 +3496,12 @@ static int FldOBJ_TexLoadTransSet(
 #if 1
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒ[ƒh
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	tex_id	ƒ}ƒl[ƒWƒƒ“o˜^ID
- * @param	arc_id	ƒA[ƒJƒCƒuID
- * @param	reg_type	“o˜^ƒ^ƒCƒv REGULAR? GUEST?
- * @retval	int		TRUE=‚»‚Ìê‚Åƒ[ƒhBFALSE=ƒ[ƒhÅ‘åA—\–ñ‚Ö‰ñ‚·
+ * @param	tex_id	ãƒãƒãƒ¼ã‚¸ãƒ£ç™»éŒ²ID
+ * @param	arc_id	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	reg_type	ç™»éŒ²ã‚¿ã‚¤ãƒ— REGULAR? GUEST?
+ * @retval	int		TRUE=ãã®å ´ã§ãƒ­ãƒ¼ãƒ‰ã€‚FALSE=ãƒ­ãƒ¼ãƒ‰æœ€å¤§ã€äºˆç´„ã¸å›ã™
  */
 //--------------------------------------------------------------
 static int FldOBJ_TexLoadTransSet(
@@ -3604,9 +3604,9 @@ static int FldOBJ_TexLoadTransSet(
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒ[ƒhƒLƒƒƒ“ƒZƒ‹
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	tex_id	ƒLƒƒƒ“ƒZƒ‹‚·‚éƒ}ƒl[ƒWƒƒ“o˜^ID
+ * @param	tex_id	ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3629,9 +3629,9 @@ static void FldOBJ_TexLoadReserveCancel( FIELD_OBJ_BLACT_CONT *cont, int tex_id 
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒ[ƒh—\–ñƒ`ƒFƒbƒN
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰äºˆç´„ãƒã‚§ãƒƒã‚¯
  * @param	cont			FIELD_OBJ_BLACT_CONT
- * @param	tex_id			ƒ`ƒFƒbƒN‚·‚éƒ}ƒl[ƒWƒƒ“o˜^ID
+ * @param	tex_id			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ç™»éŒ²ID
  * @retval	TEXREG_TYPE		TEX_REGULAR_RESERVE,TEX_GUEST_RESERVE,TEX_NON
  */
 //--------------------------------------------------------------
@@ -3659,10 +3659,10 @@ static TEXREG_TYPE FldOBJ_TexLoadReserveCheck( FIELD_OBJ_BLACT_CONT *cont, int t
 
 //--------------------------------------------------------------
 /**
- * TCB ƒeƒNƒXƒ`ƒƒƒ[ƒh—\–ñÁ‰»
+ * TCB ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰äºˆç´„æ¶ˆåŒ–
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	tex_id	ƒ}ƒl[ƒWƒƒ“o˜^ID
- * @param	arc_id	ƒA[ƒJƒCƒuID
+ * @param	tex_id	ãƒãƒãƒ¼ã‚¸ãƒ£ç™»éŒ²ID
+ * @param	arc_id	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3693,7 +3693,7 @@ static void FldOBJ_TexLoadReserveTCB( TCB_PTR tcb, void *wk )
 		i++;
 	}
 	
-	{															//—\–ñˆì‚ê‚ğ¸‡
+	{															//äºˆç´„æº¢ã‚Œã‚’æ˜‡é †
 		int j;
 		load = work->tex_load_work_tbl;
 		
@@ -3715,11 +3715,11 @@ static void FldOBJ_TexLoadReserveTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒ[ƒh@ƒ[ƒh‚µ‚½ƒeƒNƒXƒ`ƒƒID‚ÍƒŒƒMƒ…ƒ‰[ƒQƒXƒgŠÇ—‚Ö“o˜^
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰ã€€ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£IDã¯ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã‚²ã‚¹ãƒˆç®¡ç†ã¸ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	tex_id	ƒ}ƒl[ƒWƒƒ“o˜^ID
- * @param	buf		“]‘—‚·‚éƒeƒNƒXƒ`ƒƒƒoƒbƒtƒ@
- * @param	reg_type	“o˜^ƒ^ƒCƒv REGULAR? GUEST?
+ * @param	tex_id	ãƒãƒãƒ¼ã‚¸ãƒ£ç™»éŒ²ID
+ * @param	buf		è»¢é€ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒƒãƒ•ã‚¡
+ * @param	reg_type	ç™»éŒ²ã‚¿ã‚¤ãƒ— REGULAR? GUEST?
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3743,9 +3743,9 @@ static void FldOBJ_TexBufTransSet(
 
 //--------------------------------------------------------------
 /**
- * VTRANS ƒeƒNƒXƒ`ƒƒ“o˜^
+ * VTRANS ãƒ†ã‚¯ã‚¹ãƒãƒ£ç™»éŒ²
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	id		“o˜^ID
+ * @param	id		ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3776,9 +3776,9 @@ static void FldOBJ_TexTransAdd( FIELD_OBJ_BLACT_CONT *cont, int id )
 
 //--------------------------------------------------------------
 /**
- * VTRANS ƒeƒNƒXƒ`ƒƒ“o˜^ƒLƒƒƒ“ƒZƒ‹
+ * VTRANS ãƒ†ã‚¯ã‚¹ãƒãƒ£ç™»éŒ²ã‚­ãƒ£ãƒ³ã‚»ãƒ«
  * @param	cont	FIELD_OBJ_BLACT_CONT
- * @param	id		ƒLƒƒƒ“ƒZƒ‹‚·‚é“o˜^ID
+ * @param	id		ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3806,7 +3806,7 @@ static void FldOBJ_TexTransCancel( FIELD_OBJ_BLACT_CONT *cont, int id )
 
 //--------------------------------------------------------------
 /**
- * VIntr TCB ƒeƒNƒXƒ`ƒƒVRAM“]‘—
+ * VIntr TCB ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMè»¢é€
  * @param	tcb			TCB_PTR
  * @param	wk			tcb work
  * @retval	nothing
@@ -3839,7 +3839,7 @@ static void FldOBJ_TexTransVIntrTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * VWait TCB ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX”jŠü
+ * VWait TCB ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  * @param	tcb			TCB_PTR
  * @param	wk			tcb work
  * @retval	nothing
@@ -3870,13 +3870,13 @@ static void FldOBJ_TexFreeVWaitTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰Á—\–ñB
- * ŒÄ‚ñ‚¾ÛAact‚ÍNULL‚Å‰Šú‰»B
- * ŠÇ—‘¤‚Åƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚ª’Ç‰Á‚³‚ê‚é‚Æ‚»‚ÌƒAƒhƒŒƒX‚ªŠi”[‚³‚ê‚éB
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ äºˆç´„ã€‚
+ * å‘¼ã‚“ã éš›ã€actã¯NULLã§åˆæœŸåŒ–ã€‚
+ * ç®¡ç†å´ã§ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãŒè¿½åŠ ã•ã‚Œã‚‹ã¨ãã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ ¼ç´ã•ã‚Œã‚‹ã€‚
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
- * @param	code	•\¦ƒR[ƒh
+ * @param	code	è¡¨ç¤ºã‚³ãƒ¼ãƒ‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3907,11 +3907,11 @@ static void FldOBJ_BlActAddReserveSet(
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰Á—\–ñƒLƒƒƒ“ƒZƒ‹
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ äºˆç´„ã‚­ãƒ£ãƒ³ã‚»ãƒ«
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
- * @param	code	•\¦ƒR[ƒh
+ * @param	code	è¡¨ç¤ºã‚³ãƒ¼ãƒ‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3939,7 +3939,7 @@ static void FldOBJ_BlActAddReserveCancel( FIELD_OBJ_BLACT_CONT *cont, CONST_FIEL
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰Á—\–ñÁ‰»
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ äºˆç´„æ¶ˆåŒ–
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @retval	nothing
  */
@@ -3962,7 +3962,7 @@ static void FldOBJ_BlActAddReserve( FIELD_OBJ_BLACT_CONT *cont )
 
 //--------------------------------------------------------------
 /**
- * TCB ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰Á—\–ñÁ‰»
+ * TCB ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ äºˆç´„æ¶ˆåŒ–
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -3976,7 +3976,7 @@ static void FldOBJ_BlActAddReserveTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰Á—\–ñÁ‰»@’Ç‰Áˆ—
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ äºˆç´„æ¶ˆåŒ–ã€€è¿½åŠ å‡¦ç†
  * @param	cont	FIELD_OBJ_BLACT_CONT
  * @param	res		BLACTADD_RESERVE
  * @retval	nothing
@@ -4004,10 +4004,10 @@ static void FldOBJ_BlActAddReserve_Add(
 
 //--------------------------------------------------------------
 /**
- * BLACT_VTRANS_WORK‰Šú‰»
+ * BLACT_VTRANS_WORKåˆæœŸåŒ–
  * @param	cont		FIELD_OBJ_BLACT_CONT
- * @param	max			Še—v‘fÅ‘å”
- * @param	load_max	1ƒtƒŒ[ƒ€ƒeƒNƒXƒ`ƒƒƒ[ƒh‰ñ”Å‘å
+ * @param	max			å„è¦ç´ æœ€å¤§æ•°
+ * @param	load_max	1ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰å›æ•°æœ€å¤§
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4049,7 +4049,7 @@ static void FldOBJ_BlActVTransWorkInit( FIELD_OBJ_BLACT_CONT *cont, int max, int
 
 //--------------------------------------------------------------
 /**
- * BLACT_VTRANS_WORKíœ
+ * BLACT_VTRANS_WORKå‰Šé™¤
  * @param	cont		FIELD_OBJ_BLACT_CONT
  * @retval	nothing
  */
@@ -4070,7 +4070,7 @@ static void FldOBJ_BlActVTransWorkDelete( FIELD_OBJ_BLACT_CONT *cont )
 }
 
 //==============================================================================
-///	ƒ_ƒ~[ƒAƒNƒ^[’Ç‰ÁŒãA³‹KƒAƒNƒ^[’Ç‰Á
+///	ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ å¾Œã€æ­£è¦ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
 //==============================================================================
 typedef struct
 {
@@ -4097,17 +4097,17 @@ static void BlActDummyActDeleteTCB( TCB_PTR tcb, void *wk );
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒAƒNƒ^[‚ğ•\¦‚³‚¹‚È‚ª‚ç³‹KƒAƒNƒ^[‚Ö•ÏX
+ * ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’è¡¨ç¤ºã•ã›ãªãŒã‚‰æ­£è¦ã‚¢ã‚¯ã‚¿ãƒ¼ã¸å¤‰æ›´
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	code	•ÏX‚·‚éƒR[ƒh HERO“™
- * @param	dmy_del_call_proc ƒ_ƒ~[ƒAƒNƒ^[‚ğíœ‚·‚éÛ‚ÉŒÄ‚Ño‚·ŠÖ”
- * @param	dmy_del_call_proc_work dmy_del_call_proc‚Éw’è‚·‚éˆø”
- * @retval	BLACT_WORK_PTR ’Ç‰Á‚³‚ê‚½ƒ_ƒ~[ƒAƒNƒ^[*B
- * return NULL=‘¦•ÏX‚É‚æ‚èƒ_ƒ~[ƒAƒNƒ^[’Ç‰Á–³‚µB
- * dmy_del_call_proc ˆø”CONST_BLACT_WORK_PTR‚Íƒ_ƒ~[ƒAƒNƒ^[‚ªw’è‚³‚ê‚éB
- * NULLw’è‚Ìê‡‚ÍƒR[ƒ‹‚µ‚È‚¢B
- * ‚Ü‚½‘¦•ÏX‚ÍƒR[ƒ‹‚¹‚¸I‚í‚éB
- * dmy_del_call_proc“à‚Å‚Ìƒ_ƒ~[ƒAƒNƒ^[íœ‚Í‹Ö~B
+ * @param	code	å¤‰æ›´ã™ã‚‹ã‚³ãƒ¼ãƒ‰ HEROç­‰
+ * @param	dmy_del_call_proc ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹éš›ã«å‘¼ã³å‡ºã™é–¢æ•°
+ * @param	dmy_del_call_proc_work dmy_del_call_procã«æŒ‡å®šã™ã‚‹å¼•æ•°
+ * @retval	BLACT_WORK_PTR è¿½åŠ ã•ã‚ŒãŸãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼*ã€‚
+ * return NULL=å³å¤‰æ›´ã«ã‚ˆã‚Šãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ç„¡ã—ã€‚
+ * dmy_del_call_proc å¼•æ•°CONST_BLACT_WORK_PTRã¯ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ãŒæŒ‡å®šã•ã‚Œã‚‹ã€‚
+ * NULLæŒ‡å®šã®å ´åˆã¯ã‚³ãƒ¼ãƒ«ã—ãªã„ã€‚
+ * ã¾ãŸå³å¤‰æ›´æ™‚ã¯ã‚³ãƒ¼ãƒ«ã›ãšçµ‚ã‚ã‚‹ã€‚
+ * dmy_del_call_procå†…ã§ã®ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ã¯ç¦æ­¢ã€‚
  */
 //--------------------------------------------------------------
 BLACT_WORK_PTR FieldOBJ_BlActDummyDrawReset(
@@ -4131,9 +4131,9 @@ BLACT_WORK_PTR FieldOBJ_BlActDummyDrawReset(
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒAƒNƒ^[‚ğ•\¦‚³‚¹‚È‚ª‚ç³‹KƒAƒNƒ^[‚Ö•ÏX@ƒZƒbƒg•”•ª
+ * ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’è¡¨ç¤ºã•ã›ãªãŒã‚‰æ­£è¦ã‚¢ã‚¯ã‚¿ãƒ¼ã¸å¤‰æ›´ã€€ã‚»ãƒƒãƒˆéƒ¨åˆ†
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	code	•ÏX‚·‚éƒR[ƒh HERO“™
+ * @param	code	å¤‰æ›´ã™ã‚‹ã‚³ãƒ¼ãƒ‰ HEROç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4205,8 +4205,8 @@ static BLACT_WORK_PTR FldOBJ_BlActDummyDrawResetSet(
 		ret_act = work->act;
 	}
 	
-#if 0	//FldOBJ_BlActAdd()‚É‚Ä‘Î‰
-	{	//pl add FogEnableŒp³
+#if 0	//FldOBJ_BlActAdd()ã«ã¦å¯¾å¿œ
+	{	//pl add FogEnableç¶™æ‰¿
 		NNSG3dResMdl *mdl = BLACT_MdlResGet( oldact );
 		if( mdl != NULL ){
 			if( NNS_G3dMdlGetMdlFogEnableFlag(mdl,0) ){
@@ -4226,19 +4226,19 @@ static BLACT_WORK_PTR FldOBJ_BlActDummyDrawResetSet(
 	BLACT_ObjDrawFlagSet( work->act, TRUE );
 	BLACT_VramAnmTransUserReq( work->act );
 	
-	{	//‰f‚è‚İƒAƒŠ
+	{	//æ˜ ã‚Šè¾¼ã¿ã‚¢ãƒª
 		if( FieldOBJ_StatusBitCheck_Reflect(fldobj) == TRUE ){
 			VecFx32 mtx;
 			REFTYPE type;
 			int pri = FieldOBJ_TCBPriGet( fldobj, FLDOBJ_TCBPRI_OFFS_AFTER );
 			MATR attr = FieldOBJ_NextDirAttrGet( fldobj, DIR_DOWN );
 			
-			if( MATR_IsMirrorReflect(attr) == TRUE ){ 	//‹¾°
+			if( MATR_IsMirrorReflect(attr) == TRUE ){ 	//é¡åºŠ
 				type = REFTYPE_MIRROR;
-			}else if( MATR_IsPoolCheck(attr) == TRUE ){	//…—­‚Ü‚è
+			}else if( MATR_IsPoolCheck(attr) == TRUE ){	//æ°´æºœã¾ã‚Š
 				type = REFTYPE_POOL;
 			}else{
-				type = REFTYPE_POND;		//’r
+				type = REFTYPE_POND;		//æ± 
 			}
 			
 			FieldOBJ_VecPosGet( fldobj, &mtx );
@@ -4256,10 +4256,10 @@ static BLACT_WORK_PTR FldOBJ_BlActDummyDrawResetSet(
 		int pri = FieldOBJSys_TCBStandardPriorityGet( cont->fos );
 		TCB_PTR tcb = VWaitTCB_Add( BlActDummyActDeleteTCB, work, 0xff );
 		GF_ASSERT( tcb != NULL && "ERROR" );
-		BlActDummyActDeleteTCB( tcb, work ); //‘¦’Ç‰Á‚Ìó‹µ‚ğl—¶‚µ‘¦ƒR[ƒ‹
+		BlActDummyActDeleteTCB( tcb, work ); //å³è¿½åŠ ã®çŠ¶æ³ã‚’è€ƒæ…®ã—å³ã‚³ãƒ¼ãƒ«
 	}
 	
-	if( BLACT_GetState(work->act) == BLACT_MOVE_NONE ){ //‘¦’Ç‰Á‚É‚æ‚èíœ
+	if( BLACT_GetState(work->act) == BLACT_MOVE_NONE ){ //å³è¿½åŠ ã«ã‚ˆã‚Šå‰Šé™¤
 		ret_act = NULL;
 	}else{
 		work->dummy_delete_call_proc_work = dmy_del_call_proc_work;
@@ -4271,7 +4271,7 @@ static BLACT_WORK_PTR FldOBJ_BlActDummyDrawResetSet(
 
 //--------------------------------------------------------------
 /**
- * TCB ƒ_ƒ~[ƒAƒNƒ^[Á‹
+ * TCB ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼æ¶ˆå»
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work
  * @retval	nothing

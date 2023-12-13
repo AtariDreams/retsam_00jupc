@@ -1,18 +1,18 @@
 //==============================================================================================
 /**
  * @file	snd_play.c
- * @brief	�T�E���h�Đ��֐�
+ * @brief	サウンド再生関数
  * @author	Satoshi Nohara
  * @date	2005.06.09
  *
- *	��������
- * �|�P�����i���o�[�ƁA�����V�[�P���X�f�[�^�̕��т��������m�F����I
- * (�S���}�Ӄi���o�[�ɑΉ����Ă���炵���B050722��V��������)
+ *	＜メモ＞
+ * ポケモンナンバーと、鳴き声シーケンスデータの並びが同じか確認する！
+ * (全国図鑑ナンバーに対応しているらしい。050722一之瀬さんより)
  *
- *	�g�`�Đ�(�t�Đ�)���g�p���Ă���Z�̍Ō�ɁAFreeChannel������I
+ *	波形再生(逆再生)を使用している技の最後に、FreeChannelを入れる！
  *
- * �X�J�C�t�H�����̖����f�[�^�i���o�[�Ɣ��Ȃ��悤�ɒ��ӁI
- * #define SND_PM_VOICE_SKY_FORM	(100)			//���K��
+ * スカイフォルムの鳴き声データナンバーと被らないように注意！
+ * #define SND_PM_VOICE_SKY_FORM	(100)			//今適当
  */
 //==============================================================================================
 #include "common.h"
@@ -23,7 +23,7 @@
 #include "battle/battle_server.h"		//FORMNO_SHEIMI_FLOWER
 
 #ifdef PM_DEBUG
-//BGM��OFF�ɂ��鏈��
+//BGMをOFFにする処理
 u8 debug_bgm_flag;
 void Snd_DebugBgmFlagSet( u8 sw );
 static BOOL Snd_DebugBgmFlagCheck();
@@ -31,36 +31,36 @@ static BOOL Snd_DebugBgmFlagCheck();
 
 //==============================================================================================
 //
-//	��`
+//	定義
 //
 //==============================================================================================
-#define	SND_ME_COMMON_WAIT		(15)			//ME���ʃE�F�C�g�l
+#define	SND_ME_COMMON_WAIT		(15)			//ME共通ウェイト値
 
-//�����p�^�[���̃p�����[�^��`
-#define VOICE_SMALL_VOL			(90)			//���ʏ�����
-#define DEFAULT_RELEASE			(0)				//�L�[�I�t��̃����[�X
+//鳴き声パターンのパラメータ定義
+#define VOICE_SMALL_VOL			(90)			//音量小さめ
+#define DEFAULT_RELEASE			(0)				//キーオフ後のリリース
 
-//#define W_HYPER_VOICE_PITCH	(32768+16384)	//�Z�u�n�C�p�[�{�C�X�v�̃s�b�`
-//#define W_HYPER_VOICE_PITCH	(32768+8192)	//�Z�u�n�C�p�[�{�C�X�v�̃s�b�`
-//#define W_HYPER_VOICE_PITCH	(32768+4096)	//�Z�u�n�C�p�[�{�C�X�v�̃s�b�`
-//#define W_HYPER_VOICE_PITCH	(32768+3072)	//�Z�u�n�C�p�[�{�C�X�v�̃s�b�`
-//#define W_HYPER_VOICE_PITCH	(32768+2048)	//�Z�u�n�C�p�[�{�C�X�v�̃s�b�`
-#define W_HYPER_VOICE_PITCH		(32768+1536)	//�Z�u�n�C�p�[�{�C�X�v�̃s�b�`
+//#define W_HYPER_VOICE_PITCH	(32768+16384)	//技「ハイパーボイス」のピッチ
+//#define W_HYPER_VOICE_PITCH	(32768+8192)	//技「ハイパーボイス」のピッチ
+//#define W_HYPER_VOICE_PITCH	(32768+4096)	//技「ハイパーボイス」のピッチ
+//#define W_HYPER_VOICE_PITCH	(32768+3072)	//技「ハイパーボイス」のピッチ
+//#define W_HYPER_VOICE_PITCH	(32768+2048)	//技「ハイパーボイス」のピッチ
+#define W_HYPER_VOICE_PITCH		(32768+1536)	//技「ハイパーボイス」のピッチ
 
-//#define W_NAKIGOE_PITCH		(32768+16384)	//�Z�u�����v�̃s�b�`
-//#define W_NAKIGOE_PITCH		(32768-8192)	//�Z�u�����v�̃s�b�`
-#define W_NAKIGOE_PITCH			(32768-6144)	//�Z�u�����v�̃s�b�`
+//#define W_NAKIGOE_PITCH		(32768+16384)	//技「鳴き声」のピッチ
+//#define W_NAKIGOE_PITCH		(32768-8192)	//技「鳴き声」のピッチ
+#define W_NAKIGOE_PITCH			(32768-6144)	//技「鳴き声」のピッチ
 
-//�X�J�C�t�H�����̖����f�[�^�i���o�[
+//スカイフォルムの鳴き声データナンバー
 #define SND_PM_VOICE_SKY_FORM	(WAVE_ARC_PV516_SKY)
 
 
 //==============================================================================================
 //
-//	�\���̐錾
+//	構造体宣言
 //
 //==============================================================================================
-//�|�P���������Đ����ԃ��[�N
+//ポケモン鳴き声再生時間ワーク
 typedef struct{
 	int length;
 	TCB_PTR	tcb;
@@ -69,7 +69,7 @@ typedef struct{
 
 //==============================================================================================
 //
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //
 //==============================================================================================
 BOOL Snd_BgmPlayBasicData( u16 no );
@@ -123,38 +123,38 @@ static void Snd_MeWaitSet( u16 no );
 
 //==============================================================================================
 //
-//	BGM�֘A
+//	BGM関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BANK_BASIC�ō쐬����BGM�Đ�(�S�ă��[�h�ς݃f�[�^���Đ�)
+ * @brief	BANK_BASICで作成したBGM再生(全てロード済みデータを再生)
  *
- * @param	no		BGM�i���o�[
+ * @param	no		BGMナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �f�[�^�̃��[�h����������܂���B�ʏ�͎g�p���܂���B
+ * データのロード処理が入りません。通常は使用しません。
  */
 //--------------------------------------------------------------
 BOOL Snd_BgmPlayBasicData( u16 no )
 {
 	int ret;
-	u8 player_no= Snd_GetPlayerNo(no);					//seq�i���o�[����A�v���C���[�i���o�[���擾
-	int type	= Snd_GetHandleNoByPlayerNo(player_no);	//player�i���o�[����A�n���h���i���o�[���擾
+	u8 player_no= Snd_GetPlayerNo(no);					//seqナンバーから、プレイヤーナンバーを取得
+	int type	= Snd_GetHandleNoByPlayerNo(player_no);	//playerナンバーから、ハンドルナンバーを取得
 
-	//BANK_BASIC�ō쐬���Ă����āASEQ�݂̂����[�h����`���ƁA
-	//�T�u�V�[�����Ă΂�邱�Ƃ�����ƁASEQ�͏�����Ă��܂��I
-	//�i����ʂ͋Z�Y���ʂ��Ăяo���߂��Ă���̂ŁA
-	//�|�P�������X�g�̃T�u�V�[�����Ă΂��̂Ń_���I
+	//BANK_BASICで作成しておいて、SEQのみをロードする形だと、
+	//サブシーンが呼ばれることがあると、SEQは消されてしまう！
+	//進化画面は技忘れ画面を呼び出し戻ってくるので、
+	//ポケモンリストのサブシーンが呼ばれるのでダメ！
 
-	//�n���h���̃A�h���X���擾���āA�Đ�
+	//ハンドルのアドレスを取得して、再生
 	ret = NNS_SndArcPlayerStartSeq( Snd_HandleGet(type), no );
 
-	//�Đ����s�`�F�b�N
+	//再生失敗チェック
 	if( ret == 0 ){
-		OS_Printf( "BGM �Đ����s\tno = %d\n", no );
+		OS_Printf( "BGM 再生失敗\tno = %d\n", no );
 	}
 
 	Snd_BgmPlayCommon_01( no, type );
@@ -163,58 +163,58 @@ BOOL Snd_BgmPlayBasicData( u16 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�Đ�(SE�̏�ɐς񂾃f�[�^���J�����āABGM�f�[�^�̃��[�h���s��)
+ * @brief	BGM再生(SEの上に積んだデータを開放して、BGMデータのロードを行う)
  *
- * @param	no		BGM�i���o�[
+ * @param	no		BGMナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_BgmPlay( u16 no )
 {
 	int ret;
-	u8 player_no = Snd_GetPlayerNo(no);				//seq�i���o�[����A�v���C���[�i���o�[���擾
-	int type = Snd_GetHandleNoByPlayerNo(player_no);//player�i���o�[����A�n���h���i���o�[���擾
+	u8 player_no = Snd_GetPlayerNo(no);				//seqナンバーから、プレイヤーナンバーを取得
+	int type = Snd_GetHandleNoByPlayerNo(player_no);//playerナンバーから、ハンドルナンバーを取得
 
-	if( player_no == PLAYER_BGM ){										//"�T�E���h�q�[�v"
+	if( player_no == PLAYER_BGM ){										//"サウンドヒープ"
 		ret = Snd_BgmPlay_PlayerBgm( no, player_no, type );
-	}else if( player_no == PLAYER_FIELD ){								//"�v���C���[�q�[�v"
+	}else if( player_no == PLAYER_FIELD ){								//"プレイヤーヒープ"
 		ret = Snd_BgmPlay_PlayerField( no, player_no, type );
 	}else{
-		GF_ASSERT( (0) && "�Đ����悤�Ƃ��Ă���BGM�i���o�[���s���ł��I" );
+		GF_ASSERT( (0) && "再生しようとしているBGMナンバーが不正です！" );
 		return FALSE;
 	}
 
-	//�o���N�؂�ւ��邩�t���O�����Z�b�g
-	Snd_BankFlagSet( SND_BANK_CONTINUE );		//�N���A = �p��
+	//バンク切り替えるかフラグをリセット
+	Snd_BankFlagSet( SND_BANK_CONTINUE );		//クリア = 継続
 
-	//�Đ����s�`�F�b�N
+	//再生失敗チェック
 	if( ret == 0 ){
-		OS_Printf( "BGM �Đ����s\tno = %d\n", no );
+		OS_Printf( "BGM 再生失敗\tno = %d\n", no );
 	}
 
 	Snd_BgmPlayCommon_01( no, type );
 	return ret;
 }
 
-//���ʏ���
+//共通処理
 static void Snd_BgmPlayCommon_01( u16 seq_no, int handle_no )
 {
-	Snd_NowBgmNoSet( seq_no );											//����BGM�i���o�[�X�V
-	Snd_VChatVolSet( seq_no, handle_no );								//�{�C�X�`���b�g���ʑ���
-	Snd_StatusSet( SND_STATUS_PLAY );									//�X�e�[�^�X(�Đ�)
+	Snd_NowBgmNoSet( seq_no );											//今のBGMナンバー更新
+	Snd_VChatVolSet( seq_no, handle_no );								//ボイスチャット音量操作
+	Snd_StatusSet( SND_STATUS_PLAY );									//ステータス(再生)
 	return;
 }
 
-//PLAYER_BGM�̍Đ�����
+//PLAYER_BGMの再生処理
 static BOOL Snd_BgmPlay_PlayerBgm( u16 no, u8 player_no, int type )
 {
 	int ret;
 
-	//�V�[�P���X�A�o���N�A�g�`�A�[�J�C�u���[�h
-	Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_SE) );		//BGM���J��
+	//シーケンス、バンク、波形アーカイブロード
+	Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_SE) );		//BGMを開放
 	Snd_ArcLoadSeq( no );
-	Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM) );	//�K�w�ۑ�(BGM�̌������)
+	Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_BGM) );	//階層保存(BGMの後を消す)
 
 #ifdef PM_DEBUG
 	if( Snd_DebugBgmFlagCheck() == 1 ){
@@ -222,25 +222,25 @@ static BOOL Snd_BgmPlay_PlayerBgm( u16 no, u8 player_no, int type )
 	}
 #endif
 
-	//�n���h���̃A�h���X���擾���āA�Đ�
+	//ハンドルのアドレスを取得して、再生
 	ret = NNS_SndArcPlayerStartSeq( Snd_HandleGet(type), no );
 	return ret;
 }
 
-//PLAYER_FIELD�̍Đ�����
+//PLAYER_FIELDの再生処理
 static BOOL Snd_BgmPlay_PlayerField( u16 no, u8 player_no, int type )
 {
 	int field_seq_no;
 	u8* bank_flag	= Snd_GetParamAdrs(SND_W_ID_BANK_FLAG);
 	u16* zone_bgm	= Snd_GetParamAdrs(SND_W_ID_ZONE_BGM);
 
-	//PLAYER_FIELD��BGM�i���o�[�擾
+	//PLAYER_FIELDのBGMナンバー取得
 	field_seq_no = Snd_GetSeqNo( Snd_HandleGet(SND_HANDLE_FIELD) );
 
-	//(�n���h���������̎���"-1"���Ԃ�)
+	//(ハンドルが無効の時は"-1"が返る)
 	OS_Printf( "player_field_seq_no = %d\n", Snd_GetSeqNo(Snd_HandleGet(SND_HANDLE_FIELD)) );
 		
-	//�Đ����悤�Ƃ��Ă���BGM�i���o�[�APLAYER_FIELD�ɂ��łɐݒ肳��Ă���o���N�i���o�[
+	//再生しようとしているBGMナンバー、PLAYER_FIELDにすでに設定されているバンクナンバー
 	Snd_FieldDataSetSub( no, Snd_GetBankNo(field_seq_no) );
 
 #ifdef PM_DEBUG
@@ -249,22 +249,22 @@ static BOOL Snd_BgmPlay_PlayerField( u16 no, u8 player_no, int type )
 	}
 #endif
 
-	//BANK_BASIC�ł͂Ȃ��A�]�[���Ȃ̃o���N��ǂݍ��ނ悤�ɂ���I
+	//BANK_BASICではなく、ゾーン曲のバンクを読み込むようにする！
 	return NNS_SndArcPlayerStartSeqEx( Snd_HandleGet(type), -1, Snd_GetBankNo(*zone_bgm), -1, no );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	���oBGM�Đ�(���C�o���A�T�|�[�g�A��Ă�)
+ * @brief	演出BGM再生(ライバル、サポート、つれてけ)
  *
- * @param	scene	�V�[��(���)�i���o�[
- * @param	no		BGM�i���o�[
+ * @param	scene	シーン(場面)ナンバー
+ * @param	no		BGMナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �A�����BGM�ȂǂŎg�p����I
+ * 連れ歩きBGMなどで使用する！
  *
- * �T�u��ʂ��Ăяo���ƃV�[�P���X�f�[�^�������Ă��܂��̂Œ��ӁI
+ * サブ画面を呼び出すとシーケンスデータが消えてしまうので注意！
  */
 //--------------------------------------------------------------
 BOOL Snd_PlayerFieldDemoBgmPlay( u8 scene, u16 no )
@@ -272,22 +272,22 @@ BOOL Snd_PlayerFieldDemoBgmPlay( u8 scene, u16 no )
 	int ret;
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "\n��Snd_PlayerFieldPauseBgmPlay��\n" );
+	OS_Printf( "\n＜Snd_PlayerFieldPauseBgmPlay＞\n" );
 #endif
 
-	//SEQ_TSURETEKE�́APLAYER_BGM�Ȃ̂ŁA
-	//Snd_BgmPlay�ŏ�������ƁA
-	//BGM�̈�̊J��������̂Ń_���I
+	//SEQ_TSURETEKEは、PLAYER_BGMなので、
+	//Snd_BgmPlayで処理すると、
+	//BGM領域の開放が入るのでダメ！
 
-	//�t�B�[���h�V�[���̂ݑΉ�
+	//フィールドシーンのみ対応
 	if( scene != SND_SCENE_FIELD ){
-		GF_ASSERT( (0) && "Snd_BgmPlayEx�́ASND_SCENE_FIELD�̂ݑΉ��ł��I" );
+		GF_ASSERT( (0) && "Snd_BgmPlayExは、SND_SCENE_FIELDのみ対応です！" );
 		return FALSE;
 	}
 
-	//PLAYER_BGM�̂ݑΉ�
+	//PLAYER_BGMのみ対応
 	if( Snd_GetPlayerNo(no) != PLAYER_BGM ){
-		GF_ASSERT( (0) && "Snd_BgmPlayEx�́APLAYER_BGM�̂ݑΉ��ł��I" );
+		GF_ASSERT( (0) && "Snd_BgmPlayExは、PLAYER_BGMのみ対応です！" );
 		return FALSE;
 	}
 
@@ -296,37 +296,37 @@ BOOL Snd_PlayerFieldDemoBgmPlay( u8 scene, u16 no )
 		ret = 0;
 	}else{
 
-	//�V�[�P���X�̂݃��[�h(��ɐςނ����Ńq�[�v�Z�[�u�͂��Ȃ�)
+	//シーケンスのみロード(上に積むだけでヒープセーブはしない)
 	ret = Snd_ArcLoadSeqEx( no, NNS_SND_ARC_LOAD_SEQ );
 
-	//SND_HANDLE_BGM�̃A�h���X���擾���čĐ�
+	//SND_HANDLE_BGMのアドレスを取得して再生
 	ret = NNS_SndArcPlayerStartSeq( Snd_HandleGet(SND_HANDLE_BGM), no );
 
 	}
 #else
-	//�V�[�P���X�̂݃��[�h(��ɐςނ����Ńq�[�v�Z�[�u�͂��Ȃ�)
+	//シーケンスのみロード(上に積むだけでヒープセーブはしない)
 	ret = Snd_ArcLoadSeqEx( no, NNS_SND_ARC_LOAD_SEQ );
 
-	//SND_HANDLE_BGM�̃A�h���X���擾���čĐ�
+	//SND_HANDLE_BGMのアドレスを取得して再生
 	ret = NNS_SndArcPlayerStartSeq( Snd_HandleGet(SND_HANDLE_BGM), no );
 #endif	//PM_DEBUG
 
-	//�Đ����s�`�F�b�N
+	//再生失敗チェック
 	if( ret == 0 ){
-		OS_Printf( "Snd_PlayerFieldPauseBgmPlay �Đ����s\tno = %d\n", no );
+		OS_Printf( "Snd_PlayerFieldPauseBgmPlay 再生失敗\tno = %d\n", no );
 	}
 
-	Snd_NowBgmNoSet( no );													//����BGM�i���o�[�X�V
-	Snd_StatusSet( SND_STATUS_PLAY );										//�X�e�[�^�X(�Đ�)
+	Snd_NowBgmNoSet( no );													//今のBGMナンバー更新
+	Snd_StatusSet( SND_STATUS_PLAY );										//ステータス(再生)
 	return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM��~
+ * @brief	BGM停止
  *
- * @param	no		BGM�i���o�[
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	no		BGMナンバー
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  */
@@ -339,125 +339,125 @@ void Snd_BgmStop( u16 no, int frame )
 	NNS_SndPlayerStopSeqBySeqNo( no, frame );
 
 	//----------------------------------------------------------
-	//�T�E���h�n���h���Ɍ��т����Ă���V�[�P���X��������܂��B
-	//�V�[�P���X�����т����Ă��Ȃ��ꍇ�́A�������܂���B
+	//サウンドハンドルに結びつけられているシーケンスを解放します。
+	//シーケンスが結びつけられていない場合は、何もしません。
 	//
-	//�V�[�P���X�i���o�[����A�v���C���[�i���o�[���擾�A
-	//�v���C���[�i���o�[����A�n���h���i���o�[���擾
+	//シーケンスナンバーから、プレイヤーナンバーを取得、
+	//プレイヤーナンバーから、ハンドルナンバーを取得
 	player_no = Snd_GetPlayerNo( no );
 	if( player_no != 0xff ){
 		type = Snd_GetHandleNoByPlayerNo( player_no );
 		NNS_SndHandleReleaseSeq( Snd_HandleGet(type) );
 	}
 	//
-	//BGM��~�݂̂ɏ��������Ă��܂��B(BGM�ȊO�̃n���h���ɂ��Ă͖��Ώ�)
+	//BGM停止のみに処理を入れています。(BGM以外のハンドルについては未対処)
 	//
 	//----------------------------------------------------------
 
-	//�ǉ������́��̊֐��ɒǉ�����I
+	//追加処理は↓の関数に追加する！
 	Snd_BgmStopSub();
 	return;
 }
 
-//BGM��~�T�u(�ʏ��Snd_BgmStop���g�p���ĉ�����)
+//BGM停止サブ(通常はSnd_BgmStopを使用して下さい)
 static void Snd_BgmStopSub(void)
 {
-	Snd_NowBgmNoSet( 0 );					//����BGM�i���o�[�N���A
-	Snd_NextBgmNoSet( 0 );					//����BGM�i���o�[�N���A
-	Snd_StatusSet( SND_STATUS_STOP );		//�X�e�[�^�X(��~)
+	Snd_NowBgmNoSet( 0 );					//今のBGMナンバークリア
+	Snd_NextBgmNoSet( 0 );					//次のBGMナンバークリア
+	Snd_StatusSet( SND_STATUS_STOP );		//ステータス(停止)
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	����BGM���t�F�[�h�C��
+ * @brief	今のBGMをフェードイン
  *
- * @param	vol		�t�F�[�h�C����̃{�����[��(0-127)
- * @param	frame	�t���[����
- * @param	flag	"BGM_FADEIN_START_VOL_NOW = ���݂̉��ʂ���FADEIN"
- * @param	(flag)	"BGM_FADEIN_START_VOL_MIN = ����0����FADEIN"
+ * @param	vol		フェードイン後のボリューム(0-127)
+ * @param	frame	フレーム数
+ * @param	flag	"BGM_FADEIN_START_VOL_NOW = 現在の音量からFADEIN"
+ * @param	(flag)	"BGM_FADEIN_START_VOL_MIN = 音量0からFADEIN"
  *
  * @retval	none
  *
- * �t�F�[�h�J�E���^�[���Z�b�g���Ă��܂�
+ * フェードカウンターをセットしています
  */
 //--------------------------------------------------------------
 void Snd_BgmFadeIn( int vol, int frame, int flag )
 {
 	u8 player_no;
 	int type;
-	u16 now_bgm_no = Snd_NowBgmNoGet();		//����BGM�i���o�[�擾
+	u16 now_bgm_no = Snd_NowBgmNoGet();		//今のBGMナンバー取得
 
-	//�V�[�P���X�i���o�[����A�v���C���[�i���o�[���擾
+	//シーケンスナンバーから、プレイヤーナンバーを取得
 	player_no = Snd_GetPlayerNo( now_bgm_no );
 	if( player_no == 0xff ){
-		return;		//���݂̃V�[�P���X�i���o�[��0�Ȃ̂ŉ������Ȃ��I
+		return;		//現在のシーケンスナンバーが0なので何もしない！
 	}
 
-	//�v���C���[�i���o�[����A�n���h���i���o�[���擾
+	//プレイヤーナンバーから、ハンドルナンバーを取得
 	type = Snd_GetHandleNoByPlayerNo( player_no );
 
-	//�t�F�[�h�C���̊J�n���ʂ�0�ɂ��鎞
+	//フェードインの開始音量を0にする時
 	if( flag == BGM_FADEIN_START_VOL_MIN ){
-		//�n���h���̃A�h���X���擾
+		//ハンドルのアドレスを取得
 		Snd_PlayerMoveVolume( type, 0, 0 );
 	}
 
 	Snd_PlayerMoveVolume( type, vol, frame );
-	Snd_FadeCountSet( frame );				//�t�F�[�h�J�E���^�[�Z�b�g
-	Snd_StatusSet( SND_STATUS_FADEIN );		//�X�e�[�^�X(�t�F�[�h�C��)
+	Snd_FadeCountSet( frame );				//フェードカウンターセット
+	Snd_StatusSet( SND_STATUS_FADEIN );		//ステータス(フェードイン)
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	����BGM���t�F�[�h�A�E�g
+ * @brief	今のBGMをフェードアウト
  *
- * @param	vol		�t�F�[�h�A�E�g��̃{�����[��(0-127)
- * @param	frame	�t���[����
+ * @param	vol		フェードアウト後のボリューム(0-127)
+ * @param	frame	フレーム数
  *
  * @retval	none
  *
- * �t�F�[�h�J�E���^�[���Z�b�g���Ă��܂�
+ * フェードカウンターをセットしています
  */
 //--------------------------------------------------------------
 void Snd_BgmFadeOut( int vol, int frame )
 {
 	u8 player_no;
 	int type;
-	u16 now_bgm_no = Snd_NowBgmNoGet();		//����BGM�i���o�[�擾
+	u16 now_bgm_no = Snd_NowBgmNoGet();		//今のBGMナンバー取得
 
-	//�V�[�P���X�i���o�[����A�v���C���[�i���o�[���擾
+	//シーケンスナンバーから、プレイヤーナンバーを取得
 	player_no = Snd_GetPlayerNo( now_bgm_no );
 	if( player_no == 0xff ){
-		return;		//���݂̃V�[�P���X�i���o�[��0�Ȃ̂ŉ������Ȃ��I
+		return;		//現在のシーケンスナンバーが0なので何もしない！
 	}
 
-	//���łɃt�F�[�h�A�E�g���̎��́A�]�[�����s�����藈���肵�Ă��A
-	//�t�F�[�h�A�E�g����BGM�͂��̂܂܂ɂ���I
+	//すでにフェードアウト中の時は、ゾーンを行ったり来たりしても、
+	//フェードアウト中のBGMはそのままにする！
 	
-	//�t�F�[�h���łȂ���
+	//フェード中でない時
 	if( Snd_FadeCheck() == 0 ){
 
-		//�v���C���[�i���o�[����A�n���h���i���o�[���擾
+		//プレイヤーナンバーから、ハンドルナンバーを取得
 		type = Snd_GetHandleNoByPlayerNo( player_no );
 
-		//�n���h���̃A�h���X���擾
+		//ハンドルのアドレスを取得
 		Snd_PlayerMoveVolume( type, vol, frame );
-		Snd_FadeCountSet( frame );			//�t�F�[�h�J�E���^�[�Z�b�g
+		Snd_FadeCountSet( frame );			//フェードカウンターセット
 	}
 
-	Snd_StatusSet( SND_STATUS_FADEOUT );	//�X�e�[�^�X(�t�F�[�h�A�E�g)
+	Snd_StatusSet( SND_STATUS_FADEOUT );	//ステータス(フェードアウト)
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�F�[�h�I���҂�
+ * @brief	フェード終了待ち
  *
  * @param	none
  *
- * @retval	"0=�I���A0�ȊO�̓t�F�[�h�J�E���^�[�̒l"
+ * @retval	"0=終了、0以外はフェードカウンターの値"
  */
 //--------------------------------------------------------------
 int Snd_FadeCheck()
@@ -468,18 +468,18 @@ int Snd_FadeCheck()
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�I���҂�
+ * @brief	BGM終了待ち
  *
- * @param	no		BGM�i���o�[
+ * @param	no		BGMナンバー
  *
- * @retval	"�Đ���=TRUE�A�Đ��I��=FALSE"
+ * @retval	"再生中=TRUE、再生終了=FALSE"
  */
 //--------------------------------------------------------------
 int Snd_BgmPlayCheck( u16 no )
 {
 	u8 player_no;;
 
-	//�V�[�P���X�i���o�[����A�v���C���[�i���o�[���擾
+	//シーケンスナンバーから、プレイヤーナンバーを取得
 	player_no = Snd_GetPlayerNo( no );
 
 	return Snd_PlayerCountPlayingSeq( player_no );
@@ -487,7 +487,7 @@ int Snd_BgmPlayCheck( u16 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ă̍Đ����̃V�[�P���X���~
+ * @brief	全ての再生中のシーケンスを停止
  *
  * @param	none
  *
@@ -499,26 +499,26 @@ void Snd_Stop(void)
 	u8* ch_normal_flag = Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_NORMAL_FLAG);
 	u8* ch_chorus_flag = Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_CHORUS_FLAG);
 
-	NNS_SndPlayerStopSeqAll(0);										//�S��
+	NNS_SndPlayerStopSeqAll(0);										//全て
 
-	//Snd_WaveOutStop �� Snd_WaveOutHandleGet���ŁA
-	//�m�ۂ��Ă��Ȃ��`�����l���ɃA�N�Z�X���悤�Ƃ���ƁA
-	//�A�T�[�g�Ŏ~�܂�̂ŁA�����Ń`�F�b�N���ČĂ΂Ȃ��悤�ɂ��Ă���
-	if( *ch_normal_flag == 1 ){										//�m�ۃt���O��ON��������
-		Snd_WaveOutStop( WAVEOUT_CH_NORMAL );						//�g�`��~
+	//Snd_WaveOutStop → Snd_WaveOutHandleGet内で、
+	//確保していないチャンネルにアクセスしようとすると、
+	//アサートで止まるので、ここでチェックして呼ばないようにしている
+	if( *ch_normal_flag == 1 ){										//確保フラグがONだったら
+		Snd_WaveOutStop( WAVEOUT_CH_NORMAL );						//波形停止
 	}
 
-	if( *ch_chorus_flag == 1 ){										//�m�ۃt���O��ON��������
-		Snd_WaveOutStop( WAVEOUT_CH_CHORUS );						//�g�`��~
+	if( *ch_chorus_flag == 1 ){										//確保フラグがONだったら
+		Snd_WaveOutStop( WAVEOUT_CH_CHORUS );						//波形停止
 	}
 
-	Snd_StatusSet( SND_STATUS_STOP );								//�X�e�[�^�X(��~)
+	Snd_StatusSet( SND_STATUS_STOP );								//ステータス(停止)
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���hBGM�ȊO�̑S�Ă̍Đ����̃V�[�P���X���~
+ * @brief	フィールドBGM以外の全ての再生中のシーケンスを停止
  *
  * @param	none
  *
@@ -531,7 +531,7 @@ void Snd_StopEx(void)
 	u8* ch_normal_flag = Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_NORMAL_FLAG);
 	u8* ch_chorus_flag = Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_CHORUS_FLAG);
 
-	NNS_SndPlayerStopSeq( Snd_HandleGet(SND_HANDLE_BGM), 0 );		//�t�B�[���hBGM�ȊO
+	NNS_SndPlayerStopSeq( Snd_HandleGet(SND_HANDLE_BGM), 0 );		//フィールドBGM以外
 	Snd_BgmStopSub();
 
 	for( i=0; i < SE_HANDLE_MAX ;i++ ){			//SE
@@ -540,19 +540,19 @@ void Snd_StopEx(void)
 
 	Snd_PMVoiceStop(0);							//PV
 
-	//Snd_WaveOutStop �� Snd_WaveOutHandleGet���ŁA
-	//�m�ۂ��Ă��Ȃ��`�����l���ɃA�N�Z�X���悤�Ƃ���ƁA
-	//�A�T�[�g�Ŏ~�܂�̂ŁA�����Ń`�F�b�N���ČĂ΂Ȃ��悤�ɂ��Ă���
-	if( *ch_normal_flag == 1 ){										//�m�ۃt���O��ON��������
-		Snd_WaveOutStop( WAVEOUT_CH_NORMAL );						//�g�`��~
+	//Snd_WaveOutStop → Snd_WaveOutHandleGet内で、
+	//確保していないチャンネルにアクセスしようとすると、
+	//アサートで止まるので、ここでチェックして呼ばないようにしている
+	if( *ch_normal_flag == 1 ){										//確保フラグがONだったら
+		Snd_WaveOutStop( WAVEOUT_CH_NORMAL );						//波形停止
 	}
 
-	if( *ch_chorus_flag == 1 ){										//�m�ۃt���O��ON��������
-		Snd_WaveOutStop( WAVEOUT_CH_CHORUS );						//�g�`��~
+	if( *ch_chorus_flag == 1 ){										//確保フラグがONだったら
+		Snd_WaveOutStop( WAVEOUT_CH_CHORUS );						//波形停止
 	}
 
-	//�t�B�[���hBGM�̓|�[�Y�A���A����̂ŁA��~�������Ă�ł͂����Ȃ��I
-	//�|�[�Y��Ԃ̂܂܂ɂ��Ă����I
+	//フィールドBGMはポーズ、復帰するので、停止処理を呼んではいけない！
+	//ポーズ状態のままにしておく！
 	
 	return;
 }
@@ -560,18 +560,18 @@ void Snd_StopEx(void)
 
 //==============================================================================================
 //
-//	SE�֘A
+//	SE関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	SE�Đ� + �p������
+ * @brief	SE再生 + パン操作
  *
- * @param	no		SE�i���o�[
- * @param	pan		-128 �` 127
+ * @param	no		SEナンバー
+ * @param	pan		-128 〜 127
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_SePlayPan( u16 no, int pan )
@@ -587,31 +587,31 @@ BOOL Snd_SePlayPan( u16 no, int pan )
 
 //--------------------------------------------------------------
 /**
- * @brief	SE�Đ�
+ * @brief	SE再生
  *
- * @param	no		SE�i���o�[
+ * @param	no		SEナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_SePlay( u16 no )
 {
 	int type,ret;
 
-	//OS_Printf( "\n***************SE �Đ�\tno = %d\n", no );
+	//OS_Printf( "\n***************SE 再生\tno = %d\n", no );
 
-	//�V�[�P���X�i���o�[����ASE�̃v���C���[�i���o�[���擾�A
-	//SE�̃v���C���[�i���o�[����ASE�̃n���h���i���o�[���擾
+	//シーケンスナンバーから、SEのプレイヤーナンバーを取得、
+	//SEのプレイヤーナンバーから、SEのハンドルナンバーを取得
 	type = Snd_GetHandleNoByPlayerNo( Snd_GetPlayerNo(no) );
 
-	//�V�[�P���X�Đ�
+	//シーケンス再生
 	ret = NNS_SndArcPlayerStartSeq( Snd_HandleGet(type), no );
-	Snd_VChatVolSet( no, type );										//�{�C�X�`���b�g���ʑ���
+	Snd_VChatVolSet( no, type );										//ボイスチャット音量操作
 
-	//�Đ����s�`�F�b�N
+	//再生失敗チェック
 	if( ret == 0 ){
 //#ifdef SOUND_OS_PRINT_ON
-		OS_Printf( "SE �Đ����s\tno = %d\n", no );
+		OS_Printf( "SE 再生失敗\tno = %d\n", no );
 //#endif
 	}
 
@@ -620,31 +620,31 @@ BOOL Snd_SePlay( u16 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	SE�Đ�(�w�肵���v���C���[�i���o�[�ōĐ�)
+ * @brief	SE再生(指定したプレイヤーナンバーで再生)
  *
- * @param	no			SE�i���o�[
- * @param	playerNo	�v���C���[�i���o�[
+ * @param	no			SEナンバー
+ * @param	playerNo	プレイヤーナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_SePlayEx( u16 no, int playerNo )
 {
 	int type,ret;
 
-	//OS_Printf( "\n***************SE �Đ�\tno = %d\n", no );
+	//OS_Printf( "\n***************SE 再生\tno = %d\n", no );
 
-	//�v���C���[�i���o�[����ASE�̃n���h���i���o�[���擾
+	//プレイヤーナンバーから、SEのハンドルナンバーを取得
 	type = Snd_GetHandleNoByPlayerNo( playerNo );
 
-	//�V�[�P���X�Đ�(Ex�w��)
+	//シーケンス再生(Ex指定)
 	ret = NNS_SndArcPlayerStartSeqEx( Snd_HandleGet(type), playerNo, -1, -1, no );
-	Snd_VChatVolSet( no, type );										//�{�C�X�`���b�g���ʑ���
+	Snd_VChatVolSet( no, type );										//ボイスチャット音量操作
 
-	//�Đ����s�`�F�b�N
+	//再生失敗チェック
 	if( ret == 0 ){
 //#ifdef SOUND_OS_PRINT_ON
-		OS_Printf( "SE �Đ����s\tno = %d\n", no );
+		OS_Printf( "SE 再生失敗\tno = %d\n", no );
 //#endif
 	}
 
@@ -653,10 +653,10 @@ BOOL Snd_SePlayEx( u16 no, int playerNo )
 
 //--------------------------------------------------------------
 /**
- * @brief	SE��~(�V�[�P���X�i���o�[�w���)
+ * @brief	SE停止(シーケンスナンバー指定版)
  *
- * @param	no		SE�ԍ�
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	no		SE番号
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  */
@@ -669,14 +669,14 @@ void Snd_SeStopBySeqNo( u16 no, int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	SE��~(�T�E���h�n���h���w���)
+ * @brief	SE停止(サウンドハンドル指定版)
  *
- * @param	type	�T�E���h�n���h���^�C�v
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	type	サウンドハンドルタイプ
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
  */
 //--------------------------------------------------------------
 void Snd_SeStop( int type, int frame )
@@ -687,13 +687,13 @@ void Snd_SeStop( int type, int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ă�SE��~
+ * @brief	全てのSE停止
  *
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
  */
 //--------------------------------------------------------------
 void Snd_SeStopAll( int frame )
@@ -709,36 +709,36 @@ void Snd_SeStopAll( int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	SE�I���҂�
+ * @brief	SE終了待ち
  *
- * @param	no		SE�i���o�[
+ * @param	no		SEナンバー
  *
- * @retval	"�Đ���=TRUE�A�Đ��I��=FALSE"
+ * @retval	"再生中=TRUE、再生終了=FALSE"
  *
- * �w�肵��SE���I�����Ă��邩�`�F�b�N�ł͂Ȃ��A
- * �w�肵��SE�̎g�p����v���C���[�ɁA
- * �Đ����̃V�[�P���X�����邩�̃`�F�b�N�ł��B
+ * 指定したSEが終了しているかチェックではなく、
+ * 指定したSEの使用するプレイヤーに、
+ * 再生中のシーケンスがあるかのチェックです。
  */
 //--------------------------------------------------------------
 int Snd_SePlayCheck( u16 no )
 {
 	return Snd_PlayerCountPlayingSeq( Snd_GetPlayerNo(no) );
 
-	//�ȉ��ۗ�
-	//(�v���C���[�i���o�[�ł͂Ȃ��A�V�[�P���X�i���o�[�ł��`�F�b�N�ł���)
-	//NNS_SndPlayerCountPlayingSeqBySeqNo�֐��́A
-	//�V�[�P���X�ԍ�seqNo���w�肵�āA�Đ����̃V�[�P���X�̐��𐔂��܂��B
-	//����́ANNS_SndPlayerSetSeqNo�֐��ŃZ�b�g�����V�[�P���X�ԍ����A
-	//seqNo�Ɠ����ł���V�[�P���X�̐��𐔂��܂��B 
+	//以下保留
+	//(プレイヤーナンバーではなく、シーケンスナンバーでもチェックできる)
+	//NNS_SndPlayerCountPlayingSeqBySeqNo関数は、
+	//シーケンス番号seqNoを指定して、再生中のシーケンスの数を数えます。
+	//これは、NNS_SndPlayerSetSeqNo関数でセットしたシーケンス番号が、
+	//seqNoと同じであるシーケンスの数を数えます。 
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ă�SE�I���҂�
+ * @brief	全てのSE終了待ち
  *
  * @param	none
  *
- * @retval	"�Đ���=TRUE�A�Đ��I��=FALSE"
+ * @retval	"再生中=TRUE、再生終了=FALSE"
  */
 //--------------------------------------------------------------
 int Snd_SePlayCheckAll()
@@ -756,28 +756,28 @@ int Snd_SePlayCheckAll()
 
 //--------------------------------------------------------------
 /**
- * @brief	SE��PAN(���)��ύX
+ * @brief	SEのPAN(定位)を変更
  *
- * @param	no		SE�i���o�[
- * @param	bitmask	�g���b�N�r�b�g�}�X�N
- * @param	pan		-128 �` 127
+ * @param	no		SEナンバー
+ * @param	bitmask	トラックビットマスク
+ * @param	pan		-128 〜 127
  *
  * @retval	none
  *
- * trackBitMask�ŁA�ݒ肷��g���b�N���w�肵�܂��B
- * ���ʃr�b�g���珇�ɁA�g���b�N0�A�g���b�N1�A�g���b�N2�A�A�A��\���A
- * �r�b�g�������Ă���g���b�N�S�Ăɑ΂��āA�p����ύX���܂��B
+ * trackBitMaskで、設定するトラックを指定します。
+ * 下位ビットから順に、トラック0、トラック1、トラック2、、、を表し、
+ * ビットが立っているトラック全てに対して、パンを変更します。
  *
- * �Ⴆ�΁A�g���b�N2�ƃg���b�N5�̃p����ύX�������ꍇ�́A 
- * (1 << 2) | (1 << 5) ���Ȃ킿�A0x0024 �Ƃ��܂��B 
+ * 例えば、トラック2とトラック5のパンを変更したい場合は、 
+ * (1 << 2) | (1 << 5) すなわち、0x0024 とします。 
  */
 //--------------------------------------------------------------
 void Snd_SePanSet( u16 no, u16 bitmask, int pan )
 {
 	int type;
 
-	//�V�[�P���X�i���o�[����ASE�̃v���C���[�i���o�[���擾�A
-	//SE�̃v���C���[�i���o�[����ASE�̃n���h���i���o�[���擾
+	//シーケンスナンバーから、SEのプレイヤーナンバーを取得、
+	//SEのプレイヤーナンバーから、SEのハンドルナンバーを取得
 	type = Snd_GetHandleNoByPlayerNo( Snd_GetPlayerNo(no) );
 
 	NNS_SndPlayerSetTrackPan( Snd_HandleGet(type), bitmask, pan );
@@ -786,9 +786,9 @@ void Snd_SePanSet( u16 no, u16 bitmask, int pan )
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ă�SE��PAN(���)��ύX
+ * @brief	全てのSEのPAN(定位)を変更
  *
- * @param	pan		-128 �` 127
+ * @param	pan		-128 〜 127
  *
  * @retval	none
  */
@@ -797,7 +797,7 @@ void Snd_SePanSetAll( int pan )
 {
 	int type, i;
 
-	//SE�̃v���C���[�i���o�[����ASE�̃n���h���i���o�[���擾
+	//SEのプレイヤーナンバーから、SEのハンドルナンバーを取得
 	type = Snd_GetHandleNoByPlayerNo( PLAYER_SE_1 );
 
 	for( i=0; i < SE_HANDLE_MAX ;i++ ){
@@ -810,29 +810,29 @@ void Snd_SePanSetAll( int pan )
 
 //==============================================================================================
 //
-//	�|�P���������֘A
+//	ポケモン鳴き声関連
 //
-//	�����Ή���
-//	�g�`�Đ�(�t�Đ�)���g�p���Ă���Z�̍Ō�ɁAFreeChannel������I
+//	＜未対応＞
+//	波形再生(逆再生)を使用している技の最後に、FreeChannelを入れる！
 //
 //==============================================================================================
  
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������Đ�(�����ōĐ��O�ɒ�~���Ă΂�܂�)
+ * @brief	ポケモン鳴き声再生(内部で再生前に停止が呼ばれます)
  *
- * @param	monsno		�|�P�����i���o�[(�g�`�i���o�[)
+ * @param	monsno		ポケモンナンバー(波形ナンバー)
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * ��O�Ƃ��āA�R�[���X���g�p���鎞�́A��~�͌Ă΂�܂���B
+ * 例外として、コーラスを使用する時は、停止は呼ばれません。
  *
- * �|�P�����i���o�[�ƁA�����V�[�P���X�f�[�^�̕��т��������m�F����I
- * (�S���}�Ӄi���o�[�ɑΉ����Ă���炵���B050722��V��������)
+ * ポケモンナンバーと、鳴き声シーケンスデータの並びが同じか確認する！
+ * (全国図鑑ナンバーに対応しているらしい。050722一之瀬さんより)
  *
- * <����>
- * �V�[�P���X�A�[�J�C�u���ƁA�v���C���[�q�[�v���g���Ȃ��I
- * �V�[�P���X���ƁA�v���C���[�q�[�v���g����I
+ * <メモ>
+ * シーケンスアーカイブだと、プレイヤーヒープが使えない！
+ * シーケンスだと、プレイヤーヒープが使える！
  */
 //--------------------------------------------------------------
 BOOL Snd_PMVoicePlay( u16 monsno, u8 form_no )
@@ -844,95 +844,95 @@ BOOL Snd_PMVoicePlay( u16 monsno, u8 form_no )
 	u8* pv_double_flag		= Snd_GetParamAdrs( SND_W_ID_PV_DOUBLE_FLAG );
 
 #ifdef SND_PV_070213
-	//����1�����ۑ����Ă��Ȃ��̂ŁA
-	//�Đ��������Ă΂ꂽ���͕K���N���A���Ă悢�I
-	//Snd_PMVoiceWorkClear();			//�����N���A
-	//2�C���m�ۂ���悤�ɂȂ����̂Œ�~�����͌Ă΂Ȃ�
+	//情報は1つしか保存していないので、
+	//再生処理が呼ばれた時は必ずクリアしてよい！
+	//Snd_PMVoiceWorkClear();			//情報をクリア
+	//2匹分確保するようになったので停止処理は呼ばない
 #endif
 
 	wave_no = monsno;
-	if( Snd_SkyFormCheck(wave_no,form_no) == TRUE ){		//�V�F�C�~�̃X�J�C�t�H�����`�F�b�N
+	if( Snd_SkyFormCheck(wave_no,form_no) == TRUE ){		//シェイミのスカイフォルムチェック
 		wave_no = SND_PM_VOICE_SKY_FORM;
 	}
 
-	//�s���Ȓl�`�F�b�N(�X�J�C�t�H�����͏���)
+	//不正な値チェック(スカイフォルムは除く)
 	if( wave_no != SND_PM_VOICE_SKY_FORM	){
 		if( (wave_no > MONSNO_MAX) || (wave_no == 0) ){
-			OS_Printf( "�|�P�����i���o�[���s���ł��I" );
+			OS_Printf( "ポケモンナンバーが不正です！" );
 			wave_no = MONSNO_HUSIGIDANE;
 		}
 	}
 
 #if 1
-	//�ʐM�̎��́A���̊֐��͎g�p���Ȃ��I
+	//通信の時は、この関数は使用しない！
 
-	//Snd_PerapVoicePlay�ő��l�̂؃��b�v�Đ����o���Ȃ��āA
-	//���̊֐��ɂ������́Adefault_flag�������Ă���̂ŁA
-	//�������Đ��ł����ɁA�ʏ�̍Đ��֐i��
+	//Snd_PerapVoicePlayで他人のぺラップ再生が出来なくて、
+	//この関数にきた時は、default_flagが立っているので、
+	//ここも再生できずに、通常の再生へ進む
 	
-	//�؃��b�v�i���o�[���`�F�b�N
+	//ぺラップナンバーかチェック
 	if( wave_no == MONSNO_PERAPPU ){
 		
-		//�����̂؃��b�v�̘^�������f�[�^���Đ�
-		if( Snd_PerapVoicePlaySub(*my_perap, PM_MALE, PV_VOL_MAX, 0) == TRUE ){	//���ʑΉ�����I
-			//�Đ��������̂Ńt���O�𗎂Ƃ�
-			Snd_PerapVoiceDefaultFlagSet(FALSE);//�؃��b�v�̃f�t�H���g�̖������Đ�����t���OOFF
+		//自分のぺラップの録音したデータを再生
+		if( Snd_PerapVoicePlaySub(*my_perap, PM_MALE, PV_VOL_MAX, 0) == TRUE ){	//性別対応する！
+			//再生をしたのでフラグを落とす
+			Snd_PerapVoiceDefaultFlagSet(FALSE);//ぺラップのデフォルトの鳴き声を再生するフラグOFF
 			return TRUE;
 		}
 	}
 #endif
 
-	//�R�[���X�g�p�t���O���`�F�b�N
+	//コーラス使用フラグをチェック
 	if( *chorus_flag == 0 ){
 
 #ifdef SND_PV_070213
-		//�|�P�����̖�����2�Đ��o����t���O�������Ă��Ȃ�������
+		//ポケモンの鳴き声を2つ再生出来るフラグが立っていなかったら
 		if( *pv_double_flag == 0 ){
 
-			//�V�[�P���X��2�Đ�����Ȃ��悤�ɒ�~�������Ă�
+			//シーケンスが2つ再生されないように停止処理を呼ぶ
 			Snd_PMVoiceStop(0);
 
 		}
 #else
-		//�V�[�P���X��2�Đ�����Ȃ��悤�ɒ�~�������Ă�
+		//シーケンスが2つ再生されないように停止処理を呼ぶ
 		Snd_PMVoiceStop(0);
 #endif
 
 #if 0
 		ret = NNS_SndArcPlayerStartSeq( Snd_HandleGet(SND_HANDLE_PMVOICE), wave_no );
 #else
-		//�e�ʍ팸
+		//容量削減
 		//
-		//sound_data.sarc��seq�f�[�^���L�q���Ȃ��Ă��o���N�i���o�[���擾�o����B
-		//(���ʃe�[�u���͕ʂɎ����Ȃ��Ƃ����Ȃ��Ȃ邪5000byte���炢�팸�o����)
+		//sound_data.sarcにseqデータを記述しなくてもバンクナンバーを取得出来る。
+		//(音量テーブルは別に持たないといけなくなるが5000byteぐらい削減出来る)
 		//
-		//�����A�S���}�Ӄi���o�[���p�ɂɕς�邱�Ƃ�z�肷��ƁA
-		//�F�X�ȏ��Ń|�P�����i���o�[�̏��Ԃ��֘A����̂͑Ή����Y��̂��ƂȂ̂ŁA
-		//sound_data.sarc��seq�f�[�^�������`�Ői�߂�I
+		//だが、全国図鑑ナンバーが頻繁に変わることを想定すると、
+		//色々な所でポケモンナンバーの順番が関連するのは対応し忘れのもとなので、
+		//sound_data.sarcにseqデータも書く形で進める！
 		//
-		//���ʂ��V�[�P���X�f�[�^�Ŏ��������Ȃ������B�B�B
-		//����O���特�ʂ�������čĐ��Ȃǂ̌`�Ȃ̂ŁA
-		//��{�̉��ʐݒ���������ɂ́A���̒l�ɑ΂��Ăǂ����邩�����߂Ȃ��Ƃ����Ȃ��B
-		//�O�́A�X�̃|�P�����̉��ʐݒ肪����Ǝv���Ă��Ȃ��`�ɂȂ��Ă���B�B�B
+		//音量をシーケンスデータで持ちたくないかも。。。
+		//現状外から音量をもらって再生などの形なので、
+		//基本の音量設定をいかすには、その値に対してどうするかを決めないといけない。
+		//外は、個々のポケモンの音量設定があると思っていない形になっている。。。
 		ret = NNS_SndArcPlayerStartSeqEx( Snd_HandleGet(SND_HANDLE_PMVOICE), -1, wave_no,-1,SEQ_PV);
 #endif
-		Snd_VChatVolSet( wave_no, SND_HANDLE_PMVOICE );					//�{�C�X�`���b�g���ʑ���
+		Snd_VChatVolSet( wave_no, SND_HANDLE_PMVOICE );					//ボイスチャット音量操作
 	}else{
-		//�V�[�P���X��2�Đ������
+		//シーケンスが2つ再生される
 #if 0
 		ret = NNS_SndArcPlayerStartSeq( Snd_HandleGet(SND_HANDLE_CHORUS), wave_no );
 #else
 		ret = NNS_SndArcPlayerStartSeqEx( Snd_HandleGet(SND_HANDLE_CHORUS), -1, wave_no,-1,SEQ_PV);
 #endif
-		Snd_VChatVolSet( wave_no, SND_HANDLE_CHORUS );					//�{�C�X�`���b�g���ʑ���
+		Snd_VChatVolSet( wave_no, SND_HANDLE_CHORUS );					//ボイスチャット音量操作
 	}
 
-	//�Đ��������̂Ńt���O�𗎂Ƃ�
-	Snd_PerapVoiceDefaultFlagSet(FALSE);	//�؃��b�v�̃f�t�H���g�̖������Đ�����t���OOFF
+	//再生をしたのでフラグを落とす
+	Snd_PerapVoiceDefaultFlagSet(FALSE);	//ぺラップのデフォルトの鳴き声を再生するフラグOFF
 
-	//�Đ����s�`�F�b�N
+	//再生失敗チェック
 	if( ret == 0 ){
-		OS_Printf( "PMVOICE �Đ����s\tno = %d\n", wave_no );
+		OS_Printf( "PMVOICE 再生失敗\tno = %d\n", wave_no );
 	}
 
 	return ret;
@@ -941,35 +941,35 @@ BOOL Snd_PMVoicePlay( u16 monsno, u8 form_no )
 #ifdef SND_PV_070213
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������Đ�(�E�F�C�g�w�肠��)
+ * @brief	ポケモン鳴き声再生(ウェイト指定あり)
  *
- * @param	monsno	�|�P�����i���o�[
- * @param	wait	�E�F�C�g
+ * @param	monsno	ポケモンナンバー
+ * @param	wait	ウェイト
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_PMVoiceWaitPlay( u16 monsno, u8 wait, u8 form_no )
 {
 	Snd_PMVoiceWaitPlayEx(PV_NORMAL, monsno, WAZA_SE_PAN_N, PV_VOL_MAX, HEAPID_WORLD, wait,form_no);
-	return TRUE;	//�Ԃ�l��TRUE�Œ�ɂ��Ă���̂Œ��ӁI
+	return TRUE;	//返り値をTRUE固定にしているので注意！
 }
 #endif
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P����������~(�T�E���h�n���h���w���)
+ * @brief	ポケモン鳴き声停止(サウンドハンドル指定版)
  *
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
  *
- * �R�[���X(������p)�T�E���h�n���h������~�����Ă��܂��B
+ * コーラス(鳴き声専用)サウンドハンドルも停止させています。
  *
- * �t�Đ��g�p�t���O�������Ă�����A�g�`��~�������ĂԂ悤�ɂ��Ă���
- * �|�P�����̖������~���鏈���͂��̊֐����Ăׂ΂悢�B
+ * 逆再生使用フラグが立っていたら、波形停止処理も呼ぶようにしている
+ * ポケモンの鳴き声を停止する処理はこの関数を呼べばよい。
  */
 //--------------------------------------------------------------
 void Snd_PMVoiceStop( int frame )
@@ -978,26 +978,26 @@ void Snd_PMVoiceStop( int frame )
 	u8* ch_chorus_flag = Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_CHORUS_FLAG);
 	u8* reverse_flag   = Snd_GetParamAdrs(SND_W_ID_REVERSE_FLAG);
 
-	NNS_SndPlayerStopSeq( Snd_HandleGet(SND_HANDLE_PMVOICE), frame );	//����
-	NNS_SndPlayerStopSeq( Snd_HandleGet(SND_HANDLE_CHORUS), frame );	//�R�[���X
+	NNS_SndPlayerStopSeq( Snd_HandleGet(SND_HANDLE_PMVOICE), frame );	//鳴き声
+	NNS_SndPlayerStopSeq( Snd_HandleGet(SND_HANDLE_CHORUS), frame );	//コーラス
 
-	//Snd_WaveOutStopReverse�̒��ł��`�F�b�N���Ă���̂ō폜(06.03.09)
-	//if( *reverse_flag == 1 ){								//�t�Đ��g�p�t���O�������Ă�����
+	//Snd_WaveOutStopReverseの中でもチェックしているので削除(06.03.09)
+	//if( *reverse_flag == 1 ){								//逆再生使用フラグが立っていたら
 
-		if( *ch_normal_flag == 1 ){										//CH�m�ۂ��Ă�����
-			Snd_WaveOutStopReverse( WAVEOUT_CH_NORMAL );				//buf�J��
-			Snd_WaveOutFreeChannel( WAVEOUT_CH_NORMAL );				//ch �J��(06.07.17)
+		if( *ch_normal_flag == 1 ){										//CH確保していたら
+			Snd_WaveOutStopReverse( WAVEOUT_CH_NORMAL );				//buf開放
+			Snd_WaveOutFreeChannel( WAVEOUT_CH_NORMAL );				//ch 開放(06.07.17)
 		}
-		if( *ch_chorus_flag == 1 ){										//CH�m�ۂ��Ă�����
-			Snd_WaveOutStopReverse( WAVEOUT_CH_CHORUS );				//buf�J��
-			Snd_WaveOutFreeChannel( WAVEOUT_CH_CHORUS );				//ch �J��(06.07.17)
+		if( *ch_chorus_flag == 1 ){										//CH確保していたら
+			Snd_WaveOutStopReverse( WAVEOUT_CH_CHORUS );				//buf開放
+			Snd_WaveOutFreeChannel( WAVEOUT_CH_CHORUS );				//ch 開放(06.07.17)
 		}
 	//}
 
-	Snd_PerapVoiceStop();									//�y���b�v�Đ����t���O�̃N���A
+	Snd_PerapVoiceStop();									//ペラップ再生中フラグのクリア
 
 #ifdef SND_PV_070213
-	Snd_PMVoiceWorkClear();									//�����N���A
+	Snd_PMVoiceWorkClear();									//情報をクリア
 #endif
 
 	return;
@@ -1005,11 +1005,11 @@ void Snd_PMVoiceStop( int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������I���҂�
+ * @brief	ポケモン鳴き声終了待ち
  *
  * @param	none
  *
- * @retval	"�Đ���=1�ȏ�A�Đ��I��=0"
+ * @retval	"再生中=1以上、再生終了=0"
  */
 //--------------------------------------------------------------
 int Snd_PMVoicePlayCheck(void)
@@ -1019,25 +1019,25 @@ int Snd_PMVoicePlayCheck(void)
 	u8* reverse_flag   = Snd_GetParamAdrs(SND_W_ID_REVERSE_FLAG);
 	u8* pv_wait		   = Snd_GetParamAdrs(SND_W_ID_PV_WAIT);
 
-	//�t�Đ����g�p���Ă��鎞�́A�g�`�Đ��������`�F�b�N����悤�ɂ���I
-	//if( *reverse_flag == 1 ){									//�t�Đ��g�p�t���O�������Ă�����
-		if( *ch_normal_flag == 1 ){								//CH�m�ۂ��Ă�����
+	//逆再生を使用している時は、波形再生中かをチェックするようにする！
+	//if( *reverse_flag == 1 ){									//逆再生使用フラグが立っていたら
+		if( *ch_normal_flag == 1 ){								//CH確保していたら
 			return Snd_WaveOutIsPlaying( WAVEOUT_CH_NORMAL );
 		}
-		if( *ch_chorus_flag == 1 ){								//CH�m�ۂ��Ă�����
+		if( *ch_chorus_flag == 1 ){								//CH確保していたら
 			return Snd_WaveOutIsPlaying( WAVEOUT_CH_CHORUS );
 		}
 	//}
 
 #ifdef SND_PV_070213
 
-	/*	//������
+	/*	//調整中
 
-	//�E�F�C�g�Đ��������Ă�ŁA���������I���҂������Ă���ƁA
-	//�܂��Đ����Ă��Ȃ��̂ŁA���̊֐���"�Đ��I��"����ɂȂ��Ă��܂��̂őΏ��I
+	//ウェイト再生処理を呼んで、すぐ鳴き声終了待ちをしていると、
+	//まだ再生していないので、この関数は"再生終了"判定になってしまうので対処！
 
 	if( *pv_wait != 0 ){
-		return 1;			//�������́A���������Đ��\��(�Đ��I���ł͂Ȃ��I)
+		return 1;			//正しくは、もうすぐ再生予定(再生終了ではない！)
 	}
 	*/
 
@@ -1050,46 +1050,46 @@ int Snd_PMVoicePlayCheck(void)
 
 //==============================================================================================
 //
-//	�|�P���������p�^�[���֘A
+//	ポケモン鳴き声パターン関連
 //
-//	<���Ή�>
-//	�Z�̏I���̃^�C�~���O�ŁA�g�`�Đ��p�Ɋm�ۂ����`�����l���̊J���������I
+//	<未対応>
+//	技の終了のタイミングで、波形再生用に確保したチャンネルの開放をいれる！
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������Đ�(�p�^�[���w���)
+ * @brief	ポケモン鳴き声再生(パターン指定版)
  *
- * @param	monsno	�|�P�����i���o�[
- * @param	pan		-128 �` 127
- * @param	vol		�{�����[��(0-127)
- * @param	ptn		�p�^�[��(snd_tool.h�Q��)
- * @param	heap_id	�q�[�vID
+ * @param	monsno	ポケモンナンバー
+ * @param	pan		-128 〜 127
+ * @param	vol		ボリューム(0-127)
+ * @param	ptn		パターン(snd_tool.h参照)
+ * @param	heap_id	ヒープID
  *
- * @retval	"����=TRUE�A���s=FALSE"(����́A�K�������ɂȂ��Ă���B�B�B)
+ * @retval	"成功=TRUE、失敗=FALSE"(現状は、必ず成功になっている。。。)
  *
- * <����>
- * PITCH	ABG=256,DS=64������
- * CHORUS	�s�b�`�̍�(-64�`64)
+ * <メモ>
+ * PITCH	ABG=256,DS=64が半音
+ * CHORUS	ピッチの差(-64〜64)
  *
- * �������g�p����Z�́A�u�Ȃ������A�ق���A�Ƃ��ڂ��A�n�C�p�[�{�C�X�v���炢�B
+ * 鳴き声を使用する技は、「なきごえ、ほえる、とおぼえ、ハイパーボイス」ぐらい。
  *
- * PLAYER_PV�́A�V�[�P���X�����ő吔��2�ɐݒ肵�Ă���B
- * Snd_PMVoicePlay�֐����ŁA�Đ������O�ɒ�~�������Ă�ŁA
- * 2�̃V�[�P���X���Đ�����Ȃ��悤�ɂ��Ă���B
- * �R�[���X���g�p���鎞�́Awk->chorus_flag�����̂ŁA
- * Snd_PMVoicePlay�֐����ŁA�t���O���݂āA��~�������Ă΂Ȃ��悤�ɂ��Ă���
+ * PLAYER_PVは、シーケンス同時最大数を2に設定している。
+ * Snd_PMVoicePlay関数内で、再生処理前に停止処理を呼んで、
+ * 2つのシーケンスが再生されないようにしている。
+ * コーラスを使用する時は、wk->chorus_flagが立つので、
+ * Snd_PMVoicePlay関数内で、フラグをみて、停止処理を呼ばないようにしている
  *
- * �g�p���Ă��Ȃ������ɂ́A"PV_PTN_PARAM_NONE"��n���Ă����ĉ�����
+ * 使用していない引数には、"PV_PTN_PARAM_NONE"を渡しておいて下さい
  */
 //--------------------------------------------------------------
 BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 form_no )
 {
 	int wave_pan,chorus_vol;
 	u16 wave_no;
-	u16	pitch;						//����(64)
-	//u8	release;				//�L�[�I�t��̃����[�X�w��p
+	u16	pitch;						//半音(64)
+	//u8	release;				//キーオフ後のリリース指定用
 	int ret1,ret2,ret3,ret4;
 	u8* ch_normal_flag		= Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_NORMAL_FLAG);
 	u8* ch_chorus_flag		= Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_CHORUS_FLAG);
@@ -1103,96 +1103,96 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 	ret4 = 0;
 
 	wave_no = monsno;
-	if( Snd_SkyFormCheck(wave_no,form_no) == TRUE ){			//�V�F�C�~�̃X�J�C�t�H�����`�F�b�N
+	if( Snd_SkyFormCheck(wave_no,form_no) == TRUE ){			//シェイミのスカイフォルムチェック
 		wave_no = SND_PM_VOICE_SKY_FORM;
 	}
 	
-	//�s���Ȓl�`�F�b�N
+	//不正な値チェック
 	if( wave_no != SND_PM_VOICE_SKY_FORM	){
 		if( (wave_no > MONSNO_MAX) || (wave_no == 0) ){
-			OS_Printf( "�|�P�����i���o�[���s���ł��I" );
+			OS_Printf( "ポケモンナンバーが不正です！" );
 			wave_no = MONSNO_HUSIGIDANE;
 		}
 	}
 
 #ifdef SND_PV_070213
-	//����1�����ۑ����Ă��Ȃ��̂ŁA
-	//�Đ��������Ă΂ꂽ���͕K���N���A���Ă悢�I
-	//Snd_PMVoiceWorkClear();			//�����N���A
+	//情報は1つしか保存していないので、
+	//再生処理が呼ばれた時は必ずクリアしてよい！
+	//Snd_PMVoiceWorkClear();			//情報をクリア
 	//
-	//2�C���m�ۂ���悤�ɂȂ����̂Œ�~�����͌Ă΂Ȃ�
+	//2匹分確保するようになったので停止処理は呼ばない
 #endif
 
-	//�V�[�P���X�Đ��̃p����(-127 - 0 - 127)�ƂȂ��Ă���
-	//�g�`�Đ��̃p����(0 - 64 - 127)�ƂȂ��Ă���
+	//シーケンス再生のパンは(-127 - 0 - 127)となっている
+	//波形再生のパンは(0 - 64 - 127)となっている
 	
-	//�g�`�Đ��p�����擾
+	//波形再生パンを取得
 	if( pan < 0 ){
-		wave_pan = 64 + (pan / 2);		//0 - 64  �ɂ���
+		wave_pan = 64 + (pan / 2);		//0 - 64  にする
 	}else{
-		wave_pan = 64 + (pan / 2);		//64 - 127 �ɂ���
+		wave_pan = 64 + (pan / 2);		//64 - 127 にする
 	}
 
-	//�R�[���X�̉��ʐݒ�
+	//コーラスの音量設定
 	chorus_vol = vol - 30;
 	if( chorus_vol <= 0 ){
 		chorus_vol = 1;
 	}
 
-	//�����l���
+	//初期値代入
 	//release	= DEFAULT_RELEASE;
 	pitch = 0;
 
-	*chorus_flag = 0;			//�R�[���X�g�p�t���OOFF
+	*chorus_flag = 0;			//コーラス使用フラグOFF
 
-	//�`�����l�����m�ۂ��Ă�����J��
+	//チャンネルを確保していたら開放
 	if( *ch_normal_flag == 1 ){
-		Snd_WaveOutStopReverse( WAVEOUT_CH_NORMAL );		//buf�J��
-		Snd_WaveOutFreeChannel( WAVEOUT_CH_NORMAL );		//ch �J��
+		Snd_WaveOutStopReverse( WAVEOUT_CH_NORMAL );		//buf開放
+		Snd_WaveOutFreeChannel( WAVEOUT_CH_NORMAL );		//ch 開放
 	}
 	if( *ch_chorus_flag == 1 ){
-		Snd_WaveOutStopReverse( WAVEOUT_CH_CHORUS );		//buf�J��
-		Snd_WaveOutFreeChannel( WAVEOUT_CH_CHORUS );		//ch �J��
+		Snd_WaveOutStopReverse( WAVEOUT_CH_CHORUS );		//buf開放
+		Snd_WaveOutFreeChannel( WAVEOUT_CH_CHORUS );		//ch 開放
 	}
 
 #if 1
-	//�؃��b�v��������
+	//ぺラップだったら
 	if( wave_no == MONSNO_PERAPPU ){
 
 		switch( ptn ){
 
-		//�����̂؃��b�v�̘^�������f�[�^���Đ�
-		case PV_NORMAL:		// = 0 �ʏ�Đ�
-		case PV_HALF:		// = 1 �Đ����ԒZ�k�i�Q�����Q�o�g���Ń|�P�����o�ꎞ�j
-		case PV_FLDEVENT:	// = 2 �{�����|�P�����i�t�B�[���h�C�x���g�j
-		case PV_POKEDOWN:	// = 5 �|�P���������ꂽ��
-		case PV_PINCHNORMAL:// =11 �ʏ�Đ�(���C�Ȃ�)
-		case PV_PINCHHALF:	// =12 �Đ����ԒZ�k�i�Q�����Q�o�g���Ń|�P�����o�ꎞ�j(���C�Ȃ�)
+		//自分のぺラップの録音したデータを再生
+		case PV_NORMAL:		// = 0 通常再生
+		case PV_HALF:		// = 1 再生時間短縮（２ｖｓ２バトルでポケモン登場時）
+		case PV_FLDEVENT:	// = 2 怒ったポケモン（フィールドイベント）
+		case PV_POKEDOWN:	// = 5 ポケモンがやられた時
+		case PV_PINCHNORMAL:// =11 通常再生(元気なし)
+		case PV_PINCHHALF:	// =12 再生時間短縮（２ｖｓ２バトルでポケモン登場時）(元気なし)
 
 			Snd_PMVoicePlay( MONSNO_PERAPPU, form_no );
 
-			//�؃��b�v�̘^�������f�[�^���Đ����Ă��邩�t���O���`�F�b�N
+			//ぺラップの録音したデータを再生しているかフラグをチェック
 			if( *perap_play_flag == 0 ){
 				Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-				Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );				//���ʑ���
+				Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );				//音量操作
 			}else{
 
-				if( *ch_normal_flag == 1 ){									//CH�m�ۂ��Ă�����
+				if( *ch_normal_flag == 1 ){									//CH確保していたら
 					Snd_WaveOutSetPan( WAVEOUT_CH_NORMAL, wave_pan );
 					Snd_WaveOutSetVolume( WAVEOUT_CH_NORMAL, vol );
 				}else{
-					//�_�u����2�C�ڂ��f�t�H���g�̎��́A
-					//�`�����l���J���������Ă΂�Ă���̂ŁA
-					//������̏����ɂȂ�
+					//ダブルで2匹目がデフォルトの時は、
+					//チャンネル開放処理が呼ばれているので、
+					//こちらの処理になる
 					Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-					Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );			//���ʑ���
+					Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );			//音量操作
 				}
 			}
-			return TRUE;		//���ӁI
+			return TRUE;		//注意！
 
-		//��L�ȊO�́A�f�t�H���g�̖������Đ�����I
+		//上記以外は、デフォルトの鳴き声を再生する！
 		default:
-			Snd_PerapVoiceDefaultFlagSet(TRUE);	//�؃��b�v�̃f�t�H���g�̖������Đ�����t���OON
+			Snd_PerapVoiceDefaultFlagSet(TRUE);	//ぺラップのデフォルトの鳴き声を再生するフラグON
 			break;
 		}
 	}
@@ -1200,7 +1200,7 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 
 	switch( ptn ){
 
-	// = 0 �ʏ�Đ�
+	// = 0 通常再生
 	case PV_NORMAL:
 		//----------------
 		//play
@@ -1208,10 +1208,10 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
 		break;
 
-	// = 1 �Đ����ԒZ�k�i�Q�����Q�o�g���Ń|�P�����o�ꎞ�j
+	// = 1 再生時間短縮（２ｖｓ２バトルでポケモン登場時）
 	case PV_HALF:
 		//----------------
 		//play
@@ -1219,11 +1219,11 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
 		Snd_PMVoiceLengthSet(20,heap_id);										//release = 225;
 		break;
 
-	// = 2 �{�����|�P�����i�t�B�[���h�C�x���g�j
+	// = 2 怒ったポケモン（フィールドイベント）
 	case PV_FLDEVENT:		
 		//----------------
 		//play
@@ -1235,15 +1235,15 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
 		//release		= 225;
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
-		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, 64 );				//�s�b�`
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
+		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, 64 );				//ピッチ
 
-		ret3 = Snd_ChorusPlay( wave_no, 20, form_no );							//�R�[���X(���ӁI)
+		ret3 = Snd_ChorusPlay( wave_no, 20, form_no );							//コーラス(注意！)
 		Snd_PlayerSetTrackPan( SND_HANDLE_CHORUS, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_CHORUS, chorus_vol );			//���ʑ���
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_CHORUS, chorus_vol );			//音量操作
 		break;
 
-	// = 3 �Z���ʉ��E�Ƃ��ڂ��p
+	// = 3 技効果音・とおぼえ用
 	case PV_W_TOOBOE:	
 		//----------------
 		//play
@@ -1254,16 +1254,16 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
 		Snd_PMVoiceLengthSet(30,heap_id);//(50);								//release = 200;
-		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, 192 );				//�s�b�`
+		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, 192 );				//ピッチ
 
-		ret3 = Snd_ChorusPlay( wave_no, 16, form_no );							//�R�[���X(���ӁI)
+		ret3 = Snd_ChorusPlay( wave_no, 16, form_no );							//コーラス(注意！)
 		Snd_PlayerSetTrackPan( SND_HANDLE_CHORUS, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_CHORUS, chorus_vol );			//���ʑ���
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_CHORUS, chorus_vol );			//音量操作
 		break;
 
-	// = 4 �Z���ʉ��E�n�C�p�[�{�C�X�p�P
+	// = 4 技効果音・ハイパーボイス用１
 	case PV_W_HYPER1:		
 		//----------------
 		//reverse
@@ -1272,16 +1272,16 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		ret2 = Snd_WaveOutAllocChannel( WAVEOUT_CH_NORMAL );
 		ret2 = Snd_WaveOutStartReverse( wave_no, vol, wave_pan, WAVEOUT_CH_NORMAL, heap_id );
-		Snd_WaveOutSetPan( WAVEOUT_CH_NORMAL, wave_pan );						//�p��
+		Snd_WaveOutSetPan( WAVEOUT_CH_NORMAL, wave_pan );						//パン
 		Snd_PMVoiceLengthSet(15,heap_id);										//release = 100;
 		Snd_WaveOutSetSpeed( WAVEOUT_CH_NORMAL, W_HYPER_VOICE_PITCH );
 
-		//�R�[���X(���ӁI)
+		//コーラス(注意！)
 		ret4 = Snd_ChorusPlayReverse(wave_no, -64, chorus_vol, wave_pan, heap_id);
 		Snd_WaveOutSetSpeed( WAVEOUT_CH_CHORUS, W_HYPER_VOICE_PITCH );
 		break;
 
-	// = 5 �|�P���������ꂽ��
+	// = 5 ポケモンがやられた時
 	case PV_POKEDOWN:			
 		//----------------
 		//play
@@ -1289,11 +1289,11 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
-		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, -224 );			//�s�b�`
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
+		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, -224 );			//ピッチ
 		break;
 
-	// = 6 �Z���ʉ��E�n�C�p�[�{�C�X�p�Q
+	// = 6 技効果音・ハイパーボイス用２
 	case PV_W_HYPER2:			
 		//----------------
 		//play
@@ -1305,15 +1305,15 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
 		//release		= 220;
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
-		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, 44 );				//�s�b�`
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
+		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, 44 );				//ピッチ
 
-		ret3 = Snd_ChorusPlay( wave_no, -64, form_no );	//�R�[���X(���ӁI)
+		ret3 = Snd_ChorusPlay( wave_no, -64, form_no );	//コーラス(注意！)
 		Snd_PlayerSetTrackPan( SND_HANDLE_CHORUS, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_CHORUS, chorus_vol );			//���ʑ���
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_CHORUS, chorus_vol );			//音量操作
 		break;
 
-	// = 7 �Z���ʉ��E�ق���P
+	// = 7 技効果音・ほえる１
 	case PV_W_HOERU1:		
 		//----------------
 		//play
@@ -1321,12 +1321,12 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
 		Snd_PMVoiceLengthSet(11,heap_id);										//release = 100;
-		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, -128 );			//�s�b�`
+		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, -128 );			//ピッチ
 		break;
 
-	// = 8 �Z���ʉ��E�ق���Q
+	// = 8 技効果音・ほえる２
 	case PV_W_HOERU2:			
 		//----------------
 		//play
@@ -1334,24 +1334,24 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
 		Snd_PMVoiceLengthSet(60,heap_id);										//release = 225;
-		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, 60 );				//�s�b�`
+		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, 60 );				//ピッチ
 		break;
 
-	// = 9 �Z���ʉ��E�Ȃ������P
+	// = 9 技効果音・なきごえ１
 	case PV_W_NAKIGOE1:		
 		//----------------
 		//reverse
 		//----------------
 		ret2 = Snd_WaveOutAllocChannel( WAVEOUT_CH_NORMAL );
 		ret2 = Snd_WaveOutStartReverse( wave_no, vol, wave_pan, WAVEOUT_CH_NORMAL, heap_id );
-		Snd_WaveOutSetPan( WAVEOUT_CH_NORMAL, wave_pan );						//�p��
+		Snd_WaveOutSetPan( WAVEOUT_CH_NORMAL, wave_pan );						//パン
 		Snd_PMVoiceLengthSet(13,heap_id);										//release = 125;
 		Snd_WaveOutSetSpeed( WAVEOUT_CH_NORMAL, W_NAKIGOE_PITCH );
 		break;
 
-	// =10 �Z���ʉ��E�Ȃ������Q
+	// =10 技効果音・なきごえ２
 	case PV_W_NAKIGOE2:			
 		//----------------
 		//play
@@ -1359,12 +1359,12 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
 		Snd_PMVoiceLengthSet(100,heap_id);										//release = 225
-		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, -44 );				//�s�b�`
+		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, -44 );				//ピッチ
 		break;
 
-	// =11 �ʏ�Đ�(���C�Ȃ�)
+	// =11 通常再生(元気なし)
 	case PV_PINCHNORMAL:		
 		//----------------
 		//play
@@ -1372,11 +1372,11 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
-		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, -96 );				//�s�b�`
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
+		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, -96 );				//ピッチ
 		break;
 
-	// =12 �Đ����ԒZ�k�i�Q�����Q�o�g���Ń|�P�����o�ꎞ�j(���C�Ȃ�)
+	// =12 再生時間短縮（２ｖｓ２バトルでポケモン登場時）(元気なし)
 	case PV_PINCHHALF:		
 		//----------------
 		//play
@@ -1384,12 +1384,12 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		ret1 = Snd_PMVoicePlay( wave_no, form_no );
 		Snd_PlayerSetTrackPan( SND_HANDLE_PMVOICE, 0xffff, pan );
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//���ʑ���
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, vol );					//音量操作
 		Snd_PMVoiceLengthSet(20,heap_id);										//release = 225;
-		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, -96 );				//�s�b�`
+		Snd_PlayerSetTrackPitch( SND_HANDLE_PMVOICE, 0xffff, -96 );				//ピッチ
 		break;	
 
-	// =13 �}�ӃR�[���X�Đ�
+	// =13 図鑑コーラス再生
 	case PV_ZUKAN_CHORUS:		
 		//----------------
 		//play
@@ -1399,18 +1399,18 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 		//----------------
 		Snd_PMVoicePlay( wave_no, form_no );
 
-		//���ӁI�@�{�����[���͌Œ�
-		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, PV_VOL_MAX );			//���ʑ���
+		//注意！　ボリュームは固定
+		Snd_PMVoiceVolSet( wave_no, SND_HANDLE_PMVOICE, PV_VOL_MAX );			//音量操作
 
-		Snd_ChorusPlay( wave_no, SND_ZUKAN_PITCH_CHORUS, form_no );				//�R�[���X(���ӁI)
+		Snd_ChorusPlay( wave_no, SND_ZUKAN_PITCH_CHORUS, form_no );				//コーラス(注意！)
 		Snd_PlayerSetTrackPan( SND_HANDLE_CHORUS, 0xffff, pan );
 
-		//���ӁI�@�R�[���X�̃{�����[���𑀍�o����悤�ɂ���
-		//Snd_PlayerMoveVolume( SND_HANDLE_CHORUS, chorus_vol, 0 );			//�R�[���X�{�����[��
-		Snd_PlayerMoveVolume( SND_HANDLE_CHORUS, vol, 0 );					//�R�[���X�{�����[��
+		//注意！　コーラスのボリュームを操作出来るようにする
+		//Snd_PlayerMoveVolume( SND_HANDLE_CHORUS, chorus_vol, 0 );			//コーラスボリューム
+		Snd_PlayerMoveVolume( SND_HANDLE_CHORUS, vol, 0 );					//コーラスボリューム
 		break;
 
-	// =14 �}�Ӄm�[�}���Đ�
+	// =14 図鑑ノーマル再生
 	case PV_ZUKAN_NORMAL:		
 		//----------------
 		//play
@@ -1431,31 +1431,31 @@ BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 f
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������@���ʑ���(�����͊O���特�ʂ����炤�̂ŕK�v)
+ * @brief	ポケモン鳴き声　音量操作(鳴き声は外から音量をもらうので必要)
  *
- * @param	no			�V�[�P���X�i���o�[
- * @param	handle_no	�n���h���i���o�[
- * @param	vol			�{�����[��
+ * @param	no			シーケンスナンバー
+ * @param	handle_no	ハンドルナンバー
+ * @param	vol			ボリューム
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void Snd_PMVoiceVolSet( u16 seq_no, int handle_no, int vol )
 {
-	//�O����{�����[�����炤�̂ŕK�v
+	//外からボリュームもらうので必要
 	Snd_PlayerSetInitialVolume( handle_no, vol );
 
-	//�O������炤�{�����[���Ƃ͊֌W�Ȃ��A�f�t�H���g�̐ݒ�̔����ɂ���
-	Snd_VChatVolSet( seq_no, handle_no );									//�{�C�X�`���b�g���ʑ���
+	//外からもらうボリュームとは関係なく、デフォルトの設定の半分にする
+	Snd_VChatVolSet( seq_no, handle_no );									//ボイスチャット音量操作
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������Đ����ԃZ�b�g(TCB�ǉ�)
+ * @brief	ポケモン鳴き声再生時間セット(TCB追加)
  *
- * @param	no		�V�[�P���X�i���o�[
- * @param	heap_id	�q�[�vID
+ * @param	no		シーケンスナンバー
+ * @param	heap_id	ヒープID
  *
  * @retval	none
  */
@@ -1465,16 +1465,16 @@ void Snd_PMVoiceLengthSet( int length, int heap_id )
 	SND_PMVOICE_LENGTH_WORK* wk = NULL;
 	TCB_PTR* length_tcb			= Snd_GetParamAdrs(SND_W_ID_LENGTH_TCB);
 
-	//���łɓo�^����Ă�����TCB�폜
+	//すでに登録されていたらTCB削除
 	if( *length_tcb != NULL ){
-		OS_Printf( "\n�x���@�|�P��������\n" );
-		OS_Printf( "�Đ����ԑ���TCB���I�����Ă��Ȃ��̂ɁA�ēx�Ă΂�Ă��܂��I\n" );
+		OS_Printf( "\n警告　ポケモン鳴き声\n" );
+		OS_Printf( "再生時間操作TCBが終了していないのに、再度呼ばれています！\n" );
 	}
 	Snd_PMVoiceLengthTcbDel();
 
 	wk = sys_AllocMemory( heap_id, sizeof(SND_PMVOICE_LENGTH_WORK) );
 	if( wk == NULL ){
-		GF_ASSERT( (0) && "�������m�ێ��s�I" );
+		GF_ASSERT( (0) && "メモリ確保失敗！" );
 		return;
 	}
 	memset( wk, 0, sizeof(SND_PMVOICE_LENGTH_WORK) );
@@ -1485,16 +1485,16 @@ void Snd_PMVoiceLengthSet( int length, int heap_id )
 	return;
 }
 
-//���̒l���"length"���������Ȃ�Ɖ��ʂ����킹��"0"�ɂ��Ă���
+//この値より"length"が小さくなると音量を合わせて"0"にしていく
 //#define SND_PMVOICE_LENGTH_VOL		(20)
-//���̒l��"length"���Ȃ������ɉ��ʂ�"0"�ɂȂ�悤�ɃZ�b�g����
+//この値に"length"がなった時に音量を"0"になるようにセットする
 #define SND_PMVOICE_LENGTH_VOL_SET		(10)
 //--------------------------------------------------------------
 /**
- * @brief	TCB���C��
+ * @brief	TCBメイン
  *
  * @param	tcb		TCB_PTR
- * @param	wk		���[�N�̃A�h���X
+ * @param	wk		ワークのアドレス
  *
  * @retval	none
  */
@@ -1506,10 +1506,10 @@ static void Snd_PMVoiceLengthMainTCB( TCB_PTR tcb, void* wk )
 	SND_PMVOICE_LENGTH_WORK* swk = (SND_PMVOICE_LENGTH_WORK *)wk;
 
 #if 1
-	//���ʂ����R�ɏ��������Ă���
+	//音量も自然に小さくしていく
 	//if( swk->length < SND_PMVOICE_LENGTH_VOL ){
 	
-	//���ʂ�"0"�ɂȂ��Ă����悤�ɃZ�b�g����
+	//音量が"0"になっていくようにセットする
 	if( swk->length == SND_PMVOICE_LENGTH_VOL_SET ){
 		Snd_PlayerMoveVolume( SND_HANDLE_PMVOICE, 0, swk->length );
 		Snd_PlayerMoveVolume( SND_HANDLE_CHORUS, 0, swk->length );
@@ -1522,31 +1522,31 @@ static void Snd_PMVoiceLengthMainTCB( TCB_PTR tcb, void* wk )
 	//OS_Printf( "length = %d\n", swk->length );
 #endif
 
-	//�������I�����Ă����狭���I��(06.04.12)
+	//鳴き声が終了していたら強制終了(06.04.12)
 	if( Snd_PMVoicePlayCheck() == 0 ){
 		swk->length = 0;
 	}
 
 	if( swk->length <= 0 ){
 
-		//�������~������
+		//鳴き声を停止させる
 		Snd_PMVoiceStop(0);
 
-		//Snd_WaveOutStopReverse�̒��ŁA
-		//�t�Đ��g�p�t���O�`�F�b�N�����Ă���̂ŁA
-		//�����ł́A���o�[�X�`�F�b�N�͂��Ă��Ȃ��I(06.03.09)
+		//Snd_WaveOutStopReverseの中で、
+		//逆再生使用フラグチェックをしているので、
+		//ここでは、リバースチェックはしていない！(06.03.09)
 
-		//�g�`�Đ��@�`�����l�����m�ۂ��Ă�����J��
+		//波形再生　チャンネルを確保していたら開放
 		if( *ch_normal_flag == 1 ){
-			Snd_WaveOutStopReverse( WAVEOUT_CH_NORMAL );	//buf�J��
-			Snd_WaveOutFreeChannel( WAVEOUT_CH_NORMAL );	//ch �J��
+			Snd_WaveOutStopReverse( WAVEOUT_CH_NORMAL );	//buf開放
+			Snd_WaveOutFreeChannel( WAVEOUT_CH_NORMAL );	//ch 開放
 		}
 		if( *ch_chorus_flag == 1 ){
-			Snd_WaveOutStopReverse( WAVEOUT_CH_CHORUS );	//buf�J��
-			Snd_WaveOutFreeChannel( WAVEOUT_CH_CHORUS );	//ch �J��
+			Snd_WaveOutStopReverse( WAVEOUT_CH_CHORUS );	//buf開放
+			Snd_WaveOutFreeChannel( WAVEOUT_CH_CHORUS );	//ch 開放
 		}
 
-		//TCB�폜
+		//TCB削除
 		Snd_PMVoiceLengthTcbDel();
 	}
 
@@ -1555,7 +1555,7 @@ static void Snd_PMVoiceLengthMainTCB( TCB_PTR tcb, void* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������Đ�����TCB�폜
+ * @brief	ポケモン鳴き声再生時間TCB削除
  *
  * @param	none
  *
@@ -1567,7 +1567,7 @@ void Snd_PMVoiceLengthTcbDel()
 	void* wk;
 	TCB_PTR* length_tcb = Snd_GetParamAdrs(SND_W_ID_LENGTH_TCB);
 
-	//�o�^����Ă�����TCB�폜
+	//登録されていたらTCB削除
 	if( *length_tcb != NULL ){
 		wk = TCB_GetWork( *length_tcb );
 		TCB_Delete( *length_tcb );
@@ -1581,19 +1581,19 @@ void Snd_PMVoiceLengthTcbDel()
 #ifdef SND_PV_070213
 //--------------------------------------------------------------
 /**
- * @brief	�E�F�C�g���Z�b�g���Ďw�肵���|�P�����������Đ�
+ * @brief	ウェイトをセットして指定したポケモン鳴き声を再生
  *
- * @param	ptn		�p�^�[��(snd_tool.h�Q��)
- * @param	monsno	�|�P�����i���o�[
- * @param	pan		-128 �` 127
- * @param	vol		�{�����[��(0-127)
- * @param	heap_id	�q�[�vID
- * @param	wait	�E�F�C�g
+ * @param	ptn		パターン(snd_tool.h参照)
+ * @param	monsno	ポケモンナンバー
+ * @param	pan		-128 〜 127
+ * @param	vol		ボリューム(0-127)
+ * @param	heap_id	ヒープID
+ * @param	wait	ウェイト
  *
  * @retval	none
  *
- * �|�P�����A�j�����Ȃ���������Đ����鎞�ɌĂ΂��̂ŁA
- * �o�g���̓o��ȂǂŎg�p����̂ŁA�p�^�[���A�p���Ȃǂ̏�񂪕K�v�ɂȂ�
+ * ポケモンアニメしながら鳴き声を再生する時に呼ばれるので、
+ * バトルの登場などで使用するので、パターン、パンなどの情報が必要になる
  */
 //--------------------------------------------------------------
 void Snd_PMVoiceWaitPlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 wait, u8 form_no )
@@ -1624,44 +1624,44 @@ void Snd_PMVoiceWaitPlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, 
 		pv_wait		= Snd_GetParamAdrs(SND_W_ID_PV_WAIT_2);
 	}
 
-	//�|�P�����̖�����2�Đ��o����t���O�������Ă�����A���[�N��؂�ւ���
+	//ポケモンの鳴き声を2つ再生出来るフラグが立っていたら、ワークを切り替える
 	if( *pv_double_flag == 1 ){
 		*pv_wait_work ^= 1;
 	}
 	OS_Printf( "*pv_wait_work = %d\n", *pv_wait_work );
 
 	wave_no = monsno;
-	if( Snd_SkyFormCheck(wave_no,form_no) == TRUE ){			//�V�F�C�~�̃X�J�C�t�H�����`�F�b�N
+	if( Snd_SkyFormCheck(wave_no,form_no) == TRUE ){			//シェイミのスカイフォルムチェック
 		wave_no = SND_PM_VOICE_SKY_FORM;
 	}
 	
 #if 1
-	//�炷�^�C�~���O���x���|�P�����̌�ɁA
-	//�炷�^�C�~���O�������|�P���������āA
-	//�O�̃|�P������炷�O�ɁA
-	//��̃|�P�������E�F�C�g"0"�ł���ƁA
-	//�����N���A���Ă̓_�������A
-	//�����́A�E�F�C�g"1"�ł�������
-	//�㏑���������̂Ȃ̂ŁA
-	//�\���o���Ȃ��̂ŏ���1�����ێ��ł��Ȃ��̂ŁA
-	//���̊֐����Ă΂ꂽ��K���N���A�ł悢
+	//鳴らすタイミングが遅いポケモンの後に、
+	//鳴らすタイミングが早いポケモンがいて、
+	//前のポケモンを鳴らす前に、
+	//後のポケモンがウェイト"0"でくると、
+	//情報をクリアしてはダメだが、
+	//ここは、ウェイト"1"でもいれると
+	//上書きされるものなので、
+	//予測出来ないので情報を1つしか保持できないので、
+	//この関数が呼ばれたら必ずクリアでよい
 
-	//Snd_PMVoiceWorkClear();	//�����N���A
-	//2�C���m�ۂ���悤�ɂȂ����̂Œ�~�����͌Ă΂Ȃ�
+	//Snd_PMVoiceWorkClear();	//情報をクリア
+	//2匹分確保するようになったので停止処理は呼ばない
 #endif
 
-	//�G���[�`�F�b�N
+	//エラーチェック
 	if( wave_no == 0 ){
 		return;
 	}
 
-	//�E�F�C�g=0�w��̎��́A���̏�Ŗ炷
+	//ウェイト=0指定の時は、この場で鳴らす
 	if( wait == 0 ){
 		Snd_PMVoicePlayEx( ptn, wave_no, pan, vol, heap_id, form_no );
 		return;
 	}
 
-	//����ۑ�
+	//情報を保存
 	*pv_ptn		= ptn;
 	*pv_no		= wave_no;
 	*pv_pan		= pan;
@@ -1674,23 +1674,23 @@ void Snd_PMVoiceWaitPlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, 
  
 //--------------------------------------------------------------
 /**
- * @brief	�V�F�C�~�ŃX�J�C�t�H�������`�F�b�N
+ * @brief	シェイミでスカイフォルムかチェック
  *
- * @param	wave_no		�����X�^�[�i���o�[(�g�`�i���o�[)
- * @param	form_no		�t�H�����i���o�[
+ * @param	wave_no		モンスターナンバー(波形ナンバー)
+ * @param	form_no		フォルムナンバー
  *
- * @retval	"TRUE=�V�F�C�~�ŃX�J�C�t�H�����AFALSE=����ȊO"
+ * @retval	"TRUE=シェイミでスカイフォルム、FALSE=それ以外"
  */
 //--------------------------------------------------------------
 static BOOL Snd_SkyFormCheck( u16 wave_no, u8 form_no )
 {
-	if( wave_no == MONSNO_EURISU ){							//�V�F�C�~�̎��̂݁A�t�H�����`�F�b�N
-		if( form_no == FORMNO_SHEIMI_FLOWER ){				//�X�J�C�t�H������������
+	if( wave_no == MONSNO_EURISU ){							//シェイミの時のみ、フォルムチェック
+		if( form_no == FORMNO_SHEIMI_FLOWER ){				//スカイフォルムだったら
 			return TRUE;
 		}
 	}
 
-	if( wave_no == SND_PM_VOICE_SKY_FORM ){					//�V�F�C�~�̃X�J�C�t�H������������
+	if( wave_no == SND_PM_VOICE_SKY_FORM ){					//シェイミのスカイフォルムだったら
 		return TRUE;
 	}
 
@@ -1699,7 +1699,7 @@ static BOOL Snd_SkyFormCheck( u16 wave_no, u8 form_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P�������������N���A
+ * @brief	ポケモン鳴き声情報をクリア
  *
  * @param	none
  *
@@ -1708,14 +1708,14 @@ static BOOL Snd_SkyFormCheck( u16 wave_no, u8 form_no )
 //--------------------------------------------------------------
 void Snd_PMVoiceWorkClear( void )
 {
-	//1�C��
+	//1匹目
 	int* pv_ptn		= Snd_GetParamAdrs(SND_W_ID_PV_PTN);
 	u16* pv_no		= Snd_GetParamAdrs(SND_W_ID_PV_NO);
 	int* pv_pan		= Snd_GetParamAdrs(SND_W_ID_PV_PAN);
 	int* pv_vol		= Snd_GetParamAdrs(SND_W_ID_PV_VOL);
 	int* pv_heap_id	= Snd_GetParamAdrs(SND_W_ID_PV_HEAP_ID);
 	u8*  pv_wait	= Snd_GetParamAdrs(SND_W_ID_PV_WAIT);
-	//2�C��
+	//2匹目
 	int* pv_ptn2	= Snd_GetParamAdrs(SND_W_ID_PV_PTN_2);
 	u16* pv_no2		= Snd_GetParamAdrs(SND_W_ID_PV_NO_2);
 	int* pv_pan2	= Snd_GetParamAdrs(SND_W_ID_PV_PAN_2);
@@ -1723,7 +1723,7 @@ void Snd_PMVoiceWorkClear( void )
 	int* pv_heap_id2= Snd_GetParamAdrs(SND_W_ID_PV_HEAP_ID_2);
 	u8*  pv_wait2	= Snd_GetParamAdrs(SND_W_ID_PV_WAIT_2);
 
-	//�����N���A
+	//情報をクリア
 	*pv_ptn		= 0;
 	*pv_no		= 0;
 	*pv_pan		= 0;
@@ -1743,17 +1743,17 @@ void Snd_PMVoiceWorkClear( void )
 
 //==============================================================================================
 //
-//	�R�[���X�֘A
+//	コーラス関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�R�[���X����(�V�[�P���X�Đ�)
+ * @brief	コーラス処理(シーケンス再生)
  *
  * @param	none
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 static BOOL Snd_ChorusPlay( u16 wave_no, s8 chorus, u8 form_no )
@@ -1761,26 +1761,26 @@ static BOOL Snd_ChorusPlay( u16 wave_no, s8 chorus, u8 form_no )
 	int ret;
 	u8* chorus_flag = Snd_GetParamAdrs( SND_W_ID_CHORUS_FLAG );
 
-	*chorus_flag = 1;	//�R�[���X�g�p�t���OON
+	*chorus_flag = 1;	//コーラス使用フラグON
 
-	Snd_PerapVoiceDefaultFlagSet(TRUE);	//�؃��b�v�̃f�t�H���g�̖������Đ�����t���OON
+	Snd_PerapVoiceDefaultFlagSet(TRUE);	//ぺラップのデフォルトの鳴き声を再生するフラグON
 	ret = Snd_PMVoicePlay( wave_no, form_no );
-	Snd_PlayerSetTrackPitch( SND_HANDLE_CHORUS, 0xffff, chorus );	//�s�b�`
+	Snd_PlayerSetTrackPitch( SND_HANDLE_CHORUS, 0xffff, chorus );	//ピッチ
 
 	return ret; 
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�R�[���X����(�g�`�t�Đ�)
+ * @brief	コーラス処理(波形逆再生)
  *
- * @param	waveno		�����X�^�[�i���o�[(�g�`�i���o�[)
+ * @param	waveno		モンスターナンバー(波形ナンバー)
  * @param	chorus
  * @param	vol
  * @param	pan
- * @param	heap_id		�q�[�vID
+ * @param	heap_id		ヒープID
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 static BOOL Snd_ChorusPlayReverse( u16 wave_no, s8 chorus, int vol, int pan, int heap_id )
@@ -1788,20 +1788,20 @@ static BOOL Snd_ChorusPlayReverse( u16 wave_no, s8 chorus, int vol, int pan, int
 	int ret;
 	u8* chorus_flag = Snd_GetParamAdrs( SND_W_ID_CHORUS_FLAG );
 
-	*chorus_flag = 1;	//�R�[���X�g�p�t���OON
+	*chorus_flag = 1;	//コーラス使用フラグON
 
 	ret = Snd_WaveOutAllocChannel( WAVEOUT_CH_CHORUS );
-	ret = Snd_WaveOutStartReverse( wave_no, vol, pan, WAVEOUT_CH_CHORUS, heap_id );	//���ӁI(chorus)
+	ret = Snd_WaveOutStartReverse( wave_no, vol, pan, WAVEOUT_CH_CHORUS, heap_id );	//注意！(chorus)
 	return ret; 
 }
 
 
 //==============================================================================================
 //
-//	ME�֘A
-//	BGM�̔g�`�̂݊J�����đ��v(����Ȃ��Ɨe�ʑ���Ȃ����m�F)
+//	ME関連
+//	BGMの波形のみ開放して大丈夫(入れないと容量足りないか確認)
 //
-//	�g�p��1(ME�I����ABGM�ĊJ)
+//	使用例1(ME終了後、BGM再開)
 //	Snd_MePlay(bgm)
 //	if( Snd_MePlayCheckBgmPlay(&wk) == FALSE ){
 //
@@ -1809,13 +1809,13 @@ static BOOL Snd_ChorusPlayReverse( u16 wave_no, s8 chorus, int vol, int pan, int
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�|�[�Y �� ME�Đ�
+ * @brief	BGMポーズ → ME再生
  *
- * @param	no			ME�i���o�[
+ * @param	no			MEナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �E�F�C�g���[�N��ME���ʃE�F�C�g�l���Z�b�g����܂�
+ * ウェイトワークにME共通ウェイト値がセットされます
  */
 //--------------------------------------------------------------
 BOOL Snd_MePlay( u16 no )
@@ -1823,57 +1823,57 @@ BOOL Snd_MePlay( u16 no )
 	u16 now_bgm_no;
 	u8 player_no;
 	int ret,i;
-	const NNSSndArcBankInfo* info;									//�o���N���\����
-	info = Snd_GetBankInfo( no );									//�o���N���\���̎擾
+	const NNSSndArcBankInfo* info;									//バンク情報構造体
+	info = Snd_GetBankInfo( no );									//バンク情報構造体取得
 
-	Snd_MeWaitSet( no );											//ME���ʃE�F�C�g�l�Z�b�g
+	Snd_MeWaitSet( no );											//ME共通ウェイト値セット
 
-	//�|�[�Y����v���C���[�́A����BGM�i���o�[��炵�Ă���v���C���[�I
-	now_bgm_no = Snd_NowBgmNoGet();									//����BGM�i���o�[�擾
+	//ポーズするプレイヤーは、今のBGMナンバーを鳴らしているプレイヤー！
+	now_bgm_no = Snd_NowBgmNoGet();									//今のBGMナンバー取得
 	player_no = Snd_GetPlayerNo( now_bgm_no );
 
-	//���݂̃V�[�P���X�i���o�[��0�łȂ�������
+	//現在のシーケンスナンバーが0でなかったら
 	if( player_no != 0xff ){
-		Snd_PlayerPause( player_no, TRUE );							//BGM�|�[�Y
+		Snd_PlayerPause( player_no, TRUE );							//BGMポーズ
 	}
 
-	//�|�[�Y���́A�g�`�f�[�^�̂݊J�����Ă悢�I
+	//ポーズ中は、波形データのみ開放してよい！
 	
-	//ME�́A�ǉ��g�`�Ȃ�
+	//MEは、追加波形なし
 
-	//�T�u��ʃf�[�^�����[�h���Ă��鎞������̂ŁAME�f�[�^�݂̂̒ǉ��폜������I
-	Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_ME) );	//ME�ǉ��A�폜�p
+	//サブ画面データをロードしている時があるので、MEデータのみの追加削除をする！
+	Snd_HeapSaveState( Snd_GetParamAdrs(SND_W_ID_HEAP_SAVE_ME) );	//ME追加、削除用
 
-	//�V�[�P���X�A�o���N�f�[�^�����[�h
+	//シーケンス、バンクデータをロード
 	ret = Snd_ArcLoadSeqEx( no, (NNS_SND_ARC_LOAD_SEQ | NNS_SND_ARC_LOAD_BANK) );
 
 #ifdef SOUND_OS_PRINT_ON
-	OS_Printf( "ME�V�[�P���X�f�[�^���[�h = %d\n", ret );
+	OS_Printf( "MEシーケンスデータロード = %d\n", ret );
 #endif
 
 	ret = NNS_SndArcPlayerStartSeq( Snd_HandleGet(SND_HANDLE_ME), no );
-	Snd_VChatVolSet( no, SND_HANDLE_ME );							//�{�C�X�`���b�g���ʑ���
+	Snd_VChatVolSet( no, SND_HANDLE_ME );							//ボイスチャット音量操作
 
 	return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ME�I���҂�
+ * @brief	ME終了待ち
  *
  * @param	none
  *
- * @retval	"�Đ���=TRUE�A�Đ��I��=FALSE"
+ * @retval	"再生中=TRUE、再生終了=FALSE"
  *
  * Snd_MePlay
  * Snd_MePlayCheck
- * �����܂ł��Ɖ�������������Ă��Ȃ��I
- * Snd_MeStop���K�v�I
+ * ここまでだと解放処理が入っていない！
+ * Snd_MeStopが必要！
  *
- * �������́A
+ * もしくは、
  * Snd_MePlay
  * Snd_MePlayCheckBgmPlay
- * �Ŏg���I
+ * で使う！
  */
 //--------------------------------------------------------------
 int Snd_MePlayCheck(void)
@@ -1884,9 +1884,9 @@ int Snd_MePlayCheck(void)
 		return TRUE;
 	}
 
-	if( *me_wait > 0 ){													//�E�F�C�g�`�F�b�N
+	if( *me_wait > 0 ){													//ウェイトチェック
 		(*me_wait)--;
-		return TRUE;													//�E�F�C�g��
+		return TRUE;													//ウェイト中
 	}
 
 	return FALSE;
@@ -1894,13 +1894,13 @@ int Snd_MePlayCheck(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ME��~
+ * @brief	ME停止
  *
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
  */
 //--------------------------------------------------------------
 static void Snd_MeStop( int frame )
@@ -1908,21 +1908,21 @@ static void Snd_MeStop( int frame )
 	int no,type;
 	u16 i;
 
-	NNS_SndPlayerStopSeq( Snd_HandleGet(SND_HANDLE_ME), frame );	//ME��~
+	NNS_SndPlayerStopSeq( Snd_HandleGet(SND_HANDLE_ME), frame );	//ME停止
 
-	//�T�u��ʃf�[�^�����[�h���Ă��鎞������̂ŁAME�f�[�^�݂̂̒ǉ��폜������I
-	Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_ME) );		//ME�ǉ��A�폜�p
+	//サブ画面データをロードしている時があるので、MEデータのみの追加削除をする！
+	Snd_HeapLoadState( Snd_GetHeapSaveLv(SND_HEAP_SAVE_ME) );		//ME追加、削除用
 	
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ME�I���҂� �� �I����A�E�F�C�g�����Ă���BGM�𕜋A������
+ * @brief	ME終了待ち → 終了後、ウェイトを入れてからBGMを復帰させる
  *
  * @param	none
  *
- * @retval	"ME�Đ���=TRUE�A�E�F�C�g��=TRUE�ABGM�ĊJ=FALSE"
+ * @retval	"ME再生中=TRUE、ウェイト中=TRUE、BGM再開=FALSE"
  */
 //--------------------------------------------------------------
 int Snd_MePlayCheckBgmPlay(void)
@@ -1931,19 +1931,19 @@ int Snd_MePlayCheckBgmPlay(void)
 	u16 now_bgm_no;
 	u16* me_wait = Snd_GetParamAdrs(SND_W_ID_ME_WAIT);
 
-	//ME�I���҂�
+	//ME終了待ち
 	if( Snd_MePlayCheck() == TRUE ){
 		return TRUE;
 	}
 
-	Snd_MeStop( 0 );												//ME��~
+	Snd_MeStop( 0 );												//ME停止
 
-	now_bgm_no = Snd_NowBgmNoGet();									//����BGM�i���o�[�擾
+	now_bgm_no = Snd_NowBgmNoGet();									//今のBGMナンバー取得
 	player_no = Snd_GetPlayerNo( now_bgm_no );
 
-	//���݂̃V�[�P���X�i���o�[��0�łȂ�������
+	//現在のシーケンスナンバーが0でなかったら
 	if( player_no != 0xff ){
-		Snd_PlayerPause( player_no, FALSE );						//BGM�ĊJ
+		Snd_PlayerPause( player_no, FALSE );						//BGM再開
 	}
 
 	return FALSE;
@@ -1951,9 +1951,9 @@ int Snd_MePlayCheckBgmPlay(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ME���ʃE�F�C�g�l�Z�b�g
+ * @brief	ME共通ウェイト値セット
  *
- * @param	no			ME�i���o�[
+ * @param	no			MEナンバー
  *
  * @retval	none
  */
@@ -1963,7 +1963,7 @@ static void Snd_MeWaitSet( u16 no )
 	u16* me_wait = Snd_GetParamAdrs(SND_W_ID_ME_WAIT);
 
 #if 0
-	//ME���Ƃ̋��ʃE�F�C�g������������
+	//MEごとの共通ウェイトを持ちたい時
 	switch( no ){
 	case SEQ_FANFA1:
 		break;
@@ -1979,15 +1979,15 @@ static void Snd_MeWaitSet( u16 no )
 
 //==============================================================================================
 //
-//	�f�o�b�N�֐�
+//	デバック関数
 //
 //==============================================================================================
 #ifdef PM_DEBUG
 //--------------------------------------------------------------
 /**
- * @brief	�f�o�b�N�֐��FBGM�t���O�̃Z�b�g
+ * @brief	デバック関数：BGMフラグのセット
  *
- * @param	sw		0=�ʏ�A1=BGM�I�t
+ * @param	sw		0=通常、1=BGMオフ
  *
  * @retval	none
  */
@@ -2000,11 +2000,11 @@ void Snd_DebugBgmFlagSet( u8 sw )
 
 //--------------------------------------------------------------
 /**
- * @brief	�f�o�b�N�֐��FBGM�t���O�̎擾
+ * @brief	デバック関数：BGMフラグの取得
  *
  * @param	none
  *
- * @retval	"0=�ʏ�A1=BGM�I�t"
+ * @retval	"0=通常、1=BGMオフ"
  */
 //--------------------------------------------------------------
 static BOOL Snd_DebugBgmFlagCheck( void )

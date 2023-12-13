@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_range_data.h
- *	@brief		•ª•zƒf[ƒ^Žæ“¾ŠÖ”
+ *	@brief		åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿å–å¾—é–¢æ•°
  *	@author		tomoya takahashi	
  *	@data		2006.02.11
  *
@@ -22,23 +22,23 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define ZKN_RANGEDATA_FLD_GRID_ARRY_SIZE	( 32 )
 
 //-------------------------------------
-//	•ª•zƒf[ƒ^ƒ^ƒCƒv	
+//	åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—	
 //=====================================
 enum{
-	// ƒ_ƒ“ƒWƒ‡ƒ“•ª•zƒf[ƒ^
+	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿
 	ZKN_RANGEDATA_TYPE_DAN_MORNING = 0,
 	ZKN_RANGEDATA_TYPE_DAN_NOON,
 	ZKN_RANGEDATA_TYPE_DAN_NIGHT,
 	ZKN_RANGEDATA_TYPE_DAN_SPECIAL,
 	ZKN_RANGEDATA_TYPE_DAN_SPECIAL_COMP,
 	
-	// ƒtƒB[ƒ‹ƒh•ª•zƒf[ƒ^
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿
 	ZKN_RANGEDATA_TYPE_FLD_MORNING,
 	ZKN_RANGEDATA_TYPE_FLD_NOON,
 	ZKN_RANGEDATA_TYPE_FLD_NIGHT,
@@ -48,20 +48,20 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[•ª•zƒf[ƒ^ƒf[ƒ^
-//	(ÅI—v‘f‚ÍNONE)
+//	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ãƒ‡ãƒ¼ã‚¿
+//	(æœ€çµ‚è¦ç´ ã¯NONE)
 //=====================================
 typedef struct {
-	int * p_rangeid;	// •ª•zID‚Ì“ü‚Á‚½”z—ñ
-	int num;			// ”z—ñ—v‘f”
+	int * p_rangeid;	// åˆ†å¸ƒIDã®å…¥ã£ãŸé…åˆ—
+	int num;			// é…åˆ—è¦ç´ æ•°
 } ZKN_RANGE_DATA_MONS;
 
 //-------------------------------------
-//	ƒ_ƒ“ƒWƒ‡ƒ“ƒOƒŠƒbƒhÀ•W@OAM‚ÌŽí—Þƒf[ƒ^
+//	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã€€OAMã®ç¨®é¡žãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	u8 gridx;
@@ -71,7 +71,7 @@ typedef struct {
 } ZKN_RANGE_DATA_DAN_GRID;
 
 //-------------------------------------
-//	ƒtƒB[ƒ‹ƒh’nŒ`ƒf[ƒ^
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åœ°å½¢ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	u8 gridx;
@@ -83,7 +83,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_RANGEDATA_GetMonsNoRange( ZKN_RANGE_DATA_MONS* p_inbuff, int mons_no, int type, int heap );

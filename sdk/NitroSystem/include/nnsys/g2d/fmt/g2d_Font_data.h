@@ -34,7 +34,7 @@ extern "C" {
 
 
 //------------------------------------------------------------------------------
-// ƒVƒOƒlƒ`ƒƒ’è‹`
+// ã‚·ã‚°ãƒãƒãƒ£å®šç¾©
 //------------------------------------------------------------------------------
 
 // Binary file signature
@@ -56,15 +56,15 @@ extern "C" {
 
 
 //------------------------------------------------------------------------------
-// ƒŠƒ\[ƒXƒo[ƒWƒ‡ƒ“’è‹`
+// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒ¼ã‚¸ãƒ§ãƒ³å®šç¾©
 //------------------------------------------------------------------------------
 
 //
-// ƒo[ƒWƒ‡ƒ“î•ñ
-// Ver         •ÏX“_
+// ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±
+// Ver         å¤‰æ›´ç‚¹
 // -------------------------------------
-// 1.0         ‰”Å
-// 1.1         ‰ñ“]/c‘‚«‚Ìî•ñ‚ð’Ç‰Á
+// 1.0         åˆç‰ˆ
+// 1.1         å›žè»¢/ç¸¦æ›¸ãã®æƒ…å ±ã‚’è¿½åŠ 
 //
 #define NNS_G2D_NFTR_MAJOR_VER              (u8)1
 #define NNS_G2D_NFTR_MINOR_VER              (u8)1
@@ -75,10 +75,10 @@ extern "C" {
 
 
 //------------------------------------------------------------------------------
-// enum ’è‹`
+// enum å®šç¾©
 //------------------------------------------------------------------------------
 
-// ƒtƒHƒ“ƒgƒ^ƒCƒv
+// ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
 typedef enum NNSG2dFontType
 {
     NNS_G2D_FONTTYPE_GLYPH,     // BMP
@@ -86,7 +86,7 @@ typedef enum NNSG2dFontType
 }
 NNSG2dFontType;
 
-// •¶Žš—ñƒGƒ“ƒR[ƒfƒBƒ“ƒOƒ^ƒCƒv
+// æ–‡å­—åˆ—ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—
 typedef enum NNSG2dFontEncoding
 {
     NNS_G2D_FONT_ENCODING_UTF8,			// UTF-8
@@ -97,54 +97,54 @@ typedef enum NNSG2dFontEncoding
 }
 NNSG2dFontEncoding;
 
-// •¶ŽšƒR[ƒhƒ}ƒbƒvƒ^ƒCƒv
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒžãƒƒãƒ—ã‚¿ã‚¤ãƒ—
 typedef enum NNSG2dFontMappingMethod
 {
-    NNS_G2D_MAPMETHOD_DIRECT,       // ƒCƒ“ƒfƒbƒNƒX = •¶ŽšƒR[ƒh - ƒIƒtƒZƒbƒg
-    NNS_G2D_MAPMETHOD_TABLE,        // ƒCƒ“ƒfƒbƒNƒX = mapInfo[•¶ŽšƒR[ƒh - ƒIƒtƒZƒbƒg]
-    NNS_G2D_MAPMETHOD_SCAN,         // ƒCƒ“ƒfƒbƒNƒX = search(mapInfo, •¶ŽšƒR[ƒh)
+    NNS_G2D_MAPMETHOD_DIRECT,       // ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ = æ–‡å­—ã‚³ãƒ¼ãƒ‰ - ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+    NNS_G2D_MAPMETHOD_TABLE,        // ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ = mapInfo[æ–‡å­—ã‚³ãƒ¼ãƒ‰ - ã‚ªãƒ•ã‚»ãƒƒãƒˆ]
+    NNS_G2D_MAPMETHOD_SCAN,         // ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ = search(mapInfo, æ–‡å­—ã‚³ãƒ¼ãƒ‰)
     NNS_G2D_NUM_OF_MAPMETHOD
 }
 NNSG2dFontMappingMethod;
 
-// c‘‚«‚Æ‰ñ“]‚ÉŠÖ‚·‚éƒtƒ‰ƒO
+// ç¸¦æ›¸ãã¨å›žè»¢ã«é–¢ã™ã‚‹ãƒ•ãƒ©ã‚°
 typedef enum NNSG2dFontGlyphFlag
 {
-    NNS_G2D_FONT_FLAG_TBRL      = (1 << 0),     // c‘‚«—p‚ÌƒtƒHƒ“ƒg
-    NNS_G2D_FONT_FLAG_ROT_0     = (0 << 1),     // ŽžŒv‰ñ‚è   0 “x‰ñ“]‚ÌƒtƒHƒ“ƒg
-    NNS_G2D_FONT_FLAG_ROT_90    = (1 << 1),     // ŽžŒv‰ñ‚è  90 “x‰ñ“]‚ÌƒtƒHƒ“ƒg
-    NNS_G2D_FONT_FLAG_ROT_180   = (2 << 1),     // ŽžŒv‰ñ‚è 180 “x‰ñ“]‚ÌƒtƒHƒ“ƒg
-    NNS_G2D_FONT_FLAG_ROT_270   = (3 << 1),     // ŽžŒv‰ñ‚è 270 “x‰ñ“]‚ÌƒtƒHƒ“ƒg
-    NNS_G2D_FONT_FLAG_ROT_MASK  = (3 << 1)      // ‰ñ“]ƒ}ƒXƒN
+    NNS_G2D_FONT_FLAG_TBRL      = (1 << 0),     // ç¸¦æ›¸ãç”¨ã®ãƒ•ã‚©ãƒ³ãƒˆ
+    NNS_G2D_FONT_FLAG_ROT_0     = (0 << 1),     // æ™‚è¨ˆå›žã‚Š   0 åº¦å›žè»¢ã®ãƒ•ã‚©ãƒ³ãƒˆ
+    NNS_G2D_FONT_FLAG_ROT_90    = (1 << 1),     // æ™‚è¨ˆå›žã‚Š  90 åº¦å›žè»¢ã®ãƒ•ã‚©ãƒ³ãƒˆ
+    NNS_G2D_FONT_FLAG_ROT_180   = (2 << 1),     // æ™‚è¨ˆå›žã‚Š 180 åº¦å›žè»¢ã®ãƒ•ã‚©ãƒ³ãƒˆ
+    NNS_G2D_FONT_FLAG_ROT_270   = (3 << 1),     // æ™‚è¨ˆå›žã‚Š 270 åº¦å›žè»¢ã®ãƒ•ã‚©ãƒ³ãƒˆ
+    NNS_G2D_FONT_FLAG_ROT_MASK  = (3 << 1)      // å›žè»¢ãƒžã‚¹ã‚¯
 }
 NNSG2dFontGlyphFlag;
 
 
 //------------------------------------------------------------------------------
-// \‘¢‘Ì’è‹`
+// æ§‹é€ ä½“å®šç¾©
 //------------------------------------------------------------------------------
-// •¶Žš•î•ñ
+// æ–‡å­—å¹…æƒ…å ±
 typedef struct NNSG2dCharWidths
 {
-    s8 left;                            // •¶Žš‚Ì¶ƒXƒy[ƒX‚Ì•
-    u8 glyphWidth;                      // •¶Žš‚ÌƒOƒŠƒt•
-    s8 charWidth;                       // •¶Žš‚Ì• = ¶ƒXƒy[ƒX• + ƒOƒŠƒt• + ‰EƒXƒy[ƒX•
+    s8 left;                            // æ–‡å­—ã®å·¦ã‚¹ãƒšãƒ¼ã‚¹ã®å¹…
+    u8 glyphWidth;                      // æ–‡å­—ã®ã‚°ãƒªãƒ•å¹…
+    s8 charWidth;                       // æ–‡å­—ã®å¹… = å·¦ã‚¹ãƒšãƒ¼ã‚¹å¹… + ã‚°ãƒªãƒ•å¹… + å³ã‚¹ãƒšãƒ¼ã‚¹å¹…
 }
 NNSG2dCharWidths;
 
-// •¶ŽšƒR[ƒh‚ÆƒOƒŠƒtƒCƒ“ƒfƒbƒNƒXƒyƒA
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¨ã‚°ãƒªãƒ•ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒšã‚¢
 typedef struct NNSG2dCMapScanEntry
 {
-    u16 ccode;                          // •¶ŽšƒR[ƒh
-    u16 index;                          // ƒOƒŠƒtƒCƒ“ƒfƒbƒNƒX
+    u16 ccode;                          // æ–‡å­—ã‚³ãƒ¼ãƒ‰
+    u16 index;                          // ã‚°ãƒªãƒ•ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 }
 NNSG2dCMapScanEntry;
 
-// NNS_G2D_MAPMETHOD_SCAN ‚Ìê‡‚Ì NNSG2dFontCodeMap.mapInfo
+// NNS_G2D_MAPMETHOD_SCAN ã®å ´åˆã® NNSG2dFontCodeMap.mapInfo
 typedef struct NNSG2dCMapInfoScan
 {
-    u16 num;                            // entries ‚Ì—v‘f”
-    NNSG2dCMapScanEntry entries[];      // •¶ŽšƒR[ƒh‚©‚çƒOƒŠƒtƒCƒ“ƒfƒbƒNƒX‚Ö‚Ìƒ}ƒbƒsƒ“ƒOƒŠƒXƒg
+    u16 num;                            // entries ã®è¦ç´ æ•°
+    NNSG2dCMapScanEntry entries[];      // æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã‚°ãƒªãƒ•ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¸ã®ãƒžãƒƒãƒ”ãƒ³ã‚°ãƒªã‚¹ãƒˆ
 }
 NNSG2dCMapInfoScan;
 
@@ -153,27 +153,27 @@ NNSG2dCMapInfoScan;
 
 
 //------------------------------------------------------------------------------
-// ƒtƒHƒ“ƒgƒŠƒ\[ƒX
+// ãƒ•ã‚©ãƒ³ãƒˆãƒªã‚½ãƒ¼ã‚¹
 //------------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dFontGlyph
 
-  Description:  ƒtƒHƒ“ƒg‚ÌƒOƒŠƒtBMP‚ðŠi”[‚µ‚Ü‚·B
-                ‘S‚Ä‚ÌƒOƒŠƒtBMP‚Í•‚Æ‚‚³‚ª“™‚µ‚­A‚ä‚¦‚Éƒf[ƒ^ƒTƒCƒY‚à
-                “™‚µ‚¢‚½‚ß”z—ñ‚Æ‚µ‚ÄƒAƒNƒZƒX‚Å‚«‚Ü‚·B
+  Description:  ãƒ•ã‚©ãƒ³ãƒˆã®ã‚°ãƒªãƒ•BMPã‚’æ ¼ç´ã—ã¾ã™ã€‚
+                å…¨ã¦ã®ã‚°ãƒªãƒ•BMPã¯å¹…ã¨é«˜ã•ãŒç­‰ã—ãã€ã‚†ãˆã«ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚‚
+                ç­‰ã—ã„ãŸã‚é…åˆ—ã¨ã—ã¦ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dFontGlyph
 {
-    u8  cellWidth;          // ƒOƒŠƒtƒCƒ[ƒW1ƒ‰ƒCƒ“‚ÌƒsƒNƒZƒ‹”
-    u8  cellHeight;         // ƒOƒŠƒtƒCƒ[ƒW‚Ìƒ‰ƒCƒ“”
-    u16 cellSize;           // 1ƒOƒŠƒt‚ ‚½‚è‚ÌƒOƒŠƒtƒCƒ[ƒWƒf[ƒ^ƒTƒCƒY
-    s8  baselinePos;        // (*)ƒOƒŠƒtƒCƒ[ƒWã’[‚©‚çƒx[ƒXƒ‰ƒCƒ“‚Ü‚Å‚Ì‹——£
-    u8  maxCharWidth;       // (*)Å‘å•¶Žš•
-    u8  bpp;                // ƒOƒŠƒtƒCƒ[ƒW1ƒsƒNƒZƒ‹‚ ‚½‚è‚Ìbit”
+    u8  cellWidth;          // ã‚°ãƒªãƒ•ã‚¤ãƒ¡ãƒ¼ã‚¸1ãƒ©ã‚¤ãƒ³ã®ãƒ”ã‚¯ã‚»ãƒ«æ•°
+    u8  cellHeight;         // ã‚°ãƒªãƒ•ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ©ã‚¤ãƒ³æ•°
+    u16 cellSize;           // 1ã‚°ãƒªãƒ•ã‚ãŸã‚Šã®ã‚°ãƒªãƒ•ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+    s8  baselinePos;        // (*)ã‚°ãƒªãƒ•ã‚¤ãƒ¡ãƒ¼ã‚¸ä¸Šç«¯ã‹ã‚‰ãƒ™ãƒ¼ã‚¹ãƒ©ã‚¤ãƒ³ã¾ã§ã®è·é›¢
+    u8  maxCharWidth;       // (*)æœ€å¤§æ–‡å­—å¹…
+    u8  bpp;                // ã‚°ãƒªãƒ•ã‚¤ãƒ¡ãƒ¼ã‚¸1ãƒ”ã‚¯ã‚»ãƒ«ã‚ãŸã‚Šã®bitæ•°
     u8  flags;              // NNSG2dFontGlyphFlag
 
-    u8  glyphTable[];       // ƒOƒŠƒtƒCƒ[ƒW‚Ì”z—ñ
+    u8  glyphTable[];       // ã‚°ãƒªãƒ•ã‚¤ãƒ¡ãƒ¼ã‚¸ã®é…åˆ—
 }
 NNSG2dFontGlyph;
 
@@ -182,14 +182,14 @@ NNSG2dFontGlyph;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dFontWidth
 
-  Description:  Še•¶Žš‚Ì•¶Žš•î•ñ‚ðŠi”[‚µ‚Ü‚·B
+  Description:  å„æ–‡å­—ã®æ–‡å­—å¹…æƒ…å ±ã‚’æ ¼ç´ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dFontWidth
 {
-    u16                     indexBegin;     // widthTable ‚ÌÅ‰‚ÌƒGƒ“ƒgƒŠ‚ª‘Î‰ž‚·‚éƒOƒŠƒtƒCƒ“ƒfƒbƒNƒX
-    u16                     indexEnd;       // widthTable ‚ÌÅŒã‚ÌƒGƒ“ƒgƒŠ‚ª‘Î‰ž‚·‚éƒOƒŠƒtƒCƒ“ƒfƒbƒNƒX
-    struct NNSG2dFontWidth* pNext;          // ŽŸ‚Ì NNSG2dFontWidth ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    NNSG2dCharWidths        widthTable[];   // •î•ñ‚Ì”z—ñ
+    u16                     indexBegin;     // widthTable ã®æœ€åˆã®ã‚¨ãƒ³ãƒˆãƒªãŒå¯¾å¿œã™ã‚‹ã‚°ãƒªãƒ•ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    u16                     indexEnd;       // widthTable ã®æœ€å¾Œã®ã‚¨ãƒ³ãƒˆãƒªãŒå¯¾å¿œã™ã‚‹ã‚°ãƒªãƒ•ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    struct NNSG2dFontWidth* pNext;          // æ¬¡ã® NNSG2dFontWidth ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    NNSG2dCharWidths        widthTable[];   // å¹…æƒ…å ±ã®é…åˆ—
 }
 NNSG2dFontWidth;
 
@@ -198,17 +198,17 @@ NNSG2dFontWidth;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dFontCodeMap
 
-  Description:  •¶ŽšƒR[ƒh‚©‚çA•¶ŽšƒR[ƒh‚É‘Î‰ž‚·‚éƒOƒŠƒt‚Ì
-                ƒOƒŠƒtƒCƒ[ƒW”z—ñ’†‚ÌƒCƒ“ƒfƒbƒNƒX‚Ö‚Ìƒ}ƒbƒsƒ“ƒO‚ð‹K’è‚µ‚Ü‚·B
+  Description:  æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã€æ–‡å­—ã‚³ãƒ¼ãƒ‰ã«å¯¾å¿œã™ã‚‹ã‚°ãƒªãƒ•ã®
+                ã‚°ãƒªãƒ•ã‚¤ãƒ¡ãƒ¼ã‚¸é…åˆ—ä¸­ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¸ã®ãƒžãƒƒãƒ”ãƒ³ã‚°ã‚’è¦å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dFontCodeMap
 {
-    u16                         ccodeBegin;     // ‚±‚ÌƒuƒƒbƒN‚ª’S“–‚·‚é•¶ŽšƒR[ƒh”ÍˆÍ‚ÌÅ‰‚Ì•¶ŽšƒR[ƒh
-    u16                         ccodeEnd;       // ‚±‚ÌƒuƒƒbƒN‚ª’S“–‚·‚é•¶ŽšƒR[ƒh”ÍˆÍ‚ÌÅŒã‚Ì•¶ŽšƒR[ƒh
-    u16                         mappingMethod;  // ƒ}ƒbƒsƒ“ƒO•û–@ (NNSG2dFontMappingMethodŒ^)
-    u16                         reserved;       // —\–ñ
-    struct NNSG2dFontCodeMap*   pNext;          // ŽŸ‚Ì NNSG2dFontCodeMap ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    u16                         mapInfo[];      // •¶ŽšƒR[ƒhƒ}ƒbƒsƒ“ƒOî•ñ ‹ï‘Ì“I‚È“à—e‚Í mappingMethod ‚ÉˆË‚é
+    u16                         ccodeBegin;     // ã“ã®ãƒ–ãƒ­ãƒƒã‚¯ãŒæ‹…å½“ã™ã‚‹æ–‡å­—ã‚³ãƒ¼ãƒ‰ç¯„å›²ã®æœ€åˆã®æ–‡å­—ã‚³ãƒ¼ãƒ‰
+    u16                         ccodeEnd;       // ã“ã®ãƒ–ãƒ­ãƒƒã‚¯ãŒæ‹…å½“ã™ã‚‹æ–‡å­—ã‚³ãƒ¼ãƒ‰ç¯„å›²ã®æœ€å¾Œã®æ–‡å­—ã‚³ãƒ¼ãƒ‰
+    u16                         mappingMethod;  // ãƒžãƒƒãƒ”ãƒ³ã‚°æ–¹æ³• (NNSG2dFontMappingMethodåž‹)
+    u16                         reserved;       // äºˆç´„
+    struct NNSG2dFontCodeMap*   pNext;          // æ¬¡ã® NNSG2dFontCodeMap ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    u16                         mapInfo[];      // æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒžãƒƒãƒ”ãƒ³ã‚°æƒ…å ± å…·ä½“çš„ãªå†…å®¹ã¯ mappingMethod ã«ä¾ã‚‹
 }
 NNSG2dFontCodeMap;
 
@@ -217,18 +217,18 @@ NNSG2dFontCodeMap;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dFontInformation
 
-  Description:  ƒtƒHƒ“ƒg‘S‘Ì‚É“n‚éî•ñ‚ðŠi”[‚µ‚Ü‚·B
+  Description:  ãƒ•ã‚©ãƒ³ãƒˆå…¨ä½“ã«æ¸¡ã‚‹æƒ…å ±ã‚’æ ¼ç´ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dFontInformation
 {
-    u8                  fontType;       // ƒOƒŠƒtƒf[ƒ^ƒ^ƒCƒv (NNSG2dFontTypeŒ^)
+    u8                  fontType;       // ã‚°ãƒªãƒ•ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ— (NNSG2dFontTypeåž‹)
     s8                  linefeed;       // (*)== leading
-    u16                 alterCharIndex; // (*)ƒtƒHƒ“ƒg‚ÉŠÜ‚Ü‚ê‚È‚¢•¶Žš—p‚ÌƒOƒŠƒt‚ÌƒOƒŠƒtƒCƒ“ƒfƒbƒNƒX
-    NNSG2dCharWidths    defaultWidth;   // (*)•¶Žš•î•ñ‚ðŽ‚½‚È‚¢ƒOƒŠƒt—p‚Ì•¶Žš•î•ñ
-    u8                  encoding;       // ‘Î‰ž‚·‚é•¶Žš—ñƒGƒ“ƒR[ƒfƒBƒ“ƒO (NNSG2dFontEncodingŒ^)
-    NNSG2dFontGlyph*    pGlyph;         // —Bˆê‚Ì NNSG2dFontGlyph ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    NNSG2dFontWidth*    pWidth;         // Å‰‚Ì NNSG2dFontWidth ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    NNSG2dFontCodeMap*  pMap;           // Å‰‚Ì NNSG2dFontCodeMap ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    u16                 alterCharIndex; // (*)ãƒ•ã‚©ãƒ³ãƒˆã«å«ã¾ã‚Œãªã„æ–‡å­—ç”¨ã®ã‚°ãƒªãƒ•ã®ã‚°ãƒªãƒ•ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    NNSG2dCharWidths    defaultWidth;   // (*)æ–‡å­—å¹…æƒ…å ±ã‚’æŒãŸãªã„ã‚°ãƒªãƒ•ç”¨ã®æ–‡å­—å¹…æƒ…å ±
+    u8                  encoding;       // å¯¾å¿œã™ã‚‹æ–‡å­—åˆ—ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚° (NNSG2dFontEncodingåž‹)
+    NNSG2dFontGlyph*    pGlyph;         // å”¯ä¸€ã® NNSG2dFontGlyph ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    NNSG2dFontWidth*    pWidth;         // æœ€åˆã® NNSG2dFontWidth ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    NNSG2dFontCodeMap*  pMap;           // æœ€åˆã® NNSG2dFontCodeMap ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 }
 NNSG2dFontInformation;
 
@@ -236,7 +236,7 @@ NNSG2dFontInformation;
 
 
 //------------------------------------------------------------------------------
-// NITRO-System ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹ ƒuƒƒbƒN
+// NITRO-System ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ« ãƒ–ãƒ­ãƒƒã‚¯
 //------------------------------------------------------------------------------
 
 typedef struct NNSG2dFontInformationBlock

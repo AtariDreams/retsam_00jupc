@@ -13,7 +13,7 @@
 #
 # $Log: Makefile,v $
 # Revision 1.2  2005/08/19 08:16:59  yasu
-# commondefs.add-ins.env により WiFi のメインツリーへインストールするように修正
+# commondefs.add-ins.env 縺ｫ繧医ｊ WiFi 縺ｮ繝｡繧､繝ｳ繝�繝ｪ繝ｼ縺ｸ繧､繝ｳ繧ｹ繝医�ｼ繝ｫ縺吶ｋ繧医≧縺ｫ菫ｮ豁｣
 #
 # Revision 1.1  2005/08/17 06:30:45  yada
 # initial release

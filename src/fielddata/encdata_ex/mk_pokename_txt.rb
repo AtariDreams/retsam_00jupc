@@ -1,88 +1,88 @@
-#–¨“h‚èƒGƒ“ƒJƒEƒ“ƒg(ƒ_ƒCƒ„)ƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgi’Êíj
-#–¨“h‚èƒGƒ“ƒJƒEƒ“ƒg(ƒ_ƒCƒ„)ƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgiƒŒƒAj
-#–¨“h‚èƒGƒ“ƒJƒEƒ“ƒg(ƒ_ƒCƒ„)ƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgiŒƒƒŒƒAj
+#èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ(ãƒ€ã‚¤ãƒ¤)ãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆï¼ˆé€šå¸¸ï¼‰
+#èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ(ãƒ€ã‚¤ãƒ¤)ãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆï¼ˆãƒ¬ã‚¢ï¼‰
+#èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ(ãƒ€ã‚¤ãƒ¤)ãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆï¼ˆæ¿€ãƒ¬ã‚¢ï¼‰
 honey_dia_nrm = open("honey_dia_nrm","w")
 honey_dia_rare = open("honey_dia_rare","w")
 honey_dia_s_rare = open("honey_dia_s_rare","w")
 honey_dia_csv = open("honey_dia.csv","r")
-line = honey_dia_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
-line = honey_dia_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
+line = honey_dia_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
+line = honey_dia_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
 while line = honey_dia_csv.gets
 	if line =~/^#END/ then
 		break
 	end
 	column = line.split ","
 	name = column[1].chomp
-	honey_dia_nrm.puts("#{name}")		#’Êí
+	honey_dia_nrm.puts("#{name}")		#é€šå¸¸
 	name = column[2].chomp
-	honey_dia_rare.puts("#{name}")		#ƒŒƒA
+	honey_dia_rare.puts("#{name}")		#ãƒ¬ã‚¢
 	name = column[3].chomp
-	honey_dia_s_rare.puts("#{name}")	#ŒƒƒŒƒA
+	honey_dia_s_rare.puts("#{name}")	#æ¿€ãƒ¬ã‚¢
 end	#while
 
-#–¨“h‚èƒGƒ“ƒJƒEƒ“ƒg(ƒp[ƒ‹)ƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgi’Êíj
-#–¨“h‚èƒGƒ“ƒJƒEƒ“ƒg(ƒp[ƒ‹)ƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgiƒŒƒAj
-#–¨“h‚èƒGƒ“ƒJƒEƒ“ƒg(ƒp[ƒ‹)ƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgiŒƒƒŒƒAj
+#èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ(ãƒ‘ãƒ¼ãƒ«)ãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆï¼ˆé€šå¸¸ï¼‰
+#èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ(ãƒ‘ãƒ¼ãƒ«)ãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆï¼ˆãƒ¬ã‚¢ï¼‰
+#èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ(ãƒ‘ãƒ¼ãƒ«)ãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆï¼ˆæ¿€ãƒ¬ã‚¢ï¼‰
 honey_perl_nrm = open("honey_perl_nrm","w")
 honey_perl_rare = open("honey_perl_rare","w")
 honey_perl_s_rare = open("honey_perl_s_rare","w")
 honey_perl_csv = open("honey_perl.csv","r")
-line = honey_perl_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
-line = honey_perl_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
+line = honey_perl_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
+line = honey_perl_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
 while line = honey_perl_csv.gets
 	if line =~/^#END/ then
 		break
 	end
 	column = line.split ","
 	name = column[1].chomp
-	honey_perl_nrm.puts("#{name}")		#’Êí
+	honey_perl_nrm.puts("#{name}")		#é€šå¸¸
 	name = column[2].chomp
-	honey_perl_rare.puts("#{name}")		#ƒŒƒA
+	honey_perl_rare.puts("#{name}")		#ãƒ¬ã‚¢
 	name = column[3].chomp
-	honey_perl_s_rare.puts("#{name}")	#ŒƒƒŒƒA
+	honey_perl_s_rare.puts("#{name}")	#æ¿€ãƒ¬ã‚¢
 end	#while
 
-#¼Œ´ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgi‘S‘}ŠÓ“üè‘Oj
-#¼Œ´ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgi‘S‘}ŠÓ“üèŒãj
+#æ¹¿åŸã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆï¼ˆå…¨å›½å›³é‘‘å…¥æ‰‹å‰ï¼‰
+#æ¹¿åŸã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆï¼ˆå…¨å›½å›³é‘‘å…¥æ‰‹å¾Œï¼‰
 safari_bef = open("safari_bef","w")
 safari_af = open("safari_af","w")
 safari_csv = open("safari.csv","r")
-line = safari_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
-line = safari_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
+line = safari_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
+line = safari_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
 while line = safari_csv.gets
 	if line =~/^#END/ then
 		break
 	end
 	column = line.split ","
 	name = column[0].chomp
-	safari_bef.puts("#{name}")		#‘O
+	safari_bef.puts("#{name}")		#å‰
 	name = column[1].chomp
-	safari_af.puts("#{name}")		#Œã
+	safari_af.puts("#{name}")		#å¾Œ
 end	#while
 
-#— RƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgi‘S‘}ŠÓ“üè‘Oj
-#— RƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgi‘S‘}ŠÓ“üèŒãj
+#è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆï¼ˆå…¨å›½å›³é‘‘å…¥æ‰‹å‰ï¼‰
+#è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆï¼ˆå…¨å›½å›³é‘‘å…¥æ‰‹å¾Œï¼‰
 mnt_bef = open("mnt_bef","w")
 mnt_af = open("mnt_af","w")
 mnt_csv = open("mnt.csv","r")
-line = mnt_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
-line = mnt_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
+line = mnt_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
+line = mnt_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
 while line = mnt_csv.gets
 	if line =~/^#END/ then
 		break
 	end
 	column = line.split ","
 	name = column[0].chomp
-	mnt_bef.puts("#{name}")	#‘O
+	mnt_bef.puts("#{name}")	#å‰
 	name = column[1].chomp
-	mnt_af.puts("#{name}")		#Œã
+	mnt_af.puts("#{name}")		#å¾Œ
 end	#while
 
-#ƒ‰ƒ“ƒ_ƒ€‚Ìí’Ş‚èƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒg
+#ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®é‡£ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆ
 fish = open("fish","w")
 fish_csv = open("fish.csv","r")
-line = fish_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
-line = fish_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
+line = fish_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
+line = fish_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
 while line = fish_csv.gets
 	if line =~/^#END/ then
 		break

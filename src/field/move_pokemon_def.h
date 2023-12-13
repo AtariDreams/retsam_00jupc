@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	move_pokemon_def.h
- * @bfief	ˆÚ“®ƒ|ƒPƒ‚ƒ“’è‹`‚Æ‚©
+ * @bfief	ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å®šç¾©ã¨ã‹
  * @author	Nozomu Saito
  * @date	06.05.11
  */
@@ -9,11 +9,11 @@
 #ifndef __MOVE_POKEMON_DEF_H__
 #define	__MOVE_POKEMON_DEF_H__
 
-#define MOVE_POKE_MAX		(6)	//ƒAƒCEƒ€[ƒoƒXEƒ_[ƒN‚ÌO•C + ƒtƒ@ƒCƒA[AƒTƒ“ƒ_[AƒtƒŠ[ƒU[
-#define MOVE_POKE_AI		(0)	//ƒAƒC
-#define MOVE_POKE_MUUBASU	(1)	//ƒ€[ƒoƒX
-#define MOVE_POKE_DAAKU		(2)	//ƒ_[ƒN
-//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
+#define MOVE_POKE_MAX		(6)	//ã‚¢ã‚¤ãƒ»ãƒ ãƒ¼ãƒã‚¹ãƒ»ãƒ€ãƒ¼ã‚¯ã®ä¸‰åŒ¹ + ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ã€ã‚µãƒ³ãƒ€ãƒ¼ã€ãƒ•ãƒªãƒ¼ã‚¶ãƒ¼
+#define MOVE_POKE_AI		(0)	//ã‚¢ã‚¤
+#define MOVE_POKE_MUUBASU	(1)	//ãƒ ãƒ¼ãƒã‚¹
+#define MOVE_POKE_DAAKU		(2)	//ãƒ€ãƒ¼ã‚¯
+//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
 #define MOVE_POKE_FAIYAA	(3)
 #define MOVE_POKE_SANDAA	(4)
 #define MOVE_POKE_HURIIZAA	(5)
@@ -21,6 +21,6 @@
 
 
 
-#define	LOCATION_MAX	(29)	//ˆÚ“®êŠ”
+#define	LOCATION_MAX	(29)	//ç§»å‹•å ´æ‰€æ•°
 
 #endif	 //__MOVE_POKEMON_DEF_H__

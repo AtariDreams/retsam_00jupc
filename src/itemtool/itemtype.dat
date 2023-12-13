@@ -5,7 +5,7 @@
  * item data cnv ver.2.00
  */
 //============================================================================================
-// ƒ[ƒ‹
+// ãƒ¡ãƒ¼ãƒ«
 const u16 ItemMailTable[] =
 {
 	ITEM_GURASUMEERU,
@@ -22,7 +22,7 @@ const u16 ItemMailTable[] =
 	ITEM_BURIKKUMEERU,
 };
 
-// ‚«‚Ì‚İ
+// ãã®ã¿
 const u16 ItemNutsTable[] =
 {
 	ITEM_KURABONOMI,

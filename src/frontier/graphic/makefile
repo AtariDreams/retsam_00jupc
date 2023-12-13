@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ‹ZƒGƒtƒFƒNƒg
+# Project:  æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -18,7 +18,7 @@ include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
 
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= frontier_bg.narc frontier_obj.narc
 
 #----------------------------------------------------------------------------
@@ -26,14 +26,14 @@ LDIRT_CLEAN	= frontier_bg.narc frontier_obj.narc
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 
 #-------------------------------
-#	Às‡
-#		ƒŠƒ\[ƒXƒRƒs[
-#		ƒŠƒ\[ƒXƒA[ƒJƒCƒu
-#		‹ZƒGƒtƒFƒNƒgƒA[ƒJƒCƒu
+#	å®Ÿè¡Œé †
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚³ãƒ”ãƒ¼
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+#		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 #-------------------------------
 do-build: frontier_bg.narc frontier_obj.narc
 
-#----------- ƒA[ƒJƒCƒu‚·‚é -----------
+#----------- ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ -----------
 frontier_bg.narc: $(RES_BG_DIR:\\=/)*.N*R frontier_bg.lst
 #	nnsarc -c -l -n -i frontier_bg.narc -S frontier_bg.lst
 	$(NITRO_COMP) $(NITROSDK_ROOT) frontier_bg.lst frontier_bg.narc frontier_bg.naix

@@ -1,7 +1,7 @@
 #ifndef _C07R0207_DEF_H_
 #define _C07R0207_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C07R0207_MIDDLEMAN2		(1)
 #define	SCRID_C07R0207_MIDDLEWOMAN2		(2)
 #define	SCRID_C07R0207_MIDDLEWOMAN2A		(3)
@@ -14,6 +14,6 @@
 #define	SCRID_C07R0207_SHOP3		(10)
 #define	SCRID_C07R0207_FIX_SHOP_01		(11)
 #define	SCRID_C07R0207_POSTER		(12)
-#define	SCRID_C07R0207_DATA_MAX		(12)		//最大数
+#define	SCRID_C07R0207_DATA_MAX		(12)		//譛螟ｧ謨ｰ
 
 #endif //_C07R0207_DEF_H_

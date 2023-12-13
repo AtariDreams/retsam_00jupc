@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	ball_effect.c
- * @brief	ƒ{[ƒ‹ƒGƒtƒFƒNƒg
+ * @brief	ãƒœãƒ¼ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  * @author	goto
- * @date	2005.10.24(Œ)
+ * @date	2005.10.24(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -42,7 +42,7 @@
 
 #include "ball_effect_tool.h"
 
-#define BE_START_NO (0)						///< ”hè–Ú‚Ì´Ìª¸Ä
+#define BE_START_NO (0)						///< æ´¾æ‰‹ç›®ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
 static int ball_eff_loop_cnt = BE_START_NO;
 
@@ -55,114 +55,114 @@ static int ball_eff_loop_cnt = BE_START_NO;
 #define BMT_START_POS_AA_A_C_OFS_Y		(BMT_START_POS_OFS_Y + 8)
 
 /*
-#define ITEM_MASUTAABOORU		( 1 )		// ƒ}ƒXƒ^[ƒ{[ƒ‹
-#define ITEM_HAIPAABOORU		( 2 )		// ƒnƒCƒp[ƒ{[ƒ‹
-#define ITEM_SUUPAABOORU		( 3 )		// ƒX[ƒp[ƒ{[ƒ‹
-#define ITEM_MONSUTAABOORU		( 4 )		// ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
-#define ITEM_SAFARIBOORU		( 5 )		// ƒTƒtƒ@ƒŠƒ{[ƒ‹
-#define ITEM_NETTOBOORU		( 6 )		// ƒlƒbƒgƒ{[ƒ‹
-#define ITEM_DAIBUBOORU		( 7 )		// ƒ_ƒCƒuƒ{[ƒ‹
-#define ITEM_NESUTOBOORU		( 8 )		// ƒlƒXƒgƒ{[ƒ‹
-#define ITEM_RIPIITOBOORU		( 9 )		// ƒŠƒs[ƒgƒ{[ƒ‹
-#define ITEM_TAIMAABOORU		( 10 )		// ƒ^ƒCƒ}[ƒ{[ƒ‹
-#define ITEM_GOOZYASUBOORU		( 11 )		// ƒS[ƒWƒƒƒXƒ{[ƒ‹
-#define ITEM_PUREMIABOORU		( 12 )		// ƒvƒŒƒ~ƒAƒ{[ƒ‹
-#define ITEM_DAAKUBOORU		( 13 )		// ƒ_[ƒNƒ{[ƒ‹
-#define ITEM_HIIRUBOORU		( 14 )		// ƒq[ƒ‹ƒ{[ƒ‹
-#define ITEM_KUIKKUBOORU		( 15 )		// ƒNƒCƒbƒNƒ{[ƒ‹
-#define ITEM_PURESYASUBOORU		( 16 )		// ƒvƒŒƒVƒƒƒXƒ{[ƒ‹
+#define ITEM_MASUTAABOORU		( 1 )		// ãƒã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
+#define ITEM_HAIPAABOORU		( 2 )		// ãƒã‚¤ãƒ‘ãƒ¼ãƒœãƒ¼ãƒ«
+#define ITEM_SUUPAABOORU		( 3 )		// ã‚¹ãƒ¼ãƒ‘ãƒ¼ãƒœãƒ¼ãƒ«
+#define ITEM_MONSUTAABOORU		( 4 )		// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
+#define ITEM_SAFARIBOORU		( 5 )		// ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«
+#define ITEM_NETTOBOORU		( 6 )		// ãƒãƒƒãƒˆãƒœãƒ¼ãƒ«
+#define ITEM_DAIBUBOORU		( 7 )		// ãƒ€ã‚¤ãƒ–ãƒœãƒ¼ãƒ«
+#define ITEM_NESUTOBOORU		( 8 )		// ãƒã‚¹ãƒˆãƒœãƒ¼ãƒ«
+#define ITEM_RIPIITOBOORU		( 9 )		// ãƒªãƒ”ãƒ¼ãƒˆãƒœãƒ¼ãƒ«
+#define ITEM_TAIMAABOORU		( 10 )		// ã‚¿ã‚¤ãƒãƒ¼ãƒœãƒ¼ãƒ«
+#define ITEM_GOOZYASUBOORU		( 11 )		// ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒœãƒ¼ãƒ«
+#define ITEM_PUREMIABOORU		( 12 )		// ãƒ—ãƒ¬ãƒŸã‚¢ãƒœãƒ¼ãƒ«
+#define ITEM_DAAKUBOORU		( 13 )		// ãƒ€ãƒ¼ã‚¯ãƒœãƒ¼ãƒ«
+#define ITEM_HIIRUBOORU		( 14 )		// ãƒ’ãƒ¼ãƒ«ãƒœãƒ¼ãƒ«
+#define ITEM_KUIKKUBOORU		( 15 )		// ã‚¯ã‚¤ãƒƒã‚¯ãƒœãƒ¼ãƒ«
+#define ITEM_PURESYASUBOORU		( 16 )		// ãƒ—ãƒ¬ã‚·ãƒ£ã‚¹ãƒœãƒ¼ãƒ«
 */
 
-///< OAMƒf[ƒ^
-/// ---- ƒLƒƒƒ‰ƒtƒ@ƒCƒ‹˜A”Ô -----
+///< OAMãƒ‡ãƒ¼ã‚¿
+/// ---- ã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«é€£ç•ª -----
 #if 0
-00	ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
-01	ƒ}ƒXƒ^[ƒ{[ƒ‹
-02	ƒnƒCƒp[ƒ{[ƒ‹
-03	ƒX[ƒp[ƒ{[ƒ‹
-04	ƒTƒtƒ@ƒŠƒ{[ƒ‹
-05	ƒlƒbƒgƒ{[ƒ‹
-06	ƒ_ƒCƒuƒ{[ƒ‹	
-07	ƒlƒXƒgƒ{[ƒ‹
-08	ƒŠƒs[ƒgƒ{[ƒ‹	
-09	ƒ^ƒCƒ}[ƒ{[ƒ‹
-10	ƒS[ƒWƒƒƒXƒ{[ƒ‹
-11	ƒvƒŒƒ~ƒAƒ{[ƒ‹
-12	yVzƒNƒCƒbƒNƒ{[ƒ‹iÂ‰©
-13	yVzƒq[ƒ‹ƒ{[ƒ‹iƒsƒ“ƒN
-14	yVzƒ_[ƒNƒ{[ƒ‹i•—Î
-15	yVzƒvƒŒƒVƒAƒXƒ{[ƒ‹iÔ
+00	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
+01	ãƒã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
+02	ãƒã‚¤ãƒ‘ãƒ¼ãƒœãƒ¼ãƒ«
+03	ã‚¹ãƒ¼ãƒ‘ãƒ¼ãƒœãƒ¼ãƒ«
+04	ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«
+05	ãƒãƒƒãƒˆãƒœãƒ¼ãƒ«
+06	ãƒ€ã‚¤ãƒ–ãƒœãƒ¼ãƒ«	
+07	ãƒã‚¹ãƒˆãƒœãƒ¼ãƒ«
+08	ãƒªãƒ”ãƒ¼ãƒˆãƒœãƒ¼ãƒ«	
+09	ã‚¿ã‚¤ãƒãƒ¼ãƒœãƒ¼ãƒ«
+10	ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒœãƒ¼ãƒ«
+11	ãƒ—ãƒ¬ãƒŸã‚¢ãƒœãƒ¼ãƒ«
+12	ã€æ–°ã€‘ã‚¯ã‚¤ãƒƒã‚¯ãƒœãƒ¼ãƒ«ï¼ˆé’é»„
+13	ã€æ–°ã€‘ãƒ’ãƒ¼ãƒ«ãƒœãƒ¼ãƒ«ï¼ˆãƒ”ãƒ³ã‚¯
+14	ã€æ–°ã€‘ãƒ€ãƒ¼ã‚¯ãƒœãƒ¼ãƒ«ï¼ˆé»’ç·‘
+15	ã€æ–°ã€‘ãƒ—ãƒ¬ã‚·ã‚¢ã‚¹ãƒœãƒ¼ãƒ«ï¼ˆèµ¤
 #endif
 /// ------------------------------------
 static const int MonsterBall_GRA_Table[][4] = {
-	{ BATT_BALL_01_NCGR_BIN, BATT_BALL_01_NCLR, BATT_BALL_01_NCER_BIN, BATT_BALL_01_NANR_BIN, },	///< ƒ}ƒXƒ^[	ƒ{[ƒ‹
-	{ BATT_BALL_02_NCGR_BIN, BATT_BALL_02_NCLR, BATT_BALL_02_NCER_BIN, BATT_BALL_02_NANR_BIN, },	///< ƒnƒCƒp[	ƒ{[ƒ‹
-	{ BATT_BALL_03_NCGR_BIN, BATT_BALL_03_NCLR, BATT_BALL_03_NCER_BIN, BATT_BALL_03_NANR_BIN, },	///< ƒX[ƒp[	ƒ{[ƒ‹
-	{ BATT_BALL_00_NCGR_BIN, BATT_BALL_00_NCLR, BATT_BALL_00_NCER_BIN, BATT_BALL_00_NANR_BIN, },	///< ƒ‚ƒ“ƒXƒ^[	ƒ{[ƒ‹
-	{ BATT_BALL_04_NCGR_BIN, BATT_BALL_04_NCLR, BATT_BALL_04_NCER_BIN, BATT_BALL_04_NANR_BIN, },	///< ƒTƒtƒ@ƒŠ	ƒ{[ƒ‹
-	{ BATT_BALL_05_NCGR_BIN, BATT_BALL_05_NCLR, BATT_BALL_05_NCER_BIN, BATT_BALL_05_NANR_BIN, },	///< ƒlƒbƒg		ƒ{[ƒ‹
-	{ BATT_BALL_06_NCGR_BIN, BATT_BALL_06_NCLR, BATT_BALL_06_NCER_BIN, BATT_BALL_06_NANR_BIN, },	///< ƒ_ƒCƒu		ƒ{[ƒ‹
-	{ BATT_BALL_07_NCGR_BIN, BATT_BALL_07_NCLR, BATT_BALL_07_NCER_BIN, BATT_BALL_07_NANR_BIN, },	///< ƒlƒXƒg		ƒ{[ƒ‹
-	{ BATT_BALL_08_NCGR_BIN, BATT_BALL_08_NCLR, BATT_BALL_08_NCER_BIN, BATT_BALL_08_NANR_BIN, },	///< ƒŠƒs[ƒg	ƒ{[ƒ‹
-	{ BATT_BALL_09_NCGR_BIN, BATT_BALL_09_NCLR, BATT_BALL_09_NCER_BIN, BATT_BALL_09_NANR_BIN, },	///< ƒ^ƒCƒ}[	ƒ{[ƒ‹
-	{ BATT_BALL_10_NCGR_BIN, BATT_BALL_10_NCLR, BATT_BALL_10_NCER_BIN, BATT_BALL_10_NANR_BIN, },	///< ƒS[ƒWƒƒƒX	ƒ{[ƒ‹
-	{ BATT_BALL_11_NCGR_BIN, BATT_BALL_11_NCLR, BATT_BALL_11_NCER_BIN, BATT_BALL_11_NANR_BIN, },	///< ƒvƒŒƒ~ƒA	ƒ{[ƒ‹
-	{ BATT_BALL_13_NCGR_BIN, BATT_BALL_13_NCLR, BATT_BALL_13_NCER_BIN, BATT_BALL_13_NANR_BIN, },	///< ƒ_[ƒN		ƒ{[ƒ‹
-	{ BATT_BALL_14_NCGR_BIN, BATT_BALL_14_NCLR, BATT_BALL_14_NCER_BIN, BATT_BALL_14_NANR_BIN, },	///< ƒq[ƒ‹		ƒ{[ƒ‹
-	{ BATT_BALL_12_NCGR_BIN, BATT_BALL_12_NCLR, BATT_BALL_12_NCER_BIN, BATT_BALL_12_NANR_BIN, },	///< ƒNƒCƒbƒN	ƒ{[ƒ‹
-	{ BATT_BALL_15_NCGR_BIN, BATT_BALL_15_NCLR, BATT_BALL_15_NCER_BIN, BATT_BALL_15_NANR_BIN, },	///< ƒvƒŒƒVƒƒƒX	ƒ{[ƒ‹
-	{ BATT_BALL_16_NCGR_BIN, BATT_BALL_16_NCLR, BATT_BALL_16_NCER_BIN, BATT_BALL_16_NANR_BIN, },	///< ƒp[ƒN		ƒ{[ƒ‹
-	{ BATT_BALL_18_NCGR_BIN, BATT_BALL_18_NCLR, BATT_BALL_18_NCER_BIN, BATT_BALL_18_NANR_BIN, },	///< ‚Ç‚ë		ƒ{[ƒ‹
-	{ BATT_BALL_17_NCGR_BIN, BATT_BALL_17_NCLR, BATT_BALL_17_NCER_BIN, BATT_BALL_17_NANR_BIN, },	///< ƒGƒT		ƒ{[ƒ‹
-	{ BATT_BALL_17_NCGR_BIN, BATT_BALL_17_NCLR, BATT_BALL_17_NCER_BIN, BATT_BALL_17_NANR_BIN, },	///< ‚à‚Ç‚·
+	{ BATT_BALL_01_NCGR_BIN, BATT_BALL_01_NCLR, BATT_BALL_01_NCER_BIN, BATT_BALL_01_NANR_BIN, },	///< ãƒã‚¹ã‚¿ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_02_NCGR_BIN, BATT_BALL_02_NCLR, BATT_BALL_02_NCER_BIN, BATT_BALL_02_NANR_BIN, },	///< ãƒã‚¤ãƒ‘ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_03_NCGR_BIN, BATT_BALL_03_NCLR, BATT_BALL_03_NCER_BIN, BATT_BALL_03_NANR_BIN, },	///< ã‚¹ãƒ¼ãƒ‘ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_00_NCGR_BIN, BATT_BALL_00_NCLR, BATT_BALL_00_NCER_BIN, BATT_BALL_00_NANR_BIN, },	///< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_04_NCGR_BIN, BATT_BALL_04_NCLR, BATT_BALL_04_NCER_BIN, BATT_BALL_04_NANR_BIN, },	///< ã‚µãƒ•ã‚¡ãƒª	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_05_NCGR_BIN, BATT_BALL_05_NCLR, BATT_BALL_05_NCER_BIN, BATT_BALL_05_NANR_BIN, },	///< ãƒãƒƒãƒˆ		ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_06_NCGR_BIN, BATT_BALL_06_NCLR, BATT_BALL_06_NCER_BIN, BATT_BALL_06_NANR_BIN, },	///< ãƒ€ã‚¤ãƒ–		ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_07_NCGR_BIN, BATT_BALL_07_NCLR, BATT_BALL_07_NCER_BIN, BATT_BALL_07_NANR_BIN, },	///< ãƒã‚¹ãƒˆ		ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_08_NCGR_BIN, BATT_BALL_08_NCLR, BATT_BALL_08_NCER_BIN, BATT_BALL_08_NANR_BIN, },	///< ãƒªãƒ”ãƒ¼ãƒˆ	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_09_NCGR_BIN, BATT_BALL_09_NCLR, BATT_BALL_09_NCER_BIN, BATT_BALL_09_NANR_BIN, },	///< ã‚¿ã‚¤ãƒãƒ¼	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_10_NCGR_BIN, BATT_BALL_10_NCLR, BATT_BALL_10_NCER_BIN, BATT_BALL_10_NANR_BIN, },	///< ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_11_NCGR_BIN, BATT_BALL_11_NCLR, BATT_BALL_11_NCER_BIN, BATT_BALL_11_NANR_BIN, },	///< ãƒ—ãƒ¬ãƒŸã‚¢	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_13_NCGR_BIN, BATT_BALL_13_NCLR, BATT_BALL_13_NCER_BIN, BATT_BALL_13_NANR_BIN, },	///< ãƒ€ãƒ¼ã‚¯		ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_14_NCGR_BIN, BATT_BALL_14_NCLR, BATT_BALL_14_NCER_BIN, BATT_BALL_14_NANR_BIN, },	///< ãƒ’ãƒ¼ãƒ«		ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_12_NCGR_BIN, BATT_BALL_12_NCLR, BATT_BALL_12_NCER_BIN, BATT_BALL_12_NANR_BIN, },	///< ã‚¯ã‚¤ãƒƒã‚¯	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_15_NCGR_BIN, BATT_BALL_15_NCLR, BATT_BALL_15_NCER_BIN, BATT_BALL_15_NANR_BIN, },	///< ãƒ—ãƒ¬ã‚·ãƒ£ã‚¹	ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_16_NCGR_BIN, BATT_BALL_16_NCLR, BATT_BALL_16_NCER_BIN, BATT_BALL_16_NANR_BIN, },	///< ãƒ‘ãƒ¼ã‚¯		ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_18_NCGR_BIN, BATT_BALL_18_NCLR, BATT_BALL_18_NCER_BIN, BATT_BALL_18_NANR_BIN, },	///< ã©ã‚		ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_17_NCGR_BIN, BATT_BALL_17_NCLR, BATT_BALL_17_NCER_BIN, BATT_BALL_17_NANR_BIN, },	///< ã‚¨ã‚µ		ãƒœãƒ¼ãƒ«
+	{ BATT_BALL_17_NCGR_BIN, BATT_BALL_17_NCLR, BATT_BALL_17_NCER_BIN, BATT_BALL_17_NANR_BIN, },	///< ã‚‚ã©ã™
 };
 
-///< “oêƒp[ƒeƒBƒNƒ‹
+///< ç™»å ´ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 static const int MonsterBall_SPA_Table[][2] = {
-	{ SPA_P_BALL_01, P_BALL_01_SPAMAX },	///< ƒ}ƒXƒ^[	ƒ{[ƒ‹
-	{ SPA_P_BALL_02, P_BALL_02_SPAMAX },	///< ƒnƒCƒp[	ƒ{[ƒ‹
-	{ SPA_P_BALL_03, P_BALL_03_SPAMAX },	///< ƒX[ƒp[	ƒ{[ƒ‹
-	{ SPA_P_BALL_04, P_BALL_04_SPAMAX },	///< ƒ‚ƒ“ƒXƒ^[	ƒ{[ƒ‹
-	{ SPA_P_BALL_05, P_BALL_05_SPAMAX },	///< ƒTƒtƒ@ƒŠ	ƒ{[ƒ‹
-	{ SPA_P_BALL_06, P_BALL_06_SPAMAX },	///< ƒlƒbƒg		ƒ{[ƒ‹
-	{ SPA_P_BALL_07, P_BALL_07_SPAMAX },	///< ƒ_ƒCƒu		ƒ{[ƒ‹
-	{ SPA_P_BALL_08, P_BALL_08_SPAMAX },	///< ƒlƒXƒg		ƒ{[ƒ‹
-	{ SPA_P_BALL_09, P_BALL_09_SPAMAX },	///< ƒŠƒs[ƒg	ƒ{[ƒ‹
-	{ SPA_P_BALL_10, P_BALL_10_SPAMAX },	///< ƒ^ƒCƒ}[	ƒ{[ƒ‹
-	{ SPA_P_BALL_11, P_BALL_11_SPAMAX },	///< ƒS[ƒWƒƒƒX	ƒ{[ƒ‹
-	{ SPA_P_BALL_12, P_BALL_12_SPAMAX },	///< ƒvƒŒƒ~ƒA	ƒ{[ƒ‹
-	{ SPA_P_BALL_13, P_BALL_13_SPAMAX },	///< ƒ_[ƒN		ƒ{[ƒ‹
-	{ SPA_P_BALL_14, P_BALL_14_SPAMAX },	///< ƒq[ƒ‹		ƒ{[ƒ‹
-	{ SPA_P_BALL_15, P_BALL_15_SPAMAX },	///< ƒNƒCƒbƒN	ƒ{[ƒ‹
-	{ SPA_P_BALL_16, P_BALL_16_SPAMAX },	///< ƒvƒŒƒVƒƒƒX	ƒ{[ƒ‹
-	{ SPA_P_BALL_17, P_BALL_17_SPAMAX },	///< ƒp[ƒN		ƒ{[ƒ‹
-	{ SPA_P_BALL_01, P_BALL_01_SPAMAX },	///< ‚Ç‚ë		ƒ{[ƒ‹
-	{ SPA_P_BALL_01, P_BALL_01_SPAMAX },	///< ƒGƒT		ƒ{[ƒ‹
-	{ SPA_P_BACK,	 P_BACK_SPAMAX	  },	///< ‚à‚Ç‚·
+	{ SPA_P_BALL_01, P_BALL_01_SPAMAX },	///< ãƒã‚¹ã‚¿ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_02, P_BALL_02_SPAMAX },	///< ãƒã‚¤ãƒ‘ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_03, P_BALL_03_SPAMAX },	///< ã‚¹ãƒ¼ãƒ‘ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_04, P_BALL_04_SPAMAX },	///< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_05, P_BALL_05_SPAMAX },	///< ã‚µãƒ•ã‚¡ãƒª	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_06, P_BALL_06_SPAMAX },	///< ãƒãƒƒãƒˆ		ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_07, P_BALL_07_SPAMAX },	///< ãƒ€ã‚¤ãƒ–		ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_08, P_BALL_08_SPAMAX },	///< ãƒã‚¹ãƒˆ		ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_09, P_BALL_09_SPAMAX },	///< ãƒªãƒ”ãƒ¼ãƒˆ	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_10, P_BALL_10_SPAMAX },	///< ã‚¿ã‚¤ãƒãƒ¼	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_11, P_BALL_11_SPAMAX },	///< ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_12, P_BALL_12_SPAMAX },	///< ãƒ—ãƒ¬ãƒŸã‚¢	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_13, P_BALL_13_SPAMAX },	///< ãƒ€ãƒ¼ã‚¯		ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_14, P_BALL_14_SPAMAX },	///< ãƒ’ãƒ¼ãƒ«		ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_15, P_BALL_15_SPAMAX },	///< ã‚¯ã‚¤ãƒƒã‚¯	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_16, P_BALL_16_SPAMAX },	///< ãƒ—ãƒ¬ã‚·ãƒ£ã‚¹	ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_17, P_BALL_17_SPAMAX },	///< ãƒ‘ãƒ¼ã‚¯		ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_01, P_BALL_01_SPAMAX },	///< ã©ã‚		ãƒœãƒ¼ãƒ«
+	{ SPA_P_BALL_01, P_BALL_01_SPAMAX },	///< ã‚¨ã‚µ		ãƒœãƒ¼ãƒ«
+	{ SPA_P_BACK,	 P_BACK_SPAMAX	  },	///< ã‚‚ã©ã™
 };
 
-///< •ßŠlƒp[ƒeƒBƒNƒ‹
+///< æ•ç²ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 static const int MonsterBall_Get_SPA_Table[][3] = {
-	{ SPA_P_GET_01,	 P_GET_01_BALL_STAR1, P_GET_01_SPAMAX },	///< ƒ}ƒXƒ^[	ƒ{[ƒ‹
-	{ SPA_P_GET_02,	 P_GET_02_BALL_STAR1, P_GET_02_SPAMAX },	///< ƒnƒCƒp[	ƒ{[ƒ‹
-	{ SPA_P_GET_03,	 P_GET_03_BALL_STAR1, P_GET_03_SPAMAX },	///< ƒX[ƒp[	ƒ{[ƒ‹
-	{ SPA_P_GET_04,	 P_GET_04_BALL_STAR1, P_GET_04_SPAMAX },	///< ƒ‚ƒ“ƒXƒ^[	ƒ{[ƒ‹
-	{ SPA_P_GET_05,	 P_GET_05_BALL_STAR1, P_GET_05_SPAMAX },	///< ƒTƒtƒ@ƒŠ	ƒ{[ƒ‹
-	{ SPA_P_GET_06,	 P_GET_06_BALL_STAR1, P_GET_06_SPAMAX },	///< ƒlƒbƒg		ƒ{[ƒ‹
-	{ SPA_P_GET_07,	 P_GET_07_BALL_STAR1, P_GET_07_SPAMAX },	///< ƒ_ƒCƒu		ƒ{[ƒ‹
-	{ SPA_P_GET_08,	 P_GET_08_BALL_STAR1, P_GET_08_SPAMAX },	///< ƒlƒXƒg		ƒ{[ƒ‹
-	{ SPA_P_GET_09,	 P_GET_09_BALL_STAR1, P_GET_09_SPAMAX },	///< ƒŠƒs[ƒg	ƒ{[ƒ‹
-	{ SPA_P_GET_10,	 P_GET_10_BALL_STAR1, P_GET_10_SPAMAX },	///< ƒ^ƒCƒ}[	ƒ{[ƒ‹
-	{ SPA_P_GET_11,	 P_GET_11_BALL_STAR1, P_GET_11_SPAMAX },	///< ƒS[ƒWƒƒƒX	ƒ{[ƒ‹
-	{ SPA_P_GET_12,	 P_GET_12_BALL_STAR1, P_GET_12_SPAMAX },	///< ƒvƒŒƒ~ƒA	ƒ{[ƒ‹
-	{ SPA_P_GET_13,	 P_GET_13_BALL_STAR1, P_GET_13_SPAMAX },	///< ƒ_[ƒN		ƒ{[ƒ‹
-	{ SPA_P_GET_14,	 P_GET_14_BALL_STAR1, P_GET_14_SPAMAX },	///< ƒq[ƒ‹		ƒ{[ƒ‹
-	{ SPA_P_GET_15,	 P_GET_15_BALL_STAR1, P_GET_15_SPAMAX },	///< ƒNƒCƒbƒN	ƒ{[ƒ‹
-	{ SPA_P_GET_16,	 P_GET_16_BALL_STAR1, P_GET_16_SPAMAX },	///< ƒvƒŒƒVƒƒƒX	ƒ{[ƒ‹
-	{ SPA_P_GET_17,	 P_GET_17_BALL_STAR1, P_GET_17_SPAMAX },	///< ƒp[ƒN		ƒ{[ƒ‹
-	{ SPA_P_GET_01,	 P_GET_01_BALL_STAR1, P_GET_01_SPAMAX },	///< ‚Ç‚ë		ƒ{[ƒ‹
-	{ SPA_P_GET_01,	 P_GET_01_BALL_STAR1, P_GET_01_SPAMAX },	///< ƒGƒT		ƒ{[ƒ‹
-	{ SPA_P_BACK,	 0xFF,				  P_BACK_SPAMAX	  },	///< ‚à‚Ç‚·
+	{ SPA_P_GET_01,	 P_GET_01_BALL_STAR1, P_GET_01_SPAMAX },	///< ãƒã‚¹ã‚¿ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_02,	 P_GET_02_BALL_STAR1, P_GET_02_SPAMAX },	///< ãƒã‚¤ãƒ‘ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_03,	 P_GET_03_BALL_STAR1, P_GET_03_SPAMAX },	///< ã‚¹ãƒ¼ãƒ‘ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_04,	 P_GET_04_BALL_STAR1, P_GET_04_SPAMAX },	///< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_05,	 P_GET_05_BALL_STAR1, P_GET_05_SPAMAX },	///< ã‚µãƒ•ã‚¡ãƒª	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_06,	 P_GET_06_BALL_STAR1, P_GET_06_SPAMAX },	///< ãƒãƒƒãƒˆ		ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_07,	 P_GET_07_BALL_STAR1, P_GET_07_SPAMAX },	///< ãƒ€ã‚¤ãƒ–		ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_08,	 P_GET_08_BALL_STAR1, P_GET_08_SPAMAX },	///< ãƒã‚¹ãƒˆ		ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_09,	 P_GET_09_BALL_STAR1, P_GET_09_SPAMAX },	///< ãƒªãƒ”ãƒ¼ãƒˆ	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_10,	 P_GET_10_BALL_STAR1, P_GET_10_SPAMAX },	///< ã‚¿ã‚¤ãƒãƒ¼	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_11,	 P_GET_11_BALL_STAR1, P_GET_11_SPAMAX },	///< ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_12,	 P_GET_12_BALL_STAR1, P_GET_12_SPAMAX },	///< ãƒ—ãƒ¬ãƒŸã‚¢	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_13,	 P_GET_13_BALL_STAR1, P_GET_13_SPAMAX },	///< ãƒ€ãƒ¼ã‚¯		ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_14,	 P_GET_14_BALL_STAR1, P_GET_14_SPAMAX },	///< ãƒ’ãƒ¼ãƒ«		ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_15,	 P_GET_15_BALL_STAR1, P_GET_15_SPAMAX },	///< ã‚¯ã‚¤ãƒƒã‚¯	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_16,	 P_GET_16_BALL_STAR1, P_GET_16_SPAMAX },	///< ãƒ—ãƒ¬ã‚·ãƒ£ã‚¹	ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_17,	 P_GET_17_BALL_STAR1, P_GET_17_SPAMAX },	///< ãƒ‘ãƒ¼ã‚¯		ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_01,	 P_GET_01_BALL_STAR1, P_GET_01_SPAMAX },	///< ã©ã‚		ãƒœãƒ¼ãƒ«
+	{ SPA_P_GET_01,	 P_GET_01_BALL_STAR1, P_GET_01_SPAMAX },	///< ã‚¨ã‚µ		ãƒœãƒ¼ãƒ«
+	{ SPA_P_BACK,	 0xFF,				  P_BACK_SPAMAX	  },	///< ã‚‚ã©ã™
 };
 
 #define BE_MONSTER_BALL_SPA_TBL_MAX		(sizeof(MonsterBall_SPA_Table))
@@ -170,7 +170,7 @@ static const int MonsterBall_Get_SPA_Table[][3] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹‚h‚c‚Ìæ“¾
+ * @brief	ãƒœãƒ¼ãƒ«ï¼©ï¼¤ã®å–å¾—
  *
  * @param	no	
  *
@@ -183,20 +183,20 @@ static int DP_BallEffectID_Get(int no)
 	int id;
 	
 	if (no < ITEM_MASUTAABOORU
-	||	no > BALL_EFF_DP_END){			///< ƒ}ƒXƒ^[ƒ{[ƒ‹‚æ‚è’l‚ª¬‚³‚¢ DPƒ{[ƒ‹‚æ‚è’l‚ª‘å‚«‚¢
+	||	no > BALL_EFF_DP_END){			///< ãƒã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã‚ˆã‚Šå€¤ãŒå°ã•ã„ DPãƒœãƒ¼ãƒ«ã‚ˆã‚Šå€¤ãŒå¤§ãã„
 		id = ITEM_MONSUTAABOORU;
 		
-//		OS_Printf(">> BallID = %2d ¨ %2d\n ¥¥¥ ”ÍˆÍŠO‚Ìƒ{[ƒ‹’lƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚É•â³\n", no, id);
+//		OS_Printf(">> BallID = %2d â†’ %2d\n ãƒ»ãƒ»ãƒ» ç¯„å›²å¤–ã®ãƒœãƒ¼ãƒ«å€¤ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã«è£œæ­£\n", no, id);
 	}
-	else if (no >= BALL_EFF_EX_DP){		///< DPê—p‚Ìƒ{[ƒ‹‚h‚c’è‹`ˆÈã
+	else if (no >= BALL_EFF_EX_DP){		///< DPå°‚ç”¨ã®ãƒœãƒ¼ãƒ«ï¼©ï¼¤å®šç¾©ä»¥ä¸Š
 		id = no - BALL_EFF_EX_DP;
 		
-//		OS_Printf(">> BallID = %2d ¨ %2d\n ¥¥¥ DPê—p‚Ìƒ{[ƒ‹’l‚È‚Ì‚Å•â³\n", no, id);
+//		OS_Printf(">> BallID = %2d â†’ %2d\n ãƒ»ãƒ»ãƒ» DPå°‚ç”¨ã®ãƒœãƒ¼ãƒ«å€¤ãªã®ã§è£œæ­£\n", no, id);
 	}
-	else {								///< ‚»‚Ì‘¼ = ³í
+	else {								///< ãã®ä»– = æ­£å¸¸
 		id = no;
 		
-//		OS_Printf(">> BallID = %2d ¨ %2d\n ¥¥¥ ³í‚Èƒ{[ƒ‹’l\n", no, id);
+//		OS_Printf(">> BallID = %2d â†’ %2d\n ãƒ»ãƒ»ãƒ» æ­£å¸¸ãªãƒœãƒ¼ãƒ«å€¤\n", no, id);
 	}
 
 	return id - ITEM_MASUTAABOORU;
@@ -341,14 +341,14 @@ static int MonsterBall_Get_GRA_Get(int ball_id, int type)
 #if 0
 	int id;
 	
-	id = ball_id - 1;	///< 1 ori ¨ 0 ori
+	id = ball_id - 1;	///< 1 ori â†’ 0 ori
 	
 	if (id < 0){
-		OS_Printf(" DP‚Å’è‹`‚³‚ê‚Ä‚¢‚È‚¢ƒ{[ƒ‹ID‚Å‚· \n");
+		OS_Printf(" DPã§å®šç¾©ã•ã‚Œã¦ã„ãªã„ãƒœãƒ¼ãƒ«IDã§ã™ \n");
 		id = 3;
 	}
 	if (id >= 18){
-		OS_Printf(" DP‚Å’è‹`‚³‚ê‚Ä‚¢‚È‚¢ƒ{[ƒ‹ID‚Å‚· \n");
+		OS_Printf(" DPã§å®šç¾©ã•ã‚Œã¦ã„ãªã„ãƒœãƒ¼ãƒ«IDã§ã™ \n");
 		id = 3;
 	}
 #endif
@@ -373,34 +373,34 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	¡ƒ{[ƒ‹ƒGƒtƒFƒNƒg—p\‘¢‘Ì
+//	â– ãƒœãƒ¼ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨æ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct _TBALL_EFFECT_SYS {
 	
-	int			heap_area;			///< ƒq[ƒvƒGƒŠƒA
+	int			heap_area;			///< ãƒ’ãƒ¼ãƒ—ã‚¨ãƒªã‚¢
 	
-	TBALL_CUSTOM_PARAM	bcp;		///< ƒ{[ƒ‹ƒJƒXƒ^ƒ}ƒCƒYƒpƒ‰ƒ[ƒ^
+	TBALL_CUSTOM_PARAM	bcp;		///< ãƒœãƒ¼ãƒ«ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	
-	int			ptc_num;			///< “®‚¢‚Ä‚¢‚éptc‚Ì”
-	PTC_PTR		ptc[9];				///< ƒp[ƒeƒBƒNƒ‹‚Ìƒ|ƒCƒ“ƒ^
-	CB_SEAL*	seal[9];			///< ‰ÁH—p
+	int			ptc_num;			///< å‹•ã„ã¦ã„ã‚‹ptcã®æ•°
+	PTC_PTR		ptc[9];				///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	CB_SEAL*	seal[9];			///< åŠ å·¥ç”¨
 	BOOL		ptc_active[9];		///< 
 	
-	EMIT_PTR	emit;				///< ƒGƒ~ƒbƒ^[‚Ìƒ|ƒCƒ“ƒ^
+	EMIT_PTR	emit;				///< ã‚¨ãƒŸãƒƒã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	TCB_PTR		tcb;				///< TCB ‚Ìƒ|ƒCƒ“ƒ^
+	TCB_PTR		tcb;				///< TCB ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	BOOL		active;				///< ¶‘¶ƒ`ƒFƒbƒN
+	BOOL		active;				///< ç”Ÿå­˜ãƒã‚§ãƒƒã‚¯
 	
-	ARCHANDLE*	arc_h;				///< ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	ARCHANDLE*	arc_h;				///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	int			load_seq;
 	
 	/// ----------
-	int			eff_type;			///< effectƒ^ƒCƒv
-	int			get_ball;			///< •ßŠlƒ{[ƒ‹
-	int			cb_id;				///< ƒJƒXƒ^ƒ}ƒCƒYID
-	CB_CORE		core;				///< •ÒWƒRƒAƒf[ƒ^
+	int			eff_type;			///< effectã‚¿ã‚¤ãƒ—
+	int			get_ball;			///< æ•ç²ãƒœãƒ¼ãƒ«
+	int			cb_id;				///< ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºID
+	CB_CORE		core;				///< ç·¨é›†ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿
 
 } TBALL_EFFECT_SYS;
 
@@ -408,7 +408,7 @@ static PTC_PTR	d_ptc = NULL;
 // =============================================================================
 //
 //
-//	¡ƒvƒƒgƒ^ƒCƒv
+//	â– ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //
 //
 // =============================================================================
@@ -425,15 +425,15 @@ static s8 CBTool_SignGet(void);
 // =============================================================================
 //
 //
-//	¡ŠO•”QÆŠÖ”ŒS
+//	â– å¤–éƒ¨å‚ç…§é–¢æ•°éƒ¡
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒ‰ƒ[ƒ^[–³‚µ‰Šú‰»
+ * @brief	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ç„¡ã—åˆæœŸåŒ–
  *
- * @param	heap_area			ƒq[ƒvID
+ * @param	heap_area			ãƒ’ãƒ¼ãƒ—ID
  *
  * @retval	BES_PTR	
  *
@@ -459,7 +459,7 @@ BES_PTR BallEffect_InitEz(int heap_area)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒ‰ƒ[ƒ^[‚ ‚èƒGƒtƒFƒNƒg‚Ì‰Šú‰»
+ * @brief	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚ã‚Šã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–
  *
  * @param	heap_area	
  * @param	bip	
@@ -497,7 +497,7 @@ BES_PTR BallEffect_Init(int heap_area, const TBALL_CUSTOM_PARAM* bcp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒtƒFƒNƒg‚Ìƒpƒ‰ƒ[ƒ^[İ’è
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼è¨­å®š
  *
  * @param	bes	
  * @param	bip	
@@ -518,7 +518,7 @@ void BallEffect_ParamSet(BES_PTR bes, const TBALL_CUSTOM_PARAM* bcp)
 	
 	GF_ASSERT(bes->cb_id < CB_DEF_CORE_MAX + 1);
 		
-	if (bes->cb_id == 0){		///< ƒJƒXƒ^ƒ€ƒ{[ƒ‹ID‚ªw’è‚³‚ê‚Ä‚È‚¢
+	if (bes->cb_id == 0){		///< ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«IDãŒæŒ‡å®šã•ã‚Œã¦ãªã„
 
 		bes->eff_type = BE_EFF_MONSTAR_BALL;
 		
@@ -530,7 +530,7 @@ void BallEffect_ParamSet(BES_PTR bes, const TBALL_CUSTOM_PARAM* bcp)
 		}
 		
 	}
-	else {						///< ƒJƒXƒ^ƒ€ƒ{[ƒ‹ID‚ªw’è‚³‚ê‚Ä‚¢‚é
+	else {						///< ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«IDãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹
 
 		bes->eff_type = BE_EFF_CUSTOM_BALL;
 		PokeParaGet(bes->bcp.pp, ID_PARA_cb_core, &bes->core);
@@ -542,7 +542,7 @@ void BallEffect_ParamSet(BES_PTR bes, const TBALL_CUSTOM_PARAM* bcp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX“Ç‚İ‚İê—pTCB
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿å°‚ç”¨TCB
  *
  * @param	tcb	
  * @param	work	
@@ -562,7 +562,7 @@ static void BE_ResLoadTCB(TCB_PTR tcb, void* work)
 		
 	switch(bes->load_seq){
 	case 0:
-		///< ‘O”¼‚SŒÂ‚ğ“Ç‚İ‚Ş
+		///< å‰åŠï¼”å€‹ã‚’èª­ã¿è¾¼ã‚€
 		bes->arc_h = ArchiveDataHandleOpen( ARC_BALL_PARTICLE, bes->heap_area );
 		{
 		#ifdef PM_DEBUG
@@ -588,7 +588,7 @@ static void BE_ResLoadTCB(TCB_PTR tcb, void* work)
 			bes->ptc[bes->ptc_num]	= Wp_InitEx_CBAH(bes->arc_h, bes->heap_area, pt_id, FALSE);
 			
 			if ( bes->ptc[bes->ptc_num] == NULL ){
-				GF_ASSERT_MSG( bes->ptc[bes->ptc_num] != NULL, "%d”Ô–Ú‚ÌPTC‚Ìƒƒ‚ƒŠ‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½-->B\n",bes->ptc_num );
+				GF_ASSERT_MSG( bes->ptc[bes->ptc_num] != NULL, "%dç•ªç›®ã®PTCã®ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã§ããªã‹ã£ãŸ-->ã€‚\n",bes->ptc_num );
 				continue;
 			}
 			
@@ -598,7 +598,7 @@ static void BE_ResLoadTCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case 1:
-		///< ‘O”¼‚SŒÂ‚ğ“Ç‚İ‚Ş
+		///< å‰åŠï¼”å€‹ã‚’èª­ã¿è¾¼ã‚€
 		for (i = 2; i < 4; i++){
 			seal = CB_SaveData_SealDataGet(&bes->core, i);
 			
@@ -618,7 +618,7 @@ static void BE_ResLoadTCB(TCB_PTR tcb, void* work)
 			bes->ptc[bes->ptc_num]	= Wp_InitEx_CBAH(bes->arc_h, bes->heap_area, pt_id, FALSE);
 			
 			if ( bes->ptc[bes->ptc_num] == NULL ){
-				GF_ASSERT_MSG( bes->ptc[bes->ptc_num] != NULL, "%d”Ô–Ú‚ÌPTC‚Ìƒƒ‚ƒŠ‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½-->B\n",bes->ptc_num );
+				GF_ASSERT_MSG( bes->ptc[bes->ptc_num] != NULL, "%dç•ªç›®ã®PTCã®ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã§ããªã‹ã£ãŸ-->ã€‚\n",bes->ptc_num );
 				continue;
 			}
 			
@@ -628,7 +628,7 @@ static void BE_ResLoadTCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case 2:
-		///< ‘O”¼‚SŒÂ‚ğ“Ç‚İ‚Ş
+		///< å‰åŠï¼”å€‹ã‚’èª­ã¿è¾¼ã‚€
 		for (i = 4; i < 6; i++){
 			seal = CB_SaveData_SealDataGet(&bes->core, i);
 			
@@ -648,7 +648,7 @@ static void BE_ResLoadTCB(TCB_PTR tcb, void* work)
 			bes->ptc[bes->ptc_num]	= Wp_InitEx_CBAH(bes->arc_h, bes->heap_area, pt_id, FALSE);
 			
 			if ( bes->ptc[bes->ptc_num] == NULL ){
-				GF_ASSERT_MSG( bes->ptc[bes->ptc_num] != NULL, "%d”Ô–Ú‚ÌPTC‚Ìƒƒ‚ƒŠ‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½-->B\n",bes->ptc_num );
+				GF_ASSERT_MSG( bes->ptc[bes->ptc_num] != NULL, "%dç•ªç›®ã®PTCã®ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã§ããªã‹ã£ãŸ-->ã€‚\n",bes->ptc_num );
 				continue;
 			}
 			
@@ -658,7 +658,7 @@ static void BE_ResLoadTCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case 3:
-		///< Œã”¼‚SŒÂ‚ğ“Ç‚İ‚Ş
+		///< å¾ŒåŠï¼”å€‹ã‚’èª­ã¿è¾¼ã‚€
 		for (i = 6; i < CB_DEF_SEAL_MAX; i++){
 			seal = CB_SaveData_SealDataGet(&bes->core, i);
 			
@@ -678,7 +678,7 @@ static void BE_ResLoadTCB(TCB_PTR tcb, void* work)
 			bes->ptc[bes->ptc_num]	= Wp_InitEx_CBAH(bes->arc_h, bes->heap_area, pt_id, FALSE);
 			
 			if ( bes->ptc[bes->ptc_num] == NULL ){
-				GF_ASSERT_MSG( bes->ptc[bes->ptc_num] != NULL, "%d”Ô–Ú‚ÌPTC‚Ìƒƒ‚ƒŠ‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½-->B\n",bes->ptc_num );
+				GF_ASSERT_MSG( bes->ptc[bes->ptc_num] != NULL, "%dç•ªç›®ã®PTCã®ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã§ããªã‹ã£ãŸ-->ã€‚\n",bes->ptc_num );
 				continue;
 			}
 			
@@ -695,7 +695,7 @@ static void BE_ResLoadTCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‚Ì“Ç‚İ‚İ
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿
  *
  * @param	bes	
  *
@@ -713,7 +713,7 @@ void BallEffect_ResourceLoad(BES_PTR bes)
 
 	if (bes->eff_type == BE_EFF_MONSTAR_BALL){
 		
-		///< ’Êí‚Ìƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
+		///< é€šå¸¸ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
 		spa_id = MonsterBall_SPA_Get(bes->get_ball);
 		bes->ptc_num = 1;
 		bes->ptc[0] = Wp_InitEx(bes->heap_area, ARC_BALL_PARTICLE, spa_id, FALSE);	
@@ -722,12 +722,12 @@ void BallEffect_ResourceLoad(BES_PTR bes)
 	}
 	else {
 		
-		///< ƒJƒXƒ^ƒ€ƒ{[ƒ‹
+		///< ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
 		bes->ptc_num = 0;
 		
 	#ifdef LOAD_SEQ_SEP
 	
-		///< •ªŠ„ƒ^ƒXƒN
+		///< åˆ†å‰²ã‚¿ã‚¹ã‚¯
 		bes->load_seq = 0;
 		{
 			TCB_PTR tcb;
@@ -774,7 +774,7 @@ void BallEffect_ResourceLoad(BES_PTR bes)
 
 //--------------------------------------------------------------
 /**
- * @brief	•ªŠ„“Ç‚İ‚İI—¹ƒ`ƒFƒbƒN
+ * @brief	åˆ†å‰²èª­ã¿è¾¼ã¿çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
  * @param	bes	
  *
@@ -795,7 +795,7 @@ BOOL BallEffect_IsLoadEnd(BES_PTR bes)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹“o˜^
+ * @brief	ãƒœãƒ¼ãƒ«ç™»éŒ²
  *
  * @param	bes	
  * @param	callback	
@@ -833,7 +833,7 @@ void BallEffect_ExecutedEz(BES_PTR bes)
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹ƒ`ƒFƒbƒN
+ * @brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
  * @param	bes	
  *
@@ -849,7 +849,7 @@ BOOL BallEffect_EndCheck(BES_PTR bes)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“ƒ^ƒXƒN
+ * @brief	ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  *
  * @param	tcb	
  * @param	work	
@@ -891,7 +891,7 @@ static void BallEffect_MainTCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹—pƒƒ‚ƒŠ‰ğ•ú
+ * @brief	ãƒœãƒ¼ãƒ«ç”¨ãƒ¡ãƒ¢ãƒªè§£æ”¾
  *
  * @param	bes	
  *
@@ -909,7 +909,7 @@ void BallEffect_FreeMemory(BES_PTR bes)
 // =============================================================================
 //
 //
-//	¡“à•”QÆŠÖ”ŒS
+//	â– å†…éƒ¨å‚ç…§é–¢æ•°éƒ¡
 //
 //
 // =============================================================================
@@ -931,7 +931,7 @@ static void BallEffect_TimerTCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒtƒFƒNƒg‚Ì“o˜^
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç™»éŒ²
  *
  * @param	bes	
  * @param	callback	
@@ -987,7 +987,7 @@ extern void DebugParticle_EmitMove(PTC_PTR ptc, EMIT_PTR emit, const VecFx32 *ve
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒ~ƒbƒ^‚ÌÀ•Wİ’è
+ * @brief	ã‚¨ãƒŸãƒƒã‚¿ã®åº§æ¨™è¨­å®š
  *
  * @param	client_type	
  * @param	pos	
@@ -1000,7 +1000,7 @@ static void BallEffect_EmitPosOfsGet(int client_type, VecFx32* pos)
 {		
 	WET_PokeParticlePosGet_CT(client_type, pos, FALSE, GF_CAMERA_ORTHO);
 	
-	///< À•W•â³
+	///< åº§æ¨™è£œæ­£
 	{
 		int x;
 		int y;
@@ -1022,7 +1022,7 @@ static void BallEffect_EmitPosOfsGet(int client_type, VecFx32* pos)
 			oy = -12;
 			break;
 		case CLIENT_TYPE_B:
-			ox = -14;		///< -‚È‚ç‰E‚Öi‚È‚º‚©ÅŒã‚É‚Ğ‚¢‚Ä‚é‚©‚çj
+			ox = -14;		///< -ãªã‚‰å³ã¸ï¼ˆãªãœã‹æœ€å¾Œã«ã²ã„ã¦ã‚‹ã‹ã‚‰ï¼‰
 			oy = -25;
 			break;
 		case CLIENT_TYPE_C:
@@ -1046,7 +1046,7 @@ static void BallEffect_EmitPosOfsGet(int client_type, VecFx32* pos)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒR[ƒ‹ƒoƒbƒNŠÖ”¥¥¥ƒpƒ‰ƒ[ƒ^‚Ì”½‰f‚È‚Ç
+ * @brief	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãƒ»ãƒ»ãƒ»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åæ˜ ãªã©
  *
  * @param	emit	
  *
@@ -1088,7 +1088,7 @@ static void BallEffect_CallBack_Custom(EMIT_PTR emit)
 		BallEffect_EmitPosOfsGet(client_type, &pos);
 	}
 	{
-		///< ƒIƒtƒZƒbƒg
+		///< ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		u8  id;
 		u8	x, y;
 		s16 ox, oy;
@@ -1138,7 +1138,7 @@ static void BallEffect_CallBack_Custom(EMIT_PTR emit)
 
 // -----------------------------------------
 //
-//	ƒR[ƒ‹ƒoƒbƒN‚Ì•â•ŠÖ”
+//	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®è£œåŠ©é–¢æ•°
 //
 // -----------------------------------------
 static void CBTool_InitVelocityGet(fx16* i_velo, fx16 n_velo, int n_per, f32 m_per)
@@ -1157,7 +1157,7 @@ static void CBTool_InitVelocityGet(fx16* i_velo, fx16 n_velo, int n_per, f32 m_p
 
 //--------------------------------------------------------------
 /**
- * @brief	À•Wİ’èŠÖ”
+ * @brief	åº§æ¨™è¨­å®šé–¢æ•°
  *
  * @param	p	
  * @param	rnd	
@@ -1185,7 +1185,7 @@ static void CBTool_InitPosRandGet(f32* p, u16 rnd, f32 param)
 
 //--------------------------------------------------------------
 /**
- * @brief	•„†İ’èŠÖ”
+ * @brief	ç¬¦å·è¨­å®šé–¢æ•°
  *
  * @param	none	
  *
@@ -1213,13 +1213,13 @@ static s8 CBTool_SignGet(void)
 // =============================================================================
 //
 //
-//	¡inlineŠÖ”
+//	â– inlineé–¢æ•°
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	intŒ^‚Ì‰ÁŒ¸Z
+ * @brief	intå‹ã®åŠ æ¸›ç®—
  *
  * @param	param	
  * @param	data	
@@ -1249,7 +1249,7 @@ static inline void BE_IntParamSet_inline(int* param, s16 data, int min, int max)
 
 //--------------------------------------------------------------
 /**
- * @brief	fx32Œ^‚Ì‰ÁŒ¸Z
+ * @brief	fx32å‹ã®åŠ æ¸›ç®—
  *
  * @param	param	
  * @param	data	
@@ -1288,7 +1288,7 @@ static inline void BE_Fx32ParamSet_inline(fx32* param, fx32 data, fx32 min, fx32
 // =============================================================================
 //
 //
-//	¡ŠÈ’PVer
+//	â– ç°¡å˜Ver
 //
 //
 // =============================================================================
@@ -1371,7 +1371,7 @@ void SPB_Load(SPB_PTR spb)
 				
 			for (i = 0; i < wk->spa_max; i++){
 				
-				///< ¯‚Í‚±‚Ì“_‚Åo‚³‚È‚¢
+				///< æ˜Ÿã¯ã“ã®æ™‚ç‚¹ã§å‡ºã•ãªã„
 				if (i == MonsterBall_Get_SPA_Star_Get(wk->param.ball_id)){ continue; }
 				
 				Particle_CreateEmitterCallback(wk->ptc, i, SP_Ball_CallBack, wk);
@@ -1427,7 +1427,7 @@ void SPB_End(SPB_PTR spb)
 // =============================================================================
 //
 //
-//	¡
+//	â– 
 //
 //
 // =============================================================================
@@ -1448,17 +1448,17 @@ typedef struct _TBALL_MOVE_SYS {
 	
 	// -----
 	
-	int scene;			///< ó‹µ‚æ‚èã‚Ì•”•ª‚ÅƒV[ƒ“‚ğŠÇ—‚·‚é
-	int scene_seq;		///< ƒV[ƒ“‚Ì’†‚ÌƒV[ƒPƒ“ƒX‚ğŠÇ—
+	int scene;			///< çŠ¶æ³ã‚ˆã‚Šä¸Šã®éƒ¨åˆ†ã§ã‚·ãƒ¼ãƒ³ã‚’ç®¡ç†ã™ã‚‹
+	int scene_seq;		///< ã‚·ãƒ¼ãƒ³ã®ä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ç®¡ç†
 	
 	// -----
 	
 	int seq;
 	int	cnt;
 	int flg;
-	int	state;			///< ƒ{[ƒ‹‚Ì“®ì“®ì‚ğæ“¾‚·‚é
+	int	state;			///< ãƒœãƒ¼ãƒ«ã®å‹•ä½œå‹•ä½œã‚’å–å¾—ã™ã‚‹
 	
-	int roll_num;		///< “]‚ª‚Á‚Ä‚¢‚é‰ñ” 1‰ñ–Ú = 0
+	int roll_num;		///< è»¢ãŒã£ã¦ã„ã‚‹å›æ•° 1å›ç›® = 0
 	
 	BOOL active;
 	
@@ -1466,7 +1466,7 @@ typedef struct _TBALL_MOVE_SYS {
 	u8	evb;
 	s8	vec_r;
 	
-	BOOL anime_flag;	///< ƒAƒjƒƒtƒ‰ƒO
+	BOOL anime_flag;	///< ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
 	BOOL open;
 	
 	CATS_RES_PTR	crp;
@@ -1494,7 +1494,7 @@ typedef struct _TBALL_MOVE_SYS {
 
 // -----------------------------------------
 //
-//	ƒc[ƒ‹ŠÖ˜A
+//	ãƒ„ãƒ¼ãƒ«é–¢é€£
 //
 // -----------------------------------------
 static void BMT_ClactInit(BMS_PTR bms);
@@ -1504,7 +1504,7 @@ static void BMT_StartPosSet(BMS_PTR bms, s16* x, s16* y);
 
 // -----------------------------------------
 //
-//	TCBŠÖ˜A
+//	TCBé–¢é€£
 //
 // -----------------------------------------
 static BOOL BM_Throw(BMS_PTR bms);
@@ -1704,12 +1704,12 @@ static void Capture_StateChange(BMS_PTR bms, int state)
 
 // ------------------
 //
-//	ƒRƒ“ƒgƒ[ƒ‹‚ğŠO‚Ås‚È‚¤‚½‚ß
+//	ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’å¤–ã§è¡Œãªã†ãŸã‚
 //
 // ------------------
 //#define BM_CAPTURE_AUTO_CONTROL
 
-///< ŠJn
+///< é–‹å§‹
 static BOOL Capture_Start(BMS_PTR bms)
 {
 	
@@ -1720,7 +1720,7 @@ static BOOL Capture_Start(BMS_PTR bms)
 	return TRUE;
 }
 
-///< “Š‚°‚é
+///< æŠ•ã’ã‚‹
 static BOOL Capture_Throw(BMS_PTR bms)
 {
 	BOOL active;
@@ -1734,7 +1734,7 @@ static BOOL Capture_Throw(BMS_PTR bms)
 	return TRUE;
 }
 
-///< “Š‚°I‚í‚è
+///< æŠ•ã’çµ‚ã‚ã‚Š
 static BOOL Capture_Throw_End(BMS_PTR bms)
 {	
 	Capture_StateChange(bms, EBMS_OPEN);
@@ -1742,7 +1742,7 @@ static BOOL Capture_Throw_End(BMS_PTR bms)
 	return TRUE;
 }
 
-///< ŠJ‚­
+///< é–‹ã
 static BOOL Capture_Open(BMS_PTR bms)
 {	
 
@@ -1806,7 +1806,7 @@ static BOOL Capture_Open_End(BMS_PTR bms)
 }
 
 
-///< ’e‚«
+///< å¼¾ã
 static BOOL Capture_Shed(BMS_PTR bms)
 {
 	BOOL active;
@@ -1834,7 +1834,7 @@ static BOOL Capture_Shed(BMS_PTR bms)
 	return TRUE;
 }
 
-///< ’e‚«
+///< å¼¾ã
 static BOOL Capture_Shed_End(BMS_PTR bms)
 {	
 //	Capture_StateChange(bms, EBMS_OPEN);
@@ -1842,7 +1842,7 @@ static BOOL Capture_Shed_End(BMS_PTR bms)
 	return TRUE;
 }
 
-///< •Â‚¶‚é
+///< é–‰ã˜ã‚‹
 static BOOL Capture_Close(BMS_PTR bms)
 {	
 	Capture_StateChange(bms, EBMS_CLOSE_END);
@@ -1862,7 +1862,7 @@ static BOOL Capture_Flash(BMS_PTR bms)
 {	
 	switch(bms->seq){
 	case 0:
-		///< Œõ‚é
+		///< å…‰ã‚‹
 		{
 			int pal_ofs;
 			
@@ -1875,7 +1875,7 @@ static BOOL Capture_Flash(BMS_PTR bms)
 		break;
 	
 	case 1:
-		///< Œõ‚èI‚í‚è‚Ü‚¿
+		///< å…‰ã‚Šçµ‚ã‚ã‚Šã¾ã¡
 		if (PaletteFadeCheck(bms->bmd.pfd) != 0){ break; }
 		
 		{
@@ -1926,7 +1926,7 @@ static BOOL Capture_Fall(BMS_PTR bms)
 	
 		if (WazaTool_CalcAndReflectStraightFxCap(&bms->cm[0], bms->cap) == FALSE){
 			bms->seq++;
-			///< ‚¢‚«‚È‚è‚¢‚­
+			///< ã„ããªã‚Šã„ã
 			Capture_StateChange(bms, EBMS_BOUNCE);
 		}
 	
@@ -2146,7 +2146,7 @@ static BOOL Capture_Success_1(BMS_PTR bms)
 {	
 	switch(bms->seq){
 	case 0:
-		///< ˆÃ‚­
+		///< æš—ã
 		{
 			int pal_ofs;
 			
@@ -2316,7 +2316,7 @@ static BOOL (* const Capture_TcbTable[])(BMS_PTR wk) = {
 	Capture_End,
 };
 
-///< •ßŠl
+///< æ•ç²
 static BOOL BM_Capture(BMS_PTR bms)
 {
 	BOOL active;
@@ -2327,7 +2327,7 @@ static BOOL BM_Capture(BMS_PTR bms)
 }
 
 
-///< “Š‚°‚é
+///< æŠ•ã’ã‚‹
 static BOOL BM_Throw(BMS_PTR bms)
 {
 	switch(bms->seq){
@@ -2374,7 +2374,7 @@ static BOOL BM_Throw(BMS_PTR bms)
 		}
 		bms->tp.time_stop++;
 		
-		///< ‹ó’†’â~
+		///< ç©ºä¸­åœæ­¢
 		if (bms->bmd.type >= EBMT_THROW_C
 		&&	bms->bmd.type <= EBMT_THROW_L){
 			if (bms->tp.time_stop >  (bms->tp.time / 2)
@@ -2394,13 +2394,13 @@ static BOOL BM_Throw(BMS_PTR bms)
 			if (IsPaletteSoftFade(bms->psp) == TRUE){ break; }
 		
 			PaletteSoftFadeDelete(bms->psp);
-			bms->open = TRUE;					///< ŠJ‚­ƒtƒ‰ƒO@ON
+			bms->open = TRUE;					///< é–‹ããƒ•ãƒ©ã‚°ã€€ON
 			
 			return FALSE;
 		}
 		else {
 			if (bms->bmd.type >= EBMT_CAPTURE_BB){
-				bms->open = TRUE;				///< ŠJ‚­ƒtƒ‰ƒO@ON
+				bms->open = TRUE;				///< é–‹ããƒ•ãƒ©ã‚°ã€€ON
 				
 				return FALSE;
 			}
@@ -2432,7 +2432,7 @@ static BOOL BM_Throw(BMS_PTR bms)
 					
 				}
 			}
-			bms->open = TRUE;						///< ŠJ‚­ƒtƒ‰ƒO@ON	
+			bms->open = TRUE;						///< é–‹ããƒ•ãƒ©ã‚°ã€€ON	
 		}
 		if ((++bms->tp.time_stop) <= BM_OPEN_WAIT_2){ break; }
 
@@ -2495,7 +2495,7 @@ static BOOL BM_Failure(BMS_PTR bms)
 		}
 		bms->tp.time_stop++;
 		
-		///< ‹ó’†’â~
+		///< ç©ºä¸­åœæ­¢
 		if (bms->bmd.type >= EBMT_THROW_C
 		&&	bms->bmd.type <= EBMT_THROW_L){
 			if (bms->tp.time_stop >  (bms->tp.time / 2)
@@ -2515,13 +2515,13 @@ static BOOL BM_Failure(BMS_PTR bms)
 			if (IsPaletteSoftFade(bms->psp) == TRUE){ break; }
 		
 			PaletteSoftFadeDelete(bms->psp);
-			bms->open = TRUE;					///< ŠJ‚­ƒtƒ‰ƒO@ON
+			bms->open = TRUE;					///< é–‹ããƒ•ãƒ©ã‚°ã€€ON
 			
 			return FALSE;
 		}
 		else {
 			if (bms->bmd.type >= EBMT_CAPTURE_BB){
-				bms->open = TRUE;				///< ŠJ‚­ƒtƒ‰ƒO@ON
+				bms->open = TRUE;				///< é–‹ããƒ•ãƒ©ã‚°ã€€ON
 				
 				return FALSE;
 			}
@@ -2538,14 +2538,14 @@ static BOOL BM_Failure(BMS_PTR bms)
 		
 	default:
 		if (bms->tp.time_stop == BM_OPEN_WAIT){
-			CATS_ObjectAnimeFrameSetCap(bms->cap, 2);		///< k‚Ş‚Ì‚ğ”ò‚Î‚·
+			CATS_ObjectAnimeFrameSetCap(bms->cap, 2);		///< ç¸®ã‚€ã®ã‚’é£›ã°ã™
 			{
 				int pal_ofs;
 			
 				pal_ofs = CATS_ObjectPaletteOffsetGetCap(bms->cap);
 				bms->psp = PaletteSoftFade(bms->bmd.pfd, bms->bmd.heap_id, FADE_MAIN_OBJ, pal_ofs * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
 			}
-			bms->open = TRUE;						///< ŠJ‚­ƒtƒ‰ƒO@ON	
+			bms->open = TRUE;						///< é–‹ããƒ•ãƒ©ã‚°ã€€ON	
 		}
 		if ((++bms->tp.time_stop) <= BM_OPEN_WAIT_2){ break; }
 		
@@ -2558,13 +2558,13 @@ static BOOL BM_Failure(BMS_PTR bms)
 	return TRUE;
 }
 
-///< •Â‚¶‚é
+///< é–‰ã˜ã‚‹
 static const int close_anime_tbl[][2] = {
-	{ 0, 2 },	///< 0ƒRƒ}–Ú 5ƒtƒŒ
-	{ 2, 2 },	///< 1ƒRƒ}–Ú 5ƒtƒŒ
-	{ 2, 6 },	///< 2ƒRƒ}–Ú 8ƒtƒŒ
-	{ 1, 6 },	///< 1ƒRƒ}–Ú 8ƒtƒŒ
-	{ 0, 6 },	///< 0ƒRƒ}–Ú 8ƒtƒŒ
+	{ 0, 2 },	///< 0ã‚³ãƒç›® 5ãƒ•ãƒ¬
+	{ 2, 2 },	///< 1ã‚³ãƒç›® 5ãƒ•ãƒ¬
+	{ 2, 6 },	///< 2ã‚³ãƒç›® 8ãƒ•ãƒ¬
+	{ 1, 6 },	///< 1ã‚³ãƒç›® 8ãƒ•ãƒ¬
+	{ 0, 6 },	///< 0ã‚³ãƒç›® 8ãƒ•ãƒ¬
 };
 static BOOL BM_Close(BMS_PTR bms)
 {
@@ -2652,8 +2652,8 @@ static BOOL BM_Close(BMS_PTR bms)
 }
 
 //
-//	‰Šú‰»0“x‚©‚çA360“x‰ñ“]‚ğ‚·‚é
-//	’…’nŠp“x‚©‚çA‰E‚©¶‚É20“x‚Ü‚Å“]‚ª‚é
+//	åˆæœŸåŒ–0åº¦ã‹ã‚‰ã€360åº¦å›è»¢ã‚’ã™ã‚‹
+//	ç€åœ°è§’åº¦ã‹ã‚‰ã€å³ã‹å·¦ã«20åº¦ã¾ã§è»¢ãŒã‚‹
 //
 //
 //
@@ -2700,7 +2700,7 @@ static BOOL BM_Shake(BMS_PTR bms)
 
 static BOOL BM_Free(BMS_PTR bms)
 {
-	///< “Á‚É‰½‚à‚µ‚È‚¢
+	///< ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	
 	if (bms->seq == 0xFF){
 		return FALSE;
@@ -2719,7 +2719,7 @@ static BOOL BM_Free(BMS_PTR bms)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹ˆÚ“®ƒƒCƒ“TCB
+ * @brief	ãƒœãƒ¼ãƒ«ç§»å‹•ãƒ¡ã‚¤ãƒ³TCB
  *
  * @param	tcb	
  * @param	work	
@@ -2736,7 +2736,7 @@ static void BM_TcbMain(TCB_PTR tcb, void* work)
 	
 	if (wk->active == FALSE){ return; }
 	
-	if (wk->ex_wait > 0){	//ŠO•”w’èƒEƒFƒCƒg
+	if (wk->ex_wait > 0){	//å¤–éƒ¨æŒ‡å®šã‚¦ã‚§ã‚¤ãƒˆ
 		wk->ex_wait--;
 		CATS_Draw(wk->crp);
 		return;
@@ -2757,7 +2757,7 @@ static void BM_TcbMain(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹ˆÚ“®‰Šú‰»
+ * @brief	ãƒœãƒ¼ãƒ«ç§»å‹•åˆæœŸåŒ–
  *
  * @param	bmd	
  *
@@ -2823,7 +2823,7 @@ BMS_PTR BM_Init(TBALL_MOVE_DATA* bmd)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹ˆÚ“®I—¹ƒ`ƒFƒbƒN
+ * @brief	ãƒœãƒ¼ãƒ«ç§»å‹•çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
  * @param	bms	
  *
@@ -2847,7 +2847,7 @@ BOOL BM_IsOpen(BMS_PTR bms)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹‚Ì•ßŠlƒfƒ‚ó‹µ
+ * @brief	ãƒœãƒ¼ãƒ«ã®æ•ç²ãƒ‡ãƒ¢çŠ¶æ³
  *
  * @param	bms	
  *
@@ -2863,7 +2863,7 @@ int	BM_CaptureStateGet(BMS_PTR bms)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹•ßŠlƒfƒ‚ó‹µƒRƒ“ƒgƒ[ƒ‹
+ * @brief	ãƒœãƒ¼ãƒ«æ•ç²ãƒ‡ãƒ¢çŠ¶æ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
  * @param	bms	
  *
@@ -2879,7 +2879,7 @@ void BM_CaptureStateSet(BMS_PTR bms, int state)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹•ßŠlƒfƒ‚ó‹µƒ`ƒFƒbƒN
+ * @brief	ãƒœãƒ¼ãƒ«æ•ç²ãƒ‡ãƒ¢çŠ¶æ³ãƒã‚§ãƒƒã‚¯
  *
  * @param	bms	
  * @param	state	
@@ -2896,7 +2896,7 @@ BOOL BM_IsCaptureStateEnd(BMS_PTR bms, int state)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹ˆÚ“®I—¹
+ * @brief	ãƒœãƒ¼ãƒ«ç§»å‹•çµ‚äº†
  *
  * @param	bms	
  *
@@ -2921,7 +2921,7 @@ void BM_Delete(BMS_PTR bms)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚[ƒhØ‘Ö
+ * @brief	ãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿
  *
  * @param	bms	
  * @param	mode	
@@ -2944,7 +2944,7 @@ void BM_ModeChange(BMS_PTR bms, int mode)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚[ƒhæ“¾
+ * @brief	ãƒ¢ãƒ¼ãƒ‰å–å¾—
  *
  * @param	bms	
  *
@@ -2961,7 +2961,7 @@ int BM_ModeGet(BMS_PTR bms)
 
 // -----------------------------------------
 //
-//	ƒc[ƒ‹
+//	ãƒ„ãƒ¼ãƒ«
 //
 // -----------------------------------------
 static void BMT_BallParaSet(BMS_PTR bms)
@@ -3040,7 +3040,7 @@ static void BMT_BallParaSet(BMS_PTR bms)
 		break;
 	
 	case EBMT_CAPTURE_BB:
-		///< •ßŠl—p
+		///< æ•ç²ç”¨
 		WazaEffPosGet_Type(0, 1, &bms->tp.ex, &bms->tp.ey);
 		bms->tp.height  = 64;
 		bms->tp.ey	   +=  8;	
@@ -3048,7 +3048,7 @@ static void BMT_BallParaSet(BMS_PTR bms)
 		return;
 		
 	case EBMT_CAPTURE_B:
-		///< •ßŠl—p
+		///< æ•ç²ç”¨
 		WazaEffPosGet_Type(1, 3, &bms->tp.ex, &bms->tp.ey);
 		bms->tp.height  = 64;
 		bms->tp.ey	   +=  8;	
@@ -3056,7 +3056,7 @@ static void BMT_BallParaSet(BMS_PTR bms)
 		return;
 		
 	case EBMT_CAPTURE_D:
-		///< •ßŠl—p
+		///< æ•ç²ç”¨
 		WazaEffPosGet_Type(1, 5, &bms->tp.ex, &bms->tp.ey);
 		bms->tp.height  = 64;
 		bms->tp.ey	   +=  8;	
@@ -3143,7 +3143,7 @@ static void BMT_StartPosSet(BMS_PTR bms, s16* x, s16* y)
 	case EBMT_CAPTURE_BB:
 	case EBMT_CAPTURE_B:
 	case EBMT_CAPTURE_D:
-		///< •ßŠl—p
+		///< æ•ç²ç”¨
 		*x = -30;
 		*y = 160;
 		break;
@@ -3184,7 +3184,7 @@ static void BMT_ClactInit(BMS_PTR bms)
 	ncer = MonsterBall_Get_GRA_Get(bms->bmd.ball_id, 2);
 	nanr = MonsterBall_Get_GRA_Get(bms->bmd.ball_id, 3);
 	
-	///< “Ç‚İ‚İ
+	///< èª­ã¿è¾¼ã¿
 	{
 		ARCHANDLE* hdl;
 		
@@ -3242,65 +3242,65 @@ static void BMT_ClactAdd(BMS_PTR bms)
 // =============================================================================
 //
 //
-//	¡‘€ìŠÖ”
+//	â– æ“ä½œé–¢æ•°
 //
 //
 // =============================================================================
-///< •\¦E”ñ•\¦Ø‚è‘Ö‚¦
+///< è¡¨ç¤ºãƒ»éè¡¨ç¤ºåˆ‡ã‚Šæ›¿ãˆ
 void BM_BallEnable(BMS_PTR bms, int flag)
 {
 	CATS_ObjectEnableCap(bms->cap, flag);
 }
 
-///< À•Wæ“¾
+///< åº§æ¨™å–å¾—
 void BM_BallPosGet(BMS_PTR bms, s16* x, s16* y)
 {
 	CATS_ObjectPosGetCap(bms->cap, x, y);
 }
 
-///< À•Wİ’è
+///< åº§æ¨™è¨­å®š
 void BM_BallPosSet(BMS_PTR bms, s16 x, s16 y)
 {
 	CATS_ObjectPosSetCap(bms->cap, x, y);
 }
 
-///< Šp“xæ“¾
+///< è§’åº¦å–å¾—
 void BM_BallRadGet(BMS_PTR bms, u16* rot)
 {
 	*rot = CATS_ObjectRotationGetCap(bms->cap);
 }
 
-///< Šp“xİ’è
+///< è§’åº¦è¨­å®š
 void BM_BallRadSet(BMS_PTR bms, u16 rot)
 {
 	CATS_ObjectRotationSetCap(bms->cap, rot);
 }
 
-///< ©—R‘€ì‚ğI‚í‚ç‚¹‚é
+///< è‡ªç”±æ“ä½œã‚’çµ‚ã‚ã‚‰ã›ã‚‹
 void BM_BallFreeEnd(BMS_PTR bms)
 {
 	bms->seq = 0xFF;	
 }
 
-///< ƒAƒjƒƒtƒ‰ƒOİ’è
+///< ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°è¨­å®š
 void BM_BallAnimeFlagSet(BMS_PTR bms, BOOL flag)
 {
 	bms->anime_flag = flag;
 }
 
-///< ƒvƒ‰ƒCƒIƒŠƒeƒB
+///< ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 void BM_BallSoftPriSet(BMS_PTR bms, int pri)
 {
 	CATS_ObjectPriSetCap(bms->cap, pri);
 }
 
-///< ƒvƒ‰ƒCƒIƒŠƒeƒB
+///< ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 void BM_BallBgPriSet(BMS_PTR bms, int pri)
 {
 	CATS_ObjectBGPriSetCap(bms->cap, pri);	
 }
 
-///< ŠO•”w’èƒEƒFƒCƒg
+///< å¤–éƒ¨æŒ‡å®šã‚¦ã‚§ã‚¤ãƒˆ
 void BM_BallWaitSet(BMS_PTR bms, int wait)
 {
 	bms->ex_wait = wait;

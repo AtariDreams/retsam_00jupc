@@ -1,149 +1,149 @@
 //==============================================================================
 /**
  * @file	contest_def.h
- * @brief	ƒRƒ“ƒeƒXƒg‚Ìƒwƒbƒ_FƒXƒNƒŠƒvƒg‚È‚Ç‚©‚ç‚àinclude‚³‚ê‚é‚Ì‚Åenum‹ÖŽ~I
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ˜ãƒƒãƒ€ï¼šã‚¹ã‚¯ãƒªãƒ—ãƒˆãªã©ã‹ã‚‰ã‚‚includeã•ã‚Œã‚‹ã®ã§enumç¦æ­¢ï¼
  * @author	matsuda
- * @date	2005.12.14(…)
+ * @date	2005.12.14(æ°´)
  */
 //==============================================================================
 #ifndef __CONTEST_DEF_H__
 #define __CONTEST_DEF_H__
 
 
-///ƒRƒ“ƒeƒXƒg‚ÌÅ‘åŽQ‰Ál”
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®æœ€å¤§å‚åŠ äººæ•°
 #define BREEDER_MAX				(4)
-///ƒRƒ“ƒeƒXƒg‚Ì’ÊMÅ‘åŽQ‰Ál”
-///BREEDER_MAX‚Æ‚Ìˆá‚¢‚ÍƒuƒŠ[ƒ_[No‚ÅŠÇ—‚³‚ê‚Ä‚¢‚é‚à‚Ì‚ÍBREEDER_MAX‚ðŽg—p‚µA
-///ƒlƒbƒgID‚ÅŠÇ—‚³‚ê‚Ä‚¢‚é‚à‚Ì‚ÍCC_NETID_MAX‚ðŽg—p‚µ‚Ä‚¢‚Ü‚·B
-///2005.12.18(“ú) Œ»Ý‚Í ƒuƒŠ[ƒ_[NoƒlƒbƒgID ‚É‚È‚Á‚Ä‚¢‚é‚Ì‚ÅŒµ–§‚É‚Í‹C‚É‚µ‚È‚­‚Ä‘åä•v‚Å‚·
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®é€šä¿¡æœ€å¤§å‚åŠ äººæ•°
+///BREEDER_MAXã¨ã®é•ã„ã¯ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼Noã§ç®¡ç†ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã¯BREEDER_MAXã‚’ä½¿ç”¨ã—ã€
+///ãƒãƒƒãƒˆIDã§ç®¡ç†ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã¯CC_NETID_MAXã‚’ä½¿ç”¨ã—ã¦ã„ã¾ã™ã€‚
+///2005.12.18(æ—¥) ç¾åœ¨ã¯ ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼Noï¼ãƒãƒƒãƒˆID ã«ãªã£ã¦ã„ã‚‹ã®ã§åŽ³å¯†ã«ã¯æ°—ã«ã—ãªãã¦å¤§ä¸ˆå¤«ã§ã™
 #define CC_NETID_MAX			(4)
 
 //--------------------------------------------------------------
-//	ƒRƒ“ƒeƒXƒgƒ^ƒCƒv
+//	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvFŠiD‚æ‚³
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ï¼šæ ¼å¥½ã‚ˆã•
 #define CONTYPE_STYLE		(0)
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvF”ü‚µ‚³
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ï¼šç¾Žã—ã•
 #define CONTYPE_BEAUTIFUL	(1)
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvF‰Âˆ¤‚³
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ï¼šå¯æ„›ã•
 #define CONTYPE_CUTE		(2)
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvFŒ«‚³
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ï¼šè³¢ã•
 #define CONTYPE_CLEVER		(3)
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvFç—‚µ‚³
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ï¼šé€žã—ã•
 #define CONTYPE_STRONG		(4)
 
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvFÅ‘å
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ï¼šæœ€å¤§
 #define CONTYPE_MAX		(5)
 
 //--------------------------------------------------------------
-//	ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN
+//	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯
 //--------------------------------------------------------------
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNFƒm[ƒ}ƒ‹ƒ‰ƒ“ƒN
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ï¼šãƒŽãƒ¼ãƒžãƒ«ãƒ©ãƒ³ã‚¯
 #define CONRANK_NORMAL		(0)
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNFƒX[ƒp[ƒ‰ƒ“ƒN(V–¼ÌFƒOƒŒ[ƒgƒ‰ƒ“ƒN)
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ï¼šã‚¹ãƒ¼ãƒ‘ãƒ¼ãƒ©ãƒ³ã‚¯(æ–°åç§°ï¼šã‚°ãƒ¬ãƒ¼ãƒˆãƒ©ãƒ³ã‚¯)
 #define CONRANK_SUPER		(1)
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNFƒnƒCƒp[ƒ‰ƒ“ƒN(V–¼ÌFƒEƒ‹ƒgƒ‰ƒ‰ƒ“ƒN)
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ï¼šãƒã‚¤ãƒ‘ãƒ¼ãƒ©ãƒ³ã‚¯(æ–°åç§°ï¼šã‚¦ãƒ«ãƒˆãƒ©ãƒ©ãƒ³ã‚¯)
 #define CONRANK_HYPER		(2)
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNFƒ}ƒXƒ^[ƒ‰ƒ“ƒN
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ï¼šãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯
 #define CONRANK_MASTER		(3)
 
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNFƒCƒ[ƒWƒNƒŠƒbƒv—p’è‹`@’ÊMƒ‰ƒ“ƒN
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ï¼šã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨å®šç¾©ã€€é€šä¿¡ãƒ©ãƒ³ã‚¯
 #define CONRANK_IMC_SIO		(CONRANK_MASTER + 1)
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNFÅ‘å
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ï¼šæœ€å¤§
 #define CONRANK_MAX			(4)
 
 //--------------------------------------------------------------
-//	ƒRƒ“ƒeƒXƒgƒ‚[ƒh(ƒRƒ“ƒeƒXƒg‚ðs‚¤‡”Ô)
+//	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚’è¡Œã†é †ç•ª)
 //--------------------------------------------------------------
-///ƒ`ƒƒ[ƒ€ƒ‚[ƒh(ƒrƒWƒ…ƒAƒ‹•”–å„‰‰‹Z•”–å)Fƒ|ƒPƒ‚ƒ“ƒRƒ“ƒeƒXƒg
+///ãƒãƒ£ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰(ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ï¼žæ¼”æŠ€éƒ¨é–€)ï¼šãƒã‚±ãƒ¢ãƒ³ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 #define CONMODE_CHARM					(0)
-///ƒAƒNƒeƒBƒuƒ‚[ƒh(ƒrƒWƒ…ƒAƒ‹•”–å„ƒ_ƒ“ƒX•”–å)Fƒ|ƒPƒ‚ƒ“ƒRƒ“ƒN[ƒ‹
+///ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒ¢ãƒ¼ãƒ‰(ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ï¼žãƒ€ãƒ³ã‚¹éƒ¨é–€)ï¼šãƒã‚±ãƒ¢ãƒ³ã‚³ãƒ³ã‚¯ãƒ¼ãƒ«
 #define CONMODE_ACTIVE					(1)
-///ƒOƒ‰ƒ“ƒhƒ‚[ƒh(ƒrƒWƒ…ƒAƒ‹•”–å„ƒ_ƒ“ƒX•”–å„‰‰‹Z•”–å)Fƒ|ƒPƒ‚ƒ“ƒgƒ‰ƒCƒAƒ‹
+///ã‚°ãƒ©ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰(ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ï¼žãƒ€ãƒ³ã‚¹éƒ¨é–€ï¼žæ¼”æŠ€éƒ¨é–€)ï¼šãƒã‚±ãƒ¢ãƒ³ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
 #define CONMODE_GRAND					(2)
-///ƒrƒWƒ…ƒAƒ‹—ûKƒ‚[ƒh
+///ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ç·´ç¿’ãƒ¢ãƒ¼ãƒ‰
 #define CONMODE_VISUAL_PRACTICE			(3)
-///ƒrƒWƒ…ƒAƒ‹ƒ`ƒ…[ƒgƒŠƒAƒ‹ƒ‚[ƒh
+///ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ãƒ¢ãƒ¼ãƒ‰
 #define CONMODE_VISUAL_TUTORIAL			(4)
-///ƒ_ƒ“ƒX—ûKƒ‚[ƒh
+///ãƒ€ãƒ³ã‚¹ç·´ç¿’ãƒ¢ãƒ¼ãƒ‰
 #define CONMODE_DANCE_PRACTICE			(5)
-///ƒ_ƒ“ƒXƒ`ƒ…[ƒgƒŠƒAƒ‹ƒ‚[ƒh
+///ãƒ€ãƒ³ã‚¹ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ãƒ¢ãƒ¼ãƒ‰
 #define CONMODE_DANCE_TUTORIAL			(6)
-///‰‰‹Z—ûKƒ‚[ƒh
+///æ¼”æŠ€ç·´ç¿’ãƒ¢ãƒ¼ãƒ‰
 #define CONMODE_ACTIN_PRACTICE			(7)
-///‰‰‹Zƒ`ƒ…[ƒgƒŠƒAƒ‹ƒ‚[ƒh
+///æ¼”æŠ€ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ãƒ¢ãƒ¼ãƒ‰
 #define CONMODE_ACTIN_TUTORIAL			(8)
 
 //--------------------------------------------------------------
-//	ŽQ‰Á‚µ‚Ä‚¢‚éƒQ[ƒ€(ƒRƒ“ƒeƒXƒg‚ÌŽí—Þ)
+//	å‚åŠ ã—ã¦ã„ã‚‹ã‚²ãƒ¼ãƒ (ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ç¨®é¡ž)
 //--------------------------------------------------------------
-///ƒrƒWƒ…ƒAƒ‹
+///ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«
 #define CONGAME_VISUAL		(0)
-///ƒ_ƒ“ƒX
+///ãƒ€ãƒ³ã‚¹
 #define CONGAME_DANCE		(1)
-///‰‰‹Z
+///æ¼”æŠ€
 #define CONGAME_ACTIN		(2)
 
 //--------------------------------------------------------------
-//	ƒCƒ[ƒWƒNƒŠƒbƒv‚Ìƒe[ƒ}
+//	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã®ãƒ†ãƒ¼ãƒž
 //--------------------------------------------------------------
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}F‰Ø‚â‚©‚È‚à‚Ì(V–¼Ì:‚©‚½‚¿‚ ‚é‚à‚Ì)
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šè¯ã‚„ã‹ãªã‚‚ã®(æ–°åç§°:ã‹ãŸã¡ã‚ã‚‹ã‚‚ã®)
 #define CON_IMAGE_THEME_FLOWERY			(0)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}FƒVƒ“ƒvƒ‹‚È‚à‚Ì(V–¼Ì:‚Æ‚ñ‚ª‚Á‚½‚à‚Ì)
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šã‚·ãƒ³ãƒ—ãƒ«ãªã‚‚ã®(æ–°åç§°:ã¨ã‚“ãŒã£ãŸã‚‚ã®)
 #define CON_IMAGE_THEME_SIMPLE			(1)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}FlH‚Ì‚à‚Ì(V–¼Ì:‚Â‚­‚ç‚ê‚½‚à‚Ì)
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šäººå·¥ã®ã‚‚ã®(æ–°åç§°:ã¤ãã‚‰ã‚ŒãŸã‚‚ã®)
 #define CON_IMAGE_THEME_ARTIFICIAL		(2)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}FŽ©‘R‚Ì‚à‚Ì
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šè‡ªç„¶ã®ã‚‚ã®
 #define CON_IMAGE_THEME_NATURAL			(3)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}FF‚Â‚«‚Ì‚à‚Ì
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šè‰²ã¤ãã®ã‚‚ã®
 #define CON_IMAGE_THEME_COLORFUL		(4)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}F‚É‚¬‚â‚©‚È‚à‚Ì(V–¼Ì:‚µ‚Á‚©‚è‚µ‚½‚à‚Ì)
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šã«ãŽã‚„ã‹ãªã‚‚ã®(æ–°åç§°:ã—ã£ã‹ã‚Šã—ãŸã‚‚ã®)
 #define CON_IMAGE_THEME_LIVELY			(5)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}F‚·‚Á‚«‚è‚µ‚½‚à‚Ì(V–¼Ì:‚ ‚©‚é‚¢‚à‚Ì)
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šã™ã£ãã‚Šã—ãŸã‚‚ã®(æ–°åç§°:ã‚ã‹ã‚‹ã„ã‚‚ã®)
 #define CON_IMAGE_THEME_REFRESH			(6)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}FƒMƒŠƒMƒŠ‚Ì‚à‚Ì(V–¼Ì:‚Í‚Å‚È‚à‚Ì)
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šã‚®ãƒªã‚®ãƒªã®ã‚‚ã®(æ–°åç§°:ã¯ã§ãªã‚‚ã®)
 #define CON_IMAGE_THEME_LIMIT			(7)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}F‚ä‚é‚â‚©‚È‚à‚Ì(V–¼Ì:‚µ‚È‚â‚©‚È‚à‚Ì)
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šã‚†ã‚‹ã‚„ã‹ãªã‚‚ã®(æ–°åç§°:ã—ãªã‚„ã‹ãªã‚‚ã®)
 #define CON_IMAGE_THEME_SOFTLY			(8)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}F‚«‚ç‚Ñ‚â‚©‚È‚à‚Ì
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šãã‚‰ã³ã‚„ã‹ãªã‚‚ã®
 #define CON_IMAGE_THEME_GORGEOUS		(9)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}Fã•i‚È‚à‚Ì(V–¼Ì:‚©‚½‚¿‚Ì‚È‚¢‚à‚Ì)
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šä¸Šå“ãªã‚‚ã®(æ–°åç§°:ã‹ãŸã¡ã®ãªã„ã‚‚ã®)
 #define CON_IMAGE_THEME_ELEGANT			(10)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}F”hŽè‚È‚à‚Ì(V–¼Ì:‚¨‚¿‚Â‚¢‚½‚à‚Ì)
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šæ´¾æ‰‹ãªã‚‚ã®(æ–°åç§°:ãŠã¡ã¤ã„ãŸã‚‚ã®)
 #define CON_IMAGE_THEME_SHOWY			(11)
 
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}FÅ‘å”
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒžï¼šæœ€å¤§æ•°
 #define CON_IMAGE_THEME_MAX				(12)
 
 //--------------------------------------------------------------
-//	ƒCƒ[ƒWƒNƒŠƒbƒv‚Å‚Â‚¯‚ç‚ê‚éŒÂ”
+//	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã§ã¤ã‘ã‚‰ã‚Œã‚‹å€‹æ•°
 //--------------------------------------------------------------
-///ƒm[ƒ}ƒ‹ƒ‰ƒ“ƒN‚Å•t‚¯‚ç‚ê‚éƒAƒNƒZƒTƒŠÅ‘å”
+///ãƒŽãƒ¼ãƒžãƒ«ãƒ©ãƒ³ã‚¯ã§ä»˜ã‘ã‚‰ã‚Œã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°
 #define CON_IMAGE_ACCE_MAX_NORMAL		(5)
-///ƒX[ƒp[ƒ‰ƒ“ƒN‚Å•t‚¯‚ç‚ê‚éƒAƒNƒZƒTƒŠÅ‘å”
+///ã‚¹ãƒ¼ãƒ‘ãƒ¼ãƒ©ãƒ³ã‚¯ã§ä»˜ã‘ã‚‰ã‚Œã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°
 #define CON_IMAGE_ACCE_MAX_SUPER		(10)
-///ƒnƒCƒp[ƒ‰ƒ“ƒN‚Å•t‚¯‚ç‚ê‚éƒAƒNƒZƒTƒŠÅ‘å”
+///ãƒã‚¤ãƒ‘ãƒ¼ãƒ©ãƒ³ã‚¯ã§ä»˜ã‘ã‚‰ã‚Œã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°
 #define CON_IMAGE_ACCE_MAX_HYPER		(15)
-///ƒ}ƒXƒ^[ƒ‰ƒ“ƒN‚Å•t‚¯‚ç‚ê‚éƒAƒNƒZƒTƒŠÅ‘å”
+///ãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã§ä»˜ã‘ã‚‰ã‚Œã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°
 #define CON_IMAGE_ACCE_MAX_MASTER		(20)
-///’ÊM‘Îí‚Å•t‚¯‚ç‚ê‚éƒAƒNƒZƒTƒŠÅ‘å”
+///é€šä¿¡å¯¾æˆ¦ã§ä»˜ã‘ã‚‰ã‚Œã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°
 #define CON_IMAGE_ACCE_MAX_SIO			(20)
 
 
 //==============================================================================
-//	’ÊM“¯Šú‘Ò‚¿—p‚Ì”Ô†’è‹`
+//	é€šä¿¡åŒæœŸå¾…ã¡ç”¨ã®ç•ªå·å®šç¾©
 //==============================================================================
-///ƒRƒ“ƒeƒXƒg‘¤‚Å‚ÌŠJŽnŽž‚ÌÅ‰‚Ì“¯Šú‘Ò‚¿
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå´ã§ã®é–‹å§‹æ™‚ã®æœ€åˆã®åŒæœŸå¾…ã¡
 #define CONSIO_TIMING_START				(0)
 
-///ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–ÊŒÄ‚Ño‚µ‘O‚Ì“¯Šú‘Ò‚¿
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢å‘¼ã³å‡ºã—å‰ã®åŒæœŸå¾…ã¡
 #define CONSIO_TIMING_CALL_IMC			(1)
-///ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒN“à‚ÅŽg—p‚·‚é“¯Šú‘Ò‚¿
+///ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯å†…ã§ä½¿ç”¨ã™ã‚‹åŒæœŸå¾…ã¡
 #define CONSIO_TIMING_CALL_IN_IMCPROC	(2)
 
-///ƒXƒNƒŠƒvƒgFŠJŽnŽž‚Ì“¯Šú‘Ò‚¿
+///ã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼šé–‹å§‹æ™‚ã®åŒæœŸå¾…ã¡
 #define CONSIO_TIMING_SCR_START			(3)
-///ƒXƒNƒŠƒvƒgFƒCƒ[ƒWƒNƒŠƒbƒvŒÄ‚Ño‚µ‘O‚Ì“¯Šú‘Ò‚¿
+///ã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼šã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å‘¼ã³å‡ºã—å‰ã®åŒæœŸå¾…ã¡
 #define CONSIO_TIMING_SCR_IMC			(4)
 
 #define CONSIO_TIMING_FAST_PARAM		(5)
@@ -161,7 +161,7 @@
 #define CONSIO_TIMING_IMC				(17)
 #define CONSIO_TIMING_IMC_RESEND		(18)
 
-///ƒXƒNƒŠƒvƒgF—vŠ—vŠ‚Å‚Ì“¯Šú‘Ò‚¿
+///ã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼šè¦æ‰€è¦æ‰€ã§ã®åŒæœŸå¾…ã¡
 #define CONSIO_TIMING_SCR_0				(19)
 #define CONSIO_TIMING_SCR_1				(20)
 #define CONSIO_TIMING_SCR_2				(21)

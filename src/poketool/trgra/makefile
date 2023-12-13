@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒN
+# Project:  ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -21,7 +21,7 @@ RES_DIR	= .
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#Make‚Å¶¬‚³‚ê‚é*.bin/*.narc‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.bin/*.narcã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= *.NCGR *.NCER *.NCLR *.NCBR trfgra.narc trbgra.narc
 
 #----------------------------------------------------------------------------
@@ -38,7 +38,7 @@ res_cp:
 	xcopy /d /y $(CP_RES_DIR)*.scr $(RES_DIR)
 
 %.nce : %.ncg
-	echo ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ªˆá‚Á‚Ä‚Ü‚· $*
+	echo ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ãŒé•ã£ã¦ã¾ã™ $*
 	cmd /c pause
 
 do-build: $(NCEFILES:.nce=.NCER)

@@ -1,15 +1,15 @@
 //============================================================================================
 /**
  * @file	report.c
- * @brief	�Z�[�u�֘A
+ * @brief	セーブ関連
  * @author	tamada GAME FREAK inc.
  * @date	2005.12.05
  *
- * �u���|�[�g�������v�̏��E�B���h�E�̐���֐��Ȃǂ�����
+ * 「レポートをかく」の情報ウィンドウの制御関数などがある
  *
- * �C���\��F
- *	�v���C���Ԃ����A���^�C���ōX�V����
- *	�Q�[���J�n���̃E�B���h�E�ł��������e�����������悤�ɊO���C���^�[�t�F�C�X�����
+ * 修正予定：
+ *	プレイ時間をリアルタイムで更新する
+ *	ゲーム開始時のウィンドウでも同じ内容が引っ張れるように外部インターフェイスを作る
  *
  */
 //============================================================================================
@@ -40,7 +40,7 @@
 #include "msgdata/msg_report.h"
 
 
-#include "ev_mapchange.h"		//DOOR_ID_JUMP_CODE�̂���
+#include "ev_mapchange.h"		//DOOR_ID_JUMP_CODEのため
 #include "field_poketch.h"
 
 #include "fieldobj.h"
@@ -49,7 +49,7 @@
 
 //============================================================================================
 //
-//			��`
+//			定義
 //
 //============================================================================================
 typedef struct INFO_PARAM {
@@ -61,17 +61,17 @@ typedef struct INFO_PARAM {
 
 //--------------------------------------------------------------------
 /**
- * @brief	���|�[�g���E�B���h�E���䃏�[�N�̒�`
+ * @brief	レポート情報ウィンドウ制御ワークの定義
  */
 //--------------------------------------------------------------------
 struct REPORT_INFO{
-	FIELDSYS_WORK * fsys;		///<�Q�[�����䃏�[�N�ւ̃|�C���^
-	int heapID;					///<�g�p����q�[�vID
-	u8 frame_no;				///<�g�p����BG�t���[���w��
-	GF_BGL_INI * bgl;			///<�g�p����BG���䃏�[�N�ւ̃|�C���^
-	GF_BGL_BMPWIN * win;		///<BMP���䃏�[�N�ւ̃|�C���^
-	WORDSET * word;				///<�P�ꃂ�W���[�����䃏�[�N�ւ̃|�C���^
-	MSGDATA_MANAGER * msgman;	///<MSG�f�[�^�}�l�[�W���ւ̃|�C���^
+	FIELDSYS_WORK * fsys;		///<ゲーム制御ワークへのポインタ
+	int heapID;					///<使用するヒープID
+	u8 frame_no;				///<使用するBGフレーム指定
+	GF_BGL_INI * bgl;			///<使用するBG制御ワークへのポインタ
+	GF_BGL_BMPWIN * win;		///<BMP制御ワークへのポインタ
+	WORDSET * word;				///<単語モジュール制御ワークへのポインタ
+	MSGDATA_MANAGER * msgman;	///<MSGデータマネージャへのポインタ
 	INFO_PARAM iprm;
 	int width;
 	int height;
@@ -89,17 +89,17 @@ enum {
 	RINFO_WIN_PAL = MENU_WIN_PAL,
 	RINFO_WIN_CGX = MENU_WIN_CGX_NUM,
 
-	//�͂��E�������E�B���h�E�AMSG�E�B���h�E�Ƌ����ł���z�u�Œ�`
+	//はい・いいえウィンドウ、MSGウィンドウと共存できる配置で定義
 	RINFO_MSG_CGX = FLD_YESNO_WIN_CGX - (RINFO_WIN_SX * RINFO_WIN_SY),
 };
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-// �E�B���h�E�̕����Œ�ɕύX���A�p�����^���E�񂹕\����
+// ウィンドウの幅を固定に変更し、パラメタを右寄せ表示に
 #define RINFO_WIN_WIDTH		(13)
 // ----------------------------------------------------------------------------
 
-//�P�ꖄ�ߍ��݃^�OID�Breport.gmm�Ƃ�����ƑΉ�����悤�Ɉێ����Ȃ���΂Ȃ�Ȃ�
+//単語埋め込みタグID。report.gmmときちんと対応するように維持しなければならない
 enum {
 	RINFO_WORD_PLACENAME = 0,
 	RINFO_WORD_PLAYERNAME,
@@ -125,7 +125,7 @@ static const int MsgID[] = {
 };
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-// �E�B���h�E�̕����Œ�ɕύX���A�p�����^���E�񂹕\����
+// ウィンドウの幅を固定に変更し、パラメタを右寄せ表示に
 static const int ValueID[] = {
 //	PLACE_NAME,
 	HERO_NAME_VALUE,
@@ -135,20 +135,20 @@ static const int ValueID[] = {
 };
 // ----------------------------------------------------------------------------
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static void Field_SaveParam(FIELDSYS_WORK * fsys);
 
 //============================================================================================
 //
-//			�֐�
+//			関数
 //
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	�\���p�����[�^�̐ݒ�
- * @param	iprm	�\���p�����[�^�ێ����[�N�ւ̃|�C���^
- * @param	fsys	�Q�[�����䃏�[�N�ւ̃|�C���^
+ * @brief	表示パラメータの設定
+ * @param	iprm	表示パラメータ保持ワークへのポインタ
+ * @param	fsys	ゲーム制御ワークへのポインタ
  * 
  */
 //--------------------------------------------------------------------
@@ -170,9 +170,9 @@ static void makeinfo(INFO_PARAM * iprm, const FIELDSYS_WORK * fsys)
 }
 //--------------------------------------------------------------------
 /**
- * @brief	�Z�[�u�f�[�^���\���ɕK�v�ȒP�ꐶ��
- * @param	word	�P�ꃂ�W���[�����䃏�[�N�ւ̃|�C���^
- * @param	iprm	�\���p�����[�^�ێ����[�N�ւ̃|�C���^
+ * @brief	セーブデータ情報表示に必要な単語生成
+ * @param	word	単語モジュール制御ワークへのポインタ
+ * @param	iprm	表示パラメータ保持ワークへのポインタ
  */
 //--------------------------------------------------------------------
 static void makewords(WORDSET * word, const INFO_PARAM * iprm)
@@ -223,9 +223,9 @@ static void makewords(WORDSET * word, const INFO_PARAM * iprm)
 
 //--------------------------------------------------------------------
 /**
- * @brief	�E�B���h�E���̎擾
- * @param	riw		���|�[�g���E�B���h�E���䃏�[�N�ւ̃|�C���^
- * @return	int		�\���E�B���h�E�̕��i�L�����P�ʁj
+ * @brief	ウィンドウ幅の取得
+ * @param	riw		レポート情報ウィンドウ制御ワークへのポインタ
+ * @return	int		表示ウィンドウの幅（キャラ単位）
  */
 //--------------------------------------------------------------------
 static int CountWidth(const REPORT_INFO * riw)
@@ -242,15 +242,15 @@ static int CountWidth(const REPORT_INFO * riw)
 		}
 		STRBUF_Delete(msg);
 	}
-	//�L�����P�ʂ̕��i�]��؂�グ�j��Ԃ�
+	//キャラ単位の幅（余り切り上げ）を返す
 	return (max + 7) / 8;
 }
 
 //--------------------------------------------------------------------
 /**
- * @brief	�E�B���h�E�����̎擾
- * @param	iprm	�\���p�����[�^�ێ����[�N�ւ̃|�C���^
- * @return	int		�\���E�B���h�E�̍����i�L�����P�ʁj
+ * @brief	ウィンドウ高さの取得
+ * @param	iprm	表示パラメータ保持ワークへのポインタ
+ * @return	int		表示ウィンドウの高さ（キャラ単位）
  */
 //--------------------------------------------------------------------
 static int CountHeight(const INFO_PARAM * iprm)
@@ -264,8 +264,8 @@ static int CountHeight(const INFO_PARAM * iprm)
 
 //--------------------------------------------------------------------
 /**
- * @brief	���|�[�g���̕������\������
- * @param	riw		���|�[�g���E�B���h�E���䃏�[�N�ւ̃|�C���^
+ * @brief	レポート情報の文字列を表示する
+ * @param	riw		レポート情報ウィンドウ制御ワークへのポインタ
  */
 //--------------------------------------------------------------------
 static void printinfo(const REPORT_INFO * riw)
@@ -279,14 +279,14 @@ static void printinfo(const REPORT_INFO * riw)
 				+ FontHeaderGet(FONT_SYSTEM, FONT_HEADER_SPACE_Y);
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/28
-	// �E�B���h�E�̕����Œ�ɕύX���A�p�����^���E�񂹕\����
+	// ウィンドウの幅を固定に変更し、パラメタを右寄せ表示に
 	y = 0;
 	msg = MSGDAT_UTIL_AllocExpandString(riw->word, riw->msgman, MsgID[0], riw->heapID);
 	GF_STR_PrintSimple(riw->win, FONT_SYSTEM, msg, 0, y, MSG_NO_PUT, NULL);
 	STRBUF_Delete(msg);
 	for (i = 1; i < NELEMS(MsgID); i++) {
 		if (MsgID[i] == ZUKAN_NUM && riw->iprm.zukan_count == 0) {
-			//������\�����Ȃ�
+			//ずかん表示しない
 			continue;
 		}
 		y += my;
@@ -303,52 +303,52 @@ static void printinfo(const REPORT_INFO * riw)
 
 //--------------------------------------------------------------------
 /**
- * @brief	���|�[�g���E�B���h�E�F�E�B���h�E�\��
- * @param	riw		���|�[�g���E�B���h�E���䃏�[�N�ւ̃|�C���^
+ * @brief	レポート情報ウィンドウ：ウィンドウ表示
+ * @param	riw		レポート情報ウィンドウ制御ワークへのポインタ
  */
 //--------------------------------------------------------------------
 void ReportInfo_WriteWindow(REPORT_INFO * riw)
 {
-	//BMP���䃏�[�N���m��
+	//BMP制御ワークを確保
 	riw->win = sys_AllocMemory(riw->heapID, sizeof(GF_BGL_BMPWIN));
-	//bitmap�̈��ǉ�
+	//bitmap領域を追加
 	GF_BGL_BmpWinAdd(riw->bgl, riw->win, riw->frame_no,
 			RINFO_WIN_PX, RINFO_WIN_PY, riw->width, riw->height,
 			RINFO_MSG_PAL, RINFO_MSG_CGX);
-	//�E�B���h�E�g�L�����A�p���b�g���Z�b�g
+	//ウィンドウ枠キャラ、パレットをセット
 	MenuWinGraphicSet(
 		riw->bgl, riw->frame_no, RINFO_WIN_CGX, RINFO_WIN_PAL, MENU_TYPE_SYSTEM, riw->heapID); 
-	//�E�B���h�E�g����h��Ԃ�
+	//ウィンドウ枠内を塗りつぶす
 	GF_BGL_BmpWinDataFill(riw->win, FontHeaderGet(FONT_SYSTEM, FONT_HEADER_B_COLOR));
-	//���e��`��
+	//内容を描画
 	printinfo(riw);
-	//�E�B���h�E�g�`��
+	//ウィンドウ枠描画
 	BmpMenuWinWrite(riw->win, WINDOW_TRANS_ON, RINFO_WIN_CGX, RINFO_WIN_PAL);
 }
 
 //--------------------------------------------------------------------
 /**
- * @brief	���|�[�g���E�B���h�E�F�E�B���h�E����
- * @param	riw		���|�[�g���E�B���h�E���䃏�[�N�ւ̃|�C���^
+ * @brief	レポート情報ウィンドウ：ウィンドウ消去
+ * @param	riw		レポート情報ウィンドウ制御ワークへのポインタ
  */
 //--------------------------------------------------------------------
 void ReportInfo_EraseWindow(REPORT_INFO * riw)
 {
-	//�E�B���h�E����
+	//ウィンドウ消去
 	BmpMenuWinClear(riw->win, WINDOW_TRANS_ON);
-	//bitmap�̈���폜
+	//bitmap領域を削除
 	GF_BGL_BmpWinDel(riw->win);
-	//BMP���䃏�[�N���폜
+	//BMP制御ワークを削除
 	sys_FreeMemoryEz(riw->win);
 }
 
 //--------------------------------------------------------------------
 /**
- * @brief	���|�[�g���E�B���h�E�F����
- * @param	fsys			�Q�[�����䃏�[�N�ւ̃|�C���^
- * @param	heapID			�g�p����q�[�vID
- * @param	frame_no		�\���Ɏg�p����BG�t���[���w��
- * @return	REPORT_INFO		�����������|�[�g���E�B���h�E���䃏�[�N�ւ̃|�C���^
+ * @brief	レポート情報ウィンドウ：生成
+ * @param	fsys			ゲーム制御ワークへのポインタ
+ * @param	heapID			使用するヒープID
+ * @param	frame_no		表示に使用するBGフレーム指定
+ * @return	REPORT_INFO		生成したレポート情報ウィンドウ制御ワークへのポインタ
  */
 //--------------------------------------------------------------------
 REPORT_INFO * ReportInfo_Create(FIELDSYS_WORK * fsys, int heapID, u8 frame_no)
@@ -367,7 +367,7 @@ REPORT_INFO * ReportInfo_Create(FIELDSYS_WORK * fsys, int heapID, u8 frame_no)
 	makewords(riw->word, &riw->iprm);
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/28
-	// �E�B���h�E�̕����Œ�ɕύX���A�p�����^���E�񂹕\����
+	// ウィンドウの幅を固定に変更し、パラメタを右寄せ表示に
 	riw->width = RINFO_WIN_WIDTH;
 	// ----------------------------------------------------------------------------
 	//GF_ASSERT(riw->width <= RINFO_WIN_SX);
@@ -378,8 +378,8 @@ REPORT_INFO * ReportInfo_Create(FIELDSYS_WORK * fsys, int heapID, u8 frame_no)
 
 //--------------------------------------------------------------------
 /**
- * @brief	���|�[�g���E�B���h�E�F�폜
- * @param	riw		���|�[�g���E�B���h�E���䃏�[�N�ւ̃|�C���^
+ * @brief	レポート情報ウィンドウ：削除
+ * @param	riw		レポート情報ウィンドウ制御ワークへのポインタ
  */
 //--------------------------------------------------------------------
 void ReportInfo_Delete(REPORT_INFO * riw)
@@ -394,8 +394,8 @@ void ReportInfo_Delete(REPORT_INFO * riw)
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	�t�B�[���h�ł̃Z�[�u����
- * @param	fsys			�Q�[�����䃏�[�N�ւ̃|�C���^
+ * @brief	フィールドでのセーブ処理
+ * @param	fsys			ゲーム制御ワークへのポインタ
  * @retval	TRUE
  * @retval	FALSE
  */
@@ -407,29 +407,29 @@ BOOL Field_Save(FIELDSYS_WORK * fsys)
 	if (SaveData_Save(fsys->savedata) == SAVE_RESULT_OK) {
 		return TRUE;
 	} else {
-		//SAVE_RESULT_OK�ȊO�̏ꍇ�͂Ȃ�ɂ���
-		//���삪���������̂Ŏ��s�Ƃ݂Ȃ�
+		//SAVE_RESULT_OK以外の場合はなんにせよ
+		//動作がおかしいので失敗とみなす
 		return FALSE;
 	}
 }
 
 //--------------------------------------------------------------------
 /**
- * @brief	�t�B�[���h�ł̃Z�[�u�����p�̃p�����[�^�Z�b�g����
- * @param	fsys			�Q�[�����䃏�[�N�ւ̃|�C���^
+ * @brief	フィールドでのセーブ処理用のパラメータセット処理
+ * @param	fsys			ゲーム制御ワークへのポインタ
  * @retval	TRUE
  * @retval	FALSE
  */
 //--------------------------------------------------------------------
 static void Field_SaveParam(FIELDSYS_WORK * fsys)
 {
-	//�t�B�[���h���샂�f���̃Z�[�u
+	//フィールド動作モデルのセーブ
 	Field_SaveFieldObj(fsys);
 
-	// �|�P�b�`�֘A�f�[�^�̃Z�[�u
+	// ポケッチ関連データのセーブ
 	Field_SendPoketchInfo( fsys, POKETCH_SEND_SAVE, 0 );
 
-	//�ʒu����������
+	//位置を引っ張る
 	fsys->location->grid_x = Player_NowGPosXGet( fsys->player );
 	fsys->location->grid_z = Player_NowGPosZGet( fsys->player );
 	fsys->location->door_id = DOOR_ID_JUMP_CODE;
@@ -438,8 +438,8 @@ static void Field_SaveParam(FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g�����R�[�_�[�ŃZ�[�u����������ׁA�t�B�[���h�I���O�Ƀt�B�[���h����
- * 			�Z�[�u���[�N�֏������ޏ���
+ * @brief   バトルレコーダーでセーブ処理が入る為、フィールド終了前にフィールド情報を
+ * 			セーブワークへ書き込む処理
  *
  * @param   fsys		
  */
@@ -458,7 +458,7 @@ void Field_SaveParam_BattleRecorder(FIELDSYS_WORK *fsys)
 		return;
 	}
 	
-	if(CommStateIsInitializeOtherPoketch() == TRUE){	//�ی�
+	if(CommStateIsInitializeOtherPoketch() == TRUE){	//保険
 		return;
 	}
 	

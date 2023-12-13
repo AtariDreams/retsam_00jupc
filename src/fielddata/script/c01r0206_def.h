@@ -1,7 +1,7 @@
 #ifndef _C01R0206_DEF_H_
 #define _C01R0206_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_GUINNESS_GLOBAL_BTL		(1)
 #define	SCRID_GUINNESS_GLOBAL_POKE		(2)
 #define	SCRID_GUINNESS_GLOBAL_CONTEST		(3)
@@ -9,6 +9,6 @@
 #define	SCRID_C01R0206_BIGMAN_01		(5)
 #define	SCRID_C01R0206_FISHING_01		(6)
 #define	SCRID_C01R0206_STOP_01		(7)
-#define	SCRID_C01R0206_DATA_MAX		(7)		//最大数
+#define	SCRID_C01R0206_DATA_MAX		(7)		//譛螟ｧ謨ｰ
 
 #endif //_C01R0206_DEF_H_

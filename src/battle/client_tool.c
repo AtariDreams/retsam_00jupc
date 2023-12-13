@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	client_tool.c
- * @bfief	░М⌠╛┐N┐┴┐C┐A┐⌠┐g≈p┐c│[┐▀┐v┐█┐O┐┴┐─
+ * @bfief	Ф┬╕И≈≤Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐└Ц┐╪Ц┐╚Ц┐≈Ц┐╜Ц┌╟Ц┐╘Ц┐═
  * @author	HisashiSogabe
  * @date	05.07.21
  */
@@ -92,12 +92,12 @@
 #ifdef PM_DEBUG
 #ifdef DEBUG_ONLY_FOR_sogabe
 #include "src/battle/skill_intp.h"
-//#define	FREEZE_BUG_CHECK			//┐t┐┼│[┐Y┐o┐O▄÷▐ь
-//#define	FRONTIER_LOOP_ACT				//┐t┐█┐⌠┐e┐B┐A┌е┐▀│[┐v┐`┐F┐b┐N
+//#define	FREEZE_BUG_CHECK			//Ц┐∙Ц┐╙Ц┐╪Ц┌╨Ц┐░Ц┌╟Ф╓°Х╗╪
+//#define	FRONTIER_LOOP_ACT				//Ц┐∙Ц┐╜Ц┐ЁЦ┐├Ц┌ёЦ┌╒Ц│╖Ц┐╚Ц┐╪Ц┐≈Ц┐│Ц┌╖Ц┐┐Ц┌╞
 #endif
 #endif PM_DEBUG
 
-#define MSG_WINDOW_FADE		(7)		///<┐o┐b┐O┴Ф√й│A┐|┐P┐┌┐⌠┐┼┐X┐g┴Ф√й┌и┬з█s┌╥┌И┌ф┌╚┌л┐│┐b┐Z│[┐W┐E┐C┐⌠┐h┐E┌л┐t┐F│[┐h▓l
+#define MSG_WINDOW_FADE		(7)		///<Ц┐░Ц┐┐Ц┌╟Г■╩И²╒Ц─│Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┐╙Ц┌╧Ц┐┬Г■╩И²╒Ц│╚Г╖╩Х║▄Ц│≥Ц┌▀Ц│╗Ц│█Ц│╝Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌╕Ц┌╓Ц┐ЁЦ┐┴Ц┌╕Ц│╝Ц┐∙Ц┌╖Ц┐╪Ц┐┴Е─╓
 
 //#define	POKE_ANM_OFF
 
@@ -107,10 +107,10 @@ extern	u32	ee_loop_count;
 
 
 //-----------------------------------------------------------------------------
-//					┐v┐█┐g┐^┐C┐v░И▄╬
+//					Ц┐≈Ц┐╜Ц┐┬Ц┌©Ц┌╓Ц┐≈Е╝ёХ╗─
 //-----------------------------------------------------------------------------
 
-//▀Z┐V│[┐P┐⌠┐X▄n
+//Ф┼─Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧ГЁ╩
 void	CT_EncountEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp);
 void	CT_PokemonEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_ENCOUNT_PARAM *pep);
 void	CT_PokemonEncountAppearSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_APPEAR_PARAM *pap);
@@ -165,7 +165,7 @@ void	CT_MigawariChrSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_EFFECT_PARAM *wep);
 void	CT_WazaKoukaSESet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZAKOUKA_SE_PARAM *wsp);
 void	CT_BGMPlay(BATTLE_WORK *bw,CLIENT_PARAM *cp,BGM_PLAY_PARAM *bpp);
 
-//TCB▄n
+//TCBГЁ╩
 static	void	TCB_PokemonEncount(TCB_PTR tcb,void *work);
 static	void	TCB_PokemonEncountGira(TCB_PTR tcb,void *work);
 static	void	TCB_PokemonEncountAppear(TCB_PTR tcb,void *work);
@@ -226,7 +226,7 @@ static	void	TCB_BallGaugeEncountOut(TCB_PTR tcb,void *work);
 static	void	TCB_SStoOAM(TCB_PTR tcb,void *work);
 static	void	TCB_OAMtoSS(TCB_PTR tcb,void *work);
 
-//┼O∙■┼ж░■┐c│[┐▀▄n
+//Е╓√И┐╗И√╒Ф∙╟Ц┐└Ц┐╪Ц┐╚ГЁ╩
 void			CT_UISet(BATTLE_WORK *bw,CLIENT_PARAM *cp);
 u8				CT_CPClientTypeGet(CLIENT_PARAM *cp);
 u8				CT_CPClientBootGet(CLIENT_PARAM *cp);
@@ -236,7 +236,7 @@ CURSOR_SAVE		*CT_CursorSavePtrGet(CLIENT_PARAM *cp);
 void			CT_CursorSaveClear(CLIENT_PARAM *cp);
 void			Trainer_EnableSet(CLIENT_PARAM *cp, int enable);
 
-//┼O∙■■Я▄Ж┼J┐c│[┐▀▄n
+//Е╓√И┐╗И²·Е┘╛И√▀Ц┐└Ц┐╪Ц┐╚ГЁ╩
 static	void		GaugeObjCreate(BATTLE_WORK *bw,int dir,int level,int hp,int hpmax);
 static	void		NumCalc(int num,int *bit,int *buf);
 static	SOFT_SPRITE	*CT_SoftSpriteAdd(BATTLE_WORK *bw,SOFT_SPRITE_MANAGER *ssm_p,SOFT_SPRITE_ARC *ssa,
@@ -265,58 +265,58 @@ static	void		BattleRecDataFullStop(BATTLE_WORK *bw);
 static	u8			CheckRomCodeTrainerTypeChange(BATTLE_WORK *bw,u8 client_no,u8 trtype);
 
 //-----------------------------------------------------------------------------
-//					▓Х░■▓Х▀`
+//					Е╝ Ф∙╟Е╝ Г╬╘
 //-----------------------------------------------------------------------------
 
-//#define	SCROLL_TIME				(33)	///(44)	///<■w▄i┌╙┐X┐N┐█│[┐▀┌╥┌И▌·┼т
-#define	SCROLL_SPEED			(4)		///(3)		///<┐|┐P┐┌┐⌠┌╙┐G┐⌠┐J┐E┐⌠┐g┌╣┌д┌╜┌И┌ф┌╚┌л■w▄i┐X┐N┐█│[┐▀┌л┐X┐s│[┐h
-#define	ENCOUNT_SPEED			(8)		///(6)		///<┐|┐P┐┌┐⌠┌╙┐G┐⌠┐J┐E┐⌠┐g┌╣┌д┌╜┌И┌ф┌╚┌л┐X┐s│[┐h
-//#define	ENCOUNT_START_WAIT		(28)	///(56)	///<┐G┐⌠┐J┐E┐⌠┐g┐G┐t┐F┐N┐g┌╙▀N⌠╝┌╣┌д┌╘┌Г│A▓n√й┌л┐X┐N┐█│[┐▀┌╙▌n┌э┌И┌э┌е┌л┐E┐G┐C┐g
-#define	TRAINER_IN_OUT_SPEED	(5)		///<┐g┐▄│[┐i│[┌л▐o⌠Э┌Х┐X┐s│[┐h
+//#define	SCROLL_TIME				(33)	///(44)	///<Х┐▄Ф≥╞Ц│▄Ц┌╧Ц┌╞Ц┐╜Ц┐╪Ц┐╚Ц│≥Ц┌▀Ф≥┌И√⌠
+#define	SCROLL_SPEED			(4)		///(3)		///<Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ│▄Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц│≈Ц│╕Ц│▐Ц┌▀Ц│╗Ц│█Ц│╝Х┐▄Ф≥╞Ц┌╧Ц┌╞Ц┐╜Ц┐╪Ц┐╚Ц│╝Ц┌╧Ц┐■Ц┐╪Ц┐┴
+#define	ENCOUNT_SPEED			(8)		///(6)		///<Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ│▄Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц│≈Ц│╕Ц│▐Ц┌▀Ц│╗Ц│█Ц│╝Ц┌╧Ц┐■Ц┐╪Ц┐┴
+//#define	ENCOUNT_START_WAIT		(28)	///(56)	///<Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц│▄Х╣╥Е▀∙Ц│≈Ц│╕Ц│▀Ц┌┴Ц─│Е°╟И²╒Ц│╝Ц┌╧Ц┌╞Ц┐╜Ц┐╪Ц┐╚Ц│▄Е╖▀Ц│╬Ц┌▀Ц│╬Ц│╖Ц│╝Ц┌╕Ц┌╗Ц┌╓Ц┐┬
+#define	TRAINER_IN_OUT_SPEED	(5)		///<Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц│╝Е┤╨Е┘╔Ц┌┼Ц┌╧Ц┐■Ц┐╪Ц┐┴
 
-#define	AFF_SPEED				(0x20)	///<┐|┐P┐┌┐⌠⌠o▐Й┐G┐t┐F┐N┐g┌л┐|┐P┐┌┐⌠┌╙▒Е┌╚┌╜┌х┌И┐X┐s│[┐h
-#define	BLINK_WAIT				(2)		///<┐_┐││[┐W┐u┐┼┐⌠┐N┌л┼т┼u
-#define	TP_WAIT					(10)	///<┐^┐b┐`┐p┐l┐▀┌и┐^┐b┐`┌╣┌д┌╘┌Г▌÷┌л┐V│[┐P┐⌠┐X┌и┬з█s┌╥┌И┌э┌е┌л┐E┐G┐C┐g
-#define	ALERT_WAIT				(40)	///<┐A┐┴│[┐g┐│┐b┐Z│[┐W┌л∙\▌╕┐E┐G┐C┐g
+#define	AFF_SPEED				(0x20)	///<Ц┐²Ц┌╠Ц┐╒Ц┐ЁГ≥╩Е═╢Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц│╝Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ│▄Е╓╖Ц│█Ц│▐Ц│╙Ц┌▀Ц┌╧Ц┐■Ц┐╪Ц┐┴
+#define	BLINK_WAIT				(2)		///<Ц┐─Ц┐║Ц┐╪Ц┌╦Ц┐√Ц┐╙Ц┐ЁЦ┌╞Ц│╝И√⌠И ■
+#define	TP_WAIT					(10)	///<Ц┌©Ц┐┐Ц┐│Ц┐▒Ц┐█Ц┐╚Ц│╚Ц┌©Ц┐┐Ц┐│Ц│≈Ц│╕Ц│▀Ц┌┴Ф╛║Ц│╝Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Ц│╚Г╖╩Х║▄Ц│≥Ц┌▀Ц│╬Ц│╖Ц│╝Ц┌╕Ц┌╗Ц┌╓Ц┐┬
+#define	ALERT_WAIT				(40)	///<Ц┌╒Ц┐╘Ц┐╪Ц┐┬Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╝Х║╗Г╓╨Ц┌╕Ц┌╗Ц┌╓Ц┐┬
 
-#define	POKE_APPEAR_NORMAL_VOL	(127)	//┐|┐P┐┌┐⌠⌠o▐Й▌·┌л√б┌╚░╨┴╧≈й│i▓й▐М│j
-#define	POKE_APPEAR_BAD_VOL		(127)	//┐|┐P┐┌┐⌠⌠o▐Й▌·┌л√б┌╚░╨┴╧≈й│i▐С▒т┬ы▐М┌Б│AHP▄╦▐╜▌·│j
-#define	POKE_KIZETSU_VOL		(127)	//┐|┐P┐┌┐⌠▀C░Б▌·┌л√б┌╚░╨┴╧≈й
+#define	POKE_APPEAR_NORMAL_VOL	(127)	//Ц┐²Ц┌╠Ц┐╒Ц┐ЁГ≥╩Е═╢Ф≥┌Ц│╝ИЁ╢Ц│█Её╟И÷ЁИ┤▐О╪┬И─ Е╦╦О╪┴
+#define	POKE_APPEAR_BAD_VOL		(127)	//Ц┐²Ц┌╠Ц┐╒Ц┐ЁГ≥╩Е═╢Ф≥┌Ц│╝ИЁ╢Ц│█Её╟И÷ЁИ┤▐О╪┬Г┼╤Ф┘▀Г∙╟Е╦╦Ц┌└Ц─│HPФ╦⌡Е╟▒Ф≥┌О╪┴
+#define	POKE_KIZETSU_VOL		(127)	//Ц┐²Ц┌╠Ц┐╒Ц┐ЁФ╟≈Г╣╤Ф≥┌Ц│╝ИЁ╢Ц│█Её╟И÷ЁИ┤▐
 
-#define	POKE_VOICE_PAN_FRONT	(WAZA_SE_PAN_R)		//┐|┐P┐┌┐⌠░Ё√й√б┌╚░╨┌лPAN░щ▓Х
-#define	POKE_VOICE_PAN_BACK		(WAZA_SE_PAN_L)		//┐|┐P┐┌┐⌠■w√й√б┌╚░╨┌лPAN░щ▓Х
+#define	POKE_VOICE_PAN_FRONT	(WAZA_SE_PAN_R)		//Ц┐²Ц┌╠Ц┐╒Ц┐ЁФ╜ёИ²╒ИЁ╢Ц│█Её╟Ц│╝PANХ╗╜Е╝ 
+#define	POKE_VOICE_PAN_BACK		(WAZA_SE_PAN_L)		//Ц┐²Ц┌╠Ц┐╒Ц┐ЁХ┐▄И²╒ИЁ╢Ц│█Её╟Ц│╝PANХ╗╜Е╝ 
 
-///2▒л√з┌м√б┌╚░╨┌╙■М┌Г┌х┌╒┌Ф┌╓┌и▐╜┌╣▓x┌Г┌╧┌д⌠o▐Й
+///2Д╫⌠Г⌡╝Ц│╞ИЁ╢Ц│█Её╟Ц│▄Х╒╚Ц┌┴Ц│╙Ц│└Ц┌┬Ц│├Ц│╚Е╟▒Ц│≈И│┘Ц┌┴Ц│⌡Ц│╕Г≥╩Е═╢
 #define ENCOUNT_DOUBLE_APPEAR_WAIT		(12)	//25
 
-//-- нч╟ы√┬┌л∙о┴╩▄Ц┌л▌w▓Х░F --//
+//-- Ц┐°Ц┐╪Ц┐╚Ф╞▌Ц│╝Е╓┴Е▄√Е╬▄Ц│╝Ф▄┤Е╝ Х┴╡ --//
 static const u16 BallHikariColor[] = {
 	0x0000,			//dummy
-	0x7297,			//┐}┐X┐^│[┐{│[┐▀,
-	0x3fff,			//┐n┐C┐p│[┐{│[┐▀,
-	0x7af0,			//┐X│[┐p│[┐{│[┐▀,
-	0x7adf,			//┐┌┐⌠┐X┐^│[┐{│[┐▀,
-	0x53d7,			//┐T┐t┐@┐┼┐{│[┐▀,
-	0x67f5,			//┐l┐b┐g┐{│[┐▀,
-	0x7b2c,			//┐_┐C┐u┐{│[┐▀,
-	0x2b7e,			//┐l┐X┐g┐{│[┐▀,
-	0x431f,			//┐┼┐s│[┐g┐{│[┐▀,
-	0x7bdd,			//┐^┐C┐}│[┐{│[┐▀,
-	0x2a3f,			//┐S│[┐W┐┐┐X┐{│[┐▀,
-	0x293f,			//┐v┐▄┐~┐A┐{│[┐▀,
-	0x45ce,			//┐_│[┐N┐{│[┐▀,
-	0x731f,			//┐q│[┐▀┐{│[┐▀,
-	0x7f51,			//┐N┐C┐b┐N┐{│[┐▀,
-	0x151e,			//┐v┐▄┐V┐┐┐X┐{│[┐▀,
+	0x7297,			//Ц┐·Ц┌╧Ц┌©Ц┐╪Ц┐°Ц┐╪Ц┐╚,
+	0x3fff,			//Ц┐▐Ц┌╓Ц┐▒Ц┐╪Ц┐°Ц┐╪Ц┐╚,
+	0x7af0,			//Ц┌╧Ц┐╪Ц┐▒Ц┐╪Ц┐°Ц┐╪Ц┐╚,
+	0x7adf,			//Ц┐╒Ц┐ЁЦ┌╧Ц┌©Ц┐╪Ц┐°Ц┐╪Ц┐╚,
+	0x53d7,			//Ц┌╣Ц┐∙Ц┌║Ц┐╙Ц┐°Ц┐╪Ц┐╚,
+	0x67f5,			//Ц┐█Ц┐┐Ц┐┬Ц┐°Ц┐╪Ц┐╚,
+	0x7b2c,			//Ц┐─Ц┌╓Ц┐√Ц┐°Ц┐╪Ц┐╚,
+	0x2b7e,			//Ц┐█Ц┌╧Ц┐┬Ц┐°Ц┐╪Ц┐╚,
+	0x431f,			//Ц┐╙Ц┐■Ц┐╪Ц┐┬Ц┐°Ц┐╪Ц┐╚,
+	0x7bdd,			//Ц┌©Ц┌╓Ц┐·Ц┐╪Ц┐°Ц┐╪Ц┐╚,
+	0x2a3f,			//Ц┌╢Ц┐╪Ц┌╦Ц┐ёЦ┌╧Ц┐°Ц┐╪Ц┐╚,
+	0x293f,			//Ц┐≈Ц┐╛Ц┐÷Ц┌╒Ц┐°Ц┐╪Ц┐╚,
+	0x45ce,			//Ц┐─Ц┐╪Ц┌╞Ц┐°Ц┐╪Ц┐╚,
+	0x731f,			//Ц┐▓Ц┐╪Ц┐╚Ц┐°Ц┐╪Ц┐╚,
+	0x7f51,			//Ц┌╞Ц┌╓Ц┐┐Ц┌╞Ц┐°Ц┐╪Ц┐╚,
+	0x151e,			//Ц┐≈Ц┐╛Ц┌╥Ц┐ёЦ┌╧Ц┐°Ц┐╪Ц┐╚,
 };
 
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g┐G┐t┐F┐N┐g┌П┐Z┐b┐g
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
- * @param[in]	pep		┐|┐P┐┌┐⌠┐G┐⌠┐J┐E┐⌠┐g┐p┐┴┐││[┐^█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	pep		Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_EncountEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -331,18 +331,18 @@ void	CT_EncountEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 //	GF_BGL_ScrollSet(BattleWorkGF_BGL_INIGet(bw),GF_BGL_FRAME3_M,GF_BGL_SCROLL_X_DEC,SCROLL_SPEED*SCROLL_TIME);
 #ifdef FRONTIER_LOOP_ACT
 	ee_loop_count++;
-	OS_TPrintf("EncountEffect OK:%d┴Я√з\n",ee_loop_count);
+	OS_TPrintf("EncountEffect OK:%dЕ⌡·Г⌡╝\n",ee_loop_count);
 #endif
 	TCB_Add(TCB_EncountEffect,tee,0);
 }
 
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g┐|┐P┐┌┐⌠┌П┐Z┐b┐g
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
- * @param[in]	pep		┐|┐P┐┌┐⌠┐G┐⌠┐J┐E┐⌠┐g┐p┐┴┐││[┐^█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	pep		Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 //extern	void	PokeEditDataSet( ARCHANDLE* handle, SOFT_SPRITE_ANIME *ssanm,u16 mons_no );
@@ -359,8 +359,8 @@ void	CT_PokemonEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_ENCOUNT_PARAM
 	s8	ofs_x;
 	u8	shadow;
 
-#if 0	//⌠Э≈м┴Ф√й┌л▐М▓⌠┐│┐b┐Z│[┐W▐▒┌╚┼╥┌╕≈p 2006.03.14(┴н) matsuda
-		//█Л┌Г┌х┌╒┌л┌е┐R┐│┐⌠┐g┐A┐E┐g
+#if 0	//Е┘╔Е┼⌡Г■╩И²╒Ц│╝Е╦╦И╖░Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ф⌡╦Ц│█Ф▐⌡Ц│┬Г■╗ 2006.03.14(Г│╚) matsuda
+		//Д╫°Ц┌┴Ц│╙Ц│└Ц│╝Ц│╖Ц┌ЁЦ┐║Ц┐ЁЦ┐┬Ц┌╒Ц┌╕Ц┐┬
 	{
 		STRBUF *nick_buf;
 		nick_buf = STRBUF_Create(BUFLEN_POKEMON_NAME, HEAPID_BATTLE);
@@ -393,7 +393,7 @@ void	CT_PokemonEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_ENCOUNT_PARAM
 	PokeGraArcDataGet(&ssa,pep->monsno,pep->sex,tpe->dir,col,pep->form_no,pep->personal_rnd);
 	ofs_y=PokeHeightGet(pep->monsno,pep->sex,tpe->dir,pep->form_no,pep->personal_rnd);
 	
-	///< ┐A│[┐J┐C┐u┌╘┌Г│@█┌┌Ё│@┴e│@┐I┐t┐Z┐b┐g│@┴e│@┌П▌Ф⌠╬
+	///< Ц┌╒Ц┐╪Ц┌╚Ц┌╓Ц┐√Ц│▀Ц┌┴Ц──И╚≤Ц│∙Ц──Е╫╠Ц──Ц┌╙Ц┐∙Ц┌╩Ц┐┐Ц┐┬Ц──Е╫╠Ц──Ц┌▓Е▐√Е╬≈
 	PokeEditData_HeightSet( cp->handle, &height, pep->monsno );
 	PokeEditData_ShadowOfsXSet( cp->handle, &ofs_x, pep->monsno );
 	PokeEditData_ShadowSizeSet( cp->handle, &shadow, pep->monsno );
@@ -409,23 +409,23 @@ void	CT_PokemonEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_ENCOUNT_PARAM
 										 shadow,
 										 cp->client_no,&ssanm[0],NULL);
 
-	//░Ё√й┌м│A░F┌П∙о┌╕┌И
+	//Ф╜ёИ²╒Ц│╞Ц─│Х┴╡Ц┌▓Е╓┴Ц│┬Ц┌▀
 	if(tpe->dir==PARA_FRONT){
 		SoftSpritePalFadeSet(tpe->ss,8,8,0,0x0000);
 	}
 	
-	//■j┌Й┌╫░╒┼E┌л┐M┐┴┐e┐B┐i░М
+	//Г═╢Ц┌▄Ц│÷Д╦√Г∙▄Ц│╝Ц┌╝Ц┐╘Ц┐├Ц┌ёЦ┐┼Ф┬╕
 	if(tpe->dir == PARA_FRONT 
 			&& (BattleWorkBattleStatusFlagGet(bw) & BATTLE_STATUS_FLAG_HAKAI_GIRA_BATTLE)){
 		int offset_y, appear_y;
 		
 		appear_y = SoftSpriteParaGet(tpe->ss,SS_PARA_POS_Y);
-		//▓n√й┌л┐X┐┴┐C┐h┌ф█┤┌М┌╧┌И┌л┌еX┌П┼Н√{┌и┐I┐t┐Z┐b┐gY┌П▄┬┌ъ┌И
-		offset_y = (GROUND_ENEMY_X - ENCOUNT_X_TYPE_BB) / 2;	// /2 = ▒╛⌠x┌П■╪∙╙┌и┌╥┌И┌л┌е┐I┐t┐Z┐b┐g┌Ю■╪∙╙┌и┌╥┌И
-		//Ground_EnableSet(tpe->gw, CATS_ENABLE_FALSE);					//▓n√й■Я∙\▌╕
-		SoftSpriteParaSet(tpe->ss,SS_PARA_SHADOW_SIZE,SS_SHADOW_NONE);	//┴e■Я∙\▌╕
-		SoftSpriteParaSet(tpe->ss,SS_PARA_POS_X,APPEAR_X_TYPE_BB);		//X┌м⌠·▓┘┬й▓u
-		SoftSpriteParaSet(tpe->ss,SS_PARA_POS_Y,appear_y - offset_y);	//Y┌м⌠╙▐Ц█┌┌╜
+		//Е°╟И²╒Ц│╝Ц┌╧Ц┐╘Ц┌╓Ц┐┴Ц│╗Е░┬Ц┌▐Ц│⌡Ц┌▀Ц│╝Ц│╖XЦ┌▓Е÷╨Ф°╛Ц│╚Ц┌╙Ц┐∙Ц┌╩Ц┐┐Ц┐┬YЦ┌▓Ф╠╨Ц┌│Ц┌▀
+		offset_y = (GROUND_ENEMY_X - ENCOUNT_X_TYPE_BB) / 2;	// /2 = И─÷Е╨╕Ц┌▓Е█┼Е┬├Ц│╚Ц│≥Ц┌▀Ц│╝Ц│╖Ц┌╙Ц┐∙Ц┌╩Ц┐┐Ц┐┬Ц┌┌Е█┼Е┬├Ц│╚Ц│≥Ц┌▀
+		//Ground_EnableSet(tpe->gw, CATS_ENABLE_FALSE);					//Е°╟И²╒И²·Х║╗Г╓╨
+		SoftSpriteParaSet(tpe->ss,SS_PARA_SHADOW_SIZE,SS_SHADOW_NONE);	//Е╫╠И²·Х║╗Г╓╨
+		SoftSpriteParaSet(tpe->ss,SS_PARA_POS_X,APPEAR_X_TYPE_BB);		//XЦ│╞Е┬╟Г²─Д╫█Г╫╝
+		SoftSpriteParaSet(tpe->ss,SS_PARA_POS_Y,appear_y - offset_y);	//YЦ│╞И═╜Д╦┼И╚≤Ц│▐
 	
 		tpe->appear_pos=appear_y;
 	}
@@ -450,16 +450,16 @@ void	CT_PokemonEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_ENCOUNT_PARAM
 		TCB_Add(TCB_PokemonEncount,tpe,0);
 	}
 
-	Snd_PMVoiceDoubleFlagSet( 1 );			///< 2∙C∙╙┌л√б┌╚░╨
+	Snd_PMVoiceDoubleFlagSet( 1 );			///< 2Е▄╧Е┬├Ц│╝ИЁ╢Ц│█Её╟
 }
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠▐o▄╩┐G┐t┐F┐N┐g┌П┐Z┐b┐g│i┐G┐⌠┐J┐E┐⌠┐g▌·░Й≈p│j
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁЕ┤╨Г▐╬Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬О╪┬Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ф≥┌Е╟┌Г■╗О╪┴
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
- * @param[in]	pap		┐|┐P┐┌┐⌠▐o▄╩┐G┐t┐F┐N┐g┐p┐┴┐││[┐^█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	pap		Ц┐²Ц┌╠Ц┐╒Ц┐ЁЕ┤╨Г▐╬Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_PokemonEncountAppearSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_APPEAR_PARAM *pap)
@@ -491,7 +491,7 @@ void	CT_PokemonEncountAppearSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_APPEAR_
 	PokeEditData_ShadowOfsXSet( cp->handle, &tpa->ofs_x, pap->monsno );
 	PokeEditData_ShadowSizeSet( cp->handle, &tpa->shadow, pap->monsno );
 
-	//⌠Э┌Й▒ж┌╕┌╫┌л┌е┐J│[┐\┐▀┬й▓u▀L┴╞┌П▐┴┼З┴╩
+	//Е┘╔Ц┌▄Ф⌡©Ц│┬Ц│÷Ц│╝Ц│╖Ц┌╚Ц┐╪Ц┌╫Ц┐╚Д╫█Г╫╝Х╗≤Ф├╤Ц┌▓Е┬²Ф°÷Е▄√
 	CT_CursorSaveClear(cp);
 	
 	tpa->bw=bw;
@@ -511,18 +511,18 @@ void	CT_PokemonEncountAppearSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_APPEAR_
 	tpa->rare=pap->rare;
 	tpa->flag=POKEMON_APPEAR_KURIDASI;
 	
-	Snd_PMVoiceDoubleFlagSet( 1 );			///< 2∙C∙╙┌л√б┌╚░╨
+	Snd_PMVoiceDoubleFlagSet( 1 );			///< 2Е▄╧Е┬├Ц│╝ИЁ╢Ц│█Её╟
 	
 	TCB_Add(TCB_PokemonEncountAppear,tpa,0);
 }
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠▐o▄╩┐G┐t┐F┐N┐g┌П┐Z┐b┐g
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁЕ┤╨Г▐╬Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
- * @param[in]	pap		┐|┐P┐┌┐⌠▐o▄╩┐G┐t┐F┐N┐g┐p┐┴┐││[┐^█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	pap		Ц┐²Ц┌╠Ц┐╒Ц┐ЁЕ┤╨Г▐╬Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_PokemonAppearSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_APPEAR_PARAM *pap)
@@ -556,7 +556,7 @@ void	CT_PokemonAppearSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_APPEAR_PARAM *
 	PokeEditData_ShadowOfsXSet( cp->handle, &tpa->ofs_x, pap->monsno );
 	PokeEditData_ShadowSizeSet( cp->handle, &tpa->shadow, pap->monsno );
 
-	//⌠Э┌Й▒ж┌╕┌╫┌л┌е┐J│[┐\┐▀┬й▓u▀L┴╞┌П▐┴┼З┴╩
+	//Е┘╔Ц┌▄Ф⌡©Ц│┬Ц│÷Ц│╝Ц│╖Ц┌╚Ц┐╪Ц┌╫Ц┐╚Д╫█Г╫╝Х╗≤Ф├╤Ц┌▓Е┬²Ф°÷Е▄√
 	CT_CursorSaveClear(cp);
 	
 	tpa->bw=bw;
@@ -588,10 +588,10 @@ void	CT_PokemonAppearSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_APPEAR_PARAM *
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠┬Ь┌а█·┌ъ┌И┐G┐t┐F┐N┐g┌П┐Z┐b┐g
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁЕ╪∙Ц│ёХ╬╪Ц┌│Ц┌▀Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_PokemonReturnSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_RETURN_PARAM *prp)
@@ -624,10 +624,10 @@ void	CT_PokemonReturnSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_RETURN_PARAM *
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠┬Ь┌а█·┌ъ┌И┐G┐t┐F┐N┐g┌П┐Z┐b┐g
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁЕ╪∙Ц│ёХ╬╪Ц┌│Ц┌▀Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_PokemonInhaleSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_INHALE_PARAM *pip)
@@ -651,11 +651,11 @@ void	CT_PokemonInhaleSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_INHALE_PARAM *
 
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g┐g┐▄│[┐i│[┌П┐Z┐b┐g
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
- * @param[in]	tep		┐G┐⌠┐J┐E┐⌠┐g┐g┐▄│[┐i│[┐p┐┴┐││[┐^█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	tep		Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_TrainerEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,TRAINER_ENCOUNT_PARAM *tep)
@@ -697,7 +697,7 @@ void	CT_TrainerEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,TRAINER_ENCOUNT_PARAM
 	tte->client_type = cp->client_type;
 	tte->scroll_time = 0;
 	if((tte->client_type==CLIENT_TYPE_AA)||(tte->client_type==CLIENT_TYPE_A)){
-		//┴Ф√й┐X┐N┐█│[┐▀┬й▓u┌л▐┴┼З┴╩
+		//Г■╩И²╒Ц┌╧Ц┌╞Ц┐╜Ц┐╪Ц┐╚Д╫█Г╫╝Ц│╝Е┬²Ф°÷Е▄√
 		GF_BGL_ScrollSet(BattleWorkGF_BGL_INIGet(bw),GF_BGL_FRAME3_M,GF_BGL_SCROLL_X_DEC,SCROLL_SPEED*SCROLL_TIME);
 	}
 	TCB_Add(TCB_TrainerEncount,tte,0);
@@ -705,10 +705,10 @@ void	CT_TrainerEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,TRAINER_ENCOUNT_PARAM
 
 //============================================================================================
 /**
- *	┐g┐▄│[┐i│[⌠┼┌╟┌И┐G┐t┐F┐N┐g┌П┐Z┐b┐g
+ *	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ф┼∙Ц│▓Ц┌▀Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_TrainerThrowSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,TRAINER_THROW_PARAM *ttp)
@@ -741,10 +741,10 @@ void	CT_TrainerThrowSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,TRAINER_THROW_PARAM *tt
 
 //============================================================================================
 /**
- *	┐g┐▄│[┐i│[┴Ф√й┼O┐G┐t┐F┐N┐g┌П┐Z┐b┐g
+ *	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Г■╩И²╒Е╓√Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_TrainerOutSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -770,10 +770,10 @@ void	CT_TrainerOutSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	┐g┐▄│[┐i│[┴Ф√й⌠Ю┐G┐t┐F┐N┐g┌П┐Z┐b┐g
+ *	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Г■╩И²╒Е├┘Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_TrainerInSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,TRAINER_IN_PARAM *tip)
@@ -808,10 +808,10 @@ void	CT_TrainerInSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,TRAINER_IN_PARAM *tip)
 
 //============================================================================================
 /**
- *	HP┐Q│[┐W┴Ф√йIN┐G┐t┐F┐N┐g┌П┐Z┐b┐g
+ *	HPЦ┌╡Ц┐╪Ц┌╦Г■╩И²╒INЦ┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_HPGaugeInSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,HP_GAUGE_IN_PARAM *hgip)
@@ -845,10 +845,10 @@ void	CT_HPGaugeInSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,HP_GAUGE_IN_PARAM *hgip)
 
 //============================================================================================
 /**
- *	HP┐Q│[┐W┴Ф√йOUT┐G┐t┐F┐N┐g┌П┐Z┐b┐g
+ *	HPЦ┌╡Ц┐╪Ц┌╦Г■╩И²╒OUTЦ┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_HPGaugeOutSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -867,10 +867,10 @@ void	CT_HPGaugeOutSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	┐R┐}┐⌠┐h▒I▒П┌П▀N⌠╝
+ *	Ц┌ЁЦ┐·Ц┐ЁЦ┐┴И│╦Ф┼·Ц┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_CommandSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,COMMAND_SELECT_PARAM *csp)
@@ -902,18 +902,18 @@ void	CT_CommandSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,COMMAND_SELECT_PARAM *
 	
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		if(csp->status[POKEPARTY_MINE][i] == COMSEL_STATUS_DEAD){
-			tcs->motivation[i] = 0;	//∙m▌─┌л▌·┌м≈h┌Г┌Ё┌х┌╒┌Ф┌╓┌и┐┌┐`┐x│[┐V┐┤┐⌠0
+			tcs->motivation[i] = 0;	//Г─∙Ф╜╩Ц│╝Ф≥┌Ц│╞Ф▐╨Ц┌┴Ц│∙Ц│╙Ц│└Ц┌┬Ц│├Ц│╚Ц┐╒Ц┐│Ц┐≥Ц┐╪Ц┌╥Ц┐╖Ц┐Ё0
 		}
 		else{
 			tcs->motivation[i] = csp->motivation[i];
 		}
 	}
 
-#if 0	//┬з⌠╝ 2006.06.30(▀Ю)
+#if 0	//Г╖╩Е▀∙ 2006.06.30(И┤▒)
 	if(BattleWorkMineEnemyCheck(bw, cp->client_no) == 0){
-		//▀Z▒I▒П┴Ф√й┌л∙`┴Ф┌П▒│┌╜┌╥┌И┬в┌и│A┌╠┌╠┌е░Ф┌и▀Z■т█├┌БPP┌х┌г┌П
-		//┌Ю┌Г┌а┌д┐f│[┐^┌П┐│┐┌┐┼┌и⌠W┼J┌╣┌д┌╗┌╜ 2006.05.12(▀Ю) by matsuda
-		// │╕▒]┴Д∙■┌Ё┌Я┌л▌x▌²┌л▄Ё█Л▀ф┌╣┌д┌э┌╥│B
+		//Ф┼─И│╦Ф┼·Г■╩И²╒Ц│╝Ф▐▐Г■╩Ц┌▓Ф≈╘Ц│▐Ц│≥Ц┌▀Г┌╨Ц│╚Ц─│Ц│⌠Ц│⌠Ц│╖Е┘┬Ц│╚Ф┼─Г∙╙Е▐╥Ц┌└PPЦ│╙Ц│╘Ц┌▓
+		//Ц┌┌Ц┌┴Ц│ёЦ│╕Ц┐┤Ц┐╪Ц┌©Ц┌▓Ц┐║Ц┐╒Ц┐╙Ц│╚Е╠∙И√▀Ц│≈Ц│╕Ц│┼Ц│▐ 2006.05.12(И┤▒) by matsuda
+		// Б─╩Ф⌡╫Ф┬▒И┐╗Ц│∙Ц┌⌠Ц│╝Ф■╞Ф▄│Ц│╝Е┘┐Д╫°Ф╔╜Ц│≈Ц│╕Ц│╬Ц│≥Ц─┌
 		BINPUT_WAZA_PARAM wazapara;
 		int i;
 		for(i = 0; i < WAZA_TEMOTI_MAX; i++){
@@ -939,10 +939,10 @@ void	CT_CommandSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,COMMAND_SELECT_PARAM *
 
 //============================================================================================
 /**
- *	▀Z▒I▒П┌П▀N⌠╝
+ *	Ф┼─И│╦Ф┼·Ц┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_WazaSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_SELECT_PARAM *wsp)
@@ -971,10 +971,10 @@ void	CT_WazaSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_SELECT_PARAM *wsp)
 
 //============================================================================================
 /**
- *	█U▄┌▒н▐ш▒I▒П┌П▀N⌠╝
+ *	Ф■╩Ф▓┐Е╞╬Х╠║И│╦Ф┼·Ц┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_DirSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,DIR_SELECT_PARAM *dsp)
@@ -1008,10 +1008,10 @@ void	CT_DirSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,DIR_SELECT_PARAM *dsp)
 
 //============================================================================================
 /**
- *	⌠╧▀О▒I▒П┌П▀N⌠╝
+ *	И│⌠Е┘╥И│╦Ф┼·Ц┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_ItemSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ITEM_SELECT_PARAM *isp)
@@ -1037,7 +1037,7 @@ void	CT_ItemSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ITEM_SELECT_PARAM *isp)
 		for(j=0;j<POKEMON_TEMOTI_MAX;j++){
 			tis->list_row[i][j]=isp->list_row[i][j];
 		}
-		tis->shutout_flag[i]=isp->shutout_flag[i];	// ▀Z┌е▌g≈p∙s┴б
+		tis->shutout_flag[i]=isp->shutout_flag[i];	// Ф┼─Ц│╖Д╫©Г■╗Д╦█Е▐╞
 	}
 
 	TCB_Add(cp->ui.UI_ItemSelect,tis,0);
@@ -1045,10 +1045,10 @@ void	CT_ItemSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ITEM_SELECT_PARAM *isp)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠▒I▒П┌П▀N⌠╝
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁИ│╦Ф┼·Ц┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_PokemonSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_SELECT_PARAM *psp)
@@ -1079,10 +1079,10 @@ void	CT_PokemonSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_SELECT_PARAM *
 
 //============================================================================================
 /**
- *	Yes/No▒I▒П┌П▀N⌠╝
+ *	Yes/NoИ│╦Ф┼·Ц┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_YesNoSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,YES_NO_SELECT_PARAM *ynsp)
@@ -1106,11 +1106,11 @@ void	CT_YesNoSelectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,YES_NO_SELECT_PARAM *yns
 
 //============================================================================================
 /**
- *	┐A┐^┐b┐N┐│┐b┐Z│[┐W┌П∙\▌╕
+ *	Ц┌╒Ц┌©Ц┐┐Ц┌╞Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
- * @param[in]	amp		┐A┐^┐b┐N┐│┐b┐Z│[┐W≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	amp		Ц┌╒Ц┌©Ц┐┐Ц┌╞Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_AttackMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ATTACK_MESSAGE_PARAM *amp)
@@ -1138,11 +1138,11 @@ void	CT_AttackMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ATTACK_MESSAGE_PARAM *
 
 //============================================================================================
 /**
- *	┐│┐b┐Z│[┐W┌П∙\▌╕
+ *	Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
- * @param[in]	mp		┐│┐b┐Z│[┐W≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	mp		Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_MessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,MESSAGE_PARAM *mp)
@@ -1165,11 +1165,11 @@ void	CT_MessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,MESSAGE_PARAM *mp)
 
 //============================================================================================
 /**
- *	▀Z┐G┐t┐F┐N┐g┌П▀N⌠╝
+ *	Ф┼─Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
- * @param[in]	wep		▀Z┐G┐t┐F┐N┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	wep		Ф┼─Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 #if 0
@@ -1194,7 +1194,7 @@ void	CT_WazaEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_EFFECT_PARAM *wep)
 		twe->flag=0;
 	}
 
-	/// ░М⌠╛┌и⌠n┌╥┼g▓ё┬Ь░■
+	/// Ф┬╕И≈≤Ц│╚Ф╦║Ц│≥Ф▀║Е╪╣Е╪∙Ф∙╟
 	if(wep->flag==EFFTYPE_WAZA){
 		wcbep.eff_arc_id = ARC_WAZA_EFF;
 		callID=wep->waza_no;
@@ -1214,14 +1214,14 @@ void	CT_WazaEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_EFFECT_PARAM *wep)
 		wcbep.form_no[i] = wep->form_no[i];
 		wcbep.personal_rnd[i] = wep->personal_rnd[i];
 	}
-	BattleClientTypeBufMake(bw, &(wcbep.client_type[0]));			///< ┐N┐┴┐C┐A┐⌠┐gType
-	BattleSoftSpriteBufMake(bw, &(wcbep.ss[0]));					///< ┐\┐t┐g┐X┐v┐┴┐C┐g
-	wcbep.fight_type = BattleWorkFightTypeGet(bw);					///< ┐t┐@┐C┐g┐^┐C┐v▌Ф⌠╬
-	wcbep.perap_voice = BattleWorkPerapVoiceGet(bw, cp->client_no);	///< ┐y┐┴┐b┐v
-	wcbep.bg_area = BattleWorkBGAreaGet(bw);						///< BG┐G┐┼┐A
-	wcbep.pal_area = BattleWorkPalAreaGet(bw);						///< PAL┐G┐┼┐A
+	BattleClientTypeBufMake(bw, &(wcbep.client_type[0]));			///< Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Type
+	BattleSoftSpriteBufMake(bw, &(wcbep.ss[0]));					///< Ц┌╫Ц┐∙Ц┐┬Ц┌╧Ц┐≈Ц┐╘Ц┌╓Ц┐┬
+	wcbep.fight_type = BattleWorkFightTypeGet(bw);					///< Ц┐∙Ц┌║Ц┌╓Ц┐┬Ц┌©Ц┌╓Ц┐≈Е▐√Е╬≈
+	wcbep.perap_voice = BattleWorkPerapVoiceGet(bw, cp->client_no);	///< Ц┐ Ц┐╘Ц┐┐Ц┐≈
+	wcbep.bg_area = BattleWorkBGAreaGet(bw);						///< BGЦ┌╗Ц┐╙Ц┌╒
+	wcbep.pal_area = BattleWorkPalAreaGet(bw);						///< PALЦ┌╗Ц┐╙Ц┌╒
 	
-	///< ■w▄i┐f│[┐^
+	///< Х┐▄Ф≥╞Ц┐┤Ц┐╪Ц┌©
 	wcbep.haikei_data.arc_index = ARC_BATT_BG;
 	wcbep.haikei_data.chr_id	= BATTLE_BG00_NCGR_BIN + BattleWorkBGIDGet(bw);
 	wcbep.haikei_data.pal_id	= BATT_BG00_D_NCLR + BattleWorkBGIDGet(bw)*3;
@@ -1264,10 +1264,10 @@ void	CT_WazaEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_EFFECT_PARAM *wep)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠┐_┐││[┐W┐u┐┼┐⌠┐N┐A┐N┐V┐┤┐⌠┌П▀N⌠╝
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┐─Ц┐║Ц┐╪Ц┌╦Ц┐√Ц┐╙Ц┐ЁЦ┌╞Ц┌╒Ц┌╞Ц┌╥Ц┐╖Ц┐ЁЦ┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_PokemonBlinkSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1288,10 +1288,10 @@ void	CT_PokemonBlinkSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	HP┐Q│[┐W▄v▌Z┌П▀N⌠╝
+ *	HPЦ┌╡Ц┐╪Ц┌╦Х╗┬Г╝≈Ц┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_HPGaugeCalcSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,HP_GAUGE_CALC_PARAM *hgcp)
@@ -1321,10 +1321,10 @@ void	CT_HPGaugeCalcSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,HP_GAUGE_CALC_PARAM *hgc
 
 //============================================================================================
 /**
- *	EXP┐Q│[┐W▄v▌Z┌П▀N⌠╝
+ *	EXPЦ┌╡Ц┐╪Ц┌╦Х╗┬Г╝≈Ц┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_EXPGaugeCalcSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,EXP_GAUGE_CALC_PARAM *egcp)
@@ -1354,10 +1354,10 @@ void	CT_EXPGaugeCalcSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,EXP_GAUGE_CALC_PARAM *e
 
 //============================================================================================
 /**
- *	▀C░Б┐G┐t┐F┐N┐g┌П▀N⌠╝
+ *	Ф╟≈Г╣╤Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Х╣╥Е▀∙
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_KizetsuEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,KIZETSU_EFFECT_PARAM *kep)
@@ -1400,10 +1400,10 @@ void	CT_KizetsuEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,KIZETSU_EFFECT_PARAM *
 
 //============================================================================================
 /**
- *	▌w▓Х┌Ё┌Й┌╫SE┌П√б┌Г┌╥
+ *	Ф▄┤Е╝ Ц│∙Ц┌▄Ц│÷SEЦ┌▓ИЁ╢Ц┌┴Ц│≥
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_SePlaySet(BATTLE_WORK *bw,CLIENT_PARAM *cp,SE_PLAY_PARAM *spp)
@@ -1423,10 +1423,10 @@ void	CT_SePlaySet(BATTLE_WORK *bw,CLIENT_PARAM *cp,SE_PLAY_PARAM *spp)
 
 //============================================================================================
 /**
- *	┴Ф√й┐t┐F│[┐h┐A┐E┐g┌П┐Z┐b┐g
+ *	Г■╩И²╒Ц┐∙Ц┌╖Ц┐╪Ц┐┴Ц┌╒Ц┌╕Ц┐┬Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_FadeOutSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1445,11 +1445,11 @@ void	CT_FadeOutSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠┌л┐o┐j┐b┐V┐┘┐t┐┴┐O┌П░╖▄Д
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ│╝Ц┐░Ц┐▀Ц┐┐Ц┌╥Ц┐╔Ц┐∙Ц┐╘Ц┌╟Ц┌▓Е┬╤Е╬║
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
- * @param[in]	pvoo	┐o┐j┐b┐V┐┘┐t┐┴┐O≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	pvoo	Ц┐░Ц┐▀Ц┐┐Ц┌╥Ц┐╔Ц┐∙Ц┐╘Ц┌╟Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_PokemonVanishOnOff(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_VANISH_ON_OFF *pvoo)
@@ -1480,10 +1480,10 @@ void	CT_PokemonVanishOnOff(BATTLE_WORK *bw,CLIENT_PARAM *cp,POKEMON_VANISH_ON_OF
 
 //============================================================================================
 /**
- *	HP┐Q│[┐W┌и▐С▒т┬ы▐М┐A┐C┐R┐⌠┌П┐Z┐b┐g
+ *	HPЦ┌╡Ц┐╪Ц┌╦Ц│╚Г┼╤Ф┘▀Г∙╟Е╦╦Ц┌╒Ц┌╓Ц┌ЁЦ┐ЁЦ┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_HPGaugeStatusSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,HP_GAUGE_STATUS_SET_PARAM *hgssp)
@@ -1497,10 +1497,10 @@ void	CT_HPGaugeStatusSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,HP_GAUGE_STATUS_SET_PA
 
 //============================================================================================
 /**
- *	┐g┐▄│[┐i│[┐│┐b┐Z│[┐W┌П∙\▌╕
+ *	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_TrainerMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,TRAINER_MESSAGE_PARAM *tmp)
@@ -1523,10 +1523,10 @@ void	CT_TrainerMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,TRAINER_MESSAGE_PARAM
 
 //============================================================================================
 /**
- *	√ъ┌╥┐│┐b┐Z│[┐W┌П∙\▌╕
+ *	Ф┬╩Ц│≥Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_ModosuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,MODOSU_MESSAGE_PARAM *mmp)
@@ -1552,10 +1552,10 @@ void	CT_ModosuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,MODOSU_MESSAGE_PARAM *
 
 //============================================================================================
 /**
- *	▄J┌Х▐o┌╥┐│┐b┐Z│[┐W┌П∙\▌╕
+ *	Г╧╟Ц┌┼Е┤╨Ц│≥Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_KuridasuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,KURIDASU_MESSAGE_PARAM *kmp)
@@ -1581,10 +1581,10 @@ void	CT_KuridasuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,KURIDASU_MESSAGE_PAR
 
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g┐│┐b┐Z│[┐W┌П∙\▌╕
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_EncountMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1610,10 +1610,10 @@ void	CT_EncountMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g▌·┌л▄J┌Х▐o┌╥┐│┐b┐Z│[┐W┌П∙\▌╕
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ф≥┌Ц│╝Г╧╟Ц┌┼Е┤╨Ц│≥Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_EncountKuridasuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ENCOUNT_KURIDASU_MESSAGE_PARAM *ekmp)
@@ -1639,10 +1639,10 @@ void	CT_EncountKuridasuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ENCOUNT_KURID
 
 //============================================================================================
 /**
- *	┐▄┐x┐▀┐A┐b┐v┐G┐t┐F┐N┐g┌П∙\▌╕
+ *	Ц┐╛Ц┐≥Ц┐╚Ц┌╒Ц┐┐Ц┐≈Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_LevelUpEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1662,10 +1662,10 @@ void	CT_LevelUpEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	┐A┐┴│[┐g┐│┐b┐Z│[┐W┌П∙\▌╕
+ *	Ц┌╒Ц┐╘Ц┐╪Ц┐┬Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_AlertMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ALERT_MESSAGE_PARAM *amp)
@@ -1673,7 +1673,7 @@ void	CT_AlertMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ALERT_MESSAGE_PARAM *am
 	TCB_ALERT_MESSAGE_WAIT	*tamw;
 	MSGDATA_MANAGER			*msg_m;
 
-	//┐A┐┴│[┐g┐│┐b┐Z│[┐W┌м▌╘∙╙░╖▄Д┌л┌щ∙\▌╕
+	//Ц┌╒Ц┐╘Ц┐╪Ц┐┬Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╞Х┤╙Е┬├Е┬╤Е╬║Ц│╝Ц│©Х║╗Г╓╨
 	if(cp->client_boot==CLIENT_BOOT_NORMAL){
 		msg_m=BattleWorkFightMsgGet(bw);
 
@@ -1688,13 +1688,13 @@ void	CT_AlertMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ALERT_MESSAGE_PARAM *am
 
 		TCB_Add(TCB_AlertMessageWait,tamw,0);
 	}
-	//AI┌м│A∙т┌Х▓l┌л┌щ
+	//AIЦ│╞Ц─│Х©■Ц┌┼Е─╓Ц│╝Ц│©
 	else if(cp->client_boot==CLIENT_BOOT_AI){
 		SCIO_AlertMessageEndSet(bw,cp->client_no);
 		SCIO_ServerQueClear(bw,cp->client_no,amp->command_code);
 	}
 	else{
-		//▓й░M▒н░М▌·┌м│A∙т┌Х▓l┌м┌х┌╣
+		//И─ Д©║Е╞╬Ф┬╕Ф≥┌Ц│╞Ц─│Х©■Ц┌┼Е─╓Ц│╞Ц│╙Ц│≈
 		if((BattleWorkFightTypeGet(bw)&FIGHT_TYPE_SIO)==0){
 			SCIO_AlertMessageEndSet(bw,cp->client_no);
 		}
@@ -1704,10 +1704,10 @@ void	CT_AlertMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ALERT_MESSAGE_PARAM *am
 
 //============================================================================================
 /**
- *	HP┐Q│[┐W┌П█д∙`┴Ф
+ *	HPЦ┌╡Ц┐╪Ц┌╦Ц┌▓Е├█Ф▐▐Г■╩
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_HPGaugeRefreshSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,HP_GAUGE_REFRESH_PARAM *hgrp)
@@ -1739,10 +1739,10 @@ void	CT_HPGaugeRefreshSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,HP_GAUGE_REFRESH_PARA
 
 //============================================================================================
 /**
- *	▀Z√Y┌Й▐┬≈²┌П▄д┌я▐o┌╣
+ *	Ф┼─Е©≤Ц┌▄Е┤╕Г░├Ц┌▓Е▒╪Ц│ЁЕ┤╨Ц│≈
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_WazaWasureSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_WASURE_PARAM *wwp)
@@ -1763,10 +1763,10 @@ void	CT_WazaWasureSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_WASURE_PARAM *wwp)
 
 //============================================================================================
 /**
- *	┐\┐t┐g┐E┐G┐A┐X┐v┐┴┐C┐g┌и┐┌┐U┐C┐N┌П┌╘┌╞┌И
+ *	Ц┌╫Ц┐∙Ц┐┬Ц┌╕Ц┌╗Ц┌╒Ц┌╧Ц┐≈Ц┐╘Ц┌╓Ц┐┬Ц│╚Ц┐╒Ц┌╤Ц┌╓Ц┌╞Ц┌▓Ц│▀Ц│▒Ц┌▀
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_MosaicSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,MOSAIC_SET_PARAM *msp)
@@ -1789,10 +1789,10 @@ void	CT_MosaicSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,MOSAIC_SET_PARAM *msp)
 
 //============================================================================================
 /**
- *	┐{│[┐▀┐Q│[┐W┌П∙\▌╕│i┐G┐⌠┐J┐E┐⌠┐g▌·│j
+ *	Ц┐°Ц┐╪Ц┐╚Ц┌╡Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨О╪┬Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ф≥┌О╪┴
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_BallGaugeEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,BALL_GAUGE_PARAM *bgp)
@@ -1821,10 +1821,10 @@ void	CT_BallGaugeEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,BALL_GAUGE_PARAM *b
 
 //============================================================================================
 /**
- *	┐{│[┐▀┐Q│[┐W┌П▐а┌╥│i┐G┐⌠┐J┐E┐⌠┐g▌·│j
+ *	Ц┐°Ц┐╪Ц┐╚Ц┌╡Ц┐╪Ц┌╦Ц┌▓Ф╤┬Ц│≥О╪┬Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ф≥┌О╪┴
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_BallGaugeEncountOut(BATTLE_WORK *bw,CLIENT_PARAM *cp,BALL_GAUGE_PARAM *bgp)
@@ -1843,7 +1843,7 @@ void	CT_BallGaugeEncountOut(BATTLE_WORK *bw,CLIENT_PARAM *cp,BALL_GAUGE_PARAM *b
 	tbg->client_no=cp->client_no;
 	tbg->client_type=cp->client_type;
 
-	//OUT┌и┌м∙s≈v
+	//OUTЦ│╚Ц│╞Д╦█Х╕│
 //	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 //		tbg->status[i] = bgp->status[i];
 //	}
@@ -1855,10 +1855,10 @@ void	CT_BallGaugeEncountOut(BATTLE_WORK *bw,CLIENT_PARAM *cp,BALL_GAUGE_PARAM *b
 
 //============================================================================================
 /**
- *	┐{│[┐▀┐Q│[┐W┌П∙\▌╕
+ *	Ц┐°Ц┐╪Ц┐╚Ц┌╡Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_BallGaugeSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,BALL_GAUGE_PARAM *bgp)
@@ -1883,10 +1883,10 @@ void	CT_BallGaugeSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,BALL_GAUGE_PARAM *bgp)
 
 //============================================================================================
 /**
- *	┐{│[┐▀┐Q│[┐W┌П▐а┌╥
+ *	Ц┐°Ц┐╪Ц┐╚Ц┌╡Ц┐╪Ц┌╦Ц┌▓Ф╤┬Ц│≥
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_BallGaugeOut(BATTLE_WORK *bw,CLIENT_PARAM *cp,BALL_GAUGE_PARAM *bgp)
@@ -1905,7 +1905,7 @@ void	CT_BallGaugeOut(BATTLE_WORK *bw,CLIENT_PARAM *cp,BALL_GAUGE_PARAM *bgp)
 	tbg->client_no=cp->client_no;
 	tbg->client_type=cp->client_type;
 
-	//OUT┌и┌м∙s≈v
+	//OUTЦ│╚Ц│╞Д╦█Х╕│
 //	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 //		tbg->status[i] = bgp->status[i];
 //	}
@@ -1917,10 +1917,10 @@ void	CT_BallGaugeOut(BATTLE_WORK *bw,CLIENT_PARAM *cp,BALL_GAUGE_PARAM *bgp)
 
 //============================================================================================
 /**
- *	▓й░M▒р▀@┐│┐b┐Z│[┐W┌П∙\▌╕
+ *	И─ Д©║Е╬┘Ф╘÷Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_SioWaitMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1928,7 +1928,7 @@ void	CT_SioWaitMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 	MSGDATA_MANAGER			*msg_m;
 	MESSAGE_PARAM			mp;
 
-	//▓й░M▒р▀@┐│┐b┐Z│[┐W┌м▌╘∙╙░╖▄Д┌л┌щ∙\▌╕
+	//И─ Д©║Е╬┘Ф╘÷Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╞Х┤╙Е┬├Е┬╤Е╬║Ц│╝Ц│©Х║╗Г╓╨
 	if(cp->client_boot==CLIENT_BOOT_NORMAL){
 		msg_m=BattleWorkFightMsgGet(bw);
 
@@ -1944,10 +1944,10 @@ void	CT_SioWaitMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	▒ч■П┌╣┌д┌╒┌╫┐L┐┐┐┴┌П∙°▀A
+ *	И──И│©Ц│≈Ц│╕Ц│└Ц│÷Ц┌╜Ц┐ёЦ┐╘Ц┌▓Е╬╘Е╦╟
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_ChrPop(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_EFFECT_PARAM *wep)
@@ -1962,10 +1962,10 @@ void	CT_ChrPop(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_EFFECT_PARAM *wep)
 
 //--------------------------------------------------------------
 /**
- * @brief   ┐\┐t┐g┐X┐v┐┴┐C┐g┌ПOAM┌и∙о┼╥
+ * @brief   Ц┌╫Ц┐∙Ц┐┬Ц┌╧Ц┐≈Ц┐╘Ц┌╓Ц┐┬Ц┌▓OAMЦ│╚Е╓┴Ф▐⌡
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //--------------------------------------------------------------
 void	CT_SStoOAM(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1986,10 +1986,10 @@ void	CT_SStoOAM(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //--------------------------------------------------------------
 /**
- * @brief   OAM┌П┐\┐t┐g┐X┐v┐┴┐C┐g┌и√ъ┌╥
+ * @brief   OAMЦ┌▓Ц┌╫Ц┐∙Ц┐┬Ц┌╧Ц┐≈Ц┐╘Ц┌╓Ц┐┬Ц│╚Ф┬╩Ц│≥
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //--------------------------------------------------------------
 void	CT_OAMtoSS(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -2010,10 +2010,10 @@ void	CT_OAMtoSS(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ▓й░M▒н░М▌·┌л▐÷■s┐│┐b┐Z│[┐W┌П∙\▌╕
+ * @brief   И─ Д©║Е╞╬Ф┬╕Ф≥┌Ц│╝Е▀²Ф∙≈Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //--------------------------------------------------------------
 void	CT_WinLoseMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -2039,10 +2039,10 @@ void	CT_WinLoseMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ▓й░M▒н░М▌·┌л┌и┌╟┌И┐│┐b┐Z│[┐W┌П∙\▌╕
+ * @brief   И─ Д©║Е╞╬Ф┬╕Ф≥┌Ц│╝Ц│╚Ц│▓Ц┌▀Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //--------------------------------------------------------------
 void	CT_EscapeMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ESCAPE_MESSAGE_PARAM *emp)
@@ -2068,10 +2068,10 @@ void	CT_EscapeMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,ESCAPE_MESSAGE_PARAM *
 
 //--------------------------------------------------------------
 /**
- * @brief   ┐o┐g┐▀┐^┐▐│[┌л┐┼┐^┐C┐A┐│┐b┐Z│[┐W┌П∙\▌╕
+ * @brief   Ц┐░Ц┐┬Ц┐╚Ц┌©Ц┐╞Ц┐╪Ц│╝Ц┐╙Ц┌©Ц┌╓Ц┌╒Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Х║╗Г╓╨
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //--------------------------------------------------------------
 void	CT_GiveUpMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -2097,10 +2097,10 @@ void	CT_GiveUpMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	┌щ┌╙┌М┌Х┐L┐┐┐┴┌П┐Z┐b┐g
+ *	Ц│©Ц│▄Ц┌▐Ц┌┼Ц┌╜Ц┐ёЦ┐╘Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_MigawariChrSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_EFFECT_PARAM *wep)
@@ -2115,10 +2115,10 @@ void	CT_MigawariChrSet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZA_EFFECT_PARAM *wep)
 
 //============================================================================================
 /**
- *	▀Z▄Ь┴йSE┌П┐Z┐b┐g
+ *	Ф┼─Е┼╧Ф·°SEЦ┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_WazaKoukaSESet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZAKOUKA_SE_PARAM *wsp)
@@ -2149,10 +2149,10 @@ void	CT_WazaKoukaSESet(BATTLE_WORK *bw,CLIENT_PARAM *cp,WAZAKOUKA_SE_PARAM *wsp)
 
 //============================================================================================
 /**
- *	▀х┌П┐Z┐b┐g
+ *	Ф⌡╡Ц┌▓Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g≈p┐p┐┴┐││[┐^┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 void	CT_BGMPlay(BATTLE_WORK *bw,CLIENT_PARAM *cp,BGM_PLAY_PARAM *bpp)
@@ -2163,14 +2163,14 @@ void	CT_BGMPlay(BATTLE_WORK *bw,CLIENT_PARAM *cp,BGM_PLAY_PARAM *bpp)
 }
 
 //-----------------------------------------------------------------------------
-//		TCB┐T┐u┐▀│[┐`┐⌠▄Q
+//		TCBЦ┌╣Ц┐√Ц┐╚Ц┐╪Ц┐│Ц┐ЁГ╬╓
 //-----------------------------------------------------------------------------
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g┐|┐P┐┌┐⌠⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┐²Ц┌╠Ц┐╒Ц┐ЁЕ▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonEncount(TCB_PTR tcb,void *work)
@@ -2335,7 +2335,7 @@ static	void	TCB_PokemonEncount(TCB_PTR tcb,void *work)
 		}
 		break;
 #if 0
-	//┐X┐L┐b┐v┐V│[┐P┐⌠┐X
+	//Ц┌╧Ц┌╜Ц┐┐Ц┐≈Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧
 	case 5:
 		if(tpe->dir==PARA_FRONT){
 #ifndef POKE_ANM_OFF
@@ -2404,7 +2404,7 @@ static	void	TCB_PokemonEncount(TCB_PTR tcb,void *work)
 		break;
 #endif
 	default:
-		Snd_PMVoiceDoubleFlagSet( 0 );			///< 2∙C∙╙┌л√б┌╚░╨
+		Snd_PMVoiceDoubleFlagSet( 0 );			///< 2Е▄╧Е┬├Ц│╝ИЁ╢Ц│█Её╟
 		SCIO_ServerQueClear(tpe->bw,tpe->client_no,tpe->command_code);
 		sys_FreeMemoryEz(work);
 		TCB_Delete(tcb);
@@ -2414,10 +2414,10 @@ static	void	TCB_PokemonEncount(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g┐|┐P┐┌┐⌠⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB│i┐M┐┴┐e┐B┐i⌠а▌Й┐G┐⌠┐J┐E┐⌠┐g░Й≈p│j
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┐²Ц┌╠Ц┐╒Ц┐ЁЕ▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCBО╪┬Ц┌╝Ц┐╘Ц┐├Ц┌ёЦ┐┼Г┴╧Ф╝┼Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Е╟┌Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonEncountGira(TCB_PTR tcb,void *work)
@@ -2497,7 +2497,7 @@ static	void	TCB_PokemonEncountGira(TCB_PTR tcb,void *work)
 		}
 		break;
 	default:
-		Snd_PMVoiceDoubleFlagSet( 0 );			///< 2∙C∙╙┌л√б┌╚░╨
+		Snd_PMVoiceDoubleFlagSet( 0 );			///< 2Е▄╧Е┬├Ц│╝ИЁ╢Ц│█Её╟
 		SCIO_ServerQueClear(tpe->bw,tpe->client_no,tpe->command_code);
 		sys_FreeMemoryEz(work);
 		TCB_Delete(tcb);
@@ -2507,25 +2507,25 @@ static	void	TCB_PokemonEncountGira(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠⌠o▐Й┐G┐t┐F┐N┐g┐{│[┐▀┐G┐t┐F┐N┐g┐e│[┐u┐▀
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁГ≥╩Е═╢Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┐°Ц┐╪Ц┐╚Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┐├Ц┐╪Ц┐√Ц┐╚
  */
 //============================================================================================
 
 const	u8	BallMoveEffectTable[]={
-	EBMT_THROW_C,		///< 1∙C┌л▌·
+	EBMT_THROW_C,		///< 1Е▄╧Ц│╝Ф≥┌
 	EBMT_STAY_BB,
-	EBMT_THROW_L,		///< █╤┌и⌠┼┌╟≈▌┌©┌И
+	EBMT_THROW_L,		///< Е╥╕Ц│╚Ф┼∙Ц│▓Х░╫Ц│║Ц┌▀
 	EBMT_STAY_B,
-	EBMT_THROW_R,		///< ┴E┌и⌠┼┌╟≈▌┌©┌И
+	EBMT_THROW_R,		///< Е▐ЁЦ│╚Ф┼∙Ц│▓Х░╫Ц│║Ц┌▀
 	EBMT_STAY_D,
 };
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠⌠o▐Й┐G┐t┐F┐N┐g⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB│i┐G┐⌠┐J┐E┐⌠┐g▌·░Й≈p│j
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁГ≥╩Е═╢Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Е▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCBО╪┬Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ф≥┌Е╟┌Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonEncountAppear(TCB_PTR tcb,void *work)
@@ -2543,8 +2543,8 @@ static	void	TCB_PokemonEncountAppear(TCB_PTR tcb,void *work)
 				if ( ( BattleWorkBattleStatusFlagGet( tpa->bw ) & BATTLE_STATUS_FLAG_REC_CHILD )==0 )
 				{
 					if ( tpa->client_type == CLIENT_TYPE_A ){
-						///< ┐T│[┐o│[ ┌е CLIENT_TYPE_A ┌л▌·
-						OS_Printf( " OAM ≈▌┌ф┌╣┌╫ -- 0\n" );
+						///< Ц┌╣Ц┐╪Ц┐░Ц┐╪ Ц│╖ CLIENT_TYPE_A Ц│╝Ф≥┌
+						OS_Printf( " OAM Х░╫Ц│╗Ц│≈Ц│÷ -- 0\n" );
 						OS_TPrintf( "CHILD:%08x\n",BattleWorkBattleStatusFlagGet(tpa->bw));
 						tpa->ods = OAM_DropAll_Init( tpa->bw, HEAPID_BATTLE );
 					}						
@@ -2555,18 +2555,18 @@ static	void	TCB_PokemonEncountAppear(TCB_PTR tcb,void *work)
 				{
 					if ( ( BattleWorkServerFlagGet( tpa->bw ) == 1 && tpa->client_type == CLIENT_TYPE_A ) )
 					{
-						///< ┐T│[┐o│[ ┌е CLIENT_TYPE_A ┌л▌·
-						OS_Printf( " OAM ≈▌┌ф┌╣┌╫ -- 1\n" );
+						///< Ц┌╣Ц┐╪Ц┐░Ц┐╪ Ц│╖ CLIENT_TYPE_A Ц│╝Ф≥┌
+						OS_Printf( " OAM Х░╫Ц│╗Ц│≈Ц│÷ -- 1\n" );
 						tpa->ods = OAM_DropAll_Init( tpa->bw, HEAPID_BATTLE );
 					}
 					else if ( tpa->client_type == CLIENT_TYPE_AA  )
 					{
-						///< TYPE_AA = 1vs1 ┌х┌л┌е│A√Л░╤┌Ю┐g┐▄│[┐i│[┌Ю≈▌┌©┌И
-						OS_Printf( " OAM ≈▌┌ф┌╣┌╫ -- 2\n" );
+						///< TYPE_AA = 1vs1 Ц│╙Ц│╝Ц│╖Ц─│И┤▌Г■÷Ц┌┌Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌┌Х░╫Ц│║Ц┌▀
+						OS_Printf( " OAM Х░╫Ц│╗Ц│≈Ц│÷ -- 2\n" );
 						tpa->ods = OAM_DropAll_Init( tpa->bw, HEAPID_BATTLE );
 					}
 					else {
-						OS_Printf( " OAM ≈▌┌ф┌╣┌д┌х┌╒\n" );
+						OS_Printf( " OAM Х░╫Ц│╗Ц│≈Ц│╕Ц│╙Ц│└\n" );
 						OS_Printf( " client_type = %d\n, server = %d\n", tpa->client_type, BattleWorkServerFlagGet( tpa->bw ) );
 					}
 				}
@@ -2601,8 +2601,8 @@ static	void	TCB_PokemonEncountAppear(TCB_PTR tcb,void *work)
 //		if (BM_IsOpen(tpa->bms) == TRUE){
 		if (BM_IsOpen(tpa->cp->bms) == TRUE){
 			if(tpa->client_type == CLIENT_TYPE_C){
-				//√║∙Ш▒╓2▒л√з┌м√б┌╚░╨┌╙■М┌Г┌х┌╒┌Ф┌╓┌и▐╜┌╣▓x┌Г┌╧┌д⌠o▐Й
-				//(⌠G▒╓2▒л√з┌м┐{│[┐▀⌠┼┌╟┐G┐t┐F┐N┐g┌л∙Ш┌е┌Б┌а┌д┌╒┌И)
+				//Е▒ЁФ√╧Е│╢2Д╫⌠Г⌡╝Ц│╞ИЁ╢Ц│█Её╟Ц│▄Х╒╚Ц┌┴Ц│╙Ц│└Ц┌┬Ц│├Ц│╚Е╟▒Ц│≈И│┘Ц┌┴Ц│⌡Ц│╕Г≥╩Е═╢
+				//(Ф∙╣Е│╢2Д╫⌠Г⌡╝Ц│╞Ц┐°Ц┐╪Ц┐╚Ф┼∙Ц│▓Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц│╝Ф√╧Ц│╖Ц┌└Ц│ёЦ│╕Ц│└Ц┌▀)
 				tpa->wait++;
 				if(tpa->wait >= ENCOUNT_DOUBLE_APPEAR_WAIT){
 					tpa->wait = 0;
@@ -2612,7 +2612,7 @@ static	void	TCB_PokemonEncountAppear(TCB_PTR tcb,void *work)
 				}
 			}
 			
-			{	///< ┐|┐P┐┌┐⌠░╤░╛ √{≈┬┌х┌Г│Acase 1 ┌╙√]┌э┌╣┌╒│B
+			{	///< Ц┐²Ц┌╠Ц┐╒Ц┐ЁГ■÷Ф┬░ Ф°╛Ф²╔Ц│╙Ц┌┴Ц─│case 1 Ц│▄Ф°⌡Ц│╬Ц│≈Ц│└Ц─┌
 				SOFT_SPRITE_MANAGER	*ssm;
 				SOFT_SPRITE_ANIME	ssanm[SS_ANM_SEQ_MAX];
 
@@ -2799,7 +2799,7 @@ static	void	TCB_PokemonEncountAppear(TCB_PTR tcb,void *work)
 		}
 		break;
 	default:
-		Snd_PMVoiceDoubleFlagSet( 0 );			///< 2∙C∙╙┌л√б┌╚░╨
+		Snd_PMVoiceDoubleFlagSet( 0 );			///< 2Е▄╧Е┬├Ц│╝ИЁ╢Ц│█Её╟
 		SCIO_ServerQueClear(tpa->bw,tpa->client_no,tpa->command_code);
 		sys_FreeMemoryEz(work);
 		TCB_Delete(tcb);
@@ -2915,10 +2915,10 @@ static	void	TCB_PokemonEncountAppear(TCB_PTR tcb,void *work)
 }
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠⌠o▐Й┐G┐t┐F┐N┐g⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁГ≥╩Е═╢Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Е▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonAppear(TCB_PTR tcb,void *work)
@@ -2929,7 +2929,7 @@ static	void	TCB_PokemonAppear(TCB_PTR tcb,void *work)
 	switch(tpa->seq_no){
 	case 0:
 		{
-			///< ┐{│[┐▀OAM⌠г┌щ█·┌щ
+			///< Ц┐°Ц┐╪Ц┐╚OAMХ╙╜Ц│©Х╬╪Ц│©
 			TBALL_MOVE_DATA bmd;
 
 			bmd.type=BallMoveEffectTable[tpa->client_type];
@@ -2942,7 +2942,7 @@ static	void	TCB_PokemonAppear(TCB_PTR tcb,void *work)
 			bmd.surface = 0;
 
 			if(tpa->flag==POKEMON_APPEAR_GET_FAILED){
-				bmd.mode=EBMM_FAILURE;		///< ▌╦■s░Й≈p
+				bmd.mode=EBMM_FAILURE;		///< Е╓╠Ф∙≈Е╟┌Г■╗
 			}
 			else{
 				bmd.mode=EBMM_THROW;
@@ -2951,7 +2951,7 @@ static	void	TCB_PokemonAppear(TCB_PTR tcb,void *work)
 			tpa->bms=BM_Init(&bmd);
 		}
 		{
-			///< ┐|┐P┐┌┐⌠⌠г┌щ█·┌щ
+			///< Ц┐²Ц┌╠Ц┐╒Ц┐ЁХ╙╜Ц│©Х╬╪Ц│©
 			SOFT_SPRITE_MANAGER	*ssm;
 			SOFT_SPRITE_ANIME	ssanm[SS_ANM_SEQ_MAX];
 
@@ -2976,7 +2976,7 @@ static	void	TCB_PokemonAppear(TCB_PTR tcb,void *work)
 			SoftSpriteParaSet(tpa->cp->poke_ss, SS_PARA_VANISH, TRUE);
 		}
 		{
-			///< OAM≈▌┌ф┌╣
+			///< OAMХ░╫Ц│╗Ц│≈
 			tpa->ods = NULL;
 			tpa->ods = OAM_DropAll_Init(tpa->bw, HEAPID_BATTLE);
 		}
@@ -2985,7 +2985,7 @@ static	void	TCB_PokemonAppear(TCB_PTR tcb,void *work)
 		
 	case 1:
 		{
-			///< ┐{│[┐▀ ┐p│[┐e┐B┐N┐▀⌠г┌щ█·┌щ
+			///< Ц┐°Ц┐╪Ц┐╚ Ц┐▒Ц┐╪Ц┐├Ц┌ёЦ┌╞Ц┐╚Х╙╜Ц│©Х╬╪Ц│©
 			TBALL_CUSTOM_PARAM bcp = { 0 };
 			
 			bcp.client_type = tpa->client_type;	
@@ -3204,10 +3204,10 @@ static	void	TCB_PokemonAppear(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠┬Ь┌а█·┌ъ┌И┐G┐t┐F┐N┐g⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁЕ╪∙Ц│ёХ╬╪Ц┌│Ц┌▀Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Е▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonReturn(TCB_PTR tcb,void *work)
@@ -3245,7 +3245,7 @@ static	void	TCB_PokemonReturn(TCB_PTR tcb,void *work)
 		}
 		tpr->seq_no++;
 		break;
-	//┌Ю┌К┌Ю┌К┌л┐G┐t┐F┐N┐g▐I≈╧▒р┌©
+	//Ц┌┌Ц┌█Ц┌┌Ц┌█Ц│╝Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Г╣┌Д╨├Е╬┘Ц│║
 	case 1:
 	case 3:
 		WES_Executed(wsp);
@@ -3272,7 +3272,7 @@ static	void	TCB_PokemonReturn(TCB_PTR tcb,void *work)
 			}
 		}
 		else {
-			///< client type = √║∙Ш▒╓
+			///< client type = Е▒ЁФ√╧Е│╢
 			{
 				TBALL_MOVE_DATA bmd;
 				
@@ -3321,7 +3321,7 @@ static	void	TCB_PokemonReturn(TCB_PTR tcb,void *work)
 				tpr->seq_no=7;
 			}
 			else{
-			///	tpr->seq_no=8;		///< √ъ┌И┐G┐t┐F┐N┐g┌╙▐o┌И┌л┌е▐I≈╧▒р┌©┌╥┌И
+			///	tpr->seq_no=8;		///< Ф┬╩Ц┌▀Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц│▄Е┤╨Ц┌▀Ц│╝Ц│╖Г╣┌Д╨├Е╬┘Ц│║Ц│≥Ц┌▀
 				tpr->seq_no=7;
 			}
 		}
@@ -3342,10 +3342,10 @@ static	void	TCB_PokemonReturn(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠▀z┌╒█·┌ч┐G┐t┐F┐N┐g⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁЕ░╦Ц│└Х╬╪Ц┌─Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Е▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonInhale(TCB_PTR tcb,void *work)
@@ -3374,10 +3374,10 @@ static	void	TCB_PokemonInhale(TCB_PTR tcb,void *work)
 }
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g┐g┐▄│[┐i│[⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Е▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 enum{
@@ -3403,7 +3403,7 @@ static	void	TCB_TrainerEncount(TCB_PTR tcb,void *work)
 
 	switch(tte->seq_no){
 	case SEQ_TE_INIT:
-		//3┌б√з┌л┐A┐j┐││[┐V┐┤┐⌠┌╙▒╤█щ┌╥┌И┌х┌Г┌н│A┌╩┌Й┌П┐G┐⌠┐J┐E┐⌠┐g▌·┌л┐A┐j┐││[┐V┐┤┐⌠┌ф┌╣┌д█д░╤┌╥┌И
+		//3Ц│╓Г⌡╝Ц│╝Ц┌╒Ц┐▀Ц┐║Ц┐╪Ц┌╥Ц┐╖Ц┐ЁЦ│▄Е╜≤Е°╗Ц│≥Ц┌▀Ц│╙Ц┌┴Ц│╟Ц─│Ц│²Ц┌▄Ц┌▓Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ф≥┌Ц│╝Ц┌╒Ц┐▀Ц┐║Ц┐╪Ц┌╥Ц┐╖Ц┐ЁЦ│╗Ц│≈Ц│╕Е├█Г■÷Ц│≥Ц┌▀
 		if(CATS_ObjectAnimeSeqNumGetCap(tte->cap)>2){
 			CATS_ObjectAnimeFrameSetCap(tte->cap,0);
 			CATS_ObjectAnimeSeqSetCap(tte->cap,2);
@@ -3451,7 +3451,7 @@ static	void	TCB_TrainerEncount(TCB_PTR tcb,void *work)
 				if((tte->client_type==CLIENT_TYPE_BB)||(tte->client_type==CLIENT_TYPE_B)){
 					CATS_ObjectPosSetCap(tte->gw->cap,GROUND_ENEMY_X,GROUND_ENEMY_Y);
 				}
-				//┐A┐j┐││[┐V┐┤┐⌠┐f│[┐^┌л┌═┌И┐L┐┐┐┴┌╬┌╞┐A┐j┐│┌П┐X┐^│[┐g
+				//Ц┌╒Ц┐▀Ц┐║Ц┐╪Ц┌╥Ц┐╖Ц┐ЁЦ┐┤Ц┐╪Ц┌©Ц│╝Ц│┌Ц┌▀Ц┌╜Ц┐ёЦ┐╘Ц│═Ц│▒Ц┌╒Ц┐▀Ц┐║Ц┌▓Ц┌╧Ц┌©Ц┐╪Ц┐┬
 				if(CATS_ObjectAnimeSeqNumGetCap(tte->cap)>1){
 					CATS_ObjectAnimeFrameSetCap(tte->cap,0);
 					CATS_ObjectAnimeSeqSetCap(tte->cap,1);
@@ -3518,10 +3518,10 @@ static	void	TCB_TrainerEncount(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐g┐▄│[┐i│[⌠┼┌╟┌И┐G┐t┐F┐N┐g⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB
+ *	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ф┼∙Ц│▓Ц┌▀Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Е▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 enum{
@@ -3542,7 +3542,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 	u32					fight_type;
 	s16					BallOfs[][6][2]={
 										{
-											//▓j▌Е░l▄Ж
+											//Г■╥Д╦╩Д╨╨Е┘╛
 											{0x0000,0x0080},
 											{-34, 4},
 											{-28,-11},
@@ -3552,7 +3552,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 											{0x7fff,0x7fff},	
 										},
 										{
-											//▐≈▌Е░l▄Ж
+											//Е╔ЁД╦╩Д╨╨Е┘╛
 											{0x0000,0x0080},
 											{-34, 4},
 											{-28,-11},
@@ -3561,7 +3561,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 											{0x7fff,0x7fff},
 										},
 										{
-											//┐┴┐C┐o┐▀
+											//Ц┐╘Ц┌╓Ц┐░Ц┐╚
 											{0x0000,0x0080},
 											{-34, 4},
 											{-28,-11},
@@ -3570,7 +3570,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 											{0x7fff,0x7fff},
 										},
 										{
-											//┐┌┐~
+											//Ц┐╒Ц┐÷
 											{0x0000,0x0080},
 											{-33,-6},
 											{-28,-18},
@@ -3578,7 +3578,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 											{0x7fff,0x7fff},
 										},
 										{
-											//┐Q┐⌠
+											//Ц┌╡Ц┐Ё
 											{0x0000,0x0080},
 											{-33,-2},
 											{-28,-18},
@@ -3587,7 +3587,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 											{0x7fff,0x7fff},
 										},
 										{
-											//┐}┐C
+											//Ц┐·Ц┌╓
 											{0x0000,0x0080},
 											{-34, 4},
 											{-28,-11},
@@ -3596,7 +3596,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 											{0x7fff,0x7fff},
 										},
 										{
-											//┐o┐N
+											//Ц┐░Ц┌╞
 											{0x0000,0x0080},
 											{-34, 4},
 											{-28,-11},
@@ -3605,7 +3605,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 											{0x7fff,0x7fff},
 										},
 										{
-											//┐~┐▀
+											//Ц┐÷Ц┐╚
 											{0x0000,0x0080},
 											{-34, 4},
 											{-23, -1},
@@ -3614,7 +3614,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 											{0x7fff,0x7fff},
 										},
 										{
-											//▓j▌Е░l▄ЖDP
+											//Г■╥Д╦╩Д╨╨Е┘╛DP
 											{0x0000,0x0080},
 											{-34, 4},
 											{-28,-11},
@@ -3623,7 +3623,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 											{0x7fff,0x7fff},	
 										},
 										{
-											//▐≈▌Е░l▄ЖDP
+											//Е╔ЁД╦╩Д╨╨Е┘╛DP
 											{0x0000,0x0080},
 											{-34, 4},
 											{-28,-11},
@@ -3647,22 +3647,22 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 				switch(ttt->type){
 				default:
 				case TT_TYPE_SAFARI_BALL:
-					bmd.type=EBMT_CAPTURE_BB;		///< ⌠G┌и⌠┼┌╟┌И
+					bmd.type=EBMT_CAPTURE_BB;		///< Ф∙╣Ц│╚Ф┼∙Ц│▓Ц┌▀
 					ttt->throw_type=EBMM_CAPTURE;
 					bmd.ball_id=ITEM_SAFARIBOORU;
 					break;
 				case TT_TYPE_SAFARI_STONE:
-					bmd.type=EBMT_THROW_E0_STONE;	///< ⌠G┌и⌠┼┌╟┌И│@░н
+					bmd.type=EBMT_THROW_E0_STONE;	///< Ф∙╣Ц│╚Ф┼∙Ц│▓Ц┌▀Ц──Г÷Ё
 					ttt->throw_type=EBMM_THROW;
 					bmd.ball_id=BALL_EFF_STONE;
 					break;
 				case TT_TYPE_SAFARI_FOOD:
-					bmd.type=EBMT_THROW_E0_FOOD;	///< ⌠G┌и⌠┼┌╟┌И│@┐G┐T
+					bmd.type=EBMT_THROW_E0_FOOD;	///< Ф∙╣Ц│╚Ф┼∙Ц│▓Ц┌▀Ц──Ц┌╗Ц┌╣
 					ttt->throw_type=EBMM_THROW;
 					bmd.ball_id=BALL_EFF_FOOD;
 					break;
 				case TT_TYPE_PARK_BALL:
-					bmd.type=EBMT_CAPTURE_BB;		///< ⌠G┌и⌠┼┌╟┌И
+					bmd.type=EBMT_CAPTURE_BB;		///< Ф∙╣Ц│╚Ф┼∙Ц│▓Ц┌▀
 					ttt->throw_type=EBMM_CAPTURE;
 					bmd.ball_id=BALL_EFF_PARK_BALL;
 					break;
@@ -3714,7 +3714,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 	
 					CATS_ActorPointerDelete_S(ttt->cp->cap);
 					ttt->cp->cap=NULL;
-					//┐┼┐\│[┐X█М▐°
+					//Ц┐╙Ц┌╫Ц┐╪Ц┌╧Е┴┼И≥╓
 					CATS_FreeResourceChar(crp,CHARID_ENCOUNT_TRAINER1+ttt->cp->client_type);
 					CATS_FreeResourcePltt(crp,PLTTID_ENCOUNT_TRAINER1+ttt->cp->client_type);
 					CATS_FreeResourceCell(crp,CELLID_ENCOUNT_TRAINER1+ttt->cp->client_type);
@@ -3764,7 +3764,7 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 
 				CATS_ActorPointerDelete_S(ttt->cp->cap);
 				ttt->cp->cap=NULL;
-				//┐┼┐\│[┐X█М▐°
+				//Ц┐╙Ц┌╫Ц┐╪Ц┌╧Е┴┼И≥╓
 				CATS_FreeResourceChar(crp,CHARID_ENCOUNT_TRAINER1+ttt->cp->client_type);
 				CATS_FreeResourcePltt(crp,PLTTID_ENCOUNT_TRAINER1+ttt->cp->client_type);
 				CATS_FreeResourceCell(crp,CELLID_ENCOUNT_TRAINER1+ttt->cp->client_type);
@@ -3822,10 +3822,10 @@ static	void	TCB_TrainerThrow(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐g┐▄│[┐i│[┴Ф√й┼O┐G┐t┐F┐N┐g⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB
+ *	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Г■╩И²╒Е╓√Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Е▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_TrainerOut(TCB_PTR tcb,void *work)
@@ -3859,7 +3859,7 @@ static	void	TCB_TrainerOut(TCB_PTR tcb,void *work)
 
 			CATS_ActorPointerDelete_S(tto->cp->cap);
 			tto->cp->cap=NULL;
-			//┐┼┐\│[┐X█М▐°
+			//Ц┐╙Ц┌╫Ц┐╪Ц┌╧Е┴┼И≥╓
 			CATS_FreeResourceChar(crp,CHARID_ENCOUNT_TRAINER1+tto->cp->client_type);
 			CATS_FreeResourcePltt(crp,PLTTID_ENCOUNT_TRAINER1+tto->cp->client_type);
 			CATS_FreeResourceCell(crp,CELLID_ENCOUNT_TRAINER1+tto->cp->client_type);
@@ -3874,10 +3874,10 @@ static	void	TCB_TrainerOut(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐g┐▄│[┐i│[┴Ф√й⌠Ю┐G┐t┐F┐N┐g⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB
+ *	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Г■╩И²╒Е├┘Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Е▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_TrainerIn(TCB_PTR tcb,void *work)
@@ -3914,10 +3914,10 @@ static	void	TCB_TrainerIn(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	HP┐Q│[┐W┴Ф√йIN┐G┐t┐F┐N┐g⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB
+ *	HPЦ┌╡Ц┐╪Ц┌╦Г■╩И²╒INЦ┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Е▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_HPGaugeIn(TCB_PTR tcb,void *work)
@@ -3950,10 +3950,10 @@ static	void	TCB_HPGaugeIn(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	HP┐Q│[┐W┴Ф√йIN┐G┐t┐F┐N┐g⌠╝█Л┐V│[┐P┐⌠┐X≈pTCB
+ *	HPЦ┌╡Ц┐╪Ц┌╦Г■╩И²╒INЦ┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Е▀∙Д╫°Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г■╗TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_HPGaugeOut(TCB_PTR tcb,void *work)
@@ -3978,10 +3978,10 @@ static	void	TCB_HPGaugeOut(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐R┐}┐⌠┐h▒I▒ПTCB≈p┐V│[┐P┐⌠┐X┐i┐⌠┐o│[
+ *	Ц┌ЁЦ┐·Ц┐ЁЦ┐┴И│╦Ф┼·TCBГ■╗Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Ц┐┼Ц┐ЁЦ┐░Ц┐╪
  */
 //============================================================================================
-enum{	//┐V│[┐P┐⌠┐X■т█├
+enum{	//Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г∙╙Е▐╥
 	CSSEQ_FAST_LOAD,
 	CSSEQ_COMMAND_INIT,
 	CSSEQ_COMMAND_MSG_WAIT,
@@ -4003,10 +4003,10 @@ enum{	//┐V│[┐P┐⌠┐X■т█├
 
 //============================================================================================
 /**
- *	┐R┐}┐⌠┐h▒I▒ПTCB│i┐v┐▄┐C┐└│[≈p│j
+ *	Ц┌ЁЦ┐·Ц┐ЁЦ┐┴И│╦Ф┼·TCBО╪┬Ц┐≈Ц┐╛Ц┌╓Ц┐╓Ц┐╪Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
@@ -4047,9 +4047,9 @@ static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
 		OS_TPrintf("CSSEQ_FAST_LOAD\n");
 #endif FREEZE_BUG_CHECK
 		{
-			//▀Z▒I▒П┴Ф√й┌л∙`┴Ф┌П▒│┌╜┌╥┌И┬в┌и│A┌╠┌╠┌е░Ф┌и▀Z■т█├┌БPP┌х┌г┌П
-			//┌Ю┌Г┌а┌д┐f│[┐^┌П┐│┐┌┐┼┌и⌠W┼J┌╣┌д┌╗┌╜ 2006.05.12(▀Ю) by matsuda
-			// │╕▒]┴Д∙■┌Ё┌Я┌л▌x▌²┌л▄Ё█Л▀ф┌╣┌д┌э┌╥│B
+			//Ф┼─И│╦Ф┼·Г■╩И²╒Ц│╝Ф▐▐Г■╩Ц┌▓Ф≈╘Ц│▐Ц│≥Ц┌▀Г┌╨Ц│╚Ц─│Ц│⌠Ц│⌠Ц│╖Е┘┬Ц│╚Ф┼─Г∙╙Е▐╥Ц┌└PPЦ│╙Ц│╘Ц┌▓
+			//Ц┌┌Ц┌┴Ц│ёЦ│╕Ц┐┤Ц┐╪Ц┌©Ц┌▓Ц┐║Ц┐╒Ц┐╙Ц│╚Е╠∙И√▀Ц│≈Ц│╕Ц│┼Ц│▐ 2006.05.12(И┤▒) by matsuda
+			// Б─╩Ф⌡╫Ф┬▒И┐╗Ц│∙Ц┌⌠Ц│╝Ф■╞Ф▄│Ц│╝Е┘┐Д╫°Ф╔╜Ц│≈Ц│╕Ц│╬Ц│≥Ц─┌
 			BINPUT_WAZA_PARAM wazapara;
 			int i;
 			for(i = 0; i < WAZA_TEMOTI_MAX; i++){
@@ -4072,7 +4072,7 @@ static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
 
 			msg_m=BattleWorkFightMsgGet(tcs->bw);
 
-			//∙ъ┼l┐f┐┌
+			//Ф█∙Г█╡Ц┐┤Ц┐╒
 			if(fight_type&FIGHT_TYPE_GET_DEMO){
 				switch(BattleWorkDemoSeqNoGet(tcs->bw)){
 				case 0:
@@ -4126,7 +4126,7 @@ static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
 		Gauge_AnimeStart(tcs->gauge);
 		Poke_SinCurveSet(cp, tcs->bw);
 		tcs->seq_no = CSSEQ_COMMAND_SELECT_INIT;
-	case CSSEQ_COMMAND_SELECT_INIT:		///<┴Ф√й█Л░╛
+	case CSSEQ_COMMAND_SELECT_INIT:		///<Г■╩И²╒Д╫°Ф┬░
 #ifdef FREEZE_BUG_CHECK
 		OS_TPrintf("CSSEQ_COMMAND_SELECT_INIT\n");
 #endif FREEZE_BUG_CHECK
@@ -4207,7 +4207,7 @@ static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
 #ifdef FREEZE_BUG_CHECK
 		OS_TPrintf("CSSEQ_COMMAND_SELECT\n");
 #endif FREEZE_BUG_CHECK
-		//HP░■▓l┐┌│[┐h│A┐o│[┐┌│[┐h░ь▒ж(░Ё▀K■е▀@■\┌е┌╥│I┐f┐o┐b┐O≈p┌╤┌А┌х┌╒┌Ф│I)
+		//HPФ∙╟Е─╓Ц┐╒Ц┐╪Ц┐┴Ц─│Ц┐░Ц┐╪Ц┐╒Ц┐╪Ц┐┴Е┬┤Ф⌡©(Ф╜ёХ╕▐Г┴┬Ф╘÷Х┐╫Ц│╖Ц│≥О╪│Ц┐┤Ц┐░Ц┐┐Ц┌╟Г■╗Ц│≤Ц┌┐Ц│╙Ц│└Ц┌┬О╪│)
 		if(sys.trg & PAD_BUTTON_START){
 			CLIENT_PARAM	*cp;
 			int i;
@@ -4219,7 +4219,7 @@ static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
 		
 #ifdef PM_DEBUG
 
-		//HP∙\▌╕░■▓l░ь┌Х▒ж┌╕
+		//HPХ║╗Г╓╨Ф∙╟Е─╓Е┬┤Ц┌┼Ф⌡©Ц│┬
 		if(sys.trg & PAD_BUTTON_SELECT){
 			CLIENT_PARAM	*cp;
 			int i;
@@ -4229,7 +4229,7 @@ static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
 				Gauge_PartsDraw(&cp->gauge, cp->gauge.hp, GAUGE_DRAW_ALL);
 			}
 		}
-		//░М⌠╛⌠Ю┐f┐o┐b┐O≈p┐p┐┴┐││[┐^∙о█X┐c│[┐▀
+		//Ф┬╕И≈≤Е├┘Ц┐┤Ц┐░Ц┐┐Ц┌╟Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Е╓┴Ф⌡╢Ц┐└Ц┐╪Ц┐╚
 		if(((sys.cont&(PAD_BUTTON_L|PAD_BUTTON_R))==(PAD_BUTTON_L|PAD_BUTTON_R))&&
 			(BattleWorkServerFlagGet(tcs->bw))){
 			tcs->seq_no=CSSEQ_DEBUG_TOOL_INIT;
@@ -4252,7 +4252,7 @@ static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
 		OS_TPrintf("CSSEQ_COMMAND_SELECT_EFFWAIT\n");
 #endif FREEZE_BUG_CHECK
 		if(BINPUT_EffectEndCheck(bip) == TRUE
-				|| tcs->tp_ret == SELECT_FIGHT_COMMAND){	//│u┌╫┌╫┌╘┌╓│v┌л▐Й█┤┌м▌÷┌л┴Ф√й█\▓z┌П┌╥┌╝▐o┌╧┌И┌Ф┌╓┌и┐G┐t┐F┐N┐g┌л▐I≈╧┌П▒р┌╫┌╦┌и░i┌ъ┌И
+				|| tcs->tp_ret == SELECT_FIGHT_COMMAND){	//Ц─▄Ц│÷Ц│÷Ц│▀Ц│├Ц─█Ц│╝Е═╢Е░┬Ц│╞Ф╛║Ц│╝Г■╩И²╒Ф╖▀Г╞┴Ц┌▓Ц│≥Ц│░Е┤╨Ц│⌡Ц┌▀Ц┌┬Ц│├Ц│╚Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц│╝Г╣┌Д╨├Ц┌▓Е╬┘Ц│÷Ц│ Ц│╚И─╡Ц┌│Ц┌▀
 			switch(tcs->tp_ret){
 			case SELECT_FIGHT_COMMAND:
 				if(BattleWorkFightTypeGet(tcs->bw)&(FIGHT_TYPE_SAFARI|FIGHT_TYPE_POKE_PARK)){
@@ -4342,7 +4342,7 @@ static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
 				break;
 #endif
 			default:
-				GF_ASSERT_MSG(0 , "┐R┐}┐⌠┐h⌠╝█Л┌╙░щ▓Х┌Ё┌Й┌д┌╒┌э┌╧┌Я\n");
+				GF_ASSERT_MSG(0 , "Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Е▀∙Д╫°Ц│▄Х╗╜Е╝ Ц│∙Ц┌▄Ц│╕Ц│└Ц│╬Ц│⌡Ц┌⌠\n");
 				break;
 			}
 			
@@ -4377,7 +4377,7 @@ static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
 		break;
 #ifdef PM_DEBUG
 #ifndef DEBUG_PRINT_BATTLE
-//░М⌠╛⌠Ю┐f┐o┐b┐O≈p┐p┐┴┐││[┐^∙о█X┐c│[┐▀
+//Ф┬╕И≈≤Е├┘Ц┐┤Ц┐░Ц┐┐Ц┌╟Г■╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Е╓┴Ф⌡╢Ц┐└Ц┐╪Ц┐╚
 	case CSSEQ_DEBUG_TOOL_INIT:
 		DebugBattleInit(tcs->bw);
 		tcs->seq_no=CSSEQ_DEBUG_TOOL_MAIN;
@@ -4403,10 +4403,10 @@ static	void	TCB_CommandSelect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐R┐}┐⌠┐h▒I▒ПTCB│iAI≈p│j
+ *	Ц┌ЁЦ┐·Ц┐ЁЦ┐┴И│╦Ф┼·TCBО╪┬AIГ■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_CommandSelectAI(TCB_PTR tcb,void *work)
@@ -4414,16 +4414,16 @@ static	void	TCB_CommandSelectAI(TCB_PTR tcb,void *work)
 	TCB_COMMAND_SELECT	*tcs=(TCB_COMMAND_SELECT *)work;
 	int					command;
 
-	//┐^┐b┐`┐p┐l┐▀┌л┐{┐^┐⌠┌л┐X┐┴┐C┐h┐C┐⌠┌╙▐I≈╧┌╣┌д┌╒┌х┌╒┌ф┌╚┌м│AAI▄v▌Z┌П█s┌М┌х┌╒│i▐┬≈²≈▌┌©┌╥┌И┌ф┐K┐N┌б┌╜┌╫┌ъ│j
+	//Ц┌©Ц┐┐Ц┐│Ц┐▒Ц┐█Ц┐╚Ц│╝Ц┐°Ц┌©Ц┐ЁЦ│╝Ц┌╧Ц┐╘Ц┌╓Ц┐┴Ц┌╓Ц┐ЁЦ│▄Г╣┌Д╨├Ц│≈Ц│╕Ц│└Ц│╙Ц│└Ц│╗Ц│█Ц│╞Ц─│AIХ╗┬Г╝≈Ц┌▓Х║▄Ц┌▐Ц│╙Ц│└О╪┬Е┤╕Г░├Х░╫Ц│║Ц│≥Ц┌▀Ц│╗Ц┌╛Ц┌╞Ц│╓Ц│▐Ц│÷Ц┌│О╪┴
 //	if(BattleWorkCommandSelectFlagGet(tcs->bw)==SLIDE_IN_BEFORE){
 //		return;
 //	}
 
-//┐v┐┴┐`┐i┌е┌мWifi┌иAI┌╙█з┌а┌╫┌л┌е│A┌╠┌л▐┬≈²┌м∙K≈v┌х┌╒┌м┌╦
+//Ц┐≈Ц┐╘Ц┐│Ц┐┼Ц│╖Ц│╞WifiЦ│╚AIЦ│▄Х╪┴Ц│ёЦ│÷Ц│╝Ц│╖Ц─│Ц│⌠Ц│╝Е┤╕Г░├Ц│╞Е©┘Х╕│Ц│╙Ц│└Ц│╞Ц│ 
 #if 0
 #ifdef PM_DEBUG
 	if(BattleWorkBattleStatusFlagGet(tcs->bw)&BATTLE_STATUS_FLAG_AUTO_BATTLE){
-		//▓й░M░з▒╠┌е┌м│A▌q▀@▒╓┌иAI┌╙┌л┌а┌д┌╒┌х┌╒┌л┌е│A▀╜░╖┌е█U▄┌┌П▒I▒П
+		//И─ Д©║Ф▌╔Г╤ Ц│╖Ц│╞Ц─│Е╜░Ф╘÷Е│╢Ц│╚AIЦ│▄Ц│╝Ц│ёЦ│╕Ц│└Ц│╙Ц│└Ц│╝Ц│╖Ц─│Е╪╥Е┬╤Ц│╖Ф■╩Ф▓┐Ц┌▓И│╦Ф┼·
 //		if(CommStateIsWifiConnect()){
 		if(BattleWorkFightTypeGet(tcs->bw)&FIGHT_TYPE_SIO){
 			command=SELECT_FIGHT_COMMAND;
@@ -4448,10 +4448,10 @@ static	void	TCB_CommandSelectAI(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐R┐}┐⌠┐h▒I▒ПTCB│i▓й░M≈p│j
+ *	Ц┌ЁЦ┐·Ц┐ЁЦ┐┴И│╦Ф┼·TCBО╪┬И─ Д©║Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_CommandSelectSIO(TCB_PTR tcb,void *work)
@@ -4465,7 +4465,7 @@ static	void	TCB_CommandSelectSIO(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐T┐t┐@┐┼≈p⌠╕▒√≈╕┐e│[┐u┐▀
+ *	Ц┌╣Ц┐∙Ц┌║Ц┐╙Г■╗И─┐Х╣╟Г▌┤Ц┐├Ц┐╪Ц┐√Ц┐╚
  */
 //============================================================================================
 static	const	u8	SafariEscapeRateTable[][2]={
@@ -4486,10 +4486,10 @@ static	const	u8	SafariEscapeRateTable[][2]={
 
 //============================================================================================
 /**
- *	┐R┐}┐⌠┐h▒I▒ПTCB│i┐T┐t┐@┐┼≈p│j
+ *	Ц┌ЁЦ┐·Ц┐ЁЦ┐┴И│╦Ф┼·TCBО╪┬Ц┌╣Ц┐∙Ц┌║Ц┐╙Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_CommandSelectSafari(TCB_PTR tcb,void *work)
@@ -4519,10 +4519,10 @@ static	void	TCB_CommandSelectSafari(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐R┐}┐⌠┐h▒I▒ПTCB│i┐|┐P┐p│[┐N≈p│j
+ *	Ц┌ЁЦ┐·Ц┐ЁЦ┐┴И│╦Ф┼·TCBО╪┬Ц┐²Ц┌╠Ц┐▒Ц┐╪Ц┌╞Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_CommandSelectPokepark(TCB_PTR tcb,void *work)
@@ -4537,10 +4537,10 @@ static	void	TCB_CommandSelectPokepark(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐R┐}┐⌠┐h▒I▒ПTCB│i▒н░М≤^┴Ф█д░╤≈p│j
+ *	Ц┌ЁЦ┐·Ц┐ЁЦ┐┴И│╦Ф┼·TCBО╪┬Е╞╬Ф┬╕И▄╡Г■╩Е├█Г■÷Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_CommandSelectAuto(TCB_PTR tcb,void *work)
@@ -4548,15 +4548,15 @@ static	void	TCB_CommandSelectAuto(TCB_PTR tcb,void *work)
 	TCB_COMMAND_SELECT	*tcs=(TCB_COMMAND_SELECT *)work;
 	REC_DATA			data;
 
-	//≤^┴Ф┐f│[┐^┌л░╝█┤░╚┌П┐`┐F┐b┐N
+	//И▄╡Г■╩Ц┐┤Ц┐╪Ц┌©Ц│╝Ф∙╢Е░┬Ф─╖Ц┌▓Ц┐│Ц┌╖Ц┐┐Ц┌╞
 	if(BattleWorkBattlePlay(tcs->bw,tcs->client_no,&data)==TRUE){
 		BattleRecDataFullStop(tcs->bw);
 	}
-	//┐R┐}┐⌠┐h┌╙┌х┌╒
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Ц│╙Ц│└
 	if((!data)||
-	//┐R┐}┐⌠┐h┌╙■м┬м┼O
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Г╞└Е⌡╡Е╓√
 	   (data>SELECT_ESCAPE_COMMAND)||
-	//┐R┐}┐⌠┐h┌╙┐o┐b┐O│i┐A┐C┐e┐─┌╙▌g≈p┌е┌╚┌ИFIGHT_TYPE┌м≤^┴Ф┌╣┌х┌╒│j
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Ц┐░Ц┐┐Ц┌╟О╪┬Ц┌╒Ц┌╓Ц┐├Ц┐═Ц│▄Д╫©Г■╗Ц│╖Ц│█Ц┌▀FIGHT_TYPEЦ│╞И▄╡Г■╩Ц│≈Ц│╙Ц│└О╪┴
 	   (data==SELECT_ITEM_COMMAND)){
 		BattleRecDataErrorStop(tcs->bw);
 	}
@@ -4569,10 +4569,10 @@ static	void	TCB_CommandSelectAuto(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	▀Z▒I▒ПTCB│i┐v┐▄┐C┐└│[≈p│j
+ *	Ф┼─И│╦Ф┼·TCBО╪┬Ц┐≈Ц┐╛Ц┌╓Ц┐╓Ц┐╪Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_WazaSelect(TCB_PTR tcb,void *work)
@@ -4596,7 +4596,7 @@ static	void	TCB_WazaSelect(TCB_PTR tcb,void *work)
 	}
 
 	switch(tws->seq_no){
-	case 0:		///<┴Ф√й█Л░╛
+	case 0:		///<Г■╩И²╒Д╫°Ф┬░
 		if(BINPUT_EffectEndCheck(bip) == FALSE){
 			break;
 		}
@@ -4634,8 +4634,8 @@ static	void	TCB_WazaSelect(TCB_PTR tcb,void *work)
 	case 1:
 
 #ifdef PM_DEBUG
-		///< ▀Z┐G┐t┐F┐N┐g┐f┐o┐b┐O┐│┐j┐┘│[▀N⌠╝
-		///< OVERLAY ┌е AI_TO_SKILL ┌П▀N⌠╝┌╣┌д│Aseq_no = 4┌и┌╥┌И │╗ OVERLAY┌П√ъ┌╥┌╫┌ъ┌л┴╪┐V│[┐P┐⌠┐X
+		///< Ф┼─Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┐┤Ц┐░Ц┐┐Ц┌╟Ц┐║Ц┐▀Ц┐╔Ц┐╪Х╣╥Е▀∙
+		///< OVERLAY Ц│╖ AI_TO_SKILL Ц┌▓Х╣╥Е▀∙Ц│≈Ц│╕Ц─│seq_no = 4Ц│╚Ц│≥Ц┌▀ Б├▓ OVERLAYЦ┌▓Ф┬╩Ц│≥Ц│÷Ц┌│Ц│╝Д╩╝Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧
 		if (sys.trg & PAD_BUTTON_START){
 			tws->seq_no = 4;
 			FightOverlaySwitch( tws->bw, FIGHT_OVERLAY_AI_TO_SKILL );
@@ -4670,7 +4670,7 @@ static	void	TCB_WazaSelect(TCB_PTR tcb,void *work)
 		//break;
 	default:
 		if(BINPUT_BackFadeExeCheck(bip) == TRUE){
-			//∙ъ┼l┐f┐┌≈p┌и┐V│[┐P┐⌠┐X┐i┐⌠┐o│[┌П░i┌ъ┌д┌╗┌╜
+			//Ф█∙Г█╡Ц┐┤Ц┐╒Г■╗Ц│╚Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Ц┐┼Ц┐ЁЦ┐░Ц┐╪Ц┌▓И─╡Ц┌│Ц│╕Ц│┼Ц│▐
 			BattleWorkDemoSeqNoSet(tws->bw,1);
 			SCIO_ServerQueClear(tws->bw,tws->client_no,tws->command_code);
 			sys_FreeMemoryEz(work);
@@ -4679,8 +4679,8 @@ static	void	TCB_WazaSelect(TCB_PTR tcb,void *work)
 		break;
 
 #ifdef PM_DEBUG
-	///< ┌╠┌лTCB┌и∙°▀A┌╣┌╫┌ф┌╚┌и SKILL_TO_AI┌П▌ю█s┌╥┌И┌╫┌ъ
-	///< ┌╠┌л┌Ф┌╓┌х▀C▌²┌©┌л┬╚┌╒┌б┌╜┌Х┌и┌х┌а┌д┌э┌╥╔╔╔│B
+	///< Ц│⌠Ц│╝TCBЦ│╚Е╬╘Е╦╟Ц│≈Ц│÷Ц│╗Ц│█Ц│╚ SKILL_TO_AIЦ┌▓Е╝÷Х║▄Ц│≥Ц┌▀Ц│÷Ц┌│
+	///< Ц│⌠Ц│╝Ц┌┬Ц│├Ц│╙Ф╟≈Ф▄│Ц│║Ц│╝Ф┌╙Ц│└Ц│╓Ц│▐Ц┌┼Ц│╚Ц│╙Ц│ёЦ│╕Ц│╬Ц│≥Ц┐╩Ц┐╩Ц┐╩Ц─┌
 	case 4:
 		FightOverlaySwitch( tws->bw, FIGHT_OVERLAY_SKILL_TO_AI );
 		tws->seq_no = 1;
@@ -4691,10 +4691,10 @@ static	void	TCB_WazaSelect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	▀Z▒I▒ПTCB│iAI≈p│j
+ *	Ф┼─И│╦Ф┼·TCBО╪┬AIГ■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_WazaSelectAI(TCB_PTR tcb,void *work)
@@ -4707,11 +4707,11 @@ static	void	TCB_WazaSelectAI(TCB_PTR tcb,void *work)
 	fight_type=BattleWorkFightTypeGet(tws->bw);
 	sp=BattleWorkServerParamGet(tws->bw);
 
-//┐v┐┴┐`┐i┌е┌мWifi┌иAI┌╙█з┌а┌╫┌л┌е│A┌╠┌л▐┬≈²┌м∙K≈v┌х┌╒┌м┌╦
+//Ц┐≈Ц┐╘Ц┐│Ц┐┼Ц│╖Ц│╞WifiЦ│╚AIЦ│▄Х╪┴Ц│ёЦ│÷Ц│╝Ц│╖Ц─│Ц│⌠Ц│╝Е┤╕Г░├Ц│╞Е©┘Х╕│Ц│╙Ц│└Ц│╞Ц│ 
 #if 0
 #ifdef PM_DEBUG
 	if(BattleWorkBattleStatusFlagGet(tws->bw)&BATTLE_STATUS_FLAG_AUTO_BATTLE){
-		//▓й░M░з▒╠┌е┌м│A▌q▀@▒╓┌иAI┌╙┌л┌а┌д┌╒┌х┌╒┌л┌е│A┐┴┐⌠┐_┐─┌е▀Z┌П▒I▒П
+		//И─ Д©║Ф▌╔Г╤ Ц│╖Ц│╞Ц─│Е╜░Ф╘÷Е│╢Ц│╚AIЦ│▄Ц│╝Ц│ёЦ│╕Ц│└Ц│╙Ц│└Ц│╝Ц│╖Ц─│Ц┐╘Ц┐ЁЦ┐─Ц┐═Ц│╖Ф┼─Ц┌▓И│╦Ф┼·
 //		if(CommStateIsWifiConnect()){
 		if(fight_type&FIGHT_TYPE_SIO){
 			{
@@ -4729,7 +4729,7 @@ static	void	TCB_WazaSelectAI(TCB_PTR tcb,void *work)
 				}
 				tp_ret=waza[BattleWorkRandGet(tws->bw)%wazacnt];
 			}
-			//█U▄┌▒н▐ш┌л▒Ц⌠Э│iDirSelectAI┌е▒Ц⌠Э┌Ё┌Й┌И│j
+			//Ф■╩Ф▓┐Е╞╬Х╠║Ц│╝Д╩ёЕ┘╔О╪┬DirSelectAIЦ│╖Д╩ёЕ┘╔Ц│∙Ц┌▄Ц┌▀О╪┴
 			ST_ServerParamDataPut(tws->bw,sp,ID_SP_dir_select_client,tws->client_no,1);
 
 			SCIO_WazaSelectReturnSet(tws->bw,tws->client_no,tp_ret);
@@ -4746,15 +4746,15 @@ static	void	TCB_WazaSelectAI(TCB_PTR tcb,void *work)
 	if((fight_type&FIGHT_TYPE_AI_CALC)||
 	   (BattleWorkBattleStatusFlagGet(tws->bw)&BATTLE_STATUS_FLAG_FIRST_BATTLE)||
 	   (BattleWorkMineEnemyCheck(tws->bw,tws->client_no)==0)){
-//┐v┐┴┐`┐i┌е┌мWifi┌иAI┌╙█з┌а┌╫┌л┌е│A┌╠┌л▐┬≈²┌м∙K≈v┌х┌╒┌м┌╦
+//Ц┐≈Ц┐╘Ц┐│Ц┐┼Ц│╖Ц│╞WifiЦ│╚AIЦ│▄Х╪┴Ц│ёЦ│÷Ц│╝Ц│╖Ц─│Ц│⌠Ц│╝Е┤╕Г░├Ц│╞Е©┘Х╕│Ц│╙Ц│└Ц│╞Ц│ 
 #if 0
-		//Wifi┌л▌·┌и┌╠┌╠┌и┌╜┌И┌л┌м┌╗┌╘┌╣┌╒┌л┌е│AASSERT┌П▐o┌╥
+		//WifiЦ│╝Ф≥┌Ц│╚Ц│⌠Ц│⌠Ц│╚Ц│▐Ц┌▀Ц│╝Ц│╞Ц│┼Ц│▀Ц│≈Ц│└Ц│╝Ц│╖Ц─│ASSERTЦ┌▓Е┤╨Ц│≥
 		GF_ASSERT(!CommStateIsWifiConnect());
 #endif
 		tp_ret=WazaAIMain(tws->bw,tws->client_no);
-		//AI▄v▌Z┌╙⌠r▓├┌х┌л┌е│A█д⌠xAI┌П┐R│[┐▀┌╥┌И
+		//AIХ╗┬Г╝≈Ц│▄И─■Д╦╜Ц│╙Ц│╝Ц│╖Ц─│Е├█Е╨╕AIЦ┌▓Ц┌ЁЦ┐╪Ц┐╚Ц│≥Ц┌▀
 		switch(tp_ret){
-		//AI▄v▌Z┌╙⌠r▓├┌х┌л┌е│A█д⌠xAI┌П┐R│[┐▀┌╥┌И
+		//AIХ╗┬Г╝≈Ц│▄И─■Д╦╜Ц│╙Ц│╝Ц│╖Ц─│Е├█Е╨╕AIЦ┌▓Ц┌ЁЦ┐╪Ц┐╚Ц│≥Ц┌▀
 		case WAZA_AI_CALC_CONTINUE:
 			return;
 			break;
@@ -4779,7 +4779,7 @@ static	void	TCB_WazaSelectAI(TCB_PTR tcb,void *work)
 			}
 			tp_ret=waza[BattleWorkRandGet(tws->bw)%wazacnt];
 		}
-		//█U▄┌▒н▐ш┌л▒Ц⌠Э│iDirSelectAI┌е▒Ц⌠Э┌Ё┌Й┌И│j
+		//Ф■╩Ф▓┐Е╞╬Х╠║Ц│╝Д╩ёЕ┘╔О╪┬DirSelectAIЦ│╖Д╩ёЕ┘╔Ц│∙Ц┌▄Ц┌▀О╪┴
 		ST_ServerParamDataPut(tws->bw,sp,ID_SP_dir_select_client,tws->client_no,
 							  ST_ServerDefenceClientSet(tws->bw,sp,tws->client_no,tws->wazano[tp_ret-1],1,NULL));
 	}
@@ -4793,10 +4793,10 @@ static	void	TCB_WazaSelectAI(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	▀Z▒I▒ПTCB│i▓й░M≈p│j
+ *	Ф┼─И│╦Ф┼·TCBО╪┬И─ Д©║Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_WazaSelectSIO(TCB_PTR tcb,void *work)
@@ -4810,10 +4810,10 @@ static	void	TCB_WazaSelectSIO(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	▀Z▒I▒ПTCB│i▒н░М≤^┴Ф█д░╤≈p│j
+ *	Ф┼─И│╦Ф┼·TCBО╪┬Е╞╬Ф┬╕И▄╡Г■╩Е├█Г■÷Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_WazaSelectAuto(TCB_PTR tcb,void *work)
@@ -4821,18 +4821,18 @@ static	void	TCB_WazaSelectAuto(TCB_PTR tcb,void *work)
 	TCB_WAZA_SELECT	*tws=(TCB_WAZA_SELECT *)work;
 	REC_DATA		data;
 
-	//≤^┴Ф┐f│[┐^┌л░╝█┤░╚┌П┐`┐F┐b┐N
+	//И▄╡Г■╩Ц┐┤Ц┐╪Ц┌©Ц│╝Ф∙╢Е░┬Ф─╖Ц┌▓Ц┐│Ц┌╖Ц┐┐Ц┌╞
 	if(BattleWorkBattlePlay(tws->bw,tws->client_no,&data)==TRUE){
 		BattleRecDataFullStop(tws->bw);
 	}
-	//┐R┐}┐⌠┐h┌╙┌х┌╒
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Ц│╙Ц│└
 	if((!data)||
-	//┐R┐}┐⌠┐h┌╙■м┬м┼O
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Г╞└Е⌡╡Е╓√
 	   (data>WAZA_TEMOTI_MAX)){
 		BattleRecDataErrorStop(tws->bw);
 	}
 	else{
-		//▀Z┐i┐⌠┐o│[┌л░Ё⌠√░╚┌П┐`┐F┐b┐N
+		//Ф┼─Ц┐┼Ц┐ЁЦ┐░Ц┐╪Ц│╝Ф╜ёЕ╫⌠Ф─╖Ц┌▓Ц┐│Ц┌╖Ц┐┐Ц┌╞
 		{
 			u16	waza_no;
 
@@ -4853,10 +4853,10 @@ static	void	TCB_WazaSelectAuto(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	█U▄┌▒н▐ш▒I▒ПTCB│i┐v┐▄┐C┐└│[≈p│j
+ *	Ф■╩Ф▓┐Е╞╬Х╠║И│╦Ф┼·TCBО╪┬Ц┐≈Ц┐╛Ц┌╓Ц┐╓Ц┐╪Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_DirSelect(TCB_PTR tcb,void *work)
@@ -4880,7 +4880,7 @@ static	void	TCB_DirSelect(TCB_PTR tcb,void *work)
 	}
 
 	switch(tds->seq_no){
-	case 0:		///<┴Ф√й█Л░╛
+	case 0:		///<Г■╩И²╒Д╫°Ф┬░
 		if(BINPUT_EffectEndCheck(bip) == FALSE){
 			break;
 		}
@@ -4960,10 +4960,10 @@ static	void	TCB_DirSelect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	█U▄┌▒н▐ш▒I▒ПTCB│iAI≈p│j
+ *	Ф■╩Ф▓┐Е╞╬Х╠║И│╦Ф┼·TCBО╪┬AIГ■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_DirSelectAI(TCB_PTR tcb,void *work)
@@ -4976,7 +4976,7 @@ static	void	TCB_DirSelectAI(TCB_PTR tcb,void *work)
 
 //	tp_ret=ST_ServerDefenceClientSet(tds->bw,BattleWorkServerParamGet(tds->bw),tds->client_no,0,1,tds->range)+1;
 	tp_ret=ST_ServerParamDataGet(tds->bw,sp,ID_SP_dir_select_client,tds->client_no)+1;
-	GF_ASSERT_MSG(tp_ret<5,"tp_ret┌╙∙s░Ё┌е┌╥:%d\n",tp_ret);
+	GF_ASSERT_MSG(tp_ret<5,"tp_retЦ│▄Д╦█Ф╜ёЦ│╖Ц│≥:%d\n",tp_ret);
 
 	SCIO_DirSelectReturnSet(tds->bw,tds->client_no,tp_ret);
 
@@ -4987,10 +4987,10 @@ static	void	TCB_DirSelectAI(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	█U▄┌▒н▐ш▒I▒ПTCB│i▓й░M≈p│j
+ *	Ф■╩Ф▓┐Е╞╬Х╠║И│╦Ф┼·TCBО╪┬И─ Д©║Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_DirSelectSIO(TCB_PTR tcb,void *work)
@@ -5004,10 +5004,10 @@ static	void	TCB_DirSelectSIO(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	█U▄┌▒н▐ш▒I▒ПTCB│i▒н░М≤^┴Ф█д░╤≈p│j
+ *	Ф■╩Ф▓┐Е╞╬Х╠║И│╦Ф┼·TCBО╪┬Е╞╬Ф┬╕И▄╡Г■╩Е├█Г■÷Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_DirSelectAuto(TCB_PTR tcb,void *work)
@@ -5015,13 +5015,13 @@ static	void	TCB_DirSelectAuto(TCB_PTR tcb,void *work)
 	TCB_DIR_SELECT	*tds=(TCB_DIR_SELECT *)work;
 	REC_DATA		data;
 
-	//≤^┴Ф┐f│[┐^┌л░╝█┤░╚┌П┐`┐F┐b┐N
+	//И▄╡Г■╩Ц┐┤Ц┐╪Ц┌©Ц│╝Ф∙╢Е░┬Ф─╖Ц┌▓Ц┐│Ц┌╖Ц┐┐Ц┌╞
 	if(BattleWorkBattlePlay(tds->bw,tds->client_no,&data)==TRUE){
 		BattleRecDataFullStop(tds->bw);
 	}
-	//┐R┐}┐⌠┐h┌╙┌х┌╒
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Ц│╙Ц│└
 	if((!data)||
-	//┐R┐}┐⌠┐h┌╙■м┬м┼O
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Г╞└Е⌡╡Е╓√
 	   (data>CLIENT_MAX)){
 		BattleRecDataErrorStop(tds->bw);
 	}
@@ -5029,32 +5029,32 @@ static	void	TCB_DirSelectAuto(TCB_PTR tcb,void *work)
 		{
 			int	def_client=data-1;
 
-			//▀Z┌л▄Ь┴й■м┬м┌и┌Ф┌а┌д░Ё⌠√░╚┌П┐`┐F┐b┐N
+			//Ф┼─Ц│╝Е┼╧Ф·°Г╞└Е⌡╡Ц│╚Ц┌┬Ц│ёЦ│╕Ф╜ёЕ╫⌠Ф─╖Ц┌▓Ц┐│Ц┌╖Ц┐┐Ц┌╞
 			switch(tds->range){
-			case RANGE_NORMAL:		//▌╘∙╙┬х┼O┌л3▒л
-				//▌╘∙╙┌П▌w▓Х┌╣┌д┌╒┌╫┌Г∙s░Ё┐f│[┐^
+			case RANGE_NORMAL:		//Х┤╙Е┬├Д╩╔Е╓√Ц│╝3Д╫⌠
+				//Х┤╙Е┬├Ц┌▓Ф▄┤Е╝ Ц│≈Ц│╕Ц│└Ц│÷Ц┌┴Д╦█Ф╜ёЦ┐┤Ц┐╪Ц┌©
 				if(tds->client_no==def_client){
 					BattleRecDataErrorStop(tds->bw);
 				}
 				break;
-			case RANGE_TUBOWOTUKU:	//┌б┌з┌П┌б┌╜░Й≈p
-				//▌╘∙╙▒╓┌П▒I▒П┌╣┌д┌╒┌х┌╒┌х┌Г∙s░Ё┐f│[┐^
+			case RANGE_TUBOWOTUKU:	//Ц│╓Ц│╪Ц┌▓Ц│╓Ц│▐Е╟┌Г■╗
+				//Х┤╙Е┬├Е│╢Ц┌▓И│╦Ф┼·Ц│≈Ц│╕Ц│└Ц│╙Ц│└Ц│╙Ц┌┴Д╦█Ф╜ёЦ┐┤Ц┐╪Ц┌©
 				if(BattleWorkMineEnemyCheck(tds->bw,tds->client_no)!=
 				   BattleWorkMineEnemyCheck(tds->bw,def_client)){
 					BattleRecDataErrorStop(tds->bw);
 				}
 				break;
-			//░Ё⌠√░╚┐`┐F┐b┐N┌л∙K≈v┌х┌╣
-			case RANGE_NONE:		//▒I▒П┌х┌╣
-			case RANGE_RANDOM:		//┐┴┐⌠┐_┐─
-			case RANGE_DOUBLE:		//┌Q▒л┌и⌠√┌╫┌И
-			case RANGE_TRIPLE:		//▌╘∙╙┬х┼O3▒л┌и⌠√┌╫┌И
-			case RANGE_MINE:		//▌╘∙╙▒I▒П
-			case RANGE_MINE_DOUBLE:	//▌╘∙╙┌Q▒л▒I▒П
-			case RANGE_FIELD:		//▐Й┌и┌╘┌╘┌И
-			case RANGE_MAKIBISHI:	//┌э┌╚┌я┌╣░Й≈p
-			case RANGE_TEDASUKE:	//┌д┌╬┌╥┌╞░Й≈p
-			case RANGE_SAKIDORI:	//┌Ё┌╚┌г┌Х░Й≈p
+			//Ф╜ёЕ╫⌠Ф─╖Ц┐│Ц┌╖Ц┐┐Ц┌╞Ц│╝Е©┘Х╕│Ц│╙Ц│≈
+			case RANGE_NONE:		//И│╦Ф┼·Ц│╙Ц│≈
+			case RANGE_RANDOM:		//Ц┐╘Ц┐ЁЦ┐─Ц┐═
+			case RANGE_DOUBLE:		//О╪▓Д╫⌠Ц│╚Е╫⌠Ц│÷Ц┌▀
+			case RANGE_TRIPLE:		//Х┤╙Е┬├Д╩╔Е╓√3Д╫⌠Ц│╚Е╫⌠Ц│÷Ц┌▀
+			case RANGE_MINE:		//Х┤╙Е┬├И│╦Ф┼·
+			case RANGE_MINE_DOUBLE:	//Х┤╙Е┬├О╪▓Д╫⌠И│╦Ф┼·
+			case RANGE_FIELD:		//Е═╢Ц│╚Ц│▀Ц│▀Ц┌▀
+			case RANGE_MAKIBISHI:	//Ц│╬Ц│█Ц│ЁЦ│≈Е╟┌Г■╗
+			case RANGE_TEDASUKE:	//Ц│╕Ц│═Ц│≥Ц│▒Е╟┌Г■╗
+			case RANGE_SAKIDORI:	//Ц│∙Ц│█Ц│╘Ц┌┼Е╟┌Г■╗
 				break;
 			}
 		}
@@ -5068,7 +5068,7 @@ static	void	TCB_DirSelectAuto(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	⌠╧▀О▒I▒П┐V│[┐P┐⌠┐X┐i┐⌠┐o│[
+ *	И│⌠Е┘╥И│╦Ф┼·Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Ц┐┼Ц┐ЁЦ┐░Ц┐╪
  */
 //============================================================================================
 enum{
@@ -5117,10 +5117,10 @@ enum{
 
 //============================================================================================
 /**
- *	⌠╧▀О▒I▒ПTCB│i┐v┐▄┐C┐└│[≈p│j
+ *	И│⌠Е┘╥И│╦Ф┼·TCBО╪┬Ц┐≈Ц┐╛Ц┌╓Ц┐╓Ц┐╪Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
@@ -5131,8 +5131,8 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 	pfd=BattleWorkPfdGet(tis->bw);
 	
 	switch(tis->seq_no){
-	case SEQ_ITEM_SEL_INIT:		//┐o┐b┐O┴Ф√й┌ж┌л┐t┐F│[┐h
-		//BIP┌╙┴П∙З┌Ё┌Й┌И┌э┌╕┌и∙K≈v┌х▐Н∙Я┌╬┌╞▌Ф⌠╬
+	case SEQ_ITEM_SEL_INIT:		//Ц┐░Ц┐┐Ц┌╟Г■╩И²╒Ц│╦Ц│╝Ц┐∙Ц┌╖Ц┐╪Ц┐┴
+		//BIPЦ│▄Х╖ёФ■╬Ц│∙Ц┌▄Ц┌▀Ц│╬Ц│┬Ц│╚Е©┘Х╕│Ц│╙Ф┐┘Е═╠Ц│═Ц│▒Е▐√Е╬≈
 		tis->decend_key = BINPUT_CursorDecendGet(BattleWorkGF_BGL_BIPGet(tis->bw));
 		
 		MSG_DsIconFlashReq(BattleWorkMsgIconGet(tis->bw),MSG_DSI_REQ_STOP);
@@ -5141,7 +5141,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 		tis->seq_no++;
 		break;
 	case SEQ_ITEM_SEL_WAIT:
-		if(PaletteFadeCheck(pfd)==0){	//▀P⌠x∙о█X┐t┐F│[┐h▐I≈╧▒р┌©┌╣┌д░F│X█М▐°
+		if(PaletteFadeCheck(pfd)==0){	//Х╪²Е╨╕Е╓┴Ф⌡╢Ц┐∙Ц┌╖Ц┐╪Ц┐┴Г╣┌Д╨├Е╬┘Ц│║Ц│≈Ц│╕Х┴╡Ц─┘Е┴┼И≥╓
 			{
 				FightScreenTransition(tis->bw);
 
@@ -5157,7 +5157,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 				tis->bag_buf->enc_double=tis->enc_double;
 				tis->bag_buf->waza_vanish=tis->waza_vanish;
 				tis->bag_buf->waza_migawari=tis->waza_migawari;
-				tis->bag_buf->skill_item_use=tis->shutout_flag[tis->client_no];	// ▀Z┌е▌g≈p∙s┴б
+				tis->bag_buf->skill_item_use=tis->shutout_flag[tis->client_no];	// Ф┼─Ц│╖Д╫©Г■╗Д╦█Е▐╞
 				BattleBag_TaskAdd( tis->bag_buf );
 				tis->seq_no=SEQ_ITEM_SEL_MAIN;
 			}
@@ -5173,12 +5173,12 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 			tis->decend_key = tis->bag_buf->cursor_flg;
 			if(tis->bag_buf->ret_item){
 				switch(tis->bag_buf->ret_page){
-				case BBAG_POKE_STRCV:	// ▐С▒т┴Я∙°┐|┐P┐b┐g
-				case BBAG_POKE_HPRCV:	// HP┴Я∙°┐|┐P┐b┐g
+				case BBAG_POKE_STRCV:	// Г┼╤Ф┘▀Е⌡·Е╬╘Ц┐²Ц┌╠Ц┐┐Ц┐┬
+				case BBAG_POKE_HPRCV:	// HPЕ⌡·Е╬╘Ц┐²Ц┌╠Ц┐┐Ц┐┬
 					tis->seq_no=SEQ_ITEM_SEL_POKE_LIST_INIT;
 					break;
-				case BBAG_POKE_BATTLE:	// ░М⌠╛≈p┐|┐P┐b┐g
-				case BBAG_POKE_BALL:	// ┐{│[┐▀┐|┐P┐b┐g
+				case BBAG_POKE_BATTLE:	// Ф┬╕И≈≤Г■╗Ц┐²Ц┌╠Ц┐┐Ц┐┬
+				case BBAG_POKE_BALL:	// Ц┐°Ц┐╪Ц┐╚Ц┐²Ц┌╠Ц┐┐Ц┐┬
 					tis->seq_no=SEQ_ITEM_SEL_END_INIT;
 					break;
 				}
@@ -5188,7 +5188,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 			}
 		}
 		break;
-	//┐|┐P┐┌┐⌠┐┼┐X┐g┴Ф√й┌ж
+	//Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┐╙Ц┌╧Ц┐┬Г■╩И²╒Ц│╦
 	case SEQ_ITEM_SEL_POKE_LIST_INIT:
 		{
 			int				i;
@@ -5218,7 +5218,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 			tis->tps->plist->sel_poke = 0;
 			tis->tps->plist->end_flg = 0;
 			tis->tps->plist->chg_waza=0;
-			tis->tps->plist->mode=BPL_MODE_ITEMUSE;	// ▓й▐М┌л┐|┐P┐┌┐⌠▒I▒П
+			tis->tps->plist->mode=BPL_MODE_ITEMUSE;	// И─ Е╦╦Ц│╝Ц┐²Ц┌╠Ц┐╒Ц┐ЁИ│╦Ф┼·
 			tis->tps->plist->item=tis->bag_buf->ret_item;
 			tis->tps->plist->bag_page=tis->bag_buf->ret_page;
 			tis->tps->plist->client_no=tis->bag_buf->client_no;
@@ -5227,10 +5227,10 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 			tis->tps->plist->fight_poke2 = tis->tps->sel_mons_no[BattleWorkPartnerClientNoGet(tis->bw,tis->client_no)];
 			if(tis->client_type==CLIENT_TYPE_C){
 				tis->tps->plist->skill_item_use[0]=tis->shutout_flag[BattleWorkPartnerClientNoGet(tis->bw,tis->client_no)];
-				tis->tps->plist->skill_item_use[1]=tis->shutout_flag[tis->client_no];	// ▀Z┌е▌g≈p∙s┴б
+				tis->tps->plist->skill_item_use[1]=tis->shutout_flag[tis->client_no];	// Ф┼─Ц│╖Д╫©Г■╗Д╦█Е▐╞
 			}
 			else{
-				tis->tps->plist->skill_item_use[0]=tis->shutout_flag[tis->client_no];	// ▀Z┌е▌g≈p∙s┴б
+				tis->tps->plist->skill_item_use[0]=tis->shutout_flag[tis->client_no];	// Ф┼─Ц│╖Д╫©Г■╗Д╦█Е▐╞
 				tis->tps->plist->skill_item_use[1]=tis->shutout_flag[BattleWorkPartnerClientNoGet(tis->bw,tis->client_no)];
 			}
 
@@ -5258,13 +5258,13 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 		tis->seq_no++;
 		break;
 	case SEQ_ITEM_SEL_END_WAIT:
-		if(PaletteFadeCheck(pfd)==0){	//▀P⌠x∙о█X┐t┐F│[┐h▐I≈╧▒р┌©┌╣┌д░F│X█М▐°
+		if(PaletteFadeCheck(pfd)==0){	//Х╪²Е╨╕Е╓┴Ф⌡╢Ц┐∙Ц┌╖Ц┐╪Ц┐┴Г╣┌Д╨├Е╬┘Ц│║Ц│≈Ц│╕Х┴╡Ц─┘Е┴┼И≥╓
 			MSG_DsIconFlashReq(BattleWorkMsgIconGet(tis->bw),MSG_DSI_REQ_START);
 	
 			if(tis->bag_buf->ret_item){
 				tis->seq_no=SEQ_ITEM_SEL_USE_MSG;
 				switch(tis->bag_buf->ret_page){
-				case BBAG_POKE_STRCV:	// ▐С▒т┴Я∙°┐|┐P┐b┐g
+				case BBAG_POKE_STRCV:	// Г┼╤Ф┘▀Е⌡·Е╬╘Ц┐²Ц┌╠Ц┐┐Ц┐┬
 					if((tis->bag_buf->ret_item==ITEM_GENKINOKAKERA)||
 					   (tis->bag_buf->ret_item==ITEM_GENKINOKATAMARI)){
 						tis->seq_no=SEQ_ITEM_SEL_END;
@@ -5296,7 +5296,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 						tis->seq_no=SEQ_ITEM_SEL_END;
 					}
 					break;
-				case BBAG_POKE_HPRCV:	// HP┴Я∙°┐|┐P┐b┐g
+				case BBAG_POKE_HPRCV:	// HPЕ⌡·Е╬╘Ц┐²Ц┌╠Ц┐┐Ц┐┬
 					if((((tis->tps->plist->sel_poke<2)&&
 					    ((BattleWorkFightTypeGet(tis->bw)==FIGHT_TYPE_2vs2_TRAINER)||
 						 (BattleWorkFightTypeGet(tis->bw)==FIGHT_TYPE_TAG_BATTLE)))||
@@ -5314,7 +5314,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 						tis->seq_no=SEQ_ITEM_SEL_END;
 					}
 					break;
-				case BBAG_POKE_BATTLE:	// ░М⌠╛≈p┐|┐P┐b┐g
+				case BBAG_POKE_BATTLE:	// Ф┬╕И≈≤Г■╗Ц┐²Ц┌╠Ц┐┐Ц┐┬
 					if((tis->bag_buf->ret_item==ITEM_PIPPININGYOU)||
 					   (tis->bag_buf->ret_item==ITEM_ENEKONOSIPPO)){
 						tis->seq_no=SEQ_ITEM_SEL_END;
@@ -5340,7 +5340,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 						}
 					}
 					break;
-				case BBAG_POKE_BALL:	// ┐{│[┐▀┐|┐P┐b┐g
+				case BBAG_POKE_BALL:	// Ц┐°Ц┐╪Ц┐╚Ц┐²Ц┌╠Ц┐┐Ц┐┬
 					tis->seq_no=SEQ_ITEM_SEL_END;
 					break;
 				}
@@ -5348,7 +5348,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 			else{
 				tis->seq_no=SEQ_ITEM_SEL_END;
 			}
-			//┐A┐C┐e┐─▌g≈p┐G┐t┐F┐N┐g┌╙▐o┌╧┌И┌Ф┌╓┌и┐I│[┐o│[┐▄┐C░ь┌Х▒ж┌╕
+			//Ц┌╒Ц┌╓Ц┐├Ц┐═Д╫©Г■╗Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц│▄Е┤╨Ц│⌡Ц┌▀Ц┌┬Ц│├Ц│╚Ц┌╙Ц┐╪Ц┐░Ц┐╪Ц┐╛Ц┌╓Е┬┤Ц┌┼Ф⌡©Ц│┬
 			if(tis->seq_no!=SEQ_ITEM_SEL_END){
 				FightOverlaySwitch(tis->bw,FIGHT_OVERLAY_AI_TO_SKILL);
 			}
@@ -5380,7 +5380,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 		}
 		break;
 
-	//┐A┐C┐e┐─▌g≈p┐│┐b┐Z│[┐W
+	//Ц┌╒Ц┌╓Ц┐├Ц┐═Д╫©Г■╗Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦
 	case SEQ_ITEM_SEL_USE_MSG:
 		{
 			MSGDATA_MANAGER		*msg_m;
@@ -5405,7 +5405,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 		}
 		break;
 	
-	//░М⌠╛┐A┐C┐e┐─▌g≈p┐G┐t┐F┐N┐g
+	//Ф┬╕И≈≤Ц┌╒Ц┌╓Ц┐├Ц┐═Д╫©Г■╗Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬
 	case SEQ_ITEM_SEL_BATTLE_EFFECT_INIT1:
 		{
 			WAZA_EFFECT_PARAM	wep;
@@ -5429,7 +5429,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 		tis->seq_no++;
 		break;
 
-	//┐X┐e│[┐^┐X▐Ц▐╦┐G┐t┐F┐N┐g
+	//Ц┌╧Ц┐├Ц┐╪Ц┌©Ц┌╧Д╦┼Ф≤┤Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬
 	case SEQ_ITEM_SEL_BATTLE_EFFECT_INIT2:
 		{
 			WAZA_EFFECT_PARAM	wep;
@@ -5492,8 +5492,8 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 		tis->seq_no++;
 		break;
 
-	//HP┴Я∙°┐G┐t┐F┐N┐g
-	//▐С▒т┬ы▐М┴Я∙°┐G┐t┐F┐N┐g
+	//HPЕ⌡·Е╬╘Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬
+	//Г┼╤Ф┘▀Г∙╟Е╦╦Е⌡·Е╬╘Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬
 	case SEQ_ITEM_SEL_HPRCV_EFFECT_INIT2:
 	case SEQ_ITEM_SEL_CONDRCV_EFFECT_INIT2:
 		{
@@ -5598,37 +5598,37 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 			mp.msg_tag=TAG_NICK;
 			mp.msg_para[0]=client_no|(tis->tps->sel_mons_no[client_no]<<8);
 
-			// ┌к┌ч┌Х┴Я∙°
+			// Ц│╜Ц┌─Ц┌┼Е⌡·Е╬╘
 			if(ItemParamGet(tis->bag_buf->ret_item,ITEM_PRM_SLEEP_RCV,HEAPID_BATTLE)){
 				item_prm=NEMURI_RCV;
 				rcv_cnt++;
 			}
-			// ⌠е┴Я∙°
+			// Ф╞▓Е⌡·Е╬╘
 			if(ItemParamGet(tis->bag_buf->ret_item,ITEM_PRM_POISON_RCV,HEAPID_BATTLE)){
 				item_prm=DOKU_RCV;
 				rcv_cnt++;
 			}
-			// ┴н▐²┴Я∙°
+			// Г│╚Е┌╥Е⌡·Е╬╘
 			if(ItemParamGet(tis->bag_buf->ret_item,ITEM_PRM_BURN_RCV,HEAPID_BATTLE)){
 				item_prm=YAKEDO_RCV;
 				rcv_cnt++;
 			}
-			// ∙X┴Я∙°
+			// Ф╟╥Е⌡·Е╬╘
 			if(ItemParamGet(tis->bag_buf->ret_item,ITEM_PRM_ICE_RCV,HEAPID_BATTLE)){
 				item_prm=KOORI_RCV;
 				rcv_cnt++;
 			}
-			// √┐А┐┴Я∙°
+			// И╨╩Г≈╨Е⌡·Е╬╘
 			if(ItemParamGet(tis->bag_buf->ret_item,ITEM_PRM_PARALYZE_RCV,HEAPID_BATTLE)){
 				item_prm=MAHI_RCV;
 				rcv_cnt++;
 			}
-			// █╛≈░┴Я∙°
+			// Ф╥╥Д╧╠Е⌡·Е╬╘
 			if(ItemParamGet(tis->bag_buf->ret_item,ITEM_PRM_PANIC_RCV,HEAPID_BATTLE)){
 				item_prm=KONRAN_RCV;
 				rcv_cnt++;
 			}
-			// ┐│┐█┐│┐█┴Я∙°
+			// Ц┐║Ц┐╜Ц┐║Ц┐╜Е⌡·Е╬╘
 			if(ItemParamGet(tis->bag_buf->ret_item,ITEM_PRM_MEROMERO_RCV,HEAPID_BATTLE)){
 				item_prm=MEROMERO_RCV;
 				rcv_cnt++;
@@ -5668,7 +5668,7 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 		tis->seq_no++;
 		break;
 
-	//┐G┐t┐F┐N┐g▐I≈╧▒р┌©
+	//Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Г╣┌Д╨├Е╬┘Ц│║
 	case SEQ_ITEM_SEL_BATTLE_EFFECT_WAIT1:
 	case SEQ_ITEM_SEL_BATTLE_EFFECT_WAIT2:
 	case SEQ_ITEM_SEL_HPRCV_EFFECT_WAIT1:
@@ -5682,13 +5682,13 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 		}
 		break;
 
-	//┐│┐b┐Z│[┐W▐I≈╧▒р┌©
+	//Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Г╣┌Д╨├Е╬┘Ц│║
 	case SEQ_ITEM_SEL_BATTLE_EFFECT_MSG_WAIT:
 	case SEQ_ITEM_SEL_HPRCV_EFFECT_MSG_WAIT:
 	case SEQ_ITEM_SEL_CONDRCV_EFFECT_MSG_WAIT:
 		if(GF_MSG_PrintEndCheck(tis->msg_index)==0){
 			if(--tis->wait==0){
-				//┐A┐C┐e┐─▌g≈p┐G┐t┐F┐N┐g┌╙▐o┌╧┌И┌Ф┌╓┌и░ь┌Х▒ж┌╕┌╫┐I│[┐o│[┐▄┐C┌П▄Ё┌и√ъ┌╥
+				//Ц┌╒Ц┌╓Ц┐├Ц┐═Д╫©Г■╗Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц│▄Е┤╨Ц│⌡Ц┌▀Ц┌┬Ц│├Ц│╚Е┬┤Ц┌┼Ф⌡©Ц│┬Ц│÷Ц┌╙Ц┐╪Ц┐░Ц┐╪Ц┐╛Ц┌╓Ц┌▓Е┘┐Ц│╚Ф┬╩Ц│≥
 				FightOverlaySwitch(tis->bw,FIGHT_OVERLAY_SKILL_TO_AI);
 				tis->seq_no=SEQ_ITEM_SEL_END;
 			}
@@ -5700,10 +5700,10 @@ static	void	TCB_ItemSelect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	⌠╧▀О▒I▒ПTCB│iAI≈p│j
+ *	И│⌠Е┘╥И│╦Ф┼·TCBО╪┬AIГ■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_ItemSelectAI(TCB_PTR tcb,void *work)
@@ -5711,7 +5711,7 @@ static	void	TCB_ItemSelectAI(TCB_PTR tcb,void *work)
 	TCB_ITEM_SELECT				*tis=(TCB_ITEM_SELECT *)work;
 	ITEM_SELECT_RETURN_PARAM	isrp;
 
-	//▒I▒П┌╣┌╫┐A┐C┐e┐─┌м│AAI≈p┌л┐▐│[┐N┌и∙ш▌²┌Ё┌Й┌д┌╒┌И┌л┌е│A┌╠┌╠┌е┌м│A┐_┐~│[┌л▓l┌П⌠Э┌Й┌д┌╗┌╜
+	//И│╦Ф┼·Ц│≈Ц│÷Ц┌╒Ц┌╓Ц┐├Ц┐═Ц│╞Ц─│AIГ■╗Ц│╝Ц┐╞Ц┐╪Ц┌╞Ц│╚Д©²Ф▄│Ц│∙Ц┌▄Ц│╕Ц│└Ц┌▀Ц│╝Ц│╖Ц─│Ц│⌠Ц│⌠Ц│╖Ц│╞Ц─│Ц┐─Ц┐÷Ц┐╪Ц│╝Е─╓Ц┌▓Е┘╔Ц┌▄Ц│╕Ц│┼Ц│▐
 	isrp.item_no=1;
 	SCIO_ItemSelectReturnSet(tis->bw,tis->client_no,isrp);
 	SCIO_ServerQueClear(tis->bw,tis->client_no,tis->command_code);
@@ -5724,10 +5724,10 @@ static	void	TCB_ItemSelectAI(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	⌠╧▀О▒I▒ПTCB│i▓й░M≈p│j
+ *	И│⌠Е┘╥И│╦Ф┼·TCBО╪┬И─ Д©║Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_ItemSelectSIO(TCB_PTR tcb,void *work)
@@ -5744,10 +5744,10 @@ static	void	TCB_ItemSelectSIO(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	⌠╧▀О▒I▒ПTCB│i▒н░М≤^┴Ф█д░╤≈p│j
+ *	И│⌠Е┘╥И│╦Ф┼·TCBО╪┬Е╞╬Ф┬╕И▄╡Г■╩Е├█Г■÷Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_ItemSelectAuto(TCB_PTR tcb,void *work)
@@ -5781,10 +5781,10 @@ static	void	TCB_ItemSelectAuto(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠▒I▒ПTCB│i┐v┐▄┐C┐└│[≈p│j
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁИ│╦Ф┼·TCBО╪┬Ц┐≈Ц┐╛Ц┌╓Ц┐╓Ц┐╪Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonSelect(TCB_PTR tcb,void *work)
@@ -5795,8 +5795,8 @@ static	void	TCB_PokemonSelect(TCB_PTR tcb,void *work)
 	pfd=BattleWorkPfdGet(tps->bw);
 
 	switch(tps->seq_no){
-	case 0:		//┐┼┐X┐g┴Ф√й┌ж┌л┐t┐F│[┐h
-		//┐│┐b┐Z│[┐W┐E┐C┐⌠┐h┌П┐N┐┼┐A
+	case 0:		//Ц┐╙Ц┌╧Ц┐┬Г■╩И²╒Ц│╦Ц│╝Ц┐∙Ц┌╖Ц┐╪Ц┐┴
+		//Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌╕Ц┌╓Ц┐ЁЦ┐┴Ц┌▓Ц┌╞Ц┐╙Ц┌╒
 		{
 			GF_BGL_BMPWIN	*win=BattleWorkGF_BGL_BMPWINGet(tps->bw,TALK_WIN_NO);
 
@@ -5804,7 +5804,7 @@ static	void	TCB_PokemonSelect(TCB_PTR tcb,void *work)
 			GF_BGL_BmpWinCgxOn(win);
 		}
 
-		//BIP┌╙┴П∙З┌Ё┌Й┌И┌э┌╕┌и∙K≈v┌х▐Н∙Я┌╬┌╞▌Ф⌠╬
+		//BIPЦ│▄Х╖ёФ■╬Ц│∙Ц┌▄Ц┌▀Ц│╬Ц│┬Ц│╚Е©┘Х╕│Ц│╙Ф┐┘Е═╠Ц│═Ц│▒Е▐√Е╬≈
 		tps->decend_key = BINPUT_CursorDecendGet(BattleWorkGF_BGL_BIPGet(tps->bw));
 
 		MSG_DsIconFlashReq(BattleWorkMsgIconGet(tps->bw),MSG_DSI_REQ_STOP);
@@ -5813,7 +5813,7 @@ static	void	TCB_PokemonSelect(TCB_PTR tcb,void *work)
 		tps->seq_no++;
 		break;
 	case 1:
-		if(PaletteFadeCheck(pfd)==0){	//▀P⌠x∙о█X┐t┐F│[┐h▐I≈╧▒р┌©┌╣┌д░F│X█М▐°
+		if(PaletteFadeCheck(pfd)==0){	//Х╪²Е╨╕Е╓┴Ф⌡╢Ц┐∙Ц┌╖Ц┐╪Ц┐┴Г╣┌Д╨├Е╬┘Ц│║Ц│≈Ц│╕Х┴╡Ц─┘Е┴┼И≥╓
 			{
 				int				i;
 				int				cnt=0;
@@ -5928,7 +5928,7 @@ static	void	TCB_PokemonSelect(TCB_PTR tcb,void *work)
 		}
 		break;
 	case 3:
-		if(PaletteFadeCheck(pfd)==0){	//▀P⌠x∙о█X┐t┐F│[┐h▐I≈╧▒р┌©┌╣┌д░F│X█М▐°
+		if(PaletteFadeCheck(pfd)==0){	//Х╪²Е╨╕Е╓┴Ф⌡╢Ц┐∙Ц┌╖Ц┐╪Ц┐┴Г╣┌Д╨├Е╬┘Ц│║Ц│≈Ц│╕Х┴╡Ц─┘Е┴┼И≥╓
 			MSG_DsIconFlashReq(BattleWorkMsgIconGet(tps->bw),MSG_DSI_REQ_START);
 			if(tps->plist->sel_poke==BPL_SEL_EXIT){
 				SCIO_PokemonSelectReturnSet(tps->bw,tps->client_no,SELECT_CANCEL);
@@ -5948,10 +5948,10 @@ static	void	TCB_PokemonSelect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠▒I▒ПTCB│iAI≈p│j
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁИ│╦Ф┼·TCBО╪┬AIГ■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonSelectAI(TCB_PTR tcb,void *work)
@@ -5974,11 +5974,11 @@ static	void	TCB_PokemonSelectAI(TCB_PTR tcb,void *work)
 		client_pair_no=BattleWorkPartnerClientNoGet(tps->bw,client_no);
 	}
 
-//┐v┐┴┐`┐i┌е┌мWifi┌иAI┌╙█з┌а┌╫┌л┌е│A┌╠┌л▐┬≈²┌м∙K≈v┌х┌╒┌м┌╦
+//Ц┐≈Ц┐╘Ц┐│Ц┐┼Ц│╖Ц│╞WifiЦ│╚AIЦ│▄Х╪┴Ц│ёЦ│÷Ц│╝Ц│╖Ц─│Ц│⌠Ц│╝Е┤╕Г░├Ц│╞Е©┘Х╕│Ц│╙Ц│└Ц│╞Ц│ 
 #if 0
 #ifdef PM_DEBUG
 	if(BattleWorkBattleStatusFlagGet(tps->bw)&BATTLE_STATUS_FLAG_AUTO_BATTLE){
-		//▓й░M░з▒╠┌е┌м│A▌q▀@▒╓┌иAI┌╙┌л┌а┌д┌╒┌х┌╒┌л┌е│A░Ф⌠╙┌╘┌Г┐T│[┐`┌╣┌дHP┌л┌═┌И┐|┐P┐┌┐⌠┌П▄J┌Х▐o┌╥
+		//И─ Д©║Ф▌╔Г╤ Ц│╖Ц│╞Ц─│Е╜░Ф╘÷Е│╢Ц│╚AIЦ│▄Ц│╝Ц│ёЦ│╕Ц│└Ц│╙Ц│└Ц│╝Ц│╖Ц─│Е┘┬И═╜Ц│▀Ц┌┴Ц┌╣Ц┐╪Ц┐│Ц│≈Ц│╕HPЦ│╝Ц│┌Ц┌▀Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┌▓Г╧╟Ц┌┼Е┤╨Ц│≥
 //		if(CommStateIsWifiConnect()){
 		if(fight_type&FIGHT_TYPE_SIO){
 			poke_party=BattleWorkPokePartyGet(tps->bw,tps->client_no);
@@ -6003,7 +6003,7 @@ static	void	TCB_PokemonSelectAI(TCB_PTR tcb,void *work)
 	pos=ClientAIReshuffleSelMonsNoGet(tps->bw,client_no);
 	if(pos==6){
 		pos=ClientAIPokeSelectAI(tps->bw,client_no);
-		//AI┌╙▄┬┌ъ┌Й┌х┌╞┌Й┌н░Ф⌠╙┌╘┌Г┐T│[┐`┌╣┌дHP┌л┌═┌И┐|┐P┐┌┐⌠┌П▄J┌Х▐o┌╥
+		//AIЦ│▄Ф╠╨Ц┌│Ц┌▄Ц│╙Ц│▒Ц┌▄Ц│╟Е┘┬И═╜Ц│▀Ц┌┴Ц┌╣Ц┐╪Ц┐│Ц│≈Ц│╕HPЦ│╝Ц│┌Ц┌▀Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┌▓Г╧╟Ц┌┼Е┤╨Ц│≥
 		if(pos==6){
 			poke_party=BattleWorkPokePartyGet(tps->bw,tps->client_no);
 			for(pos=0;pos<PokeParty_GetPokeCount(poke_party);pos++){
@@ -6031,10 +6031,10 @@ static	void	TCB_PokemonSelectAI(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠▒I▒ПTCB│i▓й░M≈p│j
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁИ│╦Ф┼·TCBО╪┬И─ Д©║Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonSelectSIO(TCB_PTR tcb,void *work)
@@ -6048,10 +6048,10 @@ static	void	TCB_PokemonSelectSIO(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠▒I▒ПTCB│i▒н░М≤^┴Ф█д░╤≈p│j
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁИ│╦Ф┼·TCBО╪┬Е╞╬Ф┬╕И▄╡Г■╩Е├█Г■÷Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonSelectAuto(TCB_PTR tcb,void *work)
@@ -6059,19 +6059,19 @@ static	void	TCB_PokemonSelectAuto(TCB_PTR tcb,void *work)
 	TCB_POKEMON_SELECT	*tps=(TCB_POKEMON_SELECT *)work;
 	REC_DATA			data;
 
-	//≤^┴Ф┐f│[┐^┌л░╝█┤░╚┌П┐`┐F┐b┐N
+	//И▄╡Г■╩Ц┐┤Ц┐╪Ц┌©Ц│╝Ф∙╢Е░┬Ф─╖Ц┌▓Ц┐│Ц┌╖Ц┐┐Ц┌╞
 	if(BattleWorkBattlePlay(tps->bw,tps->client_no,&data)==TRUE){
 		BattleRecDataFullStop(tps->bw);
 	}
-	//┐R┐}┐⌠┐h┌╙┌х┌╒
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Ц│╙Ц│└
 	if((!data)||
-	//┌╥┌е┌и
-	//┐R┐}┐⌠┐h┌╙■м┬м┼O
+	//Ц│≥Ц│╖Ц│╚
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Г╞└Е⌡╡Е╓√
 	   (data>POKEMON_TEMOTI_MAX)){
 		BattleRecDataErrorStop(tps->bw);
 	}
 	else{
-		//▒I▒П┌╣┌╫┐|┐P┐┌┐⌠┌л░Ё⌠²░╚┌П┐`┐F┐b┐N
+		//И│╦Ф┼·Ц│≈Ц│÷Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ│╝Ф╜ёГ╣╠Ф─╖Ц┌▓Ц┐│Ц┌╖Ц┐┐Ц┌╞
 		{
 			POKEPARTY		*poke_party;
 			POKEMON_PARAM	*pp;
@@ -6079,23 +6079,23 @@ static	void	TCB_PokemonSelectAuto(TCB_PTR tcb,void *work)
 	
 			poke_party=BattleWorkPokePartyGet(tps->bw,tps->client_no);
 				
-			//┌╥┌е┌и▒I▒П┌╣┌д┌╒┌И┐|┐P┐┌┐⌠┌П▌w▓Х
+			//Ц│≥Ц│╖Ц│╚И│╦Ф┼·Ц│≈Ц│╕Ц│└Ц┌▀Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┌▓Ф▄┤Е╝ 
 			if((sel_mons_no==tps->sel_mons_no[tps->client_no])||
 			   //(sel_mons_no==tps->sel_mons_no[BattleWorkPartnerClientNoGet(tps->bw,tps->client_no)])||
 			   (sel_mons_no==tps->double_sel)){
 				BattleRecDataErrorStop(tps->bw);
 			}
-			//▒╤█щ┌╣┌х┌╒▐Й▐┼┌П▌w▓Х
+			//Е╜≤Е°╗Ц│≈Ц│╙Ц│└Е═╢Ф┴─Ц┌▓Ф▄┤Е╝ 
 			else if(data>PokeParty_GetPokeCount(poke_party)){
 				BattleRecDataErrorStop(tps->bw);
 			}
 			else{
 				pp=BattleWorkPokemonParamGet(tps->bw,tps->client_no,data-1);
-				//▀C░Б┌╣┌д┌╒┌И┐|┐P┐┌┐⌠┌П▌w▓Х
+				//Ф╟≈Г╣╤Ц│≈Ц│╕Ц│└Ц┌▀Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┌▓Ф▄┤Е╝ 
 				if(PokeParaGet(pp,ID_PARA_hp,NULL)==0){
 					BattleRecDataErrorStop(tps->bw);
 				}
-				//┐^┐}┐S┌П▒I▒П
+				//Ц┌©Ц┐·Ц┌╢Ц┌▓И│╦Ф┼·
 				if(PokeParaGet(pp,ID_PARA_monsno_egg,NULL)==MONSNO_TAMAGO){
 					BattleRecDataErrorStop(tps->bw);
 				}
@@ -6111,10 +6111,10 @@ static	void	TCB_PokemonSelectAuto(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	Yes/No▒I▒ПTCB│i┐v┐▄┐C┐└│[≈p│j
+ *	Yes/NoИ│╦Ф┼·TCBО╪┬Ц┐≈Ц┐╛Ц┌╓Ц┐╓Ц┐╪Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_YesNoSelect(TCB_PTR tcb,void *work)
@@ -6126,7 +6126,7 @@ static	void	TCB_YesNoSelect(TCB_PTR tcb,void *work)
 	GAUGE_WORK *partner_gauge;
 	CLIENT_PARAM *cp;
 	
-	enum{	//┐V│[┐P┐⌠┐X■т█├
+	enum{	//Ц┌╥Ц┐╪Ц┌╠Ц┐ЁЦ┌╧Г∙╙Е▐╥
 		CSSEQ_ESCAPE_SELECT_INIT,
 		CSSEQ_ESCAPE_SELECT_WAIT,
 		CSSEQ_ESCAPE_SELECT,
@@ -6252,10 +6252,10 @@ static	void	TCB_YesNoSelect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	Yes/No▒I▒ПTCB│iAI≈p│j
+ *	Yes/NoИ│╦Ф┼·TCBО╪┬AIГ■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_YesNoSelectAI(TCB_PTR tcb,void *work)
@@ -6269,10 +6269,10 @@ static	void	TCB_YesNoSelectAI(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	Yes/No▒I▒ПTCB│i▓й░M≈p│j
+ *	Yes/NoИ│╦Ф┼·TCBО╪┬И─ Д©║Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_YesNoSelectSIO(TCB_PTR tcb,void *work)
@@ -6286,10 +6286,10 @@ static	void	TCB_YesNoSelectSIO(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	Yes/No▒I▒ПTCB│i▒н░М≤^┴Ф█д░╤≈p│j
+ *	Yes/NoИ│╦Ф┼·TCBО╪┬Е╞╬Ф┬╕И▄╡Г■╩Е├█Г■÷Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_YesNoSelectAuto(TCB_PTR tcb,void *work)
@@ -6297,13 +6297,13 @@ static	void	TCB_YesNoSelectAuto(TCB_PTR tcb,void *work)
 	TCB_YES_NO_SELECT	*tyns=(TCB_YES_NO_SELECT *)work;
 	REC_DATA			data;
 
-	//≤^┴Ф┐f│[┐^┌л░╝█┤░╚┌П┐`┐F┐b┐N
+	//И▄╡Г■╩Ц┐┤Ц┐╪Ц┌©Ц│╝Ф∙╢Е░┬Ф─╖Ц┌▓Ц┐│Ц┌╖Ц┐┐Ц┌╞
 	if(BattleWorkBattlePlay(tyns->bw,tyns->client_no,&data)==TRUE){
 		BattleRecDataFullStop(tyns->bw);
 	}
-	//┐R┐}┐⌠┐h┌╙┌х┌╒
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Ц│╙Ц│└
 	if((!data)||
-	//┐R┐}┐⌠┐h┌╙■м┬м┼O
+	//Ц┌ЁЦ┐·Ц┐ЁЦ┐┴Ц│▄Г╞└Е⌡╡Е╓√
 	  ((data!=SELECT_CANCEL)&&(data!=TRUE))){
 		BattleRecDataErrorStop(tyns->bw);
 	}
@@ -6316,10 +6316,10 @@ static	void	TCB_YesNoSelectAuto(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	▀Z┐G┐t┐F┐N┐gTCB
+ *	Ф┼─Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬TCB
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 enum{
@@ -6429,7 +6429,7 @@ static	void	TCB_WazaEffect(TCB_PTR tcb,void *work)
 		TCB_Delete(tcb);
 		break;
 
-	//┌Ю┌К┌Ю┌К┌л┐G┐t┐F┐N┐g▐I≈╧▒р┌©
+	//Ц┌┌Ц┌█Ц┌┌Ц┌█Ц│╝Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Г╣┌Д╨├Е╬┘Ц│║
 	case SEQ_WE_MIGAWARI2POKE_WAIT:
 	case SEQ_WE_POKE_IN_WAIT:
 	case SEQ_WE_WAZA_EFFECT_WAIT:
@@ -6446,10 +6446,10 @@ static	void	TCB_WazaEffect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠┐_┐││[┐W┐u┐┼┐⌠┐N
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┐─Ц┐║Ц┐╪Ц┌╦Ц┐√Ц┐╙Ц┐ЁЦ┌╞
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonBlink(TCB_PTR tcb,void *work)
@@ -6480,10 +6480,10 @@ static	void	TCB_PokemonBlink(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	HP┐Q│[┐W▄v▌Z
+ *	HPЦ┌╡Ц┐╪Ц┌╦Х╗┬Г╝≈
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_HPGaugeCalc(TCB_PTR tcb,void *work)
@@ -6513,13 +6513,13 @@ static	void	TCB_HPGaugeCalc(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	EXP┐Q│[┐W▄v▌Z
+ *	EXPЦ┌╡Ц┐╪Ц┌╦Х╗┬Г╝≈
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
-///█е▓А┌е┌Ю┌╠┌л┐t┐▄│[┐─∙╙┌мEXP▐Ц▐╦SE┌П√б┌Г┌╣┌д┌╘┌Г▌~┌ъ┌И
+///Ф°─Д╫▌Ц│╖Ц┌┌Ц│⌠Ц│╝Ц┐∙Ц┐╛Ц┐╪Ц┐═Е┬├Ц│╞EXPД╦┼Ф≤┤SEЦ┌▓ИЁ╢Ц┌┴Ц│≈Ц│╕Ц│▀Ц┌┴Ф╜╒Ц┌│Ц┌▀
 #define HP_GAUGE_SE_TIME		(8)
 static	void	TCB_EXPGaugeCalc(TCB_PTR tcb,void *work)
 {
@@ -6566,10 +6566,10 @@ static	void	TCB_EXPGaugeCalc(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	▀C░Б┐G┐t┐F┐N┐g
+ *	Ф╟≈Г╣╤Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_KizetsuEffect(TCB_PTR tcb,void *work)
@@ -6609,7 +6609,7 @@ static	void	TCB_KizetsuEffect(TCB_PTR tcb,void *work)
 		}
 		tke->seq_no++;
 		break;
-	//┌Ю┌К┌Ю┌К┌л┐G┐t┐F┐N┐g▐I≈╧▒р┌©
+	//Ц┌┌Ц┌█Ц┌┌Ц┌█Ц│╝Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Г╣┌Д╨├Е╬┘Ц│║
 	case 1:
 	case 3:
 		WES_Executed(wsp);
@@ -6700,10 +6700,10 @@ static	void	TCB_KizetsuEffect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┴Ф√й┐t┐F│[┐h┐G┐t┐F┐N┐g
+ *	Г■╩И²╒Ц┐∙Ц┌╖Ц┐╪Ц┐┴Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_FadeOut(TCB_PTR tcb,void *work)
@@ -6737,10 +6737,10 @@ static	void	TCB_FadeOut(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐|┐P┐┌┐⌠┐o┐j┐b┐V┐┘░╖▄Д┐^┐X┐N
+ *	Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ┐░Ц┐▀Ц┐┐Ц┌╥Ц┐╔Е┬╤Е╬║Ц┌©Ц┌╧Ц┌╞
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_PokemonVanishOnOff(TCB_PTR tcb,void *work)
@@ -6814,10 +6814,10 @@ static	void	TCB_PokemonVanishOnOff(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐▄┐x┐▀┐A┐b┐v┐G┐t┐F┐N┐g
+ *	Ц┐╛Ц┐≥Ц┐╚Ц┌╒Ц┐┐Ц┐≈Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_LevelUpEffect(TCB_PTR tcb,void *work)
@@ -6842,10 +6842,10 @@ static	void	TCB_LevelUpEffect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐│┐b┐Z│[┐W∙\▌╕┌э┌©
+ *	Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Х║╗Г╓╨Ц│╬Ц│║
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_MessageWait(TCB_PTR tcb,void *work)
@@ -6888,10 +6888,10 @@ static	void	TCB_MessageWait(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐│┐b┐Z│[┐W∙\▌╕┌э┌©│i┐A┐┴│[┐g┐│┐b┐Z│[┐W░Й≈p│j
+ *	Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Х║╗Г╓╨Ц│╬Ц│║О╪┬Ц┌╒Ц┐╘Ц┐╪Ц┐┬Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Е╟┌Г■╗О╪┴
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_AlertMessageWait(TCB_PTR tcb,void *work)
@@ -6918,63 +6918,63 @@ static	void	TCB_AlertMessageWait(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g┐G┐t┐F┐N┐g
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	const	u8	EncountEffectTable[]={
-	ECE_SPA_GRAVEL_001,			//█╩≈≤
-	ECE_SPA_SANDS_001,			//█╩∙l
-	ECE_SPA_GRASS_001,			//▌е░╤
-	ECE_SPA_POOL_BALL_001,		//░┘┌╫┌э┌Х
-	ECE_SPA_ROCK_SURFACE_001,	//┼Б■╖
-	ECE_SPA_CAVE_001,			//⌠╢▄A
-	ECE_SPA_SNOWFIELD_001,		//░А▄╢
-	ECE_SPA_WATER_001,			//░┘▐Ц
-	ECE_SPA_ON_THE_ICE_001,		//∙X▐Ц
-	ECE_SPA_FLOOR_001,			//▐╟
-	ECE_SPA_BOG_001,			//▐ю▓n
-	ECE_SPA_FLOOR_001,			//▓щ┌Х▀╢│i┌╠┌Й┬х█~┌м│A▒╤█щ┌╣┌х┌╜┌х┌а┌╫┌╞┌г■O┌л┌╫┌ъ⌠√┌╫┌Х▐А┌Х┌л┌х┌╒┐G┐t┐F┐N┐g┌П▄д┌т│j
-	ECE_SPA_FLOOR_001,			//▌l⌠V┴╓▓n√йA	┐v┐┴┐`┐i┌╘┌Г▓г┴а
-	ECE_SPA_FLOOR_001,			//▌l⌠V┴╓▓n√йB
-	ECE_SPA_FLOOR_001,			//▌l⌠V┴╓▓n√йC
-	ECE_SPA_FLOOR_001,			//▌l⌠V┴╓▓n√йD
-	ECE_SPA_FLOOR_001,			//┐`┐┐┐⌠┐s┐I┐⌠▓n√й
-	ECE_SPA_ON_THE_ICE_001,		//■j┌Й┌╫░╒┼E
-	ECE_SPA_FLOOR_001,			//┐o┐g┐▀┐^┐▐│[
-	ECE_SPA_FLOOR_001,			//┐o┐g┐▀┐t┐@┐N┐g┐┼│[
-	ECE_SPA_FLOOR_001,			//┐o┐g┐▀┐▀│[┐▄┐b┐g
-	ECE_SPA_FLOOR_001,			//┐o┐g┐▀┐L┐┐┐b┐X┐▀
-	ECE_SPA_FLOOR_001,			//┐o┐g┐▀┐X┐e│[┐W
-	ECE_SPA_FLOOR_001,			//┌╩┌Й┬х┼O
+	ECE_SPA_GRAVEL_001,			//Г═┌Е┬╘
+	ECE_SPA_SANDS_001,			//Г═┌Ф╣°
+	ECE_SPA_GRASS_001,			//Х┼²Г■÷
+	ECE_SPA_POOL_BALL_001,		//Ф╟╢Ц│÷Ц│╬Ц┌┼
+	ECE_SPA_ROCK_SURFACE_001,	//Е╡╘Х┌▄
+	ECE_SPA_CAVE_001,			//Ф╢·Г╙÷
+	ECE_SPA_SNOWFIELD_001,		//И⌡╙Е▌÷
+	ECE_SPA_WATER_001,			//Ф╟╢Д╦┼
+	ECE_SPA_ON_THE_ICE_001,		//Ф╟╥Д╦┼
+	ECE_SPA_FLOOR_001,			//Е╨┼
+	ECE_SPA_BOG_001,			//Ф╡╪Е°╟
+	ECE_SPA_FLOOR_001,			//Е░┼Ц┌┼Ф╘▀О╪┬Ц│⌠Ц┌▄Д╩╔И≥█Ц│╞Ц─│Е╜≤Е°╗Ц│≈Ц│╙Ц│▐Ц│╙Ц│ёЦ│÷Ц│▒Ц│╘Е©╣Ц│╝Ц│÷Ц┌│Е╫⌠Ц│÷Ц┌┼И °Ц┌┼Ц│╝Ц│╙Ц│└Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Е▒╪Ц│╤О╪┴
+	ECE_SPA_FLOOR_001,			//Е⌡⌡Е╓╘Г▌▀Е°╟И²╒A	Ц┐≈Ц┐╘Ц┐│Ц┐┼Ц│▀Ц┌┴Х©╫Е┼═
+	ECE_SPA_FLOOR_001,			//Е⌡⌡Е╓╘Г▌▀Е°╟И²╒B
+	ECE_SPA_FLOOR_001,			//Е⌡⌡Е╓╘Г▌▀Е°╟И²╒C
+	ECE_SPA_FLOOR_001,			//Е⌡⌡Е╓╘Г▌▀Е°╟И²╒D
+	ECE_SPA_FLOOR_001,			//Ц┐│Ц┐ёЦ┐ЁЦ┐■Ц┌╙Ц┐ЁЕ°╟И²╒
+	ECE_SPA_ON_THE_ICE_001,		//Г═╢Ц┌▄Ц│÷Д╦√Г∙▄
+	ECE_SPA_FLOOR_001,			//Ц┐░Ц┐┬Ц┐╚Ц┌©Ц┐╞Ц┐╪
+	ECE_SPA_FLOOR_001,			//Ц┐░Ц┐┬Ц┐╚Ц┐∙Ц┌║Ц┌╞Ц┐┬Ц┐╙Ц┐╪
+	ECE_SPA_FLOOR_001,			//Ц┐░Ц┐┬Ц┐╚Ц┐╚Ц┐╪Ц┐╛Ц┐┐Ц┐┬
+	ECE_SPA_FLOOR_001,			//Ц┐░Ц┐┬Ц┐╚Ц┌╜Ц┐ёЦ┐┐Ц┌╧Ц┐╚
+	ECE_SPA_FLOOR_001,			//Ц┐░Ц┐┬Ц┐╚Ц┌╧Ц┐├Ц┐╪Ц┌╦
+	ECE_SPA_FLOOR_001,			//Ц│²Ц┌▄Д╩╔Е╓√
 };
 
 static	const	int	EncountAfterColor[]={
-	0x7fff,		//BG_ID_BASIC			//▒░▄╢
-	0x7fff,		//BG_ID_SEA				//┼C
-	0x7fff,		//BG_ID_CITY			//┼X
-	0x7fff,		//BG_ID_FOREST			//░X≈я
-	0x7fff,		//BG_ID_MOUNTAIN		//▌R┼x
-	0x7fff,		//BG_ID_SNOW_MOUNTAIN	//░А▌R
-	0x7fff,		//BG_ID_ROOM_A			//▌╨⌠Ю┌`
-	0x7fff,		//BG_ID_ROOM_B			//▌╨⌠Ю┌a
-	0x7fff,		//BG_ID_ROOM_C			//▌╨⌠Ю┌b
-	0x0000,		//BG_ID_CAVE_A			//⌠╢▄A┌`
-	0x0000,		//BG_ID_CAVE_B			//⌠╢▄A┌a
-	0x0000,		//BG_ID_CAVE_C			//⌠╢▄A┌b
-	0x7fff,		//BG_ID_BIG_FOUR_A		//▌l⌠V┴╓A	┐v┐┴┐`┐i┌╘┌Г▓г┴а
-	0x7fff,		//BG_ID_BIG_FOUR_B		//▌l⌠V┴╓B
-	0x7fff,		//BG_ID_BIG_FOUR_C		//▌l⌠V┴╓C
-	0x7fff,		//BG_ID_BIG_FOUR_D		//▌l⌠V┴╓D
-	0x7fff,		//BG_ID_BIG_CHAMPION	//┐`┐┐┐⌠┐s┐I┐⌠
-	0x7fff,		//BG_ID_HAKAI			//■j┌Й┌╫░╒┼E
-	0x7fff,		//BG_ID_TOWER			//┐o┐g┐▀┐^┐▐│[
-	0x7fff,		//BG_ID_FACTORY			//┐o┐g┐▀┐t┐@┐N┐g┐┼│[
-	0x7fff,		//BG_ID_ROULETTE		//┐o┐g┐▀┐▀│[┐▄┐b┐g
-	0x7fff,		//BG_ID_CASTLE			//┐o┐g┐▀┐L┐┐┐b┐X┐▀
-	0x7fff,		//BG_ID_STAGE			//┐o┐g┐▀┐X┐e│[┐W
+	0x7fff,		//BG_ID_BASIC			//Х█┴Е▌÷
+	0x7fff,		//BG_ID_SEA				//Ф╣╥
+	0x7fff,		//BG_ID_CITY			//Х║≈
+	0x7fff,		//BG_ID_FOREST			//Фё╝Ф·≈
+	0x7fff,		//BG_ID_MOUNTAIN		//Е╠╠Е╡Ё
+	0x7fff,		//BG_ID_SNOW_MOUNTAIN	//И⌡╙Е╠╠
+	0x7fff,		//BG_ID_ROOM_A			//Е╝╓Е├┘О╪║
+	0x7fff,		//BG_ID_ROOM_B			//Е╝╓Е├┘О╪╒
+	0x7fff,		//BG_ID_ROOM_C			//Е╝╓Е├┘О╪ё
+	0x0000,		//BG_ID_CAVE_A			//Ф╢·Г╙÷О╪║
+	0x0000,		//BG_ID_CAVE_B			//Ф╢·Г╙÷О╪╒
+	0x0000,		//BG_ID_CAVE_C			//Ф╢·Г╙÷О╪ё
+	0x7fff,		//BG_ID_BIG_FOUR_A		//Е⌡⌡Е╓╘Г▌▀A	Ц┐≈Ц┐╘Ц┐│Ц┐┼Ц│▀Ц┌┴Х©╫Е┼═
+	0x7fff,		//BG_ID_BIG_FOUR_B		//Е⌡⌡Е╓╘Г▌▀B
+	0x7fff,		//BG_ID_BIG_FOUR_C		//Е⌡⌡Е╓╘Г▌▀C
+	0x7fff,		//BG_ID_BIG_FOUR_D		//Е⌡⌡Е╓╘Г▌▀D
+	0x7fff,		//BG_ID_BIG_CHAMPION	//Ц┐│Ц┐ёЦ┐ЁЦ┐■Ц┌╙Ц┐Ё
+	0x7fff,		//BG_ID_HAKAI			//Г═╢Ц┌▄Ц│÷Д╦√Г∙▄
+	0x7fff,		//BG_ID_TOWER			//Ц┐░Ц┐┬Ц┐╚Ц┌©Ц┐╞Ц┐╪
+	0x7fff,		//BG_ID_FACTORY			//Ц┐░Ц┐┬Ц┐╚Ц┐∙Ц┌║Ц┌╞Ц┐┬Ц┐╙Ц┐╪
+	0x7fff,		//BG_ID_ROULETTE		//Ц┐░Ц┐┬Ц┐╚Ц┐╚Ц┐╪Ц┐╛Ц┐┐Ц┐┬
+	0x7fff,		//BG_ID_CASTLE			//Ц┐░Ц┐┬Ц┐╚Ц┌╜Ц┐ёЦ┐┐Ц┌╧Ц┐╚
+	0x7fff,		//BG_ID_STAGE			//Ц┐░Ц┐┬Ц┐╚Ц┌╧Ц┐├Ц┐╪Ц┌╦
 };
 
 
@@ -7038,7 +7038,7 @@ static	void	TCB_EncountEffect(TCB_PTR tcb,void *work)
 			PaletteFadeReq(pfd,PF_BIT_MAIN_OBJ,BATTLE_MAIN_OBJPAL_FADEBIT,0,0,16,col);
 		}
 		
-		//┐T┐u┴Ф√й┌П█∙┌╘┌Г■▓┌ж┐t┐F│[┐h┌Ё┌╧┌И 2008.02.09(⌠y) matsuda
+		//Ц┌╣Ц┐√Г■╩И²╒Ц┌▓И╩▓Ц│▀Ц┌┴Г≥╫Ц│╦Ц┐∙Ц┌╖Ц┐╪Ц┐┴Ц│∙Ц│⌡Ц┌▀ 2008.02.09(Е°÷) matsuda
 		if(tee->wait >= 10 && tee->sub_disp_evy < 16){
 			u16 i, rgb;
 			u16 *dest_buf;
@@ -7057,8 +7057,8 @@ static	void	TCB_EncountEffect(TCB_PTR tcb,void *work)
 		if(tee->wait==20){
 			ECE_Call(tee->ece[1]);
 		}
-//		if(tee->wait==46){					///< SE┼J▌n┌л┐^┐C┐~┐⌠┐O
-		if(tee->wait==23){					///< SE┼J▌n┌л┐^┐C┐~┐⌠┐O
+//		if(tee->wait==46){					///< SEИ√▀Е╖▀Ц│╝Ц┌©Ц┌╓Ц┐÷Ц┐ЁЦ┌╟
+		if(tee->wait==23){					///< SEИ√▀Е╖▀Ц│╝Ц┌©Ц┌╓Ц┐÷Ц┐ЁЦ┌╟
 			Snd_SePlay(BECEFF_GRASS_02);
 		}
 //		if(tee->wait==56){
@@ -7094,7 +7094,7 @@ static	void	TCB_EncountEffect(TCB_PTR tcb,void *work)
 		}
 		break;
 	case SEQ_ECE_END:
-		//┐│┐b┐Z│[┐W┐E┐C┐⌠┐h┐EDS┐A┐C┐R┐⌠┐p┐▄┐b┐g┐A┐j┐│┐X┐^│[┐g
+		//Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌╕Ц┌╓Ц┐ЁЦ┐┴Ц┌╕DSЦ┌╒Ц┌╓Ц┌ЁЦ┐ЁЦ┐▒Ц┐╛Ц┐┐Ц┐┬Ц┌╒Ц┐▀Ц┐║Ц┌╧Ц┌©Ц┐╪Ц┐┬
 		MSG_DsIconFlashReq(BattleWorkMsgIconGet(tee->bw),MSG_DSI_REQ_START);
 		sys_FreeMemoryEz(work);
 		TCB_Delete(tcb);
@@ -7127,10 +7127,10 @@ static	void	TCB_EncountEffect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	▀Z√Y┌Й▐┬≈²
+ *	Ф┼─Е©≤Ц┌▄Е┤╕Г░├
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_WazaWasure(TCB_PTR tcb,void *work)
@@ -7141,14 +7141,14 @@ static	void	TCB_WazaWasure(TCB_PTR tcb,void *work)
 	pfd=BattleWorkPfdGet(tww->bw);
 
 	switch(tww->seq_no){
-	case 0:		//┐┼┐X┐g┴Ф√й┌ж┌л┐t┐F│[┐h
+	case 0:		//Ц┐╙Ц┌╧Ц┐┬Г■╩И²╒Ц│╦Ц│╝Ц┐∙Ц┌╖Ц┐╪Ц┐┴
 //		MSG_DsIconFlashReq(BattleWorkMsgIconGet(tww->bw),MSG_DSI_REQ_STOP);
 //		PaletteFadeReq(pfd,PF_BIT_MAIN_ALL,0x0c00,0,0,MSG_WINDOW_FADE,0x0000);
 		PaletteFadeReq(pfd,PF_BIT_SUB_ALL,0xffff,BATTLE_BAGLIST_FADE_SPEED,0,16,0x0000);
 		tww->seq_no++;
 		break;
 	case 1:
-		if(PaletteFadeCheck(pfd)==0){	//▀P⌠x∙о█X┐t┐F│[┐h▐I≈╧▒р┌©┌╣┌д░F│X█М▐°
+		if(PaletteFadeCheck(pfd)==0){	//Х╪²Е╨╕Е╓┴Ф⌡╢Ц┐∙Ц┌╖Ц┐╪Ц┐┴Г╣┌Д╨├Е╬┘Ц│║Ц│≈Ц│╕Х┴╡Ц─┘Е┴┼И≥╓
 			FightScreenTransition(tww->bw);
 
 			tww->plist=sys_AllocMemory(HEAPID_BATTLE,sizeof(BPLIST_DATA));
@@ -7159,7 +7159,7 @@ static	void	TCB_WazaWasure(TCB_PTR tcb,void *work)
 			tww->plist->chg_waza=tww->waza_no;
 			tww->plist->end_flg=0;
 			tww->plist->double_sel=0;
-			tww->plist->mode=BPL_MODE_WAZASET;		// ▀Z√Y┌Й
+			tww->plist->mode=BPL_MODE_WAZASET;		// Ф┼─Е©≤Ц┌▄
 			tww->plist->item=0;
 			tww->plist->client_no=tww->client_no;
 			tww->plist->cursor_flg=0;
@@ -7177,7 +7177,7 @@ static	void	TCB_WazaWasure(TCB_PTR tcb,void *work)
 		}
 		break;
 	case 3:
-		if(PaletteFadeCheck(pfd)==0){	//▀P⌠x∙о█X┐t┐F│[┐h▐I≈╧▒р┌©┌╣┌д░F│X█М▐°
+		if(PaletteFadeCheck(pfd)==0){	//Х╪²Е╨╕Е╓┴Ф⌡╢Ц┐∙Ц┌╖Ц┐╪Ц┐┴Г╣┌Д╨├Е╬┘Ц│║Ц│≈Ц│╕Х┴╡Ц─┘Е┴┼И≥╓
 //			MSG_DsIconFlashReq(BattleWorkMsgIconGet(tww->bw),MSG_DSI_REQ_START);
 			if(tww->plist->sel_wp==BPL_SEL_WP_CANCEL){
 				SCIO_PokemonSelectReturnSet(tww->bw,tww->client_no,SELECT_CANCEL);
@@ -7196,10 +7196,10 @@ static	void	TCB_WazaWasure(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐\┐t┐g┐E┐G┐A┐X┐v┐┴┐C┐g┌и┐┌┐U┐C┐N┌П┌╘┌╞┌И
+ *	Ц┌╫Ц┐∙Ц┐┬Ц┌╕Ц┌╗Ц┌╒Ц┌╧Ц┐≈Ц┐╘Ц┌╓Ц┐┬Ц│╚Ц┐╒Ц┌╤Ц┌╓Ц┌╞Ц┌▓Ц│▀Ц│▒Ц┌▀
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_MosaicSet(TCB_PTR tcb,void *work)
@@ -7237,10 +7237,10 @@ static	void	TCB_MosaicSet(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	▌Х▌²┌©┐Q│[┐W│F┐G┐⌠┐J┐E┐⌠┐gIN
+ *	Ф┴▀Ф▄│Ц│║Ц┌╡Ц┐╪Ц┌╦О╪ Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬IN
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_BallGaugeEncountSet(TCB_PTR tcb,void *work)
@@ -7290,7 +7290,7 @@ static	void	TCB_BallGaugeEncountSet(TCB_PTR tcb,void *work)
 		break;
 	case 1:
 		if(TEMOTI_InEffectEndCheck(BattleWorkGF_BGL_TGGet(tbg->bw, side)) == TRUE){
-//┴П∙З┌мOUT┌е			TEMOTI_EffectFree(tg);
+//Х╖ёФ■╬Ц│╞OUTЦ│╖			TEMOTI_EffectFree(tg);
 			tbg->seq_no++;
 		}
 		break;
@@ -7304,10 +7304,10 @@ static	void	TCB_BallGaugeEncountSet(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	▌Х▌²┌©┐Q│[┐W│F┐G┐⌠┐J┐E┐⌠┐gOUT
+ *	Ф┴▀Ф▄│Ц│║Ц┌╡Ц┐╪Ц┌╦О╪ Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬OUT
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_BallGaugeEncountOut(TCB_PTR tcb,void *work)
@@ -7357,10 +7357,10 @@ static	void	TCB_BallGaugeEncountOut(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐\┐t┐g┐X┐v┐┴┐C┐g│└OAM∙о┼╥
+ *	Ц┌╫Ц┐∙Ц┐┬Ц┌╧Ц┐≈Ц┐╘Ц┌╓Ц┐┬О╪·OAMЕ╓┴Ф▐⌡
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	TCB_SStoOAM(TCB_PTR tcb,void *work)
@@ -7384,20 +7384,20 @@ static	void	TCB_SStoOAM(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	OAM│└┐\┐t┌ф┐X┐v┐┴┐C┐g∙о┼╥
+ *	OAMО╪·Ц┌╫Ц┐∙Ц│╗Ц┌╧Ц┐≈Ц┐╘Ц┌╓Ц┐┬Е╓┴Ф▐⌡
  *
- * @param[in]	tcb		TCB┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	work	┐▐│[┐N┐G┐┼┐A┐|┐C┐⌠┐^
+ * @param[in]	tcb		TCBЦ┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	work	Ц┐╞Ц┐╪Ц┌╞Ц┌╗Ц┐╙Ц┌╒Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
-#define TOTS_DELETE_WAIT	(5)		///< ┐E┐F┐C┐g
+#define TOTS_DELETE_WAIT	(5)		///< Ц┌╕Ц┌╖Ц┌╓Ц┐┬
 static	void	TCB_OAMtoSS(TCB_PTR tcb,void *work)
 {
 	TCB_OAM_TO_SS	*tots=(TCB_OAM_TO_SS *)work;
 	
 	GF_ASSERT(tots->cp->ods != NULL);
 	
-	///< B┌л┬й▓u┌л┐|┐P┐┌┐⌠┌м│AD┌лSSP┌ф┌л┐v┐┴┐C┐I┐┼┐e┐B┌л┼ж▄W┌е┌╥┌╝▐а┌╕┌И┌л┌м┌э┌╦┌╒
+	///< BЦ│╝Д╫█Г╫╝Ц│╝Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ│╞Ц─│DЦ│╝SSPЦ│╗Ц│╝Ц┐≈Ц┐╘Ц┌╓Ц┌╙Ц┐╙Ц┐├Ц┌ёЦ│╝И√╒Д©┌Ц│╖Ц│≥Ц│░Ф╤┬Ц│┬Ц┌▀Ц│╝Ц│╞Ц│╬Ц│ Ц│└
 	if (OAM_Drop_ClientTypeGet(tots->cp->ods) == CLIENT_TYPE_B){
 		if (tots->seq_no < TOTS_DELETE_WAIT){
 			tots->seq_no++;
@@ -7417,7 +7417,7 @@ static	void	TCB_OAMtoSS(TCB_PTR tcb,void *work)
 	case 0:
 		GF_ASSERT(tots->cp->ods != NULL);
 
-		///< B┌л┬й▓u┌л┐|┐P┐┌┐⌠┌м│AD┌лSSP┌ф┌л┐v┐┴┐C┐I┐┼┐e┐B┌л┼ж▄W┌е┌╥┌╝▐а┌╕┌И┌л┌м┌э┌╦┌╒
+		///< BЦ│╝Д╫█Г╫╝Ц│╝Ц┐²Ц┌╠Ц┐╒Ц┐ЁЦ│╞Ц─│DЦ│╝SSPЦ│╗Ц│╝Ц┐≈Ц┐╘Ц┌╓Ц┌╙Ц┐╙Ц┐├Ц┌ёЦ│╝И√╒Д©┌Ц│╖Ц│≥Ц│░Ф╤┬Ц│┬Ц┌▀Ц│╝Ц│╞Ц│╬Ц│ Ц│└
 		if (OAM_Drop_ClientTypeGet(tots->cp->ods) != CLIENT_TYPE_B){
 			OAM_Drop_End(tots->cp->ods, tots->client_no);
 			tots->cp->ods = NULL;
@@ -7451,14 +7451,14 @@ static	void	TCB_OAMtoSS(TCB_PTR tcb,void *work)
 }
 
 //-----------------------------------------------------------------------------
-//		┼O∙■┼ж░■≈p┐c│[┐▀▄Q
+//		Е╓√И┐╗И√╒Ф∙╟Г■╗Ц┐└Ц┐╪Ц┐╚Г╬╓
 //-----------------------------------------------------------------------------
 //============================================================================================
 /**
- *	┐├│[┐U┐C┐⌠┐^┐t┐F│[┐X┐Z┐b┐g
+ *	Ц┐╕Ц┐╪Ц┌╤Ц┌╓Ц┐ЁЦ┌©Ц┐∙Ц┌╖Ц┐╪Ц┌╧Ц┌╩Ц┐┐Ц┐┬
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─┐▐│[┐N┐|┐C┐⌠┐^
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 void	CT_UISet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -7714,9 +7714,9 @@ void	CT_UISet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	client_type▌Ф⌠╬┼ж░■
+ *	client_typeЕ▐√Е╬≈И√╒Ф∙╟
  *
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 u8	CT_CPClientTypeGet(CLIENT_PARAM *cp)
@@ -7726,9 +7726,9 @@ u8	CT_CPClientTypeGet(CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	client_boot▌Ф⌠╬┼ж░■
+ *	client_bootЕ▐√Е╬≈И√╒Ф∙╟
  *
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 u8	CT_CPClientBootGet(CLIENT_PARAM *cp)
@@ -7738,9 +7738,9 @@ u8	CT_CPClientBootGet(CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	soft_sprite▌Ф⌠╬┼ж░■
+ *	soft_spriteЕ▐√Е╬≈И√╒Ф∙╟
  *
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 SOFT_SPRITE	*CT_CPSoftSpriteGet(CLIENT_PARAM *cp)
@@ -7755,9 +7755,9 @@ SOFT_SPRITE	*CT_CPSoftSpriteGet(CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	gauge_work▌Ф⌠╬┼ж░■
+ *	gauge_workЕ▐√Е╬≈И√╒Ф∙╟
  *
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 GAUGE_WORK		*CT_CPGaugeWorkGet(CLIENT_PARAM *cp)
@@ -7767,11 +7767,11 @@ GAUGE_WORK		*CT_CPGaugeWorkGet(CLIENT_PARAM *cp)
 
 //--------------------------------------------------------------
 /**
- * @brief   CURSOR_SAVE┐▐│[┐N┌л┐|┐C┐⌠┐^▌Ф⌠╬
+ * @brief   CURSOR_SAVEЦ┐╞Ц┐╪Ц┌╞Ц│╝Ц┐²Ц┌╓Ц┐ЁЦ┌©Е▐√Е╬≈
  *
- * @param   cp				┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
+ * @param   cp				Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
  *
- * @retval  CURSOR_SAVE┐▐│[┐N┌л┐|┐C┐⌠┐^
+ * @retval  CURSOR_SAVEЦ┐╞Ц┐╪Ц┌╞Ц│╝Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //--------------------------------------------------------------
 CURSOR_SAVE * CT_CursorSavePtrGet(CLIENT_PARAM *cp)
@@ -7781,8 +7781,8 @@ CURSOR_SAVE * CT_CursorSavePtrGet(CLIENT_PARAM *cp)
 
 //--------------------------------------------------------------
 /**
- * @brief   CURSOR_SAVE┐▐│[┐N┌П▐┴┼З┴╩┌╥┌И
- * @param   cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
+ * @brief   CURSOR_SAVEЦ┐╞Ц┐╪Ц┌╞Ц┌▓Е┬²Ф°÷Е▄√Ц│≥Ц┌▀
+ * @param   cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //--------------------------------------------------------------
 void CT_CursorSaveClear(CLIENT_PARAM *cp)
@@ -7792,9 +7792,9 @@ void CT_CursorSaveClear(CLIENT_PARAM *cp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ┐g┐▄│[┐i│[┐A┐N┐^│[┌л∙\▌╕░щ▓Х
- * @param   cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┌ж┌л┐|┐C┐⌠┐^
- * @param   enable	CATS_ENABLE_TRUE(∙\▌╕) or CATS_ENABLE_FALSE(■Я∙\▌╕)
+ * @brief   Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌╒Ц┌╞Ц┌©Ц┐╪Ц│╝Х║╗Г╓╨Х╗╜Е╝ 
+ * @param   cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц│╦Ц│╝Ц┐²Ц┌╓Ц┐ЁЦ┌©
+ * @param   enable	CATS_ENABLE_TRUE(Х║╗Г╓╨) or CATS_ENABLE_FALSE(И²·Х║╗Г╓╨)
  */
 //--------------------------------------------------------------
 void Trainer_EnableSet(CLIENT_PARAM *cp, int enable)
@@ -7807,13 +7807,13 @@ void Trainer_EnableSet(CLIENT_PARAM *cp, int enable)
 }
 
 //-----------------------------------------------------------------------------
-//		┼O∙■■Я▄Ж┼J┼ж░■
+//		Е╓√И┐╗И²·Е┘╛И√▀И√╒Ф∙╟
 //-----------------------------------------------------------------------------
 //============================================================================================
 /**
- *	SoftSprite┌л┐Z┐b┐g┌ф▀Z┐G┐t┐F┐N┐g≈p┐L┐┐┐┴⌠W┼J┌ф┐p┐┴┐││[┐^▌Ф⌠╬┌П┌╥┌И┼ж░■
+ *	SoftSpriteЦ│╝Ц┌╩Ц┐┐Ц┐┬Ц│╗Ф┼─Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Г■╗Ц┌╜Ц┐ёЦ┐╘Е╠∙И√▀Ц│╗Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Е▐√Е╬≈Ц┌▓Ц│≥Ц┌▀И√╒Ф∙╟
  *
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	SOFT_SPRITE	*CT_SoftSpriteAdd(BATTLE_WORK *bw,SOFT_SPRITE_MANAGER *ssm_p,SOFT_SPRITE_ARC *ssa,
@@ -7858,9 +7858,9 @@ static	SOFT_SPRITE	*CT_SoftSpriteAdd(BATTLE_WORK *bw,SOFT_SPRITE_MANAGER *ssm_p,
 
 //============================================================================================
 /**
- *	FightType┌ф┐│┐b┐Z│[┐W∙\▌╕┌╥┌ИClient┌╘┌Г√ъ┌╥┐│┐b┐Z│[┐W┌л┐p┐┴┐││[┐^┌П░╤░╛┌╥┌И
+ *	FightTypeЦ│╗Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Х║╗Г╓╨Ц│≥Ц┌▀ClientЦ│▀Ц┌┴Ф┬╩Ц│≥Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╝Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┌▓Г■÷Ф┬░Ц│≥Ц┌▀
  *
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	CT_ModosuMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,MODOSU_MESSAGE_PARAM *mmp,MESSAGE_PARAM *mp)
@@ -7881,7 +7881,7 @@ static	void	CT_ModosuMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,MODOSU_ME
 		}
 	}
 	else{
-		//▌С┌╞┌╫┐_┐││[┐W┌х┌г┌е│A┐│┐b┐Z│[┐W┌П∙о┴╩
+		//Е▐≈Ц│▒Ц│÷Ц┐─Ц┐║Ц┐╪Ц┌╦Ц│╙Ц│╘Ц│╖Ц─│Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Е╓┴Е▄√
 		if(((BattleWorkFightTypeGet(bw)&FIGHT_TYPE_2vs2)==0)&&
 		   ((BattleWorkFightTypeGet(bw)&FIGHT_TYPE_SIO)==0)){
 			if(mmp->rate==0){
@@ -7910,9 +7910,9 @@ static	void	CT_ModosuMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,MODOSU_ME
 
 //============================================================================================
 /**
- *	FightType┌ф┐│┐b┐Z│[┐W∙\▌╕┌╥┌ИClient┌╘┌Г▄J┌Х▐o┌╥┐│┐b┐Z│[┐W┌л┐p┐┴┐││[┐^┌П░╤░╛┌╥┌И
+ *	FightTypeЦ│╗Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Х║╗Г╓╨Ц│≥Ц┌▀ClientЦ│▀Ц┌┴Г╧╟Ц┌┼Е┤╨Ц│≥Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╝Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┌▓Г■÷Ф┬░Ц│≥Ц┌▀
  *
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
  */
 //============================================================================================
 static	void	CT_KuridasuMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,KURIDASU_MESSAGE_PARAM *kmp,MESSAGE_PARAM *mp)
@@ -7933,7 +7933,7 @@ static	void	CT_KuridasuMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,KURIDAS
 		}
 	}
 	else{
-		//≈^┌╕┌╫┐_┐││[┐W┌х┌г┌е│A┐│┐b┐Z│[┐W┌П∙о┴╩
+		//Д╦▌Ц│┬Ц│÷Ц┐─Ц┐║Ц┐╪Ц┌╦Ц│╙Ц│╘Ц│╖Ц─│Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┌▓Е╓┴Е▄√
 		if(((BattleWorkFightTypeGet(bw)&FIGHT_TYPE_2vs2)==0)&&
 		   ((BattleWorkFightTypeGet(bw)&FIGHT_TYPE_SIO)==0)){
 			if(kmp->rate<100){
@@ -7962,11 +7962,11 @@ static	void	CT_KuridasuMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,KURIDAS
 
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g┐│┐b┐Z│[┐W┌л┐p┐┴┐││[┐^┌П░╤░╛┌╥┌И
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╝Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┌▓Г■÷Ф┬░Ц│≥Ц┌▀
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
- * @param[in]	mp		┐│┐b┐Z│[┐W┐p┐┴┐││[┐^
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
+ * @param[in]	mp		Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©
  */
 //============================================================================================
 static	void		CT_EncountMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,MESSAGE_PARAM *mp)
@@ -8028,12 +8028,12 @@ static	void		CT_EncountMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,MESSAGE
 
 //============================================================================================
 /**
- *	┐G┐⌠┐J┐E┐⌠┐g▌·┌л▄J┌Х▐o┌╣┐│┐b┐Z│[┐W┌л┐p┐┴┐││[┐^┌П░╤░╛┌╥┌И
+ *	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ф≥┌Ц│╝Г╧╟Ц┌┼Е┤╨Ц│≈Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╝Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┌▓Г■÷Ф┬░Ц│≥Ц┌▀
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
- * @param[in]	ekmp	┐G┐⌠┐J┐E┐⌠┐g▌·┌л▄J┌Х▐o┌╣┐│┐b┐Z│[┐W┐p┐┴┐││[┐^
- * @param[in]	mp		┐│┐b┐Z│[┐W┐p┐┴┐││[┐^
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
+ * @param[in]	ekmp	Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ф≥┌Ц│╝Г╧╟Ц┌┼Е┤╨Ц│≈Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©
+ * @param[in]	mp		Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©
  */
 //============================================================================================
 static	void		CT_EncountKuridasuMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,
@@ -8205,11 +8205,11 @@ static	void		CT_EncountKuridasuMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp
 
 //============================================================================================
 /**
- *	▓й░M▒н░М▌·┌л▐÷■s┐│┐b┐Z│[┐W┌л┐p┐┴┐││[┐^┌П░╤░╛┌╥┌И
+ *	И─ Д©║Е╞╬Ф┬╕Ф≥┌Ц│╝Е▀²Ф∙≈Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╝Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┌▓Г■÷Ф┬░Ц│≥Ц┌▀
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
- * @param[in]	mp		┐│┐b┐Z│[┐W┐p┐┴┐││[┐^
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
+ * @param[in]	mp		Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©
  */
 //============================================================================================
 static	void	CT_WinLoseMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,MESSAGE_PARAM *mp)
@@ -8276,12 +8276,12 @@ static	void	CT_WinLoseMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,MESSAGE_
 
 //============================================================================================
 /**
- *	▓й░M▒н░М▌·┌л┌и┌╟┌И┐│┐b┐Z│[┐W┌л┐p┐┴┐││[┐^┌П░╤░╛┌╥┌И
+ *	И─ Д©║Е╞╬Ф┬╕Ф≥┌Ц│╝Ц│╚Ц│▓Ц┌▀Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╝Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┌▓Г■÷Ф┬░Ц│≥Ц┌▀
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
- * @param[in]	emp		⌠╕┌╟┌И┐│┐b┐Z│[┐W┐p┐┴┐││[┐^
- * @param[in]	mp		┐│┐b┐Z│[┐W┐p┐┴┐││[┐^
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
+ * @param[in]	emp		И─┐Ц│▓Ц┌▀Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©
+ * @param[in]	mp		Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©
  */
 //============================================================================================
 static	void	CT_EscapeMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,ESCAPE_MESSAGE_PARAM *emp,MESSAGE_PARAM *mp)
@@ -8344,11 +8344,11 @@ static	void	CT_EscapeMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,ESCAPE_ME
 
 //============================================================================================
 /**
- *	┐o┐g┐▀┐^┐▐│[┌л┐┼┐^┐C┐A┐│┐b┐Z│[┐W┌л┐p┐┴┐││[┐^┌П░╤░╛┌╥┌И
+ *	Ц┐░Ц┐┬Ц┐╚Ц┌©Ц┐╞Ц┐╪Ц│╝Ц┐╙Ц┌©Ц┌╓Ц┌╒Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц│╝Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц┌▓Г■÷Ф┬░Ц│≥Ц┌▀
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─┐▐│[┐N
- * @param[in]	cp		┐N┐┴┐C┐A┐⌠┐g┐▐│[┐N┐|┐C┐⌠┐^
- * @param[in]	mp		┐│┐b┐Z│[┐W┐p┐┴┐││[┐^
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Ц┐╞Ц┐╪Ц┌╞
+ * @param[in]	cp		Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©
+ * @param[in]	mp		Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©
  */
 //============================================================================================
 static	void	CT_GiveUpMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,MESSAGE_PARAM *mp)
@@ -8372,14 +8372,14 @@ static	void	CT_GiveUpMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,MESSAGE_P
 
 //============================================================================================
 /**
- *	┐g┐▄│[┐i│[┐L┐┐┐┴┌лCLACT┐┼┐\│[┐X┌л┐█│[┐h
+ *	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌╜Ц┐ёЦ┐╘Ц│╝CLACTЦ┐╙Ц┌╫Ц┐╪Ц┌╧Ц│╝Ц┐╜Ц┐╪Ц┐┴
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Ф╖▀И─═Д╫⌠
  * @param[in]	type	client_type
- * @param[in]	trtype	┐g┐▄│[┐i│[┐^┐C┐v
- * @param[in]	id		CLACT┐┼┐\│[┐XID┌ж┌л┐I┐t┐Z┐b┐g
- * @param[in]	pos_x	▐┴┼З┬й▓uX
- * @param[in]	pos_x	▐┴┼З┬й▓uY
+ * @param[in]	trtype	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌©Ц┌╓Ц┐≈
+ * @param[in]	id		CLACTЦ┐╙Ц┌╫Ц┐╪Ц┌╧IDЦ│╦Ц│╝Ц┌╙Ц┐∙Ц┌╩Ц┐┐Ц┐┬
+ * @param[in]	pos_x	Е┬²Ф°÷Д╫█Г╫╝X
+ * @param[in]	pos_x	Е┬²Ф°÷Д╫█Г╫╝Y
  */
 //============================================================================================
 static	CATS_ACT_PTR	CT_TrainerCLACTResourceLoad(BATTLE_WORK *bw,int type,int trtype,int id,s16 pos_x,s16 pos_y)
@@ -8408,12 +8408,12 @@ static	CATS_ACT_PTR	CT_TrainerCLACTResourceLoad(BATTLE_WORK *bw,int type,int trt
 
 //============================================================================================
 /**
- *	┐g┐▄│[┐i│[┐L┐┐┐┴┌лCLACT┐┼┐\│[┐X┌л┐█│[┐h
+ *	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌╜Ц┐ёЦ┐╘Ц│╝CLACTЦ┐╙Ц┌╫Ц┐╪Ц┌╧Ц│╝Ц┐╜Ц┐╪Ц┐┴
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Ф╖▀И─═Д╫⌠
  * @param[in]	type	client_type
- * @param[in]	trtype	┐g┐▄│[┐i│[┐^┐C┐v
- * @param[in]	id		CLACT┐┼┐\│[┐XID┌ж┌л┐I┐t┐Z┐b┐g
+ * @param[in]	trtype	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌©Ц┌╓Ц┐≈
+ * @param[in]	id		CLACTЦ┐╙Ц┌╫Ц┐╪Ц┌╧IDЦ│╦Ц│╝Ц┌╙Ц┐∙Ц┌╩Ц┐┐Ц┐┬
  */
 //============================================================================================
 static	void	CT_WesCall(BATTLE_WORK *bw,CLIENT_PARAM *cp,WE_SYS_PTR wsp,WAZA_EFFECT_PARAM *wep)
@@ -8422,7 +8422,7 @@ static	void	CT_WesCall(BATTLE_WORK *bw,CLIENT_PARAM *cp,WE_SYS_PTR wsp,WAZA_EFFE
 	int i;
 	int	callID;
 
-	/// ░М⌠╛┌и⌠n┌╥┼g▓ё┬Ь░■
+	/// Ф┬╕И≈≤Ц│╚Ф╦║Ц│≥Ф▀║Е╪╣Е╪∙Ф∙╟
 	if(wep->flag==EFFTYPE_WAZA){
 		wcbep.eff_arc_id = ARC_WAZA_EFF;
 		callID=wep->waza_no;
@@ -8443,14 +8443,14 @@ static	void	CT_WesCall(BATTLE_WORK *bw,CLIENT_PARAM *cp,WE_SYS_PTR wsp,WAZA_EFFE
 		wcbep.personal_rnd[i] = wep->personal_rnd[i];
 		wcbep.waza_kouka[i] = wep->waza_kouka[i];
 	}
-	BattleClientTypeBufMake(bw, &(wcbep.client_type[0]));			///< ┐N┐┴┐C┐A┐⌠┐gType
-	BattleSoftSpriteBufMake(bw, &(wcbep.ss[0]));					///< ┐\┐t┐g┐X┐v┐┴┐C┐g
-	wcbep.fight_type = BattleWorkFightTypeGet(bw);					///< ┐t┐@┐C┐g┐^┐C┐v▌Ф⌠╬
-	wcbep.perap_voice = BattleWorkPerapVoiceGet(bw, cp->client_no);	///< ┐y┐┴┐b┐v
-	wcbep.bg_area = BattleWorkBGAreaGet(bw);						///< BG┐G┐┼┐A
-	wcbep.pal_area = BattleWorkPalAreaGet(bw);						///< PAL┐G┐┼┐A
+	BattleClientTypeBufMake(bw, &(wcbep.client_type[0]));			///< Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Type
+	BattleSoftSpriteBufMake(bw, &(wcbep.ss[0]));					///< Ц┌╫Ц┐∙Ц┐┬Ц┌╧Ц┐≈Ц┐╘Ц┌╓Ц┐┬
+	wcbep.fight_type = BattleWorkFightTypeGet(bw);					///< Ц┐∙Ц┌║Ц┌╓Ц┐┬Ц┌©Ц┌╓Ц┐≈Е▐√Е╬≈
+	wcbep.perap_voice = BattleWorkPerapVoiceGet(bw, cp->client_no);	///< Ц┐ Ц┐╘Ц┐┐Ц┐≈
+	wcbep.bg_area = BattleWorkBGAreaGet(bw);						///< BGЦ┌╗Ц┐╙Ц┌╒
+	wcbep.pal_area = BattleWorkPalAreaGet(bw);						///< PALЦ┌╗Ц┐╙Ц┌╒
 	
-	///< ■w▄i┐f│[┐^
+	///< Х┐▄Ф≥╞Ц┐┤Ц┐╪Ц┌©
 	wcbep.haikei_data.arc_index = ARC_BATT_BG;
 	wcbep.haikei_data.chr_id	= BATTLE_BG00_NCGR_BIN + BattleWorkBGIDGet(bw);
 	wcbep.haikei_data.pal_id	= BATT_BG00_D_NCLR + BattleWorkBGIDGet(bw)*3+BattleWorkTimeZoneOffsetGet(bw);
@@ -8463,12 +8463,12 @@ static	void	CT_WesCall(BATTLE_WORK *bw,CLIENT_PARAM *cp,WE_SYS_PTR wsp,WAZA_EFFE
 
 //============================================================================================
 /**
- *	WAZA_POKE_CHANGE_PARAM█\▒╒▒л┌л░╤░╛
+ *	WAZA_POKE_CHANGE_PARAMФ╖▀И─═Д╫⌠Ц│╝Г■÷Ф┬░
  *
- * @param[in]	bw			░М⌠╛┐V┐X┐e┐─█\▒╒▒л
- * @param[in]	wep			WAZA_POKE_CHANGE_PARAM█\▒╒▒л┌П░╤░╛┌╥┌И┌╫┌ъ┌л┐p┐┴┐││[┐^
- * @param[in]	wpcp		░╤░╛┌╣┌╫WAZA_POKE_CHANGE_PARAM█\▒╒▒л┐f│[┐^┼i■[░Ф
- * @param[in]	client_no	░╤░╛┌╥┌ИClientNo
+ * @param[in]	bw			Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Ф╖▀И─═Д╫⌠
+ * @param[in]	wep			WAZA_POKE_CHANGE_PARAMФ╖▀И─═Д╫⌠Ц┌▓Г■÷Ф┬░Ц│≥Ц┌▀Ц│÷Ц┌│Ц│╝Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©
+ * @param[in]	wpcp		Г■÷Ф┬░Ц│≈Ц│÷WAZA_POKE_CHANGE_PARAMФ╖▀И─═Д╫⌠Ц┐┤Ц┐╪Ц┌©Ф═╪Г╢█Е┘┬
+ * @param[in]	client_no	Г■÷Ф┬░Ц│≥Ц┌▀ClientNo
  */
 //============================================================================================
 static	void	CT_WazaPokeChangeParamMake(BATTLE_WORK *bw,WAZA_EFFECT_PARAM *wep,WAZA_POKE_CHANGE_PARAM *wpcp,int client_no)
@@ -8486,19 +8486,19 @@ static	void	CT_WazaPokeChangeParamMake(BATTLE_WORK *bw,WAZA_EFFECT_PARAM *wep,WA
 		wpcp->form_no[i]		=wep->form_no[i];
 		wpcp->personal_rnd[i]	=wep->personal_rnd[i];
 	}
-	BattleClientTypeBufMake(bw, &(wpcp->client_type[0]));			///< ┐N┐┴┐C┐A┐⌠┐gType
-	BattleSoftSpriteBufMake(bw, &(wpcp->ss[0]));					///< ┐\┐t┐g┐X┐v┐┴┐C┐g
+	BattleClientTypeBufMake(bw, &(wpcp->client_type[0]));			///< Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Type
+	BattleSoftSpriteBufMake(bw, &(wpcp->ss[0]));					///< Ц┌╫Ц┐∙Ц┐┬Ц┌╧Ц┐≈Ц┐╘Ц┌╓Ц┐┬
 }
 
 //============================================================================================
 /**
- *	┐G┐t┐F┐N┐g■╜⌠╝▌·┌лHP┐Q│[┐W┌ф┴e┌л┐I┐⌠┐I┐t┌П░╖▄Д
+ *	Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Г≥╨Е▀∙Ф≥┌Ц│╝HPЦ┌╡Ц┐╪Ц┌╦Ц│╗Е╫╠Ц│╝Ц┌╙Ц┐ЁЦ┌╙Ц┐∙Ц┌▓Е┬╤Е╬║
  *
- * @param[out]	gauge		HP┐Q│[┐WON/OFF┐t┐┴┐O
- * @param[out]	shadow		┴eON/OFF┐t┐┴┐O
- * @param[in]	eff_type	┐G┐t┐F┐N┐g▌М≈ч
- * @param[in]	eff_no		┐G┐t┐F┐N┐g┐i┐⌠┐o│[
- * @param[in]	waza_no		▀Z┐G┐t┐F┐N┐g▌·┌л▀Z┐i┐⌠┐o│[
+ * @param[out]	gauge		HPЦ┌╡Ц┐╪Ц┌╦ON/OFFЦ┐∙Ц┐╘Ц┌╟
+ * @param[out]	shadow		Е╫╠ON/OFFЦ┐∙Ц┐╘Ц┌╟
+ * @param[in]	eff_type	Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Г╗╝И║·
+ * @param[in]	eff_no		Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┐┼Ц┐ЁЦ┐░Ц┐╪
+ * @param[in]	waza_no		Ф┼─Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ф≥┌Ц│╝Ф┼─Ц┐┼Ц┐ЁЦ┐░Ц┐╪
  */
 //============================================================================================
 static	void	CT_WazaEffectGaugeShadowOnOffCheck(u8 *gauge,u8 *shadow,int eff_type,int eff_no,u16 waza_no)
@@ -8548,12 +8548,12 @@ static	void	CT_WazaEffectGaugeShadowOnOffCheck(u8 *gauge,u8 *shadow,int eff_type
 
 //============================================================================================
 /**
- *	┐g┐▄│[┐i│[┐A┐j┐│┌и░щ▓Х┌Ё┌Й┌д┌╒┌И┐G┐t┐F┐N┐g┌л■╜⌠╝┐`┐F┐b┐N
+ *	Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌╒Ц┐▀Ц┐║Ц│╚Х╗╜Е╝ Ц│∙Ц┌▄Ц│╕Ц│└Ц┌▀Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц│╝Г≥╨Е▀∙Ц┐│Ц┌╖Ц┐┐Ц┌╞
  *
- * @param[in]	tte		┐g┐▄│[┐i│[┐G┐⌠┐J┐E┐⌠┐g┐G┐t┐F┐N┐g┐▐│[┐N█\▒╒▒л┌ж┌л┐|┐C┐⌠┐^
- * @param[in]	cap		┐g┐▄│[┐i│[┐L┐┐┐┴CLACT█\▒╒▒л
+ * @param[in]	tte		Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌╗Ц┐ЁЦ┌╚Ц┌╕Ц┐ЁЦ┐┬Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠Ц│╦Ц│╝Ц┐²Ц┌╓Ц┐ЁЦ┌©
+ * @param[in]	cap		Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌╜Ц┐ёЦ┐╘CLACTФ╖▀И─═Д╫⌠
  *
- * @retval	FALSE ┐A┐j┐││[┐V┐┤┐⌠▄p▒╠│@TRUE│@┐A┐j┐││[┐V┐┤┐⌠⌠r▓├┌е┌Ю┐T│[┐o┌и▐I≈╧┌ф⌠`┌╕┌И│i░Ф┌и░i┌э┌╧┌И│j
+ * @retval	FALSE Ц┌╒Ц┐▀Ц┐║Ц┐╪Ц┌╥Ц┐╖Ц┐ЁГ╤≥Г╤ Ц──TRUEЦ──Ц┌╒Ц┐▀Ц┐║Ц┐╪Ц┌╥Ц┐╖Ц┐ЁИ─■Д╦╜Ц│╖Ц┌┌Ц┌╣Ц┐╪Ц┐░Ц│╚Г╣┌Д╨├Ц│╗Д╪²Ц│┬Ц┌▀О╪┬Е┘┬Ц│╚И─╡Ц│╬Ц│⌡Ц┌▀О╪┴
  */
 //============================================================================================
 enum{
@@ -8566,7 +8566,7 @@ static	BOOL	CT_TrainerEncountAnimeEffectCheck(TCB_TRAINER_ENCOUNT *tte,CATS_ACT_
 	int			attr;
 	BOOL		ret=FALSE;
 
-	//┌╥┌е┌и┐G┐t┐F┐N┐g┌П▀N⌠╝┌╣┌д┌╒┌И┌х┌Г│A┴╫┌Ю┌╣┌х┌╒
+	//Ц│≥Ц│╖Ц│╚Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬Ц┌▓Х╣╥Е▀∙Ц│≈Ц│╕Ц│└Ц┌▀Ц│╙Ц┌┴Ц─│Д╫∙Ц┌┌Ц│≈Ц│╙Ц│└
 //	if(tte->eff_flag){
 //		return;
 //	}
@@ -8600,7 +8600,7 @@ static	BOOL	CT_TrainerEncountAnimeEffectCheck(TCB_TRAINER_ENCOUNT *tte,CATS_ACT_
 
 //============================================================================================
 /**
- *	┴Ф√й■▓┐t┐F│[┐h┐G┐t┐F┐N┐g
+ *	Г■╩И²╒Г≥╫Ц┐∙Ц┌╖Ц┐╪Ц┐┴Ц┌╗Ц┐∙Ц┌╖Ц┌╞Ц┐┬
  */
 //============================================================================================
 static	void	TEAE_WhiteFadeEffect(TCB_PTR tcb,void *work)
@@ -8629,9 +8629,9 @@ static	void	TEAE_WhiteFadeEffect(TCB_PTR tcb,void *work)
 
 //============================================================================================
 /**
- *	┐f│[┐^┐G┐┴│[┌и┌Ф┌И≤^┴Ф█д░╤▓├▓f▐┬≈²
+ *	Ц┐┤Ц┐╪Ц┌©Ц┌╗Ц┐╘Ц┐╪Ц│╚Ц┌┬Ц┌▀И▄╡Г■╩Е├█Г■÷Д╦╜Ф√╜Е┤╕Г░├
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 static	void	BattleRecDataErrorStop(BATTLE_WORK *bw)
@@ -8642,9 +8642,9 @@ static	void	BattleRecDataErrorStop(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	┐f│[┐^MAX┌и┌Ф┌И≤^┴Ф█д░╤▓├▓f▐┬≈²
+ *	Ц┐┤Ц┐╪Ц┌©MAXЦ│╚Ц┌┬Ц┌▀И▄╡Г■╩Е├█Г■÷Д╦╜Ф√╜Е┤╕Г░├
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 static	void	BattleRecDataFullStop(BATTLE_WORK *bw)
@@ -8655,15 +8655,15 @@ static	void	BattleRecDataFullStop(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	┐█┐─┐R│[┐h┌П┐`┐F┐b┐N┌╣┌д⌠K░Ё┌х┐g┐▄│[┐i│[┐^┐C┐v┌и∙о┼╥┌╥┌И
+ *	Ц┐╜Ц┐═Ц┌ЁЦ┐╪Ц┐┴Ц┌▓Ц┐│Ц┌╖Ц┐┐Ц┌╞Ц│≈Ц│╕И│╘Ф╜ёЦ│╙Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌©Ц┌╓Ц┐≈Ц│╚Е╓┴Ф▐⌡Ц│≥Ц┌▀
  *
- * @param[in]	bw		░М⌠╛┐V┐X┐e┐─≈p┐▐│[┐N█\▒╒▒л
+ * @param[in]	bw		Ф┬╕И≈≤Ц┌╥Ц┌╧Ц┐├Ц┐═Г■╗Ц┐╞Ц┐╪Ц┌╞Ф╖▀И─═Д╫⌠
  */
 //============================================================================================
 static	u8	CheckRomCodeTrainerTypeChange(BATTLE_WORK *bw,u8 client_no,u8 trtype)
 {
 	if(BattleWorkFightTypeGet(bw)&FIGHT_TYPE_SIO){
-		//┐█┐─┐R│[┐h┌╙┌O┌л▐Й█┤┌м│A┐N┐┴┐C┐A┐⌠┐g┌╙DP┌х┌л┌е│A┐g┐▄│[┐i│[┐^┐C┐v┌П∙о█X┌╥┌И
+		//Ц┐╜Ц┐═Ц┌ЁЦ┐╪Ц┐┴Ц│▄О╪░Ц│╝Е═╢Е░┬Ц│╞Ц─│Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц│▄DPЦ│╙Ц│╝Ц│╖Ц─│Ц┐┬Ц┐╛Ц┐╪Ц┐┼Ц┐╪Ц┌©Ц┌╓Ц┐≈Ц┌▓Е╓┴Ф⌡╢Ц│≥Ц┌▀
 		if((MyStatus_GetRomCode(BattleWorkMyStatusGet(bw,client_no))==0)&&(trtype<=TRTYPE_GIRL)){
 			trtype+=TRTYPE_BOY_DP;
 		}

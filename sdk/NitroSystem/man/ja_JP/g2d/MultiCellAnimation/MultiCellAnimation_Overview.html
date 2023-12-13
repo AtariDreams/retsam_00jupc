@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MultiCellAnimation_Overview</title>
@@ -10,10 +10,10 @@
 </head>
 
 <body>
-<h1 align="left">�}���`�Z���A�j���[�V�����T�v</h1>
-<H2>�T�O�}</H2>
+<h1 align="left">マルチセルアニメーション概要</h1>
+<H2>概念図</H2>
 <P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
-12.0pt;font-family:Century;mso-fareast-font-family:"�l�r �o����";mso-bidi-font-family:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
 "Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
 JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
  coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
@@ -44,61 +44,61 @@ JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
   DrawAspect="Content" ObjectID="_1162369709">
  </o:OLEObject>
 </xml><![endif]--><IMG src="image.gif" width="871" height="567" border="0"></span></P>
-<H2>����</H2>
-�}���`�Z���A�j���[�V�����́ANITRO-CHARACTER�ō쐬���ꂽ�}���`�Z���A�j���[�V�������Đ����邽�߂̂��̂ł��B<BR>
-�}���`�Z���A�j���[�V�����́A�����ɃA�j���[�V�����R���g���[���������A���̃A�j���[�V�����R���g���[����p���ă}���`�Z�����A�j���[�V���������܂��B<BR>
-�}���`�Z���́A�����̃Z���A�j���[�V�����ɂ���č\������Ă��܂��B<BR>
+<H2>説明</H2>
+マルチセルアニメーションは、NITRO-CHARACTERで作成されたマルチセルアニメーションを再生するためのものです。<BR>
+マルチセルアニメーションは、内部にアニメーションコントローラを持ち、このアニメーションコントローラを用いてマルチセルをアニメーションさせます。<BR>
+マルチセルは、複数のセルアニメーションによって構成されています。<BR>
 
-<h2>�}���`�Z���A�j���[�V�����̓����f�[�^</h2>
-<h3>�}���`�Z���f�[�^�o���N�ւ̃|�C���^</h3>
-���C����������ɓǂݏo�����}���`�Z���f�[�^�o���N�ւ̃|�C���^���i�[����܂��B
-�}���`�Z���f�[�^�o���N�͐ÓI�ȃf�[�^�ł���A�����������邱�Ƃ͗L��܂���B
-�}���`�Z���A�j���[�V�����Ŏg�p�����}���`�Z���́A���̃|�C���^���w�������}���`�Z���f�[�^�o���N�Ɋ܂܂�Ă��Ȃ���΂Ȃ�܂���B
+<h2>マルチセルアニメーションの内部データ</h2>
+<h3>マルチセルデータバンクへのポインタ</h3>
+メインメモリ上に読み出したマルチセルデータバンクへのポインタが格納されます。
+マルチセルデータバンクは静的なデータであり、書き換えられることは有りません。
+マルチセルアニメーションで使用されるマルチセルは、このポインタが指し示すマルチセルデータバンクに含まれていなければなりません。
 
-<h3>�\�����̃}���`�Z���f�[�^�ւ̃|�C���^</h3>
-�A�j���[�V�����Đ��ɂ��A���݉�ʂɕ\������Ă���}���`�Z���ւ̃|�C���^���i�[����܂��B
-���̃|�C���^���w�������}���`�Z���́A�}���`�Z���f�[�^�o���N�ւ̃|�C���^���w�������}���`�Z���f�[�^�o���N�̒��ɑ��݂��܂��B
-�\�����̃}���`�Z�����̂̓��������o�Ƃ��đ��݂��Ă��܂��B
+<h3>表示中のマルチセルデータへのポインタ</h3>
+アニメーション再生により、現在画面に表示されているマルチセルへのポインタが格納されます。
+このポインタが指し示すマルチセルは、マルチセルデータバンクへのポインタが指し示すマルチセルデータバンクの中に存在します。
+表示中のマルチセル実体の内部メンバとして存在しています。
 
-<h3>SRT�A�j���[�V�����̌���</h3>
-�A�j���[�V�����Đ��ɂ��ω������A�}���`�Z���̈ʒu�A��]�A�X�P�[�����i�[����܂��B
+<h3>SRTアニメーションの結果</h3>
+アニメーション再生により変化した、マルチセルの位置、回転、スケールが格納されます。
 
-<h3>�}���`�Z������</h3>
-�\�����̃}���`�Z���̎��̂������T�O�ł��B�\�����̃}���`�Z���f�[�^�ւ̃|�C���^������ɕێ����܂��B
-�܂��A�A�j���[�V�����ɂ���čX�V��������ێ����Ă��܂��B
+<h3>マルチセル実体</h3>
+表示中のマルチセルの実体を現す概念です。表示中のマルチセルデータへのポインタを内部に保持します。
+また、アニメーションによって更新される情報を保持しています。
 
-<h3>�A�j���[�V�����ɂ���čX�V����镔��</h3>
+<h3>アニメーションによって更新される部分</h3>
 
-�A�j���[�V�����ɂ���čX�V�������́A�}���`�Z�����̂ɕێ�����Ă��܂��B<BR> 
-��̓I�ɂ́A�}���`�Z�����\������Z���A�j���[�V�������̂Ƃ��̎��̂̈ʒu���L������m�[�h�Ȃǂ���\������܂��B<BR>
+アニメーションによって更新される情報は、マルチセル実体に保持されています。<BR> 
+具体的には、マルチセルを構成するセルアニメーション実体とその実体の位置を記憶するノードなどから構成されます。<BR>
 <BR>
-�{���̃����^�C����ł̃f�[�^�\���̓Z���A�j���[�V���������L����A���Ȃ�������2��ނ����݂��܂��B<BR>
-���[�U�͏������֐��ɗ^����I�v�V�����ɂ���ėp�r�ɍ������f�[�^�\����I�����Ďg�p���邱�Ƃ��\�ł��B<BR>
+本情報のランタイム上でのデータ構造はセルアニメーションを共有する、しない方式の2種類が存在します。<BR>
+ユーザは初期化関数に与えるオプションによって用途に合ったデータ構造を選択して使用することが可能です。<BR>
 <BR>
-�Z���A�j���[�V���������L����������w�肵���ꍇ�́A
-����̃Z���A�j���[�V�����Đ����s���Z���A�j���[�V�����𕡐��m�[�h�ŋ��L���܂�(�܂�A���m�[�h�� N >= �Z���A�j���� �ƂȂ�܂�)�B<BR>
-�܂��A��q�̃m�[�h���(SRT�p�����[�^�A���t���O�Ȃ�)��ێ����܂���B<BR>
-���̂��߈ȉ��̂悤�ȓ���������܂��B<BR>
+セルアニメーションを共有する方式を指定した場合は、
+同一のセルアニメーション再生を行うセルアニメーションを複数ノードで共有します(つまり、総ノード数 N >= セルアニメ数 となります)。<BR>
+また、後述のノード状態(SRTパラメータ、可視フラグなど)を保持しません。<BR>
+そのため以下のような特徴があります。<BR>
 <BR>
 <pre>
-����̐����̍ۂɕK�v�ȃ������ʂ����Ȃ��B
-��A�j���[�V�����X�V�������ׂ��y���B
-��A�t�B���p�����[�^�g�p�ʂ����Ȃ��i����̃Z���A�j���[�V������`�悷��m�[�h�Ԃł̓A�t�B���p�����[�^�����L���܂��j�B
+・実体生成の際に必要なメモリ量が少ない。
+・アニメーション更新処理負荷が軽い。
+・アフィンパラメータ使用量が少ない（同一のセルアニメーションを描画するノード間ではアフィンパラメータを共有します）。
 </pre>
 <BR>
-���̓����́A�}���`�Z�����ɓ���̃Z���A�j�����������݂���قǌ����Ɍ���܂��B<BR>
+この特徴は、マルチセル内に同一のセルアニメが複数存在するほど顕著に現れます。<BR>
 <BR>
-����A�Z���A�j���[�V���������L���Ȃ��������w�肵���ꍇ�A�m�[�h���ƂɌʂɃZ���A�j���[�V�������̂��m�ۂ���܂�(�܂�A���m�[�h�� N == �Z���A�j���� �ƂȂ�܂�)�B<BR>
-�܂��A�m�[�h�̏�Ԃ�ێ�����f�[�^�̈��ێ����܂��B<BR>
-���̂��߁A���[�U�v���O�����ɂ��A�m�[�h����Z���A�j���[�V�����̏��(�ʒu�A�Đ��A�j���[�V�����ݒ�)�̏㏑�����\�ƂȂ�܂��B<BR>
+一方、セルアニメーションを共有しない方式を指定した場合、ノードごとに個別にセルアニメーション実体が確保されます(つまり、総ノード数 N == セルアニメ数 となります)。<BR>
+また、ノードの状態を保持するデータ領域を保持します。<BR>
+そのため、ユーザプログラムによる、ノード情報やセルアニメーションの状態(位置、再生アニメーション設定)の上書きが可能となります。<BR>
 <BR>
-���[�U�v���O�����ɂ��f�[�^�̏������������Ȃǂ̕K�v���Ȃ��ꍇ�́A�Z���A�j���[�V���������L����������g�p���Ă��������B<BR>
+ユーザプログラムによるデータの書き換え処理などの必要がない場合は、セルアニメーションを共有する方式を使用してください。<BR>
 
 
 
-<h3>�m�[�h</h3>
+<h3>ノード</h3>
 <P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
-12.0pt;font-family:Century;mso-fareast-font-family:"�l�r �o����";mso-bidi-font-family:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
 "Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
 JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
  coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
@@ -130,14 +130,14 @@ JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
  </o:OLEObject>
 </xml><![endif]--></span></P>
 <BR>
-�m�[�h�́A�`��f�[�^�Ɋւ�������i�[����ׂ̃R���e�i�i�e��j�ł��B �m�[�h�ɂ́A�`��f�[�^�ւ̃|�C���^�ƁA�`��I�u�W�F�N�g�̉��z��ʏ�̈ʒu�A��]�A�X�P�[���A�A�t�B���ϊ��p�����[�^�ݒ��񓙂�ێ����܂��B
-�}���`�Z���̎��̂̍\���v�f�Ƃ��ă��C�u���������Ŏg�p����Ă��܂��B
-<h2>�Q��</h2>
+ノードは、描画データに関する情報を格納する為のコンテナ（容器）です。 ノードには、描画データへのポインタと、描画オブジェクトの仮想画面上の位置、回転、スケール、アフィン変換パラメータ設定情報等を保持します。
+マルチセルの実体の構成要素としてライブラリ内部で使用されています。
+<h2>参照</h2>
 <p>
-�Ȃ�
+なし
 </p>
-<H2>����</H2>
-<P>2005/01/31 "�A�j���[�V�����ɂ���čX�V����镔��"�ɂ��Ă̐�����ǉ�</P>
-<P>2004/12/06 ����</P>
+<H2>履歴</H2>
+<P>2005/01/31 "アニメーションによって更新される部分"についての説明を追加</P>
+<P>2004/12/06 初版</P>
 </body>
 </html>

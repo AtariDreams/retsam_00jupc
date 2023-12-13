@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_d25r0106evc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d25r0106_sppoke_01
 _EVENT_DATA_END
@@ -27,25 +27,25 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*			�v���Y�}�G���J�E���g�C�x���g							*/
+/*			プラズマエンカウントイベント							*/
 /********************************************************************/
 ev_d25r0106_sppoke_01:
 	_TALK_START
-	//�v���Y�}�ߊl�ς݁H
+	//プラズマ捕獲済み？
 	_IF_FLAGON_JUMP				FE_D25R0106_SPPOKE_CLEAR,ev_d25r0106_sppoke_nobtl
-	//�{������ς݁H
+	//本日挑戦済み？
 	_IF_FLAGON_JUMP				TMFLG_D25R0106_SPPOKE_END,ev_d25r0106_sppoke_nobtl
-	//�Q�[���N���A�H
+	//ゲームクリア？
 	//_SYS_FLAG_GAME_CLEAR_GET	SCWK_ANSWER	
 	//_IFVAL_JUMP					SCWK_ANSWER,EQ,0,ev_d25r0106_sppoke_nobtl
-	//�S���}�ӓ���H
+	//全国図鑑入手？
 	//_ZENKOKU_ZUKAN_FLAG			FLAG_MODE_GET,SCWK_ANSWER
 	//_IFVAL_JUMP					SCWK_ANSWER,EQ,0,ev_d25r0106_sppoke_nobtl
-	//���Ԃ͖�H
+	//時間は夜？
 	_GET_TIME_ZONE				SCWK_ANSWER
 	_IFVAL_JUMP					SCWK_ANSWER,LT,TIMEZONE_NIGHT,ev_d25r0106_sppoke_nobtl
 
-	//�G���J�E���g
+	//エンカウント
 	_TALKMSG		msg_d25r0106_tv_02
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d25r0106_sppoke_talkend
@@ -57,7 +57,7 @@ ev_d25r0106_sppoke_01:
 	_VOICE_PLAY		MONSNO_PURAZUMA,0
 	_VOICE_WAIT
 
-	//�o�g���J�n
+	//バトル開始
 	_FLAG_SET		TMFLG_D25R0106_SPPOKE_END
 	_WILD_BTL_SET	MONSNO_PURAZUMA,20
 
@@ -66,13 +66,13 @@ ev_d25r0106_sppoke_01:
 	_HAIFU_POKE_RETRY_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d25r0106_sppoke_capture_ng
 
-	//�߂܂����̂ŃN���A�t���O���ĂĂ���
+	//捕まえたのでクリアフラグ立てておく
 	_FLAG_SET		FE_D25R0106_SPPOKE_CLEAR
 ev_d25r0106_sppoke_end:
 	_TALK_END
 	_END
 
-/*�߂܂����˂��Ƃ�*/
+/*捕まえ損ねたとき*/
 ev_d25r0106_sppoke_capture_ng:
 	_TALKMSG		msg_d25r0106_tv_04
 	_LAST_KEYWAIT
@@ -80,13 +80,13 @@ ev_d25r0106_sppoke_capture_ng:
 	_TALK_END
 	_END
 
-/*�e���r��@���Ȃ������Ƃ�*/
+/*テレビを叩かなかったとき*/
 ev_d25r0106_sppoke_talkend:
 	_TALK_CLOSE
 	_TALK_END
 	_END
 
-/*�G���J�E���g�ł��Ȃ��Ƃ�*/
+/*エンカウントできないとき*/
 ev_d25r0106_sppoke_nobtl:
 	_TALKMSG		msg_d25r0106_tv_01
 	_LAST_KEYWAIT
@@ -94,7 +94,7 @@ ev_d25r0106_sppoke_nobtl:
 	_TALK_END
 	_END
 
-/*�S��*/
+/*全滅*/
 ev_d25r0106_legend_lose:
 	_NORMAL_LOSE	
 	_TALK_END

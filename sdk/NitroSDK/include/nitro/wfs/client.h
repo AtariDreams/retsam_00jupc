@@ -28,39 +28,39 @@ extern  "C"
 /*---------------------------------------------------------------------------*/
 /* constants */
 
-/* q‹@‚ªóM‚µ‚¤‚éÅ‘å‚Ìƒtƒ@ƒCƒ‹ƒTƒCƒY (4MƒoƒCƒg‚Æ‚µ‚Ä‚¨‚­ ) */
+/* å­æ©ŸãŒå—ä¿¡ã—ã†ã‚‹æœ€å¤§ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º (4Mãƒã‚¤ãƒˆã¨ã—ã¦ãŠã ) */
 #define	WFS_FILE_SIZE_MAX	(4 * 1024 * 1024)
 
 
 /*---------------------------------------------------------------------------*/
 /* declarations */
 
-/* ROM“Ç‚İ‚İƒŠƒNƒGƒXƒgŠ®—¹ƒR[ƒ‹ƒoƒbƒN */
+/* ROMèª­ã¿è¾¼ã¿ãƒªã‚¯ã‚¨ã‚¹ãƒˆå®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ */
 struct WFSClientContext;
 typedef void (*WFSRequestClientReadDoneCallback)(struct WFSClientContext *context, BOOL succeeded, void *arg);
 
-/* WBTƒNƒ‰ƒCƒAƒ“ƒgƒRƒ“ƒeƒLƒXƒg\‘¢‘Ì */
+/* WBTã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæ§‹é€ ä½“ */
 typedef struct WFSClientContext
 {
-    /* Šî–{İ’è */
+    /* åŸºæœ¬è¨­å®š */
     void                   *userdata;
     WFSEventCallback        callback;
     MIAllocator            *allocator;
     u32                     fat_ready:1;
     u32                     flags:31;
-    /* WBTŠÇ— */
+    /* WBTç®¡ç† */
     WBTContext              wbt[1];
     WBTCommandList          wbt_list[2];
     WBTRecvBufTable         recv_buf_table;
     WBTPacketBitmapTable    recv_buf_packet_bmp_table;
     WBTBlockInfoTable       block_info_table;
     WBTBlockInfo            block_info[16];
-    /* óMƒrƒbƒgƒZƒbƒgŠÇ— */
+    /* å—ä¿¡ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆç®¡ç† */
     u32                    *recv_pkt_bmp_buf;
     u32                     max_file_size;
-    /* FATŠÇ— */
+    /* FATç®¡ç† */
     WFSTableFormat          table[1];
-    /* ƒŠƒNƒGƒXƒgŠÇ— */
+    /* ãƒªã‚¯ã‚¨ã‚¹ãƒˆç®¡ç† */
     u32                     block_id;
     CARDRomRegion           request_region;
     void                   *request_buffer;
@@ -77,13 +77,13 @@ WFSClientContext;
 /*---------------------------------------------------------------------------*
   Name:         WFS_InitClient
 
-  Description:  WFSƒNƒ‰ƒCƒAƒ“ƒgƒRƒ“ƒeƒLƒXƒg‚ğ‰Šú‰».
+  Description:  WFSã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’åˆæœŸåŒ–.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                userdata         ƒRƒ“ƒeƒLƒXƒg‚ÉŠÖ˜A•t‚¯‚é”CˆÓ‚Ìƒ†[ƒU’è‹`’l.
-                callback         ƒVƒXƒeƒ€ƒCƒxƒ“ƒg’Ê’mƒR[ƒ‹ƒoƒbƒN.
-                                 •s—v‚È‚çNULL‚ğw’è‚·‚é.
-                allocator        “à•”‚Åg—p‚·‚éƒAƒƒP[ƒ^.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                userdata         ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã«é–¢é€£ä»˜ã‘ã‚‹ä»»æ„ã®ãƒ¦ãƒ¼ã‚¶å®šç¾©å€¤.
+                callback         ã‚·ã‚¹ãƒ†ãƒ ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
+                                 ä¸è¦ãªã‚‰NULLã‚’æŒ‡å®šã™ã‚‹.
+                allocator        å†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -94,10 +94,10 @@ void WFS_InitClient(WFSClientContext *context,
 /*---------------------------------------------------------------------------*
   Name:         WFS_StartClient
 
-  Description:  WFSƒNƒ‰ƒCƒAƒ“ƒgƒRƒ“ƒeƒLƒXƒg‚Ì’ÊM‚ğŠJn.
+  Description:  WFSã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®é€šä¿¡ã‚’é–‹å§‹.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                peer             ©g‚ÌÚ‘±î•ñ.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                peer             è‡ªèº«ã®æ¥ç¶šæƒ…å ±.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -106,9 +106,9 @@ void WFS_StartClient(WFSClientContext *context, const WFSPeerInfo *peer);
 /*---------------------------------------------------------------------------*
   Name:         WFS_EndClient
 
-  Description:  WFSƒNƒ‰ƒCƒAƒ“ƒgƒRƒ“ƒeƒLƒXƒg‚ğ‰ğ•ú.
+  Description:  WFSã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’è§£æ”¾.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -117,10 +117,10 @@ void WFS_EndClient(WFSClientContext *context);
 /*---------------------------------------------------------------------------*
   Name:         WFS_CallClientConnectHook
 
-  Description:  ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌÚ‘±’Ê’m.
+  Description:  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®æ¥ç¶šé€šçŸ¥.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                peer             Ú‘±‚µ‚½’ÊMæ‚Ìî•ñ.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                peer             æ¥ç¶šã—ãŸé€šä¿¡å…ˆã®æƒ…å ±.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -129,10 +129,10 @@ void WFS_CallClientConnectHook(WFSClientContext *context, const WFSPeerInfo *pee
 /*---------------------------------------------------------------------------*
   Name:         WFS_CallClientDisconnectHook
 
-  Description:  ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌØ’f’Ê’m.
+  Description:  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®åˆ‡æ–­é€šçŸ¥.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                peer             Ø’f‚µ‚½’ÊMæ‚Ìî•ñ.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                peer             åˆ‡æ–­ã—ãŸé€šä¿¡å…ˆã®æƒ…å ±.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -141,36 +141,36 @@ void WFS_CallClientDisconnectHook(WFSClientContext *context, const WFSPeerInfo *
 /*---------------------------------------------------------------------------*
   Name:         WFS_CallClientPacketSendHook
 
-  Description:  ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌƒpƒPƒbƒg‘—M‰Â”\ƒ^ƒCƒ~ƒ“ƒO’Ê’m.
+  Description:  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®ãƒ‘ã‚±ãƒƒãƒˆé€ä¿¡å¯èƒ½ã‚¿ã‚¤ãƒŸãƒ³ã‚°é€šçŸ¥.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                packet           ‘—MƒpƒPƒbƒgİ’è.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                packet           é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆè¨­å®š.
 
-  Returns:      ÀÛ‚ÌƒpƒPƒbƒgƒTƒCƒY.
+  Returns:      å®Ÿéš›ã®ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 void WFS_CallClientPacketSendHook(WFSClientContext *context, WFSPacketBuffer *packet);
 
 /*---------------------------------------------------------------------------*
   Name:         WFS_CallClientPacketRecvHook
 
-  Description:  ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌƒpƒPƒbƒgóMƒ^ƒCƒ~ƒ“ƒO’Ê’m.
+  Description:  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®ãƒ‘ã‚±ãƒƒãƒˆå—ä¿¡ã‚¿ã‚¤ãƒŸãƒ³ã‚°é€šçŸ¥.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                packet           ‘—MŒ³ƒpƒPƒbƒgî•ñ.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                packet           é€ä¿¡å…ƒãƒ‘ã‚±ãƒƒãƒˆæƒ…å ±.
 
-  Returns:      ÀÛ‚ÌƒpƒPƒbƒgƒTƒCƒY.
+  Returns:      å®Ÿéš›ã®ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 void WFS_CallClientPacketRecvHook(WFSClientContext *context, const WFSPacketBuffer *packet);
 
 /*---------------------------------------------------------------------------*
   Name:         WFS_IsClientReady
 
-  Description:  ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚Ì€”õ‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©”»’è.
-                WFS_EVENT_CLIENT_READY’Ê’mˆÈ~‚ÍTRUE‚ğ•Ô‚·.
+  Description:  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®æº–å‚™ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹åˆ¤å®š.
+                WFS_EVENT_CLIENT_READYé€šçŸ¥ä»¥é™ã¯TRUEã‚’è¿”ã™.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
 
-  Returns:      ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚Ì€”õ‚ªŠ®—¹‚µ‚Ä‚¢‚ê‚ÎTRUE.
+  Returns:      ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®æº–å‚™ãŒå®Œäº†ã—ã¦ã„ã‚Œã°TRUE.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 BOOL WFS_IsClientReady(const WFSClientContext *context)
@@ -181,12 +181,12 @@ BOOL WFS_IsClientReady(const WFSClientContext *context)
 /*---------------------------------------------------------------------------*
   Name:         WFS_GetTableFormat
 
-  Description:  ƒT[ƒo‚©‚çóM‚µ‚½ROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ğæ“¾.
-                WFS_EVENT_CLIENT_READY’Ê’mˆÈ~‚Å‚Ì‚İ—LŒø‚È’l‚ğ“¾‚é.
+  Description:  ã‚µãƒ¼ãƒã‹ã‚‰å—ä¿¡ã—ãŸROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—.
+                WFS_EVENT_CLIENT_READYé€šçŸ¥ä»¥é™ã§ã®ã¿æœ‰åŠ¹ãªå€¤ã‚’å¾—ã‚‹.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
 
-  Returns:      ROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚Ü‚½‚ÍNULL.
+  Returns:      ROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã¾ãŸã¯NULL.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 const WFSTableFormat *WFS_GetTableFormat(const WFSClientContext *context)
@@ -197,15 +197,15 @@ const WFSTableFormat *WFS_GetTableFormat(const WFSClientContext *context)
 /*---------------------------------------------------------------------------*
   Name:         WFS_RequestClientRead
 
-  Description:  ƒT[ƒo‚ÖROMƒCƒ[ƒW“Ç‚İ‚İ—v‹‚ğŠJn.
+  Description:  ã‚µãƒ¼ãƒã¸ROMã‚¤ãƒ¡ãƒ¼ã‚¸èª­ã¿è¾¼ã¿è¦æ±‚ã‚’é–‹å§‹.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                buffer           “Ç‚İ‚İƒf[ƒ^‚ÌŠi”[æƒƒ‚ƒŠ.
-                offset           ƒfƒoƒCƒX‚Ì“Ç‚İ‚İŠJnˆÊ’u.
-                length           “Ç‚İ‚İƒTƒCƒY.
-                callback         “Ç‚İ‚İŠ®—¹ƒR[ƒ‹ƒoƒbƒN.
-                                 •s—v‚È‚çNULL.
-                arg              “Ç‚İ‚İŠ®—¹ƒR[ƒ‹ƒoƒbƒN‚É—^‚¦‚éˆø”.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                buffer           èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆãƒ¡ãƒ¢ãƒª.
+                offset           ãƒ‡ãƒã‚¤ã‚¹ã®èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®.
+                length           èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º.
+                callback         èª­ã¿è¾¼ã¿å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
+                                 ä¸è¦ãªã‚‰NULL.
+                arg              èª­ã¿è¾¼ã¿å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«ä¸ãˆã‚‹å¼•æ•°.
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void WFS_RequestClientRead(WFSClientContext *context, void *buffer, u32 offset,
@@ -215,11 +215,11 @@ void WFS_RequestClientRead(WFSClientContext *context, void *buffer, u32 offset,
 /*---------------------------------------------------------------------------*
   Name:         WFS_GetClientReadProgress
 
-  Description:  ROMƒCƒ[ƒW“Ç‚İ‚İ—v‹‚Ìi’»ó‹µ‚ğæ“¾.
+  Description:  ROMã‚¤ãƒ¡ãƒ¼ã‚¸èª­ã¿è¾¼ã¿è¦æ±‚ã®é€²æ—çŠ¶æ³ã‚’å–å¾—.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                current          óMÏ‚İƒpƒPƒbƒg”‚ğæ“¾‚·‚é•Ï”.
-                total            óM—\’è‚ÌƒpƒPƒbƒg‘”‚ğæ“¾‚·‚é•Ï”.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                current          å—ä¿¡æ¸ˆã¿ãƒ‘ã‚±ãƒƒãƒˆæ•°ã‚’å–å¾—ã™ã‚‹å¤‰æ•°.
+                total            å—ä¿¡äºˆå®šã®ãƒ‘ã‚±ãƒƒãƒˆç·æ•°ã‚’å–å¾—ã™ã‚‹å¤‰æ•°.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -228,9 +228,9 @@ void WFS_GetClientReadProgress(WFSClientContext *context, int *current, int *tot
 /*---------------------------------------------------------------------------*
   Name:         WFS_ReplaceRomArchive
 
-  Description:  WFS‚ÌROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ğ"rom"‚ÌƒA[ƒJƒCƒu‚Éƒ}ƒEƒ“ƒg.
+  Description:  WFSã®ROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’"rom"ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«ãƒã‚¦ãƒ³ãƒˆ.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

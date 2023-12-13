@@ -16,7 +16,7 @@
 #include "demo_trade.naix"
 
 
-// これを有効にすると実行させながら各種変数を調整できる
+// 縺薙ｌ繧呈怏蜉ｹ縺ｫ縺吶ｋ縺ｨ螳溯｡後＆縺帙↑縺後ｉ蜷�遞ｮ螟画焚繧定ｪｿ謨ｴ縺ｧ縺阪ｋ
 //#define RUNTIME_ADJUST
 
 
@@ -35,7 +35,7 @@ enum {
 };
 
 
-// アクターアニメid
+// 繧｢繧ｯ繧ｿ繝ｼ繧｢繝九Γid
 enum {
 	ANM_EFFECT,
 	ANM_SPOTLIGHT,
@@ -67,7 +67,7 @@ extern void DemoTrade_IRQ_FreeReq( void* adrs );
 
 //======================================================================================
 enum {
-	DT_WAVE_PAL_SIZE = 0x60,		// 電波用パレットサイズ
+	DT_WAVE_PAL_SIZE = 0x60,		// 髮ｻ豕｢逕ｨ繝代Ξ繝�繝医し繧､繧ｺ
 };
 
 typedef struct	_DT_WAVE_PALANM_CTRL	DT_WAVE_PALANM_CTRL;

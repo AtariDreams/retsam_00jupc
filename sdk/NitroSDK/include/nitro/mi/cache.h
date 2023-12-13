@@ -30,16 +30,16 @@ extern  "C"
 /*---------------------------------------------------------------------------*/
 /* declarations */
 
-/* �������L���b�V�����\������X�̃y�[�W��� */
+/* メモリキャッシュを構成する個々のページ情報 */
 typedef struct MICachePage
 {
-    struct MICachePage *next;   /* ���̗v�f (���X�g�̂��߂Ɏg�p) */
-    u32                 offset; /* �y�[�W�擪�ʒu (�y�[�W�T�C�Y�P��) */
-    u8                 *buffer; /* �y�[�W�o�b�t�@ */
+    struct MICachePage *next;   /* 次の要素 (リストのために使用) */
+    u32                 offset; /* ページ先頭位置 (ページサイズ単位) */
+    u8                 *buffer; /* ページバッファ */
 }
 MICachePage;
 
-/* �������L���b�V�����\���� */
+/* メモリキャッシュ情報構造体 */
 typedef struct MICache
 {
     u32             pagewidth;
@@ -52,7 +52,7 @@ typedef struct MICache
 }
 MICache;
 
-/* �w�肵���y�[�W�T�C�Y�Ɩ�������������̂ɕK�v�ȃo�b�t�@�T�C�Y�̎Z�o�}�N�� */
+/* 指定したページサイズと枚数を準備するのに必要なバッファサイズの算出マクロ */
 #define MI_CACHE_BUFFER_WORKSIZE(page, total) \
         ((sizeof(MICachePage) + (page)) * (total))
 
@@ -63,17 +63,17 @@ MICache;
 /*---------------------------------------------------------------------------*
   Name:         MI_InitCache
 
-  Description:  �������L���b�V����������.
+  Description:  メモリキャッシュを初期化.
 
-  Arguments:    cache            ����������MICache�\����.
-                page             1�y�[�W������̃o�b�t�@�T�C�Y.
-                                 4�ȏ��2�ׂ̂���ł���K�v������.
-                buffer           �y�[�W�Ǘ����Ɏg�p����o�b�t�@.
-                length           buffer�̃T�C�Y.
+  Arguments:    cache            初期化するMICache構造体.
+                page             1ページあたりのバッファサイズ.
+                                 4以上で2のべき乗である必要がある.
+                buffer           ページ管理情報に使用するバッファ.
+                length           bufferのサイズ.
                                  length / (sizeof(MICachePage) + page)
-                                 �̐������̃y�[�W���X�g�ɕ��������.
-                                 �e�y�[�W(N=0,1,...)�̃o�b�t�@�擪�A�h���X��
-                                 (buffer + N * page) �ƂȂ邱�Ƃ��ۏ؂����.
+                                 の数だけのページリストに分割される.
+                                 各ページ(N=0,1,...)のバッファ先頭アドレスは
+                                 (buffer + N * page) となることが保証される.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -82,34 +82,34 @@ void    MI_InitCache(MICache *cache, u32 page, void *buffer, u32 length);
 /*---------------------------------------------------------------------------*
   Name:         MI_ReadCache
 
-  Description:  �L���b�V������f�[�^��ǂݏo��.
-                �q�b�g�����y�[�W�͗L�����X�g�̐擪�Ɉړ�����.
-                �q�b�g���Ȃ������y�[�W�̓��[�h�v�����X�g�ɒǉ������.
+  Description:  キャッシュからデータを読み出し.
+                ヒットしたページは有効リストの先頭に移動する.
+                ヒットしなかったページはロード要求リストに追加される.
 
-  Arguments:    cache            MICache�\����.
-                buffer           �]���惁����.
-                                 NULL���w�肵���ꍇ��, �f�[�^��ǂݏo����
-                                 �P�ɊY���͈͑S�̂̃L���b�V�������̂ݗv������.
-                offset           �]�����I�t�Z�b�g.
-                length           �]���T�C�Y.
+  Arguments:    cache            MICache構造体.
+                buffer           転送先メモリ.
+                                 NULLを指定した場合は, データを読み出さず
+                                 単に該当範囲全体のキャッシュ準備のみ要求する.
+                offset           転送元オフセット.
+                length           転送サイズ.
 
-  Returns:      �S�̈悪�L���b�V���Ƀq�b�g�����TRUE.
+  Returns:      全領域がキャッシュにヒットすればTRUE.
  *---------------------------------------------------------------------------*/
 BOOL    MI_ReadCache(MICache *cache, void *buffer, u32 offset, u32 length);
 
 /*---------------------------------------------------------------------------*
   Name:         MI_LoadCache
 
-  Description:  ���[�h�v�����X�g�ɑ��݂���S�y�[�W�̃��[�h���������s.
-                ���[�h�v�����X�g����ł������ꍇ�͉��������������ɐ����Ԃ�,
-                �Ăяo�����Ƀ��[�h�v�����X�g�֒ǉ����ꂽ�ꍇ�͂������������.
+  Description:  ロード要求リストに存在する全ページのロード処理を実行.
+                ロード要求リストが空であった場合は何もせずただちに制御を返し,
+                呼び出し中にロード要求リストへ追加された場合はそれも処理する.
 
-  Note:         ���̊֐��̓f�o�C�X���u���b�L���O���Ă��悢�R���e�L�X�g����
-                �K�؂ȃ^�C�~���O�ŌĂяo���K�v������.
-                ���Ȃ킿�A���荞�݃n���h���Ȃǂ���Ăяo���Ă͂Ȃ�Ȃ�.
+  Note:         この関数はデバイスがブロッキングしてもよいコンテキストから
+                適切なタイミングで呼び出す必要がある.
+                すなわち、割り込みハンドラなどから呼び出してはならない.
 
-  Arguments:    cache            MICache�\����.
-                device           ���[�h�ΏۂƂȂ�f�o�C�X.
+  Arguments:    cache            MICache構造体.
+                device           ロード対象となるデバイス.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -118,13 +118,13 @@ void    MI_LoadCache(MICache *cache, MIDevice *device);
 /*---------------------------------------------------------------------------*
   Name:         MI_IsCacheLoading
 
-  Description:  ���[�h�v�����X�g����łȂ�������.
-                ���[�h�v�����X�g��MI_ReadCache�֐��̌Ăяo���Œǉ�����
-                MI_LoadCache�֐��̌Ăяo���ŋ�ɂȂ�.
+  Description:  ロード要求リストが空でないか判定.
+                ロード要求リストはMI_ReadCache関数の呼び出しで追加され
+                MI_LoadCache関数の呼び出しで空になる.
 
-  Arguments:    cache            MICache�\����.
+  Arguments:    cache            MICache構造体.
 
-  Returns:      ���[�h�v�����X�g����łȂ����TRUE.
+  Returns:      ロード要求リストが空でなければTRUE.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 BOOL    MI_IsCacheLoading(const MICache *cache)

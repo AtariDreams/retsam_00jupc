@@ -36,10 +36,10 @@ extern  "C"
 /*---------------------------------------------------------------------------*/
 /* constants */
 
-/* “à•”ƒfƒoƒbƒOo—ÍØ‚è‘Ö‚¦ƒtƒ‰ƒO */
+/* å†…éƒ¨ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›åˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ©ã‚° */
 //#define	WFS_DEBUG_OUTPUT_ON
 
-/* “à•”ƒeƒXƒg—pƒfƒoƒbƒOo—Íƒ}ƒNƒ */
+/* å†…éƒ¨ãƒ†ã‚¹ãƒˆç”¨ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›ãƒã‚¯ãƒ­ */
 #if	defined(WFS_DEBUG_OUTPUT_ON) && !defined(SDK_FINALROM)
 #define	WFS_DEBUG_OUTPUT(formats)   \
     OS_TPrintf("WFS| ");            \
@@ -49,18 +49,18 @@ extern  "C"
 #define	WFS_DEBUG_OUTPUT(...)	(void)0
 #endif
 
-/* WBTƒƒbƒZ[ƒWƒ^ƒCƒv     type     arg1     arg2  */
+/* WBTãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—     type     arg1     arg2  */
 #define	WFS_MSG_LOCK_REQ    0   /* offset   length */
 #define	WFS_MSG_LOCK_ACK    1   /*   ID      TRUE  */
                                 /*    0      FALSE */
 #define	WFS_MSG_UNLOCK_REQ  2   /*   ID      TRUE  */
 #define	WFS_MSG_UNLOCK_ACK  3   /*   ID      TRUE  */
 
-/* —\–ñƒuƒƒbƒNID */
+/* äºˆç´„ãƒ–ãƒ­ãƒƒã‚¯ID */
 #define	WFS_LOCKED_BLOCK_INDEX	 0x10001U
 #define WFS_TABLE_BLOCK_INDEX    0x20000U
 
-/* WFSƒe[ƒuƒ‹ƒtƒH[ƒ}ƒbƒg */
+/* WFSãƒ†ãƒ¼ãƒ–ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ */
 typedef enum WFSTableRegionType
 {
     WFS_TABLE_REGION_FAT,
@@ -71,7 +71,7 @@ typedef enum WFSTableRegionType
 }
 WFSTableRegionType;
 
-/* WFSƒCƒxƒ“ƒg’Ê’m */
+/* WFSã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ */
 typedef enum WFSEventType
 {
     WFS_EVENT_SERVER_SEGMENT_REQUEST,
@@ -92,10 +92,10 @@ WFSEventType;
 /* declarations */
 
 /*---------------------------------------------------------------------------*
- * “d”g‚Éæ‚é’ÊMƒtƒH[ƒ}ƒbƒg. (‚·‚×‚ÄƒŠƒgƒ‹ƒGƒ“ƒfƒBƒAƒ“)
+ * é›»æ³¢ã«ä¹—ã‚‹é€šä¿¡ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ. (ã™ã¹ã¦ãƒªãƒˆãƒ«ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³)
  *---------------------------------------------------------------------------*/
 
-/* FATƒGƒ“ƒgƒŠî•ñ */
+/* FATã‚¨ãƒ³ãƒˆãƒªæƒ…å ± */
 typedef struct WFSFATFormat
 {
     u32     top;
@@ -103,7 +103,7 @@ typedef struct WFSFATFormat
 } PLATFORM_STRUCT_PADDING_FOOTER
 WFSFATFormat;
 
-/* ƒI[ƒo[ƒŒƒCƒGƒ“ƒgƒŠî•ñ */
+/* ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚¨ãƒ³ãƒˆãƒªæƒ…å ± */
 typedef struct WFSOVLFormat
 {
     u32     id;
@@ -123,7 +123,7 @@ typedef struct WFSOVLFormat
 } PLATFORM_STRUCT_PADDING_FOOTER
 WFSOVLFormat;
 
-/* ROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹î•ñ */
+/* ROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«æƒ…å ± */
 typedef struct WFSTableFormat
 {
     u32             origin;
@@ -134,7 +134,7 @@ typedef struct WFSTableFormat
 WFSTableFormat;
 
 
-/* WFS_MSG_* ƒƒbƒZ[ƒW\‘¢‘Ì */
+/* WFS_MSG_* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ§‹é€ ä½“ */
 typedef struct WFSMessageFormat
 {
 #if (PLATFORM_BITFIELDS_ENDIAN == PLATFORM_ENDIAN_LITTLE)
@@ -157,26 +157,26 @@ PLATFORM_COMPILER_ASSERT(sizeof(WFSMessageFormat) == 12);
 
 
 /*---------------------------------------------------------------------------*
- * “d”g‚Éæ‚ç‚È‚¢ƒ[ƒJƒ‹\‘¢‘Ì.
+ * é›»æ³¢ã«ä¹—ã‚‰ãªã„ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“.
  *---------------------------------------------------------------------------*/
 
-/* WFSƒCƒxƒ“ƒgƒR[ƒ‹ƒoƒbƒN */
+/* WFSã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ */
 typedef void (*WFSEventCallback)(void *context, WFSEventType, void *argument);
 
-/* ƒpƒPƒbƒgî•ñ\‘¢‘Ì */
+/* ãƒ‘ã‚±ãƒƒãƒˆæƒ…å ±æ§‹é€ ä½“ */
 typedef struct WFSPacketBuffer
 {
-    u8     *buffer;         /* ‘—M—pƒoƒbƒtƒ@‚Ü‚½‚ÍóMƒoƒbƒtƒ@ */
-    int     length;         /* ‘—M‰Â”\Å‘åƒTƒCƒY‚Ü‚½‚ÍóMƒTƒCƒY */
-    int     bitmap;         /* AID ƒrƒbƒgƒ}ƒbƒv */
+    u8     *buffer;         /* é€ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã¾ãŸã¯å—ä¿¡ãƒãƒƒãƒ•ã‚¡ */
+    int     length;         /* é€ä¿¡å¯èƒ½æœ€å¤§ã‚µã‚¤ã‚ºã¾ãŸã¯å—ä¿¡ã‚µã‚¤ã‚º */
+    int     bitmap;         /* AID ãƒ“ãƒƒãƒˆãƒãƒƒãƒ— */
 }
 WFSPacketBuffer;
 
-/* Ú‘±æî•ñ\‘¢‘Ì */
+/* æ¥ç¶šå…ˆæƒ…å ±æ§‹é€ ä½“ */
 typedef struct WFSPeerInfo
 {
     int     aid;            /* AID */
-    u8      mac[6];         /* MAC ƒAƒhƒŒƒX */
+    u8      mac[6];         /* MAC ã‚¢ãƒ‰ãƒ¬ã‚¹ */
     u8      padding[2];
 }
 WFSPeerInfo;
@@ -188,18 +188,18 @@ WFSPeerInfo;
 /*---------------------------------------------------------------------------*
   Name:         WFS_LoadTable
 
-  Description:  ƒfƒoƒCƒX‚©‚çNTRƒoƒCƒiƒŠ‚ÌROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ğ“Ç‚İ‚İ.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã‹ã‚‰NTRãƒã‚¤ãƒŠãƒªã®ROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’èª­ã¿è¾¼ã¿.
 
-  Arguments:    table            ‰Šú‰»‚·‚éWFSTableFormat\‘¢‘Ì.
-                allocator        “à•”‚Åƒƒ‚ƒŠŠm•Û‚Ég—p‚·‚éƒAƒƒP[ƒ^.
-                device           FAT‚Ì“Ç‚İ‚İ‘ÎÛ‚ªŠi”[‚³‚ê‚½ƒfƒoƒCƒX.
-                fatbase          NTRƒoƒCƒiƒŠ‚ª”z’u‚³‚ê‚Ä‚¢‚éƒfƒoƒCƒX“àƒIƒtƒZƒbƒg.
-                overlay          ƒ}[ƒW‚µ‚½‚¢ƒI[ƒo[ƒŒƒC‚ğŠÜ‚ŞNTRƒoƒCƒiƒŠ‚ª
-                                 ”z’u‚³‚ê‚Ä‚¢‚éƒfƒoƒCƒX“àƒIƒtƒZƒbƒg.
-                                 (•¡”‚ÌROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ğƒ}[ƒW‚µ‚È‚¢‚È‚ç
-                                  ‚±‚Ì’l‚Ífatbase‚Æ“¯‚¶)
+  Arguments:    table            åˆæœŸåŒ–ã™ã‚‹WFSTableFormatæ§‹é€ ä½“.
+                allocator        å†…éƒ¨ã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿.
+                device           FATã®èª­ã¿è¾¼ã¿å¯¾è±¡ãŒæ ¼ç´ã•ã‚ŒãŸãƒ‡ãƒã‚¤ã‚¹.
+                fatbase          NTRãƒã‚¤ãƒŠãƒªãŒé…ç½®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒã‚¤ã‚¹å†…ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                overlay          ãƒãƒ¼ã‚¸ã—ãŸã„ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’å«ã‚€NTRãƒã‚¤ãƒŠãƒªãŒ
+                                 é…ç½®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒã‚¤ã‚¹å†…ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                                 (è¤‡æ•°ã®ROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãƒãƒ¼ã‚¸ã—ãªã„ãªã‚‰
+                                  ã“ã®å€¤ã¯fatbaseã¨åŒã˜)
 
-  Returns:      FAT‚ğ³‚µ‚­ƒ[ƒh‚Å‚«‚ê‚ÎTRUE.
+  Returns:      FATã‚’æ­£ã—ããƒ­ãƒ¼ãƒ‰ã§ãã‚Œã°TRUE.
  *---------------------------------------------------------------------------*/
 BOOL WFS_LoadTable(WFSTableFormat *table, MIAllocator *allocator,
                    MIDevice *device, u32 fatbase, u32 overlay);
@@ -207,11 +207,11 @@ BOOL WFS_LoadTable(WFSTableFormat *table, MIAllocator *allocator,
 /*---------------------------------------------------------------------------*
   Name:         WFS_ParseTable
 
-  Description:  NTRƒoƒCƒiƒŠ‚ÌROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ª“Ç‚İ‚Ü‚ê‚½ƒƒ‚ƒŠ‚ğ‰ğÍ.
+  Description:  NTRãƒã‚¤ãƒŠãƒªã®ROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ãŒèª­ã¿è¾¼ã¾ã‚ŒãŸãƒ¡ãƒ¢ãƒªã‚’è§£æ.
 
-  Arguments:    table            ‰Šú‰»‚·‚éWFSTableFormat\‘¢‘Ì.
-                                 ƒƒ“ƒobuffer‚Ælength‚É‚Í‘O‚à‚Á‚Ä
-                                 ROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ªİ’è‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚é.
+  Arguments:    table            åˆæœŸåŒ–ã™ã‚‹WFSTableFormatæ§‹é€ ä½“.
+                                 ãƒ¡ãƒ³ãƒbufferã¨lengthã«ã¯å‰ã‚‚ã£ã¦
+                                 ROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -220,16 +220,16 @@ void WFS_ParseTable(WFSTableFormat *table);
 /*---------------------------------------------------------------------------*
   Name:         WFS_SendMessage
 
-  Description:  WBTƒ†[ƒUƒf[ƒ^ƒRƒ}ƒ“ƒh‚ğg—p‚µ‚ÄWFSŒÅ—LƒƒbƒZ[ƒW‚ğ‘—M.
+  Description:  WBTãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ç”¨ã—ã¦WFSå›ºæœ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡.
 
-  Arguments:    context          WBTContext\‘¢‘Ì.
-                callback         Š®—¹ƒR[ƒ‹ƒoƒbƒN.
-                bitmap           ‘—Mæ.
-                type             ƒƒbƒZ[ƒWí•Ê.
-                arg1             ƒƒbƒZ[ƒWŒÅ—L‚Ìˆø”.
-                arg2             ƒƒbƒZ[ƒWŒÅ—L‚Ìˆø”.
+  Arguments:    context          WBTContextæ§‹é€ ä½“.
+                callback         å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
+                bitmap           é€ä¿¡å…ˆ.
+                type             ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç¨®åˆ¥.
+                arg1             ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å›ºæœ‰ã®å¼•æ•°.
+                arg2             ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å›ºæœ‰ã®å¼•æ•°.
 
-  Returns:      ³í‚ÉWBTƒRƒ}ƒ“ƒh‚ğ”­s‚Å‚«‚ê‚ÎTRUE.
+  Returns:      æ­£å¸¸ã«WBTã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã§ãã‚Œã°TRUE.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 BOOL WFS_SendMessage(WBTContext *context, WBTEventCallback callback, int bitmap,

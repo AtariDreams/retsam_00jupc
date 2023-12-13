@@ -1,22 +1,22 @@
 //============================================================================================
 /**
  * @file	tradelist.c
- * @brief	ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒŠƒXƒg‰æ–Ê
+ * @brief	ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒªã‚¹ãƒˆç”»é¢
  * @author	Akito Mori
  * @date	05.12.08
  */
 //============================================================================================
 
-// ƒRƒƒ“ƒg‚ð‚Í‚¸‚·‚Æu‚±‚¤‚©‚ñ‚·‚év‚ªˆê‚Â–Ú‚Ì‘I‘ðŽˆ‚É‚È‚é
+// ã‚³ãƒ¡ãƒ³ãƒˆã‚’ã¯ãšã™ã¨ã€Œã“ã†ã‹ã‚“ã™ã‚‹ã€ãŒä¸€ã¤ç›®ã®é¸æŠžè‚¢ã«ãªã‚‹
 
 #ifdef PM_DEBUG
 //#define DEBUG_PAD_ON
 //#define DEBUG_TIMEOUT
 #endif
 
-// ƒVƒFƒCƒ~—p“ÁŽêˆ—
-// ƒXƒJƒCƒtƒHƒ‹ƒ€iƒtƒHƒ‹ƒ€No.1j‚ÌƒVƒFƒCƒ~‚Í’ÊMŒðŠ·‰æ–Ê‚É
-// —ˆ‚é‚Æ‹­§“I‚Éƒ‰ƒ“ƒhƒtƒHƒ‹ƒ€iƒtƒHƒ‹ƒ€No.0)‚É•ÏX‚³‚ê‚é
+// ã‚·ã‚§ã‚¤ãƒŸç”¨ç‰¹æ®Šå‡¦ç†
+// ã‚¹ã‚«ã‚¤ãƒ•ã‚©ãƒ«ãƒ ï¼ˆãƒ•ã‚©ãƒ«ãƒ No.1ï¼‰ã®ã‚·ã‚§ã‚¤ãƒŸã¯é€šä¿¡äº¤æ›ç”»é¢ã«
+// æ¥ã‚‹ã¨å¼·åˆ¶çš„ã«ãƒ©ãƒ³ãƒ‰ãƒ•ã‚©ãƒ«ãƒ ï¼ˆãƒ•ã‚©ãƒ«ãƒ No.0)ã«å¤‰æ›´ã•ã‚Œã‚‹
 #define SHEIMI_FORM_CHANGE	
 
 
@@ -81,7 +81,7 @@
 #include "field/syswork.h"
 
 
-#define FIRST_NATUKIDO  (70)				///ŒðŠ·‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚É“ü‚ê‚é‚È‚Â‚«“x
+#define FIRST_NATUKIDO  (70)				///äº¤æ›ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã«å…¥ã‚Œã‚‹ãªã¤ãåº¦
 
 
 #define NAMEIN_MOVE_SE		(SEQ_SE_DP_SELECT)
@@ -96,25 +96,25 @@
 #define POKEGRA_VRAM_OFFSET  ( 0 )
 #define POKEGRA_VRAM_SIZE     ( 0x20*10*10 )
 
-#define TRADELISTSTR_MAX	 ( 12*2 )		  // ŒðŠ·‰æ–Ê‚Åˆê”ÔƒLƒƒƒ‰‚ª•À‚Ô‚Ì‚Í12ƒLƒƒƒ‰‚È‚Ì‚Å‚»‚Ì”{•¶Žš—ñƒoƒbƒtƒ@‚ðŽæ‚Á‚Ä‚¨‚­
-#define TRADELIST_CACT_MAX   ( 2+12+12+12+2+2+2+1) // ƒJ[ƒ\ƒ‹‚Q@
-												   // ƒ|ƒPƒ‚ƒ“‚P‚Q@
-												   // ƒAƒCƒeƒ€‚P‚Q@
-												   // ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚P‚Q@
-												   // ‰ºƒ|ƒPƒ‚ƒ“‚Q@
-												   // –îˆó‚Q
+#define TRADELISTSTR_MAX	 ( 12*2 )		  // äº¤æ›ç”»é¢ã§ä¸€ç•ªã‚­ãƒ£ãƒ©ãŒä¸¦ã¶ã®ã¯12ã‚­ãƒ£ãƒ©ãªã®ã§ãã®å€æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã‚’å–ã£ã¦ãŠã
+#define TRADELIST_CACT_MAX   ( 2+12+12+12+2+2+2+1) // ã‚«ãƒ¼ã‚½ãƒ«ï¼’ã€€
+												   // ãƒã‚±ãƒ¢ãƒ³ï¼‘ï¼’ã€€
+												   // ã‚¢ã‚¤ãƒ†ãƒ ï¼‘ï¼’ã€€
+												   // ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ï¼‘ï¼’ã€€
+												   // ä¸‹ãƒã‚±ãƒ¢ãƒ³ï¼’ã€€
+												   // çŸ¢å°ï¼’
 													
 
-// nce‚É“o˜^‚³‚ê‚Ä‚¢‚éƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚ÌƒAƒjƒNOi‚±‚ÌŒã‚ë‚ÉŠeX‚Ìƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚ª‘±‚­j
+// nceã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã®ã‚¢ãƒ‹ãƒ¡NOï¼ˆã“ã®å¾Œã‚ã«å„ã€…ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ãŒç¶šãï¼‰
 #define CELL_MONSTER_BALL_NO	 ( 6 )
 
 #define CELL_SEX_ICON_NO		 ( 22 )
 
-#define TIMEOUT_LIMIT			( 30*60 )			// ƒ^ƒCƒ€ƒAƒEƒg‚Ü‚Å2•ª‚É‚µ‚½
+#define TIMEOUT_LIMIT			( 30*60 )			// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã¾ã§2åˆ†ã«ã—ãŸ
 
-#include "tradelist.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "tradelist.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 enum {
 	SEQ_IN = 0,
@@ -141,11 +141,11 @@ enum{
 	
 };
 
-// ƒ_ƒƒ^ƒ}ƒSƒ`ƒFƒbƒN‚ÌŒ‹‰Ê‚ÉŽg‚¤
+// ãƒ€ãƒ¡ã‚¿ãƒžã‚´ãƒã‚§ãƒƒã‚¯ã®çµæžœã«ä½¿ã†
 enum{
-TRADE_NO_DAMETAMAGO=0,		// ƒ_ƒƒ^ƒ}ƒS‚Í‘¶Ý‚µ‚È‚¢
-TRADE_DAMETAMAGO_MINE,		// Ž©•ª‚ªƒ_ƒƒ^ƒ}ƒS‚ðŽ‚Á‚Ä‚¢‚é
-TRADE_DAMETAMAGO_FRIEND,	// ‘ŠŽè‚ªƒ_ƒƒ^ƒ}ƒS‚ðŽ‚Á‚Ä‚¢‚é
+TRADE_NO_DAMETAMAGO=0,		// ãƒ€ãƒ¡ã‚¿ãƒžã‚´ã¯å­˜åœ¨ã—ãªã„
+TRADE_DAMETAMAGO_MINE,		// è‡ªåˆ†ãŒãƒ€ãƒ¡ã‚¿ãƒžã‚´ã‚’æŒã£ã¦ã„ã‚‹
+TRADE_DAMETAMAGO_FRIEND,	// ç›¸æ‰‹ãŒãƒ€ãƒ¡ã‚¿ãƒžã‚´ã‚’æŒã£ã¦ã„ã‚‹
 };
 
 typedef struct{
@@ -198,11 +198,11 @@ static const main_cursor_pos[][2]={
 };
 
 static const sub_icon_pos[][3]={
-	{SUB_POKEMON1_POS_X, SUB_POKEMON_POS_Y, 0},						//ƒ|ƒPƒ‚ƒ“
+	{SUB_POKEMON1_POS_X, SUB_POKEMON_POS_Y, 0},						//ãƒã‚±ãƒ¢ãƒ³
 	{SUB_POKEMON2_POS_X, SUB_POKEMON_POS_Y, 1},
-	{SUB_BALL_POS_X,   SUB_BALL_POS_Y,      CELL_MONSTER_BALL_NO},	// ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
+	{SUB_BALL_POS_X,   SUB_BALL_POS_Y,      CELL_MONSTER_BALL_NO},	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
 	{SUB_BALL2_POS_X,  SUB_BALL_POS_Y,      CELL_MONSTER_BALL_NO},
-	{SUB_SEX_ICON_X, SUB_SEX_ICON_Y,CELL_SEX_ICON_NO},				// «•Ê
+	{SUB_SEX_ICON_X, SUB_SEX_ICON_Y,CELL_SEX_ICON_NO},				// æ€§åˆ¥
 	{SUB_SEX_ICON2_X,SUB_SEX_ICON_Y,CELL_SEX_ICON_NO},
 };
 
@@ -218,17 +218,17 @@ static const sub_icon_pos[][3]={
 
 
 //============================================================================================
-//	AGB‚©‚çŽ‚Á‚Ä‚«‚½ƒf[ƒ^
+//	AGBã‹ã‚‰æŒã£ã¦ããŸãƒ‡ãƒ¼ã‚¿
 //============================================================================================
-//ƒJ[ƒ\ƒ‹ˆÚ“®—p‚Ìƒe[ƒuƒ‹
-//ã‰º¶‰E‚Ì‡‚É’è‹`‚µ‚Ä‚ ‚è‚Ü‚·
-//  ‚O ‚P    ‚U  ‚V
-//  ‚Q ‚R    ‚W  ‚X
-//  ‚S ‚T  ‚P‚O‚P‚P
-//             ‚P‚Q
+//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«
+//ä¸Šä¸‹å·¦å³ã®é †ã«å®šç¾©ã—ã¦ã‚ã‚Šã¾ã™
+//  ï¼ ï¼‘    ï¼–  ï¼—
+//  ï¼’ ï¼“    ï¼˜  ï¼™
+//  ï¼” ï¼•  ï¼‘ï¼ï¼‘ï¼‘
+//             ï¼‘ï¼’
 static const u8 movepostbl[][4][6]={
-									//   0 ‚ÌˆÊ’u‚©‚ç‚Ì4•ûŒü‚Ìs‚«‚Â‚­æ‚Ì—Dæ“xÃ°ÌÞÙ(ã‰º¶‰E‚Ì‡)
-									//   ­‚È‚¢”Žš‚Ì•û‚ª—Dæ“x‚ª‚‚¢
+									//   0 ã®ä½ç½®ã‹ã‚‰ã®4æ–¹å‘ã®è¡Œãã¤ãå…ˆã®å„ªå…ˆåº¦ãƒ†ãƒ¼ãƒ–ãƒ«(ä¸Šä¸‹å·¦å³ã®é †)
+									//   å°‘ãªã„æ•°å­—ã®æ–¹ãŒå„ªå…ˆåº¦ãŒé«˜ã„
 	{{ 4, 2,12,12},{ 2, 4,12,12},{ 7, 6, 1, 0},{ 1, 6, 7, 0},},		//0
 	{{ 5, 3,12,12},{ 3, 5,12,12},{ 0, 7, 6, 1},{ 6, 7, 0, 1},},		
 	{{ 0, 0, 0, 0},{ 4, 0, 0, 0},{ 9, 8, 7, 6},{ 3, 1,     },},		
@@ -260,13 +260,13 @@ static const int trade_msg_table[][4]=
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void TransPokeIconCharaPal( NNSG2dCharacterData *chara, int pokeno, int form, int tamago, int no , CLACT_WORK_PTR icon);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/19
-// u‚â‚ß‚év•¶Žš—ñ‚ðgmm‚ÉˆÚs
+// ã€Œã‚„ã‚ã‚‹ã€æ–‡å­—åˆ—ã‚’gmmã«ç§»è¡Œ
 static void TrainerNamePrint( TRADELIST_WORK *wk );
 // ----------------------------------------------------------------------------
 static void PokemonInfoSubPrint( TRADELIST_WORK *wk, int page );
@@ -373,24 +373,24 @@ static void CommSendFriendList( MYSTATUS *mystatus, FRIEND_LIST *friendlist, FRI
 static void ArcUtil_HDL_ScrnSetNoTrans(ARCHANDLE* p_handle, u32 dataIdx, GF_BGL_INI* bgl, u32 frm, u32 offs, u32 transSize, BOOL compressedFlag, u32 heapID);
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 
 
 #define POKE_NICKNAME_LEN	(10+1)
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT TradeListProc_Init( PROC * proc, int * seq )
@@ -398,8 +398,8 @@ PROC_RESULT TradeListProc_Init( PROC * proc, int * seq )
 	TRADELIST_WORK * wk;
 	ARCHANDLE* p_handle;
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -414,7 +414,7 @@ PROC_RESULT TradeListProc_Init( PROC * proc, int * seq )
 	MI_CpuClearFast( wk, sizeof(TRADELIST_WORK) );
 	wk->bgl = GF_BGL_BglIniAlloc( HEAPID_TRADELIST );
 	
-	// •¶Žš—ñƒ}ƒl[ƒWƒƒ[¶¬
+	// æ–‡å­—åˆ—ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”Ÿæˆ
 	wk->PokeNameWordSet  = WORDSET_CreateEx( 12, POKE_NICKNAME_LEN*2, HEAPID_TRADELIST );
 	wk->WindowStrWordSet = WORDSET_Create( HEAPID_TRADELIST );
 	wk->SubLcdWordSet    = WORDSET_Create( HEAPID_TRADELIST );
@@ -422,43 +422,43 @@ PROC_RESULT TradeListProc_Init( PROC * proc, int * seq )
 	wk->MsgManager = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_dstrade_dat, HEAPID_TRADELIST );
 	wk->subproc    = NULL;
 
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	InitWork(wk,proc);
 
-	// ƒL[ƒŠƒs[ƒgŠÔŠu•ÏX
+	// ã‚­ãƒ¼ãƒªãƒ”ãƒ¼ãƒˆé–“éš”å¤‰æ›´
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
 	VramBankSet();
 	BgInit( wk->bgl );
-	// ‹P“x•ÏXƒZƒbƒg
+	// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 16, 1, HEAPID_TRADELIST);
 
 
 
 	BgGraphicSet( wk, p_handle );
 
-	// VBlankŠÖ”ƒZƒbƒg
+	// VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
 	sys_VBlankFuncChange( VBlankFunc, wk );	
 
 
 
-	// OBJƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// OBJã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	char_pltt_manager_init();
 
-	// CellActorƒVƒXƒeƒ€‰Šú‰»
+	// CellActorã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitCellActor(wk, p_handle);
 	
-	// CellActro•\Ž¦“o˜^
+	// CellActroè¡¨ç¤ºç™»éŒ²
 	SetCellActor(wk);
 
-	// BMPWIN“o˜^E•`‰æ
+	// BMPWINç™»éŒ²ãƒ»æç”»
 	TradeList_BmpMessageSet(wk->bgl,wk->TradeListWin, wk->param->config);
 
-	//FIELDSYS_WORK‚Étradelist_work‚ð“o˜^
+	//FIELDSYS_WORKã«tradelist_workã‚’ç™»éŒ²
 	wk->fsys = wk->param->fsys;
 	SetFieldSys_in_TradeWorkPtr(wk->fsys, wk);
 
-	// ’ÊM‘Ò‹@’†c
+	// é€šä¿¡å¾…æ©Ÿä¸­â€¦
 	TradeListWindowPrint(
 		&wk->TradeListWin[BMP_M_MES3_WIN],
 		mes_dstrade_04_01,
@@ -467,31 +467,31 @@ PROC_RESULT TradeListProc_Init( PROC * proc, int * seq )
 		wk->PokeNameWordSet
 	);
 
-	// ’ÊMƒRƒ}ƒ“ƒh‚ðŒðŠ·ƒŠƒXƒg—p‚É•ÏX
+	// é€šä¿¡ã‚³ãƒžãƒ³ãƒ‰ã‚’äº¤æ›ãƒªã‚¹ãƒˆç”¨ã«å¤‰æ›´
 	CommCommandTradeListInitialize(wk->fsys);
 
-	// e‚¾‚Á‚½‚çu‚±‚¤‚©‚ñ’ÊM’†v‚Éƒr[ƒRƒ“‘‚«Š·‚¦
+	// è¦ªã ã£ãŸã‚‰ã€Œã“ã†ã‹ã‚“é€šä¿¡ä¸­ã€ã«ãƒ“ãƒ¼ã‚³ãƒ³æ›¸ãæ›ãˆ
 //	if(CommGetCurrentID()==0){
 //		Union_BeaconChange( UNION_PARENT_MODE_TRADENOW );
 //	}
 		
 	GF_BGL_VisibleSet( GF_BGL_FRAME0_M, VISIBLE_ON );
-	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 	
 	CommErrorCheck(HEAPID_TRADELIST, wk->bgl);
 
 	WirelessIconEasy();
 
 
-	// ƒTƒEƒ“ƒhƒf[ƒ^ƒZƒbƒg(ƒV[ƒ“‚ª•ÏX‚³‚ê‚È‚¢Žž‚Í‰½‚à‚µ‚È‚¢)
-	// "Ä¶‚·‚éBGM‚ðŒÅ’è‚É‚µ‚Ä‚¢‚é‚Ì‚ÅA"
-	// "ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒŠƒXƒg‰æ–Ê‚ªƒ†ƒjƒIƒ“ƒ‹[ƒ€ˆÈŠO‚©‚çŒÄ‚Î‚ê‚é‚±‚Æ‚ª‚ ‚Á‚Ä‚Íƒ_ƒI"
-	if( GF_RTC_IsNightTime() == FALSE ){			//FALSE=’‹ATRUE=–é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ(ã‚·ãƒ¼ãƒ³ãŒå¤‰æ›´ã•ã‚Œãªã„æ™‚ã¯ä½•ã‚‚ã—ãªã„)
+	// "å†ç”Ÿã™ã‚‹BGMã‚’å›ºå®šã«ã—ã¦ã„ã‚‹ã®ã§ã€"
+	// "ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒªã‚¹ãƒˆç”»é¢ãŒãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ä»¥å¤–ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã“ã¨ãŒã‚ã£ã¦ã¯ãƒ€ãƒ¡ï¼"
+	if( GF_RTC_IsNightTime() == FALSE ){			//FALSE=æ˜¼ã€TRUE=å¤œ
 		Snd_DataSetByScene( SND_SCENE_FIELD, SEQ_PC_01, 1 );
-		Snd_VChatVolSetBySeqNo( SEQ_PC_01 );		//ƒ{ƒCƒXƒ`ƒƒƒbƒg’†‚Ì‰¹—Ê‘€ì(08.05.01)
+		Snd_VChatVolSetBySeqNo( SEQ_PC_01 );		//ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆä¸­ã®éŸ³é‡æ“ä½œ(08.05.01)
 	}else{
 		Snd_DataSetByScene( SND_SCENE_FIELD, SEQ_PC_02, 1 );
-		Snd_VChatVolSetBySeqNo( SEQ_PC_02 );		//ƒ{ƒCƒXƒ`ƒƒƒbƒg’†‚Ì‰¹—Ê‘€ì(08.05.01)
+		Snd_VChatVolSetBySeqNo( SEQ_PC_02 );		//ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆä¸­ã®éŸ³é‡æ“ä½œ(08.05.01)
 	}
 
 
@@ -503,11 +503,11 @@ PROC_RESULT TradeListProc_Init( PROC * proc, int * seq )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ð“]‘—‚·‚éiƒ|ƒPƒ‚ƒ“‚Ì–¼‘O‚ÌŽž‚¾‚¯j
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚’è»¢é€ã™ã‚‹ï¼ˆãƒã‚±ãƒ¢ãƒ³ã®åå‰ã®æ™‚ã ã‘ï¼‰
  *
- * @param   chara	ƒLƒƒƒ‰ƒNƒ^[ƒtƒ@ƒCƒ‹ƒAƒhƒŒƒX
- * @param   pal		ƒpƒŒƒbƒgƒtƒ@ƒCƒ‹ƒAƒhƒŒƒX
- * @param   pokeno	ƒ|ƒPƒ‚ƒ“‚ÌŠJ”­NO
+ * @param   chara	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   pal		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   pokeno	ãƒã‚±ãƒ¢ãƒ³ã®é–‹ç™ºNO
  *
  * @retval  none		
  */
@@ -516,12 +516,12 @@ static void TransPokeIconCharaPal( NNSG2dCharacterData *chara, int pokeno, int f
 {
 	u8 *pokepal;
 
-	// ƒLƒƒƒ‰ƒNƒ^[“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è»¢é€
 	GX_LoadOBJ(chara->pRawData, (POKEICON_VRAM_OFFSET+no*POKEICON_TRANS_CELL)*0x20, POKEICON_TRANS_SIZE);
-	OS_Printf("ƒAƒCƒRƒ“ƒLƒƒƒ‰“]‘—NO. %d\n",no);
+	OS_Printf("ã‚¢ã‚¤ã‚³ãƒ³ã‚­ãƒ£ãƒ©è»¢é€NO. %d\n",no);
 	
 	
-	// ƒpƒŒƒbƒgÝ’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
 	CLACT_PaletteOffsetChg( icon,  PokeIconPalNumGet( pokeno, form, tamago )+POKEICON_PAL_OFFSET);
 
 //	pokepal = (u8*)pal->pRawData;
@@ -531,11 +531,11 @@ static void TransPokeIconCharaPal( NNSG2dCharacterData *chara, int pokeno, int f
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/19
-// u‚â‚ß‚év•¶Žš—ñ‚ðgmm‚ÉˆÚs
+// ã€Œã‚„ã‚ã‚‹ã€æ–‡å­—åˆ—ã‚’gmmã«ç§»è¡Œ
 
 //------------------------------------------------------------------
 /**
- * Ž©•ª‚Ì’ÊM‘ŠŽè‚Ì–¼‘O•`‰æ
+ * è‡ªåˆ†ã®é€šä¿¡ç›¸æ‰‹ã®åå‰æç”»
  *
  * @param   bgl		
  * @param   wk		
@@ -546,7 +546,7 @@ static void TransPokeIconCharaPal( NNSG2dCharacterData *chara, int pokeno, int f
 static void TrainerNamePrint( TRADELIST_WORK *wk )
 {
 	STRBUF *MyNameBuf, *FriendNameBuf, *EndBuf;
-	// Todo –¼‘O‚ÌŽæ“¾•û–@‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚ª‚Í‚Á‚«‚è‚µ‚½‘g‚Ý‘Ö‚¦‚é
+	// Todo åå‰ã®å–å¾—æ–¹æ³•ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ãŒã¯ã£ãã‚Šã—ãŸçµ„ã¿æ›¿ãˆã‚‹
 	// 
 	MYSTATUS *mystatus, *friendstatus;
 
@@ -561,11 +561,11 @@ static void TrainerNamePrint( TRADELIST_WORK *wk )
 	EndBuf = MSGMAN_AllocString( wk->MsgManager, mes_dstrade_endstr );
 	
 
-	// Ž©•ª‚Ì–¼‘O
+	// è‡ªåˆ†ã®åå‰
 	TradeListPrint(&wk->TradeListWin[BMP_M_MYNAME_WIN], MyNameBuf, TRADELIST_NAME_W, MSG_ALLPUT, CENTER_PRINT,1);
-	// ‘ŠŽè‚Ì–¼‘O
+	// ç›¸æ‰‹ã®åå‰
 	TradeListPrint(&wk->TradeListWin[BMP_M_FRIENDNAME_WIN], FriendNameBuf, TRADELIST_NAME_W, MSG_ALLPUT, CENTER_PRINT,1);
-	// u‚¨‚í‚èv
+	// ã€ŒãŠã‚ã‚Šã€
 	TradeListPrint(&wk->TradeListWin[BMP_M_ENDSTR_WIN], EndBuf, TRADELIST_ENDSTR_W, MSG_ALLPUT, CENTER_PRINT,1);
 
 	STRBUF_Delete( EndBuf );
@@ -582,7 +582,7 @@ static const STRCODE testitem[]={HA_,bou_,BA_,bou_,ME_,bou_,RU_,EOM_};
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰º‰æ–Ê•¶Žš•\Ž¦
+ * $brief   ä¸‹ç”»é¢æ–‡å­—è¡¨ç¤º
  *
  * @param   win			
  * @param   cardno		
@@ -594,7 +594,7 @@ static void PokemonInfoSubPrint( TRADELIST_WORK *wk, int page )
 {
 	STRBUF *MotimonoBuf;
 
-	// ‚à‚¿‚à‚Ì
+	// ã‚‚ã¡ã‚‚ã®
 	MotimonoBuf = MSGMAN_AllocString( wk->MsgManager, mes_dstrade_05_05 );
 
 	TradeListPrint(&wk->TradeListWin[BMP_S_MOTIMONO0_WIN+page], MotimonoBuf, SUB_MOTIMONOSTR_W, MSG_ALLPUT, LEFT_PRINT,0);
@@ -608,7 +608,7 @@ static void PokemonInfoSubPrint( TRADELIST_WORK *wk, int page )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒXƒe[ƒ^ƒX‰æ–Ê‚©‚ç‚Ì•œ‹A—pˆ—
+ * @brief   ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã‹ã‚‰ã®å¾©å¸°ç”¨å‡¦ç†
  *
  * @param   wk		
  *
@@ -621,31 +621,31 @@ static void TradeListReturn( TRADELIST_WORK *wk )
 
 	p_handle = ArchiveDataHandleOpen( ARC_TRADELIST_GRA, HEAPID_TRADELIST );
 
-	// VRAMÝ’è
+	// VRAMè¨­å®š
 	VramBankSet();
 
-	// BGƒoƒ“ƒNÄÝ’è
+	// BGãƒãƒ³ã‚¯å†è¨­å®š
 	BgInit( wk->bgl );
 
-	// ƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	BgGraphicSet( wk, p_handle );
 
-	// ƒ|ƒPƒ‚ƒ“–¼•`‰æ
+	// ãƒã‚±ãƒ¢ãƒ³åæç”»
 	PokemonName_Get_Write( wk );
 
-	// ƒgƒŒ[ƒi[–¼
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/19
-	// u‚â‚ß‚év•¶Žš—ñ‚ðgmm‚ÉˆÚs
+	// ã€Œã‚„ã‚ã‚‹ã€æ–‡å­—åˆ—ã‚’gmmã«ç§»è¡Œ
 	TrainerNamePrint( wk );
 	// ----------------------------------------------------------------------------
 
-	// ƒƒCƒ“‰æ–Ê‚Ì‰ï˜bƒEƒCƒ“ƒhƒEˆ—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å‡¦ç†
 	TalkWinGraphicSet( wk->bgl, GF_BGL_FRAME0_M, TALKWIN_FRAME_OFFSET, 10, CONFIG_GetWindowType(wk->param->config), HEAPID_TRADELIST );           
 	MenuWinGraphicSet( wk->bgl, GF_BGL_FRAME0_M, MENUWIN_FRAME_OFFSET, 11, 0, HEAPID_TRADELIST );
 
 
-	// ƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚Å‚­‚¾‚³‚¢
+	// ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã§ãã ã•ã„
 	TradeListWindowPrint(
 		&wk->TradeListWin[BMP_M_MES1_WIN],
 		mes_dstrade_02_01,FONT_TALK,
@@ -654,40 +654,40 @@ static void TradeListReturn( TRADELIST_WORK *wk )
 	);
 
 
-	// ã‰æ–ÊON
+	// ä¸Šç”»é¢ON
 	GF_BGL_VisibleSet( GF_BGL_FRAME0_S, VISIBLE_ON );
 	GF_BGL_VisibleSet( GF_BGL_FRAME1_S, VISIBLE_ON );
 	GF_BGL_VisibleSet( GF_BGL_FRAME2_S, VISIBLE_ON );
-	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 
-	// ‰º‰æ–ÊON
+	// ä¸‹ç”»é¢ON
 	GF_BGL_VisibleSet( GF_BGL_FRAME0_M, VISIBLE_ON );
 	GF_BGL_VisibleSet( GF_BGL_FRAME1_M, VISIBLE_ON );
 	GF_BGL_VisibleSet( GF_BGL_FRAME2_M, VISIBLE_ON );
 	GF_BGL_VisibleSet( GF_BGL_FRAME3_M, VISIBLE_ON );
-	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJ–Ê‚n‚m
+	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 
 
 
-	// ƒLƒƒƒ‰ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	char_pltt_manager_init();
 
-	// CellActorƒVƒXƒeƒ€‰Šú‰»
+	// CellActorã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitCellActor(wk, p_handle);
 
-	// CellActro•\Ž¦“o˜^
+	// CellActroè¡¨ç¤ºç™»éŒ²
 	SetCellActor(wk);
 
 
-	// ƒAƒCƒRƒ“ƒf[ƒ^‚ð“Ç‚Ýž‚ñ‚Å“]‘—
+	// ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚“ã§è»¢é€
 	LoadPokeIcon( wk->MyPokeParty,     0, wk);
 	LoadPokeIcon( wk->FriendPokeParty, 6, wk);
 
-	// ƒJ[ƒ\ƒ‹•\Ž¦ON
+	// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºON
 	CLACT_SetDrawFlag(wk->clActWork[0], 1);
 	CLACT_SetDrawFlag(wk->clActWork[1], 1);
 
-	// VBlankŠÖ”ƒZƒbƒg
+	// VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
 	sys_VBlankFuncChange( VBlankFunc, wk );	
 
 	ArchiveDataHandleClose( p_handle );
@@ -695,7 +695,7 @@ static void TradeListReturn( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“–¼‘OŽæ“¾••`‰æ
+ * @brief   ãƒã‚±ãƒ¢ãƒ³åå‰å–å¾—ï¼†æç”»
  *
  * @param   wk		
  *
@@ -705,11 +705,11 @@ static void TradeListReturn( TRADELIST_WORK *wk )
 static void PokemonName_Get_Write( TRADELIST_WORK *wk)
 {
 
-	// ƒ|ƒPƒ‚ƒ“–¼‘O“o˜^
+	// ãƒã‚±ãƒ¢ãƒ³åå‰ç™»éŒ²
 	Regist_WordSetPokeName(wk->PokeNameWordSet, wk->MyPokeParty,     0 );
 	Regist_WordSetPokeName(wk->PokeNameWordSet, wk->FriendPokeParty, 6 );
 	
-	// ƒ|ƒPƒ‚ƒ“–¼‘OBmp•`‰æ
+	// ãƒã‚±ãƒ¢ãƒ³åå‰Bmpæç”»
 	Print_MainPokeName(&wk->TradeListWin[BMP_M_MYPOKENAME0_WIN],wk->PokeNameWordSet,wk->MsgManager,wk->MyPokeParty,     0);
 	Print_MainPokeName(&wk->TradeListWin[BMP_M_FRIENDPOKENAME0_WIN],wk->PokeNameWordSet,wk->MsgManager,wk->FriendPokeParty, 6);
 
@@ -719,12 +719,12 @@ static void PokemonName_Get_Write( TRADELIST_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 
@@ -739,16 +739,16 @@ PROC_RESULT TradeListProc_Main( PROC * proc, int * seq )
 			*seq = SEQ_MAIN;
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/19
-			// u‚â‚ß‚év•¶Žš—ñ‚ðgmm‚ÉˆÚs
+			// ã€Œã‚„ã‚ã‚‹ã€æ–‡å­—åˆ—ã‚’gmmã«ç§»è¡Œ
 			TrainerNamePrint( wk );
 			// ----------------------------------------------------------------------------
-			OS_Printf("ƒ|ƒPƒp[ƒeƒB[ = %d\n",PokeParty_GetPokeCount(wk->MyPokeParty));
+			OS_Printf("ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ = %d\n",PokeParty_GetPokeCount(wk->MyPokeParty));
 		}
 		break;
 
 	case SEQ_MAIN:
 #ifdef PM_DEBUG
-		// ƒfƒoƒbƒOƒ{ƒ^ƒ“‚ð‰Ÿ‚·‚Æƒ_ƒƒ^ƒ}ƒS‚É‚È‚è‚Ü‚·
+		// ãƒ‡ãƒãƒƒã‚°ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ãƒ€ãƒ¡ã‚¿ãƒžã‚´ã«ãªã‚Šã¾ã™
 		if(sys.trg&PAD_BUTTON_DEBUG){
 			POKEMON_PARAM *pp;
 			int *tmp;
@@ -760,27 +760,27 @@ PROC_RESULT TradeListProc_Main( PROC * proc, int * seq )
 #endif
 
 		switch(wk->tradeseq){
-		// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ŒðŠ·
+		// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿äº¤æ›
 		case TRADELIST_SEQ_POKEMON_EXCHANGE:
 			wk->tradeseq = TradeListPokemonExchange(wk);
 			break;
-		//ƒƒCƒ“ƒ‹[ƒv
+		//ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
 		case TRADELIST_SEQ_MAIN:
 			wk->tradeseq = TradeListMain(wk);
 			TouchFunc(wk);
 			break;
-		// ŒðŠ·ƒŠƒXƒgI—¹
+		// äº¤æ›ãƒªã‚¹ãƒˆçµ‚äº†
 		case TRADELIST_SEQ_END:
 			WIPE_SYS_Start(WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, 8, 1, HEAPID_TRADELIST);
 			*seq = SEQ_OUT;
 			break;
 
-		// ƒXƒe[ƒ^ƒX‘JˆÚ—pƒtƒF[ƒh
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é·ç§»ç”¨ãƒ•ã‚§ãƒ¼ãƒ‰
 		case TRADELIST_SEQ_STATUS_INFADE:
 			WIPE_SYS_Start(WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, 8, 1, HEAPID_TRADELIST);
 			wk->tradeseq = TRADELIST_SEQ_STATUS_INFADE_WAIT;
 			break;
-		// ƒtƒF[ƒh‘Ò‚¿
+		// ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		case TRADELIST_SEQ_STATUS_INFADE_WAIT:
 			if( WIPE_SYS_EndCheck() ){	
 				
@@ -794,17 +794,17 @@ PROC_RESULT TradeListProc_Main( PROC * proc, int * seq )
 				poke_status_setup( wk, wk->cursor_pos[0]/6 );
 			}
 			break;
-		// ƒXƒe[ƒ^ƒX‰æ–ÊŽÀs
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢å®Ÿè¡Œ
 		case TRADELIST_SEQ_STATUS:
 			if( ProcMain( wk->subproc ) ){
 				PROC_Delete( wk->subproc );
 				
-				// BG¥OAMƒVƒXƒeƒ€Ä\’z
+				// BGãƒ»OAMã‚·ã‚¹ãƒ†ãƒ å†æ§‹ç¯‰
 				TradeListReturn(wk);
 				wk->subseqflag = 0;
 				wk->cursor_pos[0] = wk->statusParam.pos+wk->status_side*6;
 
-				// ƒJ[ƒ\ƒ‹E‰º‰æ–Ê”½‰f
+				// ã‚«ãƒ¼ã‚½ãƒ«ãƒ»ä¸‹ç”»é¢åæ˜ 
 				CursorSubLcd_Update(wk);
 				CursorPosChange(wk->cursor_pos[0],wk->clActWork[0], 0);
 
@@ -814,13 +814,13 @@ PROC_RESULT TradeListProc_Main( PROC * proc, int * seq )
 			}
 			break;
 
-		// •œ‹AƒtƒF[ƒh
+		// å¾©å¸°ãƒ•ã‚§ãƒ¼ãƒ‰
 		case TRADELIST_SEQ_STATUS_OUTFADE:
 			WIPE_SYS_Start(WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 8, 1, HEAPID_TRADELIST);
 			wk->tradeseq = TRADELIST_SEQ_STATUS_OUTFADE_WAIT;
 			break;
 
-		// •œ‹AƒtƒF[ƒh‘Ò‚¿
+		// å¾©å¸°ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		case TRADELIST_SEQ_STATUS_OUTFADE_WAIT:
 			if( WIPE_SYS_EndCheck() ){	
 				wk->tradeseq = TRADELIST_SEQ_MAIN;
@@ -830,7 +830,7 @@ PROC_RESULT TradeListProc_Main( PROC * proc, int * seq )
 
 		break;
 
-	// ƒƒCƒ“ƒV[ƒPƒ“ƒXI—¹
+	// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚äº†
 	case SEQ_OUT:
 		if( WIPE_SYS_EndCheck() ){
 			proc_result = PROC_RES_FINISH;
@@ -838,15 +838,15 @@ PROC_RESULT TradeListProc_Main( PROC * proc, int * seq )
 		break;
 	}
 	
-	// ƒXƒe[ƒ^ƒX‰æ–Ê‚ªŒÄ‚Î‚ê‚Ä‚¢‚é‚Æ‚«‚ÍŽÀs‚µ‚È‚¢
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãŒå‘¼ã°ã‚Œã¦ã„ã‚‹ã¨ãã¯å®Ÿè¡Œã—ãªã„
 	if(!wk->subseqflag){
-		// ƒTƒu‰æ–ÊBG3–ÊƒXƒNƒ[ƒ‹ˆ—
+		// ã‚µãƒ–ç”»é¢BG3é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†
 		SubLCD_ScrollFunc( wk );
-		// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 		CLACT_Draw( wk->clactSet );
 	}
 
-	CommErrorCheck(HEAPID_TRADELIST, wk->bgl);					// ’ÊMƒGƒ‰[ƒ`ƒFƒbƒN
+	CommErrorCheck(HEAPID_TRADELIST, wk->bgl);					// é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 
 	return proc_result;
 }
@@ -854,7 +854,7 @@ PROC_RESULT TradeListProc_Main( PROC * proc, int * seq )
 
 //------------------------------------------------------------------
 /**
- * WordSet‚Éƒ|ƒPƒ‚ƒ“‚Ì–¼‘O‚ð“o˜^‚·‚é
+ * WordSetã«ãƒã‚±ãƒ¢ãƒ³ã®åå‰ã‚’ç™»éŒ²ã™ã‚‹
  *
  * @param   wordset		
  * @param   party		
@@ -873,7 +873,7 @@ static void Regist_WordSetPokeName(WORDSET *wordset, POKEPARTY *party, int start
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‚P‚Q‘Ì•ª‚ð“]‘—‚·‚é
+ * ãƒã‚±ãƒ¢ãƒ³ï¼‘ï¼’ä½“åˆ†ã‚’è»¢é€ã™ã‚‹
  *
  * @param   win		
  * @param   wordset		
@@ -896,7 +896,7 @@ static void Print_MainPokeName(GF_BGL_BMPWIN *win, WORDSET *wordset, MSGDATA_MAN
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì“]‘—
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®è»¢é€
  *
  * @param   party		
  * @param   start		
@@ -926,27 +926,27 @@ static void LoadPokeIcon(POKEPARTY *party, int start, TRADELIST_WORK *wk)
 							  pos, wk->PokeIconActWork[pos]);
 		CLACT_SetDrawFlag(wk->PokeIconActWork[pos], 1);
 
-		// ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚Ì•\Ž¦Eƒ[ƒ‹EƒAƒCƒeƒ€‚Ì‚Ç‚¿‚ç‚©
+		// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºãƒ»ãƒ¡ãƒ¼ãƒ«ãƒ»ã‚¢ã‚¤ãƒ†ãƒ ã®ã©ã¡ã‚‰ã‹
 		if(wk->pokeInfo[pos].item==0){
-			// ƒAƒCƒeƒ€‚Í–³‚¢‚Ì‚Å”ñ•\Ž¦
+			// ã‚¢ã‚¤ãƒ†ãƒ ã¯ç„¡ã„ã®ã§éžè¡¨ç¤º
 			CLACT_SetDrawFlag(wk->PokeItemActWork[pos], 0);
 		}else{
-			// ƒAƒCƒeƒ€‚©ƒ[ƒ‹‚É‚ ‚í‚¹‚Ä‰æ‘œƒ`ƒFƒ“ƒW
+			// ã‚¢ã‚¤ãƒ†ãƒ ã‹ãƒ¡ãƒ¼ãƒ«ã«ã‚ã‚ã›ã¦ç”»åƒãƒã‚§ãƒ³ã‚¸
 			CLACT_SetDrawFlag(wk->PokeItemActWork[pos], 1);
 			CLACT_AnmChg( wk->PokeItemActWork[pos], 3+wk->pokeInfo[pos].item-1 );
 		}
 		
-		// ƒ{[ƒ‹ƒJƒXƒ^ƒ}ƒCƒY‚ð‚µ‚Ä‚¢‚é‚©H
+		// ãƒœãƒ¼ãƒ«ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºã‚’ã—ã¦ã„ã‚‹ã‹ï¼Ÿ
 		if(wk->pokeInfo[pos].customball==0){
 			CLACT_SetDrawFlag(wk->PokeCBallActWork[pos], 0);
 		}else{
-			// ‚µ‚Ä‚éiƒJƒXƒ^ƒ€ƒ{[ƒ‹•\Ž¦j
+			// ã—ã¦ã‚‹ï¼ˆã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«è¡¨ç¤ºï¼‰
 			CLACT_SetDrawFlag(wk->PokeCBallActWork[pos], 1);
 			CLACT_AnmChg( wk->PokeCBallActWork[pos], 21 );
 		}
 	}
 	
-	// Žc‚è‚Í‘S‚Ä”ñ•\Ž¦
+	// æ®‹ã‚Šã¯å…¨ã¦éžè¡¨ç¤º
 	for(;i<6;i++){
 		CLACT_SetDrawFlag(wk->PokeIconActWork[i+start], 0);
 		CLACT_SetDrawFlag(wk->PokeItemActWork[i+start], 0);
@@ -985,7 +985,7 @@ enum{
 #define TRADE_PARENT_WAIT				( 60 )
 //------------------------------------------------------------------
 /**
- * ŒðŠ·ƒŠƒXƒgƒ|ƒPƒ‚ƒ“ƒf[ƒ^‹¤—Lˆ—
+ * äº¤æ›ãƒªã‚¹ãƒˆãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å…±æœ‰å‡¦ç†
  *
  * @param   wk		
  *
@@ -994,23 +994,23 @@ enum{
 //------------------------------------------------------------------
 static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 {
-	// ƒ^ƒCƒ€ƒAƒEƒgˆ—
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå‡¦ç†
 	TimeoutErrorCheck( wk );
 	
 	
 	switch(wk->exchangeseq){
 
-	// ŒðŠ·s‚¤‘O‚É’ÊM“¯Šú‚ð‚·‚éiƒZ[ƒu‚µ‚È‚¢‚Ì‚ÅA‚±‚±‚ÅŒðŠ·ƒfƒ‚‚ð‘Ò‚Âj
+	// äº¤æ›è¡Œã†å‰ã«é€šä¿¡åŒæœŸã‚’ã™ã‚‹ï¼ˆã‚»ãƒ¼ãƒ–ã—ãªã„ã®ã§ã€ã“ã“ã§äº¤æ›ãƒ‡ãƒ¢ã‚’å¾…ã¤ï¼‰
 	case EXCHANGE_SEQ_BEFORE_SYNCRO:
 		CommTimingSyncStart( TRADELIST_COMM_SYNCHRONIZE1_NO );
 
-		// ƒ\ƒtƒgƒŠƒZƒbƒg•s‰Â”\‚É‚·‚é
+		// ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆä¸å¯èƒ½ã«ã™ã‚‹
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(JP_VER10) imatake 2006/12/01
-/* Wifi’ÊMã‚Å‚ÌŒðŠ·ƒŠƒXƒg‰æ–Ê‚Åƒ\ƒtƒgƒEƒFƒAƒŠƒZƒbƒg‚ªŒø‚¢‚Ä‚µ‚Ü‚¤ƒoƒO‘Îˆ */
+/* Wifié€šä¿¡ä¸Šã§ã®äº¤æ›ãƒªã‚¹ãƒˆç”»é¢ã§ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒªã‚»ãƒƒãƒˆãŒåŠ¹ã„ã¦ã—ã¾ã†ãƒã‚°å¯¾å‡¦ */
 #if T1666_060821_FIX
-		// WIFIã‚Å‚Ì“®ì‚àl—¶‚µ‚½ƒŠƒZƒbƒg§ŒäŠÖ”
+		// WIFIä¸Šã§ã®å‹•ä½œã‚‚è€ƒæ…®ã—ãŸãƒªã‚»ãƒƒãƒˆåˆ¶å¾¡é–¢æ•°
 		sys_SoftResetNG( SOFTRESET_TYPE_TRADE );
 #else
 		sys.DontSoftReset = 1;
@@ -1018,25 +1018,25 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 // ----------------------------------------------------------------------------
 
 		
-		// ŽžŠÔƒAƒCƒRƒ“•\Ž¦
+		// æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 		TimeIconAdd( wk );
 
 #ifdef SHEIMI_FORM_CHANGE
-		// ƒVƒFƒCƒ~—p“ÁŽêˆ—
+		// ã‚·ã‚§ã‚¤ãƒŸç”¨ç‰¹æ®Šå‡¦ç†
 		{
 			int i,form,monsno;
 			POKEMON_PARAM *pp;
 			
-			// ŽèŽ‚¿‚Ìƒ|ƒPƒ‚ƒ“‚ÉƒVƒFƒCƒ~‚ª‚¢‚Ä
+			// æ‰‹æŒã¡ã®ãƒã‚±ãƒ¢ãƒ³ã«ã‚·ã‚§ã‚¤ãƒŸãŒã„ã¦
 			for(i=0;i<PokeParty_GetPokeCount(wk->param->myparty);i++){
 				POKEMON_PARAM *pp = PokeParty_GetMemberPointer(wk->param->myparty, i);
 				monsno = PokeParaGet(pp, ID_PARA_monsno_egg, NULL);
 				if(monsno==MONSNO_EURISU){
 					form = PokeParaGet(pp, ID_PARA_form_no, NULL);
 
-					// ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ª‚OˆÈŠO‚¾‚Á‚½‚ç0‚É–ß‚·
+					// ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ãŒï¼ä»¥å¤–ã ã£ãŸã‚‰0ã«æˆ»ã™
 					if(form!=FORMNO_SHEIMI_NORMAL){
-						OS_Printf("%d•C–Ú‚ÍƒXƒJƒCƒtƒHƒ‹‚¾‚Á‚½‚Ì‚Å–ß‚·\n",i);
+						OS_Printf("%dåŒ¹ç›®ã¯ã‚¹ã‚«ã‚¤ãƒ•ã‚©ãƒ«ã ã£ãŸã®ã§æˆ»ã™\n",i);
 						PokeParaSheimiFormChange(pp, FORMNO_SHEIMI_NORMAL);
 					}
 				}
@@ -1047,27 +1047,27 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 		wk->exchangeseq++;
 		break;
 
-	// Å‰‚Ì’ÊM“¯Šú‘Ò‚¿
+	// æœ€åˆã®é€šä¿¡åŒæœŸå¾…ã¡
 	case EXCHANGE_SEQ_BEFORE_SYNCRO_WAIT:
 		if(CommIsTimingSync(TRADELIST_COMM_SYNCHRONIZE1_NO)){
-			OS_Printf("ŒðŠ·ƒŠƒXƒgŒÄ‚Ño‚µ %d‰ñ–Ú\n",wk->param->times);
+			OS_Printf("äº¤æ›ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã— %då›žç›®\n",wk->param->times);
 			if(wk->param->times==0){
 				wk->exchangeseq = EXCHANGE_SEQ_START_PRE_SYNC;
-				OS_Printf("ƒZ[ƒu–³‚µ‚Åƒf[ƒ^‘—M\n");
+				OS_Printf("ã‚»ãƒ¼ãƒ–ç„¡ã—ã§ãƒ‡ãƒ¼ã‚¿é€ä¿¡\n");
 			}else{
 				wk->exchangeseq = EXCHANGE_SEQ_SAVE_WAIT_RECV;
-				OS_Printf("ƒZ[ƒu‚Ö\n");
+				OS_Printf("ã‚»ãƒ¼ãƒ–ã¸\n");
 			}
 
 			if(CommGetCurrentID()==0){
-				// ‚P•bˆÈ“à‚ÅƒZ[ƒu‚Ü‚Å‚ÌƒYƒŒ‚ð¶¬‚·‚é
+				// ï¼‘ç§’ä»¥å†…ã§ã‚»ãƒ¼ãƒ–ã¾ã§ã®ã‚ºãƒ¬ã‚’ç”Ÿæˆã™ã‚‹
 				TradeListCommSend( CommGetCurrentID(), CT_SAVE_WAIT_TIME, gf_p_rand(TRADE_PARENT_WAIT)+3);
-				OS_Printf("e‹@‚È‚Ì‚ÅƒZ[ƒu‚¸‚ç‚µƒRƒ}ƒ“ƒh‘—M\n");
+				OS_Printf("è¦ªæ©Ÿãªã®ã§ã‚»ãƒ¼ãƒ–ãšã‚‰ã—ã‚³ãƒžãƒ³ãƒ‰é€ä¿¡\n");
 			}
 			TradeListCommSpRibbonDate(  wk->savedata );
-			OS_Printf("ƒŠƒ{ƒ“î•ñ‘—M\n");
+			OS_Printf("ãƒªãƒœãƒ³æƒ…å ±é€ä¿¡\n");
 
-			// ƒ^ƒCƒ€ƒAƒEƒgƒJƒEƒ“ƒgŠJŽn
+			// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹
 			TimeoutStart(wk);
 #ifdef DEBUG_TIMEOUT
 			wk->exchangeseq = 300;
@@ -1075,7 +1075,7 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 
 		}
 		break;
-	// ƒZ[ƒu‚ðs‚¤Žž‚Í‚Ü‚¸‚Íe‹@‚©‚çƒZ[ƒu‚Ü‚Å‚Ì‘Ò‹@ŽžŠÔ‚ðŽóM‚µ‚Ä‚¢‚é‚©Šm”F‚·‚é
+	// ã‚»ãƒ¼ãƒ–ã‚’è¡Œã†æ™‚ã¯ã¾ãšã¯è¦ªæ©Ÿã‹ã‚‰ã‚»ãƒ¼ãƒ–ã¾ã§ã®å¾…æ©Ÿæ™‚é–“ã‚’å—ä¿¡ã—ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
 	case EXCHANGE_SEQ_SAVE_WAIT_RECV:
 		if(wk->savePreWait!=0){
 			OS_Printf("savePreWait = %d\n", wk->savePreWait);
@@ -1084,17 +1084,17 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 		break;
 	case EXCHANGE_SEQ_SAVE_WAIT_CLEAR:
 
-		// ƒZ[ƒu‚Ü‚Å‚Ì‘Ò‹@ŽžŠÔ‚Íe‹@‚ª—”‚Å“n‚·‚½‚ßƒ^ƒCƒ~ƒ“ƒO‚ª—ˆ‚é“x‚ÉƒYƒŒ‚é
+		// ã‚»ãƒ¼ãƒ–ã¾ã§ã®å¾…æ©Ÿæ™‚é–“ã¯è¦ªæ©ŸãŒä¹±æ•°ã§æ¸¡ã™ãŸã‚ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæ¥ã‚‹åº¦ã«ã‚ºãƒ¬ã‚‹
 		wk->savePreWait--;
 		if(wk->savePreWait==0){
 			wk->exchangeseq = EXCHANGE_SEQ_SAVE_START;
-			OS_Printf("ƒZ[ƒu—”‘Ò‚¿I—¹\n");
+			OS_Printf("ã‚»ãƒ¼ãƒ–ä¹±æ•°å¾…ã¡çµ‚äº†\n");
 		}
 		break;
 
-	// 2‰ñ–ÚˆÈ~‚ÌŒðŠ·ƒŠƒXƒg‚ÍƒZ[ƒu‚ðs‚¤
+	// 2å›žç›®ä»¥é™ã®äº¤æ›ãƒªã‚¹ãƒˆã¯ã‚»ãƒ¼ãƒ–ã‚’è¡Œã†
 	case EXCHANGE_SEQ_SAVE_START:
-		OS_Printf("ƒZ[ƒuŠJŽn\n");
+		OS_Printf("ã‚»ãƒ¼ãƒ–é–‹å§‹\n");
 		CommSyncronizeSaveInit( &wk->commSaveSeq );
 		wk->exchangeseq++;
 		break;
@@ -1104,9 +1104,9 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 		}
 		break;
 
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‘—MŠJŽn‘O‚Ì“¯Šú
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿é€ä¿¡é–‹å§‹å‰ã®åŒæœŸ
 	case EXCHANGE_SEQ_START_PRE_SYNC:
-        CommSetWifiBothNet(TRUE); // wifi‚Ì’ÊM‚ð”ñ“¯Šú‚©‚ç“¯Šú‚É ohno
+        CommSetWifiBothNet(TRUE); // wifiã®é€šä¿¡ã‚’éžåŒæœŸã‹ã‚‰åŒæœŸã« ohno
 		CommTimingSyncStart( TRADELIST_COMM_SYNCHRONIZE2_NO );
 		wk->exchangeseq++;
 		break;
@@ -1116,13 +1116,13 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 		}
 		break;
 
-	// ƒf[ƒ^‘—ŽóMŠJŽn
+	// ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡é–‹å§‹
 	case EXCHANGE_SEQ_START:
 		wk->exchange_work         = 0;
 		wk->exchange_finish       = 0;
 		wk->exchange_friend_count = 0;
 		if(CommGetCurrentID()==1){
-			// ‘å—e—Ê‘—MŠJŽn
+			// å¤§å®¹é‡é€ä¿¡é–‹å§‹
 			TradeListCommSendPokeData(CommGetCurrentID(), wk->MyPokeParty, wk->exchange_work);
 			wk->exchange_work++;
 		}
@@ -1142,12 +1142,12 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 //		if(wk->exchange_finish==2){
 			wk->exchangeseq++;
 
-			// ƒ|ƒPƒ‚ƒ“‚Ì–¼‘OŽæ“¾•BMP•`‰æ
+			// ãƒã‚±ãƒ¢ãƒ³ã®åå‰å–å¾—ï¼†BMPæç”»
 			PokemonName_Get_Write(wk);
 
 //		}
 		break;
-	// Žæ“¾‚µ‚½ƒf[ƒ^‚ð‰º‚É•\Ž¦—pƒf[ƒ^‚ðW‚ß‚é
+	// å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’ä¸‹ã«è¡¨ç¤ºç”¨ãƒ‡ãƒ¼ã‚¿ã‚’é›†ã‚ã‚‹
 	case EXCHANGE_SEQ_DATA_SETUP:
 		{
 				int i,item;
@@ -1157,7 +1157,7 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 				for(i=0;i<PokeParty_GetPokeCount(wk->MyPokeParty);i++){
 					POKEMON_PARAM *pp = PokeParty_GetMemberPointer(wk->MyPokeParty, i);
 
-					// Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“
+					// è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³
 					GetPokeInfo(pp, &wk->pokeInfo[i]);
 //					OS_Printf("%d cball = %d\n", i, wk->pokeInfo[i].customball);
 					
@@ -1165,7 +1165,7 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 				for(i=0;i<PokeParty_GetPokeCount(wk->FriendPokeParty);i++){
 					POKEMON_PARAM *pp = PokeParty_GetMemberPointer(wk->FriendPokeParty, i);
 
-					// ‘ŠŽè‚Ìƒ|ƒPƒ‚ƒ“
+					// ç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³
 					GetPokeInfo( pp, &wk->pokeInfo[i+6] );
 //					OS_Printf("%d cball = %d\n", i+6, wk->pokeInfo[i+6].customball);
 				}
@@ -1189,9 +1189,9 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 	case EXCHANGE_SEQ_PERAPVOICE_END:
 		if(wk->exchange_finish==4){
 			wk->exchangeseq++;
-			GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_OFF);	//OBJ–Ê‚n‚m
+			GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_OFF);	//OBJé¢ï¼¯ï¼®
 
-			// ƒAƒCƒRƒ“ƒf[ƒ^‚ð“Ç‚Ýž‚ñ‚Å“]‘—
+			// ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚“ã§è»¢é€
 			LoadPokeIcon( wk->MyPokeParty,     0, wk);
 			LoadPokeIcon( wk->FriendPokeParty, 6, wk);
 
@@ -1209,7 +1209,7 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 		GF_BGL_VisibleSet( GF_BGL_FRAME1_M, VISIBLE_ON );
 		GF_BGL_VisibleSet( GF_BGL_FRAME2_M, VISIBLE_ON );
 		GF_BGL_VisibleSet( GF_BGL_FRAME3_M, VISIBLE_ON );
-		GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJ–Ê‚n‚m
+		GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 		
 		wk->exchangeseq++;
 		break;
@@ -1217,7 +1217,7 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 		if( IsFinishedBrightnessChg(MASK_MAIN_DISPLAY) ){
 			POKEMON_PARAM *pp = PokeParty_GetMemberPointer(wk->MyPokeParty, 0);
 
-			// ‰º‰æ–Ê—pƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN“]‘—
+			// ä¸‹ç”»é¢ç”¨ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 			wk->vblankreq = TransPokeGra_SubLcd(0,pp, wk->PokeGra[0], &wk->PokeGraSsa[0] );
 			TransPokeStr_SubLcd(wk->TradeListWin,0,wk->MyPokeParty, 0, wk);
 			wk->exchangeseq++;
@@ -1228,11 +1228,11 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 		GF_BGL_VisibleSet( GF_BGL_FRAME0_S, VISIBLE_ON );
 		GF_BGL_VisibleSet( GF_BGL_FRAME1_S, VISIBLE_ON );
 		GF_BGL_VisibleSet( GF_BGL_FRAME2_S, VISIBLE_ON );
-		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 
 		wk->exchangeseq++;
 
-		// ŽžŠÔƒAƒCƒRƒ“•\Ž¦
+		// æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 		TimeIconDel( wk );
 
 		break;
@@ -1241,7 +1241,7 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 
 			BmpTalkWinClear( &wk->TradeListWin[BMP_M_MES3_WIN], WINDOW_TRANS_ON );
 
-			// ƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚Å‚­‚¾‚³‚¢
+			// ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã§ãã ã•ã„
 			GF_BGL_ScrFill(	wk->bgl, GF_BGL_FRAME0_M, 0, 0, 0, 32, 24,  0);
 			TradeListWindowPrint(
 				&wk->TradeListWin[BMP_M_MES1_WIN],
@@ -1250,15 +1250,15 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 				wk->PokeNameWordSet
 			);
 
-			OS_Printf("ƒ|ƒPƒp[ƒeƒB[ = %d\n",PokeParty_GetPokeCount(wk->MyPokeParty));
+			OS_Printf("ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ = %d\n",PokeParty_GetPokeCount(wk->MyPokeParty));
 
-			// ƒ\ƒtƒgƒŠƒZƒbƒg‰Â”\‚É‚·‚é
+			// ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆå¯èƒ½ã«ã™ã‚‹
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(JP_VER10) imatake 2006/12/01
-/* Wifi’ÊMã‚Å‚ÌŒðŠ·ƒŠƒXƒg‰æ–Ê‚Åƒ\ƒtƒgƒEƒFƒAƒŠƒZƒbƒg‚ªŒø‚¢‚Ä‚µ‚Ü‚¤ƒoƒO‘Îˆ */
+/* Wifié€šä¿¡ä¸Šã§ã®äº¤æ›ãƒªã‚¹ãƒˆç”»é¢ã§ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒªã‚»ãƒƒãƒˆãŒåŠ¹ã„ã¦ã—ã¾ã†ãƒã‚°å¯¾å‡¦ */
 #if T1666_060821_FIX
-			// WIFIã‚Å‚Ì“®ì‚àl—¶‚µ‚½ƒŠƒZƒbƒg§ŒäŠÖ”(WIFIŽž‚Íƒ\ƒtƒgƒŠƒZƒbƒg‚Í—LŒø‚É‚È‚ç‚È‚¢j
+			// WIFIä¸Šã§ã®å‹•ä½œã‚‚è€ƒæ…®ã—ãŸãƒªã‚»ãƒƒãƒˆåˆ¶å¾¡é–¢æ•°(WIFIæ™‚ã¯ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆã¯æœ‰åŠ¹ã«ãªã‚‰ãªã„ï¼‰
 			sys_SoftResetOK( SOFTRESET_TYPE_TRADE );
 #else
 			sys.DontSoftReset = 0;
@@ -1276,7 +1276,7 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚Ä‚à‚¿ƒ|ƒPƒ‚ƒ“‚Ì•\Ž¦‚ÉŽg‚¤î•ñ‚ðW‚ß‚é
+ * @brief   ã¦ã‚‚ã¡ãƒã‚±ãƒ¢ãƒ³ã®è¡¨ç¤ºã«ä½¿ã†æƒ…å ±ã‚’é›†ã‚ã‚‹
  *
  * @param   pp		
  * @param   info		
@@ -1288,7 +1288,7 @@ static void GetPokeInfo( POKEMON_PARAM *pp, POKE_INFO* info )
 {
 	int fastflag, item;
 
-	// ‚‘¬‰»ƒtƒ‰ƒOON
+	// é«˜é€ŸåŒ–ãƒ•ãƒ©ã‚°ON
 	fastflag = PokeParaFastModeOn( pp );
 	info->monsball   = PokeParaGet( pp, ID_PARA_get_ball,    NULL );
 	info->exist      = PokeParaGet( pp, ID_PARA_monsno,      NULL );
@@ -1298,24 +1298,24 @@ static void GetPokeInfo( POKEMON_PARAM *pp, POKE_INFO* info )
 	info->customball = PokeParaGet( pp, ID_PARA_cb_id,       NULL );
 	item             = PokeParaGet( pp, ID_PARA_item,        NULL );
 
-	// ‚‘¬‰»ƒtƒ‰ƒOOFF
+	// é«˜é€ŸåŒ–ãƒ•ãƒ©ã‚°OFF
 	PokeParaFastModeOff( pp, fastflag );
 
-	// ”½“]ƒtƒ‰ƒOŽæ“¾
+	// åè»¢ãƒ•ãƒ©ã‚°å–å¾—
 	if( info->exist!=0 ){
 		info->reverse = PokeFormNoPersonalParaGet( info->exist, info->form, ID_PER_reverse );
 	}
 
-	// ƒ[ƒ‹ƒ`ƒFƒbƒN
+	// ãƒ¡ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯
 	if(item!=0){
-		info->item = ItemMailCheck( item )+1;	// ƒ[ƒ‹‚¾‚Á‚½‚ç‚QAitem‚¾‚Á‚½‚ç‚P
+		info->item = ItemMailCheck( item )+1;	// ãƒ¡ãƒ¼ãƒ«ã ã£ãŸã‚‰ï¼’ã€itemã ã£ãŸã‚‰ï¼‘
 	}
 	
 
 }
 //------------------------------------------------------------------
 /**
- * @brief   ‰E‘¤‚Ìƒpƒlƒ‹‚ð•`‰æ‚·‚é
+ * @brief   å³å´ã®ãƒ‘ãƒãƒ«ã‚’æç”»ã™ã‚‹
  *
  * @param   wk		
  *
@@ -1326,11 +1326,11 @@ static void SubLcd_RightPanelOn( TRADELIST_WORK *wk, int pos )
 {
 	POKEMON_PARAM *pp = PokeParty_GetMemberPointer(wk->FriendPokeParty, pos%6 );
 
-	// 10x10ƒ|ƒPƒ‚ƒ“‰æ‘œ“]‘—
+	// 10x10ãƒã‚±ãƒ¢ãƒ³ç”»åƒè»¢é€
 	wk->vblankreq = TransPokeGra_SubLcd(1, pp,wk->PokeGra[pos/6], &wk->PokeGraSsa[pos/6] );
 
 	TransPokeStr_SubLcd(wk->TradeListWin,1,wk->FriendPokeParty, pos%6, wk);
-	// ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹ƒ`ƒFƒ“ƒW
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ãƒã‚§ãƒ³ã‚¸
 	CLACT_AnmChg( wk->SubLCDIconActWork[3], wk->pokeInfo[pos].monsball+CELL_MONSTER_BALL_NO-1 );
 
 
@@ -1339,7 +1339,7 @@ static void SubLcd_RightPanelOn( TRADELIST_WORK *wk, int pos )
 
 //------------------------------------------------------------------
 /**
- * @brief    ‰º‰æ–Ê‚ð“]‘—‚·‚é
+ * @brief    ä¸‹ç”»é¢ã‚’è»¢é€ã™ã‚‹
  *
  * @param   wk		
  *
@@ -1348,23 +1348,23 @@ static void SubLcd_RightPanelOn( TRADELIST_WORK *wk, int pos )
 //------------------------------------------------------------------
 static void CursorSubLcd_Update(TRADELIST_WORK *wk)
 {
-	// ƒJ[ƒ\ƒ‹”½‰fˆ—iˆÚ“®‚µ‚Ä‚½‚ç‰º‰æ–Ê‚Ì‘‚«Š·‚¦‚Öj
+	// ã‚«ãƒ¼ã‚½ãƒ«åæ˜ å‡¦ç†ï¼ˆç§»å‹•ã—ã¦ãŸã‚‰ä¸‹ç”»é¢ã®æ›¸ãæ›ãˆã¸ï¼‰
 		if(wk->cursor_pos[0]!=12){
-			// ƒ|ƒPƒ‚ƒ“‰æ‘œ“]‘—
+			// ãƒã‚±ãƒ¢ãƒ³ç”»åƒè»¢é€
 			if(wk->cursor_pos[0]<6){
 				POKEMON_PARAM *pp = PokeParty_GetMemberPointer(wk->MyPokeParty, wk->cursor_pos[0] );
 
-				// 10x10ƒ|ƒPƒ‚ƒ“‰æ‘œ“]‘—
+				// 10x10ãƒã‚±ãƒ¢ãƒ³ç”»åƒè»¢é€
 				wk->vblankreq = TransPokeGra_SubLcd(0, pp, wk->PokeGra[wk->cursor_pos[0]/6], &wk->PokeGraSsa[wk->cursor_pos[0]/6] );
 				TransPokeStr_SubLcd(wk->TradeListWin,0,wk->MyPokeParty,    wk->cursor_pos[0], wk);
 
-				// ‰E‘¤”ñ•\Ž¦
+				// å³å´éžè¡¨ç¤º
 				PokeStr_SubLcdOff(wk->TradeListWin, 1, wk);
 				CLACT_SetDrawFlag(wk->SubLCDIconActWork[3], 0);	
 
 			}else{
 				SubLcd_RightPanelOn( wk, wk->cursor_pos[0] );
-				// ¶‘¤”ñ•\Ž¦
+				// å·¦å´éžè¡¨ç¤º
 				PokeStr_SubLcdOff(wk->TradeListWin, 0, wk);
 				CLACT_SetDrawFlag(wk->SubLCDIconActWork[2], 0);
 			}
@@ -1377,7 +1377,7 @@ static void CursorSubLcd_Update(TRADELIST_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * ŒðŠ·ƒŠƒXƒgƒƒCƒ“ƒ‹[ƒv
+ * äº¤æ›ãƒªã‚¹ãƒˆãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
  *
  * @param   wk		
  *
@@ -1386,7 +1386,7 @@ static void CursorSubLcd_Update(TRADELIST_WORK *wk)
 //------------------------------------------------------------------
 static int TradeListMain( TRADELIST_WORK *wk )
 {
-	// ƒJ[ƒ\ƒ‹ˆÚ“®
+	// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 	if(wk->func!=NULL){
 		wk->inputmode = wk->func(wk);
 	}
@@ -1404,17 +1404,17 @@ static int TradeListMain( TRADELIST_WORK *wk )
 	}
 
 
-	// Ž©•ª‚ÌƒJ[ƒ\ƒ‹ˆÚ“®(ƒJ[ƒ\ƒ‹‚ªˆÚ“®‚µ‚½‚ç‰º‰æ–Ê‚Ìƒ|ƒPƒ‚ƒ“•\Ž¦‚ð•ÏX‚·‚éj
+	// è‡ªåˆ†ã®ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•(ã‚«ãƒ¼ã‚½ãƒ«ãŒç§»å‹•ã—ãŸã‚‰ä¸‹ç”»é¢ã®ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºã‚’å¤‰æ›´ã™ã‚‹ï¼‰
 	if(ViewChange(&wk->CommWork[0], &wk->cursor_pos[0], wk->clActWork[0], wk->pokeInfo,0)){
 		CursorSubLcd_Update( wk );
 	}
 
-	// ‘ŠŽè‚ÌƒJ[ƒ\ƒ‹ˆÚ“®
+	// ç›¸æ‰‹ã®ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 	ViewChange(&wk->CommWork[1], &wk->cursor_pos[1], wk->clActWork[1], wk->pokeInfo,1);
 	CursorColTrans(&wk->CursorPal);
 
 
-	// ƒJ[ƒ\ƒ‹ˆÊ’uÀ•W‚ð‘—M‚·‚é
+	// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®åº§æ¨™ã‚’é€ä¿¡ã™ã‚‹
 	TradeListCommDiffSend( wk, CT_CURSOR_POS, wk->cursor_pos[0]);
 
 	return TRADELIST_SEQ_MAIN;
@@ -1424,7 +1424,7 @@ static int TradeListMain( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒZƒ‹ƒAƒNƒ^[Žü‚è‚ÌƒVƒXƒeƒ€‰ð•ú
+ * @brief   ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‘¨ã‚Šã®ã‚·ã‚¹ãƒ†ãƒ è§£æ”¾
  *
  * @param   wk		
  *
@@ -1434,26 +1434,26 @@ static int TradeListMain( TRADELIST_WORK *wk )
 static void FreeClact( TRADELIST_WORK *wk )
 {
 	int i;
-	// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ð•ú
-	// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
+	// ã‚­ãƒ£ãƒ©è»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_CharManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES]);
 	CLACT_U_CharManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES]);
 
-	// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_PlttManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES]);
 	CLACT_U_PlttManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES]);
 		
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for(i=0;i<CLACT_RESOURCE_NUM;i++){
 		CLACT_U_ResManagerDelete(wk->resMan[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->clactSet);
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
-	// ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒ[AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[íœ
+	// ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DeleteCharManager();
 	DeletePlttManager();
 
@@ -1461,7 +1461,7 @@ static void FreeClact( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‰æ‘œ‚Ì‰ð•ú
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç”»åƒã®è§£æ”¾
  *
  * @param   wk		
  *
@@ -1485,12 +1485,12 @@ static void PokeIconFree( TRADELIST_WORK *wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT TradeListProc_End( PROC * proc, int * seq )
@@ -1501,47 +1501,47 @@ PROC_RESULT TradeListProc_End( PROC * proc, int * seq )
 	int i;
 
 
-	// ŒðŠ·‚·‚é‚©‚µ‚È‚¢‚©H
+	// äº¤æ›ã™ã‚‹ã‹ã—ãªã„ã‹ï¼Ÿ
 	param->result = wk->result;
 
 
-	// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‰ð•ú
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è§£æ”¾
 	PokeIconFree( wk );
 
-	// ‚à‚¿‚à‚Ì•¶Žš—ñ‰ð•ú
+	// ã‚‚ã¡ã‚‚ã®æ–‡å­—åˆ—è§£æ”¾
 	STRBUF_Delete(wk->MotimonoStr);
 
 	sys_FreeMemoryEz(wk->FriendPokeParty);
 
-	// ƒZƒ‹ƒAƒNƒ^[Žü‚è‚ÌƒVƒXƒeƒ€‰ð•ú
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‘¨ã‚Šã®ã‚·ã‚¹ãƒ†ãƒ è§£æ”¾
 	FreeClact( wk );
 
-	// BMPƒEƒBƒ“ƒhƒEŠJ•ú
+	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
 	TradeListBmpExit(wk->TradeListWin);
 
-	// BGLíœ
+	// BGLå‰Šé™¤
 	BgExit( wk->bgl );
 
-	// BGL‰ð•ú
+	// BGLè§£æ”¾
 	sys_FreeMemory( HEAPID_TRADELIST, wk->bgl );
 
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ð•ú
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	MSGMAN_Delete( wk->MsgManager );
 	WORDSET_Delete( wk->SubLcdWordSet );
 	WORDSET_Delete( wk->WindowStrWordSet );
 	WORDSET_Delete( wk->PokeNameWordSet );
 
-	// STRBUF‰ð•ú
+	// STRBUFè§£æ”¾
 	STRBUF_Delete(wk->MyName);
 
-	PROC_FreeWork( proc );				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
 	sys_DeleteHeap( HEAPID_TRADELIST );
 
-	// ‚±‚ÌŠÖ”ŒÄ‚Ño‚µŽž‚Ì2sync‚¾‚¯‚Í’ÊMƒGƒ‰[‰æ–Ê‚É”ò‚Î‚¹‚È‚¢
+	// ã“ã®é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®2syncã ã‘ã¯é€šä¿¡ã‚¨ãƒ©ãƒ¼ç”»é¢ã«é£›ã°ã›ãªã„
 
 	return PROC_RES_FINISH;
 }
@@ -1549,7 +1549,7 @@ PROC_RESULT TradeListProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -1560,26 +1560,26 @@ static void VBlankFunc( void * work )
 {
 	TRADELIST_WORK *wk = (TRADELIST_WORK*)work;
 
-	// BGLˆ—
+	// BGLå‡¦ç†
 	GF_BGL_VBlankFunc( wk->bgl );
 
 	if(wk->vblankreq){
 		int side = wk->vblankreq - 1;
-		// OAM—pVRAM‚É“]‘—
+		// OAMç”¨VRAMã«è»¢é€
 		GXS_LoadOBJ( wk->PokeGra[side], POKEGRA_VRAM_OFFSET + side*POKEGRA_VRAM_SIZE, POKEGRA_VRAM_SIZE);
 
-		// ƒpƒŒƒbƒg“]‘—
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		ArcUtil_PalSet( wk->PokeGraSsa[side].arc_no, wk->PokeGraSsa[side].index_pal, 
 						PALTYPE_SUB_OBJ, 0x20*(2+side), 32, HEAPID_TRADELIST );
 		
 		wk->vblankreq = 0;
 	}
 
-	// ƒZƒ‹ƒAƒNƒ^[
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 	
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -1588,7 +1588,7 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMÝ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -1598,29 +1598,29 @@ static void VBlankFunc( void * work )
 static void VramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGÝ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1635,8 +1635,8 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	// ----------ƒƒCƒ“‰æ–Ê-------------------
-	// ƒƒCƒ“‰æ–ÊƒEƒCƒ“ƒhƒEBG0
+	// ----------ãƒ¡ã‚¤ãƒ³ç”»é¢-------------------
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦BG0
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1649,7 +1649,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 	}
 
-	// ƒƒCƒ“‰æ–Êƒ|ƒPƒ‚ƒ“à–¾•¶Žš—ñBG1
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒã‚±ãƒ¢ãƒ³èª¬æ˜Žæ–‡å­—åˆ—BG1
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1660,7 +1660,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME1_M );
 	}
 
-	// ƒƒCƒ“‰æ–Êƒpƒlƒ‹BG2
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ‘ãƒãƒ«BG2
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1671,7 +1671,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME2_M );
 	}
 
-	// ƒƒCƒ“‰æ–Ê”wŒiBG3
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯BG3
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1681,9 +1681,9 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_BGControlSet( ini, GF_BGL_FRAME3_M, &TextBgCntDat, GF_BGL_MODE_TEXT );
 	}
 
-	// -----ƒTƒu‰æ–Ê-------------
+	// -----ã‚µãƒ–ç”»é¢-------------
 
-	// ƒTƒu‰æ–ÊƒeƒLƒXƒgBG (CHAR)
+	// ã‚µãƒ–ç”»é¢ãƒ†ã‚­ã‚¹ãƒˆBG (CHAR)
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1694,7 +1694,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME0_S );
 	}
 
-	// ƒTƒu‰æ–ÊƒJ[ƒhBG (CHAR)
+	// ã‚µãƒ–ç”»é¢ã‚«ãƒ¼ãƒ‰BG (CHAR)
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1703,7 +1703,7 @@ static void BgInit( GF_BGL_INI * ini )
 		};
 		GF_BGL_BGControlSet( ini, GF_BGL_FRAME1_S, &TextBgCntDat, GF_BGL_MODE_TEXT );
 	}
-	// ƒTƒu‰æ–Ê”wŒiBG (CHAR)
+	// ã‚µãƒ–ç”»é¢èƒŒæ™¯BG (CHAR)
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1717,7 +1717,7 @@ static void BgInit( GF_BGL_INI * ini )
 	GF_BGL_ClearCharSet( GF_BGL_FRAME1_M, 32, 0, HEAPID_TRADELIST );
 	GF_BGL_ClearCharSet( GF_BGL_FRAME0_S, 32, 0, HEAPID_TRADELIST );
 
-	// BGƒXƒNƒ[ƒ‹ƒŒƒWƒXƒ^‰Šú‰»
+	// BGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¬ã‚¸ã‚¹ã‚¿åˆæœŸåŒ–
 	{
 		int i;
 		for(i=0;i<4;i++){
@@ -1736,7 +1736,7 @@ static void BgInit( GF_BGL_INI * ini )
 	GF_BGL_VisibleSet( GF_BGL_FRAME1_S, VISIBLE_OFF );
 	GF_BGL_VisibleSet( GF_BGL_FRAME2_S, VISIBLE_OFF );
 
-	// ã‰æ–Ê‚Ìƒn[ƒhƒEƒFƒAƒEƒCƒ“ƒhƒE‚ð‚nFF‚É
+	// ä¸Šç”»é¢ã®ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ï¼¯FFã«
 	GX_SetVisibleWnd( GX_WNDMASK_NONE  );
 
 
@@ -1745,7 +1745,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒŠƒXƒgƒ[ƒN‰Šú‰»
+ * ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		NAMEIN_WORK*
  *
@@ -1782,31 +1782,31 @@ static void InitWork(TRADELIST_WORK *wk, PROC * proc)
 	wk->timeOutFlag = 0;
 	wk->timeOutWait = 0;
 
-	// ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^Žæ“¾
+	// æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
 	wk->MyPokeParty     = param->myparty;;
 	wk->friendlist      = param->friendlist;
 	wk->savedata        = param->savedata;
 
-	// ‘ŠŽè‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^—pƒ[ƒN¶¬
+	// ç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ç”¨ãƒ¯ãƒ¼ã‚¯ç”Ÿæˆ
 	wk->FriendPokeParty = sys_AllocMemory( HEAPID_TRADELIST, PokeParty_GetWorkSize());
 	PokeParty_Init(wk->FriendPokeParty, 6);
 	memset(wk->FriendPokeParty,0xff,PokeParty_GetWorkSize());
 	
 	wk->MyName = MyStatus_CreateNameString(param->mystatus, 	HEAPID_TRADELIST);
 	
-	// u‚à‚¿‚à‚Ìv•¶Žš—ñŠm•Û
+	// ã€Œã‚‚ã¡ã‚‚ã®ã€æ–‡å­—åˆ—ç¢ºä¿
 	wk->MotimonoStr = MSGMAN_AllocString( wk->MsgManager, mes_dstrade_05_05 );
 
-	// ’n‹…‹V“o˜^
+	// åœ°çƒå„€ç™»éŒ²
 	Comm_WifiHistoryCheck( param->wifihistory );
 	
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1814,7 +1814,7 @@ static void InitWork(TRADELIST_WORK *wk, PROC * proc)
 static void BgExit( GF_BGL_INI * ini )
 {
 
-	//‰ï˜bƒEƒCƒ“ƒhƒE—pƒoƒbƒtƒ@‰ð•ú
+	//ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨ãƒãƒƒãƒ•ã‚¡è§£æ”¾
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME2_S);
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME1_S );
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME0_S );
@@ -1829,7 +1829,7 @@ static void BgExit( GF_BGL_INI * ini )
 
 //------------------------------------------------------------------
 /**
- * “]‘—‚È‚µ‚ÅƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ð“Ç‚Ýž‚Þ
+ * è»¢é€ãªã—ã§ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
  * @param   fileIdx		
  * @param   dataIdx		
@@ -1895,7 +1895,7 @@ static const card_pos_table[][2]={
 
 //------------------------------------------------------------------
 /**
- * –¼‘O•\Ž¦•ƒJ[ƒh‘Œ¸
+ * åå‰è¡¨ç¤ºï¼†ã‚«ãƒ¼ãƒ‰å¢—æ¸›
  *
  * @param   bgl		
  * @param   mynum		
@@ -1909,7 +1909,7 @@ static void TradeListMakeScreenSet(GF_BGL_INI *bgl, int mynum, int friendnum)
 	int i;
 
 #if 0
-	// ƒ|ƒPƒ‚ƒ“‚Ì”‚É‚ ‚í‚¹‚ÄƒJ[ƒh‚Ì”‚ð•Ï‚¦‚é
+	// ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã«ã‚ã‚ã›ã¦ã‚«ãƒ¼ãƒ‰ã®æ•°ã‚’å¤‰ãˆã‚‹
 	for(i=mynum;i<6;i++)
 	{
 		GF_BGL_ScrFill(	bgl, GF_BGL_FRAME2_M, 0, card_pos_table[i][0], card_pos_table[i][1], CARD_W, CARD_H,  0);
@@ -1920,16 +1920,16 @@ static void TradeListMakeScreenSet(GF_BGL_INI *bgl, int mynum, int friendnum)
 	}
 #endif
 
-	// ƒXƒNƒŠ[ƒ““]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	GF_BGL_LoadScreen( bgl, GF_BGL_FRAME2_M, GF_BGL_ScreenAdrsGet( bgl, GF_BGL_FRAME2_M ), 32*24*2, 0 );
 
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1938,39 +1938,39 @@ static void BgGraphicSet( TRADELIST_WORK * wk, ARCHANDLE* p_handle )
 {
 	GF_BGL_INI *bgl = wk->bgl;
 
-	// ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_HDL_PalSet(    p_handle, NARC_TradeList_DsTradeList_nclr, PALTYPE_SUB_BG,  0, 16*9*2,  HEAPID_TRADELIST);
 	ArcUtil_HDL_PalSet(    p_handle, NARC_TradeList_DsTradeList_nclr, PALTYPE_MAIN_BG, 0, 16*9*2,  HEAPID_TRADELIST);
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0 );
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0 );
 
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, TALK_FONT_PAL * 32, HEAPID_TRADELIST );
 
-	// ã‰æ–ÊBGƒLƒƒƒ‰“]‘—
+	// ä¸Šç”»é¢BGã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_TradeList_chara_m_lz_ncgr, bgl, GF_BGL_FRAME2_M, 0, 16*18*0x20, 1, HEAPID_TRADELIST);
 
-	// ã‰æ–ÊBG2ƒXƒNƒŠ[ƒ““Ç‚Ýž‚Ýi‚Ì‚Ýj
+	// ä¸Šç”»é¢BG2ã‚¹ã‚¯ãƒªãƒ¼ãƒ³èª­ã¿è¾¼ã¿ï¼ˆã®ã¿ï¼‰
 	ArcUtil_HDL_ScrnSetNoTrans(   p_handle, NARC_TradeList_main2_lz_nscr, bgl, GF_BGL_FRAME2_M, 0, 32*24*2, 1, HEAPID_TRADELIST);
 
-	// ã‰æ–ÊBG3ƒXƒNƒŠ[ƒ““]‘—
+	// ä¸Šç”»é¢BG3ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_TradeList_main3_lz_nscr, bgl, GF_BGL_FRAME3_M, 0, 32*24*2, 1, HEAPID_TRADELIST);
 	
-	// ã‰æ–Ê‚ÉƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¸Šç”»é¢ã«ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad(   PALTYPE_MAIN_BG , 2*32, HEAPID_TRADELIST );
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG,  3*32, HEAPID_TRADELIST );
 
 
-	// ‰º‰æ–ÊBGƒLƒƒƒ‰“]‘—
+	// ä¸‹ç”»é¢BGã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_TradeList_chara_s_lz_ncgr, bgl, GF_BGL_FRAME1_S, 0, 16*4*0x20, 1, HEAPID_TRADELIST);
 
-	// ‰º‰æ–ÊBGƒXƒNƒŠ[ƒ““]‘—
+	// ä¸‹ç”»é¢BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_TradeList_sub2_lz_nscr, bgl, GF_BGL_FRAME1_S, 0, 32*24*2, 1, HEAPID_TRADELIST);
 
-	// ‰º‰æ–ÊBGƒXƒNƒŠ[ƒ““]‘—
+	// ä¸‹ç”»é¢BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_TradeList_sub3_lz_nscr, bgl, GF_BGL_FRAME2_S, 0, 32*24*2, 1, HEAPID_TRADELIST);
 
-	// ‰º‰æ–ÊƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¸‹ç”»é¢ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad(   PALTYPE_SUB_BG , 2*32, HEAPID_TRADELIST );
 	SystemFontPaletteLoad( PALTYPE_SUB_BG,  3*32, HEAPID_TRADELIST );
 
@@ -1980,7 +1980,7 @@ static void BgGraphicSet( TRADELIST_WORK * wk, ARCHANDLE* p_handle )
 }
 
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define TRADELIST_CHAR_CONT_NUM					(20)
 #define TRADELIST_CHAR_VRAMTRANS_MAIN_SIZE		(2048)
 #define TRADELIST_CHAR_VRAMTRANS_SUB_SIZE		(2048)
@@ -1988,13 +1988,13 @@ static void BgGraphicSet( TRADELIST_WORK * wk, ARCHANDLE* p_handle )
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 static void char_pltt_manager_init(void)
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			TRADELIST_CHAR_CONT_NUM,
@@ -2004,10 +2004,10 @@ static void char_pltt_manager_init(void)
 		};
 		InitCharManager(&cm);
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(TRADELIST_PLTT_CONT_NUM, HEAPID_TRADELIST);
 
-	// “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 }
@@ -2015,9 +2015,9 @@ static void char_pltt_manager_init(void)
 
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‰æ–Ê—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param   wk		ƒŒ[ƒ_[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¬ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -2027,79 +2027,79 @@ static void InitCellActor(TRADELIST_WORK *wk, ARCHANDLE* p_handle)
 	int i;
 	
 	
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			0, 127,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 127,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 127,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 127,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_TRADELIST);
 	
 	
 	
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->clactSet = CLACT_U_SetEasyInit( TRADELIST_CACT_MAX, &wk->renddata, HEAPID_TRADELIST );
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->resMan[i] = CLACT_U_ResManagerInit(2, i, HEAPID_TRADELIST);
 	}
 
 
-	//---------ã‰æ–Ê—p-------------------
+	//---------ä¸Šç”»é¢ç”¨-------------------
 	
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 							p_handle, NARC_TradeList_obj_lz_ncgr, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_TRADELIST);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 							p_handle, NARC_TradeList_DsTradeList_nclr, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAPID_TRADELIST);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 							p_handle, NARC_TradeList_obj_lz_ncer, 1, 0, CLACT_U_CELL_RES,HEAPID_TRADELIST);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 							p_handle, NARC_TradeList_obj_lz_nanr, 1, 0, CLACT_U_CELLANM_RES,HEAPID_TRADELIST);
 
 
-	//---------‰º‰æ–Ê—p-------------------
+	//---------ä¸‹ç”»é¢ç”¨-------------------
 
 
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 							p_handle, NARC_TradeList_obj_s_lz_ncgr, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAPID_TRADELIST);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 							p_handle, NARC_TradeList_DsTradeList_nclr, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 10, HEAPID_TRADELIST);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 							p_handle, NARC_TradeList_obj_s_lz_ncer, 1, 1, CLACT_U_CELL_RES,HEAPID_TRADELIST);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 							p_handle, NARC_TradeList_obj_s_lz_nanr, 1, 1, CLACT_U_CELLANM_RES,HEAPID_TRADELIST);
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] );
 	CLACT_U_CharManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] );
 	CLACT_U_PlttManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] );
 
-	// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“—pƒpƒŒƒbƒg‚ðˆê‹C‚É“Ç‚Ýž‚ñ‚ÅVRAM“]‘—‚·‚é
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä¸€æ°—ã«èª­ã¿è¾¼ã‚“ã§VRAMè»¢é€ã™ã‚‹
 	ArcUtil_PalSet( ARC_POKEICON, PokeIconPalArcIndexGet(), PALTYPE_MAIN_OBJ, POKEICON_PAL_OFFSET*0x20, 0x20*4, HEAPID_TRADELIST );
 
 
@@ -2107,21 +2107,21 @@ static void InitCellActor(TRADELIST_WORK *wk, ARCHANDLE* p_handle)
 
 //------------------------------------------------------------------
 /**
- * ‰º‰æ–Ê‚Ìƒ|ƒPƒ‚ƒ“‰æ‘œ‚ð“]‘—‚·‚é
+ * ä¸‹ç”»é¢ã®ãƒã‚±ãƒ¢ãƒ³ç”»åƒã‚’è»¢é€ã™ã‚‹
  *
- * @param   side		¶‚©‰E‚©(0-1)
- * @param   pokeno		ƒ|ƒPƒ‚ƒ“‚ÌŠJ”­NO
- * @param   char_work	ƒ|ƒPƒ‚ƒ“‰æ‘œ‚ð“Ç‚Ýž‚Þ—Ìˆæ
+ * @param   side		å·¦ã‹å³ã‹(0-1)
+ * @param   pokeno		ãƒã‚±ãƒ¢ãƒ³ã®é–‹ç™ºNO
+ * @param   char_work	ãƒã‚±ãƒ¢ãƒ³ç”»åƒã‚’èª­ã¿è¾¼ã‚€é ˜åŸŸ
  *
  * @retval  none		
  */
 //------------------------------------------------------------------
 static int TransPokeGra_SubLcd(int side, POKEMON_PARAM *pp, u8 *char_work, SOFT_SPRITE_ARC *ssa)
 {
-	// ƒ|ƒPƒ‚ƒ“‚Ì‰æ‘œ‚ð“Ç‚Ýž‚Þi‚½‚¾‚µƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg—p‚ÌƒeƒNƒXƒ`ƒƒó‘Ôj
+	// ãƒã‚±ãƒ¢ãƒ³ã®ç”»åƒã‚’èª­ã¿è¾¼ã‚€ï¼ˆãŸã ã—ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£çŠ¶æ…‹ï¼‰
 	PokeGraArcDataGetPP( ssa, pp, PARA_FRONT);
 
-	// ƒeƒNƒXƒ`ƒƒ‚ðOAM—p‚Ì•À‚Ñ‚É•ÏŠ·‚·‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’OAMç”¨ã®ä¸¦ã³ã«å¤‰æ›ã™ã‚‹
 	{
 		int rnd    = PokeParaGet( pp, ID_PARA_personal_rnd, NULL );
 		int monsno = PokeParaGet( pp, ID_PARA_monsno, NULL );
@@ -2129,7 +2129,7 @@ static int TransPokeGra_SubLcd(int side, POKEMON_PARAM *pp, u8 *char_work, SOFT_
 										rnd, 0, PARA_FRONT, monsno);
 	}
 
-	DC_FlushRange( char_work, 0x20*10*10 );	// “]‘—‘O‚Éƒƒ‚ƒŠˆÀ’è
+	DC_FlushRange( char_work, 0x20*10*10 );	// è»¢é€å‰ã«ãƒ¡ãƒ¢ãƒªå®‰å®š
 	
 	return side+1;
 	
@@ -2142,7 +2142,7 @@ static int TransPokeGra_SubLcd(int side, POKEMON_PARAM *pp, u8 *char_work, SOFT_
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‚Ì–¼‘O‚ð•`‰æ
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã®åå‰ã‚’æç”»
  *
  * @param   win		
  * @param   party		
@@ -2160,7 +2160,7 @@ static void PokeNamePrint( GF_BGL_BMPWIN *win, POKEPARTY *party, int pos, int wi
 	name = STRBUF_Create(20,HEAPID_TRADELIST);
 	PokeParaGet(PokeParty_GetMemberPointer(party, pos),ID_PARA_nickname_buf, name);
 
-	// ƒ|ƒPƒ‚ƒ“–¼
+	// ãƒã‚±ãƒ¢ãƒ³å
 	GF_BGL_BmpWinDataFill( win, 0 );
 	TradeListPrint(win, name, width, MSG_ALLPUT, print_sw,1);
 	STRBUF_Delete(name);
@@ -2169,7 +2169,7 @@ static void PokeNamePrint( GF_BGL_BMPWIN *win, POKEPARTY *party, int pos, int wi
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒjƒhƒ‰ƒ“‰EŠ—p‚Ì“Á•Êˆ—
+ * @brief   ãƒ‹ãƒ‰ãƒ©ãƒ³â™‚ãƒ»â™€ç”¨ã®ç‰¹åˆ¥å‡¦ç†
  *
  * @param   info	
  * @param   party	
@@ -2181,14 +2181,14 @@ static void PokeNamePrint( GF_BGL_BMPWIN *win, POKEPARTY *party, int pos, int wi
 //------------------------------------------------------------------
 static int NidoranSpecialCheck( POKE_INFO *info, POKEPARTY *party, int pos, int sex )
 {
-	// ƒjƒhƒ‰ƒ“‰‚©ƒjƒhƒ‰ƒ“Š‚É
+	// ãƒ‹ãƒ‰ãƒ©ãƒ³â™‚ã‹ãƒ‹ãƒ‰ãƒ©ãƒ³â™€ã«
 	if(info->exist==MONSNO_NIDORAN_F || info->exist==MONSNO_NIDORAN_M){
 
-		// ƒjƒbƒNƒl[ƒ€ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚È‚¢ê‡‚Í
+		// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãªã„å ´åˆã¯
 		POKEMON_PARAM *pp = PokeParty_GetMemberPointer( party, pos );
 		int flag = PokeParaGet( pp, ID_PARA_nickname_flag,NULL );
 		if(flag==0){
-			// «•Ê–³‚µˆµ‚¢‚É‚µ‚Ä‰º‰æ–Ê‚É«•ÊƒAƒCƒRƒ“‚ðo‚³‚È‚¢‚æ‚¤‚É‚³‚¹‚é
+			// æ€§åˆ¥ç„¡ã—æ‰±ã„ã«ã—ã¦ä¸‹ç”»é¢ã«æ€§åˆ¥ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‡ºã•ãªã„ã‚ˆã†ã«ã•ã›ã‚‹
 			return PARA_UNK;
 		}
 	}
@@ -2199,7 +2199,7 @@ static int NidoranSpecialCheck( POKE_INFO *info, POKEPARTY *party, int pos, int 
 
 //------------------------------------------------------------------
 /**
- * ƒTƒu‰æ–Ê‚É•¶Žš—ñ•`‰æ‚ÆOAM•\Ž¦ON‚ðs‚¤
+ * ã‚µãƒ–ç”»é¢ã«æ–‡å­—åˆ—æç”»ã¨OAMè¡¨ç¤ºONã‚’è¡Œã†
  *
  * @param   win		
  * @param   side		
@@ -2219,43 +2219,43 @@ static void TransPokeStr_SubLcd(GF_BGL_BMPWIN *win, int side, POKEPARTY *party, 
 	
 	pp = PokeParty_GetMemberPointer(party, pos);
 	
-	// ‘«Œ³‚‚³Žæ“¾
+	// è¶³å…ƒé«˜ã•å–å¾—
 	height = PokeParaHeightGet( pp, PARA_FRONT );
 
-//	OS_Printf("‘«Œ³@%d\n",height);
+//	OS_Printf("è¶³å…ƒã€€%d\n",height);
 
-	// ‰º‰æ–Êƒ|ƒPƒ‚ƒ“•\Ž¦
+	// ä¸‹ç”»é¢ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤º
 	CLACT_SetDrawFlag(wk->SubLCDIconActWork[side], 1);
 	Clact_SetPos( wk->SubLCDIconActWork[side],  sub_icon_pos[side][0], 
 												sub_icon_pos[side][1]+height+SUB_SURFACE_Y_INTEGER  );
 
-	// ¶‰E”½“]ƒtƒ‰ƒO‚ðŒ©‚Ä”½“]‚³‚¹‚È‚¢‚æ‚¤‚É‚·‚é
+	// å·¦å³åè»¢ãƒ•ãƒ©ã‚°ã‚’è¦‹ã¦åè»¢ã•ã›ãªã„ã‚ˆã†ã«ã™ã‚‹
 	if(side==0){
 		CLACT_SetFlip( wk->SubLCDIconActWork[side], wk->pokeInfo[pos].reverse );
 	}
 
-	// ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹ƒ`ƒFƒ“ƒWE•\Ž¦
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ãƒã‚§ãƒ³ã‚¸ãƒ»è¡¨ç¤º
 	CLACT_AnmChg( wk->SubLCDIconActWork[2+side], wk->pokeInfo[pos].monsball+CELL_MONSTER_BALL_NO-1 );
 	CLACT_SetDrawFlag(wk->SubLCDIconActWork[2+side], 1);
 
 
 	PokeNamePrint(&win[BMP_S_MYPOKENAME_WIN+side], party, pos, SUB_POKENAME_W, 6);
 
-	// «•ÊƒAƒCƒRƒ“•\Ž¦
+	// æ€§åˆ¥ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 	{
 		
 		int sex = wk->pokeInfo[side*6+pos].sex;
 		sex = NidoranSpecialCheck( &wk->pokeInfo[side*6+pos], party, pos, sex );
-		// ƒ^ƒ}ƒS‚Í•\Ž¦‚µ‚È‚¢
+		// ã‚¿ãƒžã‚´ã¯è¡¨ç¤ºã—ãªã„
 		if(wk->pokeInfo[side*6+pos].tamago){
 			sex = PARA_UNK;
 		}
 		switch(sex){
 		case PARA_UNK:
-			// «•Ê–³‚µ‚È‚çƒAƒCƒRƒ“•\Ž¦OFF
+			// æ€§åˆ¥ç„¡ã—ãªã‚‰ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºOFF
 			CLACT_SetDrawFlag(wk->SubLCDIconActWork[4+side], 0);
 			break;
-		// «•Ê‚É‚ ‚í‚¹‚Ä•\Ž¦
+		// æ€§åˆ¥ã«ã‚ã‚ã›ã¦è¡¨ç¤º
 		case PARA_MALE:
 			CLACT_SetDrawFlag(wk->SubLCDIconActWork[4+side], 1);
 			CLACT_AnmChg(wk->SubLCDIconActWork[4+side], CELL_SEX_ICON_NO+1 );
@@ -2267,16 +2267,16 @@ static void TransPokeStr_SubLcd(GF_BGL_BMPWIN *win, int side, POKEPARTY *party, 
 		}
 	}
 
-	// ƒ^ƒ}ƒS‚¶‚á‚È‚¯‚ê‚Î
+	// ã‚¿ãƒžã‚´ã˜ã‚ƒãªã‘ã‚Œã°
 	if(!wk->pokeInfo[side*6+pos].tamago){
 
-		// ƒŒƒxƒ‹uLV.v
+		// ãƒ¬ãƒ™ãƒ«ã€ŒLV.ã€
 		level = STRBUF_Create(10,HEAPID_TRADELIST);
 		GF_BGL_BmpWinDataFill( &win[BMP_S_MYPOKELEVEL_WIN+side], 0 );
 		MSGMAN_GetString( wk->MsgManager, mes_dstrade_05_03, level );
 		TradeListPrint( &win[BMP_S_MYPOKELEVEL_WIN+side], level, SUB_POKENAME_W, MSG_NO_PUT, 6,0);
 	
-		// ƒŒƒxƒ‹”Žš
+		// ãƒ¬ãƒ™ãƒ«æ•°å­—
 		levelnum = PokeParaGet(PokeParty_GetMemberPointer(party, pos),ID_PARA_level,NULL);
 		STRBUF_SetNumber( level, levelnum, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		TradeListPrint( &win[BMP_S_MYPOKELEVEL_WIN+side], level, SUB_POKENAME_W, MSG_ALLPUT, 24+6,0);
@@ -2286,13 +2286,13 @@ static void TransPokeStr_SubLcd(GF_BGL_BMPWIN *win, int side, POKEPARTY *party, 
 	
 	}
 
-	// u‚à‚¿‚à‚Ìv
+	// ã€Œã‚‚ã¡ã‚‚ã®ã€
 	TradeListPrint(&win[BMP_S_MOTIMONO0_WIN+side], wk->MotimonoStr, SUB_MOTIMONOSTR_W, MSG_ALLPUT, 3,0);
 
 	itemno = PokeParaGet(PokeParty_GetMemberPointer(party, pos),ID_PARA_item,NULL);
 	GF_BGL_BmpWinDataFill( &win[BMP_S_MYITEM_WIN+side], 0 );
 
-	// ƒAƒCƒeƒ€–¼iu‚È‚µv‚Æ‚¢‚¤•¶Žš—ñ‚Í‚Ü‚¾•\Ž¦‚Å‚«‚È‚¢Bitemname=0‚ÍuHHHv‚¾‚Á‚½‚©‚çj
+	// ã‚¢ã‚¤ãƒ†ãƒ åï¼ˆã€Œãªã—ã€ã¨ã„ã†æ–‡å­—åˆ—ã¯ã¾ã è¡¨ç¤ºã§ããªã„ã€‚itemname=0ã¯ã€Œï¼Ÿï¼Ÿï¼Ÿã€ã ã£ãŸã‹ã‚‰ï¼‰
 	item = STRBUF_Create(20,HEAPID_TRADELIST);
 	GetItemName( item, itemno, HEAPID_TRADELIST );
 	TradeListPrint(&win[BMP_S_MYITEM_WIN+side], item, SUB_POKENAME_W, MSG_ALLPUT, 3,0);
@@ -2303,7 +2303,7 @@ static void TransPokeStr_SubLcd(GF_BGL_BMPWIN *win, int side, POKEPARTY *party, 
 
 //------------------------------------------------------------------
 /**
- * @brief   ‰º‰æ–ÊƒJ[ƒh”ñ•\Ž¦ˆ—
+ * @brief   ä¸‹ç”»é¢ã‚«ãƒ¼ãƒ‰éžè¡¨ç¤ºå‡¦ç†
  *
  * @param   win		
  * @param   side		
@@ -2314,16 +2314,16 @@ static void TransPokeStr_SubLcd(GF_BGL_BMPWIN *win, int side, POKEPARTY *party, 
 //------------------------------------------------------------------
 static void PokeStr_SubLcdOff(GF_BGL_BMPWIN *win, int side, TRADELIST_WORK *wk)
 {
-	// ‰º‰æ–Êƒ|ƒPƒ‚ƒ“”ñ•\Ž¦
+	// ä¸‹ç”»é¢ãƒã‚±ãƒ¢ãƒ³éžè¡¨ç¤º
 	CLACT_SetDrawFlag(wk->SubLCDIconActWork[side], 0);
 
-	// ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹ƒ`ƒFƒ“ƒW”ñ•\Ž¦
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ãƒã‚§ãƒ³ã‚¸éžè¡¨ç¤º
 	CLACT_SetDrawFlag(wk->SubLCDIconActWork[2+side], 0);
 
-	// «•ÊƒAƒCƒRƒ“
+	// æ€§åˆ¥ã‚¢ã‚¤ã‚³ãƒ³
 	CLACT_SetDrawFlag(wk->SubLCDIconActWork[4+side], 0);
 
-	// –¼‘OEƒŒƒxƒ‹Eu‚à‚¿‚à‚ÌvE‚à‚¿‚à‚Ì@”ñ•\Ž¦
+	// åå‰ãƒ»ãƒ¬ãƒ™ãƒ«ãƒ»ã€Œã‚‚ã¡ã‚‚ã®ã€ãƒ»ã‚‚ã¡ã‚‚ã®ã€€éžè¡¨ç¤º
 	GF_BGL_BmpWinOff( &win[BMP_S_MYPOKENAME_WIN+side] );
 	GF_BGL_BmpWinOff( &win[BMP_S_MYPOKELEVEL_WIN+side] );
 	GF_BGL_BmpWinOff( &win[BMP_S_MOTIMONO0_WIN+side] );
@@ -2335,7 +2335,7 @@ static void PokeStr_SubLcdOff(GF_BGL_BMPWIN *win, int side, TRADELIST_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   wk			NAMEIN_WORK*
  *
@@ -2344,7 +2344,7 @@ static void PokeStr_SubLcdOff(GF_BGL_BMPWIN *win, int side, TRADELIST_WORK *wk)
 //------------------------------------------------------------------
 static void SetCellActor(TRADELIST_WORK *wk)
 {
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 	CLACT_U_MakeHeader(&wk->clActHeader_m, 0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 	0, 2,
 	wk->resMan[CLACT_U_CHAR_RES],
@@ -2362,7 +2362,7 @@ static void SetCellActor(TRADELIST_WORK *wk)
 	NULL,NULL);
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 		int i;
 
@@ -2370,7 +2370,7 @@ static void SetCellActor(TRADELIST_WORK *wk)
 		add.ClActHeader	= &wk->clActHeader_m;
 
 		add.mat.x		= FX32_CONST(32) ;
-		add.mat.y		= FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		add.mat.y		= FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.z		= 0;
 		add.sca.x		= FX32_ONE;
 		add.sca.y		= FX32_ONE;
@@ -2380,9 +2380,9 @@ static void SetCellActor(TRADELIST_WORK *wk)
 		add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 		add.heap		= HEAPID_TRADELIST;
 
-		//ƒZƒ‹ƒAƒNƒ^[•\Ž¦ŠJŽn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-		// ã‰æ–Ê—pƒJ[ƒ\ƒ‹
+		// ä¸Šç”»é¢ç”¨ã‚«ãƒ¼ã‚½ãƒ«
 		for(i=0;i<2;i++){
 			add.mat.x = FX32_ONE*main_cursor_pos[i][0];
 			add.mat.y = FX32_ONE*main_cursor_pos[i][1];
@@ -2394,39 +2394,39 @@ static void SetCellActor(TRADELIST_WORK *wk)
 
 		}
 
-		// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+		// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 		for(i=0;i<TRADELIST_POKE_MAX;i++){
 			add.mat.x = FX32_ONE*(main_cursor_pos[i][0]+16);
 			add.mat.y = FX32_ONE*(main_cursor_pos[i][1]-6);
 			wk->PokeIconActWork[i] = CLACT_Add(&add);
 			CLACT_SetAnmFlag(wk->PokeIconActWork[i],1);
 			CLACT_AnmChg( wk->PokeIconActWork[i], 5+i );
-//			CLACT_BGPriorityChg( wk->PokeIconActWork[i], 1 );	// ƒvƒ‰ƒCƒIƒŠƒeƒB‚ðƒJ[ƒ\ƒ‹‚æ‚è‚Íã‚É
-			CLACT_DrawPriorityChg(wk->PokeIconActWork[i], 5);	// ‚»‚ê‚¼‚ê‚ÌƒAƒNƒ^[‚Ìƒvƒ‰ƒCƒIƒŠƒeƒBÝ’è
+//			CLACT_BGPriorityChg( wk->PokeIconActWork[i], 1 );	// ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’ã‚«ãƒ¼ã‚½ãƒ«ã‚ˆã‚Šã¯ä¸Šã«
+			CLACT_DrawPriorityChg(wk->PokeIconActWork[i], 5);	// ãã‚Œãžã‚Œã®ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£è¨­å®š
 			CLACT_SetDrawFlag( wk->PokeIconActWork[i], 0 );
 		}
 
-		// ƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒeƒ€
+		// ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ 
 		for(i=0;i<TRADELIST_POKE_MAX;i++){
 			add.mat.x = FX32_ONE*(main_cursor_pos[i][0]+16+20);
 			add.mat.y = FX32_ONE*(main_cursor_pos[i][1]+16);
 			add.pri			= 0;
 			wk->PokeItemActWork[i] = CLACT_Add(&add);
-			CLACT_DrawPriorityChg(wk->PokeItemActWork[i], 3);	// ‚»‚ê‚¼‚ê‚ÌƒAƒNƒ^[‚Ìƒvƒ‰ƒCƒIƒŠƒeƒBÝ’è
+			CLACT_DrawPriorityChg(wk->PokeItemActWork[i], 3);	// ãã‚Œãžã‚Œã®ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£è¨­å®š
 			CLACT_SetDrawFlag( wk->PokeItemActWork[i], 0 );
 		}
 
-		// ƒ|ƒPƒ‚ƒ“‚ÌƒJƒXƒ^ƒ€ƒ{[ƒ‹
+		// ãƒã‚±ãƒ¢ãƒ³ã®ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
 		for(i=0;i<TRADELIST_POKE_MAX;i++){
 			add.mat.x = FX32_ONE*(main_cursor_pos[i][0]+16+20+9);
 			add.mat.y = FX32_ONE*(main_cursor_pos[i][1]+16);
 			add.pri			= 0;
 			wk->PokeCBallActWork[i] = CLACT_Add(&add);
-			CLACT_DrawPriorityChg(wk->PokeCBallActWork[i], 3);	// ‚»‚ê‚¼‚ê‚ÌƒAƒNƒ^[‚Ìƒvƒ‰ƒCƒIƒŠƒeƒBÝ’è
+			CLACT_DrawPriorityChg(wk->PokeCBallActWork[i], 3);	// ãã‚Œãžã‚Œã®ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£è¨­å®š
 			CLACT_SetDrawFlag( wk->PokeCBallActWork[i], 0 );
 		}
 
-		// uŒðŠ·‚µ‚Ü‚·‚©Hv‚Ì–îˆó
+		// ã€Œäº¤æ›ã—ã¾ã™ã‹ï¼Ÿã€ã®çŸ¢å°
 		add.mat.x = FX32_ONE*( 128-4*8 );
 		add.mat.y = FX32_ONE*(     8*8+2 );
 		wk->ExchangeArrow = CLACT_Add(&add);
@@ -2435,7 +2435,7 @@ static void SetCellActor(TRADELIST_WORK *wk)
 		CLACT_SetDrawFlag( wk->ExchangeArrow, 0 );
 
 
-		// ‰º‰æ–Ê—p(ƒ|ƒPƒ‚ƒ“‚Q‘ÌE–îˆó‚QŒÂE«•ÊƒAƒCƒRƒ“j
+		// ä¸‹ç”»é¢ç”¨(ãƒã‚±ãƒ¢ãƒ³ï¼’ä½“ãƒ»çŸ¢å°ï¼’å€‹ãƒ»æ€§åˆ¥ã‚¢ã‚¤ã‚³ãƒ³ï¼‰
 		for(i=0;i<6;i++){
 			add.ClActHeader	= &wk->clActHeader_s;
 			add.mat.x = FX32_ONE*sub_icon_pos[i][0];
@@ -2460,7 +2460,7 @@ static void SetCellActor(TRADELIST_WORK *wk)
 #ifdef PM_DEBUG
 //------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒO•\Ž¦—p‚ÉOBJ‚âBG‚ð“®‚©‚·
+ * ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºç”¨ã«OBJã‚„BGã‚’å‹•ã‹ã™
  *
  * @param   wk		
  *
@@ -2529,7 +2529,7 @@ static int AroundWork(int w, int min, int max)
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹ˆÚ“®ˆ—
+ * ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å‡¦ç†
  *
  * @param   wk		NAMEIN_WORK*
  *
@@ -2541,7 +2541,7 @@ static void ControlCursor(u32 *CommWork)
 	int move  = 0;
 	int arrow = 0;
 
-	// ƒL[“ü—Í‚É‘Î‚µ‚ÄˆÚ“®‚·‚é‚S•ûŒü‚Ì‚¤‚¿‚Ìˆê‚Â‚ðŒˆ’è
+	// ã‚­ãƒ¼å…¥åŠ›ã«å¯¾ã—ã¦ç§»å‹•ã™ã‚‹ï¼”æ–¹å‘ã®ã†ã¡ã®ä¸€ã¤ã‚’æ±ºå®š
 	if( sys.repeat & PAD_KEY_UP){
 		arrow = MOVE_UP;
 		move++;
@@ -2559,7 +2559,7 @@ static void ControlCursor(u32 *CommWork)
 		move++;
 	}
 
-	// ˆÚ“®‚ª”­¶‚µ‚½‚ç•ÏX
+	// ç§»å‹•ãŒç™ºç”Ÿã—ãŸã‚‰å¤‰æ›´
 	if(move){
 		*CommWork = arrow;
 	}
@@ -2568,7 +2568,7 @@ static void ControlCursor(u32 *CommWork)
 
 
 
-// ‰º‰æ–Ê—pƒ{ƒ^ƒ“ˆÊ’u’è‹`
+// ä¸‹ç”»é¢ç”¨ãƒœã‚¿ãƒ³ä½ç½®å®šç¾©
 #define SUB_BUTTON1_POSX			( 3*8  )
 #define SUB_BUTTON1_POSY			( 7*8  )
 #define SUB_BUTTON2_POSX			( 19*8 )
@@ -2580,16 +2580,16 @@ static void ControlCursor(u32 *CommWork)
 static const RECT_HIT_TBL sub_button_hittbl[]={
 	{SUB_BUTTON1_POSY, SUB_BUTTON1_POSY+SUB_BUTTON_H, SUB_BUTTON1_POSX, SUB_BUTTON1_POSX+SUB_BUTTON_W},
 //	{SUB_BUTTON2_POSY, SUB_BUTTON2_POSY+SUB_BUTTON_H, SUB_BUTTON2_POSX, SUB_BUTTON2_POSX+SUB_BUTTON_W},
-	{RECT_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+	{RECT_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 
 
 //------------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹‚Å‰Ÿ‚µ‚½ƒ{ƒ^ƒ“‚ª‚Ö‚±‚Þ
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§æŠ¼ã—ãŸãƒœã‚¿ãƒ³ãŒã¸ã“ã‚€
  *
- * @param   wk		NAMEIN_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		NAMEIN_WORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -2599,29 +2599,29 @@ static void TouchFunc(TRADELIST_WORK *wk)
 	u16 monsno,form;
 	int button=-1,i;
 
-	// Ž©•ª‚Ì‘¤‚ÉƒJ[ƒ\ƒ‹‚ª‚¢‚é‚È‚ç
+	// è‡ªåˆ†ã®å´ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã„ã‚‹ãªã‚‰
 	if( wk->cursor_pos[0]>=6){
 		return;
 	}
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹“ü—Íˆ—
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å…¥åŠ›å‡¦ç†
 	button=GF_TP_RectHitTrg( sub_button_hittbl );
 
-	// ‰º‰æ–Ê‚ÅŽ©•ª‚Ìƒ|ƒPƒ‚ƒ“‚ðƒ^ƒbƒ`‚µ‚½
+	// ä¸‹ç”»é¢ã§è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚¿ãƒƒãƒã—ãŸ
 	if( button != RECT_HIT_NONE ){
 
-		// ƒ^ƒ}ƒS‚Í–³Ž‹
+		// ã‚¿ãƒžã‚´ã¯ç„¡è¦–
 		if(wk->pokeInfo[wk->cursor_pos[0]].tamago){
 			return;
 		}
 
-		// ‹ƒ‚«ºiƒyƒ‰ƒbƒvƒ{ƒCƒX‘Î‰žj
+		// æ³£ãå£°ï¼ˆãƒšãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹å¯¾å¿œï¼‰
 		monsno = wk->pokeInfo[wk->cursor_pos[0]].exist;
 		form = wk->pokeInfo[wk->cursor_pos[0]].form;
-		//‚Øƒ‰ƒbƒv‚©ƒ`ƒFƒbƒN
+		//ãºãƒ©ãƒƒãƒ—ã‹ãƒã‚§ãƒƒã‚¯
 		if( monsno == MONSNO_PERAPPU ){
 
-			//Ž©•ª‚Ìƒyƒ‰ƒbƒvƒf[ƒ^ŒÅ’è‚É‚µ‚Ä‚¢‚é‚Ì‚ÅŒã‚Å•ÏX‚·‚éI
+			//è‡ªåˆ†ã®ãƒšãƒ©ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å›ºå®šã«ã—ã¦ã„ã‚‹ã®ã§å¾Œã§å¤‰æ›´ã™ã‚‹ï¼
 			//Snd_PerapVoicePlay( CommGetCurrentID(), PM_MALE, PV_VOL_DEFAULT, 0 );
 			Snd_PerapVoicePlay( SaveData_GetPerapVoice(wk->savedata), 
 								PM_MALE, PV_VOL_DEFAULT, 0 );
@@ -2630,10 +2630,10 @@ static void TouchFunc(TRADELIST_WORK *wk)
 			Snd_PMVoicePlay( monsno, form );
 		}
 		
-		// ƒ|ƒPƒ‚ƒ“‚ªƒWƒƒƒ“ƒv‚·‚é
+		// ãƒã‚±ãƒ¢ãƒ³ãŒã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹
 		CLACT_SetAnmFlag(wk->SubLCDIconActWork[button],1);
 		CLACT_AnmChg( wk->SubLCDIconActWork[button], 4+button );
-		OS_Printf("ƒWƒƒƒ“ƒvI\n");
+		OS_Printf("ã‚¸ãƒ£ãƒ³ãƒ—ï¼\n");
 	}
 
 
@@ -2642,9 +2642,9 @@ static void TouchFunc(TRADELIST_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹‚ÌƒpƒŒƒbƒg•ÏXi“_–Åj
+ * ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ï¼ˆç‚¹æ»…ï¼‰
  *
- * @param   CursorCol	sin‚É“n‚·ƒpƒ‰ƒ[ƒ^i360‚Ü‚Åj
+ * @param   CursorCol	sinã«æ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆ360ã¾ã§ï¼‰
  *
  * @retval  none		
  */
@@ -2673,12 +2673,12 @@ static void CursorColTrans(u16 *CursorCol)
 
 //--------------------------------------------------------------------------
 /**
- * ¶°¿Ù‚ÌŽŸ‚ÌˆÚ“®æ‚Í‘¶Ý‚µ‚Ä‚¢‚é‚©‚ðÅ‚6ŒÂ‚Ü‚Å’T‚·
+ * ã‚«ãƒ¼ã‚½ãƒ«ã®æ¬¡ã®ç§»å‹•å…ˆã¯å­˜åœ¨ã—ã¦ã„ã‚‹ã‹ã‚’æœ€é«˜6å€‹ã¾ã§æŽ¢ã™
  *
- * @param   pos		Œ»Ý‚ÌˆÊ’u”Ô†
- * @param   arrow	ˆÚ“®•ûŒü
+ * @param   pos		ç¾åœ¨ã®ä½ç½®ç•ªå·
+ * @param   arrow	ç§»å‹•æ–¹å‘
  *
- * @retval  u8		ˆÚ“®Œ‹‰Ê
+ * @retval  u8		ç§»å‹•çµæžœ
  */
 //--------------------------------------------------------------------------
 static int NextCursorSearch(int pos, int arrow, POKE_INFO *info)
@@ -2701,10 +2701,10 @@ static const CursorAnmTable[][3]={
 };
 //--------------------------------------------------------------------------
 /**
- * ¶°¿ÙˆÚ“®ˆ—
+ * ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å‡¦ç†
  *
- * @param   pos		ƒJ[ƒ\ƒ‹ˆÊ’u‚ðŠi”[‚µ‚Ä‚¢‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param   arrow	ˆÚ“®•ûŒü
+ * @param   pos		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’æ ¼ç´ã—ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   arrow	ç§»å‹•æ–¹å‘
  *
  * @retval  none		
  *
@@ -2721,13 +2721,13 @@ static void CursorPosChange(int pos, CLACT_WORK_PTR CursorAct,int side)
 
 	if(pos==CURSOR_END_POS){
 		CLACT_SetMatrix(CursorAct, &tmpVex);
-		CLACT_AnmChg( CursorAct, CursorAnmTable[side][2] );	// ‚¨‚í‚è—pƒJ[ƒ\ƒ‹‚ÉƒAƒNƒ^[•ÏX
+		CLACT_AnmChg( CursorAct, CursorAnmTable[side][2] );	// ãŠã‚ã‚Šç”¨ã‚«ãƒ¼ã‚½ãƒ«ã«ã‚¢ã‚¯ã‚¿ãƒ¼å¤‰æ›´
 	}else{
 		CLACT_SetMatrix(CursorAct, &tmpVex);
 		if(pos<6){
-			CLACT_AnmChg( CursorAct, CursorAnmTable[side][0] );	// ¶—p‚ÉƒAƒNƒ^[•ÏX
+			CLACT_AnmChg( CursorAct, CursorAnmTable[side][0] );	// å·¦ç”¨ã«ã‚¢ã‚¯ã‚¿ãƒ¼å¤‰æ›´
 		}else{
-			CLACT_AnmChg( CursorAct, CursorAnmTable[side][1] );	// ‰E—p‚ÉƒAƒNƒ^[•ÏX
+			CLACT_AnmChg( CursorAct, CursorAnmTable[side][1] );	// å³ç”¨ã«ã‚¢ã‚¯ã‚¿ãƒ¼å¤‰æ›´
 		}
 	}
 
@@ -2736,7 +2736,7 @@ static void CursorPosChange(int pos, CLACT_WORK_PTR CursorAct,int side)
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹‚ªˆÚ“®‚µ‚½ê‡‚ÉÀ•WEŒ`ó‚Ì•ÏX‚ðs‚¤
+ * ã‚«ãƒ¼ã‚½ãƒ«ãŒç§»å‹•ã—ãŸå ´åˆã«åº§æ¨™ãƒ»å½¢çŠ¶ã®å¤‰æ›´ã‚’è¡Œã†
  *
  * @param   Command		
  * @param   pos		
@@ -2756,13 +2756,13 @@ static int ViewChange(u32 *Command, int *pos, CLACT_WORK_PTR CursorAct, POKE_INF
 		if(*Command){
 			w = NextCursorSearch(*pos,arrow,info);
 			CursorPosChange(w,CursorAct,side);
-			if(*pos!=w){					//ˆÚ“®‚µ‚Ä‚¢‚ê‚ÎSE–Â‚ç‚·
+			if(*pos!=w){					//ç§»å‹•ã—ã¦ã„ã‚Œã°SEé³´ã‚‰ã™
 				Snd_SePlay(NAMEIN_MOVE_SE);
-				*pos = w;					//À•WXV
+				*pos = w;					//åº§æ¨™æ›´æ–°
 				result = 1;
 			}
 		}
-		*Command = 0;	//ƒRƒ}ƒ“ƒhƒNƒŠƒA
+		*Command = 0;	//ã‚³ãƒžãƒ³ãƒ‰ã‚¯ãƒªã‚¢
 	}else{
 		CursorPosChange(*pos,CursorAct,side);
 	}
@@ -2773,7 +2773,7 @@ static int ViewChange(u32 *Command, int *pos, CLACT_WORK_PTR CursorAct, POKE_INF
 
 //------------------------------------------------------------------
 /**
- * Žž‘—Mƒf[ƒ^‚ð‘—‚éiŽå‚ÉƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ð‘—M‚·‚éj
+ * éšæ™‚é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹ï¼ˆä¸»ã«ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’é€ä¿¡ã™ã‚‹ï¼‰
  *
  * @param   netID		
  * @param   pos		
@@ -2792,7 +2792,7 @@ void TradeListCommSend(int netID, int command, int pos)
 
 //==============================================================================
 /**
- * @brief   ‘—Mƒf[ƒ^‚ª‘O‰ñ‚Ì‘—Mƒf[ƒ^‚Æˆá‚¤‚Æ‚«‚¾‚¯‘—M‚·‚é
+ * @brief   é€ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒå‰å›žã®é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã¨é•ã†ã¨ãã ã‘é€ä¿¡ã™ã‚‹
  *
  * @param   wk		
  * @param   command		
@@ -2808,7 +2808,7 @@ void TradeListCommDiffSend( TRADELIST_WORK *wk, int command, int pos)
 		wk->posBackup     = pos;
 		wk->commandBackup = command;
 
-		OS_Printf("Id:%d command=%d pos=%d‚ð‘—M\n", CommGetCurrentID(), command, pos);
+		OS_Printf("Id:%d command=%d pos=%dã‚’é€ä¿¡\n", CommGetCurrentID(), command, pos);
 	}
 }
 
@@ -2833,7 +2833,7 @@ static void *GetPartyAdrs(POKEPARTY *party, int no)
 
 //==============================================================================
 /**
- * ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ð‘—M‚·‚éi’ÊM‚ÌeŽq‚ÅŠÖ”‚ð‘Ö‚¦‚éj
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹ï¼ˆé€šä¿¡ã®è¦ªå­ã§é–¢æ•°ã‚’æ›¿ãˆã‚‹ï¼‰
  *
  * @param   netID		
  * @param   party		
@@ -2844,7 +2844,7 @@ static void *GetPartyAdrs(POKEPARTY *party, int no)
 //==============================================================================
 void TradeListCommSendPokeData(int netID, POKEPARTY *party, int no)
 {
-	if(CommIsConnect(netID)){			// ƒfƒoƒbƒO‚Åˆêl—p‚ð“®‚©‚·‚©‚à‚µ‚ê‚È‚¢‚Ì‚Å”O‚Ì‚½‚ß
+	if(CommIsConnect(netID)){			// ãƒ‡ãƒãƒƒã‚°ã§ä¸€äººç”¨ã‚’å‹•ã‹ã™ã‹ã‚‚ã—ã‚Œãªã„ã®ã§å¿µã®ãŸã‚
 		u8 data = no;
 		CommSendHugeData(CT_POKEDATA,GetPartyAdrs(party,no),POKEPARTY_SEND_ONCE_SIZE);
 	}
@@ -2852,7 +2852,7 @@ void TradeListCommSendPokeData(int netID, POKEPARTY *party, int no)
 
 //==============================================================================
 /**
- * @brief   ƒŠƒ{ƒ“î•ñ‘—M
+ * @brief   ãƒªãƒœãƒ³æƒ…å ±é€ä¿¡
  *
  * @param   sv		
  * @param   no		
@@ -2871,7 +2871,7 @@ static void TradeListCommSpRibbonDate(  SAVEDATA *sv )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚µ‚è‚ ‚¢ƒOƒ‹[ƒvƒf[ƒ^‚Ì‘—M
+ * $brief   ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡
  *
  * @param   mystatus		
  * @param   friendlist		
@@ -2884,29 +2884,29 @@ static void CommSendFriendList( MYSTATUS *mystatus, FRIEND_LIST *friendlist, FRI
 {
 	int i;
 
-	// ‘—Mƒf[ƒ^‚Ìì¬
-	PM_strcpy( sendbuf->name, MyStatus_GetMyName( mystatus ));	// –¼‘O
+	// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
+	PM_strcpy( sendbuf->name, MyStatus_GetMyName( mystatus ));	// åå‰
 	sendbuf->id       = MyStatus_GetID(mystatus);				// ID
-	sendbuf->region   = MyStatus_GetRegionCode(mystatus);		// ƒŠ[ƒWƒ‡ƒ“
+	sendbuf->region   = MyStatus_GetRegionCode(mystatus);		// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³
 	sendbuf->rom_code = MyStatus_GetRomCode(mystatus);			// ROM
-	sendbuf->sex      = MyStatus_GetMySex(mystatus);			// «•Ê
+	sendbuf->sex      = MyStatus_GetMySex(mystatus);			// æ€§åˆ¥
 	
-	for(i=0;i<FRIENDLIST_FRIEND_MAX;i++){						// Ž©•ª‚Ì’m‚è‡‚¢‚ÌID‚ð
-		sendbuf->group_id[i]      = friendlist[i].id;			// ’m‚è‡‚¢‚Ì’m‚è‡‚¢‚Æ‚µ‚Ä‚Í“n‚·‚½‚ß‚É®Œ`
+	for(i=0;i<FRIENDLIST_FRIEND_MAX;i++){						// è‡ªåˆ†ã®çŸ¥ã‚Šåˆã„ã®IDã‚’
+		sendbuf->group_id[i]      = friendlist[i].id;			// çŸ¥ã‚Šåˆã„ã®çŸ¥ã‚Šåˆã„ã¨ã—ã¦ã¯æ¸¡ã™ãŸã‚ã«æ•´å½¢
 		sendbuf->group_romcode[i] = friendlist[i].rom_code;
 		sendbuf->group_region[i]  = friendlist[i].region;
 		sendbuf->group_sex[i]     = friendlist[i].sex;
 	}
 
 
-	// ‘—M
+	// é€ä¿¡
 	CommSendHugeData( CT_FRINEDLIST, sendbuf, sizeof(FRIEND_LIST) );
 	
 }
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒyƒ‰ƒbƒvƒ{ƒCƒX‘—M
+ * @brief   ãƒšãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹é€ä¿¡
  *
  * @param   pv		
  *
@@ -2920,7 +2920,7 @@ static void CommSendPerapVoice( PERAPVOICE *pv )
 
 //------------------------------------------------------------------
 /**
- * ’ÊíˆÚ“®
+ * é€šå¸¸ç§»å‹•
  *
  * @param   wk		
  *
@@ -2953,16 +2953,16 @@ static int trade_seq_normal(TRADELIST_WORK *wk)
 	return MODE_NORMAL;
 }
 
-// ƒXƒe[ƒ^ƒX‰æ–Ê‚Å•\Ž¦‚·‚éƒtƒ‰ƒO‚Ì—ñiƒrƒbƒgƒe[ƒuƒ‹‚É‚·‚ê‚Î‚¢‚¢‚Ì‚Écj
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã§è¡¨ç¤ºã™ã‚‹ãƒ•ãƒ©ã‚°ã®åˆ—ï¼ˆãƒ“ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã«ã™ã‚Œã°ã„ã„ã®ã«â€¦ï¼‰
 static const u8 StatusPageTable[]={
-	PST_PAGE_INFO,			// uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-	PST_PAGE_MEMO,			// uƒgƒŒ[ƒi[ƒƒ‚v
-	PST_PAGE_PARAM,			// uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-	PST_PAGE_CONDITION,		// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-	PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-	PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
-	PST_PAGE_RIBBON,		// u‚«‚Ë‚ñƒŠƒ{ƒ“v
-	PST_PAGE_RET,			// u‚à‚Ç‚év
+	PST_PAGE_INFO,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+	PST_PAGE_MEMO,			// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
+	PST_PAGE_PARAM,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+	PST_PAGE_CONDITION,		// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+	PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+	PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+	PST_PAGE_RIBBON,		// ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+	PST_PAGE_RET,			// ã€Œã‚‚ã©ã‚‹ã€
 	PST_PAGE_MAX
 
 };
@@ -2970,7 +2970,7 @@ static const u8 StatusPageTable[]={
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒXƒe[ƒ^ƒX‚ªŒÄ‚Î‚ê‚½‚Ì‚Å‘S‚Ä”jŠü‚µ‚ÄƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
+ * @brief   ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒå‘¼ã°ã‚ŒãŸã®ã§å…¨ã¦ç ´æ£„ã—ã¦ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
  *
  * @param   wk		
  *
@@ -2981,7 +2981,7 @@ static void poke_status_setup( TRADELIST_WORK *wk, int side )
 {
 
 	if(side==0){
-		// Ž©•ª‚Ì‚Ä‚à‚¿
+		// è‡ªåˆ†ã®ã¦ã‚‚ã¡
 		wk->statusParam.ppd        = wk->MyPokeParty;
 		wk->statusParam.max        = PokeParty_GetPokeCount(wk->param->myparty);
 //		wk->statusParam.perap      = (PERAPVOICE*)wk->perap_buf[CommGetCurrentID()];
@@ -2989,7 +2989,7 @@ static void poke_status_setup( TRADELIST_WORK *wk, int side )
 		PokeStatus_PlayerSet( &wk->statusParam, CommInfoGetMyStatus(CommGetCurrentID()) );
 
 	}else{
-		// ‘ŠŽè‚Ì‚Ä‚à‚¿iƒyƒ‰ƒbƒvƒ{ƒCƒX‚àƒZƒbƒg‚·‚éj
+		// ç›¸æ‰‹ã®ã¦ã‚‚ã¡ï¼ˆãƒšãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹ã‚‚ã‚»ãƒƒãƒˆã™ã‚‹ï¼‰
 		wk->statusParam.ppd        = wk->FriendPokeParty;
 		wk->statusParam.max        = PokeParty_GetPokeCount(wk->FriendPokeParty);
 		wk->statusParam.perap      = (PERAPVOICE*)wk->perap_buf[CommGetCurrentID()^1];
@@ -2997,7 +2997,7 @@ static void poke_status_setup( TRADELIST_WORK *wk, int side )
 	}
 	wk->statusParam.ppt        = PST_PP_TYPE_POKEPARTY;
 	wk->statusParam.pos        = wk->cursor_pos[0]%6;
-	wk->statusParam.mode       = PST_MODE_NO_WAZACHG;	// ‹Z“ü‚ê‘Ö‚¦‹ÖŽ~‚É‚·‚é
+	wk->statusParam.mode       = PST_MODE_NO_WAZACHG;	// æŠ€å…¥ã‚Œæ›¿ãˆç¦æ­¢ã«ã™ã‚‹
 	wk->statusParam.waza       = 0;
 	wk->statusParam.ev_contest = PokeStatus_ContestFlagGet(wk->param->savedata);
 	wk->statusParam.zukan_mode = wk->param->zukanmode;
@@ -3011,7 +3011,7 @@ static void poke_status_setup( TRADELIST_WORK *wk, int side )
 }
 //------------------------------------------------------------------
 /**
- * I—¹‚x‚d‚r‚m‚n
+ * çµ‚äº†ï¼¹ï¼¥ï¼³ï¼®ï¼¯
  *
  * @param   wk		
  *
@@ -3035,7 +3035,7 @@ static int trade_seq_endyesno(TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * I—¹‚x‚d‚r‚m‚n‘Ò‚¿
+ * çµ‚äº†ï¼¹ï¼¥ï¼³ï¼®ï¼¯å¾…ã¡
  *
  * @param   wk		
  *
@@ -3053,7 +3053,7 @@ static int trade_seq_endyesno_wait(TRADELIST_WORK *wk)
 			wk->MsgManager,
 			wk->PokeNameWordSet
 		);
-		// ‚â‚ß‚éŽ–‚ðŒˆ’è
+		// ã‚„ã‚ã‚‹äº‹ã‚’æ±ºå®š
 		TradeListCommDiffSend( wk, CT_TRADE_DECIDE, DECIDE_COMMAND_END);
 		wk->func   = trade_seq_end;
 		wk->result = TRADELIST_END_FINISH;
@@ -3079,7 +3079,7 @@ static int trade_seq_endyesno_wait(TRADELIST_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒ“ƒZƒ‹‚µ‚½
+ * @brief   ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸ
  *
  * @param   wk		
  *
@@ -3102,7 +3102,7 @@ static int trade_seq_return(TRADELIST_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒ“ƒZƒ‹Œã‚Ìƒ{ƒ^ƒ“‘Ò‚¿
+ * @brief   ã‚­ãƒ£ãƒ³ã‚»ãƒ«å¾Œã®ãƒœã‚¿ãƒ³å¾…ã¡
  *
  * @param   wk		
  *
@@ -3128,11 +3128,11 @@ static int trade_seq_return_wait(TRADELIST_WORK *wk)
 
 
 
-//------------------‚±‚±‚©‚ç‚Æ‚à‚¾‚¿Žè’ 
+//------------------ã“ã“ã‹ã‚‰ã¨ã‚‚ã ã¡æ‰‹å¸³
 
-#define _FRIENDNOTE_END_TIMING   (19)    // ‚Æ‚à‚¾‚¿Žè’ “ü—ÍŠ®—¹“¯Šú
+#define _FRIENDNOTE_END_TIMING   (19)    // ã¨ã‚‚ã ã¡æ‰‹å¸³å…¥åŠ›å®Œäº†åŒæœŸ
 
-// Žè’ “o˜^‚ÌƒƒbƒZ[ƒW‚Ì•\Ž¦
+// æ‰‹å¸³ç™»éŒ²ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
 static void _friendMessagePrint(TRADELIST_WORK* wk, int msgNo)
 {
     TradeListWindowPrint(
@@ -3147,7 +3147,7 @@ static void _friendMessagePrint(TRADELIST_WORK* wk, int msgNo)
 
 //------------------------------------------------------------------
 /**
- * íœ‚Í‚â‚ß‚Æ‚­HYESNO
+ * å‰Šé™¤ã¯ã‚„ã‚ã¨ãï¼ŸYESNO
  * @param   wk		
  * @retval  int		
  */
@@ -3173,7 +3173,7 @@ static int trade_seq_friend_endyesno( TRADELIST_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * íœƒƒjƒ…[•\Ž¦
+ * å‰Šé™¤ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -3187,9 +3187,9 @@ static int trade_seq_friend_regist_erase_yesno( TRADELIST_WORK* wk )
     int i;
     switch(TradeListYesNoFunc(wk->bgl, &wk->YesNoMenu, &wk->yesnoseq)){
 	case 0:
-		//ƒtƒŒƒ“ƒh–ˆ‚ÉŽ‚Âƒtƒƒ“ƒeƒBƒAƒf[ƒ^‚àíœ 2008.05.24(“y) matsuda
+		//ãƒ•ãƒ¬ãƒ³ãƒ‰æ¯Žã«æŒã¤ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ‡ãƒ¼ã‚¿ã‚‚å‰Šé™¤ 2008.05.24(åœŸ) matsuda
 		FrontierRecord_ResetData(SaveData_GetFrontier(wk->savedata), wk->erasePos);
-        // Á‚·+’Ç‰Á
+        // æ¶ˆã™+è¿½åŠ 
         WifiList_ResetData(wk->pWifiList, wk->erasePos);
         dwc_friendWrite(wk->savedata, wk->addFriendNo,WIFILIST_FRIEND_MAX-1,HEAPID_TRADELIST, FALSE);
 		wk->func = trade_seq_friend_regist_init;
@@ -3208,7 +3208,7 @@ static int trade_seq_friend_regist_erase_yesno( TRADELIST_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * íœƒƒjƒ…[•\Ž¦
+ * å‰Šé™¤ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -3255,7 +3255,7 @@ static int trade_seq_friend_regist_delmenu_wait( TRADELIST_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * íœƒƒjƒ…[•\Ž¦
+ * å‰Šé™¤ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -3269,7 +3269,7 @@ static int trade_seq_friend_regist_delmenu_init( TRADELIST_WORK* wk )
     int count = WifiList_GetFriendDataNum(wk->pWifiList);
     int line = 5;
 
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     wk->menulist = BMP_MENULIST_Create( count+1, HEAPID_TRADELIST );
 	{
 		MSGDATA_MANAGER* msgman;
@@ -3294,7 +3294,7 @@ static int trade_seq_friend_regist_delmenu_init( TRADELIST_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ‚Æ‚à‚¾‚¿Žè’ íœŠm”F
+ * ã¨ã‚‚ã ã¡æ‰‹å¸³å‰Šé™¤ç¢ºèª
  *
  * @param   wk		
  *
@@ -3323,7 +3323,7 @@ static int trade_seq_friend_regist_del_yesno(TRADELIST_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ‚Æ‚à‚¾‚¿Žè’ “o˜^‘I‘ð
+ * ã¨ã‚‚ã ã¡æ‰‹å¸³ç™»éŒ²é¸æŠž
  *
  * @param   wk		
  *
@@ -3337,7 +3337,7 @@ static int trade_seq_friend_regist_yesno(TRADELIST_WORK* wk)
     switch(TradeListYesNoFunc(wk->bgl, &wk->YesNoMenu, &wk->yesnoseq)){
 	case 0:
 		wk->func = trade_seq_friend_regist_init;
-        // “o˜^
+        // ç™»éŒ²
         for(i = 0; i < WIFILIST_FRIEND_MAX;i++){
             if( !WifiList_IsFriendData( wk->pWifiList, i ) ){
                 dwc_friendWrite(wk->savedata, wk->addFriendNo,i,HEAPID_TRADELIST, FALSE);
@@ -3345,7 +3345,7 @@ static int trade_seq_friend_regist_yesno(TRADELIST_WORK* wk)
             }
         }
         if(i == WIFILIST_FRIEND_MAX){
-            // ‘‚«ž‚ß‚È‚¢ê‡
+            // æ›¸ãè¾¼ã‚ãªã„å ´åˆ
             _friendMessagePrint(wk,msg_wifi_note_add_02);
             wk->func = trade_seq_friend_regist_del_yesno;
             return FALSE;
@@ -3362,7 +3362,7 @@ static int trade_seq_friend_regist_yesno(TRADELIST_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ‚Æ‚à‚¾‚¿Žè’ I—¹“¯Šú‘Ò‚¿
+ * ã¨ã‚‚ã ã¡æ‰‹å¸³çµ‚äº†åŒæœŸå¾…ã¡
  *
  * @param   wk		
  *
@@ -3381,7 +3381,7 @@ static int trade_seq_friend_regist_timing(TRADELIST_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ‚Æ‚à‚¾‚¿Žè’ “o˜^ŠJŽn
+ * ã¨ã‚‚ã ã¡æ‰‹å¸³ç™»éŒ²é–‹å§‹
  *
  * @param   wk		
  *
@@ -3401,7 +3401,7 @@ static int trade_seq_friend_regist_init(TRADELIST_WORK* wk)
             break;
         }
     }
-    if(wk->addFriendNo == -1){  // “o˜^Š®—¹
+    if(wk->addFriendNo == -1){  // ç™»éŒ²å®Œäº†
         MSGMAN_Delete( wk->friendMsgManager );
         WORDSET_Delete( wk->friendWordSet );
         CommTimingSyncStart( _FRIENDNOTE_END_TIMING );
@@ -3415,7 +3415,7 @@ static int trade_seq_friend_regist_init(TRADELIST_WORK* wk)
         wk->func = trade_seq_friend_regist_timing;
         return MODE_NORMAL;
     }
-	//Žè’ ‚ðŽ‚Á‚Ä‚¢‚½‚ç
+	//æ‰‹å¸³ã‚’æŒã£ã¦ã„ãŸã‚‰
 	if( MyItem_CheckItem( SaveData_GetMyItem(wk->savedata),
 							ITEM_TOMODATITETYOU,1,HEAPID_TRADELIST) == TRUE ){
         pMyStatus = CommInfoGetMyStatus(wk->addFriendNo);
@@ -3424,7 +3424,7 @@ static int trade_seq_friend_regist_init(TRADELIST_WORK* wk)
         wk->func = trade_seq_friend_regist_yesno;
         return MODE_NORMAL;
     }
-    // Ž‚Á‚Ä‚È‚¢‚È‚çAUTO
+    // æŒã£ã¦ãªã„ãªã‚‰AUTO
     {
         WIFI_LIST* pList = SaveData_GetWifiListData(wk->savedata);
         for(i = 0; i < WIFILIST_FRIEND_MAX;i++){
@@ -3441,7 +3441,7 @@ static int trade_seq_friend_regist_init(TRADELIST_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ‚Æ‚à‚¾‚¿Žè’ “o˜^ŒŸ¸    k.ohno
+ * ã¨ã‚‚ã ã¡æ‰‹å¸³ç™»éŒ²æ¤œæŸ»    k.ohno
  *
  * @param   wk		
  *
@@ -3451,7 +3451,7 @@ static int trade_seq_friend_regist_init(TRADELIST_WORK* wk)
 static int trade_seq_friend_regist(TRADELIST_WORK* wk)
 {
     if(FALSE == dwc_friendAutoInputCheck(wk->savedata, wk->friendNetID, HEAPID_TRADELIST)){
-        OHNO_PRINT("¡‰ñ‚Ì“o˜^‚Í–³‚¢\n");
+        OHNO_PRINT("ä»Šå›žã®ç™»éŒ²ã¯ç„¡ã„\n");
         CommTimingSyncStart( _FRIENDNOTE_END_TIMING );
 
 		TradeListWindowPrint(
@@ -3462,7 +3462,7 @@ static int trade_seq_friend_regist(TRADELIST_WORK* wk)
 		);
 
         wk->func = trade_seq_friend_regist_timing;
-        return MODE_NORMAL;  // ¡‰ñ‚Ì“o˜^‚Í–³‚¢
+        return MODE_NORMAL;  // ä»Šå›žã®ç™»éŒ²ã¯ç„¡ã„
     }
     wk->friendWordSet    = WORDSET_Create( HEAPID_TRADELIST );
     wk->friendMsgManager = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_note_dat, HEAPID_TRADELIST );
@@ -3471,11 +3471,11 @@ static int trade_seq_friend_regist(TRADELIST_WORK* wk)
     wk->func = trade_seq_friend_regist_init;
 	return MODE_NORMAL;
 }
-//------------------‚±‚±‚Ü‚Å‚Æ‚à‚¾‚¿Žè’ 
+//------------------ã“ã“ã¾ã§ã¨ã‚‚ã ã¡æ‰‹å¸³
 
 //------------------------------------------------------------------
 /**
- * I—¹
+ * çµ‚äº†
  *
  * @param   wk		
  *
@@ -3492,7 +3492,7 @@ static int trade_seq_end(TRADELIST_WORK *wk)
 		}
 		wk->end_flag[0] = 0;
 		wk->end_flag[1] = 0;
-		wk->fail_reason = mes_dstrade_04_08;	// ŒðŠ·‚ÍƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ü‚µ‚½B
+		wk->fail_reason = mes_dstrade_04_08;	// äº¤æ›ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¾ã—ãŸã€‚
 	}
 	return MODE_NORMAL;
 }
@@ -3500,7 +3500,7 @@ static int trade_seq_end(TRADELIST_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚¾
+ * è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã 
  *
  * @param   wk		
  *
@@ -3530,8 +3530,8 @@ static int trade_seq_mypoke(TRADELIST_WORK *wk )
 	);
 	
 	wk->BmpMenuList = BMP_MENULIST_Create( 3, HEAPID_TRADELIST );
-	BMP_MENULIST_AddArchiveString( wk->BmpMenuList, wk->MsgManager, mes_dstrade_03_01, 0 );		// u‚Â‚æ‚³‚ð‚Ý‚év
-	BMP_MENULIST_AddArchiveString( wk->BmpMenuList, wk->MsgManager, mes_dstrade_03_02, 1 );		// u‚±‚¤‚©‚ñ‚·‚év
+	BMP_MENULIST_AddArchiveString( wk->BmpMenuList, wk->MsgManager, mes_dstrade_03_01, 0 );		// ã€Œã¤ã‚ˆã•ã‚’ã¿ã‚‹ã€
+	BMP_MENULIST_AddArchiveString( wk->BmpMenuList, wk->MsgManager, mes_dstrade_03_02, 1 );		// ã€Œã“ã†ã‹ã‚“ã™ã‚‹ã€
 	BMP_MENULIST_AddArchiveString( wk->BmpMenuList, wk->MsgManager, mes_dstrade_03_03, 2 );
 	
 	temp.menu = wk->BmpMenuList;
@@ -3558,7 +3558,7 @@ static int trade_seq_mypoke(TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“‚ÌŽž‚Ì‘I‘ð
+ * $brief   è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã®æ™‚ã®é¸æŠž
  *
  * @param   wk		
  *
@@ -3568,7 +3568,7 @@ static int trade_seq_mypoke(TRADELIST_WORK *wk )
 static int trade_seq_mypoke_menu(TRADELIST_WORK *wk )
 {
 	switch(BmpMenuMain( wk->BmpMenuWork )){
-	case SELECT_STATUS:		// ‚Â‚æ‚³‚ð‚Ý‚é
+	case SELECT_STATUS:		// ã¤ã‚ˆã•ã‚’ã¿ã‚‹
 		GF_BGL_ScrFill(	wk->bgl, GF_BGL_FRAME0_M, 0, 0, 0, 32, 24,  0);
 		TradeListWindowPrint(
 			&wk->TradeListWin[BMP_M_MES1_WIN],
@@ -3581,7 +3581,7 @@ static int trade_seq_mypoke_menu(TRADELIST_WORK *wk )
 		wk->func = trade_seq_normal;
 		return MODE_STATUS_SELECT;
 		break;
-	case SELECT_TRADE:		// ‚±‚¤‚©‚ñ‚·‚é
+	case SELECT_TRADE:		// ã“ã†ã‹ã‚“ã™ã‚‹
 		GF_BGL_ScrFill(	wk->bgl, GF_BGL_FRAME0_M, 0, 0, 0, 32, 24,  0);
 		TradeListWindowPrint(
 			&wk->TradeListWin[BMP_M_MES3_WIN],
@@ -3593,7 +3593,7 @@ static int trade_seq_mypoke_menu(TRADELIST_WORK *wk )
 		BMP_MENULIST_Delete( wk->BmpMenuList );
 		wk->func = trade_seq_decide;
 		break;
-	case SELECT_MODORU: case BMPMENU_CANCEL:	// ƒLƒƒƒ“ƒZƒ‹
+	case SELECT_MODORU: case BMPMENU_CANCEL:	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		GF_BGL_ScrFill(	wk->bgl, GF_BGL_FRAME0_M, 0, 0, 0, 32, 24,  0);
 		TradeListWindowPrint(
 			&wk->TradeListWin[BMP_M_MES1_WIN],
@@ -3614,7 +3614,7 @@ static int trade_seq_mypoke_menu(TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ŒðŠ·ƒ|ƒPƒ‚ƒ“Œˆ’è
+ * $brief   äº¤æ›ãƒã‚±ãƒ¢ãƒ³æ±ºå®š
  *
  * @param   wk		
  *
@@ -3631,7 +3631,7 @@ static int trade_seq_decide(TRADELIST_WORK *wk )
 		wk->PokeNameWordSet
 	);
 
-	// ŒðŠ·‚·‚éƒ|ƒPƒ‚ƒ“‚ðŒˆ’è‚µ‚½‚±‚Æ‚ð’Ê’m
+	// äº¤æ›ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’æ±ºå®šã—ãŸã“ã¨ã‚’é€šçŸ¥
 	TradeListCommDiffSend( wk, CT_TRADE_DECIDE, DECIDE_COMMAND_NEXT);
 	
 	wk->func = trade_seq_decide_wait;
@@ -3641,7 +3641,7 @@ static int trade_seq_decide(TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Œˆ’è‘Ò‚¿
+ * $brief   æ±ºå®šå¾…ã¡
  *
  * @param   wk		
  *
@@ -3656,7 +3656,7 @@ static int trade_seq_decide_wait(TRADELIST_WORK *wk )
 		}else{
 			wk->func = trade_seq_return;
 		}
-		wk->fail_reason = mes_dstrade_04_03;	// ŒðŠ·‚ÍƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ü‚µ‚½B
+		wk->fail_reason = mes_dstrade_04_03;	// äº¤æ›ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¾ã—ãŸã€‚
 		wk->end_flag[0] = 0;
 		wk->end_flag[1] = 0;
 
@@ -3669,7 +3669,7 @@ static int trade_seq_decide_wait(TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŒðŠ·‚·‚é‚±‚Æ‚É‚µ‚½ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ª’†‰›‚ÉˆÚ“®‚·‚é
+ * @brief   äº¤æ›ã™ã‚‹ã“ã¨ã«ã—ãŸãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãŒä¸­å¤®ã«ç§»å‹•ã™ã‚‹
  *
  * @param   wk		
  *
@@ -3680,7 +3680,7 @@ static int trade_seq_icon_move( TRADELIST_WORK *wk )
 {
 	int i;
 
-	// ‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“ˆÈŠO‚Í‰B‚·
+	// é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ä»¥å¤–ã¯éš ã™
 	for(i=0;i<6;i++){
 		if(i!=wk->cursor_pos[0]){
 			CLACT_SetDrawFlag(wk->PokeIconActWork[i],0);
@@ -3704,11 +3704,11 @@ static int trade_seq_icon_move( TRADELIST_WORK *wk )
 		GF_BGL_BmpWinOffVReq(&wk->TradeListWin[BMP_M_FRIENDPOKENAME0_WIN+i]);
 	}
 	
-	// ƒJ[ƒ\ƒ‹‚ð‰B‚·
+	// ã‚«ãƒ¼ã‚½ãƒ«ã‚’éš ã™
 	CLACT_SetDrawFlag(wk->clActWork[0],0);
 	CLACT_SetDrawFlag(wk->clActWork[1],0);
 
-	// ˆÚ“®‰ŠúÝ’è
+	// ç§»å‹•åˆæœŸè¨­å®š
 	AnimePosSet(wk->myanimpos, main_cursor_pos[wk->cursor_pos[0]][0]+POKEICON_DIFFX, 
 							   main_cursor_pos[wk->cursor_pos[0]][1]+POKEICON_DIFFY,
 							   6*8, 6*8);
@@ -3724,7 +3724,7 @@ static int trade_seq_icon_move( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ˆÚ“®ƒAƒjƒ—pŽn“_EI“_Žw’è
+ * @brief   ç§»å‹•ã‚¢ãƒ‹ãƒ¡ç”¨å§‹ç‚¹ãƒ»çµ‚ç‚¹æŒ‡å®š
  *
  * @param   animpos[]		
  * @param   sx		
@@ -3748,7 +3748,7 @@ static void AnimePosSet(VecFx32 animpos[], int sx, int sy, int ex, int ey)
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒRƒ“ˆÚ“®
+ * @brief   ã‚¢ã‚¤ã‚³ãƒ³ç§»å‹•
  *
  * @param   icon		
  * @param   item		
@@ -3762,13 +3762,13 @@ static void PokeIconPosSet( CLACT_WORK_PTR icon, CLACT_WORK_PTR item, CLACT_WORK
 {
 	VecFx32 pokeVex,itemVex,cballVex;
 
-	// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“À•W
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³åº§æ¨™
 	pokeVex.x = pos[0].x + ((pos[1].x-pos[0].x)/ICON_MOVE_MAX)*count;
 	pokeVex.y = pos[0].y + ((pos[1].y-pos[0].y)/ICON_MOVE_MAX)*count;
 
 	CLACT_SetMatrix(icon, &pokeVex);
 
-	// ƒAƒCƒeƒ€À•W
+	// ã‚¢ã‚¤ãƒ†ãƒ åº§æ¨™
 	if(info->item){
 		itemVex.x = pokeVex.x+20*FX32_ONE;
 		itemVex.y = pokeVex.y+(16+6)*FX32_ONE;
@@ -3784,7 +3784,7 @@ static void PokeIconPosSet( CLACT_WORK_PTR icon, CLACT_WORK_PTR item, CLACT_WORK
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒRƒ“ˆÚ“®I—¹‘Ò‚¿
+ * @brief   ã‚¢ã‚¤ã‚³ãƒ³ç§»å‹•çµ‚äº†å¾…ã¡
  *
  * @param   wk		
  *
@@ -3795,7 +3795,7 @@ static int trade_seq_icon_move_wait( TRADELIST_WORK *wk )
 {
 	wk->animcount++;
 
-	// ƒAƒCƒRƒ“ˆÚ“®ƒAƒjƒ
+	// ã‚¢ã‚¤ã‚³ãƒ³ç§»å‹•ã‚¢ãƒ‹ãƒ¡
 	PokeIconPosSet( wk->PokeIconActWork[wk->cursor_pos[0]],
 					wk->PokeItemActWork[wk->cursor_pos[0]],
 					wk->PokeCBallActWork[wk->cursor_pos[0]],
@@ -3805,13 +3805,13 @@ static int trade_seq_icon_move_wait( TRADELIST_WORK *wk )
 					wk->PokeCBallActWork[wk->cursor_pos[1]],
 					wk->animcount, wk->f_animpos, &wk->pokeInfo[wk->cursor_pos[1]] );
 	if(wk->animcount==ICON_MOVE_MAX+1){
-		// ’†‰›‚É‚Q‘Ì‚Ì–¼‘O‚ð•\Ž¦
+		// ä¸­å¤®ã«ï¼’ä½“ã®åå‰ã‚’è¡¨ç¤º
 		PokeNamePrint(&wk->TradeListWin[BMP_M_EX_MYPOKENAME_WIN], 
 						wk->MyPokeParty, wk->cursor_pos[0], TRADELIST_POKENAME_W, CENTER_PRINT);
 		PokeNamePrint(&wk->TradeListWin[BMP_M_EX_F_POKENAME_WIN], 
 						wk->FriendPokeParty, wk->cursor_pos[1]-6, TRADELIST_POKENAME_W, CENTER_PRINT);
 
-		// ‰º‰æ–Ê‰Eƒpƒlƒ‹‚ð•\Ž¦‚·‚é
+		// ä¸‹ç”»é¢å³ãƒ‘ãƒãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
 		SubLcd_RightPanelOn(wk, wk->cursor_pos[1]);
 		wk->func = trade_seq_trade_yesno;
 		CLACT_SetDrawFlag( wk->ExchangeArrow, 1 );
@@ -3823,7 +3823,7 @@ static int trade_seq_icon_move_wait( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   Œ³‚ÌˆÊ’u‚É–ß‚µ‚Ä•\Ž¦‚à–ß‚·
+ * @brief   å…ƒã®ä½ç½®ã«æˆ»ã—ã¦è¡¨ç¤ºã‚‚æˆ»ã™
  *
  * @param   wk		
  *
@@ -3835,11 +3835,11 @@ static void trade_icon_reappear( TRADELIST_WORK *wk )
 	int i;
 	VecFx32 tmpVex;
 
-	// ’†‰›‚É•\Ž¦‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì–¼‘O‚ð‰B‚·
+	// ä¸­å¤®ã«è¡¨ç¤ºã—ãŸãƒã‚±ãƒ¢ãƒ³ã®åå‰ã‚’éš ã™
 	GF_BGL_BmpWinOffVReq(&wk->TradeListWin[BMP_M_EX_MYPOKENAME_WIN]);
 	GF_BGL_BmpWinOffVReq(&wk->TradeListWin[BMP_M_EX_F_POKENAME_WIN]);
 
-	// ‰B‚µ‚½ƒ|ƒPƒ‚ƒ“‚ð‘S‚Ä–ß‚·
+	// éš ã—ãŸãƒã‚±ãƒ¢ãƒ³ã‚’å…¨ã¦æˆ»ã™
 	for(i=0;i<TRADELIST_POKE_MAX;i++){
 		if(wk->pokeInfo[i].exist!=0){
 
@@ -3869,22 +3869,22 @@ static void trade_icon_reappear( TRADELIST_WORK *wk )
 		}
 	}
 	
-	// ƒJ[ƒ\ƒ‹•\Ž¦•œŠˆ
+	// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºå¾©æ´»
 	CLACT_SetDrawFlag(wk->clActWork[0],1);
 	CLACT_SetDrawFlag(wk->clActWork[1],1);
 
-	// ‰º‰æ–Ê‰E‘¤”ñ•\Ž¦
+	// ä¸‹ç”»é¢å³å´éžè¡¨ç¤º
 	PokeStr_SubLcdOff(wk->TradeListWin, 1, wk);
 	CLACT_SetDrawFlag(wk->SubLCDIconActWork[3], 0);	
 
-	// ŒðŠ·–îˆó‰B‚·
+	// äº¤æ›çŸ¢å°éš ã™
 	CLACT_SetDrawFlag( wk->ExchangeArrow, 0 );
 
 
 }
 //------------------------------------------------------------------
 /**
- * $brief   ‚¨ŒÝ‚¢‚Ìƒ|ƒPƒ‚ƒ“‚ÅŒðŠ·‚·‚é‚©‚ðŽ¿–â‚·‚é
+ * $brief   ãŠäº’ã„ã®ãƒã‚±ãƒ¢ãƒ³ã§äº¤æ›ã™ã‚‹ã‹ã‚’è³ªå•ã™ã‚‹
  *
  * @param   wk		
  *
@@ -3914,7 +3914,7 @@ static int trade_seq_trade_yesno(TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŒðŠ·OKƒRƒ}ƒ“ƒh‚Ì”­s
+ * @brief   äº¤æ›OKã‚³ãƒžãƒ³ãƒ‰ã®ç™ºè¡Œ
  *
  * @param   wk		
  *
@@ -3930,7 +3930,7 @@ static void _trade_ok_command( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   u‘ŠŽè‚Ì•ÔŽ–‚ð‘Ò‚Á‚Ä‚¢‚Ü‚·v•\Ž¦
+ * @brief   ã€Œç›¸æ‰‹ã®è¿”äº‹ã‚’å¾…ã£ã¦ã„ã¾ã™ã€è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -3950,7 +3950,7 @@ static void _trade_print( TRADELIST_WORK *wk, int winno, int msgno )
 
 //------------------------------------------------------------------
 /**
- * $brief   uŒðŠ·‚µ‚Ü‚·‚©Hv‚Í‚¢E‚¢‚¢‚¦
+ * $brief   ã€Œäº¤æ›ã—ã¾ã™ã‹ï¼Ÿã€ã¯ã„ãƒ»ã„ã„ãˆ
  *
  * @param   wk		
  *
@@ -3961,42 +3961,42 @@ static int trade_seq_trade_yesno_wait(TRADELIST_WORK *wk)
 {
 	switch(TradeListYesNoFunc(wk->bgl, &wk->YesNoMenu, &wk->yesnoseq)){
 	case 0:
-		// ŒðŠ·‚·‚é
-		// ‚Ä‚à‚¿‚ª–³‚­‚È‚ç‚È‚¢H
+		// äº¤æ›ã™ã‚‹
+		// ã¦ã‚‚ã¡ãŒç„¡ããªã‚‰ãªã„ï¼Ÿ
 		if(TradeTemochiCheck( wk )){
 			switch(DameTamagoCheck( wk )){
 			case TRADE_NO_DAMETAMAGO:
-				// ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚Â‚¢‚Ä‚È‚¢H
+				// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã¤ã„ã¦ãªã„ï¼Ÿ
 				if(wk->pokeInfo[wk->cursor_pos[0]].customball==0){
 					_trade_ok_command( wk );
 					_trade_print( wk, BMP_M_MES3_WIN, mes_dstrade_04_01 );
 					wk->func = trade_seq_trade_yesno_result;
 				}else{
-					// ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ª‚Â‚¢‚Ä‚¢‚é‚È‚ç
+					// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ãŒã¤ã„ã¦ã„ã‚‹ãªã‚‰
 					wk->func = trade_seq_customball_yesno;
 				}
 				break;
 			case TRADE_DAMETAMAGO_MINE:
-				// Ž©•ª‚ªƒ_ƒƒ^ƒ}ƒS‚ðŽ‚Á‚Ä‚¢‚é‚Ì‚ÅŒðŠ·‚Å‚«‚È‚¢
+				// è‡ªåˆ†ãŒãƒ€ãƒ¡ã‚¿ãƒžã‚´ã‚’æŒã£ã¦ã„ã‚‹ã®ã§äº¤æ›ã§ããªã„
 				_trade_print( wk, BMP_M_MES3_WIN, mes_dstrade_04_16 );
 				wk->func = trade_seq_trade_yesno_result;
 				TradeListCommDiffSend( wk, CT_TRADE_DECIDE, DECIDE_COMMAND_NO);
 				break;
 			case TRADE_DAMETAMAGO_FRIEND:
-				// ‘ŠŽè‚ªƒ_ƒƒ^ƒ}ƒS‚ðŽ‚Á‚Ä‚¢‚é‚Ì‚ÅŒðŠ·‚Å‚«‚È‚¢
+				// ç›¸æ‰‹ãŒãƒ€ãƒ¡ã‚¿ãƒžã‚´ã‚’æŒã£ã¦ã„ã‚‹ã®ã§äº¤æ›ã§ããªã„
 				_trade_print( wk, BMP_M_MES3_WIN, mes_dstrade_04_17 );
 				wk->func = trade_seq_trade_yesno_result;
 				TradeListCommDiffSend( wk, CT_TRADE_DECIDE, DECIDE_COMMAND_NO);
 				break;
 			}
 		}else{
-			// ‚Ä‚à‚¿‚ª‚È‚­‚È‚é‚©‚çŒðŠ·‚µ‚Ä‚Í‚¢‚¯‚È‚¢
+			// ã¦ã‚‚ã¡ãŒãªããªã‚‹ã‹ã‚‰äº¤æ›ã—ã¦ã¯ã„ã‘ãªã„
 			wk->func = trade_seq_trade_yesno_result;
 			TradeListCommDiffSend( wk, CT_TRADE_DECIDE, DECIDE_COMMAND_NO);
 		}
 		break;
 	case BMPMENU_CANCEL:
-		// ‚â‚ß‚éŽ–‚ðŒˆ’è
+		// ã‚„ã‚ã‚‹äº‹ã‚’æ±ºå®š
 		GF_BGL_ScrFill(	wk->bgl, GF_BGL_FRAME0_M, 0, 0, 0, 32, 24,  0);
 		TradeListWindowPrint(
 			&wk->TradeListWin[BMP_M_MES3_WIN],
@@ -4018,7 +4018,7 @@ static int trade_seq_trade_yesno_wait(TRADELIST_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ª‚Â‚¢‚Ä‚¢‚éŽž‚Í‚Í‚¸‚ê‚éŽ–‚ð•·‚­
+ * $brief   ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ãŒã¤ã„ã¦ã„ã‚‹æ™‚ã¯ã¯ãšã‚Œã‚‹äº‹ã‚’èžã
  *
  * @param   wk		
  *
@@ -4030,7 +4030,7 @@ static int trade_seq_customball_yesno(TRADELIST_WORK *wk )
 	
 	GF_BGL_ScrFill(	wk->bgl, GF_BGL_FRAME0_M, 0, 0, 0, 32, 24,  0);
 
-	// ƒ{[ƒ‹ƒJƒXƒ^ƒ}ƒCƒY‚ªŠO‚ê‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©H
+	// ãƒœãƒ¼ãƒ«ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºãŒå¤–ã‚Œã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ
 	TradeListWindowPrint(
 		&wk->TradeListWin[BMP_M_MES3_WIN],
 		mes_dstrade_04_15,FONT_TALK,
@@ -4045,7 +4045,7 @@ static int trade_seq_customball_yesno(TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   uƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ªŠO‚ê‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©Hv‚Í‚¢E‚¢‚¢‚¦
+ * $brief   ã€Œã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ãŒå¤–ã‚Œã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿã€ã¯ã„ãƒ»ã„ã„ãˆ
  *
  * @param   wk		
  *
@@ -4069,7 +4069,7 @@ static int trade_seq_customball_yesno_wait(TRADELIST_WORK *wk)
 			wk->PokeNameWordSet
 		);
 		wk->func = trade_seq_trade_yesno_result;
-		// ‚â‚ß‚éŽ–‚ðŒˆ’è
+		// ã‚„ã‚ã‚‹äº‹ã‚’æ±ºå®š
 		TradeListCommDiffSend( wk, CT_TRADE_DECIDE, DECIDE_COMMAND_NO);
 		break;
 	default:
@@ -4082,7 +4082,7 @@ static int trade_seq_customball_yesno_wait(TRADELIST_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ŒðŠ·‚µ‚Ü‚·‚©H‚ÌŒˆ’è‘Ò‚¿
+ * $brief   äº¤æ›ã—ã¾ã™ã‹ï¼Ÿã®æ±ºå®šå¾…ã¡
  *
  * @param   wk		
  *
@@ -4101,9 +4101,9 @@ static int trade_seq_trade_yesno_result( TRADELIST_WORK *wk )
 		wk->end_flag[0] = 0;
 		wk->end_flag[1] = 0;
 		if(TradeTemochiCheck(wk)){
-			wk->fail_reason = mes_dstrade_04_03;	// ŒðŠ·‚ÍƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ü‚µ‚½B
+			wk->fail_reason = mes_dstrade_04_03;	// äº¤æ›ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¾ã—ãŸã€‚
 		}else{
-			wk->fail_reason = mes_dstrade_04_13;	// ‚Ä‚à‚¿‚ª‚È‚­‚È‚Á‚Ä‚µ‚Ü‚¤
+			wk->fail_reason = mes_dstrade_04_13;	// ã¦ã‚‚ã¡ãŒãªããªã£ã¦ã—ã¾ã†
 		}
 
 	}
@@ -4115,7 +4115,7 @@ static int trade_seq_trade_yesno_result( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ|ƒPƒ‚ƒ“ŒðŠ·
+ * $brief   ãƒã‚±ãƒ¢ãƒ³äº¤æ›
  *
  * @param   wk		
  *
@@ -4125,8 +4125,8 @@ static int trade_seq_trade_yesno_result( TRADELIST_WORK *wk )
 static  int trade_seq_go_next( TRADELIST_WORK *wk )
 {
 
-    CommInfoSetTradeResult(wk->savedata, 1); // ŒðŠ·‰ñ”‚Ì‹L˜^ k.ohno
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^“ü‚ê‘Ö‚¦
+    CommInfoSetTradeResult(wk->savedata, 1); // äº¤æ›å›žæ•°ã®è¨˜éŒ² k.ohno
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å…¥ã‚Œæ›¿ãˆ
 	PokemonDataExchange(wk->MyPokeParty, wk->FriendPokeParty, wk->cursor_pos[0], wk->cursor_pos[1]-6, wk->param);
 
 	wk->func = trade_seq_return;
@@ -4136,11 +4136,11 @@ static  int trade_seq_go_next( TRADELIST_WORK *wk )
 
 
 //#ifdef PM_DEBUG	
-//	// ƒZ[ƒuƒeƒXƒg—p‚ÉŒÄ‚Ño‚µ
+//	// ã‚»ãƒ¼ãƒ–ãƒ†ã‚¹ãƒˆç”¨ã«å‘¼ã³å‡ºã—
 //	wk->func = trade_seq_save_text;
 //	return MODE_NORMAL;
 //#else
-//	// ‚±‚Á‚¿‚ª³‚µ‚¢
+//	// ã“ã£ã¡ãŒæ­£ã—ã„
 //	wk->func = trade_seq_return;
 //	return MODE_END_SELECT;
 //#endif
@@ -4150,7 +4150,7 @@ static int trade_seq_save_text( TRADELIST_WORK *wk )
 {
 
 
-	// ‚Æ‚à‚¾‚¿‚ð‘Ò‚Á‚Ä‚¢‚Ü‚·B
+	// ã¨ã‚‚ã ã¡ã‚’å¾…ã£ã¦ã„ã¾ã™ã€‚
 	TradeListWindowPrint(
 			&wk->TradeListWin[BMP_M_MES3_WIN],
 			mes_dstrade_04_01,FONT_TALK,
@@ -4195,37 +4195,37 @@ static int trade_seq_save_wait( TRADELIST_WORK *wk )
 
 //==============================================================================
 /**
- * $brief   ’ÊM’†ƒZ[ƒuƒV[ƒPƒ“ƒX
+ * $brief   é€šä¿¡ä¸­ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *			
  *
- * @param   savedata	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒXŠÇ—ƒ[ƒNi‚©‚È‚ç‚¸0‚É‰Šú‰»‚µ‚Ä‚©‚çŒÄ‚ÑŽn‚ß‚Ä‚­‚¾‚³‚¢j
- * @param   wait		ƒEƒFƒCƒgŠÇ—ƒ[ƒN
+ * @param   savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç®¡ç†ãƒ¯ãƒ¼ã‚¯ï¼ˆã‹ãªã‚‰ãš0ã«åˆæœŸåŒ–ã—ã¦ã‹ã‚‰å‘¼ã³å§‹ã‚ã¦ãã ã•ã„ï¼‰
+ * @param   wait		ã‚¦ã‚§ã‚¤ãƒˆç®¡ç†ãƒ¯ãƒ¼ã‚¯
  *
- * @retval  int			0:I—¹‚µ‚Ä‚È‚¢	1‚ª•Ô‚Á‚Ä‚­‚é‚Ü‚ÅŒÄ‚Ñ‘±‚¯‚Ä‚­‚¾‚³‚¢
+ * @retval  int			0:çµ‚äº†ã—ã¦ãªã„	1ãŒè¿”ã£ã¦ãã‚‹ã¾ã§å‘¼ã³ç¶šã‘ã¦ãã ã•ã„
  */
 //==============================================================================
 int CommSaveSequence( SAVEDATA *savedata, int *seq, int *wait )
 {	
 	switch(*seq){
 	case 0:
-		// ƒZ[ƒuŠJŽn“¯Šú
+		// ã‚»ãƒ¼ãƒ–é–‹å§‹åŒæœŸ
 		CommTimingSyncStart( 252 );
 		(*seq)++;
 		break;
 	case 1:
-		// e‹@‚ÌŠŽ‹àŠz‚ðƒEƒFƒCƒg‚É—˜—p‚·‚é
+		// è¦ªæ©Ÿã®æ‰€æŒé‡‘é¡ã‚’ã‚¦ã‚§ã‚¤ãƒˆã«åˆ©ç”¨ã™ã‚‹
 		if(CommIsTimingSync(252)){
 //			*wait = CommInfoGetMacAddress( 0 )[3] % 90;
 			MYSTATUS *mystatus = CommInfoGetMyStatus(0);
 			*wait = MyStatus_GetGold(mystatus) % 90;
 			(*seq)++;
-			OS_TPrintf("ƒZ[ƒuƒV[ƒPƒ“ƒXF‚P‰ñ–Ú“¯Šú");
+			OS_TPrintf("ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šï¼‘å›žç›®åŒæœŸ");
 		}
 		break;
 
 	case 2:
-		// ƒEƒFƒCƒg‚ª0‚É‚È‚Á‚½‚çƒZ[ƒuŠJŽn
+		// ã‚¦ã‚§ã‚¤ãƒˆãŒ0ã«ãªã£ãŸã‚‰ã‚»ãƒ¼ãƒ–é–‹å§‹
 		if(*wait==0){
 //			SaveData_Save(savedata);
 			(*seq)++;
@@ -4233,14 +4233,14 @@ int CommSaveSequence( SAVEDATA *savedata, int *seq, int *wait )
 		(*wait)--;
 		break;
 	case 3:
-		// ƒZ[ƒuI—¹Œã‚É“¯Šú
+		// ã‚»ãƒ¼ãƒ–çµ‚äº†å¾Œã«åŒæœŸ
 		CommTimingSyncStart( 253 );
 		(*seq)++;
 		break;
 	case 4:
-		// “¯Šú‚µ‚½‚çI—¹
+		// åŒæœŸã—ãŸã‚‰çµ‚äº†
 		if(CommIsTimingSync(253)){
-			OS_TPrintf("ƒZ[ƒuƒV[ƒPƒ“ƒXF‚Q‰ñ–Ú“¯Šú");
+			OS_TPrintf("ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šï¼’å›žç›®åŒæœŸ");
 			(*seq)=0;
 			return 1;
 		}
@@ -4250,7 +4250,7 @@ int CommSaveSequence( SAVEDATA *savedata, int *seq, int *wait )
 }
 //------------------------------------------------------------------
 /**
- * ‘ŠŽè‚Ìƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚¾¨ƒƒjƒ…[
+ * ç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã â†’ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  *
  * @param   wk		
  *
@@ -4299,7 +4299,7 @@ static int trade_seq_friendpoke(TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‘ŠŽè‚Ìƒ|ƒPƒ‚ƒ“‚ð‘I‘ð‚µ‚Ä‚¢‚é‚Æ‚«‚Ìƒƒjƒ…[‘Ò‚¿
+ * $brief   ç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³ã‚’é¸æŠžã—ã¦ã„ã‚‹ã¨ãã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¾…ã¡
  *
  * @param   wk		
  *
@@ -4309,7 +4309,7 @@ static int trade_seq_friendpoke(TRADELIST_WORK *wk )
 static int trade_seq_friend_menu(TRADELIST_WORK *wk )
 {
 	switch(BmpMenuMain( wk->BmpMenuWork )){
-	// ‚Â‚æ‚³‚ð‚Ý‚é
+	// ã¤ã‚ˆã•ã‚’ã¿ã‚‹
 	case 0:
 		GF_BGL_ScrFill(	wk->bgl, GF_BGL_FRAME0_M, 0, 0, 0, 32, 24,  0);
 		TradeListWindowPrint(
@@ -4324,7 +4324,7 @@ static int trade_seq_friend_menu(TRADELIST_WORK *wk )
 		return MODE_STATUS_SELECT;
 		break;
 
-	// ‚à‚Ç‚é
+	// ã‚‚ã©ã‚‹
 	case 1:case BMPMENU_CANCEL:
 		GF_BGL_ScrFill(	wk->bgl, GF_BGL_FRAME0_M, 0, 0, 0, 32, 24,  0);
 		TradeListWindowPrint(
@@ -4346,7 +4346,7 @@ static int trade_seq_friend_menu(TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ŒðŠ·ƒ‹[ƒ`ƒ“
+ * $brief   ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿äº¤æ›ãƒ«ãƒ¼ãƒãƒ³
  *
  * @param   my		
  * @param   your		
@@ -4363,11 +4363,11 @@ static void PokemonDataExchange(POKEPARTY *my, POKEPARTY *your, int mysel, int y
 	pp  = PokemonParam_AllocWork(HEAPID_TRADELIST);
 	pp2 = PokemonParam_AllocWork(HEAPID_TRADELIST);
 	
-	//ˆê’UƒRƒs[
+	//ä¸€æ—¦ã‚³ãƒ”ãƒ¼
 	PokeCopyPPtoPP(PokeParty_GetMemberPointer(  my,   mysel), pp  );
 	PokeCopyPPtoPP(PokeParty_GetMemberPointer(your, yoursel), pp2 );
 
-	//Žó‚¯Žæ‚éƒ|ƒPƒ‚ƒ“‚ªƒAƒ‹ƒZƒEƒXƒCƒxƒ“ƒg‹N“®ðŒ‚ð–ž‚½‚µ‚Ä‚¢‚é‚È‚çƒtƒ‰ƒOƒZƒbƒg
+	//å—ã‘å–ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒã‚¢ãƒ«ã‚»ã‚¦ã‚¹ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	if(PokeParaGet(pp2, ID_PARA_monsno, NULL) == MONSNO_AUSU){
 		if(PokeParaGet(pp2, ID_PARA_event_get_flag, NULL) || 
 				(PokeParaGet(pp2, ID_PARA_birth_place, NULL) == MAPNAME_D5ROOM 
@@ -4379,79 +4379,79 @@ static void PokemonDataExchange(POKEPARTY *my, POKEPARTY *your, int mysel, int y
 		}
 	}
 	
-	// ŒÂ«—”‚©‚çŽæ“¾‚³‚ê‚é«•Ê‚ÆPOKEPARA‚ÉŠi”[‚³‚ê‚Ä‚¢‚é«•Ê‚ªˆá‚Á‚½ê‡‚ÉC³‚·‚é
-	// ”z•zƒu[ƒo[ƒ“EƒGƒŒƒLƒuƒ‹Eƒyƒ‰ƒbƒvEƒGƒŒƒu[Eƒu[ƒo[‘Îô
-	// «•ÊÄŒvŽZ
+	// å€‹æ€§ä¹±æ•°ã‹ã‚‰å–å¾—ã•ã‚Œã‚‹æ€§åˆ¥ã¨POKEPARAã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ€§åˆ¥ãŒé•ã£ãŸå ´åˆã«ä¿®æ­£ã™ã‚‹
+	// é…å¸ƒãƒ–ãƒ¼ãƒãƒ¼ãƒ³ãƒ»ã‚¨ãƒ¬ã‚­ãƒ–ãƒ«ãƒ»ãƒšãƒ©ãƒƒãƒ—ãƒ»ã‚¨ãƒ¬ãƒ–ãƒ¼ãƒ»ãƒ–ãƒ¼ãƒãƒ¼å¯¾ç­–
+	// æ€§åˆ¥å†è¨ˆç®—
 	PokeParaPut( pp2, ID_PARA_sex, NULL );
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(JP_VER10) imatake 2007/01/24
-// “ú–{Œê”Å‘¤‚Ìƒ\[ƒX‚Æ“ˆê
+// æ—¥æœ¬èªžç‰ˆå´ã®ã‚½ãƒ¼ã‚¹ã¨çµ±ä¸€
 
-/* ’ÊMi‰»‚·‚éŽž‚ÉƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ª‚Â‚¢‚Ä‚¢‚é‚ÆAƒJƒXƒ^ƒ€ƒ{[ƒ‹î•ñ‚ªŠO‚ê‚È‚¢ƒoƒO‚Ì‘Îˆ */
+/* é€šä¿¡é€²åŒ–ã™ã‚‹æ™‚ã«ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ãŒã¤ã„ã¦ã„ã‚‹ã¨ã€ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«æƒ…å ±ãŒå¤–ã‚Œãªã„ãƒã‚°ã®å¯¾å‡¦ */
 #if AFTERMASTER_061220_CUSTOMBALL_NODEL_BUG_FIX
 
-	// ‚½‚Ü‚²‚Å–³‚¯‚ê‚ÎA‚È‚Â‚«“xÝ’èi‚V‚O‚Éj
+	// ãŸã¾ã”ã§ç„¡ã‘ã‚Œã°ã€ãªã¤ãåº¦è¨­å®šï¼ˆï¼—ï¼ã«ï¼‰
 	if(PokeParaGet(pp2, ID_PARA_tamago_flag, NULL)==0){
 		u8 natsuki = FIRST_NATUKIDO;
 		PokeParaPut( pp2, ID_PARA_friend, &natsuki );
 
 	}
 
-	// ƒgƒŒ[ƒi[ƒƒ‚î•ñ–„‚ßž‚Ý
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢æƒ…å ±åŸ‹ã‚è¾¼ã¿
 	TrainerMemoSetPP( pp2,	CommInfoGetMyStatus(CommGetCurrentID()),TRMEMO_ONTRADE_PLACESET, 0, HEAPID_WORLD);
 
-	// Ž©•ª‚ªŽó‚¯Žæ‚éƒ|ƒPƒ‚ƒ“‚ÌƒJƒXƒ^ƒ€ƒ{[ƒ‹î•ñ‚ðƒNƒŠƒA
+	// è‡ªåˆ†ãŒå—ã‘å–ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«æƒ…å ±ã‚’ã‚¯ãƒªã‚¢
 	PokePara_CustomBallDataInit( pp2 );
 
-	// ŒðŠ·ƒfƒ‚—p‚Éƒpƒ‰ƒ[ƒ^“n‚µ
-	PokeCopyPPtoPP( pp  ,param->result_sendPoke);		// o‚·ƒ|ƒPƒ‚ƒ“
-	PokeCopyPPtoPP( pp2 ,param->result_recvPoke);		// ‚à‚ç‚¤ƒ|ƒPƒ‚ƒ“
-	MyStatus_Copy(  CommInfoGetMyStatus(CommGetCurrentID()^1),  param->result_partner );	// ‘ŠŽè‚Ìî•ñ
+	// äº¤æ›ãƒ‡ãƒ¢ç”¨ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ¸¡ã—
+	PokeCopyPPtoPP( pp  ,param->result_sendPoke);		// å‡ºã™ãƒã‚±ãƒ¢ãƒ³
+	PokeCopyPPtoPP( pp2 ,param->result_recvPoke);		// ã‚‚ã‚‰ã†ãƒã‚±ãƒ¢ãƒ³
+	MyStatus_Copy(  CommInfoGetMyStatus(CommGetCurrentID()^1),  param->result_partner );	// ç›¸æ‰‹ã®æƒ…å ±
 	param->exchangepos = mysel;
 
-/* ‚±‚Á‚¿‚ÍƒoƒO‚Á‚Ä‚é•ûA³Ž®ƒ\[ƒX‚É‚·‚éŽž‚ÍÁ‚µ‚Ä‚à‚ç‚Á‚Ä\‚¢‚Ü‚¹‚ñ */
+/* ã“ã£ã¡ã¯ãƒã‚°ã£ã¦ã‚‹æ–¹ã€æ­£å¼ã‚½ãƒ¼ã‚¹ã«ã™ã‚‹æ™‚ã¯æ¶ˆã—ã¦ã‚‚ã‚‰ã£ã¦æ§‹ã„ã¾ã›ã‚“ */
 #else
-	// ŒðŠ·ƒfƒ‚—p‚Éƒpƒ‰ƒ[ƒ^“n‚µ
-	PokeCopyPPtoPP( pp  ,param->result_sendPoke);		// o‚·ƒ|ƒPƒ‚ƒ“
-	PokeCopyPPtoPP( pp2 ,param->result_recvPoke);		// ‚à‚ç‚¤ƒ|ƒPƒ‚ƒ“
-	MyStatus_Copy(  CommInfoGetMyStatus(CommGetCurrentID()^1),  param->result_partner );	// ‘ŠŽè‚Ìî•ñ
+	// äº¤æ›ãƒ‡ãƒ¢ç”¨ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ¸¡ã—
+	PokeCopyPPtoPP( pp  ,param->result_sendPoke);		// å‡ºã™ãƒã‚±ãƒ¢ãƒ³
+	PokeCopyPPtoPP( pp2 ,param->result_recvPoke);		// ã‚‚ã‚‰ã†ãƒã‚±ãƒ¢ãƒ³
+	MyStatus_Copy(  CommInfoGetMyStatus(CommGetCurrentID()^1),  param->result_partner );	// ç›¸æ‰‹ã®æƒ…å ±
 	param->exchangepos = mysel;
 
-	// ‚½‚Ü‚²‚Å–³‚¯‚ê‚ÎA‚È‚Â‚«“xÝ’èi‚V‚O‚Éj
+	// ãŸã¾ã”ã§ç„¡ã‘ã‚Œã°ã€ãªã¤ãåº¦è¨­å®šï¼ˆï¼—ï¼ã«ï¼‰
 	if(PokeParaGet(pp2, ID_PARA_tamago_flag, NULL)==0){
 		u8 natsuki = FIRST_NATUKIDO;
 		PokeParaPut( pp2, ID_PARA_friend, &natsuki );
 
 	}
 
-	// ƒgƒŒ[ƒi[ƒƒ‚î•ñ–„‚ßž‚Ý
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢æƒ…å ±åŸ‹ã‚è¾¼ã¿
 	TrainerMemoSetPP( pp2,	CommInfoGetMyStatus(CommGetCurrentID()),TRMEMO_ONTRADE_PLACESET, 0, HEAPID_WORLD);
 
-	// Ž©•ª‚ªŽó‚¯Žæ‚éƒ|ƒPƒ‚ƒ“‚ÌƒJƒXƒ^ƒ€ƒ{[ƒ‹î•ñ‚ðƒNƒŠƒA
+	// è‡ªåˆ†ãŒå—ã‘å–ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«æƒ…å ±ã‚’ã‚¯ãƒªã‚¢
 	PokePara_CustomBallDataInit( pp2 );
 
 #endif
 
 // ----------------------------------------------------------------------------
 
-	// ‚Ä‚à‚¿‚©‚çƒyƒ‰ƒbƒv‚ª‚¢‚È‚­‚È‚Á‚½‚çºƒf[ƒ^‚ðÁ‹Ž‚·‚é(‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚¾‚Æ‘ŠŽè‚©‚çƒyƒ‰ƒbƒv‚ð‚à‚ç‚Á‚Ä‚àº‚ªÁ‚¦‚éj
+	// ã¦ã‚‚ã¡ã‹ã‚‰ãƒšãƒ©ãƒƒãƒ—ãŒã„ãªããªã£ãŸã‚‰å£°ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆåŽ»ã™ã‚‹(ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã ã¨ç›¸æ‰‹ã‹ã‚‰ãƒšãƒ©ãƒƒãƒ—ã‚’ã‚‚ã‚‰ã£ã¦ã‚‚å£°ãŒæ¶ˆãˆã‚‹ï¼‰
 	if(PokeParty_PokemonCheck( my, MONSNO_PERAPPU )==0){
 		PERAPVOICE *pv = SaveData_GetPerapVoice( param->savedata );
 		PERAPVOICE_ClearExistFlag( pv );
 	}
 
-	// }ŠÓ“™‚Ì“o˜^ˆ—
+	// å›³é‘‘ç­‰ã®ç™»éŒ²å‡¦ç†
 	SaveData_GetPokeRegister( param->savedata, pp2 );
 
-	// ‚à‚ç‚Á‚½ƒ|ƒPƒ‚ƒ“‚ð’Ç‰Á
+	// ã‚‚ã‚‰ã£ãŸãƒã‚±ãƒ¢ãƒ³ã‚’è¿½åŠ 
 	PokeCopyPPtoPP( pp2, PokeParty_GetMemberPointer(  my,   mysel) );
 	PokeCopyPPtoPP(  pp, PokeParty_GetMemberPointer(your, yoursel) );
 
-	// –`Œ¯ƒm[ƒg—pƒf[ƒ^ì¬
+	// å†’é™ºãƒŽãƒ¼ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	SetFnoteData( param->fnote, pp2 );
 
-	// ƒŒƒR[ƒhƒf[ƒ^ˆ—
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿å‡¦ç†
 	RECORD_Inc( param->record, RECID_COMM_TRADE );
 
 
@@ -4462,7 +4462,7 @@ static void PokemonDataExchange(POKEPARTY *my, POKEPARTY *your, int mysel, int y
 
 //------------------------------------------------------------------
 /**
- * @brief   –`Œ¯ƒm[ƒg—p‚Ìƒf[ƒ^‚ð‘‚«ž‚Þ
+ * @brief   å†’é™ºãƒŽãƒ¼ãƒˆç”¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
  *
  * @param   fnote		
  * @param   pp		
@@ -4491,7 +4491,7 @@ static void SetFnoteData( FNOTE_DATA *fnote, POKEMON_PARAM *pp )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰º‰æ–Ê‚Ì”wŒi‚ð‰¡ƒXƒNƒ[ƒ‹‚³‚¹‚é
+ * $brief   ä¸‹ç”»é¢ã®èƒŒæ™¯ã‚’æ¨ªã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹
  *
  * @param   wk		
  *
@@ -4507,7 +4507,7 @@ static void SubLCD_ScrollFunc( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒZƒ‹ƒAƒNƒ^[‚É®”XY‚ÅÀ•W‚ð“n‚·
+ * @brief   ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã«æ•´æ•°XYã§åº§æ¨™ã‚’æ¸¡ã™
  *
  * @param   clact		
  * @param   x		
@@ -4530,7 +4530,7 @@ static void Clact_SetPos( CLACT_WORK_PTR clact, int x, int y )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŽžŠÔƒAƒCƒRƒ“’Ç‰Á
+ * @brief   æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ 
  *
  * @param   wk		
  *
@@ -4544,7 +4544,7 @@ static void TimeIconAdd( TRADELIST_WORK *tlw )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŽžŠÔƒAƒCƒRƒ“Á‹ŽiNULLƒ`ƒFƒbƒN‚·‚éj
+ * @brief   æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆåŽ»ï¼ˆNULLãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼‰
  *
  * @param   wk		
  *
@@ -4562,11 +4562,11 @@ static void TimeIconDel( TRADELIST_WORK *tlw )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚»‚Ìƒ|ƒPƒ‚ƒ“‚ðŒðŠ·‚·‚é‚Æ‚Ä‚à‚¿‚ª‚¢‚È‚­‚È‚ç‚È‚¢‚©H
+ * @brief   ãã®ãƒã‚±ãƒ¢ãƒ³ã‚’äº¤æ›ã™ã‚‹ã¨ã¦ã‚‚ã¡ãŒã„ãªããªã‚‰ãªã„ã‹ï¼Ÿ
  *
  * @param   wk		
  *
- * @retval  int		1:‘åä•v	0:ƒ_ƒ
+ * @retval  int		1:å¤§ä¸ˆå¤«	0:ãƒ€ãƒ¡
  */
 //------------------------------------------------------------------
 static int TradeTemochiCheck( TRADELIST_WORK *wk )
@@ -4575,14 +4575,14 @@ static int TradeTemochiCheck( TRADELIST_WORK *wk )
 	int tamagoNum = 0;
 	int pokeNum   = PokeParty_GetPokeCount(wk->MyPokeParty);
 
-	// ¡‘I‘ð‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“ˆÈŠO‚Åƒ^ƒ}ƒS‚Í‚¢‚­‚Â‚ ‚é‚©
+	// ä»Šé¸æŠžã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ä»¥å¤–ã§ã‚¿ãƒžã‚´ã¯ã„ãã¤ã‚ã‚‹ã‹
 	for(i=0;i<pokeNum;i++){
 		if(i!=wk->cursor_pos[0]){
 			tamagoNum += wk->pokeInfo[i].tamago;
 		}
 	}
 	
-	// ƒ^ƒ}ƒS‚Ì”‚Æ‚Ä‚à‚¿‚Ì”-1‚È‚çŒðŠ·ƒ_ƒ
+	// ã‚¿ãƒžã‚´ã®æ•°ã¨ã¦ã‚‚ã¡ã®æ•°-1ãªã‚‰äº¤æ›ãƒ€ãƒ¡
 	if(tamagoNum==(pokeNum-1)){
 		return 0;
 	}
@@ -4593,7 +4593,7 @@ static int TradeTemochiCheck( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   Ž©•ª‚Æ‘ŠŽè‚ÌŽèŽ‚¿‚Éƒ_ƒƒ^ƒ}ƒS‚ª–³‚¢‚©H
+ * @brief   è‡ªåˆ†ã¨ç›¸æ‰‹ã®æ‰‹æŒã¡ã«ãƒ€ãƒ¡ã‚¿ãƒžã‚´ãŒç„¡ã„ã‹ï¼Ÿ
  *
  * @param   wk		
  *
@@ -4607,7 +4607,7 @@ static int DameTamagoCheck( TRADELIST_WORK *wk )
 	int i,pokenum;
 	POKEMON_PARAM *pp;
 
-	// Ž©•ª‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚Ìƒ_ƒƒ^ƒ}ƒSƒtƒ‰ƒO‚ðƒ`ƒFƒbƒN
+	// è‡ªåˆ†ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ãƒ€ãƒ¡ã‚¿ãƒžã‚´ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 	pokenum = PokeParty_GetPokeCount( wk->MyPokeParty );
 	for(i=0;i<pokenum;i++){
 		pp = PokeParty_GetMemberPointer( wk->MyPokeParty, i );
@@ -4617,7 +4617,7 @@ static int DameTamagoCheck( TRADELIST_WORK *wk )
 	}
 	
 	
-	// ‘ŠŽè‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚Ìƒ_ƒƒ^ƒ}ƒSƒtƒ‰ƒO‚ðƒ`ƒFƒbƒN
+	// ç›¸æ‰‹ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ãƒ€ãƒ¡ã‚¿ãƒžã‚´ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 	pokenum = PokeParty_GetPokeCount( wk->FriendPokeParty );
 	for(i=0;i<pokenum;i++){
 		pp = PokeParty_GetMemberPointer( wk->FriendPokeParty, i );
@@ -4633,7 +4633,7 @@ static int DameTamagoCheck( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ^ƒCƒ€ƒAƒEƒgˆ—ŠJŽn
+ * @brief   ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå‡¦ç†é–‹å§‹
  *
  * @param   wk		
  *
@@ -4649,7 +4649,7 @@ static void TimeoutStart( TRADELIST_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ^ƒCƒ€ƒAƒEƒgˆ—
+ * @brief   ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå‡¦ç†
  *
  * @param   wk		
  *
@@ -4658,13 +4658,13 @@ static void TimeoutStart( TRADELIST_WORK *wk )
 //------------------------------------------------------------------
 static void TimeoutErrorCheck( TRADELIST_WORK *wk )
 {
-	// ƒ^ƒCƒ€ƒAƒEƒgƒtƒ‰ƒO‚ª‚n‚m‚Å
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒ•ãƒ©ã‚°ãŒï¼¯ï¼®ã§
 	if(wk->timeOutFlag){
 		wk->timeOutWait++;
 
-		// ƒ^ƒCƒ€ƒAƒEƒgŠúŠÔ‚ð‰ß‚¬‚½‚çi‚±‚±‚Å‚Í‚Q•ªj
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæœŸé–“ã‚’éŽãŽãŸã‚‰ï¼ˆã“ã“ã§ã¯ï¼’åˆ†ï¼‰
 		if(wk->timeOutWait > TIMEOUT_LIMIT){
-			// ’ÊMƒGƒ‰[Ý’è
+			// é€šä¿¡ã‚¨ãƒ©ãƒ¼è¨­å®š
 			CommStateSetError(COMM_ERROR_RESET_OTHER);
 			OS_Printf("Timeout...\n");
 		}

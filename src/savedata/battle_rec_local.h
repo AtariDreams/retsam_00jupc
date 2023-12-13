@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	battle_rec_local.h
- * @brief	�퓬�^�惍�[�J���w�b�_
+ * @brief	戦闘録画ローカルヘッダ
  * @author	matsuda
- * @date	2008.05.15(��)
+ * @date	2008.05.15(木)
  */
 //==============================================================================
 #ifndef __BATTLE_REC_LOCAL_H__
@@ -12,35 +12,35 @@
 //==============================================================================
 //	
 //==============================================================================
-///�f�[�^�i���o�[�̌^
+///データナンバーの型
 typedef u64 DATA_NUMBER;
-///�f�[�^�i���o�[�̃o�C�g�T�C�Y
+///データナンバーのバイトサイズ
 #define DATANUMBER_SIZE		(sizeof(DATA_NUMBER))
 
-///�^��w�b�_�Ɋi�[����|�P�����ԍ��̍ő�v�f��
+///録画ヘッダに格納するポケモン番号の最大要素数
 #define HEADER_MONSNO_MAX		(12)
 
-///��b�E�B���h�E�̖���
+///会話ウィンドウの枚数
 #define TALK_WINDOW_MAX			(20)
 
-///�^��f�[�^�̑��ݗL��
+///録画データの存在有無
 #define REC_OCC_MAGIC_KEY		(0xe281)
 
 //--------------------------------------------------------------
 /**
- *	�퓬�^��p�ɃJ�X�^�}�C�Y���ꂽPOKEPARTY
+ *	戦闘録画用にカスタマイズされたPOKEPARTY
  */
 //--------------------------------------------------------------
 typedef struct{
-	///	�ێ��ł���|�P�������̍ő�
+	///	保持できるポケモン数の最大
 	u16 PokeCountMax;
-	///	���ݕێ����Ă���|�P������
+	///	現在保持しているポケモン数
 	u16 PokeCount;
-	///	�|�P�����f�[�^
+	///	ポケモンデータ
 	REC_POKEPARA member[TEMOTI_POKEMAX];
 }REC_POKEPARTY;
 
-///<�ΐ�^��p���[�N�\���̐錾
+///<対戦録画用ワーク構造体宣言
 struct record_param
 {
 	REC_DATA	rec_buffer[CLIENT_MAX][REC_BUFFER_SIZE];
@@ -48,7 +48,7 @@ struct record_param
 
 //----------------------------------------------------------
 /**
- *	�^��Z�[�u�f�[�^�{�́i??? bytes�j
+ *	録画セーブデータ本体（??? bytes）
  */
 //----------------------------------------------------------
 typedef struct _BATTLE_REC_WORK {
@@ -60,46 +60,46 @@ typedef struct _BATTLE_REC_WORK {
 //	u16 padding;
 	u16 magic_key;
 	
-	//CRC(�K���Ō���ɂ��Ă�������)
+	//CRC(必ず最後尾にしておくこと)
 	GDS_CRC				crc;
 }BATTLE_REC_WORK;
 
 //--------------------------------------------------------------
 /**
- *	�퓬�^��̃w�b�_
+ *	戦闘録画のヘッダ
  */
 //--------------------------------------------------------------
 typedef struct _BATTLE_REC_HEADER{
-	u16 monsno[HEADER_MONSNO_MAX];	///<�|�P�����ԍ�(�\������K�v���Ȃ��̂Ń^�}�S�̏ꍇ��0)
-	u8 form_no[HEADER_MONSNO_MAX];	///<�|�P�����̃t�H�����ԍ�
+	u16 monsno[HEADER_MONSNO_MAX];	///<ポケモン番号(表示する必要がないのでタマゴの場合は0)
+	u8 form_no[HEADER_MONSNO_MAX];	///<ポケモンのフォルム番号
 
-	u16 battle_counter;		///<�A����
-	u8 mode;				///<�퓬���[�h(�t�@�N�g���[50�A�t�@�N�g���[100�A�ʐM�ΐ�...)
+	u16 battle_counter;		///<連勝数
+	u8 mode;				///<戦闘モード(ファクトリー50、ファクトリー100、通信対戦...)
 	
-	u8 secure;				///<TRUE:���S���ۏႳ��Ă���B�@FALSE�F�Đ����������Ȃ�
+	u8 secure;				///<TRUE:安全が保障されている。　FALSE：再生した事がない
 
-	REGULATION regulation;			///<���M�����[�V�����f�[�^		32
+	REGULATION regulation;			///<レギュレーションデータ		32
 
-	u16 magic_key;			///<�}�W�b�N�L�[
-	u8 work[14];			///< �\��										16
+	u16 magic_key;			///<マジックキー
+	u8 work[14];			///< 予備										16
 
-	//CRC�ƃf�[�^�i���o�[(�K���Ō���ɂ��Ă�������)
-	DATA_NUMBER data_number;///<�f�[�^�i���o�[(�T�[�o�[���ŃZ�b�g�����)�B�`�F�b�N�T���Ώۂ���O��
+	//CRCとデータナンバー(必ず最後尾にしておくこと)
+	DATA_NUMBER data_number;///<データナンバー(サーバー側でセットされる)。チェックサム対象から外す
 	GDS_CRC				crc;
 }BATTLE_REC_HEADER;
 
 //--------------------------------------------------------------
 /**
- *	�^��Z�[�u�f�[�^�FGDS�v���t�B�[���{�w�b�_�{�{��
+ *	録画セーブデータ：GDSプロフィール＋ヘッダ＋本体
  */
 //--------------------------------------------------------------
 struct _BATTLE_REC_SAVEDATA{
-	//�a������ȊO�̊O���Z�[�u�͕K����ԍŏ���EX_SAVE_KEY�\���̂�z�u���Ă�������
-	EX_CERTIFY_SAVE_KEY save_key;			///<�F�؃L�[
+	//殿堂入り以外の外部セーブは必ず一番最初にEX_SAVE_KEY構造体を配置しておくこと
+	EX_CERTIFY_SAVE_KEY save_key;			///<認証キー
 
-	GDS_PROFILE profile;			///<GDS�v���t�B�[��
-	BATTLE_REC_HEADER head;			///<�퓬�^��w�b�_
-	BATTLE_REC_WORK rec;			///<�퓬�^��{��
+	GDS_PROFILE profile;			///<GDSプロフィール
+	BATTLE_REC_HEADER head;			///<戦闘録画ヘッダ
+	BATTLE_REC_WORK rec;			///<戦闘録画本体
 };
 
 

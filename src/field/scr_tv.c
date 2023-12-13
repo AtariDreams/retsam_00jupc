@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_tv.c
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒeƒŒƒrŠÖ˜A
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ†ãƒ¬ãƒ“é–¢é€£
  * @author	tamada GAME FREAK inc.
  * @date	2006.05.22
  */
@@ -42,13 +42,13 @@
 //============================================================================================
 //
 //
-//		ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒeƒŒƒr•ú‘—ˆ—
+//		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ†ãƒ¬ãƒ“æ”¾é€å‡¦ç†
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒr•ú‘—ˆ—
+ * @brief	ãƒ†ãƒ¬ãƒ“æ”¾é€å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdBroadcastTV(VM_MACHINE * core)
@@ -56,14 +56,14 @@ BOOL EvCmdBroadcastTV(VM_MACHINE * core)
 
 	switch (VMGetU16(core)) {
 
-	case TV_CMD_GET_STATUS:				//ó‘ÔŽæ“¾
+	case TV_CMD_GET_STATUS:				//çŠ¶æ…‹å–å¾—
 		{
 			u16 * ret_wk = VMGetWork(core);
 			*ret_wk = TV_GetBroadcastStatus(core->fsys);
 		}
 		break;
 
-	case TV_CMD_GET_PROG_MSG:			//Œˆ‚Ü‚è•¶‹å‚ÌƒZƒbƒg
+	case TV_CMD_GET_PROG_MSG:			//æ±ºã¾ã‚Šæ–‡å¥ã®ã‚»ãƒƒãƒˆ
 		{
 			u16 id = VMGetU16(core);
 			u16 * arc_id = VMGetWork(core);
@@ -73,7 +73,7 @@ BOOL EvCmdBroadcastTV(VM_MACHINE * core)
 
 		}
 		break;
-	case TV_CMD_GET_MSG:				//ƒƒbƒZ[ƒWƒf[ƒ^¶¬
+	case TV_CMD_GET_MSG:				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 		{
 			WORDSET** wordset = GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_WORDSET );
 			u16 idx = VMGetWorkValue(core);
@@ -83,11 +83,11 @@ BOOL EvCmdBroadcastTV(VM_MACHINE * core)
 		}
 		break;
 
-	case TV_CMD_SET_END_FLAG:			//I—¹ƒtƒ‰ƒOƒZƒbƒg
+	case TV_CMD_SET_END_FLAG:			//çµ‚äº†ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 		TV_SetEndFlag(core->fsys);
 		break;
 
-	case TV_CMD_GET_CM_MSG:				//ƒRƒ}[ƒVƒƒƒ‹ƒƒbƒZ[ƒWŽæ“¾
+	case TV_CMD_GET_CM_MSG:				//ã‚³ãƒžãƒ¼ã‚·ãƒ£ãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 		{
 			u16 * arc_id = VMGetWork(core);
 			u16 * msg_id = VMGetWork(core);
@@ -95,7 +95,7 @@ BOOL EvCmdBroadcastTV(VM_MACHINE * core)
 			*msg_id = TVCM_ChooseID(core->fsys);
 		}
 		break;
-	case TV_CMD_GET_DATA:				//Žw’èƒf[ƒ^Žæ“¾
+	case TV_CMD_GET_DATA:				//æŒ‡å®šãƒ‡ãƒ¼ã‚¿å–å¾—
 		{
 			u16 mine = VMGetWorkValue(core);
 			u16 see = VMGetWorkValue(core);
@@ -103,7 +103,7 @@ BOOL EvCmdBroadcastTV(VM_MACHINE * core)
 			*ret_wk = TV_ChooseBroadcastTopic(core->fsys, mine, see);
 		}
 		break;
-	case TV_CMD_GET_DATA_TOTAL:			//Žw’èƒf[ƒ^Žæ“¾i‘Sƒpƒ^[ƒ“j
+	case TV_CMD_GET_DATA_TOTAL:			//æŒ‡å®šãƒ‡ãƒ¼ã‚¿å–å¾—ï¼ˆå…¨ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‰
 		{
 			u16 * ret_wk = VMGetWork(core);
 			*ret_wk = TV_ChooseBroadcastTopicTotal(core->fsys);
@@ -117,13 +117,13 @@ BOOL EvCmdBroadcastTV(VM_MACHINE * core)
 //============================================================================================
 //
 //
-//		ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒgƒsƒbƒN¶¬
+//		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‰B‚µƒAƒCƒeƒ€”­Œ©I
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šéš ã—ã‚¢ã‚¤ãƒ†ãƒ ç™ºè¦‹ï¼
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdTVEntryWatchHideItem(VM_MACHINE * core)
@@ -134,7 +134,7 @@ BOOL EvCmdTVEntryWatchHideItem(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F©–¼”»’f
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šå§“ååˆ¤æ–­
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdTVEntryWatchChangeName(VM_MACHINE * core)
@@ -147,7 +147,7 @@ BOOL EvCmdTVEntryWatchChangeName(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒIƒX‚¾‚¯IƒƒX‚¾‚¯I
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚ªã‚¹ã ã‘ï¼ãƒ¡ã‚¹ã ã‘ï¼
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdTVEntryWatchOsuMesu(VM_MACHINE * core)
@@ -158,7 +158,7 @@ BOOL EvCmdTVEntryWatchOsuMesu(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F•Ê‘‘w“ü
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåˆ¥è˜è³¼å…¥
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdTVEntryWatchVilla(VM_MACHINE * core)
@@ -169,7 +169,7 @@ BOOL EvCmdTVEntryWatchVilla(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F•Ê‘‘‰ü’z
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåˆ¥è˜æ”¹ç¯‰
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdTVEntryWatchReconstruction(VM_MACHINE * core)
@@ -183,7 +183,7 @@ BOOL EvCmdTVEntryWatchReconstruction(VM_MACHINE * core)
 //============================================================================================
 //
 //
-//		ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒeƒŒƒrƒCƒ“ƒ^ƒrƒ…[
+//		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ†ãƒ¬ãƒ“ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼
 //
 //
 //============================================================================================
@@ -206,7 +206,7 @@ typedef struct {
 static const QANDA_DATA QandAData[TVTOPIC_INTERVIEW_TYPE_MAX - 1];
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒrFƒCƒ“ƒ^ƒrƒ…[ˆ—
+ * @brief	ãƒ†ãƒ¬ãƒ“ï¼šã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼å‡¦ç†
  *
  * tv_interview.ev	TV_INTERVIEW_MSG
  *					TV_INTERVIEW_ENTRY
@@ -218,7 +218,7 @@ BOOL EvCmdTVInterview(VM_MACHINE * core)
 	wordset = GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_WORDSET );
 	switch (VMGetU16(core)) {
 
-	/*ƒCƒ“ƒ^ƒrƒ…[‚Ì“±“üƒƒbƒZ[ƒW*/
+	/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã®å°Žå…¥ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 	case TV_INTERVIEW_CMD_GET_MSG:
 		{
 			int id;
@@ -233,7 +233,7 @@ BOOL EvCmdTVInterview(VM_MACHINE * core)
 		}
 		break;
 
-	/*ƒCƒ“ƒ^ƒrƒ…[Œ‹‰Ê“o˜^ˆ—ŒÄ‚Ño‚µ*/
+	/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼çµæžœç™»éŒ²å‡¦ç†å‘¼ã³å‡ºã—*/
 	case TV_INTERVIEW_CMD_SET_TOPIC:
 		{
 			u16 id;
@@ -243,7 +243,7 @@ BOOL EvCmdTVInterview(VM_MACHINE * core)
 			ans_wk1 = VMGetWorkValue(core);
 			ans_wk2 = VMGetWorkValue(core);
 
-			//ans_wk2‚ÍŽg—p‚³‚ê‚Ä‚¢‚È‚¢
+			//ans_wk2ã¯ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„
 			EntryInterviewTopic(core->fsys, id, ans_wk1, ans_wk2);
 			RECORD_Score_Add(rec, SCORE_ID_INTERVIEW);
 		}
@@ -255,7 +255,7 @@ BOOL EvCmdTVInterview(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒrFƒCƒ“ƒ^ƒrƒ…[‰Â”\‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+ * @brief	ãƒ†ãƒ¬ãƒ“ï¼šã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼å¯èƒ½ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdTVInterviewerCheck(VM_MACHINE * core)
@@ -270,7 +270,7 @@ BOOL EvCmdTVInterviewerCheck(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒrF˜A‚ê•à‚«Œö‰€—pƒf[ƒ^“o˜^
+ * @brief	ãƒ†ãƒ¬ãƒ“ï¼šé€£ã‚Œæ­©ãå…¬åœ’ç”¨ãƒ‡ãƒ¼ã‚¿ç™»éŒ²
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdTVEntryParkInfo(VM_MACHINE * core)
@@ -301,10 +301,10 @@ BOOL EvCmdTVEntryParkInfo(VM_MACHINE * core)
 
 //--------------------------------------------------------------------
 /**
- * @brief	Ž¿–âŒ^ƒgƒsƒbƒN¶¬ˆ—‚ÌŒÄ‚Ño‚µ
- * @param	id		ƒgƒsƒbƒNŽw’èID
- * @param	ans1	Ž¿–â‚Ì“š‚¦iPMS_WORD of u16)
- * @param	ans2	“¯ãAŒ»Ý‚ÍŽg—p‚µ‚Ä‚¢‚È‚¢
+ * @brief	è³ªå•åž‹ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆå‡¦ç†ã®å‘¼ã³å‡ºã—
+ * @param	id		ãƒˆãƒ”ãƒƒã‚¯æŒ‡å®šID
+ * @param	ans1	è³ªå•ã®ç­”ãˆï¼ˆPMS_WORD of u16)
+ * @param	ans2	åŒä¸Šã€ç¾åœ¨ã¯ä½¿ç”¨ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------------
 static void EntryInterviewTopic(FIELDSYS_WORK * fsys, int id, u16 ans1, u16 ans2)
@@ -318,12 +318,12 @@ static void EntryInterviewTopic(FIELDSYS_WORK * fsys, int id, u16 ans1, u16 ans2
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒCƒ“ƒ^ƒrƒ…[ŠJŽnƒƒbƒZ[ƒW‚Ì¶¬
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ws		WORDSET‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		MSG‚ÌID
+ * @brief	ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ç”Ÿæˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ws		WORDSETã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		MSGã®ID
  *
- * ƒƒbƒZ[ƒWID‚É‚æ‚Á‚Ä‚ÍAŒŠ”²‚¯•”•ª‚Ì’PŒê•âŠ®‚ðs‚¤
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã«ã‚ˆã£ã¦ã¯ã€ç©´æŠœã‘éƒ¨åˆ†ã®å˜èªžè£œå®Œã‚’è¡Œã†
  */
 //--------------------------------------------------------------------
 static int GetInterviewMsg(int id, FIELDSYS_WORK * fsys, WORDSET * ws)
@@ -345,12 +345,12 @@ static BOOL CheckInterviewReady(FIELDSYS_WORK * fsys, int id)
 	TV_WORK *tvwk = SaveData_GetTvWork(fsys->savedata);
 
 	if (TVWORK_EnableMakeTopic(tvwk, TVTOPICTYPE_INTERVIEW, id) == FALSE) {
-		//ƒgƒsƒbƒN‚ª‚©‚Ô‚Á‚Ä‚¢‚Äì¬‚Å‚«‚È‚¢ê‡
+		//ãƒˆãƒ”ãƒƒã‚¯ãŒã‹ã¶ã£ã¦ã„ã¦ä½œæˆã§ããªã„å ´åˆ
 		return FALSE;
 	}
 	func = QandAData[id - 1].check_func;
 	if (func == NULL) {
-		//ƒ`ƒFƒbƒNŠÖ”‚ª‚È‚¢ê‡A–³ðŒ‚ÅOK
+		//ãƒã‚§ãƒƒã‚¯é–¢æ•°ãŒãªã„å ´åˆã€ç„¡æ¡ä»¶ã§OK
 		return TRUE;
 	}
 	return func(fsys);
@@ -376,7 +376,7 @@ static void WORDSET_RegisterSTRCODE(WORDSET * ws, int buf_id,
 }
 
 //-----------------------------------------------------------------------------
-//	(ƒ^ƒ}ƒS‚ðœ‚¢‚½)æ“ª‚Ìƒ|ƒPƒ‚ƒ“–¼‚ðbuf0‚ÉƒZƒbƒg
+//	(ã‚¿ãƒžã‚´ã‚’é™¤ã„ãŸ)å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³åã‚’buf0ã«ã‚»ãƒƒãƒˆ
 //-----------------------------------------------------------------------------
 static void Interview04(FIELDSYS_WORK * fsys, WORDSET * ws)
 {
@@ -433,7 +433,7 @@ static void Interview19(FIELDSYS_WORK * fsys, WORDSET * ws)
 }
 
 //-----------------------------------------------------------------------------
-//	ƒoƒgƒ‹ƒ^ƒ[—pó‹µ•ÛŽƒ[ƒN‚Ìƒf[ƒ^‘¶Ýƒtƒ‰ƒO‚ðƒ`ƒFƒbƒN
+//	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯ã®ãƒ‡ãƒ¼ã‚¿å­˜åœ¨ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 //-----------------------------------------------------------------------------
 static BOOL InterviewCheck02(FIELDSYS_WORK * fsys)
 {
@@ -482,7 +482,7 @@ static BOOL InterviewCheck13(FIELDSYS_WORK * fsys)
 }
 
 //-----------------------------------------------------------------------------
-//	ƒoƒgƒ‹ƒXƒe[ƒW—pó‹µ•ÛŽƒ[ƒN‚Ìƒf[ƒ^‘¶Ýƒtƒ‰ƒO‚ðƒ`ƒFƒbƒN
+//	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯ã®ãƒ‡ãƒ¼ã‚¿å­˜åœ¨ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 //-----------------------------------------------------------------------------
 static BOOL InterviewCheck14(FIELDSYS_WORK * fsys)
 {
@@ -491,7 +491,7 @@ static BOOL InterviewCheck14(FIELDSYS_WORK * fsys)
 }
 
 //-----------------------------------------------------------------------------
-//	ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒA—pó‹µ•ÛŽƒ[ƒN‚Ìƒf[ƒ^‘¶Ýƒtƒ‰ƒO‚ðƒ`ƒFƒbƒN
+//	ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯ã®ãƒ‡ãƒ¼ã‚¿å­˜åœ¨ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 //-----------------------------------------------------------------------------
 static BOOL InterviewCheck19(FIELDSYS_WORK * fsys)
 {
@@ -501,122 +501,122 @@ static BOOL InterviewCheck19(FIELDSYS_WORK * fsys)
 
 
 //-----------------------------------------------------------------------------
-//	Ž¿–âŒ^‚Ìƒf[ƒ^
-//		entry_func			ƒgƒsƒbƒN¶¬ˆ—(src/field/tv_topic.c)
-//		msg_func			Ž¿–âmsg‚É•K—v‚Èwordsetˆ—
-//		check_func			ƒf[ƒ^‘¶Ý‚·‚é‚©Aƒtƒ‰ƒO—§‚Á‚Ä‚¢‚é‚©‚È‚Ç
-//		msg_id				Ž¿–âmsg_id
+//	è³ªå•åž‹ã®ãƒ‡ãƒ¼ã‚¿
+//		entry_func			ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆå‡¦ç†(src/field/tv_topic.c)
+//		msg_func			è³ªå•msgã«å¿…è¦ãªwordsetå‡¦ç†
+//		check_func			ãƒ‡ãƒ¼ã‚¿å­˜åœ¨ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°ç«‹ã£ã¦ã„ã‚‹ã‹ãªã©
+//		msg_id				è³ªå•msg_id
 //-----------------------------------------------------------------------------
 static const QANDA_DATA QandAData[TVTOPIC_INTERVIEW_TYPE_MAX - 1] = {
-	{//TVTOPIC_INTERVIEW_GYM_BADGE = 1,///<1:ƒWƒ€§”eI	1	ƒWƒ€‚Ì‚ ‚éƒVƒeƒB	ƒWƒ€ƒŠ[ƒ_[‚ð“|‚µ‚½‚ ‚Æ
+	{//TVTOPIC_INTERVIEW_GYM_BADGE = 1,///<1:ã‚¸ãƒ åˆ¶è¦‡ï¼	1	ã‚¸ãƒ ã®ã‚ã‚‹ã‚·ãƒ†ã‚£	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã—ãŸã‚ã¨
 		NULL,
 		NULL,
 		NULL,
 		msg_tv_interview_01,
 	},
-	{//TVTOPIC_INTERVIEW_BTOWER,		///<2:’§íIƒoƒgƒ‹ƒ^ƒ[	1	ƒoƒgƒ‹ƒ^ƒ[	’§íI—¹Œã
+	{//TVTOPIC_INTERVIEW_BTOWER,		///<2:æŒ‘æˆ¦ï¼ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	1	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	æŒ‘æˆ¦çµ‚äº†å¾Œ
 		TVTOPIC_Entry_QandA_BTower,
 		NULL,
 		InterviewCheck02,
 		msg_tv_interview_02,
 	},
-	{//TVTOPIC_INTERVIEW_BFACTORY,		///<3:’§íIƒtƒ@ƒNƒgƒŠ[	1	ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[	’§íI—¹Œã
+	{//TVTOPIC_INTERVIEW_BFACTORY,		///<3:æŒ‘æˆ¦ï¼ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼	1	ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼	æŒ‘æˆ¦çµ‚äº†å¾Œ
 		NULL,
 		NULL,
 		NULL,
 		msg_tv_interview_03,
 	},
-	{//TVTOPIC_INTERVIEW_POKEMON,		///<4:‚ ‚È‚½‚Ìƒ|ƒPƒ‚ƒ“	1	ƒ|ƒPƒ‚ƒ“‘åD‚«ƒNƒ‰ƒu	
+	{//TVTOPIC_INTERVIEW_POKEMON,		///<4:ã‚ãªãŸã®ãƒã‚±ãƒ¢ãƒ³	1	ãƒã‚±ãƒ¢ãƒ³å¤§å¥½ãã‚¯ãƒ©ãƒ–	
 		TVTOPIC_Entry_QandA_Pokemon,
 		Interview04,
 		NULL,
 		msg_tv_interview_04,
 	},
-	{//TVTOPIC_INTERVIEW_ITEM,			///<5:‚¨‚·‚·‚ß‚Ì‚Ç‚¤‚®I	2	ƒtƒŒƒ“ƒhƒŠƒBƒVƒ‡ƒbƒv	
+	{//TVTOPIC_INTERVIEW_ITEM,			///<5:ãŠã™ã™ã‚ã®ã©ã†ãï¼	2	ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚£ã‚·ãƒ§ãƒƒãƒ—	
 		NULL,
 		NULL,
 		NULL,
 		msg_tv_interview_05,
 	},
-	{//TVTOPIC_INTERVIEW_POKETCH,		///<6:‚¨‹C‚É“ü‚è‚Ìƒ|ƒPƒbƒ`	2	ƒJƒ“ƒpƒj[	
+	{//TVTOPIC_INTERVIEW_POKETCH,		///<6:ãŠæ°—ã«å…¥ã‚Šã®ãƒã‚±ãƒƒãƒ	2	ã‚«ãƒ³ãƒ‘ãƒ‹ãƒ¼	
 		TVTOPIC_Entry_QandA_Poketch,
 		Interview06,
 		InterviewCheck06,
 		msg_tv_interview_06,
 	},
-	{//TVTOPIC_INTERVIEW_CONTEST,		///<7:’§íIƒRƒ“ƒeƒXƒg		ƒRƒ“ƒeƒXƒg‰ïê	ƒRƒ“ƒeƒXƒgI—¹Œã
+	{//TVTOPIC_INTERVIEW_CONTEST,		///<7:æŒ‘æˆ¦ï¼ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆä¼šå ´	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆçµ‚äº†å¾Œ
 		TVTOPIC_Entry_QandA_Contest,
 		NULL,
 		InterviewCheck07,
 		msg_tv_interview_07,
 	},
-	{//TVTOPIC_INTERVIEW_TATOE,		///<8:ƒ|ƒPƒ‚ƒ“‚É—á‚¦‚½‚çH	2	‘åD‚«ƒNƒ‰ƒu	
+	{//TVTOPIC_INTERVIEW_TATOE,		///<8:ãƒã‚±ãƒ¢ãƒ³ã«ä¾‹ãˆãŸã‚‰ï¼Ÿ	2	å¤§å¥½ãã‚¯ãƒ©ãƒ–	
 		NULL,
 		NULL,
 		NULL,
 		msg_tv_interview_08,
 	},
-	{//TVTOPIC_INTERVIEW_CLIP,			///<9:ƒ|ƒPƒ‚ƒ“ƒNƒŠƒbƒvI	2	ƒNƒŠƒbƒv‚ðì‚éêŠ	ƒNƒŠƒbƒv‚ðì‚Á‚½‚ ‚Æ
+	{//TVTOPIC_INTERVIEW_CLIP,			///<9:ãƒã‚±ãƒ¢ãƒ³ã‚¯ãƒªãƒƒãƒ—ï¼	2	ã‚¯ãƒªãƒƒãƒ—ã‚’ä½œã‚‹å ´æ‰€	ã‚¯ãƒªãƒƒãƒ—ã‚’ä½œã£ãŸã‚ã¨
 		TVTOPIC_Entry_QandA_Clip,
 		NULL,
 		InterviewCheck09,
 		msg_tv_interview_09,
 	},
-	{//TVTOPIC_INTERVIEW_CHARACTOR,	///<10:«Šif’fI	2		
+	{//TVTOPIC_INTERVIEW_CHARACTOR,	///<10:æ€§æ ¼è¨ºæ–­ï¼	2		
 		TVTOPIC_Entry_QandA_Character,
 		NULL,
 		NULL,
 		msg_tv_interview_10,
 	},
-	{//TVTOPIC_INTERVIEW_PORUTO,		///<11:ƒ|ƒ‹ƒg—¿—		ƒ|ƒ‹ƒg‚ðì‚éêŠ	ƒ|ƒ‹ƒg‚ðì‚Á‚½‚ç
+	{//TVTOPIC_INTERVIEW_PORUTO,		///<11:ãƒãƒ«ãƒˆæ–™ç†		ãƒãƒ«ãƒˆã‚’ä½œã‚‹å ´æ‰€	ãƒãƒ«ãƒˆã‚’ä½œã£ãŸã‚‰
 		TVTOPIC_Entry_QandA_Poruto,
 		NULL,
 		InterviewCheck11,
 		msg_tv_interview_11,
 	},
-	{//TVTOPIC_INTERVIEW_KOUKAN,		///<12:ŒðŠ·‚µ‚½ƒ|ƒPƒ‚ƒ“	1		
+	{//TVTOPIC_INTERVIEW_KOUKAN,		///<12:äº¤æ›ã—ãŸãƒã‚±ãƒ¢ãƒ³	1		
 		NULL,
 		NULL,
 		NULL,
 		msg_tv_interview_12,
 	},
-	{//TVTOPIC_INTERVIEW_TUREARUKI,	///<13:˜A‚ê•à‚«‚ð–ž‹iI		Ž©‘RŒö‰€ƒQ[ƒg	˜A‚ê•à‚«Œã
+	{//TVTOPIC_INTERVIEW_TUREARUKI,	///<13:é€£ã‚Œæ­©ãã‚’æº€å–«ï¼		è‡ªç„¶å…¬åœ’ã‚²ãƒ¼ãƒˆ	é€£ã‚Œæ­©ãå¾Œ
 		TVTOPIC_Entry_QandA_Park,
 		Interview13,
 		InterviewCheck13,
 		msg_tv_interview_13,
 	},
-	{//TVTOPIC_INTERVIEW_STAGE,		///<14:ƒoƒgƒ‹ƒXƒe[ƒW
+	{//TVTOPIC_INTERVIEW_STAGE,		///<14:ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 		TVTOPIC_Entry_QandA_Stage,
 		Interview14,
 		InterviewCheck14,
 		msg_tv_interview_14,
 	},
-	{//TVTOPIC_INTERVIEW_STRANGE1,	///<15:‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+	{//TVTOPIC_INTERVIEW_STRANGE1,	///<15:ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 		TVTOPIC_Entry_QandA_Strange1,
 		NULL,
 		NULL,
 		msg_tv_interview_15,
 	},
-	{//TVTOPIC_INTERVIEW_STRANGE2,	///<16:‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+	{//TVTOPIC_INTERVIEW_STRANGE2,	///<16:ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 		TVTOPIC_Entry_QandA_Strange2,
 		NULL,
 		NULL,
 		msg_tv_interview_16,
 	},
-	{//TVTOPIC_INTERVIEW_STRANGE3,	///<17:‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+	{//TVTOPIC_INTERVIEW_STRANGE3,	///<17:ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 		TVTOPIC_Entry_QandA_Strange3,
 		NULL,
 		NULL,
 		msg_tv_interview_17,
 	},
-	{//TVTOPIC_INTERVIEW_STRANGE4,	///<18:‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+	{//TVTOPIC_INTERVIEW_STRANGE4,	///<18:ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 		TVTOPIC_Entry_QandA_Strange4,
 		NULL,
 		NULL,
 		msg_tv_interview_18,
 	},
-	{//TVTOPIC_INTERVIEW_FRIEND,	///<19:ƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µ
+	{//TVTOPIC_INTERVIEW_FRIEND,	///<19:ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—
 		TVTOPIC_Entry_QandA_Friend,
 		Interview19,
 		InterviewCheck19,
@@ -626,7 +626,7 @@ static const QANDA_DATA QandAData[TVTOPIC_INTERVIEW_TYPE_MAX - 1] = {
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒrFó‹µ•ÛŽƒ[ƒN‚ÌƒTƒtƒ@ƒŠ‚©‚ç•ß‚Ü‚¦‚½”‚ðŽæ“¾
+ * @brief	ãƒ†ãƒ¬ãƒ“ï¼šçŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯ã®ã‚µãƒ•ã‚¡ãƒªã‹ã‚‰æ•ã¾ãˆãŸæ•°ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdTVSafariTempCaptureCountGet(VM_MACHINE * core);
@@ -646,9 +646,9 @@ BOOL EvCmdTVSafariTempCaptureCountGet(VM_MACHINE * core)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µƒCƒ“ƒ^ƒrƒ…ƒA[‚ÌÀ•W‚ðŽæ“¾
+ *	@brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ã®åº§æ¨™ã‚’å–å¾—
  *
- *	@param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *	@return "0"
  */

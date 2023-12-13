@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	intro_tv.c
- * @brief	}‘ŠÙƒfƒ‚i‚s‚u‰æ–Êj
+ * @brief	å›³æ›¸é¤¨ãƒ‡ãƒ¢ï¼ˆï¼´ï¼¶ç”»é¢ï¼‰
  * @author	Satoshi Nohara
  * @date	08.03.16
  */
@@ -41,9 +41,9 @@
 //
 //================================================================
 //----------------------------------
-//’è”éŒ¾
+//å®šæ•°å®£è¨€
 //----------------------------------
-// ‚o‚q‚n‚bƒƒCƒ“ƒV[ƒPƒ“ƒX
+// ï¼°ï¼²ï¼¯ï¼£ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	INTRO_SEQ_INIT = 0,
 	INTRO_SEQ_BGMSTART,
@@ -54,9 +54,9 @@ enum {
 };
 
 //----------------------------------
-//Œ^éŒ¾
+//å‹å®£è¨€
 //----------------------------------
-///	ƒ^ƒCƒgƒ‹‘S‘Ì§Œä—pƒ[ƒN\‘¢‘Ì
+///	ã‚¿ã‚¤ãƒˆãƒ«å…¨ä½“åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct LIBRARY_TV_DEMO_WORK_TV_tag
 {
 	int					heapID; 
@@ -70,9 +70,9 @@ typedef struct LIBRARY_TV_DEMO_WORK_TV_tag
 }LIBRARY_TV_DEMO_WORK;
 
 //----------------------------------
-//’è”éŒ¾
+//å®šæ•°å®£è¨€
 //----------------------------------
-//ƒeƒƒbƒvŠÖ”ƒV[ƒPƒ“ƒXƒiƒ“ƒo[’è‹`
+//ãƒ†ãƒ­ãƒƒãƒ—é–¢æ•°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼å®šç¾©
 enum {
 	TELOP_SET = 0,
 	TELOP_WAIT,
@@ -81,12 +81,12 @@ enum {
 };
 
 //----------------------------------
-//ŠO•”ŠÖ”’è‹`
+//å¤–éƒ¨é–¢æ•°å®šç¾©
 //----------------------------------
 extern void	Main_SetNextProc(FSOverlayID ov_id, const PROC_DATA * proc_data);
 
 //----------------------------------
-//ŠÖ”éŒ¾
+//é–¢æ•°å®£è¨€
 //----------------------------------
 PROC_RESULT LibraryTV_Init( PROC * proc, int * seq );
 PROC_RESULT LibraryTV_Main( PROC * proc, int * seq );
@@ -102,7 +102,7 @@ static void LibraryTV_MsgDataRelease( LIBRARY_TV_DEMO_WORK* wk );
 static BOOL LibraryTV_TelopPrint( LIBRARY_TV_DEMO_WORK * wk, int msgID, int x, int y );
 static void LibraryTV_SousaScroll( LIBRARY_TV_DEMO_WORK * wk );
 //----------------------------------
-//ƒ}ƒNƒéŒ¾
+//ãƒã‚¯ãƒ­å®£è¨€
 //----------------------------------
 #define KEYTRG( pattern )	( ( sys.trg & ( pattern ) ) == ( pattern ) )
 #define KEYCNT( pattern )	( ( sys.cont & ( pattern ) ) == ( pattern ) )
@@ -125,7 +125,7 @@ static void LibraryTV_SousaScroll( LIBRARY_TV_DEMO_WORK * wk );
 	FRAME_OFF( GF_BGL_FRAME3_S )	\
 }
 
-//‚a‚fƒRƒ“ƒgƒ[ƒ‹’è”
+//ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å®šæ•°
 #define LIBRARY_TV_TELOP_FRAME	(GF_BGL_FRAME2_M)
 #define LIBRARY_TV_TVFRM_FRAME	(GF_BGL_FRAME0_M)
 #define LIBRARY_TV_SOUSA_FRAME	(GF_BGL_FRAME1_M)
@@ -133,7 +133,7 @@ static void LibraryTV_SousaScroll( LIBRARY_TV_DEMO_WORK * wk );
 
 //=================================================================================================
 //
-// ‚o‚q‚n‚b’è‹`ƒe[ƒuƒ‹
+// ï¼°ï¼²ï¼¯ï¼£å®šç¾©ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 //=================================================================================================
 #if 0
@@ -147,7 +147,7 @@ const PROC_DATA LibraryTVProcData = {
 
 //================================================================
 //----------------------------------
-//‚o‚q‚n‚b‰Šú‰»
+//ï¼°ï¼²ï¼¯ï¼£åˆæœŸåŒ–
 //----------------------------------
 PROC_RESULT LibraryTV_Init(PROC * proc, int * seq)
 {
@@ -166,7 +166,7 @@ PROC_RESULT LibraryTV_Init(PROC * proc, int * seq)
 }
 
 //----------------------------------
-//‚o‚q‚n‚bƒƒCƒ“
+//ï¼°ï¼²ï¼¯ï¼£ãƒ¡ã‚¤ãƒ³
 //----------------------------------
 PROC_RESULT LibraryTV_Main(PROC * proc, int* seq)
 {
@@ -174,13 +174,13 @@ PROC_RESULT LibraryTV_Main(PROC * proc, int* seq)
 	PROC_RESULT result = PROC_RES_CONTINUE;
 
 	switch( *seq ){
-	// ‰æ–Ê‰Šú‰»
+	// ç”»é¢åˆæœŸåŒ–
 	case INTRO_SEQ_INIT:
 		WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_BLACK );
 		WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 
-		sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-		sys_HBlankIntrSet( NULL,NULL );		// HBlankƒZƒbƒg
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrSet( NULL,NULL );		// HBlankã‚»ãƒƒãƒˆ
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -194,7 +194,7 @@ PROC_RESULT LibraryTV_Main(PROC * proc, int* seq)
 		sys_VBlankFuncChange(LibraryTV_VBlank,(void*)wk);
 		GF_Disp_DispOn();
 
-		// ƒI[ƒvƒjƒ“ƒO‹È’â~
+		// ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°æ›²åœæ­¢
 		//Snd_BgmStop( SEQ_OPENING, 0 );
 
 		//wk->wait = 2*30;
@@ -202,12 +202,12 @@ PROC_RESULT LibraryTV_Main(PROC * proc, int* seq)
 		*seq = INTRO_SEQ_BGMSTART;
 		break;
 
-	// “±“üƒEƒFƒCƒg
+	// å°å…¥ã‚¦ã‚§ã‚¤ãƒˆ
 	case INTRO_SEQ_BGMSTART:
 		if( wk->wait ){
 			wk->wait--;
 		} else {
-			//Snd_BgmPlay( SEQ_TV_HOUSOU );	//ƒ][ƒ“‚Ì‹È‚ğƒZƒbƒg
+			//Snd_BgmPlay( SEQ_TV_HOUSOU );	//ã‚¾ãƒ¼ãƒ³ã®æ›²ã‚’ã‚»ãƒƒãƒˆ
 #if 0	
 			Snd_SceneSet( SND_SCENE_DUMMY );
 			Snd_DataSetByScene( SND_SCENE_FIELD, SEQ_TV_HOUSOU, 1 );
@@ -218,7 +218,7 @@ PROC_RESULT LibraryTV_Main(PROC * proc, int* seq)
 		}
 		break;
 
-	// “±“üƒEƒFƒCƒg
+	// å°å…¥ã‚¦ã‚§ã‚¤ãƒˆ
 	case INTRO_SEQ_DISPWAIT:
 		if( wk->wait ){
 			wk->wait--;
@@ -229,16 +229,16 @@ PROC_RESULT LibraryTV_Main(PROC * proc, int* seq)
 		}
 		break;
 
-	// “±“ü
+	// å°å…¥
 	case INTRO_SEQ_DISPON:
 		LibraryTV_SousaScroll( wk );
 		if(WIPE_SYS_EndCheck() == TRUE){
-			wk->wait = 90+150;			//•\¦ƒEƒFƒCƒg’Ç‰Á(LibraryTV_TelopPrint“à‚Åˆ—‚µ‚Ä‚¢‚½)
+			wk->wait = 90+150;			//è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆè¿½åŠ (LibraryTV_TelopPrintå†…ã§å‡¦ç†ã—ã¦ã„ãŸ)
 			*seq = INTRO_SEQ_MAIN;
 		}
 		break;
 
-	// ƒƒCƒ“ƒ‹[ƒv
+	// ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
 	case INTRO_SEQ_MAIN:
 		LibraryTV_SousaScroll( wk );
 		if( wk->wait ){
@@ -252,7 +252,7 @@ PROC_RESULT LibraryTV_Main(PROC * proc, int* seq)
 		}	
 		break;
 
-	// I—¹
+	// çµ‚äº†
 	case INTRO_SEQ_EXIT:
 		LibraryTV_SousaScroll( wk );
 		if(WIPE_SYS_EndCheck() == TRUE){
@@ -268,7 +268,7 @@ PROC_RESULT LibraryTV_Main(PROC * proc, int* seq)
 }
 
 //----------------------------------
-//‚o‚q‚n‚bI—¹
+//ï¼°ï¼²ï¼¯ï¼£çµ‚äº†
 //----------------------------------
 PROC_RESULT LibraryTV_Exit(PROC * proc, int * seq)
 {
@@ -283,7 +283,7 @@ PROC_RESULT LibraryTV_Exit(PROC * proc, int * seq)
 
 
 //----------------------------------
-//‚u‚a‚k‚`‚m‚jŠÖ”
+//ï¼¶ï¼¢ï¼¬ï¼¡ï¼®ï¼«é–¢æ•°
 //----------------------------------
 static void LibraryTV_VBlank(void* work)
 {
@@ -294,43 +294,43 @@ static void LibraryTV_VBlank(void* work)
 
 
 //----------------------------------
-//‚u‚q‚`‚lİ’è
+//ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 //----------------------------------
-#define LIBRARY_TV_NULL_PALETTE		( 0x0000 )		//‚a‚fƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒpƒŒƒbƒg
+#define LIBRARY_TV_NULL_PALETTE		( 0x0000 )		//ï¼¢ï¼§ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define PALSIZE					( 2*16 )
 
 #define	LIBRARY_TV_TELOP_PALNUM	(1)
 
 static void LibraryTV_VramBankSet( LIBRARY_TV_DEMO_WORK* wk )
 {
-	{ //‚u‚q‚`‚lİ’è
+	{ //ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_256_AB,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_NONE,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_256_AB,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_NONE,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 	}
 
-	{ //‚a‚fƒ‰ƒCƒuƒ‰ƒŠ—pƒƒ‚ƒŠŠm•Û
+	{ //ï¼¢ï¼§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 	}
-	{ // ‚a‚fƒVƒXƒeƒ€İ’è
+	{ // ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS,GX_BGMODE_0,GX_BGMODE_0,GX_BG0_AS_2D
 		};	
 		GF_BGL_InitBG( &BGsys_data );
 	}
-	{ // ƒƒCƒ“‚a‚fƒVƒXƒeƒ€İ’è
+	{ // ãƒ¡ã‚¤ãƒ³ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		int frame, cgxID, scrID;
-		{// ƒeƒƒbƒv‚a‚fİ’è
+		{// ãƒ†ãƒ­ãƒƒãƒ—ï¼¢ï¼§è¨­å®š
 			GF_BGL_BGCNT_HEADER hd0 = { 0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 										GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x18000, 
 										GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
@@ -340,7 +340,7 @@ static void LibraryTV_VramBankSet( LIBRARY_TV_DEMO_WORK* wk )
 			GF_BGL_ClearCharSet( frame, 32, 0, wk->heapID );
 			GF_BGL_ScrClear( wk->bgl, frame );	
 		}
-		{// ‚s‚u˜g‚a‚fİ’è
+		{// ï¼´ï¼¶æ ï¼¢ï¼§è¨­å®š
 			GF_BGL_BGCNT_HEADER hd1 = { 0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 										GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x14000, 
 										GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
@@ -352,7 +352,7 @@ static void LibraryTV_VramBankSet( LIBRARY_TV_DEMO_WORK* wk )
 			ArcUtil_BgCharSet( ARC_INTRO_TV, cgxID, wk->bgl, frame, 0, 0, 0, wk->heapID );
 			ArcUtil_ScrnSet( ARC_INTRO_TV, scrID, wk->bgl, frame, 0, 0, 0, wk->heapID );
 		}
-		{// ‘–¸ü‚a‚fİ’è
+		{// èµ°æŸ»ç·šï¼¢ï¼§è¨­å®š
 			GF_BGL_BGCNT_HEADER hd2 = { 0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 										GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x10000, 
 										GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
@@ -364,7 +364,7 @@ static void LibraryTV_VramBankSet( LIBRARY_TV_DEMO_WORK* wk )
 			ArcUtil_BgCharSet( ARC_INTRO_TV, cgxID, wk->bgl, frame, 0, 0, 0, wk->heapID );
 			ArcUtil_ScrnSet( ARC_INTRO_TV, scrID, wk->bgl, frame, 0, 0, 0, wk->heapID );
 		}
-		{// ‚s‚u‰æ–Ê‚a‚fİ’è
+		{// ï¼´ï¼¶ç”»é¢ï¼¢ï¼§è¨­å®š
 			GF_BGL_BGCNT_HEADER hd3 = { 0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
 										GX_BG_SCRBASE_0x1800, GX_BG_CHARBASE_0x20000, 
 										GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
@@ -383,11 +383,11 @@ static void LibraryTV_VramBankSet( LIBRARY_TV_DEMO_WORK* wk )
 	ArcUtil_PalSet( ARC_LIBRARY_TV, NARC_library_tv_tv_chuke_NCLR, 
 					PALTYPE_MAIN_BG, 0, 0, wk->heapID );
 
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚İ‚İiƒVƒXƒeƒ€j
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚·ã‚¹ãƒ†ãƒ ï¼‰
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, LIBRARY_TV_TELOP_PALNUM * PALSIZE, wk->heapID );
 
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, LIBRARY_TV_NULL_PALETTE );	//”wŒiF‰Šú‰»
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, LIBRARY_TV_NULL_PALETTE );	//”wŒiF‰Šú‰»
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, LIBRARY_TV_NULL_PALETTE );	//èƒŒæ™¯è‰²åˆæœŸåŒ–
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, LIBRARY_TV_NULL_PALETTE );	//èƒŒæ™¯è‰²åˆæœŸåŒ–
 
 	G2_SetBlendAlpha(	GX_BLEND_PLANEMASK_BG1, 
 						(GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 ),
@@ -409,27 +409,27 @@ static void LibraryTV_VramBankRelease( LIBRARY_TV_DEMO_WORK* wk )
 
 
 //----------------------------------
-//ƒƒbƒZ[ƒWİ’è
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¨­å®š
 //----------------------------------
 static void LibraryTV_MsgDataSet( LIBRARY_TV_DEMO_WORK* wk )
 {
-	//ƒƒbƒZ[ƒWƒf[ƒ^“Ç‚İ‚İ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	wk->msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_telop_dat, wk->heapID );
-	//ƒƒbƒZ[ƒW•\¦ƒVƒXƒeƒ€‰Šú‰»
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	MSG_PrintInit();
 	wk->telopseq = TELOP_SET;
 }
 
 static void LibraryTV_MsgDataRelease( LIBRARY_TV_DEMO_WORK* wk )
 {
-	//ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	MSGMAN_Delete(wk->msgman);
 }
 
 //----------------------------------
-//ƒeƒƒbƒv•\¦
+//ãƒ†ãƒ­ãƒƒãƒ—è¡¨ç¤º
 //----------------------------------
-#define LIBRARY_TV_STRBUF_SIZE		(0x400)	//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define LIBRARY_TV_STRBUF_SIZE		(0x400)	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define DOTSIZE						( 8 )
 
 #define	LIBRARY_TV_TELOP_WIN_PX		( 0 )
@@ -494,7 +494,7 @@ static BOOL LibraryTV_TelopPrint( LIBRARY_TV_DEMO_WORK * wk, int msgID, int x, i
 }
 
 //----------------------------------
-//‘–¸üƒXƒNƒ[ƒ‹
+//èµ°æŸ»ç·šã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 //----------------------------------
 static void LibraryTV_SousaScroll( LIBRARY_TV_DEMO_WORK * wk )
 {

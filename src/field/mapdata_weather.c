@@ -58,12 +58,12 @@ int WeatherData_Get(FIELDSYS_WORK * fsys, int now_zone_id)
 		ofs = GF_RTC_GetDaysOffset(&tm->sv_date) - 1;
 		GF_ASSERT(ofs >= 0 && ofs < 366);
 		if (tm->sv_date.month > 2 && !GF_RTC_IsLeapYear(tm->sv_date.year)) {
-			//���邤�����܂񂾃e�[�u���Ȃ̂ŁA���邤�N�ł͂Ȃ�3���ȍ~�̏ꍇ��
-			//�I�t�Z�b�g�Ɂ{�P����
+			//うるう日を含んだテーブルなので、うるう年ではなく3月以降の場合は
+			//オフセットに＋１する
 			ofs ++;
 		}
 		if (EVTIME_IsPenaltyMode(fsys)) {
-			//DS�ݒ�ύX��̃y�i���e�B���Ԃ̓f�t�H���g�V��1��1���̓V��ɂ���
+			//DS設定変更後のペナルティ期間はデフォルト天候＝1月1日の天候にする
 			ofs = 1;
 		}
 #ifdef	DEBUG_ONLY_FOR_tamada

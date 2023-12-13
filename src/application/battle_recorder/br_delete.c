@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_delete.c
- * @brief	ƒoƒgƒ‹ƒrƒfƒIíœ‰æ–Ê
+ * @brief	ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªå‰Šé™¤ç”»é¢
  * @author	goto
- * @date	2008.03.10(Œ)
+ * @date	2008.03.10(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -238,8 +238,8 @@ static BOOL DEL_FadeOut( BR_WORK* wk )
 }
 
 static const RECT_HIT_TBL hit_table[] = {
-	{ DTC(  5 ), DTC( 9 ), DTC(  4 ), DTC( 15 ) },	///< ‚Í‚¢
-	{ DTC(  5 ), DTC( 9 ), DTC( 18 ), DTC( 29 ) },	///< ‚¢‚¢‚¦	
+	{ DTC(  5 ), DTC( 9 ), DTC(  4 ), DTC( 15 ) },	///< ã¯ã„
+	{ DTC(  5 ), DTC( 9 ), DTC( 18 ), DTC( 29 ) },	///< ã„ã„ãˆ	
 };
 static BOOL DEL_Main( BR_WORK* wk )
 {
@@ -258,7 +258,7 @@ static BOOL DEL_Main( BR_WORK* wk )
 		break;
 	
 	case 1:
-		///< ››‚Ì‹L˜^‚ğ`
+		///< â—‹â—‹ã®è¨˜éŒ²ã‚’ã€œ
 		BR_PaletteFade( &dwk->color, eFADE_MODE_IN );
 		if ( Plate_AlphaFade( &dwk->eva, &dwk->evb, eFADE_MODE_IN, ePLANE_SUB ) ){
 			InfoMessageSet( wk, msg_info_013, wk->ex_param1 );
@@ -270,7 +270,7 @@ static BOOL DEL_Main( BR_WORK* wk )
 		break;
 
 	case 2:
-		///< Å‰@‚Í‚¢E‚¢‚¢‚¦
+		///< æœ€åˆã€€ã¯ã„ãƒ»ã„ã„ãˆ
 		if ( GF_TP_SingleHitTrg( &hit_table[ 0 ] ) ){
 			TouchAction( wk );
 			InfoMessageSet( wk, msg_info_014, 0 );
@@ -285,7 +285,7 @@ static BOOL DEL_Main( BR_WORK* wk )
 		break;
 	
 	case 3:
-		///< Ä“x@‚Í‚¢E‚¢‚¢‚¦
+		///< å†åº¦ã€€ã¯ã„ãƒ»ã„ã„ãˆ
 		if ( GF_TP_SingleHitTrg( &hit_table[ 0 ] ) ){
 			TouchAction( wk );
 			BR_SaveWork_Clear( wk );
@@ -319,10 +319,10 @@ static BOOL DEL_Main( BR_WORK* wk )
 		break;
 		
 	case 6:
-		///< Á‚·ˆ—
+		///< æ¶ˆã™å‡¦ç†
 		if ( BR_Executed_RecDelete( wk ) ){
-			BR_SaveData_GppHead_Delete( wk );						///< GPP ƒf[ƒ^”jŠü
-			BR_SaveData_GppHead_Load( wk );							///< GPP ƒf[ƒ^‚ÌÄ“Ç‚İ‚İ	
+			BR_SaveData_GppHead_Delete( wk );						///< GPP ãƒ‡ãƒ¼ã‚¿ç ´æ£„
+			BR_SaveData_GppHead_Load( wk );							///< GPP ãƒ‡ãƒ¼ã‚¿ã®å†èª­ã¿è¾¼ã¿	
 			InfoMessageSet( wk, msg_info_016, 0 );
 			wk->sub_seq++;
 		}

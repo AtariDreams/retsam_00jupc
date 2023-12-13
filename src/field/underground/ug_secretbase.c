@@ -1,11 +1,11 @@
 //=============================================================================
 /**
  * @file	ug_secretbase.c
- * @brief	’n‰º‚Ì”é–§Šî’nî•ñ‚ğŠÇ—‚·‚éƒNƒ‰ƒX
-            ©•ª‚Ì”é–§Šî’n‚Æ
-            ƒT[ƒo[—p‘Sˆõ‚Ì”é–§Šî’n
-            ©•ª‚Ì”é–§Šî’n
-            16+1=17‚±
+ * @brief	åœ°ä¸‹ã®ç§˜å¯†åŸºåœ°æƒ…å ±ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
+            è‡ªåˆ†ã®ç§˜å¯†åŸºåœ°ã¨
+            ã‚µãƒ¼ãƒãƒ¼ç”¨å…¨å“¡ã®ç§˜å¯†åŸºåœ°
+            è‡ªåˆ†ã®ç§˜å¯†åŸºåœ°
+            16+1=17ã“
  * @author	Katsumi Ohno
  * @date    2005.10.03
  */
@@ -54,13 +54,13 @@
 
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
-#define _SECRETBASE_NUM_MAX (17)  ///< ”é–§Šî’nƒoƒbƒtƒ@‚ÌÅ‘å
-#define _SECRETBASE_MY_ID (16)  ///< ©•ª‚Ì”é–§Šî’n‚Ìƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚éID
-#define _SECRETBASE_SPLIT_NUM (4)  ///< ‘—M‚ğ‚µ‚â‚·‚­‚·‚é‚½‚ß‚Ì•ªŠ„”
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+#define _SECRETBASE_NUM_MAX (17)  ///< ç§˜å¯†åŸºåœ°ãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§
+#define _SECRETBASE_MY_ID (16)  ///< è‡ªåˆ†ã®ç§˜å¯†åŸºåœ°ã®ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹ID
+#define _SECRETBASE_SPLIT_NUM (4)  ///< é€ä¿¡ã‚’ã—ã‚„ã™ãã™ã‚‹ãŸã‚ã®åˆ†å‰²æ•°
 
 #define _SECRETBASE_ATTR_MAX (32)
 
@@ -69,66 +69,66 @@
 #define _SECLET_INNER_BASE_Z_PLUS (32)
 
 #define _INVALID_BASE (0xff)
-#define _PLAYER_INVALID_GRID  (0xfff)   // À•W‚Í‚P‚QBIT‘—M‚ğs‚¤‚½‚ß•Ï‚È”š‚É‚È‚Á‚Ä‚¢‚é
+#define _PLAYER_INVALID_GRID  (0xfff)   // åº§æ¨™ã¯ï¼‘ï¼’BITé€ä¿¡ã‚’è¡Œã†ãŸã‚å¤‰ãªæ•°å­—ã«ãªã£ã¦ã„ã‚‹
 
 
-#define _MOVE_TICKETS  (1)  //”é–§Šî’nƒf[ƒ^ˆÚ“®ŠJn
-#define _ERROR_TICKETS (2)  //”é–§Šî’nóM’†‚ÉƒGƒ‰[
-#define _NONE_TICKETS (0)   // ‰½‚à–³‚¢
-#define _DISCONECT_TICKETS (4) // ”é–§Šî’nˆÚ“®’†‚ÉƒGƒ‰[
-#define _TRANS_TICKETS  (5)  //q‹@ˆÚ“®ŠJn
-#define _RETURN_TICKETS  (6) // ‹A‚è‚ÌØ•„
+#define _MOVE_TICKETS  (1)  //ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿ç§»å‹•é–‹å§‹
+#define _ERROR_TICKETS (2)  //ç§˜å¯†åŸºåœ°å—ä¿¡ä¸­ã«ã‚¨ãƒ©ãƒ¼
+#define _NONE_TICKETS (0)   // ä½•ã‚‚ç„¡ã„
+#define _DISCONECT_TICKETS (4) // ç§˜å¯†åŸºåœ°ç§»å‹•ä¸­ã«ã‚¨ãƒ©ãƒ¼
+#define _TRANS_TICKETS  (5)  //å­æ©Ÿç§»å‹•é–‹å§‹
+#define _RETURN_TICKETS  (6) // å¸°ã‚Šã®åˆ‡ç¬¦
 
 typedef enum {
-    _SB_INCOMPLETION,  // –¢Š®¬
-    _SB_COMPLETION, // Š®¬
+    _SB_INCOMPLETION,  // æœªå®Œæˆ
+    _SB_COMPLETION, // å®Œæˆ
 
 } SecretBaseState;
 
-#define _GOODS_NUM_MAX  (15)   // ’u‚¯‚éƒOƒbƒY‚Ì”   ƒpƒ\ƒRƒ“•Ê
+#define _GOODS_NUM_MAX  (15)   // ç½®ã‘ã‚‹ã‚°ãƒƒã‚ºã®æ•°   ãƒ‘ã‚½ã‚³ãƒ³åˆ¥
 
-#define DEBUG_BLACT_NEW_HOOK //ƒrƒ‹ƒ{[ƒhd—l•ÏX‚É‚æ‚éC³‰ÓŠ
+#define DEBUG_BLACT_NEW_HOOK //ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ä»•æ§˜å¤‰æ›´ã«ã‚ˆã‚‹ä¿®æ­£ç®‡æ‰€
 
 #define _M3DO_NONE (0xff)
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
 
 #define _SECLET_BASE_DATA_SIZE  (148)
 
-// ”é–§Šî’n\‘¢‘Ìƒf[ƒ^
+// ç§˜å¯†åŸºåœ°æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿
 typedef struct{
     u8 netID;
-    u8 moveID;       //ˆÚ“®‚·‚él
+    u8 moveID;       //ç§»å‹•ã™ã‚‹äºº
     u8 secretBaseDataBuff[_SECLET_BASE_DATA_SIZE];
 } SecretBaseInfo;
 
 
 typedef struct{
-    u16 xpos;    // ƒhƒA‚ÌˆÊ’u
+    u16 xpos;    // ãƒ‰ã‚¢ã®ä½ç½®
     u16 zpos;
-    u8 dir;  // ‚Ç‚Á‚¿Œü‚«‚É“ü‚èŒû‚ª‚ ‚é‚Ì‚©
+    u8 dir;  // ã©ã£ã¡å‘ãã«å…¥ã‚Šå£ãŒã‚ã‚‹ã®ã‹
 } _Pos;
 
 typedef struct{
-    u16 xpos;    // ƒhƒA‚ÌˆÊ’u
+    u16 xpos;    // ãƒ‰ã‚¢ã®ä½ç½®
     u16 zpos;
-    u8 netID;    // ’N‚ªˆÚ“®‚·‚é‚©
-    u8 dir;  // ‚Ç‚Á‚¿Œü‚«‚É“ü‚èŒû‚ª‚ ‚é‚Ì‚©
+    u8 netID;    // èª°ãŒç§»å‹•ã™ã‚‹ã‹
+    u8 dir;  // ã©ã£ã¡å‘ãã«å…¥ã‚Šå£ãŒã‚ã‚‹ã®ã‹
     u8 bRemove;
 } _SendPos;
 
 
-// ”é–§Šî’n‘S‘Ì
+// ç§˜å¯†åŸºåœ°å…¨ä½“
 typedef struct{
     FIELDSYS_WORK* pFSys;
     TCB_PTR pDoorTCB;
-    SecretBaseInfo secretBaseData[_SECRETBASE_NUM_MAX];  // ”é–§Šî’n\‘¢‘Ì
+    SecretBaseInfo secretBaseData[_SECRETBASE_NUM_MAX];  // ç§˜å¯†åŸºåœ°æ§‹é€ ä½“
     SecretBaseInfo* pNowMoveingBase;
-    u32 aAttr[_SECRETBASE_NUM_MAX][32];  // ”é–§Šî’n‚ ‚½‚èƒf[ƒ^‚R‚Q‚˜‚R‚Q
-    _Pos secretHeaderData[COMM_MACHINE_MAX]; // ƒhƒA‚ğ•\¦‚·‚é‚½‚ß‚Ìƒf[ƒ^
-    _Pos secretHDataServer[COMM_MACHINE_MAX]; // ƒhƒA‚ğ•\¦‚·‚é‚½‚ß‚Ìƒf[ƒ^ƒT[ƒo—p
+    u32 aAttr[_SECRETBASE_NUM_MAX][32];  // ç§˜å¯†åŸºåœ°ã‚ãŸã‚Šãƒ‡ãƒ¼ã‚¿ï¼“ï¼’ï½˜ï¼“ï¼’
+    _Pos secretHeaderData[COMM_MACHINE_MAX]; // ãƒ‰ã‚¢ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ‡ãƒ¼ã‚¿
+    _Pos secretHDataServer[COMM_MACHINE_MAX]; // ãƒ‰ã‚¢ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ‡ãƒ¼ã‚¿ã‚µãƒ¼ãƒç”¨
     u8 moveTickets;
     u8 doorAct[ _SECRETBASE_NUM_MAX ];
     u16 doorActX[ _SECRETBASE_NUM_MAX ];
@@ -137,25 +137,25 @@ typedef struct{
     u8 flagGetLog[COMM_MACHINE_MAX]; // LOG
     u8 flagConqureLog[COMM_MACHINE_MAX];
     u8 flagReverseLog[COMM_MACHINE_MAX];
-    u8 travelBase[COMM_MACHINE_MAX]; // “ü‚Á‚Ä‚¢‚é”é–§Šî’n CLIENTƒf[ƒ^
-    u8 travelingBase[COMM_MACHINE_MAX]; //‚¢‚±‚¤‚Æ‚µ‚Ä‚¢‚é”é–§Šî’n
-    u8 travelingBaseSend[COMM_MACHINE_MAX]; //‘—M‚µ‚Ä‚¢‚é”é–§Šî’n
-    u8 travelingBaseMessage[COMM_MACHINE_MAX]; //‚¢‚±‚¤‚Æ‚µ‚Ä‚¢‚é”é–§Šî’n
+    u8 travelBase[COMM_MACHINE_MAX]; // å…¥ã£ã¦ã„ã‚‹ç§˜å¯†åŸºåœ° CLIENTãƒ‡ãƒ¼ã‚¿
+    u8 travelingBase[COMM_MACHINE_MAX]; //ã„ã“ã†ã¨ã—ã¦ã„ã‚‹ç§˜å¯†åŸºåœ°
+    u8 travelingBaseSend[COMM_MACHINE_MAX]; //é€ä¿¡ã—ã¦ã„ã‚‹ç§˜å¯†åŸºåœ°
+    u8 travelingBaseMessage[COMM_MACHINE_MAX]; //ã„ã“ã†ã¨ã—ã¦ã„ã‚‹ç§˜å¯†åŸºåœ°
     u8 bGoodsTrap[COMM_MACHINE_MAX]; //
-    u8 sendBuff[COMM_MACHINE_MAX*4];    // ˆÚ“®ˆÊ’u‚ğ‘—‚éˆ×‚Ìƒoƒbƒtƒ@
+    u8 sendBuff[COMM_MACHINE_MAX*4];    // ç§»å‹•ä½ç½®ã‚’é€ã‚‹ç‚ºã®ãƒãƒƒãƒ•ã‚¡
 
-    u16 resquePosSX[COMM_MACHINE_MAX];  // “ü‚é‚Éo‚é‚ÌˆÊ’u‚ğ‹L‰¯
+    u16 resquePosSX[COMM_MACHINE_MAX];  // å…¥ã‚‹æ™‚ã«å‡ºã‚‹æ™‚ã®ä½ç½®ã‚’è¨˜æ†¶
     u16 resquePosSZ[COMM_MACHINE_MAX];
     u16 resqueSDir[COMM_MACHINE_MAX];
-    u16 resquePosX;  // “ü‚é‚Éo‚é‚ÌˆÊ’u‚ğ‹L‰¯
+    u16 resquePosX;  // å…¥ã‚‹æ™‚ã«å‡ºã‚‹æ™‚ã®ä½ç½®ã‚’è¨˜æ†¶
     u16 resquePosZ;
     u8 resqueDir;
-    u8 sbNum;       // e‹@‚©‚çó‚¯æ‚Á‚½”é–§Šî’n‚Ì”
-    u8 bChildRecv;    // q‹@‚Ìƒf[ƒ^‚ğóM‚µ‚½‚çTRUE
-    u8 bPosRecv;    // q‹@‚ÌˆÊ’u‚ğóM‚µ‚½‚çTRUE
-    u8 bHalt;      // ƒT[ƒrƒX’â~’†‚Ìê‡TRUE
+    u8 sbNum;       // è¦ªæ©Ÿã‹ã‚‰å—ã‘å–ã£ãŸç§˜å¯†åŸºåœ°ã®æ•°
+    u8 bChildRecv;    // å­æ©Ÿã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰TRUE
+    u8 bPosRecv;    // å­æ©Ÿã®ä½ç½®ã‚’å—ä¿¡ã—ãŸã‚‰TRUE
+    u8 bHalt;      // ã‚µãƒ¼ãƒ“ã‚¹åœæ­¢ä¸­ã®å ´åˆTRUE
     u8 bDoorON;
-    u8 bClientBaseIn;  // ƒNƒ‰ƒCƒAƒ“ƒg‘¤A
+    u8 bClientBaseIn;  // ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã€
 } CommSecretBaseWork;
 
 
@@ -193,11 +193,11 @@ typedef struct{
 } _EVENT_DRILL_WORK;
 
 
-// ƒVƒ“ƒOƒ‹ƒgƒ“
+// ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
 static CommSecretBaseWork* _pCommSecretBaseWork = NULL;
 
 //==============================================================================
-// staticéŒ¾
+// staticå®£è¨€
 //==============================================================================
 
 static void _makeAttr(SECRETBASEDATA* pSecret, u32* attr);
@@ -227,7 +227,7 @@ static const BMPWIN_DAT _connectBmpDat = {
     };
 
 
-// ID‚É‚æ‚é•”‰®‚ÌBLOCKˆÊ’u  ÅŒã‚ªOFFLINE
+// IDã«ã‚ˆã‚‹éƒ¨å±‹ã®BLOCKä½ç½®  æœ€å¾ŒãŒOFFLINE
 static u8 _blockToRoomX[]={1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,0};
 static u8 _blockToRoomZ[]={0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0};
 
@@ -242,7 +242,7 @@ static u8 _blockToRoomZ[]={0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0};
 
 
 //==============================================================================
-// ŠÖ”
+// é–¢æ•°
 //==============================================================================
 
 static int _getSecretIndex(int x,int z)
@@ -256,12 +256,12 @@ static int _getSecretIndex(int x,int z)
             return i;
         }
     }
-    return _SECRETBASE_MY_ID;  // ƒIƒtƒ‰ƒCƒ“©•ª‚Ì•”‰®
+    return _SECRETBASE_MY_ID;  // ã‚ªãƒ•ãƒ©ã‚¤ãƒ³è‡ªåˆ†ã®éƒ¨å±‹
 }
 
 //==============================================================================
 /**
- * ”é–§Šî’noŒû‚ÌÀ•W‚ğ‹‚ß‚é
+ * ç§˜å¯†åŸºåœ°å‡ºå£ã®åº§æ¨™ã‚’æ±‚ã‚ã‚‹
  * @param   netID
  * @retval  none
  */
@@ -286,7 +286,7 @@ static BOOL _checkSecretBaseOutPos(int x,int z)
 
 //==============================================================================
 /**
- * ”é–§Šî’noŒû‚ÌÀ•W‚ğ‹‚ß‚é
+ * ç§˜å¯†åŸºåœ°å‡ºå£ã®åº§æ¨™ã‚’æ±‚ã‚ã‚‹
  * @param   netID
  * @retval  none
  */
@@ -298,7 +298,7 @@ static void _getSecretBaseOutPos_local(int netID, _Pos* pPos)
     const int plus = _SECLET_INNER_BASE_Z_PLUS;
     int id;
 
-    if(CommMPIsConnectStalth()){   // ’ÊMØ’fó‘Ô‚Ìê‡
+    if(CommMPIsConnectStalth()){   // é€šä¿¡åˆ‡æ–­çŠ¶æ…‹ã®å ´åˆ
         pPos->xpos = base.xpos;
         pPos->zpos = base.zpos;
         return;
@@ -325,8 +325,8 @@ static void _getSecretBaseOutPos(int netID, _Pos* pPos)
 
 //==============================================================================
 /**
- * ”é–§Šî’nî•ñ‰Šú‰»
- * @param   ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * ç§˜å¯†åŸºåœ°æƒ…å ±åˆæœŸåŒ–
+ * @param   ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -338,11 +338,11 @@ void CommSecretBaseInfoInitialize(void* pWork, FIELDSYS_WORK* pFSys)
     SECRETBASEDATA* pSecret;
 
 
-    if(_pCommSecretBaseWork){  // ¡‚Ì‚Æ‚±‚ë‰½“x‚à‰Šú‰»‚³‚ê‚é‚Ì‚Å
+    if(_pCommSecretBaseWork){  // ä»Šã®ã¨ã“ã‚ä½•åº¦ã‚‚åˆæœŸåŒ–ã•ã‚Œã‚‹ã®ã§
         return;
     }
 
-    OHNO_PRINT("_SECLET_BASE_DATA_SIZE ‘å‚«‚³•\¦ %d\n",SecretBaseData_GetWorkSize());
+    OHNO_PRINT("_SECLET_BASE_DATA_SIZE å¤§ãã•è¡¨ç¤º %d\n",SecretBaseData_GetWorkSize());
     GF_ASSERT(_SECLET_BASE_DATA_SIZE == SecretBaseData_GetWorkSize());
 
     _pCommSecretBaseWork = (CommSecretBaseWork*)pWork;
@@ -358,7 +358,7 @@ void CommSecretBaseInfoInitialize(void* pWork, FIELDSYS_WORK* pFSys)
         _pCommSecretBaseWork->travelingBase[i] = _INVALID_BASE;
         _pCommSecretBaseWork->travelingBaseSend[i]  = _INVALID_BASE;
         _pCommSecretBaseWork->travelBase[i] = _INVALID_BASE;
-        // ƒƒbƒZ[ƒW•\¦
+        // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
         _pCommSecretBaseWork->travelingBaseMessage[i] = _INVALID_BASE;
         _pCommSecretBaseWork->flagGetLog[i] = INVALID_NETID;
         _pCommSecretBaseWork->flagConqureLog[i] = INVALID_NETID;
@@ -395,8 +395,8 @@ void CommSecretBaseInfoInitialize(void* pWork, FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * ƒZ[ƒuƒf[ƒ^‚©‚ç©•ª‚Ì‚ ‚½‚èƒf[ƒ^‚ğì‚é
- * @param   ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰è‡ªåˆ†ã®ã‚ãŸã‚Šãƒ‡ãƒ¼ã‚¿ã‚’ä½œã‚‹
+ * @param   ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -419,8 +419,8 @@ void UgSecretBaseMakeMyAttr(FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * ‚ ‚½‚èƒf[ƒ^‚ğ‚Ê‚­
- * @param   ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * ã‚ãŸã‚Šãƒ‡ãƒ¼ã‚¿ã‚’ã¬ã
+ * @param   ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -444,8 +444,8 @@ static void _attrBitOff(int xinit, int zinit,const u8* pBuff, u32* attr)
 
 //==============================================================================
 /**
- * ‚ ‚½‚èƒf[ƒ^‚ğì¬‚·‚é
- * @param   ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * ã‚ãŸã‚Šãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
+ * @param   ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -487,8 +487,8 @@ static void _makeAttr(SECRETBASEDATA* pSecret, u32* attr)
 
 //==============================================================================
 /**
- * ˆê“I‚É‰æ–Ê‚ğÁ‹‚·‚éÛ‚ÉŒÄ‚ÔƒŠƒZƒbƒgŠÖ”
- * @param   ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * ä¸€æ™‚çš„ã«ç”»é¢ã‚’æ¶ˆå»ã™ã‚‹éš›ã«å‘¼ã¶ãƒªã‚»ãƒƒãƒˆé–¢æ•°
+ * @param   ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -505,8 +505,8 @@ void CommSecretBaseInfoReset(void)
 
 //==============================================================================
 /**
- * ‰æ–Ê‚ğ•œ‹A‚·‚éÛ‚ÉŒÄ‚ÔŠÖ”
- * @param   ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * ç”»é¢ã‚’å¾©å¸°ã™ã‚‹éš›ã«å‘¼ã¶é–¢æ•°
+ * @param   ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -518,7 +518,7 @@ void CommSecretBaseInfoReboot(void)
     _pCommSecretBaseWork->bHalt = FALSE;
 
     if(_pCommSecretBaseWork->bClientBaseIn == FALSE){
-        OHNO_PRINT("”é–§Šî’no‚éÛ‚É•\¦\n");
+        OHNO_PRINT("ç§˜å¯†åŸºåœ°å‡ºã‚‹éš›ã«è¡¨ç¤º\n");
         for(i = 0;i < COMM_MACHINE_MAX;i++){
             _doorPictDelete( i );
         }
@@ -537,7 +537,7 @@ void CommSecretBaseInfoReboot(void)
 
 //==============================================================================
 /**
- * ”é–§Šî’nî•ñˆ—I—¹
+ * ç§˜å¯†åŸºåœ°æƒ…å ±å‡¦ç†çµ‚äº†
  * @param   none
  * @retval  none
  */
@@ -564,7 +564,7 @@ void CommSecretBaseInfoFinalize(void)
 
 //==============================================================================
 /**
- * ”é–§Šî’nî•ñˆ—Ä“x‰Šú‰»
+ * ç§˜å¯†åŸºåœ°æƒ…å ±å‡¦ç†å†åº¦åˆæœŸåŒ–
  * @param   none
  * @retval  none
  */
@@ -581,8 +581,8 @@ void CommSecretBaseInfoReInit(void)
         _pCommSecretBaseWork->secretHeaderData[i].zpos = _PLAYER_INVALID_GRID;
         _pCommSecretBaseWork->secretHDataServer[i].xpos = _PLAYER_INVALID_GRID;
         _pCommSecretBaseWork->secretHDataServer[i].zpos = _PLAYER_INVALID_GRID;
-        // ŒŠ‚ğÁ‚·
-//        OHNO_PRINT("ŒŠ‚ğÁ‚·  \n");
+        // ç©´ã‚’æ¶ˆã™
+//        OHNO_PRINT("ç©´ã‚’æ¶ˆã™  \n");
     }
     MI_CpuFill8(_pCommSecretBaseWork->aAttr, 0xff,  _SECRETBASE_NUM_MAX * _SECRETBASE_ATTR_MAX * (_SECRETBASE_ATTR_MAX/8) );
     UgSecretBaseMakeMyAttr(_pCommSecretBaseWork->pFSys);
@@ -609,9 +609,9 @@ void CommSecretBaseInfoParentDel(void)
 
 //==============================================================================
 /**
- * ƒ[ƒN‘S‘Ì‚ÌƒTƒCƒY‚ğ•Ô‚·
+ * ãƒ¯ãƒ¼ã‚¯å…¨ä½“ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
- * @retval  ‹ó‚¢‚Ä‚¢‚éCommSecretBaseWork‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç©ºã„ã¦ã„ã‚‹CommSecretBaseWorkã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 
@@ -622,7 +622,7 @@ int CommSecretBaseInfoGetWorkSize(void)
 
 //==============================================================================
 /**
- * ’ÊM‚Å”²‚¯‚Ä‚¢‚Á‚½l‚Ìíœ‚ğs‚¤
+ * é€šä¿¡ã§æŠœã‘ã¦ã„ã£ãŸäººã®å‰Šé™¤ã‚’è¡Œã†
  * @param   netID
  * @retval  none
  */
@@ -631,8 +631,8 @@ int CommSecretBaseInfoGetWorkSize(void)
 void UgSecretBaseDestroyPlayer(int netID)
 {
     if(_pCommSecretBaseWork){
-        _pCommSecretBaseWork->travelBase[netID] = _INVALID_BASE; // “ü‚Á‚Ä‚¢‚é”é–§Šî’n CLIENTƒf[ƒ^
-        _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE; //‚¢‚±‚¤‚Æ‚µ‚Ä‚¢‚é”é–§Šî’n
+        _pCommSecretBaseWork->travelBase[netID] = _INVALID_BASE; // å…¥ã£ã¦ã„ã‚‹ç§˜å¯†åŸºåœ° CLIENTãƒ‡ãƒ¼ã‚¿
+        _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE; //ã„ã“ã†ã¨ã—ã¦ã„ã‚‹ç§˜å¯†åŸºåœ°
         MI_CpuClear8(&_pCommSecretBaseWork->secretBaseData[netID],sizeof(SecretBaseInfo));
         _pCommSecretBaseWork->secretHeaderData[netID].xpos = _PLAYER_INVALID_GRID;
         _pCommSecretBaseWork->secretHeaderData[netID].zpos = _PLAYER_INVALID_GRID;
@@ -645,7 +645,7 @@ void UgSecretBaseDestroyPlayer(int netID)
 */
 //==============================================================================
 /**
- * ©•ª‚ª‚±‚Ì”é–§Šî’n‚É‚¢‚È‚¢ê‡A’ÊM‚Å”²‚¯‚Ä‚¢‚Á‚½l‚Ì”é–§Šî’níœ‚ğs‚¤
+ * è‡ªåˆ†ãŒã“ã®ç§˜å¯†åŸºåœ°ã«ã„ãªã„å ´åˆã€é€šä¿¡ã§æŠœã‘ã¦ã„ã£ãŸäººã®ç§˜å¯†åŸºåœ°å‰Šé™¤ã‚’è¡Œã†
  * @param   netID
  * @retval  none
  */
@@ -654,15 +654,15 @@ void UgSecretBaseDestroyPlayer(int netID)
 void UgSecretBaseDestroyPlayer(int netID)
 {
     if(_pCommSecretBaseWork){
-        OHNO_PRINT("©•ª‚Í%d - %dŠî’n\n",CommGetCurrentID(),_pCommSecretBaseWork->travelBase[CommGetCurrentID()]);
+        OHNO_PRINT("è‡ªåˆ†ã¯%d - %dåŸºåœ°\n",CommGetCurrentID(),_pCommSecretBaseWork->travelBase[CommGetCurrentID()]);
         if(_pCommSecretBaseWork->travelBase[CommGetCurrentID()] == netID){
             _Pos* pHead = &_pCommSecretBaseWork->secretHeaderData[netID];
             _pCommSecretBaseWork->resquePosX = pHead->xpos;
             _pCommSecretBaseWork->resquePosZ = pHead->zpos;
             _pCommSecretBaseWork->resqueDir = pHead->dir;
         }
-        _pCommSecretBaseWork->travelBase[netID] = _INVALID_BASE; // “ü‚Á‚Ä‚¢‚é”é–§Šî’n CLIENTƒf[ƒ^
-        _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE; //‚¢‚±‚¤‚Æ‚µ‚Ä‚¢‚é”é–§Šî’n
+        _pCommSecretBaseWork->travelBase[netID] = _INVALID_BASE; // å…¥ã£ã¦ã„ã‚‹ç§˜å¯†åŸºåœ° CLIENTãƒ‡ãƒ¼ã‚¿
+        _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE; //ã„ã“ã†ã¨ã—ã¦ã„ã‚‹ç§˜å¯†åŸºåœ°
         _pCommSecretBaseWork->travelingBaseSend[netID]  = _INVALID_BASE;
         MI_CpuClear8(&_pCommSecretBaseWork->secretBaseData[netID],sizeof(SecretBaseInfo));
         _pCommSecretBaseWork->secretHeaderData[netID].xpos = _PLAYER_INVALID_GRID;
@@ -676,7 +676,7 @@ void UgSecretBaseDestroyPlayer(int netID)
 */
 //==============================================================================
 /**
- * Ø’f‚µ‚½q‹@‚ÌˆÚ“®î•ñ‚ÍÁ‚·
+ * åˆ‡æ–­ã—ãŸå­æ©Ÿã®ç§»å‹•æƒ…å ±ã¯æ¶ˆã™
  * @param   netID
  * @retval  none
  */
@@ -685,8 +685,8 @@ void UgSecretBaseDestroyPlayer(int netID)
 void UgSecretBaseResetPlayer(int netID)
 {
     if(_pCommSecretBaseWork){
-        _pCommSecretBaseWork->travelBase[netID] = _INVALID_BASE; // “ü‚Á‚Ä‚¢‚é”é–§Šî’n CLIENTƒf[ƒ^
-        _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE; //‚¢‚±‚¤‚Æ‚µ‚Ä‚¢‚é”é–§Šî’n
+        _pCommSecretBaseWork->travelBase[netID] = _INVALID_BASE; // å…¥ã£ã¦ã„ã‚‹ç§˜å¯†åŸºåœ° CLIENTãƒ‡ãƒ¼ã‚¿
+        _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE; //ã„ã“ã†ã¨ã—ã¦ã„ã‚‹ç§˜å¯†åŸºåœ°
         _pCommSecretBaseWork->travelingBaseSend[netID]  = _INVALID_BASE;
         _pCommSecretBaseWork->secretHDataServer[netID].xpos = _PLAYER_INVALID_GRID;
         _pCommSecretBaseWork->secretHDataServer[netID].zpos = _PLAYER_INVALID_GRID;
@@ -695,7 +695,7 @@ void UgSecretBaseResetPlayer(int netID)
 
 //==============================================================================
 /**
- * ”é–§Šî’n‚ÌíœiƒNƒ‰ƒCƒAƒ“ƒg‘¤î•ñ‚àˆê‚ÉÁ‚·j‚ğs‚¤
+ * ç§˜å¯†åŸºåœ°ã®å‰Šé™¤ï¼ˆã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´æƒ…å ±ã‚‚ä¸€ç·’ã«æ¶ˆã™ï¼‰ã‚’è¡Œã†
  * @param   netID
  * @retval  none
  */
@@ -713,7 +713,7 @@ void UgSecretBaseDestroyDoor(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‚ğ©“®•\¦‚µ‚½ê‡‚ÌI—¹ƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è‡ªå‹•è¡¨ç¤ºã—ãŸå ´åˆã®çµ‚äº†æ™‚ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -725,9 +725,9 @@ static void _msgEndCallBack(int num)
 
 //==============================================================================
 /**
- * ”é–§Šî’n‚Ì“ü‚èŒû‚ª‚ ‚éê‡‚¿å‚ğ•Ô‚·
+ * ç§˜å¯†åŸºåœ°ã®å…¥ã‚Šå£ãŒã‚ã‚‹å ´åˆæŒã¡ä¸»ã‚’è¿”ã™
  * @param   none
- * @retval  ‚ ‚Á‚½‚çID‚ğ•Ô‚· –³‚©‚Á‚½‚çINVALID_NETID
+ * @retval  ã‚ã£ãŸã‚‰IDã‚’è¿”ã™ ç„¡ã‹ã£ãŸã‚‰INVALID_NETID
  */
 //==============================================================================
 
@@ -745,7 +745,7 @@ static int _getSecretBaseEnter(int x, int z)
             continue;
         }
         if((x == SecretBaseGetSecretBasePositionX(pSecret)) &&
-           (z == SecretBaseGetSecretBasePositionZ(pSecret)) ){   // ˆÊ’uƒqƒbƒg
+           (z == SecretBaseGetSecretBasePositionZ(pSecret)) ){   // ä½ç½®ãƒ’ãƒƒãƒˆ
             return i;
         }
     }
@@ -754,8 +754,8 @@ static int _getSecretBaseEnter(int x, int z)
 
 //==============================================================================
 /**
- * @brief   ’Ê˜H<>”é–§Šî’n‚ÌˆÚ“®ƒCƒxƒ“ƒgŠJn CF_SECRETBASE_EVENT_START
- * @param   ƒR[ƒ‹ƒoƒbƒNˆø”
+ * @brief   é€šè·¯<>ç§˜å¯†åŸºåœ°ã®ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹ CF_SECRETBASE_EVENT_START
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
  * @retval  none
  */
 //==============================================================================
@@ -763,8 +763,8 @@ static int _getSecretBaseEnter(int x, int z)
 typedef struct{
     u16 x;
     u16 z;
-    u8 netID;   // ˆÚ“®‚·‚él
-    u8 baseID;  // ˆÚ“®‚·‚éêŠ‚ÌID
+    u8 netID;   // ç§»å‹•ã™ã‚‹äºº
+    u8 baseID;  // ç§»å‹•ã™ã‚‹å ´æ‰€ã®ID
     u8 dir;
     u8 bEnterBase;
 } _JumpEventPacket;
@@ -795,9 +795,9 @@ void UgSecretBaseRecvJumpEvent(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * @brief   ’Ê˜H > ”é–§Šî’n‚ÌˆÚ“®‚É¸”s‚µ‚½ê‡
+ * @brief   é€šè·¯ > ç§˜å¯†åŸºåœ°ã®ç§»å‹•ã«å¤±æ•—ã—ãŸå ´åˆ
  * @param   none
- * @retval  ƒpƒPƒbƒgƒTƒCƒY
+ * @retval  ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -817,9 +817,9 @@ void UgSecretBaseRecvMoveFailed(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * @brief   ’Ê˜H<>”é–§Šî’n‚ÌˆÚ“®ƒCƒxƒ“ƒgŠJn‚ÌƒpƒPƒbƒgƒTƒCƒY
+ * @brief   é€šè·¯<>ç§˜å¯†åŸºåœ°ã®ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹ã®ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
  * @param   none
- * @retval  ƒpƒPƒbƒgƒTƒCƒY
+ * @retval  ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -830,8 +830,8 @@ int UgSecretBaseRecvJumpEventSize(void)
 
 //==============================================================================
 /**
- * @brief   ’Ê˜H<>”é–§Šî’n‚ÌˆÚ“®ƒCƒxƒ“ƒg‚ÌŒ‹‰Ê‚ğ•Ô‚· CF_SECRETBASE_EVENT_RES
- * @param   ƒR[ƒ‹ƒoƒbƒNˆø”
+ * @brief   é€šè·¯<>ç§˜å¯†åŸºåœ°ã®ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã®çµæœã‚’è¿”ã™ CF_SECRETBASE_EVENT_RES
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
  * @retval  none
  */
 //==============================================================================
@@ -854,28 +854,28 @@ void UgSecretBaseRecvJumpEventRes(int netID, int size, void* pData, void* pWork)
     
     if(pRes->bResult){
         if(pRes->bBaseIn){
-            // ’Ê˜H>Šî’n
+            // é€šè·¯>åŸºåœ°
             if(!_enterSecretBaseStart(pRes->baseNo, netID)){
-                _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE;  // ”é–§Šî’nˆÚ“®æ‚èÁ‚µ
+                _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE;  // ç§˜å¯†åŸºåœ°ç§»å‹•å–ã‚Šæ¶ˆã—
                 CommSendFixSizeData_ServerSide(CF_SECRETBASE_MOVE_FAILED,&id);
             }
         }
-        else{  // Šî’n>’Ê˜H
+        else{  // åŸºåœ°>é€šè·¯
             _returnUnderGroundStart(pRes->baseNo, netID, FALSE);
         }
     }
     else{
-        // ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚©‚ç‚ÌƒLƒƒƒ“ƒZƒ‹
-        _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE;  // ”é–§Šî’nˆÚ“®æ‚èÁ‚µ
-        OHNO_PRINT("ƒLƒƒƒ“‚¹‚éóM\n");
+        // ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã‹ã‚‰ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+        _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE;  // ç§˜å¯†åŸºåœ°ç§»å‹•å–ã‚Šæ¶ˆã—
+        OHNO_PRINT("ã‚­ãƒ£ãƒ³ã›ã‚‹å—ä¿¡\n");
     }
 }
 
 //==============================================================================
 /**
- * @brief   ’Ê˜H<>”é–§Šî’n‚ÌˆÚ“®ƒCƒxƒ“ƒg‚ÌŒ‹‰Ê‚ğ•Ô‚·ˆ×‚ÌƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+ * @brief   é€šè·¯<>ç§˜å¯†åŸºåœ°ã®ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã®çµæœã‚’è¿”ã™ç‚ºã®ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -886,10 +886,10 @@ int UgSecretBaseRecvJumpEventResSize(void)
 
 //==============================================================================
 /**
- * ’Ê˜H‚©‚ç”é–§Šî’n‚É“ü‚éÀsŠÖ”
- * @param   secretBaseNo   ”é–§Šî’n”Ô†
- * @param   playerID       ƒvƒŒ[ƒ„[
- * @retval  “®‚­ê‡TRUE
+ * é€šè·¯ã‹ã‚‰ç§˜å¯†åŸºåœ°ã«å…¥ã‚‹å®Ÿè¡Œé–¢æ•°
+ * @param   secretBaseNo   ç§˜å¯†åŸºåœ°ç•ªå·
+ * @param   playerID       ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼
+ * @retval  å‹•ãå ´åˆTRUE
  */
 //==============================================================================
 
@@ -901,43 +901,43 @@ static BOOL _enterSecretBaseStart(int secretBaseNo, int playerID)
     SecretBaseInfo* pBase = &_pCommSecretBaseWork->secretBaseData[secretBaseNo];
     SECRETBASEDATA* pSecret = (SECRETBASEDATA*)pBase->secretBaseDataBuff;
 
-    if(!SecretBaseIsSecretBaseMake(pSecret)){  // ‚Å‚«‚Ä‚¢‚È‚¢”é–§Šî’n‚Ö‚ÌˆÚ“®‚Í”jŠü
+    if(!SecretBaseIsSecretBaseMake(pSecret)){  // ã§ãã¦ã„ãªã„ç§˜å¯†åŸºåœ°ã¸ã®ç§»å‹•ã¯ç ´æ£„
         return FALSE;
     }
 
-    if(CommIsSendCommand_ServerSize(CF_SECRETBASE_DATA_SERVER)){  // ©•ª‚ªˆêŒÂ‚Å‚à‘—‚ë‚¤‚Æ‚µ‚Ä‚¢‚éê‡”jŠü
+    if(CommIsSendCommand_ServerSize(CF_SECRETBASE_DATA_SERVER)){  // è‡ªåˆ†ãŒä¸€å€‹ã§ã‚‚é€ã‚ã†ã¨ã—ã¦ã„ã‚‹å ´åˆç ´æ£„
         return FALSE;
     }
     
 
     for(i = 0;i < COMM_MACHINE_MAX;i++){
         if(CommIsConnect(i)){
-            if(_pCommSecretBaseWork->travelingBaseSend[i] == secretBaseNo){ // ‚·‚Å‚É“¯‚¶Šî’n‚ÖˆÚ“®’†
-                OHNO_PRINT("Šî’nˆÚ“®¸”s %d \n", playerID,secretBaseNo);
+            if(_pCommSecretBaseWork->travelingBaseSend[i] == secretBaseNo){ // ã™ã§ã«åŒã˜åŸºåœ°ã¸ç§»å‹•ä¸­
+                OHNO_PRINT("åŸºåœ°ç§»å‹•å¤±æ•— %d \n", playerID,secretBaseNo);
                 return FALSE;
             }
         }
     }
     _getSecretBaseOutPos(secretBaseNo, &outDoorPos);
 
-    // ”é–§Šî’n‚ğ‘Šè‚É‘—M
+    // ç§˜å¯†åŸºåœ°ã‚’ç›¸æ‰‹ã«é€ä¿¡
     pBase->moveID = playerID;
-    CommSecretBaseInfoParentSendStart(secretBaseNo); // i‚Ì”é–§Šî’n‚ğq‹@‚É‘—M
-    _pCommSecretBaseWork->travelingBase[playerID] = secretBaseNo;  // j‚³‚ñ‚ªi‚Ì”é–§Šî’n‚És‚±‚¤‚Æ‚µ‚Ä‚¢‚é
+    CommSecretBaseInfoParentSendStart(secretBaseNo); // iã®ç§˜å¯†åŸºåœ°ã‚’å­æ©Ÿã«é€ä¿¡
+    _pCommSecretBaseWork->travelingBase[playerID] = secretBaseNo;  // jã•ã‚“ãŒiã®ç§˜å¯†åŸºåœ°ã«è¡Œã“ã†ã¨ã—ã¦ã„ã‚‹
     _pCommSecretBaseWork->travelingBaseSend[playerID]  = secretBaseNo;
 
     CommPlayerBaseTeleportServer(playerID, outDoorPos.xpos, outDoorPos.zpos, DIR_UP);
-    OHNO_PRINT("%d‚ª%d‚Ì”é–§Šî’n‚ÖˆÚ“®ŠJn %d %d\n", playerID, secretBaseNo,
+    OHNO_PRINT("%dãŒ%dã®ç§˜å¯†åŸºåœ°ã¸ç§»å‹•é–‹å§‹ %d %d\n", playerID, secretBaseNo,
                CommPlayerGetPosSX(playerID),CommPlayerGetPosSZ(playerID) );
     return TRUE;
 }
 
 //==============================================================================
 /**
- * ”é–§Šî’n‚©‚ç’Ê˜H‚É–ß‚éÀsŠÖ”
- * @param   secretBaseNo   ”é–§Šî’n”Ô†
- * @param   playerID       ƒvƒŒ[ƒ„[
- * @retval  “®‚­ê‡TRUE
+ * ç§˜å¯†åŸºåœ°ã‹ã‚‰é€šè·¯ã«æˆ»ã‚‹å®Ÿè¡Œé–¢æ•°
+ * @param   secretBaseNo   ç§˜å¯†åŸºåœ°ç•ªå·
+ * @param   playerID       ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼
+ * @retval  å‹•ãå ´åˆTRUE
  */
 //==============================================================================
 
@@ -950,7 +950,7 @@ static void _returnUnderGroundStart(int secretBaseNo, int playerID, BOOL bRemove
     SECRETBASEDATA* pSecret = (SECRETBASEDATA*)pBase->secretBaseDataBuff;
 
     _getSecretBaseOutPos_local(secretBaseNo, &outDoorPos);
-    _pCommSecretBaseWork->travelingBase[playerID] = secretBaseNo;  // j‚³‚ñ‚ªi‚Ì”é–§Šî’n‚©‚ç‚Å‚æ‚¤‚Æ‚µ‚Ä‚¢‚é
+    _pCommSecretBaseWork->travelingBase[playerID] = secretBaseNo;  // jã•ã‚“ãŒiã®ç§˜å¯†åŸºåœ°ã‹ã‚‰ã§ã‚ˆã†ã¨ã—ã¦ã„ã‚‹
 //    x = SecretBaseGetSecretBasePositionX(pSecret);
 //    z = SecretBaseGetSecretBasePositionZ(pSecret);
 //    dir = SecretBaseGetSecretBasePositionDir(pSecret);
@@ -971,7 +971,7 @@ static void _returnUnderGroundStart(int secretBaseNo, int playerID, BOOL bRemove
     
     CommPlayerBaseTeleportServer(playerID, x, z, dir);
 //    GF_ASSERT((x != 0) && (z != 0));
-    OHNO_PRINT("%d ‚ª ”é–§Šî’n ‚©‚ç‚à‚Ç‚é %d %d %d\n", playerID, x, z , dir);
+    OHNO_PRINT("%d ãŒ ç§˜å¯†åŸºåœ° ã‹ã‚‰ã‚‚ã©ã‚‹ %d %d %d\n", playerID, x, z , dir);
     x += FieldOBJ_DirAddValueGX( dir);
     z += FieldOBJ_DirAddValueGZ( dir);
     sendPos.xpos = x;
@@ -985,9 +985,9 @@ static void _returnUnderGroundStart(int secretBaseNo, int playerID, BOOL bRemove
 
 //==============================================================================
 /**
- * ”é–§Šî’nƒtƒŒ[ƒ€ˆ—  ˆÊ’u‚ğŠm”F‚µ‚ÄˆÚ“®
- * @param   playerID   ƒvƒŒ[ƒ„[
- * @retval  “®‚­ê‡TRUE
+ * ç§˜å¯†åŸºåœ°ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†  ä½ç½®ã‚’ç¢ºèªã—ã¦ç§»å‹•
+ * @param   playerID   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼
+ * @retval  å‹•ãå ´åˆTRUE
  */
 //==============================================================================
 
@@ -1008,13 +1008,13 @@ BOOL CommSecretBaseSingleStepFunc(int playerID, int moveX, int moveZ)
     if(CommPlayerIsTrapBind(playerID)){
         return FALSE;
     }
-    if(_pCommSecretBaseWork->travelingBase[playerID] != _INVALID_BASE){ // ‚·‚Å‚ÉˆÚ“®’†
+    if(_pCommSecretBaseWork->travelingBase[playerID] != _INVALID_BASE){ // ã™ã§ã«ç§»å‹•ä¸­
         return TRUE;
     }
     secretBaseNo = _getSecretBaseEnter(moveX, moveZ);
     if(secretBaseNo != INVALID_NETID){
-		OHNO_PRINT("--ˆÚ“® %d %d\n",playerID,secretBaseNo);
-        _pCommSecretBaseWork->travelingBase[playerID] = secretBaseNo;  // j‚³‚ñ‚ªi‚Ì”é–§Šî’n‚Ögo-
+		OHNO_PRINT("--ç§»å‹• %d %d\n",playerID,secretBaseNo);
+        _pCommSecretBaseWork->travelingBase[playerID] = secretBaseNo;  // jã•ã‚“ãŒiã®ç§˜å¯†åŸºåœ°ã¸go-
         jp.bEnterBase = TRUE;
         jp.x = moveX;
         jp.z = moveZ;
@@ -1034,8 +1034,8 @@ BOOL CommSecretBaseSingleStepFunc(int playerID, int moveX, int moveZ)
             continue;
         }
         _getSecretBaseOutPos_local(secretBaseNo, &outDoorPos);
-        if((moveX == outDoorPos.xpos) && (moveZ == outDoorPos.zpos) ){   // ˆÊ’uƒqƒbƒg
-            _pCommSecretBaseWork->travelingBase[playerID] = secretBaseNo;  // j‚³‚ñ‚ªi‚Ì”é–§Šî’n‚©‚ç‚Å‚æ‚¤‚Æ‚µ‚Ä‚¢‚é
+        if((moveX == outDoorPos.xpos) && (moveZ == outDoorPos.zpos) ){   // ä½ç½®ãƒ’ãƒƒãƒˆ
+            _pCommSecretBaseWork->travelingBase[playerID] = secretBaseNo;  // jã•ã‚“ãŒiã®ç§˜å¯†åŸºåœ°ã‹ã‚‰ã§ã‚ˆã†ã¨ã—ã¦ã„ã‚‹
             jp.bEnterBase = FALSE;
             jp.x = moveX;
             jp.z = moveZ;
@@ -1049,13 +1049,13 @@ BOOL CommSecretBaseSingleStepFunc(int playerID, int moveX, int moveZ)
             return TRUE;
         }
     }
-    if(_checkSecretBaseOutPos(moveX,moveZ)){  // ”é–§Šî’n‚Í‚È‚¢‚ª–ß‚·ê‡
+    if(_checkSecretBaseOutPos(moveX,moveZ)){  // ç§˜å¯†åŸºåœ°ã¯ãªã„ãŒæˆ»ã™å ´åˆ
         sendPos.xpos = _pCommSecretBaseWork->resquePosSX[playerID];
         sendPos.zpos = _pCommSecretBaseWork->resquePosSZ[playerID];
         sendPos.netID = playerID;
         sendPos.dir = _pCommSecretBaseWork->resqueSDir[playerID];
         sendPos.bRemove = FALSE;
-        _pCommSecretBaseWork->travelingBase[playerID] = COMM_PARENT_ID;  // ‹­§’Eo
+        _pCommSecretBaseWork->travelingBase[playerID] = COMM_PARENT_ID;  // å¼·åˆ¶è„±å‡º
         CommPlayerBaseTeleportServer(playerID, sendPos.xpos, sendPos.zpos, sendPos.dir);
         CommSendFixSizeData_ServerSide(CF_SECRETBASE_RETJUMP,&sendPos);
         return TRUE;
@@ -1065,8 +1065,8 @@ BOOL CommSecretBaseSingleStepFunc(int playerID, int moveX, int moveZ)
 
 //==============================================================================
 /**
- * ”é–§Šî’n‚©‚ç’Yz‚É–ß‚éÛ‚ÌƒCƒxƒ“ƒg‚ğI—¹
- * @param   event ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰
+ * ç§˜å¯†åŸºåœ°ã‹ã‚‰ç‚­é‰±ã«æˆ»ã‚‹éš›ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’çµ‚äº†
+ * @param   event ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  * @retval  none
  */
 //==============================================================================
@@ -1086,8 +1086,8 @@ static void _returnUGMapEventForceDel(TCB_PTR tcb,void* work)
 
 //==============================================================================
 /**
- * ’Yz‚©‚ç”é–§Šî’n‚Ös‚­‚ÌƒCƒxƒ“ƒg‚ğI—¹
- * @param   event ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰
+ * ç‚­é‰±ã‹ã‚‰ç§˜å¯†åŸºåœ°ã¸è¡Œãã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’çµ‚äº†
+ * @param   event ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  * @retval  none
  */
 //==============================================================================
@@ -1115,8 +1115,8 @@ static void _returnUGMapEventForceDelEnterBaseCheck(TCB_PTR tcb,void* work)
 
 //==============================================================================
 /**
- * ”é–§Šî’n‚©‚ç’Yz‚É–ß‚éÛ‚ÌƒCƒxƒ“ƒg
- * @param   event ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰
+ * ç§˜å¯†åŸºåœ°ã‹ã‚‰ç‚­é‰±ã«æˆ»ã‚‹éš›ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+ * @param   event ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  * @retval  none
  */
 //==============================================================================
@@ -1144,7 +1144,7 @@ static void GMEVENT_ReturnMapCheck(TCB_PTR tcb,void* work)
 
     switch (mcw->seq) {
       case _RETURN_START:
-        if(CommMPIsConnectStalth()){   // ’ÊMØ’fó‘Ô‚Ìê‡
+        if(CommMPIsConnectStalth()){   // é€šä¿¡åˆ‡æ–­çŠ¶æ…‹ã®å ´åˆ
             msgNo = msg_underworld_47;
             mcw->seq = _OFFLINE_MSGWAIT;
         }
@@ -1164,11 +1164,11 @@ static void GMEVENT_ReturnMapCheck(TCB_PTR tcb,void* work)
         break;
       case _ONLINE_YESNO_WAIT:
         ret = BmpYesNoSelectMain(mcw->pYesNoWork, HEAPID_FIELD);
-        if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+        if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
             mcw->pYesNoWork = NULL;
             mcw->seq = _RETURN_UG;
         }
-        else if(ret != BMPMENU_NULL){ // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡ I—¹
+        else if(ret != BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ çµ‚äº†
             mcw->pYesNoWork = NULL;
             bClose = TRUE;
         }
@@ -1183,12 +1183,12 @@ static void GMEVENT_ReturnMapCheck(TCB_PTR tcb,void* work)
         break;
       case _OFFLINE_YESNO_WAIT:
         ret = BmpYesNoSelectMain(mcw->pYesNoWork, HEAPID_FIELD);
-        if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+        if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
             mcw->pYesNoWork = NULL;
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_48, FALSE, NULL);
             mcw->seq = _CONNECT_CHKMSG;
         }
-        else if(ret != BMPMENU_NULL){ // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡ I—¹
+        else if(ret != BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ çµ‚äº†
             mcw->pYesNoWork = NULL;
             bClose = TRUE;
         }
@@ -1203,11 +1203,11 @@ static void GMEVENT_ReturnMapCheck(TCB_PTR tcb,void* work)
         break;
       case _CONNECT_YESNO_WAIT:
         ret = BmpYesNoSelectMain(mcw->pYesNoWork, HEAPID_FIELD);
-        if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+        if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
             mcw->pYesNoWork = NULL;
             mcw->seq = _RETURN_UG;
         }
-        else if(ret != BMPMENU_NULL){ // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡ I—¹
+        else if(ret != BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ çµ‚äº†
             mcw->pYesNoWork = NULL;
             bClose = TRUE;
         }
@@ -1225,13 +1225,13 @@ static void GMEVENT_ReturnMapCheck(TCB_PTR tcb,void* work)
     if(!CommMPIsConnectStalth()){
         if((mcw->moveID < COMM_MACHINE_MAX) && !CommIsConnect(mcw->moveID)
            && (CommGetCurrentID() != COMM_PARENT_ID)){
-            OHNO_PRINT("‚¨‚¢‚¾‚µ—\–ñ  %d \n",mcw->moveID);
+            OHNO_PRINT("ãŠã„ã ã—äºˆç´„  %d \n",mcw->moveID);
             bClose = TRUE;
         }
     }
     if(bClose){
         CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
-        //        ‚Æ‚è‚â‚ß‚ğ‚³[‚Î‚É‚»‚¤‚µ‚ñ
+        //        ã¨ã‚Šã‚„ã‚ã‚’ã•ãƒ¼ã°ã«ãã†ã—ã‚“
         _returnUGMapEventForceDelEnterBaseCheck(tcb,mcw);
         CommPlayerHoldEnd();
     }
@@ -1240,10 +1240,10 @@ static void GMEVENT_ReturnMapCheck(TCB_PTR tcb,void* work)
 
 //==============================================================================
 /**
- * ”é–§Šî’n‚©‚ç’Yz‚É–ß‚éÛ‚ÌƒCƒxƒ“ƒg
- * @param   pFSys ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
- * @param   x,y,dir  ˆÚ“®æ‚ÌˆÊ’u
- * @param   netID ˆÚ“®‚·‚él
+ * ç§˜å¯†åŸºåœ°ã‹ã‚‰ç‚­é‰±ã«æˆ»ã‚‹éš›ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+ * @param   pFSys ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
+ * @param   x,y,dir  ç§»å‹•å…ˆã®ä½ç½®
+ * @param   netID ç§»å‹•ã™ã‚‹äºº
  * @retval  none
  */
 //==============================================================================
@@ -1271,19 +1271,19 @@ static void _returnUGMapEvent(FIELDSYS_WORK* pFSys, int x, int z, int dir, int n
 
 //==============================================================================
 /**
- * ”é–§Šî’n‚©‚ç’Yz‚É–ß‚éÛ‚ÌƒCƒxƒ“ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ì¶¬
- * @param   pFSys ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
- * @param   x,y,dir  ˆÚ“®æ‚ÌˆÊ’u
- * @param   netID ˆÚ“®‚·‚él
- * @retval  ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * ç§˜å¯†åŸºåœ°ã‹ã‚‰ç‚­é‰±ã«æˆ»ã‚‹éš›ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã®ç”Ÿæˆ
+ * @param   pFSys ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
+ * @param   x,y,dir  ç§»å‹•å…ˆã®ä½ç½®
+ * @param   netID ç§»å‹•ã™ã‚‹äºº
+ * @retval  ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 //==============================================================================
 
 static EVENT_UGCHG_WORK* _createFactoryUGCHG(FIELDSYS_WORK* pFSys, int x, int z, int dir, int netID, int moveID)
 {
-    //ƒWƒƒƒ“ƒv
+    //ã‚¸ãƒ£ãƒ³ãƒ—
     EVENT_UGCHG_WORK * mcw = NULL;
-    //ƒCƒxƒ“ƒg¶¬
+    //ã‚¤ãƒ™ãƒ³ãƒˆç”Ÿæˆ
     if(pFSys->event==NULL){
         mcw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(EVENT_UGCHG_WORK));
         MI_CpuClear8(mcw, sizeof(EVENT_UGCHG_WORK));
@@ -1292,7 +1292,7 @@ static EVENT_UGCHG_WORK* _createFactoryUGCHG(FIELDSYS_WORK* pFSys, int x, int z,
         mcw->next_z = z;
         mcw->netID = netID;
         mcw->moveID = moveID;
-        GF_ASSERT(pFSys->location->zone_id == ZONE_ID_UG); //¡’n‰º
+        GF_ASSERT(pFSys->location->zone_id == ZONE_ID_UG); //ä»Šåœ°ä¸‹
         mcw->next_zone_id = ZONE_ID_UG;
         mcw->nextDir = dir;
     }
@@ -1301,9 +1301,9 @@ static EVENT_UGCHG_WORK* _createFactoryUGCHG(FIELDSYS_WORK* pFSys, int x, int z,
 
 //==============================================================================
 /**
- * ©•ª‚Ì”é–§Šî’n‚É“ü‚Á‚Ä‚¢‚él”‚ğ’²‚×‚é
- * @param   netID   ©•ª
- * @retval  l”
+ * è‡ªåˆ†ã®ç§˜å¯†åŸºåœ°ã«å…¥ã£ã¦ã„ã‚‹äººæ•°ã‚’èª¿ã¹ã‚‹
+ * @param   netID   è‡ªåˆ†
+ * @retval  äººæ•°
  */
 //==============================================================================
 
@@ -1327,29 +1327,29 @@ static int _checkMySecretBaseEnterPlayersNum(int netID, BOOL bServer)
         }
         else if(UgSecretBaseIsSecretBasePlace(x,z)){
             no = _getSecretIndex( x, z);
-            OHNO_PRINT("%d‚³‚ñ %dŠî’n \n", i, no);
+            OHNO_PRINT("%dã•ã‚“ %dåŸºåœ° \n", i, no);
             if(no == netID){
                 num++;
             }
         }
     }
-    OHNO_PRINT("%d‚É“ü‚Á‚Ä‚¢‚é‚Ì‚Í%dl‚Å‚· \n",netID,num);
+    OHNO_PRINT("%dã«å…¥ã£ã¦ã„ã‚‹ã®ã¯%däººã§ã™ \n",netID,num);
     return num;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚ ‚¯‚Ä‚¨‚­E‚µ‚ß‚é ƒEƒBƒ“ƒhƒEƒZƒbƒg
+ * ã‚ã‘ã¦ãŠããƒ»ã—ã‚ã‚‹ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	data	ƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	cgx		ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ˆÊ’u
- * @param	pal		ƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg”Ô†
- * @param	heap	ƒq[ƒvID
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	data	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	cgx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ä½ç½®
+ * @param	pal		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	BMPƒƒjƒ…[ƒ[ƒN
+ * @return	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- * @li	BMPƒEƒBƒ“ƒhƒE‚ÆBMPƒƒjƒ…[ƒ[ƒN‚ğAlloc‚Åæ“¾‚µ‚Ä‚¢‚é
+ * @li	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¨BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’Allocã§å–å¾—ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BMPMENU_WORK * _connectSelectInit(
@@ -1379,8 +1379,8 @@ static BMPMENU_WORK * _connectSelectInit(
 
 //==============================================================================
 /**
- * ’Yz‚©‚ç”é–§Šî’n‚É“ü‚éÛ‚ÌƒCƒxƒ“ƒg l‚Ì‚Æ©•ª‚Ì‚Å‚Í‹““®‚ªˆá‚¤
- * @param   event ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰
+ * ç‚­é‰±ã‹ã‚‰ç§˜å¯†åŸºåœ°ã«å…¥ã‚‹éš›ã®ã‚¤ãƒ™ãƒ³ãƒˆ äººã®ã¨è‡ªåˆ†ã®ã§ã¯æŒ™å‹•ãŒé•ã†
+ * @param   event ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  * @retval  none
  */
 //==============================================================================
@@ -1430,12 +1430,12 @@ static void GMEVENT_EnterBaseCheck(TCB_PTR tcb,void* work)
         break;
       case _TARGET_YESNO_WAIT:
         ret = BmpYesNoSelectMain(mcw->pYesNoWork, HEAPID_FIELD);
-        if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+        if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
             //            mcw->index = CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_46, FALSE, NULL);
             mcw->pYesNoWork = NULL;
             mcw->seq = _TARGET_ENTER_SB_WAIT;
         }
-        else if(ret != BMPMENU_NULL){ // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡ I—¹
+        else if(ret != BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ çµ‚äº†
             mcw->pYesNoWork = NULL;
             bClose = TRUE;
         }
@@ -1445,7 +1445,7 @@ static void GMEVENT_EnterBaseCheck(TCB_PTR tcb,void* work)
             mcw->seq = _ENTER_SB;
         }
         break;
-        // ©•ª‚Ì”é–§Šî’n‚É“ü‚é
+        // è‡ªåˆ†ã®ç§˜å¯†åŸºåœ°ã«å…¥ã‚‹
       case _MY_MSGWAIT:
         if(CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0){
             mcw->pYesNoWork = BmpYesNoSelectInit(fsys->bgl,
@@ -1456,9 +1456,9 @@ static void GMEVENT_EnterBaseCheck(TCB_PTR tcb,void* work)
         break;
       case _MY_YESNO_WAIT:
         ret = BmpYesNoSelectMain(mcw->pYesNoWork, HEAPID_FIELD);
-        if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+        if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
             mcw->pYesNoWork = NULL;
-            if(CommPlayerIsFlagData(mcw->moveID) || (_checkMySecretBaseEnterPlayersNum(mcw->moveID,FALSE) > 0) ){  // Šø‚ğ‚Á‚Ä‚¢‚Á‚é
+            if(CommPlayerIsFlagData(mcw->moveID) || (_checkMySecretBaseEnterPlayersNum(mcw->moveID,FALSE) > 0) ){  // æ——ã‚’æŒã£ã¦ã„ã£ã‚‹
                 CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_44, FALSE, NULL);
                 mcw->seq = _TARGET_ENTER_SB_WAIT;
             }
@@ -1467,7 +1467,7 @@ static void GMEVENT_EnterBaseCheck(TCB_PTR tcb,void* work)
                 mcw->seq = _MYSB_CHANGE_WAIT;
             }
         }
-        else if(ret != BMPMENU_NULL){ // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡ I—¹
+        else if(ret != BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ çµ‚äº†
             mcw->pYesNoWork = NULL;
             bClose = TRUE;
         }
@@ -1482,22 +1482,22 @@ static void GMEVENT_EnterBaseCheck(TCB_PTR tcb,void* work)
         break;
       case _MYSB_CHANGE_YESNO_WAIT:
         ret = BmpYesNoSelectMain(mcw->pYesNoWork, HEAPID_FIELD);
-        if(ret == 0){ // ‚ ‚¯‚Ä‚¨‚­
+        if(ret == 0){ // ã‚ã‘ã¦ãŠã
             mcw->pYesNoWork = NULL;
             mcw->seq = _TARGET_ENTER_SB_WAIT;
         }
-        else if(ret == 1){ // •Â‚ß‚é
+        else if(ret == 1){ // é–‰ã‚ã‚‹
             mcw->pYesNoWork = NULL;
             mcw->seq = _ENTER_MYSB_CHANGE_WAIT;
         }
-        else if(ret != BMPMENU_NULL){ // •Â‚ß‚é
+        else if(ret != BMPMENU_NULL){ // é–‰ã‚ã‚‹
             mcw->pYesNoWork = NULL;
             bClose = TRUE;
         }
         break;
       case _ENTER_MYSB_CHANGE_WAIT:
         if(CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0){
-            // offline“üê
+            // offlineå…¥å ´
             CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
             CommFieldStateStalthUnderGround();
             mcw->seq = _ENTER_MYSB_CHANGE;
@@ -1506,7 +1506,7 @@ static void GMEVENT_EnterBaseCheck(TCB_PTR tcb,void* work)
       case _ENTER_MYSB_CHANGE:
         if(CommMPIsConnectStalth() && (CommGetCurrentID() == COMM_PARENT_ID)){
             u8 bFlag = _DRILL_START_REFORM;
-            // ”é–§Šî’nì¬‚ğƒT[ƒo[‚É‘—M ƒCƒxƒ“ƒg‚ÍI—¹ ƒƒbƒN‚Í‚©‚¯‚½‚Ü‚Ü ‚·‚Å‚ÉOFFLINE
+            // ç§˜å¯†åŸºåœ°ä½œæˆã‚’ã‚µãƒ¼ãƒãƒ¼ã«é€ä¿¡ ã‚¤ãƒ™ãƒ³ãƒˆã¯çµ‚äº† ãƒ­ãƒƒã‚¯ã¯ã‹ã‘ãŸã¾ã¾ ã™ã§ã«OFFLINE
             CommSendFixSizeData(CF_DRILL_START, &bFlag);
             _returnUGMapEventForceDel(tcb,mcw);
             //CommPlayerHoldEnd();
@@ -1515,13 +1515,13 @@ static void GMEVENT_EnterBaseCheck(TCB_PTR tcb,void* work)
         break;
       case _ENTER_SB:
         CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
-        // •’Ê‚É“ü‚é‚¾‚¯ ONLINE
+        // æ™®é€šã«å…¥ã‚‹ã ã‘ ONLINE
         ugJump.bResult = TRUE;
         ugJump.baseNo = mcw->moveID;
         ugJump.bBaseIn = TRUE;
         CommSendFixSizeData(CF_SECRETBASE_EVENT_RES, &ugJump);
         _returnUGMapEventForceDel(tcb,mcw);
-        _pCommSecretBaseWork->moveTickets = _MOVE_TICKETS; // ”­Œ”
+        _pCommSecretBaseWork->moveTickets = _MOVE_TICKETS; // ç™ºåˆ¸
         return;
     }
 
@@ -1531,7 +1531,7 @@ static void GMEVENT_EnterBaseCheck(TCB_PTR tcb,void* work)
             bClose = TRUE;
         }
     }
-    if(bClose){  // ‚Æ‚è‚â‚ß
+    if(bClose){  // ã¨ã‚Šã‚„ã‚
         CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
         _returnUGMapEventForceDelEnterBaseCheck(tcb,mcw);
         CommPlayerHoldEnd();
@@ -1542,11 +1542,11 @@ static void GMEVENT_EnterBaseCheck(TCB_PTR tcb,void* work)
 
 //==============================================================================
 /**
- * @brief ’Yz‚©‚ç”é–§Šî’n‚És‚­Û‚ÌƒCƒxƒ“ƒg
- *        ©•ª‚Ì”é–§Šî’n‚Ìê‡ƒŒƒCƒAƒEƒg‚·‚é‚©‚Ç‚¤‚©•·‚©‚ê‚é
- * @param   pFSys ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
- * @param   x,y,dir  ˆÚ“®æ‚ÌˆÊ’u
- * @param   netID ˆÚ“®‚·‚él
+ * @brief ç‚­é‰±ã‹ã‚‰ç§˜å¯†åŸºåœ°ã«è¡Œãéš›ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+ *        è‡ªåˆ†ã®ç§˜å¯†åŸºåœ°ã®å ´åˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã™ã‚‹ã‹ã©ã†ã‹èã‹ã‚Œã‚‹
+ * @param   pFSys ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
+ * @param   x,y,dir  ç§»å‹•å…ˆã®ä½ç½®
+ * @param   netID ç§»å‹•ã™ã‚‹äºº
  * @retval  none
  */
 //==============================================================================
@@ -1576,9 +1576,9 @@ static void _enterSecretBaseEvent(FIELDSYS_WORK* pFSys, int x, int z, int dir,
 
 //==============================================================================
 /**
- * ”é–§Šî’nˆÚ“®‚ªŠ®—¹‚µ‚½‚±‚Æ‚ğƒT[ƒo[‚É“`‚¦‚éƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+ * ç§˜å¯†åŸºåœ°ç§»å‹•ãŒå®Œäº†ã—ãŸã“ã¨ã‚’ã‚µãƒ¼ãƒãƒ¼ã«ä¼ãˆã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
  * @param   none
- * @retval  ƒRƒ}ƒ“ƒhƒTƒCƒY
+ * @retval  ã‚³ãƒãƒ³ãƒ‰ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1589,8 +1589,8 @@ int CommSecretBaseInfoGetRetJumpSize(void)
 
 //==============================================================================
 /**
- * ”é–§Šî’nˆÚ“®‚ªŠ®—¹‚µ‚½‚±‚Æ‚ğƒT[ƒo[‚©‚ç‚à‚ç‚Á‚½ CF_SECRETBASE_RETJUMP
- * @param   x   ˆÊ’u
+ * ç§˜å¯†åŸºåœ°ç§»å‹•ãŒå®Œäº†ã—ãŸã“ã¨ã‚’ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã‚‚ã‚‰ã£ãŸ CF_SECRETBASE_RETJUMP
+ * @param   x   ä½ç½®
  * @param   y
  * @retval  none
  */
@@ -1609,16 +1609,16 @@ void CommSecretBaseInfoRecvRetJump(int netID, int size, void* pData, void* pWork
         TalkAskForceReset();
         UgMgrForceExitNowTCB();
         UgTrapForceExit(CommGetCurrentID(), FALSE);
-//        CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
-        CommSendFixData(CF_TRAP_END_FORCE);    // ƒT[ƒo[‘¤‚à‹­§‰ğœ
-        // ˆÚ“®ŠJn
+//        CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
+        CommSendFixData(CF_TRAP_END_FORCE);    // ã‚µãƒ¼ãƒãƒ¼å´ã‚‚å¼·åˆ¶è§£é™¤
+        // ç§»å‹•é–‹å§‹
         _pCommSecretBaseWork->bClientBaseIn = FALSE;
-        OHNO_PRINT("”é–§Šî’n‚Å–³‚¢ˆÚ“®ŠJn %d %d %d\n", pSendPos->netID,pSendPos->xpos,pSendPos->zpos);
+        OHNO_PRINT("ç§˜å¯†åŸºåœ°ã§ç„¡ã„ç§»å‹•é–‹å§‹ %d %d %d\n", pSendPos->netID,pSendPos->xpos,pSendPos->zpos);
         CommSetNotRecvData(TRUE);
         _jumpMapForUG(_pCommSecretBaseWork->pFSys, pSendPos->xpos, pSendPos->zpos, pSendPos->dir, pSendPos->netID, pSendPos->bRemove);
         _pCommSecretBaseWork->pNowMoveingBase = NULL;
     }
-    else{  // ƒLƒƒƒ‰‚¾‚¯ˆÚ“®
+    else{  // ã‚­ãƒ£ãƒ©ã ã‘ç§»å‹•
         UgTrapTurnDispEnd(pSendPos->netID);
         CommPlayerBaseTeleportClient(pSendPos->netID, pSendPos->xpos, pSendPos->zpos, pSendPos->dir);
     }
@@ -1626,8 +1626,8 @@ void CommSecretBaseInfoRecvRetJump(int netID, int size, void* pData, void* pWork
 
 //==============================================================================
 /**
- * ”é–§Šî’nˆÚ“®‚ªŠ®—¹‚µ‚½‚±‚Æ‚ğƒT[ƒo[‚É“`‚¦‚é
- * @param   x   ˆÊ’u
+ * ç§˜å¯†åŸºåœ°ç§»å‹•ãŒå®Œäº†ã—ãŸã“ã¨ã‚’ã‚µãƒ¼ãƒãƒ¼ã«ä¼ãˆã‚‹
+ * @param   x   ä½ç½®
  * @param   y
  * @retval  none
  */
@@ -1635,14 +1635,14 @@ void CommSecretBaseInfoRecvRetJump(int netID, int size, void* pData, void* pWork
 
 void CommSecretBaseInfoJumpEnd(void)
 {
-    OHNO_PRINT("”é–§Šî’nˆÚ“®‚ªŠ®—¹ ‘—MCF_SECRETBASE_JUMP_END\n");
+    OHNO_PRINT("ç§˜å¯†åŸºåœ°ç§»å‹•ãŒå®Œäº† é€ä¿¡CF_SECRETBASE_JUMP_END\n");
     CommSendFixData(CF_SECRETBASE_JUMP_END);
 }
 
 //==============================================================================
 /**
- * ”é–§Šî’nˆÚ“®‚ªŠ®—¹   CF_SECRETBASE_JUMP_END
- * @param   x   ˆÊ’u
+ * ç§˜å¯†åŸºåœ°ç§»å‹•ãŒå®Œäº†   CF_SECRETBASE_JUMP_END
+ * @param   x   ä½ç½®
  * @param   y
  * @retval  none
  */
@@ -1650,7 +1650,7 @@ void CommSecretBaseInfoJumpEnd(void)
 
 void CommSecretBaseInfoRecvJumpEnd(int netID, int size, void* pData, void* pWork)
 {
-    OHNO_PRINT("óM\n");
+    OHNO_PRINT("å—ä¿¡\n");
     _pCommSecretBaseWork->travelingBase[netID] = _INVALID_BASE;
     _pCommSecretBaseWork->travelingBaseSend[netID]  = _INVALID_BASE;
 //    CommPlayerManagerReboot();
@@ -1658,9 +1658,9 @@ void CommSecretBaseInfoRecvJumpEnd(int netID, int size, void* pData, void* pWork
 
 //==============================================================================
 /**
- * ”é–§Šî’nˆÚ“®‚ğs‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
- * @param   netID ƒvƒŒ[ƒ„[
- * @retval  ˆÚ“®‚µ‚Ä‚¢‚½‚çTRUE
+ * ç§˜å¯†åŸºåœ°ç§»å‹•ã‚’è¡Œã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
+ * @param   netID ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼
+ * @retval  ç§»å‹•ã—ã¦ã„ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -1676,8 +1676,8 @@ BOOL CommSecretBaseIsTraveling(int netID)
 
 //==============================================================================
 /**
- * ”é–§Šî’nî•ñ‚ğ’Ç‰Á‚·‚é
- * @param   x   ˆÊ’u
+ * ç§˜å¯†åŸºåœ°æƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
+ * @param   x   ä½ç½®
  * @param   y
  * @retval  none
  */
@@ -1694,12 +1694,12 @@ static void _insertBaseNetID(int x,int y, int dir, int netID)
     }
 }
 
-// q‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€
+// å­æ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
 //==============================================================================
 /**
- * q‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€  e‹@‚É”é–§Šî’n‚ğ‘—‚é
- *  ‚Æ‚è‚ ‚¦‚¸©•ª‚ÌˆêŒÂ‚¾‚¯
+ * å­æ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ   è¦ªæ©Ÿã«ç§˜å¯†åŸºåœ°ã‚’é€ã‚‹
+ *  ã¨ã‚Šã‚ãˆãšè‡ªåˆ†ã®ä¸€å€‹ã ã‘
  * @param   none
  * @retval  none
  */
@@ -1712,23 +1712,23 @@ void CommSecretBaseInfoChildSendStart(void)
     u8 num=0;
     int id=CommGetCurrentID();
 
-    /// ˆêŒÂ‚¾‚¯‚ÇƒLƒ…[‚É‚Â‚ñ‚Å‚¨‚­
-    OHNO_PRINT("”é–§Šî’n‚ğ‘—M‚µ‚½‚¢-------------------%d-\n", id);
+    /// ä¸€å€‹ã ã‘ã©ã‚­ãƒ¥ãƒ¼ã«ã¤ã‚“ã§ãŠã
+    OHNO_PRINT("ç§˜å¯†åŸºåœ°ã‚’é€ä¿¡ã—ãŸã„-------------------%d-\n", id);
 
 //    if(SecretBaseIsSecretBaseMake(pSecret)){
 
-        OHNO_PRINT("”é–§Šî’n‚ğƒLƒ…[‚É“ü‚ê‚½----%d-\n", CF_SECRETBASE_DATA);
+        OHNO_PRINT("ç§˜å¯†åŸºåœ°ã‚’ã‚­ãƒ¥ãƒ¼ã«å…¥ã‚ŒãŸ----%d-\n", CF_SECRETBASE_DATA);
         CommSetSendQueue(CF_SECRETBASE_DATA,
                          &_pCommSecretBaseWork->secretBaseData[_SECRETBASE_MY_ID],
                          sizeof(SecretBaseInfo));
 //    }
 }
 
-// e‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€
+// è¦ªæ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
 //==============================================================================
 /**
- * e‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€  q‹@‚Éw’è‚³‚ê‚½”é–§Šî’n‚ğ‘—‚é
+ * è¦ªæ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ   å­æ©Ÿã«æŒ‡å®šã•ã‚ŒãŸç§˜å¯†åŸºåœ°ã‚’é€ã‚‹
  * @param   none
  * @retval  none
  */
@@ -1736,7 +1736,7 @@ void CommSecretBaseInfoChildSendStart(void)
 
 void CommSecretBaseInfoParentSendStart(int netID)
 {
-    OHNO_PRINT("q‹@‚É”é–§Šî’n‚ğ‘—‚è‚Ü‚· %d \n", netID);
+    OHNO_PRINT("å­æ©Ÿã«ç§˜å¯†åŸºåœ°ã‚’é€ã‚Šã¾ã™ %d \n", netID);
     CommSetSendQueue_ServerSide(CF_SECRETBASE_DATA_SERVER,
                                 &_pCommSecretBaseWork->secretBaseData[netID],
                                 sizeof(SecretBaseInfo));
@@ -1744,7 +1744,7 @@ void CommSecretBaseInfoParentSendStart(int netID)
 
 //==============================================================================
 /**
- * q‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€  e‹@‚©‚ç‚«‚½¡‚©‚çˆÚ“®‚·‚é”é–§Šî’nƒf[ƒ^ CF_SECRETBASE_DATA_SERVER
+ * å­æ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ   è¦ªæ©Ÿã‹ã‚‰ããŸä»Šã‹ã‚‰ç§»å‹•ã™ã‚‹ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿ CF_SECRETBASE_DATA_SERVER
  * @param   none
  * @retval  none
  */
@@ -1771,45 +1771,45 @@ void CommSecretBaseInfoRecvDataServer(int netID, int size, void* pData, void* pW
 #if T1665_060816_FIX
             _connectEnable();
 #endif //T1665_060816_FIX
-            OHNO_PRINT("ƒGƒ‰[ƒ`ƒPƒbƒg‚È‚Ì‚ÅÀ•W‚ğ–ß‚³‚¹‚é\n");
+            OHNO_PRINT("ã‚¨ãƒ©ãƒ¼ãƒã‚±ãƒƒãƒˆãªã®ã§åº§æ¨™ã‚’æˆ»ã•ã›ã‚‹\n");
             return;
         }
     }
     _pCommSecretBaseWork->moveTickets = _TRANS_TICKETS;
 
     id = pBase->netID;
-    OHNO_PRINT("ˆÚ“®‰Â”\   ---   ”é–§Šî’nóMŠ®—¹ %d\n",id);
+    OHNO_PRINT("ç§»å‹•å¯èƒ½   ---   ç§˜å¯†åŸºåœ°å—ä¿¡å®Œäº† %d\n",id);
     GF_ASSERT(id < _SECRETBASE_NUM_MAX);
     pBase = &_pCommSecretBaseWork->secretBaseData[id];
     MI_CpuCopy8(pData, pBase,  sizeof(SecretBaseInfo));
 
     _pCommSecretBaseWork->travelBase[pBase->moveID] = pBase->netID;
     OHNO_PRINT("_pCommSecretBaseWork->travelBase[pBase->moveID] %d %d\n",pBase->moveID,pBase->netID);
-    // ƒƒbƒZ[ƒW•\¦
+    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
     if( pBase->netID != _SECRETBASE_MY_ID){
         _pCommSecretBaseWork->travelingBaseMessage[pBase->moveID] = pBase->netID;
     }
-    // ˆÚ“®‚·‚éˆÊ’u‚ğŒvZ
+    // ç§»å‹•ã™ã‚‹ä½ç½®ã‚’è¨ˆç®—
     _getSecretBaseOutPos(pBase->netID, &outDoorPos);
     if(CommGetCurrentID() == pBase->moveID){
-        // ˆÚ“®ŠJn
-        OHNO_PRINT("ƒNƒ‰ƒCƒAƒ“ƒg‘¤”é–§Šî’nˆÚ“®ŠJn%d %d %d\n",pBase->netID, outDoorPos.xpos, outDoorPos.zpos-1);
+        // ç§»å‹•é–‹å§‹
+        OHNO_PRINT("ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ç§˜å¯†åŸºåœ°ç§»å‹•é–‹å§‹%d %d %d\n",pBase->netID, outDoorPos.xpos, outDoorPos.zpos-1);
         _pCommSecretBaseWork->bClientBaseIn = TRUE;
         _jumpMapForUG(_pCommSecretBaseWork->pFSys, outDoorPos.xpos, outDoorPos.zpos-1 , DIR_UP, pBase->moveID, FALSE);
         _pCommSecretBaseWork->pNowMoveingBase = pBase;
 
         pSecret = (SECRETBASEDATA*)pBase->secretBaseDataBuff;
-        // q‹@‚ª–ß‚éêŠ‚ğ‹L‰¯
+        // å­æ©ŸãŒæˆ»ã‚‹å ´æ‰€ã‚’è¨˜æ†¶
         _pCommSecretBaseWork->resquePosX = SecretBaseGetSecretBasePositionX(pSecret);
         _pCommSecretBaseWork->resquePosZ = SecretBaseGetSecretBasePositionZ(pSecret);
         _pCommSecretBaseWork->resqueDir = SecretBaseGetSecretBasePositionDir(pSecret);
-        OHNO_PRINT("–ß‚éêŠ‚ğ‹L‰¯ %d %d %d\n",
+        OHNO_PRINT("æˆ»ã‚‹å ´æ‰€ã‚’è¨˜æ†¶ %d %d %d\n",
                    _pCommSecretBaseWork->resquePosX,
                    _pCommSecretBaseWork->resquePosZ,
                    _pCommSecretBaseWork->resqueDir);
         UgInitialDataSend();
     }
-    else{  // ƒLƒƒƒ‰‚¾‚¯ˆÚ“®
+    else{  // ã‚­ãƒ£ãƒ©ã ã‘ç§»å‹•
         CommPlayerBaseTeleportClient(pBase->moveID, outDoorPos.xpos, outDoorPos.zpos, DIR_UP);
     }
 }
@@ -1817,7 +1817,7 @@ void CommSecretBaseInfoRecvDataServer(int netID, int size, void* pData, void* pW
 
 //==============================================================================
 /**
- * e‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€  q‹@‚©‚ç‚«‚½”é–§Šî’n‚ğŠi”[‚·‚é CF_SECRETBASE_DATA ‚Ìó‚¯æ‚è‘¤
+ * è¦ªæ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ   å­æ©Ÿã‹ã‚‰ããŸç§˜å¯†åŸºåœ°ã‚’æ ¼ç´ã™ã‚‹ CF_SECRETBASE_DATA ã®å—ã‘å–ã‚Šå´
  * @param   none
  * @retval  none
  */
@@ -1836,18 +1836,18 @@ void CommSecretBaseInfoRecvData(int netID, int size, void* pData, void* pWork)
     MI_CpuCopy8(pData,  pBase, sizeof(SecretBaseInfo));
     pBase->netID = netID;
 
-    _pCommSecretBaseWork->bChildRecv = TRUE;  //q‹@ƒf[ƒ^‚ğóM‚µ‚½
-    OHNO_PRINT("e‹@‚ª”é–§Šî’nó‚¯æ‚Á‚½ %d\n", netID);
-    OHNO_SP_PRINT("e‹@‚ª”é–§Šî’nó‚¯æ‚Á‚½ %d\n", netID);
+    _pCommSecretBaseWork->bChildRecv = TRUE;  //å­æ©Ÿãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸ
+    OHNO_PRINT("è¦ªæ©ŸãŒç§˜å¯†åŸºåœ°å—ã‘å–ã£ãŸ %d\n", netID);
+    OHNO_SP_PRINT("è¦ªæ©ŸãŒç§˜å¯†åŸºåœ°å—ã‘å–ã£ãŸ %d\n", netID);
     pSecret = (SECRETBASEDATA*)pBase->secretBaseDataBuff;
 
-    // ˆÊ’u‚ğ·‚µ‘Ö‚¦‚Äq‹@‚É•ª”z
+    // ä½ç½®ã‚’å·®ã—æ›¿ãˆã¦å­æ©Ÿã«åˆ†é…
     _pCommSecretBaseWork->secretHDataServer[netID].xpos = SecretBaseGetSecretBasePositionX(pSecret);
     _pCommSecretBaseWork->secretHDataServer[netID].zpos = SecretBaseGetSecretBasePositionZ(pSecret);
     _pCommSecretBaseWork->secretHDataServer[netID].dir = SecretBaseGetSecretBasePositionDir(pSecret);
     _sendSecretBasePosition();
 
-    // ‚ ‚½‚èƒf[ƒ^ì¬
+    // ã‚ãŸã‚Šãƒ‡ãƒ¼ã‚¿ä½œæˆ
     _makeAttr(pSecret,_pCommSecretBaseWork->aAttr[netID]);
     //UgSecretBaseResetPlayer(netID);
 
@@ -1857,9 +1857,9 @@ void CommSecretBaseInfoRecvData(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ”é–§Šî’nƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚·
+ * ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1890,7 +1890,7 @@ void CommSecretBaseResetPosRecv(void)
 
 //==============================================================================
 /**
- *  ”é–§Šî’n‚ÌˆÊ’u‚Ì‚İ‚ğƒRƒ“ƒpƒNƒg‰»‚µ‚Ä‘—‚é
+ *  ç§˜å¯†åŸºåœ°ã®ä½ç½®ã®ã¿ã‚’ã‚³ãƒ³ãƒ‘ã‚¯ãƒˆåŒ–ã—ã¦é€ã‚‹
  * @param   none
  * @retval  none
  */
@@ -1919,7 +1919,7 @@ static void _sendSecretBasePosition(void)
 
 //==============================================================================
 /**
- *  ”é–§Šî’n‚ÌˆÊ’u‚Ì‚İ‚ğóM‚·‚é   CF_SECRETBASE_POS
+ *  ç§˜å¯†åŸºåœ°ã®ä½ç½®ã®ã¿ã‚’å—ä¿¡ã™ã‚‹   CF_SECRETBASE_POS
  * @param   none
  * @retval  none
  */
@@ -1956,7 +1956,7 @@ void CommSecretBaseInfoRecvPos(int netID, int size, void* pData, void* pWork)
         j++;
         if((_PLAYER_INVALID_GRID != pHead->xpos) && (_PLAYER_INVALID_GRID != pHead->zpos)){
 //            if((pHead->xpos == pOldDoor->xpos) && (pHead->zpos == pOldDoor->zpos) && (pHead->dir == pOldDoor->dir)){
-//                OHNO_PRINT("“¯‚¶‚¾‚©‚ç’u‚©‚È‚¢\n");
+//                OHNO_PRINT("åŒã˜ã ã‹ã‚‰ç½®ã‹ãªã„\n");
 //            }
 //            else{
                 MI_CpuCopy8(pHead, pOldDoor, sizeof(_Pos));
@@ -1965,12 +1965,12 @@ void CommSecretBaseInfoRecvPos(int netID, int size, void* pData, void* pWork)
         }
     }
     _pCommSecretBaseWork->bPosRecv = TRUE;
-    OHNO_PRINT("”é–§Šî’nˆÊ’uóM\n");
+    OHNO_PRINT("ç§˜å¯†åŸºåœ°ä½ç½®å—ä¿¡\n");
 }
 
 //==============================================================================
 /**
- *  ”é–§Šî’n‚ÌˆÊ’uƒf[ƒ^‚ÌƒTƒCƒY‚ğ•Ô‚·
+ *  ç§˜å¯†åŸºåœ°ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
  * @retval  none
  */
@@ -1983,7 +1983,7 @@ int CommSecretBaseInfoGetPosSize(void)
 
 //==============================================================================
 /**
- * ƒhƒA‚ğ•\¦
+ * ãƒ‰ã‚¢ã‚’è¡¨ç¤º
  * @param   none
  * @retval  none
  */
@@ -2001,7 +2001,7 @@ static void _doorPictAdd(int x, int z, int dir, int index)
 
 //==============================================================================
 /**
- * ƒhƒA‚ğó‘Ô‚ğ‚İ‚Ä•\¦
+ * ãƒ‰ã‚¢ã‚’çŠ¶æ…‹ã‚’ã¿ã¦è¡¨ç¤º
  * @param   none
  * @retval  none
  */
@@ -2024,8 +2024,8 @@ static void _taskDoor(TCB_PTR tcb , void* work)
     px = Player_NowGPosXGet( _pCommSecretBaseWork->pFSys->player );
     pz = Player_NowGPosZGet( _pCommSecretBaseWork->pFSys->player );
     if(UgSecretBaseIsSecretBasePlace(px,pz)){
- //       OHNO_PRINT("”é–§Šî’n‚Å‚ÍƒhƒA‚ğì‚ç‚È‚¢ %d %d\n",px,pz);
-        return;  //©•ª‚ª”é–§Šî’n‚É‚¢‚éê‡¶¬‚µ‚È‚¢
+ //       OHNO_PRINT("ç§˜å¯†åŸºåœ°ã§ã¯ãƒ‰ã‚¢ã‚’ä½œã‚‰ãªã„ %d %d\n",px,pz);
+        return;  //è‡ªåˆ†ãŒç§˜å¯†åŸºåœ°ã«ã„ã‚‹å ´åˆç”Ÿæˆã—ãªã„
     }
 
 
@@ -2066,7 +2066,7 @@ static void _taskDoor(TCB_PTR tcb , void* work)
 
 //==============================================================================
 /**
- * ƒhƒA‚ğÁ‹
+ * ãƒ‰ã‚¢ã‚’æ¶ˆå»
  * @param   none
  * @retval  none
  */
@@ -2077,7 +2077,7 @@ static void _doorPictDelete(int netID)
     if(_pCommSecretBaseWork->doorAct[netID] != _M3DO_NONE){
         M3DO_CleanMap3DObj(_pCommSecretBaseWork->doorAct[netID],
                            _pCommSecretBaseWork->pFSys->Map3DObjExp);
-        OHNO_PRINT("ƒhƒAÁ‹^^^^^^ %d\n",netID);
+        OHNO_PRINT("ãƒ‰ã‚¢æ¶ˆå»^^^^^^ %d\n",netID);
         
         _pCommSecretBaseWork->doorAct[netID] = _M3DO_NONE;
         _pCommSecretBaseWork->doorActDir[netID] = DIR_NOT;
@@ -2086,7 +2086,7 @@ static void _doorPictDelete(int netID)
 
 //==============================================================================
 /**
- * ƒhƒA‚ğÁ‹
+ * ãƒ‰ã‚¢ã‚’æ¶ˆå»
  * @param   none
  * @retval  none
  */
@@ -2151,8 +2151,8 @@ static BOOL Sub_UgFadeIn(GMEVENT_CONTROL * event)
 
 //==============================================================================
 /**
- *  w’èˆÊ’u‚ÖƒWƒƒƒ“ƒv‚·‚éƒCƒxƒ“ƒg
- * @param   event ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰[
+ *  æŒ‡å®šä½ç½®ã¸ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
+ * @param   event ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
  * @retval  none
  */
 //==============================================================================
@@ -2189,7 +2189,7 @@ static BOOL GMEVENT_JumpMapForUG(GMEVENT_CONTROL * event)
         _connectDisable();
         mcw->connectNum = CommGetConnectNum();
         CommDisableSendMoveData();
-        CommDigStoneManagerReset();  //ƒ^ƒ}‚ªŒõ‚Á‚Ä‚¢‚é‚Æ“s‡‚ªˆ«‚¢
+        CommDigStoneManagerReset();  //ã‚¿ãƒãŒå…‰ã£ã¦ã„ã‚‹ã¨éƒ½åˆãŒæ‚ªã„
         if( CommStateJumpUnderGround() ){
             mcw->seq = _JP_START_WAIT;
         }
@@ -2212,14 +2212,14 @@ static BOOL GMEVENT_JumpMapForUG(GMEVENT_CONTROL * event)
         }
         break;
       case _UG_FADE_WAIT:
-        if(Sub_UgFadeOut(event)){		// ƒvƒƒbƒNChange
+        if(Sub_UgFadeOut(event)){		// ãƒ—ãƒ­ãƒƒã‚¯Change
             (mcw->seq) ++;
         }
         break;
       case _MAP_CHANGE:
         locationWork.zone_id = mcw->next_zone_id;
         locationWork.door_id = mcw->next_door_id;
-        OHNO_PRINT("---ˆÚ“®–Ú•W  %d %d \n",mcw->next_x,mcw->next_z);
+        OHNO_PRINT("---ç§»å‹•ç›®æ¨™  %d %d \n",mcw->next_x,mcw->next_z);
         
         locationWork.grid_x = mcw->next_x;
         locationWork.grid_z = mcw->next_z;
@@ -2229,13 +2229,13 @@ static BOOL GMEVENT_JumpMapForUG(GMEVENT_CONTROL * event)
         (mcw->seq) ++;
         break;
       case _UG_FADEIN:
-        if(Sub_UgFadeIn(event)){		// ƒvƒƒbƒNChange
+        if(Sub_UgFadeIn(event)){		// ãƒ—ãƒ­ãƒƒã‚¯Change
             //CommPlayerManagerReboot();
             (mcw->seq) ++;
         }
         break;
       case _WIPE_IN:
-        fsys->UnderGroundRadar = UnderGround_RadarInit(fsys);		//’YzƒŒ[ƒ_[‰æ–Ê‚n‚m
+        fsys->UnderGroundRadar = UnderGround_RadarInit(fsys);		//ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ï¼¯ï¼®
         WIPE_SYS_ExeEnd();
         WIPE_SYS_Start(WIPE_PATTERN_FMAS,
                        WIPE_TYPE_HOLEIN, WIPE_TYPE_TUNNELIN,
@@ -2255,7 +2255,7 @@ static BOOL GMEVENT_JumpMapForUG(GMEVENT_CONTROL * event)
         }
         CommEnableSendMoveData();
         CommPlayerHold();
-        // ˆÃ‚¢ƒtƒHƒ“ƒgƒpƒŒƒbƒg
+        // æš—ã„ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
         ArcUtil_PalSet(ARC_UG_TRAP_GRA, NARC_ug_trap_ug_menu_NCLR, PALTYPE_MAIN_BG, FLD_MESFRAME_PAL*0x20, 4*0x20,  HEAPID_FIELD);
         MenuWinGraphicSet(
             fsys->bgl, GF_BGL_FRAME3_M, MENU_WIN_CGX_NUM,
@@ -2322,10 +2322,10 @@ static BOOL GMEVENT_JumpMapForUG(GMEVENT_CONTROL * event)
         break;
       case _END:
         if( CommMPIsConnectStalth() && !UgSecretBaseIsSecretBasePlace(mcw->next_x, mcw->next_z)){
-            CommFieldStateUnderGroundReConnect();  // ÄÚ‘±‚·‚éê‡‚Ìˆ—
+            CommFieldStateUnderGroundReConnect();  // å†æ¥ç¶šã™ã‚‹å ´åˆã®å‡¦ç†
         }
         else{
-            CommStateJumpEndUnderGround(); // ˆÚ“®I—¹‚·‚éê‡‚Ì’ÊMŠÖ˜Aˆ—
+            CommStateJumpEndUnderGround(); // ç§»å‹•çµ‚äº†ã™ã‚‹å ´åˆã®é€šä¿¡é–¢é€£å‡¦ç†
         }
         CommSetNotRecvData(FALSE);
         CommPlayerHoldEnd();
@@ -2336,9 +2336,9 @@ static BOOL GMEVENT_JumpMapForUG(GMEVENT_CONTROL * event)
         else{
             UgMgrSetMyTrapRadarDisp();
         }
-        OHNO_PRINT("ˆÚ“®I‚í‚è\n");
+        OHNO_PRINT("ç§»å‹•çµ‚ã‚ã‚Š\n");
         if((_pCommSecretBaseWork->moveTickets == _DISCONECT_TICKETS) && (_pCommSecretBaseWork->bClientBaseIn)){
-            OHNO_PRINT("ƒGƒ‰[‚È‚ç–ß‚è‚É\n");
+            OHNO_PRINT("ã‚¨ãƒ©ãƒ¼ãªã‚‰æˆ»ã‚Šã«\n");
             _pCommSecretBaseWork->moveTickets = _RETURN_TICKETS;
         }
         else{
@@ -2355,8 +2355,8 @@ static BOOL GMEVENT_JumpMapForUG(GMEVENT_CONTROL * event)
                 return FALSE;
             }
         }
-        if((CommGetConnectNum() > 1)  && (mcw->connectNum==0)){  // ’N‚©‚Æ‚Â‚È‚ª‚Á‚½‚ç
-            OHNO_PRINT("‚Â‚È‚ª‚Á‚½‚Ì‚ÅƒEƒCƒ“ƒhƒEÁ‚µ‚Ü‚·\n");
+        if((CommGetConnectNum() > 1)  && (mcw->connectNum==0)){  // èª°ã‹ã¨ã¤ãªãŒã£ãŸã‚‰
+            OHNO_PRINT("ã¤ãªãŒã£ãŸã®ã§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ¶ˆã—ã¾ã™\n");
             mcw->seq = _END;
             CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
         }
@@ -2367,9 +2367,9 @@ static BOOL GMEVENT_JumpMapForUG(GMEVENT_CONTROL * event)
 
 //==============================================================================
 /**
- *  w’èˆÊ’u‚ÖƒWƒƒƒ“ƒv‚·‚éƒCƒxƒ“ƒg‹N“®
+ *  æŒ‡å®šä½ç½®ã¸ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•
  * @param   pFSys  FIELDSYS_WORK*
- * @param   int x, int z, int dir  ˆÚ“®‚·‚éˆÊ’u‚Æ•ûŒü
+ * @param   int x, int z, int dir  ç§»å‹•ã™ã‚‹ä½ç½®ã¨æ–¹å‘
  * @retval  none
  */
 //==============================================================================
@@ -2378,7 +2378,7 @@ static void _jumpMapForUG(FIELDSYS_WORK* pFSys, int x, int z, int dir, int netID
 {
     EVENT_UGCHG_WORK * mcw = _createFactoryUGCHG(pFSys, x, z, dir, netID, netID);
     if(mcw){
-        //ƒCƒxƒ“ƒg¶¬
+        //ã‚¤ãƒ™ãƒ³ãƒˆç”Ÿæˆ
         mcw->bRemove = bRemove;
         FieldEvent_Set(pFSys, GMEVENT_JumpMapForUG, mcw);
     }
@@ -2387,7 +2387,7 @@ static void _jumpMapForUG(FIELDSYS_WORK* pFSys, int x, int z, int dir, int netID
 
 //==============================================================================
 /**
- *  ƒhƒŠƒ‹‚Å”é–§Šî’n‚ğì‚é
+ *  ãƒ‰ãƒªãƒ«ã§ç§˜å¯†åŸºåœ°ã‚’ä½œã‚‹
  * @param   none
  * @retval  none
  */
@@ -2447,7 +2447,7 @@ static void _GMEVENT_Drill(TCB_PTR tcb, void* work)
             z = CommPlayerGetPosZDirAdd(CommGetCurrentID());
             dir = CommPlayerGetReverseDir(Player_DirGet( fsys->player ));
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_37, FALSE, NULL);
-            _doorPictAdd(x, z, dir, _SECRETBASE_MY_ID);  // ‘O‚ÌŒŠ‚ÍŠJ‚¢‚½‚Ü‚Ü
+            _doorPictAdd(x, z, dir, _SECRETBASE_MY_ID);  // å‰ã®ç©´ã¯é–‹ã„ãŸã¾ã¾
             FE_FldOBJTrapsmogSet(fsys, x, 0, z);
             mdw->seq = _QUESTION_MSG;
         }
@@ -2486,18 +2486,18 @@ static void _GMEVENT_Drill(TCB_PTR tcb, void* work)
         break;
       case _YESNO_WAIT:
         ret = BmpYesNoSelectMain(mdw->pYesNoWork, HEAPID_FIELD);
-        if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+        if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
             mdw->seq = _DISCONNECT_MSG_WAIT;
             mdw->pYesNoWork = NULL;
         }
-        else if(ret != BMPMENU_NULL){ // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡ I—¹
+        else if(ret != BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ çµ‚äº†
             bExit = TRUE;
             mdw->pYesNoWork = NULL;
         }
         break;
       case _DISCONNECT_MSG_WAIT:
-        // offline‚ÌŠî’n‚ÖˆÚ“® ’ÊMØ’f
-        CommUnderBagDeleteTrap(UG_TRAPTYPE_DRILL);  // ƒhƒŠƒ‹‚ğ‚±‚±‚ÅÁ‚·
+        // offlineã®åŸºåœ°ã¸ç§»å‹• é€šä¿¡åˆ‡æ–­
+        CommUnderBagDeleteTrap(UG_TRAPTYPE_DRILL);  // ãƒ‰ãƒªãƒ«ã‚’ã“ã“ã§æ¶ˆã™
         CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
 //        CommStateFieldEnableChange();
         CommFieldStateStalthUnderGround();
@@ -2510,8 +2510,8 @@ static void _GMEVENT_Drill(TCB_PTR tcb, void* work)
             if(mdw->bBaseDoor){
                 bFlag = _DRILL_START_RENEW;
             }
-            // ”é–§Šî’nì¬‚ğƒT[ƒo[‚É‘—M ƒCƒxƒ“ƒg‚ÍI—¹ ƒƒbƒN‚Í‚©‚¯‚½‚Ü‚Ü ‚·‚Å‚ÉOFFLINE
-            _createSecretBase();  // V‹Kì¬
+            // ç§˜å¯†åŸºåœ°ä½œæˆã‚’ã‚µãƒ¼ãƒãƒ¼ã«é€ä¿¡ ã‚¤ãƒ™ãƒ³ãƒˆã¯çµ‚äº† ãƒ­ãƒƒã‚¯ã¯ã‹ã‘ãŸã¾ã¾ ã™ã§ã«OFFLINE
+            _createSecretBase();  // æ–°è¦ä½œæˆ
             CommSendFixSizeData(CF_DRILL_START, &bFlag);
             TCB_Delete(tcb);
             sys_FreeMemoryEz(mdw);
@@ -2538,7 +2538,7 @@ static void _GMEVENT_Drill(TCB_PTR tcb, void* work)
 
 //==============================================================================
 /**
- * @brief   ”é–§Šî’n‚ÌŒŠ‚ğŒ@‚é
+ * @brief   ç§˜å¯†åŸºåœ°ã®ç©´ã‚’æ˜ã‚‹
  * @param   none
  * @retval  none
  */
@@ -2547,12 +2547,12 @@ static void _GMEVENT_Drill(TCB_PTR tcb, void* work)
 void CommSecretBaseDrillStart(void)
 {
     u8 bFlag = _DRILL_START_CHECK;
-    CommSendFixSizeData(CF_DRILL_START, &bFlag);   // ‚Ü‚¸‚ÍŒ@‚Á‚Ä‚¢‚¢‚©‚Ç‚¤‚©–â‚¢‡‚í‚¹
+    CommSendFixSizeData(CF_DRILL_START, &bFlag);   // ã¾ãšã¯æ˜ã£ã¦ã„ã„ã‹ã©ã†ã‹å•ã„åˆã‚ã›
 }
 
 //==============================================================================
 /**
- * @brief   ”é–§Šî’n‚ÌŒŠ‚ğŒ@‚é CF_DRILL_START
+ * @brief   ç§˜å¯†åŸºåœ°ã®ç©´ã‚’æ˜ã‚‹ CF_DRILL_START
  * @param   none
  * @retval  none
  */
@@ -2589,7 +2589,7 @@ void CommSecretBaseRecvDrillStart(int netID, int size, void* pData, void* pWork)
     _resultStruct ret;
     int id;
 
-    x2 = x - CommPlayerGetPosSX(netID);  //¶‰E‚Ì‚ ‚½‚è‚àŒ©‚é
+    x2 = x - CommPlayerGetPosSX(netID);  //å·¦å³ã®ã‚ãŸã‚Šã‚‚è¦‹ã‚‹
     z2 = z - CommPlayerGetPosSZ(netID);
     if(z2 != 0){
         x1 = x+1;
@@ -2609,23 +2609,23 @@ void CommSecretBaseRecvDrillStart(int netID, int size, void* pData, void* pWork)
         ret.result = _SB_CREATE_FAILED;
     }
     id = _getSecretBaseEnter(x, z);
-//    if((id != INVALID_NETID) && (id != netID)){   // ’N‚©‚Ì”é–§Šî’n‚ª‚ ‚éê‡ì‚ê‚È‚¢
-    if((pCreateFlag[0] == FALSE) && (id != INVALID_NETID)){   // ’N‚©‚Ì”é–§Šî’n‚ª‚ ‚éê‡ì‚ê‚È‚¢
-        OHNO_PRINT("‚±‚±‚ğ‚Æ‚¨‚é‚Æ‚Ù‚ê‚È‚¢----\n");
+//    if((id != INVALID_NETID) && (id != netID)){   // èª°ã‹ã®ç§˜å¯†åŸºåœ°ãŒã‚ã‚‹å ´åˆä½œã‚Œãªã„
+    if((pCreateFlag[0] == FALSE) && (id != INVALID_NETID)){   // èª°ã‹ã®ç§˜å¯†åŸºåœ°ãŒã‚ã‚‹å ´åˆä½œã‚Œãªã„
+        OHNO_PRINT("ã“ã“ã‚’ã¨ãŠã‚‹ã¨ã»ã‚Œãªã„----\n");
     }
-    else if(UgSecretBaseIsSecretBasePlace(x, z)){  // ‚±‚±‚ª”é–§Šî’n“à‚Ìê‡‚Ù‚ê‚È‚¢
+    else if(UgSecretBaseIsSecretBasePlace(x, z)){  // ã“ã“ãŒç§˜å¯†åŸºåœ°å†…ã®å ´åˆã»ã‚Œãªã„
         ret.result = _SB_INSB_FAILED;
     }
     else if(GetHitAttr(_pCommSecretBaseWork->pFSys,x,z) &&
             GetHitAttr(_pCommSecretBaseWork->pFSys,x1,z1) &&
-            GetHitAttr(_pCommSecretBaseWork->pFSys,x2,z2)){  // ‚ ‚½‚è‚ ‚éê‡
-        if(pCreateFlag[0] == FALSE){    // ì‚éƒCƒxƒ“ƒg‚ğŠJn‚µ‚Ä‚¢‚¢–‚ğ‘—M
+            GetHitAttr(_pCommSecretBaseWork->pFSys,x2,z2)){  // ã‚ãŸã‚Šã‚ã‚‹å ´åˆ
+        if(pCreateFlag[0] == FALSE){    // ä½œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã‚’é–‹å§‹ã—ã¦ã„ã„äº‹ã‚’é€ä¿¡
             ret.result = _SB_CREATE_START;
         }
         else{
-            _insertBaseNetID(x, z, dir, _SECRETBASE_MY_ID);  // êì¬
-            if(_enterSecretBaseStart(_SECRETBASE_MY_ID,netID)){  // êƒWƒƒƒ“ƒv
-                OHNO_PRINT("CF_DRILL_START ˆÚ“®ŠJnƒƒbƒZ[ƒW‚ª‚«‚½ %d\n",netID);
+            _insertBaseNetID(x, z, dir, _SECRETBASE_MY_ID);  // å ´ä½œæˆ
+            if(_enterSecretBaseStart(_SECRETBASE_MY_ID,netID)){  // å ´ã‚¸ãƒ£ãƒ³ãƒ—
+                OHNO_PRINT("CF_DRILL_START ç§»å‹•é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒããŸ %d\n",netID);
                 switch(pCreateFlag[0]){
                   case _DRILL_START_REFORM:
                     ret.result = _SB_CREATED;
@@ -2664,7 +2664,7 @@ static void _returnDrillEventForceDel(TCB_PTR tcb,void* work)
 
 //==============================================================================
 /**
- * @brief   ƒhƒŠƒ‹ƒCƒxƒ“ƒgƒZƒbƒg
+ * @brief   ãƒ‰ãƒªãƒ«ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param   none
  * @retval  none
  */
@@ -2678,7 +2678,7 @@ static void _drillEventStart(void)
     mdw = sys_AllocMemoryLo(HEAPID_FIELD, sizeof(_EVENT_DRILL_WORK));
     MI_CpuClear8(mdw,sizeof(_EVENT_DRILL_WORK));
     mdw->seq = _DRILL_ANIM;
-    mdw->netID = CommGetCurrentID();  // ŠJn‚·‚éÛ‚ÌID ‚±‚ê‚ªH‚¢ˆá‚Á‚½‚ç‹­§I—¹
+    mdw->netID = CommGetCurrentID();  // é–‹å§‹ã™ã‚‹éš›ã®ID ã“ã‚ŒãŒé£Ÿã„é•ã£ãŸã‚‰å¼·åˆ¶çµ‚äº†
     mdw->pFSys = _pCommSecretBaseWork->pFSys;
     
     mdw->pTCB = TCB_Add( _GMEVENT_Drill, mdw, TCB_PRIORITY_NORMAL);
@@ -2688,7 +2688,7 @@ static void _drillEventStart(void)
 
 //==============================================================================
 /**
- * @brief   ”é–§Šî’n‚ÌŒŠ‚ğŒ@‚é ƒT[ƒo[‚©‚ç‚Ì–ß‚è   CF_DRILL_START_RESULT
+ * @brief   ç§˜å¯†åŸºåœ°ã®ç©´ã‚’æ˜ã‚‹ ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã®æˆ»ã‚Š   CF_DRILL_START_RESULT
  * @param   none
  * @retval  none
  */
@@ -2700,17 +2700,17 @@ void CommSecretBaseRecvDrillStartResult(int netID, int size, void* pData, void* 
     _resultStruct* pRet = pData;
     SB_RECORD_DATA* pRec = SaveData_GetSecretBaseRecord(GameSystem_GetSaveData(_pCommSecretBaseWork->pFSys));
 
-    if(pRet->netID != CommGetCurrentID()){  // –{lˆÈŠOŠÖŒW‚È‚¢
+    if(pRet->netID != CommGetCurrentID()){  // æœ¬äººä»¥å¤–é–¢ä¿‚ãªã„
         return;
     }
-    OS_TPrintf("ŒŠŒ@‚èŒ‹‰Ê %d\n",pRet->result);
+    OS_TPrintf("ç©´æ˜ã‚Šçµæœ %d\n",pRet->result);
     if(pRet->result == _SB_CREATE_NG){
         CommPlayerHold();
         CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_54, TRUE, _msgEndCallBack);
         _connectEnable();
     }
     else if(pRet->result == _SB_CREATE_START){
-        // •Ç‚ÉŒŠ‚ ‚¯‚é‰‰oŠJn
+        // å£ã«ç©´ã‚ã‘ã‚‹æ¼”å‡ºé–‹å§‹
         _drillEventStart();
     }
     else if(pRet->result ==_SB_INSB_FAILED){
@@ -2718,7 +2718,7 @@ void CommSecretBaseRecvDrillStartResult(int netID, int size, void* pData, void* 
         CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_74, TRUE, _msgEndCallBack);
         _connectEnable();
     }
-    else if(pRet->result == _SB_CREATE_FAILED){  //‰½‚©‚ÌŒ´ˆö‚Å‚Ù‚ê‚È‚©‚Á‚½
+    else if(pRet->result == _SB_CREATE_FAILED){  //ä½•ã‹ã®åŸå› ã§ã»ã‚Œãªã‹ã£ãŸ
         CommPlayerHold();
         CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_88, TRUE, _msgEndCallBack);
         CommFieldStateUnderGroundReConnect();
@@ -2726,23 +2726,23 @@ void CommSecretBaseRecvDrillStartResult(int netID, int size, void* pData, void* 
     }
     else if((pRet->result == _SB_CREATED) ||
             (pRet->result == _SB_CREATED_CHANGE) ||
-            (pRet->result == _SB_CREATED_NEW)){  // ŒŠ‚ ‚¯Š®—¹   // MAPCHANGE     // ’ÊMØ’f
+            (pRet->result == _SB_CREATED_NEW)){  // ç©´ã‚ã‘å®Œäº†   // MAPCHANGE     // é€šä¿¡åˆ‡æ–­
         _Pos outDoorPos;
         int x = CommPlayerGetPosXDirAdd(pRet->netID);
         int z = CommPlayerGetPosZDirAdd(pRet->netID);
         int dir = CommPlayerGetDir(pRet->netID);
-        _insertBaseNetID(x, z, dir, pRet->netID);        // ì¬
-        _insertBaseNetID(x, z, dir, _SECRETBASE_MY_ID);  // ì¬
+        _insertBaseNetID(x, z, dir, pRet->netID);        // ä½œæˆ
+        _insertBaseNetID(x, z, dir, _SECRETBASE_MY_ID);  // ä½œæˆ
 
-        if(pRet->result == _SB_CREATED_CHANGE){ // ŒŠ‚ ‚¯Š®—¹   // MAPCHANGE     // ’ÊMØ’f
-            SecretBaseRecordSetRelocateNum(pRec);  // ˆø‰z‚µ‚µ‚½‰ñ”ƒJƒEƒ“ƒg
-            OHNO_PRINT("ˆø‰z‚µ‚µ‚½‰ñ”ƒJƒEƒ“ƒg  %d\n",SecretBaseRecordGetRelocateNum(pRec));
+        if(pRet->result == _SB_CREATED_CHANGE){ // ç©´ã‚ã‘å®Œäº†   // MAPCHANGE     // é€šä¿¡åˆ‡æ–­
+            SecretBaseRecordSetRelocateNum(pRec);  // å¼•è¶Šã—ã—ãŸå›æ•°ã‚«ã‚¦ãƒ³ãƒˆ
+            OHNO_PRINT("å¼•è¶Šã—ã—ãŸå›æ•°ã‚«ã‚¦ãƒ³ãƒˆ  %d\n",SecretBaseRecordGetRelocateNum(pRec));
         }
-        if((pRet->result == _SB_CREATED_CHANGE) || (pRet->result == _SB_CREATED_NEW)){ // ŒŠ‚ ‚¯Š®—¹   // MAPCHANGE     // ’ÊMØ’f
+        if((pRet->result == _SB_CREATED_CHANGE) || (pRet->result == _SB_CREATED_NEW)){ // ç©´ã‚ã‘å®Œäº†   // MAPCHANGE     // é€šä¿¡åˆ‡æ–­
             void* pBuf = FNOTE_ActionUGBaseDataMake(HEAPID_WORLD);
             FNOTE_DataSave(_pCommSecretBaseWork->pFSys->fnote, pBuf, FNOTE_TYPE_ACTION);
             RECORD_Score_Add(SaveData_GetRecord(_pCommSecretBaseWork->pFSys->savedata), SCORE_ID_MAKE_BASE);
-            OHNO_PRINT("ì‚Á‚½+ˆø‰z‚µ‚µ‚½‰ñ”ƒJƒEƒ“ƒg\n");
+            OHNO_PRINT("ä½œã£ãŸ+å¼•è¶Šã—ã—ãŸå›æ•°ã‚«ã‚¦ãƒ³ãƒˆ\n");
         }
     }
 }
@@ -2750,9 +2750,9 @@ void CommSecretBaseRecvDrillStartResult(int netID, int size, void* pData, void* 
 
 //==============================================================================
 /**
- * @brief   ”é–§Šî’n‚És‚Á‚½ó‹µƒƒbƒZ[ƒW‚ğ•Ô‚·
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ * @brief   ç§˜å¯†åŸºåœ°ã«è¡Œã£ãŸçŠ¶æ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -2807,7 +2807,7 @@ BOOL CommSecretBaseInfoGetActionMessage(STRBUF* pStrBuf)
 
 //==============================================================================
 /**
- * @brief   ¡‚©‚çƒZƒbƒgƒAƒbƒv‚·‚é”é–§Šî’nƒOƒbƒYƒf[ƒ^‚ğ•Ô‚·
+ * @brief   ä»Šã‹ã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ç§˜å¯†åŸºåœ°ã‚°ãƒƒã‚ºãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
  * @param   sv  SAVEDATA*
  * @retval  SECRETBASEDATA*
  */
@@ -2826,9 +2826,9 @@ SECRETBASEDATA* UgSetupSecretBaseData(SAVEDATA * sv)
 
 //==============================================================================
 /**
- * @brief   ¡‚©‚çƒZƒbƒgƒAƒbƒv‚·‚é”é–§Šî’n‚ÌXƒuƒƒbƒN‚ğ•Ô‚·
+ * @brief   ä»Šã‹ã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ç§˜å¯†åŸºåœ°ã®Xãƒ–ãƒ­ãƒƒã‚¯ã‚’è¿”ã™
  * @param   none
- * @retval  XƒOƒŠƒbƒh
+ * @retval  Xã‚°ãƒªãƒƒãƒ‰
  */
 //==============================================================================
 
@@ -2844,9 +2844,9 @@ int UgSetupSecretBaseBlockX(void)
 
 //==============================================================================
 /**
- * @brief   ¡‚©‚çƒZƒbƒgƒAƒbƒv‚·‚é”é–§Šî’n‚ÌZƒuƒƒbƒN‚ğ•Ô‚·
+ * @brief   ä»Šã‹ã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ç§˜å¯†åŸºåœ°ã®Zãƒ–ãƒ­ãƒƒã‚¯ã‚’è¿”ã™
  * @param   none
- * @retval  ZƒOƒŠƒbƒh
+ * @retval  Zã‚°ãƒªãƒƒãƒ‰
  */
 //==============================================================================
 
@@ -2862,9 +2862,9 @@ int UgSetupSecretBaseBlockZ(void)
 
 //==============================================================================
 /**
- * @brief   ”é–§Šî’nƒOƒbƒY‚É“–‚½‚Á‚Ä‚¢‚È‚¢‚©‚Ç‚¤‚©ŒŸ¸
- * @param   x,z ˆÊ’u
- * @retval  ‚¢‚¯‚éê‡TRUE
+ * @brief   ç§˜å¯†åŸºåœ°ã‚°ãƒƒã‚ºã«å½“ãŸã£ã¦ã„ãªã„ã‹ã©ã†ã‹æ¤œæŸ»
+ * @param   x,z ä½ç½®
+ * @retval  ã„ã‘ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -2899,7 +2899,7 @@ BOOL UgSecretBaseMoveing(int x, int z)
 
 //==============================================================================
 /**
- * @brief   V‹K‚É•”‰®‚ğì‚éê‡Šâ‚¾‚ç‚¯‚É‚·‚é
+ * @brief   æ–°è¦ã«éƒ¨å±‹ã‚’ä½œã‚‹å ´åˆå²©ã ã‚‰ã‘ã«ã™ã‚‹
  * @param   none
  * @retval  none
  */
@@ -2917,12 +2917,12 @@ static void _createSecretBase(void)
     MATHRandContext32 sRand;
     int add[SECRETBASE_LOCK_NUM_MAX+1][2];
 
-    add[0][0] = 16; // ƒpƒ\ƒRƒ“‚Æ‚©‚Ô‚éˆÊ’u
+    add[0][0] = 16; // ãƒ‘ã‚½ã‚³ãƒ³ã¨ã‹ã¶ã‚‹ä½ç½®
     add[0][1] = 12;
 
     SysFlag_UgBaseSet(SaveData_GetEventWork(_pCommSecretBaseWork->pFSys->savedata));
 
-    SecretBaseData_Reform(pSBData);  // ”z’u‚µ‚Ä‚¢‚È‚¢ó‘Ô‚É‚·‚é
+    SecretBaseData_Reform(pSBData);  // é…ç½®ã—ã¦ã„ãªã„çŠ¶æ…‹ã«ã™ã‚‹
 
     UnderGroundTrashAllGoodsPCItem(pUGData);
 
@@ -2936,7 +2936,7 @@ static void _createSecretBase(void)
             ansX = (ansX-3) * 2 + x2;
         }
         ansZ = MATH_Rand32(&sRand, zMod) * 2 + z;
-        OHNO_PRINT("—”ŒŸ¸ %d %d\n",ansX,ansZ);
+        OHNO_PRINT("ä¹±æ•°æ¤œæŸ» %d %d\n",ansX,ansZ);
         bOk=TRUE;
         for(chk = 0; chk <= i; chk++){
             if((add[chk][0] == ansX) && (add[chk][1] == ansZ)){
@@ -2958,15 +2958,15 @@ static void _createSecretBase(void)
     MI_CpuFill8(_pCommSecretBaseWork->aAttr, 0xff,  _SECRETBASE_NUM_MAX * _SECRETBASE_ATTR_MAX * (_SECRETBASE_ATTR_MAX/8) );
     SecretBaseSetSecretBasePosition(pSBData,px,pz,CommPlayerGetReverseDir(dir));
     MI_CpuCopy8(pSBData,_pCommSecretBaseWork->secretBaseData[_SECRETBASE_MY_ID].secretBaseDataBuff,_SECLET_BASE_DATA_SIZE);
-    // ‚ ‚½‚è‚ğì‚é
+    // ã‚ãŸã‚Šã‚’ä½œã‚‹
     _makeAttr(pSBData,_pCommSecretBaseWork->aAttr[_SECRETBASE_MY_ID]);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚à‚æ‚¤‚ª‚¦ƒƒbƒZ[ƒWŠJn
- * @param   messageNo   gmmƒ‰ƒxƒ‹
- * @retval  ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @brief   ã‚‚ã‚ˆã†ãŒãˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹
+ * @param   messageNo   gmmãƒ©ãƒ™ãƒ«
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------
 
@@ -2978,7 +2978,7 @@ int UgSecretBaseTalkStart(int messageNo)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚à‚æ‚¤‚ª‚¦‚Ì‰ï˜bI—¹
+ * @brief   ã‚‚ã‚ˆã†ãŒãˆã®ä¼šè©±çµ‚äº†
  * @param   none
  * @retval  none
  */
@@ -2991,8 +2991,8 @@ void UgSecretBaseTalkEnd(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒOƒbƒY‚Ì–¼‘O‚ğƒƒbƒZ[ƒW‚É•\¦‚³‚¹‚éê‡‚ÌŠÖ”
- * @param   type     ƒOƒbƒYƒ^ƒCƒv = gmm”Ô†
+ * @brief   ã‚°ãƒƒã‚ºã®åå‰ã‚’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«è¡¨ç¤ºã•ã›ã‚‹å ´åˆã®é–¢æ•°
+ * @param   type     ã‚°ãƒƒã‚ºã‚¿ã‚¤ãƒ— = gmmç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -3004,9 +3004,9 @@ void UgSecretBaseTalkRegisterGoodsName(int type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚QŒ…‚Ì”š‚ğƒƒbƒZ[ƒW‚É•\¦‚³‚¹‚éê‡‚ÌŠÖ”
- * @param   number     ”š
- * @param   index      Œ³ƒƒbƒZ[ƒW‚É‘‚¢‚Ä‚ ‚é”Ô†
+ * @brief   ï¼’æ¡ã®æ•°å­—ã‚’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«è¡¨ç¤ºã•ã›ã‚‹å ´åˆã®é–¢æ•°
+ * @param   number     æ•°å­—
+ * @param   index      å…ƒãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«æ›¸ã„ã¦ã‚ã‚‹ç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -3020,8 +3020,8 @@ void UgSecretBaseTalkRegisterNum2(int number,int index)
 
 //==============================================================================
 /**
- * ‚±‚Ì‚ ‚½‚è‚ª‰½‚ÌƒOƒbƒY‚©•Ô‚·
- * @param   ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * ã“ã®ã‚ãŸã‚ŠãŒä½•ã®ã‚°ãƒƒã‚ºã‹è¿”ã™
+ * @param   ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -3037,13 +3037,13 @@ static int _getAttrGoodsType(SECRETBASEDATA* pSecret,int xa,int za)
             continue;
         }
         if(i == 0){
-            continue;  // ‚¢‚ç‚È‚¢
+            continue;  // ã„ã‚‰ãªã„
         }
         else if(i < (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_PC_NUM_MAX)){
             pBuff = GOODS_GetGoodsHitData(type);
         }
         else{
-            continue;  // ‚¢‚ç‚È‚¢
+            continue;  // ã„ã‚‰ãªã„
         }
         x = SecretBaseData_GetGoodsXPos(pSecret,i);
         z = SecretBaseData_GetGoodsZPos(pSecret,i);
@@ -3064,8 +3064,8 @@ static int _getAttrGoodsType(SECRETBASEDATA* pSecret,int xa,int za)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒOƒbƒY‚ª–Ú‚Ì‘O‚É‚ ‚é‚©‚Ç‚¤‚©ŒŸ¸
- * @param   type     ƒOƒbƒYƒ^ƒCƒv = gmm”Ô†
+ * @brief   ã‚°ãƒƒã‚ºãŒç›®ã®å‰ã«ã‚ã‚‹ã‹ã©ã†ã‹æ¤œæŸ»
+ * @param   type     ã‚°ãƒƒã‚ºã‚¿ã‚¤ãƒ— = gmmç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -3099,8 +3099,8 @@ BOOL UgSecretBaseGoodsCheck(int netID, Grid* pTouch)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒOƒbƒY‚ª–Ú‚Ì‘O‚É‚ ‚Á‚½‚Ì‚Å’ÊM‚ª‘—‚ç‚ê‚Ä‚«‚½ CF_SECRETBASE_GOODS_CHECK
- * @param   ƒR[ƒ‹ƒoƒbƒNˆø”
+ * @brief   ã‚°ãƒƒã‚ºãŒç›®ã®å‰ã«ã‚ã£ãŸã®ã§é€šä¿¡ãŒé€ã‚‰ã‚Œã¦ããŸ CF_SECRETBASE_GOODS_CHECK
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -3119,7 +3119,7 @@ void UgSecretBaseRecvGoodsCheck(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒCƒY‚ğ•Ô‚·
+ * @brief   ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
  * @retval  none
  */
@@ -3133,8 +3133,8 @@ int UgSecretBaseGetRecvGoodsCheckSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Šø‚ğ‚Æ‚Á‚½LOG‚ğ‚È‚ª‚·
- * @param   ƒR[ƒ‹ƒoƒbƒNˆø”
+ * @brief   æ——ã‚’ã¨ã£ãŸLOGã‚’ãªãŒã™
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -3149,8 +3149,8 @@ void UgSecretBaseSetFlagGetLog(int netID, int targetPCNetID)
 //
 //--------------------------------------------------------------
 /**
- * @brief   ‚¤‚Î‚Á‚½LOG
- * @param   ƒR[ƒ‹ƒoƒbƒNˆø”
+ * @brief   ã†ã°ã£ãŸLOG
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -3164,8 +3164,8 @@ void UgSecretBaseSetFlagConquerLog(int myNetID, int targetID)
 //
 //--------------------------------------------------------------
 /**
- * @brief   ‚Æ‚è‚à‚Ç‚µ‚½LOG
- * @param   ƒR[ƒ‹ƒoƒbƒNˆø”
+ * @brief   ã¨ã‚Šã‚‚ã©ã—ãŸLOG
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -3179,13 +3179,13 @@ void UgSecretBaseSetFlagReverseLog(int myNetID)
 
 typedef struct{
     int seq;
-    u8 msgIndex;      ///< ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX ƒƒbƒZ[ƒWI—¹‘Ò‚¿‚Ég—p
+    u8 msgIndex;      ///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡ã«ä½¿ç”¨
     u8 type; //LVUPTYPE
 } _DELIVERY_PLAYER;
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒ\ƒRƒ“•ÏX
+ * @brief   ãƒ‘ã‚½ã‚³ãƒ³å¤‰æ›´
  * @param   none
  * @retval  none
  */
@@ -3207,7 +3207,7 @@ static void _pcChange(_DELIVERY_PLAYER* pDeliv)
 #if GT384_060815_FIX
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒ\ƒRƒ“•Ï‚¦‚éˆ—‚Ì‹­§I—¹
+ * @brief   ãƒ‘ã‚½ã‚³ãƒ³å¤‰ãˆã‚‹å‡¦ç†ã®å¼·åˆ¶çµ‚äº†
  * @param   none
  * @retval  none
  */
@@ -3222,7 +3222,7 @@ static void _deliveryForceEnd(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ‰ƒ“ƒN‚ªã‚ª‚Á‚½‚Ì‚Åƒpƒ\ƒRƒ“‚ğ•Ï‚¦‚é
+ * @brief   ãƒ©ãƒ³ã‚¯ãŒä¸ŠãŒã£ãŸã®ã§ãƒ‘ã‚½ã‚³ãƒ³ã‚’å¤‰ãˆã‚‹
  * @param   none
  * @retval  none
  */
@@ -3288,7 +3288,7 @@ static void _deliveryPlayer(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒ\ƒRƒ“LVUP  CF_LVUP_FLAG
+ * @brief   ãƒ‘ã‚½ã‚³ãƒ³LVUP  CF_LVUP_FLAG
  * @param   none
  * @retval  none
  */
@@ -3308,7 +3308,7 @@ void UgSBRecvLVUPFlag(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒ\ƒRƒ“LVUP  CF_LVUP_FLAG_RET
+ * @brief   ãƒ‘ã‚½ã‚³ãƒ³LVUP  CF_LVUP_FLAG_RET
  * @param   none
  * @retval  none
  */
@@ -3339,12 +3339,12 @@ void UgSBRecvLVUPFlagRet(int netID, int size, void* pData, void* pWork)
 #else  //GT384_060815_FIX
         int x = CommPlayerGetPosX(CommGetCurrentID());
         int z = CommPlayerGetPosZ(CommGetCurrentID());
-        if(_getSecretIndex(x,z) == pBuff[0]){ // ©•ª‚ª•ÏX‚Ì‚ ‚Á‚½”é–§Šî’n‚É‚¢‚é
+        if(_getSecretIndex(x,z) == pBuff[0]){ // è‡ªåˆ†ãŒå¤‰æ›´ã®ã‚ã£ãŸç§˜å¯†åŸºåœ°ã«ã„ã‚‹
             _DELIVERY_PLAYER* pDeliv = sys_AllocMemory(HEAPID_WORLD, sizeof(_DELIVERY_PLAYER));
             MI_CpuClear8(pDeliv,sizeof(pDeliv));
             pDeliv->seq = 0;
             pDeliv->type = pBuff[1];
-            OHNO_SP_PRINT("ˆê‚É‚¢‚½‚Ì‚Åƒpƒ\ƒRƒ“XV \n");
+            OHNO_SP_PRINT("ä¸€ç·’ã«ã„ãŸã®ã§ãƒ‘ã‚½ã‚³ãƒ³æ›´æ–° \n");
             _pcChange(pDeliv);
             sys_FreeMemoryEz(pDeliv);
         }
@@ -3354,7 +3354,7 @@ void UgSBRecvLVUPFlagRet(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒ\ƒRƒ“LVUP  ƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+ * @brief   ãƒ‘ã‚½ã‚³ãƒ³LVUP  ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
  * @param   none
  * @retval  none
  */
@@ -3367,8 +3367,8 @@ int UgSBGetLVUPFlagRetSize(void)
 
 //==============================================================================
 /**
- * ‚±‚Ì‘«Œ³‚ª‰½‚ÌƒOƒbƒY‚©•Ô‚·
- * @param   ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * ã“ã®è¶³å…ƒãŒä½•ã®ã‚°ãƒƒã‚ºã‹è¿”ã™
+ * @param   ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -3384,13 +3384,13 @@ static int _getFootGoodsType(SECRETBASEDATA* pSecret,int xa,int za)
             continue;
         }
         if(i == 0){
-            continue;  // ‚¢‚ç‚È‚¢
+            continue;  // ã„ã‚‰ãªã„
         }
         else if(i < (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_PC_NUM_MAX)){
             pBuff = GOODS_GetGoodsHitData(type);
         }
         else{
-            continue;  // ‚¢‚ç‚È‚¢
+            continue;  // ã„ã‚‰ãªã„
         }
         x = SecretBaseData_GetGoodsXPos(pSecret,i);
         z = SecretBaseData_GetGoodsZPos(pSecret,i);
@@ -3406,37 +3406,37 @@ static int _getFootGoodsType(SECRETBASEDATA* pSecret,int xa,int za)
 static int _trap2trap(int goodsTrap)
 {
     switch(goodsTrap){
-      case GOODS_UG_TRAP_03://	(62) // ‚ ‚È‚»‚¤‚¿
+      case GOODS_UG_TRAP_03://	(62) // ã‚ãªãã†ã¡
         return UG_TRAPTYPE_HOLE;
-      case GOODS_UG_TRAP_04://	(63) // ‚¨‚¨‚ ‚È‚»‚¤‚¿
+      case GOODS_UG_TRAP_04://	(63) // ãŠãŠã‚ãªãã†ã¡
         return UG_TRAPTYPE_BIG_HOLE;
-      case GOODS_UG_TRAP_10://	(66) // ‚¯‚Ş‚è‚»‚¤‚¿
+      case GOODS_UG_TRAP_10://	(66) // ã‘ã‚€ã‚Šãã†ã¡
         return UG_TRAPTYPE_SMOG;
-      case GOODS_UG_TRAP_11://	(67) // ‚¦‚ñ‚Ü‚­‚»‚¤‚¿
+      case GOODS_UG_TRAP_11://	(67) // ãˆã‚“ã¾ããã†ã¡
         return UG_TRAPTYPE_BIG_SMOG;
-      case GOODS_UG_TRAP_12://	(68) // ‚¢‚í‚»‚¤‚¿
+      case GOODS_UG_TRAP_12://	(68) // ã„ã‚ãã†ã¡
         return UG_TRAPTYPE_ROCK;
-      case GOODS_UG_TRAP_13://	(69) // ‚ç‚­‚¹‚«‚»‚¤‚¿
+      case GOODS_UG_TRAP_13://	(69) // ã‚‰ãã›ããã†ã¡
         return UG_TRAPTYPE_ROCKFALL;
-      case GOODS_UG_TRAP_14://	(70) // ‚ ‚í‚»‚¤‚¿
+      case GOODS_UG_TRAP_14://	(70) // ã‚ã‚ãã†ã¡
         return UG_TRAPTYPE_SUDS;
-      case GOODS_UG_TRAP_15://	(71) // ƒoƒuƒ‹‚»‚¤‚¿
+      case GOODS_UG_TRAP_15://	(71) // ãƒãƒ–ãƒ«ãã†ã¡
         return UG_TRAPTYPE_BUBBLE;
-      case GOODS_UG_TRAP_16://	(72) // ‚ ‚¢‚¸ƒgƒ‰ƒbƒv‚P
+      case GOODS_UG_TRAP_16://	(72) // ã‚ã„ãšãƒˆãƒ©ãƒƒãƒ—ï¼‘
         return UG_TRAPTYPE_ALART1;
-      case GOODS_UG_TRAP_17://	(73) // ‚ ‚¢‚¸ƒgƒ‰ƒbƒv‚Q
+      case GOODS_UG_TRAP_17://	(73) // ã‚ã„ãšãƒˆãƒ©ãƒƒãƒ—ï¼’
         return UG_TRAPTYPE_ALART2;
-      case GOODS_UG_TRAP_18://	(74) // ‚ ‚¢‚¸ƒgƒ‰ƒbƒv‚R
+      case GOODS_UG_TRAP_18://	(74) // ã‚ã„ãšãƒˆãƒ©ãƒƒãƒ—ï¼“
         return UG_TRAPTYPE_ALART3;
-      case GOODS_UG_TRAP_19://	(75) // ‚ ‚¢‚¸ƒgƒ‰ƒbƒv‚S
+      case GOODS_UG_TRAP_19://	(75) // ã‚ã„ãšãƒˆãƒ©ãƒƒãƒ—ï¼”
         return UG_TRAPTYPE_ALART4;
-      case GOODS_UG_TRAP_20://	(76) // ‚±‚Ì‚Í‚»‚¤‚¿
+      case GOODS_UG_TRAP_20://	(76) // ã“ã®ã¯ãã†ã¡
         return UG_TRAPTYPE_LEAF;
-      case GOODS_UG_TRAP_21://	(77) // ‚Í‚È‚Ñ‚ç‚»‚¤‚¿
+      case GOODS_UG_TRAP_21://	(77) // ã¯ãªã³ã‚‰ãã†ã¡
         return UG_TRAPTYPE_DIRTY_BLOSSOMS;
-      case GOODS_UG_TRAP_22://	(78) // ‚Ğ‚Ì‚±‚»‚¤‚¿
+      case GOODS_UG_TRAP_22://	(78) // ã²ã®ã“ãã†ã¡
         return UG_TRAPTYPE_FIRE;
-      case GOODS_UG_TRAP_23://	(79) // ‚Ù‚Ì‚¨‚»‚¤‚¿
+      case GOODS_UG_TRAP_23://	(79) // ã»ã®ãŠãã†ã¡
         return UG_TRAPTYPE_BLAZE;
     }
     return UG_TRAPTYPE_NONE;
@@ -3445,10 +3445,10 @@ static int _trap2trap(int goodsTrap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒ‰ƒbƒvƒOƒbƒY‚ğ“¥‚ñ‚¾‚©‚Ç‚¤‚©
- * @param   netID  “¥‚ñ‚¾l
- * @param   pTouch ˆÊ’u
- * @retval  “¥‚ñ‚Å‚½‚çTRUE
+ * @brief   ãƒˆãƒ©ãƒƒãƒ—ã‚°ãƒƒã‚ºã‚’è¸ã‚“ã ã‹ã©ã†ã‹
+ * @param   netID  è¸ã‚“ã äºº
+ * @param   pTouch ä½ç½®
+ * @retval  è¸ã‚“ã§ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -3477,7 +3477,7 @@ BOOL UgSecretBaseTrapGoodsCheck(int netID)
         if(UG_TRAPTYPE_NONE != trapType){
             _pCommSecretBaseWork->bGoodsTrap[netID] = TRUE;
             UgTrapGoodsBind(netID, INVALID_NETID, trapType, x, z, dir);
-            OHNO_SP_PRINT("‘•’u‚É‚©‚©‚é%d x,z \n",netID,x,z);
+            OHNO_SP_PRINT("è£…ç½®ã«ã‹ã‹ã‚‹%d x,z \n",netID,x,z);
             return TRUE;
         }
     }
@@ -3486,9 +3486,9 @@ BOOL UgSecretBaseTrapGoodsCheck(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒ‰ƒbƒvƒOƒbƒY‚ğ“¥‚İ‚¨‚í‚Á‚½
- * @param   netID  “¥‚ñ‚¾l
- * @retval  “¥‚ñ‚Å‚½‚çTRUE
+ * @brief   ãƒˆãƒ©ãƒƒãƒ—ã‚°ãƒƒã‚ºã‚’è¸ã¿ãŠã‚ã£ãŸ
+ * @param   netID  è¸ã‚“ã äºº
+ * @retval  è¸ã‚“ã§ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -3505,8 +3505,8 @@ BOOL UgSecretBaseTrapGoodsReset(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”é–§Šî’n‚É‚¢‚él‚ğ’Ç‚¢o‚·ie‹@‚ª‚¢‚éê‡jí‚ÉŒÄ‚Ño‚³‚ê‚é
- * @param   netID    ‚±‚Ìl‚Ì”é–§Šî’n‚É‚¢‚éê‡’Ç‚¢o‚·
+ * @brief   ç§˜å¯†åŸºåœ°ã«ã„ã‚‹äººã‚’è¿½ã„å‡ºã™ï¼ˆè¦ªæ©ŸãŒã„ã‚‹å ´åˆï¼‰å¸¸ã«å‘¼ã³å‡ºã•ã‚Œã‚‹
+ * @param   netID    ã“ã®äººã®ç§˜å¯†åŸºåœ°ã«ã„ã‚‹å ´åˆè¿½ã„å‡ºã™
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -3523,8 +3523,8 @@ void UgSecretBaseRemovePlayer(int netID)
 /*    for(i = 0 ; i < COMM_MACHINE_MAX ; i++){
         if((_pCommSecretBaseWork->travelBase[i] == netID)){
             if((_pCommSecretBaseWork->travelingBase[i] == _INVALID_BASE) &&
-               (_pCommSecretBaseWork->travelingBaseSend[i] == _INVALID_BASE)){  // ”é–§Šî’nˆÚ“®‚ğ‚µ‚Ä‚¢‚È‚¢
-                OHNO_PRINT("%d ‚ğ %d ‚©‚ç‚¨‚¢‚¾‚·---1\n",i, _pCommSecretBaseWork->travelBase[i]);
+               (_pCommSecretBaseWork->travelingBaseSend[i] == _INVALID_BASE)){  // ç§˜å¯†åŸºåœ°ç§»å‹•ã‚’ã—ã¦ã„ãªã„
+                OHNO_PRINT("%d ã‚’ %d ã‹ã‚‰ãŠã„ã ã™---1\n",i, _pCommSecretBaseWork->travelBase[i]);
                 if(!buff[i]){
                     _returnUnderGroundStart(_pCommSecretBaseWork->travelBase[i],i, TRUE);
                     buff[i]=TRUE;
@@ -3547,9 +3547,9 @@ void UgSecretBaseRemovePlayer(int netID)
                 continue;
             }
             if((_pCommSecretBaseWork->travelingBase[i] == _INVALID_BASE) &&
-               (_pCommSecretBaseWork->travelingBaseSend[i] == _INVALID_BASE)){  // ”é–§Šî’nˆÚ“®‚ğ‚µ‚Ä‚¢‚È‚¢
+               (_pCommSecretBaseWork->travelingBaseSend[i] == _INVALID_BASE)){  // ç§˜å¯†åŸºåœ°ç§»å‹•ã‚’ã—ã¦ã„ãªã„
                 if(UgSecretBaseIsSecretBasePlace(x,z)){
-                    OHNO_PRINT("%d ‚ğ %d ‚©‚ç‚¨‚¢‚¾‚·\n",i, no);
+                    OHNO_PRINT("%d ã‚’ %d ã‹ã‚‰ãŠã„ã ã™\n",i, no);
                     if(!buff[i]){
                         _returnUnderGroundStart(no, i, TRUE);
                         buff[i]=TRUE;
@@ -3566,13 +3566,13 @@ void UgSecretBaseRemovePlayer(int netID)
         }
         else if(UgSecretBaseIsSecretBasePlace(x,z)){
             no = _getSecretIndex(x,z);
-            OHNO_PRINT("%d ‚ğ %d ‚©‚çescape\n",i, no);
+            OHNO_PRINT("%d ã‚’ %d ã‹ã‚‰escape\n",i, no);
             if(!buff[i]){
                 _returnUnderGroundStart(no, i, TRUE);
                 buff[i]=TRUE;
             }
         }
-        if(buff[i]){  // ‹A‚é‚±‚Æ‚ªŒˆ‚Ü‚Á‚Ä‚¢‚½ê‡”jŠü
+        if(buff[i]){  // å¸°ã‚‹ã“ã¨ãŒæ±ºã¾ã£ã¦ã„ãŸå ´åˆç ´æ£„
             _pCommSecretBaseWork->moveTickets = _NONE_TICKETS;//
         }
     }
@@ -3580,8 +3580,8 @@ void UgSecretBaseRemovePlayer(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”é–§Šî’n‚É‚¢‚él‚ğ’Ç‚¢o‚·ie‹@‚ª‚«‚¦‚½ê‡j
- * @param   netID    ‚±‚Ìl‚Ì”é–§Šî’n
+ * @brief   ç§˜å¯†åŸºåœ°ã«ã„ã‚‹äººã‚’è¿½ã„å‡ºã™ï¼ˆè¦ªæ©ŸãŒããˆãŸå ´åˆï¼‰
+ * @param   netID    ã“ã®äººã®ç§˜å¯†åŸºåœ°
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -3601,8 +3601,8 @@ BOOL UgSecretBaseRemovePlayer_Client(int playerID, BOOL bRemove)
     x = CommPlayerGetPosX(CommGetCurrentID());
     z = CommPlayerGetPosZ(CommGetCurrentID());
     if(!UgSecretBaseIsSecretBasePlace(x,z)){
-        _pCommSecretBaseWork->travelBase[playerID] = _INVALID_BASE; // ‚±‚±‚ÅÁ‚·
-        OHNO_PRINT("”é–§Šî’nŠO");
+        _pCommSecretBaseWork->travelBase[playerID] = _INVALID_BASE; // ã“ã“ã§æ¶ˆã™
+        OHNO_PRINT("ç§˜å¯†åŸºåœ°å¤–");
         return FALSE;
     }
     UnderRecordReset();
@@ -3619,7 +3619,7 @@ BOOL UgSecretBaseRemovePlayer_Client(int playerID, BOOL bRemove)
     z = _pCommSecretBaseWork->resquePosZ;
     dir = _pCommSecretBaseWork->resqueDir;
 
-    OHNO_PRINT("Ø’f‚È‚Ì‚Å  %d %d %d ‚É‚à‚Ç‚è‚Ü‚·\n", playerID,escapePlace , x, z , dir);
+    OHNO_PRINT("åˆ‡æ–­ãªã®ã§  %d %d %d ã«ã‚‚ã©ã‚Šã¾ã™\n", playerID,escapePlace , x, z , dir);
     GF_ASSERT((x != 0) && (z != 0));
     x += FieldOBJ_DirAddValueGX( dir);
     z += FieldOBJ_DirAddValueGZ( dir);
@@ -3634,8 +3634,8 @@ BOOL UgSecretBaseRemovePlayer_Client(int playerID, BOOL bRemove)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”é–§Šî’n‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @param   netID    ‚±‚Ìl‚Ì”é–§Šî’n
+ * @brief   ç§˜å¯†åŸºåœ°ã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @param   netID    ã“ã®äººã®ç§˜å¯†åŸºåœ°
  * @retval  
  */
 //--------------------------------------------------------------
@@ -3655,8 +3655,8 @@ BOOL UgSecretBaseIsOtherEnter(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”é–§Šî’nƒf[ƒ^óM’†‚ÌƒGƒ‰[‘Îˆ
- * @param   netID    ‚±‚Ìl‚Ì”é–§Šî’n
+ * @brief   ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿å—ä¿¡ä¸­ã®ã‚¨ãƒ©ãƒ¼å¯¾å‡¦
+ * @param   netID    ã“ã®äººã®ç§˜å¯†åŸºåœ°
  * @retval  
  */
 //--------------------------------------------------------------
@@ -3667,14 +3667,14 @@ void UgSecretBaseErrorMoveTickets(void)
         _pCommSecretBaseWork->moveTickets = _ERROR_TICKETS;
         CommPlayerMyDataInitialize();
         UgSecretBaseResetPlayer(COMM_PARENT_ID);
-        OHNO_PRINT("ƒGƒ‰[ƒ`ƒPƒbƒg‚È‚Ì‚ÅƒŠƒZƒbƒg\n");
+        OHNO_PRINT("ã‚¨ãƒ©ãƒ¼ãƒã‚±ãƒƒãƒˆãªã®ã§ãƒªã‚»ãƒƒãƒˆ\n");
     }
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ”é–§Šî’nˆÚ“®’†‚ÌƒGƒ‰[
- * @param   netID    ‚±‚Ìl‚Ì”é–§Šî’n
+ * @brief   ç§˜å¯†åŸºåœ°ç§»å‹•ä¸­ã®ã‚¨ãƒ©ãƒ¼
+ * @param   netID    ã“ã®äººã®ç§˜å¯†åŸºåœ°
  * @retval  
  */
 //--------------------------------------------------------------
@@ -3683,13 +3683,13 @@ void UgSecretBaseErrorDisconnectTickets(void)
 {
     if(_pCommSecretBaseWork->moveTickets == _TRANS_TICKETS){
         _pCommSecretBaseWork->moveTickets = _DISCONECT_TICKETS;
-        OHNO_PRINT("ƒGƒ‰[‚È‚Ì‚ÅƒŠƒZƒbƒg\n");
+        OHNO_PRINT("ã‚¨ãƒ©ãƒ¼ãªã®ã§ãƒªã‚»ãƒƒãƒˆ\n");
     }
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@‚É‚È‚Á‚½l‚ª”é–§Šî’n‚É‚¢‚½ê‡A‚¢‚Á‚½‚ñŠO‚Éo‚Ä‚à‚ç‚¤
+ * @brief   å­æ©Ÿã«ãªã£ãŸäººãŒç§˜å¯†åŸºåœ°ã«ã„ãŸå ´åˆã€ã„ã£ãŸã‚“å¤–ã«å‡ºã¦ã‚‚ã‚‰ã†
  * @param   void
  * @retval  void
  */
@@ -3703,7 +3703,7 @@ void UgSecretBaseFirstConnectChild(int netID)
     x = CommPlayerGetPosSXOrg(id);
     z = CommPlayerGetPosSZOrg(id);
 
-    if(!GetHitAttr(_pCommSecretBaseWork->pFSys, x, z)){   // •Ï‚ÈˆÊ’u‚É‚¢‚é‚Æ‹­§‘Ş‹
+    if(!GetHitAttr(_pCommSecretBaseWork->pFSys, x, z)){   // å¤‰ãªä½ç½®ã«ã„ã‚‹ã¨å¼·åˆ¶é€€å»
         if(netID == COMM_PARENT_ID){
             return;
         }
@@ -3711,7 +3711,7 @@ void UgSecretBaseFirstConnectChild(int netID)
             return;
         }
     }
-    OHNO_PRINT("q‹@@%d ‚ÌˆÊ’u  %d %d\n",id, x, z); //
+    OHNO_PRINT("å­æ©Ÿã€€%d ã®ä½ç½®  %d %d\n",id, x, z); //
     if((x==COMM_PLAYER_INVALID_GRID) && (z==COMM_PLAYER_INVALID_GRID)){
 #ifdef DEBUG_ONLY_FOR_ohno
 //        GF_ASSERT(0);
@@ -3720,7 +3720,7 @@ void UgSecretBaseFirstConnectChild(int netID)
     }
     else if(UgSecretBaseIsSecretBasePlace(x, z) || GetHitAttr(_pCommSecretBaseWork->pFSys, x, z)){
         _returnUnderGroundStart(id, id, TRUE);
-        OHNO_PRINT("%d ‚ğ %d ‚©‚ç ‚¢‚Á‚½‚ñ‚»‚Æ‚É‚¾‚·\n",id, id);
+        OHNO_PRINT("%d ã‚’ %d ã‹ã‚‰ ã„ã£ãŸã‚“ãã¨ã«ã ã™\n",id, id);
     }
 }
 
@@ -3753,33 +3753,33 @@ int UgSecretBaseEscapeDir(void)
 void UgSecretBaseEscapePosSXSet(int netID,int x)
 {
     if(_pCommSecretBaseWork){
-        _pCommSecretBaseWork->resquePosSX[netID] = x;  // “ü‚é‚Éo‚é‚ÌˆÊ’u‚ğ‹L‰¯
+        _pCommSecretBaseWork->resquePosSX[netID] = x;  // å…¥ã‚‹æ™‚ã«å‡ºã‚‹æ™‚ã®ä½ç½®ã‚’è¨˜æ†¶
     }
 }
 
 void UgSecretBaseEscapePosSZSet(int netID,int z)
 {
     if(_pCommSecretBaseWork){
-        _pCommSecretBaseWork->resquePosSZ[netID] = z;  // “ü‚é‚Éo‚é‚ÌˆÊ’u‚ğ‹L‰¯
+        _pCommSecretBaseWork->resquePosSZ[netID] = z;  // å…¥ã‚‹æ™‚ã«å‡ºã‚‹æ™‚ã®ä½ç½®ã‚’è¨˜æ†¶
     }
 }
 
 void UgSecretBaseEscapeDirSet(int netID,int dir)
 {
     if(_pCommSecretBaseWork){
-        _pCommSecretBaseWork->resqueSDir[netID] = dir;  // “ü‚é‚Éo‚é‚ÌˆÊ’u‚ğ‹L‰¯
+        _pCommSecretBaseWork->resqueSDir[netID] = dir;  // å…¥ã‚‹æ™‚ã«å‡ºã‚‹æ™‚ã®ä½ç½®ã‚’è¨˜æ†¶
     }
 }
 
 void UgSecretBaseBootOn(BOOL bOn)
 {
-//    OHNO_PRINT("ƒhƒA‚¾‚·\n");
+//    OHNO_PRINT("ãƒ‰ã‚¢ã ã™\n");
     _pCommSecretBaseWork->bDoorON = bOn;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Ú‘±‹Ö~
+ * @brief   æ¥ç¶šç¦æ­¢
  * @param   void
  * @retval  void
  */

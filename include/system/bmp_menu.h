@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	bmp_menu.h
- * @brief	BMPƒƒjƒ…[ˆ—
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2004.11.10
  */
@@ -21,7 +21,7 @@
 
 
 //============================================================================================
-//	ƒVƒ“ƒ{ƒ‹’è‹`
+//	ã‚·ãƒ³ãƒœãƒ«å®šç¾©
 //============================================================================================
 #define	BMPMENU_NULL	( 0xffffffff )
 #define	BMPMENU_CANCEL	( 0xfffffffe )
@@ -32,58 +32,58 @@ typedef struct {
 	const BMPMENU_DATA * menu;
 	GF_BGL_BMPWIN * win;
 	u8	font;
-	u8	x_max;			// ‰¡•ûŒü€–ÚÅ‘å”i•K‚¸‚PˆÈãj
-	u8	y_max;			// c•ûŒü€–ÚÅ‘å”i•K‚¸‚PˆÈãj
-	u8	line_spc:4;		// •¶ŽšŠÔŠu‚x
-	u8	c_disp_f:2;		// ƒJ[ƒ\ƒ‹•\Ž¦ƒtƒ‰ƒO
-	u8	loop_f:2;		// LOOPƒtƒ‰ƒO ( 0=OFF, 1=ON )
+	u8	x_max;			// æ¨ªæ–¹å‘é …ç›®æœ€å¤§æ•°ï¼ˆå¿…ãšï¼‘ä»¥ä¸Šï¼‰
+	u8	y_max;			// ç¸¦æ–¹å‘é …ç›®æœ€å¤§æ•°ï¼ˆå¿…ãšï¼‘ä»¥ä¸Šï¼‰
+	u8	line_spc:4;		// æ–‡å­—é–“éš”ï¼¹
+	u8	c_disp_f:2;		// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºãƒ•ãƒ©ã‚°
+	u8	loop_f:2;		// LOOPãƒ•ãƒ©ã‚° ( 0=OFF, 1=ON )
 }BMPMENU_HEADER;
 
 typedef struct _BMPMENU_WORK	BMPMENU_WORK;
 
-// ŠO•”ƒRƒ“ƒgƒ[ƒ‹ƒpƒ‰ƒ[ƒ^
+// å¤–éƒ¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 enum {
-	BMPMENU_CNTROL_DECIDE = 0,	// Œˆ’è
-	BMPMENU_CNTROL_CANCEL,		// ƒLƒƒƒ“ƒZƒ‹
-	BMPMENU_CNTROL_UP,			// ã
-	BMPMENU_CNTROL_DOWN,		// ‰º
-	BMPMENU_CNTROL_LEFT,		// ¶
-	BMPMENU_CNTROL_RIGHT,		// ‰E
+	BMPMENU_CNTROL_DECIDE = 0,	// æ±ºå®š
+	BMPMENU_CNTROL_CANCEL,		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	BMPMENU_CNTROL_UP,			// ä¸Š
+	BMPMENU_CNTROL_DOWN,		// ä¸‹
+	BMPMENU_CNTROL_LEFT,		// å·¦
+	BMPMENU_CNTROL_RIGHT,		// å³
 };
 
-// ˆÚ“®•ûŒü
+// ç§»å‹•æ–¹å‘
 enum {
-	BMPMENU_MOVE_NONE = 0,	// “®ì‚È‚µ
-	BMPMENU_MOVE_UP,		// ã‚ÖˆÚ“®
-	BMPMENU_MOVE_DOWN,		// ‰º‚ÖˆÚ“®
-	BMPMENU_MOVE_LEFT,		// ¶‚ÖˆÚ“®
-	BMPMENU_MOVE_RIGHT,		// ‰E‚ÖˆÚ“®
+	BMPMENU_MOVE_NONE = 0,	// å‹•ä½œãªã—
+	BMPMENU_MOVE_UP,		// ä¸Šã¸ç§»å‹•
+	BMPMENU_MOVE_DOWN,		// ä¸‹ã¸ç§»å‹•
+	BMPMENU_MOVE_LEFT,		// å·¦ã¸ç§»å‹•
+	BMPMENU_MOVE_RIGHT,		// å³ã¸ç§»å‹•
 };
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒƒjƒ…[“o˜^iƒXƒNƒŠ[ƒ““]‘—‚µ‚È‚¢j
+ * BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ç™»éŒ²ï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ã—ãªã„ï¼‰
  *
- * @param	dat			ƒwƒbƒ_ƒf[ƒ^
- * @param	px			€–Ú•\Ž¦XÀ•W
- * @param	py			€–Ú•\Ž¦YÀ•W
- * @param	pos			‰ŠúƒJ[ƒ\ƒ‹ˆÊ’u
- * @aram	mode		ƒƒ‚ƒŠŽæ“¾ƒ‚[ƒh
- * @param	cancel		ƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“
+ * @param	dat			ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿
+ * @param	px			é …ç›®è¡¨ç¤ºXåº§æ¨™
+ * @param	py			é …ç›®è¡¨ç¤ºYåº§æ¨™
+ * @param	pos			åˆæœŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @aram	mode		ãƒ¡ãƒ¢ãƒªå–å¾—ãƒ¢ãƒ¼ãƒ‰
+ * @param	cancel		ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³
  *
- * @return	BMPƒƒjƒ…[ƒ[ƒN
+ * @return	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- * @li	BMPƒŠƒXƒgƒ[ƒN‚Ísys_AllocMemory‚ÅŠm•Û
+ * @li	BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯ã¯sys_AllocMemoryã§ç¢ºä¿
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BMPMENU_WORK * BmpMenuAdd_NoTrans(
@@ -92,18 +92,18 @@ GLOBAL BMPMENU_WORK * BmpMenuAdd_NoTrans(
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒƒjƒ…[“o˜^iƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“Žw’èj
+ * BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ç™»éŒ²ï¼ˆã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³æŒ‡å®šï¼‰
  *
- * @param	dat			ƒwƒbƒ_ƒf[ƒ^
- * @param	px			€–Ú•\Ž¦XÀ•W
- * @param	py			€–Ú•\Ž¦YÀ•W
- * @param	pos			‰ŠúƒJ[ƒ\ƒ‹ˆÊ’u
- * @aram	mode		ƒƒ‚ƒŠŽæ“¾ƒ‚[ƒh
- * @param	cancel		ƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“
+ * @param	dat			ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿
+ * @param	px			é …ç›®è¡¨ç¤ºXåº§æ¨™
+ * @param	py			é …ç›®è¡¨ç¤ºYåº§æ¨™
+ * @param	pos			åˆæœŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @aram	mode		ãƒ¡ãƒ¢ãƒªå–å¾—ãƒ¢ãƒ¼ãƒ‰
+ * @param	cancel		ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³
  *
- * @return	BMPƒƒjƒ…[ƒ[ƒN
+ * @return	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- * @li	BMPƒŠƒXƒgƒ[ƒN‚Ísys_AllocMemory‚ÅŠm•Û
+ * @li	BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯ã¯sys_AllocMemoryã§ç¢ºä¿
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BMPMENU_WORK * BmpMenuAddEx(
@@ -112,26 +112,26 @@ GLOBAL BMPMENU_WORK * BmpMenuAddEx(
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒƒjƒ…[“o˜^iŠÈˆÕ”Åj
+ * BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ç™»éŒ²ï¼ˆç°¡æ˜“ç‰ˆï¼‰
  *
- * @param	dat			ƒwƒbƒ_ƒf[ƒ^
- * @param	pos			‰ŠúƒJ[ƒ\ƒ‹ˆÊ’u
- * @aram	mode		ƒƒ‚ƒŠŽæ“¾ƒ‚[ƒh
+ * @param	dat			ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿
+ * @param	pos			åˆæœŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @aram	mode		ãƒ¡ãƒ¢ãƒªå–å¾—ãƒ¢ãƒ¼ãƒ‰
  *
- * @return	BMPƒƒjƒ…[ƒ[ƒN
+ * @return	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- * @li	BMPƒŠƒXƒgƒ[ƒN‚Ísys_AllocMemory‚ÅŠm•Û
- * @li	Bƒ{ƒ^ƒ“ƒLƒƒƒ“ƒZƒ‹
+ * @li	BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯ã¯sys_AllocMemoryã§ç¢ºä¿
+ * @li	Bãƒœã‚¿ãƒ³ã‚­ãƒ£ãƒ³ã‚»ãƒ«
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BMPMENU_WORK * BmpMenuAdd( const BMPMENU_HEADER * dat, u8 pos, u8 mode );
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒƒjƒ…[”jŠü
+ * BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ç ´æ£„
  *
- * @param	mw		BMPƒƒjƒ…[ƒ[ƒN
- * @param	backup	ƒJ[ƒ\ƒ‹ˆÊ’u•Û‘¶êŠ
+ * @param	mw		BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	backup	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä¿å­˜å ´æ‰€
  *
  * @return	none
  */
@@ -140,79 +140,79 @@ GLOBAL void BmpMenuExit( BMPMENU_WORK * mw, u8 * backup );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[“®ìŠÖ”
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‹•ä½œé–¢æ•°
  *
- * @param	mw		BMPƒƒjƒ…[ƒ[ƒN
+ * @param	mw		BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- * @return	“®ìŒ‹‰Ê
+ * @return	å‹•ä½œçµæžœ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 BmpMenuMain( BMPMENU_WORK * mw );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[“®ìŠÖ”i\ŽšƒL[‚ÌSE‚ðŽw’è‚Å‚«‚éj
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‹•ä½œé–¢æ•°ï¼ˆåå­—ã‚­ãƒ¼ã®SEã‚’æŒ‡å®šã§ãã‚‹ï¼‰
  *
- * @param	mw		BMPƒƒjƒ…[ƒ[ƒN
- * @param	key_se	\ŽšƒL[‚ÌSE
+ * @param	mw		BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	key_se	åå­—ã‚­ãƒ¼ã®SE
  *
- * @return	“®ìŒ‹‰Ê
+ * @return	å‹•ä½œçµæžœ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 BmpMenuMain_SE( BMPMENU_WORK * mw, u16 key_se );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ŠO•”ƒRƒ“ƒgƒ[ƒ‹
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¤–éƒ¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- * @param	mw		BMPƒƒjƒ…[ƒ[ƒN
- * @param	prm		ƒRƒ“ƒgƒ[ƒ‹ƒpƒ‰ƒ[ƒ^
+ * @param	mw		BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	prm		ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @return	“®ìŒ‹‰Ê
+ * @return	å‹•ä½œçµæžœ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 BmpMenuMainOutControl( BMPMENU_WORK * mw, u8 prm );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹ˆÊ’uŽæ“¾
+ * ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—
  *
- * @param	mw		BMPƒƒjƒ…[ƒ[ƒN
+ * @param	mw		BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒJ[ƒ\ƒ‹ˆÊ’u
+ * @return	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 BmpMenuCursorPosGet( BMPMENU_WORK * mw );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˆÚ“®•ûŒüŽæ“¾
+ * ç§»å‹•æ–¹å‘å–å¾—
  *
- * @param	mw		BMPƒƒjƒ…[ƒ[ƒN
+ * @param	mw		BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚ“®•ûŒüŽæ“¾
+ * @return	ç§»å‹•æ–¹å‘å–å¾—
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 BmpMenuMoveSiteGet( BMPMENU_WORK * mw );
 
 //============================================================================================
-//	‚Í‚¢E‚¢‚¢‚¦ˆ—
+//	ã¯ã„ãƒ»ã„ã„ãˆå‡¦ç†
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Í‚¢E‚¢‚¢‚¦ƒEƒBƒ“ƒhƒEƒZƒbƒgiƒJ[ƒ\ƒ‹ˆÊ’uŽw’èj
+ * ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆï¼ˆã‚«ãƒ¼ã‚½ãƒ«ä½ç½®æŒ‡å®šï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	data	ƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	cgx		ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ˆÊ’u
- * @param	pal		ƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg”Ô†
- * @param	pos		‰ŠúƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	heap	ƒq[ƒvID
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	data	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	cgx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ä½ç½®
+ * @param	pal		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+ * @param	pos		åˆæœŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	BMPƒƒjƒ…[ƒ[ƒN
+ * @return	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- * @li	BMPƒEƒBƒ“ƒhƒE‚ÆBMPƒƒjƒ…[ƒ[ƒN‚ðAlloc‚ÅŽæ“¾‚µ‚Ä‚¢‚é
+ * @li	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¨BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’Allocã§å–å¾—ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BMPMENU_WORK * BmpYesNoSelectInitEx(
@@ -220,17 +220,17 @@ GLOBAL BMPMENU_WORK * BmpYesNoSelectInitEx(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Í‚¢E‚¢‚¢‚¦ƒEƒBƒ“ƒhƒEƒZƒbƒg
+ * ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	data	ƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	cgx		ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ˆÊ’u
- * @param	pal		ƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg”Ô†
- * @param	heap	ƒq[ƒvID
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	data	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	cgx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ä½ç½®
+ * @param	pal		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	BMPƒƒjƒ…[ƒ[ƒN
+ * @return	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- * @li	BMPƒEƒBƒ“ƒhƒE‚ÆBMPƒƒjƒ…[ƒ[ƒN‚ðAlloc‚ÅŽæ“¾‚µ‚Ä‚¢‚é
+ * @li	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¨BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’Allocã§å–å¾—ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BMPMENU_WORK * BmpYesNoSelectInit(
@@ -238,39 +238,39 @@ GLOBAL BMPMENU_WORK * BmpYesNoSelectInit(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Í‚¢E‚¢‚¢‚¦‘I‘ðƒEƒBƒ“ƒhƒE‚Ì§Œä
+ * ã¯ã„ãƒ»ã„ã„ãˆé¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆ¶å¾¡
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	heap	ƒq[ƒvID
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"BMPMENU_NULL	‘I‘ð‚³‚ê‚Ä‚¢‚È‚¢"
- * @retval	"0				‚Í‚¢‚ð‘I‘ð"
- * @retval	"BMPMENU_CANCEL	‚¢‚¢‚¦orƒLƒƒƒ“ƒZƒ‹"
+ * @retval	"BMPMENU_NULL	é¸æŠžã•ã‚Œã¦ã„ãªã„"
+ * @retval	"0				ã¯ã„ã‚’é¸æŠž"
+ * @retval	"BMPMENU_CANCEL	ã„ã„ãˆorã‚­ãƒ£ãƒ³ã‚»ãƒ«"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 BmpYesNoSelectMain( BMPMENU_WORK * mw, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Í‚¢E‚¢‚¢‚¦‘I‘ðƒEƒBƒ“ƒhƒEŠO•”ƒRƒ“ƒgƒ[ƒ‹
+ * ã¯ã„ãƒ»ã„ã„ãˆé¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤–éƒ¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	prm		ƒRƒ“ƒgƒ[ƒ‹ƒpƒ‰ƒ[ƒ^
- * @param	heap	ƒq[ƒvID
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	prm		ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"BMPMENU_NULL	‘I‘ð‚³‚ê‚Ä‚¢‚È‚¢"
- * @retval	"0				‚Í‚¢‚ð‘I‘ð"
- * @retval	"BMPMENU_CANCEL	‚¢‚¢‚¦orƒLƒƒƒ“ƒZƒ‹"
+ * @retval	"BMPMENU_NULL	é¸æŠžã•ã‚Œã¦ã„ãªã„"
+ * @retval	"0				ã¯ã„ã‚’é¸æŠž"
+ * @retval	"BMPMENU_CANCEL	ã„ã„ãˆorã‚­ãƒ£ãƒ³ã‚»ãƒ«"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 BmpYesNoSelectMainOutControl( BMPMENU_WORK * mw, u8 prm, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Í‚¢E‚¢‚¢‚¦ƒEƒBƒ“ƒhƒEíœ
+ * ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	heap	ƒq[ƒvID
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -281,7 +281,7 @@ GLOBAL void BmpYesNoWinDel( BMPMENU_WORK * mw, u32 heap );
 
 //------------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒE‚ÉƒJ[ƒ\ƒ‹‰æ‘œ‚ð•`‰æ‚·‚é
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ã‚«ãƒ¼ã‚½ãƒ«ç”»åƒã‚’æç”»ã™ã‚‹
  *
  * @param   win		
  * @param   x		

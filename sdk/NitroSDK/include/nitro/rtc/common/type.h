@@ -35,161 +35,161 @@ extern "C" {
 #include	<nitro/types.h>
 
 /*---------------------------------------------------------------------------*
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
-// RTCŠ„ž‚ÝŠÖ˜A’è‹`
-#define		RTC_INTERRUPT_MODE_NONE				0x0     // Š„ž‚Ý‚È‚µ
-#define		RTC_INTERRUPT_MODE_32kHz			0x8     // 32kHz’èí”go—Í
-#define		RTC_INTERRUPT_MODE_PULSE			0x1     // ‘I‘ðŽü”g”’èíŠ„ž‚Ý
-#define		RTC_INTERRUPT_MODE_MINUTE_EDGE		0x2     // •ª’PˆÊƒGƒbƒWŠ„ž‚Ý
-#define		RTC_INTERRUPT_MODE_MINUTE_PULSE1	0x3     // •ª’PˆÊ’èíŠ„ž‚Ý‚P(ƒfƒ…[ƒeƒB[ 50%)
-#define		RTC_INTERRUPT_MODE_ALARM			0x4     // ƒAƒ‰[ƒ€Š„ž‚Ý
-#define		RTC_INTERRUPT_MODE_MINUTE_PULSE2	0x7     // •ª’PˆÊ’èíŠ„ž‚Ý‚Q
+// RTCå‰²è¾¼ã¿é–¢é€£å®šç¾©
+#define		RTC_INTERRUPT_MODE_NONE				0x0     // å‰²è¾¼ã¿ãªã—
+#define		RTC_INTERRUPT_MODE_32kHz			0x8     // 32kHzå®šå¸¸æ³¢å‡ºåŠ›
+#define		RTC_INTERRUPT_MODE_PULSE			0x1     // é¸æŠžå‘¨æ³¢æ•°å®šå¸¸å‰²è¾¼ã¿
+#define		RTC_INTERRUPT_MODE_MINUTE_EDGE		0x2     // åˆ†å˜ä½ã‚¨ãƒƒã‚¸å‰²è¾¼ã¿
+#define		RTC_INTERRUPT_MODE_MINUTE_PULSE1	0x3     // åˆ†å˜ä½å®šå¸¸å‰²è¾¼ã¿ï¼‘(ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ãƒ¼ 50%)
+#define		RTC_INTERRUPT_MODE_ALARM			0x4     // ã‚¢ãƒ©ãƒ¼ãƒ å‰²è¾¼ã¿
+#define		RTC_INTERRUPT_MODE_MINUTE_PULSE2	0x7     // åˆ†å˜ä½å®šå¸¸å‰²è¾¼ã¿ï¼’
 
-#define		RTC_INTERRUPT_MASK_32kHz			0x8     // 32kHz’èí”go—ÍŽž‚ÌˆÓ–¡‚ðŽ‚Âƒrƒbƒgƒ}ƒXƒN
-#define		RTC_INTERRUPT_MASK_PULSE			0xb     // ‘I‘ðŽü”g”’èíŠ„ž‚ÝŽž‚ÌˆÓ–¡‚ðŽ‚Âƒrƒbƒgƒ}ƒXƒN
-#define		RTC_INTERRUPT_MASK_MINUTE_EDGE		0xb     // •ª’PˆÊƒGƒbƒWŠ„ž‚ÝŽž‚ÌˆÓ–¡‚ðŽ‚Âƒrƒbƒgƒ}ƒXƒN
+#define		RTC_INTERRUPT_MASK_32kHz			0x8     // 32kHzå®šå¸¸æ³¢å‡ºåŠ›æ™‚ã®æ„å‘³ã‚’æŒã¤ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
+#define		RTC_INTERRUPT_MASK_PULSE			0xb     // é¸æŠžå‘¨æ³¢æ•°å®šå¸¸å‰²è¾¼ã¿æ™‚ã®æ„å‘³ã‚’æŒã¤ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
+#define		RTC_INTERRUPT_MASK_MINUTE_EDGE		0xb     // åˆ†å˜ä½ã‚¨ãƒƒã‚¸å‰²è¾¼ã¿æ™‚ã®æ„å‘³ã‚’æŒã¤ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
-// Žü”g”ƒfƒ…[ƒeƒB[’è‹`
+// å‘¨æ³¢æ•°ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ãƒ¼å®šç¾©
 #define		RTC_PULSE_DUTY_1HZ					0x01
 #define		RTC_PULSE_DUTY_2HZ					0x02
 #define		RTC_PULSE_DUTY_4HZ					0x04
 #define		RTC_PULSE_DUTY_8HZ					0x08
 #define		RTC_PULSE_DUTY_16HZ					0x10
-/* •¡”‚ðÝ’è‚µ‚½ê‡AÝ’è‚µ‚½ƒpƒ‹ƒX‚ª‘S‚ÄƒnƒC‚É‚È‚Á‚½‚Æ‚«Š„ž‚ÝM†ü‚É
-   ƒnƒC‚ªo—Í‚³‚ê‚éB‚Ç‚ê‚©‚Ð‚Æ‚Â‚Å‚àƒ[‚¾‚Á‚½ê‡‚Íƒ[o—Í‚Æ‚È‚éB*/
+/* è¤‡æ•°ã‚’è¨­å®šã—ãŸå ´åˆã€è¨­å®šã—ãŸãƒ‘ãƒ«ã‚¹ãŒå…¨ã¦ãƒã‚¤ã«ãªã£ãŸã¨ãå‰²è¾¼ã¿ä¿¡å·ç·šã«
+   ãƒã‚¤ãŒå‡ºåŠ›ã•ã‚Œã‚‹ã€‚ã©ã‚Œã‹ã²ã¨ã¤ã§ã‚‚ãƒ­ãƒ¼ã ã£ãŸå ´åˆã¯ãƒ­ãƒ¼å‡ºåŠ›ã¨ãªã‚‹ã€‚*/
 
 
 /*---------------------------------------------------------------------------*
-    \‘¢‘Ì’è‹`
+    æ§‹é€ ä½“å®šç¾©
  *---------------------------------------------------------------------------*/
-// “ú•t\‘¢‘Ì
+// æ—¥ä»˜æ§‹é€ ä½“
 typedef struct RTCRawDate
 {
-    u32     year:8;                    // ”N( 00 ~ 99 )
-    u32     month:5;                   // ŒŽ( 01 ~ 12 )
+    u32     year:8;                    // å¹´( 00 ~ 99 )
+    u32     month:5;                   // æœˆ( 01 ~ 12 )
     u32     dummy0:3;
-    u32     day:6;                     // “ú( 01 ~ 31 ) ŒŽ/‰[”N‚É‚æ‚èãŒÀ‚Í•Ï“®
+    u32     day:6;                     // æ—¥( 01 ~ 31 ) æœˆ/é–å¹´ã«ã‚ˆã‚Šä¸Šé™ã¯å¤‰å‹•
     u32     dummy1:2;
-    u32     week:3;                    // —j“ú( 00 ~ 06 )
+    u32     week:3;                    // æ›œæ—¥( 00 ~ 06 )
     u32     dummy2:5;
 
 }
 RTCRawDate;
 
-// ŽžŠÔ\‘¢‘Ì
+// æ™‚é–“æ§‹é€ ä½“
 typedef struct RTCRawTime
 {
-    u32     hour:6;                    // ŽžŠÔ( 00 ~ 23 ‚Ü‚½‚Í 00 ~ 11 )
-    u32     afternoon:1;               // 12ŽžŠÔ•\‹L‚Ìê‡‚Ìp.m.ƒtƒ‰ƒO
+    u32     hour:6;                    // æ™‚é–“( 00 ~ 23 ã¾ãŸã¯ 00 ~ 11 )
+    u32     afternoon:1;               // 12æ™‚é–“è¡¨è¨˜ã®å ´åˆã®p.m.ãƒ•ãƒ©ã‚°
     u32     dummy0:1;
-    u32     minute:7;                  // •ª( 00 ~ 59 )
+    u32     minute:7;                  // åˆ†( 00 ~ 59 )
     u32     dummy1:1;
-    u32     second:7;                  // •b( 00 ~ 59 )
+    u32     second:7;                  // ç§’( 00 ~ 59 )
     u32     dummy2:9;
 
 }
 RTCRawTime;
 
-// ƒXƒe[ƒ^ƒX‚P\‘¢‘Ì
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼‘æ§‹é€ ä½“
 typedef struct RTCRawStatus1
 {
-    u16     reset:1;                   // W   ƒŠƒZƒbƒgƒtƒ‰ƒO
-    u16     format:1;                  // R/W ‚ÌŽžŠÔ•\‹Lƒtƒ‰ƒO( 0: 12ŽžŠÔ•\‹LA1: 24ŽžŠÔ•\‹L )
+    u16     reset:1;                   // W   ãƒªã‚»ãƒƒãƒˆãƒ•ãƒ©ã‚°
+    u16     format:1;                  // R/W ã®æ™‚é–“è¡¨è¨˜ãƒ•ãƒ©ã‚°( 0: 12æ™‚é–“è¡¨è¨˜ã€1: 24æ™‚é–“è¡¨è¨˜ )
     u16     dummy0:2;
-    u16     intr1:1;                   // R   Š„ž‚Ý‚P”­¶ƒtƒ‰ƒO( Š„ž‚ÝM†ü‚É‚Íƒ[‚ªo—Í‚³‚ê‚é )
-    u16     intr2:1;                   // R   Š„ž‚Ý‚Q”­¶ƒtƒ‰ƒO( Š„ž‚ÝM†ü‚É‚Íƒ[‚ªo—Í‚³‚ê‚é )
-    u16     bld:1;                     // R   “dŒ¹“dˆ³~‰ºŒŸoƒtƒ‰ƒO
-    u16     poc:1;                     // R   “dŒ¹“Š“üŒŸoƒtƒ‰ƒO
+    u16     intr1:1;                   // R   å‰²è¾¼ã¿ï¼‘ç™ºç”Ÿãƒ•ãƒ©ã‚°( å‰²è¾¼ã¿ä¿¡å·ç·šã«ã¯ãƒ­ãƒ¼ãŒå‡ºåŠ›ã•ã‚Œã‚‹ )
+    u16     intr2:1;                   // R   å‰²è¾¼ã¿ï¼’ç™ºç”Ÿãƒ•ãƒ©ã‚°( å‰²è¾¼ã¿ä¿¡å·ç·šã«ã¯ãƒ­ãƒ¼ãŒå‡ºåŠ›ã•ã‚Œã‚‹ )
+    u16     bld:1;                     // R   é›»æºé›»åœ§é™ä¸‹æ¤œå‡ºãƒ•ãƒ©ã‚°
+    u16     poc:1;                     // R   é›»æºæŠ•å…¥æ¤œå‡ºãƒ•ãƒ©ã‚°
     u16     dummy1:8;
 
 }
 RTCRawStatus1;
 
-// ƒXƒe[ƒ^ƒX‚Q\‘¢‘Ì
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼’æ§‹é€ ä½“
 typedef struct RTCRawStatus2
 {
-    u16     intr_mode:4;               // R/W Š„ž‚Ý‚P‘I‘ð( RTC_INTERRUPT_MODE_* )
+    u16     intr_mode:4;               // R/W å‰²è¾¼ã¿ï¼‘é¸æŠž( RTC_INTERRUPT_MODE_* )
     u16     dummy0:2;
-    u16     intr2_mode:1;              // R/W Š„ž‚Ý‚Q‹–‰Âƒtƒ‰ƒO
-    u16     test:1;                    // R/W ƒeƒXƒgƒ‚[ƒhƒtƒ‰ƒO
+    u16     intr2_mode:1;              // R/W å‰²è¾¼ã¿ï¼’è¨±å¯ãƒ•ãƒ©ã‚°
+    u16     test:1;                    // R/W ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
     u16     dummy1:8;
 
 }
 RTCRawStatus2;
 
-// ƒAƒ‰[ƒ€\‘¢‘Ì
+// ã‚¢ãƒ©ãƒ¼ãƒ æ§‹é€ ä½“
 typedef struct RTCRawAlarm
 {
-    u32     week:3;                    // —j“ú( 00 ~ 06 )
+    u32     week:3;                    // æ›œæ—¥( 00 ~ 06 )
     u32     dummy0:4;
-    u32     we:1;                      // —j“úÝ’è—LŒøƒtƒ‰ƒO
-    u32     hour:6;                    // ŽžŠÔ( 00 ~ 23 ‚Ü‚½‚Í 00 ~ 11 ) ŽžŠÔ•\‹L‚ÍƒXƒe[ƒ^ƒX‚P‚ÉˆË‘¶
-    u32     afternoon:1;               // 12ŽžŠÔ•\‹L‚Ìê‡‚Ìp.m.ƒtƒ‰ƒO
-    u32     he:1;                      // ŽžŠÔÝ’è—LŒøƒtƒ‰ƒO
-    u32     minute:7;                  // •ª( 00 ~ 59 )
-    u32     me:1;                      // •ªÝ’è—LŒøƒtƒ‰ƒO
+    u32     we:1;                      // æ›œæ—¥è¨­å®šæœ‰åŠ¹ãƒ•ãƒ©ã‚°
+    u32     hour:6;                    // æ™‚é–“( 00 ~ 23 ã¾ãŸã¯ 00 ~ 11 ) æ™‚é–“è¡¨è¨˜ã¯ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼‘ã«ä¾å­˜
+    u32     afternoon:1;               // 12æ™‚é–“è¡¨è¨˜ã®å ´åˆã®p.m.ãƒ•ãƒ©ã‚°
+    u32     he:1;                      // æ™‚é–“è¨­å®šæœ‰åŠ¹ãƒ•ãƒ©ã‚°
+    u32     minute:7;                  // åˆ†( 00 ~ 59 )
+    u32     me:1;                      // åˆ†è¨­å®šæœ‰åŠ¹ãƒ•ãƒ©ã‚°
     u32     dummy2:8;
 
 }
 RTCRawAlarm;
 
-// ƒpƒ‹ƒX\‘¢‘Ì
+// ãƒ‘ãƒ«ã‚¹æ§‹é€ ä½“
 typedef struct RTCRawPulse
 {
-    u32     pulse:5;                   // Žü”g”ƒfƒ…[ƒeƒB[ƒtƒ‰ƒO( RTC_PULSE_DUTY_* )
+    u32     pulse:5;                   // å‘¨æ³¢æ•°ãƒ‡ãƒ¥ãƒ¼ãƒ†ã‚£ãƒ¼ãƒ•ãƒ©ã‚°( RTC_PULSE_DUTY_* )
     u32     dummy:27;
 
 }
 RTCRawPulse;
 
-// ƒNƒƒbƒN’²®ƒŒƒWƒXƒ^\‘¢‘Ì
+// ã‚¯ãƒ­ãƒƒã‚¯èª¿æ•´ãƒ¬ã‚¸ã‚¹ã‚¿æ§‹é€ ä½“
 typedef struct RTCRawAdjust
 {
-    u32     adjust:8;                  // ƒNƒƒbƒN’²®—pƒŒƒWƒXƒ^( Ý’è‚É‚Â‚¢‚Ä‚Í•ÊŽ‘—¿ŽQÆ )
+    u32     adjust:8;                  // ã‚¯ãƒ­ãƒƒã‚¯èª¿æ•´ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿( è¨­å®šã«ã¤ã„ã¦ã¯åˆ¥è³‡æ–™å‚ç…§ )
     u32     dummy:24;
 
 }
 RTCRawAdjust;
 
-// ƒtƒŠ[ƒŒƒWƒXƒ^\‘¢‘Ì
+// ãƒ•ãƒªãƒ¼ãƒ¬ã‚¸ã‚¹ã‚¿æ§‹é€ ä½“
 typedef struct RTCRawFree
 {
-    u32     free:8;                    // ƒtƒŠ[ƒŒƒWƒXƒ^
+    u32     free:8;                    // ãƒ•ãƒªãƒ¼ãƒ¬ã‚¸ã‚¹ã‚¿
     u32     dummy:24;
 
 }
 RTCRawFree;
 
-// ARM9 <-> ARM7 Žó‚¯“n‚µƒf[ƒ^\‘¢‘Ì( 8ƒoƒCƒg‹¤—p‘Ì )
+// ARM9 <-> ARM7 å—ã‘æ¸¡ã—ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“( 8ãƒã‚¤ãƒˆå…±ç”¨ä½“ )
 typedef union RTCRawData
 {
     struct
     {
-        RTCRawDate date;               // “ú•t
-        RTCRawTime time;               // Žž
+        RTCRawDate date;               // æ—¥ä»˜
+        RTCRawTime time;               // æ™‚åˆ»
     }
     t;
 
     struct
     {
-        RTCRawStatus1 status1;         // ƒXƒe[ƒ^ƒX‚PƒŒƒWƒXƒ^
-        RTCRawStatus2 status2;         // ƒXƒe[ƒ^ƒX‚QƒŒƒWƒXƒ^
+        RTCRawStatus1 status1;         // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼‘ãƒ¬ã‚¸ã‚¹ã‚¿
+        RTCRawStatus2 status2;         // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼’ãƒ¬ã‚¸ã‚¹ã‚¿
         union
         {
-            RTCRawPulse pulse;         // Žü”g”’èíŠ„ž‚ÝƒŒƒWƒXƒ^Ý’è
-            RTCRawAlarm alarm;         // ƒAƒ‰[ƒ€( 1 or 2 )ƒŒƒWƒXƒ^Ý’è
-            RTCRawAdjust adjust;       // ƒNƒƒbƒN’²®—pƒŒƒWƒXƒ^Ý’è
-            RTCRawFree free;           // ƒtƒŠ[ƒŒƒWƒXƒ^Ý’è
+            RTCRawPulse pulse;         // å‘¨æ³¢æ•°å®šå¸¸å‰²è¾¼ã¿ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
+            RTCRawAlarm alarm;         // ã‚¢ãƒ©ãƒ¼ãƒ ( 1 or 2 )ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
+            RTCRawAdjust adjust;       // ã‚¯ãƒ­ãƒƒã‚¯èª¿æ•´ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
+            RTCRawFree free;           // ãƒ•ãƒªãƒ¼ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
         };
     }
     a;
 
-    u32     words[2];                  // 4ƒoƒCƒgƒAƒNƒZƒX—p
+    u32     words[2];                  // 4ãƒã‚¤ãƒˆã‚¢ã‚¯ã‚»ã‚¹ç”¨
 
-    u16     halfs[4];                  // 2ƒoƒCƒgƒAƒNƒZƒX—p
+    u16     halfs[4];                  // 2ãƒã‚¤ãƒˆã‚¢ã‚¯ã‚»ã‚¹ç”¨
 
-    u8      bytes[8];                  // ƒoƒCƒgƒAƒNƒZƒX—p
+    u8      bytes[8];                  // ãƒã‚¤ãƒˆã‚¢ã‚¯ã‚»ã‚¹ç”¨
 
 }
 RTCRawData;

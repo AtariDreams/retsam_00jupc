@@ -2,7 +2,7 @@
 /**
  *
  *@file		clact_util_vram.c
- *@brief	ƒZƒ‹ƒAƒNƒ^[ƒ†[ƒeƒBƒŠƒeƒBƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚ğg—p‚µƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^AƒpƒŒƒbƒgƒf[ƒ^‚ğVram‚É“]‘—‚·‚éƒVƒXƒeƒ€
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ä½¿ç”¨ã—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’Vramã«è»¢é€ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
  *@author	tomoya takahashi
  *@data		2005.09.02
  *
@@ -19,39 +19,39 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //////////////////////////////////////////////////////////////////////////////
-// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—ŠÖ”
-// ƒIƒtƒZƒbƒgƒ^ƒCƒv
-// ã‚©‚ç‡‚É‹l‚ß‚ÄVram‚É“]‘—‚µ‚Ä‚¢‚«‚Ü‚·B
-// ‚µ‚©‚µ‰ğ•ú‚È‚Ç‚µ‚Ä‚à‰ğ•ú‚µ‚½—Ìˆæ‚ğ”F¯‚µ‚ÄA
-// ‚»‚Ì—Ìˆæ‚ÉÄ“xˆá‚¤ƒLƒƒƒ‰ƒNƒ^‚ğ“]‘—‚·‚é‚È‚Ç‚ª‚Å‚«‚Ü‚¹‚ñB
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€é–¢æ•°
+// ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚¿ã‚¤ãƒ—
+// ä¸Šã‹ã‚‰é †ã«è©°ã‚ã¦Vramã«è»¢é€ã—ã¦ã„ãã¾ã™ã€‚
+// ã—ã‹ã—è§£æ”¾ãªã©ã—ã¦ã‚‚è§£æ”¾ã—ãŸé ˜åŸŸã‚’èªè­˜ã—ã¦ã€
+// ãã®é ˜åŸŸã«å†åº¦é•ã†ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’è»¢é€ã™ã‚‹ãªã©ãŒã§ãã¾ã›ã‚“ã€‚
 //////////////////////////////////////////////////////////////////////////////
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒlƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚È‚¢‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğİ’è
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãªã„ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@retval	TRUE	¬Œ÷
- *@retval	FALSE	¸”s
+ *@retval	TRUE	æˆåŠŸ
+ *@retval	FALSE	å¤±æ•—
  *
  *
  */
@@ -63,23 +63,23 @@ BOOL CLACT_U_CharManagerSet( CONST_CLACT_U_RES_OBJ_PTR resObj )
 	GF_ASSERT(resObj);
 	GF_ASSERT(CLACT_U_ResManagerGetResObjResType(resObj) == CLACT_U_CHAR_RES);
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 	char_data.res_file = CLACT_U_ResManagerGetResObjResChar(resObj);
 
 	char_data.type = CLACT_U_ResManagerGetResObjVramType(resObj);
 	char_data.id	= CLACT_U_ResManagerGetResObjID(resObj);
 	char_data.cont_type = CHARM_CONT_OFFSET;
 
-	// “o˜^
+	// ç™»éŒ²
 	return CharSet(&char_data);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒlƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚È‚¢‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğİ’èi•¡”j
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãªã„ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šï¼ˆè¤‡æ•°ï¼‰
  *
- *@param	resTbl		ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
+ *@param	resTbl		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -88,7 +88,7 @@ BOOL CLACT_U_CharManagerSet( CONST_CLACT_U_RES_OBJ_PTR resObj )
 //-----------------------------------------------------------------------------
 void CLACT_U_CharManagerSets( const CLACT_U_RES_OBJ_TBL* resTbl )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	BOOL check;
 	GF_ASSERT(resTbl);
 
@@ -96,7 +96,7 @@ void CLACT_U_CharManagerSets( const CLACT_U_RES_OBJ_TBL* resTbl )
 
 		if( resTbl->tbl[i] ){
 			check = CLACT_U_CharManagerSet(resTbl->tbl[i]);
-			GF_ASSERT_MSG( check, "ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“o˜^¸”s\n" );
+			GF_ASSERT_MSG( check, "ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç™»éŒ²å¤±æ•—\n" );
 		}
 	}
 }
@@ -104,13 +104,13 @@ void CLACT_U_CharManagerSets( const CLACT_U_RES_OBJ_TBL* resTbl )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒlƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚È‚¢‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğİ’è
- *				ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ğ¡‚Ìó‘Ô‚É•ÏX‚·‚éƒ‚[ƒh
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãªã„ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+ *				ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä»Šã®çŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@retval	TRUE	¬Œ÷
- *@retval	FALSE	¸”s
+ *@retval	TRUE	æˆåŠŸ
+ *@retval	FALSE	å¤±æ•—
  *
  *
  */
@@ -122,24 +122,24 @@ BOOL CLACT_U_CharManagerSetCharModeAdjust( CONST_CLACT_U_RES_OBJ_PTR resObj )
 	GF_ASSERT(resObj);
 	GF_ASSERT(CLACT_U_ResManagerGetResObjResType(resObj) == CLACT_U_CHAR_RES);
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 	char_data.res_file = CLACT_U_ResManagerGetResObjResChar(resObj);
 
 	char_data.type = CLACT_U_ResManagerGetResObjVramType(resObj);
 	char_data.id	= CLACT_U_ResManagerGetResObjID(resObj);
 	char_data.cont_type = CHARM_CONT_OFFSET;
 
-	// “o˜^
+	// ç™»éŒ²
 	return CharSetCharModeAdjust(&char_data);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒlƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚È‚¢‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğİ’èi•¡”j
- *				ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ğ¡‚Ìó‘Ô‚É•ÏX‚·‚éƒ‚[ƒh
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãªã„ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šï¼ˆè¤‡æ•°ï¼‰
+ *				ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä»Šã®çŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰
  *
- *@param	resTbl		ƒŠƒ\[ƒXƒIƒuƒWƒF”z—ñ‚Ìƒ|ƒCƒ“ƒ^
+ *@param	resTbl		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§é…åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -148,14 +148,14 @@ BOOL CLACT_U_CharManagerSetCharModeAdjust( CONST_CLACT_U_RES_OBJ_PTR resObj )
 //-----------------------------------------------------------------------------
 void CLACT_U_CharManagerSetsCharModeAdjust( const CLACT_U_RES_OBJ_TBL* resTbl )
 {
-	int i;		// ƒ‹[ƒv—p
-	BOOL check;	// Áª¯¸—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	BOOL check;	// ãƒã‚§ãƒƒã‚¯ç”¨
 	GF_ASSERT(resTbl);
 
 	for(i=0;i<resTbl->tbl_num;i++){
 		if( resTbl->tbl[ i ] ){
 			check = CLACT_U_CharManagerSetCharModeAdjust(resTbl->tbl[i]);
-			GF_ASSERT_MSG( check, "ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“o˜^¸”s\n" );
+			GF_ASSERT_MSG( check, "ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç™»éŒ²å¤±æ•—\n" );
 		}
 	}
 }
@@ -163,20 +163,20 @@ void CLACT_U_CharManagerSetsCharModeAdjust( const CLACT_U_RES_OBJ_TBL* resTbl )
 
 
 //////////////////////////////////////////////////////////////////////////////
-// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—ŠÖ”
-// ƒGƒŠƒAƒRƒ“ƒgƒ[ƒ‹ƒ^ƒCƒv
-// vramƒGƒŠƒA‚ğ‚PƒLƒƒƒ‰‚²‚Æ‚ÉŠÇ—‚·‚é”z—ñ‚ğì¬‚µ‚ÄA
-// ‹ó‚«—Ìˆæ‚©‚çg—p‚Å‚«‚évramƒGƒŠƒA‚ğŒŸõ‚µ‚Ü‚·B
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€é–¢æ•°
+// ã‚¨ãƒªã‚¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—
+// vramã‚¨ãƒªã‚¢ã‚’ï¼‘ã‚­ãƒ£ãƒ©ã”ã¨ã«ç®¡ç†ã™ã‚‹é…åˆ—ã‚’ä½œæˆã—ã¦ã€
+// ç©ºãé ˜åŸŸã‹ã‚‰ä½¿ç”¨ã§ãã‚‹vramã‚¨ãƒªã‚¢ã‚’æ¤œç´¢ã—ã¾ã™ã€‚
 //////////////////////////////////////////////////////////////////////////////
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒlƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚È‚¢‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğİ’è
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãªã„ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@retval	TRUE	¬Œ÷
- *@retval	FALSE	¸”s
+ *@retval	TRUE	æˆåŠŸ
+ *@retval	FALSE	å¤±æ•—
  *
  *
  */
@@ -188,23 +188,23 @@ BOOL CLACT_U_CharManagerSetAreaCont( CONST_CLACT_U_RES_OBJ_PTR resObj )
 	GF_ASSERT(resObj);
 	GF_ASSERT(CLACT_U_ResManagerGetResObjResType(resObj) == CLACT_U_CHAR_RES);
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 	char_data.res_file = CLACT_U_ResManagerGetResObjResChar(resObj);
 
 	char_data.type = CLACT_U_ResManagerGetResObjVramType(resObj);
 	char_data.id	= CLACT_U_ResManagerGetResObjID(resObj);
 	char_data.cont_type = CHARM_CONT_AREACONT;
 
-	// “o˜^
+	// ç™»éŒ²
 	return CharSet(&char_data);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒlƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚È‚¢‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğİ’èi•¡”j
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãªã„ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šï¼ˆè¤‡æ•°ï¼‰
  *
- *@param	resTbl		ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
+ *@param	resTbl		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -213,15 +213,15 @@ BOOL CLACT_U_CharManagerSetAreaCont( CONST_CLACT_U_RES_OBJ_PTR resObj )
 //-----------------------------------------------------------------------------
 void CLACT_U_CharManagerSetsAreaCont( const CLACT_U_RES_OBJ_TBL* resTbl )
 {
-	int i;		// ƒ‹[ƒv—p
-	BOOL check;	// Áª¯¸—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	BOOL check;	// ãƒã‚§ãƒƒã‚¯ç”¨
 	GF_ASSERT(resTbl);
 
 	for(i=0;i<resTbl->tbl_num;i++){
 
 		if( resTbl->tbl[i] ){
 			check = CLACT_U_CharManagerSetAreaCont(resTbl->tbl[i]);
-			GF_ASSERT_MSG( check, "ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“o˜^¸”s" );
+			GF_ASSERT_MSG( check, "ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç™»éŒ²å¤±æ•—" );
 		}
 	}
 }
@@ -229,13 +229,13 @@ void CLACT_U_CharManagerSetsAreaCont( const CLACT_U_RES_OBJ_TBL* resTbl )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒlƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚È‚¢‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğİ’è
- *				ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ğ¡‚Ìó‘Ô‚É•ÏX‚·‚éƒ‚[ƒh
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãªã„ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+ *				ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä»Šã®çŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@retval	TRUE	¬Œ÷
- *@retval	FALSE	¸”s
+ *@retval	TRUE	æˆåŠŸ
+ *@retval	FALSE	å¤±æ•—
  *
  *
  */
@@ -247,24 +247,24 @@ BOOL CLACT_U_CharManagerSetCharModeAdjustAreaCont( CONST_CLACT_U_RES_OBJ_PTR res
 	GF_ASSERT(resObj);
 	GF_ASSERT(CLACT_U_ResManagerGetResObjResType(resObj) == CLACT_U_CHAR_RES);
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 	char_data.res_file = CLACT_U_ResManagerGetResObjResChar(resObj);
 
 	char_data.type = CLACT_U_ResManagerGetResObjVramType(resObj);
 	char_data.id	= CLACT_U_ResManagerGetResObjID(resObj);
 	char_data.cont_type = CHARM_CONT_AREACONT;
 
-	// “o˜^
+	// ç™»éŒ²
 	return CharSetCharModeAdjust(&char_data);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒlƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚È‚¢‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğİ’èi•¡”j
- *				ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ğ¡‚Ìó‘Ô‚É•ÏX‚·‚éƒ‚[ƒh
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãªã„ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šï¼ˆè¤‡æ•°ï¼‰
+ *				ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä»Šã®çŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰
  *
- *@param	resTbl		ƒŠƒ\[ƒXƒIƒuƒWƒF”z—ñ‚Ìƒ|ƒCƒ“ƒ^
+ *@param	resTbl		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§é…åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -273,14 +273,14 @@ BOOL CLACT_U_CharManagerSetCharModeAdjustAreaCont( CONST_CLACT_U_RES_OBJ_PTR res
 //-----------------------------------------------------------------------------
 void CLACT_U_CharManagerSetsCharModeAdjustAreaCont( const CLACT_U_RES_OBJ_TBL* resTbl )
 {
-	int i;		// ƒ‹[ƒv—p
-	BOOL check;	// Áª¯¸—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	BOOL check;	// ãƒã‚§ãƒƒã‚¯ç”¨
 	GF_ASSERT(resTbl);
 
 	for(i=0;i<resTbl->tbl_num;i++){
 		if( resTbl->tbl[ i ] ){
 			check = CLACT_U_CharManagerSetCharModeAdjustAreaCont(resTbl->tbl[i]);
-			GF_ASSERT_MSG( check, "ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“o˜^¸”s\n" );
+			GF_ASSERT_MSG( check, "ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç™»éŒ²å¤±æ•—\n" );
 		}
 	}
 }
@@ -288,10 +288,10 @@ void CLACT_U_CharManagerSetsCharModeAdjustAreaCont( const CLACT_U_RES_OBJ_TBL* r
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ•ÏX‚·‚é
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã™ã‚‹
  *
- *	@param	nowTbl		¡‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
- *	@param	newTbl		•ÏX‚·‚éƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@param	nowTbl		ä»Šã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+ *	@param	newTbl		å¤‰æ›´ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -306,20 +306,20 @@ void CLACT_U_CharManagerChg( CONST_CLACT_U_RES_OBJ_PTR nowTbl, CONST_CLACT_U_RES
 	GF_ASSERT(nowTbl);
 	GF_ASSERT(newTbl);
 
-	// ƒvƒƒNƒV‚ÆƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+	// ãƒ—ãƒ­ã‚¯ã‚·ã¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 	id = CLACT_U_ResManagerGetResObjID( nowTbl );
 	data = CLACT_U_ResManagerGetResObjResChar( newTbl );
 
-	// “ü‚ê‘Ö‚¦‚é
+	// å…¥ã‚Œæ›¿ãˆã‚‹
 	CharDataChg(id, data);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌÄ“]‘—‚ğs‚¤
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®å†è»¢é€ã‚’è¡Œã†
  *
- *	@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
@@ -333,7 +333,7 @@ void CLACT_U_CharManagerReTrans( CONST_CLACT_U_RES_OBJ_PTR resObj )
 
 	GF_ASSERT(resObj);
 
-	// ƒvƒƒNƒV‚ÆƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+	// ãƒ—ãƒ­ã‚¯ã‚·ã¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 	id = CLACT_U_ResManagerGetResObjID( resObj );
 	data = CLACT_U_ResManagerGetResObjResChar( resObj );
 	
@@ -343,9 +343,9 @@ void CLACT_U_CharManagerReTrans( CONST_CLACT_U_RES_OBJ_PTR resObj )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒlƒWƒƒ[‚©‚çƒŠƒ\[ƒXƒIƒuƒWƒF‚ÌID‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ”jŠü
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒã‚¸ãƒ£ãƒ¼ã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã®IDã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *@param	resObj		ƒŠƒ\[ƒXƒIƒuƒWƒF‚Ìƒ|ƒCƒ“ƒ^
+ *@param	resObj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return none
  *
@@ -364,9 +364,9 @@ void CLACT_U_CharManagerDelete( CLACT_U_RES_OBJ_PTR resObj )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒlƒWƒƒ[‚©‚çƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹‚É‘Î‰‚·‚éƒf[ƒ^‚ğ”jŠü
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒã‚¸ãƒ£ãƒ¼ã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ã«å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *@param	resTbl		ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
+ *@param	resTbl		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *@return none
  *
@@ -374,7 +374,7 @@ void CLACT_U_CharManagerDelete( CLACT_U_RES_OBJ_PTR resObj )
 //-----------------------------------------------------------------------------
 void CLACT_U_CharManagerDeletes( CLACT_U_RES_OBJ_TBL* resTbl )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	GF_ASSERT(resTbl);
 
 	for(i=0;i<resTbl->tbl_num;i++){
@@ -387,11 +387,11 @@ void CLACT_U_CharManagerDeletes( CLACT_U_RES_OBJ_TBL* resTbl )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒCƒ[ƒWƒvƒƒNƒV‚ğæ“¾
+ *@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·ã‚’å–å¾—
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@return	NNSG2dImageProxy*	ƒCƒ[ƒWƒvƒƒNƒV
+ *@return	NNSG2dImageProxy*	ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
  *
  *
  */
@@ -409,11 +409,11 @@ NNSG2dImageProxy* CLACT_U_CharManagerGetProxy( CONST_CLACT_U_RES_OBJ_PTR resObj 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚QDƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ğ“Ç‚İ‚Ş
+ *	@brief	ï¼’Dãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- *	@param	resObj		ƒŠƒ\[ƒXƒIƒuƒWƒF
- *	@param	proxy		“]‘—ƒf[ƒ^‚ğŠi”[‚·‚éƒvƒƒNƒV
- *	@param	base_addr	Vramƒx[ƒXƒAƒhƒŒƒX
+ *	@param	resObj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	proxy		è»¢é€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ—ãƒ­ã‚¯ã‚·
+ *	@param	base_addr	Vramãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
  * 
  *	@return	none
  *
@@ -428,12 +428,12 @@ void CLACT_U_2DmapCharLoad( CONST_CLACT_U_RES_OBJ_PTR resObj, NNSG2dImageProxy* 
 	GF_ASSERT(resObj);
 	GF_ASSERT(CLACT_U_ResManagerGetResObjResType(resObj) == CLACT_U_CHAR_RES);
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 	char_data = CLACT_U_ResManagerGetResObjResChar(resObj);
 	vram_type = CLACT_U_ResManagerGetResObjVramType(resObj);
 
 	
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	NNS_G2dLoadImage2DMapping( 
 			char_data,
 			base_addr,
@@ -445,12 +445,12 @@ void CLACT_U_2DmapCharLoad( CONST_CLACT_U_RES_OBJ_PTR resObj, NNSG2dImageProxy* 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Vram“]‘——p‚ÌƒCƒ[ƒWƒvƒƒNƒV‚ğæ“¾
+ *@brief	Vramè»¢é€ç”¨ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·ã‚’å–å¾—
  *
- *@param	charObj	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	cellObj	ƒZƒ‹ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	charObj	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	cellObj	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@return	NNSG2dImageProxy*	ƒCƒ[ƒWƒvƒƒNƒV
+ *@return	NNSG2dImageProxy*	ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
  *
  *
  */
@@ -467,17 +467,17 @@ NNSG2dImageProxy* CLACT_U_CharManagerGetVramTransferProxy( CONST_CLACT_U_RES_OBJ
 	GF_ASSERT(CLACT_U_ResManagerGetResObjResType(cellObj) == CLACT_U_CELL_RES);
 	
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^IDæ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿IDå–å¾—
 	id = CLACT_U_ResManagerGetResObjID(charObj);
 
-	// ƒZƒ‹ƒf[ƒ^æ“¾
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
 	cellData = CLACT_U_ResManagerGetResObjResCell(cellObj);
 	
 	proxy = GetCharVramTransData( id, cellData->pVramTransferData->szByteMax );	
 	if(proxy == NULL){
 		NNSG2dImageProxy* org;
 		org = GetCharIDProxy( id );
-		// ƒRƒs[ì¬
+		// ã‚³ãƒ”ãƒ¼ä½œæˆ
 		proxy = GetCharVramTransProxyCopy( org );
 	}
 
@@ -487,9 +487,9 @@ NNSG2dImageProxy* CLACT_U_CharManagerGetVramTransferProxy( CONST_CLACT_U_RES_OBJ
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹Vram“]‘—ƒAƒjƒ‚ÌVram—Ìˆæ‚ğŠJ•ú
+ *@brief	ã‚»ãƒ«Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ã®Vramé ˜åŸŸã‚’é–‹æ”¾
  *
- *@param	pImage		Vram“]‘——p‚Éì¬‚³‚ê‚½ƒCƒ[ƒWƒvƒƒNƒV
+ *@param	pImage		Vramè»¢é€ç”¨ã«ä½œæˆã•ã‚ŒãŸã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
  *
  *@return	none
  *
@@ -506,12 +506,12 @@ void CLACT_U_CharManagerDeleteVramTransferProxy( const NNSG2dImageProxy* pImage 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF“à‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğİ’è
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§å†…ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@retval	TRUE	¬Œ÷
- *@retval	FALSE	¸”s
+ *@retval	TRUE	æˆåŠŸ
+ *@retval	FALSE	å¤±æ•—
  *
  *
  */
@@ -523,23 +523,23 @@ BOOL CLACT_U_PlttManagerSet( CONST_CLACT_U_RES_OBJ_PTR resObj )
 	GF_ASSERT(resObj);
 	GF_ASSERT(CLACT_U_ResManagerGetResObjResType(resObj) == CLACT_U_PLTT_RES);
 	
-	// ƒŠƒ\[ƒXæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	pltt_data.res_file = CLACT_U_ResManagerGetResObjResPltt(resObj);
 
 	pltt_data.type		= CLACT_U_ResManagerGetResObjVramType(resObj);
 	pltt_data.id		= CLACT_U_ResManagerGetResObjID(resObj);
 	pltt_data.pltt_num	= CLACT_U_ResManagerGetResObjPlttNum(resObj);
 
-	// “o˜^
+	// ç™»éŒ²
 	return PlttSet(&pltt_data);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒ}ƒlƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚È‚¢‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğİ’èi•¡”j
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãªã„ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šï¼ˆè¤‡æ•°ï¼‰
 	 *
- *@param	resTbl		ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹ƒ|ƒCƒ“ƒ^
+ *@param	resTbl		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -555,27 +555,27 @@ void CLACT_U_PlttManagerSets( const CLACT_U_RES_OBJ_TBL* resTbl )
 	for(i=0;i<resTbl->tbl_num;i++){
 		if( resTbl->tbl[ i ] ){
 			check = CLACT_U_PlttManagerSet(resTbl->tbl[i]);
-			GF_ASSERT_MSG( check ,"ƒpƒŒƒbƒg“]‘—¸”s\n" );
+			GF_ASSERT_MSG( check ,"ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å¤±æ•—\n" );
 		}
 	}
 }
 
-// ‹ó‚«—Ìˆæ‚ğŒŸõ‚µ‚Ä“]‘—‚µ‚Ü‚·
-// ‚½‚¾‚µAã‚Ì“]‘—ŠÖ”‚ğg—p‚µ‚Ä‚»‚ÌŒã‚É“]‘—‚·‚é‚Æ
-// ã‘‚«‚³‚ê‚Ü‚·B
+// ç©ºãé ˜åŸŸã‚’æ¤œç´¢ã—ã¦è»¢é€ã—ã¾ã™
+// ãŸã ã—ã€ä¸Šã®è»¢é€é–¢æ•°ã‚’ä½¿ç”¨ã—ã¦ãã®å¾Œã«è»¢é€ã™ã‚‹ã¨
+// ä¸Šæ›¸ãã•ã‚Œã¾ã™ã€‚
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF“à‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğİ’è
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§å†…ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@retval	TRUE	¬Œ÷
- *@retval	FALSE	¸”s
+ *@retval	TRUE	æˆåŠŸ
+ *@retval	FALSE	å¤±æ•—
  *
- * CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒF
- * CLACT_U_ResManagerResAddPlttŠÖ”‚È‚Ç‚Ì–ß‚è’l
- * “Ç‚İ‚ñ‚¾ƒŠƒ\[ƒX‚Ìƒf[ƒ^@ŠÇ—ID‚È‚Ç‚ªŠi”[‚³‚ê‚Ä‚¢‚Ü‚·B
+ * CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ * CLACT_U_ResManagerResAddPltté–¢æ•°ãªã©ã®æˆ»ã‚Šå€¤
+ * èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ã€€ç®¡ç†IDãªã©ãŒæ ¼ç´ã•ã‚Œã¦ã„ã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -586,33 +586,33 @@ BOOL CLACT_U_PlttManagerSetCleanArea( CONST_CLACT_U_RES_OBJ_PTR resObj )
 	GF_ASSERT(resObj);
 	GF_ASSERT(CLACT_U_ResManagerGetResObjResType(resObj) == CLACT_U_PLTT_RES);
 	
-	// ƒŠƒ\[ƒXæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	pltt_data.res_file = CLACT_U_ResManagerGetResObjResPltt(resObj);
 
 	pltt_data.type		= CLACT_U_ResManagerGetResObjVramType(resObj);
 	pltt_data.id		= CLACT_U_ResManagerGetResObjID(resObj);
 	pltt_data.pltt_num	= CLACT_U_ResManagerGetResObjPlttNum(resObj);
 
-	// “o˜^
+	// ç™»éŒ²
 	return PlttSetCleanArea(&pltt_data);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒ}ƒlƒWƒƒ[‚ÉƒŠƒ\[ƒXƒIƒuƒWƒF‚È‚¢‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğİ’èi•¡”j
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒã‚¸ãƒ£ãƒ¼ã«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãªã„ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šï¼ˆè¤‡æ•°ï¼‰
  *
- *@param	resTbl		ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹ƒ|ƒCƒ“ƒ^
+ *@param	resTbl		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
- * CLACT_U_RES_OBJ_TBL@ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
+ * CLACT_U_RES_OBJ_TBLã€€ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
 	typedef struct {
-		CLACT_U_RES_OBJ_PTR*	tbl;// ƒ|ƒCƒ“ƒ^‚ğŠi”[‚·‚éƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
-		int		tbl_num;			// ƒe[ƒuƒ‹—v‘f”
-		int		tbl_now;			// Œ»İŠi”[”
+		CLACT_U_RES_OBJ_PTR*	tbl;// ãƒã‚¤ãƒ³ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+		int		tbl_num;			// ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°
+		int		tbl_now;			// ç¾åœ¨æ ¼ç´æ•°
 	} CLACT_U_RES_OBJ_TBL;
-	ã‚Ì\‘¢‘Ì‚ğ‰º‚ÌŠÖ”‚Åì¬‚Å‚«‚Ü‚·B
+	ä¸Šã®æ§‹é€ ä½“ã‚’ä¸‹ã®é–¢æ•°ã§ä½œæˆã§ãã¾ã™ã€‚
 	GLOBAL CLACT_U_RES_OBJ_TBL* CLACT_U_ResManagerResObjTblMake(int inResObjNum, int heap);
  *
  */
@@ -626,7 +626,7 @@ void CLACT_U_PlttManagerSetsCleanArea( const CLACT_U_RES_OBJ_TBL* resTbl )
 	for(i=0;i<resTbl->tbl_num;i++){
 		if( resTbl->tbl[ i ] ){
 			check = CLACT_U_PlttManagerSetCleanArea(resTbl->tbl[i]);
-			GF_ASSERT_MSG( check, "ƒpƒŒƒbƒg“]‘—¸”s\n" );
+			GF_ASSERT_MSG( check, "ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å¤±æ•—\n" );
 		}
 	}
 }
@@ -635,10 +635,10 @@ void CLACT_U_PlttManagerSetsCleanArea( const CLACT_U_RES_OBJ_TBL* resTbl )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^•ÏX
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
- *	@param	nowObj		¡‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ÌƒŠƒ\[ƒXƒIƒuƒWƒF
- *	@param	newObj		•ÏX‚·‚éƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	nowObj		ä»Šã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	newObj		å¤‰æ›´ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
@@ -654,21 +654,21 @@ void CLACT_U_PlttManagerChg( CONST_CLACT_U_RES_OBJ_PTR nowObj, CONST_CLACT_U_RES
 	GF_ASSERT(nowObj);
 	GF_ASSERT(newObj);
 
-	// ƒvƒƒNƒV‚ÆƒpƒŒƒbƒgƒf[ƒ^æ“¾
+	// ãƒ—ãƒ­ã‚¯ã‚·ã¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 	id = CLACT_U_ResManagerGetResObjID( nowObj );
 	
 	data = CLACT_U_ResManagerGetResObjResPltt( newObj );
 	
-	// “ü‚ê‘Ö‚¦‚é
+	// å…¥ã‚Œæ›¿ãˆã‚‹
 	PlttDataChg(id, data );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ÌÄ“]‘—‚ğs‚¤
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®å†è»¢é€ã‚’è¡Œã†
  *
- *	@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
@@ -683,12 +683,12 @@ void CLACT_U_PlttManagerReTrans( CONST_CLACT_U_RES_OBJ_PTR resObj )
 	
 	GF_ASSERT(resObj);
 
-	// ƒvƒƒNƒV‚ÆƒpƒŒƒbƒgƒf[ƒ^æ“¾
+	// ãƒ—ãƒ­ã‚¯ã‚·ã¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 	id = CLACT_U_ResManagerGetResObjID( resObj );
 	
 	data = CLACT_U_ResManagerGetResObjResPltt( resObj );
 
-	// “ü‚ê‘Ö‚¦‚é
+	// å…¥ã‚Œæ›¿ãˆã‚‹
 	PlttDataChg(id, data );
 
 }
@@ -696,9 +696,9 @@ void CLACT_U_PlttManagerReTrans( CONST_CLACT_U_RES_OBJ_PTR resObj )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒ}ƒlƒWƒƒ[‚©‚çƒŠƒ\[ƒXƒIƒuƒWƒF‚ÌID‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğ”jŠü
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒã‚¸ãƒ£ãƒ¼ã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã®IDã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *@param	resObj		ƒŠƒ\[ƒXƒIƒuƒWƒF‚Ìƒ|ƒCƒ“ƒ^
+ *@param	resObj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return none
  *
@@ -717,9 +717,9 @@ void CLACT_U_PlttManagerDelete( CLACT_U_RES_OBJ_PTR resObj )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒ}ƒlƒWƒƒ[‚©‚çƒŠƒ\[ƒXƒIƒuƒWƒF‚ÌID‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğ”jŠü
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒã‚¸ãƒ£ãƒ¼ã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã®IDã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *@param	resTbl		ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
+ *@param	resTbl		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return none
  *
@@ -727,7 +727,7 @@ void CLACT_U_PlttManagerDelete( CLACT_U_RES_OBJ_PTR resObj )
 //-----------------------------------------------------------------------------
 void CLACT_U_PlttManagerDeletes( CLACT_U_RES_OBJ_TBL* resTbl )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	GF_ASSERT(resTbl);
 
@@ -742,12 +742,12 @@ void CLACT_U_PlttManagerDeletes( CLACT_U_RES_OBJ_TBL* resTbl )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒvƒƒNƒV‚ğæ“¾
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·ã‚’å–å¾—
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒFƒpƒ‰ƒ[ƒ^
- *@param	pImage	ŠÖ˜A‚¸‚¯‚éƒCƒ[ƒWƒvƒƒNƒV
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *@param	pImage	é–¢é€£ãšã‘ã‚‹ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
  *
- *@return	ƒpƒŒƒbƒgƒvƒƒNƒV
+ *@return	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·
  *
  *
  */
@@ -770,21 +770,21 @@ const NNSG2dImagePaletteProxy* CLACT_U_PlttManagerGetProxy( CONST_CLACT_U_RES_OB
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“o˜^‚³‚ê‚Ä‚¢‚éƒpƒŒƒbƒg‚ª‰½”Ô‚ÌƒpƒŒƒbƒg‚É“]‘—‚³‚ê‚Ä‚¢‚é‚©‚ğ•Ô‚·
+ *	@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãŒä½•ç•ªã®ãƒ‘ãƒ¬ãƒƒãƒˆã«è»¢é€ã•ã‚Œã¦ã„ã‚‹ã‹ã‚’è¿”ã™
  *
- *	@param	resObj		ƒŠƒ\[ƒXƒIƒuƒWƒF
- *	@param	vram		vramƒ^ƒCƒv
+ *	@param	resObj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	vram		vramã‚¿ã‚¤ãƒ—
  *
- *	@retval	CLACT_U_PLTT_NO_NONEˆÈŠO	“]‘—‚³‚ê‚½ƒpƒŒƒbƒg”Ô†
- *	@retval	CLACT_U_PLTT_NO_NONE		ƒpƒŒƒbƒg“]‘—‚³‚ê‚Ä‚¢‚È‚¢
+ *	@retval	CLACT_U_PLTT_NO_NONEä»¥å¤–	è»¢é€ã•ã‚ŒãŸãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+ *	@retval	CLACT_U_PLTT_NO_NONE		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã•ã‚Œã¦ã„ãªã„
  *
- * vramƒ^ƒCƒv
- *	NNS_G2D_VRAM_TYPE_2DMAIN    ‚Q‚cƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“‚`—p
- *  NNS_G2D_VRAM_TYPE_2DSUB     ‚Q‚cƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“‚a—p
+ * vramã‚¿ã‚¤ãƒ—
+ *	NNS_G2D_VRAM_TYPE_2DMAIN    ï¼’ï¼¤ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ï¼¡ç”¨
+ *  NNS_G2D_VRAM_TYPE_2DSUB     ï¼’ï¼¤ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ï¼¢ç”¨
  *
  * resObj
  *	GLOBAL CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerGetIDResObjPtr(CONST_CLACT_U_RES_MANAGER_PTR resm, int id);
- *	ŠÖ”‚Åæ“¾‚µ‚Ä‚­‚¾‚³‚¢B
+ *	é–¢æ•°ã§å–å¾—ã—ã¦ãã ã•ã„ã€‚
  *
  *
  */
@@ -797,7 +797,7 @@ u32 CLACT_U_PlttManagerGetPlttNo( CONST_CLACT_U_RES_OBJ_PTR resObj, NNS_G2D_VRAM
 	imgpltt = CLACT_U_PlttManagerGetProxy( resObj, NULL );
 	no =  NNS_G2dGetImagePaletteLocation( imgpltt, type );
 
-	// addr->no‚É‚·‚é
+	// addr->noã«ã™ã‚‹
 	if( no != CLACT_U_PLTT_NO_NONE ){
 		no /= 32;
 	}

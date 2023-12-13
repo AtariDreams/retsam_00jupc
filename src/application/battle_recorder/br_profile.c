@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_profile.c
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  * @author	goto
- * @date	2007.07.26(–Ø)
+ * @date	2007.07.26(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -41,10 +41,10 @@
 
 /*
 
-	ã‰æ–Ê‚ğƒƒCƒ“
-	‰º‰æ–Ê‚ğƒTƒu
+	ä¸Šç”»é¢ã‚’ãƒ¡ã‚¤ãƒ³
+	ä¸‹ç”»é¢ã‚’ã‚µãƒ–
 	
-	‚É“ü‚ê‘Ö‚¦‚Äg—p‚µ‚Ä‚¢‚Ü‚·B
+	ã«å…¥ã‚Œæ›¿ãˆã¦ä½¿ç”¨ã—ã¦ã„ã¾ã™ã€‚
 
 */
 
@@ -65,7 +65,7 @@ typedef struct {
 	GPP_WORK			gpp_work;	
 	VIDEO_WORK			vtr_work;
 	
-	OAM_BUTTON			obtn[ 1 ];			///< ‚à‚Ç‚é
+	OAM_BUTTON			obtn[ 1 ];			///< ã‚‚ã©ã‚‹
 	BUTTON_MAN*			btn_man[ 1 ];
 	GF_BGL_BMPWIN		win_s[ 2 ];
 	
@@ -123,9 +123,9 @@ enum {
 };
 
 static const RECT_HIT_TBL hit_table_000[] = {
-	{ DTC(  2 ), DTC(  6 ), DTC(  8 ), DTC( 25 ) },	///< ƒoƒgƒ‹ƒrƒfƒI
-	{ DTC(  8 ), DTC( 14 ), DTC( 11 ), DTC( 21 ) },	///< Ä¶
-	{ 152, 184, 80, 176 },	///< –ß‚é
+	{ DTC(  2 ), DTC(  6 ), DTC(  8 ), DTC( 25 ) },	///< ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ª
+	{ DTC(  8 ), DTC( 14 ), DTC( 11 ), DTC( 21 ) },	///< å†ç”Ÿ
+	{ 152, 184, 80, 176 },	///< æˆ»ã‚‹
 };
 
 static BOOL BR_Init( BR_WORK* wk )
@@ -279,11 +279,11 @@ static BOOL BR_ProfChange( BR_WORK* wk )
 	switch ( wk->sub_seq ){
 	case 0:
 		if ( pwk->view_page == 0 ){
-			///< ŠT—víœ ƒvƒƒtƒB[ƒ‹ì¬
+			///< æ¦‚è¦å‰Šé™¤ ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ä½œæˆ
 			VideoDataFree( &pwk->vtr_work, wk );
 		}
 		else {
-			///< ƒvƒƒtƒB[ƒ‹íœ ŠT—vì¬
+			///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å‰Šé™¤ æ¦‚è¦ä½œæˆ
 			GppDataFree( &pwk->gpp_work, wk );						
 		}
 		GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG2, VISIBLE_OFF );
@@ -299,13 +299,13 @@ static BOOL BR_ProfChange( BR_WORK* wk )
 	case 2:
 		CATS_SystemActiveSet( wk, TRUE );
 		if ( pwk->view_page == 0 ){
-			///< ƒvƒƒtƒB[ƒ‹ì¬
+			///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ä½œæˆ
 			GppDataMake( &pwk->gpp_work, wk );
 			GppData_IconEnable( &pwk->gpp_work, FALSE );
 			BR_ScrSet( wk, NARC_batt_rec_gra_batt_rec_bg1uc_data_NSCR, GF_BGL_FRAME3_M );
 		}
 		else {
-			///< ƒvƒƒtƒB[ƒ‹íœ ŠT—vì¬
+			///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å‰Šé™¤ æ¦‚è¦ä½œæˆ
 			VideoDataMake( &pwk->vtr_work, wk );
 			VideoData_IconEnable( &pwk->vtr_work, FALSE );
 			BR_ScrSet( wk, ProfileBGGet( &pwk->vtr_work ), GF_BGL_FRAME3_M );
@@ -340,8 +340,8 @@ static BOOL BR_ProfChange( BR_WORK* wk )
 
 
 static const RECT_HIT_TBL hit_table[] = {
-	{ DTC(  5 ), DTC( 9 ), DTC(  4 ), DTC( 15 ) },	///< ‚Í‚¢
-	{ DTC(  5 ), DTC( 9 ), DTC( 18 ), DTC( 29 ) },	///< ‚¢‚¢‚¦	
+	{ DTC(  5 ), DTC( 9 ), DTC(  4 ), DTC( 15 ) },	///< ã¯ã„
+	{ DTC(  5 ), DTC( 9 ), DTC( 18 ), DTC( 29 ) },	///< ã„ã„ãˆ	
 };
 static void SaveWin_Add( BR_WORK* wk )
 {
@@ -386,7 +386,7 @@ static void SaveWin_Del( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ˆê“xŒ©‚½–‚ ‚éƒrƒfƒI‚©H
+ * @brief	ä¸€åº¦è¦‹ãŸäº‹ã‚ã‚‹ãƒ“ãƒ‡ã‚ªã‹ï¼Ÿ
  *
  * @param	wk	
  *
@@ -400,7 +400,7 @@ static BOOL BR_PlayVideoCheck( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:
-		///< •s—v‚È‚à‚Ì‚ğƒtƒF[ƒh‚³‚¹‚é
+		///< ä¸è¦ãªã‚‚ã®ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹
 		BMN_Delete( pwk->btn_man[ 0 ] );
 		GF_Disp_GXS_VisibleControl(  GX_PLANEMASK_BG2, VISIBLE_OFF );
 		GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG2, VISIBLE_OFF );	
@@ -429,7 +429,7 @@ static BOOL BR_PlayVideoCheck( BR_WORK* wk )
 
 
 	case 2:
-		///< ‚Í‚¢E‚¢‚¢‚¦‚ÌŒÄ‚Ño‚µ		
+		///< ã¯ã„ãƒ»ã„ã„ãˆã®å‘¼ã³å‡ºã—		
 		SaveWin_Add( wk );
 		Tool_InfoMessageMain( wk, msg_info_027 );
 		ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_answer_NSCR, wk->sys.bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BR );
@@ -451,17 +451,17 @@ static BOOL BR_PlayVideoCheck( BR_WORK* wk )
 		break;
 	
 	case 4:
-		///< Å‰@‚Í‚¢E‚¢‚¢‚¦
+		///< æœ€åˆã€€ã¯ã„ãƒ»ã„ã„ãˆ
 		if ( GF_TP_SingleHitTrg( &hit_table[ 0 ] ) ){
 			pwk->video_check_state = eVC_YES;
 			TouchAction( wk );
 			if ( SaveData_GetTotalSaveFlag( wk->save ) ){
-				Tool_InfoMessageMainSet( wk, msg_info_029 );			///< ‚½‚­‚³‚ñ
+				Tool_InfoMessageMainSet( wk, msg_info_029 );			///< ãŸãã•ã‚“
 			}
 			else {
-				Tool_InfoMessageMainSet( wk, msg_info_030 );			///< ‚»[‚Å‚à‚È‚¢
+				Tool_InfoMessageMainSet( wk, msg_info_030 );			///< ããƒ¼ã§ã‚‚ãªã„
 			}
-		//	sys_SoftResetNG( SOFTRESET_TYPE_SAVELOAD );					///< ƒ\ƒtƒgƒŠƒZƒbƒg‹Ö~
+		//	sys_SoftResetNG( SOFTRESET_TYPE_SAVELOAD );					///< ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆç¦æ­¢
 			wk->sub_seq++;
 		}
 		else if ( GF_TP_SingleHitTrg( &hit_table[ 1 ] ) ){
@@ -473,9 +473,9 @@ static BOOL BR_PlayVideoCheck( BR_WORK* wk )
 		break;
 	
 	case 5:
-		///< ƒŒƒ|[ƒg‚ğ‘‚­
+		///< ãƒ¬ãƒãƒ¼ãƒˆã‚’æ›¸ã
 		SaveData_Save( wk->save );
-	//	sys_SoftResetOK( SOFTRESET_TYPE_SAVELOAD );						///< ƒ\ƒtƒgƒŠƒZƒbƒg‹–‰Â
+	//	sys_SoftResetOK( SOFTRESET_TYPE_SAVELOAD );						///< ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆè¨±å¯
 		wk->sub_seq++;
 		break;
 	
@@ -523,19 +523,19 @@ static BOOL BR_PlayVideoFlagSave( BR_WORK* wk )
 	
 	case 1:	
 		if ( WIPE_SYS_EndCheck() == TRUE ){	
-		//	sys_SoftResetNG( SOFTRESET_TYPE_SAVELOAD );						///< ƒ\ƒtƒgƒŠƒZƒbƒg‹Ö~
+		//	sys_SoftResetNG( SOFTRESET_TYPE_SAVELOAD );						///< ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆç¦æ­¢
 			wk->sub_seq++;
 		}
 		break;
 	
 	case 2:
-		///< ƒtƒ‰ƒOƒZ[ƒu
+		///< ãƒ•ãƒ©ã‚°ã‚»ãƒ¼ãƒ–
 		if ( wk->ex_param3 == FALSE ){
 			{
 				LOAD_RESULT ret;
 				SAVE_RESULT result;
 
-				//‘Îí˜^‰æƒf[ƒ^‚Ìƒ[ƒh
+				//å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
 				BattleRec_Load( wk->save, HEAPID_BR, &ret, NULL, wk->ex_param1 );
 
 				result = BattleRec_SecureSetSave( wk->save, wk->ex_param1 );
@@ -544,10 +544,10 @@ static BOOL BR_PlayVideoFlagSave( BR_WORK* wk )
 
 				BattleRec_Exit();
 
-				BR_SaveData_GppHead_Delete( wk );	///< GPP ƒf[ƒ^”jŠü
-				BR_SaveData_GppHead_Load( wk );		///< GPP ƒf[ƒ^‚ÌÄ“Ç‚İ‚İ	
+				BR_SaveData_GppHead_Delete( wk );	///< GPP ãƒ‡ãƒ¼ã‚¿ç ´æ£„
+				BR_SaveData_GppHead_Load( wk );		///< GPP ãƒ‡ãƒ¼ã‚¿ã®å†èª­ã¿è¾¼ã¿	
 				
-			//	sys_SoftResetOK( SOFTRESET_TYPE_SAVELOAD );					///< ƒ\ƒtƒgƒŠƒZƒbƒg‹–‰Â
+			//	sys_SoftResetOK( SOFTRESET_TYPE_SAVELOAD );					///< ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆè¨±å¯
 			}
 		}
 		wk->sub_seq++;
@@ -565,7 +565,7 @@ static BOOL BR_PlayVideoFlagSave( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Ä¶
+ * @brief	å†ç”Ÿ
  *
  * @param	wk	
  *
@@ -592,14 +592,14 @@ static BOOL BR_ProfPlay( BR_WORK* wk )
 		break;
 	
 	case 2:
-		if ( pwk->video_check_state == eVC_NONE ){		///< ƒrƒfƒIƒ`ƒFƒbƒN‚µ‚ÄA‚Í‚¢‚¢‚¢‚¦‚ğ‘I‚ñ‚Å–³‚¢‚Æ‚«‚Ì‚İ
+		if ( pwk->video_check_state == eVC_NONE ){		///< ãƒ“ãƒ‡ã‚ªãƒã‚§ãƒƒã‚¯ã—ã¦ã€ã¯ã„ã„ã„ãˆã‚’é¸ã‚“ã§ç„¡ã„ã¨ãã®ã¿
 			CATS_SystemActiveSet( wk, TRUE );
 			if ( pwk->view_page == 0 ){
-				///< ŠT—víœ
+				///< æ¦‚è¦å‰Šé™¤
 				VideoDataFree( &pwk->vtr_work, wk );
 			}
 			else {
-				///< ƒvƒƒtƒB[ƒ‹íœ
+				///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å‰Šé™¤
 				GppDataFree( &pwk->gpp_work, wk );						
 			}
 			CATS_SystemActiveSet( wk, FALSE );
@@ -746,7 +746,7 @@ static BOOL BR_RecoverIn( BR_WORK* wk )
 		break;
 
 	default:
-		wk->tag_man.stack_s += 1;				///< proc init ‚Å Menu_Back‚ªŒÄ‚Î‚ê1’iŠK‰º‚ª‚Á‚Ä‚µ‚Ü‚¤‚Ì‚Å‰‹}ˆ’u
+		wk->tag_man.stack_s += 1;				///< proc init ã§ Menu_BackãŒå‘¼ã°ã‚Œ1æ®µéšä¸‹ãŒã£ã¦ã—ã¾ã†ã®ã§å¿œæ€¥å‡¦ç½®
 		BR_RecoverWorkClear( wk );		
 		BR_Main_SeqChange( wk, eBR_ProfMain );
 		break;
@@ -757,7 +757,7 @@ static BOOL BR_RecoverIn( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	¡ƒc[ƒ‹“I‚È
+//	â– ãƒ„ãƒ¼ãƒ«çš„ãª
 //
 //
 // =============================================================================
@@ -779,15 +779,15 @@ static void Btn_CallBack_000( u32 button, u32 event, void* work )
 	case 1:
 		TouchAction( wk );
 		
-		///< ©•ª‚ÌƒrƒfƒI‚Ìê‡‚ÆAˆê“xÄ¶‚µ‚ÄÅŒã‚Ü‚ÅŒ©‚é‚±‚Æ‚Ì‚Å‚«‚½ƒrƒfƒI‚ÉŠÖ‚µ‚Ä‚ÍƒZ[ƒu–³‚µ
+		///< è‡ªåˆ†ã®ãƒ“ãƒ‡ã‚ªã®å ´åˆã¨ã€ä¸€åº¦å†ç”Ÿã—ã¦æœ€å¾Œã¾ã§è¦‹ã‚‹ã“ã¨ã®ã§ããŸãƒ“ãƒ‡ã‚ªã«é–¢ã—ã¦ã¯ã‚»ãƒ¼ãƒ–ç„¡ã—
 		OS_Printf( "ex_param1 = %d\n", wk->ex_param1 );
 		OS_Printf( "secure flag = %d\n", RecHeader_ParamGet( pwk->vtr_work.br_head, RECHEAD_IDX_SECURE, 0 ) );
 		if ( wk->ex_param1 == 0 
 		||	 RecHeader_ParamGet( pwk->vtr_work.br_head, RECHEAD_IDX_SECURE, 0 ) == TRUE ){
-			BR_Main_SeqChange( wk, eBR_ProfPlay );		///< ©•ª‚ÌƒrƒfƒIorÄ¶‚ÌˆÀ‘S‚ªŠm”F‚³‚ê‚½‚à‚Ì
+			BR_Main_SeqChange( wk, eBR_ProfPlay );		///< è‡ªåˆ†ã®ãƒ“ãƒ‡ã‚ªorå†ç”Ÿã®å®‰å…¨ãŒç¢ºèªã•ã‚ŒãŸã‚‚ã®
 		}
 		else {
-			BR_Main_SeqChange( wk, eBR_VideoCheck );	///< ƒ_ƒEƒ“ƒ[ƒh‚µ‚½‚¾‚¯‚ÅA‚Ü‚¾Ä¶Šm”F‚ª‚Å‚«‚Ä‚¢‚È‚¢
+			BR_Main_SeqChange( wk, eBR_VideoCheck );	///< ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸã ã‘ã§ã€ã¾ã å†ç”Ÿç¢ºèªãŒã§ãã¦ã„ãªã„
 		}
 		break;
 
@@ -802,7 +802,7 @@ static void GppDataCreate( BR_WORK* wk )
 {
 	PROF_WORK* pwk = wk->sub_work;	
 	pwk->gpp_work.gpp	  = wk->br_gpp[ wk->ex_param1 ];
-	pwk->vtr_work.gpp	  = pwk->gpp_work.gpp;											///< ƒrƒfƒIƒf[ƒ^‚Ìƒvƒƒt‚É‚à‚f‚o‚o‚Ìƒ|ƒCƒ“ƒ^“–‚Ä‚é
+	pwk->vtr_work.gpp	  = pwk->gpp_work.gpp;											///< ãƒ“ãƒ‡ã‚ªãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ­ãƒ•ã«ã‚‚ï¼§ï¼°ï¼°ã®ãƒã‚¤ãƒ³ã‚¿å½“ã¦ã‚‹
 	pwk->vtr_work.br_head = wk->br_head[ wk->ex_param1 ];
 }
 

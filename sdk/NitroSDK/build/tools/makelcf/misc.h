@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.4  2005/08/26 11:23:11  yasu
-  ITCM/DTCM �ւ� overlay �̑Ή�
+  ITCM/DTCM への overlay の対応
 
   Revision 1.3  2005/02/28 05:26:03  yosizaki
   do-indent.

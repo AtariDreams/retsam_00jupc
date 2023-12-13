@@ -1,9 +1,9 @@
-//---- ƒRƒ“ƒo[ƒ^FSPAConv.exe  Version 1.11
+//---- ã‚³ãƒ³ãƒãƒ¼ã‚¿ï¼šSPAConv.exe  Version 1.11
 
 #ifndef __SHINKA_DEMO_SETUP_H__
 #define __SHINKA_DEMO_SETUP_H__
 
-//shinka_demo.h‚ÌsprƒŠƒ\[ƒX’è‹`
+//shinka_demo.hã®sprãƒªã‚½ãƒ¼ã‚¹å®šç¾©
 #define SHINKA_DEMO_000_DM001_A		0
 #define SHINKA_DEMO_000_DM002_A		1
 #define SHINKA_DEMO_000_DM002_B		2
@@ -17,17 +17,17 @@
 #define SHINKA_DEMO_000_DM002_J		10
 #define SHINKA_DEMO_000_DM002_K		11
 #define SHINKA_DEMO_000_DM003_A		12
-//shinka_demo.spa“à‚ÌƒŠƒ\[ƒXŒÂ”
+//shinka_demo.spaå†…ã®ãƒªã‚½ãƒ¼ã‚¹å€‹æ•°
 #define SHINKA_DEMO_SPAMAX	(13)
 
-//shinka_demo_dmy.h‚ÌsprƒŠƒ\[ƒX’è‹`
+//shinka_demo_dmy.hã®sprãƒªã‚½ãƒ¼ã‚¹å®šç¾©
 #define SHINKA_DEMO_DMY_000_DM001_A		0
-//shinka_demo_dmy.spa“à‚ÌƒŠƒ\[ƒXŒÂ”
+//shinka_demo_dmy.spaå†…ã®ãƒªã‚½ãƒ¼ã‚¹å€‹æ•°
 #define SHINKA_DEMO_DMY_SPAMAX	(1)
 
 
 
-//---- shinka_demo_setup_tblƒe[ƒuƒ‹‚Ìdefine’è‹` ----
+//---- shinka_demo_setup_tblãƒ†ãƒ¼ãƒ–ãƒ«ã®defineå®šç¾© ----
 #define SPA_SHINKA_DEMO		(0)
 #define SPA_SHINKA_DEMO_DMY		(1)
 

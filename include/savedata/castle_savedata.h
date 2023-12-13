@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	castle_savedata.h
- * @brief	ƒLƒƒƒbƒXƒ‹ƒZ[ƒuƒf[ƒ^—pƒwƒbƒ_[
+ * @brief	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.06.27
  */
@@ -12,26 +12,26 @@
 
 //============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //============================================================================================
 enum{
 	CASTLEDATA_ID_TYPE = 0,
 	CASTLEDATA_ID_ROUND,
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
 	CASTLEDATA_ID_TEMOTI_HP,
 	CASTLEDATA_ID_TEMOTI_PP,
 	CASTLEDATA_ID_TEMOTI_CONDITION,
 	CASTLEDATA_ID_TEMOTI_ITEM,
-	//ƒgƒŒ[ƒi[
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 	CASTLEDATA_ID_TR_INDEX,
-	//ŽQ‰Á‚µ‚Ä‚¢‚éŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ä½ç½®æƒ…å ±
 	CASTLEDATA_ID_MINE_POKE_POS,
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É•Û‘¶
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ä¿å­˜
 	CASTLEDATA_ID_ENEMY_POKE_INDEX,
 
 	//////////
-	//¬Ñ
+	//æˆç¸¾
 	//////////
 	CASTLESCORE_ID_CLEAR_FLAG,
 	CASTLESCORE_ID_GUIDE_FLAG,
@@ -40,7 +40,7 @@ enum{
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒWƒZ[ƒuƒf[ƒ^‚Ö‚Ì•sŠ®‘SŒ^’è‹`
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¸ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ä¸å®Œå…¨åž‹å®šç¾©
  */
 //---------------------------------------------------------------------------
 typedef struct _CASTLEDATA CASTLEDATA;
@@ -70,7 +70,7 @@ extern u8 Castle_GetTypeLevel( u8 csr_pos, u8* p_rank );
 extern void Castle_SetTypeLevel( u8 csr_pos, u8* p_rank, u8 num );
 extern void Castle_ClearTypeLevel( u8* p_rank );
 
-//¬Ñ
+//æˆç¸¾
 extern void CASTLESCORE_Init( CASTLESCORE* wk );
 extern int CASTLESCORE_GetWorkSize( void );
 extern CASTLESCORE * SaveData_GetCastleScore( SAVEDATA* sv );

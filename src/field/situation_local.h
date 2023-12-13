@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	situation.h
- * @brief	©•ªó‘Ôƒf[ƒ^ƒAƒNƒZƒX—pƒwƒbƒ_iƒ[ƒJƒ‹—pj
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ˜ãƒƒãƒ€ï¼ˆãƒ­ãƒ¼ã‚«ãƒ«ç”¨ï¼‰
  * @author	tamada GAME FREAK inc.
  * @date	2005.12.03
  *
- * ‚±‚Ìƒwƒbƒ_‚Ísrc/field/ˆÈ‰º‚Ìƒtƒ@ƒCƒ‹‚©‚ç‚µ‚©ƒCƒ“ƒNƒ‹[ƒh‚µ‚Ä‚Í‚¢‚¯‚È‚¢B
+ * ã“ã®ãƒ˜ãƒƒãƒ€ã¯src/field/ä»¥ä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã—ã‹ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã—ã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //============================================================================================
 
@@ -16,7 +16,7 @@
 #include "townmap_footmark.h"
 
 //----------------------------------------------------------
-//	SITUATION‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	SITUATIONæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern LOCATION_WORK * Situation_GetNowLocation(SITUATION * st);
 extern LOCATION_WORK * Situation_GetEntranceLocation(SITUATION * st);
@@ -40,12 +40,12 @@ extern u16 * Situation_GetRevengeStepCount(SITUATION * st);
 extern u16 * Situation_GetFriendlyStepCount(SITUATION * st);
 
 //----------------------------------------------------------
-//	ƒfƒoƒbƒO—pƒf[ƒ^¶¬‚Ì‚½‚ß‚ÌŠÖ”
+//	ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 //extern void Debug_Situation_Make(SITUATION * Situation, const STRCODE * name, int sex);
 
 //----------------------------------------------------------
-//	FieldOBJ‚ÌƒZ[ƒuAƒ[ƒh
+//	FieldOBJã®ã‚»ãƒ¼ãƒ–ã€ãƒ­ãƒ¼ãƒ‰
 //----------------------------------------------------------
 extern void Field_SaveFieldObj(FIELDSYS_WORK * fsys);
 extern void Field_LoadFieldObj(FIELDSYS_WORK * fsys);

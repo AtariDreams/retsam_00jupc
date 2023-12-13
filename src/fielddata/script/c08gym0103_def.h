@@ -1,11 +1,11 @@
 #ifndef _C08GYM0103_DEF_H_
 #define _C08GYM0103_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C08GYM0103_FLAG_CHANGE		(1)
 #define	SCRID_POS_C08GYM0103_ROT01		(2)
 #define	SCRID_POS_C08GYM0103_ROT03		(3)
 #define	SCRID_C08GYM0103_LEADER		(4)
-#define	SCRID_C08GYM0103_DATA_MAX		(4)		//最大数
+#define	SCRID_C08GYM0103_DATA_MAX		(4)		//譛螟ｧ謨ｰ
 
 #endif //_C08GYM0103_DEF_H_

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_228.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			228@UŒ‚‚µ‚½ŒãAT‚¦ƒ|ƒPƒ‚ƒ“‚Æ“ü‚ê‘Ö‚í‚éBT‚¦‚ª‚¢‚È‚¢ê‡‚ÍA“ü‚ê‘Ö‚¦ˆ—‚ð‚µ‚È‚¢‚ÅI—¹B‚¨‚¢‚¤‚¿‚àŽó‚¯‚éB
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			228ã€€æ”»æ’ƒã—ãŸå¾Œã€æŽ§ãˆãƒã‚±ãƒ¢ãƒ³ã¨å…¥ã‚Œæ›¿ã‚ã‚‹ã€‚æŽ§ãˆãŒã„ãªã„å ´åˆã¯ã€å…¥ã‚Œæ›¿ãˆå‡¦ç†ã‚’ã—ãªã„ã§çµ‚äº†ã€‚ãŠã„ã†ã¡ã‚‚å—ã‘ã‚‹ã€‚
  *
  *@author	HisashiSogabe
  *@data		2006.02.16

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>CHT_GetPictochatRoomNumber</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">CHT_GetPictochatRoomNumber</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
   <dd><PRE><CODE>#include &lt;nitro/cht.h&gt;
 
@@ -20,36 +20,36 @@ int CHT_GetPictochatRoomNumber( const <A href="../../wm/wm/WMBssDesc.html">WMBss
 </CODE></PRE></dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">pWmBssDesc</FONT></STRONG></EM></TD>
-      <TD width="800">��������r�[�R�����ւ̃|�C���^���w�肵�܂��B</TD>
+      <TD width="800">調査するビーコン情報へのポインタを指定します。</TD>
     </TR>
   </tbody>
 </table>
 
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 <p>
-�s�N�g�`���b�g�̐e�@���J���Ă��镔���̔ԍ�( 0 �` 3 )��Ԃ��܂��B
-�����Ɏw�肵���r�[�R����񂪈ُ�ł������ꍇ�ɂ� -1 ��Ԃ��܂��B
+ピクトチャットの親機が開いている部屋の番号( 0 〜 3 )を返します。
+引数に指定したビーコン情報が異常であった場合には -1 を返します。
 </p>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�s�N�g�`���b�g�̐e�@�r�[�R����񂩂�A���̐e�@���J���Ă��镔���̔ԍ��𒲂ׂ܂��B0 �` 3 �����ꂼ�� �`���b�g���[�� A �` D �ɑΉ����Ă��܂��B<BR>
-���֐��ɂĕ����ԍ��𒲂ׂ�O�ɁA<A href="CHT_IsPictochatParent.html">CHT_IsPictochatParent</A>�֐���p���Đe�@�r�[�R����񂪃s�N�g�`���b�g�̃r�[�R�����ł��邱�Ƃ�K���m�F����悤�ɂ��ĉ������B
-�s�N�g�`���b�g�̃r�[�R�����ȊO�������ɗ^�����ꍇ�̕Ԃ�l�͕s��ł��B
+ピクトチャットの親機ビーコン情報から、その親機が開いている部屋の番号を調べます。0 〜 3 がそれぞれ チャットルーム A 〜 D に対応しています。<BR>
+当関数にて部屋番号を調べる前に、<A href="CHT_IsPictochatParent.html">CHT_IsPictochatParent</A>関数を用いて親機ビーコン情報がピクトチャットのビーコン情報であることを必ず確認するようにして下さい。
+ピクトチャットのビーコン情報以外を引数に与えた場合の返り値は不定です。
 </P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="CHT_IsPictochatParent.html">CHT_IsPictochatParent</A>, <A href="../../wm/wm/WMBssDesc.html">WMBssDesc</A></CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/03/02 �Ԃ�l�ɐ����ǋL<BR>
-2004/12/24 ����<BR>
+2005/03/02 返り値に説明追記<BR>
+2004/12/24 初版<BR>
 </P>
 </body>
 </html>

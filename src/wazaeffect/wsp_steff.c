@@ -1,35 +1,35 @@
 //==============================================================================
 /**
  * @file	wsp_steff.c
- * @brief	ƒXƒe[ƒ^ƒXƒGƒtƒFƒNƒg—p
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨
  * @author	goto
  * @date	2006.03.15
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
 
-#include "common.h"				///< •K{
-#include "system/lib_pack.h"	///< •K{
-#include "west_sp.h"			///< •K{
-#include "wsp.h"				///< xxx.c‚É‘Î‚·‚éxxx.h‚Í•K{
+#include "common.h"				///< å¿…é ˆ
+#include "system/lib_pack.h"	///< å¿…é ˆ
+#include "west_sp.h"			///< å¿…é ˆ
+#include "wsp.h"				///< xxx.cã«å¯¾ã™ã‚‹xxx.hã¯å¿…é ˆ
 
-#include "wazatool.h"			///< ‹ZƒGƒtƒFƒNƒgx‰‡ŠÖ”ŒS
+#include "wazatool.h"			///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ”¯æ´é–¢æ•°éƒ¡
 #include "we_tool.h"			///< 
 
 #include "ball_effect.h"
-#include "system/arc_tool.h"	///< ƒA[ƒJƒCƒu—p
-#include "system/arc_util.h"	///< ƒA[ƒJƒCƒu—p
+#include "system/arc_tool.h"	///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨
+#include "system/arc_util.h"	///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨
 
 #include "we_def.h"
 
-///< ŒÂ•Êİ’èƒpƒ‰ƒ[ƒ^ ”Ä—pƒ[ƒN‚©‚ç‚Ìæ‚èo‚µ‚Æ‚»‚¤‚Å‚È‚¢‚à‚Ì‚ª‚ ‚éB
+///< å€‹åˆ¥è¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ æ±ç”¨ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰ã®å–ã‚Šå‡ºã—ã¨ãã†ã§ãªã„ã‚‚ã®ãŒã‚ã‚‹ã€‚
 typedef struct {
 
-	int arc_id;			///< ƒA[ƒNNo			ŒÅ’è
-	int data_no;		///< ƒOƒ‰ƒtƒBƒbƒNNo = up/down/recover
-	int type;			///< ”\—Íƒ^ƒCƒv
+	int arc_id;			///< ã‚¢ãƒ¼ã‚¯No			å›ºå®š
+	int data_no;		///< ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯No = up/down/recover
+	int type;			///< èƒ½åŠ›ã‚¿ã‚¤ãƒ—
 	
 	s16	speed_x;
 	s16	speed_y;
@@ -41,7 +41,7 @@ typedef struct {
 
 } STEFF_PARAM;
 
-///< ƒVƒXƒeƒ€
+///< ã‚·ã‚¹ãƒ†ãƒ 
 typedef struct {
 
 	STEFF_PARAM		param;
@@ -201,7 +201,7 @@ static void StatusEffect_TCB(TCB_PTR tcb, void* work)
 }
 
 
-///< ”Ä—pƒ[ƒN‚©‚ç‚Ì’læ‚èo‚µ
+///< æ±ç”¨ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰ã®å€¤å–ã‚Šå‡ºã—
 static void StatusEffect_Param_SetUp(WE_SYS_PTR wsp, STEFF_PARAM* param)
 {
 	(*param).arc_id		= WE_HAIKEI_ARC;
@@ -210,7 +210,7 @@ static void StatusEffect_Param_SetUp(WE_SYS_PTR wsp, STEFF_PARAM* param)
 }
 
 
-///< ‰Šú‰»
+///< åˆæœŸåŒ–
 static void StatusEffect_BG_SetUp(WE_SYS_PTR wsp, STEFF_PARAM* param)
 {
 	STEFF_SYS* wk = WET_ALLOC_MEMORY(wsp, STEFF_SYS);
@@ -219,9 +219,9 @@ static void StatusEffect_BG_SetUp(WE_SYS_PTR wsp, STEFF_PARAM* param)
 	
 	wk->param = (*param);
 	
-	wk->cap_n = WeSysPokeCapGet(wk->ts.wsp, 0);		///< ƒm[ƒ}ƒ‹@OBJ
-	wk->cap_w = WeSysPokeCapGet(wk->ts.wsp, 1);		///< ƒEƒBƒ“ƒhƒEOBJ
-	wk->cap_m = WeSysPokeCapGet(wk->ts.wsp, 2);		///< ‘Š•ûOBJ
+	wk->cap_n = WeSysPokeCapGet(wk->ts.wsp, 0);		///< ãƒãƒ¼ãƒãƒ«ã€€OBJ
+	wk->cap_w = WeSysPokeCapGet(wk->ts.wsp, 1);		///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OBJ
+	wk->cap_m = WeSysPokeCapGet(wk->ts.wsp, 2);		///< ç›¸æ–¹OBJ
 	
 	{
 		int pri;
@@ -277,7 +277,7 @@ static void StatusEffect_BG_SetUp(WE_SYS_PTR wsp, STEFF_PARAM* param)
 		}
 	}
 
-	///< ƒuƒŒƒ“ƒhİ’è
+	///< ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®š
 	{
 		G2_SetWndOBJInsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_OBJ | GX_WND_PLANEMASK_BG2,	TRUE);
 		G2_SetWndOutsidePlane(STEFF_WIN_OUT_SIDE_PLANE,	TRUE);
@@ -298,7 +298,7 @@ static void StatusEffect_BG_SetUp(WE_SYS_PTR wsp, STEFF_PARAM* param)
 #define STEFF_SCR_EV2		(4)
 //--------------------------------------------------------------
 /**
- * @brief	ã¸ƒGƒtƒFƒNƒg
+ * @brief	ä¸Šæ˜‡ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  * @param	we_sys	
  *
@@ -321,7 +321,7 @@ void StatusEffect_Up(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º~ƒGƒtƒFƒNƒg
+ * @brief	ä¸‹é™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  * @param	we_sys	
  *
@@ -344,7 +344,7 @@ void StatusEffect_Down(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ñ•œƒGƒtƒFƒNƒg
+ * @brief	å›å¾©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  * @param	we_sys	
  *
@@ -366,7 +366,7 @@ void StatusEffect_Recover(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒ^ƒ‹ƒGƒtƒFƒNƒg
+ * @brief	ãƒ¡ã‚¿ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  * @param	we_sys	
  *

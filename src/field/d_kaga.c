@@ -2,7 +2,7 @@
 /**
  *
  * @file	d_kaga.c
- * @brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[@‚©‚ª‚â
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ã‹ãŒã‚„
  * @author	kagaya
  * @data	05.07.13
  *
@@ -48,7 +48,7 @@
 //==============================================================================
 #define HEAPID_D_KAGA (HEAPID_FIELD)
 
-enum	//ƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒg
+enum	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆ
 {
 	MENU_GHOST_GYM,
 	MENU_CAMERA,
@@ -68,9 +68,9 @@ enum	//ƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒg
 	MENU_LIST_MAX,
 };
 
-#define MENU_Y_CHAR_ONE	(2)			//‚P•¶Žš 2
-#define MENU_X_CHAR_SIZE (14)		//ƒfƒoƒbƒOƒƒjƒ…[‰¡•@ƒLƒƒƒ‰ƒTƒCƒY
-#define MENU_Y_CHAR_SIZE_MAX (11*MENU_Y_CHAR_ONE)//ƒfƒoƒbƒOƒƒjƒ…[c•Å‘å
+#define MENU_Y_CHAR_ONE	(2)			//ï¼‘æ–‡å­— 2
+#define MENU_X_CHAR_SIZE (14)		//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ¨ªå¹…ã€€ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+#define MENU_Y_CHAR_SIZE_MAX (11*MENU_Y_CHAR_ONE)//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¸¦å¹…æœ€å¤§
 #define MENU_Y_CHAR_SIZE_ALL (MENU_LIST_MAX*MENU_Y_CHAR_ONE)
 
 #define RADIDX8(a) (((a)*256)&0xffff)
@@ -81,13 +81,13 @@ enum	//ƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒg
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒƒjƒ…[ŒÄ‚Ño‚µŠÖ”
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—é–¢æ•°
 //--------------------------------------------------------------
 typedef void (*MENU_PROC)(void*);
 typedef BOOL (*MENU_FUNC)(void*);
 
 //--------------------------------------------------------------
-//	ƒƒbƒZ[ƒWƒŠƒXƒg
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚¹ãƒˆ
 //--------------------------------------------------------------
 typedef struct{
 	u32  str_id;
@@ -95,7 +95,7 @@ typedef struct{
 }DEBUG_MENU_LIST;
 
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒOƒ[ƒN
+//	ãƒ‡ãƒãƒƒã‚°ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct
 {
@@ -106,12 +106,12 @@ typedef struct
 	GF_BGL_BMPWIN bmpwin;
 	BMPLIST_WORK *bmplist;
 	BMPLIST_DATA *menulist;
-	MSGDATA_MANAGER* msgman;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;								//’PŒêƒZƒbƒg
+	MSGDATA_MANAGER* msgman;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;								//å˜èªžã‚»ãƒƒãƒˆ
 }D_KAGA_WORK;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 void DebugKagayaMenuInit( FIELDSYS_WORK *fsys );
 
@@ -129,10 +129,10 @@ static const DEBUG_MENU_LIST DATA_MenuList[MENU_LIST_MAX];
 static const BMPLIST_HEADER DATA_MenuListHeader;
 
 //==============================================================================
-//	ƒfƒoƒbƒOƒƒjƒ…[
+//	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒƒjƒ…[‰Šú‰»
+///	ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸåŒ–
 //--------------------------------------------------------------
 void DebugKagayaMenuInit( FIELDSYS_WORK *fsys )
 {
@@ -176,7 +176,7 @@ void DebugKagayaMenuInit( FIELDSYS_WORK *fsys )
 }
 
 //--------------------------------------------------------------
-//	ƒƒCƒ“
+//	ãƒ¡ã‚¤ãƒ³
 //--------------------------------------------------------------
 static void D_KagaMenuMain( TCB_PTR tcb, void *wk )
 {
@@ -209,7 +209,7 @@ static void D_KagaMenuMain( TCB_PTR tcb, void *wk )
 }
 
 //--------------------------------------------------------------
-//	ƒƒjƒ…[I—¹
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼çµ‚äº†
 //--------------------------------------------------------------
 static void D_KagaMenuEnd( D_KAGA_WORK *work, TCB_PTR tcb )
 {
@@ -227,10 +227,10 @@ static void D_KagaMenuEnd( D_KAGA_WORK *work, TCB_PTR tcb )
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒƒ‚ƒŠŠm
+//	ãƒ¡ãƒ¢ãƒªç¢º
 //--------------------------------------------------------------
 static void * D_KagaAllocMemory( int size )
 {
@@ -240,7 +240,7 @@ static void * D_KagaAllocMemory( int size )
 }
 
 //--------------------------------------------------------------
-//	”’l•`‰æ x,y = dot ‘«‚è‚È‚¢Œ…‚Í0‚Å–„‚Ü‚é
+//	æ•°å€¤æç”» x,y = dot è¶³ã‚Šãªã„æ¡ã¯0ã§åŸ‹ã¾ã‚‹
 //--------------------------------------------------------------
 static void D_KagaPrintNum(
 	GF_BGL_BMPWIN *win, int x, int y, int num, u32 keta )
@@ -253,7 +253,7 @@ static void D_KagaPrintNum(
 }
 
 //--------------------------------------------------------------
-//	•¶Žš•`‰æ x,y = dot
+//	æ–‡å­—æç”» x,y = dot
 //--------------------------------------------------------------
 static void D_KagaPrintStr(
 	GF_BGL_BMPWIN *win, int x, int y, const STRBUF *msg )
@@ -262,7 +262,7 @@ static void D_KagaPrintStr(
 }
 
 //--------------------------------------------------------------
-//	360‘Œ¸ fx
+//	360å¢—æ¸› fx
 //--------------------------------------------------------------
 static void D_KagaCalc360Fx( fx32 *rot, fx32 val )
 {
@@ -272,7 +272,7 @@ static void D_KagaCalc360Fx( fx32 *rot, fx32 val )
 }
 
 //==============================================================================
-//	ƒS[ƒXƒgƒWƒ€
+//	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 //	define
@@ -301,8 +301,8 @@ typedef struct
 	GF_BGL_BMPWIN bmpwin;
 	BMPLIST_WORK *bmplist;
 	BMPLIST_DATA *menulist;
-	MSGDATA_MANAGER* msgman;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;								//’PŒêƒZƒbƒg
+	MSGDATA_MANAGER* msgman;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;								//å˜èªžã‚»ãƒƒãƒˆ
 }D_GHOSTGYM_WORK;
 
 //--------------------------------------------------------------
@@ -315,7 +315,7 @@ static const DEBUG_MENU_LIST DATA_GhostGymMenuList[D_GHOSTGYM_MENULIST_MAX];
 static const BMPLIST_HEADER DATA_GhostGymMenuListHeader;
 
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒOƒƒjƒ…[FƒS[ƒXƒgƒWƒ€
+//	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼šã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
 //--------------------------------------------------------------
 static void D_GhostGymInit( D_KAGA_WORK *kaga )
 {
@@ -323,7 +323,7 @@ static void D_GhostGymInit( D_KAGA_WORK *kaga )
 		GIMMICKWORK *gmc;
 		gmc = SaveData_GetGimmickWork( GameSystem_GetSaveData(kaga->fsys) );
 		if( GIMMICKWORK_GetAssignID(gmc) != FLD_GIMMICK_GHOST_GYM){
-			OS_Printf( "ƒS[ƒXƒgƒWƒ€‚Å‚Í‚ ‚è‚Ü‚¹‚ñ\n" );
+			OS_Printf( "ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã§ã¯ã‚ã‚Šã¾ã›ã‚“\n" );
 			return;
 		}
 	}
@@ -337,7 +337,7 @@ static void D_GhostGymInit( D_KAGA_WORK *kaga )
 }
 
 //--------------------------------------------------------------
-//	ƒS[ƒXƒgƒWƒ€FƒCƒxƒ“ƒg
+//	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ï¼šã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------
 static BOOL D_GhostGymEvent( GMEVENT_CONTROL *ev )
 {
@@ -422,7 +422,7 @@ static BOOL D_GhostGymEvent( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€@ƒtƒHƒOî•ñ•`‰æ‚Æ”½‰f
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€ãƒ•ã‚©ã‚°æƒ…å ±æç”»ã¨åæ˜ 
  * @param	work	D_GHOSTGYM_WORK
  * @retval	nothing
  */
@@ -451,10 +451,10 @@ static void D_GhostGymFogPrintSet( D_GHOSTGYM_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€@ƒtƒHƒO@Ý’è	ã‰ºƒL[‚ÅXV
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€ãƒ•ã‚©ã‚°ã€€è¨­å®š	ä¸Šä¸‹ã‚­ãƒ¼ã§æ›´æ–°
  * @param	work	D_GHOSTGYM_WORK
  * @param	flag	0=R,1=G,2=B,3=Alpha,4=tbl
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL D_GhostGymMenuFunc_FogParamSet( D_GHOSTGYM_WORK *work, int flag )
@@ -515,9 +515,9 @@ static BOOL D_GhostGymMenuFunc_FogParamSet( D_GHOSTGYM_WORK *work, int flag )
 
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€@ƒtƒHƒO@ÔFÝ’è	ã‰ºƒL[‚ÅXV
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€ãƒ•ã‚©ã‚°ã€€èµ¤è‰²è¨­å®š	ä¸Šä¸‹ã‚­ãƒ¼ã§æ›´æ–°
  * @param	work	D_GHOSTGYM_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL D_GhostGymMenuFunc_FogRedSet( D_GHOSTGYM_WORK *work )
@@ -530,9 +530,9 @@ static BOOL D_GhostGymMenuFunc_FogRedSet( D_GHOSTGYM_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€@ƒtƒHƒO@—ÎÝ’è	ã‰ºƒL[‚ÅXV
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€ãƒ•ã‚©ã‚°ã€€ç·‘è¨­å®š	ä¸Šä¸‹ã‚­ãƒ¼ã§æ›´æ–°
  * @param	work	D_GHOSTGYM_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL D_GhostGymMenuFunc_FogGreenSet( D_GHOSTGYM_WORK *work )
@@ -545,9 +545,9 @@ static BOOL D_GhostGymMenuFunc_FogGreenSet( D_GHOSTGYM_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€@ƒtƒHƒO@ÂFÝ’è	ã‰ºƒL[‚ÅXV
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€ãƒ•ã‚©ã‚°ã€€é’è‰²è¨­å®š	ä¸Šä¸‹ã‚­ãƒ¼ã§æ›´æ–°
  * @param	work	D_GHOSTGYM_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL D_GhostGymMenuFunc_FogBlueSet( D_GHOSTGYM_WORK *work )
@@ -560,9 +560,9 @@ static BOOL D_GhostGymMenuFunc_FogBlueSet( D_GHOSTGYM_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€@ƒtƒHƒO@ƒAƒ‹ƒtƒ@Ý’è	ã‰ºƒL[‚ÅXV
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€ãƒ•ã‚©ã‚°ã€€ã‚¢ãƒ«ãƒ•ã‚¡è¨­å®š	ä¸Šä¸‹ã‚­ãƒ¼ã§æ›´æ–°
  * @param	work	D_GHOSTGYM_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL D_GhostGymMenuFunc_FogAlphaSet( D_GHOSTGYM_WORK *work )
@@ -575,9 +575,9 @@ static BOOL D_GhostGymMenuFunc_FogAlphaSet( D_GHOSTGYM_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€@ƒtƒHƒO@ƒe[ƒuƒ‹Ý’è	ã‰ºƒL[‚ÅXV
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€ãƒ•ã‚©ã‚°ã€€ãƒ†ãƒ¼ãƒ–ãƒ«è¨­å®š	ä¸Šä¸‹ã‚­ãƒ¼ã§æ›´æ–°
  * @param	work	D_GHOSTGYM_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL D_GhostGymMenuFunc_FogTblSet( D_GHOSTGYM_WORK *work )
@@ -591,9 +591,9 @@ static BOOL D_GhostGymMenuFunc_FogTblSet( D_GHOSTGYM_WORK *work )
 #ifdef DEBUG_PLGHOSTGYM_CAPTURE
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€@ƒ‰ƒCƒg ON,OFF
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€ãƒ©ã‚¤ãƒˆ ON,OFF
  * @param	work	D_GHOSTGYM_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL D_GhostGymMenuFunc_LightVanish( D_GHOSTGYM_WORK *work )
@@ -604,7 +604,7 @@ static BOOL D_GhostGymMenuFunc_LightVanish( D_GHOSTGYM_WORK *work )
 #endif
 
 //--------------------------------------------------------------
-//	ƒS[ƒXƒgƒWƒ€Fdata
+//	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ï¼šdata
 //--------------------------------------------------------------
 static const DEBUG_MENU_LIST DATA_GhostGymMenuList[D_GHOSTGYM_MENULIST_MAX] =
 {
@@ -620,28 +620,28 @@ static const DEBUG_MENU_LIST DATA_GhostGymMenuList[D_GHOSTGYM_MENULIST_MAX] =
 
 static const BMPLIST_HEADER DATA_GhostGymMenuListHeader =
 {
-	NULL,					// •\Ž¦•¶Žšƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// ˆê—ñ•\Ž¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	NULL,
-	D_GHOSTGYM_MENULIST_MAX,	// ƒŠƒXƒg€–Ú”
-	11,						// •\Ž¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-	12,						// €–Ú•\Ž¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-	0,						// •\Ž¦‚xÀ•W
-	FBMP_COL_WHITE,			//•¶ŽšF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶Žš‰eF
-	0,						// •¶ŽšŠÔŠu‚w
-	16,						// •¶ŽšŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,	// •¶ŽšŽw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚ÆŽv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	D_GHOSTGYM_MENULIST_MAX,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	11,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	12,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,	// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 //==============================================================================
-//	ƒJƒƒ‰Ý’è
+//	ã‚«ãƒ¡ãƒ©è¨­å®š
 //==============================================================================
 
 //NNS_G3dGlbGetCameraMtx
@@ -674,8 +674,8 @@ typedef struct
 	GF_BGL_BMPWIN bmpwin;
 	BMPLIST_WORK *bmplist;
 	BMPLIST_DATA *menulist;
-	MSGDATA_MANAGER* msgman;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;								//’PŒêƒZƒbƒg
+	MSGDATA_MANAGER* msgman;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;								//å˜èªžã‚»ãƒƒãƒˆ
 }D_CAMERA_WORK;
 
 //--------------------------------------------------------------
@@ -691,7 +691,7 @@ static const DEBUG_MENU_LIST DATA_CameraMenuList[D_CAMERA_MENULIST_MAX];
 static const BMPLIST_HEADER DATA_CameraMenuListHeader;
 
 //--------------------------------------------------------------
-// ƒfƒoƒbƒOƒƒjƒ…[FƒJƒƒ‰Ý’è
+// ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼šã‚«ãƒ¡ãƒ©è¨­å®š
 //--------------------------------------------------------------
 static void D_CameraInit( D_KAGA_WORK *kaga )
 {
@@ -702,7 +702,7 @@ static void D_CameraInit( D_KAGA_WORK *kaga )
 }
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’èFƒCƒxƒ“ƒg
+//	ã‚«ãƒ¡ãƒ©è¨­å®šï¼šã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------
 static BOOL D_CameraEvent( GMEVENT_CONTROL *ev )
 {
@@ -815,7 +815,7 @@ static BOOL D_CameraEvent( GMEVENT_CONTROL *ev )
 }
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’èFƒJƒƒ‰Œö“]
+//	ã‚«ãƒ¡ãƒ©è¨­å®šï¼šã‚«ãƒ¡ãƒ©å…¬è»¢
 //--------------------------------------------------------------
 static BOOL D_CameraMenuFunc_Kouten( D_CAMERA_WORK *work )
 {
@@ -862,13 +862,13 @@ static BOOL D_CameraMenuFunc_Kouten( D_CAMERA_WORK *work )
 #if 0	
 	if( trg & PAD_BUTTON_X ){
 		CAMERA_ANGLE c = GFC_GetCameraAngle( work->camera );
-		OS_Printf( "ƒJƒƒ‰ƒeƒXƒg ƒJƒƒ‰Šp“x@X=0x%x, Y=0x%x, Z=0x%x\n",
+		OS_Printf( "ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆ ã‚«ãƒ¡ãƒ©è§’åº¦ã€€X=0x%x, Y=0x%x, Z=0x%x\n",
 				c.x, c.y, c.z );
 	}
 #else
 	if( pflag == TRUE || (trg&PAD_BUTTON_X)  ){
 		CAMERA_ANGLE c = GFC_GetCameraAngle( work->camera );
-		OS_Printf( "ƒJƒƒ‰ƒeƒXƒg ƒJƒƒ‰Šp“x@X=0x%x, Y=0x%x, Z=0x%x\n",
+		OS_Printf( "ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆ ã‚«ãƒ¡ãƒ©è§’åº¦ã€€X=0x%x, Y=0x%x, Z=0x%x\n",
 				c.x, c.y, c.z );
 	}
 #endif
@@ -880,7 +880,7 @@ static BOOL D_CameraMenuFunc_Kouten( D_CAMERA_WORK *work )
 	return( FALSE );
 }
 
-//ƒJƒƒ‰Œö“]@‚â‚Ô‚ê‚½‚¹‚©‚¢
+//ã‚«ãƒ¡ãƒ©å…¬è»¢ã€€ã‚„ã¶ã‚ŒãŸã›ã‹ã„
 #ifdef DEBUG_TWORLD_CAPTURE
 static BOOL D_CameraMenuFunc_KoutenTwCap( D_CAMERA_WORK *work )
 {
@@ -919,7 +919,7 @@ static BOOL D_CameraMenuFunc_KoutenTwCap( D_CAMERA_WORK *work )
 #endif
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’èFƒJƒƒ‰Ž©“]
+//	ã‚«ãƒ¡ãƒ©è¨­å®šï¼šã‚«ãƒ¡ãƒ©è‡ªè»¢
 //--------------------------------------------------------------
 static BOOL D_CameraMenuFunc_Jiten( D_CAMERA_WORK *work )
 {
@@ -952,7 +952,7 @@ static BOOL D_CameraMenuFunc_Jiten( D_CAMERA_WORK *work )
 	
 	if( trg & PAD_BUTTON_X ){
 		CAMERA_ANGLE c = GFC_GetCameraAngle( work->camera );
-		OS_Printf( "ƒJƒƒ‰ƒeƒXƒg ƒJƒƒ‰Šp“x@X=0x%x, Y=0x%x, Z=0x%x\n",
+		OS_Printf( "ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆ ã‚«ãƒ¡ãƒ©è§’åº¦ã€€X=0x%x, Y=0x%x, Z=0x%x\n",
 				c.x, c.y, c.z );
 	}
 	
@@ -964,7 +964,7 @@ static BOOL D_CameraMenuFunc_Jiten( D_CAMERA_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’èFƒJƒƒ‰ƒY[ƒ€
+//	ã‚«ãƒ¡ãƒ©è¨­å®šï¼šã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ 
 //--------------------------------------------------------------
 static BOOL D_CameraMenuFunc_Zoom( D_CAMERA_WORK *work )
 {
@@ -994,7 +994,7 @@ static BOOL D_CameraMenuFunc_Zoom( D_CAMERA_WORK *work )
 	if( trg & PAD_BUTTON_X ){
 		persp = GFC_GetCameraPerspWay( work->camera );
 		dist = GFC_GetCameraDistance( work->camera );
-		OS_Printf( "ƒJƒƒ‰ƒeƒXƒg ƒp[ƒX 0x%x, ‹——£ 0x%x\n", persp, dist );
+		OS_Printf( "ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆ ãƒ‘ãƒ¼ã‚¹ 0x%x, è·é›¢ 0x%x\n", persp, dist );
 	}
 	
 	if( trg & PAD_BUTTON_B ){
@@ -1005,7 +1005,7 @@ static BOOL D_CameraMenuFunc_Zoom( D_CAMERA_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’èFƒJƒƒ‰‹——£
+//	ã‚«ãƒ¡ãƒ©è¨­å®šï¼šã‚«ãƒ¡ãƒ©è·é›¢
 //--------------------------------------------------------------
 static BOOL D_CameraMenuFunc_Distance( D_CAMERA_WORK *work )
 {
@@ -1021,7 +1021,7 @@ static BOOL D_CameraMenuFunc_Distance( D_CAMERA_WORK *work )
 	
 	if( trg & PAD_BUTTON_X ){
 		dist = GFC_GetCameraDistance( work->camera );
-		OS_Printf( "ƒJƒƒ‰ƒeƒXƒg ‹——£ 0x%x\n", dist );
+		OS_Printf( "ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆ è·é›¢ 0x%x\n", dist );
 	}
 	
 	if( trg & PAD_BUTTON_B ){
@@ -1033,7 +1033,7 @@ static BOOL D_CameraMenuFunc_Distance( D_CAMERA_WORK *work )
 
 #if 0
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’èFŽ‹“_ˆÚ“®
+//	ã‚«ãƒ¡ãƒ©è¨­å®šï¼šè¦–ç‚¹ç§»å‹•
 //--------------------------------------------------------------
 static BOOL D_CameraMenuFunc_ViewPointMove( D_CAMERA_WORK *work )
 {
@@ -1069,7 +1069,7 @@ static BOOL D_CameraMenuFunc_ViewPointMove( D_CAMERA_WORK *work )
 	}
 	
 	if( trg & PAD_BUTTON_X ){
-		OS_Printf( "ƒJƒƒ‰ƒeƒXƒg –Ú•WˆÚ“® X=%x,Y=%x,Z=%x\n",
+		OS_Printf( "ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆ ç›®æ¨™ç§»å‹• X=%x,Y=%x,Z=%x\n",
 				tget->x, tget->y, tget->z );
 	}
 	
@@ -1083,7 +1083,7 @@ static BOOL D_CameraMenuFunc_ViewPointMove( D_CAMERA_WORK *work )
 #endif
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’èF–Ú•WˆÚ“®
+//	ã‚«ãƒ¡ãƒ©è¨­å®šï¼šç›®æ¨™ç§»å‹•
 //--------------------------------------------------------------
 static BOOL D_CameraMenuFunc_TargetMove( D_CAMERA_WORK *work )
 {
@@ -1119,7 +1119,7 @@ static BOOL D_CameraMenuFunc_TargetMove( D_CAMERA_WORK *work )
 	}
 	
 	if( trg & PAD_BUTTON_X ){
-		OS_Printf( "ƒJƒƒ‰ƒeƒXƒg –Ú•WˆÚ“® X=%x,Y=%x,Z=%x\n",
+		OS_Printf( "ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆ ç›®æ¨™ç§»å‹• X=%x,Y=%x,Z=%x\n",
 				tget->x, tget->y, tget->z );
 	}
 	
@@ -1132,7 +1132,7 @@ static BOOL D_CameraMenuFunc_TargetMove( D_CAMERA_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’èFŽË‰e•ÏX
+//	ã‚«ãƒ¡ãƒ©è¨­å®šï¼šå°„å½±å¤‰æ›´
 //--------------------------------------------------------------
 static BOOL D_CameraMenuFunc_Syaei( D_CAMERA_WORK *work )
 {
@@ -1141,16 +1141,16 @@ static BOOL D_CameraMenuFunc_Syaei( D_CAMERA_WORK *work )
 	GFC_SetCameraView( view, work->camera );
 	
 	if( view ){	
-		OS_Printf( "ƒJƒƒ‰ƒeƒXƒg@³ŽË‰e‚É•ÏX\n" );
+		OS_Printf( "ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆã€€æ­£å°„å½±ã«å¤‰æ›´\n" );
 	}else{
-		OS_Printf( "ƒJƒƒ‰ƒeƒXƒg@“§Ž‹ŽË‰e‚É•ÏX\n" );
+		OS_Printf( "ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆã€€é€è¦–å°„å½±ã«å¤‰æ›´\n" );
 	}
 	
 	return( TRUE );
 }
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’èFƒƒ“ƒOƒNƒŠƒbƒv
+//	ã‚«ãƒ¡ãƒ©è¨­å®šï¼šãƒ­ãƒ³ã‚°ã‚¯ãƒªãƒƒãƒ—
 //--------------------------------------------------------------
 static BOOL D_CameraMenuFunc_LongClip( D_CAMERA_WORK *work )
 {
@@ -1161,7 +1161,7 @@ static BOOL D_CameraMenuFunc_LongClip( D_CAMERA_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’èFƒŠƒZƒbƒg
+//	ã‚«ãƒ¡ãƒ©è¨­å®šï¼šãƒªã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static BOOL D_CameraMenuFunc_Reset( D_CAMERA_WORK *work )
 {
@@ -1195,7 +1195,7 @@ static BOOL D_CameraMenuFunc_Reset( D_CAMERA_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	ƒS[ƒXƒgƒWƒ€Fdata
+//	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ï¼šdata
 //--------------------------------------------------------------
 static const DEBUG_MENU_LIST DATA_CameraMenuList[D_CAMERA_MENULIST_MAX] =
 {
@@ -1211,24 +1211,24 @@ static const DEBUG_MENU_LIST DATA_CameraMenuList[D_CAMERA_MENULIST_MAX] =
 
 static const BMPLIST_HEADER DATA_CameraMenuListHeader =
 {
-	NULL,					// •\Ž¦•¶Žšƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// ˆê—ñ•\Ž¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	NULL,
-	D_CAMERA_MENULIST_MAX,	// ƒŠƒXƒg€–Ú”
-	11,						// •\Ž¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-	12,						// €–Ú•\Ž¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-	0,						// •\Ž¦‚xÀ•W
-	FBMP_COL_WHITE,			//•¶ŽšF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶Žš‰eF
-	0,						// •¶ŽšŠÔŠu‚w
-	16,						// •¶ŽšŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,	// •¶ŽšŽw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚ÆŽv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	D_CAMERA_MENULIST_MAX,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	11,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	12,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,	// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 //--------------------------------------------------------------
@@ -1236,7 +1236,7 @@ static const BMPLIST_HEADER DATA_CameraMenuListHeader =
 //--------------------------------------------------------------
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„
 //==============================================================================
 //--------------------------------------------------------------
 //	define
@@ -1265,8 +1265,8 @@ typedef struct
 	GF_BGL_BMPWIN bmpwin;
 	BMPLIST_WORK *bmplist;
 	BMPLIST_DATA *menulist;
-	MSGDATA_MANAGER* msgman;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;								//’PŒêƒZƒbƒg
+	MSGDATA_MANAGER* msgman;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;								//å˜èªžã‚»ãƒƒãƒˆ
 }D_TORNWORLD_WORK;
 
 //--------------------------------------------------------------
@@ -1281,7 +1281,7 @@ static const BMPLIST_HEADER DATA_TornWorldMenuListHeader;
 
 //--------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOƒƒjƒ…[F‚â‚Ô‚ê‚½‚¹‚©‚¢
+ * ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼šã‚„ã¶ã‚ŒãŸã›ã‹ã„
  * @param	kaga	D_KAGA_WORK
  * @retval	nothing
  */
@@ -1295,7 +1295,7 @@ static void D_TornWorldInit( D_KAGA_WORK *kaga )
 }
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢FƒCƒxƒ“ƒg
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ï¼šã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------
 static BOOL D_TornWorldEvent( GMEVENT_CONTROL *ev )
 {
@@ -1336,7 +1336,7 @@ static BOOL D_TornWorldEvent( GMEVENT_CONTROL *ev )
 			GF_BGL_BmpWinOn( &work->bmpwin );
 		}
 		
-		{	//Ž©‹@‚ð‚â‚Ô‚ê‚½‚¹‚©‚¢ê—p‚É
+		{	//è‡ªæ©Ÿã‚’ã‚„ã¶ã‚ŒãŸã›ã‹ã„å°‚ç”¨ã«
 			FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( work->fsys->player );
 			work->save_jiki_code = 	FieldOBJ_OBJCodeGet( fldobj );
 			FieldOBJ_DrawReset( fldobj, RTHERO );
@@ -1345,7 +1345,7 @@ static BOOL D_TornWorldEvent( GMEVENT_CONTROL *ev )
 		
 		work->seq_no++;
 		break;
-	case 1:	//Ž©‹@ƒŠƒZƒbƒgŠ®—¹‚Ü‚Å‘Ò‚Â
+	case 1:	//è‡ªæ©Ÿãƒªã‚»ãƒƒãƒˆå®Œäº†ã¾ã§å¾…ã¤
 		{
 			FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( work->fsys->player );
 			BLACT_WORK_PTR act = FieldOBJ_DrawBlAct00_BlActPtrGet( fldobj );
@@ -1398,7 +1398,7 @@ static BOOL D_TornWorldEvent( GMEVENT_CONTROL *ev )
 }
 
 //--------------------------------------------------------------
-//	360‘Œ¸
+//	360å¢—æ¸›
 //--------------------------------------------------------------
 static void d_tornw_rc( u16 *r, s16 c )
 {
@@ -1408,7 +1408,7 @@ static void d_tornw_rc( u16 *r, s16 c )
 }
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢F•Ç•à‚« ¶
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ï¼šå£æ­©ã å·¦
 //--------------------------------------------------------------
 static BOOL D_TornWorldMenuFunc_WallWalkLeft( D_TORNWORLD_WORK *work )
 {
@@ -1469,7 +1469,7 @@ static BOOL D_TornWorldMenuFunc_WallWalkLeft( D_TORNWORLD_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢F•Ç•à‚« ‰E
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ï¼šå£æ­©ã å³
 //--------------------------------------------------------------
 static BOOL D_TornWorldMenuFunc_WallWalkRight( D_TORNWORLD_WORK *work )
 {
@@ -1531,7 +1531,7 @@ static BOOL D_TornWorldMenuFunc_WallWalkRight( D_TORNWORLD_WORK *work )
 
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢F—†ùˆÚ“®
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ï¼šèžºæ—‹ç§»å‹•
 //--------------------------------------------------------------
 #define D_SPIRAL_AC (AC_WALK_U_32F)
 #define D_SPIRAL_FRAME	(32)
@@ -1569,7 +1569,7 @@ static BOOL D_TornWorldMenuFunc_SpiralWalkH( D_TORNWORLD_WORK *work )
 	fwk = work->p_func_work;
 	
 	switch( work->func_seq_no ){
-	case 0:		//—†ùˆÚ“®ƒtƒŒ[ƒ€‚É‡‚¤—l‚É‰~ˆÚ“®Ý’è
+	case 0:		//èžºæ—‹ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ ã«åˆã†æ§˜ã«å††ç§»å‹•è¨­å®š
 		fwk->dir = FieldOBJ_DirDispGet( fldobj );
 		fwk->grid_max = D_SPIRAL_GRID;
 		fwk->frame_max = fwk->grid_max * D_SPIRAL_FRAME;
@@ -1593,7 +1593,7 @@ static BOOL D_TornWorldMenuFunc_SpiralWalkH( D_TORNWORLD_WORK *work )
 		}
 		break;
 	case 2:
-		{	//‰~“›ˆÚ“®
+		{	//å††ç­’ç§»å‹•
 			fwk->wide_idx_fx += fwk->wide_move_val;
 			fwk->offs.z = SINIDX8(
 				FX32_NUM(fwk->wide_idx_fx)) * fwk->wide_rad_fx;
@@ -1648,7 +1648,7 @@ static BOOL D_TornWorldMenuFunc_SpiralWalkV( D_TORNWORLD_WORK *work )
 	fwk = work->p_func_work;
 	
 	switch( work->func_seq_no ){
-	case 0:		//—†ùˆÚ“®ƒtƒŒ[ƒ€‚É‡‚¤—l‚É‰~ˆÚ“®Ý’è
+	case 0:		//èžºæ—‹ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ ã«åˆã†æ§˜ã«å††ç§»å‹•è¨­å®š
 		fwk->dir = FieldOBJ_DirDispGet( fldobj );
 		fwk->grid_max = D_SPIRAL_GRID;
 		fwk->frame_max = fwk->grid_max * D_SPIRAL_FRAME;
@@ -1672,7 +1672,7 @@ static BOOL D_TornWorldMenuFunc_SpiralWalkV( D_TORNWORLD_WORK *work )
 		}
 		break;
 	case 2:
-		{	//‰~“›ˆÚ“®
+		{	//å††ç­’ç§»å‹•
 			fwk->wide_idx_fx += fwk->wide_move_val;
 			fwk->offs.x = SINIDX8(
 				FX32_NUM(fwk->wide_idx_fx)) * fwk->wide_rad_fx;
@@ -1731,7 +1731,7 @@ static BOOL D_TornWorldMenuFunc_SpiralWalk( D_TORNWORLD_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢F— •Ô‚µ
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ï¼šè£è¿”ã—
 //--------------------------------------------------------------
 static BOOL D_TornWorldMenuFunc_TurnWalk( D_TORNWORLD_WORK *work )
 {
@@ -1739,7 +1739,7 @@ static BOOL D_TornWorldMenuFunc_TurnWalk( D_TORNWORLD_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢FŽ©‹@‰ñ“]
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ï¼šè‡ªæ©Ÿå›žè»¢
 //--------------------------------------------------------------
 static BOOL D_TornWorldMenuFunc_JikiRotate( D_TORNWORLD_WORK *work )
 {
@@ -1789,14 +1789,14 @@ static BOOL D_TornWorldMenuFunc_JikiRotate( D_TORNWORLD_WORK *work )
 		u16 rx = FieldOBJ_DrawBlActOff_RotateXGet( fldobj );
 		u16 ry = FieldOBJ_DrawBlActOff_RotateYGet( fldobj );
 		u16 rz = FieldOBJ_DrawBlActOff_RotateZGet( fldobj );
-		OS_Printf( "‚â‚Ô‚ê@Ž©‹@‰ñ“] X=%d, Y=%d, Z=%d\n", rx, ry, rz );
+		OS_Printf( "ã‚„ã¶ã‚Œã€€è‡ªæ©Ÿå›žè»¢ X=%d, Y=%d, Z=%d\n", rx, ry, rz );
 	}
 	
 	return( FALSE );
 }
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢FŽ©‹@ƒŠƒZƒbƒg
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ï¼šè‡ªæ©Ÿãƒªã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static BOOL D_TornWorldMenuFunc_JikiReset( D_TORNWORLD_WORK *work )
 {
@@ -1809,7 +1809,7 @@ static BOOL D_TornWorldMenuFunc_JikiReset( D_TORNWORLD_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢Fdata
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ï¼šdata
 //--------------------------------------------------------------
 static const DEBUG_MENU_LIST DATA_TornWorldMenuList[D_TORNWORLD_MENULIST_MAX] =
 {
@@ -1823,31 +1823,31 @@ static const DEBUG_MENU_LIST DATA_TornWorldMenuList[D_TORNWORLD_MENULIST_MAX] =
 
 static const BMPLIST_HEADER DATA_TornWorldMenuListHeader =
 {
-	NULL,					// •\Ž¦•¶Žšƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// ˆê—ñ•\Ž¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	NULL,
-	D_TORNWORLD_MENULIST_MAX,	// ƒŠƒXƒg€–Ú”
-	11,						// •\Ž¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-	12,						// €–Ú•\Ž¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-	0,						// •\Ž¦‚xÀ•W
-	FBMP_COL_WHITE,			//•¶ŽšF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶Žš‰eF
-	0,						// •¶ŽšŠÔŠu‚w
-	16,						// •¶ŽšŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,	// •¶ŽšŽw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚ÆŽv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	D_TORNWORLD_MENULIST_MAX,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	11,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	12,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,	// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 //==============================================================================
-//	•Ê‘‘
+//	åˆ¥è˜
 //==============================================================================
 //--------------------------------------------------------------
-//	•Ê‘‘F‰Æ‹ï‘S‚Ä’u‚­
+//	åˆ¥è˜ï¼šå®¶å…·å…¨ã¦ç½®ã
 //--------------------------------------------------------------
 static void D_VillaKaguAllPut( D_KAGA_WORK *kaga )
 {
@@ -1859,11 +1859,11 @@ static void D_VillaKaguAllPut( D_KAGA_WORK *kaga )
 }
 
 //==============================================================================
-//	Ž©‹@Ž©—RˆÚ“®
+//	è‡ªæ©Ÿè‡ªç”±ç§»å‹•
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
-///	Ž©—RˆÚ“®@ƒ[ƒN
+///	è‡ªç”±ç§»å‹•ã€€ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct
 {
@@ -1880,7 +1880,7 @@ typedef struct
 #define FREE_SPEED_UP (4)
 
 //--------------------------------------------------------------
-//	Ž©—RˆÚ“®ƒCƒxƒ“ƒg
+//	è‡ªç”±ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------
 static BOOL D_KagaEvent_FreeMove( GMEVENT_CONTROL *ev )
 {
@@ -1900,7 +1900,7 @@ static BOOL D_KagaEvent_FreeMove( GMEVENT_CONTROL *ev )
 	if( (trg & PAD_BUTTON_B) ){
 		Player_HeightGet_ON_OFF( work->jiki, TRUE );
 		D_KagaFreeMemory( work );
-		OS_Printf( "ƒfƒoƒbƒO Ž©—RˆÚ“®I—¹\n" );
+		OS_Printf( "ãƒ‡ãƒãƒƒã‚° è‡ªç”±ç§»å‹•çµ‚äº†\n" );
 		return( TRUE );
 	}
 	
@@ -1911,11 +1911,11 @@ static BOOL D_KagaEvent_FreeMove( GMEVENT_CONTROL *ev )
 	if( (prs & PAD_BUTTON_Y) ){
 		if( (prs & PAD_KEY_UP) ){
 			vec.y -= FREE_Y_SPEED * speed;
-			OS_Printf( "ƒfƒoƒbƒOŽ©‹@‚‚³ y = 0x%x, grid y = 0x%x\n",
+			OS_Printf( "ãƒ‡ãƒãƒƒã‚°è‡ªæ©Ÿé«˜ã• y = 0x%x, grid y = 0x%x\n",
 					vec.y, SIZE_H_GRID_FX32(vec.y) );
 		}else if( (prs & PAD_KEY_DOWN) ){
 			vec.y += FREE_Y_SPEED * speed;
-			OS_Printf( "ƒfƒoƒbƒOŽ©‹@‚‚³ y = 0x%x, grid y = 0x%x\n",
+			OS_Printf( "ãƒ‡ãƒãƒƒã‚°è‡ªæ©Ÿé«˜ã• y = 0x%x, grid y = 0x%x\n",
 					vec.y, SIZE_H_GRID_FX32(vec.y) );
 		}
 		
@@ -1946,7 +1946,7 @@ static BOOL D_KagaEvent_FreeMove( GMEVENT_CONTROL *ev )
 }
 
 //--------------------------------------------------------------
-//	Ž©—RˆÚ“®
+//	è‡ªç”±ç§»å‹•
 //--------------------------------------------------------------
 static void D_KagaJikiFreeMoveInit( D_KAGA_WORK *kaga )
 {
@@ -1958,13 +1958,13 @@ static void D_KagaJikiFreeMoveInit( D_KAGA_WORK *kaga )
 	
 	Player_HeightGet_ON_OFF( work->jiki, FALSE );
 	FieldEvent_Set( work->fsys, D_KagaEvent_FreeMove, work );
-	OS_Printf( "ƒfƒoƒbƒO@Ž©—RˆÚ“®ŠJŽn\n" );
+	OS_Printf( "ãƒ‡ãƒãƒƒã‚°ã€€è‡ªç”±ç§»å‹•é–‹å§‹\n" );
 }
 #endif
 
 
 //==============================================================================
-//	‚Ð‚Å‚ñ‚í‚´@‚È‚Ý‚Ì‚è
+//	ã²ã§ã‚“ã‚ã–ã€€ãªã¿ã®ã‚Š
 //==============================================================================
 //--------------------------------------------------------------
 //	D_NAMI_WORK
@@ -1978,7 +1978,7 @@ typedef struct
 static BOOL D_NaminoriEvent( GMEVENT_CONTROL *ev );
 
 //--------------------------------------------------------------
-//	”é“`‹Z”gæ‚è 
+//	ç§˜ä¼æŠ€æ³¢ä¹—ã‚Š 
 //--------------------------------------------------------------
 static void D_NaminoriInit( D_KAGA_WORK *kaga )
 {
@@ -1990,7 +1990,7 @@ static void D_NaminoriInit( D_KAGA_WORK *kaga )
 }
 
 //--------------------------------------------------------------
-//	”gæ‚èFƒCƒxƒ“ƒg
+//	æ³¢ä¹—ã‚Šï¼šã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------
 static BOOL D_NaminoriEvent( GMEVENT_CONTROL *ev )
 {
@@ -2013,10 +2013,10 @@ static BOOL D_NaminoriEvent( GMEVENT_CONTROL *ev )
 }
 
 //==============================================================================
-//	‚Ð‚Å‚ñ‚í‚´@‰ö—Íƒtƒ‰ƒO
+//	ã²ã§ã‚“ã‚ã–ã€€æ€ªåŠ›ãƒ•ãƒ©ã‚°
 //==============================================================================
 //--------------------------------------------------------------
-//	‰ö—Íƒtƒ‰ƒOƒZƒbƒg
+//	æ€ªåŠ›ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static void D_KairikiFlagInit( D_KAGA_WORK *kaga )
 {
@@ -2025,14 +2025,14 @@ static void D_KairikiFlagInit( D_KAGA_WORK *kaga )
 }
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒMƒ‰ƒeƒBƒiƒCƒxƒ“ƒg‚Ö
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠã‚¤ãƒ™ãƒ³ãƒˆã¸
 //==============================================================================
 #include "mapdefine.h"	//zone_id
 #include "field_tornworld.h"
 #include "syswork.h"
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒMƒ‰ƒeƒBƒiƒCƒxƒ“ƒg‚Ö
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠã‚¤ãƒ™ãƒ³ãƒˆã¸
 //--------------------------------------------------------------
 static void D_TWorldGiratinaEventInit( D_KAGA_WORK *kaga )
 {
@@ -2043,7 +2043,7 @@ static void D_TWorldGiratinaEventInit( D_KAGA_WORK *kaga )
 }
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒAƒJƒM‘ÎŒˆƒCƒxƒ“ƒg‚Ö
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¢ã‚«ã‚®å¯¾æ±ºã‚¤ãƒ™ãƒ³ãƒˆã¸
 //--------------------------------------------------------------
 static void D_TWorldAkagiFightEventInit( D_KAGA_WORK *kaga )
 {
@@ -2055,13 +2055,13 @@ static void D_TWorldAkagiFightEventInit( D_KAGA_WORK *kaga )
 }
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢	U—ª–{ŠÖ˜A
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„	æ”»ç•¥æœ¬é–¢é€£
 //==============================================================================
 //----
 #ifdef DEBUG_TWORLD_CAPTURE
 //----
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@”ò‚ÑÎON,OFF
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€é£›ã³çŸ³ON,OFF
 //--------------------------------------------------------------
 static void D_TWorldStepVanish( D_KAGA_WORK *kaga )
 {
@@ -2073,7 +2073,7 @@ static void D_TWorldStepVanish( D_KAGA_WORK *kaga )
 }
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@‰_“®ìON,OFF
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€é›²å‹•ä½œON,OFF
 //--------------------------------------------------------------
 static void D_TWorldCloudStop( D_KAGA_WORK *kaga )
 {
@@ -2085,7 +2085,7 @@ static void D_TWorldCloudStop( D_KAGA_WORK *kaga )
 }
 
 //--------------------------------------------------------------
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@”wŒiON,OFF
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€èƒŒæ™¯ON,OFF
 //--------------------------------------------------------------
 static void D_TWorldBGVanish( D_KAGA_WORK *kaga )
 {
@@ -2121,24 +2121,24 @@ static const DEBUG_MENU_LIST DATA_MenuList[MENU_LIST_MAX] =
 
 static const BMPLIST_HEADER DATA_MenuListHeader =
 {
-	NULL,					// •\Ž¦•¶Žšƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// ˆê—ñ•\Ž¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	NULL,
-	NELEMS(DATA_MenuList),	// ƒŠƒXƒg€–Ú”
-	11,						// •\Ž¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-	12,						// €–Ú•\Ž¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-	0,						// •\Ž¦‚xÀ•W
-	FBMP_COL_WHITE,			//•¶ŽšF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶Žš‰eF
-	0,						// •¶ŽšŠÔŠu‚w
-	16,						// •¶ŽšŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,	// •¶ŽšŽw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚ÆŽv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	NELEMS(DATA_MenuList),	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	11,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	12,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,	// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 /*

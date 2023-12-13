@@ -29,13 +29,13 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetAnimCtrlType
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ ‚Ì ƒAƒjƒí—Ş‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© ã® ã‚¢ãƒ‹ãƒ¡ç¨®é¡ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
                 
                 
                 
-  Returns:      ƒRƒ“ƒgƒ[ƒ‰‚Ìí—Ş
+  Returns:      ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®ç¨®é¡
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE NNSG2dAnimationType NNS_G2dGetAnimCtrlType
@@ -55,13 +55,13 @@ NNS_G2D_INLINE NNSG2dAnimationType NNS_G2dGetAnimCtrlType
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetAnimCtrlSpeed
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ ‚Ì ƒAƒjƒƒXƒs[ƒh‚ğİ’è‚µ‚Ü‚·
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© ã® ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¨­å®šã—ã¾ã™
                 
-  Arguments:    pAnimCtrl   :            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
-                speed       :           ƒXƒs[ƒh
+  Arguments:    pAnimCtrl   :            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
+                speed       :           ã‚¹ãƒ”ãƒ¼ãƒ‰
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dSetAnimCtrlSpeed
@@ -77,13 +77,13 @@ NNS_G2D_INLINE void NNS_G2dSetAnimCtrlSpeed
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetAnimCtrlSpeed
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ ‚Ì ƒAƒjƒƒXƒs[ƒh‚ğæ“¾‚µ‚Ü‚·
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© ã® ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å–å¾—ã—ã¾ã™
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
                 
                 
                 
-  Returns:      ƒAƒjƒƒXƒs[ƒh
+  Returns:      ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE fx32 NNS_G2dGetAnimCtrlSpeed
@@ -98,13 +98,13 @@ NNS_G2D_INLINE fx32 NNS_G2dGetAnimCtrlSpeed
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dStartAnimCtrl
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ ‚Ì ƒAƒjƒÄ¶‚ğƒXƒ^[ƒg‚µ‚Ü‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© ã® ã‚¢ãƒ‹ãƒ¡å†ç”Ÿã‚’ã‚¹ã‚¿ãƒ¼ãƒˆã—ã¾ã™ã€‚
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
                 
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dStartAnimCtrl
@@ -119,13 +119,13 @@ NNS_G2D_INLINE void NNS_G2dStartAnimCtrl
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dStopAnimCtrl
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ ‚Ì ƒAƒjƒÄ¶‚ğI—¹‚µ‚Ü‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© ã® ã‚¢ãƒ‹ãƒ¡å†ç”Ÿã‚’çµ‚äº†ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
                 
                 
                 
-  Returns:      ƒRƒ“ƒgƒ[ƒ‰‚Ìí—Ş
+  Returns:      ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®ç¨®é¡
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dStopAnimCtrl
@@ -140,13 +140,13 @@ NNS_G2D_INLINE void NNS_G2dStopAnimCtrl
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dIsAnimCtrlActive
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ ‚ª ƒAƒjƒÄ¶’†‚©’²¸‚µ‚Ü‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© ãŒ ã‚¢ãƒ‹ãƒ¡å†ç”Ÿä¸­ã‹èª¿æŸ»ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
                 
                 
                 
-  Returns:      ƒAƒjƒÄ¶’†‚È‚çTRUE
+  Returns:      ã‚¢ãƒ‹ãƒ¡å†ç”Ÿä¸­ãªã‚‰TRUE
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL NNS_G2dIsAnimCtrlActive
@@ -162,14 +162,14 @@ NNS_G2D_INLINE BOOL NNS_G2dIsAnimCtrlActive
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetAnimCtrlPlayModeOverridden
 
-  Description:  ƒtƒ@ƒCƒ‹î•ñ‚Åİ’è‚³‚ê‚½ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ÌÄ¶•û®‚ğ
-                ƒI[ƒo[ƒ‰ƒCƒh‚µ‚Ü‚·B
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã§è¨­å®šã•ã‚ŒãŸã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å†ç”Ÿæ–¹å¼ã‚’
+                ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
-                playMode :            ƒAƒjƒÄ¶•û®
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
+                playMode :            ã‚¢ãƒ‹ãƒ¡å†ç”Ÿæ–¹å¼
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dSetAnimCtrlPlayModeOverridden
@@ -188,14 +188,14 @@ NNS_G2D_INLINE void NNS_G2dSetAnimCtrlPlayModeOverridden
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dResetAnimCtrlPlayModeOverridden
 
-  Description:  ƒI[ƒo[ƒ‰ƒCƒh‚³‚ê‚½ƒAƒjƒÄ¶•û®‚ğŒ³‚É–ß‚µ‚Ü‚·B
-                iƒtƒ@ƒCƒ‹î•ñ‚Åİ’è‚³‚ê‚½Ä¶•û®‚É–ß‚µ‚Ü‚·j
+  Description:  ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã•ã‚ŒãŸã‚¢ãƒ‹ãƒ¡å†ç”Ÿæ–¹å¼ã‚’å…ƒã«æˆ»ã—ã¾ã™ã€‚
+                ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã§è¨­å®šã•ã‚ŒãŸå†ç”Ÿæ–¹å¼ã«æˆ»ã—ã¾ã™ï¼‰
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
                 
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dResetAnimCtrlPlayModeOverridden
@@ -210,13 +210,13 @@ NNS_G2D_INLINE void NNS_G2dResetAnimCtrlPlayModeOverridden
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetAnimCtrlCurrentTime
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ ‚Ì Œ»İ‚ÌƒAƒjƒƒtƒŒ[ƒ€•\¦ŠÔ‚ğæ“¾‚µ‚Ü‚·
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© ã® ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤ºæ™‚é–“ã‚’å–å¾—ã—ã¾ã™
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
                 
                 
                 
-  Returns:      Œ»İ‚ÌƒAƒjƒƒtƒŒ[ƒ€•\¦ŠÔ
+  Returns:      ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤ºæ™‚é–“
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE fx32 NNS_G2dGetAnimCtrlCurrentTime
@@ -231,13 +231,13 @@ NNS_G2D_INLINE fx32 NNS_G2dGetAnimCtrlCurrentTime
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetAnimCtrlCurrentTime
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ ‚Ì Œ»İ‚ÌƒAƒjƒƒtƒŒ[ƒ€•\¦ŠÔ‚ğİ’è‚µ‚Ü‚·
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© ã® ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤ºæ™‚é–“ã‚’è¨­å®šã—ã¾ã™
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
-                time     F           Œ»İ‚ÌƒAƒjƒƒtƒŒ[ƒ€•\¦ŠÔ
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
+                time     ï¼š           ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤ºæ™‚é–“
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dSetAnimCtrlCurrentTime
@@ -253,13 +253,13 @@ NNS_G2D_INLINE void NNS_G2dSetAnimCtrlCurrentTime
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetAnimCtrlCurrentElemIdxVal
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ ‚Ì 
-                Œ»İ‚ÌƒAƒjƒŒ‹‰Ê‚©‚çƒCƒ“ƒfƒbƒNƒX‚Ì’l‚ğæ“¾‚µ‚Ü‚·
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© ã® 
+                ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡çµæœã‹ã‚‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å€¤ã‚’å–å¾—ã—ã¾ã™
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
                 
                 
-  Returns:      Œ»İ‚ÌƒAƒjƒŒ‹‰Ê‚ÌƒCƒ“ƒfƒbƒNƒX’l
+  Returns:      ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡çµæœã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE u16 NNS_G2dGetAnimCtrlCurrentElemIdxVal
@@ -269,8 +269,8 @@ NNS_G2D_INLINE u16 NNS_G2dGetAnimCtrlCurrentElemIdxVal
 {
     NNS_G2D_NULL_ASSERT( pAnimCtrl );
     //
-    // ‚Ç‚ÌŒ`®‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚Å‚ ‚Á‚Ä‚àAæ“ª‚Ì2ƒoƒCƒg‚Í•K‚¸A
-    // ƒCƒ“ƒfƒbƒNƒX’l‚Æ‚µ‚Ä—˜—p‚³‚ê‚Ä‚¢‚Ü‚·B
+    // ã©ã®å½¢å¼ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã§ã‚ã£ã¦ã‚‚ã€å…ˆé ­ã®2ãƒã‚¤ãƒˆã¯å¿…ãšã€
+    // ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã¨ã—ã¦åˆ©ç”¨ã•ã‚Œã¦ã„ã¾ã™ã€‚
     //
     {
         const NNSG2dAnimData* pAnmRes 
@@ -283,13 +283,13 @@ NNS_G2D_INLINE u16 NNS_G2dGetAnimCtrlCurrentElemIdxVal
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetAnimCtrlCurrentAnimSequence
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ ‚Ì 
-                Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ğæ“¾‚µ‚Ü‚·
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© ã® 
+                ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å–å¾—ã—ã¾ã™
                 
-  Arguments:    pAnimCtrl:            ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰ À‘Ì
+  Arguments:    pAnimCtrl:            ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© å®Ÿä½“
                 
                 
-  Returns:      Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX
+  Returns:      ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE const NNSG2dAnimSequence* 

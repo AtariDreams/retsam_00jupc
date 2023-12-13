@@ -3,8 +3,8 @@
 /**
  *
  *@file		be_036.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			036�@�Q���̊m���œG���u�}�q�v�A�u�₯�ǁv�A�u������v�̂ǂꂩ�̏�Ԃɂ���
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			036　２割の確率で敵を「マヒ」、「やけど」、「こおり」のどれかの状態にする
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

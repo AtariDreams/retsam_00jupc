@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	itemuse.c
- * @brief	ƒtƒB[ƒ‹ƒhƒAƒCƒeƒ€g—pˆ—
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	05.12.12
  */
@@ -57,7 +57,7 @@
 #include "../fielddata/script/common_scr_def.h"	//SCRID_TENKAINOFUE
 //#include "mapdefine.h"
 
-#include "msgdata/msg_place_name.h"		// ‰ü’ù”Å‚Å’Ç‰Á 2006/10/23 by nakahiro
+#include "msgdata/msg_place_name.h"		// æ”¹è¨‚ç‰ˆã§è¿½åŠ  2006/10/23 by nakahiro
 
 #include "report.h"
 
@@ -66,11 +66,11 @@
 #include "field_tornworld.h" // add pl 080626 kaga
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 typedef void * (*CNVFUNC_CALL)(void*);
 
-// •Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+// ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
 typedef struct {
 	FIELDSYS_WORK * fsys;
 	ITEMCHECK_WORK	icwk;
@@ -80,17 +80,17 @@ typedef struct {
 	u8	seq;
 }CONV_WORK;
 
-typedef BOOL (*ITEMCNV_FUNC)(CONV_WORK*);	// •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”
+typedef BOOL (*ITEMCNV_FUNC)(CONV_WORK*);	// ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°
 
 typedef struct {
-	ITEMUSE_FUNC	use_func;		// ƒoƒbƒO‚©‚çg—p
-	ITEMCNV_FUNC	cnv_func;		// •Ö—˜ƒ{ƒ^ƒ“‚©‚çg—p
-	ITEMCHECK_FUNC	check_func;		// g—pƒ`ƒFƒbƒN
+	ITEMUSE_FUNC	use_func;		// ãƒãƒƒã‚°ã‹ã‚‰ä½¿ç”¨
+	ITEMCNV_FUNC	cnv_func;		// ä¾¿åˆ©ãƒœã‚¿ãƒ³ã‹ã‚‰ä½¿ç”¨
+	ITEMCHECK_FUNC	check_func;		// ä½¿ç”¨ãƒã‚§ãƒƒã‚¯
 }ITEMUSE_FUNC_DATA;
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 extern void * FieldMenuTMap_SetProc( FIELDSYS_WORK * fsys );
 
@@ -164,132 +164,132 @@ static BOOL GMEVENT_ConvButtonCommon( GMEVENT_CONTROL * event );
 static BOOL GMEVENT_AnanukeMapChangeInit( GMEVENT_CONTROL *event );
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// g—pŠÖ”ƒe[ƒuƒ‹
+// ä½¿ç”¨é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const ITEMUSE_FUNC_DATA ItemFuncTable[] =
 {
-	{	// 000:ƒ_ƒ~[
-		NULL,				// ƒoƒbƒO‚©‚ç‚Ìg—pˆ—
-		ItemCnv_BagMsgItem,	// •Ö—˜ƒ{ƒ^ƒ“‚©‚ç‚Ìg—pˆ—
-		NULL				// g—pƒ`ƒFƒbƒN
+	{	// 000:ãƒ€ãƒŸãƒ¼
+		NULL,				// ãƒãƒƒã‚°ã‹ã‚‰ã®ä½¿ç”¨å‡¦ç†
+		ItemCnv_BagMsgItem,	// ä¾¿åˆ©ãƒœã‚¿ãƒ³ã‹ã‚‰ã®ä½¿ç”¨å‡¦ç†
+		NULL				// ä½¿ç”¨ãƒã‚§ãƒƒã‚¯
 	},
-	{	// 001:‰ñ•œ
+	{	// 001:å›å¾©
 		ItemUse_Recover,
 		NULL,
 		NULL
 	},
-	{	// 002:ƒ^ƒEƒ“ƒ}ƒbƒv
+	{	// 002:ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—
 		ItemUse_Townmap,
 		ItemCnv_Townmap,
 		NULL,
 	},
-	{	// 003:’TŒŸƒZƒbƒg
+	{	// 003:æ¢æ¤œã‚»ãƒƒãƒˆ
 		ItemUse_Tankenset,
 		ItemCnv_Tankenset,
 		ItemUseCheck_Tankenset
 	},
-	{	// 004:©“]Ô
+	{	// 004:è‡ªè»¢è»Š
 		ItemUse_Cycle,
 		ItemCnv_Cycle,
 		ItemUseCheck_Cycle,
 	},
-	{	// 005:–`Œ¯ƒm[ƒg
+	{	// 005:å†’é™ºãƒãƒ¼ãƒˆ
 		ItemUse_FantasyNote,
 		ItemCnv_FantasyNote,
 		NULL,
 	},
-	{	// 006:‹Zƒ}ƒVƒ“
+	{	// 006:æŠ€ãƒã‚·ãƒ³
 		ItemUse_WazaMachine,
 		NULL,
 		NULL
 	},
-	{	// 007:ƒ[ƒ‹
+	{	// 007:ãƒ¡ãƒ¼ãƒ«
 		ItemUse_Mail,
 		NULL,
 		NULL
 	},
-	{	// 008:‚«‚Ì‚İ
+	{	// 008:ãã®ã¿
 		ItemUse_Kinomi,
 		NULL,
 		ItemUseCheck_Kinomi
 	},
-	{	// 009:ƒ|ƒ‹ƒgƒP[ƒX
+	{	// 009:ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹
 		ItemUse_PrtCase,
 		ItemCnv_PrtCase,
 		NULL
 	},
-	{	// 010:—F’Bè’ 
+	{	// 010:å‹é”æ‰‹å¸³
 		ItemUse_FriendBook,
 		ItemCnv_FriendBook,
 		NULL
 	},
-	{	// 011:ƒ|ƒPƒT[ƒ`ƒƒ[
+	{	// 011:ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼
 		ItemUse_PokeSearcher,
 		ItemCnv_PokeSearcher,
 		ItemUseCheck_PokeSearcher
 	},
-	{	// 012:‚¶‚å‚¤‚ë
+	{	// 012:ã˜ã‚‡ã†ã‚
 		ItemUse_Zyouro,
 		ItemCnv_Zyouro,
 		ItemUseCheck_Zyouro
 	},
-	{	// 013:ƒRƒ„ƒV
+	{	// 013:ã‚³ãƒ¤ã‚·
 		ItemUse_Compost,
 		NULL,
 		ItemUseCheck_Compost
 	},
-	{	// 014:ŠÃ‚¢–¨
+	{	// 014:ç”˜ã„èœœ
 		ItemUse_SweetHoney,
 		NULL,
 		NULL
 	},
-	{	// 015:ƒoƒgƒ‹ƒT[ƒ`ƒƒ[
+	{	// 015:ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼
 		ItemUse_BtlSearcher,
 		ItemCnv_BtlSearcher,
 		ItemUseCheck_BtlSearcher
 	},
-	{	// 016:ƒ{ƒ‚Ì’ŞŠÆ
+	{	// 016:ãƒœãƒ­ã®é‡£ç«¿
 		ItemUse_FishingRodBad,
 		ItemCnv_FishingRodBad,
 		ItemUseCheck_FishingRod
 	},
-	{	// 017:—Ç‚¢’ŞŠÆ
+	{	// 017:è‰¯ã„é‡£ç«¿
 		ItemUse_FishingRodGood,
 		ItemCnv_FishingRodGood,
 		ItemUseCheck_FishingRod
 	},
-	{	// 018:¦‚¢’ŞŠÆ
+	{	// 018:å‡„ã„é‡£ç«¿
 		ItemUse_FishingRodGreat,
 		ItemCnv_FishingRodGreat,
 		ItemUseCheck_FishingRod
 	},
-	{	// 019:ƒoƒbƒO“à‚Åg—p‚·‚é“¹‹ï
+	{	// 019:ãƒãƒƒã‚°å†…ã§ä½¿ç”¨ã™ã‚‹é“å…·
 		NULL,
 		ItemCnv_BagMsgItem,
 		NULL
 	},
-	{	// 020:i‰»
+	{	// 020:é€²åŒ–
 		ItemUse_Evolution,
 		NULL,
 		NULL
 	},
-	{	// 021:ŒŠ”²‚¯‚Ì•R
+	{	// 021:ç©´æŠœã‘ã®ç´
 		ItemUse_Ananuke,
 		NULL,
 		ItemUseCheck_Ananuke
 	},
-	{	// 022:“VŠE‚Ì“J
+	{	// 022:å¤©ç•Œã®ç¬›
 		ItemUse_Tenkainofue,
 		ItemCnv_Tenkainofue,
 		ItemUseCheck_Tenkainofue
 	},
-	{	// 023:ƒoƒgƒ‹ƒŒƒR[ƒ_[
+	{	// 023:ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
 		ItemUse_BattleRec,
 		ItemCnv_BattleRec,
 		NULL
 	},
-	{	// 024:ƒOƒ‰ƒVƒfƒA‚Ì‚Í‚È
+	{	// 024:ã‚°ãƒ©ã‚·ãƒ‡ã‚¢ã®ã¯ãª
 		ItemUse_Grashidea,
 		ItemCnv_Grashidea,
 		NULL,
@@ -300,12 +300,12 @@ static const ITEMUSE_FUNC_DATA ItemFuncTable[] =
 
 //--------------------------------------------------------------------------------------------
 /**
- * g—pŠÖ”æ“¾
+ * ä½¿ç”¨é–¢æ•°å–å¾—
  *
- * @param	prm		æ“¾ƒpƒ‰ƒ[ƒ^
- * @param	id		ŠÖ”ID
+ * @param	prm		å–å¾—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	id		é–¢æ•°ID
  *
- * @return	g—pŠÖ”
+ * @return	ä½¿ç”¨é–¢æ•°
  */
 //--------------------------------------------------------------------------------------------
 u32 ItemUse_FuncGet( u16 prm, u16 id )
@@ -320,10 +320,10 @@ u32 ItemUse_FuncGet( u16 prm, u16 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * g—pƒ`ƒFƒbƒNƒ[ƒNì¬
+ * ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -333,7 +333,7 @@ void ItemUse_CheckWorkMake( FIELDSYS_WORK * fsys, ITEMCHECK_WORK * icwk )
 	int x, z, dir;
 	FIELD_OBJ_PTR obj;
 	
-	//‚â‚Ô‚ê‚½‚¹‚©‚¢“Áê’nŒ`—p‚Ìˆ—‚Ö add pl 080626 kaga
+	//ã‚„ã¶ã‚ŒãŸã›ã‹ã„ç‰¹æ®Šåœ°å½¢ç”¨ã®å‡¦ç†ã¸ add pl 080626 kaga
 	if( Player_MoveBitCheck_TWorldSp(fsys->player) == TRUE ){
 		ItemUse_CheckWorkMakeTWorld( fsys, icwk );
 		return;
@@ -341,18 +341,18 @@ void ItemUse_CheckWorkMake( FIELDSYS_WORK * fsys, ITEMCHECK_WORK * icwk )
 	
 	icwk->fsys = fsys;
 
-	//ƒ][ƒ“‚h‚c
+	//ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤
 	icwk->zone_id = fsys->location->zone_id;
 
-	//˜A‚ê•à‚«
+	//é€£ã‚Œæ­©ã
 	icwk->Companion = SysFlag_PairCheck(SaveData_GetEventWork(fsys->savedata));
 
-	//©‹@Œ`ó
+	//è‡ªæ©Ÿå½¢çŠ¶
 	icwk->PlayerForm = Player_FormGet( fsys->player );
 	x = Player_NowGPosXGet( fsys->player );
 	z = Player_NowGPosZGet( fsys->player );
 	
-	//Œ»İƒAƒgƒŠƒrƒ…[ƒg
+	//ç¾åœ¨ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	icwk->NowAttr = GetAttributeLSB(fsys, x, z);
 
 	dir = Player_DirGet( fsys->player );
@@ -370,22 +370,22 @@ void ItemUse_CheckWorkMake( FIELDSYS_WORK * fsys, ITEMCHECK_WORK * icwk )
 		x--;
 		break;
 	}
-	//‘O•ûƒAƒgƒŠƒrƒ…[ƒg
+	//å‰æ–¹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	icwk->FrontAttr = GetAttributeLSB(fsys, x, z);
 	SXY_HeroFrontObjGet(fsys, &obj);
 	
-	//‚«‚Ì‚İŠÖ˜A‚Ç‚¤‚®‚Ìg—pƒ`ƒFƒbƒN
+	//ãã®ã¿é–¢é€£ã©ã†ãã®ä½¿ç”¨ãƒã‚§ãƒƒã‚¯
 	icwk->SeedInfo = SeedSys_ItemUseCheck(fsys, obj);
 
-	//©‹@î•ñQÆƒ|ƒCƒ“ƒ^
+	//è‡ªæ©Ÿæƒ…å ±å‚ç…§ãƒã‚¤ãƒ³ã‚¿
 	icwk->player = fsys->player;
 }
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢ “Áê’nŒ`—pƒ`ƒFƒbƒNƒ[ƒNì¬
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ ç‰¹æ®Šåœ°å½¢ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ä½œæˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  * @retval	none
  */
 //--------------------------------------------------------------
@@ -393,62 +393,62 @@ static void ItemUse_CheckWorkMakeTWorld(
 	FIELDSYS_WORK * fsys, ITEMCHECK_WORK * icwk )
 {
 	#ifdef DEBUG_ONLY_FOR_kagaya
-	OS_Printf( "ƒƒjƒ…[ ItemCheck ‚â‚Ô‚ê‚½‚¹‚©‚¢—p\n" );
+	OS_Printf( "ãƒ¡ãƒ‹ãƒ¥ãƒ¼ ItemCheck ã‚„ã¶ã‚ŒãŸã›ã‹ã„ç”¨\n" );
 	#endif
 	
 	icwk->fsys = fsys;
 	
-	//ƒ][ƒ“‚h‚c
+	//ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤
 	icwk->zone_id = fsys->location->zone_id;
 	
-	//˜A‚ê•à‚«
+	//é€£ã‚Œæ­©ã
 	icwk->Companion = SysFlag_PairCheck(
 			SaveData_GetEventWork(fsys->savedata));
 	
-	//©‹@Œ`ó
+	//è‡ªæ©Ÿå½¢çŠ¶
 	icwk->PlayerForm = Player_FormGet( fsys->player );
 	
-	//Œ»İƒAƒgƒŠƒrƒ…[ƒg
+	//ç¾åœ¨ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	icwk->NowAttr = Player_TwThinkNowAttrGet( fsys->player );
 	
-	//‘O•ûƒAƒgƒŠƒrƒ…[ƒg
+	//å‰æ–¹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	{
 		int dir = Player_TwThinkDirGet( fsys->player );
 		icwk->FrontAttr = Player_TwThinkNextDirAttrGet( fsys->player, dir );
 	}
 	
-	//‚«‚Ì‚İŠÖ˜A‚Ç‚¤‚®‚Ìg—pƒ`ƒFƒbƒN NULL‚Å–³Œø‹­§
+	//ãã®ã¿é–¢é€£ã©ã†ãã®ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ NULLã§ç„¡åŠ¹å¼·åˆ¶
 	icwk->SeedInfo = SeedSys_ItemUseCheck(fsys, NULL);
 	
-	//©‹@î•ñQÆƒ|ƒCƒ“ƒ^
+	//è‡ªæ©Ÿæƒ…å ±å‚ç…§ãƒã‚¤ãƒ³ã‚¿
 	icwk->player = fsys->player;
 }
 
 //============================================================================================
 //
-//	ƒXƒNƒŠƒvƒgŒÄ‚Ño‚µ
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘¼ã³å‡ºã—
 //
 //============================================================================================
 static BOOL GMEVENT_ItemScript(GMEVENT_CONTROL * event);
 //--------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------
 typedef struct {
-	u32 scr_id;		///<ŒÄ‚Ño‚·ƒXƒNƒŠƒvƒg‚ÌID
-	u16 param0;		///<ˆø‚«“n‚·ƒpƒ‰ƒ[ƒ^‚»‚Ì‚P
-	u16 param1;		///<ˆø‚«“n‚·ƒpƒ‰ƒ[ƒ^‚»‚Ì‚Q
-	u16 param2;		///<ˆø‚«“n‚·ƒpƒ‰ƒ[ƒ^‚»‚Ì‚R
-	u16 param3;		///<ˆø‚«“n‚·ƒpƒ‰ƒ[ƒ^‚»‚Ì‚S
+	u32 scr_id;		///<å‘¼ã³å‡ºã™ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ID
+	u16 param0;		///<å¼•ãæ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãã®ï¼‘
+	u16 param1;		///<å¼•ãæ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãã®ï¼’
+	u16 param2;		///<å¼•ãæ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãã®ï¼“
+	u16 param3;		///<å¼•ãæ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãã®ï¼”
 }CALL_SCR_WORK;
 
 //--------------------------------------------------------------------------------------------
 /**
  * @brief 
- * @param scr_id;		///<ŒÄ‚Ño‚·ƒXƒNƒŠƒvƒg‚ÌID
- * @param param0;		///<ˆø‚«“n‚·ƒpƒ‰ƒ[ƒ^‚»‚Ì‚P
- * @param param1;		///<ˆø‚«“n‚·ƒpƒ‰ƒ[ƒ^‚»‚Ì‚Q
- * @param param2;		///<ˆø‚«“n‚·ƒpƒ‰ƒ[ƒ^‚»‚Ì‚R
- * @param param3;		///<ˆø‚«“n‚·ƒpƒ‰ƒ[ƒ^‚»‚Ì‚S
- * @return	CALL_SCR_WORK	ƒXƒNƒŠƒvƒgŒÄ‚Ño‚µ—pƒ[ƒN
+ * @param scr_id;		///<å‘¼ã³å‡ºã™ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ID
+ * @param param0;		///<å¼•ãæ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãã®ï¼‘
+ * @param param1;		///<å¼•ãæ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãã®ï¼’
+ * @param param2;		///<å¼•ãæ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãã®ï¼“
+ * @param param3;		///<å¼•ãæ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãã®ï¼”
+ * @return	CALL_SCR_WORK	ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘¼ã³å‡ºã—ç”¨ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 static CALL_SCR_WORK * CSW_Create(u32 scr_id, u16 param0, u16 param1, u16 param2, u16 param3)
@@ -465,10 +465,10 @@ static CALL_SCR_WORK * CSW_Create(u32 scr_id, u16 param0, u16 param1, u16 param2
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€—pƒXƒNƒŠƒvƒg‹N“®‚Ìİ’è
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNƒ[ƒN
- * @param	scr_id	ƒXƒNƒŠƒvƒgID
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•ã®è¨­å®š
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ * @param	scr_id	ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  */
 //--------------------------------------------------------------------------------------------
 static void SetUpItemScript(ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk, u32 scr_id)
@@ -488,10 +488,10 @@ static void SetUpItemScript(ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk, u3
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€—pƒXƒNƒŠƒvƒg‹N“®‚Ìİ’èi•Ö—˜ƒ{ƒ^ƒ“j
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNƒ[ƒN
- * @param	scr_id	ƒXƒNƒŠƒvƒgID
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•ã®è¨­å®šï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ï¼‰
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ * @param	scr_id	ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  */
 //--------------------------------------------------------------------------------------------
 static void SetUpItemScriptCnv( CONV_WORK * wk, u32 scr_id )
@@ -502,9 +502,9 @@ static void SetUpItemScriptCnv( CONV_WORK * wk, u32 scr_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€—pƒXƒNƒŠƒvƒg‚ÌŒÄ‚Ño‚µƒCƒxƒ“ƒg
- * @param	event	ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚ÅƒCƒxƒ“ƒgI—¹AFALSE‚ÅƒCƒxƒ“ƒg‘±s
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å‘¼ã³å‡ºã—ã‚¤ãƒ™ãƒ³ãƒˆ
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã§ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€FALSEã§ã‚¤ãƒ™ãƒ³ãƒˆç¶šè¡Œ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL GMEVENT_ItemScript(GMEVENT_CONTROL * event)
@@ -532,15 +532,15 @@ static BOOL GMEVENT_ItemScript(GMEVENT_CONTROL * event)
 }
 
 //============================================================================================
-//	001:‰ñ•œ
+//	001:å›å¾©
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”F‰ñ•œ
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šå›å¾©
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -575,15 +575,15 @@ static void ItemUse_Recover( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 
 
 //============================================================================================
-//	002:ƒ^ƒEƒ“ƒ}ƒbƒv
+//	002:ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”Fƒ^ƒEƒ“ƒ}ƒbƒv
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -603,11 +603,11 @@ static void ItemUse_Townmap( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”Fƒ^ƒEƒ“ƒ}ƒbƒv
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—
  *
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	TRUEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‚ğ‰ğ•ú‚µ‚È‚¢j
+ * @return	TRUEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ã—ãªã„ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_Townmap( CONV_WORK * wk )
@@ -624,15 +624,15 @@ static void * ConvCall_Townmap( void * fsys )
 
 
 //============================================================================================
-//	003:’TŒŸƒZƒbƒg
+//	003:æ¢æ¤œã‚»ãƒƒãƒˆ
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”F’TŒŸƒZƒbƒg
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šæ¢æ¤œã‚»ãƒƒãƒˆ
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -652,16 +652,16 @@ static void ItemUse_Tankenset( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 	mwk->app_wk   = MakeUGChangeWork( fsys );
 	mwk->seq      = FLD_MENU_SEQ_BLACK_IN_EVCHG;
 
-	fsys->startmenu_pos = 0;		// ƒƒjƒ…[ˆÊ’uƒNƒŠƒA
+	fsys->startmenu_pos = 0;		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½ç½®ã‚¯ãƒªã‚¢
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”F’TŒŸƒZƒbƒg
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šæ¢æ¤œã‚»ãƒƒãƒˆ
  *
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	FALSEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‰ğ•új
+ * @return	FALSEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯è§£æ”¾ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_Tankenset( CONV_WORK * wk )
@@ -669,58 +669,58 @@ static BOOL ItemCnv_Tankenset( CONV_WORK * wk )
 	void * work = MakeUGChangeWork( wk->fsys );
 	FieldOBJSys_MovePauseAll( wk->fsys->fldobjsys );
 	FieldEvent_Set( wk->fsys, GMEVENT_GroundToUnderGround, work );
-	wk->fsys->startmenu_pos = 0;		// ƒƒjƒ…[ˆÊ’uƒNƒŠƒA
+	wk->fsys->startmenu_pos = 0;		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½ç½®ã‚¯ãƒªã‚¢
 	return FALSE;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNŠÖ”F’TŒŸƒZƒbƒg
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°ï¼šæ¢æ¤œã‚»ãƒƒãƒˆ
  *
- * @param	icwk	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNƒ[ƒN
+ * @param	icwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static u32 ItemUseCheck_Tankenset( const ITEMCHECK_WORK * icwk )
 {
-	// “ä‚ÌêŠi‰ü’ù”Å‚Å’Ç‰Á 2006/10/23 by nakahiroj
+	// è¬ã®å ´æ‰€ï¼ˆæ”¹è¨‚ç‰ˆã§è¿½åŠ  2006/10/23 by nakahiroï¼‰
 	if( ZoneData_GetPlaceNameID( icwk->zone_id ) == MAPNAME_NOTHING ){
 		return ITEMCHECK_FALSE;
 	}
 
-	// ƒtƒB[ƒ‹ƒh‚©
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹
 	if( !(ZoneData_IsSinouField(icwk->zone_id)) ){
 		return ITEMCHECK_FALSE;
 	}
 
-	// ƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒ`ƒFƒbƒN
+	// ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 	if( Player_MoveBitCheck_CyclingRoad( icwk->player ) == TRUE ){
 		return ITEMCHECK_FALSE;
 	}
 
-	// ƒ|ƒPƒp[ƒNEƒTƒtƒ@ƒŠƒ`ƒFƒbƒN
+	// ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ»ã‚µãƒ•ã‚¡ãƒªãƒã‚§ãƒƒã‚¯
 	if( SysFlag_SafariCheck( SaveData_GetEventWork(icwk->fsys->savedata) ) == TRUE ||
 		SysFlag_PokeParkCheck( SaveData_GetEventWork(icwk->fsys->savedata) ) == TRUE ){
 		return ITEMCHECK_FALSE;
 	}
 
-	// ‚È‚İ‚Ì‚è’†ƒ`ƒFƒbƒN
+	// ãªã¿ã®ã‚Šä¸­ãƒã‚§ãƒƒã‚¯
 	if( Player_FormGet( icwk->player ) == HERO_FORM_SWIM ){
 		return ITEMCHECK_FALSE;
 	}
 
-	// ‹´‚Ìã
+	// æ©‹ã®ä¸Š
 	if( MATR_IsBridge( icwk->NowAttr ) == TRUE ){
 		return ITEMCHECK_FALSE;
 	}
 	
-	// ’TŒŸƒZƒbƒg‚ªg‚¦‚È‚¢ƒAƒgƒŠƒrƒ…[ƒg add pl 080626 kaga
+	// æ¢æ¤œã‚»ãƒƒãƒˆãŒä½¿ãˆãªã„ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ add pl 080626 kaga
 	if( MATR_IsTankenBan(icwk->NowAttr) == TRUE ){
 		return ITEMCHECK_FALSE;
 	}
 	
-	{	// OBJ‚Æ”í‚ç‚È‚¢‚©
+	{	// OBJã¨è¢«ã‚‰ãªã„ã‹
 		u16	x, z;
 		
 		x = Player_NowGPosXGet( icwk->fsys->player );
@@ -736,14 +736,14 @@ static u32 ItemUseCheck_Tankenset( const ITEMCHECK_WORK * icwk )
 
 
 //============================================================================================
-//	004:©“]Ô
+//	004:è‡ªè»¢è»Š
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”F©“]Ô
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šè‡ªè»¢è»Š
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -764,11 +764,11 @@ static void ItemUse_Cycle( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”F©“]Ô
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šè‡ªè»¢è»Š
  *
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	FALSEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‰ğ•új
+ * @return	FALSEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯è§£æ”¾ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_Cycle( CONV_WORK * wk )
@@ -779,9 +779,9 @@ static BOOL ItemCnv_Cycle( CONV_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒCƒxƒ“ƒgF©“]Ô
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ã‚¤ãƒ™ãƒ³ãƒˆï¼šè‡ªè»¢è»Š
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -805,21 +805,21 @@ static BOOL GMEVENT_ItemUseCycle( GMEVENT_CONTROL * event )
 			Player_RequestSet( fsys->player, HERO_REQBIT_NORMAL );
 			Player_Request( fsys->player );
 
-			//æ‚ÉŒ`ó‚ğ–ß‚µ‚Ä‚©‚çABGMˆ—‚ğŒÄ‚ÔI(060803)
-			Snd_FieldBgmSetSpecial( fsys, 0 );					//ƒNƒŠƒA
+			//å…ˆã«å½¢çŠ¶ã‚’æˆ»ã—ã¦ã‹ã‚‰ã€BGMå‡¦ç†ã‚’å‘¼ã¶ï¼(060803)
+			Snd_FieldBgmSetSpecial( fsys, 0 );					//ã‚¯ãƒªã‚¢
 			Snd_FadeOutNextPlayCall(
 				fsys, Snd_FieldBgmNoGet(fsys,fsys->location->zone_id), BGM_FADE_FIELD_MODE );
 		}else{
 
-			//æ‚ÉBGMˆ—‚ğŒÄ‚ñ‚Å‚©‚çAŒ`ó‚ğ©“]Ô‚É‚·‚éI(060803)
-			Snd_FieldBgmSetSpecial( fsys, SEQ_BICYCLE );		//ƒZƒbƒg
+			//å…ˆã«BGMå‡¦ç†ã‚’å‘¼ã‚“ã§ã‹ã‚‰ã€å½¢çŠ¶ã‚’è‡ªè»¢è»Šã«ã™ã‚‹ï¼(060803)
+			Snd_FieldBgmSetSpecial( fsys, SEQ_BICYCLE );		//ã‚»ãƒƒãƒˆ
 			Snd_FadeOutNextPlayCall( fsys, SEQ_BICYCLE, BGM_FADE_FIELD_MODE );
 
 			FieldOBJ_MovePauseClear( Player_FieldOBJGet( fsys->player ) );
 			Player_RequestSet( fsys->player, HERO_REQBIT_CYCLE );
 			Player_Request( fsys->player );
 
-			//©“]Ôæ‚Á‚½‚ç—h‚ê‘ƒNƒŠƒA
+			//è‡ªè»¢è»Šä¹—ã£ãŸã‚‰æºã‚Œè‰ã‚¯ãƒªã‚¢
 			SwayGrass_InitSwayGrass(fsys->SwayGrass);
 		}
 		(*seq) ++;
@@ -839,9 +839,9 @@ static BOOL GMEVENT_ItemUseCycle( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNŠÖ”F©“]Ô
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°ï¼šè‡ªè»¢è»Š
  *
- * @param	icwk	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNƒ[ƒN
+ * @param	icwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -850,22 +850,22 @@ static u32 ItemUseCheck_Cycle( const ITEMCHECK_WORK * icwk )
 {
 	EVENTWORK * ev = SaveData_GetEventWork(icwk->fsys->savedata);
 
-	// ˜A‚ê•à‚«‚Íg—p•s‰Â
+	// é€£ã‚Œæ­©ãæ™‚ã¯ä½¿ç”¨ä¸å¯
 	if( icwk->Companion == TRUE ){
 		return ITEMCHECK_ERR_COMPANION;
 	}
 
-	//ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh"ƒQ[ƒg"“à‚Ì”¼•ª‚ğ’Ê‰ß‚µ‚½‚©ƒ`ƒFƒbƒN(ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á)
+	//ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰"ã‚²ãƒ¼ãƒˆ"å†…ã®åŠåˆ†ã‚’é€šéã—ãŸã‹ãƒã‚§ãƒƒã‚¯(ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ )
 	if (SysFlag_BicycleGatePassage(ev,SYSFLAG_MODE_CHECK) == TRUE) {
 		return ITEMCHECK_ERR_CYCLE_OFF;
 	}
 
-	// ƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒ`ƒFƒbƒN
+	// ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 	if( Player_MoveBitCheck_CyclingRoad( icwk->player ) == TRUE ){
 		return ITEMCHECK_ERR_CYCLE_OFF;
 	}
 
-	{	// ˆê–{‹´
+	{	// ä¸€æœ¬æ©‹
 		FIELD_OBJ_PTR	fldobj = Player_FieldOBJGet( icwk->player );
 		if( FieldOBJ_MapAttrKindCheck_BridgeV( fldobj, icwk->NowAttr ) == TRUE ||
 			FieldOBJ_MapAttrKindCheck_BridgeH( fldobj, icwk->NowAttr ) == TRUE ){
@@ -873,19 +873,19 @@ static u32 ItemUseCheck_Cycle( const ITEMCHECK_WORK * icwk )
 		}
 	}
 
-	// ’·‚¢‘ / À / À‘
+	// é•·ã„è‰ / æ²¼ / æ²¼è‰
 	if( MATR_IsLongGrass( icwk->NowAttr ) == TRUE ||
 		MATR_IsSwamp( icwk->NowAttr ) == TRUE ||
 		MATR_IsSwampGrass( icwk->NowAttr ) == TRUE ){
 		return ITEMCHECK_FALSE;
 	}
 
-	// ƒ][ƒ“ƒ`ƒFƒbƒN
+	// ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒƒã‚¯
 	if( ZoneData_GetEnableBicycleFlag(icwk->zone_id) == FALSE ){
 		return ITEMCHECK_FALSE;
 	}
 
-	//‚È‚İ‚Ì‚èó‘Ô‚©‚Ç‚¤‚©
+	//ãªã¿ã®ã‚ŠçŠ¶æ…‹ã‹ã©ã†ã‹
 	if( icwk->PlayerForm == HERO_FORM_SWIM ){
 		return ITEMCHECK_FALSE;
 	}
@@ -895,15 +895,15 @@ static u32 ItemUseCheck_Cycle( const ITEMCHECK_WORK * icwk )
 
 
 //============================================================================================
-//	005:–`Œ¯ƒm[ƒg
+//	005:å†’é™ºãƒãƒ¼ãƒˆ
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”F–`Œ¯ƒm[ƒg
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šå†’é™ºãƒãƒ¼ãƒˆ
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -922,11 +922,11 @@ static void ItemUse_FantasyNote( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icw
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”F–`Œ¯ƒm[ƒg
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šå†’é™ºãƒãƒ¼ãƒˆ
  *
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	TRUEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‚ğ‰ğ•ú‚µ‚È‚¢j
+ * @return	TRUEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ã—ãªã„ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_FantasyNote( CONV_WORK * wk )
@@ -943,15 +943,15 @@ static void * ConvCall_FantasyNote( void * fsys )
 
 
 //============================================================================================
-//	006:‹Zƒ}ƒVƒ“
+//	006:æŠ€ãƒã‚·ãƒ³
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”F‹Zƒ}ƒVƒ“
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šæŠ€ãƒã‚·ãƒ³
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -986,15 +986,15 @@ static void ItemUse_WazaMachine( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icw
 
 
 //============================================================================================
-//	007:ƒ[ƒ‹
+//	007:ãƒ¡ãƒ¼ãƒ«
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”Fƒ[ƒ‹
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šãƒ¡ãƒ¼ãƒ«
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1017,7 +1017,7 @@ static void ItemUse_Mail( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 
 
 //============================================================================================
-//	008:‚«‚Ì‚İ
+//	008:ãã®ã¿
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------
@@ -1028,10 +1028,10 @@ static u32 ItemUseCheck_Kinomi(const ITEMCHECK_WORK * icwk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”F‚«‚Ì‚İ
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šãã®ã¿
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1053,12 +1053,12 @@ static void ItemUse_Kinomi( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚«‚Ì‚İg—pƒ^ƒCƒvæ“¾
+ * ãã®ã¿ä½¿ç”¨ã‚¿ã‚¤ãƒ—å–å¾—
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = –„‚ß‚é"
- * @retval	"FALSE = ‚»‚êˆÈŠO"
+ * @retval	"TRUE = åŸ‹ã‚ã‚‹"
+ * @retval	"FALSE = ãã‚Œä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 BOOL ItemUse_KinomiTypeCheck( const ITEMCHECK_WORK * icwk )
@@ -1071,15 +1071,15 @@ BOOL ItemUse_KinomiTypeCheck( const ITEMCHECK_WORK * icwk )
 
 
 //============================================================================================
-//	009:ƒ|ƒ‹ƒgƒP[ƒX
+//	009:ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”Fƒ|ƒ‹ƒgƒP[ƒX
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1100,11 +1100,11 @@ static void ItemUse_PrtCase( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”Fƒ|ƒ‹ƒgƒP[ƒX
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹
  *
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	TRUEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‚ğ‰ğ•ú‚µ‚È‚¢j
+ * @return	TRUEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ã—ãªã„ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_PrtCase( CONV_WORK * wk )
@@ -1119,15 +1119,15 @@ static void * ConvCall_PrtCase( void * fsys )
 }
 
 //============================================================================================
-//	010:—F’Bè’ 
+//	010:å‹é”æ‰‹å¸³
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”F—F’Bè’ 
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šå‹é”æ‰‹å¸³
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1148,11 +1148,11 @@ static void ItemUse_FriendBook( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”F—F’Bè’ 
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šå‹é”æ‰‹å¸³
  *
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	TRUEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‚ğ‰ğ•ú‚µ‚È‚¢j
+ * @return	TRUEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ã—ãªã„ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_FriendBook( CONV_WORK * wk )
@@ -1169,15 +1169,15 @@ static void * ConvCall_FriendBook( void * fsys )
 
 
 //============================================================================================
-//	011:ƒ|ƒPƒT[ƒ`ƒƒ[
+//	011:ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”Fƒ|ƒPƒT[ƒ`ƒƒ[
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1201,11 +1201,11 @@ static void ItemUse_PokeSearcher( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * ic
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”Fƒ|ƒPƒT[ƒ`ƒƒ[
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼
  *
- * @param	wk		•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk		ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	FALSEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‰ğ•új
+ * @return	FALSEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯è§£æ”¾ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_PokeSearcher( CONV_WORK * wk )
@@ -1218,24 +1218,24 @@ static BOOL ItemCnv_PokeSearcher( CONV_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNŠÖ”Fƒ|ƒPƒT[ƒ`ƒƒ[
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°ï¼šãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼
  *
- * @param	icwk	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNƒ[ƒN
+ * @param	icwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
- * @return	BOOL	TRUE:g‚¦‚é@FALSE:g‚¦‚È‚¢
+ * @return	BOOL	TRUE:ä½¿ãˆã‚‹ã€€FALSE:ä½¿ãˆãªã„
  */
 //--------------------------------------------------------------------------------------------
 static u32 ItemUseCheck_PokeSearcher( const ITEMCHECK_WORK * icwk )
 {
-	//˜A‚ê•à‚«‚Íg—p•s‰Â
+	//é€£ã‚Œæ­©ãæ™‚ã¯ä½¿ç”¨ä¸å¯
 	if( icwk->Companion == TRUE ){
 		return ITEMCHECK_ERR_COMPANION;
 	}
-	//©“]Ôæ‚Á‚Ä‚é‚Æ‚«‚Íg—p•s‰Â
+	//è‡ªè»¢è»Šä¹—ã£ã¦ã‚‹ã¨ãã¯ä½¿ç”¨ä¸å¯
 	if ( Player_FormGet( icwk->fsys->player ) == HERO_FORM_CYCLE ){
 		return ITEMCHECK_FALSE;
 	}
-	//‘ƒAƒgƒŠƒrƒ…[ƒgˆÈŠO‚Íg—p•s‰Â
+	//è‰ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆä»¥å¤–ã¯ä½¿ç”¨ä¸å¯
 	if (!MATR_IsGrass(icwk->NowAttr)){
 		return ITEMCHECK_FALSE;
 	}
@@ -1244,11 +1244,11 @@ static u32 ItemUseCheck_PokeSearcher( const ITEMCHECK_WORK * icwk )
 
 
 //============================================================================================
-//	012:‚¶‚å‚¤‚ë
+//	012:ã˜ã‚‡ã†ã‚
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€g—pŠÖ”F‚¶‚å‚¤‚ë
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šã˜ã‚‡ã†ã‚
  */
 //--------------------------------------------------------------------------------------------
 static void ItemUse_Zyouro( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
@@ -1258,11 +1258,11 @@ static void ItemUse_Zyouro( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”F‚¶‚å‚¤‚ë
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šã˜ã‚‡ã†ã‚
  *
- * @param	wk		•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk		ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	FALSEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‰ğ•új
+ * @return	FALSEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯è§£æ”¾ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_Zyouro( CONV_WORK * wk )
@@ -1274,12 +1274,12 @@ static BOOL ItemCnv_Zyouro( CONV_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNŠÖ”F‚¶‚å‚¤‚ë
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°ï¼šã˜ã‚‡ã†ã‚
  */
 //--------------------------------------------------------------------------------------------
 static u32 ItemUseCheck_Zyouro( const ITEMCHECK_WORK * icwk )
 {
-	// ˜A‚ê•à‚«‚Íg—p•s‰Â
+	// é€£ã‚Œæ­©ãæ™‚ã¯ä½¿ç”¨ä¸å¯
 	if( icwk->Companion == TRUE ){
 		return ITEMCHECK_ERR_COMPANION;
 	}
@@ -1292,11 +1292,11 @@ static u32 ItemUseCheck_Zyouro( const ITEMCHECK_WORK * icwk )
 }
 
 //============================================================================================
-//	013:ƒRƒ„ƒV
+//	013:ã‚³ãƒ¤ã‚·
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€g—pŠÖ”FƒRƒ„ƒV
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šã‚³ãƒ¤ã‚·
  */
 //--------------------------------------------------------------------------------------------
 static void ItemUse_Compost( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
@@ -1306,7 +1306,7 @@ static void ItemUse_Compost( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNŠÖ”FƒRƒ„ƒV
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°ï¼šã‚³ãƒ¤ã‚·
  */
 //--------------------------------------------------------------------------------------------
 static u32 ItemUseCheck_Compost( const ITEMCHECK_WORK * icwk )
@@ -1319,11 +1319,11 @@ static u32 ItemUseCheck_Compost( const ITEMCHECK_WORK * icwk )
 }
 
 //============================================================================================
-//	014:ŠÃ‚¢–¨
+//	014:ç”˜ã„èœœ
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€g—pŠÖ”FŠÃ‚¢–¨
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šç”˜ã„èœœ
  */
 //--------------------------------------------------------------------------------------------
 static void ItemUse_SweetHoney( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
@@ -1345,17 +1345,17 @@ static void ItemUse_SweetHoney( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk
 	mwk->app_func = FLDMAP_AmaikaoriEvent;
 	mwk->app_wk   = work;
 	mwk->seq      = FLD_MENU_SEQ_BLACK_IN_EVCHG;
-	//ƒAƒCƒeƒ€Œ¸‚ç‚·
+	//ã‚¢ã‚¤ãƒ†ãƒ æ¸›ã‚‰ã™
 	MyItem_SubItem( SaveData_GetMyItem(fsys->savedata), iuwk->item, 1, HEAPID_WORLD );	
 }
 
 
 //============================================================================================
-//	015:ƒoƒgƒ‹ƒT[ƒ`ƒƒ[
+//	015:ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€g—pŠÖ”Fƒoƒgƒ‹ƒT[ƒ`ƒƒ[
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼
  */
 //--------------------------------------------------------------------------------------------
 static void ItemUse_BtlSearcher( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
@@ -1365,11 +1365,11 @@ static void ItemUse_BtlSearcher( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icw
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”Fƒoƒgƒ‹ƒT[ƒ`ƒƒ[
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼
  *
- * @param	wk		•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk		ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	FALSEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‰ğ•új
+ * @return	FALSEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯è§£æ”¾ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_BtlSearcher( CONV_WORK * wk )
@@ -1380,9 +1380,9 @@ static BOOL ItemCnv_BtlSearcher( CONV_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNŠÖ”Fƒoƒgƒ‹ƒT[ƒ`ƒƒ[
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°ï¼šãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼
  *
- * @param	icwk	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNƒ[ƒN
+ * @param	icwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1397,11 +1397,11 @@ static u32 ItemUseCheck_BtlSearcher( const ITEMCHECK_WORK * icwk )
 
 
 //============================================================================================
-//	016:ƒ{ƒ‚¢’ŞŠÆ
+//	016:ãƒœãƒ­ã„é‡£ç«¿
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€g—pŠÖ”Fƒ{ƒ‚¢’ŞŠÆ
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šãƒœãƒ­ã„é‡£ç«¿
  */
 //--------------------------------------------------------------------------------------------
 static void ItemUse_FishingRodBad( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
@@ -1420,9 +1420,9 @@ static void ItemUse_FishingRodBad( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * i
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”Fƒ{ƒ‚¢’ŞŠÆ
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
- * @return	FALSEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‰ğ•új
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šãƒœãƒ­ã„é‡£ç«¿
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
+ * @return	FALSEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯è§£æ”¾ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_FishingRodBad( CONV_WORK * wk )
@@ -1434,7 +1434,7 @@ static BOOL ItemCnv_FishingRodBad( CONV_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€g—pŠÖ”F—Ç‚¢’ŞŠÆ
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šè‰¯ã„é‡£ç«¿
  */
 //--------------------------------------------------------------------------------------------
 static void ItemUse_FishingRodGood( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
@@ -1453,9 +1453,9 @@ static void ItemUse_FishingRodGood( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * 
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”F—Ç‚¢’ŞŠÆ
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
- * @return	FALSEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‰ğ•új
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šè‰¯ã„é‡£ç«¿
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
+ * @return	FALSEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯è§£æ”¾ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_FishingRodGood( CONV_WORK * wk )
@@ -1467,7 +1467,7 @@ static BOOL ItemCnv_FishingRodGood( CONV_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€g—pŠÖ”F¦‚¢’ŞŠÆ
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šå‡„ã„é‡£ç«¿
  */
 //--------------------------------------------------------------------------------------------
 static void ItemUse_FishingRodGreat( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
@@ -1486,9 +1486,9 @@ static void ItemUse_FishingRodGreat( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK *
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”F¦‚¢’ŞŠÆ
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
- * @return	FALSEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‰ğ•új
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šå‡„ã„é‡£ç«¿
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
+ * @return	FALSEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯è§£æ”¾ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_FishingRodGreat( CONV_WORK * wk )
@@ -1500,21 +1500,21 @@ static BOOL ItemCnv_FishingRodGreat( CONV_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNŠÖ”F’ŞŠÆ
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°ï¼šé‡£ç«¿
  *
- * @param	icwk	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNƒ[ƒN
+ * @param	icwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static u32 ItemUseCheck_FishingRod( const ITEMCHECK_WORK * icwk )
 {
-	// ˜A‚ê•à‚«‚Íg—p•s‰Â
+	// é€£ã‚Œæ­©ãæ™‚ã¯ä½¿ç”¨ä¸å¯
 	if( icwk->Companion == TRUE ){
 		return ITEMCHECK_ERR_COMPANION;
 	}
 	
-	// ”j‚ê‚½¢ŠE‚Å‚Íg—p•s‰Â add pl
+	// ç ´ã‚ŒãŸä¸–ç•Œã§ã¯ä½¿ç”¨ä¸å¯ add pl
 	if( icwk->zone_id == ZONE_ID_D34R0101 ||
 		icwk->zone_id == ZONE_ID_D34R0102 ||
 		icwk->zone_id == ZONE_ID_D34R0103 ||
@@ -1529,9 +1529,9 @@ static u32 ItemUseCheck_FishingRod( const ITEMCHECK_WORK * icwk )
 		return ITEMCHECK_ERR_TW_FISHING;
 	}
 	
-	// –Ú‚Ì‘O‚ª…
+	// ç›®ã®å‰ãŒæ°´
 	if( MATR_IsWater(icwk->FrontAttr) == TRUE ){
-		// ‹´‚Ìã‚É‚¢‚È‚¯‚ê‚ÎOK
+		// æ©‹ã®ä¸Šã«ã„ãªã‘ã‚Œã°OK
 		if( MATR_IsBridge( icwk->NowAttr ) == TRUE ||
 			MATR_IsBridgeFlag( icwk->NowAttr ) == TRUE ){
 			FIELD_OBJ_PTR	fldobj = Player_FieldOBJGet( icwk->player );
@@ -1547,14 +1547,14 @@ static u32 ItemUseCheck_FishingRod( const ITEMCHECK_WORK * icwk )
 
 
 //============================================================================================
-//	019:ƒoƒbƒO“à‚Åg—p‚·‚é“¹‹ï
-//		ƒRƒCƒ“ƒP[ƒXAƒAƒNƒZƒTƒŠ[“ü‚êAƒV[ƒ‹“ü‚êAƒ|ƒCƒ“ƒgƒJ[ƒh
+//	019:ãƒãƒƒã‚°å†…ã§ä½¿ç”¨ã™ã‚‹é“å…·
+//		ã‚³ã‚¤ãƒ³ã‚±ãƒ¼ã‚¹ã€ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼å…¥ã‚Œã€ã‚·ãƒ¼ãƒ«å…¥ã‚Œã€ãƒã‚¤ãƒ³ãƒˆã‚«ãƒ¼ãƒ‰
 //============================================================================================
 typedef struct {
-	GF_BGL_BMPWIN win;	// ƒEƒBƒ“ƒhƒEƒf[ƒ^
-	STRBUF * msg;		// ƒƒbƒZ[ƒW
-	u16	midx;			// ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
-	u16	seq;			// ƒV[ƒPƒ“ƒX
+	GF_BGL_BMPWIN win;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+	STRBUF * msg;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	u16	midx;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u16	seq;			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 }BAGMSG_WORK;
 
 #define	BAGMSG_TMP_SIZ		( 128 )
@@ -1562,11 +1562,11 @@ typedef struct {
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”FƒoƒbƒO“à‚Åg—p‚·‚é“¹‹ï
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šãƒãƒƒã‚°å†…ã§ä½¿ç”¨ã™ã‚‹é“å…·
  *
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	FALSEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‚ğ‰ğ•új
+ * @return	FALSEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_BagMsgItem( CONV_WORK * wk )
@@ -1585,12 +1585,12 @@ static BOOL ItemCnv_BagMsgItem( CONV_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒO“à‚Åg—p‚·‚é“¹‹ïF•Ö—˜ƒ{ƒ^ƒ“‚©‚ç‹N“®‚³‚ê‚½ê‡‚ÌƒCƒxƒ“ƒg
+ * ãƒãƒƒã‚°å†…ã§ä½¿ç”¨ã™ã‚‹é“å…·ï¼šä¾¿åˆ©ãƒœã‚¿ãƒ³ã‹ã‚‰èµ·å‹•ã•ã‚ŒãŸå ´åˆã®ã‚¤ãƒ™ãƒ³ãƒˆ
  *
- * @param	event	ƒCƒxƒ“ƒgƒf[ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = ˆ—’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = å‡¦ç†ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL GMEVENT_BagMsgItem( GMEVENT_CONTROL * event )
@@ -1644,15 +1644,15 @@ static BOOL GMEVENT_BagMsgItem( GMEVENT_CONTROL * event )
 
 
 //============================================================================================
-//	020:i‰»
+//	020:é€²åŒ–
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”Fi‰»ƒAƒCƒeƒ€
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šé€²åŒ–ã‚¢ã‚¤ãƒ†ãƒ 
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1686,11 +1686,11 @@ static void ItemUse_Evolution( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk 
 
 
 //============================================================================================
-//	021	:ŒŠ”²‚¯‚Ì•R
+//	021	:ç©´æŠœã‘ã®ç´
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€g—pŠÖ”FŒŠ”²‚¯‚Ì•R
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šç©´æŠœã‘ã®ç´
  */
 //--------------------------------------------------------------------------------------------
 static void ItemUse_Ananuke( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
@@ -1705,22 +1705,22 @@ static void ItemUse_Ananuke( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 	mwk->app_func = GMEVENT_AnanukeMapChangeInit;
 	mwk->app_wk   = NULL;
 	mwk->seq      = FLD_MENU_SEQ_BLACK_IN_EVCHG;
-	//ƒAƒCƒeƒ€Œ¸‚ç‚·
+	//ã‚¢ã‚¤ãƒ†ãƒ æ¸›ã‚‰ã™
 	MyItem_SubItem( SaveData_GetMyItem(fsys->savedata), iuwk->item, 1, HEAPID_WORLD );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNŠÖ”FŒŠ”²‚¯‚Ì•R
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°ï¼šç©´æŠœã‘ã®ç´
  *
- * @param	icwk	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNƒ[ƒN
+ * @param	icwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static u32 ItemUseCheck_Ananuke( const ITEMCHECK_WORK * icwk )
 {
-	// ˜A‚ê•à‚«‚Íg—p•s‰Â
+	// é€£ã‚Œæ­©ãæ™‚ã¯ä½¿ç”¨ä¸å¯
 	if( icwk->Companion == TRUE ){
 		return ITEMCHECK_ERR_COMPANION;
 	}
@@ -1735,7 +1735,7 @@ static u32 ItemUseCheck_Ananuke( const ITEMCHECK_WORK * icwk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ŒŠ”²‚¯‚Ì•Rƒ[ƒN‰Šú‰»¨ŒŠ”²‚¯ƒCƒxƒ“ƒg‚Ö
+ * @brief	ç©´æŠœã‘ã®ç´ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–â†’ç©´æŠœã‘ã‚¤ãƒ™ãƒ³ãƒˆã¸
  */
 //--------------------------------------------------------------------------------------------
 static BOOL GMEVENT_AnanukeMapChangeInit( GMEVENT_CONTROL *event )
@@ -1748,14 +1748,14 @@ static BOOL GMEVENT_AnanukeMapChangeInit( GMEVENT_CONTROL *event )
 
 
 //============================================================================================
-//	022:‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦
+//	022:ã¦ã‚“ã‹ã„ã®ãµãˆ
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”F‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šã¦ã‚“ã‹ã„ã®ãµãˆ
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1768,11 +1768,11 @@ static void ItemUse_Tenkainofue( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icw
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”F‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šã¦ã‚“ã‹ã„ã®ãµãˆ
  *
- * @param	wk		•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk		ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	FALSEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‰ğ•új
+ * @return	FALSEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯è§£æ”¾ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_Tenkainofue( CONV_WORK * wk )
@@ -1783,25 +1783,25 @@ static BOOL ItemCnv_Tenkainofue( CONV_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNŠÖ”F‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°ï¼šã¦ã‚“ã‹ã„ã®ãµãˆ
  *
- * @param	icwk	ƒAƒCƒeƒ€g—pƒ`ƒFƒbƒNƒ[ƒN
+ * @param	icwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
- * @return	BOOL	TRUE:g‚¦‚é@FALSE:g‚¦‚È‚¢
+ * @return	BOOL	TRUE:ä½¿ãˆã‚‹ã€€FALSE:ä½¿ãˆãªã„
  */
 //--------------------------------------------------------------------------------------------
 static u32 ItemUseCheck_Tenkainofue( const ITEMCHECK_WORK * icwk )
 {
 	EVENTWORK * ev = SaveData_GetEventWork(icwk->fsys->savedata);
-	//ƒQ[ƒ€ƒNƒŠƒAŒã‚©H
+	//ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢å¾Œã‹ï¼Ÿ
 	if (SysFlag_GameClearCheck(ev) == FALSE) {
 		return ITEMCHECK_FALSE;
 	}
-	//”z•zƒCƒxƒ“ƒgƒtƒ‰ƒO‚Í³í‚Éİ’è‚³‚ê‚Ä‚¢‚é‚©H
+	//é…å¸ƒã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã¯æ­£å¸¸ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ï¼Ÿ
 	if (SysWork_HaihuEventWorkCheck(ev, HAIHUEVENT_ID_D05) == FALSE) {
 		return ITEMCHECK_FALSE;
 	}
-	//‘S‘}ŠÓ“üèŒã‚©?
+	//å…¨å›½å›³é‘‘å…¥æ‰‹å¾Œã‹?
 	if (ZukanWork_GetZenkokuZukanFlag(SaveData_GetZukanWork(icwk->fsys->savedata)) == FALSE) {
 		return ITEMCHECK_FALSE;
 	}
@@ -1814,15 +1814,15 @@ static u32 ItemUseCheck_Tenkainofue( const ITEMCHECK_WORK * icwk )
 }
 
 //============================================================================================
-//	023:ƒoƒgƒ‹ƒŒƒR[ƒ_[
+//	023:ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”Fƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1843,11 +1843,11 @@ static void ItemUse_BattleRec( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”Fƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  *
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	TRUEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‚ğ‰ğ•ú‚µ‚È‚¢j
+ * @return	TRUEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ã—ãªã„ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_BattleRec( CONV_WORK * wk )
@@ -1858,7 +1858,7 @@ static BOOL ItemCnv_BattleRec( CONV_WORK * wk )
 
 static void * ConvCall_BattleRec( void * fsys )
 {
-	//ƒrƒfƒI‚Ì‰‹’®Aíœ‚ÅƒZ[ƒu‚ªs‚í‚ê‚é‚Ì‚Å–‘O‚Éƒpƒ‰ƒ[ƒ^ƒZƒbƒg 2008.05.12(Œ) matsuda
+	//ãƒ“ãƒ‡ã‚ªã®åˆè¦–è´ã€å‰Šé™¤ã§ã‚»ãƒ¼ãƒ–ãŒè¡Œã‚ã‚Œã‚‹ã®ã§äº‹å‰ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ 2008.05.12(æœˆ) matsuda
 	Field_SaveParam_BattleRecorder(fsys);
 	
 	BattleRecorder_SetProc( fsys, ((FIELDSYS_WORK *)fsys)->savedata );
@@ -1866,14 +1866,14 @@ static void * ConvCall_BattleRec( void * fsys )
 }
 
 //============================================================================================
-//	024:ƒOƒ‰ƒVƒfƒA‚Ì‚Í‚È
+//	024:ã‚°ãƒ©ã‚·ãƒ‡ã‚¢ã®ã¯ãª
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pŠÖ”FƒOƒ‰ƒVƒfƒA‚Ì‚Í‚È
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨é–¢æ•°ï¼šã‚°ãƒ©ã‚·ãƒ‡ã‚¢ã®ã¯ãª
  *
- * @param	iuwk	ƒAƒCƒeƒ€g—pƒ[ƒN
- * @param	icwk	ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	iuwk	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param	icwk	ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1894,11 +1894,11 @@ static void ItemUse_Grashidea( ITEMUSE_WORK * iuwk, const ITEMCHECK_WORK * icwk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“g—pŠÖ”FƒOƒ‰ƒVƒfƒA‚Ì‚Í‚È
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ä½¿ç”¨é–¢æ•°ï¼šã‚°ãƒ©ã‚·ãƒ‡ã‚¢ã®ã¯ãª
  *
- * @param	wk	•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
+ * @param	wk	ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- * @return	TRUEi•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN‚ğ‰ğ•ú‚µ‚È‚¢j
+ * @return	TRUEï¼ˆä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ã—ãªã„ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL ItemCnv_Grashidea( CONV_WORK * wk )
@@ -1923,15 +1923,15 @@ static void * ConvCall_Grashidea( void * fsys )
 
 
 //============================================================================================
-//	•Ö—˜ƒ{ƒ^ƒ“
+//	ä¾¿åˆ©ãƒœã‚¿ãƒ³
 //============================================================================================
-// ‰æ–ÊØ‚è‘Ö‚¦ƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX
+// ç”»é¢åˆ‡ã‚Šæ›¿ãˆã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
-	SEQ_FADEOUT_SET = 0,	// ƒtƒF[ƒhƒAƒEƒgƒZƒbƒg
-	SEQ_FADEOUT_WAIT,		// ƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
-	SEQ_END_WAIT,			// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
-	SEQ_RCV_WAIT,			// ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXŠJn‘Ò‚¿
-	SEQ_FADEIN_WAIT,		// ƒtƒF[ƒhƒCƒ“‘Ò‚¿
+	SEQ_FADEOUT_SET = 0,	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚»ãƒƒãƒˆ
+	SEQ_FADEOUT_WAIT,		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
+	SEQ_END_WAIT,			// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
+	SEQ_RCV_WAIT,			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹å¾…ã¡
+	SEQ_FADEIN_WAIT,		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 };
 
 static void ItemCnv_ErrorMsgSet( CONV_WORK * wk, u32 err );
@@ -1939,9 +1939,9 @@ static void ItemCnv_ErrorMsgSet( CONV_WORK * wk, u32 err );
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“‹N“®ˆ—
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³èµ·å‹•å‡¦ç†
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1955,10 +1955,10 @@ BOOL FieldConvButtonEventInit( FIELDSYS_WORK * repw )
 	u16	id;
 	BOOL	ret;
 
-	// ƒoƒgƒ‹ƒ^ƒ[‚ÌƒTƒƒ“‚Å‚Íg—p‚Å‚«‚È‚¢
+	// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ã‚µãƒ­ãƒ³ã§ã¯ä½¿ç”¨ã§ããªã„
 	if( BtlTower_IsSalon(repw) == TRUE ){ return FALSE; }
 
-	// ƒ|ƒPƒp[ƒN‚Å‚Íg—p‚Å‚«‚È‚¢
+	// ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã§ã¯ä½¿ç”¨ã§ããªã„
 	if( SysFlag_PokeParkCheck(SaveData_GetEventWork(repw->savedata)) == TRUE ){
 		return FALSE;
 	}
@@ -1970,7 +1970,7 @@ BOOL FieldConvButtonEventInit( FIELDSYS_WORK * repw )
 	check = (ITEMCHECK_FUNC)ItemUse_FuncGet( ITEMUSE_PRM_CHECKFUNC, id );
 	cnv   = (ITEMCNV_FUNC)ItemUse_FuncGet( ITEMUSE_PRM_CNVFUNC, id );
 
-	if( cnv == NULL ){ return FALSE; }	// •Ö—˜ƒ{ƒ^ƒ“‚©‚çg—p‚Å‚«‚È‚¢
+	if( cnv == NULL ){ return FALSE; }	// ä¾¿åˆ©ãƒœã‚¿ãƒ³ã‹ã‚‰ä½¿ç”¨ã§ããªã„
 
 	wk = sys_AllocMemory( HEAPID_WORLD, sizeof(CONV_WORK) );
 	memset( wk, 0, sizeof(CONV_WORK) );
@@ -1999,10 +1999,10 @@ BOOL FieldConvButtonEventInit( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“‹N“®ƒGƒ‰[ƒƒbƒZ[ƒWƒZƒbƒg
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³èµ·å‹•ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param	wk		•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
- * @param	err		ƒGƒ‰[ƒR[ƒh
+ * @param	wk		ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
+ * @param	err		ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  *
  * @return	none
  */
@@ -2023,7 +2023,7 @@ static void ItemCnv_ErrorMsgSet( CONV_WORK * wk, u32 err )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰æ–ÊØ‚è‘Ö‚¦ƒAƒCƒeƒ€—p‹¤’ÊƒCƒxƒ“ƒg
+ * ç”»é¢åˆ‡ã‚Šæ›¿ãˆã‚¢ã‚¤ãƒ†ãƒ ç”¨å…±é€šã‚¤ãƒ™ãƒ³ãƒˆ
  *
  * @param	event
  *
@@ -2039,26 +2039,26 @@ static BOOL GMEVENT_ConvButtonCommon( GMEVENT_CONTROL * event )
 	wk   = FieldEvent_GetSpecialWork( event );
 
 	switch( wk->seq ){
-	case SEQ_FADEOUT_SET:	// ƒtƒF[ƒhƒAƒEƒgƒZƒbƒg
+	case SEQ_FADEOUT_SET:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚»ãƒƒãƒˆ
 		FieldOBJSys_MovePauseAll( fsys->fldobjsys );
 		FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKOUT );
 		wk->seq = SEQ_FADEOUT_WAIT;
 		break;
 
-	case SEQ_FADEOUT_WAIT:	// ƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+	case SEQ_FADEOUT_WAIT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 		if( WIPE_SYS_EndCheck() ){
 			wk->app_wk = wk->call( fsys );
 			wk->seq = SEQ_END_WAIT;
 		}
 		break;
 
-	case SEQ_END_WAIT:		// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	case SEQ_END_WAIT:		// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 		if( FieldEvent_Cmd_WaitSubProcEnd( fsys ) ) {
 			break;
 		}
 		if( wk->app_wk != NULL ){
 			if(wk->call == ConvCall_PrtCase){
-				//ƒ|ƒ‹ƒgƒP[ƒX‚Ì‚Íê—pƒƒ‚ƒŠ‰ğ•úŠÖ”‚ğŒÄ‚Ô 06.07.05 iwasawa
+				//ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã®æ™‚ã¯å°‚ç”¨ãƒ¡ãƒ¢ãƒªè§£æ”¾é–¢æ•°ã‚’å‘¼ã¶ 06.07.05 iwasawa
 				PorutoSys_ReleaseCallWork(wk->app_wk);
 			}else{
 				sys_FreeMemoryEz( wk->app_wk );
@@ -2068,7 +2068,7 @@ static BOOL GMEVENT_ConvButtonCommon( GMEVENT_CONTROL * event )
 		wk->seq = SEQ_RCV_WAIT;
 		break;
 
-	case SEQ_RCV_WAIT:		// ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXŠJn‘Ò‚¿
+	case SEQ_RCV_WAIT:		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹å¾…ã¡
 		if( FieldEvent_Cmd_WaitMapProcStart(fsys) ) {
 			FieldOBJSys_MovePauseAll( fsys->fldobjsys );
 			FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );
@@ -2076,7 +2076,7 @@ static BOOL GMEVENT_ConvButtonCommon( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case SEQ_FADEIN_WAIT:	// ƒtƒF[ƒhƒCƒ“‘Ò‚¿
+	case SEQ_FADEIN_WAIT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 		if( WIPE_SYS_EndCheck() ){
 			FieldOBJSys_MovePauseAllClear( fsys->fldobjsys );
 			sys_FreeMemoryEz( wk );
@@ -2090,10 +2090,10 @@ static BOOL GMEVENT_ConvButtonCommon( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰æ–ÊØ‚è‘Ö‚¦ƒAƒCƒeƒ€—p‹¤’ÊƒCƒxƒ“ƒgƒZƒbƒg
+ * ç”»é¢åˆ‡ã‚Šæ›¿ãˆã‚¢ã‚¤ãƒ†ãƒ ç”¨å…±é€šã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	wk		•Ö—˜ƒ{ƒ^ƒ“ƒ[ƒN
- * @param	call	ƒtƒF[ƒhƒAƒEƒgŒã‚ÉŒÄ‚Î‚ê‚éˆ—
+ * @param	wk		ä¾¿åˆ©ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
+ * @param	call	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾Œã«å‘¼ã°ã‚Œã‚‹å‡¦ç†
  *
  * @return	none
  */

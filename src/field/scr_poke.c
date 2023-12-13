@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_poke.c
- * @bfief	�X�N���v�g�R�}���h�F�|�P��������֘A
+ * @bfief	スクリプトコマンド：ポケモン操作関連
  * @author	Tomomichi Ohta
  * @date	06.06.26
  */
@@ -62,14 +62,14 @@
 
 //============================================================================================
 //
-//	�R�}���h
+//	コマンド
 //
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * �|�P�������莝���ɉ�����
+ * ポケモンを手持ちに加える
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -86,8 +86,8 @@ BOOL EvCmdAddPokemon(VM_MACHINE * core)
 	u16* ret_wk				= VMGetWork( core );
 
 	//06.05.19
-	//AGB�̃|�P�����ǉ��́A�莝���������ς��̎��́A�{�b�N�X�ɓ]�������悤�ɂȂ��Ă��āA
-	//�ǂ���ɒǉ�������(�ǉ��ł��Ȃ�����)���߂�l�ɂȂ��Ă���
+	//AGBのポケモン追加は、手持ちがいっぱいの時は、ボックスに転送されるようになっていて、
+	//どちらに追加したか(追加できなかった)が戻り値になっていた
 
 	temoti = SaveData_GetTemotiPokemon(fsys->savedata);
 	*ret_wk = EvPoke_Add(HEAPID_WORLD, fsys->savedata, monsno, lv, itemno, place_id, ground_id);
@@ -97,9 +97,9 @@ BOOL EvCmdAddPokemon(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	�莝���̈ʒu�i���o�[����A�|�P�����ԍ��֕ϊ�
+ *	手持ちの位置ナンバーから、ポケモン番号へ変換
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -111,13 +111,13 @@ BOOL EvCmdTemotiMonsNo(VM_MACHINE * core)
 	u16* in_wk				= VMGetWork( core );
 	u16* out_wk				= VMGetWork( core );
 
-	//�|�P�����ւ̃|�C���^�擾
+	//ポケモンへのポインタ取得
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), *in_wk);
 
-	//�����X�^�[�ԍ��擾
+	//モンスター番号取得
 	if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
 		*out_wk = PokeParaGet(poke,ID_PARA_monsno,NULL);
-	}else{	//�^�}�S
+	}else{	//タマゴ
 		*out_wk = 0;
 	}
 
@@ -126,9 +126,9 @@ BOOL EvCmdTemotiMonsNo(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	�莝���|�P�����̂���l�l�`�F�b�N
+ *	手持ちポケモンのご主人様チェック
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -142,17 +142,17 @@ BOOL EvCmdMonsOwnChk(VM_MACHINE * core)
 	u16* out_wk				= VMGetWork( core );
 	u16 poke_id,my_id;
 
-	//�|�P�����ւ̃|�C���^�擾
+	//ポケモンへのポインタ取得
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), *in_wk);
 
-	//�|�P������ID
+	//ポケモンのID
 	poke_id = PokeParaGet( poke, ID_PARA_id_no, NULL );
 
 	my_id = MyStatus_GetID(my);
 
-	if(poke_id == my_id){	//��v
+	if(poke_id == my_id){	//一致
 		*out_wk = 0;
-	}else{					//�s��v
+	}else{					//不一致
 		*out_wk = 1;
 	}
 
@@ -162,9 +162,9 @@ BOOL EvCmdMonsOwnChk(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * �^�}�S���莝���ɉ�����
+ * タマゴを手持ちに加える
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -184,7 +184,7 @@ BOOL EvCmdAddTamago(VM_MACHINE * core)
 	temoti = SaveData_GetTemotiPokemon(fsys->savedata);
 
 	max = PokeParty_GetPokeCount(temoti);
-	if(max<6){		//���O�̂��߁B�|�P�������ő吔�̂Ƃ��ɌĂ΂�Ă���΂Ȃ��悤��
+	if(max<6){		//※念のため。ポケモンが最大数のときに呼ばれても飛ばないように
 		poke_param = PokemonParam_AllocWork(HEAPID_WORLD);
 		PokeParaInit(poke_param);
 
@@ -201,9 +201,9 @@ BOOL EvCmdAddTamago(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * �莝���|�P�����̋Z��u��������
+ * 手持ちポケモンの技を置き換える
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -222,9 +222,9 @@ BOOL EvCmdChgPokeWaza( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �莝���|�P�������w�肳�ꂽ�Z���o���Ă��邩�`�F�b�N�i�P�́j
+ * 手持ちポケモンが指定された技を覚えているかチェック（１体）
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -241,12 +241,12 @@ BOOL EvCmdChkPokeWaza( VM_MACHINE * core )
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), tno);
 
 	*ret_wk = 0;
-	//���܂��`�F�b�N
+	//たまごチェック
 	if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) != 0 ){
 		return 0;
 	}
 
-	//���U���X�g����`�F�b�N
+	//ワザリストからチェック
 	if( (PokeParaGet( poke, ID_PARA_waza1, NULL ) == waza) ||(PokeParaGet( poke, ID_PARA_waza2, NULL ) == waza) ||(PokeParaGet( poke, ID_PARA_waza3, NULL ) == waza) ||(PokeParaGet( poke, ID_PARA_waza4, NULL ) == waza) ){
 		*ret_wk = 1;
 	}
@@ -256,9 +256,9 @@ BOOL EvCmdChkPokeWaza( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �莝���|�P�������w�肳�ꂽ�Z���o���Ă��邩�`�F�b�N
+ * 手持ちポケモンが指定された技を覚えているかチェック
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -277,14 +277,14 @@ BOOL EvCmdChkPokeWazaGroup( VM_MACHINE * core )
 	for( i=0, *ret_wk=6 ; i<max; i++ ){
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
-		//���܂��`�F�b�N
+		//たまごチェック
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) != 0 ){
 			continue;
 		}
 
-		//���U���X�g����`�F�b�N
+		//ワザリストからチェック
 		if( (PokeParaGet( poke, ID_PARA_waza1, NULL ) == waza) ||(PokeParaGet( poke, ID_PARA_waza2, NULL ) == waza) ||(PokeParaGet( poke, ID_PARA_waza3, NULL ) == waza) ||(PokeParaGet( poke, ID_PARA_waza4, NULL ) == waza) ){
-			*ret_wk = i;		//�����Ă���|�P�����̃��X�g��̕��т�Ԃ�
+			*ret_wk = i;		//持っているポケモンのリスト上の並びを返す
 			break;
 		}
 
@@ -295,7 +295,7 @@ BOOL EvCmdChkPokeWazaGroup( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �|�P�������łŎ��񂾂��ǂ����̔F��
+ * ポケモンが毒で死んだかどうかの認証
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdApprovePoisonDead(VM_MACHINE * core)
@@ -313,9 +313,9 @@ BOOL EvCmdApprovePoisonDead(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	�莝���|�P�����̃��x���`�F�b�N�i�����̐�)
+ *	手持ちポケモンのレベルチェック（引数の数)
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -334,10 +334,10 @@ BOOL EvCmdPokeLevelChk(VM_MACHINE * core)
 	for(i=0,ct=0;i<max;i++){
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
-		//�����X�^�[�ԍ��擾(0�ȊO�Ȃ�^�}�S�j
+		//モンスター番号取得(0以外ならタマゴ）
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
 
-			//�����ȉ��̃|�P���������邩�`�F�b�N
+			//引数以下のポケモンがいるかチェック
 			if( PokeParaGet( poke, ID_PARA_level, NULL ) <= level ){
 				ct++;
 			}
@@ -353,9 +353,9 @@ BOOL EvCmdPokeLevelChk(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	�莝���|�P�����̃��x���擾
+ *	手持ちポケモンのレベル取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -379,7 +379,7 @@ BOOL EvCmdPokeLevelGet(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���i�Q�b�g
+ * 性格ゲット
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdGetPokeSeikaku(VM_MACHINE * core)
@@ -392,20 +392,20 @@ BOOL EvCmdGetPokeSeikaku(VM_MACHINE * core)
 
 	max = PokeParty_GetPokeCount(SaveData_GetTemotiPokemon(fsys->savedata));
 
-	if(tno >= max) {		//�����Ă���|�P�����ȏ�̔ԍ��̂Ƃ�
+	if(tno >= max) {		//持っているポケモン以上の番号のとき
 		*ret_wk = 0;
 		return 0;
 	}
 
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), tno);
 
-	//�^�}�S�`�F�b�N
+	//タマゴチェック
 	if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) != 0 ){
 		*ret_wk = 0;
 		return 0;
 	}
 
-	//���i�擾
+	//性格取得
 	*ret_wk = PokeSeikakuGet(poke);
 
 	return 0;
@@ -413,8 +413,8 @@ BOOL EvCmdGetPokeSeikaku(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ����̐��i�̃|�P���������邩���`�F�b�N
- * 0xff:���Ȃ� 0�`5:�莝���ԍ�
+ * 特定の性格のポケモンがいるかをチェック
+ * 0xff:いない 0〜5:手持ち番号
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdChkPokeSeikakuAll(VM_MACHINE * core)
@@ -431,9 +431,9 @@ BOOL EvCmdChkPokeSeikakuAll(VM_MACHINE * core)
 	for(i=0;i<max;i++){
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
-		//�^�}�S�łȂ��Ƃ��̂݃`�F�b�N
+		//タマゴでないときのみチェック
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
-			//���i�`�F�b�N
+			//性格チェック
 			if(PokeSeikakuGet(poke) == seikaku_no){
 				*ret_wk = i;
 				break;
@@ -447,9 +447,9 @@ BOOL EvCmdChkPokeSeikakuAll(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * �Ȃ��x�̎擾
+ * なつき度の取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -461,19 +461,19 @@ BOOL EvCmdGetNatsuki( VM_MACHINE * core )
 	u16* ret_wk			= VMGetWork( core );
 	u16 tno	= VMGetWorkValue(core);
 
-	//�|�P�����ւ̃|�C���^�擾
+	//ポケモンへのポインタ取得
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), tno);
 
-	//�|�P�����̂Ȃ��x�擾
+	//ポケモンのなつき度取得
 	*ret_wk = PokeParaGet( poke, ID_PARA_friend, NULL );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * �Ȃ��x�𑝂₷
+ * なつき度を増やす
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -487,28 +487,28 @@ BOOL EvCmdAddNatsuki( VM_MACHINE * core )
 	u16 value;
 	u32 place_id = ZoneData_GetPlaceNameID(core->fsys->location->zone_id);
 
-	//�|�P�����ւ̃|�C���^�擾
+	//ポケモンへのポインタ取得
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), tno);
 
-	//�|�P�����̂Ȃ��x�擾
+	//ポケモンのなつき度取得
 	value = PokeParaGet( poke, ID_PARA_friend, NULL );
 
 #if 0
 	value += add_value;
-	if(value > 255) {			//�Ȃ��xMax=255
+	if(value > 255) {			//なつき度Max=255
 		value = 255;
 	}
 #else
 	if( add_value > 0 ){
-		// ��������
+		// 装備効果
 		if( ItemParamGet(PokeParaGet(poke,ID_PARA_item,NULL),ITEM_PRM_EQUIP,HEAPID_WORLD) == SOUBI_NATUKIDOUP ){
 			add_value = add_value * 150 / 100;
 		}
-		// �ߊl�{�[��
+		// 捕獲ボール
 		if( PokeParaGet( poke, ID_PARA_get_ball, NULL ) == ITEM_GOOZYASUBOORU ){
 			add_value++;
 		}
-		// �ߊl�ꏊ
+		// 捕獲場所
 		if( PokeParaGet( poke, ID_PARA_get_place, NULL ) == place_id ){
 			add_value++;
 		}
@@ -520,7 +520,7 @@ BOOL EvCmdAddNatsuki( VM_MACHINE * core )
 	}
 #endif
 
-	//�|�P�����̂Ȃ��x�Z�b�g
+	//ポケモンのなつき度セット
 	PokeParaPut( poke, ID_PARA_friend, &value );
 	return 0;
 }
@@ -528,9 +528,9 @@ BOOL EvCmdAddNatsuki( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �Ȃ��x�����炷
+ * なつき度を減らす
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -543,10 +543,10 @@ BOOL EvCmdSubNatsuki( VM_MACHINE * core )
 	u16 tno	= VMGetWorkValue(core);
 	u16 value;
 
-	//�|�P�����ւ̃|�C���^�擾
+	//ポケモンへのポインタ取得
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), tno);
 
-	//�|�P�����̂Ȃ��x�擾
+	//ポケモンのなつき度取得
 	value = PokeParaGet( poke, ID_PARA_friend, NULL );
 
 	if(sub_value > value) {
@@ -555,7 +555,7 @@ BOOL EvCmdSubNatsuki( VM_MACHINE * core )
 		value -= sub_value;
 	}
 
-	//�|�P�����̂Ȃ��x�Z�b�g
+	//ポケモンのなつき度セット
 	PokeParaPut( poke, ID_PARA_friend, &value );
 	return 0;
 }
@@ -563,9 +563,9 @@ BOOL EvCmdSubNatsuki( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �莝���|�P�����̃R���e�X�g�X�e�[�^�X�擾(�������悳�A���킢����)
+ * 手持ちポケモンのコンテストステータス取得(かっこよさ、かわいさ等)
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -577,7 +577,7 @@ BOOL EvCmdTemotiPokeContestStatusGet( VM_MACHINE * core )
 	u16 con_type = VMGetWorkValue( core );
 	u16* ret_wk	= VMGetWork( core );
 
-	//�|�P�����ւ̃|�C���^�擾
+	//ポケモンへのポインタ取得
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), pos );
 
 	*ret_wk = PokeParaGet(poke, ID_PARA_style + con_type, NULL);
@@ -586,7 +586,7 @@ BOOL EvCmdTemotiPokeContestStatusGet( VM_MACHINE * core )
 
 //-----------------------------------------------------------------------------
 /**
- *	�擪�̃|�P������Ԃ��i�^�}�S�𔲂������j
+ *	先頭のポケモンを返す（タマゴを抜かした）
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdFrontPokemon(VM_MACHINE * core)
@@ -600,7 +600,7 @@ BOOL EvCmdFrontPokemon(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���|�P�����̃^�C�v���擾
+ *	手持ちポケモンのタイプを取得
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdTemotiPokeType(VM_MACHINE * core)
@@ -611,7 +611,7 @@ BOOL EvCmdTemotiPokeType(VM_MACHINE * core)
 	u16* ret_wk2				= VMGetWork( core );
 	u16 tno		= VMGetWorkValue(core);
 
-	//�|�P�����ւ̃|�C���^�擾
+	//ポケモンへのポインタ取得
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), tno);
 
 	*ret_wk1 = PokeParaGet( poke, ID_PARA_type1, NULL );
@@ -622,10 +622,10 @@ BOOL EvCmdTemotiPokeType(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * �|�P�������擾
- * @brief   �莝���̃|�P�������𒲂ׂĕԂ�
+ * ポケモン数取得
+ * @brief   手持ちのポケモン数を調べて返す
  * 
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -639,7 +639,7 @@ BOOL EvCmdGetPokeCount( VM_MACHINE * core )
 
 	max = PokeParty_GetPokeCount(SaveData_GetTemotiPokemon(fsys->savedata));
 
-	//����A�^�}�S���ɂ���ďo�͂𕪂��邩��
+	//今後、タマゴ等によって出力を分けるかも
 
 	*ret_wk = max;
 
@@ -648,10 +648,10 @@ BOOL EvCmdGetPokeCount( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �|�P�������擾(�^�}�S�������j
- * @brief   �莝���̃|�P�������𒲂ׂĕԂ�
+ * ポケモン数取得(タマゴを除く）
+ * @brief   手持ちのポケモン数を調べて返す
  * 
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -668,7 +668,7 @@ BOOL EvCmdGetPokeCount2( VM_MACHINE * core )
 	for(i=0,poke_max=0;i<max;i++){
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
-		//�����X�^�[�ԍ��擾(0�ȊO�Ȃ�^�}�S����Ȃ��j
+		//モンスター番号取得(0以外ならタマゴじゃない）
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
 			poke_max++;
 		}
@@ -682,11 +682,11 @@ BOOL EvCmdGetPokeCount2( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �|�P�������擾(�^�}�S�ƕm���������j
- * @brief   �莝���̃|�P�������𒲂ׂĕԂ�(�퓬�\�ȃ|�P������)
- *	no = ��������莝���ԍ�(6:�Ȃ��A0�`5)
+ * ポケモン数取得(タマゴと瀕死を除く）
+ * @brief   手持ちのポケモン数を調べて返す(戦闘可能なポケモン数)
+ *	no = 無視する手持ち番号(6:なし、0〜5)
  * 
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -704,9 +704,9 @@ BOOL EvCmdGetPokeCount3( VM_MACHINE * core )
 	for(i=0,poke_max=0;i<max;i++){
 		if(i==no) continue;
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
-		//�����X�^�[�ԍ��擾(0�ȊO�Ȃ�^�}�S����Ȃ��j
+		//モンスター番号取得(0以外ならタマゴじゃない）
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
-			//�m�����O�`�F�b�N(0==�m��)
+			//瀕死除外チェック(0==瀕死)
 			if( PokeParaGet( poke,ID_PARA_hp , NULL ) != 0 ){
 				poke_max++;
 			}
@@ -720,13 +720,13 @@ BOOL EvCmdGetPokeCount3( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �|�P���������i�莝���{�{�b�N�X�j�擾(�^�}�S�ƁA�莝���̕m���������j
+ * ポケモン総数（手持ち＋ボックス）取得(タマゴと、手持ちの瀕死を除く）
  *
- * �����ݎg�p����Ă��܂���
+ * ※現在使用されていません
  * 
- * @brief   �莝���̃|�P�������𒲂ׂĕԂ�
+ * @brief   手持ちのポケモン数を調べて返す
  * 
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -744,9 +744,9 @@ BOOL EvCmdGetPokeCount4( VM_MACHINE * core )
 	for(i=0,poke_max=0;i<max;i++){
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
-		//�����X�^�[�ԍ��擾(0�ȊO�Ȃ�^�}�S����Ȃ��j
+		//モンスター番号取得(0以外ならタマゴじゃない）
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
-			//�m�����O�`�F�b�N(0==�m��)
+			//瀕死除外チェック(0==瀕死)
 			if( PokeParaGet( poke,ID_PARA_hp , NULL ) != 0 ){
 				poke_max++;
 			}
@@ -763,10 +763,10 @@ BOOL EvCmdGetPokeCount4( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �^�}�S���擾
- * @brief   �莝���̃|�P�������𒲂ׂĕԂ�
+ * タマゴ数取得
+ * @brief   手持ちのポケモン数を調べて返す
  * 
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -783,9 +783,9 @@ BOOL EvCmdGetTamagoCount( VM_MACHINE * core )
 	for(i=0,tamago_max=0;i<max;i++){
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
-		//�^�}�S���擾
+		//タマゴ数取得
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL )){
-//���ꍇ�ɂ���ẮA�_���^�}�S�`�F�b�N������邩���i�d�l�ɂ��j
+//※場合によっては、ダメタマゴチェックをいれるかも（仕様により）
 			tamago_max++;
 		}
 	}
@@ -797,9 +797,9 @@ BOOL EvCmdGetTamagoCount( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �莝���|�P�����̃|�P���X�ւ̊������`�F�b�N
+ * 手持ちポケモンのポケルスへの感染をチェック
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -817,10 +817,10 @@ BOOL EvCmdChkTemotiPokerus( VM_MACHINE * core )
 
 	max = PokeParty_GetPokeCount(SaveData_GetTemotiPokemon(fsys->savedata));
 
-	//�|�P���X�������Ă��邩check
+	//ポケルスを持っているかcheck
 	*wk = 0;
 	for(i=0;i<max;i++){
-		//�|�P�����ւ̃|�C���^�擾
+		//ポケモンへのポインタ取得
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
 		pokerus = PokeParaGet(poke, ID_PARA_pokerus, NULL);
@@ -836,9 +836,9 @@ BOOL EvCmdChkTemotiPokerus( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �莝���|�P�����̐��ʎ擾
+ * 手持ちポケモンの性別取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -849,7 +849,7 @@ BOOL EvCmdTemotiPokeSexGet( VM_MACHINE * core )
 	u16 pos		= VMGetWorkValue( core );
 	u16* ret_wk	= VMGetWork( core );
 
-	//�|�P�����ւ̃|�C���^�擾
+	//ポケモンへのポインタ取得
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), pos );
 
 	*ret_wk = PokeParaGet(poke, ID_PARA_sex, NULL);
@@ -858,8 +858,8 @@ BOOL EvCmdTemotiPokeSexGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	�Z�Y��֘A�F�����Ă���Z���J�E���g
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @brief	技忘れ関連：持っている技をカウント
+ * @param	core		仮想マシン制御構造体へのポインタ
  * @return	0
  */
 //--------------------------------------------------------------------------------------------
@@ -873,7 +873,7 @@ BOOL EvCmdWazaCount( VM_MACHINE * core )
 
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), t_no);
 
-	//���܂��`�F�b�N
+	//たまごチェック
 	if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) != 0 ){
 		*ret_wk =0;
 		return 0;
@@ -902,8 +902,8 @@ BOOL EvCmdWazaCount( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	�Z�Y��֘A�F���U������
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @brief	技忘れ関連：ワザを消去
+ * @param	core		仮想マシン制御構造体へのポインタ
  * @return	0
  */
 //--------------------------------------------------------------------------------------------
@@ -926,9 +926,9 @@ BOOL EvCmdWazaDel( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *�@�莝���̂킴�ԍ����A�킴�ԍ���
+ *　手持ちのわざ番号を、わざ番号へ
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -950,9 +950,9 @@ BOOL EvCmdTemotiWazaNo( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	���[���������Ă��邩�`�F�b�N
+ *	メールを持っているかチェック
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -972,9 +972,9 @@ BOOL EvCmdPokeMailChk(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	�����Ă��郁�[�����폜
+ *	持っているメールを削除
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -988,7 +988,7 @@ BOOL EvCmdPokeMailDel(VM_MACHINE * core)
 
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), tno);
 
-	itemno = 0;	//�����Ă��Ȃ���Ԃ�
+	itemno = 0;	//持っていない状態へ
 	PokeParaPut( poke, ID_PARA_item, &itemno );
 
 	return 0;
@@ -996,9 +996,9 @@ BOOL EvCmdPokeMailDel(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *�@�莝���ɓ���̃|�P���������邩���`�F�b�N
+ *　手持ちに特定のポケモンがいるかをチェック
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -1018,15 +1018,15 @@ BOOL EvCmdTemotiPokeChk( VM_MACHINE * core )
 
 	*ret_wk = FALSE;
 	for(i=0;i<max;i++){
-		//�|�P�����ւ̃|�C���^�擾
+		//ポケモンへのポインタ取得
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
-		//�^�}�S�͏��O
+		//タマゴは除外
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
-			//�|�P�����i���o�[�擾
+			//ポケモンナンバー取得
 			poke_no = PokeParaGet( poke, ID_PARA_monsno, NULL );
 
-			if(num == poke_no){		//��v
+			if(num == poke_no){		//一致
 				*ret_wk = TRUE;
 				break;
 			}
@@ -1039,13 +1039,13 @@ BOOL EvCmdTemotiPokeChk( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *�@�莝���ɓ���̃|�P���������C���邩���`�F�b�N
+ *　手持ちに特定のポケモンが何匹いるかをチェック
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  *
- * �����̃����X�^�[�i���o�[��0��������A�莝���̒���2�C�ȏオ���邩���擾
+ * 引数のモンスターナンバーが0だったら、手持ちの中に2匹以上があるかを取得
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdTemotiPokeChkNum( VM_MACHINE * core )
@@ -1059,7 +1059,7 @@ BOOL EvCmdTemotiPokeChkNum( VM_MACHINE * core )
 	u16 poke_no;
 	u16 check_tbl[TEMOTI_POKEMAX];
 
-	//������
+	//初期化
 	for( i=0; i < TEMOTI_POKEMAX ;i++ ){
 		check_tbl[i] = 0;
 	}
@@ -1069,32 +1069,32 @@ BOOL EvCmdTemotiPokeChkNum( VM_MACHINE * core )
 
 	*ret_wk = 0;
 	for(i=0;i<max;i++){
-		//�|�P�����ւ̃|�C���^�擾
+		//ポケモンへのポインタ取得
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
-		//�^�}�S�͏��O
+		//タマゴは除外
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
-			//�|�P�����i���o�[�擾
+			//ポケモンナンバー取得
 			poke_no = PokeParaGet( poke, ID_PARA_monsno, NULL );
 
-			//����̃|�P�����i���o�[��0�̎�
+			//特定のポケモンナンバーが0の時
 			if( num == 0 ){
 
 				check_tbl[i] = poke_no;
 				
 				for( j=0; j < i; j++ ){
-					if( check_tbl[j] == check_tbl[i] ){		//��v
-						OS_Printf( "���������|�P����������I\n" );
+					if( check_tbl[j] == check_tbl[i] ){		//一致
+						OS_Printf( "複数同じポケモンがいる！\n" );
 						OS_Printf( "check_tbl[%d] = %d\n", j, check_tbl[j] );
 						OS_Printf( "check_tbl[%d] = %d\n", i, check_tbl[i] );
-						*ret_wk=1;;							//���������|�P����������I
+						*ret_wk=1;;							//複数同じポケモンがいる！
 						return 0;
 					}
 				}
 
 			}else{
-				if(num == poke_no){		//��v
-					OS_Printf( "��v����|�P����������I\n" );
+				if(num == poke_no){		//一致
+					OS_Printf( "一致するポケモンがいる！\n" );
 					OS_Printf( "monsno = %d\n", poke_no );
 					OS_Printf( "i = %d\n", i );
 					*ret_wk+=1;;
@@ -1109,9 +1109,9 @@ BOOL EvCmdTemotiPokeChkNum( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *�@�莝���ɓ���̃|�P���������邩���`�F�b�N(�ʒu��Ԃ� 0xff=������Ȃ�����)
+ *　手持ちに特定のポケモンがいるかをチェック(位置を返す 0xff=見つからなかった)
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -1131,15 +1131,15 @@ BOOL EvCmdTemotiPokeChkGetPos( VM_MACHINE * core )
 
 	*ret_wk = 0xff;
 	for(i=0;i<max;i++){
-		//�|�P�����ւ̃|�C���^�擾
+		//ポケモンへのポインタ取得
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
-		//�^�}�S�͏��O
+		//タマゴは除外
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
-			//�|�P�����i���o�[�擾
+			//ポケモンナンバー取得
 			poke_no = PokeParaGet( poke, ID_PARA_monsno, NULL );
 
-			if(num == poke_no){		//��v
+			if(num == poke_no){		//一致
 				*ret_wk = i;
 				break;
 			}
@@ -1152,7 +1152,7 @@ BOOL EvCmdTemotiPokeChkGetPos( VM_MACHINE * core )
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���{���v�̎擾���i�P�|�P�����j
+ *	「リボン」の取得数（１ポケモン）
  *	
  */
 //-----------------------------------------------------------------------------
@@ -1179,7 +1179,7 @@ BOOL EvCmdChkRibbonCount(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���{���v�̎擾���i�S�莝���|�P�������v�̎�ށj
+ *	「リボン」の取得数（全手持ちポケモン合計の種類）
  *	
  */
 //-----------------------------------------------------------------------------
@@ -1193,21 +1193,21 @@ BOOL EvCmdChkRibbonCountAll(VM_MACHINE * core)
 
 	max = PokeParty_GetPokeCount(SaveData_GetTemotiPokemon(core->fsys->savedata));
 
-	//poke party�擾
+	//poke party取得
 	temoti = SaveData_GetTemotiPokemon(core->fsys->savedata);
 
-	//�����Ă��郊�{���̎�ނ����߂�
+	//持っているリボンの種類を求める
 	for(i=0,cnt=0;i<RIBBON_MAX;i++){
 
-		//�莝���|�P������
+		//手持ちポケモン分
 		for(j=0;j<max;j++){
 
 			pp = PokeParty_GetMemberPointer( temoti, j );
 
-			//�^�}�S�͏��O
+			//タマゴは除外
 			if( PokeParaGet( pp, ID_PARA_tamago_flag, NULL ) == 0 ){
 
-				//���{�������Ă��邩
+				//リボン持っているか
 				if(PokeParaGet(pp, RIBBON_DataGet(i, RIBBON_PARA_POKEPARA ), NULL) != 0){
 					cnt++;
 					break;
@@ -1216,7 +1216,7 @@ BOOL EvCmdChkRibbonCountAll(VM_MACHINE * core)
 		}
 	}
 
-	//����ނ̃��{���������Ă��邩
+	//何種類のリボンを持っているか
 	*ret_wk = cnt;
 
 	return 0;
@@ -1224,8 +1224,8 @@ BOOL EvCmdChkRibbonCountAll(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���{���v�������Ă��邩
- *	0:�Ȃ��@1:����
+ *	「リボン」をもっているか
+ *	0:なし　1:あり
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdChkRibbon(VM_MACHINE * core)
@@ -1245,7 +1245,7 @@ BOOL EvCmdChkRibbon(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���{���v���Z�b�g
+ *	「リボン」をセット
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdSetRibbon(VM_MACHINE * core)
@@ -1259,7 +1259,7 @@ BOOL EvCmdSetRibbon(VM_MACHINE * core)
 
 	PokeParaPut(pp, RIBBON_DataGet(rno, RIBBON_PARA_POKEPARA ), &flag);
 
-	//TV�g�s�b�N�쐬�F���{���R���N�^�[
+	//TVトピック作成：リボンコレクター
 	TVTOPIC_Entry_Record_Ribbon(core->fsys->savedata, pp, 
 								RIBBON_DataGet(rno,RIBBON_PARA_POKEPARA) );
 	return 0;
@@ -1267,7 +1267,7 @@ BOOL EvCmdSetRibbon(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *�@�_���^�}�S�`�F�b�N�S�̔�(�莝���ɂ���:TRUE,���Ȃ�:FALSE)
+ *　ダメタマゴチェック全体版(手持ちにいる:TRUE,いない:FALSE)
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdDameTamagoChkAll(VM_MACHINE * core)
@@ -1280,15 +1280,15 @@ BOOL EvCmdDameTamagoChkAll(VM_MACHINE * core)
 
 	max = PokeParty_GetPokeCount(SaveData_GetTemotiPokemon(core->fsys->savedata));
 
-	//poke party�擾
+	//poke party取得
 	temoti = SaveData_GetTemotiPokemon(core->fsys->savedata);
 
-	//�d�l��A�_���^�}�S�@���@�^�}�S���_���^�}�S�t���O�������Ă���
+	//仕様上、ダメタマゴ　＝　タマゴ＆ダメタマゴフラグが立っている
 	for(i=0;i<RIBBON_MAX;i++){
 		for(j=0;j<max;j++){
 			pp = PokeParty_GetMemberPointer( temoti, j);
-			if( PokeParaGet( pp, ID_PARA_tamago_flag, NULL ) != 0 ){			//�^�}�S�`�F�b�N
-				if( PokeParaGet( pp, ID_PARA_fusei_tamago_flag, NULL ) != 0 ){	//�_���^�}�S�`�F�b�N
+			if( PokeParaGet( pp, ID_PARA_tamago_flag, NULL ) != 0 ){			//タマゴチェック
+				if( PokeParaGet( pp, ID_PARA_fusei_tamago_flag, NULL ) != 0 ){	//ダメタマゴチェック
 					*ret_wk = TRUE;
 					return 0;
 
@@ -1304,7 +1304,7 @@ BOOL EvCmdDameTamagoChkAll(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------
-//���g�p
+//未使用
 BOOL EvCmdGetTemotiPokeNum( VM_MACHINE * core )
 {
 
@@ -1313,10 +1313,10 @@ BOOL EvCmdGetTemotiPokeNum( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *�@�莝���Ɏw��̃|�P�����ŁAID_PARA_event_get_flag�������Ă��邩���`�F�b�N
- *	(�ʒu��Ԃ� 0xff=������Ȃ�����)
+ *　手持ちに指定のポケモンで、ID_PARA_event_get_flagが立っているかをチェック
+ *	(位置を返す 0xff=見つからなかった)
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -1337,19 +1337,19 @@ BOOL EvCmdEventGetTemotiPokeChkGetPos( VM_MACHINE * core )
 
 	for( i=0; i < max ;i++ ){
 
-		//�|�P�����ւ̃|�C���^�擾
+		//ポケモンへのポインタ取得
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i );
 
-		//�^�}�S�͏��O
+		//タマゴは除外
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
 
-			//�|�P�����i���o�[�擾
+			//ポケモンナンバー取得
 			poke_no = PokeParaGet( poke, ID_PARA_monsno, NULL );
 
-			//�w�肵���|�P�����ƈ�v������
+			//指定したポケモンと一致したら
 			if( num == poke_no ){
 
-				//�z�z�t���O�������Ă�����
+				//配布フラグが立っていたら
 				if( PokeParaGet(poke,ID_PARA_event_get_flag,NULL) == 1 ){
 					*ret_wk = i;
 					break;
@@ -1364,9 +1364,9 @@ BOOL EvCmdEventGetTemotiPokeChkGetPos( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *�@�莝���ɓ���̃A�C�e���������Ă���|�P���������邩�`�F�b�N
+ *　手持ちに特定のアイテムをもっているポケモンがいるかチェック
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -1387,10 +1387,10 @@ BOOL EvCmdTemotiItemChk( VM_MACHINE * core )
 
 	for( i=0; i < max ;i++ ){
 
-		//�|�P�����ւ̃|�C���^�擾
+		//ポケモンへのポインタ取得
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i );
 
-		//�A�C�e����v�`�F�b�N
+		//アイテム一致チェック
 		if( PokeParaGet(poke,ID_PARA_item,NULL) == item ){
 			*ret_wk = TRUE;
 			break;

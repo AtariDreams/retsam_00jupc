@@ -12,113 +12,113 @@
 
   $Log: dwc_main.h,v $
   Revision 1.31  2006/04/27 07:06:09  takayama
-  ingamesn��10��������25�����Ɋg���B
+  ingamesnを10文字から25文字に拡張。
 
   Revision 1.30  2006/01/23 04:50:43  arakit
-  ����p��ɍ��킹�ăR�����g���C��
+  統一用語に合わせてコメントを修正
 
   Revision 1.29  2006/01/17 07:29:17  arakit
-  �EDWC_SetConnectionClosedCallback()�̖߂�l��void����BOOL�ɕύX���A
-  �@����ϐ��m�ۑO�͉���������FALSE��Ԃ��悤�ɂ����B
+  ・DWC_SetConnectionClosedCallback()の戻り値をvoidからBOOLに変更し、
+  　制御変数確保前は何もせずにFALSEを返すようにした。
 
   Revision 1.28  2005/12/21 03:08:54  arakit
-  ���O�C���̍ۂɃT�[�o�ɃQ�[�����X�N���[���l�[����n����悤�ɂ����B
+  ログインの際にサーバにゲーム内スクリーンネームを渡せるようにした。
 
   Revision 1.27  2005/11/04 05:57:17  arakit
-  �֐������̃R�����g��ǉ������B
+  関数説明のコメントを追加した。
 
   Revision 1.26  2005/11/02 02:49:33  arakit
-  �t�@�C���̃C���N���[�h�֌W�𒲐������B
+  ファイルのインクルード関係を調整した。
 
   Revision 1.25  2005/10/28 09:10:20  arakit
-  �R�����g���C�������B
+  コメントを修正した。
 
   Revision 1.24  2005/10/26 09:06:35  arakit
   DWC_LoginAsync(), DWC_ConnectToAnybodyAsync(), DWC_ConnectToFriendsAsync(),
-  DWC_SetupGameServerAsync(), DWC_ConnectToGameServerAsync() �ɖ߂�l��^�����B
+  DWC_SetupGameServerAsync(), DWC_ConnectToGameServerAsync() に戻り値を与えた。
 
   Revision 1.23  2005/10/05 05:19:27  arakit
-  �EDWC_UpdateServersAsync()�̃R�[���o�b�N���ŁA�K��State��LOGIN�ɏ㏑�����Ă��܂�
-  �@�s����C�������B
+  ・DWC_UpdateServersAsync()のコールバック内で、必ずStateをLOGINに上書きしてしまう
+  　不具合を修正した。
 
   Revision 1.22  2005/09/26 05:06:08  arakit
-  �ESB�A�b�v�f�[�g�p��addFilter��������A���C�u���������ɃR�s�[���Ď��悤�ɕύX�����B
-  �EDWC_AddMatchKey*()��key���̕�������A���C�u���������ɃR�s�[���Ď��悤�ɕύX�����B
+  ・SBアップデート用のaddFilter文字列を、ライブラリ内部にコピーして持つように変更した。
+  ・DWC_AddMatchKey*()のkey名の文字列も、ライブラリ内部にコピーして持つように変更した。
 
   Revision 1.21  2005/09/24 12:56:30  arakit
-  �T�[�o�N���C�A���g�^�}�b�`���O���ɁA�}�b�`���O���������z�X�g�݂̂�L����AID�Ƃ���
-  �����悤�AAID��R�l�N�V�������ւ̃A�N�Z�X�֐����C�������B
+  サーバクライアント型マッチング時に、マッチング完了したホストのみを有効なAIDとして
+  扱うよう、AIDやコネクション数へのアクセス関数を修正した。
 
   Revision 1.20  2005/09/21 05:21:26  arakit
-  �E�L�����Z�����܂߂��N���[�Y�����̃V�X�e����傫���ύX�����B
-  �E�R�}���h���M�̃��g���C�A�^�C���A�E�g�������쐬�����B
-  �ENAT�l�S�V�G�[�V�������s���̃}�b�`���O��蒼��������ǉ������B
-  �Egt2�̃\�t�g�N���[�Y��S�ăn�[�h�N���[�Y�ɒu���������B
-  �@����ɔ���DWCi_CloseConnectionsAsync()���g��Ȃ��悤�ɂ����B
-  �i���j�T�[�o�N���C�A���g�^�}�b�`���O�͐��퓮�삵�Ȃ�
+  ・キャンセルを含めたクローズ処理のシステムを大きく変更した。
+  ・コマンド送信のリトライ、タイムアウト処理を作成した。
+  ・NATネゴシエーション失敗時のマッチングやり直し処理を追加した。
+  ・gt2のソフトクローズを全てハードクローズに置き換えた。
+  　それに伴いDWCi_CloseConnectionsAsync()を使わないようにした。
+  （注）サーバクライアント型マッチングは正常動作しない
 
   Revision 1.19  2005/09/15 00:22:06  arakit
-  �EDWC_CloseConnectionsAsync()�ɖ߂�l��ǉ������B
-  �E�R�l�N�V���������ؒf�֐�DWC_CloseConnectionHard(u8 aid)��
-  �@int  DWC_CloseConnectionHardBitmap(u8 aid) ��ǉ������B
+  ・DWC_CloseConnectionsAsync()に戻り値を追加した。
+  ・コネクション強制切断関数DWC_CloseConnectionHard(u8 aid)と
+  　int  DWC_CloseConnectionHardBitmap(u8 aid) を追加した。
 
   Revision 1.18  2005/09/13 11:10:56  arakit
-  �E���ɃN���[�Y���ꂽaid�ɑ΂��đ��M���悤�Ƃ�����f�[�^�A�N�Z�X��O��
-  �@�~�܂��Ă��܂��s����C�������B
-  �EAID�r�b�g�}�b�v�擾�֐�   u32 DWC_GetAIDBitmap( void )�A
-  �@AID�w��Reliable���M�֐�   u32 DWC_SendReliableBitmap( u32 bitmap, const void* buffer, int size )�A
-  �@AID�w��Unreliable���M�֐� u32 DWC_SendUnreliableBitmap( u32 bitmap, const void* buffer, int size )
-  �@��p�ӂ����B
+  ・既にクローズされたaidに対して送信しようとしたらデータアクセス例外で
+  　止まってしまう不具合を修正した。
+  ・AIDビットマップ取得関数   u32 DWC_GetAIDBitmap( void )、
+  　AID指定Reliable送信関数   u32 DWC_SendReliableBitmap( u32 bitmap, const void* buffer, int size )、
+  　AID指定Unreliable送信関数 u32 DWC_SendUnreliableBitmap( u32 bitmap, const void* buffer, int size )
+  　を用意した。
 
   Revision 1.17  2005/09/09 10:43:59  arakit
-  SB��Persistent��DNS�G���[���N�������ۂɃ��g���C����悤�ɂ����B
+  SBとPersistentでDNSエラーが起こった際にリトライするようにした。
 
   Revision 1.16  2005/09/09 09:54:30  arakit
-  �o�[�W�����Ⴂ�̃��C�u�������m�Ń}�b�`���O���Ȃ��悤�ɕύX�����B
+  バージョン違いのライブラリ同士でマッチングしないように変更した。
 
   Revision 1.15  2005/09/08 08:50:24  arakit
-  �E���O�C������gt2Socket��QR2���N������悤�ɕύX
-  �Eaid���d�����Ĕ��s�����s����C��
+  ・ログイン時にgt2SocketとQR2を起動するように変更
+  ・aidが重複して発行される不具合を修正
 
   Revision 1.14  2005/09/05 11:44:16  arakit
-  �EDWCConnectionClosedCallback�̈���isServer�́A�������T�[�o�N���C�A���g�^
-  �@�}�b�`���O�̃N���C�A���g�ŁA�T�[�o���N���[�Y�������̂�TRUE��Ԃ��悤��
-  �@���Ă������A����킵���̂ŁA�������T�[�o�Ŏ������N���[�Y���Ă�TRUE��
-  �@�Ԃ��悤�ɕύX�����B
-  �E�T�[�o�N���C�A���g�^�}�b�`���O�ŁA�N���C�A���g�����Ȃ��Ȃ�������
-  �@�T�[�o�̏����ɕs����������̂ŁA�C�������B
-  �E�T�[�o�N���C�A���g�^�ŁA�N���[�Y�A�L�����Z�����qr2_shutdown()���Ă΂��
-  �@���Ȃ������̂��C�������B
+  ・DWCConnectionClosedCallbackの引数isServerは、自分がサーバクライアント型
+  　マッチングのクライアントで、サーバがクローズした時のみTRUEを返すように
+  　していたが、紛らわしいので、自分がサーバで自分がクローズしてもTRUEを
+  　返すように変更した。
+  ・サーバクライアント型マッチングで、クライアントがいなくなった時の
+  　サーバの処理に不具合があったので、修正した。
+  ・サーバクライアント型で、クローズ、キャンセル後にqr2_shutdown()が呼ばれて
+  　いなかったのを修正した。
 
   Revision 1.13  2005/09/03 13:03:53  arakit
-  GameSpy�v���t�@�C��ID�������ɂƂ�悤�ɂȂ��Ă����R�[���o�b�N�A
+  GameSpyプロファイルIDを引数にとるようになっていたコールバック、
   DWCMatchedSCCallback, DWCNewClientCallback, DWCConnectionClosedCallback
-  �ɂ��āA�F�B���X�g�C���f�b�N�X��Ԃ��悤�ɕύX�����B
+  について、友達リストインデックスを返すように変更した。
 
   Revision 1.12  2005/08/31 10:29:46  arakit
-  DWC����\���̂̌^����DWC_FriendsMatchControl�ɕύX�����B
+  DWC制御構造体の型名をDWC_FriendsMatchControlに変更した。
 
   Revision 1.11  2005/08/31 06:04:52  arakit
-  �\�P�b�g�G���[���擾����֐�DWC_GetLastSocketError()��ǉ������B
+  ソケットエラーを取得する関数DWC_GetLastSocketError()を追加した。
 
   Revision 1.10  2005/08/31 02:10:35  arakit
-  �F�B�w��}�b�`���O�ŁA�F�B�̗F�B�������邩�ǂ�����I���ł���悤�ɂ����B
+  友達指定マッチングで、友達の友達を許可するかどうかを選択できるようにした。
 
   Revision 1.9  2005/08/26 08:15:23  arakit
-  �EASSERT�ƃ��W���[������ϐ��̃`�F�b�N�𐮗������B
-  �E�O���֐�DWC_ShutdownFriendsMatch()�̈������Ƃ�Ȃ��悤�ɕύX�����B
-  �܂��A���֐�����e���W���[���̐���ϐ���NULL�N���A����悤�ɂ����B
-  �E�G���[�����֐���ύX���A�G���[�Z�b�g�A�G���[�`�F�b�N��K�v�ȉӏ��ɓ��ꂽ�B
+  ・ASSERTとモジュール制御変数のチェックを整理した。
+  ・外部関数DWC_ShutdownFriendsMatch()の引数をとらないように変更した。
+  また、同関数から各モジュールの制御変数をNULLクリアするようにした。
+  ・エラー処理関数を変更し、エラーセット、エラーチェックを必要な箇所に入れた。
 
   Revision 1.8  2005/08/23 13:53:46  arakit
-  �����_���֐���MATH_Rand*���g���悤�ɂ����B
+  ランダム関数にMATH_Rand*を使うようにした。
 
   Revision 1.7  2005/08/20 07:01:20  sasakit
-  �w�b�_�C���N���[�h�K�[�h�̏����𓝈ꂵ���B
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
-  �w�b�_��Copyright�������B
-  �\���̖̂��O��Ԃ��ł��邾�����[���ɂ����Â����B
-  util_wifiidtool.h��dwc_backup.h�̊֌W���኱�C���B
+  ヘッダインクルードガードの書式を統一した。
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
+  ヘッダにCopyrightをつけた。
+  構造体の名前空間をできるだけルールにちかづけた。
+  util_wifiidtool.hとdwc_backup.hの関係を若干修正。
 
 
   $NoKeywords: $
@@ -133,35 +133,35 @@ extern "C" {
 //----------------------------------------------------------------------------
 // define
 //----------------------------------------------------------------------------
-// �o�^�ς݃o�f�B�ւ̃o�f�B�o�^�v���G���[�𖳎����邽�߂̃X�C�b�`�B
+// 登録済みバディへのバディ登録要求エラーを無視するためのスイッチ。
 #define DWC_IGNORE_GP_ERROR_ALREADY_BUDDY
     
-// GP�o�f�B���b�Z�[�W�̃R�}���h�萔
-//#define DWC_GP_COMMAND_STRING       "DWC_GPCM"  // GP���b�Z�[�W�R�}���h���ʕ�����
-#define DWC_GP_COMMAND_STRING       "GPCM"  // GP���b�Z�[�W�R�}���h���ʕ�����
-#define DWC_GP_COMMAND_MATCH_STRING "MAT"   // �}�b�`���C�N�p���b�Z�[�W���ʕ�����
+// GPバディメッセージのコマンド定数
+//#define DWC_GP_COMMAND_STRING       "DWC_GPCM"  // GPメッセージコマンド判別文字列
+#define DWC_GP_COMMAND_STRING       "GPCM"  // GPメッセージコマンド判別文字列
+#define DWC_GP_COMMAND_MATCH_STRING "MAT"   // マッチメイク用メッセージ判別文字列
 
-#define DWC_DNS_ERROR_RETRY_MAX 5  // DNS�G���[�̃��g���C�����
+#define DWC_DNS_ERROR_RETRY_MAX 5  // DNSエラーのリトライ上限回数
 
-// �_�~�[�̃����[�g�F�؏������s�����߂̃X�C�b�`
+// ダミーのリモート認証処理を行うためのスイッチ
 //#define DWC_USE_DUMMY_REMOTE_AUTH
 
-// �v���C���[���i�Q�[�����X�N���[���l�[���j�̍ő咷�i���C�h����25�����{"\0\0"�j
+// プレイヤー名（ゲーム内スクリーンネーム）の最大長（ワイド文字25文字＋"\0\0"）
 #define DWC_MAX_PLAYER_NAME 26
 
 
 //----------------------------------------------------------------------------
 // enum
 //----------------------------------------------------------------------------
-// DWC�l�b�g���[�N��ԗ񋓎q
+// DWCネットワーク状態列挙子
 typedef enum {
-    DWC_STATE_INIT = 0,         // �������
-    DWC_STATE_AVAILABLE_CHECK,  // �Q�[���̗��p�\�󋵂��`�F�b�N��
-    DWC_STATE_LOGIN,            // ���O�C��������
-    DWC_STATE_ONLINE,           // ���O�C��������I�����C�����
-    DWC_STATE_UPDATE_SERVERS,   // �F�B���X�g����������
-    DWC_STATE_MATCHING,         // �}�b�`���C�N������
-    DWC_STATE_CONNECTED,        // �}�b�`���C�N������A���b�V���^�l�b�g���[�N�\�z�ςݏ��
+    DWC_STATE_INIT = 0,         // 初期状態
+    DWC_STATE_AVAILABLE_CHECK,  // ゲームの利用可能状況をチェック中
+    DWC_STATE_LOGIN,            // ログイン処理中
+    DWC_STATE_ONLINE,           // ログイン完了後オンライン状態
+    DWC_STATE_UPDATE_SERVERS,   // 友達リスト同期処理中
+    DWC_STATE_MATCHING,         // マッチメイク処理中
+    DWC_STATE_CONNECTED,        // マッチメイク完了後、メッシュ型ネットワーク構築済み状態
     DWC_STATE_NUM
 } DWCState;
 
@@ -170,19 +170,19 @@ typedef enum {
 // typedef - function
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  �R�l�N�V�����N���[�Y�R�[���o�b�N�^
-  �����@�Ferror    DWC�G���[���
-          isLocal  TRUE:�������N���[�Y�����AFALSE:���̒N�����N���[�Y�����B
-                   �}�b�`���C�N���ɉ����̂Ȃ��z�X�g��ؒf���鎞��TRUE�ɂȂ�B
-          isServer TRUE: �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o���N���[�Y�����B
-                         �������T�[�o��isLoacal = TRUE �̎���TRUE�ɂȂ�B
-                   FALSE:����ȊO�B�T�[�o�N���C�A���g�}�b�`���C�N�ȊO�ł�
-                         �K��FALSE�ƂȂ�B
-          aid      �N���[�Y�����v���C���[��aid
-          index    �N���[�Y�����v���C���[�̗F�B���X�g�C���f�b�N�X�B
-                   �N���[�Y�����v���C���[���F�B�łȂ����-1�ƂȂ�B
-          param    �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
+  コネクションクローズコールバック型
+  引数　：error    DWCエラー種別
+          isLocal  TRUE:自分がクローズした、FALSE:他の誰かがクローズした。
+                   マッチメイク中に応答のないホストを切断する時もTRUEになる。
+          isServer TRUE: サーバクライアントマッチメイクのサーバがクローズした。
+                         自分がサーバでisLoacal = TRUE の時もTRUEになる。
+                   FALSE:それ以外。サーバクライアントマッチメイク以外では
+                         必ずFALSEとなる。
+          aid      クローズしたプレイヤーのaid
+          index    クローズしたプレイヤーの友達リストインデックス。
+                   クローズしたプレイヤーが友達でなければ-1となる。
+          param    コールバック用パラメータ
+  戻り値：なし
  *---------------------------------------------------------------------------*/
 typedef void (*DWCConnectionClosedCallback)(DWCError error, BOOL isLocal, BOOL isServer, u8 aid, int index, void* param);
 
@@ -190,50 +190,50 @@ typedef void (*DWCConnectionClosedCallback)(DWCError error, BOOL isLocal, BOOL i
 //----------------------------------------------------------------------------
 // struct
 //----------------------------------------------------------------------------
-// FriendsMatch����\����
+// FriendsMatch制御構造体
 typedef struct DWCstControl
 {
-    GT2Socket gt2Socket;   // ���z�X�g��GT2�\�P�b�g�\���̂ւ̃|�C���^
-    GT2ConnectionCallbacks gt2Callbacks;  // gt2�R�l�N�V�����R�[���o�b�N�W
-    int  gt2SendBufSize;   // GT2�\�P�b�g�̑��M�o�b�t�@�T�C�Y
-    int  gt2RecvBufSize;   // GT2�\�P�b�g�̎�M�o�b�t�@�T�C�Y
+    GT2Socket gt2Socket;   // 自ホストのGT2ソケット構造体へのポインタ
+    GT2ConnectionCallbacks gt2Callbacks;  // gt2コネクションコールバック集
+    int  gt2SendBufSize;   // GT2ソケットの送信バッファサイズ
+    int  gt2RecvBufSize;   // GT2ソケットの受信バッファサイズ
 
-    GPConnection gpObj;    // gp�R�l�N�V�����\���̂ւ̃|�C���^
-    DWCUserData* userdata; // DWCUserData�\���̂ւ̃|�C���^
+    GPConnection gpObj;    // gpコネクション構造体へのポインタ
+    DWCUserData* userdata; // DWCUserData構造体へのポインタ
 
-    DWCState state;        // �l�b�g���[�N���
-    DWCState lastState;    // �O��̃l�b�g���[�N���
-    u8   aid;              // ������AID�i���b�V���^�l�b�g���[�N���ł̌ŗLID�j
-    u8   ownCloseFlag;     // TRUE:�Q�[�����������ŃN���[�Y�����AFALSE:����ȊO�̃N���[�Y
-    u16  playerName[DWC_MAX_PLAYER_NAME];  // ���̃��[�U���Q�Ƃ��鎩���̃v���C���[��
-    int  profileID;        // ���[�U�v���t�@�C��ID
-    const char* gameName;  // GameSpy����^������Q�[�����ւ̃|�C���^
-    const char* secretKey; // GameSpy����^������V�[�N���b�g�L�[�ւ̃|�C���^
+    DWCState state;        // ネットワーク状態
+    DWCState lastState;    // 前回のネットワーク状態
+    u8   aid;              // 自分のAID（メッシュ型ネットワーク内での固有ID）
+    u8   ownCloseFlag;     // TRUE:ゲーム側が自分でクローズした、FALSE:それ以外のクローズ
+    u16  playerName[DWC_MAX_PLAYER_NAME];  // 他のユーザも参照する自分のプレイヤー名
+    int  profileID;        // ユーザプロファイルID
+    const char* gameName;  // GameSpyから与えられるゲーム名へのポインタ
+    const char* secretKey; // GameSpyから与えられるシークレットキーへのポインタ
 
-    DWCLoginCallback         loginCallback;          // ���O�C�������R�[���o�b�N
-    void *loginParam;          // ��L�R�[���o�b�N�p�p�����[�^
-    DWCUpdateServersCallback updateServersCallback;  // �F�B���X�g�������������R�[���o�b�N
-    void* updateServersParam;  // ��L�R�[���o�b�N�p�p�����[�^
-    DWCMatchedCallback       matchedCallback;        // �s�A�}�b�`���C�N�����R�[���o�b�N
-    void* matchedParam;        // ��L�R�[���o�b�N�p�p�����[�^
-    DWCMatchedSCCallback     matchedSCCallback;      // �T�[�o�N���C�A���g�}�b�`���C�N�����R�[���o�b�N
-    void* matchedSCParam;      // ��L�R�[���o�b�N�p�p�����[�^
-    DWCConnectionClosedCallback closedCallback;      // �R�l�N�V�����N���[�Y�R�[���o�b�N
-    void* closedParam;         // ��L�R�[���o�b�N�p�p�����[�^
+    DWCLoginCallback         loginCallback;          // ログイン完了コールバック
+    void *loginParam;          // 上記コールバック用パラメータ
+    DWCUpdateServersCallback updateServersCallback;  // 友達リスト同期処理完了コールバック
+    void* updateServersParam;  // 上記コールバック用パラメータ
+    DWCMatchedCallback       matchedCallback;        // ピアマッチメイク完了コールバック
+    void* matchedParam;        // 上記コールバック用パラメータ
+    DWCMatchedSCCallback     matchedSCCallback;      // サーバクライアントマッチメイク完了コールバック
+    void* matchedSCParam;      // 上記コールバック用パラメータ
+    DWCConnectionClosedCallback closedCallback;      // コネクションクローズコールバック
+    void* closedParam;         // 上記コールバック用パラメータ
 
-    DWCLoginControl logcnt;       // ���O�C������I�u�W�F�N�g
-    DWCFriendControl friendcnt;   // �F�B�Ǘ��I�u�W�F�N�g
-    DWCMatchControl matchcnt;     // �}�b�`���C�N����I�u�W�F�N�g
-    DWCTransportInfo transinfo;   // �g�����X�|�[�g����I�u�W�F�N�g
+    DWCLoginControl logcnt;       // ログイン制御オブジェクト
+    DWCFriendControl friendcnt;   // 友達管理オブジェクト
+    DWCMatchControl matchcnt;     // マッチメイク制御オブジェクト
+    DWCTransportInfo transinfo;   // トランスポート制御オブジェクト
 } DWCFriendsMatchControl;
 
-// GT2�R�l�N�V�������\����
+// GT2コネクション情報構造体
 typedef struct DWCstConnectionInfo
 {
-    u8  index;    // �i�[����Ă���R�l�N�V�������X�g�̃C���f�b�N�X
-    u8  aid;      // �z�X�g�ŗLID
-    u16 reserve;  // �\��
-    void* param;  // ���[�U�f�[�^
+    u8  index;    // 格納されているコネクションリストのインデックス
+    u8  aid;      // ホスト固有ID
+    u16 reserve;  // 予約
+    void* param;  // ユーザデータ
 } DWCConnectionInfo;
 
 
@@ -242,18 +242,18 @@ typedef struct DWCstConnectionInfo
 //----------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
-  FriendsMatch���C�u�����������֐�
-  �����@�Fdwccnt        FriendsMatch����I�u�W�F�N�g�ւ̃|�C���^
-          userdata      ���[�U�f�[�^�I�u�W�F�N�g�ւ̃|�C���^
-          productID     GameSpy����^������v���_�N�gID
-          gameName      GameSpy����^����ꂽ�Q�[�����iNULL�I�[�K�v�j
-          secretKey     GameSpy����^����ꂽ�V�[�N���b�g�L�[�iNULL�I�[�K�v�j
-          sendBufSize   DWC_Transport���g�����M�o�b�t�@�T�C�Y�B0�Ȃ�f�t�H���g8KByte���g�p����B
-          recvBufSize   DWC_Transport���g����M�o�b�t�@�T�C�Y�B0�Ȃ�f�t�H���g8KByte���g�p����B
-          friendList    �F�B���X�g�i�Q�[���Ŏg�p���Ȃ��ꍇ��NULL�ł��ǂ��j
-          friendListLen �F�B���X�g�̍ő咷�i�v�f���j
-  �߂�l�F�Ȃ�
-  �p�r�@�FFriendsMatch���C�u����������������
+  FriendsMatchライブラリ初期化関数
+  引数　：dwccnt        FriendsMatch制御オブジェクトへのポインタ
+          userdata      ユーザデータオブジェクトへのポインタ
+          productID     GameSpyから与えられるプロダクトID
+          gameName      GameSpyから与えられたゲーム名（NULL終端必要）
+          secretKey     GameSpyから与えられたシークレットキー（NULL終端必要）
+          sendBufSize   DWC_Transportが使う送信バッファサイズ。0ならデフォルト8KByteを使用する。
+          recvBufSize   DWC_Transportが使う受信バッファサイズ。0ならデフォルト8KByteを使用する。
+          friendList    友達リスト（ゲームで使用しない場合はNULLでも良い）
+          friendListLen 友達リストの最大長（要素数）
+  戻り値：なし
+  用途　：FriendsMatchライブラリを初期化する
  *---------------------------------------------------------------------------*/
 extern void DWC_InitFriendsMatch(DWCFriendsMatchControl* dwccnt,
                                  DWCUserData* userdata,
@@ -266,32 +266,32 @@ extern void DWC_InitFriendsMatch(DWCFriendsMatchControl* dwccnt,
                                  int friendListLen);
 
 /*---------------------------------------------------------------------------*
-  FriendsMatch���C�u�����I���֐�
-  �����@�F�Ȃ�
-  �߂�l�F�Ȃ�
-  �p�r�@�FFriendsMatch���C�u�������I�����AGameSpySDK�̃q�[�v�̈���J������
+  FriendsMatchライブラリ終了関数
+  引数　：なし
+  戻り値：なし
+  用途　：FriendsMatchライブラリを終了し、GameSpySDKのヒープ領域を開放する
  *---------------------------------------------------------------------------*/
 extern void DWC_ShutdownFriendsMatch(void);
 
 
 /*---------------------------------------------------------------------------*
-  FriendsMatch���C�u�����ʐM�����X�V�֐�
-  �����@�F�Ȃ�
-  �߂�l�F�Ȃ�
-  �p�r�@�F���Q�[���t���[���Ăяo���AFriendsMatch���C�u�����̒ʐM�������X�V����
+  FriendsMatchライブラリ通信処理更新関数
+  引数　：なし
+  戻り値：なし
+  用途　：毎ゲームフレーム呼び出し、FriendsMatchライブラリの通信処理を更新する
  *---------------------------------------------------------------------------*/
 extern void DWC_ProcessFriendsMatch(void);
 
 
 /*---------------------------------------------------------------------------*
-  Wi-Fi�R�l�N�V�������O�C���֐�
-  �����@�Fingamesn �Q�[�����X�N���[���l�[��
-          reserved �ߋ��̎d�l�BNULL��n���B
-          callback ���O�C�������ʒm�p�R�[���o�b�N�֐�
-          param    �R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B���������s�ŃR�[���o�b�N���Ԃ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F�Q�[�������p�\�ł��邩���ׁA�����[�g�F�؁AGP�T�[�o�ւ̐ڑ����s��
+  Wi-Fiコネクションログイン関数
+  引数　：ingamesn ゲーム内スクリーンネーム
+          reserved 過去の仕様。NULLを渡す。
+          callback ログイン完了通知用コールバック関数
+          param    コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。成功か失敗でコールバックが返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：ゲームが利用可能であるか調べ、リモート認証、GPサーバへの接続を行う
  *---------------------------------------------------------------------------*/
 // [arakit] main 051025
 extern BOOL DWC_LoginAsync(const u16*  ingamesn,
@@ -301,19 +301,19 @@ extern BOOL DWC_LoginAsync(const u16*  ingamesn,
 
 
 /*---------------------------------------------------------------------------*
-  �F�B���X�g���������֐�
-  �����@�FplayerName     ���̃��[�U���Q�Ƃ��鎩���̃v���C���[��
-                         ���ߋ��̎d�l�ł��B���݂̓Z�b�g���ꂽ�l�𖳎����Ă��܂��B
-          updateCallback �F�B���X�g�������������R�[���o�b�N
-          updateParam    ��L�R�[���o�b�N�p�p�����[�^
-          statusCallback �F�B��ԕω��ʒm�R�[���o�b�N
-          statusParam    ��L�R�[���o�b�N�p�p�����[�^
-          deleteCallback �F�B���X�g�폜�R�[���o�b�N
-          deleteParam    ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B���������s�ŃR�[���o�b�N���Ԃ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F���O�C��������AGP�T�[�o��̗F�B���X�g�i�o�f�B���X�g�j��
-          ���[�J���̗F�B���X�g�̓����������s��
+  友達リスト同期処理関数
+  引数　：playerName     他のユーザも参照する自分のプレイヤー名
+                         →過去の仕様です。現在はセットされた値を無視しています。
+          updateCallback 友達リスト同期処理完了コールバック
+          updateParam    上記コールバック用パラメータ
+          statusCallback 友達状態変化通知コールバック
+          statusParam    上記コールバック用パラメータ
+          deleteCallback 友達リスト削除コールバック
+          deleteParam    上記コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。成功か失敗でコールバックが返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：ログイン完了後、GPサーバ上の友達リスト（バディリスト）と
+          ローカルの友達リストの同期処理を行う
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_UpdateServersAsync(const char* playerName,
                                    DWCUpdateServersCallback updateCallback,
@@ -325,21 +325,21 @@ extern BOOL DWC_UpdateServersAsync(const char* playerName,
 
 
 /*---------------------------------------------------------------------------*
-  �F�B���w��s�A�}�b�`���C�N�J�n�֐�
-  �����@�FnumEntry        �v������l�b�g���[�N�\���l���i�������܂ށj
-          addFilter       �Q�[���Œǉ��������}�b�`���C�N����������B
-                          ������ǉ����Ȃ��ꍇ��NULL��n���B
-                          �����̓X�^���_�[�h��SQL�̏����ŏ������Ƃ��ł��܂��B
-                          ���̂Ƃ���ݒ�ł��镶���񒷂͍ő�127�����ŁA
-                          �f�o�b�O�r���h�ł͕������I�[�o�`�F�b�N�����Ă��܂��B
-                          ������̓R�s�[���ă��C�u�������ŕێ����܂��B
-          matchedCallback �}�b�`���C�N�����R�[���o�b�N
-          matehedParam    ��L�R�[���o�b�N�p�p�����[�^
-          evalCallback    �v���C���[�]���R�[���o�b�N
-          evalParam       ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B�}�b�`���C�N�̌��ʂ��R�[���o�b�N�ŕԂ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F�F�B���w�肹���ɁA�l���w��Ń��b�V���^�l�b�g���[�N���쐬����
+  友達無指定ピアマッチメイク開始関数
+  引数　：numEntry        要求するネットワーク構成人数（自分を含む）
+          addFilter       ゲームで追加したいマッチメイク条件文字列。
+                          条件を追加しない場合はNULLを渡す。
+                          条件はスタンダードなSQLの書式で書くことができます。
+                          今のところ設定できる文字列長は最大127文字で、
+                          デバッグビルドでは文字数オーバチェックをしています。
+                          文字列はコピーしてライブラリ内で保持します。
+          matchedCallback マッチメイク完了コールバック
+          matehedParam    上記コールバック用パラメータ
+          evalCallback    プレイヤー評価コールバック
+          evalParam       上記コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。マッチメイクの結果がコールバックで返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：友達を指定せずに、人数指定でメッシュ型ネットワークを作成する
  *---------------------------------------------------------------------------*/
 // [arakit] main 051025
 extern BOOL DWC_ConnectToAnybodyAsync(u8  numEntry,
@@ -351,19 +351,19 @@ extern BOOL DWC_ConnectToAnybodyAsync(u8  numEntry,
 
 
 /*---------------------------------------------------------------------------*
-  �F�B�w��s�A�}�b�`���C�N�J�n�֐�
-  �����@�FfriendIdxList    �ڑ��v���F�B�C���f�b�N�X���X�g�B
-                           NULL�Ȃ�F�B���X�g�S�Ă�ڑ��v���ΏۂƂ���B
-          friendIdxListLen �ڑ��v���F�B�C���f�b�N�X���X�g��
-          numEntry         �v������l�b�g���[�N�\���l���i�������܂ށj
-          distantFriend    TRUE:�F�B�̗F�B�Ƃ̐ڑ��������AFALSE:�����Ȃ�
-          matchedCallback  �}�b�`���C�N�����R�[���o�b�N
-          matchedParam     ��L�R�[���o�b�N�p�p�����[�^
-          evalCallback     �v���C���[�]���R�[���o�b�N
-          evalParam        ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B�}�b�`���C�N�̌��ʂ��R�[���o�b�N�ŕԂ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F�F�B���w�肵�Đڑ����A���b�V���^�l�b�g���[�N���쐬����
+  友達指定ピアマッチメイク開始関数
+  引数　：friendIdxList    接続要求友達インデックスリスト。
+                           NULLなら友達リスト全てを接続要求対象とする。
+          friendIdxListLen 接続要求友達インデックスリスト長
+          numEntry         要求するネットワーク構成人数（自分を含む）
+          distantFriend    TRUE:友達の友達との接続を許す、FALSE:許さない
+          matchedCallback  マッチメイク完了コールバック
+          matchedParam     上記コールバック用パラメータ
+          evalCallback     プレイヤー評価コールバック
+          evalParam        上記コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。マッチメイクの結果がコールバックで返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：友達を指定して接続し、メッシュ型ネットワークを作成する
  *---------------------------------------------------------------------------*/
 // [arakit] main 051025
 extern BOOL DWC_ConnectToFriendsAsync(const u8 friendIdxList[],
@@ -377,16 +377,16 @@ extern BOOL DWC_ConnectToFriendsAsync(const u8 friendIdxList[],
 
 
 /*---------------------------------------------------------------------------*
-  �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�N���֐�
-  �����@�FmaxEntry          �ő�ڑ��l���i�������܂ށj
-          matchedCallback   �ڑ������R�[���o�b�N�B�P�l�ڑ����邲�ƂɌĂ΂��B
-          matchedParam      ��L�R�[���o�b�N�p�p�����[�^
-          newClientCallback �V�K�ڑ��N���C�A���g�ʒm�R�[���o�b�N
-          newClientParam    ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B�}�b�`���C�N�̌��ʂ��R�[���o�b�N�ŕԂ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F�T�[�o�𗧂ĂăN���C�A���g����̗v��������΁A�R�l�N�V������
-          �ڑ��E�ؒf�������s���B
+  サーバクライアントマッチメイクのサーバ起動関数
+  引数　：maxEntry          最大接続人数（自分を含む）
+          matchedCallback   接続完了コールバック。１人接続するごとに呼ばれる。
+          matchedParam      上記コールバック用パラメータ
+          newClientCallback 新規接続クライアント通知コールバック
+          newClientParam    上記コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。マッチメイクの結果がコールバックで返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：サーバを立ててクライアントからの要求があれば、コネクションの
+          接続・切断処理を行う。
  *---------------------------------------------------------------------------*/
 // [arakit] main 051025 051027
 extern BOOL DWC_SetupGameServer(u8  maxEntry,
@@ -395,23 +395,23 @@ extern BOOL DWC_SetupGameServer(u8  maxEntry,
                                 DWCNewClientCallback newClientCallback,
                                 void* newClientParam);
 
-// ���e�𐳂����\���֐����ɕύX���܂������A����DWC_SetupGameServersAsync()���g���܂�
+// 内容を正しく表す関数名に変更しましたが、旧名DWC_SetupGameServersAsync()も使えます
 #define DWC_SetupGameServerAsync DWC_SetupGameServer
 // [arakit] main 051027
 
 
 /*---------------------------------------------------------------------------*
-  �T�[�o�N���C�A���g�}�b�`���C�N�̃N���C�A���g�N���֐�
-  �����@�FserverIndex       �ڑ���T�[�o�̗F�B���X�g�C���f�b�N�X
-          matchedCallback   �ڑ������R�[���o�b�N�B�P�l�ڑ����邲�ƂɌĂ΂��B
-          matchedParam      ��L�R�[���o�b�N�p�p�����[�^
-          newClientCallback �V�K�ڑ��N���C�A���g�ʒm�R�[���o�b�N
-          newClientParam    ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�֐��Ăяo�������B�}�b�`���C�N�̌��ʂ��R�[���o�b�N�ŕԂ��Ă���B
-          FALSE:�{�֐����Ă�ŗǂ���Ԃł͂Ȃ��B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�F�F�B���X�g�̃C���f�b�N�X�Őڑ�����T�[�o���w�肵�A�����֐ڑ�����B
-          �܂��A�T�[�o�֐V���ɐڑ������N���C�A���g��
-          ����΁A���̃N���C�A���g�Ƃ̐ڑ��������s���B
+  サーバクライアントマッチメイクのクライアント起動関数
+  引数　：serverIndex       接続先サーバの友達リストインデックス
+          matchedCallback   接続完了コールバック。１人接続するごとに呼ばれる。
+          matchedParam      上記コールバック用パラメータ
+          newClientCallback 新規接続クライアント通知コールバック
+          newClientParam    上記コールバック用パラメータ
+  戻り値：TRUE :関数呼び出し完了。マッチメイクの結果がコールバックで返ってくる。
+          FALSE:本関数を呼んで良い状態ではない。コールバックは返ってこない。
+  用途　：友達リストのインデックスで接続するサーバを指定し、そこへ接続する。
+          また、サーバへ新たに接続したクライアントが
+          あれば、そのクライアントとの接続処理を行う。
  *---------------------------------------------------------------------------*/
 // [arakit] main 051025
 extern BOOL DWC_ConnectToGameServerAsync(int serverIndex,
@@ -422,156 +422,156 @@ extern BOOL DWC_ConnectToGameServerAsync(int serverIndex,
 
 
 /*---------------------------------------------------------------------------*
-  �R�l�N�V�����N���[�Y�R�[���o�b�N�ݒ�֐�
-  �����@�Fcallback �R�l�N�V�����P���N���[�Y�����x�ɌĂяo�����R�[���o�b�N
-          param    ��L�R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�o�^����
-          FALSE:FriendsMatch���C�u�����񓮍쒆�œo�^���s
-  �p�r�@�F�R�l�N�V�����N���[�Y�R�[���o�b�N��ݒ肷��
+  コネクションクローズコールバック設定関数
+  引数　：callback コネクション１つをクローズされる度に呼び出されるコールバック
+          param    上記コールバック用パラメータ
+  戻り値：TRUE :登録成功
+          FALSE:FriendsMatchライブラリ非動作中で登録失敗
+  用途　：コネクションクローズコールバックを設定する
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_SetConnectionClosedCallback(DWCConnectionClosedCallback callback, void* param);
 
 
 /*---------------------------------------------------------------------------*
-  �S�R�l�N�V���������N���[�Y�֐�
-  �����@�F�Ȃ�
-  �߂�l�F0�ȏ�Ȃ琬���A���̐��Ȃ玸�s�B
-          0 :�N���[�Y���s�B
-          1 :�ڑ��z�X�g��0�Ȃ̂ŁA�N���[�Y�����͍s�������A�R�[���o�b�N�͌Ă΂�Ȃ��B
-             �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�̏ꍇ�̂݁B
-          -1:�ڑ�������łȂ��A�������̓G���[�������Ȃ̂ŉ������Ȃ������B
-  �p�r�@�F�ڑ����̃R�l�N�V������S�ăN���[�Y����B
-          �N���[�Y�����͖{�֐����Ŋ������A�{�֐��𔲂���O�ɁA
-          �P�̃R�l�N�V�������N���[�Y���邲�ƂɁA
-          DWC_SetConnectionClosedCallback()�Őݒ肵���R�[���o�b�N�֐���
-          �Ăяo�����BWi-Fi�R�l�N�V�����ɂ̓��O�C�������܂܂ƂȂ�B
-          ���̃N���[�Y�͑���z�X�g�ɂ��ʒm�����B
-          �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�ɂ����āA���ɐڑ����̃z�X�g��
-          �Ȃ��ꍇ�́A�I���������s�������ŁA�R�[���o�b�N�͌Ă΂�Ȃ��B
+  全コネクション強制クローズ関数
+  引数　：なし
+  戻り値：0以上なら成功、負の数なら失敗。
+          0 :クローズ実行。
+          1 :接続ホスト数0なので、クローズ処理は行ったが、コールバックは呼ばれない。
+             サーバクライアントマッチメイクのサーバの場合のみ。
+          -1:接続完了後でない、もしくはエラー発生時なので何もしなかった。
+  用途　：接続中のコネクションを全てクローズする。
+          クローズ処理は本関数内で完了し、本関数を抜ける前に、
+          １つのコネクションをクローズするごとに、
+          DWC_SetConnectionClosedCallback()で設定したコールバック関数が
+          呼び出される。Wi-Fiコネクションにはログインしたままとなる。
+          このクローズは相手ホストにも通知される。
+          サーバクライアントマッチメイクのサーバにおいて、既に接続中のホストが
+          ない場合は、終了処理を行うだけで、コールバックは呼ばれない。
  *---------------------------------------------------------------------------*/
 extern int  DWC_CloseAllConnectionsHard(void);
 
 
 /*---------------------------------------------------------------------------*
-  �R�l�N�V���������N���[�Y�֐�
-  �����@�Faid �N���[�Y�������z�X�g��AID
-  �߂�l�F0 :�N���[�Y���s�B
-          -1:�ڑ�������łȂ��A�������̓G���[�������Ȃ̂ŉ������Ȃ������B
-          -2:���ɃN���[�Y�ς݂�AID���w�肳�ꂽ�̂ŉ������Ȃ������B
-  �p�r�@�F�w���AID�Ƃ̃R�l�N�V�����������N���[�Y����B
-          �N���[�Y�����͖{�֐����Ŋ������A�{�֐��𔲂���O��
-          DWC_SetConnectionClosedCallback()�Őݒ肵���R�[���o�b�N�֐���
-          �Ăяo�����BWi-Fi�R�l�N�V�����ɂ̓��O�C�������܂܂ƂȂ�B
-          ���̃N���[�Y�͑���z�X�g�ɂ��ʒm�����B
-          �d����؂�Ȃǂ̗��R�ŒʐM�s�\�ɂȂ����z�X�g�ɑ΂��A�R�l�N�V������
-          �N���[�Y����Ƃ����悤�ȁA�ُ��ԏ����̗p�r�ł݂̂��g�p�������B
+  コネクション強制クローズ関数
+  引数　：aid クローズしたいホストのAID
+  戻り値：0 :クローズ実行。
+          -1:接続完了後でない、もしくはエラー発生時なので何もしなかった。
+          -2:既にクローズ済みのAIDが指定されたので何もしなかった。
+  用途　：指定のAIDとのコネクションを強制クローズする。
+          クローズ処理は本関数内で完了し、本関数を抜ける前に
+          DWC_SetConnectionClosedCallback()で設定したコールバック関数が
+          呼び出される。Wi-Fiコネクションにはログインしたままとなる。
+          このクローズは相手ホストにも通知される。
+          電源を切るなどの理由で通信不能になったホストに対し、コネクションを
+          クローズするというような、異常状態処理の用途でのみご使用下さい。
  *---------------------------------------------------------------------------*/
 extern int  DWC_CloseConnectionHard(u8 aid);
 
 
 /*---------------------------------------------------------------------------*
-  �r�b�g�}�b�v�w��R�l�N�V���������N���[�Y�֐�
-  �����@�Fbitmap �N���[�Y�������z�X�g��AID�r�b�g�}�b�v�ւ̃|�C���^�B
-                 ���ۂɃN���[�Y�ɐ�������AID�̃r�b�g�݂̂𗧂ĂĕԂ��B
-                 �����̃r�b�g�͗����Ă��Ă��K�����낷�B
-  �߂�l�F0 :�N���[�Y�J�n�B�N���[�Y��������������x�ɃR�[���o�b�N���Ă΂��B
-          -1:�ڑ�������łȂ��A�������̓G���[�������Ȃ̂ŉ������Ȃ������B
-          -2:�S�Ă�AID�����ɃN���[�Y�ς݂������̂ŉ������Ȃ������B
-  �p�r�@�F�w���AID�Ƃ̃R�l�N�V�����������N���[�Y����B
-          �N���[�Y�����͖{�֐����Ŋ������A�{�֐��𔲂���O��
-          DWC_SetConnectionClosedCallback()�Őݒ肵���R�[���o�b�N�֐���
-          �Ăяo�����BWi-Fi�R�l�N�V�����ɂ̓��O�C�������܂܂ƂȂ�B
-          ���̃N���[�Y�͑���z�X�g�ɂ��ʒm�����B
-          �d����؂�Ȃǂ̗��R�ŒʐM�s�\�ɂȂ����z�X�g�ɑ΂��A�R�l�N�V������
-          �N���[�Y����Ƃ����悤�ȁA�ُ��ԏ����̗p�r�ł݂̂��g�p�������B
+  ビットマップ指定コネクション強制クローズ関数
+  引数　：bitmap クローズしたいホストのAIDビットマップへのポインタ。
+                 実際にクローズに成功したAIDのビットのみを立てて返す。
+                 自分のビットは立っていても必ず下ろす。
+  戻り値：0 :クローズ開始。クローズ処理が完了する度にコールバックが呼ばれる。
+          -1:接続完了後でない、もしくはエラー発生時なので何もしなかった。
+          -2:全てのAIDが既にクローズ済みだったので何もしなかった。
+  用途　：指定のAIDとのコネクションを強制クローズする。
+          クローズ処理は本関数内で完了し、本関数を抜ける前に
+          DWC_SetConnectionClosedCallback()で設定したコールバック関数が
+          呼び出される。Wi-Fiコネクションにはログインしたままとなる。
+          このクローズは相手ホストにも通知される。
+          電源を切るなどの理由で通信不能になったホストに対し、コネクションを
+          クローズするというような、異常状態処理の用途でのみご使用下さい。
  *---------------------------------------------------------------------------*/
 extern int  DWC_CloseConnectionHardBitmap(u32* bitmap);
 
 
 /*---------------------------------------------------------------------------*
-  �ڑ��z�X�g���擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�F�l�b�g���[�N���\�����Ă���z�X�g���i�������܂ށj�B
-          �I�t���C������0��Ԃ��B
-  �p�r�@�F���b�V���^�l�b�g���[�N�\���z�X�g����Ԃ�
+  接続ホスト数取得関数
+  引数　：なし
+  戻り値：ネットワークを構成しているホスト数（自分を含む）。
+          オフライン時は0を返す。
+  用途　：メッシュ型ネットワーク構成ホスト数を返す
  *---------------------------------------------------------------------------*/
 extern int DWC_GetNumConnectionHost(void);
 
 
 /*---------------------------------------------------------------------------*
-  ������AID�擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�F������AID
-  �p�r�@�F������AID�i���b�V���^�l�b�g���[�N���ŌŗL�̃z�X�gID�j��Ԃ�
+  自分のAID取得関数
+  引数　：なし
+  戻り値：自分のAID
+  用途　：自分のAID（メッシュ型ネットワーク内で固有のホストID）を返す
  *---------------------------------------------------------------------------*/
 extern u8  DWC_GetMyAID(void);
 
 
 /*---------------------------------------------------------------------------*
-  �ڑ����z�X�g��AID���X�g�擾�֐�
-  �����@�FaidList AID���X�g�ւ̃|�C���^
-  �߂�l�FAID���X�g���i�������܂ށj
-  �p�r�@�FAID���X�g�ւ̃|�C���^���擾����i�R�s�[�͂��Ȃ��j�B
-          AID���X�g�́A���ݗL����AID���O���珇�ɋl�߂�ꂽ���X�g�ŁA
-          ���̗v�f���͎������܂߂��ڑ����z�X�g���ɂȂ�B
+  接続中ホストのAIDリスト取得関数
+  引数　：aidList AIDリストへのポインタ
+  戻り値：AIDリスト長（自分を含む）
+  用途　：AIDリストへのポインタを取得する（コピーはしない）。
+          AIDリストは、現在有効なAIDが前から順に詰められたリストで、
+          その要素数は自分も含めた接続中ホスト数になる。
  *---------------------------------------------------------------------------*/
 extern int DWC_GetAIDList(u8** aidList);
 
 
 /*---------------------------------------------------------------------------*
-  �ڑ����z�X�g��AID�r�b�g�}�b�v�擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�FAID�r�b�g�}�b�v�B�I�t���C������0��Ԃ��B
-  �p�r�@�F�ڑ����z�X�g��AID�r�b�g�}�b�v���擾����B
+  接続中ホストのAIDビットマップ取得関数
+  引数　：なし
+  戻り値：AIDビットマップ。オフライン時は0を返す。
+  用途　：接続中ホストのAIDビットマップを取得する。
  *---------------------------------------------------------------------------*/
 extern u32 DWC_GetAIDBitmap(void);
 
 
 /*---------------------------------------------------------------------------*
-  AID�L������֐�
-  �����@�Faid AID
-  �߂�l�FTRUE:AID���L���AFALSE:AID������
-  �p�r�@�F�w�肳�ꂽAID���L�����ǂ����i�����ɐڑ�����Ă��邩�ǂ����j�𒲂ׂ�B
-          ������AID���w�肵���ꍇ��FALSE��Ԃ��B
-          �}�b�`���C�N���̐V�K�ڑ��N���C�A���g��AID�͖����Ɣ��肷��B
+  AID有効判定関数
+  引数　：aid AID
+  戻り値：TRUE:AIDが有効、FALSE:AIDが無効
+  用途　：指定されたAIDが有効かどうか（自分に接続されているかどうか）を調べる。
+          自分のAIDを指定した場合はFALSEを返す。
+          マッチメイク中の新規接続クライアントのAIDは無効と判定する。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_IsValidAID(u8 aid);
 
 
 /*---------------------------------------------------------------------------*
-  FriendsMatch���C�u������Ԏ擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�FDWCState�^�񋓎q
-  �p�r�@�FFriendsMatch���C�u�����̏�����Ԃ��擾����
+  FriendsMatchライブラリ状態取得関数
+  引数　：なし
+  戻り値：DWCState型列挙子
+  用途　：FriendsMatchライブラリの処理状態を取得する
  *---------------------------------------------------------------------------*/
 extern DWCState DWC_GetState(void);
 
 
 /*---------------------------------------------------------------------------*
-  �\�P�b�g�G���[�擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�FGT2�\�P�b�g�G���[���
-  �p�r�@�FGameSpy gt2 SDK �̃\�P�b�g�G���[��ʂ��擾����
+  ソケットエラー取得関数
+  引数　：なし
+  戻り値：GT2ソケットエラー種別
+  用途　：GameSpy gt2 SDK のソケットエラー種別を取得する
  *---------------------------------------------------------------------------*/
 extern int DWC_GetLastSocketError(void);
 
 
 /*---------------------------------------------------------------------------*
-  �S�R�l�N�V�����N���[�Y�֐�  (obsolete function)
-  �����@�F�Ȃ�
-  �߂�l�F0�ȏ�Ȃ琬���A���̐��Ȃ玸�s�B
-          0 :�N���[�Y�J�n�B�N���[�Y����������������R�[���o�b�N���Ă΂��B
-          1 :�ڑ��z�X�g��0�Ȃ̂ŁA�N���[�Y�����͍s�������A�R�[���o�b�N�͌Ă΂�Ȃ��B
-             �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�̏ꍇ�̂݁B
-          -1:�ڑ�������łȂ��A�������̓G���[�������Ȃ̂ŉ������Ȃ������B
-  �p�r�@�F�ڑ����̃R�l�N�V������S�ăN���[�Y����B
-          �P�̃R�l�N�V�������N���[�Y���邲�ƂɁA
-          DWC_SetConnectionClosedCallback()�Őݒ肵���R�[���o�b�N�֐���
-          �Ăяo�����BWi-Fi�R�l�N�V�����ɂ̓��O�C�������܂܂ƂȂ�B
-          ���̃N���[�Y�͑���z�X�g�ɂ��ʒm�����B
-          �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�ɂ����āA���ɐڑ����̃z�X�g��
-          �Ȃ��ꍇ�́A�I���������s�������ŁA�R�[���o�b�N�͌Ă΂�Ȃ��B
-          ��DWC_CloseAllConnectionsHard()���g���ĉ�����
+  全コネクションクローズ関数  (obsolete function)
+  引数　：なし
+  戻り値：0以上なら成功、負の数なら失敗。
+          0 :クローズ開始。クローズ処理が完了したらコールバックが呼ばれる。
+          1 :接続ホスト数0なので、クローズ処理は行ったが、コールバックは呼ばれない。
+             サーバクライアントマッチメイクのサーバの場合のみ。
+          -1:接続完了後でない、もしくはエラー発生時なので何もしなかった。
+  用途　：接続中のコネクションを全てクローズする。
+          １つのコネクションをクローズするごとに、
+          DWC_SetConnectionClosedCallback()で設定したコールバック関数が
+          呼び出される。Wi-Fiコネクションにはログインしたままとなる。
+          このクローズは相手ホストにも通知される。
+          サーバクライアントマッチメイクのサーバにおいて、既に接続中のホストが
+          ない場合は、終了処理を行うだけで、コールバックは呼ばれない。
+          →DWC_CloseAllConnectionsHard()を使って下さい
  *---------------------------------------------------------------------------*/
 extern int DWC_CloseConnectionsAsync(void);
 

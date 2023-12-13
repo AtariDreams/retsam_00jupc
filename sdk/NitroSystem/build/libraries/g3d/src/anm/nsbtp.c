@@ -24,8 +24,8 @@
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmObjInitNsBtp
 
-    NNSG3dAnmObj‚ð.nsbtpƒŠƒ\[ƒX—p‚ÉƒCƒjƒVƒƒƒ‰ƒCƒY‚µ‚Ü‚·B
-    NNS_G3dInitAnmObj‚©‚çŒÄ‚Ño‚³‚ê‚Ü‚·B
+    NNSG3dAnmObjã‚’.nsbtpãƒªã‚½ãƒ¼ã‚¹ç”¨ã«ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚ºã—ã¾ã™ã€‚
+    NNS_G3dInitAnmObjã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dAnmObjInitNsBtp(NNSG3dAnmObj*       pAnmObj,
@@ -42,7 +42,7 @@ NNSi_G3dAnmObjInitNsBtp(NNSG3dAnmObj*       pAnmObj,
     pAnmObj->numMapData = pResMdl->info.numMat;
     pAnmObj->resAnm     = tpAnm;
 
-    // ‚Ü‚¸‚ÍmapData‚ðƒ[ƒƒNƒŠƒA
+    // ã¾ãšã¯mapDataã‚’ã‚¼ãƒ­ã‚¯ãƒªã‚¢
     MI_CpuClear16(&pAnmObj->mapData[0], sizeof(u16) * pAnmObj->numMapData);
 
     for (i = 0; i < tpAnm->dict.numEntry; ++i)
@@ -51,8 +51,8 @@ NNSi_G3dAnmObjInitNsBtp(NNSG3dAnmObj*       pAnmObj,
         int idx = NNS_G3dGetMatIdxByName(mat, name);
         if (!(idx < 0))
         {
-            // ƒŠƒ\[ƒXID i‚É‘Î‰ž‚·‚éƒŠƒ\[ƒX‚ª‘¶Ý‚·‚éê‡‚ÍA
-            // ƒ}ƒeƒŠƒAƒ‹ID idx‚ÉƒŠƒ\[ƒXID i‚ðŠÖ˜A•t‚¯‚éB
+            // ãƒªã‚½ãƒ¼ã‚¹ID iã«å¯¾å¿œã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯ã€
+            // ãƒžãƒ†ãƒªã‚¢ãƒ«ID idxã«ãƒªã‚½ãƒ¼ã‚¹ID iã‚’é–¢é€£ä»˜ã‘ã‚‹ã€‚
             pAnmObj->mapData[idx] = (u16)(i | NNS_G3D_ANMOBJ_MAPDATA_EXIST);
         }
     }
@@ -62,7 +62,7 @@ NNSi_G3dAnmObjInitNsBtp(NNSG3dAnmObj*       pAnmObj,
 /*---------------------------------------------------------------------------*
     SetTexParamaters_
 
-    pResult ‚Ì ƒeƒNƒXƒ`ƒƒŠÖ˜A•”•ª‚ðÝ’è‚µ‚Ü‚·
+    pResult ã® ãƒ†ã‚¯ã‚¹ãƒãƒ£é–¢é€£éƒ¨åˆ†ã‚’è¨­å®šã—ã¾ã™
  *---------------------------------------------------------------------------*/
 static void SetTexParamaters_
 ( 
@@ -80,7 +80,7 @@ static void SetTexParamaters_
                       "No texture(4x4) key assigned");
     {
         //
-        // –¼‘O‚©‚çƒeƒNƒXƒ`ƒƒƒf[ƒ^‚ðŽ«‘ˆø‚«‚µ‚Ü‚·
+        // åå‰ã‹ã‚‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ã‚’è¾žæ›¸å¼•ãã—ã¾ã™
         //
         const NNSG3dResDictTexData* pData = NNS_G3dGetTexDataByName( pTex, pTexName );        
         NNS_G3D_NULL_ASSERT( pData );
@@ -88,11 +88,11 @@ static void SetTexParamaters_
         {
             const u32 vramOffset = (( pData->texImageParam & REG_G3_TEXIMAGE_PARAM_TEXFMT_MASK) !=
                                                 (GX_TEXFMT_COMP4x4 << REG_G3_TEXIMAGE_PARAM_TEXFMT_SHIFT)) ?
-                                    NNS_GfdGetTexKeyAddr(pTex->texInfo.vramKey) >> NNS_GFD_TEXKEY_ADDR_SHIFT :    // 4x4ˆÈŠO‚ÌƒeƒNƒXƒ`ƒƒ
-                                    NNS_GfdGetTexKeyAddr(pTex->tex4x4Info.vramKey) >> NNS_GFD_TEXKEY_ADDR_SHIFT;  // 4x4ƒeƒNƒXƒ`ƒƒ
+                                    NNS_GfdGetTexKeyAddr(pTex->texInfo.vramKey) >> NNS_GFD_TEXKEY_ADDR_SHIFT :    // 4x4ä»¥å¤–ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£
+                                    NNS_GfdGetTexKeyAddr(pTex->tex4x4Info.vramKey) >> NNS_GFD_TEXKEY_ADDR_SHIFT;  // 4x4ãƒ†ã‚¯ã‚¹ãƒãƒ£
 
-            // flip‚Ærepeat‚Ætexgen‚ðŽc‚µƒŠƒZƒbƒg‚µ‚Ä‚©‚ç‡¬‚·‚éB
-            // ƒ}ƒeƒŠƒAƒ‹‚ªŽ‚Á‚Ä‚¢‚éƒf[ƒ^‚ÍŽc‚µ‚Ä‚¨‚©‚È‚­‚Ä‚Í‚È‚ç‚È‚¢B
+            // flipã¨repeatã¨texgenã‚’æ®‹ã—ãƒªã‚»ãƒƒãƒˆã—ã¦ã‹ã‚‰åˆæˆã™ã‚‹ã€‚
+            // ãƒžãƒ†ãƒªã‚¢ãƒ«ãŒæŒã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã¯æ®‹ã—ã¦ãŠã‹ãªãã¦ã¯ãªã‚‰ãªã„ã€‚
             pResult->prmTexImage &= REG_G3_TEXIMAGE_PARAM_TGEN_MASK |
                                     REG_G3_TEXIMAGE_PARAM_FT_MASK | REG_G3_TEXIMAGE_PARAM_FS_MASK |
                                     REG_G3_TEXIMAGE_PARAM_RT_MASK | REG_G3_TEXIMAGE_PARAM_RS_MASK;
@@ -104,7 +104,7 @@ static void SetTexParamaters_
                                     NNS_G3D_TEXIMAGE_PARAMEX_ORIGH_SHIFT);
             
             //
-            // ƒeƒNƒXƒ`ƒƒs—ñ‚ÌŒvŽZ‚É•K—v‚Èc‰¡‚Ì”{—¦‚ðŽZo‚µ‚Ü‚·B
+            // ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã®è¨ˆç®—ã«å¿…è¦ãªç¸¦æ¨ªã®å€çŽ‡ã‚’ç®—å‡ºã—ã¾ã™ã€‚
             //
             {
                 const s32 w = (s32)(((pData->extraParam) & NNS_G3D_TEXIMAGE_PARAMEX_ORIGW_MASK) >> NNS_G3D_TEXIMAGE_PARAMEX_ORIGW_SHIFT);
@@ -125,7 +125,7 @@ static void SetTexParamaters_
 /*---------------------------------------------------------------------------*
     SetPlttParamaters_
 
-    pResult ‚Ì ƒpƒŒƒbƒgŠÖ˜A•”•ª‚ðÝ’è‚µ‚Ü‚·
+    pResult ã® ãƒ‘ãƒ¬ãƒƒãƒˆé–¢é€£éƒ¨åˆ†ã‚’è¨­å®šã—ã¾ã™
  *---------------------------------------------------------------------------*/
 static void SetPlttParamaters_
 ( 
@@ -141,7 +141,7 @@ static void SetPlttParamaters_
          "No palette key assigned");
     
     {
-        // ƒeƒNƒXƒ`ƒƒƒuƒƒbƒN‚©‚çƒpƒŒƒbƒg–¼‚É‘Î‰ž‚·‚éƒf[ƒ^ƒtƒB[ƒ‹ƒh‚ð“¾‚é
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ–ãƒ­ãƒƒã‚¯ã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆåã«å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’å¾—ã‚‹
         const NNSG3dResDictPlttData* pPlttData = NNS_G3dGetPlttDataByName(pTex, pPlttName);
         u16 plttBase    = pPlttData->offset;
         u16 vramOffset  = (u16)(NNS_GfdGetTexKeyAddr(pTex->plttInfo.vramKey) >> NNS_GFD_TEXKEY_ADDR_SHIFT);
@@ -149,17 +149,17 @@ static void SetPlttParamaters_
         NNS_G3D_NULL_ASSERT(pPlttData);    
         
         
-        // 4colors‚È‚çƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚é
+        // 4colorsãªã‚‰ãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã‚‹
         if (!(pPlttData->flag & 1))
         {
-            // 4colorsˆÈŠO‚Ìê‡‚Í4bitƒVƒtƒg‚É‚È‚éB
-            // 4colors‚Ìê‡‚Í3bitƒVƒtƒg‚È‚Ì‚Å‚»‚Ì‚Ü‚Ü
+            // 4colorsä»¥å¤–ã®å ´åˆã¯4bitã‚·ãƒ•ãƒˆã«ãªã‚‹ã€‚
+            // 4colorsã®å ´åˆã¯3bitã‚·ãƒ•ãƒˆãªã®ã§ãã®ã¾ã¾
             plttBase >>= 1;
             vramOffset >>= 1;
         }
         
         //
-        // ƒAƒhƒŒƒX‚ðÝ’è‚·‚é
+        // ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®šã™ã‚‹
         //
         pResult->prmTexPltt = (u32)(plttBase + vramOffset);
     }
@@ -169,9 +169,9 @@ static void SetPlttParamaters_
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmCalcNsBtp
 
-    pResult: ƒ}ƒeƒŠƒAƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŒ‹‰Ê‚ðŠi”[‚µ‚Ü‚·B
+    pResult: ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®çµæžœã‚’æ ¼ç´ã—ã¾ã™ã€‚
     pAnmObj:
-    dataIdx: ƒŠƒ\[ƒX“àƒf[ƒ^‚ÌŠi”[êŠ‚ðŽ¦‚·ƒCƒ“ƒfƒbƒNƒX‚Å‚·
+    dataIdx: ãƒªã‚½ãƒ¼ã‚¹å†…ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å ´æ‰€ã‚’ç¤ºã™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§ã™
  *---------------------------------------------------------------------------*/
 void NNSi_G3dAnmCalcNsBtp(NNSG3dMatAnmResult* pResult,
                           const NNSG3dAnmObj* pAnmObj,
@@ -183,7 +183,7 @@ void NNSi_G3dAnmCalcNsBtp(NNSG3dMatAnmResult* pResult,
     
     {
         //
-        // Œ»Ý‚ÌƒtƒŒ[ƒ€‚É‘Î‰ž‚·‚éƒeƒNƒXƒ`ƒƒƒpƒ^ƒ“[ƒ“FV‚ðŽæ“¾‚µ‚Ü‚·
+        // ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å¯¾å¿œã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ³ãƒ¼ãƒ³FVã‚’å–å¾—ã—ã¾ã™
         //
         const NNSG3dResTexPatAnm*     pPatAnm 
             = (const NNSG3dResTexPatAnm*)pAnmObj->resAnm;
@@ -195,19 +195,19 @@ void NNSi_G3dAnmCalcNsBtp(NNSG3dMatAnmResult* pResult,
         NNS_G3D_NULL_ASSERT(pTexFV);
         
         //
-        // pResult ‚Ì ƒeƒNƒXƒ`ƒƒŠÖ˜A•”•ª‚ðÝ’è‚µ‚Ü‚·
+        // pResult ã® ãƒ†ã‚¯ã‚¹ãƒãƒ£é–¢é€£éƒ¨åˆ†ã‚’è¨­å®šã—ã¾ã™
         //
         SetTexParamaters_( pAnmObj->resTex, 
                            NNSi_G3dGetTexPatAnmTexNameByIdx( pPatAnm, pTexFV->idTex ),
                            pResult ); 
         //                   
-        // pResult ‚Ì ƒpƒŒƒbƒgŠÖ˜A•”•ª‚ðÝ’è‚µ‚Ü‚·
+        // pResult ã® ãƒ‘ãƒ¬ãƒƒãƒˆé–¢é€£éƒ¨åˆ†ã‚’è¨­å®šã—ã¾ã™
         //
         
         //
-        // Œ»Ý‚ÌƒRƒ“ƒo[ƒ^‚ÌŽÀ‘•‚Å‚Íƒ_ƒCƒŒƒNƒgƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒgŽQÆŽž‚É‚Í
-        // pTexFV->idPltt ƒƒ“ƒo‚É 255 ‚ª‘ã“ü‚³‚ê‚Ü‚·BpTexFV->idPltt‚É255‚ªÝ’è‚³‚ê‚½ê‡ƒ‰ƒCƒuƒ‰ƒŠ‚Í
-        // ƒpƒŒƒbƒgÝ’èˆ—‚ðƒXƒLƒbƒv‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+        // ç¾åœ¨ã®ã‚³ãƒ³ãƒãƒ¼ã‚¿ã®å®Ÿè£…ã§ã¯ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆå‚ç…§æ™‚ã«ã¯
+        // pTexFV->idPltt ãƒ¡ãƒ³ãƒã« 255 ãŒä»£å…¥ã•ã‚Œã¾ã™ã€‚pTexFV->idPlttã«255ãŒè¨­å®šã•ã‚ŒãŸå ´åˆãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¯
+        // ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®šå‡¦ç†ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
         //
         if( pTexFV->idPltt != 255 )
         {

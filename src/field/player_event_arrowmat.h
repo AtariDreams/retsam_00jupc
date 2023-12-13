@@ -2,7 +2,7 @@
 /**
  *
  * @file	player_event_arrowmat.h
- * @brief	ƒvƒŒ[ƒ„[‚Ì•ûŒü°‚ÌƒCƒxƒ“ƒg
+ * @brief	ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®æ–¹å‘åºŠã®ã‚¤ãƒ™ãƒ³ãƒˆ
  * @author	k.ohno
  * @data	06.06.20
  *
@@ -13,7 +13,7 @@
 
 
 
-// •ûŒü°‚ğ“¥‚ñ‚¾ê‡ƒCƒxƒ“ƒg‹N“®
+// æ–¹å‘åºŠã‚’è¸ã‚“ã å ´åˆã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•
 extern int JikiEventCheck_ArrowMat(
     FIELDSYS_WORK *fsys, PLAYER_STATE_PTR jiki, int dir);
 

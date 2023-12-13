@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	visual_ex.h
- * @brief	ƒ_ƒ“ƒX•”–åFŠO•”ŒöŠJƒwƒbƒ_
+ * @brief	ãƒ€ãƒ³ã‚¹éƒ¨é–€ï¼šå¤–éƒ¨å…¬é–‹ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2006.03.09(–Ø)
+ * @date	2006.03.09(æœ¨)
  *
- * ƒ_ƒ“ƒX•”–å‚ÅŠO•”‚ÉŒöŠJ‚·‚é•K—v‚Ì‚ ‚é’è‹`“™‚ð‚±‚±‚É‘‚¢‚Ä‚¢‚Ü‚·
+ * ãƒ€ãƒ³ã‚¹éƒ¨é–€ã§å¤–éƒ¨ã«å…¬é–‹ã™ã‚‹å¿…è¦ã®ã‚ã‚‹å®šç¾©ç­‰ã‚’ã“ã“ã«æ›¸ã„ã¦ã„ã¾ã™
  */
 //==============================================================================
 #ifndef __VISUAL_EX_H__
@@ -13,37 +13,37 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
-//	À•W
+//	åº§æ¨™
 //--------------------------------------------------------------
-///ƒ|ƒPƒ‚ƒ““oêÀ•WX
+///ãƒã‚±ãƒ¢ãƒ³ç™»å ´åº§æ¨™X
 #define VISUAL_APPEAR_X			(128)
-///ƒ|ƒPƒ‚ƒ““oêÀ•WY
+///ãƒã‚±ãƒ¢ãƒ³ç™»å ´åº§æ¨™Y
 #define VISUAL_APPEAR_Y			(24)
 
-///ƒ|ƒPƒ‚ƒ““ž’…À•WX
+///ãƒã‚±ãƒ¢ãƒ³åˆ°ç€åº§æ¨™X
 #define VISUAL_ARRIVAL_X		(VISUAL_APPEAR_X)
-///ƒ|ƒPƒ‚ƒ““ž’…À•WY
+///ãƒã‚±ãƒ¢ãƒ³åˆ°ç€åº§æ¨™Y
 #define VISUAL_ARRIVAL_Y		(96 - 32)
 
-///ƒ|ƒPƒ‚ƒ“’èˆÊ’uZ
+///ãƒã‚±ãƒ¢ãƒ³å®šä½ç½®Z
 #define VISUAL_POKEPOS_Z		(APPEAR_Z_TYPE_AA)
 
 
-///ƒgƒŒ[ƒi[‰ŠúÀ•WX
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åˆæœŸåº§æ¨™X
 #define VISUAL_TRAINER_APPEAR_X		(320)
-///ƒgƒŒ[ƒi[‰ŠúÀ•WX
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åˆæœŸåº§æ¨™X
 #define VISUAL_TRAINER_APPEAR_Y		(32)
-///ƒgƒŒ[ƒi[‰ŠúÀ•WX
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åˆæœŸåº§æ¨™X
 #define VISUAL_TRAINER_APPEAR_Z		(VISUAL_POKEPOS_Z - 0x40)
 
-///ƒgƒŒ[ƒi[“ž’…À•WX
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åˆ°ç€åº§æ¨™X
 #define VISUAL_TRAINER_ARRIVAL_X		(230)
-///ƒgƒŒ[ƒi[“ž’…À•WX
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åˆ°ç€åº§æ¨™X
 #define VISUAL_TRAINER_ARRIVAL_Y		(VISUAL_TRAINER_APPEAR_Y)
-///ƒgƒŒ[ƒi[“ž’…À•WX
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åˆ°ç€åº§æ¨™X
 #define VISUAL_TRAINER_ARRIVAL_Z		(VISUAL_POKEPOS_Z - 0x40)
 
 

@@ -39,19 +39,19 @@
   fix do_autoload. (insert wait-flush)
 
   Revision 1.43  2005/06/07 11:04:58  yasu
-  Autoload Žž‚ÌƒLƒƒƒbƒVƒ…ƒtƒ‰ƒbƒVƒ…’Ç‰Á
+  Autoload æ™‚ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ãƒƒã‚·ãƒ¥è¿½åŠ 
 
   Revision 1.42  2005/04/08 09:29:54  yosizaki
   add OSi_ReferSymbol().
 
   Revision 1.41  2005/03/29 00:59:28  yasu
-  VERSION_PATCH ƒtƒB[ƒ‹ƒh‚Ì”pŽ~
+  VERSION_PATCH ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å»ƒæ­¢
 
   Revision 1.40  2005/03/24 00:55:15  yasu
-  SDK_NOCOMPRESS ƒTƒ|[ƒg‚Ì’†Ž~
+  SDK_NOCOMPRESS ã‚µãƒãƒ¼ãƒˆã®ä¸­æ­¢
 
   Revision 1.39  2005/03/04 11:09:27  yasu
-  __declspec(weak) ‚ð SDK_WEAK_SYMBOL ‚É’u‚«Š·‚¦
+  __declspec(weak) ã‚’ SDK_WEAK_SYMBOL ã«ç½®ãæ›ãˆ
 
   Revision 1.38  2005/02/28 05:26:03  yosizaki
   do-indent.
@@ -124,10 +124,10 @@
   add check to move DTCM address.
 
   Revision 1.16  2004/03/30 06:09:29  yada
-  ldconst ‚â lda ‚ð ldr = ‚ðŽg—p‚·‚é‹Lq‚É‚µ‚½B
+  ldconst ã‚„ lda ã‚’ ldr = ã‚’ä½¿ç”¨ã™ã‚‹è¨˜è¿°ã«ã—ãŸã€‚
 
   Revision 1.15  2004/03/24 00:36:36  yada
-  SDK_BB ”pŽ~‚É‚Â‚«C³
+  SDK_BB å»ƒæ­¢ã«ã¤ãä¿®æ­£
 
   Revision 1.14  2004/03/23 08:40:25  yasu
   _start -> weak symbol
@@ -139,14 +139,14 @@
   fix comments
 
   Revision 1.11  2004/02/18 02:37:37  yada
-  C++—pÝ’è’Ç‰Á
+  C++ç”¨è¨­å®šè¿½åŠ 
 
   Revision 1.10  2004/02/16 09:37:27  yada
-  ƒXƒ^ƒbƒNƒTƒCƒY‚ðLCF‚©‚çŒˆ’è‚Å‚«‚é‚æ‚¤‚É‚µ‚½B
-  DTCMAƒpƒŒƒbƒgAOAM‚ðƒNƒŠƒA‚·‚é‚æ‚¤‚É‚µ‚½B
+  ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚ºã‚’LCFã‹ã‚‰æ±ºå®šã§ãã‚‹ã‚ˆã†ã«ã—ãŸã€‚
+  DTCMã€ãƒ‘ãƒ¬ãƒƒãƒˆã€OAMã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.9  2004/02/12 11:44:10  yada
-  ARM9/ARM7 U‚è•ª‚¯ì‹Æ
+  ARM9/ARM7 æŒ¯ã‚Šåˆ†ã‘ä½œæ¥­
 
   Revision 1.8  2004/02/09 11:17:05  yasu
   include code32.h
@@ -155,24 +155,24 @@
   change SDK prefix iris -> nitro
 
   Revision 1.6  2004/01/15 08:25:23  yada
-  ƒvƒƒeƒNƒVƒ‡ƒ“ƒ†ƒjƒbƒg‚T‚ÌÝ’è(ITCM)‚ðA0‚©‚ç‚Å‚Í‚È‚­
-  HW_ITCM_IMAGE(0x1000000) ‚©‚ç‚É‚µ‚½B
-  NULL Pointer ‚ð—áŠO‚ÅE‚¤‚½‚ßA0‚ÍŠO‚µ‚½‚©‚Á‚½B
+  ãƒ—ãƒ­ãƒ†ã‚¯ã‚·ãƒ§ãƒ³ãƒ¦ãƒ‹ãƒƒãƒˆï¼•ã®è¨­å®š(ITCM)ã‚’ã€0ã‹ã‚‰ã§ã¯ãªã
+  HW_ITCM_IMAGE(0x1000000) ã‹ã‚‰ã«ã—ãŸã€‚
+  NULL Pointer ã‚’ä¾‹å¤–ã§æ‹¾ã†ãŸã‚ã€0ã¯å¤–ã—ãŸã‹ã£ãŸã€‚
 
   Revision 1.5  2004/01/13 04:15:56  yada
-  –½—ßƒLƒƒƒbƒVƒ…Aƒf[ƒ^ƒLƒƒƒbƒVƒ…–³Œø‰»•”•ªC³
+  å‘½ä»¤ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã€ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç„¡åŠ¹åŒ–éƒ¨åˆ†ä¿®æ­£
 
   Revision 1.4  2003/12/25 07:31:43  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  åž‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.3  2003/12/12 04:40:19  yada
-  ƒvƒƒZƒbƒTƒ‚[ƒh‚Ì’è‹`•ÏX‚É”º‚¤C³
+  ãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ¢ãƒ¼ãƒ‰ã®å®šç¾©å¤‰æ›´ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.2  2003/12/12 01:27:14  yada
-  include‚Ì–¼Ì•ÏX(os/system.h ‚Æ hw/armArch.h) ‚É‚æ‚éC³
+  includeã®åç§°å¤‰æ›´(os/system.h ã¨ hw/armArch.h) ã«ã‚ˆã‚‹ä¿®æ­£
 
   Revision 1.1  2003/12/09 08:28:41  yasu
-  crt0.s -> crt0.c ‚Ö•ÏX NitroSDK ‚Å‚ÌƒRƒ“ƒpƒCƒ‹‘Î‰ž
+  crt0.s -> crt0.c ã¸å¤‰æ›´ NitroSDK ã§ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å¯¾å¿œ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -592,11 +592,11 @@ SDK_WEAK_SYMBOL asm void _start_AutoloadDoneCallback( void* argv[] )
 }
 
 //-----------------------------------------------------------------------
-//                   ƒVƒXƒeƒ€§ŒäƒRƒvƒƒZƒbƒT ‰Šú‰»
+//                   ã‚·ã‚¹ãƒ†ãƒ åˆ¶å¾¡ã‚³ãƒ—ãƒ­ã‚»ãƒƒã‚µ åˆæœŸåŒ–
 //-----------------------------------------------------------------------
 static asm void init_cp15(void)
 {
-        // ƒvƒƒeƒNƒVƒ‡ƒ“ƒ†ƒjƒbƒg/ƒLƒƒƒbƒVƒ…/TCM ƒfƒBƒZ[ƒuƒ‹
+        // ãƒ—ãƒ­ãƒ†ã‚¯ã‚·ãƒ§ãƒ³ãƒ¦ãƒ‹ãƒƒãƒˆ/ã‚­ãƒ£ãƒƒã‚·ãƒ¥/TCM ãƒ‡ã‚£ã‚»ãƒ¼ãƒ–ãƒ«
 
         mrc     p15, 0, r0, c1, c0, 0
         ldr     r1, =HW_C1_ICACHE_ENABLE  | HW_C1_DCACHE_ENABLE  \
@@ -607,12 +607,12 @@ static asm void init_cp15(void)
         bic     r0, r0, r1
         mcr     p15, 0, r0, c1, c0, 0
 
-        // ƒLƒƒƒbƒVƒ…–³Œø‰»
+        // ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç„¡åŠ¹åŒ–
         mov     r0, #0
-        mcr     p15, 0, r0, c7, c5, 0       // –½—ßƒLƒƒƒbƒVƒ…
-        mcr     p15, 0, r0, c7, c6, 0       // ƒf[ƒ^ƒLƒƒƒbƒVƒ…
+        mcr     p15, 0, r0, c7, c5, 0       // å‘½ä»¤ã‚­ãƒ£ãƒƒã‚·ãƒ¥
+        mcr     p15, 0, r0, c7, c6, 0       // ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥
 
-        // ƒ‰ƒCƒgƒoƒbƒtƒ@ ƒGƒ“ƒvƒeƒB‘Ò‚¿
+        // ãƒ©ã‚¤ãƒˆãƒãƒƒãƒ•ã‚¡ ã‚¨ãƒ³ãƒ—ãƒ†ã‚£å¾…ã¡
         mcr     p15, 0, r0, c7, c10, 4
 
 /*
@@ -642,17 +642,17 @@ static asm void init_cp15(void)
 
 
         //
-        // ƒƒ‚ƒŠƒŠ[ƒWƒ‡ƒ“‰Šú‰»
+        // ãƒ¡ãƒ¢ãƒªãƒªãƒ¼ã‚¸ãƒ§ãƒ³åˆæœŸåŒ–
         //
-        //---- I/O ƒŒƒWƒXƒ^ & VRAM “™
+        //---- I/O ãƒ¬ã‚¸ã‚¹ã‚¿ & VRAM ç­‰
         SET_PROTECTION_A( c0, HW_IOREG, 64MB )
         SET_PROTECTION_B( c0, HW_IOREG, 64MB )
 
-        //---- ƒƒCƒ“ƒƒ‚ƒŠ
+        //---- ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒª
         SET_PROTECTION_A( c1, HW_MAIN_MEM_MAIN, 8MB )
         SET_PROTECTION_B( c1, HW_MAIN_MEM_MAIN, 8MB )
 
-        //---- ƒTƒEƒ“ƒhƒf[ƒ^—Ìˆæ
+        //---- ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿é ˜åŸŸ
 #if     HW_MAIN_MEM_SUB_SIZE+HW_MAIN_MEM_SHARED_SIZE == 0x1000
         SET_PROTECTION_A( c2, HW_MAIN_MEM_SUB, 4KB )
         SET_PROTECTION_B( c2, HW_MAIN_MEM_SUB, 4KB )
@@ -687,13 +687,13 @@ static asm void init_cp15(void)
 #pragma message(ERROR: Size unmatch HW_MAIN_MEM_SUB_SIZE)
 #endif
 
-        //---- ƒJ[ƒgƒŠƒbƒW–”‚Í‘¼‚Ì—p“r
-        //      CPU “à•”ƒ[ƒN RAM “™
+        //---- ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸åˆã¯ä»–ã®ç”¨é€”
+        //      CPU å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ RAM ç­‰
         SET_PROTECTION_A( c3, HW_CTRDG_ROM, 128MB )
         SET_PROTECTION_B( c3, HW_CTRDG_ROM, 128MB )
 
-        //---- ƒf[ƒ^ TCM
-        //      + CPU “à•”ƒ[ƒN RAM ‚Ìê‡‚ ‚è
+        //---- ãƒ‡ãƒ¼ã‚¿ TCM
+        //      + CPU å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ RAM ã®å ´åˆã‚ã‚Š
 //#if   (HW_DTCM & 0x3FFF) != 0
 //#pragma message(ERROR: HW_DTCM need to be aligned 16KB!)
 //#endif
@@ -704,8 +704,8 @@ static asm void init_cp15(void)
         orr     r0, r0, #HW_C6_PR_ENABLE
         SET_PROTECTION_B( c4, HW_DTCM, 16KB )
 
-        //---- –½—ß TCM
-        //      ƒf[ƒ^ TCM ‚æ‚è—Dæ‚ª‚‚¢AƒƒCƒ“ƒƒ‚ƒŠ—Ìˆæ‚Ü‚Å‚ÌƒCƒ[ƒW
+        //---- å‘½ä»¤ TCM
+        //      ãƒ‡ãƒ¼ã‚¿ TCM ã‚ˆã‚Šå„ªå…ˆãŒé«˜ã„ã€ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¾ã§ã®ã‚¤ãƒ¡ãƒ¼ã‚¸
         SET_PROTECTION_A( c5, HW_ITCM_IMAGE, 16MB )
         SET_PROTECTION_B( c5, HW_ITCM_IMAGE, 16MB )
 
@@ -713,7 +713,7 @@ static asm void init_cp15(void)
         SET_PROTECTION_A( c6, HW_BIOS, 32KB )
         SET_PROTECTION_B( c6, HW_BIOS, 32KB )
 
-        //---- SHARED  CPU ŠÔ’ÊMƒ[ƒN—Ìˆæ
+        //---- SHARED  CPU é–“é€šä¿¡ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
         SET_PROTECTION_A( c7, HW_MAIN_MEM_SHARED, 4KB )
         SET_PROTECTION_B( c7, HW_MAIN_MEM_SHARED, 4KB )
             
@@ -722,20 +722,20 @@ static asm void init_cp15(void)
 #endif
        
         //
-        // –½—ß‚s‚b‚l Ý’è
+        // å‘½ä»¤ï¼´ï¼£ï¼­ è¨­å®š
         //
         mov     r0, #HW_C9_TCMR_32MB
         mcr     p15, 0, r0, c9, c1, 1
 
         //
-        // ƒf[ƒ^‚s‚b‚l Ý’è
+        // ãƒ‡ãƒ¼ã‚¿ï¼´ï¼£ï¼­ è¨­å®š
         //
         ldr     r0, =INITi_HW_DTCM
         orr     r0, r0, #HW_C9_TCMR_16KB
         mcr     p15, 0, r0, c9, c1, 0
 
         //
-        // –½—ßƒLƒƒƒbƒVƒ… ƒCƒl[ƒuƒ‹ (ƒŠ[ƒWƒ‡ƒ“Ý’è)
+        // å‘½ä»¤ã‚­ãƒ£ãƒƒã‚·ãƒ¥ ã‚¤ãƒãƒ¼ãƒ–ãƒ« (ãƒªãƒ¼ã‚¸ãƒ§ãƒ³è¨­å®š)
         //      1: MAIN_MEM
         //      6: BIOS
         //
@@ -743,7 +743,7 @@ static asm void init_cp15(void)
         mcr     p15, 0, r0, c2, c0, 1
 
         //
-        // ƒf[ƒ^ƒLƒƒƒbƒVƒ… ƒCƒl[ƒuƒ‹ (ƒŠ[ƒWƒ‡ƒ“Ý’è)
+        // ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ ã‚¤ãƒãƒ¼ãƒ–ãƒ« (ãƒªãƒ¼ã‚¸ãƒ§ãƒ³è¨­å®š)
         //      1: MAIN_MEM
         //      6: BIOS
         //
@@ -751,14 +751,14 @@ static asm void init_cp15(void)
         mcr     p15, 0, r0, c2, c0, 0
 
         //
-        // ƒ‰ƒCƒgƒoƒbƒtƒ@ ƒCƒl[ƒuƒ‹(ƒŠ[ƒWƒ‡ƒ“Ý’è)
+        // ãƒ©ã‚¤ãƒˆãƒãƒƒãƒ•ã‚¡ ã‚¤ãƒãƒ¼ãƒ–ãƒ«(ãƒªãƒ¼ã‚¸ãƒ§ãƒ³è¨­å®š)
         //      1: MAIN_MEM
         //
         mov     r0, #REGION_BIT(0,1,0,0,0,0,0,0)
         mcr     p15, 0, r0, c3, c0, 0
 
         //
-        // –½—ßƒAƒNƒZƒX‹–‰Â (ƒŠ[ƒWƒ‡ƒ“Ý’è)
+        // å‘½ä»¤ã‚¢ã‚¯ã‚»ã‚¹è¨±å¯ (ãƒªãƒ¼ã‚¸ãƒ§ãƒ³è¨­å®š)
         //  IO_VRAM       : RW
         //  MAIN_MEM_MAIN : RW
         //  MAIN_MEM_SUB  : NA
@@ -772,7 +772,7 @@ static asm void init_cp15(void)
         mcr     p15, 0, r0, c5, c0, 3
 
         //
-        // ƒf[ƒ^ƒAƒNƒZƒX‹–‰ÂiƒŠ[ƒWƒ‡ƒ“Ý’èj
+        // ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹è¨±å¯ï¼ˆãƒªãƒ¼ã‚¸ãƒ§ãƒ³è¨­å®šï¼‰
         //  IO_VRAM       : RW
         //  MAIN_MEM_MAIN : RW
         //  MAIN_MEM_SUB  : NA
@@ -786,7 +786,7 @@ static asm void init_cp15(void)
         mcr     p15, 0, r0, c5, c0, 2 
 
         //
-        // ƒVƒXƒeƒ€§ŒäƒRƒvƒƒZƒbƒT ƒ}ƒXƒ^[Ý’è
+        // ã‚·ã‚¹ãƒ†ãƒ åˆ¶å¾¡ã‚³ãƒ—ãƒ­ã‚»ãƒƒã‚µ ãƒžã‚¹ã‚¿ãƒ¼è¨­å®š
         //
         mrc     p15, 0, r0, c1, c0, 0
         ldr     r1,=HW_C1_ICACHE_ENABLE | HW_C1_DCACHE_ENABLE | HW_C1_CACHE_ROUND_ROBIN \

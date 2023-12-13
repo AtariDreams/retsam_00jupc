@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	encount.c
- * @brief	ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒAƒNƒZƒX—pƒ\[ƒX
+ * @brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚½ãƒ¼ã‚¹
  * @author	tamada GAME FREAK inc.
  * @date	2003.04.28
  */
@@ -15,68 +15,68 @@
 #include "savedata/vidro_type.h"
 
 #include "field/encount_define.h"
-//–¨–Øƒf[ƒ^
+//èœœæœ¨ãƒ‡ãƒ¼ã‚¿
 typedef struct HONEY_TREE_tag
 {
-	u8 TreeNo;			//‘O‰ñƒGƒ“ƒJƒEƒ“ƒg‚µ‚½–Ø‚Ìƒiƒ“ƒo[
+	u8 TreeNo;			//å‰å›ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸæœ¨ã®ãƒŠãƒ³ãƒãƒ¼
 	HONEY_DATA HoneyData[HONEY_TREE_MAX];
 }HONEY_TREE;
 
-//— Rƒf[ƒ^
+//è£å±±ãƒ‡ãƒ¼ã‚¿
 typedef struct HILL_BACK_DATA_tag
 {
-	BOOL TalkFlg;	//˜b‚µ‚©‚¯—LŒøƒtƒ‰ƒO	<<•Ê‚ÉƒZ[ƒu‚µ‚Ä‚¢‚é‚Æ‚±‚ë‚ª‚ ‚Á‚½‚Ì‚Å–¢g—p 20060526
-	u16 EncTblIdx1;	//— RƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒX1‚Â–Ú
-	u16 EncTblIdx2;	//— RƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒX2‚Â–Ú
+	BOOL TalkFlg;	//è©±ã—ã‹ã‘æœ‰åŠ¹ãƒ•ãƒ©ã‚°	<<åˆ¥ã«ã‚»ãƒ¼ãƒ–ã—ã¦ã„ã‚‹ã¨ã“ã‚ãŒã‚ã£ãŸã®ã§æœªä½¿ç”¨ 20060526
+	u16 EncTblIdx1;	//è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹1ã¤ç›®
+	u16 EncTblIdx2;	//è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹2ã¤ç›®
 }HILL_BACK_DATA;
 
-//©‹@‚Ìƒ][ƒ“‘«Õ
+//è‡ªæ©Ÿã®ã‚¾ãƒ¼ãƒ³è¶³è·¡
 typedef struct PLAYER_ZONE_HIST_tag
 {
-	int BeforeZone;	//‘O‰ñƒ][ƒ“
-	int OldZone;	//‘OX‰ñƒ][ƒ“
+	int BeforeZone;	//å‰å›ã‚¾ãƒ¼ãƒ³
+	int OldZone;	//å‰ã€…å›ã‚¾ãƒ¼ãƒ³
 }PLAYER_ZONE_HIST;
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 typedef struct MV_POKE_DATA_tag{
 
-	int ZoneID;			//ƒ][ƒ“‚h‚c
-	u32	PowRnd;		// ƒpƒ[—”
-	u32	PersonalRnd;	// ŒÂ«—”
+	int ZoneID;			//ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤
+	u32	PowRnd;		// ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+	u32	PersonalRnd;	// å€‹æ€§ä¹±æ•°
 
-	u16	MonsNo;				// ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+	u16	MonsNo;				// ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
 	u16	Hp;				// HP
 
 	u8	Lv;				// Lv
-	u8	Cond;			// ó‘ÔˆÙí
+	u8	Cond;			// çŠ¶æ…‹ç•°å¸¸
 
-	u8	Encount;		// ƒGƒ“ƒJƒEƒ“ƒgƒtƒ‰ƒO
+	u8	Encount;		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ•ãƒ©ã‚°
 	u8	Dummy;
 
 }MV_POKE_DATA;
 
 typedef struct ENC_SV_DATA_tag
 {
-	int SafariRandSeed;			//ƒTƒtƒ@ƒŠƒ‰ƒ“ƒ_ƒ€‚Ìí
-	int GenerateRandSeed;		//‘å—Ê”­¶ƒ‰ƒ“ƒ_ƒ€‚Ìí
-	HILL_BACK_DATA HillBackData;			//— Rƒf[ƒ^
-	HONEY_TREE HoneyTree;		//–¨–Øƒf[ƒ^
-	SWAY_GRASS_HIST		SwayGrassHist;	//—h‚ê‘—š—ğ
-	PLAYER_ZONE_HIST	PlayerZoneHist;	//ƒ][ƒ“—š—ğ
-	MV_POKE_DATA	MovePokeData[MOVE_POKE_MAX];	//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u8 MovePokeZoneIdx[MOVE_POKE_MAX];	//ˆÚ“®ƒ|ƒPƒ‚ƒ“Œ»İƒ][ƒ“ƒCƒ“ƒfƒbƒNƒX
-	u8 GenerateValid;					//‘å—Ê”­¶”­“®ƒtƒ‰ƒO
-	u8 SprayCount;						//ƒXƒvƒŒ[—LŒø•à”(Å‘å250•à)
-	u8 PokeSearcherCharge;				//ƒ|ƒPƒT[ƒ`ƒƒ[“d’liÅ‘å50‚ç‚µ‚¢j
-	u8 VidroType;						//g—p‚µ‚Ä‚¢‚éƒr[ƒhƒividro_type.h‚É’è‹`j
+	int SafariRandSeed;			//ã‚µãƒ•ã‚¡ãƒªãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®
+	int GenerateRandSeed;		//å¤§é‡ç™ºç”Ÿãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®
+	HILL_BACK_DATA HillBackData;			//è£å±±ãƒ‡ãƒ¼ã‚¿
+	HONEY_TREE HoneyTree;		//èœœæœ¨ãƒ‡ãƒ¼ã‚¿
+	SWAY_GRASS_HIST		SwayGrassHist;	//æºã‚Œè‰å±¥æ­´
+	PLAYER_ZONE_HIST	PlayerZoneHist;	//ã‚¾ãƒ¼ãƒ³å±¥æ­´
+	MV_POKE_DATA	MovePokeData[MOVE_POKE_MAX];	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u8 MovePokeZoneIdx[MOVE_POKE_MAX];	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ç¾åœ¨ã‚¾ãƒ¼ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8 GenerateValid;					//å¤§é‡ç™ºç”Ÿç™ºå‹•ãƒ•ãƒ©ã‚°
+	u8 SprayCount;						//ã‚¹ãƒ—ãƒ¬ãƒ¼æœ‰åŠ¹æ­©æ•°(æœ€å¤§250æ­©)
+	u8 PokeSearcherCharge;				//ãƒã‚±ã‚µãƒ¼ãƒãƒ£å……é›»å€¤ï¼ˆæœ€å¤§50ã‚‰ã—ã„ï¼‰
+	u8 VidroType;						//ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ“ãƒ¼ãƒ‰ãƒ­ï¼ˆvidro_type.hã«å®šç¾©ï¼‰
 	
 }ENC_SV_DATA;
 
 //----------------------------------------------------------
 /**
- * @brief	ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^ƒTƒCƒYæ“¾
+ * @brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  * 
- * @return	int		ENC_SV_DATA‚ÌƒTƒCƒY
+ * @return	int		ENC_SV_DATAã®ã‚µã‚¤ã‚º
  */
 //----------------------------------------------------------
 int EncDataSave_GetWorkSize(void)
@@ -86,9 +86,9 @@ int EncDataSave_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^‚Ì‰Šú‰»
+ * @brief		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
  * 
- * @param	outEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -97,16 +97,16 @@ void EncDataSave_InitSaveData(ENC_SV_PTR outEncData)
 {
 	memset( outEncData, 0, sizeof(ENC_SV_DATA) );
 
-	//ƒ‰ƒ“ƒ_ƒ€‚ÌíƒZƒbƒg
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚»ãƒƒãƒˆ
 	outEncData->SafariRandSeed = gf_mtRand();
 	outEncData->GenerateRandSeed = gf_mtRand();
 	
-	//— R‚Í‚È‚µ‚©‚¯ƒtƒ‰ƒO—‚Æ‚·
+	//è£å±±ã¯ãªã—ã‹ã‘ãƒ•ãƒ©ã‚°è½ã¨ã™
 	outEncData->HillBackData.TalkFlg = FALSE;
-	//— RƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğƒZƒbƒg
+	//è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	outEncData->HillBackData.EncTblIdx1 = HILL_BACK_POKE_NONE;
 	outEncData->HillBackData.EncTblIdx2 = HILL_BACK_POKE_NONE;
-	//–¨–Ø‰Šú‰»
+	//èœœæœ¨åˆæœŸåŒ–
 	{
 		int i;
 		HT_PTR ht_ptr = &(outEncData->HoneyTree);
@@ -120,13 +120,13 @@ void EncDataSave_InitSaveData(ENC_SV_PTR outEncData)
 			ht_ptr->HoneyData[i].SwayLv = 0;
 		}
 	}
-	//‘å—Ê”­¶”­“®ƒtƒ‰ƒO‚ğ—‚Æ‚·
+	//å¤§é‡ç™ºç”Ÿç™ºå‹•ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 	outEncData->GenerateValid = 0;
-	//ƒXƒvƒŒ[
+	//ã‚¹ãƒ—ãƒ¬ãƒ¼
 	outEncData->SprayCount = 0;
-	//ƒ|ƒPƒT[ƒ`ƒƒ[
+	//ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼
 	outEncData->PokeSearcherCharge = 0;
-	//ƒr[ƒhƒ
+	//ãƒ“ãƒ¼ãƒ‰ãƒ­
 	outEncData->VidroType = VIDRO_NONE;
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_ENCOUNT)
 	SVLD_SetCrc(GMDATA_ID_ENCOUNT);
@@ -135,9 +135,9 @@ void EncDataSave_InitSaveData(ENC_SV_PTR outEncData)
 
 //----------------------------------------------------------
 /**
- * @brief		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜Aƒ‰ƒ“ƒ_ƒ€‚ÌíXV
+ * @brief		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®æ›´æ–°
  * 
- * @param	outEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -153,12 +153,12 @@ void EncDataSave_UpdateRandSeed(ENC_SV_PTR ioEncData, const u32 inRandSeed)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜Aƒ‰ƒ“ƒ_ƒ€‚Ìíæ“¾
+ * @brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®å–å¾—
  * 
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inSeedType		ƒ‰ƒ“ƒ_ƒ€‚Ìí‚Ìí—Şiencount.h‚ÉˆÓ‹`j
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inSeedType		ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã®ç¨®é¡ï¼ˆencount.hã«æ„ç¾©ï¼‰
  *
- * @return	u32				ƒTƒtƒ@ƒŠƒ‰ƒ“ƒ_ƒ€‚Ìí
+ * @return	u32				ã‚µãƒ•ã‚¡ãƒªãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®
  */
 //----------------------------------------------------------
 u32 EncDataSave_GetRandSeed(ENC_SV_PTR inEncData, const u8 inSeedType)
@@ -176,11 +176,11 @@ u32 EncDataSave_GetRandSeed(ENC_SV_PTR inEncData, const u8 inSeedType)
 
 //----------------------------------------------------------
 /**
- * @brief	—h‚ê‘—š—ğƒf[ƒ^æ“¾
+ * @brief	æºã‚Œè‰å±¥æ­´ãƒ‡ãƒ¼ã‚¿å–å¾—
  * 
- * @param	outEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	—h‚ê‘—š—ğƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	æºã‚Œè‰å±¥æ­´ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 SWAY_GRASS_HIST *  EncDataSave_GetSwayGrassHist(ENC_SV_PTR outEncData)
@@ -190,11 +190,11 @@ SWAY_GRASS_HIST *  EncDataSave_GetSwayGrassHist(ENC_SV_PTR outEncData)
 
 //==============================================================================
 /**
- * ƒZ[ƒuƒf[ƒ^æ“ªƒ|ƒCƒ“ƒ^æ“¾
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å…ˆé ­ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param	sv		ƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	ENC_SV_PTR		ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	ENC_SV_PTR		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 ENC_SV_PTR EncDataSave_GetSaveDataPtr(SAVEDATA * sv)
@@ -205,15 +205,15 @@ ENC_SV_PTR EncDataSave_GetSaveDataPtr(SAVEDATA * sv)
 	return SaveData_Get(sv, GMDATA_ID_ENCOUNT);
 }
 
-//–¨–ØŠÖ˜A-------------------------------------------------------------------------------------------------------------
+//èœœæœ¨é–¢é€£-------------------------------------------------------------------------------------------------------------
 
 //==============================================================================
 /**
- * –¨–Øƒf[ƒ^ƒ|ƒCƒ“ƒ^æ“¾
+ * èœœæœ¨ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param	sv		ƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	HT_PTR	–¨“h‚èƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	HT_PTR	èœœå¡—ã‚Šãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 HT_PTR EncDataSave_GetHoneyTree(ENC_SV_PTR inEncData)
@@ -223,11 +223,11 @@ HT_PTR EncDataSave_GetHoneyTree(ENC_SV_PTR inEncData)
 
 //==============================================================================
 /**
- * ‘O‰ñƒGƒ“ƒJƒEƒ“ƒg‚µ‚½–Ø‚Ìƒiƒ“ƒo[‚ğæ“¾
+ * å‰å›ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸæœ¨ã®ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param	inPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	int			–Øƒiƒ“ƒo[
+ * @return	int			æœ¨ãƒŠãƒ³ãƒãƒ¼
  */
 //==============================================================================
 const int HTSave_GetBeforeTreeNo(HT_PTR inPtr)
@@ -237,10 +237,10 @@ const int HTSave_GetBeforeTreeNo(HT_PTR inPtr)
 
 //==============================================================================
 /**
- * ‘O‰ñƒGƒ“ƒJƒEƒ“ƒg‚µ‚½–Ø‚Ìƒiƒ“ƒo[‚ğƒZƒbƒg
+ * å‰å›ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸæœ¨ã®ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	inTreeNo	–Øƒiƒ“ƒo[
- * @param	outPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
+ * @param	outPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -255,10 +255,10 @@ void HTSave_SetBeforeTreeNo(const u8 inTreeNo, HT_PTR outPtr)
 
 //==============================================================================
 /**
- * –¨–Øƒf[ƒ^ƒ|ƒCƒ“ƒ^‚Ìæ“¾
+ * èœœæœ¨ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
  *
- * @param	inTreeNo	–Øƒiƒ“ƒo[
- * @param	outPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
+ * @param	outPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -273,10 +273,10 @@ HONEY_DATA *HTSave_GetHoneyDataPtr(const u8 inTreeNo, HT_PTR outPtr)
 
 //==============================================================================
 /**
- * ŠÔXV
+ * æ™‚é–“æ›´æ–°
  *
- * @param	sv				ƒZ[ƒuƒ|ƒCƒ“ƒ^
- * @param	inDiffminute	ŠÔ·•ª
+ * @param	sv				ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
+ * @param	inDiffminute	æ™‚é–“å·®åˆ†
  *
  * @return	none
  */
@@ -306,9 +306,9 @@ void HTSave_UpdateHoneyTreeTime(SAVEDATA * sv,  const int inDiffMinute)
 
 //==============================================================================
 /**
- * ‘å—Ê”­¶ŠJn
+ * å¤§é‡ç™ºç”Ÿé–‹å§‹
  *
- * @param	sv				ƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	sv				ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -325,11 +325,11 @@ void EncDataSave_StartGenerate( SAVEDATA * sv )
 
 //==============================================================================
 /**
- * ‘å—Ê”­¶’†‚©‚ğ•Ô‚·
+ * å¤§é‡ç™ºç”Ÿä¸­ã‹ã‚’è¿”ã™
  *
- * @param	inEncData			ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	inEncData			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u8 0ˆÈŠOF‘å—Ê”­¶’†
+ * @return	u8 0ä»¥å¤–ï¼šå¤§é‡ç™ºç”Ÿä¸­
  */
 //==============================================================================
 u8 EncDataSave_IsGenerate( ENC_SV_PTR inEncData )
@@ -339,10 +339,10 @@ u8 EncDataSave_IsGenerate( ENC_SV_PTR inEncData )
 
 //==============================================================================
 /**
- * ålŒö‚Ìƒ][ƒ“—š—ğ‚ÌXV
+ * ä¸»äººå…¬ã®ã‚¾ãƒ¼ãƒ³å±¥æ­´ã®æ›´æ–°
  *
- * @param	outEncData			ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
- * @param	inZoneID			ƒ][ƒ“‚h‚c
+ * @param	outEncData			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
+ * @param	inZoneID			ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤
  */
 //==============================================================================
 void EncDataSave_UpdatePlayerZoneHist(ENC_SV_PTR ioEncData, const int inZoneID)
@@ -358,11 +358,11 @@ void EncDataSave_UpdatePlayerZoneHist(ENC_SV_PTR ioEncData, const int inZoneID)
 
 //==============================================================================
 /**
- * ålŒö‚Ì‘OX‰ñ‚¢‚½ƒ][ƒ“‚ğæ“¾
+ * ä¸»äººå…¬ã®å‰ã€…å›ã„ãŸã‚¾ãƒ¼ãƒ³ã‚’å–å¾—
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	int				ƒ][ƒ“‚h‚c
+ * @return	int				ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤
  */
 //==============================================================================
 int EncDataSave_GetPlayerOldZone(ENC_SV_PTR inEncData)
@@ -372,12 +372,12 @@ int EncDataSave_GetPlayerOldZone(ENC_SV_PTR inEncData)
 
 //==============================================================================
 /**
- * w’èˆÚ“®ƒ|ƒPƒ‚ƒ“‚Ìƒ][ƒ“ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ * æŒ‡å®šç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã®ã‚¾ãƒ¼ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
- * @param	inTargetPoke	ˆÚ“®ƒ|ƒPƒ‚ƒ“(0`2)
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTargetPoke	ç§»å‹•ãƒã‚±ãƒ¢ãƒ³(0ã€œ2)
  *
- * @return	u8				ƒ][ƒ“ƒCƒ“ƒfƒbƒNƒX
+ * @return	u8				ã‚¾ãƒ¼ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //==============================================================================
 u8 EncDataSave_GetMovePokeZoneIdx(ENC_SV_PTR inEncData, const u8 inTargetPoke)
@@ -389,11 +389,11 @@ u8 EncDataSave_GetMovePokeZoneIdx(ENC_SV_PTR inEncData, const u8 inTargetPoke)
 
 //==============================================================================
 /**
- * w’èˆÚ“®ƒ|ƒPƒ‚ƒ“‚Ìƒ][ƒ“ƒCƒ“ƒfƒbƒNƒX‚ğƒZƒbƒg
+ * æŒ‡å®šç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã®ã‚¾ãƒ¼ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	outEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
- * @param	inTargetPoke	ˆÚ“®ƒ|ƒPƒ‚ƒ“(0`2)
- * @param	inZoneIndex		ƒ][ƒ“ƒCƒ“ƒfƒbƒNƒX
+ * @param	outEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTargetPoke	ç§»å‹•ãƒã‚±ãƒ¢ãƒ³(0ã€œ2)
+ * @param	inZoneIndex		ã‚¾ãƒ¼ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  */
@@ -409,12 +409,12 @@ void EncDataSave_SetMovePokeZoneIdx(ENC_SV_PTR outEncData, const u8 inTargetPoke
 
 //==============================================================================
 /**
- * w’èˆÚ“®ƒ|ƒPƒ‚ƒ“‚ÌƒGƒ“ƒJƒEƒ“ƒgƒtƒ‰ƒO‚İ‚ÄAˆÚ“®‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+ * æŒ‡å®šç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã¿ã¦ã€ç§»å‹•ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
- * @param	inTargetPoke	ˆÚ“®ƒ|ƒPƒ‚ƒ“(0`2)
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTargetPoke	ç§»å‹•ãƒã‚±ãƒ¢ãƒ³(0ã€œ2)
  *
- * @return	u8			0ˆÈŠO:ˆÚ“®‚µ‚Ä‚é	0:ˆÚ“®‚µ‚Ä‚È‚¢
+ * @return	u8			0ä»¥å¤–:ç§»å‹•ã—ã¦ã‚‹	0:ç§»å‹•ã—ã¦ãªã„
  */
 //==============================================================================
 u8 EncDataSave_IsMovePokeValid(ENC_SV_PTR inEncData, const u8 inTargetPoke)
@@ -425,10 +425,10 @@ u8 EncDataSave_IsMovePokeValid(ENC_SV_PTR inEncData, const u8 inTargetPoke)
 
 //==============================================================================
 /**
- * w’èˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌƒNƒŠƒA
+ * æŒ‡å®šç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ã‚¯ãƒªã‚¢
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
- * @param	inTargetPoke	ˆÚ“®ƒ|ƒPƒ‚ƒ“(0`2)
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTargetPoke	ç§»å‹•ãƒã‚±ãƒ¢ãƒ³(0ã€œ2)
  *
  * @return	none
  */
@@ -443,12 +443,12 @@ void EncDataSave_ClearMovePokeData(MPD_PTR *outMPData)
 
 //==============================================================================
 /**
- * w’èˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚Ìæ“¾
+ * æŒ‡å®šç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
- * @param	inTargetPoke	ˆÚ“®ƒ|ƒPƒ‚ƒ“(0`2)
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTargetPoke	ç§»å‹•ãƒã‚±ãƒ¢ãƒ³(0ã€œ2)
  *
- * @return	MPD_PTR			ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ * @return	MPD_PTR			ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  */
 //==============================================================================
 MPD_PTR	EncDataSave_GetMovePokeDataPtr(ENC_SV_PTR inEncData, const u8 inTargetPoke)
@@ -459,10 +459,10 @@ MPD_PTR	EncDataSave_GetMovePokeDataPtr(ENC_SV_PTR inEncData, const u8 inTargetPo
 
 //==============================================================================
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒpƒ‰ƒ[ƒ^æ“¾
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  *
- * @param	inMPData		ˆÚ“®”öƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inParamID		ƒpƒ‰ƒ[ƒ^‚h‚c
+ * @param	inMPData		ç§»å‹•å°¾ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inParamID		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼©ï¼¤
  *
  * @return	u32
  */
@@ -471,28 +471,28 @@ u32 EncDataSave_GetMovePokeDataParam(const MPD_PTR inMPData, const u8 inParamID)
 {
 	u32 val;
 	switch(inParamID){
-	case MP_PARAM_ZONE_ID:			//oŒ»ƒ][ƒ“
+	case MP_PARAM_ZONE_ID:			//å‡ºç¾ã‚¾ãƒ¼ãƒ³
 		val = inMPData->ZoneID;
 		break;
-	case MP_PARAM_POW_RND:			//ƒpƒ[—”
+	case MP_PARAM_POW_RND:			//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 		val = inMPData->PowRnd;
 		break;
-	case MP_PARAM_PER_RND:			//ŒÂ«—”
+	case MP_PARAM_PER_RND:			//å€‹æ€§ä¹±æ•°
 		val = inMPData->PersonalRnd;
 		break;
-	case MP_PARAM_MONSNO:			//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+	case MP_PARAM_MONSNO:			//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
 		val = inMPData->MonsNo;
 		break;
-	case MP_PARAM_HP:				//‚g‚o
+	case MP_PARAM_HP:				//ï¼¨ï¼°
 		val = inMPData->Hp;
 		break;
-	case MP_PARAM_LV:				//‚k‚u
+	case MP_PARAM_LV:				//ï¼¬ï¼¶
 		val = inMPData->Lv;
 		break;
-	case MP_PARAM_COND:				//ó‘ÔˆÙí
+	case MP_PARAM_COND:				//çŠ¶æ…‹ç•°å¸¸
 		val = inMPData->Cond;
 		break;
-	case MP_PARAM_ENC:				//ƒGƒ“ƒJƒEƒ“ƒgƒtƒ‰ƒO
+	case MP_PARAM_ENC:				//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ•ãƒ©ã‚°
 		val = inMPData->Encount;
 		break;
 	defauld:
@@ -504,11 +504,11 @@ u32 EncDataSave_GetMovePokeDataParam(const MPD_PTR inMPData, const u8 inParamID)
 
 //==============================================================================
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	EncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
- * @param	inParamID	ƒpƒ‰ƒ[ƒ^‚h‚c
- * @param	inVal		ƒZƒbƒg‚·‚é’l
+ * @param	EncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
+ * @param	inParamID	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼©ï¼¤
+ * @param	inVal		ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  *
  * @return	none
  */
@@ -517,28 +517,28 @@ void EncDataSave_SetMovePokeDataParam(MPD_PTR outMPData, const u8 inParamID, con
 {
 	u32 val;
 	switch(inParamID){
-	case MP_PARAM_ZONE_ID:			//oŒ»ƒ][ƒ“
+	case MP_PARAM_ZONE_ID:			//å‡ºç¾ã‚¾ãƒ¼ãƒ³
 		outMPData->ZoneID = inVal;
 		break;
-	case MP_PARAM_POW_RND:			//ƒpƒ[—”
+	case MP_PARAM_POW_RND:			//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 		outMPData->PowRnd = inVal;
 		break;
-	case MP_PARAM_PER_RND:			//ŒÂ«—”
+	case MP_PARAM_PER_RND:			//å€‹æ€§ä¹±æ•°
 		outMPData->PersonalRnd = inVal;
 		break;
-	case MP_PARAM_MONSNO:			//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+	case MP_PARAM_MONSNO:			//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
 		outMPData->MonsNo = inVal;
 		break;
-	case MP_PARAM_HP:				//‚g‚o
+	case MP_PARAM_HP:				//ï¼¨ï¼°
 		outMPData->Hp = inVal;
 		break;
-	case MP_PARAM_LV:				//‚k‚u
+	case MP_PARAM_LV:				//ï¼¬ï¼¶
 		outMPData->Lv = inVal;
 		break;
-	case MP_PARAM_COND:				//ó‘ÔˆÙí
+	case MP_PARAM_COND:				//çŠ¶æ…‹ç•°å¸¸
 		outMPData->Cond = inVal;
 		break;
-	case MP_PARAM_ENC:				//ƒGƒ“ƒJƒEƒ“ƒgƒtƒ‰ƒO
+	case MP_PARAM_ENC:				//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ•ãƒ©ã‚°
 		outMPData->Encount = inVal;
 		break;
 	defauld:
@@ -551,11 +551,11 @@ void EncDataSave_SetMovePokeDataParam(MPD_PTR outMPData, const u8 inParamID, con
 
 //==============================================================================
 /**
- * ƒ|ƒPƒT[ƒ`ƒƒ[“d’l‚ğŠi”[‚µ‚½ƒƒ“ƒo‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ * ãƒã‚±ã‚µãƒ¼ãƒãƒ£å……é›»å€¤ã‚’æ ¼ç´ã—ãŸãƒ¡ãƒ³ãƒã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u8*				ƒ|ƒPƒT[ƒ`ƒƒ[[“d’lƒ|ƒCƒ“ƒ^
+ * @return	u8*				ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼å……é›»å€¤ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 u8 *EncDataSave_GetPokeSearcherCharge(ENC_SV_PTR inEncData)
@@ -565,11 +565,11 @@ u8 *EncDataSave_GetPokeSearcherCharge(ENC_SV_PTR inEncData)
 
 //==============================================================================
 /**
- * ƒXƒvƒŒ[—LŒø•à”‚ğŠi”[‚µ‚½ƒƒ“ƒo‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ * ã‚¹ãƒ—ãƒ¬ãƒ¼æœ‰åŠ¹æ­©æ•°ã‚’æ ¼ç´ã—ãŸãƒ¡ãƒ³ãƒã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u8*				ƒXƒvƒŒ[—LŒø•à”ƒ|ƒCƒ“ƒ^
+ * @return	u8*				ã‚¹ãƒ—ãƒ¬ãƒ¼æœ‰åŠ¹æ­©æ•°ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 u8 *EncDataSave_GetSprayCnt(ENC_SV_PTR inEncData)
@@ -579,11 +579,11 @@ u8 *EncDataSave_GetSprayCnt(ENC_SV_PTR inEncData)
 
 //==============================================================================
 /**
- * ƒXƒvƒŒ[‚ğg—p‚Å‚«‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+ * ã‚¹ãƒ—ãƒ¬ãƒ¼ã‚’ä½¿ç”¨ã§ãã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
  * 
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:g—p‰Â		FALSE:g—p•s‰Â
+ * @return	BOOL	TRUE:ä½¿ç”¨å¯		FALSE:ä½¿ç”¨ä¸å¯
  */
 //==============================================================================
 BOOL EncDataSave_CanUseSpray(ENC_SV_PTR inEncData)
@@ -597,10 +597,10 @@ BOOL EncDataSave_CanUseSpray(ENC_SV_PTR inEncData)
 
 //==============================================================================
 /**
- * ƒr[ƒhƒƒ^ƒCƒvƒZƒbƒg
+ * ãƒ“ãƒ¼ãƒ‰ãƒ­ã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
  * 
- * @param	outEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
- * @param	inType			ƒr[ƒhƒƒ^ƒCƒv
+ * @param	outEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
+ * @param	inType			ãƒ“ãƒ¼ãƒ‰ãƒ­ã‚¿ã‚¤ãƒ—
  *
  * @return	none
  */
@@ -618,11 +618,11 @@ void EncDataSave_SetVidro(ENC_SV_PTR outEncData, const u8 inType)
 
 //==============================================================================
 /**
- * ƒr[ƒhƒƒ^ƒCƒvæ“¾
+ * ãƒ“ãƒ¼ãƒ‰ãƒ­ã‚¿ã‚¤ãƒ—å–å¾—
  * 
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u8			ƒr[ƒhƒƒ^ƒCƒv
+ * @return	u8			ãƒ“ãƒ¼ãƒ‰ãƒ­ã‚¿ã‚¤ãƒ—
  */
 //==============================================================================
 u8 EncDataSave_GetVidro(ENC_SV_PTR inEncData)
@@ -632,11 +632,11 @@ u8 EncDataSave_GetVidro(ENC_SV_PTR inEncData)
 
 //==============================================================================
 /**
- * — RƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“ƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
+ * è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
  *
- * @param	sv				ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	outIndex1		— Rƒ|ƒPƒ‚ƒ“ƒCƒ“ƒfƒbƒNƒX
- * @param	outIndex2		— Rƒ|ƒPƒ‚ƒ“ƒCƒ“ƒfƒbƒNƒX
+ * @param	sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	outIndex1		è£å±±ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	outIndex2		è£å±±ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  */
@@ -650,10 +650,10 @@ void EncDataSave_GetHillBackPokeIdx(SAVEDATA *sv, u16 *outIndex1, u16 *outIndex2
 
 //==============================================================================
 /**
- * — RƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“ƒCƒ“ƒfƒbƒNƒX‚ÌƒZƒbƒgi‰Ÿ‚µo‚µ®j
+ * è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚»ãƒƒãƒˆï¼ˆæŠ¼ã—å‡ºã—å¼ï¼‰
  *
- * @param	sv			ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inIndex		— Rƒ|ƒPƒ‚ƒ“ƒCƒ“ƒfƒbƒNƒX
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inIndex		è£å±±ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  */

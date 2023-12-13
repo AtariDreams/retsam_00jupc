@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	footprint_snd_def.h
- * @brief	‘«Õƒ{[ƒh‚ÌŒø‰Ê‰¹’è‹`ƒtƒ@ƒCƒ‹
+ * @brief	è¶³è·¡ãƒœãƒ¼ãƒ‰ã®åŠ¹æžœéŸ³å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	matsuda
- * @date	2008.01.23(…)
+ * @date	2008.01.23(æ°´)
  */
 //==============================================================================
 #ifndef __FOOTPRINT_SND_DEF_H__
@@ -11,27 +11,27 @@
 
 
 //==============================================================================
-//	Œø‰Ê‰¹’è‹`
+//	åŠ¹æžœéŸ³å®šç¾©
 //==============================================================================
-///“üŽº‚µ‚½l‚ª‚¢‚½Žž‚É–Â‚ç‚·SE
+///å…¥å®¤ã—ãŸäººãŒã„ãŸæ™‚ã«é³´ã‚‰ã™SE
 #define FOOTPRINT_SE_ENTRY			(SEQ_SE_DP_BUTTON9)
-///‘ÞŽº‚µ‚½l‚ª‚¢‚½Žž‚É–Â‚ç‚·SE
+///é€€å®¤ã—ãŸäººãŒã„ãŸæ™‚ã«é³´ã‚‰ã™SE
 #define FOOTPRINT_SE_LEAVE_ROOM		(SEQ_SE_DP_BUTTON9)
 
-///ƒXƒ^ƒ“ƒv‚ð‰Ÿ‚µ‚½Žž‚Ì‰¹
+///ã‚¹ã‚¿ãƒ³ãƒ—ã‚’æŠ¼ã—ãŸæ™‚ã®éŸ³
 #define FOOTPRINT_SE_STAMP			(SEQ_SE_DP_BOX02)
-//#define FOOTPRINT_SE_STAMP		(SEQ_SE_PL_STAMP)		//•·‚±‚¦‚È‚¢
+//#define FOOTPRINT_SE_STAMP		(SEQ_SE_PL_STAMP)		//èžã“ãˆãªã„
 
-///ƒCƒ“ƒNƒpƒŒƒbƒg‚ðƒ^ƒbƒ`‚µ‚½‚Æ‚«
+///ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚¿ãƒƒãƒã—ãŸã¨ã
 #define FOOTPRINT_SE_TOUCH_INK		(SEQ_SE_DP_BUTTON3)
-///u‚â‚ß‚év‚ðƒ^ƒbƒ`‚µ‚½‚Æ‚«
+///ã€Œã‚„ã‚ã‚‹ã€ã‚’ã‚¿ãƒƒãƒã—ãŸã¨ã
 #define FOOTPRINT_SE_TOUCH_EXIT		(SEQ_SE_DP_BUTTON3)
 
-///§ŒÀŽžŠÔ‚ª—ˆ‚½Žž
+///åˆ¶é™æ™‚é–“ãŒæ¥ãŸæ™‚
 #define FOOTPRINT_SE_TIMEUP			(SEQ_SE_DP_PINPON)
 
 //--------------------------------------------------------------
-//	ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg“®ì”­“®Žž‚É–Â‚ç‚·‰¹(ƒGƒtƒFƒNƒg‚Ì’·‚³‚ªˆê’è‚Å‚È‚¢‚Ì‚È‚çŒÂ•Ê‚É‚µ‚È‚¢‚Æƒ_ƒI)
+//	ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œç™ºå‹•æ™‚ã«é³´ã‚‰ã™éŸ³(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®é•·ã•ãŒä¸€å®šã§ãªã„ã®ãªã‚‰å€‹åˆ¥ã«ã—ãªã„ã¨ãƒ€ãƒ¡ï¼)
 //--------------------------------------------------------------
 #define FOOTPRINT_SE_SP_NIJIMI			(SEQ_SE_PL_TIMER03)
 #define FOOTPRINT_SE_SP_HAJIKE			(SEQ_SE_PL_TIMER03)

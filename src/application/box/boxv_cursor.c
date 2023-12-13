@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxv_cursor.c
- * @brief	�{�b�N�X�����ʁ@�`�扺�����i�g���C�֘A�j
+ * @brief	ボックス操作画面　描画下請け（トレイ関連）
  * @author	taya
  * @date	2005.09.09
  */
@@ -18,10 +18,10 @@
 // consts
 //==============================================================
 enum {
-	// �ړ��\�Ȕ͈́B��������t����o�Ă���
+	// 移動可能な範囲。超えたら逆から出てくる
 	CURSOR_VISIBLE_X_MIN = 70,
 	CURSOR_VISIBLE_X_MAX = 256 + 16,
-	CURSOR_VISIBLE_Y_MIN = -24,			// �͂�ł���A�C�R�������S�ɉB��邭�炢
+	CURSOR_VISIBLE_Y_MIN = -24,			// 掴んでいるアイコンも完全に隠れるくらい
 	CURSOR_VISIBLE_Y_MAX = 192 + 16,
 
 	CURSOR_VISIBLE_X_MAX_FX32 = CURSOR_VISIBLE_X_MAX << FX32_SHIFT,
@@ -29,21 +29,21 @@ enum {
 	CURSOR_VISIBLE_Y_MAX_FX32 = CURSOR_VISIBLE_Y_MAX << FX32_SHIFT,
 	CURSOR_VISIBLE_Y_MIN_FX32 = CURSOR_VISIBLE_Y_MIN << FX32_SHIFT,
 
-	// �ړ��t���[����
-	CURSOR_MOVE_TIME = BOX_TIMER(3),		//< �ʏ펞
-	CURSOR_LOOP_MOVE_TIME = BOX_TIMER(6),	//< �N���b�Ɖ���Ĕ��Α�����o�Ă��鎞
+	// 移動フレーム数
+	CURSOR_MOVE_TIME = BOX_TIMER(3),		//< 通常時
+	CURSOR_LOOP_MOVE_TIME = BOX_TIMER(6),	//< クルッと回って反対側から出てくる時
 
-	// ���ݓ���t���[����
-	CURSOR_CATCHMOVE_DOWN_TIME = BOX_TIMER(3),	// ������Ƃ�
-	CURSOR_CATCHMOVE_UP_TIME = BOX_TIMER(3),	// �オ��Ƃ�
-	CURSOR_CATCHMOVE_DIPTH = -(CURSOR_ICON_YDIFF - CURSOR_CATCHICON_YDIFF),		// �㉺����[���i�h�b�g�j
+	// つかみ動作フレーム数
+	CURSOR_CATCHMOVE_DOWN_TIME = BOX_TIMER(3),	// 下がるとき
+	CURSOR_CATCHMOVE_UP_TIME = BOX_TIMER(3),	// 上がるとき
+	CURSOR_CATCHMOVE_DIPTH = -(CURSOR_ICON_YDIFF - CURSOR_CATCHICON_YDIFF),		// 上下する深さ（ドット）
 
 
-	// ����ւ�����t���[����
+	// 入れ替え動作フレーム数
 	CURSOR_SWAPMOVE_TIME = BOX_TIMER(6),
-	CURSOR_SWAPMOVE_WIDTH = 12,	// ���Ƀu���b�ƍL���镝�i�h�b�g�j
+	CURSOR_SWAPMOVE_WIDTH = 12,	// 横にブワッと広がる幅（ドット）
 
-	// �{�^����������
+	// ボタン押し動作
 	PUSHMOVE_START_TIME = BOX_TIMER(2),
 	PUSHMOVE_DOWN_TIME = BOX_TIMER(1),
 	PUSHMOVE_RETURN_TIME = BOX_TIMER(2),
@@ -55,7 +55,7 @@ enum {
 
 	CURSOR_SHADOW_DIFF = 24,
 
-	// ���A�N�^�[�\���ʒu
+	// 矢印アクター表示位置
 	ARROW_L_XPOS = 108,
 	ARROW_R_XPOS = 236,
 	ARROW_COMPAREMODE_OFS = -44,
@@ -107,14 +107,14 @@ static CLACT_WORK_PTR GetPointIconActor( CURSOR_VIEW_WORK* wk );
 
 //------------------------------------------------------------------
 /**
- * ������
+ * 初期化
  *
  * @param   wk		
  * @param   vwk		
  * @param   vpara		
  * @param   actsys		
  *
- * @retval  BOOL		TRUE�Ő���
+ * @retval  BOOL		TRUEで成功
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorInit( CURSOR_VIEW_WORK* wk, BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpara, CLACT_SET_PTR actsys, ARCHANDLE* p_boxgra_handle )
@@ -151,9 +151,9 @@ BOOL BoxAppView_CursorInit( CURSOR_VIEW_WORK* wk, BOXAPP_VIEW_WORK* vwk, const B
 
 //--------------------------------------------------------------------------------------
 /**
- * �n�a�i�Z�b�g�A�b�v����
+ * ＯＢＪセットアップ処理
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //--------------------------------------------------------------------------------------
@@ -221,7 +221,7 @@ void BoxAppView_CursorActSet( CURSOR_VIEW_WORK* wk, ARCHANDLE* p_boxgra_handle )
 		CLACT_SetDrawFlag( wk->shadow_act, FALSE );
 	}
 
-	// ��ʕ��A���A�͂�ł���A�C�R��������΂���ɍ��킹�����������K�v�ɂȂ�
+	// 画面復帰時、掴んでいるアイコンがあればそれに合わせた初期化が必要になる
 	if( mode != BOX_MODE_ITEM )
 	{
 		if( BoxAppVPara_GetCursorCatchPokeFlag( wk->vpara ) == CURSOR_CATCH_NONE )
@@ -257,20 +257,20 @@ void BoxAppView_CursorActSet( CURSOR_VIEW_WORK* wk, ARCHANDLE* p_boxgra_handle )
 
 
 
-	// ����Ă�l���[�h��������F��ς��Ă���
+	// 慣れてる人モードだったら色を変えておく
 	BoxAppView_CursorExpertModeChange( wk );
 }
 //---------------------------------------------------------------
 /**
- * �͂�ł���|�P�����f�[�^���Q�Ƃ��ăA�C�R�����쐬
+ * 掴んでいるポケモンデータを参照してアイコンを作成
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //---------------------------------------------------------------
 static void SetupCatchPokeObj( CURSOR_VIEW_WORK* wk )
 {
-	// ����A�����I���̂܂܉�ʕ��A�������s���\���͍l�����Ă��Ȃ��B
+	// 現状、複数選択のまま画面復帰処理を行う可能性は考慮していない。
 	VecFx32 vec;
 	s32 x, y;
 
@@ -295,7 +295,7 @@ static void SetupCatchPokeObj( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �I��
+ * 終了
  *
  * @param   wk		
  *
@@ -335,7 +335,7 @@ void BoxAppView_CursorQuit( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ��ʂ�������Ɖ���ċt����o�Ă��铮��ɂ��邩�`�F�b�N
+ * 画面をくるっと回って逆から出てくる動作にするかチェック
  *
  * @param   wk		
  *
@@ -376,9 +376,9 @@ static void CheckReverseMove( const CURSOR_VIEW_WORK* wk, BOOL* xflg, BOOL* yflg
 }
 //------------------------------------------------------------------
 /**
- * �ړ������X�^�[�g
+ * 移動処理スタート
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -452,11 +452,11 @@ void BoxAppView_CursorMoveStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �ړ������I���҂�
+ * 移動処理終了待ち
  *
- * @param   wk		���[�N�|�C���^	
+ * @param   wk		ワークポインタ	
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorMoveWait( CURSOR_VIEW_WORK* wk )
@@ -465,7 +465,7 @@ BOOL BoxAppView_CursorMoveWait( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �ړ������^�X�N
+ * 移動処理タスク
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -543,7 +543,7 @@ static void CursorMoveTask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * �|�P�����A�C�R�������ޓ���X�^�[�g
+ * ポケモンアイコンをつかむ動作スタート
  *
  * @param   wk		
  *
@@ -564,11 +564,11 @@ void BoxAppView_CursorCatchStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �|�P�����A�C�R�������ޓ���I���҂�
+ * ポケモンアイコンをつかむ動作終了待ち
  *
  * @param   wk		
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorCatchWait( CURSOR_VIEW_WORK* wk )
@@ -577,7 +577,7 @@ BOOL BoxAppView_CursorCatchWait( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �|�P�����A�C�R�������ޓ���^�X�N
+ * ポケモンアイコンをつかむ動作タスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -626,7 +626,7 @@ static void CursorCatchMoveTask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * �|�P�����A�C�R����u������X�^�[�g
+ * ポケモンアイコンを置く動作スタート
  *
  * @param   wk		
  *
@@ -643,11 +643,11 @@ void BoxAppView_CursorPutStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �|�P�����A�C�R����u������I���҂�
+ * ポケモンアイコンを置く動作終了待ち
  *
  * @param   wk		
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorPutWait( CURSOR_VIEW_WORK* wk )
@@ -663,7 +663,7 @@ BOOL BoxAppView_CursorPutWait( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �|�P�����A�C�R����u������^�X�N
+ * ポケモンアイコンを置く動作タスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -714,7 +714,7 @@ static void CursorPutMoveTask(TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * �|�P�����A�C�R�������ւ��铮��X�^�[�g
+ * ポケモンアイコンを入れ替える動作スタート
  *
  * @param   wk		
  *
@@ -740,11 +740,11 @@ void BoxAppView_CursorIconSwapStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �|�P�����A�C�R�������ւ��铮��I���҂�
+ * ポケモンアイコンを入れ替える動作終了待ち
  *
  * @param   wk		
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorIconSwapWait( CURSOR_VIEW_WORK* wk )
@@ -760,7 +760,7 @@ BOOL BoxAppView_CursorIconSwapWait( CURSOR_VIEW_WORK* wk )
 
 //-----------------------------------------------
 /**
- *  �A�C�R������ւ�����^�X�N�p���[�N
+ *  アイコン入れ替え動作タスク用ワーク
  */
 //-----------------------------------------------
 typedef struct {
@@ -782,13 +782,13 @@ typedef struct {
 
 //------------------------------------------------------------------
 /**
- * �A�C�R������ւ�����^�X�N�Z�b�g
+ * アイコン入れ替え動作タスクセット
  *
- * @param   wk			���[�N�|�C���^
- * @param   act			�A�N�^�[�|�C���^
- * @param   end_y		�ړ���x���W
- * @param   sindir		���ړ������i1 or -1�j
- * @param   nextpri		�ړ���̃v���C�I���e�B
+ * @param   wk			ワークポインタ
+ * @param   act			アクターポインタ
+ * @param   end_y		移動先Ｙ座標
+ * @param   sindir		横移動方向（1 or -1）
+ * @param   nextpri		移動後のプライオリティ
  *
  */
 //------------------------------------------------------------------
@@ -829,11 +829,11 @@ static void SwapIconTaskAdd( CURSOR_VIEW_WORK* wk, CLACT_WORK_PTR act, fx32 end_
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R������ւ�����^�X�N�̏I���҂�
+ * アイコン入れ替え動作タスクの終了待ち
  *
- * @param   wk			���[�N�|�C���^
+ * @param   wk			ワークポインタ
  *
- * @retval  BOOL		TRUE�ŏI��
+ * @retval  BOOL		TRUEで終了
  */
 //------------------------------------------------------------------
 static BOOL SwapIconMoveTaskEndCheck( CURSOR_VIEW_WORK* wk )
@@ -842,11 +842,11 @@ static BOOL SwapIconMoveTaskEndCheck( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R������ւ�����^�X�N�I���i�^�X�N�{�̂���̂݌Ă΂��j
+ * アイコン入れ替え動作タスク終了（タスク本体からのみ呼ばれる）
  *
- * @param   wk			���[�N�|�C���^
- * @param   tcb			TCB�|�C���^
- * @param   wk_adrs		TCB���[�N�A�h���X
+ * @param   wk			ワークポインタ
+ * @param   tcb			TCBポインタ
+ * @param   wk_adrs		TCBワークアドレス
  *
  */
 //------------------------------------------------------------------
@@ -857,7 +857,7 @@ static void SwapIconWorkDeleteReserve( void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R������ւ�����^�X�N�{��
+ * アイコン入れ替え動作タスク本体
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -900,9 +900,9 @@ static void SwapIconMoveTask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * �{�^������������J�n
+ * ボタンを押す動作開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -930,11 +930,11 @@ void BoxAppView_CursorButtonPushActionStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �{�^������������I���҂�
+ * ボタンを押す動作終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorButtonPushActionWait( CURSOR_VIEW_WORK* wk )
@@ -943,7 +943,7 @@ BOOL BoxAppView_CursorButtonPushActionWait( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �{�^������������^�X�N
+ * ボタンを押す動作タスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -994,9 +994,9 @@ static void ButtonPushActionTask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * �{�^���𗣂�����J�n
+ * ボタンを離す動作開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1016,11 +1016,11 @@ void BoxAppView_CursorButtonReleaseActionStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �{�^���𗣂�����I���҂�
+ * ボタンを離す動作終了待ち
  *
- * @param   wk			���[�N�|�C���^
+ * @param   wk			ワークポインタ
  *
- * @retval  BOOL		TRUE�ŏI��
+ * @retval  BOOL		TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorButtonReleaseActionWait( CURSOR_VIEW_WORK* wk )
@@ -1041,7 +1041,7 @@ BOOL BoxAppView_CursorButtonReleaseActionWait( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �{�^���𗣂�����^�X�N
+ * ボタンを離す動作タスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1073,15 +1073,15 @@ static void ButtonReleaseActionTask( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * ����ł���A�C�R�����{�b�N�X�ɗa����
+ * つかんでいるアイコンをボックスに預ける
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
 void BoxAppView_CursorCatchIconAzukeru( CURSOR_VIEW_WORK* wk )
 {
-	// ���ݕ\�����̃g���C�ɗa����ꍇ�̓A�C�R���\�����X�V
+	// 現在表示中のトレイに預ける場合はアイコン表示を更新
 	if( wk->vpara->azukeruTrayNumber == BoxAppVPara_GetTrayBoxNumber( wk->vpara ) )
 	{
 		BoxAppView_TrayUpdateIcon( wk->trayWork );
@@ -1092,9 +1092,9 @@ void BoxAppView_CursorCatchIconAzukeru( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ����ł���A�C�R���𓦂�������X�^�[�g
+ * つかんでいるアイコンを逃がす動作スタート
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1107,11 +1107,11 @@ void BoxAppView_CursorCatchIconReleaseStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ����ł���A�C�R���𓦂�������̏I���҂�
+ * つかんでいるアイコンを逃がす動作の終了待ち
  *
- * @param   wk			���[�N�|�C���^
+ * @param   wk			ワークポインタ
  *
- * @retval  BOOL		TRUE�ŏI��
+ * @retval  BOOL		TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorCatchIconReleaseWait( CURSOR_VIEW_WORK* wk )
@@ -1154,7 +1154,7 @@ BOOL BoxAppView_CursorCatchIconReleaseWait( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �A�N�^�[��BG��ײ��è���莝���g���C���[�h��
+ * アクターのBGプライオリティを手持ちトレイモードに
  *
  * @param   wk		
  *
@@ -1175,7 +1175,7 @@ void BoxAppView_CursorPriPartyMode( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�N�^�[��BG��ײ��è��ʏ탂�[�h��
+ * アクターのBGプライオリティを通常モードに
  *
  * @param   wk		
  *
@@ -1196,9 +1196,9 @@ void BoxAppView_CursorPriNormalMode( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �X�e�[�^�X�\�����|�P�����A�C�R���̃}�[�L���O�p�X�e�[�^�X���X�V
+ * ステータス表示中ポケモンアイコンのマーキング用ステータスを更新
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1213,9 +1213,9 @@ void BoxAppView_CursorIconMarkUpdate( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �A�C�R�����i�荞�݃��[�h�\���ɑΉ�
+ * アイコンを絞り込みモード表示に対応
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  */
 //------------------------------------------------------------------
 void BoxAppView_CursorCatchIconLimitModeSet( CURSOR_VIEW_WORK* wk )
@@ -1229,10 +1229,10 @@ void BoxAppView_CursorCatchIconLimitModeSet( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R���̃A�C�e�������X�V
+ * アイコンのアイテム情報を更新
  *
- * @param   wk			���[�N�|�C���^
- * @param   itemNumber	�A�C�e���i���o�[
+ * @param   wk			ワークポインタ
+ * @param   itemNumber	アイテムナンバー
  *
  */
 //------------------------------------------------------------------
@@ -1249,9 +1249,9 @@ void BoxAppView_CursorCatchIconUpdateItem( CURSOR_VIEW_WORK* wk, u32 itemNumber 
 
 //------------------------------------------------------------------
 /**
- * ����Ă�l���[�h�̃I���I�t�ɉ����ăJ�[�\���F�ύX
+ * 慣れてる人モードのオンオフに応じてカーソル色変更
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1270,9 +1270,9 @@ void BoxAppView_CursorExpertModeChange( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �A�C�R���͈̔͑I�������J�n
+ * アイコンの範囲選択処理開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1282,7 +1282,7 @@ void BoxAppView_CursorAleaSelectStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �J�[�\���A�N�^�[�ʒu��Ԃ�
+ * カーソルアクター位置を返す
  *
  * @param   wk		
  * @param   mtx		
@@ -1296,15 +1296,15 @@ void BoxAppView_CursorGetMatrix( CURSOR_VIEW_WORK* wk, VecFx32* mtx )
 
 
 /*====================================================================================================*/
-/* �A�C�e���A�C�R�������֘A                                                                           */
+/* アイテムアイコン処理関連                                                                           */
 /*====================================================================================================*/
 
 
 //------------------------------------------------------------------
 /**
- * �A�C�e�������ޓ���J�n
+ * アイテムをつかむ動作開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1320,11 +1320,11 @@ void BoxAppView_CursorItemCatchStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�e�������ޓ���I���҂�
+ * アイテムをつかむ動作終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorItemCatchWait( CURSOR_VIEW_WORK* wk )
@@ -1333,7 +1333,7 @@ BOOL BoxAppView_CursorItemCatchWait( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�e�������ޓ���̎��s�^�X�N
+ * アイテムをつかむ動作の実行タスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1363,9 +1363,9 @@ static void ItemCatchTask( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * �A�C�e�����������铮��J�n
+ * アイテムを持たせる動作開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1381,11 +1381,11 @@ void BoxAppView_CursorItemSetStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�e�����������铮��I���҂�
+ * アイテムを持たせる動作終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorItemSetWait( CURSOR_VIEW_WORK* wk )
@@ -1394,7 +1394,7 @@ BOOL BoxAppView_CursorItemSetWait( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�e�����������铮��̎��s�^�X�N
+ * アイテムを持たせる動作の実行タスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1424,9 +1424,9 @@ static void ItemSetTask( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * �A�C�e�����Ƃ肩���铮��J�n
+ * アイテムをとりかえる動作開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1441,11 +1441,11 @@ void BoxAppView_CursorItemSwapStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�e�����Ƃ肩���铮��̏I���҂�
+ * アイテムをとりかえる動作の終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_CursorItemSwapWait( CURSOR_VIEW_WORK* wk )
@@ -1454,7 +1454,7 @@ BOOL BoxAppView_CursorItemSwapWait( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�e�����Ƃ肩���铮��̎��s�^�X�N
+ * アイテムをとりかえる動作の実行タスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1482,9 +1482,9 @@ static void ItemSwapTask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�e�����o�b�O�ɖ߂������O�ɃJ�[�\����ԕύX���Ă���
+ * アイテムをバッグに戻す処理前にカーソル状態変更しておく
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1497,9 +1497,9 @@ void BoxAppView_CursorItemReleaseStart( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�e�����o�b�O�ɖ߂��������I��������̏���
+ * アイテムをバッグに戻す処理が終了した後の処理
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1514,7 +1514,7 @@ void BoxAppView_CursorItemReleaseEnd( CURSOR_VIEW_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   �͂�ł���|�P�����A�C�R���̃|�C���^��Ԃ�
+ * @brief   掴んでいるポケモンアイコンのポインタを返す
  *
  * @param   wk		
  * @param   pos		
@@ -1534,13 +1534,13 @@ BOX_ICON_WORK * BoxAppView_CursorCatchIconPtrGet( CURSOR_VIEW_WORK* wk, int pos 
 
 
 /*====================================================================================================*/
-/* �������牺�̓��[�J��                                                                               */
+/* ここから下はローカル                                                                               */
 /*====================================================================================================*/
 
 
 //------------------------------------------------------------------
 /**
- * �J�[�\���A�N�^�[�̈ړ�����W�擾
+ * カーソルアクターの移動先座標取得
  *
  * @param   wk		
  * @param   vpara		
@@ -1587,7 +1587,7 @@ static void GetCursorPosByVparam( s32* x, s32* y, u8* area, CURSOR_VIEW_WORK* wk
 }
 //------------------------------------------------------------------
 /**
- * �J�[�\���A�N�^�[�̍��W�Z�b�g�i����ł�A�C�R��������Γ���������j
+ * カーソルアクターの座標セット（つかんでるアイコンがあれば同期させる）
  *
  * @param   wk		
  * @param   vec		
@@ -1626,7 +1626,7 @@ static void CursorPosSet( CURSOR_VIEW_WORK* wk, VecFx32* vec )
 }
 //------------------------------------------------------------------
 /**
- * ������ꏊ�̃A�C�R���f�[�^��͂�ł���A�C�R���p���[�N�Ɉړ�
+ * 今いる場所のアイコンデータを掴んでいるアイコン用ワークに移動
  *
  * @param   wk		
  *
@@ -1636,7 +1636,7 @@ static void PointIconDataToCatchIconData( CURSOR_VIEW_WORK* wk )
 {
 	if( BoxAppVPara_GetCursorArea( wk->vpara ) == CURSOR_AREA_TRAY )
 	{
-		// �P�̂���
+		// 単体つかみ
 		if( BoxAppVPara_CheckAreaSelectSinglePoke( wk->vpara ) )
 		{
 			u32 pos = BoxAppVPara_GetCursorTrayPos( wk->vpara );
@@ -1645,7 +1645,7 @@ static void PointIconDataToCatchIconData( CURSOR_VIEW_WORK* wk )
 			wk->iconOfs[0].x = (CURSOR_CATCHICON_XDIFF * FX32_ONE);
 			wk->iconOfs[0].y = (CURSOR_CATCHICON_YDIFF * FX32_ONE);
 		}
-		// �͈͑I������
+		// 範囲選択つかみ
 		else
 		{
 			u32 pos, x, y, l, r, t, b, cursor_x, cursor_y;
@@ -1687,7 +1687,7 @@ static void PointIconDataToCatchIconData( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �͂�ł���A�C�R���v���C�I���e�B�𒲐����J�[�\���ɒǐ�������
+ * 掴んでいるアイコンプライオリティを調整＆カーソルに追随させる
  *
  * @param   wk		
  *
@@ -1705,7 +1705,7 @@ static void CatchIconDataEnable( CURSOR_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ����ł���A�C�R���f�[�^��������ꏊ�p�̃��[�N�Ɉړ�������
+ * つかんでいるアイコンデータを今いる場所用のワークに移動させる
  *
  * @param   wk		
  *
@@ -1715,13 +1715,13 @@ static void CatchIconDataPut( CURSOR_VIEW_WORK* wk )
 {
 	if( BoxAppVPara_GetCursorArea( wk->vpara ) == CURSOR_AREA_TRAY )
 	{
-		// �P�̂���
+		// 単体つかみ
 		if( BoxAppVPara_CheckAreaSelectSinglePoke( wk->vpara ) )
 		{
 			u32 pos = BoxAppVPara_GetCursorTrayPos( wk->vpara );
 			BoxAppView_TrayPutIconData( wk->trayWork, pos, wk->catch_icon );
 		}
-		// �͈͑I������
+		// 範囲選択つかみ
 		else
 		{
 			int i, top_pos, put_pos;
@@ -1744,7 +1744,7 @@ static void CatchIconDataPut( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ����ł���A�C�R���f�[�^�ƍ�����ꏊ�̃A�C�R���f�[�^�����ւ���
+ * つかんでいるアイコンデータと今いる場所のアイコンデータを入れ替える
  *
  * @param   wk		
  *
@@ -1752,13 +1752,13 @@ static void CatchIconDataPut( CURSOR_VIEW_WORK* wk )
 //------------------------------------------------------------------
 static void CatchIconDataSwap( CURSOR_VIEW_WORK* wk )
 {
-	// �ǂ���� wk->catch_icon[1] �����ւ��p�e���|�����Ƃ��Ďg�p�B
-	// ����ւ��͒P�̓��m�ł����������Ȃ��̂ł���ő��v�Ȃ͂��B
+	// どちらも wk->catch_icon[1] を入れ替え用テンポラリとして使用。
+	// 入れ替えは単体同士でしか発生しないのでこれで大丈夫なはず。
 	if( BoxAppVPara_GetCursorArea( wk->vpara ) == CURSOR_AREA_TRAY )
 	{
 		u32 pos = BoxAppVPara_GetCursorTrayPos( wk->vpara );
 
-		// �A�C�R���L�����f�[�^����ւ����̃p�V��΍�B���̃L�����ʒu�Ƃ͑S���Ⴄ�ꏊ���ꎞ�I�ɎQ�Ƃ����Ă���
+		// アイコンキャラデータ入れ替え時のパシり対策。元のキャラ位置とは全く違う場所を一時的に参照させておく
 		{
 			BOX_ICON_WORK* trayIcon = BoxAppView_TrayGetIconData( wk->trayWork, pos );
 			BoxAppView_Icon_ResetImageBank( wk->iconSys, wk->catch_icon, OBJCHAR_FIX_END );
@@ -1775,7 +1775,7 @@ static void CatchIconDataSwap( CURSOR_VIEW_WORK* wk )
 	{
 		u32 pos = BoxAppVPara_GetCursorPartyPos( wk->vpara );
 
-		// �A�C�R���L�����f�[�^����ւ����̃p�V��΍�B���̃L�����ʒu�Ƃ͑S���Ⴄ�ꏊ���ꎞ�I�ɎQ�Ƃ����Ă���
+		// アイコンキャラデータ入れ替え時のパシり対策。元のキャラ位置とは全く違う場所を一時的に参照させておく
 		{
 			BOX_ICON_WORK* partyIcon = BoxAppView_PartyGetIconData( wk->partyWork, pos );
 			BoxAppView_Icon_ResetImageBank( wk->iconSys, wk->catch_icon, OBJCHAR_FIX_END );
@@ -1793,7 +1793,7 @@ static void CatchIconDataSwap( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �͂�ł���A�C�R���f�[�^��؂藣��
+ * 掴んでいるアイコンデータを切り離す
  *
  * @param   wk		
  *
@@ -1806,7 +1806,7 @@ static void CatchIconDataDisable( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �͂�ł���A�C�R���f�[�^���폜
+ * 掴んでいるアイコンデータを削除
  *
  * @param   wk		
  *
@@ -1821,7 +1821,7 @@ static void CatchIconDataDelete( CURSOR_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �|�C���g���Ă���A�C�R���̃A�N�^�[�|�C���^��Ԃ�
+ * ポイントしているアイコンのアクターポインタを返す
  *
  * @param   wk		
  *

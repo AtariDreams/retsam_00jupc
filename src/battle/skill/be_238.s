@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_238.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			238�@�����̍U���͂Ɩh��͂����ւ���B�⏕���ʂ͓���ւ��Ȃ��B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			238　自分の攻撃力と防御力を入れ替える。補助効果は入れ替わらない。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14

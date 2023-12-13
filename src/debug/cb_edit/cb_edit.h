@@ -36,14 +36,14 @@ typedef struct {
 	RECT_HIT_TBL	hit_tbl_edit[ EDIT_BTN_MAX ];
 	RECT_HIT_TBL	hit_tbl_panel[ PANEL_BTN_MAX ];
 	
-	///< 数字用OBJ
+	///< 謨ｰ蟄礼畑OBJ
 	CATS_ACT_PTR	cap[ 3 ];
 
 
 	int				edit_no;
 	int				edit_old_no;
 	int				edit_keta;
-	///< 保存されるデータ
+	///< 菫晏ｭ倥＆繧後ｋ繝�繝ｼ繧ｿ
  	CB_CORE			edit_core[ EDIT_CORE_MAX ];
 	
 } CBE_WORK;

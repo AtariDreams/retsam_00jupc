@@ -1,17 +1,17 @@
 //==============================================================================================
 /**
  * @file	snd_test.h
- * @brief	�T�E���h�e�X�g(�T�E���h�`�F�b�N)
+ * @brief	サウンドテスト(サウンドチェック)
  * @author	nohara
  * @date	2005.07.04
  */
 //==============================================================================================
-#include "data/sound/sound_data.h"	//�T�E���h�̎�ނ��Ƃ̃X�^�[�g�i���o�[��`
+#include "data/sound/sound_data.h"	//サウンドの種類ごとのスタートナンバー定義
 
 
 //==============================================================================================
 //
-//	extern�錾
+//	extern宣言
 //
 //==============================================================================================
 extern void SndTestProc(void);
@@ -19,10 +19,10 @@ extern void SndTestProc(void);
 
 //==============================================================================================
 //
-//	��`
+//	定義
 //
 //==============================================================================================
-//�T�E���h�̎��
+//サウンドの種類
 enum{
 	SND_TEST_TYPE_BGM = 0,
 	SND_TEST_TYPE_SE,
@@ -31,13 +31,13 @@ enum{
 	SND_TEST_TYPE_MAX,
 };
 
-//�X�^�[�g�i���o�[
+//スタートナンバー
 #define SND_TEST_BGM_START_NO	(BGM_START)
 //#define SND_TEST_SE_START_NO	(SE_START)
 #define SND_TEST_SE_START_NO	(SE_PL_START)
 #define SND_TEST_PV_START_NO	(PV_START)
 
-//�I���i���o�[
+//終了ナンバー
 #define SND_TEST_BGM_END_NO		(SEQ_BGM_END - 1)
 #define SND_TEST_SE_END_NO		(SEQ_SE_END - 1)
 #define SND_TEST_PV_END_NO		(SEQ_PV_END - 1)
@@ -45,7 +45,7 @@ enum{
 //#define SND_TEST_BG_FRAME		(GF_BGL_FRAME1_M)
 #define SND_TEST_BG_FRAME		(GF_BGL_FRAME3_M)
 
-//BMP�E�B���h�E
+//BMPウィンドウ
 enum{
 	SND_TEST_BMPWIN_FRAME	= GF_BGL_FRAME1_M,
 	SND_TEST_BMPWIN_PX1		= 1,
@@ -56,24 +56,24 @@ enum{
 	SND_TEST_BMPWIN_CH		= 1,
 };
 
-//���b�Z�[�W�\���ʒu
+//メッセージ表示位置
 enum{
-	ST_TITLE_X			= (8*1),	//�T�E���h�`�F�b�N
+	ST_TITLE_X			= (8*1),	//サウンドチェック
 	ST_TITLE_Y			= (8*1),
 
-	ST_KEY_X			= (8*13),	//�L�[����
+	ST_KEY_X			= (8*13),	//キー操作
 	ST_KEY_Y			= (0),
 
 	ST_NAME_X			= (8*7),	//SEQ_??
 	ST_TYPE_X			= (8*2),	//BGM,SE,PV
-	ST_CURSOR_X			= (8*1),	//�J�[�\���ʒu
+	ST_CURSOR_X			= (8*1),	//カーソル位置
 
 	ST_BGM_MSG_Y		= (16*3),	//BGM
 	ST_SE_MSG_Y			= (16*6),	//SE
 	ST_PV_MSG_Y			= (16*9),	//PV
 };
 
-//mainSys_sequence�̒�`
+//mainSys_sequenceの定義
 enum{
 	SEQ_SND_TEST_INIT = 0,
 	SEQ_SND_TEST_MAIN,

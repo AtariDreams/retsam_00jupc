@@ -21,15 +21,15 @@
 #include "heapcommoni.h"
 
 /* ========================================================================
-    �}�N���萔
+    マクロ定数
    ======================================================================== */
 
-// �A���C�����g�̍ŏ��l
+// アライメントの最小値
 #define MIN_ALIGNMENT           4
 
 
 /* ========================================================================
-    static�֐�
+    static関数
    ======================================================================== */
 
 static NNS_FND_INLINE BOOL
@@ -49,11 +49,11 @@ IsValidFrmHeapHandle(NNSFndHeapHandle handle)
 /*---------------------------------------------------------------------------*
   Name:         GetFrmHeapHeadPtrFromHeapHead
 
-  Description:  �q�[�v�w�b�_�ւ̃|�C���^����A�t���[���q�[�v�w�b�_�ւ̃|�C���^���擾���܂��B
+  Description:  ヒープヘッダへのポインタから、フレームヒープヘッダへのポインタを取得します。
 
-  Arguments:    pHHead:  �q�[�v�w�b�_�ւ̃|�C���^�B
+  Arguments:    pHHead:  ヒープヘッダへのポインタ。
 
-  Returns:      �t���[���q�[�v�w�b�_�ւ̃|�C���^��Ԃ��܂��B
+  Returns:      フレームヒープヘッダへのポインタを返します。
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE NNSiFndFrmHeapHead*
 GetFrmHeapHeadPtrFromHeapHead(NNSiFndHeapHead* pHHead)
@@ -64,11 +64,11 @@ GetFrmHeapHeadPtrFromHeapHead(NNSiFndHeapHead* pHHead)
 /*---------------------------------------------------------------------------*
   Name:         GetHeapHeadPtrFromFrmHeapHead
 
-  Description:  �t���[���q�[�v�w�b�_�ւ̃|�C���^����A�q�[�v�w�b�_�ւ̃|�C���^���擾���܂��B
+  Description:  フレームヒープヘッダへのポインタから、ヒープヘッダへのポインタを取得します。
 
-  Arguments:    pFrmHeapHd:  �t���[���q�[�v�w�b�_�ւ̃|�C���^�B
+  Arguments:    pFrmHeapHd:  フレームヒープヘッダへのポインタ。
 
-  Returns:      �q�[�v�w�b�_�ւ̃|�C���^��Ԃ��܂��B
+  Returns:      ヒープヘッダへのポインタを返します。
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE NNSiFndHeapHead*
 GetHeapHeadPtrFromFrmHeapHead(NNSiFndFrmHeapHead* pFrmHeapHd)
@@ -79,13 +79,13 @@ GetHeapHeadPtrFromFrmHeapHead(NNSiFndFrmHeapHead* pFrmHeapHd)
 /*---------------------------------------------------------------------------*
   Name:         InitFrameHeap
 
-  Description:  �t���[���q�[�v�̏��������s���܂��B
+  Description:  フレームヒープの初期化を行います。
 
-  Arguments:    startAddress:  �t���[���q�[�v�Ƃ��郁�����̊J�n�A�h���X�B
-                endAddress:    �t���[���q�[�v�Ƃ��郁�����̏I���A�h���X +1�B
-                optFlag:       �I�v�V�����t���O�B
+  Arguments:    startAddress:  フレームヒープとするメモリの開始アドレス。
+                endAddress:    フレームヒープとするメモリの終了アドレス +1。
+                optFlag:       オプションフラグ。
 
-  Returns:      �q�[�v�w�b�_�ւ̃|�C���^��Ԃ��܂��B
+  Returns:      ヒープヘッダへのポインタを返します。
  *---------------------------------------------------------------------------*/
 static NNSiFndHeapHead*
 InitFrameHeap(
@@ -97,7 +97,7 @@ InitFrameHeap(
     NNSiFndHeapHead* pHeapHd = startAddress;
     NNSiFndFrmHeapHead* pFrmHeapHd = GetFrmHeapHeadPtrFromHeapHead(pHeapHd);
 
-    NNSi_FndInitHeapHead(       // �q�[�v���ʏ�����
+    NNSi_FndInitHeapHead(       // ヒープ共通初期化
         pHeapHd,
         NNSI_FRMHEAP_SIGNATURE,
         AddU32ToPtr(pFrmHeapHd, sizeof(NNSiFndFrmHeapHead)),    // heapStart
@@ -107,7 +107,7 @@ InitFrameHeap(
     pFrmHeapHd->headAllocator = pHeapHd->heapStart;
     pFrmHeapHd->tailAllocator = pHeapHd->heapEnd;
 
-    pFrmHeapHd->pState = NULL;   // ��ԕۑ��X�e�[�g�ʒu
+    pFrmHeapHd->pState = NULL;   // 状態保存ステート位置
 
     return pHeapHd;
 }
@@ -116,16 +116,16 @@ InitFrameHeap(
 /*---------------------------------------------------------------------------*
   Name:         AllocFromHead
 
-  Description:  �q�[�v�̐擪���烁�����u���b�N���m�ۂ��܂��B
-                �A���C�������g�̎w�肪����܂��B
+  Description:  ヒープの先頭からメモリブロックを確保します。
+                アラインメントの指定があります。
 
-  Arguments:    pHHead:  �q�[�v�w�b�_�ւ̃|�C���^�B
-                size:    �m�ۂ��郁�����u���b�N�̃T�C�Y�B
-                alignment:  �A���C�����g�l�B
+  Arguments:    pHHead:  ヒープヘッダへのポインタ。
+                size:    確保するメモリブロックのサイズ。
+                alignment:  アライメント値。
 
-  Returns:      �������u���b�N�̊m�ۂ����������ꍇ�A�m�ۂ����������u���b�N�ւ�
-                �|�C���^���Ԃ�܂��B
-                ���s�����ꍇ�ANULL���Ԃ�܂��B
+  Returns:      メモリブロックの確保が成功した場合、確保したメモリブロックへの
+                ポインタが返ります。
+                失敗した場合、NULLが返ります。
  *---------------------------------------------------------------------------*/
 static void*
 AllocFromHead(
@@ -142,7 +142,7 @@ AllocFromHead(
         return NULL;
     }
 
-    FillAllocMemory(  // �������[�U
+    FillAllocMemory(  // メモリ充填
         GetHeapHeadPtrFromFrmHeapHead(pFrmHeapHd),
         pFrmHeapHd->headAllocator,
         GetOffsetFromPtr(pFrmHeapHd->headAllocator, endAddress));
@@ -155,16 +155,16 @@ AllocFromHead(
 /*---------------------------------------------------------------------------*
   Name:         AllocFromTail
 
-  Description:  �q�[�v�̖������烁�����u���b�N���m�ۂ��܂��B
-                �A���C�������g�̎w�肪����܂��B
+  Description:  ヒープの末尾からメモリブロックを確保します。
+                アラインメントの指定があります。
 
-  Arguments:    pHHead:     �q�[�v�w�b�_�ւ̃|�C���^�B
-                size:       �m�ۂ��郁�����u���b�N�̃T�C�Y�B
-                alignment:  �A���C�����g�l�B
+  Arguments:    pHHead:     ヒープヘッダへのポインタ。
+                size:       確保するメモリブロックのサイズ。
+                alignment:  アライメント値。
 
-  Returns:      �������u���b�N�̊m�ۂ����������ꍇ�A�m�ۂ����������u���b�N�ւ�
-                �|�C���^���Ԃ�܂��B
-                ���s�����ꍇ�ANULL���Ԃ�܂��B
+  Returns:      メモリブロックの確保が成功した場合、確保したメモリブロックへの
+                ポインタが返ります。
+                失敗した場合、NULLが返ります。
  *---------------------------------------------------------------------------*/
 static void*
 AllocFromTail(
@@ -180,7 +180,7 @@ AllocFromTail(
         return NULL;
     }
 
-    FillAllocMemory(  // �������[�U
+    FillAllocMemory(  // メモリ充填
         GetHeapHeadPtrFromFrmHeapHead(pFrmHeapHd),
         newBlock,
         GetOffsetFromPtr(newBlock, pFrmHeapHd->tailAllocator));
@@ -193,11 +193,11 @@ AllocFromTail(
 /*---------------------------------------------------------------------------*
   Name:         FreeHead
 
-  Description:  �q�[�v�̈�̐擪����m�ۂ����������u���b�N���ꊇ���ĊJ�����܂��B
+  Description:  ヒープ領域の先頭から確保したメモリブロックを一括して開放します。
 
-  Arguments:    pHeapHd:  �q�[�v�̃w�b�_�ւ̃|�C���^�B
+  Arguments:    pHeapHd:  ヒープのヘッダへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void
 FreeHead(NNSiFndHeapHead* pHeapHd)
@@ -216,11 +216,11 @@ FreeHead(NNSiFndHeapHead* pHeapHd)
 /*---------------------------------------------------------------------------*
   Name:         FreeTail
 
-  Description:  �q�[�v����m�ۂ����S�Ẵ������u���b�N���ꊇ���ĊJ�����܂��B
+  Description:  ヒープから確保した全てのメモリブロックを一括して開放します。
 
-  Arguments:    pHeapHd:  �q�[�v�̃w�b�_�ւ̃|�C���^�B
+  Arguments:    pHeapHd:  ヒープのヘッダへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void
 FreeTail(NNSiFndHeapHead* pHeapHd)
@@ -233,8 +233,8 @@ FreeTail(NNSiFndHeapHead* pHeapHd)
         GetOffsetFromPtr(pFrmHeapHd->tailAllocator, pHeapHd->heapEnd));
 
     /*
-        �q�[�v�̊��蓖�ď�Ԃ̕��A�ɂ���������������u���b�N���������Ă��܂�
-        �Ȃ��悤�ɁA�ۑ����̌�����蓖�ă|�C���^���Đݒ肵�Ă����B
+        ヒープの割り当て状態の復帰により解放したメモリブロックが復活してしまわ
+        ないように、保存情報の後尾割り当てポインタを再設定しておく。
      */
     {
         NNSiFndFrmHeapState* pState;
@@ -250,12 +250,12 @@ FreeTail(NNSiFndHeapHead* pHeapHd)
 /*---------------------------------------------------------------------------*
   Name:         PrintSize
 
-  Description:  �T�C�Y�ƃp�[�Z���e�[�W���o�͂��܂��B
+  Description:  サイズとパーセンテージを出力します。
 
-  Arguments:    size:       �ΏۂƂȂ�T�C�Y�B
-                wholeSize:  �S�̂̃T�C�Y�B
+  Arguments:    size:       対象となるサイズ。
+                wholeSize:  全体のサイズ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -273,17 +273,17 @@ FreeTail(NNSiFndHeapHead* pHeapHd)
 
 
 /* ========================================================================
-    �O���֐�(����J)
+    外部関数(非公開)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_FndGetFreeStartForFrmHeap
 
-  Description:  �t���[���q�[�v�̃t���[�G���A�̐擪�A�h���X���擾���܂��B
+  Description:  フレームヒープのフリーエリアの先頭アドレスを取得します。
 
-  Arguments:    heap: �t���[���q�[�v�̃n���h���B
+  Arguments:    heap: フレームヒープのハンドル。
 
-  Returns:      �t���[���q�[�v�̃t���[�G���A�̐擪�A�h���X��Ԃ��܂��B
+  Returns:      フレームヒープのフリーエリアの先頭アドレスを返します。
  *---------------------------------------------------------------------------*/
 void*
 NNSi_FndGetFreeStartForFrmHeap(NNSFndHeapHandle heap)
@@ -296,11 +296,11 @@ NNSi_FndGetFreeStartForFrmHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNSi_FndGetFreeEndForFrmHeap
 
-  Description:  �t���[���q�[�v�̃t���[�G���A�̖����A�h���X���擾���܂��B
+  Description:  フレームヒープのフリーエリアの末尾アドレスを取得します。
 
-  Arguments:    heap: �t���[���q�[�v�̃n���h���B
+  Arguments:    heap: フレームヒープのハンドル。
 
-  Returns:      �t���[���q�[�v�̃t���[�G���A�̖����A�h���X +1 ��Ԃ��܂��B
+  Returns:      フレームヒープのフリーエリアの末尾アドレス +1 を返します。
  *---------------------------------------------------------------------------*/
 void*
 NNSi_FndGetFreeEndForFrmHeap(NNSFndHeapHandle heap)
@@ -314,12 +314,12 @@ NNSi_FndGetFreeEndForFrmHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNSi_FndDumpFrmHeap
 
-  Description:  �t���[���q�[�v�����̏���\�����܂��B
-                ����̓f�o�b�O�p�̊֐��ł��B
+  Description:  フレームヒープ内部の情報を表示します。
+                これはデバッグ用の関数です。
 
-  Arguments:    heap:    �t���[���q�[�v�̃n���h���B
+  Arguments:    heap:    フレームヒープのハンドル。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -365,24 +365,24 @@ NNSi_FndGetFreeEndForFrmHeap(NNSFndHeapHandle heap)
 
 
 /* ========================================================================
-    �O���֐�(���J)
+    外部関数(公開)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndCreateFrmHeapEx
 
-  Description:  �t���[���q�[�v���쐬���܂��B
+  Description:  フレームヒープを作成します。
 
-  Arguments:    startAddress: �q�[�v�̈�̐擪�A�h���X�B
-                size:         �q�[�v�̈�̃T�C�Y�B
-                optFlag:      �I�v�V�����t���O�B
+  Arguments:    startAddress: ヒープ領域の先頭アドレス。
+                size:         ヒープ領域のサイズ。
+                optFlag:      オプションフラグ。
 
-  Returns:      �֐������������ꍇ�A�쐬���ꂽ�t���[���q�[�v�̃n���h�����Ԃ�܂��B
-                �֐������s����ƁANNS_FND_INVALID_HEAP_HANDLE ���Ԃ�܂��B
+  Returns:      関数が成功した場合、作成されたフレームヒープのハンドルが返ります。
+                関数が失敗すると、NNS_FND_INVALID_HEAP_HANDLE が返ります。
 
-  Memo:         ��{�̓X���b�h�Z�[�t�ł͂Ȃ��B
-                �X���b�h�Z�[�t�ɂ���ꍇ�A�q�[�v�̑������w�肷�������ǉ�����悤�ɂ��邩�A
-                ���邢�́A�������Z�b�g����֐��Ő��䂵�Ă��炤���B
+  Memo:         基本はスレッドセーフではない。
+                スレッドセーフにする場合、ヒープの属性を指定する引数を追加するようにするか、
+                あるいは、属性をセットする関数で制御してもらうか。
  *---------------------------------------------------------------------------*/
 NNSFndHeapHandle
 NNS_FndCreateFrmHeapEx(
@@ -405,9 +405,9 @@ NNS_FndCreateFrmHeapEx(
         return NNS_FND_HEAP_INVALID_HANDLE;
     }
 
-    {   // Frame �q�[�v����������
+    {   // Frame ヒープ向け初期化
         NNSiFndHeapHead* pHHead = InitFrameHeap(startAddress, endAddress, optFlag);
-        return pHHead;  // �q�[�v�w�b�_�ւ̃|�C���^�����̂܂܃n���h���l�Ƃ���
+        return pHHead;  // ヒープヘッダへのポインタがそのままハンドル値とする
     }
 }
 
@@ -415,11 +415,11 @@ NNS_FndCreateFrmHeapEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndDestroyFrmHeap
 
-  Description:  �t���[���q�[�v��j�����܂��B
+  Description:  フレームヒープを破棄します。
 
-  Arguments:    heap: �t���[���q�[�v�̃n���h���B
+  Arguments:    heap: フレームヒープのハンドル。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndDestroyFrmHeap(NNSFndHeapHandle heap)
@@ -432,18 +432,18 @@ NNS_FndDestroyFrmHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndAllocFromFrmHeapEx
 
-  Description:  �t���[���q�[�v���烁�����u���b�N���m�ۂ��܂��B
-                �������u���b�N�̃A���C�����g���w��ł��܂��B
-                �A���C�����g�l�𕉂̒l�Ŏw�肷��ƁA�q�[�v�̋󂫗̈���������T���܂��B
+  Description:  フレームヒープからメモリブロックを確保します。
+                メモリブロックのアライメントを指定できます。
+                アライメント値を負の値で指定すると、ヒープの空き領域を後方から探します。
 
-  Arguments:    heap:      �t���[���q�[�v�̃n���h���B
-                size:      �m�ۂ��郁�����u���b�N�̃T�C�Y(�o�C�g�P��)�B
-                alignment: �m�ۂ��郁�����u���b�N�̃A���C�����g�B
-                           4,8,16,32,-4,-8,-16,-32�̂����ꂩ�̒l���w��ł��܂��B
+  Arguments:    heap:      フレームヒープのハンドル。
+                size:      確保するメモリブロックのサイズ(バイト単位)。
+                alignment: 確保するメモリブロックのアライメント。
+                           4,8,16,32,-4,-8,-16,-32のいずれかの値が指定できます。
 
-  Returns:      �������u���b�N�̊m�ۂ����������ꍇ�A�m�ۂ����������u���b�N�ւ�
-                �|�C���^���Ԃ�܂��B
-                ���s�����ꍇ�ANULL���Ԃ�܂��B
+  Returns:      メモリブロックの確保が成功した場合、確保したメモリブロックへの
+                ポインタが返ります。
+                失敗した場合、NULLが返ります。
  *---------------------------------------------------------------------------*/
 void*
 NNS_FndAllocFromFrmHeapEx(
@@ -457,7 +457,7 @@ NNS_FndAllocFromFrmHeapEx(
 
     NNS_ASSERT(IsValidFrmHeapHandle(heap));
 
-    // alignment �̃`�F�b�N
+    // alignment のチェック
     NNS_ASSERT(alignment % MIN_ALIGNMENT == 0);
     NNS_ASSERT(MIN_ALIGNMENT <= abs(alignment) && abs(alignment) <= 32);
 
@@ -470,11 +470,11 @@ NNS_FndAllocFromFrmHeapEx(
 
     size = NNSi_FndRoundUp(size, MIN_ALIGNMENT);
 
-    if (alignment >= 0)   // �q�[�v�O����m��
+    if (alignment >= 0)   // ヒープ前から確保
     {
         memory = AllocFromHead(pFrmHeapHd, size, alignment);
     }
-    else                    // �q�[�v��납��m��
+    else                    // ヒープ後ろから確保
     {
         memory = AllocFromTail(pFrmHeapHd, size, -alignment);
     }
@@ -485,12 +485,12 @@ NNS_FndAllocFromFrmHeapEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndFreeToFrmHeap
 
-  Description:  �t���[���q�[�v�փ������u���b�N��ԋp���܂��B
+  Description:  フレームヒープへメモリブロックを返却します。
 
-  Arguments:    heap: �t���[���q�[�v�̃n���h���B
-                mode: �������u���b�N�̕ԋp���@�B
+  Arguments:    heap: フレームヒープのハンドル。
+                mode: メモリブロックの返却方法。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndFreeToFrmHeap(
@@ -514,14 +514,14 @@ NNS_FndFreeToFrmHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetAllocatableSizeForFrmHeapEx
 
-  Description:  �t���[���q�[�v���̊��蓖�ĉ\�ȍő�T�C�Y���擾���܂��B
-                �������u���b�N�̃A���C�����g���w��ł��܂��B
+  Description:  フレームヒープ内の割り当て可能な最大サイズを取得します。
+                メモリブロックのアライメントを指定できます。
 
-  Arguments:    heap:      �t���[���q�[�v�̃n���h���B
-                alignment: �m�ۂ��郁�����u���b�N�̃A���C�����g�B
-                           4,8,16,32�̂����ꂩ�̒l���w��ł��܂��B
+  Arguments:    heap:      フレームヒープのハンドル。
+                alignment: 確保するメモリブロックのアライメント。
+                           4,8,16,32のいずれかの値が指定できます。
 
-  Returns:      �t���[���q�[�v���̊��蓖�ĉ\�ȍő�T�C�Y��Ԃ��܂�(�o�C�g�P��)�B
+  Returns:      フレームヒープ内の割り当て可能な最大サイズを返します(バイト単位)。
  *---------------------------------------------------------------------------*/
 u32
 NNS_FndGetAllocatableSizeForFrmHeapEx(
@@ -531,11 +531,11 @@ NNS_FndGetAllocatableSizeForFrmHeapEx(
 {
     NNS_ASSERT(IsValidFrmHeapHandle(heap));
 
-    // alignment �̃`�F�b�N
+    // alignment のチェック
     NNS_ASSERT(alignment % MIN_ALIGNMENT == 0);
     NNS_ASSERT(MIN_ALIGNMENT <= abs(alignment) && abs(alignment) <= 32);
 
-    alignment = abs(alignment); // �O�̂��ߐ�����
+    alignment = abs(alignment); // 念のため正数化
 
     {
         const NNSiFndFrmHeapHead* pFrmHeapHd = GetFrmHeapHeadPtrFromHeapHead(heap);
@@ -554,15 +554,15 @@ NNS_FndGetAllocatableSizeForFrmHeapEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndRecordStateForFrmHeap
 
-  Description:  �t���[���q�[�v�̌��݂̃������g�p��Ԃ��L�^���܂��B
-                ��ŋL�^�����������g�p�󋵂ɖ߂����Ƃ��ł��܂��B
-                ��Ԃ��L�^����̂�20�o�C�g�g�p���܂��B
+  Description:  フレームヒープの現在のメモリ使用状態を記録します。
+                後で記録したメモリ使用状況に戻すことができます。
+                状態を記録するのに20バイト使用します。
 
-  Arguments:    heap:     �t���[���q�[�v�̃n���h���B
-                tagName:  ��ԋL�^�ɕt����^�O���B
+  Arguments:    heap:     フレームヒープのハンドル。
+                tagName:  状態記録に付けるタグ名。
 
-  Returns:      �֐������������ꍇ�ATRUE���Ԃ�܂��B
-                ���s������AFALSE���Ԃ�܂��B
+  Returns:      関数が成功した場合、TRUEが返ります。
+                失敗したら、FALSEが返ります。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_FndRecordStateForFrmHeap(
@@ -576,14 +576,14 @@ NNS_FndRecordStateForFrmHeap(
         NNSiFndFrmHeapHead* pFrmHeapHd = GetFrmHeapHeadPtrFromHeapHead(heap);
         void* oldHeadAllocator = pFrmHeapHd->headAllocator;
 
-        // ���ۑ��̈�m��
+        // 情報保存領域確保
         NNSiFndFrmHeapState* pState = AllocFromHead(pFrmHeapHd, sizeof(NNSiFndFrmHeapState), MIN_ALIGNMENT);
         if (! pState)
         {
             return FALSE;
         }
 
-        // ���݂̏�Ԃ��i�[
+        // 現在の状態を格納
         pState->tagName       = tagName;
         pState->headAllocator = oldHeadAllocator;
         pState->tailAllocator = pFrmHeapHd->tailAllocator;
@@ -598,21 +598,21 @@ NNS_FndRecordStateForFrmHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndFreeByStateToFrmHeap
 
-  Description:  �t���[���q�[�v�̃������u���b�N���L�^���ꂽ��Ԃɏ]���ĕԋp���܂��B
-                �w�肵���^�O����p����NNS_FndRecordStateForFrmHeap()���Ăяo�����O
-                �̃������̎g�p�󋵂ɖ߂�܂��B
-                �^�O����0���w�肷��ƍŌ��NNS_FndRecordStateForFrmHeap()���Ăяo��
-                ���O�̏�ԂɂȂ�܂��B
+  Description:  フレームヒープのメモリブロックを記録された状態に従って返却します。
+                指定したタグ名を用いてNNS_FndRecordStateForFrmHeap()を呼び出す直前
+                のメモリの使用状況に戻ります。
+                タグ名に0を指定すると最後にNNS_FndRecordStateForFrmHeap()を呼び出す
+                直前の状態になります。
 
-                �^�O�����w�肵�ĕԋp�����ꍇ�A����Ȍ�ɌĂяo���ꂽ
-                NNS_FndRecordStateForFrmHeap()�ɂ���ċL�^���ꂽ����
-                �����Ȃ�܂��B
+                タグ名を指定して返却した場合、それ以後に呼び出された
+                NNS_FndRecordStateForFrmHeap()によって記録された情報は
+                無くなります。
 
-  Arguments:    heap:     �t���[���q�[�v�̃n���h���B
-                tagName:  ��ԋL�^�ɕt����^�O���B
+  Arguments:    heap:     フレームヒープのハンドル。
+                tagName:  状態記録に付けるタグ名。
 
-  Returns:      �֐������������ꍇ�ATRUE���Ԃ�܂��B
-                ���s������AFALSE���Ԃ�܂��B
+  Returns:      関数が成功した場合、TRUEが返ります。
+                失敗したら、FALSEが返ります。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_FndFreeByStateToFrmHeap(
@@ -626,7 +626,7 @@ NNS_FndFreeByStateToFrmHeap(
         NNSiFndFrmHeapHead* pFrmHeapHd = GetFrmHeapHeadPtrFromHeapHead(heap);
         NNSiFndFrmHeapState* pState = pFrmHeapHd->pState;
 
-        if (tagName != 0)   // �^�O���̎w�肠��
+        if (tagName != 0)   // タグ名の指定あり
         {
             for(; pState; pState = pState->pPrevState)
             {
@@ -652,16 +652,16 @@ NNS_FndFreeByStateToFrmHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndAdjustFrmHeap
 
-  Description:  �t���[���q�[�v�̋󂫗̈���q�[�v�̈悩��J�����A���̕��q�[�v�̈��
-                �k�����܂��B
-                �q�[�v�������̌�납��m�ۂ��ꂽ�������u���b�N�����݂��Ă��Ă�
-                �����܂���B
+  Description:  フレームヒープの空き領域をヒープ領域から開放し、その分ヒープ領域を
+                縮小します。
+                ヒープメモリの後ろから確保されたメモリブロックが存在していては
+                いけません。
 
-  Arguments:    heap:     �t���[���q�[�v�̃n���h���B
+  Arguments:    heap:     フレームヒープのハンドル。
 
-  Returns:      �֐������������ꍇ�A�k����̃t���[���q�[�v�̃T�C�Y��Ԃ��܂�
-                (�o�C�g�P��)�B
-                ���s�����ꍇ�A0��Ԃ��܂��B
+  Returns:      関数が成功した場合、縮小後のフレームヒープのサイズを返します
+                (バイト単位)。
+                失敗した場合、0を返します。
  *---------------------------------------------------------------------------*/
 u32
 NNS_FndAdjustFrmHeap(NNSFndHeapHandle heap)
@@ -672,7 +672,7 @@ NNS_FndAdjustFrmHeap(NNSFndHeapHandle heap)
         NNSiFndHeapHead* pHeapHd = heap;
         NNSiFndFrmHeapHead* pFrmHeapHd = GetFrmHeapHeadPtrFromHeapHead(pHeapHd);
 
-        // ����Ɋm�ۂ��ꂽ�������u���b�N�����݂���ꍇ�͎��s����
+        // 後方に確保されたメモリブロックが存在する場合は失敗する
         if(0 < GetOffsetFromPtr(pFrmHeapHd->tailAllocator, pHeapHd->heapEnd))
         {
             return 0;
@@ -687,18 +687,18 @@ NNS_FndAdjustFrmHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndResizeForMBlockFrmHeap
 
-  Description:  �t���[���q�[�v����m�ۂ��ꂽ�������u���b�N�̃T�C�Y��ύX���܂��B
+  Description:  フレームヒープから確保されたメモリブロックのサイズを変更します。
 
-                �T�C�Y��ύX���郁�����u���b�N�́A�q�[�v�̋󂫗̈�̑O������m�ۂ��ꂽ
-                �����̃������u���b�N�ł���K�v������܂��B
+                サイズを変更するメモリブロックは、ヒープの空き領域の前方から確保された
+                末尾のメモリブロックである必要があります。
 
-  Arguments:    heap:      �t���[���q�[�v�̃n���h���B
-                memBlock:  �T�C�Y��ύX���郁�����u���b�N�ւ̃|�C���^�B
-                newSize:   �V�������蓖�Ă�T�C�Y(�o�C�g�P��)�B
-                           4�����̒l���w�肳�ꂽ�ꍇ�́A4���w�肳�ꂽ���̂Ƃ��ď������܂��B
+  Arguments:    heap:      フレームヒープのハンドル。
+                memBlock:  サイズを変更するメモリブロックへのポインタ。
+                newSize:   新しく割り当てるサイズ(バイト単位)。
+                           4未満の値を指定された場合は、4が指定されたものとして処理します。
 
-  Returns:      �֐������������ꍇ�A�ύX���ꂽ�������u���b�N�̃T�C�Y��Ԃ��܂�(�o�C�g�P��)�B
-                �֐������s�����ꍇ�A0 ���Ԃ�܂��B
+  Returns:      関数が成功した場合、変更されたメモリブロックのサイズを返します(バイト単位)。
+                関数が失敗した場合、0 が返ります。
  *---------------------------------------------------------------------------*/
 u32
 NNS_FndResizeForMBlockFrmHeap(
@@ -711,21 +711,21 @@ NNS_FndResizeForMBlockFrmHeap(
     NNSiFndFrmHeapHead* pFrmHeapHd = NULL;
 
     NNS_ASSERT(IsValidFrmHeapHandle(heap));
-    NNS_ASSERT(memBlock == NNSi_FndRoundDownPtr(memBlock, MIN_ALIGNMENT));  // �Œ���A�ŏ��A���C�����g�̋��E�ɂ��邩�`�F�b�N
+    NNS_ASSERT(memBlock == NNSi_FndRoundDownPtr(memBlock, MIN_ALIGNMENT));  // 最低限、最小アライメントの境界にあるかチェック
 
     pHeapHd = heap;
     pFrmHeapHd = GetFrmHeapHeadPtrFromHeapHead(pHeapHd);
 
     NNS_ASSERT(
             ComparePtr(pHeapHd->heapStart, memBlock) <= 0
-        &&  ComparePtr(pFrmHeapHd->headAllocator, memBlock) > 0);           // �������u���b�N�͑O���ɑ��݂��邱��
+        &&  ComparePtr(pFrmHeapHd->headAllocator, memBlock) > 0);           // メモリブロックは前方に存在すること
     NNS_ASSERT(
             pFrmHeapHd->pState == NULL
-        ||  ComparePtr(pFrmHeapHd->pState, memBlock) < 0);                  // ��ԕۑ����������u���b�N�̌���ɖ�������
+        ||  ComparePtr(pFrmHeapHd->pState, memBlock) < 0);                  // 状態保存がメモリブロックの後方に無いこと
 
     /*
-        newSize��0���邱�Ƃ͔F�߂Ȃ��悤�ɂ��Ă���B
-        0�ɂ��Ă��܂��ƁAmemBlock���w���������u���b�N�����݂��Ȃ��Ȃ邽�߁B
+        newSizeを0することは認めないようにしている。
+        0にしてしまうと、memBlockが指すメモリブロックが存在しなくなるため。
     */
     if (newSize == 0)
     {
@@ -737,21 +737,21 @@ NNS_FndResizeForMBlockFrmHeap(
         const u32 oldSize = GetOffsetFromPtr(memBlock, pFrmHeapHd->headAllocator);
         void* endAddress = AddU32ToPtr(memBlock, newSize);
 
-        if (newSize == oldSize)  // �u���b�N�T�C�Y�ύX�Ȃ��̏ꍇ
+        if (newSize == oldSize)  // ブロックサイズ変更なしの場合
         {
             return newSize;
         }
 
-        if (newSize > oldSize)  // �g�傷��Ƃ�
+        if (newSize > oldSize)  // 拡大するとき
         {
-            if (ComparePtr(endAddress, pFrmHeapHd->tailAllocator) > 0)  // �T�C�Y������Ȃ��ꍇ
+            if (ComparePtr(endAddress, pFrmHeapHd->tailAllocator) > 0)  // サイズが足りない場合
             {
                 return 0;
             }
 
             FillAllocMemory(heap, pFrmHeapHd->headAllocator, newSize - oldSize);
         }
-        else                    // �k������Ƃ�
+        else                    // 縮小するとき
         {
             FillFreeMemory(heap, endAddress, oldSize - newSize);
         }

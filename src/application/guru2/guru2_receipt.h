@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	guru2_receipt.h
- * @brief	‚®‚é‚®‚éŒðŠ·@Žó•t@iƒŒƒR[ƒhƒR[ƒi[‚ÌƒpƒNƒŠ
+ * @brief	ãã‚‹ãã‚‹äº¤æ›ã€€å—ä»˜ã€€ï¼ˆãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã®ãƒ‘ã‚¯ãƒª
  * @author	kagaya
  * @date    2006.02.14
  */
@@ -11,27 +11,27 @@
 
 #include "guru2_local.h"
 
-//‹@”\ƒ{ƒ^ƒ“—p’è‹`
-#define FUNCBUTTON_NUM	( 7 ) 		// ‹@”\ƒ{ƒ^ƒ“‚Ì”
-#define START_WORDPANEL ( 0 )		// Å‰‚Ì•¶Žš“ü—Íƒpƒlƒ‹‚Ì”Ô†i‚O‚Ð‚ç‚ª‚Èj
+//æ©Ÿèƒ½ãƒœã‚¿ãƒ³ç”¨å®šç¾©
+#define FUNCBUTTON_NUM	( 7 ) 		// æ©Ÿèƒ½ãƒœã‚¿ãƒ³ã®æ•°
+#define START_WORDPANEL ( 0 )		// æœ€åˆã®æ–‡å­—å…¥åŠ›ãƒ‘ãƒãƒ«ã®ç•ªå·ï¼ˆï¼ï¼ã²ã‚‰ãŒãªï¼‰
 
-// Ú‘±l”MAX‚Í‚Tl
+// æŽ¥ç¶šäººæ•°MAXã¯ï¼•äºº
 #define RECORD_CORNER_MEMBER_MAX	( 5 )
 
-// CLACT‚Å’è‹`‚µ‚Ä‚¢‚éƒZƒ‹‚ª‘å‚«‚·‚¬‚ÄƒTƒu‰æ–Ê‚É‰e‹¿‚ª‚Å‚Ä‚µ‚Ü‚¤‚Ì‚Å—£‚µ‚Ä‚Ý‚é
+// CLACTã§å®šç¾©ã—ã¦ã„ã‚‹ã‚»ãƒ«ãŒå¤§ãã™ãŽã¦ã‚µãƒ–ç”»é¢ã«å½±éŸ¿ãŒã§ã¦ã—ã¾ã†ã®ã§é›¢ã—ã¦ã¿ã‚‹
 #define NAMEIN_SUB_ACTOR_DISTANCE 	(256*FX32_ONE)
 
-// CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚ÌŽí—Þ‚Ì”iƒ}ƒ‹ƒ`ƒZƒ‹Eƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚ÍŽg—p‚µ‚È‚¢j
+// CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ç¨®é¡žã®æ•°ï¼ˆï¼ãƒžãƒ«ãƒã‚»ãƒ«ãƒ»ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã¯ä½¿ç”¨ã—ãªã„ï¼‰
 #define CLACT_RESOURCE_NUM		(  4 )
 #define NAMEIN_OAM_NUM			( 14 )
 
 
-// ƒƒbƒZ[ƒW•\Ž¦Œã‚ÌWAIT
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾Œã®WAIT
 #define RECORD_CORNER_MESSAGE_END_WAIT	( 60 )
 
-#define ERRNUM_TIMEOUT  (10*30)  //PL:0632 err_num‚ª•Ï‰»‚µ‚È‚¢‚½‚ßƒV[ƒPƒ“ƒX‚ªi‚Ü‚È‚¢ƒoƒOƒpƒbƒ`C³
+#define ERRNUM_TIMEOUT  (10*30)  //PL:0632 err_numãŒå¤‰åŒ–ã—ãªã„ãŸã‚ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãŒé€²ã¾ãªã„ãƒã‚°ãƒ‘ãƒƒãƒä¿®æ­£
 
-// •¶Žšƒpƒlƒ‹‚Ì‘JˆÚ—p
+// æ–‡å­—ãƒ‘ãƒãƒ«ã®é·ç§»ç”¨
 enum{
 	RECORD_MODE_INIT  = 0, 
 
@@ -88,13 +88,13 @@ enum{
 };
 #endif
 
-// ã‰º‰æ–ÊŽw’è’è‹`
+// ä¸Šä¸‹ç”»é¢æŒ‡å®šå®šç¾©
 #define RES_NUM	( 3 )
-#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// —v‚Í‚O‚Æ
-#define SUB_LCD		( GF_BGL_SUB_DISP )		// ‚P‚È‚ñ‚Å‚·‚ªB
+#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// è¦ã¯ï¼ã¨
+#define SUB_LCD		( GF_BGL_SUB_DISP )		// ï¼‘ãªã‚“ã§ã™ãŒã€‚
 #define CHARA_RES	( 2 )
 
-// BMPWINŽw’è
+// BMPWINæŒ‡å®š
 enum{
 	BMP_NAME1_S_BG0,
 	BMP_NAME2_S_BG0,
@@ -121,7 +121,7 @@ typedef struct{
 
 //-------------------------------------
 ///	080626 tomoya
-//  ƒgƒŒ[ƒiID•Û‘¶—Ìˆæ
+//  ãƒˆãƒ¬ãƒ¼ãƒŠIDä¿å­˜é ˜åŸŸ
 //=====================================
 typedef union {
 	u64		check;
@@ -132,59 +132,59 @@ typedef union {
 } TR_ID_DATA;
 
 //============================================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //============================================================================================
 struct _TAG_GURU2RC_WORK{
 	int proc_seq;
-	int seq_no;												//ƒV[ƒPƒ“ƒX
+	int seq_no;												//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	int end_next_flag;
 	GURU2PROC_WORK *g2p;
 	GURU2COMM_WORK *g2c;
 	
 	GF_BGL_INI			*bgl;								// GF_BGL_INI
-	BOOL				wipe_end;							// ƒƒCƒvˆ—‘Ò‚¿
-	VTRANS_PAL_WORK		palwork;							// ƒpƒŒƒbƒgƒAƒjƒ—pƒ[ƒN
+	BOOL				wipe_end;							// ãƒ¯ã‚¤ãƒ—å‡¦ç†å¾…ã¡
+	VTRANS_PAL_WORK		palwork;							// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ç”¨ãƒ¯ãƒ¼ã‚¯
 	TCB_PTR				trans_tcb;
 	
-	WORDSET			*WordSet;								// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *MsgManager;							// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	STRBUF			*TrainerName[RECORD_CORNER_MEMBER_MAX];		// –¼‘O
-	STRBUF			*EndString;								// •¶Žš—ñu‚â‚ß‚év
-	STRBUF			*TalkString;							// ‰ï˜bƒƒbƒZ[ƒW—p
-	STRBUF			*TitleString;							// ƒ^ƒCƒgƒ‹ƒƒbƒZ[ƒW—p
-	int				MsgIndex;								// I—¹ŒŸo—pƒ[ƒN
+	WORDSET			*WordSet;								// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *MsgManager;							// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	STRBUF			*TrainerName[RECORD_CORNER_MEMBER_MAX];		// åå‰
+	STRBUF			*EndString;								// æ–‡å­—åˆ—ã€Œã‚„ã‚ã‚‹ã€
+	STRBUF			*TalkString;							// ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
+	STRBUF			*TitleString;							// ã‚¿ã‚¤ãƒˆãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
+	int				MsgIndex;								// çµ‚äº†æ¤œå‡ºç”¨ãƒ¯ãƒ¼ã‚¯
 	
-	CLACT_SET_PTR 			clactSet;								// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	renddata;								// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR 	resObjTbl[RES_NUM][CLACT_RESOURCE_NUM];// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-	CLACT_HEADER			clActHeader_m;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-	CLACT_HEADER			clActHeader_s;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-	CLACT_HEADER			clActHeader_friend;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-	CLACT_WORK_PTR			MainActWork[NAMEIN_OAM_NUM];				// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ
-	CLACT_WORK_PTR			SubActWork[NAMEIN_OAM_NUM];				// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ
+	CLACT_SET_PTR 			clactSet;								// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	renddata;								// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR 	resObjTbl[RES_NUM][CLACT_RESOURCE_NUM];// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+	CLACT_HEADER			clActHeader_m;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_HEADER			clActHeader_s;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_HEADER			clActHeader_friend;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_WORK_PTR			MainActWork[NAMEIN_OAM_NUM];				// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—
+	CLACT_WORK_PTR			SubActWork[NAMEIN_OAM_NUM];				// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—
 
-	GF_BGL_BMPWIN 			TrainerNameWin[BMP_RECORD_MAX];			// ‚¨ŠG‚©‚«‰æ–Ê—pBMPƒEƒCƒ“ƒhƒE
-	GF_BGL_BMPWIN			MsgWin;									// ‰ï˜bƒEƒCƒ“ƒhƒE
-	GF_BGL_BMPWIN			EndWin;									// ‚â‚ß‚é
-	GF_BGL_BMPWIN			TitleWin;								// uƒŒƒR[ƒhƒR[ƒi[@‚Ú‚µ‚ã‚¤‚¿‚ã‚¤Iv‚È‚Ç
-	GF_BGL_BMPWIN			*YesNoWin[2];							// ‚Í‚¢E‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚Ìƒ|ƒCƒ“ƒ^
+	GF_BGL_BMPWIN 			TrainerNameWin[BMP_RECORD_MAX];			// ãŠçµµã‹ãç”»é¢ç”¨BMPã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN			MsgWin;									// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN			EndWin;									// ã‚„ã‚ã‚‹
+	GF_BGL_BMPWIN			TitleWin;								// ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã€€ã¼ã—ã‚…ã†ã¡ã‚…ã†ï¼ã€ãªã©
+	GF_BGL_BMPWIN			*YesNoWin[2];							// ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒã‚¤ãƒ³ã‚¿
 	BMPMENU_WORK			*YesNoMenuWork;
 
-	void*					FieldObjCharaBuf[2];					// l•¨OBJƒLƒƒƒ‰ƒtƒ@ƒCƒ‹ƒf[ƒ^
-	NNSG2dCharacterData*	FieldObjCharaData[2];					// l•¨OBJƒLƒƒƒ‰ƒf[ƒ^‚ÌŽÀƒ|ƒCƒ“ƒ^				
-	void*					FieldObjPalBuf[2];						// l•¨OBJƒpƒŒƒbƒgƒ@ƒCƒ‹ƒf[ƒ^
-	NNSG2dPaletteData*		FieldObjPalData[2];						// l•¨OBJƒpƒŒƒbƒgƒtƒ@ƒCƒ‹ƒf[ƒ^
+	void*					FieldObjCharaBuf[2];					// äººç‰©OBJã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
+	NNSG2dCharacterData*	FieldObjCharaData[2];					// äººç‰©OBJã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®å®Ÿãƒã‚¤ãƒ³ã‚¿				
+	void*					FieldObjPalBuf[2];						// äººç‰©OBJãƒ‘ãƒ¬ãƒƒãƒˆã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
+	NNSG2dPaletteData*		FieldObjPalData[2];						// äººç‰©OBJãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
 
-	int						seq;									// Œ»Ý‚Ì•¶Žš“ü—Íó‘Ôi“ü—ÍOK/ƒAƒjƒ’†j‚È‚Ç
+	int						seq;									// ç¾åœ¨ã®æ–‡å­—å…¥åŠ›çŠ¶æ…‹ï¼ˆå…¥åŠ›OK/ã‚¢ãƒ‹ãƒ¡ä¸­ï¼‰ãªã©
 	int						nextseq;
-	int						mode;									// Œ»ÝÅ‘O–Ê‚Ì•¶Žšƒpƒlƒ‹
+	int						mode;									// ç¾åœ¨æœ€å‰é¢ã®æ–‡å­—ãƒ‘ãƒãƒ«
 	int						wait;
 	u8						ConnectCheck[8][2];
 	MYSTATUS				*TrainerStatus[RECORD_CORNER_MEMBER_MAX][2];
 	int						TrainerReq[RECORD_CORNER_MEMBER_MAX];
 
-	int						saveseq_work;							// ƒZ[ƒuƒV[ƒPƒ“ƒXŠÇ——pƒ[ƒN
+	int						saveseq_work;							// ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç®¡ç†ç”¨ãƒ¯ãƒ¼ã‚¯
 
 	u16						CursorPal;
 	u16						*ObjPaletteTable;
@@ -193,23 +193,23 @@ struct _TAG_GURU2RC_WORK{
 
 	GURU2COMM_RC_SENDDATA	send_data;
 	GURU2COMM_RC_SENDDATA	recv_data[RECORD_CORNER_MEMBER_MAX];
-	u8						record_execute;							// TRUE:ƒŒƒR[ƒh¬‚º’†
+	u8						record_execute;							// TRUE:ãƒ¬ã‚³ãƒ¼ãƒ‰æ··ãœä¸­
 	
-	// ----e‚¾‚¯‚ª•K—v‚Èƒ[ƒN
-	volatile int			connectBackup;							// Ú‘±l”ŠÄŽ‹—p
+	// ----è¦ªã ã‘ãŒå¿…è¦ãªãƒ¯ãƒ¼ã‚¯
+	volatile int			connectBackup;							// æŽ¥ç¶šäººæ•°ç›£è¦–ç”¨
 	int						beacon_flag;
-	u32						ridatu_bit;								// —£’E‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚éŽq‚ÌBit
-	u8						status_end;								// TRUE:I—¹ƒV[ƒPƒ“ƒX‚ÖˆÚs
-	s8						limit_mode;								// Ú‘±§ŒÀó‘Ô
-	u8						start_num;								// ƒŒƒR[ƒh¬‚ºŠJŽnl”
-	u8						record_send;							// TRUE:ƒŒƒR[ƒh‘—M‚µ‚½
+	u32						ridatu_bit;								// é›¢è„±ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹å­ã®Bit
+	u8						status_end;								// TRUE:çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸ç§»è¡Œ
+	s8						limit_mode;								// æŽ¥ç¶šåˆ¶é™çŠ¶æ…‹
+	u8						start_num;								// ãƒ¬ã‚³ãƒ¼ãƒ‰æ··ãœé–‹å§‹äººæ•°
+	u8						record_send;							// TRUE:ãƒ¬ã‚³ãƒ¼ãƒ‰é€ä¿¡ã—ãŸ
 	
-	// Žq‹@‚ª•K—v‚Èƒ[ƒN
-    int err_num_timeout;   ///PL:0632 err_num‚ª•Ï‰»‚µ‚È‚¢‚½‚ßƒV[ƒPƒ“ƒX‚ªi‚Ü‚È‚¢ƒoƒOƒpƒbƒ`C³
-	s32 					err_num;								// ’ÊMI—¹‚ð‚Ý‚é‚½‚ß‚Ìƒ[ƒN
-	s16						ridatu_wait;			// —£’E—p‚ÌƒEƒFƒCƒg
+	// å­æ©ŸãŒå¿…è¦ãªãƒ¯ãƒ¼ã‚¯
+    int err_num_timeout;   ///PL:0632 err_numãŒå¤‰åŒ–ã—ãªã„ãŸã‚ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãŒé€²ã¾ãªã„ãƒã‚°ãƒ‘ãƒƒãƒä¿®æ­£
+	s32 					err_num;								// é€šä¿¡çµ‚äº†ã‚’ã¿ã‚‹ãŸã‚ã®ãƒ¯ãƒ¼ã‚¯
+	s16						ridatu_wait;			// é›¢è„±ç”¨ã®ã‚¦ã‚§ã‚¤ãƒˆ
 
-  //------080626	tomoya C³ ƒgƒŒ[ƒi‚Ì“oê‚Æ‘Þêƒ`ƒFƒbƒN—p‚ÌƒgƒŒ[ƒiID•Û‘¶—Ìˆæ
+  //------080626	tomoya ä¿®æ­£ ãƒˆãƒ¬ãƒ¼ãƒŠã®ç™»å ´ã¨é€€å ´ãƒã‚§ãƒƒã‚¯ç”¨ã®ãƒˆãƒ¬ãƒ¼ãƒŠIDä¿å­˜é ˜åŸŸ
 	TR_ID_DATA				trainer_id[RECORD_CORNER_MEMBER_MAX][2];
 
 #ifdef PM_DEBUG

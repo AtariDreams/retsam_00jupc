@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.21  2005/11/14 05:10:03  okubata_ryoma
-  SDK_INLINE ‚É‘Î‰
+  SDK_INLINE ã«å¯¾å¿œ
 
   Revision 1.20  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.19  2005/02/28 05:26:13  yosizaki
   do-indent.
 
   Revision 1.18  2004/06/09 04:18:00  takano_makoto
-  VEC_Set(), VEC_Fx16Set‚Ì’Ç‰Á
+  VEC_Set(), VEC_Fx16Setã®è¿½åŠ 
 
   Revision 1.17  2004/02/16 23:50:35  nishida_kenji
   Add VEC_Fx16Distance.

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerSetTrackMute*</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerSetTrackMute*</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetTrackMute(
@@ -23,7 +23,7 @@
         NNSSndSeqMute <var>mute</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDADNAU"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -31,103 +31,103 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�T�E���h�n���h���̃|�C���^�ł��B</td>
+<td>サウンドハンドルのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>trackBitMask</code></strong></em></td>
-<td>�g���b�N�r�b�g�}�X�N�ł��B</td>
+<td>トラックビットマスクです。</td>
 </tr>
 <tr>
 <td><em><strong><code>flag</code></strong></em></td>
-<td>�~���[�g���邩��߂邩�̃t���O�ł��BTRUE�Ȃ�~���[�g���AFALSE�Ȃ�~���[�g���������܂��B</td>
+<td>ミュートするかやめるかのフラグです。TRUEならミュートし、FALSEならミュートを解除します。</td>
 </tr>
 <tr>
 <td><em><strong><code>mute</code></strong></em></td>
-<td>�~���[�g�ݒ�ł��B</td>
+<td>ミュート設定です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAHOAU"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAOOAU"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�V�[�P���X�g���b�N���~���[�g������A��߂��肵�܂��B 
+シーケンストラックをミュートしたり、やめたりします。 
 </p>
       <p>
-�T�E���h�n���h��<em><strong><code>handle</code></strong></em>�ɁA���т���ꂽ�V�[�P���X�̃g���b�N���~���[�g�������߂��肵�܂��B
-�T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+サウンドハンドル<em><strong><code>handle</code></strong></em>に、結びつけられたシーケンスのトラックをミュートしたりやめたりします。
+サウンドハンドルが無効の場合は、何もしません。 
 </p>
       <p>
-<em><strong><code>trackBitMask</code></strong></em>�ŁA�ݒ肷��g���b�N���w�肵�܂��B
-���ʃr�b�g���珇�ɁA�g���b�N0�A�g���b�N1�A�g���b�N2�A�A�A��\���A�r�b�g�������Ă���g���b�N�S�Ăɑ΂��āA
-�~���[�g�̐ݒ��ύX���܂��B
-�Ⴆ�΁A�g���b�N2�ƃg���b�N5�̃~���[�g�ݒ��ύX�������ꍇ�́A (1 &lt;&lt; 2) | (1 &lt;&lt; 5) ���Ȃ킿�A0x0024 �Ƃ��܂��B 
+<em><strong><code>trackBitMask</code></strong></em>で、設定するトラックを指定します。
+下位ビットから順に、トラック0、トラック1、トラック2、、、を表し、ビットが立っているトラック全てに対して、
+ミュートの設定を変更します。
+例えば、トラック2とトラック5のミュート設定を変更したい場合は、 (1 &lt;&lt; 2) | (1 &lt;&lt; 5) すなわち、0x0024 とします。 
 </p>
       <p>
-<tt class="function">NNS_SndPlayerSetTrackMute</tt>�֐��ŁA�~���[�g���s���ƁA
-�������̉��͑����ɒ�~���܂��B
-�����ɒ�~���������Ȃ��ꍇ�́A<tt class="function">NNS_SndPlayerSetTrackMuteEx</tt>�֐����g���܂��B
+<tt class="function">NNS_SndPlayerSetTrackMute</tt>関数で、ミュートを行うと、
+発音中の音は即座に停止します。
+即座に停止させたくない場合は、<tt class="function">NNS_SndPlayerSetTrackMuteEx</tt>関数を使います。
 </p>
       <p>
-�~���[�g�ݒ�<em><strong><code>mute</code></strong></em>�́A���L�̒l����I�����܂��B
+ミュート設定<em><strong><code>mute</code></strong></em>は、下記の値から選択します。
 </p>
-      <div class="table"><a name="IDAKPAU"></a><p class="title"><b>�\ . NNSSndSeqMute</b></p>
+      <div class="table"><a name="IDAKPAU"></a><p class="title"><b>表 . NNSSndSeqMute</b></p>
 <table summary="NNSSndSeqMute" border="1">
 <colgroup><col><col></colgroup>
 <thead>
 <tr>
-<th>���x��</th>
-<th>����</th>
+<th>ラベル</th>
+<th>説明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>NNS_SND_SEQ_MUTE_OFF</td>
-<td>�~���[�g����</td>
+<td>ミュート解除</td>
 </tr>
 <tr>
 <td>NNS_SND_SEQ_MUTE_NO_STOP</td>
-<td>�������̉����~�߂��Ƀ~���[�g</td>
+<td>発音中の音を止めずにミュート</td>
 </tr>
 <tr>
 <td>NNS_SND_SEQ_MUTE_RELEASE</td>
-<td>�������̉��������[�X���ă~���[�g</td>
+<td>発音中の音をリリースしてミュート</td>
 </tr>
 <tr>
 <td>NNS_SND_SEQ_MUTE_STOP</td>
-<td>�������̉��𑦍��Ɏ~�߂ă~���[�g</td>
+<td>発音中の音を即座に止めてミュート</td>
 </tr>
 </tbody>
 </table>
 </div>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-<tt class="function">NNS_SndPlayerSetTrackMuteEx</tt>�֐��́ASDK�o�[�W����3.1�ȍ~�Ŏg�p�ł��܂��B
+<tt class="function">NNS_SndPlayerSetTrackMuteEx</tt>関数は、SDKバージョン3.1以降で使用できます。
 </p>
 <p>
-<tt class="function">NNS_SndPlayerSetTrackMute</tt>�֐��Ńg���b�N���~���[�g�A
-�������́A<tt class="function">NNS_SndPlayerSetTrackMuteEx</tt>�֐���<span class="symbol">NNS_SND_SEQ_MUTE_STOP</span>��
-�w�肵���ꍇ�A
-�������̉��͑S�ċ����I�Ɏ~�߂��A����ȍ~�̔����͍s���Ȃ��Ȃ�܂��B
-�~���[�g����������ƁA�������s����悤�ɂȂ�܂����A�����ɉ�����o���킯�ł͂���܂���B���̃m�[�g�I�������n�߂邱�Ƃɒ��ӂ��Ă��������B 
+<tt class="function">NNS_SndPlayerSetTrackMute</tt>関数でトラックをミュート、
+もしくは、<tt class="function">NNS_SndPlayerSetTrackMuteEx</tt>関数で<span class="symbol">NNS_SND_SEQ_MUTE_STOP</span>を
+指定した場合、
+発音中の音は全て強制的に止められ、それ以降の発音は行われなくなります。
+ミュートを解除すると、発音が行われるようになりますが、すぐに音が鳴り出すわけではありません。次のノートオンから鳴り始めることに注意してください。 
 </p>
 <p>
-�V�[�P���X�f�[�^���ł��A�~���[�g�ݒ�����Ă����ꍇ�́A
-�ォ��ݒ肵�������L���ɂȂ�܂��B 
+シーケンスデータ中でも、ミュート設定をしていた場合は、
+後から設定した方が有効になります。 
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
-<p>�Ȃ��B</p>
-<h2>����</h2>
-<p>2006/03/20 NNS_SndPlayerSetTrackMuteEx�֐��ǉ�<br>2004/06/01 �T�E���h�n���h���̓V�[�P���X�ƌ��т��悤�ɋL�q�C��<br>2004/04/01 ����<br></p>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2006/03/20 NNS_SndPlayerSetTrackMuteEx関数追加<br>2004/06/01 サウンドハンドルはシーケンスと結びつくように記述修正<br>2004/04/01 初版<br></p>
 </div>
 </body>
 </html>

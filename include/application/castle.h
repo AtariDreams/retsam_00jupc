@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	castle.h
- * @brief	uƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[vƒwƒbƒ_[
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.07.04
  */
@@ -14,14 +14,14 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
 
 
 //==============================================================================================
 //
-//	ƒtƒ@ƒNƒgƒŠ[‰æ–ÊŒÄ‚Ño‚µ@\‘¢‘ÌéŒ¾
+//	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ç”»é¢å‘¼ã³å‡ºã—ã€€æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 typedef struct{
@@ -32,18 +32,18 @@ typedef struct{
 	u8	mode; 
 	u8	dummy;
 
-	//“GƒgƒŒ[ƒi[‰æ–Ê‚Ìî•ñ‚ªŒöŠJ‚³‚ê‚½‚©ƒtƒ‰ƒO
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢ã®æƒ…å ±ãŒå…¬é–‹ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°
 	u8	enemy_temoti_flag[CASTLE_ENEMY_POKE_MAX];
 	u8	enemy_level_flag[CASTLE_ENEMY_POKE_MAX];
 	u8	enemy_tuyosa_flag[CASTLE_ENEMY_POKE_MAX];
 	u8	enemy_waza_flag[CASTLE_ENEMY_POKE_MAX];
 
-	POKEPARTY* p_m_party;							//–¡•û
-	POKEPARTY* p_e_party;							//“G
-	u16 ret_work;									//–ß‚è’lŠi”[ƒ[ƒN
-	void* p_work;									//CASTLE_SCRWORK(bf_scr_wk•Û‘¶)
+	POKEPARTY* p_m_party;							//å‘³æ–¹
+	POKEPARTY* p_e_party;							//æ•µ
+	u16 ret_work;									//æˆ»ã‚Šå€¤æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	void* p_work;									//CASTLE_SCRWORK(bf_scr_wkä¿å­˜)
 
-	u16 pair_cp;									//ƒp[ƒgƒi[‚ÌCP
+	u16 pair_cp;									//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®CP
 	u16 dummy3;
 
 	u32 dummy_work;
@@ -52,10 +52,10 @@ typedef struct{
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
-//extern const PROC_DATA CastleProcData;				//ƒvƒƒZƒX’è‹`ƒf[ƒ^
+//extern const PROC_DATA CastleProcData;				//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT CastleMineProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT CastleMineProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT CastleMineProc_End( PROC * proc, int * seq );

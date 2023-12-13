@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_251.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			251�@���^�[���`�F�b�N�ɂP�^�P�U�Â񕜁B�y�˂��͂�z�����Ō������\�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			251　毎ターンチェックに１／１６づつ回復。【ねをはる】同じで交換が可能。
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

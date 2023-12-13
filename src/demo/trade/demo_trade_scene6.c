@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	demo_trade_scene6.c
- * @brief	ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒfƒ‚iƒV[ƒ“‚UF‘—‚ç‚ê‚Ä‚«‚½ƒ|ƒPƒ‚ƒ“‚ªƒo[ƒ“‚Æo‚Ä‚«‚ÄI‚í‚èj
+ * @brief	ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¢ï¼ˆã‚·ãƒ¼ãƒ³ï¼–ï¼šé€ã‚‰ã‚Œã¦ããŸãƒã‚±ãƒ¢ãƒ³ãŒãƒãƒ¼ãƒ³ã¨å‡ºã¦ãã¦çµ‚ã‚ã‚Šï¼‰
  * @author	taya
  * @date	2006.04.12
  */
@@ -18,7 +18,7 @@
 
 
 //======================================================================================================
-// “®ì‚³‚¹‚È‚ª‚ç’²®‚µ‚½‚¢ƒpƒ‰ƒ[ƒ^ŒQ
+// å‹•ä½œã•ã›ãªãŒã‚‰èª¿æ•´ã—ãŸã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¾¤
 //======================================================================================================
 
 #ifdef		RUNTIME_ADJUST
@@ -30,12 +30,12 @@
 
 
 
-DECLARE_VALUE(fx32,	BALL_GRAVITY,		-0x780);	// d—Í
-DECLARE_VALUE(fx32,	BALL_START_SPEED,	0x1f60);	// ‰Šú‘¬“x
-DECLARE_VALUE(fx32,	BALL_REF_SPEED_MIN,	0xfa0);		// ”½ŽËŒã‚Ì‘¬“x‚ª‚±‚êˆÈ‰º‚È‚ç’âŽ~
-DECLARE_VALUE(fx32,	BALL_REF_RATIO,		0x2c);		// ”½ŽËŒW”
-DECLARE_VALUE(fx32,	BALL_START_YOFS,	0xffffd800);// ‰Šú‚xˆÊ’u’²®—p
-DECLARE_VALUE(fx32,	BALL_START_ZOFS,	0x37800);	// ‰Šú‚yˆÊ’u’²®—p
+DECLARE_VALUE(fx32,	BALL_GRAVITY,		-0x780);	// é‡åŠ›
+DECLARE_VALUE(fx32,	BALL_START_SPEED,	0x1f60);	// åˆæœŸé€Ÿåº¦
+DECLARE_VALUE(fx32,	BALL_REF_SPEED_MIN,	0xfa0);		// åå°„å¾Œã®é€Ÿåº¦ãŒã“ã‚Œä»¥ä¸‹ãªã‚‰åœæ­¢
+DECLARE_VALUE(fx32,	BALL_REF_RATIO,		0x2c);		// åå°„ä¿‚æ•°
+DECLARE_VALUE(fx32,	BALL_START_YOFS,	0xffffd800);// åˆæœŸï¼¹ä½ç½®èª¿æ•´ç”¨
+DECLARE_VALUE(fx32,	BALL_START_ZOFS,	0x37800);	// åˆæœŸï¼ºä½ç½®èª¿æ•´ç”¨
 
 DECLARE_VALUE(fx32,	BALL_ROT_SPEED1,	0x1000);		//
 DECLARE_VALUE(fx32,	BALL_ROT_SPEED2,	0x180);		//
@@ -49,7 +49,7 @@ DECLARE_VALUE(fx32,	BALL_REFRECT_Y,		0xffff5000);
 
 //----------------------------------------------
 /**
- *	’è”
+ *	å®šæ•°
  */ 
 //----------------------------------------------
 enum {
@@ -70,14 +70,14 @@ enum {
 };
 
 
-// ƒAƒNƒ^[‚h‚c
+// ã‚¢ã‚¯ã‚¿ãƒ¼ï¼©ï¼¤
 enum {
 	ACTID_SPOTLIGHT,
 	ACTID_EFFECT,
 	ACTID_MAX,
 };
 
-// BGƒLƒƒƒ‰”z’u
+// BGã‚­ãƒ£ãƒ©é…ç½®
 enum {
 	WIN_DISP_X = 2,
 	WIN_DISP_Y = 19,
@@ -152,11 +152,11 @@ static void ball_appear_task( TCB_PTR tcb, void* wk_adrs );
 
 //------------------------------------------------------------------
 /**
- * ƒV[ƒ“‚Oƒ[ƒN\’z
+ * ã‚·ãƒ¼ãƒ³ï¼ãƒ¯ãƒ¼ã‚¯æ§‹ç¯‰
  *
  * @param   mainWork		
  *
- * @retval  void*		ì¬‚µ‚½ƒV[ƒ“—pƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @retval  void*		ä½œæˆã—ãŸã‚·ãƒ¼ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void* DemoTrade_Scene6Init( DEMO_TRADE_WORK* mainWork )
@@ -187,9 +187,9 @@ void* DemoTrade_Scene6Init( DEMO_TRADE_WORK* mainWork )
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒ“‚Oƒ[ƒN”jŠü
+ * ã‚·ãƒ¼ãƒ³ï¼ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- * @param   void*		ƒV[ƒ“—pƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   void*		ã‚·ãƒ¼ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void DemoTrade_Scene6Quit( void* wk_adrs )
@@ -229,12 +229,12 @@ void DemoTrade_Scene6Quit( void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒ“‚OƒƒCƒ“
+ * ã‚·ãƒ¼ãƒ³ï¼ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  * @param   seq		
  *
- * @retval  BOOL	TRUE‚ÅƒV[ƒ“I—¹
+ * @retval  BOOL	TRUEã§ã‚·ãƒ¼ãƒ³çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL DemoTrade_Scene6Main( void* wk_adrs, int* seq )
@@ -265,7 +265,7 @@ BOOL DemoTrade_Scene6Main( void* wk_adrs, int* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“‚ÌÅŒã‚ÉŒÄ‚Î‚ê‚é
+ * ãƒ¡ã‚¤ãƒ³ã®æœ€å¾Œã«å‘¼ã°ã‚Œã‚‹
  *
  * @param   wk		
  *
@@ -280,10 +280,10 @@ static void main_tail_proc( SCENE_WORK* wk )
 	{
 		NNS_G3dGeFlushBuffer();
 
-		// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ì•`‰æ
-		// ƒJƒƒ‰ƒZƒbƒgƒAƒbƒv
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æç”»
+		// ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		NNS_G2dSetupSoftwareSpriteCamera();
-		// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æ
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»
 		SoftSpriteTextureTrans( wk->spriteManager );
 		SoftSpriteMain( wk->spriteManager );
 	}
@@ -295,7 +295,7 @@ static void main_tail_proc( SCENE_WORK* wk )
 		DT3DMAN_Draw( wk->dt3dMan );
 	}
 
-	/* ƒWƒIƒƒgƒŠ•ƒŒƒ“ƒ_ƒŠƒ“ƒOƒGƒ“ƒWƒ“ŠÖ˜Aƒƒ‚ƒŠ‚ÌƒXƒƒbƒv */
+	/* ã‚¸ã‚ªãƒ¡ãƒˆãƒªï¼†ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ãƒ¡ãƒ¢ãƒªã®ã‚¹ãƒ¯ãƒƒãƒ— */
 	GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 //	G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
@@ -304,7 +304,7 @@ static void main_tail_proc( SCENE_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒOƒ‰ƒtƒBƒbƒNƒZƒbƒgƒAƒbƒv
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  * @param   mainWork
  *
@@ -314,16 +314,16 @@ static void main_tail_proc( SCENE_WORK* wk )
 static int subseq_setup( SCENE_WORK* wk, int* seq )
 {
 	static const GF_BGL_DISPVRAM SetBankData = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_23_G,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_32_H,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_16_F,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0123_E			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_23_G,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_32_H,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_16_F,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0123_E			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	static const GF_BGL_SYS_HEADER BGsys_data = {
@@ -352,7 +352,7 @@ static int subseq_setup( SCENE_WORK* wk, int* seq )
 	GF_BGL_BGControlSet( wk->bgl, GF_BGL_FRAME2_M, &header2, GF_BGL_MODE_TEXT );
 
 
-	// ‚R‚cŽg—p–Ê‚ÌÝ’è(•\Ž¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
@@ -397,7 +397,7 @@ static int subseq_setup( SCENE_WORK* wk, int* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒXƒ|ƒbƒgƒ‰ƒCƒg•\Ž¦
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆè¡¨ç¤º
  *
  * @param   mainWork
  *
@@ -420,7 +420,7 @@ static int subseq_spotlight( SCENE_WORK* wk, int* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ““oê
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³ç™»å ´
  *
  * @param   mainWork
  *
@@ -493,7 +493,7 @@ static int subseq_poke_flush( SCENE_WORK* wk, int* seq )
 		}while(0);
 		#endif
 
-		// ƒzƒ“ƒg‚Í‚±‚±‚ÅƒAƒjƒ‘Ò‚¿‚Æ‚©ƒWƒ“ƒOƒ‹–Â‚ç‚µ‚Æ‚©‚·‚é
+		// ãƒ›ãƒ³ãƒˆã¯ã“ã“ã§ã‚¢ãƒ‹ãƒ¡å¾…ã¡ã¨ã‹ã‚¸ãƒ³ã‚°ãƒ«é³´ã‚‰ã—ã¨ã‹ã™ã‚‹
 		if( ++(wk->timer) > 30 )
 		{
 			return TRUE;
@@ -504,7 +504,7 @@ static int subseq_poke_flush( SCENE_WORK* wk, int* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒƒbƒZ[ƒW•\Ž¦
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
  * @param   mainWork
  *
@@ -628,19 +628,19 @@ static void setup_3d_graphics( SCENE_WORK* wk )
 	NNSGfdTexKey	texKey;
 	NNSGfdPlttKey	plttKey;
 
-	// NitroSystem:‚R‚cƒGƒ“ƒWƒ“‚Ì‰Šú‰»
+	// NitroSystem:ï¼“ï¼¤ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–
 	NNS_G3dInit();
-	// ƒ}ƒgƒŠƒNƒXƒXƒ^ƒbƒN‚Ì‰Šú‰»
+	// ãƒžãƒˆãƒªã‚¯ã‚¹ã‚¹ã‚¿ãƒƒã‚¯ã®åˆæœŸåŒ–
     G3X_InitMtxStack();
 
-	// ŠeŽí•`‰æƒ‚[ƒh‚ÌÝ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜Ž)
     G3X_SetShading(GX_SHADING_TOON);
     G3X_AntiAlias(TRUE);
 
-	G3X_AlphaTest(FALSE, 0);	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend(TRUE);		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest(FALSE, 0);	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend(TRUE);		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 
-	// ƒNƒŠƒAƒJƒ‰[‚ÌÝ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0, 0, 0),	// clear color
                       0,				// clear alpha
                       0x7fff,			// clear depth
@@ -648,10 +648,10 @@ static void setup_3d_graphics( SCENE_WORK* wk )
                       FALSE				// fog
                       );
 
-	// ƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‹N“®Œã•K‚¸ŒÄ‚Î‚ê‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³èµ·å‹•å¾Œå¿…ãšå‘¼ã°ã‚Œãªã‘ã‚Œã°ãªã‚‰ãªã„
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 
-	// ƒrƒ…[ƒ|[ƒg‚ÌÝ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 
     NNS_GfdInitFrmTexVramManager(1, TRUE);
@@ -674,7 +674,7 @@ static void setup_3d_graphics( SCENE_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ‘—‚ç‚ê‚Ä‚«‚½ƒ|ƒPƒ‚ƒ“‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚ð¶¬
+ * é€ã‚‰ã‚Œã¦ããŸãƒã‚±ãƒ¢ãƒ³ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ç”Ÿæˆ
  *
  * @param   wk		
  *
@@ -765,7 +765,7 @@ typedef struct {
 
 //------------------------------------------------------------------
 /**
- * 3D–Ê‚Ì‹P“x•ÏXƒ^ƒXƒNŠJŽn
+ * 3Dé¢ã®è¼åº¦å¤‰æ›´ã‚¿ã‚¹ã‚¯é–‹å§‹
  *
  * @param   wk		
  *

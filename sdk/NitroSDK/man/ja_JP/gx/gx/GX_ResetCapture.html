@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>GX_ResetCapture</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">GX_ResetCapture</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,19 +20,19 @@
 
 void GX_ResetCapture( void );<BR></CODE></PRE>
   </dd>
-</dl><h2>����</h2>
-<P>�Ȃ�</P>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�</p>
-<H2>����</H2>
-<P>�\���L���v�`���R���g���[�����W�X�^�̃L���v�`���C�l�[�u���t���O��OFF�ɐݒ肵�܂��B<BR>
-�L���v�`���C�l�[�u�����W�X�^�̓L���v�`���I����A�����I��OFF�ɂȂ�܂��̂ŁA�ʏ킱�̊֐���<BR>
-�����I�Ƀ��Z�b�g����K�v�͂���܂���B<BR>
+</dl><h2>引数</h2>
+<P>なし</P>
+<h2>返り値</h2>
+<p>なし</p>
+<H2>説明</H2>
+<P>表示キャプチャコントロールレジスタのキャプチャイネーブルフラグをOFFに設定します。<BR>
+キャプチャイネーブルレジスタはキャプチャ終了後、自動的にOFFになりますので、通常この関数で<BR>
+明示的にリセットする必要はありません。<BR>
 <BR>
-<B>(����1)</B> 0���C���ڂŕ\���L���v�`�����J�n���ꂽ��ɁA���̊֐��ŃL���v�`����r�����f���邱�Ƃ͂ł��܂���B�L���v�`������������ꍇ�ɂ̓L���v�`���̓���J�n�����O�ɍs�Ȃ��Ă��������B</P>
-<h2>�Q��</h2>
+<B>(注意1)</B> 0ライン目で表示キャプチャが開始された後に、この関数でキャプチャを途中中断することはできません。キャプチャを解除する場合にはキャプチャの動作開始される前に行なってください。</P>
+<h2>参照</h2>
 <P><A href="GX_SetCapture.html">GX_SetCapture</A></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>Ver. 2005/01/05</P>
 </body>
 </html>

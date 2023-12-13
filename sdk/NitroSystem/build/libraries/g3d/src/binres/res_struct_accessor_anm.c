@@ -56,8 +56,8 @@ BOOL NNSi_G3dIsValidAnmRes(const void* pRes)
 /*---------------------------------------------------------------------------*
     NNS_G3dGetAnmByIdx
 
-    ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚©‚çidx”Ô–Ú‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX‚ðŽæ“¾
-    ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŽí—Þ‚Í–â‚í‚È‚¢
+    ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰idxç•ªç›®ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
+    ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç¨®é¡žã¯å•ã‚ãªã„
  *---------------------------------------------------------------------------*/
 void*
 NNS_G3dGetAnmByIdx(const void* pRes, u32 idx)
@@ -90,8 +90,8 @@ NNS_G3dGetAnmByIdx(const void* pRes, u32 idx)
 /*---------------------------------------------------------------------------*
     NNS_G3dGetAnmByName
 
-    ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚©‚ç*pName‚Ì–¼‘O‚ÅŽQÆ‚Å‚«‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX‚ðŽæ“¾
-    ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŽí—Þ‚Í–â‚í‚È‚¢
+    ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰*pNameã®åå‰ã§å‚ç…§ã§ãã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
+    ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç¨®é¡žã¯å•ã‚ãªã„
  *---------------------------------------------------------------------------*/
 void*
 NNS_G3dGetAnmByName(const void* pRes, const NNSG3dResName* pName)
@@ -120,12 +120,12 @@ NNS_G3dGetAnmByName(const void* pRes, const NNSG3dResName* pName)
 }
 
 //---------------------------------------------------------------------
-// ƒf[ƒ^”z—ñ‚ÉƒAƒNƒZƒX‚·‚éŠÖ”‚ð•\‚·ƒ|ƒCƒ“ƒ^
+// ãƒ‡ãƒ¼ã‚¿é…åˆ—ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹é–¢æ•°ã‚’è¡¨ã™ãƒã‚¤ãƒ³ã‚¿
 typedef fx32  (*FrameIdxValueAccessFuncPtr)( const void* pDataHead, u32 frameIdx, u32 step, u32 offset );
 
 
 /*---------------------------------------------------------------------------*
-     ƒAƒjƒ[ƒVƒ‡ƒ“ŠÖ˜A ‹¤’Ê
+     ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢é€£ å…±é€š
  *---------------------------------------------------------------------------*/
 
 const void* 
@@ -146,7 +146,7 @@ NNSi_G3dGetBinaryBlockFromFile
         if( pHeader->sigVal == fileSignature )
         {        
             //
-            // ‚·‚×‚Ä‚ÌƒoƒCƒiƒŠƒuƒƒbƒN‚É‚Â‚¢‚Ä...
+            // ã™ã¹ã¦ã®ãƒã‚¤ãƒŠãƒªãƒ–ãƒ­ãƒƒã‚¯ã«ã¤ã„ã¦...
             //
             for( i = 0 ; i < pHeader->dataBlocks; i++ )
             {
@@ -162,14 +162,14 @@ NNSi_G3dGetBinaryBlockFromFile
         }
     }
     //
-    // ”­Œ©‚Å‚«‚È‚©‚Á‚½
+    // ç™ºè¦‹ã§ããªã‹ã£ãŸ
     //
     return NULL;
 }
 
 
 //------------------------------------------------------------------------------
-// ƒAƒjƒƒwƒbƒ_‚ªŽw’è‚µ‚½ƒJƒeƒSƒŠî•ñ‚ð‚à‚Â‚©’²¸‚µ‚Ü‚·B
+// ã‚¢ãƒ‹ãƒ¡ãƒ˜ãƒƒãƒ€ãŒæŒ‡å®šã—ãŸã‚«ãƒ†ã‚´ãƒªæƒ…å ±ã‚’ã‚‚ã¤ã‹èª¿æŸ»ã—ã¾ã™ã€‚
 static BOOL IsValidAnimHeader( const NNSG3dResAnmHeader* pAnmHeader, u8 cat0, u16 cat1 )
 {
     NNS_G3D_NULL_ASSERT( pAnmHeader );
@@ -183,20 +183,20 @@ static BOOL IsValidAnimHeader( const NNSG3dResAnmHeader* pAnmHeader, u8 cat0, u1
 
 
 /*---------------------------------------------------------------------------*
-    Visibility ƒAƒjƒ[ƒVƒ‡ƒ“ŠÖ˜A
+    Visibility ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢é€£
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetVisAnmByIdx
 
-  Description:  ƒrƒWƒrƒŠƒeƒBƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚©‚ç Žw’è‚µ‚½”Ô†‚Ì 
-                ƒrƒWƒrƒŠƒeƒBƒAƒjƒ[ƒVƒ‡ƒ“‚ðŽæ“¾‚µ‚Ü‚·B
-                •s³‚È”Ô†‚Ì“ü—Í‚ª‚ ‚Á‚½ê‡‚ÍAASSERT‚ÉŽ¸”s‚µ‚Ü‚·B
+  Description:  ãƒ“ã‚¸ãƒ“ãƒªãƒ†ã‚£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‹ã‚‰ æŒ‡å®šã—ãŸç•ªå·ã® 
+                ãƒ“ã‚¸ãƒ“ãƒªãƒ†ã‚£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã™ã€‚
+                ä¸æ­£ãªç•ªå·ã®å…¥åŠ›ãŒã‚ã£ãŸå ´åˆã¯ã€ASSERTã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnmSet   :        ƒrƒWƒrƒŠƒeƒBƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
-                idx       :        ƒtƒ@ƒCƒ‹”Ô†
+  Arguments:    pAnmSet   :        ãƒ“ã‚¸ãƒ“ãƒªãƒ†ã‚£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
+                idx       :        ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·
                 
-  Returns:      ƒrƒWƒrƒŠƒeƒBƒAƒjƒ[ƒVƒ‡ƒ“
+  Returns:      ãƒ“ã‚¸ãƒ“ãƒªãƒ†ã‚£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResVisAnm*
@@ -220,12 +220,12 @@ NNS_G3dGetVisAnmByIdx( const NNSG3dResVisAnmSet* pAnmSet, u8 idx  )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetVisAnmSet
 
-  Description:  ƒrƒWƒrƒŠƒeƒBƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ“ã‚¸ãƒ“ãƒªãƒ†ã‚£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pFileHead   :        nsbva‚Ìæ“ª‚ð‚³‚·ƒ|ƒCƒ“ƒ^
+  Arguments:    pFileHead   :        nsbvaã®å…ˆé ­ã‚’ã•ã™ãƒã‚¤ãƒ³ã‚¿
                 
                 
-  Returns:      ƒrƒWƒrƒŠƒeƒBƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
+  Returns:      ãƒ“ã‚¸ãƒ“ãƒªãƒ†ã‚£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
   
  *---------------------------------------------------------------------------*/ 
 const NNSG3dResVisAnmSet*
@@ -244,18 +244,18 @@ NNS_G3dGetVisAnmSet( const u8* pFileHead )
 
 
 /*---------------------------------------------------------------------------*
-    Texture ƒpƒ^[ƒ“ ƒAƒjƒ[ƒVƒ‡ƒ“ŠÖ˜A
+    Texture ãƒ‘ã‚¿ãƒ¼ãƒ³ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢é€£
  *---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G3dGetTexNameByIdx
 
-  Description:      ƒeƒNƒXƒ`ƒƒ–¼‚ðŽæ“¾‚µ‚Ü‚·
+  Description:      ãƒ†ã‚¯ã‚¹ãƒãƒ£åã‚’å–å¾—ã—ã¾ã™
                 
-  Arguments:    pAnm      :      ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“
-                idx       :      Žw’èƒeƒNƒXƒ`ƒƒ”Ô†(ƒAƒjƒŒ‹‰Ê NNSG3dResTexPatAnmFV.idTex )
+  Arguments:    pAnm      :      ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+                idx       :      æŒ‡å®šãƒ†ã‚¯ã‚¹ãƒãƒ£ç•ªå·(ã‚¢ãƒ‹ãƒ¡çµæžœ NNSG3dResTexPatAnmFV.idTex )
                 
                 
-  Returns:      ƒeƒNƒXƒ`ƒƒ–¼
+  Returns:      ãƒ†ã‚¯ã‚¹ãƒãƒ£å
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResName* 
@@ -278,13 +278,13 @@ NNSi_G3dGetTexPatAnmTexNameByIdx( const NNSG3dResTexPatAnm* pPatAnm, u8 texIdx )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G3dGetPlttNameByIdx
 
-  Description:      ƒpƒŒƒbƒg–¼‚ðŽæ“¾‚µ‚Ü‚·
+  Description:      ãƒ‘ãƒ¬ãƒƒãƒˆåã‚’å–å¾—ã—ã¾ã™
                 
-  Arguments:    pAnm      :      ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“
-                idx       :      Žw’èƒeƒNƒXƒ`ƒƒ”Ô†(ƒAƒjƒŒ‹‰Ê NNSG3dResTexPatAnmFV.idPltt )
+  Arguments:    pAnm      :      ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+                idx       :      æŒ‡å®šãƒ†ã‚¯ã‚¹ãƒãƒ£ç•ªå·(ã‚¢ãƒ‹ãƒ¡çµæžœ NNSG3dResTexPatAnmFV.idPltt )
                 
                 
-  Returns:      ƒpƒŒƒbƒg–¼
+  Returns:      ãƒ‘ãƒ¬ãƒƒãƒˆå
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResName* 
@@ -307,14 +307,14 @@ NNSi_G3dGetTexPatAnmPlttNameByIdx( const NNSG3dResTexPatAnm* pPatAnm, u8 plttIdx
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G3dGetTexPatAnmFVByFVIndex
 
-  Description:  ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì 
-                Žw’è”Ô†‚ÌŽw’èFV”Ô†‚É‚¨‚¯‚éƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã® 
+                æŒ‡å®šç•ªå·ã®æŒ‡å®šFVç•ªå·ã«ãŠã‘ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnm      :      ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“
-                idx       :      Žw’èƒ}ƒeƒŠƒAƒ‹”Ô†
-                fvIdx     :      FV”Ô†    
+  Arguments:    pAnm      :      ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+                idx       :      æŒ‡å®šãƒžãƒ†ãƒªã‚¢ãƒ«ç•ªå·
+                fvIdx     :      FVç•ªå·    
                 
-  Returns:      ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“AƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê
+  Returns:      ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœ
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResTexPatAnmFV* 
@@ -325,13 +325,13 @@ NNSi_G3dGetTexPatAnmFVByFVIndex( const NNSG3dResTexPatAnm* pPatAnm, u32 idx, u32
     
     
     {
-        // ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚ðŽæ“¾‚·‚é
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹
         const NNSG3dResDictTexPatAnmData* pAnmData = 
            NNSi_G3dGetTexPatAnmDataByIdx( pPatAnm, idx );
         
         NNS_G3D_ASSERT( fvIdx < pAnmData->numFV );
         {
-           // ƒtƒŒ[ƒ€->(ƒeƒNƒXƒ`ƒƒ, ƒpƒŒƒbƒg)ƒf[ƒ^”z—ñæ“ª‚ð“¾‚é
+           // ãƒ•ãƒ¬ãƒ¼ãƒ ->(ãƒ†ã‚¯ã‚¹ãƒãƒ£, ãƒ‘ãƒ¬ãƒƒãƒˆ)ãƒ‡ãƒ¼ã‚¿é…åˆ—å…ˆé ­ã‚’å¾—ã‚‹
            const NNSG3dResTexPatAnmFV* pfvArray 
                = (const NNSG3dResTexPatAnmFV*)((u8*)pPatAnm + pAnmData->offset);
 
@@ -344,14 +344,14 @@ NNSi_G3dGetTexPatAnmFVByFVIndex( const NNSG3dResTexPatAnm* pPatAnm, u32 idx, u32
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G3dGetTexPatAnmFV
 
-  Description:  ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì 
-                Žw’è”Ô†‚ÌŽw’èƒtƒŒ[ƒ€‚É‚¨‚¯‚éƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã® 
+                æŒ‡å®šç•ªå·ã®æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã«ãŠã‘ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnm      :      ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“
-                idx       :      Žw’èƒ}ƒeƒŠƒAƒ‹”Ô†
-                frame     :      Žw’èƒtƒŒ[ƒ€    
+  Arguments:    pAnm      :      ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+                idx       :      æŒ‡å®šãƒžãƒ†ãƒªã‚¢ãƒ«ç•ªå·
+                frame     :      æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ     
                 
-  Returns:      ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“AƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê
+  Returns:      ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœ
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResTexPatAnmFV* 
@@ -359,36 +359,36 @@ NNSi_G3dGetTexPatAnmFV( const NNSG3dResTexPatAnm* pPatAnm, u32 idx, u32 frame )
 {
     NNS_G3D_ASSERT( IsValidAnimHeader( &pPatAnm->anmHeader, 'M', 'TP' ) );
     {
-        // ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚ðŽæ“¾‚·‚é
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹
         const NNSG3dResDictTexPatAnmData* pAnmData = 
            NNSi_G3dGetTexPatAnmDataByIdx( pPatAnm, idx );
         {
             //
-            // ƒtƒŒ[ƒ€->(ƒeƒNƒXƒ`ƒƒ, ƒpƒŒƒbƒg)ƒf[ƒ^”z—ñæ“ª‚ð“¾‚é
+            // ãƒ•ãƒ¬ãƒ¼ãƒ ->(ãƒ†ã‚¯ã‚¹ãƒãƒ£, ãƒ‘ãƒ¬ãƒƒãƒˆ)ãƒ‡ãƒ¼ã‚¿é…åˆ—å…ˆé ­ã‚’å¾—ã‚‹
             //
             const NNSG3dResTexPatAnmFV* pfvArray 
                 = (const NNSG3dResTexPatAnmFV*)((u8*)pPatAnm + pAnmData->offset);
            
             //
-            // FVƒCƒ“ƒfƒbƒNƒX‚ðŒŸõ‚·‚é
-            // ƒqƒ“ƒg‚ð‚à‚Æ‚ÉƒCƒ“ƒfƒbƒNƒX‚ÌŒŸõ‰Šú’l‚ð‹‚ß‚é
-            // ŒŸõ‰Šú’l‚©‚çŒŸõ‚ðƒXƒ^[ƒg‚µ‚ÄA–{—ˆ‚ÌƒCƒ“ƒfƒbƒNƒX’l‚ðŽæ“¾‚·‚é
+            // FVã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ¤œç´¢ã™ã‚‹
+            // ãƒ’ãƒ³ãƒˆã‚’ã‚‚ã¨ã«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ¤œç´¢åˆæœŸå€¤ã‚’æ±‚ã‚ã‚‹
+            // æ¤œç´¢åˆæœŸå€¤ã‹ã‚‰æ¤œç´¢ã‚’ã‚¹ã‚¿ãƒ¼ãƒˆã—ã¦ã€æœ¬æ¥ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‚’å–å¾—ã™ã‚‹
             //                
             const u32 fvIdx = (u32)( (fx32)pAnmData->ratioDataFrame * frame >> FX32_SHIFT);
             NNS_G3D_ASSERT( fvIdx < pAnmData->numFV );
             //
-            // ŒŸõ‰Šú’l‚©‚çŒŸõ‚ðƒXƒ^[ƒg‚µ‚ÄA–{—ˆ‚ÌƒCƒ“ƒfƒbƒNƒX’l‚ðŽæ“¾‚·‚é
+            // æ¤œç´¢åˆæœŸå€¤ã‹ã‚‰æ¤œç´¢ã‚’ã‚¹ã‚¿ãƒ¼ãƒˆã—ã¦ã€æœ¬æ¥ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‚’å–å¾—ã™ã‚‹
             //
             {
                 u32 realFvIdx = fvIdx;
                 
-                // NNSG3dResTexPatAnmFV‚Ì‚à‚ÂƒtƒŒ[ƒ€’l‚ªŒ»Ý‚ÌƒtƒŒ[ƒ€‚æ‚è¬‚³‚­‚È‚é‚Ü‚Å
+                // NNSG3dResTexPatAnmFVã®ã‚‚ã¤ãƒ•ãƒ¬ãƒ¼ãƒ å€¤ãŒç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ˆã‚Šå°ã•ããªã‚‹ã¾ã§
                 while( realFvIdx > 0 && pfvArray[ realFvIdx ].idxFrame >= frame )
                 {
                     realFvIdx--;
                 }
                 
-                // Œ»Ý ‚Ì NNSG3dResTexPatAnmFV ‚ÌŽŸ‚Ì FV ‚à‚ÂƒtƒŒ[ƒ€‚ªŒ»Ý‚ÌƒtƒŒ[ƒ€‚æ‚è‘å‚«‚­‚È‚é‚Ü‚Å
+                // ç¾åœ¨ ã® NNSG3dResTexPatAnmFV ã®æ¬¡ã® FV ã‚‚ã¤ãƒ•ãƒ¬ãƒ¼ãƒ ãŒç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ˆã‚Šå¤§ãããªã‚‹ã¾ã§
                 while( realFvIdx + 1 < pAnmData->numFV && pfvArray[ realFvIdx + 1 ].idxFrame <= frame )
                 {
                     realFvIdx++;
@@ -406,14 +406,14 @@ NNSi_G3dGetTexPatAnmFV( const NNSG3dResTexPatAnm* pPatAnm, u32 idx, u32 frame )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G3dGetTexPatAnmDataByIdx
 
-  Description:  ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ÌŽw’è”Ô†ƒ}ƒeƒŠƒAƒ‹‚Ì 
-                ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“\‘¢‘Ì‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šç•ªå·ãƒžãƒ†ãƒªã‚¢ãƒ«ã® 
+                ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ§‹é€ ä½“ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pPatAnm   :      ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“
-                idx       :      Žw’èƒ}ƒeƒŠƒAƒ‹”Ô†
+  Arguments:    pPatAnm   :      ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+                idx       :      æŒ‡å®šãƒžãƒ†ãƒªã‚¢ãƒ«ç•ªå·
 
                 
-  Returns:      ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+  Returns:      ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResDictTexPatAnmData* 
@@ -427,14 +427,14 @@ NNSi_G3dGetTexPatAnmDataByIdx( const NNSG3dResTexPatAnm* pPatAnm, u32 idx )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetTexPatAnmByIdx
 
-  Description:  ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚©‚ç Žw’è‚µ‚½”Ô†‚Ì 
-                ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚ðŽæ“¾‚µ‚Ü‚·B
-                •s³‚È”Ô†‚Ì“ü—Í‚ª‚ ‚Á‚½ê‡‚ÍAASSERT‚ÉŽ¸”s‚µ‚Ü‚·B
+  Description:  ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‹ã‚‰ æŒ‡å®šã—ãŸç•ªå·ã® 
+                ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã™ã€‚
+                ä¸æ­£ãªç•ªå·ã®å…¥åŠ›ãŒã‚ã£ãŸå ´åˆã¯ã€ASSERTã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnmSet   :        ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
-                idx       :        ƒtƒ@ƒCƒ‹”Ô†
+  Arguments:    pAnmSet   :        ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
+                idx       :        ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·
                 
-  Returns:      ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“
+  Returns:      ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResTexPatAnm*
@@ -458,12 +458,12 @@ NNS_G3dGetTexPatAnmByIdx( const NNSG3dResTexPatAnmSet* pAnmSet, u8 idx )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetTexPatAnmSet
 
-  Description:  ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pFileHead   :        nsbtp‚Ìæ“ª‚ð‚³‚·ƒ|ƒCƒ“ƒ^
+  Arguments:    pFileHead   :        nsbtpã®å…ˆé ­ã‚’ã•ã™ãƒã‚¤ãƒ³ã‚¿
                 
                 
-  Returns:      ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
+  Returns:      ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
   
  *---------------------------------------------------------------------------*/ 
 const NNSG3dResTexPatAnmSet*
@@ -480,19 +480,19 @@ NNS_G3dGetTexPatAnmSet( const u8* pFileHead )
 
 
 /*---------------------------------------------------------------------------*
-    Texture SRT ƒAƒjƒ[ƒVƒ‡ƒ“ŠÖ˜A
+    Texture SRT ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢é€£
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetTexSRTAnmByIdx
 
-  Description:  ƒeƒNƒXƒ`ƒƒSRTƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚©‚ç Žw’è‚µ‚½”Ô†‚Ì ƒeƒNƒXƒ`ƒƒSRTƒAƒjƒ[ƒVƒ‡ƒ“‚ðŽæ“¾‚µ‚Ü‚·B
-                •s³‚È”Ô†‚Ì“ü—Í‚ª‚ ‚Á‚½ê‡‚ÍAASSERT‚ÉŽ¸”s‚µ‚Ü‚·B
+  Description:  ãƒ†ã‚¯ã‚¹ãƒãƒ£SRTã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‹ã‚‰ æŒ‡å®šã—ãŸç•ªå·ã® ãƒ†ã‚¯ã‚¹ãƒãƒ£SRTã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã™ã€‚
+                ä¸æ­£ãªç•ªå·ã®å…¥åŠ›ãŒã‚ã£ãŸå ´åˆã¯ã€ASSERTã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-  Arguments:    pTexSRTSet :        ƒeƒNƒXƒ`ƒƒSRTƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
-                idx        :        ƒtƒ@ƒCƒ‹”Ô†
+  Arguments:    pTexSRTSet :        ãƒ†ã‚¯ã‚¹ãƒãƒ£SRTã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
+                idx        :        ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·
                 
-  Returns:      ƒeƒNƒXƒ`ƒƒSRTƒAƒjƒ[ƒVƒ‡ƒ“
+  Returns:      ãƒ†ã‚¯ã‚¹ãƒãƒ£SRTã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResTexSRTAnm*
@@ -516,12 +516,12 @@ NNS_G3dGetTexSRTAnmByIdx( const NNSG3dResTexSRTAnmSet* pTexSRTSet, u8 idx )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetTexSRTAnmSet
 
-  Description:  ƒeƒNƒXƒ`ƒƒSRTƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚ð‚ ‚ç‚í‚·ƒoƒCƒiƒŠƒuƒƒbƒN‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ†ã‚¯ã‚¹ãƒãƒ£SRTã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚’ã‚ã‚‰ã‚ã™ãƒã‚¤ãƒŠãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pFileHead   :        nsbta‚Ìæ“ª‚ð‚³‚·ƒ|ƒCƒ“ƒ^
+  Arguments:    pFileHead   :        nsbtaã®å…ˆé ­ã‚’ã•ã™ãƒã‚¤ãƒ³ã‚¿
                 
                 
-  Returns:      ƒeƒNƒXƒ`ƒƒSRTƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
+  Returns:      ãƒ†ã‚¯ã‚¹ãƒãƒ£SRTã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
   
  *---------------------------------------------------------------------------*/ 
 const NNSG3dResTexSRTAnmSet*
@@ -539,13 +539,13 @@ NNS_G3dGetTexSRTAnmSet( const u8* pFileHead )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetMatCAnmByIdx
 
-  Description:  ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚©‚ç Žw’è‚µ‚½”Ô†‚Ì ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“‚ðŽæ“¾‚µ‚Ü‚·B
-                •s³‚È”Ô†‚Ì“ü—Í‚ª‚ ‚Á‚½ê‡‚ÍAASSERT‚ÉŽ¸”s‚µ‚Ü‚·B
+  Description:  ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‹ã‚‰ æŒ‡å®šã—ãŸç•ªå·ã® ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ã¾ã™ã€‚
+                ä¸æ­£ãªç•ªå·ã®å…¥åŠ›ãŒã‚ã£ãŸå ´åˆã¯ã€ASSERTã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnmSet   :        ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
-                idx       :        ƒtƒ@ƒCƒ‹”Ô†
+  Arguments:    pAnmSet   :        ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
+                idx       :        ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·
                 
-  Returns:      ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“
+  Returns:      ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResMatCAnm*
@@ -569,12 +569,12 @@ NNS_G3dGetMatCAnmByIdx( const NNSG3dResMatCAnmSet* pAnmSet, u8 idx )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetMatCAnmSet
 
-  Description:  ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚ð‚ ‚ç‚í‚·ƒoƒCƒiƒŠƒuƒƒbƒN‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚’ã‚ã‚‰ã‚ã™ãƒã‚¤ãƒŠãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pFileHead   :        nsbma‚Ìæ“ª‚ð‚³‚·ƒ|ƒCƒ“ƒ^
+  Arguments:    pFileHead   :        nsbmaã®å…ˆé ­ã‚’ã•ã™ãƒã‚¤ãƒ³ã‚¿
                 
                 
-  Returns:      ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
+  Returns:      ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
   
  *---------------------------------------------------------------------------*/ 
 const NNSG3dResMatCAnmSet*
@@ -592,15 +592,15 @@ NNS_G3dGetMatCAnmSet(const u8* pFileHead)
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetJntAnmSRTTag
 
-  Description:  Žw’èƒm[ƒh”Ô†‚Ì 
-                NNSG3dResJntAnmSRTTagiSRTƒf[ƒ^‚Ì«Ž¿‚ª‹Lq‚³‚ê‚Ä‚¢‚éj‚ðŽæ“¾‚µ‚Ü‚·
+  Description:  æŒ‡å®šãƒŽãƒ¼ãƒ‰ç•ªå·ã® 
+                NNSG3dResJntAnmSRTTagï¼ˆSRTãƒ‡ãƒ¼ã‚¿ã®æ€§è³ªãŒè¨˜è¿°ã•ã‚Œã¦ã„ã‚‹ï¼‰ã‚’å–å¾—ã—ã¾ã™
                 
                 
-  Arguments:    pJntAnm   :           ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“
-                nodeIdx   :           ƒm[ƒh”Ô†
+  Arguments:    pJntAnm   :           ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+                nodeIdx   :           ãƒŽãƒ¼ãƒ‰ç•ªå·
                 
                   
-  Returns:      Žw’èƒm[ƒh”Ô†‚ÌNNSG3dResJntAnmSRTTag 
+  Returns:      æŒ‡å®šãƒŽãƒ¼ãƒ‰ç•ªå·ã®NNSG3dResJntAnmSRTTag 
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResJntAnmSRTTag*
@@ -623,13 +623,13 @@ NNS_G3dGetJntAnmSRTTag(const NNSG3dResJntAnm* pJntAnm,
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetJntAnmByIdx
 
-  Description:  ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚©‚ç Žw’è‚µ‚½”Ô†‚Ì ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ ‚ðŽæ“¾‚µ‚Ü‚·B
-                •s³‚È”Ô†‚Ì“ü—Í‚ª‚ ‚Á‚½ê‡‚ÍAASSERT‚ÉŽ¸”s‚µ‚Ü‚·B
+  Description:  ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‹ã‚‰ æŒ‡å®šã—ãŸç•ªå·ã® ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ ã‚’å–å¾—ã—ã¾ã™ã€‚
+                ä¸æ­£ãªç•ªå·ã®å…¥åŠ›ãŒã‚ã£ãŸå ´åˆã¯ã€ASSERTã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-  Arguments:    pJntAnmSet:           ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
-                idx       :           ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“”Ô†
+  Arguments:    pJntAnmSet:           ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
+                idx       :           ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·
                 
-  Returns:      ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“
+  Returns:      ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
   
  *---------------------------------------------------------------------------*/
 const NNSG3dResJntAnm*
@@ -658,12 +658,12 @@ NNS_G3dGetJntAnmByIdx
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dGetJntAnmSet
 
-  Description:  ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚ð‚ ‚ç‚í‚·ƒoƒCƒiƒŠƒuƒƒbƒN‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚’ã‚ã‚‰ã‚ã™ãƒã‚¤ãƒŠãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pFileHead   :        nsbca‚Ìæ“ª‚ð‚³‚·ƒ|ƒCƒ“ƒ^
+  Arguments:    pFileHead   :        nsbcaã®å…ˆé ­ã‚’ã•ã™ãƒã‚¤ãƒ³ã‚¿
                 
                 
-  Returns:      ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
+  Returns:      ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
   
  *---------------------------------------------------------------------------*/ 
 const NNSG3dResJntAnmSet*

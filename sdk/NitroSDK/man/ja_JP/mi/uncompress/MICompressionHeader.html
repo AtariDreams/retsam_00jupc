@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MICompressionHeader</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MICompressionHeader</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -26,32 +26,32 @@ typedef struct {
 </PRE>
   </dd>
 </dl>
-<h2>����</h2>
-<P>���k�f�[�^�̃w�b�_�\���̂ł��B<BR>
-SDK�ŃT�|�[�g����Ă��邷�ׂĂ̌`���̈��k�f�[�^�͂��̃w�b�_����J�n����Ă��܂��B<BR>
+<h2>説明</h2>
+<P>圧縮データのヘッダ構造体です。<BR>
+SDKでサポートされているすべての形式の圧縮データはこのヘッダから開始されています。<BR>
 <BR>
 </P>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>compParam</STRONG></EM></TD>
-      <TD width="87%">���ꂼ��̈��k�����ł̈��k�p�����[�^���i�[����Ă��܂��B</TD>
+      <TD width="87%">それぞれの圧縮方式での圧縮パラメータが格納されています。</TD>
     </TR>
     <TR>
       <TD><B><I>compType</I></B></TD>
-      <TD>���k�^�C�v�B�^�C�v�̏ڍׂ�<A href="MI_GetCompressionType.html">MI_GetCompressionType.html</A>���Q�Ƃ��Ă��������B</TD>
+      <TD>圧縮タイプ。タイプの詳細は<A href="MI_GetCompressionType.html">MI_GetCompressionType.html</A>を参照してください。</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>destSize</STRONG></EM></TD>
-      <TD>�W�J��̃f�[�^�T�C�Y�B<A href="MI_GetUncompressedSize.html">MI_GetUncompressedSize</A>�œ�����l�Ɠ����ł��B</TD>
+      <TD>展開後のデータサイズ。<A href="MI_GetUncompressedSize.html">MI_GetUncompressedSize</A>で得られる値と同等です。</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><A href="MI_GetCompressionType.html">MI_GetCompressionType</A>, <A href="MI_GetUncompressedSize.html">MI_GetUncompressedSize</A><CODE><br>
 </CODE></p>
 
-<H2>����</H2>
-<P>2004/11/30 ����</P>
+<H2>履歴</H2>
+<P>2004/11/30 初版</P>
 </body>
 </html>

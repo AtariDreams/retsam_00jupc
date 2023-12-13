@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	factory_3d.c
- * @brief	uƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[v3D
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€3D
  * @author	Satoshi Nohara
  * @date	2007.03.20
  */
@@ -21,7 +21,7 @@
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 void Factory_SimpleSetUp( void );
@@ -33,13 +33,13 @@ void Factory_PokeHFlip( SOFT_SPRITE* ss, int flag );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   3DƒVƒ“ƒvƒ‹ƒZƒbƒgƒAƒbƒv
+ * @brief   3Dã‚·ãƒ³ãƒ—ãƒ«ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  * @param	none
  *
@@ -48,31 +48,31 @@ void Factory_PokeHFlip( SOFT_SPRITE* ss, int flag );
 //--------------------------------------------------------------
 void Factory_SimpleSetUp( void )
 {
-	//‚R‚cg—p–Ê‚Ìİ’è(•\¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	//ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority( 0 );
 
-	//Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	//å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );			//ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );				//ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );			//ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );				//ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	//ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+	//ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor( GX_RGB(0,0,0), 0, 0x7fff, 63, FALSE);	//color,alpha,depth,polygonID,fog
 
-	//ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort( 0, 0, 255, 191 );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	3DƒƒCƒ“ˆ—
+ * @brief	3Dãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param   ssm_p	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssm_p	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -91,7 +91,7 @@ void Factory_3DMain( SOFT_SPRITE_MANAGER* ssm_p )
 
 	NNS_G2dSetupSoftwareSpriteCamera();
 
-	//ƒƒCƒ“ƒ‹[ƒv‚ÅŒÄ‚Ño‚µ
+	//ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã§å‘¼ã³å‡ºã—
 	SoftSpriteMain( ssm_p );
 
 	G3_SwapBuffers( GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z );
@@ -101,7 +101,7 @@ void Factory_3DMain( SOFT_SPRITE_MANAGER* ssm_p )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“¶¬ˆ—
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆå‡¦ç†
  *
  * @param	monsno
  * @param	level
@@ -109,7 +109,7 @@ void Factory_3DMain( SOFT_SPRITE_MANAGER* ssm_p )
  * @param	place_id
  * @param	ground_id
  *
- * @retval	"ƒ|ƒPƒ‚ƒ“‚Ìƒ|ƒCƒ“ƒ^"
+ * @retval	"ãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿"
  */
 //------------------------------------------------------------------
 POKEMON_PARAM* Factory_PokeMake( u16 monsno, u8 level, u16 itemno, int place_id, int ground_id )
@@ -132,18 +132,18 @@ POKEMON_PARAM* Factory_PokeMake( u16 monsno, u8 level, u16 itemno, int place_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg¶¬ŠÖ”
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”Ÿæˆé–¢æ•°
  *
- * @param   ssm_p		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   poly_id		ƒ|ƒŠƒSƒ“ID
- * @param   pp			POKEMON_PARAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   dir			ƒ|ƒPƒ‚ƒ“‚ÌŒü‚«(PARA_FRONT or PARA_BACK)
- * @param   heap_id		ƒq[ƒvID(ˆêg—p)
- * @param   x			•\¦À•WX
- * @param   y			•\¦À•WY
- * @param   z			•\¦À•WZ
+ * @param   ssm_p		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   poly_id		ãƒãƒªã‚´ãƒ³ID
+ * @param   pp			POKEMON_PARAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   dir			ãƒã‚±ãƒ¢ãƒ³ã®å‘ã(PARA_FRONT or PARA_BACK)
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID(ä¸€æ™‚ä½¿ç”¨)
+ * @param   x			è¡¨ç¤ºåº§æ¨™X
+ * @param   y			è¡¨ç¤ºåº§æ¨™Y
+ * @param   z			è¡¨ç¤ºåº§æ¨™Z
  *
- * @retval  ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 SOFT_SPRITE* Factory_SoftSpritePokeAdd( SOFT_SPRITE_MANAGER *ssm_p, int poly_id, POKEMON_PARAM* pp, int x, int y, int z )
@@ -155,8 +155,8 @@ SOFT_SPRITE* Factory_SoftSpritePokeAdd( SOFT_SPRITE_MANAGER *ssm_p, int poly_id,
 	
 	PokeGraArcDataGetPP( &ssa, pp, PARA_FRONT );
 
-	//‘«Œ³‚ğ‡‚í‚¹‚éˆ—
-	//height = PokeParaHeightGet( pp, PARA_FRONT );			//‚‚³î•ñæ“¾
+	//è¶³å…ƒã‚’åˆã‚ã›ã‚‹å‡¦ç†
+	//height = PokeParaHeightGet( pp, PARA_FRONT );			//é«˜ã•æƒ…å ±å–å¾—
 	height = 0;
 
 	ss = SoftSpriteAdd( ssm_p, &ssa, x, (y + height), z, poly_id, NULL, NULL );
@@ -165,17 +165,17 @@ SOFT_SPRITE* Factory_SoftSpritePokeAdd( SOFT_SPRITE_MANAGER *ssm_p, int poly_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“”½“]
+ * @brief   ãƒã‚±ãƒ¢ãƒ³åè»¢
  *
- * @param	ss		SOFT_SPRITEŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	¶‰E”½“]‚³‚¹‚é‚©
+ * @param	ss		SOFT_SPRITEå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	å·¦å³åè»¢ã•ã›ã‚‹ã‹
  *
  * @retval  none
  */
 //--------------------------------------------------------------
 void Factory_PokeHFlip( SOFT_SPRITE* ss, int flag )
 {
-	SoftSpriteParaSet( ss, SS_PARA_H_FLIP, flag );	//¶‰E”½“]ƒtƒ‰ƒO
+	SoftSpriteParaSet( ss, SS_PARA_H_FLIP, flag );	//å·¦å³åè»¢ãƒ•ãƒ©ã‚°
 	return;
 }	
 

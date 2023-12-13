@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	scratch.c
- * @brief	uƒXƒNƒ‰ƒbƒ`vƒƒCƒ“ƒ\[ƒX
+ * @brief	ã€Œã‚¹ã‚¯ãƒ©ãƒƒãƒã€ãƒ¡ã‚¤ãƒ³ã‚½ãƒ¼ã‚¹
  * @author	Satoshi Nohara
  * @date	07.12.11
  */
@@ -47,7 +47,7 @@
 
 //==============================================================================================
 //
-//	ƒfƒoƒbƒN—p
+//	ãƒ‡ãƒãƒƒã‚¯ç”¨
 //
 //==============================================================================================
 //PROC_DATA* p_proc;
@@ -55,74 +55,74 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒV[ƒPƒ“ƒX’è‹`
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
 enum {
-	SEQ_GAME_INIT,											//‰Šú‰»
+	SEQ_GAME_INIT,											//åˆæœŸåŒ–
 
-	SEQ_GAME_CARD_IN,										//ƒJ[ƒhƒCƒ“
-	SEQ_GAME_CARD_SEL,										//ƒJ[ƒh‘I‘ğ’†
-	SEQ_GAME_CARD_OUT,										//ƒJ[ƒhƒAƒEƒg
+	SEQ_GAME_CARD_IN,										//ã‚«ãƒ¼ãƒ‰ã‚¤ãƒ³
+	SEQ_GAME_CARD_SEL,										//ã‚«ãƒ¼ãƒ‰é¸æŠä¸­
+	SEQ_GAME_CARD_OUT,										//ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-	SEQ_GAME_CARD_TOUCH_IN,									//ƒJ[ƒhí‚èƒCƒ“
-	SEQ_GAME_CARD_TOUCH,									//ƒJ[ƒhí‚è’†
-	SEQ_GAME_CARD_TOUCH_OUT,								//ƒJ[ƒhí‚èƒAƒEƒg
+	SEQ_GAME_CARD_TOUCH_IN,									//ã‚«ãƒ¼ãƒ‰å‰Šã‚Šã‚¤ãƒ³
+	SEQ_GAME_CARD_TOUCH,									//ã‚«ãƒ¼ãƒ‰å‰Šã‚Šä¸­
+	SEQ_GAME_CARD_TOUCH_OUT,								//ã‚«ãƒ¼ãƒ‰å‰Šã‚Šã‚¢ã‚¦ãƒˆ
 
-	SEQ_GAME_END,											//I—¹
+	SEQ_GAME_END,											//çµ‚äº†
 };
 
-//ƒtƒHƒ“ƒgƒJƒ‰[
-#define	COL_BLUE	( GF_PRINTCOLOR_MAKE(FBMP_COL_BLUE,FBMP_COL_BLU_SDW,FBMP_COL_NULL) )//Â
-#define	COL_RED		( GF_PRINTCOLOR_MAKE(FBMP_COL_RED,FBMP_COL_RED_SDW,FBMP_COL_NULL) )	//Ô
+//ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+#define	COL_BLUE	( GF_PRINTCOLOR_MAKE(FBMP_COL_BLUE,FBMP_COL_BLU_SDW,FBMP_COL_NULL) )//é’
+#define	COL_RED		( GF_PRINTCOLOR_MAKE(FBMP_COL_RED,FBMP_COL_RED_SDW,FBMP_COL_NULL) )	//èµ¤
 
-#define SCRATCH_END_WAIT		(10)				//I—¹‚·‚é‚Ü‚Å‚Ì•\¦ƒEƒFƒCƒg
+#define SCRATCH_END_WAIT		(10)				//çµ‚äº†ã™ã‚‹ã¾ã§ã®è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
 
-#define SCRATCH_TP_NOT			(0xffff)			//ƒ^ƒbƒ`‚µ‚Ä‚¢‚È‚¢‚Ì’è‹`
+#define SCRATCH_TP_NOT			(0xffff)			//ã‚¿ãƒƒãƒã—ã¦ã„ãªã„æ™‚ã®å®šç¾©
 
-//ƒƒN‚ÌƒpƒŒƒbƒgØ‚è‘Ö‚¦
+//ãƒ¯ã‚¯ã®ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
 //OS_Printf( "pal_no = %d\n", ScratchObj_PaletteNoGet( wk->p_d_waku[0] ) );
 #define WAKU_PAL_END			(10)
 #define WAKU_PAL_WAIT			(1)
 
-//#define CENTER_ATARI_NO			(4)					//“–‚½‚è‚ª•K‚¸”z’u‚³‚ê‚éˆÊ’u
+//#define CENTER_ATARI_NO			(4)					//å½“ãŸã‚ŠãŒå¿…ãšé…ç½®ã•ã‚Œã‚‹ä½ç½®
 
-#define SCRATCH_CARD_MODE_EASY	(0)		//ƒC[ƒWƒJ[ƒh
+#define SCRATCH_CARD_MODE_EASY	(0)		//ã‚¤ãƒ¼ã‚¸ã‚«ãƒ¼ãƒ‰
 
-#define SCRATCH_CARD_POKE_MAX	(5)		//ƒJ[ƒh‚Ì’†g‚Ìƒ|ƒPƒ‚ƒ“‚Ìí—Ş‚ÌÅ‘å”
+#define SCRATCH_CARD_POKE_MAX	(5)		//ã‚«ãƒ¼ãƒ‰ã®ä¸­èº«ã®ãƒã‚±ãƒ¢ãƒ³ã®ç¨®é¡ã®æœ€å¤§æ•°
 
-#define SCRATCH_EASY_ATARI_NUM	(4)		//ƒJ[ƒh‚É”z’u‚³‚ê‚é“–‚½‚èƒ|ƒPƒ‚ƒ“‚Ì”š
-//#define SCRATCH_EASY_ATARI_NUM	(5)		//ƒJ[ƒh‚É”z’u‚³‚ê‚é“–‚½‚èƒ|ƒPƒ‚ƒ“‚Ì”š
+#define SCRATCH_EASY_ATARI_NUM	(4)		//ã‚«ãƒ¼ãƒ‰ã«é…ç½®ã•ã‚Œã‚‹å½“ãŸã‚Šãƒã‚±ãƒ¢ãƒ³ã®æ•°â˜…
+//#define SCRATCH_EASY_ATARI_NUM	(5)		//ã‚«ãƒ¼ãƒ‰ã«é…ç½®ã•ã‚Œã‚‹å½“ãŸã‚Šãƒã‚±ãƒ¢ãƒ³ã®æ•°â˜…
 
-#define SCRATCH_CARD_KEZURI_NUM	(3)		//ƒJ[ƒh‚ğí‚ê‚é”¡
-#define SCRATCH_CARD_ATARI_NUM	(3)		//“–‚½‚è‚É•K—v‚È‘µ‚¦‚éƒ|ƒPƒ‚ƒ“‚Ì”
+#define SCRATCH_CARD_KEZURI_NUM	(3)		//ã‚«ãƒ¼ãƒ‰ã‚’å‰Šã‚Œã‚‹æ•°â– 
+#define SCRATCH_CARD_ATARI_NUM	(3)		//å½“ãŸã‚Šã«å¿…è¦ãªæƒãˆã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ•°
 
-#define SCRATCH_MOSAIC_MAX		(4)		//ƒ‚ƒUƒCƒN‚ÌÅ‘å•
+#define SCRATCH_MOSAIC_MAX		(4)		//ãƒ¢ã‚¶ã‚¤ã‚¯ã®æœ€å¤§å¹…
 
 
 //==============================================================================================
 //
-//	OBJ”z’uƒf[ƒ^
+//	OBJé…ç½®ãƒ‡ãƒ¼ã‚¿
 //
-//	ƒ|ƒPŠG•¿(5x5)
+//	ãƒã‚±çµµæŸ„(5x5)
 //
 //==============================================================================================
-//ãFƒ|ƒPƒ‚ƒ“”z’uˆÊ’u
+//ä¸Šï¼šãƒã‚±ãƒ¢ãƒ³é…ç½®ä½ç½®
 #define SCRATCH_U_POKE_X		(60)
 #define SCRATCH_U_POKE_Y		(26)
 #define SCRATCH_U_POKE_WIDTH_X	(41)
 #define SCRATCH_U_POKE_WIDTH_Y	(42)
 
-//‰ºF“–‚½‚èƒ|ƒPƒ‚ƒ“”z’uˆÊ’u
+//ä¸‹ï¼šå½“ãŸã‚Šãƒã‚±ãƒ¢ãƒ³é…ç½®ä½ç½®
 static const SCRATCH_POS d_atari_pos[SCRATCH_CARD_ATARI_NUM] = {
 	{ 52, 68 },	{ 108, 68 }, { 164, 68 }, 
 };
 
-//‰ºF“–‚½‚èƒEƒBƒ“ƒhƒE”z’uˆÊ’u
+//ä¸‹ï¼šå½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é…ç½®ä½ç½®
 static const SCRATCH_POS d_atari_win_pos = { 38, 56 };
 
-//‰ºFƒ|ƒPƒ‚ƒ“”z’uˆÊ’u
+//ä¸‹ï¼šãƒã‚±ãƒ¢ãƒ³é…ç½®ä½ç½®
 static const SCRATCH_POS d_poke_pos[SCRATCH_D_POKE_MAX] = {
 #if 0
 	{ 52, 18 },	{ 124, 18 },	{ 196, 18 }, 
@@ -136,82 +136,82 @@ static const SCRATCH_POS d_poke_pos[SCRATCH_D_POKE_MAX] = {
 #endif
 };
 
-//‹â”“‚ÌƒƒN‚Ì•\¦ƒIƒtƒZƒbƒg(‰ºFƒ|ƒPƒ‚ƒ“”z’u‚É‘«‚µ‚±‚Ş)
+//éŠ€ç®”ã®ãƒ¯ã‚¯ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ(ä¸‹ï¼šãƒã‚±ãƒ¢ãƒ³é…ç½®ã«è¶³ã—ã“ã‚€)
 //#define SCRATCH_GIN_WAKU_OFFSET_X	(-20)
 #define SCRATCH_GIN_WAKU_OFFSET_X	(-36)
 #define SCRATCH_GIN_WAKU_OFFSET_Y	(-10)
 
-//‰ºFƒJ[ƒhˆÊ’u
+//ä¸‹ï¼šã‚«ãƒ¼ãƒ‰ä½ç½®
 static const SCRATCH_POS d_card_pos[SCRATCH_D_CARD_MAX] = {
 	{ 0, 36 },	{ 56, 36 }, { 112, 36 },	{ 168, 36 },
 };
 
-//‰ºFƒ{ƒ^ƒ“”z’uˆÊ’u
+//ä¸‹ï¼šãƒœã‚¿ãƒ³é…ç½®ä½ç½®
 static const SCRATCH_POS d_next_button_pos = { 68, 160 };
 static const SCRATCH_POS d_yameru_button_pos = { 88, 160 };
 
-//‰ºF^‚ñ’†ƒEƒBƒ“ƒhƒE”z’uˆÊ’u
+//ä¸‹ï¼šçœŸã‚“ä¸­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é…ç½®ä½ç½®
 //static const SCRATCH_POS d_win_pos = { 68, 64 };
 static const SCRATCH_POS d_win_pos = { 68, 68 };
 
-//Šg‘å‚·‚é‚Ì–Ú•WˆÊ’u
+//æ‹¡å¤§ã™ã‚‹æ™‚ã®ç›®æ¨™ä½ç½®
 //static const SCRATCH_POS card_center_pos = { 4, 8 };
 //static const SCRATCH_POS card_center_pos = { 16, 4 };
 //static const SCRATCH_POS card_center_pos = { 48, 4 };
 static const SCRATCH_POS card_center_pos = { 64, 4 };
 
-//#define SCRATCH_CARD_IN_OFFSET_X	(-132)			//ƒJ[ƒh‚ªƒCƒ“‚·‚é‚Ì•\¦ƒIƒtƒZƒbƒg
-#define SCRATCH_CARD_IN_OFFSET_X	(-256)			//ƒJ[ƒh‚ªƒCƒ“‚·‚é‚Ì•\¦ƒIƒtƒZƒbƒg
-//#define SCRATCH_CARD_IN_SPD		(4)				//ƒJ[ƒh‚ªƒCƒ“‚·‚éƒXƒs[ƒh
-//#define SCRATCH_CARD_IN_SPD			(8)				//ƒJ[ƒh‚ªƒCƒ“‚·‚éƒXƒs[ƒh
-#define SCRATCH_CARD_IN_SPD			(32)				//ƒJ[ƒh‚ªƒCƒ“‚·‚éƒXƒs[ƒh
-//#define SCRATCH_CARD_IN_SPD			(32)				//ƒJ[ƒh‚ªƒCƒ“‚·‚éƒXƒs[ƒh
-#define SCRATCH_CARD_IN_SPD2		(16)				//ƒJ[ƒh‚ªƒCƒ“‚·‚éƒXƒs[ƒh
+//#define SCRATCH_CARD_IN_OFFSET_X	(-132)			//ã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹æ™‚ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define SCRATCH_CARD_IN_OFFSET_X	(-256)			//ã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹æ™‚ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
+//#define SCRATCH_CARD_IN_SPD		(4)				//ã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+//#define SCRATCH_CARD_IN_SPD			(8)				//ã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define SCRATCH_CARD_IN_SPD			(32)				//ã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+//#define SCRATCH_CARD_IN_SPD			(32)				//ã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define SCRATCH_CARD_IN_SPD2		(16)				//ã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
 
-//#define SCRATCH_CARD_OUT_SPD		(4)				//ƒJ[ƒh‚ªƒAƒEƒg‚·‚éƒXƒs[ƒh
-//#define SCRATCH_CARD_OUT_SPD		(8)				//ƒJ[ƒh‚ªƒAƒEƒg‚·‚éƒXƒs[ƒh
-#define SCRATCH_CARD_OUT_SPD		(16)				//ƒJ[ƒh‚ªƒAƒEƒg‚·‚éƒXƒs[ƒh
-//#define SCRATCH_CARD_OUT_OFFSET_X	(200)			//ƒJ[ƒh‚ªƒAƒEƒg‚·‚é‚Ì•\¦ƒIƒtƒZƒbƒg
-#define SCRATCH_CARD_OUT_OFFSET_X	(256)			//ƒJ[ƒh‚ªƒAƒEƒg‚·‚é‚Ì•\¦ƒIƒtƒZƒbƒg
+//#define SCRATCH_CARD_OUT_SPD		(4)				//ã‚«ãƒ¼ãƒ‰ãŒã‚¢ã‚¦ãƒˆã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+//#define SCRATCH_CARD_OUT_SPD		(8)				//ã‚«ãƒ¼ãƒ‰ãŒã‚¢ã‚¦ãƒˆã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define SCRATCH_CARD_OUT_SPD		(16)				//ã‚«ãƒ¼ãƒ‰ãŒã‚¢ã‚¦ãƒˆã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+//#define SCRATCH_CARD_OUT_OFFSET_X	(200)			//ã‚«ãƒ¼ãƒ‰ãŒã‚¢ã‚¦ãƒˆã™ã‚‹æ™‚ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define SCRATCH_CARD_OUT_OFFSET_X	(256)			//ã‚«ãƒ¼ãƒ‰ãŒã‚¢ã‚¦ãƒˆã™ã‚‹æ™‚ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define SCRATCH_CARD_AFF_WAIT		(1)				//ƒJ[ƒh‚ªŠg‘å‚·‚éƒEƒFƒCƒg
-//#define SCRATCH_CARD_AFF_MAX		(0x2000)		//ƒJ[ƒh‚ÌÅ‘åŠg‘å
-//#define SCRATCH_CARD_AFF_MAX		(0x1e00)		//ƒJ[ƒh‚ÌÅ‘åŠg‘å
-//#define SCRATCH_CARD_AFF_MAX		(0x1b00)		//ƒJ[ƒh‚ÌÅ‘åŠg‘å
-//#define SCRATCH_CARD_AFF_MAX		(0x1a00)		//ƒJ[ƒh‚ÌÅ‘åŠg‘å
-//#define SCRATCH_CARD_AFF_MAX		(0x1900)		//ƒJ[ƒh‚ÌÅ‘åŠg‘å
-#define SCRATCH_CARD_AFF_MAX		(0x1800)		//ƒJ[ƒh‚ÌÅ‘åŠg‘å
-#define SCRATCH_CARD_AFF_ADD		(0x0100)		//ƒJ[ƒh‚ÌŠg‘å
-#define SCRATCH_CARD_AFF_DEFAULT	(0x1000)		//ƒJ[ƒh‚Ì‰Šú”{—¦(“™”{)
+#define SCRATCH_CARD_AFF_WAIT		(1)				//ã‚«ãƒ¼ãƒ‰ãŒæ‹¡å¤§ã™ã‚‹ã‚¦ã‚§ã‚¤ãƒˆ
+//#define SCRATCH_CARD_AFF_MAX		(0x2000)		//ã‚«ãƒ¼ãƒ‰ã®æœ€å¤§æ‹¡å¤§
+//#define SCRATCH_CARD_AFF_MAX		(0x1e00)		//ã‚«ãƒ¼ãƒ‰ã®æœ€å¤§æ‹¡å¤§
+//#define SCRATCH_CARD_AFF_MAX		(0x1b00)		//ã‚«ãƒ¼ãƒ‰ã®æœ€å¤§æ‹¡å¤§
+//#define SCRATCH_CARD_AFF_MAX		(0x1a00)		//ã‚«ãƒ¼ãƒ‰ã®æœ€å¤§æ‹¡å¤§
+//#define SCRATCH_CARD_AFF_MAX		(0x1900)		//ã‚«ãƒ¼ãƒ‰ã®æœ€å¤§æ‹¡å¤§
+#define SCRATCH_CARD_AFF_MAX		(0x1800)		//ã‚«ãƒ¼ãƒ‰ã®æœ€å¤§æ‹¡å¤§
+#define SCRATCH_CARD_AFF_ADD		(0x0100)		//ã‚«ãƒ¼ãƒ‰ã®æ‹¡å¤§
+#define SCRATCH_CARD_AFF_DEFAULT	(0x1000)		//ã‚«ãƒ¼ãƒ‰ã®åˆæœŸå€ç‡(ç­‰å€)
 
-//í‚è
-//#define SCRATCH_CARD_TOUCH_IN_OFFSET_X	(-256)	//í‚èƒJ[ƒh‚ªƒCƒ“‚·‚é‚Ì•\¦ƒIƒtƒZƒbƒg
-#define SCRATCH_CARD_TOUCH_IN_OFFSET_X	(256)		//í‚èƒJ[ƒh‚ªƒCƒ“‚·‚é‚Ì•\¦ƒIƒtƒZƒbƒg
-//#define SCRATCH_CARD_TOUCH_IN_SPD		(-8)		//í‚èƒJ[ƒh‚ªƒCƒ“‚·‚éƒXƒs[ƒh
-#define SCRATCH_CARD_TOUCH_IN_SPD		(-16)		//í‚èƒJ[ƒh‚ªƒCƒ“‚·‚éƒXƒs[ƒh
-//#define SCRATCH_CARD_TOUCH_OUT_SPD		(-8)		//í‚èƒJ[ƒh‚ªƒAƒEƒg‚·‚éƒXƒs[ƒh
-#define SCRATCH_CARD_TOUCH_OUT_SPD		(-16)		//í‚èƒJ[ƒh‚ªƒAƒEƒg‚·‚éƒXƒs[ƒh
-//#define SCRATCH_CARD_TOUCH_OUT_SPD		(8)		//í‚èƒJ[ƒh‚ªƒAƒEƒg‚·‚éƒXƒs[ƒh
-#define SCRATCH_CARD_TOUCH_OUT_OFFSET_X	(-256)		//ƒJ[ƒh‚ªƒAƒEƒg‚·‚é‚Ì•\¦ƒIƒtƒZƒbƒg
+//å‰Šã‚Š
+//#define SCRATCH_CARD_TOUCH_IN_OFFSET_X	(-256)	//å‰Šã‚Šã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹æ™‚ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define SCRATCH_CARD_TOUCH_IN_OFFSET_X	(256)		//å‰Šã‚Šã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹æ™‚ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
+//#define SCRATCH_CARD_TOUCH_IN_SPD		(-8)		//å‰Šã‚Šã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define SCRATCH_CARD_TOUCH_IN_SPD		(-16)		//å‰Šã‚Šã‚«ãƒ¼ãƒ‰ãŒã‚¤ãƒ³ã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+//#define SCRATCH_CARD_TOUCH_OUT_SPD		(-8)		//å‰Šã‚Šã‚«ãƒ¼ãƒ‰ãŒã‚¢ã‚¦ãƒˆã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define SCRATCH_CARD_TOUCH_OUT_SPD		(-16)		//å‰Šã‚Šã‚«ãƒ¼ãƒ‰ãŒã‚¢ã‚¦ãƒˆã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+//#define SCRATCH_CARD_TOUCH_OUT_SPD		(8)		//å‰Šã‚Šã‚«ãƒ¼ãƒ‰ãŒã‚¢ã‚¦ãƒˆã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define SCRATCH_CARD_TOUCH_OUT_OFFSET_X	(-256)		//ã‚«ãƒ¼ãƒ‰ãŒã‚¢ã‚¦ãƒˆã™ã‚‹æ™‚ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-//ƒJ[ƒh‚ÌFƒiƒ“ƒo[
+//ã‚«ãƒ¼ãƒ‰ã®è‰²ãƒŠãƒ³ãƒãƒ¼
 enum{
-	CARD_BLUE = 0,		//¶ã
-	CARD_RED,			//‰Eã
-	CARD_YELLOW,		//¶‰º
-	CARD_GREEN,			//‰E‰º
+	CARD_BLUE = 0,		//å·¦ä¸Š
+	CARD_RED,			//å³ä¸Š
+	CARD_YELLOW,		//å·¦ä¸‹
+	CARD_GREEN,			//å³ä¸‹
 };
 
-//#define CARD_CENTER_SPD_X		(8)		//ƒJ[ƒh‚ğ’†S‚É‚·‚é‘¬“x
+//#define CARD_CENTER_SPD_X		(8)		//ã‚«ãƒ¼ãƒ‰ã‚’ä¸­å¿ƒã«ã™ã‚‹é€Ÿåº¦
 //#define CARD_CENTER_SPD_Y		(8)
-//#define CARD_CENTER_SPD_X		(16)	//ƒJ[ƒh‚ğ’†S‚É‚·‚é‘¬“x
+//#define CARD_CENTER_SPD_X		(16)	//ã‚«ãƒ¼ãƒ‰ã‚’ä¸­å¿ƒã«ã™ã‚‹é€Ÿåº¦
 //#define CARD_CENTER_SPD_Y		(16)
-//#define CARD_CENTER_SPD_X		(16)	//ƒJ[ƒh‚ğ’†S‚É‚·‚é‘¬“x
+//#define CARD_CENTER_SPD_X		(16)	//ã‚«ãƒ¼ãƒ‰ã‚’ä¸­å¿ƒã«ã™ã‚‹é€Ÿåº¦
 //#define CARD_CENTER_SPD_Y		(12)
-#define CARD_CENTER_SPD_X		(24)	//ƒJ[ƒh‚ğ’†S‚É‚·‚é‘¬“x
+#define CARD_CENTER_SPD_X		(24)	//ã‚«ãƒ¼ãƒ‰ã‚’ä¸­å¿ƒã«ã™ã‚‹é€Ÿåº¦
 #define CARD_CENTER_SPD_Y		(16)
 
-//ƒ_ƒ~[ƒiƒ“ƒo[
+//ãƒ€ãƒŸãƒ¼ãƒŠãƒ³ãƒãƒ¼
 enum{
 	DUMMY_CARD_POKE = 0xb0,
 	DUMMY_KEZURI_CARD1,
@@ -222,10 +222,10 @@ enum{
 
 //==============================================================================================
 //
-//	–á‚¦‚é–Ø‚ÌÀ
+//	è²°ãˆã‚‹æœ¨ã®å®Ÿ
 //
 //==============================================================================================
-//ƒC[ƒW[ƒJ[ƒh
+//ã‚¤ãƒ¼ã‚¸ãƒ¼ã‚«ãƒ¼ãƒ‰
 static const u16 scratch_easy_item[] = {
 	ITEM_ZAROKUNOMI,
 	ITEM_NEKOBUNOMI,
@@ -257,110 +257,110 @@ static const u16 scratch_easy_item[] = {
 
 //==============================================================================================
 //
-//	ƒJ[ƒh‚Ìƒ^ƒbƒ`”»’è
+//	ã‚«ãƒ¼ãƒ‰ã®ã‚¿ãƒƒãƒåˆ¤å®š
 //
 //==============================================================================================
 static const RECT_HIT_TBL card_hit_tbl[SCRATCH_D_CARD_MAX+1] = {
 	//top,bottom,left,right
-	{ 42,	154,	0,		80 },			//ˆê”Ô¶
+	{ 42,	154,	0,		80 },			//ä¸€ç•ªå·¦
 	{ 42,	154,	88,		138 },			//
 	{ 42,	154,	144,	195 },			//
-	{ 42,	154,	204,	254 },			//ˆê”Ô‰E
-	{ TP_HIT_END,0,0,0 },					//I—¹ƒf[ƒ^
+	{ 42,	154,	204,	254 },			//ä¸€ç•ªå³
+	{ TP_HIT_END,0,0,0 },					//çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
-#define SCRATCH_START_MSG_DEL_WAIT		( 30 )			//ƒXƒNƒ‰ƒbƒ`ƒXƒ^[ƒg‚ğÁ‚·‚Ü‚Å‚ÌƒEƒFƒCƒg
-#define SCRATCH_RESULT_MSG_DEL_WAIT		( 60 )			//ƒXƒNƒ‰ƒbƒ`Œ‹‰Ê‚ğÁ‚·‚Ü‚Å‚ÌƒEƒFƒCƒg
-#define SCRATCH_GIN_ALL_CLEAR_WAIT		( 30 )			//‹â”“‚ğ‘S‚ÄÁ‚µ‚½ó‘Ô‚ÌƒEƒFƒCƒg
-#define SCRATCH_RESULT_MOSAIC_WAIT		( 30 )			//ƒƒ^ƒ‚ƒ“‚Ìƒ‚ƒUƒCƒN‚ªn‚Ü‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+#define SCRATCH_START_MSG_DEL_WAIT		( 30 )			//ã‚¹ã‚¯ãƒ©ãƒƒãƒã‚¹ã‚¿ãƒ¼ãƒˆã‚’æ¶ˆã™ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+#define SCRATCH_RESULT_MSG_DEL_WAIT		( 60 )			//ã‚¹ã‚¯ãƒ©ãƒƒãƒçµæœã‚’æ¶ˆã™ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+#define SCRATCH_GIN_ALL_CLEAR_WAIT		( 30 )			//éŠ€ç®”ã‚’å…¨ã¦æ¶ˆã—ãŸçŠ¶æ…‹ã®ã‚¦ã‚§ã‚¤ãƒˆ
+#define SCRATCH_RESULT_MOSAIC_WAIT		( 30 )			//ãƒ¡ã‚¿ãƒ¢ãƒ³ã®ãƒ¢ã‚¶ã‚¤ã‚¯ãŒå§‹ã¾ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 
 
 //==============================================================================================
 //
-//	‚Â‚¬‚ÌƒJ[ƒh‚ÖE‚â‚ß‚éƒ{ƒ^ƒ“‚Ìƒ^ƒbƒ`”»’è
+//	ã¤ãã®ã‚«ãƒ¼ãƒ‰ã¸ãƒ»ã‚„ã‚ã‚‹ãƒœã‚¿ãƒ³ã®ã‚¿ãƒƒãƒåˆ¤å®š
 //
 //==============================================================================================
 static const RECT_HIT_TBL next_hit_tbl[] = {
 	{ 164,	191,	76,		180 },			//
-	{ TP_HIT_END,0,0,0 },					//I—¹ƒf[ƒ^
+	{ TP_HIT_END,0,0,0 },					//çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 static const RECT_HIT_TBL yameru_hit_tbl[] = {
 	{ 164,	191,	94,		164 },			//
-	{ TP_HIT_END,0,0,0 },					//I—¹ƒf[ƒ^
+	{ TP_HIT_END,0,0,0 },					//çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 
 //==============================================================================================
 //
-//	‹â”“ƒuƒƒbƒN‚²‚Æ‚Ìƒ^ƒbƒ`”»’è(‹â”“‚ÌƒTƒCƒY•ª)
+//	éŠ€ç®”ãƒ–ãƒ­ãƒƒã‚¯ã”ã¨ã®ã‚¿ãƒƒãƒåˆ¤å®š(éŠ€ç®”ã®ã‚µã‚¤ã‚ºåˆ†)
 //
 //==============================================================================================
-static const RECT_HIT_TBL block_hit_tbl[] = {	//š’ˆÓIblock_hit_tbl2‚Æ“¯‚¶’l‚É‚·‚é
+static const RECT_HIT_TBL block_hit_tbl[] = {	//â˜…æ³¨æ„ï¼block_hit_tbl2ã¨åŒã˜å€¤ã«ã™ã‚‹
 	//top,bottom,left,right
 #if 0
-	{ 21,	54,		27,		87 },			//1’i–Ú
+	{ 21,	54,		27,		87 },			//1æ®µç›®
 	{ 21,	54,		102,	162 },			//
 	{ 21,	54,		174,	232 },			//
 
-	{ 68,	100,	27,		87 },			//2’i–Ú
+	{ 68,	100,	27,		87 },			//2æ®µç›®
 	{ 68,	100,	102,	162 },			//
 	{ 68,	100,	174,	232 },			//
 
-	{ 114,	148,	27,		87 },			//3’i–Ú
+	{ 114,	148,	27,		87 },			//3æ®µç›®
 	{ 114,	148,	102,	162 },			//
 	{ 114,	148,	174,	232 },			//
 #else
-	{ 21,	54,		32,		89 },			//1’i–Ú			//+5
+	{ 21,	54,		32,		89 },			//1æ®µç›®			//+5
 	{ 21,	54,		102,	157 },			//
 	{ 21,	54,		170,	227 },			//				//-5
 
-	{ 68,	100,	32,		89 },			//2’i–Ú
+	{ 68,	100,	32,		89 },			//2æ®µç›®
 	{ 68,	100,	102,	157 },			//
 	{ 68,	100,	170,	227 },			//
 
-	{ 114,	148,	32,		89 },			//3’i–Ú
+	{ 114,	148,	32,		89 },			//3æ®µç›®
 	{ 114,	148,	102,	157 },			//
 	{ 114,	148,	170,	227 },			//
 #endif
-	{ TP_HIT_END,0,0,0 },					//I—¹ƒf[ƒ^
+	{ TP_HIT_END,0,0,0 },					//çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 #define SCRATCH_TOUCH_SIZE_X	(240)
 #define SCRATCH_TOUCH_SIZE_Y	(160)
 #define SCRATCH_TOUCH_SIZE_MAX	(SCRATCH_TOUCH_SIZE_X * SCRATCH_TOUCH_SIZE_Y)
 
-//RECT\‘¢‘Ì(RECT_HIT_TBL‚Ì’l‚ğ’¼ÚQÆo—ˆ‚È‚¢‚Ì‚Å“¯‚¶ƒf[ƒ^‚ğ•¡”—pˆÓ)
+//RECTæ§‹é€ ä½“(RECT_HIT_TBLã®å€¤ã‚’ç›´æ¥å‚ç…§å‡ºæ¥ãªã„ã®ã§åŒã˜ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡æ•°ç”¨æ„)
 typedef struct{
 	u8 top;
 	u8 bottom;
 	u8 left;
 	u8 right;
 }RECT;
-static const RECT block_hit_tbl2[] = {		//š’ˆÓIblock_hit_tbl‚Æ“¯‚¶’l‚É‚·‚é
+static const RECT block_hit_tbl2[] = {		//â˜…æ³¨æ„ï¼block_hit_tblã¨åŒã˜å€¤ã«ã™ã‚‹
 	//top,bottom,left,right
 #if 0
-	{ 21,	54,		27,		87 },			//1’i–Ú
+	{ 21,	54,		27,		87 },			//1æ®µç›®
 	{ 21,	54,		102,	162 },			//
 	{ 21,	54,		174,	232 },			//
 
-	{ 68,	100,	27,		87 },			//2’i–Ú
+	{ 68,	100,	27,		87 },			//2æ®µç›®
 	{ 68,	100,	102,	162 },			//
 	{ 68,	100,	174,	232 },			//
 
-	{ 114,	148,	27,		87 },			//3’i–Ú
+	{ 114,	148,	27,		87 },			//3æ®µç›®
 	{ 114,	148,	102,	162 },			//
 	{ 114,	148,	174,	232 },			//
 #else
-	{ 21,	54,		32,		89 },			//1’i–Ú			//+5
+	{ 21,	54,		32,		89 },			//1æ®µç›®			//+5
 	{ 21,	54,		102,	157 },			//
 	{ 21,	54,		170,	227 },			//				//-5
 
-	{ 68,	100,	32,		89 },			//2’i–Ú
+	{ 68,	100,	32,		89 },			//2æ®µç›®
 	{ 68,	100,	102,	157 },			//
 	{ 68,	100,	170,	227 },			//
 
-	{ 114,	148,	32,		89 },			//3’i–Ú
+	{ 114,	148,	32,		89 },			//3æ®µç›®
 	{ 114,	148,	102,	157 },			//
 	{ 114,	148,	170,	227 },			//
 #endif
@@ -369,82 +369,82 @@ static const RECT block_hit_tbl2[] = {		//š’ˆÓIblock_hit_tbl‚Æ“¯‚¶’l‚É‚·‚é
 
 //==============================================================================================
 //
-//	‹â”“‚Ìí‚è—¦‚ğƒ`ƒFƒbƒN‚·‚éÀ•Wƒe[ƒuƒ‹(‚±‚ÌÀ•W‚©‚çƒTƒCƒY•ª‚ğƒ`ƒFƒbƒN‚·‚é)
+//	éŠ€ç®”ã®å‰Šã‚Šç‡ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹åº§æ¨™ãƒ†ãƒ¼ãƒ–ãƒ«(ã“ã®åº§æ¨™ã‹ã‚‰ã‚µã‚¤ã‚ºåˆ†ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹)
 //
 //==============================================================================================
 static const SCRATCH_POS block_check_pos[SCRATCH_D_POKE_MAX] = {
 #if 0
-	{ 46,	27	 },			//1’i–Ú
+	{ 46,	27	 },			//1æ®µç›®
 	{ 121,	27	 },			//
 	{ 193,	27	 },			//
 
-	{ 46,	74	 },			//2’i–Ú
+	{ 46,	74	 },			//2æ®µç›®
 	{ 121,	74	 },			//
 	{ 193,	74	 },			//
 
-	{ 46,	120  },			//3’i–Ú
+	{ 46,	120  },			//3æ®µç›®
 	{ 121,	120  },			//
 	{ 193,	120  },			//
 #else
-	{ 42,	27	 },			//1’i–Ú
+	{ 42,	27	 },			//1æ®µç›®
 	{ 117,	27	 },			//
 	{ 189,	27	 },			//
 
-	{ 42,	74	 },			//2’i–Ú
+	{ 42,	74	 },			//2æ®µç›®
 	{ 117,	74	 },			//
 	{ 189,	74	 },			//
 
-	{ 42,	120  },			//3’i–Ú
+	{ 42,	120  },			//3æ®µç›®
 	{ 117,	120  },			//
 	{ 189,	120  },			//
 #endif
 };
 #define BLOCK_SIZE_X	(25)
 #define BLOCK_SIZE_Y	(20)				//X * Y = 500
-//#define BLOCK_COUNT	(35)				//‚±‚Ì’l‚Ü‚ÅƒJƒEƒ“ƒg‚³‚ê‚½‚ç‘S‚ÄŒöŠJ
-//#define BLOCK_COUNT	(70)				//‚±‚Ì’l‚Ü‚ÅƒJƒEƒ“ƒg‚³‚ê‚½‚ç‘S‚ÄŒöŠJ
-#define BLOCK_COUNT		(380)				//‚±‚Ì’l‚Ü‚ÅƒJƒEƒ“ƒg‚³‚ê‚½‚ç‘S‚ÄŒöŠJ
+//#define BLOCK_COUNT	(35)				//ã“ã®å€¤ã¾ã§ã‚«ã‚¦ãƒ³ãƒˆã•ã‚ŒãŸã‚‰å…¨ã¦å…¬é–‹
+//#define BLOCK_COUNT	(70)				//ã“ã®å€¤ã¾ã§ã‚«ã‚¦ãƒ³ãƒˆã•ã‚ŒãŸã‚‰å…¨ã¦å…¬é–‹
+#define BLOCK_COUNT		(380)				//ã“ã®å€¤ã¾ã§ã‚«ã‚¦ãƒ³ãƒˆã•ã‚ŒãŸã‚‰å…¨ã¦å…¬é–‹
 
 
 //==============================================================================================
 //
-//	ƒƒbƒZ[ƒWŠÖ˜A‚Ì’è‹`
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ã®å®šç¾©
 //
 //==============================================================================================
-#define SCRATCH_MENU_BUF_MAX		(2)						//ƒƒjƒ…[ƒoƒbƒtƒ@‚ÌÅ‘å”
-#define BS_FONT					(FONT_SYSTEM)			//ƒtƒHƒ“ƒgí—Ş
-#define SCRATCH_MSG_BUF_SIZE		(600)//(800)//(1024)			//‰ï˜b‚ÌƒƒbƒZ[ƒWsize
-#define SCRATCH_MENU_BUF_SIZE		(32)					//ƒƒjƒ…[‚ÌƒƒbƒZ[ƒWsize
-#define PLAYER_NAME_BUF_SIZE	(PERSON_NAME_SIZE + EOM_SIZE)	//ƒvƒŒƒCƒ„[–¼‚ÌƒƒbƒZ[ƒWsize
-#define POKE_NAME_BUF_SIZE		(MONS_NAME_SIZE + EOM_SIZE)		//ƒ|ƒPƒ‚ƒ“–¼‚ÌƒƒbƒZ[ƒWsize
+#define SCRATCH_MENU_BUF_MAX		(2)						//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ•°
+#define BS_FONT					(FONT_SYSTEM)			//ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
+#define SCRATCH_MSG_BUF_SIZE		(600)//(800)//(1024)			//ä¼šè©±ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸size
+#define SCRATCH_MENU_BUF_SIZE		(32)					//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸size
+#define PLAYER_NAME_BUF_SIZE	(PERSON_NAME_SIZE + EOM_SIZE)	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸size
+#define POKE_NAME_BUF_SIZE		(MONS_NAME_SIZE + EOM_SIZE)		//ãƒã‚±ãƒ¢ãƒ³åã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸size
 
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 struct _SCRATCH_WORK{
 
-	PROC* proc;										//PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	PROC* child_proc;								//PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	PROC* proc;										//PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	PROC* child_proc;								//PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	u8	sub_seq;									//ƒV[ƒPƒ“ƒX
-	u8	type;										//ˆø”‚Æ‚µ‚Ä“n‚³‚ê‚½ƒoƒgƒ‹ƒ^ƒCƒv
-	u8	msg_index;									//ƒƒbƒZ[ƒWindex
-	u8	tmp_csr_pos;								//‘Ş”ğ‚µ‚Ä‚ ‚éƒJ[ƒ\ƒ‹ˆÊ’u
+	u8	sub_seq;									//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	type;										//å¼•æ•°ã¨ã—ã¦æ¸¡ã•ã‚ŒãŸãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—
+	u8	msg_index;									//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸index
+	u8	tmp_csr_pos;								//é€€é¿ã—ã¦ã‚ã‚‹ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 
-	u8	csr_pos;									//Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+	u8	csr_pos;									//ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	u8	wait;
-	u8	card_num;									//‘I‘ğ‚µ‚½ƒJ[ƒh–‡”
+	u8	card_num;									//é¸æŠã—ãŸã‚«ãƒ¼ãƒ‰æšæ•°
 	u8	time_wait;
 
 	s16	counter;
 	s16	counter2;
 
-	u8	mosaic_size;								//ƒ‚ƒUƒCƒNƒTƒCƒY(0-15)
+	u8	mosaic_size;								//ãƒ¢ã‚¶ã‚¤ã‚¯ã‚µã‚¤ã‚º(0-15)
 
-	u8	card_col[SCRATCH_D_CARD_MAX];				//‘I‚ñ‚¾ƒJ[ƒh‚ÌêŠ(Fƒiƒ“ƒo[‚ğŠi”[)
+	u8	card_col[SCRATCH_D_CARD_MAX];				//é¸ã‚“ã ã‚«ãƒ¼ãƒ‰ã®å ´æ‰€(è‰²ãƒŠãƒ³ãƒãƒ¼ã‚’æ ¼ç´)
 	u8	mode[SCRATCH_CARD_NUM];
 
 	VecFx32 scale_fx;
@@ -452,64 +452,64 @@ struct _SCRATCH_WORK{
 	VecFx32 scale_tbl;
 
 	void*	msgicon;
-	MSGDATA_MANAGER* msgman;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;								//’PŒêƒZƒbƒg
-	STRBUF* msg_buf;								//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	STRBUF* tmp_buf;								//ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	MSGDATA_MANAGER* msgman;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;								//å˜èªã‚»ãƒƒãƒˆ
+	STRBUF* msg_buf;								//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	STRBUF* tmp_buf;								//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
-	STRCODE str[PERSON_NAME_SIZE + EOM_SIZE];		//ƒƒjƒ…[‚ÌƒƒbƒZ[ƒW
+	STRCODE str[PERSON_NAME_SIZE + EOM_SIZE];		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
-	GF_BGL_INI*	bgl;								//BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	GF_BGL_BMPWIN bmpwin[SCRATCH_BMPWIN_MAX];			//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_INI*	bgl;								//BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	GF_BGL_BMPWIN bmpwin[SCRATCH_BMPWIN_MAX];			//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	PALETTE_FADE_PTR pfd;							//ƒpƒŒƒbƒgƒtƒF[ƒh
+	PALETTE_FADE_PTR pfd;							//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 
-	NUMFONT* num_font;								//8x8ƒtƒHƒ“ƒg
+	NUMFONT* num_font;								//8x8ãƒ•ã‚©ãƒ³ãƒˆ
 
-	//const CONFIG* config;							//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^
-	CONFIG* config;									//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^
-	SAVEDATA* sv;									//ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	//const CONFIG* config;							//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿
+	CONFIG* config;									//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿
+	SAVEDATA* sv;									//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
-	SCRATCH_CLACT scratch_clact;					//ƒZƒ‹ƒAƒNƒ^ƒf[ƒ^
-	SCRATCH_OBJ* p_u_poke[SCRATCH_U_POKE_MAX];		//ƒ|ƒPƒ‚ƒ“OBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
-	SCRATCH_OBJ* p_d_poke[SCRATCH_D_POKE_MAX];		//ƒ|ƒPƒ‚ƒ“OBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
-	SCRATCH_OBJ* p_d_card[SCRATCH_D_CARD_MAX];		//ƒJ[ƒhOBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
+	SCRATCH_CLACT scratch_clact;					//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	SCRATCH_OBJ* p_u_poke[SCRATCH_U_POKE_MAX];		//ãƒã‚±ãƒ¢ãƒ³OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	SCRATCH_OBJ* p_d_poke[SCRATCH_D_POKE_MAX];		//ãƒã‚±ãƒ¢ãƒ³OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	SCRATCH_OBJ* p_d_card[SCRATCH_D_CARD_MAX];		//ã‚«ãƒ¼ãƒ‰OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
 
-	SCRATCH_OBJ* p_d_button;						//‰º‰æ–Êƒ{ƒ^ƒ“
-	SCRATCH_OBJ* p_d_win;							//‰º‰æ–Ê‚Ì^‚ñ’†‚ÌƒEƒBƒ“ƒhƒE
-	SCRATCH_OBJ* p_d_waku[SCRATCH_CARD_ATARI_NUM];	//‰º‰æ–Ê‚Ì‹â”“‚ÌƒƒNOBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
-	SCRATCH_OBJ* p_d_atari[SCRATCH_CARD_ATARI_NUM];	//“–‚½‚èƒ|ƒPƒ‚ƒ“OBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
-	SCRATCH_OBJ* p_d_atari_win;						//“–‚½‚èƒEƒBƒ“ƒhƒE‚Ì^‚ñ’†‚ÌƒEƒBƒ“ƒhƒE
+	SCRATCH_OBJ* p_d_button;						//ä¸‹ç”»é¢ãƒœã‚¿ãƒ³
+	SCRATCH_OBJ* p_d_win;							//ä¸‹ç”»é¢ã®çœŸã‚“ä¸­ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	SCRATCH_OBJ* p_d_waku[SCRATCH_CARD_ATARI_NUM];	//ä¸‹ç”»é¢ã®éŠ€ç®”ã®ãƒ¯ã‚¯OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	SCRATCH_OBJ* p_d_atari[SCRATCH_CARD_ATARI_NUM];	//å½“ãŸã‚Šãƒã‚±ãƒ¢ãƒ³OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	SCRATCH_OBJ* p_d_atari_win;						//å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®çœŸã‚“ä¸­ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-	u8 card_poke[SCRATCH_D_POKE_MAX];				//ƒJ[ƒh‚Ì’†‚É‚¢‚éƒ|ƒPƒ‚ƒ“
+	u8 card_poke[SCRATCH_D_POKE_MAX];				//ã‚«ãƒ¼ãƒ‰ã®ä¸­ã«ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³
 
-	u16 atari_item[SCRATCH_ATARI_MAX];				//“–‚½‚è‚Ì¤•i
+	u16 atari_item[SCRATCH_ATARI_MAX];				//å½“ãŸã‚Šã®å•†å“
 
-	u16* p_ret_work;								//SCRATCH_CALL_WORK‚Ì–ß‚è’lƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u16* p_item_no;									//SCRATCH_CALL_WORK‚Ìitemƒiƒ“ƒo|‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u16* p_item_num;								//SCRATCH_CALL_WORK‚ÌitemŒÂ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	u16* p_ret_work;								//SCRATCH_CALL_WORKã®æˆ»ã‚Šå€¤ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u16* p_item_no;									//SCRATCH_CALL_WORKã®itemãƒŠãƒ³ãƒâˆ’ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u16* p_item_num;								//SCRATCH_CALL_WORKã®itemå€‹æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
 	ARCHANDLE* hdl;
 
-	TP_BRUSH_DATA brush;							//ƒuƒ‰ƒVƒf[ƒ^
+	TP_BRUSH_DATA brush;							//ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
 
-	//ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
 	void* p_char;
 	NNSG2dCharacterData* p_chardata;
 	u8* buf;
 
 	TOUCH_SW_SYS* touch_subwin;
 
-	u8 block_flag[SCRATCH_D_POKE_MAX];				//‚Ç‚ÌƒuƒƒbƒN‚Ì‹â”“‚ÉG‚ê‚½‚©ƒtƒ‰ƒO
+	u8 block_flag[SCRATCH_D_POKE_MAX];				//ã©ã®ãƒ–ãƒ­ãƒƒã‚¯ã®éŠ€ç®”ã«è§¦ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°
 
 	u8 pltt_res_no;
 	u8 pltt_wait;
 	u8 atari_poke;
-	u8 waku_flag:1;									//ƒŠ[ƒ`ƒtƒ‰ƒO=1
-	u8 move_num:7;									//ƒJ[ƒh’†S‚Ö‚ÌˆÚ“®‰ñ”
+	u8 waku_flag:1;									//ãƒªãƒ¼ãƒãƒ•ãƒ©ã‚°=1
+	u8 move_num:7;									//ã‚«ãƒ¼ãƒ‰ä¸­å¿ƒã¸ã®ç§»å‹•å›æ•°
 
-	u8 kezuri_card_num;								//í‚è—¦OK‚ÈƒJ[ƒh‚Ì”
-	u8 kezuri_card[SCRATCH_CARD_KEZURI_NUM];		//í‚Á‚½ƒJ[ƒh
+	u8 kezuri_card_num;								//å‰Šã‚Šç‡OKãªã‚«ãƒ¼ãƒ‰ã®æ•°
+	u8 kezuri_card[SCRATCH_CARD_KEZURI_NUM];		//å‰Šã£ãŸã‚«ãƒ¼ãƒ‰
 
 	u8 block_count[SCRATCH_D_POKE_MAX];
 
@@ -525,29 +525,29 @@ struct _SCRATCH_WORK{
 
 //==============================================================================================
 //
-//	ƒ^ƒbƒ`ƒpƒlƒ‹
+//	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«
 //
 //==============================================================================================
-//ƒLƒƒƒ‰”
+//ã‚­ãƒ£ãƒ©æ•°
 #define NUM_X_MAX			(32)
 #define NUM_Y_MAX			(24)
 #define NUM_MAX				(NUM_X_MAX * NUM_Y_MAX)
-//ƒhƒbƒg”
+//ãƒ‰ãƒƒãƒˆæ•°
 #define DOT_X_MAX			(NUM_X_MAX * 8)
 #define DOT_Y_MAX			(NUM_Y_MAX * 8)
 #define DOT_MAX				(DOT_X_MAX * DOT_Y_MAX)
 
-//16F‚Ì1ƒLƒƒƒ‰‚ÌƒTƒCƒY
+//16è‰²ã®1ã‚­ãƒ£ãƒ©ã®ã‚µã‚¤ã‚º
 #define ONE_CHAR			(0x20)
 
-//G‚ê‚½ˆÊ’u‚©‚çƒNƒŠƒA‚·‚édot(ã‰ºA¶‰E‚Å”{‚É‚È‚é)
+//è§¦ã‚ŒãŸä½ç½®ã‹ã‚‰ã‚¯ãƒªã‚¢ã™ã‚‹dot(ä¸Šä¸‹ã€å·¦å³ã§å€ã«ãªã‚‹)
 //#define DOT_WRITE_WIDTH		(2)
 #define DOT_WRITE_WIDTH		(3)
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 //PROC
@@ -555,7 +555,7 @@ PROC_RESULT ScratchProc_Init( PROC * proc, int * seq );
 PROC_RESULT ScratchProc_Main( PROC * proc, int * seq );
 PROC_RESULT ScratchProc_End( PROC * proc, int * seq );
 
-//ƒV[ƒPƒ“ƒX
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 static BOOL Seq_GameInit( SCRATCH_WORK* wk );
 static BOOL Seq_GameCardIn( SCRATCH_WORK* wk );
 static BOOL Seq_GameCardSel( SCRATCH_WORK* wk );
@@ -565,7 +565,7 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk );
 static BOOL Seq_GameCardTouchOut( SCRATCH_WORK* wk );
 static BOOL Seq_GameEnd( SCRATCH_WORK* wk );
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 static void Scratch_WakuAdd( SCRATCH_WORK* wk );
 static void Scratch_AtariAdd( SCRATCH_WORK* wk );
 static void Scratch_ButtonAdd( SCRATCH_WORK* wk );
@@ -578,17 +578,17 @@ static void Scratch_AllocTouchSub( SCRATCH_WORK* wk );
 static void Scratch_InitTouchSub( SCRATCH_WORK* wk );
 static void Scratch_FreeTouchSub( SCRATCH_WORK* wk );
 
-//‹¤’Ê‰Šú‰»AI—¹
+//å…±é€šåˆæœŸåŒ–ã€çµ‚äº†
 static void Scratch_ObjInit( SCRATCH_WORK* wk );
 static void Scratch_BgInit( SCRATCH_WORK* wk );
 static void Scratch_BgExit( GF_BGL_INI * ini );
 
-//İ’è
+//è¨­å®š
 static void VBlankFunc( void * work );
 static void SetVramBank(void);
 static void SetBgHeader( GF_BGL_INI * ini );
 
-//BGƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+//BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 static void Scratch_SetMainBgGraphic( SCRATCH_WORK * wk, u32 frm  );
 static void Scratch_SetMainBgPalette( void );
 static void Scratch_SetYakuBgGraphic( SCRATCH_WORK * wk, u32 frm  );
@@ -598,7 +598,7 @@ static void Scratch_SetSubBgPalette( void );
 static void Scratch_SetTouchBgGraphic( SCRATCH_WORK * wk, u32 frm  );
 //static void Scratch_SetAtariBgGraphic( SCRATCH_WORK * wk, u32 frm  );
 
-//ƒƒbƒZ[ƒW
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 static u8 ScratchWriteMsg( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 static u8 ScratchWriteMsg_ov111_21D2424( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 static u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
@@ -612,14 +612,14 @@ static u8 Scratch_NextMsg( SCRATCH_WORK* wk );
 static u8 Scratch_YameruMsg( SCRATCH_WORK* wk );
 static u8 Scratch_YakuMsg( SCRATCH_WORK* wk, u8 no );
 
-//•¶š—ñ
+//æ–‡å­—åˆ—
 static void Scratch_SetNumber( SCRATCH_WORK* wk, u32 bufID, s32 number );
 static void Scratch_SetPokeName( SCRATCH_WORK* wk, u32 bufID, POKEMON_PASO_PARAM* ppp );
 static void Scratch_SetPlayerName( SCRATCH_WORK* wk, u32 bufID );
 static void PlayerNameWrite( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u8 font );
 static void PokeNameWriteEx( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y, u8 f_col, u8 s_col, u8 b_col, u8 font, u16 monsno, u8 sex );
 
-//ƒc[ƒ‹
+//ãƒ„ãƒ¼ãƒ«
 static void NextSeq( SCRATCH_WORK* wk, int* seq, int next );
 static int KeyCheck( int key );
 static void BgCheck( SCRATCH_WORK* wk );
@@ -644,20 +644,20 @@ static BOOL Scratch_AtariCheck( SCRATCH_WORK* wk );
 static BOOL Scratch_MosaicEffInit( SCRATCH_WORK* wk );
 static BOOL Scratch_MosaicEffMain( SCRATCH_WORK* wk, u8 flag );
 
-//ƒTƒuƒV[ƒPƒ“ƒX
+//ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 static void Scratch_SeqSubYameruCard( SCRATCH_WORK* wk );
 static void Scratch_SeqSubNextCard( SCRATCH_WORK* wk );
 static void Scratch_SeqSubGinOk( SCRATCH_WORK* wk );
 
-//ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğƒoƒbƒtƒ@‚ÉƒRƒs[
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
 static void Scratch_Touch_0( SCRATCH_WORK* wk );
-//ƒoƒbƒtƒ@‚ğ¶¬
+//ãƒãƒƒãƒ•ã‚¡ã‚’ç”Ÿæˆ
 static void Scratch_Touch_1( SCRATCH_WORK* wk );
-//ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğƒRƒs[
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 static void Scratch_Touch_1_5( SCRATCH_WORK* wk );
-//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚ê‚Ä‚¢‚éÀ•W‚ğæ“¾‚µ‚ÄƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğ‘‚«Š·‚¦‚é
+//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã‚Œã¦ã„ã‚‹åº§æ¨™ã‚’å–å¾—ã—ã¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆã‚‹
 static void Scratch_Touch_2( SCRATCH_WORK* wk, int tp_x, int tp_y );
-//“n‚³‚ê‚½ˆÊ’u‚ÌƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğ0ƒNƒŠƒA
+//æ¸¡ã•ã‚ŒãŸä½ç½®ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’0ã‚¯ãƒªã‚¢
 static void Scratch_Touch_3( SCRATCH_WORK* wk, u32 tp_x, u32 tp_y );
 
 
@@ -669,12 +669,12 @@ static void Scratch_Touch_3( SCRATCH_WORK* wk, u32 tp_x, u32 tp_y );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT ScratchProc_Init( PROC * proc, int * seq )
@@ -700,19 +700,19 @@ PROC_RESULT ScratchProc_Init( PROC * proc, int * seq )
 	wk->sv				= scratch_call->sv;
 	wk->type			= scratch_call->type;
 	wk->p_ret_work		= &scratch_call->ret_work;
-	wk->config			= SaveData_GetConfig( wk->sv );			//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^‚ğæ“¾
+	wk->config			= SaveData_GetConfig( wk->sv );			//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 	wk->p_item_no		= &scratch_call->item_no[0];
 	wk->p_item_num		= &scratch_call->item_num[0];
 
 	Scratch_CardPokeClear( wk );
 
-	//¤•iƒNƒŠƒA
+	//å•†å“ã‚¯ãƒªã‚¢
 	for( i=0; i < SCRATCH_CARD_ATARI_NUM ;i++ ){
 		wk->p_item_no[i]	= 0;
 		wk->p_item_num[i]	= 0;
 	}
 
-	//ƒpƒŒƒbƒgƒŠƒ\[ƒXØ‚è‘Ö‚¦‰Šú’lƒZƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹åˆ‡ã‚Šæ›¿ãˆåˆæœŸå€¤ã‚»ãƒƒãƒˆ
 	wk->pltt_res_no = 0;
 
 	Scratch_InitSub2( wk );
@@ -727,12 +727,12 @@ PROC_RESULT ScratchProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT ScratchProc_Main( PROC * proc, int * seq )
@@ -743,7 +743,7 @@ PROC_RESULT ScratchProc_Main( PROC * proc, int * seq )
 	switch( *seq ){
 
 	//-----------------------------------
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	case SEQ_GAME_INIT:
 		if( Seq_GameInit(wk) == TRUE ){
 			NextSeq( wk, seq, SEQ_GAME_CARD_IN );
@@ -751,71 +751,71 @@ PROC_RESULT ScratchProc_Main( PROC * proc, int * seq )
 		break;
 
 	//-----------------------------------
-	//ƒJ[ƒhƒCƒ“
+	//ã‚«ãƒ¼ãƒ‰ã‚¤ãƒ³
 	case SEQ_GAME_CARD_IN:
 		if( Seq_GameCardIn(wk) == TRUE ){
-			NextSeq( wk, seq, SEQ_GAME_CARD_SEL );			//ƒJ[ƒh‘I‘ğ‚Ö
+			NextSeq( wk, seq, SEQ_GAME_CARD_SEL );			//ã‚«ãƒ¼ãƒ‰é¸æŠã¸
 		}
 		break;
 
 	//-----------------------------------
-	//ƒJ[ƒh‘I‘ğ’†
+	//ã‚«ãƒ¼ãƒ‰é¸æŠä¸­
 	case SEQ_GAME_CARD_SEL:
 		if( Seq_GameCardSel(wk) == TRUE ){
-			NextSeq( wk, seq, SEQ_GAME_CARD_OUT );			//ƒJ[ƒhƒAƒEƒg‚Ö
+			NextSeq( wk, seq, SEQ_GAME_CARD_OUT );			//ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã¸
 		}
 		break;
 
 	//-----------------------------------
-	//ƒJ[ƒhƒAƒEƒg
+	//ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case SEQ_GAME_CARD_OUT:
 		if( Seq_GameCardOut(wk) == TRUE ){
 			if( wk->card_num >= SCRATCH_CARD_NUM ){
 				wk->card_num = 0;
 
-				Scratch_CardDelete( wk );					//‰ºFƒJ[ƒhOBJíœ
-				//ScratchClact_ResButtonChg( &wk->scratch_clact );	//ƒŠƒ\[ƒXØ‚è‘Ö‚¦(card¨button)
-				Scratch_WakuAdd( wk );						//‰ºFƒƒNOBJ’Ç‰Á
-				//Scratch_ButtonAdd( wk );					//‰ºFƒ{ƒ^ƒ“OBJ’Ç‰Á
-				Scratch_AtariAdd( wk );						//‰ºF“–‚½‚èƒ|ƒPƒ‚ƒ“OBJ’Ç‰Á
+				Scratch_CardDelete( wk );					//ä¸‹ï¼šã‚«ãƒ¼ãƒ‰OBJå‰Šé™¤
+				//ScratchClact_ResButtonChg( &wk->scratch_clact );	//ãƒªã‚½ãƒ¼ã‚¹åˆ‡ã‚Šæ›¿ãˆ(cardâ†’button)
+				Scratch_WakuAdd( wk );						//ä¸‹ï¼šãƒ¯ã‚¯OBJè¿½åŠ 
+				//Scratch_ButtonAdd( wk );					//ä¸‹ï¼šãƒœã‚¿ãƒ³OBJè¿½åŠ 
+				Scratch_AtariAdd( wk );						//ä¸‹ï¼šå½“ãŸã‚Šãƒã‚±ãƒ¢ãƒ³OBJè¿½åŠ 
 
-				NextSeq( wk, seq, SEQ_GAME_CARD_TOUCH_IN );	//ƒJ[ƒhí‚èƒCƒ“‚Ö
+				NextSeq( wk, seq, SEQ_GAME_CARD_TOUCH_IN );	//ã‚«ãƒ¼ãƒ‰å‰Šã‚Šã‚¤ãƒ³ã¸
 			}else{
-				NextSeq( wk, seq, SEQ_GAME_CARD_IN );		//ƒJ[ƒhƒCƒ“‚Ö
+				NextSeq( wk, seq, SEQ_GAME_CARD_IN );		//ã‚«ãƒ¼ãƒ‰ã‚¤ãƒ³ã¸
 			}
 		}
 		break;
 
 	//-----------------------------------
-	//ƒJ[ƒhí‚èƒCƒ“
+	//ã‚«ãƒ¼ãƒ‰å‰Šã‚Šã‚¤ãƒ³
 	case SEQ_GAME_CARD_TOUCH_IN:
 		if( Seq_GameCardTouchIn(wk) == TRUE ){
-			NextSeq( wk, seq, SEQ_GAME_CARD_TOUCH );		//ƒJ[ƒhí‚è‚Ö
+			NextSeq( wk, seq, SEQ_GAME_CARD_TOUCH );		//ã‚«ãƒ¼ãƒ‰å‰Šã‚Šã¸
 		}
 		break;
 
 	//-----------------------------------
-	//ƒJ[ƒhí‚è’†
+	//ã‚«ãƒ¼ãƒ‰å‰Šã‚Šä¸­
 	case SEQ_GAME_CARD_TOUCH:
 		if( Seq_GameCardTouch(wk) == TRUE ){
 			if( wk->card_num >= SCRATCH_CARD_NUM ){
-				NextSeq( wk, seq, SEQ_GAME_END );			//I—¹‚Ö
+				NextSeq( wk, seq, SEQ_GAME_END );			//çµ‚äº†ã¸
 			}else{
-				NextSeq( wk, seq, SEQ_GAME_CARD_TOUCH_OUT );//ƒJ[ƒhí‚èƒAƒEƒg‚Ö
+				NextSeq( wk, seq, SEQ_GAME_CARD_TOUCH_OUT );//ã‚«ãƒ¼ãƒ‰å‰Šã‚Šã‚¢ã‚¦ãƒˆã¸
 			}
 		}
 		break;
 
 	//-----------------------------------
-	//ƒJ[ƒhí‚èƒAƒEƒg
+	//ã‚«ãƒ¼ãƒ‰å‰Šã‚Šã‚¢ã‚¦ãƒˆ
 	case SEQ_GAME_CARD_TOUCH_OUT:
 		if( Seq_GameCardTouchOut(wk) == TRUE ){
-			NextSeq( wk, seq, SEQ_GAME_CARD_TOUCH_IN );		//ƒJ[ƒhí‚èƒCƒ“‚Ö
+			NextSeq( wk, seq, SEQ_GAME_CARD_TOUCH_IN );		//ã‚«ãƒ¼ãƒ‰å‰Šã‚Šã‚¤ãƒ³ã¸
 		}
 		break;
 
 	//-----------------------------------
-	//I—¹
+	//çµ‚äº†
 	case SEQ_GAME_END:
 		if( Seq_GameEnd(wk) == TRUE ){
 			return PROC_RES_FINISH;
@@ -824,19 +824,19 @@ PROC_RESULT ScratchProc_Main( PROC * proc, int * seq )
 
 	}
 
-	CLACT_Draw( wk->scratch_clact.ClactSet );		//ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+	CLACT_Draw( wk->scratch_clact.ClactSet );		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 
 	return PROC_RES_CONTINUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT ScratchProc_End( PROC * proc, int * seq )
@@ -846,17 +846,17 @@ PROC_RESULT ScratchProc_End( PROC * proc, int * seq )
 
 	StopTP();
 
-	*(wk->p_ret_work) = wk->csr_pos;					//–ß‚è’lŠi”[ƒ[ƒN‚Ö‘ã“ü(ƒJ[ƒ\ƒ‹ˆÊ’u)
+	*(wk->p_ret_work) = wk->csr_pos;					//æˆ»ã‚Šå€¤æ ¼ç´ãƒ¯ãƒ¼ã‚¯ã¸ä»£å…¥(ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®)
 
 	OS_Printf( "*(wk->p_ret_work) = %d\n", *(wk->p_ret_work) );
 
 	DellVramTransferManager();
 
-	ScratchCommon_Delete( wk );							//íœˆ—
+	ScratchCommon_Delete( wk );							//å‰Šé™¤å‡¦ç†
 
-	PROC_FreeWork( proc );								//ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );								//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );					//VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );					//VBlankã‚»ãƒƒãƒˆ
 	sys_DeleteHeap( HEAPID_SCRATCH );
 
 	return PROC_RES_FINISH;
@@ -865,24 +865,24 @@ PROC_RESULT ScratchProc_End( PROC * proc, int * seq )
 
 //==============================================================================================
 //
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFƒQ[ƒ€‰Šú‰»
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚²ãƒ¼ãƒ åˆæœŸåŒ–
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameInit( SCRATCH_WORK* wk )
 {
 	switch( wk->sub_seq ){
 
-	//ƒuƒ‰ƒbƒNƒCƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
 	case 0:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 						WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC*3, HEAPID_SCRATCH );
@@ -890,7 +890,7 @@ static BOOL Seq_GameInit( SCRATCH_WORK* wk )
 		wk->sub_seq++;
 		break;
 		
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 1:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			wk->card_num = 0;
@@ -904,11 +904,11 @@ static BOOL Seq_GameInit( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒJ[ƒhƒCƒ“
+ * @brief	ã‚²ãƒ¼ãƒ ã‚«ãƒ¼ãƒ‰ã‚¤ãƒ³
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameCardIn( SCRATCH_WORK* wk )
@@ -923,7 +923,7 @@ static BOOL Seq_GameCardIn( SCRATCH_WORK* wk )
 
 	switch( wk->sub_seq ){
 
-	//ƒJ[ƒh‚ğƒCƒ“‚·‚éˆÊ’u‚É”z’u
+	//ã‚«ãƒ¼ãƒ‰ã‚’ã‚¤ãƒ³ã™ã‚‹ä½ç½®ã«é…ç½®
 	case SEQ_SUB_START:
 		wk->counter = SCRATCH_CARD_IN_OFFSET_X;
 
@@ -933,11 +933,11 @@ static BOOL Seq_GameCardIn( SCRATCH_WORK* wk )
 			ScratchObj_Priority( wk->p_d_card[i], (SCRATCH_OBJ_PRI_L+i) );
 		}
 
-		//u‰½–‡–Ú‚ÌƒJ[ƒh‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢v
+		//ã€Œä½•æšç›®ã®ã‚«ãƒ¼ãƒ‰ã‚’é¸ã‚“ã§ãã ã•ã„ã€
 		ScratchTalkWinPut( &wk->bmpwin[BMPWIN_SELECT], CONFIG_GetWindowType(wk->config) );
 
 		Scratch_CardSelectMsg( wk );
-		GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_MSG, VISIBLE_ON );		//ãƒƒbƒZ[ƒWƒIƒ“
+		GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_MSG, VISIBLE_ON );		//ä¸Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ³
 
 		wk->counter2 = (SCRATCH_D_CARD_MAX - 1);
 		Snd_SePlay( SE_D_CARD_IN );
@@ -945,7 +945,7 @@ static BOOL Seq_GameCardIn( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒJ[ƒhƒCƒ“
+	//ã‚«ãƒ¼ãƒ‰ã‚¤ãƒ³
 	case SEQ_SUB_CARD_IN:
 		wk->counter += SCRATCH_CARD_IN_SPD;
 		ScratchObj_SetObjPos(	wk->p_d_card[wk->counter2], 
@@ -953,19 +953,19 @@ static BOOL Seq_GameCardIn( SCRATCH_WORK* wk )
 								d_card_pos[wk->counter2].y );
 
 		if( wk->counter >= 0 ){
-			//‘S‚Ä‚ÌƒJ[ƒh‚ğˆ—‚µ‚½‚ç
+			//å…¨ã¦ã®ã‚«ãƒ¼ãƒ‰ã‚’å‡¦ç†ã—ãŸã‚‰
 			if( wk->counter2 == 0 ){
 				wk->sub_seq = SEQ_SUB_CARD_IN_END;
 			}else{
 				Snd_SePlay( SE_D_CARD_IN );
-				wk->counter2--;												//Ÿ‚ÌƒJ[ƒh‚Ö
+				wk->counter2--;												//æ¬¡ã®ã‚«ãƒ¼ãƒ‰ã¸
 				wk->counter = SCRATCH_CARD_IN_OFFSET_X;
 			}
 		}
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒJ[ƒhƒCƒ“I—¹
+	//ã‚«ãƒ¼ãƒ‰ã‚¤ãƒ³çµ‚äº†
 	case SEQ_SUB_CARD_IN_END:
 		wk->counter = 0;
 		return TRUE;
@@ -977,11 +977,11 @@ static BOOL Seq_GameCardIn( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒJ[ƒh‘I‘ğ’†
+ * @brief	ã‚²ãƒ¼ãƒ ã‚«ãƒ¼ãƒ‰é¸æŠä¸­
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameCardSel( SCRATCH_WORK* wk )
@@ -999,21 +999,21 @@ static BOOL Seq_GameCardSel( SCRATCH_WORK* wk )
 
 	//
 	case SEQ_SUB_START:
-		//ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_OFF );					//ƒIƒ“
+		//ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_OFF );					//ã‚ªãƒ³
 		//Scratch_CardNumMsg( wk );
-		GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_ON );			//‰ºƒƒbƒZ[ƒWƒIƒ“
+		GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_ON );			//ä¸‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ³
 		wk->time_wait = SCRATCH_START_MSG_DEL_WAIT;
 		wk->sub_seq = SEQ_SUB_CARD_SEL;
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒJ[ƒh‘I‘ğ’†
+	//ã‚«ãƒ¼ãƒ‰é¸æŠä¸­
 	case SEQ_SUB_CARD_SEL:
 
-		//ŠÔ‚ÅƒƒbƒZ[ƒWÁ‚µ‚Ä‚¨‚­
+		//æ™‚é–“ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ¶ˆã—ã¦ãŠã
 		if( wk->time_wait == 0 ){
-			GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_OFF );		//‰ºƒƒbƒZ[ƒWƒIƒt
-			ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_ON );				//ƒIƒt
+			GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_OFF );		//ä¸‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ•
+			ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_ON );				//ã‚ªãƒ•
 		}else{
 			wk->time_wait--;
 		}
@@ -1022,27 +1022,27 @@ static BOOL Seq_GameCardSel( SCRATCH_WORK* wk )
 
 		//if( GF_TP_SingleHitCont((const RECT_HIT_TBL*)card_hit_tbl) == TRUE ){
 		if( index != RECT_HIT_NONE ){
-			GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_OFF );		//‰ºƒƒbƒZ[ƒWƒIƒt
-			ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_ON );				//ƒIƒt
+			GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_OFF );		//ä¸‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ•
+			ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_ON );				//ã‚ªãƒ•
 			Snd_SePlay( SE_D_BUTTON_TOUCH );
 
-			wk->card_col[wk->card_num] = index;		//‘I‚ñ‚¾ƒJ[ƒh‚ÌêŠ(Fƒiƒ“ƒo[‚ğŠi”[)
+			wk->card_col[wk->card_num] = index;		//é¸ã‚“ã ã‚«ãƒ¼ãƒ‰ã®å ´æ‰€(è‰²ãƒŠãƒ³ãƒãƒ¼ã‚’æ ¼ç´)
 			wk->card_num++;
-			OS_Printf( "ƒJ[ƒh‚Éƒ^ƒbƒ`‚µ‚Ü‚µ‚½ = %d\n", index );
-			OS_Printf( "0=¶ãÔA1=‰EãÂA2=¶‰º‰©FA3=‰E‰º—Î\n" );
+			OS_Printf( "ã‚«ãƒ¼ãƒ‰ã«ã‚¿ãƒƒãƒã—ã¾ã—ãŸ = %d\n", index );
+			OS_Printf( "0=å·¦ä¸Šèµ¤ã€1=å³ä¸Šé’ã€2=å·¦ä¸‹é»„è‰²ã€3=å³ä¸‹ç·‘\n" );
 
-			//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚ê‚Ä‚¢‚é‚È‚ç‚»‚ÌÀ•Wæ“¾(ƒxƒ^“ü—Í)
+			//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã‚Œã¦ã„ã‚‹ãªã‚‰ãã®åº§æ¨™å–å¾—(ãƒ™ã‚¿å…¥åŠ›)
 			GF_TP_GetPointCont( &tp_x, &tp_y );
 			OS_Printf( "tp_x = %d\ttp_y = %d\n", tp_x, tp_y );
 
 			BmpTalkWinClear( &wk->bmpwin[BMPWIN_SELECT], WINDOW_TRANS_ON );
-			GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_MSG, VISIBLE_OFF );		//ãƒƒbƒZ[ƒWƒIƒt
+			GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_MSG, VISIBLE_OFF );		//ä¸Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ•
 			wk->sub_seq = SEQ_SUB_CARD_SEL_END;
 		}
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒJ[ƒh‘I‘ğI—¹
+	//ã‚«ãƒ¼ãƒ‰é¸æŠçµ‚äº†
 	case SEQ_SUB_CARD_SEL_END:
 		return TRUE;
 
@@ -1053,11 +1053,11 @@ static BOOL Seq_GameCardSel( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒJ[ƒhƒAƒEƒg
+ * @brief	ã‚²ãƒ¼ãƒ ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameCardOut( SCRATCH_WORK* wk )
@@ -1071,29 +1071,29 @@ static BOOL Seq_GameCardOut( SCRATCH_WORK* wk )
 		SEQ_SUB_CARD_OUT_END,
 	};
 
-	//‚Ç‚ÌƒJ[ƒh‚ğ‘I‚ñ‚¾‚©
+	//ã©ã®ã‚«ãƒ¼ãƒ‰ã‚’é¸ã‚“ã ã‹
 	pos = wk->card_col[wk->card_num-1];
 					
 	switch( wk->sub_seq ){
 
 	//
 	case SEQ_SUB_START:
-		wk->scale_fx.x = SCRATCH_CARD_AFF_DEFAULT;		//“™”{
+		wk->scale_fx.x = SCRATCH_CARD_AFF_DEFAULT;		//ç­‰å€
 		wk->scale_fx.y = SCRATCH_CARD_AFF_DEFAULT;
 		wk->scale_fx.z = SCRATCH_CARD_AFF_DEFAULT;
 		wk->counter = 0;
 		wk->move_num= 0;
-		OS_Printf( "‚Ç‚ÌƒJ[ƒh‚© pos = %d\n", pos );
+		OS_Printf( "ã©ã®ã‚«ãƒ¼ãƒ‰ã‹ pos = %d\n", pos );
 		ScratchObj_Priority( wk->p_d_card[pos], SCRATCH_OBJ_PRI_H );
 
 		wk->sub_seq = SEQ_SUB_CARD_AFF;
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//Šg‘å
+	//æ‹¡å¤§
 	case SEQ_SUB_CARD_AFF:
 
-		//ƒJ[ƒh‚ğ’†S‚ÉˆÚ“®
+		//ã‚«ãƒ¼ãƒ‰ã‚’ä¸­å¿ƒã«ç§»å‹•
 		if( Scratch_CardCenterMove(wk,pos) == TRUE ){
 			//
 		}
@@ -1105,11 +1105,11 @@ static BOOL Seq_GameCardOut( SCRATCH_WORK* wk )
 		wk->counter++;
 		if( (wk->counter % SCRATCH_CARD_AFF_WAIT) == 0 ){
 
-			//‘I‚ñ‚¾ƒJ[ƒh‚É‚·‚é
+			//é¸ã‚“ã ã‚«ãƒ¼ãƒ‰ã«ã™ã‚‹
 			ScratchObj_SetScaleAffineTbl( wk->p_d_card[pos], &wk->scale_fx );
 		}
 
-		//ƒJ[ƒh‚ÌÅ‘åŠg‘å
+		//ã‚«ãƒ¼ãƒ‰ã®æœ€å¤§æ‹¡å¤§
 		if( wk->scale_fx.x == SCRATCH_CARD_AFF_MAX ){
 			wk->counter = 0;
 
@@ -1123,31 +1123,31 @@ static BOOL Seq_GameCardOut( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒJ[ƒhƒAƒEƒg
+	//ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case SEQ_SUB_CARD_OUT:
 
-		//ƒJ[ƒh‚ğ’†S‚ÉˆÚ“®
+		//ã‚«ãƒ¼ãƒ‰ã‚’ä¸­å¿ƒã«ç§»å‹•
 		//if( Scratch_CardCenterMove(wk,pos) == TRUE ){
 			//
 		//}
 
 		wk->counter += SCRATCH_CARD_OUT_SPD;
 		for( i=0; i < SCRATCH_D_CARD_MAX ;i++ ){
-			ScratchObj_GetObjPos( wk->p_d_card[i], &now_x, &now_y );	//Œ»İ‚ÌÀ•Wæ“¾
+			ScratchObj_GetObjPos( wk->p_d_card[i], &now_x, &now_y );	//ç¾åœ¨ã®åº§æ¨™å–å¾—
 			OS_Printf( "i = %d, now_x = %d\n", i, now_x );
 			ScratchObj_SetObjPos(	wk->p_d_card[i], (now_x + SCRATCH_CARD_OUT_SPD), 
 									now_y );
 			//ScratchObj_SetObjPos(	wk->p_d_card[i], (d_card_pos[i].x + wk->counter), 
 			//						d_card_pos[i].y );
 			
-			//¬‚³‚­‚·‚é
+			//å°ã•ãã™ã‚‹
 			//if( now_x >= 368 ){
 			//	ScratchObj_SetScaleAffineTbl( wk->p_d_card[pos], &wk->scale_fx );
 			//}
 		}
 
 		if( wk->counter >= SCRATCH_CARD_OUT_OFFSET_X ){
-		//if( wk->counter >= SCRATCH_CARD_OUT_OFFSET_X + 128 ){		//Šg‘å•ª(128)
+		//if( wk->counter >= SCRATCH_CARD_OUT_OFFSET_X + 128 ){		//æ‹¡å¤§åˆ†(128)
 			//ScratchObj_SetScaleAffine2( wk->p_d_card[0], 0 );
 			//ScratchObj_SetScaleAffine( wk->p_d_card[0], 5 );
 			
@@ -1159,7 +1159,7 @@ static BOOL Seq_GameCardOut( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒJ[ƒhƒAƒEƒgI—¹
+	//ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆçµ‚äº†
 	case SEQ_SUB_CARD_OUT_END:
 		wk->counter = 0;
 		return TRUE;
@@ -1171,11 +1171,11 @@ static BOOL Seq_GameCardOut( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒJ[ƒhí‚èƒCƒ“
+ * @brief	ã‚²ãƒ¼ãƒ ã‚«ãƒ¼ãƒ‰å‰Šã‚Šã‚¤ãƒ³
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameCardTouchIn( SCRATCH_WORK* wk )
@@ -1191,9 +1191,9 @@ static BOOL Seq_GameCardTouchIn( SCRATCH_WORK* wk )
 
 	switch( wk->sub_seq ){
 
-	//ƒJ[ƒh‚ğƒCƒ“‚·‚éˆÊ’u‚É”z’u
+	//ã‚«ãƒ¼ãƒ‰ã‚’ã‚¤ãƒ³ã™ã‚‹ä½ç½®ã«é…ç½®
 	case SEQ_SUB_CARD_TOUCH_IN_START:
-		//ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğŒ³‚É–ß‚·
+		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«æˆ»ã™
 		Scratch_Touch_1_5( wk );
 		GF_BGL_LoadCharacter( wk->bgl, SCRATCH_FRAME_D_TOUCH, wk->buf, wk->p_chardata->szByte, 0 );
 		GF_BGL_LoadScreenReq( wk->bgl, SCRATCH_FRAME_D_TOUCH );
@@ -1203,70 +1203,70 @@ static BOOL Seq_GameCardTouchIn( SCRATCH_WORK* wk )
 		GF_BGL_ScrollSet( wk->bgl, SCRATCH_FRAME_D_TOUCH, GF_BGL_SCROLL_X_SET, wk->counter2 );
 		GF_BGL_ScrollSet( wk->bgl, SCRATCH_FRAME_D_SUB, GF_BGL_SCROLL_X_SET, wk->counter2 );
 
-		GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_TOUCH, VISIBLE_ON );			//í‚è–ÊƒIƒ“
-		GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_SUB, VISIBLE_ON );			//ƒJ[ƒh–ÊƒIƒ“
-		GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_YAKU, VISIBLE_ON );			//–ğƒIƒ“
+		GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_TOUCH, VISIBLE_ON );			//å‰Šã‚Šé¢ã‚ªãƒ³
+		GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_SUB, VISIBLE_ON );			//ã‚«ãƒ¼ãƒ‰é¢ã‚ªãƒ³
+		GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_YAKU, VISIBLE_ON );			//å½¹ã‚ªãƒ³
 
 		wk->counter = SCRATCH_CARD_IN_OFFSET_X;
 
-		//ƒC[ƒW[Œˆ’è
-		wk->mode[ wk->card_num ] = SCRATCH_CARD_MODE_EASY;						//ƒC[ƒWƒJ[ƒh
+		//ã‚¤ãƒ¼ã‚¸ãƒ¼æ±ºå®š
+		wk->mode[ wk->card_num ] = SCRATCH_CARD_MODE_EASY;						//ã‚¤ãƒ¼ã‚¸ã‚«ãƒ¼ãƒ‰
 
-		//ƒNƒŠƒA
+		//ã‚¯ãƒªã‚¢
 		for( i=0; i < SCRATCH_TOUCH_SIZE_MAX ;i++ ){
 			wk->touch_flag[i] = 0;
 		}
 
-		//í‚Á‚½ƒJ[ƒh‚Ì”‚ğƒNƒŠƒA
+		//å‰Šã£ãŸã‚«ãƒ¼ãƒ‰ã®æ•°ã‚’ã‚¯ãƒªã‚¢
 		wk->kezuri_card_num = 0;
 
-		//ƒJ[ƒh‚Ìƒ|ƒPƒ‚ƒ“Œˆ’è
+		//ã‚«ãƒ¼ãƒ‰ã®ãƒã‚±ãƒ¢ãƒ³æ±ºå®š
 		Scratch_CardPokeClear( wk );
 		Scratch_CardPokeSet( wk, wk->mode[ wk->card_num ] );
 
-		//–ğ‚ğŒˆ’è
+		//å½¹ã‚’æ±ºå®š
 		Scratch_YakuSet( wk, wk->mode[ wk->card_num ] );
 
-		//‹â”“‚ÉG‚ê‚½ƒtƒ‰ƒOƒNƒŠƒA
+		//éŠ€ç®”ã«è§¦ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 		Scratch_BlockFlagClear( wk );
 
-		//G‚ê‚½ˆÊ’uƒJƒEƒ“ƒg‚ğƒNƒŠƒA
+		//è§¦ã‚ŒãŸä½ç½®ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢
 		Scratch_BlockCountClear( wk );
 
 		wk->sub_seq = SEQ_SUB_CARD_TOUCH_IN_START2;
 		break;
 
 	case SEQ_SUB_CARD_TOUCH_IN_START2:
-		//ãFƒ|ƒPƒ‚ƒ“OBJ•\¦
+		//ä¸Šï¼šãƒã‚±ãƒ¢ãƒ³OBJè¡¨ç¤º
 		for( i=0; i < SCRATCH_U_POKE_MAX ;i++ ){
 			ScratchObj_SetObjPos(	wk->p_u_poke[i], 
 							(SCRATCH_U_POKE_X + wk->counter),
 							(SCRATCH_U_POKE_Y + (i * SCRATCH_U_POKE_WIDTH_Y)) );
-			ScratchObj_Vanish( wk->p_u_poke[i], SCRATCH_VANISH_OFF );		//•\¦
+			ScratchObj_Vanish( wk->p_u_poke[i], SCRATCH_VANISH_OFF );		//è¡¨ç¤º
 		}
 
-		//‰ºFƒƒNOBJ•\¦
+		//ä¸‹ï¼šãƒ¯ã‚¯OBJè¡¨ç¤º
 		for( i=0; i < SCRATCH_CARD_ATARI_NUM ;i++ ){
-			//g—pƒpƒŒƒbƒg‚ğŒ³‚É–ß‚·
+			//ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å…ƒã«æˆ»ã™
 			ScratchObj_PaletteNoChg( wk->p_d_waku[i], 1 );
 		}
 
-		//ƒNƒŠƒA
+		//ã‚¯ãƒªã‚¢
 		wk->pltt_res_no		= 0;
 		wk->waku_flag		= 0;
 		wk->kezuri_card[0]	= DUMMY_KEZURI_CARD1;
 		wk->kezuri_card[1]	= DUMMY_KEZURI_CARD2;
 		wk->kezuri_card[2]	= DUMMY_KEZURI_CARD3;
 
-		//‰ºFƒ|ƒPƒ‚ƒ“OBJ•\¦
+		//ä¸‹ï¼šãƒã‚±ãƒ¢ãƒ³OBJè¡¨ç¤º
 		for( i=0; i < SCRATCH_D_POKE_MAX ;i++ ){
 			ScratchObj_SetObjPos(	wk->p_d_poke[i], (d_poke_pos[i].x + wk->counter), 
 									d_poke_pos[i].y );
-			ScratchObj_Vanish( wk->p_d_poke[i], SCRATCH_VANISH_OFF );		//•\¦
-			ScratchObj_AnmChg( wk->p_d_poke[i], wk->card_poke[i] );			//”z’uƒ|ƒPƒ‚ƒ“‚É•ÏX
+			ScratchObj_Vanish( wk->p_d_poke[i], SCRATCH_VANISH_OFF );		//è¡¨ç¤º
+			ScratchObj_AnmChg( wk->p_d_poke[i], wk->card_poke[i] );			//é…ç½®ãƒã‚±ãƒ¢ãƒ³ã«å¤‰æ›´
 		}
 
-		//ƒJ[ƒh‚ÌƒXƒNƒŠ[ƒ“‚ÌƒpƒŒƒbƒg•ÏX(u=4,5,6,7ƒpƒŒƒbƒgAd=1,2,3,4ƒpƒŒƒbƒg)
+		//ã‚«ãƒ¼ãƒ‰ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´(u=4,5,6,7ãƒ‘ãƒ¬ãƒƒãƒˆã€d=1,2,3,4ãƒ‘ãƒ¬ãƒƒãƒˆ)
 		ScrPalChg( wk, SCRATCH_FRAME_D_SUB, (wk->card_col[ wk->card_num ] + 4), 32, 24 );
 		ScrPalChg( wk, SCRATCH_FRAME_U_YAKU, (wk->card_col[ wk->card_num ] + 1), 32, 24 );
 
@@ -1275,7 +1275,7 @@ static BOOL Seq_GameCardTouchIn( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒJ[ƒhƒCƒ“
+	//ã‚«ãƒ¼ãƒ‰ã‚¤ãƒ³
 	case SEQ_SUB_CARD_TOUCH_IN:
 		GF_BGL_ScrollSet( wk->bgl, SCRATCH_FRAME_U_YAKU, GF_BGL_SCROLL_X_SET, wk->counter2 );
 		GF_BGL_ScrollSet( wk->bgl, SCRATCH_FRAME_D_TOUCH, GF_BGL_SCROLL_X_SET, wk->counter2 );
@@ -1285,14 +1285,14 @@ static BOOL Seq_GameCardTouchIn( SCRATCH_WORK* wk )
 		if( wk->counter >= 0 ){
 			wk->sub_seq = SEQ_SUB_CARD_TOUCH_IN_END;
 		}else{
-			//ãFƒ|ƒPƒ‚ƒ“OBJ•\¦
+			//ä¸Šï¼šãƒã‚±ãƒ¢ãƒ³OBJè¡¨ç¤º
 			for( i=0; i < SCRATCH_U_POKE_MAX ;i++ ){
 				ScratchObj_SetObjPos(	wk->p_u_poke[i], 
 							(SCRATCH_U_POKE_X + wk->counter),
 							(SCRATCH_U_POKE_Y + (i * SCRATCH_U_POKE_WIDTH_Y)) );
 			}
 
-			//‰ºFƒ|ƒPƒ‚ƒ“OBJ•\¦
+			//ä¸‹ï¼šãƒã‚±ãƒ¢ãƒ³OBJè¡¨ç¤º
 			for( i=0; i < SCRATCH_D_POKE_MAX ;i++ ){
 				ScratchObj_SetObjPos(	wk->p_d_poke[i], (d_poke_pos[i].x + wk->counter), 
 										d_poke_pos[i].y );
@@ -1303,7 +1303,7 @@ static BOOL Seq_GameCardTouchIn( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒJ[ƒhƒCƒ“I—¹
+	//ã‚«ãƒ¼ãƒ‰ã‚¤ãƒ³çµ‚äº†
 	case SEQ_SUB_CARD_TOUCH_IN_END:
 		wk->counter	= 0;
 		wk->counter2= 0;
@@ -1316,11 +1316,11 @@ static BOOL Seq_GameCardTouchIn( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒJ[ƒhí‚è’†
+ * @brief	ã‚²ãƒ¼ãƒ ã‚«ãƒ¼ãƒ‰å‰Šã‚Šä¸­
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
@@ -1352,24 +1352,24 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 			GF_BGL_BmpWinOff( &wk->bmpwin[BMPWIN_NEXT] );
 			Scratch_YameruMsg( wk );
 			ScratchObj_SetObjPos( wk->p_d_button, d_yameru_button_pos.x, d_yameru_button_pos.y );
-			ScratchObj_AnmChg( wk->p_d_button, ANM_BUTTON_YAMERU );				//‚â‚ß‚é‚É•ÏX
+			ScratchObj_AnmChg( wk->p_d_button, ANM_BUTTON_YAMERU );				//ã‚„ã‚ã‚‹ã«å¤‰æ›´
 		}else{
 			GF_BGL_BmpWinOff( &wk->bmpwin[BMPWIN_YAMERU] );
 			Scratch_NextMsg( wk );
 		}
 
 		wk->time_wait = SCRATCH_START_MSG_DEL_WAIT;
-		ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_OFF );					//ƒIƒ“
+		ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_OFF );					//ã‚ªãƒ³
 		Scratch_StartMsg( wk );
 
-		//–ğ‚ğ•\¦
+		//å½¹ã‚’è¡¨ç¤º
 		for( i=0; i < SCRATCH_ATARI_MAX ;i++ ){
 			Scratch_YakuMsg( wk, i );
 		}
 
-		//‚Â‚¬‚ÌƒJ[ƒh‚Ö(‚â‚ß‚é)ƒ{ƒ^ƒ“
-		ScratchObj_Vanish( wk->p_d_button, SCRATCH_VANISH_OFF );				//ƒIƒ“
-		ScratchObj_SetAnmFlag( wk->p_d_button, 0 );								//ƒ{ƒ^ƒ“ƒAƒjƒOFF
+		//ã¤ãã®ã‚«ãƒ¼ãƒ‰ã¸(ã‚„ã‚ã‚‹)ãƒœã‚¿ãƒ³
+		ScratchObj_Vanish( wk->p_d_button, SCRATCH_VANISH_OFF );				//ã‚ªãƒ³
+		ScratchObj_SetAnmFlag( wk->p_d_button, 0 );								//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡OFF
 
 		Snd_SePlay( SE_D_GAME_START );
 		wk->sub_seq = SEQ_SUB_START_SUB;
@@ -1377,18 +1377,18 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 
 	//////////////////////////////////////////////////////////////////////////////////////
 	case SEQ_SUB_START_SUB:
-		GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_ON );			//‰ºƒƒbƒZ[ƒWƒIƒ“
-		GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_MSG, VISIBLE_ON );			//ãƒƒbƒZ[ƒWƒIƒ“
+		GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_ON );			//ä¸‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ³
+		GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_MSG, VISIBLE_ON );			//ä¸Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ³
 		wk->sub_seq = SEQ_SUB_MSG_WAIT;
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒƒbƒZ[ƒW•\¦‘Ò‚¿
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾…ã¡
 	case SEQ_SUB_MSG_WAIT:
 
-		//ŠÔ‚ÅƒƒbƒZ[ƒWÁ‚µ‚Ä‚¨‚­
+		//æ™‚é–“ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ¶ˆã—ã¦ãŠã
 		if( wk->time_wait == 0 ){
-			ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_ON );				//ƒIƒt
+			ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_ON );				//ã‚ªãƒ•
 			GF_BGL_BmpWinDataFill( &wk->bmpwin[BMPWIN_START], FBMP_COL_NULL );
 			//GF_BGL_BmpWinDataFill( &wk->bmpwin[BMPWIN_ATARI], FBMP_COL_NULL );
 			//GF_BGL_BmpWinDataFill( &wk->bmpwin[BMPWIN_HAZURE], FBMP_COL_NULL );
@@ -1404,32 +1404,32 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒ^ƒCƒv‚ğ‘I‘ğ’†
+	//ã‚¿ã‚¤ãƒ—ã‚’é¸æŠä¸­
 	case SEQ_SUB_TYPE_SEL:
 #if 0
-	1:	ƒLƒƒƒ‰ƒf[ƒ^‚ğƒoƒbƒtƒ@‚ÉƒRƒs[
-	2:	ƒ^ƒbƒ`ƒpƒlƒ‹‚ÅG‚ê‚Ä‚¢‚éÀ•Wæ“¾
-	3:	2)‚ÌˆÊ’u‚ÌƒLƒƒƒ‰ƒf[ƒ^‚Ìƒhƒbƒgî•ñ‚ğƒNƒŠƒA
-	4:	2),3)‚ÌŒJ‚è•Ô‚µ
+	1:	ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
+	2:	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§è§¦ã‚Œã¦ã„ã‚‹åº§æ¨™å–å¾—
+	3:	2)ã®ä½ç½®ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®ãƒ‰ãƒƒãƒˆæƒ…å ±ã‚’ã‚¯ãƒªã‚¢
+	4:	2),3)ã®ç¹°ã‚Šè¿”ã—
 
-	2‚ÌˆÊ’u‚©‚çcA‰¡‰½ƒhƒbƒg‚ğ‘Î‰‚³‚¹‚é
+	2ã®ä½ç½®ã‹ã‚‰ç¸¦ã€æ¨ªä½•ãƒ‰ãƒƒãƒˆã‚’å¯¾å¿œã•ã›ã‚‹
 
-	G‚Á‚Ä‚¢‚éƒhƒbƒg‚ÌˆÊ’u‚Ì‚İƒoƒbƒtƒ@‚ğ‘‚«’¼‚µ‚Ä“]‘—‚É‚·‚é
+	è§¦ã£ã¦ã„ã‚‹ãƒ‰ãƒƒãƒˆã®ä½ç½®ã®ã¿ãƒãƒƒãƒ•ã‚¡ã‚’æ›¸ãç›´ã—ã¦è»¢é€ã«ã™ã‚‹
 #endif
 
 #ifdef PM_DEBUG
 
 		//BgCheck( wk );
 		
-		//ƒƒN‚ğÁ‚·ƒfƒoƒbƒNƒL[
+		//ãƒ¯ã‚¯ã‚’æ¶ˆã™ãƒ‡ãƒãƒƒã‚¯ã‚­ãƒ¼
 		if( sys.cont & PAD_BUTTON_L ){
-			GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_TOUCH, VISIBLE_OFF );		//í‚è–ÊƒIƒt
+			GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_TOUCH, VISIBLE_OFF );		//å‰Šã‚Šé¢ã‚ªãƒ•
 		}else if( sys.cont & PAD_BUTTON_R ){
-			GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_TOUCH, VISIBLE_ON );		//í‚è–ÊƒIƒ“
+			GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_TOUCH, VISIBLE_ON );		//å‰Šã‚Šé¢ã‚ªãƒ³
 		}
 #endif
 
-		//ƒTƒ“ƒvƒŠƒ“ƒOî•ñæ“¾
+		//ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°æƒ…å ±å–å¾—
 		//MainTP( &wk->tpData, TP_BUFFERING_JUST, 1 );
 		MainTP( &wk->tpData, TP_BUFFERING_JUST, 2 );
 
@@ -1437,111 +1437,111 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 		//if( (index != RECT_HIT_NONE) && (index != 4) ){
 		if( index != RECT_HIT_NONE ){
 
-			//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚ê‚Ä‚¢‚é‚È‚ç‚»‚ÌÀ•Wæ“¾(ƒxƒ^“ü—Í)
-			//GF_TP_GetPointCont( &wk->tp_x, &wk->tp_y );			//Œ»İÀ•W
+			//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã‚Œã¦ã„ã‚‹ãªã‚‰ãã®åº§æ¨™å–å¾—(ãƒ™ã‚¿å…¥åŠ›)
+			//GF_TP_GetPointCont( &wk->tp_x, &wk->tp_y );			//ç¾åœ¨åº§æ¨™
 
-			//‚Ü‚¾‹â”“ƒuƒƒbƒN‚ÉG‚ê‚é
+			//ã¾ã éŠ€ç®”ãƒ–ãƒ­ãƒƒã‚¯ã«è§¦ã‚Œã‚‹æ™‚
 			if( Scratch_BlockFlagOnNumGet(wk) < SCRATCH_CARD_KEZURI_NUM ){
 				wk->block_flag[index] = 1;
 			}
 
-			//G‚ê‚½ƒuƒƒbƒN‚Ì‹â”“‚¾‚Á‚½‚ç
+			//è§¦ã‚ŒãŸãƒ–ãƒ­ãƒƒã‚¯ã®éŠ€ç®”ã ã£ãŸã‚‰
 			if( wk->block_flag[index] == 1 ){
 
-				//G‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+				//è§¦ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				Scratch_TouchFlagSet( wk );
 
-				//G‚ê‚½ƒtƒ‰ƒOƒ`ƒFƒbƒN
+				//è§¦ã‚ŒãŸãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 				Scratch_TouchFlagCheck( wk, index );
 			
-				//tpData‚ÉŠi”[‚³‚ê‚½À•W‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ‘‚«Š·‚¦‚é
+				//tpDataã«æ ¼ç´ã•ã‚ŒãŸåº§æ¨™ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆã‚‹
 				Scratch_HoseiTouch2( wk, index );
 
-				//í‚è‰¹‚ğÄ¶‚µ‚Ä‚¢‚È‚©‚Á‚½‚çÄ¶
+				//å‰Šã‚ŠéŸ³ã‚’å†ç”Ÿã—ã¦ã„ãªã‹ã£ãŸã‚‰å†ç”Ÿ
 				if( Snd_SePlayCheck(SE_D_CARD_KEZURI) == FALSE ){
 					Snd_SePlay( SE_D_CARD_KEZURI );
 				}
 
-				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚ê‚Ä‚¢‚éÀ•W‚ğæ“¾‚µ‚ÄƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğ‘‚«Š·‚¦‚é
+				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã‚Œã¦ã„ã‚‹åº§æ¨™ã‚’å–å¾—ã—ã¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆã‚‹
 				//Scratch_Touch_2( wk, wk->tp_x, wk->tp_y );
 			}
 
-			//G‚ê‚½ƒtƒ‰ƒOƒ`ƒFƒbƒN
+			//è§¦ã‚ŒãŸãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 			//Scratch_TouchFlagCheck( wk, index );
 
-			//“–‚½‚è‚ª‚»‚ë‚Á‚½‚ç
+			//å½“ãŸã‚ŠãŒãã‚ã£ãŸã‚‰
 			if( Scratch_AtariCheck(wk) == TRUE ){
 
 				Snd_SeStopBySeqNo( SE_D_CARD_KEZURI, 0 );
-				ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_OFF );	//•\¦
+				ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_OFF );	//è¡¨ç¤º
 
-				//¤•i‚ğƒZƒbƒg
+				//å•†å“ã‚’ã‚»ãƒƒãƒˆ
 				wk->p_item_no[wk->card_num]	= wk->atari_item[wk->atari_poke];
 
-				//u‚«‚ñ‚Ì‚½‚Üv‚Ì‚ÍƒAƒCƒeƒ€”‚ğ1‚É‚·‚é
+				//ã€Œãã‚“ã®ãŸã¾ã€ã®æ™‚ã¯ã‚¢ã‚¤ãƒ†ãƒ æ•°ã‚’1ã«ã™ã‚‹
 				if( wk->atari_item[wk->atari_poke] == ITEM_KINNOTAMA ){
 					wk->p_item_num[wk->card_num]= 1;
 				}else{
 					wk->p_item_num[wk->card_num]= 3;
 				}
 
-				//ƒƒ^ƒ‚ƒ“‚Ìƒ‚ƒUƒCƒNƒGƒtƒFƒNƒg‰Šú‰»
+				//ãƒ¡ã‚¿ãƒ¢ãƒ³ã®ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
 				if( Scratch_MosaicEffInit(wk) == TRUE ){
 					wk->time_wait = SCRATCH_RESULT_MOSAIC_WAIT;
 				}else{
 					wk->time_wait = 0;
 				}
 
-				Scratch_AtariMsg( wk );									//“–‚½‚èƒƒbƒZ[ƒW
+				Scratch_AtariMsg( wk );									//å½“ãŸã‚Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 				wk->sub_seq = SEQ_SUB_GIN_OK_ATARI_MOSAIC_WAIT;
 				return FALSE;
 			}
 
-			//“–‚½‚è‚ª‚»‚ë‚Á‚Ä‚¢‚È‚­‚ÄA‘S‚Äí‚Á‚½
+			//å½“ãŸã‚ŠãŒãã‚ã£ã¦ã„ãªãã¦ã€å…¨ã¦å‰Šã£ãŸæ™‚
 			if( wk->kezuri_card_num >= SCRATCH_CARD_KEZURI_NUM	){
 
 				Snd_SeStopBySeqNo( SE_D_CARD_KEZURI, 0 );
 				wk->time_wait = SCRATCH_RESULT_MSG_DEL_WAIT;
-				ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_OFF );	//•\¦
+				ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_OFF );	//è¡¨ç¤º
 
-				Scratch_HazureMsg( wk );								//ŠO‚êƒƒbƒZ[ƒW
+				Scratch_HazureMsg( wk );								//å¤–ã‚Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 				wk->sub_seq = SEQ_SUB_GIN_OK_HAZURE_MSG_WAIT;
 				return FALSE;
 			}
 
-		//ƒ^ƒbƒ`‚µ‚Ä‚¢‚È‚¢
+		//ã‚¿ãƒƒãƒã—ã¦ã„ãªã„æ™‚
 		}else{
-			Snd_SeStopBySeqNo( SE_D_CARD_KEZURI, 0 );					//í‚èƒ‹[ƒv‰¹‚ğ~‚ß‚é
+			Snd_SeStopBySeqNo( SE_D_CARD_KEZURI, 0 );					//å‰Šã‚Šãƒ«ãƒ¼ãƒ—éŸ³ã‚’æ­¢ã‚ã‚‹
 		}
 	
-		//ƒŠ[ƒ`‚Ì(‰æ–Ê‚Éƒ^ƒbƒ`‚µ‚Ä‚¢‚È‚¢‚àˆ—‚·‚é)
+		//ãƒªãƒ¼ãƒã®æ™‚(ç”»é¢ã«ã‚¿ãƒƒãƒã—ã¦ã„ãªã„æ™‚ã‚‚å‡¦ç†ã™ã‚‹)
 		if( wk->waku_flag == 1 ){
-			Scratch_PlttNoResChg( wk );		//ƒEƒFƒCƒgŒvZ‚µ‚ÄƒpƒŒƒbƒgƒiƒ“ƒo[AƒŠƒ\[ƒX•ÏX
+			Scratch_PlttNoResChg( wk );		//ã‚¦ã‚§ã‚¤ãƒˆè¨ˆç®—ã—ã¦ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã€ãƒªã‚½ãƒ¼ã‚¹å¤‰æ›´
 		}
 
-		//3–‡–Ú‚ÌƒJ[ƒh‚ğ—V‚ñ‚Å‚¢‚é
+		//3æšç›®ã®ã‚«ãƒ¼ãƒ‰ã‚’éŠã‚“ã§ã„ã‚‹æ™‚
 		if( wk->card_num == (SCRATCH_CARD_NUM - 1) ){
-			//‚â‚ß‚é‚ğƒ^ƒbƒ`‚µ‚½‚©
+			//ã‚„ã‚ã‚‹ã‚’ã‚¿ãƒƒãƒã—ãŸã‹
 			index = GF_TP_RectHitTrg( (const RECT_HIT_TBL*)yameru_hit_tbl );
 			if( index != RECT_HIT_NONE ){
-				ScratchObj_SetAnmFlag( wk->p_d_button, 1 );		//ƒ{ƒ^ƒ“ƒAƒjƒON
-				Scratch_KakuninMsg( wk );						//ƒXƒNƒ‰ƒbƒ`‚ğ‚â‚ß‚Ü‚·‚©H
+				ScratchObj_SetAnmFlag( wk->p_d_button, 1 );		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ON
+				Scratch_KakuninMsg( wk );						//ã‚¹ã‚¯ãƒ©ãƒƒãƒã‚’ã‚„ã‚ã¾ã™ã‹ï¼Ÿ
 				Snd_SePlay( SE_D_BUTTON_TOUCH );
-				ScratchObj_AnmChg( wk->p_d_button, ANM_BUTTON_YAMERU );		//‚â‚ß‚é‚É•ÏX
+				ScratchObj_AnmChg( wk->p_d_button, ANM_BUTTON_YAMERU );		//ã‚„ã‚ã‚‹ã«å¤‰æ›´
 				Scratch_AllocTouchSub( wk );
 				Scratch_InitTouchSub( wk );
 				wk->sub_seq = SEQ_SUB_YAMERU_WAIT;
 				break;
 			}
 		}else{
-			//‚Â‚¬‚ÌƒJ[ƒh‚Ö‚ğƒ^ƒbƒ`‚µ‚½‚©
+			//ã¤ãã®ã‚«ãƒ¼ãƒ‰ã¸ã‚’ã‚¿ãƒƒãƒã—ãŸã‹
 			index = GF_TP_RectHitTrg( (const RECT_HIT_TBL*)next_hit_tbl );
 
 			if( index != RECT_HIT_NONE ){
-				ScratchObj_SetAnmFlag( wk->p_d_button, 1 );		//ƒ{ƒ^ƒ“ƒAƒjƒON
-				Scratch_KakuninMsg( wk );						//ƒXƒNƒ‰ƒbƒ`‚ğ‚â‚ß‚Ü‚·‚©H
+				ScratchObj_SetAnmFlag( wk->p_d_button, 1 );		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ON
+				Scratch_KakuninMsg( wk );						//ã‚¹ã‚¯ãƒ©ãƒƒãƒã‚’ã‚„ã‚ã¾ã™ã‹ï¼Ÿ
 				Snd_SePlay( SE_D_BUTTON_TOUCH );
-				ScratchObj_AnmChg( wk->p_d_button, ANM_BUTTON_NEXT );		//‚Â‚¬‚ÌƒJ[ƒh‚Ö‚É•ÏX
+				ScratchObj_AnmChg( wk->p_d_button, ANM_BUTTON_NEXT );		//ã¤ãã®ã‚«ãƒ¼ãƒ‰ã¸ã«å¤‰æ›´
 				Scratch_AllocTouchSub( wk );
 				Scratch_InitTouchSub( wk );
 				wk->sub_seq = SEQ_SUB_NEXT_WAIT;
@@ -1552,11 +1552,11 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒ‚ƒUƒCƒNƒEƒFƒCƒg
+	//ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¦ã‚§ã‚¤ãƒˆ
 	case SEQ_SUB_GIN_OK_ATARI_MOSAIC_WAIT:
 
 		if( wk->time_wait == 0 ){
-			//ƒƒ^ƒ‚ƒ“‚Ìƒ‚ƒUƒCƒNƒGƒtƒFƒNƒgI—¹‘Ò‚¿
+			//ãƒ¡ã‚¿ãƒ¢ãƒ³ã®ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾…ã¡
 			if( Scratch_MosaicEffMain(wk,0) == FALSE ){
 				wk->sub_seq = SEQ_SUB_GIN_OK_ATARI_MOSAIC_WAIT2;
 			}
@@ -1566,10 +1566,10 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒ‚ƒUƒCƒNƒEƒFƒCƒg2
+	//ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¦ã‚§ã‚¤ãƒˆ2
 	case SEQ_SUB_GIN_OK_ATARI_MOSAIC_WAIT2:
 
-		//ƒƒ^ƒ‚ƒ“‚Ìƒ‚ƒUƒCƒNƒGƒtƒFƒNƒgI—¹‘Ò‚¿
+		//ãƒ¡ã‚¿ãƒ¢ãƒ³ã®ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾…ã¡
 		if( Scratch_MosaicEffMain(wk,1) == FALSE ){
 			//wk->time_wait = SCRATCH_RESULT_MSG_DEL_WAIT;
 			wk->time_wait = 0;
@@ -1578,23 +1578,23 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//“–‚½‚èƒƒbƒZ[ƒW•\¦
+	//å½“ãŸã‚Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	case SEQ_SUB_GIN_OK_ATARI_MSG_WAIT:
 
-		//“–‚½‚èƒEƒBƒ“ƒhƒE‚ªƒAƒjƒ[ƒVƒ‡ƒ“‚µ‚Ä‚¢‚½‚ç”²‚¯‚é
+		//å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã—ã¦ã„ãŸã‚‰æŠœã‘ã‚‹
 		if( ScratchObj_AnmActiveCheck(wk->p_d_atari_win) == TRUE ){
 			break;
 		}
 
-		//ŠÔ‚ÅƒƒbƒZ[ƒWÁ‚µ‚Ä‚¨‚­
+		//æ™‚é–“ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ¶ˆã—ã¦ãŠã
 		if( wk->time_wait == 0 ){
 
 			for( i=0; i < SCRATCH_CARD_ATARI_NUM ;i++ ){
-				ScratchObj_Vanish( wk->p_d_atari[i], SCRATCH_VANISH_ON );		//”ñ•\¦
+				ScratchObj_Vanish( wk->p_d_atari[i], SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 			}
 			
-			ScratchObj_Vanish( wk->p_d_atari_win, SCRATCH_VANISH_ON );			//”ñ•\¦
-			//GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_ATARI, VISIBLE_OFF );	//‰º“–‚½‚èwin off
+			ScratchObj_Vanish( wk->p_d_atari_win, SCRATCH_VANISH_ON );			//éè¡¨ç¤º
+			//GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_ATARI, VISIBLE_OFF );	//ä¸‹å½“ãŸã‚Šwin off
 			Scratch_SeqSubNextCard( wk );
 			Scratch_SeqSubGinOk( wk );
 			return TRUE;
@@ -1604,12 +1604,12 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//‚Í‚¸‚êƒƒbƒZ[ƒW•\¦
+	//ã¯ãšã‚Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	case SEQ_SUB_GIN_OK_HAZURE_MSG_WAIT:
 
-		//ŠÔ‚ÅƒƒbƒZ[ƒWÁ‚µ‚Ä‚¨‚­
+		//æ™‚é–“ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ¶ˆã—ã¦ãŠã
 		if( wk->time_wait == 0 ){
-			GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_TOUCH, VISIBLE_OFF );	//í‚è–ÊƒIƒt
+			GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_TOUCH, VISIBLE_OFF );	//å‰Šã‚Šé¢ã‚ªãƒ•
 			Scratch_SeqSubNextCard( wk );
 			Scratch_SeqSubGinOk( wk );
 			wk->time_wait = SCRATCH_GIN_ALL_CLEAR_WAIT;
@@ -1620,7 +1620,7 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//‚Í‚¸‚ê‚Å‹â”“‚ğ‘S‚ÄƒNƒŠƒA‚µ‚½ƒEƒFƒCƒg
+	//ã¯ãšã‚Œã§éŠ€ç®”ã‚’å…¨ã¦ã‚¯ãƒªã‚¢ã—ãŸã‚¦ã‚§ã‚¤ãƒˆ
 	case SEQ_SUB_GIN_OK_GIN_ALL_CLEAR_WAIT:
 		if( wk->time_wait == 0 ){
 			return TRUE;
@@ -1630,29 +1630,29 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//‚Â‚¬‚ÌƒJ[ƒh‚ÖƒEƒFƒCƒg
+	//ã¤ãã®ã‚«ãƒ¼ãƒ‰ã¸ã‚¦ã‚§ã‚¤ãƒˆ
 	case SEQ_SUB_NEXT_WAIT:
 		ret = TOUCH_SW_MainMC( wk->touch_subwin );
 
-		//‰½‚à‚È‚µ
+		//ä½•ã‚‚ãªã—
 		//if( ret == TOUCH_SW_RET_NORMAL ){
 			//
 		//}
 
-		//u‚Í‚¢v‰Ÿ‚µ‚½uŠÔ
+		//ã€Œã¯ã„ã€æŠ¼ã—ãŸç¬é–“
 		//if( ret == TOUCH_SW_RET_YES_TOUCH ){
 		if( ret == TOUCH_SW_RET_YES ){
-			ScratchObj_SetAnmFlag( wk->p_d_button, 0 );		//ƒ{ƒ^ƒ“ƒAƒjƒOFF
+			ScratchObj_SetAnmFlag( wk->p_d_button, 0 );		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡OFF
 			BmpMenuWinClear( &wk->bmpwin[BMPWIN_TALK], WINDOW_TRANS_ON );
 			GF_BGL_BmpWinOff( &wk->bmpwin[BMPWIN_TALK] );
 			Scratch_SeqSubNextCard( wk );
 			Scratch_FreeTouchSub( wk );
 			return TRUE;
 
-		//u‚¢‚¢‚¦v‰Ÿ‚µ‚½uŠÔ
+		//ã€Œã„ã„ãˆã€æŠ¼ã—ãŸç¬é–“
 		//}else if( ret == TOUCH_SW_RET_NO_TOUCH ){
 		}else if( ret == TOUCH_SW_RET_NO ){
-			ScratchObj_SetAnmFlag( wk->p_d_button, 0 );		//ƒ{ƒ^ƒ“ƒAƒjƒOFF
+			ScratchObj_SetAnmFlag( wk->p_d_button, 0 );		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡OFF
 			BmpMenuWinClear( &wk->bmpwin[BMPWIN_TALK], WINDOW_TRANS_ON );
 			GF_BGL_BmpWinOff( &wk->bmpwin[BMPWIN_TALK] );
 			Scratch_FreeTouchSub( wk );
@@ -1662,29 +1662,29 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//‚â‚ß‚éƒEƒFƒCƒg
+	//ã‚„ã‚ã‚‹ã‚¦ã‚§ã‚¤ãƒˆ
 	case SEQ_SUB_YAMERU_WAIT:
 		ret = TOUCH_SW_MainMC( wk->touch_subwin );
 
-		//‰½‚à‚È‚µ
+		//ä½•ã‚‚ãªã—
 		//if( ret == TOUCH_SW_RET_NORMAL ){
 			//
 		//}
 
-		//u‚Í‚¢v‰Ÿ‚µ‚½uŠÔ
+		//ã€Œã¯ã„ã€æŠ¼ã—ãŸç¬é–“
 		//if( ret == TOUCH_SW_RET_YES_TOUCH ){
 		if( ret == TOUCH_SW_RET_YES ){
-			ScratchObj_SetAnmFlag( wk->p_d_button, 0 );		//ƒ{ƒ^ƒ“ƒAƒjƒOFF
+			ScratchObj_SetAnmFlag( wk->p_d_button, 0 );		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡OFF
 			BmpMenuWinClear( &wk->bmpwin[BMPWIN_TALK], WINDOW_TRANS_ON );
 			GF_BGL_BmpWinOff( &wk->bmpwin[BMPWIN_TALK] );
 			Scratch_SeqSubYameruCard( wk );
 			Scratch_FreeTouchSub( wk );
 			return TRUE;
 
-		//u‚¢‚¢‚¦v‰Ÿ‚µ‚½uŠÔ
+		//ã€Œã„ã„ãˆã€æŠ¼ã—ãŸç¬é–“
 		//}else if( ret == TOUCH_SW_RET_NO_TOUCH ){
 		}else if( ret == TOUCH_SW_RET_NO ){
-			ScratchObj_SetAnmFlag( wk->p_d_button, 0 );		//ƒ{ƒ^ƒ“ƒAƒjƒOFF
+			ScratchObj_SetAnmFlag( wk->p_d_button, 0 );		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡OFF
 			BmpMenuWinClear( &wk->bmpwin[BMPWIN_TALK], WINDOW_TRANS_ON );
 			GF_BGL_BmpWinOff( &wk->bmpwin[BMPWIN_TALK] );
 			Scratch_FreeTouchSub( wk );
@@ -1694,9 +1694,9 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//‚â‚ß‚éƒEƒFƒCƒgu‚¢‚¢‚¦v
+	//ã‚„ã‚ã‚‹ã‚¦ã‚§ã‚¤ãƒˆã€Œã„ã„ãˆã€
 	case SEQ_SUB_YAMERU_WAIT_NO:
-		if( GF_TP_GetCont() == FALSE ){			//ˆê“x‰æ–Ê‚©‚ç—£‚µ‚Ä‚©‚çŸ‚Öi‚Ş
+		if( GF_TP_GetCont() == FALSE ){			//ä¸€åº¦ç”»é¢ã‹ã‚‰é›¢ã—ã¦ã‹ã‚‰æ¬¡ã¸é€²ã‚€
 			wk->sub_seq = SEQ_SUB_TYPE_SEL;
 		}
 		break;
@@ -1708,11 +1708,11 @@ static BOOL Seq_GameCardTouch( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒJ[ƒhí‚èƒAƒEƒg
+ * @brief	ã‚²ãƒ¼ãƒ ã‚«ãƒ¼ãƒ‰å‰Šã‚Šã‚¢ã‚¦ãƒˆ
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameCardTouchOut( SCRATCH_WORK* wk )
@@ -1725,7 +1725,7 @@ static BOOL Seq_GameCardTouchOut( SCRATCH_WORK* wk )
 		SEQ_SUB_CARD_TOUCH_OUT_END,
 	};
 
-	//‚Ç‚ÌƒJ[ƒh‚ğ‘I‚ñ‚¾‚©
+	//ã©ã®ã‚«ãƒ¼ãƒ‰ã‚’é¸ã‚“ã ã‹
 	pos = wk->card_col[wk->card_num-1];
 	OS_Printf( "pos = %d\n", pos );
 					
@@ -1733,11 +1733,11 @@ static BOOL Seq_GameCardTouchOut( SCRATCH_WORK* wk )
 
 	//
 	case SEQ_SUB_CARD_TOUCH_OUT_START:
-		GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_OFF );		//‰ºƒƒbƒZ[ƒWƒIƒt
-		GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_MSG, VISIBLE_OFF );		//ãƒƒbƒZ[ƒWƒIƒt
+		GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_OFF );		//ä¸‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ•
+		GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_MSG, VISIBLE_OFF );		//ä¸Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ•
 
-		//‚Â‚¬‚ÌƒJ[ƒh‚Ö(‚â‚ß‚é)ƒ{ƒ^ƒ“
-		ScratchObj_Vanish( wk->p_d_button, SCRATCH_VANISH_ON );				//ƒIƒt
+		//ã¤ãã®ã‚«ãƒ¼ãƒ‰ã¸(ã‚„ã‚ã‚‹)ãƒœã‚¿ãƒ³
+		ScratchObj_Vanish( wk->p_d_button, SCRATCH_VANISH_ON );				//ã‚ªãƒ•
 
 		wk->counter	= 0;
 		wk->counter2= 0;
@@ -1747,7 +1747,7 @@ static BOOL Seq_GameCardTouchOut( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒJ[ƒhƒAƒEƒg
+	//ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case SEQ_SUB_CARD_TOUCH_OUT:
 		GF_BGL_ScrollSet( wk->bgl, SCRATCH_FRAME_U_YAKU, GF_BGL_SCROLL_X_SET, wk->counter2 );
 		GF_BGL_ScrollSet( wk->bgl, SCRATCH_FRAME_D_TOUCH, GF_BGL_SCROLL_X_SET, wk->counter2 );
@@ -1758,7 +1758,7 @@ static BOOL Seq_GameCardTouchOut( SCRATCH_WORK* wk )
 		if( wk->counter >= SCRATCH_CARD_OUT_OFFSET_X ){
 			wk->sub_seq = SEQ_SUB_CARD_TOUCH_OUT_END;
 		}else{
-			//ãFƒ|ƒPƒ‚ƒ“OBJ•\¦
+			//ä¸Šï¼šãƒã‚±ãƒ¢ãƒ³OBJè¡¨ç¤º
 			for( i=0; i < SCRATCH_U_POKE_MAX ;i++ ){
 				ScratchObj_SetObjPos(	wk->p_u_poke[i], 
 						(SCRATCH_U_POKE_X + wk->counter),
@@ -1766,21 +1766,21 @@ static BOOL Seq_GameCardTouchOut( SCRATCH_WORK* wk )
 			}
 
 #if 0
-			//‰ºFƒƒNOBJ•\¦
+			//ä¸‹ï¼šãƒ¯ã‚¯OBJè¡¨ç¤º
 			for( i=0; i < wk->kezuri_card_num ;i++ ){
 				ScratchObj_SetObjPos(wk->p_d_waku[i], 
 					(d_poke_pos[ wk->kezuri_card[i] ].x + wk->counter + SCRATCH_GIN_WAKU_OFFSET_X), 
 					d_poke_pos[ wk->kezuri_card[i] ].y + SCRATCH_GIN_WAKU_OFFSET_Y );
 
-				ScratchObj_Vanish( wk->p_d_waku[i], SCRATCH_VANISH_ON );		//”ñ•\¦
+				ScratchObj_Vanish( wk->p_d_waku[i], SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 			}
 #else
 			for( i=0; i < SCRATCH_CARD_ATARI_NUM ;i++ ){
-				ScratchObj_Vanish( wk->p_d_waku[i], SCRATCH_VANISH_ON );		//”ñ•\¦
+				ScratchObj_Vanish( wk->p_d_waku[i], SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 			}
 #endif
 
-			//‰ºFƒ|ƒPƒ‚ƒ“OBJ•\¦
+			//ä¸‹ï¼šãƒã‚±ãƒ¢ãƒ³OBJè¡¨ç¤º
 			for( i=0; i < SCRATCH_D_POKE_MAX ;i++ ){
 				ScratchObj_SetObjPos(	wk->p_d_poke[i], (d_poke_pos[i].x + wk->counter), 
 										d_poke_pos[i].y );
@@ -1791,7 +1791,7 @@ static BOOL Seq_GameCardTouchOut( SCRATCH_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒJ[ƒhƒAƒEƒgI—¹
+	//ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆçµ‚äº†
 	case SEQ_SUB_CARD_TOUCH_OUT_END:
 		wk->counter	= 0;
 		wk->counter2= 0;
@@ -1804,11 +1804,11 @@ static BOOL Seq_GameCardTouchOut( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFI—¹‚Ö
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†ã¸
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameEnd( SCRATCH_WORK* wk )
@@ -1822,7 +1822,7 @@ static BOOL Seq_GameEnd( SCRATCH_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhƒAƒEƒg
+	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case 1:
 		wk->wait--;
 		if( wk->wait == 0 ){
@@ -1833,7 +1833,7 @@ static BOOL Seq_GameEnd( SCRATCH_WORK* wk )
 		}
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 2:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			return TRUE;
@@ -1847,15 +1847,15 @@ static BOOL Seq_GameEnd( SCRATCH_WORK* wk )
 
 //==============================================================================================
 //
-//	‹¤’Êˆ—
+//	å…±é€šå‡¦ç†
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º‰æ–ÊƒƒN’Ç‰Á
+ * @brief	ä¸‹ç”»é¢ãƒ¯ã‚¯è¿½åŠ 
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1872,7 +1872,7 @@ static void Scratch_WakuAdd( SCRATCH_WORK* wk )
 											SCRATCH_OBJ_BG_PRI_L, 
 											(SCRATCH_OBJ_PRI_N + 1) );
 											//SCRATCH_OBJ_PRI_H );
-		ScratchObj_Vanish( wk->p_d_waku[i], SCRATCH_VANISH_ON );		//”ñ•\¦
+		ScratchObj_Vanish( wk->p_d_waku[i], SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 	}
 
 	return;
@@ -1880,9 +1880,9 @@ static void Scratch_WakuAdd( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º‰æ–Ê“–‚½‚èƒ|ƒPƒ‚ƒ“’Ç‰Á
+ * @brief	ä¸‹ç”»é¢å½“ãŸã‚Šãƒã‚±ãƒ¢ãƒ³è¿½åŠ 
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1898,7 +1898,7 @@ static void Scratch_AtariAdd( SCRATCH_WORK* wk )
 											DISP_MAIN,
 											SCRATCH_OBJ_BG_PRI_H, 
 											SCRATCH_OBJ_PRI_H );
-		ScratchObj_Vanish( wk->p_d_atari[i], SCRATCH_VANISH_ON );		//”ñ•\¦
+		ScratchObj_Vanish( wk->p_d_atari[i], SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 	}
 
 	return;
@@ -1906,39 +1906,39 @@ static void Scratch_AtariAdd( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º‰æ–Êƒ{ƒ^ƒ“’Ç‰Á
+ * @brief	ä¸‹ç”»é¢ãƒœã‚¿ãƒ³è¿½åŠ 
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void Scratch_ButtonAdd( SCRATCH_WORK* wk )
 {
-	//‰ºFƒ{ƒ^ƒ“OBJ’Ç‰Á
+	//ä¸‹ï¼šãƒœã‚¿ãƒ³OBJè¿½åŠ 
 	wk->p_d_button = ScratchObj_Create( &wk->scratch_clact, SCRATCH_ID_OBJ_D_BUTTON, 
 										ANM_BUTTON_NEXT, d_next_button_pos.x, d_next_button_pos.y, 
 										DISP_MAIN,
 										SCRATCH_OBJ_BG_PRI_N, 
 										SCRATCH_OBJ_PRI_H );
-	ScratchObj_Vanish( wk->p_d_button, SCRATCH_VANISH_ON );		//”ñ•\¦
+	ScratchObj_Vanish( wk->p_d_button, SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 
-	//‰ºF^‚ñ’†ƒEƒBƒ“ƒhƒEOBJ’Ç‰Á
+	//ä¸‹ï¼šçœŸã‚“ä¸­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OBJè¿½åŠ 
 	wk->p_d_win = ScratchObj_Create(&wk->scratch_clact, SCRATCH_ID_OBJ_D_BUTTON, 
 									ANM_CENTER_WIN, d_win_pos.x, d_win_pos.y, 
 									DISP_MAIN,
 									SCRATCH_OBJ_BG_PRI_N, 
 									SCRATCH_OBJ_PRI_H );
-	ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_ON );		//”ñ•\¦
+	ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º‰æ–ÊƒJ[ƒhíœ
+ * @brief	ä¸‹ç”»é¢ã‚«ãƒ¼ãƒ‰å‰Šé™¤
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1958,9 +1958,9 @@ static void Scratch_CardDelete( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê íœ
+ * @brief	å…±é€š å‰Šé™¤
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2005,40 +2005,40 @@ static void ScratchCommon_Delete( SCRATCH_WORK* wk )
 		ScratchObj_Delete( wk->p_d_atari_win );
 	}
 
-	//ƒ{ƒ^ƒ“ƒtƒHƒ“ƒgíœ
+	//ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆå‰Šé™¤
 	FontProc_UnloadFont( FONT_BUTTON );
 	
-	//ƒpƒŒƒbƒgƒtƒF[ƒhŠJ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰é–‹æ”¾
 	PaletteFadeWorkAllocFree( wk->pfd, FADE_MAIN_OBJ );
 	PaletteFadeWorkAllocFree( wk->pfd, FADE_MAIN_BG );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ŠJ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ é–‹æ”¾
 	PaletteFadeFree( wk->pfd );
 	wk->pfd = NULL;
 
-	ScratchClact_DeleteCellObject(&wk->scratch_clact);		//2DƒIƒuƒWƒFƒNƒgŠÖ˜A—ÌˆæŠJ•ú
+	ScratchClact_DeleteCellObject(&wk->scratch_clact);		//2Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–¢é€£é ˜åŸŸé–‹æ”¾
 
 	MSG_DsIconFlashDelete( wk->msgicon );
-	MSGMAN_Delete( wk->msgman );							//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠJ•ú
+	MSGMAN_Delete( wk->msgman );							//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–‹æ”¾
 	WORDSET_Delete( wk->wordset );
-	STRBUF_Delete( wk->msg_buf );							//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
-	STRBUF_Delete( wk->tmp_buf );							//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
+	STRBUF_Delete( wk->msg_buf );							//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
+	STRBUF_Delete( wk->tmp_buf );							//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 	NUMFONT_Delete( wk->num_font );
 
-	sys_FreeMemoryEz( wk->p_char );							//ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^
-	sys_FreeMemoryEz( wk->buf );							//ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğƒRƒs[‚µ‚½ƒoƒbƒtƒ@
+	sys_FreeMemoryEz( wk->p_char );							//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	sys_FreeMemoryEz( wk->buf );							//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã—ãŸãƒãƒƒãƒ•ã‚¡
 
-	ScratchExitBmpWin( wk->bmpwin );						//BMPƒEƒBƒ“ƒhƒEŠJ•ú
-	Scratch_BgExit( wk->bgl );								//BGLíœ
+	ScratchExitBmpWin( wk->bmpwin );						//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
+	Scratch_BgExit( wk->bgl );								//BGLå‰Šé™¤
 	ArchiveDataHandleClose( wk->hdl );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	•œ‹A
+ * @brief	å¾©å¸°
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2057,17 +2057,17 @@ static void Scratch_Recover( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê ‰Šú‰»1
+ * @brief	å…±é€š åˆæœŸåŒ–1
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void Scratch_InitSub1( void )
 {
-	sys_VBlankFuncChange( NULL, NULL );					//VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );						//HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );					//VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );						//HBlankã‚»ãƒƒãƒˆ
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
@@ -2077,9 +2077,9 @@ static void Scratch_InitSub1( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê ‰Šú‰»2
+ * @brief	å…±é€š åˆæœŸåŒ–2
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2089,10 +2089,10 @@ static void Scratch_InitSub2( SCRATCH_WORK* wk )
 	int i,flip;
 
 	wk->hdl= ArchiveDataHandleOpen( ARC_SCRATCH, HEAPID_SCRATCH );
-	Scratch_BgInit( wk );								//BG‰Šú‰»
-	Scratch_ObjInit( wk );								//OBJ‰Šú‰»
+	Scratch_BgInit( wk );								//BGåˆæœŸåŒ–
+	Scratch_ObjInit( wk );								//OBJåˆæœŸåŒ–
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	wk->msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, 
 								NARC_msg_scratch_contents_dat, HEAPID_SCRATCH );
 
@@ -2100,36 +2100,36 @@ static void Scratch_InitSub2( SCRATCH_WORK* wk )
 	wk->msg_buf = STRBUF_Create( SCRATCH_MSG_BUF_SIZE, HEAPID_SCRATCH );
 	wk->tmp_buf = STRBUF_Create( SCRATCH_MSG_BUF_SIZE, HEAPID_SCRATCH );
 
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, BS_FONT_PAL * 32, HEAPID_SCRATCH );
 	SystemFontPaletteLoad( PALTYPE_SUB_BG, BS_FONT_PAL * 32, HEAPID_SCRATCH );
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, BS_MSGFONT_PAL * 32, HEAPID_SCRATCH );
 	TalkFontPaletteLoad( PALTYPE_SUB_BG, BS_MSGFONT_PAL * 32, HEAPID_SCRATCH );
 
-	//ƒ{ƒ^ƒ“ƒtƒHƒ“ƒgƒ[ƒh
+	//ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆãƒ­ãƒ¼ãƒ‰
 	FontProc_LoadFont( FONT_BUTTON, HEAPID_SCRATCH );
 
-	//8x8ƒtƒHƒ“ƒgì¬(g—pbmpwin[BMPWIN_TYPE]‚ÌƒpƒŒƒbƒg(BS_FONT_PAL)‚ğg—p
+	//8x8ãƒ•ã‚©ãƒ³ãƒˆä½œæˆ(ä½¿ç”¨bmpwin[BMPWIN_TYPE]ã®ãƒ‘ãƒ¬ãƒƒãƒˆ(BS_FONT_PAL)ã‚’ä½¿ç”¨
 	wk->num_font = NUMFONT_Create( 15, 14, FBMP_COL_NULL, HEAPID_SCRATCH );
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 	ScratchAddBmpWin( wk->bgl, wk->bmpwin );
 
-	//ã‰º‹t‚È‚Ì‚Å’ˆÓ
+	//ä¸Šä¸‹é€†ãªã®ã§æ³¨æ„
 	wk->msgicon = MSG_DsIconFlashAdd( NULL, MSG_DSI_SUBDISP, BS_MSGFONT_PAL, HEAPID_SCRATCH );
 
-	//ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğƒoƒbƒtƒ@‚É“ÇA“]‘—(‚ ‚Æ‚ÅŠJ•ú‚·‚é)
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«èª­è¾¼ã€è»¢é€(ã‚ã¨ã§é–‹æ”¾ã™ã‚‹)
 	Scratch_Touch_0( wk );
 			
-	//ƒoƒbƒtƒ@‚ğ¶¬(‚ ‚Æ‚ÅŠJ•ú‚·‚é)
+	//ãƒãƒƒãƒ•ã‚¡ã‚’ç”Ÿæˆ(ã‚ã¨ã§é–‹æ”¾ã™ã‚‹)
 	Scratch_Touch_1( wk );
 
-	//ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğƒRƒs[
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 	Scratch_Touch_1_5( wk );
 
 	GF_Disp_DispOn();
 
-	//ãFƒ|ƒPƒ‚ƒ“OBJ’Ç‰Á
+	//ä¸Šï¼šãƒã‚±ãƒ¢ãƒ³OBJè¿½åŠ 
 	for( i=0; i < SCRATCH_U_POKE_MAX ;i++ ){
 		wk->p_u_poke[i] = ScratchObj_Create(&wk->scratch_clact, SCRATCH_ID_OBJ_U_POKE, 
 											ANM_POKE_REE + i, 
@@ -2138,22 +2138,22 @@ static void Scratch_InitSub2( SCRATCH_WORK* wk )
 											DISP_SUB,
 											SCRATCH_OBJ_BG_PRI_H, 
 											SCRATCH_OBJ_PRI_H );
-		ScratchObj_Vanish( wk->p_u_poke[i], SCRATCH_VANISH_ON );		//”ñ•\¦
+		ScratchObj_Vanish( wk->p_u_poke[i], SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 	}
 
-	//‰ºFƒ|ƒPƒ‚ƒ“OBJ’Ç‰Á
+	//ä¸‹ï¼šãƒã‚±ãƒ¢ãƒ³OBJè¿½åŠ 
 	for( i=0; i < SCRATCH_D_POKE_MAX ;i++ ){
 		wk->p_d_poke[i] = ScratchObj_Create(&wk->scratch_clact, SCRATCH_ID_OBJ_D_POKE, 
 											ANM_POKE_REE, d_poke_pos[i].x, d_poke_pos[i].y, 
 											DISP_MAIN,
 											SCRATCH_OBJ_BG_PRI_L, 
 											SCRATCH_OBJ_PRI_N );
-		ScratchObj_Vanish( wk->p_d_poke[i], SCRATCH_VANISH_ON );		//”ñ•\¦
+		ScratchObj_Vanish( wk->p_d_poke[i], SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 	}
 
-	Scratch_ButtonAdd( wk );					//‰ºFƒ{ƒ^ƒ“OBJ’Ç‰Á
+	Scratch_ButtonAdd( wk );					//ä¸‹ï¼šãƒœã‚¿ãƒ³OBJè¿½åŠ 
 
-	//‰ºFƒJ[ƒhOBJ’Ç‰Á
+	//ä¸‹ï¼šã‚«ãƒ¼ãƒ‰OBJè¿½åŠ 
 	for( i=0; i < SCRATCH_D_CARD_MAX ;i++ ){
 		wk->p_d_card[i] = ScratchObj_Create(&wk->scratch_clact, SCRATCH_ID_OBJ_D_CARD, 
 											(ANM_CARD_BLUE + i), d_card_pos[i].x, d_card_pos[i].y, 
@@ -2161,16 +2161,16 @@ static void Scratch_InitSub2( SCRATCH_WORK* wk )
 											//SCRATCH_OBJ_BG_PRI_H, 
 											SCRATCH_OBJ_BG_PRI_N, 
 											SCRATCH_OBJ_PRI_H );
-		//ScratchObj_Vanish( wk->p_d_card[i], SCRATCH_VANISH_ON );		//”ñ•\¦
+		//ScratchObj_Vanish( wk->p_d_card[i], SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 		
-		//‰æ–ÊŠO‚É‚µ‚Ä‚¨‚­
+		//ç”»é¢å¤–ã«ã—ã¦ãŠã
 		ScratchObj_SetObjPos(	wk->p_d_card[i], (d_card_pos[i].x + SCRATCH_CARD_IN_OFFSET_X), 
 								d_card_pos[i].y );
 
 		ScratchObj_Priority( wk->p_d_card[i], (SCRATCH_OBJ_PRI_L+i) );
 	}
 
-	//“–‚½‚èƒEƒBƒ“ƒhƒE
+	//å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	wk->p_d_atari_win = ScratchObj_Create(	&wk->scratch_clact, SCRATCH_ID_OBJ_D_ATARI, 
 											0, 
 											d_atari_win_pos.x,
@@ -2178,45 +2178,45 @@ static void Scratch_InitSub2( SCRATCH_WORK* wk )
 											DISP_MAIN,
 											SCRATCH_OBJ_BG_PRI_H, 
 											SCRATCH_OBJ_PRI_N );
-	ScratchObj_Vanish( wk->p_d_atari_win, SCRATCH_VANISH_ON );		//”ñ•\¦
+	ScratchObj_Vanish( wk->p_d_atari_win, SCRATCH_VANISH_ON );		//éè¡¨ç¤º
 
 #if 1
-	//VRAMŠ„‚è“–‚Ä‚ªC=128,I=16‚µ‚©‚È‚­‚ÄAC‚Í’ÊM—p‚Åg—p•s‰Â‚È‚Ì‚ÅB
+	//VRAMå‰²ã‚Šå½“ã¦ãŒC=128,I=16ã—ã‹ãªãã¦ã€Cã¯é€šä¿¡ç”¨ã§ä½¿ç”¨ä¸å¯ãªã®ã§ã€‚
 
-	//‰æ–Êo—Í‚ğã‰º“ü‚ê‘Ö‚¦‚é
+	//ç”»é¢å‡ºåŠ›ã‚’ä¸Šä¸‹å…¥ã‚Œæ›¿ãˆã‚‹
 	GX_SetDispSelect( GX_DISP_SELECT_SUB_MAIN );
 #endif
 
-	InitTPSystem();										// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	InitTPSystem();										// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPNoBuff(1);
 	//InitTPNoBuff(2);
 	//InitTPNoBuff(3);
 	//InitTPNoBuff(4);
 
-	sys_VBlankFuncChange( VBlankFunc, (void*)wk );		//VBlankƒZƒbƒg
+	sys_VBlankFuncChange( VBlankFunc, (void*)wk );		//VBlankã‚»ãƒƒãƒˆ
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º‰æ–Êu‚Í‚¢A‚¢‚¢‚¦vƒ^ƒbƒ`ƒVƒXƒeƒ€Šm•Û
+ * @brief	ä¸‹ç”»é¢ã€Œã¯ã„ã€ã„ã„ãˆã€ã‚¿ãƒƒãƒã‚·ã‚¹ãƒ†ãƒ ç¢ºä¿
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void Scratch_AllocTouchSub( SCRATCH_WORK* wk )
 {
-	wk->touch_subwin = TOUCH_SW_AllocWork( HEAPID_SCRATCH );	//Šm•Û
+	wk->touch_subwin = TOUCH_SW_AllocWork( HEAPID_SCRATCH );	//ç¢ºä¿
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º‰æ–Êu‚Í‚¢A‚¢‚¢‚¦vƒ^ƒbƒ`ƒVƒXƒeƒ€‰Šú‰»
+ * @brief	ä¸‹ç”»é¢ã€Œã¯ã„ã€ã„ã„ãˆã€ã‚¿ãƒƒãƒã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2225,13 +2225,13 @@ static void Scratch_InitTouchSub( SCRATCH_WORK* wk )
 {
 	TOUCH_SW_PARAM cp_param;
 
-	cp_param.p_bgl		= wk->bgl;				//BGLƒVƒXƒeƒ€ƒ[ƒN
-	cp_param.bg_frame	= SCRATCH_FRAME_D_MSG;	//BGƒiƒ“ƒo[
-	//cp_param.char_offs	= (1024 - 64);			//ƒLƒƒƒ‰ƒNƒ^“]‘—ƒIƒtƒZƒbƒg((·¬×¸À’PˆÊ 1/32byte)
-	cp_param.char_offs	= (1024 - 128);			//ƒLƒƒƒ‰ƒNƒ^“]‘—ƒIƒtƒZƒbƒg((·¬×¸À’PˆÊ 1/32byte)
-	cp_param.pltt_offs	= SCRATCH_TOUCH_SUB_PAL;//ƒpƒŒƒbƒg“]‘—ƒIƒtƒZƒbƒg(ÊßÚ¯Ä1–{•ª’PˆÊ 1/32byte)
-	cp_param.x			= 24;					//xÀ•W(·¬×¸À’PˆÊ)
-	cp_param.y			= 8;					//yÀ•W(·¬×¸À’PˆÊ)
+	cp_param.p_bgl		= wk->bgl;				//BGLã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	cp_param.bg_frame	= SCRATCH_FRAME_D_MSG;	//BGãƒŠãƒ³ãƒãƒ¼
+	//cp_param.char_offs	= (1024 - 64);			//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ((ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ 1/32byte)
+	cp_param.char_offs	= (1024 - 128);			//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ((ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ 1/32byte)
+	cp_param.pltt_offs	= SCRATCH_TOUCH_SUB_PAL;//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ(ãƒ‘ãƒ¬ãƒƒãƒˆ1æœ¬åˆ†å˜ä½ 1/32byte)
+	cp_param.x			= 24;					//xåº§æ¨™(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½)
+	cp_param.y			= 8;					//yåº§æ¨™(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½)
 
 	TOUCH_SW_Init( wk->touch_subwin, &cp_param );
 	return;
@@ -2239,9 +2239,9 @@ static void Scratch_InitTouchSub( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º‰æ–Êu‚Í‚¢A‚¢‚¢‚¦vƒ^ƒbƒ`ƒVƒXƒeƒ€íœ
+ * @brief	ä¸‹ç”»é¢ã€Œã¯ã„ã€ã„ã„ãˆã€ã‚¿ãƒƒãƒã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2255,15 +2255,15 @@ static void Scratch_FreeTouchSub( SCRATCH_WORK* wk )
 
 //==============================================================================================
 //
-//	‹¤’Ê‰Šú‰»AI—¹
+//	å…±é€šåˆæœŸåŒ–ã€çµ‚äº†
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BGŠÖ˜A‰Šú‰»
+ * @brief	BGé–¢é€£åˆæœŸåŒ–
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2273,43 +2273,43 @@ static void Scratch_BgInit( SCRATCH_WORK* wk )
 	SetVramBank();
 	SetBgHeader( wk->bgl );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ƒ[ƒNì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	wk->pfd = PaletteFadeInit( HEAPID_SCRATCH );
 
-	//ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğmalloc‚µ‚ÄƒZƒbƒg
+	//ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’mallocã—ã¦ã‚»ãƒƒãƒˆ
 	PaletteFadeWorkAllocSet( wk->pfd, FADE_MAIN_OBJ, FADE_PAL_ALL_SIZE, HEAPID_SCRATCH );
 	PaletteFadeWorkAllocSet( wk->pfd, FADE_MAIN_BG, FADE_PAL_ALL_SIZE, HEAPID_SCRATCH );
 
-	//ã‰æ–Ê”wŒi
+	//ä¸Šç”»é¢èƒŒæ™¯
 	Scratch_SetMainBgGraphic( wk, SCRATCH_FRAME_U_BG );
 	Scratch_SetMainBgPalette();
 
-	//ã‰æ–Ê–ğ
+	//ä¸Šç”»é¢å½¹
 	Scratch_SetYakuBgGraphic( wk, SCRATCH_FRAME_U_YAKU );
 
-	//‰º‰æ–ÊƒoƒbƒN
+	//ä¸‹ç”»é¢ãƒãƒƒã‚¯
 	//Scratch_SetBackBgGraphic( wk, SCRATCH_FRAME_D_MSG );
 
-	//‰º‰æ–Ê”wŒiAƒpƒŒƒbƒgƒZƒbƒg
+	//ä¸‹ç”»é¢èƒŒæ™¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	Scratch_SetSubBgGraphic( wk, SCRATCH_FRAME_D_SUB );
 	Scratch_SetSubBgPalette();
 
-	//‰º‰æ–Êƒ^ƒbƒ`AƒpƒŒƒbƒgƒZƒbƒg
+	//ä¸‹ç”»é¢ã‚¿ãƒƒãƒã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	Scratch_SetTouchBgGraphic( wk, SCRATCH_FRAME_D_TOUCH );
 
-	//‰º‰æ–Ê“–‚½‚èƒEƒBƒ“ƒhƒE
+	//ä¸‹ç”»é¢å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	//Scratch_SetAtariBgGraphic( wk, SCRATCH_FRAME_D_ATARI );
 
-	GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_OFF );		//‰ºƒƒbƒZ[ƒWƒIƒt
-	GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_MSG, VISIBLE_OFF );		//ãƒƒbƒZ[ƒWƒIƒt
+	GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_MSG, VISIBLE_OFF );		//ä¸‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ•
+	GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_MSG, VISIBLE_OFF );		//ä¸Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ•
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJŠÖ˜A‰Šú‰»
+ * @brief	OBJé–¢é€£åˆæœŸåŒ–
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2322,16 +2322,16 @@ static void Scratch_ObjInit( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BG‰ğ•ú
+ * @brief	BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void Scratch_BgExit( GF_BGL_INI * ini )
 {
-	//ƒƒCƒ“‰æ–Ê‚ÌŠe–Ê‚Ì•\¦ƒRƒ“ƒgƒ[ƒ‹(•\¦OFF)
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«(è¡¨ç¤ºOFF)
 	GF_Disp_GX_VisibleControl(	GX_PLANEMASK_BG0 | 
 								GX_PLANEMASK_BG1 | 
 								GX_PLANEMASK_BG2 |
@@ -2339,7 +2339,7 @@ static void Scratch_BgExit( GF_BGL_INI * ini )
 								GX_PLANEMASK_OBJ, 
 								VISIBLE_OFF );
 
-	//ƒTƒu‰æ–Ê‚ÌŠe–Ê‚Ì•\¦ƒRƒ“ƒgƒ[ƒ‹(•\¦OFF)
+	//ã‚µãƒ–ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«(è¡¨ç¤ºOFF)
 	GF_Disp_GXS_VisibleControl(	GX_PLANEMASK_BG0 | 
 								GX_PLANEMASK_BG1 | 
 								GX_PLANEMASK_BG2 | 
@@ -2347,7 +2347,7 @@ static void Scratch_BgExit( GF_BGL_INI * ini )
 								GX_PLANEMASK_OBJ, 
 								VISIBLE_OFF );
 
-	//GF_BGL_BGControlSet‚Åæ“¾‚µ‚½ƒƒ‚ƒŠ‚ğŠJ•ú
+	//GF_BGL_BGControlSetã§å–å¾—ã—ãŸãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾
 	GF_BGL_BGControlExit( ini, SCRATCH_FRAME_U_BG );
 	GF_BGL_BGControlExit( ini, SCRATCH_FRAME_U_YAKU );
 	GF_BGL_BGControlExit( ini, SCRATCH_FRAME_U_MSG );
@@ -2363,15 +2363,15 @@ static void Scratch_BgExit( GF_BGL_INI * ini )
 
 //==============================================================================================
 //
-//	İ’è
+//	è¨­å®š
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	VBlankŠÖ”
+ * @brief	VBlanké–¢æ•°
  *
- * @param	work	ƒ[ƒN
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2380,23 +2380,23 @@ static void VBlankFunc( void * work )
 {
 	SCRATCH_WORK* wk = work;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX•\¦’†
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºä¸­
 	if( wk->child_proc != NULL ){
 		return;
 	}
 
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	if( wk->pfd != NULL ){
 		PaletteFadeTrans( wk->pfd );
 	}
 
 	GF_BGL_VBlankFunc( wk->bgl );
 
-	//ƒZƒ‹ƒAƒNƒ^[
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	//Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	//ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	//ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -2404,32 +2404,32 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	VRAMİ’è
+ * @brief	VRAMè¨­å®š
  *
  * @param	none
  *
  * @return	none
  *
- * ×‚©‚­İ’è‚µ‚Ä‚¢‚È‚¢‚Ì‚Å’ˆÓI
+ * ç´°ã‹ãè¨­å®šã—ã¦ã„ãªã„ã®ã§æ³¨æ„ï¼
  */
 //--------------------------------------------------------------
 static void SetVramBank(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_128_B,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				//ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			//ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	GF_Disp_SetBank( &tbl );
@@ -2438,9 +2438,9 @@ static void SetVramBank(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	BGİ’è
+ * @brief	BGè¨­å®š
  *
- * @param	init	BGLƒf[ƒ^
+ * @param	init	BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -2454,9 +2454,9 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ã‰æ–Ê128k=0x20000“à‚Éû‚ß‚é
+	//ä¸Šç”»é¢128k=0x20000å†…ã«åã‚ã‚‹
 	//--------------------------------------------------------------------------------
-	{	//BG(ƒtƒHƒ“ƒg)(‰ï˜bAƒƒjƒ…[)
+	{	//BG(ãƒ•ã‚©ãƒ³ãƒˆ)(ä¼šè©±ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x1000, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -2468,7 +2468,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 	}
 
 	//--------------------------------------------------------------------------------
-	{	//ã‰æ–Ê(”wŒi)
+	{	//ä¸Šç”»é¢(èƒŒæ™¯)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x1000, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
@@ -2479,7 +2479,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 	}
 
 	//--------------------------------------------------------------------------------
-	{	//ã‰æ–Ê(–ğ)
+	{	//ä¸Šç”»é¢(å½¹)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
@@ -2494,9 +2494,9 @@ static void SetBgHeader( GF_BGL_INI * ini )
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//‰º‰æ–Ê128k=0x20000“à‚Éû‚ß‚é
+	//ä¸‹ç”»é¢128k=0x20000å†…ã«åã‚ã‚‹
 	//--------------------------------------------------------------------------------
-	{	//‰º‰æ–Ê(”wŒi)
+	{	//ä¸‹ç”»é¢(èƒŒæ™¯)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 			//GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01,
@@ -2508,7 +2508,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 	}
 
 	//--------------------------------------------------------------------------------
-	{	//‰º‰æ–Ê(ƒ^ƒbƒ`)
+	{	//ä¸‹ç”»é¢(ã‚¿ãƒƒãƒ)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
@@ -2519,7 +2519,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 	}
 
 	//--------------------------------------------------------------------------------
-	{	//‰º‰æ–Ê(ƒƒbƒZ[ƒW)
+	{	//ä¸‹ç”»é¢(ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
@@ -2532,7 +2532,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 
 	//--------------------------------------------------------------------------------
 #if 0
-	{	//‰º‰æ–Ê(“–‚½‚èƒEƒBƒ“ƒhƒE)
+	{	//ä¸‹ç”»é¢(å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01,
@@ -2546,26 +2546,26 @@ static void SetBgHeader( GF_BGL_INI * ini )
 
 	//G2_SetBG0Priority( 0 );
 
-	GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_TOUCH, VISIBLE_OFF );			//í‚è–ÊƒIƒt
-	GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_SUB, VISIBLE_OFF );			//ƒJ[ƒh–ÊƒIƒt
-	//GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_ATARI, VISIBLE_OFF );			//“–‚½‚èƒEƒBƒ“ƒIƒt
-	GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_YAKU, VISIBLE_OFF );			//–ğƒIƒt
+	GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_TOUCH, VISIBLE_OFF );			//å‰Šã‚Šé¢ã‚ªãƒ•
+	GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_SUB, VISIBLE_OFF );			//ã‚«ãƒ¼ãƒ‰é¢ã‚ªãƒ•
+	//GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_ATARI, VISIBLE_OFF );			//å½“ãŸã‚Šã‚¦ã‚£ãƒ³ã‚ªãƒ•
+	GF_Disp_GXS_VisibleControl( SCRATCH_U_MASK_YAKU, VISIBLE_OFF );			//å½¹ã‚ªãƒ•
 	return;
 }
 
 
 //==============================================================================================
 //
-//	BGƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+//	BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFã‰æ–Ê”wŒi
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸Šç”»é¢èƒŒæ™¯
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -2582,10 +2582,10 @@ static void Scratch_SetMainBgGraphic( SCRATCH_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFã‰æ–Ê”wŒi(–ğ)
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸Šç”»é¢èƒŒæ™¯(å½¹)
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -2602,7 +2602,7 @@ static void Scratch_SetYakuBgGraphic( SCRATCH_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ã‰æ–Ê”wŒiƒpƒŒƒbƒgİ’è
+ * @brief	ä¸Šç”»é¢èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -2617,8 +2617,8 @@ static void Scratch_SetMainBgPalette( void )
 	buf = ArcUtil_PalDataGet( ARC_SCRATCH, NARC_scratch_u_bg_NCLR, &dat, HEAPID_SCRATCH );
 
 	DC_FlushRange( dat->pRawData, (sizeof(u16)*16*5) );
-	//GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*5) );		//ƒƒCƒ“
-	GXS_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*5) );		//ƒTƒu
+	//GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*5) );		//ãƒ¡ã‚¤ãƒ³
+	GXS_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*5) );		//ã‚µãƒ–
 
 	sys_FreeMemoryEz(buf);
 	return;
@@ -2626,7 +2626,7 @@ static void Scratch_SetMainBgPalette( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰º‰æ–Ê”wŒiƒpƒŒƒbƒgİ’è
+ * @brief	ä¸‹ç”»é¢èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -2641,9 +2641,9 @@ static void Scratch_SetSubBgPalette( void )
 	buf = ArcUtil_PalDataGet( ARC_SCRATCH, NARC_scratch_l_bg_NCLR, &dat, HEAPID_SCRATCH );
 
 	DC_FlushRange( dat->pRawData, (sizeof(u16)*16*9) );
-	//GXS_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*9) );		//ƒTƒu
-	//GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*9) );		//ƒƒCƒ“
-	GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*10) );		//ƒƒCƒ“
+	//GXS_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*9) );		//ã‚µãƒ–
+	//GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*9) );		//ãƒ¡ã‚¤ãƒ³
+	GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*10) );		//ãƒ¡ã‚¤ãƒ³
 
 	sys_FreeMemoryEz(buf);
 	return;
@@ -2651,10 +2651,10 @@ static void Scratch_SetSubBgPalette( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF‰º‰æ–ÊƒoƒbƒN
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸‹ç”»é¢ãƒãƒƒã‚¯
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -2671,10 +2671,10 @@ static void Scratch_SetBackBgGraphic( SCRATCH_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF‰º‰æ–Ê”wŒi
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸‹ç”»é¢èƒŒæ™¯
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -2691,10 +2691,10 @@ static void Scratch_SetSubBgGraphic( SCRATCH_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF‰º‰æ–Êí‚è–Ê
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸‹ç”»é¢å‰Šã‚Šé¢
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -2715,10 +2715,10 @@ static void Scratch_SetTouchBgGraphic( SCRATCH_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF‰º‰æ–Ê“–‚½‚èƒEƒBƒ“ƒhƒE
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸‹ç”»é¢å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -2738,34 +2738,34 @@ static void Scratch_SetAtariBgGraphic( SCRATCH_WORK * wk, u32 frm  )
 
 //==============================================================================================
 //
-//	ƒƒbƒZ[ƒWŠÖ˜A
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	wait	•¶š•\¦ƒEƒFƒCƒg
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	wait	æ–‡å­—è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
- * @return	"•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
+ * @return	"æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  */
 //--------------------------------------------------------------
 static u8 ScratchWriteMsg( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
-	GF_BGL_BmpWinDataFill( win, b_col );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );			//å¡—ã‚Šã¤ã¶ã—
 	MSGMAN_GetString( wk->msgman, msg_id, wk->tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
 	return GF_STR_PrintColor( win, font, wk->msg_buf, x, y, wait, 
@@ -2785,29 +2785,29 @@ static u8 ScratchWriteMsg_ov111_21D2424( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, i
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦(“h‚è‚Â‚Ô‚µ‚È‚µ)
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º(å¡—ã‚Šã¤ã¶ã—ãªã—)
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	wait	•¶š•\¦ƒEƒFƒCƒg
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	wait	æ–‡å­—è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
- * @return	"•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
+ * @return	"æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  *
- * “h‚è‚Â‚Ô‚µ‚È‚µ
+ * å¡—ã‚Šã¤ã¶ã—ãªã—
  */
 //--------------------------------------------------------------
 static u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	MSGMAN_GetString( wk->msgman, msg_id, wk->tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
 	return GF_STR_PrintColor( win, font, wk->msg_buf, x, y, wait, 
@@ -2816,9 +2816,9 @@ static u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_i
 
 //--------------------------------------------------------------
 /**
- * @brief	Šm”FƒƒbƒZ[ƒW•\¦
+ * @brief	ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"msg_index"
  */
@@ -2838,9 +2838,9 @@ static u8 Scratch_KakuninMsg( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	›‚Ü‚¢‚ß•\¦
+ * @brief	â—‹ã¾ã„ã‚è¡¨ç¤º
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"msg_index"
  */
@@ -2850,7 +2850,7 @@ static u8 Scratch_CardNumMsg( SCRATCH_WORK* wk )
 {
 	u8 msg_index;
 
-	//›‚Ü‚¢‚ß‚ğƒZƒbƒg
+	//â—‹ã¾ã„ã‚ã‚’ã‚»ãƒƒãƒˆ
 	Scratch_SetNumber( wk, 0, (wk->card_num+1) );
 
 	msg_index = ScratchWriteMsg(wk, &wk->bmpwin[BMPWIN_START], msg_scratch_contents_01, 
@@ -2864,9 +2864,9 @@ static u8 Scratch_CardNumMsg( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	›‚Ü‚¢‚ß‚Ì@ƒJ[ƒh‚ğ@‚¦‚ç‚ñ‚Å‚­‚¾‚³‚¢
+ * @brief	â—‹ã¾ã„ã‚ã®ã€€ã‚«ãƒ¼ãƒ‰ã‚’ã€€ãˆã‚‰ã‚“ã§ãã ã•ã„
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"msg_index"
  */
@@ -2875,7 +2875,7 @@ static u8 Scratch_CardSelectMsg( SCRATCH_WORK* wk )
 {
 	u8 msg_index;
 
-	//›‚Ü‚¢‚ß‚ğƒZƒbƒg
+	//â—‹ã¾ã„ã‚ã‚’ã‚»ãƒƒãƒˆ
 	Scratch_SetNumber( wk, 0, (wk->card_num+1) );
 
 	msg_index = ScratchWriteMsg(wk, &wk->bmpwin[BMPWIN_SELECT], msg_scratch_contents_13, 
@@ -2888,9 +2888,9 @@ static u8 Scratch_CardSelectMsg( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒ‰ƒbƒ`ƒXƒ^[ƒg•\¦
+ * @brief	ã‚¹ã‚¯ãƒ©ãƒƒãƒã‚¹ã‚¿ãƒ¼ãƒˆè¡¨ç¤º
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"msg_index"
  */
@@ -2899,7 +2899,7 @@ static u8 Scratch_StartMsg( SCRATCH_WORK* wk )
 {
 	u8 msg_index;
 
-	//›‚Ü‚¢‚ß‚ğƒZƒbƒg
+	//â—‹ã¾ã„ã‚ã‚’ã‚»ãƒƒãƒˆ
 	Scratch_SetNumber( wk, 0, (wk->card_num+1) );
 
     // MatchComment: ScratchWriteMsg -> ScratchWriteMsg_ov111_21D2424, change 3rd (0-indexed) arg from 8*1-1 -> 8*6
@@ -2913,9 +2913,9 @@ static u8 Scratch_StartMsg( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚R‚Â‚»‚ë‚Á‚½I•\¦
+ * @brief	ï¼“ã¤ãã‚ã£ãŸï¼è¡¨ç¤º
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"msg_index"
  */
@@ -2926,19 +2926,19 @@ static u8 Scratch_AtariMsg( SCRATCH_WORK* wk )
 
 	msg_index = 0;
 
-	//í‚Á‚½ƒ|ƒPƒ‚ƒ“‚É•ÏX‚µ‚Ä•\¦
+	//å‰Šã£ãŸãƒã‚±ãƒ¢ãƒ³ã«å¤‰æ›´ã—ã¦è¡¨ç¤º
 	for( i=0; i < SCRATCH_CARD_ATARI_NUM ;i++ ){
 		ScratchObj_AnmChg( wk->p_d_atari[i], wk->card_poke[ wk->kezuri_card[i] ] );
-		ScratchObj_Vanish( wk->p_d_atari[i], SCRATCH_VANISH_OFF );		//•\¦
+		ScratchObj_Vanish( wk->p_d_atari[i], SCRATCH_VANISH_OFF );		//è¡¨ç¤º
 	}
 
-	ScratchObj_Vanish( wk->p_d_atari_win, SCRATCH_VANISH_OFF );			//•\¦
-	ScratchObj_SetAnmFlag( wk->p_d_atari_win, 1 );						//ƒI[ƒgƒAƒjƒ
-	//GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_ATARI, VISIBLE_ON );		//‰º“–‚½‚èƒEƒBƒ“ƒhƒEƒIƒ“
+	ScratchObj_Vanish( wk->p_d_atari_win, SCRATCH_VANISH_OFF );			//è¡¨ç¤º
+	ScratchObj_SetAnmFlag( wk->p_d_atari_win, 1 );						//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
+	//GF_Disp_GX_VisibleControl( SCRATCH_D_MASK_ATARI, VISIBLE_ON );		//ä¸‹å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 
 	Snd_SePlay( SE_D_CARD_ATARI );
 
-	/*“–‚½‚èƒƒbƒZ[ƒW‚Í‚¢‚é‚Ì‚Å‚ÍH*/
+	/*å½“ãŸã‚Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯ã„ã‚‹ã®ã§ã¯ï¼Ÿ*/
 	//msg_index = ScratchWriteMsg(wk, &wk->bmpwin[BMPWIN_ATARI], msg_scratch_contents_11, 
 	//							8*2, 1+4, MSG_ALLPUT, 
 	//							FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BS_FONT );
@@ -2949,9 +2949,9 @@ static u8 Scratch_AtariMsg( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚´‚ñ‚Ë‚ñ•\¦
+ * @brief	ã–ã‚“ã­ã‚“è¡¨ç¤º
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"msg_index"
  */
@@ -2972,9 +2972,9 @@ static u8 Scratch_HazureMsg( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Â‚¬‚ÌƒJ[ƒh‚Ö•\¦
+ * @brief	ã¤ãã®ã‚«ãƒ¼ãƒ‰ã¸è¡¨ç¤º
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"msg_index"
  */
@@ -2995,9 +2995,9 @@ static u8 Scratch_NextMsg( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚â‚ß‚é•\¦
+ * @brief	ã‚„ã‚ã‚‹è¡¨ç¤º
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"msg_index"
  */
@@ -3018,31 +3018,31 @@ static u8 Scratch_YameruMsg( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	–ğ•\¦
+ * @brief	å½¹è¡¨ç¤º
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		‰½”Ô–Ú‚Ì–ğ‚©
- * @param	item	ƒAƒCƒeƒ€ƒiƒ“ƒo[
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		ä½•ç•ªç›®ã®å½¹ã‹
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	"msg_index"
  */
 //--------------------------------------------------------------
-//static const u8 yaku_offset_y[SCRATCH_ATARI_MAX] = { 0, 4, 0, 4 };		//•\¦ƒIƒtƒZƒbƒg
-static const u8 yaku_offset_y[SCRATCH_ATARI_MAX] = { 10, 12, 6, 8 };		//•\¦ƒIƒtƒZƒbƒg
+//static const u8 yaku_offset_y[SCRATCH_ATARI_MAX] = { 0, 4, 0, 4 };		//è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
+static const u8 yaku_offset_y[SCRATCH_ATARI_MAX] = { 10, 12, 6, 8 };		//è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define SCRATCH_ITEM_NUM_X	(8*3)
 
 static u8 Scratch_YakuMsg( SCRATCH_WORK* wk, u8 no )
 {
 	u8 msg_index;
 
-	//ƒAƒCƒeƒ€–¼
+	//ã‚¢ã‚¤ãƒ†ãƒ å
 	WORDSET_RegisterItemName( wk->wordset, 0, wk->atari_item[no] );
     // MatchComment: ScratchWriteMsg -> ScratchWriteMsg_ov111_21D2424, third (0-indexed) arg from 4 -> 8*6-4
 	msg_index = ScratchWriteMsg_ov111_21D2424(wk, &wk->bmpwin[BMPWIN_ITEM1+no], msg_scratch_contents_02, 
 								8*6-4, yaku_offset_y[no], MSG_ALLPUT, 
 								FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BS_FONT );
 
-	//ƒAƒCƒeƒ€”
+	//ã‚¢ã‚¤ãƒ†ãƒ æ•°
 	//msg_index = ScratchWriteMsgSimple(wk, &wk->bmpwin[BMPWIN_ITEM1+no], msg_scratch_contents_03, 
 	//							SCRATCH_ITEM_NUM_X, 16+yaku_offset_y[no], MSG_ALLPUT, 
 	//							FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BS_FONT );
@@ -3054,21 +3054,21 @@ static u8 Scratch_YakuMsg( SCRATCH_WORK* wk, u8 no )
 
 //==============================================================================================
 //
-//	•¶š—ñƒZƒbƒg
+//	æ–‡å­—åˆ—ã‚»ãƒƒãƒˆ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	”’l‚ğƒZƒbƒg
+ * @brief	æ•°å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID	ƒoƒbƒtƒ@ID
- * @param	number	ƒZƒbƒg‚·‚é”’l
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID	ãƒãƒƒãƒ•ã‚¡ID
+ * @param	number	ã‚»ãƒƒãƒˆã™ã‚‹æ•°å€¤
  *
  * @retval	none
  *
- * Œ…‚ğŒÅ’è‚É‚µ‚Ä‚¢‚é
+ * æ¡ã‚’å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static void Scratch_SetNumber( SCRATCH_WORK* wk, u32 bufID, s32 number )
@@ -3080,10 +3080,10 @@ static void Scratch_SetNumber( SCRATCH_WORK* wk, u32 bufID, s32 number )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“–¼‚ğƒZƒbƒg
+ * @brief	ãƒã‚±ãƒ¢ãƒ³åã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID	ƒoƒbƒtƒ@ID
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID	ãƒãƒƒãƒ•ã‚¡ID
  * @param	ppp		POKEMON_PASO_PARAM
  *
  * @retval	none
@@ -3097,10 +3097,10 @@ static void Scratch_SetPokeName( SCRATCH_WORK* wk, u32 bufID, POKEMON_PASO_PARAM
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ„[–¼‚ğƒZƒbƒg
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID	ƒoƒbƒtƒ@ID
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID	ãƒãƒƒãƒ•ã‚¡ID
  *
  * @retval	none
  */
@@ -3113,16 +3113,16 @@ static void Scratch_SetPlayerName( SCRATCH_WORK* wk, u32 bufID )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ„[–¼‚ğ•\¦
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¡¨ç¤º
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
  * @return	none
  */
@@ -3131,12 +3131,12 @@ static void PlayerNameWrite( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y,
 {
 	u32 col;
 	const MYSTATUS* my;
-	STRBUF* player_buf;								//ƒvƒŒƒCƒ„[–¼ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	STRBUF* player_buf;								//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
 	my = SaveData_GetMyStatus( wk->sv );
 	player_buf = STRBUF_Create( PLAYER_NAME_BUF_SIZE, HEAPID_SCRATCH );
 	
-	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
 	STRBUF_SetStringCode( player_buf, MyStatus_GetMyName(my) );
 
@@ -3148,7 +3148,7 @@ static void PlayerNameWrite( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y,
 
 	GF_STR_PrintColor( win, font, player_buf, x, y, MSG_ALLPUT, col, NULL );
 
-	STRBUF_Delete( player_buf );					//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
+	STRBUF_Delete( player_buf );					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 
 	GF_BGL_BmpWinOn( win );
 	return;
@@ -3156,18 +3156,18 @@ static void PlayerNameWrite( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y,
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“–¼‚ğ•\¦(«•Êw’è)
+ * @brief	ãƒã‚±ãƒ¢ãƒ³åã‚’è¡¨ç¤º(æ€§åˆ¥æŒ‡å®š)
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
- * @param	monsno	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	sex		«•Ê
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
+ * @param	monsno	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	sex		æ€§åˆ¥
  *
  * @return	none
  */
@@ -3179,11 +3179,11 @@ static void PokeNameWriteEx( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y,
 	MSGDATA_MANAGER* man;
 	STRBUF* buf;
 	POKEMON_PARAM* poke;
-	STRCODE sel_poke_buf[POKE_NAME_BUF_SIZE];					//ƒ|ƒPƒ‚ƒ“–¼ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	STRCODE sel_poke_buf[POKE_NAME_BUF_SIZE];					//ãƒã‚±ãƒ¢ãƒ³åãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
-	GF_BGL_BmpWinDataFill( win, b_col );						//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );						//å¡—ã‚Šã¤ã¶ã—
 
-	//ƒ|ƒPƒ‚ƒ“–¼‚ğæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³åã‚’å–å¾—
 	man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_itemname_dat, HEAPID_SCRATCH );
 	buf = MSGMAN_AllocString( man, monsno );
 	MSGMAN_Delete( man );
@@ -3200,17 +3200,17 @@ static void PokeNameWriteEx( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 y,
 
 //==============================================================================================
 //
-//	ƒc[ƒ‹
+//	ãƒ„ãƒ¼ãƒ«
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒX•ÏX
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
- * @param	next	Ÿ‚ÌƒV[ƒPƒ“ƒX’è‹`
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	next	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
  *
  * @return	none
  */
@@ -3224,11 +3224,11 @@ static void NextSeq( SCRATCH_WORK* wk, int* seq, int next )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒL[ƒ`ƒFƒbƒN
+ * @brief	ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
  *
- * @param	key		ƒ`ƒFƒbƒN‚·‚éƒL[
+ * @param	key		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚­ãƒ¼
  *
- * @return	"Œ‹‰Ê"
+ * @return	"çµæœ"
  */
 //--------------------------------------------------------------
 static int KeyCheck( int key )
@@ -3238,9 +3238,9 @@ static int KeyCheck( int key )
 
 //--------------------------------------------------------------
 /**
- * @brief	BGƒ`ƒFƒbƒN
+ * @brief	BGãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3290,9 +3290,9 @@ static void BgCheck( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚wæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ï¼¸å–å¾—
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"X"
  */
@@ -3302,11 +3302,11 @@ static u16 GetCsrX( SCRATCH_WORK* wk )
 	return wk->csr_pos;
 }
 
-//ƒ‰ƒ“ƒ_ƒ€‚ª‚¤‚Ü‚­‚¢‚©‚È‚©‚Á‚½‚Ì”z’uš
+//ãƒ©ãƒ³ãƒ€ãƒ ãŒã†ã¾ãã„ã‹ãªã‹ã£ãŸæ™‚ã®é…ç½®â˜…
 #if 0
 static const u8 atari_poke_tbl[SCRATCH_D_POKE_MAX][SCRATCH_EASY_ATARI_NUM] = {
 #if 0
-	//4‚ÍƒZƒ“ƒ^[‚È‚Ì‚Å•K‚¸“ü‚ê‚é
+	//4ã¯ã‚»ãƒ³ã‚¿ãƒ¼ãªã®ã§å¿…ãšå…¥ã‚Œã‚‹
 	{ 1,2,3,4,7 },
 	{ 2,3,4,5,6 },
 	{ 1,2,4,5,7 },
@@ -3317,7 +3317,7 @@ static const u8 atari_poke_tbl[SCRATCH_D_POKE_MAX][SCRATCH_EASY_ATARI_NUM] = {
 	{ 0,1,2,4,7 },
 	{ 3,4,5,6,8 },
 #else
-	//4‚ÍƒZƒ“ƒ^[‚È‚Ì‚Å•K‚¸“ü‚ê‚é
+	//4ã¯ã‚»ãƒ³ã‚¿ãƒ¼ãªã®ã§å¿…ãšå…¥ã‚Œã‚‹
 	{ 1,2,3,4 },
 	{ 2,3,4,5 },
 	{ 1,2,4,5 },
@@ -3333,9 +3333,9 @@ static const u8 atari_poke_tbl[SCRATCH_D_POKE_MAX][SCRATCH_EASY_ATARI_NUM] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒ^ƒ‚ƒ“‚ğ”z’u
+ * @brief	ãƒ¡ã‚¿ãƒ¢ãƒ³ã‚’é…ç½®
  *
- * @param	wk			SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3345,14 +3345,14 @@ static void Scratch_MetamonPokeSet( SCRATCH_WORK* wk )
 	int i;
 	u8 no;
 
-	//“–‚½‚è‚É•K—v‚È‘µ‚¦‚éƒ|ƒPƒ‚ƒ“‚Ì”‚ğ”z’u
+	//å½“ãŸã‚Šã«å¿…è¦ãªæƒãˆã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’é…ç½®
 	for( i=0; i < 2 ;i++ ){
 
 		while( 1 ){
-			//0-8‚ğæ“¾
+			//0-8ã‚’å–å¾—
 			no = ( gf_rand() % SCRATCH_D_POKE_MAX );
 
-			//‹ó‚¢‚Ä‚éƒJ[ƒh‚ÌêŠ‚Éƒƒ^ƒ‚ƒ“‚ğ“ü‚ê‚é
+			//ç©ºã„ã¦ã‚‹ã‚«ãƒ¼ãƒ‰ã®å ´æ‰€ã«ãƒ¡ã‚¿ãƒ¢ãƒ³ã‚’å…¥ã‚Œã‚‹
 			if( wk->card_poke[no] == DUMMY_CARD_POKE ){
 				wk->card_poke[no] = ANM_POKE_META;
 				break;
@@ -3365,9 +3365,9 @@ static void Scratch_MetamonPokeSet( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Í‚¸‚êƒ|ƒPƒ‚ƒ“‚ğ”z’u
+ * @brief	ã¯ãšã‚Œãƒã‚±ãƒ¢ãƒ³ã‚’é…ç½®
  *
- * @param	wk			SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3377,7 +3377,7 @@ static void Scratch_OthersPokeSet( SCRATCH_WORK* wk )
 	int i,j,set_pos,loop_count,no;
 	u8 set_poke;
 
-	set_poke	= ( gf_rand() % 4 );	//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[(0-3‚ğŒˆ‚ß‚éBƒƒ^ƒ‚ƒ“ˆÈŠO)
+	set_poke	= ( gf_rand() % 4 );	//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼(0-3ã‚’æ±ºã‚ã‚‹ã€‚ãƒ¡ã‚¿ãƒ¢ãƒ³ä»¥å¤–)
 	loop_count	= 0;
 
 	for( i=0; i < SCRATCH_D_POKE_MAX; i++ ){
@@ -3385,15 +3385,15 @@ static void Scratch_OthersPokeSet( SCRATCH_WORK* wk )
 		while( 1 ){
 			no = ( gf_rand() % SCRATCH_D_POKE_MAX );
 
-			//‹ó‚¢‚Ä‚éêŠ‚¾‚Á‚½‚ç
+			//ç©ºã„ã¦ã‚‹å ´æ‰€ã ã£ãŸã‚‰
 			if( wk->card_poke[no] == DUMMY_CARD_POKE ){
 				loop_count = 0;
 				wk->card_poke[no] = set_poke;
 
-				//3,2,2•C‚¸‚Â”z’u‚·‚é
+				//3,2,2åŒ¹ãšã¤é…ç½®ã™ã‚‹
 				if( (i == 2) || (i == 4) || (i == 6) ){
-					set_poke++;										//Ÿ‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚É‚·‚é
-					if( set_poke == (SCRATCH_CARD_POKE_MAX-1) ){	//ƒƒ^ƒ‚ƒ“”²‚©‚·
+					set_poke++;										//æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã«ã™ã‚‹
+					if( set_poke == (SCRATCH_CARD_POKE_MAX-1) ){	//ãƒ¡ã‚¿ãƒ¢ãƒ³æŠœã‹ã™
 						set_poke = 0;
 					}
 				}
@@ -3401,34 +3401,34 @@ static void Scratch_OthersPokeSet( SCRATCH_WORK* wk )
 			}
 
 			/////////////////////////////////////////////////////////////////////////////////////
-			//ƒ‰ƒ“ƒ_ƒ€‚ª‚¤‚Ü‚­‚¢‚©‚È‚©‚Á‚½
+			//ãƒ©ãƒ³ãƒ€ãƒ ãŒã†ã¾ãã„ã‹ãªã‹ã£ãŸæ™‚
 			loop_count++;
 			if( loop_count >= 30 ){
 				loop_count = 0;
 
-				//æ“ª‚©‚ç‹ó‚¢‚Ä‚¢‚éŠ‚É”z’u
+				//å…ˆé ­ã‹ã‚‰ç©ºã„ã¦ã„ã‚‹æ‰€ã«é…ç½®
 				for( set_pos=0; set_pos < SCRATCH_D_POKE_MAX; set_pos++ ){
 
-					//‹ó‚¢‚Ä‚éêŠ‚ğƒT[ƒ`
+					//ç©ºã„ã¦ã‚‹å ´æ‰€ã‚’ã‚µãƒ¼ãƒ
 					if( wk->card_poke[set_pos] == DUMMY_CARD_POKE ){
 						wk->card_poke[set_pos] = set_poke;
 
-						//3,2,2•C‚¸‚Â”z’u‚·‚é
+						//3,2,2åŒ¹ãšã¤é…ç½®ã™ã‚‹
 						if( (i == 2) || (i == 4) || (i == 6) ){
-							set_poke++;								//Ÿ‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚É‚·‚é
-							if( set_poke == (SCRATCH_CARD_POKE_MAX-1) ){	//ƒƒ^ƒ‚ƒ“”²‚©‚·
+							set_poke++;								//æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã«ã™ã‚‹
+							if( set_poke == (SCRATCH_CARD_POKE_MAX-1) ){	//ãƒ¡ã‚¿ãƒ¢ãƒ³æŠœã‹ã™
 								set_poke = 0;
 							}
 						}
-						break;		//for”²‚¯]]]]]]]]]]]]]]]]]]]]
+						break;		//foræŠœã‘]]]]]]]]]]]]]]]]]]]]
 					}
 				}
-				break;				//while”²‚¯]]]]]]]]]]]]]]]]]]
+				break;				//whileæŠœã‘]]]]]]]]]]]]]]]]]]
 			}
 		}
 	}
 
-	OS_Printf( "”z’u‚µ‚½ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[\n" );
+	OS_Printf( "é…ç½®ã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼\n" );
 	for( i=0; i < SCRATCH_D_POKE_MAX; i++ ){
 		OS_Printf( "wk->card_poke[%d] = %d\n", i, wk->card_poke[i] );
 	}
@@ -3438,9 +3438,9 @@ static void Scratch_OthersPokeSet( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ğ”z’u(‘Sí—ŞƒZƒbƒg)
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚’é…ç½®(å…¨ç¨®é¡ã‚»ãƒƒãƒˆ)
  *
- * @param	wk			SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3450,8 +3450,8 @@ static void Scratch_PokeSet( SCRATCH_WORK* wk )
 	int i,j,set_pos,loop_count,no;
 	u8 set_poke,set_poke_num;
 
-	set_poke	= (SCRATCH_CARD_POKE_MAX-1);	//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[(ƒƒ^ƒ‚ƒ“‚©‚çƒXƒ^[ƒg)
-	set_poke_num= 0;							//ƒZƒbƒg‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”
+	set_poke	= (SCRATCH_CARD_POKE_MAX-1);	//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼(ãƒ¡ã‚¿ãƒ¢ãƒ³ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆ)
+	set_poke_num= 0;							//ã‚»ãƒƒãƒˆã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ•°
 	loop_count	= 0;
 
 	for( i=0; i < SCRATCH_D_POKE_MAX; i++ ){
@@ -3459,17 +3459,17 @@ static void Scratch_PokeSet( SCRATCH_WORK* wk )
 		while( 1 ){
 			no = ( gf_rand() % SCRATCH_D_POKE_MAX );
 
-			//‹ó‚¢‚Ä‚éêŠ‚¾‚Á‚½‚ç
+			//ç©ºã„ã¦ã‚‹å ´æ‰€ã ã£ãŸã‚‰
 			if( wk->card_poke[no] == DUMMY_CARD_POKE ){
 				loop_count = 0;
 
 				wk->card_poke[no] = set_poke;
 				set_poke_num++;
 
-				//“–‚½‚è‚ª‘µ‚¤•ª‚É‚È‚é‘O‚ÉƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ğ•ÏX‚·‚éš
+				//å½“ãŸã‚ŠãŒæƒã†åˆ†ã«ãªã‚‹å‰ã«ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’å¤‰æ›´ã™ã‚‹â˜…
 				if( set_poke_num == (SCRATCH_CARD_ATARI_NUM-1) ){
 					set_poke_num = 0;
-					set_poke++;										//Ÿ‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚É‚·‚é
+					set_poke++;										//æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã«ã™ã‚‹
 					if( set_poke == SCRATCH_CARD_POKE_MAX ){
 						set_poke = 0;
 					}
@@ -3478,37 +3478,37 @@ static void Scratch_PokeSet( SCRATCH_WORK* wk )
 			}
 
 			/////////////////////////////////////////////////////////////////////////////////////
-			//ƒ‰ƒ“ƒ_ƒ€‚ª‚¤‚Ü‚­‚¢‚©‚È‚©‚Á‚½
+			//ãƒ©ãƒ³ãƒ€ãƒ ãŒã†ã¾ãã„ã‹ãªã‹ã£ãŸæ™‚
 			loop_count++;
 			if( loop_count >= 30 ){
 				loop_count = 0;
 
-				//æ“ª‚©‚ç‹ó‚¢‚Ä‚¢‚éŠ‚É”z’u
+				//å…ˆé ­ã‹ã‚‰ç©ºã„ã¦ã„ã‚‹æ‰€ã«é…ç½®
 				for( set_pos=0; set_pos < SCRATCH_D_POKE_MAX; set_pos++ ){
 
-					//‹ó‚¢‚Ä‚éêŠ‚ğƒT[ƒ`
+					//ç©ºã„ã¦ã‚‹å ´æ‰€ã‚’ã‚µãƒ¼ãƒ
 					if( wk->card_poke[set_pos] == DUMMY_CARD_POKE ){
 
 						wk->card_poke[set_pos] = set_poke;
 						set_poke_num++;
 
-						//“–‚½‚è‚ª‘µ‚¤•ª‚É‚È‚é‘O‚ÉƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ğ•ÏX‚·‚é
+						//å½“ãŸã‚ŠãŒæƒã†åˆ†ã«ãªã‚‹å‰ã«ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’å¤‰æ›´ã™ã‚‹
 						if( set_poke_num == (SCRATCH_CARD_ATARI_NUM-1) ){
 							set_poke_num = 0;
-							set_poke++;								//Ÿ‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚É‚·‚é
+							set_poke++;								//æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã«ã™ã‚‹
 							if( set_poke == SCRATCH_CARD_POKE_MAX ){
 								set_poke = 0;
 							}
 						}
-						break;		//for”²‚¯]]]]]]]]]]]]]]]]]]]]
+						break;		//foræŠœã‘]]]]]]]]]]]]]]]]]]]]
 					}
 				}
-				break;				//while”²‚¯]]]]]]]]]]]]]]]]]]
+				break;				//whileæŠœã‘]]]]]]]]]]]]]]]]]]
 			}
 		}
 	}
 
-	OS_Printf( "”z’u‚µ‚½ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[\n" );
+	OS_Printf( "é…ç½®ã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼\n" );
 	for( i=0; i < SCRATCH_D_POKE_MAX; i++ ){
 		OS_Printf( "wk->card_poke[%d] = %d\n", i, wk->card_poke[i] );
 	}
@@ -3518,10 +3518,10 @@ static void Scratch_PokeSet( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	”z’uƒ|ƒPƒ‚ƒ“‚ğŒˆ’è
+ * @brief	é…ç½®ãƒã‚±ãƒ¢ãƒ³ã‚’æ±ºå®š
  *
- * @param	wk			SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	mode		ƒC[ƒWEƒn[ƒh‚Ç‚¿‚ç‚©
+ * @param	wk			SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	mode		ã‚¤ãƒ¼ã‚¸ãƒ»ãƒãƒ¼ãƒ‰ã©ã¡ã‚‰ã‹
  *
  * @return	none
  */
@@ -3529,13 +3529,13 @@ static void Scratch_PokeSet( SCRATCH_WORK* wk )
 static void Scratch_CardPokeSet( SCRATCH_WORK* wk, u8 mode )
 {
 #if 1
-	//ƒƒ^ƒ‚ƒ“ƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+	//ãƒ¡ã‚¿ãƒ¢ãƒ³ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	Scratch_MetamonPokeSet( wk );
 
-	//‚»‚Ì‘¼ƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+	//ãã®ä»–ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	Scratch_OthersPokeSet( wk );
 #else
-	//ƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+	//ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	Scratch_PokeSet( wk );
 #endif
 	return;
@@ -3543,9 +3543,9 @@ static void Scratch_CardPokeSet( SCRATCH_WORK* wk, u8 mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‚Ì’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğƒNƒŠƒA
+ * @brief	ã‚«ãƒ¼ãƒ‰ã®ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚¯ãƒªã‚¢
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3563,9 +3563,9 @@ static void Scratch_CardPokeClear( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	–ğ‚ğ‚ğŒˆ’è
+ * @brief	å½¹ã‚’ã‚’æ±ºå®š
  *
- * @param	wk			SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3576,36 +3576,36 @@ static void Scratch_YakuSet( SCRATCH_WORK* wk, u8 mode )
 	u16 item_pos[SCRATCH_ATARI_MAX];
 	u16 kin_pos;
 
-	//ƒNƒŠƒA
+	//ã‚¯ãƒªã‚¢
 	for( i=0; i < SCRATCH_ATARI_MAX ;i++ ){
 		item_pos[i] = 0xff;
 	}
 
-	//u‚«‚ñ‚Ì‚½‚Üv‚Ì”z’uêŠ
+	//ã€Œãã‚“ã®ãŸã¾ã€ã®é…ç½®å ´æ‰€
 	kin_pos = ( gf_rand() % SCRATCH_ATARI_MAX );
 
 	for( i=0; i < SCRATCH_ATARI_MAX ;i++ ){
 
 		if( i == kin_pos ){
-			wk->atari_item[i] = ITEM_KINNOTAMA;			//1‚Â‚Í•K‚¸”z’u‚·‚é
+			wk->atari_item[i] = ITEM_KINNOTAMA;			//1ã¤ã¯å¿…ãšé…ç½®ã™ã‚‹
 		}else{
 
 			while( 1 ){
 				item_pos[i] = ( gf_rand() % SCRATCH_EASY_ITEM );
 
-				//“¯‚¶ƒAƒCƒeƒ€‚ğ”z’u‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+				//åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ã‚’é…ç½®ã—ãªã„ã‚ˆã†ã«ã™ã‚‹
 				for( j=0; j < i ;j++ ){
 
-					//‚·‚Å‚É“¯‚¶ƒAƒCƒeƒ€‚ª‚ ‚Á‚½‚ç
+					//ã™ã§ã«åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã£ãŸã‚‰
 					if( item_pos[j] == item_pos[i] ){
 						break;
 					}
 				}
 
-				//“¯‚¶ƒAƒCƒeƒ€‚ª‚È‚©‚Á‚½‚ç
+				//åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ãŒãªã‹ã£ãŸã‚‰
 				if( j == i ){
 					wk->atari_item[i] = scratch_easy_item[ item_pos[i] ];
-					break;		//while”²‚¯
+					break;		//whileæŠœã‘
 				}
 			}
 		}
@@ -3616,11 +3616,11 @@ static void Scratch_YakuSet( SCRATCH_WORK* wk, u8 mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‚ğ’†S‚ÉˆÚ“®
+ * @brief	ã‚«ãƒ¼ãƒ‰ã‚’ä¸­å¿ƒã«ç§»å‹•
  *
  * @param	none
  *
- * @return	"FALSE = Œp‘±’†ATRUE = –Ú•W“’B"
+ * @return	"FALSE = ç¶™ç¶šä¸­ã€TRUE = ç›®æ¨™åˆ°é”"
  */
 //--------------------------------------------------------------
 //static const int card_x_spd_tbl[SCRATCH_D_CARD_MAX] = { 4, 1, -1, -4 };
@@ -3628,14 +3628,14 @@ static const int card_x_spd_tbl[SCRATCH_D_CARD_MAX] = { 8, 2, -2, -8 };
 //static const int card_y_spd_tbl[SCRATCH_D_CARD_MAX] = { -2, -2, -2, -2 };
 static const int card_y_spd_tbl[SCRATCH_D_CARD_MAX] = { -4, -4, -4, -4 };
 
-#define CARD_MOVE_NUM	(8)	//‚±‚Ì‰ñ”‚Å’†S‚É‚à‚Á‚Ä‚¢‚­
+#define CARD_MOVE_NUM	(8)	//ã“ã®å›æ•°ã§ä¸­å¿ƒã«ã‚‚ã£ã¦ã„ã
 static const s8 card_move_x_tbl[SCRATCH_D_CARD_MAX][CARD_MOVE_NUM] = {
 	{ 9,	9,	9,	8,	7,	6,	5,	4, },	//
 
 	//{ 4,	4,	3,	3,	2,	2,	1,	1, },	//
 	{ 2,	2,	2,	1,	1,	1,	1,	1, },	//
 
-	//{ -4,	-4,	-3, -3, -2, -2,	-1,	-1, },	//3‚Â–Ú³–Ê‚Éo‚é
+	//{ -4,	-4,	-3, -3, -2, -2,	-1,	-1, },	//3ã¤ç›®æ­£é¢ã«å‡ºã‚‹
 	{ -8,	-8,-8,-7, -7, -6, -5, -4, },
 
 	//{ -9,	-9,	-9,	-8,	-7,	-6,	-5,	-4, },	//
@@ -3647,12 +3647,12 @@ static BOOL Scratch_CardCenterMove( SCRATCH_WORK* wk, u8 pos )
 {
 	int now_x,now_y,set_x,set_y;
 
-	//–Ú•W‰ñ”ˆÚ“®‚µ‚½
+	//ç›®æ¨™å›æ•°ç§»å‹•ã—ãŸ
 	if( wk->move_num >= CARD_MOVE_NUM ){
 		return TRUE;
 	}
 
-	//Œ»İ‚ÌˆÊ’u‚ğæ“¾
+	//ç¾åœ¨ã®ä½ç½®ã‚’å–å¾—
 	ScratchObj_GetObjPos( wk->p_d_card[pos], &now_x, &now_y );
 	OS_Printf( "now_x = %d\n", now_x );
 	OS_Printf( "now_y = %d\n", now_y );
@@ -3670,28 +3670,28 @@ static BOOL Scratch_CardCenterMove( SCRATCH_WORK* wk, u8 pos )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒgØ‚è‘Ö‚¦
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void ScrPalChg( SCRATCH_WORK* wk, u32 frm, u8 pltt_no, u8 sx, u8 sy )
 {
-	OS_Printf( "Ø‚è‘Ö‚¦‚éƒpƒŒƒbƒgƒiƒ“ƒo[ = %d\n", pltt_no );
+	OS_Printf( "åˆ‡ã‚Šæ›¿ãˆã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ = %d\n", pltt_no );
 	GF_BGL_ScrPalChange( wk->bgl, frm, 0, 0, sx, sy, pltt_no );
-	GF_BGL_LoadScreenV_Req( wk->bgl, frm );							//ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	GF_BGL_LoadScreenV_Req( wk->bgl, frm );							//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	‹â”“‚ÉG‚ê‚½”‚ğæ“¾
+ * @brief	éŠ€ç®”ã«è§¦ã‚ŒãŸæ•°ã‚’å–å¾—
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"”"
+ * @return	"æ•°"
  */
 //--------------------------------------------------------------
 static u8 Scratch_BlockFlagOnNumGet( SCRATCH_WORK* wk )
@@ -3711,9 +3711,9 @@ static u8 Scratch_BlockFlagOnNumGet( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹â”“‚ÉG‚ê‚½”‚ğƒNƒŠƒA
+ * @brief	éŠ€ç®”ã«è§¦ã‚ŒãŸæ•°ã‚’ã‚¯ãƒªã‚¢
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	void
  */
@@ -3731,9 +3731,9 @@ static void Scratch_BlockFlagClear( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	G‚ê‚½ˆÊ’uƒJƒEƒ“ƒg‚ğƒNƒŠƒA
+ * @brief	è§¦ã‚ŒãŸä½ç½®ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	void
  */
@@ -3751,9 +3751,9 @@ static void Scratch_BlockCountClear( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒ“ƒvƒŠƒ“ƒOî•ñ‚ğæ“¾‚µ‚ÄŠi”[
+ * @brief	ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°æƒ…å ±ã‚’å–å¾—ã—ã¦æ ¼ç´
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	void
  */
@@ -3769,7 +3769,7 @@ static void Scratch_HoseiTouch2( SCRATCH_WORK* wk, int index )
 		OS_Printf( "tpData.TPDataTbl[%d].x = %d\n", i, x );
 		OS_Printf( "tpData.TPDataTbl[%d].y = %d\n", i, y );
 
-		//block_hit_tbl‚Ì’†‚ğQÆo—ˆ‚È‚¢‚Ì‚ÅA“¯‚¶ƒf[ƒ^ƒe[ƒuƒ‹‚ğ—pˆÓ
+		//block_hit_tblã®ä¸­ã‚’å‚ç…§å‡ºæ¥ãªã„ã®ã§ã€åŒã˜ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„
 		if( (block_hit_tbl2[index].left <= x) && (x <= block_hit_tbl2[index].right) &&
 			(block_hit_tbl2[index].top <= y) && (y <= block_hit_tbl2[index].bottom) ){
 			Scratch_Touch_2( wk, x, y );
@@ -3779,7 +3779,7 @@ static void Scratch_HoseiTouch2( SCRATCH_WORK* wk, int index )
 	return;
 }
 
-//G‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+//è§¦ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 static void Scratch_TouchFlagSet( SCRATCH_WORK* wk )
 {
 	int i;
@@ -3804,7 +3804,7 @@ static void Scratch_TouchFlagSet( SCRATCH_WORK* wk )
 	return;
 }
 
-//G‚ê‚½À•W‚©‚ç4dot‚Ì•‚ğˆ—‚·‚é
+//è§¦ã‚ŒãŸåº§æ¨™ã‹ã‚‰4dotã®å¹…ã‚’å‡¦ç†ã™ã‚‹
 static void Scratch_TouchFlagSetSub( SCRATCH_WORK* wk, int tp_x, int tp_y )
 {
 	int i,j;
@@ -3822,7 +3822,7 @@ static void Scratch_TouchFlagSetSub( SCRATCH_WORK* wk, int tp_x, int tp_y )
 	return;
 }
 
-//G‚ê‚½ƒtƒ‰ƒOƒ`ƒFƒbƒN
+//è§¦ã‚ŒãŸãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 static BOOL Scratch_TouchFlagCheck( SCRATCH_WORK* wk, u8 index )
 {
 	int i,j,start_x,start_y,count;
@@ -3831,7 +3831,7 @@ static BOOL Scratch_TouchFlagCheck( SCRATCH_WORK* wk, u8 index )
 	start_x = block_check_pos[index].x;
 	start_y = block_check_pos[index].y;
 
-	//ƒuƒƒbƒN•ª‚Ìƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+	//ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 	for( i=start_y; i <  (start_y+BLOCK_SIZE_Y) ;i++ ){
 		for( j=start_x; j <  (start_x+BLOCK_SIZE_X) ;j++ ){
 
@@ -3844,13 +3844,13 @@ static BOOL Scratch_TouchFlagCheck( SCRATCH_WORK* wk, u8 index )
 	OS_Printf( "count = %d\n", count );
 	if( count >= BLOCK_COUNT ){
 
-		//‰‰ñ‚Ì‚İSE‚ğ–Â‚ç‚·
+		//åˆå›ã®ã¿SEã‚’é³´ã‚‰ã™
 		if( wk->block_count[index] == 0 ){
 			Snd_SePlay( SE_D_KEZURI_OK );
-			wk->kezuri_card[wk->kezuri_card_num] = index;	//‚Ç‚ÌƒJ[ƒh‚©•Û‘¶
+			wk->kezuri_card[wk->kezuri_card_num] = index;	//ã©ã®ã‚«ãƒ¼ãƒ‰ã‹ä¿å­˜
 			wk->kezuri_card_num++;
 
-			//ƒŠ[ƒ`‚É‚·‚é
+			//ãƒªãƒ¼ãƒã«ã™ã‚‹
 			//if( wk->card_poke[index] == wk->atari_poke ){
 			//	wk->waku_flag = 1;
 			//}
@@ -3865,9 +3865,9 @@ static BOOL Scratch_TouchFlagCheck( SCRATCH_WORK* wk, u8 index )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒEƒFƒCƒgŒvZ‚µ‚ÄƒpƒŒƒbƒgƒiƒ“ƒo[AƒŠƒ\[ƒX•ÏX
+ * @brief	ã‚¦ã‚§ã‚¤ãƒˆè¨ˆç®—ã—ã¦ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã€ãƒªã‚½ãƒ¼ã‚¹å¤‰æ›´
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	void
  */
@@ -3889,18 +3889,18 @@ static void Scratch_PlttNoResChg( SCRATCH_WORK* wk )
 
 		if( wk->kezuri_card_num == 2 ){
 
-			//‚P–‡–ÚA‚Q–‡–Ú
+			//ï¼‘æšç›®ã€ï¼’æšç›®
 			for( i=0; i < 2; i++ ){
 				ScratchObj_PaletteNoChg( wk->p_d_waku[i], 3 );
-				ScratchObj_Vanish( wk->p_d_waku[i], SCRATCH_VANISH_OFF );	//•\¦
+				ScratchObj_Vanish( wk->p_d_waku[i], SCRATCH_VANISH_OFF );	//è¡¨ç¤º
 				ScratchObj_SetObjPos( wk->p_d_waku[i], 
 						(d_poke_pos[ wk->kezuri_card[i] ].x + SCRATCH_GIN_WAKU_OFFSET_X), 
 						d_poke_pos[ wk->kezuri_card[i] ].y + SCRATCH_GIN_WAKU_OFFSET_Y );
 			}
 		}
 
-		//ƒpƒŒƒbƒg3”Ôg—p•ÏX
-		//ƒpƒŒƒbƒgƒŠƒ\[ƒX‚ğØ‚è‘Ö‚¦‚é
+		//ãƒ‘ãƒ¬ãƒƒãƒˆ3ç•ªä½¿ç”¨å¤‰æ›´
+		//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 		ScratchClact_ButtonResourcePalChg( &wk->scratch_clact, wk->pltt_res_no );
 	}
 
@@ -3909,11 +3909,11 @@ static void Scratch_PlttNoResChg( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	“–‚½‚è‚ª‚»‚ë‚Á‚½‚©æ“¾
+ * @brief	å½“ãŸã‚ŠãŒãã‚ã£ãŸã‹å–å¾—
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = “–‚½‚èAFALSE = ‚Í‚¸‚ê"
+ * @return	"TRUE = å½“ãŸã‚Šã€FALSE = ã¯ãšã‚Œ"
  */
 //--------------------------------------------------------------
 static BOOL Scratch_AtariCheck( SCRATCH_WORK* wk )
@@ -3922,68 +3922,68 @@ static BOOL Scratch_AtariCheck( SCRATCH_WORK* wk )
 
 	atari_flag = 0;
 
-	//2–‡‚Íí‚ç‚È‚¢‚ÆAƒŠ[ƒ`‚É‚Í‚È‚ç‚È‚¢
+	//2æšã¯å‰Šã‚‰ãªã„ã¨ã€ãƒªãƒ¼ãƒã«ã¯ãªã‚‰ãªã„
 	if( wk->kezuri_card_num <= 1 ){
 		return FALSE;
 	}
 
 	if( wk->card_poke[ wk->kezuri_card[0] ] == wk->card_poke[ wk->kezuri_card[1] ] ){
 		wk->waku_flag = 1;
-	}else if( wk->card_poke[ wk->kezuri_card[0] ] == ANM_POKE_META ){	//ƒƒ^ƒ‚ƒ“‚Í•K‚¸ƒŠ[ƒ`
+	}else if( wk->card_poke[ wk->kezuri_card[0] ] == ANM_POKE_META ){	//ãƒ¡ã‚¿ãƒ¢ãƒ³ã¯å¿…ãšãƒªãƒ¼ãƒ
 		wk->waku_flag = 1;
-	}else if( wk->card_poke[ wk->kezuri_card[1] ] == ANM_POKE_META ){	//ƒƒ^ƒ‚ƒ“‚Í•K‚¸ƒŠ[ƒ`
+	}else if( wk->card_poke[ wk->kezuri_card[1] ] == ANM_POKE_META ){	//ãƒ¡ã‚¿ãƒ¢ãƒ³ã¯å¿…ãšãƒªãƒ¼ãƒ
 		wk->waku_flag = 1;
 	}
 			
-	//3–‡‚Íí‚ç‚È‚¢‚ÆA“–‚½‚è‚É‚Í‚È‚ç‚È‚¢
+	//3æšã¯å‰Šã‚‰ãªã„ã¨ã€å½“ãŸã‚Šã«ã¯ãªã‚‰ãªã„
 	if( wk->kezuri_card_num <= 2 ){
 		return FALSE;
 	}
 
-	//‚PA‚QA‚R–‡–Ú
+	//ï¼‘ã€ï¼’ã€ï¼“æšç›®
 	if( (wk->card_poke[ wk->kezuri_card[0] ] == wk->card_poke[ wk->kezuri_card[1] ]) &&
 		(wk->card_poke[ wk->kezuri_card[0] ] == wk->card_poke[ wk->kezuri_card[2] ]) ){
 		atari_flag = 1;
 	}
 
-	//‚PA‚Q–‡–Ú(ƒƒ^ƒ‚ƒ“)
+	//ï¼‘ã€ï¼’æšç›®(ãƒ¡ã‚¿ãƒ¢ãƒ³)
 	if( (wk->card_poke[ wk->kezuri_card[0] ] == ANM_POKE_META) &&
 		(wk->card_poke[ wk->kezuri_card[1] ] == ANM_POKE_META) ){
 		atari_flag = 1;
 	}
 
-	//‚PA‚R–‡–Ú(ƒƒ^ƒ‚ƒ“)
+	//ï¼‘ã€ï¼“æšç›®(ãƒ¡ã‚¿ãƒ¢ãƒ³)
 	if( (wk->card_poke[ wk->kezuri_card[0] ] == ANM_POKE_META) &&
 		(wk->card_poke[ wk->kezuri_card[2] ] == ANM_POKE_META) ){
 		atari_flag = 1;
 	}
 
-	//‚QA‚R–‡–Ú(ƒƒ^ƒ‚ƒ“)
+	//ï¼’ã€ï¼“æšç›®(ãƒ¡ã‚¿ãƒ¢ãƒ³)
 	if( (wk->card_poke[ wk->kezuri_card[1] ] == ANM_POKE_META) &&
 		(wk->card_poke[ wk->kezuri_card[2] ] == ANM_POKE_META) ){
 		atari_flag = 1;
 	}
 
-	//‚P(ƒƒ^ƒ‚ƒ“)A‚QA‚R–‡–Ú
+	//ï¼‘(ãƒ¡ã‚¿ãƒ¢ãƒ³)ã€ï¼’ã€ï¼“æšç›®
 	if( (wk->card_poke[ wk->kezuri_card[0] ] == ANM_POKE_META) &&
 		(wk->card_poke[ wk->kezuri_card[1] ] == wk->card_poke[ wk->kezuri_card[2] ]) ){
 		atari_flag = 1;
 	}
 
-	//‚PA‚Q(ƒƒ^ƒ‚ƒ“)A‚R–‡–Ú
+	//ï¼‘ã€ï¼’(ãƒ¡ã‚¿ãƒ¢ãƒ³)ã€ï¼“æšç›®
 	if( (wk->card_poke[ wk->kezuri_card[1] ] == ANM_POKE_META) &&
 		(wk->card_poke[ wk->kezuri_card[0] ] == wk->card_poke[ wk->kezuri_card[2] ]) ){
 		atari_flag = 1;
 	}
 
-	//‚PA‚QA‚R(ƒƒ^ƒ‚ƒ“)–‡–Ú
+	//ï¼‘ã€ï¼’ã€ï¼“(ãƒ¡ã‚¿ãƒ¢ãƒ³)æšç›®
 	if( (wk->card_poke[ wk->kezuri_card[2] ] == ANM_POKE_META) &&
 		(wk->card_poke[ wk->kezuri_card[0] ] == wk->card_poke[ wk->kezuri_card[1] ]) ){
 		atari_flag = 1;
 	}
 
 	if( atari_flag == 1 ){
-		//“–‚½‚èƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg‚·‚é
+		//å½“ãŸã‚Šãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		for( i=0; i < SCRATCH_CARD_KEZURI_NUM; i++ ){
 			if( wk->card_poke[ wk->kezuri_card[i] ] != ANM_POKE_META ){
 				wk->atari_poke = wk->card_poke[ wk->kezuri_card[i] ];
@@ -3998,11 +3998,11 @@ static BOOL Scratch_AtariCheck( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	“–‚½‚è‚Ìƒƒ^ƒ‚ƒ“‚Ìƒ‚ƒUƒCƒNƒGƒtƒFƒNƒgF‰Šú‰»
+ * @brief	å½“ãŸã‚Šã®ãƒ¡ã‚¿ãƒ¢ãƒ³ã®ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šåˆæœŸåŒ–
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = ƒƒ^ƒ‚ƒ“‚¢‚éAFALSE = ƒƒ^ƒ‚ƒ“‚¢‚È‚¢"
+ * @return	"TRUE = ãƒ¡ã‚¿ãƒ¢ãƒ³ã„ã‚‹ã€FALSE = ãƒ¡ã‚¿ãƒ¢ãƒ³ã„ãªã„"
  */
 //--------------------------------------------------------------
 static BOOL Scratch_MosaicEffInit( SCRATCH_WORK* wk )
@@ -4014,58 +4014,58 @@ static BOOL Scratch_MosaicEffInit( SCRATCH_WORK* wk )
 
 	for( i=0; i < SCRATCH_CARD_ATARI_NUM ;i++ ){
 
-		//ƒƒ^ƒ‚ƒ“‚¾‚Á‚½‚çƒ‚ƒUƒCƒNƒIƒ“
+		//ãƒ¡ã‚¿ãƒ¢ãƒ³ã ã£ãŸã‚‰ãƒ¢ã‚¶ã‚¤ã‚¯ã‚ªãƒ³
 		if( wk->card_poke[ wk->kezuri_card[i] ] == ANM_POKE_META ){
 			ScratchObj_MosaicSet( wk->p_d_atari[i], TRUE );
 			flag = TRUE;
 		}
 	}
 
-	wk->mosaic_size = 0;					//ƒ‚ƒUƒCƒNƒTƒCƒY(0-15)
+	wk->mosaic_size = 0;					//ãƒ¢ã‚¶ã‚¤ã‚¯ã‚µã‚¤ã‚º(0-15)
 
-	//ƒ‚ƒUƒCƒN‚Ì•‚ğİ’è
-	G2_SetOBJMosaicSize( wk->mosaic_size, wk->mosaic_size );	//•0-15(0‚Í’Êí•\¦)
+	//ãƒ¢ã‚¶ã‚¤ã‚¯ã®å¹…ã‚’è¨­å®š
+	G2_SetOBJMosaicSize( wk->mosaic_size, wk->mosaic_size );	//å¹…0-15(0ã¯é€šå¸¸è¡¨ç¤º)
 
 	return flag;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	“–‚½‚è‚Ìƒƒ^ƒ‚ƒ“‚Ìƒ‚ƒUƒCƒNƒGƒtƒFƒNƒgFƒƒCƒ“
+ * @brief	å½“ãŸã‚Šã®ãƒ¡ã‚¿ãƒ¢ãƒ³ã®ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0=mosaic++A1=mosaic--
+ * @param	wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0=mosaic++ã€1=mosaic--
  *
- * @return	"TRUE = Œp‘±’†AFALSE = I—¹"
+ * @return	"TRUE = ç¶™ç¶šä¸­ã€FALSE = çµ‚äº†"
  */
 //--------------------------------------------------------------
 static BOOL Scratch_MosaicEffMain( SCRATCH_WORK* wk, u8 flag )
 {
 	int i;
 
-	//ƒƒ^ƒ‚ƒ“‚ª‚¢‚é‚©
+	//ãƒ¡ã‚¿ãƒ¢ãƒ³ãŒã„ã‚‹ã‹
 	for( i=0; i < SCRATCH_CARD_ATARI_NUM ;i++ ){
 		if( wk->card_poke[ wk->kezuri_card[i] ] == ANM_POKE_META ){
 			break;
 		}
 	}
 
-	//ƒƒ^ƒ‚ƒ“‚¢‚È‚¢‚Ì‚ÅI—¹
+	//ãƒ¡ã‚¿ãƒ¢ãƒ³ã„ãªã„ã®ã§çµ‚äº†
 	if( i == SCRATCH_CARD_ATARI_NUM ){
 		return FALSE;
 	}
 
 	if( flag == 0 ){
 
-		//‰‰ñ‚Ì‚İ–Â‚ç‚·
+		//åˆå›ã®ã¿é³´ã‚‰ã™
 		if( wk->mosaic_size == 0 ){
 			Snd_SePlay( SE_D_METAMON_CHG );
 		}
 
 		if( wk->mosaic_size < SCRATCH_MOSAIC_MAX ){
-			wk->mosaic_size++;					//ƒ‚ƒUƒCƒNƒTƒCƒY(0-15)
+			wk->mosaic_size++;					//ãƒ¢ã‚¶ã‚¤ã‚¯ã‚µã‚¤ã‚º(0-15)
 		}else{
-			//ƒƒ^ƒ‚ƒ“‚ğ“–‚½‚èƒ|ƒPƒ‚ƒ“‚É•ÏX
+			//ãƒ¡ã‚¿ãƒ¢ãƒ³ã‚’å½“ãŸã‚Šãƒã‚±ãƒ¢ãƒ³ã«å¤‰æ›´
 			for( i=0; i < SCRATCH_CARD_ATARI_NUM ;i++ ){
 				if( wk->card_poke[ wk->kezuri_card[i] ] == ANM_POKE_META ){
 					ScratchObj_AnmChg(	wk->p_d_atari[i], wk->atari_poke );
@@ -4075,9 +4075,9 @@ static BOOL Scratch_MosaicEffMain( SCRATCH_WORK* wk, u8 flag )
 		}
 	}else{
 		if( wk->mosaic_size > 0 ){
-			wk->mosaic_size--;					//ƒ‚ƒUƒCƒNƒTƒCƒY(0-15)
+			wk->mosaic_size--;					//ãƒ¢ã‚¶ã‚¤ã‚¯ã‚µã‚¤ã‚º(0-15)
 		}else{
-			//ƒ‚ƒUƒCƒN‚ğƒIƒt
+			//ãƒ¢ã‚¶ã‚¤ã‚¯ã‚’ã‚ªãƒ•
 			for( i=0; i < SCRATCH_CARD_ATARI_NUM ;i++ ){
 				ScratchObj_MosaicSet( wk->p_d_atari[i], FALSE );
 			}
@@ -4085,8 +4085,8 @@ static BOOL Scratch_MosaicEffMain( SCRATCH_WORK* wk, u8 flag )
 		}
 	}
 
-	//ƒ‚ƒUƒCƒN‚Ì•‚ğİ’è
-	G2_SetOBJMosaicSize( wk->mosaic_size, wk->mosaic_size );	//•0-15(0‚Í’Êí•\¦)
+	//ãƒ¢ã‚¶ã‚¤ã‚¯ã®å¹…ã‚’è¨­å®š
+	G2_SetOBJMosaicSize( wk->mosaic_size, wk->mosaic_size );	//å¹…0-15(0ã¯é€šå¸¸è¡¨ç¤º)
 
 	return TRUE;
 }
@@ -4094,13 +4094,13 @@ static BOOL Scratch_MosaicEffMain( SCRATCH_WORK* wk, u8 flag )
 
 //==============================================================================================
 //
-//	ƒTƒuƒV[ƒPƒ“ƒX
+//	ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‚â‚ß‚é‚Ö‚¢‚­‚½‚ß‚Ì€”õ
+ * @brief	ã‚„ã‚ã‚‹ã¸ã„ããŸã‚ã®æº–å‚™
  *
  * @param	
  *
@@ -4115,7 +4115,7 @@ static void Scratch_SeqSubYameruCard( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Â‚¬‚ÌƒJ[ƒh‚Ö‚¢‚­‚½‚ß‚Ì€”õ
+ * @brief	ã¤ãã®ã‚«ãƒ¼ãƒ‰ã¸ã„ããŸã‚ã®æº–å‚™
  *
  * @param	
  *
@@ -4130,7 +4130,7 @@ static void Scratch_SeqSubNextCard( SCRATCH_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹â”“OK
+ * @brief	éŠ€ç®”OK
  *
  * @param	
  *
@@ -4139,7 +4139,7 @@ static void Scratch_SeqSubNextCard( SCRATCH_WORK* wk )
 //--------------------------------------------------------------
 static void Scratch_SeqSubGinOk( SCRATCH_WORK* wk )
 {
-	ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_ON );				//ƒIƒt
+	ScratchObj_Vanish( wk->p_d_win, SCRATCH_VANISH_ON );				//ã‚ªãƒ•
 	GF_BGL_BmpWinDataFill( &wk->bmpwin[BMPWIN_START], FBMP_COL_NULL );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[BMPWIN_START] );
 	return;
@@ -4148,17 +4148,17 @@ static void Scratch_SeqSubGinOk( SCRATCH_WORK* wk )
 
 //==============================================================================================
 //
-//	ƒqƒbƒgƒ`ƒFƒbƒN(ƒ^ƒbƒ`ƒpƒlƒ‹)
+//	ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯(ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«)
 //
 //==============================================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * @brief	ƒqƒbƒgƒ`ƒFƒbƒN
+ * @brief	ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  *
  * @param	none
  *
- * @return	"TRUE=G‚ê‚Ä‚¢‚éAFALSE=G‚ê‚Ä‚¢‚È‚¢"
+ * @return	"TRUE=è§¦ã‚Œã¦ã„ã‚‹ã€FALSE=è§¦ã‚Œã¦ã„ãªã„"
  */
 //--------------------------------------------------------------
 static BOOL Scratch_TPSystemHitCheck( ANIMAL_OBJ* animal_obj )
@@ -4169,21 +4169,21 @@ static BOOL Scratch_TPSystemHitCheck( ANIMAL_OBJ* animal_obj )
 	VecFx32 mat;
 
 	for( i=0; i < 2 ;i++ ){
-		hit_tbl[i].rect.top		= TP_HIT_END;			//‰Šú‰»
+		hit_tbl[i].rect.top		= TP_HIT_END;			//åˆæœŸåŒ–
 		hit_tbl[i].rect.bottom	= 0;
 		hit_tbl[i].rect.left	= 0;
 		hit_tbl[i].rect.right	= 0;
 	}
 
-	mat_p = AnimalObj_GetPos( animal_obj );				//“®•¨‚ÌˆÊ’uæ“¾
+	mat_p = AnimalObj_GetPos( animal_obj );				//å‹•ç‰©ã®ä½ç½®å–å¾—
 	mat = *mat_p;
 
-#if SUB_DISP_CHG										//1=ƒTƒu‰æ–Ê‚É•ÏX
+#if SUB_DISP_CHG										//1=ã‚µãƒ–ç”»é¢ã«å¤‰æ›´
 	//mat.y -= SUB_SURFACE_Y;
 	mat.y -= SCRATCH_SUB_ACTOR_DISTANCE;
 #endif
 
-	//“®•¨‚Íu32x32v
+	//å‹•ç‰©ã¯ã€Œ32x32ã€
 	hit_tbl[0].rect.top		= mat.y / FX32_ONE - 16;
 	hit_tbl[0].rect.bottom	= mat.y / FX32_ONE + 16;
 	hit_tbl[0].rect.left	= mat.x / FX32_ONE - 16;
@@ -4191,7 +4191,7 @@ static BOOL Scratch_TPSystemHitCheck( ANIMAL_OBJ* animal_obj )
 
 	if( GF_TP_SingleHitCont((const RECT_HIT_TBL*)hit_tbl) == TRUE ){
 		Snd_SePlay( SE_D_BUTTON_TOUCH );
-		//OS_Printf( "ƒe[ƒuƒ‹‚ÉHIT‚µ‚Ü‚µ‚½\n" );
+		//OS_Printf( "ãƒ†ãƒ¼ãƒ–ãƒ«ã«HITã—ã¾ã—ãŸ\n" );
 		return TRUE;
 	}
 
@@ -4202,30 +4202,30 @@ static BOOL Scratch_TPSystemHitCheck( ANIMAL_OBJ* animal_obj )
 
 //==============================================================================================
 //
-//	ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğƒRƒs[‚µ‚ÄAƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ‘‚«Š·‚¦‚é
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆã‚‹
 //
 //==============================================================================================
 
 //------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğƒoƒbƒtƒ@‚ÉƒRƒs[
- * "I—¹‚ÉŠJ•ú‚ª•K—v"
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
+ * "çµ‚äº†æ™‚ã«é–‹æ”¾ãŒå¿…è¦"
  *
- * @param   wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒLƒƒƒ‰‚ğ”í‚ç‚È‚¢‚æ‚¤‚É‰æ–ÊƒTƒCƒY•ª—pˆÓ‚µ‚Ä‚¨‚­A
- * ‚»‚ê‚ğ‚±‚ÌŠÖ”‚Åƒoƒbƒtƒ@‚ÉƒRƒs[‚µ‚Ä‚¨‚¢‚ÄA
- * ‰æ–Ê‚ğƒ^ƒbƒ`‚µ‚½‚çAƒoƒbƒtƒ@‚Ì‚»‚ÌêŠ‚ğ0ƒNƒŠƒA‚·‚é(ƒrƒbƒg’PˆÊ)
+ * ã‚­ãƒ£ãƒ©ã‚’è¢«ã‚‰ãªã„ã‚ˆã†ã«ç”»é¢ã‚µã‚¤ã‚ºåˆ†ç”¨æ„ã—ã¦ãŠãã€
+ * ãã‚Œã‚’ã“ã®é–¢æ•°ã§ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã—ã¦ãŠã„ã¦ã€
+ * ç”»é¢ã‚’ã‚¿ãƒƒãƒã—ãŸã‚‰ã€ãƒãƒƒãƒ•ã‚¡ã®ãã®å ´æ‰€ã‚’0ã‚¯ãƒªã‚¢ã™ã‚‹(ãƒ“ãƒƒãƒˆå˜ä½)
  */
 //------------------------------------------------------------------
 static void Scratch_Touch_0( SCRATCH_WORK* wk )
 {
-	//ƒLƒƒƒ‰ƒNƒ^æ“¾
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å–å¾—
 	wk->p_char = ArcUtil_CharDataGet(	ARC_SCRATCH, NARC_scratch_l_bg01gin_NCGR, 
 	//wk->p_char = ArcUtil_CharDataGet(	ARC_SCRATCH, NARC_scratch_l_bg00_NCGR, 
 										0, &wk->p_chardata, HEAPID_SCRATCH );
 
-	//ƒLƒƒƒ‰ƒNƒ^“]‘—
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	GF_BGL_LoadCharacter(	wk->bgl, SCRATCH_FRAME_D_TOUCH,
 							wk->p_chardata->pRawData,
 							wk->p_chardata->szByte,
@@ -4237,16 +4237,16 @@ static void Scratch_Touch_0( SCRATCH_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒoƒbƒtƒ@‚ğ¶¬	"I—¹‚ÉŠJ•ú‚ª•K—v"
+ * ãƒãƒƒãƒ•ã‚¡ã‚’ç”Ÿæˆ	"çµ‚äº†æ™‚ã«é–‹æ”¾ãŒå¿…è¦"
  *
- * @param   wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void Scratch_Touch_1( SCRATCH_WORK* wk )
 {
 	wk->buf = sys_AllocMemory( HEAPID_SCRATCH, wk->p_chardata->szByte );
 	if( wk->buf == NULL ){
-		OS_Printf( "ƒƒ‚ƒŠŠm•Û¸”sI\n" );
+		OS_Printf( "ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—ï¼\n" );
 		GF_ASSERT( wk->buf != NULL );
 	}
 	return;
@@ -4254,30 +4254,30 @@ static void Scratch_Touch_1( SCRATCH_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğƒRƒs[
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
  *
- * @param   wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void Scratch_Touch_1_5( SCRATCH_WORK* wk )
 {
-	//OS_Printf( "ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒTƒCƒY = %d\n", wk->p_chardata->szByte );
+	//OS_Printf( "ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º = %d\n", wk->p_chardata->szByte );
 	memcpy( wk->buf, wk->p_chardata->pRawData, wk->p_chardata->szByte );
 	return;
 }
 
 //------------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚ê‚Ä‚¢‚éÀ•W‚ğæ“¾‚µ‚ÄƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğ‘‚«Š·‚¦‚é
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã‚Œã¦ã„ã‚‹åº§æ¨™ã‚’å–å¾—ã—ã¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆã‚‹
  *
- * @param   wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void Scratch_Touch_2( SCRATCH_WORK* wk, int tp_x, int tp_y )
 {
 	int i,j;
 
-	//‚±‚ê‚Å³Šm‚©Šm‚©‚ß‚é
+	//ã“ã‚Œã§æ­£ç¢ºã‹ç¢ºã‹ã‚ã‚‹
 	//OS_Printf( "tp_x = %d\n", tp_x );
 	//OS_Printf( "tp_y = %d\n", tp_y );
 	//Scratch_Touch_3( wk, tp_x, tp_y );
@@ -4300,11 +4300,11 @@ static void Scratch_Touch_2( SCRATCH_WORK* wk, int tp_x, int tp_y )
 
 //------------------------------------------------------------------
 /**
- * “n‚³‚ê‚½ˆÊ’u‚ÌƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚ğ0ƒNƒŠƒA
+ * æ¸¡ã•ã‚ŒãŸä½ç½®ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’0ã‚¯ãƒªã‚¢
  *
- * @param   wk		SCRATCH_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param   tp_x	ƒhƒbƒg’PˆÊ‚ÌX
- * @param   tp_y	ƒhƒbƒg’PˆÊ‚ÌY
+ * @param   wk		SCRATCH_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tp_x	ãƒ‰ãƒƒãƒˆå˜ä½ã®X
+ * @param   tp_y	ãƒ‰ãƒƒãƒˆå˜ä½ã®Y
  */
 //------------------------------------------------------------------
 static void Scratch_Touch_3( SCRATCH_WORK* wk, u32 tp_x, u32 tp_y )
@@ -4314,43 +4314,43 @@ static void Scratch_Touch_3( SCRATCH_WORK* wk, u32 tp_x, u32 tp_y )
 
 	set_bit = 0xff;
 		
-	if( (tp_x % 2) == 0 ){					//ƒVƒtƒg‚·‚é’l(‘O”¼4bit‚©AŒã”¼4bit‚©)
-		set_bit ^= 0x0f;					//2i(00001111)
+	if( (tp_x % 2) == 0 ){					//ã‚·ãƒ•ãƒˆã™ã‚‹å€¤(å‰åŠ4bitã‹ã€å¾ŒåŠ4bitã‹)
+		set_bit ^= 0x0f;					//2é€²(00001111)
 	}else{
-		set_bit ^= 0xf0;					//2i(11110000)
+		set_bit ^= 0xf0;					//2é€²(11110000)
 	}
 	//OS_Printf( "set_bit = %d\n", set_bit );
 
-	//ƒLƒƒƒ‰’PˆÊ‚²‚Æ‚ÌêŠ‚ğæ“¾
-	pos_x = ( tp_x / 8 * ONE_CHAR );		//ƒhƒbƒgˆÊ’u‚ğƒLƒƒƒ‰ˆÊ’u‚É‚µ‚ÄA1ƒLƒƒƒ‰
-	pos_y = ( tp_y / 8 * ONE_CHAR * 32 );	//ƒhƒbƒgˆÊ’u‚ğƒLƒƒƒ‰ˆÊ’u‚É‚µ‚ÄA1ƒLƒƒƒ‰x‰¡•ª
+	//ã‚­ãƒ£ãƒ©å˜ä½ã”ã¨ã®å ´æ‰€ã‚’å–å¾—
+	pos_x = ( tp_x / 8 * ONE_CHAR );		//ãƒ‰ãƒƒãƒˆä½ç½®ã‚’ã‚­ãƒ£ãƒ©ä½ç½®ã«ã—ã¦ã€1ã‚­ãƒ£ãƒ©
+	pos_y = ( tp_y / 8 * ONE_CHAR * 32 );	//ãƒ‰ãƒƒãƒˆä½ç½®ã‚’ã‚­ãƒ£ãƒ©ä½ç½®ã«ã—ã¦ã€1ã‚­ãƒ£ãƒ©xæ¨ªåˆ†
 	//OS_Printf( "pos_x = %d\n", pos_x );
 	//OS_Printf( "pos_y = %d\n", pos_y );
 
-	offset_x = ( tp_x % 8 / 2 );			//‰¡0-3‚Ì‚Ç‚ê‚©
+	offset_x = ( tp_x % 8 / 2 );			//æ¨ª0-3ã®ã©ã‚Œã‹
 	//OS_Printf( "offset_x = %d\n", offset_x );
 	
 	if( tp_y < 8 ){
-		offset_y = ( tp_y * 4 );			//c0-7‚Ì‚Ç‚ê‚©(4=‰¡‚Ì—v‘f”)
+		offset_y = ( tp_y * 4 );			//ç¸¦0-7ã®ã©ã‚Œã‹(4=æ¨ªã®è¦ç´ æ•°)
 	}else{
 		offset_y = ( tp_y % 8 );
-		offset_y = ( offset_y * 4 );		//c0-7‚Ì‚Ç‚ê‚©(4=‰¡‚Ì—v‘f”)
+		offset_y = ( offset_y * 4 );		//ç¸¦0-7ã®ã©ã‚Œã‹(4=æ¨ªã®è¦ç´ æ•°)
 	}
 	//OS_Printf( "offset_y = %d\n", offset_y );
 
 	decide_pos = ( pos_y + pos_x + offset_x + offset_y );
-	//OS_Printf( "ƒZƒbƒg‚µ‚Ä‚¢‚é—v‘f”Fdecide_pos = %d\n", decide_pos );
+	//OS_Printf( "ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹è¦ç´ æ•°ï¼šdecide_pos = %d\n", decide_pos );
 
-	//OS_Printf( "‘O wk->buf = %d\n", wk->buf[decide_pos] );
+	//OS_Printf( "å‰ wk->buf = %d\n", wk->buf[decide_pos] );
 	wk->buf[ decide_pos ] &= set_bit;
-	//OS_Printf( "Œã wk->buf = %d\n\n******************\n", wk->buf[decide_pos] );
+	//OS_Printf( "å¾Œ wk->buf = %d\n\n******************\n", wk->buf[decide_pos] );
 	return;
 }
 
 
 //==============================================================================================
 //
-//	¶ã‚©‚ç‰E‚É16ƒLƒƒƒ‰•ª(COL_NUM•ª)ƒpƒŒƒbƒg‚ÌƒJƒ‰[‚Æ“¯‚¶8x8‚ÌƒLƒƒƒ‰‚É‘‚«‚İ
+//	å·¦ä¸Šã‹ã‚‰å³ã«16ã‚­ãƒ£ãƒ©åˆ†(COL_NUMåˆ†)ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚«ãƒ©ãƒ¼ã¨åŒã˜8x8ã®ã‚­ãƒ£ãƒ©ã«æ›¸ãè¾¼ã¿
 //
 //==============================================================================================
 #if 0

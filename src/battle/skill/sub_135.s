@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_135.s
- *@brief	�퓬�V�[�P���X
- *			�Ȃ肫��V�[�P���X
+ *@brief	戦闘シーケンス
+ *			なりきりシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.07
  *
@@ -16,20 +16,20 @@
 
 SUB_135:
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
-	//�����ӂ����Ȃ܂���́A���܂����܂��
+	//特性ふしぎなまもりは、うまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_speabino,TOKUSYU_HUSIGINAMAMORI,Umakukimaran
-	//�����}���`�^�C�v�́A���܂����܂��
+	//特性マルチタイプは、うまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_speabino,TOKUSYU_MARUTITAIPU,Umakukimaran
-	//�����}���`�^�C�v�́A���܂����܂��
+	//特性マルチタイプは、うまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_speabino,TOKUSYU_MARUTITAIPU,Umakukimaran
-	//�����������Ă��Ȃ��ꍇ�́A���܂����܂��
+	//特性を持っていない場合は、うまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_speabino,0,Umakukimaran
 
 	GOSUB			SUB_SEQ_WAZA_OUT_EFF
 
-	//�Ȃ܂��r�b�g��������
+	//なまけビットを初期化
 	VALUE_WORK		VAL_SET,BUF_PARA_TEMP_WORK,BUF_PARA_TOTAL_TURN
-	//���̃^�[���Ȃ܂������邽�߂ɁA�C���N�������g�͂Ȃ�
+	//次のターンなまけさせるために、インクリメントはなし
 //	VALUE			VAL_ADD,BUF_PARA_TEMP_WORK,1
 	VALUE			VAL_AND,BUF_PARA_TEMP_WORK,1
 	PSP_VALUE_WORK	VAL_SET,SIDE_ATTACK,ID_PSP_wkw_namake_bit,BUF_PARA_TEMP_WORK
@@ -38,7 +38,7 @@ SUB_135:
 	PSP_VALUE_WORK	VAL_SET,SIDE_ATTACK,ID_PSP_speabino,BUF_PARA_TEMP_WORK
 
 	IF				IF_FLAG_NE,BUF_PARA_TEMP_WORK,TOKUSYU_SUROOSUTAATO,Message
-	//�Ȃ肫�����������X���[�X�^�[�g�̏ꍇ�́A�J�E���^�����Z�b�g
+	//なりきった特性がスロースタートの場合は、カウンタをリセット
 	VALUE_WORK		VAL_SET,BUF_PARA_TEMP_WORK,BUF_PARA_TOTAL_TURN
 	VALUE			VAL_ADD,BUF_PARA_TEMP_WORK,1
 	PSP_VALUE_WORK	VAL_SET,SIDE_ATTACK,ID_PSP_wkw_slow_start_count,BUF_PARA_TEMP_WORK

@@ -13,22 +13,22 @@
 
 //--------------------------------------------------------------------
 /**
- * @brief	�o�g���ł̃e���r�g�s�b�N�p��񃏁[�N�s���S�^��`
+ * @brief	バトルでのテレビトピック用情報ワーク不完全型定義
  */
 //--------------------------------------------------------------------
 typedef struct TVWATCH_BATTLE_WORK TVWATCH_BATTLE_WORK;
 
 //============================================================================================
-//			�퓬�����ŌĂяo���Ă��炤�֐�
+//			戦闘処理で呼び出してもらう関数
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	�e���r�g�s�b�N���������F�o�g���ߊl
- * @param	tvwcw			�e���r�g�s�b�N�p���ێ����[�N
- * @param	pp				�Ώۂ̃|�P����
- * @param	win_lose_flag	�퓬����
- * @param	ball_count		�g�p�����{�[���̐�
- * @param	heapID			���p�\�ȃq�[�v�w��
+ * @brief	テレビトピック生成処理：バトル捕獲
+ * @param	tvwcw			テレビトピック用情報保持ワーク
+ * @param	pp				対象のポケモン
+ * @param	win_lose_flag	戦闘結果
+ * @param	ball_count		使用したボールの数
+ * @param	heapID			利用可能なヒープ指定
  */
 //--------------------------------------------------------------------
 extern void TVBATTLE_StoreResult(TVWATCH_BATTLE_WORK * tvwcw, POKEMON_PARAM * pp,
@@ -36,12 +36,12 @@ extern void TVBATTLE_StoreResult(TVWATCH_BATTLE_WORK * tvwcw, POKEMON_PARAM * pp
 
 
 //============================================================================================
-//			BATTLE_PARAM�����E�폜�����ŌĂяo���֐�
+//			BATTLE_PARAM生成・削除処理で呼び出す関数
 //============================================================================================
-//TV�ߊl���[�N��������
+//TV捕獲ワーク生成処理
 extern TVWATCH_BATTLE_WORK * TVWatchBattleWork_Create(int heapID);
 
-//TV�ߊl���[�N�폜����
+//TV捕獲ワーク削除処理
 extern void TVWatchBattleWork_Delete(TVWATCH_BATTLE_WORK * tvwbw);
 
 #endif	//	__TVTOPIC_BATTLE_H__

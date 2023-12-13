@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_178.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			178@‘ŠŽè‚Ì“Á«‚ðƒRƒs[‚·‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			178ã€€ç›¸æ‰‹ã®ç‰¹æ€§ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2006.02.07
@@ -15,9 +15,9 @@
 	.include	"waza_seq_def.h"
 
 BE_178:
-	//“Á«ƒ}ƒ‹ƒ`ƒ^ƒCƒv‚ð‚à‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ÍŽ¸”s
+	//ç‰¹æ€§ãƒžãƒ«ãƒã‚¿ã‚¤ãƒ—ã‚’ã‚‚ã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã¯å¤±æ•—
 	TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_ATTACK,TOKUSYU_MARUTITAIPU,Umakukimaran
-	//‚Í‚Á‚«‚ñ‚¾‚Ü‚ðŠŽ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ÍŽ¸”s
+	//ã¯ã£ãã‚“ã ã¾ã‚’æ‰€æŒã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã¯å¤±æ•—
 	IF_PSP			IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_item,ITEM_HAKKINDAMA,Umakukimaran
 	VALUE			VAL_SET,BUF_PARA_ADD_STATUS_DIRECT,ADD_COND2_NARIKIRI|ADD_STATUS_DEFENCE|ADD_STATUS_WAZAKOUKA_NOHIT
 	SEQ_END

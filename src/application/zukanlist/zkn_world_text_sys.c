@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_world_text_sys.c
- *	@brief		}ŠÓ‚ÌŠO‘ŒêƒeƒLƒXƒgƒAƒNƒZƒX
+ *	@brief		å›³é‘‘ã®å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆã‚¢ã‚¯ã‚»ã‚¹
  *	@author		tomoya takahashi 
  *	@data		2006.02.28
  *
@@ -27,52 +27,52 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_WT_ALLOC_STR_NUM		( 256 )		// Šm•Û‚·‚é•¶š—ñ”
+#define ZKN_WT_ALLOC_STR_NUM		( 256 )		// ç¢ºä¿ã™ã‚‹æ–‡å­—åˆ—æ•°
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ŠO‘ŒêƒeƒLƒXƒg—p‘ƒR[ƒh‚Æ
-//	ÀÛ‚ÉGMMƒtƒ@ƒCƒ‹‚É“ü‚Á‚Ä‚¢‚éƒf[ƒ^‚ÌŠO‘Œê€–Ú”
-//	‘Î‰ƒf[ƒ^
-//	IDX‚ÍŠO‘ŒêƒeƒLƒXƒg—p‘ƒR[ƒh
+//	ãƒã‚±ãƒ¢ãƒ³å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆç”¨å›½ã‚³ãƒ¼ãƒ‰ã¨
+//	å®Ÿéš›ã«GMMãƒ•ã‚¡ã‚¤ãƒ«ã«å…¥ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å¤–å›½èªé …ç›®æ•°
+//	å¯¾å¿œãƒ‡ãƒ¼ã‚¿
+//	IDXã¯å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆç”¨å›½ã‚³ãƒ¼ãƒ‰
 //
-//	zukan_data.xls‚É‚Í‰º‚Ì”š‚Ì‡‚ÉÃŞ°À‚ğŠi”[‚µ‚Ä‚¨‚­
+//	zukan_data.xlsã«ã¯ä¸‹ã®æ•°å­—ã®é †ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ã¦ãŠã
 //=====================================
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/05
-// ŠO‘Œê‚¸‚©‚ñ‚ÌƒeƒLƒXƒg‚ğ©‘•ª‚à‚Á‚½Œ`®‚É•ÏX
+// å¤–å›½èªãšã‹ã‚“ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è‡ªå›½åˆ†ã‚‚æŒã£ãŸå½¢å¼ã«å¤‰æ›´
 
 enum {
 	TEXTCODE_JAPAN,
@@ -118,7 +118,7 @@ static const u8 ZKN_WORLD_TEXT_LangBtnOrder[ZKN_WORLD_TEXT_NUM] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static inline int ZknWt_GetGmmIdx( int zkn_text_code );
@@ -128,9 +128,9 @@ static void ZknWt_GetCountryPokeData( int monsno, int country, int* p_country_po
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•¶š—ñƒoƒbƒtƒ@‚ğ”jŠü‚·‚é
+ *	@brief	æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	buf		ƒoƒbƒtƒ@
+ *	@param	buf		ãƒãƒƒãƒ•ã‚¡
  *
  *	@return	none
  */
@@ -142,11 +142,11 @@ void ZKN_WT_DeleteStrBuf( STRBUF* buf )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ƒR[ƒh‚©‚ç‘Î‰‚·‚éŠO‘ŒêGMMƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ *	@brief	å›½ã‚³ãƒ¼ãƒ‰ã‹ã‚‰å¯¾å¿œã™ã‚‹å¤–å›½èªGMMã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- *	@param	country	‘ƒR[ƒh
+ *	@param	country	å›½ã‚³ãƒ¼ãƒ‰
  *
- *	@return	ŠO‘Œê”Ô†
+ *	@return	å¤–å›½èªç•ªå·
  */
 //-----------------------------------------------------------------------------
 int ZKN_WT_LANG_Code_WORLD_TEXT_GMM_Idx( int country )
@@ -154,10 +154,10 @@ int ZKN_WT_LANG_Code_WORLD_TEXT_GMM_Idx( int country )
 	int country_text_code;
 	int country_gmm_idx;
 	
-	// ŠO‘ŒêƒeƒLƒXƒg—p‘ƒR[ƒh‚É•ÏŠ·
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆç”¨å›½ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›
 	country_text_code = ZKN_WT_GetLANG_Code_ZKN_WORLD_TEXT_Code( country );
-	GF_ASSERT( country_text_code < ZKN_WORLD_TEXT_NUM );	// –³‚¢‚Æ‚¢‚¤‚±‚Æ‚Íƒf[ƒ^‚à–³‚¢
-	// ŠO‘ŒêƒeƒLƒXƒg—p‘ƒR[ƒh‚©‚çGMMƒf[ƒ^ŠO‘Œê€–Ú”æ“¾
+	GF_ASSERT( country_text_code < ZKN_WORLD_TEXT_NUM );	// ç„¡ã„ã¨ã„ã†ã“ã¨ã¯ãƒ‡ãƒ¼ã‚¿ã‚‚ç„¡ã„
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆç”¨å›½ã‚³ãƒ¼ãƒ‰ã‹ã‚‰GMMãƒ‡ãƒ¼ã‚¿å¤–å›½èªé …ç›®æ•°å–å¾—
 	country_gmm_idx = ZknWt_GetGmmIdx( country_text_code );
 
 	return country_gmm_idx;
@@ -165,18 +165,18 @@ int ZKN_WT_LANG_Code_WORLD_TEXT_GMM_Idx( int country )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠO‘Œê”Ô†‚©‚ç‘Î‰‚·‚é‘ƒR[ƒh‚ğæ“¾‚·‚é
+ *	@brief	å¤–å›½èªç•ªå·ã‹ã‚‰å¯¾å¿œã™ã‚‹å›½ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	county	ŠO‘Œê”Ô†	(gmmƒtƒ@ƒCƒ‹‚É•À‚ñ‚Å‚¢‚é”Ô†)
+ *	@param	county	å¤–å›½èªç•ªå·	(gmmãƒ•ã‚¡ã‚¤ãƒ«ã«ä¸¦ã‚“ã§ã„ã‚‹ç•ªå·)
  *
- *	@return	‘ƒR[ƒh		// ˆø‚Á‚©‚©‚ç‚È‚¢‚Æ‚«‚Íƒz[ƒ€ƒ^ƒEƒ“‚ğ•Ô‚·
+ *	@return	å›½ã‚³ãƒ¼ãƒ‰		// å¼•ã£ã‹ã‹ã‚‰ãªã„ã¨ãã¯ãƒ›ãƒ¼ãƒ ã‚¿ã‚¦ãƒ³ã‚’è¿”ã™
  */
 //-----------------------------------------------------------------------------
 int ZKN_WT_WORLD_TEXT_GMM_Idx_LANG_Code( int country )
 {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
-	// ŠO‘Œê‚¸‚©‚ñ‚ÌƒeƒLƒXƒg‚ğ©‘•ª‚à‚Á‚½Œ`®‚É•ÏX
+	// å¤–å›½èªãšã‹ã‚“ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è‡ªå›½åˆ†ã‚‚æŒã£ãŸå½¢å¼ã«å¤‰æ›´
 
 	return ZKN_WT_GetZKN_WORLD_TEXT_Code_LANG_Code( ZKN_WORLD_TEXT_LangBtnOrder[country+1] );
 
@@ -186,13 +186,13 @@ int ZKN_WT_WORLD_TEXT_GMM_Idx_LANG_Code( int country )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘‚Ìƒ|ƒPƒ‚ƒ“–¼‚ğ•Ô‚·
+ *	@brief	å›½ã®ãƒã‚±ãƒ¢ãƒ³åã‚’è¿”ã™
  *
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	country		ƒQ[ƒ€“à‘ƒR[ƒh
- *	@param	heap		ƒq[ƒv
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	country		ã‚²ãƒ¼ãƒ å†…å›½ã‚³ãƒ¼ãƒ‰
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
- *	@return	•¶š—ñƒf[ƒ^
+ *	@return	æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
@@ -202,24 +202,24 @@ STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
 	int country_gmm_idx;
 	int gmm_file_idx;
 
-	// ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ÆƒQ[ƒ€“à‘ƒR[ƒh‚©‚ç
-	// ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^€–Ú”
-	// ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^—p‘ƒR[ƒh
-	// ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^GMMŠO‘€–Ú”æ“¾
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã¨ã‚²ãƒ¼ãƒ å†…å›½ã‚³ãƒ¼ãƒ‰ã‹ã‚‰
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿é …ç›®æ•°
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç”¨å›½ã‚³ãƒ¼ãƒ‰
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿GMMå¤–å›½é …ç›®æ•°å–å¾—
 	ZknWt_GetCountryPokeData( monsno, country, &country_poke_num, &country_text_code, &country_gmm_idx );
 
-	// ©‘ƒ`ƒFƒbƒN
+	// è‡ªå›½ãƒã‚§ãƒƒã‚¯
 	if( country_gmm_idx == ZKN_WORLD_TEXT_NUM ){
-		// ©‘
-		// GMM‚Ì’†‚Ìƒf[ƒ^idxmonsno
+		// è‡ªå›½
+		// GMMã®ä¸­ã®ãƒ‡ãƒ¼ã‚¿idxï¼monsno
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/19
-		// ƒ|ƒPƒ‚ƒ“–¼‚Í‚·‚×‚Ä‘S‘å•¶š‚É
+		// ãƒã‚±ãƒ¢ãƒ³åã¯ã™ã¹ã¦å…¨å¤§æ–‡å­—ã«
 		return MSGDAT_UTIL_GetMonsName( monsno, heap );
 		// ----------------------------------------------------------------------------
 	}else{
-		// ŠO‘
-		// GMM‚Ì’†‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX‚ğ‹‚ß‚é
+		// å¤–å›½
+		// GMMã®ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ±‚ã‚ã‚‹
         const int gmm_file_idx_tbl[] = {
             NARC_msg_zkn_worldnamejp_dat,
             NARC_msg_zkn_worldname_dat,
@@ -232,19 +232,19 @@ STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
 		country_gmm_idx = country_poke_num;
 	}
 
-	// gmm_file_idx‚Æcountry_gmm_idx‚©‚çSTRBUF‚ğæ“¾‚·‚é
+	// gmm_file_idxã¨country_gmm_idxã‹ã‚‰STRBUFã‚’å–å¾—ã™ã‚‹
 	return ZknWt_GetSTRData( gmm_file_idx, country_gmm_idx, heap );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘‚Ìƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğ•Ô‚·
+ *	@brief	å›½ã®ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’è¿”ã™
  *
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	country		ƒQ[ƒ€“à‘ƒR[ƒh
- *	@param	heap		ƒq[ƒv
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	country		ã‚²ãƒ¼ãƒ å†…å›½ã‚³ãƒ¼ãƒ‰
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
- *	@return	•¶š—ñƒf[ƒ^
+ *	@return	æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 STRBUF* ZKN_WT_GetPokeType( int monsno, int country, int heap )
@@ -254,21 +254,21 @@ STRBUF* ZKN_WT_GetPokeType( int monsno, int country, int heap )
 	int country_gmm_idx;
 	int gmm_file_idx;
 
-	// ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ÆƒQ[ƒ€“à‘ƒR[ƒh‚©‚ç
-	// ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^€–Ú”
-	// ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^—p‘ƒR[ƒh
-	// ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^GMMŠO‘€–Ú”æ“¾
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã¨ã‚²ãƒ¼ãƒ å†…å›½ã‚³ãƒ¼ãƒ‰ã‹ã‚‰
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿é …ç›®æ•°
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç”¨å›½ã‚³ãƒ¼ãƒ‰
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿GMMå¤–å›½é …ç›®æ•°å–å¾—
 	ZknWt_GetCountryPokeData( monsno, country, &country_poke_num, &country_text_code, &country_gmm_idx );
 
-	// ©‘ƒ`ƒFƒbƒN
+	// è‡ªå›½ãƒã‚§ãƒƒã‚¯
 	if( country_gmm_idx == ZKN_WORLD_TEXT_NUM ){
-		// ©‘
-		// GMM‚Ì’†‚Ìƒf[ƒ^idxmonsno
+		// è‡ªå›½
+		// GMMã®ä¸­ã®ãƒ‡ãƒ¼ã‚¿idxï¼monsno
 		country_gmm_idx = monsno;
 		gmm_file_idx = NARC_msg_zkn_type_dat;
 	}else{
-		// ŠO‘
-		// GMM‚Ì’†‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX‚ğ‹‚ß‚é
+		// å¤–å›½
+		// GMMã®ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ±‚ã‚ã‚‹
         const int gmm_file_idx_tbl[] = {
             NARC_msg_zkn_worldtypejp_dat,
             NARC_msg_zkn_worldtype_dat,
@@ -281,20 +281,20 @@ STRBUF* ZKN_WT_GetPokeType( int monsno, int country, int heap )
 		country_gmm_idx = country_poke_num;
 	}
 
-	// gmm_file_idx‚Æcountry_gmm_idx‚©‚çSTRBUF‚ğæ“¾‚·‚é
+	// gmm_file_idxã¨country_gmm_idxã‹ã‚‰STRBUFã‚’å–å¾—ã™ã‚‹
 	return ZknWt_GetSTRData( gmm_file_idx, country_gmm_idx, heap );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘‚ÌƒeƒLƒXƒgƒf[ƒ^‚ğ•Ô‚·
+ *	@brief	å›½ã®ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
  *
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	country		ƒQ[ƒ€“à‘ƒR[ƒh
- *	@param	page		ƒy[ƒW
- *	@param	heap		ƒq[ƒv
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	country		ã‚²ãƒ¼ãƒ å†…å›½ã‚³ãƒ¼ãƒ‰
+ *	@param	page		ãƒšãƒ¼ã‚¸
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *	
- *	@return	•¶š—ñƒf[ƒ^
+ *	@return	æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 STRBUF* ZKN_WT_GetText( int monsno, int country, int page, int heap )
@@ -304,19 +304,19 @@ STRBUF* ZKN_WT_GetText( int monsno, int country, int page, int heap )
 	int country_gmm_idx;
 	int gmm_file_idx;
 
-	// ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ÆƒQ[ƒ€“à‘ƒR[ƒh‚©‚ç
-	// ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^€–Ú”
-	// ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^—p‘ƒR[ƒh
-	// ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^GMMŠO‘€–Ú”æ“¾
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã¨ã‚²ãƒ¼ãƒ å†…å›½ã‚³ãƒ¼ãƒ‰ã‹ã‚‰
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿é …ç›®æ•°
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç”¨å›½ã‚³ãƒ¼ãƒ‰
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿GMMå¤–å›½é …ç›®æ•°å–å¾—
 	ZknWt_GetCountryPokeData( monsno, country, &country_poke_num, &country_text_code, &country_gmm_idx );
 
-	// ©‘ƒ`ƒFƒbƒN
+	// è‡ªå›½ãƒã‚§ãƒƒã‚¯
 	if( country_gmm_idx == ZKN_WORLD_TEXT_NUM ){
 
-		// ƒy[ƒW”ƒ`ƒFƒbƒN
+		// ãƒšãƒ¼ã‚¸æ•°ãƒã‚§ãƒƒã‚¯
 		GF_ASSERT( page < ZKN_WT_HOME_TEXT_PAGE_NUM );
-		// ©‘
-		// GMM‚Ì’†‚Ìƒf[ƒ^idxmonsno
+		// è‡ªå›½
+		// GMMã®ä¸­ã®ãƒ‡ãƒ¼ã‚¿idxï¼monsno
 		country_gmm_idx = (monsno * ZKN_WT_HOME_TEXT_PAGE_NUM) + page;
 		gmm_file_idx = ZKN_TEXT_DAT;
 	}else{
@@ -328,39 +328,39 @@ STRBUF* ZKN_WT_GetText( int monsno, int country, int page, int heap )
             NARC_msg_zkn_comment_05_dat,
             NARC_msg_zkn_comment_06_dat,
         };
-		// ƒy[ƒW”ƒ`ƒFƒbƒN
+		// ãƒšãƒ¼ã‚¸æ•°ãƒã‚§ãƒƒã‚¯
 		GF_ASSERT( page < ZKN_WT_WORLD_TEXT_PAGE_NUM );
-		// ŠO‘
-		// GMM‚Ì’†‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX‚ğ‹‚ß‚é
+		// å¤–å›½
+		// GMMã®ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ±‚ã‚ã‚‹
 		gmm_file_idx = gmm_file_idx_tbl[country_gmm_idx];
 		country_gmm_idx = (country_poke_num * ZKN_WT_WORLD_TEXT_PAGE_NUM) + page;
 	}
 
-	// gmm_file_idx‚Æcountry_gmm_idx‚©‚çSTRBUF‚ğæ“¾‚·‚é
+	// gmm_file_idxã¨country_gmm_idxã‹ã‚‰STRBUFã‚’å–å¾—ã™ã‚‹
 	return ZknWt_GetSTRData( gmm_file_idx, country_gmm_idx, heap );
 }
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÖ”‚Å‚Ì–ß‚è’l[ŠO‘ŒêGMM“à‚Ìƒf[ƒ^€–Ú][GMMƒf[ƒ^ŠO‘Œê€–Ú”]‚©‚ç‚»‚Ìƒf[ƒ^‚ª‚ ‚é‚Ì‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	é–¢æ•°ã§ã®æˆ»ã‚Šå€¤[å¤–å›½èªGMMå†…ã®ãƒ‡ãƒ¼ã‚¿é …ç›®][GMMãƒ‡ãƒ¼ã‚¿å¤–å›½èªé …ç›®æ•°]ã‹ã‚‰ãã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
  *	@param	textverpokenum
  *	@param	gmm_idx 
  *
- *	@retval	TRUE	ƒf[ƒ^‚ª‚ ‚é
- *	@retval	FALSE	‚»‚Ìƒ|ƒPƒ‚ƒ“‚Ì‚»‚Ì‘‚Ìƒf[ƒ^‚Í‚È‚¢
+ *	@retval	TRUE	ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹
+ *	@retval	FALSE	ãã®ãƒã‚±ãƒ¢ãƒ³ã®ãã®å›½ã®ãƒ‡ãƒ¼ã‚¿ã¯ãªã„
  */
 //-----------------------------------------------------------------------------
 static inline BOOL ZknWt_CheckWorldData( int textverpokenum, int gmm_idx )
 {
-	// ©‘‚Ìƒf[ƒ^‚ğ‹‚ß‚Ä‚¢‚È‚¢‚Ì‚É‚»‚Ìƒ|ƒPƒ‚ƒ“‚ÌŠO‘Œêƒf[ƒ^‚ª–³‚¢‚Æ‚«
-	// ‚Íƒf[ƒ^‚ª‚È‚¢‚Æ‚¢‚¤‚±‚Æ‚É‚È‚é
+	// è‡ªå›½ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ±‚ã‚ã¦ã„ãªã„ã®ã«ãã®ãƒã‚±ãƒ¢ãƒ³ã®å¤–å›½èªãƒ‡ãƒ¼ã‚¿ãŒç„¡ã„ã¨ã
+	// ã¯ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã¨ã„ã†ã“ã¨ã«ãªã‚‹
 	if( (textverpokenum > MONSNO_END) && (gmm_idx != ZKN_WORLD_TEXT_NUM) ){
 		return FALSE;
 	}
@@ -370,7 +370,7 @@ static inline BOOL ZknWt_CheckWorldData( int textverpokenum, int gmm_idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX‚©‚ç•¶š—ñƒf[ƒ^‚ğæ“¾‚·‚é
+ *	@brief	ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  *	@param	file_idx
  *	@param	data_idx
@@ -397,43 +397,43 @@ static STRBUF* ZknWt_GetSTRData( int file_idx, int data_idx, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ÆƒQ[ƒ€“à‘ƒR[ƒh‚©‚ç
- *			ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^€–Ú”
- *			ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^—p‘ƒR[ƒh
- *			ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^GMMŠO‘€–Ú”
- *			æ“¾
+ *	@brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã¨ã‚²ãƒ¼ãƒ å†…å›½ã‚³ãƒ¼ãƒ‰ã‹ã‚‰
+ *			å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿é …ç›®æ•°
+ *			å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç”¨å›½ã‚³ãƒ¼ãƒ‰
+ *			å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿GMMå¤–å›½é …ç›®æ•°
+ *			å–å¾—
  *
- *	@param	monsno				ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	country				ƒQ[ƒ€“à‘ƒR[ƒh
- *	@param	p_country_poke_num	ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^€–Ú”
- *	@param	p_country_text_code	ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^—p‘ƒR[ƒh
- *	@param	p_country_gmm_idx	ŠO‘ŒêƒeƒLƒXƒgƒf[ƒ^GMMŠO‘€–Ú”
+ *	@param	monsno				ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	country				ã‚²ãƒ¼ãƒ å†…å›½ã‚³ãƒ¼ãƒ‰
+ *	@param	p_country_poke_num	å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿é …ç›®æ•°
+ *	@param	p_country_text_code	å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç”¨å›½ã‚³ãƒ¼ãƒ‰
+ *	@param	p_country_gmm_idx	å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿GMMå¤–å›½é …ç›®æ•°
  */
 //-----------------------------------------------------------------------------
 static void ZknWt_GetCountryPokeData( int monsno, int country, int* p_country_poke_num, int* p_country_text_code, int* p_country_gmm_idx )
 {
-	// ŠO‘ŒêƒeƒLƒXƒg—p‘ƒR[ƒh‚É•ÏŠ·
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆç”¨å›½ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›
 	*p_country_text_code = ZKN_WT_GetLANG_Code_ZKN_WORLD_TEXT_Code( country );
-	GF_ASSERT( *p_country_text_code < ZKN_WORLD_TEXT_NUM );	// –³‚¢‚Æ‚¢‚¤‚±‚Æ‚Íƒf[ƒ^‚à–³‚¢
-	// ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©‚çŠO‘ŒêGMM“à‚Ìƒf[ƒ^€–Ú”‚ğ‹‚ß‚é
+	GF_ASSERT( *p_country_text_code < ZKN_WORLD_TEXT_NUM );	// ç„¡ã„ã¨ã„ã†ã“ã¨ã¯ãƒ‡ãƒ¼ã‚¿ã‚‚ç„¡ã„
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰å¤–å›½èªGMMå†…ã®ãƒ‡ãƒ¼ã‚¿é …ç›®æ•°ã‚’æ±‚ã‚ã‚‹
 //	*p_country_poke_num = ZKN_WT_GetMonsNo_TEXTVERPokeNum( monsno );
-	*p_country_poke_num = monsno;	// ‘Sˆõ•ª•Û‚µ‚Ä‚ ‚é
+	*p_country_poke_num = monsno;	// å…¨å“¡åˆ†ä¿æŒã—ã¦ã‚ã‚‹
 
-	// ŠO‘ŒêƒeƒLƒXƒg—p‘ƒR[ƒh‚©‚çGMMƒf[ƒ^ŠO‘Œê€–Ú”æ“¾
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆç”¨å›½ã‚³ãƒ¼ãƒ‰ã‹ã‚‰GMMãƒ‡ãƒ¼ã‚¿å¤–å›½èªé …ç›®æ•°å–å¾—
 	*p_country_gmm_idx = ZknWt_GetGmmIdx( *p_country_text_code );
 
-	// ƒf[ƒ^‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( ZknWt_CheckWorldData( *p_country_poke_num, *p_country_gmm_idx ) );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓŠO‘ŒêƒeƒLƒXƒg—p‘ƒR[ƒh‚©‚çŠO‘ŒêƒeƒLƒXƒgGMMƒf[ƒ^‚ÌŠO‘Œê€–Ú”‚ğæ“¾
+ *	@brief	å›³é‘‘å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆç”¨å›½ã‚³ãƒ¼ãƒ‰ã‹ã‚‰å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆGMMãƒ‡ãƒ¼ã‚¿ã®å¤–å›½èªé …ç›®æ•°ã‚’å–å¾—
  *
- *	@param	zkn_text_code	}ŠÓŠO‘ŒêƒeƒLƒXƒg—p‘ƒR[ƒh
+ *	@param	zkn_text_code	å›³é‘‘å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆç”¨å›½ã‚³ãƒ¼ãƒ‰
  *
- *	@retval	ŠO‘ŒêƒeƒLƒXƒgGMMƒf[ƒ^ŠO‘Œê€–Ú”
- *	@retval ZKN_WORLD_TEXT_NUM‚Ì‚Í©‘GMM‚Éƒf[ƒ^‚ª‚ ‚é
+ *	@retval	å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆGMMãƒ‡ãƒ¼ã‚¿å¤–å›½èªé …ç›®æ•°
+ *	@retval ZKN_WORLD_TEXT_NUMã®æ™‚ã¯è‡ªå›½GMMã«ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹
  */
 //-----------------------------------------------------------------------------
 static inline int ZknWt_GetGmmIdx( int zkn_text_code )
@@ -442,7 +442,7 @@ static inline int ZknWt_GetGmmIdx( int zkn_text_code )
 	
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
-	// ŠO‘Œê‚¸‚©‚ñ‚ÌƒeƒLƒXƒg‚ğ©‘•ª‚à‚Á‚½Œ`®‚É•ÏX
+	// å¤–å›½èªãšã‹ã‚“ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’è‡ªå›½åˆ†ã‚‚æŒã£ãŸå½¢å¼ã«å¤‰æ›´
 	return zkn_text_code == TEXTCODE_OWN ? ZKN_WORLD_TEXT_NUM : zkn_text_code;
 	// ---------------------------------------------------------------------------
 }

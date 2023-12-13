@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	snd_def.h
- * @bfief	ƒTƒEƒ“ƒh’è‹`ƒtƒ@ƒCƒ‹
+ * @bfief	ã‚µã‚¦ãƒ³ãƒ‰å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	Satoshi Nohara
  * @date	08.04.03
  */
@@ -13,52 +13,52 @@
 
 //--------------------------------------------------------------------------------------------
 //
-//	SE’è‹`
+//	SEå®šç¾©
 //
 //--------------------------------------------------------------------------------------------
-//’è‹`‚Å”ò‚ÑÎƒWƒƒƒ“ƒv‰¹–³Œø
+//å®šç¾©ã§é£›ã³çŸ³ã‚¸ãƒ£ãƒ³ãƒ—éŸ³ç„¡åŠ¹
 #define SE_YABURETA_JUMP2_STOP
 
-//”ò‚ÑÎ‚ðƒWƒƒƒ“ƒv‚·‚é‰¹
+//é£›ã³çŸ³ã‚’ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹éŸ³
 #define SE_YABURETA_JUMP2				( SEQ_SE_PL_JUMP2 )
 //#define SE_YABURETA_JUMP2				( SEQ_SE_DP_DANSA5 )
 
-//ŠK‘wˆÚ“®—p@”ò‚ÑÎ‚Ì‰¹(ƒ‹[ƒv‰¹)
+//éšŽå±¤ç§»å‹•ç”¨ã€€é£›ã³çŸ³ã®éŸ³(ãƒ«ãƒ¼ãƒ—éŸ³)
 #define SE_YABURETA_MOVE				( SEQ_SE_PL_FW089 )
 //#define SE_YABURETA_MOVE				( SEQ_SE_PL_FW089B )
 
-//‘æ‚R‘wF…•½‚’¼ˆÚ“®‚·‚é@”ò‚ÑÎ‚Ì‰¹(ƒ‹[ƒv‰¹)
+//ç¬¬ï¼“å±¤ï¼šæ°´å¹³åž‚ç›´ç§»å‹•ã™ã‚‹ã€€é£›ã³çŸ³ã®éŸ³(ãƒ«ãƒ¼ãƒ—éŸ³)
 //#define SE_YABURETA_MOVE2				( SEQ_SE_PL_FW089 )
 #define SE_YABURETA_MOVE2				( SEQ_SE_PL_FW089B )
 
-//‘æ‚S‘wFoŒ»‚·‚é’nŒ`
+//ç¬¬ï¼”å±¤ï¼šå‡ºç¾ã™ã‚‹åœ°å½¢
 #define SE_YABURETA_GROUND_APPEAR		( SEQ_SE_PL_SYUWA3 )
 
-//‘æ‚S‘wFÁŽ¸‚·‚é’nŒ`
+//ç¬¬ï¼”å±¤ï¼šæ¶ˆå¤±ã™ã‚‹åœ°å½¢
 #define SE_YABURETA_GROUND_DELETE		( SEQ_SE_PL_SYUWA3 )
 
-//‘æ‚T‘wF“Ë‘RŒ»‚ê‚é–Ø
+//ç¬¬ï¼•å±¤ï¼šçªç„¶ç¾ã‚Œã‚‹æœ¨
 #define SE_YABURETA_TREE_APPEAR			( SEQ_SE_PL_MEKI )
 
-//‘æ‚T‘wF“Ë‘RÁ‚¦‚é–Ø
+//ç¬¬ï¼•å±¤ï¼šçªç„¶æ¶ˆãˆã‚‹æœ¨
 #define SE_YABURETA_TREE_DELETE			( SEQ_SE_PL_MEKI2 )
 
-//‘æ‚T‘wF“Ë‘RŒ»‚ê‚éŠâ
+//ç¬¬ï¼•å±¤ï¼šçªç„¶ç¾ã‚Œã‚‹å²©
 #define SE_YABURETA_ROCK_APPEAR			( SEQ_SE_PL_FW089_2 )
 
-//‘æ‚T‘wF“Ë‘RÁ‚¦‚éŠâ
+//ç¬¬ï¼•å±¤ï¼šçªç„¶æ¶ˆãˆã‚‹å²©
 #define SE_YABURETA_ROCK_DELETE			( SEQ_SE_PL_FW089_2 )
 
-//ƒMƒ‰ƒeƒBƒiƒVƒ‹ƒGƒbƒg”òs‰¹
+//ã‚®ãƒ©ãƒ†ã‚£ãƒŠã‚·ãƒ«ã‚¨ãƒƒãƒˆé£›è¡ŒéŸ³
 #define SE_YABURETA_GIRATINA_FLIGHT		( SEQ_SE_DP_FW019 )
 
-//‘ê“o‚è(ƒ‹[ƒv‰¹)
+//æ»ç™»ã‚Š(ãƒ«ãƒ¼ãƒ—éŸ³)
 #define SE_YABURETA_TAKINOBORI			( SEQ_SE_PL_FW463 )
 
-//”ª‘w[•” ƒMƒ‰ƒeƒBƒi~—Õ
+//å…«å±¤æ·±éƒ¨ ã‚®ãƒ©ãƒ†ã‚£ãƒŠé™è‡¨
 #define SE_YABURETA_GIRATINA_ADVENT		( SEQ_SE_PL_GIRA )
 
-//Žµ‘wŠâ—Ž‚Æ‚µ@—Ž‰ºŒã‚ÌU“®‰¹
+//ä¸ƒå±¤å²©è½ã¨ã—ã€€è½ä¸‹å¾Œã®æŒ¯å‹•éŸ³
 #define SE_YABURETA_ROCK_SHAKE			( SEQ_SE_DP_UG_008 )
 
 #endif		// __TORNWORLD_SND_DEF_H__

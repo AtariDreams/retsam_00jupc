@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_exclamation.c
- * @brief	ˆê–‡ƒ|ƒŠƒSƒ“ ’n‰º—p Iƒ}[ƒN
+ * @brief	ä¸€æšãƒãƒªã‚´ãƒ³ åœ°ä¸‹ç”¨ ï¼ãƒãƒ¼ã‚¯
  * @author	k.ohno
  * @data	05.02.13
  *
@@ -18,21 +18,21 @@
 //	define
 //==============================================================================
 
-#define EXCLAMATION_FLDOBJ_Y_MOVE_START ((FX32_ONE*6))				///<Šø‰‘¬
-#define EXCLAMATION_FLDOBJ_Y_OFFSET ((FX32_ONE*25))				///<ƒtƒB[ƒ‹ƒhOBJ‚©‚ç‚ÌYƒIƒtƒZƒbƒg
-#define EXCLAMATION_FLDOBJ_Z_OFFSET ((FX32_ONE*-10))					///<ƒtƒB[ƒ‹ƒhOBJ‚©‚ç‚ÌZƒIƒtƒZƒbƒg
-#define EXCLAMATION_END_FRAME (30)									///<ŠøI—¹ƒtƒŒ[ƒ€	
+#define EXCLAMATION_FLDOBJ_Y_MOVE_START ((FX32_ONE*6))				///<æ——åˆé€Ÿ
+#define EXCLAMATION_FLDOBJ_Y_OFFSET ((FX32_ONE*25))				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define EXCLAMATION_FLDOBJ_Z_OFFSET ((FX32_ONE*-10))					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ã®Zã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define EXCLAMATION_END_FRAME (30)									///<æ——çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 	
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_EXCLAMATIONŒ^
+///	FE_EXCLAMATIONå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_EXCLAMATION * FE_EXCLAMATION_PTR;
 
 //--------------------------------------------------------------
-///	FE_EXCLAMATION\‘¢‘Ì
+///	FE_EXCLAMATIONæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_EXCLAMATION
 {
@@ -41,43 +41,43 @@ typedef struct _TAG_FE_EXCLAMATION
 	FE_SYS *fes;
 	FRO_MDL rmdl;
 	FRO_OBJ robj;
-	FIELD_OBJ_PTR fldobj;						///<Šø‚Ì‘ÎÛFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<æ——ã®å¯¾è±¡FIELD_OBJ_PTR
 }FE_EXCLAMATION;
 
-#define FE_EXCLAMATION_SIZE (sizeof(FE_EXCLAMATION)) ///<FE_EXCLAMATIONƒTƒCƒY
+#define FE_EXCLAMATION_SIZE (sizeof(FE_EXCLAMATION)) ///<FE_EXCLAMATIONã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	EXCLAMATION_ADD_H\‘¢‘Ì
+///	EXCLAMATION_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	FE_SYS *fes;
 	FE_EXCLAMATION_PTR exclamation;						///<FE_EXCLAMATION_PTR
-	FIELD_OBJ_PTR fldobj;						///<Šø‚Ì‘ÎÛFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<æ——ã®å¯¾è±¡FIELD_OBJ_PTR
 }EXCLAMATION_ADD_H;
 
-#define EXCLAMATION_ADD_H_SIZE (sizeof(EXCLAMATION_ADD_H)) ///<EXCLAMATION_ADD_HƒTƒCƒY
+#define EXCLAMATION_ADD_H_SIZE (sizeof(EXCLAMATION_ADD_H)) ///<EXCLAMATION_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	EXCLAMATION_WORK\‘¢‘Ì
+///	EXCLAMATION_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int seq_no;									///<“®ì”Ô†
-	int frame;									///<ƒtƒŒ[ƒ€
-	int obj_id;									///<Šø‘ÎÛOBJID
-	int zone_id;								///<Šø‘ÎÛƒ][ƒ“ID
-	int vanish_sw;								///<”ñ•\¦SW
-	int end_sw;									///<I—¹SW
-	VecFx32 offset;								///<ƒIƒtƒZƒbƒg
-	VecFx32 move;								///<ˆÚ“®—Ê
-	EXCLAMATION_ADD_H head;							///<’Ç‰Á‚ÌEXCLAMATION_ADD_H
+	int seq_no;									///<å‹•ä½œç•ªå·
+	int frame;									///<ãƒ•ãƒ¬ãƒ¼ãƒ 
+	int obj_id;									///<æ——å¯¾è±¡OBJID
+	int zone_id;								///<æ——å¯¾è±¡ã‚¾ãƒ¼ãƒ³ID
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	int end_sw;									///<çµ‚äº†SW
+	VecFx32 offset;								///<ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	VecFx32 move;								///<ç§»å‹•é‡
+	EXCLAMATION_ADD_H head;							///<è¿½åŠ æ™‚ã®EXCLAMATION_ADD_H
 }EXCLAMATION_WORK;
 
-#define EXCLAMATION_WORK_SIZE (sizeof(EXCLAMATION_WORK))	///<EXCLAMATION_WORKƒTƒCƒY
+#define EXCLAMATION_WORK_SIZE (sizeof(EXCLAMATION_WORK))	///<EXCLAMATION_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Exclamation_GraphicInit( FE_EXCLAMATION_PTR sd );
 static void Exclamation_GraphicDelete( FE_EXCLAMATION_PTR sd );
@@ -85,11 +85,11 @@ static void Exclamation_GraphicDelete( FE_EXCLAMATION_PTR sd );
 static const EOA_H_NPP DATA_EoaH_Exclamation;
 
 //==============================================================================
-//	Šø@ƒVƒXƒeƒ€
+//	æ——ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Šø‰Šú‰»
+ * æ——åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_EXCLAMATION_PTR	FE_EXCLAMATION_PTR
  */
@@ -108,7 +108,7 @@ void * FE_Exclamation_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * Šøíœ
+ * æ——å‰Šé™¤
  * @param	sd		FE_EXCLAMATION_PTR
  * @retval	nothing
  */
@@ -121,15 +121,15 @@ void FE_Exclamation_Delete( void *work )
 }
 
 //==============================================================================
-//	Šø	ƒp[ƒc
+//	æ——	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	Šø@ƒOƒ‰ƒtƒBƒbƒN
+//	æ——ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Šø ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * æ—— ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	sd	FE_EXCLAMATION_PTR
  * @retval	nothing
  */
@@ -143,7 +143,7 @@ static void Exclamation_GraphicInit( FE_EXCLAMATION_PTR sd )
 
 //--------------------------------------------------------------
 /**
- * Šø ƒOƒ‰ƒtƒBƒbƒNíœ
+ * æ—— ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	sd	FE_EXCLAMATION_PTR
  * @retval	nothing
  */
@@ -154,11 +154,11 @@ static void Exclamation_GraphicDelete( FE_EXCLAMATION_PTR sd )
 }
 
 //==============================================================================
-//	Šø@EOA
+//	æ——ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒgƒ‰ƒbƒv’Ç‰Á
+ * ãƒˆãƒ©ãƒƒãƒ—è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	EOA_PTR
  */
@@ -186,10 +186,10 @@ EOA_PTR FE_Exclamation_Add(  FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA Šø@‰Šú‰»
+ * EOA æ——ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaExclamation_Init( EOA_PTR eoa, void *wk )
@@ -216,7 +216,7 @@ static int EoaExclamation_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Šø@íœ
+ * EOA æ——ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -228,7 +228,7 @@ static void EoaExclamation_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Šø@“®ì
+ * EOA æ——ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -244,7 +244,7 @@ static void EoaExclamation_Move( EOA_PTR eoa, void *wk )
     fldobj = work->head.fldobj;
 	
 	GF_ASSERT( FieldOBJ_CheckSameID(fldobj,work->obj_id,work->zone_id) != FALSE &&
-		"Šø“®ì’†‚É‘ÎÛ‚ÌƒtƒB[ƒ‹ƒhOBJ‚ªíœ‚³‚ê‚Ü‚µ‚½" );
+		"æ——å‹•ä½œä¸­ã«å¯¾è±¡ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒå‰Šé™¤ã•ã‚Œã¾ã—ãŸ" );
 	
     FieldOBJ_VecPosGet( fldobj, &vec );
     vec.z += EXCLAMATION_FLDOBJ_Z_OFFSET;
@@ -254,7 +254,7 @@ static void EoaExclamation_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Šø@•`‰æ
+ * EOA æ——ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -276,7 +276,7 @@ static void EoaExclamation_Draw( EOA_PTR eoa, void *wk )
 		vec.y += EXCLAMATION_FLDOBJ_Y_OFFSET;
         vec.z += - (FX32_ONE*5);
 
-        {    // ƒJƒƒ‰‹ts—ñ‚ğ“ü‚ê‚é
+        {    // ã‚«ãƒ¡ãƒ©é€†è¡Œåˆ—ã‚’å…¥ã‚Œã‚‹
             const MtxFx43* pCamInv = NNS_G3dGlbGetInvCameraMtx();
             MtxFx33 Mat33;
             
@@ -290,7 +290,7 @@ static void EoaExclamation_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	ŠøEOA_H
+///	æ——EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Exclamation =
 {

@@ -35,12 +35,12 @@ extern  "C"
 
 /* constant ---------------------------------------------------------------- */
 
-/* ƒ^ƒXƒNƒXƒŒƒbƒh—DæƒŒƒxƒ‹‚ÌŠg’£’è‹` */
-    /* ŒÄ‚Ño‚µŒ³‚æ‚è 1 ‚¾‚¯‚‚¢—DæƒŒƒxƒ‹‚ðŽw’è */
+/* ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰å„ªå…ˆãƒ¬ãƒ™ãƒ«ã®æ‹¡å¼µå®šç¾© */
+    /* å‘¼ã³å‡ºã—å…ƒã‚ˆã‚Š 1 ã ã‘é«˜ã„å„ªå…ˆãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®š */
 #define MB_TASK_PRIORITY_ABOVE  (OS_THREAD_PRIORITY_MAX + 1)
-    /* ŒÄ‚Ño‚µŒ³‚æ‚è 1 ‚¾‚¯’á‚¢—DæƒŒƒxƒ‹‚ðŽw’è */
+    /* å‘¼ã³å‡ºã—å…ƒã‚ˆã‚Š 1 ã ã‘ä½Žã„å„ªå…ˆãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®š */
 #define MB_TASK_PRIORITY_BELOW  (OS_THREAD_PRIORITY_MAX + 2)
-    /* ŒÄ‚Ño‚µŒ³‚Æ“¯‚¶—DæƒŒƒxƒ‹‚ðŽw’è */
+    /* å‘¼ã³å‡ºã—å…ƒã¨åŒã˜å„ªå…ˆãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®š */
 #define MB_TASK_PRIORITY_NORMAL (OS_THREAD_PRIORITY_MAX + 3)
 
 #define MB_TASK_WORK_MIN	(sizeof(OSThread) + 256)
@@ -53,7 +53,7 @@ extern  "C"
     typedef void (*MB_TASK_FUNC) (struct MBiTaskInfo_tag *);
 
 /*
- * ƒ^ƒXƒNƒXƒŒƒbƒh‚É—v‹‚·‚éƒ^ƒXƒNî•ñ\‘¢‘Ì.
+ * ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã«è¦æ±‚ã™ã‚‹ã‚¿ã‚¹ã‚¯æƒ…å ±æ§‹é€ ä½“.
  */
     typedef struct MBiTaskInfo_tag
     {
@@ -76,13 +76,13 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         MBi_InitTaskThread
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚ð‹N“®‚·‚é.
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·å‹•ã™ã‚‹.
                 
-  Arguments:    p_work     “à•”ƒ[ƒN—p‚Ìƒoƒbƒtƒ@.
-                           MBi_EndTaskThread() Š®—¹Žž‚Ü‚Å“à•”‚ÅŽg—p‚³‚ê‚é.
-                size       p_work ‚ÌƒoƒCƒgƒTƒCƒY.
-                           MB_TASK_WORK_MIN ˆÈã‚Å‚ ‚é•K—v‚ª‚ ‚è,
-                           size - MB_TASK_WORK_MIN ‚ªƒXƒ^ƒbƒN‚ÉŽg—p‚³‚ê‚é.
+  Arguments:    p_work     å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ç”¨ã®ãƒãƒƒãƒ•ã‚¡.
+                           MBi_EndTaskThread() å®Œäº†æ™‚ã¾ã§å†…éƒ¨ã§ä½¿ç”¨ã•ã‚Œã‚‹.
+                size       p_work ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º.
+                           MB_TASK_WORK_MIN ä»¥ä¸Šã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Š,
+                           size - MB_TASK_WORK_MIN ãŒã‚¹ã‚¿ãƒƒã‚¯ã«ä½¿ç”¨ã•ã‚Œã‚‹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -91,21 +91,21 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         MBi_IsTaskAvailable
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚ªŒ»ÝŽg—p‰Â”\‚©”»’è.
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ãŒç¾åœ¨ä½¿ç”¨å¯èƒ½ã‹åˆ¤å®š.
                 
   Arguments:    None.
 
-  Returns:      Œ»ÝŽg—p‰Â”\‚È‚ç TRUE, ‚»‚¤‚Å‚È‚¢‚È‚ç FALSE.
+  Returns:      ç¾åœ¨ä½¿ç”¨å¯èƒ½ãªã‚‰ TRUE, ãã†ã§ãªã„ãªã‚‰ FALSE.
  *---------------------------------------------------------------------------*/
     BOOL    MBi_IsTaskAvailable(void);
 
 /*---------------------------------------------------------------------------*
   Name:         MBi_InitTaskInfo
 
-  Description:  ƒ^ƒXƒNî•ñ\‘¢‘Ì‚ð‰Šú‰»‚·‚é.
-                Žg—p‚·‚é‘O‚É 1 ‰ñ‚¾‚¯ŒÄ‚Ño‚·•K—v‚ª‚ ‚é.
+  Description:  ã‚¿ã‚¹ã‚¯æƒ…å ±æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹.
+                ä½¿ç”¨ã™ã‚‹å‰ã« 1 å›žã ã‘å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚‹.
 
-  Arguments:    pt         –¢‰Šú‰»‚Ìƒ^ƒXƒNî•ñ\‘¢‘Ì
+  Arguments:    pt         æœªåˆæœŸåŒ–ã®ã‚¿ã‚¹ã‚¯æƒ…å ±æ§‹é€ ä½“
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -114,23 +114,23 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         MBi_IsTaskBusy
 
-  Description:  ƒ^ƒXƒNî•ñ‚ªŒ»ÝŽg—p’†‚©”»’è.
+  Description:  ã‚¿ã‚¹ã‚¯æƒ…å ±ãŒç¾åœ¨ä½¿ç”¨ä¸­ã‹åˆ¤å®š.
                 
-  Arguments:    pt         ƒ^ƒXƒNî•ñ
+  Arguments:    pt         ã‚¿ã‚¹ã‚¯æƒ…å ±
 
-  Returns:      Œ»ÝŽg—p’†‚È‚ç TRUE, ‚»‚¤‚Å‚È‚¢‚È‚ç FALSE.
+  Returns:      ç¾åœ¨ä½¿ç”¨ä¸­ãªã‚‰ TRUE, ãã†ã§ãªã„ãªã‚‰ FALSE.
  *---------------------------------------------------------------------------*/
     BOOL    MBi_IsTaskBusy(volatile const MBiTaskInfo * pt);
 
 /*---------------------------------------------------------------------------*
   Name:         MBi_SetTask
 
-  Description:  ƒ^ƒXƒN‚ð“à•”ƒXƒŒƒbƒh‚É’Ç‰Á‚·‚é.
+  Description:  ã‚¿ã‚¹ã‚¯ã‚’å†…éƒ¨ã‚¹ãƒ¬ãƒƒãƒ‰ã«è¿½åŠ ã™ã‚‹.
                 
-  Arguments:    pt         Œ»ÝŽg—p’†‚Å‚È‚¢ƒ^ƒXƒNî•ñ
-                task       ƒ^ƒXƒNŠÖ”
-                callback   ƒ^ƒXƒNŠ®—¹Žž‚ÌƒR[ƒ‹ƒoƒbƒN (NULL ‚È‚ç–³Ž‹)
-                priority   ƒ^ƒXƒNŽÀs’†‚ÌƒXƒŒƒbƒh—Dæ“x
+  Arguments:    pt         ç¾åœ¨ä½¿ç”¨ä¸­ã§ãªã„ã‚¿ã‚¹ã‚¯æƒ…å ±
+                task       ã‚¿ã‚¹ã‚¯é–¢æ•°
+                callback   ã‚¿ã‚¹ã‚¯å®Œäº†æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (NULL ãªã‚‰ç„¡è¦–)
+                priority   ã‚¿ã‚¹ã‚¯å®Ÿè¡Œä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰å„ªå…ˆåº¦
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -139,11 +139,11 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         MBi_EndTaskThread
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚ðI—¹‚·‚é.
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’çµ‚äº†ã™ã‚‹.
                 
-  Arguments:    callback   ƒ^ƒXƒNƒXƒŒƒbƒhI—¹Žž‚ÌƒR[ƒ‹ƒoƒbƒN (NULL ‚È‚ç–³Ž‹)
-                           ‚±‚ÌƒR[ƒ‹ƒoƒbƒN‚Íƒ^ƒXƒNƒXƒŒƒbƒhI—¹¡‘O‚Ìó‘Ô‚Å
-                           Š„‚èž‚Ý‚ð‹ÖŽ~‚µ‚½‚Ü‚ÜŒÄ‚Ño‚³‚ê‚é.
+  Arguments:    callback   ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (NULL ãªã‚‰ç„¡è¦–)
+                           ã“ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†å¯¸å‰ã®çŠ¶æ…‹ã§
+                           å‰²ã‚Šè¾¼ã¿ã‚’ç¦æ­¢ã—ãŸã¾ã¾å‘¼ã³å‡ºã•ã‚Œã‚‹.
   Returns:      None.
  *---------------------------------------------------------------------------*/
     void    MBi_EndTaskThread(MB_TASK_FUNC callback);

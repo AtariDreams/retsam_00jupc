@@ -49,12 +49,12 @@ static BOOL StartSeqArc(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcPlayerSetup
 
-  Description:  ƒTƒEƒ“ƒhƒA[ƒJƒCƒu’†‚ÌƒvƒŒƒCƒ„[î•ñ‚ðŽg‚Á‚ÄA
-                ƒvƒŒƒCƒ„[‚ðƒZƒbƒgƒAƒbƒv
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸­ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã‚’ä½¿ã£ã¦ã€
+                ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 
-  Arguments:    heap - ƒvƒŒƒCƒ„[ƒq[ƒvì¬‚Ì‚½‚ß‚ÌƒTƒEƒ“ƒhƒq[ƒv
+  Arguments:    heap - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ä½œæˆã®ãŸã‚ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcPlayerSetup( NNSSndHeapHandle heap )
 {
@@ -91,12 +91,12 @@ BOOL NNS_SndArcPlayerSetup( NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcPlayerStartSeq
 
-  Description:  ƒV[ƒPƒ“ƒX‚ðÄ¶
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å†ç”Ÿ
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                seqNo  - ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                seqNo  - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcPlayerStartSeq( NNSSndHandle* handle, int seqNo )
 {
@@ -120,15 +120,15 @@ BOOL NNS_SndArcPlayerStartSeq( NNSSndHandle* handle, int seqNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcPlayerStartSeqEx
 
-  Description:  Šô‚Â‚©‚Ìƒpƒ‰ƒ[ƒ^‚ðŽw’è‚µ‚ÄAƒV[ƒPƒ“ƒX‚ðÄ¶
+  Description:  å¹¾ã¤ã‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æŒ‡å®šã—ã¦ã€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å†ç”Ÿ
 
-  Arguments:    handle     - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                playerNo   - ƒvƒŒƒCƒ„[”Ô†iŽw’è‚µ‚È‚¢‚Æ‚«‚ÍA-1‚ð“ü‚ê‚éj
-                bankNo     - ƒoƒ“ƒN”Ô†iŽw’è‚µ‚È‚¢‚Æ‚«‚ÍA-1‚ð“ü‚ê‚éj
-                playerPrio - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒBiŽw’è‚µ‚È‚¢‚Æ‚«‚ÍA-1‚ð“ü‚ê‚éj
-                seqNo      - ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    handle     - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                playerNo   - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·ï¼ˆæŒ‡å®šã—ãªã„ã¨ãã¯ã€-1ã‚’å…¥ã‚Œã‚‹ï¼‰
+                bankNo     - ãƒãƒ³ã‚¯ç•ªå·ï¼ˆæŒ‡å®šã—ãªã„ã¨ãã¯ã€-1ã‚’å…¥ã‚Œã‚‹ï¼‰
+                playerPrio - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ï¼ˆæŒ‡å®šã—ãªã„ã¨ãã¯ã€-1ã‚’å…¥ã‚Œã‚‹ï¼‰
+                seqNo      - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcPlayerStartSeqEx(
     NNSSndHandle* handle,
@@ -160,13 +160,13 @@ BOOL NNS_SndArcPlayerStartSeqEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcPlayerStartSeqArc
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu‚ðÄ¶
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’å†ç”Ÿ
 
-  Arguments:    handle   - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                index    - ƒCƒ“ƒfƒbƒNƒX”Ô†
+  Arguments:    handle   - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                index    - ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcPlayerStartSeqArc( NNSSndHandle* handle, int seqArcNo, int index )
 {
@@ -198,16 +198,16 @@ BOOL NNS_SndArcPlayerStartSeqArc( NNSSndHandle* handle, int seqArcNo, int index 
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcPlayerStartSeqArcEx
 
-  Description:  Šô‚Â‚©‚Ìƒpƒ‰ƒ[ƒ^‚ðŽw’è‚µ‚ÄAƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu‚ðÄ¶
+  Description:  å¹¾ã¤ã‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æŒ‡å®šã—ã¦ã€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’å†ç”Ÿ
 
-  Arguments:    handle     - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                playerNo   - ƒvƒŒƒCƒ„[”Ô†iŽw’è‚µ‚È‚¢‚Æ‚«‚ÍA-1‚ð“ü‚ê‚éj
-                bankNo     - ƒoƒ“ƒN”Ô†iŽw’è‚µ‚È‚¢‚Æ‚«‚ÍA-1‚ð“ü‚ê‚éj
-                playerPrio - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒBiŽw’è‚µ‚È‚¢‚Æ‚«‚ÍA-1‚ð“ü‚ê‚éj
-                seqArcNo   - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                index      - ƒCƒ“ƒfƒbƒNƒX”Ô†
+  Arguments:    handle     - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                playerNo   - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·ï¼ˆæŒ‡å®šã—ãªã„ã¨ãã¯ã€-1ã‚’å…¥ã‚Œã‚‹ï¼‰
+                bankNo     - ãƒãƒ³ã‚¯ç•ªå·ï¼ˆæŒ‡å®šã—ãªã„ã¨ãã¯ã€-1ã‚’å…¥ã‚Œã‚‹ï¼‰
+                playerPrio - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ï¼ˆæŒ‡å®šã—ãªã„ã¨ãã¯ã€-1ã‚’å…¥ã‚Œã‚‹ï¼‰
+                seqArcNo   - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                index      - ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcPlayerStartSeqArcEx(
     NNSSndHandle* handle,
@@ -252,16 +252,16 @@ BOOL NNS_SndArcPlayerStartSeqArcEx(
 /*---------------------------------------------------------------------------*
   Name:         StartSeq
 
-  Description:  ƒV[ƒPƒ“ƒX‚ðÄ¶
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å†ç”Ÿ
 
-  Arguments:    handle     - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                playerNo   - ƒvƒŒƒCƒ„[”Ô†
-                bankNo     - ƒoƒ“ƒN”Ô†
-                playerPrio - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
-                info       - ƒV[ƒPƒ“ƒXî•ñ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                seqNo      - ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    handle     - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                playerNo   - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                bankNo     - ãƒãƒ³ã‚¯ç•ªå·
+                playerPrio - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                info       - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æƒ…å ±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                seqNo      - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 static BOOL StartSeq(
     NNSSndHandle* handle,
@@ -283,28 +283,28 @@ static BOOL StartSeq(
     NNS_MINMAX_ASSERT( playerPrio, 0, NNS_SND_PLAYER_PRIO_MAX );
     NNS_NULL_ASSERT( info );
     
-    /* ƒvƒŒƒCƒ„[‚ÌŠm•Û */
+    /* ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¢ºä¿ */
     player = NNSi_SndPlayerAllocSeqPlayer( handle, playerNo, playerPrio );
     if ( player == NULL ) return FALSE;
     
-    /* ƒvƒŒƒCƒ„[ƒq[ƒv‚ÌŠm•Û */
+    /* ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ã®ç¢ºä¿ */
     heap = NNSi_SndPlayerAllocHeap( playerNo, player );
     
-    /* ƒoƒ“ƒN‹y‚Ñ”gŒ`ƒf[ƒ^‚ÌŽæ“¾‚Ü‚½‚ÍAƒ[ƒh */
+    /* ãƒãƒ³ã‚¯åŠã³æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®å–å¾—ã¾ãŸã¯ã€ãƒ­ãƒ¼ãƒ‰ */
     result = NNSi_SndArcLoadBank( bankNo, NNS_SND_ARC_LOAD_BANK | NNS_SND_ARC_LOAD_WAVE, heap, FALSE, &bank );
     if ( result != NNS_SND_ARC_LOAD_SUCESS ) {
         NNSi_SndPlayerFreeSeqPlayer( player );
         return FALSE;
     }
     
-    /* ƒV[ƒPƒ“ƒXƒf[ƒ^‚ÌŽæ“¾‚Ü‚½‚ÍAƒ[ƒh */
+    /* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®å–å¾—ã¾ãŸã¯ã€ãƒ­ãƒ¼ãƒ‰ */
     result = NNSi_SndArcLoadSeq( seqNo, NNS_SND_ARC_LOAD_SEQ, heap, FALSE, &seq );
     if ( result != NNS_SND_ARC_LOAD_SUCESS ) {
         NNSi_SndPlayerFreeSeqPlayer( player );
         return FALSE;
     }
     
-    /* ƒV[ƒPƒ“ƒX‚ÌÄ¶ */
+    /* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å†ç”Ÿ */
     NNSi_SndPlayerStartSeq(
         player,
         (u8*)seq + seq->baseOffset,
@@ -312,7 +312,7 @@ static BOOL StartSeq(
         bank
     );
     
-    /* ƒpƒ‰ƒ[ƒ^Ý’è */
+    /* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š */
     NNS_SndPlayerSetInitialVolume( handle, info->param.volume );
     NNS_SndPlayerSetChannelPriority( handle, info->param.channelPrio );
     NNS_SndPlayerSetSeqNo( handle, seqNo );    
@@ -324,18 +324,18 @@ static BOOL StartSeq(
 /*---------------------------------------------------------------------------*
   Name:         StartSeqArc
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu‚ðÄ¶
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’å†ç”Ÿ
 
-  Arguments:    handle     - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                playerNo   - ƒvƒŒƒCƒ„[”Ô†
-                bankNo     - ƒoƒ“ƒN”Ô†
-                playerPrio - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
-                sound      - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu’†‚ÌƒV[ƒPƒ“ƒXî•ñ\‘¢‘Ì
-                seqArc     - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^
-                seqArcNo   - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                index      - ƒCƒ“ƒfƒbƒNƒX”Ô†
+  Arguments:    handle     - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                playerNo   - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                bankNo     - ãƒãƒ³ã‚¯ç•ªå·
+                playerPrio - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                sound      - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æƒ…å ±æ§‹é€ ä½“
+                seqArc     - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿
+                seqArcNo   - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                index      - ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 static BOOL StartSeqArc(
     NNSSndHandle* handle,
@@ -359,21 +359,21 @@ static BOOL StartSeqArc(
     NNS_NULL_ASSERT( sound );
     NNS_NULL_ASSERT( seqArc );
     
-    /* ƒvƒŒƒCƒ„[‚ÌŠm•Û */
+    /* ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¢ºä¿ */
     player = NNSi_SndPlayerAllocSeqPlayer( handle, playerNo, playerPrio );
     if ( player == NULL ) return FALSE;
     
-    /* ƒvƒŒƒCƒ„[ƒq[ƒv‚ÌŠm•Û */
+    /* ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ã®ç¢ºä¿ */
     heap = NNSi_SndPlayerAllocHeap( playerNo, player );
     
-    /* ƒoƒ“ƒN‹y‚Ñ”gŒ`ƒf[ƒ^‚ÌŽæ“¾‚Ü‚½‚ÍAƒ[ƒh */
+    /* ãƒãƒ³ã‚¯åŠã³æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®å–å¾—ã¾ãŸã¯ã€ãƒ­ãƒ¼ãƒ‰ */
     result = NNSi_SndArcLoadBank( bankNo, NNS_SND_ARC_LOAD_BANK | NNS_SND_ARC_LOAD_WAVE, heap, FALSE, &bank );
     if ( result != NNS_SND_ARC_LOAD_SUCESS ) {
         NNSi_SndPlayerFreeSeqPlayer( player );
         return FALSE;
     }
     
-    /* ƒV[ƒPƒ“ƒX‚ÌÄ¶*/
+    /* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å†ç”Ÿ*/
     NNSi_SndPlayerStartSeq(
         player,
         (u8*)seqArc + seqArc->baseOffset,
@@ -381,7 +381,7 @@ static BOOL StartSeqArc(
         bank
     );
     
-    /* ƒpƒ‰ƒ[ƒ^Ý’è */    
+    /* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š */    
     NNS_SndPlayerSetInitialVolume( handle, sound->param.volume );
     NNS_SndPlayerSetChannelPriority( handle, sound->param.channelPrio );    
     NNS_SndPlayerSetSeqArcNo( handle, seqArcNo, index );

@@ -2,7 +2,7 @@
 /**
  *
  *@file		clact_util.c
- *@brief	ƒZƒ‹ƒAƒNƒ^[‚Ì“o˜^‚ğŠÈ’P‚És‚¤ƒVƒXƒeƒ€
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç™»éŒ²ã‚’ç°¡å˜ã«è¡Œã†ã‚·ã‚¹ãƒ†ãƒ 
  *@author	tomoya takahashi
  *@data		2005.09.02
  *
@@ -29,37 +29,37 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define	CLACT_U_HEADER_DATA_NONE	(0xffffffff)	// å‚Éƒ}ƒ‹ƒ`ƒZƒ‹‚Ì—L–³‚É‚µ‚æ‚¤
+#define	CLACT_U_HEADER_DATA_NONE	(0xffffffff)	// ä¸»ã«ãƒãƒ«ãƒã‚»ãƒ«ã®æœ‰ç„¡ã«ã—ã‚ˆã†
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒƒ€ƒf[ƒ^ˆê“Ç‚İ‚İ—pƒe[ƒuƒ‹
+//	ãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ä¸€æ™‚èª­ã¿è¾¼ã¿ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
 //	
 //=====================================
 typedef struct {
-	int char_id;		// ƒLƒƒƒ‰ƒNƒ^ID
-	int pltt_id;		// ƒpƒŒƒbƒgID
-	int cell_id;		// ƒZƒ‹ID
-	int cellanm_id;		// ƒZƒ‹ƒAƒjƒID
-	int multicell_id;	// ƒ}ƒ‹ƒ`ƒZƒ‹ID
-	int multicellanm_id;// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒID
-	int vram_trans;		// Vram“]‘—ƒtƒ‰ƒO
-	int	priority;		// BG—Dæ‡ˆÊ
+	int char_id;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+	int pltt_id;		// ãƒ‘ãƒ¬ãƒƒãƒˆID
+	int cell_id;		// ã‚»ãƒ«ID
+	int cellanm_id;		// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
+	int multicell_id;	// ãƒãƒ«ãƒã‚»ãƒ«ID
+	int multicellanm_id;// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
+	int vram_trans;		// Vramè»¢é€ãƒ•ãƒ©ã‚°
+	int	priority;		// BGå„ªå…ˆé †ä½
 } CLACT_HEADER_DATA_TMP;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static int getHeaderTblNum(char* buff);
@@ -74,23 +74,23 @@ static void	delStrCopy(char* data);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[‚ğì¬	i’P‘Ìj
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ä½œæˆ	ï¼ˆå˜ä½“ï¼‰
  *
- *@param	tbl					ƒwƒbƒ_[ƒf[ƒ^Ši”[æ
- *@param	charID				ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ID
- *@param	plttID				ƒpƒŒƒbƒgƒf[ƒ^ID
- *@param	cellID				ƒZƒ‹ƒf[ƒ^ID
- *@param	cellAnmID			ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ID"–³‚¢‚Æ‚«‚ÍCLACT_U_HEADER_DATA_NONE"
- *@param	MultiID				ƒ}ƒ‹ƒ`ƒZƒ‹ID		"–³‚¢‚Æ‚«‚ÍCLACT_U_HEADER_DATA_NONE"
- *@param	MultiAnmID			ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒID	"–³‚¢‚Æ‚«‚ÍCLACT_U_HEADER_DATA_NONE"
- *@param	vram_trans			Vram“]‘—‚©ƒtƒ‰ƒO
- *@param	priority			BG‚Æ‚Ì—Dæ‡ˆÊ
- *@param	charResMan			ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	plttResMan			ƒpƒŒƒbƒgƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	cellResMan			ƒZƒ‹ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	cellAnmResMan		ƒZƒ‹ƒAƒjƒƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	multiCellResMan		ƒ}ƒ‹ƒ`ƒZƒ‹ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	multiCellAnmResMan	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+ *@param	tbl					ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *@param	charID				ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ID
+ *@param	plttID				ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ID
+ *@param	cellID				ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ID
+ *@param	cellAnmID			ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ID"ç„¡ã„ã¨ãã¯CLACT_U_HEADER_DATA_NONE"
+ *@param	MultiID				ãƒãƒ«ãƒã‚»ãƒ«ID		"ç„¡ã„ã¨ãã¯CLACT_U_HEADER_DATA_NONE"
+ *@param	MultiAnmID			ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID	"ç„¡ã„ã¨ãã¯CLACT_U_HEADER_DATA_NONE"
+ *@param	vram_trans			Vramè»¢é€ã‹ãƒ•ãƒ©ã‚°
+ *@param	priority			BGã¨ã®å„ªå…ˆé †ä½
+ *@param	charResMan			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	plttResMan			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	cellResMan			ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	cellAnmResMan		ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	multiCellResMan		ãƒãƒ«ãƒã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	multiCellAnmResMan	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
  *
  *@return	none
  *
@@ -114,13 +114,13 @@ void CLACT_U_MakeHeader(CLACT_HEADER_PTR tbl, int charID, int plttID, int cellID
 	CLACT_U_RES_OBJ_PTR multianm_o = NULL;
 	NNSG2dImageProxy*	img_prox;
 
-	GF_ASSERT(charResMan);		// •K{ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
+	GF_ASSERT(charResMan);		// å¿…é ˆãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 	GF_ASSERT(plttResMan);
 	GF_ASSERT(cellAnmResMan);
 	GF_ASSERT(cellResMan);
-	GF_ASSERT(tbl);				// ƒe[ƒuƒ‹ƒIƒuƒWƒF‚ÍŠm•ÛÏ‚İ‚©
+	GF_ASSERT(tbl);				// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã¯ç¢ºä¿æ¸ˆã¿ã‹
 	
-	// Šeƒf[ƒ^ƒAƒNƒZƒX—pƒIƒuƒWƒFƒNƒgì¬
+	// å„ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä½œæˆ
 	char_o = CLACT_U_ResManagerGetIDResObjPtr( charResMan, charID );
 	GF_ASSERT(char_o);
 	pltt_o = CLACT_U_ResManagerGetIDResObjPtr( plttResMan, plttID );
@@ -128,7 +128,7 @@ void CLACT_U_MakeHeader(CLACT_HEADER_PTR tbl, int charID, int plttID, int cellID
 	cell_o = CLACT_U_ResManagerGetIDResObjPtr( cellResMan, cellID );
 	GF_ASSERT(cell_o);
 	
-	// ƒAƒjƒƒf[ƒ^‚Í‚ ‚é‚Æ‚«‚Ì‚İ
+	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã¯ã‚ã‚‹ã¨ãã®ã¿
 	if( cellAnmResMan ){
 		if( cellAnmID != CLACT_U_HEADER_DATA_NONE ){
 			cellanm_o = CLACT_U_ResManagerGetIDResObjPtr( cellAnmResMan, cellAnmID );
@@ -136,7 +136,7 @@ void CLACT_U_MakeHeader(CLACT_HEADER_PTR tbl, int charID, int plttID, int cellID
 		}
 	}
 
-	// ƒ}ƒ‹ƒ`ƒZƒ‹‚ÍƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚ª‚ ‚é‚Æ‚«‚Ì‚İİ’è
+	// ãƒãƒ«ãƒã‚»ãƒ«ã¯ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãŒã‚ã‚‹ã¨ãã®ã¿è¨­å®š
 	if(multiCellResMan != NULL){
 		if(MultiID != CLACT_U_HEADER_DATA_NONE){
 			multi_o = CLACT_U_ResManagerGetIDResObjPtr( multiCellResMan, MultiID );
@@ -146,92 +146,92 @@ void CLACT_U_MakeHeader(CLACT_HEADER_PTR tbl, int charID, int plttID, int cellID
 		}
 	}
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‚©‚çƒvƒƒNƒV‚ğæ“¾
-	// Vram“]‘—‚©ƒ`ƒFƒbƒN
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰ãƒ—ãƒ­ã‚¯ã‚·ã‚’å–å¾—
+	// Vramè»¢é€ã‹ãƒã‚§ãƒƒã‚¯
 	if(vram_trans){
 		img_prox = CLACT_U_CharManagerGetVramTransferProxy(char_o, cell_o);
 		GF_ASSERT(img_prox);
 		
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 		tbl->pCharData = CLACT_U_ResManagerGetResObjResChar(char_o);
 	}else{
 		img_prox = CLACT_U_CharManagerGetProxy(char_o);
 		GF_ASSERT(img_prox);
 
-		tbl->pCharData = NULL;	// Vram“]‘—ˆÈŠO‚Å‚Í‚¢‚ç‚È‚¢
+		tbl->pCharData = NULL;	// Vramè»¢é€ä»¥å¤–ã§ã¯ã„ã‚‰ãªã„
 	}
-	// ƒpƒŒƒbƒgƒvƒƒNƒV‚ğæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·ã‚’å–å¾—
 	tbl->pPaletteProxy = CLACT_U_PlttManagerGetProxy(pltt_o,img_prox);
 	tbl->pImageProxy = img_prox;
 
-	// ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
 	tbl->pCellBank = CLACT_U_ResManagerGetResObjResCell(cell_o);
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^ƒoƒ“ƒN
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
 	if(cellanm_o){
 		tbl->pAnimBank = CLACT_U_ResManagerGetResObjResCellAnm(cellanm_o);	
 	}else{
 		tbl->pAnimBank = NULL;
 	}
 
-	// ƒ}ƒ‹ƒ`ƒZƒ‹ƒf[ƒ^‚ğæ“¾‚·‚é•K—v‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãƒãƒ«ãƒã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(multi_o){
-		// ƒ}ƒ‹ƒ`ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN
+		// ãƒãƒ«ãƒã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
 		tbl->pMCBank = CLACT_U_ResManagerGetResObjResMultiCell(multi_o);
-		// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^ƒoƒ“ƒN
+		// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
 		tbl->pMCABank = CLACT_U_ResManagerGetResObjResMultiCellAnim(multianm_o);
 	}else{
-		// ƒ}ƒ‹ƒ`ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN
+		// ãƒãƒ«ãƒã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
 		tbl->pMCBank = NULL;
-		// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^ƒoƒ“ƒN
+		// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
 		tbl->pMCABank = NULL;
 	}
 
-	// “]‘—ƒtƒ‰ƒO
+	// è»¢é€ãƒ•ãƒ©ã‚°
 	tbl->flag = vram_trans;
 
-	// BG•\¦—Dæ‡ˆÊ
+	// BGè¡¨ç¤ºå„ªå…ˆé †ä½
 	tbl->priority = priority;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_[‚Ìƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é‘O‚ÉAƒwƒbƒ_[“à‚Ìƒf[ƒ^‚ÅŠm•Û‚µ‚½ƒƒ‚ƒŠ‚ğ”jŠü‚·‚é
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ã®ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹å‰ã«ã€ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã®ãƒ‡ãƒ¼ã‚¿ã§ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’ç ´æ£„ã™ã‚‹
  *
- *@param	tbl		’†g‚Ìƒf[ƒ^‚ğ”jŠü‚·‚éƒwƒbƒ_[
+ *@param	tbl		ä¸­èº«ã®ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼
  *
  *@return	none
  *
- * Vram“]‘——p‚ÉŠm•Û‚µ‚½Vram—Ìˆæ‚ğ”jŠü‚·‚é
+ * Vramè»¢é€ç”¨ã«ç¢ºä¿ã—ãŸVramé ˜åŸŸã‚’ç ´æ£„ã™ã‚‹
  *
  */
 //-----------------------------------------------------------------------------
 void CLACT_U_DeleteInHeaderVramTransferArea(CLACT_HEADER_PTR tbl)
 {
-	// Vram“]‘—ƒ‚[ƒh‚Ì‚ÍVram—Ìˆæ‚ğŠJ•ú‚·‚é
+	// Vramè»¢é€ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯Vramé ˜åŸŸã‚’é–‹æ”¾ã™ã‚‹
 	CLACT_U_CharManagerDeleteVramTransferProxy(tbl->pImageProxy);
 
-	// ƒe[ƒuƒ‹“à‚ğclean‚·‚é
+	// ãƒ†ãƒ¼ãƒ–ãƒ«å†…ã‚’cleanã™ã‚‹
 	memset(tbl, 0, sizeof(CLACT_HEADER));
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ƒe[ƒuƒ‹‚ğƒƒ€‚©‚ç“Ç‚İ‚Ş	i•¡”j
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãƒ­ãƒ ã‹ã‚‰èª­ã¿è¾¼ã‚€	ï¼ˆè¤‡æ•°ï¼‰
  *
- *@param	path				ƒpƒX
- *@param	heap				ƒq[ƒv
- *@param	charResMan			ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	plttResMan			ƒpƒŒƒbƒgƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	cellResMan			ƒZƒ‹ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	cellAnmResMan		ƒZƒ‹ƒAƒjƒƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	multiCellResMan		ƒ}ƒ‹ƒ`ƒZƒ‹ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	multiCellAnmResMan	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+ *@param	path				ãƒ‘ã‚¹
+ *@param	heap				ãƒ’ãƒ¼ãƒ—
+ *@param	charResMan			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	plttResMan			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	cellResMan			ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	cellAnmResMan		ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	multiCellResMan		ãƒãƒ«ãƒã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	multiCellAnmResMan	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
  *
- *@return	CLACT_HEADER_TBL_PTR	ƒwƒbƒ_[‚Ìƒe[ƒuƒ‹‚ğŠi”[‚µ‚½\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *									ƒAƒNƒZƒXŠÖ”‚ÅŒÂX‚Ìƒwƒbƒ_[‚ğæ“¾‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
+ *@return	CLACT_HEADER_TBL_PTR	ãƒ˜ãƒƒãƒ€ãƒ¼ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ ¼ç´ã—ãŸæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *									ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°ã§å€‹ã€…ã®ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’å–å¾—ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
  *
  *
  */
@@ -245,23 +245,23 @@ CLACT_HEADER_TBL_PTR CLACT_U_LoadHeaderTbl(
 		CLACT_U_RES_MANAGER_PTR multiCellResMan,
 		CLACT_U_RES_MANAGER_PTR multiCellAnmResMan)
 {
-	int i;					// ƒ‹[ƒv—p
-	char* buff;				// ì‹Æ—pƒoƒbƒtƒ@
-	char* tmp;				// “Ç‚İ‚İÏ‚İƒtƒ@ƒCƒ‹	
-	int tbl_num;			// ƒe[ƒuƒ‹”
-	CLACT_HEADER_TBL_PTR	ret_tbl;	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ƒe[ƒuƒ‹
-	CLACT_HEADER_DATA_TMP*	data_tmp;	// ƒf[ƒ^ˆê•Û‘¶—Ìˆæ
+	int i;					// ãƒ«ãƒ¼ãƒ—ç”¨
+	char* buff;				// ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡
+	char* tmp;				// èª­ã¿è¾¼ã¿æ¸ˆã¿ãƒ•ã‚¡ã‚¤ãƒ«	
+	int tbl_num;			// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+	CLACT_HEADER_TBL_PTR	ret_tbl;	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
+	CLACT_HEADER_DATA_TMP*	data_tmp;	// ãƒ‡ãƒ¼ã‚¿ä¸€æ™‚ä¿å­˜é ˜åŸŸ
 
-	// ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+	// ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 	tmp = sys_LoadFile(heap, path);
 	GF_ASSERT(tmp);
 
-	// ƒe[ƒuƒ‹”‚ğæ“¾
+	// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ã‚’å–å¾—
 	buff = makeStrCopy(tmp, heap);
 	tbl_num = getHeaderTblNum(buff);
 	delStrCopy(buff);
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ƒe[ƒuƒ‹ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	ret_tbl = sys_AllocMemory(heap, sizeof(CLACT_HEADER_TBL));
 	GF_ASSERT(ret_tbl);
 	
@@ -272,9 +272,9 @@ CLACT_HEADER_TBL_PTR CLACT_U_LoadHeaderTbl(
 		ret_tbl->tbl = NULL;
 	}
 	
-	ret_tbl->tbl_num = tbl_num;	// ƒe[ƒuƒ‹”
+	ret_tbl->tbl_num = tbl_num;	// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 
-	// ˆêƒf[ƒ^“Ç‚İ‚İ‚æ‚¤ƒe[ƒuƒ‹ì¬
+	// ä¸€æ™‚ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã‚ˆã†ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	if(tbl_num > 0){
 		data_tmp = sys_AllocMemoryLo(heap, sizeof(CLACT_HEADER_DATA_TMP)* tbl_num);
 		GF_ASSERT(data_tmp);
@@ -282,14 +282,14 @@ CLACT_HEADER_TBL_PTR CLACT_U_LoadHeaderTbl(
 		data_tmp = NULL;
 	}
 	
-	// ROMƒwƒbƒ_[ƒf[ƒ^“Ç‚İ‚İ
+	// ROMãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	if(data_tmp != NULL){
 		buff = makeStrCopy(tmp, heap);
 		loadHeaderTbl(buff, data_tmp, tbl_num);
 		delStrCopy(buff);
 	}
 
-	// ¡ˆêƒf[ƒ^•Û‘¶—Ìˆæ‚É“Ç‚İ‚±‚ñ‚¾ƒf[ƒ^‚ÅƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[‚ğì¬‚·‚é
+	// ä»Šä¸€æ™‚ãƒ‡ãƒ¼ã‚¿ä¿å­˜é ˜åŸŸã«èª­ã¿ã“ã‚“ã ãƒ‡ãƒ¼ã‚¿ã§ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
 	for(i=0;i<ret_tbl->tbl_num;i++){
 		CLACT_U_MakeHeader(ret_tbl->tbl + i, 
 				data_tmp[i].char_id, data_tmp[i].pltt_id,
@@ -300,12 +300,12 @@ CLACT_HEADER_TBL_PTR CLACT_U_LoadHeaderTbl(
 				multiCellResMan, multiCellAnmResMan);
 	}
 
-	// 	ˆêƒtƒ@ƒCƒ‹”jŠü
+	// 	ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ç ´æ£„
 	if(data_tmp){
 		sys_FreeMemoryEz(data_tmp);
 	}
 
-	// “Ç‚İ‚İƒtƒ@ƒCƒ‹”jŠü
+	// èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ç ´æ£„
 	sys_FreeMemoryEz(tmp);
 
 	return ret_tbl;
@@ -314,35 +314,35 @@ CLACT_HEADER_TBL_PTR CLACT_U_LoadHeaderTbl(
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ƒe[ƒuƒ‹‚ğƒoƒCƒiƒŠƒf[ƒ^‚©‚çì¬	i•¡”j
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œæˆ	ï¼ˆè¤‡æ•°ï¼‰
  *
- *@param	bindata				ƒoƒCƒiƒŠƒf[ƒ^
- *@param	p_header_tbl		ƒwƒbƒ_[ƒe[ƒuƒ‹
- *@param	heap				ƒq[ƒv
- *@param	charResMan			ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	plttResMan			ƒpƒŒƒbƒgƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	cellResMan			ƒZƒ‹ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	cellAnmResMan		ƒZƒ‹ƒAƒjƒƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	multiCellResMan		ƒ}ƒ‹ƒ`ƒZƒ‹ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	multiCellAnmResMan	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+ *@param	bindata				ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿
+ *@param	p_header_tbl		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
+ *@param	heap				ãƒ’ãƒ¼ãƒ—
+ *@param	charResMan			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	plttResMan			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	cellResMan			ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	cellAnmResMan		ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	multiCellResMan		ãƒãƒ«ãƒã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	multiCellAnmResMan	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
  *
- *@return	CLACT_HEADER_TBL_PTR	ƒwƒbƒ_[‚Ìƒe[ƒuƒ‹‚ğŠi”[‚µ‚½\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *									ƒAƒNƒZƒXŠÖ”‚ÅŒÂX‚Ìƒwƒbƒ_[‚ğæ“¾‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
+ *@return	CLACT_HEADER_TBL_PTR	ãƒ˜ãƒƒãƒ€ãƒ¼ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ ¼ç´ã—ãŸæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *									ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°ã§å€‹ã€…ã®ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’å–å¾—ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
  *
- * ƒoƒCƒiƒŠƒf[ƒ^‘®		Šeƒf[ƒ^2byte‚¸‚Â‚Ì”z’u‚Æ‚È‚Á‚Ä‚¢‚Ü‚·B
- *	ƒLƒƒƒ‰ƒNƒ^ID,		iƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚ÆŠÖ˜A•t‚¯‚³‚ê‚½IDj
- *	ƒpƒŒƒbƒgID,
- *	ƒZƒ‹ID,
- *	ƒZƒ‹ƒAƒjƒID,
- *	ƒ}ƒ‹ƒ`ƒZƒ‹ID,		iƒ}ƒ‹ƒ`ƒZƒ‹Aƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚ª–³‚¢‚Æ‚«‚Í'CLACT_U_HEADER_MAKE_NONE_CODE'j
- *	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒID,
- *	Vram“]‘—ƒAƒjƒŠm”Fƒtƒ‰ƒO,
- *	BG–Ê‚Æ‚Ì—Dæ“x
- *	Ÿ‚Ìƒe[ƒuƒ‹‚ğ‘‚­«
- *	0x0000,0x0001,0x0000,0x0002,CLACT_U_HEADER_MAKE_NONE_CODE, CLACT_U_HEADER_MAKE_NONE_CODE, 0,0			<-‚P‚Â‚Ìƒf[ƒ^
+ * ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿æ›¸å¼		å„ãƒ‡ãƒ¼ã‚¿2byteãšã¤ã®é…ç½®ã¨ãªã£ã¦ã„ã¾ã™ã€‚
+ *	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID,		ï¼ˆãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã¨é–¢é€£ä»˜ã‘ã•ã‚ŒãŸIDï¼‰
+ *	ãƒ‘ãƒ¬ãƒƒãƒˆID,
+ *	ã‚»ãƒ«ID,
+ *	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID,
+ *	ãƒãƒ«ãƒã‚»ãƒ«ID,		ï¼ˆãƒãƒ«ãƒã‚»ãƒ«ã€ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãŒç„¡ã„ã¨ãã¯'CLACT_U_HEADER_MAKE_NONE_CODE'ï¼‰
+ *	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID,
+ *	Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ç¢ºèªãƒ•ãƒ©ã‚°,
+ *	BGé¢ã¨ã®å„ªå…ˆåº¦
+ *	æ¬¡ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ›¸ãâ†“
+ *	0x0000,0x0001,0x0000,0x0002,CLACT_U_HEADER_MAKE_NONE_CODE, CLACT_U_HEADER_MAKE_NONE_CODE, 0,0			<-ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿
  *	0x0001,0x0002,0x0003,0x0002,0x0000,0x0000,0x0001,0x0002
- *	I—¹ƒR[ƒh
- *	CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE			‚±‚Ìƒf[ƒ^‚ªo‚Ä‚«‚½‚çI—¹	
+ *	çµ‚äº†ã‚³ãƒ¼ãƒ‰
+ *	CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE, CLACT_U_HEADER_MAKE_END_CODE			ã“ã®ãƒ‡ãƒ¼ã‚¿ãŒå‡ºã¦ããŸã‚‰çµ‚äº†	
  *
  */
 //-----------------------------------------------------------------------------
@@ -355,18 +355,18 @@ CLACT_HEADER_TBL_PTR CLACT_U_MakeHeaderBinary(const CLACT_U_HEADER_MAKE_BINDATA*
 		CLACT_U_RES_MANAGER_PTR multiCellResMan,
 		CLACT_U_RES_MANAGER_PTR multiCellAnmResMan)
 {
-	int i;					// ƒ‹[ƒv—p
-	int tbl_num;			// ƒe[ƒuƒ‹”
-	CLACT_HEADER_TBL_PTR p_header_tbl;	// ƒwƒbƒ_[ƒe[ƒuƒ‹
+	int i;					// ãƒ«ãƒ¼ãƒ—ç”¨
+	int tbl_num;			// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+	CLACT_HEADER_TBL_PTR p_header_tbl;	// ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
 	int multicell, multicell_anm;
 
-	// ƒoƒCƒiƒŠƒf[ƒ^‚Ìƒe[ƒuƒ‹”‚ğ‹‚ß‚é
+	// ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã®ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ã‚’æ±‚ã‚ã‚‹
 	tbl_num = 0;
 	while( bindata[ tbl_num ].char_id != CLACT_U_HEADER_MAKE_END_CODE ){
 		tbl_num ++;
 	}
 
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_header_tbl			= sys_AllocMemory( heap, sizeof(CLACT_HEADER_TBL) );
 	p_header_tbl->tbl		= sys_AllocMemory( heap, sizeof(CLACT_HEADER) * tbl_num );
 	p_header_tbl->tbl_num	= tbl_num;
@@ -390,9 +390,9 @@ CLACT_HEADER_TBL_PTR CLACT_U_MakeHeaderBinary(const CLACT_U_HEADER_MAKE_BINDATA*
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_[ƒe[ƒuƒ‹‚ğ”jŠü‚·‚é
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç ´æ£„ã™ã‚‹
  *
- *@param	data	ƒwƒbƒ_[ƒe[ƒuƒ‹
+ *@param	data	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *@return	none
  *
@@ -413,21 +413,21 @@ void CLACT_U_CLACT_HeaderTblDelete(CLACT_HEADER_TBL_PTR data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚ÌŠÈ’P‰Šú‰»
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ç°¡å˜åˆæœŸåŒ–
  *
- *@param	work_num	ƒZƒ‹ƒAƒNƒ^[‚Éİ’è‚·‚éÅ‘åƒAƒNƒ^[”
- *@param	data		ƒZƒ‹ƒAƒNƒ^[ŠÈ’Pİ’è‚Ég—p‚·‚éƒŒƒ“ƒ_[ƒf[ƒ^
- *						(À‘Ô‚Ìƒ|ƒCƒ“ƒ^)
- *@param	heap		ƒƒ‚ƒŠŠm•Û‚Ég—p‚·‚éƒq[ƒv”
+ *@param	work_num	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®šã™ã‚‹æœ€å¤§ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
+ *@param	data		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç°¡å˜è¨­å®šã«ä½¿ç”¨ã™ã‚‹ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *						(å®Ÿæ…‹ã®ãƒã‚¤ãƒ³ã‚¿)
+ *@param	heap		ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—æ•°
  *
- *@return	CLACT_SET_PTR	ì¬‚³‚ê‚½ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
+ *@return	CLACT_SET_PTR	ä½œæˆã•ã‚ŒãŸã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  *
- * “à—e
- * œƒŒƒ“ƒ_ƒ‰‚Ì‰Šú‰»AƒT[ƒtƒF[ƒX‚Ìİ’è‚È‚Ç‚ğs‚¤
- * œƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
- * œƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚É‰Šú‰»‚µ‚½ƒŒƒ“ƒ_ƒ‰‚ğİ’è
+ * å†…å®¹
+ * â—ãƒ¬ãƒ³ãƒ€ãƒ©ã®åˆæœŸåŒ–ã€ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®è¨­å®šãªã©ã‚’è¡Œã†
+ * â—ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
+ * â—ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã«åˆæœŸåŒ–ã—ãŸãƒ¬ãƒ³ãƒ€ãƒ©ã‚’è¨­å®š
  *
- * ”jŠü‚Í•’Ê‚ÌƒZƒ‹ƒAƒNƒ^[‚Ì”jŠüŠÖ”‚Å‘åä•v‚Å‚·B
+ * ç ´æ£„ã¯æ™®é€šã®ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç ´æ£„é–¢æ•°ã§å¤§ä¸ˆå¤«ã§ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -438,8 +438,8 @@ CLACT_SET_PTR CLACT_U_SetEasyInit( int work_num, CLACT_U_EASYRENDER_DATA* data, 
 	
 	RNDP_InitRenderer(&data->Rend, -FX32_ONE);
 	
-	// ƒT[ƒtƒF[ƒX“o˜^
-	// ƒƒCƒ“—pƒT[ƒtƒF[ƒX
+	// ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ç™»éŒ²
+	// ãƒ¡ã‚¤ãƒ³ç”¨ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 	rect.posTopLeft.x	= MAIN_SURFACE_X;
 	rect.posTopLeft.y	= MAIN_SURFACE_Y;
 	rect.sizeView.x		= SURFACE_WIDTH;
@@ -449,7 +449,7 @@ CLACT_SET_PTR CLACT_U_SetEasyInit( int work_num, CLACT_U_EASYRENDER_DATA* data, 
 			NNS_G2D_SURFACETYPE_MAIN2D,
 			&data->Rend);
 	
-	// ƒTƒu—pƒT[ƒtƒF[ƒX
+	// ã‚µãƒ–ç”¨ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 	rect.posTopLeft.x	= SUB_SURFACE_X;
 	rect.posTopLeft.y	= SUB_SURFACE_Y;
 	rect.sizeView.x		= SURFACE_WIDTH;
@@ -468,11 +468,11 @@ CLACT_SET_PTR CLACT_U_SetEasyInit( int work_num, CLACT_U_EASYRENDER_DATA* data, 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒŒƒ“ƒ_ƒ‰[“à	ƒƒCƒ“‰æ–Ê‚ÌƒT[ƒtƒF[ƒXˆÊ’u‚ğİ’è
+ *	@brief	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼å†…	ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ä½ç½®ã‚’è¨­å®š
  *
- *	@param	data	ŠÈ’PƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg—pƒŒƒ“ƒ_ƒ‰ƒf[ƒ^
- *	@param	x		ƒƒCƒ“‰æ–ÊƒT[ƒtƒF[ƒX‚˜À•W
- *	@param	y		ƒƒCƒ“‰æ–ÊƒT[ƒtƒF[ƒX‚™À•W
+ *	@param	data	ç°¡å˜ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç”¨ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ‡ãƒ¼ã‚¿
+ *	@param	x		ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ï½˜åº§æ¨™
+ *	@param	y		ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ï½™åº§æ¨™
  *
  *	@return	none
  *
@@ -493,19 +493,19 @@ void CLACT_U_SetMainSurfaceMatrix( CLACT_U_EASYRENDER_DATA* data, fx32 x, fx32 y
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒT[ƒtƒF[ƒX‚Ìî•ñ‚ğæ“¾
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®æƒ…å ±ã‚’å–å¾—
  *
- *	@param	data		ƒ[ƒN
- *	@param	pRect		ƒf[ƒ^Ši”[æ
+ *	@param	data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	pRect		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- * NNSG2dViewRect\‘¢‘Ì
+ * NNSG2dViewRectæ§‹é€ ä½“
  *	typedef struct NNSG2dViewRect
 	{
-		NNSG2dFVec2            posTopLeft;      // ‰Â‹—Ìˆæ ¶ãˆÊ’u
-		NNSG2dFVec2            sizeView;        // ƒrƒ…[‚ÌƒTƒCƒY
+		NNSG2dFVec2            posTopLeft;      // å¯è¦–é ˜åŸŸ å·¦ä¸Šä½ç½®
+		NNSG2dFVec2            sizeView;        // ãƒ“ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚º
 	}NNSG2dViewRect;
  *
- * NNSG2dFVec2\‘¢‘Ì
+ * NNSG2dFVec2æ§‹é€ ä½“
 	typedef struct NNSG2dFVec2
 	{
 		fx32     x;        
@@ -522,11 +522,11 @@ void CLACT_U_GetMainSurfaceData( CLACT_U_EASYRENDER_DATA* data, NNSG2dViewRect* 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒŒƒ“ƒ_ƒ‰[“à	ƒTƒu‰æ–Ê‚ÌƒT[ƒtƒF[ƒXˆÊ’u‚ğİ’è
+ *	@brief	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼å†…	ã‚µãƒ–ç”»é¢ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ä½ç½®ã‚’è¨­å®š
  *
- *	@param	data	ŠÈ’PƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg—pƒŒƒ“ƒ_ƒ‰ƒf[ƒ^
- *	@param	x		ƒTƒu‰æ–ÊƒT[ƒtƒF[ƒX‚˜À•W
- *	@param	y		ƒTƒu‰æ–ÊƒT[ƒtƒF[ƒX‚™À•W
+ *	@param	data	ç°¡å˜ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç”¨ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ‡ãƒ¼ã‚¿
+ *	@param	x		ã‚µãƒ–ç”»é¢ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ï½˜åº§æ¨™
+ *	@param	y		ã‚µãƒ–ç”»é¢ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ï½™åº§æ¨™
  *
  *	@return	none
  *
@@ -548,19 +548,19 @@ void CLACT_U_SetSubSurfaceMatrix( CLACT_U_EASYRENDER_DATA* data, fx32 x, fx32 y 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒT[ƒtƒF[ƒX‚Ìî•ñ‚ğæ“¾
+ *	@brief	ã‚µãƒ–ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®æƒ…å ±ã‚’å–å¾—
  *
- *	@param	data		ƒ[ƒN
- *	@param	pRect		ƒf[ƒ^Ši”[æ
+ *	@param	data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	pRect		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- * NNSG2dViewRect\‘¢‘Ì
+ * NNSG2dViewRectæ§‹é€ ä½“
  *	typedef struct NNSG2dViewRect
 	{
-		NNSG2dFVec2            posTopLeft;      // ‰Â‹—Ìˆæ ¶ãˆÊ’u
-		NNSG2dFVec2            sizeView;        // ƒrƒ…[‚ÌƒTƒCƒY
+		NNSG2dFVec2            posTopLeft;      // å¯è¦–é ˜åŸŸ å·¦ä¸Šä½ç½®
+		NNSG2dFVec2            sizeView;        // ãƒ“ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚º
 	}NNSG2dViewRect;
  *
- * NNSG2dFVec2\‘¢‘Ì
+ * NNSG2dFVec2æ§‹é€ ä½“
 	typedef struct NNSG2dFVec2
 	{
 		fx32     x;        
@@ -576,15 +576,15 @@ void CLACT_U_GetSubSurfaceData( CLACT_U_EASYRENDER_DATA* data, NNSG2dViewRect* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^g—p—Ìˆæ‚ğ—\–ñ
+ *	@brief	é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ä½¿ç”¨é ˜åŸŸã‚’äºˆç´„
  *
- *	@param	disp	İ’è‰æ–Ê	
- *	@param	mode	ƒIƒuƒWƒFƒ}ƒbƒsƒ“ƒOÓ°ÄŞ
+ *	@param	disp	è¨­å®šç”»é¢	
+ *	@param	mode	ã‚ªãƒ–ã‚¸ã‚§ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
  *	@return	none
  *
  *	disp
- *		main‰æ–ÊFNNS_G2D_VRAM_TYPE_2DMAIN = 1
- *		sub‰æ–Ê FNNS_G2D_VRAM_TYPE_2DSUB = 2
+ *		mainç”»é¢ï¼šNNS_G2D_VRAM_TYPE_2DMAIN = 1
+ *		subç”»é¢ ï¼šNNS_G2D_VRAM_TYPE_2DSUB = 2
  *
  *	mode
  *		GX_OBJVRAMMODE_CHAR_1D_32K 
@@ -617,7 +617,7 @@ void CLACT_U_WmIcon_SetReserveAreaCharManager( u32 disp, GXOBJVRamModeChar mode 
 		break;
 
 	default:
-		// ‚»‚ÌƒIƒuƒWƒFƒ}ƒbƒsƒ“ƒOÓ°ÄŞ‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ
+		// ãã®ã‚ªãƒ–ã‚¸ã‚§ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“
 		GF_ASSERT(0);
 		break;
 	}
@@ -625,7 +625,7 @@ void CLACT_U_WmIcon_SetReserveAreaCharManager( u32 disp, GXOBJVRamModeChar mode 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒgƒf[ƒ^g—p—Ìˆæ‚ğ—\–ñ
+ *	@brief	é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ä½¿ç”¨é ˜åŸŸã‚’äºˆç´„
  *
  *	@param	none
  *	@return	none
@@ -643,9 +643,9 @@ void CLACT_U_WmIcon_SetReserveAreaPlttManager( u32 disp )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_[ƒe[ƒuƒ‹”‚ğæ“¾
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ã‚’å–å¾—
  *
- *@param	buff	ƒoƒbƒtƒ@
+ *@param	buff	ãƒãƒƒãƒ•ã‚¡
  *
  *@return
  *
@@ -654,13 +654,13 @@ void CLACT_U_WmIcon_SetReserveAreaPlttManager( u32 disp )
 //-----------------------------------------------------------------------------
 static int getHeaderTblNum(char* buff)
 {
-	int count;		// ƒe[ƒuƒ‹”ƒJƒEƒ“ƒ^
+	int count;		// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ã‚«ã‚¦ãƒ³ã‚¿
 	char* data[8];
 	
 	count = 0;
 	loadHeaderOne(buff, &data[0], &data[1], &data[2], &data[3], &data[4], &data[5], &data[6], &data[7] );
 
-	// 'e'‚ªo‚Ä‚«‚½‚çƒe[ƒuƒ‹I—¹
+	// 'e'ãŒå‡ºã¦ããŸã‚‰ãƒ†ãƒ¼ãƒ–ãƒ«çµ‚äº†
 	while(data[0][0] != 'e'){
 		count ++;
 		loadHeaderOne(NULL, &data[0], &data[1], &data[2], &data[3], &data[4], &data[5], &data[6], &data[7] );
@@ -672,11 +672,11 @@ static int getHeaderTblNum(char* buff)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_[ƒe[ƒuƒ‹‚ğ“Ç‚İ‚Ş
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’èª­ã¿è¾¼ã‚€
  *
- *@param	buff	ƒf[ƒ^
- *@param	tbl		Ši”[æ
- *@param	num		Ši”[”
+ *@param	buff	ãƒ‡ãƒ¼ã‚¿
+ *@param	tbl		æ ¼ç´å…ˆ
+ *@param	num		æ ¼ç´æ•°
  *
  *@return	none
  *
@@ -685,10 +685,10 @@ static int getHeaderTblNum(char* buff)
 //-----------------------------------------------------------------------------
 static void loadHeaderTbl(char* buff, CLACT_HEADER_DATA_TMP* tbl, int num)
 {
-	int	i;			// ƒ‹[ƒv—p
-	char* data[8];	// Ši”[—pƒf[ƒ^
+	int	i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	char* data[8];	// æ ¼ç´ç”¨ãƒ‡ãƒ¼ã‚¿
 	
-	// “Ç‚İ‚ñ‚Åƒe[ƒuƒ‹‚ÉŠi”[
+	// èª­ã¿è¾¼ã‚“ã§ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ ¼ç´
 	loadHeaderOne(buff, &data[0], &data[1], &data[2], &data[3],
 			&data[4], &data[5], &data[6], &data[7] );
 	
@@ -706,17 +706,17 @@ static void loadHeaderTbl(char* buff, CLACT_HEADER_DATA_TMP* tbl, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_[‚P‚Â‚Ìƒf[ƒ^‚ğæ“¾
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *@param	buff			ƒoƒbƒtƒ@
- *@param	char_id			ƒLƒƒƒ‰ƒNƒ^IDŠi”[æ
- *@param	pltt_id			ƒpƒŒƒbƒgIDŠi”[æ
- *@param	cell_id			ƒZƒ‹IDŠi”[æ
- *@param	cellanm_id		ƒZƒ‹ƒAƒjƒIDŠi”[æ
- *@param	multicell_id	ƒ}ƒ‹ƒ`ƒZƒ‹IDŠi”[æ
- *@param	multicellanm_id	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒIDŠi”[æ
- *@param	vram_trans		Vram“]‘—Šm”Fƒtƒ‰ƒOŠi”[æ
- *@param	priority		BG–Ê‚Æ‚Ì•\¦—Dæ‡ˆÊŠi”[æ
+ *@param	buff			ãƒãƒƒãƒ•ã‚¡
+ *@param	char_id			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDæ ¼ç´å…ˆ
+ *@param	pltt_id			ãƒ‘ãƒ¬ãƒƒãƒˆIDæ ¼ç´å…ˆ
+ *@param	cell_id			ã‚»ãƒ«IDæ ¼ç´å…ˆ
+ *@param	cellanm_id		ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡IDæ ¼ç´å…ˆ
+ *@param	multicell_id	ãƒãƒ«ãƒã‚»ãƒ«IDæ ¼ç´å…ˆ
+ *@param	multicellanm_id	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡IDæ ¼ç´å…ˆ
+ *@param	vram_trans		Vramè»¢é€ç¢ºèªãƒ•ãƒ©ã‚°æ ¼ç´å…ˆ
+ *@param	priority		BGé¢ã¨ã®è¡¨ç¤ºå„ªå…ˆé †ä½æ ¼ç´å…ˆ
  *
  *@return	none
  *
@@ -739,17 +739,17 @@ static void loadHeaderOne(char* buff, char** char_id, char** pltt_id, char** cel
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒe[ƒuƒ‹‚Éƒf[ƒ^‚ğİ’è‚·‚é
+ *@brief	ãƒ†ãƒ¼ãƒ–ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
  *
- *@param	tbl					ƒf[ƒ^Ši”[æ
- *@param	char_id				ƒLƒƒƒ‰ƒNƒ^ID
- *@param	pltt_id				ƒpƒŒƒbƒgID
- *@param	cell_id				ƒZƒ‹ID
- *@param	cellanm_id			ƒZƒ‹ƒAƒjƒID
- *@param	multicell_id		ƒ}ƒ‹ƒ`ƒZƒ‹ID
- *@param	multicellanm_id		ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒID
- *@param	vram_trans			Vram“]‘—Šm”Fƒtƒ‰ƒO
- *@param	priority			BG–Ê‚Æ‚Ì•\¦—Dæ‡ˆÊ
+ *@param	tbl					ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *@param	char_id				ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+ *@param	pltt_id				ãƒ‘ãƒ¬ãƒƒãƒˆID
+ *@param	cell_id				ã‚»ãƒ«ID
+ *@param	cellanm_id			ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
+ *@param	multicell_id		ãƒãƒ«ãƒã‚»ãƒ«ID
+ *@param	multicellanm_id		ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
+ *@param	vram_trans			Vramè»¢é€ç¢ºèªãƒ•ãƒ©ã‚°
+ *@param	priority			BGé¢ã¨ã®è¡¨ç¤ºå„ªå…ˆé †ä½
  *
  *@return	none
  *
@@ -777,12 +777,12 @@ static void setHeaderOne(CLACT_HEADER_DATA_TMP* tbl, char* char_id, char* pltt_i
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒRƒs[‚ğì¬
+ *@brief	ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆ
  *
- *@param	tmp		ƒRƒs[ƒf[ƒ^
- *@param	heap	g—pƒq[ƒv
+ *@param	tmp		ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	heap	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	char* ì¬ƒf[ƒ^
+ *@return	char* ä½œæˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -804,9 +804,9 @@ static char* makeStrCopy(const char* tmp, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	makeStrCopy‚Åì¬‚µ‚½ƒf[ƒ^”jŠü
+ *@brief	makeStrCopyã§ä½œæˆã—ãŸãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *@param	data	”jŠüƒf[ƒ^
+ *@param	data	ç ´æ£„ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *

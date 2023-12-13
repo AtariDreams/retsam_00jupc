@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	demo_trade_3d.c
- * @brief	ƒ|ƒPƒ‚ƒ“ŒğŠ·ƒfƒ‚i3DƒIƒuƒWƒFƒNƒg•`‰æj
+ * @brief	ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¢ï¼ˆ3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ï¼‰
  * @author	taya
  * @date	2006.04.13
  */
@@ -14,7 +14,7 @@
 
 //-------------------------------------------------
 /**
- *	3DƒIƒuƒWƒFƒNƒg
+ *	3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-------------------------------------------------
 struct _DT3DOBJ{
@@ -36,7 +36,7 @@ struct _DT3DOBJ{
 
 //-------------------------------------------------
 /**
- *	3DƒIƒuƒWƒFƒNƒgŠÇ—ƒ[ƒN
+ *	3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ãƒ¯ãƒ¼ã‚¯
  */
 //-------------------------------------------------
 struct _DT3DMAN {
@@ -125,7 +125,7 @@ void DT3DMAN_Draw( DT3DMAN* wk )
 	{
 		int i;
 
-		// ƒJƒƒ‰İ’è
+		// ã‚«ãƒ¡ãƒ©è¨­å®š
 		GFC_CameraLookAt();
 
 		for(i=0; i<wk->objMax; i++)
@@ -144,7 +144,7 @@ static void inline make_rot_matrix( MtxFx33* rotMtx, const VecFx16* rot )
 {
 	MtxFx33 tmpMtx;
 
-	// ‰ñ“]s—ñì¬
+	// å›è»¢è¡Œåˆ—ä½œæˆ
 	MTX_Identity33( rotMtx );
 	MTX_RotX33( &tmpMtx, FX_SinIdx((u16)(rot->x)), FX_CosIdx((u16)(rot->x)) );
 	MTX_Concat33( &tmpMtx, rotMtx, rotMtx );
@@ -180,7 +180,7 @@ static void rend_obj( DT3DOBJ* obj )
 
 //------------------------------------------------------------------
 /**
- * ƒIƒuƒWƒFƒNƒg—Ìˆæ‰Šú‰»
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé ˜åŸŸåˆæœŸåŒ–
  *
  * @param   obj		
  *
@@ -198,7 +198,7 @@ static void init_obj_work( DT3DOBJ* obj )
 }
 //------------------------------------------------------------------
 /**
- * ƒIƒuƒWƒFƒNƒg—ÌˆæƒNƒŠƒA
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé ˜åŸŸã‚¯ãƒªã‚¢
  *
  * @param   obj		
  *
@@ -217,7 +217,7 @@ static void quit_obj_work( DT3DOBJ* obj )
 
 //------------------------------------------------------------------
 /**
- * ƒIƒuƒWƒFƒNƒg’Ç‰Á
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¿½åŠ 
  *
  * @param   man		
  * @param   id		
@@ -261,7 +261,7 @@ DT3DOBJ* DT3D_AddObj( DT3DMAN* man, int id, u32 arcID, u32 datID, fx32 xpos, fx3
 
 //------------------------------------------------------------------
 /**
- * ƒIƒuƒWƒFƒNƒg”jŠü
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
  *
  * @param   obj		
  *
@@ -327,7 +327,7 @@ BOOL DT3D_CheckObjVisible( DT3DOBJ* obj )
 	make_rot_matrix(&rotMtx, &(obj->rot));
 
 	NNS_G3dGePushMtx();
-	// ƒJƒƒ‰İ’è
+	// ã‚«ãƒ¡ãƒ©è¨­å®š
 	GFC_CameraLookAt();
 	ret = BB_CullingCheck3DModel( obj->model, &obj->pos, &rotMtx, &obj->scale );
 	NNS_G3dGePopMtx(1);

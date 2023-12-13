@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_248.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			248�@�搧�Z�B�Ώۃ|�P�����̋Z���U���Z�Ȃ�΁A����ɑ�_���[�W�B�U���Z�łȂ��ꍇ���s����B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			248　先制技。対象ポケモンの技が攻撃技ならば、相手に大ダメージ。攻撃技でない場合失敗する。
  *
  *@author	HisashiSogabe
  *@data		2006.02.15

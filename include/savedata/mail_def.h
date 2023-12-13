@@ -1,6 +1,6 @@
 /**
  *	@file	mail_def.h
- *	@brief	ƒ[ƒ‹ƒf[ƒ^@’è”’è‹`ƒtƒ@ƒCƒ‹
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã€€å®šæ•°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
  *	@author	Miyuki Iwasawa
  *	@date	06.02.09
  */
@@ -9,31 +9,31 @@
 #define __H_MAIL_DEF_H__
 
 #if 0
-#define MAIL_STOCK_TEMOTI	(6)		///<è‚¿‚Å½Ä¯¸‚µ‚Ä‚¨‚¯‚é”
-#define MAIL_STOCK_EXTRADE	(1)		///<¢ŠEŒğŠ·
-#define MAIL_STOCK_SODATEYA	(2)		///<ˆç‚Ä‰®ƒ[ƒ‹
+#define MAIL_STOCK_TEMOTI	(6)		///<æ‰‹æŒã¡ã§ã‚¹ãƒˆãƒƒã‚¯ã—ã¦ãŠã‘ã‚‹æ•°
+#define MAIL_STOCK_EXTRADE	(1)		///<ä¸–ç•Œäº¤æ›
+#define MAIL_STOCK_SODATEYA	(2)		///<è‚²ã¦å±‹ãƒ¡ãƒ¼ãƒ«
 #define MAIL_STOCK_MAX	(	MAIL_STOCK_TEMOTI+\
 							MAIL_STOCK_PASOCOM+\
 							MAIL_STOCK_EXTRADE+\
 							MAIL_STOCK_SODATEYA)
 #endif
-#define MAIL_STOCK_PASOCOM	(20)	///<Êß¿ºİ‚Å½Ä¯¸‚µ‚Ä’u‚¯‚é”
+#define MAIL_STOCK_PASOCOM	(20)	///<ãƒ‘ã‚½ã‚³ãƒ³ã§ã‚¹ãƒˆãƒƒã‚¯ã—ã¦ç½®ã‘ã‚‹æ•°
 #define MAIL_STOCK_MAX	(MAIL_STOCK_PASOCOM)
 
-#define MAILDAT_MSGMAX	(3)	///<ŠÈˆÕ•¶—v‘f”
-#define MAILDAT_ICONMAX	(3)	///<ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“—v‘f”
+#define MAILDAT_MSGMAX	(3)	///<ç°¡æ˜“æ–‡è¦ç´ æ•°
+#define MAILDAT_ICONMAX	(3)	///<ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¦ç´ æ•°
 
-///ƒf[ƒ^ƒuƒƒbƒNƒAƒNƒZƒXID’è‹`
+///ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã‚¢ã‚¯ã‚»ã‚¹IDå®šç¾©
 typedef enum{
  MAILBLOCK_PASOCOM,
  MAILBLOCK_MAX,
- MAILBLOCK_TEMOTI,	///<ƒuƒƒbƒNŠOƒf[ƒ^ID(è‚¿)
-// MAILBLOCK_EXTRADE,	///<ƒuƒƒbƒNŠOƒf[ƒ^ID(¢ŠEŒğŠ·)
-// MAILBLOCK_SODATEYA,///<ƒuƒƒbƒNŠOƒf[ƒ^ID(ˆç‚Ä‚âƒ[ƒ‹)
- MAILBLOCK_NULL,	///<ƒuƒƒbƒNŠOƒf[ƒ^ID(–³ŒøID)
+ MAILBLOCK_TEMOTI,	///<ãƒ–ãƒ­ãƒƒã‚¯å¤–ãƒ‡ãƒ¼ã‚¿ID(æ‰‹æŒã¡)
+// MAILBLOCK_EXTRADE,	///<ãƒ–ãƒ­ãƒƒã‚¯å¤–ãƒ‡ãƒ¼ã‚¿ID(ä¸–ç•Œäº¤æ›)
+// MAILBLOCK_SODATEYA,///<ãƒ–ãƒ­ãƒƒã‚¯å¤–ãƒ‡ãƒ¼ã‚¿ID(è‚²ã¦ã‚„ãƒ¡ãƒ¼ãƒ«)
+ MAILBLOCK_NULL,	///<ãƒ–ãƒ­ãƒƒã‚¯å¤–ãƒ‡ãƒ¼ã‚¿ID(ç„¡åŠ¹ID)
 }MAILBLOCK_ID;
 
-///ƒfƒUƒCƒ“No’è‹`
+///ãƒ‡ã‚¶ã‚¤ãƒ³Noå®šç¾©
 typedef enum{
  MAIL_DESIGN_START = 0,
  MAIL_DESIGN_00 = 0,
@@ -50,7 +50,7 @@ typedef enum{
  MAIL_DESIGN_11,
  MAIL_DESIGN_END = 11,
  MAIL_DESIGN_MAX,
- MAIL_DESIGN_NULL = 0xFFFF,	///<–³Œø
+ MAIL_DESIGN_NULL = 0xFFFF,	///<ç„¡åŠ¹
 }MAIL_DESIGN_NO;
 
 #define MAILDATA_NULLID	(0xFFFFFFFF)
@@ -58,11 +58,11 @@ typedef enum{
 #define MAIL_ICON_CGXN	(0xFFF)
 #define MAIL_ICON_PALNULL	(0xF)
 
-///ƒ[ƒ‹ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒf[ƒ^Œ^
+///ãƒ¡ãƒ¼ãƒ«ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿å‹
 typedef union _MAIL_ICON{
 	struct{
-		u16	cgxID:12;	///<ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒLƒƒƒ‰ƒNƒ^CgxID
-		u16	palID:4;	///<ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒpƒŒƒbƒgID
+		u16	cgxID:12;	///<ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿CgxID
+		u16	palID:4;	///<ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆID
 	};
 	u16	dat;
 }MAIL_ICON;

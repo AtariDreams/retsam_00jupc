@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	d_taya.c
- * @bfief	“c’J ƒfƒoƒbƒOƒƒjƒ…[
+ * @bfief	ç”°è°· ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -35,7 +35,7 @@
 
 
 //---------------------------------------------------------------------------------------------
-// ’è‹`
+// å®šç¾©
 //---------------------------------------------------------------------------------------------
 enum {
 	WK_SEQ = 0,
@@ -100,7 +100,7 @@ static void Debug_ChangeScheneReq( FIELDSYS_WORK* fsys, ScheneChangeCallback sta
 
 
 //--------------------------------------------------------------------------------------------
-// ƒfƒoƒbƒOƒƒjƒ…[—p’è‹`
+// ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨å®šç¾©
 //--------------------------------------------------------------------------------------------
 static const struct {
 	u32  str_id;
@@ -126,24 +126,24 @@ static const struct {
 
 
 static const BMPLIST_HEADER d_menu_list_h = {
-	NULL,					// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	NULL,					// BitmapWindow
-	NELEMS(MenuParamList),	// ƒŠƒXƒg€–Ú”
-	10,						// •\¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						// €–Ú•\¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						// •\¦‚xÀ•W
-	FBMP_COL_BLACK,			// •¶šF
-	FBMP_COL_WHITE,			// ”wŒiF
-	FBMP_COL_BLK_SDW,		// •¶š‰eF
-	0,						// •¶šŠÔŠu‚w
-	16,						// •¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,			// •¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	NELEMS(MenuParamList),	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	10,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,			// æ–‡å­—è‰²
+	FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,			// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 
@@ -151,7 +151,7 @@ typedef void (*pDebugMenu)(FIELDSYS_WORK*);
 
 //==============================================================================
 /**
- * ƒfƒoƒbƒOƒƒjƒ…[‰Šú‰»ŠÖ”ifld_debug.c‚©‚çŒÄ‚Î‚ê‚Ü‚·)
+ * ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆæœŸåŒ–é–¢æ•°ï¼ˆfld_debug.cã‹ã‚‰å‘¼ã°ã‚Œã¾ã™)
  *
  * @param   none		
  *
@@ -195,7 +195,7 @@ void DebugTayaMenuInit( void* fsys )
 }
 //------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOƒƒjƒ…[BmpList‰ğ•ú
+ * ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼BmpListè§£æ”¾
  *
  * @param   wk		
  *
@@ -214,7 +214,7 @@ static void DebugTayaBmpMenuExit( WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOƒƒjƒ…[‰ğ•úˆ—
+ * ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼è§£æ”¾å‡¦ç†
  *
  * @param   tcb		
  *
@@ -232,7 +232,7 @@ static void DebugMenuExitSub( TCB_PTR tcb )
 
 //------------------------------------------------------------------
 /**
- * ŒÄ‚Ño‚µ
+ * å‘¼ã³å‡ºã—
  *
  * @param   none		
  *
@@ -286,20 +286,20 @@ static void DebugTayaMenuMain( TCB_PTR _tcb, void * work )
 
 
 /*====================================================================================================*/
-/*  ƒ|ƒPƒbƒ`ŠÖ˜A                                                                                      */
+/*  ãƒã‚±ãƒƒãƒé–¢é€£                                                                                      */
 /*====================================================================================================*/
 #include "field/poketch.h"
 #include "field/poketch_data.h"
 #include "field/eventflag.h"
 #include "syswork.h"
-///ƒI[ƒo[ƒŒƒCƒ‚ƒWƒ…[ƒ‹‚ÌexternéŒ¾‚Å‚·B
+///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®externå®£è¨€ã§ã™ã€‚
 FS_EXTERN_OVERLAY(ol_poketch);
 
 extern struct _POKETCH_WORK* GetPoketchMainWorkPtr(void);
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒ`‰Šú‰»ŠJn
+ * ãƒã‚±ãƒƒãƒåˆæœŸåŒ–é–‹å§‹
  */
 //------------------------------------------------------------------
 static void PoketchStartDebug(FIELDSYS_WORK* fsys)
@@ -320,7 +320,7 @@ static void PoketchStartDebug(FIELDSYS_WORK* fsys)
 		EventCmd_DebugGetPoketch( fsys );
 	}
 
-	#if 0 // ƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[‚Éè‚¿‚ğ‘S•”’Ç‰Á
+	#if 0 // ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼ã«æ‰‹æŒã¡ã‚’å…¨éƒ¨è¿½åŠ 
 	{
 		POKEPARTY* party;
 		int i, max;
@@ -348,7 +348,7 @@ static void PoketchStartDebug(FIELDSYS_WORK* fsys)
 
 
 /*====================================================================================================*/
-/*  ƒ{ƒbƒNƒXŠÖ˜A                                                                                      */
+/*  ãƒœãƒƒã‚¯ã‚¹é–¢é€£                                                                                      */
 /*====================================================================================================*/
 #include "application/box.h"
 #include "field/field_subproc.h"
@@ -438,7 +438,7 @@ static void BoxStartDebugComp(FIELDSYS_WORK* fsys)
 }
 
 /*====================================================================================================*/
-/*  ŒğŠ·ƒfƒ‚                                                                                          */
+/*  äº¤æ›ãƒ‡ãƒ¢                                                                                          */
 /*====================================================================================================*/
 #include "demo/demo_trade.h"
 
@@ -460,7 +460,7 @@ static void TradeDemoStart( FIELDSYS_WORK* fsys )
 }
 static void TradeDemoStartCallBack( FIELDSYS_WORK* fsys, void* wk )
 {
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA proc_data = {
 		TradeDemoProc_Init,
 		TradeDemoProc_Main,
@@ -478,7 +478,7 @@ static void TradeDemoEndCallBack( FIELDSYS_WORK* fsys, void* wk )
 }
 
 /*====================================================================================================*/
-/*  “a“°“ü‚èƒfƒ‚‰æ–Ê                                                                                  */
+/*  æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¢ç”»é¢                                                                                  */
 /*====================================================================================================*/
 typedef struct {
 	int seq;
@@ -553,7 +553,7 @@ static void DendouDemo_Call( FIELDSYS_WORK* fsys )
 }
 static void DendouDemo_StartCallBack( FIELDSYS_WORK* fsys, void* wk )
 {
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA proc_data = {
 		DemoDendouPROC_Init,
 		DemoDendouPROC_Main,
@@ -570,7 +570,7 @@ static void DendouDemo_EndCallBack( FIELDSYS_WORK* fsys, void* wk )
 }
 
 /*====================================================================================================*/
-/*  “a“°“ü‚èƒpƒ\ƒRƒ“‰æ–Ê                                                                              */
+/*  æ®¿å ‚å…¥ã‚Šãƒ‘ã‚½ã‚³ãƒ³ç”»é¢                                                                              */
 /*====================================================================================================*/
 FS_EXTERN_OVERLAY(dendou_pc);
 
@@ -626,7 +626,7 @@ static void DendouPC_Call( FIELDSYS_WORK* fsys )
 }
 static void DendouPC_StartCallBack( FIELDSYS_WORK* fsys, void* wk )
 {
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA proc_data = {
 		DendouPc_PROC_Init,
 		DendouPc_PROC_Main,
@@ -645,7 +645,7 @@ static void DendouPC_EndCallBack(FIELDSYS_WORK* fsys, void* wk)
 
 
 /*====================================================================================================*/
-/*  ƒGƒ“ƒfƒBƒ“ƒOƒfƒ‚ŒÄ‚Ño‚µ                                                                          */
+/*  ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ‡ãƒ¢å‘¼ã³å‡ºã—                                                                          */
 /*====================================================================================================*/
 //#include "demo/demo_ending.h"
 #include "demo/ending.h"
@@ -665,7 +665,7 @@ static void EndingDemo_Call( FIELDSYS_WORK* fsys )
 static void EndingStartCallback( FIELDSYS_WORK* fsys, void* wk )
 {
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 #if 1
 	static const PROC_DATA proc_data = {
 		EndingProc_Init,
@@ -689,7 +689,7 @@ static void EndingEndCallback( FIELDSYS_WORK* fsys, void* wk )
 }
 
 /*====================================================================================================*/
-/*  ŠÈˆÕ‰ï˜b“ü—Í‰æ–ÊŠÖ˜A                                                                              */
+/*  ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢é–¢é€£                                                                              */
 /*====================================================================================================*/
 #include "application/pms_input.h"
 
@@ -723,7 +723,7 @@ static void PmsCallbackEnd(FIELDSYS_WORK* fsys, void* wk)
 
 
 /*====================================================================================================*/
-/*  ‚»‚Ì‘¼ƒfƒoƒbƒO‹@”\                                                                                */
+/*  ãã®ä»–ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½                                                                                */
 /*====================================================================================================*/
 #include "poketool/monsno.h"
 #include "poketool/boxdata.h"
@@ -778,10 +778,10 @@ static void BoxFullTool( FIELDSYS_WORK* fsys )
 }
 
 #include "sysflag.h"
-// ŠÈˆÕ‰ï˜b’PŒê‘S•”‚n‚m
+// ç°¡æ˜“ä¼šè©±å˜èªå…¨éƒ¨ï¼¯ï¼®
 static void PmsWordFullTool( FIELDSYS_WORK* fsys )
 {
-	// }ŠÓ‘S•”‚n‚m
+	// å›³é‘‘å…¨éƒ¨ï¼¯ï¼®
 	{
 		ZUKAN_WORK* zw;
 		zw = SaveData_GetZukanWork( fsys->savedata );
@@ -793,7 +793,7 @@ static void PmsWordFullTool( FIELDSYS_WORK* fsys )
 	}
 
 	{
-		// ‚È‚ñ‚©‚¢‚±‚Æ‚Î‘S•”‚n‚m
+		// ãªã‚“ã‹ã„ã“ã¨ã°å…¨éƒ¨ï¼¯ï¼®
 		PMSW_SAVEDATA*  pmsw = SaveData_GetPMSW( fsys->savedata );
 		int i;
 
@@ -802,7 +802,7 @@ static void PmsWordFullTool( FIELDSYS_WORK* fsys )
 			PMSW_SetNewNankaiWord( pmsw );
 		}
 
-		// ¢ŠE‚Ì‚ ‚¢‚³‚Â‘S•”‚n‚m
+		// ä¸–ç•Œã®ã‚ã„ã•ã¤å…¨éƒ¨ï¼¯ï¼®
 		for(i=0; i<PMSW_AISATSU_HIDE_MAX; i++)
 		{
 			PMSW_SetAisatsuFlag( pmsw, i );
@@ -811,7 +811,7 @@ static void PmsWordFullTool( FIELDSYS_WORK* fsys )
 	}
 
 
-	// ƒQ[ƒ€ƒNƒŠƒAƒtƒ‰ƒO‚n‚m
+	// ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	{
 		EVENTWORK* ev = SaveData_GetEventWork( fsys->savedata );
 		MYSTATUS*  my = SaveData_GetMyStatus( fsys->savedata );
@@ -841,7 +841,7 @@ static void Debug_ChangeScheneReq( FIELDSYS_WORK* fsys, ScheneChangeCallback sta
 }
 
 //===================================================================================================
-// ƒfƒoƒbƒO—pƒL[Ä¶ƒVƒXƒeƒ€
+// ãƒ‡ãƒãƒƒã‚°ç”¨ã‚­ãƒ¼å†ç”Ÿã‚·ã‚¹ãƒ†ãƒ 
 //===================================================================================================
 
 

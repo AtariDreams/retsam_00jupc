@@ -14,7 +14,7 @@
 
 	.global		WEST_JOY
 
-///< ‚¿‚å‚¢‚¿‚å‚¢
+///< ã¡ã‚‡ã„ã¡ã‚‡ã„
 WEST_JOY:
 	
 	LOOP_LABEL		2

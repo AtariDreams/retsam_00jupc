@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	record_mix.c
- * @brief	���R�[�h�R�[�i�[�F�����鏈���{��
+ * @brief	レコードコーナー：混ぜる処理本体
  * @author	tamada GAME FREAK inc.
  * @date	2006.05.11
  */
@@ -33,61 +33,61 @@
 //============================================================================================
 //
 //
-//			��`�Ȃ�
+//			定義など
 //
 //
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	���R�[�h�܂���֐��p������`
+ * @brief	レコードまぜる関数用引数定義
  */
 //------------------------------------------------------------------
 typedef struct {
-	int heapID;				///<���p�\�ȃq�[�v�w��ID
-	SAVEDATA * sv;			///<�Z�[�u�f�[�^�ւ̃|�C���^
-	int member;				///<�ő�ʐM�l��
-	int my_id;				///<�����̒ʐMID
-	const void **darray;	///<��M�f�[�^�ւ̃|�C���^�̔z��ւ̃|�C���^
-	const void **ex_darray;	///<�v���`�i�Ńe���r�g���ׁ̈A�ǉ�
+	int heapID;				///<利用可能なヒープ指定ID
+	SAVEDATA * sv;			///<セーブデータへのポインタ
+	int member;				///<最大通信人数
+	int my_id;				///<自分の通信ID
+	const void **darray;	///<受信データへのポインタの配列へのポインタ
+	const void **ex_darray;	///<プラチナでテレビ拡張の為、追加
 }RECORD_MIX_WORK;
 
 //------------------------------------------------------------------
 /**
- * @brief	����M�f�[�^�T�C�Y���擾���邽�߂̊֐��^��`
+ * @brief	送受信データサイズを取得するための関数型定義
  */
 //------------------------------------------------------------------
 typedef u32 (*GET_SIZE_FUNC)(SAVEDATA * sv);
 
 //------------------------------------------------------------------
 /**
- * @brief	���M�f�[�^�𐶐����邽�߂̊֐��^��`
+ * @brief	送信データを生成するための関数型定義
  */
 //------------------------------------------------------------------
 typedef void * (*CREATE_DATA_FUNC)(SAVEDATA * sv, int heapID, u32 size);
 
 //------------------------------------------------------------------
 /**
- * @brief	��M�f�[�^���܂��邽�߂̊֐��^��`
+ * @brief	受信データをまぜるための関数型定義
  */
 //------------------------------------------------------------------
 typedef void (*MIX_DATA_FUNC)(const RECORD_MIX_WORK *);
 
 //------------------------------------------------------------------
 /**
- * @brief	���R�[�h�����֐��e�[�u���^��`
+ * @brief	レコード処理関数テーブル型定義
  */
 //------------------------------------------------------------------
 typedef struct {
-	GET_SIZE_FUNC get_size;		///<�T�C�Y�擾�֐�
-	CREATE_DATA_FUNC get_data;	///<���M�f�[�^�����֐�
-	MIX_DATA_FUNC mixer_func;	///<��M�f�[�^�����֐�
+	GET_SIZE_FUNC get_size;		///<サイズ取得関数
+	CREATE_DATA_FUNC get_data;	///<送信データ生成関数
+	MIX_DATA_FUNC mixer_func;	///<受信データ処理関数
 }RECORD_FUND_TABLE;
 
 
 //============================================================================================
 //
 //
-//			�e���R�[�h�f�[�^�̏����֐�
+//			各レコードデータの処理関数
 //
 //
 //============================================================================================
@@ -174,7 +174,7 @@ static void MixTVQandAData(const RECORD_MIX_WORK * mwk)
 	TVWORK_MixQandAData(tvwk, mwk->member, mwk->my_id, mwk->darray, mwk->ex_darray);
 }
 //------------------------------------------------------------------
-/// �M�l�X iwasawa
+/// ギネス iwasawa
 //------------------------------------------------------------------
 static void * AllocGuinnessRecordData(SAVEDATA * sv, int heapID, u32 size)
 {
@@ -188,7 +188,7 @@ static void MixGuinnessData(const RECORD_MIX_WORK * mwk)
 	GuinnessRecord_RecvDataMix(mwk->sv,mwk->my_id,mwk->member,mwk->darray,mwk->heapID);
 }
 //------------------------------------------------------------------
-/// �g���[�i�[���[�h iwasawa
+/// トレーナーロード iwasawa
 //------------------------------------------------------------------
 static void * AllocTrainerRoadRecordData(SAVEDATA * sv, int heapID, u32 size)
 {
@@ -196,7 +196,7 @@ static void * AllocTrainerRoadRecordData(SAVEDATA * sv, int heapID, u32 size)
 
 	dat = sys_AllocMemoryLo(heapID,size);
 	MI_CpuClear8(dat,size);
-	//�f�[�^���W
+	//データ収集
 	BtlTowerData_MakeUpdatePlayerData(sv,BTWR_SCORE_POKE_SINGLE,dat);
 	return dat;
 }
@@ -204,7 +204,7 @@ static void * AllocTrainerRoadRecordData(SAVEDATA * sv, int heapID, u32 size)
 static void MixTrainerRoadData(const RECORD_MIX_WORK * mwk)
 {
 	/*
-	 * ���󉽂����Ȃ�
+	 * 現状何もしない
 	*/
 }
 
@@ -214,69 +214,69 @@ static void MixTrainerRoadData(const RECORD_MIX_WORK * mwk)
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	���R�[�h�f�[�^�e�[�u��
+ * @brief	レコードデータテーブル
  *
- * �f�[�^��������ꍇ�A�����ɒǉ����Ă���
+ * データが増える場合、ここに追加していく
  *
- * 2008.05.17(�y) �v���`�i�ȍ~�����Ƀe���r�f�[�^�ǉ�
- * ���܂ł̃e���r�f�[�^���M�̈�ɂ�DP�����Ƃ��āA�v���`�i����ǉ����ꂽ�g�s�b�N�Ȃǂ�
- * �������f�[�^���쐬���đ��M����BDP�ł͂�����e���r�f�[�^�Ƃ��Ď󂯎��B
- * �v���`�i�ȍ~�ł͐V�K�ɒǉ������e���r�f�[�^�̈���g�p���ăe���r�f�[�^�𑗐M���A
- * ��M���͂����̃f�[�^���Q�Ƃ���B
- * ��M������ROM���ŕ����o���Ȃ��f�[�^�͎󂯎����͂����Ă���̂ŁA����ȍ~�ł�
- * �������g�p���ăe���r�𑗂��Ă��炦��Ε����o���Ȃ��e���r�͎�M���ŏ���ɂ͂���
+ * 2008.05.17(土) プラチナ以降向けにテレビデータ追加
+ * 今までのテレビデータ送信領域にはDP向けとして、プラチナから追加されたトピックなどは
+ * 除いたデータを作成して送信する。DPではこれをテレビデータとして受け取る。
+ * プラチナ以降では新規に追加したテレビデータ領域を使用してテレビデータを送信し、
+ * 受信時はここのデータを参照する。
+ * 受信部分でROM内で放送出来ないデータは受け取りをはじいているので、金銀以降でも
+ * ここを使用してテレビを送ってもらえれば放送出来ないテレビは受信側で勝手にはじく
  */
 //------------------------------------------------------------------
 static const RECORD_FUND_TABLE RecordFuncTable[] = {
-	{	//�����_���O���[�v
+	{	//ランダムグループ
 		GetRandomGroupSize,
 		CreateRandomGroupData,
 		MixRandomGroup,
 	},
-	{	//�C���[�W�N���b�v
+	{	//イメージクリップ
 		GetImcTVDataSize,
 		AllocImcTVData,
 		MixImcTVData,
 	},
-	{	//�e���r�f�[�^�F�Ď��^(DP����)
+	{	//テレビデータ：監視型(DP向け)
 		(GET_SIZE_FUNC)TVWORK_GetSendWatchDataSize,
 		(CREATE_DATA_FUNC)TVWORK_AllocSendWatchData,
 		NULL,
 	},
-	{	//�e���r�f�[�^�F�M�l�X�^(DP����)
+	{	//テレビデータ：ギネス型(DP向け)
 		(GET_SIZE_FUNC)TVWORK_GetSendRecordDataSize,
 		(CREATE_DATA_FUNC)TVWORK_AllocSendRecordData,
 		NULL,
 	},
-	{	//�e���r�f�[�^�F����^(DP����)
+	{	//テレビデータ：質問型(DP向け)
 		(GET_SIZE_FUNC)TVWORK_GetSendQandADataSize,
 		(CREATE_DATA_FUNC)TVWORK_AllocSendQandAData,
 		NULL,
 	},
-	{	//�M�l�X�f�[�^
+	{	//ギネスデータ
 		(GET_SIZE_FUNC)GuinnessRecord_GetWorkSize,
 		(CREATE_DATA_FUNC)AllocGuinnessRecordData,
 		MixGuinnessData,
 	},
-	{	//�g���[�i�[���[�h�f�[�^
+	{	//トレーナーロードデータ
 		(GET_SIZE_FUNC)TowerDpwBtPlayer_GetWorkSize,
 		(CREATE_DATA_FUNC)AllocTrainerRoadRecordData,
 		MixTrainerRoadData,
 	},
 	
-	//---- ��������v���`�i�Œǉ� ----
+	//---- ここからプラチナで追加 ----
 	
-	{	//�e���r�f�[�^�F�Ď��^(�v���`�i�ȍ~����)
+	{	//テレビデータ：監視型(プラチナ以降向け)
 		(GET_SIZE_FUNC)TVWORK_GetSendWatchDataSize,
 		(CREATE_DATA_FUNC)TVWORK_AllocSendWatchDataEx,
 		MixTVWatchData,
 	},
-	{	//�e���r�f�[�^�F�M�l�X�^(�v���`�i�ȍ~����)
+	{	//テレビデータ：ギネス型(プラチナ以降向け)
 		(GET_SIZE_FUNC)TVWORK_GetSendRecordDataSize,
 		(CREATE_DATA_FUNC)TVWORK_AllocSendRecordDataEx,
 		MixTVRecordData,
 	},
-	{	//�e���r�f�[�^�F����^(�v���`�i�ȍ~����)
+	{	//テレビデータ：質問型(プラチナ以降向け)
 		(GET_SIZE_FUNC)TVWORK_GetSendQandADataSize,
 		(CREATE_DATA_FUNC)TVWORK_AllocSendQandADataEx,
 		MixTVQandAData,
@@ -284,25 +284,25 @@ static const RECORD_FUND_TABLE RecordFuncTable[] = {
 };
 
 enum{
-	RECORD_TBL_ID_RANDOM,		//�����_���O���[�v
-	RECORD_TBL_ID_IMC,			//�C���[�W�N���b�v
-	RECORD_TBL_ID_TV_WATCH_DP,	//�e���r�f�[�^�F�Ď��^(DP����)
-	RECORD_TBL_ID_TV_RECORD_DP,	//�e���r�f�[�^�F�M�l�X�^(DP����)
-	RECORD_TBL_ID_TV_QAND_DP,	//�e���r�f�[�^�F����^(DP����)
-	RECORD_TBL_ID_GUINNESS,		//�M�l�X�f�[�^
-	RECORD_TBL_ID_TRAINER_ROAD,	//�g���[�i�[���[�h�f�[�^
-	RECORD_TBL_ID_TV_WATCH_EX,	//�e���r�f�[�^�F�Ď��^(�v���`�i�ȍ~����)
-	RECORD_TBL_ID_TV_RECORD_EX,	//�e���r�f�[�^�F�M�l�X�^(�v���`�i�ȍ~����)
-	RECORD_TBL_ID_TV_QAND_EX,	//�e���r�f�[�^�F����^(�v���`�i�ȍ~����)
+	RECORD_TBL_ID_RANDOM,		//ランダムグループ
+	RECORD_TBL_ID_IMC,			//イメージクリップ
+	RECORD_TBL_ID_TV_WATCH_DP,	//テレビデータ：監視型(DP向け)
+	RECORD_TBL_ID_TV_RECORD_DP,	//テレビデータ：ギネス型(DP向け)
+	RECORD_TBL_ID_TV_QAND_DP,	//テレビデータ：質問型(DP向け)
+	RECORD_TBL_ID_GUINNESS,		//ギネスデータ
+	RECORD_TBL_ID_TRAINER_ROAD,	//トレーナーロードデータ
+	RECORD_TBL_ID_TV_WATCH_EX,	//テレビデータ：監視型(プラチナ以降向け)
+	RECORD_TBL_ID_TV_RECORD_EX,	//テレビデータ：ギネス型(プラチナ以降向け)
+	RECORD_TBL_ID_TV_QAND_EX,	//テレビデータ：質問型(プラチナ以降向け)
 };
 
 //============================================================================================
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	���M�f�[�^�𐶐�����
- * @param	sv				�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	send_data		���M�f�[�^�\����
+ * @brief	送信データを生成する
+ * @param	sv				セーブデータへのポインタ
+ * @param	send_data		送信データ構造体
  */
 //------------------------------------------------------------------
 void MakeSendData(SAVEDATA * sv, RECORD_DATA * send_data)
@@ -331,9 +331,9 @@ void MakeSendData(SAVEDATA * sv, RECORD_DATA * send_data)
 
 //------------------------------------------------------------------
 /**
- * @brief	��M�f�[�^��������
- * @param	sv				�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	record			��M�f�[�^�\����
+ * @brief	受信データを混ぜる
+ * @param	sv				セーブデータへのポインタ
+ * @param	record			受信データ構造体
  */
 //------------------------------------------------------------------
 void MixReceiveData(SAVEDATA * sv, const RECORD_DATA * record)
@@ -357,8 +357,8 @@ void MixReceiveData(SAVEDATA * sv, const RECORD_DATA * record)
 	ex_offs[RECORD_TBL_ID_TV_WATCH_DP - RECORD_TBL_ID_TV_WATCH_DP] = 0;
 	ex_offs[RECORD_TBL_ID_TV_RECORD_DP - RECORD_TBL_ID_TV_WATCH_DP] = 0;
 	ex_offs[RECORD_TBL_ID_TV_QAND_DP - RECORD_TBL_ID_TV_WATCH_DP] = 0;
-	//�v���`�i�ȍ~�ł̓v���`�i����ǉ����ꂽ�e���r�̈�̕���DP�̃e���r���܂Ƃ߂č�����ׁA
-	//�Q�Ɛ�A�h���X�������Ɏ擾���Ă���
+	//プラチナ以降ではプラチナから追加されたテレビ領域の方でDPのテレビもまとめて混ぜる為、
+	//参照先アドレスだけを先に取得しておく
 	for(i = 0; i < RECORD_TBL_ID_TV_WATCH_DP; i++){
 		ex_offs[RECORD_TBL_ID_TV_WATCH_DP - RECORD_TBL_ID_TV_WATCH_DP] += RecordFuncTable[i].get_size(sv);
 	}
@@ -404,13 +404,13 @@ void MixReceiveData(SAVEDATA * sv, const RECORD_DATA * record)
 	}
 
 
-	//�ȉ��̓��R�[�h�����ȊO�̓��ꏈ��
+	//以下はレコード交換以外の特殊処理
 	
-	//�e���r�ԑg���V�̏���
+	//テレビ番組刷新の処理
 	{
 		TV_WORK * tvwk = SaveData_GetTvWork(sv);
-		TVWORK_ClearMyTopic(tvwk);	//�����f�[�^���폜
-		TVWORK_StartProgram(tvwk);	//�����f�[�^�̃��Z�b�g
+		TVWORK_ClearMyTopic(tvwk);	//自分データを削除
+		TVWORK_StartProgram(tvwk);	//放送データのリセット
 	}
 }
 

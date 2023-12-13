@@ -36,7 +36,7 @@ extern "C" {
 /*---------------------------------------------------------------------------
     NNS_G3dAnmObjSetFrame
 
-    ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚ÌÄ¶ƒtƒŒ[ƒ€‚ğİ’è‚µ‚Ü‚·B
+    ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dAnmObjSetFrame(NNSG3dAnmObj* pAnmObj, fx32 frame)
@@ -50,8 +50,8 @@ NNS_G3dAnmObjSetFrame(NNSG3dAnmObj* pAnmObj, fx32 frame)
 /*---------------------------------------------------------------------------
     NNS_G3dAnmObjSetBlendRatio
 
-    ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚ÉƒuƒŒƒ“ƒh—¦(0‚©‚çFX32_ONE‚Ü‚Å)‚ğİ’è‚µ‚Ü‚·B
-    ƒAƒjƒ[ƒVƒ‡ƒ“ƒuƒŒƒ“ƒhŠÖ”‚ªQÆ‚µ‚Ü‚·B
+    ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡(0ã‹ã‚‰FX32_ONEã¾ã§)ã‚’è¨­å®šã—ã¾ã™ã€‚
+    ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ¬ãƒ³ãƒ‰é–¢æ•°ãŒå‚ç…§ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dAnmObjSetBlendRatio(NNSG3dAnmObj* pAnmObj, fx32 ratio)
@@ -65,7 +65,7 @@ NNS_G3dAnmObjSetBlendRatio(NNSG3dAnmObj* pAnmObj, fx32 ratio)
 /*---------------------------------------------------------------------------
     NNS_G3dAnmObjGetNumFrame
 
-    ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒtƒŒ[ƒ€”‚ğæ“¾‚µ‚Ü‚·B
+    ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å–å¾—ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE fx32
 NNS_G3dAnmObjGetNumFrame(const NNSG3dAnmObj* pAnmObj)
@@ -89,7 +89,7 @@ NNS_G3dAnmObjGetNumFrame(const NNSG3dAnmObj* pAnmObj)
 /*---------------------------------------------------------------------------
     NNS_G3dRenderObjSetFlag
 
-    ƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚ÌÀs§Œäƒtƒ‰ƒO‚Åw’è‚³‚ê‚½‚à‚Ì‚ğƒZƒbƒg‚µ‚Ü‚·B
+    ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å®Ÿè¡Œåˆ¶å¾¡ãƒ•ãƒ©ã‚°ã§æŒ‡å®šã•ã‚ŒãŸã‚‚ã®ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRenderObjSetFlag(NNSG3dRenderObj* pRenderObj, NNSG3dRenderObjFlag flag)
@@ -103,7 +103,7 @@ NNS_G3dRenderObjSetFlag(NNSG3dRenderObj* pRenderObj, NNSG3dRenderObjFlag flag)
 /*---------------------------------------------------------------------------
     NNS_G3dRenderObjResetFlag
 
-    ƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚ÌÀs§Œäƒtƒ‰ƒO‚Åw’è‚³‚ê‚½‚à‚Ì‚ğƒŠƒZƒbƒg‚µ‚Ü‚·B
+    ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å®Ÿè¡Œåˆ¶å¾¡ãƒ•ãƒ©ã‚°ã§æŒ‡å®šã•ã‚ŒãŸã‚‚ã®ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRenderObjResetFlag(NNSG3dRenderObj* pRenderObj, NNSG3dRenderObjFlag flag)
@@ -117,8 +117,8 @@ NNS_G3dRenderObjResetFlag(NNSG3dRenderObj* pRenderObj, NNSG3dRenderObjFlag flag)
 /*---------------------------------------------------------------------------
     NNS_G3dRenderObjTestFlag
 
-    ƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚ÌÀs§Œäƒtƒ‰ƒO‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒeƒXƒg‚µ‚Ü‚·B
-    w’è‚µ‚½ƒtƒ‰ƒO‚ª‘S‚ÄƒZƒbƒg‚³‚ê‚Ä‚¢‚éê‡‚ÉTRUE‚ğ•Ô‚µ‚Ü‚·B
+    ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å®Ÿè¡Œåˆ¶å¾¡ãƒ•ãƒ©ã‚°ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒ†ã‚¹ãƒˆã—ã¾ã™ã€‚
+    æŒ‡å®šã—ãŸãƒ•ãƒ©ã‚°ãŒå…¨ã¦ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹å ´åˆã«TRUEã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE BOOL
 NNS_G3dRenderObjTestFlag(const NNSG3dRenderObj* pRenderObj, NNSG3dRenderObjFlag flag)
@@ -132,8 +132,8 @@ NNS_G3dRenderObjTestFlag(const NNSG3dRenderObj* pRenderObj, NNSG3dRenderObjFlag 
 /*---------------------------------------------------------------------------
     NNS_G3dRenderObjSetUserSbc
 
-    ƒ†[ƒU[’è‹`‚ÌSBC‚ğƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚Éİ’è‚µ‚Ü‚·B
-    •Ô‚è’l‚Í‚»‚ê‚Ü‚Åİ’è‚³‚ê‚Ä‚¢‚½ƒ†[ƒU[’è‹`‚ÌSBC‚Å‚·B
+    ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ã®SBCã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«è¨­å®šã—ã¾ã™ã€‚
+    è¿”ã‚Šå€¤ã¯ãã‚Œã¾ã§è¨­å®šã•ã‚Œã¦ã„ãŸãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ã®SBCã§ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE u8*
 NNS_G3dRenderObjSetUserSbc(NNSG3dRenderObj* pRenderObj, u8* sbc)
@@ -151,8 +151,8 @@ NNS_G3dRenderObjSetUserSbc(NNSG3dRenderObj* pRenderObj, u8* sbc)
 /*---------------------------------------------------------------------------
     NNS_G3dRenderObjSetJntAnmBuffer
 
-    ƒWƒ‡ƒCƒ“ƒg‚ÌŒvZŒ‹‰Ê‚ğ‹L˜^^Ä¶‚·‚éƒoƒbƒtƒ@‚ğƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚É
-    İ’è‚µ‚Ü‚·B
+    ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®è¨ˆç®—çµæœã‚’è¨˜éŒ²ï¼å†ç”Ÿã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«
+    è¨­å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRenderObjSetJntAnmBuffer(NNSG3dRenderObj* pRenderObj,
@@ -169,8 +169,8 @@ NNS_G3dRenderObjSetJntAnmBuffer(NNSG3dRenderObj* pRenderObj,
 /*---------------------------------------------------------------------------
     NNS_G3dRenderObjSetMatAnmBuffer
 
-    ƒ}ƒeƒŠƒAƒ‹‚ÌŒvZŒ‹‰Ê‚ğ‹L˜^^Ä¶‚·‚éƒoƒbƒtƒ@‚ğƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚É
-    İ’è‚µ‚Ü‚·B
+    ãƒãƒ†ãƒªã‚¢ãƒ«ã®è¨ˆç®—çµæœã‚’è¨˜éŒ²ï¼å†ç”Ÿã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«
+    è¨­å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRenderObjSetMatAnmBuffer(NNSG3dRenderObj* pRenderObj,
@@ -187,8 +187,8 @@ NNS_G3dRenderObjSetMatAnmBuffer(NNSG3dRenderObj* pRenderObj,
 /*---------------------------------------------------------------------------
     NNS_G3dRenderObjReleaseJntAnmBuffer
 
-    ƒWƒ‡ƒCƒ“ƒg‚ÌŒvZŒ‹‰Ê‚ğ‹L˜^^Ä¶‚·‚éƒoƒbƒtƒ@‚ğƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚©‚ç
-    æ‚èŠO‚µ‚Ü‚·B•Ô‚è’l‚ÍAæ‚èŠO‚³‚ê‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Å‚·B
+    ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®è¨ˆç®—çµæœã‚’è¨˜éŒ²ï¼å†ç”Ÿã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰
+    å–ã‚Šå¤–ã—ã¾ã™ã€‚è¿”ã‚Šå€¤ã¯ã€å–ã‚Šå¤–ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã§ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE struct NNSG3dJntAnmResult_*
 NNS_G3dRenderObjReleaseJntAnmBuffer(NNSG3dRenderObj* pRenderObj)
@@ -196,7 +196,7 @@ NNS_G3dRenderObjReleaseJntAnmBuffer(NNSG3dRenderObj* pRenderObj)
     struct NNSG3dJntAnmResult_* rval;
     NNS_G3D_NULL_ASSERT(pRenderObj);
 
-    // ‚¨ß‰î‚¾‚ªƒoƒbƒtƒ@‚ª—¼•û‚È‚­‚È‚Á‚½ê‡‚ÍRECORDƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚µ‚Ä‚¨‚­
+    // ãŠç¯€ä»‹ã ãŒãƒãƒƒãƒ•ã‚¡ãŒä¸¡æ–¹ãªããªã£ãŸå ´åˆã¯RECORDãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¦ãŠã
     if (!pRenderObj->recMatAnm)
         pRenderObj->flag &= ~NNS_G3D_RENDEROBJ_FLAG_RECORD;
     rval = pRenderObj->recJntAnm;
@@ -208,8 +208,8 @@ NNS_G3dRenderObjReleaseJntAnmBuffer(NNSG3dRenderObj* pRenderObj)
 /*---------------------------------------------------------------------------
     NNS_G3dRenderObjReleaseMatAnmBuffer
 
-    ƒ}ƒeƒŠƒAƒ‹‚ÌŒvZŒ‹‰Ê‚ğ‹L˜^^Ä¶‚·‚éƒoƒbƒtƒ@‚ğƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚©‚ç
-    æ‚èŠO‚µ‚Ü‚·B•Ô‚è’l‚ÍAæ‚èŠO‚³‚ê‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Å‚·B
+    ãƒãƒ†ãƒªã‚¢ãƒ«ã®è¨ˆç®—çµæœã‚’è¨˜éŒ²ï¼å†ç”Ÿã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰
+    å–ã‚Šå¤–ã—ã¾ã™ã€‚è¿”ã‚Šå€¤ã¯ã€å–ã‚Šå¤–ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã§ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE struct NNSG3dMatAnmResult_*
 NNS_G3dRenderObjReleaseMatAnmBuffer(NNSG3dRenderObj* pRenderObj)
@@ -217,7 +217,7 @@ NNS_G3dRenderObjReleaseMatAnmBuffer(NNSG3dRenderObj* pRenderObj)
     struct NNSG3dMatAnmResult_* rval;
     NNS_G3D_NULL_ASSERT(pRenderObj);
 
-    // ‚¨ß‰î‚¾‚ªƒoƒbƒtƒ@‚ª—¼•û‚È‚­‚È‚Á‚½ê‡‚ÍRECORDƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚µ‚Ä‚¨‚­
+    // ãŠç¯€ä»‹ã ãŒãƒãƒƒãƒ•ã‚¡ãŒä¸¡æ–¹ãªããªã£ãŸå ´åˆã¯RECORDãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¦ãŠã
     if (!pRenderObj->recJntAnm)
         pRenderObj->flag &= ~NNS_G3D_RENDEROBJ_FLAG_RECORD;
     rval = pRenderObj->recMatAnm;
@@ -229,8 +229,8 @@ NNS_G3dRenderObjReleaseMatAnmBuffer(NNSG3dRenderObj* pRenderObj)
 /*---------------------------------------------------------------------------*
     NNS_G3dRenderObjSetUserPtr
 
-    ƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚Éƒ†[ƒU[‚ªƒR[ƒ‹ƒoƒbƒN‚Åg—p‚Å‚«‚é—Ìˆæ‚Ö‚Ì
-    ƒ|ƒCƒ“ƒ^‚ğİ’è‚µ‚Ü‚·B
+    ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§ä½¿ç”¨ã§ãã‚‹é ˜åŸŸã¸ã®
+    ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void*
 NNS_G3dRenderObjSetUserPtr(NNSG3dRenderObj* pRenderObj, void* ptr)
@@ -244,7 +244,7 @@ NNS_G3dRenderObjSetUserPtr(NNSG3dRenderObj* pRenderObj, void* ptr)
 /*---------------------------------------------------------------------------*
     NNSG3dRenderObjGetResMdl
 
-    ƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚ª•Û‚·‚éƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+    ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒä¿æŒã™ã‚‹ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE NNSG3dResMdl*
 NNS_G3dRenderObjGetResMdl(NNSG3dRenderObj* pRenderObj)
@@ -257,7 +257,7 @@ NNS_G3dRenderObjGetResMdl(NNSG3dRenderObj* pRenderObj)
 /*---------------------------------------------------------------------------*
     NNSG3dRenderObjSetBlendFuncMat
 
-    ƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚É(“Æ©‚Ì)ƒ}ƒeƒŠƒAƒ‹ƒuƒŒƒ“ƒhŠÖ”‚ğİ’è‚µ‚Ü‚·B
+    ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«(ç‹¬è‡ªã®)ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ–ãƒ¬ãƒ³ãƒ‰é–¢æ•°ã‚’è¨­å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRenderObjSetBlendFuncMat(NNSG3dRenderObj* pRenderObj,
@@ -273,7 +273,7 @@ NNS_G3dRenderObjSetBlendFuncMat(NNSG3dRenderObj* pRenderObj,
 /*---------------------------------------------------------------------------*
     NNSG3dRenderObjSetBlendFuncJnt
 
-    ƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚É(“Æ©‚Ì)ƒWƒ‡ƒCƒ“ƒgƒuƒŒƒ“ƒhŠÖ”‚ğİ’è‚µ‚Ü‚·B
+    ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«(ç‹¬è‡ªã®)ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰é–¢æ•°ã‚’è¨­å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRenderObjSetBlendFuncJnt(NNSG3dRenderObj* pRenderObj,
@@ -289,7 +289,7 @@ NNS_G3dRenderObjSetBlendFuncJnt(NNSG3dRenderObj* pRenderObj,
 /*---------------------------------------------------------------------------*
     NNSG3dRenderObjSetBlendFuncVis
 
-    ƒŒƒ“ƒ_ƒŠƒ“ƒOƒIƒuƒWƒFƒNƒg‚É(“Æ©‚Ì)ƒrƒWƒrƒŠƒeƒBƒuƒŒƒ“ƒhŠÖ”‚ğİ’è‚µ‚Ü‚·B
+    ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«(ç‹¬è‡ªã®)ãƒ“ã‚¸ãƒ“ãƒªãƒ†ã‚£ãƒ–ãƒ¬ãƒ³ãƒ‰é–¢æ•°ã‚’è¨­å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G3D_INLINE void
 NNS_G3dRenderObjSetBlendFuncVis(NNSG3dRenderObj* pRenderObj,

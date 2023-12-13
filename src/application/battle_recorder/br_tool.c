@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_tool.c
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2008.03.04(‰Î)
+ * @date	2008.03.04(ç«)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -46,7 +46,7 @@
 // =============================================================================
 //
 //
-//	¡ƒfƒoƒbƒO—p
+//	â– ãƒ‡ãƒãƒƒã‚°ç”¨
 //
 //
 // =============================================================================
@@ -60,7 +60,7 @@
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void ErrorNameSet(STRBUF *dest_str, int heap_id);
 
@@ -78,7 +78,7 @@ static void ErrorNameSet(STRBUF *dest_str, int heap_id);
 WORDSET* BR_WORDSET_Create( u32 heapID )
 {
 	//WORDSET_DEFAULT_SETNUM = 8
-	WORDSET* wset = WORDSET_CreateEx( 4, WORDSET_COUNTRY_BUFLEN, heapID );	///< Å‘å‚Å3ƒ[ƒh‚¾‚Á‚½‚©‚ç4‚ÅB
+	WORDSET* wset = WORDSET_CreateEx( 4, WORDSET_COUNTRY_BUFLEN, heapID );	///< æœ€å¤§ã§3ãƒ¯ãƒ¼ãƒ‰ã ã£ãŸã‹ã‚‰4ã§ã€‚
 	
 	return wset;
 }
@@ -86,7 +86,7 @@ WORDSET* BR_WORDSET_Create( u32 heapID )
 // =============================================================================
 //
 //
-//	¡ƒJƒ‰[•ÏX
+//	â– ã‚«ãƒ©ãƒ¼å¤‰æ›´
 //
 //
 // =============================================================================
@@ -198,7 +198,7 @@ int BR_ColorPaletteID_Get( BR_WORK* wk, int type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒ‰[ƒ^ƒCƒvİ’è
+ * @brief	ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—è¨­å®š
  *
  * @param	wk	
  * @param	type	
@@ -231,18 +231,18 @@ void BR_ColorPaletteChange( BR_WORK* wk, int type )
 // ----------------------------------------------------------------------------
 //
 //
-//	¡ƒ\ƒtƒgƒtƒF[ƒhŠÖ”ŒS
+//	â– ã‚½ãƒ•ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰é–¢æ•°éƒ¡
 //
 //
 // ----------------------------------------------------------------------------
 // -----------------------------------------
 //
-//	¡ ƒ\ƒtƒgƒtƒF[ƒh‘€ì\‘¢‘Ì
+//	â–  ã‚½ãƒ•ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰æ“ä½œæ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct _FADE_SYS {
 	
-	BOOL	active;				///< TRUE = “®ì’†
+	BOOL	active;				///< TRUE = å‹•ä½œä¸­
 	TCB_PTR	tcb;
 	
 	FADEREQ req;
@@ -281,7 +281,7 @@ static void PalGrayScale(u16 *pal, u16 pal_size)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒF[ƒh‚Ì‚©‚©‚Á‚Ä‚¢‚È‚¢ó‘Ô‚É
+ * @brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã®ã‹ã‹ã£ã¦ã„ãªã„çŠ¶æ…‹ã«
  *
  * @param	wk	
  *
@@ -300,7 +300,7 @@ void PaletteFadeClear( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	50‰¹‚Éƒ\[ƒg‚³‚ê‚½ƒf[ƒ^æ“¾
+ * @brief	50éŸ³ã«ã‚½ãƒ¼ãƒˆã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿å–å¾—
  *
  * @param	heap	
  * @param	idx	
@@ -315,7 +315,7 @@ u16* ZukanSortDataGet_50on( int heap, int idx, int* p_arry_num )
 	u32 size;
 	u16* p_buf;
 	
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	p_buf = ArcUtil_LoadEx( ARC_ZUKAN_DATA, NARC_zukan_data_zkn_sort_aiueo_dat, FALSE, heap, ALLOC_TOP, &size );
 
 	*p_arry_num = size / sizeof( u16 );
@@ -327,13 +327,13 @@ u16* ZukanSortDataGet_50on( int heap, int idx, int* p_arry_num )
 // =============================================================================
 //
 //
-//	¡Šg’£ƒpƒ‰ƒ[ƒ^‘€ì
+//	â– æ‹¡å¼µãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ“ä½œ
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+ * @brief	ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
  *
  * @param	wk	
  * @param	flag	
@@ -350,7 +350,7 @@ void ExParam2_Set( BR_WORK* wk, BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒO‚ğæ“¾
+ * @brief	ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
  * @param	wk	
  *
@@ -367,7 +367,7 @@ BOOL ExParam2_Get( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	¡Š„‚è‚İ‚æ‚¤ƒƒbƒZ[ƒW@‘—M‚Å‚«‚È‚¢‚Æ‚©
+//	â– å‰²ã‚Šè¾¼ã¿ã‚ˆã†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€€é€ä¿¡ã§ããªã„ã¨ã‹
 //
 //
 // =============================================================================
@@ -534,7 +534,7 @@ void Tool_WiFiEnd_Message( BR_WORK* wk, int no )
 // =============================================================================
 //
 //
-//	¡@GPP_WORK ‚©‚çƒvƒƒtƒB[ƒ‹‰æ–Ê‚ğˆêŠ‡‚µ‚Äì‚é (ƒXƒNƒŠ[ƒ“‚Í©‘O‚Å)
+//	â– ã€€GPP_WORK ã‹ã‚‰ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ç”»é¢ã‚’ä¸€æ‹¬ã—ã¦ä½œã‚‹ (ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¯è‡ªå‰ã§)
 //
 //
 // =============================================================================
@@ -556,16 +556,16 @@ static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 
 	{
 		s16 win_p[][4] = {
-			{  4, 4, 24, 2 },	///< Œ©o‚µ
-			{ 15, 8,  5, 2 },	///< ‚Ë‚ñ‚ê‚¢
-			{ 16, 8, 13, 2 },	///< ‚˜‚˜‚³‚¢
-			{  4,11, 11, 2 },	///< ‚·‚ñ‚Å‚¢‚é`
-			{  4,13, 24, 2 },	///< ‘E’nˆæ
-			{  4,15, 24, 2 },	///< ’nˆæ
-			{  4,17, 11, 2 },	///< ©ŒÈĞ‰î
-			{  4,19, 24, 4 },	///< ŠÈˆÕ•¶
+			{  4, 4, 24, 2 },	///< è¦‹å‡ºã—
+			{ 15, 8,  5, 2 },	///< ã­ã‚“ã‚Œã„
+			{ 16, 8, 13, 2 },	///< ï½˜ï½˜ã•ã„
+			{  4,11, 11, 2 },	///< ã™ã‚“ã§ã„ã‚‹ã€œ
+			{  4,13, 24, 2 },	///< å›½ãƒ»åœ°åŸŸ
+			{  4,15, 24, 2 },	///< åœ°åŸŸ
+			{  4,17, 11, 2 },	///< è‡ªå·±ç´¹ä»‹
+			{  4,19, 24, 4 },	///< ç°¡æ˜“æ–‡
 			{ 0xFF,0,0,0 },
-			{  4,21, 24, 2 },	///< ƒf[ƒ^ƒiƒ“ƒo[			
+			{  4,21, 24, 2 },	///< ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼			
 		};
 		int mes_id[] = {
 			msg_20, msg_20, msg_20,	msg_20,
@@ -590,7 +590,7 @@ static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 //		OS_Printf( "win add char end %d\n", ofs );
 	}
 	
-	///< •¶š•`‰æ
+	///< æ–‡å­—æç”»
 	{
 		STRBUF* 	str1;
 		STRBUF* 	str2;
@@ -602,12 +602,12 @@ static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 		gpp = gwk->gpp;
 		wset = BR_WORDSET_Create( HEAPID_BR );
 		
-		///< Œ©o‚µ
+		///< è¦‹å‡ºã—
 		win = &gwk->win[ 0 ];
-		str1 = GDS_Profile_CreateNameString( gpp, HEAPID_BR );			///< –¼‘O
+		str1 = GDS_Profile_CreateNameString( gpp, HEAPID_BR );			///< åå‰
 		BR_ErrorStrChange( wk, str1 );
-		str2 = MSGMAN_AllocString( wk->sys.man, msg_13 );			///< ` ‚ÌƒvƒƒtƒB[ƒ‹
-		tmp  = STRBUF_Create( 255, HEAPID_BR );						///< ƒeƒ“ƒ|ƒ‰ƒŠ
+		str2 = MSGMAN_AllocString( wk->sys.man, msg_13 );			///< ã€œ ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+		tmp  = STRBUF_Create( 255, HEAPID_BR );						///< ãƒ†ãƒ³ãƒãƒ©ãƒª
 
 		WORDSET_RegisterWord( wset, 0, str1, 0, TRUE, PM_LANG );	
 		WORDSET_ExpandStr( wset, tmp, str2 );
@@ -621,7 +621,7 @@ static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 		STRBUF_Delete( tmp );
 		WORDSET_ClearAllBuffer( wset );
 		
-		///< ”N—î
+		///< å¹´é½¢
 		{
 			int age = GDS_Profile_GetMonthBirthday( gpp );
 		#if 0	
@@ -659,7 +659,7 @@ static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 			WORDSET_ClearAllBuffer( wset );
 		}
 		
-		///< ‚·‚ñ‚Å‚¢‚é‚Î‚µ‚å
+		///< ã™ã‚“ã§ã„ã‚‹ã°ã—ã‚‡
 		{
 			win = &gwk->win[ 3 ];
 			tmp = MSGMAN_AllocString( wk->sys.man, msg_16 );				
@@ -678,7 +678,7 @@ static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 				GF_BGL_BmpWinDataFill( win, 0x00 );
 				
 				if ( country == 0 ){
-					///< ‘ƒR[ƒh–¢İ’è
+					///< å›½ã‚³ãƒ¼ãƒ‰æœªè¨­å®š
 					tmp = MSGMAN_AllocString( wk->sys.man, msg_21 );
 				//	GF_STR_PrintColor( win, FONT_SYSTEM, tmp, BR_print_x_Get( win, tmp ), 0, MSG_NO_PUT, PRINT_COL_PHOTO, NULL );
 					GF_STR_PrintColor( win, FONT_SYSTEM, tmp, 0, 0, MSG_NO_PUT, PRINT_COL_PHOTO, NULL );
@@ -686,7 +686,7 @@ static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 					STRBUF_Delete( tmp );
 				}
 				else {
-					///< ‘–¼•\¦
+					///< å›½åè¡¨ç¤º
 					tmp  = STRBUF_Create( 255, HEAPID_BR );
 					str1 = MSGMAN_AllocString( wk->sys.man, msg_22 );
 					WORDSET_RegisterCountryName( wset, 0, country);
@@ -698,7 +698,7 @@ static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 					STRBUF_Delete( str1 );
 					
 					if ( area != 0 ){
-						///< ’nˆæ–¼•\¦
+						///< åœ°åŸŸåè¡¨ç¤º
 						win = &gwk->win[ 5 ];							
 						GF_BGL_BmpWinDataFill( win, 0x00 );
 						tmp	 = STRBUF_Create( 255, HEAPID_BR );
@@ -717,7 +717,7 @@ static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 			}
 		}
 		
-		///< ‚¶‚±‚µ‚å‚¤‚©‚¢
+		///< ã˜ã“ã—ã‚‡ã†ã‹ã„
 		{
 			win = &gwk->win[ 6 ];
 			tmp = MSGMAN_AllocString( wk->sys.man, msg_17 );				
@@ -795,15 +795,15 @@ static void PokeIcon_Add( GPP_WORK* gwk, BR_WORK* wk )
 	crp = wk->sys.crp;
 	pfd = wk->sys.pfd;
 	
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	trans_pal = CATS_LoadResourcePlttWorkArc( pfd, FADE_MAIN_OBJ, csp, crp,
 		ARC_POKEICON, PokeIconPalArcIndexGet(), 0, POKEICON_PAL_MAX, NNS_G2D_VRAM_TYPE_2DMAIN, eID_OAM_POKE_ICON );
-	//ƒZƒ‹
+	//ã‚»ãƒ«
 	{
 		int arc = PokeIcon64kCellArcIndexGet();
 		CATS_LoadResourceCellArc( csp, crp, ARC_POKEICON, arc, 0, eID_OAM_POKE_ICON );
 	}
-	//ƒZƒ‹ƒAƒjƒ
+	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	{
 		int arc = PokeIcon64kCellAnmArcIndexGet();
 		CATS_LoadResourceCellAnmArc( csp, crp, ARC_POKEICON, arc, 0, eID_OAM_POKE_ICON );
@@ -999,7 +999,7 @@ static const int wifi_tr_type_tbl[ BR_UNION_CHAR_MAX ][ 4 ] = {
  * @brief	
  *
  * @param	trtype	
- * @param	data	1 = TR_TYPE, 2 = ncl, 3 = ncg 4 = trtype_name(ƒIƒŠƒWƒiƒ‹ƒTƒCƒLƒbƒJ[‚¨‚Æ‚±‚Æ‚©)
+ * @param	data	1 = TR_TYPE, 2 = ncl, 3 = ncg 4 = trtype_name(ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚µã‚¤ã‚­ãƒƒã‚«ãƒ¼ãŠã¨ã“ã¨ã‹)
  *
  * @retval	int	
  *
@@ -1010,7 +1010,7 @@ int WiFi_TR_DataGet( int trtype, int data )
 	int index = trtype;
 	
 	if ( trtype > BR_UNION_CHAR_MAX || trtype < 0 ){
-		GF_ASSERT_MSG( 0, "trtype ˆÙí = %d\n", trtype );		
+		GF_ASSERT_MSG( 0, "trtype ç•°å¸¸ = %d\n", trtype );		
 		index = 0;
 	}
 	
@@ -1092,7 +1092,7 @@ static void HeroIcon_Add( GPP_WORK* gwk, BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	GPPƒf[ƒ^ì¬
+ * @brief	GPPãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
  * @param	gwk	
  * @param	wk	
@@ -1111,7 +1111,7 @@ void GppDataMake( GPP_WORK* gwk, BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	GPPƒf[ƒ^‰ğ•ú
+ * @brief	GPPãƒ‡ãƒ¼ã‚¿è§£æ”¾
  *
  * @param	gwk	
  * @param	wk	
@@ -1131,7 +1131,7 @@ void GppDataFree( GPP_WORK* gwk, BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	GPPƒf[ƒ^”ñ•\¦
+ * @brief	GPPãƒ‡ãƒ¼ã‚¿éè¡¨ç¤º
  *
  * @param	gwk	
  * @param	flag	
@@ -1149,7 +1149,7 @@ void GppData_IconEnable( GPP_WORK* gwk, int flag )
 // =============================================================================
 //
 //
-//	¡ƒŠƒXƒgˆ—
+//	â– ãƒªã‚¹ãƒˆå‡¦ç†
 //
 //
 // =============================================================================
@@ -1192,7 +1192,7 @@ static void CountryPrint( TOUCH_LIST* tl, BR_WORK* wk )
 }
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒXƒg‚ÌXV
+ * @brief	ãƒªã‚¹ãƒˆã®æ›´æ–°
  *
  * @param	tl	
  * @param	wk	
@@ -1272,8 +1272,8 @@ void TouchList_InitEx( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, const 
 
 	tl->max = head->data_max;
 	tl->min = 0;
-//	tl->now = 0;				///< ˆø‚«Œp‚®
-	tl->old = 0;				///< ƒŠƒXƒg‚ÌÄ•`‰æ‚ğ‘£‚·‚½‚ß‚É‰Šú‰» ”»’è‚Í now != old = •`‰æ
+//	tl->now = 0;				///< å¼•ãç¶™ã
+	tl->old = 0;				///< ãƒªã‚¹ãƒˆã®å†æç”»ã‚’ä¿ƒã™ãŸã‚ã«åˆæœŸåŒ– åˆ¤å®šã¯ now != old = æç”»
 	tl->lim = head->lim;
 	tl->head = head;
 	if ( man ){
@@ -1356,8 +1356,8 @@ void TouchList_InitRanking( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, c
 
 	tl->max = head->data_max;
 	tl->min = 0;
-//	tl->now = 0;				///< ˆø‚«Œp‚®
-	tl->old = 0;				///< ƒŠƒXƒg‚ÌÄ•`‰æ‚ğ‘£‚·‚½‚ß‚É‰Šú‰» ”»’è‚Í now != old = •`‰æ
+//	tl->now = 0;				///< å¼•ãç¶™ã
+	tl->old = 0;				///< ãƒªã‚¹ãƒˆã®å†æç”»ã‚’ä¿ƒã™ãŸã‚ã«åˆæœŸåŒ– åˆ¤å®šã¯ now != old = æç”»
 	tl->lim = head->lim;
 	tl->head = head;
 	if ( man ){
@@ -1408,8 +1408,8 @@ void TouchList_InitRanking( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, c
 	}
 
 	for ( i = 0; i < tl->lim; i++ ){
-		str1 = MSGMAN_AllocString( wk->sys.man, msg_510 + group_no );		///< ‡ˆÊFƒgƒŒ[ƒi[ƒ^ƒCƒv or ¶‚Ü‚êŒ or ‚·‚«‚Èƒ|ƒPƒ‚ƒ“
-//		str1 = MSGMAN_AllocString( wk->sys.man, msg_510 + ranking_no );		///< ‡ˆÊFƒgƒŒ[ƒi[ƒ^ƒCƒv or ¶‚Ü‚êŒ or ‚·‚«‚Èƒ|ƒPƒ‚ƒ“
+		str1 = MSGMAN_AllocString( wk->sys.man, msg_510 + group_no );		///< é †ä½ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ— or ç”Ÿã¾ã‚Œæœˆ or ã™ããªãƒã‚±ãƒ¢ãƒ³
+//		str1 = MSGMAN_AllocString( wk->sys.man, msg_510 + ranking_no );		///< é †ä½ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ— or ç”Ÿã¾ã‚Œæœˆ or ã™ããªãƒã‚±ãƒ¢ãƒ³
 		str2 = STRBUF_Create( 255, HEAPID_BR );
 		temp = STRBUF_Create( 255, HEAPID_BR );
 		str_num  = STRBUF_Create( 255, HEAPID_BR );
@@ -1447,7 +1447,7 @@ void TouchList_InitRanking( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, c
 			STRBUF_SetNumber64( str_num, score, Number_to_Unit_Get( score ), NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 		}
 		STRBUF_SetNumber( str2, rank_table[ i ] + 1, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
-		WORDSET_RegisterWord( wset, 0, str2, 0, TRUE, PM_LANG );	///< ‡ˆÊ
+		WORDSET_RegisterWord( wset, 0, str2, 0, TRUE, PM_LANG );	///< é †ä½
 		WORDSET_ExpandStr( wset, temp, str1 );
 
 		GF_STR_PrintColor( win, FONT_SYSTEM, temp, 0, i * ( 16 * tl->head->list_height ), MSG_NO_PUT, PRINT_COL_NORMAL, NULL );
@@ -1476,7 +1476,7 @@ void TouchList_InitRanking( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, c
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒbƒNƒX—p‚Ì‰Šú‰»
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ç”¨ã®åˆæœŸåŒ–
  *
  * @param	tl	
  * @param	wk	
@@ -1527,7 +1527,7 @@ void TouchList_InitBoxShot( TOUCH_LIST* tl, BR_WORK* wk, const TOUCH_LIST_HEADER
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒbƒNƒX—p‚ÌƒƒCƒ“
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ç”¨ã®ãƒ¡ã‚¤ãƒ³
  *
  * @param	tl	
  * @param	wk	
@@ -1576,7 +1576,7 @@ int TouchList_MainBoxShot( TOUCH_LIST* tl, BR_WORK* wk, STRBUF* str[20][2] )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒXƒg‚ÌXV
+ * @brief	ãƒªã‚¹ãƒˆã®æ›´æ–°
  *
  * @param	tl	
  * @param	wk	
@@ -1642,8 +1642,8 @@ int TouchList_Ranking_Main( TOUCH_LIST* tl, BR_WORK* wk, int ranking_no, int gro
 		}
 		
 		for ( i = s; i < e; i++ ){		
-			str1 = MSGMAN_AllocString( wk->sys.man, msg_510 + group_no );		///< ‡ˆÊFƒgƒŒ[ƒi[ƒ^ƒCƒv or ¶‚Ü‚êŒ or ‚·‚«‚Èƒ|ƒPƒ‚ƒ“
-//			str1 = MSGMAN_AllocString( wk->sys.man, msg_510 + ranking_no );		///< ‡ˆÊFƒgƒŒ[ƒi[ƒ^ƒCƒv or ¶‚Ü‚êŒ or ‚·‚«‚Èƒ|ƒPƒ‚ƒ“			
+			str1 = MSGMAN_AllocString( wk->sys.man, msg_510 + group_no );		///< é †ä½ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ— or ç”Ÿã¾ã‚Œæœˆ or ã™ããªãƒã‚±ãƒ¢ãƒ³
+//			str1 = MSGMAN_AllocString( wk->sys.man, msg_510 + ranking_no );		///< é †ä½ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ— or ç”Ÿã¾ã‚Œæœˆ or ã™ããªãƒã‚±ãƒ¢ãƒ³			
 			str2 = STRBUF_Create( 255, HEAPID_BR );
 			temp = STRBUF_Create( 255, HEAPID_BR );		
 			str_num  = STRBUF_Create( 255, HEAPID_BR );
@@ -1682,8 +1682,8 @@ int TouchList_Ranking_Main( TOUCH_LIST* tl, BR_WORK* wk, int ranking_no, int gro
 				STRBUF_SetNumber64( str_num, score, Number_to_Unit_Get( score ), NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);		
 			}
 			STRBUF_SetNumber( str2, rank_table[ i ] + 1, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);			
-			WORDSET_RegisterWord( wset, 0, str2, 0, TRUE, PM_LANG );	///< ‡ˆÊ
-//			WORDSET_RegisterWord( wset, 1, str3, 0, TRUE, PM_LANG );	///< €–Ú
+			WORDSET_RegisterWord( wset, 0, str2, 0, TRUE, PM_LANG );	///< é †ä½
+//			WORDSET_RegisterWord( wset, 1, str3, 0, TRUE, PM_LANG );	///< é …ç›®
 			WORDSET_ExpandStr( wset, temp, str1 );
 			
 			GF_STR_PrintColor( win, FONT_SYSTEM, temp, 0, no * ( 16 * tl->head->list_height ), MSG_NO_PUT, PRINT_COL_NORMAL, NULL );
@@ -1718,7 +1718,7 @@ int TouchList_Ranking_Main( TOUCH_LIST* tl, BR_WORK* wk, int ranking_no, int gro
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
  * @param	wk	
  *
@@ -1733,7 +1733,7 @@ int TouchList_Main( TOUCH_LIST* tl, BR_WORK* wk )
 	GF_BGL_BMPWIN* win;
 	STRBUF* 	str;
 	
-	///< ƒ^ƒbƒ`”»’è
+	///< ã‚¿ãƒƒãƒåˆ¤å®š
 	if ( tl->head->hit != NULL ){	
 		for ( i = 0; i < tl->lim; i++ ){			
 			if ( GF_TP_SingleHitTrg( &tl->head->hit[ i ] ) ){
@@ -1778,7 +1778,7 @@ int TouchList_Main( TOUCH_LIST* tl, BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Â‹”ÍˆÍƒ‚[ƒh
+ * @brief	å¯è¦–ç¯„å›²ãƒ¢ãƒ¼ãƒ‰
  *
  * @param	tl	
  * @param	wk	
@@ -1848,7 +1848,7 @@ int TouchList_ViewMode_Main( TOUCH_LIST* tl, BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Â‹”ÍˆÍƒ‚[ƒh‚Ì’lİ’è
+ * @brief	å¯è¦–ç¯„å›²ãƒ¢ãƒ¼ãƒ‰ã®å€¤è¨­å®š
  *
  * @param	tl	
  * @param	val	
@@ -1863,7 +1863,7 @@ void TouchList_ViewMode_ValueSet( TOUCH_LIST* tl, s16 val )
 	int move = 0xFF;
 	
 	if ( val < 0 ){
-		///< ª
+		///< â†‘
 		if ( tl->view.this > 0 ){
 			 tl->view.this--;
 			move = 0;
@@ -1871,7 +1871,7 @@ void TouchList_ViewMode_ValueSet( TOUCH_LIST* tl, s16 val )
 		}
 	}
 	else if ( val > 0 ){
-		///< «
+		///< â†“
 		if ( tl->view.this < tl->max - 1 ){
 			 tl->view.this++;
 			move = 1;
@@ -1971,7 +1971,7 @@ void TouchList_ValueSet( TOUCH_LIST* tl, s16 val )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒXƒg‚ÌI—¹
+ * @brief	ãƒªã‚¹ãƒˆã®çµ‚äº†
  *
  * @param	wk	
  *
@@ -1995,7 +1995,7 @@ void TouchList_WorkClear( TOUCH_LIST* wk )
 // =============================================================================
 //
 //
-//	¡ƒŠƒXƒg—pƒJ[ƒ\ƒ‹
+//	â– ãƒªã‚¹ãƒˆç”¨ã‚«ãƒ¼ã‚½ãƒ«
 //
 //
 // =============================================================================
@@ -2109,13 +2109,13 @@ void TouchList_CursorDel( TOUCH_LIST* tl, BR_WORK* wk )
 // =============================================================================
 //
 //
-//	¡ƒXƒ‰ƒCƒ_[•”•ª
+//	â– ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼éƒ¨åˆ†
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒ‰ƒCƒ_[‚Ì“o˜^
+ * @brief	ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®ç™»éŒ²
  *
  * @param	wk	
  * @param	br_wk	
@@ -2162,7 +2162,7 @@ static CATS_ACT_PTR Slider_Add( BR_SLIDER* wk, BR_WORK* br_wk, int d_area, int a
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒ‰ƒCƒ_[‚Ìíœ
+ * @brief	ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®å‰Šé™¤
  *
  * @param	wk	
  *
@@ -2178,7 +2178,7 @@ static void Slider_Del( BR_SLIDER* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒ‰ƒCƒ_[‚Ì”ñ•\¦
+ * @brief	ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®éè¡¨ç¤º
  *
  * @param	wk	
  * @param	flag	
@@ -2195,7 +2195,7 @@ static void Slider_Enable( BR_SLIDER* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -2224,7 +2224,7 @@ void Slider_WorkClear( BR_SLIDER* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒ‰ƒCƒ_[I—¹ˆ—
+ * @brief	ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼çµ‚äº†å‡¦ç†
  *
  * @param	wk	
  *
@@ -2240,7 +2240,7 @@ void Slider_Exit( BR_SLIDER* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒf[ƒ^‚Ìæ“¾
+ * @brief	ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
  *
  * @param	wk	
  * @param	check	
@@ -2255,15 +2255,15 @@ void Slider_Value_CheckSet( BR_SLIDER* wk, u32 y )
 	
 //	if ( wk->value < 0 && check > 0 ){ wk->value = 0; }
 //	if ( wk->value > 0 && check < 0 ){ wk->value = 0; }	
-	if ( ( check * check ) >= ( BB_SLIDER_MOVE_VALUE * BB_SLIDER_MOVE_VALUE ) ) {		///< ˆê’è—Ê‚Ì“®ì‚ª‚ ‚Á‚½ê‡
+	if ( ( check * check ) >= ( BB_SLIDER_MOVE_VALUE * BB_SLIDER_MOVE_VALUE ) ) {		///< ä¸€å®šé‡ã®å‹•ä½œãŒã‚ã£ãŸå ´åˆ
 		
 		if ( check < 0 ){
-			wk->value = -1;						///< ˆÚ“®’l‚Æ‚µ‚Äİ’è‚·‚é
+			wk->value = -1;						///< ç§»å‹•å€¤ã¨ã—ã¦è¨­å®šã™ã‚‹
 		}
 		else {
 			wk->value = +1;
 		}
-		wk->old_y = y;							///< Œ»İ’n‚ğŠî“_‚É’u‚«‚È‚¨‚µ
+		wk->old_y = y;							///< ç¾åœ¨åœ°ã‚’åŸºç‚¹ã«ç½®ããªãŠã—
 	}
 	else {
 		wk->value = 0;
@@ -2271,7 +2271,7 @@ void Slider_Value_CheckSet( BR_SLIDER* wk, u32 y )
 //	if ( wk->value != 0 ){ OS_Printf( "%d\n",wk->value ); }
 }
 
-///< ƒXƒ‰ƒCƒ_[‚Ì“–‚½‚è”»’è
+///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®å½“ãŸã‚Šåˆ¤å®š
 static const TP_HIT_TBL slider_hit_tbl[] = {
 	{ 8, 128,   0 +  8,   0 + 32 },
 	{ 8, 128, 256 - 32, 256 -  8 },
@@ -2280,7 +2280,7 @@ static const TP_HIT_TBL slider_hit_tbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒ
+ * @brief	ã‚¢ãƒ‹ãƒ¡
  *
  * @param	wk	
  * @param	lim	
@@ -2293,7 +2293,7 @@ static const TP_HIT_TBL slider_hit_tbl[] = {
 void Slider_AnimeCheck( BR_SLIDER* wk, TOUCH_LIST* tl )
 {
 	if ( tl->bView ){
-	//	OS_Printf( "ƒrƒ…[ƒ‚[ƒh\n" );
+	//	OS_Printf( "ãƒ“ãƒ¥ãƒ¼ãƒ¢ãƒ¼ãƒ‰\n" );
 		if ( tl->max < 2 ){
 			wk->bAnime = FALSE;
 		}
@@ -2302,7 +2302,7 @@ void Slider_AnimeCheck( BR_SLIDER* wk, TOUCH_LIST* tl )
 		}		
 	}
 	else {
-	//	OS_Printf( "’ÊíƒŠƒXƒgƒ‚[ƒh\n" );
+	//	OS_Printf( "é€šå¸¸ãƒªã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰\n" );
 		if ( tl->lim >= tl->max ){
 			wk->bAnime = FALSE;
 		}
@@ -2314,7 +2314,7 @@ void Slider_AnimeCheck( BR_SLIDER* wk, TOUCH_LIST* tl )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒ‰ƒCƒ_[‚Ì“–‚½‚è”»’è
+ * @brief	ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®å½“ãŸã‚Šåˆ¤å®š
  *
  * @param	wk	
  *
@@ -2336,7 +2336,7 @@ void Slider_HitCheck_Main( BR_SLIDER* wk )
 		CATS_ObjectUpdateCapEx( wk->cap[ 1 ] );
 	}
 
-	if ( wk->bHit == FALSE && bCont == FALSE ){			///< G‚Á‚½–‚È‚¢ • G‚Á‚Ä‚È‚¢
+	if ( wk->bHit == FALSE && bCont == FALSE ){			///< è§¦ã£ãŸäº‹ãªã„ ï¼† è§¦ã£ã¦ãªã„
 	
 		wk->bHit  = FALSE;
 		wk->frame = 0;
@@ -2346,33 +2346,33 @@ void Slider_HitCheck_Main( BR_SLIDER* wk )
 		return;
 	}
 	
-	if ( GF_TP_SingleHitCont( &slider_hit_tbl[ 0 ] )		///< ƒXƒ‰ƒCƒ_[‚Æ‚Ì“–‚½‚è”»’è
+	if ( GF_TP_SingleHitCont( &slider_hit_tbl[ 0 ] )		///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã¨ã®å½“ãŸã‚Šåˆ¤å®š
 	||	 GF_TP_SingleHitCont( &slider_hit_tbl[ 1 ] ) ){
 		bSliderHit = TRUE;
 	}
 	
 	if ( bSliderHit ){
-		if ( !wk->bHit ){									///< ƒtƒŒ[ƒ€0‚È‚ç‰Šú‰»
+		if ( !wk->bHit ){									///< ãƒ•ãƒ¬ãƒ¼ãƒ 0ãªã‚‰åˆæœŸåŒ–
 			wk->bHit  = TRUE;
 			wk->old_x = x;
 			wk->old_y = y;
 			wk->frame = BB_SLIDER_HIT_FRAME;
-//			OS_Printf( "‚·‚ç‚¢‚¾[G‚Á‚½\n");
+//			OS_Printf( "ã™ã‚‰ã„ã ãƒ¼è§¦ã£ãŸ\n");
 		}
 		else {
 			wk->frame--;
-			Slider_Value_CheckSet( wk, y );			///< ˆÚ“®—Ê‚Ìæ“¾
-//			OS_Printf( "‚·‚ç‚¢‚¾[G‚Á‚Ä‚é\n");
+			Slider_Value_CheckSet( wk, y );			///< ç§»å‹•é‡ã®å–å¾—
+//			OS_Printf( "ã™ã‚‰ã„ã ãƒ¼è§¦ã£ã¦ã‚‹\n");
 		}
 	}
 	else {
 		if ( wk->bHit ){
-		//	Slider_Value_CheckSet( wk, y );			///< ˆÚ“®—Ê‚Ìæ“¾			
+		//	Slider_Value_CheckSet( wk, y );			///< ç§»å‹•é‡ã®å–å¾—			
 			wk->bHit  = FALSE;
 			wk->frame = 0;
 			wk->old_x = 0;
 			wk->old_y = 0;
-//			OS_Printf( "‚·‚ç‚¢‚¾[‚Í‚È‚µ‚½\n");
+//			OS_Printf( "ã™ã‚‰ã„ã ãƒ¼ã¯ãªã—ãŸ\n");
 		}
 	}
 }
@@ -2381,7 +2381,7 @@ void Slider_HitCheck_Main( BR_SLIDER* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒRƒA‰ÁZ
+ * @brief	ã‚¹ã‚³ã‚¢åŠ ç®—
  *
  * @param	wk	
  * @param	id	
@@ -2401,7 +2401,7 @@ void BR_AddScore( BR_WORK* wk, u32 id )
 
 //--------------------------------------------------------------
 /**
- * @brief	brs ‚ğ¶¬
+ * @brief	brs ã‚’ç”Ÿæˆ
  *
  * @param	wk	
  *
@@ -2432,7 +2432,7 @@ void RecData_To_brs( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	DISPØ‚è‘Ö‚¦TCB
+ * @brief	DISPåˆ‡ã‚Šæ›¿ãˆTCB
  *
  * @param	tcb	
  * @param	work
@@ -2489,7 +2489,7 @@ BOOL BR_IsChangeDisplay( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	•`‰æ
+ * @brief	æç”»
  *
  * @param	tcb	
  * @param	work	
@@ -2502,17 +2502,17 @@ static void Draw_60fps_TCB( TCB_PTR tcb, void* work )
 {
 	BR_WORK* wk = work;
 	
-	/// •`‰æƒtƒ‰ƒO ƒ`ƒFƒbƒN
-	/// ‘½d‹N“®ƒtƒ‰ƒO ƒ`ƒFƒbƒN
+	/// æç”»ãƒ•ãƒ©ã‚° ãƒã‚§ãƒƒã‚¯
+	/// å¤šé‡èµ·å‹•ãƒ•ãƒ©ã‚° ãƒã‚§ãƒƒã‚¯
 	if ( wk->sys.crp == NULL ){ return; }
 	
 	if ( IsCATS_SystemActive( wk ) == TRUE ){
-	//	OS_Printf( " CATS‘€ì’†‚É—ˆ‚½ \n" );
+	//	OS_Printf( " CATSæ“ä½œä¸­ã«æ¥ãŸ \n" );
 		return;
 	}
 	
 	if ( wk->sys.bDraw == TRUE ){ 
-	//	OS_Printf( " ŠúŠÔ’†‚É—ˆ‚½ \n" );
+	//	OS_Printf( " æœŸé–“ä¸­ã«æ¥ãŸ \n" );
 		return;
 	}
 	wk->sys.bDraw = TRUE;
@@ -2520,7 +2520,7 @@ static void Draw_60fps_TCB( TCB_PTR tcb, void* work )
 	SoftSpriteTextureTrans( wk->sys.ssm_p );
 
 	CATS_Draw( wk->sys.crp );
-//	OS_Printf( " VƒJƒEƒ“ƒ^@%d\n ", GX_GetVCount() );
+//	OS_Printf( " Vã‚«ã‚¦ãƒ³ã‚¿ã€€%d\n ", GX_GetVCount() );
 	CATS_RenderOamTrans();
 //	PaletteFadeTrans( wk->sys.pfd );
 
@@ -2529,7 +2529,7 @@ static void Draw_60fps_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	•`‰æTCB
+ * @brief	æç”»TCB
  *
  * @param	wk	
  *
@@ -2544,7 +2544,7 @@ void BR_DrawTCB_Add( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒu‚·‚é brs ‚©‚ç
+ * @brief	ã‚»ãƒ¼ãƒ–ã™ã‚‹ brs ã‹ã‚‰
  *
  * @param	wk	
  * @param	no	
@@ -2560,11 +2560,11 @@ BOOL RecData_Save( BR_WORK* wk, int no, u8 secure )
 //	brs->head.secure
 #if 0
 	if ( wk->ex_param3 == TRUE ){
-		///< Ä¶‚µ‚Ä‚¢‚È‚¢
+		///< å†ç”Ÿã—ã¦ã„ãªã„
 		result = BattleRec_GDS_RecvData_Save( wk->save, no, FALSE, &wk->save_work1, &wk->save_work2 );
 	}
 	else {
-		///< Ä¶‚µ‚½‚±‚Æ‚ª‚ ‚é
+		///< å†ç”Ÿã—ãŸã“ã¨ãŒã‚ã‚‹
 		result = BattleRec_GDS_RecvData_Save( wk->save, no, TRUE,  &wk->save_work1, &wk->save_work2 );
 	}
 #endif
@@ -2580,7 +2580,7 @@ BOOL RecData_Save( BR_WORK* wk, int no, u8 secure )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒOİ’è
+ * @brief	ãƒ•ãƒ©ã‚°è¨­å®š
  *
  * @param	wk	
  * @param	flag	
@@ -2591,14 +2591,14 @@ BOOL RecData_Save( BR_WORK* wk, int no, u8 secure )
 //--------------------------------------------------------------
 void RecData_RecStopFlagSet( BR_WORK* wk, BOOL flag )
 {
-	OS_Printf( " ƒrƒfƒI—‚Æ‚µ‚Ä‚«‚ÄA‚Ü‚¾Œ©‚Ä‚Ë[ƒtƒ‰ƒO = ON\n" );
-	/// TRUE = ON = ‚İ‚Ä‚Ë[
+	OS_Printf( " ãƒ“ãƒ‡ã‚ªè½ã¨ã—ã¦ãã¦ã€ã¾ã è¦‹ã¦ã­ãƒ¼ãƒ•ãƒ©ã‚° = ON\n" );
+	/// TRUE = ON = ã¿ã¦ã­ãƒ¼
 	wk->ex_param3 = flag;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	30Œ‚Ìƒf[ƒ^æ“¾‹¤’ÊƒŒƒXƒ|ƒ“ƒXƒR[ƒ‹ƒoƒbƒN
+ * @brief	30ä»¶ã®ãƒ‡ãƒ¼ã‚¿å–å¾—å…±é€šãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	work	
  * @param	error_info	
@@ -2612,19 +2612,19 @@ void BR_Response_BattleVideoSearch(void *work, const GDS_RAP_ERROR_INFO *error_i
 	BR_WORK* wk = work;	
 	BR_RECV_DATA* recv_data = &wk->recv_data;
 	
-	OS_Printf( "˜^‰æƒf[ƒ^‚R‚OŒóM\n");
+	OS_Printf( "éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ï¼“ï¼ä»¶å—ä¿¡\n");
 	if( error_info->occ == TRUE ){
-		OS_Printf( "ƒGƒ‰[I\n");
+		OS_Printf( "ã‚¨ãƒ©ãƒ¼ï¼\n");
 	}
 	else {
-		OS_Printf( "³í‚Éæ“¾I\n");
+		OS_Printf( "æ­£å¸¸ã«å–å¾—ï¼\n");
 		recv_data->outline_data_num = GDS_RAP_RESPONSE_BattleVideoSearch_Download_RecvPtr_Set( BR_GDSRAP_WorkGet( wk ), recv_data->outline_data_tmp, 30 );
 		
 		{
 			int i;
 			
 			for ( i = 0; i < recv_data->outline_data_num; i++ ){
-				GF_ASSERT_MSG( wk->recv_data.outline_data_tmp[ i ] != NULL, "%d”Ô–Ú‚É‹ó‚Á‚Û‚Ìƒf[ƒ^‚ğóM‚µ‚½‚æ\n",i );
+				GF_ASSERT_MSG( wk->recv_data.outline_data_tmp[ i ] != NULL, "%dç•ªç›®ã«ç©ºã£ã½ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚ˆ\n",i );
 				MI_CpuCopy8( wk->recv_data.outline_data_tmp[ i ], &wk->recv_data.outline_data[ i ], sizeof( GT_BATTLE_REC_OUTLINE_RECV ) );
 				wk->recv_data.outline_secure_flag[ i ] = wk->recv_data.outline_data_tmp[ i ]->head.secure;
 			//	OS_Printf( " secure flag = %d\n", wk->recv_data.outline_secure_flag[ i ] );
@@ -2633,12 +2633,12 @@ void BR_Response_BattleVideoSearch(void *work, const GDS_RAP_ERROR_INFO *error_i
 		}
 	}
 	
-	OS_Printf( "Œ” = %d\n",recv_data->outline_data_num);
+	OS_Printf( "ä»¶æ•° = %d\n",recv_data->outline_data_num);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒf[ƒ^‚Ì“Ç‚İ‚İ
+ * @brief	ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
  *
  * @param	wk	
  *
@@ -2696,7 +2696,7 @@ void BR_SaveData_GppHead_Load( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	íœ
+ * @brief	å‰Šé™¤
  *
  * @param	wk	
  *
@@ -2726,11 +2726,11 @@ void BR_SaveData_GppHead_Delete( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	¡ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+//	â– ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 //
 //
 // =============================================================================
-///< ƒLƒƒƒ‰ˆÈŠO
+///< ã‚­ãƒ£ãƒ©ä»¥å¤–
 void PokemonIcon_ResLoad( BR_WORK* wk )
 {
 	CATS_SYS_PTR csp;
@@ -2803,7 +2803,7 @@ CATS_ACT_PTR PokemonIcon_Add( BR_WORK* wk, int id, int monsno, int form, int egg
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌƒA[ƒJƒCƒu‚ğŠJ‚­
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’é–‹ã
  *
  * @param	heap	
  *
@@ -2822,7 +2822,7 @@ ARCHANDLE* PokemonGraphic_ArcOpen( int heap )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌƒA[ƒJƒCƒu•Â‚¶‚é
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–é–‰ã˜ã‚‹
  *
  * @param	hdl	
  *
@@ -2905,7 +2905,7 @@ void PokemonIcon_DelActor( BR_WORK* wk, int id, CATS_ACT_PTR cap )
 // =============================================================================
 //
 //
-//	¡ƒrƒfƒIî•ñ•`‰æƒVƒXƒeƒ€
+//	â– ãƒ“ãƒ‡ã‚ªæƒ…å ±æç”»ã‚·ã‚¹ãƒ†ãƒ 
 //
 //
 // =============================================================================
@@ -3013,7 +3013,7 @@ static void video_win_add( VIDEO_WORK* vwk, BR_WORK* wk )
 	//	OS_Printf( "win add char end %d\n", ofs );
 	}
 	
-	///< •¶š•`‰æ
+	///< æ–‡å­—æç”»
 	{
 		STRBUF* 	str1;
 		STRBUF* 	str2;
@@ -3025,12 +3025,12 @@ static void video_win_add( VIDEO_WORK* vwk, BR_WORK* wk )
 		gpp = vwk->gpp;
 		wset = BR_WORDSET_Create( HEAPID_BR );
 		
-		///< Œ©o‚µ
+		///< è¦‹å‡ºã—
 		win = &vwk->win[ 0 ];
-		str1 = GDS_Profile_CreateNameString( gpp, HEAPID_BR );			///< –¼‘O
+		str1 = GDS_Profile_CreateNameString( gpp, HEAPID_BR );			///< åå‰
 		BR_ErrorStrChange( wk, str1 );
-		str2 = MSGMAN_AllocString( wk->sys.man, msg_09 );			///< ` ‚Ì‹L˜^
-		tmp  = STRBUF_Create( 255, HEAPID_BR );						///< ƒeƒ“ƒ|ƒ‰ƒŠ
+		str2 = MSGMAN_AllocString( wk->sys.man, msg_09 );			///< ã€œ ã®è¨˜éŒ²
+		tmp  = STRBUF_Create( 255, HEAPID_BR );						///< ãƒ†ãƒ³ãƒãƒ©ãƒª
 
 		WORDSET_RegisterWord( wset, 0, str1, 0, TRUE, PM_LANG );	
 		WORDSET_ExpandStr( wset, tmp, str2 );
@@ -3044,11 +3044,11 @@ static void video_win_add( VIDEO_WORK* vwk, BR_WORK* wk )
 		STRBUF_Delete( tmp );
 		WORDSET_ClearAllBuffer( wset );
 		
-		///< {İ–¼
+		///< æ–½è¨­å
 		{
 			int no = RecHeader_ParamGet( vwk->br_head, RECHEAD_IDX_MODE, 0 );
 			win = &vwk->win[ 1 ];
-			tmp = MSGMAN_AllocString( wk->sys.man, msg_rule_000 + no );	///< ‚˜‚˜‚˜‚¹‚ñ‚ß
+			tmp = MSGMAN_AllocString( wk->sys.man, msg_rule_000 + no );	///< ï½˜ï½˜ï½˜ã›ã‚“ã‚
 				
 			GF_BGL_BmpWinDataFill( win, 0x00 );
 			GF_STR_PrintColor( win, FONT_SYSTEM, tmp, 0, 0, MSG_NO_PUT, PRINT_COL_NORMAL, NULL );
@@ -3059,15 +3059,15 @@ static void video_win_add( VIDEO_WORK* vwk, BR_WORK* wk )
 		}
 		
 		
-		///< ˜AŸ
+		///< é€£å‹
 		{
 			int num = RecHeader_ParamGet( vwk->br_head, RECHEAD_IDX_COUNTER, 0);
 			
 			if ( num != 0 ){
 				win = &vwk->win[ 2 ];
-				str1 = STRBUF_Create( 255, HEAPID_BR );						///< ”š
-				str2 = MSGMAN_AllocString( wk->sys.man, msg_11 );			///< ‚˜‚˜‚˜‚¹‚ñ‚ß
-				tmp  = STRBUF_Create( 255, HEAPID_BR );						///< ƒeƒ“ƒ|ƒ‰ƒŠ
+				str1 = STRBUF_Create( 255, HEAPID_BR );						///< æ•°å­—
+				str2 = MSGMAN_AllocString( wk->sys.man, msg_11 );			///< ï½˜ï½˜ï½˜ã›ã‚“ã‚
+				tmp  = STRBUF_Create( 255, HEAPID_BR );						///< ãƒ†ãƒ³ãƒãƒ©ãƒª
 				
 				STRBUF_SetNumber( str1, num, 4, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 					
@@ -3091,7 +3091,7 @@ static void video_win_add( VIDEO_WORK* vwk, BR_WORK* wk )
 		}
 		
 		
-		///< ƒf[ƒ^ƒiƒ“ƒo[	
+		///< ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼	
 		{
 			u64 data = RecHeader_ParamGet( vwk->br_head, RECHEAD_IDX_DATA_NUMBER, 0 );
 			u64	dtmp1 = data;
@@ -3112,14 +3112,14 @@ static void video_win_add( VIDEO_WORK* vwk, BR_WORK* wk )
 				int check1 = ( dtmp2[ 2 ] / 10 ) % 10;
 
 				if ( ( check1 == 0 ) && ( data != 0 ) ){
-					str2 = MSGMAN_AllocString( wk->sys.man, msg_12_2 );		///< ‚˜‚˜‚˜‚¹‚ñ‚ß
-					OS_Printf( "“Áê‚Èƒf[ƒ^ƒiƒ“ƒo[\n");
+					str2 = MSGMAN_AllocString( wk->sys.man, msg_12_2 );		///< ï½˜ï½˜ï½˜ã›ã‚“ã‚
+					OS_Printf( "ç‰¹æ®Šãªãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼\n");
 				}
 				else {
-					str2 = MSGMAN_AllocString( wk->sys.man, msg_12 );		///< ‚˜‚˜‚˜‚¹‚ñ‚ß
+					str2 = MSGMAN_AllocString( wk->sys.man, msg_12 );		///< ï½˜ï½˜ï½˜ã›ã‚“ã‚
 				}
 			}
-			tmp  = STRBUF_Create( 255, HEAPID_BR );						///< ƒeƒ“ƒ|ƒ‰ƒŠ
+			tmp  = STRBUF_Create( 255, HEAPID_BR );						///< ãƒ†ãƒ³ãƒãƒ©ãƒª
 			
 			STRBUF_SetNumber( num1, dtmp2[ 0 ], 5, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
 			STRBUF_SetNumber( num2, dtmp2[ 1 ], 5, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
@@ -3196,7 +3196,7 @@ BOOL VideoCheck2vs2_Head( BATTLE_REC_HEADER_PTR head )
 
 //--------------------------------------------------------------
 /**
- * @brief	2vs2‚Åí‚Á‚½‚©‚Ìƒ`ƒFƒbƒN
+ * @brief	2vs2ã§æˆ¦ã£ãŸã‹ã®ãƒã‚§ãƒƒã‚¯
  *
  * @param	vwk	
  *
@@ -3211,7 +3211,7 @@ static BOOL VideoCheck2vs2( VIDEO_WORK* vwk )
 
 //--------------------------------------------------------------
 /**
- * @brief	2vs2 BG æ“¾
+ * @brief	2vs2 BG å–å¾—
  *
  * @param	vwk	
  *
@@ -3252,10 +3252,10 @@ static void video_poke_add( VIDEO_WORK* vwk, BR_WORK* wk )
 			{  3*8, 19*8 },{  6*8, 19*8 },{  9*8, 19*8 },{ 12*8, 19*8 },{ 15*8, 19*8 },{ 18*8, 19*8 },
 		},
 		{
-			{  3*8, 17*8 },{  6*8, 17*8 },{  9*8, 17*8 },	///< ©•ª
-			{  5*8, 20*8 },{  8*8, 20*8 },{ 11*8, 20*8 },	///< ©•ª
-			{ 18*8, 17*8 },{ 21*8, 17*8 },{ 24*8, 17*8 },	///< ‘Šè
-			{ 20*8, 20*8 },{ 23*8, 20*8 },{ 26*8, 20*8 },	///< ‘Šè
+			{  3*8, 17*8 },{  6*8, 17*8 },{  9*8, 17*8 },	///< è‡ªåˆ†
+			{  5*8, 20*8 },{  8*8, 20*8 },{ 11*8, 20*8 },	///< è‡ªåˆ†
+			{ 18*8, 17*8 },{ 21*8, 17*8 },{ 24*8, 17*8 },	///< ç›¸æ‰‹
+			{ 20*8, 20*8 },{ 23*8, 20*8 },{ 26*8, 20*8 },	///< ç›¸æ‰‹
 		},
 	};
 
@@ -3263,21 +3263,21 @@ static void video_poke_add( VIDEO_WORK* vwk, BR_WORK* wk )
 	crp = wk->sys.crp;
 	pfd = wk->sys.pfd;
 
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	CATS_LoadResourcePlttWorkArc( pfd, FADE_MAIN_OBJ, csp, crp,
 								  ARC_POKEICON, PokeIconPalArcIndexGet(), 0, POKEICON_PAL_MAX, NNS_G2D_VRAM_TYPE_2DMAIN, eID_OAM_POKE_ICON );
-	//ƒZƒ‹
+	//ã‚»ãƒ«
 	{
 		int arc = PokeIcon64kCellArcIndexGet();
 		CATS_LoadResourceCellArc( csp, crp, ARC_POKEICON, arc, 0, eID_OAM_POKE_ICON );
 	}
-	//ƒZƒ‹ƒAƒjƒ
+	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	{
 		int arc = PokeIcon64kCellAnmArcIndexGet();
 		CATS_LoadResourceCellAnmArc( csp, crp, ARC_POKEICON, arc, 0, eID_OAM_POKE_ICON );
 	}
 	
-	///< ƒe[ƒuƒ‹‚Ìì¬
+	///< ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 	{	
 		int temp_no = 0;
 		int temp_monsno = 0;
@@ -3288,7 +3288,7 @@ static void video_poke_add( VIDEO_WORK* vwk, BR_WORK* wk )
 		
 		type = 0;
 
-		///< 2vs2‚Ìê‡
+		///< 2vs2ã®å ´åˆ
 		if ( VideoCheck2vs2( vwk ) == TRUE ){
 			add = 3;
 			ei = 3;
@@ -3325,7 +3325,7 @@ static void video_poke_add( VIDEO_WORK* vwk, BR_WORK* wk )
 		
 		monsno = monsno_tbl[ i ];
 		
-		if ( monsno == 0 ){ continue; }		///< ‚½‚Ü‚²–³‚µ
+		if ( monsno == 0 ){ continue; }		///< ãŸã¾ã”ç„¡ã—
 		
 		form = form_tbl[ i ];
 		
@@ -3416,7 +3416,7 @@ void VideoData_IconEnable( VIDEO_WORK* vwk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒEƒBƒ“ƒhƒE‚É‘Î‚µ‚ÄA•¶š—ñ‚ğƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«å¯¾ã—ã¦ã€æ–‡å­—åˆ—ã‚’ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹
  *
  * @param	win	
  * @param	str	
@@ -3436,7 +3436,7 @@ int BR_print_x_Get( GF_BGL_BMPWIN* win, STRBUF* str )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒu—p‚Ìƒ[ƒN‚ğ‰Šú‰»‚·‚é
+ * @brief	ã‚»ãƒ¼ãƒ–ç”¨ã®ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
  * @param	wk	
  *
@@ -3453,7 +3453,7 @@ void BR_SaveWork_Clear( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚ğíœ‚·‚é
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param	wk	
  *
@@ -3479,7 +3479,7 @@ BOOL BR_Executed_RecDelete( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Ù‚Ú‹¤’Ê‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @brief	ã»ã¼å…±é€šã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  *
  * @param	none	
  *
@@ -3504,7 +3504,7 @@ void PrioritySet_Common( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚ğAON OFF ŠÜ‚ß‚Ä g—p‰Â”\‚É‚·‚é
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ã‚’ã€ON OFF å«ã‚ã¦ ä½¿ç”¨å¯èƒ½ã«ã™ã‚‹
  *
  * @param	wk	
  * @param	cur	
@@ -3530,7 +3530,7 @@ void HormingCursor_Init( BR_WORK* wk, CURSOR_WORK* cur, s16 x, s16 y )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚ÌˆÊ’uİ’è
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®è¨­å®š
  *
  * @param	cur	
  * @param	x	
@@ -3550,7 +3550,7 @@ void CurPosSet( CURSOR_WORK* cur, s16 x, s16 y, u32 event )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ†ƒjƒbƒg”‚ğæ“¾
+ * @brief	ãƒ¦ãƒ‹ãƒƒãƒˆæ•°ã‚’å–å¾—
  *
  * @param	num	
  *
@@ -3569,7 +3569,7 @@ int Number_to_Unit_Get( u64 num )
 		unit++;
 	}
 	
-	OS_Printf( "Œ… = %d\n", unit );
+	OS_Printf( "æ¡ = %d\n", unit );
 	
 	return unit;
 }
@@ -3594,7 +3594,7 @@ void BR_ScrSet( BR_WORK* wk, int id, int frame )
 // =============================================================================
 //
 //
-//	¡ƒGƒ‰[ˆ—
+//	â– ã‚¨ãƒ©ãƒ¼å‡¦ç†
 //
 //
 // =============================================================================
@@ -3615,7 +3615,7 @@ void BR_Error_Init( BR_WORK* wk )
 	if ( wk->sys.err_wk.bErrorInit ){ return; }	
 	wk->sys.err_wk.bErrorInit = TRUE;
 
-	if ( sys.disp3DSW == DISP_3D_TO_SUB ){	///< ‰º‚ªmain‚È‚çã‚Éo‚·
+	if ( sys.disp3DSW == DISP_3D_TO_SUB ){	///< ä¸‹ãŒmainãªã‚‰ä¸Šã«å‡ºã™
 		frame = GF_BGL_FRAME2_S;
 	}
 
@@ -3645,7 +3645,7 @@ void BR_Error_Exit( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒ‰[ƒƒbƒZ[ƒW
+ * @brief	ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  *
  * @param	work	
  * @param	error_msg	
@@ -3671,13 +3671,13 @@ void BR_Error_CallBack( void* work, STRBUF* error_msg )
 // =============================================================================
 //
 //
-//	¡ƒ^ƒbƒ`ƒAƒNƒVƒ‡ƒ“
+//	â– ã‚¿ãƒƒãƒã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒbƒ`ƒAƒNƒVƒ‡ƒ“TCB
+ * @brief	ã‚¿ãƒƒãƒã‚¢ã‚¯ã‚·ãƒ§ãƒ³TCB
  *
  * @param	tcb	
  * @param	work	
@@ -3707,7 +3707,7 @@ static void TouchAction_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒbƒ`ƒAƒNƒVƒ‡ƒ“‰Šú‰»
+ * @brief	ã‚¿ãƒƒãƒã‚¢ã‚¯ã‚·ãƒ§ãƒ³åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -3768,7 +3768,7 @@ static void TouchActionInit( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒbƒ`ƒAƒNƒVƒ‡ƒ“ŒÄ‚Ño‚µ
+ * @brief	ã‚¿ãƒƒãƒã‚¢ã‚¯ã‚·ãƒ§ãƒ³å‘¼ã³å‡ºã—
  *
  * @param	wk	
  *
@@ -3785,7 +3785,7 @@ void TouchAction( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	CATS ‚ª“®‚¢‚Ä‚¢‚é‚©
+ * @brief	CATS ãŒå‹•ã„ã¦ã„ã‚‹ã‹
  *
  * @param	wk	
  *
@@ -3800,7 +3800,7 @@ BOOL IsCATS_SystemActive( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	CATS ‚Ì“®ì‚ğw’è
+ * @brief	CATS ã®å‹•ä½œã‚’æŒ‡å®š
  *
  * @param	wk	
  * @param	flag	
@@ -3865,13 +3865,13 @@ void BR_Tool_FontButton_Delete( OAM_BUTTON* obtn )
 // =============================================================================
 //
 //
-//	¡ƒGƒ‰[ˆ—
+//	â– ã‚¨ãƒ©ãƒ¼å‡¦ç†
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒ‰[ƒƒbƒZ[ƒW‚¾‚¯‚à‚ç‚¤
+ * @brief	ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã ã‘ã‚‚ã‚‰ã†
  *
  * @param	wk	
  * @param	mode	
@@ -3898,7 +3898,7 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 		
 		switch ( type ){
 		case GDS_ERROR_TYPE_LIB:
-			///< GDSƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[
+			///< GDSãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼
 			switch ( result ){
 			case POKE_NET_GDS_LASTERROR_NONE:
 				msg = msg_lib_err_000;
@@ -3952,7 +3952,7 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 			break;
 		
 		case GDS_ERROR_TYPE_STATUS:
-			///< GDS‚Ìó‘ÔƒGƒ‰[
+			///< GDSã®çŠ¶æ…‹ã‚¨ãƒ©ãƒ¼
 			switch ( result ){
 			case POKE_NET_GDS_STATUS_INACTIVE:
 				msg = msg_st_err_000;
@@ -3991,11 +3991,11 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 			break;
 		
 		case GDS_ERROR_TYPE_APP:
-			///< ŠeƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒGƒ‰[
+			///< å„ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¨ãƒ©ãƒ¼
 			{		
 				switch ( mode ){
 				case eERR_DRESS_SEND:
-					///< ƒhƒŒƒX‘—M
+					///< ãƒ‰ãƒ¬ã‚¹é€ä¿¡æ™‚
 					switch ( result ){
 					case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_SUCCESS:
 						msg = msg_err_000;
@@ -4022,7 +4022,7 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 					break;
 				
 				case eERR_DRESS_RECV:
-					///< ƒhƒŒƒXóM
+					///< ãƒ‰ãƒ¬ã‚¹å—ä¿¡æ™‚
 					switch ( result ){
 					case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_SUCCESS:
 						msg = msg_err_006;
@@ -4043,7 +4043,7 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 					break;
 				
 				case eERR_BOX_SEND:
-					///< ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg‘—M
+					///< ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆé€ä¿¡æ™‚
 					switch ( result ){
 					case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_SUCCESS:
 						msg = msg_err_010;
@@ -4073,7 +4073,7 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 					break;
 					
 				case eERR_BOX_RECV:
-					///< ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgóM
+					///< ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡æ™‚
 					switch ( result ){
 					case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_SUCCESS:
 						msg = msg_err_017;
@@ -4094,7 +4094,7 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 					break;
 				
 				case eERR_RANKING_TYPE_RECV:
-					///< ƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‚ÌóM
+					///< ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡
 					switch ( result ){
 					case POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_SUCCESS:
 						msg = msg_err_021;
@@ -4112,7 +4112,7 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 					break;
 					
 				case eERR_RANKING_SEND:
-					///< ƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‚Ì‘—M
+					///< ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡
 					switch ( result ){
 					case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_SUCCESS:
 						msg = msg_err_024;
@@ -4139,7 +4139,7 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 					break;
 				
 				case eERR_VIDEO_SEND:
-					///< ƒrƒfƒI‚Ì‘—M
+					///< ãƒ“ãƒ‡ã‚ªã®é€ä¿¡
 					switch ( result ){
 					case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_SUCCESS:
 						msg = msg_err_030;
@@ -4172,7 +4172,7 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 					break;
 
 				case eERR_VIDEO_SEARCH:
-					///< ƒrƒfƒI‚ÌŒŸõ
+					///< ãƒ“ãƒ‡ã‚ªã®æ¤œç´¢
 					switch ( result ){
 					case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_SUCCESS:
 						msg = msg_err_036;
@@ -4193,7 +4193,7 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 					break;
 
 				case eERR_VIDEO_DATA_GET:
-					///< ƒrƒfƒI‚ÌóM
+					///< ãƒ“ãƒ‡ã‚ªã®å—ä¿¡
 					switch ( result ){
 					case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_SUCCESS:
 						msg = msg_err_040;
@@ -4230,11 +4230,11 @@ int BR_ErrorMsgGet( BR_WORK* wk, int mode, int result, int type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒ‰[‚ğó‚¯æ‚Á‚½
+ * @brief	ã‚¨ãƒ©ãƒ¼ã‚’å—ã‘å–ã£ãŸ
  *
- * @param	mode	‹N“®ƒ‚[ƒh
- * @param	result	ó‚¯æ‚Á‚½Œ‹‰Ê
- * @param	type	ƒGƒ‰[ƒ^ƒCƒv GDS_ERROR_TYPE_LIB@GDS_ERROR_TYPE_STATUS GDS_ERROR_TYPE_APP
+ * @param	mode	èµ·å‹•ãƒ¢ãƒ¼ãƒ‰
+ * @param	result	å—ã‘å–ã£ãŸçµæœ
+ * @param	type	ã‚¨ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ— GDS_ERROR_TYPE_LIBã€€GDS_ERROR_TYPE_STATUS GDS_ERROR_TYPE_APP
  *
  * @retval	none	
  *
@@ -4256,7 +4256,7 @@ void BR_ErrorSet( BR_WORK* wk, int mode, int result, int type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒ‰[ˆ—‚ÌƒƒCƒ“
+ * @brief	ã‚¨ãƒ©ãƒ¼å‡¦ç†ã®ãƒ¡ã‚¤ãƒ³
  *
  * @param	wk	
  *
@@ -4313,7 +4313,7 @@ void BR_Error_Main( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	•Û‘¶‚³‚ê‚Ä‚éH
+ * @brief	ä¿å­˜ã•ã‚Œã¦ã‚‹ï¼Ÿ
  *
  * @param	wk	
  * @param	video_no	
@@ -4327,13 +4327,13 @@ BOOL BattleVideo_Preserved( BR_WORK* wk, u64 video_no )
 	u64 no;
 	int i;
 	
-	///< ©•ª‚ÌƒZ[ƒu‚Í”äŠr‚µ‚È‚¢
+	///< è‡ªåˆ†ã®ã‚»ãƒ¼ãƒ–ã¯æ¯”è¼ƒã—ãªã„
 	for ( i = 1; i < 4; i++ ){		
 		if ( wk->br_head[ i ] == NULL ){ continue; }
 		
 		no = RecHeader_ParamGet( wk->br_head[ i ], RECHEAD_IDX_DATA_NUMBER, 0 );
 		
-		if ( no == video_no ){ return TRUE; }	///< ‚à‚Á‚Ä‚½‚çƒuƒbƒu[
+		if ( no == video_no ){ return TRUE; }	///< ã‚‚ã£ã¦ãŸã‚‰ãƒ–ãƒƒãƒ–ãƒ¼
 	}
 	
 	return FALSE;
@@ -4342,7 +4342,7 @@ BOOL BattleVideo_Preserved( BR_WORK* wk, u64 video_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒ‰[•¶š—ñ‚ğ‹K’è‚Ì•¶š—ñ‚É’u‚«Š·‚¦‚é
+ * @brief	ã‚¨ãƒ©ãƒ¼æ–‡å­—åˆ—ã‚’è¦å®šã®æ–‡å­—åˆ—ã«ç½®ãæ›ãˆã‚‹
  *
  * @param	wk	
  * @param	strbuf	
@@ -4355,13 +4355,13 @@ void BR_ErrorStrChange( BR_WORK* wk, STRBUF *strbuf )
 {
 	GDS_RAP_WORK* gdsrap = BR_GDSRAP_WorkGet( wk );
 	STRBUF *temp_str;
-	int strcode_size = 64;	//“K“–‚É‘å‚«‚­
+	int strcode_size = 64;	//é©å½“ã«å¤§ãã
 	
 	temp_str = STRBUF_Create(strcode_size, gdsrap->heap_id);
 
-	//•s–¾•¶šƒR[ƒhƒ`ƒFƒbƒN
+	//ä¸æ˜æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 	if(FontProc_ErrorStrCheck(FONT_SYSTEM, strbuf, temp_str) == FALSE){
-		OS_TPrintf("•s–¾‚È•¶šƒR[ƒh‚ª“ü‚Á‚Ä‚¢‚é\n");
+		OS_TPrintf("ä¸æ˜ãªæ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒå…¥ã£ã¦ã„ã‚‹\n");
 		ErrorNameSet(strbuf, gdsrap->heap_id);
 	}
 
@@ -4370,10 +4370,10 @@ void BR_ErrorStrChange( BR_WORK* wk, STRBUF *strbuf )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ‰[•¶š‚¾‚Á‚½ê‡‚É•\¦‚·‚é‘ã—–¼‚ğƒoƒbƒtƒ@‚ÉƒZƒbƒg
+ * @brief   ã‚¨ãƒ©ãƒ¼æ–‡å­—ã ã£ãŸå ´åˆã«è¡¨ç¤ºã™ã‚‹ä»£ç†åã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆ
  *
- * @param   dest_str		‘ã“üæ
- * @param   heap_id			ƒeƒ“ƒ|ƒ‰ƒŠ‚Åg—p‚·‚éƒq[ƒv
+ * @param   dest_str		ä»£å…¥å…ˆ
+ * @param   heap_id			ãƒ†ãƒ³ãƒãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  */
 //--------------------------------------------------------------
 static void ErrorNameSet(STRBUF *dest_str, int heap_id)

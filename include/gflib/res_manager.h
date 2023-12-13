@@ -2,7 +2,7 @@
 /**
  *
  *@file		res_manager.h
- *@brief	���\�[�XID�Ǘ��}�l�[�W���[
+ *@brief	リソースID管理マネージャー
  *@author	tomoya takahashi
  *@data		2005.08.29
  *
@@ -20,58 +20,58 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
-#define RES_MANAGER_ID_NONE	(0xffffffff)	// ID�Ȃ�
+#define RES_MANAGER_ID_NONE	(0xffffffff)	// IDなし
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	���\�[�X�w�b�_�[�|�C���^
+//	リソースヘッダーポインタ
 //
-//	�o�^�f�[�^���܂Ƃ߂��f�[�^�ł�
+//	登録データをまとめたデータです
 //	
 //=====================================
 typedef struct _RES_HEADER* RES_HEADER_PTR;
 
 //---------------------------
 //
-//	���\�[�X�Ǘ��}�l�[�W���[
-//	�Ǘ��f�[�^�|�C���^
+//	リソース管理マネージャー
+//	管理データポインタ
 //
 //===========================
 typedef struct _RES_MANAGER* RES_MANAGER_PTR;
 
 //---------------------------
 //
-//	���\�[�X�Ǘ��f�[�^�|�C���^
-//	�ǂݍ��񂾂P�̃��\�[�X�f�[�^��
-//	�Ǘ����Ă���|�C���^
+//	リソース管理データポインタ
+//	読み込んだ１つのリソースデータを
+//	管理しているポインタ
 //
 //===========================
 typedef struct _RES_OBJ* RES_OBJ_PTR;
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���\�[�X�Ǘ��}�l�[�W���[���ԕ��쐬
+ *@brief	リソース管理マネージャー実態部作成
  *
- *@param	num		�f�[�^�Ǘ��e�[�u����
+ *@param	num		データ管理テーブル数
  *
- *@return	RES_MANAGER_PTR		�Ǘ��f�[�^�|�C���^
+ *@return	RES_MANAGER_PTR		管理データポインタ
  *
- * ���Ǘ��e�[�u���̈�̊m��
- * ���Ǘ��e�[�u���̈�̏�����
+ * ●管理テーブル領域の確保
+ * ●管理テーブル領域の初期化
  *
  */
 //-----------------------------------------------------------------------------
@@ -80,14 +80,14 @@ GLOBAL RES_MANAGER_PTR RESM_Init(int num, int heap);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���\�[�X�Ǘ��f�[�^�j��
+ *@brief	リソース管理データ破棄
  *
- *@param	resm	���\�[�X�Ǘ��f�[�^
+ *@param	resm	リソース管理データ
  *
  *@return	none
  *
- *	���ǂݍ��񂾃��\�[�X��j��
- *	���Ǘ��e�[�u���̈��j��
+ *	●読み込んだリソースを破棄
+ *	●管理テーブル領域を破棄
  */
 //-----------------------------------------------------------------------------
 GLOBAL void RESM_Delete(RES_MANAGER_PTR resm);
@@ -95,11 +95,11 @@ GLOBAL void RESM_Delete(RES_MANAGER_PTR resm);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�c��o�^�\�����擾
+ *@brief	残り登録可能数を取得
  *
- *@param	resm	�擾���郊�\�[�X�Ǘ��f�[�^
+ *@param	resm	取得するリソース管理データ
  *
- *@return	int		�c��o�^�\��
+ *@return	int		残り登録可能数
  *
  *
  */
@@ -109,13 +109,13 @@ GLOBAL int RESM_GetRest(RES_MANAGER_PTR resm);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID���d�����Ȃ������擾
+ *@brief	IDが重複しないかを取得
  *
- *@param	resm	�擾���郊�\�[�X�Ǘ��f�[�^
- *@param	id		�`�F�b�N����ID
+ *@param	resm	取得するリソース管理データ
+ *@param	id		チェックするID
  *
- *@retval	TRUE	�d�����Ȃ�
- *@retval	FALSE	�d������
+ *@retval	TRUE	重複しない
+ *@retval	FALSE	重複する
  *
  *
  */
@@ -125,16 +125,16 @@ GLOBAL BOOL RESM_CheckID(RES_MANAGER_PTR resm, int id);
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	���\�[�X�̓o�^
+ *@brief	リソースの登録
  *
- *@param	resm	�o�^���郊�\�[�X�Ǘ��f�[�^�|�C���^
- *@param	res		���\�[�X
- *@param	id		�o�^ID	�i���d�����Ӂj
+ *@param	resm	登録するリソース管理データポインタ
+ *@param	res		リソース
+ *@param	id		登録ID	（＊重複注意）
  *
- *@retval	RES_OBJ_PTR	�o�^����
- *@retval	NULL		�o�^���s	�o�^�e�[�u�������t
+ *@retval	RES_OBJ_PTR	登録成功
+ *@retval	NULL		登録失敗	登録テーブルが満杯
  *
- * ���p�X�̃��\�[�X��ǂݍ���ŁA�Ǘ��f�[�^�ɐݒ�
+ * ●パスのリソースを読み込んで、管理データに設定
  *
  */
 //-----------------------------------------------------------------------------
@@ -143,17 +143,17 @@ GLOBAL RES_OBJ_PTR RESM_AddResNormal(RES_MANAGER_PTR resm, void* res, int id);
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	���\�[�X�̓o�^
+ *@brief	リソースの登録
  *
- *@param	resm	�o�^���郊�\�[�X�Ǘ��f�[�^�|�C���^
- *@param	p_path	���\�[�X�̃p�X
- *@param	id		�o�^ID	�i���d�����Ӂj
- *@param	heap	���\�[�X�ǂݍ��݂Ɏg�p����q�[�v
+ *@param	resm	登録するリソース管理データポインタ
+ *@param	p_path	リソースのパス
+ *@param	id		登録ID	（＊重複注意）
+ *@param	heap	リソース読み込みに使用するヒープ
  CONST_*
- *@retval	RES_OBJ_PTR	�o�^����
- *@retval	NULL		�o�^���s	�o�^�e�[�u�������tor�p�X���������Ȃ�
+ *@retval	RES_OBJ_PTR	登録成功
+ *@retval	NULL		登録失敗	登録テーブルが満杯orパスが正しくない
  *
- * ���p�X�̃��\�[�X��ǂݍ���ŁA�Ǘ��f�[�^�ɐݒ�
+ * ●パスのリソースを読み込んで、管理データに設定
  * 
  */
 //-----------------------------------------------------------------------------
@@ -162,16 +162,16 @@ GLOBAL RES_OBJ_PTR RESM_AddRes(RES_MANAGER_PTR resm, const char* p_path, int id,
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	�w�b�_�[���g�p�������\�[�X�̓o�^�i�P���j
+ *@brief	ヘッダーを使用したリソースの登録（単発）
  *
- *@param	resm	�o�^���郊�\�[�X�Ǘ��f�[�^�|�C���^
- *@param	header	���\�[�X�w�b�_�[�|�C���^
- *@param	no		�o�^����i���o�[
- *@param	heap	���\�[�X�ǂݍ��݂Ɏg�p����q�[�v
+ *@param	resm	登録するリソース管理データポインタ
+ *@param	header	リソースヘッダーポインタ
+ *@param	no		登録するナンバー
+ *@param	heap	リソース読み込みに使用するヒープ
  *
- *@retval	RES_OBJ_PTR	�o�^����
+ *@retval	RES_OBJ_PTR	登録成功
  *
- * ���p�X�̃��\�[�X��ǂݍ���ŁA�Ǘ��f�[�^�ɐݒ�
+ * ●パスのリソースを読み込んで、管理データに設定
  *
  */
 //-----------------------------------------------------------------------------
@@ -180,15 +180,15 @@ GLOBAL RES_OBJ_PTR RESM_AddResHd(RES_MANAGER_PTR resm, const RES_HEADER_PTR head
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	�w�b�_�[���g�p�������\�[�X�̓o�^�i�����j
+ *@brief	ヘッダーを使用したリソースの登録（複数）
  *
- *@param	resm	�o�^���郊�\�[�X�Ǘ��f�[�^�|�C���^
- *@param	header	���\�[�X�w�b�_�[�|�C���^
- *@param	heap	���\�[�X�ǂݍ��݂Ɏg�p����q�[�v
+ *@param	resm	登録するリソース管理データポインタ
+ *@param	header	リソースヘッダーポインタ
+ *@param	heap	リソース読み込みに使用するヒープ
  *
  *@return	none
  *
- * ���p�X�̃��\�[�X��ǂݍ���ŁA�Ǘ��f�[�^�ɐݒ�
+ * ●パスのリソースを読み込んで、管理データに設定
  *
  */
 //-----------------------------------------------------------------------------
@@ -197,18 +197,18 @@ GLOBAL void RESM_AddResHds(RES_MANAGER_PTR resm, const RES_HEADER_PTR header, in
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	�w�b�_�[���g�p�������\�[�X�̓o�^�i�����j
- *			�w�b�_�[�̊J�n�v�f�A�I���v�f���w��
+ *@brief	ヘッダーを使用したリソースの登録（複数）
+ *			ヘッダーの開始要素、終了要素を指定
  *
- *@param	resm	�o�^���郊�\�[�X�Ǘ��f�[�^�|�C���^
- *@param	header	���\�[�X�w�b�_�[�|�C���^
- *@param	start	�J�n�v�f��
- *@param	num		�o�^�v�f��
- *@param	heap	���\�[�X�ǂݍ��݂Ɏg�p����q�[�v
+ *@param	resm	登録するリソース管理データポインタ
+ *@param	header	リソースヘッダーポインタ
+ *@param	start	開始要素数
+ *@param	num		登録要素数
+ *@param	heap	リソース読み込みに使用するヒープ
  *
  *@return	noen
  *
- * ���p�X�̃��\�[�X��ǂݍ���ŁA�Ǘ��f�[�^�ɐݒ�
+ * ●パスのリソースを読み込んで、管理データに設定
  *
  */
 //-----------------------------------------------------------------------------
@@ -217,12 +217,12 @@ GLOBAL void RESM_AddResHdsEx(RES_MANAGER_PTR resm, const RES_HEADER_PTR header, 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���\�[�X�̔j��
+ *@brief	リソースの破棄
  *
- *@param	resm	�j�����郊�\�[�X���o�^����Ă���Ǘ��f�[�^�|�C���^
- *@param	r_obj	�j�����郊�\�[�X�I�u�W�F
+ *@param	resm	破棄するリソースが登録されている管理データポインタ
+ *@param	r_obj	破棄するリソースオブジェ
  *
- * ���ǂݍ��񂾃��\�[�X��j�����A�Ǘ��f�[�^��������
+ * ●読み込んだリソースを破棄し、管理データを初期化
  */
 //-----------------------------------------------------------------------------
 GLOBAL void RESM_DeleteRes(RES_MANAGER_PTR resm, RES_OBJ_PTR r_obj);
@@ -230,12 +230,12 @@ GLOBAL void RESM_DeleteRes(RES_MANAGER_PTR resm, RES_OBJ_PTR r_obj);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID�Ń��\�[�X�̔j��
+ *@brief	IDでリソースの破棄
  *
- *@param	resm	�j�����郊�\�[�X���o�^����Ă���Ǘ��f�[�^�|�C���^
- *@param	id		�j�����郊�\�[�X��ID	(�Ǘ�ID)
+ *@param	resm	破棄するリソースが登録されている管理データポインタ
+ *@param	id		破棄するリソースのID	(管理ID)
  *
- * ���ǂݍ��񂾃��\�[�X��j�����A�Ǘ��f�[�^��������
+ * ●読み込んだリソースを破棄し、管理データを初期化
  */
 //-----------------------------------------------------------------------------
 GLOBAL void RESM_DeleteResID(RES_MANAGER_PTR resm, int id);
@@ -243,11 +243,11 @@ GLOBAL void RESM_DeleteResID(RES_MANAGER_PTR resm, int id);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�S���\�[�X�̔j��
+ *@brief	全リソースの破棄
  *
- *@param	resm	�j�����郊�\�[�X���o�^����Ă���Ǘ��f�[�^�|�C���^
+ *@param	resm	破棄するリソースが登録されている管理データポインタ
  *
- * ���ǂݍ��񂾃��\�[�X��j�����A�Ǘ��f�[�^��������
+ * ●読み込んだリソースを破棄し、管理データを初期化
  */
 //-----------------------------------------------------------------------------
 GLOBAL void RESM_DeleteAllRes(RES_MANAGER_PTR resm);
@@ -255,13 +255,13 @@ GLOBAL void RESM_DeleteAllRes(RES_MANAGER_PTR resm);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���\�[�X�I�u�W�F�N�g�f�[�^�|�C���^���擾
+ *@brief	リソースオブジェクトデータポインタを取得
  *
- *@param	resm		���\�[�X�Ǘ��f�[�^
- *@param	id			���\�[�X��ID	(�Ǘ�ID)
+ *@param	resm		リソース管理データ
+ *@param	id			リソースのID	(管理ID)
  *
- *@retval	NULL		�o�^����Ă��Ȃ�
- *@retval	RES_OBJ_PTR	�o�^����Ă��郊�\�[�X�I�u�W�F�|�C���^
+ *@retval	NULL		登録されていない
+ *@retval	RES_OBJ_PTR	登録されているリソースオブジェポインタ
  *
  *
  */
@@ -271,12 +271,12 @@ GLOBAL RES_OBJ_PTR RESM_GetResObj(RES_MANAGER_PTR resm, int id);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�o�^����Ă��郊�\�[�X�f�[�^���擾
+ *@brief	登録されているリソースデータを取得
  *
- *@param	r_obj		���\�[�X�I�u�W�F
+ *@param	r_obj		リソースオブジェ
  *
- *@retval	NULL		�o�^����Ă��Ȃ�
- *@retval	NULL�ȊO	�o�^����Ă��郊�\�[�X�|�C���^
+ *@retval	NULL		登録されていない
+ *@retval	NULL以外	登録されているリソースポインタ
  *
  *
  */
@@ -286,14 +286,14 @@ GLOBAL void* RESM_GetRes(RES_OBJ_PTR r_obj);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�o�^����Ă��郊�\�[�X�f�[�^��ύX
+ *@brief	登録されているリソースデータを変更
  *
- *@param	r_obj		���\�[�X�I�u�W�F
- *@param	res			�ݒ肷�郊�\�[�X
+ *@param	r_obj		リソースオブジェ
+ *@param	res			設定するリソース
  *
  *@param	none
  *
- *	���܂ŕێ�����Ă����f�[�^�͔j������܂��B�i����������j
+ *	今まで保持されていたデータは破棄されます。（メモリ解放）
  *
  */
 //-----------------------------------------------------------------------------
@@ -302,11 +302,11 @@ GLOBAL void RESM_SetRes(RES_OBJ_PTR r_obj, void* res);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�o�^����Ă���ID���擾
+ *@brief	登録されているIDを取得
  *
- *@param	r_obj		���\�[�X�I�u�W�F
+ *@param	r_obj		リソースオブジェ
  *
- *@retval	int			�Ǘ�ID
+ *@retval	int			管理ID
  *
  *
  */
@@ -316,11 +316,11 @@ GLOBAL int RESM_GetID(RES_OBJ_PTR r_obj);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�o�^����Ă���ID��ݒ�
+ *@brief	登録されているIDを設定
  *
- *@param	resm		���\�[�X�}�l�[�W��
- *@param	r_obj		���\�[�X�I�u�W�F
- *@param	id			�ݒ肷��ID
+ *@param	resm		リソースマネージャ
+ *@param	r_obj		リソースオブジェ
+ *@param	id			設定するID
  *
  *@retval	none
  *
@@ -331,29 +331,29 @@ GLOBAL void RESM_SetID(RES_MANAGER_PTR resm, RES_OBJ_PTR r_obj, int id);
 
 //-----------------------------------------------------------------------------
 //
-//		*********** �w�b�_�[�p�֐� **************
+//		*********** ヘッダー用関数 **************
 //
 //=============================================================================
 //----------------------------------------------------------------------------
 /**
  *
- *	�w�b�_�[�t�@�C���`���̐���
- *	����
- *		���\�[�X�t�@�C���p�X,ID(���^�[��)
- *		���\�[�X�t�@�C���p�X,ID(���^�[��)
- *		���\�[�X�t�@�C���p�X,ID(���^�[��)
- *		0,0		// �I�[�R�[�h
+ *	ヘッダーファイル形式の説明
+ *	書式
+ *		リソースファイルパス,ID(リターン)
+ *		リソースファイルパス,ID(リターン)
+ *		リソースファイルパス,ID(リターン)
+ *		0,0		// 終端コード
  *
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�w�b�_�[�T�C�Y���擾
+ *@brief	ヘッダーサイズを取得
  *
  *@param	none	
  *
- *@return	int		�w�b�_�[�̃o�C�g�T�C�Y
+ *@return	int		ヘッダーのバイトサイズ
  *
  *
  */
@@ -363,12 +363,12 @@ GLOBAL int RESM_GetHeaderSize(void);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�w�b�_�[�z�񂩂�v�f���̃f�[�^��Ԃ�
+ *@brief	ヘッダー配列から要素数のデータを返す
  *
- *@param	tbl		�z��ɂȂ��Ă���w�b�_�[
- *@param	no		�v�f��
+ *@param	tbl		配列になっているヘッダー
+ *@param	no		要素数
  *
- *@return	RES_HEADER_PTR data[no] �̃A�h���X
+ *@return	RES_HEADER_PTR data[no] のアドレス
  *
  *
  */
@@ -378,11 +378,11 @@ GLOBAL RES_HEADER_PTR RESM_GetTbl(RES_HEADER_PTR tbl, int no);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���\�[�X�w�b�_�[�̓ǂݍ���
+ *@brief	リソースヘッダーの読み込み
  *
- *@param	header			�w�b�_�[�f�[�^�i�[��
- *@param	rom_path		�w�b�_�[�t�@�C���p�X
- *@param	heap			�q�[�vID
+ *@param	header			ヘッダーデータ格納先
+ *@param	rom_path		ヘッダーファイルパス
+ *@param	heap			ヒープID
  *
  *@return	none
  *
@@ -394,9 +394,9 @@ GLOBAL void RESM_HeaderLoad(RES_HEADER_PTR header, const char* rom_path, int hea
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���\�[�X�w�b�_�[�̔j��
+ *@brief	リソースヘッダーの破棄
  *
- *@param	header			�w�b�_�[�f�[�^�f�[�^
+ *@param	header			ヘッダーデータデータ
  *
  *@return	none
  *
@@ -419,39 +419,39 @@ GLOBAL void RESM_HeaderFree(RES_HEADER_PTR header);
 /**
  *
  * 
-*	�e�N�X�`�����\�[�X����}�l�[�W��
-*	�i.nsbtx��p�j
+*	テクスチャリソース限定マネージャ
+*	（.nsbtx専用）
 *
-*	��̃��\�[�X�}�l�[�W���@�\�ɉ���
-*		Vram�]���@VramKey�擾���Ǘ�
-*	�̋@�\��ǉ������}�l�[�W���ł��B
+*	上のリソースマネージャ機能に加え
+*		Vram転送　VramKey取得＆管理
+*	の機能を追加したマネージャです。
 *
-* �g����
+* 使い方
 *
-*	TEXRESM_Init	�}�l�[�W�����쐬
+*	TEXRESM_Init	マネージャを作成
 *	
-*		TEXRESM_AddRes�`	���\�[�X��o�^
+*		TEXRESM_AddRes〜	リソースを登録
 *			
-*			// �����͂����Ȃ悤��
-*			TEXRESM_GetRes		�ǂݍ��񂾂܂܂̃��\�[�X���擾
-*			TEXRESM_AllocVramKey VramKey�m��
-*			TEXRESM_TexLoad		�e�N�X�`���ǂݍ���
-*			TEXRESM_CutTex		�e�N�X�`�����f�[�^�j��
-*			TEXRESM_GetTexKey	�e�N�X�`���L�[�擾
-*			TEXRESM_GetPlttKey	�p���b�g�L�[�擾
+*			// ここはすきなように
+*			TEXRESM_GetRes		読み込んだままのリソースを取得
+*			TEXRESM_AllocVramKey VramKey確保
+*			TEXRESM_TexLoad		テクスチャ読み込み
+*			TEXRESM_CutTex		テクスチャ実データ破棄
+*			TEXRESM_GetTexKey	テクスチャキー取得
+*			TEXRESM_GetPlttKey	パレットキー取得
 *			// 
 *
-*		TEXRESM_DeleteRes�`	���\�[�X��j��
+*		TEXRESM_DeleteRes〜	リソースを破棄
 *
-*	TEXRESM_Delete�Ń}�l�[�W��	�j��
+*	TEXRESM_Deleteでマネージャ	破棄
 * 
 *
 */
 //-----------------------------------------------------------------------------
 //---------------------------
 //
-//	�e�N�X�`�����\�[�X�Ǘ��}�l�[�W���[
-//	�Ǘ��f�[�^�|�C���^
+//	テクスチャリソース管理マネージャー
+//	管理データポインタ
 //
 //===========================
 typedef struct _TEXRES_MANAGER* TEXRES_MANAGER_PTR;
@@ -459,17 +459,17 @@ typedef const struct _TEXRES_MANAGER* CONST_TEXRES_MANAGER_PTR;
 
 //---------------------------
 //
-//	�e�N�X�`�����\�[�X�Ǘ��f�[�^�|�C���^
-//	�ǂݍ��񂾂P�̃��\�[�X�f�[�^
+//	テクスチャリソース管理データポインタ
+//	読み込んだ１つのリソースデータ
 //	VramKey
-//	�Ǘ����Ă���|�C���^
+//	管理しているポインタ
 //
 //===========================
 typedef struct _TEXRES_OBJ* TEXRES_OBJ_PTR;
 typedef const struct _TEXRES_OBJ* CONST_TEXRES_OBJ_PTR;
 
 //-------------------------------------
-//	�e�N�X�`���J�b�g�@�L��
+//	テクスチャカット　有無
 //=====================================
 enum{
 	TEXRESM_TEX_CUT_FALSE,
@@ -480,14 +480,14 @@ enum{
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���\�[�X�Ǘ��}�l�[�W���[���ԕ��쐬
+ *@brief	リソース管理マネージャー実態部作成
  *
- *@param	num		�f�[�^�Ǘ��e�[�u����
+ *@param	num		データ管理テーブル数
  *
- *@return	TEXRES_MANAGER_PTR		�Ǘ��f�[�^�|�C���^
+ *@return	TEXRES_MANAGER_PTR		管理データポインタ
  *
- * ���Ǘ��e�[�u���̈�̊m��
- * ���Ǘ��e�[�u���̈�̏�����
+ * ●管理テーブル領域の確保
+ * ●管理テーブル領域の初期化
  *
  */
 //-----------------------------------------------------------------------------
@@ -496,14 +496,14 @@ GLOBAL TEXRES_MANAGER_PTR TEXRESM_Init(int num, int heap);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���\�[�X�Ǘ��f�[�^�j��
+ *@brief	リソース管理データ破棄
  *
- *@param	resm	���\�[�X�Ǘ��f�[�^
+ *@param	resm	リソース管理データ
  *
  *@return	none
  *
- *	���ǂݍ��񂾃��\�[�X��j��
- *	���Ǘ��e�[�u���̈��j��
+ *	●読み込んだリソースを破棄
+ *	●管理テーブル領域を破棄
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TEXRESM_Delete(TEXRES_MANAGER_PTR resm);
@@ -511,11 +511,11 @@ GLOBAL void TEXRESM_Delete(TEXRES_MANAGER_PTR resm);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�c��o�^�\�����擾
+ *@brief	残り登録可能数を取得
  *
- *@param	resm	�擾���郊�\�[�X�Ǘ��f�[�^
+ *@param	resm	取得するリソース管理データ
  *
- *@return	int		�c��o�^�\��
+ *@return	int		残り登録可能数
  *
  *
  */
@@ -525,13 +525,13 @@ GLOBAL int TEXRESM_GetRest(CONST_TEXRES_MANAGER_PTR resm);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID���d�����Ȃ������擾
+ *@brief	IDが重複しないかを取得
  *
- *@param	resm	�擾���郊�\�[�X�Ǘ��f�[�^
- *@param	id		�`�F�b�N����ID
+ *@param	resm	取得するリソース管理データ
+ *@param	id		チェックするID
  *
- *@retval	TRUE	�d�����Ȃ�
- *@retval	FALSE	�d������
+ *@retval	TRUE	重複しない
+ *@retval	FALSE	重複する
  *
  *
  */
@@ -540,27 +540,27 @@ GLOBAL BOOL TEXRESM_CheckID(CONST_TEXRES_MANAGER_PTR resm, int id);
 
 //-----------------------------------------------------------------------------
 /**
-*		TEXRESM_AddRes�`�֐��S
+*		TEXRESM_AddRes〜関数郡
 *
-*		�o�^�֐��͕�����ނ���܂��̂ŁA���p���@�ɂ���Ďg�������Ă�������
+*		登録関数は複数種類ありますので、利用方法によって使い分けてください
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	���\�[�X�̓o�^	�ǂݍ��ݍς݃��\�[�X�̓o�^
+ *@brief	リソースの登録	読み込み済みリソースの登録
  *
- *@param	resm		�o�^���郊�\�[�X�Ǘ��f�[�^�|�C���^
- *@param	res			���\�[�X
- *@param	id			�o�^ID	�i���d�����Ӂj
- *@param	texcut_flg	�e�N�X�`���J�b�g�@�L���@�t���O
- *@param	heap		�e�N�X�`���J�b�g���[�N�@�q�[�v
+ *@param	resm		登録するリソース管理データポインタ
+ *@param	res			リソース
+ *@param	id			登録ID	（＊重複注意）
+ *@param	texcut_flg	テクスチャカット　有無　フラグ
+ *@param	heap		テクスチャカットワーク　ヒープ
  *
- *@retval	TEXRES_OBJ_PTR	�o�^����
- *@retval	NULL		�o�^���s	�o�^�e�[�u�������t
+ *@retval	TEXRES_OBJ_PTR	登録成功
+ *@retval	NULL		登録失敗	登録テーブルが満杯
  *
- * ���p�X�̃��\�[�X��ǂݍ���ŁA�Ǘ��f�[�^�ɐݒ�
- * ��TEXRESM_Delete�`�֐����g�p����Ə���Ɉ����̃��\�[�X�͔j������܂��B
+ * ●パスのリソースを読み込んで、管理データに設定
+ * ●TEXRESM_Delete〜関数を使用すると勝手に引数のリソースは破棄されます。
  *
  */
 //-----------------------------------------------------------------------------
@@ -569,20 +569,20 @@ GLOBAL TEXRES_OBJ_PTR TEXRESM_AddResNormal(CONST_TEXRES_MANAGER_PTR resm, void* 
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	���\�[�X�̓o�^��VramKey�̎擾���s��
+ *@brief	リソースの登録とVramKeyの取得を行う
  *
- *@param	resm	�o�^���郊�\�[�X�Ǘ��f�[�^�|�C���^
- *@param	res		���\�[�X
- *@param	id		�o�^ID	�i���d�����Ӂj
- *@param	texcut_flg	�e�N�X�`���J�b�g�@�L���@�t���O
- *@param	heap	���\�[�X�ǂݍ��݂Ɏg�p����q�[�v
+ *@param	resm	登録するリソース管理データポインタ
+ *@param	res		リソース
+ *@param	id		登録ID	（＊重複注意）
+ *@param	texcut_flg	テクスチャカット　有無　フラグ
+ *@param	heap	リソース読み込みに使用するヒープ
  *
- *@retval	TEXRES_OBJ_PTR	�o�^����
- *@retval	NULL		�o�^���s	�o�^�e�[�u�������t
+ *@retval	TEXRES_OBJ_PTR	登録成功
+ *@retval	NULL		登録失敗	登録テーブルが満杯
  *
- * �������̗���
- *	�P�F�p�X�̃��\�[�X��ǂݍ���
- *	�Q�FVramKey���擾
+ * ●処理の流れ
+ *	１：パスのリソースを読み込む
+ *	２：VramKeyを取得
  */
 //-----------------------------------------------------------------------------
 GLOBAL TEXRES_OBJ_PTR TEXRESM_AddAndAllocVramKeyResNormal(TEXRES_MANAGER_PTR resm, void* res, int id, u32 texcut_flg, int heap);
@@ -590,12 +590,12 @@ GLOBAL TEXRES_OBJ_PTR TEXRESM_AddAndAllocVramKeyResNormal(TEXRES_MANAGER_PTR res
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���\�[�X�̔j��
+ *@brief	リソースの破棄
  *
- *@param	resm	�j�����郊�\�[�X���o�^����Ă���Ǘ��f�[�^�|�C���^
- *@param	r_obj	�j�����郊�\�[�X�I�u�W�F
+ *@param	resm	破棄するリソースが登録されている管理データポインタ
+ *@param	r_obj	破棄するリソースオブジェ
  *
- * ���ǂݍ��񂾃��\�[�X��j�����A�Ǘ��f�[�^��������
+ * ●読み込んだリソースを破棄し、管理データを初期化
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TEXRESM_DeleteRes(TEXRES_MANAGER_PTR resm, TEXRES_OBJ_PTR r_obj);
@@ -603,12 +603,12 @@ GLOBAL void TEXRESM_DeleteRes(TEXRES_MANAGER_PTR resm, TEXRES_OBJ_PTR r_obj);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID�Ń��\�[�X�̔j��
+ *@brief	IDでリソースの破棄
  *
- *@param	resm	�j�����郊�\�[�X���o�^����Ă���Ǘ��f�[�^�|�C���^
- *@param	id		�j�����郊�\�[�X��ID	(�Ǘ�ID)
+ *@param	resm	破棄するリソースが登録されている管理データポインタ
+ *@param	id		破棄するリソースのID	(管理ID)
  *
- * ���ǂݍ��񂾃��\�[�X��j�����A�Ǘ��f�[�^��������
+ * ●読み込んだリソースを破棄し、管理データを初期化
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TEXRESM_DeleteResID(TEXRES_MANAGER_PTR resm, int id);
@@ -616,11 +616,11 @@ GLOBAL void TEXRESM_DeleteResID(TEXRES_MANAGER_PTR resm, int id);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�S���\�[�X�̔j��
+ *@brief	全リソースの破棄
  *
- *@param	resm	�j�����郊�\�[�X���o�^����Ă���Ǘ��f�[�^�|�C���^
+ *@param	resm	破棄するリソースが登録されている管理データポインタ
  *
- * ���ǂݍ��񂾃��\�[�X��j�����A�Ǘ��f�[�^��������
+ * ●読み込んだリソースを破棄し、管理データを初期化
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TEXRESM_DeleteAllRes(TEXRES_MANAGER_PTR resm);
@@ -628,13 +628,13 @@ GLOBAL void TEXRESM_DeleteAllRes(TEXRES_MANAGER_PTR resm);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���\�[�X�I�u�W�F�N�g�f�[�^�|�C���^���擾
+ *@brief	リソースオブジェクトデータポインタを取得
  *
- *@param	resm		���\�[�X�Ǘ��f�[�^
- *@param	id			���\�[�X��ID	(�Ǘ�ID)
+ *@param	resm		リソース管理データ
+ *@param	id			リソースのID	(管理ID)
  *
- *@retval	NULL		�o�^����Ă��Ȃ�
- *@retval	TEXRES_OBJ_PTR	�o�^����Ă��郊�\�[�X�I�u�W�F�|�C���^
+ *@retval	NULL		登録されていない
+ *@retval	TEXRES_OBJ_PTR	登録されているリソースオブジェポインタ
  *
  *
  */
@@ -644,11 +644,11 @@ GLOBAL TEXRES_OBJ_PTR TEXRESM_GetResObj(CONST_TEXRES_MANAGER_PTR resm, int id);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�o�^����Ă���ID���擾
+ *@brief	登録されているIDを取得
  *
- *@param	r_obj		���\�[�X�I�u�W�F
+ *@param	r_obj		リソースオブジェ
  *
- *@retval	int			�Ǘ�ID
+ *@retval	int			管理ID
  *
  *
  */
@@ -658,11 +658,11 @@ GLOBAL int TEXRESM_GetID(CONST_TEXRES_OBJ_PTR r_obj);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�o�^����Ă���ID��ݒ�
+ *@brief	登録されているIDを設定
  *
- *@param	resm		���\�[�X�}�l�[�W��
- *@param	r_obj		���\�[�X�I�u�W�F
- *@param	id			�ݒ肷��ID
+ *@param	resm		リソースマネージャ
+ *@param	r_obj		リソースオブジェ
+ *@param	id			設定するID
  *
  *@retval	none
  *
@@ -673,14 +673,14 @@ GLOBAL void TEXRESM_SetID(TEXRES_MANAGER_PTR resm, TEXRES_OBJ_PTR r_obj, int id)
 
 //----------------------------------------------------------------------------
 /**
- * �I�u�W�F�N�g�|�C���^�Ŏ擾
+ * オブジェクトポインタで取得
  *
- *@brief	�o�^����Ă���e�N�X�`�����\�[�X�f�[�^���擾
+ *@brief	登録されているテクスチャリソースデータを取得
  *
- *@param	r_obj		���\�[�X�I�u�W�F
+ *@param	r_obj		リソースオブジェ
  *
- *@retval	NULL		�o�^����Ă��Ȃ�
- *@retval	NULL�ȊO	�o�^����Ă���e�N�X�`�����\�[�X�|�C���^
+ *@retval	NULL		登録されていない
+ *@retval	NULL以外	登録されているテクスチャリソースポインタ
  *
  *
  */
@@ -689,15 +689,15 @@ GLOBAL NNSG3dResTex* TEXRESM_GetResPTR(CONST_TEXRES_OBJ_PTR r_obj);
 
 //----------------------------------------------------------------------------
 /**
- * ID�Ŏ擾
+ * IDで取得
  *
- *@brief	�o�^����Ă���e�N�X�`�����\�[�X�f�[�^���擾
+ *@brief	登録されているテクスチャリソースデータを取得
  *
- *@param	resm		�e�N�X�`�����\�[�X�}�l�[�W��
- *@param	id			�o�^ID
+ *@param	resm		テクスチャリソースマネージャ
+ *@param	id			登録ID
  *
- *@retval	NULL		�o�^����Ă��Ȃ�
- *@retval	NULL�ȊO	�o�^����Ă���e�N�X�`�����\�[�X�|�C���^
+ *@retval	NULL		登録されていない
+ *@retval	NULL以外	登録されているテクスチャリソースポインタ
  *
  *
  */
@@ -706,16 +706,16 @@ GLOBAL NNSG3dResTex* TEXRESM_GetResID(CONST_TEXRES_MANAGER_PTR resm, int id);
 
 //----------------------------------------------------------------------------
 /**
- * ���I�u�W�F�N�g�|�C���^�Ŋm��
+ * ●オブジェクトポインタで確保
  *
- *	@brief	�e�N�X�`���L�[��VramManager����m�ۂ��܂�
+ *	@brief	テクスチャキーをVramManagerから確保します
  *
- *	@param	r_obj		���\�[�X�I�u�W�F
+ *	@param	r_obj		リソースオブジェ
  *
  *	@return none
  *
- * �m�ۂ���VramKey�i�e�N�X�`���L�[�@�p���b�g�L�[�j
- * ��TEXRESM_DeleteRes�`�֐��Ŕj������܂��B
+ * 確保したVramKey（テクスチャキー　パレットキー）
+ * はTEXRESM_DeleteRes〜関数で破棄されます。
  *
  *
  */
@@ -724,17 +724,17 @@ GLOBAL void TEXRESM_AllocVramKeyPTR( TEXRES_OBJ_PTR r_obj );
 
 //----------------------------------------------------------------------------
 /**
- * ��ID�Ŋm��
+ * ●IDで確保
  *
- *	@brief	�e�N�X�`���L�[��VramManager����m�ۂ��܂�
+ *	@brief	テクスチャキーをVramManagerから確保します
  *
- *	@param	resm		�e�N�X�`�����\�[�X�}�l�[�W��
- *	@param	id			�o�^ID
+ *	@param	resm		テクスチャリソースマネージャ
+ *	@param	id			登録ID
  *
  *	@return none
  *
- * �m�ۂ���VramKey�i�e�N�X�`���L�[�@�p���b�g�L�[�j
- * ��TEXRESM_DeleteRes�`�֐��Ŕj������܂��B
+ * 確保したVramKey（テクスチャキー　パレットキー）
+ * はTEXRESM_DeleteRes〜関数で破棄されます。
  *
  *
  */
@@ -743,132 +743,132 @@ GLOBAL void TEXRESM_AllocVramKeyID( CONST_TEXRES_MANAGER_PTR resm, int id );
 
 //-----------------------------------------------------------------------------
 /**
-*		�e�N�X�`���f�[�^��]��������A
-*		�e�N�X�`�����f�[�^��j�����֐��S
+*		テクスチャデータを転送したり、
+*		テクスチャ実データを破棄す関数郡
 *
-*		TEXRESM_TexLoadAndCutTex�`�֐��͓]����
-*							�e�N�X�`�����f�[�^�j���𓯎��ɍs���܂��B
+*		TEXRESM_TexLoadAndCutTex〜関数は転送と
+*							テクスチャ実データ破棄を同時に行います。
 *
-*		TEXRESM_TexLoad�`�֐��̓e�N�X�`���]�����s���܂��B
-*		TEXRESM_CutTex�`�֐��̓e�N�X�`�����f�[�^�̔j�����s���܂��B
+*		TEXRESM_TexLoad〜関数はテクスチャ転送を行います。
+*		TEXRESM_CutTex〜関数はテクスチャ実データの破棄を行います。
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- * ���I�u�W�F�N�g�|�C���^
+ * ●オブジェクトポインタ
  *
- *	@brief	�e�N�X�`�����\�[�X��Vram�ɓ]�����ăe�N�X�`���̎��f�[�^��j��
+ *	@brief	テクスチャリソースをVramに転送いてテクスチャの実データを破棄
  *
- *	@param	r_obj	�e�N�X�`�����\�[�X�I�u�W�F
+ *	@param	r_obj	テクスチャリソースオブジェ
  *
  *	@return	none
  *
- * ���̊֐����ĂԂƃe�N�X�`�����f�[�^�͔j������܂��B
+ * この関数を呼ぶとテクスチャ実データは破棄されます。
  *
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TEXRESM_TexLoadAndCutTexPTR( TEXRES_OBJ_PTR r_obj );
 //----------------------------------------------------------------------------
 /**
- * ��ID
+ * ●ID
  *
- *	@brief	�e�N�X�`�����\�[�X��Vram�ɓ]�����ăe�N�X�`���̎��f�[�^��j��
+ *	@brief	テクスチャリソースをVramに転送してテクスチャの実データを破棄
  *
- *	@param	resm		�e�N�X�`�����\�[�X�}�l�[�W��
- *	@param	id			�o�^ID
+ *	@param	resm		テクスチャリソースマネージャ
+ *	@param	id			登録ID
  *
  *	@return	none
  *
- * ���̊֐����ĂԂƃe�N�X�`�����f�[�^�͔j������܂��B
+ * この関数を呼ぶとテクスチャ実データは破棄されます。
  *
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TEXRESM_TexLoadAndCutTexID( TEXRES_MANAGER_PTR resm, int id );
 //----------------------------------------------------------------------------
 /**
- * ���I�u�W�F�N�g�|�C���^
+ * ●オブジェクトポインタ
  *
- *	@brief	�e�N�X�`�����\�[�X��Vram�ɓ]��
+ *	@brief	テクスチャリソースをVramに転送
  *
- *	@param	r_obj	�e�N�X�`�����\�[�X�I�u�W�F
+ *	@param	r_obj	テクスチャリソースオブジェ
  *
  *	@return	none
  *
- *	TEXRESM_TexLoadAndCutTex�֐���
- *		�E�e�N�X�`���f�[�^�]��
- *		�E�e�N�X�`�����f�[�^�폜
- *	�̂Q�̏����ɕ������֐��ł��B
+ *	TEXRESM_TexLoadAndCutTex関数を
+ *		・テクスチャデータ転送
+ *		・テクスチャ実データ削除
+ *	の２つの処理に分けた関数です。
  * 
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TEXRESM_TexLoadPTR( TEXRES_OBJ_PTR r_obj );
 //----------------------------------------------------------------------------
 /**
- * ��ID
+ * ●ID
  *
- *	@brief	�e�N�X�`�����\�[�X��Vram�ɓ]��
+ *	@brief	テクスチャリソースをVramに転送
  *
- *	@param	resm		�e�N�X�`�����\�[�X�}�l�[�W��
- *	@param	id			�o�^ID
+ *	@param	resm		テクスチャリソースマネージャ
+ *	@param	id			登録ID
  *
  *	@return	none
  *
- *	TEXRESM_TexLoadAndCutTex�֐���
- *		�E�e�N�X�`���f�[�^�]��
- *		�E�e�N�X�`�����f�[�^�폜
- *	�̂Q�̏����ɕ������֐��ł��B
+ *	TEXRESM_TexLoadAndCutTex関数を
+ *		・テクスチャデータ転送
+ *		・テクスチャ実データ削除
+ *	の２つの処理に分けた関数です。
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TEXRESM_TexLoadID( TEXRES_MANAGER_PTR resm, int id );
 //----------------------------------------------------------------------------
 /**
- * ���I�u�W�F�N�g�|�C���^
+ * ●オブジェクトポインタ
  *
- *	@brief	�e�N�X�`�����\�[�X�̎��f�[�^��j��
+ *	@brief	テクスチャリソースの実データを破棄
  *
- *	@param	r_obj	�e�N�X�`�����\�[�X�I�u�W�F
+ *	@param	r_obj	テクスチャリソースオブジェ
  *
  *	@return	none
  *
- *	TEXRESM_TexLoadAndCutTex�֐���
- *		�E�e�N�X�`���f�[�^�]��
- *		�E�e�N�X�`�����f�[�^�폜
- *	�̂Q�̏����ɕ������֐��ł��B
+ *	TEXRESM_TexLoadAndCutTex関数を
+ *		・テクスチャデータ転送
+ *		・テクスチャ実データ削除
+ *	の２つの処理に分けた関数です。
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TEXRESM_CutTexPTR( TEXRES_OBJ_PTR r_obj );
 //----------------------------------------------------------------------------
 /**
- * ��ID
+ * ●ID
  *
- *	@brief	�e�N�X�`�����\�[�X�̎��f�[�^��j��
+ *	@brief	テクスチャリソースの実データを破棄
  *
- *	@param	resm		�e�N�X�`�����\�[�X�}�l�[�W��
- *	@param	id			�o�^ID
+ *	@param	resm		テクスチャリソースマネージャ
+ *	@param	id			登録ID
  *
  *	@return	none
  *
- *	TEXRESM_TexLoadAndCutTex�֐���
- *		�E�e�N�X�`���f�[�^�]��
- *		�E�e�N�X�`�����f�[�^�폜
- *	�̂Q�̏����ɕ������֐��ł��B
+ *	TEXRESM_TexLoadAndCutTex関数を
+ *		・テクスチャデータ転送
+ *		・テクスチャ実データ削除
+ *	の２つの処理に分けた関数です。
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TEXRESM_CutTexID( TEXRES_MANAGER_PTR resm, int id );
 
 //----------------------------------------------------------------------------
 /**
- * �I�u�W�F�N�g�|�C���^�Ŏ擾
+ * オブジェクトポインタで取得
  *
- *	@brief	�e�N�X�`���L�[�̎擾
+ *	@brief	テクスチャキーの取得
  *
- *	@param	r_obj	�e�N�X�`�����\�[�X�I�u�W�F
+ *	@param	r_obj	テクスチャリソースオブジェ
  *
- *	@return	�e�N�X�`���L�[
+ *	@return	テクスチャキー
  *	
- *	NNSGfdTexKey�̒���
- *		NNS_GFD_ALLOC_ERROR_TEXKEY	VramKey�擾���ĂȂ�
- *		���̑�						VramKey�擾���Ă�
+ *	NNSGfdTexKeyの中が
+ *		NNS_GFD_ALLOC_ERROR_TEXKEY	VramKey取得してない
+ *		その他						VramKey取得してる
  *
  */
 //-----------------------------------------------------------------------------
@@ -876,18 +876,18 @@ GLOBAL NNSGfdTexKey TEXRESM_GetTexKeyPTR( CONST_TEXRES_OBJ_PTR r_obj );
 
 //----------------------------------------------------------------------------
 /**
- * ID�Ŏ擾
+ * IDで取得
  *
- *	@brief	�e�N�X�`���L�[�̎擾
+ *	@brief	テクスチャキーの取得
  *
- *	@param	resm		�e�N�X�`�����\�[�X�}�l�[�W��
- *	@param	id			�o�^ID
+ *	@param	resm		テクスチャリソースマネージャ
+ *	@param	id			登録ID
  *
- *	@return	�e�N�X�`���L�[
+ *	@return	テクスチャキー
  *
- *	NNSGfdTexKey�̒���
- *		NNS_GFD_ALLOC_ERROR_TEXKEY	VramKey�擾���ĂȂ�
- *		���̑�						VramKey�擾���Ă�
+ *	NNSGfdTexKeyの中が
+ *		NNS_GFD_ALLOC_ERROR_TEXKEY	VramKey取得してない
+ *		その他						VramKey取得してる
  *
  */
 //-----------------------------------------------------------------------------
@@ -895,17 +895,17 @@ GLOBAL NNSGfdTexKey TEXRESM_GetTexKeyID( CONST_TEXRES_MANAGER_PTR resm, int id )
 
 //----------------------------------------------------------------------------
 /**
- * �I�u�W�F�N�g�|�C���^�Ŏ擾
+ * オブジェクトポインタで取得
  *
- *	@brief	�e�N�X�`��4x4�L�[�̎擾
+ *	@brief	テクスチャ4x4キーの取得
  *
- *	@param	r_obj	�e�N�X�`�����\�[�X�I�u�W�F
+ *	@param	r_obj	テクスチャリソースオブジェ
  *
- *	@return	�e�N�X�`���L�[
+ *	@return	テクスチャキー
  *
- *	NNSGfdTexKey�̒���
- *		NNS_GFD_ALLOC_ERROR_TEXKEY	VramKey�擾���ĂȂ�
- *		���̑�						VramKey�擾���Ă�
+ *	NNSGfdTexKeyの中が
+ *		NNS_GFD_ALLOC_ERROR_TEXKEY	VramKey取得してない
+ *		その他						VramKey取得してる
  *
  */
 //-----------------------------------------------------------------------------
@@ -913,18 +913,18 @@ GLOBAL NNSGfdTexKey TEXRESM_GetTex4x4KeyPTR( CONST_TEXRES_OBJ_PTR r_obj );
 
 //----------------------------------------------------------------------------
 /**
- * ID�Ŏ擾
+ * IDで取得
  *
- *	@brief	�e�N�X�`��4x4�L�[�̎擾
+ *	@brief	テクスチャ4x4キーの取得
  *
- *	@param	resm		�e�N�X�`�����\�[�X�}�l�[�W��
- *	@param	id			�o�^ID
+ *	@param	resm		テクスチャリソースマネージャ
+ *	@param	id			登録ID
  *
- *	@return	�e�N�X�`���L�[
+ *	@return	テクスチャキー
  *
- *	NNSGfdTexKey�̒���
- *		NNS_GFD_ALLOC_ERROR_TEXKEY	VramKey�擾���ĂȂ�
- *		���̑�						VramKey�擾���Ă�
+ *	NNSGfdTexKeyの中が
+ *		NNS_GFD_ALLOC_ERROR_TEXKEY	VramKey取得してない
+ *		その他						VramKey取得してる
  *
  */
 //-----------------------------------------------------------------------------
@@ -932,17 +932,17 @@ GLOBAL NNSGfdTexKey TEXRESM_GetTex4x4KeyID( CONST_TEXRES_MANAGER_PTR resm, int i
 
 //----------------------------------------------------------------------------
 /**
- * �I�u�W�F�N�g�|�C���^�Ŏ擾
+ * オブジェクトポインタで取得
  *
- *	@brief	�p���b�g�L�[�̎擾
+ *	@brief	パレットキーの取得
  *
- *	@param	r_obj	�e�N�X�`�����\�[�X�I�u�W�F
+ *	@param	r_obj	テクスチャリソースオブジェ
  *
- *	@return	�p���b�g�L�[
+ *	@return	パレットキー
  *
- *	NNSGfdPlttKey�̒���
- *		NNS_GFD_ALLOC_ERROR_PLTTKEY	VramKey�擾���ĂȂ�
- *		���̑�						VramKey�擾���Ă�
+ *	NNSGfdPlttKeyの中が
+ *		NNS_GFD_ALLOC_ERROR_PLTTKEY	VramKey取得してない
+ *		その他						VramKey取得してる
  *
  */
 //-----------------------------------------------------------------------------
@@ -950,18 +950,18 @@ GLOBAL NNSGfdPlttKey TEXRESM_GetPlttKeyPTR( CONST_TEXRES_OBJ_PTR r_obj );
 
 //----------------------------------------------------------------------------
 /**
- * ID�Ŏ擾
+ * IDで取得
  *
- *	@brief	�p���b�g�L�[�̎擾
+ *	@brief	パレットキーの取得
  *
- *	@param	resm		�e�N�X�`�����\�[�X�}�l�[�W��
- *	@param	id			�o�^ID
+ *	@param	resm		テクスチャリソースマネージャ
+ *	@param	id			登録ID
  *
- *	@return	�p���b�g�L�[
+ *	@return	パレットキー
  *
- *	NNSGfdPlttKey�̒���
- *		NNS_GFD_ALLOC_ERROR_PLTTKEY	VramKey�擾���ĂȂ�
- *		���̑�						VramKey�擾���Ă�
+ *	NNSGfdPlttKeyの中が
+ *		NNS_GFD_ALLOC_ERROR_PLTTKEY	VramKey取得してない
+ *		その他						VramKey取得してる
  *
  */
 //-----------------------------------------------------------------------------
@@ -969,27 +969,27 @@ GLOBAL NNSGfdPlttKey TEXRESM_GetPlttKeyID( CONST_TEXRES_MANAGER_PTR resm, int id
 
 //-----------------------------------------------------------------------------
 /**
-*		�w�肳�ꂽVramKey�ɓ]������֐��ł��B
+*		指定されたVramKeyに転送する関数です。
 *
-*		TEXRESM_CutTex�`�֐��Ŏ��f�[�^��j�������f�[�^��
-*									�]�����邱�Ƃ��ł��܂���B
+*		TEXRESM_CutTex〜関数で実データを破棄したデータは
+*									転送することができません。
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- * ���I�u�W�F�N�g�|�C���^
+ * ●オブジェクトポインタ
  *
- *	@brief	�w�肳�ꂽVramKey�ʒu�Ƀe�N�X�`����]�����܂��B
+ *	@brief	指定されたVramKey位置にテクスチャを転送します。
  *
- *	@param	r_obj		�e�N�X�`�����\�[�X�I�u�W�F
- *	@param	texkey		�e�N�X�`���L�[
- *	@param	tex4x4key	�e�N�X�`��4x4�L�[
- *	@param	plttkey		�p���b�g�L�[
+ *	@param	r_obj		テクスチャリソースオブジェ
+ *	@param	texkey		テクスチャキー
+ *	@param	tex4x4key	テクスチャ4x4キー
+ *	@param	plttkey		パレットキー
  *
  *	@return	none
  *
- * ������texkey�Eplttkey�f�[�^�̓e�N�X�`�����\�[�X�}�l�[�W���ł�
- * �Ǘ����܂���̂ŁA�e���m�ہA�j�����Ă��������B
+ * 引数のtexkey・plttkeyデータはテクスチャリソースマネージャでは
+ * 管理しませんので、各自確保、破棄してください。
  *
  */
 //-----------------------------------------------------------------------------
@@ -997,20 +997,20 @@ GLOBAL void TEXRESM_TexLoadOfKeyPTR( TEXRES_OBJ_PTR r_obj, NNSGfdTexKey texkey, 
 
 //----------------------------------------------------------------------------
 /**
- *	��ID
+ *	●ID
  * 
- *	@brief	�w�肳�ꂽVramKey�ʒu�Ƀe�N�X�`����]�����܂��B
+ *	@brief	指定されたVramKey位置にテクスチャを転送します。
  *
- *	@param	resm		�e�N�X�`�����\�[�X�}�l�[�W��
- *	@param	id			�o�^ID
- *	@param	texkey		�e�N�X�`���L�[
- *	@param	tex4x4key	�e�N�X�`��4x4�L�[
- *	@param	plttkey		�p���b�g�L�[
+ *	@param	resm		テクスチャリソースマネージャ
+ *	@param	id			登録ID
+ *	@param	texkey		テクスチャキー
+ *	@param	tex4x4key	テクスチャ4x4キー
+ *	@param	plttkey		パレットキー
  *
  *	@return	none
  *
- * ������texkey�Eplttkey�f�[�^�̓e�N�X�`�����\�[�X�}�l�[�W���ł�
- * �Ǘ����܂���̂ŁA�e���m�ہA�j�����Ă��������B
+ * 引数のtexkey・plttkeyデータはテクスチャリソースマネージャでは
+ * 管理しませんので、各自確保、破棄してください。
  *
  */
 //-----------------------------------------------------------------------------
@@ -1021,16 +1021,16 @@ GLOBAL void TEXRESM_TexLoadOfKeyID( TEXRES_MANAGER_PTR resm, int id, NNSGfdTexKe
 
 //-----------------------------------------------------------------------------
 /**
- *			�c�[���֐�
+ *			ツール関数
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	���f�����\�[�X����e�N�X�`�����f�[�^�𔲂����T�C�Y���擾����
+ *	@brief	モデルリソースからテクスチャ実データを抜いたサイズを取得する
  *
- *	@param	p_file	���f���̃t�@�C��
+ *	@param	p_file	モデルのファイル
  *
- *	@return	�e�N�X�`���f�[�^��j�������T�C�Y
+ *	@return	テクスチャデータを破棄したサイズ
  */
 //-----------------------------------------------------------------------------
 GLOBAL u32 TEXRESM_TOOL_CutTexDataSizeGet( NNSG3dResFileHeader* p_file );

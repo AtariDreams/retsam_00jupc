@@ -1,10 +1,10 @@
 //=============================================================================
 /**
  * @file	comm_field_state.h
- * @brief	’ÊMó‘Ô‚ğŠÇ—‚·‚éƒT[ƒrƒX  ’ÊM‚ÌãˆÊ‚É‚ ‚é
- *          ƒXƒŒƒbƒh‚Ì‚Ğ‚Æ‚Â‚Æ‚µ‚Ä“­‚«A©•ª‚Ì’ÊMó‘Ô‚â‘¼‚Ì‹@Ší‚Ì
- *          ŠJn‚âI—¹‚ğŠÇ—‚·‚é
- *          ƒtƒB[ƒ‹ƒhã‚Å’¼ÚŠÇ—‚µ‚½‚¢‚Ì‚Åcommunication‚©‚çfield‚ÉˆÚ“® 2005.09.28
+ * @brief	é€šä¿¡çŠ¶æ…‹ã‚’ç®¡ç†ã™ã‚‹ã‚µãƒ¼ãƒ“ã‚¹  é€šä¿¡ã®ä¸Šä½ã«ã‚ã‚‹
+ *          ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã²ã¨ã¤ã¨ã—ã¦åƒãã€è‡ªåˆ†ã®é€šä¿¡çŠ¶æ…‹ã‚„ä»–ã®æ©Ÿå™¨ã®
+ *          é–‹å§‹ã‚„çµ‚äº†ã‚’ç®¡ç†ã™ã‚‹
+ *          ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã§ç›´æ¥ç®¡ç†ã—ãŸã„ã®ã§communicationã‹ã‚‰fieldã«ç§»å‹• 2005.09.28
  * @author	Katsumi Ohno
  * @date    2005.08.08
  */
@@ -16,63 +16,63 @@
 #include "field/fieldsys.h" //FIELDSYS_WORK
 #include "savedata/undergrounddata.h"  //SECRETBASEDATA
 
-#define COMM_HEAPSIZE_BATTLE_CHILD    (0x9000)  // ƒoƒgƒ‹q‹@—Ìˆæ
-#define COMM_HEAPSIZE_BATTLE_PARENT   (0x9000)  // ƒoƒgƒ‹e‹@—Ìˆæ
-#define COMM_HEAPSIZE_UNDERGROUND     (0xB000)  // ’n‰º—Ìˆæ
+#define COMM_HEAPSIZE_BATTLE_CHILD    (0x9000)  // ãƒãƒˆãƒ«å­æ©Ÿé ˜åŸŸ
+#define COMM_HEAPSIZE_BATTLE_PARENT   (0x9000)  // ãƒãƒˆãƒ«è¦ªæ©Ÿé ˜åŸŸ
+#define COMM_HEAPSIZE_UNDERGROUND     (0xB000)  // åœ°ä¸‹é ˜åŸŸ
 
 
 //==============================================================================
-// externéŒ¾
+// externå®£è¨€
 //==============================================================================
 
 
-// ’n‰º‚É“ü‚éê‡‚Ìˆ— ƒXƒe[ƒg‚ª’n‰º—p‚É•ÏX‚³‚ê‚é
+// åœ°ä¸‹ã«å…¥ã‚‹å ´åˆã®å‡¦ç† ã‚¹ãƒ†ãƒ¼ãƒˆãŒåœ°ä¸‹ç”¨ã«å¤‰æ›´ã•ã‚Œã‚‹
 extern void CommFieldStateEnterUnderGround(FIELDSYS_WORK* pFSys);
 
 extern void CommFieldStateArrivalUnderGround(void);
 
-// ’n‰º‚ğ‚Å‚éê‡‚Ìˆ— ƒXƒe[ƒg‚ª‰½‚à‚È‚µ‚É•ÏX‚³‚ê‚é
+// åœ°ä¸‹ã‚’ã§ã‚‹å ´åˆã®å‡¦ç† ã‚¹ãƒ†ãƒ¼ãƒˆãŒä½•ã‚‚ãªã—ã«å¤‰æ›´ã•ã‚Œã‚‹
 extern void CommFieldStateExitUnderGround(void);
-// ’n‰º‚ğJUMP‚·‚éê‡‚Ìˆ— ƒXƒe[ƒg‚ªHoldó‘Ô‚É‚È‚é
+// åœ°ä¸‹ã‚’JUMPã™ã‚‹å ´åˆã®å‡¦ç† ã‚¹ãƒ†ãƒ¼ãƒˆãŒHoldçŠ¶æ…‹ã«ãªã‚‹
 extern BOOL CommStateJumpUnderGround(void);
-// ’n‰º‚ğ’ÊMØ’f‚µ‚ÄJUMP‚·‚éê‡‚Ìˆ— ƒXƒe[ƒg‚ªHoldó‘Ô‚É‚È‚é
+// åœ°ä¸‹ã‚’é€šä¿¡åˆ‡æ–­ã—ã¦JUMPã™ã‚‹å ´åˆã®å‡¦ç† ã‚¹ãƒ†ãƒ¼ãƒˆãŒHoldçŠ¶æ…‹ã«ãªã‚‹
 extern void CommStateExitAndJumpUnderGround(void);
-// ’n‰º‚ğ’ÊMØ’f‚·‚é‚ªAƒT[ƒrƒX‚Íc‚µ‚½‚Ü‚Ü
+// åœ°ä¸‹ã‚’é€šä¿¡åˆ‡æ–­ã™ã‚‹ãŒã€ã‚µãƒ¼ãƒ“ã‚¹ã¯æ®‹ã—ãŸã¾ã¾
 extern void CommFieldStateStalthUnderGround(void);
-// ’n‰º’ÊM‚ğÄŠJ
+// åœ°ä¸‹é€šä¿¡ã‚’å†é–‹
 extern void CommFieldStateUnderGroundReConnect(void);
 
-// ’n‰º‚ğJUMP‚µI‚í‚Á‚½ê‡‚Ìˆ— ƒXƒe[ƒg‚ªActiveó‘Ô‚É‚È‚é
+// åœ°ä¸‹ã‚’JUMPã—çµ‚ã‚ã£ãŸå ´åˆã®å‡¦ç† ã‚¹ãƒ†ãƒ¼ãƒˆãŒActiveçŠ¶æ…‹ã«ãªã‚‹
 extern BOOL CommStateJumpEndUnderGround(void);
 
-// ƒoƒgƒ‹‚Ée‚É‚È‚éê‡‚Ìˆ—ŠJn
+// ãƒãƒˆãƒ«æ™‚ã«è¦ªã«ãªã‚‹å ´åˆã®å‡¦ç†é–‹å§‹
 extern void CommFieldStateEnterBattleParent(FIELDSYS_WORK* pFSys,int serviceNo, int regulationNo);
-// ƒoƒgƒ‹‚Éq‚É‚È‚éê‡‚Ìˆ—ŠJn
+// ãƒãƒˆãƒ«æ™‚ã«å­ã«ãªã‚‹å ´åˆã®å‡¦ç†é–‹å§‹
 extern void CommFieldStateEnterBattleChild(FIELDSYS_WORK* pFSys,int serviceNo, int regulationNo);
-// ƒoƒgƒ‹‚Ée‚ğŒˆ‚ß‚½Û‚Ìq‹@‚Ìˆ—
+// ãƒãƒˆãƒ«æ™‚ã«è¦ªã‚’æ±ºã‚ãŸéš›ã®å­æ©Ÿã®å‡¦ç†
 extern void CommFieldStateConnectBattleChild(int connectIndex);
-// ƒoƒgƒ‹‚Éq‹@‚ğÄ‹N“®‚·‚é‚Ìˆ—
+// ãƒãƒˆãƒ«æ™‚ã«å­æ©Ÿã‚’å†èµ·å‹•ã™ã‚‹æ™‚ã®å‡¦ç†
 extern void CommFieldStateRebootBattleChild(void);
-// ƒoƒgƒ‹‚ÉˆÚ“®‚Å‚«‚é•”‰®‚É“ü‚é‚Ìˆ—
+// ãƒãƒˆãƒ«æ™‚ã«ç§»å‹•ã§ãã‚‹éƒ¨å±‹ã«å…¥ã‚‹æ™‚ã®å‡¦ç†
 extern void CommFieldStateEnterBattleRoom(FIELDSYS_WORK* pFSys);
-// ˆÚ“®ˆÊ’u‚É—ˆ‚½‚±‚Æ‚ÌóM
+// ç§»å‹•ä½ç½®ã«æ¥ãŸã“ã¨ã®å—ä¿¡
 extern void CommDirectRecvStartPos(int netID, int size, void* pData, void* pWork);
-// ˆÚ“®ˆÊ’u‚É‚¢‚é‚©‚Ç‚¤‚©
+// ç§»å‹•ä½ç½®ã«ã„ã‚‹ã‹ã©ã†ã‹
 extern BOOL CommDirectIsMoveState(void);
-// ƒf[ƒ^ƒRƒs[‚ªI‚í‚Á‚½‚©‚Ç‚¤‚©
+// ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼ãŒçµ‚ã‚ã£ãŸã‹ã©ã†ã‹
 extern BOOL CommFieldStateIsCopyEnd(void);
 
-// ƒgƒŒ[ƒi[ƒJ[ƒh‰{——
+// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰é–²è¦§
 extern void CommDCRecvTrainerCard(int netID ,int size, void* pBuff, void* pWork );
-// ƒgƒŒ[ƒi[ƒJ[ƒh‰{——
+// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰é–²è¦§
 extern u8* CommDCGetTrainerCardRecvBuff( int netID, void* pWork, int size);
 
-// I—¹ˆ—è‘±‚«
+// çµ‚äº†å‡¦ç†æ‰‹ç¶šã
 extern void CommFieldStateExitBattle(void);
-// I—¹ˆ—è‘±‚« ƒ^ƒCƒ~ƒ“ƒO“¯Šú”Å
+// çµ‚äº†å‡¦ç†æ‰‹ç¶šã ã‚¿ã‚¤ãƒŸãƒ³ã‚°åŒæœŸç‰ˆ
 extern void CommFieldStateExitBattleTiming(void);
 
-// ˆÚ“®‰Â”\ƒXƒe[ƒg‚È‚Ì‚©‚Ç‚¤‚©•Ô‚·
+// ç§»å‹•å¯èƒ½ã‚¹ãƒ†ãƒ¼ãƒˆãªã®ã‹ã©ã†ã‹è¿”ã™
 extern BOOL CommIsUnderGroundMoveState(void);
 
 #ifdef PM_DEBUG

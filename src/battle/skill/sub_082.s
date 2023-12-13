@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_082.s
- *@brief	戦闘シーケンス
- *			みちづれ追加効果シーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			縺ｿ縺｡縺･繧瑚ｿｽ蜉蜉ｹ譫懊す繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2006.01.24
  *
@@ -18,6 +18,6 @@ SUB_082:
 	MESSAGE		MichidureMineMsg,TAG_NICK,SIDE_ATTACK
 	SERVER_WAIT
 	WAIT		MSG_WAIT
-	//みちづれフラグをON
+	//縺ｿ縺｡縺･繧後ヵ繝ｩ繧ｰ繧丹N
 	PSP_VALUE	VAL_BIT,SIDE_ATTACK,ID_PSP_condition2,CONDITION2_MICHIDURE
 	SEQ_END

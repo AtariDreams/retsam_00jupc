@@ -39,7 +39,7 @@ NNS_G3dPrintVisAnm(const NNSG3dResVisAnm* pResVisAnm )
     tabPrint_(); RES_PRINTF( "size of animation, %d bytes\n", pResVisAnm->size );
 
     //
-    // ‚·‚×‚Ä‚Ìƒm[ƒh‚É‘Î‚µ‚Ä
+    // ã™ã¹ã¦ã®ãƒŽãƒ¼ãƒ‰ã«å¯¾ã—ã¦
     //
     tabPlus_();
     tabPrint_(); RES_PRINTF("    , "
@@ -80,11 +80,11 @@ NNS_G3dPrintVisAnm(const NNSG3dResVisAnm* pResVisAnm )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintVisAnmSet
 
-  Description:  NNSG3dResVisAnmSet ‚Ì“à—e‚ð ƒfƒoƒbƒNo—Í‚É•\Ž¦‚µ‚Ü‚·B
+  Description:  NNSG3dResVisAnmSet ã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã«è¡¨ç¤ºã—ã¾ã™ã€‚
                 
-  Arguments:    pAnmSet:     ƒrƒWƒrƒŠƒeƒBƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒZƒbƒg‚ð‘©‚Ë‚é\‘¢‘Ì
+  Arguments:    pAnmSet:     ãƒ“ã‚¸ãƒ“ãƒªãƒ†ã‚£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚»ãƒƒãƒˆã‚’æŸã­ã‚‹æ§‹é€ ä½“
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void
@@ -113,11 +113,11 @@ NNS_G3dPrintVisAnmSet( const NNSG3dResVisAnmSet* pAnmSet )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintNSBVA
 
-  Description:  NSBVA ƒtƒ@ƒCƒ‹ ‚Ì“à—e‚ð ƒfƒoƒbƒNo—Í‚É•\Ž¦‚µ‚Ü‚·B
+  Description:  NSBVA ãƒ•ã‚¡ã‚¤ãƒ« ã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã«è¡¨ç¤ºã—ã¾ã™ã€‚
                 
-  Arguments:    binFile:     NSBVAƒtƒ@ƒCƒ‹ƒf[ƒ^‚Ìæ“ª‚ðŽw‚·ƒ|ƒCƒ“ƒ^
+  Arguments:    binFile:     NSBVAãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚’æŒ‡ã™ãƒã‚¤ãƒ³ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void
@@ -134,7 +134,7 @@ NNS_G3dPrintNSBVA(const u8* binFile)
     NNS_G3dPrintFileHeader(header);
 
     //
-    // ‚·‚×‚Ä‚ÌƒuƒƒbƒN‚É‚Â‚¢‚Ä...
+    // ã™ã¹ã¦ã®ãƒ–ãƒ­ãƒƒã‚¯ã«ã¤ã„ã¦...
     //
     numBlocks  = header->dataBlocks;
     for ( i = 0; i < numBlocks; ++i )
@@ -146,7 +146,7 @@ NNS_G3dPrintNSBVA(const u8* binFile)
         NNS_G3dPrintDataBlockHeader(blk);
 
         //
-        // ‹ï‘Ì“I‚ÈŽí—Þ‚²‚Æ‚ÉƒTƒ}ƒŠ‚ÌƒfƒoƒbƒNo—Í‚ðŽÀs‚µ‚Ü‚·
+        // å…·ä½“çš„ãªç¨®é¡žã”ã¨ã«ã‚µãƒžãƒªã®ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã‚’å®Ÿè¡Œã—ã¾ã™
         //
         tabPlus_();
         switch( blk->kind )

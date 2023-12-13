@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	footprint_common.h
- * @brief	‘«Õƒ{[ƒh‹¤’Êƒwƒbƒ_
+ * @brief	è¶³è·¡ãƒœãƒ¼ãƒ‰å…±é€šãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2008.01.18(‹à)
+ * @date	2008.01.18(é‡‘)
  */
 //==============================================================================
 #ifndef __FOOTPRINT_COMMON_H__
@@ -11,66 +11,66 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 
-///Œ»Ý‚ÌƒQ[ƒ€‚Ìó‘Ô
+///ç¾åœ¨ã®ã‚²ãƒ¼ãƒ ã®çŠ¶æ…‹
 enum{
-	FOOTPRINT_GAME_STATUS_INIT,			///<‰Šú‰»ˆ—’†
-	FOOTPRINT_GAME_STATUS_NORMAL,			///<’Êí
-	FOOTPRINT_GAME_STATUS_EXIT_SELECT,	///<I—¹‘I‘ð
-	FOOTPRINT_GAME_STATUS_FINISH,			///<I—¹ˆ—’†
+	FOOTPRINT_GAME_STATUS_INIT,			///<åˆæœŸåŒ–å‡¦ç†ä¸­
+	FOOTPRINT_GAME_STATUS_NORMAL,			///<é€šå¸¸
+	FOOTPRINT_GAME_STATUS_EXIT_SELECT,	///<çµ‚äº†é¸æŠž
+	FOOTPRINT_GAME_STATUS_FINISH,			///<çµ‚äº†å‡¦ç†ä¸­
 };
 
 //--------------------------------------------------------------
-//	BGƒtƒŒ[ƒ€
+//	BGãƒ•ãƒ¬ãƒ¼ãƒ 
 //--------------------------------------------------------------
-///ƒtƒŒ[ƒ€Žw’è
+///ãƒ•ãƒ¬ãƒ¼ãƒ æŒ‡å®š
 enum{
-	//ƒƒCƒ“‰æ–Ê
-	FOOT_FRAME_WIN = GF_BGL_FRAME1_M,			//ƒEƒBƒ“ƒhƒE–Ê
-	FOOT_FRAME_PANEL = GF_BGL_FRAME2_M,			//ƒpƒlƒ‹
-	FOOT_FRAME_BG = GF_BGL_FRAME3_M,			//”wŒi
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢
+	FOOT_FRAME_WIN = GF_BGL_FRAME1_M,			//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢
+	FOOT_FRAME_PANEL = GF_BGL_FRAME2_M,			//ãƒ‘ãƒãƒ«
+	FOOT_FRAME_BG = GF_BGL_FRAME3_M,			//èƒŒæ™¯
 	
-	//ƒTƒu‰æ–Ê
-	FOOT_SUBFRAME_WIN = GF_BGL_FRAME1_S,		//ƒEƒBƒ“ƒhƒE–¼
-	FOOT_SUBFRAME_PLATE = GF_BGL_FRAME2_S,			//ƒvƒŒ[ƒg
-	FOOT_SUBFRAME_BG = GF_BGL_FRAME3_S,			//”wŒi
+	//ã‚µãƒ–ç”»é¢
+	FOOT_SUBFRAME_WIN = GF_BGL_FRAME1_S,		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å
+	FOOT_SUBFRAME_PLATE = GF_BGL_FRAME2_S,			//ãƒ—ãƒ¬ãƒ¼ãƒˆ
+	FOOT_SUBFRAME_BG = GF_BGL_FRAME3_S,			//èƒŒæ™¯
 };
 
 //--------------------------------------------------------------
-//	BGƒvƒ‰ƒCƒIƒŠƒeƒB
+//	BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum{
-	FOOT_BGPRI_3D = 2,		//3D–ÊBGƒvƒ‰ƒCƒIƒŠƒeƒB
+	FOOT_BGPRI_3D = 2,		//3Dé¢BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 	
-	FOOT_BGPRI_WIN = 0,		//ƒpƒlƒ‹–ÊBGƒvƒ‰ƒCƒIƒŠƒeƒB
-	FOOT_BGPRI_PANEL = 0,		//ƒpƒlƒ‹–ÊBGƒvƒ‰ƒCƒIƒŠƒeƒB
-	FOOT_BGPRI_BG = 3,			//”wŒi–ÊBGƒvƒ‰ƒCƒIƒŠƒeƒB
+	FOOT_BGPRI_WIN = 0,		//ãƒ‘ãƒãƒ«é¢BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	FOOT_BGPRI_PANEL = 0,		//ãƒ‘ãƒãƒ«é¢BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	FOOT_BGPRI_BG = 3,			//èƒŒæ™¯é¢BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
-	FOOT_SUBBGPRI_WIN = 2,		//ƒpƒlƒ‹–ÊBGƒvƒ‰ƒCƒIƒŠƒeƒB
-	FOOT_SUBBGPRI_PLATE = 3,	//ƒvƒŒ[ƒg–ÊBGƒvƒ‰ƒCƒIƒŠƒeƒB
-	FOOT_SUBBGPRI_BG = 3,		//”wŒi–ÊBGƒvƒ‰ƒCƒIƒŠƒeƒB
+	FOOT_SUBBGPRI_WIN = 2,		//ãƒ‘ãƒãƒ«é¢BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	FOOT_SUBBGPRI_PLATE = 3,	//ãƒ—ãƒ¬ãƒ¼ãƒˆé¢BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	FOOT_SUBBGPRI_BG = 3,		//èƒŒæ™¯é¢BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 };
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[BGƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ã‚¢ã‚¯ã‚¿ãƒ¼BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum{
-	ACTBGPRI_INK = 1,				///<ƒCƒ“ƒN
-	ACTBGPRI_INK_FOOT = 1,			///<ƒCƒ“ƒN‚Ìã‚É”z’u‚·‚é‘«Õ
-	ACTBGPRI_INK_FOUNDATION = 1,	///<ƒCƒ“ƒN‚Ì‰º’n
+	ACTBGPRI_INK = 1,				///<ã‚¤ãƒ³ã‚¯
+	ACTBGPRI_INK_FOOT = 1,			///<ã‚¤ãƒ³ã‚¯ã®ä¸Šã«é…ç½®ã™ã‚‹è¶³è·¡
+	ACTBGPRI_INK_FOUNDATION = 1,	///<ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ°
 	
-	ACTBGPRI_TOUCH_EFF = 0,			///<ƒCƒ“ƒN‚ðƒ^ƒbƒ`‚µ‚½Žž‚Éo‚·ƒGƒtƒFƒNƒg
-	ACTBGPRI_EXIT_FONT = 0,			///<u‚â‚ß‚év
+	ACTBGPRI_TOUCH_EFF = 0,			///<ã‚¤ãƒ³ã‚¯ã‚’ã‚¿ãƒƒãƒã—ãŸæ™‚ã«å‡ºã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	ACTBGPRI_EXIT_FONT = 0,			///<ã€Œã‚„ã‚ã‚‹ã€
 	
-	//-- ƒTƒu‰æ–Ê --//
-	ACTBGPRI_SUB_NAME_FRAME = 1,	///<–¼‘O‚ðˆÍ‚Þ˜g
-	ACTBGPRI_SUB_NAME_FOOT = 1,		///<–¼‘O‚Ì‰¡‚É”z’u‚·‚é‘«Õ
+	//-- ã‚µãƒ–ç”»é¢ --//
+	ACTBGPRI_SUB_NAME_FRAME = 1,	///<åå‰ã‚’å›²ã‚€æž 
+	ACTBGPRI_SUB_NAME_FOOT = 1,		///<åå‰ã®æ¨ªã«é…ç½®ã™ã‚‹è¶³è·¡
 };
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum{
 	SOFTPRI_TOUCH_EFF = 50,
@@ -79,130 +79,130 @@ enum{
 	SOFTPRI_INK,
 	SOFTPRI_INK_FOUNDATION,
 	
-	//-- ƒTƒu‰æ–Ê --//
+	//-- ã‚µãƒ–ç”»é¢ --//
 	SOFTPRI_SUB_NAME_FRAME = 50,
 	SOFTPRI_SUB_NAME_FOOT,
 };
 
 //--------------------------------------------------------------
-//	ƒpƒŒƒbƒg“WŠJˆÊ’u
+//	ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹ä½ç½®
 //--------------------------------------------------------------
-///ƒ{ƒ^ƒ“‚Ìu‚Í‚¢E‚¢‚¢‚¦vƒpƒŒƒbƒg“WŠJˆÊ’u(ƒƒCƒ“‰æ–Ê)
-#define FOOT_MAINBG_BUTTON_YESNO_PAL	(11)	//2–{Žg—p
-///‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“WŠJˆÊ’u(ƒƒCƒ“‰æ–Ê)
+///ãƒœã‚¿ãƒ³ã®ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹ä½ç½®(ãƒ¡ã‚¤ãƒ³ç”»é¢)
+#define FOOT_MAINBG_BUTTON_YESNO_PAL	(11)	//2æœ¬ä½¿ç”¨
+///ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹ä½ç½®(ãƒ¡ã‚¤ãƒ³ç”»é¢)
 #define FOOT_MAINBG_TALKFONT_PAL	 (13)
-///‰ï˜bƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg“WŠJˆÊ’u(ƒƒCƒ“‰æ–Ê)
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹ä½ç½®(ãƒ¡ã‚¤ãƒ³ç”»é¢)
 #define FOOT_MAINBG_TALKWIN_PAL		(14)
 
-///‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“WŠJˆÊ’u(ƒTƒu‰æ–Ê)
+///ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹ä½ç½®(ã‚µãƒ–ç”»é¢)
 #define FOOT_SUBBG_TALKFONT_PAL		 (13)
 
 //--------------------------------------------------------------
-//	ƒƒbƒZ[ƒWCGX“WŠJˆÊ’u
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸CGXå±•é–‹ä½ç½®
 //--------------------------------------------------------------
-///‰ï˜bƒEƒBƒ“ƒhƒE‚ÌƒLƒƒƒ‰ƒNƒ^“WŠJŠJŽnˆÊ’u
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å±•é–‹é–‹å§‹ä½ç½®
 #define WINCGX_TALKWIN_START	(1)
-///ƒ{ƒ^ƒ“‚Ìu‚Í‚¢E‚¢‚¢‚¦v“WŠJŠJŽnˆÊ’u
+///ãƒœã‚¿ãƒ³ã®ã€Œã¯ã„ãƒ»ã„ã„ãˆã€å±•é–‹é–‹å§‹ä½ç½®
 #define WINCGX_BUTTON_YESNO_START	(WINCGX_TALKWIN_START + TALK_WIN_CGX_SIZ)
-///‰ï˜bƒEƒBƒ“ƒhƒE“à‚ÌƒƒbƒZ[ƒW“WŠJŠJŽnˆÊ’u
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹é–‹å§‹ä½ç½®
 #define WINCGX_MESSAGE_START	(WINCGX_BUTTON_YESNO_START + TOUCH_SW_USE_CHAR_NUM)
 
 //--------------------------------------------------------------
-//	ƒTƒu‰æ–ÊFƒƒbƒZ[ƒWCGX“WŠJˆÊ’u
+//	ã‚µãƒ–ç”»é¢ï¼šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸CGXå±•é–‹ä½ç½®
 //--------------------------------------------------------------
-///–¼‘O•\Ž¦ƒƒbƒZ[ƒW‚ÌƒLƒƒƒ‰ƒNƒ^“WŠJŠJŽnˆÊ’u
+///åå‰è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å±•é–‹é–‹å§‹ä½ç½®
 #define WINCGX_SUB_NAME_START		(0x4000 / 0x20)
-///–¼‘O•\Ž¦BMPWIN‚ÌƒTƒCƒYX(ƒLƒƒƒ‰’PˆÊ)
+///åå‰è¡¨ç¤ºBMPWINã®ã‚µã‚¤ã‚ºX(ã‚­ãƒ£ãƒ©å˜ä½)
 #define WINCGX_SUB_NAME_SIZE_X		(8)
-///–¼‘O•\Ž¦BMPWIN‚ÌƒTƒCƒYY(ƒLƒƒƒ‰’PˆÊ)
+///åå‰è¡¨ç¤ºBMPWINã®ã‚µã‚¤ã‚ºY(ã‚­ãƒ£ãƒ©å˜ä½)
 #define WINCGX_SUB_NAME_SIZE_Y		(2)
-///–¼‘O•\Ž¦‚ÌBMPWIN”
+///åå‰è¡¨ç¤ºã®BMPWINæ•°
 #define FOOTPRINT_BMPWIN_NAME_MAX		(8)
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[
+//	ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------
-///ƒTƒuƒT[ƒtƒF[ƒXY(fx32)
+///ã‚µãƒ–ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹Y(fx32)
 #define FOOTPRINT_SUB_ACTOR_DISTANCE		((192 + 80) << FX32_SHIFT)
-///ƒTƒuƒT[ƒtƒF[ƒXY(int)
+///ã‚µãƒ–ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹Y(int)
 #define FOOTPRINT_SUB_ACTOR_DISTANCE_INTEGER		(FOOTPRINT_SUB_ACTOR_DISTANCE >> FX32_SHIFT)
 
 //--------------------------------------------------------------
-//	ƒVƒXƒeƒ€
+//	ã‚·ã‚¹ãƒ†ãƒ 
 //--------------------------------------------------------------
-///‘«Õƒ{[ƒh‚ÉŽQ‰Á‚Å‚«‚éÅ‘ål”
+///è¶³è·¡ãƒœãƒ¼ãƒ‰ã«å‚åŠ ã§ãã‚‹æœ€å¤§äººæ•°
 #define FOOTPRINT_ENTRY_MAX		(8)
 
-///ƒXƒ^ƒ“ƒv‚Ìo‚¹‚éÅ‘å”
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®å‡ºã›ã‚‹æœ€å¤§æ•°
 #define STAMP_MAX		(128)
 
-///ƒXƒ^ƒ“ƒvƒeƒNƒXƒ`ƒƒ‚ÌVWait“]‘—ƒŠƒNƒGƒXƒgƒoƒbƒtƒ@‚ÌÅ‘å”
+///ã‚¹ã‚¿ãƒ³ãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®VWaitè»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ•°
 #define LOAD_TEX_BUFFER_MAX		(32)
 
 
 //==============================================================================
-//	Œ^’è‹`
+//	åž‹å®šç¾©
 //==============================================================================
-///FOOTPRINT_SYS‚Ì•s’èŒ`ƒ|ƒCƒ“ƒ^
+///FOOTPRINT_SYSã®ä¸å®šå½¢ãƒã‚¤ãƒ³ã‚¿
 typedef struct _FOOTPRINT_SYS * FOOTPRINT_SYS_PTR;
 
-///STAMP_MOVE_WORK‚Ì•s’èŒ`ƒ|ƒCƒ“ƒ^
+///STAMP_MOVE_WORKã®ä¸å®šå½¢ãƒã‚¤ãƒ³ã‚¿
 typedef struct _STAMP_MOVE_WORK * STAMP_MOVE_PTR;
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒ}ƒCƒf[ƒ^
+//	ãƒžã‚¤ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
-///Ž©•ª‚Ì’ÊMƒXƒe[ƒ^ƒX
+///è‡ªåˆ†ã®é€šä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 typedef struct{
-	BOOL ready;							///<TRUE:’ÊMŽóMŽó•t€”õ‚ªo—ˆ‚Ä‚¢‚éó‘Ô
-	s32 user_id;						///<ƒ†[ƒU[ID
+	BOOL ready;							///<TRUE:é€šä¿¡å—ä¿¡å—ä»˜æº–å‚™ãŒå‡ºæ¥ã¦ã„ã‚‹çŠ¶æ…‹
+	s32 user_id;						///<ãƒ¦ãƒ¼ã‚¶ãƒ¼ID
 }FOOTPRINT_MY_COMM_STATUS;
 
 //--------------------------------------------------------------
-//	‘«ÕƒXƒ^ƒ“ƒv
+//	è¶³è·¡ã‚¹ã‚¿ãƒ³ãƒ—
 //--------------------------------------------------------------
-///‘«ÕƒXƒ^ƒ“ƒv‚Ìƒpƒ‰ƒ[ƒ^(‚±‚ê‚ª’ÊM‚Å‘—ŽóM‚³‚ê‚é)
+///è¶³è·¡ã‚¹ã‚¿ãƒ³ãƒ—ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(ã“ã‚ŒãŒé€šä¿¡ã§é€å—ä¿¡ã•ã‚Œã‚‹)
 typedef struct{
-	u16 color;				///<ƒXƒ^ƒ“ƒv‚ÌƒJƒ‰[ƒR[ƒh
-	u16 monsno;				///<ƒ|ƒPƒ‚ƒ“”Ô†
-	u32 personal_rnd;		///<ŒÂ«—”(«•ÊA«Ši)
-	u8 form_no;				///<ƒtƒHƒ‹ƒ€”Ô†
-	u8 x;					///<‘«ÕÀ•WX(3DÀ•W‚Å‚Í‚È‚­ƒ^ƒbƒ`ƒpƒlƒ‹ã‚ÌÀ•W)
-	u8 y;					///<‘«ÕÀ•WY(3DÀ•W‚Å‚Í‚È‚­ƒ^ƒbƒ`ƒpƒlƒ‹ã‚ÌÀ•W)
+	u16 color;				///<ã‚¹ã‚¿ãƒ³ãƒ—ã®ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+	u16 monsno;				///<ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+	u32 personal_rnd;		///<å€‹æ€§ä¹±æ•°(æ€§åˆ¥ã€æ€§æ ¼)
+	u8 form_no;				///<ãƒ•ã‚©ãƒ«ãƒ ç•ªå·
+	u8 x;					///<è¶³è·¡åº§æ¨™X(3Dåº§æ¨™ã§ã¯ãªãã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ä¸Šã®åº§æ¨™)
+	u8 y;					///<è¶³è·¡åº§æ¨™Y(3Dåº§æ¨™ã§ã¯ãªãã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ä¸Šã®åº§æ¨™)
 	
 	u8 padding;
 }STAMP_PARAM;
 
 //--------------------------------------------------------------
-//	ƒXƒ^ƒ“ƒv‚Ì˜A½‰ñ”‚ðŠÇ—‚·‚é\‘¢‘Ì
+//	ã‚¹ã‚¿ãƒ³ãƒ—ã®é€£éŽ–å›žæ•°ã‚’ç®¡ç†ã™ã‚‹æ§‹é€ ä½“
 //--------------------------------------------------------------
-///ƒXƒ^ƒ“ƒv‚Ì˜A½‰ñ”‚ðŠÇ—‚·‚é\‘¢‘Ì
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®é€£éŽ–å›žæ•°ã‚’ç®¡ç†ã™ã‚‹æ§‹é€ ä½“
 typedef struct{
-	u8 chain;			///<ƒ`ƒFƒCƒ“‰ñ”
-	u8 stamp_num;		///<‚¢‚­‚Â‚ÌƒXƒ^ƒ“ƒv‚ª‚±‚Ìƒ[ƒN‚ðŽQÆ‚µ‚Ä‚¢‚é‚©
+	u8 chain;			///<ãƒã‚§ã‚¤ãƒ³å›žæ•°
+	u8 stamp_num;		///<ã„ãã¤ã®ã‚¹ã‚¿ãƒ³ãƒ—ãŒã“ã®ãƒ¯ãƒ¼ã‚¯ã‚’å‚ç…§ã—ã¦ã„ã‚‹ã‹
 	
 	u16 padding;
 }STAMP_CHAIN_WORK;
 
 //--------------------------------------------------------------
-//	ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg“®ì\‘¢‘Ì
+//	ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œæ§‹é€ ä½“
 //--------------------------------------------------------------
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgF‚É‚¶‚Ý
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã«ã˜ã¿
 typedef struct{
 	fx32 default_len;
 	s16 wait;
-	u8 seq;			///<ƒV[ƒPƒ“ƒX”Ô†
+	u8 seq;			///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 	
 	u8 padding;
 }SPECIAL_EFF_NIJIMI;
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgF‚Í‚¶‚¯
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã¯ã˜ã‘
 typedef struct{
-	VecFx32 up_vec;		///<ƒJƒƒ‰‚Ìã•ûŒü
+	VecFx32 up_vec;		///<ã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘
 	u8 seq;
 	u8 count;
 	u8 loop;
@@ -210,37 +210,37 @@ typedef struct{
 	u8 padding;
 }SPECIAL_EFF_HAJIKE;
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgFƒWƒOƒUƒO
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚¸ã‚°ã‚¶ã‚°
 typedef struct{
 	CAMERA_ANGLE default_angle;
-	s32 calc_angle_y;	///<Œ»Ý’n‚ÌŒvŽZ‚É•Ö—˜‚È‚æ‚¤‚Éƒ}ƒCƒiƒX‚àˆµ‚¦‚éƒAƒ“ƒOƒ‹‚ð—pˆÓ‚µ‚Ä‚¨‚­
+	s32 calc_angle_y;	///<ç¾åœ¨åœ°ã®è¨ˆç®—ã«ä¾¿åˆ©ãªã‚ˆã†ã«ãƒžã‚¤ãƒŠã‚¹ã‚‚æ‰±ãˆã‚‹ã‚¢ãƒ³ã‚°ãƒ«ã‚’ç”¨æ„ã—ã¦ãŠã
 	s16 wait;
 	u8 seq;
 	
 	u8 padding;
 }SPECIAL_EFF_ZIGZAG;
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgFŽÖs
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šè›‡è¡Œ
 typedef struct{
 	CAMERA_ANGLE default_angle;
-	s32 calc_angle_y;	///<Œ»Ý’n‚ÌŒvŽZ‚É•Ö—˜‚È‚æ‚¤‚Éƒ}ƒCƒiƒX‚àˆµ‚¦‚éƒAƒ“ƒOƒ‹‚ð—pˆÓ‚µ‚Ä‚¨‚­
+	s32 calc_angle_y;	///<ç¾åœ¨åœ°ã®è¨ˆç®—ã«ä¾¿åˆ©ãªã‚ˆã†ã«ãƒžã‚¤ãƒŠã‚¹ã‚‚æ‰±ãˆã‚‹ã‚¢ãƒ³ã‚°ãƒ«ã‚’ç”¨æ„ã—ã¦ãŠã
 	s16 wait;
 	u8 seq;
 	
 	u8 padding;
 }SPECIAL_EFF_DAKOU;
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgF‹OÕ
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šè»Œè·¡
 typedef struct{
 	CAMERA_ANGLE default_angle;
-	s32 calc_angle_x;	///<Œ»Ý’n‚ÌŒvŽZ‚É•Ö—˜‚È‚æ‚¤‚Éƒ}ƒCƒiƒX‚àˆµ‚¦‚éƒAƒ“ƒOƒ‹‚ð—pˆÓ‚µ‚Ä‚¨‚­
+	s32 calc_angle_x;	///<ç¾åœ¨åœ°ã®è¨ˆç®—ã«ä¾¿åˆ©ãªã‚ˆã†ã«ãƒžã‚¤ãƒŠã‚¹ã‚‚æ‰±ãˆã‚‹ã‚¢ãƒ³ã‚°ãƒ«ã‚’ç”¨æ„ã—ã¦ãŠã
 	s16 wait;
 	u8 seq;
 	
 	u8 padding;
 }SPECIAL_EFF_KISEKI;
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgF—h‚ê
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šæºã‚Œ
 typedef struct{
 	CAMERA_ANGLE default_angle;
 	fx32 theta;
@@ -250,16 +250,16 @@ typedef struct{
 	u8 padding[2];
 }SPECIAL_EFF_YURE;
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgFŠg‘å
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šæ‹¡å¤§
 typedef struct{
 	fx32 default_len;
 	s16 wait;
-	u8 seq;			///<ƒV[ƒPƒ“ƒX”Ô†
+	u8 seq;			///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 	
 	u8 padding;
 }SPECIAL_EFF_KAKUDAI;
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgFƒuƒ‰[X
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãƒ–ãƒ©ãƒ¼X
 typedef struct{
 	VecFx32 default_target;
 	VecFx32 default_pos;
@@ -270,7 +270,7 @@ typedef struct{
 	u8 padding[2];
 }SPECIAL_EFF_BRAR_X;
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgFƒuƒ‰[Y
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãƒ–ãƒ©ãƒ¼Y
 typedef struct{
 	VecFx32 default_target;
 	VecFx32 default_pos;
@@ -281,17 +281,17 @@ typedef struct{
 	u8 padding[2];
 }SPECIAL_EFF_BRAR_Y;
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgF‚½‚ê
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãŸã‚Œ
 typedef struct{
 	CAMERA_ANGLE default_angle;
-	s32 calc_angle_x;	///<Œ»Ý’n‚ÌŒvŽZ‚É•Ö—˜‚È‚æ‚¤‚Éƒ}ƒCƒiƒX‚àˆµ‚¦‚éƒAƒ“ƒOƒ‹‚ð—pˆÓ‚µ‚Ä‚¨‚­
+	s32 calc_angle_x;	///<ç¾åœ¨åœ°ã®è¨ˆç®—ã«ä¾¿åˆ©ãªã‚ˆã†ã«ãƒžã‚¤ãƒŠã‚¹ã‚‚æ‰±ãˆã‚‹ã‚¢ãƒ³ã‚°ãƒ«ã‚’ç”¨æ„ã—ã¦ãŠã
 	s16 wait;
 	u8 seq;
 	
 	u8 padding;
 }SPECIAL_EFF_TARE;
 
-///ƒXƒ^ƒ“ƒv‚ÌƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg“®ì\‘¢‘Ì
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œæ§‹é€ ä½“
 typedef struct{
 	SPECIAL_EFF_NIJIMI sp_nijimi;
 	SPECIAL_EFF_HAJIKE sp_hajike;
@@ -305,44 +305,44 @@ typedef struct{
 	SPECIAL_EFF_TARE sp_tare;
 }STAMP_SPECIAL_WORK;
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg”­“®‘O‚Ìƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒg“®ì\‘¢‘Ì
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•å‰ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œæ§‹é€ ä½“
 typedef struct{
-	u8 seq;			///<ƒV[ƒPƒ“ƒX”Ô†
-	u8 loop;		///<ƒ‹[ƒvƒJƒEƒ“ƒ^
-	s16 evy;		///<EVY’l(‰ºˆÊ8ƒrƒbƒg¬”)
+	u8 seq;			///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u8 loop;		///<ãƒ«ãƒ¼ãƒ—ã‚«ã‚¦ãƒ³ã‚¿
+	s16 evy;		///<EVYå€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 }SPECIAL_FLASH_WORK;
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘«ÕƒXƒ^ƒ“ƒv‘S‘Ì‚ðŠÇ—‚·‚éƒVƒXƒeƒ€ƒ[ƒN
+ * @brief   è¶³è·¡ã‚¹ã‚¿ãƒ³ãƒ—å…¨ä½“ã‚’ç®¡ç†ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 typedef struct{
-	STAMP_SPECIAL_WORK special_work;			///<ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg“®ìƒ[ƒN
-	SPECIAL_FLASH_WORK flash_work;				///<ƒXƒyƒVƒƒƒ‹”­“®‘O‚Ìƒtƒ‰ƒbƒVƒ…“®ìƒ[ƒN
+	STAMP_SPECIAL_WORK special_work;			///<ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œãƒ¯ãƒ¼ã‚¯
+	SPECIAL_FLASH_WORK flash_work;				///<ã‚¹ãƒšã‚·ãƒ£ãƒ«ç™ºå‹•å‰ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œãƒ¯ãƒ¼ã‚¯
 	STAMP_MOVE_PTR move[STAMP_MAX];
-	STAMP_MOVE_PTR hitcheck_move[STAMP_MAX];	///ƒqƒbƒgƒ`ƒFƒbƒN‘ÎÛ‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	NNSG3dResTex *load_tex[LOAD_TEX_BUFFER_MAX];	///<ƒeƒNƒXƒ`ƒƒVwait“]‘—ƒoƒbƒtƒ@
-	u32 polygon_id_manage[2];		///<ƒ|ƒŠƒSƒ“IDŠÇ—ƒrƒbƒg
-	STAMP_CHAIN_WORK chain_work[STAMP_MAX];		///<ƒXƒ^ƒ“ƒv‚Ì˜A½ŠÇ—ƒ[ƒN
-	u8 special_effect_type;				///<”­“®’†‚ÌƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgƒ^ƒCƒv
-	u8 special_effect_req;				///<ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgƒ^ƒCƒv‚Ì”­“®ƒŠƒNƒGƒXƒg
-	u8 special_effect_start_effect_end;			///<TRUE:ƒXƒyƒVƒƒƒ‹‘O‚Ìƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒgI—¹
-	u8 player_max;								///<Œ»Ý‚ÌŽQ‰Ál”
-	u8 v_wipe_req;								///<Vƒuƒ‰ƒ“ƒN‚Å‚ÌWIPE“]‘—ƒŠƒNƒGƒXƒg
-	s16 v_wipe_no;								///<Vƒuƒ‰ƒ“ƒN‚Å‚ÌWIPE“]‘—Žž‚Ì’l
+	STAMP_MOVE_PTR hitcheck_move[STAMP_MAX];	///ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯å¯¾è±¡ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	NNSG3dResTex *load_tex[LOAD_TEX_BUFFER_MAX];	///<ãƒ†ã‚¯ã‚¹ãƒãƒ£Vwaitè»¢é€ãƒãƒƒãƒ•ã‚¡
+	u32 polygon_id_manage[2];		///<ãƒãƒªã‚´ãƒ³IDç®¡ç†ãƒ“ãƒƒãƒˆ
+	STAMP_CHAIN_WORK chain_work[STAMP_MAX];		///<ã‚¹ã‚¿ãƒ³ãƒ—ã®é€£éŽ–ç®¡ç†ãƒ¯ãƒ¼ã‚¯
+	u8 special_effect_type;				///<ç™ºå‹•ä¸­ã®ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
+	u8 special_effect_req;				///<ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—ã®ç™ºå‹•ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	u8 special_effect_start_effect_end;			///<TRUE:ã‚¹ãƒšã‚·ãƒ£ãƒ«å‰ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
+	u8 player_max;								///<ç¾åœ¨ã®å‚åŠ äººæ•°
+	u8 v_wipe_req;								///<Vãƒ–ãƒ©ãƒ³ã‚¯ã§ã®WIPEè»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	s16 v_wipe_no;								///<Vãƒ–ãƒ©ãƒ³ã‚¯ã§ã®WIPEè»¢é€æ™‚ã®å€¤
 }STAMP_SYSTEM_WORK;
 
-///ƒRƒ“ƒo[ƒ^‚©‚ço—Í‚³‚ê‚éƒf[ƒ^Œ^
+///ã‚³ãƒ³ãƒãƒ¼ã‚¿ã‹ã‚‰å‡ºåŠ›ã•ã‚Œã‚‹ãƒ‡ãƒ¼ã‚¿åž‹
 typedef struct{
-	u8 disp;			///<‘«Õ‚Ì—L–³B(TRUE=—L‚è)
-	u8 hit_size;		///<ƒqƒbƒg”ÍˆÍ‚Ì‘å‚«‚³
+	u8 disp;			///<è¶³è·¡ã®æœ‰ç„¡ã€‚(TRUE=æœ‰ã‚Š)
+	u8 hit_size;		///<ãƒ’ãƒƒãƒˆç¯„å›²ã®å¤§ãã•
 	
 	u16 padding;
 }FOOTPRINT_CONV_DATA;
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern FOOTPRINT_MY_COMM_STATUS * Footprint_MyCommStatusGet(FOOTPRINT_SYS_PTR fps);
 extern BOOL Footprint_StampAdd(FOOTPRINT_SYS_PTR fps, const STAMP_PARAM *param, s32 user_id);

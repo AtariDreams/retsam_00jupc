@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 	<TITLE>NNS_G3dRenderObjSetInitFunc</TITLE>
@@ -12,7 +12,7 @@
 
 <H1 align="left">NNS_G3dRenderObjSetInitFunc</H1>
 
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nnsys/g3d/kernel.h&gt;</CODE>
@@ -24,30 +24,30 @@ NNS_G3dRenderObjSetInitFunc(
 );</CODE></PRE>
 </DL>
 
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>pRenderObj</STRONG></EM></TD>
-      <TD width="87%"><CODE>NNSG3dRenderObj</CODE>�\���̂ւ̃|�C���^</TD>
+      <TD width="87%"><CODE>NNSG3dRenderObj</CODE>構造体へのポインタ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>func</STRONG></EM></TD>
-      <TD width="87%">�o�^����R�[���o�b�N�֐��ւ̃|�C���^</TD>
+      <TD width="87%">登録するコールバック関数へのポインタ</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
+<H2>返り値</H2>
+<P>なし。</P>
 
-<H2>����</H2>
-<P>�`�撼�O�Ɏ��s�����R�[���o�b�N�֐���<CODE>NNSG3dRS</CODE>�\���̂ɓo�^���܂��B�o�^�����R�[���o�b�N�֐��́A�`�撆�̃R�[���o�b�N������<A href="../sbc/NNSG3dRS.html#NNS_G3dRSSetCallBack" target="_self">NNS_G3dRSSetCallBack</A>�֐������g�p���ēo�^���邽�߂Ɏg�p���邱�Ƃ��ł��܂��B</P>
-<H2>�Q��</H2>
+<H2>説明</H2>
+<P>描画直前に実行されるコールバック関数を<CODE>NNSG3dRS</CODE>構造体に登録します。登録されるコールバック関数は、描画中のコールバック処理を<A href="../sbc/NNSG3dRS.html#NNS_G3dRSSetCallBack" target="_self">NNS_G3dRSSetCallBack</A>関数等を使用して登録するために使用することができます。</P>
+<H2>参照</H2>
 <P><CODE><A href="NNS_G3dRenderObjSetCallBack.html">NNS_G3dRenderObjSetCallBack</A>, <A href="NNS_G3dRenderObjResetCallBack.html">NNS_G3dRenderObjResetCallBack</A> </CODE></P>
 
-<H2>����</H2>
-<P>2004/10/11 ����</P>
+<H2>履歴</H2>
+<P>2004/10/11 初版</P>
 </BODY>
 
 </HTML>

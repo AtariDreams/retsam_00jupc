@@ -42,11 +42,11 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_IsBackupFram
 
-  Description:  Œ»ÝÝ’è‚³‚ê‚Ä‚¢‚éƒfƒoƒCƒX‚ª FRAM ‚©”»’è.
+  Description:  ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒã‚¤ã‚¹ãŒ FRAM ã‹åˆ¤å®š.
 
   Arguments:    None.
 
-  Returns:      FRAM ‚Å‚ ‚ê‚Î TRUE.
+  Returns:      FRAM ã§ã‚ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
     static inline BOOL CARD_IsBackupFram(void)
     {
@@ -60,13 +60,13 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_ReadFram
 
-  Description:  “¯ŠúƒŠ[ƒh
+  Description:  åŒæœŸãƒªãƒ¼ãƒ‰
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg
-                dst        “]‘—æƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        è»¢é€å…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
     static inline BOOL CARD_ReadFram(u32 src, void *dst, u32 len)
     {
@@ -76,13 +76,13 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_ReadFramAsync
 
-  Description:  ”ñ“¯ŠúƒŠ[ƒh
+  Description:  éžåŒæœŸãƒªãƒ¼ãƒ‰
 
-  Arguments:    src        “]‘—Œ³ƒIƒtƒZƒbƒg
-                dst        “]‘—æƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        è»¢é€å…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -95,13 +95,13 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteFram
 
-  Description:  “¯Šúƒ‰ƒCƒg (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "program" ‚É‘Š“–)
+  Description:  åŒæœŸãƒ©ã‚¤ãƒˆ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "program" ã«ç›¸å½“)
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
     static inline BOOL CARD_WriteFram(u32 dst, const void *src, u32 len)
     {
@@ -111,13 +111,13 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteFramAsync
 
-  Description:  ”ñ“¯Šúƒ‰ƒCƒg (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "program" ‚É‘Š“–)
+  Description:  éžåŒæœŸãƒ©ã‚¤ãƒˆ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "program" ã«ç›¸å½“)
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -130,13 +130,13 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_VerifyFram
 
-  Description:  “¯ŠúƒxƒŠƒtƒ@ƒC (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "read" ‚É‘Š“–)
+  Description:  åŒæœŸãƒ™ãƒªãƒ•ã‚¡ã‚¤ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "read" ã«ç›¸å½“)
 
-  Arguments:    src        ”äŠrŒ³ƒIƒtƒZƒbƒg
-                dst        ”äŠræƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        ”äŠrƒTƒCƒY
+  Arguments:    src        æ¯”è¼ƒå…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        æ¯”è¼ƒå…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        æ¯”è¼ƒã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
     static inline BOOL CARD_VerifyFram(u32 dst, const void *src, u32 len)
     {
@@ -146,13 +146,13 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_VerifyFramAsync
 
-  Description:  ”ñ“¯ŠúƒxƒŠƒtƒ@ƒC (ƒ`ƒbƒvƒRƒ}ƒ“ƒh "read" ‚É‘Š“–)
+  Description:  éžåŒæœŸãƒ™ãƒªãƒ•ã‚¡ã‚¤ (ãƒãƒƒãƒ—ã‚³ãƒžãƒ³ãƒ‰ "read" ã«ç›¸å½“)
 
-  Arguments:    src        ”äŠrŒ³ƒIƒtƒZƒbƒg
-                dst        ”äŠræƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        ”äŠrƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    src        æ¯”è¼ƒå…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        æ¯”è¼ƒå…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        æ¯”è¼ƒã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -165,13 +165,13 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteAndVerifyFram
 
-  Description:  “¯Šúƒ‰ƒCƒg + ƒxƒŠƒtƒ@ƒC
+  Description:  åŒæœŸãƒ©ã‚¤ãƒˆ + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      CARD_RESULT_SUCCESS ‚ÅŠ®—¹‚·‚ê‚Î TRUE, ‚»‚êˆÈŠO‚Í FALSE.
+  Returns:      CARD_RESULT_SUCCESS ã§å®Œäº†ã™ã‚Œã° TRUE, ãã‚Œä»¥å¤–ã¯ FALSE.
  *---------------------------------------------------------------------------*/
     static inline BOOL CARD_WriteAndVerifyFram(u32 dst, const void *src, u32 len)
     {
@@ -181,13 +181,13 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_WriteAndVerifyFramAsync
 
-  Description:  ”ñ“¯Šúƒ‰ƒCƒg + ƒxƒŠƒtƒ@ƒC
+  Description:  éžåŒæœŸãƒ©ã‚¤ãƒˆ + ãƒ™ãƒªãƒ•ã‚¡ã‚¤
 
-  Arguments:    dst        “]‘—æƒIƒtƒZƒbƒg
-                src        “]‘—Œ³ƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dst        è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                src        è»¢é€å…ƒãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

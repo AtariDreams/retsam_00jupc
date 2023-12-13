@@ -57,85 +57,85 @@
   add OSi_IrqThreadQueue
 
   Revision 1.17  2004/03/17 06:35:04  yada
-  TimerƒR[ƒ‹ƒoƒbƒN‚ğ”²‚¯‚½ŒãIRQ‚ğ’â~‚·‚é‚©‚Ç‚¤‚©‚ª•s’è‚¾‚Á‚½‚ªA
-  ó‘Ô‚ğ•ÏX‚µ‚È‚¢‚æ‚¤‚É‚µ‚½B
+  Timerã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’æŠœã‘ãŸå¾ŒIRQã‚’åœæ­¢ã™ã‚‹ã‹ã©ã†ã‹ãŒä¸å®šã ã£ãŸãŒã€
+  çŠ¶æ…‹ã‚’å¤‰æ›´ã—ãªã„ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.16  2004/03/02 11:05:05  yada
-  •Ô‚è’l‚Ì‚È‚¢ŠÖ”ŒÄ‚Ño‚µ‚Évoid‚ğ‚Â‚¯‚½B
+  è¿”ã‚Šå€¤ã®ãªã„é–¢æ•°å‘¼ã³å‡ºã—ã«voidã‚’ã¤ã‘ãŸã€‚
 
   Revision 1.15  2004/03/02 09:56:03  yada
-  TIMER Š„‚è‚İ‚Ìƒnƒ“ƒhƒ‰I—¹enableƒtƒ‰ƒOˆµ‚¢‚ğ•ÏX
-  G‚ç‚È‚¢‚æ‚¤‚É‚µ‚½B
+  TIMER å‰²ã‚Šè¾¼ã¿ã®ãƒãƒ³ãƒ‰ãƒ©çµ‚äº†æ™‚enableãƒ•ãƒ©ã‚°æ‰±ã„ã‚’å¤‰æ›´
+  è§¦ã‚‰ãªã„ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.14  2004/03/01 11:57:14  yada
-  ‰pŒê‚ÌŠÖ”commentì¬
+  è‹±èªã®é–¢æ•°commentä½œæˆ
 
   Revision 1.13  2004/02/13 01:28:58  yada
-  ARM9‚ÆAMR7 ‚ÅƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹ê‡‚í‚¯
+  ARM9ã¨AMR7 ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å ´åˆã‚ã‘
 
   Revision 1.12  2004/02/12 11:08:30  yada
-  ARM9/ARM7 U‚è•ª‚¯ì‹Æ
+  ARM9/ARM7 æŒ¯ã‚Šåˆ†ã‘ä½œæ¥­
 
   Revision 1.11  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.10  2004/02/03 11:20:36  yada
-  OSi_EnterTimerCallback() ’Ç‰Á
+  OSi_EnterTimerCallback() è¿½åŠ 
 
   Revision 1.9  2004/02/02 05:33:03  yada
-  irq‚ÌƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒNl—¶
+  irqã®ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è€ƒæ…®
 
   Revision 1.8  2004/01/18 02:25:37  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.7  2004/01/17 11:44:20  yada
-  DMA “]‘—‚É Async ƒ‚[ƒh‚ğì¬
+  DMA è»¢é€ã« Async ãƒ¢ãƒ¼ãƒ‰ã‚’ä½œæˆ
 
   Revision 1.6  2003/12/25 07:31:26  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.5  2003/12/12 01:27:14  yada
-  include‚Ì–¼Ì•ÏX(os/system.h ‚Æ hw/armArch.h) ‚É‚æ‚éC³
+  includeã®åç§°å¤‰æ›´(os/system.h ã¨ hw/armArch.h) ã«ã‚ˆã‚‹ä¿®æ­£
 
   Revision 1.4  2003/12/08 12:19:29  yada
-  ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹‚ğMemoryMap.h‚©‚ç mmap_global.h‚É•ÏX
+  ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’MemoryMap.hã‹ã‚‰ mmap_global.hã«å¤‰æ›´
 
   Revision 1.3  2003/11/30 04:20:10  yasu
-  CPU CPSR İ’èŠÖŒW‚Ì‹Lq‚ğ cpsr.h ‚Ö
+  CPU CPSR è¨­å®šé–¢ä¿‚ã®è¨˜è¿°ã‚’ cpsr.h ã¸
 
   Revision 1.2  2003/11/29 03:53:25  yasu
-  IRQHandler ƒR[ƒh‚ğ TCM ? ‚É“]‘—‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚éƒR[ƒh‚ª‚ ‚Á‚½D
-  ‚±‚ê‚ÍƒI[ƒo[ƒŒƒB‚Ìd‘g‚İ‚ª®‚¤‚Ü‚ÅƒRƒƒ“ƒgƒAƒEƒg‚µ‚Ä‚¨‚­
+  IRQHandler ã‚³ãƒ¼ãƒ‰ã‚’ TCM ? ã«è»¢é€ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹ã‚³ãƒ¼ãƒ‰ãŒã‚ã£ãŸï¼
+  ã“ã‚Œã¯ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚£ã®ä»•çµ„ã¿ãŒæ•´ã†ã¾ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã¦ãŠã
 
   Revision 1.1  2003/11/29 01:25:46  yada
-  ƒtƒ@ƒCƒ‹–¼Ì•ÏX
+  ãƒ•ã‚¡ã‚¤ãƒ«åç§°å¤‰æ›´
 
   Revision 1.9  2003/11/28 12:18:27  yasu
-  typo C³
+  typo ä¿®æ­£
 
   Revision 1.8  2003/11/28 12:17:23  yasu
-  OS_IRQHandler ‚ÌƒTƒCƒYƒ`ƒFƒbƒN ASSERT ‚Ì’Ç‰Á
+  OS_IRQHandler ã®ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯ ASSERT ã®è¿½åŠ 
 
   Revision 1.7  2003/11/26 00:45:07  yada
-  OS_RestoreInterrupt() ‚ÌƒŠƒ^[ƒ“æ‚ªŒë‚Á‚Ä‚¢‚½‚Ì‚ğC³
+  OS_RestoreInterrupt() ã®ãƒªã‚¿ãƒ¼ãƒ³å…ˆãŒèª¤ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£
 
   Revision 1.6  2003/11/25 10:44:08  yada
-  OS_xxxInterruptxxx ¨ OS_xxxIRQxxx ‚É–¼Ì•ÏX
+  OS_xxxInterruptxxx â†’ OS_xxxIRQxxx ã«åç§°å¤‰æ›´
 
   Revision 1.5  2003/11/13 06:51:15  yada
-  dma.h ‰ü’è‚É”º‚¤ADMAŠÖ”‚Ì‘‚«Š·‚¦
+  dma.h æ”¹å®šã«ä¼´ã†ã€DMAé–¢æ•°ã®æ›¸ãæ›ãˆ
 
   Revision 1.4  2003/11/11 12:56:52  yada
   (none)
 
   Revision 1.3  2003/11/10 08:06:21  yada
-  (1.2‚ÌƒRƒƒ“ƒg’ù³) Š„‚è‚İˆ—‚Ìƒ‹[ƒ`ƒ“‚ğAOS_InterruptHandler‚ğg‚¤‚æ‚¤‚É‚µ‚½
+  (1.2ã®ã‚³ãƒ¡ãƒ³ãƒˆè¨‚æ­£) å‰²ã‚Šè¾¼ã¿å‡¦ç†ã®ãƒ«ãƒ¼ãƒãƒ³ã‚’ã€OS_InterruptHandlerã‚’ä½¿ã†ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.2  2003/11/10 08:05:07  yada
-  ƒpƒbƒh‚©‚ç‚Ì“ü—Í‚ğ”½“]
+  ãƒ‘ãƒƒãƒ‰ã‹ã‚‰ã®å…¥åŠ›ã‚’åè»¢
 
   Revision 1.1  2003/11/06 09:30:40  yada
-  b’è”Å
+  æš«å®šç‰ˆ
 
 
   $NoKeywords: $

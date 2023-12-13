@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_room.h
- *	@brief		WiFiƒƒr[	•”‰®ƒVƒXƒeƒ€
+ *	@brief		WiFiãƒ­ãƒ“ãƒ¼	éƒ¨å±‹ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.11.01
  *
@@ -20,28 +20,28 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	•”‰®–ß‚è’l
+///	éƒ¨å±‹æˆ»ã‚Šå€¤
 //=====================================
 typedef enum {
-	WFLBY_ROOM_RET_ROOM_OUT,			// oŒû‚©‚ço‚½
-	WFLBY_ROOM_RET_ROOM_WORLDTIMER,		// ¢ŠEŽžŒv‚Ö
-	WFLBY_ROOM_RET_ROOM_TOPIC,			// ƒgƒsƒbƒN‚Ö
-	WFLBY_ROOM_RET_ROOM_BALLSLOW,		// ‹Ê“Š‚°
-	WFLBY_ROOM_RET_ROOM_BALANCE,		// ‹Êæ‚è
-	WFLBY_ROOM_RET_ROOM_BALLOON,		// •—‘DŠ„‚è
-	WFLBY_ROOM_RET_ROOM_FOOT1,			// ‘«Õƒ{[ƒh”’
-	WFLBY_ROOM_RET_ROOM_FOOT2,			// ‘«Õƒ{[ƒh•
-	WFLBY_ROOM_RET_ROOM_TIMEOUT,		// •”‰®‚ªI‚í‚Á‚½
+	WFLBY_ROOM_RET_ROOM_OUT,			// å‡ºå£ã‹ã‚‰å‡ºãŸ
+	WFLBY_ROOM_RET_ROOM_WORLDTIMER,		// ä¸–ç•Œæ™‚è¨ˆã¸
+	WFLBY_ROOM_RET_ROOM_TOPIC,			// ãƒˆãƒ”ãƒƒã‚¯ã¸
+	WFLBY_ROOM_RET_ROOM_BALLSLOW,		// çŽ‰æŠ•ã’
+	WFLBY_ROOM_RET_ROOM_BALANCE,		// çŽ‰ä¹—ã‚Š
+	WFLBY_ROOM_RET_ROOM_BALLOON,		// é¢¨èˆ¹å‰²ã‚Š
+	WFLBY_ROOM_RET_ROOM_FOOT1,			// è¶³è·¡ãƒœãƒ¼ãƒ‰ç™½
+	WFLBY_ROOM_RET_ROOM_FOOT2,			// è¶³è·¡ãƒœãƒ¼ãƒ‰é»’
+	WFLBY_ROOM_RET_ROOM_TIMEOUT,		// éƒ¨å±‹ãŒçµ‚ã‚ã£ãŸ
 
-	WFLBY_ROOM_RET_ROOM_ANKETO_INPUT,	// ƒAƒ“ƒP[ƒg@“ü—Í
-	WFLBY_ROOM_RET_ROOM_ANKETO_OUTPUT,	// ƒAƒ“ƒP[ƒg@o—Í
+	WFLBY_ROOM_RET_ROOM_ANKETO_INPUT,	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã€€å…¥åŠ›
+	WFLBY_ROOM_RET_ROOM_ANKETO_OUTPUT,	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã€€å‡ºåŠ›
 
 #ifdef PM_DEBUG
-	WFLBY_ROOM_RET_ROOM_RETURN,			// •”‰®‚É‚à‚¤ˆê“x–ß‚é
+	WFLBY_ROOM_RET_ROOM_RETURN,			// éƒ¨å±‹ã«ã‚‚ã†ä¸€åº¦æˆ»ã‚‹
 #endif
 } WFLBY_ROOM_RET;
 
@@ -49,44 +49,44 @@ typedef enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	WiFiƒƒr[•”‰®@ƒZ[ƒuƒf[ƒ^
+///	WiFiãƒ­ãƒ“ãƒ¼éƒ¨å±‹ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u16	pl_gridx;	// ƒvƒŒƒCƒ„[“oêƒOƒŠƒbƒh‚˜
-	u16	pl_gridy;	// ƒvƒŒƒCƒ„[“oêƒOƒŠƒbƒh‚™
-	u16 pl_way;		// ƒvƒŒƒCƒ„[“oê•ûŒü
-	u16 pl_inevno;	// ƒvƒŒƒCƒ„[“üêƒCƒxƒ“ƒgƒiƒ“ƒo[
-	u16	minigame;	// —V‚Ñ‚És‚­is‚Á‚½jƒ~ƒjƒQ[ƒ€ƒiƒ“ƒo[
+	u16	pl_gridx;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç™»å ´ã‚°ãƒªãƒƒãƒ‰ï½˜
+	u16	pl_gridy;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç™»å ´ã‚°ãƒªãƒƒãƒ‰ï½™
+	u16 pl_way;		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç™»å ´æ–¹å‘
+	u16 pl_inevno;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¥å ´ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+	u16	minigame;	// éŠã³ã«è¡Œãï¼ˆè¡Œã£ãŸï¼‰ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
 	u16	pad;
 } WFLBY_ROOM_SAVE;
 
 
 //-------------------------------------
-///	ƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+///	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
 //=====================================
 typedef struct {
-	// ‚¸‚Á‚Æˆê‚Ìƒf[ƒ^
+	// ãšã£ã¨ä¸€ç·’ã®ãƒ‡ãƒ¼ã‚¿
 	SAVEDATA*			p_save;
 	WFLBY_SEASON_TYPE	season;
 	WFLBY_ROOM_TYPE		room;
 
-	// •”‰®“à•”‚ÅŽg—p‚·‚é•Û‘¶ƒf[ƒ^
-	WFLBY_ROOM_SAVE		save;	// ‰Šú’l‚Í‘S•”‚O‚É‚µ‚Ä‚­‚¾‚³‚¢
+	// éƒ¨å±‹å†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ä¿å­˜ãƒ‡ãƒ¼ã‚¿
+	WFLBY_ROOM_SAVE		save;	// åˆæœŸå€¤ã¯å…¨éƒ¨ï¼ã«ã—ã¦ãã ã•ã„
 	
-	// roomƒVƒXƒeƒ€‚©‚çã‚É•Ô“š‚·‚éƒf[ƒ^
+	// roomã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ä¸Šã«è¿”ç­”ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 	WFLBY_ROOM_RET		ret;
 
-	// ‚¨‚»‚ç‚­Šî–{î•ñ‚È‚Ç
-	WFLBY_SYSTEM*		p_system;	// LOBBYî•ñ
+	// ãŠãã‚‰ãåŸºæœ¬æƒ…å ±ãªã©
+	WFLBY_SYSTEM*		p_system;	// LOBBYæƒ…å ±
 } WFLBY_ROOM_PARAM;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 extern PROC_RESULT WFLBY_ROOM_Init(PROC* p_proc, int* p_seq);

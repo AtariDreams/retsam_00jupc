@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	paso_anm.c
- * @bfief	ƒpƒ\ƒRƒ“ƒAƒjƒ
+ * @bfief	ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡
  * @author	Nozomu Saito
  *
  */
@@ -18,10 +18,10 @@
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒZƒbƒgƒAƒbƒv
+ * ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inEntryID	“o˜^‚h‚c
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryID	ç™»éŒ²ï¼©ï¼¤
  *
  * @retval  none
  */
@@ -36,7 +36,7 @@ void FLD_SCR_ANM_PASO_Setup( FIELDSYS_WORK * fsys, const u8 inEntryID )
 
 	rc = MPTL_CheckPluralMap3DObj(	fsys,
 									list,
-									4,//<<–¢’è‹`–½—ß‚Å‚Æ‚Ü‚é‚Ì‚Å’¼’l‚ğ“ü‚ê‚Ä‚¨‚­
+									4,//<<æœªå®šç¾©å‘½ä»¤ã§ã¨ã¾ã‚‹ã®ã§ç›´å€¤ã‚’å…¥ã‚Œã¦ãŠã
 									&obj_ptr,
 									&obj_id);
 	if (rc){
@@ -49,39 +49,39 @@ void FLD_SCR_ANM_PASO_Setup( FIELDSYS_WORK * fsys, const u8 inEntryID )
 								M3DO_GetRenderObj(obj_ptr),
 								M3DO_GetObjModel(obj_ptr),
 								tex,2,
-								1,		//ƒ‹[ƒv1‰ñ
+								1,		//ãƒ«ãƒ¼ãƒ—1å›
 								FALSE);
 	}else{
-		GF_ASSERT_MSG(0,"ƒpƒ\ƒRƒ“‚ ‚è‚Ü‚¹‚ñ");
+		GF_ASSERT_MSG(0,"ãƒ‘ã‚½ã‚³ãƒ³ã‚ã‚Šã¾ã›ã‚“");
 	}
 }
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“ƒAƒjƒ[ƒVƒ‡ƒ“iƒpƒ\ƒRƒ“‹N“®j
+ * ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ï¼ˆãƒ‘ã‚½ã‚³ãƒ³èµ·å‹•ï¼‰
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inEntryID	“o˜^‚h‚c
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryID	ç™»éŒ²ï¼©ï¼¤
  *
  * @retval  none
  */
 //==============================================================================
 void FLD_SCR_ANM_PASO_PasoOnAnm( FIELDSYS_WORK * fsys, const u8 inEntryID )
 {
-	F3DASub_StartAnimation(fsys->AnimeContMng, inEntryID, PASO_ON);	//ƒpƒ\ƒRƒ“‹N“®ƒAƒjƒ
+	F3DASub_StartAnimation(fsys->AnimeContMng, inEntryID, PASO_ON);	//ãƒ‘ã‚½ã‚³ãƒ³èµ·å‹•ã‚¢ãƒ‹ãƒ¡
 }
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“ƒAƒjƒ[ƒVƒ‡ƒ“iƒpƒ\ƒRƒ“I—¹j
+ * ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ï¼ˆãƒ‘ã‚½ã‚³ãƒ³çµ‚äº†ï¼‰
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inEntryID	“o˜^‚h‚c
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryID	ç™»éŒ²ï¼©ï¼¤
  *
  * @retval  none
  */
 //==============================================================================
 void FLD_SCR_ANM_PASO_PasoOffAnm( FIELDSYS_WORK * fsys, const u8 inEntryID )
 {
-	F3DASub_StartAnimation(fsys->AnimeContMng, inEntryID, PASO_OFF);	//ƒpƒ\ƒRƒ“I—¹ƒAƒjƒ
+	F3DASub_StartAnimation(fsys->AnimeContMng, inEntryID, PASO_OFF);	//ãƒ‘ã‚½ã‚³ãƒ³çµ‚äº†ã‚¢ãƒ‹ãƒ¡
 }

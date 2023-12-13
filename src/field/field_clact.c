@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_clact.c
- * @brief	ƒtƒB[ƒ‹ƒh—pƒZƒ‹ƒAƒNƒ^[İ’èˆ—
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®šå‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2005.01.13
  */
@@ -23,12 +23,12 @@ static void CATS_LoadResourceCellArc_PrivateH(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[İ’è
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®š
  *
- * @param	fcat	İ’èƒf[ƒ^•Û‘¶êŠ
- * @param	list	“Ç‚İ‚İƒtƒ@ƒCƒ‹ƒŠƒXƒg
- * @param	max		ƒZƒ‹ƒAƒNƒ^[Å‘å”
- * @param	heap	ƒq[ƒvID
+ * @param	fcat	è¨­å®šãƒ‡ãƒ¼ã‚¿ä¿å­˜å ´æ‰€
+ * @param	list	èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆ
+ * @param	max		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -45,17 +45,17 @@ void FieldCellActSet(
 	fcat->cas  = CLACT_U_SetEasyInit( max, &fcat->renddata, heap );
 	fcat->heap = heap;
 
-	// ƒ}ƒ‹ƒ`ƒZƒ‹‚ª–³‚¢ê‡
+	// ãƒãƒ«ãƒã‚»ãƒ«ãŒç„¡ã„å ´åˆ
 	if( list->resource.mcell_path == NULL ){
 		fcat->res_max = CLACT_U_RES_MAX - 2;
 	}else{
 		fcat->res_max = CLACT_U_RES_MAX;
 	}
 	
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[—pƒwƒbƒ_[—Ìˆæ‚Ìì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸã®ä½œæˆ
 	rht = sys_AllocMemory( heap, CLACT_U_ResManagerGetHeaderSize() * fcat->res_max );
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[—pƒwƒbƒ_[“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿
 	for( i=0; i<fcat->res_max; i++ ){
 		rhb = CLACT_U_ResManagerGetHeaderNoData( rht, i );
 		buf = sys_LoadFile( heap, list->res_file[i] );
@@ -63,14 +63,14 @@ void FieldCellActSet(
 		sys_FreeMemoryEz( buf );
 	}
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	for( i=0; i<fcat->res_max; i++ ){
 		rhb = CLACT_U_ResManagerGetHeaderNoData( rht, i );
 		siz = CLACT_U_ResManagerHeaderSetDataNum( rhb );
 		fcat->resMan[i] = CLACT_U_ResManagerInit( siz, i, heap );
 	}
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚É“o˜^‚·‚éƒf[ƒ^“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«ç™»éŒ²ã™ã‚‹ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	for( i=0; i<fcat->res_max; i++ ){
 		rhb = CLACT_U_ResManagerGetHeaderNoData( rht, i );
 		siz = CLACT_U_ResManagerHeaderSetDataNum( rhb );
@@ -84,11 +84,11 @@ void FieldCellActSet(
 	}
 	sys_FreeMemoryEz( rht );
 
-	// ƒ}ƒl[ƒWƒƒ‚É“o˜^
+	// ãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
 	CLACT_U_CharManagerSetsAreaCont( fcat->resObjTbl[0] );
 	CLACT_U_PlttManagerSetsCleanArea( fcat->resObjTbl[1] );
 	
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿
 	buf = sys_LoadFile( heap, list->resource.clact_header_path );
 	fcat->clh = CLACT_U_MakeHeaderBinary(
 					buf, heap,
@@ -100,9 +100,9 @@ void FieldCellActSet(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[İ’è”jŠü
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®šç ´æ£„
  *
- * @param	fcat	İ’èƒf[ƒ^
+ * @param	fcat	è¨­å®šãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -111,27 +111,27 @@ void FieldCellActDelete( FIELD_CLACT * fcat )
 {
 	u32	i;
 
-	CLACT_DestSet( fcat->cas );							// ƒZƒbƒg‚Ì”jŠü
-	CLACT_U_CLACT_HeaderTblDelete( fcat->clh );			// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[”jŠü
-	CLACT_U_CharManagerDeletes( fcat->resObjTbl[0] );	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”jŠü
-	CLACT_U_PlttManagerDeletes( fcat->resObjTbl[1] );	// ƒpƒŒƒbƒgƒf[ƒ^”jŠü
+	CLACT_DestSet( fcat->cas );							// ã‚»ãƒƒãƒˆã®ç ´æ£„
+	CLACT_U_CLACT_HeaderTblDelete( fcat->clh );			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç ´æ£„
+	CLACT_U_CharManagerDeletes( fcat->resObjTbl[0] );	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„
+	CLACT_U_PlttManagerDeletes( fcat->resObjTbl[1] );	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 
 	for( i=0; i<fcat->res_max; i++ ){
-		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹‚ğ”jŠü
+		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç ´æ£„
 		CLACT_U_ResManagerResObjTblDelete( fcat->resObjTbl[i] );
-		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 		CLACT_U_ResManagerDelete( fcat->resMan[i] );
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- * @param	fcat	İ’èƒf[ƒ^
- * @param	prm		’Ç‰Áƒf[ƒ^
+ * @param	fcat	è¨­å®šãƒ‡ãƒ¼ã‚¿
+ * @param	prm		è¿½åŠ ãƒ‡ãƒ¼ã‚¿
  *
- * @return	“o˜^‚µ‚½ƒZƒ‹ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @return	ç™»éŒ²ã—ãŸã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 CLACT_WORK_PTR FieldCellActAdd( FIELD_CLACT * fcat, const TCATS_OBJECT_ADD_PARAM * prm )
@@ -155,7 +155,7 @@ CLACT_WORK_PTR FieldCellActAdd( FIELD_CLACT * fcat, const TCATS_OBJECT_ADD_PARAM
 	ca.heap			= fcat->heap;
 
 	cwp = CLACT_Add( &ca );
-	GF_ASSERT( cwp && ("ƒZƒ‹ƒAƒNƒ^[“o˜^¸”s\n") );
+	GF_ASSERT( cwp && ("ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²å¤±æ•—\n") );
 
 	CLACT_AnmChg( cwp, prm->anm );
 	CLACT_PaletteNoChgAddTransPlttNo( cwp, prm->pal );
@@ -166,12 +166,12 @@ CLACT_WORK_PTR FieldCellActAdd( FIELD_CLACT * fcat, const TCATS_OBJECT_ADD_PARAM
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[İ’èi’P”­—pj
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®šï¼ˆå˜ç™ºç”¨ï¼‰
  *
- * @param	fcat	İ’èƒf[ƒ^•Û‘¶êŠ
+ * @param	fcat	è¨­å®šãƒ‡ãƒ¼ã‚¿ä¿å­˜å ´æ‰€
  * @param	crnl	
- * @param	max		ƒZƒ‹ƒAƒNƒ^[Å‘å”
- * @param	heap	ƒq[ƒvID
+ * @param	max		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -188,7 +188,7 @@ void FieldCellActSet_S(
 	fcat->cas  = CLACT_U_SetEasyInit( max, &fcat->renddata, heap );
 	fcat->heap = heap;
 
-	// ƒ}ƒ‹ƒ`ƒZƒ‹‚ª–³‚¢ê‡
+	// ãƒãƒ«ãƒã‚»ãƒ«ãŒç„¡ã„å ´åˆ
 	if( crnl->resource_num.mcell_num == 0 || crnl->resource_num.mcell_anm_num == 0 ){
 		fcat->res_max = CLACT_U_RES_MAX - 2;
 		fcat->resMan[4] = NULL;
@@ -197,12 +197,12 @@ void FieldCellActSet_S(
 		fcat->res_max = CLACT_U_RES_MAX;
 	}
 
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	for( i=0; i<fcat->res_max; i++ ){
 		fcat->resMan[i] = CLACT_U_ResManagerInit( crnl->res_num[i], i, heap );
 	}
 
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚É“o˜^‚·‚éƒf[ƒ^“Ç‚İ‚İ
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«ç™»éŒ²ã™ã‚‹ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	for( i=0; i<fcat->res_max; i++ ){
 		if( crnl->res_num[i] == 0 ){ continue; }
 		fcat->resObjTbl[i] = CLACT_U_ResManagerResObjTblMake( crnl->res_num[i], heap );
@@ -215,15 +215,15 @@ void FieldCellActSet_S(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒŠƒ\[ƒXİ’è
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	fcat		İ’èƒf[ƒ^
- * @param	arc_id		ƒA[ƒJƒCƒuID
- * @param	data_id		ƒf[ƒ^ID
- * @param	comp		ˆ³kƒtƒ‰ƒO
- * @param	num			“]‘—ƒTƒCƒY
- * @param	trans_mode	“]‘—ƒ‚[ƒh
- * @param	id			ƒŠƒ\[ƒXID
+ * @param	fcat		è¨­å®šãƒ‡ãƒ¼ã‚¿
+ * @param	arc_id		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	data_id		ãƒ‡ãƒ¼ã‚¿ID
+ * @param	comp		åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	num			è»¢é€ã‚µã‚¤ã‚º
+ * @param	trans_mode	è»¢é€ãƒ¢ãƒ¼ãƒ‰
+ * @param	id			ãƒªã‚½ãƒ¼ã‚¹ID
  *
  * @return	none
  */
@@ -244,7 +244,7 @@ void FldClact_LoadResPlttArc(
 
 	if( obj != NULL ){
 		ret = CLACT_U_PlttManagerSetCleanArea( obj );
-		GF_ASSERT(ret == TRUE && "ƒpƒŒƒbƒg“o˜^¸”s");
+		GF_ASSERT(ret == TRUE && "ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²å¤±æ•—");
 	
 		CATS_LoadResourceTable_Private( fcat->resObjTbl[1], obj );	
 		CLACT_U_PlttManagerGetPlttNo( obj, trans_mode );
@@ -255,15 +255,15 @@ void FldClact_LoadResPlttArc(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒŠƒ\[ƒXİ’è
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	fcat		İ’èƒf[ƒ^
- * @param	arc_id		ƒA[ƒJƒCƒuID
- * @param	data_id		ƒf[ƒ^ID
- * @param	comp		ˆ³kƒtƒ‰ƒO
- * @param	num			“]‘—ƒTƒCƒY
- * @param	trans_mode	“]‘—ƒ‚[ƒh
- * @param	id			ƒŠƒ\[ƒXID
+ * @param	fcat		è¨­å®šãƒ‡ãƒ¼ã‚¿
+ * @param	arc_id		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	data_id		ãƒ‡ãƒ¼ã‚¿ID
+ * @param	comp		åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	num			è»¢é€ã‚µã‚¤ã‚º
+ * @param	trans_mode	è»¢é€ãƒ¢ãƒ¼ãƒ‰
+ * @param	id			ãƒªã‚½ãƒ¼ã‚¹ID
  *
  * @return	none
  */
@@ -284,7 +284,7 @@ void FldClact_LoadResPlttArcH(
 
 	if( obj != NULL ){
 		ret = CLACT_U_PlttManagerSetCleanArea( obj );
-		GF_ASSERT(ret == TRUE && "ƒpƒŒƒbƒg“o˜^¸”s");
+		GF_ASSERT(ret == TRUE && "ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²å¤±æ•—");
 	
 		CATS_LoadResourceTable_Private( fcat->resObjTbl[1], obj );	
 		CLACT_U_PlttManagerGetPlttNo( obj, trans_mode );
@@ -295,13 +295,13 @@ void FldClact_LoadResPlttArcH(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒŠƒ\[ƒXİ’è
+ * ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	fcat		İ’èƒf[ƒ^
- * @param	arc_id		ƒA[ƒJƒCƒuID
- * @param	data_id		ƒf[ƒ^ID
- * @param	comp		ˆ³kƒtƒ‰ƒO
- * @param	id			ƒŠƒ\[ƒXID
+ * @param	fcat		è¨­å®šãƒ‡ãƒ¼ã‚¿
+ * @param	arc_id		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	data_id		ãƒ‡ãƒ¼ã‚¿ID
+ * @param	comp		åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id			ãƒªã‚½ãƒ¼ã‚¹ID
  *
  * @return	none
  */
@@ -317,13 +317,13 @@ void FldClact_LoadResCellArcH( FIELD_CLACT * fcat, ARCHANDLE* p_handle, int data
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒXİ’è
+ * ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	fcat		İ’èƒf[ƒ^
- * @param	arc_id		ƒA[ƒJƒCƒuID
- * @param	data_id		ƒf[ƒ^ID
- * @param	comp		ˆ³kƒtƒ‰ƒO
- * @param	id			ƒŠƒ\[ƒXID
+ * @param	fcat		è¨­å®šãƒ‡ãƒ¼ã‚¿
+ * @param	arc_id		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	data_id		ãƒ‡ãƒ¼ã‚¿ID
+ * @param	comp		åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id			ãƒªã‚½ãƒ¼ã‚¹ID
  *
  * @return	none
  */
@@ -339,14 +339,14 @@ void FldClact_LoadResCellAnmArcH( FIELD_CLACT * fcat, ARCHANDLE* p_handle, int d
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒŠƒ\[ƒXİ’è
+ * ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	fcat		İ’èƒf[ƒ^
- * @param	arc_id		ƒA[ƒJƒCƒuID
- * @param	data_id		ƒf[ƒ^ID
- * @param	comp		ˆ³kƒtƒ‰ƒO
- * @param	trans_mode	“]‘—ƒ‚[ƒh
- * @param	id			ƒŠƒ\[ƒXID
+ * @param	fcat		è¨­å®šãƒ‡ãƒ¼ã‚¿
+ * @param	arc_id		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	data_id		ãƒ‡ãƒ¼ã‚¿ID
+ * @param	comp		åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	trans_mode	è»¢é€ãƒ¢ãƒ¼ãƒ‰
+ * @param	id			ãƒªã‚½ãƒ¼ã‚¹ID
  *
  * @return	none
  */
@@ -400,13 +400,13 @@ void FldClact_LoadResourceCharArcH(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰‚ÌƒŠ[ƒ\[ƒX‚ğ•ÏX‚·‚é
+ * ã‚­ãƒ£ãƒ©ã®ãƒªãƒ¼ã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param	fcat		İ’èƒf[ƒ^
- * @param	arc_id		ƒA[ƒJƒCƒuID
- * @param	data_id		ƒf[ƒ^ID
- * @param	comp		ˆ³kƒtƒ‰ƒO
- * @param	id			ƒŠƒ\[ƒXID
+ * @param	fcat		è¨­å®šãƒ‡ãƒ¼ã‚¿
+ * @param	arc_id		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	data_id		ãƒ‡ãƒ¼ã‚¿ID
+ * @param	comp		åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id			ãƒªã‚½ãƒ¼ã‚¹ID
  *
  * @retval	BOOL	
  */
@@ -421,13 +421,13 @@ void FldClact_ChangeResourceCharArc(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg‚ÌƒŠ[ƒ\[ƒX‚ğ•ÏX‚·‚é
+ * ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªãƒ¼ã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param	fcat		İ’èƒf[ƒ^
- * @param	arc_id		ƒA[ƒJƒCƒuID
- * @param	data_id		ƒf[ƒ^ID
- * @param	comp		ˆ³kƒtƒ‰ƒO
- * @param	id			ƒŠƒ\[ƒXID
+ * @param	fcat		è¨­å®šãƒ‡ãƒ¼ã‚¿
+ * @param	arc_id		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	data_id		ãƒ‡ãƒ¼ã‚¿ID
+ * @param	comp		åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id			ãƒªã‚½ãƒ¼ã‚¹ID
  *
  * @retval	BOOL	
  */
@@ -470,7 +470,7 @@ static void CATS_LoadResourceCellArc_Private(
 	if (obj != NULL){
 		ret = CATS_LoadResourceTable_Private( fcat->resObjTbl[type], obj );
 		
-		GF_ASSERT(ret == TRUE && "ƒZƒ‹“o˜^¸”s");
+		GF_ASSERT(ret == TRUE && "ã‚»ãƒ«ç™»éŒ²å¤±æ•—");
 		
 		return;
 	}
@@ -495,7 +495,7 @@ static void CATS_LoadResourceCellArc_PrivateH(
 	if (obj != NULL){
 		ret = CATS_LoadResourceTable_Private( fcat->resObjTbl[type], obj );
 		
-		GF_ASSERT(ret == TRUE && "ƒZƒ‹“o˜^¸”s");
+		GF_ASSERT(ret == TRUE && "ã‚»ãƒ«ç™»éŒ²å¤±æ•—");
 		
 		return;
 	}
@@ -507,10 +507,10 @@ static void CATS_LoadResourceCellArc_PrivateH(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[’Ç‰Ái’P”­—pj
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ï¼ˆå˜ç™ºç”¨ï¼‰
  *
- * @param	fcat		İ’èƒf[ƒ^
- * @param	coap_s		•\¦ƒf[ƒ^
+ * @param	fcat		è¨­å®šãƒ‡ãƒ¼ã‚¿
+ * @param	coap_s		è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -526,23 +526,23 @@ CATS_ACT_PTR FieldCellActAdd_S(
 
 	cap = sys_AllocMemory( fcat->heap, sizeof(TCATS_ACT) );
 
-	///< ƒwƒbƒ_[‚Ìƒƒ‚ƒŠŠm•Û
+	///< ãƒ˜ãƒƒãƒ€ãƒ¼ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	cap->act_htp = sys_AllocMemory( fcat->heap, sizeof(CLACT_HEADER_TBL) );
 
 	cap->act_htp->tbl = sys_AllocMemory( fcat->heap, sizeof(CLACT_HEADER) );
 	cap->act_hd = cap->act_htp->tbl;
 
-	///< ƒŠƒ\[ƒXID‚ğ‘‚«Š·‚¦‚é
+	///< ãƒªã‚½ãƒ¼ã‚¹IDã‚’æ›¸ãæ›ãˆã‚‹
 	for( i=0; i<CLACT_U_RES_MAX; i++ ){
 		id_list[i] = coap_s->id[i];
 	}
 	
 	if( fcat->resMan[4] == NULL || fcat->resMan[5] == NULL ){
-		///< ƒ}ƒl[ƒWƒƒ[‚ª–³‚¢ê‡‚ÍAƒf[ƒ^w’è–³‚µ
+		///< ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãŒç„¡ã„å ´åˆã¯ã€ãƒ‡ãƒ¼ã‚¿æŒ‡å®šç„¡ã—
 		id_list[4] = CLACT_U_HEADER_DATA_NONE;
 		id_list[5] = CLACT_U_HEADER_DATA_NONE;
 	}else{	
-		///< ƒf[ƒ^w’è‚³‚ê‚Ä‚¢‚Ä‚àAw’èID‚ÌƒŠƒ\[ƒX‚ª–³‚¢ê‡‚àƒf[ƒ^–³‚µ
+		///< ãƒ‡ãƒ¼ã‚¿æŒ‡å®šã•ã‚Œã¦ã„ã¦ã‚‚ã€æŒ‡å®šIDã®ãƒªã‚½ãƒ¼ã‚¹ãŒç„¡ã„å ´åˆã‚‚ãƒ‡ãƒ¼ã‚¿ç„¡ã—
 		if( id_list[4] != CLACT_U_HEADER_DATA_NONE &&
 			CLACT_U_ResManagerCheckID( fcat->resMan[4], id_list[4] ) == FALSE ){
 			id_list[4] = CLACT_U_HEADER_DATA_NONE;
@@ -554,7 +554,7 @@ CATS_ACT_PTR FieldCellActAdd_S(
 		}	
 	}
 	
-	///< ÀÛ‚Éƒwƒbƒ_[‚ğì¬
+	///< å®Ÿéš›ã«ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ä½œæˆ
 	CLACT_U_MakeHeader(
 		cap->act_hd,
 		id_list[0], id_list[1], id_list[2],
@@ -563,44 +563,44 @@ CATS_ACT_PTR FieldCellActAdd_S(
 		fcat->resMan[0], fcat->resMan[1], fcat->resMan[2],
 		fcat->resMan[3], fcat->resMan[4], fcat->resMan[5] );
 	
-	///< OBJ ‚Ì“o˜^
+	///< OBJ ã®ç™»éŒ²
 	add.ClActSet	= fcat->cas;
 	add.ClActHeader = cap->act_hd;
 
-	add.mat.x		= FX32_CONST(coap_s->x);		///< À•W
+	add.mat.x		= FX32_CONST(coap_s->x);		///< åº§æ¨™
 	add.mat.y		= FX32_CONST(coap_s->y);
 	add.mat.z		= FX32_CONST(coap_s->z);
 	if(coap_s->d_area == NNS_G2D_VRAM_TYPE_2DSUB){
 		add.mat.y += SUB_SURFACE_Y;
 	}
 	
-	add.sca.x		= FX32_ONE;						///< Šgk—¦
+	add.sca.x		= FX32_ONE;						///< æ‹¡ç¸®ç‡
 	add.sca.y		= FX32_ONE;
 	add.sca.z		= FX32_ONE;
 	
-	add.rot			= 0;							///< ‰ñ“]Šp
-	add.pri			= coap_s->pri;					///< —Dæ“x
-	add.DrawArea	= coap_s->d_area;				///< •`‰æ–Ê
-	add.heap		= fcat->heap;				///< ƒq[ƒv—Ìˆæ
+	add.rot			= 0;							///< å›è»¢è§’
+	add.pri			= coap_s->pri;					///< å„ªå…ˆåº¦
+	add.DrawArea	= coap_s->d_area;				///< æç”»é¢
+	add.heap		= fcat->heap;				///< ãƒ’ãƒ¼ãƒ—é ˜åŸŸ
 	
-	cap->act = CLACT_Add(&add);						///< “o˜^
+	cap->act = CLACT_Add(&add);						///< ç™»éŒ²
 	
 	if (cap->act != NULL){
-		def_palno = CLACT_PaletteNoGet(cap->act);				///< Šî–{ƒpƒŒƒbƒg”Ô†æ“¾
-		CLACT_AnmChg(cap->act, coap_s->anm);					///< ƒAƒjƒ[ƒVƒ‡ƒ“w’è
-		CLACT_PaletteNoChg(cap->act, def_palno + coap_s->pal);	///< ƒpƒŒƒbƒgw’è
+		def_palno = CLACT_PaletteNoGet(cap->act);				///< åŸºæœ¬ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·å–å¾—
+		CLACT_AnmChg(cap->act, coap_s->anm);					///< ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æŒ‡å®š
+		CLACT_PaletteNoChg(cap->act, def_palno + coap_s->pal);	///< ãƒ‘ãƒ¬ãƒƒãƒˆæŒ‡å®š
 	}
 	else{
-		GF_ASSERT(0 && "ƒAƒNƒ^[“o˜^¸”s");
+		GF_ASSERT(0 && "ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²å¤±æ•—");
 	}
 	return cap;		
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[íœi’P”­—pj
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ï¼ˆå˜ç™ºç”¨ï¼‰
  *
- * @param	fcat		İ’èƒf[ƒ^
+ * @param	fcat		è¨­å®šãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -609,14 +609,14 @@ void FieldCellActDelete_S( FIELD_CLACT * fcat )
 {
 	u32	i;
 
-	CLACT_DestSet( fcat->cas );							// ƒZƒbƒg‚Ì”jŠü
-	CLACT_U_CharManagerDeletes( fcat->resObjTbl[0] );	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”jŠü
-	CLACT_U_PlttManagerDeletes( fcat->resObjTbl[1] );	// ƒpƒŒƒbƒgƒf[ƒ^”jŠü
+	CLACT_DestSet( fcat->cas );							// ã‚»ãƒƒãƒˆã®ç ´æ£„
+	CLACT_U_CharManagerDeletes( fcat->resObjTbl[0] );	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„
+	CLACT_U_PlttManagerDeletes( fcat->resObjTbl[1] );	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 
 	for( i=0; i<fcat->res_max; i++ ){
-		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹‚ğ”jŠü
+		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç ´æ£„
 		CLACT_U_ResManagerResObjTblDelete( fcat->resObjTbl[i] );
-		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 		CLACT_U_ResManagerDelete( fcat->resMan[i] );
 	}
 }

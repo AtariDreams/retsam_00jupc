@@ -1,11 +1,11 @@
 #ifndef _HYOUKA_SCR_DEF_H_
 #define _HYOUKA_SCR_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_DOCTOR_ZUKAN_HYOUKA		(9950)
 #define	SCRID_PC_ZUKAN_HYOUKA		(9951)
 #define	SCRID_OOKIDO_ZUKAN_HYOUKA		(9952)
 #define	SCRID_YES_OOKIDO_ZUKAN_HYOUKA		(9953)
-#define	SCRID_HYOUKA_SCR_DATA_MAX		(4)		//最大数
+#define	SCRID_HYOUKA_SCR_DATA_MAX		(4)		//譛螟ｧ謨ｰ
 
 #endif //_HYOUKA_SCR_DEF_H_

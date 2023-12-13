@@ -1,7 +1,7 @@
 #ifndef	__EVDTYPE_H__
 #define	__EVDTYPE_H__
 
-//ƒhƒAƒŠƒ“ƒN—pƒf[ƒ^\‘¢‘Ì
+//ãƒ‰ã‚¢ãƒªãƒ³ã‚¯ç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct{
 	unsigned short	gx;
 	unsigned short	gz;

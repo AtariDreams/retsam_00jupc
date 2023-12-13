@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_092.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			092�@�������u�˂ނ�v��Ԃ̎��������ʂ̂���Z�i�u�˂ނ�v��ԂłȂ��ƋZ�͎��s����j�A
- *				 �R���̊m���œG���Ђ�܂���i�P�^�[���U���𕕂���j
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			092　自分が「ねむり」状態の時だけ効果のある技（「ねむり」状態でないと技は失敗する）、
+ *				 ３割の確率で敵をひるませる（１ターン攻撃を封じる）
  *
  *@author	HisashiSogabe
  *@data		2006.01.23
@@ -16,9 +16,9 @@
 	.include	"waza_seq_def.h"
 
 BE_092:
-	//�˂ނ��Ԃ���Ȃ��Ƃ��́A���܂����܂��
+	//ねむり状態じゃないときは、うまくきまらん
 	IF_PSP			IF_FLAG_NBIT,SIDE_ATTACK,ID_PSP_condition,CONDITION_NEMURI,Umakukimaran
-	//�˂��Ƃ��甭���������т��ł́u���������˂Ă���v�������Ȃ�
+	//ねごとから発生したいびきでは「ぐうぐうねている」をださない
 	IF				IF_FLAG_EQ,BUF_PARA_WAZA_NO_TEMP,WAZANO_NEGOTO,BE_092_NEXT
 	GOSUB			SUB_SEQ_SLEEPING
 BE_092_NEXT:

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pst_obj.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–ÊOBJ
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢OBJ
  * @author	Hiroyuki Nakamura
  * @date	2005.10.27
  */
@@ -36,144 +36,144 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// ƒZƒ‹ƒAƒNƒ^[‚ÌƒŠƒ\[ƒXID
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒªã‚½ãƒ¼ã‚¹ID
 enum {
-	PST_CHR_ID_BALL = 0,		// ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
-	PST_CHR_ID_TAB,				// ƒy[ƒWƒ^ƒu
-	PST_CHR_ID_WAZACURSOR,		// ‹Z‘I‘ðƒJ[ƒ\ƒ‹
+	PST_CHR_ID_BALL = 0,		// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
+	PST_CHR_ID_TAB,				// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–
+	PST_CHR_ID_WAZACURSOR,		// æŠ€é¸æŠžã‚«ãƒ¼ã‚½ãƒ«
 
-	PST_CHR_ID_POKETYPE1,		// ƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒCƒvƒAƒCƒRƒ“‚P
-	PST_CHR_ID_POKETYPE2,		// ƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒCƒvƒAƒCƒRƒ“‚Q
-	PST_CHR_ID_WAZATYPE1,		// ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚P
-	PST_CHR_ID_WAZATYPE2,		// ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚Q
-	PST_CHR_ID_WAZATYPE3,		// ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚R
-	PST_CHR_ID_WAZATYPE4,		// ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚S
-	PST_CHR_ID_WAZATYPE5,		// ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚T
-	PST_CHR_ID_WAZAKIND,		// ‹Z•ª—ÞƒAƒCƒRƒ“
+	PST_CHR_ID_POKETYPE1,		// ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼‘
+	PST_CHR_ID_POKETYPE2,		// ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼’
+	PST_CHR_ID_WAZATYPE1,		// æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼‘
+	PST_CHR_ID_WAZATYPE2,		// æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼’
+	PST_CHR_ID_WAZATYPE3,		// æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼“
+	PST_CHR_ID_WAZATYPE4,		// æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼”
+	PST_CHR_ID_WAZATYPE5,		// æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼•
+	PST_CHR_ID_WAZAKIND,		// æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³
 
-	PST_CHR_ID_POKEICON,		// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+	PST_CHR_ID_POKEICON,		// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 
-	PST_CHR_ID_STIZYO,			// ó‘ÔˆÙíƒAƒCƒRƒ“
-	PST_CHR_ID_FLASH,			// ‚¯‚Ã‚â
-	PST_CHR_ID_ARROW,			// ƒy[ƒWØ‚è‘Ö‚¦–îˆó
+	PST_CHR_ID_STIZYO,			// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³
+	PST_CHR_ID_FLASH,			// ã‘ã¥ã‚„
+	PST_CHR_ID_ARROW,			// ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆçŸ¢å°
 
-	PST_CHR_ID_BUTTON_EF,		// ‰º‰æ–ÊƒGƒtƒFƒNƒg
+	PST_CHR_ID_BUTTON_EF,		// ä¸‹ç”»é¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-	PST_CHR_ID_CNDITION_UP,		// ƒRƒ“ƒfƒBƒVƒ‡ƒ“ã¸–îˆó
+	PST_CHR_ID_CNDITION_UP,		// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ä¸Šæ˜‡çŸ¢å°
 
-	PST_CHR_ID_A_BUTTON,		// Aƒ{ƒ^ƒ“ƒ}[ƒN
+	PST_CHR_ID_A_BUTTON,		// Aãƒœã‚¿ãƒ³ãƒžãƒ¼ã‚¯
 
-	PST_CHR_ID_MARK01,			// ƒ{ƒbƒNƒXƒ}[ƒN‚P
-	PST_CHR_ID_MARK02,			// ƒ{ƒbƒNƒXƒ}[ƒN‚Q
-	PST_CHR_ID_MARK03,			// ƒ{ƒbƒNƒXƒ}[ƒN‚R
-	PST_CHR_ID_MARK04,			// ƒ{ƒbƒNƒXƒ}[ƒN‚S
-	PST_CHR_ID_MARK05,			// ƒ{ƒbƒNƒXƒ}[ƒN‚T
-	PST_CHR_ID_MARK06,			// ƒ{ƒbƒNƒXƒ}[ƒN‚U
-	PST_CHR_ID_MARK07,			// ƒ|ƒPƒ‹ƒXEƒŒƒAƒJƒ‰[
+	PST_CHR_ID_MARK01,			// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼‘
+	PST_CHR_ID_MARK02,			// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼’
+	PST_CHR_ID_MARK03,			// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼“
+	PST_CHR_ID_MARK04,			// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼”
+	PST_CHR_ID_MARK05,			// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼•
+	PST_CHR_ID_MARK06,			// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼–
+	PST_CHR_ID_MARK07,			// ãƒã‚±ãƒ«ã‚¹ãƒ»ãƒ¬ã‚¢ã‚«ãƒ©ãƒ¼
 
-	PST_CHR_ID_EZCND,			// ŠÈˆÕƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒ}[ƒN
+	PST_CHR_ID_EZCND,			// ç°¡æ˜“ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ãƒžãƒ¼ã‚¯
 
-	PST_CHR_ID_RIBBON01,		// ƒŠƒ{ƒ“‚P
-	PST_CHR_ID_RIBBON02,		// ƒŠƒ{ƒ“‚Q
-	PST_CHR_ID_RIBBON03,		// ƒŠƒ{ƒ“‚R
-	PST_CHR_ID_RIBBON04,		// ƒŠƒ{ƒ“‚S
-	PST_CHR_ID_RIBBON05,		// ƒŠƒ{ƒ“‚T
-	PST_CHR_ID_RIBBON06,		// ƒŠƒ{ƒ“‚U
-	PST_CHR_ID_RIBBON07,		// ƒŠƒ{ƒ“‚V
-	PST_CHR_ID_RIBBON08,		// ƒŠƒ{ƒ“‚W
-	PST_CHR_ID_RIBBON09,		// ƒŠƒ{ƒ“‚O
-	PST_CHR_ID_RIBBON10,		// ƒŠƒ{ƒ“‚P‚O
-	PST_CHR_ID_RIBBON11,		// ƒŠƒ{ƒ“‚P‚P
-	PST_CHR_ID_RIBBON12,		// ƒŠƒ{ƒ“‚P‚Q
-	PST_CHR_ID_RIBBON_CUR,		// ƒŠƒ{ƒ“‚P‚R
+	PST_CHR_ID_RIBBON01,		// ãƒªãƒœãƒ³ï¼‘
+	PST_CHR_ID_RIBBON02,		// ãƒªãƒœãƒ³ï¼’
+	PST_CHR_ID_RIBBON03,		// ãƒªãƒœãƒ³ï¼“
+	PST_CHR_ID_RIBBON04,		// ãƒªãƒœãƒ³ï¼”
+	PST_CHR_ID_RIBBON05,		// ãƒªãƒœãƒ³ï¼•
+	PST_CHR_ID_RIBBON06,		// ãƒªãƒœãƒ³ï¼–
+	PST_CHR_ID_RIBBON07,		// ãƒªãƒœãƒ³ï¼—
+	PST_CHR_ID_RIBBON08,		// ãƒªãƒœãƒ³ï¼˜
+	PST_CHR_ID_RIBBON09,		// ãƒªãƒœãƒ³ï¼
+	PST_CHR_ID_RIBBON10,		// ãƒªãƒœãƒ³ï¼‘ï¼
+	PST_CHR_ID_RIBBON11,		// ãƒªãƒœãƒ³ï¼‘ï¼‘
+	PST_CHR_ID_RIBBON12,		// ãƒªãƒœãƒ³ï¼‘ï¼’
+	PST_CHR_ID_RIBBON_CUR,		// ãƒªãƒœãƒ³ï¼‘ï¼“
 
-	PST_CHR_ID_RIBBON_ARROW,	// ƒŠƒ{ƒ“‘I‘ð–îˆó
-	PST_CHR_ID_RIBBON_FLASH,	// ƒŠƒ{ƒ“‚ÌŒõ
-	PST_CHR_ID_CON_FLASH,		// ƒRƒ“ƒfƒBƒVƒ‡ƒ“‚ÌŒõ
-	PST_CHR_ID_POKERUS,			// ƒ|ƒPƒ‹ƒX—pó‘ÔˆÙíƒAƒCƒRƒ“
+	PST_CHR_ID_RIBBON_ARROW,	// ãƒªãƒœãƒ³é¸æŠžçŸ¢å°
+	PST_CHR_ID_RIBBON_FLASH,	// ãƒªãƒœãƒ³ã®å…‰
+	PST_CHR_ID_CON_FLASH,		// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã®å…‰
+	PST_CHR_ID_POKERUS,			// ãƒã‚±ãƒ«ã‚¹ç”¨çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³
 };
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/05
-// ‚¼‚­‚¹‚¢ƒAƒCƒRƒ“‚ð’†‰›Šñ‚¹
-#define	PT_ICON_P1_PX	( 216 )		// ƒ|ƒPƒ‚ƒ“î•ñƒy[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒ^ƒCƒvƒAƒCƒRƒ“•\Ž¦XÀ•W
-#define	PT_ICON_P1_PX1	( 199 )		// ƒ|ƒPƒ‚ƒ“î•ñƒy[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒ^ƒCƒvƒAƒCƒRƒ“•\Ž¦XÀ•W
-#define	PT_ICON_P1_PX2	( 233 )		// ƒ|ƒPƒ‚ƒ“î•ñƒy[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒ^ƒCƒvƒAƒCƒRƒ“•\Ž¦XÀ•W
+// ãžãã›ã„ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä¸­å¤®å¯„ã›
+#define	PT_ICON_P1_PX	( 216 )		// ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºXåº§æ¨™
+#define	PT_ICON_P1_PX1	( 199 )		// ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºXåº§æ¨™
+#define	PT_ICON_P1_PX2	( 233 )		// ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºXåº§æ¨™
 // ----------------------------------------------------------------------------
-#define	PT_ICON_P1_PY	( 80 )		// ƒ|ƒPƒ‚ƒ“î•ñƒy[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒ^ƒCƒvƒAƒCƒRƒ“•\Ž¦YÀ•W
-#define	PT_ICON_P4_PX	( 63 )		// í‚¤‹Zƒy[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒ^ƒCƒvƒAƒCƒRƒ“•\Ž¦XÀ•W
-#define	PT_ICON_P4_PY	( 52 )		// í‚¤‹Zƒy[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒ^ƒCƒvƒAƒCƒRƒ“•\Ž¦YÀ•W
-#define	WT_ICON_P4_PX	( 151 )		// í‚¤‹Zƒy[ƒW‚Ì‹Zƒ^ƒCƒvƒAƒCƒRƒ“•\Ž¦XÀ•W
+#define	PT_ICON_P1_PY	( 80 )		// ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºYåº§æ¨™
+#define	PT_ICON_P4_PX	( 63 )		// æˆ¦ã†æŠ€ãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºXåº§æ¨™
+#define	PT_ICON_P4_PY	( 52 )		// æˆ¦ã†æŠ€ãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºYåº§æ¨™
+#define	WT_ICON_P4_PX	( 151 )		// æˆ¦ã†æŠ€ãƒšãƒ¼ã‚¸ã®æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºXåº§æ¨™
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/05
-// ‚¼‚­‚¹‚¢ƒAƒCƒRƒ“‚ÌcˆÊ’u‚ð’²®
-#define	WT_ICON_P4_PY	( 42 )		// í‚¤‹Zƒy[ƒW‚Ì‹Zƒ^ƒCƒvƒAƒCƒRƒ“•\Ž¦YÀ•W
+// ãžãã›ã„ã‚¢ã‚¤ã‚³ãƒ³ã®ç¸¦ä½ç½®ã‚’èª¿æ•´
+#define	WT_ICON_P4_PY	( 42 )		// æˆ¦ã†æŠ€ãƒšãƒ¼ã‚¸ã®æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºYåº§æ¨™
 // ----------------------------------------------------------------------------
-#define	KT_ICON_P4_PX	( 92+16 )	// í‚¤‹Zƒy[ƒW‚Ì•ª—ÞƒAƒCƒRƒ“•\Ž¦XÀ•W
-#define	KT_ICON_P4_PY	( 72 )		// í‚¤‹Zƒy[ƒW‚Ì•ª—ÞƒAƒCƒRƒ“•\Ž¦YÀ•W
-#define	POKE_ICON_PX		( 24 )	// í‚¤‹Zƒy[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“•\Ž¦XÀ•W
-#define	POKE_ICON_PY		( 48 )	// í‚¤‹Zƒy[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“•\Ž¦YÀ•W
-#define	CON_POKE_ICON_PX	( 32 )	// ƒRƒ“ƒeƒXƒg‹Zƒy[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“•\Ž¦XÀ•W
-#define	CON_POKE_ICON_PY	( 68 )	// ƒRƒ“ƒeƒXƒg‹Zƒy[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“•\Ž¦YÀ•W
+#define	KT_ICON_P4_PX	( 92+16 )	// æˆ¦ã†æŠ€ãƒšãƒ¼ã‚¸ã®åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºXåº§æ¨™
+#define	KT_ICON_P4_PY	( 72 )		// æˆ¦ã†æŠ€ãƒšãƒ¼ã‚¸ã®åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºYåº§æ¨™
+#define	POKE_ICON_PX		( 24 )	// æˆ¦ã†æŠ€ãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºXåº§æ¨™
+#define	POKE_ICON_PY		( 48 )	// æˆ¦ã†æŠ€ãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºYåº§æ¨™
+#define	CON_POKE_ICON_PX	( 32 )	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºXåº§æ¨™
+#define	CON_POKE_ICON_PY	( 68 )	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºYåº§æ¨™
 
-#define	TAB_PX	( 128 )		// ƒy[ƒWƒ^ƒu•\Ž¦XÀ•W
-#define	TAB_PY	( 24 )		// ƒy[ƒWƒ^ƒu•\Ž¦YÀ•W
+#define	TAB_PX	( 128 )		// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–è¡¨ç¤ºXåº§æ¨™
+#define	TAB_PY	( 24 )		// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–è¡¨ç¤ºYåº§æ¨™
 
-#define	BALL_PX	( 16 )		// ƒ{[ƒ‹•\Ž¦XÀ•W
-#define	BALL_PY	( 32 )		// ƒ{[ƒ‹•\Ž¦YÀ•W
+#define	BALL_PX	( 16 )		// ãƒœãƒ¼ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	BALL_PY	( 32 )		// ãƒœãƒ¼ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	WAZACURSOR_PX	( 194 )		// ‹ZƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	WAZACURSOR_PY	( 48 )		// ‹ZƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	WAZACURSOR_PX	( 194 )		// æŠ€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	WAZACURSOR_PY	( 48 )		// æŠ€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	ST_ICON_PX	( 80 )			// ó‘ÔˆÙíƒAƒCƒRƒ“•\Ž¦XÀ•W
-#define	ST_ICON_PY	( 52 )			// ó‘ÔˆÙíƒAƒCƒRƒ“•\Ž¦YÀ•W
+#define	ST_ICON_PX	( 80 )			// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºXåº§æ¨™
+#define	ST_ICON_PY	( 52 )			// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºYåº§æ¨™
 
-#define	ST_ICON_POKERUS_PX	( 76 )	// ƒ|ƒPƒ‹ƒXƒAƒCƒRƒ“•\Ž¦XÀ•W
-#define	ST_ICON_POKERUS_PY	( 48 )	// ƒ|ƒPƒ‹ƒXƒAƒCƒRƒ“•\Ž¦YÀ•W
+#define	ST_ICON_POKERUS_PX	( 76 )	// ãƒã‚±ãƒ«ã‚¹ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºXåº§æ¨™
+#define	ST_ICON_POKERUS_PY	( 48 )	// ãƒã‚±ãƒ«ã‚¹ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºYåº§æ¨™
 
-#define	TAB_ARROW_PY	( 24 )		// ƒy[ƒWƒ^ƒuØ‚è‘Ö‚¦–îˆó•\Ž¦YÀ•W
+#define	TAB_ARROW_PY	( 24 )		// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–åˆ‡ã‚Šæ›¿ãˆçŸ¢å°è¡¨ç¤ºYåº§æ¨™
 
-#define	BOX_MARK_PX	( 48 )			// ƒ{ƒbƒNƒXƒ}[ƒN•\Ž¦XÀ•W
-#define	BOX_MARK_PY	( 150 )			// ƒ{ƒbƒNƒXƒ}[ƒN•\Ž¦YÀ•W
+#define	BOX_MARK_PX	( 48 )			// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯è¡¨ç¤ºXåº§æ¨™
+#define	BOX_MARK_PY	( 150 )			// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯è¡¨ç¤ºYåº§æ¨™
 
-#define	FLASH_PX	( 152 )			// ‚¯‚Ã‚â•\Ž¦XÀ•W
-#define	FLASH_PY	( 168 )			// ‚¯‚Ã‚â•\Ž¦YÀ•W
+#define	FLASH_PX	( 152 )			// ã‘ã¥ã‚„è¡¨ç¤ºXåº§æ¨™
+#define	FLASH_PY	( 168 )			// ã‘ã¥ã‚„è¡¨ç¤ºYåº§æ¨™
 
-#define	RARE_MARK_PX		( 98 )		// ƒŒƒAƒ}[ƒN•\Ž¦XÀ•W
-#define	RARE_MARK_PY		( 72 )		// ƒŒƒAƒ}[ƒN•\Ž¦YÀ•W
-#define	POKERUS_MARK_PX		( 98 )		// ƒ|ƒPƒ‹ƒXƒ}[ƒN•\Ž¦XÀ•W
-#define	POKERUS_MARK_PY		( 132 )		// ƒ|ƒPƒ‹ƒXƒ}[ƒN•\Ž¦YÀ•W
+#define	RARE_MARK_PX		( 98 )		// ãƒ¬ã‚¢ãƒžãƒ¼ã‚¯è¡¨ç¤ºXåº§æ¨™
+#define	RARE_MARK_PY		( 72 )		// ãƒ¬ã‚¢ãƒžãƒ¼ã‚¯è¡¨ç¤ºYåº§æ¨™
+#define	POKERUS_MARK_PX		( 98 )		// ãƒã‚±ãƒ«ã‚¹ãƒžãƒ¼ã‚¯è¡¨ç¤ºXåº§æ¨™
+#define	POKERUS_MARK_PY		( 132 )		// ãƒã‚±ãƒ«ã‚¹ãƒžãƒ¼ã‚¯è¡¨ç¤ºYåº§æ¨™
 
-#define	RIBBON_MX	( 32 )				// ƒŠƒ{ƒ“•\Ž¦XŠÔŠu
-#define	RIBBON_MY	( 40 )				// ƒŠƒ{ƒ“•\Ž¦YŠÔŠu
+#define	RIBBON_MX	( 32 )				// ãƒªãƒœãƒ³è¡¨ç¤ºXé–“éš”
+#define	RIBBON_MY	( 40 )				// ãƒªãƒœãƒ³è¡¨ç¤ºYé–“éš”
 
-#define	RIBON_PX1	( 132 )						// ƒŠƒ{ƒ“•\Ž¦XÀ•Wi‚P—ñ–Új
-#define	RIBON_PX2	( RIBON_PX1 + RIBBON_MX )	// ƒŠƒ{ƒ“•\Ž¦XÀ•Wi‚Q—ñ–Új
-#define	RIBON_PX3	( RIBON_PX2 + RIBBON_MX )	// ƒŠƒ{ƒ“•\Ž¦XÀ•Wi‚R—ñ–Új
-#define	RIBON_PX4	( RIBON_PX3 + RIBBON_MX )	// ƒŠƒ{ƒ“•\Ž¦XÀ•Wi‚S—ñ–Új
+#define	RIBON_PX1	( 132 )						// ãƒªãƒœãƒ³è¡¨ç¤ºXåº§æ¨™ï¼ˆï¼‘åˆ—ç›®ï¼‰
+#define	RIBON_PX2	( RIBON_PX1 + RIBBON_MX )	// ãƒªãƒœãƒ³è¡¨ç¤ºXåº§æ¨™ï¼ˆï¼’åˆ—ç›®ï¼‰
+#define	RIBON_PX3	( RIBON_PX2 + RIBBON_MX )	// ãƒªãƒœãƒ³è¡¨ç¤ºXåº§æ¨™ï¼ˆï¼“åˆ—ç›®ï¼‰
+#define	RIBON_PX4	( RIBON_PX3 + RIBBON_MX )	// ãƒªãƒœãƒ³è¡¨ç¤ºXåº§æ¨™ï¼ˆï¼”åˆ—ç›®ï¼‰
 
-#define	RIBON_PY1	( 56 )						// ƒŠƒ{ƒ“•\Ž¦YÀ•Wi‚Ps–Új
-#define	RIBON_PY2	( RIBON_PY1 + RIBBON_MY )	// ƒŠƒ{ƒ“•\Ž¦YÀ•Wi‚Qs–Új
-#define	RIBON_PY3	( RIBON_PY2 + RIBBON_MY )	// ƒŠƒ{ƒ“•\Ž¦YÀ•Wi‚Rs–Új
+#define	RIBON_PY1	( 56 )						// ãƒªãƒœãƒ³è¡¨ç¤ºYåº§æ¨™ï¼ˆï¼‘è¡Œç›®ï¼‰
+#define	RIBON_PY2	( RIBON_PY1 + RIBBON_MY )	// ãƒªãƒœãƒ³è¡¨ç¤ºYåº§æ¨™ï¼ˆï¼’è¡Œç›®ï¼‰
+#define	RIBON_PY3	( RIBON_PY2 + RIBBON_MY )	// ãƒªãƒœãƒ³è¡¨ç¤ºYåº§æ¨™ï¼ˆï¼“è¡Œç›®ï¼‰
 
-#define	RIBBON_ARROW_PX		( 180 )				// ƒŠƒ{ƒ“Ø‚è‘Ö‚¦–îˆó•\Ž¦XÀ•W
-#define	RIBBON_ARROW_UPY	( 32 )				// ƒŠƒ{ƒ“Ø‚è‘Ö‚¦ã–îˆó•\Ž¦YÀ•W
-#define	RIBBON_ARROW_DPY	( 120 )				// ƒŠƒ{ƒ“Ø‚è‘Ö‚¦‰º–îˆó•\Ž¦YÀ•W
+#define	RIBBON_ARROW_PX		( 180 )				// ãƒªãƒœãƒ³åˆ‡ã‚Šæ›¿ãˆçŸ¢å°è¡¨ç¤ºXåº§æ¨™
+#define	RIBBON_ARROW_UPY	( 32 )				// ãƒªãƒœãƒ³åˆ‡ã‚Šæ›¿ãˆä¸ŠçŸ¢å°è¡¨ç¤ºYåº§æ¨™
+#define	RIBBON_ARROW_DPY	( 120 )				// ãƒªãƒœãƒ³åˆ‡ã‚Šæ›¿ãˆä¸‹çŸ¢å°è¡¨ç¤ºYåº§æ¨™
 
-#define	TAB_CENTER_PX	( 23 * 8 + 4 )	// ƒ^ƒu•\Ž¦’†SXÀ•W
-#define	TAB_SEL_SX		( 24 )			// ‘I‘ð’†‚Ìƒ^ƒuXƒTƒCƒY
-#define	TAB_NOSEL_SX	( 16 )			// ‚»‚Ì‘¼‚Ìƒ^ƒuXƒTƒCƒY
-#define	TAB_L_ARROW_PSX	( -12 )			// ƒ^ƒuØ‚è‘Ö‚¦¶–îˆó‚Ì•\Ž¦XÀ•W•â³’l
-#define	TAB_R_ARROW_PSX	( -4 )			// ƒ^ƒuØ‚è‘Ö‚¦‰E–îˆó‚Ì•\Ž¦XÀ•W•â³’l
+#define	TAB_CENTER_PX	( 23 * 8 + 4 )	// ã‚¿ãƒ–è¡¨ç¤ºä¸­å¿ƒXåº§æ¨™
+#define	TAB_SEL_SX		( 24 )			// é¸æŠžä¸­ã®ã‚¿ãƒ–Xã‚µã‚¤ã‚º
+#define	TAB_NOSEL_SX	( 16 )			// ãã®ä»–ã®ã‚¿ãƒ–Xã‚µã‚¤ã‚º
+#define	TAB_L_ARROW_PSX	( -12 )			// ã‚¿ãƒ–åˆ‡ã‚Šæ›¿ãˆå·¦çŸ¢å°ã®è¡¨ç¤ºXåº§æ¨™è£œæ­£å€¤
+#define	TAB_R_ARROW_PSX	( -4 )			// ã‚¿ãƒ–åˆ‡ã‚Šæ›¿ãˆå³çŸ¢å°ã®è¡¨ç¤ºXåº§æ¨™è£œæ­£å€¤
 
-#define	KEDUYA_ANM_MAX	( 12 )		// ‚¯‚Ã‚â•\Ž¦Å‘å”
+#define	KEDUYA_ANM_MAX	( 12 )		// ã‘ã¥ã‚„è¡¨ç¤ºæœ€å¤§æ•°
 
-#define	A_BUTTON_PY		( 8 )	///< Aƒ{ƒ^ƒ“ƒ}[ƒN•\Ž¦YÀ•W
+#define	A_BUTTON_PY		( 8 )	///< Aãƒœã‚¿ãƒ³ãƒžãƒ¼ã‚¯è¡¨ç¤ºYåº§æ¨™
 
-#define	PST_POKEICON_PAL	( 7 )	// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÅŽg—p‚·‚éƒpƒŒƒbƒg”Ô†
-#define	PST_RIBBON_PAL	( 7 )		// ƒŠƒ{ƒ“‚ÅŽg—p‚·‚éƒpƒŒƒbƒg”Ô†
+#define	PST_POKEICON_PAL	( 7 )	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+#define	PST_RIBBON_PAL	( 7 )		// ãƒªãƒœãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 
 
 //============================================================================================
@@ -187,334 +187,334 @@ static void InitObjCharPalChg( PST_WORK * wk );
 //============================================================================================
 static const TCATS_OBJECT_ADD_PARAM	ActAddParam[] =
 {
-	{	// ƒy[ƒWƒ^ƒu‚P
+	{	// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–ï¼‘
 		PST_CHR_ID_TAB, TAB_PX, TAB_PY, 0,
 		0, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒy[ƒWƒ^ƒu‚Q
+	{	// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–ï¼’
 		PST_CHR_ID_TAB, TAB_PX+16, TAB_PY, 0,
 		1, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒy[ƒWƒ^ƒu‚R
+	{	// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–ï¼“
 		PST_CHR_ID_TAB, TAB_PX+32, TAB_PY, 0,
 		2, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒy[ƒWƒ^ƒu‚S
+	{	// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–ï¼”
 		PST_CHR_ID_TAB, TAB_PX+48, TAB_PY, 0,
 		3, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒy[ƒWƒ^ƒu‚T
+	{	// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–ï¼•
 		PST_CHR_ID_TAB, TAB_PX+64, TAB_PY, 0,
 		4, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒy[ƒWƒ^ƒu‚U
+	{	// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–ï¼–
 		PST_CHR_ID_TAB, TAB_PX+80, TAB_PY, 0,
 		5, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒy[ƒWƒ^ƒu‚V
+	{	// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–ï¼—
 		PST_CHR_ID_TAB, TAB_PX+96, TAB_PY, 0,
 		6, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒy[ƒWƒ^ƒu‚W
+	{	// ãƒšãƒ¼ã‚¸ã‚¿ãƒ–ï¼˜
 		PST_CHR_ID_TAB, TAB_PX+112, TAB_PY, 0,
 		7, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
 
-	{	// ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
+	{	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
 		PST_CHR_ID_BALL, BALL_PX, BALL_PY, 0,
 		0, 0, 12, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
 
-	{	// ‹Z‘I‘ðƒJ[ƒ\ƒ‹‚P
+	{	// æŠ€é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ï¼‘
 		PST_CHR_ID_WAZACURSOR, WAZACURSOR_PX, WAZACURSOR_PY, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
 
-	{	// ‹Z‘I‘ðƒJ[ƒ\ƒ‹‚Q
+	{	// æŠ€é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ï¼’
 		PST_CHR_ID_WAZACURSOR, WAZACURSOR_PX, WAZACURSOR_PY, 0,
 		1, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚P
+	{	// ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ï¼‘
 		PST_CHR_ID_POKETYPE1, 0, 0, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚Q
+	{	// ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ï¼’
 		PST_CHR_ID_POKETYPE2, 0, 0, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‹Zƒ^ƒCƒv‚P
+	{	// æŠ€ã‚¿ã‚¤ãƒ—ï¼‘
 		PST_CHR_ID_WAZATYPE1, 0, 0, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‹Zƒ^ƒCƒv‚Q
+	{	// æŠ€ã‚¿ã‚¤ãƒ—ï¼’
 		PST_CHR_ID_WAZATYPE2, 0, 0, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‹Zƒ^ƒCƒv‚R
+	{	// æŠ€ã‚¿ã‚¤ãƒ—ï¼“
 		PST_CHR_ID_WAZATYPE3, 0, 0, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‹Zƒ^ƒCƒv‚S
+	{	// æŠ€ã‚¿ã‚¤ãƒ—ï¼”
 		PST_CHR_ID_WAZATYPE4, 0, 0, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‹Zƒ^ƒCƒv‚T
+	{	// æŠ€ã‚¿ã‚¤ãƒ—ï¼•
 		PST_CHR_ID_WAZATYPE5, 0, 0, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‹Z•ª—Þ
+	{	// æŠ€åˆ†é¡ž
 		PST_CHR_ID_WAZAKIND, 0, 0, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
 
-	{	// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+	{	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 		PST_CHR_ID_POKEICON, POKE_ICON_PX, POKE_ICON_PY, 0,
 		0, 0, 4, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
 
-	{	// ó‘ÔˆÙíƒAƒCƒRƒ“
+	{	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³
 		PST_CHR_ID_STIZYO, ST_ICON_PX, ST_ICON_PY, 0,
 		0, 0, 6, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ^ƒuØ‚è‘Ö‚¦–îˆóE¶
+	{	// ã‚¿ãƒ–åˆ‡ã‚Šæ›¿ãˆçŸ¢å°ãƒ»å·¦
 		PST_CHR_ID_ARROW, 0, TAB_ARROW_PY, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ^ƒuØ‚è‘Ö‚¦–îˆóE‰E
+	{	// ã‚¿ãƒ–åˆ‡ã‚Šæ›¿ãˆçŸ¢å°ãƒ»å³
 		PST_CHR_ID_ARROW, 0, TAB_ARROW_PY, 0,
 		1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ{ƒbƒNƒXƒ}[ƒN‚P
+	{	// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼‘
 		PST_CHR_ID_MARK01, BOX_MARK_PX, BOX_MARK_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ{ƒbƒNƒXƒ}[ƒN‚Q
+	{	// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼’
 		PST_CHR_ID_MARK02, BOX_MARK_PX+8, BOX_MARK_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ{ƒbƒNƒXƒ}[ƒN‚R
+	{	// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼“
 		PST_CHR_ID_MARK03, BOX_MARK_PX+16, BOX_MARK_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ{ƒbƒNƒXƒ}[ƒN‚S
+	{	// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼”
 		PST_CHR_ID_MARK04, BOX_MARK_PX+24, BOX_MARK_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ{ƒbƒNƒXƒ}[ƒN‚T
+	{	// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼•
 		PST_CHR_ID_MARK05, BOX_MARK_PX+32, BOX_MARK_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ{ƒbƒNƒXƒ}[ƒN‚U
+	{	// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯ï¼–
 		PST_CHR_ID_MARK06, BOX_MARK_PX+40, BOX_MARK_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚P
+	{	// ã‘ã¥ã‚„ï¼‘
 		PST_CHR_ID_FLASH, FLASH_PX, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚Q
+	{	// ã‘ã¥ã‚„ï¼’
 		PST_CHR_ID_FLASH, FLASH_PX+8, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚R
+	{	// ã‘ã¥ã‚„ï¼“
 		PST_CHR_ID_FLASH, FLASH_PX+16, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚S
+	{	// ã‘ã¥ã‚„ï¼”
 		PST_CHR_ID_FLASH, FLASH_PX+24, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚T
+	{	// ã‘ã¥ã‚„ï¼•
 		PST_CHR_ID_FLASH, FLASH_PX+32, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚U
+	{	// ã‘ã¥ã‚„ï¼–
 		PST_CHR_ID_FLASH, FLASH_PX+40, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚V
+	{	// ã‘ã¥ã‚„ï¼—
 		PST_CHR_ID_FLASH, FLASH_PX+48, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚W
+	{	// ã‘ã¥ã‚„ï¼˜
 		PST_CHR_ID_FLASH, FLASH_PX+56, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚X
+	{	// ã‘ã¥ã‚„ï¼™
 		PST_CHR_ID_FLASH, FLASH_PX+64, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚P‚O
+	{	// ã‘ã¥ã‚„ï¼‘ï¼
 		PST_CHR_ID_FLASH, FLASH_PX+72, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚P‚P
+	{	// ã‘ã¥ã‚„ï¼‘ï¼‘
 		PST_CHR_ID_FLASH, FLASH_PX+80, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ‚¯‚Ã‚â‚P‚Q
+	{	// ã‘ã¥ã‚„ï¼‘ï¼’
 		PST_CHR_ID_FLASH, FLASH_PX+88, FLASH_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ{ƒ^ƒ“ƒGƒtƒFƒNƒg
+	{	// ãƒœã‚¿ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		PST_CHR_ID_BUTTON_EF, 0, 0, 0, 
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// uUPv‚P
+	{	// ã€ŒUPã€ï¼‘
 		PST_CHR_ID_CNDITION_UP, 26*8, 6*8, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// uUPv‚Q
+	{	// ã€ŒUPã€ï¼’
 		PST_CHR_ID_CNDITION_UP, 28*8, 11*8, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// uUPv‚R
+	{	// ã€ŒUPã€ï¼“
 		PST_CHR_ID_CNDITION_UP, 27*8, 15*8, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// uUPv‚S
+	{	// ã€ŒUPã€ï¼”
 		PST_CHR_ID_CNDITION_UP, 18*8, 15*8, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// uUPv‚T
+	{	// ã€ŒUPã€ï¼•
 		PST_CHR_ID_CNDITION_UP, 17*8, 11*8, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// Aƒ{ƒ^ƒ“ƒ}[ƒN
+	{	// Aãƒœã‚¿ãƒ³ãƒžãƒ¼ã‚¯
 		PST_CHR_ID_A_BUTTON, 0, 0, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ŠÈˆÕƒRƒ“ƒfƒBƒVƒ‡ƒ“i‚©‚Á‚±‚æ‚³j
+	{	// ç°¡æ˜“ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ï¼ˆã‹ã£ã“ã‚ˆã•ï¼‰
 		PST_CHR_ID_EZCND, 0, 0, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ŠÈˆÕƒRƒ“ƒfƒBƒVƒ‡ƒ“i‚¤‚Â‚­‚µ‚³j
+	{	// ç°¡æ˜“ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ï¼ˆã†ã¤ãã—ã•ï¼‰
 		PST_CHR_ID_EZCND, 0, 0, 0,
 		1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ŠÈˆÕƒRƒ“ƒfƒBƒVƒ‡ƒ“i‚©‚í‚¢‚³j
+	{	// ç°¡æ˜“ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ï¼ˆã‹ã‚ã„ã•ï¼‰
 		PST_CHR_ID_EZCND, 0, 0, 0,
 		3, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ŠÈˆÕƒRƒ“ƒfƒBƒVƒ‡ƒ“i‚©‚µ‚±‚³j
+	{	// ç°¡æ˜“ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ï¼ˆã‹ã—ã“ã•ï¼‰
 		PST_CHR_ID_EZCND, 0, 0, 0,
 		2, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ŠÈˆÕƒRƒ“ƒfƒBƒVƒ‡ƒ“i‚½‚­‚Ü‚µ‚³j
+	{	// ç°¡æ˜“ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ï¼ˆãŸãã¾ã—ã•ï¼‰
 		PST_CHR_ID_EZCND, 0, 0, 0,
 		4, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
 
-	{	// ƒŒƒAƒJƒ‰[ƒ}[ƒN
+	{	// ãƒ¬ã‚¢ã‚«ãƒ©ãƒ¼ãƒžãƒ¼ã‚¯
 		PST_CHR_ID_MARK07, RARE_MARK_PX, RARE_MARK_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ|ƒPƒ‹ƒXƒ}[ƒN
+	{	// ãƒã‚±ãƒ«ã‚¹ãƒžãƒ¼ã‚¯
 		PST_CHR_ID_MARK07, POKERUS_MARK_PX, POKERUS_MARK_PY, 0,
 		1, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
 
-	{	// ƒŠƒ{ƒ“‚P
+	{	// ãƒªãƒœãƒ³ï¼‘
 		PST_CHR_ID_RIBBON01, RIBON_PX1, RIBON_PY1, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚Q
+	{	// ãƒªãƒœãƒ³ï¼’
 		PST_CHR_ID_RIBBON02, RIBON_PX2, RIBON_PY1, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚R
+	{	// ãƒªãƒœãƒ³ï¼“
 		PST_CHR_ID_RIBBON03, RIBON_PX3, RIBON_PY1, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚S
+	{	// ãƒªãƒœãƒ³ï¼”
 		PST_CHR_ID_RIBBON04, RIBON_PX4, RIBON_PY1, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚T
+	{	// ãƒªãƒœãƒ³ï¼•
 		PST_CHR_ID_RIBBON05, RIBON_PX1, RIBON_PY2, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚U
+	{	// ãƒªãƒœãƒ³ï¼–
 		PST_CHR_ID_RIBBON06, RIBON_PX2, RIBON_PY2, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚V
+	{	// ãƒªãƒœãƒ³ï¼—
 		PST_CHR_ID_RIBBON07, RIBON_PX3, RIBON_PY2, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚W
+	{	// ãƒªãƒœãƒ³ï¼˜
 		PST_CHR_ID_RIBBON08, RIBON_PX4, RIBON_PY2, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚X
+	{	// ãƒªãƒœãƒ³ï¼™
 		PST_CHR_ID_RIBBON09, RIBON_PX1, RIBON_PY3, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚P‚O
+	{	// ãƒªãƒœãƒ³ï¼‘ï¼
 		PST_CHR_ID_RIBBON10, RIBON_PX2, RIBON_PY3, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚P‚P
+	{	// ãƒªãƒœãƒ³ï¼‘ï¼‘
 		PST_CHR_ID_RIBBON11, RIBON_PX3, RIBON_PY3, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“‚P‚Q
+	{	// ãƒªãƒœãƒ³ï¼‘ï¼’
 		PST_CHR_ID_RIBBON12, RIBON_PX4, RIBON_PY3, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“ƒJ[ƒ\ƒ‹
+	{	// ãƒªãƒœãƒ³ã‚«ãƒ¼ã‚½ãƒ«
 		PST_CHR_ID_RIBBON_CUR, RIBON_PX1, RIBON_PY1, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
 
-	{	// ƒŠƒ{ƒ“ƒXƒNƒ[ƒ‹–îˆóEã
+	{	// ãƒªãƒœãƒ³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çŸ¢å°ãƒ»ä¸Š
 		PST_CHR_ID_RIBBON_ARROW, RIBBON_ARROW_PX, RIBBON_ARROW_UPY, 0,
 		1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“ƒXƒNƒ[ƒ‹–îˆóE‰º
+	{	// ãƒªãƒœãƒ³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çŸ¢å°ãƒ»ä¸‹
 		PST_CHR_ID_RIBBON_ARROW, RIBBON_ARROW_PX, RIBBON_ARROW_DPY, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒŠƒ{ƒ“Œõ
+	{	// ãƒªãƒœãƒ³å…‰
 		PST_CHR_ID_RIBBON_FLASH, 8, 132, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒRƒ“ƒfƒBƒVƒ‡ƒ“Œõ‚P
+	{	// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å…‰ï¼‘
 		PST_CHR_ID_CON_FLASH, RIBON_PX1, RIBON_PY1, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒRƒ“ƒfƒBƒVƒ‡ƒ“Œõ‚Q
+	{	// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å…‰ï¼’
 		PST_CHR_ID_CON_FLASH, RIBON_PX1, RIBON_PY1, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒRƒ“ƒfƒBƒVƒ‡ƒ“Œõ‚R
+	{	// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å…‰ï¼“
 		PST_CHR_ID_CON_FLASH, RIBON_PX1, RIBON_PY1, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒRƒ“ƒfƒBƒVƒ‡ƒ“Œõ‚S
+	{	// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å…‰ï¼”
 		PST_CHR_ID_CON_FLASH, RIBON_PX1, RIBON_PY1, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒRƒ“ƒfƒBƒVƒ‡ƒ“Œõ‚T
+	{	// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å…‰ï¼•
 		PST_CHR_ID_CON_FLASH, RIBON_PX1, RIBON_PY1, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
-	{	// ƒ|ƒPƒ‹ƒX—pó‘ÔˆÙíƒAƒCƒRƒ“
+	{	// ãƒã‚±ãƒ«ã‚¹ç”¨çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³
 		PST_CHR_ID_POKERUS, ST_ICON_POKERUS_PX, ST_ICON_POKERUS_PY, 0,
 		0, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
 	},
 };
 
-// ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹ƒpƒŒƒbƒgi”z—ñ‚O‚Íƒ_ƒ~[j
+// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆï¼ˆé…åˆ—ï¼ã¯ãƒ€ãƒŸãƒ¼ï¼‰
 static const u8 BallPalTbl[] = { 2,0,2,2,0,1,1,1,1,2,2,2,2,3,3,2,0 };
 
 
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -549,13 +549,13 @@ void PokeStatusCellActInit( PST_WORK * wk )
 
 	{
 		TCATS_RESOURCE_FILE_LIST list = {
-			"data/pst_chr.resdat",		// ƒLƒƒƒ‰ƒNƒ^
-			"data/pst_pal.resdat",		// ƒpƒŒƒbƒg
-			"data/pst_cell.resdat",		// ƒZƒ‹
-			"data/pst_canm.resdat",		// ƒZƒ‹ƒAƒjƒ
-			NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹
-			NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
-			"data/pst_h.cldat"			// ƒwƒbƒ_[
+			"data/pst_chr.resdat",		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+			"data/pst_pal.resdat",		// ãƒ‘ãƒ¬ãƒƒãƒˆ
+			"data/pst_cell.resdat",		// ã‚»ãƒ«
+			"data/pst_canm.resdat",		// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			NULL,						// ãƒžãƒ«ãƒã‚»ãƒ«
+			NULL,						// ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			"data/pst_h.cldat"			// ãƒ˜ãƒƒãƒ€ãƒ¼
 		};
 		CATS_ResourceLoadBinary( wk->csp, wk->crp, &list );
 	}
@@ -563,9 +563,9 @@ void PokeStatusCellActInit( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[íœ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -578,9 +578,9 @@ void PokeStatusCellActRerease( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[ƒAƒjƒ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -597,9 +597,9 @@ void PokeStatus_CellActAnm( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[’Ç‰Á
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -644,18 +644,18 @@ void PokeStatusCellActSet( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWƒ^ƒu‚Ì•\Ž¦XÀ•WÝ’è
+ * ãƒšãƒ¼ã‚¸ã‚¿ãƒ–ã®è¡¨ç¤ºXåº§æ¨™è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	XÀ•W
+ * @return	Xåº§æ¨™
  */
 //---------------------------------------------------------------------------------------------
 static u8 PST_TabPosXGet( PST_WORK * wk )
 {
 	u8	i, num=0;
 
-	//	ƒ^ƒu”ƒ`ƒFƒbƒN
+	//	ã‚¿ãƒ–æ•°ãƒã‚§ãƒƒã‚¯
 	for( i=0; i<PST_PAGE_MAX; i++ ){
 		if( PokeStatus_PageCheck( wk, i ) != 0 ){
 			num++;
@@ -667,9 +667,9 @@ static u8 PST_TabPosXGet( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWƒ^ƒuØ‚è‘Ö‚¦
+ * ãƒšãƒ¼ã‚¸ã‚¿ãƒ–åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -718,9 +718,9 @@ void PokeStatusTabPosChg( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦–îˆó•\Ž¦
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆçŸ¢å°è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -742,10 +742,10 @@ void PokeStatus_TabArrowPut( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦–îˆó•\Ž¦Ø‚è‘Ö‚¦
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆçŸ¢å°è¡¨ç¤ºåˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	flg		ƒtƒ‰ƒO
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		ãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -762,9 +762,9 @@ void PokeStatus_TabArrowVanish( PST_WORK * wk, u8 flg )
 
 //---------------------------------------------------------------------------------------------
 /**
- * •ßŠlƒ{[ƒ‹Ø‚è‘Ö‚¦
+ * æ•ç²ãƒœãƒ¼ãƒ«åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -788,9 +788,9 @@ void PokeStatusBallAnmChg( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ó‘ÔˆÙíƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -816,9 +816,9 @@ void PokeStatus_StIconChg( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ŠÖ˜A‚ÌOBJ‚ðÝ’è
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿é–¢é€£ã®OBJã‚’è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -827,25 +827,25 @@ static void InitObjCharPalChg( PST_WORK * wk )
 {
 	u16	i;
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì‘®«ƒAƒCƒRƒ“
+	// ãƒã‚±ãƒ¢ãƒ³ã®å±žæ€§ã‚¢ã‚¤ã‚³ãƒ³
 	PokeStatus_PokeTypeChange( wk );
-	// ‹Z‘®«
+	// æŠ€å±žæ€§
 	for( i=0; i<4; i++ ){
 		if( wk->pp.waza[i] == 0 ){ continue; }
 		PokeStatus_TypeIconChange(
 			wk, PST_OBJ_TYPE_WAZA1+i, PST_CHR_ID_WAZATYPE1+i,
 			WT_WazaDataParaGet(wk->pp.waza[i],ID_WTD_wazatype) );
 	}
-	// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 	PokeStasus_PokeIconChange( wk );
 }
 
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒCƒvƒAƒCƒRƒ“•\Ž¦
+ * ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -863,7 +863,7 @@ void PokeStatus_PageTypeIconDrow( PST_WORK * wk )
 		CATS_ObjectEnable( wk->awp[PST_OBJ_TYPE_POKE1], 1 );
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/05
-		// ‚¼‚­‚¹‚¢ƒAƒCƒRƒ“‚ð’†‰›Šñ‚¹
+		// ãžãã›ã„ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä¸­å¤®å¯„ã›
 		if( wk->pp.type1 == wk->pp.type2 ){
 			CATS_ObjectPosSet( wk->awp[PST_OBJ_TYPE_POKE1], PT_ICON_P1_PX, PT_ICON_P1_PY );
 		} else {
@@ -925,9 +925,9 @@ void PokeStatus_PageTypeIconDrow( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒvƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -940,12 +940,12 @@ void PokeStatus_PokeTypeChange( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒCƒvƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk			ƒ[ƒN
- * @param	act_num		ƒZƒ‹ƒAƒNƒ^[ID
- * @param	res_id		ƒŠƒ\[ƒXID
- * @param	type		ƒ^ƒCƒv
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯
+ * @param	act_num		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ID
+ * @param	res_id		ãƒªã‚½ãƒ¼ã‚¹ID
+ * @param	type		ã‚¿ã‚¤ãƒ—
  *
  * @return	none
  */
@@ -961,12 +961,12 @@ static void PokeStatus_TypeIconChange( PST_WORK * wk, u8 act_num, u8 res_id, u8 
 
 //---------------------------------------------------------------------------------------------
 /**
- * Žw’èˆÊ’u‚Ì‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ðŽæ“¾
+ * æŒ‡å®šä½ç½®ã®æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚’å–å¾—
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ˆÊ’u
- * @param	x		XÀ•W
- * @param	y		YÀ•W
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
+ * @param	x		Xåº§æ¨™
+ * @param	y		Yåº§æ¨™
  *
  * @return	none
  */
@@ -988,11 +988,11 @@ static void WazaTypeChgPosGet( PST_WORK * wk, u8 * pos, s16 * x, s16 * y )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ^ƒCƒvƒAƒCƒRƒ““ü‚ê‘Ö‚¦
+ * æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³å…¥ã‚Œæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	pos1	ˆÊ’u‚P
- * @param	pos2	ˆÊ’u‚Q
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos1	ä½ç½®ï¼‘
+ * @param	pos2	ä½ç½®ï¼’
  *
  * @return	none
  */
@@ -1010,10 +1010,10 @@ void PokeStatus_WazaTypePosChange( PST_WORK * wk, u8 pos1, u8 pos2 )
 
 //---------------------------------------------------------------------------------------------
 /**
- * •ª—ÞƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	waza	‹Z”Ô†
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
  *
  * @return	none
  */
@@ -1032,9 +1032,9 @@ void PokeStatus_KindIconChange( PST_WORK * wk, u32 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ZƒJ[ƒ\ƒ‹ˆÚ“®
+ * æŠ€ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1047,9 +1047,9 @@ void PokeStatus_WazaCursorMove( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦ƒJ[ƒ\ƒ‹•\Ž¦
+ * å…¥ã‚Œæ›¿ãˆã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1067,9 +1067,9 @@ void PokeStatus_SubWazaCursorSet( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ‚¯‚Ã‚â‚ÌŒõOBJ‰Šú‰»
+ * ã‘ã¥ã‚„ã®å…‰OBJåˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1101,9 +1101,9 @@ void PokeStatus_KezuyaInit( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ‚¯‚Ã‚â‚ÌŒõƒAƒjƒ
+ * ã‘ã¥ã‚„ã®å…‰ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1187,9 +1187,9 @@ void PokeStatus_KezuyaAnm( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ}[ƒNØ‚è‘Ö‚¦
+ * ãƒžãƒ¼ã‚¯åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1198,7 +1198,7 @@ void PokeStatus_MarkChg( PST_WORK * wk )
 {
 	u32	i;
 
-	// ƒ{ƒbƒNƒXƒ}[ƒN
+	// ãƒœãƒƒã‚¯ã‚¹ãƒžãƒ¼ã‚¯
 	for( i=0; i<6; i++ ){
 		if( wk->pp.mark & (1<<i) ){
 			CLACT_AnmChg( wk->awp[PST_OBJ_MARK1+i], 1 );
@@ -1207,14 +1207,14 @@ void PokeStatus_MarkChg( PST_WORK * wk )
 		}
 	}
 
-	// ƒŒƒAƒJƒ‰[
+	// ãƒ¬ã‚¢ã‚«ãƒ©ãƒ¼
 	if( wk->pp.rare == 1 && wk->pp.tamago == 0 ){
 		CATS_ObjectEnable( wk->awp[PST_OBJ_RARE_MARK], 1 );
 	}else{
 		CATS_ObjectEnable( wk->awp[PST_OBJ_RARE_MARK], 0 );
 	}
 
-	// ƒ|ƒPƒ‹ƒX
+	// ãƒã‚±ãƒ«ã‚¹
 	if( wk->pp.pokerus == 2 ){
 		CATS_ObjectEnable( wk->awp[PST_OBJ_POKERUS_MARK], 1 );
 	}else{
@@ -1224,9 +1224,9 @@ void PokeStatus_MarkChg( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ‰º‰æ–Êƒ{ƒ^ƒ“ƒGƒtƒFƒNƒgƒZƒbƒg
+ * ä¸‹ç”»é¢ãƒœã‚¿ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1249,9 +1249,9 @@ void PokeStatus_ButtonEffInit( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ‰º‰æ–Êƒ{ƒ^ƒ“ƒGƒtƒFƒNƒgƒZƒbƒgI—¹
+ * ä¸‹ç”»é¢ãƒœã‚¿ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒƒãƒˆçµ‚äº†
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1266,9 +1266,9 @@ void PokeStatus_ButtonEffEnd( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒAƒbƒv–îˆó•\Ž¦
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚¢ãƒƒãƒ—çŸ¢å°è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1286,15 +1286,15 @@ void PokeStatus_CondUpObjPut( PST_WORK * wk )
 
 
 //============================================================================================
-//	Aƒ{ƒ^ƒ“ƒ}[ƒN
+//	Aãƒœã‚¿ãƒ³ãƒžãƒ¼ã‚¯
 //============================================================================================
 
 //---------------------------------------------------------------------------------------------
 /**
- * Aƒ{ƒ^ƒ“ƒ}[ƒN•\Ž¦
+ * Aãƒœã‚¿ãƒ³ãƒžãƒ¼ã‚¯è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	win		Aƒ{ƒ^ƒ“‚Ì‹@”\‚ÌBMP
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	win		Aãƒœã‚¿ãƒ³ã®æ©Ÿèƒ½ã®BMP
  *
  * @return	none
  */
@@ -1314,14 +1314,14 @@ void PokeStatus_A_ButtonMarkPut( PST_WORK * wk, GF_BGL_BMPWIN * win )
 
 
 //============================================================================================
-//	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+//	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 //============================================================================================
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“•\Ž¦Ø‚è‘Ö‚¦
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºåˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1351,9 +1351,9 @@ void PokeStasus_PokeIconChange( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“•\Ž¦Ø‚è‘Ö‚¦
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºåˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1374,7 +1374,7 @@ void PokeStatus_PokeIconSet( PST_WORK * wk )
 
 
 //============================================================================================
-//	ŠÈˆÕƒRƒ“ƒfƒBƒVƒ‡ƒ“
+//	ç°¡æ˜“ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³
 //============================================================================================
 #define	EZCON1_MIN_X	( 88 )
 #define	EZCON1_MAX_X	( 88 )
@@ -1411,13 +1411,13 @@ void PokeStatus_PokeIconSet( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ŠÈˆÕƒRƒ“ƒfƒBƒVƒ‡ƒ“‚Ì•\Ž¦À•WŽæ“¾
+ * ç°¡æ˜“ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã®è¡¨ç¤ºåº§æ¨™å–å¾—
  *
- * @param	wk		ƒ[ƒN
- * @param	max		Å‘åÀ•W
- * @param	min		Å¬À•W
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	max		æœ€å¤§åº§æ¨™
+ * @param	min		æœ€å°åº§æ¨™
  *
- * @return	•\Ž¦À•W
+ * @return	è¡¨ç¤ºåº§æ¨™
  */
 //---------------------------------------------------------------------------------------------
 static s16 PST_EzCndPosGet( u32 prm, s16 max, s16 min )
@@ -1440,9 +1440,9 @@ static s16 PST_EzCndPosGet( u32 prm, s16 max, s16 min )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ŠÈˆÕƒRƒ“ƒfƒBƒVƒ‡ƒ“•\Ž¦
+ * ç°¡æ˜“ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1479,9 +1479,9 @@ void PokeStatus_EzConditionPut( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ŠÈˆÕƒRƒ“ƒfƒBƒVƒ‡ƒ“”ñ•\Ž¦
+ * ç°¡æ˜“ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³éžè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1498,16 +1498,16 @@ void PokeStatus_EzConditionOff( PST_WORK * wk )
 
 
 //============================================================================================
-//	ƒŠƒ{ƒ“
+//	ãƒªãƒœãƒ³
 //============================================================================================
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“ƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+ * ãƒªãƒœãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	id		ƒŠƒ{ƒ“ID
- * @param	pos		•\Ž¦ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒªãƒœãƒ³ID
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1525,9 +1525,9 @@ static void PST_RibbonGraSet( PST_WORK * wk, u8 id, u8 pos )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“‰Šú‰»
+ * ãƒªãƒœãƒ³åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1556,9 +1556,9 @@ void PokeStatus_RibbonInit( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“Ø‚è‘Ö‚¦
+ * ãƒªãƒœãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1579,9 +1579,9 @@ void PokeStatus_RibbonChange( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“ƒJ[ƒ\ƒ‹ˆÚ“®
+ * ãƒªãƒœãƒ³ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1596,9 +1596,9 @@ void PokeStatus_RibbonCursorMove( PST_WORK * wk )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“‚ÌŒõƒAƒjƒ
+ * ãƒªãƒœãƒ³ã®å…‰ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1612,7 +1612,7 @@ void PokeStatus_RibbonFlashAnm( PST_WORK * wk )
 
 
 //============================================================================================
-//	ƒRƒ“ƒfƒBƒVƒ‡ƒ“‚ÌŒõ
+//	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã®å…‰
 //============================================================================================
 #define	CONFLASH_CX		( 180 )
 #define	CONFLASH_CY		( 94 )
@@ -1658,10 +1658,10 @@ static void PST_ConditionFlashPut( CLACT_WORK_PTR awp, u32 prm, u32 max, const s
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“‚ÌŒõƒZƒbƒg
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã®å…‰ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	flg		•\Ž¦ƒtƒ‰ƒO
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		è¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -1699,12 +1699,12 @@ void PokeStatus_ConditionFlash( PST_WORK * wk, u8 flg )
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“‚ÌŒõ•\Ž¦
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã®å…‰è¡¨ç¤º
  *
- * @param	awk		ƒAƒNƒ^[ƒ[ƒN
- * @param	prm		ƒRƒ“ƒfƒBƒVƒ‡ƒ“’l
- * @param	max		Å‘å’l
- * @param	pos		•\Ž¦ƒe[ƒuƒ‹
+ * @param	awk		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	prm		ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å€¤
+ * @param	max		æœ€å¤§å€¤
+ * @param	pos		è¡¨ç¤ºãƒ†ãƒ¼ãƒ–ãƒ«
  *
  * @return	none
  */
@@ -1738,9 +1738,9 @@ static void PST_ConditionFlashPut( CLACT_WORK_PTR awp, u32 prm, u32 max, const s
 
 //---------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“‚ÌŒõƒAƒjƒ
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã®å…‰ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */

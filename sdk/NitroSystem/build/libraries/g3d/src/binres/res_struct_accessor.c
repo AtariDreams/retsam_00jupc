@@ -29,14 +29,14 @@
 /*---------------------------------------------------------------------------*
     NNS_G3dGetResDataByName
 
-    �f�B�N�V���i��dict�̃��\�[�X��name�ɑΉ�����G���g���ւ̃|�C���^��Ԃ��܂��B
-    name��dict���ɂȂ��ꍇ��NULL��Ԃ��܂��B
+    ディクショナリdictのリソース名nameに対応するエントリへのポインタを返します。
+    nameがdict内にない場合はNULLを返します。
  *---------------------------------------------------------------------------*/
 void*
 NNS_G3dGetResDataByName(const NNSG3dResDict* dict, const NNSG3dResName* name)
 {
     NNS_G3D_NULL_ASSERT(dict);
-    // name��NULL�̏ꍇ��NULL���Ԃ�B
+    // nameがNULLの場合はNULLが返る。
 
     if (!name)
         return NULL;
@@ -100,14 +100,14 @@ NNS_G3dGetResDataByName(const NNSG3dResDict* dict, const NNSG3dResName* name)
 /*---------------------------------------------------------------------------*
     NNS_G3dGetResDictIdxByName
 
-    �f�B�N�V���i��dict�̃��\�[�X��name�ɑΉ�����C���f�b�N�X
-    name��dict���ɂȂ��ꍇ�͕��̒l��Ԃ��܂��B
+    ディクショナリdictのリソース名nameに対応するインデックス
+    nameがdict内にない場合は負の値を返します。
  *---------------------------------------------------------------------------*/
 int
 NNS_G3dGetResDictIdxByName(const NNSG3dResDict* dict, const NNSG3dResName* name)
 {
     NNS_G3D_NULL_ASSERT(dict);
-    // name��NULL�̏ꍇ��-1���Ԃ�B
+    // nameがNULLの場合は-1が返る。
 
     if (!name)
         return -1;
@@ -178,15 +178,15 @@ NNS_G3dGetResDictIdxByName(const NNSG3dResDict* dict, const NNSG3dResName* name)
 /*---------------------------------------------------------------------------*
     NNS_G3dGetDataBlockHeaderByIdx
 
-    �t�@�C���w�b�_�ւ̃|�C���^���󂯎��Aidx�Ԗڂ̃u���b�N�w�b�_�ւ�
-    �|�C���^��Ԃ��܂��B
+    ファイルヘッダへのポインタを受け取り、idx番目のブロックヘッダへの
+    ポインタを返します。
  *---------------------------------------------------------------------------*/
 NNSG3dResDataBlockHeader*
 NNS_G3dGetDataBlockHeaderByIdx(const NNSG3dResFileHeader* header, u32 idx)
 {
     u32* blks;
     NNS_G3D_NULL_ASSERT(header);
-    // idx���͈͂𒴂��Ă���ꍇ��NULL���Ԃ�B
+    // idxが範囲を超えている場合はNULLが返る。
 
     if (idx < header->dataBlocks)
     {

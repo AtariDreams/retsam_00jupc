@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SND_SetupAlarm</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>SND_SetupAlarm</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcsynopsisinfo"><code>typedef void (*SNDAlarmHandler)( void* arg );</code></pre></dd>
@@ -23,7 +23,7 @@
         void* <var>arg</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAVNWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -31,23 +31,23 @@
 <tbody>
 <tr>
 <td><em><strong><code>alarmNo</code></strong></em></td>
-<td>�A���[���ԍ��ł��B�l�͈̔͂́A0�`7�ł��B</td>
+<td>アラーム番号です。値の範囲は、0〜7です。</td>
 </tr>
 <tr>
 <td><em><strong><code>tick</code></strong></em></td>
-<td>�ŏ��ɃA���[������������܂ł̃`�b�N�J�E���g�ł��B</td>
+<td>最初にアラームが発動するまでのチックカウントです。</td>
 </tr>
 <tr>
 <td><em><strong><code>period</code></strong></em></td>
-<td>�����I�ɃA���[���𔭓�������Ԋu�ł��B</td>
+<td>周期的にアラームを発動させる間隔です。</td>
 </tr>
 <tr>
 <td><em><strong><code>handler</code></strong></em></td>
-<td>�A���[�������������Ƃ��ɌĂт������A���[���n���h���ł��B<br>���̃R�[���o�b�N�͊��荞�݃n���h��������Ăяo����܂��B</td>
+<td>アラームが発動したときに呼びだされるアラームハンドラです。<br>このコールバックは割り込みハンドラ内から呼び出されます。</td>
 </tr>
 <tr>
 <td><em><strong><code>arg</code></strong></em></td>
-<td>�A���[���n���h���̈����ɓn�����l�ł��B</td>
+<td>アラームハンドラの引数に渡される値です。</td>
 </tr>
 </tbody>
 </table>
@@ -55,62 +55,62 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAAPWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAHPWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�T�E���h�A���[�����Z�b�g�A�b�v���܂��B
+サウンドアラームをセットアップします。
 </p>
       <p>
-�T�E���h�A���[�����g���ƁA�`�����l���̔�����L���v�`���ȂǂƐ��m�ɓ��������������s���܂��B
-�A���[�����J�n���邽�߂ɂ́A<tt class="function"><a href="SND_StartTimer.html">SND_StartTimer</a></tt>�֐����g���܂��B
+サウンドアラームを使うと、チャンネルの発音やキャプチャなどと正確に同期した処理が行えます。
+アラームを開始するためには、<tt class="function"><a href="SND_StartTimer.html">SND_StartTimer</a></tt>関数を使います。
 </p>
       <p>
-�A���[�����J�n����ƁA�܂��n�߂ɁA�`�b�N�J�E���g<em><strong><code>tick</code></strong></em>��ɃA���[�����������܂��B
-���̌�A�A���[������<em><strong><code>period</code></strong></em>�Ԋu�ŁA�A���[�����������܂��B
-�A���[������<em><strong><code>period</code></strong></em>��0������ƁA�n�߂̂P�񂾂��A���[��������������A�����I�ɒ�~���܂��B
+アラームを開始すると、まず始めに、チックカウント<em><strong><code>tick</code></strong></em>後にアラームが発動します。
+その後、アラーム周期<em><strong><code>period</code></strong></em>間隔で、アラームが発動します。
+アラーム周期<em><strong><code>period</code></strong></em>に0を入れると、始めの１回だけアラームが発動した後、自動的に停止します。
 </p>
       <p>
-�A���[������������ƁA�A���[���n���h��<em><strong><code>handler</code></strong></em>���Ăт�����܂��B
-�A���[���n���h���̈����ɂ́A<em><strong><code>arg</code></strong></em>���n����܂��B
+アラームが発動すると、アラームハンドラ<em><strong><code>handler</code></strong></em>が呼びだされます。
+アラームハンドラの引数には、<em><strong><code>arg</code></strong></em>が渡されます。
 </p>
       <p>
-�`�b�N�J�E���g<em><strong><code>tick</code></strong></em>�y�сA�A���[������<em><strong><code>period</code></strong></em>�̂P�P�ʂ́A
-�T�E���h�^�C�}�[�N���b�N<span class="symbol">SND_TIMER_CLOCK</span>��32�����ł��B
-�Ⴆ�΁A�`�����l���^�C�}�[�̒l��<em><strong><code>timer</code></strong></em>�̃`�����l���Ɗ��S�ɓ������������ꍇ�́A
-<em><strong><code>timer</code></strong></em>��32��ݒ肵�܂��B
-���̎��A<em><strong><code>timer</code></strong></em>��32�Ŋ���؂�Ȃ���΂Ȃ�܂���B
+チックカウント<em><strong><code>tick</code></strong></em>及び、アラーム周期<em><strong><code>period</code></strong></em>の１単位は、
+サウンドタイマークロック<span class="symbol">SND_TIMER_CLOCK</span>の32分周です。
+例えば、チャンネルタイマーの値が<em><strong><code>timer</code></strong></em>のチャンネルと完全に同期させたい場合は、
+<em><strong><code>timer</code></strong></em>÷32を設定します。
+この時、<em><strong><code>timer</code></strong></em>は32で割り切れなければなりません。
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-���̊֐��́AARM7�R�}���h�\��֐��ł��B
-���̊֐����Ăт�������A
-<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>�֐���
-�R�}���h�𔭍s���Ďn�߂āA�������s���܂��B
+この関数は、ARM7コマンド予約関数です。
+この関数を呼びだした後、
+<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>関数で
+コマンドを発行して始めて、処理が行われます。
 </p>
 <p>
-�܂��A�����̊����Ɠ��������K�v������ꍇ�́A
-�܂��A���̊֐��Ăяo���̒���ɁA
-<tt class="function"><a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a></tt>�֐��ŁA�R�}���h�^�O���擾���Ă����܂��B
-�����ăR�}���h���s��ɁA�擾�����R�}���h�^�O���g����
-<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>�֐��܂��́A
-<tt class="function"><a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></tt>�֐����Ăт����āA
-�����̊������`�F�b�N������A�҂����肵�܂��B
+また、処理の完了と同期を取る必要がある場合は、
+まず、この関数呼び出しの直後に、
+<tt class="function"><a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a></tt>関数で、コマンドタグを取得しておきます。
+そしてコマンド発行後に、取得したコマンドタグを使って
+<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>関数または、
+<tt class="function"><a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></tt>関数を呼びだして、
+処理の完了をチェックしたり、待ったりします。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="SND_StartTimer.html">SND_StartTimer</a>, <a href="SND_FlushCommand.html">SND_FlushCommand</a>, <a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a>, <a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a>, <a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></p>
-<h2>����</h2>
+<h2>履歴</h2>
 <p>
-2005/06/01 �R�[���o�b�N�����荞�݃n���h������Ăяo�����|��⑫<br>
-2005/02/17 ARM7�R�}���h�����̒��ӏ����ǉ�<br>
-2004/10/21 handler�������A���[���n���h���ƌĂԂ悤�ɓ���<br>
-2004/07/20 ����<br></p>
+2005/06/01 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/02/17 ARM7コマンド処理の注意書き追加<br>
+2004/10/21 handler引数をアラームハンドラと呼ぶように統一<br>
+2004/07/20 初版<br></p>
 </div>
 </body>
 </html>

@@ -15,54 +15,54 @@
   INDENT SOURCE
 
   Revision 1.16  2005/11/08 01:08:02  seiki_masashi
-  NITRO-SDK 3.0RC �ł̕ύX�ɑΉ�
+  NITRO-SDK 3.0RC での変更に対応
 
   Revision 1.15  2005/11/01 12:08:26  seiki_masashi
-  SDK_ASSERT_ON_COMPILE ����`����Ă����ꍇ�ɑΏ�
+  SDK_ASSERT_ON_COMPILE が定義されていた場合に対処
 
   Revision 1.14  2005/10/05 08:49:50  terui
-  DCF�f�[�^��M�̓s�x�A�d�g���x��ޔ�����@�\��ǉ�
+  DCFデータ受信の都度、電波強度を退避する機能を追加
 
   Revision 1.13  2005/09/17 10:09:08  terui
-  CAM���C�t�^�C���Ń^�C���A�E�g����@�\��ǉ��B
+  CAMライフタイムでタイムアウトする機能を追加。
 
   Revision 1.12  2005/09/16 04:50:10  terui
-  WCM_ConnectAsync�֐��ɂāAWEP���[�h���Í��������̏ꍇ�ɂ�WEP�L�[�f�[�^��S��0�̃f�[�^�ŋU������悤�΍�
+  WCM_ConnectAsync関数にて、WEPモードが暗号化無しの場合にはWEPキーデータを全て0のデータで偽装するよう対策
 
   Revision 1.11  2005/09/16 04:23:14  terui
-  ���[�g�Z�b�g�̕s�����ɂ��ڑ��Ɏ��s�������̃��g���C���ɏ�Ԃ��ꎞIDLE�ɖ߂��Ă��܂��s����C��
+  レートセットの不整合により接続に失敗した時のリトライ時に状態が一時IDLEに戻ってしまう不具合を修正
 
   Revision 1.10  2005/09/12 10:02:13  terui
-  ���[�g�Z�b�g�̕s�����ɂ��ڑ��Ɏ��s�������̑΍��ǉ�
+  レートセットの不整合により接続に失敗した時の対策を追加
 
   Revision 1.9  2005/09/10 03:08:31  terui
-  �����ʐM���֎~����Ă���{�̂̃`�F�b�N��ǉ��B
-  ���[�e�B���e�B�֐���ʃt�@�C���֐؂�o���B
+  無線通信を禁止されている本体のチェックを追加。
+  ユーティリティ関数を別ファイルへ切り出し。
 
   Revision 1.8  2005/09/01 13:08:14  terui
-  �A���[���ɂ���ă^�C�~���O�����AKeep Alive �p�P�b�g�𑗐M����@�\��ǉ�
-  Connect ���s���AWM ����Ԃ���� wlStatus �t�B�[���h����ʂɓ`����@�\��ǉ�
+  アラームによってタイミングを取り、Keep Alive パケットを送信する機能を追加
+  Connect 失敗時、WM から返される wlStatus フィールドを上位に伝える機能を追加
 
   Revision 1.7  2005/08/09 07:58:30  terui
-  WEP�L�[��ޔ���������o�b�t�@��32�o�C�g�A���C�������ʒu�ɒ���
+  WEPキーを退避する内部バッファを32バイトアラインした位置に調整
 
   Revision 1.6  2005/08/08 06:13:42  terui
-  AP�ɐڑ�����ۂ̃T�|�[�g���[�g�Z�b�g��1M/2M���Œ�Œǉ�����悤����
+  APに接続する際のサポートレートセットに1M/2Mを固定で追加するよう改良
 
   Revision 1.5  2005/07/18 01:34:49  terui
-  DCF �ʐM���ɐؒf���ꂽ�ꍇ�̒ʒm��ʂ̐ݒ�ʒu��ύX
+  DCF 通信中に切断された場合の通知種別の設定位置を変更
 
   Revision 1.4  2005/07/15 11:32:10  terui
-  WCM_SearchAsync �֐����J�n�֐��ƒ�~�֐��Q�ɕ���������B
+  WCM_SearchAsync 関数を開始関数と停止関数２つに分ける改造。
 
   Revision 1.3  2005/07/12 06:25:30  terui
-  WCM_SetChannelScanTime �֐���ǉ�
+  WCM_SetChannelScanTime 関数を追加
 
   Revision 1.2  2005/07/11 23:44:29  terui
   Fix comment.
 
   Revision 1.1  2005/07/07 10:45:52  terui
-  �V�K�ǉ�
+  新規追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -70,10 +70,10 @@
 #include "wcm_cpsif.h"
 
 /*---------------------------------------------------------------------------*
-    �萔��`
+    定数定義
  *---------------------------------------------------------------------------*/
 
-// �S�� 0xff �� ESSID
+// 全て 0xff の ESSID
 const u8    WCM_Essid_Any[WCM_ESSID_SIZE] =
 {
     0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
@@ -82,7 +82,7 @@ const u8    WCM_Essid_Any[WCM_ESSID_SIZE] =
     0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff
 };
 
-// �S�� 0xff �� BSSID
+// 全て 0xff の BSSID
 const u8    WCM_Bssid_Any[WCM_BSSID_SIZE] =
 {
     0xff, 0xff, 0xff, 0xff, 0xff, 0xff
@@ -90,7 +90,7 @@ const u8    WCM_Bssid_Any[WCM_BSSID_SIZE] =
 
 #if WCM_DEBUG
 
-// �x�����p�e�L�X�g���`
+// 警告文用テキスト雛形
 static const char   wcmWarningText_AlreadyInit[] = { "WCM library is already initialized.\n" };
 static const char   wcmWarningText_IllegalParam[] = { "Illegal parameter ( %s )\n" };
 static const char   wcmWarningText_NotInit[] = { "WCM library is not initialized yet.\n" };
@@ -99,7 +99,7 @@ static const char   wcmWarningText_InvalidWmState[] = { "Invalid state of WM lib
 static const char   wcmWarningText_UnsuitableArm7[] = { "Unsuitable ARM7 component. Could not drive wireless module.\n" };
 static const char   wcmWarningText_WirelessForbidden[] = { "Forbidden to use wireless module." };
 
-// �񍐕��p�e�L�X�g���`
+// 報告文用テキスト雛形
 static const char   wcmReportText_WmSyncError[] = { "%s failed syncronously. ( ERRCODE: 0x%02x )\n" };
 static const char   wcmReportText_WmAsyncError[] = { "%s failed asyncronously. ( ERRCODE: 0x%02x - 0x%04x - 0x%04x )\n" };
 static const char   wcmReportText_WmDisconnected[] = { "%s succeeded asyncronously , but already disconnected from AP.\n" };
@@ -108,12 +108,12 @@ static const char   wcmReportText_SupportRateset[] = { "Failed association to \"
 #endif
 
 /*---------------------------------------------------------------------------*
-    �����ϐ���`
+    内部変数定義
  *---------------------------------------------------------------------------*/
 static WCMWork*     wcmw = NULL;
 
 /*---------------------------------------------------------------------------*
-    �����֐��v���g�^�C�v
+    内部関数プロトタイプ
  *---------------------------------------------------------------------------*/
 static void         WcmConfigure(WCMConfig* config, WCMNotify notify);
 static void         WcmEditScanExParam(void* bssid, void* essid, u32 option);
@@ -138,7 +138,7 @@ static void         WcmWmcbStartDCF(void* arg);
 static void         WcmWmcbEndDCF(void* arg);
 static void         WcmWmcbReset(void* arg);
 
-/* �R���p�C�����A�T�[�V���� */
+/* コンパイル時アサーション */
 #ifndef SDK_ASSERT_ON_COMPILE
 #define SDK_ASSERT_ON_COMPILE(expr) extern assert_on_compile ## #__LINE__ (char a[(expr) ? 1 : -1])
 #endif
@@ -146,16 +146,16 @@ static void         WcmWmcbReset(void* arg);
 /*---------------------------------------------------------------------------*
   Name:         WCM_Init
 
-  Description:  WCM ���C�u����������������B�����֐��B
+  Description:  WCM ライブラリを初期化する。同期関数。
 
-  Arguments:    buf     -   WCM ���C�u�����������I�Ɏg�p���郏�[�N�o�b�t�@�ւ�
-                            �|�C���^���w�肷��B������������́AWCM_Finish �֐�
-                            �ɂ���� WCM ���C�u�������I������܂ŕʂ̗p�r�ɗp��
-                            �Ă͂����Ȃ��B
-                len     -   ���[�N�o�b�t�@�̃T�C�Y���w�肷��BWCM_WORK_SIZE ���
-                            �������T�C�Y���w�肷��Ƃ��̊֐��͎��s����B
+  Arguments:    buf     -   WCM ライブラリが内部的に使用するワークバッファへの
+                            ポインタを指定する。初期化完了後は、WCM_Finish 関数
+                            によって WCM ライブラリを終了するまで別の用途に用い
+                            てはいけない。
+                len     -   ワークバッファのサイズを指定する。WCM_WORK_SIZE より
+                            小さいサイズを指定するとこの関数は失敗する。
 
-  Returns:      s32     -   �ȉ��̓��̂����ꂩ�̏������ʂ��Ԃ����B
+  Returns:      s32     -   以下の内のいずれかの処理結果が返される。
                             WCM_RESULT_SUCCESS , WCM_RESULT_FAILURE ,
                             WCM_RESULT_NOT_ENOUGH_MEM
  *---------------------------------------------------------------------------*/
@@ -163,52 +163,52 @@ s32 WCM_Init(void* buf, s32 len)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // WCM_WORK_SIZE �萔�̑Ó������R���p�C�����Ɋm�F
+    // WCM_WORK_SIZE 定数の妥当性をコンパイル時に確認
     SDK_ASSERT_ON_COMPILE(sizeof(WCMWork) <= WCM_WORK_SIZE);
 
-    // �����������m�F
+    // 未初期化を確認
     if (wcmw != NULL)
     {
         WCMi_Warning(wcmWarningText_AlreadyInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;          // ���ɏ������ς�
+        return WCM_RESULT_FAILURE;          // 既に初期化済み
     }
 
-    // �p�����[�^���m�F
+    // パラメータを確認
     if (buf == NULL)
     {
         WCMi_Warning(wcmWarningText_IllegalParam, "buf");
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;          // �w��o�b�t�@�� NULL
+        return WCM_RESULT_FAILURE;          // 指定バッファが NULL
     }
 
     if ((u32) buf & 0x01f)
     {
         WCMi_Warning(wcmWarningText_IllegalParam, "buf");
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;          // �w��o�b�t�@�� 32 �o�C�g�A���C���łȂ�
+        return WCM_RESULT_FAILURE;          // 指定バッファが 32 バイトアラインでない
     }
 
     if (len < sizeof(WCMWork))
     {
         WCMi_Warning(wcmWarningText_IllegalParam, "len");
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_NOT_ENOUGH_MEM;   // �w��o�b�t�@�̃T�C�Y������Ȃ�
+        return WCM_RESULT_NOT_ENOUGH_MEM;   // 指定バッファのサイズが足りない
     }
 
-    // �e���[�N�ϐ���������
+    // 各ワーク変数を初期化
     wcmw = (WCMWork*)buf;
-    wcmw->phase = WCM_PHASE_WAIT;           // �����t�F�[�Y��������
-    wcmw->notifyId = WCM_NOTIFY_COMMON;     // �񓯊� API �ʒm ID ��������
-    wcmw->maxScanTime = 0;                  // �Œ�X�L�������Ԃ�������
-    wcmw->apListLock = WCM_APLIST_UNLOCK;   // AP ���ێ����X�g�̃��b�N��Ԃ�������
-    wcmw->resetting = WCM_RESETTING_OFF;    // ���Z�b�g�d���Ăяo���Ǘ��t���O��������
-    wcmw->authId = 0;                       // Auth-ID ��������
+    wcmw->phase = WCM_PHASE_WAIT;           // 内部フェーズを初期化
+    wcmw->notifyId = WCM_NOTIFY_COMMON;     // 非同期 API 通知 ID を初期化
+    wcmw->maxScanTime = 0;                  // 固定スキャン時間を初期化
+    wcmw->apListLock = WCM_APLIST_UNLOCK;   // AP 情報保持リストのロック状態を初期化
+    wcmw->resetting = WCM_RESETTING_OFF;    // リセット重複呼び出し管理フラグを初期化
+    wcmw->authId = 0;                       // Auth-ID を初期化
     wcmw->wlStatusOnConnectFail = 0x0000;
-    WcmInitOption();                        // �I�v�V�����ݒ��������
-    WCMi_InitCpsif();                       // CPS �C���^�[�t�F�[�X��������
+    WcmInitOption();                        // オプション設定を初期化
+    WCMi_InitCpsif();                       // CPS インターフェースを初期化
 
-    // �A���[����������
+    // アラームを初期化
     if (!OS_IsTickAvailable())
     {
         OS_InitTick();
@@ -221,7 +221,7 @@ s32 WCM_Init(void* buf, s32 len)
 
     OS_CreateAlarm(&(wcmw->keepAliveAlarm));
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return WCM_RESULT_SUCCESS;
 }
@@ -229,38 +229,38 @@ s32 WCM_Init(void* buf, s32 len)
 /*---------------------------------------------------------------------------*
   Name:         WCM_Finish
 
-  Description:  WCM���C�u�������I������B�����֐��BWCM_Init�֐��ɂ���Ďw�肵��
-                ���[�N�p�o�b�t�@�͉�������B
+  Description:  WCMライブラリを終了する。同期関数。WCM_Init関数によって指定した
+                ワーク用バッファは解放される。
 
   Arguments:    None.
 
-  Returns:      s32     -   �ȉ��̓��̂����ꂩ�̏������ʂ��Ԃ����B
+  Returns:      s32     -   以下の内のいずれかの処理結果が返される。
                             WCM_RESULT_SUCCESS , WCM_RESULT_FAILURE
  *---------------------------------------------------------------------------*/
 s32 WCM_Finish(void)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (wcmw == NULL)
     {
         WCMi_Warning(wcmWarningText_NotInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;  // ����������Ă��Ȃ�
+        return WCM_RESULT_FAILURE;  // 初期化されていない
     }
 
-    // �����t�F�[�Y�m�F
+    // 内部フェーズ確認
     if (wcmw->phase != WCM_PHASE_WAIT)
     {
         WCMi_Warning(wcmWarningText_IllegalPhase, wcmw->phase);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;  // WAIT �t�F�[�Y�łȂ�
+        return WCM_RESULT_FAILURE;  // WAIT フェーズでない
     }
 
-    // ���[�N�o�b�t�@�����
+    // ワークバッファを解放
     wcmw = NULL;
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return WCM_RESULT_SUCCESS;
 }
@@ -268,19 +268,19 @@ s32 WCM_Finish(void)
 /*---------------------------------------------------------------------------*
   Name:         WCM_StartupAsync
 
-  Description:  �����@�\�̋N���V�[�P���X���J�n����B
-                �����I�ɂ� WAIT ���� IDLE �փt�F�[�Y�̈ڍs�������s����B
-                �񓯊��֐��ł���A�����I�ȕԂ�l�� WCM_RESULT_ACCEPT �ł�����
-                �ꍇ�ɂ� notify �Ŏw�肵���R�[���o�b�N�֐��ɂ��񓯊��I��
-                �������ʂ��ʒm�����B
-                �񓯊��������ʂ̒ʒm��ʂ� WCM_NOTIFY_STARTUP �ƂȂ�B
+  Description:  無線機能の起動シーケンスを開始する。
+                内部的には WAIT から IDLE へフェーズの移行処理が行われる。
+                非同期関数であり、同期的な返り値が WCM_RESULT_ACCEPT であった
+                場合には notify で指定したコールバック関数により非同期的な
+                処理結果が通知される。
+                非同期処理結果の通知種別は WCM_NOTIFY_STARTUP となる。
 
-  Arguments:    config  -   WCM �̓���ݒ�ƂȂ�\���̂ւ̃|�C���^���w��B
-                notify  -   �񓯊��I�ȏ������ʂ�ʒm����R�[���o�b�N�֐����w��B
-                            ���̃R�[���o�b�N�֐��͈Ȍ�̔񓯊��I�Ȋ֐��̌���
-                            �ʒm�ɋ��ʂ��Ďg�p�����B
+  Arguments:    config  -   WCM の動作設定となる構造体へのポインタを指定。
+                notify  -   非同期的な処理結果を通知するコールバック関数を指定。
+                            このコールバック関数は以後の非同期的な関数の結果
+                            通知に共通して使用される。
 
-  Returns:      s32     -   �ȉ��̓��̂����ꂩ�̓����I�ȏ������ʂ��Ԃ����B
+  Returns:      s32     -   以下の内のいずれかの同期的な処理結果が返される。
                             WCM_RESULT_SUCCESS , WCM_RESULT_FAILURE ,
                             WCM_RESULT_PROGRESS , WCM_RESULT_WMDISABLE ,
                             WCM_RESULT_FATAL_ERROR , WCM_RESULT_ACCEPT
@@ -289,15 +289,15 @@ s32 WCM_StartupAsync(WCMConfig* config, WCMNotify notify)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (wcmw == NULL)
     {
         WCMi_Warning(wcmWarningText_NotInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;                  // ����������Ă��Ȃ�
+        return WCM_RESULT_FAILURE;                  // 初期化されていない
     }
 
-    // �����t�F�[�Y�m�F
+    // 内部フェーズ確認
     switch (wcmw->phase)
     {
     case WCM_PHASE_WAIT:
@@ -306,23 +306,23 @@ s32 WCM_StartupAsync(WCMConfig* config, WCMNotify notify)
 
     case WCM_PHASE_WAIT_TO_IDLE:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_PROGRESS;                 // ���ɓ������N�G�X�g�̔񓯊�������
+        return WCM_RESULT_PROGRESS;                 // 既に同じリクエストの非同期処理中
 
     case WCM_PHASE_IDLE:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_SUCCESS;                  // ��ԑJ�ږڕW�t�F�[�Y�Ɉڍs�ς�
+        return WCM_RESULT_SUCCESS;                  // 状態遷移目標フェーズに移行済み
 
     default:
         WCMi_Warning(wcmWarningText_IllegalPhase, wcmw->phase);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;                  // �v�����󂯕t�����Ȃ��t�F�[�Y
+        return WCM_RESULT_FAILURE;                  // 要求を受け付けられないフェーズ
     }
 
-    // �����@�\�̋N���V�[�P���X���J�n
+    // 無線機能の起動シーケンスを開始
     {
         WMErrCode   wmResult;
 
-        // WM ���C�u����������
+        // WM ライブラリ初期化
         wmResult = WM_Init(wcmw->wmWork, (u16) wcmw->config.dmano);
         switch (wmResult)
         {
@@ -333,50 +333,50 @@ s32 WCM_StartupAsync(WCMConfig* config, WCMNotify notify)
             WCMi_Warning(wcmWarningText_InvalidWmState);
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FATAL_ERROR;          // WM ���C�u���������ɏ���������Ă���
+            return WCM_RESULT_FATAL_ERROR;          // WM ライブラリが既に初期化されている
 
         case WM_ERRCODE_WM_DISABLE:
             WCMi_Warning(wcmWarningText_UnsuitableArm7);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_WMDISABLE;            // ARM7 ���� WM ���C�u���������삵�Ă��Ȃ�
+            return WCM_RESULT_WMDISABLE;            // ARM7 側で WM ライブラリが動作していない
 
         case WM_ERRCODE_INVALID_PARAM:
         default:
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FATAL_ERROR;          // �z��͈͊O�̃G���[
+            return WCM_RESULT_FATAL_ERROR;          // 想定範囲外のエラー
         }
 
-        // �����ʐM���֎~����Ă���{�̂łȂ����Ƃ��m�F
+        // 無線通信を禁止されている本体でないことを確認
         if (0 == WM_GetAllowedChannel())
         {
             if (WM_ERRCODE_SUCCESS != WM_Finish())
             {
                 WcmSetPhase(WCM_PHASE_FATAL_ERROR);
                 (void)OS_RestoreInterrupts(e);
-                return WCM_RESULT_FATAL_ERROR;      // �z��͈͊O�̃G���[
+                return WCM_RESULT_FATAL_ERROR;      // 想定範囲外のエラー
             }
 
             WCMi_Warning(wcmWarningText_WirelessForbidden);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_WMDISABLE;            // �����ʐM��������Ă��Ȃ�
+            return WCM_RESULT_WMDISABLE;            // 無線通信が許可されていない
         }
 
-        // �s����� ARM7 ����̒ʒm���󂯎��x�N�g����ݒ�
+        // 不定期な ARM7 からの通知を受け取るベクトルを設定
         wmResult = WM_SetIndCallback(WcmWmcbIndication);
         if (wmResult != WM_ERRCODE_SUCCESS)
         {
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FATAL_ERROR;          // �z��͈͊O�̃G���[
+            return WCM_RESULT_FATAL_ERROR;          // 想定範囲外のエラー
         }
 
-        // �����n�[�h�E�F�A�g�p���v���𔭍s
+        // 無線ハードウェア使用許可要求を発行
         wmResult = WM_Enable(WcmWmcbCommon);
         switch (wmResult)
         {
         case WM_ERRCODE_OPERATING:
-            WcmSetPhase(WCM_PHASE_WAIT_TO_IDLE);    // �񓯊��I�ȃV�[�P���X�̊J�n�ɐ���
+            WcmSetPhase(WCM_PHASE_WAIT_TO_IDLE);    // 非同期的なシーケンスの開始に成功
             wcmw->notifyId = WCM_NOTIFY_STARTUP;
             break;
 
@@ -384,7 +384,7 @@ s32 WCM_StartupAsync(WCMConfig* config, WCMNotify notify)
             WCMi_Printf(wcmReportText_WmSyncError, "WM_Enable", wmResult);
             WcmSetPhase(WCM_PHASE_IRREGULAR);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FAILURE;              // ARM7 �ւ̗v�����s�Ɏ��s
+            return WCM_RESULT_FAILURE;              // ARM7 への要求発行に失敗
 
         case WM_ERRCODE_ILLEGAL_STATE:
             WCMi_Warning(wcmWarningText_InvalidWmState);
@@ -393,11 +393,11 @@ s32 WCM_StartupAsync(WCMConfig* config, WCMNotify notify)
         default:
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FATAL_ERROR;          // �z��͈͊O�̃G���[
+            return WCM_RESULT_FATAL_ERROR;          // 想定範囲外のエラー
         }
     }
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return WCM_RESULT_ACCEPT;
 }
@@ -405,16 +405,16 @@ s32 WCM_StartupAsync(WCMConfig* config, WCMNotify notify)
 /*---------------------------------------------------------------------------*
   Name:         WCM_CleanupAsync
 
-  Description:  �����@�\�̒�~�V�[�P���X���J�n����B
-                �����I�ɂ� IDLE ���� WAIT �փt�F�[�Y�̈ڍs�������s����B
-                �񓯊��֐��ł���A�����I�ȕԂ�l�� WCM_RESULT_ACCEPT �ł�����
-                �ꍇ�ɂ� WCM_StartupAsync �֐��Ŏw�肵���R�[���o�b�N�֐��ɂ��
-                �񓯊��I�ȏ������ʂ��ʒm�����B
-                �񓯊��������ʂ̒ʒm��ʂ� WCM_NOTIFY_CLEANUP �ƂȂ�B
+  Description:  無線機能の停止シーケンスを開始する。
+                内部的には IDLE から WAIT へフェーズの移行処理が行われる。
+                非同期関数であり、同期的な返り値が WCM_RESULT_ACCEPT であった
+                場合には WCM_StartupAsync 関数で指定したコールバック関数により
+                非同期的な処理結果が通知される。
+                非同期処理結果の通知種別は WCM_NOTIFY_CLEANUP となる。
 
   Arguments:    None.
 
-  Returns:      s32     -   �ȉ��̓��̂����ꂩ�̓����I�ȏ������ʂ��Ԃ����B
+  Returns:      s32     -   以下の内のいずれかの同期的な処理結果が返される。
                             WCM_RESULT_SUCCESS , WCM_RESULT_FAILURE ,
                             WCM_RESULT_PROGRESS , WCM_RESULT_REJECT ,
                             WCM_RESULT_FATAL_ERROR , WCM_RESULT_ACCEPT
@@ -423,15 +423,15 @@ s32 WCM_CleanupAsync(void)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (wcmw == NULL)
     {
         WCMi_Warning(wcmWarningText_NotInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;                  // ����������Ă��Ȃ�
+        return WCM_RESULT_FAILURE;                  // 初期化されていない
     }
 
-    // �����t�F�[�Y�m�F
+    // 内部フェーズ確認
     switch (wcmw->phase)
     {
     case WCM_PHASE_IDLE:
@@ -439,35 +439,35 @@ s32 WCM_CleanupAsync(void)
 
     case WCM_PHASE_IDLE_TO_WAIT:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_PROGRESS;                 // ���ɓ������N�G�X�g�̔񓯊�������
+        return WCM_RESULT_PROGRESS;                 // 既に同じリクエストの非同期処理中
 
     case WCM_PHASE_WAIT:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_SUCCESS;                  // ��ԑJ�ږڕW�t�F�[�Y�Ɉڍs�ς�
+        return WCM_RESULT_SUCCESS;                  // 状態遷移目標フェーズに移行済み
 
     default:
         WCMi_Warning(wcmWarningText_IllegalPhase, wcmw->phase);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;                  // �v�����󂯕t�����Ȃ��t�F�[�Y
+        return WCM_RESULT_FAILURE;                  // 要求を受け付けられないフェーズ
     }
 
-    // �����@�\�̒�~�V�[�P���X���J�n
+    // 無線機能の停止シーケンスを開始
     {
         WMErrCode   wmResult;
 
-        // �����n�[�h�E�F�A�̃V���b�g�_�E���v���𔭍s
+        // 無線ハードウェアのシャットダウン要求を発行
         wmResult = WM_PowerOff(WcmWmcbCommon);
         switch (wmResult)
         {
         case WM_ERRCODE_OPERATING:
-            WcmSetPhase(WCM_PHASE_IDLE_TO_WAIT);    // �񓯊��I�ȃV�[�P���X�̊J�n�ɐ���
+            WcmSetPhase(WCM_PHASE_IDLE_TO_WAIT);    // 非同期的なシーケンスの開始に成功
             wcmw->notifyId = WCM_NOTIFY_CLEANUP;
             break;
 
         case WM_ERRCODE_FIFO_ERROR:
             WCMi_Printf(wcmReportText_WmSyncError, "WM_PowerOff", wmResult);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_REJECT;               // ARM7 �ւ̗v�����s�Ɏ��s( ���g���C�\ )
+            return WCM_RESULT_REJECT;               // ARM7 への要求発行に失敗( リトライ可能 )
 
         case WM_ERRCODE_ILLEGAL_STATE:
             WCMi_Warning(wcmWarningText_InvalidWmState);
@@ -476,11 +476,11 @@ s32 WCM_CleanupAsync(void)
         default:
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FATAL_ERROR;          // �z��͈͊O�̃G���[
+            return WCM_RESULT_FATAL_ERROR;          // 想定範囲外のエラー
         }
     }
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return WCM_RESULT_ACCEPT;
 }
@@ -488,26 +488,26 @@ s32 WCM_CleanupAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         WCM_SearchAsync
 
-  Description:  AP �����T���J�n�V�[�P���X�A�������͒�~�V�[�P���X���J�n����B
-                �p�����[�^�ɂ���� WCM_BeginSearchAsync �֐����Ăяo�����A
-                WCM_EndSearchAsync �֐����Ăяo�����U�蕪���邾���̊֐��B
+  Description:  AP 自動探索開始シーケンス、もしくは停止シーケンスを開始する。
+                パラメータによって WCM_BeginSearchAsync 関数を呼び出すか、
+                WCM_EndSearchAsync 関数を呼び出すか振り分けるだけの関数。
 
-  Arguments:    bssid   -   �T������ AP �� BSSID ���w�肷��BNULL ���w�肵��
-                            �ꍇ�ɂ́A�T���̒�~���w���������̂Ƃ݂Ȃ����B
-                essid   -   �T������ AP �� ESSID ���w�肷��BNULL ���w�肵��
-                            �ꍇ�ɂ́A�T���̒�~���w���������̂Ƃ݂Ȃ����B
-                option  -   �I�v�V�����ݒ�t�H�[�}�b�g�ɏ]���� 32 �r�b�g��
-                            �I�v�V�����ύX�p�ϐ����w�肷��B0 ���w�肵���ꍇ��
-                            �ύX�͍s���Ȃ��B
+  Arguments:    bssid   -   探索する AP の BSSID を指定する。NULL を指定した
+                            場合には、探索の停止を指示したものとみなされる。
+                essid   -   探索する AP の ESSID を指定する。NULL を指定した
+                            場合には、探索の停止を指示したものとみなされる。
+                option  -   オプション設定フォーマットに従った 32 ビットの
+                            オプション変更用変数を指定する。0 を指定した場合は
+                            変更は行われない。
 
-  Returns:      s32     -   �ȉ��̓��̂����ꂩ�̓����I�ȏ������ʂ��Ԃ����B
+  Returns:      s32     -   以下の内のいずれかの同期的な処理結果が返される。
                             WCM_RESULT_SUCCESS , WCM_RESULT_FAILURE ,
                             WCM_RESULT_PROGRESS , WCM_RESULT_REJECT ,
                             WCM_RESULT_FATAL_ERROR , WCM_RESULT_ACCEPT
  *---------------------------------------------------------------------------*/
 s32 WCM_SearchAsync(void* bssid, void* essid, u32 option)
 {
-    // �p�����[�^���m�F
+    // パラメータを確認
     if ((bssid == NULL) || (essid == NULL))
     {
         return WCM_EndSearchAsync();
@@ -519,25 +519,25 @@ s32 WCM_SearchAsync(void* bssid, void* essid, u32 option)
 /*---------------------------------------------------------------------------*
   Name:         WCM_BeginSearchAsync
 
-  Description:  AP �����T���J�n�V�[�P���X���J�n����B���Ɏ����T����Ԃł�����
-                �ꍇ�ɁA�T�������̕ύX�̂ݍs�����Ƃ��\�B
-                �����I�ɂ� IDLE ���� SEARCH �փt�F�[�Y�̈ڍs�������s����B
-                �񓯊��֐��ł���A�����I�ȕԂ�l�� WCM_RESULT_ACCEPT �ł�����
-                �ꍇ�ɂ� WCM_StartupAsync �֐��Ŏw�肵���R�[���o�b�N�֐��ɂ��
-                �񓯊��I�ȏ������ʂ��ʒm�����B
-                �񓯊��������ʂ̒ʒm��ʂ� WCM_NOTIFY_BEGIN_SEARCH �ƂȂ�B
+  Description:  AP 自動探索開始シーケンスを開始する。既に自動探索状態であった
+                場合に、探索条件の変更のみ行うことも可能。
+                内部的には IDLE から SEARCH へフェーズの移行処理が行われる。
+                非同期関数であり、同期的な返り値が WCM_RESULT_ACCEPT であった
+                場合には WCM_StartupAsync 関数で指定したコールバック関数により
+                非同期的な処理結果が通知される。
+                非同期処理結果の通知種別は WCM_NOTIFY_BEGIN_SEARCH となる。
 
-  Arguments:    bssid   -   �T������ AP �� BSSID ���w�肷��BNULL ��������
-                            WCM_BSSID_ANY ���w�肵���ꍇ�͔C�ӂ� BSSID ������
-                            AP ��T������B
-                essid   -   �T������ AP �� ESSID ���w�肷��BNULL ��������
-                            WCM_ESSID_ANY ���w�肵���ꍇ�͔C�ӂ� ESSID ������
-                            AP ��T������B
-                option  -   �I�v�V�����ݒ�t�H�[�}�b�g�ɏ]���� 32 �r�b�g��
-                            �I�v�V�����ύX�p�ϐ����w�肷��B0 ���w�肵���ꍇ��
-                            �ύX�͍s��Ȃ��B
+  Arguments:    bssid   -   探索する AP の BSSID を指定する。NULL もしくは
+                            WCM_BSSID_ANY を指定した場合は任意の BSSID を持つ
+                            AP を探索する。
+                essid   -   探索する AP の ESSID を指定する。NULL もしくは
+                            WCM_ESSID_ANY を指定した場合は任意の ESSID を持つ
+                            AP を探索する。
+                option  -   オプション設定フォーマットに従った 32 ビットの
+                            オプション変更用変数を指定する。0 を指定した場合は
+                            変更は行わない。
 
-  Returns:      s32     -   �ȉ��̓��̂����ꂩ�̓����I�ȏ������ʂ��Ԃ����B
+  Returns:      s32     -   以下の内のいずれかの同期的な処理結果が返される。
                             WCM_RESULT_SUCCESS , WCM_RESULT_FAILURE ,
                             WCM_RESULT_PROGRESS , WCM_RESULT_REJECT ,
                             WCM_RESULT_FATAL_ERROR , WCM_RESULT_ACCEPT
@@ -546,15 +546,15 @@ s32 WCM_BeginSearchAsync(void* bssid, void* essid, u32 option)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (wcmw == NULL)
     {
         WCMi_Warning(wcmWarningText_NotInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;                  // ����������Ă��Ȃ�
+        return WCM_RESULT_FAILURE;                  // 初期化されていない
     }
 
-    // AP �����T���J�n�V�[�P���X���J�n�A�������͒T�������ύX
+    // AP 自動探索開始シーケンスを開始、もしくは探索条件変更
     {
         WMErrCode   wmResult;
 
@@ -566,20 +566,20 @@ s32 WCM_BeginSearchAsync(void* bssid, void* essid, u32 option)
         case WCM_PHASE_IDLE_TO_SEARCH:
             WcmEditScanExParam(bssid, essid, option);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_PROGRESS;             // ���ɓ������N�G�X�g�̔񓯊�������
+            return WCM_RESULT_PROGRESS;             // 既に同じリクエストの非同期処理中
 
         case WCM_PHASE_SEARCH:
             WcmEditScanExParam(bssid, essid, option);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_SUCCESS;              // ��ԑJ�ږڕW�t�F�[�Y�Ɉڍs�ς�
+            return WCM_RESULT_SUCCESS;              // 状態遷移目標フェーズに移行済み
 
         default:
             WCMi_Warning(wcmWarningText_IllegalPhase, wcmw->phase);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FAILURE;              // �v�����󂯕t�����Ȃ��t�F�[�Y
+            return WCM_RESULT_FAILURE;              // 要求を受け付けられないフェーズ
         }
 
-        // �X�L�����J�n�v���𔭍s
+        // スキャン開始要求を発行
         WcmEditScanExParam(bssid, essid, option);
         DC_InvalidateRange(wcmw->scanExParam.scanBuf, wcmw->scanExParam.scanBufSize);
         wcmw->scanCount++;
@@ -587,14 +587,14 @@ s32 WCM_BeginSearchAsync(void* bssid, void* essid, u32 option)
         switch (wmResult)
         {
         case WM_ERRCODE_OPERATING:
-            WcmSetPhase(WCM_PHASE_IDLE_TO_SEARCH);  // �񓯊��I�ȃV�[�P���X�̊J�n�ɐ���
+            WcmSetPhase(WCM_PHASE_IDLE_TO_SEARCH);  // 非同期的なシーケンスの開始に成功
             wcmw->notifyId = WCM_NOTIFY_BEGIN_SEARCH;
             break;
 
         case WM_ERRCODE_FIFO_ERROR:
             WCMi_Printf(wcmReportText_WmSyncError, "WM_StartScanEx", wmResult);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_REJECT;               // ARM7 �ւ̗v�����s�Ɏ��s( ���g���C�\ )
+            return WCM_RESULT_REJECT;               // ARM7 への要求発行に失敗( リトライ可能 )
 
         case WM_ERRCODE_ILLEGAL_STATE:
             WCMi_Warning(wcmWarningText_InvalidWmState);
@@ -603,11 +603,11 @@ s32 WCM_BeginSearchAsync(void* bssid, void* essid, u32 option)
         default:
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FATAL_ERROR;          // �z��͈͊O�̃G���[
+            return WCM_RESULT_FATAL_ERROR;          // 想定範囲外のエラー
         }
     }
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return WCM_RESULT_ACCEPT;
 }
@@ -615,16 +615,16 @@ s32 WCM_BeginSearchAsync(void* bssid, void* essid, u32 option)
 /*---------------------------------------------------------------------------*
   Name:         WCM_EndSearchAsync
 
-  Description:  AP �����T����~�V�[�P���X���J�n����B
-                �����I�ɂ� SEARCH ���� IDLE �փt�F�[�Y�̈ڍs�������s����B
-                �񓯊��֐��ł���A���@�I�ȕԂ�l�� WCM_RESULT_ACCEPT �ł�����
-                �ꍇ�ɂ� WCM_StartupAsync �֐��Ŏw�肵���R�[���o�b�N�֐��ɂ��
-                �񓯊��I�ȏ������ʂ��ʒm�����B
-                �񓯊��������ʂ̒ʒm��ʂ� WCM_NOTIFY_END_SEARCH �ƂȂ�B
+  Description:  AP 自動探索停止シーケンスを開始する。
+                内部的には SEARCH から IDLE へフェーズの移行処理が行われる。
+                非同期関数であり、動機的な返り値が WCM_RESULT_ACCEPT であった
+                場合には WCM_StartupAsync 関数で指定したコールバック関数により
+                非同期的な処理結果が通知される。
+                非同期処理結果の通知種別は WCM_NOTIFY_END_SEARCH となる。
 
   Arguments:    None.
 
-  Returns:      s32     -   �ȉ��̓��̂����ꂩ�̓����I�ȏ������ʂ��Ԃ����B
+  Returns:      s32     -   以下の内のいずれかの同期的な処理結果が返される。
                             WCM_RESULT_SUCCESS , WCM_RESULT_FAILURE ,
                             WCM_RESULT_PROGRESS , WCM_RESULT_ACCEPT
  *---------------------------------------------------------------------------*/
@@ -632,15 +632,15 @@ s32 WCM_EndSearchAsync(void)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (wcmw == NULL)
     {
         WCMi_Warning(wcmWarningText_NotInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;  // ����������Ă��Ȃ�
+        return WCM_RESULT_FAILURE;  // 初期化されていない
     }
 
-    // �����t�F�[�Y�m�F
+    // 内部フェーズ確認
     switch (wcmw->phase)
     {
     case WCM_PHASE_SEARCH:
@@ -650,21 +650,21 @@ s32 WCM_EndSearchAsync(void)
 
     case WCM_PHASE_SEARCH_TO_IDLE:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_PROGRESS; // ���ɓ������N�G�X�g�̔񓯊�������
+        return WCM_RESULT_PROGRESS; // 既に同じリクエストの非同期処理中
 
     case WCM_PHASE_IDLE:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_SUCCESS;  // ��ԑJ�ږڕW�t�F�[�Y�Ɉڍs�ς�
+        return WCM_RESULT_SUCCESS;  // 状態遷移目標フェーズに移行済み
 
     default:
         WCMi_Warning(wcmWarningText_IllegalPhase, wcmw->phase);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;  // �v�����󂯕t�����Ȃ��t�F�[�Y
+        return WCM_RESULT_FAILURE;  // 要求を受け付けられないフェーズ
     }
 
-    /* �X�L������~�v���̔��s�� StartScanEx �̃R�[���o�b�N���ōs���̂ŁA�����ł͍s��Ȃ� */
+    /* スキャン停止要求の発行は StartScanEx のコールバック内で行うので、ここでは行わない */
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return WCM_RESULT_ACCEPT;
 }
@@ -672,23 +672,23 @@ s32 WCM_EndSearchAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         WCM_ConnectAsync
 
-  Description:  AP �Ƃ̖����ڑ��V�[�P���X���J�n����B
-                �����I�ɂ� IDLE ���� DCF �փt�F�[�Y�̈ڍs�������s����B
-                �񓯊��֐��ł���A�����I�ȕԂ�l�� WCM_RESULT_ACCEPT �ł�����
-                �ꍇ�ɂ� WCM_StartupAsync �֐��Ŏw�肵���R�[���o�b�N�֐��ɂ��
-                �񓯊��I�ȏ������ʂ��ʒm�����B
-                �񓯊��������ʂ̒ʒm��ʂ� WCM_NOTIFY_CONNECT �ƂȂ�B
+  Description:  AP との無線接続シーケンスを開始する。
+                内部的には IDLE から DCF へフェーズの移行処理が行われる。
+                非同期関数であり、同期的な返り値が WCM_RESULT_ACCEPT であった
+                場合には WCM_StartupAsync 関数で指定したコールバック関数により
+                非同期的な処理結果が通知される。
+                非同期処理結果の通知種別は WCM_NOTIFY_CONNECT となる。
 
-  Arguments:    bssDesc -   �ڑ����� AP �̖����l�b�g���[�N�����w�肷��B
-                            WCM_SearchAsync �ɂ���ē���ꂽ��񂪂��̂܂܎w��
-                            ����邱�Ƃ�z��B
-                wepDesc -   WCMWepDesc �^�� WEP �L�[�ɂ��Í����ݒ�����w��
-                            ����BNULL �̏ꍇ�́AWEP �Í����Ȃ��Ƃ����ݒ�ɂȂ�B
-                option  -   �I�v�V�����ݒ�t�H�[�}�b�g�ɏ]���� 32 �r�b�g��
-                            �I�v�V�����ύX�p�ϐ����w�肷��B0 ���w�肵���ꍇ��
-                            �ύX�͍s���Ȃ��B
+  Arguments:    bssDesc -   接続する AP の無線ネットワーク情報を指定する。
+                            WCM_SearchAsync によって得られた情報がそのまま指定
+                            されることを想定。
+                wepDesc -   WCMWepDesc 型の WEP キーによる暗号化設定情報を指定
+                            する。NULL の場合は、WEP 暗号化なしという設定になる。
+                option  -   オプション設定フォーマットに従った 32 ビットの
+                            オプション変更用変数を指定する。0 を指定した場合は
+                            変更は行われない。
 
-  Returns:      s32     -   �ȉ��̓��̂����ꂩ�̓����I�ȏ������ʂ��Ԃ����B
+  Returns:      s32     -   以下の内のいずれかの同期的な処理結果が返される。
                             WCM_RESULT_SUCCESS , WCM_RESULT_FAILURE ,
                             WCM_RESULT_PROGRESS , WCM_RESULT_REJECT ,
                             WCM_RESULT_FATAL_ERROR , WCM_RESULT_ACCEPT
@@ -697,31 +697,31 @@ s32 WCM_ConnectAsync(void* bssDesc, void* wepDesc, u32 option)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (wcmw == NULL)
     {
         WCMi_Warning(wcmWarningText_NotInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;              // ����������Ă��Ȃ�
+        return WCM_RESULT_FAILURE;              // 初期化されていない
     }
 
-    // �����t�F�[�Y�m�F
+    // 内部フェーズ確認
     switch (wcmw->phase)
     {
     case WCM_PHASE_IDLE:
-        // �p�����[�^�m�F
+        // パラメータ確認
         if (bssDesc == NULL)
         {
             WCMi_Warning(wcmWarningText_IllegalParam, "bssDesc");
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FAILURE;          // bssDesc ������ NULL
+            return WCM_RESULT_FAILURE;          // bssDesc 引数が NULL
         }
 
         if (((WMBssDesc*)bssDesc)->gameInfoLength > 0)
         {
             WCMi_Warning(wcmWarningText_IllegalParam, "bssDesc");
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FAILURE;          // bssDesc ������ AP ���ł͂Ȃ� DS �e�@
+            return WCM_RESULT_FAILURE;          // bssDesc 引数が AP 情報ではなく DS 親機
         }
 
         if (wepDesc != NULL)
@@ -730,7 +730,7 @@ s32 WCM_ConnectAsync(void* bssDesc, void* wepDesc, u32 option)
             {
                 WCMi_Warning(wcmWarningText_IllegalParam, "wepDesc");
                 (void)OS_RestoreInterrupts(e);
-                return WCM_RESULT_FAILURE;      // wepDesc �������z��O�̓��e
+                return WCM_RESULT_FAILURE;      // wepDesc 引数が想定外の内容
             }
 
             wcmw->wepDesc.mode = ((WCMWepDesc*)wepDesc)->mode;
@@ -772,42 +772,42 @@ s32 WCM_ConnectAsync(void* bssDesc, void* wepDesc, u32 option)
         }
 #endif
 
-        // �T�|�[�g����f�[�^�]�����[�g�� NITRO �p�ɉ���
+        // サポートするデータ転送レートを NITRO 用に改変
         wcmw->bssDesc.rateSet.support = (u16) (WCM_ADDITIONAL_RATESET | wcmw->bssDesc.rateSet.basic);
         (void)WCM_UpdateOption(option);
         break;
 
     case WCM_PHASE_IDLE_TO_DCF:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_PROGRESS;             // ���ɓ������N�G�X�g�̔񓯊�������
+        return WCM_RESULT_PROGRESS;             // 既に同じリクエストの非同期処理中
 
     case WCM_PHASE_DCF:
-        (void)OS_RestoreInterrupts(e);          // ��ԑJ�ږڕW�t�F�[�Y�Ɉڍs�ς�
+        (void)OS_RestoreInterrupts(e);          // 状態遷移目標フェーズに移行済み
         return WCM_RESULT_SUCCESS;
 
     default:
         WCMi_Warning(wcmWarningText_IllegalPhase, wcmw->phase);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;              // �v�����󂯕t�����Ȃ��t�F�[�Y
+        return WCM_RESULT_FAILURE;              // 要求を受け付けられないフェーズ
     }
 
-    // AP �Ƃ̖����ڑ��V�[�P���X���J�n
+    // AP との無線接続シーケンスを開始
     {
         WMErrCode   wmResult;
 
-        // �����t�@�[���E�F�A�̃^�C���A�E�g�ݒ�v���𔭍s
+        // 無線ファームウェアのタイムアウト設定要求を発行
         wmResult = WM_SetLifeTime(WcmWmcbCommon, 0xffff, WCM_CAM_LIFETIME, 0xffff, 0xffff);
         switch (wmResult)
         {
         case WM_ERRCODE_OPERATING:
-            WcmSetPhase(WCM_PHASE_IDLE_TO_DCF); // �񓯊��I�ȃV�[�P���X�̊J�n�ɐ���
+            WcmSetPhase(WCM_PHASE_IDLE_TO_DCF); // 非同期的なシーケンスの開始に成功
             wcmw->notifyId = WCM_NOTIFY_CONNECT;
             break;
 
         case WM_ERRCODE_FIFO_ERROR:
             WCMi_Printf(wcmReportText_WmSyncError, "WM_SetLifeTime", wmResult);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_REJECT;           // ARM7 �ւ̗v�����s�Ɏ��s( ���g���C�\ )
+            return WCM_RESULT_REJECT;           // ARM7 への要求発行に失敗( リトライ可能 )
 
         case WM_ERRCODE_ILLEGAL_STATE:
             WCMi_Warning(wcmWarningText_InvalidWmState);
@@ -816,11 +816,11 @@ s32 WCM_ConnectAsync(void* bssDesc, void* wepDesc, u32 option)
         default:
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FATAL_ERROR;      // �z��͈͊O�̃G���[
+            return WCM_RESULT_FATAL_ERROR;      // 想定範囲外のエラー
         }
     }
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return WCM_RESULT_ACCEPT;
 }
@@ -828,16 +828,16 @@ s32 WCM_ConnectAsync(void* bssDesc, void* wepDesc, u32 option)
 /*---------------------------------------------------------------------------*
   Name:         WCM_DisconnectAsync
 
-  Description:  AP �Ƃ̖����ڑ���ؒf����V�[�P���X���J�n����B
-                �����I�ɂ� DCF ���� IDLE �փt�F�[�Y�̈ڍs�������s����B
-                �񓯊��֐��ł���A�����I�ȕԂ�l�� WCM_RESULT_ACCEPT �ł�����
-                �ꍇ�ɂ� WCM_StartupAsync �֐��Ŏw�肵���R�[���o�b�N�֐��ɂ��
-                �񓯊��I�ȏ������ʂ��ʒm�����B
-                �񓯊��������ʂ̒ʒm��ʂ� WCM_NOTIFY_DISCONNECT �ƂȂ�B
+  Description:  AP との無線接続を切断するシーケンスを開始する。
+                内部的には DCF から IDLE へフェーズの移行処理が行われる。
+                非同期関数であり、同期的な返り値が WCM_RESULT_ACCEPT であった
+                場合には WCM_StartupAsync 関数で指定したコールバック関数により
+                非同期的な処理結果が通知される。
+                非同期処理結果の通知種別は WCM_NOTIFY_DISCONNECT となる。
 
   Arguments:    None.
 
-  Returns:      s32     -   �ȉ��̓��̂����ꂩ�̓����I�ȏ������ʂ��Ԃ����B
+  Returns:      s32     -   以下の内のいずれかの同期的な処理結果が返される。
                             WCM_RESULT_SUCCESS , WCM_RESULT_FAILURE ,
                             WCM_RESULT_PROGRESS , WCM_RESULT_REJECT ,
                             WCM_RESULT_FATAL_ERROR , WCM_RESULT_ACCEPT
@@ -846,15 +846,15 @@ s32 WCM_DisconnectAsync(void)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (wcmw == NULL)
     {
         WCMi_Warning(wcmWarningText_NotInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;              // ����������Ă��Ȃ�
+        return WCM_RESULT_FAILURE;              // 初期化されていない
     }
 
-    // �����t�F�[�Y�m�F
+    // 内部フェーズ確認
     switch (wcmw->phase)
     {
     case WCM_PHASE_DCF:
@@ -862,22 +862,22 @@ s32 WCM_DisconnectAsync(void)
 
     case WCM_PHASE_DCF_TO_IDLE:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_PROGRESS;             // ���ɓ������N�G�X�g�̔񓯊�������
+        return WCM_RESULT_PROGRESS;             // 既に同じリクエストの非同期処理中
 
     case WCM_PHASE_IDLE:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_SUCCESS;              // ��ԑJ�ږڕW�t�F�[�Y�Ɉڍs�ς�
+        return WCM_RESULT_SUCCESS;              // 状態遷移目標フェーズに移行済み
 
     default:
         WCMi_Warning(wcmWarningText_IllegalPhase, wcmw->phase);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;              // �v�����󂯕t�����Ȃ��t�F�[�Y
+        return WCM_RESULT_FAILURE;              // 要求を受け付けられないフェーズ
     }
 
-    // AP �Ƃ̖����ڑ��̐ؒf�V�[�P���X���J�n
+    // AP との無線接続の切断シーケンスを開始
     if (wcmw->resetting == WCM_RESETTING_ON)
     {
-        /* �ؒf�ʒm���󂯂ă��Z�b�g���Ȃ̂ŁA���̃��Z�b�g�������Đؒf�v�������s���ꂽ���Ƃɂ��� */
+        /* 切断通知を受けてリセット中なので、このリセットをもって切断要求が実行されたことにする */
         WcmSetPhase(WCM_PHASE_DCF_TO_IDLE);
         wcmw->notifyId = WCM_NOTIFY_DISCONNECT;
     }
@@ -885,19 +885,19 @@ s32 WCM_DisconnectAsync(void)
     {
         WMErrCode   wmResult;
 
-        // DCF �ʐM���[�h�I���v���𔭍s
+        // DCF 通信モード終了要求を発行
         wmResult = WM_EndDCF(WcmWmcbEndDCF);
         switch (wmResult)
         {
         case WM_ERRCODE_OPERATING:
-            WcmSetPhase(WCM_PHASE_DCF_TO_IDLE); // �񓯊��I�ȃV�[�P���X�̊J�n�ɐ���
+            WcmSetPhase(WCM_PHASE_DCF_TO_IDLE); // 非同期的なシーケンスの開始に成功
             wcmw->notifyId = WCM_NOTIFY_DISCONNECT;
             break;
 
         case WM_ERRCODE_FIFO_ERROR:
             WCMi_Printf(wcmReportText_WmSyncError, "WM_EndDCF", wmResult);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_REJECT;           // ARM7 �ւ̗v�����s�Ɏ��s( ���g���C�\ )
+            return WCM_RESULT_REJECT;           // ARM7 への要求発行に失敗( リトライ可能 )
 
         case WM_ERRCODE_ILLEGAL_STATE:
             WCMi_Warning(wcmWarningText_InvalidWmState);
@@ -906,11 +906,11 @@ s32 WCM_DisconnectAsync(void)
         default:
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FATAL_ERROR;      // �z��͈͊O�̃G���[
+            return WCM_RESULT_FATAL_ERROR;      // 想定範囲外のエラー
         }
     }
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return WCM_RESULT_ACCEPT;
 }
@@ -918,17 +918,17 @@ s32 WCM_DisconnectAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         WCM_TerminateAsync
 
-  Description:  �����@�\�̋����I���V�[�P���X���J�n����B
-                �ʂ̔񓯊����������s����Ă��Ȃ�����͂ǂ̃t�F�[�Y����ł����s
-                �\�ł���A�����I�ɂ� WAIT �ւƃt�F�[�Y�̈ڍs�������s����B
-                �񓯊��֐��ł���A�����I�ȕԂ�l�� WCM_RESULT_ACCEPT �ł�����
-                �ꍇ�ɂ� WCM_SartupAsync �֐��Ŏw�肵���R�[���o�b�N�֐��ɂ��
-                �񓯊��I�ȏ������ʂ��ʒm�����B
-                �񓯊��������ʂ̒ʒm��ʂ� WCM_NOTIFY_TERMINATE �ƂȂ�B
+  Description:  無線機能の強制終了シーケンスを開始する。
+                別の非同期処理が実行されていない限りはどのフェーズからでも実行
+                可能であり、内部的には WAIT へとフェーズの移行処理が行われる。
+                非同期関数であり、同期的な返り値が WCM_RESULT_ACCEPT であった
+                場合には WCM_SartupAsync 関数で指定したコールバック関数により
+                非同期的な処理結果が通知される。
+                非同期処理結果の通知種別は WCM_NOTIFY_TERMINATE となる。
 
   Arguments:    None.
 
-  Returns:      s32     -   �ȉ��̓��̂����ꂩ�̓����I�ȏ������ʂ��Ԃ����B
+  Returns:      s32     -   以下の内のいずれかの同期的な処理結果が返される。
                             WCM_RESULT_SUCCESS , WCM_RESULT_FAILURE ,
                             WCM_RESULT_PROGRESS , WCM_RESULT_REJECT ,
                             WCM_RESULT_FATAL_ERROR , WCM_RESULT_ACCEPT
@@ -937,15 +937,15 @@ s32 WCM_TerminateAsync(void)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (wcmw == NULL)
     {
         WCMi_Warning(wcmWarningText_NotInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;              // ����������Ă��Ȃ�
+        return WCM_RESULT_FAILURE;              // 初期化されていない
     }
 
-    // �����t�F�[�Y�m�F
+    // 内部フェーズ確認
     switch (wcmw->phase)
     {
     case WCM_PHASE_IDLE:
@@ -955,19 +955,19 @@ s32 WCM_TerminateAsync(void)
 
     case WCM_PHASE_TERMINATING:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_PROGRESS;             // ���ɓ������N�G�X�g�̔񓯊�������
+        return WCM_RESULT_PROGRESS;             // 既に同じリクエストの非同期処理中
 
     case WCM_PHASE_WAIT:
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_SUCCESS;              // ��ԑJ�ږڕW�t�F�[�Y�Ɉڍs�ς�
+        return WCM_RESULT_SUCCESS;              // 状態遷移目標フェーズに移行済み
 
     case WCM_PHASE_SEARCH:
         WcmSetPhase(WCM_PHASE_TERMINATING);
         wcmw->notifyId = WCM_NOTIFY_TERMINATE;
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_ACCEPT;               // �񓯊������v�������
+        return WCM_RESULT_ACCEPT;               // 非同期処理要求を受諾
 
-    /* ���Z�b�g�v���̔��s�� StartScanEx �̃R�[���o�b�N���ōs���̂ŁA�����ł͍s��Ȃ� */
+    /* リセット要求の発行は StartScanEx のコールバック内で行うので、ここでは行わない */
     case WCM_PHASE_WAIT_TO_IDLE:
     case WCM_PHASE_IDLE_TO_WAIT:
     case WCM_PHASE_IDLE_TO_SEARCH:
@@ -978,13 +978,13 @@ s32 WCM_TerminateAsync(void)
     default:
         WCMi_Warning(wcmWarningText_IllegalPhase, wcmw->phase);
         (void)OS_RestoreInterrupts(e);
-        return WCM_RESULT_FAILURE;              // �v�����󂯕t�����Ȃ��t�F�[�Y
+        return WCM_RESULT_FAILURE;              // 要求を受け付けられないフェーズ
     }
 
-    // �����@�\�̋����I���V�[�P���X���J�n����
+    // 無線機能の強制終了シーケンスを開始する
     if (wcmw->resetting == WCM_RESETTING_ON)
     {
-        /* DCF �ʐM���ɐؒf����ă��Z�b�g���Ȃ̂ŁA���̃��Z�b�g�������ċ����I���v�������s���ꂽ���Ƃɂ��� */
+        /* DCF 通信中に切断されてリセット中なので、このリセットをもって強制終了要求が実行されたことにする */
         WcmSetPhase(WCM_PHASE_TERMINATING);
         wcmw->notifyId = WCM_NOTIFY_TERMINATE;
     }
@@ -994,56 +994,56 @@ s32 WCM_TerminateAsync(void)
         u16         wmState;
         WMErrCode   wmResult;
 
-        // WM ���C�u�����̓�����Ԃ𒲍�
+        // WM ライブラリの内部状態を調査
         ws = (WMStatus*)WMi_GetStatusAddress();
         DC_InvalidateRange(ws, 2);
         wmState = ws->state;
 
-        // WM ������Ԃɂ���~��ԂɑJ�ڂ���悤�A�����J�n
+        // WM 内部状態により停止状態に遷移するよう連鎖を開始
         switch (wmState)
         {
         case WM_STATE_READY:
-            // WM ���C�u�����I��
+            // WM ライブラリ終了
             wmResult = WM_Finish();
             if (wmResult == WM_ERRCODE_SUCCESS)
             {
                 WcmSetPhase(WCM_PHASE_WAIT);
                 wcmw->notifyId = WCM_NOTIFY_COMMON;
                 (void)OS_RestoreInterrupts(e);
-                return WCM_RESULT_SUCCESS;      // �����I�� WAIT �t�F�[�Y�ւ̈ڍs������
+                return WCM_RESULT_SUCCESS;      // 同期的に WAIT フェーズへの移行が完了
             }
             break;
 
         case WM_STATE_STOP:
-            // �����n�[�h�E�F�A�̎g�p�֎~�v���𔭍s
+            // 無線ハードウェアの使用禁止要求を発行
             wmResult = WM_Disable(WcmWmcbCommon);
             break;
 
         case WM_STATE_IDLE:
-            // �����n�[�h�E�F�A�̃V���b�g�_�E���v���𔭍s
+            // 無線ハードウェアのシャットダウン要求を発行
             wmResult = WM_PowerOff(WcmWmcbCommon);
             break;
 
         default:
-            // ���Z�b�g�d���Ăяo���Ǘ��t���O���Z�b�g
+            // リセット重複呼び出し管理フラグをセット
             wcmw->resetting = WCM_RESETTING_ON;
 
-            // �����ڑ���Ԃ̃��Z�b�g�v���𔭍s
+            // 無線接続状態のリセット要求を発行
             wmResult = WM_Reset(WcmWmcbReset);
         }
 
-        // �v�����s�ɑ΂��铯���I�ȏ������ʂ��m�F
+        // 要求発行に対する同期的な処理結果を確認
         switch (wmResult)
         {
         case WM_ERRCODE_OPERATING:
-            WcmSetPhase(WCM_PHASE_TERMINATING); // �񓯊��I�ȃV�[�P���X�̊J�n�ɐ���
+            WcmSetPhase(WCM_PHASE_TERMINATING); // 非同期的なシーケンスの開始に成功
             wcmw->notifyId = WCM_NOTIFY_TERMINATE;
             break;
 
         case WM_ERRCODE_FIFO_ERROR:
             WCMi_Printf(wcmReportText_WmSyncError, "WM_***", wmResult);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_REJECT;           // ARM7 �ւ̗v�����s�Ɏ��s( ���g���C�\ )
+            return WCM_RESULT_REJECT;           // ARM7 への要求発行に失敗( リトライ可能 )
 
         case WM_ERRCODE_ILLEGAL_STATE:
             WCMi_Warning(wcmWarningText_InvalidWmState);
@@ -1052,11 +1052,11 @@ s32 WCM_TerminateAsync(void)
         default:
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
             (void)OS_RestoreInterrupts(e);
-            return WCM_RESULT_FATAL_ERROR;      // �z��͈͊O�̃G���[
+            return WCM_RESULT_FATAL_ERROR;      // 想定範囲外のエラー
         }
     }
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return WCM_RESULT_ACCEPT;
 }
@@ -1064,18 +1064,18 @@ s32 WCM_TerminateAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         WCM_GetPhase
 
-  Description:  WCM ���C�u�����̓������ ( �t�F�[�Y ) ���擾����B�����֐��B
+  Description:  WCM ライブラリの内部状態 ( フェーズ ) を取得する。同期関数。
 
   Arguments:    None.
 
-  Returns:      s32     -   ���݂� WCM ���C�u�����̃t�F�[�Y��Ԃ��B
+  Returns:      s32     -   現在の WCM ライブラリのフェーズを返す。
  *---------------------------------------------------------------------------*/
 s32 WCM_GetPhase(void)
 {
     OSIntrMode  e = OS_DisableInterrupts();
     s32         phase = WCM_PHASE_NULL;
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (wcmw != NULL)
     {
         phase = (s32) (wcmw->phase);
@@ -1088,13 +1088,13 @@ s32 WCM_GetPhase(void)
 /*---------------------------------------------------------------------------*
   Name:         WCM_UpdateOption
 
-  Description:  WCM ���C�u�����̃I�v�V�����ݒ���X�V����B
+  Description:  WCM ライブラリのオプション設定を更新する。
 
-  Arguments:    option  -   �I�v�V�����ݒ�t�H�[�}�b�g�ɏ]���� 32 �r�b�g��
-                            �I�v�V�����ύX�p�ϐ����w�肷��B
-                            0 ���w�肵���ꍇ�͉����X�V���s��Ȃ�����ɂȂ�B
+  Arguments:    option  -   オプション設定フォーマットに従った 32 ビットの
+                            オプション変更用変数を指定する。
+                            0 を指定した場合は何も更新を行わない動作になる。
 
-  Returns:      u32     -   �ύX���s���O�̃I�v�V�����ϐ���Ԃ��B
+  Returns:      u32     -   変更を行う前のオプション変数を返す。
  *---------------------------------------------------------------------------*/
 u32 WCM_UpdateOption(u32 option)
 {
@@ -1102,14 +1102,14 @@ u32 WCM_UpdateOption(u32 option)
     u32         filter = 0;
     u32         old_option = wcmw->option;
 
-    // �������m�F
+    // 初期化確認
     if (wcmw == NULL)
     {
         (void)OS_RestoreInterrupts(e);
         return 0;
     }
 
-    // �X�V���ׂ��I�v�V�����J�e�S���𒊏o���A��U�N���A���ׂ��r�b�g��ҏW����
+    // 更新すべきオプションカテゴリを抽出し、一旦クリアすべきビットを編集する
     if (option & WCM_OPTION_TEST_CHANNEL)
     {
         filter |= WCM_OPTION_FILTER_CHANNEL;
@@ -1139,7 +1139,7 @@ u32 WCM_UpdateOption(u32 option)
         filter |= WCM_OPTION_FILTER_ROUNDSCAN;
     }
 
-    // �I�v�V�����ϐ��̊e�r�b�g���X�V
+    // オプション変数の各ビットを更新
     wcmw->option = (u32) ((old_option &~filter) | option);
 
     (void)OS_RestoreInterrupts(e);
@@ -1149,18 +1149,18 @@ u32 WCM_UpdateOption(u32 option)
 /*---------------------------------------------------------------------------*
   Name:         WCM_SetChannelScanTime
 
-  Description:  AP �̎����T�����ɂP�̃`�����l�����X�L�������鎞�Ԃ�ݒ肷��B
+  Description:  AP の自動探索時に１つのチャンネルをスキャンする時間を設定する。
 
-  Arguments:    msec    -   �P�`�����l�����X�L�������鎞�Ԃ� ms �P�ʂŎw��B
-                            10 �` 1000 �܂ł̊ԂŐݒ�\�����A���͈̔͊O�̒l��
-                            �w�肷��Ǝ����T���̓f�t�H���g�̐ݒ莞�ԂŒT�����s��
-                            �悤�ɂȂ�B
+  Arguments:    msec    -   １チャンネルをスキャンする時間を ms 単位で指定。
+                            10 〜 1000 までの間で設定可能だが、この範囲外の値を
+                            指定すると自動探索はデフォルトの設定時間で探索を行う
+                            ようになる。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void WCM_SetChannelScanTime(u16 msec)
 {
-    // �������m�F
+    // 初期化確認
     if (wcmw != NULL)
     {
         if ((msec >= 10) && (msec <= 1000))
@@ -1177,13 +1177,13 @@ void WCM_SetChannelScanTime(u16 msec)
 /*---------------------------------------------------------------------------*
   Name:         WCMi_GetSystemWork
 
-  Description:  WCM ���C�u�����������Ŏg�p���Ă��郏�[�N�o�b�t�@�ւ̃|�C���^��
-                �擾���邽�߂̓����֐��B
+  Description:  WCM ライブラリが内部で使用しているワークバッファへのポインタを
+                取得するための内部関数。
 
   Arguments:    None.
 
-  Returns:      WCMWork*    -   ���[�N�o�b�t�@�ւ̃|�C���^��Ԃ��B�������O�Ȃ�
-                                �o�b�t�@�����݂��Ȃ��ꍇ�� NULL �ɂȂ�B
+  Returns:      WCMWork*    -   ワークバッファへのポインタを返す。初期化前など
+                                バッファが存在しない場合は NULL になる。
  *---------------------------------------------------------------------------*/
 WCMWork* WCMi_GetSystemWork(void)
 {
@@ -1193,10 +1193,10 @@ WCMWork* WCMi_GetSystemWork(void)
 /*---------------------------------------------------------------------------*
   Name:         WcmConfigure
 
-  Description:  WCM �̓�������ݒ��ҏW����B
+  Description:  WCM の内部動作設定を編集する。
 
-  Arguments:    config  -   WCM �̓���ݒ�\���̂ւ̃|�C���^���w��B
-                notify  -   �񓯊��I�ȏ������ʂ�ʒm����R�[���o�b�N�֐����w��B
+  Arguments:    config  -   WCM の動作設定構造体へのポインタを指定。
+                notify  -   非同期的な処理結果を通知するコールバック関数を指定。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1204,7 +1204,7 @@ static void WcmConfigure(WCMConfig* config, WCMNotify notify)
 {
     if (config == NULL)
     {
-        // �ݒ肪������Ȃ��ꍇ�A�f�t�H���g�l���g�p����
+        // 設定が示されない場合、デフォルト値を使用する
         wcmw->config.dmano = 3;
         wcmw->config.pbdbuffer = NULL;
         wcmw->config.nbdbuffer = 0;
@@ -1212,27 +1212,27 @@ static void WcmConfigure(WCMConfig* config, WCMNotify notify)
     }
     else
     {
-        // DMA �ԍ���ޔ�
+        // DMA 番号を退避
         if (config->dmano &~(0x03))
         {
-            // DMA �ԍ��� 0 �` 3 �łȂ��Ƃ����Ȃ�
+            // DMA 番号は 0 〜 3 でないといけない
             WCMi_Warning(wcmWarningText_IllegalParam, "config->dmano");
         }
 
         wcmw->config.dmano = (config->dmano & 0x03);
 
-        // AP ���ێ����X�g�̈�̐ݒ��ޔ�
+        // AP 情報保持リスト領域の設定を退避
         if ((((4 - ((u32) (config->pbdbuffer) & 0x03)) % 4) + sizeof(WCMApListHeader)) > config->nbdbuffer)
         {
-            // ���X�g�Ǘ��p�w�b�_�̈悷��m�ۂł��Ȃ��T�C�Y�Ȃ̂ŁA�o�b�t�@�Ȃ��̏ꍇ�Ɠ���
+            // リスト管理用ヘッダ領域すら確保できないサイズなので、バッファなしの場合と同等
             wcmw->config.pbdbuffer = NULL;
             wcmw->config.nbdbuffer = 0;
         }
         else
         {
             /*
-             * �^����ꂽ�o�b�t�@�� 4 �o�C�g�A���C������Ă��Ȃ��\�������邽�߁A
-             * 4 �o�C�g�A���C�����ꂽ�ʒu�ɂ��炵�A�T�C�Y�����̕��ڌ��肳����B
+             * 与えられたバッファは 4 バイトアラインされていない可能性もあるため、
+             * 4 バイトアラインされた位置にずらし、サイズをその分目減りさせる。
              */
             wcmw->config.pbdbuffer = (void*)WCM_ROUNDUP4((u32) (config->pbdbuffer));
             wcmw->config.nbdbuffer = config->nbdbuffer - (s32) ((4 - ((u32) (config->pbdbuffer) & 0x03)) % 4);
@@ -1242,21 +1242,21 @@ static void WcmConfigure(WCMConfig* config, WCMNotify notify)
         wcmw->config.nbdmode = config->nbdmode;
     }
 
-    // �ʒm�x�N�g���ޔ�
+    // 通知ベクトル退避
     wcmw->notify = notify;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WcmEditScanExParam
 
-  Description:  WM ���C�u�����ɃX�L�������w������ۂ̃X�L�����ݒ�\���̂�ҏW����B
+  Description:  WM ライブラリにスキャンを指示する際のスキャン設定構造体を編集する。
 
-  Arguments:    bssid   -   �T������ BSSID �t�B���^�[�BWCM_BSSID_ANY �͑S�� 0xff
-                            �ł��� BSSID �Ȃ̂ŁA�t�B���^�[���Ȃ��ݒ�ƂȂ�B
-                essid   -   �T������ ESSID �t�B���^�[�BWCM_ESSID_ANY ���w�肷���
-                            ���� 0 �� ESSID �Ƃ݂Ȃ���A�t�B���^�[���Ȃ��ݒ�ƂȂ�B
-                option  -   �I�v�V�����ύX�p�ϐ��B�ύX���s���� WCM ���C�u��������
-                            ���ʎg�p����� option ���ς���āA���ɂ͖߂�Ȃ��B
+  Arguments:    bssid   -   探索時の BSSID フィルター。WCM_BSSID_ANY は全て 0xff
+                            である BSSID なので、フィルターしない設定となる。
+                essid   -   探索時の ESSID フィルター。WCM_ESSID_ANY を指定すると
+                            長さ 0 の ESSID とみなされ、フィルターしない設定となる。
+                option  -   オプション変更用変数。変更を行うと WCM ライブラリ内で
+                            共通使用される option が変わって、元には戻らない。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1305,7 +1305,7 @@ static void WcmEditScanExParam(void* bssid, void* essid, u32 option)
 /*---------------------------------------------------------------------------*
   Name:         WcmInitOption
 
-  Description:  WCM ���C�u�����̃I�v�V�����ݒ�l������������B
+  Description:  WCM ライブラリのオプション設定値を初期化する。
 
   Arguments:    None.
 
@@ -1314,8 +1314,8 @@ static void WcmEditScanExParam(void* bssid, void* essid, u32 option)
 static void WcmInitOption(void)
 {
     /*
-     * IW �� I/O �����킹��ׂɉ��L�̂悤�ȃf�t�H���g�ݒ�ɂȂ��Ă��邪�A
-     * CHANNEL �� ALL �ASCANTYPE �� ACTIVE �ł������ق����Ó��Ǝv����B
+     * IW と I/O を合わせる為に下記のようなデフォルト設定になっているが、
+     * CHANNEL は ALL 、SCANTYPE は ACTIVE であったほうが妥当と思われる。
      */
     wcmw->option = WCM_OPTION_CHANNEL_RDC |
         WCM_OPTION_POWER_SAVE |
@@ -1327,12 +1327,12 @@ static void WcmInitOption(void)
 /*---------------------------------------------------------------------------*
   Name:         WcmGetNextScanChannel
 
-  Description:  �I�v�V�����ɐݒ肳��Ă���T�����̃`�����l�����X�g����A����
-                �X�L�������ׂ��`�����l�������肷��B
+  Description:  オプションに設定されている探索時のチャンネルリストから、次に
+                スキャンすべきチャンネルを決定する。
 
-  Arguments:    channel -   ����X�L���������`�����l����n���B
+  Arguments:    channel -   今回スキャンしたチャンネルを渡す。
 
-  Returns:      u16     -   ����X�L�������ׂ��`�����l����Ԃ��B
+  Returns:      u16     -   次回スキャンすべきチャンネルを返す。
  *---------------------------------------------------------------------------*/
 static u16 WcmGetNextScanChannel(u16 channel)
 {
@@ -1352,15 +1352,15 @@ static u16 WcmGetNextScanChannel(u16 channel)
 /*---------------------------------------------------------------------------*
   Name:         WcmNotify
 
-  Description:  �񓯊��I�ȏ����̏������ʂ��R�[���o�b�N����B
-                �s����ɔ�������ʒm�����̊֐���ʂ��ăR�[���o�b�N�����B
-                �ʒm��ʂɂ��Ă� WCM �������ʕϐ����玩���I�ɐݒ肳��A����
-                �d�������ʒm������邽�߂ɁA�ʒm����x�ɃN���A�����B
+  Description:  非同期的な処理の処理結果をコールバックする。
+                不定期に発生する通知もこの関数を通ってコールバックされる。
+                通知種別については WCM 内部共通変数から自動的に設定され、かつ
+                重複した通知を避けるために、通知する度にクリアされる。
 
-  Arguments:    result  -   �������ʂ��w�肷��B
-                para0   -   �ʒm�֐��ɓn���p�����[�^[ 0 ]
-                para1   -   �ʒm�֐��ɓn���p�����[�^[ 1 ]
-                para2   -   �ʒm�֐��ɓn���p�����[�^[ 2 ]
+  Arguments:    result  -   処理結果を指定する。
+                para0   -   通知関数に渡すパラメータ[ 0 ]
+                para1   -   通知関数に渡すパラメータ[ 1 ]
+                para2   -   通知関数に渡すパラメータ[ 2 ]
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1375,12 +1375,12 @@ static void WcmNotify(s16 result, void* para0, void* para1, s32 para2)
 /*---------------------------------------------------------------------------*
   Name:         WcmNotifyEx
 
-  Description:  �A�v���P�[�V�����ւ̃R�[���o�b�N�ɂ��ʒm���s���B
+  Description:  アプリケーションへのコールバックによる通知を行う。
 
-  Arguments:    result  -   �������ʂ��w�肷��B
-                para0   -   �ʒm�֐��ɓn���p�����[�^[ 0 ]
-                para1   -   �ʒm�֐��ɓn���p�����[�^[ 1 ]
-                para2   -   �ʒm�֐��ɓn���p�����[�^[ 2 ]
+  Arguments:    result  -   処理結果を指定する。
+                para0   -   通知関数に渡すパラメータ[ 0 ]
+                para1   -   通知関数に渡すパラメータ[ 1 ]
+                para2   -   通知関数に渡すパラメータ[ 2 ]
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1402,13 +1402,13 @@ static void WcmNotifyEx(s16 notify, s16 result, void* para0, void* para1, s32 pa
 /*---------------------------------------------------------------------------*
   Name:         WcmSetPhase
 
-  Description:  WCM ���C�u�����̓������ ( �t�F�[�Y ) ��ύX����B
-                FATAL_ERROR ��Ԃ���ʂ̃t�F�[�Y�ɕύX�͂ł��Ȃ��B
-                �܂��ADCF �ʐM��Ԃւ̃t�F�[�Y�ύX�y�� DCF �ʐM��Ԃ����
-                �t�F�[�Y�ύX���Ď����A�L�[�v�A���C�u�p�P�b�g���M�p�A���[����
-                ����𐧌䂷��B
+  Description:  WCM ライブラリの内部状態 ( フェーズ ) を変更する。
+                FATAL_ERROR 状態から別のフェーズに変更はできない。
+                また、DCF 通信状態へのフェーズ変更及び DCF 通信状態からの
+                フェーズ変更を監視し、キープアライブパケット送信用アラームの
+                動作を制御する。
 
-  Arguments:    phase   -   �ύX����t�F�[�Y���w��B
+  Arguments:    phase   -   変更するフェーズを指定。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1416,23 +1416,23 @@ static void WcmSetPhase(u32 phase)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // DCF �ʐM��Ԃ���ʂ̏�ԂɈڍs����ۂɃA���[�����~
+    // DCF 通信状態から別の状態に移行する際にアラームを停止
     if ((wcmw->phase == WCM_PHASE_DCF) && (phase != WCM_PHASE_DCF))
     {
-        // Keep Alive �p�A���[����~
+        // Keep Alive 用アラーム停止
         OS_CancelAlarm(&(wcmw->keepAliveAlarm));
     }
 
-    // FATAL ERROR ��ԂłȂ��ꍇ�͎w���ԂɕύX
+    // FATAL ERROR 状態でない場合は指定状態に変更
     if (wcmw->phase != WCM_PHASE_FATAL_ERROR)
     {
         wcmw->phase = phase;
     }
 
-    // DCF �ʐM��ԂɈڍs����ۂɃA���[�����J�n
+    // DCF 通信状態に移行する際にアラームを開始
     if (phase == WCM_PHASE_DCF)
     {
-        // Keep Alive �p�A���[���J�n
+        // Keep Alive 用アラーム開始
         OS_SetAlarm(&(wcmw->keepAliveAlarm), OS_SecondsToTicks(WCM_KEEP_ALIVE_SPAN), WcmKeepAliveAlarm, NULL);
     }
     (void)OS_RestoreInterrupts(e);
@@ -1441,8 +1441,8 @@ static void WcmSetPhase(u32 phase)
 /*---------------------------------------------------------------------------*
   Name:         WCMi_ResetKeepAliveAlarm
 
-  Description:  �L�[�v�A���C�u NULL �p�P�b�g���M�p�A���[�������Z�b�g���A�K��
-                ���Ԃ̃A���[����ݒ肵�����B
+  Description:  キープアライブ NULL パケット送信用アラームをリセットし、規定
+                時間のアラームを設定し直す。
 
   Arguments:    None.
 
@@ -1452,7 +1452,7 @@ void WCMi_ResetKeepAliveAlarm(void)
 {
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // ���߂ăA���[�����Z�b�g
+    // 改めてアラームをセット
     OS_CancelAlarm(&(wcmw->keepAliveAlarm));
     if (wcmw->phase == WCM_PHASE_DCF)
     {
@@ -1464,9 +1464,9 @@ void WCMi_ResetKeepAliveAlarm(void)
 /*---------------------------------------------------------------------------*
   Name:         WcmKeepAliveAlarm
 
-  Description:  �L�[�v�A���C�u NULL �p�P�b�g���M�p�A���[���̃A���[���n���h���B
+  Description:  キープアライブ NULL パケット送信用アラームのアラームハンドラ。
 
-  Arguments:    arg     -   ���g�p�B
+  Arguments:    arg     -   未使用。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1483,11 +1483,11 @@ static void WcmKeepAliveAlarm(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         WcmCountBits
 
-  Description:  u32 �^�̒l�Ɋ܂܂�� 1 �ł���r�b�g�̐����擾����B
+  Description:  u32 型の値に含まれる 1 であるビットの数を取得する。
 
-  Arguments:    arg     -   �������� u32 �^�̒l�B
+  Arguments:    arg     -   調査する u32 型の値。
 
-  Returns:      u32     -   �����Ɋ܂܂�� 1 �r�b�g�̐���Ԃ��B0 �` 32 �̒l�B
+  Returns:      u32     -   引数に含まれる 1 ビットの数を返す。0 〜 32 の値。
  *---------------------------------------------------------------------------*/
 
 //TODO: replace with intrinsics later
@@ -1513,12 +1513,12 @@ WcmCountBits( u32 arg )
 /*---------------------------------------------------------------------------*
   Name:         WcmCountLeadingZero
 
-  Description:  u32 �^�̒l�̐�s�[���J�E���g(�ŏ�ʃr�b�g���� 0 �ł���r�b�g��
-                �����A�����Ă��邩)���擾����B
+  Description:  u32 型の値の先行ゼロカウント(最上位ビットから 0 であるビットが
+                いくつ連続しているか)を取得する。
 
-  Arguments:    arg     -   �������� u32 �^�̒l�B
+  Arguments:    arg     -   調査する u32 型の値。
 
-  Returns:      u32     -   ��s�[���J�E���g��Ԃ��B0 �` 32 �̒l�B
+  Returns:      u32     -   先行ゼロカウントを返す。0 〜 32 の値。
  *---------------------------------------------------------------------------*/
 
 static asm u32
@@ -1532,7 +1532,7 @@ WcmCountLeadingZero( u32 arg )
 /*---------------------------------------------------------------------------*
   Name:         WcmWmReset
 
-  Description:  WM_Reset �֐��ɂ�� WM ���C�u�����̃��Z�b�g�������J�n����B
+  Description:  WM_Reset 関数により WM ライブラリのリセット処理を開始する。
 
   Arguments:    None.
 
@@ -1544,14 +1544,14 @@ static void WcmWmReset(void)
 
     if (wcmw->resetting == WCM_RESETTING_OFF)
     {
-        // ���Z�b�g�d���Ăяo���Ǘ��t���O���Z�b�g
+        // リセット重複呼び出し管理フラグをセット
         wcmw->resetting = WCM_RESETTING_ON;
 
-        // �����ڑ���Ԃ̃��Z�b�g�v���𔭍s
+        // 無線接続状態のリセット要求を発行
         wmResult = WM_Reset(WcmWmcbReset);
         if (wmResult != WM_ERRCODE_OPERATING)
         {
-            /* ���Z�b�g�Ɏ��s�����ꍇ�͕����s�\ */
+            /* リセットに失敗した場合は復旧不可能 */
             WCMi_Printf(wcmReportText_WmSyncError, "WM_Reset", wmResult);
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
             WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 1552); // __LINE__
@@ -1562,9 +1562,9 @@ static void WcmWmReset(void)
 /*---------------------------------------------------------------------------*
   Name:         WcmWmcbIndication
 
-  Description:  WM ���C�u��������̕s����ʒm���󂯎��n���h���B
+  Description:  WM ライブラリからの不定期通知を受け取るハンドラ。
 
-  Arguments:    arg     -   WM ���C�u��������n�����ʒm�p�����[�^�ւ̃|�C���^�B
+  Arguments:    arg     -   WM ライブラリから渡される通知パラメータへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1572,14 +1572,14 @@ static void WcmWmcbIndication(void* arg)
 {
     WMIndCallback*  cb = (WMIndCallback*)arg;
 
-    /* WCM ���������Ɋ֌W���Ȃ��ʒm�͖������� */
+    /* WCM 内部処理に関係しない通知は無視する */
     if (cb->errcode == WM_ERRCODE_FIFO_ERROR)
     {
         if ((cb->state == WM_STATECODE_FIFO_ERROR) && (cb->reason == WM_APIID_AUTO_DISCONNECT))
         {
             /*
-             * �ʐM�̐��������ۂĂȂ��Ȃ�v���I�ȃn�[�h�E�F�A�G���[�� ARM7 ���Ō��m����A
-             * �����I�ɐؒf���悤�Ƃ��������N�G�X�g�L���[���l�܂��Ă��Đؒf�v����\��ł��Ȃ������ꍇ
+             * 通信の整合性が保てなくなる致命的なハードウェアエラーが ARM7 側で検知され、
+             * 自動的に切断しようとしたがリクエストキューが詰まっていて切断要求を予約できなかった場合
              */
             switch (wcmw->phase)
             {
@@ -1596,7 +1596,7 @@ static void WcmWmcbIndication(void* arg)
                 WcmSetPhase(WCM_PHASE_IRREGULAR);
                 break;
 
-                /* �z��O�̃t�F�[�Y�ł̒ʒm�͖������� */
+                /* 想定外のフェーズでの通知は無視する */
             }
         }
     }
@@ -1605,12 +1605,12 @@ static void WcmWmcbIndication(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         WcmWmcbCommon
 
-  Description:  WM ���C�u��������̒ʒm���󂯎��n���h���B
+  Description:  WM ライブラリからの通知を受け取るハンドラ。
                 WM_Enable , WM_Disable , WM_PowerOn , WM_PowerOff ,
                 WM_SetLifeTime , WM_SetBeaconIndication , WM_SetWEPKeyEx
-                �ɑ΂��錋�ʉ������󂯎��B
+                に対する結果応答を受け取る。
 
-  Arguments:    arg     -   WM ���C�u��������n�����ʒm�p�����[�^�ւ̃|�C���^�B
+  Arguments:    arg     -   WM ライブラリから渡される通知パラメータへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1622,21 +1622,21 @@ static void WcmWmcbCommon(void* arg)
     switch (cb->errcode)
     {
     case WM_ERRCODE_SUCCESS:
-        // ���̃X�e�b�v�Ƃ��čs���ׂ�����������
+        // 次のステップとして行うべき処理を決定
         switch (cb->apiid)
         {
         case WM_APIID_ENABLE:
-            // �����n�[�h�E�F�A�ւ̓d�͋����v���𔭍s
+            // 無線ハードウェアへの電力供給要求を発行
             wmResult = WM_PowerOn(WcmWmcbCommon);
             break;
 
         case WM_APIID_DISABLE:
-            // WM ���C�u�����I��
+            // WM ライブラリ終了
             wmResult = WM_Finish();
             switch (wmResult)
             {
             case WM_ERRCODE_SUCCESS:
-                WcmSetPhase(WCM_PHASE_WAIT);        // �񓯊��V�[�P���X����I��
+                WcmSetPhase(WCM_PHASE_WAIT);        // 非同期シーケンス正常終了
                 WcmNotify(WCM_RESULT_SUCCESS, 0, 0, 1635); // __LINE__
                 break;
 
@@ -1645,35 +1645,35 @@ static void WcmWmcbCommon(void* arg)
 
             /* Don't break here */
             default:
-                WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+                WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
                 WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 1644); // __LINE__
             }
 
-            return; // ���̃X�e�b�v�͂Ȃ��̂ł����ŏI��
+            return; // 次のステップはないのでここで終了
 
         case WM_APIID_POWER_ON:
-            WcmSetPhase(WCM_PHASE_IDLE);    // �񓯊��V�[�P���X����I��
+            WcmSetPhase(WCM_PHASE_IDLE);    // 非同期シーケンス正常終了
             WcmNotify(WCM_RESULT_SUCCESS, 0, 0, 1651); // __LINE__
-            return; // ���̃X�e�b�v�͂Ȃ��̂ł����ŏI��
+            return; // 次のステップはないのでここで終了
 
         case WM_APIID_POWER_OFF:
-            // �����n�[�h�E�F�A�̎g�p�֎~�v���𔭍s
+            // 無線ハードウェアの使用禁止要求を発行
             wmResult = WM_Disable(WcmWmcbCommon);
             break;
 
         case WM_APIID_SET_LIFETIME:
-            // �r�[�R������M�ʒm OFF �v���𔭍s
+            // ビーコン送受信通知 OFF 要求を発行
             wmResult = WM_SetBeaconIndication(WcmWmcbCommon, 0);
             break;
 
         case WM_APIID_SET_BEACON_IND:
-            // WEP �Í����ݒ�v���𔭍s
+            // WEP 暗号化設定要求を発行
             wmResult = WM_SetWEPKeyEx(WcmWmcbCommon, (u16) (wcmw->wepDesc.mode), (u16) (wcmw->wepDesc.keyId),
                                       (const u8*)(wcmw->wepDesc.key));
             break;
 
         case WM_APIID_SET_WEPKEY_EX:
-            // AP �ւ̖����ڑ��v���𔭍s
+            // AP への無線接続要求を発行
             wmResult = WM_StartConnectEx(WcmWmcbConnect, &(wcmw->bssDesc), NULL,
                                          ((wcmw->option & WCM_OPTION_MASK_POWER) == WCM_OPTION_POWER_ACTIVE ? FALSE : TRUE),
                                          ((wcmw->option & WCM_OPTION_MASK_AUTH) == WCM_OPTION_AUTH_SHAREDKEY ? (u16) WM_AUTHMODE_SHARED_KEY :
@@ -1681,7 +1681,7 @@ static void WcmWmcbCommon(void* arg)
             break;
         }
 
-        // �����I�ȏ������ʂ��m�F
+        // 同期的な処理結果を確認
         switch (wmResult)
         {
         case WM_ERRCODE_OPERATING:
@@ -1712,7 +1712,7 @@ static void WcmWmcbCommon(void* arg)
                 break;
             }
 #endif
-            WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 �ւ̗v�����s�Ɏ��s( �V�[�P���X�r��Ń��g���C�s�\ )
+            WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
             WcmNotify(WCM_RESULT_FAILURE, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, 1711); // __LINE__
             break;
 
@@ -1721,7 +1721,7 @@ static void WcmWmcbCommon(void* arg)
 
         /* Don't break here */
         default:
-            WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+            WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
             WcmNotify(WCM_RESULT_FATAL_ERROR, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, 1720); // __LINE__
         }
         break;
@@ -1759,7 +1759,7 @@ static void WcmWmcbCommon(void* arg)
             break;
         }
 #endif
-        WcmSetPhase(WCM_PHASE_IRREGULAR);       // ARM7 �łȂ�炩�̗��R�ŃG���[
+        WcmSetPhase(WCM_PHASE_IRREGULAR);       // ARM7 でなんらかの理由でエラー
         WcmNotify(WCM_RESULT_FAILURE, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, 1758); // __LINE__
         break;
 
@@ -1769,7 +1769,7 @@ static void WcmWmcbCommon(void* arg)
 
     /* Don't break here */
     default:
-        WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // �z��͈͊O�̃G���[
+        WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // 想定範囲外のエラー
         WcmNotify(WCM_RESULT_FATAL_ERROR, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, 1768); // __LINE__
     }
 }
@@ -1777,10 +1777,10 @@ static void WcmWmcbCommon(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         WcmWmcbScanEx
 
-  Description:  WM ���C�u��������̒ʒm���󂯎��n���h���B
-                WM_StartScanEx �ɑ΂��錋�ʉ������󂯎��B
+  Description:  WM ライブラリからの通知を受け取るハンドラ。
+                WM_StartScanEx に対する結果応答を受け取る。
 
-  Arguments:    arg     -   WM ���C�u��������n�����ʒm�p�����[�^�ւ̃|�C���^�B
+  Arguments:    arg     -   WM ライブラリから渡される通知パラメータへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1792,23 +1792,23 @@ static void WcmWmcbScanEx(void* arg)
     switch (cb->errcode)
     {
     case WM_ERRCODE_SUCCESS:
-        // �����T���J�n���̏ꍇ�́A����Ɏ����T�����[�h�ɓ��������Ƃ�ʒm
+        // 自動探索開始中の場合は、正常に自動探索モードに入ったことを通知
         if (wcmw->phase == WCM_PHASE_IDLE_TO_SEARCH)
         {
             WcmSetPhase(WCM_PHASE_SEARCH);
 
-            /* ���̒ʒm���ɂĎ����T����~��v�������ꍇ���z�肳��� */
+            /* この通知内にて自動探索停止を要求される場合も想定される */
             WcmNotify(WCM_RESULT_SUCCESS, 0, 0, 1796); // __LINE__
         }
 
-        // ���̃X�e�b�v�Ƃ��čs���ׂ�����������
+        // 次のステップとして行うべき処理を決定
         switch (wcmw->phase)
         {
         case WCM_PHASE_SEARCH:
             wcmw->notifyId = WCM_NOTIFY_FOUND_AP;
             if (cb->state == WM_STATECODE_PARENT_FOUND)
             {
-                // AP ���𔭌������ꍇ�A�����̃��X�g��ҏW���A�v���P�[�V�����ɒʒm
+                // AP 情報を発見した場合、内部のリストを編集しつつアプリケーションに通知
                 s32 i;
 
                 DC_InvalidateRange(wcmw->scanExParam.scanBuf, wcmw->scanExParam.scanBufSize);
@@ -1817,14 +1817,14 @@ static void WcmWmcbScanEx(void* arg)
                     WCMi_EntryApList(cb->bssDesc[i], cb->linkLevel[i]);
 
                     /*
-                     * IW ��I/O �����킹��ׂɉ��L�̂悤�ȃp�����[�^�\���ɂ��Ă��邪�A
-                     * cb �� i ���p�����[�^�Ɏ������ق����Ó��Ǝv����B
+                     * IW とI/O を合わせる為に下記のようなパラメータ構成にしてあるが、
+                     * cb と i をパラメータに持ったほうが妥当と思われる。
                      */
                     WcmNotifyEx(WCM_NOTIFY_FOUND_AP, WCM_RESULT_SUCCESS, cb->bssDesc[i], (void*)cb, 1818); // __LINE__
                 }
             }
 
-            // �w�肳�ꂽ�`�����l�����ꏄ�������𔻒�
+            // 指定されたチャンネルを一巡したかを判定
             if ((wcmw->option & WCM_OPTION_MASK_ROUNDSCAN) == WCM_OPTION_ROUNDSCAN_NOTIFY)
             {
                 u32 channels = WcmCountBits(wcmw->option & WCM_OPTION_FILTER_CHANNEL);
@@ -1833,13 +1833,13 @@ static void WcmWmcbScanEx(void* arg)
                 {
                     if ((wcmw->scanCount % channels) == 0)
                     {
-                        // �e�`�����l���̃X�L�������ꏄ�������Ƃ�ʒm
+                        // 各チャンネルのスキャンが一巡したことを通知
                         WcmNotifyEx(WCM_NOTIFY_SEARCH_AROUND, WCM_RESULT_SUCCESS, (void*)(wcmw->scanCount), 0, 1832); // __LINE__
                     }
                 }
             }
 
-            // ���̃`�����l���̃X�L�����J�n�v���𔭍s
+            // 次のチャンネルのスキャン開始要求を発行
             wcmw->scanExParam.channelList = (u16) ((0x0001 << WcmGetNextScanChannel((u16) (32 - WcmCountLeadingZero(cb->channelList)))) >> 1);
             DC_InvalidateRange(wcmw->scanExParam.scanBuf, wcmw->scanExParam.scanBufSize);
             wcmw->scanCount++;
@@ -1847,17 +1847,17 @@ static void WcmWmcbScanEx(void* arg)
             break;
 
         case WCM_PHASE_SEARCH_TO_IDLE:
-            // �X�L������~�v���𔭍s
+            // スキャン停止要求を発行
             wmResult = WM_EndScan(WcmWmcbEndScan);
             break;
 
         case WCM_PHASE_TERMINATING:
-            // �����I���V�[�P���X���̏ꍇ�͂����Ń��Z�b�g
+            // 強制終了シーケンス中の場合はここでリセット
             WcmWmReset();
             return;
         }
 
-        // �����I�ȏ������ʂ��m�F
+        // 同期的な処理結果を確認
         switch (wmResult)
         {
         case WM_ERRCODE_OPERATING:
@@ -1876,7 +1876,7 @@ static void WcmWmcbScanEx(void* arg)
                 break;
             }
 #endif
-            WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 �ւ̗v�����s�Ɏ��s( �V�[�P���X�r��Ń��g���C�s�\ )
+            WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
             WcmNotify(WCM_RESULT_FAILURE, 0, 0, 1875); // __LINE__
             break;
 
@@ -1885,13 +1885,13 @@ static void WcmWmcbScanEx(void* arg)
 
         /* Don't break here */
         default:
-            WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+            WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
             WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 1884); // __LINE__
         }
         break;
 
     case WM_ERRCODE_FAILED:
-        // �X�L�����v���Ɏ��s�����ꍇ�̓��Z�b�g
+        // スキャン要求に失敗した場合はリセット
         WCMi_Printf(wcmReportText_WmAsyncError, "WM_StartScanEx", cb->errcode, cb->wlCmdID, cb->wlResult);
         WcmWmReset();
         break;
@@ -1902,7 +1902,7 @@ static void WcmWmcbScanEx(void* arg)
 
     /* Don't break here */
     default:
-        WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // �z��͈͊O�̃G���[
+        WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // 想定範囲外のエラー
         WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 1901); // __LINE__
     }
 }
@@ -1910,10 +1910,10 @@ static void WcmWmcbScanEx(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         WcmWmcbEndScan
 
-  Description:  WM ���C�u��������̒ʒm���󂯎��n���h���B
-                WM_EndScan �ɑ΂��錋�ʉ������󂯎��B
+  Description:  WM ライブラリからの通知を受け取るハンドラ。
+                WM_EndScan に対する結果応答を受け取る。
 
-  Arguments:    arg     -   WM ���C�u��������n�����ʒm�p�����[�^�ւ̃|�C���^�B
+  Arguments:    arg     -   WM ライブラリから渡される通知パラメータへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1924,12 +1924,12 @@ static void WcmWmcbEndScan(void* arg)
     switch (cb->errcode)
     {
     case WM_ERRCODE_SUCCESS:
-        WcmSetPhase(WCM_PHASE_IDLE);        // �񓯊��V�[�P���X����I��
+        WcmSetPhase(WCM_PHASE_IDLE);        // 非同期シーケンス正常終了
         WcmNotify(WCM_RESULT_SUCCESS, 0, 0, 1923); // __LINE__
         break;
 
     case WM_ERRCODE_FAILED:
-        // �X�L������~�v���Ɏ��s�����ꍇ�̓��Z�b�g
+        // スキャン停止要求に失敗した場合はリセット
         WCMi_Printf(wcmReportText_WmAsyncError, "WM_EndScan", cb->errcode, cb->wlCmdID, cb->wlResult);
         WcmWmReset();
         break;
@@ -1940,7 +1940,7 @@ static void WcmWmcbEndScan(void* arg)
 
     /* Don't break here */
     default:
-        WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+        WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
         WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 1939); // __LINE__
     }
 }
@@ -1948,11 +1948,11 @@ static void WcmWmcbEndScan(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         WcmWmcbConnect
 
-  Description:  WM ���C�u��������̒ʒm���󂯎��n���h���B
-                WM_StartConnectEx �ɑ΂��錋�ʉ����A�y�і����ڑ���̔�ؒf�ʒm
-                ���󂯎��B
+  Description:  WM ライブラリからの通知を受け取るハンドラ。
+                WM_StartConnectEx に対する結果応答、及び無線接続後の被切断通知
+                を受け取る。
 
-  Arguments:    arg     -   WM ���C�u��������n�����ʒm�p�����[�^�ւ̃|�C���^�B
+  Arguments:    arg     -   WM ライブラリから渡される通知パラメータへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1966,12 +1966,12 @@ static void WcmWmcbConnect(void* arg)
     case WM_ERRCODE_SUCCESS:
         switch (cb->state)
         {
-        case WM_STATECODE_DISCONNECTED:                     // ��ؒf�ʒm
-        case WM_STATECODE_BEACON_LOST:                      // �ؒf���ꂽ�ꍇ�Ɠ����̏������s��
+        case WM_STATECODE_DISCONNECTED:                     // 被切断通知
+        case WM_STATECODE_BEACON_LOST:                      // 切断された場合と同等の処理を行う
             switch (wcmw->phase)
             {
             case WCM_PHASE_DCF_TO_IDLE:
-                // Auth-ID ���N���A
+                // Auth-ID をクリア
                 wcmw->authId = 0;
 
             /* Don't break here */
@@ -1980,10 +1980,10 @@ static void WcmWmcbConnect(void* arg)
                 break;
 
             case WCM_PHASE_DCF:
-                // Auth-ID ���N���A
+                // Auth-ID をクリア
                 wcmw->authId = 0;
 
-                // �ʒm��ʂ�ݒ�
+                // 通知種別を設定
                 wcmw->notifyId = WCM_NOTIFY_DISCONNECT;
 
             /* Don't break here */
@@ -1991,37 +1991,37 @@ static void WcmWmcbConnect(void* arg)
                 WcmWmReset();
                 break;
 
-                /* �z��O�̃t�F�[�Y�ł̐ؒf�ʒm�͖������� */
+                /* 想定外のフェーズでの切断通知は無視する */
             }
             break;
 
 #if SDK_VERSION_MAJOR > 3 || (SDK_VERSION_MAJOR == 3 && SDK_VERSION_MINOR > 0) || \
         (SDK_VERSION_MAJOR == 3 && SDK_VERSION_MINOR == 0 && SDK_VERSION_RELSTEP >= 20100)
 
-        case WM_STATECODE_DISCONNECTED_FROM_MYSELF:         // ��������̐ؒf�ł͐ؒf�֐����ŏ������Ă���̂ŁA�����Ȃ�
+        case WM_STATECODE_DISCONNECTED_FROM_MYSELF:         // 自分からの切断では切断関数内で処理しているので、処理なし
             break;
 #endif
 
-        case WM_STATECODE_CONNECT_START:                    // �ڑ��̓r���o�߂Ȃ̂ŁA�����Ȃ�
+        case WM_STATECODE_CONNECT_START:                    // 接続の途中経過なので、処理なし
             break;
 
-        case WM_STATECODE_CONNECTED:                        // �ڑ������ʒm
+        case WM_STATECODE_CONNECTED:                        // 接続完了通知
             if (wcmw->phase == WCM_PHASE_IRREGULAR)
             {
-                // �ؒf���ꂽ��ɐڑ������ʒm�������ꍇ�́A���s�Ƃ݂Ȃ����Z�b�g
+                // 切断された後に接続完了通知が来た場合は、失敗とみなしリセット
                 WCMi_Printf(wcmReportText_WmDisconnected, "WM_StartConnectEx");
-                WcmSetPhase(WCM_PHASE_IDLE_TO_DCF);         // �t�F�[�Y���㏑��
+                WcmSetPhase(WCM_PHASE_IDLE_TO_DCF);         // フェーズを上書き
                 WcmWmReset();
             }
             else
             {
-                // AID �� 1 �` 2007 �܂ł͈̔͂ŗ^������͂�
+                // AID は 1 〜 2007 までの範囲で与えられるはず
                 if ((WCM_AID_MIN <= cb->aid) && (cb->aid <= WCM_AID_MAX))
                 {
-                    // Auth-ID ��ޔ�
+                    // Auth-ID を退避
                     wcmw->authId = cb->aid;
 
-                    // DCM �ʐM���[�h�J�n�v���𔭍s
+                    // DCM 通信モード開始要求を発行
                     wmResult = WM_StartDCF(WcmWmcbStartDCF, (WMDcfRecvBuf *) (wcmw->recvBuf), WCM_DCF_RECV_BUF_SIZE);
                     switch (wmResult)
                     {
@@ -2030,7 +2030,7 @@ static void WcmWmcbConnect(void* arg)
 
                     case WM_ERRCODE_FIFO_ERROR:
                         WCMi_Printf(wcmReportText_WmSyncError, "WM_StartDCF", wmResult);
-                        WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 �ւ̗v�����s�Ɏ��s( �V�[�P���X�r��Ń��g���C�s�\ )
+                        WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
                         WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), 0, 2029); // __LINE__
                         break;
 
@@ -2039,21 +2039,21 @@ static void WcmWmcbConnect(void* arg)
 
                     /* Don't break here */
                     default:
-                        WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+                        WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
                         WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2038); // __LINE__
                     }
                 }
                 else
                 {
-                    // �z��O�� AID ���^����ꂽ�ꍇ�́A���s�Ƃ݂Ȃ����Z�b�g
+                    // 想定外の AID が与えられた場合は、失敗とみなしリセット
                     WCMi_Printf(wcmReportText_InvalidAid, "WM_StartConnectEx");
                     WcmWmReset();
                 }
             }
             break;
 
-        default:    // �z��O�̃X�e�[�g�R�[�h
-            WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+        default:    // 想定外のステートコード
+            WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
             WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), (void*)(cb->state), 2052); // __LINE__
         }
         break;
@@ -2064,9 +2064,9 @@ static void WcmWmcbConnect(void* arg)
     case WM_ERRCODE_NO_ENTRY:
     case WM_ERRCODE_INVALID_PARAM:
     case WM_ERRCODE_OVER_MAX_ENTRY:
-        // �����ڑ��Ɏ��s�����ꍇ�̓��Z�b�g
+        // 無線接続に失敗した場合はリセット
         WCMi_Printf(wcmReportText_WmAsyncError, "WM_StartConnectEx", cb->errcode, cb->wlCmdID, cb->wlResult);
-        WcmSetPhase(WCM_PHASE_IDLE_TO_DCF);     // IRREGULAR �ɂȂ��Ă���\��������̂Ńt�F�[�Y���㏑��
+        WcmSetPhase(WCM_PHASE_IDLE_TO_DCF);     // IRREGULAR になっている可能性があるのでフェーズを上書き
         WcmWmReset();
         break;
 
@@ -2076,7 +2076,7 @@ static void WcmWmcbConnect(void* arg)
 
     /* Don't break here */
     default:
-        WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // �z��͈͊O�̃G���[
+        WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // 想定範囲外のエラー
         WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2075); // __LINE__
     }
 }
@@ -2084,10 +2084,10 @@ static void WcmWmcbConnect(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         WcmWmcbDisconnect
 
-  Description:  WM ���C�u��������̒ʒm���󂯎��n���h���B
-                WM_Disconnect �ɑ΂��錋�ʉ������󂯎��B
+  Description:  WM ライブラリからの通知を受け取るハンドラ。
+                WM_Disconnect に対する結果応答を受け取る。
 
-  Arguments:    arg     -   WM ���C�u��������n�����ʒm�p�����[�^�ւ̃|�C���^�B
+  Arguments:    arg     -   WM ライブラリから渡される通知パラメータへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -2100,24 +2100,24 @@ static void WcmWmcbDisconnect(void* arg)
     case WM_ERRCODE_SUCCESS:
         if (wcmw->phase == WCM_PHASE_IRREGULAR)
         {
-            // �ؒf���ꂽ��ɖ����I�Ȑؒf�v���̊����ʒm�������ꍇ�A�O�̂��߃��Z�b�g
+            // 切断された後に明示的な切断要求の完了通知が来た場合、念のためリセット
             WCMi_Printf(wcmReportText_WmDisconnected, "WM_Disconnect");
             WcmSetPhase(WCM_PHASE_DCF_TO_IDLE);
             WcmWmReset();
         }
         else
         {
-            // Auth-ID ���N���A
+            // Auth-ID をクリア
             wcmw->authId = 0;
 
-            WcmSetPhase(WCM_PHASE_IDLE);    // �񓯊��V�[�P���X����I��
+            WcmSetPhase(WCM_PHASE_IDLE);    // 非同期シーケンス正常終了
             WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), 0, 2109); // __LINE__
         }
         break;
 
     case WM_ERRCODE_FAILED:
-    case WM_ERRCODE_ILLEGAL_STATE:          // �N���e�B�J���ȃ^�C�~���O�ŒʐM���؂ꂽ�ꍇ�ɕԂ��Ă�����
-        // �����ڑ��̐ؒf�v�������s�����ꍇ�̓��Z�b�g
+    case WM_ERRCODE_ILLEGAL_STATE:          // クリティカルなタイミングで通信が切れた場合に返ってきうる
+        // 無線接続の切断要求が失敗した場合はリセット
         WCMi_Printf(wcmReportText_WmAsyncError, "WM_Disconnect", cb->errcode, cb->wlCmdID, cb->wlResult);
         WcmSetPhase(WCM_PHASE_DCF_TO_IDLE);
         WcmWmReset();
@@ -2128,7 +2128,7 @@ static void WcmWmcbDisconnect(void* arg)
 
     /* Don't break here */
     default:
-        WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+        WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
         WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2127); // __LINE__
     }
 }
@@ -2136,11 +2136,11 @@ static void WcmWmcbDisconnect(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         WcmWmcbStartDCF
 
-  Description:  WM ���C�u��������̒ʒm���󂯎��n���h���B
-                WM_StartDCF �ɑ΂��錋�ʉ����A�y�� DCF ���[�h�ł̃f�[�^��M�ʒm
-                ���󂯎��B
+  Description:  WM ライブラリからの通知を受け取るハンドラ。
+                WM_StartDCF に対する結果応答、及び DCF モードでのデータ受信通知
+                を受け取る。
 
-  Arguments:    arg     -   WM ���C�u��������n�����ʒm�p�����[�^�ւ̃|�C���^�B
+  Arguments:    arg     -   WM ライブラリから渡される通知パラメータへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -2156,40 +2156,40 @@ static void WcmWmcbStartDCF(void* arg)
         case WM_STATECODE_DCF_START:
             if (wcmw->phase == WCM_PHASE_IRREGULAR)
             {
-                // �ؒf���ꂽ��� DCF �J�n�����ʒm�������ꍇ�́A���s�Ƃ݂Ȃ����Z�b�g
+                // 切断された後に DCF 開始完了通知が来た場合は、失敗とみなしリセット
                 WCMi_Printf(wcmReportText_WmDisconnected, "WM_StartDCF");
-                WcmSetPhase(WCM_PHASE_IDLE_TO_DCF); // �t�F�[�Y���㏑��
+                WcmSetPhase(WCM_PHASE_IDLE_TO_DCF); // フェーズを上書き
                 WcmWmReset();
             }
             else
             {
-                WcmSetPhase(WCM_PHASE_DCF);         // �񓯊��V�[�P���X����I��
+                WcmSetPhase(WCM_PHASE_DCF);         // 非同期シーケンス正常終了
                 WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), 0, 2162); // __LINE__
             }
             break;
 
         case WM_STATECODE_DCF_IND:
-            // �d�g���x��ޔ�
+            // 電波強度を退避
             WCMi_ShelterRssi((u8) (cb->recvBuf->rate_rssi >> 8));
 
-            // CPS �Ƃ̃C���^�[�t�F�[�X�� DCF ��M��ʒm
+            // CPS とのインターフェースに DCF 受信を通知
             DC_InvalidateRange(cb->recvBuf, WCM_DCF_RECV_BUF_SIZE);
             WCMi_CpsifRecvCallback(cb->recvBuf);
             break;
 
-        default:    // �z��O�̃X�e�[�g�R�[�h
-            WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+        default:    // 想定外のステートコード
+            WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
             WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), (void*)(cb->state), 2177); // __LINE__
         }
         break;
 
-    /* StartDCF �ɂ� WM_ERRCODE_FAILED �͕Ԃ��Ă��Ȃ��̂ŏȗ� */
+    /* StartDCF には WM_ERRCODE_FAILED は返ってこないので省略 */
     case WM_ERRCODE_WM_DISABLE:
         WCMi_Warning(wcmWarningText_InvalidWmState);
 
     /* Don't break here */
     default:
-        WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // �z��͈͊O�̃G���[
+        WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // 想定範囲外のエラー
         WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2188); // __LINE__
     }
 }
@@ -2197,10 +2197,10 @@ static void WcmWmcbStartDCF(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         WcmWmcbEndDCF
 
-  Description:  WM ���C�u��������̒ʒm���󂯎��n���h���B
-                WM_EndDCF �ɑ΂��錋�ʉ������󂯎��B
+  Description:  WM ライブラリからの通知を受け取るハンドラ。
+                WM_EndDCF に対する結果応答を受け取る。
 
-  Arguments:    arg     -   WM ���C�u��������n�����ʒm�p�����[�^�ւ̃|�C���^�B
+  Arguments:    arg     -   WM ライブラリから渡される通知パラメータへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -2214,13 +2214,13 @@ static void WcmWmcbEndDCF(void* arg)
     case WM_ERRCODE_SUCCESS:
         if (wcmw->phase == WCM_PHASE_IRREGULAR)
         {
-            // �ؒf���ꂽ��� DCF �I�������ʒm�������ꍇ�́A���s�Ƃ݂Ȃ����Z�b�g
+            // 切断された後に DCF 終了完了通知が来た場合は、失敗とみなしリセット
             WcmSetPhase(WCM_PHASE_DCF_TO_IDLE);
             WcmWmReset();
         }
         else
         {
-            // AP �Ƃ̖����ڑ��ؒf�v���𔭍s
+            // AP との無線接続切断要求を発行
             wmResult = WM_Disconnect(WcmWmcbDisconnect, 0);
             switch (wmResult)
             {
@@ -2229,29 +2229,29 @@ static void WcmWmcbEndDCF(void* arg)
 
             case WM_ERRCODE_FIFO_ERROR:
                 WCMi_Printf(wcmReportText_WmSyncError, "WM_Disconnect", wmResult);
-                WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 �ւ̗v�����s�Ɏ��s( �V�[�P���X�r��Ń��g���C�s�\ )
+                WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
                 WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), 0, 2228); // __LINE__
                 break;
 
-            case WM_ERRCODE_ILLEGAL_STATE:          // �N���e�B�J���ȃ^�C�~���O�ŒʐM���؂ꂽ�ꍇ
-                // �ؒf���鐡�O�� AP ������ؒf���ꂽ�ꍇ�́A���s�Ƃ݂Ȃ����Z�b�g
+            case WM_ERRCODE_ILLEGAL_STATE:          // クリティカルなタイミングで通信が切れた場合
+                // 切断する寸前に AP 側から切断された場合は、失敗とみなしリセット
                 WCMi_Printf(wcmReportText_WmSyncError, "WM_Disconnect", wmResult);
                 WcmSetPhase(WCM_PHASE_DCF_TO_IDLE);
                 WcmWmReset();
                 break;
 
             default:
-                WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+                WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
                 WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2240); // __LINE__
             }
         }
         break;
 
     case WM_ERRCODE_FAILED:
-    case WM_ERRCODE_ILLEGAL_STATE:                  // �N���e�B�J���ȃ^�C�~���O�ŒʐM���؂ꂽ�ꍇ
-        // DCF �ʐM���[�h�I���Ɏ��s�����ꍇ�̓��Z�b�g
+    case WM_ERRCODE_ILLEGAL_STATE:                  // クリティカルなタイミングで通信が切れた場合
+        // DCF 通信モード終了に失敗した場合はリセット
         WCMi_Printf(wcmReportText_WmAsyncError, "WM_EndDCF", cb->errcode, cb->wlCmdID, cb->wlResult);
-        WcmSetPhase(WCM_PHASE_DCF_TO_IDLE);         // IRREGULAR �ɂȂ��Ă���\��������̂Ńt�F�[�Y���㏑��
+        WcmSetPhase(WCM_PHASE_DCF_TO_IDLE);         // IRREGULAR になっている可能性があるのでフェーズを上書き
         WcmWmReset();
         break;
 
@@ -2260,7 +2260,7 @@ static void WcmWmcbEndDCF(void* arg)
 
     /* Don't break here */
     default:
-        WcmSetPhase(WCM_PHASE_FATAL_ERROR);         // �z��͈͊O�̃G���[
+        WcmSetPhase(WCM_PHASE_FATAL_ERROR);         // 想定範囲外のエラー
         WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2259); // __LINE__
     }
 }
@@ -2268,10 +2268,10 @@ static void WcmWmcbEndDCF(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         WcmWmcbReset
 
-  Description:  WM ���C�u��������̒ʒm���󂯎��n���h���B
-                WM_Reset �ɑ΂��錋�ʉ������󂯎��B
+  Description:  WM ライブラリからの通知を受け取るハンドラ。
+                WM_Reset に対する結果応答を受け取る。
 
-  Arguments:    arg     -   WM ���C�u��������n�����ʒm�p�����[�^�ւ̃|�C���^�B
+  Arguments:    arg     -   WM ライブラリから渡される通知パラメータへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -2283,35 +2283,35 @@ static void WcmWmcbReset(void* arg)
     switch (cb->errcode)
     {
     case WM_ERRCODE_SUCCESS:
-        // ���Z�b�g�d���Ăяo���Ǘ��t���O���N���A
+        // リセット重複呼び出し管理フラグをクリア
         wcmw->resetting = WCM_RESETTING_OFF;
 
-        // Auth-ID ���N���A
+        // Auth-ID をクリア
         wcmw->authId = 0;
 
         switch (wcmw->phase)
         {
-        case WCM_PHASE_IDLE_TO_SEARCH:  // AP �����T���J�n��
-        case WCM_PHASE_SEARCH:          // AP �����T����
-            // �X�L���������Ɏ��s���ă��Z�b�g���邱�ƂɂȂ����|��ʒm
+        case WCM_PHASE_IDLE_TO_SEARCH:  // AP 自動探索開始中
+        case WCM_PHASE_SEARCH:          // AP 自動探索中
+            // スキャン処理に失敗してリセットすることになった旨を通知
             WcmSetPhase(WCM_PHASE_IDLE);
             WcmNotify(WCM_RESULT_FAILURE, 0, 0, 2293); // __LINE__
             break;
 
-        case WCM_PHASE_SEARCH_TO_IDLE:  // AP �����T����~��
-            // �v������ AP �����T����~�����������������Ƃ�ʒm
+        case WCM_PHASE_SEARCH_TO_IDLE:  // AP 自動探索停止中
+            // 要求した AP 自動探索停止処理が完了したことを通知
             WcmSetPhase(WCM_PHASE_IDLE);
             WcmNotify(WCM_RESULT_SUCCESS, 0, 0, 2299); // __LINE__
             break;
 
-        case WCM_PHASE_IDLE_TO_DCF:     // �ڑ���
-            // �ڑ������Ɏ��s���ă��Z�b�g���邱�ƂɂȂ����|��ʒm
+        case WCM_PHASE_IDLE_TO_DCF:     // 接続中
+            // 接続処理に失敗してリセットすることになった旨を通知
             {
                 u16 wlStatus = wcmw->wlStatusOnConnectFail;
 
                 wcmw->wlStatusOnConnectFail = 0x0000;
 #ifdef WCM_CAMOUFLAGE_RATESET
-                /* ���[�g�Z�b�g�̕s�����ɂ��ڑ��Ɏ��s�������̑΍� */
+                /* レートセットの不整合により接続に失敗した時の対策 */
                 if (wlStatus == WCM_CONNECT_STATUSCODE_ILLEGAL_RATESET)
                 {
                     if ((wcmw->bssDesc.rateSet.support & WCM_CAMOUFLAGE_RATESET) != WCM_CAMOUFLAGE_RATESET)
@@ -2319,21 +2319,21 @@ static void WcmWmcbReset(void* arg)
                         WCMi_Printf(wcmReportText_SupportRateset, wcmw->bssDesc.ssid);
                         wcmw->bssDesc.rateSet.support |= WCM_CAMOUFLAGE_RATESET;
 
-                        // �����I�ɐڑ������g���C
+                        // 自動的に接続をリトライ
                         wmResult = WM_StartConnectEx(WcmWmcbConnect, &(wcmw->bssDesc), NULL,
                                                      ((wcmw->option & WCM_OPTION_MASK_POWER) == WCM_OPTION_POWER_ACTIVE ? FALSE : TRUE),
                                                              ((wcmw->option & WCM_OPTION_MASK_AUTH) == WCM_OPTION_AUTH_SHAREDKEY ?
                                                                      (u16) WM_AUTHMODE_SHARED_KEY : (u16) WM_AUTHMODE_OPEN_SYSTEM
                                                                      ));
 
-                        // �����I�ȏ������ʂ��m�F
+                        // 同期的な処理結果を確認
                         switch (wmResult)
                         {
                         case WM_ERRCODE_OPERATING:
                             break;
 
                         case WM_ERRCODE_FIFO_ERROR:
-                            WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 �ւ̗v�����s�Ɏ��s( �V�[�P���X�r��Ń��g���C�s�\ )
+                            WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
                             WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), (void*)wlStatus, 2332); // __LINE__
                             break;
 
@@ -2342,7 +2342,7 @@ static void WcmWmcbReset(void* arg)
 
                         /* Don't break here */
                         default:
-                            WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+                            WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
                             WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), (void*)wlStatus, 2341); // __LINE__
                         }
 
@@ -2355,22 +2355,22 @@ static void WcmWmcbReset(void* arg)
             }
             break;
 
-        case WCM_PHASE_DCF:         // DCF �ʐM��
+        case WCM_PHASE_DCF:         // DCF 通信中
         case WCM_PHASE_IRREGULAR:
-            // AP ����ؒf���ꂽ���Ƃ�ʒm
+            // AP から切断されたことを通知
             WcmSetPhase(WCM_PHASE_IDLE);
             WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), (void*)1, 2357); // __LINE__
 
             break;
 
-        case WCM_PHASE_DCF_TO_IDLE: // �ؒf��
-            // �v�������ؒf�����������������Ƃ�ʒm
+        case WCM_PHASE_DCF_TO_IDLE: // 切断中
+            // 要求した切断処理が完了したことを通知
             WcmSetPhase(WCM_PHASE_IDLE);
             WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), 0, 2364); // __LINE__
             break;
 
-        case WCM_PHASE_TERMINATING: // �����I����
-            // ���Z�b�g�̊����ɑ����āAPHASE_WAIT �ɖ߂��悤�ɘA���I�ɏ������p��
+        case WCM_PHASE_TERMINATING: // 強制終了中
+            // リセットの完了に続いて、PHASE_WAIT に戻すように連鎖的に処理を継続
             wmResult = WM_PowerOff(WcmWmcbCommon);
             switch (wmResult)
             {
@@ -2379,7 +2379,7 @@ static void WcmWmcbReset(void* arg)
 
             case WM_ERRCODE_FIFO_ERROR:
                 WCMi_Printf(wcmReportText_WmSyncError, "WM_Reset", wmResult);
-                WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 �ւ̗v�����s�Ɏ��s( �V�[�P���X�r��Ń��g���C�s�\ )
+                WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
                 WcmNotify(WCM_RESULT_FAILURE, 0, 0, 2378); // __LINE__
                 break;
 
@@ -2388,20 +2388,20 @@ static void WcmWmcbReset(void* arg)
 
             /* Don't break here */
             default:
-                WcmSetPhase(WCM_PHASE_FATAL_ERROR); // �z��͈͊O�̃G���[
+                WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
                 WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 2387); // __LINE__
             }
             break;
 
         default:
-            WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // �z��͈͊O�̃G���[
+            WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // 想定範囲外のエラー
             WcmNotify(WCM_RESULT_FATAL_ERROR, 0, (void*)(wcmw->phase), 2393); // __LINE__
         }
         break;
 
     default:
-        /* ���Z�b�g�Ɏ��s�����ꍇ�͕����s�\ */
-        WcmSetPhase(WCM_PHASE_FATAL_ERROR);         // �z��͈͊O�̃G���[
+        /* リセットに失敗した場合は復旧不可能 */
+        WcmSetPhase(WCM_PHASE_FATAL_ERROR);         // 想定範囲外のエラー
         WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 2400); // __LINE__
     }
 }

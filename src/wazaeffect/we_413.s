@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_001.s
- * @brief	‚Í‚½‚­
+ * @brief	ã¯ãŸã
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚Í‚½‚­
+//	â– ã¯ãŸã
 //
 //
 // =============================================================================
@@ -28,7 +28,7 @@ WEST_413:
 
 	LOAD_PARTICLE_DROP	0,W_413_SPA	
 	
-	///< ”wŒi
+	///< èƒŒæ™¯
 	WORK_SET		WEDEF_GP_INDEX_SPEED_X,  WEDEF_HAIKEI_SPEED_X
 	WORK_SET		WEDEF_GP_INDEX_SPEED_Y,  WEDEF_HAIKEI_SPEED_Y
 	WORK_SET		WEDEF_GP_INDEX_SPEED_R,  1
@@ -37,7 +37,7 @@ WEST_413:
 	HAIKEI_CHG		BG_ID_143, WEDEF_HAIKEI_MODE_FADE | WEDEF_HAIKEI_SBIT_MOVE
 	HAIKEI_CHG_WAIT
 
-	///< ”¼“§–¾ƒtƒF[ƒhƒ|ƒP
+	///< åŠé€æ˜Žãƒ•ã‚§ãƒ¼ãƒ‰ãƒã‚±
 	POKEOAM_RES_INIT
 	POKEOAM_RES_LOAD	0,
 	POKEOAM_DROP	WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0

@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d32r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d32r0101_first_entry
 _EVENT_DATA		ev_d32r0101_staff_a
@@ -34,34 +34,34 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d32r0101_flag_change:
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D32R0101	//“’…
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D32R0101	//åˆ°ç€
 	_END
 
 
 /********************************************************************/
-/*						‰‚ß‚Ä“ü‚Á‚½(‹­§)						*/
+/*						åˆã‚ã¦å…¥ã£ãŸæ™‚(å¼·åˆ¶)						*/
 /********************************************************************/
 ev_d32r0101_first_entry:
 	_EVENT_START
 
-	//ƒV[ƒ“ƒ`ƒFƒ“ƒW
+	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸
 	_LDVAL				WK_SCENE_D32R0101,1
 
-	//ƒMƒlƒXƒz[ƒ‹ƒ^ƒ[‹L˜^ƒXƒgƒbƒp[‚ğŠO‚·
+	//ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã‚¿ãƒ¯ãƒ¼è¨˜éŒ²ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ã‚’å¤–ã™
 	_FLAG_SET			FV_C01R0206_STOP
 	_FLAG_SET			FV_C01R0207_STOP
 
-	//ƒXƒ^ƒbƒtU‚èŒü‚«
+	//ã‚¹ã‚¿ãƒƒãƒ•æŒ¯ã‚Šå‘ã
 	_CALL				ev_d32r0101_anm_staff_turn_d
 
-	//‚æ‚¤‚±‚»
+	//ã‚ˆã†ã“ã
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_01
 	_TALK_CLOSE
 	
-	//©‹@ˆÚ“®
+	//è‡ªæ©Ÿç§»å‹•
 	_CALL				ev_d32r0101_anm_player_move	
 
-	/*uƒoƒgƒ‹ƒŒƒR[ƒ_[‚ğƒpƒ[ƒAƒbƒvv*/
+	/*ã€Œãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼ã‚’ãƒ‘ãƒ¯ãƒ¼ã‚¢ãƒƒãƒ—ã€*/
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_02
 
 	_PLAYER_NAME		0
@@ -73,10 +73,10 @@ ev_d32r0101_first_entry:
 	//_LDVAL				SCWK_TEMP0,ITEM_POINTOKAADO
 	//_LDVAL				SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€ƒQƒbƒg SCWK_TEMP0‚ÉƒAƒCƒeƒ€No,SCWK_TEMP1‚ÉŒÂ”‘ã“ü‚µ‚ÄŒÄ‚Ño‚·
-	//_CHG_COMMON_SCR		SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚²ãƒƒãƒˆ SCWK_TEMP0ã«ã‚¢ã‚¤ãƒ†ãƒ No,SCWK_TEMP1ã«å€‹æ•°ä»£å…¥ã—ã¦å‘¼ã³å‡ºã™
+	//_CHG_COMMON_SCR		SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
-	/*ƒƒjƒ…‚Ö*/
+	/*ãƒ¡ãƒ‹ãƒ¥ã¸*/
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_03
 	_CALL				ev_d32r0101_staff_a_menu
 
@@ -88,27 +88,27 @@ ev_d32r0101_first_entry:
 
 
 /********************************************************************/
-/*					ƒXƒ^ƒbƒtA(¶^‚ñ’†:ƒ‹[ƒ‹à–¾)					*/
+/*					ã‚¹ã‚¿ãƒƒãƒ•A(å·¦çœŸã‚“ä¸­:ãƒ«ãƒ¼ãƒ«èª¬æ˜)					*/
 /********************************************************************/
 ev_d32r0101_staff_a:
 	_TALK_OBJ_START
 
-	/*ƒƒjƒ…‚Ö*/
+	/*ãƒ¡ãƒ‹ãƒ¥ã¸*/
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
 	_CALL				ev_d32r0101_staff_a_menu
 
 	_JUMP				ev_d32r0101_staff_a_05
 	_END
 
-//ƒƒjƒ…[ƒXƒ^[ƒg
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
 ev_d32r0101_staff_a_menu:
-	_BMPMENU_INIT_EX	15,5,0,1,SCWK_ANSWER		/*BƒLƒƒƒ“ƒZƒ‹OK*/
-	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_10,0	/*ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒA‚Æ‚Í*/
-	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_17,1	/*‚«‚Ù‚ñ‚Ìƒ‹[ƒ‹‚É‚Â‚¢‚Ä*/
-	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_11,2	/*ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚Æ‚Í*/
-	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_12,3	/*‚a‚o‚Ğ‚«‚©‚¦ƒR[ƒi[‚Æ‚Í*/
-	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_13,4	/*‚¹‚¢‚¹‚«ƒ‚ƒjƒ^[‚Æ‚Í*/
-	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_14,5	/*‚¨‚í‚é*/
+	_BMPMENU_INIT_EX	15,5,0,1,SCWK_ANSWER		/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«OK*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_10,0	/*ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã¨ã¯*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_17,1	/*ãã»ã‚“ã®ãƒ«ãƒ¼ãƒ«ã«ã¤ã„ã¦*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_11,2	/*ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã¨ã¯*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_12,3	/*ï¼¢ï¼°ã²ãã‹ãˆã‚³ãƒ¼ãƒŠãƒ¼ã¨ã¯*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_13,4	/*ã›ã„ã›ããƒ¢ãƒ‹ã‚¿ãƒ¼ã¨ã¯*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_14,5	/*ãŠã‚ã‚‹*/
 	_BMPMENU_START
 
 	_SWITCH				SCWK_ANSWER
@@ -119,7 +119,7 @@ ev_d32r0101_staff_a_menu:
 	_CASE_JUMP			4,ev_d32r0101_staff_a_04
 	_RET
 	
-/*u‚¢‚Á‚Ä‚ç‚Á‚µ‚á‚¢‚Ü‚¹v*/
+/*ã€Œã„ã£ã¦ã‚‰ã£ã—ã‚ƒã„ã¾ã›ã€*/
 ev_d32r0101_staff_a_05:
 	_TALKMSG			msg_d32r0101_staff_a_09
 	_LAST_KEYWAIT
@@ -127,35 +127,35 @@ ev_d32r0101_staff_a_05:
 	_TALK_OBJ_END
 	_END
 
-/*ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒAà–¾*/
+/*ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢èª¬æ˜*/
 ev_d32r0101_staff_a_01:
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_05
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
 	_JUMP				ev_d32r0101_staff_a_menu
 	_END
 
-/*ƒoƒgƒ‹ƒ|ƒCƒ“ƒgà–¾*/
+/*ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆèª¬æ˜*/
 ev_d32r0101_staff_a_02:
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_06
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
 	_JUMP				ev_d32r0101_staff_a_menu
 	_END
 
-/*‚a‚o‚Ğ‚«‚©‚¦à–¾*/
+/*ï¼¢ï¼°ã²ãã‹ãˆèª¬æ˜*/
 ev_d32r0101_staff_a_03:
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_07
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
 	_JUMP				ev_d32r0101_staff_a_menu
 	_END
 
-/*‚¹‚¢‚¹‚«ƒ‚ƒjƒ^[à–¾*/
+/*ã›ã„ã›ããƒ¢ãƒ‹ã‚¿ãƒ¼èª¬æ˜*/
 ev_d32r0101_staff_a_04:
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_08
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
 	_JUMP				ev_d32r0101_staff_a_menu
 	_END
 
-/*Šî–{‚Ìƒ‹[ƒ‹à–¾*/
+/*åŸºæœ¬ã®ãƒ«ãƒ¼ãƒ«èª¬æ˜*/
 ev_d32r0101_staff_a_07:
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_16
 	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
@@ -164,7 +164,7 @@ ev_d32r0101_staff_a_07:
 
 
 /********************************************************************/
-/*					ƒXƒ^ƒbƒtB(¶:ƒ|ƒCƒ“ƒgƒJ[ƒhà–¾)				*/
+/*					ã‚¹ã‚¿ãƒƒãƒ•B(å·¦:ãƒã‚¤ãƒ³ãƒˆã‚«ãƒ¼ãƒ‰èª¬æ˜)				*/
 /********************************************************************/
 ev_d32r0101_staff_b:
 	_TALK_OBJ_START
@@ -185,7 +185,7 @@ no_d32r0101_staff_b_01:
 	_JUMP			ev_d32r0101_staff_b_end
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_d32r0101_staff_b_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -194,7 +194,7 @@ ev_d32r0101_staff_b_end:
 
 
 /********************************************************************/
-/*			ƒXƒ^ƒbƒtC(¶:‚Â‚ê‚Ä‚¢‚¯‚éƒ|ƒPƒ‚ƒ“à–¾)					*/
+/*			ã‚¹ã‚¿ãƒƒãƒ•C(å·¦:ã¤ã‚Œã¦ã„ã‘ã‚‹ãƒã‚±ãƒ¢ãƒ³èª¬æ˜)					*/
 /********************************************************************/
 ev_d32r0101_staff_c:
 	_TALK_OBJ_START
@@ -215,7 +215,7 @@ no_d32r0101_staff_c_01:
 	_JUMP			ev_d32r0101_staff_c_end
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_d32r0101_staff_c_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -224,7 +224,7 @@ ev_d32r0101_staff_c_end:
 
 
 /********************************************************************/
-/*			ƒXƒ^ƒbƒtd()												*/
+/*			ã‚¹ã‚¿ãƒƒãƒ•d()												*/
 /********************************************************************/
 ev_d32r0101_staff_d:
 	_TALK_OBJ_START
@@ -245,7 +245,7 @@ no_d32r0101_staff_d_01:
 	_JUMP			ev_d32r0101_staff_d_end
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_d32r0101_staff_d_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -254,7 +254,7 @@ ev_d32r0101_staff_d_end:
 
 
 /********************************************************************/
-/*			ƒXƒ^ƒbƒte()												*/
+/*			ã‚¹ã‚¿ãƒƒãƒ•e()												*/
 /********************************************************************/
 ev_d32r0101_staff_e:
 	_TALK_OBJ_START
@@ -275,7 +275,7 @@ no_d32r0101_staff_e_01:
 	_JUMP			ev_d32r0101_staff_e_end
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_d32r0101_staff_e_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -284,7 +284,7 @@ ev_d32r0101_staff_e_end:
 
 
 /********************************************************************/
-/*			ƒXƒ^ƒbƒtf()												*/
+/*			ã‚¹ã‚¿ãƒƒãƒ•f()												*/
 /********************************************************************/
 ev_d32r0101_staff_f:
 	_TALK_OBJ_START
@@ -305,7 +305,7 @@ no_d32r0101_staff_f_01:
 	_JUMP			ev_d32r0101_staff_f_end
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_d32r0101_staff_f_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -314,7 +314,7 @@ ev_d32r0101_staff_f_end:
 
 
 /********************************************************************/
-/*			ƒAƒjƒ			@										*/
+/*			ã‚¢ãƒ‹ãƒ¡			ã€€										*/
 /********************************************************************/
 ev_d32r0101_anm_staff_turn_d:
 	_OBJ_ANIME			D32R0101_BFSW2_01,anm_d32r0101_turn_d
@@ -337,20 +337,20 @@ ev_d32r0101_anm_player_move:
 	_OBJ_ANIME_WAIT
 	_RET
 
-//ƒ^[ƒ“D
+//ã‚¿ãƒ¼ãƒ³D
 _ANIME_LABEL	anm_d32r0101_turn_d
 	_ANIME_DATA	AC_DIR_D,1
 	_ANIME_DATA	ACMD_END,0
-//ƒ^[ƒ“R
+//ã‚¿ãƒ¼ãƒ³R
 _ANIME_LABEL	anm_d32r0101_turn_r
 	_ANIME_DATA	AC_DIR_R,1
 	_ANIME_DATA	ACMD_END,0
-//ƒ^[ƒ“L
+//ã‚¿ãƒ¼ãƒ³L
 _ANIME_LABEL	anm_d32r0101_turn_l
 	_ANIME_DATA	AC_DIR_L,1
 	_ANIME_DATA	ACMD_END,0
 
-//ålŒö•”‰®‚Ì’†‰›‚Ö
+//ä¸»äººå…¬éƒ¨å±‹ã®ä¸­å¤®ã¸
 _ANIME_LABEL	anm_d32r0101_player_move
 	_ANIME_DATA	AC_WALK_U_8F,3
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -358,28 +358,28 @@ _ANIME_LABEL	anm_d32r0101_player_move
 
 
 /********************************************************************/
-/*							’TŒŸ‰Æ									*/
+/*							æ¢æ¤œå®¶									*/
 /********************************************************************/
 ev_d32r0101_explore:
 	_EASY_OBJ_MSG	msg_d32r0101_explore_01
 	_END
 
 /********************************************************************/
-/*							–ê‚³‚ñ									*/
+/*							çˆºã•ã‚“									*/
 /********************************************************************/
 ev_d32r0101_oldman1:
 	_EASY_OBJ_MSG	msg_d32r0101_oldman1_01
 	_END
 
 /********************************************************************/
-/*							ŒZ‚³‚ñ									*/
+/*							å…„ã•ã‚“									*/
 /********************************************************************/
 ev_d32r0101_man1:
 	_EASY_OBJ_MSG	msg_d32r0101_man1_01
 	_END
 
 /********************************************************************/
-/*							‚¨o‚³‚ñ									*/
+/*							ãŠå§‰ã•ã‚“									*/
 /********************************************************************/
 ev_d32r0101_woman2:
 	_EASY_OBJ_MSG	msg_d32r0101_woman2_01

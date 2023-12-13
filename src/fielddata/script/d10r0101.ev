@@ -10,11 +10,11 @@
 	.include	"../../field/scr_pokepark.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d10r0101_flag_change
 _EVENT_DATA		ev_d10r0101_start
@@ -29,12 +29,12 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d10r0101_flag_change:
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D10R0101	//“ž’…
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D10R0101	//åˆ°ç€
 	_END
 
 
 /********************************************************************/
-//			ƒ|ƒPƒp[ƒNƒ~ƒjƒQ[ƒ€ŠJŽn
+//			ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é–‹å§‹
 /********************************************************************/
 ev_d10r0101_start:
 	_TALK_START
@@ -58,7 +58,7 @@ ev_d10r0101_start:
 	_LDVAL			WK_SCENE_D10R0101, 1
 	//_LAST_KEYWAIT
 
-	_FLAG_SET		SYS_FLAG_BGM_D10	/*ƒ][ƒ“BGM‚ðŽæ“¾‚·‚é‚ÆSEQ_D_SAFARI‚É‚È‚é*/
+	_FLAG_SET		SYS_FLAG_BGM_D10	/*ã‚¾ãƒ¼ãƒ³BGMã‚’å–å¾—ã™ã‚‹ã¨SEQ_D_SAFARIã«ãªã‚‹*/
 	_BGM_PLAY		SEQ_D_SAFARI
 
 	_TALK_CLOSE
@@ -73,7 +73,7 @@ ev_d10r0101_start:
 	_END
 
 /********************************************************************/
-//			‚U•C•ß‚Ü‚¦‚ÄI—¹
+//			ï¼–åŒ¹æ•ã¾ãˆã¦çµ‚äº†
 /********************************************************************/
 ev_d10r0101_finish:
 	_TALK_START
@@ -82,7 +82,7 @@ ev_d10r0101_finish:
 	_PLAYER_NAME		0
 	_TALKMSG			msg_p_park_announce_002
 
-	_BGM_PLAY		SEQ_SILENCE_DUNGEON		/*–³‰¹‚É‚·‚é*/
+	_BGM_PLAY		SEQ_SILENCE_DUNGEON		/*ç„¡éŸ³ã«ã™ã‚‹*/
 	_ME_PLAY		SEQ_FANFA4
 	_ME_WAIT
 
@@ -93,11 +93,11 @@ ev_d10r0101_finish:
 	_END
 
 /********************************************************************/
-//			ƒƒjƒ…[‚©‚çuƒŠƒ^ƒCƒAv‚ð‘I‚ñ‚¾‚Æ‚«
+//			ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œãƒªã‚¿ã‚¤ã‚¢ã€ã‚’é¸ã‚“ã ã¨ã
 /********************************************************************/
 ev_d10r0101_ask_retire:
 	_TALK_START
-	//uƒŠƒ^ƒCƒA@‚µ‚Ü‚·‚©Hv
+	//ã€Œãƒªã‚¿ã‚¤ã‚¢ã€€ã—ã¾ã™ã‹ï¼Ÿã€
 	_TALKMSG		msg_p_park_announce_005
 	_YES_NO_WIN		SCWK_ANSWER
 	_TALK_CLOSE
@@ -113,7 +113,7 @@ ev_d10r0101_ask_retire_decide:
 	_END
 
 /********************************************************************/
-//			POSƒCƒxƒ“ƒgFƒQ[ƒg‚É‹ß‚Ã‚¢‚½‚Æ‚«
+//			POSã‚¤ãƒ™ãƒ³ãƒˆï¼šã‚²ãƒ¼ãƒˆã«è¿‘ã¥ã„ãŸã¨ã
 /********************************************************************/
 pos_d10r0101_retire:
 	_TALK_START
@@ -137,7 +137,7 @@ _ANIME_LABEL	anm_d10r0101_get_back
 	_ANIME_DATA		ACMD_END, 0
 
 /********************************************************************/
-//				ŒWˆõ
+//				ä¿‚å“¡
 /********************************************************************/
 ev_d10r0101_admin:
 	_TALK_OBJ_START
@@ -172,7 +172,7 @@ ev_d10r0101_ask_sub:
 	_GET_MY_SEX		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1, ev_d10r0101_ask_sub_retry_female
 
-//ÄŠJƒƒbƒZ[ƒWA’j‚ÌŽq
+//å†é–‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€ç”·ã®å­
 ev_d10r0101_ask_sub_retry_male:
 	_PLAYER_NAME	0
 	_TALKMSG		msg_p_park_admin_003
@@ -180,7 +180,7 @@ ev_d10r0101_ask_sub_retry_male:
 	_LDVAL			SCWK_ANSWER, 0
 	_RET
 
-//ÄŠJƒƒbƒZ[ƒWA—‚ÌŽq
+//å†é–‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€å¥³ã®å­
 ev_d10r0101_ask_sub_retry_female:
 	_PLAYER_NAME	0
 	_TALKMSG		msg_p_park_admin_004
@@ -189,7 +189,7 @@ ev_d10r0101_ask_sub_retry_female:
 	_RET
 
 
-//ƒŠƒ^ƒCƒAƒƒbƒZ[ƒW
+//ãƒªã‚¿ã‚¤ã‚¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 ev_d10r0101_ask_sub_retire:
 	_TALKMSG		msg_p_park_admin_002
 	_LDVAL			SCWK_ANSWER, 1

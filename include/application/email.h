@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	email.h
- * @brief	�ȒP�Ȑ���������
+ * @brief	簡単な説明を書く
  * @author	goto
- * @date	2007.10.19(��)
+ * @date	2007.10.19(金)
  *
- * �����ɐF�X�ȉ�����������Ă��悢
+ * ここに色々な解説等を書いてもよい
  *
  */
 //==============================================================================
@@ -37,20 +37,20 @@
 #define EMAIL_CUR_END_PY	( EMAIL_CUR_BACK_PY )
 
 
-///< OMA ���W
-#define EMAIL_OAM_BTN_OX	( 0 )	///< �{�^���̃I�t�Z�b�g
+///< OMA 座標
+#define EMAIL_OAM_BTN_OX	( 0 )	///< ボタンのオフセット
 #define EMAIL_OAM_BTN_OY	( 2 )
-#define EMAIL_OAM_PNL_OX	( 8 )	///< �p�l���̃I�t�Z�b�g
+#define EMAIL_OAM_PNL_OX	( 8 )	///< パネルのオフセット
 #define EMAIL_OAM_PNL_OY	( 8 )
 
-///< �A�j����`
+///< アニメ定義
 enum {	
 	eEM_ANM_BACK_1	= 0,
 	eEM_ANM_BACK_2,
 	eEM_ANM_END_1,
 	eEM_ANM_END_2,
 	eEM_ANM_CUR_1,
-	eEM_ANM_BAR_1,		///< ���g�p
+	eEM_ANM_BAR_1,		///< 未使用
 	eEM_ANM_BAR_2,
 	eEM_ANM_CUR_2,
 	eEM_ANM_CUR_BIG,
@@ -58,12 +58,12 @@ enum {
 
 enum {
 	
-	eINFO_ADRS_INPUT = 0,	///< e-mail���͂���
-	eINFO_NUMBER_INPUT,		///< �F�؃R�[�h���͂���
-	eINFO_PASS_INPUT,		///< �p�X���[�h���͂���
-	eINFO_ADRS_RE_INPUT,	///< e-mail��������
-	eINFO_ADRS_ERR,			///< e-mail�������[
-	eINFO_PASS_ERR,			///< �p�X���������[
+	eINFO_ADRS_INPUT = 0,	///< e-mail入力して
+	eINFO_NUMBER_INPUT,		///< 認証コード入力して
+	eINFO_PASS_INPUT,		///< パスワード入力して
+	eINFO_ADRS_RE_INPUT,	///< e-mailもっかい
+	eINFO_ADRS_ERR,			///< e-mailちがうー
+	eINFO_PASS_ERR,			///< パスがちがうー
 	
 	eINFO_MAIL_ADDRESS = 0xFF,
 };
@@ -81,17 +81,17 @@ enum {
 
 typedef struct {
 	
-	int mode;		///< EMailMode�Q��
-	STRBUF* now_str;	///< ���ݐݒ肳��Ă��郁�[���A�h���X
-	STRBUF* str;		///< �i�[��(�Ăяo�����͌��ݐݒ肳��Ă���A�h���X�������Ă���)
+	int mode;		///< EMailMode参照
+	STRBUF* now_str;	///< 現在設定されているメールアドレス
+	STRBUF* str;		///< 格納先(呼び出し時は現在設定されているアドレスが入っている)
 
-	u16 authenticate_rand_code;		///<���[�J���Ō��肳���F�؃R�[�h�̏�3��
-	u16 password;					///<���[�U�[���ݒ�ς݂̃p�X���[�h
+	u16 authenticate_rand_code;		///<ローカルで決定される認証コードの上3桁
+	u16 password;					///<ユーザーが設定済みのパスワード
 	
-	//�߂�l
-	u8 ret_address_flag;			///<�A�h���X���͉�ʂ��I���������̏��(EMAIL_ADDRESS_RET_???)
-	u32 ret_password;				///<�p�X���[�h���͂̌��ʒl
-	u32 ret_authenticate_code;		///<�F�؃R�[�h���͂̌��ʒl(7��)orEMAIL_AUTHENTICATE_CODE_CANCEL
+	//戻り値
+	u8 ret_address_flag;			///<アドレス入力画面を終了した時の状態(EMAIL_ADDRESS_RET_???)
+	u32 ret_password;				///<パスワード入力の結果値
+	u32 ret_authenticate_code;		///<認証コード入力の結果値(7桁)orEMAIL_AUTHENTICATE_CODE_CANCEL
 	
 } EMAIL_PARAM;
 

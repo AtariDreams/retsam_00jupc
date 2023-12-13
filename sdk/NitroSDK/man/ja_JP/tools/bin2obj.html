@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>bin2obj</TITLE>
@@ -38,41 +38,41 @@ TD,TH{
 </HEAD>
 <BODY>
 <H1 align="left">bin2obj</H1>
-<H2>����</H2>
-<P><CODE>�@bin2obj</CODE> �́A�o�C�i���t�@�C���� CodeWarrior �Ȃǂ� C �R���p�C���̃����J�Œ��ڃ����N�\�ȃI�u�W�F�N�g�t�@�C���ɕϊ����邽�߃c�[���ł��B</P>
-<H2>�g�p���@</H2>
-<H3>�N���R�}���h</H3>
+<H2>説明</H2>
+<P><CODE>　bin2obj</CODE> は、バイナリファイルを CodeWarrior などの C コンパイラのリンカで直接リンク可能なオブジェクトファイルに変換するためツールです。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
 <PRE><CODE>% bin2obj BINARY_FILE OBJECT_FILE
                   [-b|--begin SYMBOL_BEGIN] [-e|--end SYMBOL_END]
                   [-C|--compatible] [-a|--align ALIGNMENT] [-r|--readonly] [-s|--section SECTION]</CODE></PRE>
-<P><CODE>BINARY_FILE</CODE> �Ŏw�肳�ꂽ�o�C�i���t�@�C���������N�\�ȃI�u�W�F�N�g�`���֕ϊ����A<CODE>OBJECT_FILE</CODE> �Ƃ������ŏo�͂��܂��BCodeWarrior for NINTENDO DS �p�b�P�[�W���ɓ�������Ă��� BinToElf �c�[���Ɠ��l�̓��������܂��B</P>
-<P><CODE>-b</CODE> �I�v�V��������� <CODE>-e</CODE> �I�v�V�����ŁA�o�C�i���t�@�C�����̃f�[�^�� C ����Ȃǂ̃v���O��������A�N�Z�X���邽�߂̃V���{�����w�肵�܂��B<CODE>-b</CODE> �̑���� <CODE>--begin</CODE> ���A�܂� <CODE>-e</CODE> �̑���� <CODE>--end</CODE> �Ƃ��������I�v�V�������g�p�ł��܂��B</P>
-<P>�f�[�^�̈�̐擪�V���{���Ƃ��� <CODE>SYMBOL_BEGIN</CODE> �Ŏw�肵���V���{�������A�܂������̃V���{��(���m�ɂ͍ŏI�f�[�^�̎��̃A�h���X���w���܂�)�Ƃ���
-<CODE>SYMBOL_END</CODE> �Ŏw�肵���V���{���������ꂼ��ݒ肳��܂��B�o�C�i���̈�̃T�C�Y�� <CODE>SYMBOL_END</CODE> �Ŏ������l���� <CODE>SYMBOL_BEGIN</CODE> �Ŏ������l�����������̂ƂȂ�܂��B�@</P>
-<P>�܂��A���̃V���{�����̎w��� <CODE>%f,%t,%b ����� %e</CODE> �Ƃ������ʂȃL�[���[�h���g�p�ł��܂��B���̃L�[���[�h�͈ȉ��̂悤�� <CODE>BINARY_FILE</CODE> �Ŏw�肳�ꂽ�o�C�i���t�@�C���̖��̂̈ꕔ�����Q�Ƃ��܂��B</P>
+<P><CODE>BINARY_FILE</CODE> で指定されたバイナリファイルをリンク可能なオブジェクト形式へ変換し、<CODE>OBJECT_FILE</CODE> という名で出力します。CodeWarrior for NINTENDO DS パッケージ内に同梱されている BinToElf ツールと同様の働きをします。</P>
+<P><CODE>-b</CODE> オプションおよび <CODE>-e</CODE> オプションで、バイナリファイル内のデータへ C 言語などのプログラムからアクセスするためのシンボルを指定します。<CODE>-b</CODE> の代わりに <CODE>--begin</CODE> を、また <CODE>-e</CODE> の代わりに <CODE>--end</CODE> という長いオプションも使用できます。</P>
+<P>データ領域の先頭シンボルとして <CODE>SYMBOL_BEGIN</CODE> で指定したシンボル名が、また末尾のシンボル(正確には最終データの次のアドレスを指します)として
+<CODE>SYMBOL_END</CODE> で指定したシンボル名がそれぞれ設定されます。バイナリ領域のサイズは <CODE>SYMBOL_END</CODE> で示される値から <CODE>SYMBOL_BEGIN</CODE> で示される値を減じたものとなります。　</P>
+<P>また、このシンボル名の指定に <CODE>%f,%t,%b および %e</CODE> という特別なキーワードを使用できます。このキーワードは以下のように <CODE>BINARY_FILE</CODE> で指定されたバイナリファイルの名称の一部分を参照します。</P>
 <BLOCKQUOTE>
 <DL>
-  <DT><CODE>%f</CODE> �܂��� <CODE>%t</CODE>
-  <DD><CODE>BINARY_FILE</CODE> �̃f�B���N�g������������������
+  <DT><CODE>%f</CODE> または <CODE>%t</CODE>
+  <DD><CODE>BINARY_FILE</CODE> のディレクトリ部分を除いた部分
   <DT><CODE>%b</CODE>
-  <DD><CODE>BINARY_FILE</CODE> �̃f�B���N�g�������Ɗg���q������������
+  <DD><CODE>BINARY_FILE</CODE> のディレクトリ部分と拡張子を除いた部分
   <DT><CODE>%e</CODE>
-  <DD><CODE>BINARY_FILE</CODE> �̊g���q(�h�b�g�͊܂܂�܂���)
+  <DD><CODE>BINARY_FILE</CODE> の拡張子(ドットは含まれません)
 </DL>
 </BLOCKQUOTE>
-<P>���̃I�v�V�������w�肳��Ȃ��Ƃ��̃f�t�H���g�l�� <CODE>SYMBOL_BEGIN</CODE> �� <CODE>%b_begin</CODE> ����� <CODE>SYMBOL_END</CODE> �� <CODE>%b_end</CODE> �ƂȂ��Ă��܂��B</P>
-<P><CODE>-C </CODE>�I�v�V������ CodeWarrior for NINTENDO DS �t���� BinToElf �c�[���ƌ݊����̂���V���{���𐶐����邽�߂̃I�v�V�����ł��B<CODE>-C</CODE> �̑���� <CODE>--compatible</CODE> �Ƃ��������I�v�V�������g�p�ł��܂��B<CODE>-C ��</CODE>�ȉ��̃I�v�V�������w�肳��Ă���̂Ɠ����ł��B</P>
+<P>このオプションが指定されないときのデフォルト値は <CODE>SYMBOL_BEGIN</CODE> が <CODE>%b_begin</CODE> および <CODE>SYMBOL_END</CODE> が <CODE>%b_end</CODE> となっています。</P>
+<P><CODE>-C </CODE>オプションは CodeWarrior for NINTENDO DS 付属の BinToElf ツールと互換性のあるシンボルを生成するためのオプションです。<CODE>-C</CODE> の代わりに <CODE>--compatible</CODE> という長いオプションも使用できます。<CODE>-C は</CODE>以下のオプションが指定されているのと等価です。</P>
 <BLOCKQUOTE>
 <P><CODE>-b _binary_%f -e _binary_%f_end</CODE></P>
 </BLOCKQUOTE>
-<P><CODE>-a</CODE> �I�v�V�����́A�o�C�i���t�@�C�����I�u�W�F�N�g�������Ƃ��̃f�[�^�u���b�N�̃A���C�������g�l���w�肷�邽�߂̃I�v�V�����ł��B<CODE>-a</CODE> �̑���� <CODE>--align</CODE> �Ƃ��������I�v�V�������g�p�ł��܂��B�f�t�H���g�l�� 4 �ł��B</P>
-<P><CODE>-r</CODE> �I�v�V�������w�肳���ƃf�[�^�u���b�N��ǂݍ��ݐ�p�̃Z�N�V����(�ʏ�� <CODE>.rodata</CODE> �Z�N�V����)�Ƃ��Ĉ����܂��B<CODE>-r</CODE> �̑���� <CODE>--readonly</CODE> �Ƃ��������I�v�V�������g�p�ł��܂��B���̃I�v�V�������w�肳��Ă��Ȃ��ꍇ�́A�f�[�^�u���b�N�͓ǂݏ����\�ȃZ�N�V����(�ʏ�� <CODE>.data</CODE> �Z�N�V����)�Ƃ��Ĉ����܂��B</P>
-<P><CODE>-s</CODE> �I�v�V�����Ńf�[�^�u���b�N�̃Z�N�V���������w��ł��܂��B<CODE>-s</CODE> �̑���� <CODE>--section</CODE> �Ƃ��������I�v�V�������g�p�ł��܂��B�w��̂Ȃ��ꍇ�́A�ǂݍ��ݐ�p�̃f�[�^�u���b�N�̃Z�N�V�������Ƃ��� <CODE>.rodata</CODE>�A�ǂݏ����\�ȃZ�N�V�������Ƃ��� <CODE>.data</CODE> ���g�p����܂��B</P>
-<H2>�ꏊ</H2>
+<P><CODE>-a</CODE> オプションは、バイナリファイルをオブジェクト化したときのデータブロックのアラインメント値を指定するためのオプションです。<CODE>-a</CODE> の代わりに <CODE>--align</CODE> という長いオプションも使用できます。デフォルト値は 4 です。</P>
+<P><CODE>-r</CODE> オプションが指定されるとデータブロックを読み込み専用のセクション(通常は <CODE>.rodata</CODE> セクション)として扱います。<CODE>-r</CODE> の代わりに <CODE>--readonly</CODE> という長いオプションも使用できます。このオプションが指定されていない場合は、データブロックは読み書き可能なセクション(通常は <CODE>.data</CODE> セクション)として扱われます。</P>
+<P><CODE>-s</CODE> オプションでデータブロックのセクション名を指定できます。<CODE>-s</CODE> の代わりに <CODE>--section</CODE> という長いオプションも使用できます。指定のない場合は、読み込み専用のデータブロックのセクション名として <CODE>.rodata</CODE>、読み書き可能なセクション名として <CODE>.data</CODE> が使用されます。</P>
+<H2>場所</H2>
 <P><CODE>$NitroSDK/tools/bin/bin2obj.exe</CODE></P>
-<H2>�Q��</H2>
-<P>CodeWarrior for NINTENDO DS �p�b�P�[�W���� BinToElf �c�[��</P>
-<H2>����</H2>
-<P>2005/06/14 ����</P>
+<H2>参照</H2>
+<P>CodeWarrior for NINTENDO DS パッケージ内の BinToElf ツール</P>
+<H2>履歴</H2>
+<P>2005/06/14 初版</P>
 </BODY>
 </HTML>

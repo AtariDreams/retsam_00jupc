@@ -62,30 +62,30 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *		‰¹—p’è”
+ *		éŸ³ç”¨å®šæ•°
  */
 //-----------------------------------------------------------------------------
-#define EV_POKESELE_SND_SELECT	( SE_DECIDE )		// ‘I‘ð
-#define EV_POKESELE_SND_DECIDE	( SE_DECIDE )		// Œˆ’è
-#define EV_POKESELE_SND_BAGOPEN	( SEQ_SE_DP_BAG_030 ) // ƒoƒbƒOŠJ‚­
+#define EV_POKESELE_SND_SELECT	( SE_DECIDE )		// é¸æŠž
+#define EV_POKESELE_SND_DECIDE	( SE_DECIDE )		// æ±ºå®š
+#define EV_POKESELE_SND_BAGOPEN	( SEQ_SE_DP_BAG_030 ) // ãƒãƒƒã‚°é–‹ã
 
 
 
@@ -93,68 +93,68 @@
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒvƒƒbƒN
+ *	ãƒ—ãƒ­ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
-// •`‰æƒVƒXƒeƒ€ŠÖŒW
+// æç”»ã‚·ã‚¹ãƒ†ãƒ é–¢ä¿‚
 #define EV_POKESELECT_VRAMTRANSFER_MANAGER_NUM	( 8 )
-#define OAM_OAM_MAIN_S			(0)			// ƒƒCƒ“‰æ–Ê OAMŽg—p—ÌˆæŠJŽn
-#define OAM_OAM_MAIN_E			(128)		// ƒƒCƒ“‰æ–Ê OAMŽg—p—ÌˆæI—¹
-#define OAM_AFF_MAIN_S			(0)			// ƒƒCƒ“‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæŠJŽn
-#define OAM_AFF_MAIN_E			(32)		// ƒƒCƒ“‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæI—¹
-#define OAM_OAM_SUB_S			(0)			// ƒTƒu‰æ–Ê OAMŽg—p—ÌˆæŠJŽn
-#define OAM_OAM_SUB_E			(128)		// ƒTƒu‰æ–Ê OAMŽg—p—ÌˆæI—¹
-#define OAM_AFF_SUB_S			(0)			// ƒTƒu‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæŠJŽn
-#define OAM_AFF_SUB_E			(32)		// ƒTƒu‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæI—¹
-#define OAM_CHAR_ENTRY_NUM		(32)		// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒƒGƒ“ƒgƒŠ[”
-#define OAM_CHAR_VRAMTRANS_MAIN_SIZE	(0x14000)// ƒƒCƒ“‰æ–Ê ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒVramŠÇ——Ìˆæ
-#define OAM_CHAR_VRAMTRANS_SUB_SIZE		(0x4000)// ƒTƒu‰æ–Ê ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒVramŠÇ——Ìˆæ
-#define OAM_PLTT_ENTRY_NUM		(32)		// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒƒGƒ“ƒgƒŠ[”
-#define CLACT_SET_WORK_NUM		( 2 )	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgƒ[ƒN”
-#define CLACT_RES_DATA_TBL_NUM	( 2 )	// ŠeƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚É“o˜^‚Å‚«‚éƒf[ƒ^”
+#define OAM_OAM_MAIN_S			(0)			// ãƒ¡ã‚¤ãƒ³ç”»é¢ OAMä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define OAM_OAM_MAIN_E			(128)		// ãƒ¡ã‚¤ãƒ³ç”»é¢ OAMä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define OAM_AFF_MAIN_S			(0)			// ãƒ¡ã‚¤ãƒ³ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define OAM_AFF_MAIN_E			(32)		// ãƒ¡ã‚¤ãƒ³ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define OAM_OAM_SUB_S			(0)			// ã‚µãƒ–ç”»é¢ OAMä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define OAM_OAM_SUB_E			(128)		// ã‚µãƒ–ç”»é¢ OAMä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define OAM_AFF_SUB_S			(0)			// ã‚µãƒ–ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define OAM_AFF_SUB_E			(32)		// ã‚µãƒ–ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define OAM_CHAR_ENTRY_NUM		(32)		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°
+#define OAM_CHAR_VRAMTRANS_MAIN_SIZE	(0x14000)// ãƒ¡ã‚¤ãƒ³ç”»é¢ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£Vramç®¡ç†é ˜åŸŸ
+#define OAM_CHAR_VRAMTRANS_SUB_SIZE		(0x4000)// ã‚µãƒ–ç”»é¢ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£Vramç®¡ç†é ˜åŸŸ
+#define OAM_PLTT_ENTRY_NUM		(32)		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°
+#define CLACT_SET_WORK_NUM		( 2 )	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯æ•°
+#define CLACT_RES_DATA_TBL_NUM	( 2 )	// å„ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²ã§ãã‚‹ãƒ‡ãƒ¼ã‚¿æ•°
 #define CLACT_BG_PRI			( 1 )
-#define SWSP_OBJNUM		(1)		// SWSPƒIƒuƒWƒFƒNƒg”
-#define SWSP_CHARNUM	(1)		// SWSPƒIƒuƒWƒFƒNƒg”
-#define SWSP_PLTTNUM	(1)		// SWSPƒIƒuƒWƒFƒNƒg”
+#define SWSP_OBJNUM		(1)		// SWSPã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+#define SWSP_CHARNUM	(1)		// SWSPã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+#define SWSP_PLTTNUM	(1)		// SWSPã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
 
-#define BG_FONTBMP_X	( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define BG_FONTBMP_Y	( 19 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define BG_FONTBMP_CX	( 23 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define BG_FONTBMP_CY	( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define BG_FONT_COLOR		( 0 )		// ˜g—pƒJƒ‰[ƒpƒŒƒbƒg
+#define BG_FONTBMP_X	( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define BG_FONTBMP_Y	( 19 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define BG_FONTBMP_CX	( 23 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define BG_FONTBMP_CY	( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define BG_FONT_COLOR		( 0 )		// æž ç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define BG_FONT_CG_OFS		( 512 )
-#define BG_FONT_STR_COLOR	( 2 )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
+#define BG_FONT_STR_COLOR	( 2 )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define BG_FONTBMP_PRICOLOR	( GF_PRINTCOLOR_MAKE(1,2,15) )
 
-#define BG_YESNOBMP_X	( 23 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define BG_YESNOBMP_Y	( 12 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define BG_YESNOBMP_CX	( 5 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define BG_YESNOBMP_CY	( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
+#define BG_YESNOBMP_X	( 23 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define BG_YESNOBMP_Y	( 12 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define BG_YESNOBMP_CX	( 5 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define BG_YESNOBMP_CY	( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
 #define BG_YESNOBMP_CG_CHR_OFS	( BG_FONT_CG_OFS + TALK_WIN_CGX_SIZ + 128 )
 #define BG_YESNOBMP_CG_OFS	( TALK_WIN_CGX_SIZ + MENU_WIN_CGX_SIZ + 128 )
-#define BG_YESNOBMP_COLOR		( 1 )	// ˜g—p
-#define BG_YESNOBMP_STR_COLOR	( 3 )	// •¶Žš—p
+#define BG_YESNOBMP_COLOR		( 1 )	// æž ç”¨
+#define BG_YESNOBMP_STR_COLOR	( 3 )	// æ–‡å­—ç”¨
 
 #define BG_BACK_COLOR	( 4 )
 
-#define BG_FONTSUBBMP_0X		( 12 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvˆÊ’u
-#define BG_FONTSUBBMP_0Y		( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvˆÊ’u
-#define BG_FONTSUBBMP_1X		( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvˆÊ’u
-#define BG_FONTSUBBMP_1Y		( 14 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvˆÊ’u
-#define BG_FONTSUBBMP_2X		( 20 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvˆÊ’u
-#define BG_FONTSUBBMP_2Y		( 13 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvˆÊ’u
-#define BG_FONTSUBBMP_CX	( 11 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define BG_FONTSUBBMP_CY	( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define BG_FONTSUB_COLOR		( 5 )		// ƒJƒ‰[ƒpƒŒƒbƒg
-#define BG_FONTSUB_CGX_OFS		( 64 )		// ƒJƒ‰[ƒpƒŒƒbƒg
+#define BG_FONTSUBBMP_0X		( 12 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½ç½®
+#define BG_FONTSUBBMP_0Y		( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½ç½®
+#define BG_FONTSUBBMP_1X		( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½ç½®
+#define BG_FONTSUBBMP_1Y		( 14 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½ç½®
+#define BG_FONTSUBBMP_2X		( 20 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½ç½®
+#define BG_FONTSUBBMP_2Y		( 13 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½ç½®
+#define BG_FONTSUBBMP_CX	( 11 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define BG_FONTSUBBMP_CY	( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define BG_FONTSUB_COLOR		( 5 )		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define BG_FONTSUB_CGX_OFS		( 64 )		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define BG_FONTSUBBMP_ALPHA	( 10 )
 #define BG_FONTSUBBMP_PRICOLOR	( GF_PRINTCOLOR_MAKE(1,2,0xa) )
 
-// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN
-#define POKEGRA_TEX_SIZE	(0x8000)	// ƒ|ƒPƒ‚ƒ“4‘Ì•ª
+// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+#define POKEGRA_TEX_SIZE	(0x8000)	// ãƒã‚±ãƒ¢ãƒ³4ä½“åˆ†
 #define POKEGRA_PLTT_SIZE	(0x80)
 
-// ƒJƒƒ‰Ý’è
+// ã‚«ãƒ¡ãƒ©è¨­å®š
 #define CAMERA_TARGET_X	( 0 )
 #define CAMERA_TARGET_Y	( 0 )
 #define CAMERA_TARGET_Z	( 0 )
@@ -165,7 +165,7 @@
 #define CAMERA_DISTANCE	( 300 << FX32_SHIFT )
 
 //-------------------------------------
-//	ƒJƒƒ‰“®ìŒã
+//	ã‚«ãƒ¡ãƒ©å‹•ä½œå¾Œ
 //=====================================
 #define CAMERA_TARGET_AF_Z	( 36 * FX32_ONE )
 #define CAMERA_ANGLE_AF_X	( FX_GET_ROTA_NUM( -50 ) )
@@ -173,12 +173,12 @@
 #define CAMERA_MOVE_AF_COUNT	( 6 )
  
 
-// ƒtƒF[ƒhˆ—ŠÖŒW
+// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†é–¢ä¿‚
 #define EV_POKESELECT_PROC_FADE_DIV		( 6 )
 #define EV_POKESELECT_PROC_FADE_SYNC	( 1 )
 
 
-// ‘I‘ð”
+// é¸æŠžæ•°
 enum{
 	POKESELECT_LEFT_BALL,
 	POKESELECT_CENTER_BALL,
@@ -186,7 +186,7 @@ enum{
 	EV_POKESELECT_MONSNUM,
 };
 
-// 3DƒIƒuƒWƒFƒNƒg”
+// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
 enum{
 	POKESELECT_AUTOANM,
 	POKESELECT_BAG,
@@ -196,7 +196,7 @@ enum{
 	POKESELECT_GROUND,
 	POKESELECT_3DOBJ_NUM
 };
-// 3Dƒ{ƒ^ƒ“ˆÊ’u‚Å‚·
+// 3Dãƒœã‚¿ãƒ³ä½ç½®ã§ã™
 #define EV_POKESELECT_DRAW_MAT_BALL_LEFT_X	( -44 ) 
 #define EV_POKESELECT_DRAW_MAT_BALL_LEFT_Y	( -4 ) 
 #define EV_POKESELECT_DRAW_MAT_BALL_LEFT_Z	( 32 ) 
@@ -207,7 +207,7 @@ enum{
 #define EV_POKESELECT_DRAW_MAT_BALL_RIGHT_Y	( -4 ) 
 #define EV_POKESELECT_DRAW_MAT_BALL_RIGHT_Z	( 26 ) 
 
-// ’nŒ`ˆÊ’u‚Å‚·
+// åœ°å½¢ä½ç½®ã§ã™
 #define EV_POKESELECT_DRAW_GRUND_X	( 0 )
 #define EV_POKESELECT_DRAW_GRUND_Y	( -28 * FX32_ONE )
 #define EV_POKESELECT_DRAW_GRUND_Z	( 40 * FX32_ONE )
@@ -218,7 +218,7 @@ enum{
 #define EV_POKESELECT_DRAW_GRUND_ROTA_Y	( FX_GET_ROTA_NUM(180) )
 #define EV_POKESELECT_DRAW_GRUND_ROTA_Z	( FX_GET_ROTA_NUM(0) )
 
-// –îˆóˆÊ’u‚Å‚·
+// çŸ¢å°ä½ç½®ã§ã™
 #define EV_POKESELECT_DRAW_MAT_BALL_LEFT_2X		( 78 ) 
 #define EV_POKESELECT_DRAW_MAT_BALL_LEFT_2Y		( 55 ) 
 #define EV_POKESELECT_DRAW_MAT_BALL_CENTER_2X	( 130 ) 
@@ -227,45 +227,45 @@ enum{
 #define EV_POKESELECT_DRAW_MAT_BALL_RIGHT_2Y	( 50 ) 
 
 //-------------------------------------
-//	ˆ—ƒV[ƒPƒ“ƒX
+//	å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	POKESELECT_SEQ_INIT,
 	POKESELECT_SEQ_WAIT,
-	POKESELECT_SEQ_AUTOANM,		// AUTOƒAƒjƒ
-	POKESELECT_SEQ_SELECT,		// ‘I‘ð
-	POKESELECT_SEQ_QUESTION,	// Šm”F
-	POKESELECT_SEQ_END,	// I—¹
+	POKESELECT_SEQ_AUTOANM,		// AUTOã‚¢ãƒ‹ãƒ¡
+	POKESELECT_SEQ_SELECT,		// é¸æŠž
+	POKESELECT_SEQ_QUESTION,	// ç¢ºèª
+	POKESELECT_SEQ_END,	// çµ‚äº†
 };
 
 
 //-------------------------------------
-//	ŠJŽn‚Ü‚Å‚Ì‘Ò‚¿
+//	é–‹å§‹ã¾ã§ã®å¾…ã¡
 //=====================================
 #define POKESELECT_MONNSUTA_START_WAIT ( 36 )
 
 //-------------------------------------
-//	ƒƒbƒZ[ƒW‚ªo‚é‚Ü‚Å‚Ì‚Ü‚¿
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå‡ºã‚‹ã¾ã§ã®ã¾ã¡
 //=====================================
 #define POKESELECT_MSSAGE_WAIT ( 6 )
 
 
 
 //-------------------------------------
-//	ƒJ[ƒ\ƒ‹“®ì
+//	ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
 //=====================================
 #define CURSOR_MOVE_Y		( 8 * FX32_ONE )
 #define CURSOR_MOVE_COUNT	( 32 )
 
 //-------------------------------------
-//	Šm”F‰æ–Ê´Ìª¸Ä
+//	ç¢ºèªç”»é¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //=====================================
-#define QUESTION_FADE_SYNC	( 6 )	// ƒVƒ“ƒN”
+#define QUESTION_FADE_SYNC	( 6 )	// ã‚·ãƒ³ã‚¯æ•°
 #define QUESTION_FADE_SCALE_S	( FX32_CONST( 0.40f ) )
 #define QUESTION_FADE_SCALE_E	( FX32_CONST( 1.0f ) )
 #define QUESTION_CIRCLE_SIZE	( 128 )
 #define QUESTION_CIRCLE_Y_OFS	( 48 )
-// Îß¹¸Þ×•\Ž¦ˆÊ’u
+// ãƒã‚±ã‚°ãƒ©è¡¨ç¤ºä½ç½®
 #define EV_POKESELECT_POKEGRA_X		( 128 )
 #define EV_POKESELECT_POKEGRA_Y		( 96 )
 
@@ -276,29 +276,29 @@ enum{
 
 
 //-------------------------------------
-//	ƒI[ƒgƒAƒjƒƒIƒuƒWƒFƒNƒg
+//	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //=====================================
 typedef struct {
-	NNSG3dRenderObj			RenderObj;		// ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg
-	void*					pResMdl;		// ƒ‚ƒfƒ‹ÃÞ°À
-	NNSG3dResMdlSet*		pModelSet;		// ƒ‚ƒfƒ‹ƒZƒbƒg
-	NNSG3dResMdl*			pModel;			// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
-	NNSG3dResTex*			pMdlTex;		// ƒ‚ƒfƒ‹‚É“\‚è•t‚¯‚éƒeƒNƒXƒ`ƒƒ
-	void*					pResAnm;		// ƒAƒjƒƒŠƒ\[ƒX
-	void*					pOneResAnm;		// 1‚ÂØ‚èŽæ‚Á‚½ƒŠƒ\[ƒX
-	NNSG3dAnmObj*			pAnmObj;			// ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒF
+	NNSG3dRenderObj			RenderObj;		// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	void*					pResMdl;		// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿
+	NNSG3dResMdlSet*		pModelSet;		// ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆ
+	NNSG3dResMdl*			pModel;			// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	NNSG3dResTex*			pMdlTex;		// ãƒ¢ãƒ‡ãƒ«ã«è²¼ã‚Šä»˜ã‘ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	void*					pResAnm;		// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
+	void*					pOneResAnm;		// 1ã¤åˆ‡ã‚Šå–ã£ãŸãƒªã‚½ãƒ¼ã‚¹
+	NNSG3dAnmObj*			pAnmObj;			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§
 	fx32 frame;
 
 	BOOL draw_flag;
 	VecFx32 mat;
 	VecFx32 scal;
-	u16 rota_x;		// xŽ²‰ñ“]
-	u16 rota_y;		// yŽ²‰ñ“]
-	u16 rota_z;		// zŽ²‰ñ“]
+	u16 rota_x;		// xè»¸å›žè»¢
+	u16 rota_y;		// yè»¸å›žè»¢
+	u16 rota_z;		// zè»¸å›žè»¢
 } EV_3D_ANM_OBJ;
 
 //-------------------------------------
-//	“®ìƒ[ƒN
+//	å‹•ä½œãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	s32 data;
@@ -309,7 +309,7 @@ typedef struct {
 
 
 //-------------------------------------
-//	ƒJƒƒ‰“®ìƒ^ƒXƒN
+//	ã‚«ãƒ¡ãƒ©å‹•ä½œã‚¿ã‚¹ã‚¯
 //=====================================
 typedef struct {
 	EV_MOVE_PARAM x_rota;
@@ -325,18 +325,18 @@ typedef struct {
 } EV_CAMERA_MOVE;
 
 //-------------------------------------
-//	ƒJ[ƒ\ƒ‹“®ì@i‰ñ“]“®ìj
-//	sin‰ñ“]‚Å‚·B
+//	ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œã€€ï¼ˆå›žè»¢å‹•ä½œï¼‰
+//	sinå›žè»¢ã§ã™ã€‚
 //=====================================
 typedef struct {
-	fx32 num;		// ¡‚Ì’l
-	fx32 r;			// “®ì’l
-	int count_max;	// ¶³ÝÀÅ‘å’l@1‰ñ“]‚É‚©‚©‚é’l
+	fx32 num;		// ä»Šã®å€¤
+	fx32 r;			// å‹•ä½œå€¤
+	int count_max;	// ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§å€¤ã€€1å›žè»¢ã«ã‹ã‹ã‚‹å€¤
 	int count;
 } EV_ROTA_MOVE_ONE;
 
 //-------------------------------------
-//	ƒJ[ƒ\ƒ‹ƒIƒuƒWƒFƒNƒg
+//	ã‚«ãƒ¼ã‚½ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR cursor;
@@ -348,7 +348,7 @@ typedef struct {
 } EV_CURSOR_OBJ;
 
 //-------------------------------------
-//	‰~ŒnƒEƒBƒ“ƒhƒEƒIƒuƒWƒFƒNƒg@“®ìƒpƒ‰ƒ[ƒ^
+//	å††ç³»ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€€å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	EV_MOVE_PARAM x;
@@ -360,7 +360,7 @@ typedef struct {
 
 
 //-------------------------------------
-//	CIRCLEƒEƒBƒ“ƒhƒEƒIƒuƒWƒFƒNƒg
+//	CIRCLEã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //=====================================
 typedef struct {
 	SWSP_CHAR_PTR swsp_char;
@@ -371,18 +371,18 @@ typedef struct {
 	NNSG2dCharacterData* p_chardata;
 	NNSG2dPaletteData* p_plttdata;
 
-	// “®ìƒpƒ‰ƒ[ƒ^
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	EV_CIRCLE_MOVE_PARAM param;
 	TCB_PTR tcb;
 } EV_CIRCLE_WND;
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒIƒuƒWƒFƒAƒjƒ
+//	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚ªãƒ–ã‚¸ã‚§ã‚¢ãƒ‹ãƒ¡
 //=====================================
 typedef struct {
 	SOFT_SPRITE* p_soft_sprite;
 	
-	// “®ìƒpƒ‰ƒ[ƒ^
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	EV_CIRCLE_MOVE_PARAM param;
 	TCB_PTR tcb;
 } EV_POKEOBJ_ANM;
@@ -391,68 +391,68 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	}ŠÓƒvƒƒbƒNƒ[ƒN
+//	å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
 //	
 //=====================================
 typedef struct {
-	// “®ìƒV[ƒPƒ“ƒX
+	// å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	int seq;
 
-	// •`‰æÃÞ°À
-	int draw_seq;		// •`‰æ—pƒV[ƒPƒ“ƒX
-	BOOL move_lock;		// “®ìlock	(•`‰æ‘¤‚ª‘€ì)
+	// æç”»ãƒ‡ãƒ¼ã‚¿
+	int draw_seq;		// æç”»ç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	BOOL move_lock;		// å‹•ä½œlock	(æç”»å´ãŒæ“ä½œ)
 	int draw_count;
-	EV_CAMERA_MOVE camera_move;	// ƒJƒƒ‰“®ìƒpƒ‰ƒ[ƒ^
+	EV_CAMERA_MOVE camera_move;	// ã‚«ãƒ¡ãƒ©å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	
-	// “®ìÃÞ°À
+	// å‹•ä½œãƒ‡ãƒ¼ã‚¿
 	int now_select_no;
 	int select_matrix[ EV_POKESELECT_MONSNUM ][3];
 	int select_2_matrix[ EV_POKESELECT_MONSNUM ][2];
 
-	// •`‰æÃÞ°À
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	// BGL
-	GF_BGL_INI*	p_bg;					// ‚‚‚‡ŠÇ—
-	GF_BGL_BMPWIN* p_bmp_mfont;			// ƒƒCƒ“‰æ–ÊƒtƒHƒ“ƒg•`‰æ—p
-	GF_BGL_BMPWIN* p_bmp_subfont[ EV_POKESELECT_MONSNUM ];		// ƒƒCƒ“‰æ–ÊƒTƒuƒtƒHƒ“ƒg•`‰æ—p
+	GF_BGL_INI*	p_bg;					// ï½‚ï½‡ç®¡ç†
+	GF_BGL_BMPWIN* p_bmp_mfont;			// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ã‚©ãƒ³ãƒˆæç”»ç”¨
+	GF_BGL_BMPWIN* p_bmp_subfont[ EV_POKESELECT_MONSNUM ];		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µãƒ–ãƒ•ã‚©ãƒ³ãƒˆæç”»ç”¨
 	int local_select_no;
 	STRBUF* p_glb_str_buff;
 
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEÃÞ°À
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 	BMPWIN_DAT bmp_data;
 	BMPMENU_WORK* p_yes_no_menu;
 	
 	// OAM
-	CLACT_U_EASYRENDER_DATA	oam_rend;	// oamƒŒƒ“ƒ_ƒ‰[ƒf[ƒ^
-	CLACT_SET_PTR			clact_set;	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_RES_MANAGER_PTR	res_manager[ CLACT_U_RES_MAX ];	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+	CLACT_U_EASYRENDER_DATA	oam_rend;	// oamãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_SET_PTR			clact_set;	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_RES_MANAGER_PTR	res_manager[ CLACT_U_RES_MAX ];	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
 
-	// 3Dƒ|ƒPƒ‚ƒ“
-	SOFT_SPRITE_MANAGER* soft_sprite_man;	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ
-	SOFT_SPRITE*		 soft_sprite[ EV_POKESELECT_MONSNUM ];	// ‘I‘ð’†‚Ìƒ|ƒPƒ‚ƒ“‚Ìƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
-	EV_POKEOBJ_ANM	soft_sprite_anm;	// ƒAƒjƒÃÞ°À
+	// 3Dãƒã‚±ãƒ¢ãƒ³
+	SOFT_SPRITE_MANAGER* soft_sprite_man;	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£
+	SOFT_SPRITE*		 soft_sprite[ EV_POKESELECT_MONSNUM ];	// é¸æŠžä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+	EV_POKEOBJ_ANM	soft_sprite_anm;	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 
-	// ‚RDƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒF
+	// ï¼“Dã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§
 	NNSFndAllocator allocator;
 	EV_3D_ANM_OBJ	ev_3d_obj[ POKESELECT_3DOBJ_NUM ];
 
-	// ƒJƒƒ‰
+	// ã‚«ãƒ¡ãƒ©
 	GF_CAMERA_PTR p_camera;
 	VecFx32 camera_target;
 
-	// ƒJ[ƒ\ƒ‹ƒIƒuƒWƒFƒNƒg
+	// ã‚«ãƒ¼ã‚½ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	EV_CURSOR_OBJ	cursor;
 
-	// 3DƒGƒbƒWƒ}[ƒLƒ“ƒOÃÞ°À
+	// 3Dã‚¨ãƒƒã‚¸ãƒžãƒ¼ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿
 	GXRgb edge_marking[ 8 ];
 
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	SWSP_SYS_PTR	swsp_sys;
 	
-	// ‰~Œ`ƒEƒBƒ“ƒhƒEƒIƒuƒWƒFƒNƒg
+	// å††å½¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	EV_CIRCLE_WND	circle_wnd;
 
-	// ƒRƒ“ƒtƒBƒOƒf[ƒ^
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
 	WINTYPE wintype;
 	u32 msg_speed;
 
@@ -464,7 +464,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *		ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
 static void EV_PokeSelect_VBlankFunc( void* work );
@@ -481,14 +481,14 @@ static u16 EV_PokeSelect_SelectNoMonsnoGet( u16 no );
 
 #ifdef DEBUG_EV_POKESELE
 //-------------------------------------
-//	ƒfƒoƒbƒNŠÖ”
+//	ãƒ‡ãƒãƒƒã‚¯é–¢æ•°
 //=====================================
 static void EV_PokeSelect_Deback_Anm( EV_POKESELECT_PROC_WORK* p_psl );
 #endif
 
 
 //-------------------------------------
-// “®ì•`‰æƒƒCƒ“ŠÖ”
+// å‹•ä½œæç”»ãƒ¡ã‚¤ãƒ³é–¢æ•°
 //=====================================
 static BOOL EV_PokeSelect_MoveData( EV_POKESELECT_PROC_WORK* p_psl, int heap );
 static void EV_PokeSelect_MoveDraw( EV_POKESELECT_PROC_WORK* p_psl, int heap );
@@ -496,7 +496,7 @@ static void EV_PokeSelect_Draw( EV_POKESELECT_PROC_WORK* p_psl );
 
 
 //-------------------------------------
-//	•`‰æŠÖŒW
+//	æç”»é–¢ä¿‚
 //=====================================
 static void EV_PokeSelect_SetUpDraw( EV_POKESELECT_PROC_WORK* p_psl, int heap );
 static void EV_PokeSelect_PutDownDraw( void );
@@ -552,7 +552,7 @@ static void DrawMoveQuestion( EV_POKESELECT_PROC_WORK* p_psl, int heap );
 
 static void PokeGra_set( SOFT_SPRITE** p_soft_sprite, EV_POKESELECT_PROC_WORK* p_psl, int monsno );
 
-//3DƒIƒuƒWƒFƒNƒg
+//3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 static void Init_ev_3d_obj( EV_3D_ANM_OBJ* p_obj, int mdl_dataidx, int anm_dataidx, int heap, NNSFndAllocator* pallocator );
 static void Init_ev_3d_obj_no_anm( EV_3D_ANM_OBJ* p_obj, int mdl_dataidx, int heap );
 static void Delete_ev_3d_obj( EV_3D_ANM_OBJ* p_obj, NNSFndAllocator* pallocator );
@@ -588,7 +588,7 @@ static BOOL PokeGra_Move_EndCheck( EV_POKEOBJ_ANM* p_data );
 
 
 //-------------------------------------
-//	“®ìŠÖŒW
+//	å‹•ä½œé–¢ä¿‚
 //=====================================
 static void Move_select( EV_POKESELECT_PROC_WORK* p_psl );
 static void Move_seq_add( EV_POKESELECT_PROC_WORK* p_psl, int no );
@@ -611,16 +611,16 @@ static void EvCursorMoveDelete( EV_CURSOR_OBJ* p_cursor );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒvƒƒbƒN¶¬
+ *	@brief	å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ç”Ÿæˆ
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -633,52 +633,52 @@ PROC_RESULT EV_PokeSelect_ProcInit( PROC* proc, int* seq )
 	GF_BGL_SYS_HEADER bg_header;
 	BOOL check;
 
-	// ‰¹
-//	Snd_DataSetByScene( SND_SCENE_SUB_ZUKAN, 0, 0 );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒhi}ŠÓjiBGMˆøŒp‚¬j
+	// éŸ³
+//	Snd_DataSetByScene( SND_SCENE_SUB_ZUKAN, 0, 0 );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ï¼ˆå›³é‘‘ï¼‰ï¼ˆBGMå¼•ç¶™ãŽï¼‰
 
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_EV_POKESELECT, 0x40000 );
 
-	// }ŠÓƒ[ƒNì¬
+	// å›³é‘‘ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_pls = PROC_AllocWork( proc, sizeof(EV_POKESELECT_PROC_WORK), HEAPID_EV_POKESELECT );
 	GF_ASSERT( p_pls );
 	memset( p_pls, 0, sizeof(EV_POKESELECT_PROC_WORK) );
 
-	// ƒAƒƒP[ƒ^[ì¬
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ãƒ¼ä½œæˆ
 	sys_InitAllocator( &p_pls->allocator, HEAPID_EV_POKESELECT, 32 );
 
-	// ŠO•”‚©‚ç‚Ìƒf[ƒ^Žæ“¾
+	// å¤–éƒ¨ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_pearent = PROC_GetParentWork( proc );
 	p_pls->wintype = CONFIG_GetWindowType( p_pearent->cp_config );
 	p_pls->msg_speed = CONFIG_GetMsgPrintSpeed( p_pearent->cp_config );
 
 
-	// VramTransferManager‰Šú‰»
+	// VramTransferManageråˆæœŸåŒ–
 	initVramTransferManagerHeap( EV_POKESELECT_VRAMTRANSFER_MANAGER_NUM, HEAPID_EV_POKESELECT );
 
-	// VBlank HBlankÝ’è
-	sys_VBlankFuncChange( EV_PokeSelect_VBlankFunc, p_pls );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	// VBlank HBlankè¨­å®š
+	sys_VBlankFuncChange( EV_PokeSelect_VBlankFunc, p_pls );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒOŠJŽn
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹
 	InitTPSystem();
 	check = InitTPNoBuff( 4 );
 	GF_ASSERT( check == TP_OK );
 
 
 #if PL_S0789_080710_FIX
-	// ƒƒbƒZ[ƒW•\Ž¦ŠÖŒW‚ðÝ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–¢ä¿‚ã‚’è¨­å®š
 	MsgPrintSkipFlagSet(MSG_SKIP_ON);
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
 	MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
 #endif
 
 
-	// •`‰æÝ’è
+	// æç”»è¨­å®š
 	EV_PokeSelect_SetUpDraw( p_pls, HEAPID_EV_POKESELECT );
 
 
-	// BG–ÊÝ’è
+	// BGé¢è¨­å®š
 	p_pls->p_bg = GF_BGL_BglIniAlloc( HEAPID_EV_POKESELECT );
 	bg_header.dispMode	= GX_DISPMODE_GRAPHICS;
 	bg_header.bgMode	= GX_BGMODE_0;
@@ -686,47 +686,47 @@ PROC_RESULT EV_PokeSelect_ProcInit( PROC* proc, int* seq )
 	bg_header.bg0_2Dor3D= GX_BG0_AS_3D;
 	GF_BGL_InitBG( &bg_header );
 	Bg_setup( p_pls->p_bg, HEAPID_EV_POKESELECT );
-	// •\Ž¦
+	// è¡¨ç¤º
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG1, VISIBLE_OFF );
 
-	// •¶Žš—ñ–Êì¬
+	// æ–‡å­—åˆ—é¢ä½œæˆ
 	Fontbg_bmpwin_make( p_pls, HEAPID_EV_POKESELECT );
 
-	// yesno_dataì¬
+	// yesno_dataä½œæˆ
 	Fontbg_yesno_bmp_dat_make( p_pls, HEAPID_EV_POKESELECT );
 	FontSubbg_bmpwin_make( p_pls, HEAPID_EV_POKESELECT );
 
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‰Šú‰»
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸåŒ–
 	Softsprite_init( p_pls, HEAPID_EV_POKESELECT );
 	SwspSprite_init( p_pls, HEAPID_EV_POKESELECT );
 
-	// ƒZƒ‹ƒAƒNƒ^[
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 	Clact_init( p_pls, HEAPID_EV_POKESELECT );	
 
-	// 3Dƒ‚ƒfƒ‹¶¬
+	// 3Dãƒ¢ãƒ‡ãƒ«ç”Ÿæˆ
 	Ev3dobj_make( p_pls, HEAPID_EV_POKESELECT );
 
-	// ƒJƒƒ‰ì¬
+	// ã‚«ãƒ¡ãƒ©ä½œæˆ
 	Camera_init( p_pls, HEAPID_EV_POKESELECT );
 
-	// ‘I‘ðÀ•WÝ’è
+	// é¸æŠžåº§æ¨™è¨­å®š
 	Select_matrix_make( p_pls );
 
-	// 3DƒIƒuƒWƒFƒNƒg‚ÉÀ•W‚ðÝ’è
+	// 3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«åº§æ¨™ã‚’è¨­å®š
 	Select_matrix_set_3dobj( p_pls );
 
-	// ƒJ[ƒ\ƒ‹‰Šú‰»
+	// ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–
 	Cursor_oam_load( p_pls, &p_pls->cursor, HEAPID_EV_POKESELECT );
 	Cursor_clact_add( p_pls, &p_pls->cursor, HEAPID_EV_POKESELECT );
 	EvCursorMoveReq( &p_pls->cursor );
 
-	// ƒT[ƒNƒ‹ƒEƒBƒ“ƒhƒE‰Šú‰»
+	// ã‚µãƒ¼ã‚¯ãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	CircleWnd_Gra_Init( &p_pls->circle_wnd, p_pls, HEAPID_EV_POKESELECT );
 
 
-	// ‰¹ŠÖŒW
-	Snd_DataSetByScene( SND_SCENE_SUB_FIRSTPOKE, 0, 0 );	// sound_load(Å‰‚Ìƒ|ƒPƒ‚ƒ“‘I‘ð)(BGMˆøŒp‚¬)
+	// éŸ³é–¢ä¿‚
+	Snd_DataSetByScene( SND_SCENE_SUB_FIRSTPOKE, 0, 0 );	// sound_load(æœ€åˆã®ãƒã‚±ãƒ¢ãƒ³é¸æŠž)(BGMå¼•ç¶™ãŽ)
 
 	return PROC_RES_FINISH;
 }
@@ -734,16 +734,16 @@ PROC_RESULT EV_PokeSelect_ProcInit( PROC* proc, int* seq )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒvƒƒbƒNƒƒCƒ“
+ *	@brief	å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -756,7 +756,7 @@ PROC_RESULT EV_PokeSelect_ProcMain( PROC* proc, int* seq )
 	short num = 0x08c3;
 
 	switch( *seq ){
-	// ƒtƒF[ƒhƒCƒ“
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	case 0:
 		EV_PokeSelect_FadeInReq( p_pls );
 		GX_LoadBGPltt( &num, 0, sizeof(short) );
@@ -773,21 +773,21 @@ PROC_RESULT EV_PokeSelect_ProcMain( PROC* proc, int* seq )
 		
 	//-------------------------------------
 	//	
-	// ƒƒCƒ““®ì	
+	// ãƒ¡ã‚¤ãƒ³å‹•ä½œ	
 	//	
 	//=====================================
 	case 2:
 		ret = EV_PokeSelect_MoveData( p_pls, HEAPID_EV_POKESELECT );
 		EV_PokeSelect_MoveDraw( p_pls, HEAPID_EV_POKESELECT );
 
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( ret == TRUE ){
 			(*seq)++;
 		}
 		break;
 
 
-	// ƒtƒF[ƒhƒAƒEƒg
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case 3:
 		EV_PokeSelect_FadeOutReq( p_pls );
 		(*seq)++;
@@ -802,7 +802,7 @@ PROC_RESULT EV_PokeSelect_ProcMain( PROC* proc, int* seq )
 		break;
 	}
 
-	//@•`‰æˆ—
+	//ã€€æç”»å‡¦ç†
 	EV_PokeSelect_Draw( p_pls );
 
 	return PROC_RES_CONTINUE;
@@ -811,16 +811,16 @@ PROC_RESULT EV_PokeSelect_ProcMain( PROC* proc, int* seq )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒvƒƒbƒNI—¹
+ *	@brief	å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -832,56 +832,56 @@ PROC_RESULT EV_PokeSelect_ProcEnd( PROC* proc, int* seq )
 	EV_POKESELECT_PEARENT_DATA* p_pearent =PROC_GetParentWork( proc );
 	BOOL check;
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
 
-	// e‚É‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“ÅÝÊÞ°‚ðÝ’è‚·‚é
+	// è¦ªã«é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’è¨­å®šã™ã‚‹
 	p_pearent->select_monsno = EV_PokeSelect_SelectNoMonsnoGet( p_pls->now_select_no );
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒTƒ“ƒvƒŠƒ“ƒOI—¹
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°çµ‚äº†
 	check = StopTP();
 	GF_ASSERT( check == TP_OK );
 
-	// CIRCLEƒEƒBƒ“ƒhƒEÃÞ°À”jŠü
+	// CIRCLEã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CircleWnd_Gra_Delete( &p_pls->circle_wnd );
 
-	// ƒJ[ƒ\ƒ‹”jŠü
+	// ã‚«ãƒ¼ã‚½ãƒ«ç ´æ£„
 	Cursor_clact_delete( &p_pls->cursor );
 	Cursor_oam_delete( p_pls, &p_pls->cursor );
 	EvCursorMoveDelete( &p_pls->cursor );
 
-	// ƒJƒƒ‰”jŠü
+	// ã‚«ãƒ¡ãƒ©ç ´æ£„
 	Camera_delete( p_pls );
 
-	// 3Dƒ‚ƒfƒ‹”jŠü
+	// 3Dãƒ¢ãƒ‡ãƒ«ç ´æ£„
 	Ev3dobj_delete( p_pls );
 	
-	// ƒZƒ‹ƒAƒNƒ^[”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	Clact_delete( p_pls );
 	
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg”jŠü
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç ´æ£„
 	Softsprite_delete( p_pls );
 	SwspSprite_delete( p_pls );
 	
-	// •¶Žš—ñ–Ê”jŠü
+	// æ–‡å­—åˆ—é¢ç ´æ£„
 	Fontbg_bmpwin_delete( p_pls );
 	FontSubbg_bmpwin_delete( p_pls );
 	
-	// BG”jŠü
+	// BGç ´æ£„
 	Bg_putdown( p_pls->p_bg );
 
-	// BGƒVƒXƒeƒ€
+	// BGã‚·ã‚¹ãƒ†ãƒ 
 	sys_FreeMemoryEz( p_pls->p_bg );
 	
-	// •\Ž¦ƒf[ƒ^”jŠü
+	// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	EV_PokeSelect_PutDownDraw();
 
-	// VramTransferManager”jŠü
+	// VramTransferManagerç ´æ£„
 	DellVramTransferManager();
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	PROC_FreeWork( proc );
 
-	// ƒq[ƒv”jŠü
+	// ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_EV_POKESELECT );
 
 	return PROC_RES_FINISH;
@@ -890,15 +890,15 @@ PROC_RESULT EV_PokeSelect_ProcEnd( PROC* proc, int* seq )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	VBlankŠÖ”
+ *	@brief	VBlanké–¢æ•°
  *
- *	@param	work	ƒ[ƒN
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -909,23 +909,23 @@ static void EV_PokeSelect_VBlankFunc( void* work )
 {
 	EV_POKESELECT_PROC_WORK* p_psl = work;
 
-	// ƒŒƒ“ƒ_ƒ‰[OAM“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼OAMè»¢é€
 	REND_OAMTrans();
 
 	GF_BGL_VBlankFunc( p_psl->p_bg );
 
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	SoftSpriteTextureTrans( p_psl->soft_sprite_man );
 
-	// Vram“]‘—ƒ^ƒXƒN
+	// Vramè»¢é€ã‚¿ã‚¹ã‚¯
 	DoVramTransferManager();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒCƒ“Ý’è
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³è¨­å®š
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -944,9 +944,9 @@ static void EV_PokeSelect_FadeInReq( EV_POKESELECT_PROC_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒAƒEƒgÝ’è
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆè¨­å®š
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -965,12 +965,12 @@ static void EV_PokeSelect_FadeOutReq( EV_POKESELECT_PROC_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒ`ƒFƒbƒN
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE		ƒtƒF[ƒhI—¹
- *	@retval	FALSE		ƒtƒF[ƒh’†
+ *	@retval	TRUE		ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
+ *	@retval	FALSE		ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL EV_PokeSelect_FadeMain( EV_POKESELECT_PROC_WORK* p_work )
@@ -981,29 +981,29 @@ static BOOL EV_PokeSelect_FadeMain( EV_POKESELECT_PROC_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒZƒbƒgƒAƒbƒv
+ *	@brief	æç”»ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	heap		ƒq[ƒv
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void EV_PokeSelect_SetUpDraw( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 {
-	// ƒoƒ“ƒNƒZƒbƒgƒAƒbƒv
+	// ãƒãƒ³ã‚¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	VramBankSet();
 	
-	// oamŠÖŒWƒZƒbƒgƒAƒbƒv
+	// oamé–¢ä¿‚ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	OamSet( heap );
 
 
-	// 3D–Ê
+	// 3Dé¢
 	Setup_3d( p_psl );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒvƒbƒgƒ_ƒEƒ“
+ *	@brief	æç”»ãƒ—ãƒƒãƒˆãƒ€ã‚¦ãƒ³
  *
  *	@param	none
  *
@@ -1012,22 +1012,22 @@ static void EV_PokeSelect_SetUpDraw( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 //-----------------------------------------------------------------------------
 static void EV_PokeSelect_PutDownDraw( void )
 {
-	// ƒŒƒ“ƒ_ƒ‰[‹¤—LOAMƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	REND_OAM_Delete();
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”jŠü
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	DeleteCharManager();
-	// ƒpƒŒƒbƒgƒf[ƒ^”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	DeletePlttManager();
 
-	// 3D–Ê
+	// 3Dé¢
 	Putback_3d();
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	VramBankƒZƒbƒgƒAƒbƒv
+ *	@brief	VramBankã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  *	@param	none
  *
@@ -1039,16 +1039,16 @@ static void EV_PokeSelect_PutDownDraw( void )
 static void VramBankSet( void )
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_80_EF,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0_G				// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_80_EF,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0_G				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
@@ -1056,7 +1056,7 @@ static void VramBankSet( void )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAMƒZƒbƒgƒAƒbƒv
+ *	@brief	OAMã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  *	@param	none
  *
@@ -1067,20 +1067,20 @@ static void VramBankSet( void )
 //-----------------------------------------------------------------------------
 static void OamSet( int heap )
 {
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			OAM_OAM_MAIN_S, OAM_OAM_MAIN_E,	// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			OAM_AFF_MAIN_S, OAM_AFF_MAIN_E,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			OAM_OAM_SUB_S, OAM_OAM_SUB_E,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			OAM_AFF_SUB_S, OAM_AFF_SUB_E,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			OAM_OAM_MAIN_S, OAM_OAM_MAIN_E,	// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			OAM_AFF_MAIN_S, OAM_AFF_MAIN_E,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			OAM_OAM_SUB_S, OAM_OAM_SUB_E,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			OAM_AFF_SUB_S, OAM_AFF_SUB_E,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			heap);
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			OAM_CHAR_ENTRY_NUM,
@@ -1091,10 +1091,10 @@ static void OamSet( int heap )
 		
 		InitCharManagerReg(&cm, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K );
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(OAM_PLTT_ENTRY_NUM, heap);
 
-	// “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 }
@@ -1102,7 +1102,7 @@ static void OamSet( int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	3D–ÊÝ’è
+ *	@brief	3Dé¢è¨­å®š
  *
  *	@param	none
  *
@@ -1115,18 +1115,18 @@ static void Setup_3d( EV_POKESELECT_PROC_WORK* p_psl )
 {
 	int i;
 	
-	// NitroSystem:‚R‚cƒGƒ“ƒWƒ“‚Ì‰Šú‰»
+	// NitroSystem:ï¼“ï¼¤ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–
 	NNS_G3dInit();
-	// ƒ}ƒgƒŠƒNƒXƒXƒ^ƒbƒN‚Ì‰Šú‰»
+	// ãƒžãƒˆãƒªã‚¯ã‚¹ã‚¹ã‚¿ãƒƒã‚¯ã®åˆæœŸåŒ–
     G3X_InitMtxStack();
 
-	// ŠeŽí•`‰æƒ‚[ƒh‚ÌÝ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜Ž)
     G3X_SetShading(GX_SHADING_TOON);
     G3X_AntiAlias(TRUE);
-	G3X_AlphaTest(FALSE, 0);	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend(TRUE);		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest(FALSE, 0);	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend(TRUE);		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 
-	// ƒGƒbƒWƒ}[ƒLƒ“ƒO
+	// ã‚¨ãƒƒã‚¸ãƒžãƒ¼ã‚­ãƒ³ã‚°
 	G3X_EdgeMarking(TRUE);
 	for( i=0; i<8; i++ ){
 		p_psl->edge_marking[i] = GX_RGB( 4, 4, 4 );
@@ -1134,7 +1134,7 @@ static void Setup_3d( EV_POKESELECT_PROC_WORK* p_psl )
 	G3X_SetEdgeColorTable( p_psl->edge_marking );
 
 	
-	// ƒNƒŠƒAƒJƒ‰[‚ÌÝ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(31, 31, 16),	// clear color
                       0,				// clear alpha
                       0x7fff,			// clear depth
@@ -1142,18 +1142,18 @@ static void Setup_3d( EV_POKESELECT_PROC_WORK* p_psl )
                       FALSE				// fog
                       );
 
-	// ƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‹N“®Œã•K‚¸ŒÄ‚Î‚ê‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³èµ·å‹•å¾Œå¿…ãšå‘¼ã°ã‚Œãªã‘ã‚Œã°ãªã‚‰ãªã„
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 
-	// ƒrƒ…[ƒ|[ƒg‚ÌÝ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 
-	// ƒ}ƒl[ƒWƒƒ‚ªƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ðŽw’èƒXƒƒbƒg•ªŠÇ—‚Å‚«‚é‚æ‚¤‚É‚µ‚Ä
-	// ƒfƒtƒHƒ‹ƒgƒ}ƒl[ƒWƒƒ‚É‚·‚éB
+	// ãƒžãƒãƒ¼ã‚¸ãƒ£ãŒãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã‚’æŒ‡å®šã‚¹ãƒ­ãƒƒãƒˆåˆ†ç®¡ç†ã§ãã‚‹ã‚ˆã†ã«ã—ã¦
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ã«ã™ã‚‹ã€‚
 	NNS_GfdInitFrmTexVramManager(1, TRUE);
 		
-	// ƒ}ƒl[ƒWƒƒ‚ªƒpƒŒƒbƒg‚ð16KB•ªŠÇ—‚Å‚«‚é‚æ‚¤‚É‚µ‚Ä
-	// ƒfƒtƒHƒ‹ƒgƒ}ƒl[ƒWƒƒ‚É‚·‚éB
+	// ãƒžãƒãƒ¼ã‚¸ãƒ£ãŒãƒ‘ãƒ¬ãƒƒãƒˆã‚’16KBåˆ†ç®¡ç†ã§ãã‚‹ã‚ˆã†ã«ã—ã¦
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ã«ã™ã‚‹ã€‚
 	NNS_GfdInitFrmPlttVramManager(0x4000, TRUE);
 
 }
@@ -1161,7 +1161,7 @@ static void Setup_3d( EV_POKESELECT_PROC_WORK* p_psl )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚RDÝ’è‚ÅŽg—p‚µ‚½ƒƒ‚ƒŠ‚ð”jŠü
+ *	@brief	ï¼“Dè¨­å®šã§ä½¿ç”¨ã—ãŸãƒ¡ãƒ¢ãƒªã‚’ç ´æ£„
  *
  *	@param	none 
  *
@@ -1179,20 +1179,20 @@ static void Putback_3d( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG–ÊÝ’è
+ *	@brief	BGé¢è¨­å®š
  *
- *	@param	p_bg	‚‚‚‡ÃÞ°À
- *	@param	heap	ƒq[ƒv
+ *	@param	p_bg	ï½‚ï½‡ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void Bg_setup( GF_BGL_INI* p_bg, int heap )
 {
-	// BG0‚Ì—Dæ‡ˆÊ
+	// BG0ã®å„ªå…ˆé †ä½
 	G2_SetBG0Priority( 1 );
 	
-	// ƒƒCƒ“‰æ–Ê BG1–Ê		•¶Žš—ñ‘‚«ž‚Ý–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ BG1é¢		æ–‡å­—åˆ—æ›¸ãè¾¼ã¿é¢
 	{
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0,
@@ -1205,7 +1205,7 @@ static void Bg_setup( GF_BGL_INI* p_bg, int heap )
 		GF_BGL_ScrClear( p_bg, GF_BGL_FRAME1_M );
 	}
 
-	// ƒƒCƒ“‰æ–Ê BG2–Ê		”wŒi–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ BG2é¢		èƒŒæ™¯é¢
 	{
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0,
@@ -1218,7 +1218,7 @@ static void Bg_setup( GF_BGL_INI* p_bg, int heap )
 		GF_BGL_ScrClear( p_bg, GF_BGL_FRAME2_M );
 	}
 
-	// ƒƒCƒ“‰æ–Ê BG3–Ê		ƒTƒu•¶Žš–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ BG3é¢		ã‚µãƒ–æ–‡å­—é¢
 	{
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0,
@@ -1234,7 +1234,7 @@ static void Bg_setup( GF_BGL_INI* p_bg, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG–ÊÝ’è”jŠü
+ *	@brief	BGé¢è¨­å®šç ´æ£„
  *
  *	@param	p_bg 
  *
@@ -1251,10 +1251,10 @@ static void Bg_putdown( GF_BGL_INI* p_bg )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
  *
- *	@param	p_bmp_mfont	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- *	@param	heap		ƒq[ƒv
+ *	@param	p_bmp_mfont	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1264,17 +1264,17 @@ static void Fontbg_bmpwin_make( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 	p_psl->p_bmp_mfont = GF_BGL_BmpWinAllocGet( heap, 1 );
 	GF_BGL_BmpWinInit( p_psl->p_bmp_mfont );
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“o˜^
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç™»éŒ²
 	GF_BGL_BmpWinAdd( p_psl->p_bg, p_psl->p_bmp_mfont,
 			GF_BGL_FRAME1_M, BG_FONTBMP_X, BG_FONTBMP_Y, BG_FONTBMP_CX, BG_FONTBMP_CY, BG_FONT_STR_COLOR, TALK_WIN_CGX_SIZ + 1 );
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( p_psl->p_bmp_mfont, 15 );
 
-	// ˜g‚ð•`‰æ
+	// æž ã‚’æç”»
 	TalkWinGraphicSet( p_psl->p_bg, GF_BGL_FRAME1_M, BG_FONT_CG_OFS, BG_FONT_COLOR, p_psl->wintype, heap );
 
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	ArcUtil_PalSet( ARC_EV_POKESELECT_GRA, NARC_ev_pokeselect_font_talk_NCLR, PALTYPE_MAIN_BG, BG_FONT_STR_COLOR * 32, 32, heap );
 
 	BmpTalkWinWrite( p_psl->p_bmp_mfont, WINDOW_TRANS_ON, BG_FONT_CG_OFS, BG_FONT_COLOR );
@@ -1282,7 +1282,7 @@ static void Fontbg_bmpwin_make( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
  *	@param	p_bmp_mfont 
  *
@@ -1298,10 +1298,10 @@ static void Fontbg_bmpwin_delete( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ‰Šú‰»
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  *	
- *	@param	p_psl		ƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_psl		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1312,7 +1312,7 @@ static void Softsprite_init( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 	NNSGfdPlttKey	plttKey;
 	int i;
 
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^“]‘——Ìˆæ‚ÌVram‚ðŠm•Û•“]‘—ƒAƒhƒŒƒX‚ÆƒTƒCƒY‚ðÝ’è
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€é ˜åŸŸã®Vramã‚’ç¢ºä¿ï¼†è»¢é€ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚µã‚¤ã‚ºã‚’è¨­å®š
 	p_psl->soft_sprite_man = SoftSpriteInit( heap );	
 	texKey = NNS_GfdAllocTexVram(POKEGRA_TEX_SIZE, FALSE, 0);
 	plttKey = NNS_GfdAllocPlttVram(POKEGRA_PLTT_SIZE, FALSE, NNS_GFD_ALLOC_FROM_LOW);
@@ -1325,12 +1325,12 @@ static void Softsprite_init( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 			NNS_GfdGetPlttKeyAddr(plttKey),
 			NNS_GfdGetPlttKeySize(plttKey) );
 
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	PokeGra_set( &p_psl->soft_sprite[0], p_psl, MONSNO_NAETORU );
 	PokeGra_set( &p_psl->soft_sprite[1], p_psl, MONSNO_HIKOZARU );
 	PokeGra_set( &p_psl->soft_sprite[2], p_psl, MONSNO_POTTYAMA );
 
-	// ‚»‚ê‚¼‚ê”ñ•\Ž¦
+	// ãã‚Œãžã‚Œéžè¡¨ç¤º
 	for( i=0; i<EV_POKESELECT_MONSNUM; i++ ){
 		SoftSpriteParaSet( p_psl->soft_sprite[ i ], SS_PARA_VANISH, 1 );
 	}
@@ -1338,7 +1338,7 @@ static void Softsprite_init( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN“o˜^
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç™»éŒ²
  *
  *	@param	p_soft_sprite
  *	@param	p_psl
@@ -1353,7 +1353,7 @@ static void PokeGra_set( SOFT_SPRITE** p_soft_sprite, EV_POKESELECT_PROC_WORK* p
 	int sex;
 
 	sex = PokeSexGetMonsNo( monsno, 0 );
-	//ÅŒã‚Ìˆø”‚ÍAFormNo‚ÆŒÂ«—”‚Å‚· by soga 2006.05.01
+	//æœ€å¾Œã®å¼•æ•°ã¯ã€FormNoã¨å€‹æ€§ä¹±æ•°ã§ã™ by soga 2006.05.01
 	PokeGraArcDataGet( &arc_data, monsno, sex, PARA_FRONT, PARA_NORMAL, NULL, NULL );
 	*p_soft_sprite = SoftSpriteAdd( 
 			p_psl->soft_sprite_man,
@@ -1364,7 +1364,7 @@ static void PokeGra_set( SOFT_SPRITE** p_soft_sprite, EV_POKESELECT_PROC_WORK* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ”jŠü
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
  *
  *	@param	p_psl 
   *
@@ -1382,13 +1382,13 @@ static void Softsprite_delete( EV_POKESELECT_PROC_WORK* p_psl )
 		}
 	}
 	
-	// ƒ|ƒPƒ‚ƒ“•`‰æƒXƒvƒ‰ƒCƒgƒf[ƒ^”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³æç”»ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	SoftSpriteEnd( p_psl->soft_sprite_man );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	swspƒVƒXƒeƒ€ì¬
+ *	@brief	swspã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
  *	@param	p_psl
  *	@param	heap 
@@ -1411,7 +1411,7 @@ static void SwspSprite_init( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	swspƒVƒXƒeƒ€”jŠü
+ *	@brief	swspã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
  *	@param	p_psl 
  *
@@ -1420,26 +1420,26 @@ static void SwspSprite_init( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 //-----------------------------------------------------------------------------
 static void SwspSprite_delete( EV_POKESELECT_PROC_WORK* p_psl )
 {
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	SWSP_SysDelete( p_psl->swsp_sys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- *	@param	p_psl		ƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_psl		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void Clact_init( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 {
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 	p_psl->clact_set = CLACT_U_SetEasyInit( CLACT_SET_WORK_NUM, &p_psl->oam_rend, heap );
 
-	// ƒZƒ‹ƒAƒNƒ^[—pƒŠƒ\[ƒXŠÇ—ƒVƒXƒeƒ€
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç”¨ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 	p_psl->res_manager[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerInit( CLACT_RES_DATA_TBL_NUM, CLACT_U_CHAR_RES, heap );
 	p_psl->res_manager[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerInit( CLACT_RES_DATA_TBL_NUM, CLACT_U_PLTT_RES, heap );
 	p_psl->res_manager[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerInit( CLACT_RES_DATA_TBL_NUM, CLACT_U_CELL_RES, heap );
@@ -1452,7 +1452,7 @@ static void Clact_init( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
  *	@param	p_psl 
  *
@@ -1461,10 +1461,10 @@ static void Clact_init( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 //-----------------------------------------------------------------------------
 static void Clact_delete( EV_POKESELECT_PROC_WORK* p_psl )
 {
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 	CLACT_DestSet( p_psl->clact_set );
 
-	// ƒZƒ‹ƒAƒNƒ^[—pƒŠƒ\[ƒXŠÇ—ƒVƒXƒeƒ€
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç”¨ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 	CLACT_U_ResManagerDelete( p_psl->res_manager[ CLACT_U_CHAR_RES ] );
 	CLACT_U_ResManagerDelete( p_psl->res_manager[ CLACT_U_PLTT_RES ] );
 	CLACT_U_ResManagerDelete( p_psl->res_manager[ CLACT_U_CELL_RES ] );
@@ -1474,12 +1474,12 @@ static void Clact_delete( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒIƒuƒWƒFƒNƒgÝ’è
+ *	@brief	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¨­å®š
  *
- *	@param	p_obj			ƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^
- *	@param	mdl_dataidx		ƒ‚ƒfƒ‹ƒA[ƒJƒCƒuÃÞ°À²ÝÃÞ¯¸½
- *	@param	anm_dataidx		ƒ‚ƒfƒ‹ƒAƒjƒƒA[ƒJƒCƒuÃÞ°À²ÝÃÞ¯¸½
- *	@param	heap			ƒq[ƒv
+ *	@param	p_obj			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿
+ *	@param	mdl_dataidx		ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	anm_dataidx		ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1495,11 +1495,11 @@ static void Init_ev_3d_obj( EV_3D_ANM_OBJ* p_obj, int mdl_dataidx, int anm_datai
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ‚Ì‚È‚¢ƒIƒuƒWƒFƒNƒg‚Ì“o˜^
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã®ãªã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç™»éŒ²
  *
- *	@param	p_obj			ƒIƒuƒWƒFƒNƒg
- *	@param	mdl_dataidx		ƒ‚ƒfƒ‹ÃÞ°À²ÝÃÞ¯¸½
- *	@param	heap			ƒq[ƒv
+ *	@param	p_obj			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	mdl_dataidx		ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -1510,62 +1510,62 @@ static void Init_ev_3d_obj_no_anm( EV_3D_ANM_OBJ* p_obj, int mdl_dataidx, int he
 	Load_ev_3d_obj_mdl( p_obj, mdl_dataidx, heap );
 	Set_ev_3d_obj_scal( p_obj, FX32_ONE, FX32_ONE, FX32_ONE );
 }
-// ƒ‚ƒfƒ‹ÃÞ°À“Ç‚Ýž‚Ý•Ý’è
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ï¼†è¨­å®š
 static void Load_ev_3d_obj_mdl( EV_3D_ANM_OBJ* p_obj, int mdl_dataidx, int heap )
 {
-	// ƒ‚ƒfƒ‹ÃÞ°À“Ç‚Ýž‚Ý
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_obj->pResMdl = ArcUtil_Load( ARC_EV_POKESELECT_GRA, mdl_dataidx, FALSE, heap, ALLOC_TOP );
 
-	// ƒ‚ƒfƒ‹ÃÞ°ÀŽæ“¾
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_obj->pModelSet	= NNS_G3dGetMdlSet( p_obj->pResMdl );
 	p_obj->pModel		= NNS_G3dGetMdlByIdx( p_obj->pModelSet, 0 );
 	p_obj->pMdlTex		= NNS_G3dGetTex( p_obj->pResMdl );
 	
-	// ƒ‚ƒfƒ‹ÃÞ°À‚ð“]‘—
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 	LoadVRAMTexture( p_obj->pMdlTex );
 	BindTexture( p_obj->pResMdl, p_obj->pMdlTex );
 
-	// ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+	// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 	NNS_G3dRenderObjInit( &p_obj->RenderObj, p_obj->pModel );
 }
-// ƒAƒjƒÃÞ°À“Ç‚Ýž‚Ý•Ý’è		load_ev_3d_obj_mdl‚ÌŒã‚ÉŒÄ‚Ô•K—v‚ ‚è
+// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ï¼†è¨­å®š		load_ev_3d_obj_mdlã®å¾Œã«å‘¼ã¶å¿…è¦ã‚ã‚Š
 static void Load_ev_3d_obj_anm( EV_3D_ANM_OBJ* p_obj, int mdl_dataidx, int heap, NNSFndAllocator* pallocator )
 {
-	// ƒAƒjƒÃÞ°À“Ç‚Ýž‚Ý
+	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_obj->pResAnm = ArcUtil_Load( ARC_EV_POKESELECT_GRA, mdl_dataidx, FALSE, heap, ALLOC_TOP );
 
-	//ƒŠƒ\[ƒXŽæ“¾
+	//ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	p_obj->pOneResAnm = NNS_G3dGetAnmByIdx(p_obj->pResAnm,0);
 
-	// ƒAƒjƒƒIƒuƒWƒF‚Ìƒƒ‚ƒŠŠm•Û
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_obj->pAnmObj = NNS_G3dAllocAnmObj( 
 			pallocator,
 			p_obj->pOneResAnm,
 			p_obj->pModel );
 
-	// ƒAƒjƒƒIƒuƒWƒF‰Šú‰»
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§åˆæœŸåŒ–
 	NNS_G3dAnmObjInit(
 		p_obj->pAnmObj,
 		p_obj->pOneResAnm,
 		p_obj->pModel,
 		p_obj->pMdlTex );
 
-	// ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+	// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 	NNS_G3dRenderObjAddAnmObj( &p_obj->RenderObj, p_obj->pAnmObj );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3DƒIƒuƒWƒFƒNƒg‚Ì”jŠü
+ *	@brief	3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç ´æ£„
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void Delete_ev_3d_obj( EV_3D_ANM_OBJ* p_obj, NNSFndAllocator* pallocator )
 {
-	// ‘SƒŠƒ\[ƒX”jŠü
+	// å…¨ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	if(p_obj->pResMdl){
 		sys_FreeMemoryEz( p_obj->pResMdl );
 	}
@@ -1579,7 +1579,7 @@ static void Delete_ev_3d_obj( EV_3D_ANM_OBJ* p_obj, NNSFndAllocator* pallocator 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—
+ *	@brief	æç”»å‡¦ç†
  *
  *	@param	p_obj 
  *
@@ -1592,7 +1592,7 @@ static void Draw_ev_3d_obj( EV_3D_ANM_OBJ* p_obj )
 	MtxFx33 calc_mtx;
 
 
-	// ‰ñ“]s—ñì¬
+	// å›žè»¢è¡Œåˆ—ä½œæˆ
 	MTX_Identity33( &mtx );
 	MTX_RotX33( &calc_mtx, FX_SinIdx( p_obj->rota_x ), FX_CosIdx( p_obj->rota_x ) );
 	MTX_Concat33( &calc_mtx, &mtx, &mtx );
@@ -1609,10 +1609,10 @@ static void Draw_ev_3d_obj( EV_3D_ANM_OBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒtƒ‰ƒO‚ÌÝ’è
+ *	@brief	æç”»ãƒ•ãƒ©ã‚°ã®è¨­å®š
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
- *	@param	flag	ƒtƒ‰ƒO		TRUE•`‰æ 
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	flag	ãƒ•ãƒ©ã‚°		TRUEæç”» 
  *	
  *	@return	none
  */
@@ -1624,12 +1624,12 @@ static void Set_ev_3d_obj_draw( EV_3D_ANM_OBJ* p_obj, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•WÝ’è
+ *	@brief	åº§æ¨™è¨­å®š
  *	
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
- *	@param	z		‚šÀ•W
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
+ *	@param	z		ï½šåº§æ¨™
  *
  *	@return	none
  */
@@ -1643,12 +1643,12 @@ static void Set_ev_3d_obj_mat( EV_3D_ANM_OBJ* p_obj, fx32 x, fx32 y, fx32 z )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šgk’l
+ *	@brief	æ‹¡ç¸®å€¤
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
- *	@param	x		XŠg‘å’l
- *	@param	y		YŠg‘å’l
- *	@param	z		ZŠg‘å’l
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	x		Xæ‹¡å¤§å€¤
+ *	@param	y		Yæ‹¡å¤§å€¤
+ *	@param	z		Zæ‹¡å¤§å€¤
  *
  *	@return	none
  */
@@ -1662,12 +1662,12 @@ static void Set_ev_3d_obj_scal( EV_3D_ANM_OBJ* p_obj, fx32 x, fx32 y, fx32 z )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]Šp“xÝ’è
+ *	@brief	å›žè»¢è§’åº¦è¨­å®š
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
- *	@param	x	‚˜Ž²‰ñ“]
- *	@param	y	‚™Ž²‰ñ“]
- *	@param	z	‚šŽ²‰ñ“]
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	x	ï½˜è»¸å›žè»¢
+ *	@param	y	ï½™è»¸å›žè»¢
+ *	@param	z	ï½šè»¸å›žè»¢
  *
  *	@return
  */
@@ -1681,11 +1681,11 @@ static void Set_ev_3d_obj_rota( EV_3D_ANM_OBJ* p_obj, u16 x, u16 y, u16 z )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
  *
  *	@param	p_obj 
  *
- *	@return	TRUE	I—¹
+ *	@return	TRUE	çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 static BOOL Anm_ev_3d_obj( EV_3D_ANM_OBJ* p_obj )
@@ -1715,10 +1715,10 @@ static void Anm_ev_3d_obj_loop( EV_3D_ANM_OBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“”Ý’è
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ•°è¨­å®š
  *
  *	@param	p_obj
- *	@param	anm			ÌÚ°Ñ”
+ *	@param	anm			ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
  *	@return	none
  */
@@ -1731,11 +1731,11 @@ static void Anm_ev_3d_obj_set( EV_3D_ANM_OBJ* p_obj, fx32 anm )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ÌÚ°Ñ”Žæ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°å–å¾—
  *
  *	@param	p_obj 
  *
- *	@return	ÌÚ°Ñ”	
+ *	@return	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°	
  */
 //-----------------------------------------------------------------------------
 static fx32 Anm_ev_3d_obj_get( EV_3D_ANM_OBJ* p_obj )
@@ -1746,10 +1746,10 @@ static fx32 Anm_ev_3d_obj_get( EV_3D_ANM_OBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3dƒIƒuƒWƒF‚ðì¬‚·‚é
+ *	@brief	3dã‚ªãƒ–ã‚¸ã‚§ã‚’ä½œæˆã™ã‚‹
  *
- *	@param	p_psl	ƒ[ƒN
- *	@param	heap	ƒq[ƒv
+ *	@param	p_psl	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1758,18 +1758,18 @@ static void Ev3dobj_make( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 {
 	int i;
 
-	// AUTOƒAƒjƒ‘fÞ
+	// AUTOã‚¢ãƒ‹ãƒ¡ç´ æ
 	Init_ev_3d_obj( &p_psl->ev_3d_obj[ POKESELECT_AUTOANM ],
 			NARC_ev_pokeselect_psel_all_nsbmd, NARC_ev_pokeselect_psel_all_nsbca,
 			heap, &p_psl->allocator );
 	Set_ev_3d_obj_draw( &p_psl->ev_3d_obj[ POKESELECT_AUTOANM ], TRUE );
 
-	// ‚©‚Î‚ñƒ‚ƒfƒ‹
+	// ã‹ã°ã‚“ãƒ¢ãƒ‡ãƒ«
 	Init_ev_3d_obj_no_anm( &p_psl->ev_3d_obj[ POKESELECT_BAG ],
 			NARC_ev_pokeselect_psel_trunk_nsbmd, heap );
 	Set_ev_3d_obj_draw( &p_psl->ev_3d_obj[ POKESELECT_BAG ], FALSE );
 
-	// ÓÝ½À°ƒ{[ƒ‹ƒ‚ƒfƒ‹
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ãƒ¢ãƒ‡ãƒ«
 	for( i=POKESELECT_BALL_LEFT; i<=POKESELECT_BALL_RIGHT; i++ ){
 		Init_ev_3d_obj( &p_psl->ev_3d_obj[ i ],
 				NARC_ev_pokeselect_psel_mb_a_nsbmd + (i-POKESELECT_BALL_LEFT) * 2,
@@ -1778,7 +1778,7 @@ static void Ev3dobj_make( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 		Set_ev_3d_obj_draw( &p_psl->ev_3d_obj[ i ], FALSE );
 	}
 
-	// ’nŒ`ƒ‚ƒfƒ‹
+	// åœ°å½¢ãƒ¢ãƒ‡ãƒ«
 	Init_ev_3d_obj_no_anm( &p_psl->ev_3d_obj[ POKESELECT_GROUND ],
 			NARC_ev_pokeselect_pmsel_bg_nsbmd, heap );
 	Set_ev_3d_obj_draw( &p_psl->ev_3d_obj[ POKESELECT_GROUND ], TRUE );
@@ -1799,7 +1799,7 @@ static void Ev3dobj_make( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒIƒuƒWƒF”jŠü
+ *	@brief	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
  *
  *	@param	p_psl
  *
@@ -1817,7 +1817,7 @@ static void Ev3dobj_delete( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3DƒIƒuƒWƒFƒNƒg•`‰æˆ—
+ *	@brief	3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»å‡¦ç†
  *
  *	@param	p_psl 
  *
@@ -1828,7 +1828,7 @@ static void Ev3dobj_draw( EV_POKESELECT_PROC_WORK* p_psl )
 {
 	int i;
 
-	// ƒ‰ƒCƒg‚ÆƒAƒ“ƒrƒGƒ“ƒg
+	// ãƒ©ã‚¤ãƒˆã¨ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
 	NNS_G3dGlbLightVector( 0, 0, -FX32_ONE, 0 );
 	NNS_G3dGlbLightColor( 0, GX_RGB( 31,31,31 ) );
 	NNS_G3dGlbMaterialColorDiffAmb( GX_RGB( 31,31,31 ), GX_RGB( 31,31,31 ), FALSE );
@@ -1842,12 +1842,12 @@ static void Ev3dobj_draw( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
  *	@param	p_psl 
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	‚Â‚Ã‚­
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	ã¤ã¥ã
  */
 //-----------------------------------------------------------------------------
 static BOOL EV_PokeSelect_MoveData( EV_POKESELECT_PROC_WORK* p_psl, int heap )
@@ -1863,10 +1863,10 @@ static BOOL EV_PokeSelect_MoveData( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 	case POKESELECT_SEQ_WAIT:
 		break;
 
-	case POKESELECT_SEQ_AUTOANM:		// AUTOƒAƒjƒ
+	case POKESELECT_SEQ_AUTOANM:		// AUTOã‚¢ãƒ‹ãƒ¡
 		break;
 		
-	case POKESELECT_SEQ_SELECT:		// ‘I‘ð
+	case POKESELECT_SEQ_SELECT:		// é¸æŠž
 		Move_select( p_psl );
 		if( sys.trg & PAD_BUTTON_A ){
 			Move_seq_add( p_psl, 1 );
@@ -1875,12 +1875,12 @@ static BOOL EV_PokeSelect_MoveData( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 		}
 
 #ifdef DEBUG_EV_POKESELE
-		// ƒfƒoƒbƒN
+		// ãƒ‡ãƒãƒƒã‚¯
 		EV_PokeSelect_Deback_Anm( p_psl );
 #endif
 		break;
 		
-	case POKESELECT_SEQ_QUESTION:	// Šm”F
+	case POKESELECT_SEQ_QUESTION:	// ç¢ºèª
 		break;
 
 	case POKESELECT_SEQ_END:
@@ -1897,7 +1897,7 @@ static void EV_PokeSelect_Deback_Anm( EV_POKESELECT_PROC_WORK* p_psl )
 {
 	CAMERA_ANGLE angle;
 	
-	// ƒfƒoƒbƒN‹@”\ 
+	// ãƒ‡ãƒãƒƒã‚¯æ©Ÿèƒ½ 
 	if( sys.trg & PAD_BUTTON_B ){
 		Move_seq_set( p_psl, 0 );
 		Anm_ev_3d_obj_set( &p_psl->ev_3d_obj[POKESELECT_AUTOANM], 0 );
@@ -1914,10 +1914,10 @@ static void EV_PokeSelect_Deback_Anm( EV_POKESELECT_PROC_WORK* p_psl )
 		GFC_SetCameraDistance( CAMERA_DISTANCE, p_psl->p_camera );
 		p_psl->camera_target.z = CAMERA_TARGET_Z;
 
-		// ƒJ[ƒ\ƒ‹‚ð‡‚í‚¹‚é
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚’åˆã‚ã›ã‚‹
 		Cursor_clact_set_draw_flag( &p_psl->cursor, FALSE );
 
-		// ƒNƒŠ[ƒ“
+		// ã‚¯ãƒªãƒ¼ãƒ³
 		GF_BGL_BmpWinOff( p_psl->p_bmp_mfont );
 		FontSubbg_bmpwin_clean( p_psl );
 	}
@@ -1926,7 +1926,7 @@ static void EV_PokeSelect_Deback_Anm( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æ“®ìƒƒCƒ“
+ *	@brief	æç”»å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
  *	@param	p_psl 
  */
@@ -1936,11 +1936,11 @@ static void EV_PokeSelect_MoveDraw( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 	
 	switch( Move_seq_get( p_psl ) ){
 	case POKESELECT_SEQ_INIT:
-		// “®ìlock‚·‚é
+		// å‹•ä½œlockã™ã‚‹
 		p_psl->move_lock = TRUE;
 		p_psl->draw_count = POKESELECT_MONNSUTA_START_WAIT;
 		Move_seq_add( p_psl, 1 );
-		//”¼“§–¾Ý’è‚·‚é
+		//åŠé€æ˜Žè¨­å®šã™ã‚‹
 		G2_SetBlendAlpha( GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ, BG_FONTSUBBMP_ALPHA, 16 - BG_FONTSUBBMP_ALPHA );
 		break;
 
@@ -1953,11 +1953,11 @@ static void EV_PokeSelect_MoveDraw( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 		}
 		break;
 
-	case POKESELECT_SEQ_AUTOANM:		// AUTOƒAƒjƒ
-		// ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é
-		// ƒAƒjƒI—¹Œã‘I‘ð‚Ö
+	case POKESELECT_SEQ_AUTOANM:		// AUTOã‚¢ãƒ‹ãƒ¡
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹
+		// ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾Œé¸æŠžã¸
 		if( Anm_ev_3d_obj( &p_psl->ev_3d_obj[POKESELECT_AUTOANM] ) ){
-			// Ž©•ª‚ðÁ‚µA‚Î‚ç‚Î‚ç‚ÈƒIƒuƒWƒF‚ðo‚·
+			// è‡ªåˆ†ã‚’æ¶ˆã—ã€ã°ã‚‰ã°ã‚‰ãªã‚ªãƒ–ã‚¸ã‚§ã‚’å‡ºã™
 			Set_ev_3d_obj_draw( &p_psl->ev_3d_obj[ POKESELECT_AUTOANM ], FALSE );
 			Set_ev_3d_obj_draw( &p_psl->ev_3d_obj[ POKESELECT_BAG ], TRUE );
 			Set_ev_3d_obj_draw( &p_psl->ev_3d_obj[ POKESELECT_BALL_LEFT ], TRUE );
@@ -1968,11 +1968,11 @@ static void EV_PokeSelect_MoveDraw( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 		}
 		break;
 		
-	case POKESELECT_SEQ_SELECT:		// ‘I‘ð
+	case POKESELECT_SEQ_SELECT:		// é¸æŠž
 		DrawMoveSelect( p_psl, heap );
 		break;
 		
-	case POKESELECT_SEQ_QUESTION:	// Šm”F
+	case POKESELECT_SEQ_QUESTION:	// ç¢ºèª
 		DrawMoveQuestion( p_psl, heap );
 		break;
 
@@ -1987,7 +1987,7 @@ static void EV_PokeSelect_MoveDraw( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒƒCƒ“
+ *	@brief	æç”»ãƒ¡ã‚¤ãƒ³
  *
  *	@param	p_psl 
  *
@@ -1996,17 +1996,17 @@ static void EV_PokeSelect_MoveDraw( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 //-----------------------------------------------------------------------------
 static void EV_PokeSelect_Draw( EV_POKESELECT_PROC_WORK* p_psl )
 {
-	//‚R‚c•`‰æŠJŽn
+	//ï¼“ï¼¤æç”»é–‹å§‹
 	GF_G3X_Reset();
 
 	NNS_G3dGePushMtx();
 	{
 		NNS_G3dGeFlushBuffer();
 
-		// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ì•`‰æ
-		// ƒJƒƒ‰ƒZƒbƒgƒAƒbƒv
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æç”»
+		// ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		NNS_G2dSetupSoftwareSpriteCamera();
-		// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æ
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»
 		SoftSpriteMain( p_psl->soft_sprite_man );
 		SWSP_SysDraw( p_psl->swsp_sys );
 	}
@@ -2015,46 +2015,46 @@ static void EV_PokeSelect_Draw( EV_POKESELECT_PROC_WORK* p_psl )
 
 	NNS_G3dGePushMtx();
 	{
-		// ƒJƒƒ‰Ý’è
+		// ã‚«ãƒ¡ãƒ©è¨­å®š
 		GFC_CameraLookAt();
 
-		//@ƒ‚ƒfƒ‹‚Ì•`‰æ
+		//ã€€ãƒ¢ãƒ‡ãƒ«ã®æç”»
 		Ev3dobj_draw( p_psl );
 	}
 	NNS_G3dGePopMtx(1);
 	
 
-	/* ƒWƒIƒƒgƒŠ•ƒŒƒ“ƒ_ƒŠƒ“ƒOƒGƒ“ƒWƒ“ŠÖ˜Aƒƒ‚ƒŠ‚ÌƒXƒƒbƒv */
+	/* ã‚¸ã‚ªãƒ¡ãƒˆãƒªï¼†ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ãƒ¡ãƒ¢ãƒªã®ã‚¹ãƒ¯ãƒƒãƒ— */
 	GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 
-	// ƒZƒ‹ƒAƒNƒ^[•`‰æ
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»
 	CLACT_Draw( p_psl->clact_set );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰ì¬•‰Šú‰»
+ *	@brief	ã‚«ãƒ¡ãƒ©ä½œæˆï¼†åˆæœŸåŒ–
  *
- *	@param	p_psl		ƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_psl		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void Camera_init( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 {
-	// ƒJƒƒ‰ƒAƒƒbƒN
+	// ã‚«ãƒ¡ãƒ©ã‚¢ãƒ­ãƒƒã‚¯
 	p_psl->p_camera = GFC_AllocCamera( heap );
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	Camera_init_param( p_psl->p_camera, &p_psl->camera_target );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰‰ŠúÝ’è
+ *	@brief	ã‚«ãƒ¡ãƒ©åˆæœŸè¨­å®š
  *
- *	@param	p_camera	ƒJƒƒ‰
+ *	@param	p_camera	ã‚«ãƒ¡ãƒ©
  *
  *	@return	none
  */
@@ -2091,9 +2091,9 @@ static void Camera_init_param( GF_CAMERA_PTR p_camera, VecFx32* p_target )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰”jŠü
+ *	@brief	ã‚«ãƒ¡ãƒ©ç ´æ£„
  *
- *	@param	p_psl		ƒ[ƒN
+ *	@param	p_psl		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return
  */
@@ -2105,7 +2105,7 @@ static void Camera_delete( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•WƒZƒŒƒNƒg
+ *	@brief	åº§æ¨™ã‚»ãƒ¬ã‚¯ãƒˆ
  *
  *	@param	p_psl 
  *
@@ -2116,7 +2116,7 @@ static void Select_matrix_make( EV_POKESELECT_PROC_WORK* p_psl )
 {
 	int i;
 	
-	// À•WˆÊ’uƒ[ƒNì¬
+	// åº§æ¨™ä½ç½®ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	for( i=0; i<EV_POKESELECT_MONSNUM; i++ ){
 		switch( i ){
 		case POKESELECT_LEFT_BALL:
@@ -2137,7 +2137,7 @@ static void Select_matrix_make( EV_POKESELECT_PROC_WORK* p_psl )
 		}
 	}
 
-	// 2dÀ•W
+	// 2dåº§æ¨™
 	for( i=0; i<EV_POKESELECT_MONSNUM; i++ ){
 		switch( i ){
 		case POKESELECT_LEFT_BALL:
@@ -2158,7 +2158,7 @@ static void Select_matrix_make( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3dƒIƒuƒWƒF‚ÌÀ•W‚ðÝ’è
+ *	@brief	3dã‚ªãƒ–ã‚¸ã‚§ã®åº§æ¨™ã‚’è¨­å®š
  *
  *	@param	p_psl 
  *
@@ -2179,9 +2179,9 @@ static void Select_matrix_set_3dobj( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒŒƒNƒgƒ|ƒPƒ‚ƒ“‚ð•ÏX‚·‚é“®ì
+ *	@brief	ã‚»ãƒ¬ã‚¯ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚’å¤‰æ›´ã™ã‚‹å‹•ä½œ
  *
- *	@param	p_psl	ƒ[ƒN
+ *	@param	p_psl	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2206,7 +2206,7 @@ static void Move_select( EV_POKESELECT_PROC_WORK* p_psl )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒV[ƒPƒ“ƒX‘€ì
+ *		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ“ä½œ
  */
 //-----------------------------------------------------------------------------
 static void Move_seq_add( EV_POKESELECT_PROC_WORK* p_psl, int no )
@@ -2227,9 +2227,9 @@ static int Move_seq_get( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ðÓÝ½À°ƒ{[ƒ‹“®ì
+ *	@brief	é¸æŠžãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«å‹•ä½œ
  *
- *	@param	p_psl	ƒ[ƒN
+ *	@param	p_psl	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2238,22 +2238,22 @@ static void DrawMoveSelect( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 {
 	switch( p_psl->draw_seq ){
 	case 0:
-		//	ƒJƒƒ‰“®ì
+		//	ã‚«ãƒ¡ãƒ©å‹•ä½œ
 		EvCameraMoveReq( &p_psl->camera_move, p_psl->p_camera, &p_psl->camera_target );
 		
-		// ƒrƒbƒgƒ}ƒbƒv–Ê‚ð•\Ž¦‚³‚¹‚½‚è‚·‚é
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—é¢ã‚’è¡¨ç¤ºã•ã›ãŸã‚Šã™ã‚‹
 		GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG1, VISIBLE_ON );
 		p_psl->draw_seq++;
 		break;
 
-	case 1:	// ‘Ò‹@
+	case 1:	// å¾…æ©Ÿ
 		if( EvCameraMoveEndCheck( &p_psl->camera_move ) ){
 			p_psl->draw_count = POKESELECT_MSSAGE_WAIT;	
 			p_psl->draw_seq ++;
 		}
 		break;
 
-	case 2:		// ƒƒ“ƒeƒ“ƒ|
+	case 2:		// ãƒ¯ãƒ³ãƒ†ãƒ³ãƒ
 		p_psl->draw_count --;
 
 		if( p_psl->draw_count < 0 ){
@@ -2264,14 +2264,14 @@ static void DrawMoveSelect( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 
 	case 3:
 
-		// ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚¾I‚±‚ê‚Å‚½‚½‚©‚¨‚¤
+		// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã ï¼ã“ã‚Œã§ãŸãŸã‹ãŠã†
 		p_psl->msg_index = Fontbg_bmpwin_str_buff( p_psl->p_bmp_mfont, heap, NARC_msg_ev_pokeselect_dat, EV_POKESELECT_00, BG_FONTBMP_PRICOLOR, p_psl->msg_speed, &p_psl->p_glb_str_buff );
 
 		p_psl->draw_seq ++;
 		break;
 
 	case 4:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( p_psl->msg_index ) == 0 ){
 			Fontbg_bmpwin_strbuff_clear( p_psl );
 			p_psl->draw_seq ++;
@@ -2279,13 +2279,13 @@ static void DrawMoveSelect( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 		break;
 
 	case 5:
-		// ‚Ç‚ê‚É‚·‚éH
+		// ã©ã‚Œã«ã™ã‚‹ï¼Ÿ
 		p_psl->msg_index = Fontbg_bmpwin_str_buff( p_psl->p_bmp_mfont, heap, NARC_msg_ev_pokeselect_dat, EV_POKESELECT_08, BG_FONTBMP_PRICOLOR, p_psl->msg_speed, &p_psl->p_glb_str_buff );
 		p_psl->draw_seq ++;
 		break;
 
 	case 6:
-		//ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( p_psl->msg_index ) == 0 ){
 			Fontbg_bmpwin_strbuff_clear( p_psl );
 			p_psl->draw_seq ++;
@@ -2293,28 +2293,28 @@ static void DrawMoveSelect( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 		break;
 
 	case 7:
-		// ƒJ[ƒ\ƒ‹•`‰æ
+		// ã‚«ãƒ¼ã‚½ãƒ«æç”»
 		Cursor_clact_set_draw_flag( &p_psl->cursor, TRUE );
-		p_psl->move_lock = FALSE;	// lock‰ðœ
+		p_psl->move_lock = FALSE;	// lockè§£é™¤
 		p_psl->draw_seq ++;
 		break;
 	
 	case 8:
-		// ‘I‘ð‚³‚ê‚½ÓÝ½À°ƒ{[ƒ‹‚ð“®‚©‚·
+		// é¸æŠžã•ã‚ŒãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã‚’å‹•ã‹ã™
 		Draw_move_select_monsball( p_psl );		
 
-		// ƒJ[ƒ\ƒ‹‚ð‡‚í‚¹‚é
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚’åˆã‚ã›ã‚‹
 		Draw_move_select_cursor( p_psl );
 
-		// ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Ìƒ|ƒPƒ‚ƒ“î•ñ•`‰æ
-//		FontSubbg_bmpwin_select( p_psl );	”ñ•\Ž¦‚É‚µ‚Ü‚µ‚½B
+		// ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã®ãƒã‚±ãƒ¢ãƒ³æƒ…å ±æç”»
+//		FontSubbg_bmpwin_select( p_psl );	éžè¡¨ç¤ºã«ã—ã¾ã—ãŸã€‚
 		break;
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ð‚µ‚½ÓÝ½À°ƒ{[ƒ‹‚ð“®‚©‚·
+ *	@brief	é¸æŠžã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã‚’å‹•ã‹ã™
  *
  *	@param	p_psl 
  *
@@ -2335,9 +2335,9 @@ static void Draw_move_select_monsball( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹‚ð‡‚í‚¹‚é
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ã‚’åˆã‚ã›ã‚‹
  *
- *	@param	p_psl	ƒ[ƒN
+ *	@param	p_psl	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2350,7 +2350,7 @@ static void Draw_move_select_cursor( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šm”F‰æ–Ê•`‰æ
+ *	@brief	ç¢ºèªç”»é¢æç”»
  *
  *	@param	p_psl
  *	@param	heap 
@@ -2365,42 +2365,42 @@ static void DrawMoveQuestion( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 	switch( p_psl->draw_seq ){
 	case 0:
 
-		// ƒJ[ƒ\ƒ‹”ñ•`‰æ
+		// ã‚«ãƒ¼ã‚½ãƒ«éžæç”»
 		Cursor_clact_set_draw_flag( &p_psl->cursor, FALSE );
 
-		// ƒJ[ƒ\ƒ‹‚ð‡‚í‚¹‚é
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚’åˆã‚ã›ã‚‹
 		Draw_move_select_cursor( p_psl );
 		
-		// •¶Žš—ñ
+		// æ–‡å­—åˆ—
 		FontSubbg_bmpwin_clean( p_psl );
 		
-		// ƒtƒF[ƒhˆ—
+		// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 		QuestionFade_Req( p_psl );
 
 		p_psl->draw_seq++;
 		p_psl->move_lock = TRUE;	// lock
 		break;
 
-	case 1:	// ‘Ò‹@
+	case 1:	// å¾…æ©Ÿ
 		CircleWnd_Gra_Draw( &p_psl->circle_wnd, TRUE );
 		SoftSpriteParaSet( p_psl->soft_sprite[ p_psl->now_select_no ], SS_PARA_VANISH, 0 );
 		if( QuestionFade_EndCheck( p_psl ) ){
 
-			// ƒ|ƒPƒ‚ƒ“–Â‚«º‚ð—¬‚·
+			// ãƒã‚±ãƒ¢ãƒ³é³´ãå£°ã‚’æµã™
 			Snd_PMVoicePlay( EV_PokeSelect_SelectNoMonsnoGet( p_psl->now_select_no ), 0 );
 		
 			p_psl->draw_seq ++;
 		}
 		break;
 
-	case 2:	// WND‚ª‚¿‚á‚ñ‚Æ‘å‚«‚­‚È‚Á‚Ä‚©‚ç•¶Žš—ñ•ÏX
-		// ‚±‚Ì‚Û‚¯‚à‚ñ‚Å‚æ‚¢‚Å‚·‚©H 
+	case 2:	// WNDãŒã¡ã‚ƒã‚“ã¨å¤§ãããªã£ã¦ã‹ã‚‰æ–‡å­—åˆ—å¤‰æ›´
+		// ã“ã®ã½ã‘ã‚‚ã‚“ã§ã‚ˆã„ã§ã™ã‹ï¼Ÿ 
 		Fontbg_bmpwin_str( p_psl->p_bmp_mfont, heap, NARC_msg_ev_pokeselect_dat, EV_POKESELECT_02 + p_psl->now_select_no, BG_FONTBMP_PRICOLOR, MSG_NO_PUT );
 
-		// ƒnƒCA‚¢‚¢‚¦ì¬
+		// ãƒã‚¤ã€ã„ã„ãˆä½œæˆ
 		p_psl->p_yes_no_menu = BmpYesNoSelectInit( p_psl->p_bg, &p_psl->bmp_data, BG_YESNOBMP_CG_CHR_OFS, BG_YESNOBMP_COLOR, heap );
 
-		p_psl->move_lock = FALSE;	// lock‰ðœ
+		p_psl->move_lock = FALSE;	// lockè§£é™¤
 		p_psl->draw_seq ++;
 		break;
 
@@ -2412,31 +2412,31 @@ static void DrawMoveQuestion( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 			break;
 			
 		case 0:
-			// ÅI•ªŠò‚Ö
+			// æœ€çµ‚åˆ†å²ã¸
 			Move_seq_add( p_psl, 1 );
 			break;
 			
 		case BMPMENU_CANCEL:
 			p_psl->draw_seq++;
 
-			// ‹tƒtƒF[ƒh
+			// é€†ãƒ•ã‚§ãƒ¼ãƒ‰
 			QuestionReFade_Req( p_psl );
 			break;
 		}
 		break;
 
-	case 4:		// ‘I‘ð‰æ–Ê‚É–ß‚é
+	case 4:		// é¸æŠžç”»é¢ã«æˆ»ã‚‹
 		if( QuestionFade_EndCheck( p_psl ) ){
-			// ‘O‚É–ß‚é
+			// å‰ã«æˆ»ã‚‹
 			Move_seq_add( p_psl, -1 );
 
-			// ‚à‚¤‘I‘ð‰æ–Ê‚Ìó‘Ô‚É‚·‚é
+			// ã‚‚ã†é¸æŠžç”»é¢ã®çŠ¶æ…‹ã«ã™ã‚‹
 			p_psl->draw_seq = 7;
 
 			CircleWnd_Gra_Draw( &p_psl->circle_wnd, FALSE );
 			SoftSpriteParaSet( p_psl->soft_sprite[ p_psl->now_select_no ], SS_PARA_VANISH, 1 );
 
-			// ‚Ç‚Ç‚ê‚É‚·‚éH
+			// ã©ã©ã‚Œã«ã™ã‚‹ï¼Ÿ
 			p_psl->msg_index = Fontbg_bmpwin_str( p_psl->p_bmp_mfont, heap, NARC_msg_ev_pokeselect_dat, EV_POKESELECT_08, BG_FONTBMP_PRICOLOR, MSG_NO_PUT );
 		}
 		break;
@@ -2447,7 +2447,7 @@ static void DrawMoveQuestion( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•¶Žš—ñ‚Ì•`‰æ
+ *	@brief	æ–‡å­—åˆ—ã®æç”»
  *
  *	@param	p_psl
  *	@param	heap
@@ -2463,17 +2463,17 @@ static u8 Fontbg_bmpwin_str( GF_BGL_BMPWIN* p_bmp, int heap, int arcidx, int msg
 	STRBUF* str;
 	u8 msg_index;
 
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	msg_data = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, arcidx, heap );
 	GF_ASSERT( msg_data );
 	str = MSGMAN_AllocString( msg_data, msgidx );
 
-	// ƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( p_bmp, 15 );
 
-	// •¶Žš—ñ‘‚«ž‚Ý
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
 	msg_index = GF_STR_PrintColor( p_bmp, FONT_TALK, str, 0, 0, wait, color, NULL );
-												// ª•`‰æˆÊ’u
+												// â†‘æç”»ä½ç½®
 	BmpTalkWinWrite( p_bmp, WINDOW_TRANS_ON, BG_FONT_CG_OFS, BG_FONT_COLOR );
 
 	STRBUF_Delete( str );
@@ -2484,17 +2484,17 @@ static u8 Fontbg_bmpwin_str( GF_BGL_BMPWIN* p_bmp, int heap, int arcidx, int msg
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒGƒCƒg•¶Žš—ñ•`‰æ—p@ŠÖ”@STRBUF•Û‘¶
+ *	@brief	ã‚¦ã‚¨ã‚¤ãƒˆæ–‡å­—åˆ—æç”»ç”¨ã€€é–¢æ•°ã€€STRBUFä¿å­˜
  *	
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	heap		ƒq[ƒv
- *	@param	arcidx		ƒA[ƒJƒCƒuIDX
- *	@param	msgidx		ƒƒbƒZ[ƒWIDX
- *	@param	color		ƒJƒ‰[
- *	@param	wait		ƒEƒGƒCƒg
- *	@param	pp_glb_str	•¶Žš—ñƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^Ši”[æ
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	arcidx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–IDX
+ *	@param	msgidx		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
+ *	@param	color		ã‚«ãƒ©ãƒ¼
+ *	@param	wait		ã‚¦ã‚¨ã‚¤ãƒˆ
+ *	@param	pp_glb_str	æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿æ ¼ç´å…ˆ
  *
- *	@return	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ *	@return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static u8 Fontbg_bmpwin_str_buff( GF_BGL_BMPWIN* p_bmp, int heap, int arcidx, int msgidx, GF_PRINTCOLOR color, u32 wait, STRBUF** pp_glb_str )
@@ -2504,17 +2504,17 @@ static u8 Fontbg_bmpwin_str_buff( GF_BGL_BMPWIN* p_bmp, int heap, int arcidx, in
 
 	GF_ASSERT( (*pp_glb_str) == NULL );
 
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	msg_data = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, arcidx, heap );
 	GF_ASSERT( msg_data );
 	*pp_glb_str = MSGMAN_AllocString( msg_data, msgidx );
 
-	// ƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( p_bmp, 15 );
 
-	// •¶Žš—ñ‘‚«ž‚Ý
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
 	msg_index = GF_STR_PrintColor( p_bmp, FONT_TALK, *pp_glb_str, 0, 0, wait, color, NULL );
-												// ª•`‰æˆÊ’u
+												// â†‘æç”»ä½ç½®
 	BmpTalkWinWrite( p_bmp, WINDOW_TRANS_ON, BG_FONT_CG_OFS, BG_FONT_COLOR );
 
 	MSGMAN_Delete( msg_data );
@@ -2524,9 +2524,9 @@ static u8 Fontbg_bmpwin_str_buff( GF_BGL_BMPWIN* p_bmp, int heap, int arcidx, in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ[ƒoƒ‹STRBUFF‚ÌƒNƒŠƒA
+ *	@brief	ã‚°ãƒ­ãƒ¼ãƒãƒ«STRBUFFã®ã‚¯ãƒªã‚¢
  *
- *	@param	p_psl	ƒ[ƒN
+ *	@param	p_psl	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void Fontbg_bmpwin_strbuff_clear( EV_POKESELECT_PROC_WORK* p_psl )
@@ -2537,7 +2537,7 @@ static void Fontbg_bmpwin_strbuff_clear( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YES@NO@ÃÞ°Àì¬
+ *	@brief	YESã€€NOã€€ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
  *	@param	p_psl
  *	@param	heap 
@@ -2556,21 +2556,21 @@ static void Fontbg_yesno_bmp_dat_make( EV_POKESELECT_PROC_WORK* p_psl, int heap 
 	p_psl->bmp_data.chrnum	= BG_YESNOBMP_CG_OFS;
 
 
-	// ˜g‚ð“]‘—
+	// æž ã‚’è»¢é€
 	MenuWinGraphicSet( p_psl->p_bg, GF_BGL_FRAME1_M, BG_YESNOBMP_CG_CHR_OFS, BG_YESNOBMP_COLOR, 0, heap );
 
-	// ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒJƒ‰[ƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, BG_YESNOBMP_STR_COLOR*32, heap );	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒpƒ‰ƒ[ƒ^
+ *	@brief	å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *	@param	p_data	ƒ[ƒN
- *	@param	s_num	ŠJŽn’l
- *	@param	e_num	I—¹’l
- *	@param	count	Å‘åƒJƒEƒ“ƒg
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_num	é–‹å§‹å€¤
+ *	@param	e_num	çµ‚äº†å€¤
+ *	@param	count	æœ€å¤§ã‚«ã‚¦ãƒ³ãƒˆ
  *
  *	@return	none
  */
@@ -2585,13 +2585,13 @@ static void EvMoveInit( EV_MOVE_PARAM* p_data, s32 s_num, s32 e_num, s32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìŒvŽZ•”•ª
+ *	@brief	å‹•ä½œè¨ˆç®—éƒ¨åˆ†
  *
  *	@param	p_data
- *	@param	count	Œ»ÝƒJƒEƒ“ƒg
+ *	@param	count	ç¾åœ¨ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@retval TRUE	I—¹
- *	@retval	FALSE	‚Â‚¤‚¶‚å‚¤
+ *	@retval TRUE	çµ‚äº†
+ *	@retval	FALSE	ã¤ã†ã˜ã‚‡ã†
  */
 //-----------------------------------------------------------------------------
 static BOOL EvMoveMain( EV_MOVE_PARAM* p_data, s32 count )
@@ -2608,12 +2608,12 @@ static BOOL EvMoveMain( EV_MOVE_PARAM* p_data, s32 count )
 		ret = FALSE;
 	}
 
-	// ŒvŽZ
+	// è¨ˆç®—
 	num = p_data->add_data * count;
 	num = num / p_data->count_max;
 	num += p_data->s_data;
 
-	// Ý’è
+	// è¨­å®š
 	p_data->data = num;
 
 	return ret;
@@ -2622,18 +2622,18 @@ static BOOL EvMoveMain( EV_MOVE_PARAM* p_data, s32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰“®ìÝ’è
+ *	@brief	ã‚«ãƒ¡ãƒ©å‹•ä½œè¨­å®š
  *
- *	@param	p_camera_move	ƒJƒƒ‰“®ìƒpƒ‰ƒ[ƒ^
- *	@param	p_camera		ƒJƒƒ‰ƒ[ƒN
- *	@param	p_target		ƒ^[ƒQƒbƒgÀ•Wƒ[ƒN
+ *	@param	p_camera_move	ã‚«ãƒ¡ãƒ©å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	p_camera		ã‚«ãƒ¡ãƒ©ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_target		ã‚¿ãƒ¼ã‚²ãƒƒãƒˆåº§æ¨™ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void EvCameraMoveReq( EV_CAMERA_MOVE* p_camera_move, GF_CAMERA_PTR p_camera, VecFx32* p_target )
 {
-	// “o˜^Ï‚Ýƒ`ƒFƒbƒN
+	// ç™»éŒ²æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_camera_move->tcb == NULL );
 	
 	EvMoveInit( &p_camera_move->x_rota, CAMERA_ANGLE_X, CAMERA_ANGLE_AF_X, CAMERA_MOVE_AF_COUNT );
@@ -2669,7 +2669,7 @@ static void EvCameraMoveTcb( TCB_PTR tcb, void* work )
 	EvMoveMain( &p_data->dist, p_data->count );
 	EvMoveMain( &p_data->target_z, p_data->count );
 
-	// ƒJƒƒ‰‚É”½‰f
+	// ã‚«ãƒ¡ãƒ©ã«åæ˜ 
 	angle.x = p_data->x_rota.data;
 	angle.y = CAMERA_ANGLE_Y;
 	angle.z = CAMERA_ANGLE_Z;
@@ -2677,10 +2677,10 @@ static void EvCameraMoveTcb( TCB_PTR tcb, void* work )
 	GFC_SetCameraDistance( p_data->dist.data, p_data->p_camera );
 	p_data->p_target->z = p_data->target_z.data;
 
-	// ƒJƒEƒ“ƒg
+	// ã‚«ã‚¦ãƒ³ãƒˆ
 	p_data->count ++;
 	
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( check == TRUE ){
 		TCB_Delete( tcb );
 		p_data->tcb = NULL;
@@ -2690,12 +2690,12 @@ static void EvCameraMoveTcb( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰“®ìI—¹ƒ`ƒFƒbƒN
+ *	@brief	ã‚«ãƒ¡ãƒ©å‹•ä½œçµ‚äº†ãƒã‚§ãƒƒã‚¯
  *	
  *	@param	p_camera_move 
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	ŽÀs’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	å®Ÿè¡Œä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCameraMoveEndCheck( EV_CAMERA_MOVE* p_camera_move )
@@ -2706,10 +2706,10 @@ static BOOL EvCameraMoveEndCheck( EV_CAMERA_MOVE* p_camera_move )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	OAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_psl	ƒ[ƒN
- *	@param	heap	ƒq[ƒv
+ *	@param	p_psl	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return
  */
@@ -2717,38 +2717,38 @@ static BOOL EvCameraMoveEndCheck( EV_CAMERA_MOVE* p_camera_move )
 static void Cursor_oam_load( EV_POKESELECT_PROC_WORK* p_psl, EV_CURSOR_OBJ* p_data, int heap )
 {
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_data->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar( 
 			p_psl->res_manager[ CLACT_U_CHAR_RES ], ARC_EV_POKESELECT_GRA,
 			NARC_ev_pokeselect_psel_cursol_NCGR, FALSE,
 			NARC_ev_pokeselect_psel_cursol_NCGR,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_data->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_data->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_data->res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt( 
 			p_psl->res_manager[ CLACT_U_PLTT_RES ], ARC_EV_POKESELECT_GRA,
 			NARC_ev_pokeselect_psel_cursol_NCLR, FALSE, 
 			NARC_ev_pokeselect_psel_cursol_NCLR, 
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			1, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_data->res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_data->res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_data->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell(
 			p_psl->res_manager[ CLACT_U_CELL_RES ], ARC_EV_POKESELECT_GRA,
 			NARC_ev_pokeselect_psel_cursol_NCER, FALSE,
 			NARC_ev_pokeselect_psel_cursol_NCER,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_data->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell(
 			p_psl->res_manager[ CLACT_U_CELLANM_RES ], ARC_EV_POKESELECT_GRA, 
 			NARC_ev_pokeselect_psel_cursol_NANR, FALSE,
@@ -2758,9 +2758,9 @@ static void Cursor_oam_load( EV_POKESELECT_PROC_WORK* p_psl, EV_CURSOR_OBJ* p_da
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒŠƒ\[ƒX”jŠü
+ *	@brief	OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_psl	ƒ[ƒN
+ *	@param	p_psl	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2770,7 +2770,7 @@ static void Cursor_oam_delete( EV_POKESELECT_PROC_WORK* p_psl, EV_CURSOR_OBJ* p_
 	CLACT_U_CharManagerDelete( p_data->res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_data->res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_psl->res_manager[ CLACT_U_CHAR_RES ],
 			p_data->res_obj[ CLACT_U_CHAR_RES ] );
@@ -2787,10 +2787,10 @@ static void Cursor_oam_delete( EV_POKESELECT_PROC_WORK* p_psl, EV_CURSOR_OBJ* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_psl	ƒ[ƒN
- *	@param	heap	ƒq[ƒv
+ *	@param	p_psl	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -2800,8 +2800,8 @@ static void Cursor_clact_add( EV_POKESELECT_PROC_WORK* p_psl, EV_CURSOR_OBJ* p_d
 	CLACT_HEADER		clact_head;
 	CLACT_ADD_SIMPLE	add;
 	
-	// Šeƒ{ƒ^ƒ“‚ð“o˜^
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// å„ãƒœã‚¿ãƒ³ã‚’ç™»éŒ²
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_ev_pokeselect_psel_cursol_NCGR,
 			NARC_ev_pokeselect_psel_cursol_NCLR,
@@ -2820,7 +2820,7 @@ static void Cursor_clact_add( EV_POKESELECT_PROC_WORK* p_psl, EV_CURSOR_OBJ* p_d
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 	add.heap		= heap;
 
-	// ƒJ[ƒ\ƒ‹“o˜^
+	// ã‚«ãƒ¼ã‚½ãƒ«ç™»éŒ²
 	add.mat.x = 0;
 	add.mat.y = 0;
 	p_data->cursor = CLACT_AddSimple( &add );
@@ -2832,9 +2832,9 @@ static void Cursor_clact_add( EV_POKESELECT_PROC_WORK* p_psl, EV_CURSOR_OBJ* p_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_data	ƒJ[ƒ\ƒ‹ƒIƒuƒWƒF	
+ *	@param	p_data	ã‚«ãƒ¼ã‚½ãƒ«ã‚ªãƒ–ã‚¸ã‚§	
  *
  *	@return	none
  */
@@ -2846,11 +2846,11 @@ static void Cursor_clact_delete( EV_CURSOR_OBJ* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]“®ìƒ[ƒN‰Šú‰»
+ *	@brief	å›žè»¢å‹•ä½œãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- *	@param	p_data	ÃÞ°ÀŠi”[æ
- *	@param	r		”¼Œa‚Ì‘å‚«‚³
- *	@param	count	¶³ÝÀÅ‘å’l
+ *	@param	p_data	ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	r		åŠå¾„ã®å¤§ãã•
+ *	@param	count	ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§å€¤
  *
  *	@return	none
  */
@@ -2865,9 +2865,9 @@ static void EvRotaMoveInit( EV_ROTA_MOVE_ONE* p_data, fx32 r, int count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]“®ìƒƒCƒ“
+ *	@brief	å›žè»¢å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void EvRotaMoveMain( EV_ROTA_MOVE_ONE* p_data )
@@ -2875,31 +2875,31 @@ static void EvRotaMoveMain( EV_ROTA_MOVE_ONE* p_data )
 	u16 rota;
 	int calc;
 
-	// Œ»Ý‰ñ“]Šp‚ð‹‚ß‚é
+	// ç¾åœ¨å›žè»¢è§’ã‚’æ±‚ã‚ã‚‹
 	calc = FX_GET_ROTA_NUM( 360 ) * p_data->count;
 	calc = calc / p_data->count_max;
 	rota = calc;
 
-	// Œ»Ý“®ìˆÊ’u
+	// ç¾åœ¨å‹•ä½œä½ç½®
 	p_data->num = FX_Mul( FX_SinIdx( rota ), p_data->r );
 
 
-	// ƒJƒEƒ“ƒgˆ—
+	// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	p_data->count = (p_data->count + 1) % p_data->count_max;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹“®ìŠJŽn
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œé–‹å§‹
  *
- *	@param	p_cursor	ƒJ[ƒ\ƒ‹ƒIƒuƒWƒFƒNƒg
+ *	@param	p_cursor	ã‚«ãƒ¼ã‚½ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void EvCursorMoveReq( EV_CURSOR_OBJ* p_cursor )
 {
-	// ‰Šú‰»‚¸‚Ýƒ`ƒFƒbƒN
+	// åˆæœŸåŒ–ãšã¿ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_cursor->tcb == NULL );
 	
 	EvRotaMoveInit( &p_cursor->move_param, CURSOR_MOVE_Y, CURSOR_MOVE_COUNT );
@@ -2909,7 +2909,7 @@ static void EvCursorMoveReq( EV_CURSOR_OBJ* p_cursor )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ƒ^ƒXƒN
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ã‚¿ã‚¹ã‚¯
  *
  *	@param	tcb
  *	@param	work 
@@ -2924,7 +2924,7 @@ static void EvCursorMoveTcb( TCB_PTR tcb, void* work )
 	
 	EvRotaMoveMain( &p_cursor->move_param );
 
-	// À•WÝ’è
+	// åº§æ¨™è¨­å®š
 	set_mat = p_cursor->mat;
 	set_mat.y += p_cursor->move_param.num;
 	CLACT_SetMatrix( p_cursor->cursor, &set_mat );
@@ -2932,7 +2932,7 @@ static void EvCursorMoveTcb( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹“®ì”jŠü
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œç ´æ£„
  *
  *	@param	p_cursor 
  *
@@ -2949,7 +2949,7 @@ static void EvCursorMoveDelete( EV_CURSOR_OBJ* p_cursor )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦ONOFF
+ *	@brief	è¡¨ç¤ºONOFF
  *
  *	@param	p_data
  *	@param	flag 
@@ -2970,11 +2970,11 @@ static void Cursor_clact_set_matrix( EV_CURSOR_OBJ* p_data, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰~Œ`ƒEƒBƒ“ƒhƒE‚®‚ç‚Ó‚¡‚Á‚­‰Šú‰»
+ *	@brief	å††å½¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãã‚‰ãµãƒã£ãåˆæœŸåŒ–
  *
- *	@param	p_data		ÃÞ°ÀŠi”[æ
- *	@param	p_psl		ÃÞ°Àƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	p_psl		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return
  */
@@ -2985,22 +2985,22 @@ static void CircleWnd_Gra_Init( EV_CIRCLE_WND* p_data, EV_POKESELECT_PROC_WORK* 
 	SWSP_PLTTDATA pltt_ent;
 	SWSP_ADDDATA add;
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
 	p_data->swsp_char_buff = ArcUtil_CharDataGet( 
 			ARC_EV_POKESELECT_GRA, NARC_ev_pokeselect_psel_circle_NCBR, FALSE,
 			&p_data->p_chardata, heap );
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_data->swsp_pltt_buff = ArcUtil_PalDataGet( 
 			ARC_EV_POKESELECT_GRA, NARC_ev_pokeselect_psel_circle_NCLR,
 			&p_data->p_plttdata, heap );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	char_ent.s_sys		= p_psl->swsp_sys;
 	char_ent.res_file	= p_data->p_chardata;
 	p_data->swsp_char = SWSP_CharLoad( &char_ent );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 	pltt_ent.s_sys		= p_psl->swsp_sys;
 	pltt_ent.res_file	= p_data->p_plttdata;
 	pltt_ent.load_num	= 1;
@@ -3008,13 +3008,13 @@ static void CircleWnd_Gra_Init( EV_CIRCLE_WND* p_data, EV_POKESELECT_PROC_WORK* 
 
 
 	//-------------------------------------
-	//	“o˜^
+	//	ç™»éŒ²
 	//=====================================
 	add.s_sys	= p_psl->swsp_sys;
 	add.p_char	= p_data->swsp_char;
 	add.p_pltt	= p_data->swsp_pltt;
 
-	// “o˜^ƒf[ƒ^Ši”[
+	// ç™»éŒ²ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	add.m_x = 0;
 	add.m_y = 0;
 	add.rota = 0;
@@ -3022,19 +3022,19 @@ static void CircleWnd_Gra_Init( EV_CIRCLE_WND* p_data, EV_POKESELECT_PROC_WORK* 
 	add.pri = 1022;
 	add.pltt_offs = 0; 
 
-	// “o˜^
+	// ç™»éŒ²
 	p_data->swsp_obj = SWSP_Add( &add );
 
-	// Žæ‚è‡‚¦‚¸”ñ•\Ž¦
+	// å–ã‚Šåˆãˆãšéžè¡¨ç¤º
 	SWSP_SetSpriteDraw( p_data->swsp_obj, FALSE );
 
-	// ’†SÀ•W
+	// ä¸­å¿ƒåº§æ¨™
 	SWSP_SetSpriteCenterPos( p_data->swsp_obj, QUESTION_CIRCLE_SIZE / 2, QUESTION_CIRCLE_SIZE / 2 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CIRCLEƒOƒ‰ƒtƒBƒbƒNÃÞ°À”jŠü
+ *	@brief	CIRCLEã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
  *	@param	p_data
  *
@@ -3043,20 +3043,20 @@ static void CircleWnd_Gra_Init( EV_CIRCLE_WND* p_data, EV_POKESELECT_PROC_WORK* 
 //-----------------------------------------------------------------------------
 static void CircleWnd_Gra_Delete( EV_CIRCLE_WND* p_data )
 {
-	// ƒIƒuƒWƒFƒNƒg”jŠü
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 	SWSP_Delete( p_data->swsp_obj );
 	
-	// Vram‚©‚ç”jŠü
+	// Vramã‹ã‚‰ç ´æ£„
 	SWSP_CharDelete( p_data->swsp_char );
 	SWSP_PlttDelete( p_data->swsp_pltt );
-	// ƒƒ‚ƒŠ‚©‚ç”jŠü
+	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ç ´æ£„
 	sys_FreeMemoryEz( p_data->swsp_char_buff );
 	sys_FreeMemoryEz( p_data->swsp_pltt_buff );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒNƒ‹@•`‰æONOFF
+ *	@brief	ã‚µãƒ¼ã‚¯ãƒ«ã€€æç”»ONOFF
  *
  *	@param	p_data 
  *	@param	flag
@@ -3071,7 +3071,7 @@ static void CircleWnd_Gra_Draw( EV_CIRCLE_WND* p_data, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒNƒ‹ƒEƒBƒ“ƒhƒE“®ìƒŠƒNƒGƒXƒg
+ *	@brief	ã‚µãƒ¼ã‚¯ãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
  *	@param	p_data 
  *
@@ -3080,19 +3080,19 @@ static void CircleWnd_Gra_Draw( EV_CIRCLE_WND* p_data, BOOL flag )
 //-----------------------------------------------------------------------------
 static void CircleWnd_Move_Req( EV_CIRCLE_WND* p_data, fx32 s_x, fx32 e_x, fx32 s_y, fx32 e_y, fx32 s_s, fx32 e_s, int sync )
 {
-	// ‰Šú‚¸‚Ýƒ`ƒFƒbƒN
+	// åˆæœŸãšã¿ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_data->tcb == NULL );
 	
-	// XÀ•W“®ì
+	// Xåº§æ¨™å‹•ä½œ
 	EvMoveInit( &p_data->param.x, s_x, e_x, sync );
 
-	// YÀ•W“®ì
+	// Yåº§æ¨™å‹•ä½œ
 	EvMoveInit( &p_data->param.y, s_y, e_y, sync );
 
-	// scaleÀ•W“®ì
+	// scaleåº§æ¨™å‹•ä½œ
 	EvMoveInit( &p_data->param.scale, s_s, e_s, sync );
 
-	// ¶³ÝÀ‰Šú‰»
+	// ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 	p_data->param.count = 0;
 	p_data->param.count_add = 1;
 
@@ -3101,23 +3101,23 @@ static void CircleWnd_Move_Req( EV_CIRCLE_WND* p_data, fx32 s_x, fx32 e_x, fx32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒ‰ƒ[ƒ^‚ðŽæ‚Á‚Ä‚¨‚¢‚ÄA‹tÄ¶‚³‚¹‚é
+ *	@brief	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–ã£ã¦ãŠã„ã¦ã€é€†å†ç”Ÿã•ã›ã‚‹
  *
- *	@param	p_data		ÃÞ°À
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
  *
  *	@return
  */
 //-----------------------------------------------------------------------------
 static void CircleWnd_ReMove_Req( EV_CIRCLE_WND* p_data )
 {
-	// ‰Šú‚¸‚Ýƒ`ƒFƒbƒN
+	// åˆæœŸãšã¿ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_data->tcb == NULL );
 
-	// ¶³ÝÀ‰Šú‰»
+	// ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 	p_data->param.count_add = QUESTION_CIRCLE_RET_ADD;
 	
 
-	// ‚·‚®‚¨‚í‚Á‚¿‚á‚¤‚Ì‰ñ”ð
+	// ã™ããŠã‚ã£ã¡ã‚ƒã†ã®å›žé¿
 	if( p_data->param.count >= p_data->param.x.count_max  ){
 		p_data->param.count = p_data->param.x.count_max + p_data->param.count_add;
 	}
@@ -3127,7 +3127,7 @@ static void CircleWnd_ReMove_Req( EV_CIRCLE_WND* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒNƒ‹ƒEƒBƒ“ƒhƒE“®ìƒ^ƒXƒN
+ *	@brief	ã‚µãƒ¼ã‚¯ãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œã‚¿ã‚¹ã‚¯
  *
  *	@param	tcb
  *	@param	work 
@@ -3141,39 +3141,39 @@ static void CircleWnd_Move_Tcb( TCB_PTR tcb, void* work )
 	BOOL check;
 	fx32 x, y;
 
-	// “®ì‚³‚¹‚é
+	// å‹•ä½œã•ã›ã‚‹
 	check = EvMoveMain( &p_data->param.x, p_data->param.count );
 	EvMoveMain( &p_data->param.y, p_data->param.count );
 	EvMoveMain( &p_data->param.scale, p_data->param.count );
 
-	// ¶ãÀ•W‚É‚µ‚Ä’l‚ðÝ’è
+	// å·¦ä¸Šåº§æ¨™ã«ã—ã¦å€¤ã‚’è¨­å®š
 	x = p_data->param.x.data - ((QUESTION_CIRCLE_SIZE/2)*FX32_ONE);	
 	y = p_data->param.y.data - ((QUESTION_CIRCLE_SIZE/2)*FX32_ONE);	
 	SWSP_SetSpritePos( p_data->swsp_obj, 
 			x >> FX32_SHIFT, y >> FX32_SHIFT );
 
-	// Šgk’l
+	// æ‹¡ç¸®å€¤
 	SWSP_SetSpriteScale( p_data->swsp_obj, p_data->param.scale.data, p_data->param.scale.data );
 
 	if( (check == TRUE) || (p_data->param.count < 0) ){
-		// I—¹
+		// çµ‚äº†
 		TCB_Delete( tcb );
 		p_data->tcb = NULL;
 	}
 
-	// ƒJƒEƒ“ƒgˆ—
+	// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	p_data->param.count += p_data->param.count_add;
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒNƒ‹ƒEƒBƒ“ƒhƒE“®ìI—¹ƒ`ƒFƒbƒN
+ *	@brief	ã‚µãƒ¼ã‚¯ãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œçµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
  *	@param	p_data 
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL CircleWnd_Move_EndCheck( EV_CIRCLE_WND* p_data )
@@ -3187,7 +3187,7 @@ static BOOL CircleWnd_Move_EndCheck( EV_CIRCLE_WND* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šm”F‰æ–ÊƒtƒF[ƒhƒŠƒNƒGƒXƒg
+ *	@brief	ç¢ºèªç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
  *	@param	p_psl 
  *
@@ -3198,7 +3198,7 @@ static void QuestionFade_Req( EV_POKESELECT_PROC_WORK* p_psl )
 {
 	fx32 s_x, s_y;
 
-	// ŠJŽnˆÊ’u‚ð‹‚ß‚é
+	// é–‹å§‹ä½ç½®ã‚’æ±‚ã‚ã‚‹
 	s_x = p_psl->select_2_matrix[ p_psl->now_select_no ][ 0 ] << FX32_SHIFT;
 	s_y = (p_psl->select_2_matrix[ p_psl->now_select_no ][ 1 ] + QUESTION_CIRCLE_Y_OFS) << FX32_SHIFT;
 	CircleWnd_Move_Req( &p_psl->circle_wnd, 
@@ -3207,7 +3207,7 @@ static void QuestionFade_Req( EV_POKESELECT_PROC_WORK* p_psl )
 			QUESTION_FADE_SCALE_S, QUESTION_FADE_SCALE_E,
 			QUESTION_FADE_SYNC );
 
-	// Îß¹¸Þ×
+	// ãƒã‚±ã‚°ãƒ©
 	PokeGra_Move_Req( &p_psl->soft_sprite_anm, 
 			p_psl->soft_sprite[ p_psl->now_select_no ],
 			s_x, EV_POKESELECT_POKEGRA_X << FX32_SHIFT,
@@ -3219,7 +3219,7 @@ static void QuestionFade_Req( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šm”F‰æ–Ê‚©‚ç–ß‚éƒtƒF[ƒhƒŠƒNƒGƒXƒg
+ *	@brief	ç¢ºèªç”»é¢ã‹ã‚‰æˆ»ã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
  *	@param	p_psl 
  *
@@ -3234,12 +3234,12 @@ static void QuestionReFade_Req( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhI—¹‘Ò‚¿
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
  *
  *	@param	p_psl 
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL QuestionFade_EndCheck( EV_POKESELECT_PROC_WORK* p_psl )
@@ -3249,7 +3249,7 @@ static BOOL QuestionFade_EndCheck( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN“®ì
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‹•ä½œ
  *
  *	@param	p_data
  *	@param	p_soft_sprit
@@ -3266,22 +3266,22 @@ static BOOL QuestionFade_EndCheck( EV_POKESELECT_PROC_WORK* p_psl )
 //-----------------------------------------------------------------------------
 static void PokeGra_Move_Req( EV_POKEOBJ_ANM* p_data, SOFT_SPRITE* p_soft_sprit, fx32 s_x, fx32 e_x, fx32 s_y, fx32 e_y, fx32 s_s, fx32 e_s, int sync )
 {
-	// ‰Šú‚¸‚Ýƒ`ƒFƒbƒN
+	// åˆæœŸãšã¿ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_data->tcb == NULL );
 	
-	// XÀ•W“®ì
+	// Xåº§æ¨™å‹•ä½œ
 	EvMoveInit( &p_data->param.x, s_x, e_x, sync );
 
-	// YÀ•W“®ì
+	// Yåº§æ¨™å‹•ä½œ
 	EvMoveInit( &p_data->param.y, s_y, e_y, sync );
 
-	// scaleÀ•W“®ì
+	// scaleåº§æ¨™å‹•ä½œ
 	EvMoveInit( &p_data->param.scale, s_s, e_s, sync );
 
-	// ƒXƒvƒ‰ƒCƒgƒ[ƒN
+	// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¯ãƒ¼ã‚¯
 	p_data->p_soft_sprite = p_soft_sprit;
 
-	// ¶³ÝÀ‰Šú‰»
+	// ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 	p_data->param.count = 0;
 	p_data->param.count_add = 1;
 
@@ -3290,7 +3290,7 @@ static void PokeGra_Move_Req( EV_POKEOBJ_ANM* p_data, SOFT_SPRITE* p_soft_sprit,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‹tÄ¶
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é€†å†ç”Ÿ
  *
  *	@param	p_data 
  *
@@ -3299,14 +3299,14 @@ static void PokeGra_Move_Req( EV_POKEOBJ_ANM* p_data, SOFT_SPRITE* p_soft_sprit,
 //-----------------------------------------------------------------------------
 static void PokeGra_ReMove_Req( EV_POKEOBJ_ANM* p_data )
 {
-	// ‰Šú‚¸‚Ýƒ`ƒFƒbƒN
+	// åˆæœŸãšã¿ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_data->tcb == NULL );
 
-	// ¶³ÝÀ‰Šú‰»
+	// ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 	p_data->param.count_add = QUESTION_CIRCLE_RET_ADD;
 	
 
-	// ‚·‚®‚¨‚í‚Á‚¿‚á‚¤‚Ì‰ñ”ð
+	// ã™ããŠã‚ã£ã¡ã‚ƒã†ã®å›žé¿
 	if( p_data->param.count >= p_data->param.x.count_max  ){
 		p_data->param.count = p_data->param.x.count_max + p_data->param.count_add;
 	}
@@ -3316,7 +3316,7 @@ static void PokeGra_ReMove_Req( EV_POKEOBJ_ANM* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚É”½‰f
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«åæ˜ 
  *
  *	@param	tcb
  *	@param	work 
@@ -3330,12 +3330,12 @@ static void PokeGra_Move_Tcb( TCB_PTR tcb, void* work )
 	BOOL check;
 	u32 scale_num;
 
-	// “®ì‚³‚¹‚é
+	// å‹•ä½œã•ã›ã‚‹
 	check = EvMoveMain( &p_data->param.x, p_data->param.count );
 	EvMoveMain( &p_data->param.y, p_data->param.count );
 	EvMoveMain( &p_data->param.scale, p_data->param.count );
 
-	// 0x100‚ª1‚ÌŠg‘åk¬‚É‚·‚é
+	// 0x100ãŒ1ã®æ‹¡å¤§ç¸®å°ã«ã™ã‚‹
 	scale_num = FX_Mul( 0x100*FX32_ONE, p_data->param.scale.data ) >> FX32_SHIFT;
 
 	SoftSpriteParaSet( p_data->p_soft_sprite, SS_PARA_POS_X, p_data->param.x.data >> FX32_SHIFT );
@@ -3344,18 +3344,18 @@ static void PokeGra_Move_Tcb( TCB_PTR tcb, void* work )
 	SoftSpriteParaSet( p_data->p_soft_sprite, SS_PARA_AFF_Y, scale_num );
 
 	if( (check == TRUE) || (p_data->param.count < 0) ){
-		// I—¹
+		// çµ‚äº†
 		TCB_Delete( tcb );
 		p_data->tcb = NULL;
 	}
 
-	// ƒJƒEƒ“ƒgˆ—
+	// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	p_data->param.count += p_data->param.count_add;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ`ƒFƒbƒN
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
  *	@param	p_data 
  *
@@ -3374,10 +3374,10 @@ static BOOL PokeGra_Move_EndCheck( EV_POKEOBJ_ANM* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu–Êƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+ *	@brief	ã‚µãƒ–é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
  *
- *	@param	p_psl	ƒ[ƒN
- *	@param	heap	ƒq[ƒv
+ *	@param	p_psl	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return
  */
@@ -3387,7 +3387,7 @@ static void FontSubbg_bmpwin_make( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 	int i;
 	int x, y;
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_PalSet( ARC_EV_POKESELECT_GRA, NARC_ev_pokeselect_font_system_NCLR, PALTYPE_MAIN_BG, BG_FONTSUB_COLOR * 32, 32, heap );
 	
 	for( i=0; i<EV_POKESELECT_MONSNUM; i++ ){
@@ -3409,18 +3409,18 @@ static void FontSubbg_bmpwin_make( EV_POKESELECT_PROC_WORK* p_psl, int heap )
 			break;
 		}
 	
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“o˜^
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç™»éŒ²
 		GF_BGL_BmpWinAdd( p_psl->p_bg, p_psl->p_bmp_subfont[i],
 				GF_BGL_FRAME3_M, x, y, BG_FONTSUBBMP_CX, BG_FONTSUBBMP_CY, BG_FONTSUB_COLOR, 1 + (BG_FONTSUB_CGX_OFS * i) );
 
-		// •¶Žš—ñ•`‰æ
+		// æ–‡å­—åˆ—æç”»
 		FontSubbg_bmpwin_str( p_psl->p_bmp_subfont[i], heap, NARC_msg_ev_pokeselect_dat, EV_POKESELECT_05 + i, BG_FONTSUBBMP_PRICOLOR );
 	}
 
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
  *	@param	p_psl 
  *
@@ -3439,7 +3439,7 @@ static void FontSubbg_bmpwin_delete( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•¶Žš—ñ•`‰æ
+ *	@brief	æ–‡å­—åˆ—æç”»
  *
  *	@param	p_bmp
  *	@param	heap
@@ -3455,17 +3455,17 @@ static void FontSubbg_bmpwin_str( GF_BGL_BMPWIN* p_bmp, int heap, int arcidx, in
 	MSGDATA_MANAGER* msg_data;
 	STRBUF* str;
 
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	msg_data = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, arcidx, heap );
 	GF_ASSERT( msg_data );
 	str = MSGMAN_AllocString( msg_data, msgidx );
 
-	// ƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( p_bmp, GF_PRINTCOLOR_GET_GROUND( color ) );
 
-	// •¶Žš—ñ‘‚«ž‚Ý
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
 	GF_STR_PrintColor( p_bmp, FONT_SYSTEM, str, 1, 0, MSG_NO_PUT, color, NULL );
-												// ª•`‰æˆÊ
+												// â†‘æç”»ä½
 	STRBUF_Delete( str );
 
 	MSGMAN_Delete( msg_data );
@@ -3473,26 +3473,26 @@ static void FontSubbg_bmpwin_str( GF_BGL_BMPWIN* p_bmp, int heap, int arcidx, in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ð‚³‚ê‚Ä‚¢‚éƒƒbƒZ[ƒW‚ðo‚·
+ *	@brief	é¸æŠžã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™
  *
- *	@param	p_psl ƒ[ƒN
+ *	@param	p_psl ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void FontSubbg_bmpwin_select( EV_POKESELECT_PROC_WORK* p_psl )
 {
-	// ¡‚Ü‚Å‚Ì‚à‚Ì‚ðƒNƒŠƒA
+	// ä»Šã¾ã§ã®ã‚‚ã®ã‚’ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinOff( p_psl->p_bmp_subfont[ p_psl->local_select_no ] );
 
-	// ŽŸ‚Ì‚ðON
+	// æ¬¡ã®ã‚’ON
 	GF_BGL_BmpWinOn( p_psl->p_bmp_subfont[ p_psl->now_select_no ] );
 	p_psl->local_select_no = p_psl->now_select_no;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Š®‘S‚ÉÁ‚·
+ *	@brief	å®Œå…¨ã«æ¶ˆã™
  *
  *	@param	p_psl 
  *
@@ -3506,16 +3506,16 @@ static void FontSubbg_bmpwin_clean( EV_POKESELECT_PROC_WORK* p_psl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ðƒiƒ“ƒo[‚©‚ç‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ðŽæ“¾
+ *	@brief	é¸æŠžãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- *	@param	no	‘I‘ðƒiƒ“ƒo[
+ *	@param	no	é¸æŠžãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@return	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static u16 EV_PokeSelect_SelectNoMonsnoGet( u16 no )
 {
-	// e‚É‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“ÅÝÊÞ°‚ðÝ’è‚·‚é
+	// è¦ªã«é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’è¨­å®šã™ã‚‹
 	switch( no ){
 	case POKESELECT_LEFT_BALL:
 		return MONSNO_NAETORU;

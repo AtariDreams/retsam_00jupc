@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief encsession C++ƒ‰ƒbƒp[
+ * @brief encsession C++ãƒ©ãƒƒãƒ‘ãƒ¼
  */
 
 #ifndef DWCi_ENCSESSIONCPP_H_
@@ -25,19 +25,19 @@
 #include "dwci_lobbyUtil.h"
 
 /**
- * @brief ƒf[ƒ^‚Ì‘—óM‚ªŠ®—¹‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
+ * @brief ãƒ‡ãƒ¼ã‚¿ã®é€å—ä¿¡ãŒå®Œäº†ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
  * 
- * ƒf[ƒ^‚Ì‘—óM‚ªŠ®—¹‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B–{ƒR[ƒ‹ƒoƒbƒN“à‚ÅDWCi_EncSession::StartSessionAsyncŠÖ”‚ğŒÄ‚Ño‚·‚±‚Æ‚à‚Å‚«‚Ü‚·B
+ * ãƒ‡ãƒ¼ã‚¿ã®é€å—ä¿¡ãŒå®Œäº†ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚æœ¬ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å†…ã§DWCi_EncSession::StartSessionAsyncé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã“ã¨ã‚‚ã§ãã¾ã™ã€‚
  */
 typedef void (*DWCi_EncSessionCompletedCallback)(BOOL success, const u8* data, u32 size, void* param);
 
 /**
- * @brief encsession C++ƒ‰ƒbƒp[
+ * @brief encsession C++ãƒ©ãƒƒãƒ‘ãƒ¼
  */
 class DWCi_EncSession : public DWCi_Base
 {
     static DWCi_EncSession* session;
-    static DWCi_EncSession* endSession; // Ú‘±‚ªI—¹‚µ‚Ä‚ ‚Æ‚Ííœ‚·‚é‚¾‚¯‚Ì‚à‚Ì
+    static DWCi_EncSession* endSession; // æ¥ç¶šãŒçµ‚äº†ã—ã¦ã‚ã¨ã¯å‰Šé™¤ã™ã‚‹ã ã‘ã®ã‚‚ã®
     
     u32 retryCount;
     DWCiEncServer server;
@@ -112,12 +112,12 @@ class DWCi_EncSession : public DWCi_Base
 
 		switch( state )
 		{
-		case DWCi_ENC_SESSION_STATE_COMPLETED:		// Š®—¹
+		case DWCi_ENC_SESSION_STATE_COMPLETED:		// å®Œäº†
         {
             void* ptr;
             buf = DWCi_EncSessionGetResponse( &recvSize );
             
-            // ƒVƒƒƒbƒgƒ_ƒEƒ“Œã‚ÉƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ô•K—v‚ª‚ ‚é‚½‚ßƒoƒbƒtƒ@‚ğƒRƒs[
+            // ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³å¾Œã«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã¶å¿…è¦ãŒã‚ã‚‹ãŸã‚ãƒãƒƒãƒ•ã‚¡ã‚’ã‚³ãƒ”ãƒ¼
             ptr = DWC_Alloc((DWCAllocType)0, recvSize);
             if(ptr)
             {
@@ -136,21 +136,21 @@ class DWCi_EncSession : public DWCi_Base
             DWC_SAFE_FREE(ptr);
             return TRUE;
         }
-        case DWCi_ENC_SESSION_STATE_ERROR:			// ƒGƒ‰[”­¶
+        case DWCi_ENC_SESSION_STATE_ERROR:			// ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
             DWC_ClearError();
             if(--retryCount > 0)
             {
                 DWCi_EncSessionShutdown();
                 if(PrivateStartSessionAsync())
                 {
-                    // ƒŠƒgƒ‰ƒC‚Å‘±s
+                    // ãƒªãƒˆãƒ©ã‚¤ã§ç¶šè¡Œ
                     return FALSE;
                 }
             }
             
             FinalizeSession(FALSE, NULL, 0, param);
             return TRUE;
-        case DWCi_ENC_SESSION_STATE_CANCELED:		// ƒLƒƒƒ“ƒZƒ‹
+        case DWCi_ENC_SESSION_STATE_CANCELED:		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
             DWC_ClearError();
             
             FinalizeSession(FALSE, NULL, 0, param);
@@ -164,21 +164,21 @@ class DWCi_EncSession : public DWCi_Base
     {
         DWCi_EncSessionShutdown();
         
-        // ƒR[ƒ‹ƒoƒbƒN’†‚ÉStartSessionAsync‚ğŒÄ‚×‚é‚æ‚¤‚É‘Ò”ğ‚·‚éB
+        // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ä¸­ã«StartSessionAsyncã‚’å‘¼ã¹ã‚‹ã‚ˆã†ã«å¾…é¿ã™ã‚‹ã€‚
         std::swap(endSession, session);
         callback(success, data, size, param);
     }
     
 public:
 /**
- * @brief ƒf[ƒ^‚Ì‘—óM‚ğŠJn‚µ‚Ü‚·B
+ * @brief ãƒ‡ãƒ¼ã‚¿ã®é€å—ä¿¡ã‚’é–‹å§‹ã—ã¾ã™ã€‚
  * 
- * ƒf[ƒ^‚Ì‘—óM‚ğŠJn‚µ‚Ü‚·BŠ®—¹‚Écallback‚Åw’è‚µ‚½ƒR[ƒ‹ƒoƒbƒN‚ªŒÄ‚Î‚ê‚Ü‚·B
+ * ãƒ‡ãƒ¼ã‚¿ã®é€å—ä¿¡ã‚’é–‹å§‹ã—ã¾ã™ã€‚å®Œäº†æ™‚ã«callbackã§æŒ‡å®šã—ãŸã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
  * 
- * @param retryCount s‚·‚é‰ñ”B1ˆÈã‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
+ * @param retryCount è©¦è¡Œã™ã‚‹å›æ•°ã€‚1ä»¥ä¸Šã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚
  * 
- * @retval TRUE ˆ—‚ªŠJn‚³‚ê‚Ü‚µ‚½B
- * @retval FALSE ˆ—‚ªŠJn‚³‚ê‚Ü‚¹‚ñ‚Å‚µ‚½B‘O‰ñ‚Ìˆ—‚ªŒp‘±’†‚©Aƒƒ‚ƒŠ•s‘«‚Å‚·B
+ * @retval TRUE å‡¦ç†ãŒé–‹å§‹ã•ã‚Œã¾ã—ãŸã€‚
+ * @retval FALSE å‡¦ç†ãŒé–‹å§‹ã•ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚å‰å›ã®å‡¦ç†ãŒç¶™ç¶šä¸­ã‹ã€ãƒ¡ãƒ¢ãƒªä¸è¶³ã§ã™ã€‚
  */
     static BOOL StartSessionAsync(DWCiEncServer server, const char* initData, const char* url, s32 pid,
                              const u8* data, u32 dataSize, u32 retryCount, DWCi_EncSessionCompletedCallback callback, void* param, BOOL reuseHash=FALSE)
@@ -198,11 +198,11 @@ public:
     }
     
 /**
- * @brief ‘—óMˆ—‚ğs‚¢‚Ü‚·B
+ * @brief é€å—ä¿¡å‡¦ç†ã‚’è¡Œã„ã¾ã™ã€‚
  * 
- * @retval ’ÊMˆ—‚ğs‚Á‚Ä‚¢‚é‚©B
+ * @retval é€šä¿¡å‡¦ç†ã‚’è¡Œã£ã¦ã„ã‚‹ã‹ã€‚
  * 
- * ‘—óMˆ—‚ğs‚¢‚Ü‚·BDWCi_EncSessionCompletedCallbackƒR[ƒ‹ƒoƒbƒN‚ªŒÄ‚Î‚ê‚é‚Ü‚Å–ˆƒQ[ƒ€ƒtƒŒ[ƒ€’ö“x‚Ì•p“x‚ÅŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+ * é€å—ä¿¡å‡¦ç†ã‚’è¡Œã„ã¾ã™ã€‚DWCi_EncSessionCompletedCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒå‘¼ã°ã‚Œã‚‹ã¾ã§æ¯ã‚²ãƒ¼ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ç¨‹åº¦ã®é »åº¦ã§å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
  */
     static BOOL Process()
     {

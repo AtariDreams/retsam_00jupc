@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_131.s
- *@brief	�퓬�V�[�P���X
- *			���イ�ł�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			じゅうでんシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.07
  *
@@ -20,9 +20,9 @@ SUB_131:
 	MESSAGE		JuudenMineMsg,TAG_NICK,SIDE_ATTACK
 	SERVER_WAIT
 	WAIT		MSG_WAIT
-	//AttackClient��ǉ��Ώۂ�
+	//AttackClientを追加対象に
 	VALUE_WORK	VAL_SET,BUF_PARA_TSUIKA_CLIENT,BUF_PARA_ATTACK_CLIENT
-	//���h��1�i�K�グ����Z�b�g
+	//特防を1段階上げるをセット
 	VALUE		VAL_SET,BUF_PARA_TSUIKA_PARA,ADD_COND2_SPEDEFUP
 	GOSUB		SUB_SEQ_ABICNT_CALC
 	SEQ_END

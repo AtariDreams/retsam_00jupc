@@ -12,55 +12,55 @@
 
   $Log: wm_arm9_private.h,v $
   Revision 1.17  2007/05/10 01:01:29  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.16  2007/05/02 08:43:38  seiki_masashi
-  WM_StartMPEx ŠÖ”‚Å‚Ì’Ç‰Áİ’èƒpƒ‰ƒ[ƒ^‚Ì‰e‹¿‚ªˆê“I‚É‚È‚é‚æ‚¤•ÏX
+  WM_StartMPEx é–¢æ•°ã§ã®è¿½åŠ è¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å½±éŸ¿ãŒä¸€æ™‚çš„ã«ãªã‚‹ã‚ˆã†å¤‰æ›´
 
   Revision 1.15  2006/01/18 02:12:39  kitase_hirotake
   do-indent
 
   Revision 1.14  2005/11/25 00:45:05  seiki_masashi
-  mask ‚ğ WMMPParam \‘¢‘Ì“à‚ÉˆÚ“®
+  mask ã‚’ WMMPParam æ§‹é€ ä½“å†…ã«ç§»å‹•
 
   Revision 1.13  2005/11/24 03:03:46  seiki_masashi
-  WMi_StartMP ŠÖ”‚ğ’Ç‰Á
+  WMi_StartMP é–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.12  2005/11/22 09:03:10  seiki_masashi
-  WM_SendCommandDirect ŠÖ”‚Ì’Ç‰Á
+  WM_SendCommandDirect é–¢æ•°ã®è¿½åŠ 
 
   Revision 1.11  2005/11/01 08:52:06  seiki_masashi
-  WM_DEBUG_AIDBITMAP ‚Ì’Ç‰Á
+  WM_DEBUG_AIDBITMAP ã®è¿½åŠ 
 
   Revision 1.10  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.9  2005/02/23 12:48:14  seiki_masashi
-  ƒfƒoƒbƒO•\¦‚Ì®—
+  ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºã®æ•´ç†
 
   Revision 1.8  2005/02/22 05:40:44  seiki_masashi
-  Copyright •\‹L‚ÌC³
+  Copyright è¡¨è¨˜ã®ä¿®æ­£
 
   Revision 1.7  2005/02/22 01:52:26  seiki_masashi
-  WM_WARNING ‚È‚Ç‚ğ wm_private.h ‚ÉˆÚ“®
+  WM_WARNING ãªã©ã‚’ wm_private.h ã«ç§»å‹•
 
   Revision 1.6  2004/10/22 04:39:39  terui
-  WMErrCode‚Æ‚µ‚ÄintŒ^‚ğ•Ô‚µ‚Ä‚¢‚½ŠÖ”‚É‚Â‚¢‚ÄAWMErrCode—ñ‹“Œ^‚ğ•Ô‚·‚æ‚¤‚É•ÏXB
+  WMErrCodeã¨ã—ã¦intå‹ã‚’è¿”ã—ã¦ã„ãŸé–¢æ•°ã«ã¤ã„ã¦ã€WMErrCodeåˆ—æŒ™å‹ã‚’è¿”ã™ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.5  2004/10/15 14:11:11  terui
-  WM_GetAllowedChannelŠÖ”‚ª–¢‰Šú‰»‚É•Ô‚·ŒÅ’è’l‚ğ’è‹`B
+  WM_GetAllowedChannelé–¢æ•°ãŒæœªåˆæœŸåŒ–æ™‚ã«è¿”ã™å›ºå®šå€¤ã‚’å®šç¾©ã€‚
 
   Revision 1.4  2004/09/23 12:34:43  seiki_masashi
-  wm_private.h ‚ğ include ‚·‚é‚æ‚¤‚É•ÏX
+  wm_private.h ã‚’ include ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.3  2004/09/11 06:09:12  yasu
   Use OS_TPrintf instead of WMi_Printf
 
   Revision 1.2  2004/09/11 04:13:00  terui
-  Œx•\¦‚ğs‚¤ƒvƒŠƒ“ƒg‚ğ‚ ‚Ü‚èƒXƒ^ƒbƒN‚ğÁ”ï‚µ‚È‚¢‚à‚Ì‚É•ÏXB
+  è­¦å‘Šè¡¨ç¤ºã‚’è¡Œã†ãƒ—ãƒªãƒ³ãƒˆã‚’ã‚ã¾ã‚Šã‚¹ã‚¿ãƒƒã‚¯ã‚’æ¶ˆè²»ã—ãªã„ã‚‚ã®ã«å¤‰æ›´ã€‚
 
   Revision 1.1  2004/09/10 11:04:02  terui
-  wm.c‚Ì•ªŠ„‚É”º‚¢AV‹KuploadB
+  wm.cã®åˆ†å‰²ã«ä¼´ã„ã€æ–°è¦uploadã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -78,13 +78,13 @@ extern "C" {
 
 
 /*---------------------------------------------------------------------------*
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 #define     WM_GET_ALLOWED_CHANNEL_BEFORE_INIT      0x8000
 
 
 /*---------------------------------------------------------------------------*
-    ƒ}ƒNƒ’è‹`
+    ãƒã‚¯ãƒ­å®šç¾©
  *---------------------------------------------------------------------------*/
 #define     WM_CHECK_RESULT( res )      \
     if( ( res ) != WM_ERRCODE_SUCCESS ) \
@@ -154,7 +154,7 @@ extern "C" {
 
 
 /*---------------------------------------------------------------------------*
-    ”ñŒöŠJŠÖ”ƒvƒƒgƒ^ƒCƒv
+    éå…¬é–‹é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
  *---------------------------------------------------------------------------*/
 void    WMi_SetCallbackTable(WMApiid id, WMCallbackFunc callback);
 WMErrCode WMi_SendCommand(WMApiid id, u16 paramNum, ...);
@@ -169,7 +169,7 @@ WMErrCode WMi_StartMP(WMCallbackFunc callback,
 
 
 /*---------------------------------------------------------------------------*
-    ƒCƒ“ƒ‰ƒCƒ“ŠÖ”’è‹`
+    ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 static inline WMErrCode WMi_CheckState(u32 state)
 {

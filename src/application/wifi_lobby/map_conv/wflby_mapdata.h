@@ -3,13 +3,13 @@
 
 
 
-// �}�b�v�̑傫��
+// マップの大きさ
 #define WFLBY_MAPSIZE_X		(35)
 #define WFLBY_MAPSIZE_Y		(42)
 
 
 
-// �}�b�v�I�u�W�F�N�gID
+// マップオブジェクトID
 #define WFLBY_MAPOBJID_NONE		(0)
 #define WFLBY_MAPOBJID_FLOOR		(1)
 #define WFLBY_MAPOBJID_BLOCK		(2)
@@ -113,7 +113,7 @@
 
 
 
-// �C�x���gID
+// イベントID
 #define WFLBY_MAPEVID_NONE		(0)
 #define WFLBY_MAPEVID_EV_PLAYER_OUT		(1)
 #define WFLBY_MAPEVID_EV_DZ_00		(2)

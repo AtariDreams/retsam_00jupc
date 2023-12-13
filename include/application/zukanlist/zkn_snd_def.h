@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_snd_def.h
- *	@brief		�}�Ӊ���`
+ *	@brief		図鑑音定義
  *	@author		tomoya takahashi
  *	@data		2006.02.07
  *
@@ -22,22 +22,22 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
-#define ZKN_SND_SHUTTER				( SEQ_SE_DP_BUTTON01 )		// �V���b�^�[�J��
+#define ZKN_SND_SHUTTER				( SEQ_SE_DP_BUTTON01 )		// シャッター開閉
 
-#define ZKN_SND_SELECT_MOVE_ONE		( SEQ_SE_DP_DENSI06 )		// �I���ړ�(����ʂɃ^�b�`���܂�)
-#define ZKN_SND_SLIDE				( SEQ_SE_DP_DENSI06 )		// �X���C�h��
+#define ZKN_SND_SELECT_MOVE_ONE		( SEQ_SE_DP_DENSI06 )		// 選択移動(下画面にタッチも含む)
+#define ZKN_SND_SLIDE				( SEQ_SE_DP_DENSI06 )		// スライド音
 
-#define ZKN_SND_SEARCH				( SEQ_SE_DP_Z_SEARCH )		// ������
+#define ZKN_SND_SEARCH				( SEQ_SE_DP_Z_SEARCH )		// 検索音
 
-#define ZKN_SND_SWITCH				( SEQ_SE_DP_KATI )			// ������ʂ̃X�C�b�`
-#define ZKN_SND_DIAL				( SEQ_SE_DP_KATI )			// �_�C�A����
+#define ZKN_SND_SWITCH				( SEQ_SE_DP_KATI )			// 鳴き声画面のスイッチ
+#define ZKN_SND_DIAL				( SEQ_SE_DP_KATI )			// ダイアル音
 
-#define ZKN_SND_SELECT				( SEQ_SE_DP_DECIDE )		// ���艹
-#define ZKN_SND_CANCEL				( SEQ_SE_DP_DECIDE )		// �L�����Z��
-#define ZKN_SND_BUTTON				( SEQ_SE_DP_DECIDE )		// �{�^���Ƀ^�b�`
+#define ZKN_SND_SELECT				( SEQ_SE_DP_DECIDE )		// 決定音
+#define ZKN_SND_CANCEL				( SEQ_SE_DP_DECIDE )		// キャンセル
+#define ZKN_SND_BUTTON				( SEQ_SE_DP_DECIDE )		// ボタンにタッチ
 
 #undef	GLOBAL
 #endif		// __ZKN_SND_DEF_H__

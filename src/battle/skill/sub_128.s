@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_128.s
- *@brief	�퓬�V�[�P���X
- *			�����Ă�ǉ����ʃV�[�P���X
+ *@brief	戦闘シーケンス
+ *			おだてる追加効果シーケンス
  *@author	HisashiSogabe
  *@data		2006.02.06
  *
@@ -15,19 +15,19 @@
 	.include	"waza_seq_def.h"
 
 SUB_128:
-	//�݂������o����Ă��鎞�́A���܂����܂��
+	//みがわりを出されている時は、うまくきまらん
 	MIGAWARI_CHECK	SIDE_DEFENCE,Umakukimaran
-	//���U��MAX�܂ŏオ���Ă��Ȃ����́A���ʃX�^�[�g
+	//特攻がMAXまで上がっていない時は、効果スタート
 	IF_PSP			IF_FLAG_NE,SIDE_DEFENCE,ID_PSP_abiritycnt_spepow,12,SUB_128_ABICNT_START
-	//���łɂ����񂵂Ă��Ȃ����́A�����X�^�[�g
+	//すでにこんらんしていない時は、混乱スタート
 	IF_PSP			IF_FLAG_NBIT,SIDE_DEFENCE,ID_PSP_condition2,CONDITION2_KONRAN,SUB_128_KONRAN_START
-	//MAX�ō����̎��́A���܂����܂��
+	//MAXで混乱の時は、うまくきまらん
 	BRANCH			Umakukimaran
 SUB_128_ABICNT_START:
-	//���U��1�i�K�グ����Z�b�g
+	//特攻を1段階上げるをセット
 	VALUE			VAL_SET,BUF_PARA_TSUIKA_PARA,ADD_COND2_SPEPOWUP
 	GOSUB			SUB_SEQ_ABICNT_CALC
-	//���łɂ����񂵂Ă��鎞�́A���ʏI��
+	//すでにこんらんしている時は、効果終了
 	IF_PSP			IF_FLAG_BIT,SIDE_DEFENCE,ID_PSP_condition2,CONDITION2_KONRAN,SUB_128_END
 SUB_128_KONRAN_START:
 	GOSUB			SUB_SEQ_KONRAN

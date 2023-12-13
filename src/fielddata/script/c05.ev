@@ -1,8 +1,8 @@
 //====================================================================
-//					ƒtƒB[ƒ‹ƒhEƒVƒeƒB‚O‚T
-//						ƒˆƒXƒKƒVƒeƒB
+//					ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ã‚·ãƒ†ã‚£ï¼ï¼•
+//						ãƒ¨ã‚¹ã‚¬ã‚·ãƒ†ã‚£
 //
-//	FH_01	—U“±ƒAƒjƒŠ®—¹ƒtƒ‰ƒO
+//	FH_01	èª˜å°Žã‚¢ãƒ‹ãƒ¡å®Œäº†ãƒ•ãƒ©ã‚°
 //====================================================================
 	.text
 
@@ -13,11 +13,11 @@
 	.include	"../base_goods/goods_id_def.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c05_flag_change
 _EVENT_DATA		ev_c05_stopper_03
@@ -51,7 +51,7 @@ _EVENT_DATA		ev_c05_sign8
 _EVENT_DATA		ev_c05_sign9
 _EVENT_DATA		ev_c05_sunglasses
 _EVENT_DATA		ev_c05_fighter2
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
@@ -62,7 +62,7 @@ ev_c05_flag_change:
 
 
 /********************************************************************/
-/*							ƒXƒgƒbƒp[								*/
+/*							ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼								*/
 /********************************************************************/
 ev_c05_stopper_03:
 	_EASY_OBJ_MSG	msg_c05_stopper_03_01
@@ -70,7 +70,7 @@ ev_c05_stopper_03:
 
 
 /********************************************************************/
-/*							ƒXƒgƒbƒp[								*/
+/*							ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼								*/
 /********************************************************************/
 ev_c05_stopper_04:
 	_EASY_OBJ_MSG	msg_c05_stopper_04_01
@@ -78,7 +78,7 @@ ev_c05_stopper_04:
 
 
 /********************************************************************/
-/*							—‘‚ÌŽR’j								*/
+/*							åµã®å±±ç”·								*/
 /********************************************************************/
 ev_c05_egg:
 	_EASY_OBJ_MSG	msg_c05_egg_01
@@ -86,67 +86,67 @@ ev_c05_egg:
 
 
 /********************************************************************/
-/*							‚¨‚¶‚³‚ñ								*/
+/*							ãŠã˜ã•ã‚“								*/
 /********************************************************************/
 ev_c05_middleman1:
 	_EASY_OBJ_MSG	msg_c05_middleman1_01
 	_END
 
 /********************************************************************/
-/*							ŒZ‚³‚ñ									*/
+/*							å…„ã•ã‚“									*/
 /********************************************************************/
 ev_c05_man1:
 	_EASY_OBJ_MSG	msg_c05_man1_01
 	_END
 
 /********************************************************************/
-/*							‚¨Ÿ­—Ž­—								*/
+/*							ãŠæ´’è½å°‘å¥³								*/
 /********************************************************************/
 ev_c05_girl2:
 	_EASY_OBJ_MSG	msg_c05_girl2_01
 	_END
 
 /********************************************************************/
-/*							­—									*/
+/*							å°‘å¥³									*/
 /********************************************************************/
 ev_c05_girl1:
 	_EASY_OBJ_MSG	msg_c05_girl1_01
 	_END
 
 /********************************************************************/
-/*							—m•—–ê‚³‚ñ								*/
+/*							æ´‹é¢¨çˆºã•ã‚“								*/
 /********************************************************************/
 ev_c05_oldman2:
 	_EASY_OBJ_MSG	msg_c05_oldman2_01
 	_END
 
 /********************************************************************/
-/*							ƒ|ƒPƒ‚ƒ“(ƒSƒ“ƒxj						*/
+/*							ãƒã‚±ãƒ¢ãƒ³(ã‚´ãƒ³ãƒ™ï¼‰						*/
 /********************************************************************/
 ev_c05_gonbe:
 	_EASY_VOICE_MSG	msg_c05_gonbe_02,MONSNO_PATIRISSU,0
 	_END
 
 /********************************************************************/
-/*							aŽm									*/
+/*							ç´³å£«									*/
 /********************************************************************/
-//Ä“x˜b‚µ‚©‚¯‚½‚Æ‚«
+//å†åº¦è©±ã—ã‹ã‘ãŸã¨ã
 ev_c05_gentleman:
 	_TALK_OBJ_START
 
-	/*—U“±ƒAƒjƒI—¹‚µ‚Ä‚¢‚½‚ç*/
+	/*èª˜å°Žã‚¢ãƒ‹ãƒ¡çµ‚äº†ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FH_01,ev_c05_gentleman_02
 
 	_TALKMSG		msg_c05_gentleman_01
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c05_gentleman		/*u‚¢‚¢‚¦v*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c05_gentleman		/*ã€Œã„ã„ãˆã€*/
 
 	_TALK_KEYWAIT	msg_c05_gentleman_02
 	_TALK_CLOSE
 
 	_TIME_WAIT		15,SCWK_ANSWER
 
-	//ŽålŒö‚ÌˆÊ’uî•ñŽæ“¾
+	//ä¸»äººå…¬ã®ä½ç½®æƒ…å ±å–å¾—
 	_PLAYER_DIR_GET	SCWK_TEMP0
 	_IFVAL_JUMP	SCWK_TEMP0,EQ,DIR_UP,pos_c05_gentleman_02_01
 	_IFVAL_JUMP	SCWK_TEMP0,EQ,DIR_DOWN,pos_c05_gentleman_02_02
@@ -154,7 +154,7 @@ ev_c05_gentleman:
 	_IFVAL_JUMP	SCWK_TEMP0,EQ,DIR_RIGHT,pos_c05_gentleman_02_04
 	_END
 
-/*—U“±ƒAƒjƒI—¹‚µ‚Ä‚¢‚½‚ç*/
+/*èª˜å°Žã‚¢ãƒ‹ãƒ¡çµ‚äº†ã—ã¦ã„ãŸã‚‰*/
 ev_c05_gentleman_02:
 	_TALKMSG	msg_c05_gentleman_04
 	_LAST_KEYWAIT
@@ -162,7 +162,7 @@ ev_c05_gentleman_02:
 	_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_c05_gentleman:
 	_TALKMSG	msg_c05_gentleman_05
 	_LAST_KEYWAIT
@@ -171,7 +171,7 @@ no_c05_gentleman:
 	_END
 
 pos_c05_gentleman_02_01:
-	//—U“±ƒfƒ‚
+	//èª˜å°Žãƒ‡ãƒ¢
 	_OBJ_ANIME		C05_FISHING,anm_01_c05_gentleman_02c
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_01_c05_player_02a
 	_OBJ_ANIME_WAIT
@@ -179,7 +179,7 @@ pos_c05_gentleman_02_01:
 	_END
 
 pos_c05_gentleman_02_02:
-	//—U“±ƒfƒ‚
+	//èª˜å°Žãƒ‡ãƒ¢
 	_OBJ_ANIME		C05_FISHING,anm_01_c05_gentleman_02c
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_01_c05_player_02b
 	_OBJ_ANIME_WAIT
@@ -187,7 +187,7 @@ pos_c05_gentleman_02_02:
 	_END
 
 pos_c05_gentleman_02_03:
-	//—U“±ƒfƒ‚
+	//èª˜å°Žãƒ‡ãƒ¢
 	_OBJ_ANIME		C05_FISHING,anm_01_c05_gentleman_02c
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_01_c05_player_02c
 	_OBJ_ANIME_WAIT
@@ -195,7 +195,7 @@ pos_c05_gentleman_02_03:
 	_END
 
 pos_c05_gentleman_02_04:
-	//—U“±ƒfƒ‚
+	//èª˜å°Žãƒ‡ãƒ¢
 	_OBJ_ANIME		C05_FISHING,anm_01_c05_gentleman_02d
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_01_c05_player_02d
 	_OBJ_ANIME_WAIT
@@ -203,7 +203,7 @@ pos_c05_gentleman_02_04:
 	_END
 
 pos_c01_gentleman_01_common_02:
-	_FLAG_SET		FH_01					//—U“±ƒAƒjƒŠ®—¹ó‘Ô‚Ö
+	_FLAG_SET		FH_01					//èª˜å°Žã‚¢ãƒ‹ãƒ¡å®Œäº†çŠ¶æ…‹ã¸
 	_TALKMSG		msg_c05_gentleman_03
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -211,7 +211,7 @@ pos_c01_gentleman_01_common_02:
 	_END
 
 //--------------------------------------------------------------------
-//aŽm	"I"
+//ç´³å£«	"ï¼"
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_01_c05_gentleman_01
 	_ANIME_DATA	AC_MARK_GYOE,1
@@ -219,7 +219,7 @@ _ANIME_LABEL anm_01_c05_gentleman_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//aŽm	ƒRƒ“ƒeƒXƒg‚ÖˆÚ“®
+//ç´³å£«	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã¸ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_01_c05_gentleman_02c
 	_ANIME_DATA	AC_WALK_L_8F,20
@@ -242,7 +242,7 @@ _ANIME_LABEL anm_01_c05_gentleman_02d
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒRƒ“ƒeƒXƒg‚ÖˆÚ“®
+//ä¸»äººå…¬	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã¸ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_01_c05_player_02a
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -281,21 +281,21 @@ _ANIME_LABEL anm_01_c05_player_02d
 
 
 /********************************************************************/
-/*							‚¨Ÿ­—Ž‚Ë‚¦‚³‚ñ							*/
+/*							ãŠæ´’è½ã­ãˆã•ã‚“							*/
 /********************************************************************/
 ev_c05_woman2:
 	_EASY_OBJ_MSG	msg_c05_woman2_01
 	_END
 
 /********************************************************************/
-/*							‚¨‚Î‚³‚ñ								*/
+/*							ãŠã°ã•ã‚“								*/
 /********************************************************************/
 ev_c05_middlewoman1:
 	_EASY_OBJ_MSG	msg_c05_middlewoman1_01
 	_END
 
 /********************************************************************/
-/*							ƒxƒr[ƒJ[								*/
+/*							ãƒ™ãƒ“ãƒ¼ã‚«ãƒ¼								*/
 /********************************************************************/
 ev_c05_baby:
 	_TALK_OBJ_START_TURN_NOT
@@ -306,17 +306,17 @@ ev_c05_baby:
 	_END
 
 /********************************************************************/
-/*							Œ|p‰Æ									*/
+/*							èŠ¸è¡“å®¶									*/
 /********************************************************************/
 ev_c05_artist:
 	_TALK_OBJ_START
 
-	//ˆ¥ŽA
+	//æŒ¨æ‹¶
 	_TALK_KEYWAIT		msg_c05_goods_01
 
 	_TALK_KEYWAIT		msg_c05_goods_02
 
-	//‚à‚ç‚¦‚é‚à‚Ì‚ª‚ ‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//ã‚‚ã‚‰ãˆã‚‹ã‚‚ã®ãŒã‚ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	_IF_FLAGOFF_JUMP		FE_C05_GOODS_01,c05_goods_check_common
 	_IF_FLAGOFF_JUMP		FE_C05_GOODS_02,c05_goods_check_common
 	_IF_FLAGOFF_JUMP		FE_C05_GOODS_03,c05_goods_check_common
@@ -329,26 +329,26 @@ ev_c05_artist:
 	_IF_FLAGOFF_JUMP		FE_C05_GOODS_10,c05_goods_check_common
 	_IF_FLAGOFF_JUMP		FE_C05_GOODS_11,c05_goods_check_common
 
-	//‘SƒOƒbƒY“üŽèÏ‚Ý
+	//å…¨ã‚°ãƒƒã‚ºå…¥æ‰‹æ¸ˆã¿
 	_FLAG_SET			FE_C05_ALL_GOODS_GET
 
-	//‚È‚É‚à‚à‚ç‚¦‚È‚¢‘SƒOƒbƒY“üŽèÏ‚Ý
+	//ãªã«ã‚‚ã‚‚ã‚‰ãˆãªã„ï¼å…¨ã‚°ãƒƒã‚ºå…¥æ‰‹æ¸ˆã¿
 	_JUMP				ev_c05_goods_04
 
-//ŠeƒOƒbƒYƒ`ƒFƒbƒN
+//å„ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 c05_goods_check_common:
-	_IF_FLAGON_JUMP		FE_C05_GOODS_01,c05_goods_check_02		//Žæ“¾Ï‚Ý‚È‚çŽŸ‚ÌƒOƒbƒYƒ`ƒFƒbƒN
+	_IF_FLAGON_JUMP		FE_C05_GOODS_01,c05_goods_check_02		//å–å¾—æ¸ˆã¿ãªã‚‰æ¬¡ã®ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 
-	//WIFI‚ÉŒq‚°‚½‚±‚Æ‚ ‚è
+	//WIFIã«ç¹‹ã’ãŸã“ã¨ã‚ã‚Š
 	_IF_FLAGOFF_JUMP	SYS_FLAG_WIFI_USE,c05_goods_check_02
 
 	_TALK_KEYWAIT		msg_c05_goods_10
 
-	_LDVAL			SCWK_TEMP0,GOODS_GLOBE01	//’n‹…‹V
+	_LDVAL			SCWK_TEMP0,GOODS_GLOBE01	//åœ°çƒå„€
 	_LDVAL			SCWK_TEMP1,1
 	
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -359,20 +359,20 @@ c05_goods_check_common:
 	_END
 
 c05_goods_check_02:
-	_IF_FLAGON_JUMP		FE_C05_GOODS_02,c05_goods_check_03		//Žæ“¾Ï‚Ý‚È‚çŽŸ‚ÌƒOƒbƒYƒ`ƒFƒbƒN
+	_IF_FLAGON_JUMP		FE_C05_GOODS_02,c05_goods_check_03		//å–å¾—æ¸ˆã¿ãªã‚‰æ¬¡ã®ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 
-	//ƒoƒbƒa”8ˆÈã
+	//ãƒãƒƒãƒ‚æ•°8ä»¥ä¸Š
 	_SYS_FLAG_BADGE_COUNT	SCWK_ANSWER
 
 	_IFVAL_JUMP			SCWK_ANSWER,LT,8,c05_goods_check_03
 
 	_TALK_KEYWAIT		msg_c05_goods_11
 
-	_LDVAL			SCWK_TEMP0,GOODS_OBJECT01	//ƒWƒ€‚Ì‚¹‚«‚¼‚¤
+	_LDVAL			SCWK_TEMP0,GOODS_OBJECT01	//ã‚¸ãƒ ã®ã›ããžã†
 	_LDVAL			SCWK_TEMP1,1
 	
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -383,17 +383,17 @@ c05_goods_check_02:
 	_END
 
 c05_goods_check_03:
-	_IF_FLAGON_JUMP		FE_C05_GOODS_03,c05_goods_check_04		//Žæ“¾Ï‚Ý‚È‚çŽŸ‚ÌƒOƒbƒYƒ`ƒFƒbƒN
+	_IF_FLAGON_JUMP		FE_C05_GOODS_03,c05_goods_check_04		//å–å¾—æ¸ˆã¿ãªã‚‰æ¬¡ã®ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 
-	//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒAi‚©‚í‚¢‚¢j
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢ï¼ˆã‹ã‚ã„ã„ï¼‰
 	_IF_FLAGOFF_JUMP	SYS_FLAG_CON_CUTE_MASTER,c05_goods_check_04
 
 	_TALK_KEYWAIT		msg_c05_goods_12
 
-	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_01 // ‚©‚í‚¢‚¢ƒJƒbƒv
+	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_01 // ã‹ã‚ã„ã„ã‚«ãƒƒãƒ—
 	_LDVAL			SCWK_TEMP1,1
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -404,17 +404,17 @@ c05_goods_check_03:
 	_END
 
 c05_goods_check_04:
-	_IF_FLAGON_JUMP		FE_C05_GOODS_04,c05_goods_check_05		//Žæ“¾Ï‚Ý‚È‚çŽŸ‚ÌƒOƒbƒYƒ`ƒFƒbƒN
+	_IF_FLAGON_JUMP		FE_C05_GOODS_04,c05_goods_check_05		//å–å¾—æ¸ˆã¿ãªã‚‰æ¬¡ã®ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 
-	//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒAi‚©‚Á‚±‚¢‚¢j
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢ï¼ˆã‹ã£ã“ã„ã„ï¼‰
 	_IF_FLAGOFF_JUMP	SYS_FLAG_CON_STYLE_MASTER,c05_goods_check_05
 
 	_TALK_KEYWAIT		msg_c05_goods_13
 
-	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_02	// ‚©‚Á‚±‚¢‚¢ƒJƒbƒv
+	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_02	// ã‹ã£ã“ã„ã„ã‚«ãƒƒãƒ—
 	_LDVAL			SCWK_TEMP1,1
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -425,17 +425,17 @@ c05_goods_check_04:
 	_END
 
 c05_goods_check_05:
-	_IF_FLAGON_JUMP		FE_C05_GOODS_05,c05_goods_check_06		//Žæ“¾Ï‚Ý‚È‚çŽŸ‚ÌƒOƒbƒYƒ`ƒFƒbƒN
+	_IF_FLAGON_JUMP		FE_C05_GOODS_05,c05_goods_check_06		//å–å¾—æ¸ˆã¿ãªã‚‰æ¬¡ã®ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 
-	//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒAi‚¤‚Â‚­‚µ‚¢j
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢ï¼ˆã†ã¤ãã—ã„ï¼‰
 	_IF_FLAGOFF_JUMP	SYS_FLAG_CON_BEAUTIFUL_MASTER,c05_goods_check_06
 
 	_TALK_KEYWAIT		msg_c05_goods_14
 
-	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_03	 // ‚¤‚Â‚­‚µ‚¢ƒJƒbƒv
+	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_03	 // ã†ã¤ãã—ã„ã‚«ãƒƒãƒ—
 	_LDVAL			SCWK_TEMP1,1
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -446,17 +446,17 @@ c05_goods_check_05:
 	_END
 
 c05_goods_check_06:
-	_IF_FLAGON_JUMP		FE_C05_GOODS_06,c05_goods_check_07		//Žæ“¾Ï‚Ý‚È‚çŽŸ‚ÌƒOƒbƒYƒ`ƒFƒbƒN
+	_IF_FLAGON_JUMP		FE_C05_GOODS_06,c05_goods_check_07		//å–å¾—æ¸ˆã¿ãªã‚‰æ¬¡ã®ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 
-	//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒAi‚½‚­‚Ü‚µ‚¢j
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢ï¼ˆãŸãã¾ã—ã„ï¼‰
 	_IF_FLAGOFF_JUMP	SYS_FLAG_CON_STRONG_MASTER,c05_goods_check_07
 
 	_TALK_KEYWAIT		msg_c05_goods_15
 
-	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_04	// ‚½‚­‚Ü‚µ‚¢ƒJƒbƒv
+	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_04	// ãŸãã¾ã—ã„ã‚«ãƒƒãƒ—
 	_LDVAL			SCWK_TEMP1,1
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -467,17 +467,17 @@ c05_goods_check_06:
 	_END
 
 c05_goods_check_07:
-	_IF_FLAGON_JUMP		FE_C05_GOODS_07,c05_goods_check_08		//Žæ“¾Ï‚Ý‚È‚çŽŸ‚ÌƒOƒbƒYƒ`ƒFƒbƒN
+	_IF_FLAGON_JUMP		FE_C05_GOODS_07,c05_goods_check_08		//å–å¾—æ¸ˆã¿ãªã‚‰æ¬¡ã®ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 
-	//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒAi‚©‚µ‚±‚¢j
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢ï¼ˆã‹ã—ã“ã„ï¼‰
 	_IF_FLAGOFF_JUMP	SYS_FLAG_CON_CLEVER_MASTER,c05_goods_check_08
 
 	_TALK_KEYWAIT		msg_c05_goods_16
 
-	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_05	 // ‚©‚µ‚±‚¢ƒJƒbƒv
+	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_05	 // ã‹ã—ã“ã„ã‚«ãƒƒãƒ—
 	_LDVAL			SCWK_TEMP1,1
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -488,19 +488,19 @@ c05_goods_check_07:
 	_END
 
 c05_goods_check_08:
-	_IF_FLAGON_JUMP		FE_C05_GOODS_08,c05_goods_check_09		//Žæ“¾Ï‚Ý‚È‚çŽŸ‚ÌƒOƒbƒYƒ`ƒFƒbƒN
+	_IF_FLAGON_JUMP		FE_C05_GOODS_08,c05_goods_check_09		//å–å¾—æ¸ˆã¿ãªã‚‰æ¬¡ã®ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 
-	//’n‰º‚Å‚Ì‰ï˜b”
+	//åœ°ä¸‹ã§ã®ä¼šè©±æ•°
 	_UNDERGROUND_TALK_COUNT2 SCWK_ANSWER
 
 	_IFVAL_JUMP			SCWK_ANSWER,LT,100,c05_goods_check_09
 
 	_TALK_KEYWAIT		msg_c05_goods_17
 
-	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_06	 // ‚ ‚¨‚¢‚·‚¢‚µ‚å‚¤
+	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_06	 // ã‚ãŠã„ã™ã„ã—ã‚‡ã†
 	_LDVAL			SCWK_TEMP1,1
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -511,19 +511,19 @@ c05_goods_check_08:
 	_END
 
 c05_goods_check_09:
-	_IF_FLAGON_JUMP		FE_C05_GOODS_09,c05_goods_check_10		//Žæ“¾Ï‚Ý‚È‚çŽŸ‚ÌƒOƒbƒYƒ`ƒFƒbƒN
+	_IF_FLAGON_JUMP		FE_C05_GOODS_09,c05_goods_check_10		//å–å¾—æ¸ˆã¿ãªã‚‰æ¬¡ã®ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 
-	//’n‰º‚Å‚Ç‚¤‚®‚ð‚ ‚°‚½‰ñ”
+	//åœ°ä¸‹ã§ã©ã†ãã‚’ã‚ã’ãŸå›žæ•°
 	_UNDERGROUND_TOOL_GIVE_COUNT SCWK_ANSWER
 
 	_IFVAL_JUMP			SCWK_ANSWER,LT,100,c05_goods_check_10
 
 	_TALK_KEYWAIT		msg_c05_goods_18
 
-	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_07	// ƒsƒ“ƒN‚·‚¢‚µ‚å‚¤
+	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_07	// ãƒ”ãƒ³ã‚¯ã™ã„ã—ã‚‡ã†
 	_LDVAL			SCWK_TEMP1,1
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -534,19 +534,19 @@ c05_goods_check_09:
 	_END
 
 c05_goods_check_10:
-	_IF_FLAGON_JUMP		FE_C05_GOODS_10,c05_goods_check_11		//Žæ“¾Ï‚Ý‚È‚çŽŸ‚ÌƒOƒbƒYƒ`ƒFƒbƒN
+	_IF_FLAGON_JUMP		FE_C05_GOODS_10,c05_goods_check_11		//å–å¾—æ¸ˆã¿ãªã‚‰æ¬¡ã®ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯
 
-	//’n‰º‚ÅƒJƒZƒL‚ðŒ@‚Á‚½‰ñ”
+	//åœ°ä¸‹ã§ã‚«ã‚»ã‚­ã‚’æŽ˜ã£ãŸå›žæ•°
 	_UNDERGROUND_KASEKI_DIG_COUNT SCWK_ANSWER
 
 	_IFVAL_JUMP			SCWK_ANSWER,LT,100,c05_goods_check_11
 
 	_TALK_KEYWAIT		msg_c05_goods_19
 
-	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_08	// ‚ ‚©‚¢‚·‚¢‚µ‚å‚¤
+	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_08	// ã‚ã‹ã„ã™ã„ã—ã‚‡ã†
 	_LDVAL			SCWK_TEMP1,1
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -559,17 +559,17 @@ c05_goods_check_10:
 c05_goods_check_11:
 	_IF_FLAGON_JUMP		FE_C05_GOODS_11,c05_goods_check_end
 
-	//’n‰º‚Åƒgƒ‰ƒbƒv‚É‚©‚¯‚½‰ñ”
+	//åœ°ä¸‹ã§ãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‘ãŸå›žæ•°
 	_UNDERGROUND_TRAP_HIT_COUNT	 SCWK_ANSWER
 
 	_IFVAL_JUMP			SCWK_ANSWER,LT,100,c05_goods_check_end
 
 	_TALK_KEYWAIT		msg_c05_goods_20
 
-	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_09	// ‚«‚¢‚ë‚·‚¢‚µ‚å‚¤
+	_LDVAL			SCWK_TEMP0,GOODS_UG_TROPH_09	// ãã„ã‚ã™ã„ã—ã‚‡ã†
 	_LDVAL			SCWK_TEMP1,1
 	_ADD_GOODS_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//“¹‹ï‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05_goods_07		//é“å…·ãŒã„ã£ã±ã„
 
 	_CHG_COMMON_SCR	SCRID_GOODS_EVENT
 
@@ -579,11 +579,11 @@ c05_goods_check_11:
 	_TALK_OBJ_END
 	_END
 
-//‘SƒOƒbƒYƒ`ƒFƒbƒNŠ®—¹
+//å…¨ã‚°ãƒƒã‚ºãƒã‚§ãƒƒã‚¯å®Œäº†
 c05_goods_check_end:
 	_JUMP			ev_c05_goods_09
 
-//‚È‚É‚à‚à‚ç‚¦‚È‚¢‘SƒOƒbƒY“üŽèÏ‚Ý
+//ãªã«ã‚‚ã‚‚ã‚‰ãˆãªã„ï¼å…¨ã‚°ãƒƒã‚ºå…¥æ‰‹æ¸ˆã¿
 ev_c05_goods_04:
 	_TALK_KEYWAIT	msg_c05_goods_04
 	_LAST_KEYWAIT
@@ -591,7 +591,7 @@ ev_c05_goods_04:
 	_TALK_OBJ_END
 	_END
 
-//‚Ç‚¤‚®‚ª‚¢‚Á‚Ï‚¢
+//ã©ã†ããŒã„ã£ã±ã„
 ev_c05_goods_07:
 	_TALK_KEYWAIT	msg_c05_goods_07
 	_LAST_KEYWAIT
@@ -599,7 +599,7 @@ ev_c05_goods_07:
 	_TALK_OBJ_END
 	_END
 
-//ðŒ‚ð–ž‚½‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA‚P‚Â‚à–á‚¦‚È‚©‚Á‚½‚Æ‚«
+//æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ãªã„ã®ã§ã€ï¼‘ã¤ã‚‚è²°ãˆãªã‹ã£ãŸã¨ã
 ev_c05_goods_09:
 	_TALK_KEYWAIT	msg_c05_goods_09
 	_LAST_KEYWAIT
@@ -608,7 +608,7 @@ ev_c05_goods_09:
 	_END
 
 /********************************************************************/
-/*							ŒZ‚³‚ñ									*/
+/*							å…„ã•ã‚“									*/
 /********************************************************************/
 ev_c05_man1a:
 	_EASY_OBJ_MSG	msg_c05_man1a_01
@@ -616,7 +616,7 @@ ev_c05_man1a:
 
 
 /********************************************************************/
-/*							ƒxƒr[ƒJ[								*/
+/*							ãƒ™ãƒ“ãƒ¼ã‚«ãƒ¼								*/
 /********************************************************************/
 ev_c05_baby2:
 	_TALK_OBJ_START_TURN_NOT
@@ -628,7 +628,7 @@ ev_c05_baby2:
 
 
 /********************************************************************/
-/*							Ši“¬‰Æ									*/
+/*							æ ¼é—˜å®¶									*/
 /********************************************************************/
 ev_c05_fighter:
 	_EASY_OBJ_MSG	msg_c05_fighter_01
@@ -636,7 +636,7 @@ ev_c05_fighter:
 
 
 /********************************************************************/
-/*							Žo‚³‚ñ									*/
+/*							å§‰ã•ã‚“									*/
 /********************************************************************/
 ev_c05_woman1a:
 	_EASY_OBJ_MSG	msg_c05_woan1a_01
@@ -644,7 +644,7 @@ ev_c05_woman1a:
 
 
 /********************************************************************/
-/*							ƒWƒ€ƒŠ[ƒ_[							*/
+/*							ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼							*/
 /********************************************************************/
 #if 0
 ev_c05_leader:
@@ -656,11 +656,11 @@ ev_c05_leader:
 	_PLAYER_DIR_GET	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_UP,ev_c05_leader_p01
 
-	/*—U“±ƒAƒjƒI—¹‚µ‚Ä‚¢‚½‚ç*/
+	/*èª˜å°Žã‚¢ãƒ‹ãƒ¡çµ‚äº†ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FH_01,ev_c05_leader_p03
 	_JUMP					ev_c05_leader_p02
 
-/*‹Ž‚Á‚Ä‚¢‚­*/
+/*åŽ»ã£ã¦ã„ã*/
 ev_c05_leader_p01:
 	_OBJ_ANIME		C05_LEADER,anm_c05_leader_01
 	_OBJ_ANIME_WAIT
@@ -671,20 +671,20 @@ ev_c05_leader_p02:
 	_OBJ_ANIME_WAIT
 	_JUMP			common_c05_leader_dir
 
-//NPC‚ª‚¢‚é‚Æ‚«
+//NPCãŒã„ã‚‹ã¨ã
 ev_c05_leader_p03:
 	_OBJ_ANIME		C05_LEADER,anm_c05_leader_03
 	_OBJ_ANIME_WAIT
 	_JUMP			common_c05_leader_dir
 
-/*‹¤’Êˆ—*/
+/*å…±é€šå‡¦ç†*/
 common_c05_leader_dir:
 	_OBJ_DEL		C05_LEADER
 	_TALK_OBJ_END
 	_END
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	‹Ž‚Á‚Ä‚¢‚­
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c05_leader_01
 	_ANIME_DATA	AC_WALK_L_8F,1
@@ -704,7 +704,7 @@ _ANIME_LABEL anm_c05_leader_03
 
 
 /********************************************************************/
-/*							ƒ~ƒ~ƒB									*/
+/*							ãƒŸãƒŸã‚£									*/
 /********************************************************************/
 #define POS_C05_JUDGE_Z1	(725)
 #define POS_C05_JUDGE_Z2	(726)
@@ -715,11 +715,11 @@ _ANIME_LABEL anm_c05_leader_03
 pos_c05_judge:
 	_EVENT_START
 
-	/*uIv*/
+	/*ã€Œï¼ã€*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c05_player_200
 	_OBJ_ANIME_WAIT
 
-	//ŽålŒö‚ÌˆÊ’uî•ñŽæ“¾
+	//ä¸»äººå…¬ã®ä½ç½®æƒ…å ±å–å¾—
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_JUMP	SCWK_TEMP1,EQ,POS_C05_JUDGE_Z1,pos_c05_judge_1
 	_IFVAL_JUMP	SCWK_TEMP1,EQ,POS_C05_JUDGE_Z2,pos_c05_judge_2
@@ -729,7 +729,7 @@ pos_c05_judge:
 	_END
 
 //--------------------------------------------------------------------
-//ƒ|ƒPƒ‚ƒ“Aƒ~ƒ~ƒB	‹ßŠñ‚é
+//ãƒã‚±ãƒ¢ãƒ³ã€ãƒŸãƒŸã‚£	è¿‘å¯„ã‚‹
 //--------------------------------------------------------------------
 pos_c05_judge_1:
 	_SXY_POS_CHANGE	C05_JUDGE,471,POS_C05_JUDGE_Z1
@@ -762,7 +762,7 @@ pos_c05_judge_5:
 	_END
 
 //--------------------------------------------------------------------
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 //--------------------------------------------------------------------
 pos_c05_judge_10_common:
 	_FLAG_RESET		FV_C05_JUDGE
@@ -770,14 +770,14 @@ pos_c05_judge_10_common:
 	_OBJ_ADD		C05_JUDGE
 	_OBJ_ADD		C05_POKE
 
-	/*ƒ~ƒ~ƒbƒg‚ª‹ß‚Ã‚¢‚Ä‚­‚é*/
+	/*ãƒŸãƒŸãƒƒãƒˆãŒè¿‘ã¥ã„ã¦ãã‚‹*/
 	_OBJ_ANIME		C05_POKE,anm_c05_poke_01
 	_OBJ_ANIME_WAIT
 
 	_VOICE_PLAY		MONSNO_MIMITTO,0
 	_VOICE_WAIT
 
-	/*ƒ~ƒ~ƒB‚ª‹ß‚Ã‚¢‚Ä‚­‚é*/
+	/*ãƒŸãƒŸã‚£ãŒè¿‘ã¥ã„ã¦ãã‚‹*/
 	_OBJ_ANIME		C05_JUDGE,anm_c05_judge_01
 	_OBJ_ANIME_WAIT
 
@@ -785,7 +785,7 @@ pos_c05_judge_10_common:
 
 	_TALK_KEYWAIT	msg_c05_judge_02
 
-	/*ƒ~ƒ~ƒbƒg‰E‚Ö‹Ž‚é*/
+	/*ãƒŸãƒŸãƒƒãƒˆå³ã¸åŽ»ã‚‹*/
 	//_OBJ_ANIME		C05_POKE,anm_c05_poke_02
 	//_OBJ_ANIME_WAIT
 	//_SE_PLAY		SEQ_SE_DP_BOWA2
@@ -796,7 +796,7 @@ pos_c05_judge_10_common:
 	_TALK_KEYWAIT	msg_c05_judge_03
 	_TALK_CLOSE
 
-	/*ƒ~ƒ~ƒB‹Ž‚Á‚Ä‚¢‚­*/
+	/*ãƒŸãƒŸã‚£åŽ»ã£ã¦ã„ã*/
 	_OBJ_ANIME		C05_JUDGE,anm_c05_judge_02
 	_OBJ_ANIME_WAIT
 	_OBJ_DEL		C05_JUDGE
@@ -807,35 +807,35 @@ pos_c05_judge_10_common:
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	I
+//ä¸»äººå…¬	ï¼
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c05_player_200
 	_ANIME_DATA	AC_MARK_GYOE,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ~ƒ~ƒbƒg	‹ß‚Ã‚¢‚Ä‚­‚é
+//ãƒŸãƒŸãƒƒãƒˆ	è¿‘ã¥ã„ã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c05_poke_01
 	_ANIME_DATA	AC_WALK_L_4F,9
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ~ƒ~ƒbƒg	‹Ž‚Á‚Ä‚¢‚­
+//ãƒŸãƒŸãƒƒãƒˆ	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c05_poke_02
 	_ANIME_DATA	AC_WALK_R_4F,8
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ~ƒ~ƒB	‹ß‚Ã‚¢‚Ä‚­‚é
+//ãƒŸãƒŸã‚£	è¿‘ã¥ã„ã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c05_judge_01
 	_ANIME_DATA	AC_WALK_L_4F,8
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ~ƒ~ƒB	‹Ž‚Á‚Ä‚¢‚­
+//ãƒŸãƒŸã‚£	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c05_judge_02
 	_ANIME_DATA	AC_WALK_R_8F,8
@@ -843,63 +843,63 @@ _ANIME_LABEL anm_c05_judge_02
 
 
 /********************************************************************/
-/*							ƒ^ƒEƒ“ƒ}ƒbƒv							*/
+/*							ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—							*/
 /********************************************************************/
 ev_c05_sign1:
 	_EASY_BOARD_MSG	msg_c05_sign1_01,BOARD_TYPE_TOWN,0
 	_END
 
 /********************************************************************/
-/*							ŒfŽ¦”Â(ƒWƒ€)							*/
+/*							æŽ²ç¤ºæ¿(ã‚¸ãƒ )							*/
 /********************************************************************/
 ev_c05_sign2:
 	_EASY_INFOBOARD_MSG	msg_c05_sign2_01,BOARD_TYPE_INFO,0
 	_END
 
 /********************************************************************/
-/*						@	POST	@@							*/
+/*						ã€€	POST	ã€€ã€€							*/
 /********************************************************************/
 ev_c05_sign3:
 	_EASY_BOARD_MSG	msg_c05_sign3_01,BOARD_TYPE_POST,0
 	_END
 
 /********************************************************************/
-/*						@	POST	@@							*/
+/*						ã€€	POST	ã€€ã€€							*/
 /********************************************************************/
 ev_c05_sign4:
 	_EASY_BOARD_MSG	msg_c05_sign4_01,BOARD_TYPE_POST,0
 	_END
 
 /********************************************************************/
-/*						@	POST	@@							*/
+/*						ã€€	POST	ã€€ã€€							*/
 /********************************************************************/
 ev_c05_sign5:
 	_EASY_BOARD_MSG	msg_c05_sign5_01,BOARD_TYPE_ROAD,0
 	_END
 
 /********************************************************************/
-/*						@	POST	@@							*/
+/*						ã€€	POST	ã€€ã€€							*/
 /********************************************************************/
 ev_c05_sign6:
 	_EASY_BOARD_MSG	msg_c05_sign6_01,BOARD_TYPE_ROAD,0
 	_END
 
 /********************************************************************/
-/*						@	POST	@@							*/
+/*						ã€€	POST	ã€€ã€€							*/
 /********************************************************************/
 ev_c05_sign7:
 	_EASY_BOARD_MSG	msg_c05_sign7_01,BOARD_TYPE_POST,0
 	_END
 
 /********************************************************************/
-/*						@	POST	@@							*/
+/*						ã€€	POST	ã€€ã€€							*/
 /********************************************************************/
 ev_c05_sign8:
 	_EASY_BOARD_MSG	msg_c05_sign8_01,BOARD_TYPE_POST,0
 	_END
 
 /********************************************************************/
-/*						@	POST	@@							*/
+/*						ã€€	POST	ã€€ã€€							*/
 /********************************************************************/
 ev_c05_sign9:
 	_EASY_BOARD_MSG	msg_c05_sign9_01,BOARD_TYPE_POST,0
@@ -907,7 +907,7 @@ ev_c05_sign9:
 
 
 /********************************************************************/
-/*							ƒTƒ“ƒOƒ‰ƒX								*/
+/*							ã‚µãƒ³ã‚°ãƒ©ã‚¹								*/
 /********************************************************************/
 ev_c05_sunglasses:
 	_EASY_OBJ_MSG	msg_c05_sunglasses_a_01
@@ -915,7 +915,7 @@ ev_c05_sunglasses:
 
 
 /********************************************************************/
-/*							ŠG•`‚«									*/
+/*							çµµæã									*/
 /********************************************************************/
 ev_c05_artist2:
 	_EASY_OBJ_MSG	msg_c05_artist_01
@@ -923,7 +923,7 @@ ev_c05_artist2:
 
 
 /********************************************************************/
-/*							Ši“¬‰Æ									*/
+/*							æ ¼é—˜å®¶									*/
 /********************************************************************/
 ev_c05_fighter2:
 	_EASY_OBJ_MSG	msg_c05_fighter2_01

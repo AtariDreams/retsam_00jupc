@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndStrmSetChannelVolume</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndStrmSetChannelVolume</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndStrmSetChannelVolume(
@@ -20,7 +20,7 @@
         int <var>volume</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA4LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -28,15 +28,15 @@
 <tbody>
 <tr>
 <td><em><strong><code>stream</code></strong></em></td>
-<td>�X�g���[���\���̂̃|�C���^�ł��B</td>
+<td>ストリーム構造体のポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>chNo</code></strong></em></td>
-<td>�`�����l���ԍ��ł��B</td>
+<td>チャンネル番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>volume</code></strong></em></td>
-<td>�{�����[���̒l�ł��B�P�ʂ� 0.1dB�ŁA0dB �̎��ő�ɂȂ�܂��B</td>
+<td>ボリュームの値です。単位は 0.1dBで、0dB の時最大になります。</td>
 </tr>
 </tbody>
 </table>
@@ -44,31 +44,31 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDA1MWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDACNWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�X�g���[���̃`�����l���{�����[����ύX���܂��B
+ストリームのチャンネルボリュームを変更します。
 </p>
       <p>
-�`�����l���ԍ�<em><strong><code>chNo</code></strong></em>�́A�X�g���[�����ł̃`�����l���ԍ��ł��B
-NITRO�T�E���h��H�ɓ��ڂ���Ă���`�����l���̔ԍ��Ƃ́A���ڊ֌W����܂���B
-�Ⴆ�΁A<tt class="function"><a href="NNS_SndStrmAllocChannel.html">NNS_SndStrmAllocChannel</a></tt>�֐��ŁA
-�Q�`�����l���m�ۂ����ꍇ�A�P�ڂ̃`�����l�����`�����l���ԍ�0�A�Q�ڂ̃`�����l�����`�����l���ԍ�1�ƂȂ�܂��B
+チャンネル番号<em><strong><code>chNo</code></strong></em>は、ストリーム中でのチャンネル番号です。
+NITROサウンド回路に搭載されているチャンネルの番号とは、直接関係ありません。
+例えば、<tt class="function"><a href="NNS_SndStrmAllocChannel.html">NNS_SndStrmAllocChannel</a></tt>関数で、
+２チャンネル確保した場合、１つ目のチャンネルがチャンネル番号0、２つ目のチャンネルがチャンネル番号1となります。
 </p>
       <p>
-�{�����[���̃f�t�H���g�l�́A0dB�ł��B
-���̃{�����[���l�́A<tt class="function"><a href="NNS_SndStrmSetVolume.html">NNS_SndStrmSetVolume</a></tt>�֐��̒l�Ƃ́A
-�Ɨ����Č��ʂ𔭊����A�݂��ɏd�ˍ��킳��܂��B
+ボリュームのデフォルト値は、0dBです。
+このボリューム値は、<tt class="function"><a href="NNS_SndStrmSetVolume.html">NNS_SndStrmSetVolume</a></tt>関数の値とは、
+独立して効果を発揮し、互いに重ね合わされます。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndStrmAllocChannel.html">NNS_SndStrmAllocChannel</a>, <a href="NNS_SndStrmSetVolume.html">NNS_SndStrmSetVolume</a></p>
-<h2>����</h2>
-<p>2004/08/10 ����<br></p>
+<h2>履歴</h2>
+<p>2004/08/10 初版<br></p>
 </div>
 </body>
 </html>

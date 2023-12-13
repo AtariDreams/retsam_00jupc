@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	comm_union_view_commmon.h
- * @brief	���j�I�����[��OBJ�`�惏�[�N���O�����珉�����ł���悤�ɕ�������
+ * @brief	ユニオンルームOBJ描画ワークを外部から初期化できるように分離した
  * @date	2006.03.17
  */
 //============================================================================================
@@ -16,7 +16,7 @@ typedef struct COMM_UNIONROOM_VIEW COMM_UNIONROOM_VIEW;
 
 void UnionRoomView_ObjInit( COMM_UNIONROOM_VIEW *view );
 
-// Obj��S�ĉB���i�����킯�ł͂Ȃ��j
+// Objを全て隠す（消すわけではない）
 extern void Union_BeaconObjAllVanish(FIELD_OBJ_SYS_PTR fldobjsys, COMM_UNIONROOM_VIEW *view);
 extern void UnionRoomView_ObjAllRise( COMM_UNIONROOM_VIEW *view );
 

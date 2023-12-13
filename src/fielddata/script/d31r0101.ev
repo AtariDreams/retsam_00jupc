@@ -10,11 +10,11 @@
 	.include	"../../field/scr_btower.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d31r0101_bpgift_01
 _EVENT_DATA		ev_d31r0101_bpgift_02
@@ -31,14 +31,14 @@ _EVENT_DATA		ev_d31r0101_oldwoman_01
 /*																	*/
 /********************************************************************/
 ev_d31r0101_bpgift_01:
-//	_LDVAL	LOCALWORK0,0	//ƒŠƒXƒgid‘ã“ü
-//	_LDVAL	LOCALWORK1,BP_GIFT_NUM01	//ƒŠƒXƒgãŒÀ’l‘ã“ü
+//	_LDVAL	LOCALWORK0,0	//ãƒªã‚¹ãƒˆidä»£å…¥
+//	_LDVAL	LOCALWORK1,BP_GIFT_NUM01	//ãƒªã‚¹ãƒˆä¸Šé™å€¤ä»£å…¥
 //	_JUMP	ev_bpgift_start
 	_JUMP	ev_gift_item
 
 ev_d31r0101_bpgift_02:
-//	_LDVAL	LOCALWORK0,1	//ƒŠƒXƒgid‘ã“ü
-//	_LDVAL	LOCALWORK1,BP_GIFT_NUM02	//ƒŠƒXƒgãŒÀ’l‘ã“ü
+//	_LDVAL	LOCALWORK0,1	//ãƒªã‚¹ãƒˆidä»£å…¥
+//	_LDVAL	LOCALWORK1,BP_GIFT_NUM02	//ãƒªã‚¹ãƒˆä¸Šé™å€¤ä»£å…¥
 //	_JUMP	ev_bpgift_start
 	_JUMP	ev_gift_machine
 
@@ -67,66 +67,66 @@ ev_gift_item:
 	
 	_END
 
-//ƒAƒCƒeƒ€ƒŠƒXƒgŒðŠ·ƒtƒ[
+//ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆäº¤æ›ãƒ•ãƒ­ãƒ¼
 ev_bpgift_start:
 	_TALK_OBJ_START
 
-	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒEƒBƒ“ƒhƒE•`‰æ
+	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 	_BTL_POINT_WIN_WRITE	21,1
 	
-	//‚±‚¿‚ç‚Å‚Í`
+	//ã“ã¡ã‚‰ã§ã¯ã€œ
 	_TALK_KEYWAIT	msg_hikikae_01
 
-	//‚Ç‚¿‚ç‚ÌƒAƒCƒeƒ€‚ð`
+	//ã©ã¡ã‚‰ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã€œ
 ev_bpgift_item_select:
 	_TALKMSG		msg_hikikae_02
 	_CALL			ev_bpgift_menu_write
 //	_TALK_CLOSE
 
-	//ƒLƒƒƒ“ƒZƒ‹‚ª‘I‚Î‚ê‚Ä‚¢‚½‚çI‚í‚é
+	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãŒé¸ã°ã‚Œã¦ã„ãŸã‚‰çµ‚ã‚ã‚‹
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,EV_WIN_B_CANCEL,ev_bpgift_end
 	_IFWK_JUMP		SCWK_ANSWER,EQ,LOCALWORK1,ev_bpgift_end
 
-	//—~‚µ‚¢ƒAƒCƒeƒ€Œˆ’è(LOCALWORK3‚Éindex‚ð•Û‘¶)
+	//æ¬²ã—ã„ã‚¢ã‚¤ãƒ†ãƒ æ±ºå®š(LOCALWORK3ã«indexã‚’ä¿å­˜)
 	_LDWK			LOCALWORK3,SCWK_ANSWER
 	_GET_BP_GIFT	LOCALWORK0,LOCALWORK3,SCWK_PARAM0,SCWK_PARAM1
 	
-	//H‚Å‚æ‚ë‚µ‚¢‚Å‚·‚©H
+	//ï¼Ÿã§ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ
 	_IFVAL_CALL		LOCALWORK0,EQ,0,ev_bpgift_item_select_check01
 	_IFVAL_CALL		LOCALWORK0,EQ,1,ev_bpgift_item_select_check02
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_bpgift_item_select	//ƒLƒƒƒ“ƒZƒ‹
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_bpgift_item_select	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
-	//Ž‚Á‚Ä‚¢‚ébp‚ª‘«‚è‚é‚©H
+	//æŒã£ã¦ã„ã‚‹bpãŒè¶³ã‚Šã‚‹ã‹ï¼Ÿ
 	_COMP_BTL_POINT	SCWK_PARAM1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_bpgift_bp_ng	//bp‘«‚è‚È‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_bpgift_bp_ng	//bpè¶³ã‚Šãªã„
 
-	//ƒoƒbƒO‚É“ü‚é‚©H
+	//ãƒãƒƒã‚°ã«å…¥ã‚‹ã‹ï¼Ÿ
 	_ADD_ITEM_CHK	SCWK_PARAM0,1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_bpgift_bag_ng	//ƒoƒbƒO‚É‹ó‚«‚ª‚È‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_bpgift_bag_ng	//ãƒãƒƒã‚°ã«ç©ºããŒãªã„
 
-	//‚Ç‚¤‚¼‚¨Žó‚¯Žæ‚è‚­‚¾‚³‚¢
+	//ã©ã†ãžãŠå—ã‘å–ã‚Šãã ã•ã„
 	_TALK_KEYWAIT	msg_hikikae_04
 
-	//ƒAƒCƒeƒ€’Ç‰Á
+	//ã‚¢ã‚¤ãƒ†ãƒ è¿½åŠ 
 	_ADD_ITEM		SCWK_PARAM0,1,SCWK_ANSWER
-	//bpŒ¸‚ç‚·
+	//bpæ¸›ã‚‰ã™
 	_BTL_POINT_SUB	SCWK_PARAM1
-	//bpƒEƒBƒ“ƒhƒEXV
+	//bpã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›´æ–°
 	_BTL_POINT_WRITE
 	_JUMP			ev_bpgift_item_select
 	
 ev_bpgift_end:
-	//‚ ‚è‚ª‚Æ‚¤‚²‚´‚¢‚Ü‚µ‚½
+	//ã‚ã‚ŠãŒã¨ã†ã”ã–ã„ã¾ã—ãŸ
 	_TALKMSG		msg_hikikae_07
 	_LAST_KEYWAIT
 	_TALK_CLOSE
-	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒEƒBƒ“ƒhƒEíœ
+	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
 	_BTL_POINT_WIN_DEL
 	_TALK_OBJ_END
 	_END
 
-//‘I‚ñ‚¾ƒAƒCƒeƒ€‚ÌŠm”FƒƒbƒZ[ƒW
+//é¸ã‚“ã ã‚¢ã‚¤ãƒ†ãƒ ã®ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 ev_bpgift_item_select_check01:
 	_ITEM_NAME		0,SCWK_PARAM0
 	_TALKMSG		msg_hikikae_03
@@ -137,22 +137,22 @@ ev_bpgift_item_select_check02:
 	_TALKMSG		msg_hikikae_08
 	_RET
 
-//bp‚ª‘«‚è‚È‚¢‚Æ‚«‚ÌƒƒbƒZ[ƒW
+//bpãŒè¶³ã‚Šãªã„ã¨ãã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 ev_bpgift_bp_ng:
 	_TALK_KEYWAIT	msg_hikikae_05
 	_JUMP			ev_bpgift_item_select
 
-//ƒoƒbƒO‚ªˆê”t‚ÌŽž‚ÌƒƒbƒZ[ƒW
+//ãƒãƒƒã‚°ãŒä¸€æ¯ã®æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 ev_bpgift_bag_ng:
 	_ITEM_NAME		0,SCWK_PARAM0
 	_TALK_KEYWAIT	msg_hikikae_06
 	_JUMP			ev_bpgift_item_select
 
-//ŒðŠ·ƒAƒCƒeƒ€ƒƒjƒ…[ƒŠƒXƒg•`‰æ LOCALWORK0‚ÉƒŠƒXƒgID‚ð‘ã“ü‚µ‚ÄŒÄ‚Ô
+//äº¤æ›ã‚¢ã‚¤ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆæç”» LOCALWORK0ã«ãƒªã‚¹ãƒˆIDã‚’ä»£å…¥ã—ã¦å‘¼ã¶
 ev_bpgift_menu_write:
 	_LDVAL	SCWK_REG0,0
 	_LDVAL	SCWK_REG1,0
-	_BMPLIST_INIT	1,1,0,1,SCWK_ANSWER		//BƒLƒƒƒ“ƒZƒ‹—LŒø
+	_BMPLIST_INIT	1,1,0,1,SCWK_ANSWER		//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 
 ev_bpgift_menu_make_start:
 	_GET_BP_GIFT			LOCALWORK0,SCWK_REG0,SCWK_PARAM0,SCWK_PARAM1
@@ -163,38 +163,38 @@ ev_bpgift_menu_make_start:
 	_IFWK_JUMP				SCWK_REG0,LT,LOCALWORK1,ev_bpgift_menu_make_start
 
 ev_bpgift_menu_make_end:
-	//‚â‚ß‚é‚ð’Ç‰Á
+	//ã‚„ã‚ã‚‹ã‚’è¿½åŠ 
 	_BMPLIST_MAKE_LIST		msg_bpgift_02,EV_WIN_TALK_MSG_NONE,SCWK_REG0
-	//bmpƒŠƒXƒgƒXƒ^[ƒg
+	//bmpãƒªã‚¹ãƒˆã‚¹ã‚¿ãƒ¼ãƒˆ
 	_BMPLIST_START
 	_RET
 
 /********************************************************************/
 /*																	*/
 /********************************************************************/
-//aŽm
+//ç´³å£«
 ev_d31r0101_gentleman_01:
 //	_BTL_POINT_ADD	500
 	_EASY_OBJ_MSG	msg_d31r0101_gentleman_01
 	_END
-//ƒ}ƒ_ƒ€
+//ãƒžãƒ€ãƒ 
 ev_d31r0101_madam_01:
 	_EASY_OBJ_MSG	msg_d31r0101_madam_01
 	_END
-//ƒXƒLƒ“ƒwƒbƒh
+//ã‚¹ã‚­ãƒ³ãƒ˜ãƒƒãƒ‰
 ev_d31r0101_badman1_01:
 	_EASY_OBJ_MSG	msg_d31r0101_badman1_01
 	_END
-//—‚ÌŽq
+//å¥³ã®å­
 ev_d31r0101_girl1_01:
 	_EASY_OBJ_MSG	msg_d31r0101_girl1_01
 	_END
-//ƒsƒGƒ
+//ãƒ”ã‚¨ãƒ­
 ev_d31r0101_clown_01:
 	_EASY_OBJ_MSG	msg_d31r0101_clown_01
 	_END
 	
-//—c—•˜V”k
+//å¹¼å¥³ï¼†è€å©†
 ev_d31r0101_babygirl_01:
 ev_d31r0101_oldwoman_01:
 	_TALK_OBJ_START_TURN_NOT

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SNDTrackInfo</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>SNDTrackInfo</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcsynopsisinfo"><code>typedef struct SNDTrackInfo
@@ -31,7 +31,7 @@
 <dd><pre class="funcprototype"></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAPLWT"></a>
-      <h2>�v�f</h2>
+      <h2>要素</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -39,64 +39,64 @@
 <tbody>
 <tr>
 <td><em><strong><code>prgNo</code></strong></em></td>
-<td>�v���O�����i���o�ł��B</td>
+<td>プログラムナンバです。</td>
 </tr>
 <tr>
 <td><em><strong><code>volume</code></strong></em></td>
-<td>volume�R�}���h(MIDI:7)�ɑΉ�����g���b�N�{�����[���ł��B�l�͈̔͂�0�`127�ł��B</td>
+<td>volumeコマンド(MIDI:7)に対応するトラックボリュームです。値の範囲は0〜127です。</td>
 </tr>
 <tr>
 <td><em><strong><code>volume2</code></strong></em></td>
-<td>volume2�R�}���h(MIDI:11)�ɑΉ�����g���b�N�{�����[���ł��B�l�͈̔͂�0�`127�ł��B</td>
+<td>volume2コマンド(MIDI:11)に対応するトラックボリュームです。値の範囲は0〜127です。</td>
 </tr>
 <tr>
 <td><em><strong><code>pitchBend</code></strong></em></td>
-<td>�s�b�`�x���h�̒l�ł��B�l�͈̔͂�-128�`127�ł��B</td>
+<td>ピッチベンドの値です。値の範囲は-128〜127です。</td>
 </tr>
 <tr>
 <td><em><strong><code>bendRange</code></strong></em></td>
-<td>�s�b�`�x���h�����W�ł��B�P�ʂ͔����ŁApitchBend�̒l���ő�̎��̕ω��ʂ�\���܂��B</td>
+<td>ピッチベンドレンジです。単位は半音で、pitchBendの値が最大の時の変化量を表します。</td>
 </tr>
 <tr>
 <td><em><strong><code>pan</code></strong></em></td>
-<td>�p���̒l�ł��B�l�͈̔͂́A0(��)�`64(����)�`127(�E)�ł��B</td>
+<td>パンの値です。値の範囲は、0(左)〜64(中央)〜127(右)です。</td>
 </tr>
 <tr>
 <td><em><strong><code>transpose</code></strong></em></td>
-<td>�g�����X�|�[�Y�̒l�ł��B�P�ʂ͔����ł��B</td>
+<td>トランスポーズの値です。単位は半音です。</td>
 </tr>
 <tr>
 <td><em><strong><code>chCount</code></strong></em></td>
-<td>�g���b�N�ōĐ����̃`�����l�����ł��B</td>
+<td>トラックで再生中のチャンネル数です。</td>
 </tr>
 <tr>
 <td><em><strong><code>channel[]</code></strong></em></td>
-<td>�g���b�N�ōĐ����̃`�����l���́A�`�����l���ԍ��̔z��ł��BchCount�̗v�f�̂ݗL���ł��B</td>
+<td>トラックで再生中のチャンネルの、チャンネル番号の配列です。chCount個の要素のみ有効です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAWNWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�g���b�N���\���̂ł��B�P�̃g���b�N�̏���ێ����Ă��܂��B
+トラック情報構造体です。１つのトラックの情報を保持しています。
 </p>
       <p>
-���̍\���̂́A
-<tt class="function"><a href="../snd/NNS_SndPlayerReadDriverTrackInfo.html">NNS_SndPlayerReadDriverTrackInfo</a></tt>�֐��Ŏ擾���邱�Ƃ��ł��܂��B
+この構造体は、
+<tt class="function"><a href="../snd/NNS_SndPlayerReadDriverTrackInfo.html">NNS_SndPlayerReadDriverTrackInfo</a></tt>関数で取得することができます。
 </p>
 <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-���̍\���̂̃T�C�Y�ƁA�e�����o�̕��я��́A�����ύX�����\��������܂��B
+この構造体のサイズと、各メンバの並び順は、将来変更される可能性があります。
         </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="../snd/NNS_SndPlayerReadDriverTrackInfo.html">NNS_SndPlayerReadDriverTrackInfo</a></p>
-<h2>����</h2>
-<p>2005/02/17 ����<br></p>
+<h2>履歴</h2>
+<p>2005/02/17 初版<br></p>
 </div>
 </body>
 </html>

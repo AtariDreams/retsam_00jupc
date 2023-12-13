@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////
 //
-// isdbglib.h : �T�|�[�g���C�u����
+// isdbglib.h : サポートライブラリ
 //
 // Copyright (C) 2003-2004 INTELLIGENT SYSTEMS Co.,Ltd. All rights reserved.
 //
@@ -16,42 +16,42 @@ extern "C" {
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-/// �v�����g�f�o�b�O����
+/// プリントデバッグ処理
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ///
-/// �֐�����
+/// 関数説明
 /// 
 ///
-/// [������o��]
+/// [文字列出力]
 /// void ISDPrint(const char* pBuf);
-///      pBuf:  �\���p�L���[�o�b�t�@�ɕ������ǉ����܂��B
+///      pBuf:  表示用キューバッファに文字列を追加します。
 ///
-/// [�t�H�[�}�b�g�t��������o��]
+/// [フォーマット付き文字列出力]
 /// void ISDPrintf(const char *pBuf, ...)
-///      pBuf:  �\���p�L���[�o�b�t�@�Ƀt�H�[�}�b�g�����������ǉ����܂��B
-///             �g�p���@�� ANSI��printf()�֐��Ɠ��l�ł��B
+///      pBuf:  表示用キューバッファにフォーマットした文字列を追加します。
+///             使用方法は ANSIのprintf()関数と同様です。
 ///
-/// [�v���O�����������`�F�b�N�}�N��]
-/// ISDASSERT( �]���� );
-///      �]���� �ɂ́AC����̕]�������L�q���܂��B�]���� �̒l���^(ZERO��
-///      �O)�Ȃ�Ύ��̃v���O���������s���܂��B�U(ZERO)�Ȃ�΁A
-///      ISDASSERT()����`����Ă���\�[�X�t�@�C�����Ƃ��̃��C���i���o�[�A
-///      �]���� ��\�����āA�v���O�����͒�~���܂��B
+/// [プログラム正当性チェックマクロ]
+/// ISDASSERT( 評価式 );
+///      評価式 には、C言語の評価式を記述します。評価式 の値が真(ZERO以
+///      外)ならば次のプログラムを実行します。偽(ZERO)ならば、
+///      ISDASSERT()が定義されているソースファイル名とそのラインナンバー、
+///      評価式 を表示して、プログラムは停止します。
 ///
-/// [�v���O�����������`�F�b�N�}�N��]
-/// ISDWARNING( �]���� );
-///      ISDASSERT()�Ɠ����g�p���@�ł��BISDASSERT()�Ƃ̈Ⴄ�_�́AASSERT
-///      �́A�v���O�������~���ȍ~�̏����͍s��Ȃ��i�n���O�A�b�v��ԁj
-///      ���Ƃɑ΂��AISDWARNNING()�͈��������v���O���������s����_�ł��B
+/// [プログラム正当性チェックマクロ]
+/// ISDWARNING( 評価式 );
+///      ISDASSERT()と同じ使用方法です。ISDASSERT()との違う点は、ASSERT
+///      は、プログラムを停止し以降の処理は行わない（ハングアップ状態）
+///      ことに対し、ISDWARNNING()は引き続きプログラムを実行する点です。
 ///
 /////////////////////////////////////////////////////////////////////////
-/// �g�p��̒���
+/// 使用上の注意
 ///
-/// �EIS-CGB-EMULATOR �n�[�h�E�F�A�̓s����A�z�X�g���Ƀf�[�^�𑗂�Ԃɂ�
-///   �ꎞ�I�Ɋ����݂��֎~�A�������E�F�C�g���ύX����܂��B
-/// �E�o�׎���ROM�Ȃǂ̃����[�X�o�[�W�������쐬����ۂɂ́A NDEBUG ���`����
-///   ���ƂŃv�����g�f�o�b�O�֐��E�}�N���͕K����菜���Ă��������B
+/// ・IS-CGB-EMULATOR ハードウェアの都合上、ホスト側にデータを送る間には
+///   一時的に割込みを禁止、メモリウェイトが変更されます。
+/// ・出荷時のROMなどのリリースバージョンを作成する際には、 NDEBUG を定義する
+///   ことでプリントデバッグ関数・マクロは必ず取り除いてください。
 ///
 /////////////////////////////////////////////////////////////////////////
 
@@ -85,14 +85,14 @@ extern "C" {
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-/// NITROToolAPI - �c�[������pAPI
+/// NITROToolAPI - ツール製作用API
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
-/// �X�g���[��API �f�[�^��(��)�M�T�C�Y�̍ő�o�C�g��
+/// ストリームAPI データ送(受)信サイズの最大バイト数
 ///#define      NITROSTM_SENDMAX            8192
 
-/// MIDI-API �f�[�^��M�T�C�Y�̍ő�o�C�g��
+/// MIDI-API データ受信サイズの最大バイト数
 ///#define      NITROMID_RECVMAX            2048
 
 enum {
@@ -118,93 +118,93 @@ enum {
 #define NITROMASK_RESOURCE_CARTRIDGE    (1 << NITRORESID_CARTRIDGE)
 
 typedef  struct tagNITRODEVCAPS {
-    u32         m_nSizeStruct;         // CAPS�\���̂̃T�C�Y
-    u32         m_nDeviceID;           // �f�o�C�X����ID
-    u32         m_dwMaskResource;      // ���̃f�o�C�X�𓮍삳����̂ɕK�v�Ȃ�\�[�X
+    u32         m_nSizeStruct;         // CAPS構造体のサイズ
+    u32         m_nDeviceID;           // デバイス識別ID
+    u32         m_dwMaskResource;      // このデバイスを動作させるのに必要なりソース
 } NITRODEVCAPS;
 typedef void (*NITROSTREAMCALLBACKFUNC)( u32 dwUserData, u32 nChnStream, const void *pRecv, u32 dwRecvSize );
 
 ////////////////////////////////////////////////////////////////////////
-// ������
+// 初期化
 ////////////////////////////////////////////////////////////////////////
 void         NITROToolAPIInit(void);
 
 ////////////////////////////////////////////////////////////////////////
-// �ڑ�����Ă���f�o�C�X�\�͂̎擾
+// 接続されているデバイス能力の取得
 ////////////////////////////////////////////////////////////////////////
 int          NITROToolAPIGetMaxCaps(void);
 const NITRODEVCAPS  *NITROToolAPIGetDeviceCaps( int nCaps );
 
 
 ////////////////////////////////////////////////////////////////////////
-// �f�o�C�X�̃I�[�v���A�N���[�Y
+// デバイスのオープン、クローズ
 ////////////////////////////////////////////////////////////////////////
 int          NITROToolAPIOpen( const NITRODEVCAPS* pCaps );
 int          NITROToolAPIClose( void );
 
 ////////////////////////////////////////////////////////////////////////
-// �X�g���[���ł̑���M
+// ストリームでの送受信
 ////////////////////////////////////////////////////////////////////////
 int          NITROToolAPIStreamGetWritableLength( u32 *pnLength );
 int          NITROToolAPIWriteStream( u32 nChnStream, const void *pSrc, u32 dwSize );
 int          NITROToolAPISetReceiveStreamCallBackFunction( NITROSTREAMCALLBACKFUNC cbFunc, u32 dwUserData );
 
 ////////////////////////////////////////////////////////////////////////
-// VBlank���荞�݂�^�C�}�[�ȂǁA����I�Ȋ��荞�݂̒��Ōp�����ČĂ�
+// VBlank割り込みやタイマーなど、定期的な割り込みの中で継続して呼ぶ
 ////////////////////////////////////////////////////////////////////////
-void         NITROToolAPIPollingIdle(void);             // EMULATOR�p
-void         NITROToolAPITimerInterrupt(void);          // �^�C�}�[���荞��
-void         NITROToolAPIVBlankInterrupt(void);         // �u�u�����N���荞��
-void         NITROToolAPICartridgeInterrupt(void);      // �J�[�h���b�W���荞��
+void         NITROToolAPIPollingIdle(void);             // EMULATOR用
+void         NITROToolAPITimerInterrupt(void);          // タイマー割り込み
+void         NITROToolAPIVBlankInterrupt(void);         // Ｖブランク割り込み
+void         NITROToolAPICartridgeInterrupt(void);      // カードリッジ割り込み
 
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-/// NITROMIDIAPI - MIDI�f�[�^�ǂݎ��API
+/// NITROMIDIAPI - MIDIデータ読み取りAPI
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
 typedef  struct tagNITROMIDICAPS {
-    u32         m_nSizeStruct;          // CAPS�\���̂̃T�C�Y
-    u32         m_nDeviceID;            // �f�o�C�X����ID (TOOLAPI�Ƌ���)
-    u32         m_nMaxFIFO;             // ��M�o�b�t�@�T�C�Y
-    u32         m_dwMaskResource;       // ���̃f�o�C�X�𓮍삳����̂ɕK�v�Ȃ�\�[�X(TOOLAPI�Ƌ���)
+    u32         m_nSizeStruct;          // CAPS構造体のサイズ
+    u32         m_nDeviceID;            // デバイス識別ID (TOOLAPIと共通)
+    u32         m_nMaxFIFO;             // 受信バッファサイズ
+    u32         m_dwMaskResource;       // このデバイスを動作させるのに必要なりソース(TOOLAPIと共通)
 } NITROMIDICAPS;
 
 ////////////////////////////////////////////////////////////////////////
-// ������
+// 初期化
 ////////////////////////////////////////////////////////////////////////
 void        NITROMIDIAPIInit(void);
 
 ////////////////////////////////////////////////////////////////////////
-// MIDI�f�o�C�X�\�͂̎擾
+// MIDIデバイス能力の取得
 ////////////////////////////////////////////////////////////////////////
 int         NITROMIDIAPIGetMaxCaps(void);
 const NITROMIDICAPS  *NITROMIDIAPIGetDeviceCaps( int nCaps );
 
 ////////////////////////////////////////////////////////////////////////
-// MIDI�f�o�C�X�̃I�[�v���A�N���[�Y
+// MIDIデバイスのオープン、クローズ
 ////////////////////////////////////////////////////////////////////////
 int         NITROMIDIAPIOpen( const NITROMIDICAPS* pCaps );
 int         NITROMIDIAPIClose( void );
 
 ////////////////////////////////////////////////////////////////////////
-// �o�b�t�@�̃��Z�b�g
+// バッファのリセット
 ////////////////////////////////////////////////////////////////////////
 void        NITROMIDIAPIReset(void);
 
 ////////////////////////////////////////////////////////////////////////
-// �o�b�t�@�����O���̃f�[�^�����擾���܂�
+// バッファリング中のデータ長を取得します
 ////////////////////////////////////////////////////////////////////////
 int         NITROMIDIAPIGetReadableLength(void);
 
 ////////////////////////////////////////////////////////////////////////
-// �o�b�t�@�����O���ꂽ�f�[�^��ǂ݂Ƃ�܂�
+// バッファリングされたデータを読みとります
 ////////////////////////////////////////////////////////////////////////
 int         NITROMIDIAPIRead( void *pBuf, u32 nBufSize );
 
 ////////////////////////////////////////////////////////////////////////
-// �J�[�g���b�W���荞�ݓ��ŌĂ�ł�������
+// カートリッジ割り込み内で呼んでください
 ////////////////////////////////////////////////////////////////////////
 void        NITROMIDIAPICartridgeInterrupt(void);
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SND_RecvCommandReply</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>SND_RecvCommandReply</h1>
-<h2>\•¶</h2>
+<h2>æ§‹æ–‡</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">const SNDCommand* SND_RecvCommandReply( u32 <var>flags</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAWLWT"></a>
-      <h2>ˆø”</h2>
+      <h2>å¼•æ•°</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,7 +25,7 @@
 <tbody>
 <tr>
 <td><em><strong><font face="Courier New">flags</font></strong></em></td>
-<td>ƒtƒ‰ƒO‚Å‚·B</td>
+<td>ãƒ•ãƒ©ã‚°ã§ã™ã€‚</td>
 </tr>
 </tbody>
 </table>
@@ -33,33 +33,33 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAFMWT"></a>
-      <h2>•Ô‚è’l</h2>
+      <h2>è¿”ã‚Šå€¤</h2>
 
-      <p>ƒRƒ}ƒ“ƒhˆ—‰ž“š‚ª‚ ‚é‚ÆAˆ—‚µ‚½ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ð•Ô‚µ‚Ü‚·B‰ž“š‚ª–³‚¢ê‡‚ÍNULL‚ð•Ô‚µ‚Ü‚·B</p>
+      <p>ã‚³ãƒžãƒ³ãƒ‰å‡¦ç†å¿œç­”ãŒã‚ã‚‹ã¨ã€å‡¦ç†ã—ãŸã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚’è¿”ã—ã¾ã™ã€‚å¿œç­”ãŒç„¡ã„å ´åˆã¯NULLã‚’è¿”ã—ã¾ã™ã€‚</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAMMWT"></a>
-      <h2>à–¾</h2>
+      <h2>èª¬æ˜Ž</h2>
       <p>
-ƒRƒ}ƒ“ƒhˆ—‰ž“š‚ðŽóM‚µ‚Ü‚·B
+ã‚³ãƒžãƒ³ãƒ‰å‡¦ç†å¿œç­”ã‚’å—ä¿¡ã—ã¾ã™ã€‚
 </p>
       <p>
-ƒtƒ‰ƒO<em><strong><font face="Courier New">flags</font></strong></em>‚É‚ÍA
-<span class="symbol">SND_COMMAND_BLOCK</span>‚Ü‚½‚ÍA<span class="symbol">SND_COMMAND_NOBLOCK</span>‚ðŽw’è‚µ‚Ü‚·B
-<span class="symbol">SND_COMMAND_BLOCK</span>‚Ìê‡AƒRƒ}ƒ“ƒhˆ—‰ž“š‚ª‚ ‚é‚Ü‚ÅŠÖ”“à‚ÅƒuƒƒbƒN‚µ‚Ü‚·B
-<span class="symbol">SND_COMMAND_NOBLOCK</span>‚Ìê‡‚ÍAƒRƒ}ƒ“ƒhˆ—‰ž“š‚ª–³‚¢‚ÆNULL‚ð•Ô‚µ‚Ü‚·B
+ãƒ•ãƒ©ã‚°<em><strong><font face="Courier New">flags</font></strong></em>ã«ã¯ã€
+<span class="symbol">SND_COMMAND_BLOCK</span>ã¾ãŸã¯ã€<span class="symbol">SND_COMMAND_NOBLOCK</span>ã‚’æŒ‡å®šã—ã¾ã™ã€‚
+<span class="symbol">SND_COMMAND_BLOCK</span>ã®å ´åˆã€ã‚³ãƒžãƒ³ãƒ‰å‡¦ç†å¿œç­”ãŒã‚ã‚‹ã¾ã§é–¢æ•°å†…ã§ãƒ–ãƒ­ãƒƒã‚¯ã—ã¾ã™ã€‚
+<span class="symbol">SND_COMMAND_NOBLOCK</span>ã®å ´åˆã¯ã€ã‚³ãƒžãƒ³ãƒ‰å‡¦ç†å¿œç­”ãŒç„¡ã„ã¨NULLã‚’è¿”ã—ã¾ã™ã€‚
 </p>
       <div class="note">
-<h3 class="title">’ˆÓ</h3>
+<h3 class="title">æ³¨æ„</h3>
 <p>
-—\–ñÏ‚ÝƒRƒ}ƒ“ƒh‚ª–³‚¢ó‘Ô‚ÅA<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>ŠÖ”‚ð
-ŒÄ‚Ñ‚¾‚µ‚Ä‚àAƒRƒ}ƒ“ƒhˆ—‰ž“š‚Í‚ ‚è‚Ü‚¹‚ñ‚Ì‚ÅA’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
+äºˆç´„æ¸ˆã¿ã‚³ãƒžãƒ³ãƒ‰ãŒç„¡ã„çŠ¶æ…‹ã§ã€<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>é–¢æ•°ã‚’
+å‘¼ã³ã ã—ã¦ã‚‚ã€ã‚³ãƒžãƒ³ãƒ‰å‡¦ç†å¿œç­”ã¯ã‚ã‚Šã¾ã›ã‚“ã®ã§ã€æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
 </p>
 </div>
     </div>
-<h2>ŽQÆ</h2>
+<h2>å‚ç…§</h2>
 <p><a href="SND_FlushCommand.html">SND_FlushCommand</a></p>
-<h2>—š—ð</h2>
-<p>2004/07/20‰”Å<br></p>
+<h2>å±¥æ­´</h2>
+<p>2004/07/20åˆç‰ˆ<br></p>
 </div>
 </body>
 </html>

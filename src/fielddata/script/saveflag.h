@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	saveflag.h
- * @brief	ƒQ[ƒ€“àƒZ[ƒuƒtƒ‰ƒO’è‹`(ƒXƒNƒŠƒvƒg‚©‚ç‚Ì‚ÝƒAƒNƒZƒX‚³‚ê‚éƒtƒ‰ƒO)
+ * @brief	ã‚²ãƒ¼ãƒ å†…ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ã‚°å®šç¾©(ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã®ã¿ã‚¢ã‚¯ã‚»ã‚¹ã•ã‚Œã‚‹ãƒ•ãƒ©ã‚°)
  * @author	Satoshi Nohara
  * @date	05.10.22
  *
@@ -13,10 +13,10 @@
 
 
 //----------------------------------------------------------------------
-//	”Ä—pƒtƒ‰ƒO
+//	æ±Žç”¨ãƒ•ãƒ©ã‚°
 //	(    1         -     99        )
 //----------------------------------------------------------------------
-//#define FH_00							(0)	//–³Œøƒiƒ“ƒo[‚È‚Ì‚ÅŽg—p•s‰Â
+//#define FH_00							(0)	//ç„¡åŠ¹ãƒŠãƒ³ãƒãƒ¼ãªã®ã§ä½¿ç”¨ä¸å¯
 #define FH_01							(1)
 #define FH_02							(2)
 #define FH_03							(3)
@@ -48,7 +48,7 @@
 #define FH_29							(29)
 #define FH_30							(30)
 //#define FH_31							(31)
-#define FH_31_REPORT					(31)			//07.07.24 common_scr ƒŒƒ|[ƒgŽg—p
+#define FH_31_REPORT					(31)			//07.07.24 common_scr ãƒ¬ãƒãƒ¼ãƒˆä½¿ç”¨
 
 #define FH_OBJ00						(32)
 #define FH_OBJ01						(33)
@@ -85,11 +85,11 @@
 //MAX = evwkdef.h LOCAL_FLAG_MAX
 
 //----------------------------------------------------------------------
-//	ƒCƒxƒ“ƒgis§Œäƒtƒ‰ƒO
+//	ã‚¤ãƒ™ãƒ³ãƒˆé€²è¡Œåˆ¶å¾¡ãƒ•ãƒ©ã‚°
 //
 //	(FE_FLAG_START - FV_FLAG_START)
-//	(    100       -    399        )	//ŒÃ‚¢
-//	(    100       -    369        )	//08.01.18•ÏX
+//	(    100       -    399        )	//å¤ã„
+//	(    100       -    369        )	//08.01.18å¤‰æ›´
 //----------------------------------------------------------------------
 //#define FE_TEST_01						(FE_FLAG_START+0)
 //#define FE_TEST_02						(FE_FLAG_START+1)
@@ -101,612 +101,612 @@
 #define FE_SUGOITURIZAO_GET				(FE_FLAG_START+7)
 #define FE_R201_KIZUGUSURI_GET			(FE_FLAG_START+8)
 #define FE_R201_TALK_PAPA				(FE_FLAG_START+9)
-#define FE_T01R0101_RIVALMAMA_TALK		(FE_FLAG_START+10)	//ƒ‰ƒCƒoƒ‹ƒ}ƒ}‚Æ‰ï˜b‚µ‚½
-//#define FE_GURASIDEANOHANA_TALK			(FE_FLAG_START+11)	//ƒOƒ‰ƒVƒfƒA‚Ì‚Í‚È‚Ì˜b‚«‚¢‚½
+#define FE_T01R0101_RIVALMAMA_TALK		(FE_FLAG_START+10)	//ãƒ©ã‚¤ãƒãƒ«ãƒžãƒžã¨ä¼šè©±ã—ãŸ
+//#define FE_GURASIDEANOHANA_TALK			(FE_FLAG_START+11)	//ã‚°ãƒ©ã‚·ãƒ‡ã‚¢ã®ã¯ãªã®è©±ãã„ãŸ
 #define FE_UNION_CHARACTER_SELECT		(FE_FLAG_START+12)
-#define FE_C04R0201_POLICE				(FE_FLAG_START+13)	//‘ÛŒxŽ@
-#define FE_SCRATCH_TALK					(FE_FLAG_START+14)	//ƒXƒNƒ‰ƒbƒ`‰‰ñ‰ï˜b
-#define FE_SODATE_TAMAGO				(FE_FLAG_START+15)	//‚»‚¾‚Ä‚â‚Ì‚½‚Ü‚²
-#define FE_C04_GYM_ITEM_GET				(FE_FLAG_START+16)	//C04ƒWƒ€‚Ì‹Zƒ}ƒVƒ““üŽèƒtƒ‰ƒO
-#define FE_C03_GYM_ITEM_GET				(FE_FLAG_START+17)	//C03ƒWƒ€‚Ì‹Zƒ}ƒVƒ““üŽèƒtƒ‰ƒO
-#define FE_C04R0304_ITEM_GET			(FE_FLAG_START+18)	//ƒƒU04“üŽè
-#define FE_ROTOMU_FORM_FIRST			(FE_FLAG_START+19)	//ƒƒgƒ€‚ÌƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‰‰ñ
-#define FE_C06R0301_BOY3				(FE_FLAG_START+20)	//ƒ~ƒcƒnƒj[ƒCƒxƒ“ƒg‰ï˜b‚µ‚½
-#define FE_TANKENSETTO_GET				(FE_FLAG_START+21)	//‚½‚ñ‚¯‚ñƒZƒbƒg“üŽè
-#define FE_D01R0102_LEADER_TALK			(FE_FLAG_START+22)	//ƒŠ[ƒ_[‚Æ‰ï˜b‚µ‚½
-#define FE_R209R0105_KIRI_USE			(FE_FLAG_START+23)	//ƒƒXƒgƒ^ƒ[‚Å‚«‚è‚Î‚ç‚¢Žg—p‚µ‚½
-#define FE_C03R0103_ITEM_GET			(FE_FLAG_START+24)	//‚©‚½‚¢Î“üŽè
-#define FE_C05_GYM_ITEM_GET				(FE_FLAG_START+25)	//C05ƒWƒ€‚Ì‹Zƒ}ƒVƒ““üŽèƒtƒ‰ƒO
-#define FE_C01R0504_ITEM_GET			(FE_FLAG_START+26)	//h‚«‚ ‚¢‚Ì‚Í‚¿‚Ü‚¿h“üŽè
-#define FE_R205A_GINGAM_TALK			(FE_FLAG_START+27)	//ƒMƒ“ƒK’c‚Æ‰ï˜b‚µ‚½
-#define FE_FLOWER_ITEM_GET				(FE_FLAG_START+28)	//‚¶‚å‚¤‚ë“üŽè
-#define FE_C04R0204_WIN					(FE_FLAG_START+29)	//ƒAƒWƒgƒCƒxƒ“ƒgI—¹
-#define FE_CYCLE_GET					(FE_FLAG_START+30)	//Ž©“]ŽÔ“üŽè
-#define FE_T03R0301_ITEM_GET			(FE_FLAG_START+31)	//ƒƒU‚Q“üŽè
-#define FE_BORONOTURIZAO_GET			(FE_FLAG_START+32)	//ƒ{ƒ‚Ì‚Â‚è‚´‚¨
-#define FE_C03R0201_POKE_CHG			(FE_FLAG_START+33)	//ƒ|ƒPƒ‚ƒ“ŒðŠ·‚ð‚µ‚½
-#define FE_C04R0301_POKE_CHG			(FE_FLAG_START+34)	//ƒ|ƒPƒ‚ƒ“ŒðŠ·‚ð‚µ‚½
-#define FE_T01R0201_MAMA_TALK			(FE_FLAG_START+35)	//ƒ}ƒ}‚Æ‰ï˜b‚µ‚½
-#define FE_IMAGE_CLIP					(FE_FLAG_START+36)	//ƒCƒ[ƒWƒNƒŠƒbƒv—V‚ñ‚¾
-#define FE_MEMORY_PRINT_SCORE_GET		(FE_FLAG_START+37)	//ƒtƒƒ“ƒeƒBƒA§”e‚ÌƒXƒRƒAŽæ“¾‚µ‚½
-#define FE_C03_RIVAL_TALK				(FE_FLAG_START+38)	//ƒ‰ƒCƒoƒ‹‚Æ‰ï˜b‚µ‚½
-#define FE_D03R0101_SEVEN1_TALK			(FE_FLAG_START+39)	//5lO‚Æ‰ï˜b‚µ‚½
-#define FE_C05R0102_ITEM_GET			(FE_FLAG_START+40)	//ƒƒUƒ}ƒVƒ“‚S‚T“üŽè
-#define FE_C05R0201_ITEM_GET			(FE_FLAG_START+41)	//ƒ|ƒ‹ƒgƒP[ƒX“üŽè
-#define FE_INIT_CHANGE_OBJ_DEL			(FE_FLAG_START+42)	//INIT_CHANGE‚ÅOBJ‚ðÁ‚·
-#define FE_BOUKENNOOTO_GET				(FE_FLAG_START+43)	//–`Œ¯ƒm[ƒgƒQƒbƒg
-#define FE_ZUKAN_GET					(FE_FLAG_START+44)	//}ŠÓƒQƒbƒg(ƒCƒxƒ“ƒg—p)
-#define FE_R205A_BABYGIRL1_TALK			(FE_FLAG_START+45)	//‰ï˜b‚µ‚½
-#define FE_C02_GYM_ITEM_GET				(FE_FLAG_START+46)	//C02ƒWƒ€‚Ì‹Zƒ}ƒVƒ““üŽèƒtƒ‰ƒO
-#define FE_HIDEN_01_GET					(FE_FLAG_START+47)	//‚Ð‚Å‚ñƒƒU01“üŽè
-//#define FE_HIDEN_02_GET					(FE_FLAG_START+48)	//‚Ð‚Å‚ñƒƒU02“üŽè
-//#define FE_HIDEN_03_GET					(FE_FLAG_START+49)	//‚Ð‚Å‚ñƒƒU03“üŽè
-//#define FE_HIDEN_04_GET					(FE_FLAG_START+50)	//‚Ð‚Å‚ñƒƒU04“üŽè
-#define FE_C07R0701_POKEMON_GET			(FE_FLAG_START+51)	//ƒ|ƒŠƒSƒ““üŽè
-#define FE_C04R0601_MOVE_POKE_ALL_GET	(FE_FLAG_START+52)	//ˆÚ“®ƒ|ƒPƒ‚ƒ“3•C•ß‚Ü‚¦‚½
-#define FE_C04R0601_TALK				(FE_FLAG_START+53)	//ƒI[ƒLƒh‚Æ‰ï˜b‚µ‚½
-#define FE_HIDEN_08_GET					(FE_FLAG_START+54)	//‚Ð‚Å‚ñƒƒU08“üŽè
-#define FE_C07_POLICE					(FE_FLAG_START+55)	//‘ÛŒxŽ@@‘qŒÉ‚És‚­u‚Í‚¢v
-#define FE_C06_GYM_ITEM_GET				(FE_FLAG_START+56)	//C06ƒWƒ€‚Ì‹Zƒ}ƒVƒ““üŽèƒtƒ‰ƒO
-#define FE_C07_GYM_ITEM_GET				(FE_FLAG_START+57)	//C07ƒWƒ€‚Ì‹Zƒ}ƒVƒ““üŽèƒtƒ‰ƒO
-#define FE_C09_GYM_ITEM_GET				(FE_FLAG_START+58)	//C09ƒWƒ€‚Ì‹Zƒ}ƒVƒ““üŽèƒtƒ‰ƒO
-#define FE_D13R0101_ITEM				(FE_FLAG_START+59)	//”­“dŠ‚ÌƒJƒM
-#define FE_D13R0101_AMAIMITU_GET		(FE_FLAG_START+60)	//‚ ‚Ü‚¢‚Ý‚Â“üŽè
-#define FE_R209R0105_ITEM_A_GET			(FE_FLAG_START+61)	//ƒAƒCƒeƒ€“üŽè
-#define FE_IITURIZAO_GET				(FE_FLAG_START+62)	//‚¢‚¢‚Â‚è‚´‚¨“üŽè
-#define FE_C06R0101_SOFT_GET			(FE_FLAG_START+63)	//ƒ|ƒPƒbƒ`‚à‚ç‚Á‚½
-#define FE_C06R0101_COWGIRL				(FE_FLAG_START+64)	//‰ï˜b‚µ‚½
-#define FE_D01R0101_MYTH				(FE_FLAG_START+65)	//ƒAƒCƒeƒ€‚¢‚Á‚Ï‚¢‰ï˜b‚µ‚½
-#define FE_T05_OLDWOMAN_TALK			(FE_FLAG_START+66)	//’·˜V‚Æ‰ï˜b‚µ‚½
-#define FE_FRESCO_SEE					(FE_FLAG_START+67)	//•Ç‰æŒ©‚½
-#define FE_L02_NEWS						(FE_FLAG_START+68)	//L02‚ÌŽ–Œ’†ƒtƒ‰ƒO(reset‚·‚é‚Ì‚Å’ˆÓI)
-#define FE_D29R0101_RIVAL_TALK			(FE_FLAG_START+69)	//ƒ‰ƒCƒoƒ‹‚Æ‰ï˜b‚µ‚½
-#define FE_CONNECT_TSIGN_TALK			(FE_FLAG_START+70)	//ƒTƒCƒ“Žó•t‚Æ‰ï˜b‚µ‚½
-#define FE_RECONGNIZE_SHINOU			(FE_FLAG_START+71)	//ƒVƒ“ƒIƒE}ŠÓh‚Ð‚å‚¤‚µ‚å‚¤hÏ‚Ý
-#define FE_RECONGNIZE_NATIONAL			(FE_FLAG_START+72)	//‘S‘}ŠÓh‚Ð‚å‚¤‚µ‚å‚¤hÏ‚Ý
-#define FE_D26R0107_GKANBU_WIN			(FE_FLAG_START+73)	//Š²•”‚ÉŸ—˜
-#define FE_D26R0107_MACHINE				(FE_FLAG_START+74)	//‹@ŠB‚ÌŠJ•ú
-#define FE_C10R0101_VETERAN				(FE_FLAG_START+75)	//–å”Ô‚Ç‚¢‚½
-#define FE_BIGFOUR1_WIN					(FE_FLAG_START+76)	//Žl“V‰¤‚ÉŸ—˜
-#define FE_BIGFOUR2_WIN					(FE_FLAG_START+77)	//Žl“V‰¤‚ÉŸ—˜
-#define FE_BIGFOUR3_WIN					(FE_FLAG_START+78)	//Žl“V‰¤‚ÉŸ—˜
-#define FE_BIGFOUR4_WIN					(FE_FLAG_START+79)	//Žl“V‰¤‚ÉŸ—˜
-#define FE_C10R0111_CHAMP_WIN			(FE_FLAG_START+80)	//ƒ`ƒƒƒ“ƒsƒIƒ“‚ÉŸ—˜
-#define FE_C07R0701_TALK				(FE_FLAG_START+81)	//ƒ|ƒŠƒSƒ“‚­‚ê‚él‚Æ˜b‚µ‚½
-#define FE_C08_GYM_ITEM_GET				(FE_FLAG_START+82)	//C08ƒWƒ€‚Ì‹Zƒ}ƒVƒ““üŽèƒtƒ‰ƒO
-#define FE_L02_CHAMP					(FE_FLAG_START+83)	//L02ƒ`ƒƒƒ“ƒsƒIƒ“ƒCƒxƒ“ƒg
-#define FE_D27R0101_DOCTOR_TALK			(FE_FLAG_START+84)	//”ŽŽm‚Æ‰ï˜b‚µ‚½
-#define FE_C07R0207_DOCTOR_TALK			(FE_FLAG_START+85)	//”ŽŽm‚Æ‰ï˜b‚µ‚½(šFH‘ã—p‰Â”\)
-#define FE_D27R0102_GKANBU_WIN			(FE_FLAG_START+86)	//Š²•”‚ÉŸ—˜
-#define FE_CONNECT_UNION_GUIDE_TALK		(FE_FLAG_START+87)	//ƒ†ƒjƒIƒ“ƒKƒCƒh‚Æ‰ï˜b‚µ‚½
-#define FE_COIN_CASE_GET				(FE_FLAG_START+88)	//ƒRƒCƒ“ƒP[ƒX“üŽèŒã
-#define FE_C04R0801_ASSISTANTM_TALK		(FE_FLAG_START+89)	//ƒAƒVƒXƒ^ƒ“ƒg‰ï˜b‚µ‚½‚©
-#define	FE_D32R0401_BONUS_TALK			(FE_FLAG_START+90)	//ƒXƒe[ƒWƒ{[ƒiƒX‰‰ñ‰ï˜b
-#define FE_C01R0501_ITEM_GET			(FE_FLAG_START+91)	//‚¹‚ñ‚¹‚¢‚Ìƒcƒ“üŽè
-#define FE_C03R0102_ITEM_GET			(FE_FLAG_START+92)	//‚©‚¢‚ª‚ç‚Ì‚¸‚¸“üŽè
-#define FE_C03R0202_ITEM_GET			(FE_FLAG_START+93)	//ƒq[ƒgƒ{[ƒ‹“üŽè
-#define FE_C04R0302_ITEM_GET			(FE_FLAG_START+94)	//‚í‚´‚Ü‚µ‚ñ‚U‚V“üŽè
-#define FE_GTC_GUIDE_TALK				(FE_FLAG_START+95)	//Žó•t‚Ìà–¾Žó‚¯‚½
-#define FE_C07R0401_MAN2_TALK			(FE_FLAG_START+96)	//‚ß‚´‚ß‚éƒpƒ[‰ï˜b‚µ‚½
-#define FE_WAZAMASIN78_GET				(FE_FLAG_START+97)	//‹Zƒ}ƒVƒ““üŽè
-#define FE_WAZAMASIN77_GET				(FE_FLAG_START+98)	//‹Zƒ}ƒVƒ““üŽè
-#define FE_WAZAMASIN51_GET				(FE_FLAG_START+99)	//‹Zƒ}ƒVƒ““üŽè
-#define FE_T06R0101_IN					(FE_FLAG_START+100)	//ÄíŽ{Ý‚É“ü‚Á‚½‚©
-#define FE_WAZAMASIN48_GET				(FE_FLAG_START+101)	//‹Zƒ}ƒVƒ““üŽè
-#define FE_WAZAMASIN92_GET				(FE_FLAG_START+102)	//‹Zƒ}ƒVƒ““üŽè
-#define FE_WAZAMASIN42_GET				(FE_FLAG_START+103)	//‹Zƒ}ƒVƒ““üŽè
-#define FE_WAZAMASIN63_GET				(FE_FLAG_START+104)	//‹Zƒ}ƒVƒ““üŽè
-#define FE_WAZAMASIN66_GET				(FE_FLAG_START+105)	//‹Zƒ}ƒVƒ““üŽè
-#define FE_WAZAMASIN56_GET				(FE_FLAG_START+106)	//‹Zƒ}ƒVƒ““üŽè
-#define FE_BACKGROUND_ACCE_GET			(FE_FLAG_START+107)	//”wŒi‚¨Žo‚³‚ñ‚©‚ç‘S‚Ä‚à‚ç‚Á‚½*/
-#define FE_D05R0118_D_GET				(FE_FLAG_START+108)	//ƒeƒ“ƒKƒ“ŽRƒfƒBƒAƒ‹ƒK“üŽè
-#define FE_D05R0119_P_GET				(FE_FLAG_START+109)	//ƒeƒ“ƒKƒ“ŽRƒpƒ‹ƒLƒA“üŽè
-#define FE_D07R0105_MOUNT_ITEM_GET		(FE_FLAG_START+110)	//ƒAƒCƒeƒ€“üŽè
-#define FE_P_PARK_ADMIN					(FE_FLAG_START+111)	//ƒ|ƒPƒp[ƒNŽó•t‚Æ‰ï˜b‚µ‚½‚©
-#define FE_HIIDORAN_EVENT				(FE_FLAG_START+112)	//ƒq[ƒhƒ‰ƒ“ƒCƒxƒ“ƒg’†ƒtƒ‰ƒO
-#define FE_C11FS0101_ITEM_GET			(FE_FLAG_START+113)	//ƒsƒ“ƒgƒŒƒ“ƒY“üŽè
-#define FE_KAZANNOOKIISI_GET			(FE_FLAG_START+114)	//‚©‚º‚ñ‚Ì‚¨‚«‚¢‚µ“üŽè
-#define FE_HIIDORAN_SEE					(FE_FLAG_START+115)	//ƒq[ƒhƒ‰ƒ“‚Æ‘˜‹ö‚µ‚Ä‚¢‚é‚©
-#define FE_T04R0301_SUNGLASSES_TALK		(FE_FLAG_START+116)	//•ÒW’·‚Ì‰ï˜b‚µ‚½
-#define FE_R225R0101_ITEM_GET			(FE_FLAG_START+117)	//‚¨‚¢‚µ‚¢‚Ý‚¸“üŽè
-#define FE_R229_ITEM_GET				(FE_FLAG_START+118)	//‚«‚ñ‚Ì‚½‚Ü“üŽè
-#define FE_D04R0101_MIDDLEMAN2_TALK		(FE_FLAG_START+119)	//‚Ù‚µ‚Ì‚©‚¯‚ç‚Ì˜b‚µ‚ð‚µ‚½
-#define FE_T04R0301_ITEM_DEPOSIT		(FE_FLAG_START+120)	//•ÒW’·‚ÉƒAƒCƒeƒ€‚ð—a‚¯‚Ä‚¢‚é
-#define FE_D16R0102_SEVEN5_TALK			(FE_FLAG_START+121)	//‚TlO‚Æ‰ï˜b‚µ‚½
-#define FE_R217R0101_ITEM_GET			(FE_FLAG_START+122)	//‚Â‚ç‚ç‚ÌƒvƒŒ[ƒg“üŽè
-#define FE_D09R0104_SEVEN4_TALK			(FE_FLAG_START+123)	//‚TlO‚Æ‰ï˜b‚µ‚½
-#define FE_D21R0101_SEVEN2_TALK			(FE_FLAG_START+124)	//‚TlO‚Æ‰ï˜b‚µ‚½
-#define FE_D24R0105_SEVEN3_TALK			(FE_FLAG_START+125)	//‚TlO‚Æ‰ï˜b‚µ‚½
-#define FE_D24R0105_SEVEN3_POKE_MAX		(FE_FLAG_START+126)	//ƒ‹ƒJ‚ª‚à‚ç‚¦‚È‚©‚Á‚½
-#define FE_SEVEN1_CLEAR					(FE_FLAG_START+127)	//‚TlOƒCƒxƒ“ƒg‚ðƒNƒŠƒA[‚µ‚½
-#define FE_SEVEN2_CLEAR					(FE_FLAG_START+128)	//‚TlOƒCƒxƒ“ƒg‚ðƒNƒŠƒA[‚µ‚½
-#define FE_SEVEN3_CLEAR					(FE_FLAG_START+129)	//‚TlOƒCƒxƒ“ƒg‚ðƒNƒŠƒA[‚µ‚½
-#define FE_SEVEN4_CLEAR					(FE_FLAG_START+130)	//‚TlOƒCƒxƒ“ƒg‚ðƒNƒŠƒA[‚µ‚½
-#define FE_SEVEN5_CLEAR					(FE_FLAG_START+131)	//‚TlOƒCƒxƒ“ƒg‚ðƒNƒŠƒA[‚µ‚½
-#define FE_D07R0105_MOUNT				(FE_FLAG_START+132)	//Šù‚É˜b‚µ‚Ä‚¢‚é‚©
-#define FE_C06R0401_BIGMAN_TALK			(FE_FLAG_START+133)	//Šù‚É˜b‚µ‚Ä‚¢‚é‚©
-#define FE_T01R0102_RIVAL_TALK			(FE_FLAG_START+134)	//‚QŠK‚Ìƒ‰ƒCƒoƒ‹‚Æ‰ï˜b‚µ‚½
-#define FE_C09_GYMLEADER_DEL			(FE_FLAG_START+135)	//ƒWƒ€ƒŠ[ƒ_[‚ðÁ‚·ƒtƒ‰ƒO
-//#define FE_GTC_OPEN					(FE_FLAG_START+136)	//GTCƒI[ƒvƒ“
-#define FE_C01_CROWN1_TICKET			(FE_FLAG_START+137)	//‚Ð‚«‚©‚¦‚¯‚ñ‚P
-#define FE_C01_CROWN2_TICKET			(FE_FLAG_START+138)	//‚Ð‚«‚©‚¦‚¯‚ñ‚Q
-#define FE_C01_CROWN3_TICKET			(FE_FLAG_START+139)	//‚Ð‚«‚©‚¦‚¯‚ñ‚R
-#define FE_GENERATE_START				(FE_FLAG_START+140)	//‘å—Ê”­¶ŠJŽn‚µ‚Ä‚¢‚é
-#define FE_TOWNMAP_GET					(FE_FLAG_START+141)	//ƒ^ƒEƒ“ƒ}ƒbƒv“üŽè
-#define FE_ACCE_CASE_GET				(FE_FLAG_START+142)	//ƒAƒNƒZƒTƒŠ[ƒP[ƒX“üŽè
-#define FE_POKETCH_GET					(FE_FLAG_START+143)	//ƒ|ƒPƒbƒ`“üŽè
-#define FE_C09R0101_POKE_CHG			(FE_FLAG_START+144)	//ƒ|ƒPƒ‚ƒ“ŒðŠ·‚ð‚µ‚½
-#define FE_W226R0101_POKE_CHG			(FE_FLAG_START+145)	//ƒ|ƒPƒ‚ƒ“ŒðŠ·‚ð‚µ‚½
-#define FE_W226R0101_ZUKAN				(FE_FLAG_START+146)	//}ŠÓƒpƒ[ƒAƒbƒviŠCŠOƒeƒLƒXƒgj
-#define FE_C08R0201_WEEK_TALK			(FE_FLAG_START+147)	//‚¨Ÿ­—ŽŽo‚³‚ñ‚Æ‰ï˜b‚µ‚½
-#define FE_T01R0201_MAMA_TALK2			(FE_FLAG_START+148)	//ƒ}ƒ}‚Æ‰ï˜b‚µ‚½2
-#define FE_R213R0201_FOOTMARK			(FE_FLAG_START+149)	//ƒtƒgƒ}ƒL‚Æ‰ï˜b‚µ‚½
-#define FE_T07R0101_MEMBER				(FE_FLAG_START+150)	//‰ïˆõ§‚ÌŒš•¨‚Ì‰ïˆõ
-#define FE_R212AR0103_POKE_SEE			(FE_FLAG_START+151)	//ƒ}ƒiƒtƒB[‚ðŒ©‚½ƒtƒ‰ƒO
-#define FE_C08R0401_GOODS				(FE_FLAG_START+152)	//’n‰º‚¨‚¶‚³‚ñ‚ÉƒAƒCƒeƒ€—a‚¯’†
-#define FE_R213R0301_POLICE				(FE_FLAG_START+153)	//‘ÛŒxŽ@‚Æ‰ï˜b‚µ‚½
-#define FE_SODATEYA_AZUKE				(FE_FLAG_START+154)	//ˆç‚Ä‰®‚É—a‚¯‚½‚±‚Æ‚ª‚ ‚é
-#define	FE_D31R0201_JUDGE_TALK			(FE_FLAG_START+155)	//ŒÂ‘Ì”»’è‚Ìl‚Æ‰ï˜b‚µ‚½‚©
-#define	FE_R210BR0101_DRAGON_TALK		(FE_FLAG_START+156)	//Å‹­ƒƒU‹³‚¦
-#define	FE_C07_SUPPORT					(FE_FLAG_START+157)	//ƒTƒ|[ƒgƒCƒxƒ“ƒgI—¹
-#define	FE_C06_GINGAM					(FE_FLAG_START+158)	//ƒMƒ“ƒK’cˆê‰ñ“¦‚°‚½
-#define	FE_C06_GINGAM_2					(FE_FLAG_START+159)	//ƒMƒ“ƒK’c“ñ‰ñ“¦‚°‚½
-#define	FE_R213_GINGAM					(FE_FLAG_START+160)	//ƒMƒ“ƒK’c“¦‚°‚½
-#define	FE_C07R0205_ITEM_GET			(FE_FLAG_START+161)	//‚­‚Á‚Â‚«ƒoƒŠ“üŽè
-#define	FE_L02_GINGAM					(FE_FLAG_START+162)	//ƒMƒ“ƒK’c
-#define	FE_R210A_CLEAR					(FE_FLAG_START+163)	//ƒXƒgƒbƒp[ƒCƒxƒ“ƒgƒNƒŠƒA
-#define	FE_R228R0201_OLDMAN1_TALK		(FE_FLAG_START+164)	//‹†‹É‚í‚´‹³‚¦‚¶‚¢‚³‚ñ
-#define	FE_C03_ITEM_GET					(FE_FLAG_START+165)	//ƒAƒCƒeƒ€“üŽè
-#define	FE_C03R0602_ITEM_GET			(FE_FLAG_START+166)	//ƒAƒCƒeƒ€“üŽè
-#define	FE_GAKUSYUUSOUCHI_GET			(FE_FLAG_START+167)	//ŠwK‘•’u“üŽè
-#define	FE_C01R0701_BOY_WIN				(FE_FLAG_START+168)	//Ÿ—˜‚µ‚½
-#define	FE_C01R0701_GIRL_WIN			(FE_FLAG_START+169)	//Ÿ—˜‚µ‚½
-#define	FE_C07R0301_OPEN				(FE_FLAG_START+170)	//‚»‚¤‚±‚ÌƒJƒMŽg‚Á‚Ä”àŠJ‚¯‚½
-#define	FE_D02_OPEN						(FE_FLAG_START+171)	//‚Í‚Â‚Å‚ñ‚µ‚åƒL[Žg‚Á‚Ä”àŠJ‚¯‚½
-#define	FE_PC_SHINOU_ZUKAN_COMP			(FE_FLAG_START+172)	//PC‚ÅŠ®¬ƒƒbƒZ[ƒW‚ð‚«‚¢‚½
-#define	FE_UG_MISSION_TALK				(FE_FLAG_START+173)	//Šeƒ~ƒbƒVƒ‡ƒ“‚Ìà–¾‚ð•·‚¢‚½
-#define	FE_C01R0701_ITEM_GET			(FE_FLAG_START+174)	//‹Zƒ}ƒVƒ““üŽè‚µ‚½‚©
-#define	FE_UG_MISSION_OK				(FE_FLAG_START+175)	//ƒ~ƒbƒVƒ‡ƒ“‚Ö‚Ìƒ`ƒƒƒŒƒ“ƒW³‘ø
-#define	FE_KUJI_ACCE_GET				(FE_FLAG_START+176)	//ƒ|ƒPƒ‚ƒ“‚­‚¶‚ÅƒAƒNƒZƒTƒŠ[‚ð–á‚Á‚½
-#define	FE_R202_SUPPORT_TALK			(FE_FLAG_START+177)	//ƒTƒ|[ƒg‚Æ‰ï˜b‚µ‚½
-#define	FE_R209R0105_ITEM_B_GET			(FE_FLAG_START+178)	//ƒAƒCƒeƒ€“üŽè‚µ‚½‚©
-#define	FE_SIIRUIRE_GET					(FE_FLAG_START+179)	//ƒV[ƒ‹‚¢‚ê“üŽè
-#define	FE_R213_GINGAM_TALK				(FE_FLAG_START+180)	//ƒMƒ“ƒK’c‚ðˆê“x•ß‚Ü‚¦‚½
-#define	FE_C04R0601_ITEM_GET			(FE_FLAG_START+181)	//ƒAƒCƒeƒ€“üŽè‚µ‚½
-#define	FE_D20R0106_LEGEND_UNSEAL		(FE_FLAG_START+182)	//ƒŒƒWƒLƒ“ƒO‰ð•úÏ‚Ý
-#define	FE_D20R0106_LEGEND_CLEAR		(FE_FLAG_START+183)	//ƒŒƒWƒLƒ“ƒO“üŽè
-#define	FE_C06R0301_ITEM_GET			(FE_FLAG_START+184)	//ƒ~ƒmƒ€ƒbƒ`‚ÌƒAƒCƒeƒ€“üŽè
-#define	FE_D24R0201_ITEM_GET			(FE_FLAG_START+185)	//ƒAƒCƒeƒ€“üŽè
-#define	FE_D05R0116_LEGEND_CLEAR		(FE_FLAG_START+186)	//ƒAƒEƒX“üŽè
-#define	FE_D15R0101_LEGEND_CLEAR		(FE_FLAG_START+187)	//ƒ€[ƒoƒX“üŽè
-#define	FE_D16R0103_LEGEND_CLEAR		(FE_FLAG_START+188)	//ƒq[ƒhƒ‰ƒ““üŽè
-#define	FE_D17R0104_LEGEND_CLEAR		(FE_FLAG_START+189)	//ƒLƒ}ƒCƒ‰ƒ““üŽè
-#define	FE_D18_LEGEND_CLEAR				(FE_FLAG_START+191)	//ƒGƒEƒŠƒX“üŽè
-#define	FE_T05R0501_CHAMP				(FE_FLAG_START+192)	//•Ç‰æ‘O‚ÌƒVƒƒi
-#define	FE_D16R0103_LEGEND_UNSEAL		(FE_FLAG_START+193)	//ƒq[ƒhƒ‰ƒ“‰ð•úÏ‚Ý
-#define	FE_D28R0103_LEGEND_CLEAR		(FE_FLAG_START+194)	//ƒnƒC“üŽè
-#define	FE_D29R0103_LEGEND_CLEAR		(FE_FLAG_START+195)	//ƒŒƒC“üŽè
-#define	FE_C06_ACCE_GET					(FE_FLAG_START+196)	//ƒAƒNƒZƒTƒŠ[“üŽè
-#define	FE_C07R0201_ACCE_GET			(FE_FLAG_START+197)	//ƒAƒNƒZƒTƒŠ[“üŽè
-#define	FE_D03_ACCE_GET					(FE_FLAG_START+198)	//ƒAƒNƒZƒTƒŠ[“üŽè
-#define	FE_R206R0101_ACCE_GET			(FE_FLAG_START+199)	//ƒAƒNƒZƒTƒŠ[“üŽè
-#define	FE_C02R0501_EVENT_CLEAR			(FE_FLAG_START+200)	//ƒNƒŒƒZƒŠƒA(ƒ€[ƒoƒX)­”N•‚¯‚½
-#define	FE_R224_EVENT_CLEAR				(FE_FLAG_START+201)	//Î”è–¼“ü—ÍƒCƒxƒ“ƒgƒNƒŠƒA
-#define	FE_C07R0101_MIDDLEMAN1_COIN_GET	(FE_FLAG_START+202)	//ƒRƒCƒ“
-#define	FE_C07R0101_BIGMAN1_COIN_GET	(FE_FLAG_START+203)	//ƒRƒCƒ“
-#define	FE_C07R0101_ITEM_GET			(FE_FLAG_START+204)	//‚P‚OƒŒƒ“ƒ`ƒƒƒ“‚²‚Ù‚¤‚Ñ
-#define	FE_C05R0901_POKEMON_GET			(FE_FLAG_START+205)	//ƒ|ƒPƒ‚ƒ“‚ð–á‚Á‚½
-#define	FE_YABURETA_SEKAI				(FE_FLAG_START+206)	//‚â‚Ô‚ê‚½‚¹‚©‚¢
-#define	FE_D15_UNSEAL					(FE_FLAG_START+207)	//ƒNƒŒƒZƒŠƒA(ƒ€[ƒoƒX)­”NƒCƒxƒ“ƒgŠJŽn==D15‰ð‹Ö
-#define	FE_T05R0201_MEGANE_01_GET		(FE_FLAG_START+208)	//ƒƒKƒl1ƒQƒbƒg
-#define	FE_T05R0201_MEGANE_02_GET		(FE_FLAG_START+209)	//ƒƒKƒl2ƒQƒbƒg
-#define	FE_T05R0201_MEGANE_03_GET		(FE_FLAG_START+210)	//ƒƒKƒl3ƒQƒbƒg
-#define	FE_R221R0201_ITEM_KEEP			(FE_FLAG_START+211)	//ƒAƒCƒeƒ€‚ð—a‚©‚Á‚Ä‚¢‚éó‘Ô
-#define	FE_D04R0101_ITEM_GET			(FE_FLAG_START+212)	//ƒAƒCƒeƒ€“üŽè
-#define	FE_R212AR0102_ITEM_GET			(FE_FLAG_START+213)	//ƒAƒCƒeƒ€“üŽè
-#define	FE_L02R0201_ITEM_GET			(FE_FLAG_START+214)	//ƒAƒCƒeƒ€“üŽè
-#define	FE_R217R0201_ITEM_GET			(FE_FLAG_START+215)	//ƒAƒCƒeƒ€“üŽè
-#define	FE_C02R0401_START				(FE_FLAG_START+216)	//ƒ_[ƒNƒCƒxƒ“ƒgŽn‚ß‚½
-#define	FE_C01R0202_ACCE_GET			(FE_FLAG_START+217)	//ƒAƒNƒZƒTƒŠ[“üŽè
-#define	FE_L02_GINGA_WIN				(FE_FLAG_START+218)	//L02ƒMƒ“ƒK’c‚ÉŸ—˜
-#define FE_R208_ITEM_GET				(FE_FLAG_START+219)	//ƒAƒCƒeƒ€“üŽè
-#define FE_C06R0601_ITEM_GET_STYLE		(FE_FLAG_START+220)	//ƒAƒCƒeƒ€“üŽè
-#define FE_C06R0601_ITEM_GET_BEAUTIFUL	(FE_FLAG_START+221)	//ƒAƒCƒeƒ€“üŽè
-#define FE_C06R0601_ITEM_GET_CUTE		(FE_FLAG_START+222)	//ƒAƒCƒeƒ€“üŽè
-#define FE_C06R0601_ITEM_GET_CLEVER		(FE_FLAG_START+223)	//ƒAƒCƒeƒ€“üŽè
-#define FE_C06R0601_ITEM_GET_STRONG		(FE_FLAG_START+224)	//ƒAƒCƒeƒ€“üŽè
-#define	FE_T05R0101_OLDWOMAN1			(FE_FLAG_START+225)	//ƒJƒ“ƒiƒM’·˜VƒCƒxƒ“ƒgI—¹
-#define	FE_SUPPORT_POKETORE_1			(FE_FLAG_START+226)	//ƒTƒ|[ƒg‚Ìƒ|ƒPƒgƒŒ‰ï˜b
-#define	FE_SUPPORT_POKETORE_2			(FE_FLAG_START+227)	//ƒTƒ|[ƒg‚Ìƒ|ƒPƒgƒŒ‰ï˜b
-#define	FE_SUPPORT_POKETORE_3			(FE_FLAG_START+228)	//ƒTƒ|[ƒg‚Ìƒ|ƒPƒgƒŒ‰ï˜b
-#define FE_D25R0106_SPPOKE_CLEAR		(FE_FLAG_START+229)	//d25r0106ƒvƒ‰ƒYƒ}•ßŠl
-#define	FE_C05_GOODS_01					(FE_FLAG_START+230)	//ƒOƒbƒY1“üŽèÏ‚Ý
-#define	FE_C05_GOODS_02					(FE_FLAG_START+231)	//ƒOƒbƒY2“üŽèÏ‚Ý
-#define	FE_C05_GOODS_03					(FE_FLAG_START+232)	//ƒOƒbƒY3“üŽèÏ‚Ý
-#define	FE_C05_GOODS_04					(FE_FLAG_START+233)	//ƒOƒbƒY4“üŽèÏ‚Ý
-#define	FE_C05_GOODS_05					(FE_FLAG_START+234)	//ƒOƒbƒY5“üŽèÏ‚Ý
-#define	FE_C05_GOODS_06					(FE_FLAG_START+235)	//ƒOƒbƒY6“üŽèÏ‚Ý
-#define	FE_C05_GOODS_07					(FE_FLAG_START+236)	//ƒOƒbƒY7“üŽèÏ‚Ý
-#define	FE_C05_GOODS_08					(FE_FLAG_START+237)	//ƒOƒbƒY8“üŽèÏ‚Ý
-#define	FE_C05_GOODS_09					(FE_FLAG_START+238)	//ƒOƒbƒY9“üŽèÏ‚Ý
-#define	FE_C05_GOODS_10					(FE_FLAG_START+239)	//ƒOƒbƒY10“üŽèÏ‚Ý
-#define	FE_C05_GOODS_11					(FE_FLAG_START+240)	//ƒOƒbƒY11“üŽèÏ‚Ý
-#define	FE_C07_POLICE_WAIT				(FE_FLAG_START+241)	//‘ÛŒxŽ@@ƒMƒ“ƒKƒgƒoƒŠƒrƒ‹‚Ì‘O‚Å‘Ò‚¿
-#define	FE_C06_POKE						(FE_FLAG_START+242)	//ƒOƒŒƒbƒOƒ‹ƒCƒxƒ“ƒg‹–‰Â=0,•s‹–‰Â=1
-#define	FE_C09_CHAMP					(FE_FLAG_START+243)	//ƒ`ƒƒƒ“ƒsƒIƒ“ƒCƒxƒ“ƒg
-#define FE_D30R0101_LEGEND_CLEAR		(FE_FLAG_START+244)	//d30r0101ƒ_[ƒN•ßŠl
-#define FE_C05R1101_POFIN_INFOMATION	(FE_FLAG_START+245)	//ƒ|ƒtƒBƒ““üŽèFŽó•t‘O‚Ì‰ï˜b
-#define FE_C05R1101_POFIN_GET			(FE_FLAG_START+246)	//ƒ|ƒtƒBƒ““üŽèFƒ|ƒtƒBƒ““üŽèÏ‚Ý
-#define	FE_C05_ALL_GOODS_GET			(FE_FLAG_START+247)	//‚±‚±‚Å‚Ì‘S‚Ä‚ÌƒOƒbƒY“üŽèÏ‚Ý
-#define FE_T01R0201_GAMECLEAR_KISSAKI	(FE_FLAG_START+248)	//ƒQ[ƒ€ƒNƒŠƒAŒã‚Ìƒ}ƒ}‚Æ‚Ì‰ï˜b
-#define FE_T01R0201_GAMECLEAR_ZUKAN		(FE_FLAG_START+249)	//ƒQ[ƒ€ƒNƒŠƒAŒã‚Ìƒ}ƒ}‚Æ‚Ì‰ï˜b
-#define	FE_D05R0114_CLEAR				(FE_FLAG_START+250)	//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸ƒNƒŠƒA
-//#define	FE_D05R0114_SPPOKE_GET			(FE_FLAG_START+251)	//ƒCƒAiƒGƒAj•ßŠl‚µ‚½
-#define	FE_D05R0102_ITEM_GET			(FE_FLAG_START+252)	//ƒS[ƒ‹ƒhƒXƒvƒŒ[“üŽè
-#define	FE_R213R0501_MYSTERY_TALK		(FE_FLAG_START+253)	//ƒ~ƒXƒeƒŠ[‚Æ‰ï˜b
-#define	FE_C08R0801_TALK				(FE_FLAG_START+254)	//“”‘ä‚ÅƒWƒ€ƒŠ[ƒ_[‚Æ‰ï˜b‚µ‚½
-#define	FE_R212AR0103_RICH_TALK			(FE_FLAG_START+255)	//‹àŽ‚¿‚¨‚¶‚³‚ñ‚Æ‰ï˜bi“Á’èj
-#define	FE_R212AR0103_BUTLER_TALK		(FE_FLAG_START+256)	//Ž·Ž–‚Æ‰ï˜bi“Á’èj
-#define	FE_C07R0101_ITEM_RETRY			(FE_FLAG_START+257)	//‚¾‚¢‚Î‚­‚Í‚ÂƒŠƒgƒ‰ƒC
-#define	FE_R212AR0101_MAID_TALK			(FE_FLAG_START+258)	//ƒƒCƒh‰ï˜b‚µ‚½‚©
+#define FE_C04R0201_POLICE				(FE_FLAG_START+13)	//å›½éš›è­¦å¯Ÿ
+#define FE_SCRATCH_TALK					(FE_FLAG_START+14)	//ã‚¹ã‚¯ãƒ©ãƒƒãƒåˆå›žä¼šè©±
+#define FE_SODATE_TAMAGO				(FE_FLAG_START+15)	//ãã ã¦ã‚„ã®ãŸã¾ã”
+#define FE_C04_GYM_ITEM_GET				(FE_FLAG_START+16)	//C04ã‚¸ãƒ ã®æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹ãƒ•ãƒ©ã‚°
+#define FE_C03_GYM_ITEM_GET				(FE_FLAG_START+17)	//C03ã‚¸ãƒ ã®æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹ãƒ•ãƒ©ã‚°
+#define FE_C04R0304_ITEM_GET			(FE_FLAG_START+18)	//ãƒ¯ã‚¶04å…¥æ‰‹
+#define FE_ROTOMU_FORM_FIRST			(FE_FLAG_START+19)	//ãƒ­ãƒˆãƒ ã®ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸åˆå›ž
+#define FE_C06R0301_BOY3				(FE_FLAG_START+20)	//ãƒŸãƒ„ãƒãƒ‹ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆä¼šè©±ã—ãŸ
+#define FE_TANKENSETTO_GET				(FE_FLAG_START+21)	//ãŸã‚“ã‘ã‚“ã‚»ãƒƒãƒˆå…¥æ‰‹
+#define FE_D01R0102_LEADER_TALK			(FE_FLAG_START+22)	//ãƒªãƒ¼ãƒ€ãƒ¼ã¨ä¼šè©±ã—ãŸ
+#define FE_R209R0105_KIRI_USE			(FE_FLAG_START+23)	//ãƒ­ã‚¹ãƒˆã‚¿ãƒ¯ãƒ¼ã§ãã‚Šã°ã‚‰ã„ä½¿ç”¨ã—ãŸ
+#define FE_C03R0103_ITEM_GET			(FE_FLAG_START+24)	//ã‹ãŸã„çŸ³å…¥æ‰‹
+#define FE_C05_GYM_ITEM_GET				(FE_FLAG_START+25)	//C05ã‚¸ãƒ ã®æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹ãƒ•ãƒ©ã‚°
+#define FE_C01R0504_ITEM_GET			(FE_FLAG_START+26)	//â€ãã‚ã„ã®ã¯ã¡ã¾ã¡â€å…¥æ‰‹
+#define FE_R205A_GINGAM_TALK			(FE_FLAG_START+27)	//ã‚®ãƒ³ã‚¬å›£ã¨ä¼šè©±ã—ãŸ
+#define FE_FLOWER_ITEM_GET				(FE_FLAG_START+28)	//ã˜ã‚‡ã†ã‚å…¥æ‰‹
+#define FE_C04R0204_WIN					(FE_FLAG_START+29)	//ã‚¢ã‚¸ãƒˆã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+#define FE_CYCLE_GET					(FE_FLAG_START+30)	//è‡ªè»¢è»Šå…¥æ‰‹
+#define FE_T03R0301_ITEM_GET			(FE_FLAG_START+31)	//ãƒ¯ã‚¶ï¼’å…¥æ‰‹
+#define FE_BORONOTURIZAO_GET			(FE_FLAG_START+32)	//ãƒœãƒ­ã®ã¤ã‚Šã–ãŠ
+#define FE_C03R0201_POKE_CHG			(FE_FLAG_START+33)	//ãƒã‚±ãƒ¢ãƒ³äº¤æ›ã‚’ã—ãŸ
+#define FE_C04R0301_POKE_CHG			(FE_FLAG_START+34)	//ãƒã‚±ãƒ¢ãƒ³äº¤æ›ã‚’ã—ãŸ
+#define FE_T01R0201_MAMA_TALK			(FE_FLAG_START+35)	//ãƒžãƒžã¨ä¼šè©±ã—ãŸ
+#define FE_IMAGE_CLIP					(FE_FLAG_START+36)	//ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—éŠã‚“ã 
+#define FE_MEMORY_PRINT_SCORE_GET		(FE_FLAG_START+37)	//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢åˆ¶è¦‡ã®ã‚¹ã‚³ã‚¢å–å¾—ã—ãŸ
+#define FE_C03_RIVAL_TALK				(FE_FLAG_START+38)	//ãƒ©ã‚¤ãƒãƒ«ã¨ä¼šè©±ã—ãŸ
+#define FE_D03R0101_SEVEN1_TALK			(FE_FLAG_START+39)	//5äººè¡†ã¨ä¼šè©±ã—ãŸ
+#define FE_C05R0102_ITEM_GET			(FE_FLAG_START+40)	//ãƒ¯ã‚¶ãƒžã‚·ãƒ³ï¼”ï¼•å…¥æ‰‹
+#define FE_C05R0201_ITEM_GET			(FE_FLAG_START+41)	//ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹å…¥æ‰‹
+#define FE_INIT_CHANGE_OBJ_DEL			(FE_FLAG_START+42)	//INIT_CHANGEã§OBJã‚’æ¶ˆã™
+#define FE_BOUKENNOOTO_GET				(FE_FLAG_START+43)	//å†’é™ºãƒŽãƒ¼ãƒˆã‚²ãƒƒãƒˆ
+#define FE_ZUKAN_GET					(FE_FLAG_START+44)	//å›³é‘‘ã‚²ãƒƒãƒˆ(ã‚¤ãƒ™ãƒ³ãƒˆç”¨)
+#define FE_R205A_BABYGIRL1_TALK			(FE_FLAG_START+45)	//ä¼šè©±ã—ãŸ
+#define FE_C02_GYM_ITEM_GET				(FE_FLAG_START+46)	//C02ã‚¸ãƒ ã®æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹ãƒ•ãƒ©ã‚°
+#define FE_HIDEN_01_GET					(FE_FLAG_START+47)	//ã²ã§ã‚“ãƒ¯ã‚¶01å…¥æ‰‹
+//#define FE_HIDEN_02_GET					(FE_FLAG_START+48)	//ã²ã§ã‚“ãƒ¯ã‚¶02å…¥æ‰‹
+//#define FE_HIDEN_03_GET					(FE_FLAG_START+49)	//ã²ã§ã‚“ãƒ¯ã‚¶03å…¥æ‰‹
+//#define FE_HIDEN_04_GET					(FE_FLAG_START+50)	//ã²ã§ã‚“ãƒ¯ã‚¶04å…¥æ‰‹
+#define FE_C07R0701_POKEMON_GET			(FE_FLAG_START+51)	//ãƒãƒªã‚´ãƒ³å…¥æ‰‹
+#define FE_C04R0601_MOVE_POKE_ALL_GET	(FE_FLAG_START+52)	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³3åŒ¹æ•ã¾ãˆãŸ
+#define FE_C04R0601_TALK				(FE_FLAG_START+53)	//ã‚ªãƒ¼ã‚­ãƒ‰ã¨ä¼šè©±ã—ãŸ
+#define FE_HIDEN_08_GET					(FE_FLAG_START+54)	//ã²ã§ã‚“ãƒ¯ã‚¶08å…¥æ‰‹
+#define FE_C07_POLICE					(FE_FLAG_START+55)	//å›½éš›è­¦å¯Ÿã€€å€‰åº«ã«è¡Œãã€Œã¯ã„ã€
+#define FE_C06_GYM_ITEM_GET				(FE_FLAG_START+56)	//C06ã‚¸ãƒ ã®æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹ãƒ•ãƒ©ã‚°
+#define FE_C07_GYM_ITEM_GET				(FE_FLAG_START+57)	//C07ã‚¸ãƒ ã®æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹ãƒ•ãƒ©ã‚°
+#define FE_C09_GYM_ITEM_GET				(FE_FLAG_START+58)	//C09ã‚¸ãƒ ã®æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹ãƒ•ãƒ©ã‚°
+#define FE_D13R0101_ITEM				(FE_FLAG_START+59)	//ç™ºé›»æ‰€ã®ã‚«ã‚®
+#define FE_D13R0101_AMAIMITU_GET		(FE_FLAG_START+60)	//ã‚ã¾ã„ã¿ã¤å…¥æ‰‹
+#define FE_R209R0105_ITEM_A_GET			(FE_FLAG_START+61)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define FE_IITURIZAO_GET				(FE_FLAG_START+62)	//ã„ã„ã¤ã‚Šã–ãŠå…¥æ‰‹
+#define FE_C06R0101_SOFT_GET			(FE_FLAG_START+63)	//ãƒã‚±ãƒƒãƒã‚‚ã‚‰ã£ãŸ
+#define FE_C06R0101_COWGIRL				(FE_FLAG_START+64)	//ä¼šè©±ã—ãŸ
+#define FE_D01R0101_MYTH				(FE_FLAG_START+65)	//ã‚¢ã‚¤ãƒ†ãƒ ã„ã£ã±ã„ä¼šè©±ã—ãŸ
+#define FE_T05_OLDWOMAN_TALK			(FE_FLAG_START+66)	//é•·è€ã¨ä¼šè©±ã—ãŸ
+#define FE_FRESCO_SEE					(FE_FLAG_START+67)	//å£ç”»è¦‹ãŸ
+#define FE_L02_NEWS						(FE_FLAG_START+68)	//L02ã®äº‹ä»¶ä¸­ãƒ•ãƒ©ã‚°(resetã™ã‚‹ã®ã§æ³¨æ„ï¼)
+#define FE_D29R0101_RIVAL_TALK			(FE_FLAG_START+69)	//ãƒ©ã‚¤ãƒãƒ«ã¨ä¼šè©±ã—ãŸ
+#define FE_CONNECT_TSIGN_TALK			(FE_FLAG_START+70)	//ã‚µã‚¤ãƒ³å—ä»˜ã¨ä¼šè©±ã—ãŸ
+#define FE_RECONGNIZE_SHINOU			(FE_FLAG_START+71)	//ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘â€ã²ã‚‡ã†ã—ã‚‡ã†â€æ¸ˆã¿
+#define FE_RECONGNIZE_NATIONAL			(FE_FLAG_START+72)	//å…¨å›½å›³é‘‘â€ã²ã‚‡ã†ã—ã‚‡ã†â€æ¸ˆã¿
+#define FE_D26R0107_GKANBU_WIN			(FE_FLAG_START+73)	//å¹¹éƒ¨ã«å‹åˆ©
+#define FE_D26R0107_MACHINE				(FE_FLAG_START+74)	//æ©Ÿæ¢°ã®é–‹æ”¾
+#define FE_C10R0101_VETERAN				(FE_FLAG_START+75)	//é–€ç•ªã©ã„ãŸ
+#define FE_BIGFOUR1_WIN					(FE_FLAG_START+76)	//å››å¤©çŽ‹ã«å‹åˆ©
+#define FE_BIGFOUR2_WIN					(FE_FLAG_START+77)	//å››å¤©çŽ‹ã«å‹åˆ©
+#define FE_BIGFOUR3_WIN					(FE_FLAG_START+78)	//å››å¤©çŽ‹ã«å‹åˆ©
+#define FE_BIGFOUR4_WIN					(FE_FLAG_START+79)	//å››å¤©çŽ‹ã«å‹åˆ©
+#define FE_C10R0111_CHAMP_WIN			(FE_FLAG_START+80)	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã«å‹åˆ©
+#define FE_C07R0701_TALK				(FE_FLAG_START+81)	//ãƒãƒªã‚´ãƒ³ãã‚Œã‚‹äººã¨è©±ã—ãŸ
+#define FE_C08_GYM_ITEM_GET				(FE_FLAG_START+82)	//C08ã‚¸ãƒ ã®æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹ãƒ•ãƒ©ã‚°
+#define FE_L02_CHAMP					(FE_FLAG_START+83)	//L02ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
+#define FE_D27R0101_DOCTOR_TALK			(FE_FLAG_START+84)	//åšå£«ã¨ä¼šè©±ã—ãŸ
+#define FE_C07R0207_DOCTOR_TALK			(FE_FLAG_START+85)	//åšå£«ã¨ä¼šè©±ã—ãŸ(â˜…FHä»£ç”¨å¯èƒ½)
+#define FE_D27R0102_GKANBU_WIN			(FE_FLAG_START+86)	//å¹¹éƒ¨ã«å‹åˆ©
+#define FE_CONNECT_UNION_GUIDE_TALK		(FE_FLAG_START+87)	//ãƒ¦ãƒ‹ã‚ªãƒ³ã‚¬ã‚¤ãƒ‰ã¨ä¼šè©±ã—ãŸ
+#define FE_COIN_CASE_GET				(FE_FLAG_START+88)	//ã‚³ã‚¤ãƒ³ã‚±ãƒ¼ã‚¹å…¥æ‰‹å¾Œ
+#define FE_C04R0801_ASSISTANTM_TALK		(FE_FLAG_START+89)	//ã‚¢ã‚·ã‚¹ã‚¿ãƒ³ãƒˆä¼šè©±ã—ãŸã‹
+#define	FE_D32R0401_BONUS_TALK			(FE_FLAG_START+90)	//ã‚¹ãƒ†ãƒ¼ã‚¸ãƒœãƒ¼ãƒŠã‚¹åˆå›žä¼šè©±
+#define FE_C01R0501_ITEM_GET			(FE_FLAG_START+91)	//ã›ã‚“ã›ã„ã®ãƒ„ãƒ¡å…¥æ‰‹
+#define FE_C03R0102_ITEM_GET			(FE_FLAG_START+92)	//ã‹ã„ãŒã‚‰ã®ãšãšå…¥æ‰‹
+#define FE_C03R0202_ITEM_GET			(FE_FLAG_START+93)	//ãƒ’ãƒ¼ãƒˆãƒœãƒ¼ãƒ«å…¥æ‰‹
+#define FE_C04R0302_ITEM_GET			(FE_FLAG_START+94)	//ã‚ã–ã¾ã—ã‚“ï¼–ï¼—å…¥æ‰‹
+#define FE_GTC_GUIDE_TALK				(FE_FLAG_START+95)	//å—ä»˜ã®èª¬æ˜Žå—ã‘ãŸ
+#define FE_C07R0401_MAN2_TALK			(FE_FLAG_START+96)	//ã‚ã–ã‚ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¼šè©±ã—ãŸ
+#define FE_WAZAMASIN78_GET				(FE_FLAG_START+97)	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹
+#define FE_WAZAMASIN77_GET				(FE_FLAG_START+98)	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹
+#define FE_WAZAMASIN51_GET				(FE_FLAG_START+99)	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹
+#define FE_T06R0101_IN					(FE_FLAG_START+100)	//å†æˆ¦æ–½è¨­ã«å…¥ã£ãŸã‹
+#define FE_WAZAMASIN48_GET				(FE_FLAG_START+101)	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹
+#define FE_WAZAMASIN92_GET				(FE_FLAG_START+102)	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹
+#define FE_WAZAMASIN42_GET				(FE_FLAG_START+103)	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹
+#define FE_WAZAMASIN63_GET				(FE_FLAG_START+104)	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹
+#define FE_WAZAMASIN66_GET				(FE_FLAG_START+105)	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹
+#define FE_WAZAMASIN56_GET				(FE_FLAG_START+106)	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹
+#define FE_BACKGROUND_ACCE_GET			(FE_FLAG_START+107)	//èƒŒæ™¯ãŠå§‰ã•ã‚“ã‹ã‚‰å…¨ã¦ã‚‚ã‚‰ã£ãŸ*/
+#define FE_D05R0118_D_GET				(FE_FLAG_START+108)	//ãƒ†ãƒ³ã‚¬ãƒ³å±±ãƒ‡ã‚£ã‚¢ãƒ«ã‚¬å…¥æ‰‹
+#define FE_D05R0119_P_GET				(FE_FLAG_START+109)	//ãƒ†ãƒ³ã‚¬ãƒ³å±±ãƒ‘ãƒ«ã‚­ã‚¢å…¥æ‰‹
+#define FE_D07R0105_MOUNT_ITEM_GET		(FE_FLAG_START+110)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define FE_P_PARK_ADMIN					(FE_FLAG_START+111)	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯å—ä»˜ã¨ä¼šè©±ã—ãŸã‹
+#define FE_HIIDORAN_EVENT				(FE_FLAG_START+112)	//ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆä¸­ãƒ•ãƒ©ã‚°
+#define FE_C11FS0101_ITEM_GET			(FE_FLAG_START+113)	//ãƒ”ãƒ³ãƒˆãƒ¬ãƒ³ã‚ºå…¥æ‰‹
+#define FE_KAZANNOOKIISI_GET			(FE_FLAG_START+114)	//ã‹ãœã‚“ã®ãŠãã„ã—å…¥æ‰‹
+#define FE_HIIDORAN_SEE					(FE_FLAG_START+115)	//ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ã¨é­é‡ã—ã¦ã„ã‚‹ã‹
+#define FE_T04R0301_SUNGLASSES_TALK		(FE_FLAG_START+116)	//ç·¨é›†é•·ã®ä¼šè©±ã—ãŸ
+#define FE_R225R0101_ITEM_GET			(FE_FLAG_START+117)	//ãŠã„ã—ã„ã¿ãšå…¥æ‰‹
+#define FE_R229_ITEM_GET				(FE_FLAG_START+118)	//ãã‚“ã®ãŸã¾å…¥æ‰‹
+#define FE_D04R0101_MIDDLEMAN2_TALK		(FE_FLAG_START+119)	//ã»ã—ã®ã‹ã‘ã‚‰ã®è©±ã—ã‚’ã—ãŸ
+#define FE_T04R0301_ITEM_DEPOSIT		(FE_FLAG_START+120)	//ç·¨é›†é•·ã«ã‚¢ã‚¤ãƒ†ãƒ ã‚’é ã‘ã¦ã„ã‚‹
+#define FE_D16R0102_SEVEN5_TALK			(FE_FLAG_START+121)	//ï¼•äººè¡†ã¨ä¼šè©±ã—ãŸ
+#define FE_R217R0101_ITEM_GET			(FE_FLAG_START+122)	//ã¤ã‚‰ã‚‰ã®ãƒ—ãƒ¬ãƒ¼ãƒˆå…¥æ‰‹
+#define FE_D09R0104_SEVEN4_TALK			(FE_FLAG_START+123)	//ï¼•äººè¡†ã¨ä¼šè©±ã—ãŸ
+#define FE_D21R0101_SEVEN2_TALK			(FE_FLAG_START+124)	//ï¼•äººè¡†ã¨ä¼šè©±ã—ãŸ
+#define FE_D24R0105_SEVEN3_TALK			(FE_FLAG_START+125)	//ï¼•äººè¡†ã¨ä¼šè©±ã—ãŸ
+#define FE_D24R0105_SEVEN3_POKE_MAX		(FE_FLAG_START+126)	//ãƒ«ã‚«ãŒã‚‚ã‚‰ãˆãªã‹ã£ãŸ
+#define FE_SEVEN1_CLEAR					(FE_FLAG_START+127)	//ï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢ãƒ¼ã—ãŸ
+#define FE_SEVEN2_CLEAR					(FE_FLAG_START+128)	//ï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢ãƒ¼ã—ãŸ
+#define FE_SEVEN3_CLEAR					(FE_FLAG_START+129)	//ï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢ãƒ¼ã—ãŸ
+#define FE_SEVEN4_CLEAR					(FE_FLAG_START+130)	//ï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢ãƒ¼ã—ãŸ
+#define FE_SEVEN5_CLEAR					(FE_FLAG_START+131)	//ï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢ãƒ¼ã—ãŸ
+#define FE_D07R0105_MOUNT				(FE_FLAG_START+132)	//æ—¢ã«è©±ã—ã¦ã„ã‚‹ã‹
+#define FE_C06R0401_BIGMAN_TALK			(FE_FLAG_START+133)	//æ—¢ã«è©±ã—ã¦ã„ã‚‹ã‹
+#define FE_T01R0102_RIVAL_TALK			(FE_FLAG_START+134)	//ï¼’éšŽã®ãƒ©ã‚¤ãƒãƒ«ã¨ä¼šè©±ã—ãŸ
+#define FE_C09_GYMLEADER_DEL			(FE_FLAG_START+135)	//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã‚’æ¶ˆã™ãƒ•ãƒ©ã‚°
+//#define FE_GTC_OPEN					(FE_FLAG_START+136)	//GTCã‚ªãƒ¼ãƒ—ãƒ³
+#define FE_C01_CROWN1_TICKET			(FE_FLAG_START+137)	//ã²ãã‹ãˆã‘ã‚“ï¼‘
+#define FE_C01_CROWN2_TICKET			(FE_FLAG_START+138)	//ã²ãã‹ãˆã‘ã‚“ï¼’
+#define FE_C01_CROWN3_TICKET			(FE_FLAG_START+139)	//ã²ãã‹ãˆã‘ã‚“ï¼“
+#define FE_GENERATE_START				(FE_FLAG_START+140)	//å¤§é‡ç™ºç”Ÿé–‹å§‹ã—ã¦ã„ã‚‹
+#define FE_TOWNMAP_GET					(FE_FLAG_START+141)	//ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—å…¥æ‰‹
+#define FE_ACCE_CASE_GET				(FE_FLAG_START+142)	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚±ãƒ¼ã‚¹å…¥æ‰‹
+#define FE_POKETCH_GET					(FE_FLAG_START+143)	//ãƒã‚±ãƒƒãƒå…¥æ‰‹
+#define FE_C09R0101_POKE_CHG			(FE_FLAG_START+144)	//ãƒã‚±ãƒ¢ãƒ³äº¤æ›ã‚’ã—ãŸ
+#define FE_W226R0101_POKE_CHG			(FE_FLAG_START+145)	//ãƒã‚±ãƒ¢ãƒ³äº¤æ›ã‚’ã—ãŸ
+#define FE_W226R0101_ZUKAN				(FE_FLAG_START+146)	//å›³é‘‘ãƒ‘ãƒ¯ãƒ¼ã‚¢ãƒƒãƒ—ï¼ˆæµ·å¤–ãƒ†ã‚­ã‚¹ãƒˆï¼‰
+#define FE_C08R0201_WEEK_TALK			(FE_FLAG_START+147)	//ãŠæ´’è½å§‰ã•ã‚“ã¨ä¼šè©±ã—ãŸ
+#define FE_T01R0201_MAMA_TALK2			(FE_FLAG_START+148)	//ãƒžãƒžã¨ä¼šè©±ã—ãŸ2
+#define FE_R213R0201_FOOTMARK			(FE_FLAG_START+149)	//ãƒ•ãƒˆãƒžã‚­ã¨ä¼šè©±ã—ãŸ
+#define FE_T07R0101_MEMBER				(FE_FLAG_START+150)	//ä¼šå“¡åˆ¶ã®å»ºç‰©ã®ä¼šå“¡
+#define FE_R212AR0103_POKE_SEE			(FE_FLAG_START+151)	//ãƒžãƒŠãƒ•ã‚£ãƒ¼ã‚’è¦‹ãŸãƒ•ãƒ©ã‚°
+#define FE_C08R0401_GOODS				(FE_FLAG_START+152)	//åœ°ä¸‹ãŠã˜ã•ã‚“ã«ã‚¢ã‚¤ãƒ†ãƒ é ã‘ä¸­
+#define FE_R213R0301_POLICE				(FE_FLAG_START+153)	//å›½éš›è­¦å¯Ÿã¨ä¼šè©±ã—ãŸ
+#define FE_SODATEYA_AZUKE				(FE_FLAG_START+154)	//è‚²ã¦å±‹ã«é ã‘ãŸã“ã¨ãŒã‚ã‚‹
+#define	FE_D31R0201_JUDGE_TALK			(FE_FLAG_START+155)	//å€‹ä½“åˆ¤å®šã®äººã¨ä¼šè©±ã—ãŸã‹
+#define	FE_R210BR0101_DRAGON_TALK		(FE_FLAG_START+156)	//æœ€å¼·ãƒ¯ã‚¶æ•™ãˆ
+#define	FE_C07_SUPPORT					(FE_FLAG_START+157)	//ã‚µãƒãƒ¼ãƒˆã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+#define	FE_C06_GINGAM					(FE_FLAG_START+158)	//ã‚®ãƒ³ã‚¬å›£ä¸€å›žé€ƒã’ãŸ
+#define	FE_C06_GINGAM_2					(FE_FLAG_START+159)	//ã‚®ãƒ³ã‚¬å›£äºŒå›žé€ƒã’ãŸ
+#define	FE_R213_GINGAM					(FE_FLAG_START+160)	//ã‚®ãƒ³ã‚¬å›£é€ƒã’ãŸ
+#define	FE_C07R0205_ITEM_GET			(FE_FLAG_START+161)	//ãã£ã¤ããƒãƒªå…¥æ‰‹
+#define	FE_L02_GINGAM					(FE_FLAG_START+162)	//ã‚®ãƒ³ã‚¬å›£
+#define	FE_R210A_CLEAR					(FE_FLAG_START+163)	//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆã‚¯ãƒªã‚¢
+#define	FE_R228R0201_OLDMAN1_TALK		(FE_FLAG_START+164)	//ç©¶æ¥µã‚ã–æ•™ãˆã˜ã„ã•ã‚“
+#define	FE_C03_ITEM_GET					(FE_FLAG_START+165)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define	FE_C03R0602_ITEM_GET			(FE_FLAG_START+166)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define	FE_GAKUSYUUSOUCHI_GET			(FE_FLAG_START+167)	//å­¦ç¿’è£…ç½®å…¥æ‰‹
+#define	FE_C01R0701_BOY_WIN				(FE_FLAG_START+168)	//å‹åˆ©ã—ãŸ
+#define	FE_C01R0701_GIRL_WIN			(FE_FLAG_START+169)	//å‹åˆ©ã—ãŸ
+#define	FE_C07R0301_OPEN				(FE_FLAG_START+170)	//ãã†ã“ã®ã‚«ã‚®ä½¿ã£ã¦æ‰‰é–‹ã‘ãŸ
+#define	FE_D02_OPEN						(FE_FLAG_START+171)	//ã¯ã¤ã§ã‚“ã—ã‚‡ã‚­ãƒ¼ä½¿ã£ã¦æ‰‰é–‹ã‘ãŸ
+#define	FE_PC_SHINOU_ZUKAN_COMP			(FE_FLAG_START+172)	//PCã§å®Œæˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãã„ãŸ
+#define	FE_UG_MISSION_TALK				(FE_FLAG_START+173)	//å„ãƒŸãƒƒã‚·ãƒ§ãƒ³ã®èª¬æ˜Žã‚’èžã„ãŸ
+#define	FE_C01R0701_ITEM_GET			(FE_FLAG_START+174)	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹ã—ãŸã‹
+#define	FE_UG_MISSION_OK				(FE_FLAG_START+175)	//ãƒŸãƒƒã‚·ãƒ§ãƒ³ã¸ã®ãƒãƒ£ãƒ¬ãƒ³ã‚¸æ‰¿è«¾
+#define	FE_KUJI_ACCE_GET				(FE_FLAG_START+176)	//ãƒã‚±ãƒ¢ãƒ³ãã˜ã§ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚’è²°ã£ãŸ
+#define	FE_R202_SUPPORT_TALK			(FE_FLAG_START+177)	//ã‚µãƒãƒ¼ãƒˆã¨ä¼šè©±ã—ãŸ
+#define	FE_R209R0105_ITEM_B_GET			(FE_FLAG_START+178)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ãŸã‹
+#define	FE_SIIRUIRE_GET					(FE_FLAG_START+179)	//ã‚·ãƒ¼ãƒ«ã„ã‚Œå…¥æ‰‹
+#define	FE_R213_GINGAM_TALK				(FE_FLAG_START+180)	//ã‚®ãƒ³ã‚¬å›£ã‚’ä¸€åº¦æ•ã¾ãˆãŸ
+#define	FE_C04R0601_ITEM_GET			(FE_FLAG_START+181)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ãŸ
+#define	FE_D20R0106_LEGEND_UNSEAL		(FE_FLAG_START+182)	//ãƒ¬ã‚¸ã‚­ãƒ³ã‚°è§£æ”¾æ¸ˆã¿
+#define	FE_D20R0106_LEGEND_CLEAR		(FE_FLAG_START+183)	//ãƒ¬ã‚¸ã‚­ãƒ³ã‚°å…¥æ‰‹
+#define	FE_C06R0301_ITEM_GET			(FE_FLAG_START+184)	//ãƒŸãƒŽãƒ ãƒƒãƒã®ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define	FE_D24R0201_ITEM_GET			(FE_FLAG_START+185)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define	FE_D05R0116_LEGEND_CLEAR		(FE_FLAG_START+186)	//ã‚¢ã‚¦ã‚¹å…¥æ‰‹
+#define	FE_D15R0101_LEGEND_CLEAR		(FE_FLAG_START+187)	//ãƒ ãƒ¼ãƒã‚¹å…¥æ‰‹
+#define	FE_D16R0103_LEGEND_CLEAR		(FE_FLAG_START+188)	//ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³å…¥æ‰‹
+#define	FE_D17R0104_LEGEND_CLEAR		(FE_FLAG_START+189)	//ã‚­ãƒžã‚¤ãƒ©ãƒ³å…¥æ‰‹
+#define	FE_D18_LEGEND_CLEAR				(FE_FLAG_START+191)	//ã‚¨ã‚¦ãƒªã‚¹å…¥æ‰‹
+#define	FE_T05R0501_CHAMP				(FE_FLAG_START+192)	//å£ç”»å‰ã®ã‚·ãƒ­ãƒŠ
+#define	FE_D16R0103_LEGEND_UNSEAL		(FE_FLAG_START+193)	//ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³è§£æ”¾æ¸ˆã¿
+#define	FE_D28R0103_LEGEND_CLEAR		(FE_FLAG_START+194)	//ãƒã‚¤å…¥æ‰‹
+#define	FE_D29R0103_LEGEND_CLEAR		(FE_FLAG_START+195)	//ãƒ¬ã‚¤å…¥æ‰‹
+#define	FE_C06_ACCE_GET					(FE_FLAG_START+196)	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼å…¥æ‰‹
+#define	FE_C07R0201_ACCE_GET			(FE_FLAG_START+197)	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼å…¥æ‰‹
+#define	FE_D03_ACCE_GET					(FE_FLAG_START+198)	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼å…¥æ‰‹
+#define	FE_R206R0101_ACCE_GET			(FE_FLAG_START+199)	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼å…¥æ‰‹
+#define	FE_C02R0501_EVENT_CLEAR			(FE_FLAG_START+200)	//ã‚¯ãƒ¬ã‚»ãƒªã‚¢(ãƒ ãƒ¼ãƒã‚¹)å°‘å¹´åŠ©ã‘ãŸ
+#define	FE_R224_EVENT_CLEAR				(FE_FLAG_START+201)	//çŸ³ç¢‘åå…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚¯ãƒªã‚¢
+#define	FE_C07R0101_MIDDLEMAN1_COIN_GET	(FE_FLAG_START+202)	//ã‚³ã‚¤ãƒ³
+#define	FE_C07R0101_BIGMAN1_COIN_GET	(FE_FLAG_START+203)	//ã‚³ã‚¤ãƒ³
+#define	FE_C07R0101_ITEM_GET			(FE_FLAG_START+204)	//ï¼‘ï¼ãƒ¬ãƒ³ãƒãƒ£ãƒ³ã”ã»ã†ã³
+#define	FE_C05R0901_POKEMON_GET			(FE_FLAG_START+205)	//ãƒã‚±ãƒ¢ãƒ³ã‚’è²°ã£ãŸ
+#define	FE_YABURETA_SEKAI				(FE_FLAG_START+206)	//ã‚„ã¶ã‚ŒãŸã›ã‹ã„
+#define	FE_D15_UNSEAL					(FE_FLAG_START+207)	//ã‚¯ãƒ¬ã‚»ãƒªã‚¢(ãƒ ãƒ¼ãƒã‚¹)å°‘å¹´ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹==D15è§£ç¦
+#define	FE_T05R0201_MEGANE_01_GET		(FE_FLAG_START+208)	//ãƒ¡ã‚¬ãƒ1ã‚²ãƒƒãƒˆ
+#define	FE_T05R0201_MEGANE_02_GET		(FE_FLAG_START+209)	//ãƒ¡ã‚¬ãƒ2ã‚²ãƒƒãƒˆ
+#define	FE_T05R0201_MEGANE_03_GET		(FE_FLAG_START+210)	//ãƒ¡ã‚¬ãƒ3ã‚²ãƒƒãƒˆ
+#define	FE_R221R0201_ITEM_KEEP			(FE_FLAG_START+211)	//ã‚¢ã‚¤ãƒ†ãƒ ã‚’é ã‹ã£ã¦ã„ã‚‹çŠ¶æ…‹
+#define	FE_D04R0101_ITEM_GET			(FE_FLAG_START+212)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define	FE_R212AR0102_ITEM_GET			(FE_FLAG_START+213)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define	FE_L02R0201_ITEM_GET			(FE_FLAG_START+214)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define	FE_R217R0201_ITEM_GET			(FE_FLAG_START+215)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define	FE_C02R0401_START				(FE_FLAG_START+216)	//ãƒ€ãƒ¼ã‚¯ã‚¤ãƒ™ãƒ³ãƒˆå§‹ã‚ãŸ
+#define	FE_C01R0202_ACCE_GET			(FE_FLAG_START+217)	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼å…¥æ‰‹
+#define	FE_L02_GINGA_WIN				(FE_FLAG_START+218)	//L02ã‚®ãƒ³ã‚¬å›£ã«å‹åˆ©
+#define FE_R208_ITEM_GET				(FE_FLAG_START+219)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define FE_C06R0601_ITEM_GET_STYLE		(FE_FLAG_START+220)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define FE_C06R0601_ITEM_GET_BEAUTIFUL	(FE_FLAG_START+221)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define FE_C06R0601_ITEM_GET_CUTE		(FE_FLAG_START+222)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define FE_C06R0601_ITEM_GET_CLEVER		(FE_FLAG_START+223)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define FE_C06R0601_ITEM_GET_STRONG		(FE_FLAG_START+224)	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹
+#define	FE_T05R0101_OLDWOMAN1			(FE_FLAG_START+225)	//ã‚«ãƒ³ãƒŠã‚®é•·è€ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+#define	FE_SUPPORT_POKETORE_1			(FE_FLAG_START+226)	//ã‚µãƒãƒ¼ãƒˆã®ãƒã‚±ãƒˆãƒ¬ä¼šè©±
+#define	FE_SUPPORT_POKETORE_2			(FE_FLAG_START+227)	//ã‚µãƒãƒ¼ãƒˆã®ãƒã‚±ãƒˆãƒ¬ä¼šè©±
+#define	FE_SUPPORT_POKETORE_3			(FE_FLAG_START+228)	//ã‚µãƒãƒ¼ãƒˆã®ãƒã‚±ãƒˆãƒ¬ä¼šè©±
+#define FE_D25R0106_SPPOKE_CLEAR		(FE_FLAG_START+229)	//d25r0106ãƒ—ãƒ©ã‚ºãƒžæ•ç²
+#define	FE_C05_GOODS_01					(FE_FLAG_START+230)	//ã‚°ãƒƒã‚º1å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_GOODS_02					(FE_FLAG_START+231)	//ã‚°ãƒƒã‚º2å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_GOODS_03					(FE_FLAG_START+232)	//ã‚°ãƒƒã‚º3å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_GOODS_04					(FE_FLAG_START+233)	//ã‚°ãƒƒã‚º4å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_GOODS_05					(FE_FLAG_START+234)	//ã‚°ãƒƒã‚º5å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_GOODS_06					(FE_FLAG_START+235)	//ã‚°ãƒƒã‚º6å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_GOODS_07					(FE_FLAG_START+236)	//ã‚°ãƒƒã‚º7å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_GOODS_08					(FE_FLAG_START+237)	//ã‚°ãƒƒã‚º8å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_GOODS_09					(FE_FLAG_START+238)	//ã‚°ãƒƒã‚º9å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_GOODS_10					(FE_FLAG_START+239)	//ã‚°ãƒƒã‚º10å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_GOODS_11					(FE_FLAG_START+240)	//ã‚°ãƒƒã‚º11å…¥æ‰‹æ¸ˆã¿
+#define	FE_C07_POLICE_WAIT				(FE_FLAG_START+241)	//å›½éš›è­¦å¯Ÿã€€ã‚®ãƒ³ã‚¬ãƒˆãƒãƒªãƒ“ãƒ«ã®å‰ã§å¾…ã¡
+#define	FE_C06_POKE						(FE_FLAG_START+242)	//ã‚°ãƒ¬ãƒƒã‚°ãƒ«ã‚¤ãƒ™ãƒ³ãƒˆè¨±å¯=0,ä¸è¨±å¯=1
+#define	FE_C09_CHAMP					(FE_FLAG_START+243)	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
+#define FE_D30R0101_LEGEND_CLEAR		(FE_FLAG_START+244)	//d30r0101ãƒ€ãƒ¼ã‚¯æ•ç²
+#define FE_C05R1101_POFIN_INFOMATION	(FE_FLAG_START+245)	//ãƒãƒ•ã‚£ãƒ³å…¥æ‰‹ï¼šå—ä»˜å‰ã®ä¼šè©±
+#define FE_C05R1101_POFIN_GET			(FE_FLAG_START+246)	//ãƒãƒ•ã‚£ãƒ³å…¥æ‰‹ï¼šãƒãƒ•ã‚£ãƒ³å…¥æ‰‹æ¸ˆã¿
+#define	FE_C05_ALL_GOODS_GET			(FE_FLAG_START+247)	//ã“ã“ã§ã®å…¨ã¦ã®ã‚°ãƒƒã‚ºå…¥æ‰‹æ¸ˆã¿
+#define FE_T01R0201_GAMECLEAR_KISSAKI	(FE_FLAG_START+248)	//ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢å¾Œã®ãƒžãƒžã¨ã®ä¼šè©±
+#define FE_T01R0201_GAMECLEAR_ZUKAN		(FE_FLAG_START+249)	//ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢å¾Œã®ãƒžãƒžã¨ã®ä¼šè©±
+#define	FE_D05R0114_CLEAR				(FE_FLAG_START+250)	//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ã‚¯ãƒªã‚¢
+//#define	FE_D05R0114_SPPOKE_GET			(FE_FLAG_START+251)	//ã‚¤ã‚¢ï¼ˆã‚¨ã‚¢ï¼‰æ•ç²ã—ãŸ
+#define	FE_D05R0102_ITEM_GET			(FE_FLAG_START+252)	//ã‚´ãƒ¼ãƒ«ãƒ‰ã‚¹ãƒ—ãƒ¬ãƒ¼å…¥æ‰‹
+#define	FE_R213R0501_MYSTERY_TALK		(FE_FLAG_START+253)	//ãƒŸã‚¹ãƒ†ãƒªãƒ¼ã¨ä¼šè©±
+#define	FE_C08R0801_TALK				(FE_FLAG_START+254)	//ç¯å°ã§ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã¨ä¼šè©±ã—ãŸ
+#define	FE_R212AR0103_RICH_TALK			(FE_FLAG_START+255)	//é‡‘æŒã¡ãŠã˜ã•ã‚“ã¨ä¼šè©±ï¼ˆç‰¹å®šï¼‰
+#define	FE_R212AR0103_BUTLER_TALK		(FE_FLAG_START+256)	//åŸ·äº‹ã¨ä¼šè©±ï¼ˆç‰¹å®šï¼‰
+#define	FE_C07R0101_ITEM_RETRY			(FE_FLAG_START+257)	//ã ã„ã°ãã¯ã¤ãƒªãƒˆãƒ©ã‚¤
+#define	FE_R212AR0101_MAID_TALK			(FE_FLAG_START+258)	//ãƒ¡ã‚¤ãƒ‰ä¼šè©±ã—ãŸã‹
 
-//FE_MAX = (FE_FLAG_START(100)+299)		//ŒÃ‚¢
-//FE_MAX = (FE_FLAG_START(100)+269)		//08.01.18•ÏX
+//FE_MAX = (FE_FLAG_START(100)+299)		//å¤ã„
+//FE_MAX = (FE_FLAG_START(100)+269)		//08.01.18å¤‰æ›´
 
 //----------------------------------------------------------------------
-//	ƒoƒjƒbƒVƒ…ƒtƒ‰ƒO
+//	ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°
 //
 //	(FV_FLAG_START - FH_FLAG_START)
-//	(    400       -    729      )		//ŒÃ‚¢
-//	(    370       -    729      )		//08.01.18•ÏX
+//	(    400       -    729      )		//å¤ã„
+//	(    370       -    729      )		//08.01.18å¤‰æ›´
 //----------------------------------------------------------------------
-#define FV_R201_RIVAL					(FV_FLAG_START+0)		//ƒ‰ƒCƒoƒ‹
-#define FV_T01R0202_RIVAL				(FV_FLAG_START+1)		//ƒ‰ƒCƒoƒ‹
-#define FV_T01_RIVAL					(FV_FLAG_START+2)		//ƒ‰ƒCƒoƒ‹
-#define FV_D27R0101_DOCTOR				(FV_FLAG_START+3)		//”ŽŽm
-#define FV_D27R0101_AKAGI				(FV_FLAG_START+4)		//ƒAƒJƒM
-#define FV_T02_SUPPORT					(FV_FLAG_START+5)		//ƒTƒ|[ƒg
-#define FV_R201_DOCTOR					(FV_FLAG_START+6)		//”ŽŽm
-#define FV_R201_SUPPORT					(FV_FLAG_START+7)		//ƒTƒ|[ƒg
-#define FV_C01_SUPPORT					(FV_FLAG_START+8)		//ƒTƒ|[ƒg(ƒRƒgƒuƒL)
-#define FV_R203_RIVAL					(FV_FLAG_START+9)		//ƒ‰ƒCƒoƒ‹(r203)
-#define FV_C03_RIVAL					(FV_FLAG_START+10)		//ƒ‰ƒCƒoƒ‹(ƒNƒƒKƒl)
-#define FV_R201_BAG						(FV_FLAG_START+11)		//ƒoƒbƒO(R201)
-#define	FV_C05R0701_STOPPER				(FV_FLAG_START+12)		//ƒXƒgƒbƒp[
-#define FV_R205A_BOY2					(FV_FLAG_START+13)		//­”N
-#define FV_C04_CHAMP					(FV_FLAG_START+14)		//ƒ`ƒƒƒ“ƒsƒIƒ“(ƒnƒNƒ^ƒC)
-#define FV_C01_POLICE					(FV_FLAG_START+15)		//‘ÛŒxŽ@
-#define FV_D05R0102_HAHEN				(FV_FLAG_START+16)		//ƒeƒ“ƒKƒ“ŽR•Ç‰æ‚Ì”j•Ð
-#define FV_DOSA_TR1						(FV_FLAG_START+17)		//ƒhƒTŽü‚è‚ÌƒgƒŒ[ƒi[1
-#define FV_DOSA_TR2						(FV_FLAG_START+18)		//ƒhƒTŽü‚è‚ÌƒgƒŒ[ƒi[2
-#define FV_C07R0207_DOCTOR				(FV_FLAG_START+19)		//”ŽŽm
-#define FV_C02R0101_BIGFOUR4			(FV_FLAG_START+20)		//}‘ŠÙƒSƒˆƒE
-//#define FV_C04_GYM_LEADER				(FV_FLAG_START+21)		//C04ƒWƒ€‚ÌƒŠ[ƒ_[
-#define FV_R202_SUPPORT					(FV_FLAG_START+22)		//ƒTƒ|[ƒg
-#define FV_C04_AKAGI					(FV_FLAG_START+23)		//ƒAƒJƒM
-#define FV_D01R0102_LEADER				(FV_FLAG_START+24)		//ƒWƒ€ƒŠ[ƒ_[
-#define FV_C01_SUNGLASSES				(FV_FLAG_START+25)		//ƒTƒ“ƒOƒ‰ƒX(ƒAƒNƒZƒTƒŠƒP[ƒX)
-#define FV_C04_RIVAL					(FV_FLAG_START+26)		//ƒ‰ƒCƒoƒ‹
-#define FV_C05_SUNGLASSES				(FV_FLAG_START+27)		//ƒTƒ“ƒOƒ‰ƒX(ƒˆƒXƒK)
-#define FV_D02_GINGAM_A					(FV_FLAG_START+28)		//ƒMƒ“ƒK’c(d02)
-#define FV_D27R0101_POKE				(FV_FLAG_START+29)		//ƒ|ƒPƒ‚ƒ“
-#define FV_C05R1101_LEADER				(FV_FLAG_START+30)		//ƒƒŠƒbƒT
-#define FV_C07_LEADER					(FV_FLAG_START+31)		//ƒ}ƒLƒVƒ}ƒ€‰¼–Ê
-#define FV_C04R0101_MIDDLEM				(FV_FLAG_START+32)		//Ž©“]ŽÔ‚Ìl
-//#define FV_C04R0101_POKE				(FV_FLAG_START+33)		//Ž©“]ŽÔ‚Ìƒ|ƒPƒ‚ƒ“
-#define FV_D27R0101_SUPPORT				(FV_FLAG_START+34)		//ƒTƒ|[ƒg
-#define FV_L01_RIVAL					(FV_FLAG_START+35)		//ƒ‰ƒCƒoƒ‹
-#define FV_D27R0101_RIVAL				(FV_FLAG_START+36)		//ƒ‰ƒCƒoƒ‹
-#define FV_T02_RIVAL					(FV_FLAG_START+37)		//ƒ‰ƒCƒoƒ‹
-#define FV_T02R0101_DOCTOR				(FV_FLAG_START+38)		//”ŽŽm
-#define FV_T02R0101_SUPPORT				(FV_FLAG_START+39)		//ƒTƒ|[ƒg
-#define FV_C03_BOY1						(FV_FLAG_START+40)		//ƒVƒ…[ƒY­”N
-#define FV_D03R0101_SEVEN1				(FV_FLAG_START+41)		//5lO
-#define FV_C01_GINGA					(FV_FLAG_START+42)		//ƒMƒ“ƒK’c
-#define FV_C01_DOCTOR					(FV_FLAG_START+43)		//”ŽŽm
-#define FV_D13R0101_ITEM				(FV_FLAG_START+44)		//”­“dŠ‚ÌŒ®
-#define FV_D13R0101_GINGAM_A			(FV_FLAG_START+45)		//ƒMƒ“ƒK’c
-#define FV_D13R0101_GINGAM_B			(FV_FLAG_START+46)		//ƒMƒ“ƒK’c
-#define FV_T03_GINGAM					(FV_FLAG_START+47)		//ƒMƒ“ƒK’c
-#define FV_R205A_GINGAM					(FV_FLAG_START+48)		//ƒMƒ“ƒK’c
-#define FV_C07R0101_POLICE				(FV_FLAG_START+49)		//‘ÛŒxŽ@
-#define FV_D02R0101_GINGAM				(FV_FLAG_START+50)		//ƒMƒ“ƒK’c(POS)
-#define FV_D02R0101_GINGALEADER1		(FV_FLAG_START+51)		//ƒMƒ“ƒK’cƒŠ[ƒ_[
-#define FV_T05R0501_CHAMP				(FV_FLAG_START+52)		//•Ç‰æ‘O‚ÌƒVƒƒi
-#define FV_UG_MOUNT						(FV_FLAG_START+53)		//’n‰ºŽR’j
-#define FV_C07_SUPPORT					(FV_FLAG_START+54)		//ƒTƒ|[ƒg
-#define FV_C06_RIVAL_STOPPER			(FV_FLAG_START+55)		//ƒ‰ƒCƒoƒ‹(ƒWƒ€‘OƒXƒgƒbƒp[)
-#define FV_L03_RIVAL					(FV_FLAG_START+56)		//ƒ‰ƒCƒoƒ‹
-#define FV_D05R0101_GINGABOSS			(FV_FLAG_START+57)		//ƒMƒ“ƒK’cƒ{ƒX
-#define FV_T05_OLDWOMAN					(FV_FLAG_START+58)		//’·˜V
-#define FV_L02_CHAMP					(FV_FLAG_START+59)		//ƒ`ƒƒƒ“ƒsƒIƒ“
-#define FV_L02_GINGAM					(FV_FLAG_START+60)		//ƒMƒ“ƒK’c
-#define FV_T05_GINGAM					(FV_FLAG_START+61)		//ƒMƒ“ƒK’c
-#define FV_R210A_POKE					(FV_FLAG_START+62)		//ƒXƒgƒbƒp[
-#define FV_R210A_CHAMP					(FV_FLAG_START+63)		//ƒ`ƒƒƒ“ƒsƒIƒ“
-#define FV_C02_RIVAL					(FV_FLAG_START+64)		//ƒ‰ƒCƒoƒ‹
-#define FV_C02_DOCTOR					(FV_FLAG_START+65)		//”ŽŽm
-#define FV_C02_SEAMAN					(FV_FLAG_START+66)		//ˆê”ÊŽs–¯
-#define FV_C02_SUPPORT					(FV_FLAG_START+67)		//ƒTƒ|[ƒg
-#define FV_C02R0103_SUPPORT				(FV_FLAG_START+68)		//ƒTƒ|[ƒg
-#define FV_C02R0103_DOCTOR				(FV_FLAG_START+69)		//”ŽŽm
-#define FV_C02R0103_RIVAL				(FV_FLAG_START+70)		//ƒ‰ƒCƒoƒ‹
-#define FV_D29R0102_RIVAL				(FV_FLAG_START+71)		//ƒ‰ƒCƒoƒ‹
-#define FV_D29R0102_GKANBU2				(FV_FLAG_START+72)		//ƒMƒ“ƒK’cŠ²•”
-#define FV_C04R0201_POLICE				(FV_FLAG_START+73)		//‘ÛŒxŽ@
-#define FV_D28R0101_GINGA				(FV_FLAG_START+74)		//ƒMƒ“ƒK’c
-#define FV_T05_CHAMP					(FV_FLAG_START+75)		//ƒVƒƒi
-#define FV_D26R0104_GINGABOSS			(FV_FLAG_START+76)		//ƒMƒ“ƒKƒ{ƒX
-#define FV_C07_GINGAM					(FV_FLAG_START+77)		//ƒMƒ“ƒK’c
-#define FV_D27R0102_GKANBU				(FV_FLAG_START+78)		//ƒMƒ“ƒK’cŠ²•”
-#define FV_D28R0101_KOIKING				(FV_FLAG_START+79)		//ƒRƒCƒLƒ“ƒO
-#define FV_C04R0201_POLICE_GINGA		(FV_FLAG_START+80)		//‘ÛŒxŽ@
-#define FV_T05R0101_OLDWOMAN			(FV_FLAG_START+81)		//’·˜V
-//#define	FV_D05R0114_SPPOKE_01			(FV_FLAG_START+82)		//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸FƒCƒAiƒGƒAj
-#define	FV_D05R0114_RIVAL				(FV_FLAG_START+83)		//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸Fƒ‰ƒCƒoƒ‹
-//#define FV_D05R0114_SUPPORT				(FV_FLAG_START+84)		//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸FƒTƒ|[ƒg
-#define FV_D05R0115_GINGA				(FV_FLAG_START+85)		//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸F‚¨‚ë‚¨‚ëƒMƒ“ƒK’c
-#define	FV_D05R0114_GINGAM				(FV_FLAG_START+86)		//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸FƒMƒ“ƒK’cƒUƒR
-#define	FV_D05R0114_GINGAKANBU			(FV_FLAG_START+87)		//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸FƒMƒ“ƒK’cŠ²•”
-#define	FV_D05R0114_GINGABOSS			(FV_FLAG_START+88)		//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸FƒMƒ“ƒK’cƒ{ƒX
-#define	FV_D31R0205_TRAINER				(FV_FLAG_START+89)		//ƒ^ƒ[ƒVƒ“ƒOƒ‹‘Îí‘ŠŽè
-#define	FV_R207_SUPPORT					(FV_FLAG_START+90)		//ƒTƒ|[ƒg
-#define	FV_D05R0115_CHAMP				(FV_FLAG_START+91)		//‚â‚Ô‚ê‚½¢ŠE“ü‚èŒû‚ÌƒVƒƒi
-//#define	FV_D05R0114_POKE_L01			(FV_FLAG_START+92)		//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸FƒŒƒC
-//#define	FV_D05R0114_POKE_L02			(FV_FLAG_START+93)		//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸FƒAƒC
-//#define	FV_D05R0114_POKE_L03			(FV_FLAG_START+94)		//ƒeƒ“ƒKƒ“ƒUƒ“ŽR’¸FƒnƒC
-#define	FV_T04R0101_SUNGLASSES			(FV_FLAG_START+95)		//‚»‚¾‚Ä‚â‚ÌƒTƒ“ƒOƒ‰ƒX
-#define	FV_R221R0101_OOKIDO				(FV_FLAG_START+96)		//ƒI[ƒLƒh
-#define	FV_C11_RIVAL					(FV_FLAG_START+97)		//ƒ‰ƒCƒoƒ‹
-#define	FV_C11_SEVEN2					(FV_FLAG_START+98)		//‚TlO
-#define	FV_L02_RIVAL					(FV_FLAG_START+99)		//ƒ‰ƒCƒoƒ‹(L02)
-#define	FV_T06R0101_SEVEN2				(FV_FLAG_START+100)		//‚TlO
-#define	FV_R227_RIVAL					(FV_FLAG_START+101)		//ƒ‰ƒCƒoƒ‹
-#define	FV_R227_GYMLEADER				(FV_FLAG_START+102)		//ƒWƒ€ƒŠ[ƒ_[
-#define	FV_T06_RIVAL					(FV_FLAG_START+103)		//ƒ‰ƒCƒoƒ‹
-#define	FV_D16R0102_SEVEN5				(FV_FLAG_START+104)		//‚TlO
-#define	FV_D16R0103_SEVEN2				(FV_FLAG_START+105)		//‚TlO
-#define	FV_D16R0103_GKANBU				(FV_FLAG_START+106)		//ƒvƒ‹[ƒg
-#define	FV_D16R0103_HIIDORAN			(FV_FLAG_START+107)		//ƒq[ƒhƒ‰ƒ“
-#define	FV_D16R0103_KAZANNOOKIISI		(FV_FLAG_START+108)		//‚©‚´‚ñ‚Ì‚¨‚«‚¢‚µ
-#define	FV_D27R0103_AI					(FV_FLAG_START+109)		//ƒAƒC
-#define	FV_D28R0103_HAI					(FV_FLAG_START+110)		//ƒnƒC
-#define	FV_D29R0103_REI					(FV_FLAG_START+111)		//ƒŒƒC
-#define	FV_C11_LEADER					(FV_FLAG_START+112)		//ƒI[ƒo•ƒfƒ“ƒW
-#define	FV_C11_TOWERBOSS				(FV_FLAG_START+113)		//ƒ^ƒCƒN[ƒ“
-#define	FV_D21R0101_SEVEN2				(FV_FLAG_START+114)		//‚TlO
-#define	FV_D24R0105_SEVEN3				(FV_FLAG_START+115)		//‚TlO
-#define	FV_D09R0104_SEVEN4				(FV_FLAG_START+116)		//‚TlO
-#define	FV_D24R0105_GINGAM				(FV_FLAG_START+117)		//|“S“‡ƒMƒ“ƒK’c
-#define	FV_R213_POLICE					(FV_FLAG_START+118)		//‘ÛŒxŽ@
-#define	FV_D31R0201_PRIZEMAN			(FV_FLAG_START+119)		//ƒ^ƒ[Žó•tÜ•i‚ð‚­‚ê‚él
-#define	FV_D31R0206_TRAINER01			(FV_FLAG_START+120)		//ƒ^ƒ[ƒ}ƒ‹ƒ`‘Îí•”‰®ƒgƒŒ[ƒi[1
-#define	FV_D31R0206_TRAINER02			(FV_FLAG_START+121)		//ƒ^ƒ[ƒ}ƒ‹ƒ`‘Îí•”‰®ƒgƒŒ[ƒi[2
-#define	FV_D31R0207_SEVEN1				(FV_FLAG_START+122)		//ƒ^ƒ[ƒTƒƒ“ŒÜlO1
-#define	FV_D31R0207_SEVEN2				(FV_FLAG_START+123)		//ƒ^ƒ[ƒTƒƒ“ŒÜlO2
-#define	FV_D31R0207_SEVEN3				(FV_FLAG_START+124)		//ƒ^ƒ[ƒTƒƒ“ŒÜlO3
-#define	FV_D31R0207_SEVEN4				(FV_FLAG_START+125)		//ƒ^ƒ[ƒTƒƒ“ŒÜlO4
-#define	FV_D31R0207_SEVEN5				(FV_FLAG_START+126)		//ƒ^ƒ[ƒTƒƒ“ŒÜlO5
-#define	FV_T01R0201_RIVALMAMA			(FV_FLAG_START+127)		//ƒ‰ƒCƒoƒ‹ƒ}ƒ}
-#define	FV_T01R0102_RIVAL				(FV_FLAG_START+128)		//ƒ‰ƒCƒoƒ‹
-#define	FV_C09_GYMLEADER				(FV_FLAG_START+129)		//ƒWƒ€ƒŠ[ƒ_[
-#define	FV_C01R0701_RIVAL				(FV_FLAG_START+130)		//ƒ‰ƒCƒoƒ‹
-#define	FV_C01_CROWN					(FV_FLAG_START+131)		//ƒsƒGƒ
-#define	FV_C01_POKETCH					(FV_FLAG_START+132)		//ƒ|ƒPƒbƒ`‚­‚ê‚él
-#define	FV_C01R0101_POKETCH				(FV_FLAG_START+133)		//ƒ|ƒPƒbƒ`‚­‚ê‚él
-#define	FV_R205A_BABYGIRL1				(FV_FLAG_START+134)		//”­“dŠ•t‹ß‚Ì­—
-#define	FV_D02R0101_BABYGIRL1			(FV_FLAG_START+135)		//”­“dŠ•t‹ß‚Ì­—
-#define	FV_D02_POLICE					(FV_FLAG_START+136)		//‘ÛŒxŽ@
-#define	FV_C06_LEADER					(FV_FLAG_START+137)		//ƒ}ƒLƒV
-#define	FV_D03R0101_LEADER				(FV_FLAG_START+138)		//ƒiƒ^ƒl
-#define	FV_C04_GINGA					(FV_FLAG_START+139)		//ƒMƒ“ƒK’c
-#define	FV_C04PC0101_GONBE				(FV_FLAG_START+140)		//ƒSƒ“ƒx
-#define	FV_C04R0204_MIDDLEM				(FV_FLAG_START+141)		//ƒAƒWƒg‚É‚¢‚é‚¨‚¶‚³‚ñ
-#define	FV_C04R0101_PIPPI				(FV_FLAG_START+142)		//‚Ò‚Á‚Ò
-#define	FV_C05R1102_CON1				(FV_FLAG_START+143)		//ƒRƒ“ƒeƒXƒgŽQ‰ÁŽÒ
-#define	FV_C05R1102_CON2				(FV_FLAG_START+144)		//ƒRƒ“ƒeƒXƒgŽQ‰ÁŽÒ
-#define	FV_C05R1102_CON3				(FV_FLAG_START+145)		//ƒRƒ“ƒeƒXƒgŽQ‰ÁŽÒ
-#define	FV_C05R1102_CON4				(FV_FLAG_START+146)		//ƒRƒ“ƒeƒXƒgŽQ‰ÁŽÒ
-#define	FV_C05R1102_CON5				(FV_FLAG_START+147)		//ƒRƒ“ƒeƒXƒgŽQ‰ÁŽÒ
-#define	FV_C05_STOPPER					(FV_FLAG_START+148)		//ƒRƒ“ƒeƒXƒgƒXƒgƒbƒp[
-#define	FV_C05R0601_RIVAL				(FV_FLAG_START+149)		//ƒ‰ƒCƒoƒ‹
-#define	FV_C05R1101_MAMA				(FV_FLAG_START+150)		//ƒ}ƒ}
-#define	FV_C05R1101_JUDGE				(FV_FLAG_START+151)		//ƒ~ƒ~ƒB
-#define	FV_MYSTERY_POSTMAN				(FV_FLAG_START+152)		//‚Ó‚µ‚¬”z’Bˆõ
-#define	FV_D02_FUUSEN					(FV_FLAG_START+153)		//ƒt[ƒZƒ“
-#define FV_C06_GINGAM					(FV_FLAG_START+154)		//ƒMƒ“ƒK’c
-#define FV_C07R0301_POLICE				(FV_FLAG_START+155)		//‘ÛŒxŽ@
-#define FV_TV_INTERVIEW_02				(FV_FLAG_START+156)		//TV(ƒCƒ“ƒ^ƒrƒ…[)ƒoƒgƒ‹ƒ^ƒ[
-#define FV_C06GYM0101_LEADER			(FV_FLAG_START+157)		//ƒ}ƒLƒV
-#define FV_TV_INTERVIEW_04				(FV_FLAG_START+158)		//TV(ƒCƒ“ƒ^ƒrƒ…[)‚ ‚È‚½‚Ìƒ|ƒPƒ‚ƒ“
-#define FV_R213R0301_POLICE				(FV_FLAG_START+159)		//‘ÛŒxŽ@
-#define FV_TV_INTERVIEW_06				(FV_FLAG_START+160)		//TV(ƒCƒ“ƒ^ƒrƒ…[)ƒ|ƒPƒbƒ`
-#define FV_TV_INTERVIEW_07				(FV_FLAG_START+161)		//TV(ƒCƒ“ƒ^ƒrƒ…[)ƒRƒ“ƒeƒXƒg
-#define FV_D24_SEVEN3					(FV_FLAG_START+162)		//|“S“‡“ü‚èŒû‚ÌƒQƒ“
-#define FV_TV_INTERVIEW_09				(FV_FLAG_START+163)		//TV(ƒCƒ“ƒ^ƒrƒ…[)ƒNƒŠƒbƒv
-#define FV_TV_INTERVIEW_10				(FV_FLAG_START+164)		//TV(ƒCƒ“ƒ^ƒrƒ…[)«Šif’f
-#define FV_TV_INTERVIEW_11				(FV_FLAG_START+165)		//TV(ƒCƒ“ƒ^ƒrƒ…[)ƒ|ƒ‹ƒg
-#define FV_C04_LEADER					(FV_FLAG_START+166)		//ƒiƒ^ƒl
-#define FV_TV_INTERVIEW_13				(FV_FLAG_START+167)		//TV(ƒCƒ“ƒ^ƒrƒ…[)˜A‚ê•à‚«
-#define FV_R213_GINGAM					(FV_FLAG_START+168)		//ƒMƒ“ƒK’c
-#define FV_L02_GINGAM_1					(FV_FLAG_START+169)		//“¦‚°‚éƒMƒ“ƒK’c
-#define FV_R218R0201_ASSISTANTM			(FV_FLAG_START+170)		//•ŽèiƒTƒ|[ƒ^[‚ÌeHj
-#define FV_C10R0101_RIVAL				(FV_FLAG_START+171)		//ƒ‰ƒCƒoƒ‹
-#define FV_T04_RIVAL					(FV_FLAG_START+172)		//ƒ‰ƒCƒoƒ‹
-#define FV_D07R0105_BABYBOY1			(FV_FLAG_START+173)		//ƒV[ƒ‹­”N
-#define FV_C05_EGG						(FV_FLAG_START+174)		//ƒ^ƒ}ƒS‚­‚ê‚él
-#define FV_C04GYM0101_LEADER			(FV_FLAG_START+175)		//ƒWƒ€ƒŠ[ƒ_[
-#define FV_C04R0401_ASSISTANTM			(FV_FLAG_START+176)		//•Žè
-#define FV_C07_GINGAM_3					(FV_FLAG_START+177)		//ƒMƒ“ƒK’c
-#define FV_D26R0101_DOOR				(FV_FLAG_START+178)		//ƒhƒA
-#define FV_D26R0103_DOOR				(FV_FLAG_START+179)		//ƒhƒA
-#define FV_D26R0104_DOOR				(FV_FLAG_START+180)		//ƒhƒA
-#define FV_D26R0106_DOOR				(FV_FLAG_START+181)		//ƒhƒA
-#define FV_C07R0301_BAR					(FV_FLAG_START+182)		//ƒo[
-#define FV_T05R0501_OLDWOMAN			(FV_FLAG_START+183)		//’·˜V
-#define FV_T02R0101_OOKIDO				(FV_FLAG_START+184)		//ƒI[ƒLƒh”ŽŽm
-#define	FV_T06_SEVEN2					(FV_FLAG_START+185)		//5lO
-#define	FV_D16_GINGA					(FV_FLAG_START+186)		//ƒMƒ“ƒK’c1,2
-#define	FV_D16_SEVEN2					(FV_FLAG_START+187)		//5lO
-#define	FV_D16_POLICE					(FV_FLAG_START+188)		//‘ÛŒxŽ@
-#define	FV_D16R0101_GKANBU				(FV_FLAG_START+189)		//ƒ}[ƒYAƒWƒ…ƒsƒ^[Aƒvƒ‹[ƒg“¯‚¶
-#define	FV_D16R0103_POLICE_23			(FV_FLAG_START+190)		//ŒxŽ@2,3
-#define	FV_D16R0103_POLICE				(FV_FLAG_START+191)		//‘ÛŒxŽ@
-#define	FV_D16R0103_POKE				(FV_FLAG_START+192)		//ƒOƒŒƒbƒOƒ‹
-#define	FV_D16R0103_STONE				(FV_FLAG_START+193)		//‰B‚ê‚Ä‚¢‚éŠâ
-#define	FV_C09PC0101_LEADER				(FV_FLAG_START+194)		//ƒXƒ‚ƒ‚
-#define	FV_D05R0102_STOPPER				(FV_FLAG_START+195)		//ƒeƒ“ƒKƒ“ŽRƒXƒgƒbƒp[
-#define	FV_D26R0107_POKE				(FV_FLAG_START+196)		//ƒŒƒCƒAƒCƒnƒC
-#define	FV_D26R0107_GKANBU				(FV_FLAG_START+197)		//Š²•”
-#define	FV_C01_CROWN3					(FV_FLAG_START+198)		//ƒsƒGƒ(TV‹Ç‘O)
-#define	FV_C08_LEADER					(FV_FLAG_START+199)		//Žl“V‰¤
-#define	FV_C10R0112_CHAMP				(FV_FLAG_START+200)		//ƒ`ƒƒƒ“ƒsƒIƒ“
-#define	FV_C10R0112_DOCTOR				(FV_FLAG_START+201)		//ƒiƒiƒJƒ}ƒh
-#define FV_C05_JUDGE					(FV_FLAG_START+202)		//ƒ~ƒ~ƒB
-#define FV_C05_POKE						(FV_FLAG_START+203)		//ƒ~ƒ~ƒbƒg
-#define FV_C05_LEADER					(FV_FLAG_START+204)		//ƒWƒ€ƒŠ[ƒ_[
-#define FV_STOPPER_FRIENDBOOK			(FV_FLAG_START+205)		//‚Æ‚à‚¾‚¿Žè’ ƒXƒgƒbƒp[
-#define FV_D30R0101_SPPOKE7				(FV_FLAG_START+206)		//ƒ_[ƒN
-#define FV_C02R0401_EVENT				(FV_FLAG_START+207)		//ƒ_[ƒN‚ÌƒTƒ“ƒOƒ‰ƒX
-#define FV_C04R0601_OOKIDO				(FV_FLAG_START+208)		//ƒI[ƒLƒh”ŽŽm
-#define FV_D20R0106_LEGEND				(FV_FLAG_START+209)		//ƒŒƒWƒLƒ“ƒO
-#define FV_L02R0101_COUPLE1				(FV_FLAG_START+210)		//ƒŒƒXƒgƒ‰ƒ“@ƒJƒbƒvƒ‹‚P
-#define FV_L02R0101_COUPLE2				(FV_FLAG_START+211)		//ƒŒƒXƒgƒ‰ƒ“@ƒJƒbƒvƒ‹‚Q
-#define FV_L02R0101_COUPLE3				(FV_FLAG_START+212)		//ƒŒƒXƒgƒ‰ƒ“@ƒJƒbƒvƒ‹‚R
-#define FV_L02R0101_COUPLE4				(FV_FLAG_START+213)		//ƒŒƒXƒgƒ‰ƒ“@ƒJƒbƒvƒ‹‚S
-#define FV_L02R0101_COUPLE5				(FV_FLAG_START+214)		//ƒŒƒXƒgƒ‰ƒ“@ƒJƒbƒvƒ‹‚T
-#define FV_L02R0101_COUPLE6				(FV_FLAG_START+215)		//ƒŒƒXƒgƒ‰ƒ“@ƒJƒbƒvƒ‹‚U
-#define FV_L02R0101_COUPLE7				(FV_FLAG_START+216)		//ƒŒƒXƒgƒ‰ƒ“@ƒJƒbƒvƒ‹‚V
-#define FV_L02R0101_COUPLE8				(FV_FLAG_START+217)		//ƒŒƒXƒgƒ‰ƒ“@ƒJƒbƒvƒ‹‚W
-#define FV_L02R0101_COUPLE9				(FV_FLAG_START+218)		//ƒŒƒXƒgƒ‰ƒ“@ƒJƒbƒvƒ‹‚X
-#define FV_D24R0201_LEADER				(FV_FLAG_START+219)		//ƒWƒ€ƒŠ[ƒ_[@ƒgƒEƒKƒ“
-#define	FV_D05R0116_LEGEND				(FV_FLAG_START+220)	//ƒAƒEƒX
-#define	FV_D15R0101_LEGEND				(FV_FLAG_START+221)	//ƒ€[ƒoƒX
-#define	FV_D17R0104_LEGEND				(FV_FLAG_START+222)	//ƒLƒ}ƒCƒ‰ƒ“
-#define	FV_D18_LEGEND					(FV_FLAG_START+223)	//ƒGƒEƒŠƒX
-#define	FV_R224_OOKIDO					(FV_FLAG_START+224)	//r224ƒI[ƒLƒh
-#define	FV_D26R0109_BOSS				(FV_FLAG_START+225)	//ƒAƒJƒM
-#define	FV_D26R0109_POLICE				(FV_FLAG_START+226)	//ŒŽ—jƒgƒŒ[ƒi[
-#define	FV_C08_RIVAL					(FV_FLAG_START+227)		//ƒ‰ƒCƒoƒ‹
-#define	FV_C09_CHAMP					(FV_FLAG_START+228)		//ƒ`ƒƒƒ“ƒsƒIƒ“
-#define	FV_R212AR0101_MAID				(FV_FLAG_START+229)	//ƒƒCƒh
-#define	FV_R212AR0101_BOSS				(FV_FLAG_START+230)	//ƒƒCƒhƒ{ƒX
-#define	FV_D26R0109_GINGA				(FV_FLAG_START+231)	//ƒMƒ“ƒK’c
-#define	FV_T07R0201_KEEPER				(FV_FLAG_START+232)	//ŠÇ—l
-#define	FV_C02R0501_SEAMAN				(FV_FLAG_START+233)	//c02r0501‘Dæ‚è
-#define	FV_R224_LEGEND					(FV_FLAG_START+234)	//r224ƒGƒEƒŠƒX
-#define	FV_L02_WOMAN2					(FV_FLAG_START+235)	//‚¨Ÿ­—Ž‚¨Žo‚³‚ñ
-#define	FV_L02R0201_WOMAN2				(FV_FLAG_START+236)	//‚¨Ÿ­—Ž‚¨Žo‚³‚ñ
-#define	FV_R217R0201_WOMAN1				(FV_FLAG_START+237)	//Žo‚³‚ñ
-#define FV_R212A_POLICE1_NPC			(FV_FLAG_START+238)		//‚¨„‚è‚³‚ñ(’ÊíNPC)
-#define FV_R212A_POLICE1_TR				(FV_FLAG_START+239)		//‚¨„‚è‚³‚ñ(‘ÎíƒgƒŒ[ƒi[)
-#define FV_R212A_POLICE2_NPC			(FV_FLAG_START+240)		//‚¨„‚è‚³‚ñ(’ÊíNPC)
-#define FV_R212A_POLICE2_TR				(FV_FLAG_START+241)		//‚¨„‚è‚³‚ñ(‘ÎíƒgƒŒ[ƒi[)
-#define FV_R212A_POLICE3_NPC			(FV_FLAG_START+242)		//‚¨„‚è‚³‚ñ(’ÊíNPC)
-#define FV_R212A_POLICE3_TR				(FV_FLAG_START+243)		//‚¨„‚è‚³‚ñ(‘ÎíƒgƒŒ[ƒi[)
-#define FV_R212A_POLICE4_NPC			(FV_FLAG_START+244)		//‚¨„‚è‚³‚ñ(’ÊíNPC)
-#define FV_R212A_POLICE4_TR				(FV_FLAG_START+245)		//‚¨„‚è‚³‚ñ(‘ÎíƒgƒŒ[ƒi[)
-#define FV_R212B_POLICE5_NPC			(FV_FLAG_START+246)		//‚¨„‚è‚³‚ñ(’ÊíNPC)
-#define FV_R212B_POLICE5_TR				(FV_FLAG_START+247)		//‚¨„‚è‚³‚ñ(‘ÎíƒgƒŒ[ƒi[)
-#define FV_R222_POLICE6_NPC				(FV_FLAG_START+248)		//‚¨„‚è‚³‚ñ(’ÊíNPC)
-#define FV_R222_POLICE6_TR				(FV_FLAG_START+249)		//‚¨„‚è‚³‚ñ(‘ÎíƒgƒŒ[ƒi[)
-#define FV_R209_JOGGER1_NPC				(FV_FLAG_START+250)		//ƒWƒ‡ƒMƒ“ƒO(’ÊíNPC)
-#define FV_R209_JOGGER1_TR				(FV_FLAG_START+251)		//ƒWƒ‡ƒMƒ“ƒO(‘ÎíƒgƒŒ[ƒi[)
-#define FV_R209_JOGGER6_NPC				(FV_FLAG_START+252)		//ƒWƒ‡ƒMƒ“ƒO(’ÊíNPC)
-#define FV_R209_JOGGER6_TR				(FV_FLAG_START+253)		//ƒWƒ‡ƒMƒ“ƒO(‘ÎíƒgƒŒ[ƒi[)
-#define FV_R210A_JOGGER4_NPC			(FV_FLAG_START+254)		//ƒWƒ‡ƒMƒ“ƒO(’ÊíNPC)
-#define FV_R210A_JOGGER4_TR				(FV_FLAG_START+255)		//ƒWƒ‡ƒMƒ“ƒO(‘ÎíƒgƒŒ[ƒi[)
-#define FV_R215_JOGGER3_NPC				(FV_FLAG_START+256)		//ƒWƒ‡ƒMƒ“ƒO(’ÊíNPC)
-#define FV_R215_JOGGER3_TR				(FV_FLAG_START+257)		//ƒWƒ‡ƒMƒ“ƒO(‘ÎíƒgƒŒ[ƒi[)
-#define FV_R215_JOGGER5_NPC				(FV_FLAG_START+258)		//ƒWƒ‡ƒMƒ“ƒO(’ÊíNPC)
-#define FV_R215_JOGGER5_TR				(FV_FLAG_START+259)		//ƒWƒ‡ƒMƒ“ƒO(‘ÎíƒgƒŒ[ƒi[)
-#define FV_D31_TOWERBOSS				(FV_FLAG_START+260)		//ƒ^ƒ[ƒ^ƒCƒN[ƒ“
-#define FV_D31_RIVAL					(FV_FLAG_START+261)		//ƒ‰ƒCƒoƒ‹
-#define	FV_D17R0104_ITEM				(FV_FLAG_START+262)		//d17r0104ƒAƒCƒeƒ€ƒ{[ƒ‹
-#define	FV_D30_SEAMAN					(FV_FLAG_START+263)		//d30‘Dˆõ
-#define	FV_C09_SEAMAN					(FV_FLAG_START+264)		//c09‘Dˆõ
-#define	FV_D25R0102_OLDMAN2				(FV_FLAG_START+265)		//d25r0102—H—ì‚¶‚¢‚¿‚á‚ñ
-#define	FV_D25R0108_BABYGIRL1			(FV_FLAG_START+266)		//d25r0108—H—ì—‚ÌŽq
-#define	FV_L02_BIGMAN					(FV_FLAG_START+267)		//l02ƒXƒgƒbƒp[
-#define	FV_D09R0101_BIGMAN				(FV_FLAG_START+268)		//d09r0101ƒXƒgƒbƒp[
-#define	FV_R221_STOPPER1				(FV_FLAG_START+269)		//R221ƒXƒgƒbƒp[1
-#define	FV_R221_STOPPER2				(FV_FLAG_START+270)		//R221ƒXƒgƒbƒp[2
-#define	FV_C08R0801_LEADER				(FV_FLAG_START+271)		//ƒWƒ€ƒŠ[ƒ_[
-#define	FV_C10R0103_DOOR_01				(FV_FLAG_START+272)		//ƒhƒA(Žè‘O)
-#define	FV_C10R0105_DOOR_01				(FV_FLAG_START+273)		//ƒhƒA
-#define	FV_C10R0107_DOOR_01				(FV_FLAG_START+274)		//ƒhƒA
-#define	FV_C10R0109_DOOR_01				(FV_FLAG_START+275)		//ƒhƒA
-#define	FV_C10R0103_DOOR_02				(FV_FLAG_START+276)		//ƒhƒA(‰œ)
-#define	FV_C10R0105_DOOR_02				(FV_FLAG_START+277)		//ƒhƒA
-#define	FV_C10R0107_DOOR_02				(FV_FLAG_START+278)		//ƒhƒA
-#define	FV_C10R0109_DOOR_02				(FV_FLAG_START+279)		//ƒhƒA
-#define	FV_C07_POLICE					(FV_FLAG_START+280)		//‘ÛŒxŽ@
-#define	FV_R212AR0103_POLICEMAN			(FV_FLAG_START+281)		//Œx”õˆõ
-#define FV_D27R0102_DOCTOR				(FV_FLAG_START+282)		//”ŽŽm
-#define FV_D27R0102_SUPPORT				(FV_FLAG_START+283)		//ƒTƒ|[ƒg
-#define FV_R227_SEVEN2					(FV_FLAG_START+284)		//‚TlO
-#define FV_D05R0110_GINGAM				(FV_FLAG_START+285)		//ƒMƒ“ƒK’c‚µ‚½‚Á‚ÏƒXƒgƒbƒp[
-#define FV_C01R0206_STOP				(FV_FLAG_START+286)		//“­‚­‚¨‚¶‚³‚ñƒXƒgƒbƒp[
-#define FV_C01R0207_STOP				(FV_FLAG_START+287)		//“­‚­‚¨‚¶‚³‚ñƒXƒgƒbƒp[
-#define FV_D26R0101_GKANBU				(FV_FLAG_START+288)		//Š²•”
-#define FV_D29R0101_RIVAL				(FV_FLAG_START+289)		//ƒ‰ƒCƒoƒ‹
-#define FV_C11_STOP						(FV_FLAG_START+290)		//ƒXƒgƒbƒp[(c11,w230‚ÅŽg—p)
-#define FV_D05R0112_GINGAW				(FV_FLAG_START+291)		//ƒMƒ“ƒK’c
-#define FV_D27R0103_DOCTOR				(FV_FLAG_START+292)		//”ŽŽm
-#define FV_R217_LEADER					(FV_FLAG_START+293)		//ƒXƒ‚ƒ‚
-#define FV_C07GYM0101_LEADER			(FV_FLAG_START+294)		//ƒXƒ‚ƒ‚
-#define FV_R218_STOPPER					(FV_FLAG_START+295)		//ƒXƒgƒbƒp[
-#define FV_D05R0112_GINGAM				(FV_FLAG_START+296)		//ƒMƒ“ƒK’cƒXƒgƒbƒp[
-#define FV_T05R0501_AKAGI				(FV_FLAG_START+297)		//ƒJƒ“ƒiƒMˆâÕƒAƒJƒM
-#define FV_C05GYM0104_POLE				(FV_FLAG_START+298)		//ƒƒŠƒbƒT‰¡‚Ìƒ|[ƒ‹
-#define FV_C06_POKE						(FV_FLAG_START+299)		//ƒOƒŒƒbƒOƒ‹
-#define	FV_D26R0107_GKANBU2				(FV_FLAG_START+300)		//Š²•”(ƒvƒ‹[ƒg)
-#define	FV_D05R0102_POLICE				(FV_FLAG_START+301)		//‘ÛŒxŽ@
-#define	FV_D17R0101_CHAMP				(FV_FLAG_START+302)		//ƒVƒƒi
-#define	FV_D11R0101_POKE				(FV_FLAG_START+303)		//‚Ó‚ê‚ ‚¢Lê
-#define	FV_T06R0101_TR1					(FV_FLAG_START+304)		//ÄíŽ{Ý
-#define	FV_T06R0101_TR2					(FV_FLAG_START+305)		//ÄíŽ{Ý
-#define	FV_T06R0101_TR3					(FV_FLAG_START+306)		//ÄíŽ{Ý
-#define	FV_T06R0101_TR4					(FV_FLAG_START+307)		//ÄíŽ{Ý
-#define	FV_T07_KEEPER					(FV_FLAG_START+308)		//•Ê‘‘ŠÇ—l
-#define	FV_VILLA_IN_RIVAL				(FV_FLAG_START+309)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_SUPPORT				(FV_FLAG_START+310)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_DOCTOR				(FV_FLAG_START+311)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_OUT_DOCTOR				(FV_FLAG_START+312)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_MAMA				(FV_FLAG_START+313)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_LEADER1				(FV_FLAG_START+314)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_OUT_LEADER1			(FV_FLAG_START+315)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_LEADER2				(FV_FLAG_START+316)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_OUT_LEADER2			(FV_FLAG_START+317)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_LEADER3				(FV_FLAG_START+318)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_LEADER4				(FV_FLAG_START+319)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_OUT_LEADER4			(FV_FLAG_START+320)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_LEADER5				(FV_FLAG_START+321)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_LEADER6				(FV_FLAG_START+322)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_OUT_LEADER6			(FV_FLAG_START+323)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_LEADER7				(FV_FLAG_START+324)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_LEADER8				(FV_FLAG_START+325)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_CHAMP				(FV_FLAG_START+326)		//•Ê‘‘—ˆ‹q
-#define	FV_VILLA_IN_BIGFOUR3			(FV_FLAG_START+327)		//•Ê‘‘—ˆ‹q
-#define	FV_D05R0115_SPPOKE2				(FV_FLAG_START+328)		//ƒGƒ€ƒŠƒbƒg
-#define	FV_ROTOMU_HOT					(FV_FLAG_START+329)		//ƒƒgƒ€
-#define	FV_ROTOMU_WASH					(FV_FLAG_START+330)		//ƒƒgƒ€
-#define	FV_ROTOMU_COLD					(FV_FLAG_START+331)		//ƒƒgƒ€
-#define	FV_ROTOMU_FAN					(FV_FLAG_START+332)		//ƒƒgƒ€
-#define	FV_ROTOMU_CUT					(FV_FLAG_START+333)		//ƒƒgƒ€
-#define	FV_C04R0205_DOCTOR				(FV_FLAG_START+334)		//ƒiƒiƒJƒ}ƒh
-#define	FV_TV_INTERVIEW_14				(FV_FLAG_START+335)		//TV(ƒCƒ“ƒ^ƒrƒ…[)ƒXƒe[ƒW
-#define	FV_TV_INTERVIEW_15				(FV_FLAG_START+336)		//TV(ƒCƒ“ƒ^ƒrƒ…[)‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
-#define	FV_TV_INTERVIEW_19				(FV_FLAG_START+337)		//TV(ƒCƒ“ƒ^ƒrƒ…[)ƒtƒƒ“ƒeƒBƒA
-#define	FV_T02_DOCTOR					(FV_FLAG_START+338)		//”ŽŽm
-#define	FV_T07R0201_DELIVERY			(FV_FLAG_START+339)		//•Ê‘‘‚ÌƒfƒŠƒoƒŠ[
-#define	FV_C04R0201_DOOR				(FV_FLAG_START+340)		//ƒƒgƒ€‚Ö‚ÌƒhƒA
-#define	FV_T07R0201_BOOK				(FV_FLAG_START+341)		//•Ê‘‘‚Ì–{
-#define	FV_D01R0101_MYTH				(FV_FLAG_START+342)		//ƒAƒ‹ƒZƒEƒXŽR’j
-#define	FV_C02R0102_MYTH				(FV_FLAG_START+343)		//ƒAƒ‹ƒZƒEƒXŽR’j
-#define	FV_R224_MAI						(FV_FLAG_START+344)		//ƒ}ƒC
-#define	FV_D32R0401_OUEN				(FV_FLAG_START+345)		//ƒXƒe[ƒW‰ž‰‡ƒLƒƒƒ‰
-#define	FV_C02_RIVAL_STOPPER			(FV_FLAG_START+346)		//ƒ‰ƒCƒoƒ‹@}‘ŠÙƒXƒgƒbƒp[
+#define FV_R201_RIVAL					(FV_FLAG_START+0)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_T01R0202_RIVAL				(FV_FLAG_START+1)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_T01_RIVAL					(FV_FLAG_START+2)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_D27R0101_DOCTOR				(FV_FLAG_START+3)		//åšå£«
+#define FV_D27R0101_AKAGI				(FV_FLAG_START+4)		//ã‚¢ã‚«ã‚®
+#define FV_T02_SUPPORT					(FV_FLAG_START+5)		//ã‚µãƒãƒ¼ãƒˆ
+#define FV_R201_DOCTOR					(FV_FLAG_START+6)		//åšå£«
+#define FV_R201_SUPPORT					(FV_FLAG_START+7)		//ã‚µãƒãƒ¼ãƒˆ
+#define FV_C01_SUPPORT					(FV_FLAG_START+8)		//ã‚µãƒãƒ¼ãƒˆ(ã‚³ãƒˆãƒ–ã‚­)
+#define FV_R203_RIVAL					(FV_FLAG_START+9)		//ãƒ©ã‚¤ãƒãƒ«(r203)
+#define FV_C03_RIVAL					(FV_FLAG_START+10)		//ãƒ©ã‚¤ãƒãƒ«(ã‚¯ãƒ­ã‚¬ãƒ)
+#define FV_R201_BAG						(FV_FLAG_START+11)		//ãƒãƒƒã‚°(R201)
+#define	FV_C05R0701_STOPPER				(FV_FLAG_START+12)		//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define FV_R205A_BOY2					(FV_FLAG_START+13)		//å°‘å¹´
+#define FV_C04_CHAMP					(FV_FLAG_START+14)		//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³(ãƒã‚¯ã‚¿ã‚¤)
+#define FV_C01_POLICE					(FV_FLAG_START+15)		//å›½éš›è­¦å¯Ÿ
+#define FV_D05R0102_HAHEN				(FV_FLAG_START+16)		//ãƒ†ãƒ³ã‚¬ãƒ³å±±å£ç”»ã®ç ´ç‰‡
+#define FV_DOSA_TR1						(FV_FLAG_START+17)		//ãƒ‰ã‚µå‘¨ã‚Šã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼1
+#define FV_DOSA_TR2						(FV_FLAG_START+18)		//ãƒ‰ã‚µå‘¨ã‚Šã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼2
+#define FV_C07R0207_DOCTOR				(FV_FLAG_START+19)		//åšå£«
+#define FV_C02R0101_BIGFOUR4			(FV_FLAG_START+20)		//å›³æ›¸é¤¨ã‚´ãƒ¨ã‚¦
+//#define FV_C04_GYM_LEADER				(FV_FLAG_START+21)		//C04ã‚¸ãƒ ã®ãƒªãƒ¼ãƒ€ãƒ¼
+#define FV_R202_SUPPORT					(FV_FLAG_START+22)		//ã‚µãƒãƒ¼ãƒˆ
+#define FV_C04_AKAGI					(FV_FLAG_START+23)		//ã‚¢ã‚«ã‚®
+#define FV_D01R0102_LEADER				(FV_FLAG_START+24)		//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼
+#define FV_C01_SUNGLASSES				(FV_FLAG_START+25)		//ã‚µãƒ³ã‚°ãƒ©ã‚¹(ã‚¢ã‚¯ã‚»ã‚µãƒªã‚±ãƒ¼ã‚¹)
+#define FV_C04_RIVAL					(FV_FLAG_START+26)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_C05_SUNGLASSES				(FV_FLAG_START+27)		//ã‚µãƒ³ã‚°ãƒ©ã‚¹(ãƒ¨ã‚¹ã‚¬)
+#define FV_D02_GINGAM_A					(FV_FLAG_START+28)		//ã‚®ãƒ³ã‚¬å›£(d02)
+#define FV_D27R0101_POKE				(FV_FLAG_START+29)		//ãƒã‚±ãƒ¢ãƒ³
+#define FV_C05R1101_LEADER				(FV_FLAG_START+30)		//ãƒ¡ãƒªãƒƒã‚µ
+#define FV_C07_LEADER					(FV_FLAG_START+31)		//ãƒžã‚­ã‚·ãƒžãƒ ä»®é¢
+#define FV_C04R0101_MIDDLEM				(FV_FLAG_START+32)		//è‡ªè»¢è»Šã®äºº
+//#define FV_C04R0101_POKE				(FV_FLAG_START+33)		//è‡ªè»¢è»Šã®ãƒã‚±ãƒ¢ãƒ³
+#define FV_D27R0101_SUPPORT				(FV_FLAG_START+34)		//ã‚µãƒãƒ¼ãƒˆ
+#define FV_L01_RIVAL					(FV_FLAG_START+35)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_D27R0101_RIVAL				(FV_FLAG_START+36)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_T02_RIVAL					(FV_FLAG_START+37)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_T02R0101_DOCTOR				(FV_FLAG_START+38)		//åšå£«
+#define FV_T02R0101_SUPPORT				(FV_FLAG_START+39)		//ã‚µãƒãƒ¼ãƒˆ
+#define FV_C03_BOY1						(FV_FLAG_START+40)		//ã‚·ãƒ¥ãƒ¼ã‚ºå°‘å¹´
+#define FV_D03R0101_SEVEN1				(FV_FLAG_START+41)		//5äººè¡†
+#define FV_C01_GINGA					(FV_FLAG_START+42)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_C01_DOCTOR					(FV_FLAG_START+43)		//åšå£«
+#define FV_D13R0101_ITEM				(FV_FLAG_START+44)		//ç™ºé›»æ‰€ã®éµ
+#define FV_D13R0101_GINGAM_A			(FV_FLAG_START+45)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_D13R0101_GINGAM_B			(FV_FLAG_START+46)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_T03_GINGAM					(FV_FLAG_START+47)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_R205A_GINGAM					(FV_FLAG_START+48)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_C07R0101_POLICE				(FV_FLAG_START+49)		//å›½éš›è­¦å¯Ÿ
+#define FV_D02R0101_GINGAM				(FV_FLAG_START+50)		//ã‚®ãƒ³ã‚¬å›£(POS)
+#define FV_D02R0101_GINGALEADER1		(FV_FLAG_START+51)		//ã‚®ãƒ³ã‚¬å›£ãƒªãƒ¼ãƒ€ãƒ¼
+#define FV_T05R0501_CHAMP				(FV_FLAG_START+52)		//å£ç”»å‰ã®ã‚·ãƒ­ãƒŠ
+#define FV_UG_MOUNT						(FV_FLAG_START+53)		//åœ°ä¸‹å±±ç”·
+#define FV_C07_SUPPORT					(FV_FLAG_START+54)		//ã‚µãƒãƒ¼ãƒˆ
+#define FV_C06_RIVAL_STOPPER			(FV_FLAG_START+55)		//ãƒ©ã‚¤ãƒãƒ«(ã‚¸ãƒ å‰ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼)
+#define FV_L03_RIVAL					(FV_FLAG_START+56)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_D05R0101_GINGABOSS			(FV_FLAG_START+57)		//ã‚®ãƒ³ã‚¬å›£ãƒœã‚¹
+#define FV_T05_OLDWOMAN					(FV_FLAG_START+58)		//é•·è€
+#define FV_L02_CHAMP					(FV_FLAG_START+59)		//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
+#define FV_L02_GINGAM					(FV_FLAG_START+60)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_T05_GINGAM					(FV_FLAG_START+61)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_R210A_POKE					(FV_FLAG_START+62)		//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define FV_R210A_CHAMP					(FV_FLAG_START+63)		//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
+#define FV_C02_RIVAL					(FV_FLAG_START+64)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_C02_DOCTOR					(FV_FLAG_START+65)		//åšå£«
+#define FV_C02_SEAMAN					(FV_FLAG_START+66)		//ä¸€èˆ¬å¸‚æ°‘
+#define FV_C02_SUPPORT					(FV_FLAG_START+67)		//ã‚µãƒãƒ¼ãƒˆ
+#define FV_C02R0103_SUPPORT				(FV_FLAG_START+68)		//ã‚µãƒãƒ¼ãƒˆ
+#define FV_C02R0103_DOCTOR				(FV_FLAG_START+69)		//åšå£«
+#define FV_C02R0103_RIVAL				(FV_FLAG_START+70)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_D29R0102_RIVAL				(FV_FLAG_START+71)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_D29R0102_GKANBU2				(FV_FLAG_START+72)		//ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨
+#define FV_C04R0201_POLICE				(FV_FLAG_START+73)		//å›½éš›è­¦å¯Ÿ
+#define FV_D28R0101_GINGA				(FV_FLAG_START+74)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_T05_CHAMP					(FV_FLAG_START+75)		//ã‚·ãƒ­ãƒŠ
+#define FV_D26R0104_GINGABOSS			(FV_FLAG_START+76)		//ã‚®ãƒ³ã‚¬ãƒœã‚¹
+#define FV_C07_GINGAM					(FV_FLAG_START+77)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_D27R0102_GKANBU				(FV_FLAG_START+78)		//ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨
+#define FV_D28R0101_KOIKING				(FV_FLAG_START+79)		//ã‚³ã‚¤ã‚­ãƒ³ã‚°
+#define FV_C04R0201_POLICE_GINGA		(FV_FLAG_START+80)		//å›½éš›è­¦å¯Ÿ
+#define FV_T05R0101_OLDWOMAN			(FV_FLAG_START+81)		//é•·è€
+//#define	FV_D05R0114_SPPOKE_01			(FV_FLAG_START+82)		//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ï¼šã‚¤ã‚¢ï¼ˆã‚¨ã‚¢ï¼‰
+#define	FV_D05R0114_RIVAL				(FV_FLAG_START+83)		//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ï¼šãƒ©ã‚¤ãƒãƒ«
+//#define FV_D05R0114_SUPPORT				(FV_FLAG_START+84)		//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ï¼šã‚µãƒãƒ¼ãƒˆ
+#define FV_D05R0115_GINGA				(FV_FLAG_START+85)		//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ï¼šãŠã‚ãŠã‚ã‚®ãƒ³ã‚¬å›£
+#define	FV_D05R0114_GINGAM				(FV_FLAG_START+86)		//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ï¼šã‚®ãƒ³ã‚¬å›£ã‚¶ã‚³
+#define	FV_D05R0114_GINGAKANBU			(FV_FLAG_START+87)		//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ï¼šã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨
+#define	FV_D05R0114_GINGABOSS			(FV_FLAG_START+88)		//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ï¼šã‚®ãƒ³ã‚¬å›£ãƒœã‚¹
+#define	FV_D31R0205_TRAINER				(FV_FLAG_START+89)		//ã‚¿ãƒ¯ãƒ¼ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ç›¸æ‰‹
+#define	FV_R207_SUPPORT					(FV_FLAG_START+90)		//ã‚µãƒãƒ¼ãƒˆ
+#define	FV_D05R0115_CHAMP				(FV_FLAG_START+91)		//ã‚„ã¶ã‚ŒãŸä¸–ç•Œå…¥ã‚Šå£ã®ã‚·ãƒ­ãƒŠ
+//#define	FV_D05R0114_POKE_L01			(FV_FLAG_START+92)		//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ï¼šãƒ¬ã‚¤
+//#define	FV_D05R0114_POKE_L02			(FV_FLAG_START+93)		//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ï¼šã‚¢ã‚¤
+//#define	FV_D05R0114_POKE_L03			(FV_FLAG_START+94)		//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ï¼šãƒã‚¤
+#define	FV_T04R0101_SUNGLASSES			(FV_FLAG_START+95)		//ãã ã¦ã‚„ã®ã‚µãƒ³ã‚°ãƒ©ã‚¹
+#define	FV_R221R0101_OOKIDO				(FV_FLAG_START+96)		//ã‚ªãƒ¼ã‚­ãƒ‰
+#define	FV_C11_RIVAL					(FV_FLAG_START+97)		//ãƒ©ã‚¤ãƒãƒ«
+#define	FV_C11_SEVEN2					(FV_FLAG_START+98)		//ï¼•äººè¡†
+#define	FV_L02_RIVAL					(FV_FLAG_START+99)		//ãƒ©ã‚¤ãƒãƒ«(L02)
+#define	FV_T06R0101_SEVEN2				(FV_FLAG_START+100)		//ï¼•äººè¡†
+#define	FV_R227_RIVAL					(FV_FLAG_START+101)		//ãƒ©ã‚¤ãƒãƒ«
+#define	FV_R227_GYMLEADER				(FV_FLAG_START+102)		//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼
+#define	FV_T06_RIVAL					(FV_FLAG_START+103)		//ãƒ©ã‚¤ãƒãƒ«
+#define	FV_D16R0102_SEVEN5				(FV_FLAG_START+104)		//ï¼•äººè¡†
+#define	FV_D16R0103_SEVEN2				(FV_FLAG_START+105)		//ï¼•äººè¡†
+#define	FV_D16R0103_GKANBU				(FV_FLAG_START+106)		//ãƒ—ãƒ«ãƒ¼ãƒˆ
+#define	FV_D16R0103_HIIDORAN			(FV_FLAG_START+107)		//ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³
+#define	FV_D16R0103_KAZANNOOKIISI		(FV_FLAG_START+108)		//ã‹ã–ã‚“ã®ãŠãã„ã—
+#define	FV_D27R0103_AI					(FV_FLAG_START+109)		//ã‚¢ã‚¤
+#define	FV_D28R0103_HAI					(FV_FLAG_START+110)		//ãƒã‚¤
+#define	FV_D29R0103_REI					(FV_FLAG_START+111)		//ãƒ¬ã‚¤
+#define	FV_C11_LEADER					(FV_FLAG_START+112)		//ã‚ªãƒ¼ãƒï¼†ãƒ‡ãƒ³ã‚¸
+#define	FV_C11_TOWERBOSS				(FV_FLAG_START+113)		//ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³
+#define	FV_D21R0101_SEVEN2				(FV_FLAG_START+114)		//ï¼•äººè¡†
+#define	FV_D24R0105_SEVEN3				(FV_FLAG_START+115)		//ï¼•äººè¡†
+#define	FV_D09R0104_SEVEN4				(FV_FLAG_START+116)		//ï¼•äººè¡†
+#define	FV_D24R0105_GINGAM				(FV_FLAG_START+117)		//é‹¼é‰„å³¶ã‚®ãƒ³ã‚¬å›£
+#define	FV_R213_POLICE					(FV_FLAG_START+118)		//å›½éš›è­¦å¯Ÿ
+#define	FV_D31R0201_PRIZEMAN			(FV_FLAG_START+119)		//ã‚¿ãƒ¯ãƒ¼å—ä»˜è³žå“ã‚’ãã‚Œã‚‹äºº
+#define	FV_D31R0206_TRAINER01			(FV_FLAG_START+120)		//ã‚¿ãƒ¯ãƒ¼ãƒžãƒ«ãƒå¯¾æˆ¦éƒ¨å±‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼1
+#define	FV_D31R0206_TRAINER02			(FV_FLAG_START+121)		//ã‚¿ãƒ¯ãƒ¼ãƒžãƒ«ãƒå¯¾æˆ¦éƒ¨å±‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼2
+#define	FV_D31R0207_SEVEN1				(FV_FLAG_START+122)		//ã‚¿ãƒ¯ãƒ¼ã‚µãƒ­ãƒ³äº”äººè¡†1
+#define	FV_D31R0207_SEVEN2				(FV_FLAG_START+123)		//ã‚¿ãƒ¯ãƒ¼ã‚µãƒ­ãƒ³äº”äººè¡†2
+#define	FV_D31R0207_SEVEN3				(FV_FLAG_START+124)		//ã‚¿ãƒ¯ãƒ¼ã‚µãƒ­ãƒ³äº”äººè¡†3
+#define	FV_D31R0207_SEVEN4				(FV_FLAG_START+125)		//ã‚¿ãƒ¯ãƒ¼ã‚µãƒ­ãƒ³äº”äººè¡†4
+#define	FV_D31R0207_SEVEN5				(FV_FLAG_START+126)		//ã‚¿ãƒ¯ãƒ¼ã‚µãƒ­ãƒ³äº”äººè¡†5
+#define	FV_T01R0201_RIVALMAMA			(FV_FLAG_START+127)		//ãƒ©ã‚¤ãƒãƒ«ãƒžãƒž
+#define	FV_T01R0102_RIVAL				(FV_FLAG_START+128)		//ãƒ©ã‚¤ãƒãƒ«
+#define	FV_C09_GYMLEADER				(FV_FLAG_START+129)		//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼
+#define	FV_C01R0701_RIVAL				(FV_FLAG_START+130)		//ãƒ©ã‚¤ãƒãƒ«
+#define	FV_C01_CROWN					(FV_FLAG_START+131)		//ãƒ”ã‚¨ãƒ­
+#define	FV_C01_POKETCH					(FV_FLAG_START+132)		//ãƒã‚±ãƒƒãƒãã‚Œã‚‹äºº
+#define	FV_C01R0101_POKETCH				(FV_FLAG_START+133)		//ãƒã‚±ãƒƒãƒãã‚Œã‚‹äºº
+#define	FV_R205A_BABYGIRL1				(FV_FLAG_START+134)		//ç™ºé›»æ‰€ä»˜è¿‘ã®å°‘å¥³
+#define	FV_D02R0101_BABYGIRL1			(FV_FLAG_START+135)		//ç™ºé›»æ‰€ä»˜è¿‘ã®å°‘å¥³
+#define	FV_D02_POLICE					(FV_FLAG_START+136)		//å›½éš›è­¦å¯Ÿ
+#define	FV_C06_LEADER					(FV_FLAG_START+137)		//ãƒžã‚­ã‚·
+#define	FV_D03R0101_LEADER				(FV_FLAG_START+138)		//ãƒŠã‚¿ãƒ
+#define	FV_C04_GINGA					(FV_FLAG_START+139)		//ã‚®ãƒ³ã‚¬å›£
+#define	FV_C04PC0101_GONBE				(FV_FLAG_START+140)		//ã‚´ãƒ³ãƒ™
+#define	FV_C04R0204_MIDDLEM				(FV_FLAG_START+141)		//ã‚¢ã‚¸ãƒˆã«ã„ã‚‹ãŠã˜ã•ã‚“
+#define	FV_C04R0101_PIPPI				(FV_FLAG_START+142)		//ã´ã£ã´
+#define	FV_C05R1102_CON1				(FV_FLAG_START+143)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ è€…
+#define	FV_C05R1102_CON2				(FV_FLAG_START+144)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ è€…
+#define	FV_C05R1102_CON3				(FV_FLAG_START+145)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ è€…
+#define	FV_C05R1102_CON4				(FV_FLAG_START+146)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ è€…
+#define	FV_C05R1102_CON5				(FV_FLAG_START+147)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ è€…
+#define	FV_C05_STOPPER					(FV_FLAG_START+148)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define	FV_C05R0601_RIVAL				(FV_FLAG_START+149)		//ãƒ©ã‚¤ãƒãƒ«
+#define	FV_C05R1101_MAMA				(FV_FLAG_START+150)		//ãƒžãƒž
+#define	FV_C05R1101_JUDGE				(FV_FLAG_START+151)		//ãƒŸãƒŸã‚£
+#define	FV_MYSTERY_POSTMAN				(FV_FLAG_START+152)		//ãµã—ãŽé…é”å“¡
+#define	FV_D02_FUUSEN					(FV_FLAG_START+153)		//ãƒ•ãƒ¼ã‚»ãƒ³
+#define FV_C06_GINGAM					(FV_FLAG_START+154)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_C07R0301_POLICE				(FV_FLAG_START+155)		//å›½éš›è­¦å¯Ÿ
+#define FV_TV_INTERVIEW_02				(FV_FLAG_START+156)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+#define FV_C06GYM0101_LEADER			(FV_FLAG_START+157)		//ãƒžã‚­ã‚·
+#define FV_TV_INTERVIEW_04				(FV_FLAG_START+158)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)ã‚ãªãŸã®ãƒã‚±ãƒ¢ãƒ³
+#define FV_R213R0301_POLICE				(FV_FLAG_START+159)		//å›½éš›è­¦å¯Ÿ
+#define FV_TV_INTERVIEW_06				(FV_FLAG_START+160)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)ãƒã‚±ãƒƒãƒ
+#define FV_TV_INTERVIEW_07				(FV_FLAG_START+161)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+#define FV_D24_SEVEN3					(FV_FLAG_START+162)		//é‹¼é‰„å³¶å…¥ã‚Šå£ã®ã‚²ãƒ³
+#define FV_TV_INTERVIEW_09				(FV_FLAG_START+163)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)ã‚¯ãƒªãƒƒãƒ—
+#define FV_TV_INTERVIEW_10				(FV_FLAG_START+164)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)æ€§æ ¼è¨ºæ–­
+#define FV_TV_INTERVIEW_11				(FV_FLAG_START+165)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)ãƒãƒ«ãƒˆ
+#define FV_C04_LEADER					(FV_FLAG_START+166)		//ãƒŠã‚¿ãƒ
+#define FV_TV_INTERVIEW_13				(FV_FLAG_START+167)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)é€£ã‚Œæ­©ã
+#define FV_R213_GINGAM					(FV_FLAG_START+168)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_L02_GINGAM_1					(FV_FLAG_START+169)		//é€ƒã’ã‚‹ã‚®ãƒ³ã‚¬å›£
+#define FV_R218R0201_ASSISTANTM			(FV_FLAG_START+170)		//åŠ©æ‰‹ï¼ˆã‚µãƒãƒ¼ã‚¿ãƒ¼ã®è¦ªï¼Ÿï¼‰
+#define FV_C10R0101_RIVAL				(FV_FLAG_START+171)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_T04_RIVAL					(FV_FLAG_START+172)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_D07R0105_BABYBOY1			(FV_FLAG_START+173)		//ã‚·ãƒ¼ãƒ«å°‘å¹´
+#define FV_C05_EGG						(FV_FLAG_START+174)		//ã‚¿ãƒžã‚´ãã‚Œã‚‹äºº
+#define FV_C04GYM0101_LEADER			(FV_FLAG_START+175)		//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼
+#define FV_C04R0401_ASSISTANTM			(FV_FLAG_START+176)		//åŠ©æ‰‹
+#define FV_C07_GINGAM_3					(FV_FLAG_START+177)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_D26R0101_DOOR				(FV_FLAG_START+178)		//ãƒ‰ã‚¢
+#define FV_D26R0103_DOOR				(FV_FLAG_START+179)		//ãƒ‰ã‚¢
+#define FV_D26R0104_DOOR				(FV_FLAG_START+180)		//ãƒ‰ã‚¢
+#define FV_D26R0106_DOOR				(FV_FLAG_START+181)		//ãƒ‰ã‚¢
+#define FV_C07R0301_BAR					(FV_FLAG_START+182)		//ãƒãƒ¼
+#define FV_T05R0501_OLDWOMAN			(FV_FLAG_START+183)		//é•·è€
+#define FV_T02R0101_OOKIDO				(FV_FLAG_START+184)		//ã‚ªãƒ¼ã‚­ãƒ‰åšå£«
+#define	FV_T06_SEVEN2					(FV_FLAG_START+185)		//5äººè¡†
+#define	FV_D16_GINGA					(FV_FLAG_START+186)		//ã‚®ãƒ³ã‚¬å›£1,2
+#define	FV_D16_SEVEN2					(FV_FLAG_START+187)		//5äººè¡†
+#define	FV_D16_POLICE					(FV_FLAG_START+188)		//å›½éš›è­¦å¯Ÿ
+#define	FV_D16R0101_GKANBU				(FV_FLAG_START+189)		//ãƒžãƒ¼ã‚ºã€ã‚¸ãƒ¥ãƒ”ã‚¿ãƒ¼ã€ãƒ—ãƒ«ãƒ¼ãƒˆåŒã˜
+#define	FV_D16R0103_POLICE_23			(FV_FLAG_START+190)		//è­¦å¯Ÿ2,3
+#define	FV_D16R0103_POLICE				(FV_FLAG_START+191)		//å›½éš›è­¦å¯Ÿ
+#define	FV_D16R0103_POKE				(FV_FLAG_START+192)		//ã‚°ãƒ¬ãƒƒã‚°ãƒ«
+#define	FV_D16R0103_STONE				(FV_FLAG_START+193)		//éš ã‚Œã¦ã„ã‚‹å²©
+#define	FV_C09PC0101_LEADER				(FV_FLAG_START+194)		//ã‚¹ãƒ¢ãƒ¢
+#define	FV_D05R0102_STOPPER				(FV_FLAG_START+195)		//ãƒ†ãƒ³ã‚¬ãƒ³å±±ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define	FV_D26R0107_POKE				(FV_FLAG_START+196)		//ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤
+#define	FV_D26R0107_GKANBU				(FV_FLAG_START+197)		//å¹¹éƒ¨
+#define	FV_C01_CROWN3					(FV_FLAG_START+198)		//ãƒ”ã‚¨ãƒ­(TVå±€å‰)
+#define	FV_C08_LEADER					(FV_FLAG_START+199)		//å››å¤©çŽ‹
+#define	FV_C10R0112_CHAMP				(FV_FLAG_START+200)		//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
+#define	FV_C10R0112_DOCTOR				(FV_FLAG_START+201)		//ãƒŠãƒŠã‚«ãƒžãƒ‰
+#define FV_C05_JUDGE					(FV_FLAG_START+202)		//ãƒŸãƒŸã‚£
+#define FV_C05_POKE						(FV_FLAG_START+203)		//ãƒŸãƒŸãƒƒãƒˆ
+#define FV_C05_LEADER					(FV_FLAG_START+204)		//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼
+#define FV_STOPPER_FRIENDBOOK			(FV_FLAG_START+205)		//ã¨ã‚‚ã ã¡æ‰‹å¸³ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define FV_D30R0101_SPPOKE7				(FV_FLAG_START+206)		//ãƒ€ãƒ¼ã‚¯
+#define FV_C02R0401_EVENT				(FV_FLAG_START+207)		//ãƒ€ãƒ¼ã‚¯ã®ã‚µãƒ³ã‚°ãƒ©ã‚¹
+#define FV_C04R0601_OOKIDO				(FV_FLAG_START+208)		//ã‚ªãƒ¼ã‚­ãƒ‰åšå£«
+#define FV_D20R0106_LEGEND				(FV_FLAG_START+209)		//ãƒ¬ã‚¸ã‚­ãƒ³ã‚°
+#define FV_L02R0101_COUPLE1				(FV_FLAG_START+210)		//ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³ã€€ã‚«ãƒƒãƒ—ãƒ«ï¼‘
+#define FV_L02R0101_COUPLE2				(FV_FLAG_START+211)		//ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³ã€€ã‚«ãƒƒãƒ—ãƒ«ï¼’
+#define FV_L02R0101_COUPLE3				(FV_FLAG_START+212)		//ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³ã€€ã‚«ãƒƒãƒ—ãƒ«ï¼“
+#define FV_L02R0101_COUPLE4				(FV_FLAG_START+213)		//ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³ã€€ã‚«ãƒƒãƒ—ãƒ«ï¼”
+#define FV_L02R0101_COUPLE5				(FV_FLAG_START+214)		//ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³ã€€ã‚«ãƒƒãƒ—ãƒ«ï¼•
+#define FV_L02R0101_COUPLE6				(FV_FLAG_START+215)		//ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³ã€€ã‚«ãƒƒãƒ—ãƒ«ï¼–
+#define FV_L02R0101_COUPLE7				(FV_FLAG_START+216)		//ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³ã€€ã‚«ãƒƒãƒ—ãƒ«ï¼—
+#define FV_L02R0101_COUPLE8				(FV_FLAG_START+217)		//ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³ã€€ã‚«ãƒƒãƒ—ãƒ«ï¼˜
+#define FV_L02R0101_COUPLE9				(FV_FLAG_START+218)		//ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³ã€€ã‚«ãƒƒãƒ—ãƒ«ï¼™
+#define FV_D24R0201_LEADER				(FV_FLAG_START+219)		//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã€€ãƒˆã‚¦ã‚¬ãƒ³
+#define	FV_D05R0116_LEGEND				(FV_FLAG_START+220)	//ã‚¢ã‚¦ã‚¹
+#define	FV_D15R0101_LEGEND				(FV_FLAG_START+221)	//ãƒ ãƒ¼ãƒã‚¹
+#define	FV_D17R0104_LEGEND				(FV_FLAG_START+222)	//ã‚­ãƒžã‚¤ãƒ©ãƒ³
+#define	FV_D18_LEGEND					(FV_FLAG_START+223)	//ã‚¨ã‚¦ãƒªã‚¹
+#define	FV_R224_OOKIDO					(FV_FLAG_START+224)	//r224ã‚ªãƒ¼ã‚­ãƒ‰
+#define	FV_D26R0109_BOSS				(FV_FLAG_START+225)	//ã‚¢ã‚«ã‚®
+#define	FV_D26R0109_POLICE				(FV_FLAG_START+226)	//æœˆæ›œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+#define	FV_C08_RIVAL					(FV_FLAG_START+227)		//ãƒ©ã‚¤ãƒãƒ«
+#define	FV_C09_CHAMP					(FV_FLAG_START+228)		//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
+#define	FV_R212AR0101_MAID				(FV_FLAG_START+229)	//ãƒ¡ã‚¤ãƒ‰
+#define	FV_R212AR0101_BOSS				(FV_FLAG_START+230)	//ãƒ¡ã‚¤ãƒ‰ãƒœã‚¹
+#define	FV_D26R0109_GINGA				(FV_FLAG_START+231)	//ã‚®ãƒ³ã‚¬å›£
+#define	FV_T07R0201_KEEPER				(FV_FLAG_START+232)	//ç®¡ç†äºº
+#define	FV_C02R0501_SEAMAN				(FV_FLAG_START+233)	//c02r0501èˆ¹ä¹—ã‚Š
+#define	FV_R224_LEGEND					(FV_FLAG_START+234)	//r224ã‚¨ã‚¦ãƒªã‚¹
+#define	FV_L02_WOMAN2					(FV_FLAG_START+235)	//ãŠæ´’è½ãŠå§‰ã•ã‚“
+#define	FV_L02R0201_WOMAN2				(FV_FLAG_START+236)	//ãŠæ´’è½ãŠå§‰ã•ã‚“
+#define	FV_R217R0201_WOMAN1				(FV_FLAG_START+237)	//å§‰ã•ã‚“
+#define FV_R212A_POLICE1_NPC			(FV_FLAG_START+238)		//ãŠå·¡ã‚Šã•ã‚“(é€šå¸¸NPC)
+#define FV_R212A_POLICE1_TR				(FV_FLAG_START+239)		//ãŠå·¡ã‚Šã•ã‚“(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_R212A_POLICE2_NPC			(FV_FLAG_START+240)		//ãŠå·¡ã‚Šã•ã‚“(é€šå¸¸NPC)
+#define FV_R212A_POLICE2_TR				(FV_FLAG_START+241)		//ãŠå·¡ã‚Šã•ã‚“(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_R212A_POLICE3_NPC			(FV_FLAG_START+242)		//ãŠå·¡ã‚Šã•ã‚“(é€šå¸¸NPC)
+#define FV_R212A_POLICE3_TR				(FV_FLAG_START+243)		//ãŠå·¡ã‚Šã•ã‚“(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_R212A_POLICE4_NPC			(FV_FLAG_START+244)		//ãŠå·¡ã‚Šã•ã‚“(é€šå¸¸NPC)
+#define FV_R212A_POLICE4_TR				(FV_FLAG_START+245)		//ãŠå·¡ã‚Šã•ã‚“(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_R212B_POLICE5_NPC			(FV_FLAG_START+246)		//ãŠå·¡ã‚Šã•ã‚“(é€šå¸¸NPC)
+#define FV_R212B_POLICE5_TR				(FV_FLAG_START+247)		//ãŠå·¡ã‚Šã•ã‚“(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_R222_POLICE6_NPC				(FV_FLAG_START+248)		//ãŠå·¡ã‚Šã•ã‚“(é€šå¸¸NPC)
+#define FV_R222_POLICE6_TR				(FV_FLAG_START+249)		//ãŠå·¡ã‚Šã•ã‚“(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_R209_JOGGER1_NPC				(FV_FLAG_START+250)		//ã‚¸ãƒ§ã‚®ãƒ³ã‚°(é€šå¸¸NPC)
+#define FV_R209_JOGGER1_TR				(FV_FLAG_START+251)		//ã‚¸ãƒ§ã‚®ãƒ³ã‚°(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_R209_JOGGER6_NPC				(FV_FLAG_START+252)		//ã‚¸ãƒ§ã‚®ãƒ³ã‚°(é€šå¸¸NPC)
+#define FV_R209_JOGGER6_TR				(FV_FLAG_START+253)		//ã‚¸ãƒ§ã‚®ãƒ³ã‚°(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_R210A_JOGGER4_NPC			(FV_FLAG_START+254)		//ã‚¸ãƒ§ã‚®ãƒ³ã‚°(é€šå¸¸NPC)
+#define FV_R210A_JOGGER4_TR				(FV_FLAG_START+255)		//ã‚¸ãƒ§ã‚®ãƒ³ã‚°(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_R215_JOGGER3_NPC				(FV_FLAG_START+256)		//ã‚¸ãƒ§ã‚®ãƒ³ã‚°(é€šå¸¸NPC)
+#define FV_R215_JOGGER3_TR				(FV_FLAG_START+257)		//ã‚¸ãƒ§ã‚®ãƒ³ã‚°(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_R215_JOGGER5_NPC				(FV_FLAG_START+258)		//ã‚¸ãƒ§ã‚®ãƒ³ã‚°(é€šå¸¸NPC)
+#define FV_R215_JOGGER5_TR				(FV_FLAG_START+259)		//ã‚¸ãƒ§ã‚®ãƒ³ã‚°(å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼)
+#define FV_D31_TOWERBOSS				(FV_FLAG_START+260)		//ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³
+#define FV_D31_RIVAL					(FV_FLAG_START+261)		//ãƒ©ã‚¤ãƒãƒ«
+#define	FV_D17R0104_ITEM				(FV_FLAG_START+262)		//d17r0104ã‚¢ã‚¤ãƒ†ãƒ ãƒœãƒ¼ãƒ«
+#define	FV_D30_SEAMAN					(FV_FLAG_START+263)		//d30èˆ¹å“¡
+#define	FV_C09_SEAMAN					(FV_FLAG_START+264)		//c09èˆ¹å“¡
+#define	FV_D25R0102_OLDMAN2				(FV_FLAG_START+265)		//d25r0102å¹½éœŠã˜ã„ã¡ã‚ƒã‚“
+#define	FV_D25R0108_BABYGIRL1			(FV_FLAG_START+266)		//d25r0108å¹½éœŠå¥³ã®å­
+#define	FV_L02_BIGMAN					(FV_FLAG_START+267)		//l02ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define	FV_D09R0101_BIGMAN				(FV_FLAG_START+268)		//d09r0101ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define	FV_R221_STOPPER1				(FV_FLAG_START+269)		//R221ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼1
+#define	FV_R221_STOPPER2				(FV_FLAG_START+270)		//R221ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼2
+#define	FV_C08R0801_LEADER				(FV_FLAG_START+271)		//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼
+#define	FV_C10R0103_DOOR_01				(FV_FLAG_START+272)		//ãƒ‰ã‚¢(æ‰‹å‰)
+#define	FV_C10R0105_DOOR_01				(FV_FLAG_START+273)		//ãƒ‰ã‚¢
+#define	FV_C10R0107_DOOR_01				(FV_FLAG_START+274)		//ãƒ‰ã‚¢
+#define	FV_C10R0109_DOOR_01				(FV_FLAG_START+275)		//ãƒ‰ã‚¢
+#define	FV_C10R0103_DOOR_02				(FV_FLAG_START+276)		//ãƒ‰ã‚¢(å¥¥)
+#define	FV_C10R0105_DOOR_02				(FV_FLAG_START+277)		//ãƒ‰ã‚¢
+#define	FV_C10R0107_DOOR_02				(FV_FLAG_START+278)		//ãƒ‰ã‚¢
+#define	FV_C10R0109_DOOR_02				(FV_FLAG_START+279)		//ãƒ‰ã‚¢
+#define	FV_C07_POLICE					(FV_FLAG_START+280)		//å›½éš›è­¦å¯Ÿ
+#define	FV_R212AR0103_POLICEMAN			(FV_FLAG_START+281)		//è­¦å‚™å“¡
+#define FV_D27R0102_DOCTOR				(FV_FLAG_START+282)		//åšå£«
+#define FV_D27R0102_SUPPORT				(FV_FLAG_START+283)		//ã‚µãƒãƒ¼ãƒˆ
+#define FV_R227_SEVEN2					(FV_FLAG_START+284)		//ï¼•äººè¡†
+#define FV_D05R0110_GINGAM				(FV_FLAG_START+285)		//ã‚®ãƒ³ã‚¬å›£ã—ãŸã£ã±ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define FV_C01R0206_STOP				(FV_FLAG_START+286)		//åƒããŠã˜ã•ã‚“ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define FV_C01R0207_STOP				(FV_FLAG_START+287)		//åƒããŠã˜ã•ã‚“ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define FV_D26R0101_GKANBU				(FV_FLAG_START+288)		//å¹¹éƒ¨
+#define FV_D29R0101_RIVAL				(FV_FLAG_START+289)		//ãƒ©ã‚¤ãƒãƒ«
+#define FV_C11_STOP						(FV_FLAG_START+290)		//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼(c11,w230ã§ä½¿ç”¨)
+#define FV_D05R0112_GINGAW				(FV_FLAG_START+291)		//ã‚®ãƒ³ã‚¬å›£
+#define FV_D27R0103_DOCTOR				(FV_FLAG_START+292)		//åšå£«
+#define FV_R217_LEADER					(FV_FLAG_START+293)		//ã‚¹ãƒ¢ãƒ¢
+#define FV_C07GYM0101_LEADER			(FV_FLAG_START+294)		//ã‚¹ãƒ¢ãƒ¢
+#define FV_R218_STOPPER					(FV_FLAG_START+295)		//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define FV_D05R0112_GINGAM				(FV_FLAG_START+296)		//ã‚®ãƒ³ã‚¬å›£ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+#define FV_T05R0501_AKAGI				(FV_FLAG_START+297)		//ã‚«ãƒ³ãƒŠã‚®éºè·¡ã‚¢ã‚«ã‚®
+#define FV_C05GYM0104_POLE				(FV_FLAG_START+298)		//ãƒ¡ãƒªãƒƒã‚µæ¨ªã®ãƒãƒ¼ãƒ«
+#define FV_C06_POKE						(FV_FLAG_START+299)		//ã‚°ãƒ¬ãƒƒã‚°ãƒ«
+#define	FV_D26R0107_GKANBU2				(FV_FLAG_START+300)		//å¹¹éƒ¨(ãƒ—ãƒ«ãƒ¼ãƒˆ)
+#define	FV_D05R0102_POLICE				(FV_FLAG_START+301)		//å›½éš›è­¦å¯Ÿ
+#define	FV_D17R0101_CHAMP				(FV_FLAG_START+302)		//ã‚·ãƒ­ãƒŠ
+#define	FV_D11R0101_POKE				(FV_FLAG_START+303)		//ãµã‚Œã‚ã„åºƒå ´
+#define	FV_T06R0101_TR1					(FV_FLAG_START+304)		//å†æˆ¦æ–½è¨­
+#define	FV_T06R0101_TR2					(FV_FLAG_START+305)		//å†æˆ¦æ–½è¨­
+#define	FV_T06R0101_TR3					(FV_FLAG_START+306)		//å†æˆ¦æ–½è¨­
+#define	FV_T06R0101_TR4					(FV_FLAG_START+307)		//å†æˆ¦æ–½è¨­
+#define	FV_T07_KEEPER					(FV_FLAG_START+308)		//åˆ¥è˜ç®¡ç†äºº
+#define	FV_VILLA_IN_RIVAL				(FV_FLAG_START+309)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_SUPPORT				(FV_FLAG_START+310)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_DOCTOR				(FV_FLAG_START+311)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_OUT_DOCTOR				(FV_FLAG_START+312)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_MAMA				(FV_FLAG_START+313)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_LEADER1				(FV_FLAG_START+314)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_OUT_LEADER1			(FV_FLAG_START+315)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_LEADER2				(FV_FLAG_START+316)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_OUT_LEADER2			(FV_FLAG_START+317)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_LEADER3				(FV_FLAG_START+318)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_LEADER4				(FV_FLAG_START+319)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_OUT_LEADER4			(FV_FLAG_START+320)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_LEADER5				(FV_FLAG_START+321)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_LEADER6				(FV_FLAG_START+322)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_OUT_LEADER6			(FV_FLAG_START+323)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_LEADER7				(FV_FLAG_START+324)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_LEADER8				(FV_FLAG_START+325)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_CHAMP				(FV_FLAG_START+326)		//åˆ¥è˜æ¥å®¢
+#define	FV_VILLA_IN_BIGFOUR3			(FV_FLAG_START+327)		//åˆ¥è˜æ¥å®¢
+#define	FV_D05R0115_SPPOKE2				(FV_FLAG_START+328)		//ã‚¨ãƒ ãƒªãƒƒãƒˆ
+#define	FV_ROTOMU_HOT					(FV_FLAG_START+329)		//ãƒ­ãƒˆãƒ 
+#define	FV_ROTOMU_WASH					(FV_FLAG_START+330)		//ãƒ­ãƒˆãƒ 
+#define	FV_ROTOMU_COLD					(FV_FLAG_START+331)		//ãƒ­ãƒˆãƒ 
+#define	FV_ROTOMU_FAN					(FV_FLAG_START+332)		//ãƒ­ãƒˆãƒ 
+#define	FV_ROTOMU_CUT					(FV_FLAG_START+333)		//ãƒ­ãƒˆãƒ 
+#define	FV_C04R0205_DOCTOR				(FV_FLAG_START+334)		//ãƒŠãƒŠã‚«ãƒžãƒ‰
+#define	FV_TV_INTERVIEW_14				(FV_FLAG_START+335)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)ã‚¹ãƒ†ãƒ¼ã‚¸
+#define	FV_TV_INTERVIEW_15				(FV_FLAG_START+336)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
+#define	FV_TV_INTERVIEW_19				(FV_FLAG_START+337)		//TV(ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼)ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢
+#define	FV_T02_DOCTOR					(FV_FLAG_START+338)		//åšå£«
+#define	FV_T07R0201_DELIVERY			(FV_FLAG_START+339)		//åˆ¥è˜ã®ãƒ‡ãƒªãƒãƒªãƒ¼
+#define	FV_C04R0201_DOOR				(FV_FLAG_START+340)		//ãƒ­ãƒˆãƒ ã¸ã®ãƒ‰ã‚¢
+#define	FV_T07R0201_BOOK				(FV_FLAG_START+341)		//åˆ¥è˜ã®æœ¬
+#define	FV_D01R0101_MYTH				(FV_FLAG_START+342)		//ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å±±ç”·
+#define	FV_C02R0102_MYTH				(FV_FLAG_START+343)		//ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å±±ç”·
+#define	FV_R224_MAI						(FV_FLAG_START+344)		//ãƒžã‚¤
+#define	FV_D32R0401_OUEN				(FV_FLAG_START+345)		//ã‚¹ãƒ†ãƒ¼ã‚¸å¿œæ´ã‚­ãƒ£ãƒ©
+#define	FV_C02_RIVAL_STOPPER			(FV_FLAG_START+346)		//ãƒ©ã‚¤ãƒãƒ«ã€€å›³æ›¸é¤¨ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
 #if 0
 #define	FV_			(FV_FLAG_START+347)		//dummy
 #define	FV_			(FV_FLAG_START+348)		//dummy
@@ -722,11 +722,11 @@
 #define	FV_			(FV_FLAG_START+358)		//dummy
 #endif
 
-//FV_MAX = (FV_FLAG_START(400)+329)		//ŒÃ‚¢
-//FV_MAX = (FV_FLAG_START(370)+359)		//08.01.18•ÏX
+//FV_MAX = (FV_FLAG_START(400)+329)		//å¤ã„
+//FV_MAX = (FV_FLAG_START(370)+359)		//08.01.18å¤‰æ›´
 
 //----------------------------------------------------------------------
-//	‰B‚µƒAƒCƒeƒ€‚Ìƒtƒ‰ƒO(256+28ŒÂ)
+//	éš ã—ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒ•ãƒ©ã‚°(256+28å€‹)
 //
 //	(FH_FLAG_START - FB_FLAG_START)
 //	(    730       -   986+28=1014)
@@ -735,7 +735,7 @@
 //
 
 //----------------------------------------------------------------------
-//	ƒtƒB[ƒ‹ƒhã‚ÌƒAƒCƒeƒ€‚Ìƒtƒ‰ƒO(256+72ŒÂ)
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã®ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒ•ãƒ©ã‚°(256+72å€‹)
 //
 //	(FB_FLAG_START - ??_FLAG_START)
 //	(986+28=1014   - 1014+256+72=1342)
@@ -996,7 +996,7 @@
 #define FV_FLD_ITEM_253					(FB_FLAG_START+253)
 #define FV_FLD_ITEM_254					(FB_FLAG_START+254)
 #define FV_FLD_ITEM_255					(FB_FLAG_START+255)
-#define FV_FLD_ITEM_256					(FB_FLAG_START+256)		//ƒvƒ‰ƒ`ƒi’Ç‰Á
+#define FV_FLD_ITEM_256					(FB_FLAG_START+256)		//ãƒ—ãƒ©ãƒãƒŠè¿½åŠ 
 #define FV_FLD_ITEM_257					(FB_FLAG_START+257)
 #define FV_FLD_ITEM_258					(FB_FLAG_START+258)
 #define FV_FLD_ITEM_259					(FB_FLAG_START+259)
@@ -1072,58 +1072,58 @@
 //FVF_MAX = (FB_FLAG_START(1014)+328)
 
 //----------------------------------------------------------------------
-//	‚P“ú‚P‰ñƒNƒŠƒA‚³‚ê‚éƒtƒ‰ƒO(192ŒÂ)
+//	ï¼‘æ—¥ï¼‘å›žã‚¯ãƒªã‚¢ã•ã‚Œã‚‹ãƒ•ãƒ©ã‚°(192å€‹)
 //
-//	¦ƒXƒNƒŠƒvƒg‚Ì‚Ý‚ÅƒZƒbƒg‚·‚é•ŒÂ”‚ª­‚È‚¢‚Ì‚Åsaveflag.h‚Å“¯‹
+//	â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ã¿ã§ã‚»ãƒƒãƒˆã™ã‚‹ï¼†å€‹æ•°ãŒå°‘ãªã„ã®ã§saveflag.hã§åŒå±…
 // 	(TIMEFLAG_START - )
 //----------------------------------------------------------------------
-// TIMEFLAG_START ‚Íevwkdef.h‚Å’è‹`
-#define TMFLG_SEED_PRESENT			(TIMEFLAG_START+0)		/* ƒ^ƒl‚ÌƒvƒŒƒ[ƒ“ƒg */
-#define TMFLG_T05PC0101_ITEM_GET	(TIMEFLAG_START+1)		/* ƒAƒCƒeƒ€ƒvƒŒƒ[ƒ“ƒg */
-#define TMFLG_URANIWA_ENCOUNT		(TIMEFLAG_START+2)		/* — ’ëƒGƒ“ƒJƒEƒ“ƒg—p */
-#define TMFLG_C06R0201_SEED_PRESENT	(TIMEFLAG_START+3)		/* ƒ^ƒl‚ÌƒvƒŒƒ[ƒ“ƒg */
-#define TMFLG_C08R0201_RIBBON_GET	(TIMEFLAG_START+4)		/* ƒŠƒ{ƒ“‚ðƒQƒbƒg */
-#define TMFLG_T07R0101_ESTHTIQUE	(TIMEFLAG_START+5)		/* ƒGƒXƒe‚ðŽó‚¯‚½ */
-#define TMFLG_C08R0201_WEEK_TALK	(TIMEFLAG_START+6)		/* ‚¨‚Ë‚³‚ñ‚Æ‰ï˜b‚µ‚½ */
-#define TMFLG_C08R0201_FIRST_DAY	(TIMEFLAG_START+7)		/* ‚¨‚Ë‚³‚ñ‚Æ‰ï˜b‚µ‚½1“ú–Ú */
-#define TMFLG_D02_FUUSEN			(TIMEFLAG_START+8)		/* ƒt[ƒZƒ“ */
-#define TMFLG_KUJI_DAY				(TIMEFLAG_START+9)		/* ‚­‚¶‚ð¡“ú‚Í‚â‚Á‚½ */
-#define TMFLG_T03R0101_SEED_PRESENT	(TIMEFLAG_START+10)		/* ƒ^ƒl‚ÌƒvƒŒƒ[ƒ“ƒg */
-#define TMFLG_L02R0101_INIT			(TIMEFLAG_START+11)		/* ƒŒƒXƒgƒ‰ƒ“‰Šú‰»—p */
-#define TMFLG_C07R0801_DRESSING		(TIMEFLAG_START+12)		/* ‚¨Ÿ­—Ž‚¨Žo‚³‚ñ */
-#define TMFLG_C09R0201_NANKAI		(TIMEFLAG_START+13)		/* ŠÈˆÕ‰ï˜bF“ï‰ðŒ¾—t‹³‚¦ */
-#define TMFLG_R221R0201_ITEM_GET	(TIMEFLAG_START+14)		/* ƒAƒCƒeƒ€“üŽè */
-//#define TMFLG_C01R0201_BATTLE_END	(TIMEFLAG_START+15)		/* —j“ú–ˆ‚É•Ï‚í‚éƒgƒŒ[ƒi‚Æ‚Ì‘ÎíI—¹*/
-#define TMFLG_D25R0106_SPPOKE_END	(TIMEFLAG_START+16)		/* d25r0106ƒvƒ‰ƒYƒ}’§íI—¹ */
-#define TMFLG_T04R0301_NEWS_END		(TIMEFLAG_START+17)		/* ¡“ú‚ÌˆË—ŠI—¹ */
-#define TMFLG_T06_RIVAL_BTL			(TIMEFLAG_START+18)		/* t06ƒ‰ƒCƒoƒ‹í“¬ */
-#define TMFLG_KUJI_ITEMGET			(TIMEFLAG_START+19)		/* ‚­‚¶‚Å¡“ú‚ÌƒAƒCƒeƒ€ƒQƒbƒg‚µ‚½ */
-#define TMFLG_D06R0206_ITEM_GET		(TIMEFLAG_START+20)		/* ‚©‚¯‚ç‚à‚ç‚¦‚é */
-#define TMFLG_D11R0101_ITEM_GET		(TIMEFLAG_START+21)		/* Œö‰€‚¨‚¶‚³‚ñ */
-#define TMFLG_R212AR0101_MAID		(TIMEFLAG_START+22)		/* ƒƒCƒhŸ‚¿”²‚«‚Ìƒ^[ƒ“”•ÏX */
-#define TMFLG_T06R0101_REMATCH		(TIMEFLAG_START+23)		/* ÄíŽ{Ý */
-#define TMFLG_T06R0101_WIN_TR1		(TIMEFLAG_START+24)		/* ÄíŽ{Ý TR1 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR2		(TIMEFLAG_START+25)		/* ÄíŽ{Ý TR2 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR3		(TIMEFLAG_START+26)		/* ÄíŽ{Ý TR3 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR4		(TIMEFLAG_START+27)		/* ÄíŽ{Ý TR4 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_DOSA_TR1_WIN			(TIMEFLAG_START+28)		/* ƒhƒTŽü‚è TR1 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_DOSA_TR2_WIN			(TIMEFLAG_START+29)		/* ƒhƒTŽü‚è TR2 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_DOSA_TR3_WIN			(TIMEFLAG_START+30)		/* ƒhƒTŽü‚è TR3 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_DOSA_TR4_WIN			(TIMEFLAG_START+31)		/* ƒhƒTŽü‚è TR4 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_DOSA_TR5_WIN			(TIMEFLAG_START+32)		/* ƒhƒTŽü‚è TR5 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_DOSA_TR6_WIN			(TIMEFLAG_START+33)		/* ƒhƒTŽü‚è TR6 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_DOSA_TR7_WIN			(TIMEFLAG_START+34)		/* ƒhƒTŽü‚è TR7 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_BACKGROUND_ITEMGET	(TIMEFLAG_START+35)		/* ”wŒiŽo‚³‚ñ */
-#define TMFLG_STAGE_OUEN			(TIMEFLAG_START+36)		/* ‰ž‰‡@‘Io‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR5		(TIMEFLAG_START+37)		/* ÄíŽ{Ý TR5 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR6		(TIMEFLAG_START+38)		/* ÄíŽ{Ý TR6 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR7		(TIMEFLAG_START+39)		/* ÄíŽ{Ý TR7 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR8		(TIMEFLAG_START+40)		/* ÄíŽ{Ý TR8 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR9		(TIMEFLAG_START+41)		/* ÄíŽ{Ý TR9 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR10		(TIMEFLAG_START+42)		/* ÄíŽ{Ý TR10 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR11		(TIMEFLAG_START+43)		/* ÄíŽ{Ý TR11 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR12		(TIMEFLAG_START+44)		/* ÄíŽ{Ý TR12 Ÿ—˜‚µ‚½‚© */
-#define TMFLG_T06R0101_WIN_TR13		(TIMEFLAG_START+45)		/* ÄíŽ{Ý TR13 Ÿ—˜‚µ‚½‚© */
+// TIMEFLAG_START ã¯evwkdef.hã§å®šç¾©
+#define TMFLG_SEED_PRESENT			(TIMEFLAG_START+0)		/* ã‚¿ãƒã®ãƒ—ãƒ¬ã‚¼ãƒ³ãƒˆ */
+#define TMFLG_T05PC0101_ITEM_GET	(TIMEFLAG_START+1)		/* ã‚¢ã‚¤ãƒ†ãƒ ãƒ—ãƒ¬ã‚¼ãƒ³ãƒˆ */
+#define TMFLG_URANIWA_ENCOUNT		(TIMEFLAG_START+2)		/* è£åº­ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç”¨ */
+#define TMFLG_C06R0201_SEED_PRESENT	(TIMEFLAG_START+3)		/* ã‚¿ãƒã®ãƒ—ãƒ¬ã‚¼ãƒ³ãƒˆ */
+#define TMFLG_C08R0201_RIBBON_GET	(TIMEFLAG_START+4)		/* ãƒªãƒœãƒ³ã‚’ã‚²ãƒƒãƒˆ */
+#define TMFLG_T07R0101_ESTHTIQUE	(TIMEFLAG_START+5)		/* ã‚¨ã‚¹ãƒ†ã‚’å—ã‘ãŸ */
+#define TMFLG_C08R0201_WEEK_TALK	(TIMEFLAG_START+6)		/* ãŠã­ã•ã‚“ã¨ä¼šè©±ã—ãŸ */
+#define TMFLG_C08R0201_FIRST_DAY	(TIMEFLAG_START+7)		/* ãŠã­ã•ã‚“ã¨ä¼šè©±ã—ãŸ1æ—¥ç›® */
+#define TMFLG_D02_FUUSEN			(TIMEFLAG_START+8)		/* ãƒ•ãƒ¼ã‚»ãƒ³ */
+#define TMFLG_KUJI_DAY				(TIMEFLAG_START+9)		/* ãã˜ã‚’ä»Šæ—¥ã¯ã‚„ã£ãŸ */
+#define TMFLG_T03R0101_SEED_PRESENT	(TIMEFLAG_START+10)		/* ã‚¿ãƒã®ãƒ—ãƒ¬ã‚¼ãƒ³ãƒˆ */
+#define TMFLG_L02R0101_INIT			(TIMEFLAG_START+11)		/* ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³åˆæœŸåŒ–ç”¨ */
+#define TMFLG_C07R0801_DRESSING		(TIMEFLAG_START+12)		/* ãŠæ´’è½ãŠå§‰ã•ã‚“ */
+#define TMFLG_C09R0201_NANKAI		(TIMEFLAG_START+13)		/* ç°¡æ˜“ä¼šè©±ï¼šé›£è§£è¨€è‘‰æ•™ãˆ */
+#define TMFLG_R221R0201_ITEM_GET	(TIMEFLAG_START+14)		/* ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ */
+//#define TMFLG_C01R0201_BATTLE_END	(TIMEFLAG_START+15)		/* æ›œæ—¥æ¯Žã«å¤‰ã‚ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠã¨ã®å¯¾æˆ¦çµ‚äº†*/
+#define TMFLG_D25R0106_SPPOKE_END	(TIMEFLAG_START+16)		/* d25r0106ãƒ—ãƒ©ã‚ºãƒžæŒ‘æˆ¦çµ‚äº† */
+#define TMFLG_T04R0301_NEWS_END		(TIMEFLAG_START+17)		/* ä»Šæ—¥ã®ä¾é ¼çµ‚äº† */
+#define TMFLG_T06_RIVAL_BTL			(TIMEFLAG_START+18)		/* t06ãƒ©ã‚¤ãƒãƒ«æˆ¦é—˜ */
+#define TMFLG_KUJI_ITEMGET			(TIMEFLAG_START+19)		/* ãã˜ã§ä»Šæ—¥ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚²ãƒƒãƒˆã—ãŸ */
+#define TMFLG_D06R0206_ITEM_GET		(TIMEFLAG_START+20)		/* ã‹ã‘ã‚‰ã‚‚ã‚‰ãˆã‚‹ */
+#define TMFLG_D11R0101_ITEM_GET		(TIMEFLAG_START+21)		/* å…¬åœ’ãŠã˜ã•ã‚“ */
+#define TMFLG_R212AR0101_MAID		(TIMEFLAG_START+22)		/* ãƒ¡ã‚¤ãƒ‰å‹ã¡æŠœãã®ã‚¿ãƒ¼ãƒ³æ•°å¤‰æ›´ */
+#define TMFLG_T06R0101_REMATCH		(TIMEFLAG_START+23)		/* å†æˆ¦æ–½è¨­ */
+#define TMFLG_T06R0101_WIN_TR1		(TIMEFLAG_START+24)		/* å†æˆ¦æ–½è¨­ TR1 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR2		(TIMEFLAG_START+25)		/* å†æˆ¦æ–½è¨­ TR2 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR3		(TIMEFLAG_START+26)		/* å†æˆ¦æ–½è¨­ TR3 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR4		(TIMEFLAG_START+27)		/* å†æˆ¦æ–½è¨­ TR4 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_DOSA_TR1_WIN			(TIMEFLAG_START+28)		/* ãƒ‰ã‚µå‘¨ã‚Š TR1 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_DOSA_TR2_WIN			(TIMEFLAG_START+29)		/* ãƒ‰ã‚µå‘¨ã‚Š TR2 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_DOSA_TR3_WIN			(TIMEFLAG_START+30)		/* ãƒ‰ã‚µå‘¨ã‚Š TR3 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_DOSA_TR4_WIN			(TIMEFLAG_START+31)		/* ãƒ‰ã‚µå‘¨ã‚Š TR4 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_DOSA_TR5_WIN			(TIMEFLAG_START+32)		/* ãƒ‰ã‚µå‘¨ã‚Š TR5 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_DOSA_TR6_WIN			(TIMEFLAG_START+33)		/* ãƒ‰ã‚µå‘¨ã‚Š TR6 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_DOSA_TR7_WIN			(TIMEFLAG_START+34)		/* ãƒ‰ã‚µå‘¨ã‚Š TR7 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_BACKGROUND_ITEMGET	(TIMEFLAG_START+35)		/* èƒŒæ™¯å§‰ã•ã‚“ */
+#define TMFLG_STAGE_OUEN			(TIMEFLAG_START+36)		/* å¿œæ´ã€€é¸å‡ºã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR5		(TIMEFLAG_START+37)		/* å†æˆ¦æ–½è¨­ TR5 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR6		(TIMEFLAG_START+38)		/* å†æˆ¦æ–½è¨­ TR6 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR7		(TIMEFLAG_START+39)		/* å†æˆ¦æ–½è¨­ TR7 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR8		(TIMEFLAG_START+40)		/* å†æˆ¦æ–½è¨­ TR8 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR9		(TIMEFLAG_START+41)		/* å†æˆ¦æ–½è¨­ TR9 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR10		(TIMEFLAG_START+42)		/* å†æˆ¦æ–½è¨­ TR10 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR11		(TIMEFLAG_START+43)		/* å†æˆ¦æ–½è¨­ TR11 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR12		(TIMEFLAG_START+44)		/* å†æˆ¦æ–½è¨­ TR12 å‹åˆ©ã—ãŸã‹ */
+#define TMFLG_T06R0101_WIN_TR13		(TIMEFLAG_START+45)		/* å†æˆ¦æ–½è¨­ TR13 å‹åˆ©ã—ãŸã‹ */
 
 
 //----------------------------------------------------------------------

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	we_tool.c
- * @brief	‹ZƒGƒtƒFƒNƒgŠÖŒW‚Ìƒc[ƒ‹
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢ä¿‚ã®ãƒ„ãƒ¼ãƒ«
  * @author	matsuda
- * @date	2005.07.29(‹à)
+ * @date	2005.07.29(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -21,7 +21,7 @@
 
 
 //==============================================================================
-//	ƒf[ƒ^’è‹`
+//	ãƒ‡ãƒ¼ã‚¿å®šç¾©
 //==============================================================================
 static const VecFx32 EnemyEye = {
 	0x1700, 0x4d00, -0x1000
@@ -32,7 +32,7 @@ static const VecFx32 EnemyUp = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒNƒ‰ƒCƒAƒ“ƒgNo‚©‚çAƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚ğæ“¾
+ * @brief	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNoã‹ã‚‰ã€ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
  * @param	wsp	
  * @param	client_no	
@@ -49,7 +49,7 @@ int WET_ClientTypeGet(WE_SYS_PTR wsp, int client_no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒNƒ‰ƒCƒAƒ“ƒgNO‚©‚çƒTƒCƒh‚ğæ“¾‚·‚é
+ * @brief	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNOã‹ã‚‰ã‚µã‚¤ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *
  * @param	wsp	
  * @param	client_no	
@@ -101,7 +101,7 @@ int WET_CheckClientNo(WE_SYS_PTR wsp, int type)
 
 //--------------------------------------------------------------
 /**
- * @brief	‘Š•û‚ÌƒNƒ‰ƒCƒAƒ“ƒg”Ô†‚ğæ“¾
+ * @brief	ç›¸æ–¹ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·ã‚’å–å¾—
  *
  * @param	we_sys	
  * @param	client_no	
@@ -158,7 +158,7 @@ int WET_AllySideClientNoGet(WE_SYS_PTR wsp, int client_no)
 
 //--------------------------------------------------------------
 /**
- * @brief	‘ÎŠpüã‚ÌƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒvæ“¾
+ * @brief	å¯¾è§’ç·šä¸Šã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å–å¾—
  *
  * @param	wsp	
  * @param	client_no	
@@ -178,9 +178,9 @@ int WET_DiagonalClientTypeGet(WE_SYS_PTR wsp, int client_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’èƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚Æ‘ÎŠpüã‚Ì”½‘Î‘¤‚É‚ ‚éƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚ğæ“¾‚·‚é
- * @param   client_type		ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
- * @retval  ‘ÎŠpüã‚É‚ ‚é”½‘Î‘¤‚ÌƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
+ * @brief   æŒ‡å®šã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã¨å¯¾è§’ç·šä¸Šã®åå¯¾å´ã«ã‚ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
+ * @param   client_type		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @retval  å¯¾è§’ç·šä¸Šã«ã‚ã‚‹åå¯¾å´ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  */
 //--------------------------------------------------------------
 int WazaTool_DiagonalClientTypeGet_ClientType(int client_type)
@@ -245,14 +245,14 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚ğw’è‚µ‚Äƒ|ƒPƒ‚ƒ“‚Ìƒp[ƒeƒBƒNƒ‹À•W‚ğæ“¾‚·‚é
+ * @brief   ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã‚’æŒ‡å®šã—ã¦ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- * @param   client_type		ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
- * @param   ret				À•W‘ã“üæ
- * @param   contest_flag	TRUE=ƒRƒ“ƒeƒXƒgB@FALSE:í“¬
+ * @param   client_type		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   ret				åº§æ¨™ä»£å…¥å…ˆ
+ * @param   contest_flag	TRUE=ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã€‚ã€€FALSE:æˆ¦é—˜
  */
 //--------------------------------------------------------------
-///< “§‹Ë‰e PTÀ•W ()
+///< é€è¦–å°„å½± PTåº§æ¨™ ()
 #define PX_AA_R	(-9616)
 #define PY_AA_R	(-5464)
 #define PX_BB_R	(+11056)
@@ -304,7 +304,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 #define LAX_CON_B_R		(LAX_C_R)		//LAX_A_R
 #define LAY_CON_B_R		(LAY_D_R)		//LAY_B_R
 
-///< ³Ë‰e PTÀ•W
+///< æ­£å°„å½± PTåº§æ¨™
 #define PX_AA_O	(-10240)
 #define PY_AA_O	(-6400)
 #define PX_BB_O	(+10240)
@@ -322,7 +322,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 #define PX_CON_B_O	(PX_C_O)	//PX_A_O
 #define PY_CON_B_O	(PY_D_O)	//PY_B_O
 
-///< ’ÊíƒŒ[ƒU[2(ƒnƒCƒhƒƒ|ƒ“ƒv)
+///< é€šå¸¸ãƒ¬ãƒ¼ã‚¶ãƒ¼2(ãƒã‚¤ãƒ‰ãƒ­ãƒãƒ³ãƒ—)
 #define L2X_AA_O	(-6720)//(-3968)
 #define L2Y_AA_O	(-5792)//(-3328)
 #define L2X_BB_O	(+14528)//(+13568)
@@ -341,7 +341,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 #define L2Y_CON_B_O	(L2Y_D_O)		//L2Y_B_O
 
 
-///< ’ÊíƒŒ[ƒU[3(ƒTƒCƒPŒõüŒn)
+///< é€šå¸¸ãƒ¬ãƒ¼ã‚¶ãƒ¼3(ã‚µã‚¤ã‚±å…‰ç·šç³»)
 #define L3X_AA_O	(-8632)		// o
 #define L3Y_AA_O	(-6936)		// o
 #define L3X_BB_O	(+12904)	
@@ -360,7 +360,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 #define L3Y_CON_B_O	(L3Y_D_O)		//L2Y_B_O
 
 
-///< ’ÊíƒŒ[ƒU[095
+///< é€šå¸¸ãƒ¬ãƒ¼ã‚¶ãƒ¼095
 #define L095X_AA_O		(-12544)		// o
 #define L095Y_AA_O		(-3840)		// o
 #define L095X_BB_O		(+5432)	
@@ -379,7 +379,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 #define L095X_CON_B_O	(L095X_C_O)	//L2X_A_O
 #define L095Y_CON_B_O	(L095Y_D_O)	//L2Y_B_O
 
-///< ’ÊíƒŒ[ƒU[161
+///< é€šå¸¸ãƒ¬ãƒ¼ã‚¶ãƒ¼161
 #define L161X_AA_O		(-9632)		// o
 #define L161Y_AA_O		(-5856)		// o
 #define L161X_BB_O		(+13144)	// o
@@ -398,7 +398,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 #define L161Y_CON_B_O	(L161Y_D_O)		//L2Y_B_O
 
 
-///< ’ÊíƒŒ[ƒU[308
+///< é€šå¸¸ãƒ¬ãƒ¼ã‚¶ãƒ¼308
 #define L308X_AA_O		(-4144)		// o
 #define L308Y_AA_O		(-5200)		// o
 #define L308X_BB_O		(+16592)	// o
@@ -417,7 +417,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 #define L308Y_CON_B_O	(L308Y_D_O)		//L2Y_B_O
 
 
-///< ’ÊíƒŒ[ƒU[304
+///< é€šå¸¸ãƒ¬ãƒ¼ã‚¶ãƒ¼304
 #define L304X_AA_O		(-12480)		// o
 #define L304Y_AA_O		(-4288)		// o
 #define L304X_BB_O		(+13184)	// o
@@ -436,7 +436,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 #define L304Y_CON_B_O	(L304Y_D_O)		//L2Y_B_O
 
 
-///< ’ÊíƒŒ[ƒU[320
+///< é€šå¸¸ãƒ¬ãƒ¼ã‚¶ãƒ¼320
 #define L320X_AA_O		(-1792)	// o
 #define L320Y_AA_O		(-4224)	// o
 #define L320X_BB_O		(+16896)// o
@@ -456,7 +456,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 
 
 
-///< ’ÊíƒŒ[ƒU[406
+///< é€šå¸¸ãƒ¬ãƒ¼ã‚¶ãƒ¼406
 #define L406X_AA_O		(-8320)	// o
 #define L406Y_AA_O		(-4160)	// o
 #define L406X_BB_O		(+10880)// o
@@ -474,7 +474,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 #define L406X_CON_B_O	(L406X_C_O)		//L2X_A_O
 #define L406Y_CON_B_O	(L406Y_D_O)		//L2Y_B_O
 
-///< ’ÊíƒŒ[ƒU[(¡‚ÌƒgƒRƒnƒCƒhƒƒ|ƒ“ƒvˆÈŠO)
+///< é€šå¸¸ãƒ¬ãƒ¼ã‚¶ãƒ¼(ä»Šã®ãƒˆã‚³ãƒã‚¤ãƒ‰ãƒ­ãƒãƒ³ãƒ—ä»¥å¤–)
 #define LX_AA_O	(-6568)			///< 06.05.30
 #define LY_AA_O	(-4000)
 #define LX_BB_O	(+8800)			///< 06.05.30
@@ -509,7 +509,7 @@ void WET_PokeDefaultPosGet_ClientNo(WE_SYS_PTR wsp, int client_no, WT_POINT* p)
 #define LAX_CON_B_O		(LAX_C_O)	//LAX_A_O
 #define LAY_CON_B_O		(LAX_D_O)		//LAY_B_O
 
-///< ƒŠƒ“ƒO—p
+///< ãƒªãƒ³ã‚°ç”¨
 #define RX_AA_R	(-6248)//(-3968)
 #define RY_AA_R	(-2944)//(-3328)
 #define RX_BB_R	(+8280)//(+9344)
@@ -782,7 +782,7 @@ static void ParticlePosGet_Private(int client_type, VecFx32 *ret, int contest_fl
 		},		
 	};
 
-	//ƒRƒ“ƒeƒXƒg
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 	if(contest_flag == TRUE){
 		switch(client_type){
 		case CLIENT_TYPE_AA:
@@ -796,7 +796,7 @@ static void ParticlePosGet_Private(int client_type, VecFx32 *ret, int contest_fl
 			break;
 
 		default:
-			GF_ASSERT(0 && "ƒRƒ“ƒeƒXƒg‚Å‚ÍA‚ ‚è‚¦‚È‚¢ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚Å‚·\n");
+			GF_ASSERT(0 && "ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã§ã¯ã€ã‚ã‚Šãˆãªã„ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã§ã™\n");
 			break;
 		}
 	}
@@ -808,13 +808,13 @@ static void ParticlePosGet_Private(int client_type, VecFx32 *ret, int contest_fl
 	VEC_Set(ret, vec->x, vec->y, vec->z);
 }
 
-///< ’ÊíÀ•Wæ“¾
+///< é€šå¸¸åº§æ¨™å–å¾—
 void WET_PokeParticlePosGet_ClientType(int client_type, VecFx32 *ret, int contest_flag, int camera_mode)
 {
 	ParticlePosGet_Private(client_type, ret, contest_flag, camera_mode, POS_MODE_NORMAL);
 }
 
-///< ƒŒ[ƒU[À•Wæ“¾
+///< ãƒ¬ãƒ¼ã‚¶ãƒ¼åº§æ¨™å–å¾—
 void WET_PokeParticleLaserPosGet_ClientType(int client_type, VecFx32 *ret, int contest_flag, int camera_mode)
 {
 	ParticlePosGet_Private(client_type, ret, contest_flag, camera_mode, POS_MODE_LASER);
@@ -859,13 +859,13 @@ void WET_PokeParticleLaser406PosGet_ClientType(int client_type, VecFx32 *ret, in
 {
 	ParticlePosGet_Private(client_type, ret, contest_flag, camera_mode, POS_MODE_L406);
 }
-///< ’‹“_À•Wæ“¾
+///< æ³¨è¦–ç‚¹åº§æ¨™å–å¾—
 void WET_PokeParticleLookAtPosGet_ClientType(int client_type, VecFx32 *ret, int contest_flag, int camera_mode)
 {
 	ParticlePosGet_Private(client_type, ret, contest_flag, camera_mode, POS_MODE_LOOK_AT);
 }
 
-///< ƒŠƒ“ƒO—p
+///< ãƒªãƒ³ã‚°ç”¨
 void WET_PokeParticleRingPosGet_ClientType(int client_type, VecFx32 *ret, int contest_flag, int camera_mode)
 {
 	ParticlePosGet_Private(client_type, ret, contest_flag, camera_mode, POS_MODE_RING);
@@ -874,10 +874,10 @@ void WET_PokeParticleRingPosGet_ClientType(int client_type, VecFx32 *ret, int co
 
 //--------------------------------------------------------------
 /**
- * @brief   w’èƒNƒ‰ƒCƒAƒ“ƒgNo‚Ìƒ|ƒPƒ‚ƒ“‚Ìƒp[ƒeƒBƒNƒ‹À•W‚ğæ“¾‚·‚é
+ * @brief   æŒ‡å®šã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNoã®ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- * @param   client_no		ƒNƒ‰ƒCƒAƒ“ƒgNo
- * @param   ret				À•W‘ã“üæ
+ * @param   client_no		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNo
+ * @param   ret				åº§æ¨™ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void WET_PokeParticlePosGet(WE_SYS_PTR wsp, int client_no, VecFx32 *ret)
@@ -894,7 +894,7 @@ void WET_PokeParticlePosGet(WE_SYS_PTR wsp, int client_no, VecFx32 *ret)
 	WET_PokeParticlePosGet_ClientType(client_type, ret, contest_flag, camera_type);
 }
 
-///< ƒŒ[ƒU[
+///< ãƒ¬ãƒ¼ã‚¶ãƒ¼
 void WET_PokeParticleLaserPosGet(WE_SYS_PTR wsp, int client_no, VecFx32 *ret)
 {
 	int client_type, contest_flag;
@@ -909,7 +909,7 @@ void WET_PokeParticleLaserPosGet(WE_SYS_PTR wsp, int client_no, VecFx32 *ret)
 	WET_PokeParticleLaserPosGet_ClientType(client_type, ret, contest_flag, camera_type);
 }
 
-/// ƒŒ[ƒU[‚Q
+/// ãƒ¬ãƒ¼ã‚¶ãƒ¼ï¼’
 void WET_PokeParticleLaser2PosGet(WE_SYS_PTR wsp, int client_no, VecFx32 *ret)
 {
 	int client_type, contest_flag;
@@ -1023,7 +1023,7 @@ void WET_PokeParticleLaser406PosGet(WE_SYS_PTR wsp, int client_no, VecFx32 *ret)
 
 	WET_PokeParticleLaser406PosGet_ClientType(client_type, ret, contest_flag, camera_type);
 }
-///< ’‹“_
+///< æ³¨è¦–ç‚¹
 void WET_PokeParticleLookAtPosGet(WE_SYS_PTR wsp, int client_no, VecFx32 *ret)
 {
 	int client_type, contest_flag;
@@ -1062,11 +1062,11 @@ void WET_PokeParticleDispOutTopGet(VecFx32 *ret)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚©‚çÀ•W‚ğæ“¾
+ * @brief	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã‹ã‚‰åº§æ¨™ã‚’å–å¾—
  *
  * @param	client_type	
  * @param	ret	
- * @param   contest_flag	TRUE:ƒRƒ“ƒeƒXƒgB@FALSE:í“¬
+ * @param   contest_flag	TRUE:ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã€‚ã€€FALSE:æˆ¦é—˜
  *
  * @retval	none	
  *
@@ -1077,19 +1077,19 @@ void WET_PokeParticlePosGet_CT(int client_type, VecFx32 *ret, int contest_flag, 
 	WET_PokeParticlePosGet_ClientType(client_type, ret, contest_flag, camera_type);
 }
 
-///< ƒŒ[ƒU[
+///< ãƒ¬ãƒ¼ã‚¶ãƒ¼
 void WET_PokeParticleLaserPosGet_CT(int client_type, VecFx32 *ret, int contest_flag, int camera_type)
 {
 	WET_PokeParticleLaserPosGet_ClientType(client_type, ret, contest_flag, camera_type);
 }
 
-///< ’‹“_
+///< æ³¨è¦–ç‚¹
 void WET_PokeParticleLookAtPosGet_CT(int client_type, VecFx32 *ret, int contest_flag, int camera_type)
 {
 	WET_PokeParticleLookAtPosGet_ClientType(client_type, ret, contest_flag, camera_type);
 }
 
-///< ƒŠƒ“ƒO
+///< ãƒªãƒ³ã‚°
 void WET_PokeParticleRingPosGet_CT(int client_type, VecFx32 *ret, int contest_flag, int camera_type)
 {
 	WET_PokeParticleRingPosGet_ClientType(client_type, ret, contest_flag, camera_type);
@@ -1097,10 +1097,10 @@ void WET_PokeParticleRingPosGet_CT(int client_type, VecFx32 *ret, int contest_fl
 
 //--------------------------------------------------------------
 /**
- * @brief   UŒ‚‘¤‚Ìƒ|ƒPƒ‚ƒ“‚É‚ ‚Á‚½ƒJƒƒ‰ƒxƒNƒgƒ‹‚ğæ“¾‚·‚é
+ * @brief   æ”»æ’ƒå´ã®ãƒã‚±ãƒ¢ãƒ³ã«ã‚ã£ãŸã‚«ãƒ¡ãƒ©ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹
  *
- * @param   attack		ƒAƒ^ƒbƒNNo
- * @param   eye			’l‘ã“üæ
+ * @param   attack		ã‚¢ã‚¿ãƒƒã‚¯No
+ * @param   eye			å€¤ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void WET_AttackCameraEyeGet(int attack, VecFx32 *eye)
@@ -1115,10 +1115,10 @@ void WET_AttackCameraEyeGet(int attack, VecFx32 *eye)
 
 //--------------------------------------------------------------
 /**
- * @brief   UŒ‚‘¤‚Ìƒ|ƒPƒ‚ƒ“‚É‚ ‚Á‚½ƒJƒƒ‰ã•ûŒüƒxƒNƒgƒ‹‚ğæ“¾‚·‚é
+ * @brief   æ”»æ’ƒå´ã®ãƒã‚±ãƒ¢ãƒ³ã«ã‚ã£ãŸã‚«ãƒ¡ãƒ©ä¸Šæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹
  *
- * @param   attack		ƒAƒ^ƒbƒNNo
- * @param   eye			’l‘ã“üæ
+ * @param   attack		ã‚¢ã‚¿ãƒƒã‚¯No
+ * @param   eye			å€¤ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void WET_AttackCameraUpGet(int attack, VecFx32 *v_up)
@@ -1134,7 +1134,7 @@ void WET_AttackCameraUpGet(int attack, VecFx32 *v_up)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒtƒFƒNƒg‹¤’Ê‚Åg‚¢‚Ü‚í‚¹‚éŠî–{İ’è
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå…±é€šã§ä½¿ã„ã¾ã‚ã›ã‚‹åŸºæœ¬è¨­å®š
  *
  * @param	we_sys	
  * @param	obj_ba	
@@ -1162,10 +1162,10 @@ void WET_DefaultBlendSet(WE_SYS_PTR we_sys, int obj_ba, int bg_ba)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒtƒFƒNƒg‹¤’Ê‚Åg‚¢‚Ü‚í‚¹‚éŠî–{İ’è
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå…±é€šã§ä½¿ã„ã¾ã‚ã›ã‚‹åŸºæœ¬è¨­å®š
  *
  * @param	we_sys	
- * @param	bg_msk		ƒuƒŒƒ“ƒh‚Ì‘æ2‘ÎÛ–Ê
+ * @param	bg_msk		ãƒ–ãƒ¬ãƒ³ãƒ‰ã®ç¬¬2å¯¾è±¡é¢
  * @param	obj_ba	
  * @param	bg_ba	
  *
@@ -1193,11 +1193,11 @@ void WET_BGSelectBlendSet(WE_SYS_PTR we_sys, int bg_msk, int obj_ba, int bg_ba)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒGƒtƒFƒNƒgBG‚ÌƒfƒtƒHƒ‹ƒgƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰
  *
- *	@param	we_sys		‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	effe_ba		ƒGƒtƒFƒNƒgBG‚ÌƒAƒ‹ƒtƒ@’l
- *	@param	bg_ba		ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚ÌƒAƒ‹ƒtƒ@’l
+ *	@param	we_sys		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	effe_ba		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤
+ *	@param	bg_ba		ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤
  *
  *	@return	none
  *
@@ -1224,11 +1224,11 @@ void WET_DefaultBGEffectBlendSet( WE_SYS_PTR we_sys, int effe_ba, int bg_ba )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒEƒBƒ“ƒhƒEƒ}ƒXƒNƒfƒtƒHƒ‹ƒgİ’è
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¨­å®š
  *
- *	@param	we_sys		‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€
- *	@param	wnd_no		ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *	@param	effect		ƒuƒŒƒ“ƒh‚Ì—L–³
+ *	@param	we_sys		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	wnd_no		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *	@param	effect		ãƒ–ãƒ¬ãƒ³ãƒ‰ã®æœ‰ç„¡
  *
  *	@return	none
  *
@@ -1241,18 +1241,18 @@ void WET_DefaultBGEffectBlendSet( WE_SYS_PTR we_sys, int effe_ba, int bg_ba )
 void WET_DefaultWndMskSet( WE_SYS_PTR we_sys, int wnd_no, BOOL effect )
 {
 	if( wnd_no == WET_WNDMSK_0 ){
-		// ”wŒi
+		// èƒŒæ™¯
 		G2_SetWnd0InsidePlane( 
 				( 1 << BT_BGL_BGNoGet(we_sys, WES_BF_BACKGROUND) ) | (1 << BT_BGL_BGNoGet(we_sys, WES_BF_WINDOW )) | (1 << BT_BGL_BGNoGet(we_sys, WES_BF_EFFECT)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ,
 				effect );
 	}else{
-		// ”wŒi
+		// èƒŒæ™¯
 		G2_SetWnd1InsidePlane( 
 				( 1 << BT_BGL_BGNoGet(we_sys, WES_BF_BACKGROUND) ) | (1 << BT_BGL_BGNoGet(we_sys, WES_BF_WINDOW )) | (1 << BT_BGL_BGNoGet(we_sys, WES_BF_EFFECT)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ,
 				effect );
 	}
 
-	// ”wŒiˆÈŠO‚ğŠO‚É‚·‚é
+	// èƒŒæ™¯ä»¥å¤–ã‚’å¤–ã«ã™ã‚‹
 	G2_SetWndOutsidePlane( 
 			(1 << BT_BGL_BGNoGet(we_sys, WES_BF_WINDOW )) | (1 << BT_BGL_BGNoGet(we_sys, WES_BF_EFFECT)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ,
 			TRUE
@@ -1261,7 +1261,7 @@ void WET_DefaultWndMskSet( WE_SYS_PTR we_sys, int wnd_no, BOOL effect )
 
 //--------------------------------------------------------------
 /**
- * @brief	SSP‚©‚çÀ•Wæ“¾
+ * @brief	SSPã‹ã‚‰åº§æ¨™å–å¾—
  *
  * @param	ssp	
  * @param	p	
@@ -1289,7 +1289,7 @@ void WT_SSP_PointGet(SOFT_SPRITE* ssp, WT_POINT* p)
 
 //--------------------------------------------------------------
 /**
- * @brief	CAP‚©‚çÀ•Wæ“¾
+ * @brief	CAPã‹ã‚‰åº§æ¨™å–å¾—
  *
  * @param	cap
  * @param	p	
@@ -1307,7 +1307,7 @@ void WT_CAP_PointGet(CATS_ACT_PTR cap, WT_POINT* p)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒc[ƒ‹”Ä—p\‘¢‘Ì‚Ì‰Šú‰»
+ * @brief	ãƒ„ãƒ¼ãƒ«æ±ç”¨æ§‹é€ ä½“ã®åˆæœŸåŒ–
  *
  * @param	we_sys	
  * @param	wts	
@@ -1333,7 +1333,7 @@ void WT_ToolSysInit(WE_SYS_PTR we_sys, TWE_TOOL_SYS* wts)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ìƒ|ƒCƒ“ƒ^æ“¾
+ * @brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
  * @param	flag	
  * @param	ssp	
@@ -1475,7 +1475,7 @@ void WT_SSPointerGet(WE_SYS_PTR wsp, int flag, TWE_POKE_SYS* pp, int* num)
 
 //--------------------------------------------------------------
 /**
- * @brief	CAP‚Ìƒ|ƒCƒ“ƒ^æ“¾
+ * @brief	CAPã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
  * @param	wsp	
  * @param	flag	
@@ -1517,7 +1517,7 @@ void WT_CAPointerGet(WE_SYS_PTR wsp, int flag, TWE_POKE_SYS* pp, int* num)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌŠî–{À•Wæ“¾
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®åŸºæœ¬åº§æ¨™å–å¾—
  *
  * @param	wsp	
  * @param	flag	
@@ -1572,10 +1572,10 @@ void WT_PokeBasePointGet(WE_SYS_PTR wsp, int flag, TWE_POKE_SYS* pp, int* num)
 
 //--------------------------------------------------------------
 /**
- * @brief	we_sys‚©‚çƒq[ƒv—Ìˆæ‚ğæ“¾‚·‚éƒGƒtƒFƒNƒg—p‚Ìƒƒ‚ƒŠŠm•Û
+ * @brief	we_sysã‹ã‚‰ãƒ’ãƒ¼ãƒ—é ˜åŸŸã‚’å–å¾—ã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
  *
  * @param	wsp				we_sys
- * @param	size			ƒTƒCƒY
+ * @param	size			ã‚µã‚¤ã‚º
  *
  * @retval	static inline void*	
  *
@@ -1603,7 +1603,7 @@ void* WazaEffect_AllocMemory(WE_SYS_PTR wsp, int size)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒ‚ƒŠ‰ğ•ú—p
+ * @brief	ãƒ¡ãƒ¢ãƒªè§£æ”¾ç”¨
  *
  * @param	wk	
  *

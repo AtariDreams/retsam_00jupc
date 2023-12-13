@@ -15,7 +15,7 @@
   indent source
 
   Revision 1.13  2006/10/25 04:47:27  kitase_hirotake
-  OSOwnerInfo �� nickName, comment �ɏI�[�R�[�h���܂߂�悤�ɕύX
+  OSOwnerInfo の nickName, comment に終端コードを含めるように変更
 
   Revision 1.12  2006/07/05 09:15:31  yosizaki
   add systemWork header.
@@ -27,13 +27,13 @@
   Fix comment
 
   Revision 1.9  2005/04/18 12:27:31  terui
-  OSi_CheckOwnerInfo�֐����폜
+  OSi_CheckOwnerInfo関数を削除
 
   Revision 1.8  2005/04/12 10:49:15  terui
-  ������Ή��ׂ̈ɉ���
+  中国語対応の為に改造
 
   Revision 1.7  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.6  2005/02/28 05:26:29  yosizaki
   do-indent.
@@ -48,10 +48,10 @@
   Support SDK_NVRAM_FORMAT
 
   Revision 1.3  2004/09/03 08:01:20  terui
-  OS_GetOwnerRtcOffset�֐���ǉ��B
+  OS_GetOwnerRtcOffset関数を追加。
 
   Revision 1.2  2004/09/03 04:29:15  terui
-  NVRAM�����[�U�[���Ɋւ���\���̒�`�����ɔ����C���B
+  NVRAM内ユーザー情報に関する構造体定義整理に伴う修正。
 
   Revision 1.1  2004/09/02 06:21:20  terui
   Initial upload
@@ -66,10 +66,10 @@
 /*---------------------------------------------------------------------------*
   Name:         OS_GetMacAddress
 
-  Description:  �����n�[�h�E�F�A��MAC�A�h���X���擾����B
+  Description:  無線ハードウェアのMACアドレスを取得する。
 
-  Arguments:    macAddress  -   MAC�A�h���X���擾����o�b�t�@�ւ̃|�C���^�B
-                                ���̃o�b�t�@��6�o�C�g�̃f�[�^���������܂��B
+  Arguments:    macAddress  -   MACアドレスを取得するバッファへのポインタ。
+                                このバッファに6バイトのデータが書き込まれる。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -89,10 +89,10 @@ void OS_GetMacAddress(u8 *macAddress)
 /*---------------------------------------------------------------------------*
   Name:         OS_GetOwnerInfo
 
-  Description:  �I�[�i�[�����擾����B
+  Description:  オーナー情報を取得する。
 
-  Arguments:    info    -   �I�[�i�[�����擾����o�b�t�@�ւ̃|�C���^�B
-                            ���̃o�b�t�@�Ƀf�[�^���������܂��B
+  Arguments:    info    -   オーナー情報を取得するバッファへのポインタ。
+                            このバッファにデータが書き込まれる。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -119,14 +119,14 @@ void OS_GetOwnerInfo(OSOwnerInfo *info)
 /*---------------------------------------------------------------------------*
   Name:         OS_GetOwnerRtcOffset
 
-  Description:  �I�[�i�[��RTC�ݒ��ύX����x�ɂ��̒l�ɉ����đ�������I�t�Z�b�g
-                �l(�P�ʂ͕b)���擾����B
-                �Đݒ蒼�O��RTC�������疢���ɐi�߂�ꂽ�ꍇ�͐i�߂����Ԃ����Z
-                �����B�ߋ��ɖ߂��ꂽ�ꍇ�͖߂������Ԃ����Z�����B
+  Description:  オーナーがRTC設定を変更する度にその値に応じて増減するオフセット
+                値(単位は秒)を取得する。
+                再設定直前のRTC時刻から未来に進められた場合は進めた時間が加算
+                される。過去に戻された場合は戻した時間が減算される。
 
   Arguments:    None.
 
-  Returns:      s64 -   RTC�ݒ�I�t�Z�b�g�l��Ԃ��B
+  Returns:      s64 -   RTC設定オフセット値を返す。
  *---------------------------------------------------------------------------*/
 s64 OS_GetOwnerRtcOffset(void)
 {
@@ -144,12 +144,12 @@ s64 OS_GetOwnerRtcOffset(void)
 /*---------------------------------------------------------------------------*
   Name:         OS_GetFavoriteColorTable
 
-  Description:  OSOwnerInfo �\���̂̃����o favoriteColor �̔ԍ��ɑΉ�����
-                �u���C�ɓ���̐F�v�̔z��ւ̃|�C���^���擾���܂��B
+  Description:  OSOwnerInfo 構造体のメンバ favoriteColor の番号に対応する
+                「お気に入りの色」の配列へのポインタを取得します。
 
   Arguments:    None.
 
-  Returns:      �Ή�����F�l���i�[���� GXRgb �^�̒萔�z��ւ̃|�C���^.
+  Returns:      対応する色値を格納した GXRgb 型の定数配列へのポインタ.
  *---------------------------------------------------------------------------*/
 const GXRgb *OS_GetFavoriteColorTable(void)
 {

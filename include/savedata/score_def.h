@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	score_def.h
- * @brief	ƒXƒRƒAŠÖ˜A’è‹`
+ * @brief	ã‚¹ã‚³ã‚¢é–¢é€£å®šç¾©
  * @author	Nozomu Saito
  * @date	2006.06.15
  */
@@ -10,64 +10,64 @@
 #define __SCORE_DEF_H__
 
 //----------------------------------------------------------
-//		ƒXƒRƒAWŒv—p‚Ìw’èID
+//		ã‚¹ã‚³ã‚¢é›†è¨ˆç”¨ã®æŒ‡å®šID
 //----------------------------------------------------------
-#define	SCORE_ID_GET_NUTS				0			///<ƒXƒRƒAF‚«‚Ì‚İ‚ğæ‚Á‚½
-#define	SCORE_ID_HONEY_TREE				1			///<ƒXƒRƒAF–Ø‚É–¨“h‚Á‚½
-#define SCORE_ID_WRITE_MAIL				2			///<ƒXƒRƒAFƒ[ƒ‹‚ğ‘‚¢‚½
-#define SCORE_ID_INTERVIEW				3			///<ƒXƒRƒAFƒeƒŒƒrƒCƒ“ƒ^ƒrƒ…[‚É“š‚¦‚½
-#define SCORE_ID_WRITE_SIGN				4			///<ƒXƒRƒAFƒTƒCƒ“‘‚¢‚½
-#define SCORE_ID_PLAY_SLOT				5			///<ƒXƒRƒAFƒXƒƒbƒgn‚ß‚½
-#define SCORE_ID_CUSTOM_CAPSULE			6			///<ƒXƒRƒAFƒJƒXƒ^ƒ€ƒJƒvƒZƒ‹ì‚Á‚½
-#define SCORE_ID_MAKE_CLIP				7			///<ƒXƒRƒAFƒNƒŠƒbƒvì‚Á‚½
-#define	SCORE_ID_WILD_BATTLE_WIN		8			///<ƒXƒRƒAF–ì¶ƒGƒ“ƒJƒEƒ“ƒgŸ—˜
-#define	SCORE_ID_POKE_GET_SINOU			9			///<ƒXƒRƒAFƒ|ƒPƒ‚ƒ“ƒQƒbƒgiƒVƒ“ƒIƒE‚¸‚©‚ñj
-#define	SCORE_ID_POKE_GET_WORLD			10			///<ƒXƒRƒAFƒ|ƒPƒ‚ƒ“ƒQƒbƒgiƒVƒ“ƒIƒE‚¸‚©‚ñŠOj
-#define	SCORE_ID_TRAINER_BATTLE_WIN		11			///<ƒXƒRƒAFƒgƒŒ[ƒi[íŸ—˜
-#define	SCORE_ID_MINIGAME_NUTS			12			///<ƒXƒRƒAF–Ø‚ÌÀ—¿—(1l)
-#define	SCORE_ID_CONTEST_GRANDPRIX		13			///<ƒXƒRƒAFƒRƒ“ƒeƒXƒg—DŸ
-#define	SCORE_ID_BTOWER_7WIN			14			///<ƒXƒRƒAFƒoƒgƒ‹ƒ^ƒ[7lŸ‚¿”²‚«
-#define	SCORE_ID_EGG_HATCHING			15			///<ƒXƒRƒAFƒ^ƒ}ƒS‚ª›z‚Á‚½
-#define	SCORE_ID_COMM_TRADE_POKE		16			///<ƒXƒRƒAF’ÊMŒğŠ·(Wifi/ƒ_ƒCƒŒƒNƒg)
-#define SCORE_ID_CLEAR_POKEPARK			17			///<ƒXƒRƒAFƒ|ƒPƒp[ƒNƒNƒŠƒA
-#define	SCORE_ID_COMM_MINIGAME_NUTS		18			///<ƒXƒRƒAF–Ø‚ÌÀ—¿—i’ÊMj
-#define	SCORE_ID_COMM_CONTEST_GRANDPRIX	19			///<ƒXƒRƒAFƒRƒ“ƒeƒXƒg—DŸi’ÊMj
-#define	SCORE_ID_COMM_RECORD_CORNER		20			///<ƒXƒRƒAFƒŒƒR[ƒhƒR[ƒi[
-#define	SCORE_ID_COMM_BATTLE_COUNT		21			///<ƒXƒRƒAF’ÊM‘Îí(Wifi/ƒ_ƒCƒŒƒNƒg/ƒ†ƒjƒIƒ“)
-#define	SCORE_ID_ZUKAN_ENTRY			22			///<ƒXƒRƒAF‚¸‚©‚ñ“o˜^
-#define SCORE_ID_GYM_LEADER_WIN			23			///<ƒXƒRƒAFƒWƒ€ƒŠ[ƒ_[‚ÉŸ‚Á‚½
-#define	SCORE_ID_DENDOU					24			///<ƒXƒRƒAF“a“°“ü‚è‚µ‚½
-#define SCORE_ID_WORLD_TRADE			25			///<ƒXƒRƒAF¢ŠE’ÊMŒğŠ·‚ğ‚µ‚½
-#define	SCORE_ID_COMMENDATION_A			26			///<ƒXƒRƒAF•\²óA‚ğ‚à‚ç‚Á‚½
-#define	SCORE_ID_COMMENDATION_B			27			///<ƒXƒRƒAF•\²óB‚ğ‚à‚ç‚Á‚½
+#define	SCORE_ID_GET_NUTS				0			///<ã‚¹ã‚³ã‚¢ï¼šãã®ã¿ã‚’å–ã£ãŸ
+#define	SCORE_ID_HONEY_TREE				1			///<ã‚¹ã‚³ã‚¢ï¼šæœ¨ã«èœœå¡—ã£ãŸ
+#define SCORE_ID_WRITE_MAIL				2			///<ã‚¹ã‚³ã‚¢ï¼šãƒ¡ãƒ¼ãƒ«ã‚’æ›¸ã„ãŸ
+#define SCORE_ID_INTERVIEW				3			///<ã‚¹ã‚³ã‚¢ï¼šãƒ†ãƒ¬ãƒ“ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã«ç­”ãˆãŸ
+#define SCORE_ID_WRITE_SIGN				4			///<ã‚¹ã‚³ã‚¢ï¼šã‚µã‚¤ãƒ³æ›¸ã„ãŸ
+#define SCORE_ID_PLAY_SLOT				5			///<ã‚¹ã‚³ã‚¢ï¼šã‚¹ãƒ­ãƒƒãƒˆå§‹ã‚ãŸ
+#define SCORE_ID_CUSTOM_CAPSULE			6			///<ã‚¹ã‚³ã‚¢ï¼šã‚«ã‚¹ã‚¿ãƒ ã‚«ãƒ—ã‚»ãƒ«ä½œã£ãŸ
+#define SCORE_ID_MAKE_CLIP				7			///<ã‚¹ã‚³ã‚¢ï¼šã‚¯ãƒªãƒƒãƒ—ä½œã£ãŸ
+#define	SCORE_ID_WILD_BATTLE_WIN		8			///<ã‚¹ã‚³ã‚¢ï¼šé‡ç”Ÿã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå‹åˆ©
+#define	SCORE_ID_POKE_GET_SINOU			9			///<ã‚¹ã‚³ã‚¢ï¼šãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆï¼ˆã‚·ãƒ³ã‚ªã‚¦ãšã‹ã‚“ï¼‰
+#define	SCORE_ID_POKE_GET_WORLD			10			///<ã‚¹ã‚³ã‚¢ï¼šãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆï¼ˆã‚·ãƒ³ã‚ªã‚¦ãšã‹ã‚“å¤–ï¼‰
+#define	SCORE_ID_TRAINER_BATTLE_WIN		11			///<ã‚¹ã‚³ã‚¢ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦å‹åˆ©
+#define	SCORE_ID_MINIGAME_NUTS			12			///<ã‚¹ã‚³ã‚¢ï¼šæœ¨ã®å®Ÿæ–™ç†(1äºº)
+#define	SCORE_ID_CONTEST_GRANDPRIX		13			///<ã‚¹ã‚³ã‚¢ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹
+#define	SCORE_ID_BTOWER_7WIN			14			///<ã‚¹ã‚³ã‚¢ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼7äººå‹ã¡æŠœã
+#define	SCORE_ID_EGG_HATCHING			15			///<ã‚¹ã‚³ã‚¢ï¼šã‚¿ãƒã‚´ãŒå­µã£ãŸ
+#define	SCORE_ID_COMM_TRADE_POKE		16			///<ã‚¹ã‚³ã‚¢ï¼šé€šä¿¡äº¤æ›(Wifi/ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆ)
+#define SCORE_ID_CLEAR_POKEPARK			17			///<ã‚¹ã‚³ã‚¢ï¼šãƒã‚±ãƒ‘ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
+#define	SCORE_ID_COMM_MINIGAME_NUTS		18			///<ã‚¹ã‚³ã‚¢ï¼šæœ¨ã®å®Ÿæ–™ç†ï¼ˆé€šä¿¡ï¼‰
+#define	SCORE_ID_COMM_CONTEST_GRANDPRIX	19			///<ã‚¹ã‚³ã‚¢ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹ï¼ˆé€šä¿¡ï¼‰
+#define	SCORE_ID_COMM_RECORD_CORNER		20			///<ã‚¹ã‚³ã‚¢ï¼šãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼
+#define	SCORE_ID_COMM_BATTLE_COUNT		21			///<ã‚¹ã‚³ã‚¢ï¼šé€šä¿¡å¯¾æˆ¦(Wifi/ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆ/ãƒ¦ãƒ‹ã‚ªãƒ³)
+#define	SCORE_ID_ZUKAN_ENTRY			22			///<ã‚¹ã‚³ã‚¢ï¼šãšã‹ã‚“ç™»éŒ²
+#define SCORE_ID_GYM_LEADER_WIN			23			///<ã‚¹ã‚³ã‚¢ï¼šã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã«å‹ã£ãŸ
+#define	SCORE_ID_DENDOU					24			///<ã‚¹ã‚³ã‚¢ï¼šæ®¿å ‚å…¥ã‚Šã—ãŸ
+#define SCORE_ID_WORLD_TRADE			25			///<ã‚¹ã‚³ã‚¢ï¼šä¸–ç•Œé€šä¿¡äº¤æ›ã‚’ã—ãŸ
+#define	SCORE_ID_COMMENDATION_A			26			///<ã‚¹ã‚³ã‚¢ï¼šè¡¨å½°çŠ¶Aã‚’ã‚‚ã‚‰ã£ãŸ
+#define	SCORE_ID_COMMENDATION_B			27			///<ã‚¹ã‚³ã‚¢ï¼šè¡¨å½°çŠ¶Bã‚’ã‚‚ã‚‰ã£ãŸ
 
-#define	SCORE_ID_NEW_FLAG_TAKE_OUT		28			///<ƒXƒRƒAF’Yz V‚µ‚¢Šø‚¿‹A‚è
-#define	SCORE_ID_FLAG_TAKE_OUT			29			///<ƒXƒRƒAF’Yz Šø‚¿‹A‚è
-#define	SCORE_ID_GET_FOSSIL				30			///<ƒXƒRƒAF’Yz ‰»Î”­Œ@
-#define	SCORE_ID_ITEM_DEPOSIT			31			///<ƒXƒRƒAF’Yz ‘Šè‚É“¹‹ï‚ ‚°‚é
-#define	SCORE_ID_HELLO					32			///<ƒXƒRƒAF’Yz ‚ ‚¢‚³‚Â‚·‚é
-#define	SCORE_ID_QUESTION				33			///<ƒXƒRƒAF’Yz ¿–â‚·‚é
-#define	SCORE_ID_RESCUE					34			///<ƒXƒRƒAF’Yz ã©‚©‚ç•‚¯‚½
-#define	SCORE_ID_MAKE_BASE				35			///<ƒXƒRƒAF’Yz Šî’nì‚é
-#define	SCORE_ID_MINE_IN				36			///<ƒXƒRƒAF’Yz ’n‰º‚É—ˆ‚é
-#define	SCORE_ID_WLAK_100				37			///<ƒXƒRƒAF’Yz 100•à‚ ‚é‚­
+#define	SCORE_ID_NEW_FLAG_TAKE_OUT		28			///<ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± æ–°ã—ã„æ——æŒã¡å¸°ã‚Š
+#define	SCORE_ID_FLAG_TAKE_OUT			29			///<ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± æ——æŒã¡å¸°ã‚Š
+#define	SCORE_ID_GET_FOSSIL				30			///<ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± åŒ–çŸ³ç™ºæ˜
+#define	SCORE_ID_ITEM_DEPOSIT			31			///<ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± ç›¸æ‰‹ã«é“å…·ã‚ã’ã‚‹
+#define	SCORE_ID_HELLO					32			///<ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± ã‚ã„ã•ã¤ã™ã‚‹
+#define	SCORE_ID_QUESTION				33			///<ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± è³ªå•ã™ã‚‹
+#define	SCORE_ID_RESCUE					34			///<ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± ç½ ã‹ã‚‰åŠ©ã‘ãŸ
+#define	SCORE_ID_MAKE_BASE				35			///<ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± åŸºåœ°ä½œã‚‹
+#define	SCORE_ID_MINE_IN				36			///<ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± åœ°ä¸‹ã«æ¥ã‚‹
+#define	SCORE_ID_WLAK_100				37			///<ã‚¹ã‚³ã‚¢ï¼šç‚­é‰± 100æ­©ã‚ã‚‹ã
 
-#define	SCORE_ID_FACTORY_ROUND			38			///<ƒXƒRƒAFƒtƒ@ƒNƒgƒŠ[ˆêüŸ‚¿”²‚«
-#define	SCORE_ID_CASTLE_ROUND			39			///<ƒXƒRƒAFƒLƒƒƒbƒXƒ‹ˆêüŸ‚¿”²‚«
-#define	SCORE_ID_STAGE_ROUND			40			///<ƒXƒRƒAFƒXƒe[ƒWˆêüŸ‚¿”²‚«
-#define	SCORE_ID_ROULETTE_ROUND			41			///<ƒXƒRƒAFƒ‹[ƒŒƒbƒgˆêüŸ‚¿”²‚«
-#define	SCORE_ID_FRONTIER_CONQUER		42			///<ƒXƒRƒAFƒtƒƒ“ƒeƒBƒA§”e
-#define	SCORE_ID_FRONTIER_COMM			43			///<ƒXƒRƒAFƒtƒƒ“ƒeƒBƒA’ÊM‚Å—V‚ñ‚¾
-#define	SCORE_ID_LOBBY_LOGIN			44			///<ƒXƒRƒAFWIFILê‚ÉQ‰Á
-#define	SCORE_ID_GURUGURU				45			///<ƒXƒRƒAF‚®‚é‚®‚éŒğŠ·
-#define	SCORE_ID_GDS_VIDEO_UPLOAD		46			///<ƒXƒRƒAFGDSƒrƒfƒI‚ğƒAƒbƒvƒ[ƒh
-#define	SCORE_ID_GDS_DRESS_UPLOAD		47			///<ƒXƒRƒAFGDSƒhƒŒƒX‚ğƒAƒbƒvƒ[ƒh
-#define	SCORE_ID_GDS_BOX_UPLOAD			48			///<ƒXƒRƒAFGDSƒ{ƒbƒNƒX‚ğƒAƒbƒvƒ[ƒh
-#define	SCORE_ID_VACATION_HOUSE_COMPLETE	49			///<ƒXƒRƒAF•Ê‘‘ƒRƒ“ƒvƒŠ[ƒg
-#define	SCORE_ID_CLUB_MINIGAME			50			///<ƒXƒRƒAFWIFIƒNƒ‰ƒu‚Åƒ~ƒjƒQ[ƒ€‚ğ—V‚ñ‚¾
+#define	SCORE_ID_FACTORY_ROUND			38			///<ã‚¹ã‚³ã‚¢ï¼šãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ä¸€å‘¨å‹ã¡æŠœã
+#define	SCORE_ID_CASTLE_ROUND			39			///<ã‚¹ã‚³ã‚¢ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«ä¸€å‘¨å‹ã¡æŠœã
+#define	SCORE_ID_STAGE_ROUND			40			///<ã‚¹ã‚³ã‚¢ï¼šã‚¹ãƒ†ãƒ¼ã‚¸ä¸€å‘¨å‹ã¡æŠœã
+#define	SCORE_ID_ROULETTE_ROUND			41			///<ã‚¹ã‚³ã‚¢ï¼šãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆä¸€å‘¨å‹ã¡æŠœã
+#define	SCORE_ID_FRONTIER_CONQUER		42			///<ã‚¹ã‚³ã‚¢ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢åˆ¶è¦‡
+#define	SCORE_ID_FRONTIER_COMM			43			///<ã‚¹ã‚³ã‚¢ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢é€šä¿¡ã§éŠã‚“ã 
+#define	SCORE_ID_LOBBY_LOGIN			44			///<ã‚¹ã‚³ã‚¢ï¼šWIFIåºƒå ´ã«å‚åŠ 
+#define	SCORE_ID_GURUGURU				45			///<ã‚¹ã‚³ã‚¢ï¼šãã‚‹ãã‚‹äº¤æ›
+#define	SCORE_ID_GDS_VIDEO_UPLOAD		46			///<ã‚¹ã‚³ã‚¢ï¼šGDSãƒ“ãƒ‡ã‚ªã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
+#define	SCORE_ID_GDS_DRESS_UPLOAD		47			///<ã‚¹ã‚³ã‚¢ï¼šGDSãƒ‰ãƒ¬ã‚¹ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
+#define	SCORE_ID_GDS_BOX_UPLOAD			48			///<ã‚¹ã‚³ã‚¢ï¼šGDSãƒœãƒƒã‚¯ã‚¹ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
+#define	SCORE_ID_VACATION_HOUSE_COMPLETE	49			///<ã‚¹ã‚³ã‚¢ï¼šåˆ¥è˜ã‚³ãƒ³ãƒ—ãƒªãƒ¼ãƒˆ
+#define	SCORE_ID_CLUB_MINIGAME			50			///<ã‚¹ã‚³ã‚¢ï¼šWIFIã‚¯ãƒ©ãƒ–ã§ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’éŠã‚“ã 
 
 
 #define	SCOREID_MAX						51
-#define SCORE_MAX						99999999	//ƒXƒRƒAÅ‘å’l
+#define SCORE_MAX						99999999	//ã‚¹ã‚³ã‚¢æœ€å¤§å€¤
 
 #endif //__SCORE_DEF_H__

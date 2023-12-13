@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	bb_client.c
- * @brief	ä»íPÇ»ê‡ñæÇèëÇ≠
+ * @brief	Á∞°Âçò„Å™Ë™¨Êòé„ÇíÊõ∏„Åè
  * @author	goto
- * @date	2007.10.01(åé)
+ * @date	2007.10.01(Êúà)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -84,7 +84,7 @@ s16 Action_MoveValue_2Y( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉÅÉÇÉäämï€
+ * @brief	„É°„É¢„É™Á¢∫‰øù
  *
  * @param	comm_num	
  * @param	netid	
@@ -106,7 +106,7 @@ BB_CLIENT* BB_Client_AllocMemory( int comm_num, u32 netid, BB_SYS* sys )
 	wk->sys		 = sys;
 	wk->bAction	 = FALSE;
 
-	///< å¬êlÉGÉtÉFÉNÉgä«óùÉèÅ[ÉNçÏê¨
+	///< ÂÄã‰∫∫„Ç®„Éï„Çß„ÇØ„ÉàÁÆ°ÁêÜ„ÉØ„Éº„ÇØ‰ΩúÊàê
 	{
 		wk->eff_sys.old_level = wk->game_sys.level;
 		wk->eff_sys.level	  = &wk->game_sys.level;
@@ -122,7 +122,7 @@ BB_CLIENT* BB_Client_AllocMemory( int comm_num, u32 netid, BB_SYS* sys )
 
 //--------------------------------------------------------------
 /**
- * @brief	3Dèâä˙âª
+ * @brief	3DÂàùÊúüÂåñ
  *
  * @param	wk	
  *
@@ -170,7 +170,7 @@ void BB_Client_3D_PosInit( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉÅÉÇÉäâï˙
+ * @brief	„É°„É¢„É™Ëß£Êîæ
  *
  * @param	wk	
  *
@@ -213,7 +213,7 @@ static void BB_TP_Check( u32* p, s16 mv, u32* old, u32 now )
 
 //--------------------------------------------------------------
 /**
- * @brief	à íuÇ©ÇÁóéÇøÇÈÇ©Ç«Ç§Ç©ÇÃîªíËÇÇ∑ÇÈ
+ * @brief	‰ΩçÁΩÆ„Åã„ÇâËêΩ„Å°„Çã„Åã„Å©„ÅÜ„Åã„ÅÆÂà§ÂÆö„Çí„Åô„Çã
  *
  * @param	wk	
  * @param	*param	
@@ -256,7 +256,7 @@ void BB_ManeneAnime_CheckSet( BB_CLIENT* wk ){
 	int check2;
 	pos	= wk->mane_pos.y >> FX32_SHIFT;	
 	
-	///< Ç†ÇÁÇÁanime
+	///< „ÅÇ„Çâ„Çâanime
 	check1 = BB_POINT_1S >> FX32_SHIFT;	
 	check2 = BB_POINT_1E >> FX32_SHIFT;
 	if ( pos < check1 && pos > check2 ){
@@ -264,7 +264,7 @@ void BB_ManeneAnime_CheckSet( BB_CLIENT* wk ){
 		return;
 	}	
 	
-	///< Ç®Ç¡Ç∆Ç¡Ç∆anime
+	///< „Åä„Å£„Å®„Å£„Å®anime
 	check1 = BB_POINT_2S >> FX32_SHIFT;	
 	check2 = BB_POINT_2E >> FX32_SHIFT;
 	if ( pos < check1 && pos > check2 ){
@@ -277,7 +277,7 @@ void BB_ManeneAnime_CheckSet( BB_CLIENT* wk ){
 
 //--------------------------------------------------------------
 /**
- * @brief	É}ÉlÉlÉAÉNÉVÉáÉìåƒÇ—èoÇµ
+ * @brief	„Éû„Éç„Éç„Ç¢„ÇØ„Ç∑„Éß„É≥Âëº„Å≥Âá∫„Åó
  *
  * @param	wk	
  * @param	netid	
@@ -297,7 +297,7 @@ static void BB_Client_Manene_Action_Call( BB_CLIENT* wk, int netid )
 	sub_wk->seq = 0;
 	sub_wk->type = 0;
 
-	sub_wk->sys = wk->sys;	//  êÿífèIóπÇÃÇΩÇﬂí«â¡	tomoya 
+	sub_wk->sys = wk->sys;	//  ÂàáÊñ≠ÁµÇ‰∫Ü„ÅÆ„Åü„ÇÅËøΩÂä†	tomoya 
 
 	TCB_Add( BB_Client_Manene_Action_TCB, sub_wk, BB_TCB_PRI_1 );
 }
@@ -305,7 +305,7 @@ static void BB_Client_Manene_Action_Call( BB_CLIENT* wk, int netid )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉåÉxÉãÉAÉbÉvåƒÇ—èoÇµ
+ * @brief	„É¨„Éô„É´„Ç¢„ÉÉ„ÉóÂëº„Å≥Âá∫„Åó
  *
  * @param	wk	
  * @param	netid	
@@ -330,7 +330,7 @@ static void BB_Client_LevelUp_Action_Call( BB_CLIENT* wk, int netid )
 	sub_wk->seq = 0;
 	sub_wk->type = 0;
 
-	sub_wk->sys = wk->sys;	// êÿífÉGÉâÅ[É`ÉFÉbÉNóp
+	sub_wk->sys = wk->sys;	// ÂàáÊñ≠„Ç®„É©„Éº„ÉÅ„Çß„ÉÉ„ÇØÁî®
 	
 	TCB_Add( BB_Client_LevelUp_Action_TCB, sub_wk, BB_TCB_PRI_1 );
 }
@@ -357,7 +357,7 @@ static void BB_Client_3D_LevelUp_Action_Call( BB_CLIENT* wk, int netid )
 
 //--------------------------------------------------------------
 /**
- * @brief	É}ÉlÉlÉAÉNÉVÉáÉìåƒÇ—èoÇµ
+ * @brief	„Éû„Éç„Éç„Ç¢„ÇØ„Ç∑„Éß„É≥Âëº„Å≥Âá∫„Åó
  *
  * @param	wk	
  *
@@ -377,11 +377,11 @@ static void BB_Manene_3D_Fall_Call( BB_CLIENT* wk )
 	sub_wk->mane_pos   = wk->mane_pos;
 	sub_wk->rare_game  = wk->rare_game;
 
-	sub_wk->sys = wk->sys;	//  êÿífèIóπÇÃÇΩÇﬂí«â¡	tomoya 
+	sub_wk->sys = wk->sys;	//  ÂàáÊñ≠ÁµÇ‰∫Ü„ÅÆ„Åü„ÇÅËøΩÂä†	tomoya 
 	
 	ManeneAnime_Set( wk, ePAT_3D_ARUKU );
 	
-	///< óéâ∫Ç∆ïúãAÇÃanimeÇèâä˙âªÇµÇƒÇ®Ç≠
+	///< ËêΩ‰∏ã„Å®Âæ©Â∏∞„ÅÆanime„ÇíÂàùÊúüÂåñ„Åó„Å¶„Åä„Åè
 	D3DOBJ_AnmSet( &wk->bb3d_mane[ 0 ].anm[ 0 ], 0 );
 	D3DOBJ_AnmSet( &wk->bb3d_mane[ 1 ].anm[ 0 ], 0 );
 	D3DOBJ_AnmSet( &wk->bb3d_mane[ 2 ].anm[ 0 ], 0 );
@@ -392,7 +392,7 @@ static void BB_Manene_3D_Fall_Call( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ïúãAÉAÉjÉÅ
+ * @brief	Âæ©Â∏∞„Ç¢„Éã„É°
  *
  * @param	wk	
  *
@@ -411,7 +411,7 @@ static void BB_Client_Manene_3D_RecoverAction_Call( BB_CLIENT* wk )
 	sub_wk->mane_pos   = wk->mane_pos;
 	sub_wk->rare_game  = wk->rare_game;
 
-	sub_wk->sys = wk->sys;	//  êÿífèIóπÇÃÇΩÇﬂí«â¡	tomoya 
+	sub_wk->sys = wk->sys;	//  ÂàáÊñ≠ÁµÇ‰∫Ü„ÅÆ„Åü„ÇÅËøΩÂä†	tomoya 
 	
 	TCB_Add( BB_Client_Manene_3D_Recover_Action_TCB, sub_wk, BB_TCB_PRI_1 );
 }
@@ -419,7 +419,7 @@ static void BB_Client_Manene_3D_RecoverAction_Call( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	É}ÉlÉlÉAÉNÉVÉáÉì3DÅ@óéÇøÇƒñﬂÇÈÇsÇbÇa
+ * @brief	„Éû„Éç„Éç„Ç¢„ÇØ„Ç∑„Éß„É≥3D„ÄÄËêΩ„Å°„Å¶Êàª„ÇãÔº¥Ôº£Ôº¢
  *
  * @param	tcb	
  * @param	work	
@@ -481,7 +481,7 @@ void BB_Manene_3D_Fall_TCB( TCB_PTR tcb, void* work )
 				BB_MoveInit_FX( &wk->dz, wk->model->pos.z, wk->model->pos.z + z_value, 4 );
 			}
 		}
-		Snd_SePlay( BB_SND_JUMP_OUT );	///< óéÇøÇÈâπ
+		Snd_SePlay( BB_SND_JUMP_OUT );	///< ËêΩ„Å°„ÇãÈü≥
 		wk->wait = 0;
 		wk->seq++;
 		break;
@@ -531,7 +531,7 @@ void BB_Manene_3D_Fall_TCB( TCB_PTR tcb, void* work )
 			wk->model->pos.z = wk->dz.x;			
 			if ( bEnd[ 0 ] && bEnd[ 1 ] ){
 				if ( wk->type == 0 ){
-					Snd_SePlay( BB_SND_LANDING );	///< íÖín
+					Snd_SePlay( BB_SND_LANDING );	///< ÁùÄÂú∞
 				//	*wk->anime_type = eANM_CODE_RECOVER;
 				}
 				wk->seq++;
@@ -541,9 +541,9 @@ void BB_Manene_3D_Fall_TCB( TCB_PTR tcb, void* work )
 
 	case 3:
 		if ( wk->type == 0 ){
-			//if ( wk->wait == ( BB_RECOVER_WAIT - 55 ) ){		///< ÉlÉWÇ™Ç®ÇøÇΩÇ∆Ç´
-			//if ( wk->wait == ( BB_RECOVER_WAIT - 75 ) ){		///< ÉlÉWÇ™Ç®ÇøÇΩÇ∆Ç´
-			if ( wk->wait == ( BB_RECOVER_WAIT - 82 ) ){		///< ÉlÉWÇ™Ç®ÇøÇΩÇ∆Ç´
+			//if ( wk->wait == ( BB_RECOVER_WAIT - 55 ) ){		///< „Éç„Ç∏„Åå„Åä„Å°„Åü„Å®„Åç
+			//if ( wk->wait == ( BB_RECOVER_WAIT - 75 ) ){		///< „Éç„Ç∏„Åå„Åä„Å°„Åü„Å®„Åç
+			if ( wk->wait == ( BB_RECOVER_WAIT - 82 ) ){		///< „Éç„Ç∏„Åå„Åä„Å°„Åü„Å®„Åç
 				Snd_SePlay( BB_SND_NEJI );
 			}
 			if ( (++wk->wait) >= ( BB_RECOVER_WAIT - ( 50 ) ) ){
@@ -560,7 +560,7 @@ void BB_Manene_3D_Fall_TCB( TCB_PTR tcb, void* work )
 		if ( wk->type == 0 ){
 			if ( (++wk->wait) >= ( BB_RECOVER_WAIT - ( 45 ) ) ){
 				*wk->anime_type = eANM_CODE_DEFAULT;
-				Snd_SePlay( BB_SND_JUMP_OUT );		///< è„ÇÈ
+				Snd_SePlay( BB_SND_JUMP_OUT );		///< ‰∏ä„Çã
 				wk->seq = 0;
 				wk->type++;
 			}
@@ -643,7 +643,7 @@ void BB_Client_Manene_3D_Recover_Action_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉAÉNÉVÉáÉìÅ@(animeÇ∆ñßê⁄Ç»TCB)
+ * @brief	„Ç¢„ÇØ„Ç∑„Éß„É≥„ÄÄ(anime„Å®ÂØÜÊé•„Å™TCB)
  *
  * @param	tcb	
  * @param	work	
@@ -666,7 +666,7 @@ void BB_Client_Manene_Action_TCB( TCB_PTR tcb, void* work )
 	
 	switch ( wk->seq ){
 	case 0:
-		///< èâä˙âª
+		///< ÂàùÊúüÂåñ
 		{
 			fx32 x, y;
 			fx32 dat;
@@ -678,13 +678,13 @@ void BB_Client_Manene_Action_TCB( TCB_PTR tcb, void* work )
 			else {
 				BB_MoveInit_FX( &wk->data, y, y - FX32_CONST( 32 ), 4 );
 			}
-	//		OS_Printf( "óéâ∫\n" );			
+	//		OS_Printf( "ËêΩ‰∏ã\n" );			
 			wk->seq++;
 		}
 		break;
 	
 	case 1:
-		///< óéâ∫ÉÅÉCÉì
+		///< ËêΩ‰∏ã„É°„Ç§„É≥
 		{
 			fx32 x, y;
 			BOOL bEnd;			
@@ -698,7 +698,7 @@ void BB_Client_Manene_Action_TCB( TCB_PTR tcb, void* work )
 		break;
 	
 	default:
-		///< óéâ∫èàóù
+		///< ËêΩ‰∏ãÂá¶ÁêÜ
 		if ( wk->type == 0 ){
 			if ( (++wk->wait) >= 35 ){
 				wk->type++;
@@ -718,7 +718,7 @@ void BB_Client_Manene_Action_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	LvUp	âeÇ™ÅAÉIÅ[ÉâÅHÇ…ïœÇÌÇ¡ÇƒècêLÇ—Ç∑ÇÈÉGÉtÉFÉNÉg
+ * @brief	LvUp	ÂΩ±„Åå„ÄÅ„Ç™„Éº„É©Ôºü„Å´Â§â„Çè„Å£„Å¶Á∏¶‰º∏„Å≥„Åô„Çã„Ç®„Éï„Çß„ÇØ„Éà
  *
  * @param	tcb	
  * @param	work	
@@ -811,7 +811,7 @@ static void BB_Client_LevelUp_Action_TCB( TCB_PTR tcb, void* work )
 		break;
 	
 	default:
-		///< óéâ∫èàóù
+		///< ËêΩ‰∏ãÂá¶ÁêÜ
 		CATS_ObjectScaleSetCap( wk->cap_kage, 1.0f, 1.0f );
 		CATS_ObjectAnimeSeqSetCap( wk->cap_kage, eANM_KAGE );
 		CATS_ObjectPriSetCap( wk->cap_kage, 2 );
@@ -862,14 +862,14 @@ static void BB_Client_3D_LevelUp_Action_TCB( TCB_PTR tcb, void* work )
 
 	switch ( wk->seq ){
 	case 0:
-		///< ÉÇÉfÉãÇÃì«Ç›çûÇ›
+		///< „É¢„Éá„É´„ÅÆË™≠„ÅøËæº„Åø
 		BB_disp_Model_Load( bs, wk->sys->p_handle_bb, data[ level_tmp ][ 0 ] );
 		BB_disp_Model_Init( bs, wk->rare_game );
 		wk->seq++;
 		break;
 	
 	case 1:
-		///< ÉAÉjÉÅì«Ç›çûÇ›
+		///< „Ç¢„Éã„É°Ë™≠„ÅøËæº„Åø
 		D3DOBJ_AnmLoadH( &bs->anm[ 0 ], &bs->mdl, wk->sys->p_handle_bb, anime[ 0 ][ 0 ], HEAPID_BB, &wk->sys->allocator );								 
 		D3DOBJ_AnmLoadH( &bs->anm[ 1 ], &bs->mdl, wk->sys->p_handle_bb, anime[ 0 ][ 1 ], HEAPID_BB, &wk->sys->allocator );
 		D3DOBJ_AddAnm( &bs->obj, &bs->anm[ 0 ] );
@@ -886,14 +886,14 @@ static void BB_Client_3D_LevelUp_Action_TCB( TCB_PTR tcb, void* work )
 		break;
 	
 	case 2:
-		///< ÉÇÉfÉãì«Ç›çûÇ›
+		///< „É¢„Éá„É´Ë™≠„ÅøËæº„Åø
 		BB_disp_Model_Load( up, wk->sys->p_handle_bb, data[ level_tmp ][ 1 ] );
 		BB_disp_Model_Init( up, wk->rare_game );
 		wk->seq++;
 		break;		
 	
 	case 3:
-		///< ÉAÉjÉÅì«Ç›çûÇ›			
+		///< „Ç¢„Éã„É°Ë™≠„ÅøËæº„Åø			
 		D3DOBJ_AnmLoadH( &up->anm[ 0 ], &up->mdl, wk->sys->p_handle_bb, anime[ 1 ][ 0 ], HEAPID_BB, &wk->sys->allocator );								 
 		D3DOBJ_AnmLoadH( &up->anm[ 1 ], &up->mdl, wk->sys->p_handle_bb, anime[ 1 ][ 1 ], HEAPID_BB, &wk->sys->allocator );
 		D3DOBJ_AddAnm( &up->obj, &up->anm[ 0 ] );
@@ -958,7 +958,7 @@ static void BB_Client_3D_LevelUp_Action_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉXÉRÉAÇåvéZÇµë±ÇØÇÈÉÅÉCÉì
+ * @brief	„Çπ„Ç≥„Ç¢„ÇíË®àÁÆó„ÅóÁ∂ö„Åë„Çã„É°„Ç§„É≥
  *
  * @param	wk
  *
@@ -968,7 +968,7 @@ static void BB_Client_3D_LevelUp_Action_TCB( TCB_PTR tcb, void* work )
 //--------------------------------------------------------------
 static void BB_Client_ScoreUpMain( BB_CLIENT* wk )
 {
-	const u16 base_point[]  = { BB_P_LV1_BASE, BB_P_LV2_BASE, BB_P_LV3_BASE, BB_P_LV4_BASE  };	///< ÉxÅ[ÉX
+	const u16 base_point[]  = { BB_P_LV1_BASE, BB_P_LV2_BASE, BB_P_LV3_BASE, BB_P_LV4_BASE  };	///< „Éô„Éº„Çπ
 	
 	wk->game_sys.point += base_point[ wk->game_sys.level ];
 	
@@ -977,7 +977,7 @@ static void BB_Client_ScoreUpMain( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	É{Å[ÉiÉXÉ|ÉCÉìÉgÇÃê›íË
+ * @brief	„Éú„Éº„Éä„Çπ„Éù„Ç§„É≥„Éà„ÅÆË®≠ÂÆö
  *
  * @param	wk	
  *
@@ -987,7 +987,7 @@ static void BB_Client_ScoreUpMain( BB_CLIENT* wk )
 //--------------------------------------------------------------
 static void BB_Client_BonusPoint( BB_CLIENT* wk )
 {
-	const u16 bonus_point[] = { BB_P_LV1_BONUS,BB_P_LV2_BONUS,BB_P_LV3_BONUS,BB_P_LV4_BONUS };	///< É{Å[ÉiÉX
+	const u16 bonus_point[] = { BB_P_LV1_BONUS,BB_P_LV2_BONUS,BB_P_LV3_BONUS,BB_P_LV4_BONUS };	///< „Éú„Éº„Éä„Çπ
 
 	wk->game_sys.point += bonus_point[ wk->game_sys.level - 1 ];
 	
@@ -997,7 +997,7 @@ static void BB_Client_BonusPoint( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉåÉxÉãÉAÉbÉvÇÃäƒéã
+ * @brief	„É¨„Éô„É´„Ç¢„ÉÉ„Éó„ÅÆÁõ£Ë¶ñ
  *
  * @param	wk	
  *
@@ -1034,7 +1034,7 @@ static BOOL BB_Client_LevelUpMain( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	LvUpÉ`ÉFÉbÉN
+ * @brief	LvUp„ÉÅ„Çß„ÉÉ„ÇØ
  *
  * @param	wk	
  * @param	time	
@@ -1047,22 +1047,22 @@ static BOOL BB_Client_LevelUpCheck( BB_CLIENT* wk, int time, int* level )
 {	
 	switch ( time ){
 	case BB_GAME_LV_2UP:
-		*level = 1;											///< ÉåÉxÉãÉAÉbÉv
+		*level = 1;											///< „É¨„Éô„É´„Ç¢„ÉÉ„Éó
 		return TRUE;
 		
 	case BB_GAME_LV_3UP:
-		*level = 2;											///< ÉåÉxÉãÉAÉbÉv
+		*level = 2;											///< „É¨„Éô„É´„Ç¢„ÉÉ„Éó
 		return TRUE;
 		
 	case BB_GAME_LV_4UP:
-		*level = 3;											///< ÉåÉxÉãÉAÉbÉv
+		*level = 3;											///< „É¨„Éô„É´„Ç¢„ÉÉ„Éó
 		return TRUE;
 		
 	case BB_GAME_LV_MAX:
-		*level = 4;											///< ÉåÉxÉãÉAÉbÉv
+		*level = 4;											///< „É¨„Éô„É´„Ç¢„ÉÉ„Éó
 		return TRUE;
 	
-	case 0:													///< ÇªÇÃëº
+	case 0:													///< „Åù„ÅÆ‰ªñ
 		*level = 0;
 		break;
 	}	
@@ -1072,7 +1072,7 @@ static BOOL BB_Client_LevelUpCheck( BB_CLIENT* wk, int time, int* level )
 
 //--------------------------------------------------------------
 /**
- * @brief	ëºêlÇÃçXêV
+ * @brief	‰ªñ‰∫∫„ÅÆÊõ¥Êñ∞
  *
  * @param	wk	
  *
@@ -1090,25 +1090,25 @@ static void BB_Client_OtherUpdateMain( BB_CLIENT* wk )
 				
 		switch ( wk->state[ i ].state ){
 		case eBB_STATE_NONE:
-			///< í èÌ
+			///< ÈÄöÂ∏∏
 			if ( BB_disp_Manene_OAM_AnimeCheck( wk, i ) != eANM_CODE_ARUKU ){
 				BB_disp_Manene_OAM_AnimeChange( wk, i, eANM_CODE_ARUKU );
 			}
 			if ( BB_Client_LevelUpCheck( wk, wk->game_sys.l_time[ i ], &wk->game_sys.o_level[ i ] ) ){
 				BB_Client_LevelUp_Action_Call( wk, i );
-	//			OS_Printf( " ëºêlÇÃÉåÉxÉã = %d\n", wk->game_sys.o_level[ i ] );
+	//			OS_Printf( " ‰ªñ‰∫∫„ÅÆ„É¨„Éô„É´ = %d\n", wk->game_sys.o_level[ i ] );
 			}
 			wk->game_sys.l_time[ i ]++;
 			break;
 
 		case eBB_STATE_FALL:
-			///< óéâ∫
+			///< ËêΩ‰∏ã
 			wk->game_sys.fever_time	  = 0;
 			wk->game_sys.l_time[ i ]  = 0;
 			wk->game_sys.o_level[ i ] = 0;
 			wk->fever_sys.bActive = FALSE;
 			if ( BB_disp_Manene_OAM_AnimeCheck( wk, i ) != eANM_CODE_OCHIRU ){
-				///< ÉAÉNÉVÉáÉìÇµÇƒÇÈÉtÉâÉOÉ`ÉFÉbÉN
+				///< „Ç¢„ÇØ„Ç∑„Éß„É≥„Åó„Å¶„Çã„Éï„É©„Ç∞„ÉÅ„Çß„ÉÉ„ÇØ
 				if ( wk->bAction == FALSE )
 				{
 					BB_disp_Manene_OAM_AnimeChange( wk, i, eANM_CODE_OCHIRU );
@@ -1119,7 +1119,7 @@ static void BB_Client_OtherUpdateMain( BB_CLIENT* wk )
 			break;
 
 		case eBB_STATE_RECOVER:
-			///< ïúãA
+			///< Âæ©Â∏∞
 			wk->bAction = FALSE;
 			wk->game_sys.fever_time	  = 0;
 			wk->game_sys.l_time[ i ]  = 0;
@@ -1132,7 +1132,7 @@ static void BB_Client_OtherUpdateMain( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	é©ï™é©êgÇÃçXêV
+ * @brief	Ëá™ÂàÜËá™Ë∫´„ÅÆÊõ¥Êñ∞
  *
  * @param	wk	
  *
@@ -1145,13 +1145,13 @@ static void BB_Client_MyUpdateMain( BB_CLIENT* wk )
 	switch ( wk->state[ wk->netid ].state ){
 
 	case eBB_STATE_NONE:
-		///< í èÌ
+		///< ÈÄöÂ∏∏
 		if ( BB_Client_IsSafety( wk, NULL ) ){
 			wk->game_sys.recover_wait = 0;
-			BB_Manene_3D_Fall_Call( wk );				///< É}ÉlÉlóéÇøÇƒñﬂÇÈ
-			BB_Client_GameReset( wk );					///< ÉQÅ[ÉÄïîï™ÉäÉZÉbÉg
+			BB_Manene_3D_Fall_Call( wk );				///< „Éû„Éç„ÉçËêΩ„Å°„Å¶Êàª„Çã
+			BB_Client_GameReset( wk );					///< „Ç≤„Éº„É†ÈÉ®ÂàÜ„É™„Çª„ÉÉ„Éà
 
-			wk->state[ wk->netid ].state = eBB_STATE_FALL;		///< óéâ∫èÛë‘ëóêM
+			wk->state[ wk->netid ].state = eBB_STATE_FALL;		///< ËêΩ‰∏ãÁä∂ÊÖãÈÄÅ‰ø°
 			CommSendData( CCMD_BB_STATE, &wk->state[ wk->netid ], sizeof( BB_STATE_COMM ) );
 			wk->game_sys.result_time = 0;
 			wk->game_sys.fever_time  = 0;
@@ -1159,15 +1159,15 @@ static void BB_Client_MyUpdateMain( BB_CLIENT* wk )
 		}
 		else {
 			BB_ManeneAnime_CheckSet( wk );
-			BB_Client_TouchPanel_Main( wk );					///< ÉyÉìëÄçÏ
-			BB_Client_GameUpdate( wk );							///< ÉQÅ[ÉÄçXêV
-			BB_Client_ScoreUpMain( wk );						///< ÉXÉRÉAçXêV	
+			BB_Client_TouchPanel_Main( wk );					///< „Éö„É≥Êìç‰Ωú
+			BB_Client_GameUpdate( wk );							///< „Ç≤„Éº„É†Êõ¥Êñ∞
+			BB_Client_ScoreUpMain( wk );						///< „Çπ„Ç≥„Ç¢Êõ¥Êñ∞	
 			wk->game_sys.l_time[ wk->netid ]++;					///< 
 		}
 		break;
 
 	case eBB_STATE_FALL:
-		///< óéâ∫
+		///< ËêΩ‰∏ã
 		if ( ( ++wk->game_sys.recover_wait ) >= BB_RECOVER_WAIT ){
 			wk->state[ wk->netid ].state = eBB_STATE_RECOVER;
 		}
@@ -1177,7 +1177,7 @@ static void BB_Client_MyUpdateMain( BB_CLIENT* wk )
 		break;
 
 	case eBB_STATE_RECOVER:
-		///< óéâ∫ïúãA
+		///< ËêΩ‰∏ãÂæ©Â∏∞
 		if ( wk->game_sys.recover_wait != 0 ){
 			wk->game_sys.result_time		 = 0;
 			wk->game_sys.fever_time			 = 0;
@@ -1190,7 +1190,7 @@ static void BB_Client_MyUpdateMain( BB_CLIENT* wk )
 			CommSendData( CCMD_BB_STATE, &wk->state[ wk->netid ], sizeof( BB_STATE_COMM ) );
 		}
 		else {
-		//	BB_Client_GameReset( wk );							///< ÉQÅ[ÉÄïîï™ÉäÉZÉbÉg
+		//	BB_Client_GameReset( wk );							///< „Ç≤„Éº„É†ÈÉ®ÂàÜ„É™„Çª„ÉÉ„Éà
 			wk->state[ wk->netid ].state = eBB_STATE_NONE;
 		}
 		break;
@@ -1207,7 +1207,7 @@ static void BB_Client_MyUpdateMain( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉNÉâÉCÉAÉìÉgÇÃÉQÅ[ÉÄÉRÉA
+ * @brief	„ÇØ„É©„Ç§„Ç¢„É≥„Éà„ÅÆ„Ç≤„Éº„É†„Ç≥„Ç¢
  *
  * @param	wk	
  *
@@ -1222,11 +1222,11 @@ void BB_Client_GameCore( BB_CLIENT* wk )
 
 	if ( wk->game_sys.game_timer < BB_GAME_TIMER ){
 		
-		BB_Client_MyUpdateMain( wk );						///< é©ï™ÇÃèÓïÒçXêV
-		BB_Client_OtherUpdateMain( wk );					///< ëºÇÃÉvÉåÉCÉÑÅ[èÓïÒçXêV
-//		BB_Client_ScoreUpMain( wk );						///< ÉXÉRÉAçXêV	
+		BB_Client_MyUpdateMain( wk );						///< Ëá™ÂàÜ„ÅÆÊÉÖÂ†±Êõ¥Êñ∞
+		BB_Client_OtherUpdateMain( wk );					///< ‰ªñ„ÅÆ„Éó„É¨„Ç§„É§„ÉºÊÉÖÂ†±Êõ¥Êñ∞
+//		BB_Client_ScoreUpMain( wk );						///< „Çπ„Ç≥„Ç¢Êõ¥Êñ∞	
 
-		if ( BB_Client_LevelUpMain( wk ) == TRUE ){			///< ÉåÉxÉãÉAÉbÉvçXêV
+		if ( BB_Client_LevelUpMain( wk ) == TRUE ){			///< „É¨„Éô„É´„Ç¢„ÉÉ„ÉóÊõ¥Êñ∞
 		
 			if ( wk->state[ wk->netid ].state == eBB_STATE_NONE ){
 			//	wk->game_sys.recover_wait = 0;
@@ -1234,11 +1234,11 @@ void BB_Client_GameCore( BB_CLIENT* wk )
 			//	BB_Client_Manene_3D_RecoverAction_Call( wk );
 			}
 			BB_Client_3D_LevelUp_Action_Call( wk, wk->netid );
-			BB_Client_BonusPoint( wk );						///< É{Å[ÉiÉXÉ|ÉCÉìÉgïtâ¡
+			BB_Client_BonusPoint( wk );						///< „Éú„Éº„Éä„Çπ„Éù„Ç§„É≥„Éà‰ªòÂä†
 			Snd_SePlay( BB_SND_LV_UP );
 		}
 
-		BB_Client_GameFeverUpdate( wk );					///< ÉtÉBÅ[ÉoÅ[Ç≈Ç´ÇÈÇ©ÇÃîªíË
+		BB_Client_GameFeverUpdate( wk );					///< „Éï„Ç£„Éº„Éê„Éº„Åß„Åç„Çã„Åã„ÅÆÂà§ÂÆö
 		wk->game_sys.result_time++;
 		wk->game_sys.game_timer++;
 		wk->game_sys.fever_time++;
@@ -1268,7 +1268,7 @@ static const TP_HIT_TBL ball_hit_tbl2[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	É^ÉbÉ`ÉpÉlÉãèàóù
+ * @brief	„Çø„ÉÉ„ÉÅ„Éë„Éç„É´Âá¶ÁêÜ
  *
  * @param	wk	
  *
@@ -1321,7 +1321,7 @@ void BB_Client_TouchPanel_Main( BB_CLIENT* wk )
 		else {
 			f32 py = BB_COEFFICIENT_PEN( wk->mane_pos.y ); //100 - ( wk->mane_pos.y >> FX32_SHIFT ) ) / 40;
 			
-			if ( ( wk->mane_pos.y >> FX32_SHIFT ) >= 95 ){			///< äpìx 5%Ç‹Ç≈ÇÕ Ç‰ÇÈÇ¢ï‚ê≥
+			if ( ( wk->mane_pos.y >> FX32_SHIFT ) >= 95 ){			///< ËßíÂ∫¶ 5%„Åæ„Åß„ÅØ „ÇÜ„Çã„ÅÑË£úÊ≠£
 				py = 0.1f;
 			}
 			if ( py >= BB_COEFFICIENT_AM ){
@@ -1350,7 +1350,7 @@ void BB_Client_TouchPanel_Main( BB_CLIENT* wk )
 			}
 			if ( x != 0 ){
 				if ( Snd_SePlayCheck( BB_SND_KIRAKIRA ) == 0 ){
-					Snd_SePlay( BB_SND_KIRAKIRA );			///< Ç´ÇÁÇ´ÇÁ
+					Snd_SePlay( BB_SND_KIRAKIRA );			///< „Åç„Çâ„Åç„Çâ
 				}
 				BB_Stardust_Call( wk, x, y );
 			}
@@ -1405,8 +1405,8 @@ static inline u32 BB_Rand( void )
 	
 	gf_srand( seed );
 	
-//	OS_Printf( "à¯Ç¢ÇΩ1 = %d\n", seed );
-//	OS_Printf( "à¯Ç¢ÇΩ = %d\n", gf_get_seed() );
+//	OS_Printf( "Âºï„ÅÑ„Åü1 = %d\n", seed );
+//	OS_Printf( "Âºï„ÅÑ„Åü = %d\n", gf_get_seed() );
 	
 	return rand;
 }
@@ -1436,7 +1436,7 @@ static inline s8 BB_inline_GetSign_to_Value( s16 val )
 
 //--------------------------------------------------------------
 /**
- * @brief	édêÿÇËÇ»Ç®Ç∑ïîï™
+ * @brief	‰ªïÂàá„Çä„Å™„Åä„ÅôÈÉ®ÂàÜ
  *
  * @param	wk	
  *
@@ -1453,14 +1453,14 @@ void BB_Client_GameReset( BB_CLIENT* wk )
 	wk->game_sys.init_ok	= FALSE;
 	wk->game_sys.boot_init	= FALSE;
 	
-	///< --- êVãK ---
+	///< --- Êñ∞Ë¶è ---
 	wk->game_sys.level		= 0;
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉtÉBÅ[ÉoÅ[Ç¢ÇØÇÈÇ©äƒéã
+ * @brief	„Éï„Ç£„Éº„Éê„Éº„ÅÑ„Åë„Çã„ÅãÁõ£Ë¶ñ
  *
  * @param	wk	
  *
@@ -1486,7 +1486,7 @@ void BB_Client_GameFeverUpdate( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉQÅ[ÉÄÉAÉbÉvÉfÅ[Ég
+ * @brief	„Ç≤„Éº„É†„Ç¢„ÉÉ„Éó„Éá„Éº„Éà
  *
  * @param	wk	
  *
@@ -1515,9 +1515,9 @@ void BB_Client_GameUpdate( BB_CLIENT* wk )
 #endif
 	wk->game_sys.lot_timer++;
 
-	///< íäëI	
+	///< ÊäΩÈÅ∏	
 	if ( wk->game_sys.frame != 0 ){	
-		if ( wk->game_sys.roll_seq < BB_CONST_ROLL_FRAME - 1 ){		///< ç≈èâÇ…Ç©Ç©ÇÈóÕÇ≈ìÆÇ≠ïîï™
+		if ( wk->game_sys.roll_seq < BB_CONST_ROLL_FRAME - 1 ){		///< ÊúÄÂàù„Å´„Åã„Åã„ÇãÂäõ„ÅßÂãï„ÅèÈÉ®ÂàÜ
 			if ( wk->game_sys.roll_seq <= BB_CONST_INI_FRAME ){
 				oldx = wk->game_sys.ini_amx.x;
 				oldy = wk->game_sys.ini_amy.x;							
@@ -1536,7 +1536,7 @@ void BB_Client_GameUpdate( BB_CLIENT* wk )
 				
 			}
 		}
-		else {														///< íäëIåãâ Ç≈ìÆÇ≠ïîï™
+		else {														///< ÊäΩÈÅ∏ÁµêÊûú„ÅßÂãï„ÅèÈÉ®ÂàÜ
 			oldx = wk->game_sys.amx.x;
 			oldy = wk->game_sys.amy.x;						
 			bMove_x = BB_AddMoveMainFx( &wk->game_sys.amx );
@@ -1563,7 +1563,7 @@ void BB_Client_GameUpdate( BB_CLIENT* wk )
 		wk->game_sys.frame--;
 	}
 	else {
-		///< éüÇÃèÄîıÇ‹Ç≈äµê´Ç≈ìÆÇ≠ïîï™
+		///< Ê¨°„ÅÆÊ∫ñÂÇô„Åæ„ÅßÊÖ£ÊÄß„ÅßÂãï„ÅèÈÉ®ÂàÜ
 		if ( ( wk->game_sys.lot_timer % update_tbl[ wk->game_sys.level ] ) == 0 ){
 			wk->game_sys.lot_timer = 0;
 			wk->game_sys.init_ok = TRUE;
@@ -1602,7 +1602,7 @@ void BB_Client_GameUpdate( BB_CLIENT* wk )
 		if ( wk->game_sys.boot_init == FALSE
 		|| ( wk->game_sys.init_ok == TRUE && wk->game_sys.inertia == TRUE ) )
 		{
-			///< èâä˙âªïîï™
+			///< ÂàùÊúüÂåñÈÉ®ÂàÜ
 			int dat = BB_Rand() % 100;
 			int pow = 0;
 			int i;
@@ -1625,7 +1625,7 @@ void BB_Client_GameUpdate( BB_CLIENT* wk )
 			pow  = game_data[ wk->game_sys.level ][ i ].pow;
 			pow *= BB_COEFFICIENT_POW;
 			
-			///< Ç‹ÇÀÇÀÇÃà íuÇ©ÇÁÅAéüÇÃåXÇ´Çåüèo
+			///< „Åæ„Å≠„Å≠„ÅÆ‰ΩçÁΩÆ„Åã„Çâ„ÄÅÊ¨°„ÅÆÂÇæ„Åç„ÇíÊ§úÂá∫
 			{
 				cx = wk->mane_pos.x >> FX32_SHIFT;
 				cy = wk->mane_pos.y >> FX32_SHIFT;
@@ -1637,7 +1637,7 @@ void BB_Client_GameUpdate( BB_CLIENT* wk )
 				}
 				else {
 					cz = -BB_inline_GetSign_to_Value( cz );
-					OS_Printf( "åXÇ´Ç©ÇÁåvéZ\n");
+					OS_Printf( "ÂÇæ„Åç„Åã„ÇâË®àÁÆó\n");
 				}
 				
 			//	if ( cx == 0 ){
@@ -1649,10 +1649,10 @@ void BB_Client_GameUpdate( BB_CLIENT* wk )
 					if ( cz < 0 ){
 						cx *= -1;
 					}
-					OS_Printf( "åXÇ´Ç©ÇÁåvéZ\n");
+					OS_Printf( "ÂÇæ„Åç„Åã„ÇâË®àÁÆó\n");
 				}
 				
-				///< level == 0 â°ÇÃìÆÇ´Çè¡Ç∑
+				///< level == 0 Ê®™„ÅÆÂãï„Åç„ÇíÊ∂à„Åô
 				if ( wk->game_sys.level == 0 ){	cx = 0;	}
 
 				mx = pow * cx;
@@ -1669,7 +1669,7 @@ void BB_Client_GameUpdate( BB_CLIENT* wk )
 			wk->game_sys.frame = BB_ACCEL_ROLL_FRAME + BB_CONST_ROLL_FRAME;
 			wk->game_sys.roll_seq = 0;
 			
-			wk->game_sys.pow_x	 = mx;//cx;	///< ïœçXÇµÇΩ4åé2ì˙
+			wk->game_sys.pow_x	 = mx;//cx;	///< Â§âÊõ¥„Åó„Åü4Êúà2Êó•
 			wk->game_sys.pow_y	 = my;//cz;
 			
 			wk->game_sys.touch	 = FALSE;
@@ -1678,7 +1678,7 @@ void BB_Client_GameUpdate( BB_CLIENT* wk )
 			
 			wk->game_sys.boot_init = TRUE;
 
-		//	OS_Printf( "èÄîıÇ≈Ç´ÇΩÇÒÇ≈éüÇÃâÒì]énÇ‹ÇËÇ‹Ç∑\n" );
+		//	OS_Printf( "Ê∫ñÂÇô„Åß„Åç„Åü„Çì„ÅßÊ¨°„ÅÆÂõûËª¢Âßã„Åæ„Çä„Åæ„Åô\n" );
 		}
 	}
 }
@@ -1687,7 +1687,7 @@ void BB_Client_GameUpdate( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	É{Å[ÉãÇ…îÚÇ—èÊÇÈ
+ * @brief	„Éú„Éº„É´„Å´È£õ„Å≥‰πó„Çã
  *
  * @param	wk	
  *
@@ -1709,7 +1709,7 @@ BOOL BB_Client_JumpOnToBall( BB_CLIENT* wk )
 
 	if ( (++wk->wait) < BB_JUMP_BALL_WAIT ){ return FALSE; }
 	
-	///< è„âÊñ 
+	///< ‰∏äÁîªÈù¢
 	for ( i = 0; i < BB_PLAYER_NUM - 1; i++ ){
 		if ( wk->cap_mane[ i ] == NULL ){
 			continue;
@@ -1717,10 +1717,10 @@ BOOL BB_Client_JumpOnToBall( BB_CLIENT* wk )
 		CATS_ObjectPosMoveCap( wk->cap_mane[ i ], 0, -pos_2d_y );
 	}
 	
-	///< â∫âÊñ 
+	///< ‰∏ãÁîªÈù¢
 	if ( pos_3d_y == SKIP_CODE_1 || pos_3d_y == SKIP_CODE_2 ){
 		if ( wk->seq2 == 0 ){
-			Snd_SePlay( BB_SND_JUMP_IN );	///< è„ÇÈâπ
+			Snd_SePlay( BB_SND_JUMP_IN );	///< ‰∏ä„ÇãÈü≥
 		}
 		wk->seq2++;
 		pos_3d_y = action_3d_y_tbl[ max2 - 1 - wk->seq2 ];

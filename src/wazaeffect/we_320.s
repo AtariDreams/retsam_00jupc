@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_320.s
- * @brief	�����Ԃ�			320
+ * @brief	くさぶえ			320
  * @author	goto
- * @date	2005.07.13(��)
+ * @date	2005.07.13(水)
  *
- * �����ɐF�X�ȉ�����������Ă��悢
+ * ここに色々な解説等を書いてもよい
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	�������Ԃ�			320
+//	■くさぶえ			320
 //
 //
 // =============================================================================
@@ -41,7 +41,7 @@ SIDE_MINE:
 
 	LOAD_PARTICLE_DROP	0,W_320_SPA
 
-	///<�w�i�ύX
+	///<背景変更
 	FUNC_CALL	WEST_SP_WE_HAIKEI_PAL_FADE, 5, KUSABUE_BG_PAL_FADE, KUSABUE_BG_PAL_FADE_WAIT, 0, 8, KUSABUE_BG_PAL_FADE_COL,
 	WAIT_FLAG
 	ADD_PARTICLE 	0,W_320_320_ONPU_BEAM, EMTFUNC_FIELD_OPERATOR
@@ -52,7 +52,7 @@ SIDE_MINE:
 	WAIT_PARTICLE
 	EXIT_PARTICLE	0,
 
-	///<�w�i�ύX
+	///<背景変更
 	FUNC_CALL	WEST_SP_WE_HAIKEI_PAL_FADE, 5, KUSABUE_BG_PAL_FADE, KUSABUE_BG_PAL_FADE_WAIT, 8, 0, KUSABUE_BG_PAL_FADE_COL, 0, 0, 0
 	WAIT_FLAG
 
@@ -62,7 +62,7 @@ SIDE_ENEMY:
 
 	LOAD_PARTICLE_DROP	0,W_320_SPA
 
-	///<�w�i�ύX
+	///<背景変更
 	FUNC_CALL	WEST_SP_WE_HAIKEI_PAL_FADE, 5, KUSABUE_BG_PAL_FADE, KUSABUE_BG_PAL_FADE_WAIT, 0, 8, KUSABUE_BG_PAL_FADE_COL,
 	WAIT_FLAG
 	ADD_PARTICLE 	0,W_320_320_ONPU_BEAM, EMTFUNC_FIELD_OPERATOR
@@ -73,7 +73,7 @@ SIDE_ENEMY:
 	WAIT_PARTICLE
 	EXIT_PARTICLE	0,
 
-	///<�w�i�ύX
+	///<背景変更
 	FUNC_CALL	WEST_SP_WE_HAIKEI_PAL_FADE, 5, KUSABUE_BG_PAL_FADE, KUSABUE_BG_PAL_FADE_WAIT, 8, 0, KUSABUE_BG_PAL_FADE_COL, 0, 0, 0
 	WAIT_FLAG
 

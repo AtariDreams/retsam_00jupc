@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WBT_GetBlock</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">WBT_GetBlock</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -24,67 +24,67 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <p>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>target</STRONG></EM></TD>
-      <TD width="87%">�u���b�N�f�[�^����M����Ώۂ�aid�r�b�g�}�b�v<br>
-	  �q�@�̏ꍇ�A�e�@�ł��� "1" �̂ݎw��\�ł��B</TD>
+      <TD width="87%">ブロックデータを受信する対象のaidビットマップ<br>
+	  子機の場合、親機である "1" のみ指定可能です。</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>block_id</STRONG></EM></TD>
-      <TD width="87%">�f�[�^����M���ׂ��u���b�N��ID<br>
-	  �w�肵���u���b�NID�͑Ώۑ���<A href="../common/WBT_RegisterBlock.html">WBT_RegisterBlock</A>�֐��œo�^����Ă���K�v������܂��B</TD>
+      <TD width="87%">データを受信すべきブロックのID<br>
+	  指定したブロックIDは対象側で<A href="../common/WBT_RegisterBlock.html">WBT_RegisterBlock</A>関数で登録されている必要があります。</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>recv_buf_table</STRONG></EM></TD>
-      <TD width="87%">��M����f�[�^�̊i�[��A�h���X��ێ�����<A href="../wbt_recv_buf_table_type.html">WBTRecvBufTable</A>�^�̃e�[�u���ւ̃|�C���^<br>
-	  ���̃e�[�u���̂���target�Ŏw�肵���S�Ă�aid�ɂ��āA�K���L���Ȋi�[��A�h���X��ݒ肵�Ă����K�v������܂��B</TD>
+      <TD width="87%">受信するデータの格納先アドレスを保持した<A href="../wbt_recv_buf_table_type.html">WBTRecvBufTable</A>型のテーブルへのポインタ<br>
+	  このテーブルのうちtargetで指定した全てのaidについて、必ず有効な格納先アドレスを設定しておく必要があります。</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>recv_size</STRONG></EM></TD>
-      <TD width="87%">�f�[�^��M�T�C�Y</TD>
+      <TD width="87%">データ受信サイズ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>p_bmp_table</STRONG></EM></TD>
-      <TD width="87%">��M����f�[�^�̐i���Ǘ�(��M�����L�^)�p�r�b�g�}�b�v�o�b�t�@��ێ�����<A href="../wbt_packet_bitmap_table_type.html">WBTPacketBitmapTable</A>�^�̃e�[�u���ւ̃|�C���^<br>
-	  ���̃e�[�u���̂���target�Ŏw�肵���S�Ă�aid�ɂ��āA�K���L���ȃr�b�g�}�b�v�o�b�t�@��ݒ肵�Ă����K�v������܂��B<br>
-	  target�Ŏw�肵�Ă��Ȃ����̂ɂ��Ă�NULL�ł��܂��܂���B
+      <TD width="87%">受信するデータの進捗管理(受信履歴記録)用ビットマップバッファを保持した<A href="../wbt_packet_bitmap_table_type.html">WBTPacketBitmapTable</A>型のテーブルへのポインタ<br>
+	  このテーブルのうちtargetで指定した全てのaidについて、必ず有効なビットマップバッファを設定しておく必要があります。<br>
+	  targetで指定していないものについてはNULLでかまいません。
 </TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
-      <TD width="87%">�R�}���h�������ɒʒm���󂯂�<A href="../wbt_callback_type.html">WBTCallback</A>�`���̊֐�
-	  <br>���̃R�[���o�b�N��<a href="../parent/WBT_MpParentRecvHook.html">WBT_MpParentRecvHook</a>�֐��܂���<a href="../child/WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</a>�֐��̓�������Ăяo����܂��B
+      <TD width="87%">コマンド完了時に通知を受ける<A href="../wbt_callback_type.html">WBTCallback</A>形式の関数
+	  <br>このコールバックは<a href="../parent/WBT_MpParentRecvHook.html">WBT_MpParentRecvHook</a>関数または<a href="../child/WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</a>関数の内部から呼び出されます。
 </TD>
     </TR>
   </TBODY>
 </TABLE>
 </p>
 
-<h2>�Ԃ�l</h2>
-<p>���ݏ������̃R�}���h��������΃R�}���h�𔭍s���� TRUE ���A<br>
-�����łȂ��Ȃ牽������ FALSE ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>現在処理中のコマンドが無ければコマンドを発行して TRUE を、<br>
+そうでないなら何もせず FALSE を返します。</p>
 
-<H2>����</H2>
-<p>�w�肵���Ώۋ@�킩��u���b�N�f�[�^����M���܂��B<br>
+<H2>説明</H2>
+<p>指定した対象機器からブロックデータを受信します。<br>
 <br>
-<font color="#800000">���݂܂��������̃R�}���h������ꍇ�A�Ăяo���͎��s���܂��B</font>
+<font color="#800000">現在まだ処理中のコマンドがある場合、呼び出しは失敗します。</font>
 <br>
 </p>
-<H2>�Q��</H2>
+<H2>参照</H2>
 <A href="WBT_RequestSync.html">WBT_RequestSync</A>
 <A href="WBT_GetBlockInfo.html">WBT_GetBlockInfo</A>
 <A href="WBT_PutUserData.html">WBT_PutUserData</A>
 <br>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2006/03/13 target�����̋L�q���C��<br>
-2005/06/01 �R�[���o�b�N��WBT_MpParentRecvHook�֐��܂���WBT_MpChildRecvHook�֐�����Ăяo�����|��⑫<br>
-2005/02/18 packet_bitmap���u��M�����L�^�p�r�b�g�}�b�v�o�b�t�@�v�Ƃ��������ɕύX<br>
-2004/09/21 ����<BR>
+2006/03/13 target引数の記述を修正<br>
+2005/06/01 コールバックがWBT_MpParentRecvHook関数またはWBT_MpChildRecvHook関数から呼び出される旨を補足<br>
+2005/02/18 packet_bitmapを「受信履歴記録用ビットマップバッファ」という説明に変更<br>
+2004/09/21 初版<BR>
 </P>
 </body>
 </html>

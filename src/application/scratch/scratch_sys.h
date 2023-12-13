@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	scratch_sys.h
- * @brief	uƒXƒNƒ‰ƒbƒ`vƒVƒXƒeƒ€ƒwƒbƒ_[
+ * @brief	ã€Œã‚¹ã‚¯ãƒ©ãƒƒãƒã€ã‚·ã‚¹ãƒ†ãƒ ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	07.12.11
  */
@@ -15,7 +15,7 @@
 
 //==============================================================================================
 //
-//	ƒXƒNƒ‰ƒbƒ`ƒ[ƒN‚Ö‚Ì•sŠ®‘SŒ^ƒ|ƒCƒ“ƒ^
+//	ã‚¹ã‚¯ãƒ©ãƒƒãƒãƒ¯ãƒ¼ã‚¯ã¸ã®ä¸å®Œå…¨åž‹ãƒã‚¤ãƒ³ã‚¿
 //
 //==============================================================================================
 typedef	struct _SCRATCH_WORK SCRATCH_WORK;
@@ -23,140 +23,140 @@ typedef	struct _SCRATCH_WORK SCRATCH_WORK;
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒpƒŒƒbƒg’è‹`
-#define BS_TALKWIN_PAL			(10)				//‰ï˜bƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BS_MENU_PAL				(11)				//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BS_MSGFONT_PAL			(12)				//MSGƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BS_FONT_PAL				(13)				//SYSTEMƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define SCRATCH_TOUCH_SUB_PAL	(10)				//‰º‰æ–Êu‚Í‚¢A‚¢‚¢‚¦vŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
+//ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
+#define BS_TALKWIN_PAL			(10)				//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BS_MENU_PAL				(11)				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BS_MSGFONT_PAL			(12)				//MSGãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BS_FONT_PAL				(13)				//SYSTEMãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define SCRATCH_TOUCH_SUB_PAL	(10)				//ä¸‹ç”»é¢ã€Œã¯ã„ã€ã„ã„ãˆã€ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 
-#define SCRATCH_VANISH_ON		(0)					//”ñ•\Ž¦
-#define SCRATCH_VANISH_OFF		(1)					//•\Ž¦
+#define SCRATCH_VANISH_ON		(0)					//éžè¡¨ç¤º
+#define SCRATCH_VANISH_OFF		(1)					//è¡¨ç¤º
 
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒIƒuƒWƒFƒNƒgƒiƒ“ƒo[
+//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
 enum{
-	SCRATCH_RES_OBJ_U_POKE = 0,						//ƒ|ƒPƒ‚ƒ“
-	SCRATCH_RES_OBJ_D_POKE,							//ƒ|ƒPƒ‚ƒ“
+	SCRATCH_RES_OBJ_U_POKE = 0,						//ãƒã‚±ãƒ¢ãƒ³
+	SCRATCH_RES_OBJ_D_POKE,							//ãƒã‚±ãƒ¢ãƒ³
 #if 1
-	SCRATCH_RES_OBJ_D_CARD,							//ƒJ[ƒh
-	SCRATCH_RES_OBJ_D_BUTTON,						//ƒ{ƒ^ƒ“
-	SCRATCH_RES_OBJ_D_ATARI,						//“–‚½‚èƒEƒBƒ“ƒhƒE
+	SCRATCH_RES_OBJ_D_CARD,							//ã‚«ãƒ¼ãƒ‰
+	SCRATCH_RES_OBJ_D_BUTTON,						//ãƒœã‚¿ãƒ³
+	SCRATCH_RES_OBJ_D_ATARI,						//å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #else
-	//ƒJ[ƒh‚ÆØ‚è‘Ö‚¦
-	SCRATCH_RES_OBJ_D_CARD,							//ƒJ[ƒh
-	SCRATCH_RES_OBJ_D_BUTTON=SCRATCH_RES_OBJ_D_CARD,//ƒ{ƒ^ƒ“(ƒJ[ƒh‚ÆØ‚è‘Ö‚¦)
+	//ã‚«ãƒ¼ãƒ‰ã¨åˆ‡ã‚Šæ›¿ãˆ
+	SCRATCH_RES_OBJ_D_CARD,							//ã‚«ãƒ¼ãƒ‰
+	SCRATCH_RES_OBJ_D_BUTTON=SCRATCH_RES_OBJ_D_CARD,//ãƒœã‚¿ãƒ³(ã‚«ãƒ¼ãƒ‰ã¨åˆ‡ã‚Šæ›¿ãˆ)
 #endif
-	SCRATCH_RES_OBJ_MAX,							//Å‘å”
+	SCRATCH_RES_OBJ_MAX,							//æœ€å¤§æ•°
 };
 
-//ŠÇ—ID
+//ç®¡ç†ID
 enum{
-	SCRATCH_ID_OBJ_U_POKE = 0,						//ƒ|ƒPƒ‚ƒ“
-	SCRATCH_ID_OBJ_D_POKE,							//ƒ|ƒPƒ‚ƒ“
+	SCRATCH_ID_OBJ_U_POKE = 0,						//ãƒã‚±ãƒ¢ãƒ³
+	SCRATCH_ID_OBJ_D_POKE,							//ãƒã‚±ãƒ¢ãƒ³
 #if 1
-	SCRATCH_ID_OBJ_D_CARD,							//ƒJ[ƒh
-	SCRATCH_ID_OBJ_D_BUTTON,						//ƒ{ƒ^ƒ“
-	SCRATCH_ID_OBJ_D_ATARI,							//“–‚½‚èƒEƒBƒ“ƒhƒE
+	SCRATCH_ID_OBJ_D_CARD,							//ã‚«ãƒ¼ãƒ‰
+	SCRATCH_ID_OBJ_D_BUTTON,						//ãƒœã‚¿ãƒ³
+	SCRATCH_ID_OBJ_D_ATARI,							//å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #else
-	//ƒJ[ƒh‚ÆØ‚è‘Ö‚¦
-	SCRATCH_ID_OBJ_D_CARD,							//ƒJ[ƒh
-	SCRATCH_ID_OBJ_D_BUTTON=SCRATCH_ID_OBJ_D_CARD,	//ƒ{ƒ^ƒ“(ƒJ[ƒh‚ÆØ‚è‘Ö‚¦)
+	//ã‚«ãƒ¼ãƒ‰ã¨åˆ‡ã‚Šæ›¿ãˆ
+	SCRATCH_ID_OBJ_D_CARD,							//ã‚«ãƒ¼ãƒ‰
+	SCRATCH_ID_OBJ_D_BUTTON=SCRATCH_ID_OBJ_D_CARD,	//ãƒœã‚¿ãƒ³(ã‚«ãƒ¼ãƒ‰ã¨åˆ‡ã‚Šæ›¿ãˆ)
 #endif
 	SCRATCH_ID_OBJ_MAX,
 };
 
-#define SCRATCH_U_POKE_MAX		(4)					//ã•\Ž¦ƒ|ƒPƒ‚ƒ“”
-#define SCRATCH_ATARI_MAX		(4)					//“–‚½‚è‚Ì”
-#define SCRATCH_D_POKE_MAX		(9)					//‰º•\Ž¦ƒ|ƒPƒ‚ƒ“”
-#define SCRATCH_D_WAKU_MAX		(9)					//‰º•\Ž¦ƒƒN”
-#define SCRATCH_D_CARD_MAX		(4)					//‰º•\Ž¦ƒJ[ƒh”
+#define SCRATCH_U_POKE_MAX		(4)					//ä¸Šè¡¨ç¤ºãƒã‚±ãƒ¢ãƒ³æ•°
+#define SCRATCH_ATARI_MAX		(4)					//å½“ãŸã‚Šã®æ•°
+#define SCRATCH_D_POKE_MAX		(9)					//ä¸‹è¡¨ç¤ºãƒã‚±ãƒ¢ãƒ³æ•°
+#define SCRATCH_D_WAKU_MAX		(9)					//ä¸‹è¡¨ç¤ºãƒ¯ã‚¯æ•°
+#define SCRATCH_D_CARD_MAX		(4)					//ä¸‹è¡¨ç¤ºã‚«ãƒ¼ãƒ‰æ•°
 
-//ã‰æ–ÊFƒ|ƒPƒ‚ƒ“12
-//‰º‰æ–ÊFƒ|ƒPƒ‚ƒ“9+ƒJ[ƒh4+ƒ{ƒ^ƒ“1+ƒEƒBƒ“+1+‹â”“ƒƒN9+“–‚½‚èƒ|ƒPƒ‚ƒ“4+“–‚½‚èƒEƒBƒ“1
-#define SCRATCH_CLACT_OBJ_MAX	(40)				//ƒZƒ‹ƒAƒNƒ^[‚ÉÝ’è‚·‚éÅ‘åƒAƒNƒ^[”
+//ä¸Šç”»é¢ï¼šãƒã‚±ãƒ¢ãƒ³12
+//ä¸‹ç”»é¢ï¼šãƒã‚±ãƒ¢ãƒ³9+ã‚«ãƒ¼ãƒ‰4+ãƒœã‚¿ãƒ³1+ã‚¦ã‚£ãƒ³+1+éŠ€ç®”ãƒ¯ã‚¯9+å½“ãŸã‚Šãƒã‚±ãƒ¢ãƒ³4+å½“ãŸã‚Šã‚¦ã‚£ãƒ³1
+#define SCRATCH_CLACT_OBJ_MAX	(40)				//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®šã™ã‚‹æœ€å¤§ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
 
-//ƒAƒjƒƒiƒ“ƒo[
+//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
 enum{
-	ANM_CARD_BLUE = 0,								//Â
-	ANM_CARD_RED,									//Ô
-	ANM_CARD_YELLOW,								//‰©F
-	ANM_CARD_GREEN,									//—Î
+	ANM_CARD_BLUE = 0,								//é’
+	ANM_CARD_RED,									//èµ¤
+	ANM_CARD_YELLOW,								//é»„è‰²
+	ANM_CARD_GREEN,									//ç·‘
 };
 
-//ƒAƒjƒƒiƒ“ƒo[
+//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
 enum{
-	ANM_POKE_REE = 0,								//ƒŠ[ƒVƒƒƒ“
-	ANM_POKE_TYE,									//ƒ`ƒFƒŠƒ“ƒ{
-	ANM_POKE_TAMA,									//ƒ^ƒ}ƒUƒ‰ƒV
-	ANM_POKE_GOKU,									//ƒSƒNƒŠƒ“
-	ANM_POKE_META,									//ƒƒ^ƒ‚ƒ“
+	ANM_POKE_REE = 0,								//ãƒªãƒ¼ã‚·ãƒ£ãƒ³
+	ANM_POKE_TYE,									//ãƒã‚§ãƒªãƒ³ãƒœ
+	ANM_POKE_TAMA,									//ã‚¿ãƒžã‚¶ãƒ©ã‚·
+	ANM_POKE_GOKU,									//ã‚´ã‚¯ãƒªãƒ³
+	ANM_POKE_META,									//ãƒ¡ã‚¿ãƒ¢ãƒ³
 };
 
-//ƒAƒjƒƒiƒ“ƒo[
+//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
 enum{
-	ANM_BUTTON_YAMERU = 0,							//‚â‚ß‚éƒ{ƒ^ƒ“
-	ANM_BUTTON_NEXT,								//‚Â‚¬‚ÌƒJ[ƒh‚Öƒ{ƒ^ƒ“
-	ANM_GIN_WAKU,									//‹â”“‚ÌƒƒN
-	ANM_CENTER_WIN,									//^‚ñ’†‚É•\Ž¦‚·‚éƒƒbƒZ[ƒW‚ÌƒEƒBƒ“ƒhƒE
+	ANM_BUTTON_YAMERU = 0,							//ã‚„ã‚ã‚‹ãƒœã‚¿ãƒ³
+	ANM_BUTTON_NEXT,								//ã¤ãŽã®ã‚«ãƒ¼ãƒ‰ã¸ãƒœã‚¿ãƒ³
+	ANM_GIN_WAKU,									//éŠ€ç®”ã®ãƒ¯ã‚¯
+	ANM_CENTER_WIN,									//çœŸã‚“ä¸­ã«è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 };
 
-#define SCRATCH_FRAME_U_MSG		(GF_BGL_FRAME0_S)	//ƒƒbƒZ[ƒW
-#define SCRATCH_FRAME_TYPE		(GF_BGL_FRAME1_S)	//–¢Žg—p
-#define SCRATCH_FRAME_U_YAKU	(GF_BGL_FRAME2_S)	//–ð”wŒi
-#define SCRATCH_FRAME_U_BG		(GF_BGL_FRAME3_S)	//4–‡‚ÌƒJ[ƒh‚ð‘I‚ÔŽž‚Ì”wŒi
-#define SCRATCH_FRAME_D_TOUCH	(GF_BGL_FRAME0_M)	//í‚è–Ê
-#define SCRATCH_FRAME_D_SUB		(GF_BGL_FRAME1_M)	//ƒJ[ƒh”wŒi
-#define SCRATCH_FRAME_D_MSG		(GF_BGL_FRAME2_M)	//ƒƒbƒZ[ƒW
-//#define SCRATCH_FRAME_D_ATARI	(GF_BGL_FRAME3_M)	//“–‚½‚èƒEƒBƒ“ƒhƒE
+#define SCRATCH_FRAME_U_MSG		(GF_BGL_FRAME0_S)	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+#define SCRATCH_FRAME_TYPE		(GF_BGL_FRAME1_S)	//æœªä½¿ç”¨
+#define SCRATCH_FRAME_U_YAKU	(GF_BGL_FRAME2_S)	//å½¹èƒŒæ™¯
+#define SCRATCH_FRAME_U_BG		(GF_BGL_FRAME3_S)	//4æžšã®ã‚«ãƒ¼ãƒ‰ã‚’é¸ã¶æ™‚ã®èƒŒæ™¯
+#define SCRATCH_FRAME_D_TOUCH	(GF_BGL_FRAME0_M)	//å‰Šã‚Šé¢
+#define SCRATCH_FRAME_D_SUB		(GF_BGL_FRAME1_M)	//ã‚«ãƒ¼ãƒ‰èƒŒæ™¯
+#define SCRATCH_FRAME_D_MSG		(GF_BGL_FRAME2_M)	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+//#define SCRATCH_FRAME_D_ATARI	(GF_BGL_FRAME3_M)	//å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-#define SCRATCH_U_MASK_MSG		(GX_PLANEMASK_BG0)	//ƒƒbƒZ[ƒW
-#define SCRATCH_U_MASK_TYPE		(GX_PLANEMASK_BG1)	//–¢Žg—p
-#define SCRATCH_U_MASK_YAKU		(GX_PLANEMASK_BG2)	//–ð”wŒi
-#define SCRATCH_U_MASK_BG		(GX_PLANEMASK_BG3)	//4–‡‚ÌƒJ[ƒh‚ð‘I‚ÔŽž‚Ì”wŒi
-#define SCRATCH_D_MASK_TOUCH	(GX_PLANEMASK_BG0)	//í‚è–Ê
-#define SCRATCH_D_MASK_SUB		(GX_PLANEMASK_BG1)	//ƒJ[ƒh”wŒi
-#define SCRATCH_D_MASK_MSG		(GX_PLANEMASK_BG2)	//ƒƒbƒZ[ƒW
-//#define SCRATCH_D_MASK_ATARI	(GX_PLANEMASK_BG3)	//“–‚½‚èƒEƒBƒ“ƒhƒE
+#define SCRATCH_U_MASK_MSG		(GX_PLANEMASK_BG0)	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+#define SCRATCH_U_MASK_TYPE		(GX_PLANEMASK_BG1)	//æœªä½¿ç”¨
+#define SCRATCH_U_MASK_YAKU		(GX_PLANEMASK_BG2)	//å½¹èƒŒæ™¯
+#define SCRATCH_U_MASK_BG		(GX_PLANEMASK_BG3)	//4æžšã®ã‚«ãƒ¼ãƒ‰ã‚’é¸ã¶æ™‚ã®èƒŒæ™¯
+#define SCRATCH_D_MASK_TOUCH	(GX_PLANEMASK_BG0)	//å‰Šã‚Šé¢
+#define SCRATCH_D_MASK_SUB		(GX_PLANEMASK_BG1)	//ã‚«ãƒ¼ãƒ‰èƒŒæ™¯
+#define SCRATCH_D_MASK_MSG		(GX_PLANEMASK_BG2)	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+//#define SCRATCH_D_MASK_ATARI	(GX_PLANEMASK_BG3)	//å½“ãŸã‚Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
 typedef struct{
 	s16  x;
 	s16  y;
 }SCRATCH_POS;
 
-//CLACT‚Å’è‹`‚µ‚Ä‚¢‚éƒZƒ‹‚ª‘å‚«‚·‚¬‚ÄƒTƒu‰æ–Ê‚É‰e‹¿‚ª‚Å‚Ä‚µ‚Ü‚¤‚Ì‚Å—£‚µ‚Ä‚Ý‚é
-//oekaki.c,guru2_receipt.cŽQl
+//CLACTã§å®šç¾©ã—ã¦ã„ã‚‹ã‚»ãƒ«ãŒå¤§ãã™ãŽã¦ã‚µãƒ–ç”»é¢ã«å½±éŸ¿ãŒã§ã¦ã—ã¾ã†ã®ã§é›¢ã—ã¦ã¿ã‚‹
+//oekaki.c,guru2_receipt.cå‚è€ƒ
 //#define SCRATCH_SUB_ACTOR_DISTANCE 	( 256 * FX32_ONE )
-#define SCRATCH_SUB_ACTOR_DISTANCE 	( 512 * FX32_ONE )		//Šg‘å‚³‚¹‚é‚Ì‚Å‚³‚ç‚É—£‚·
+#define SCRATCH_SUB_ACTOR_DISTANCE 	( 512 * FX32_ONE )		//æ‹¡å¤§ã•ã›ã‚‹ã®ã§ã•ã‚‰ã«é›¢ã™
 
-#define SCRATCH_CARD_NUM		(3)						//ƒXƒNƒ‰ƒbƒ`‚ÌƒJ[ƒh‚Ì”
+#define SCRATCH_CARD_NUM		(3)						//ã‚¹ã‚¯ãƒ©ãƒƒãƒã®ã‚«ãƒ¼ãƒ‰ã®æ•°
 
-//OBJ‚Æ‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+//OBJã¨ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 enum{
 	SCRATCH_OBJ_PRI_H = 0,
 	SCRATCH_OBJ_PRI_N = 10,
 	SCRATCH_OBJ_PRI_L = 20,
 };
 
-//BG‚Æ‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+//BGã¨ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 enum{
 	SCRATCH_OBJ_BG_PRI_H = 0,
 	SCRATCH_OBJ_BG_PRI_N = 1,
 	SCRATCH_OBJ_BG_PRI_L = 2,
 };
 
-//ƒƒN‚ÌƒpƒŒƒbƒgƒŠƒ\[ƒX”
+//ãƒ¯ã‚¯ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹æ•°
 #define WAKU_PAL_NUM			(8)
 
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
-extern const PROC_DATA ScratchProcData;				//ƒvƒƒZƒX’è‹`ƒf[ƒ^
+extern const PROC_DATA ScratchProcData;				//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT ScratchProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT ScratchProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT ScratchProc_End( PROC * proc, int * seq );

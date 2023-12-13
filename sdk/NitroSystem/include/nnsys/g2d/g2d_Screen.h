@@ -26,10 +26,10 @@ extern "C" {
 
 
 //-------------------------------------------------------------------------
-// �񋓎q
+// 列挙子
 //-------------------------------------------------------------------------
 
-// �����Ώۂ�BG�w��p
+// 処理対象のBG指定用
 typedef enum NNSG2dBGSelect
 {
     NNS_G2D_BGSELECT_MAIN0,
@@ -48,27 +48,27 @@ NNSG2dBGSelect;
 
 
 //-------------------------------------------------------------------------
-// �֐��錾
+// 関数宣言
 //-------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dBGSetupEx
 
-  Description:  BG�̐ݒ���s���ABG�f�[�^��VRAM�ɓǂݍ��݂܂��B
+  Description:  BGの設定を行い、BGデータをVRAMに読み込みます。
 
-  Arguments:    bg:         �ΏۂƂ��� BG
-                pScnData:   BG �Ŏg�p����X�N���[���f�[�^�ւ̃|�C���^�B
-                            NULL �ł����Ă͂Ȃ�܂���B
-                pChrData:   BG �Ŏg�p����L�����N�^�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                pPltData:   BG �Ŏg�p����p���b�g�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                pPosInfo:   �L�����N�^���o�̈���ւ̃|�C���^�B
-                pCmpInfo:   �p���b�g���k���ւ̃|�C���^�B
-                scnBase:    BG �̃X�N���[���x�[�X�B
-                chrBase:    BG �̃L�����N�^�x�[�X�B
+  Arguments:    bg:         対象とする BG
+                pScnData:   BG で使用するスクリーンデータへのポインタ。
+                            NULL であってはなりません。
+                pChrData:   BG で使用するキャラクタデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                pPltData:   BG で使用するパレットデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                pPosInfo:   キャラクタ抽出領域情報へのポインタ。
+                pCmpInfo:   パレット圧縮情報へのポインタ。
+                scnBase:    BG のスクリーンベース。
+                chrBase:    BG のキャラクタベース。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void NNS_G2dBGSetupEx(
     NNSG2dBGSelect bg,
@@ -84,25 +84,25 @@ void NNS_G2dBGSetupEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dBGLoadElements
 
-  Description:  BG �ŗp����O���t�B�b�N�X�f�[�^��K�؂�VRAM�ɓǂݍ��݂܂��B
-                �Ώ� BG �� BGControl ���K�؂ɐݒ肳��Ă���K�v������܂��B
-                BG0-1�̊g���p���b�g�̓Ǎ���͊g���p���b�g�ւ� VRAM ��
-                ���蓖�ď󋵂��玩���I�ɔ��f���܂��B
-                Text BG �� 256x1 �p���b�g�͊g���p���b�g���L�����ǂ�����
-                ���[�h���؂�ւ��܂��B
+  Description:  BG で用いるグラフィックスデータを適切なVRAMに読み込みます。
+                対象 BG の BGControl が適切に設定されている必要があります。
+                BG0-1の拡張パレットの読込先は拡張パレットへの VRAM の
+                割り当て状況から自動的に判断します。
+                Text BG の 256x1 パレットは拡張パレットが有効かどうかで
+                ロード先を切り替えます。
 
-  Arguments:    bg:         ���[�h����f�[�^���g�p���� BG
-                pScnData:   VRAM �Ƀ��[�h����X�N���[���f�[�^�ւ̃|�C���^�B
-                            NULL �ł��\���܂��񂪁ApPltData �� NULL �łȂ�
-                            �ꍇ�� NULL �ł����Ă͂Ȃ�܂���B
-                pChrData:   VRAM �Ƀ��[�h����L�����N�^�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                pPltData:   VRAM �Ƀ��[�h����p���b�g�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                pPosInfo:   �L�����N�^���o�̈���ւ̃|�C���^�B
-                pCmpInfo:   �p���b�g���k���ւ̃|�C���^�B
+  Arguments:    bg:         ロードするデータを使用する BG
+                pScnData:   VRAM にロードするスクリーンデータへのポインタ。
+                            NULL でも構いませんが、pPltData が NULL でない
+                            場合は NULL であってはなりません。
+                pChrData:   VRAM にロードするキャラクタデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                pPltData:   VRAM にロードするパレットデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                pPosInfo:   キャラクタ抽出領域情報へのポインタ。
+                pCmpInfo:   パレット圧縮情報へのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void NNS_G2dBGLoadElementsEx(
     NNSG2dBGSelect bg,
@@ -116,21 +116,21 @@ void NNS_G2dBGLoadElementsEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dBGLoadScreenRect
 
-  Description:  �X�N���[���f�[�^���̎w�肳�ꂽ��`���o�b�t�@�̎w�肳�ꂽ�ʒu��
-                �R�s�[���܂��B
+  Description:  スクリーンデータ中の指定された矩形をバッファの指定された位置に
+                コピーします。
 
-  Arguments:    pScreenDst: �]�����_�ւ̃|�C���^�B
-                pScnData:   �]�����ƂȂ�X�N���[���f�[�^�ւ̃|�C���^�B
-                srcX:       �]�����������X���W�B�i�L�����N�^�P�ʁj
-                srcY:       �]�����������Y���W�B�i�L�����N�^�P�ʁj
-                dstX:       �]���捶�����X���W�B�i�L�����N�^�P�ʁj
-                dstY:       �]���捶�����Y���W�B�i�L�����N�^�P�ʁj
-                dstW:       �]����̈�̕��B�i�L�����N�^�P�ʁj
-                dstH:       �]����̈�̍����B�i�L�����N�^�P�ʁj
-                width:      �]������̈�̕��B�i�L�����N�^�P�ʁj
-                height:     �]������̈�̍����B�i�L�����N�^�P�ʁj
+  Arguments:    pScreenDst: 転送先基準点へのポインタ。
+                pScnData:   転送下となるスクリーンデータへのポインタ。
+                srcX:       転送元左上隅のX座標。（キャラクタ単位）
+                srcY:       転送元左上隅のY座標。（キャラクタ単位）
+                dstX:       転送先左上隅のX座標。（キャラクタ単位）
+                dstY:       転送先左上隅のY座標。（キャラクタ単位）
+                dstW:       転送先領域の幅。（キャラクタ単位）
+                dstH:       転送先領域の高さ。（キャラクタ単位）
+                width:      転送する領域の幅。（キャラクタ単位）
+                height:     転送する領域の高さ。（キャラクタ単位）
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void NNS_G2dBGLoadScreenRect(
     void* pScreenDst,
@@ -147,7 +147,7 @@ void NNS_G2dBGLoadScreenRect(
 
 
 //-------------------------------------------------------------------------
-// ���ϐ�(����J)
+// 大域変数(非公開)
 //-------------------------------------------------------------------------
 
 extern GXBGAreaOver NNSi_G2dBGAreaOver;
@@ -156,17 +156,17 @@ extern GXBGAreaOver NNSi_G2dBGAreaOver;
 
 
 //-------------------------------------------------------------------------
-// inline �֐�
+// inline 関数
 //-------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dBGGetScreenColorMode
 
-  Description:  �X�N���[���f�[�^�̃J���[���[�h���擾���܂��B
+  Description:  スクリーンデータのカラーモードを取得します。
 
-  Arguments:    pScnData:   �X�N���[���f�[�^�ւ̃|�C���^
+  Arguments:    pScnData:   スクリーンデータへのポインタ
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE GXBGColorMode NNSi_G2dBGGetScreenColorMode(const NNSG2dScreenData* pScnData)
 {
@@ -180,11 +180,11 @@ NNS_G2D_INLINE GXBGColorMode NNSi_G2dBGGetScreenColorMode(const NNSG2dScreenData
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dBGGetScreenFormat
 
-  Description:  �X�N���[���f�[�^�̃X�N���[���t�H�[�}�b�g���擾���܂��B
+  Description:  スクリーンデータのスクリーンフォーマットを取得します。
 
-  Arguments:    pScnData:   �X�N���[���f�[�^�ւ̃|�C���^
+  Arguments:    pScnData:   スクリーンデータへのポインタ
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE NNSG2dScreenFormat NNSi_G2dBGGetScreenFormat(const NNSG2dScreenData* pScnData)
 {
@@ -197,13 +197,13 @@ NNS_G2D_INLINE NNSG2dScreenFormat NNSi_G2dBGGetScreenFormat(const NNSG2dScreenDa
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetBGAreaOver
 
-  Description:  NNS_G2dLoadBGScreenSet() �� Affine (�g��) BG ��
-                �G���A�I�[�o�[�����w��Ƃ��ėp��������w�肵�܂��B
+  Description:  NNS_G2dLoadBGScreenSet() で Affine (拡張) BG の
+                エリアオーバー処理指定として用いられるを指定します。
 
-  Arguments:    areaOver:   �ȍ~�� NNS_G2dLoadBGScreenSet() �ŗp������
-                            �G���A�I�[�o�[�������w�肵�܂��B
+  Arguments:    areaOver:   以降の NNS_G2dLoadBGScreenSet() で用いられる
+                            エリアオーバー処理を指定します。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dSetBGAreaOver( GXBGAreaOver areaOver )
 {
@@ -214,12 +214,12 @@ NNS_G2D_INLINE void NNS_G2dSetBGAreaOver( GXBGAreaOver areaOver )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetBGAreaOver
 
-  Description:  NNS_G2dLoadBGScreenSet() �ŗp������G���A�I�[�o�[������
-                �擾���܂��B
+  Description:  NNS_G2dLoadBGScreenSet() で用いられるエリアオーバー処理を
+                取得します。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      NNS_G2dLoadBGScreenSet() �ŗp������G���A�I�[�o�[�����B
+  Returns:      NNS_G2dLoadBGScreenSet() で用いられるエリアオーバー処理。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE GXBGAreaOver NNS_G2dGetBGAreaOver( void )
 {
@@ -229,19 +229,19 @@ NNS_G2D_INLINE GXBGAreaOver NNS_G2dGetBGAreaOver( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dBGSetup
 
-  Description:  BG�̐ݒ���s���ABG�f�[�^��VRAM�ɓǂݍ��݂܂��B
+  Description:  BGの設定を行い、BGデータをVRAMに読み込みます。
 
-  Arguments:    bg:         �ΏۂƂ��� BG
-                pScnData:   BG �Ŏg�p����X�N���[���f�[�^�ւ̃|�C���^�B
-                            NULL �ł����Ă͂Ȃ�܂���B
-                pChrData:   BG �Ŏg�p����L�����N�^�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                pPltData:   BG �Ŏg�p����p���b�g�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                scnBase:    BG �̃X�N���[���x�[�X�B
-                chrBase:    BG �̃L�����N�^�x�[�X�B
+  Arguments:    bg:         対象とする BG
+                pScnData:   BG で使用するスクリーンデータへのポインタ。
+                            NULL であってはなりません。
+                pChrData:   BG で使用するキャラクタデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                pPltData:   BG で使用するパレットデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                scnBase:    BG のスクリーンベース。
+                chrBase:    BG のキャラクタベース。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dBGSetup(
     NNSG2dBGSelect bg,
@@ -258,23 +258,23 @@ NNS_G2D_INLINE void NNS_G2dBGSetup(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dBGLoadElements
 
-  Description:  BG �ŗp����O���t�B�b�N�X�f�[�^��K�؂�VRAM�ɓǂݍ��݂܂��B
-                �Ώ� BG �� BGControl ���K�؂ɐݒ肳��Ă���K�v������܂��B
-                BG0-1�̊g���p���b�g�̓Ǎ���͊g���p���b�g�ւ� VRAM ��
-                ���蓖�ď󋵂��玩���I�ɔ��f���܂��B
-                Text BG �� 256x1 �p���b�g�͊g���p���b�g���L�����ǂ�����
-                ���[�h���؂�ւ��܂��B
+  Description:  BG で用いるグラフィックスデータを適切なVRAMに読み込みます。
+                対象 BG の BGControl が適切に設定されている必要があります。
+                BG0-1の拡張パレットの読込先は拡張パレットへの VRAM の
+                割り当て状況から自動的に判断します。
+                Text BG の 256x1 パレットは拡張パレットが有効かどうかで
+                ロード先を切り替えます。
 
-  Arguments:    bg:         ���[�h����f�[�^���g�p���� BG
-                pScnData:   VRAM �Ƀ��[�h����X�N���[���f�[�^�ւ̃|�C���^�B
-                            NULL �ł��\���܂��񂪁ApPltData �� NULL �łȂ�
-                            �ꍇ�� NULL �ł����Ă͂Ȃ�܂���B
-                pChrData:   VRAM �Ƀ��[�h����L�����N�^�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                pPltData:   VRAM �Ƀ��[�h����p���b�g�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
+  Arguments:    bg:         ロードするデータを使用する BG
+                pScnData:   VRAM にロードするスクリーンデータへのポインタ。
+                            NULL でも構いませんが、pPltData が NULL でない
+                            場合は NULL であってはなりません。
+                pChrData:   VRAM にロードするキャラクタデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                pPltData:   VRAM にロードするパレットデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dBGLoadElements(
     NNSG2dBGSelect bg,

@@ -24,7 +24,7 @@
   do-indent.
 
   Revision 1.4  2005/02/24 07:34:25  yosizaki
-  �s�v�� #ifdef __cplusplus ������.
+  不要な #ifdef __cplusplus を除去.
 
   Revision 1.3  2005/01/27 11:27:32  yosizaki
   remove debug-output...
@@ -66,10 +66,10 @@ static void MBi_TaskThread(void *arg)
     for (;;)
     {
         MBiTaskInfo *trg = NULL;
-        /* ���̃^�X�N���擾 */
+        /* 次のタスクを取得 */
         {
             OSIntrMode bak_cpsr = OS_DisableInterrupts();
-            /* �A�C�h����ԂȂ�X���[�v */
+            /* アイドル状態ならスリープ */
             while (!p->list)
             {
                 (void)OS_SetThreadPriority(p->th, OS_THREAD_PRIORITY_MIN);
@@ -80,19 +80,19 @@ static void MBi_TaskThread(void *arg)
             (void)OS_SetThreadPriority(p->th, trg->priority);
             (void)OS_RestoreInterrupts(bak_cpsr);
         }
-        /* �^�X�N�����s */
+        /* タスクを実行 */
         if (trg->task)
             (*trg->task) (trg);
-        /* �^�X�N�����R�[���o�b�N���s */
+        /* タスク完了コールバック実行 */
         {
             OSIntrMode bak_cpsr = OS_DisableInterrupts();
             MB_TASK_FUNC callback = trg->callback;
             /*
-             * ������, �X���b�h�D�惌�x���ɂ��Ă͐T�d�ɑ��삷��.
-             * 1. ���̃^�X�N�������̂ł���΍ō��Ɏw��. (�҂�sleep)
-             * 2. ���̃^�X�N�����茻�݂�荂����΂���ɕύX.
-             * 3. ���̃^�X�N�����茻�݂��Ⴏ��΂��̂܂�.
-             * �D�惌�x����������Ⴍ�Ȃ邱�Ƃ͖���.
+             * ここで, スレッド優先レベルについては慎重に操作する.
+             * 1. 次のタスクが無いのであれば最高に指定. (待ちsleep)
+             * 2. 次のタスクがあり現在より高ければそれに変更.
+             * 3. 次のタスクがあり現在より低ければそのまま.
+             * 優先レベルが現状より低くなることは無い.
              */
             const u32 cur_priority = OS_GetThreadPriority(p->th);
             u32     new_priority;
@@ -109,8 +109,8 @@ static void MBi_TaskThread(void *arg)
             if (callback)
                 (*callback) (trg);
             /*
-             * �I���v���Ȃ犄�荞�݋֎~�̂܂܃X���b�h�I��.
-             * (���̋֎~�ݒ�̓R���e�L�X�g�؂�ւ��̏u�Ԃ܂ŗL��)
+             * 終了要求なら割り込み禁止のままスレッド終了.
+             * (この禁止設定はコンテキスト切り替えの瞬間まで有効)
              */
             if (trg == &p->end_task)
                 break;
@@ -125,13 +125,13 @@ static void MBi_TaskThread(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_InitTaskThread
 
-  Description:  �^�X�N�X���b�h���N������.
+  Description:  タスクスレッドを起動する.
                 
-  Arguments:    p_work     �������[�N�p�̃o�b�t�@.
-                           MBi_EndTaskThread() �������܂œ����Ŏg�p�����.
-                size       p_work �̃o�C�g�T�C�Y.
-                           MB_TASK_WORK_MIN �ȏ�ł���K�v������,
-                           size - MB_TASK_WORK_MIN ���X�^�b�N�Ɏg�p�����.
+  Arguments:    p_work     内部ワーク用のバッファ.
+                           MBi_EndTaskThread() 完了時まで内部で使用される.
+                size       p_work のバイトサイズ.
+                           MB_TASK_WORK_MIN 以上である必要があり,
+                           size - MB_TASK_WORK_MIN がスタックに使用される.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -145,7 +145,7 @@ void MBi_InitTaskThread(void *p_work, u32 size)
         SDK_ASSERT(size >= MB_TASK_WORK_MIN);
         SDK_ASSERT(OS_IsThreadAvailable());
 
-        /* ���[�N�\����, �X�^�b�N�o�b�t�@, �^�X�N�X���b�h�̏��� */
+        /* ワーク構造体, スタックバッファ, タスクスレッドの準備 */
         mbi_task_work = p;
         MBi_InitTaskInfo(&p->end_task);
         p->list = NULL;
@@ -160,11 +160,11 @@ void MBi_InitTaskThread(void *p_work, u32 size)
 /*---------------------------------------------------------------------------*
   Name:         MBi_IsTaskAvailable
 
-  Description:  �^�X�N�X���b�h�����ݎg�p�\������.
+  Description:  タスクスレッドが現在使用可能か判定.
                 
   Arguments:    None.
 
-  Returns:      ���ݎg�p�\�Ȃ� TRUE, �����łȂ��Ȃ� FALSE.
+  Returns:      現在使用可能なら TRUE, そうでないなら FALSE.
  *---------------------------------------------------------------------------*/
 BOOL MBi_IsTaskAvailable(void)
 {
@@ -174,10 +174,10 @@ BOOL MBi_IsTaskAvailable(void)
 /*---------------------------------------------------------------------------*
   Name:         MBi_InitTaskInfo
 
-  Description:  �^�X�N���\���̂�����������.
-                �g�p����O�� 1 �񂾂��Ăяo���K�v������.
+  Description:  タスク情報構造体を初期化する.
+                使用する前に 1 回だけ呼び出す必要がある.
 
-  Arguments:    pt         ���������̃^�X�N���\����
+  Arguments:    pt         未初期化のタスク情報構造体
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -190,11 +190,11 @@ void MBi_InitTaskInfo(MBiTaskInfo * pt)
 /*---------------------------------------------------------------------------*
   Name:         MBi_IsTaskBusy
 
-  Description:  �^�X�N��񂪌��ݎg�p��������.
+  Description:  タスク情報が現在使用中か判定.
                 
-  Arguments:    pt         �^�X�N���
+  Arguments:    pt         タスク情報
 
-  Returns:      ���ݎg�p���Ȃ� TRUE, �����łȂ��Ȃ� FALSE.
+  Returns:      現在使用中なら TRUE, そうでないなら FALSE.
  *---------------------------------------------------------------------------*/
 BOOL MBi_IsTaskBusy(volatile const MBiTaskInfo * pt)
 {
@@ -204,12 +204,12 @@ BOOL MBi_IsTaskBusy(volatile const MBiTaskInfo * pt)
 /*---------------------------------------------------------------------------*
   Name:         MBi_SetTask
 
-  Description:  �^�X�N������X���b�h�ɒǉ�����.
+  Description:  タスクを内部スレッドに追加する.
                 
-  Arguments:    pt         ���ݎg�p���łȂ��^�X�N���
-                task       �^�X�N�֐�
-                callback   �^�X�N�������̃R�[���o�b�N (NULL �Ȃ疳��)
-                priority   �^�X�N���s���̃X���b�h�D��x
+  Arguments:    pt         現在使用中でないタスク情報
+                task       タスク関数
+                callback   タスク完了時のコールバック (NULL なら無視)
+                priority   タスク実行中のスレッド優先度
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -219,7 +219,7 @@ void MBi_SetTask(MBiTaskInfo * pt, MB_TASK_FUNC task, MB_TASK_FUNC callback, u32
 
     SDK_ASSERT(pt != NULL);
 
-    /* ���C�u�����I�����܂��̓J�[�h�������A�Â��ɏ����𖳎�����悤�ύX */
+    /* ライブラリ終了時またはカード抜け時、静かに処理を無視するよう変更 */
     if (!MBi_IsTaskAvailable())
     {
         OS_TWarning("MBi_SetTask() ignored... (task-thread is not available now)");
@@ -231,47 +231,47 @@ void MBi_SetTask(MBiTaskInfo * pt, MB_TASK_FUNC task, MB_TASK_FUNC callback, u32
         return;
     }
 
-    /* �D�惌�x���̊g����`�ւ̑Ή� */
+    /* 優先レベルの拡張定義への対応 */
     if (priority > OS_THREAD_PRIORITY_MAX)
     {
         const u32 cur_priority = OS_GetThreadPriority(p_work->th);
         if (priority == MB_TASK_PRIORITY_ABOVE)
         {
-            /* �Ăяo������� 1 �������D�� */
+            /* 呼び出し元より 1 だけ高優先 */
             priority = (u32)((cur_priority > OS_THREAD_PRIORITY_MIN) ?
                              (cur_priority - 1) : OS_THREAD_PRIORITY_MIN);
         }
         else if (priority == MB_TASK_PRIORITY_BELOW)
         {
-            /* �Ăяo������� 1 ������D�� */
+            /* 呼び出し元より 1 だけ低優先 */
             priority = (u32)((cur_priority < OS_THREAD_PRIORITY_MAX) ?
                              (cur_priority + 1) : OS_THREAD_PRIORITY_MAX);
         }
         else if (priority == MB_TASK_PRIORITY_NORMAL)
         {
-            /* �Ăяo�����Ɠ����D�惌�x�� */
+            /* 呼び出し元と同じ優先レベル */
             priority = cur_priority;
         }
         else
         {
-            /* �P�Ȃ�s���w�� */
+            /* 単なる不正指定 */
             priority = OS_THREAD_PRIORITY_MAX;
         }
     }
-    /* �^�X�N�ǉ� */
+    /* タスク追加 */
     {
         OSIntrMode bak_cpsr = OS_DisableInterrupts();
         pt->busy = TRUE;
         pt->priority = priority;
         pt->task = task;
         pt->callback = callback;
-        /* �A�C�h����Ԃ̐V�K�^�X�N�Ȃ�X���b�h���N�� */
+        /* アイドル状態の新規タスクならスレッドを起動 */
         if (!p_work->list)
         {
 
             if (pt == &p_work->end_task)
             {
-                /* ��������^�X�N�X���b�h�̗��p���֎~���� */
+                /* ここからタスクスレッドの利用を禁止する */
                 mbi_task_work = NULL;
             }
 
@@ -280,18 +280,18 @@ void MBi_SetTask(MBiTaskInfo * pt, MB_TASK_FUNC task, MB_TASK_FUNC callback, u32
         }
         else
         {
-            /* ���X�g����łȂ���Α}�� */
+            /* リストが空でなければ挿入 */
             MBiTaskInfo *pos = p_work->list;
-            /* �I���R�}���h�Ȃ��ɏI�[�ɒǉ� */
+            /* 終了コマンドなら常に終端に追加 */
             if (pt == &p_work->end_task)
             {
                 while (pos->next)
                     pos = pos->next;
                 pos->next = pt;
-                /* ��������^�X�N�X���b�h�̗��p���֎~���� */
+                /* ここからタスクスレッドの利用を禁止する */
                 mbi_task_work = NULL;
             }
-            /* �ʏ�R�}���h�Ȃ�D�惌�x�����ɑ}�� */
+            /* 通常コマンドなら優先レベル順に挿入 */
             else
             {
                 if (pos->priority > priority)
@@ -315,11 +315,11 @@ void MBi_SetTask(MBiTaskInfo * pt, MB_TASK_FUNC task, MB_TASK_FUNC callback, u32
 /*---------------------------------------------------------------------------*
   Name:         MBi_EndTaskThread
 
-  Description:  �^�X�N�X���b�h���I������.
+  Description:  タスクスレッドを終了する.
                 
-  Arguments:    callback   �^�X�N�X���b�h�I�����̃R�[���o�b�N (NULL �Ȃ疳��)
-                           ���̃R�[���o�b�N�̓^�X�N�X���b�h�I�����O�̏�Ԃ�
-                           ���荞�݂��֎~�����܂܌Ăяo�����.
+  Arguments:    callback   タスクスレッド終了時のコールバック (NULL なら無視)
+                           このコールバックはタスクスレッド終了寸前の状態で
+                           割り込みを禁止したまま呼び出される.
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void MBi_EndTaskThread(MB_TASK_FUNC callback)

@@ -2,7 +2,7 @@
 /**
  *
  *@file		field_light.c
- *@brief	ƒ‰ƒCƒgƒRƒ“ƒgƒ[ƒ‰
+ *@brief	ãƒ©ã‚¤ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  *@author	tomoya takahashi
  *@data		2005.04.01
  *
@@ -18,98 +18,98 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
 //	
-//	‚P“ú•\Œ»ƒZƒbƒg	
+//	ï¼‘æ—¥è¡¨ç¾ã‚»ãƒƒãƒˆ	
 //	
 //=====================================
 typedef struct _LIGHT_CONT_SET{
-	u32		DataNum;				// ƒf[ƒ^”
-	LIGHT_CONT_DATA* pDataTbl;		// ƒf[ƒ^ƒe[ƒuƒ‹
-	int Light_Num;					// ¡‚ÌLIGHTƒiƒ“ƒo[
-	GLST_DATA_PTR	Glb;			// ƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚Ìó‘Ô•Û‘¶—Ìˆæ
-	BOOL reflect;					// ”½‰fƒtƒ‰ƒO	TRUE”½‰f
+	u32		DataNum;				// ãƒ‡ãƒ¼ã‚¿æ•°
+	LIGHT_CONT_DATA* pDataTbl;		// ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+	int Light_Num;					// ä»Šã®LIGHTãƒŠãƒ³ãƒãƒ¼
+	GLST_DATA_PTR	Glb;			// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã®çŠ¶æ…‹ä¿å­˜é ˜åŸŸ
+	BOOL reflect;					// åæ˜ ãƒ•ãƒ©ã‚°	TRUEåæ˜ 
 } LIGHT_CONT_SET;
 
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
-static void DataSetLightContPack(LIGHT_CONT_SET* cont);			// ¡‚Ìƒ‰ƒCƒgƒf[ƒ^‚ğ”½‰f‚·‚é
+static void DataSetLightContPack(LIGHT_CONT_SET* cont);			// ä»Šã®ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’åæ˜ ã™ã‚‹
 
-static u32 loadLightData( u32 lightidx, LIGHT_CONT_DATA** ppData );			// ƒ‰ƒCƒgƒf[ƒ^“Ç‚İ‚İ
-static void dellLightData(LIGHT_CONT_DATA** ppData);						// ƒ‰ƒCƒgƒf[ƒ^”jŠü
-static char* GetLightData( char* buff, GXRgb* Color, VecFx16* Vector );		// lightƒf[ƒ^‚ğæ“¾
-static char* GetRgbData( char* buff, GXRgb* Color );						// Fƒf[ƒ^‚ğæ“¾
+static u32 loadLightData( u32 lightidx, LIGHT_CONT_DATA** ppData );			// ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+static void dellLightData(LIGHT_CONT_DATA** ppData);						// ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
+static char* GetLightData( char* buff, GXRgb* Color, VecFx16* Vector );		// lightãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+static char* GetRgbData( char* buff, GXRgb* Color );						// è‰²ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
-//ƒA[ƒJƒCƒu‚ªŠ®—¹‚µ‚½‚ç•s—v
+//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒå®Œäº†ã—ãŸã‚‰ä¸è¦
 /*static const char *const Path[ LIGHT_TYPE_MAX ] =
 {
-	{"data/area00light.txt"},	// –ìŠO
-	{"data/area01light.txt"},	// º“à
-	{"data/area03light.txt"},	// ƒ_ƒ“ƒWƒ‡ƒ“
-	{"data/area02light.txt"},	// ƒCƒAƒGƒA
+	{"data/area00light.txt"},	// é‡å¤–
+	{"data/area01light.txt"},	// å®¤å†…
+	{"data/area03light.txt"},	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
+	{"data/area02light.txt"},	// ã‚¤ã‚¢ã‚¨ã‚¢
 };//*/
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgƒVƒXƒeƒ€‚ğ‰Šú‰»
+ *@brief	ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–
  *		
- *@param	glb			ƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚Ìó‘Ô•Û‘¶—Ìˆæ
- *@param	path		ƒ‰ƒCƒgƒe[ƒuƒ‹ƒpƒX
+ *@param	glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã®çŠ¶æ…‹ä¿å­˜é ˜åŸŸ
+ *@param	path		ãƒ©ã‚¤ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‘ã‚¹
  *
- *@return	LIGHT_CONT_PTR	ì¬‚µ‚½ƒ‰ƒCƒgƒVƒXƒeƒ€ƒf[ƒ^
+ *@return	LIGHT_CONT_PTR	ä½œæˆã—ãŸãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  */
 //-----------------------------------------------------------------------------
 LIGHT_CONT_PTR InitLightCont(GLST_DATA_PTR glb, const u8 light_index/*const char* path*/)
 {
-	int		i;	// ƒ‹[ƒv—p
+	int		i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 	LIGHT_CONT_PTR data;
 	int light_movecount;
 	
-	GF_ASSERT(light_index<LIGHT_TYPE_MAX && "ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒXƒI[ƒo[");
+	GF_ASSERT(light_index<LIGHT_TYPE_MAX && "ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚ªãƒ¼ãƒãƒ¼");
 
 	data = sys_AllocMemory(HEAPID_FIELD, sizeof(LIGHT_CONT_SET));
 	
-	data->Glb = glb;		// ƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚Ìó‘Ô•Û‘¶—Ìˆæ‚ğ•Û‘¶
+	data->Glb = glb;		// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã®çŠ¶æ…‹ä¿å­˜é ˜åŸŸã‚’ä¿å­˜
 //#ifdef DEBUG_ONLY_FOR_saitou
 //	OS_Printf("local_print light = %s\n",Path[light_index]);
 //#endif	
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	data->DataNum = loadLightData(light_index, &data->pDataTbl);
 	data->Light_Num = 0;
 
-	// RTC‚©‚çŒ»İŠÔ‚Ìæ“¾‚ğ‚¨‚±‚È‚¢‚Ü‚·B
+	// RTCã‹ã‚‰ç¾åœ¨æ™‚é–“ã®å–å¾—ã‚’ãŠã“ãªã„ã¾ã™ã€‚
 	light_movecount = GF_RTC_GetTimeBySecond() / 2;
 
-	// ¡‚ÌŠÔ‚Í‚Ç‚Ìƒ‰ƒCƒg‚©ƒ`ƒFƒbƒN
-	// ‚±‚ê‚ÍŠÔ‚©‚çƒe[ƒuƒ‹‚ğ“®‚©‚·–‚ğl‚¦‚Ä“ü‚ê‚Ü‚µ‚½B
+	// ä»Šã®æ™‚é–“ã¯ã©ã®ãƒ©ã‚¤ãƒˆã‹ãƒã‚§ãƒƒã‚¯
+	// ã“ã‚Œã¯æ™‚é–“ã‹ã‚‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å‹•ã‹ã™äº‹ã‚’è€ƒãˆã¦å…¥ã‚Œã¾ã—ãŸã€‚
 	for(i = 0;i < data->DataNum; i++){
 		if(data->pDataTbl[i].lightEnd > light_movecount){
-			data->Light_Num = i;				// ƒ‰ƒCƒg”İ’è
+			data->Light_Num = i;				// ãƒ©ã‚¤ãƒˆæ•°è¨­å®š
 			break;
 		}
 	}
 
-	// ”½‰f
+	// åæ˜ 
 	data->reflect = TRUE;
 
 	DataSetLightContPack(data);
@@ -120,9 +120,9 @@ LIGHT_CONT_PTR InitLightCont(GLST_DATA_PTR glb, const u8 light_index/*const char
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgƒRƒ“ƒgƒ[ƒ‹ƒVƒXƒeƒ€‚ğ”jŠü
+ *@brief	ãƒ©ã‚¤ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’ç ´æ£„
  *
- *@param	pLight		ƒ‰ƒCƒgƒVƒXƒeƒ€ƒf[ƒ^
+ *@param	pLight		ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -132,7 +132,7 @@ void DellLightCont( LIGHT_CONT_PTR* pLight )
 {
 	GF_ASSERT(pLight);
 	
-	dellLightData(&(*pLight)->pDataTbl);	// ƒf[ƒ^”jŠü
+	dellLightData(&(*pLight)->pDataTbl);	// ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	
 	sys_FreeMemory(HEAPID_FIELD, *pLight);
 	*pLight = NULL;
@@ -141,9 +141,9 @@ void DellLightCont( LIGHT_CONT_PTR* pLight )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgƒf[ƒ^‚ğ“®‚©‚·
+ *@brief	ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å‹•ã‹ã™
  *
- *@param	Light		ƒ‰ƒCƒgƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^
+ *@param	Light		ãƒ©ã‚¤ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -152,20 +152,20 @@ void DellLightCont( LIGHT_CONT_PTR* pLight )
 void MainLightCont(LIGHT_CONT_PTR Light)
 {
 	u32 num;
-	int i;		// ƒ‹[ƒv—p
-	int light_min;	// ¡‚Ìƒe[ƒuƒ‹‚Ìƒ‰ƒCƒgƒJƒEƒ“ƒ^Å¬
-	int light_max;	// ¡‚Ìƒe[ƒuƒ‹‚Ìƒ‰ƒCƒgƒJƒEƒ“ƒ^Å‘å
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	int light_min;	// ä»Šã®ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ©ã‚¤ãƒˆã‚«ã‚¦ãƒ³ã‚¿æœ€å°
+	int light_max;	// ä»Šã®ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ©ã‚¤ãƒˆã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§
 	int light_movecount;
 	
 	GF_ASSERT(Light);
 	
-	// RTC‚©‚çŒ»İŠÔ‚Ìæ“¾‚ğ‚¨‚±‚È‚¢‚Ü‚·B
+	// RTCã‹ã‚‰ç¾åœ¨æ™‚é–“ã®å–å¾—ã‚’ãŠã“ãªã„ã¾ã™ã€‚
 	light_movecount = GF_RTC_GetTimeBySecond() / 2;
 
-	// ƒ‰ƒCƒgƒe[ƒuƒ‹‚ª‚P‚Â‚È‚ç•ÏX‚Í‚µ‚È‚¢
+	// ãƒ©ã‚¤ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ãŒï¼‘ã¤ãªã‚‰å¤‰æ›´ã¯ã—ãªã„
 	if( Light->DataNum > 1 ){
 
-		// ¡‚Ìƒ‰ƒCƒgƒe[ƒuƒ‹‚ÌÅ¬ƒJƒEƒ“ƒg’l@Å‘åƒJƒEƒ“ƒg’l‚ğİ’è
+		// ä»Šã®ãƒ©ã‚¤ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®æœ€å°ã‚«ã‚¦ãƒ³ãƒˆå€¤ã€€æœ€å¤§ã‚«ã‚¦ãƒ³ãƒˆå€¤ã‚’è¨­å®š
 		if( (Light->Light_Num - 1) >= 0 ){
 			light_min = Light->pDataTbl[ Light->Light_Num - 1 ].lightEnd;
 		}else{
@@ -175,13 +175,13 @@ void MainLightCont(LIGHT_CONT_PTR Light)
 		light_max = Light->pDataTbl[ Light->Light_Num ].lightEnd;
 
 	
-		// ƒJƒEƒ“ƒ^‚Ìƒ^ƒCƒ~ƒ“ƒO‚É‚È‚Á‚½‚ç
-		// ”½‰f‚³‚¹‚é\‘¢‘Ì‚ğ•ÏX‚·‚é
-		if( ( light_movecount >= light_max ) ||		// ƒJƒEƒ“ƒg’l‚ª”ÍˆÍŠO‚Ì‚Æ‚«‚ÍLight_Num‚ğƒJƒEƒ“ƒgƒAƒbƒv‚µ‚Ä
-			( light_movecount < light_min ) ){		// ƒJƒEƒ“ƒg’l‚ª”ÍˆÍ“à‚Ìƒe[ƒuƒ‹‚ğ’T‚·
+		// ã‚«ã‚¦ãƒ³ã‚¿ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã«ãªã£ãŸã‚‰
+		// åæ˜ ã•ã›ã‚‹æ§‹é€ ä½“ã‚’å¤‰æ›´ã™ã‚‹
+		if( ( light_movecount >= light_max ) ||		// ã‚«ã‚¦ãƒ³ãƒˆå€¤ãŒç¯„å›²å¤–ã®ã¨ãã¯Light_Numã‚’ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ã—ã¦
+			( light_movecount < light_min ) ){		// ã‚«ã‚¦ãƒ³ãƒˆå€¤ãŒç¯„å›²å†…ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¢ã™
 
-			Light->Light_Num++;	// İ’è‚·‚éƒf[ƒ^‚Ìƒiƒ“ƒo[‚ğæ“¾
-			if( Light->Light_Num >= Light->DataNum ){	// ƒf[ƒ^ˆÈã‚É‚È‚Á‚½‚çƒJƒEƒ“ƒ^‰Šú‰»
+			Light->Light_Num++;	// è¨­å®šã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
+			if( Light->Light_Num >= Light->DataNum ){	// ãƒ‡ãƒ¼ã‚¿ä»¥ä¸Šã«ãªã£ãŸã‚‰ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 				Light->Light_Num = 0;
 			}
 
@@ -195,22 +195,22 @@ void MainLightCont(LIGHT_CONT_PTR Light)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒCƒgƒf[ƒ^”½‰fƒtƒ‰ƒOİ’è
+ *	@brief	ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿åæ˜ ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	Light		ƒ‰ƒCƒgƒ[ƒN
- *	@param	reflect		”½‰fƒtƒ‰ƒO
+ *	@param	Light		ãƒ©ã‚¤ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	reflect		åæ˜ ãƒ•ãƒ©ã‚°
  *	
  *	@return	none
  *	reflect 
- *		TRUE	”½‰f‚³‚¹‚é
- *		FALSE	”½‰f‚³‚¹‚È‚¢
+ *		TRUE	åæ˜ ã•ã›ã‚‹
+ *		FALSE	åæ˜ ã•ã›ãªã„
  */
 //-----------------------------------------------------------------------------
 void SetLightContReflect( LIGHT_CONT_PTR Light, BOOL reflect )
 {
 	Light->reflect = reflect;
 
-	// ”½‰f‚É‚µ‚½ê‡‚»‚Ì“_‚ÅA1“xƒf[ƒ^‚ğİ’è‚·‚é
+	// åæ˜ ã«ã—ãŸå ´åˆãã®æ™‚ç‚¹ã§ã€1åº¦ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 	if( Light->reflect ){
 		DataSetLightContPack(Light);
 	}
@@ -218,12 +218,12 @@ void SetLightContReflect( LIGHT_CONT_PTR Light, BOOL reflect )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒCƒgƒf[ƒ^”½‰fƒtƒ‰ƒOó‘Ôæ“¾
+ *	@brief	ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿åæ˜ ãƒ•ãƒ©ã‚°çŠ¶æ…‹å–å¾—
  *
- *	@param	Light	ƒ‰ƒCƒgƒRƒ“ƒgƒ[ƒ‰
+ *	@param	Light	ãƒ©ã‚¤ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  *
- *	@retval	TRUE	”½‰f’†
- *	@retval	FALSE	”½‰f‚µ‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	åæ˜ ä¸­
+ *	@retval	FALSE	åæ˜ ã—ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL GetLightContReflect( CONST_LIGHT_CONT_PTR Light )
@@ -233,10 +233,10 @@ BOOL GetLightContReflect( CONST_LIGHT_CONT_PTR Light )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	1ƒ‰ƒCƒgƒf[ƒ^İ’è
+ *	@brief	1ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	move	ƒ[ƒN
- *	@param	pGlst	ƒOƒ[ƒoƒ‹ƒXƒe[ƒgƒf[ƒ^
+ *	@param	move	ãƒ¯ãƒ¼ã‚¯
+ *	@param	pGlst	ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
  *	
  *	
  *	@return	none
@@ -244,9 +244,9 @@ BOOL GetLightContReflect( CONST_LIGHT_CONT_PTR Light )
 //-----------------------------------------------------------------------------
 void DataSetLightCont( const LIGHT_CONT_DATA* move, GLST_DATA_PTR pGlst )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
-	// ƒ‰ƒCƒgİ’è
+	// ãƒ©ã‚¤ãƒˆè¨­å®š
 	for(i=0;i<4;i++){
 		int check = 	(1<<i);
 		if((move->lightFlag & check) != 0){
@@ -257,10 +257,10 @@ void DataSetLightCont( const LIGHT_CONT_DATA* move, GLST_DATA_PTR pGlst )
 			GLST_LightColor(pGlst, i,move->lightColor[i]);
 		}else{
 			GLST_LightVector(pGlst, i, 0, 0, 0);
-			GLST_LightColor(pGlst, i,GX_RGB(0,0,0));		// ƒ‰ƒCƒgÁ“”
+			GLST_LightColor(pGlst, i,GX_RGB(0,0,0));		// ãƒ©ã‚¤ãƒˆæ¶ˆç¯
 		}
 	}
-	// ƒfƒBƒtƒ…[ƒYAƒAƒ“ƒrƒGƒ“ƒgAƒXƒyƒLƒ…ƒ‰[A•úËŒõ
+	// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã€ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã€ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼ã€æ”¾å°„å…‰
 	GLST_MaterialDiff(pGlst, move->diffuse,FALSE,FALSE);
 	GLST_MaterialAmb(pGlst, move->ambient,TRUE);
 	GLST_MaterialSpec(pGlst, move->specular,FALSE,FALSE);
@@ -270,9 +270,9 @@ void DataSetLightCont( const LIGHT_CONT_DATA* move, GLST_DATA_PTR pGlst )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	¡‚Ìƒ‰ƒCƒgƒf[ƒ^‚ğ”½‰f‚³‚¹‚é
+ *@brief	ä»Šã®ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’åæ˜ ã•ã›ã‚‹
  *
- *@param	cont		ƒ‰ƒCƒgƒRƒ“ƒgƒ[ƒ‹ƒZƒbƒg	
+ *@param	cont		ãƒ©ã‚¤ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚»ãƒƒãƒˆ	
  *
  *@return	none
  *
@@ -288,12 +288,12 @@ static void DataSetLightContPack(LIGHT_CONT_SET* cont)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	–é‚©ƒ`ƒFƒbƒN
+ *	@brief	å¤œã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cont	ƒ‰ƒCƒgƒRƒ“ƒgƒ[ƒ‹ƒVƒXƒeƒ€
+ *	@param	cont	ãƒ©ã‚¤ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	–é
- *	@retval	FALSE	’‹
+ *	@retval	TRUE	å¤œ
+ *	@retval	FALSE	æ˜¼
  *
  *
  */
@@ -315,10 +315,10 @@ BOOL GetLightNight( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚ƒfƒ‹‚ªƒ‰ƒCƒg‚âAƒ}ƒeƒŠƒAƒ‹‚Ìƒf[ƒ^‚ÍƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚ğ
- *			g—p‚·‚é‚æ‚¤‚É•ÏX‚·‚é
+ *@brief	ãƒ¢ãƒ‡ãƒ«ãŒãƒ©ã‚¤ãƒˆã‚„ã€ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã¯ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’
+ *			ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ã™ã‚‹
  *
- *@param	Mdl		ƒZƒbƒg‚·‚éƒ‚ƒfƒ‹
+ *@param	Mdl		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¢ãƒ‡ãƒ«
  *
  *@return	none
  *
@@ -326,20 +326,20 @@ BOOL GetLightNight( void )
 //-----------------------------------------------------------------------------
 void SetGlbLightMdl(NNSG3dResMdl* Mdl)
 {
-	// ƒ‰ƒCƒgAƒ}ƒeƒŠƒAƒ‹‚ÍƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚Ì’l‚ğg—p‚·‚é
-	NNS_G3dMdlUseGlbDiff(Mdl);				// ƒfƒBƒtƒ…[ƒY
-	NNS_G3dMdlUseGlbAmb(Mdl);				// ƒAƒ“ƒrƒGƒ“ƒg
-	NNS_G3dMdlUseGlbSpec(Mdl);				// ƒXƒyƒLƒ…ƒ‰[
-	NNS_G3dMdlUseGlbEmi(Mdl);				// ƒGƒ~ƒbƒVƒ‡ƒ“
+	// ãƒ©ã‚¤ãƒˆã€ãƒãƒ†ãƒªã‚¢ãƒ«ã¯ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã®å€¤ã‚’ä½¿ç”¨ã™ã‚‹
+	NNS_G3dMdlUseGlbDiff(Mdl);				// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚º
+	NNS_G3dMdlUseGlbAmb(Mdl);				// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
+	NNS_G3dMdlUseGlbSpec(Mdl);				// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼
+	NNS_G3dMdlUseGlbEmi(Mdl);				// ã‚¨ãƒŸãƒƒã‚·ãƒ§ãƒ³
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚ƒfƒ‹‚ªƒ‰ƒCƒg‚âAƒ}ƒeƒŠƒAƒ‹‚Ìƒf[ƒ^‚ÍƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚ğ
- *			g—p‚µ‚È‚¢‚æ‚¤‚É•ÏX‚·‚é
+ *@brief	ãƒ¢ãƒ‡ãƒ«ãŒãƒ©ã‚¤ãƒˆã‚„ã€ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã¯ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’
+ *			ä½¿ç”¨ã—ãªã„ã‚ˆã†ã«å¤‰æ›´ã™ã‚‹
  *
- *@param	Mdl		ƒZƒbƒg‚·‚éƒ‚ƒfƒ‹
+ *@param	Mdl		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¢ãƒ‡ãƒ«
  *
  *@return	none
  *
@@ -347,41 +347,41 @@ void SetGlbLightMdl(NNSG3dResMdl* Mdl)
 //-----------------------------------------------------------------------------
 void RemGlbLightMdl(NNSG3dResMdl* Mdl)
 {
-	// ƒ‰ƒCƒgAƒ}ƒeƒŠƒAƒ‹‚Íƒ‚ƒfƒ‹’l‚ğg—p‚·‚é
-	NNS_G3dMdlUseMdlDiff(Mdl);				// ƒfƒBƒtƒ…[ƒY
-	NNS_G3dMdlUseMdlAmb(Mdl);				// ƒAƒ“ƒrƒGƒ“ƒg
-	NNS_G3dMdlUseMdlSpec(Mdl);				// ƒXƒyƒLƒ…ƒ‰[
-	NNS_G3dMdlUseMdlEmi(Mdl);				// ƒGƒ~ƒbƒVƒ‡ƒ“
+	// ãƒ©ã‚¤ãƒˆã€ãƒãƒ†ãƒªã‚¢ãƒ«ã¯ãƒ¢ãƒ‡ãƒ«å€¤ã‚’ä½¿ç”¨ã™ã‚‹
+	NNS_G3dMdlUseMdlDiff(Mdl);				// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚º
+	NNS_G3dMdlUseMdlAmb(Mdl);				// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
+	NNS_G3dMdlUseMdlSpec(Mdl);				// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼
+	NNS_G3dMdlUseMdlEmi(Mdl);				// ã‚¨ãƒŸãƒƒã‚·ãƒ§ãƒ³
 }
 
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ *@brief	ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- *@param	lightidx	ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX
- *@param	ppData		Ši”[æ
+ *@param	lightidx	ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	ppData		æ ¼ç´å…ˆ
  *
- *@return	ƒ‰ƒCƒgƒf[ƒ^”
+ *@return	ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿æ•°
  *
  *
  */
 //-----------------------------------------------------------------------------
 static u32 loadLightData( u32 lightidx, LIGHT_CONT_DATA** ppData )
 {
-	int   i,j;			// ƒ‹[ƒv—p
-	int	  data_num;		// ƒf[ƒ^”
-	void* filep;		// ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
-	void* tmp;			// íœ—pƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^•Û‘¶
-	char  buff[256];	// “Ç‚İ‚İ‚æ‚¤
-	char* buff_work;	// ƒoƒbƒtƒ@‘€ì—p
-	char r_b[256];		// ƒ[ƒJƒ‹ì‹Æ—pƒoƒbƒtƒ@
-	LIGHT_CONT_DATA* pDataWork;	// Ši”[ì‹Æ—p
+	int   i,j;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int	  data_num;		// ãƒ‡ãƒ¼ã‚¿æ•°
+	void* filep;		// ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
+	void* tmp;			// å‰Šé™¤ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ä¿å­˜
+	char  buff[256];	// èª­ã¿è¾¼ã¿ã‚ˆã†
+	char* buff_work;	// ãƒãƒƒãƒ•ã‚¡æ“ä½œç”¨
+	char r_b[256];		// ãƒ­ãƒ¼ã‚«ãƒ«ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡
+	LIGHT_CONT_DATA* pDataWork;	// æ ¼ç´ä½œæ¥­ç”¨
 
 	
-	tmp = ArcUtil_Load( ARC_FIELD_LIGHT, lightidx, FALSE, HEAPID_FIELD, ALLOC_TOP );		// ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
-	filep = tmp;				// ì‹Æ—p•Ï”‚É‘ã“ü
+	tmp = ArcUtil_Load( ARC_FIELD_LIGHT, lightidx, FALSE, HEAPID_FIELD, ALLOC_TOP );		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
+	filep = tmp;				// ä½œæ¥­ç”¨å¤‰æ•°ã«ä»£å…¥
 	
 	data_num = 0;
 	do
@@ -406,18 +406,18 @@ static u32 loadLightData( u32 lightidx, LIGHT_CONT_DATA** ppData )
 		   (buff[1] == 'O') &&
 		   (buff[2] == 'F')));
 
-	// ƒf[ƒ^”•ª‚Ì—Ìˆæ‚ğŠm•Û
+	// ãƒ‡ãƒ¼ã‚¿æ•°åˆ†ã®é ˜åŸŸã‚’ç¢ºä¿
 	*ppData = sys_AllocMemory(HEAPID_FIELD, sizeof(LIGHT_CONT_DATA)*data_num);
 	MI_CpuClear8(*ppData, sizeof(LIGHT_CONT_DATA)*data_num);
 
-	// ƒf[ƒ^‚ğŠi”[
+	// ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
 	filep = tmp;
 	for(i=0;i<data_num;i++){
 
-		// Ši”[æ‚ğƒZƒbƒg
+		// æ ¼ç´å…ˆã‚’ã‚»ãƒƒãƒˆ
 		pDataWork = &((*ppData)[i]);
 
-		// ƒ^ƒCƒ~ƒ“ƒO
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 		filep = StrTok(filep,buff,RETURN_CODE);
 		buff_work = buff;
 		buff_work = StrTok(buff_work,r_b,',');
@@ -425,27 +425,27 @@ static u32 loadLightData( u32 lightidx, LIGHT_CONT_DATA** ppData )
 		
 		// light
 		for(j=0;j<4;j++){
-			// lightƒf[ƒ^æ“¾
+			// lightãƒ‡ãƒ¼ã‚¿å–å¾—
 			filep = GetLightData(filep, &pDataWork->lightColor[j], &pDataWork->lightVec[j]);
-			if(pDataWork->lightColor[j] != 0xffff){		// light‚ğg—p‚·‚é‚Ì‚©ƒ`ƒFƒbƒN
+			if(pDataWork->lightColor[j] != 0xffff){		// lightã‚’ä½¿ç”¨ã™ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
 				pDataWork->lightFlag |= 1 << j;
 			}else{
 				pDataWork->lightColor[j] = 0;
 			}
 		}
 
-		// F
-		filep = GetRgbData(filep, &pDataWork->diffuse);	// ƒfƒBƒtƒ…[ƒY
-		filep = GetRgbData(filep, &pDataWork->ambient);	// ƒAƒ“ƒrƒGƒ“ƒg
-		filep = GetRgbData(filep, &pDataWork->specular);	// ƒXƒyƒLƒ…ƒ‰[
-		filep = GetRgbData(filep, &pDataWork->emission);	// ƒGƒ~ƒbƒVƒ‡ƒ“	
+		// è‰²
+		filep = GetRgbData(filep, &pDataWork->diffuse);	// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚º
+		filep = GetRgbData(filep, &pDataWork->ambient);	// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
+		filep = GetRgbData(filep, &pDataWork->specular);	// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼
+		filep = GetRgbData(filep, &pDataWork->emission);	// ã‚¨ãƒŸãƒƒã‚·ãƒ§ãƒ³	
 
 
-		// ‰üs
+		// æ”¹è¡Œ
 		filep = StrTok(filep,buff,RETURN_CODE);
 	}
 
-	sys_FreeMemory(HEAPID_FIELD,tmp);		// ƒtƒ@ƒCƒ‹”jŠü
+	sys_FreeMemory(HEAPID_FIELD,tmp);		// ãƒ•ã‚¡ã‚¤ãƒ«ç ´æ£„
 
 	return data_num;
 }
@@ -453,12 +453,12 @@ static u32 loadLightData( u32 lightidx, LIGHT_CONT_DATA** ppData )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgƒf[ƒ^‚ğ”jŠü
+ *@brief	ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *@param	str		ƒtƒ@ƒCƒ‹ƒpƒX
- *@param	ppData	Ši”[æ
+ *@param	str		ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ *@param	ppData	æ ¼ç´å…ˆ
  *
- *@return	ƒ‰ƒCƒgƒf[ƒ^”
+ *@return	ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿æ•°
  *
  *
  */
@@ -473,26 +473,26 @@ static void dellLightData(LIGHT_CONT_DATA** ppData)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Šeƒ‰ƒCƒgƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ *@brief	å„ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- *@param	buff		“Ç‚İ‚İæ
- *@param	Color		ƒ‰ƒCƒg‚ÌF‘‚«‚İæ
- *@param	Vector		ƒ‰ƒCƒg‚ÌƒxƒNƒgƒ‹‘‚«‚İæ
+ *@param	buff		èª­ã¿è¾¼ã¿å…ˆ
+ *@param	Color		ãƒ©ã‚¤ãƒˆã®è‰²æ›¸ãè¾¼ã¿å…ˆ
+ *@param	Vector		ãƒ©ã‚¤ãƒˆã®ãƒ™ã‚¯ãƒˆãƒ«æ›¸ãè¾¼ã¿å…ˆ
  *
- *@return	Ÿ‚Ì“Çæ
+ *@return	æ¬¡ã®èª­è¾¼å…ˆ
  *
  *
  */
 //-----------------------------------------------------------------------------
-static char* GetLightData( char* buff, GXRgb* Color, VecFx16* Vector )		// lightƒf[ƒ^‚ğæ“¾
+static char* GetLightData( char* buff, GXRgb* Color, VecFx16* Vector )		// lightãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 {
-	char work[256];			// “Ç‚İ‚İ‚æ‚¤
-	char work2[256];		// Ø‚èæ‚è—p
-	char* data_work;		// ƒf[ƒ^ƒ[ƒN
-	u32	flag;				// light—LŒøƒ`ƒFƒbƒN—p
-	int	i;					// ƒ‹[ƒv—p
-	u16	rgb[3];				// FŠi”[—p
-	s32	vec[3];				// À•WŠi”[—p
+	char work[256];			// èª­ã¿è¾¼ã¿ã‚ˆã†
+	char work2[256];		// åˆ‡ã‚Šå–ã‚Šç”¨
+	char* data_work;		// ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+	u32	flag;				// lightæœ‰åŠ¹ãƒã‚§ãƒƒã‚¯ç”¨
+	int	i;					// ãƒ«ãƒ¼ãƒ—ç”¨
+	u16	rgb[3];				// è‰²æ ¼ç´ç”¨
+	s32	vec[3];				// åº§æ¨™æ ¼ç´ç”¨
  
 	
 	// light
@@ -501,22 +501,22 @@ static char* GetLightData( char* buff, GXRgb* Color, VecFx16* Vector )		// light
 	data_work = StrTok(data_work,work2,',');
 	flag = AtoI(work2);
 	if(flag == 1){
-		// F
+		// è‰²
 		for(i=0;i<3;i++){
 			data_work = StrTok(data_work,work2,',');
 			rgb[i] = AtoI(work2);
 		}
 
-		// F‚ğİ’è
+		// è‰²ã‚’è¨­å®š
 		*Color = GX_RGB(rgb[0],rgb[1],rgb[2]);
 		
-		// ƒxƒNƒgƒ‹
+		// ãƒ™ã‚¯ãƒˆãƒ«
 		for(i=0;i<3;i++){
 			data_work = StrTok(data_work,work2,',');
 			vec[i] = AtoI(work2);
 		}
 
-		// ƒxƒNƒgƒ‹‚ğİ’è
+		// ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨­å®š
 		Vector->x = vec[0];
 		Vector->y = vec[1];
 		Vector->z = vec[2];
@@ -542,7 +542,7 @@ static char* GetLightData( char* buff, GXRgb* Color, VecFx16* Vector )		// light
 		
 	}else{
 
-		// ƒ_ƒ~[ƒf[ƒ^‚ğƒZƒbƒg
+		// ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		*Color = 0xffff;
 	}
 
@@ -552,34 +552,34 @@ static char* GetLightData( char* buff, GXRgb* Color, VecFx16* Vector )		// light
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ŠeFƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ *@brief	å„è‰²ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- *@param	buff		“Ç‚İ‚İæ
- *@param	Color		ƒ‰ƒCƒg‚ÌF‘‚«‚İæ
+ *@param	buff		èª­ã¿è¾¼ã¿å…ˆ
+ *@param	Color		ãƒ©ã‚¤ãƒˆã®è‰²æ›¸ãè¾¼ã¿å…ˆ
  *
- *@return	Ÿ‚Ì“Çæ
+ *@return	æ¬¡ã®èª­è¾¼å…ˆ
  *
  *
  */
 //-----------------------------------------------------------------------------
 static char* GetRgbData( char* buff, GXRgb* Color )
 {
-	char work[256];			// “Ç‚İ‚İ‚æ‚¤
-	char work2[256];		// Ø‚èæ‚è—p
-	char* data_work;		// ì‹Æ—p
+	char work[256];			// èª­ã¿è¾¼ã¿ã‚ˆã†
+	char work2[256];		// åˆ‡ã‚Šå–ã‚Šç”¨
+	char* data_work;		// ä½œæ¥­ç”¨
 	int i;
-	u16	rgb[3];				// FŠi”[—p
+	u16	rgb[3];				// è‰²æ ¼ç´ç”¨
 	
 	buff = StrTok(buff,work,RETURN_CODE);
 	data_work = work;
 	
-	// F
+	// è‰²
 	for(i=0;i<3;i++){
 		data_work = StrTok(data_work,work2,',');
 		rgb[i] = AtoI(work2);
 	}
 
-	// F‚ğİ’è
+	// è‰²ã‚’è¨­å®š
 	*Color = GX_RGB(rgb[0],rgb[1],rgb[2]);
 
 	return buff;

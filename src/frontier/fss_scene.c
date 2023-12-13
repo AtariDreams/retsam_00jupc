@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	fss_scene.c
- * @brief	ƒtƒƒ“ƒeƒBƒA—pƒXƒNƒŠƒvƒgFƒV[ƒ“ƒf[ƒ^
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼šã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
  * @author	matsuda
- * @date	2007.04.03(‰Î)
+ * @date	2007.04.03(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -28,14 +28,14 @@
 
 
 //==============================================================================
-//	Œ^’è‹`
+//	å‹å®šç¾©
 //==============================================================================
-///ƒV[ƒ“ƒf[ƒ^‚Ì‰Šú“®ìŠÖ”EI—¹“®ìŠÖ”‚ÌŒ^
+///ã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸå‹•ä½œé–¢æ•°ãƒ»çµ‚äº†å‹•ä½œé–¢æ•°ã®å‹
 typedef void (*FSS_SCENE_FUNC)(FMAP_PTR, void **);
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void TestInitFunc(FMAP_PTR fmap, void **ptr_work);
 static void TestEndFunc(FMAP_PTR fmap, void **ptr_work);
@@ -56,353 +56,353 @@ static void EndFunc_CastleBtl(FMAP_PTR fmap, void **ptr_work);
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒV[ƒ“ƒf[ƒ^\‘¢‘Ì
+///ã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct{
-	int bg_mode;		///<BGƒ‚[ƒh(ƒeƒLƒXƒgBGAŠg’£BG‚Ìİ’è‚È‚Ç)
+	int bg_mode;		///<BGãƒ¢ãƒ¼ãƒ‰(ãƒ†ã‚­ã‚¹ãƒˆBGã€æ‹¡å¼µBGã®è¨­å®šãªã©)
 	
-	FSS_SCENE_FUNC init_func;	///<‰Šú“®ìŠÖ”
-	FSS_SCENE_FUNC end_func;	///<I—¹“®ìŠÖ”
+	FSS_SCENE_FUNC init_func;	///<åˆæœŸå‹•ä½œé–¢æ•°
+	FSS_SCENE_FUNC end_func;	///<çµ‚äº†å‹•ä½œé–¢æ•°
 	
-	u16 scr_id;			///<ƒXƒNƒŠƒvƒgID
-	u16 msg_id;			///<ƒƒbƒZ[ƒWID
-	u16 bgm_id;			///<BGM ID(“Ç‚İ‚Ş‰¹F‚Í"SND_SCENE_FIELD"ŒÅ’è‚É‚È‚Á‚Ä‚¢‚Ü‚·)
-	u16 screen_size;	///<ƒXƒNƒŠ[ƒ“ƒTƒCƒY(GF_BGL_SCRSIZ_???)
+	u16 scr_id;			///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+	u16 msg_id;			///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+	u16 bgm_id;			///<BGM ID(èª­ã¿è¾¼ã‚€éŸ³è‰²ã¯"SND_SCENE_FIELD"å›ºå®šã«ãªã£ã¦ã„ã¾ã™)
+	u16 screen_size;	///<ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º(GF_BGL_SCRSIZ_???)
 	
-	u16 map_arc_id;		///<ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-	u16 arc_screen_id;	///<ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-	u16 arc_char_id;	///<ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-	u16 arc_pltt_id;	///<ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
+	u16 map_arc_id;		///<ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+	u16 arc_screen_id;	///<ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+	u16 arc_char_id;	///<ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+	u16 arc_pltt_id;	///<ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
 
-	u16 arc_multi_screen_id;	///<‘½d–Êƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID(ƒpƒŒƒbƒg‚Íarc_pltt_id‚Æ‹¤’Ê)
-	u16 arc_multi_char_id;		///<‘½d–Êƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-	u16 arc_multi_pltt_id;		///<‘½d–Êƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
+	u16 arc_multi_screen_id;	///<å¤šé‡é¢ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID(ãƒ‘ãƒ¬ãƒƒãƒˆã¯arc_pltt_idã¨å…±é€š)
+	u16 arc_multi_char_id;		///<å¤šé‡é¢ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+	u16 arc_multi_pltt_id;		///<å¤šé‡é¢ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
 
 	u8 scroll_mode;		///<SCROLL_MODE_???
-	u8 multiple_scroll_mode;	///<‘½d–Ê‚ÌƒXƒNƒ[ƒ‹‚ğ’Êí–Ê‚Æ“¯Šú‚³‚¹‚é‚©(TRUE:“¯Šú, FALSE:ƒVƒXƒeƒ€‘¤‚Å‚Í‘½d–ÊƒXƒNƒ[ƒ‹‚Í‚¢‚¶‚ç‚È‚¢)
+	u8 multiple_scroll_mode;	///<å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚’é€šå¸¸é¢ã¨åŒæœŸã•ã›ã‚‹ã‹(TRUE:åŒæœŸ, FALSE:ã‚·ã‚¹ãƒ†ãƒ å´ã§ã¯å¤šé‡é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã¯ã„ã˜ã‚‰ãªã„)
 	
-	u8 dummy[2];		///<4ƒoƒCƒg‹«ŠEƒ_ƒ~[
+	u8 dummy[2];		///<4ãƒã‚¤ãƒˆå¢ƒç•Œãƒ€ãƒŸãƒ¼
 }FSS_SCENE_DATA;
 
 
 //==============================================================================
-//	ƒf[ƒ^(GX_BGMODE_5,SCROLL_MODE_EASY)
+//	ãƒ‡ãƒ¼ã‚¿(GX_BGMODE_5,SCROLL_MODE_EASY)
 //==============================================================================
-//ƒV[ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
+//ã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 static const FSS_SCENE_DATA SceneDataTbl[] = {
 	{//FSS_SCENEID_TESTSCR
-		GX_BGMODE_0,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		TestInitFunc,							//‰Šú“®ìŠÖ”
-		TestEndFunc,							//I—¹“®ìŠÖ”
-		NARC_fr_script_testscr_bin,		//ƒXƒNƒŠƒvƒgID
-		NARC_msg_cmsg_acting_dat,		//ƒƒbƒZ[ƒWID
+		GX_BGMODE_0,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		TestInitFunc,							//åˆæœŸå‹•ä½œé–¢æ•°
+		TestEndFunc,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_testscr_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_cmsg_acting_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_BF_TOWWER,					//BGM ID
-		GF_BGL_SCRSIZ_512x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BF_ROOM_BATTLE_NSCR_BIN,		//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BF_ROOM_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BF_ROOM_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		BF_ROOM_RAIL_NSCR_BIN,			//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		BF_ROOM_NCGR_BIN,				//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		BF_ROOM_NCLR,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_NORMAL,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_512x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BF_ROOM_BATTLE_NSCR_BIN,		//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BF_ROOM_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BF_ROOM_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		BF_ROOM_RAIL_NSCR_BIN,			//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		BF_ROOM_NCGR_BIN,				//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		BF_ROOM_NCLR,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_NORMAL,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
-	{//FSS_SCENEID_TESTSCR2		TESTSCR‚©‚çƒ}ƒbƒvØ‚è‘Ö‚¦‚Å—ˆ‚éƒ}ƒbƒv
-		GX_BGMODE_0,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		NULL,							//‰Šú“®ìŠÖ”
-		NULL,							//I—¹“®ìŠÖ”
-		0,		//ƒXƒNƒŠƒvƒgID	TESTSCR‚Æ‹¤’Ê
-		NARC_msg_cmsg_acting_dat,		//ƒƒbƒZ[ƒWID
+	{//FSS_SCENEID_TESTSCR2		TESTSCRã‹ã‚‰ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã§æ¥ã‚‹ãƒãƒƒãƒ—
+		GX_BGMODE_0,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		NULL,							//åˆæœŸå‹•ä½œé–¢æ•°
+		NULL,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		0,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID	TESTSCRã¨å…±é€š
+		NARC_msg_cmsg_acting_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_BF_TOWWER,					//BGM ID
-		GF_BGL_SCRSIZ_512x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BF_ROOM_EXCHANGE_NSCR_BIN,		//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BF_ROOM_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BF_ROOM_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_NORMAL,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_512x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BF_ROOM_EXCHANGE_NSCR_BIN,		//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BF_ROOM_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BF_ROOM_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_NORMAL,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
-	{//FSS_SCENEID_TESTSCR3		TESTSCR‚©‚çMAP_CHANGE_EX‚ÅØ‚è‘Ö‚¦‚Ä‚­‚éƒ}ƒbƒv
-		GX_BGMODE_0,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		NULL,							//‰Šú“®ìŠÖ”
-		NULL,							//I—¹“®ìŠÖ”
-		NARC_fr_script_testscr3_bin,	//ƒXƒNƒŠƒvƒgID(EX‚È‚Ì‚Å‚±‚ê‚ª“Ç‚İ‚Ü‚ê‚é)
-		NARC_msg_cmsg_dance_dat,		//ƒƒbƒZ[ƒWID
+	{//FSS_SCENEID_TESTSCR3		TESTSCRã‹ã‚‰MAP_CHANGE_EXã§åˆ‡ã‚Šæ›¿ãˆã¦ãã‚‹ãƒãƒƒãƒ—
+		GX_BGMODE_0,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		NULL,							//åˆæœŸå‹•ä½œé–¢æ•°
+		NULL,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_testscr3_bin,	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(EXãªã®ã§ã“ã‚ŒãŒèª­ã¿è¾¼ã¾ã‚Œã‚‹)
+		NARC_msg_cmsg_dance_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_BF_TOWWER,					//BGM ID
-		GF_BGL_SCRSIZ_512x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BF_ROOM_BATTLE_NSCR_BIN,		//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BF_ROOM_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BF_ROOM_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_NORMAL,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_512x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BF_ROOM_BATTLE_NSCR_BIN,		//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BF_ROOM_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BF_ROOM_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_NORMAL,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	{//FSS_SCENEID_FACTORY
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		InitFunc_Factory,				//‰Šú“®ìŠÖ”
-		EndFunc_Factory,				//I—¹“®ìŠÖ”
-		NARC_fr_script_factory_bin,		//ƒXƒNƒŠƒvƒgID
-		NARC_msg_factory_room_dat,		//ƒƒbƒZ[ƒWID
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		InitFunc_Factory,				//åˆæœŸå‹•ä½œé–¢æ•°
+		EndFunc_Factory,				//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_factory_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_factory_room_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_PL_BF_FACTORY,				//BGM ID
-		GF_BGL_SCRSIZ_512x512,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BF_ROOM_EXCHANGE_NSCR_BIN,		//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BF_ROOM_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BF_ROOM_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		BF_ROOM_RAIL_NSCR_BIN,			//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		BF_ROOM_NCGR_BIN,				//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		BF_ROOM_NCLR,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		//TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
-		FALSE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_512x512,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BF_ROOM_EXCHANGE_NSCR_BIN,		//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BF_ROOM_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BF_ROOM_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		BF_ROOM_RAIL_NSCR_BIN,			//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		BF_ROOM_NCGR_BIN,				//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		BF_ROOM_NCLR,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		//TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
+		FALSE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
-	{//FSS_SCENEID_FACTORY_BTL	ƒ}ƒbƒvØ‚è‘Ö‚¦‚Å—ˆ‚éƒ}ƒbƒv
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		InitFunc_FactoryBtl,			//‰Šú“®ìŠÖ”
-		EndFunc_FactoryBtl,				//I—¹“®ìŠÖ”
-		NARC_fr_script_factory_bin,		//ƒXƒNƒŠƒvƒgID
-		NARC_msg_factory_room_dat,		//ƒƒbƒZ[ƒWID
+	{//FSS_SCENEID_FACTORY_BTL	ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã§æ¥ã‚‹ãƒãƒƒãƒ—
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		InitFunc_FactoryBtl,			//åˆæœŸå‹•ä½œé–¢æ•°
+		EndFunc_FactoryBtl,				//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_factory_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_factory_room_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_PL_BF_FACTORY,				//BGM ID
-		GF_BGL_SCRSIZ_256x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BF_ROOM_BATTLE_NSCR_BIN,		//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BF_ROOM_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BF_ROOM_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_256x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BF_ROOM_BATTLE_NSCR_BIN,		//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BF_ROOM_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BF_ROOM_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	{//FSS_SCENEID_TOWER_SINGLE_WAY	ƒ}ƒbƒvØ‚è‘Ö‚¦‚Å—ˆ‚éƒ}ƒbƒv
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		NULL,							//‰Šú“®ìŠÖ”
-		NULL,							//I—¹“®ìŠÖ”
-		NARC_fr_script_tower3_bin,		//ƒXƒNƒŠƒvƒgID
-		NARC_msg_d31r0201_dat,			//ƒƒbƒZ[ƒWID(r0203‚Í‘¶İ‚µ‚È‚¢)
+	{//FSS_SCENEID_TOWER_SINGLE_WAY	ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã§æ¥ã‚‹ãƒãƒƒãƒ—
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		NULL,							//åˆæœŸå‹•ä½œé–¢æ•°
+		NULL,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_tower3_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_d31r0201_dat,			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID(r0203ã¯å­˜åœ¨ã—ãªã„)
 		SEQ_BF_TOWWER,					//BGM ID
-		GF_BGL_SCRSIZ_512x512,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BT_WAY_NSCR_BIN,				//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BT_NCGR_BIN,					//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BT_NCLR,						//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		BT_WAY_A_NSCR_BIN,				//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		BT_NCGR_BIN,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		BT_NCLR,						//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_512x512,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BT_WAY_NSCR_BIN,				//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BT_NCGR_BIN,					//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BT_NCLR,						//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		BT_WAY_A_NSCR_BIN,				//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		BT_NCGR_BIN,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		BT_NCLR,						//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
-	{//FSS_SCENEID_TOWER_MULTI_WAY	ƒ}ƒbƒvØ‚è‘Ö‚¦‚Å—ˆ‚éƒ}ƒbƒv
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		NULL,							//‰Šú“®ìŠÖ”
-		NULL,							//I—¹“®ìŠÖ”
-		NARC_fr_script_tower4_bin,		//ƒXƒNƒŠƒvƒgID
-		NARC_msg_d31r0201_dat,			//ƒƒbƒZ[ƒWID(r0204‚Í‘¶İ‚µ‚È‚¢)
+	{//FSS_SCENEID_TOWER_MULTI_WAY	ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã§æ¥ã‚‹ãƒãƒƒãƒ—
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		NULL,							//åˆæœŸå‹•ä½œé–¢æ•°
+		NULL,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_tower4_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_d31r0201_dat,			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID(r0204ã¯å­˜åœ¨ã—ãªã„)
 		SEQ_BF_TOWWER,					//BGM ID
-		GF_BGL_SCRSIZ_512x512,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BT_MULWAY_NSCR_BIN,				//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BT_NCGR_BIN,					//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BT_NCLR,						//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		BT_MULWAY_A_NSCR_BIN,			//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		BT_NCGR_BIN,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		BT_NCLR,						//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_512x512,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BT_MULWAY_NSCR_BIN,				//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BT_NCGR_BIN,					//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BT_NCLR,						//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		BT_MULWAY_A_NSCR_BIN,			//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		BT_NCGR_BIN,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		BT_NCLR,						//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
-	{//FSS_SCENEID_TOWER_SINGLE_BTL	ƒ}ƒbƒvØ‚è‘Ö‚¦‚Å—ˆ‚éƒ}ƒbƒv
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		NULL,							//‰Šú“®ìŠÖ”
-		NULL,							//I—¹“®ìŠÖ”
-		NARC_fr_script_tower5_bin,		//ƒXƒNƒŠƒvƒgID
-		NARC_msg_d31r0205_dat,			//ƒƒbƒZ[ƒWID
+	{//FSS_SCENEID_TOWER_SINGLE_BTL	ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã§æ¥ã‚‹ãƒãƒƒãƒ—
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		NULL,							//åˆæœŸå‹•ä½œé–¢æ•°
+		NULL,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_tower5_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_d31r0205_dat,			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_BF_TOWWER,					//BGM ID
-		GF_BGL_SCRSIZ_256x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BT_SBATTLE_NSCR_BIN,			//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BT_NCGR_BIN,					//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BT_NCLR,						//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_256x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BT_SBATTLE_NSCR_BIN,			//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BT_NCGR_BIN,					//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BT_NCLR,						//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
-	{//FSS_SCENEID_TOWER_MULTI_BTL	ƒ}ƒbƒvØ‚è‘Ö‚¦‚Å—ˆ‚éƒ}ƒbƒv
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		NULL,							//‰Šú“®ìŠÖ”
-		NULL,							//I—¹“®ìŠÖ”
-		NARC_fr_script_tower6_bin,		//ƒXƒNƒŠƒvƒgID
-		NARC_msg_d31r0206_dat,			//ƒƒbƒZ[ƒWID
+	{//FSS_SCENEID_TOWER_MULTI_BTL	ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã§æ¥ã‚‹ãƒãƒƒãƒ—
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		NULL,							//åˆæœŸå‹•ä½œé–¢æ•°
+		NULL,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_tower6_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_d31r0206_dat,			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_BF_TOWWER,					//BGM ID
-		GF_BGL_SCRSIZ_256x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BT_MULBATTLE_NSCR_BIN,			//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BT_NCGR_BIN,					//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BT_NCLR,						//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_256x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BT_MULBATTLE_NSCR_BIN,			//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BT_NCGR_BIN,					//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BT_NCLR,						//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	{//FSS_SCENEID_STAGE_WAY
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		NULL,							//‰Šú“®ìŠÖ”
-		NULL,							//I—¹“®ìŠÖ”
-		NARC_fr_script_stage_bin,		//ƒXƒNƒŠƒvƒgID
-		NARC_msg_stage_room_dat,		//ƒƒbƒZ[ƒWID
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		NULL,							//åˆæœŸå‹•ä½œé–¢æ•°
+		NULL,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_stage_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_stage_room_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_PL_BF_STAGE,				//BGM ID
-		GF_BGL_SCRSIZ_256x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BS_STAGE_ROUKA_NSCR_BIN,		//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BS_STAGE_ROUKA_NCGR_BIN,		//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BS_STAGE_ROUKA_NCLR,			//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_256x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BS_STAGE_ROUKA_NSCR_BIN,		//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BS_STAGE_ROUKA_NCGR_BIN,		//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BS_STAGE_ROUKA_NCLR,			//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
 	{//FSS_SCENEID_STAGE_BTL
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		InitFunc_Stage,							//‰Šú“®ìŠÖ”
-		EndFunc_Stage,							//I—¹“®ìŠÖ”
-		NARC_fr_script_stage_bin,		//ƒXƒNƒŠƒvƒgID
-		NARC_msg_stage_room_dat,		//ƒƒbƒZ[ƒWID
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		InitFunc_Stage,							//åˆæœŸå‹•ä½œé–¢æ•°
+		EndFunc_Stage,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_stage_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_stage_room_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_PL_BF_STAGE,				//BGM ID
-		GF_BGL_SCRSIZ_512x512,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BS_STAGE_01_A_NSCR_BIN,			//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BS_STAGE_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BS_STAGE_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		BS_STAGE_ALPHA_A_NSCR_BIN,			//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		BS_STAGE_ALPHA_NCGR_BIN,				//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		BS_STAGE_ALPHA_NCLR,			//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_512x512,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BS_STAGE_01_A_NSCR_BIN,			//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BS_STAGE_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BS_STAGE_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		BS_STAGE_ALPHA_A_NSCR_BIN,			//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		BS_STAGE_ALPHA_NCGR_BIN,				//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		BS_STAGE_ALPHA_NCLR,			//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	{//FSS_SCENEID_CASTLE
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		NULL,							//‰Šú“®ìŠÖ”
-		NULL,							//I—¹“®ìŠÖ”
-		NARC_fr_script_castle_bin,		//ƒXƒNƒŠƒvƒgID
-		NARC_msg_castle_room_dat,		//ƒƒbƒZ[ƒWID
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		NULL,							//åˆæœŸå‹•ä½œé–¢æ•°
+		NULL,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_castle_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_castle_room_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_PL_BF_CASTLE,				//BGM ID
-		GF_BGL_SCRSIZ_512x512,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BC_OHMA_NSCR_BIN,				//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BC_OHMA_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BC_OHMA_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_512x512,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BC_OHMA_NSCR_BIN,				//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BC_OHMA_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BC_OHMA_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
-	{//FSS_SCENEID_CASTLE_BTL	ƒ}ƒbƒvØ‚è‘Ö‚¦‚Å—ˆ‚éƒ}ƒbƒv
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		InitFunc_CastleBtl,				//‰Šú“®ìŠÖ”
-		EndFunc_CastleBtl,				//I—¹“®ìŠÖ”
-		NARC_fr_script_castle_bin,		//ƒXƒNƒŠƒvƒgID(‹¤’Ê)
-		NARC_msg_castle_room_dat,		//ƒƒbƒZ[ƒWID(‹¤’Ê)
+	{//FSS_SCENEID_CASTLE_BTL	ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã§æ¥ã‚‹ãƒãƒƒãƒ—
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		InitFunc_CastleBtl,				//åˆæœŸå‹•ä½œé–¢æ•°
+		EndFunc_CastleBtl,				//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_castle_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(å…±é€š)
+		NARC_msg_castle_room_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID(å…±é€š)
 		SEQ_PL_BF_CASTLE,				//BGM ID
-		GF_BGL_SCRSIZ_256x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BC_ROOM_NSCR_BIN,				//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BC_ROOM_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BC_ROOM_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		BC_ROOM_A_NSCR_BIN,				//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		BC_ROOM_NCGR_BIN,				//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		BC_ROOM_NCLR,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_256x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BC_ROOM_NSCR_BIN,				//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BC_ROOM_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BC_ROOM_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		BC_ROOM_A_NSCR_BIN,				//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		BC_ROOM_NCGR_BIN,				//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		BC_ROOM_NCLR,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
-	{//FSS_SCENEID_CASTLE_BYPATH	ƒ}ƒbƒvØ‚è‘Ö‚¦‚Å—ˆ‚éƒ}ƒbƒv
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		NULL,							//‰Šú“®ìŠÖ”
-		NULL,							//I—¹“®ìŠÖ”
-		NARC_fr_script_castle_bin,		//ƒXƒNƒŠƒvƒgID(‹¤’Ê)
-		NARC_msg_castle_room_dat,		//ƒƒbƒZ[ƒWID(‹¤’Ê)
+	{//FSS_SCENEID_CASTLE_BYPATH	ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã§æ¥ã‚‹ãƒãƒƒãƒ—
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		NULL,							//åˆæœŸå‹•ä½œé–¢æ•°
+		NULL,							//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_castle_bin,		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(å…±é€š)
+		NARC_msg_castle_room_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID(å…±é€š)
 		SEQ_PL_BF_CASTLE,				//BGM ID
-		GF_BGL_SCRSIZ_256x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BC_ROUKA_NSCR_BIN,				//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BC_ROUKA_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BC_ROUKA_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_256x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BC_ROUKA_NSCR_BIN,				//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BC_ROUKA_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BC_ROUKA_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	{//FSS_SCENEID_WIFI_COUNTER
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		InitFunc_WifiCounter,			//‰Šú“®ìŠÖ”
-		EndFunc_WifiCounter,			//I—¹“®ìŠÖ”
-		NARC_fr_script_wifi_counter_bin,//ƒXƒNƒŠƒvƒgID
-		NARC_msg_bf_info_dat,			//ƒƒbƒZ[ƒWID
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		InitFunc_WifiCounter,			//åˆæœŸå‹•ä½œé–¢æ•°
+		EndFunc_WifiCounter,			//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_wifi_counter_bin,//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_bf_info_dat,			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_BF_TOWWER,					//BGM ID
-		GF_BGL_SCRSIZ_256x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BF_CONNECT_NSCR_BIN,			//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BF_CONNECT_NCGR_BIN,			//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BF_CONNECT_NCLR,				//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_256x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BF_CONNECT_NSCR_BIN,			//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BF_CONNECT_NCGR_BIN,			//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BF_CONNECT_NCLR,				//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	{//FSS_SCENEID_ROULETTE_WAY
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		InitFunc_RouletteWay,			//‰Šú“®ìŠÖ”
-		EndFunc_RouletteWay,			//I—¹“®ìŠÖ”
-		NARC_fr_script_roulette_bin,	//ƒXƒNƒŠƒvƒgID
-		NARC_msg_roulette_room_dat,		//ƒƒbƒZ[ƒWID
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		InitFunc_RouletteWay,			//åˆæœŸå‹•ä½œé–¢æ•°
+		EndFunc_RouletteWay,			//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_roulette_bin,	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_roulette_room_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_PL_BF_ROULETTE,				//BGM ID
-		GF_BGL_SCRSIZ_256x256,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BR_ROUKA_NSCR_BIN,				//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BR_ROUKA_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BR_ROUKA_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		MULTI_BG_NULL,					//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_256x256,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BR_ROUKA_NSCR_BIN,				//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BR_ROUKA_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BR_ROUKA_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		MULTI_BG_NULL,					//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
 	{//FSS_SCENEID_ROULETTE_BTL
-		GX_BGMODE_5,	//BGƒ‚[ƒh(ˆê“I‚È‚à‚ÌB‘S‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ªˆÚso—ˆ‚½‚çÁ‚·)
-		InitFunc_Roulette,				//‰Šú“®ìŠÖ”
-		EndFunc_Roulette,				//I—¹“®ìŠÖ”
-		NARC_fr_script_roulette_bin,	//ƒXƒNƒŠƒvƒgID
-		NARC_msg_roulette_room_dat,		//ƒƒbƒZ[ƒWID
+		GX_BGMODE_5,	//BGãƒ¢ãƒ¼ãƒ‰(ä¸€æ™‚çš„ãªã‚‚ã®ã€‚å…¨ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒç§»è¡Œå‡ºæ¥ãŸã‚‰æ¶ˆã™)
+		InitFunc_Roulette,				//åˆæœŸå‹•ä½œé–¢æ•°
+		EndFunc_Roulette,				//çµ‚äº†å‹•ä½œé–¢æ•°
+		NARC_fr_script_roulette_bin,	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+		NARC_msg_roulette_room_dat,		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 		SEQ_PL_BF_ROULETTE,				//BGM ID
-		GF_BGL_SCRSIZ_512x512,			//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-		ARC_FRONTIER_BG,				//ƒ}ƒbƒv‚ÌƒA[ƒJƒCƒuID
-		BR_ROOM_NSCR_BIN,				//ƒ}ƒbƒvƒXƒNƒŠ[ƒ“‚ÌID
-		BR_ROOM_NCGR_BIN,				//ƒ}ƒbƒvƒLƒƒƒ‰ƒNƒ^‚ÌID
-		BR_ROOM_NCLR,					//ƒ}ƒbƒvƒpƒŒƒbƒg‚ÌID
-		BR_KEKKA01_HP_A_NSCR_BIN,		//‘½d–Ê‚ÌƒXƒNƒŠ[ƒ“ID
-		BR_KEKKA01_HP_NCGR_BIN,			//‘½d–Ê‚ÌƒLƒƒƒ‰ƒNƒ^ID
-		BR_ROOM_KEKKA_NCLR,				//‘½d–Ê‚ÌƒpƒŒƒbƒgID
-		SCROLL_MODE_EASY,				//ƒXƒNƒ[ƒ‹ƒ‚[ƒh
-		TRUE,							//‘½d–Ê‚ÌƒXƒNƒ[ƒ‹“¯Šú
+		GF_BGL_SCRSIZ_512x512,			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+		ARC_FRONTIER_BG,				//ãƒãƒƒãƒ—ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+		BR_ROOM_NSCR_BIN,				//ãƒãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ID
+		BR_ROOM_NCGR_BIN,				//ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
+		BR_ROOM_NCLR,					//ãƒãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã®ID
+		BR_KEKKA01_HP_A_NSCR_BIN,		//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
+		BR_KEKKA01_HP_NCGR_BIN,			//å¤šé‡é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+		BR_ROOM_KEKKA_NCLR,				//å¤šé‡é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆID
+		SCROLL_MODE_EASY,				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+		TRUE,							//å¤šé‡é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	},
 };
 
@@ -415,12 +415,12 @@ static const FSS_SCENE_DATA SceneDataTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“ID‚©‚çƒV[ƒ“ƒf[ƒ^‚ÌŠeíƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+ * @brief   ã‚·ãƒ¼ãƒ³IDã‹ã‚‰ã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®å„ç¨®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- * @param   scene_id		ƒV[ƒ“ID
- * @param   param_code		æ“¾‚µ‚½‚¢ƒf[ƒ^(FSS_SCENE_DATA_???)
+ * @param   scene_id		ã‚·ãƒ¼ãƒ³ID
+ * @param   param_code		å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿(FSS_SCENE_DATA_???)
  *
- * @retval  æ“¾ƒf[ƒ^
+ * @retval  å–å¾—ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 int FSS_SceneParamGet(int scene_id, int param_code)
@@ -462,11 +462,11 @@ int FSS_SceneParamGet(int scene_id, int param_code)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“ƒf[ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚é‰Šú“®ìŠÖ”ŒÄ‚Ño‚µ
+ * @brief   ã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹åˆæœŸå‹•ä½œé–¢æ•°å‘¼ã³å‡ºã—
  *
  * @param   fmap			
- * @param   ptr_work		‰Šú“®ìŠÖ”“à‚ÅAlloc‚µ‚½ê‡‚Ìƒ|ƒCƒ“ƒ^•Û‘¶êŠ
- * @param   scene_id		ƒV[ƒ“ID
+ * @param   ptr_work		åˆæœŸå‹•ä½œé–¢æ•°å†…ã§Allocã—ãŸå ´åˆã®ãƒã‚¤ãƒ³ã‚¿ä¿å­˜å ´æ‰€
+ * @param   scene_id		ã‚·ãƒ¼ãƒ³ID
  */
 //--------------------------------------------------------------
 void FSS_SceneInitFuncCall(FMAP_PTR fmap, void **ptr_work, int scene_id)
@@ -478,11 +478,11 @@ void FSS_SceneInitFuncCall(FMAP_PTR fmap, void **ptr_work, int scene_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“ƒf[ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚éI—¹“®ìŠÖ”ŒÄ‚Ño‚µ
+ * @brief   ã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹çµ‚äº†å‹•ä½œé–¢æ•°å‘¼ã³å‡ºã—
  *
  * @param   fmap			
- * @param   ptr_work		‰Šú“®ìŠÖ”“à‚Åƒ|ƒCƒ“ƒ^‚È‚Ç‚ğƒZƒbƒg‚µ‚½ê‡A‚±‚Ìƒ[ƒN‚É“ü‚Á‚Ä‚¢‚é
- * @param   scene_id		ƒV[ƒ“ID
+ * @param   ptr_work		åˆæœŸå‹•ä½œé–¢æ•°å†…ã§ãƒã‚¤ãƒ³ã‚¿ãªã©ã‚’ã‚»ãƒƒãƒˆã—ãŸå ´åˆã€ã“ã®ãƒ¯ãƒ¼ã‚¯ã«å…¥ã£ã¦ã„ã‚‹
+ * @param   scene_id		ã‚·ãƒ¼ãƒ³ID
  */
 //--------------------------------------------------------------
 void FSS_SceneEndFuncCall(FMAP_PTR fmap, void **ptr_work, int scene_id)
@@ -495,47 +495,47 @@ void FSS_SceneEndFuncCall(FMAP_PTR fmap, void **ptr_work, int scene_id)
 
 
 //==============================================================================
-//	‰Šú“®ìŠÖ”EI—¹“®ìŠÖ”
+//	åˆæœŸå‹•ä½œé–¢æ•°ãƒ»çµ‚äº†å‹•ä½œé–¢æ•°
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ‰Šú“®ìŠÖ”‚ÌÀsƒeƒXƒg
+ * @brief   åˆæœŸå‹•ä½œé–¢æ•°ã®å®Ÿè¡Œãƒ†ã‚¹ãƒˆ
  *
  * @param   fmap			
- * @param   ptr_work		‰Šú“®ìŠÖ”“à‚Åƒƒ‚ƒŠŠm•Û‚µ‚½ê‡‚Ìƒ|ƒCƒ“ƒ^•Û—Ìˆæ
+ * @param   ptr_work		åˆæœŸå‹•ä½œé–¢æ•°å†…ã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ãŸå ´åˆã®ãƒã‚¤ãƒ³ã‚¿ä¿æŒé ˜åŸŸ
  */
 //--------------------------------------------------------------
 static void TestInitFunc(FMAP_PTR fmap, void **ptr_work)
 {
-	OS_TPrintf("‰Šú“®ìŠÖ”‚ªŒÄ‚Î‚ê‚½\n");
+	OS_TPrintf("åˆæœŸå‹•ä½œé–¢æ•°ãŒå‘¼ã°ã‚ŒãŸ\n");
 	
-	//ƒƒ‚ƒŠŠm•Û‚ª•K—v‚Èê‡‚Í‚±‚±‚ÅŠm•Û‚µAƒ|ƒCƒ“ƒ^‚ğƒVƒXƒeƒ€‘¤‚ª—pˆÓ‚µ‚Ä‚¢‚é—Ìˆæ‚É•Û‘¶‚³‚¹‚Ü‚·
-	//ƒq[ƒvID‚ÍŠî–{“I‚É‚ÍHEAPID_FRONTIERMAP‚ğg—pB
+	//ãƒ¡ãƒ¢ãƒªç¢ºä¿ãŒå¿…è¦ãªå ´åˆã¯ã“ã“ã§ç¢ºä¿ã—ã€ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚·ã‚¹ãƒ†ãƒ å´ãŒç”¨æ„ã—ã¦ã„ã‚‹é ˜åŸŸã«ä¿å­˜ã•ã›ã¾ã™
+	//ãƒ’ãƒ¼ãƒ—IDã¯åŸºæœ¬çš„ã«ã¯HEAPID_FRONTIERMAPã‚’ä½¿ç”¨ã€‚
 	*ptr_work = sys_AllocMemory(HEAPID_FRONTIERMAP, 32);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   I—¹“®ìŠÖ”‚ÌÀsƒeƒXƒg
+ * @brief   çµ‚äº†å‹•ä½œé–¢æ•°ã®å®Ÿè¡Œãƒ†ã‚¹ãƒˆ
  *
  * @param   fmap			
- * @param   ptr_work		‰Šú“®ìŠÖ”“à‚Åƒƒ‚ƒŠŠm•Û‚µ‚½ê‡‚Ìƒ|ƒCƒ“ƒ^•Û—Ìˆæ
+ * @param   ptr_work		åˆæœŸå‹•ä½œé–¢æ•°å†…ã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ãŸå ´åˆã®ãƒã‚¤ãƒ³ã‚¿ä¿æŒé ˜åŸŸ
  */
 //--------------------------------------------------------------
 static void TestEndFunc(FMAP_PTR fmap, void **ptr_work)
 {
-	OS_TPrintf("I—¹“®ìŠÖ”‚ªŒÄ‚Î‚ê‚½\n");
+	OS_TPrintf("çµ‚äº†å‹•ä½œé–¢æ•°ãŒå‘¼ã°ã‚ŒãŸ\n");
 
-	//InitFunc‚ÅŠm•Û‚µ‚Äg—p‚µ‚Ä‚¢‚½ƒƒ‚ƒŠ‚ğ‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Å‰ğ•ú‚³‚¹‚é‚±‚Æ‚ªo—ˆ‚Ü‚·
+	//InitFuncã§ç¢ºä¿ã—ã¦ä½¿ç”¨ã—ã¦ã„ãŸãƒ¡ãƒ¢ãƒªã‚’ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§è§£æ”¾ã•ã›ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™
 	sys_FreeMemoryEz(*ptr_work);
 }
 
 //==============================================================================
-//	ƒXƒe[ƒWF‰Šú“®ìŠÖ”
+//	ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šåˆæœŸå‹•ä½œé–¢æ•°
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWF‰Šú“®ìŠÖ”
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šåˆæœŸå‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
@@ -543,21 +543,21 @@ static void TestEndFunc(FMAP_PTR fmap, void **ptr_work)
 //--------------------------------------------------------------
 static void InitFunc_Stage(FMAP_PTR fmap, void **ptr_work)
 {
-	//BGƒAƒjƒ§ŒäƒVƒXƒeƒ€ì¬
+	//BGã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	*ptr_work = StageAnimation_Init(fmap->bgl, fmap->pfd);
 
 	GF_BGL_PrioritySet( GF_BGL_FRAME0_M, 1 );
 	GF_BGL_PrioritySet( FRMAP_FRAME_EFF, 2 );
 	GF_BGL_PrioritySet( FRMAP_FRAME_MAP, 3 );
 
-	//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_OFF );	//BG”ñ•\¦
-	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BG”ñ•\¦
+	//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_OFF );	//BGéè¡¨ç¤º
+	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BGéè¡¨ç¤º
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWFI—¹“®ìŠÖ”
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šçµ‚äº†å‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
@@ -565,83 +565,83 @@ static void InitFunc_Stage(FMAP_PTR fmap, void **ptr_work)
 //--------------------------------------------------------------
 static void EndFunc_Stage(FMAP_PTR fmap, void **ptr_work)
 {
-	//BGƒAƒjƒ§ŒäƒVƒXƒeƒ€‰ğ•ú
+	//BGã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ã‚·ã‚¹ãƒ†ãƒ è§£æ”¾
 	StageAnimation_End(*ptr_work);
 	return;
 }
 
 //==============================================================================
-//	ƒ‹[ƒŒƒbƒg’Ê˜HF‰Šú“®ìŠÖ”
+//	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€šè·¯ï¼šåˆæœŸå‹•ä½œé–¢æ•°
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg’Ê˜HF‰Šú“®ìŠÖ”
+ * @brief   ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€šè·¯ï¼šåˆæœŸå‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
  *
- * ROULETTE_SCRWORK‚Í‚Ü‚¾Šm•Û‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅƒAƒNƒZƒX‚µ‚Ä‚Íƒ_ƒI
+ * ROULETTE_SCRWORKã¯ã¾ã ç¢ºä¿ã•ã‚Œã¦ã„ãªã„ã®ã§ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã¯ãƒ€ãƒ¡ï¼
  */
 //--------------------------------------------------------------
 static void InitFunc_RouletteWay(FMAP_PTR fmap, void **ptr_work)
 {
-	OS_Printf( "\n***********************\nƒ‹[ƒŒƒbƒg’Ê˜H@‰Šú“®ì@ŠJn\n" );
+	OS_Printf( "\n***********************\nãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€šè·¯ã€€åˆæœŸå‹•ä½œã€€é–‹å§‹\n" );
 
 #if 0
 	PaletteFadeReq( fmap->pfd, 0xffff, 0xffff, 0, 
 	//PaletteFadeReq( fmap->pfd, PF_BIT_MAIN_BG, 0xffff, 0, 
-					0,									//ŠJn”Z“x
-					8,									//ÅI”Z“x 
-					0x0000 );							//•ÏXŒã‚ÌF
+					0,									//é–‹å§‹æ¿ƒåº¦
+					8,									//æœ€çµ‚æ¿ƒåº¦ 
+					0x0000 );							//å¤‰æ›´å¾Œã®è‰²
 #endif
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg’Ê˜HFI—¹“®ìŠÖ”
+ * @brief   ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€šè·¯ï¼šçµ‚äº†å‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
  *
- * ROULETTE_SCRWORK‚Í‚Ü‚¾Šm•Û‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅƒAƒNƒZƒX‚µ‚Ä‚Íƒ_ƒI
+ * ROULETTE_SCRWORKã¯ã¾ã ç¢ºä¿ã•ã‚Œã¦ã„ãªã„ã®ã§ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã¯ãƒ€ãƒ¡ï¼
  */
 //--------------------------------------------------------------
 static void EndFunc_RouletteWay(FMAP_PTR fmap, void **ptr_work)
 {
-	OS_Printf( "\n***********************\nƒ‹[ƒŒƒbƒg’Ê˜H@‰Šú“®ì@I—¹\n" );
+	OS_Printf( "\n***********************\nãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€šè·¯ã€€åˆæœŸå‹•ä½œã€€çµ‚äº†\n" );
 	return;
 }
 
 //==============================================================================
-//	ƒ‹[ƒŒƒbƒgF‰Šú“®ìŠÖ”
+//	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆï¼šåˆæœŸå‹•ä½œé–¢æ•°
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒ‹[ƒŒƒbƒgF‰Šú“®ìŠÖ”
+ * @brief   ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆï¼šåˆæœŸå‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
  *
- * ROULETTE_SCRWORK‚Í‚Ü‚¾Šm•Û‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅƒAƒNƒZƒX‚µ‚Ä‚Íƒ_ƒI
+ * ROULETTE_SCRWORKã¯ã¾ã ç¢ºä¿ã•ã‚Œã¦ã„ãªã„ã®ã§ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã¯ãƒ€ãƒ¡ï¼
  */
 //--------------------------------------------------------------
 static void InitFunc_Roulette(FMAP_PTR fmap, void **ptr_work)
 {
-	OS_Printf( "\n***********************\nƒ‹[ƒŒƒbƒg@‰Šú“®ì@ŠJn\n" );
+	OS_Printf( "\n***********************\nãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€€åˆæœŸå‹•ä½œã€€é–‹å§‹\n" );
 
 #if 0
 	PaletteFadeReq( fmap->pfd, 0xffff, 0xffff, 0, 
 	//PaletteFadeReq( fmap->pfd, PF_BIT_MAIN_BG, 0xffff, 0, 
-					0,									//ŠJn”Z“x
-					8,									//ÅI”Z“x 
-					0x0000 );							//•ÏXŒã‚ÌF
+					0,									//é–‹å§‹æ¿ƒåº¦
+					8,									//æœ€çµ‚æ¿ƒåº¦ 
+					0x0000 );							//å¤‰æ›´å¾Œã®è‰²
 #endif
 
 	GF_BGL_PrioritySet( GF_BGL_FRAME0_M, 1 );
-	//GF_BGL_PrioritySet( FRMAP_FRAME_WIN, 0 );				//ƒƒbƒZ[ƒW‚ğÅ‘O–Ê
+	//GF_BGL_PrioritySet( FRMAP_FRAME_WIN, 0 );				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æœ€å‰é¢
 	GF_BGL_PrioritySet( FRMAP_FRAME_EFF, 2 );
 	GF_BGL_PrioritySet( FRMAP_FRAME_MAP, 3 );
 
@@ -649,53 +649,53 @@ static void InitFunc_Roulette(FMAP_PTR fmap, void **ptr_work)
 	G2_SetBlendAlpha(	GX_BLEND_PLANEMASK_BG0, 
 						GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | 
 						GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 
-						20, 20 );	//‚±‚±‚Ì’l‚Íƒp[ƒeƒBƒNƒ‹ƒf[ƒ^‘¤‚Ì’l‚ª”½‰f‚·‚é‚Ì‚ÅˆÓ–¡‚È‚µ
+						20, 20 );	//ã“ã“ã®å€¤ã¯ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‡ãƒ¼ã‚¿å´ã®å€¤ãŒåæ˜ ã™ã‚‹ã®ã§æ„å‘³ãªã—
 #else
 	G2_SetBlendAlpha(	GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ,
 						GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | 
 						GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 
-						20, 20 );	//‚±‚±‚Ì’l‚Íƒp[ƒeƒBƒNƒ‹ƒf[ƒ^‘¤‚Ì’l‚ª”½‰f‚·‚é‚Ì‚ÅˆÓ–¡‚È‚µ
+						20, 20 );	//ã“ã“ã®å€¤ã¯ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‡ãƒ¼ã‚¿å´ã®å€¤ãŒåæ˜ ã™ã‚‹ã®ã§æ„å‘³ãªã—
 #endif
 
-	//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_OFF );	//BG”ñ•\¦
-	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BG”ñ•\¦
+	//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_OFF );	//BGéè¡¨ç¤º
+	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BGéè¡¨ç¤º
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒ‹[ƒŒƒbƒgFI—¹“®ìŠÖ”
+ * @brief   ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆï¼šçµ‚äº†å‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
  *
- * ROULETTE_SCRWORK‚Í‚Ü‚¾Šm•Û‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅƒAƒNƒZƒX‚µ‚Ä‚Íƒ_ƒI
+ * ROULETTE_SCRWORKã¯ã¾ã ç¢ºä¿ã•ã‚Œã¦ã„ãªã„ã®ã§ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã¯ãƒ€ãƒ¡ï¼
  */
 //--------------------------------------------------------------
 static void EndFunc_Roulette(FMAP_PTR fmap, void **ptr_work)
 {
-	OS_Printf( "\n***********************\nƒ‹[ƒŒƒbƒg@‰Šú“®ì@I—¹\n" );
+	OS_Printf( "\n***********************\nãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€€åˆæœŸå‹•ä½œã€€çµ‚äº†\n" );
 	return;
 }
 
 
 //==============================================================================
-//	ƒtƒ@ƒNƒgƒŠ[F‰Šú“®ìŠÖ”
+//	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ï¼šåˆæœŸå‹•ä½œé–¢æ•°
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[F‰Šú“®ìŠÖ”
+ * @brief   ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ï¼šåˆæœŸå‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
  *
- * FACTORY_SCRWORK‚Í‚Ü‚¾Šm•Û‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅƒAƒNƒZƒX‚µ‚Ä‚Íƒ_ƒI
+ * FACTORY_SCRWORKã¯ã¾ã ç¢ºä¿ã•ã‚Œã¦ã„ãªã„ã®ã§ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã¯ãƒ€ãƒ¡ï¼
  */
 //--------------------------------------------------------------
 static void InitFunc_Factory(FMAP_PTR fmap, void **ptr_work)
 {
-	OS_Printf( "\n***********************\nƒtƒ@ƒNƒgƒŠ[@‰Šú“®ì@ŠJn\n" );
+	OS_Printf( "\n***********************\nãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€€åˆæœŸå‹•ä½œã€€é–‹å§‹\n" );
 	GF_BGL_PrioritySet( FRMAP_FRAME_EFF, 3 );
 	GF_BGL_PrioritySet( FRMAP_FRAME_MAP, 2 );
 	return;
@@ -703,33 +703,33 @@ static void InitFunc_Factory(FMAP_PTR fmap, void **ptr_work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[FI—¹“®ìŠÖ”
+ * @brief   ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ï¼šçµ‚äº†å‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
  *
- * FACTORY_SCRWORK‚Í‚Ü‚¾Šm•Û‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅƒAƒNƒZƒX‚µ‚Ä‚Íƒ_ƒI
+ * FACTORY_SCRWORKã¯ã¾ã ç¢ºä¿ã•ã‚Œã¦ã„ãªã„ã®ã§ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã¯ãƒ€ãƒ¡ï¼
  */
 //--------------------------------------------------------------
 static void EndFunc_Factory(FMAP_PTR fmap, void **ptr_work)
 {
-	OS_Printf( "\n***********************\nƒtƒ@ƒNƒgƒŠ[@‰Šú“®ì@I—¹\n" );
+	OS_Printf( "\n***********************\nãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€€åˆæœŸå‹•ä½œã€€çµ‚äº†\n" );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[‘Îí•”‰®F‰Šú“®ìŠÖ”
+ * @brief   ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å¯¾æˆ¦éƒ¨å±‹ï¼šåˆæœŸå‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
  *
- * FACTORY_SCRWORK‚Í‚Ü‚¾Šm•Û‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅƒAƒNƒZƒX‚µ‚Ä‚Íƒ_ƒI
+ * FACTORY_SCRWORKã¯ã¾ã ç¢ºä¿ã•ã‚Œã¦ã„ãªã„ã®ã§ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã¯ãƒ€ãƒ¡ï¼
  */
 //--------------------------------------------------------------
 static void InitFunc_FactoryBtl(FMAP_PTR fmap, void **ptr_work)
 {
-	OS_Printf( "\n***********************\nƒtƒ@ƒNƒgƒŠ[@‰Šú“®ì@ŠJn\n" );
+	OS_Printf( "\n***********************\nãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€€åˆæœŸå‹•ä½œã€€é–‹å§‹\n" );
 #if 0
 	PaletteFadeWorkAllocSet( fmap->pfd, FADE_MAIN_BG_EX3, 2*6, HEAPID_FRONTIERMAP );
 	SoftFadePfd( fmap->pfd, FADE_MAIN_BG_EX3, 0, 1, 16, 0x0000 );
@@ -737,30 +737,30 @@ static void InitFunc_FactoryBtl(FMAP_PTR fmap, void **ptr_work)
 	SoftFadePfd( fmap->pfd, FADE_MAIN_BG_EX3, 2, 1, 16, 0x3d8c );
 	SoftFadePfd( fmap->pfd, FADE_MAIN_BG_EX3, 3, 1, 16, 0x418c );
 	SoftFadePfd( fmap->pfd, FADE_MAIN_BG_EX3, 4, 1, 16, 0x3d6b );
-	SoftFadePfd( fmap->pfd, FADE_MAIN_BG_EX3, 5, 1, 16, 0x6f37 );	//‚±‚±‚Ü‚Å•K—v
+	SoftFadePfd( fmap->pfd, FADE_MAIN_BG_EX3, 5, 1, 16, 0x6f37 );	//ã“ã“ã¾ã§å¿…è¦
 #endif
 
 	G2_SetBlendAlpha(	GX_BLEND_PLANEMASK_BG0, 
 						GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | 
 						GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 
-						20, 20 );	//‚±‚±‚Ì’l‚Íƒp[ƒeƒBƒNƒ‹ƒf[ƒ^‘¤‚Ì’l‚ª”½‰f‚·‚é‚Ì‚ÅˆÓ–¡‚È‚µ
+						20, 20 );	//ã“ã“ã®å€¤ã¯ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‡ãƒ¼ã‚¿å´ã®å€¤ãŒåæ˜ ã™ã‚‹ã®ã§æ„å‘³ãªã—
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[‘Îí•”‰®FI—¹“®ìŠÖ”
+ * @brief   ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å¯¾æˆ¦éƒ¨å±‹ï¼šçµ‚äº†å‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
  *
- * FACTORY_SCRWORK‚Í‚Ü‚¾Šm•Û‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅƒAƒNƒZƒX‚µ‚Ä‚Íƒ_ƒI
+ * FACTORY_SCRWORKã¯ã¾ã ç¢ºä¿ã•ã‚Œã¦ã„ãªã„ã®ã§ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã¯ãƒ€ãƒ¡ï¼
  */
 //--------------------------------------------------------------
 static void EndFunc_FactoryBtl(FMAP_PTR fmap, void **ptr_work)
 {
-	OS_Printf( "\n***********************\nƒtƒ@ƒNƒgƒŠ[@‰Šú“®ì@I—¹\n" );
+	OS_Printf( "\n***********************\nãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€€åˆæœŸå‹•ä½œã€€çµ‚äº†\n" );
 #if 0
 	PaletteFadeWorkAllocFree( fmap->pfd, FADE_MAIN_BG_EX3 );
 #endif
@@ -769,11 +769,11 @@ static void EndFunc_FactoryBtl(FMAP_PTR fmap, void **ptr_work)
 
 
 //==============================================================================
-//	wifiƒJƒEƒ“ƒ^[F‰Šú“®ìŠÖ”
+//	wifiã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ï¼šåˆæœŸå‹•ä½œé–¢æ•°
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   wifiƒJƒEƒ“ƒ^[F‰Šú“®ìŠÖ”
+ * @brief   wifiã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ï¼šåˆæœŸå‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
@@ -787,7 +787,7 @@ static void InitFunc_WifiCounter(FMAP_PTR fmap, void **ptr_work)
 
 //--------------------------------------------------------------
 /**
- * @brief   wifiƒJƒEƒ“ƒ^[FI—¹“®ìŠÖ”
+ * @brief   wifiã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ï¼šçµ‚äº†å‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
@@ -801,11 +801,11 @@ static void EndFunc_WifiCounter( FMAP_PTR fmap, void** ptr_work )
 
 
 //==============================================================================
-//	ƒLƒƒƒbƒXƒ‹BTLF‰Šú“®ìŠÖ”
+//	ã‚­ãƒ£ãƒƒã‚¹ãƒ«BTLï¼šåˆæœŸå‹•ä½œé–¢æ•°
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒbƒXƒ‹BTLF‰Šú“®ìŠÖ”
+ * @brief   ã‚­ãƒ£ãƒƒã‚¹ãƒ«BTLï¼šåˆæœŸå‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		
@@ -815,13 +815,13 @@ static void InitFunc_CastleBtl(FMAP_PTR fmap, void **ptr_work)
 {
 	//GF_BGL_PrioritySet( FRMAP_FRAME_EFF, 0 );
 	
-	GF_BGL_PrioritySet( FRMAP_FRAME_WIN, 0 );				//ƒƒbƒZ[ƒW‚ğÅ‘O–Ê
+	GF_BGL_PrioritySet( FRMAP_FRAME_WIN, 0 );				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æœ€å‰é¢
 #if 0
-	GF_BGL_PrioritySet( GF_BGL_FRAME0_M, 1 );				//ƒp[ƒeƒBƒNƒ‹
+	GF_BGL_PrioritySet( GF_BGL_FRAME0_M, 1 );				//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 	GF_BGL_PrioritySet( FRMAP_FRAME_EFF, 2 );
 	GF_BGL_PrioritySet( FRMAP_FRAME_MAP, 3 );
 #else
-	GF_BGL_PrioritySet( GF_BGL_FRAME0_M, 2 );				//ƒp[ƒeƒBƒNƒ‹
+	GF_BGL_PrioritySet( GF_BGL_FRAME0_M, 2 );				//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 	GF_BGL_PrioritySet( FRMAP_FRAME_EFF, 2 );
 	GF_BGL_PrioritySet( FRMAP_FRAME_MAP, 3 );
 #endif
@@ -829,13 +829,13 @@ static void InitFunc_CastleBtl(FMAP_PTR fmap, void **ptr_work)
 	G2_SetBlendAlpha(	GX_BLEND_PLANEMASK_BG0, 
 						GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | 
 						GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 
-						20, 20 );	//‚±‚±‚Ì’l‚Íƒp[ƒeƒBƒNƒ‹ƒf[ƒ^‘¤‚Ì’l‚ª”½‰f‚·‚é‚Ì‚ÅˆÓ–¡‚È‚µ
+						20, 20 );	//ã“ã“ã®å€¤ã¯ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‡ãƒ¼ã‚¿å´ã®å€¤ãŒåæ˜ ã™ã‚‹ã®ã§æ„å‘³ãªã—
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒbƒXƒ‹BTLFI—¹“®ìŠÖ”
+ * @brief   ã‚­ãƒ£ãƒƒã‚¹ãƒ«BTLï¼šçµ‚äº†å‹•ä½œé–¢æ•°
  *
  * @param   fmap		
  * @param   ptr_work		

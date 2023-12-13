@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ribbon.h
- * @brief	ƒŠƒ{ƒ“ƒf[ƒ^ŠÖ˜A
+ * @brief	ãƒªãƒœãƒ³ãƒ‡ãƒ¼ã‚¿é–¢é€£
  * @author	Hiroyuki Nakamura
  * @date	2006.04.18
  */
@@ -17,107 +17,107 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	RIBBON_MAX		( 80 )			// ƒŠƒ{ƒ“‘”
-#define	MSG_SP_RIBBON	( 0x8000 )		// ”z•zƒŠƒ{ƒ“‚ÌƒƒbƒZ[ƒW’è‹`
+#define	RIBBON_MAX		( 80 )			// ãƒªãƒœãƒ³ç·æ•°
+#define	MSG_SP_RIBBON	( 0x8000 )		// é…å¸ƒãƒªãƒœãƒ³ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å®šç¾©
 
-// ƒŠƒ{ƒ“ƒf[ƒ^Žæ“¾ID
+// ãƒªãƒœãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—ID
 enum {
-	RIBBON_PARA_POKEPARA = 0,	// PokeParaGet‚ÌŽæ“¾ID
-	RIBBON_PARA_GRAPHIC,		// ƒOƒ‰ƒtƒBƒbƒNID
-	RIBBON_PARA_PALNUM,			// ƒpƒŒƒbƒg”Ô†
-	RIBBON_PARA_NAME,			// ƒŠƒ{ƒ“–¼
-	RIBBON_PARA_INFO,			// ƒŠƒ{ƒ“à–¾
+	RIBBON_PARA_POKEPARA = 0,	// PokeParaGetã®å–å¾—ID
+	RIBBON_PARA_GRAPHIC,		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ID
+	RIBBON_PARA_PALNUM,			// ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	RIBBON_PARA_NAME,			// ãƒªãƒœãƒ³å
+	RIBBON_PARA_INFO,			// ãƒªãƒœãƒ³èª¬æ˜Ž
 };
 
 
-//ƒŠƒ{ƒ“ID	Žè‘‚«‚È‚Ì‚ÅA•K—v‚È‚à‚Ì‚¾‚¯’è‹`‚µ‚Ä‚Ü‚·
+//ãƒªãƒœãƒ³ID	æ‰‹æ›¸ããªã®ã§ã€å¿…è¦ãªã‚‚ã®ã ã‘å®šç¾©ã—ã¦ã¾ã™
 enum{
-	RIBBON_ID_COOL = 33,			//ƒN[ƒ‹ƒŠƒ{ƒ“
-	RIBBON_ID_COOL_SUPER,			//ƒN[ƒ‹ƒŠƒ{ƒ“ƒX[ƒp[
-	RIBBON_ID_COOL_HYPER,			//ƒN[ƒ‹ƒŠƒ{ƒ“ƒnƒCƒo[
-	RIBBON_ID_COOL_MASTER,			//ƒN[ƒ‹ƒŠƒ{ƒ“ƒ}ƒXƒ^[
-	RIBBON_ID_BEAUTY,				//ƒrƒ…[ƒeƒBƒŠƒ{ƒ“
-	RIBBON_ID_BEAUTY_SUPER,			//ƒrƒ…[ƒeƒBƒŠƒ{ƒ“ƒX[ƒp[
-	RIBBON_ID_BEAUTY_HYPER,			//ƒrƒ…[ƒeƒBƒŠƒ{ƒ“ƒnƒCƒp[
-	RIBBON_ID_BEAUTY_MASTER,		//ƒrƒ…[ƒeƒBƒŠƒ{ƒ“ƒ}ƒXƒ^[
-	RIBBON_ID_CUTE,					//ƒLƒ…[ƒgƒŠƒ{ƒ“
-	RIBBON_ID_CUTE_SUPER,			//ƒLƒ…[ƒgƒŠƒ{ƒ“ƒX[ƒp[
-	RIBBON_ID_CUTE_HYPER,			//ƒLƒ…[ƒgƒŠƒ{ƒ“ƒnƒCƒp[
-	RIBBON_ID_CUTE_MASTER,			//ƒLƒ…[ƒgƒŠƒ{ƒ“ƒ}ƒXƒ^[
-	RIBBON_ID_GENEASU,				//ƒW[ƒjƒAƒXƒŠƒ{ƒ“
-	RIBBON_ID_GENEASU_SUPER,		//ƒW[ƒjƒAƒXƒŠƒ{ƒ“ƒX[ƒp[
-	RIBBON_ID_GENEASU_HYPER,		//ƒW[ƒjƒAƒXƒŠƒ{ƒ“ƒnƒCƒp[
-	RIBBON_ID_GENEASU_MASTER,		//ƒW[ƒjƒAƒXƒŠƒ{ƒ“ƒ}ƒXƒ^[
-	RIBBON_ID_PAWAFURU,				//ƒpƒƒtƒ‹ƒŠƒ{ƒ“
-	RIBBON_ID_PAWAFURU_SUPER,		//ƒpƒƒtƒ‹ƒŠƒ{ƒ“ƒX[ƒp[
-	RIBBON_ID_PAWAFURU_HYPER,		//ƒpƒƒtƒ‹ƒŠƒ{ƒ“ƒnƒCƒp[
-	RIBBON_ID_PAWAFURU_MASTER,		//ƒpƒƒtƒ‹ƒŠƒ{ƒ“ƒ}ƒXƒ^[
+	RIBBON_ID_COOL = 33,			//ã‚¯ãƒ¼ãƒ«ãƒªãƒœãƒ³
+	RIBBON_ID_COOL_SUPER,			//ã‚¯ãƒ¼ãƒ«ãƒªãƒœãƒ³ã‚¹ãƒ¼ãƒ‘ãƒ¼
+	RIBBON_ID_COOL_HYPER,			//ã‚¯ãƒ¼ãƒ«ãƒªãƒœãƒ³ãƒã‚¤ãƒãƒ¼
+	RIBBON_ID_COOL_MASTER,			//ã‚¯ãƒ¼ãƒ«ãƒªãƒœãƒ³ãƒžã‚¹ã‚¿ãƒ¼
+	RIBBON_ID_BEAUTY,				//ãƒ“ãƒ¥ãƒ¼ãƒ†ã‚£ãƒªãƒœãƒ³
+	RIBBON_ID_BEAUTY_SUPER,			//ãƒ“ãƒ¥ãƒ¼ãƒ†ã‚£ãƒªãƒœãƒ³ã‚¹ãƒ¼ãƒ‘ãƒ¼
+	RIBBON_ID_BEAUTY_HYPER,			//ãƒ“ãƒ¥ãƒ¼ãƒ†ã‚£ãƒªãƒœãƒ³ãƒã‚¤ãƒ‘ãƒ¼
+	RIBBON_ID_BEAUTY_MASTER,		//ãƒ“ãƒ¥ãƒ¼ãƒ†ã‚£ãƒªãƒœãƒ³ãƒžã‚¹ã‚¿ãƒ¼
+	RIBBON_ID_CUTE,					//ã‚­ãƒ¥ãƒ¼ãƒˆãƒªãƒœãƒ³
+	RIBBON_ID_CUTE_SUPER,			//ã‚­ãƒ¥ãƒ¼ãƒˆãƒªãƒœãƒ³ã‚¹ãƒ¼ãƒ‘ãƒ¼
+	RIBBON_ID_CUTE_HYPER,			//ã‚­ãƒ¥ãƒ¼ãƒˆãƒªãƒœãƒ³ãƒã‚¤ãƒ‘ãƒ¼
+	RIBBON_ID_CUTE_MASTER,			//ã‚­ãƒ¥ãƒ¼ãƒˆãƒªãƒœãƒ³ãƒžã‚¹ã‚¿ãƒ¼
+	RIBBON_ID_GENEASU,				//ã‚¸ãƒ¼ãƒ‹ã‚¢ã‚¹ãƒªãƒœãƒ³
+	RIBBON_ID_GENEASU_SUPER,		//ã‚¸ãƒ¼ãƒ‹ã‚¢ã‚¹ãƒªãƒœãƒ³ã‚¹ãƒ¼ãƒ‘ãƒ¼
+	RIBBON_ID_GENEASU_HYPER,		//ã‚¸ãƒ¼ãƒ‹ã‚¢ã‚¹ãƒªãƒœãƒ³ãƒã‚¤ãƒ‘ãƒ¼
+	RIBBON_ID_GENEASU_MASTER,		//ã‚¸ãƒ¼ãƒ‹ã‚¢ã‚¹ãƒªãƒœãƒ³ãƒžã‚¹ã‚¿ãƒ¼
+	RIBBON_ID_PAWAFURU,				//ãƒ‘ãƒ¯ãƒ•ãƒ«ãƒªãƒœãƒ³
+	RIBBON_ID_PAWAFURU_SUPER,		//ãƒ‘ãƒ¯ãƒ•ãƒ«ãƒªãƒœãƒ³ã‚¹ãƒ¼ãƒ‘ãƒ¼
+	RIBBON_ID_PAWAFURU_HYPER,		//ãƒ‘ãƒ¯ãƒ•ãƒ«ãƒªãƒœãƒ³ãƒã‚¤ãƒ‘ãƒ¼
+	RIBBON_ID_PAWAFURU_MASTER,		//ãƒ‘ãƒ¯ãƒ•ãƒ«ãƒªãƒœãƒ³ãƒžã‚¹ã‚¿ãƒ¼
 
-	// AGB‚Å–¢”z•z‚ÌƒŠƒ{ƒ“
-	RIBBON_ID_MARINE = 25,			//ƒ}ƒŠƒ“ƒŠƒ{ƒ“
-	RIBBON_ID_LAND,					//ƒ‰ƒ“ƒhƒŠƒ{ƒ“
-	RIBBON_ID_SKY,					//ƒXƒJƒCƒŠƒ{ƒ“
+	// AGBã§æœªé…å¸ƒã®ãƒªãƒœãƒ³
+	RIBBON_ID_MARINE = 25,			//ãƒžãƒªãƒ³ãƒªãƒœãƒ³
+	RIBBON_ID_LAND,					//ãƒ©ãƒ³ãƒ‰ãƒªãƒœãƒ³
+	RIBBON_ID_SKY,					//ã‚¹ã‚«ã‚¤ãƒªãƒœãƒ³
 
-	// DS‚Ì”z•zƒŠƒ{ƒ“
-	RIBBON_ID_SINOU_RED = 73,		//ƒVƒ“ƒIƒEƒŒƒbƒhƒŠƒ{ƒ“
-	RIBBON_ID_SINOU_GREEN,			//ƒVƒ“ƒIƒEƒOƒŠ[ƒ“ƒŠƒ{ƒ“
-	RIBBON_ID_SINOU_BLUE,			//ƒVƒ“ƒIƒEƒuƒ‹[ƒŠƒ{ƒ“
-	RIBBON_ID_SINOU_FESTIVAL,		//ƒVƒ“ƒIƒEƒtƒFƒXƒeƒBƒoƒ‹ƒŠƒ{ƒ“
-	RIBBON_ID_SINOU_CARNIVAL,		//ƒVƒ“ƒIƒEƒJ[ƒjƒoƒ‹ƒŠƒ{ƒ“
-	RIBBON_ID_SINOU_CLASSIC,		//ƒVƒ“ƒIƒEƒNƒ‰ƒVƒbƒNƒŠƒ{ƒ“
-	RIBBON_ID_SINOU_PREMIERE,		//ƒVƒ“ƒIƒEƒvƒŒƒ~ƒAƒŠƒ{ƒ“
+	// DSã®é…å¸ƒãƒªãƒœãƒ³
+	RIBBON_ID_SINOU_RED = 73,		//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ãƒƒãƒ‰ãƒªãƒœãƒ³
+	RIBBON_ID_SINOU_GREEN,			//ã‚·ãƒ³ã‚ªã‚¦ã‚°ãƒªãƒ¼ãƒ³ãƒªãƒœãƒ³
+	RIBBON_ID_SINOU_BLUE,			//ã‚·ãƒ³ã‚ªã‚¦ãƒ–ãƒ«ãƒ¼ãƒªãƒœãƒ³
+	RIBBON_ID_SINOU_FESTIVAL,		//ã‚·ãƒ³ã‚ªã‚¦ãƒ•ã‚§ã‚¹ãƒ†ã‚£ãƒãƒ«ãƒªãƒœãƒ³
+	RIBBON_ID_SINOU_CARNIVAL,		//ã‚·ãƒ³ã‚ªã‚¦ã‚«ãƒ¼ãƒ‹ãƒãƒ«ãƒªãƒœãƒ³
+	RIBBON_ID_SINOU_CLASSIC,		//ã‚·ãƒ³ã‚ªã‚¦ã‚¯ãƒ©ã‚·ãƒƒã‚¯ãƒªãƒœãƒ³
+	RIBBON_ID_SINOU_PREMIERE,		//ã‚·ãƒ³ã‚ªã‚¦ãƒ—ãƒ¬ãƒŸã‚¢ãƒªãƒœãƒ³
 };
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“ƒf[ƒ^Žæ“¾
+ * ãƒªãƒœãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param	dat_id		ƒf[ƒ^”Ô†
- * @param	prm_id		Žæ“¾ƒpƒ‰ƒ[ƒ^ID
+ * @param	dat_id		ãƒ‡ãƒ¼ã‚¿ç•ªå·
+ * @param	prm_id		å–å¾—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID
  *
- * @return	Žw’èƒpƒ‰ƒ[ƒ^
+ * @return	æŒ‡å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 RIBBON_DataGet( u8 dat_id, u8 prm_id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“à–¾Žæ“¾
+ * ãƒªãƒœãƒ³èª¬æ˜Žå–å¾—
  *
- * @param	sv			ƒZ[ƒuƒf[ƒ^
- * @param	dat_id		ƒf[ƒ^”Ô†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	dat_id		ãƒ‡ãƒ¼ã‚¿ç•ªå·
  *
- * @return	ƒŠƒ{ƒ“à–¾ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @return	ãƒªãƒœãƒ³èª¬æ˜Žãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32	RIBBON_InfoGet( u8 * sv, u8 dat_id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“ID‚©‚çà–¾‚ªŠi”[‚³‚ê‚Ä‚¢‚éˆÊ’u‚ðŽæ“¾
+ * ãƒªãƒœãƒ³IDã‹ã‚‰èª¬æ˜ŽãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ä½ç½®ã‚’å–å¾—
  *
- * @param	dat_id		ƒf[ƒ^”Ô†
+ * @param	dat_id		ãƒ‡ãƒ¼ã‚¿ç•ªå·
  *
- * @retval	"0xff = ”z•zƒŠƒ{ƒ“ˆÈŠO"
- * @retval	"0xff != Ši”[ˆÊ’u"
+ * @retval	"0xff = é…å¸ƒãƒªãƒœãƒ³ä»¥å¤–"
+ * @retval	"0xff != æ ¼ç´ä½ç½®"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 RIBBON_SaveIndexGet( u8 dat_id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ID_PARA_ƒŠƒ{ƒ“‚©‚çmsgID‚ðŽæ“¾(08.06.03)
+ * ID_PARA_ãƒªãƒœãƒ³ã‹ã‚‰msgIDã‚’å–å¾—(08.06.03)
  *
- * @param	para_id		ID_PARA_ƒŠƒ{ƒ“
+ * @param	para_id		ID_PARA_ãƒªãƒœãƒ³
  *
- * @retval	"msgIDA0xffff = Œ©‚Â‚©‚ç‚È‚©‚Á‚½"
+ * @retval	"msgIDã€0xffff = è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u16 RIBBON_NameGet( u32 pp_id );

@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	d_nohara.c
- * @brief	ƒfƒoƒbƒNƒ\[ƒX
+ * @brief	ãƒ‡ãƒãƒƒã‚¯ã‚½ãƒ¼ã‚¹
  * @author	Satoshi Nohara
  * @date	2005.07.26
  */
@@ -79,70 +79,70 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-#define D_NOHARA_BMPWIN_MAX	(1)				//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^Å‘å”
+#define D_NOHARA_BMPWIN_MAX	(1)				//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
 
-typedef void (*voidFunc)(void* func);		//ŠÖ”ƒ|ƒCƒ“ƒ^Œ^
+typedef void (*voidFunc)(void* func);		//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å‹
 
 
 //==============================================================================================
 //
-//	•Ï”
+//	å¤‰æ•°
 //
 //==============================================================================================
 static NNSSndCaptureOutputEffectType stereo_mono = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;
 
-//static s16 d_buf[ 32*100 ] ATTRIBUTE_ALIGN(32);	//”gŒ`Ši”[ƒoƒbƒtƒ@(‰½‚©‚ÌŠé‰æH)
+//static s16 d_buf[ 32*100 ] ATTRIBUTE_ALIGN(32);	//æ³¢å½¢æ ¼ç´ãƒãƒƒãƒ•ã‚¡(ä½•ã‹ã®ä¼ç”»ï¼Ÿ)
 static u8 debug_t07r0201_no;
 
 //==============================================================================================
 //
-//	ƒfƒoƒbƒN\‘¢‘Ì
+//	ãƒ‡ãƒãƒƒã‚¯æ§‹é€ ä½“
 //
 //==============================================================================================
 typedef struct{
-	u8	seq;										//ˆ—ƒiƒ“ƒo[
-	u8	wave_buf_flag:1;							//”gŒ`Ši”[ƒoƒbƒtƒ@‚ğŠm•Û‚µ‚½ƒtƒ‰ƒO
-	u8	waveout_flag:1;								//–Â‚«ºÄ¶’†ƒtƒ‰ƒO
-	u8	play_flag:6;								//Ä¶’†ƒtƒ‰ƒO
-	s16 work;										//”Ä—pƒ[ƒN
+	u8	seq;										//å‡¦ç†ãƒŠãƒ³ãƒãƒ¼
+	u8	wave_buf_flag:1;							//æ³¢å½¢æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ãŸãƒ•ãƒ©ã‚°
+	u8	waveout_flag:1;								//é³´ãå£°å†ç”Ÿä¸­ãƒ•ãƒ©ã‚°
+	u8	play_flag:6;								//å†ç”Ÿä¸­ãƒ•ãƒ©ã‚°
+	s16 work;										//æ±ç”¨ãƒ¯ãƒ¼ã‚¯
 
-	int friend_work;								//‰½”Ô–Ú‚Ì—F’B‚©
+	int friend_work;								//ä½•ç•ªç›®ã®å‹é”ã‹
 
 	u8	fro_type;
 	u8	btl_type;
 	u8	fro_seq;
 	u8	fro_add;
 
-	u16 list_bak;									//ƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒv
-	u16 cursor_bak;									//ƒJ[ƒ\ƒ‹ˆÊ’uƒoƒbƒNƒAƒbƒv
+	u16 list_bak;									//ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	u16 cursor_bak;									//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
 
 	u32 sel;
-	u32 count;										//ƒJƒEƒ“ƒ^[
-	u32 count2;										//ƒJƒEƒ“ƒ^[
+	u32 count;										//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	u32 count2;										//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 
 	FIELDSYS_WORK* fsys;							//
 
-	GF_BGL_BMPWIN bmpwin[D_NOHARA_BMPWIN_MAX];		//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
-	BMPLIST_WORK* lw;								//BMPƒŠƒXƒgƒf[ƒ^
+	GF_BGL_BMPWIN bmpwin[D_NOHARA_BMPWIN_MAX];		//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+	BMPLIST_WORK* lw;								//BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 
 	BMPLIST_DATA* menulist;							//
 
-//	s16* wave_buf;									//”gŒ`Ši”[ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+//	s16* wave_buf;									//æ³¢å½¢æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
 
-	//STRBUF* msg_buf[EV_WIN_MENU_MAX];				//ƒƒbƒZ[ƒWƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-	MSGDATA_MANAGER* msgman;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;								//’PŒêƒZƒbƒg
+	//STRBUF* msg_buf[EV_WIN_MENU_MAX];				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+	MSGDATA_MANAGER* msgman;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;								//å˜èªã‚»ãƒƒãƒˆ
 
-	void* factory_call;								//ƒtƒ@ƒNƒgƒŠ[ŒÄ‚Ño‚µ
+	void* factory_call;								//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å‘¼ã³å‡ºã—
 }D_NOHARA_WORK;
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 void DebugNoharaMenuInit( FIELDSYS_WORK* fsys );
@@ -199,25 +199,25 @@ static void D_Nohara_42( TCB_PTR tcb, void * work );
 
 //==============================================================================================
 //
-//	ƒŠƒXƒgƒf[ƒ^
+//	ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
 static const struct{
 	u32  str_id;
 	u32  param;
 }DebugMenuList[] = {
-	{ msg_debug_nohara_35, (u32)D_Nohara_35 },		//•Ê‘‘ƒ`ƒFƒbƒN
-	{ msg_debug_nohara_34, (u32)D_Nohara_34 },		//ƒtƒƒ“ƒeƒBƒA˜AŸ”‘€ì
-	//{ msg_debug_nohara_32, (u32)D_Nohara_32 },		//‚b‚oƒZƒbƒg
-	{ msg_debug_nohara_21, (u32)D_Nohara_21 },		//ƒfƒoƒbƒNƒWƒƒƒ“ƒv
-	//{ msg_debug_nohara_20, (u32)D_Nohara_31 },		//˜^‰æÄ¶
-	//{ msg_debug_nohara_30, (u32)D_Nohara_30 },		//ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ƒ‚ƒjƒ^[
+	{ msg_debug_nohara_35, (u32)D_Nohara_35 },		//åˆ¥è˜ãƒã‚§ãƒƒã‚¯
+	{ msg_debug_nohara_34, (u32)D_Nohara_34 },		//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢é€£å‹æ•°æ“ä½œ
+	//{ msg_debug_nohara_32, (u32)D_Nohara_32 },		//ï¼£ï¼°ã‚»ãƒƒãƒˆ
+	{ msg_debug_nohara_21, (u32)D_Nohara_21 },		//ãƒ‡ãƒãƒƒã‚¯ã‚¸ãƒ£ãƒ³ãƒ—
+	//{ msg_debug_nohara_20, (u32)D_Nohara_31 },		//éŒ²ç”»å†ç”Ÿ
+	//{ msg_debug_nohara_30, (u32)D_Nohara_30 },		//ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¢ãƒ‹ã‚¿ãƒ¼
 	{ msg_debug_nohara_11, (u32)D_Nohara_11 },
-	{ msg_debug_nohara_40, (u32)D_Nohara_40 },		//ƒtƒƒ“ƒeƒBƒA“’…ƒtƒ‰ƒOON
+	{ msg_debug_nohara_40, (u32)D_Nohara_40 },		//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢åˆ°ç€ãƒ•ãƒ©ã‚°ON
 	{ msg_debug_nohara_33, (u32)D_Nohara_33 },		//HP5
-	{ msg_debug_nohara_42, (u32)D_Nohara_42 },		//hp_rnd,spedef_rnd‚ğ“K“–‘‚«Š·‚¦
+	{ msg_debug_nohara_42, (u32)D_Nohara_42 },		//hp_rnd,spedef_rndã‚’é©å½“æ›¸ãæ›ãˆ
 
-	{ msg_debug_nohara_24, (u32)D_Nohara_24 },		//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[
+	{ msg_debug_nohara_24, (u32)D_Nohara_24 },		//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼
 	//{ msg_debug_nohara_01, (u32)D_Nohara_01 },
 	//{ msg_debug_nohara_02, (u32)D_Nohara_02 },
 	//{ msg_debug_nohara_03, (u32)D_Nohara_03 },
@@ -231,54 +231,54 @@ static const struct{
 	//{ msg_debug_nohara_12, (u32)D_Nohara_12 },
 	//{ msg_debug_nohara_13, (u32)D_Nohara_13 },
 	//{ msg_debug_nohara_14, (u32)D_Nohara_14 },
-	//{ msg_debug_nohara_15, (u32)D_Nohara_15 },		//”gŒ`ƒeƒXƒg
-	//{ msg_debug_nohara_16, (u32)D_Nohara_16 },	//ƒƒCƒ“ƒVƒiƒŠƒIis
-	{ msg_debug_nohara_17, (u32)D_Nohara_17 },		//ƒoƒbƒWƒtƒ‰ƒOƒZƒbƒg
-	//{ msg_debug_nohara_18, (u32)D_Nohara_18 },		//‰B‚µƒAƒCƒeƒ€ƒŠƒXƒg
-	//{ msg_debug_nohara_19, (u32)D_Nohara_19 },		//ƒLƒƒƒvƒ`ƒƒƒ`ƒFƒbƒN
-	//{ msg_debug_nohara_22, (u32)D_Nohara_22 },		//ƒ|ƒPƒbƒ`”gŒ`ƒeƒXƒg
-	//{ msg_debug_nohara_23, (u32)D_Nohara_23 },		//}ŠÓAƒoƒbƒOƒVƒXƒeƒ€ƒtƒ‰ƒOƒZƒbƒg
-	{ msg_debug_nohara_27, (u32)D_Nohara_27 },		//ƒ|ƒPƒ‚ƒ“–Â‚«º‚ğ2‚ÂÄ¶o—ˆ‚éƒtƒ‰ƒOƒIƒ“
-	{ msg_debug_nohara_28, (u32)D_Nohara_28 },		//ƒ|ƒPƒ‚ƒ“–Â‚«º‚ğ2‚ÂÄ¶o—ˆ‚éƒtƒ‰ƒOƒIƒt
-	{ msg_debug_nohara_29, (u32)D_Nohara_29 },		//ƒEƒFƒCƒgw’è‚ ‚è‚Ì–Â‚«ºÄ¶‚ÌƒeƒXƒg
-	//{ msg_debug_nohara_20, (u32)D_Nohara_20 },		//ƒMƒlƒXƒEƒBƒ“ƒhƒE
-	{ msg_debug_nohara_41, (u32)D_Nohara_41 },		//ƒXƒe[ƒW˜AŸ”‘€ì(ŠO•”ƒZ[ƒu‚ª•K—v)
+	//{ msg_debug_nohara_15, (u32)D_Nohara_15 },		//æ³¢å½¢ãƒ†ã‚¹ãƒˆ
+	//{ msg_debug_nohara_16, (u32)D_Nohara_16 },	//ãƒ¡ã‚¤ãƒ³ã‚·ãƒŠãƒªã‚ªé€²è¡Œ
+	{ msg_debug_nohara_17, (u32)D_Nohara_17 },		//ãƒãƒƒã‚¸ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
+	//{ msg_debug_nohara_18, (u32)D_Nohara_18 },		//éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ
+	//{ msg_debug_nohara_19, (u32)D_Nohara_19 },		//ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒã‚§ãƒƒã‚¯
+	//{ msg_debug_nohara_22, (u32)D_Nohara_22 },		//ãƒã‚±ãƒƒãƒæ³¢å½¢ãƒ†ã‚¹ãƒˆ
+	//{ msg_debug_nohara_23, (u32)D_Nohara_23 },		//å›³é‘‘ã€ãƒãƒƒã‚°ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
+	{ msg_debug_nohara_27, (u32)D_Nohara_27 },		//ãƒã‚±ãƒ¢ãƒ³é³´ãå£°ã‚’2ã¤å†ç”Ÿå‡ºæ¥ã‚‹ãƒ•ãƒ©ã‚°ã‚ªãƒ³
+	{ msg_debug_nohara_28, (u32)D_Nohara_28 },		//ãƒã‚±ãƒ¢ãƒ³é³´ãå£°ã‚’2ã¤å†ç”Ÿå‡ºæ¥ã‚‹ãƒ•ãƒ©ã‚°ã‚ªãƒ•
+	{ msg_debug_nohara_29, (u32)D_Nohara_29 },		//ã‚¦ã‚§ã‚¤ãƒˆæŒ‡å®šã‚ã‚Šã®é³´ãå£°å†ç”Ÿã®ãƒ†ã‚¹ãƒˆ
+	//{ msg_debug_nohara_20, (u32)D_Nohara_20 },		//ã‚®ãƒã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	{ msg_debug_nohara_41, (u32)D_Nohara_41 },		//ã‚¹ãƒ†ãƒ¼ã‚¸é€£å‹æ•°æ“ä½œ(å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãŒå¿…è¦)
 };
 
 static const BMPLIST_HEADER DebugListH = {
-	NULL,					//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	NULL,					//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
-	NULL,					//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					//ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					//ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-	NULL,					//GF_BGL_BMPWIN‚Ìƒ|ƒCƒ“ƒ^
+	NULL,					//GF_BGL_BMPWINã®ãƒã‚¤ãƒ³ã‚¿
 
-	NELEMS(DebugMenuList),	//ƒŠƒXƒg€–Ú”
-	9,						//•\¦Å‘å€–Ú”
+	NELEMS(DebugMenuList),	//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	9,						//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	0,						//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						//€–Ú•\¦‚wÀ•W
-	0,						//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						//•\¦‚xÀ•W
+	0,						//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//è¡¨ç¤ºï¼¹åº§æ¨™
 /*
-	FBMP_COL_BLACK,			//•¶šF
-	FBMP_COL_WHITE,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
+	FBMP_COL_BLACK,			//æ–‡å­—è‰²
+	FBMP_COL_WHITE,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
 */
-	FBMP_COL_WHITE,			//•¶šF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
-	0,						//•¶šŠÔŠu‚w
-	16,						//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,			//•¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						//æ–‡å­—é–“éš”ï¼¸
+	16,						//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,			//æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 
 //==============================================================================================
 //
-//	BMPƒEƒBƒ“ƒhƒE
+//	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //
 //==============================================================================================
 enum{
@@ -292,25 +292,25 @@ enum{
 };
 
 static const BMPWIN_DAT	DebugNoharaWinData = {
-	D_NOHARA_BMPWIN_FRAME,					//ƒEƒCƒ“ƒhƒEg—pƒtƒŒ[ƒ€
-	D_NOHARA_BMPWIN_PX1,D_NOHARA_BMPWIN_PY1,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ã‚ÌX,YÀ•WiƒLƒƒƒ‰’PˆÊ‚Åw’èj
-	D_NOHARA_BMPWIN_SX,	D_NOHARA_BMPWIN_SY,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌX,YƒTƒCƒYiƒLƒƒƒ‰’PˆÊ‚Åw’èj
-	D_NOHARA_BMPWIN_PL,						//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[	
-	D_NOHARA_BMPWIN_CH						//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	D_NOHARA_BMPWIN_FRAME,					//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	D_NOHARA_BMPWIN_PX1,D_NOHARA_BMPWIN_PY1,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸Šã®X,Yåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½ã§æŒ‡å®šï¼‰
+	D_NOHARA_BMPWIN_SX,	D_NOHARA_BMPWIN_SY,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®X,Yã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½ã§æŒ‡å®šï¼‰
+	D_NOHARA_BMPWIN_PL,						//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼	
+	D_NOHARA_BMPWIN_CH						//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 
 //==============================================================================================
 //
-//	ƒvƒƒOƒ‰ƒ€
+//	ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒNƒƒjƒ…[ŒÄ‚Ño‚µ(fld_debug.c)
+ * @brief	ãƒ‡ãƒãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—(fld_debug.c)
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -326,11 +326,11 @@ void DebugNoharaMenuInit( FIELDSYS_WORK* fsys )
 	wk->seq				= 0;
 	wk->sel				= 0;
 	wk->work			= 0;
-	wk->wave_buf_flag	= 0;								//”gŒ`Ši”[ƒoƒbƒtƒ@‚ğŠm•Û‚µ‚½ƒtƒ‰ƒOOFF
-	wk->waveout_flag	= 0;								//–Â‚«ºÄ¶’†ƒtƒ‰ƒOOFF
+	wk->wave_buf_flag	= 0;								//æ³¢å½¢æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ãŸãƒ•ãƒ©ã‚°OFF
+	wk->waveout_flag	= 0;								//é³´ãå£°å†ç”Ÿä¸­ãƒ•ãƒ©ã‚°OFF
 	wk->fsys			= fsys;
 
-	GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 
 	wk->menulist = BMP_MENULIST_Create( NELEMS(DebugMenuList), HEAPID_BASE_DEBUG );
 
@@ -356,10 +356,10 @@ void DebugNoharaMenuInit( FIELDSYS_WORK* fsys )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒNƒƒjƒ…[ƒƒCƒ“
+ * @brief	ãƒ‡ãƒãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -378,9 +378,9 @@ static void DebugNoharaMenuMain( TCB_PTR tcb, void * work )
 		case BMPLIST_NULL:
 			break;
 		case BMPLIST_CANCEL:
-			TcbBmpDel( tcb, work );				//TCBBMPŠJ•ú
+			TcbBmpDel( tcb, work );				//TCBBMPé–‹æ”¾
 
-			//”gŒ`Ä¶—pƒ`ƒƒƒ“ƒlƒ‹‚ğŠJ•ú‚·‚é
+			//æ³¢å½¢å†ç”Ÿç”¨ãƒãƒ£ãƒ³ãƒãƒ«ã‚’é–‹æ”¾ã™ã‚‹
 			Snd_DebugNormalChannelFree();
 
 			break;
@@ -390,14 +390,14 @@ static void DebugNoharaMenuMain( TCB_PTR tcb, void * work )
 			break;
 		};
 
-		//BMPƒŠƒXƒg‚ÌƒŠƒXƒgˆÊ’uAƒJ[ƒ\ƒ‹ˆÊ’u‚ğæ“¾
+		//BMPãƒªã‚¹ãƒˆã®ãƒªã‚¹ãƒˆä½ç½®ã€ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å–å¾—
 		BmpListPosGet( wk->lw, &wk->list_bak, &wk->cursor_bak );
 		break;
 
 	case 1:
 		{
 			voidFunc func = (voidFunc)wk->sel;
-			TCB_ChangeFunc( tcb, (void*)func );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+			TCB_ChangeFunc( tcb, (void*)func );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		}
 		break;
 
@@ -408,9 +408,9 @@ static void DebugNoharaMenuMain( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	TCB,BMPŠJ•ú
+ * @brief	TCB,BMPé–‹æ”¾
  *
- * @param	tcb		TCB_PTRŒ^
+ * @param	tcb		TCB_PTRå‹
  *
  * @retval	none
  */
@@ -424,23 +424,23 @@ static void TcbBmpDel( TCB_PTR tcb, void * work )
 	WORDSET_Delete( wk->wordset );
 
 #if 0
-	//”gŒ`Ši”[ƒoƒbƒtƒ@‚ğŠm•Û‚µ‚½ƒtƒ‰ƒOON‚¾‚Á‚½‚ç
+	//æ³¢å½¢æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ãŸãƒ•ãƒ©ã‚°ONã ã£ãŸã‚‰
 	if( wk->wave_buf_flag == 1 ){
-		sys_FreeMemoryEz( wk->wave_buf );	//ƒoƒbƒtƒ@ŠJ•ú
+		sys_FreeMemoryEz( wk->wave_buf );	//ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 	}
 #endif
 
-	BmpDel( tcb );						//BMPŠJ•ú
-	PMDS_taskDel( tcb );				//TCBŠJ•ú
+	BmpDel( tcb );						//BMPé–‹æ”¾
+	PMDS_taskDel( tcb );				//TCBé–‹æ”¾
 	FieldSystemProc_SeqHoldEnd();
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPŠJ•ú
+ * @brief	BMPé–‹æ”¾
  *
- * @param	tcb		TCB_PTRŒ^
+ * @param	tcb		TCB_PTRå‹
  *
  * @retval	none
  */
@@ -460,12 +460,12 @@ static void BmpDel( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * @brief	”šƒƒbƒZ[ƒW•\¦
+ * @brief	æ•°å­—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	win_index	ƒrƒbƒgƒ}ƒbƒvINDEX
- * @param	num			”’l
- * @param	x			•\¦ˆÊ’uX
- * @param	y			•\¦ˆÊ’uY
+ * @param	win_index	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—INDEX
+ * @param	num			æ•°å€¤
+ * @param	x			è¡¨ç¤ºä½ç½®X
+ * @param	y			è¡¨ç¤ºä½ç½®Y
  *
  * @retval	none
  */
@@ -478,7 +478,7 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 	MSGMAN_GetString( wk->msgman, msg_debug_nohara_num, tmp_buf );
 	WORDSET_RegisterNumber(wk->wordset, 1, num, 4, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, tmp_buf2, tmp_buf );
 
 	GF_STR_PrintSimple( win, FONT_SYSTEM, tmp_buf2, x, y, MSG_NO_PUT, NULL );
@@ -491,7 +491,7 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //==============================================================================================
 //
-//	01	‹tÄ¶ŠÖ˜A
+//	01	é€†å†ç”Ÿé–¢é€£
 //
 //==============================================================================================
 //static void D_Nohara_01_Main( TCB_PTR tcb, void * work );
@@ -500,7 +500,7 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -511,10 +511,10 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -524,14 +524,14 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //==============================================================================================
 //
-//	02	ƒŠƒo[ƒuŠÖ˜A
+//	02	ãƒªãƒãƒ¼ãƒ–é–¢é€£
 //
 //==============================================================================================
 //static void D_Nohara_02_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -542,10 +542,10 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -555,14 +555,14 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //==============================================================================================
 //
-//	03	ƒgƒ‰ƒbƒNƒtƒF[ƒhŠÖ˜A
+//	03	ãƒˆãƒ©ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰é–¢é€£
 //
 //==============================================================================================
 //static void D_Nohara_03_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -573,10 +573,10 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -586,14 +586,14 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //==============================================================================================
 //
-//	04	FIELD BGM ‰¹—ÊŠÖ˜A
+//	04	FIELD BGM éŸ³é‡é–¢é€£
 //
 //==============================================================================================
 //static void D_Nohara_04_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -604,10 +604,10 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -617,14 +617,14 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //==============================================================================================
 //
-//	05	–Â‚«ºƒpƒ^[ƒ“ŠÖ˜A
+//	05	é³´ãå£°ãƒ‘ã‚¿ãƒ¼ãƒ³é–¢é€£
 //
 //==============================================================================================
 //static void D_Nohara_05_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -635,10 +635,10 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -648,14 +648,14 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //==============================================================================================
 //
-//	06	o—ÍƒGƒtƒFƒNƒgŠÖ˜A
+//	06	å‡ºåŠ›ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£
 //
 //==============================================================================================
 //static void D_Nohara_06_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -666,10 +666,10 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -679,14 +679,14 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //==============================================================================================
 //
-//	07	ƒ}ƒCƒNŠÖ˜A
+//	07	ãƒã‚¤ã‚¯é–¢é€£
 //
 //==============================================================================================
 //static void D_Nohara_07_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -697,10 +697,10 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
  
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -710,14 +710,14 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //==============================================================================================
 //
-//	08	FIELD TEMPO ‰¹—ÊŠÖ˜A
+//	08	FIELD TEMPO éŸ³é‡é–¢é€£
 //
 //==============================================================================================
 //static void D_Nohara_08_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -728,10 +728,10 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -741,14 +741,14 @@ static void NumMsgSet( D_NOHARA_WORK* wk, GF_BGL_BMPWIN* win, int num, u8 x, u8 
 
 //==============================================================================================
 //
-//	09	ƒXƒNƒŠƒvƒgŠÖ˜A
+//	09	ã‚¹ã‚¯ãƒªãƒ—ãƒˆé–¢é€£
 //
 //==============================================================================================
 static void D_Nohara_09_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -757,20 +757,20 @@ static void D_Nohara_09_Main( TCB_PTR tcb, void * work );
 //--------------------------------------------------------------
 static void D_Nohara_09( TCB_PTR tcb, void * work )
 {
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	10	ƒgƒ‰ƒbƒNƒtƒF[ƒhƒtƒ‰ƒO‘€ì
+//	10	ãƒˆãƒ©ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°æ“ä½œ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -782,7 +782,7 @@ static void D_Nohara_09( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	11	ƒXƒNƒŠƒvƒgÀsŠÖ˜A
+//	11	ã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œé–¢é€£
 //
 //==============================================================================================
 static void D_Nohara_11_Main( TCB_PTR tcb, void * work );
@@ -797,37 +797,37 @@ static const struct{
 };
 
 static const BMPLIST_HEADER ListH11 = {
-	NULL,					//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,					//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					//ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,					//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					//ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-	NULL,					//GF_BGL_BMPWIN‚Ìƒ|ƒCƒ“ƒ^
+	NULL,					//GF_BGL_BMPWINã®ãƒã‚¤ãƒ³ã‚¿
 
-	NELEMS(DebugMenuList11),//ƒŠƒXƒg€–Ú”
-	10,						//•\¦Å‘å€–Ú”
+	NELEMS(DebugMenuList11),//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	10,						//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	0,						//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						//€–Ú•\¦‚wÀ•W
-	0,						//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						//•\¦‚xÀ•W
+	0,						//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//è¡¨ç¤ºï¼¹åº§æ¨™
 /*
-	FBMP_COL_BLACK,			//•¶šF
-	FBMP_COL_WHITE,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
+	FBMP_COL_BLACK,			//æ–‡å­—è‰²
+	FBMP_COL_WHITE,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
 */
-	FBMP_COL_WHITE,			//•¶šF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
-	0,						//•¶šŠÔŠu‚w
-	16,						//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,			//•¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						//æ–‡å­—é–“éš”ï¼¸
+	16,						//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,			//æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -842,13 +842,13 @@ static void D_Nohara_11( TCB_PTR tcb, void * work )
 	D_NOHARA_WORK* wk;
 	wk = (D_NOHARA_WORK*)work;
 
-	BmpDel( tcb );								//BMPŠJ•ú
+	BmpDel( tcb );								//BMPé–‹æ”¾
 
 	wk->seq				= 0;
 	wk->sel				= 0;
 	wk->count			= 0;
 
-	GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 
 	wk->menulist = BMP_MENULIST_Create( NELEMS(DebugMenuList11), HEAPID_BASE_DEBUG );
 
@@ -864,17 +864,17 @@ static void D_Nohara_11( TCB_PTR tcb, void * work )
 
 	GF_BGL_BmpWinOn( &wk->bmpwin[0] );
 
-	//TCB_ChangeFunc( tcb, D_Nohara_11_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
-	TCB_ChangeFunc( tcb, DebugNoharaMenuMain );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+	//TCB_ChangeFunc( tcb, D_Nohara_11_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
+	TCB_ChangeFunc( tcb, DebugNoharaMenuMain );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 	return;
 }
  
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -887,42 +887,42 @@ static void D_Nohara_11_Main( TCB_PTR tcb, void * work )
 	switch( wk->cursor_bak ){
 
 	case 0:
-		//ƒVƒFƒCƒ~ƒCƒxƒ“ƒg‚Åƒ}ƒC‚ğoŒ»‚³‚¹‚é
+		//ã‚·ã‚§ã‚¤ãƒŸã‚¤ãƒ™ãƒ³ãƒˆã§ãƒã‚¤ã‚’å‡ºç¾ã•ã›ã‚‹
 		SpScriptStart( wk->fsys, SCRID_DEBUG_R224_SYEIMI );
 		break;
 
 	case 1:
-		//‚R‚Â‚ÌŒÎƒCƒxƒ“ƒgŠJn
+		//ï¼“ã¤ã®æ¹–ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
 		SpScriptStart( wk->fsys, SCRID_DEBUG_L01_L02_L03_LAKE );
 		break;
 
 	case 2:
-		//ƒ|ƒPƒZƒ“’n‰ºƒXƒgƒbƒp[íœA‚Æ‚à‚¾‚¿è’ ƒCƒxƒ“ƒg–³Œø
+		//ãƒã‚±ã‚»ãƒ³åœ°ä¸‹ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼å‰Šé™¤ã€ã¨ã‚‚ã ã¡æ‰‹å¸³ã‚¤ãƒ™ãƒ³ãƒˆç„¡åŠ¹
 		SpScriptStart( wk->fsys, SCRID_DEBUG_PC_UG );
 		break;
 
 	default:
 		//EventSet_Script( wk->fsys, SCRID_TANPAN_01, NULL );
-		TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 		return;
 	};
 
 	wk->seq = 0;
-	TCB_ChangeFunc( tcb, DebugNoharaMenuMain );		//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+	TCB_ChangeFunc( tcb, DebugNoharaMenuMain );		//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 	return;
 }
 
 
 //==============================================================================================
 //
-//	12	’²—¥—‚ê
+//	12	èª¿å¾‹ä¹±ã‚Œ
 //
 //==============================================================================================
 //static void D_Nohara_12_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -933,10 +933,10 @@ static void D_Nohara_11_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -946,14 +946,14 @@ static void D_Nohara_11_Main( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	13	’²—¥—‚ê2
+//	13	èª¿å¾‹ä¹±ã‚Œ2
 //
 //==============================================================================================
 //static void D_Nohara_13_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -964,10 +964,10 @@ static void D_Nohara_11_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -977,14 +977,14 @@ static void D_Nohara_11_Main( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	14	ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg
+//	14	ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //
 //==============================================================================================
 //static void D_Nohara_14_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -995,10 +995,10 @@ static void D_Nohara_11_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -1008,14 +1008,14 @@ static void D_Nohara_11_Main( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	15	–Â‚«º”gŒ`ŠÖ˜A
+//	15	é³´ãå£°æ³¢å½¢é–¢é€£
 //
 //==============================================================================================
 //static void D_Nohara_15_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1026,10 +1026,10 @@ static void D_Nohara_11_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -1039,20 +1039,20 @@ static void D_Nohara_11_Main( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	16	ƒƒCƒ“ƒVƒiƒŠƒIŠÖ˜A
+//	16	ãƒ¡ã‚¤ãƒ³ã‚·ãƒŠãƒªã‚ªé–¢é€£
 //
-//	Œ»İ‚Ìƒ][ƒ“‚ÌƒXƒNƒŠƒvƒg‚ÆƒƒbƒZ[ƒW‚ğ“Ç‚İ‚Ş‚æ‚¤‚É‚µ‚Ä‚¢‚é‚Ì‚ÅA
-//	ƒfƒoƒbƒN‚ÅƒXƒNƒŠƒvƒg‚ÌID‚ğw’è‚·‚é‚¾‚¯‚Å‚Ío—ˆ‚È‚¢I
+//	ç¾åœ¨ã®ã‚¾ãƒ¼ãƒ³ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’èª­ã¿è¾¼ã‚€ã‚ˆã†ã«ã—ã¦ã„ã‚‹ã®ã§ã€
+//	ãƒ‡ãƒãƒƒã‚¯ã§ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDã‚’æŒ‡å®šã™ã‚‹ã ã‘ã§ã¯å‡ºæ¥ãªã„ï¼
 //
-//	‚Ü‚¾ƒXƒNƒŠƒvƒg‚µ‚©ì¬‚µ‚Ä‚¢‚È‚¢‚à‚Ì‚ÍAcommon_scr.ev‚É’Ç‰Á‚µ‚Ä‚·BBB
-//	‚Æ‚àv‚Á‚½‚ªAƒƒbƒZ[ƒW‚à‚È‚¢‚Ì‚ÅA–³—‚»‚¤BBB
+//	ã¾ã ã‚¹ã‚¯ãƒªãƒ—ãƒˆã—ã‹ä½œæˆã—ã¦ã„ãªã„ã‚‚ã®ã¯ã€common_scr.evã«è¿½åŠ ã—ã¦è©¦ã™ã€‚ã€‚ã€‚
+//	ã¨ã‚‚æ€ã£ãŸãŒã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚‚ãªã„ã®ã§ã€ç„¡ç†ãã†ã€‚ã€‚ã€‚
 //
 //==============================================================================================
 static void D_Nohara_16_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1066,25 +1066,25 @@ static void D_Nohara_16( TCB_PTR tcb, void * work )
 	wk->seq		= 0;
 	wk->count	= 0;
 	wk->work	= 0;
-	TCB_ChangeFunc( tcb, D_Nohara_16_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+	TCB_ChangeFunc( tcb, D_Nohara_16_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void D_Nohara_16_Main( TCB_PTR tcb, void * work )
 {
-	//I—¹
+	//çµ‚äº†
 	if( sys.cont == PAD_BUTTON_B ){
-		TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	}
 
 	return;
@@ -1093,13 +1093,13 @@ static void D_Nohara_16_Main( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	17	ƒoƒbƒWƒtƒ‰ƒOƒZƒbƒg
+//	17	ãƒãƒƒã‚¸ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1116,20 +1116,20 @@ static void D_Nohara_17( TCB_PTR tcb, void * work )
 		MyStatus_SetBadgeFlag( my, i );
 	}
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	18	‰B‚µƒAƒCƒeƒ€ŒŸõ
+//	18	éš ã—ã‚¢ã‚¤ãƒ†ãƒ æ¤œç´¢
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1141,13 +1141,13 @@ static void D_Nohara_17( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	19	ƒLƒƒƒvƒ`ƒƒƒ`ƒFƒbƒN
+//	19	ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒã‚§ãƒƒã‚¯
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1159,13 +1159,13 @@ static void D_Nohara_17( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	20	ƒMƒlƒXƒEƒBƒ“ƒhƒE
+//	20	ã‚®ãƒã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1177,7 +1177,7 @@ static void D_Nohara_17( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	21	ƒfƒoƒbƒNƒWƒƒƒ“ƒv
+//	21	ãƒ‡ãƒãƒƒã‚¯ã‚¸ãƒ£ãƒ³ãƒ—
 //
 //==============================================================================================
 static void D_Nohara_21_Main( TCB_PTR tcb, void * work );
@@ -1199,25 +1199,25 @@ static const DEBUG_JUMP_WORK debug_jump_work[] = {
 	{ ZONE_ID_D35R0102,	3502,	10,		10 },			//
 	{ ZONE_ID_D24R0106,	2406,	10,		10 },			//
 
-	{ ZONE_ID_T06R0101,	601,	7,		11 },			//Äí{İ
-	{ ZONE_ID_D05R0114,	514,	31,		33 },			//‚â‚è‚Ì‚Í‚µ‚ç
-	{ ZONE_ID_D05R0115,	515,	31,		33 },			//‚â‚è‚Ì‚Í‚µ‚ç
-	{ ZONE_ID_D17R0104,	174,	10,		10 },			//‚à‚Ç‚è‚Ì‚Ç‚¤‚­‚Â
-	//{ ZONE_ID_D32R0401,	3241,	16,		16 },			//ƒXƒe[ƒWó•t
-	//{ ZONE_ID_D32R0301,	3231,	16,		16 },			//ƒtƒ@ƒNƒgƒŠ[ó•t
-	{ ZONE_ID_T02,		2,		160,	846 },			//ƒ}ƒTƒSƒ^ƒEƒ“
-	{ ZONE_ID_T03,		3,		176,	624 },			//ƒ\ƒmƒIƒ^ƒEƒ“
+	{ ZONE_ID_T06R0101,	601,	7,		11 },			//å†æˆ¦æ–½è¨­
+	{ ZONE_ID_D05R0114,	514,	31,		33 },			//ã‚„ã‚Šã®ã¯ã—ã‚‰
+	{ ZONE_ID_D05R0115,	515,	31,		33 },			//ã‚„ã‚Šã®ã¯ã—ã‚‰
+	{ ZONE_ID_D17R0104,	174,	10,		10 },			//ã‚‚ã©ã‚Šã®ã©ã†ãã¤
+	//{ ZONE_ID_D32R0401,	3241,	16,		16 },			//ã‚¹ãƒ†ãƒ¼ã‚¸å—ä»˜
+	//{ ZONE_ID_D32R0301,	3231,	16,		16 },			//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å—ä»˜
+	{ ZONE_ID_T02,		2,		160,	846 },			//ãƒã‚µã‚´ã‚¿ã‚¦ãƒ³
+	{ ZONE_ID_T03,		3,		176,	624 },			//ã‚½ãƒã‚ªã‚¿ã‚¦ãƒ³
 	{ ZONE_ID_R201,		201,	110,	856 },			//
 	{ ZONE_ID_R205A,	2051,	208,	592 },			//
 	{ ZONE_ID_R205B,	2052,	272,	528 },			//
-	{ ZONE_ID_C05R1101,	511,	5,		5 },			//ƒRƒ“ƒeƒXƒgó•t
+	{ ZONE_ID_C05R1101,	511,	5,		5 },			//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå—ä»˜
 	{ ZONE_ID_D27R0101, 2701,	46,		53 },			//
 };
 #define DEBUG_JUMP_WORK_MAX	( NELEMS(debug_jump_work) )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1235,16 +1235,16 @@ static void D_Nohara_21( TCB_PTR tcb, void * work )
 	NumMsgSet( wk, &wk->bmpwin[0], debug_jump_work[wk->work].num, 8*7, 8*2 );
 	GF_BGL_BmpWinOn( &wk->bmpwin[0] );
 
-	TCB_ChangeFunc( tcb, D_Nohara_21_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+	TCB_ChangeFunc( tcb, D_Nohara_21_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -1255,7 +1255,7 @@ static void D_Nohara_21_Main( TCB_PTR tcb, void * work )
 	D_NOHARA_WORK* wk;
 	wk = (D_NOHARA_WORK*)work;
 
-	flag = 0;	//‘‚«Š·‚¦ƒtƒ‰ƒO
+	flag = 0;	//æ›¸ãæ›ãˆãƒ•ãƒ©ã‚°
 
 	if( (sys.repeat == PAD_KEY_UP) || (sys.cont == PAD_KEY_RIGHT) ){
 		flag = 1;
@@ -1273,30 +1273,30 @@ static void D_Nohara_21_Main( TCB_PTR tcb, void * work )
 		}
 	}
 
-	//‘‚«Š·‚¦ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç
+	//æ›¸ãæ›ãˆãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰
 	if( flag == 1 ){
-		//w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+		//æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 		GF_BGL_BmpWinFill( &wk->bmpwin[0], FBMP_COL_BLACK, 8*7, 8*2, 
 								8*8, 8*2 );
 	
-		//’l•\¦
+		//å€¤è¡¨ç¤º
 		NumMsgSet( wk, &wk->bmpwin[0], debug_jump_work[wk->work].num, 8*7, 8*2 );
 		GF_BGL_BmpWinOn( &wk->bmpwin[0] );
 	}
 
-	//ƒWƒƒƒ“ƒv
+	//ã‚¸ãƒ£ãƒ³ãƒ—
 	if( sys.trg == PAD_BUTTON_A ){
 
 		EventSet_EasyMapChange( wk->fsys, debug_jump_work[wk->work].zone_id, DOOR_ID_JUMP_CODE, 
 							debug_jump_work[wk->work].x , debug_jump_work[wk->work].z, DIR_DOWN );
 
-		TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 		return;
 	}
 
-	//I—¹
+	//çµ‚äº†
 	if( sys.cont == PAD_BUTTON_B ){
-		TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 		return;
 	}
 
@@ -1306,14 +1306,14 @@ static void D_Nohara_21_Main( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	22	ƒ|ƒPƒbƒ`”gŒ`ƒeƒXƒg
+//	22	ãƒã‚±ãƒƒãƒæ³¢å½¢ãƒ†ã‚¹ãƒˆ
 //
 //==============================================================================================
 //static void D_Nohara_22_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1324,10 +1324,10 @@ static void D_Nohara_21_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -1337,13 +1337,13 @@ static void D_Nohara_21_Main( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	23	}ŠÓAƒoƒbƒOƒVƒXƒeƒ€ƒtƒ‰ƒOƒZƒbƒg
+//	23	å›³é‘‘ã€ãƒãƒƒã‚°ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1356,25 +1356,25 @@ static void D_Nohara_23( TCB_PTR tcb, void * work )
 	D_NOHARA_WORK* wk = (D_NOHARA_WORK*)work;
 
 	{
-		//ƒƒjƒ…[u}ŠÓv
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œå›³é‘‘ã€
 		ZUKAN_WORK* zw = SaveData_GetZukanWork( wk->fsys->savedata );
 		ZukanWork_SetZukanGetFlag( zw );
 
-		//ƒƒjƒ…[uƒoƒbƒOv
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œãƒãƒƒã‚°ã€
 		SysFlag_BagSet( SaveData_GetEventWork(wk->fsys->savedata) );
 
-		//ƒƒjƒ…[uƒ|ƒPƒ‚ƒ“v
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œãƒã‚±ãƒ¢ãƒ³ã€
 		SysWork_FirstPokeNoSet( SaveData_GetEventWork(wk->fsys->savedata), MONSNO_HUSIGIDANE );
 	}
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	24	ƒoƒgƒ‹ƒT[ƒ`ƒƒ[ŠÖ˜A
+//	24	ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼é–¢é€£
 //
 //==============================================================================================
 static void D_Nohara_24_Main( TCB_PTR tcb, void * work );
@@ -1396,37 +1396,37 @@ static const struct{
 };
 
 static const BMPLIST_HEADER ListH24 = {
-	NULL,					//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,					//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					//ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,					//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					//ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-	NULL,					//GF_BGL_BMPWIN‚Ìƒ|ƒCƒ“ƒ^
+	NULL,					//GF_BGL_BMPWINã®ãƒã‚¤ãƒ³ã‚¿
 
-	NELEMS(DebugMenuList24),//ƒŠƒXƒg€–Ú”
-	10,						//•\¦Å‘å€–Ú”
+	NELEMS(DebugMenuList24),//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	10,						//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	0,						//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						//€–Ú•\¦‚wÀ•W
-	0,						//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						//•\¦‚xÀ•W
+	0,						//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//è¡¨ç¤ºï¼¹åº§æ¨™
 /*
-	FBMP_COL_BLACK,			//•¶šF
-	FBMP_COL_WHITE,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
+	FBMP_COL_BLACK,			//æ–‡å­—è‰²
+	FBMP_COL_WHITE,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
 */
-	FBMP_COL_WHITE,			//•¶šF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
-	0,						//•¶šŠÔŠu‚w
-	16,						//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,			//•¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						//æ–‡å­—é–“éš”ï¼¸
+	16,						//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,			//æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1441,13 +1441,13 @@ static void D_Nohara_24( TCB_PTR tcb, void * work )
 	D_NOHARA_WORK* wk;
 	wk = (D_NOHARA_WORK*)work;
 
-	BmpDel( tcb );								//BMPŠJ•ú
+	BmpDel( tcb );								//BMPé–‹æ”¾
 
 	wk->seq				= 0;
 	wk->sel				= 0;
 	wk->count			= 0;
 
-	GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 
 	wk->menulist = BMP_MENULIST_Create( NELEMS(DebugMenuList24), HEAPID_BASE_DEBUG );
 
@@ -1463,17 +1463,17 @@ static void D_Nohara_24( TCB_PTR tcb, void * work )
 
 	GF_BGL_BmpWinOn( &wk->bmpwin[0] );
 
-	//TCB_ChangeFunc( tcb, D_Nohara_24_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
-	TCB_ChangeFunc( tcb, DebugNoharaMenuMain );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+	//TCB_ChangeFunc( tcb, D_Nohara_24_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
+	TCB_ChangeFunc( tcb, DebugNoharaMenuMain );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 	return;
 }
  
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -1488,33 +1488,33 @@ static void D_Nohara_24_Main( TCB_PTR tcb, void * work )
 
 	switch( wk->cursor_bak ){
 	case 0:
-		//ƒoƒbƒeƒŠ[MAX
+		//ãƒãƒƒãƒ†ãƒªãƒ¼MAX
 		SysWork_BtlSearcherBatterySet( ev, BS_BATTERY_MAX );
 		break;
 
 	case 1:
-		//ƒoƒbƒeƒŠ[CLR
+		//ãƒãƒƒãƒ†ãƒªãƒ¼CLR
 		SysWork_BtlSearcherBatterySet( ev, 0 );
 		break;
 
 	case 2:
-		//ƒNƒŠƒA[MAX
+		//ã‚¯ãƒªã‚¢ãƒ¼MAX
 		SysWork_BtlSearcherClearSet( ev, BS_CLEAR_MAX );
 		break;
 
 	case 3:
-		//ƒNƒŠƒA[CLR
+		//ã‚¯ãƒªã‚¢ãƒ¼CLR
 		SysWork_BtlSearcherClearSet( ev, 0 );
 		break;
 
 	case 4:
-		//‹N“®
+		//èµ·å‹•
 		EventSet_Script( wk->fsys, SCRID_BTL_SEARCHER, NULL );
-		TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
-		return;						//’ˆÓI
+		TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
+		return;						//æ³¨æ„ï¼
 
 	case 5:
-		//ƒŒƒxƒ‹‚PƒZƒbƒg
+		//ãƒ¬ãƒ™ãƒ«ï¼‘ã‚»ãƒƒãƒˆ
 		SysFlag_BsLvSet( ev, 1 );
 
 		MyItem_AddItem( SaveData_GetMyItem(wk->fsys->savedata),
@@ -1522,22 +1522,22 @@ static void D_Nohara_24_Main( TCB_PTR tcb, void * work )
 		break;
 
 	case 6:
-		//ƒŒƒxƒ‹‚QƒZƒbƒg
+		//ãƒ¬ãƒ™ãƒ«ï¼’ã‚»ãƒƒãƒˆ
 		SysFlag_BsLvSet( ev, 2 );
 		break;
 
 	case 7:
-		//ƒŒƒxƒ‹‚RƒZƒbƒg
+		//ãƒ¬ãƒ™ãƒ«ï¼“ã‚»ãƒƒãƒˆ
 		SysFlag_BsLvSet( ev, 3 );
 		break;
 
 	case 8:
-		//ƒŒƒxƒ‹‚SƒZƒbƒg
+		//ãƒ¬ãƒ™ãƒ«ï¼”ã‚»ãƒƒãƒˆ
 		SysFlag_BsLvSet( ev, 4 );
 		break;
 
 	case 9:
-		//ƒŒƒxƒ‹‚TƒZƒbƒg
+		//ãƒ¬ãƒ™ãƒ«ï¼•ã‚»ãƒƒãƒˆ
 		SysFlag_BsLvSet( ev, 5 );
 		break;
 
@@ -1546,21 +1546,21 @@ static void D_Nohara_24_Main( TCB_PTR tcb, void * work )
 	};
 
 	wk->seq = 0;
-	TCB_ChangeFunc( tcb, DebugNoharaMenuMain );		//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+	TCB_ChangeFunc( tcb, DebugNoharaMenuMain );		//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 	return;
 }
 
 
 //==============================================================================================
 //
-//	25	BGMƒIƒt
+//	25	BGMã‚ªãƒ•
 //
 //==============================================================================================
 extern void Snd_DebugBgmFlagSet( u8 sw );
 
 //--------------------------------------------------------------
 /**
- * @brief	BGMƒIƒt
+ * @brief	BGMã‚ªãƒ•
  *
  * @param	none
  *
@@ -1574,20 +1574,20 @@ static void D_Nohara_25( TCB_PTR tcb, void * work )
 	Snd_Stop();
 #endif
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	26	BGMƒIƒ“
+//	26	BGMã‚ªãƒ³
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BGMƒIƒ“
+ * @brief	BGMã‚ªãƒ³
  *
  * @param	none
  *
@@ -1602,7 +1602,7 @@ static void D_Nohara_26( TCB_PTR tcb, void * work )
 
 	Snd_DebugBgmFlagSet( 0 );
 
-	//ƒTƒEƒ“ƒhƒf[ƒ^ƒZƒbƒg(ƒV[ƒ“‚ª•ÏX‚³‚ê‚È‚¢‚Í‰½‚à‚µ‚È‚¢)
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ(ã‚·ãƒ¼ãƒ³ãŒå¤‰æ›´ã•ã‚Œãªã„æ™‚ã¯ä½•ã‚‚ã—ãªã„)
 	Snd_SceneSet( SND_SCENE_DUMMY );
 	bgm_no = Snd_FieldBgmNoGet( wk->fsys, wk->fsys->location->zone_id );
 	Snd_ZoneBgmSet(Snd_FieldBgmNoGetNonBasicBank(wk->fsys,wk->fsys->location->zone_id));//zone set
@@ -1610,20 +1610,20 @@ static void D_Nohara_26( TCB_PTR tcb, void * work )
 	Snd_DataSetByScene( SND_SCENE_FIELD, bgm_no, 1 );
 #endif
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	27	ƒ|ƒPƒ‚ƒ“–Â‚«º‚ğ2‚ÂÄ¶o—ˆ‚éƒtƒ‰ƒO"ƒIƒ“"
+//	27	ãƒã‚±ãƒ¢ãƒ³é³´ãå£°ã‚’2ã¤å†ç”Ÿå‡ºæ¥ã‚‹ãƒ•ãƒ©ã‚°"ã‚ªãƒ³"
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“–Â‚«º‚ğ2‚ÂÄ¶o—ˆ‚éƒtƒ‰ƒO"ƒIƒ“"
+ * @brief	ãƒã‚±ãƒ¢ãƒ³é³´ãå£°ã‚’2ã¤å†ç”Ÿå‡ºæ¥ã‚‹ãƒ•ãƒ©ã‚°"ã‚ªãƒ³"
  *
  * @param	none
  *
@@ -1635,20 +1635,20 @@ static void D_Nohara_27( TCB_PTR tcb, void * work )
 #ifdef SND_PV_070213
 	Snd_PMVoiceDoubleFlagSet( 1 );
 #endif
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	28	ƒ|ƒPƒ‚ƒ“–Â‚«º‚ğ2‚ÂÄ¶o—ˆ‚éƒtƒ‰ƒO"ƒIƒt"
+//	28	ãƒã‚±ãƒ¢ãƒ³é³´ãå£°ã‚’2ã¤å†ç”Ÿå‡ºæ¥ã‚‹ãƒ•ãƒ©ã‚°"ã‚ªãƒ•"
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“–Â‚«º‚ğ2‚ÂÄ¶o—ˆ‚éƒtƒ‰ƒO"ƒIƒt"
+ * @brief	ãƒã‚±ãƒ¢ãƒ³é³´ãå£°ã‚’2ã¤å†ç”Ÿå‡ºæ¥ã‚‹ãƒ•ãƒ©ã‚°"ã‚ªãƒ•"
  *
  * @param	none
  *
@@ -1660,20 +1660,20 @@ static void D_Nohara_28( TCB_PTR tcb, void * work )
 #ifdef SND_PV_070213
 	Snd_PMVoiceDoubleFlagSet( 0 );
 #endif
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	29	ƒEƒFƒCƒgw’è‚ ‚è‚Ì–Â‚«ºÄ¶‚ÌƒeƒXƒg
+//	29	ã‚¦ã‚§ã‚¤ãƒˆæŒ‡å®šã‚ã‚Šã®é³´ãå£°å†ç”Ÿã®ãƒ†ã‚¹ãƒˆ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒEƒFƒCƒgw’è‚ ‚è‚Ì–Â‚«ºÄ¶‚ÌƒeƒXƒg
+ * @brief	ã‚¦ã‚§ã‚¤ãƒˆæŒ‡å®šã‚ã‚Šã®é³´ãå£°å†ç”Ÿã®ãƒ†ã‚¹ãƒˆ
  *
  * @param	none
  *
@@ -1704,14 +1704,14 @@ static void D_Nohara_29( TCB_PTR tcb, void * work )
 
 #endif
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	30	ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
+//	30	ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 //
 //==============================================================================================
 #if 0
@@ -1719,7 +1719,7 @@ static void D_Nohara_30_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ƒ‚ƒjƒ^[ŒÄ‚Ño‚µ
+ * @brief	ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¢ãƒ‹ã‚¿ãƒ¼å‘¼ã³å‡ºã—
  *
  * @param	none
  *
@@ -1732,16 +1732,16 @@ static void D_Nohara_30( TCB_PTR tcb, void * work )
 
 	EventSet_Script( wk->fsys, SCRID_SEISEKI_STAGE, NULL );
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -1765,7 +1765,7 @@ static void D_Nohara_30_Main( TCB_PTR tcb, void * work )
 		break;
 
 	case 1:
-		//ƒvƒƒZƒXI—¹‘Ò‚¿
+		//ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 		if( FieldEvent_Cmd_WaitSubProcEnd(wk->fsys) == FALSE ){
 			sys_FreeMemoryEz( wk->factory_call );
 			wk->seq++;
@@ -1774,16 +1774,16 @@ static void D_Nohara_30_Main( TCB_PTR tcb, void * work )
 
 	case 2:
 		if(GameSystem_CheckSubProcExists(wk->fsys) == FALSE){
-			//ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+			//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 			FieldEvent_Cmd_SetMapProc( wk->fsys );
 		}
 		break;
 
 	case 3:
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJnI—¹‘Ò‚¿
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹çµ‚äº†å¾…ã¡
 		if( !FieldEvent_Cmd_WaitMapProcStart(wk->fsys) ){
 			wk->seq = 0;
-			TcbBmpDel( tcb, work );				//TCBBMPŠJ•ú
+			TcbBmpDel( tcb, work );				//TCBBMPé–‹æ”¾
 		}
 		break;
 	};
@@ -1795,7 +1795,7 @@ static void D_Nohara_30_Main( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	31	˜^‰æÄ¶
+//	31	éŒ²ç”»å†ç”Ÿ
 //
 //==============================================================================================
 #if 0
@@ -1803,7 +1803,7 @@ static void D_Nohara_31_Main( TCB_PTR tcb, void * work );
 
 //--------------------------------------------------------------
 /**
- * @brief	˜^‰æÄ¶
+ * @brief	éŒ²ç”»å†ç”Ÿ
  *
  * @param	none
  *
@@ -1814,17 +1814,17 @@ static void D_Nohara_31( TCB_PTR tcb, void * work )
 {
 	D_NOHARA_WORK* wk = (D_NOHARA_WORK*)work;
 	wk->seq		= 0;
-	TCB_ChangeFunc( tcb, D_Nohara_31_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+	TCB_ChangeFunc( tcb, D_Nohara_31_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 	return;
 }
 
 BATTLE_PARAM* bp;
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -1844,50 +1844,50 @@ static void D_Nohara_31_Main( TCB_PTR tcb, void * work )
 		break;
 
 	case 1:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXI—¹
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 		//EventCmd_FinishFieldMap( wk->fsys->event );
 		
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			MSGMAN_Delete( wk->msgman );
 			WORDSET_Delete( wk->wordset );
-			BmpDel( tcb );						//BMPŠJ•ú
+			BmpDel( tcb );						//BMPé–‹æ”¾
 			wk->seq++;
 		}
 		break;
 
 	case 2:
-		//BATTLE_PARAMİ’è
+		//BATTLE_PARAMè¨­å®š
 		bp = BattleParam_Create( HEAPID_WORLD, FIGHT_TYPE_1vs1 );
 		BattleParam_SetParamByGameDataCore( bp, wk->fsys, wk->fsys->savedata, 
 											wk->fsys->location->zone_id, 
 											wk->fsys->fnote, wk->fsys->bag_cursor, 
 											wk->fsys->battle_cursor );
 
-		//bp	ƒ[ƒh‚µ‚½ƒf[ƒ^‚©‚ç¶¬‚·‚éBATTLE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		//num	ƒ[ƒh‚·‚éƒf[ƒ^ƒiƒ“ƒo[iLOADDATA_MYRECALOADDATA_DOWNLOAD1ALOADDATA_DOWNLOAD2cj
+		//bp	ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ç”Ÿæˆã™ã‚‹BATTLE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		//num	ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ï¼ˆLOADDATA_MYRECã€LOADDATA_DOWNLOAD1ã€LOADDATA_DOWNLOAD2â€¦ï¼‰
 
-		//‘Îí˜^‰æƒf[ƒ^‚Ìƒ[ƒh
+		//å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
 		BattleRec_Load( wk->fsys->savedata, HEAPID_WORLD, &load_ret, bp, LOADDATA_MYREC );
 		OS_Printf( "battle_load ret = %d\n", load_ret );
 #if 0
-	LOAD_RESULT_NULL = 0,		///<ƒf[ƒ^‚È‚µ
-	LOAD_RESULT_OK,				///<ƒf[ƒ^³í“Ç‚İ‚İ
-	LOAD_RESULT_NG,				///<ƒf[ƒ^ˆÙí
-	LOAD_RESULT_BREAK,			///<”j‰óA•œ‹Œ•s”\ 
+	LOAD_RESULT_NULL = 0,		///<ãƒ‡ãƒ¼ã‚¿ãªã—
+	LOAD_RESULT_OK,				///<ãƒ‡ãƒ¼ã‚¿æ­£å¸¸èª­ã¿è¾¼ã¿
+	LOAD_RESULT_NG,				///<ãƒ‡ãƒ¼ã‚¿ç•°å¸¸
+	LOAD_RESULT_BREAK,			///<ç ´å£Šã€å¾©æ—§ä¸èƒ½ 
 #endif
 		wk->seq++;
 		break;
 
 	case 3:
 		GameSystem_FinishFieldProc( wk->fsys );
-		Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );	//ƒoƒgƒ‹‹ÈÄ¶
+		Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );	//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
 		FieldBattle_SetProc( wk->fsys, bp );
-		OS_Printf( "˜^‰æí“¬ŒÄ‚Ño‚µƒeƒXƒg\n" );
+		OS_Printf( "éŒ²ç”»æˆ¦é—˜å‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆ\n" );
 		wk->seq++;
 		break;
 
 	case 4:
-		if( FieldEvent_Cmd_WaitSubProcEnd(wk->fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+		if( FieldEvent_Cmd_WaitSubProcEnd(wk->fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 			break;
 		}
 		wk->seq++;
@@ -1895,10 +1895,10 @@ static void D_Nohara_31_Main( TCB_PTR tcb, void * work )
 
 	case 5:
 		if( GameSystem_CheckSubProcExists( wk->fsys ) == FALSE ){
-			BattleParam_Delete( bp );						//BATTLE_PARAM‚ÌŠJ•ú
+			BattleParam_Delete( bp );						//BATTLE_PARAMã®é–‹æ”¾
 			BattleRec_Exit();
 			//FieldEvent_Cmd_SetMapProc( wk->fsys );
-			GameSystem_CreateFieldProc( wk->fsys );			//ƒtƒB[ƒ‹ƒh•œ‹A
+			GameSystem_CreateFieldProc( wk->fsys );			//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°
 			wk->seq++;
 		}
 		break;
@@ -1923,7 +1923,7 @@ static void D_Nohara_31_Main( TCB_PTR tcb, void * work )
 		if( WIPE_SYS_EndCheck() == TRUE ){
 #endif
 			wk->seq = 0;
-			PMDS_taskDel( tcb );				//TCBŠJ•ú
+			PMDS_taskDel( tcb );				//TCBé–‹æ”¾
 			FieldSystemProc_SeqHoldEnd();
 //		}
 		return;
@@ -1936,13 +1936,13 @@ static void D_Nohara_31_Main( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	32	‚b‚oƒZƒbƒg
+//	32	ï¼£ï¼°ã‚»ãƒƒãƒˆ
 //
 //==============================================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * @brief	‚b‚oƒZƒbƒg
+ * @brief	ï¼£ï¼°ã‚»ãƒƒãƒˆ
  *
  * @param	none
  *
@@ -1953,17 +1953,17 @@ static void D_Nohara_32( TCB_PTR tcb, void * work )
 {
 	D_NOHARA_WORK* wk = (D_NOHARA_WORK*)work;
 
-	//ƒVƒ“ƒOƒ‹Œ»İ‚ÌCPƒŒƒR[ƒh‚ğ9999
+	//ã‚·ãƒ³ã‚°ãƒ«ç¾åœ¨ã®CPãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’9999
 	FrontierRecord_Set( SaveData_GetFrontier(wk->fsys->savedata), 
 						CastleScr_GetCPRecordID(CASTLE_TYPE_SINGLE),
 						FRONTIER_RECORD_NOT_FRIEND, 9999 );
 
-	//ƒ}ƒ‹ƒ`Œ»İ‚ÌCPƒŒƒR[ƒh‚ğ9999
+	//ãƒãƒ«ãƒç¾åœ¨ã®CPãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’9999
 	FrontierRecord_Set( SaveData_GetFrontier(wk->fsys->savedata), 
 						CastleScr_GetCPRecordID(CASTLE_TYPE_MULTI),
 						FRONTIER_RECORD_NOT_FRIEND, 9999 );
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 #endif
@@ -1971,13 +1971,13 @@ static void D_Nohara_32( TCB_PTR tcb, void * work )
 
 //==============================================================================================
 //
-//	33	HP‘€ì
+//	33	HPæ“ä½œ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	HP‘€ì
+ * @brief	HPæ“ä½œ
  *
  * @param	none
  *
@@ -1990,27 +1990,27 @@ static void D_Nohara_33( TCB_PTR tcb, void * work )
 	POKEMON_PARAM* poke;
 	D_NOHARA_WORK* wk = (D_NOHARA_WORK*)work;
 
-	//ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(wk->fsys->savedata), 0 );
 
 	hp = 5;
 	PokeParaPut( poke, ID_PARA_hp, &hp );
 	//PokeParaCalc( poke );
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	42	hp_rnd,spedef_rnd‘€ì
+//	42	hp_rnd,spedef_rndæ“ä½œ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	hp_rnd,spedef_rnd‘€ì
+ * @brief	hp_rnd,spedef_rndæ“ä½œ
  *
  * @param	none
  *
@@ -2023,10 +2023,10 @@ static void D_Nohara_42( TCB_PTR tcb, void * work )
 	POKEMON_PARAM* poke;
 	D_NOHARA_WORK* wk = (D_NOHARA_WORK*)work;
 
-	//ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(wk->fsys->savedata), 0 );
 
-	//“w—Í’lƒeƒXƒg
+	//åŠªåŠ›å€¤ãƒ†ã‚¹ãƒˆ
 #if 0
 	hp = 200;
 	PokeParaPut( poke, ID_PARA_hp_rnd, &hp );
@@ -2039,20 +2039,20 @@ static void D_Nohara_42( TCB_PTR tcb, void * work )
 	PokeParaPut( poke, ID_PARA_spedef_exp, &hp );
 #endif
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	35	•Ê‘‘ƒCƒxƒ“ƒg
+//	35	åˆ¥è˜ã‚¤ãƒ™ãƒ³ãƒˆ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	•Ê‘‘ƒCƒxƒ“ƒg
+ * @brief	åˆ¥è˜ã‚¤ãƒ™ãƒ³ãƒˆ
  *
  * @param	none
  *
@@ -2065,14 +2065,14 @@ static void D_Nohara_35( TCB_PTR tcb, void * work )
 	POKEMON_PARAM* poke;
 	D_NOHARA_WORK* wk = (D_NOHARA_WORK*)work;
 
-	//ƒŒƒR[ƒh•\¦
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰è¡¨ç¤º
 	//OS_Printf( "dendou = %d\n", RECORD_Get(SaveData_GetRecord(wk->fsys->savedata),
 	//								RECID_DENDOU_CNT) );
 
 #if 0
-	//æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚Ìwaza3Awaza4‚ğ–Y‚ê‚³‚¹‚é
+	//å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ã®waza3ã€waza4ã‚’å¿˜ã‚Œã•ã›ã‚‹
 
-	//ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(wk->fsys->savedata), 0 );
 
 	waza = 0;
@@ -2087,27 +2087,27 @@ static void D_Nohara_35( TCB_PTR tcb, void * work )
 		debug_t07r0201_no = 0;
 	}
 
-	OS_Printf( "•Ê‘‘‚ÌƒCƒxƒ“ƒgƒiƒ“ƒo[‚ğ%d‚É•ÏX‚µ‚Ü‚µ‚½\n", debug_t07r0201_no );
-	SysFlag_T07ObjInReset( SaveData_GetEventWork(wk->fsys->savedata) );//•Ê‘‘ŠO‚ÌOBJ‚ª’†‚É“ü‚Á‚½off
+	OS_Printf( "åˆ¥è˜ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’%dã«å¤‰æ›´ã—ã¾ã—ãŸ\n", debug_t07r0201_no );
+	SysFlag_T07ObjInReset( SaveData_GetEventWork(wk->fsys->savedata) );//åˆ¥è˜å¤–ã®OBJãŒä¸­ã«å…¥ã£ãŸoff
 	SysWork_T07R0201Set( SaveData_GetEventWork(wk->fsys->savedata), debug_t07r0201_no );
 #else
 	SysWorkUpdateEventT07R0201( wk->fsys->savedata );
 #endif
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	40	ƒtƒƒ“ƒeƒBƒA“’…
+//	40	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢åˆ°ç€
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒƒ“ƒeƒBƒA“’…
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢åˆ°ç€
  *
  * @param	none
  *
@@ -2127,14 +2127,14 @@ static void D_Nohara_40( TCB_PTR tcb, void * work )
 		SysFlag_Arrive( ev, SYSFLAG_MODE_SET, FLAG_ARRIVE_D32R0101 );
 	}
 
-	TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+	TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	return;
 }
 
 
 //==============================================================================================
 //
-//	41	ƒXƒe[ƒW˜AŸ”‘€ìŠÖ˜A
+//	41	ã‚¹ãƒ†ãƒ¼ã‚¸é€£å‹æ•°æ“ä½œé–¢é€£
 //
 //==============================================================================================
 static void D_Nohara_41_Main( TCB_PTR tcb, void * work );
@@ -2142,7 +2142,7 @@ static void StageRenshouSet( D_NOHARA_WORK* wk, u16 start_no, u16 end_no );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -2156,16 +2156,16 @@ static void D_Nohara_41( TCB_PTR tcb, void * work )
 	wk->seq		= 0;
 	wk->count	= 0;
 	wk->work	= 0;
-	TCB_ChangeFunc( tcb, D_Nohara_41_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+	TCB_ChangeFunc( tcb, D_Nohara_41_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -2179,7 +2179,7 @@ static void D_Nohara_41_Main( TCB_PTR tcb, void * work )
 	D_NOHARA_WORK* wk;
 	wk = (D_NOHARA_WORK*)work;
 
-	flag = 0;	//‘‚«Š·‚¦ƒtƒ‰ƒO
+	flag = 0;	//æ›¸ãæ›ãˆãƒ•ãƒ©ã‚°
 
 	if( (sys.repeat == PAD_KEY_UP) || (sys.cont == PAD_KEY_RIGHT) ){
 		flag = 1;
@@ -2197,52 +2197,52 @@ static void D_Nohara_41_Main( TCB_PTR tcb, void * work )
 		}
 	}
 
-	//‘‚«Š·‚¦ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç
+	//æ›¸ãæ›ãˆãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰
 	if( flag == 1 ){
-		//w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+		//æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 		GF_BGL_BmpWinFill( &wk->bmpwin[0], FBMP_COL_BLACK, 8*7, 8*2, 
 								8*8, 8*2 );
 	
-		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[•\¦
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤º
 		NumMsgSet( wk, &wk->bmpwin[0], wk->work, 8*7, 8*2 );
 		GF_BGL_BmpWinOn( &wk->bmpwin[0] );
 	}
 
-	//I—¹(1•C‘ÎÛ)
+	//çµ‚äº†(1åŒ¹å¯¾è±¡)
 	if( sys.trg == PAD_BUTTON_A ){
 		StageRenshouSet( wk, wk->work, (wk->work+1) );
-		TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 		return;
 	}
 
-	//I—¹(10•C‘ÎÛ)
+	//çµ‚äº†(10åŒ¹å¯¾è±¡)
 	if( sys.trg == PAD_BUTTON_X ){
-		//StageRenshouSet( wk, wk->work, (wk->work+10) );			//MONSNO_ENDƒ`ƒFƒbƒN‚ª•K—v
+		//StageRenshouSet( wk, wk->work, (wk->work+10) );			//MONSNO_ENDãƒã‚§ãƒƒã‚¯ãŒå¿…è¦
 		StageRenshouSet( wk, 1, (10+1) );
-		TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 		return;
 	}
 
-	//I—¹(100•C‘ÎÛ)
+	//çµ‚äº†(100åŒ¹å¯¾è±¡)
 	if( sys.trg == PAD_BUTTON_Y ){
-		//StageRenshouSet( wk, wk->work, (wk->work+100) );			//MONSNO_ENDƒ`ƒFƒbƒN‚ª•K—v
+		//StageRenshouSet( wk, wk->work, (wk->work+100) );			//MONSNO_ENDãƒã‚§ãƒƒã‚¯ãŒå¿…è¦
 		StageRenshouSet( wk, 1, (100+1) );
-		TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 		return;
 	}
 
-	//I—¹(‘S‚Ä‘ÎÛ)
+	//çµ‚äº†(å…¨ã¦å¯¾è±¡)
 	if( sys.trg == PAD_BUTTON_START ){
-		//ƒAƒ‹ƒZƒEƒX‚Í’§ío—ˆ‚È‚¢‚µAI’[‚¢‚«‚·‚¬‚Í•|‚¢‚Ì‚ÅA‚Ù‚Ú‘S‚Ä‚Ìƒ|ƒPƒ‚ƒ“‚É‚µ‚Ä‚¢‚é
+		//ã‚¢ãƒ«ã‚»ã‚¦ã‚¹ã¯æŒ‘æˆ¦å‡ºæ¥ãªã„ã—ã€çµ‚ç«¯ã„ãã™ãã¯æ€–ã„ã®ã§ã€ã»ã¼å…¨ã¦ã®ãƒã‚±ãƒ¢ãƒ³ã«ã—ã¦ã„ã‚‹
 		//StageRenshouSet( wk, 1, (MONSNO_END+1) );
 		StageRenshouSet( wk, 1, MONSNO_END );
-		TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 		return;
 	}
 
-	//I—¹
+	//çµ‚äº†
 	if( sys.cont == PAD_BUTTON_B ){
-		TcbBmpDel( tcb, work );		//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );		//TCBBMPé–‹æ”¾
 	}
 
 	return;
@@ -2274,20 +2274,20 @@ static void StageRenshouSet( D_NOHARA_WORK* wk, u16 start_no, u16 end_no )
 		}	
 
 #if 1
-		//ƒtƒB[ƒ‹ƒh“®ìƒ‚ƒfƒ‹‚ÌƒZ[ƒu
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‹•ä½œãƒ¢ãƒ‡ãƒ«ã®ã‚»ãƒ¼ãƒ–
 		Field_SaveFieldObj( wk->fsys );
 
-		// ƒ|ƒPƒbƒ`ŠÖ˜Aƒf[ƒ^‚ÌƒZ[ƒu
+		// ãƒã‚±ãƒƒãƒé–¢é€£ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ¼ãƒ–
 		Field_SendPoketchInfo( wk->fsys, POKETCH_SEND_SAVE, 0 );
 
-		//ˆÊ’u‚ğˆø‚Á’£‚é
+		//ä½ç½®ã‚’å¼•ã£å¼µã‚‹
 		wk->fsys->location->grid_x = Player_NowGPosXGet( wk->fsys->player );
 		wk->fsys->location->grid_z = Player_NowGPosZGet( wk->fsys->player );
 		wk->fsys->location->door_id = DOOR_ID_JUMP_CODE;
 		wk->fsys->location->dir = Player_DirGet( wk->fsys->player );
 #endif
 
-		//ŠO•”ƒZ[ƒu‚ğŒÄ‚Î‚ê‚È‚¢‚Æ”½‰f‚µ‚È‚¢‚Ì‚ÅA‚±‚ÌƒfƒoƒbƒN”÷–­‚©‚àBBB
+		//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã‚’å‘¼ã°ã‚Œãªã„ã¨åæ˜ ã—ãªã„ã®ã§ã€ã“ã®ãƒ‡ãƒãƒƒã‚¯å¾®å¦™ã‹ã‚‚ã€‚ã€‚ã€‚
 		save_result = FrontierEx_Save(wk->fsys->savedata, fes);
 	}
 
@@ -2301,7 +2301,7 @@ static void StageRenshouSet( D_NOHARA_WORK* wk, u16 start_no, u16 end_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒCƒiƒŠƒƒbƒZ[ƒWƒtƒ@ƒCƒ‹“Ç‚İ‚İA•\¦ƒeƒXƒg
+ * @brief	ãƒã‚¤ãƒŠãƒªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã€è¡¨ç¤ºãƒ†ã‚¹ãƒˆ
  *
  * @param	none
  *
@@ -2315,11 +2315,11 @@ static void D_Nohara_89(void)
 #else
 	static u16 * pMsg = NULL;
 
-	//debug_msg.dat‚Ícvs‚É“o˜^‚µ‚Ä‚¢‚È‚¢‚Ì‚Å’ˆÓI
+	//debug_msg.datã¯cvsã«ç™»éŒ²ã—ã¦ã„ãªã„ã®ã§æ³¨æ„ï¼
 	pMsg = (u16 *)sys_LoadFile( HEAPID_BASE_DEBUG, "/data/script/debug_msg.dat" );
 	FieldTalkWinPut();
 	msg_no_print( pMsg );
-	FieldTalkMsgStart( pMsg, 1 );					//‘æ2ˆø”=skip
+	FieldTalkMsgStart( pMsg, 1 );					//ç¬¬2å¼•æ•°=skip
 	sys_FreeMemoryEz( pMsg );
 
 	return;
@@ -2328,7 +2328,7 @@ static void D_Nohara_89(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒgƒ‰ƒbƒNƒ~ƒ…[ƒgƒeƒXƒg
+ * @brief	ãƒˆãƒ©ãƒƒã‚¯ãƒŸãƒ¥ãƒ¼ãƒˆãƒ†ã‚¹ãƒˆ
  *
  * @param	none
  *
@@ -2344,7 +2344,7 @@ static void D_Nohara_72(void)
 
 //==============================================================================================
 //
-//	34	ƒtƒƒ“ƒeƒBƒAŠÖ˜A(˜AŸ”‘€ì)
+//	34	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢é–¢é€£(é€£å‹æ•°æ“ä½œ)
 //
 //==============================================================================================
 static void D_Nohara_34_Main( TCB_PTR tcb, void * work );
@@ -2363,23 +2363,23 @@ static const struct{
 	u32  str_id;
 	u32  param;
 }DebugMenuList34[] = {
-	//ƒ^ƒ[‚ÌƒZƒbƒg‚ÍFXˆá‚¤‚Ì‚Å•Û—¯BBB
-	{ msg_debug_nohara_34_15, D34_PARAM_TOWER },		//ƒ^ƒ[
-	{ msg_debug_nohara_34_02, D34_PARAM_FACTORY },		//ƒtƒ@ƒNƒgƒŠ[
-	{ msg_debug_nohara_36,	  D34_PARAM_FACTORY_OPEN },	//ƒtƒ@ƒNƒgƒŠ[ƒI[ƒvƒ“
-	{ msg_debug_nohara_34_03, D34_PARAM_STAGE },		//ƒXƒe[ƒW
-	{ msg_debug_nohara_34_04, D34_PARAM_CASTLE },		//ƒLƒƒƒbƒXƒ‹
-	{ msg_debug_nohara_34_05, D34_PARAM_ROULETTE },		//ƒ‹[ƒŒƒbƒg
+	//ã‚¿ãƒ¯ãƒ¼ã®ã‚»ãƒƒãƒˆã¯è‰²ã€…é•ã†ã®ã§ä¿ç•™ã€‚ã€‚ã€‚
+	{ msg_debug_nohara_34_15, D34_PARAM_TOWER },		//ã‚¿ãƒ¯ãƒ¼
+	{ msg_debug_nohara_34_02, D34_PARAM_FACTORY },		//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+	{ msg_debug_nohara_36,	  D34_PARAM_FACTORY_OPEN },	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã‚ªãƒ¼ãƒ—ãƒ³
+	{ msg_debug_nohara_34_03, D34_PARAM_STAGE },		//ã‚¹ãƒ†ãƒ¼ã‚¸
+	{ msg_debug_nohara_34_04, D34_PARAM_CASTLE },		//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+	{ msg_debug_nohara_34_05, D34_PARAM_ROULETTE },		//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 };
 
-//ƒ}ƒCƒiƒX‚É‚µ‚½‚ÌÅ‘å˜AŸ”ƒZƒbƒg’l
+//ãƒã‚¤ãƒŠã‚¹ã«ã—ãŸæ™‚ã®æœ€å¤§é€£å‹æ•°ã‚»ãƒƒãƒˆå€¤
 static const u16 frontier_num_max[] = {
-	9996,			//ƒ^ƒ[
-	9996,			//ƒtƒ@ƒNƒgƒŠ[
-	9996,			//ƒtƒ@ƒNƒgƒŠ[ƒI[ƒvƒ“
-	9990,			//ƒXƒe[ƒW
-	9996,			//ƒLƒƒƒbƒXƒ‹
-	9996,			//ƒ‹[ƒŒƒbƒg
+	9996,			//ã‚¿ãƒ¯ãƒ¼
+	9996,			//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+	9996,			//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã‚ªãƒ¼ãƒ—ãƒ³
+	9990,			//ã‚¹ãƒ†ãƒ¼ã‚¸
+	9996,			//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+	9996,			//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 };
 
 enum{
@@ -2393,41 +2393,41 @@ static const struct{
 	u32  str_id;
 	u32  param;
 }DebugMenuList34_type[] = {
-	{ msg_debug_nohara_34_11, D34_PARAM_SINGLE },		//ƒVƒ“ƒOƒ‹
-	{ msg_debug_nohara_34_12, D34_PARAM_DOUBLE },		//ƒ_ƒuƒ‹
-	{ msg_debug_nohara_34_13, D34_PARAM_MULTI },		//ƒ}ƒ‹ƒ`
-	{ msg_debug_nohara_34_14, D34_PARAM_WIFI_MULTI },	//WIFIƒ}ƒ‹ƒ`
+	{ msg_debug_nohara_34_11, D34_PARAM_SINGLE },		//ã‚·ãƒ³ã‚°ãƒ«
+	{ msg_debug_nohara_34_12, D34_PARAM_DOUBLE },		//ãƒ€ãƒ–ãƒ«
+	{ msg_debug_nohara_34_13, D34_PARAM_MULTI },		//ãƒãƒ«ãƒ
+	{ msg_debug_nohara_34_14, D34_PARAM_WIFI_MULTI },	//WIFIãƒãƒ«ãƒ
 };
 
 static const BMPLIST_HEADER ListH34 = {
-	NULL,					//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,					//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					//ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,					//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					//ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-	NULL,					//GF_BGL_BMPWIN‚Ìƒ|ƒCƒ“ƒ^
+	NULL,					//GF_BGL_BMPWINã®ãƒã‚¤ãƒ³ã‚¿
 
-	//NELEMS(DebugMenuList34_type),//ƒŠƒXƒg€–Ú”
-	1,						//ƒŠƒXƒg€–Ú”
-	10,						//•\¦Å‘å€–Ú”
+	//NELEMS(DebugMenuList34_type),//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	1,						//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	10,						//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	0,						//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						//€–Ú•\¦‚wÀ•W
-	0,						//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						//•\¦‚xÀ•W
+	0,						//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//è¡¨ç¤ºï¼¹åº§æ¨™
 
-	FBMP_COL_WHITE,			//•¶šF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
-	0,						//•¶šŠÔŠu‚w
-	16,						//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,			//•¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						//æ–‡å­—é–“éš”ï¼¸
+	16,						//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,			//æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -2444,10 +2444,10 @@ static void D_Nohara_34( TCB_PTR tcb, void * work )
 
 	switch( wk->fro_seq ){
 
-	//{İ‘I‘ğ
+	//æ–½è¨­é¸æŠ
 	case 0:
-		BmpDel( tcb );								//BMPŠJ•ú
-		GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//BMP’Ç‰Á
+		BmpDel( tcb );								//BMPé–‹æ”¾
+		GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//BMPè¿½åŠ 
 		wk->menulist = BMP_MENULIST_Create( NELEMS(DebugMenuList34), HEAPID_BASE_DEBUG );
 		for( i=0; i < NELEMS(DebugMenuList34); i++ ){
 			BMP_MENULIST_AddArchiveString( wk->menulist, wk->msgman, 
@@ -2461,9 +2461,9 @@ static void D_Nohara_34( TCB_PTR tcb, void * work )
 		GF_BGL_BmpWinOn( &wk->bmpwin[0] );
 		break;
 
-	//ƒoƒgƒ‹ƒ^ƒCƒv‘I‘ğ
+	//ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—é¸æŠ
 	case 1:
-		GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//BMP’Ç‰Á
+		GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//BMPè¿½åŠ 
 		wk->menulist = BMP_MENULIST_Create( NELEMS(DebugMenuList34_type), HEAPID_BASE_DEBUG );
 		for( i=0; i < NELEMS(DebugMenuList34_type); i++ ){
 			BMP_MENULIST_AddArchiveString( wk->menulist, wk->msgman, 
@@ -2480,16 +2480,16 @@ static void D_Nohara_34( TCB_PTR tcb, void * work )
 	};
 
 	wk->fro_seq++;
-	TCB_ChangeFunc( tcb, D_Nohara_34_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+	TCB_ChangeFunc( tcb, D_Nohara_34_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 	return;
 }
  
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -2508,71 +2508,71 @@ static void D_Nohara_34_Main( TCB_PTR tcb, void * work )
 		break;
 
 	case BMPLIST_CANCEL:
-		TcbBmpDel( tcb, work );				//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );				//TCBBMPé–‹æ”¾
 		break;
 
 	////////////////////////////////////////////////////////////////////
 	case D34_PARAM_TOWER:
 		wk->fro_type = D34_PARAM_TOWER;
 		wk->fro_add  = 7;
-		BmpDel( tcb );						//BMPŠJ•ú
-		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+		BmpDel( tcb );						//BMPé–‹æ”¾
+		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		break;
 
 	case D34_PARAM_FACTORY:
 		wk->fro_type = D34_PARAM_FACTORY;
 		wk->fro_add  = 7;
-		BmpDel( tcb );						//BMPŠJ•ú
-		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+		BmpDel( tcb );						//BMPé–‹æ”¾
+		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		break;
 
 	case D34_PARAM_FACTORY_OPEN:
 		wk->fro_type = D34_PARAM_FACTORY_OPEN;
 		wk->fro_add  = 7;
-		BmpDel( tcb );						//BMPŠJ•ú
-		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+		BmpDel( tcb );						//BMPé–‹æ”¾
+		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		break;
 
 	case D34_PARAM_STAGE:
 		wk->fro_type = D34_PARAM_STAGE;
 		wk->fro_add  = 10;
-		BmpDel( tcb );						//BMPŠJ•ú
-		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+		BmpDel( tcb );						//BMPé–‹æ”¾
+		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		break;
 
 	case D34_PARAM_CASTLE:
 		wk->fro_type = D34_PARAM_CASTLE;
 		wk->fro_add  = 7;
-		BmpDel( tcb );						//BMPŠJ•ú
-		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+		BmpDel( tcb );						//BMPé–‹æ”¾
+		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		break;
 
 	case D34_PARAM_ROULETTE:
 		wk->fro_type = D34_PARAM_ROULETTE;
 		wk->fro_add  = 7;
-		BmpDel( tcb );						//BMPŠJ•ú
-		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+		BmpDel( tcb );						//BMPé–‹æ”¾
+		TCB_ChangeFunc( tcb, D_Nohara_34 );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		break;
 
 	////////////////////////////////////////////////////////////////////
 	case D34_PARAM_SINGLE:
 		wk->btl_type = D34_PARAM_SINGLE;
-		TCB_ChangeFunc( tcb, D_Nohara_34_2_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+		TCB_ChangeFunc( tcb, D_Nohara_34_2_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		break;
 
 	case D34_PARAM_DOUBLE:
 		wk->btl_type = D34_PARAM_DOUBLE;
-		TCB_ChangeFunc( tcb, D_Nohara_34_2_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+		TCB_ChangeFunc( tcb, D_Nohara_34_2_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		break;
 
 	case D34_PARAM_MULTI:
 		wk->btl_type = D34_PARAM_MULTI;
-		TCB_ChangeFunc( tcb, D_Nohara_34_2_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+		TCB_ChangeFunc( tcb, D_Nohara_34_2_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		break;
 
 	case D34_PARAM_WIFI_MULTI:
 		wk->btl_type = D34_PARAM_WIFI_MULTI;
-		TCB_ChangeFunc( tcb, D_Nohara_34_2_Main );	//TCB‚Ì“®ìŠÖ”Ø‚è‘Ö‚¦
+		TCB_ChangeFunc( tcb, D_Nohara_34_2_Main );	//TCBã®å‹•ä½œé–¢æ•°åˆ‡ã‚Šæ›¿ãˆ
 		break;
 
 	};
@@ -2582,10 +2582,10 @@ static void D_Nohara_34_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRå‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -2607,7 +2607,7 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 	wk = (D_NOHARA_WORK*)work;
 	fr_sv = SaveData_GetFrontier( wk->fsys->savedata );
 
-	flag = 0;		//‘‚«Š·‚¦ƒtƒ‰ƒO
+	flag = 0;		//æ›¸ãæ›ãˆãƒ•ãƒ©ã‚°
 
 	if( sys.trg == PAD_BUTTON_A ){
 
@@ -2616,15 +2616,15 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 		case D34_PARAM_TOWER:
 
 			////////////////////
-			//šWIFIƒ}ƒ‹ƒ`ŒÀ’èI
+			//â˜…WIFIãƒãƒ«ãƒé™å®šï¼
 			////////////////////
 
-			//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+			//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 			FrontierRecord_Set(	fr_sv, 
 				FRID_TOWER_MULTI_WIFI_CLEAR_BIT,
 				wk->friend_work, 1 );
 
-			//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+			//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 			FrontierRecord_Set(	fr_sv, 
 					FRID_TOWER_MULTI_WIFI_RENSHOU_CNT,
 					wk->friend_work, wk->work );
@@ -2635,23 +2635,23 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 
 			if( wk->btl_type == FACTORY_TYPE_WIFI_MULTI ){
 
-				//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+				//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 				FrontierRecord_Set(	fr_sv, 
 					FRID_FACTORY_MULTI_WIFI_CLEAR_BIT,
 					wk->friend_work, 1 );
 
-				//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+				//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 				FrontierRecord_Set(	fr_sv, 
 						FactoryScr_GetWinRecordID(0,wk->btl_type),
 						wk->friend_work, wk->work );
 			}else{
 
-				//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+				//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 				buf8[0] = 1;
 				FACTORYSCORE_PutScoreData(	fa_score_sv, FACTORYSCORE_ID_CLEAR_FLAG, 
 											wk->btl_type, buf8 );
 
-				//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+				//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 				FrontierRecord_Set(	fr_sv, 
 					FactoryScr_GetWinRecordID(0,wk->btl_type),	//LV50
 					Frontier_GetFriendIndex(FactoryScr_GetWinRecordID(0,wk->btl_type)), wk->work );
@@ -2663,26 +2663,26 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 
 			if( wk->btl_type == FACTORY_TYPE_WIFI_MULTI ){
 
-				//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+				//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 				FrontierRecord_Set(	fr_sv, 
 					FRID_FACTORY_MULTI_WIFI_CLEAR_BIT,
 					wk->friend_work, 1 );
 
-				//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+				//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 				FrontierRecord_Set(	fr_sv, 
 						FactoryScr_GetWinRecordID(1,wk->btl_type),
 						wk->friend_work, wk->work );
 			}else{
 
-				//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+				//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 				buf8[0] = 1;
 				FACTORYSCORE_PutScoreData(	fa_score_sv, FACTORYSCORE_ID_CLEAR_FLAG, 
 											//wk->btl_type, buf8 );
 											(1*FACTORY_TYPE_MAX)+wk->btl_type, buf8 );
 
-				//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+				//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 				FrontierRecord_Set(	fr_sv, 
-					FactoryScr_GetWinRecordID(1,wk->btl_type),	//ƒI[ƒvƒ“
+					FactoryScr_GetWinRecordID(1,wk->btl_type),	//ã‚ªãƒ¼ãƒ—ãƒ³
 					Frontier_GetFriendIndex(FactoryScr_GetWinRecordID(1,wk->btl_type)), wk->work );
 			}
 			break;
@@ -2690,45 +2690,45 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 		case D34_PARAM_STAGE:
 			s_score_sv = SaveData_GetStageScore( wk->fsys->savedata );
 
-			//æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚É‚·‚é
+			//å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ã«ã™ã‚‹
 			poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(wk->fsys->savedata), 0 );
 
 			if( wk->btl_type == STAGE_TYPE_WIFI_MULTI ){
 
-				//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+				//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 				FrontierRecord_Set(	fr_sv, 
 					FRID_STAGE_MULTI_WIFI_CLEAR_BIT,
 					wk->friend_work, 1 );
 
-				//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+				//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 				FrontierRecord_Set(	fr_sv, 
 					StageScr_GetWinRecordID(wk->btl_type),
 					wk->friend_work, wk->work );
 
-				//"˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo["‘‚«o‚µ
+				//"é€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼"æ›¸ãå‡ºã—
 				FrontierRecord_Set(	fr_sv, 
 						StageScr_GetMonsNoRecordID(wk->btl_type),
 						wk->friend_work, 
 						PokeParaGet(poke,ID_PARA_monsno,NULL) );
 			}else{
-				//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+				//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 				buf8[0] = 1;
 				STAGESCORE_PutScoreData( s_score_sv, STAGESCORE_ID_CLEAR_FLAG, wk->btl_type,0,buf8);
 
-				//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+				//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 				FrontierRecord_Set(	fr_sv, 
 					StageScr_GetWinRecordID(wk->btl_type),
 					Frontier_GetFriendIndex(StageScr_GetWinRecordID(wk->btl_type)), wk->work );
 
-				//"˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo["‘‚«o‚µ
+				//"é€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼"æ›¸ãå‡ºã—
 				FrontierRecord_Set(	fr_sv, 
 						StageScr_GetMonsNoRecordID(wk->btl_type),
 						Frontier_GetFriendIndex(StageScr_GetMonsNoRecordID(wk->btl_type)), 
 						PokeParaGet(poke,ID_PARA_monsno,NULL) );
 
 #if 1
-				//u???v‚Í”²‚©‚·
-				//"ƒ^ƒCƒv‚²‚Æ‚ÌƒŒƒxƒ‹"‚ğ‘‚«Š·‚¦
+				//ã€Œ???ã€ã¯æŠœã‹ã™
+				//"ã‚¿ã‚¤ãƒ—ã”ã¨ã®ãƒ¬ãƒ™ãƒ«"ã‚’æ›¸ãæ›ãˆ
 				for( i=0; i < (STAGE_TR_TYPE_MAX-1) ;i++ ){
 					//StageScr_TypeLevelRecordSet(wk->fsys->savedata, wk->btl_type, 
 					Debug_StageScr_TypeLevelRecordSet(	wk->fsys->savedata, wk->btl_type, i );
@@ -2737,15 +2737,15 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 			}
 
 #if 0 
-			//"˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo["‘‚«o‚µ
+			//"é€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼"æ›¸ãå‡ºã—
 			FrontierRecord_Set(	fr_sv, 
 						StageScr_GetMonsNoRecordID(wk->btl_type),
 						Frontier_GetFriendIndex(StageScr_GetMonsNoRecordID(wk->btl_type)), 
 						0 );
 
-			//‚±‚±‚Å0‚ğƒZƒbƒg‚µ‚Ä‚àAd32r0401.ev‚Ì—¬‚ê‚ÅA
-			//ƒNƒŠƒA’†‚Ì‚ÍA“¯‚¶ƒ|ƒPƒ‚ƒ“‚Å’§í‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚ª‘–‚Á‚Ä‚µ‚Ü‚¢A
-			//î•ñ‚ªƒNƒŠƒA‚³‚ê‚Ä‚µ‚Ü‚¤B
+			//ã“ã“ã§0ã‚’ã‚»ãƒƒãƒˆã—ã¦ã‚‚ã€d32r0401.evã®æµã‚Œã§ã€
+			//ã‚¯ãƒªã‚¢ä¸­ã®æ™‚ã¯ã€åŒã˜ãƒã‚±ãƒ¢ãƒ³ã§æŒ‘æˆ¦ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ãŒèµ°ã£ã¦ã—ã¾ã„ã€
+			//æƒ…å ±ãŒã‚¯ãƒªã‚¢ã•ã‚Œã¦ã—ã¾ã†ã€‚
 #endif
 
 			break;
@@ -2755,23 +2755,23 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 		
 			if( wk->btl_type == CASTLE_TYPE_WIFI_MULTI ){
 
-				//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+				//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 				FrontierRecord_Set(	fr_sv, 
 					FRID_CASTLE_MULTI_WIFI_CLEAR_BIT,
 					wk->friend_work, 1 );
 
-				//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+				//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 				FrontierRecord_Set(	fr_sv, 
 						CastleScr_GetWinRecordID(wk->btl_type),
 						wk->friend_work, wk->work );
 			}else{
 
-				//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+				//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 				buf8[0] = 1;
 				CASTLESCORE_PutScoreData(	ca_score_sv, CASTLESCORE_ID_CLEAR_FLAG, 
 											wk->btl_type, 0, buf8 );
 
-				//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+				//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 				FrontierRecord_Set(	fr_sv, 
 						CastleScr_GetWinRecordID(wk->btl_type),
 						Frontier_GetFriendIndex(CastleScr_GetWinRecordID(wk->btl_type)), wk->work );
@@ -2783,23 +2783,23 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 
 			if( wk->btl_type == ROULETTE_TYPE_WIFI_MULTI ){
 
-				//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+				//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 				FrontierRecord_Set(	fr_sv, 
 					FRID_ROULETTE_MULTI_WIFI_CLEAR_BIT,
 					wk->friend_work, 1 );
 
-				//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+				//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 				FrontierRecord_Set(	fr_sv, 
 					RouletteScr_GetWinRecordID(wk->btl_type),
 					wk->friend_work, wk->work );
 			}else{
 
-				//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+				//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 				buf8[0] = 1;
 				ROULETTESCORE_PutScoreData( r_score_sv, ROULETTESCORE_ID_CLEAR_FLAG, 
 											wk->btl_type, 0, buf8 );
 
-				//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+				//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 				FrontierRecord_Set(	fr_sv, 
 					RouletteScr_GetWinRecordID(wk->btl_type),
 					Frontier_GetFriendIndex(RouletteScr_GetWinRecordID(wk->btl_type)), wk->work );
@@ -2810,7 +2810,7 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 		return;
 	};
 
-	//Rƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‚¢‚é‚Æ—F’B‚ğ‘I‘ğ
+	//Rãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ã„ã‚‹ã¨å‹é”ã‚’é¸æŠ
 	if( sys.cont & PAD_BUTTON_R ){
 
 		if( (sys.repeat & PAD_KEY_UP) || (sys.cont & PAD_KEY_RIGHT) ){
@@ -2828,7 +2828,7 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 	
 			wk->friend_work-=1;
 
-			//ƒ}ƒCƒiƒX‚É‚µ‚½‚ÌÅ‘å˜AŸ”ƒZƒbƒg’l
+			//ãƒã‚¤ãƒŠã‚¹ã«ã—ãŸæ™‚ã®æœ€å¤§é€£å‹æ•°ã‚»ãƒƒãƒˆå€¤
 			if( wk->friend_work < 0 ){
 				wk->friend_work = 31;
 			}
@@ -2859,7 +2859,7 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 				wk->work-=wk->fro_add;
 			}
 
-			//ƒ}ƒCƒiƒX‚É‚µ‚½‚ÌÅ‘å˜AŸ”ƒZƒbƒg’l
+			//ãƒã‚¤ãƒŠã‚¹ã«ã—ãŸæ™‚ã®æœ€å¤§é€£å‹æ•°ã‚»ãƒƒãƒˆå€¤
 			if( wk->work < 0 ){
 				//wk->work = (9999 - 1);
 				wk->work = frontier_num_max[ (wk->fro_type - D34_PARAM_TOWER) ];
@@ -2867,24 +2867,24 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 		}
 	}
 
-	//‘‚«Š·‚¦ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç
+	//æ›¸ãæ›ãˆãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰
 	if( flag == 1 ){
-		//w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+		//æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 		//GF_BGL_BmpWinFill( &wk->bmpwin[0], FBMP_COL_BLACK, 8*11, 0, 8*6, 8*2 );
 		GF_BGL_BmpWinFill( &wk->bmpwin[0], FBMP_COL_BLACK, 8*11, 0, 8*6, 8*4 );
 
-		//”’l•\¦
+		//æ•°å€¤è¡¨ç¤º
 		NumMsgSet( wk, &wk->bmpwin[0], wk->work, 8*11, 2 );
 
-		//”’l•\¦(—F’B)
+		//æ•°å€¤è¡¨ç¤º(å‹é”)
 		NumMsgSet( wk, &wk->bmpwin[0], wk->friend_work, 8*11, 8*2+2 );
 
 		GF_BGL_BmpWinOn( &wk->bmpwin[0] );
 	}
 
-	//I—¹
+	//çµ‚äº†
 	if( sys.cont == PAD_BUTTON_B ){
-		TcbBmpDel( tcb, work );				//TCBBMPŠJ•ú
+		TcbBmpDel( tcb, work );				//TCBBMPé–‹æ”¾
 	}
 
 	return;
@@ -2899,11 +2899,11 @@ static void D_Nohara_34_2_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒCƒvƒŒƒxƒ‹‚ÌƒŒƒR[ƒh‚ğƒZƒbƒg(fssc_stage_sub.c‚É‚ ‚éŠÖ”‚ÅŒÄ‚×‚È‚¢‚Ì‚ÅƒRƒsƒy‚Å‚à‚Á‚Ä‚«‚½)
+ * ã‚¿ã‚¤ãƒ—ãƒ¬ãƒ™ãƒ«ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ(fssc_stage_sub.cã«ã‚ã‚‹é–¢æ•°ã§å‘¼ã¹ãªã„ã®ã§ã‚³ãƒ”ãƒšã§ã‚‚ã£ã¦ããŸ)
  *
  * @param	wk
  *
- * @return	"ƒŒƒR[ƒh"
+ * @return	"ãƒ¬ã‚³ãƒ¼ãƒ‰"
  *
  */
 //--------------------------------------------------------------------------------------------
@@ -2914,8 +2914,8 @@ static void Debug_StageScr_TypeLevelRecordSet( SAVEDATA* sv, u8 type, u8 csr_pos
 	u8 set_num,total;
 	u16 l_num,h_num;
 
-	//total = 0xaa;		//10101010(10’§íÏ‚İ)
-	//total = 0x99;		//10011001(10’§í‘O)
+	//total = 0xaa;		//10101010(10æŒ‘æˆ¦æ¸ˆã¿)
+	//total = 0x99;		//10011001(10æŒ‘æˆ¦å‰)
 	//total = 0x88;		//10001000(9)
 	total = 0x00;		//00000000(0)
 
@@ -2994,40 +2994,40 @@ static const struct{
 };
 
 static const BMPLIST_HEADER DebugListH2 = {
-	NULL,					//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	NULL,					//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
-	NULL,					//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					//ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					//ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-	NULL,					//GF_BGL_BMPWIN‚Ìƒ|ƒCƒ“ƒ^
+	NULL,					//GF_BGL_BMPWINã®ãƒã‚¤ãƒ³ã‚¿
 
-	NELEMS(DebugMenuList2),	//ƒŠƒXƒg€–Ú”
-	9,						//•\¦Å‘å€–Ú”
+	NELEMS(DebugMenuList2),	//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	9,						//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	0,						//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						//€–Ú•\¦‚wÀ•W
-	0,						//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						//•\¦‚xÀ•W
+	0,						//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//è¡¨ç¤ºï¼¹åº§æ¨™
 /*
-	FBMP_COL_BLACK,			//•¶šF
-	FBMP_COL_WHITE,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
+	FBMP_COL_BLACK,			//æ–‡å­—è‰²
+	FBMP_COL_WHITE,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
 */
-	FBMP_COL_WHITE,			//•¶šF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
-	0,						//•¶šŠÔŠu‚w
-	16,						//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,			//•¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						//æ–‡å­—é–“éš”ï¼¸
+	16,						//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,			//æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	BGMƒfƒoƒbƒNƒƒjƒ…[ŒÄ‚Ño‚µ(fld_debug.c)
+ * @brief	BGMãƒ‡ãƒãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—(fld_debug.c)
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -3043,11 +3043,11 @@ void DebugBgmMenuInit( FIELDSYS_WORK* fsys )
 	wk->seq				= 0;
 	wk->sel				= 0;
 	wk->work			= 0;
-	wk->wave_buf_flag	= 0;								//”gŒ`Ši”[ƒoƒbƒtƒ@‚ğŠm•Û‚µ‚½ƒtƒ‰ƒOOFF
-	wk->waveout_flag	= 0;								//–Â‚«ºÄ¶’†ƒtƒ‰ƒOOFF
+	wk->wave_buf_flag	= 0;								//æ³¢å½¢æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ãŸãƒ•ãƒ©ã‚°OFF
+	wk->waveout_flag	= 0;								//é³´ãå£°å†ç”Ÿä¸­ãƒ•ãƒ©ã‚°OFF
 	wk->fsys			= fsys;
 
-	GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 
 	wk->menulist = BMP_MENULIST_Create( NELEMS(DebugMenuList2), HEAPID_BASE_DEBUG );
 
@@ -3073,7 +3073,7 @@ void DebugBgmMenuInit( FIELDSYS_WORK* fsys )
 
 //==============================================================================================
 //
-//	ƒfƒoƒbƒNu‚Ì‚Í‚çv‚Å‚Í‚È‚¢Š‚©‚ç‚ÌuƒfƒoƒbƒNƒXƒNƒŠƒvƒgvŒÄ‚Ño‚µ
+//	ãƒ‡ãƒãƒƒã‚¯ã€Œã®ã¯ã‚‰ã€ã§ã¯ãªã„æ‰€ã‹ã‚‰ã®ã€Œãƒ‡ãƒãƒƒã‚¯ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€å‘¼ã³å‡ºã—
 //
 //==============================================================================================
 
@@ -3085,40 +3085,40 @@ static const struct{
 };
 
 static const BMPLIST_HEADER DebugListH3 = {
-	NULL,					//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	NULL,					//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
-	NULL,					//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					//ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,					//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					//ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-	NULL,					//GF_BGL_BMPWIN‚Ìƒ|ƒCƒ“ƒ^
+	NULL,					//GF_BGL_BMPWINã®ãƒã‚¤ãƒ³ã‚¿
 
-	NELEMS(DebugMenuList3),	//ƒŠƒXƒg€–Ú”
-	9,						//•\¦Å‘å€–Ú”
+	NELEMS(DebugMenuList3),	//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	9,						//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	0,						//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						//€–Ú•\¦‚wÀ•W
-	0,						//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						//•\¦‚xÀ•W
+	0,						//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						//è¡¨ç¤ºï¼¹åº§æ¨™
 /*
-	FBMP_COL_BLACK,			//•¶šF
-	FBMP_COL_WHITE,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
+	FBMP_COL_BLACK,			//æ–‡å­—è‰²
+	FBMP_COL_WHITE,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
 */
-	FBMP_COL_WHITE,			//•¶šF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
-	0,						//•¶šŠÔŠu‚w
-	16,						//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,			//•¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						//æ–‡å­—é–“éš”ï¼¸
+	16,						//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,			//æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	BGMƒfƒoƒbƒNƒƒjƒ…[ŒÄ‚Ño‚µ(fld_debug.c)
+ * @brief	BGMãƒ‡ãƒãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—(fld_debug.c)
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -3134,11 +3134,11 @@ void DebugScriptMenuInit( FIELDSYS_WORK* fsys )
 	wk->seq				= 0;
 	wk->sel				= 0;
 	wk->work			= 0;
-	wk->wave_buf_flag	= 0;								//”gŒ`Ši”[ƒoƒbƒtƒ@‚ğŠm•Û‚µ‚½ƒtƒ‰ƒOOFF
-	wk->waveout_flag	= 0;								//–Â‚«ºÄ¶’†ƒtƒ‰ƒOOFF
+	wk->wave_buf_flag	= 0;								//æ³¢å½¢æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ãŸãƒ•ãƒ©ã‚°OFF
+	wk->waveout_flag	= 0;								//é³´ãå£°å†ç”Ÿä¸­ãƒ•ãƒ©ã‚°OFF
 	wk->fsys			= fsys;
 
-	GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	GF_BGL_BmpWinAddEx( wk->fsys->bgl, &wk->bmpwin[0], &DebugNoharaWinData );	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 
 	wk->menulist = BMP_MENULIST_Create( NELEMS(DebugMenuList3), HEAPID_BASE_DEBUG );
 
@@ -3164,14 +3164,14 @@ void DebugScriptMenuInit( FIELDSYS_WORK* fsys )
 #include "savedata/wifilist.h"
 //--------------------------------------------------------------
 /**
- * @brief	—F’Bè’ ‚ÌƒJƒ“ƒXƒgƒ`ƒFƒbƒN—pˆ—
+ * @brief	å‹é”æ‰‹å¸³ã®ã‚«ãƒ³ã‚¹ãƒˆãƒã‚§ãƒƒã‚¯ç”¨å‡¦ç†
  *
- * @param	savedata	SAVEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	savedata	SAVEDATAå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * ƒƒ‚F‚±‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚éˆ—‚ÅA
- *       —F’B‚ğMAX‚É‚·‚éˆ—‚ÍA1l—F’B‚ª‚¢‚È‚¢‚Æ‹@”\‚µ‚È‚¢
+ * ãƒ¡ãƒ¢ï¼šã“ã®é–¢æ•°ãŒå‘¼ã°ã‚Œã‚‹å‡¦ç†ã§ã€
+ *       å‹é”ã‚’MAXã«ã™ã‚‹å‡¦ç†ã¯ã€1äººå‹é”ãŒã„ãªã„ã¨æ©Ÿèƒ½ã—ãªã„
  */
 //--------------------------------------------------------------
 void Debug_FrontierWifiMultiRecordMaxSet( FIELDSYS_WORK* fsys );
@@ -3201,128 +3201,128 @@ void Debug_FrontierWifiMultiRecordMaxSet( FIELDSYS_WORK* fsys )
 	for( i=0; i < WIFILIST_FRIEND_MAX; i++ ){
 
 		////////////////////
-		//ƒ^ƒ[
+		//ã‚¿ãƒ¯ãƒ¼
 		////////////////////
 
-		//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+		//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FRID_TOWER_MULTI_WIFI_CLEAR_BIT, i, 1 );
 
-		//"˜AŸ”"‘‚«o‚µ
+		//"é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FRID_TOWER_MULTI_WIFI_RENSHOU_CNT, i, 9999 );
 
-		//"Å‚˜AŸ”"‘‚«o‚µ
+		//"æœ€é«˜é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FRID_TOWER_MULTI_WIFI_RENSHOU, i, 9999 );
 
 		////////////////////
-		//ƒtƒ@ƒNƒgƒŠ[(LV50)
+		//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼(LV50)
 		////////////////////
 
-		//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+		//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FRID_FACTORY_MULTI_WIFI_CLEAR_BIT, i, 1 );
 
-		//"˜AŸ”"‘‚«o‚µ
+		//"é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FactoryScr_GetWinRecordID(0,FACTORY_TYPE_WIFI_MULTI), 
 							i, FACTORY_RENSYOU_MAX );
 
-		//"Å‚˜AŸ”"‘‚«o‚µ
+		//"æœ€é«˜é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FactoryScr_GetMaxWinRecordID(0,FACTORY_TYPE_WIFI_MULTI), 
 							i, FACTORY_RENSYOU_MAX );
 
-		//"ŒğŠ·”"‘‚«o‚µ
+		//"äº¤æ›æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FactoryScr_GetTradeRecordID(0,FACTORY_TYPE_WIFI_MULTI),
 							i, FACTORY_TRADE_MAX );
 
-		//"Å‘åŒğŠ·”"‘‚«o‚µ
+		//"æœ€å¤§äº¤æ›æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FactoryScr_GetMaxTradeRecordID(0,FACTORY_TYPE_WIFI_MULTI),
 							i, FACTORY_TRADE_MAX );
 
 		////////////////////
-		//ƒtƒ@ƒNƒgƒŠ[(LV100)
+		//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼(LV100)
 		////////////////////
 
-		//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+		//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FRID_FACTORY_MULTI_WIFI_CLEAR100_BIT, i, 1 );
 
-		//"˜AŸ”"‘‚«o‚µ
+		//"é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FactoryScr_GetWinRecordID(1,FACTORY_TYPE_WIFI_MULTI),
 							i, FACTORY_RENSYOU_MAX );
 
-		//"Å‚˜AŸ”"‘‚«o‚µ
+		//"æœ€é«˜é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FactoryScr_GetMaxWinRecordID(1,FACTORY_TYPE_WIFI_MULTI),
 							i, FACTORY_RENSYOU_MAX );
 
-		//"ŒğŠ·”"‘‚«o‚µ
+		//"äº¤æ›æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FactoryScr_GetTradeRecordID(1,FACTORY_TYPE_WIFI_MULTI),
 							i, FACTORY_TRADE_MAX );
 
-		//"Å‘åŒğŠ·”"‘‚«o‚µ
+		//"æœ€å¤§äº¤æ›æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FactoryScr_GetMaxTradeRecordID(1,FACTORY_TYPE_WIFI_MULTI),
 							i, FACTORY_TRADE_MAX );
 
 		////////////////////
-		//ƒXƒe[ƒW
+		//ã‚¹ãƒ†ãƒ¼ã‚¸
 		////////////////////
 
-		//æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚É‚·‚é
+		//å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ã«ã™ã‚‹
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(savedata), 0 );
 
-		//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+		//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FRID_STAGE_MULTI_WIFI_CLEAR_BIT, i, 1 );
 
-		//"˜AŸ”"‘‚«o‚µ
+		//"é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, StageScr_GetWinRecordID(STAGE_TYPE_WIFI_MULTI),
 							i, STAGE_RENSYOU_MAX );
 
-		//"Å‚˜AŸ”"‘‚«o‚µ
+		//"æœ€é«˜é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, StageScr_GetMaxWinRecordID(STAGE_TYPE_WIFI_MULTI),
 							i, STAGE_RENSYOU_MAX );
 
-		//"˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo["‘‚«o‚µ
+		//"é€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, StageScr_GetMonsNoRecordID(STAGE_TYPE_WIFI_MULTI),
 							i, PokeParaGet(poke,ID_PARA_monsno,NULL) );
 
 		////////////////////
-		//ƒLƒƒƒbƒXƒ‹
+		//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 		////////////////////
 		
-		//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+		//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FRID_CASTLE_MULTI_WIFI_CLEAR_BIT, i, 1 );
 
-		//"˜AŸ”"‘‚«o‚µ
+		//"é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, CastleScr_GetWinRecordID(CASTLE_TYPE_WIFI_MULTI),
 							i, CASTLE_RENSYOU_MAX );
 
-		//"Å‚˜AŸ”"‘‚«o‚µ
+		//"æœ€é«˜é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, CastleScr_GetMaxWinRecordID(CASTLE_TYPE_WIFI_MULTI),
 							i, CASTLE_RENSYOU_MAX );
 
-		//"CP"‘‚«o‚µ
+		//"CP"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, CastleScr_GetCPRecordID(CASTLE_TYPE_WIFI_MULTI),
 							i, CASTLE_CP_MAX );
 
-		//"Å‚CP"‘‚«o‚µ
+		//"æœ€é«˜CP"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, CastleScr_GetRemainderCPRecordID(CASTLE_TYPE_WIFI_MULTI),
 							i, CASTLE_CP_MAX );
 
 		////////////////////
-		//ƒ‹[ƒŒƒbƒg
+		//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 		////////////////////
 
-		//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+		//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, FRID_ROULETTE_MULTI_WIFI_CLEAR_BIT, i, 1 );
 
-		//"˜AŸ”"‘‚«o‚µ
+		//"é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, RouletteScr_GetWinRecordID(ROULETTE_TYPE_WIFI_MULTI),
 							i, ROULETTE_RENSYOU_MAX );
 
-		//"Å‚˜AŸ”"‘‚«o‚µ
+		//"æœ€é«˜é€£å‹æ•°"æ›¸ãå‡ºã—
 		FrontierRecord_Set(	fr_sv, RouletteScr_GetMaxWinRecordID(ROULETTE_TYPE_WIFI_MULTI),
 							i, ROULETTE_RENSYOU_MAX );
 	}
 #endif
 
 #if 0
-	//ƒXƒe[ƒW"Å‚˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo["‘‚«o‚µ
+	//ã‚¹ãƒ†ãƒ¼ã‚¸"æœ€é«˜é€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼"æ›¸ãå‡ºã—
 
 	fes = FrontierEx_Load( savedata, HEAPID_WORLD, &load_result );
 	if( load_result != LOAD_RESULT_OK ){
@@ -3332,20 +3332,20 @@ void Debug_FrontierWifiMultiRecordMaxSet( FIELDSYS_WORK* fsys )
 		Debug_FrontierEx_StageRenshou_Set( fes, FREXID_STAGE_RENSHOU_SINGLE, i, 500 );
 
 #if 1
-		//ƒtƒB[ƒ‹ƒh“®ìƒ‚ƒfƒ‹‚ÌƒZ[ƒu
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‹•ä½œãƒ¢ãƒ‡ãƒ«ã®ã‚»ãƒ¼ãƒ–
 		Field_SaveFieldObj( fsys );
 
-		// ƒ|ƒPƒbƒ`ŠÖ˜Aƒf[ƒ^‚ÌƒZ[ƒu
+		// ãƒã‚±ãƒƒãƒé–¢é€£ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ¼ãƒ–
 		Field_SendPoketchInfo( fsys, POKETCH_SEND_SAVE, 0 );
 
-		//ˆÊ’u‚ğˆø‚Á’£‚é
+		//ä½ç½®ã‚’å¼•ã£å¼µã‚‹
 		fsys->location->grid_x	= Player_NowGPosXGet( fsys->player );
 		fsys->location->grid_z	= Player_NowGPosZGet( fsys->player );
 		fsys->location->door_id = DOOR_ID_JUMP_CODE;
 		fsys->location->dir		= Player_DirGet( fsys->player );
 #endif
 
-		//ŠO•”ƒZ[ƒu‚ğŒÄ‚Î‚ê‚È‚¢‚Æ”½‰f‚µ‚È‚¢
+		//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã‚’å‘¼ã°ã‚Œãªã„ã¨åæ˜ ã—ãªã„
 		save_result = FrontierEx_Save( savedata, fes );
 	}
 

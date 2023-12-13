@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_224.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			224�@���肪�؂̎��������Ă���Ƃ��A�U������Ǝ����ɖ؂̎��̌��ʂ𔭊�������B
- *				 �_���[�W������A�؂̎����`�F�b�N���Ď��s�B�ʃV�[�g�y����ǉ��Z�z�̎Q�ƁB
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			224　相手が木の実を持っているとき、攻撃すると自分に木の実の効果を発揮させる。
+ *				 ダメージ処理後、木の実をチェックして実行。別シート【道具追加技】の参照。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14

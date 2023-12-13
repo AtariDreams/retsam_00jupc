@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ’nŒ`ŠÖ˜Aƒf[ƒ^->ƒoƒCƒiƒŠ[>ƒA[ƒJƒCƒu
+# Project:  åœ°å½¢é–¢é€£ãƒ‡ãƒ¼ã‚¿->ãƒã‚¤ãƒŠãƒªãƒ¼>ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -37,7 +37,7 @@ DATAMAPDMY		= dmyfiles/
 DATAMAPSRC		= $(DATASRC)/
 DATAMAPFLST		= mkmapdmy.txt
 
-#‹¤’Ê•Ï”’è‹`
+#å…±é€šå¤‰æ•°å®šç¾©
 include $(DP_ROOT)/commondefs.GF
 include $(NITROSDK_ROOT)/build/buildtools/commondefs.wine
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
@@ -50,7 +50,7 @@ G3D_TARGET		= $(subst $(DATASRC)/,$(NSBMTFILESDIR),$(G3D_NSBMT))
 #----------------------------------------------------------------------------
 #
 #----------------------------------------------------------------------------
-#ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚ğmake clean‘ÎÛ‚Éİ’è
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’make cleanå¯¾è±¡ã«è¨­å®š
 #LDIRT_CLEAN	= $(LAND_LIST) 
 LDIRT_CLEAN	= $(LAND_ARCLIST) $(TARGET_ARC) $(TARGET_ARC:.narc=.naix) bin/*.bin land_nsbmt/*.nsbmt
 
@@ -60,7 +60,7 @@ LINCLUDES		+= $(DP_ROOT)/src/field
 LINCLUDES	+= $(dir $<)
 
 #----------------------------------------------------------------------------
-#	ƒc[ƒ‹‚Ö‚ÌƒpƒXw’è
+#	ãƒ„ãƒ¼ãƒ«ã¸ã®ãƒ‘ã‚¹æŒ‡å®š
 #----------------------------------------------------------------------------
 G3DCVTR	= $(WINE) $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
 CSVCVTR	= true #$(DP_ROOT)/convert/exceltool/ExcelSeetConv.exe
@@ -81,27 +81,27 @@ MK_GROUNDTOOL = mkmapdmy.rb
 	rm $(subst bin/,tmp/,$(@:.bin=.tmp))
 #----------------------------------------------------------------------------
 #
-#	ƒ‹[ƒ‹’è‹`
+#	ãƒ«ãƒ¼ãƒ«å®šç¾©
 #
 #----------------------------------------------------------------------------
 do-build: $(TARGET_ARC)
 $(LAND_ARCLIST): $(XLS_DATA)
-	$(CSVCVTR) -o $(FLDCSV) -p 1 -s csv $(XLS_DATA)		#ƒtƒB[ƒ‹ƒh
-	$(CSVCVTR) -o $(ROOMCSV) -p 2 -s csv $(XLS_DATA)	#ƒ‹[ƒ€
-	$(CSVCVTR) -o $(DUNCSV) -p 3 -s csv $(XLS_DATA)		#ƒ_ƒ“ƒWƒ‡ƒ“
-	$(CSVCVTR) -o $(UNDERCSV) -p 4 -s csv $(XLS_DATA)	#’n‰º
-	ruby land_list.rb $(FLDCSV) $(ROOMCSV) $(DUNCSV) $(UNDERCSV)		#ƒŠƒXƒgì¬
+	$(CSVCVTR) -o $(FLDCSV) -p 1 -s csv $(XLS_DATA)		#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+	$(CSVCVTR) -o $(ROOMCSV) -p 2 -s csv $(XLS_DATA)	#ãƒ«ãƒ¼ãƒ 
+	$(CSVCVTR) -o $(DUNCSV) -p 3 -s csv $(XLS_DATA)		#ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
+	$(CSVCVTR) -o $(UNDERCSV) -p 4 -s csv $(XLS_DATA)	#åœ°ä¸‹
+	ruby land_list.rb $(FLDCSV) $(ROOMCSV) $(DUNCSV) $(UNDERCSV)		#ãƒªã‚¹ãƒˆä½œæˆ
 
-#IMD‚ğMSBNT‚É•ÏŠ·
+#IMDã‚’MSBNTã«å¤‰æ›
 imdconv: $(G3D_TARGET)
 
-#ƒf[ƒ^Œ‹‡
+#ãƒ‡ãƒ¼ã‚¿çµåˆ
 datacat: $(CONCAT_TARGET)
 
 $(TARGET_ARC): $(CONCAT_TARGET)	$(LAND_ARCLIST)
-	$(MAKE) makearc				#ƒA[ƒJƒCƒu
+	$(MAKE) makearc				#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 
-#ƒA[ƒJƒCƒuì¬
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 makearc:
 	nnsarc -i -c -l -n $(TARGET_ARC) -S $(LAND_ARCLIST) > arc_result.txt
 	touch ../../system/builddate.c
@@ -112,10 +112,10 @@ makearc:
 #echo $(foreach types,$(FILETYPES),$(wildcard *$(types)*))
 
 #----------------------------------------------------------------------------
-# 	’nŒ`ŠÖ˜Aƒf[ƒ^ƒ_ƒ~[ì¬ƒRƒ}ƒ“ƒh	
+# 	åœ°å½¢é–¢é€£ãƒ‡ãƒ¼ã‚¿ãƒ€ãƒŸãƒ¼ä½œæˆã‚³ãƒãƒ³ãƒ‰	
 #----------------------------------------------------------------------------
 ground:
-	$(MAKE) csvconvert			#map_list.xls‚ğcsvƒRƒ“ƒo[ƒg
+	$(MAKE) csvconvert			#map_list.xlsã‚’csvã‚³ãƒ³ãƒãƒ¼ãƒˆ
 	$(MAKE) grd_all
 grd_all:
 	ruby $(MK_GROUNDTOOL) $(DATAMAPDMY) $(FLDMAPDATADIR)/ $(DATAMAPSRC) $(DATAMAPFLST)
@@ -126,14 +126,14 @@ cvs_grd_add:
 cvs_grd_del:
 	ruby cvs_maplist.rb $(DATAMAPFLST) $(FLDMAPEDATADIR)/ $(DATAMAPSRC) log.txt 2
 
-#ƒ^[ƒQƒbƒgxls‚ğcsvƒtƒ@ƒCƒ‹‚É•ÏŠ·
+#ã‚¿ãƒ¼ã‚²ãƒƒãƒˆxlsã‚’csvãƒ•ã‚¡ã‚¤ãƒ«ã«å¤‰æ›
 old_csvconvert:
 	$(CSVCVTR) -o old_$(FLDCSV) -p 1 -s csv old_$(XLS_DATA)
 	$(CSVCVTR) -o old_$(ROOMCSV) -p 2 -s csv old_$(XLS_DATA)
 	$(CSVCVTR) -o old_$(DUNCSV) -p 3 -s csv old_$(XLS_DATA)
 	$(CSVCVTR) -o old_$(UNDERCSV) -p 4 -s csv old_$(XLS_DATA)
 
-#ƒ^[ƒQƒbƒgxls‚ğcsvƒtƒ@ƒCƒ‹‚É•ÏŠ·
+#ã‚¿ãƒ¼ã‚²ãƒƒãƒˆxlsã‚’csvãƒ•ã‚¡ã‚¤ãƒ«ã«å¤‰æ›
 csvconvert:
 	$(CSVCVTR) -o $(FLDCSV) -p 1 -s csv $(XLS_DATA)
 	$(CSVCVTR) -o $(ROOMCSV) -p 2 -s csv $(XLS_DATA)

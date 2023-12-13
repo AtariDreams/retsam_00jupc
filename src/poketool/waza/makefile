@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ‹Zƒf[ƒ^
+# Project:  æŠ€ãƒ‡ãƒ¼ã‚¿
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -15,7 +15,7 @@ RES_WAZA_DIR	= .\\
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#Make‚Å¶¬‚³‚ê‚é*.bin/*.narc‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.bin/*.narcã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= pl_waza_tbl.narc
 
 #----------------------------------------------------------------------------
@@ -25,10 +25,10 @@ include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 
 do-build: res_cp pl_waza_tbl.narc
 
-#----------- ƒT[ƒo[‚©‚çƒRƒs[‚·‚é -----------
+#----------- ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã‚³ãƒ”ãƒ¼ã™ã‚‹ -----------
 res_cp:
 	xcopy /d /y $(CP_WAZA_RES_DIR)*.bin $(RES_WAZA_DIR)
 
-#----------- ƒA[ƒJƒCƒu‚·‚é -----------
+#----------- ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ -----------
 pl_waza_tbl.narc: *.bin
 	cmd /c mkbin.bat

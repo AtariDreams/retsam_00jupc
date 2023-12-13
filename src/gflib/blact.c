@@ -2,7 +2,7 @@
 /**
  *
  *	@file		blact.c
- *	@brief		V‹Kƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
+ *	@brief		æ–°è¦ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
  *	@author		tomoya takahashi
  *	@data		2005.10.05
  *
@@ -24,18 +24,18 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒ`ƒFƒ“ƒWˆ—‚Ìí—Ş
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒã‚§ãƒ³ã‚¸å‡¦ç†ã®ç¨®é¡
 //
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg•ÏXˆ—‚Ìó‘Ô
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆå¤‰æ›´å‡¦ç†ã®çŠ¶æ…‹
 //=====================================
 enum
 {
-	BLACT_CHG_NONE,		// ˆ—‚È‚µ
-	BLACT_CHG_VRAM,		// Vram“]‘—“o˜^Ï‚İ
+	BLACT_CHG_NONE,		// å‡¦ç†ãªã—
+	BLACT_CHG_VRAM,		// Vramè»¢é€ç™»éŒ²æ¸ˆã¿
 };
 
 enum{
@@ -50,97 +50,97 @@ enum{
 	BLACT_DRAW_REF_DRAW_AFTER,
 };
 
-// í’“ƒAƒjƒ
-// ƒpƒŒƒbƒgƒx[ƒXƒAƒhƒŒƒX”ƒ}ƒXƒN
+// å¸¸é§ã‚¢ãƒ‹ãƒ¡
+// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹æ•°ãƒã‚¹ã‚¯
 #define BLACT_PLTT_BASE_MASK	(0x000001fff)
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[“®ì\‘¢‘Ì
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œæ§‹é€ ä½“
 //
-//	ƒrƒ‹ƒ{[ƒh‚P‘Ì‚Ìƒf[ƒ^
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ï¼‘ä½“ã®ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct BLACT_WORK_tag{
 	//------------------------------------
-	//	ƒvƒƒOƒ‰ƒ}[‚ª‘€ì‚·‚éƒƒ“ƒoŒS
+	//	ãƒ—ãƒ­ã‚°ãƒ©ãƒãƒ¼ãŒæ“ä½œã™ã‚‹ãƒ¡ãƒ³ãƒéƒ¡
 	//====================================
-	VecFx32		Matrix;						// ‘Š‘ÎÀ•W
-	VecFx32		Scale;						// ƒXƒP[ƒ‹
-	const MtxFx33 *pRotate;					// QÆ‰ñ“]s—ñ
+	VecFx32		Matrix;						// ç›¸å¯¾åº§æ¨™
+	VecFx32		Scale;						// ã‚¹ã‚±ãƒ¼ãƒ«
+	const MtxFx33 *pRotate;					// å‚ç…§å›è»¢è¡Œåˆ—
 	
-	void *pDrawBeProcWork;					//•`‰æ‘OŒÄ‚Ño‚µŠÖ”‚Ö“n‚·ƒ[ƒN
-	BLACT_DRAW_BEFORE_PROC pDrawBeProc;		//•`‰æ‘OŒÄ‚Ño‚µŠÖ”
+	void *pDrawBeProcWork;					//æç”»å‰å‘¼ã³å‡ºã—é–¢æ•°ã¸æ¸¡ã™ãƒ¯ãƒ¼ã‚¯
+	BLACT_DRAW_BEFORE_PROC pDrawBeProc;		//æç”»å‰å‘¼ã³å‡ºã—é–¢æ•°
 	
-	u8			draw;						// •`‰æ‚ğs‚¤‚©(0:‚¨‚±‚È‚í‚È‚¢ 1:s‚¤)
+	u8			draw;						// æç”»ã‚’è¡Œã†ã‹(0:ãŠã“ãªã‚ãªã„ 1:è¡Œã†)
 	
 	//------------------------------------
-	//	’¼Ú‘€ì‚ğ‹Ö~‚·‚éƒƒ“ƒoŒS
+	//	ç›´æ¥æ“ä½œã‚’ç¦æ­¢ã™ã‚‹ãƒ¡ãƒ³ãƒéƒ¡
 	//===================================
-	void*	pBlActSet;		// ©•ª‚Ì‘®‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚Ìƒ|ƒCƒ“ƒ^(ƒLƒƒƒXƒg‚µ‚Äg—p)
+	void*	pBlActSet;		// è‡ªåˆ†ã®å±ã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã®ãƒã‚¤ãƒ³ã‚¿(ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ä½¿ç”¨)
 
-	const BLACT_ANIME_TBL*	pAnmTbl;		// ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
+	const BLACT_ANIME_TBL*	pAnmTbl;		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
 	
-	NNSG3dRenderObj			RenderObj;		// ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg
+	NNSG3dRenderObj			RenderObj;		// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
-	NNSG3dResMdlSet*		pModelSet;		// ƒ‚ƒfƒ‹ƒZƒbƒg
-	NNSG3dResMdl*			pModel;			// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
-	NNSG3dResTex*			pMdlTex;		// ƒ‚ƒfƒ‹‚É“\‚è•t‚¯‚éƒeƒNƒXƒ`ƒƒ
-	const NNSG3dResTex*		pAnmTex;		// ƒAƒjƒ[ƒVƒ‡ƒ“—pƒeƒNƒXƒ`ƒƒ
-	NNSGfdTexKey			texKey;			// ƒeƒNƒXƒ`ƒƒVramKey
-	NNSGfdTexKey			tex4x4Key;		// 4xpƒeƒNƒXƒ`ƒƒVramKey
-	NNSGfdPlttKey			plttKey;		// ƒpƒŒƒbƒgVramKey
+	NNSG3dResMdlSet*		pModelSet;		// ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆ
+	NNSG3dResMdl*			pModel;			// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	NNSG3dResTex*			pMdlTex;		// ãƒ¢ãƒ‡ãƒ«ã«è²¼ã‚Šä»˜ã‘ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	const NNSG3dResTex*		pAnmTex;		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	NNSGfdTexKey			texKey;			// ãƒ†ã‚¯ã‚¹ãƒãƒ£VramKey
+	NNSGfdTexKey			tex4x4Key;		// 4xpãƒ†ã‚¯ã‚¹ãƒãƒ£VramKey
+	NNSGfdPlttKey			plttKey;		// ãƒ‘ãƒ¬ãƒƒãƒˆVramKey
 	
-	TEXANM_DATATBL				texAnm;		// ƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
-	ITP_VRAM_ANM_PTR		ItpVramObj;		// Vram“]‘——pƒIƒuƒWƒF	(Vram“]‘—‚Ì‚İ)
+	TEXANM_DATATBL				texAnm;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ITP_VRAM_ANM_PTR		ItpVramObj;		// Vramè»¢é€ç”¨ã‚ªãƒ–ã‚¸ã‚§	(Vramè»¢é€æ™‚ã®ã¿)
 	
-	u8			flag;						// On/Offƒtƒ‰ƒO
-	u16			AnmOffs;					// ¡‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg
-	fx32		frame;						// Œ»İƒtƒŒ[ƒ€
+	u8			flag;						// On/Offãƒ•ãƒ©ã‚°
+	u16			AnmOffs;					// ä»Šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	fx32		frame;						// ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ 
 	
-	// “o˜^ƒŠƒXƒg
-	struct BLACT_WORK_tag*	next;	// Ÿ‚ÌƒAƒNƒ^[
-	struct BLACT_WORK_tag*	prev;	// ‘O‚ÌƒAƒNƒ^[
+	// ç™»éŒ²ãƒªã‚¹ãƒˆ
+	struct BLACT_WORK_tag*	next;	// æ¬¡ã®ã‚¢ã‚¯ã‚¿ãƒ¼
+	struct BLACT_WORK_tag*	prev;	// å‰ã®ã‚¢ã‚¯ã‚¿ãƒ¼
 	
 } BLACT_WORK;
 
 
 //===================================================================
 //
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg\‘¢‘Ì
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆæ§‹é€ ä½“
 //
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚ÌÀ‘Ô
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã®å®Ÿæ…‹
 //
 //===================================================================
 typedef struct _BLACT_SET{
-	/* ƒRƒ“ƒgƒ[ƒ‹ƒtƒ‰ƒO */
-	u8				SysFlag;	// “o˜^‚µ‚Ä‚¢‚é‚©	0:”ñ“o˜^ 1:“o˜^
-	u8				DrawFlag;	// •`‰æƒtƒ‰ƒO 0:”ñ•`‰æ 1:•`‰æ(ƒfƒtƒHƒ‹ƒg)
-	u8				MoveFlag;	// TCBƒ^ƒXƒNƒtƒ‰ƒO 0:”ñ“®ì 1:“®ì(ƒfƒtƒHƒ‹ƒg)
+	/* ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ•ãƒ©ã‚° */
+	u8				SysFlag;	// ç™»éŒ²ã—ã¦ã„ã‚‹ã‹	0:éç™»éŒ² 1:ç™»éŒ²
+	u8				DrawFlag;	// æç”»ãƒ•ãƒ©ã‚° 0:éæç”» 1:æç”»(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ)
+	u8				MoveFlag;	// TCBã‚¿ã‚¹ã‚¯ãƒ•ãƒ©ã‚° 0:éå‹•ä½œ 1:å‹•ä½œ(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ)
 
-	/* ”jŠü‚µ‚½ƒIƒuƒWƒFƒNƒg‚ª‚Ü‚¾‰æ–Ê‚É”½‰f‚³‚ê‚Ä‚¢‚é */
+	/* ç ´æ£„ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã¾ã ç”»é¢ã«åæ˜ ã•ã‚Œã¦ã„ã‚‹ */
 	u8				DelObjDrawRef;
 	
-	/* ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[“®ì\‘¢‘Ì */
-	BLACT_WORK*		pWork;		// À‘Ô
-	int				WorkNum;	// ”
+	/* ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œæ§‹é€ ä½“ */
+	BLACT_WORK*		pWork;		// å®Ÿæ…‹
+	int				WorkNum;	// æ•°
 	
-	/* ƒŠƒXƒgƒgƒbƒvƒf[ƒ^ */
+	/* ãƒªã‚¹ãƒˆãƒˆãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ */
 	BLACT_WORK		Dummy;	
 	
-	/* ƒXƒ^ƒbƒN */
-	BLACT_WORK**	ppWorkStack;	// À‘Ô(”==WorkNum)
-	int				WorkStackNow;	// ¡‚Ìƒgƒbƒv‚ÌˆÊ’u
+	/* ã‚¹ã‚¿ãƒƒã‚¯ */
+	BLACT_WORK**	ppWorkStack;	// å®Ÿæ…‹(æ•°==WorkNum)
+	int				WorkStackNow;	// ä»Šã®ãƒˆãƒƒãƒ—ã®ä½ç½®
 	
-	/* ƒAƒƒP[ƒ^[ */
-	NNSFndAllocator* pAlloc;		// g—p‚·‚éƒAƒƒP[ƒ^
+	/* ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ãƒ¼ */
+	NNSFndAllocator* pAlloc;		// ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	
-	/* Vram“]‘—ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒIƒuƒWƒFƒNƒg */
+	/* Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ */
 	ITP_VRAM_SYS_PTR pItpTop;
 
 
@@ -150,23 +150,23 @@ typedef struct _BLACT_SET{
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒVƒXƒeƒ€‘€ìŠÖ”
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ æ“ä½œé–¢æ•°
 //=====================================
 static BLACT_SET_PTR getCleanBlActSet(void);
 static void cleanBlActSet(BLACT_SET* work);
 
 //-------------------------------------
-//	BLACT_SET‘€ìŠÖ”
+//	BLACT_SETæ“ä½œé–¢æ•°
 //=====================================
 static void drawBlActSet(BLACT_SET* pBlActSet);
 //static void drawBlAct( BLACT_WORK *act );
 
 //-------------------------------------
-//	í’“ƒAƒjƒ—pƒVƒXƒeƒ€
+//	å¸¸é§ã‚¢ãƒ‹ãƒ¡ç”¨ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 static void normAnmTexDataSet( BLACT_WORK* act );
 static void normAnmTexParamSet( NNSG3dResMdl* p_mdl, const NNSG3dResTex* p_tex, u8 tex_idx );
@@ -176,45 +176,45 @@ static void normAnmPlttParamSetOneMatData( NNSG3dResMat* pMat, const NNSG3dResDi
 
 
 //-------------------------------------
-//	stack‚Ìˆ—
+//	stackã®å‡¦ç†
 //=====================================
-static void initStack(BLACT_SET* pSet);			// ‰Šú‰»
-static BLACT_WORK* popStack(BLACT_SET* pSet);	// æ‚èo‚µ
-static BOOL pushStack(BLACT_SET* pSet, BLACT_WORK* pDat);	// Ši”[
+static void initStack(BLACT_SET* pSet);			// åˆæœŸåŒ–
+static BLACT_WORK* popStack(BLACT_SET* pSet);	// å–ã‚Šå‡ºã—
+static BOOL pushStack(BLACT_SET* pSet, BLACT_WORK* pDat);	// æ ¼ç´
 
 //-------------------------------------
-//	ƒŠƒXƒgŠÇ—
+//	ãƒªã‚¹ãƒˆç®¡ç†
 //=====================================
 static void setList(BLACT_WORK* Dummy, BLACT_WORK* pDat);
 static void remList(BLACT_WORK* pDat);
 
 //-------------------------------------
-//	ƒeƒNƒXƒ`ƒƒ‚Ì•`‰æ‘Oˆ—
-//	ƒeƒNƒXƒ`ƒƒ‚Ì•`‰æŒãˆ—
+//	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æç”»å‰å‡¦ç†
+//	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æç”»å¾Œå‡¦ç†
 //=====================================
 static void DrawTexBind(BLACT_WORK* bl_w);
 static void DrawTexreBind(BLACT_WORK* bl_w);
 
 //-------------------------------------
-//	‚Ö‚Á‚¾[‚©‚çƒŠƒ\[ƒX‚ğæ“¾
+//	ã¸ã£ã ãƒ¼ã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
 //=====================================
 static void* getRes(const BLACT_HEADER* p_head, int flag);
 static const BLACT_ANIME_TBL* getAnmTbl(const BLACT_ANIME_TBL* p_anm, int ofs);
 
 //-------------------------------------
-//	ƒf[ƒ^ƒ[ƒhŒnŠÖ”ŒS
+//	ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ç³»é–¢æ•°éƒ¡
 //=====================================
 static NNSG3dResMdlSet* blact_getMdl(const BLACT_HEADER* p_head,NNSG3dResMdl** ppMdl, NNSG3dResTex** ppTex);
 static NNSG3dAnmObj* blact_getItp(const BLACT_HEADER* p_head, const NNSG3dResMdl* p_mdl, const NNSG3dResTex* p_tex, NNSFndAllocator* pAlloc);
 static NNSG3dResTex* blact_getTex(const BLACT_HEADER* p_head);
 
 //-------------------------------------
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg•ÏXƒf[ƒ^
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆå¤‰æ›´ãƒ‡ãƒ¼ã‚¿
 //=====================================
 static void chgBillboadAnmSet_Core( BLACT_WORK* act, const BLACT_HEADER* header );
-// Vram“]‘——pƒe[ƒuƒ‹ƒf[ƒ^İ’èŠÖ”
+// Vramè»¢é€ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®šé–¢æ•°
 static void chgBillboadAnmSet_Core_VRAM( BLACT_WORK* act, const BLACT_HEADER* header );
-// í’“—pƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg•ÏXŠÖ”
+// å¸¸é§ç”¨ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆå¤‰æ›´é–¢æ•°
 static void core_anmset_chg_norm( BLACT_WORK* blact_w, const BLACT_HEADER* header);
 
 static fx32	nowOffsAnmStartFrame( const BLACT_WORK* act, int offs );
@@ -224,8 +224,8 @@ static int anmFrameChgSys( const BLACT_ANIME_TBL* anm, fx32* frame, fx32 num );
 
 //-------------------------------------
 //
-//@ƒeƒNƒXƒ`ƒƒ“\‚è•t‚¯A”jŠüˆ—
-//				ŠÖ”ŒS
+//ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£è²¼ã‚Šä»˜ã‘ã€ç ´æ£„å‡¦ç†
+//				é–¢æ•°éƒ¡
 //	
 //=====================================
 static void allocTexKey(const NNSG3dResTex* tex, NNSG3dTexKey* texkey, NNSG3dTexKey* tex4x4key, NNSG3dPlttKey* plttkey);
@@ -236,16 +236,16 @@ static BOOL check_texsize_equal(const NNSG3dResTex* tex1, const NNSG3dResTex* te
 
 //-------------------------------------
 //
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[”jŠüˆ—
-//	ŠÖ”ŒS
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„å‡¦ç†
+//	é–¢æ•°éƒ¡
 //	
 //=====================================
-static void del_blact(BLACT_SET* pBlActSet, BLACT_WORK* delWork);// ”jŠüˆ—
+static void del_blact(BLACT_SET* pBlActSet, BLACT_WORK* delWork);// ç ´æ£„å‡¦ç†
 
 //-------------------------------------
 //
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[“o˜^ˆ—
-//	ŠÖ”ŒS
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²å‡¦ç†
+//	é–¢æ•°éƒ¡
 //	
 //=====================================
 static void data_chg_vram_mdl_core(BLACT_WORK* blact_w, const BLACT_HEADER* header);
@@ -256,19 +256,19 @@ static void data_chg_norm_anm_core(BLACT_WORK* blact_w, const BLACT_HEADER* head
 
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
-static BLACT_SET*	pBlActSetTbl=NULL;	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ŠÇ—ƒe[ƒuƒ‹
-static int			BlActSetNum=0;		// “o˜^‰Â”\”
+static BLACT_SET*	pBlActSetTbl=NULL;	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«
+static int			BlActSetNum=0;		// ç™»éŒ²å¯èƒ½æ•°
 
 
 //-----------------------------------------------------------------------------
 /**
  * 
- *	@brief	BLACT_SET\‘¢‘ÌŒ^ƒf[ƒ^@ƒNƒŠƒA
+ *	@brief	BLACT_SETæ§‹é€ ä½“å‹ãƒ‡ãƒ¼ã‚¿ã€€ã‚¯ãƒªã‚¢
  *
- *	@param	work	BLACT_SET\‘¢‘ÌŒ^ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	work	BLACT_SETæ§‹é€ ä½“å‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *	@return none
  *	
  */
@@ -289,9 +289,9 @@ static void cleanBlActSet(BLACT_SET* work)
 //-----------------------------------------------------------------------------
 /**
  * 
- *	@brief	BLACT_WORK\‘¢‘ÌŒ^ƒf[ƒ^@ƒNƒŠƒA
+ *	@brief	BLACT_WORKæ§‹é€ ä½“å‹ãƒ‡ãƒ¼ã‚¿ã€€ã‚¯ãƒªã‚¢
  *
- *	@param	pDat	BLACT_WORK\‘¢‘ÌŒ^ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	pDat	BLACT_WORKæ§‹é€ ä½“å‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *	@return none
  *	
  */
@@ -303,11 +303,11 @@ void BLACT_WorkClear( BLACT_WORK *pDat )
 	pDat->pBlActSet = NULL;
 	pDat->pAnmTbl	= NULL;
 	
-	pDat->pModelSet	= NULL;			// ƒ‚ƒfƒ‹ƒZƒbƒg
-	pDat->pModel	= NULL;			// ƒ‚ƒfƒ‹
-	pDat->pMdlTex	= NULL;			// ƒ‚ƒfƒ‹‚É“\‚è•t‚¯‚éƒeƒNƒXƒ`ƒƒ
-	pDat->pAnmTex	= NULL;			// ƒAƒjƒ[ƒVƒ‡ƒ“—pƒeƒNƒXƒ`ƒƒ
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+	pDat->pModelSet	= NULL;			// ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆ
+	pDat->pModel	= NULL;			// ãƒ¢ãƒ‡ãƒ«
+	pDat->pMdlTex	= NULL;			// ãƒ¢ãƒ‡ãƒ«ã«è²¼ã‚Šä»˜ã‘ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	pDat->pAnmTex	= NULL;			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	memset( &pDat->texAnm, 0, sizeof(TEXANM_DATATBL) );
 	pDat->texKey	= BLACT_TEXKEY_VRAMANM;
 	pDat->tex4x4Key	= BLACT_TEXKEY_VRAMANM;
@@ -332,36 +332,36 @@ void BLACT_WorkClear( BLACT_WORK *pDat )
 
 //=============================================================================
 //
-//		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒVƒXƒeƒ€‘€ìŠÖ”ŒS
+//		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ æ“ä½œé–¢æ•°éƒ¡
 //		
-//		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚ÌƒVƒXƒeƒ€‚ğ‘€ì‚·‚éŠÖ”
+//		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’æ“ä½œã™ã‚‹é–¢æ•°
 //=============================================================================
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒVƒXƒeƒ€‚Ì‰Šú‰»
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
  *
- *	@param	ContNum			ŠÇ—ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg”
- *	@param	heap			g—pƒq[ƒv
+ *	@param	ContNum			ç®¡ç†ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆæ•°
+ *	@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return none
  *
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[g—p‘O‚É‚P“xÀs
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ä½¿ç”¨å‰ã«ï¼‘åº¦å®Ÿè¡Œ
  * 
  */
 //-----------------------------------------------------------------------------
 void BLACT_InitSys(int ContNum, int heap)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	
-	GF_ASSERT((pBlActSetTbl==NULL) && "‰Šú‰»Ï‚İ‚Å‚·\n");
+	GF_ASSERT((pBlActSetTbl==NULL) && "åˆæœŸåŒ–æ¸ˆã¿ã§ã™\n");
 	
-	// ŠÇ—ƒe[ƒuƒ‹ì¬
+	// ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	pBlActSetTbl = sys_AllocMemory(heap, sizeof(BLACT_SET) * ContNum);
 	BlActSetNum = ContNum;
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	for(i=0;i<ContNum;i++){
 		cleanBlActSet(&pBlActSetTbl[i]);
 	}
@@ -370,21 +370,21 @@ void BLACT_InitSys(int ContNum, int heap)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒVƒXƒeƒ€‚Ì”jŠü
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã®ç ´æ£„
  *
  *	@param	none
  *
  *	@return none
  *
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[g—pŒã‚É‚P“x•K—v
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ä½¿ç”¨å¾Œã«ï¼‘åº¦å¿…è¦
  * 
  */
 //-----------------------------------------------------------------------------
 void BLACT_DestSys(void)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg‘S‚Ä‚ğ‚Í‚«
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆå…¨ã¦ã‚’ã¯ã
 	for(i=0;i<BlActSetNum;i++){
 		BLACT_DestSet(pBlActSetTbl + i);
 	}
@@ -397,24 +397,24 @@ void BLACT_DestSys(void)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒVƒXƒeƒ€‚Ì•`‰æ
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã®æç”»
  *
  *	@param	none
  *
  *	@return none
  *
- * “o˜^‚³‚ê‚Ä‚¢‚éƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg‚ğ•`‰æ‚µ‚Ü‚·B
+ * ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã‚’æç”»ã—ã¾ã™ã€‚
  *
- * •`‰æ‚µ‚½‚­‚È‚¢‚Æ‚«‚Í
- *		BLACT_SET\‘¢‘Ì‚ÌDrawFlag ‚ğ0‚É‚·‚é
+ * æç”»ã—ãŸããªã„ã¨ãã¯
+ *		BLACT_SETæ§‹é€ ä½“ã®DrawFlag ã‚’0ã«ã™ã‚‹
  * 
  */
 //-----------------------------------------------------------------------------
 void BLACT_DrawSys(void)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg‘S‚Ä‚ğ•`‰æ
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆå…¨ã¦ã‚’æç”»
 	for(i=0;i<BlActSetNum;i++){
 		if(pBlActSetTbl[i].DrawFlag == 1){	
 			drawBlActSet(&pBlActSetTbl[i]);
@@ -428,16 +428,16 @@ void BLACT_DrawSys(void)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’P‘Ì‚Ì•`‰æ
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å˜ä½“ã®æç”»
  *
  *	@param	act	BLACT_WORK_PTR
  *
  *	@return none
  *
- * w’è‚µ‚½ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg‚ğ•`‰æ‚µ‚Ü‚·B
+ * æŒ‡å®šã—ãŸãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã‚’æç”»ã—ã¾ã™ã€‚
  *
- * •`‰æ‚µ‚½‚­‚È‚¢‚Æ‚«‚Í
- *		BLACT_SET\‘¢‘Ì‚ÌDrawFlag ‚ğ0‚É‚·‚é
+ * æç”»ã—ãŸããªã„ã¨ãã¯
+ *		BLACT_SETæ§‹é€ ä½“ã®DrawFlag ã‚’0ã«ã™ã‚‹
  * 
  */
 //-----------------------------------------------------------------------------
@@ -449,18 +449,18 @@ void BLACT_Draw(BLACT_WORK_PTR act)
 
 //=============================================================================
 //
-//		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg‘€ìŠÖ”ŒS
+//		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆæ“ä½œé–¢æ•°éƒ¡
 //		
 //=============================================================================
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒgİ’è
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆè¨­å®š
  *
- *	@param	pSetData		ƒAƒNƒ^[ƒZƒbƒgî•ñ	
+ *	@param	pSetData		ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆæƒ…å ±	
  *
- *	@retval	BLACT_SET_PTR	ƒAƒNƒ^[ƒZƒbƒgƒ|ƒCƒ“ƒ^
- *	@retval	NULL			“o˜^¸”s
+ *	@retval	BLACT_SET_PTR	ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿
+ *	@retval	NULL			ç™»éŒ²å¤±æ•—
  *
  * 
  */
@@ -469,35 +469,35 @@ BLACT_SET_PTR BLACT_InitSet(const BLACT_SETDATA* pSetData)
 {
 	BLACT_SET* set;
 	
-	// ƒe[ƒuƒ‹‚©‚ç‹ó‚¢‚Ä‚¢‚éƒAƒNƒ^[ƒZƒbƒg‚ğæ“¾
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ç©ºã„ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã‚’å–å¾—
 	set = getCleanBlActSet();
 
 	if(set == NULL){
-		GF_ASSERT_MSG( 0, "“o˜^‚Å‚«‚éƒAƒNƒ^[ƒZƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñB\n BLACT_InitSys‚Ì‘æ‚Pˆø”‚Ì”‚ğ‘‚â‚µ‚Ä‚­‚¾‚³‚¢\n" );
+		GF_ASSERT_MSG( 0, "ç™»éŒ²ã§ãã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã€‚\n BLACT_InitSysã®ç¬¬ï¼‘å¼•æ•°ã®æ•°ã‚’å¢—ã‚„ã—ã¦ãã ã•ã„\n" );
 		return NULL;
 	}
 
-	// Šeƒf[ƒ^—Ìˆæ‚ğì¬
-	set->SysFlag = 1;		// “o˜^
-	set->DrawFlag = 1;		// •`‰æ
+	// å„ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’ä½œæˆ
+	set->SysFlag = 1;		// ç™»éŒ²
+	set->DrawFlag = 1;		// æç”»
 	
-	// ƒAƒNƒ^[ƒ[ƒN
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 	set->pWork = sys_AllocMemory(pSetData->heap, sizeof(BLACT_WORK)*pSetData->WorkNum);
 	set->WorkNum = pSetData->WorkNum;
 	
-	// ƒŠƒXƒgƒ_ƒ~[ƒf[ƒ^
+	// ãƒªã‚¹ãƒˆãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 	BLACT_WorkClear(&set->Dummy);
 	set->Dummy.next = &set->Dummy;
 	set->Dummy.prev = &set->Dummy;
 	
-	// ƒXƒ^ƒbƒN
+	// ã‚¹ã‚¿ãƒƒã‚¯
 	set->ppWorkStack = sys_AllocMemory(pSetData->heap, sizeof(BLACT_WORK*)*pSetData->WorkNum);
 	initStack(set);
 	
-	// ƒAƒƒP[ƒ^ì¬
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆ
 	set->pAlloc = sys_AllocMemory(pSetData->heap, sizeof(NNSFndAllocator));
 	sys_InitAllocator(set->pAlloc, pSetData->heap,4);
-	// ITPVram“]‘—ƒAƒjƒ‚ğì¬
+	// ITPVramè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’ä½œæˆ
 	set->pItpTop = initItpVramAnm(pSetData->WorkNum, pSetData->heap);
 
 	return set;
@@ -506,29 +506,29 @@ BLACT_SET_PTR BLACT_InitSet(const BLACT_SETDATA* pSetData)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg”jŠü
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
  *
- *	@param	bl_set			ƒAƒNƒ^[ƒZƒbƒgƒ|ƒCƒ“ƒ^
+ *	@param	bl_set			ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	TRUE			¬Œ÷
- *	@retval	FALSE			¸”s
+ *	@retval	TRUE			æˆåŠŸ
+ *	@retval	FALSE			å¤±æ•—
  *
  * 
  */
 //-----------------------------------------------------------------------------
 BOOL BLACT_DestSet(BLACT_SET_PTR bl_set)
 {
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒgæ“¾
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆå–å¾—
 	if(bl_set == NULL){
-		GF_ASSERT_MSG( 0, "NULL‚Å‚·\n" );
+		GF_ASSERT_MSG( 0, "NULLã§ã™\n" );
 		return FALSE;
 	}
 
 	if(bl_set->SysFlag != 0){
-		// ƒrƒ‹ƒ{[ƒhŠ®‘S”jŠü
+		// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰å®Œå…¨ç ´æ£„
 		BLACT_DeleteWorkAllSet(bl_set);
 
-		// ŠÇ—ƒf[ƒ^”jŠü
+		// ç®¡ç†ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		sys_FreeMemoryEz(bl_set->pWork);
 		sys_FreeMemoryEz(bl_set->ppWorkStack);
 		sys_FreeMemoryEz(bl_set->pAlloc);
@@ -543,22 +543,22 @@ BOOL BLACT_DestSet(BLACT_SET_PTR bl_set)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg•`‰æƒtƒ‰ƒO‚ğİ’è
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆæç”»ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  *
- *	@param	bl_set			ƒAƒNƒ^[ƒZƒbƒgƒ|ƒCƒ“ƒ^	
- *	@param	flag			İ’è‚·‚éƒtƒ‰ƒO’l	0:”ñ•`‰æ 1:•`‰æ
+ *	@param	bl_set			ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿	
+ *	@param	flag			è¨­å®šã™ã‚‹ãƒ•ãƒ©ã‚°å€¤	0:éæç”» 1:æç”»
  *
- *	@retval	TRUE			¬Œ÷
- *	@retval	FALSE			¸”s
+ *	@retval	TRUE			æˆåŠŸ
+ *	@retval	FALSE			å¤±æ•—
  *
  * 
  */
 //-----------------------------------------------------------------------------
 BOOL BLACT_DrawFlagSet(BLACT_SET_PTR bl_set, u8 flag)
 {
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒgæ“¾
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆå–å¾—
 	if(bl_set == NULL){
-		GF_ASSERT_MSG( 0, "NULL‚Å‚·\n" );
+		GF_ASSERT_MSG( 0, "NULLã§ã™\n" );
 		return FALSE;
 	}
 
@@ -572,11 +572,11 @@ BOOL BLACT_DrawFlagSet(BLACT_SET_PTR bl_set, u8 flag)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg‚Ì•`‰æƒtƒ‰ƒO‚ğæ“¾
+ *@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®æç”»ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- *@param	bl_set		ƒAƒNƒ^[ƒZƒbƒgƒ|ƒCƒ“ƒ^	
+ *@param	bl_set		ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿	
  *
- *@return	u8			1:•`‰æ		0:”ñ•`‰æ
+ *@return	u8			1:æç”»		0:éæç”»
  *
  *
  */
@@ -584,7 +584,7 @@ BOOL BLACT_DrawFlagSet(BLACT_SET_PTR bl_set, u8 flag)
 u8 BLACT_DrawFlagGet(CONST_BLACT_SET_PTR bl_set)
 {
 	if(bl_set == NULL){
-		GF_ASSERT_MSG( 0, "NULL‚Å‚·\n" );
+		GF_ASSERT_MSG( 0, "NULLã§ã™\n" );
 		return 0;
 	}
 
@@ -598,12 +598,12 @@ u8 BLACT_DrawFlagGet(CONST_BLACT_SET_PTR bl_set)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg‚Ì‘Sƒrƒ‹ƒ{[ƒh”jŠü
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®å…¨ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ç ´æ£„
  *	
- *	@param	bl_set			ƒAƒNƒ^[ƒZƒbƒgƒ|ƒCƒ“ƒ^
+ *	@param	bl_set			ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	TRUE			¬Œ÷
- *	@retval	FALSE			¸”s
+ *	@retval	TRUE			æˆåŠŸ
+ *	@retval	FALSE			å¤±æ•—
  *
  */
 //-----------------------------------------------------------------------------
@@ -612,19 +612,19 @@ BOOL BLACT_DeleteWorkAllSet(BLACT_SET_PTR bl_set)
 	BLACT_WORK*	roop;
 	BLACT_WORK*	next;
 	
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒgæ“¾
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆå–å¾—
 	if(bl_set == NULL){
-		GF_ASSERT_MSG(bl_set, "NULL‚Å‚·\n");
+		GF_ASSERT_MSG(bl_set, "NULLã§ã™\n");
 		return FALSE;
 	}
 
 	if(bl_set->SysFlag != 0){
 			
-		// ƒŠƒXƒg‚Ìƒf[ƒ^‘S”jŠü
+		// ãƒªã‚¹ãƒˆã®ãƒ‡ãƒ¼ã‚¿å…¨ç ´æ£„
 		roop = bl_set->Dummy.next;
 		while(roop != &bl_set->Dummy){
 			next = roop->next;
-			// ”jŠü
+			// ç ´æ£„
 			BLACT_Delete(roop);
 			roop = next;
 		}
@@ -636,12 +636,12 @@ BOOL BLACT_DeleteWorkAllSet(BLACT_SET_PTR bl_set)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”jŠü‚µ‚½ƒIƒuƒWƒFƒNƒg‚ª‚Ü‚¾‰æ–Ê‚É”½‰f‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ç ´æ£„ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã¾ã ç”»é¢ã«åæ˜ ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *	
- *	@param	bl_set	ƒAƒNƒ^[ƒZƒbƒg
+ *	@param	bl_set	ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  *
- *	@retval	TRUE	”½‰f‚³‚ê‚Ä‚¢‚é
- *	@retval	FALSE	”½‰f‚³‚ê‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	åæ˜ ã•ã‚Œã¦ã„ã‚‹
+ *	@retval	FALSE	åæ˜ ã•ã‚Œã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL BLACT_DelObjRefCheck( BLACT_SET_PTR bl_set )
@@ -655,15 +655,15 @@ BOOL BLACT_DelObjRefCheck( BLACT_SET_PTR bl_set )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Vƒuƒ‰ƒ“ƒNˆ—
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†
  *
- *	@param	act		ƒ[ƒN
+ *	@param	act		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void BLACT_VBlankFunc( BLACT_SET_PTR bl_set )
 {
-	// VBlank‚É‚«‚½‚Ì‚ÅAƒXƒƒbƒvƒoƒbƒtƒ@‚ªs‚í‚ê
-	// ¡‚Ü‚Å”jŠü‚µ‚½‚Ì‚É•`‰æ‚³‚ê‚Ä‚¢‚½ƒ|ƒŠƒSƒ“‚ªÁ‚¦‚é
+	// VBlankã«ããŸã®ã§ã€ã‚¹ãƒ¯ãƒƒãƒ—ãƒãƒƒãƒ•ã‚¡ãŒè¡Œã‚ã‚Œ
+	// ä»Šã¾ã§ç ´æ£„ã—ãŸã®ã«æç”»ã•ã‚Œã¦ã„ãŸãƒãƒªã‚´ãƒ³ãŒæ¶ˆãˆã‚‹
 	if( bl_set->DelObjDrawRef == BLACT_DRAW_REF_DRAW_AFTER ){
 		bl_set->DelObjDrawRef = BLACT_DRAW_REF_NONE;
 	}
@@ -672,25 +672,25 @@ void BLACT_VBlankFunc( BLACT_SET_PTR bl_set )
 
 //=============================================================================
 //
-//		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg‘€ìƒvƒ‰ƒCƒx[ƒgŠÖ”ŒS
+//		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆæ“ä½œãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°éƒ¡
 //
 //=============================================================================
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ó‚¢‚Ä‚¢‚éƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒgæ“¾
+ *	@brief	ç©ºã„ã¦ã„ã‚‹ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆå–å¾—
  *
  *	@param	none
  *
- *	@retval	BLACT_SET_PTR	ƒAƒNƒ^[ƒZƒbƒgƒ|ƒCƒ“ƒ^
- *	@retval	NULL			¸”s
+ *	@retval	BLACT_SET_PTR	ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿
+ *	@retval	NULL			å¤±æ•—
  *
  * 
  */
 //-----------------------------------------------------------------------------
 static BLACT_SET_PTR getCleanBlActSet(void)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	for(i=0;i<BlActSetNum;i++){
 		if(pBlActSetTbl[i].SysFlag == 0){
@@ -704,41 +704,41 @@ static BLACT_SET_PTR getCleanBlActSet(void)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg‚Ì•`‰æ
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®æç”»
  *
- *	@param	pBlActSet	•`‰æ‚·‚éƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg
+ *	@param	pBlActSet	æç”»ã™ã‚‹ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  *	@return	none
  *
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg‚É“o˜^‚³‚ê‚½ƒAƒNƒ^[‚ğ•`‰æ‚µ‚Ü‚·
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã«ç™»éŒ²ã•ã‚ŒãŸã‚¢ã‚¯ã‚¿ãƒ¼ã‚’æç”»ã—ã¾ã™
  *
  */
 //-----------------------------------------------------------------------------
 static void drawBlActSet( BLACT_SET* pBlActSet )
 {
-	BLACT_WORK *roop;			// ƒ‹[ƒv—p
-	VecFx32	matrix;				// â‘ÎÀ•W{‘Š‘ÎÀ•W
-	MtxFx33 rot;				// ‰ñ“]s—ñ
+	BLACT_WORK *roop;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	VecFx32	matrix;				// çµ¶å¯¾åº§æ¨™ï¼‹ç›¸å¯¾åº§æ¨™
+	MtxFx33 rot;				// å›è»¢è¡Œåˆ—
 	const MtxFx33 *rot_p;
 	
 	GF_ASSERT( pBlActSet );
 	
-	MTX_Identity33( &rot );		// ‰ñ“]s—ñ‚ğ’PˆÊs—ñ‚É‚·‚é
+	MTX_Identity33( &rot );		// å›è»¢è¡Œåˆ—ã‚’å˜ä½è¡Œåˆ—ã«ã™ã‚‹
 	
 	roop = pBlActSet->Dummy.next;
 	
 	while(roop != &pBlActSet->Dummy){
-		if(roop->draw == 1){				// •\¦‚·‚é‚©ƒ`ƒFƒbƒN
-			if( roop->pDrawBeProc != NULL ){	//•`‰æ‘O“o˜^ŠÖ”ŒÄ‚Ño‚µ
+		if(roop->draw == 1){				// è¡¨ç¤ºã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+			if( roop->pDrawBeProc != NULL ){	//æç”»å‰ç™»éŒ²é–¢æ•°å‘¼ã³å‡ºã—
 				roop->pDrawBeProc( roop, roop->pDrawBeProcWork );
 			}
 			
-			DrawTexBind(roop);				// ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh
-			// ŠeƒAƒjƒ[ƒVƒ‡ƒ“‚ÌXVˆ—
-			// •`‰æŠÖ”‚È‚Ì‚É•`‰æˆÈŠO‚Ì‚±‚Æ‚ğs‚¤‚Ì‚Í—Ç‚­‚È‚¢‚Å‚·‚ªA
-			// ƒoƒCƒ“ƒh‚µ‚½ƒf[ƒ^‚És‚¤•K—v‚ª‚ ‚é‚½‚ß
-			// ‚±‚±‚Ås‚¢‚Ü‚·
+			DrawTexBind(roop);				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰
+			// å„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ›´æ–°å‡¦ç†
+			// æç”»é–¢æ•°ãªã®ã«æç”»ä»¥å¤–ã®ã“ã¨ã‚’è¡Œã†ã®ã¯è‰¯ããªã„ã§ã™ãŒã€
+			// ãƒã‚¤ãƒ³ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã«è¡Œã†å¿…è¦ãŒã‚ã‚‹ãŸã‚
+			// ã“ã“ã§è¡Œã„ã¾ã™
 			if(roop->flag == BLACT_MOVE_NORM){
-				//í’“ƒAƒjƒƒeƒNƒXƒ`ƒƒEƒpƒŒƒbƒgQÆæİ’è
+				//å¸¸é§ã‚¢ãƒ‹ãƒ¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆå‚ç…§å…ˆè¨­å®š
 				normAnmTexDataSet( roop );
 			}else{
 				if(roop->flag == BLACT_MOVE_VRAM){
@@ -749,14 +749,14 @@ static void drawBlActSet( BLACT_SET* pBlActSet )
 			rot_p = roop->pRotate;
 			if( rot_p == NULL ){ rot_p = &rot; }
 			
-			// •`‰æ
+			// æç”»
 			simple_3DModelDraw(
-					&roop->RenderObj,		// ƒŒƒ“ƒ_[ƒIƒuƒWƒF
-					&roop->Matrix,			// À•W
-					rot_p,					// ‰ñ“]s—ñ
-					&roop->Scale);			// Šgk
+					&roop->RenderObj,		// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§
+					&roop->Matrix,			// åº§æ¨™
+					rot_p,					// å›è»¢è¡Œåˆ—
+					&roop->Scale);			// æ‹¡ç¸®
 			
-			// ƒeƒNƒXƒ`ƒƒƒŠƒoƒCƒ“ƒh
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªãƒã‚¤ãƒ³ãƒ‰
 			DrawTexreBind(roop);
 			
 		}
@@ -767,29 +767,29 @@ static void drawBlActSet( BLACT_SET* pBlActSet )
 #if 0
 static void drawBlActSet( BLACT_SET* pBlActSet )
 {
-	BLACT_WORK* roop;		// ƒ‹[ƒv—p
-	MtxFx33 rot;				// ‰ñ“]s—ñ
-	VecFx32	matrix;				// â‘ÎÀ•W{‘Š‘ÎÀ•W
+	BLACT_WORK* roop;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	MtxFx33 rot;				// å›è»¢è¡Œåˆ—
+	VecFx32	matrix;				// çµ¶å¯¾åº§æ¨™ï¼‹ç›¸å¯¾åº§æ¨™
 	
 	GF_ASSERT( pBlActSet );
 	
-	// ‰ñ“]s—ñ‚ğ’PˆÊs—ñ‚É‚·‚é
+	// å›è»¢è¡Œåˆ—ã‚’å˜ä½è¡Œåˆ—ã«ã™ã‚‹
 	MTX_Identity33( &rot );
 	
 	roop = pBlActSet->Dummy.next;
 	while(roop != &pBlActSet->Dummy){
 		
-		if(roop->draw == 1){		// •\¦‚·‚é‚©ƒ`ƒFƒbƒN
+		if(roop->draw == 1){		// è¡¨ç¤ºã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			
-			// ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰
 			DrawTexBind(roop);
 	
-			// ŠeƒAƒjƒ[ƒVƒ‡ƒ“‚ÌXVˆ—
-			// •`‰æŠÖ”‚È‚Ì‚É•`‰æˆÈŠO‚Ì‚±‚Æ‚ğs‚¤‚Ì‚Í—Ç‚­‚È‚¢‚Å‚·‚ªA
-			// ƒoƒCƒ“ƒh‚µ‚½ƒf[ƒ^‚És‚¤•K—v‚ª‚ ‚é‚½‚ß
-			// ‚±‚±‚Ås‚¢‚Ü‚·
+			// å„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ›´æ–°å‡¦ç†
+			// æç”»é–¢æ•°ãªã®ã«æç”»ä»¥å¤–ã®ã“ã¨ã‚’è¡Œã†ã®ã¯è‰¯ããªã„ã§ã™ãŒã€
+			// ãƒã‚¤ãƒ³ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã«è¡Œã†å¿…è¦ãŒã‚ã‚‹ãŸã‚
+			// ã“ã“ã§è¡Œã„ã¾ã™
 			if(roop->flag == BLACT_MOVE_NORM){
-				//í’“ƒAƒjƒƒeƒNƒXƒ`ƒƒEƒpƒŒƒbƒgQÆæİ’è
+				//å¸¸é§ã‚¢ãƒ‹ãƒ¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆå‚ç…§å…ˆè¨­å®š
 				normAnmTexDataSet( roop );
 			}else{
 				if(roop->flag == BLACT_MOVE_VRAM){
@@ -797,14 +797,14 @@ static void drawBlActSet( BLACT_SET* pBlActSet )
 				}
 			}
 			
-			// •`‰æ
+			// æç”»
 			simple_3DModelDraw(
-					&roop->RenderObj,		// ƒŒƒ“ƒ_[ƒIƒuƒWƒF
-					&roop->Matrix,			// À•W
-					&rot,					// ‰ñ“]s—ñ
-					&roop->Scale);			// Šgk
+					&roop->RenderObj,		// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§
+					&roop->Matrix,			// åº§æ¨™
+					&rot,					// å›è»¢è¡Œåˆ—
+					&roop->Scale);			// æ‹¡ç¸®
 			
-			// ƒeƒNƒXƒ`ƒƒƒŠƒoƒCƒ“ƒh
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªãƒã‚¤ãƒ³ãƒ‰
 			DrawTexreBind(roop);
 			
 		}
@@ -817,19 +817,19 @@ static void drawBlActSet( BLACT_SET* pBlActSet )
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[•`‰æ
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼æç”»
  *
- *	@param	act		•`‰æ‚·‚éƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
+ *	@param	act		æç”»ã™ã‚‹ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
  *	@return	none
  *
- * ƒAƒNƒ^[‚ğ•`‰æ‚µ‚Ü‚·
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’æç”»ã—ã¾ã™
  *
  */
 //-----------------------------------------------------------------------------
 static void drawBlAct( BLACT_WORK *act )
 {
-	MtxFx33 rot;				// ‰ñ“]s—ñ
-	VecFx32	matrix;				// â‘ÎÀ•W{‘Š‘ÎÀ•W
+	MtxFx33 rot;				// å›è»¢è¡Œåˆ—
+	VecFx32	matrix;				// çµ¶å¯¾åº§æ¨™ï¼‹ç›¸å¯¾åº§æ¨™
 	const MtxFx33 *rot_p;
 	
 	GF_ASSERT( act );
@@ -838,7 +838,7 @@ static void drawBlAct( BLACT_WORK *act )
 		return;
 	}
 	
-	if( act->pDrawBeProc != NULL ){	//•`‰æ‘O“o˜^ŠÖ”ŒÄ‚Ño‚µ
+	if( act->pDrawBeProc != NULL ){	//æç”»å‰ç™»éŒ²é–¢æ•°å‘¼ã³å‡ºã—
 		act->pDrawBeProc( act, act->pDrawBeProcWork );
 	}
 	
@@ -863,8 +863,8 @@ static void drawBlAct( BLACT_WORK *act )
 #if 0
 static void drawBlAct( BLACT_WORK *act )
 {
-	MtxFx33 rot;				// ‰ñ“]s—ñ
-	VecFx32	matrix;				// â‘ÎÀ•W{‘Š‘ÎÀ•W
+	MtxFx33 rot;				// å›è»¢è¡Œåˆ—
+	VecFx32	matrix;				// çµ¶å¯¾åº§æ¨™ï¼‹ç›¸å¯¾åº§æ¨™
 	
 	GF_ASSERT( act );
 	MTX_Identity33( &rot );
@@ -889,10 +889,10 @@ static void drawBlAct( BLACT_WORK *act )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Vram“]‘——p@ƒf[ƒ^ƒ`ƒFƒ“ƒWƒf[ƒ^Ši”[ŠÖ”
+ *	@brief	Vramè»¢é€æ™‚ç”¨ã€€ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒ³ã‚¸ãƒ‡ãƒ¼ã‚¿æ ¼ç´é–¢æ•°
  *
- *	@param	act			ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
- *	@param	header		ƒwƒbƒ_[ƒf[ƒ^
+ *	@param	act			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	header		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -901,34 +901,34 @@ static void drawBlAct( BLACT_WORK *act )
 //-----------------------------------------------------------------------------
 static void chgBillboadAnmSet_Core_VRAM( BLACT_WORK* act, const BLACT_HEADER* header )
 {
-	BLACT_SET*	as;	// ƒAƒNƒ^[ƒZƒbƒg
+	BLACT_SET*	as;	// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 
-	// ©•ª‚Ìe‚Ìƒrƒ‹ƒ{[ƒhƒZƒbƒg‘ã“ü
+	// è‡ªåˆ†ã®è¦ªã®ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚»ãƒƒãƒˆä»£å…¥
 	as = (BLACT_SET*)act->pBlActSet;		
 
-	// ¡‚Ü‚Å‚ÌƒAƒjƒƒf[ƒ^”jŠü
+	// ä»Šã¾ã§ã®ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	del_blact(as, act);
 
-	// V‚µ‚¢ƒŠƒ\[ƒX‚ğƒŒƒ“ƒ_[ƒIƒuƒWƒF‚ÉŠÖ˜A•t‚¯‚é
-	// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
-	// “à•”‚ÅVramKey‚Ìæ“¾‚às‚¤
+	// æ–°ã—ã„ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã«é–¢é€£ä»˜ã‘ã‚‹
+	// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	// å†…éƒ¨ã§VramKeyã®å–å¾—ã‚‚è¡Œã†
 	data_chg_vram_mdl_core(act, header);
 	
-	// ‚u‚’‚‚“]‘—ƒ}ƒl[ƒWƒƒ[‚ÉƒŠƒXƒg‚ğ’Ç‰Á
+	// ï¼¶ï½’ï½ï½è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«ãƒªã‚¹ãƒˆã‚’è¿½åŠ 
 	data_chg_vram_anm_core(as, act, header);
 
 	if(act->flag == BLACT_MOVE_INIT){
-		// ƒŠƒXƒg‚Éİ’è
+		// ãƒªã‚¹ãƒˆã«è¨­å®š
 		setList(&as->Dummy, act);
 	}
 
-	// Àsƒ‚[ƒh‚ğİ’è
+	// å®Ÿè¡Œãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®š
 	act->flag = BLACT_MOVE_VRAM;
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹İ’è
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«è¨­å®š
 	act->pAnmTbl	= header->anm;
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg‚ÆAƒtƒŒ[ƒ€”‚ğƒZƒbƒg
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆã¨ã€ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’ã‚»ãƒƒãƒˆ
 	act->AnmOffs		= 0;
 	act->frame			= 0;
 }
@@ -936,10 +936,10 @@ static void chgBillboadAnmSet_Core_VRAM( BLACT_WORK* act, const BLACT_HEADER* he
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	í’“ƒAƒjƒ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚ğ•ÏX‚·‚éŠÖ”
+ *	@brief	å¸¸é§ã‚¢ãƒ‹ãƒ¡ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹é–¢æ•°
  *
- *	@param	blact_w		ƒrƒ‹ƒ{[ƒhƒ[ƒN
- *	@param	header		ƒwƒbƒ_[
+ *	@param	blact_w		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	header		ãƒ˜ãƒƒãƒ€ãƒ¼
  *
  *	@return	none
  *
@@ -950,44 +950,44 @@ static void core_anmset_chg_norm( BLACT_WORK* blact_w, const BLACT_HEADER* heade
 {
 	BLACT_SET* pBlActSet = blact_w->pBlActSet;
 
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^‚ğ”jŠü	
-	// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ğ‰ğ•ú
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„	
+	// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾
 	del_blact(pBlActSet, blact_w);
 
-	// Vram“]‘—ƒ‚[ƒh‚Ì‚Íƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚ª
-	// Vram‚ğŠm•Û‚µ‚Ä‚¢‚é‚Ì‚Åƒrƒ‹ƒ{[ƒhƒAƒNƒ^[“à‚Å”jŠü‚·‚é
+	// Vramè»¢é€ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãŒ
+	// Vramã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã®ã§ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å†…ã§ç ´æ£„ã™ã‚‹
 	if(blact_w->flag == BLACT_MOVE_VRAM){
-		// VramKey‚ğ”jŠü
+		// VramKeyã‚’ç ´æ£„
 		delBindTexture( &blact_w->texKey, &blact_w->tex4x4Key, &blact_w->plttKey );
 	}
 
-	// ƒf[ƒ^‚ğİ’è
-	// ƒ‚ƒfƒ‹ƒf[ƒ^@ƒAƒjƒƒf[ƒ^@VramKey‚Ìİ’è
-	// VramKey‚ğİ’è
+	// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã€€ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã€€VramKeyã®è¨­å®š
+	// VramKeyã‚’è¨­å®š
 	blact_w->texKey		= header->texKey;
 	blact_w->tex4x4Key	= header->tex4x4Key;
 	blact_w->plttKey	= header->plttKey;
 
-	// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ğƒŒƒ“ƒ_[ƒIƒuƒWƒF‚Éİ’è
+	// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã«è¨­å®š
 	data_chg_norm_mdl_core( blact_w, header );
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒF‚ğ\’z‚µAƒŒƒ“ƒ_[ƒIƒuƒWƒF‚É“o˜^
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚’æ§‹ç¯‰ã—ã€ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã«ç™»éŒ²
 	data_chg_norm_anm_core( blact_w, header );
 
 
 	if(blact_w->flag == BLACT_MOVE_INIT){
-		// ƒŠƒXƒg‚Éİ’è
+		// ãƒªã‚¹ãƒˆã«è¨­å®š
 		setList(&pBlActSet->Dummy, blact_w);
 	}
 
 
-	// Àsƒ‚[ƒh‚ğİ’è
+	// å®Ÿè¡Œãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®š
 	blact_w->flag = BLACT_MOVE_NORM;
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹İ’è
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«è¨­å®š
 	blact_w->pAnmTbl	= header->anm;
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg‚ÆAƒtƒŒ[ƒ€”‚ğƒZƒbƒg
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆã¨ã€ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’ã‚»ãƒƒãƒˆ
 	blact_w->AnmOffs		= 0;
 	blact_w->frame			= 0;
 }
@@ -996,19 +996,19 @@ static void core_anmset_chg_norm( BLACT_WORK* blact_w, const BLACT_HEADER* heade
 //----------------------------------------------------------------------------
 //
 //
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg•ÏXŠÖ”‚ÌƒRƒAŠÖ”ŒS
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆå¤‰æ›´é–¢æ•°ã®ã‚³ã‚¢é–¢æ•°éƒ¡
 //
 //
 //============================================================================
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒL[—Ìˆæ‚ğVramƒ}ƒl[ƒWƒƒ[‚©‚çŠm•Û‚·‚é
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼é ˜åŸŸã‚’Vramãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰ç¢ºä¿ã™ã‚‹
  *
- *@param	tex			ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *@param	texkey		ƒeƒNƒXƒ`ƒƒƒL[
- *@param	tex4x4key	4x4ˆ³kƒeƒNƒXƒ`ƒƒƒL[
- *@param	plttkey		ƒpƒŒƒbƒgƒL[
+ *@param	tex			ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *@param	texkey		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *@param	tex4x4key	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *@param	plttkey		ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *@return	none
  *
@@ -1020,13 +1020,13 @@ static void allocTexKey(const NNSG3dResTex* tex, NNSG3dTexKey* texkey, NNSG3dTex
     u32 szTex, szTex4x4, szPltt;
 	
 
-	// •K—v‚ÈƒTƒCƒY‚ğæ“¾
+	// å¿…è¦ãªã‚µã‚¤ã‚ºã‚’å–å¾—
 	szTex    = NNS_G3dTexGetRequiredSize(tex);
 	szTex4x4 = NNS_G3dTex4x4GetRequiredSize(tex);
 	szPltt   = NNS_G3dPlttGetRequiredSize(tex);
 
 	if (szTex > 0){
-		// ‘¶İ‚·‚ê‚ÎƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ÉŠm•Û
+		// å­˜åœ¨ã™ã‚Œã°ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã«ç¢ºä¿
 		*texkey = NNS_GfdAllocTexVram(szTex, FALSE, 0);
 		GF_ASSERT(*texkey != BLACT_TEXKEY_VRAMANM);
 //		OS_Printf( "tex addr %x size %x\n", NNS_GfdGetTexKeyAddr(*texkey), NNS_GfdGetTexKeySize(*texkey) );
@@ -1035,7 +1035,7 @@ static void allocTexKey(const NNSG3dResTex* tex, NNSG3dTexKey* texkey, NNSG3dTex
 	}
 
 	if (szTex4x4 > 0){
-		// ‘¶İ‚·‚ê‚ÎƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ÉŠm•Û
+		// å­˜åœ¨ã™ã‚Œã°ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã«ç¢ºä¿
 		*tex4x4key = NNS_GfdAllocTexVram(szTex4x4, TRUE, 0);
 		GF_ASSERT(*tex4x4key != BLACT_TEXKEY_VRAMANM);
 //		OS_Printf( "4x4tex addr %x size %x\n", NNS_GfdGetTexKeyAddr(*tex4x4key), NNS_GfdGetTexKeySize(*tex4x4key) );
@@ -1044,7 +1044,7 @@ static void allocTexKey(const NNSG3dResTex* tex, NNSG3dTexKey* texkey, NNSG3dTex
 	}
 
 	if (szPltt > 0){
-		// ‘¶İ‚·‚ê‚ÎƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg‚ÉŠm•Û
+		// å­˜åœ¨ã™ã‚Œã°ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆã«ç¢ºä¿
 		*plttkey = NNS_GfdAllocPlttVram(szPltt,
 							tex->tex4x4Info.flag & NNS_G3D_RESPLTT_USEPLTT4,
 							0);
@@ -1058,12 +1058,12 @@ static void allocTexKey(const NNSG3dResTex* tex, NNSG3dTexKey* texkey, NNSG3dTex
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒ‚ÉƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚éVramƒL[‚ğ‰ğœ‚·‚é
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹Vramã‚­ãƒ¼ã‚’è§£é™¤ã™ã‚‹
  *
- *@param	tex			ƒeƒNƒXƒ`ƒƒ
- *@param	texkey		’ÊíƒeƒNƒXƒ`ƒƒƒL[
- *@param	tex4x4key	4x4ˆ³kƒeƒNƒXƒ`ƒƒƒL[
- *@param	plttkey		ƒpƒŒƒbƒgƒL[
+ *@param	tex			ãƒ†ã‚¯ã‚¹ãƒãƒ£
+ *@param	texkey		é€šå¸¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *@param	tex4x4key	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *@param	plttkey		ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *@return	none
  *
@@ -1072,7 +1072,7 @@ static void allocTexKey(const NNSG3dResTex* tex, NNSG3dTexKey* texkey, NNSG3dTex
 //-----------------------------------------------------------------------------
 static void releaseTexture(NNSG3dResTex* tex, NNSG3dTexKey* texkey, NNSG3dTexKey* tex4x4key, NNSG3dPlttKey* plttkey)
 {
-	// ‰ğ•ú
+	// è§£æ”¾
 	NNS_G3dTexReleaseTexKey( tex, texkey, tex4x4key );
 	*plttkey = NNS_G3dPlttReleasePlttKey( tex );
 }
@@ -1081,13 +1081,13 @@ static void releaseTexture(NNSG3dResTex* tex, NNSG3dTexKey* texkey, NNSG3dTexKey
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒL[‚ÌÄİ’è
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã®å†è¨­å®š
  *
- *@param	tex			ƒeƒNƒXƒ`ƒƒƒŠ[ƒX
- *@param	mdl			ƒ‚ƒfƒ‹ƒŠƒ\[ƒXƒZƒbƒg
- *@param	texkey		’ÊíƒeƒNƒXƒ`ƒƒƒL[
- *@param	tex4x4key	4x4ˆ³kƒeƒNƒXƒ`ƒƒƒL[
- *@param	plttkey		ƒpƒŒƒbƒgƒL[
+ *@param	tex			ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªãƒ¼ã‚¹
+ *@param	mdl			ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
+ *@param	texkey		é€šå¸¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *@param	tex4x4key	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *@param	plttkey		ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  * 
  *@return
  *
@@ -1096,24 +1096,24 @@ static void releaseTexture(NNSG3dResTex* tex, NNSG3dTexKey* texkey, NNSG3dTexKey
 //-----------------------------------------------------------------------------
 static void reBindTexture(NNSG3dResTex* tex, NNSG3dResMdlSet* mdl, NNSG3dTexKey* texkey, NNSG3dTexKey* tex4x4key, NNSG3dPlttKey* plttkey)
 {
-	// ƒeƒNƒXƒ`ƒƒƒL[
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
 	NNS_G3dTexSetTexKey( tex, *texkey, *tex4x4key );
-	// ƒpƒŒƒbƒgƒL[
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
 	NNS_G3dPlttSetPlttKey( tex, *plttkey );
 
-	// ƒoƒCƒ“ƒh
-	// ƒ‚ƒfƒ‹ƒZƒbƒg‚ÌƒoƒCƒ“ƒh
+	// ãƒã‚¤ãƒ³ãƒ‰
+	// ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆã®ãƒã‚¤ãƒ³ãƒ‰
 	NNS_G3dBindMdlSet(mdl, tex);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒL[‚ğ”jŠü‚·‚é
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’ç ´æ£„ã™ã‚‹
  *
- *@param	texkey		’ÊíƒeƒNƒXƒ`ƒƒƒL[
- *@param	tex4x4key	4x4ˆ³kƒeƒNƒXƒ`ƒƒƒL[
- *@param	plttkey		ƒpƒŒƒbƒgƒL[
+ *@param	texkey		é€šå¸¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *@param	tex4x4key	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *@param	plttkey		ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *@return
  *
@@ -1136,20 +1136,20 @@ static void delBindTexture(NNSG3dTexKey* texkey, NNSG3dTexKey* tex4x4key, NNSG3d
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒTƒCƒY‚ª“™‚µ‚¢‚©ƒ`ƒFƒbƒN‚·‚é
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºãŒç­‰ã—ã„ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *@param	tex		ƒ`ƒFƒbƒN‚·‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+ *@param	tex		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
  *
- *@retval	TRUE	“™‚µ‚¢
- *@retval	FALSE	“™‚µ‚­‚È‚¢
+ *@retval	TRUE	ç­‰ã—ã„
+ *@retval	FALSE	ç­‰ã—ããªã„
  *
  *
  */
 //-----------------------------------------------------------------------------
 static BOOL check_texsize_equal(const NNSG3dResTex* tex1, const NNSG3dResTex* tex2)
 {
-	u32 szTex0, szTex4x40, szPltt0;		// ŠeƒTƒCƒY
-	u32 szTex1, szTex4x41, szPltt1;		// ŠeƒTƒCƒY
+	u32 szTex0, szTex4x40, szPltt0;		// å„ã‚µã‚¤ã‚º
+	u32 szTex1, szTex4x41, szPltt1;		// å„ã‚µã‚¤ã‚º
 	BOOL ret;
 
 	if((tex1 == NULL) || (tex2 == NULL)){
@@ -1164,11 +1164,11 @@ static BOOL check_texsize_equal(const NNSG3dResTex* tex1, const NNSG3dResTex* te
 	szTex4x41 = NNS_G3dTex4x4GetRequiredSize(tex2);
 	szPltt1   = NNS_G3dPlttGetRequiredSize(tex2);
 
-	// ƒTƒCƒY‚ªˆá‚¤‚©ƒ`ƒFƒbƒN
+	// ã‚µã‚¤ã‚ºãŒé•ã†ã‹ãƒã‚§ãƒƒã‚¯
 	if( (szTex0 != szTex1) || (szTex4x40 != szTex4x41) || (szPltt0 != szPltt1) ){
-		ret = FALSE;		// “™‚µ‚­‚È‚¢
+		ret = FALSE;		// ç­‰ã—ããªã„
 	}else{
-		ret = TRUE;			// “™‚µ‚¢
+		ret = TRUE;			// ç­‰ã—ã„
 	}
 
 	return ret;
@@ -1177,13 +1177,13 @@ static BOOL check_texsize_equal(const NNSG3dResTex* tex1, const NNSG3dResTex* te
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[”jŠüˆ—
+ *@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„å‡¦ç†
  *
- *@param	pBlActSet	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg
- *@param	delWork		”jŠü‚·‚éƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
+ *@param	pBlActSet	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *@param	delWork		ç ´æ£„ã™ã‚‹ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- * Š®‘S‚É”jŠü‚·‚é‚Æ‚«‚Í
- *	‚±‚ÌŒãƒ[ƒN‚ğƒXƒ^ƒbƒN‚ÉƒvƒbƒVƒ…‚·‚é•K—v‚ª‚ ‚éB
+ * å®Œå…¨ã«ç ´æ£„ã™ã‚‹ã¨ãã¯
+ *	ã“ã®å¾Œãƒ¯ãƒ¼ã‚¯ã‚’ã‚¹ã‚¿ãƒƒã‚¯ã«ãƒ—ãƒƒã‚·ãƒ¥ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
  *
  *@return	none
  *
@@ -1194,7 +1194,7 @@ static void del_blact(BLACT_SET* pBlActSet, BLACT_WORK* delWork)
 {
 
 	if(delWork->ItpVramObj){
-		// ‚u‚’‚‚“]‘—ƒAƒjƒƒŠƒXƒg‚©‚ç”jŠü
+		// ï¼¶ï½’ï½ï½è»¢é€ã‚¢ãƒ‹ãƒ¡ãƒªã‚¹ãƒˆã‹ã‚‰ç ´æ£„
 		remItpVramAnm( delWork->ItpVramObj );
 		delWork->ItpVramObj = NULL;
 	}
@@ -1204,10 +1204,10 @@ static void del_blact(BLACT_SET* pBlActSet, BLACT_WORK* delWork)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚ƒfƒ‹ƒf[ƒ^‚ğƒ[ƒN‚Éİ’è
+ *@brief	ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¯ãƒ¼ã‚¯ã«è¨­å®š
  *
- *@param	blact_w			ƒf[ƒ^Ši”[æƒ[ƒN
- *@param	header			ƒwƒbƒ_[
+ *@param	blact_w			ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒ¯ãƒ¼ã‚¯
+ *@param	header			ãƒ˜ãƒƒãƒ€ãƒ¼
  *
  *@return	none
  *
@@ -1219,29 +1219,29 @@ static void data_chg_vram_mdl_core(BLACT_WORK* blact_w, const BLACT_HEADER* head
 	NNSG3dResTex* old_tex;
 	int	result;
 
-	// ƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ªˆá‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é‚½‚ß
-	// ŒÃ‚¢ƒeƒNƒXƒ`ƒƒ‚ğ•Û‘¶
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºãŒé•ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãŸã‚
+	// å¤ã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä¿å­˜
 	old_tex = blact_w->pMdlTex;	
 
-	// ƒrƒ‹ƒ{[ƒh‚Ìƒf[ƒ^‚ğƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾	
-	blact_w->pModelSet = blact_getMdl(	// ƒ‚ƒfƒ‹ƒŠƒ\[ƒXƒZƒbƒgæ“¾
-			header,					// ƒwƒbƒ_[
-			&blact_w->pModel,		// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
-			&blact_w->pMdlTex);		// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰å–å¾—	
+	blact_w->pModelSet = blact_getMdl(	// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆå–å¾—
+			header,					// ãƒ˜ãƒƒãƒ€ãƒ¼
+			&blact_w->pModel,		// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+			&blact_w->pMdlTex);		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
 	
-	NNS_G3dRenderObjInit( &blact_w->RenderObj, blact_w->pModel );	// ƒŒƒ“ƒ_[ƒIƒuƒWƒF‰Šú‰»
+	NNS_G3dRenderObjInit( &blact_w->RenderObj, blact_w->pModel );	// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§åˆæœŸåŒ–
 
-	// ŒÃ‚¢ƒeƒNƒXƒ`ƒƒ‚Æ”ä‚×AVramKey‚ğ•Ï‚¦‚é•K—v‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
-	// ‘O‚ªí’“ƒAƒjƒ‚Ì‚Æ‚«‚Í–³ğŒ‚ÉVramKey‚ğæ“¾‚·‚é
+	// å¤ã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨æ¯”ã¹ã€VramKeyã‚’å¤‰ãˆã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+	// å‰ãŒå¸¸é§ã‚¢ãƒ‹ãƒ¡ã®ã¨ãã¯ç„¡æ¡ä»¶ã«VramKeyã‚’å–å¾—ã™ã‚‹
 	if(blact_w->flag != BLACT_MOVE_NORM){
 		
 		result = check_texsize_equal(old_tex, blact_w->pMdlTex);
 	}else{
 		result = FALSE;
 	}
-	if(result == FALSE){	// result‚ªFALSE‚È‚çVramKey‚ÌÄæ“¾
+	if(result == FALSE){	// resultãŒFALSEãªã‚‰VramKeyã®å†å–å¾—
 
-		// ‘O‚àVram“]‘—‚È‚ç¡‚ÌVramKey‚ğ”jŠü
+		// å‰ã‚‚Vramè»¢é€ãªã‚‰ä»Šã®VramKeyã‚’ç ´æ£„
 		if( blact_w->flag == BLACT_MOVE_VRAM ){
 			delBindTexture(
 					&(blact_w->texKey),
@@ -1259,11 +1259,11 @@ static void data_chg_vram_mdl_core(BLACT_WORK* blact_w, const BLACT_HEADER* head
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
  *
- *@param	pBlActSet		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg
- *@param	blact_w			ƒf[ƒ^Ši”[æƒ[ƒN 
- *@param	header			ƒwƒbƒ_[
+ *@param	pBlActSet		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *@param	blact_w			ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒ¯ãƒ¼ã‚¯ 
+ *@param	header			ãƒ˜ãƒƒãƒ€ãƒ¼
  *
  *@return	none
  *
@@ -1273,24 +1273,24 @@ static void data_chg_vram_mdl_core(BLACT_WORK* blact_w, const BLACT_HEADER* head
 static void data_chg_vram_anm_core(const BLACT_SET* pBlActSet, BLACT_WORK* blact_w, const BLACT_HEADER* header)
 {
 	
-	// ƒpƒ^[ƒ“‚ÌƒeƒNƒXƒ`ƒƒæ“¾
+	// ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£å–å¾—
 	blact_w->pAnmTex = blact_getTex(
 			header );
 
 //	OS_Printf( "tex %x \n",NNS_G3dTexGetRequiredSize(p_tex) );
 
-	// ƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğİ’è
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	blact_w->texAnm = header->texanm;
 
-	// Vram“]‘—ƒAƒjƒ[ƒVƒ‡ƒ“‚©ƒ`ƒFƒbƒN
-	// ‚u‚’‚‚“]‘—ƒAƒjƒ[ƒVƒ‡ƒ“ƒVƒXƒeƒ€‚ÉƒZƒbƒg
+	// Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
+	// ï¼¶ï½’ï½ï½è»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ ã«ã‚»ãƒƒãƒˆ
 	blact_w->ItpVramObj = addItpVramAnm( 
 				pBlActSet->pItpTop,
-				&blact_w->texAnm,		// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
-				blact_w->pAnmTex,		// ƒeƒNƒXƒ`ƒƒ
-				blact_w->texKey,		// ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—VramKey
-				blact_w->plttKey,		// ƒpƒŒƒbƒgƒf[ƒ^“]‘—VramKey
-				blact_w->frame			// ƒtƒŒ[ƒ€’l
+				&blact_w->texAnm,		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+				blact_w->pAnmTex,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£
+				blact_w->texKey,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€VramKey
+				blact_w->plttKey,		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€VramKey
+				blact_w->frame			// ãƒ•ãƒ¬ãƒ¼ãƒ å€¤
 				);		
 
 }
@@ -1299,10 +1299,10 @@ static void data_chg_vram_anm_core(const BLACT_SET* pBlActSet, BLACT_WORK* blact
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	í’“ƒAƒjƒ—pƒ‚ƒfƒ‹ƒf[ƒ^ì¬
+ *	@brief	å¸¸é§ã‚¢ãƒ‹ãƒ¡ç”¨ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	blact_w		ƒrƒ‹ƒ{[ƒhƒ[ƒN
- *	@param	header		ƒwƒbƒ_[
+ *	@param	blact_w		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	header		ãƒ˜ãƒƒãƒ€ãƒ¼
  *
  *	@return	none
  *
@@ -1311,15 +1311,15 @@ static void data_chg_vram_anm_core(const BLACT_SET* pBlActSet, BLACT_WORK* blact
 //-----------------------------------------------------------------------------
 static void data_chg_norm_mdl_core(BLACT_WORK* blact_w, const BLACT_HEADER* header)
 {
-	// ƒrƒ‹ƒ{[ƒh‚Ìƒf[ƒ^‚ğƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚çæ“¾	
-	blact_w->pModelSet = blact_getMdl(	// ƒ‚ƒfƒ‹ƒŠƒ\[ƒXƒZƒbƒgæ“¾
-			header,						// ƒwƒbƒ_[
-			&blact_w->pModel,			// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
-			&blact_w->pMdlTex );		// ƒoƒCƒ“ƒh—pƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰å–å¾—	
+	blact_w->pModelSet = blact_getMdl(	// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆå–å¾—
+			header,						// ãƒ˜ãƒƒãƒ€ãƒ¼
+			&blact_w->pModel,			// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+			&blact_w->pMdlTex );		// ãƒã‚¤ãƒ³ãƒ‰ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
 
-	NNS_G3dRenderObjInit( &blact_w->RenderObj, blact_w->pModel );	// ƒŒƒ“ƒ_[ƒIƒuƒWƒF‰Šú‰»
+	NNS_G3dRenderObjInit( &blact_w->RenderObj, blact_w->pModel );	// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§åˆæœŸåŒ–
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“—pƒeƒNƒXƒ`ƒƒæ“¾
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£å–å¾—
 	blact_w->pAnmTex = blact_getTex(
 			header );
 }
@@ -1327,10 +1327,10 @@ static void data_chg_norm_mdl_core(BLACT_WORK* blact_w, const BLACT_HEADER* head
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	í’“ƒAƒjƒ—pƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒF‰Šú‰»ŠÖ”
+ *	@brief	å¸¸é§ã‚¢ãƒ‹ãƒ¡ç”¨ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§åˆæœŸåŒ–é–¢æ•°
  *
- *	@param	blact_w		ƒrƒ‹ƒ{[ƒhƒ[ƒN
- *	@param	header		ƒwƒbƒ_[
+ *	@param	blact_w		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	header		ãƒ˜ãƒƒãƒ€ãƒ¼
  *
  *	@return	none
  *
@@ -1339,61 +1339,61 @@ static void data_chg_norm_mdl_core(BLACT_WORK* blact_w, const BLACT_HEADER* head
 //-----------------------------------------------------------------------------
 static void data_chg_norm_anm_core(BLACT_WORK* blact_w, const BLACT_HEADER* header)
 {
-	// ƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğİ’è
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	blact_w->texAnm = header->texanm;
 
-	// Vram“]‘—ƒAƒjƒƒ}ƒl[ƒWƒƒ‚ÉNULL‚ğİ’è
+	// Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã«NULLã‚’è¨­å®š
 	blact_w->ItpVramObj = NULL;
 }
 
 //=============================================================================
 //
-//		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN‘€ìŠÖ”ŒS
+//		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯æ“ä½œé–¢æ•°éƒ¡
 //
-//		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[@ŒÂX‚ğ‘€ì‚·‚é
+//		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã€€å€‹ã€…ã‚’æ“ä½œã™ã‚‹
 //
 //=============================================================================
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚Ì’Ç‰Á
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã®è¿½åŠ 
  *
- *	@param	add		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[“o˜^ƒf[ƒ^
+ *	@param	add		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval BLACT_WORK_PTR	“o˜^‚µ‚½ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- *	@retval	NULL			¸”s
+ *	@retval BLACT_WORK_PTR	ç™»éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@retval	NULL			å¤±æ•—
  *	
  */
 //-----------------------------------------------------------------------------
 BLACT_WORK_PTR BLACT_Add(const BLACT_ADD* add)
 {
-	BLACT_WORK*	bl_w;		// “o˜^‚·‚éƒrƒ‹ƒ{[ƒhƒ[ƒN
-	BLACT_SET*	bs;			// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg
+	BLACT_WORK*	bl_w;		// ç™»éŒ²ã™ã‚‹ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
+	BLACT_SET*	bs;			// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒgæ“¾
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆå–å¾—
 	if(add->blact_s == NULL){
 		return NULL;
 	}
 
 	bs = add->blact_s;
 
-	// ƒXƒ^ƒbƒN‚©‚çæ“¾
+	// ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰å–å¾—
 	bl_w = popStack(bs);
 	if(bl_w == NULL){
 		return NULL;
 	}
 
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[“®ì\‘¢‘Ì”z—ñ‚Éƒf[ƒ^‚ğ“o˜^
-	bl_w->pBlActSet	= bs;					// ƒAƒNƒ^[ƒZƒbƒg
-	bl_w->Matrix	= add->matrix;			// ‘Š‘ÎÀ•W
-	bl_w->Scale		= add->scale;			// Šgk
-	bl_w->AnmOffs	= 0;					// ¡‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg
-	bl_w->draw		= 1;					// •\¦
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œæ§‹é€ ä½“é…åˆ—ã«ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²
+	bl_w->pBlActSet	= bs;					// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	bl_w->Matrix	= add->matrix;			// ç›¸å¯¾åº§æ¨™
+	bl_w->Scale		= add->scale;			// æ‹¡ç¸®
+	bl_w->AnmOffs	= 0;					// ä»Šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	bl_w->draw		= 1;					// è¡¨ç¤º
 
-	// ƒtƒ‰ƒO‚ğ‰Šú‰»’†‚É‚·‚é
-	bl_w->flag = BLACT_MOVE_INIT;	// ‰Šú‰»’†
+	// ãƒ•ãƒ©ã‚°ã‚’åˆæœŸåŒ–ä¸­ã«ã™ã‚‹
+	bl_w->flag = BLACT_MOVE_INIT;	// åˆæœŸåŒ–ä¸­
 
-	// ‚±‚±‚Å‚Ì“Ç‚İ‚İ‚Í‚Å‚«‚È‚¢‚Ì‚ÅƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒ`ƒFƒ“ƒWƒVƒXƒeƒ€‚É—Š‚Ş
+	// ã“ã“ã§ã®èª­ã¿è¾¼ã¿ã¯ã§ããªã„ã®ã§ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆãƒã‚§ãƒ³ã‚¸ã‚·ã‚¹ãƒ†ãƒ ã«é ¼ã‚€
 	chgBillboadAnmSet_Core( bl_w, add->pHeader );
 	
 
@@ -1403,51 +1403,51 @@ BLACT_WORK_PTR BLACT_Add(const BLACT_ADD* add)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚Ìíœ
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã®å‰Šé™¤
  *
- *	@param	del		”jŠü‚·‚éƒrƒ‹ƒ{[ƒhƒAƒNƒ^[“®ì\‘¢‘Ì
+ *	@param	del		ç ´æ£„ã™ã‚‹ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œæ§‹é€ ä½“
  *
- *	@retval	TRUE	¬Œ÷(BOOLŒ^Fíœ‚É¬Œ÷‚µ‚½‚©)
- *	@retval	FALSE	¸”s
+ *	@retval	TRUE	æˆåŠŸ(BOOLå‹ï¼šå‰Šé™¤ã«æˆåŠŸã—ãŸã‹)
+ *	@retval	FALSE	å¤±æ•—
  *
  */
 //-----------------------------------------------------------------------------
 BOOL BLACT_Delete(BLACT_WORK* del)
 {
-	BLACT_SET* as;	// ƒAƒNƒ^[ƒZƒbƒg
+	BLACT_SET* as;	// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 
 	GF_ASSERT(del);
 
-	// ‰Šú‰»ˆ—’†‚É’¼‚®‚É”jŠü‚³‚ê‚½‚Æ‚«‚ÍƒAƒT[ƒg‚ğo‚·
+	// åˆæœŸåŒ–å‡¦ç†ä¸­ã«ç›´ãã«ç ´æ£„ã•ã‚ŒãŸã¨ãã¯ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™
 	GF_ASSERT_MSG(del->flag != BLACT_MOVE_INIT,
-			"‰Šú‰»‚µ‚Ä’¼‚®‚Ì”jŠü‚Ío—ˆ‚Ü‚¹‚ñB");		
+			"åˆæœŸåŒ–ã—ã¦ç›´ãã®ç ´æ£„ã¯å‡ºæ¥ã¾ã›ã‚“ã€‚");		
 
-	as = (BLACT_SET*)del->pBlActSet;		// ƒAƒNƒ^[ƒZƒbƒg‘ã“ü
+	as = (BLACT_SET*)del->pBlActSet;		// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä»£å…¥
 	
 
-	// ƒf[ƒ^‚ª‚ ‚é‚Ì‚©ƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
 	if( (del->flag == BLACT_MOVE_NONE) ){
 		return FALSE;
 	}
 
-	// ƒŠƒXƒg‚©‚ç”jŠü
+	// ãƒªã‚¹ãƒˆã‹ã‚‰ç ´æ£„
 	remList(del);
 
-	// Vram“]‘—ƒ‚[ƒh‚Ì‚Í
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚ªVramKey‚ğæ“¾‚µ‚Ä‚¢‚é‚Ì‚Å
-	// ƒeƒNƒXƒ`ƒƒ‰ğ•ú
+	// Vramè»¢é€ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãŒVramKeyã‚’å–å¾—ã—ã¦ã„ã‚‹ã®ã§
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£è§£æ”¾
 	if( del->flag == BLACT_MOVE_VRAM ){
 		delBindTexture(&(del->texKey), &(del->tex4x4Key), &(del->plttKey));
 	}
 	
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^‚ğ”jŠü	
-	// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ğ‰ğ•ú
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„	
+	// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾
 	del_blact(as, del);
 	
-	// ƒXƒ^ƒbƒN‚ÉƒvƒbƒVƒ…
+	// ã‚¹ã‚¿ãƒƒã‚¯ã«ãƒ—ãƒƒã‚·ãƒ¥
 	pushStack(as, del);
 
-	// ”jŠü‚µ‚½‚ªAŸ‚Ì•`‰æ‚Ü‚Å‚Íc‚Á‚Ä‚¢‚é
+	// ç ´æ£„ã—ãŸãŒã€æ¬¡ã®æç”»ã¾ã§ã¯æ®‹ã£ã¦ã„ã‚‹
 	as->DelObjDrawRef = BLACT_DRAW_REF_DRAW_BEFORE;
 
 	return TRUE;
@@ -1457,16 +1457,16 @@ BOOL BLACT_Delete(BLACT_WORK* del)
 /**
  *
  * 
- *	@brief	í’“ƒAƒjƒ—p@ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ƒf[ƒ^ì¬x‰‡ŠÖ”
+ *	@brief	å¸¸é§ã‚¢ãƒ‹ãƒ¡ç”¨ã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ä½œæˆæ”¯æ´é–¢æ•°
  *
- *	@param	p_header		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ƒf[ƒ^Ši”[æ
- *	@param	p_imd			ƒrƒ‹ƒ{[ƒhƒ‚ƒfƒ‹ƒŠƒ\[ƒX
- *	@param	cp_itx			ƒAƒjƒ[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *	@param	cp_anm			ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
- *	@param	cp_texanm		ƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
- *	@param	texkey			ƒeƒNƒXƒ`ƒƒƒL[
- *	@param	tex4x4key		4x4ˆ³kƒeƒNƒXƒ`ƒƒƒL[
- *	@param	plttkey			ƒpƒŒƒbƒgƒL[
+ *	@param	p_header		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	p_imd			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	cp_itx			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	cp_anm			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	cp_texanm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	texkey			ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *	@param	tex4x4key		4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *	@param	plttkey			ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -1487,13 +1487,13 @@ void BLACT_MakeHeaderNormalAnm( BLACT_HEADER* p_header, void* p_imd, const NNSG3
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Vram“]‘—ƒAƒjƒ—p@ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ƒf[ƒ^ì¬x‰‡ŠÖ”
+ *	@brief	Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ç”¨ã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ä½œæˆæ”¯æ´é–¢æ•°
  *
- *	@param	p_header		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ƒf[ƒ^Ši”[æ
- *	@param	p_imd			ƒrƒ‹ƒ{[ƒhƒ‚ƒfƒ‹ƒŠƒ\[ƒX
- *	@param	cp_itx			ƒAƒjƒ[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *	@param	cp_anm			ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
- *	@param	cp_texanm		ƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
+ *	@param	p_header		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	p_imd			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	cp_itx			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	cp_anm			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	cp_texanm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *	@return	none
  *
@@ -1515,10 +1515,10 @@ void BLACT_MakeHeaderVramAnm( BLACT_HEADER* p_header, void* p_imd, const NNSG3dR
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	À•W‚ğİ’è
+ *@brief	åº§æ¨™ã‚’è¨­å®š
  *
- *@param	act		İ’è‚·‚éƒAƒNƒ^[
- *@param	mat		İ’è‚·‚éÀ•W
+ *@param	act		è¨­å®šã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
+ *@param	mat		è¨­å®šã™ã‚‹åº§æ¨™
  *
  *@return	none
  *
@@ -1534,11 +1534,11 @@ void BLACT_MatrixSet(BLACT_WORK_PTR act, const VecFx32* mat)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	À•W‚ğæ“¾
+ *@brief	åº§æ¨™ã‚’å–å¾—
  *
- *@param	act		æ“¾‚·‚éƒAƒNƒ^[
+ *@param	act		å–å¾—ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
  * 
- *@return	const VecFx32*	À•W
+ *@return	const VecFx32*	åº§æ¨™
  *
  */
 //-----------------------------------------------------------------------------
@@ -1551,10 +1551,10 @@ const VecFx32* BLACT_MatrixGet(CONST_BLACT_WORK_PTR act)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Šg‘å’l‚ğİ’è‚·‚é
+ *@brief	æ‹¡å¤§å€¤ã‚’è¨­å®šã™ã‚‹
  *
- *@param	act		İ’è‚·‚éƒAƒNƒ^[
- *@param	sca		İ’è‚·‚éŠg‘å’l
+ *@param	act		è¨­å®šã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
+ *@param	sca		è¨­å®šã™ã‚‹æ‹¡å¤§å€¤
  *
  *@return	none
  *
@@ -1571,11 +1571,11 @@ void BLACT_ScaleSet(BLACT_WORK_PTR act, const VecFx32* sca)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Šg‘å’l‚ğæ“¾‚·‚é
+ *@brief	æ‹¡å¤§å€¤ã‚’å–å¾—ã™ã‚‹
  *
- *@param	act		æ“¾‚·‚éƒAƒNƒ^[
+ *@param	act		å–å¾—ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *@return	const VecFx32*	Šg‘å’l
+ *@return	const VecFx32*	æ‹¡å¤§å€¤
  *
  *
  */
@@ -1589,10 +1589,10 @@ const VecFx32* BLACT_ScaleGet(CONST_BLACT_WORK_PTR act)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	QÆ‰ñ“]s—ñ‚ğİ’è
+ *@brief	å‚ç…§å›è»¢è¡Œåˆ—ã‚’è¨­å®š
  *
- *@param	act		İ’è‚·‚éƒAƒNƒ^[
- *@param	rot		QÆ‚·‚é‰ñ“]s—ñ NULL=”ñQÆ
+ *@param	act		è¨­å®šã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
+ *@param	rot		å‚ç…§ã™ã‚‹å›è»¢è¡Œåˆ— NULL=éå‚ç…§
  *
  *@return	none
  *
@@ -1608,11 +1608,11 @@ void BLACT_pRotateSet(BLACT_WORK_PTR act, const MtxFx33 *rot )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	QÆ‰ñ“]s—ñ‚ğæ“¾
+ *@brief	å‚ç…§å›è»¢è¡Œåˆ—ã‚’å–å¾—
  *
- *@param	act		æ“¾‚·‚éƒAƒNƒ^[
+ *@param	act		å–å¾—ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *@return	const MtxFx33*	QÆ‚µ‚Ä‚¢‚é‰ñ“]s—ñ NULL=”ñQÆ
+ *@return	const MtxFx33*	å‚ç…§ã—ã¦ã„ã‚‹å›è»¢è¡Œåˆ— NULL=éå‚ç…§
  *
  *
  */
@@ -1626,10 +1626,10 @@ const MtxFx33* BLACT_pRotateGet(CONST_BLACT_WORK_PTR act)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•`‰æƒtƒ‰ƒO‚ğİ’è‚·‚é
+ *@brief	æç”»ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *
- *@param	act		İ’è‚·‚éƒAƒNƒ^[
- *@param	flag	•`‰æƒtƒ‰ƒO	1:•`‰æ	0:”ñ•`‰æ
+ *@param	act		è¨­å®šã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
+ *@param	flag	æç”»ãƒ•ãƒ©ã‚°	1:æç”»	0:éæç”»
  *
  *@return	none
  *
@@ -1646,11 +1646,11 @@ void BLACT_ObjDrawFlagSet(BLACT_WORK_PTR act, u8 flag)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•`‰æƒtƒ‰ƒO‚ğæ“¾‚·‚é
+ *@brief	æç”»ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  *
- *@param	act		æ“¾‚·‚éƒAƒNƒ^[
+ *@param	act		å–å¾—ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *@return	u8		1:•`‰æ	0:”ñ•`‰æ
+ *@return	u8		1:æç”»	0:éæç”»
  *
  *
  */
@@ -1664,17 +1664,17 @@ u8 BLACT_ObjDrawFlagGet(CONST_BLACT_WORK_PTR act)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“‚ğ•Ï‚¦‚é
- *			‚±‚±‚Å‚Íƒ^ƒXƒN‚Éƒf[ƒ^‚ğƒZƒbƒg‚·‚é‚¾‚¯‚Å‚·B
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å¤‰ãˆã‚‹
+ *			ã“ã“ã§ã¯ã‚¿ã‚¹ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã ã‘ã§ã™ã€‚
  *
  *							
- *	@param	act			ƒ`ƒFƒ“ƒW‚·‚é“®ì”z—ñ
- *	@param	header		ƒ`ƒFƒ“ƒW‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒwƒbƒ_[
+ *	@param	act			ãƒã‚§ãƒ³ã‚¸ã™ã‚‹å‹•ä½œé…åˆ—
+ *	@param	header		ãƒã‚§ãƒ³ã‚¸ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ˜ãƒƒãƒ€ãƒ¼
  *
  *	@return none
  *
- *	E“o˜^‚µ‚Ä‚Ü‚¾BLACT_AfterDrawSys‚ğ’Ê‚Á‚Ä‚¢‚È‚¢ƒAƒNƒ^[‚É‚Íg—p‚Å‚«‚Ü‚¹‚ñ
- *	EÀÛ‚Ì•ÏXˆ—‚ÍBLACT_AfterDrawSysŠÖ”‚Ås‚í‚ê‚Ü‚·B
+ *	ãƒ»ç™»éŒ²ã—ã¦ã¾ã BLACT_AfterDrawSysã‚’é€šã£ã¦ã„ãªã„ã‚¢ã‚¯ã‚¿ãƒ¼ã«ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“
+ *	ãƒ»å®Ÿéš›ã®å¤‰æ›´å‡¦ç†ã¯BLACT_AfterDrawSysé–¢æ•°ã§è¡Œã‚ã‚Œã¾ã™ã€‚
  * 
  */
 //-----------------------------------------------------------------------------
@@ -1682,17 +1682,17 @@ void BLACT_AnmSetChg( BLACT_WORK* act, const BLACT_HEADER* header )
 {
 	GF_ASSERT(act);
 	
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚ğ•ÏX
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚’å¤‰æ›´
 	chgBillboadAnmSet_Core( act, header );
 }
 
 //-----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg‚ğ•ÏX
+ *@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å¤‰æ›´
  *
- *@param	act		ƒ`ƒFƒ“ƒW‚·‚é“®ì”z—ñ
- *@param	num		ƒZƒbƒg‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒgƒiƒ“ƒo[
+ *@param	act		ãƒã‚§ãƒ³ã‚¸ã™ã‚‹å‹•ä½œé…åˆ—
+ *@param	num		ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
  *
  *@return	none
  *
@@ -1702,7 +1702,7 @@ void BLACT_AnmOffsChg( BLACT_WORK_PTR act, int num )
 {
 	GF_ASSERT(act);
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg‚ğ‘ã“ü‚·‚é
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ä»£å…¥ã™ã‚‹
 	act->AnmOffs = num;
 }
 
@@ -1710,10 +1710,10 @@ void BLACT_AnmOffsChg( BLACT_WORK_PTR act, int num )
 //-----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg‚ğ•ÏX‚Æ“¯‚É•ÏX‚ğ‰æ–Ê‚É”½‰f
+ *@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å¤‰æ›´ã¨åŒæ™‚ã«å¤‰æ›´ã‚’ç”»é¢ã«åæ˜ 
  *
- *@param	act		ƒ`ƒFƒ“ƒW‚·‚é“®ì”z—ñ
- *@param	num		ƒZƒbƒg‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒgƒiƒ“ƒo[
+ *@param	act		ãƒã‚§ãƒ³ã‚¸ã™ã‚‹å‹•ä½œé…åˆ—
+ *@param	num		ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
  *
  *@return	none
  *
@@ -1722,17 +1722,17 @@ void BLACT_AnmOffsChg( BLACT_WORK_PTR act, int num )
 void BLACT_AnmOffsChgRef( BLACT_WORK_PTR act, int num )
 {
 	BLACT_AnmOffsChg( act, num );
-	BLACT_AnmFrameChg( act, FX32_ONE );	// ”½‰f
+	BLACT_AnmFrameChg( act, FX32_ONE );	// åæ˜ 
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg‚ğæ“¾
+ *@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—
  *
- *@param	act		æ“¾‚·‚éƒAƒNƒ^[
+ *@param	act		å–å¾—ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *@return	int		ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg
+ *@return	int		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  *
  */
@@ -1741,20 +1741,20 @@ int BLACT_AnmOffsGet( CONST_BLACT_WORK_PTR act )
 {
 	GF_ASSERT(act);
 	
-	// ‚È‚¢‚Ì‚ÅA¡‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒiƒ“ƒo[‚ğ•Ô‚·
+	// ãªã„ã®ã§ã€ä»Šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
 	return act->AnmOffs;
 }
 
 //----------------------------------------------------------------------------
 /**
- *@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ğ“®‚©‚·
- *						ÀÛ‚ÉƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒ‹[ƒvÄ¶‚·‚é‚Æ‚«‚Ég—p‚·‚é
+ *@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å‹•ã‹ã™
+ *						å®Ÿéš›ã«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ãƒ«ãƒ¼ãƒ—å†ç”Ÿã™ã‚‹ã¨ãã«ä½¿ç”¨ã™ã‚‹
  *
- *@param	act		ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é“®ì”z—ñ
- *@param	num		ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒs[ƒh
+ *@param	act		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹å‹•ä½œé…åˆ—
+ *@param	num		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ”ãƒ¼ãƒ‰
  *
- *@retval	BLACT_ANISTA_LOOP	Ä¶’†
- *@retval	BLACT_ANISTA_END	Ä¶I—¹
+ *@retval	BLACT_ANISTA_LOOP	å†ç”Ÿä¸­
+ *@retval	BLACT_ANISTA_END	å†ç”Ÿçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 int BLACT_AnmFrameChg( BLACT_WORK* act, fx32 num )
@@ -1766,10 +1766,10 @@ int BLACT_AnmFrameChg( BLACT_WORK* act, fx32 num )
 
 //----------------------------------------------------------------------------
 /**
- *@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”‚ğİ’è
+ *@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’è¨­å®š
  *
- *@param	act		ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é“®ì”z—ñ
- *@param	num		İ’è‚·‚éƒtƒŒ[ƒ€”
+ *@param	act		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹å‹•ä½œé…åˆ—
+ *@param	num		è¨­å®šã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
  *@return	none
  */
@@ -1782,68 +1782,68 @@ void BLACT_AnmFrameSet( BLACT_WORK_PTR act, fx32 num )
 
 //----------------------------------------------------------------------------
 /**
- *@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”‚ğæ“¾
+ *@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å–å¾—
  *
- *@param	act		ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é“®ì”z—ñ
+ *@param	act		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹å‹•ä½œé…åˆ—
  *
- *@return	fx32	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”
+ *@return	fx32	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  */
 //-----------------------------------------------------------------------------
 fx32 BLACT_AnmFrameGet( CONST_BLACT_WORK_PTR act )
 {
 	GF_ASSERT(act);
 	
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚Ì’l‚ğ•Ô‚·
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®å€¤ã‚’è¿”ã™
 	return act->frame;
 }
 
 //----------------------------------------------------------------------------
 /**
- *@brief	Œ»İ‚ÌƒIƒtƒZƒbƒgŠJnƒtƒŒ[ƒ€‚©‚ç‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”‚ğƒZƒbƒg
+ *@brief	ç¾åœ¨ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆé–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’ã‚»ãƒƒãƒˆ
  *
- *@param	act		ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é“®ì”z—ñ
- *@param	num		ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒs[ƒh
+ *@param	act		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹å‹•ä½œé…åˆ—
+ *@param	num		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ”ãƒ¼ãƒ‰
  *
  *@return	none
  *
- *	ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg‚ÌŠJnƒtƒŒ[ƒ€+num‚ÌƒtƒŒ[ƒ€‚ğƒZƒbƒg‚µ‚Ü‚·B
- *	¶ƒAƒjƒ‚È‚ç¶ƒAƒjƒ‚ÌŠJnƒtƒŒ[ƒ€+num‚ÌƒtƒŒ[ƒ€‚ªƒZƒbƒg‚³‚ê‚Ü‚·B 
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆã®é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ +numã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
+ *	å·¦ã‚¢ãƒ‹ãƒ¡ãªã‚‰å·¦ã‚¢ãƒ‹ãƒ¡ã®é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ +numã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™ã€‚ 
  */
 //-----------------------------------------------------------------------------
 void BLACT_AnmFrameSetOffs( BLACT_WORK* act, fx32 num )
 {
 	GF_ASSERT(act);
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚Ì’l‚ğƒZƒbƒg
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®å€¤ã‚’ã‚»ãƒƒãƒˆ
 	act->frame = nowOffsAnmStartFrame(act, act->AnmOffs);
 	act->frame += num;
 }
 
 //----------------------------------------------------------------------------
 /**
- *@brief	Œ»İ‚ÌƒIƒtƒZƒbƒgŠJnƒtƒŒ[ƒ€‚©‚ç‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”‚ğæ“¾
+ *@brief	ç¾åœ¨ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆé–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å–å¾—
  *
- *@param	act		ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é“®ì”z—ñ
+ *@param	act		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹å‹•ä½œé…åˆ—
  *
- *@return	fx32	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”
- *	ÀƒtƒŒ[ƒ€” - Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒgŠJnƒtƒŒ[ƒ€‚Ì’l‚ğ•Ô‚µ‚Ü‚·
+ *@return	fx32	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+ *	å®Ÿãƒ•ãƒ¬ãƒ¼ãƒ æ•° - ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆé–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®å€¤ã‚’è¿”ã—ã¾ã™
  */
 //-----------------------------------------------------------------------------
 fx32 BLACT_AnmFrameGetOffs( CONST_BLACT_WORK_PTR act )
 {
 	GF_ASSERT(act);
 	
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚Ì’l‚ğ•Ô‚·
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®å€¤ã‚’è¿”ã™
 	return act->frame - nowOffsAnmStartFrame(act, act->AnmOffs);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ID‚Ìƒrƒ‹ƒ{[ƒhƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ğæ“¾
+ *	@brief	IDã®ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
  *
- *	@param	pDat		ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ğæ“¾‚µ‚½‚¢ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN
+ *	@param	pDat		ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã—ãŸã„ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- *	@return NNSG3dResMdl* ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
+ *	@return NNSG3dResMdl* ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
  *
  */
 //-----------------------------------------------------------------------------
@@ -1856,13 +1856,13 @@ NNSG3dResMdl* BLACT_MdlResGet(CONST_BLACT_WORK_PTR pDat)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- *	@param	set			ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg 
- *	@param	num			ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒNƒCƒ“ƒfƒbƒNƒX
+ *	@param	set			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ 
+ *	@param	num			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval BLACT_WORK_PTR	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN
- *	@retval	NULL			‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚Ìƒ[ƒN‚Í–³‚¢
+ *	@retval BLACT_WORK_PTR	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@retval	NULL			ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ¯ãƒ¼ã‚¯ã¯ç„¡ã„
  *
  */
 //-----------------------------------------------------------------------------
@@ -1877,14 +1877,14 @@ BLACT_WORK_PTR BLACT_WorkGet(CONST_BLACT_SET_PTR set, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Œ»İƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN‚Í‚Ç‚ñ‚È“®ì‚ğs‚Á‚Ä‚¢‚é‚©‚ğæ“¾
+ *	@brief	ç¾åœ¨ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã¯ã©ã‚“ãªå‹•ä½œã‚’è¡Œã£ã¦ã„ã‚‹ã‹ã‚’å–å¾—
  *
- *	@param	act		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN
+ *	@param	act		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	BLACT_MOVE_NONE			“®ì‚µ‚Ä‚¢‚È‚¢
- *	@retval BLACT_MOVE_INIT			‰Šú‰»’†
- *	@retval	BLACT_MOVE_VRAM			Vram“]‘—‰Ò“®’†
- *	@retval	BLACT_MOVE_NORM			í’“ƒAƒjƒ‰Ò“®’†
+ *	@retval	BLACT_MOVE_NONE			å‹•ä½œã—ã¦ã„ãªã„
+ *	@retval BLACT_MOVE_INIT			åˆæœŸåŒ–ä¸­
+ *	@retval	BLACT_MOVE_VRAM			Vramè»¢é€ç¨¼å‹•ä¸­
+ *	@retval	BLACT_MOVE_NORM			å¸¸é§ã‚¢ãƒ‹ãƒ¡ç¨¼å‹•ä¸­
  *
  */
 //-----------------------------------------------------------------------------
@@ -1897,11 +1897,11 @@ int BLACT_GetState( CONST_BLACT_WORK_PTR act )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒL[‚Ìæ“¾
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã®å–å¾—
  *
- *	@param	act ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN
+ *	@param	act ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒeƒNƒXƒ`ƒƒƒL[
+ *	@return	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
  *
  *
  */
@@ -1915,11 +1915,11 @@ NNSGfdTexKey BLACT_GetTexKey( CONST_BLACT_WORK_PTR act )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒL[‚Ìæ“¾
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ã®å–å¾—
  *
- *	@param	act ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN
+ *	@param	act ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒpƒŒƒbƒgƒL[
+ *	@return	ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *
  */
@@ -1932,21 +1932,21 @@ NNSGfdPlttKey BLACT_GetPlttKey( CONST_BLACT_WORK_PTR act )
 
 //----------------------------------------------------------------------------
 /**
- * œí’“ƒAƒjƒ[ƒVƒ‡ƒ“—p
+ * â—å¸¸é§ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒL[‚ğİ’è‚·‚é
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	act		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN
- *	@param	texkey	İ’è‚·‚éƒeƒNƒXƒ`ƒƒƒL[
+ *	@param	act		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	texkey	è¨­å®šã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
  *
- *	@retval	TRUE	İ’è¬Œ÷
- *	@retval	FALSE	İ’è¸”s	iVram“]‘—ƒAƒjƒ‚Å‚Íg—p‚·‚é‚±‚Æ‚ªo—ˆ‚È‚¢‚Å‚·j
+ *	@retval	TRUE	è¨­å®šæˆåŠŸ
+ *	@retval	FALSE	è¨­å®šå¤±æ•—	ï¼ˆVramè»¢é€ã‚¢ãƒ‹ãƒ¡ã§ã¯ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã„ã§ã™ï¼‰
  *
- *	‚±‚ê‚É‚æ‚èƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•ÏX‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
- *	‚½‚¾‚µAŒ³‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÆƒeƒNƒXƒ`ƒƒ‚Ì\¬iƒTƒCƒYj‚ª
- *	“¯‚¶‚Å‚È‚¢‚Æ‚¿‚á‚ñ‚Æ‚µ‚½ŠG‚ª‚Å‚Ü‚¹‚ñB
+ *	ã“ã‚Œã«ã‚ˆã‚Šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
+ *	ãŸã ã—ã€å…ƒã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ§‹æˆï¼ˆã‚µã‚¤ã‚ºï¼‰ãŒ
+ *	åŒã˜ã§ãªã„ã¨ã¡ã‚ƒã‚“ã¨ã—ãŸçµµãŒã§ã¾ã›ã‚“ã€‚
  *
- *	İ’è‚µ‚½texKey‚Ì‰ğ•ú‚ÍŠO‘¤‚ÅŠÇ—‚µ‚Ä‚­‚¾‚³‚¢B
+ *	è¨­å®šã—ãŸtexKeyã®è§£æ”¾ã¯å¤–å´ã§ç®¡ç†ã—ã¦ãã ã•ã„ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -1965,21 +1965,21 @@ BOOL BLACT_SetTexKey( BLACT_WORK_PTR act, const NNSGfdTexKey* texKey )
 
 //----------------------------------------------------------------------------
 /**
- * œí’“ƒAƒjƒ[ƒVƒ‡ƒ“—p
+ * â—å¸¸é§ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨
  *
- *	@brief	ƒpƒŒƒbƒgƒL[‚ğİ’è‚·‚é
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	act		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN
- *	@param	plttkey	İ’è‚·‚éƒpƒŒƒbƒgƒL[
+ *	@param	act		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	plttkey	è¨­å®šã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
- *	@retval	TRUE	İ’è¬Œ÷
- *	@retval	FALSE	İ’è¸”s	iVram“]‘—ƒAƒjƒ‚Å‚Íg—p‚·‚é‚±‚Æ‚ªo—ˆ‚È‚¢‚Å‚·j
+ *	@retval	TRUE	è¨­å®šæˆåŠŸ
+ *	@retval	FALSE	è¨­å®šå¤±æ•—	ï¼ˆVramè»¢é€ã‚¢ãƒ‹ãƒ¡ã§ã¯ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã„ã§ã™ï¼‰
  *
- *	‚±‚ê‚É‚æ‚èƒpƒŒƒbƒg‚ğ•ÏX‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
- *	‚½‚¾‚µAŒ³‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ÆƒpƒŒƒbƒg‚Ì\¬iƒTƒCƒYj‚ª
- *	“¯‚¶‚Å‚È‚¢‚Æ‚¿‚á‚ñ‚Æ‚µ‚½ŠG‚ª‚Å‚Ü‚¹‚ñB
+ *	ã“ã‚Œã«ã‚ˆã‚Šãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
+ *	ãŸã ã—ã€å…ƒã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã®æ§‹æˆï¼ˆã‚µã‚¤ã‚ºï¼‰ãŒ
+ *	åŒã˜ã§ãªã„ã¨ã¡ã‚ƒã‚“ã¨ã—ãŸçµµãŒã§ã¾ã›ã‚“ã€‚
  *
- *	İ’è‚µ‚½plttKey‚Ì‰ğ•ú‚ÍŠO‘¤‚ÅŠÇ—‚µ‚Ä‚­‚¾‚³‚¢B
+ *	è¨­å®šã—ãŸplttKeyã®è§£æ”¾ã¯å¤–å´ã§ç®¡ç†ã—ã¦ãã ã•ã„ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -1998,25 +1998,25 @@ BOOL BLACT_SetPlttKey( BLACT_WORK_PTR act, const NNSGfdPlttKey* plttKey )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚ÌƒJƒŠƒ“ƒOƒ`ƒFƒbƒN
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚«ãƒªãƒ³ã‚°ãƒã‚§ãƒƒã‚¯
  *
- *	@param	act		ƒAƒNƒ^[
+ *	@param	act		ã‚¢ã‚¯ã‚¿ãƒ¼
  *
  *	@return	u32
  *
- *	ƒrƒ‹ƒ{[ƒh‚Í‰º‚ÌƒJƒŠƒ“ƒO”»’è‚¾‚¯‚Å‰Â‹”»’è‚·‚é–‚ªo—ˆ‚Ü‚¹‚ñB
- *	NitroSystem“à‚Ì•`‰æŠÖ”“à‚ÅƒJƒƒ‰‚Ì‚Ù‚¤‚Éƒ‚ƒfƒ‹‚ªŒü‚­‚æ‚¤‚É‰ñ“]Šp“x‚ğ
- *	İ’è‚µ‚Ä‚µ‚Ü‚¤‚½‚ßA‰º‚ÌƒJƒŠƒ“ƒO”»’è‚ÆÀÛ‚Ì•`‰æŒ‹‰Ê‚ÉŒë·‚ª¶‚¶‚é‚½‚ß‚Å‚·B
+ *	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã¯ä¸‹ã®ã‚«ãƒªãƒ³ã‚°åˆ¤å®šã ã‘ã§å¯è¦–åˆ¤å®šã™ã‚‹äº‹ãŒå‡ºæ¥ã¾ã›ã‚“ã€‚
+ *	NitroSystemå†…ã®æç”»é–¢æ•°å†…ã§ã‚«ãƒ¡ãƒ©ã®ã»ã†ã«ãƒ¢ãƒ‡ãƒ«ãŒå‘ãã‚ˆã†ã«å›è»¢è§’åº¦ã‚’
+ *	è¨­å®šã—ã¦ã—ã¾ã†ãŸã‚ã€ä¸‹ã®ã‚«ãƒªãƒ³ã‚°åˆ¤å®šã¨å®Ÿéš›ã®æç”»çµæœã«èª¤å·®ãŒç”Ÿã˜ã‚‹ãŸã‚ã§ã™ã€‚
  *
- *	‰ğŒˆô‚Æ‚µ‚Ä‚ÍAƒJƒŠƒ“ƒOƒf[ƒ^‚Ì‰œs‚«ƒTƒCƒY‚ğ”Â‚Ì‘å‚«‚³‚É‚µ‚Ä
- *	ƒ{[ƒh‚ª‰ñ“]‚·‚é‰Â”\«‚Ì‚ ‚é”ÍˆÍ‚·‚×‚Ä‚ğƒJƒŠƒ“ƒOƒf[ƒ^‚ÅƒJƒo[‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ *	è§£æ±ºç­–ã¨ã—ã¦ã¯ã€ã‚«ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã®å¥¥è¡Œãã‚µã‚¤ã‚ºã‚’æ¿ã®å¤§ãã•ã«ã—ã¦
+ *	ãƒœãƒ¼ãƒ‰ãŒå›è»¢ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹ç¯„å›²ã™ã¹ã¦ã‚’ã‚«ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã§ã‚«ãƒãƒ¼ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 u32 BLACT_CullingCheck( BLACT_WORK_PTR act )
 {
 	MtxFx33 rot;
 	
-	//@‰ñ“]s—ñ‰Šú‰»
+	//ã€€å›è»¢è¡Œåˆ—åˆæœŸåŒ–
 	MTX_Identity33( &rot );
 
 	
@@ -2026,60 +2026,60 @@ u32 BLACT_CullingCheck( BLACT_WORK_PTR act )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Vram“]‘—ˆ—A“]‘—ƒŠƒNƒGƒXƒg
- *	@param	act		ƒAƒNƒ^[
+ *	@brief	Vramè»¢é€å‡¦ç†æ™‚ã€è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+ *	@param	act		ã‚¢ã‚¯ã‚¿ãƒ¼
  */
 //-----------------------------------------------------------------------------
 void BLACT_VramAnmTransUserReq( BLACT_WORK_PTR act )
 {
 	if(act->flag == BLACT_MOVE_VRAM){
-		// Vram“]‘—Às(Vram“]‘—ƒ‚[ƒh‚Ì‚Æ‚«‚Ì‚İ)
+		// Vramè»¢é€å®Ÿè¡Œ(Vramè»¢é€ãƒ¢ãƒ¼ãƒ‰ã®ã¨ãã®ã¿)
 		transItpVramAnm(act->ItpVramObj, act->frame);
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚Ìæ“¾
+ * @brief	ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®å–å¾—
  * @param	act	BLACT_WORK_PTR
  * @retval	NNSG3dResMdl NNSG3dResMdl
  */
 //--------------------------------------------------------------
 NNSG3dResMdl * BLACT_ResMdlGet( BLACT_WORK_PTR act )
 {
-	return( act->pModel );			// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
+	return( act->pModel );			// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ìæ“¾
+ * @brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã®å–å¾—
  * @param	act	BLACT_WORK_PTR
  * @retval	NNSG3dResTex NNSG3dResTex
  */
 //--------------------------------------------------------------
 NNSG3dResTex * BLACT_ResTexGet( BLACT_WORK_PTR act )
 {
-	return( act->pMdlTex );		// ƒ‚ƒfƒ‹‚É“\‚è•t‚¯‚éƒeƒNƒXƒ`ƒƒ
+	return( act->pMdlTex );		// ãƒ¢ãƒ‡ãƒ«ã«è²¼ã‚Šä»˜ã‘ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŒƒ“ƒ_[OBJ‚Ìæ“¾
+ * @brief	ãƒ¬ãƒ³ãƒ€ãƒ¼OBJã®å–å¾—
  * @param	act	BLACT_WORK_PTR
  * @retval	NNSG3dRenderObj	NNSG3dRenderObj
  */
 //--------------------------------------------------------------
 NNSG3dRenderObj * BLACT_RenderObjGet( BLACT_WORK_PTR act )
 {
-	return( &act->RenderObj );		// ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg
+	return( &act->RenderObj );		// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	•`‰æ‘O‚ÉŒÄ‚ÔŠÖ”‚ğ“o˜^
+ * @brief	æç”»å‰ã«å‘¼ã¶é–¢æ•°ã‚’ç™»éŒ²
  * @param	act		BLACT_WORK_PTR
- * @param	proc	“o˜^‚·‚éBLACT_DRAW_BEFORE_PROCBNULL=“o˜^–³‚µ
- * @param	work	proc‚Ìˆø”‚Éw’è‚·‚é”CˆÓ‚Ìƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	proc	ç™»éŒ²ã™ã‚‹BLACT_DRAW_BEFORE_PROCã€‚NULL=ç™»éŒ²ç„¡ã—
+ * @param	work	procã®å¼•æ•°ã«æŒ‡å®šã™ã‚‹ä»»æ„ã®ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2091,49 +2091,49 @@ void BLACT_DrawBeforeProcSet( BLACT_WORK_PTR act, BLACT_DRAW_BEFORE_PROC proc, v
 
 //=============================================================================
 //
-//		ƒvƒ‰ƒCƒx[ƒgŠÖ”ŒS
+//		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°éƒ¡
 //
 //=============================================================================
 //-------------------------------------
-//	í’“ƒAƒjƒ—pƒVƒXƒeƒ€
+//	å¸¸é§ã‚¢ãƒ‹ãƒ¡ç”¨ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒEƒpƒŒƒbƒgQÆƒAƒhƒŒƒX‚ğİ’è
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆå‚ç…§ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®š
  *
- *	@param	act		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒf[ƒ^
+ *	@param	act		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
- * (ƒ‚ƒfƒ‹‚ÉƒeƒNƒXƒ`ƒƒ‚ªƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·)
+ * (ãƒ¢ãƒ‡ãƒ«ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™)
  *
  */
 //-----------------------------------------------------------------------------
 static void normAnmTexDataSet( BLACT_WORK* act )
 {
-	TEXANM_DATA	texdata;		// Œ»İƒtƒŒ[ƒ€‚ÌƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX@ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX
+	TEXANM_DATA	texdata;		// ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	// Œ»İ‚ÌƒtƒŒ[ƒ€‚ÌƒeƒNƒXƒ`ƒƒEƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒXæ“¾
+	// ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	texdata = TEXANM_GetFrameData( &act->texAnm, act->frame >> FX32_SHIFT );
 
-	// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXİ’è
-	// tex_idx‚ÌƒeƒNƒXƒ`ƒƒ‚ÌVramƒAƒhƒŒƒX‚ğƒ‚ƒfƒ‹‚Ìƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^‚Éİ’è
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹è¨­å®š
+	// tex_idxã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®Vramã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ãƒ¢ãƒ‡ãƒ«ã®ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿ã«è¨­å®š
 	normAnmTexParamSet( act->pModel, act->pAnmTex, texdata.tex_idx );
 
-	// ƒpƒŒƒbƒgƒAƒhƒŒƒXİ’è
-	// pltt_idx‚ÌƒpƒŒƒbƒg‚ÌVramƒAƒhƒŒƒX‚ğƒ‚ƒfƒ‹‚Ìƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^‚Éİ’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹è¨­å®š
+	// pltt_idxã®ãƒ‘ãƒ¬ãƒƒãƒˆã®Vramã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ãƒ¢ãƒ‡ãƒ«ã®ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿ã«è¨­å®š
 	normAnmPlttParamSet( act->pModel, act->pAnmTex, texdata.pltt_idx );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‚ƒfƒ‹“à‚ÌƒoƒCƒ“ƒhƒf[ƒ^ŒS•ª@ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX‚ÌƒeƒNƒXƒ`ƒƒ‚ÌVramƒAƒhƒŒƒX‚ğİ’è‚·‚é
+ *	@brief	ãƒ¢ãƒ‡ãƒ«å†…ã®ãƒã‚¤ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿éƒ¡åˆ†ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®Vramã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_mdl		ƒ‚ƒfƒ‹ƒf[ƒ^
- *	@param	p_tex		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒf[ƒ^
- *	@param	tex_idx		ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_mdl		ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_tex		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	tex_idx		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  *
@@ -2146,30 +2146,30 @@ static void normAnmTexParamSet( NNSG3dResMdl* p_mdl, const NNSG3dResTex* p_tex, 
     const NNSG3dResDict* dict_tex;
 	const NNSG3dResDictTexToMatIdxData* data;
 	const NNSG3dResDictTexData* texdict_data;
-	u32	tex_offs;			// ƒeƒNƒXƒ`ƒƒ‚ÌƒIƒtƒZƒbƒgƒiƒ“ƒo[
+	u32	tex_offs;			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 	int i;
 
-	// •K—v‚Èƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^
-	// ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh—pƒ}ƒeƒŠƒAƒ‹—ñ«‘‚ğæ“¾
+	// å¿…è¦ãªãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«åˆ—è¾æ›¸ã‚’å–å¾—
     mat     = NNS_G3dGetMat(p_mdl);
     dict_tex = (NNSG3dResDict*)((u8*)mat + mat->ofsDictTexToMatList);
 
-	// ƒeƒNƒXƒ`ƒƒƒIƒtƒZƒbƒg‚ğƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX«‘‚©‚çæ“¾
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹è¾æ›¸ã‹ã‚‰å–å¾—
 	texdict_data = NNS_G3dGetTexDataByIdx( p_tex, tex_idx );
 	tex_offs = (texdict_data->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK);
     
-    // ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌƒeƒNƒXƒ`ƒƒ–¼->ƒ}ƒeƒŠƒAƒ‹ƒCƒ“ƒfƒbƒNƒX—ñ«‘“à‚Ì
-    // ‚»‚ê‚¼‚ê‚É‘Î‚µ‚Äƒ‹[ƒv‚ğ‰ñ‚·
+    // ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£å->ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹åˆ—è¾æ›¸å†…ã®
+    // ãã‚Œãã‚Œã«å¯¾ã—ã¦ãƒ«ãƒ¼ãƒ—ã‚’å›ã™
     for (i = 0; i < dict_tex->numEntry; ++i){
 
-		// i”Ô–Ú‚ÌƒeƒNƒXƒ`ƒƒ‚ÉŠÖ‚·‚éƒoƒCƒ“ƒhƒf[ƒ^‚ğæ“¾
+		// iç•ªç›®ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«é–¢ã™ã‚‹ãƒã‚¤ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 		data = (NNSG3dResDictTexToMatIdxData*) NNS_G3dGetResDataByIdx(dict_tex, i);
 
-		// ƒoƒCƒ“ƒh‚³‚ê‚½ó‘Ô‚Ì‚Æ‚«‚Ì‚İ
-		// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒX‚ğİ’è
+		// ãƒã‚¤ãƒ³ãƒ‰ã•ã‚ŒãŸçŠ¶æ…‹ã®ã¨ãã®ã¿
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®š
 		if ((data->flag & 1)){
 			
-			// ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Íƒ‚ƒfƒ‹ƒf[ƒ^“à‚Ìƒ}ƒeƒŠƒAƒ‹[„TexImageParam‚Ì’†‚ÉVramKeyƒAƒhƒŒƒX‚ª“ü‚Á‚Ä‚¢‚é
+			// ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹ã¨ãã¯ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ¼ï¼TexImageParamã®ä¸­ã«VramKeyã‚¢ãƒ‰ãƒ¬ã‚¹ãŒå…¥ã£ã¦ã„ã‚‹
 			normAnmTexParamSetOneMatData(mat, data, tex_offs );
 		}
     }
@@ -2178,11 +2178,11 @@ static void normAnmTexParamSet( NNSG3dResMdl* p_mdl, const NNSG3dResTex* p_tex, 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒoƒCƒ“ƒhî•ñ“à‚Ìƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^”•ª@ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX‚ÌƒeƒNƒXƒ`ƒƒVramƒAƒhƒŒƒX‚ğİ’è‚·‚é
+ *	@brief	ãƒã‚¤ãƒ³ãƒ‰æƒ…å ±å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿æ•°åˆ†ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	pMat			ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^ŒS
- *	@param	pBindData		ƒoƒCƒ“ƒhî•ñ
- *	@param	tex_offs		ƒeƒNƒXƒ`ƒƒƒIƒtƒZƒbƒg
+ *	@param	pMat			ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿éƒ¡
+ *	@param	pBindData		ãƒã‚¤ãƒ³ãƒ‰æƒ…å ±
+ *	@param	tex_offs		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  *	@return	none
  *
@@ -2191,20 +2191,20 @@ static void normAnmTexParamSet( NNSG3dResMdl* p_mdl, const NNSG3dResTex* p_tex, 
 //-----------------------------------------------------------------------------
 static void normAnmTexParamSetOneMatData( NNSG3dResMat* pMat, const	NNSG3dResDictTexToMatIdxData* pBindData, u32 tex_offs )
 {
-	u8* p_matidx;	// ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX”z—ñ
-	int i;			// ƒ‹[ƒv—p
-	NNSG3dResMatData* mat_data;	// ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^
+	u8* p_matidx;	// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹é…åˆ—
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	NNSG3dResMatData* mat_data;	// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿
 
-	// ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX”z—ñæ“¾
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹é…åˆ—å–å¾—
 	p_matidx = (u8*)pMat + pBindData->offset;
 	
-	// ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^•ªƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒX‚ğİ’è
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿åˆ†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®š
     for (i = 0; i < pBindData->numIdx; i++){
 		
-        // Šemat_data‚ÉƒeƒNƒXƒ`ƒƒî•ñ‚ğƒZƒbƒgƒAƒbƒv‚µ‚Ä‚¢‚­B
+        // å„mat_dataã«ãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã—ã¦ã„ãã€‚
         mat_data = NNS_G3dGetMatDataByIdx(pMat, *(p_matidx + i));
 		
-		// æ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg’l‚ªoverƒtƒ[‚µ‚È‚¢‚©ƒ`ƒFƒbƒN
+		// å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ãŒoverãƒ•ãƒ­ãƒ¼ã—ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		GF_ASSERT( ((mat_data->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK) + tex_offs) <= NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK );
 		
         mat_data->texImageParam += tex_offs;
@@ -2214,11 +2214,11 @@ static void normAnmTexParamSetOneMatData( NNSG3dResMat* pMat, const	NNSG3dResDic
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‚ƒfƒ‹“à‚ÌƒoƒCƒ“ƒhƒf[ƒ^ŒS•ª@ƒpƒŒƒbƒgƒAƒhƒŒƒX‚ğİ’è‚·‚é
+ *	@brief	ãƒ¢ãƒ‡ãƒ«å†…ã®ãƒã‚¤ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿éƒ¡åˆ†ã€€ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_mdl		ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
- *	@param	p_tex		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *	@param	pltt_idx	ƒpƒŒƒbƒgƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_mdl		ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	p_tex		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	pltt_idx	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  *
@@ -2231,32 +2231,32 @@ static void normAnmPlttParamSet( NNSG3dResMdl* p_mdl, const NNSG3dResTex* p_tex,
     const NNSG3dResDict* dict_pltt;
 	const NNSG3dResDictPlttToMatIdxData* data;
 	const NNSG3dResDictPlttData* plttdict_data;
-	u32	pltt_offs;			// ƒpƒŒƒbƒg‚ÌƒIƒtƒZƒbƒgƒiƒ“ƒo[
+	u32	pltt_offs;			// ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
     u32 i;
 
-	// ƒ‚ƒfƒ‹ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^‚É‚ ‚éƒpƒŒƒbƒgƒoƒCƒ“ƒhƒf[ƒ^‚ğæ“¾
+	// ãƒ¢ãƒ‡ãƒ«ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒã‚¤ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
     mat      = NNS_G3dGetMat(p_mdl);
     dict_pltt = (NNSG3dResDict*)((u8*)mat + mat->ofsDictPlttToMatList);
 
-	// ƒeƒNƒXƒ`ƒƒƒf[ƒ^‚©‚çƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[‚Ì
-	// ‚Ìæ“ª‚©‚ç‚Ìƒf[ƒ^ƒIƒtƒZƒbƒg‚ğæ“¾
-	// ƒIƒtƒZƒbƒg’l‚Í4bit‰E‚ÉƒVƒtƒg‚µ‚½ó‘Ô‚Å“ü‚Á‚Ä‚¢‚é‚ªA
-	// 4FƒJƒ‰[ƒpƒŒƒbƒgˆÈŠO‚Ì‚Æ‚«‚Í3bit‰EƒVƒtƒg‚µ‚½’l‚É‚·‚é•K—v‚ª‚ ‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ã®
+	// æ™‚ã®å…ˆé ­ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã¯4bitå³ã«ã‚·ãƒ•ãƒˆã—ãŸçŠ¶æ…‹ã§å…¥ã£ã¦ã„ã‚‹ãŒã€
+	// 4è‰²ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆä»¥å¤–ã®ã¨ãã¯3bitå³ã‚·ãƒ•ãƒˆã—ãŸå€¤ã«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 	plttdict_data = NNS_G3dGetPlttDataByIdx( p_tex, pltt_idx );
 	pltt_offs = plttdict_data->offset;
-	if( !(plttdict_data->flag & 1) ){		// 4FƒJƒ‰[ƒpƒŒƒbƒg‚Ì‚Í1bit‚ª‚½‚Á‚Ä‚¢‚é
+	if( !(plttdict_data->flag & 1) ){		// 4è‰²ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã®æ™‚ã¯1bitãŒãŸã£ã¦ã„ã‚‹
 		pltt_offs >>= 1;
 	}
 
     for (i = 0; i < dict_pltt->numEntry; ++i){
 		
-		// ƒpƒŒƒbƒgƒoƒCƒ“ƒhƒf[ƒ^æ“¾
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒã‚¤ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿å–å¾—
 		data = (NNSG3dResDictPlttToMatIdxData*) NNS_G3dGetResDataByIdx(dict_pltt, i);
 
-		// ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Í•ÏX
+		// ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹ã¨ãã¯å¤‰æ›´
 		if ((data->flag & 1)){
 			
-			// ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚é‚Æ‚«‚ÍPlttBase‚Ì’†‚ÉVramKeyƒAƒhƒŒƒX‚ª“ü‚Á‚Ä‚¢‚é
+			// ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹ã¨ãã¯PlttBaseã®ä¸­ã«VramKeyã‚¢ãƒ‰ãƒ¬ã‚¹ãŒå…¥ã£ã¦ã„ã‚‹
 			normAnmPlttParamSetOneMatData( mat, data, pltt_offs );
 		}
     }
@@ -2265,11 +2265,11 @@ static void normAnmPlttParamSet( NNSG3dResMdl* p_mdl, const NNSG3dResTex* p_tex,
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒoƒCƒ“ƒhƒf[ƒ^“à‚Ìƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^”•ªƒpƒŒƒbƒgƒIƒtƒZƒbƒg‚ğİ’è
+ *	@brief	ãƒã‚¤ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿æ•°åˆ†ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨­å®š
  *
- *	@param	pMat			ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^ŒS
- *	@param	pBindData		ƒoƒCƒ“ƒhî•ñ
- *	@param	pltt_offs		ƒpƒŒƒbƒgƒIƒtƒZƒbƒg 
+ *	@param	pMat			ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿éƒ¡
+ *	@param	pBindData		ãƒã‚¤ãƒ³ãƒ‰æƒ…å ±
+ *	@param	pltt_offs		ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ 
  *
  *	@return	none
  *
@@ -2281,16 +2281,16 @@ static void normAnmPlttParamSetOneMatData( NNSG3dResMat* pMat, const NNSG3dResDi
     u8* matdata_idx;
     u32 i;
 
-	// ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX”z—ñæ“¾
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹é…åˆ—å–å¾—
     matdata_idx = (u8*)pMat + pBindData->offset;
 	
-	// ƒoƒCƒ“ƒhî•ñ‚Ìƒf[ƒ^”•ª
-	// ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^‚ÌƒpƒŒƒbƒgƒAƒhƒŒƒX‚ğİ’è
+	// ãƒã‚¤ãƒ³ãƒ‰æƒ…å ±ã®ãƒ‡ãƒ¼ã‚¿æ•°åˆ†
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®š
     for (i = 0; i < pBindData->numIdx; i++) {
-        // ŠematData‚ÉƒpƒŒƒbƒgî•ñ‚ğƒZƒbƒgƒAƒbƒv‚µ‚Ä‚¢‚­B
+        // å„matDataã«ãƒ‘ãƒ¬ãƒƒãƒˆæƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã—ã¦ã„ãã€‚
         NNSG3dResMatData* matData = NNS_G3dGetMatDataByIdx(pMat, *(matdata_idx + i));
 		
-		// overƒtƒ[‚µ‚È‚¢‚©ƒ`ƒFƒbƒN
+		// overãƒ•ãƒ­ãƒ¼ã—ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		GF_ASSERT( ((matData->texPlttBase & BLACT_PLTT_BASE_MASK) + pltt_offs) <= BLACT_PLTT_BASE_MASK );
 		
         matData->texPlttBase += pltt_offs;
@@ -2299,14 +2299,14 @@ static void normAnmPlttParamSetOneMatData( NNSG3dResMat* pMat, const NNSG3dResDi
 
 
 //-------------------------------------
-//	stack‚Ìˆ—
+//	stackã®å‡¦ç†
 //=====================================
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒ^ƒbƒN‰Šú‰»
+ *	@brief	ã‚¹ã‚¿ãƒƒã‚¯åˆæœŸåŒ–
  *
- *	@param	pSet		ƒXƒ^ƒbƒNƒf[ƒ^Ši”[æ
+ *	@param	pSet		ã‚¹ã‚¿ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *	@return none
  *
  */
@@ -2315,7 +2315,7 @@ static void initStack(BLACT_SET* pSet)
 {
 	int i;
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	for (i=0; i<pSet->WorkNum; i++) {
 		BLACT_WorkClear(&pSet->pWork[i]);
 		pSet->ppWorkStack[i] = pSet->pWork + i;
@@ -2326,12 +2326,12 @@ static void initStack(BLACT_SET* pSet)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒ^ƒbƒN‚©‚çæ‚èo‚µ
+ *	@brief	ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰å–ã‚Šå‡ºã—
  *
- *	@param	pSet		ƒXƒ^ƒbƒNƒf[ƒ^Ši”[æ
+ *	@param	pSet		ã‚¹ã‚¿ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *	
- *	@retval	NULLˆÈŠO	ƒrƒ‹ƒ{[ƒhƒ[ƒN
- *	@retval	NULL		æ‚èo‚µ‚É¸”siƒXƒ^ƒbƒN‚ª‹ó‚¾‚Á‚½ê‡j
+ *	@retval	NULLä»¥å¤–	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@retval	NULL		å–ã‚Šå‡ºã—ã«å¤±æ•—ï¼ˆã‚¹ã‚¿ãƒƒã‚¯ãŒç©ºã ã£ãŸå ´åˆï¼‰
  *
  */
 //-----------------------------------------------------------------------------
@@ -2339,7 +2339,7 @@ static BLACT_WORK* popStack(BLACT_SET* pSet)
 {
 	BLACT_WORK*	ret;
 
-	// ƒŠƒ~ƒbƒgƒ`ƒFƒbƒN
+	// ãƒªãƒŸãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 	if(pSet->WorkStackNow >= pSet->WorkNum){
 		return NULL;
 	}
@@ -2353,18 +2353,18 @@ static BLACT_WORK* popStack(BLACT_SET* pSet)
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒ^ƒbƒN‚ÉŠi”[
+ *	@brief	ã‚¹ã‚¿ãƒƒã‚¯ã«æ ¼ç´
  *
- *	@param	pSet		ƒXƒ^ƒbƒNƒf[ƒ^Ši”[æ
- *	@param	pDat		Ši”[ƒf[ƒ^
+ *	@param	pSet		ã‚¹ã‚¿ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	pDat		æ ¼ç´ãƒ‡ãƒ¼ã‚¿
  *	
- *	@retval	TRUE		¬Œ÷
- *	@retval	FALSE		ƒXƒ^ƒbƒN‚¢‚Á‚Ï‚¢
+ *	@retval	TRUE		æˆåŠŸ
+ *	@retval	FALSE		ã‚¹ã‚¿ãƒƒã‚¯ã„ã£ã±ã„
  */
 //-----------------------------------------------------------------------------
 static BOOL pushStack(BLACT_SET* pSet, BLACT_WORK* pDat)
 {
-	if(pSet->WorkStackNow <= 0){	// ‹ó‚«ƒ`ƒFƒbƒN
+	if(pSet->WorkStackNow <= 0){	// ç©ºããƒã‚§ãƒƒã‚¯
 		return FALSE;
 	}
 	BLACT_WorkClear(pDat);
@@ -2375,15 +2375,15 @@ static BOOL pushStack(BLACT_SET* pSet, BLACT_WORK* pDat)
 }
 
 //-------------------------------------
-//	ƒŠƒXƒgŠÇ—
+//	ãƒªã‚¹ãƒˆç®¡ç†
 //=====================================
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒŠƒXƒg‚Éİ’è
+ *	@brief	ãƒªã‚¹ãƒˆã«è¨­å®š
  *
- *	@param	pDummy		æ“ªƒf[ƒ^
- *	@param	pDat		İ’èƒf[ƒ^
+ *	@param	pDummy		å…ˆé ­ãƒ‡ãƒ¼ã‚¿
+ *	@param	pDat		è¨­å®šãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -2398,7 +2398,7 @@ static void setList(BLACT_WORK* pDummy, BLACT_WORK* pDat)
 
 static void remList(BLACT_WORK* pDat)
 {
-	// ƒŠƒXƒg‚ğŠO‚·
+	// ãƒªã‚¹ãƒˆã‚’å¤–ã™
 	pDat->prev->next = pDat->next;
 	pDat->next->prev = pDat->prev;
 }
@@ -2406,13 +2406,13 @@ static void remList(BLACT_WORK* pDat)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ğæ“¾‚·‚é
+ *@brief	ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- *@param	bl_s		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg
- *@param	p_head		ƒwƒbƒ_[
- *@param	num			ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒiƒ“ƒo[
- *@param	ppMdl		ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
- *@param	ppTex		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXŠi”[—p
+ *@param	bl_s		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *@param	p_head		ãƒ˜ãƒƒãƒ€ãƒ¼
+ *@param	num			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+ *@param	ppMdl		ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+ *@param	ppTex		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹æ ¼ç´ç”¨
  *
  *@return	NNSG3dResMdlSet
  *
@@ -2421,13 +2421,13 @@ static void remList(BLACT_WORK* pDat)
 //-----------------------------------------------------------------------------
 static NNSG3dResMdlSet* blact_getMdl(const BLACT_HEADER* p_head,NNSG3dResMdl** ppMdl, NNSG3dResTex** ppTex)
 {
-	void*				res;		// ƒŠƒ\[ƒX
-	NNSG3dResMdlSet*	mdl_set;		// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
+	void*				res;		// ãƒªã‚½ãƒ¼ã‚¹
+	NNSG3dResMdlSet*	mdl_set;		// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
 
-	// ƒŠƒ\[ƒXæ“¾	
+	// ãƒªã‚½ãƒ¼ã‚¹å–å¾—	
 	res = getRes(p_head, BLACT_RES_MAN_MDL);
 
-	// ƒ‚ƒfƒ‹æ“¾
+	// ãƒ¢ãƒ‡ãƒ«å–å¾—
 	mdl_set = NNS_G3dGetMdlSet(res);
 	*ppMdl = NNS_G3dGetMdlByIdx( mdl_set, 0 );
 
@@ -2442,11 +2442,11 @@ static NNSG3dResMdlSet* blact_getMdl(const BLACT_HEADER* p_head,NNSG3dResMdl** p
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ğæ“¾‚·‚é
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- *@param	bl_s		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg
- *@param	p_head		ƒwƒbƒ_[
- *@param	num			ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒiƒ“ƒo[
+ *@param	bl_s		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *@param	p_head		ãƒ˜ãƒƒãƒ€ãƒ¼
+ *@param	num			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
  *
  *@return	NNSG3dResMdl
  *
@@ -2455,9 +2455,9 @@ static NNSG3dResMdlSet* blact_getMdl(const BLACT_HEADER* p_head,NNSG3dResMdl** p
 //-----------------------------------------------------------------------------
 static NNSG3dResTex* blact_getTex(const BLACT_HEADER* p_head)
 {
-	NNSG3dResTex*	tex;		// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+	NNSG3dResTex*	tex;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
 
-	// ƒŠƒ\[ƒXƒf[ƒ^æ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
 	tex = (NNSG3dResTex*)getRes(p_head, BLACT_RES_MAN_TEX);
 	return tex;
 }
@@ -2465,72 +2465,72 @@ static NNSG3dResTex* blact_getTex(const BLACT_HEADER* p_head)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì“Ç‚İ‚İ
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®èª­ã¿è¾¼ã¿
  *
- *@param	bl_s			ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg
- *@param	p_head			ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[
- *@param	anm_set			ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒiƒ“ƒo[
- *@param	p_mdl			ƒ‚ƒfƒ‹ƒŠƒ\[ƒXi“Ç‚İ‚İÏ‚İj
- *@param	p_tex			ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXi“Ç‚İ‚İÏ‚İ•NULL‚¶Vram“]‘——pj
- *@param	pAlloc			g—pƒAƒƒP[ƒ^
+ *@param	bl_s			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *@param	p_head			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+ *@param	anm_set			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+ *@param	p_mdl			ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ï¼ˆèª­ã¿è¾¼ã¿æ¸ˆã¿ï¼‰
+ *@param	p_tex			ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ï¼ˆèª­ã¿è¾¼ã¿æ¸ˆã¿ï¼†NULLã˜Vramè»¢é€ç”¨ï¼‰
+ *@param	pAlloc			ä½¿ç”¨ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  *
- *@return	NNSG3dResFileHeader*	“Ç‚İ‚ñ‚¾ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX
+ *@return	NNSG3dResFileHeader*	èª­ã¿è¾¼ã‚“ã ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹
  *
  *
  */
 //-----------------------------------------------------------------------------
 static NNSG3dAnmObj* blact_getItp(const BLACT_HEADER* p_head, const NNSG3dResMdl* p_mdl, const NNSG3dResTex* p_tex, NNSFndAllocator* pAlloc)
 {
-	void*			res;		// ƒŠƒ\[ƒX
-	NNSG3dAnmObj*	anm;		// ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒF
-    NNSG3dResTexPatAnm* pAnmRes;// ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX
+	void*			res;		// ãƒªã‚½ãƒ¼ã‚¹
+	NNSG3dAnmObj*	anm;		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§
+    NNSG3dResTexPatAnm* pAnmRes;// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹
 
-	// ƒŠƒ\[ƒXæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	res = getRes(p_head, BLACT_RES_MAN_ANM);
 
-	// ƒCƒ“ƒfƒbƒNƒX”‚O‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğw’è
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ƒï¼ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®š
     pAnmRes = (NNSG3dResTexPatAnm*)NNS_G3dGetAnmByIdx(res, 0);
 
-	// •K—v—Ê‚Ìƒƒ‚ƒŠ‚ğƒAƒƒP[ƒg‚·‚éBƒCƒjƒVƒƒƒ‰ƒCƒY‚Í•Ê“r•K—v‚É‚È‚éB
-    anm = NNS_G3dAllocAnmObj(pAlloc, // g—p‚·‚éƒAƒƒP[ƒ^‚ğw’è
-                            pAnmRes,    // ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX‚ğw’è
-                            p_mdl);    // ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ğw’è
+	// å¿…è¦é‡ã®ãƒ¡ãƒ¢ãƒªã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã™ã‚‹ã€‚ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚ºã¯åˆ¥é€”å¿…è¦ã«ãªã‚‹ã€‚
+    anm = NNS_G3dAllocAnmObj(pAlloc, // ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’æŒ‡å®š
+                            pAnmRes,    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã‚’æŒ‡å®š
+                            p_mdl);    // ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’æŒ‡å®š
 
 
 	//
-    // AnmObj ‚ğ‰Šú‰»‚·‚éB
+    // AnmObj ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
     //
-    NNS_G3dAnmObjInit(anm,		// ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                      pAnmRes,	// ƒAƒjƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                      p_mdl,	// NNSG3dResMdl‚Ö‚Ìƒ|ƒCƒ“ƒ^
-					  p_tex );	// NNSG3dResTex‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    NNS_G3dAnmObjInit(anm,		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                      pAnmRes,	// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                      p_mdl,	// NNSG3dResMdlã¸ã®ãƒã‚¤ãƒ³ã‚¿
+					  p_tex );	// NNSG3dResTexã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	return anm;
 }
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg•ÏXiÀÛ‚Éˆ—‚·‚éŠÖ”j
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆå¤‰æ›´ï¼ˆå®Ÿéš›ã«å‡¦ç†ã™ã‚‹é–¢æ•°ï¼‰
  *
- *  @param	act		ƒ`ƒFƒ“ƒW‚·‚é“®ì”z—ñ
- *  @param	header	ƒwƒbƒ_[ƒf[ƒ^
+ *  @param	act		ãƒã‚§ãƒ³ã‚¸ã™ã‚‹å‹•ä½œé…åˆ—
+ *  @param	header	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
  *
  *	@return none
  *
- *‚±‚±‚Å‚Íƒ^ƒXƒN‚Éƒf[ƒ^‚ğƒZƒbƒg‚·‚é	
- *			ÀÛ‚É“ü‚ê‘Ö‚¦‚é‚Ì‚ÍVƒuƒ‰ƒ“ƒN’†BLACT_VlBank()
+ *ã“ã“ã§ã¯ã‚¿ã‚¹ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹	
+ *			å®Ÿéš›ã«å…¥ã‚Œæ›¿ãˆã‚‹ã®ã¯Vãƒ–ãƒ©ãƒ³ã‚¯ä¸­BLACT_VlBank()
  *
  */
 //-----------------------------------------------------------------------------
 static void chgBillboadAnmSet_Core( BLACT_WORK* act, const BLACT_HEADER* header )
 {
-	// í’“ƒAƒjƒ‚©Vram“]‘—ƒAƒjƒ‚©ƒ`ƒFƒbƒN
+	// å¸¸é§ã‚¢ãƒ‹ãƒ¡ã‹Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ã‹ãƒã‚§ãƒƒã‚¯
 	if( header->texKey == BLACT_TEXKEY_VRAMANM ){
 		
-		// Vram“]‘—
+		// Vramè»¢é€
 		chgBillboadAnmSet_Core_VRAM( act, header );
 	}else{
 
-		// í’“ƒAƒjƒ
+		// å¸¸é§ã‚¢ãƒ‹ãƒ¡
 		core_anmset_chg_norm( act, header );
 	}
 }
@@ -2539,20 +2539,20 @@ static void chgBillboadAnmSet_Core( BLACT_WORK* act, const BLACT_HEADER* header 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒIƒtƒZƒbƒg’l‚Ì‚ÌŠJnƒtƒŒ[ƒ€‚ğæ“¾
+ *	@brief	ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã®æ™‚ã®é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—
  *
- *	@param	act		æ“¾‚·‚éƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
- *	@param	offs	ƒIƒtƒZƒbƒg’l
+ *	@param	act		å–å¾—ã™ã‚‹ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
  *
- *	@return	fx32	ŠJnƒtƒŒ[ƒ€
+ *	@return	fx32	é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  *
  */
 //-----------------------------------------------------------------------------
 static fx32	nowOffsAnmStartFrame( const BLACT_WORK* act, int offs )
 {
-	const BLACT_ANIME_TBL* p_anm_tbl;				// ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
-	p_anm_tbl	= getAnmTbl( act->pAnmTbl,  offs );	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
+	const BLACT_ANIME_TBL* p_anm_tbl;				// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+	p_anm_tbl	= getAnmTbl( act->pAnmTbl,  offs );	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
 
 	return p_anm_tbl->start << FX32_SHIFT;
 }
@@ -2560,20 +2560,20 @@ static fx32	nowOffsAnmStartFrame( const BLACT_WORK* act, int offs )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€•ÏX@’Êí—p
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ å¤‰æ›´ã€€é€šå¸¸æ™‚ç”¨
  *
- *	@param	act		ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒN
- *	@param	num		•ÏX”
+ *	@param	act		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	num		å¤‰æ›´æ•°
  *
- *	@retval	BLACT_ANISTA_LOOP	Ä¶’†
- *	@retval	BLACT_ANISTA_END	Ä¶I—¹
+ *	@retval	BLACT_ANISTA_LOOP	å†ç”Ÿä¸­
+ *	@retval	BLACT_ANISTA_END	å†ç”Ÿçµ‚äº†
  *
  *
  */
 //-----------------------------------------------------------------------------
 static int anmFrameChg_Core( BLACT_WORK* act, fx32 num )
 {
-	const BLACT_ANIME_TBL* p_anm_tbl;	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
+	const BLACT_ANIME_TBL* p_anm_tbl;	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
 
 	p_anm_tbl	= getAnmTbl( act->pAnmTbl, act->AnmOffs );
 
@@ -2584,14 +2584,14 @@ static int anmFrameChg_Core( BLACT_WORK* act, fx32 num )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒtƒŒ[ƒ€•ÏXƒVƒXƒeƒ€
+ *	@brief	ãƒ•ãƒ¬ãƒ¼ãƒ å¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@param	anm		ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
- *	@param	frame	ƒtƒŒ[ƒ€”‚Ìƒ|ƒCƒ“ƒ^
- *	@param	num		“®‚©‚·ƒtƒŒ[ƒ€”
+ *	@param	anm		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	frame	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	num		å‹•ã‹ã™ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
- *	@retval	BLACT_ANISTA_LOOP	Ä¶’†
- *	@retval	BLACT_ANISTA_END	Ä¶I—¹
+ *	@retval	BLACT_ANISTA_LOOP	å†ç”Ÿä¸­
+ *	@retval	BLACT_ANISTA_END	å†ç”Ÿçµ‚äº†
  *
  *
  */
@@ -2600,19 +2600,19 @@ static int anmFrameChgSys( const BLACT_ANIME_TBL* anm, fx32* frame, fx32 num )
 {
 	int ret = BLACT_ANISTA_LOOP;
 	
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^“à‚ÌƒtƒŒ[ƒ€‚Åƒ‹[ƒvÄ¶
-	// ¡ƒ‹[ƒv”ÍˆÍ“à‚É‚¢‚é‚©‚ğƒ`ƒFƒbƒN
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿å†…ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§ãƒ«ãƒ¼ãƒ—å†ç”Ÿ
+	// ä»Šãƒ«ãƒ¼ãƒ—ç¯„å›²å†…ã«ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	if( ((anm->start * FX32_ONE) > *frame) || 
 		((anm->end * FX32_ONE) < *frame) ){
 
-		// ”ÍˆÍŠO‚È‚Ì‚ÅƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒXƒ^[ƒgƒtƒŒ[ƒ€‚É‚·‚é
+		// ç¯„å›²å¤–ãªã®ã§ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¹ã‚¿ãƒ¼ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã«ã™ã‚‹
 		*frame = (anm->start * FX32_ONE);
 	}else{
-		// ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚½Œ‹‰Ê‚ª”ÍˆÍŠO‚É‚È‚ç‚È‚¢‚©ƒ`ƒFƒbƒN
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ãŸçµæœãŒç¯„å›²å¤–ã«ãªã‚‰ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if( ((anm->end * FX32_ONE) < *frame + num) ){
 			
 			if(anm->cmd == BLACT_ANIM_LOOP){
-				// ”ÍˆÍŠO‚É‚È‚é‚Ì‚ÅƒXƒ^[ƒgƒtƒŒ[ƒ€‚É‚·‚é
+				// ç¯„å›²å¤–ã«ãªã‚‹ã®ã§ã‚¹ã‚¿ãƒ¼ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã«ã™ã‚‹
 				*frame = (anm->start * FX32_ONE);
 			}else{
 
@@ -2620,7 +2620,7 @@ static int anmFrameChgSys( const BLACT_ANIME_TBL* anm, fx32* frame, fx32 num )
 				*frame = (anm->end * FX32_ONE);
 			}
 		}else{
-			// ‰½‚Ìƒ`ƒFƒbƒN‚É‚à“–‚½‚ç‚È‚©‚Á‚½‚çƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é
+			// ä½•ã®ãƒã‚§ãƒƒã‚¯ã«ã‚‚å½“ãŸã‚‰ãªã‹ã£ãŸã‚‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹
 			*frame += num;
 		}
 	}
@@ -2631,9 +2631,9 @@ static int anmFrameChgSys( const BLACT_ANIME_TBL* anm, fx32* frame, fx32 num )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•`‰æ‘Oˆ—	ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh
+ *@brief	æç”»å‰å‡¦ç†	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰
  *
- *@param	bl_w	ƒoƒCƒ“ƒh‚·‚éƒ[ƒN
+ *@param	bl_w	ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  *
@@ -2642,16 +2642,16 @@ static int anmFrameChgSys( const BLACT_ANIME_TBL* anm, fx32* frame, fx32 num )
 //-----------------------------------------------------------------------------
 static void DrawTexBind(BLACT_WORK* bl_w)
 {
-	// ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰
 	reBindTexture(bl_w->pMdlTex, bl_w->pModelSet, &bl_w->texKey, &bl_w->tex4x4Key, &bl_w->plttKey);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•`‰æŒãˆ—	ƒeƒNƒXƒ`ƒƒƒŠƒoƒCƒ“ƒh
+ *@brief	æç”»å¾Œå‡¦ç†	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªãƒã‚¤ãƒ³ãƒ‰
  *
- *@param	bl_w	ƒŠƒoƒCƒ“ƒh‚·‚éƒ[ƒN
+ *@param	bl_w	ãƒªãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  *
@@ -2665,22 +2665,22 @@ static void DrawTexreBind(BLACT_WORK* bl_w)
 	NNSG3dPlttKey plttkey;
 	
 
-	// ƒoƒCƒ“ƒh‚ğ”jŠü
+	// ãƒã‚¤ãƒ³ãƒ‰ã‚’ç ´æ£„
 	NNS_G3dReleaseMdlSet(bl_w->pModelSet);
 
-	// ƒeƒNƒXƒ`ƒƒ‚ÆVramƒL[‚ÌƒŠƒ“ƒN‚ğ‚Í‚¸‚·
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨Vramã‚­ãƒ¼ã®ãƒªãƒ³ã‚¯ã‚’ã¯ãšã™
 	releaseTexture(bl_w->pMdlTex, &texkey, &tex4x4key, &plttkey);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚çƒŠƒ\[ƒX‚ğæ“¾‚·‚é
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- *@param	p_head		ƒwƒbƒ_[	
- *@param	flag		‚Ç‚ÌƒŠƒ\[ƒX‚©‚Ìƒtƒ‰ƒO
+ *@param	p_head		ãƒ˜ãƒƒãƒ€ãƒ¼	
+ *@param	flag		ã©ã®ãƒªã‚½ãƒ¼ã‚¹ã‹ã®ãƒ•ãƒ©ã‚°
  *
- *@return	void*		ƒŠƒ\[ƒX
+ *@return	void*		ãƒªã‚½ãƒ¼ã‚¹
  *
  *
  */
@@ -2709,12 +2709,12 @@ static void* getRes(const BLACT_HEADER* p_head, int flag)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹‚ğƒwƒbƒ_‚©‚çæ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãƒ˜ãƒƒãƒ€ã‹ã‚‰å–å¾—
  *
- *	@param	p_head	ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
- *	@param	ofs		ƒIƒtƒZƒbƒg
+ *	@param	p_head	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	ofs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
- *	@return	ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
+ *	@return	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *
  */

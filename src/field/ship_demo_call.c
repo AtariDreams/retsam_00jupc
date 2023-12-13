@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ship_demo_call.c
- * @brief	‘Dƒfƒ‚ƒR[ƒ‹
+ * @brief	èˆ¹ãƒ‡ãƒ¢ã‚³ãƒ¼ãƒ«
  * @date	2006.05.23
  * @author	Nozomu Saito
  *
@@ -33,8 +33,8 @@
 #define SHIP_SPEED	(FX32_ONE)
 #define SHIP_SPEED_FIRST	(FX32_ONE/4)
 
-#define BRIDGE_L_ANM_CONT_CODE	(1)	//‹´(¶)ƒAƒjƒ¯•ÊƒR[ƒh
-#define BRIDGE_R_ANM_CONT_CODE	(2)	//‹´(‰E)ƒAƒjƒ¯•ÊƒR[ƒh
+#define BRIDGE_L_ANM_CONT_CODE	(1)	//æ©‹(å·¦)ã‚¢ãƒ‹ãƒ¡è­˜åˆ¥ã‚³ãƒ¼ãƒ‰
+#define BRIDGE_R_ANM_CONT_CODE	(2)	//æ©‹(å³)ã‚¢ãƒ‹ãƒ¡è­˜åˆ¥ã‚³ãƒ¼ãƒ‰
 
 #define BRIDGE_OPEN_DIST	(14*16*FX32_ONE)
 #define UP_MOVE_DIST	(25*16*FX32_ONE)
@@ -60,24 +60,24 @@ enum{
 
 typedef struct FSHIPDEMO_DAT_tag
 {
-	u8 Seq;				//ƒV[ƒPƒ“ƒT
-	u8 ShipDir;			//‘Dƒfƒ‚•ûŒü
-	u8 BridgeAnmFlg;	//’µ‚Ë‹´ƒAƒjƒŠJnƒtƒ‰ƒO
-	u8 ShipSpeedCnt;	//ƒXƒs[ƒh‰Á‘¬ƒJƒEƒ“ƒ^
-	u8 PlayerDir;		//ƒ}ƒbƒv‘JˆÚŒã‚Ì©‹@Œü‚«
+	u8 Seq;				//ã‚·ãƒ¼ã‚±ãƒ³ã‚µ
+	u8 ShipDir;			//èˆ¹ãƒ‡ãƒ¢æ–¹å‘
+	u8 BridgeAnmFlg;	//è·³ã­æ©‹ã‚¢ãƒ‹ãƒ¡é–‹å§‹ãƒ•ãƒ©ã‚°
+	u8 ShipSpeedCnt;	//ã‚¹ãƒ”ãƒ¼ãƒ‰åŠ é€Ÿã‚«ã‚¦ãƒ³ã‚¿
+	u8 PlayerDir;		//ãƒãƒƒãƒ—é·ç§»å¾Œã®è‡ªæ©Ÿå‘ã
 	u8 CamMoveCnt;		//
 	u8 dummy[2];
 	fx32 CamColMove;
 	
-	int MoveDist;		//ƒtƒB[ƒ‹ƒh‚Å‚Ì‘D‚n‚a‚i‚ÌˆÚ“®—Ê
-	fx32 BridgeOpen;	//’µ‚Ë‹´ŠJ‚¯‚éƒAƒjƒ‚ğŠJn‚·‚é‘DˆÚ“®—Êi’µ‚Ë‹´–³‚¢‚Æ‚«‚ÍBRIDGE_NONEj
-	fx32 NowDist;			//Œ»İˆÚ“®‹——£
+	int MoveDist;		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ã®èˆ¹ï¼¯ï¼¢ï¼ªã®ç§»å‹•é‡
+	fx32 BridgeOpen;	//è·³ã­æ©‹é–‹ã‘ã‚‹ã‚¢ãƒ‹ãƒ¡ã‚’é–‹å§‹ã™ã‚‹èˆ¹ç§»å‹•é‡ï¼ˆè·³ã­æ©‹ç„¡ã„ã¨ãã¯BRIDGE_NONEï¼‰
+	fx32 NowDist;			//ç¾åœ¨ç§»å‹•è·é›¢
 	
-	int NextZone;		//ƒ}ƒbƒv•ÏˆÚæƒ][ƒ“
-	int NextX;			//ƒ}ƒbƒv•ÏˆÚæ‚w
-	int NextZ;			//ƒ}ƒbƒv•ÏˆÚæ‚y
-	VecFx32 CameraBindPos;	//ƒJƒƒ‰ƒoƒCƒ“ƒhÀ•W
-	M3DO_PTR ShipObjPtr;//‘D‚n‚a‚i‚Ìƒ|ƒCƒ“ƒ^
+	int NextZone;		//ãƒãƒƒãƒ—å¤‰ç§»å…ˆã‚¾ãƒ¼ãƒ³
+	int NextX;			//ãƒãƒƒãƒ—å¤‰ç§»å…ˆï¼¸
+	int NextZ;			//ãƒãƒƒãƒ—å¤‰ç§»å…ˆï¼º
+	VecFx32 CameraBindPos;	//ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ãƒ‰åº§æ¨™
+	M3DO_PTR ShipObjPtr;//èˆ¹ï¼¯ï¼¢ï¼ªã®ãƒã‚¤ãƒ³ã‚¿
 	GLST_DATA LightData;
 	fx32 ShipSpeed;
 }FSHIPDEMO_DAT;
@@ -94,14 +94,14 @@ static void MoveCameraCol(FSHIPDEMO_DAT *f_dat);
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‘Dƒfƒ‚ƒR[ƒ‹
+ * @brief	èˆ¹ãƒ‡ãƒ¢ã‚³ãƒ¼ãƒ«
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inShipDir	‘D‚Ì•ûŒü
- * @param	inPlayerDir	©‹@•ûŒü
- * @param	inNextZone	Ÿ‚Ìƒ][ƒ“‚h‚c
- * @param	inNextX		ƒ}ƒbƒv‘JˆÚæ‚wÀ•W
- * @param	inNextZ		ƒ}ƒbƒv‘JˆÚæ‚yÀ•W
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inShipDir	èˆ¹ã®æ–¹å‘
+ * @param	inPlayerDir	è‡ªæ©Ÿæ–¹å‘
+ * @param	inNextZone	æ¬¡ã®ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤
+ * @param	inNextX		ãƒãƒƒãƒ—é·ç§»å…ˆï¼¸åº§æ¨™
+ * @param	inNextZ		ãƒãƒƒãƒ—é·ç§»å…ˆï¼ºåº§æ¨™
  *
  * @return	none
  *
@@ -124,13 +124,13 @@ void ShipDemo_CallDemo(	FIELDSYS_WORK * fsys,
 	
 	f_dat = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(FSHIPDEMO_DAT));
 
-	f_dat->ShipDir = inShipDir;			//‘Dƒfƒ‚•ûŒü
-	f_dat->PlayerDir = inPlayerDir;		//ƒ}ƒbƒv‘JˆÚŒã‚Ì©‹@Œü‚«
-	f_dat->NextZone = inNextZone;		//ƒ}ƒbƒv•ÏˆÚæƒ][ƒ“
-	f_dat->NextX = inNextX;			//ƒ}ƒbƒv•ÏˆÚæ‚w
-	f_dat->NextZ = inNextZ;			//ƒ}ƒbƒv•ÏˆÚæ‚y
+	f_dat->ShipDir = inShipDir;			//èˆ¹ãƒ‡ãƒ¢æ–¹å‘
+	f_dat->PlayerDir = inPlayerDir;		//ãƒãƒƒãƒ—é·ç§»å¾Œã®è‡ªæ©Ÿå‘ã
+	f_dat->NextZone = inNextZone;		//ãƒãƒƒãƒ—å¤‰ç§»å…ˆã‚¾ãƒ¼ãƒ³
+	f_dat->NextX = inNextX;			//ãƒãƒƒãƒ—å¤‰ç§»å…ˆï¼¸
+	f_dat->NextZ = inNextZ;			//ãƒãƒƒãƒ—å¤‰ç§»å…ˆï¼º
 
-	//ƒ‰ƒCƒgî•ñæ“¾
+	//ãƒ©ã‚¤ãƒˆæƒ…å ±å–å¾—
 	f_dat->LightData = *(fsys->glst_data);
 
 	fld_move_flg = FALSE;
@@ -138,7 +138,7 @@ void ShipDemo_CallDemo(	FIELDSYS_WORK * fsys,
 	f_dat->CamMoveCnt = 0;
 	f_dat->CamColMove = 0;
 
-	Snd_DataSetByScene( SND_SCENE_SUB_SHIP, 0, 0 );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(‘Dƒfƒ‚)(BGMˆøŒp‚¬)
+	Snd_DataSetByScene( SND_SCENE_SUB_SHIP, 0, 0 );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(èˆ¹ãƒ‡ãƒ¢)(BGMå¼•ç¶™ã)
 	
 	if (inShipDir == SHIP_DIR_UP){
 		obj_id = BMID_C2_O02;
@@ -159,7 +159,7 @@ void ShipDemo_CallDemo(	FIELDSYS_WORK * fsys,
 	}
 	
 	if (fld_move_flg){
-		//‘D‘{‚·	
+		//èˆ¹æœã™	
 		rc = MPTL_CheckMap3DObjInRect(	fsys,
 										obj_id,
 										&rect,
@@ -170,34 +170,34 @@ void ShipDemo_CallDemo(	FIELDSYS_WORK * fsys,
 			f_dat->NowDist = 0;
 			f_dat->ShipSpeedCnt = 0;
 			f_dat->ShipSpeed = SHIP_SPEED_FIRST;
-			//ålŒöÀ•Wæ“¾‚µ‚ÄAƒ[ƒN‚ÉƒRƒs[
-			Player_VecPosGet( fsys->player, &f_dat->CameraBindPos );	//ƒJƒƒ‰ƒoƒCƒ“ƒhÀ•W
-			//ålŒö‚Æ‚ÌƒJƒƒ‰ƒoƒCƒ“ƒh‚ğ‰ğ‚­
+			//ä¸»äººå…¬åº§æ¨™å–å¾—ã—ã¦ã€ãƒ¯ãƒ¼ã‚¯ã«ã‚³ãƒ”ãƒ¼
+			Player_VecPosGet( fsys->player, &f_dat->CameraBindPos );	//ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ãƒ‰åº§æ¨™
+			//ä¸»äººå…¬ã¨ã®ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ãƒ‰ã‚’è§£ã
 			GFC_PurgeCameraTarget(fsys->camera_ptr);
-			//Œ»İˆÊ’u‚ÉƒJƒƒ‰‚ğƒoƒCƒ“ƒh
+			//ç¾åœ¨ä½ç½®ã«ã‚«ãƒ¡ãƒ©ã‚’ãƒã‚¤ãƒ³ãƒ‰
 			GFC_BindCameraTarget(&f_dat->CameraBindPos, fsys->camera_ptr);
-			//’µ‚Ë‹´‚Ì—L–³‚Å•ªŠò
+			//è·³ã­æ©‹ã®æœ‰ç„¡ã§åˆ†å²
 			if(f_dat->BridgeOpen != BRIDGE_NONE){	
-				f_dat->BridgeAnmFlg = 0;		//’µ‚Ë‹´ƒAƒjƒƒtƒ‰ƒO‚ğ—‚Æ‚µ‚Ä‚¨‚­
-				f_dat->Seq = SEQ_FLD_SHIP_MOVE_BRIDGE_OPEN;		//’µ‚Ë‹´‚ ‚é
-				//ƒAƒjƒƒVƒ‡ƒ“ƒZƒbƒgƒAƒbƒv
+				f_dat->BridgeAnmFlg = 0;		//è·³ã­æ©‹ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã—ã¦ãŠã
+				f_dat->Seq = SEQ_FLD_SHIP_MOVE_BRIDGE_OPEN;		//è·³ã­æ©‹ã‚ã‚‹
+				//ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 				SetBridgeAnime(fsys);
 				
-				//‹D“J‰¹
+				//æ±½ç¬›éŸ³
 				Snd_SePlay( SE_SHIP_KITEKI );
 			}else{
-				f_dat->Seq = SEQ_FLD_SHIP_MOVE;		//’µ‚Ë‹´‚È‚¢
+				f_dat->Seq = SEQ_FLD_SHIP_MOVE;		//è·³ã­æ©‹ãªã„
 			}
 
-			//‹D“J‰¹(’µ‚Ë‹´‚¾‚¯‚É‚µ‚Ü‚µ‚½ 08.04.22)
+			//æ±½ç¬›éŸ³(è·³ã­æ©‹ã ã‘ã«ã—ã¾ã—ãŸ 08.04.22)
 			//Snd_SePlay( SE_SHIP_KITEKI );
 		}else{
-			GF_ASSERT(0&&"‘D‚ª‚È‚¢");
+			GF_ASSERT(0&&"èˆ¹ãŒãªã„");
 			sys_FreeMemoryEz(f_dat);
 			return;
 		}
 	}else{
-		f_dat->Seq = SEQ_FLD_FADE_OUT;		//ƒtƒB[ƒ‹ƒhƒfƒ‚‚Í”ò‚Î‚µ‚ÄA‘Dƒfƒ‚‚Ö	
+		f_dat->Seq = SEQ_FLD_FADE_OUT;		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¢ã¯é£›ã°ã—ã¦ã€èˆ¹ãƒ‡ãƒ¢ã¸	
 	}
 
 	FieldEvent_Call(fsys->event, FldShipDemoEvent, f_dat);
@@ -205,11 +205,11 @@ void ShipDemo_CallDemo(	FIELDSYS_WORK * fsys,
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‘Dƒfƒ‚ƒR[ƒ‹
+ * @brief	èˆ¹ãƒ‡ãƒ¢ã‚³ãƒ¼ãƒ«
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inShipDir		‘Dis•ûŒü
- * @param	inLightDataPtr	ƒ‰ƒCƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inShipDir		èˆ¹é€²è¡Œæ–¹å‘
+ * @param	inLightDataPtr	ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -219,7 +219,7 @@ static void CallShipDemo(FIELDSYS_WORK * fsys, const u8 inShipDir, GLST_DATA *in
 {
 	SHIPDEMO_DAT *dat;
 	dat = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(SHIPDEMO_DAT));
-	//ƒ‰ƒCƒgî•ñæ“¾
+	//ãƒ©ã‚¤ãƒˆæƒ…å ±å–å¾—
 	dat->LightDataPtr = inLightDataPtr;
 	dat->Dir = inShipDir;
 	FieldEvent_Call(fsys->event, ShipDemoEvent, dat);
@@ -227,11 +227,11 @@ static void CallShipDemo(FIELDSYS_WORK * fsys, const u8 inShipDir, GLST_DATA *in
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‘Dƒfƒ‚ƒCƒxƒ“ƒg
+ * @brief	èˆ¹ãƒ‡ãƒ¢ã‚¤ãƒ™ãƒ³ãƒˆ
  *
- * @param	event		ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL		TRUE:ƒCƒxƒ“ƒgI—¹@FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL		TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  *
  */
 //-----------------------------------------------------------------------------
@@ -242,7 +242,7 @@ static BOOL ShipDemoEvent(GMEVENT_CONTROL * event)
 	int *seq = FieldEvent_GetSeqWork(event);
 	switch (*seq) {
 	case 0:
-		//ƒvƒƒZƒX“o˜^		
+		//ãƒ—ãƒ­ã‚»ã‚¹ç™»éŒ²		
 		if ( dat->Dir == 1 || dat->Dir == 2 ){
 			ShipDemoGarinko_ProcSet( fsys , dat );
 		}
@@ -251,7 +251,7 @@ static BOOL ShipDemoEvent(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 1:
-		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 		if (FieldEvent_Cmd_WaitSubProcEnd(fsys)) {
 			return FALSE;
 		}
@@ -266,11 +266,11 @@ static BOOL ShipDemoEvent(GMEVENT_CONTROL * event)
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒh‘Dƒfƒ‚ƒCƒxƒ“ƒg
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰èˆ¹ãƒ‡ãƒ¢ã‚¤ãƒ™ãƒ³ãƒˆ
  *
- * @param	event		ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL		TRUE:ƒCƒxƒ“ƒgI—¹@FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL		TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  *
  */
 //-----------------------------------------------------------------------------
@@ -280,9 +280,9 @@ static BOOL FldShipDemoEvent(GMEVENT_CONTROL * event)
 	FSHIPDEMO_DAT *f_dat = FieldEvent_GetSpecialWork(event);
 	switch (f_dat->Seq) {
 	case SEQ_FLD_SHIP_MOVE:
-		//ƒJƒƒ‰•â³
+		//ã‚«ãƒ¡ãƒ©è£œæ­£
 		MoveCameraCol(f_dat);
-		//‘DˆÚ“® Œ»İˆÊ’u‚Æ‘D‚ÌˆÚ“®‚ğ˜A“®‚³‚¹‚é
+		//èˆ¹ç§»å‹• ç¾åœ¨ä½ç½®ã¨èˆ¹ã®ç§»å‹•ã‚’é€£å‹•ã•ã›ã‚‹
 		if ( MoveShip(f_dat) ){
 			f_dat->Seq = SEQ_FLD_FADE_OUT;
 		}
@@ -290,21 +290,21 @@ static BOOL FldShipDemoEvent(GMEVENT_CONTROL * event)
 	case SEQ_FLD_SHIP_MOVE_BRIDGE_OPEN:
 		{
 			BOOL rc;
-			//ƒJƒƒ‰•â³
+			//ã‚«ãƒ¡ãƒ©è£œæ­£
 			MoveCameraCol(f_dat);
-			//‘DˆÚ“® Œ»İˆÊ’u‚Æ‘D‚ÌˆÚ“®‚ğ˜A“®‚³‚¹‚é
+			//èˆ¹ç§»å‹• ç¾åœ¨ä½ç½®ã¨èˆ¹ã®ç§»å‹•ã‚’é€£å‹•ã•ã›ã‚‹
 			rc = MoveShip(f_dat);
 			if (!f_dat->BridgeAnmFlg){
-				//‹K’èˆÊ’u‚Ü‚Å—ˆ‚½‚çA’µ‚Ë‹´ŠJ‚­ƒAƒjƒƒXƒ^[ƒg
+				//è¦å®šä½ç½®ã¾ã§æ¥ãŸã‚‰ã€è·³ã­æ©‹é–‹ãã‚¢ãƒ‹ãƒ¡ã‚¹ã‚¿ãƒ¼ãƒˆ
 				if ( CheckBridge(&f_dat->BridgeOpen, &f_dat->NowDist, &f_dat->BridgeAnmFlg) ){
-					//ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒ^[ƒg
+					//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ã‚¿ãƒ¼ãƒˆ
 					F3DASub_StartAnimation(fsys->AnimeContMng, BRIDGE_L_ANM_CONT_CODE, 0);
 					F3DASub_StartAnimation(fsys->AnimeContMng, BRIDGE_R_ANM_CONT_CODE, 0);
-					//’µ‚Ë‹´ŠJ‚­‰¹
+					//è·³ã­æ©‹é–‹ãéŸ³
 					Snd_SePlay( SE_PIER_OPEN );	
 				}
 			}else{
-				//’µ‚Ë‹´ŠJ‚¢‚½‚çAŸ‚ÌƒV[ƒPƒ“ƒX
+				//è·³ã­æ©‹é–‹ã„ãŸã‚‰ã€æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 				if ( (F3DASub_WaitAnimation(fsys->AnimeContMng, BRIDGE_L_ANM_CONT_CODE))&&
 					 (F3DASub_WaitAnimation(fsys->AnimeContMng, BRIDGE_R_ANM_CONT_CODE))&&
 					 rc ){
@@ -314,33 +314,33 @@ static BOOL FldShipDemoEvent(GMEVENT_CONTROL * event)
 		}
 		break;
 	case SEQ_FLD_FADE_OUT:
-		//ƒƒCƒvƒXƒ^[ƒg	ƒuƒ‰ƒbƒNƒAƒEƒg
+		//ãƒ¯ã‚¤ãƒ—ã‚¹ã‚¿ãƒ¼ãƒˆ	ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 		WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT,
 							WIPE_TYPE_FADEOUT,0x0,COMM_BRIGHTNESS_SYNC,1,HEAPID_WORLD );
 		Snd_BgmFadeOut( 0, COMM_BRIGHTNESS_SYNC );
 		f_dat->Seq = SEQ_FLD_END_F_PROC;
 		break;
 	case SEQ_FLD_END_F_PROC:
-		//ƒƒCƒvE‚a‚f‚lƒtƒF[ƒhI—¹‘Ò‚¿
+		//ãƒ¯ã‚¤ãƒ—ãƒ»ï¼¢ï¼§ï¼­ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 		if ( !WIPE_SYS_EndCheck()||(Snd_FadeCheck()!=0) ){
 			return FALSE;
 		}
 		if (f_dat->BridgeOpen != BRIDGE_NONE){
-			//ƒAƒjƒ‰ğ•ú
+			//ã‚¢ãƒ‹ãƒ¡è§£æ”¾
 			F3DASub_RereaseAnimation(fsys->field_3d_anime, fsys->AnimeContMng, BRIDGE_L_ANM_CONT_CODE);
 			F3DASub_RereaseAnimation(fsys->field_3d_anime, fsys->AnimeContMng, BRIDGE_R_ANM_CONT_CODE);
 		}
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXI—¹
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		f_dat->Seq = SEQ_FLD_CALL_DEMO;
 		break;
 	case SEQ_FLD_CALL_DEMO:
-		//‘Dƒfƒ‚ƒR[ƒ‹
+		//èˆ¹ãƒ‡ãƒ¢ã‚³ãƒ¼ãƒ«
 		CallShipDemo(fsys, f_dat->ShipDir, &f_dat->LightData);
 		f_dat->Seq = SEQ_FLD_MAP_JUMP;
 		break;
 	case SEQ_FLD_MAP_JUMP:
-		//ƒ}ƒbƒvƒWƒƒƒ“ƒv
+		//ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—
 		EventCmd_MapChange(event,
 							f_dat->NextZone,
 							DOOR_ID_JUMP_CODE,
@@ -353,7 +353,7 @@ static BOOL FldShipDemoEvent(GMEVENT_CONTROL * event)
 		//Snd_MapChangeFadeOutNextPlaySub( fsys, f_dat->NextZone, BGM_FADE_ROOM_MODE );
 		Snd_EvMapChangeBgmPlay( fsys, f_dat->NextZone );
 
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒX•œ‹A(ƒtƒF[ƒhƒCƒ“•t‚«)
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°(ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ä»˜ã)
 		EventCmd_StartField_FadeIn(event);
 		f_dat->Seq = SEQ_FLD_END;
 		break;
@@ -366,11 +366,11 @@ static BOOL FldShipDemoEvent(GMEVENT_CONTROL * event)
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒh‘D‚ÌˆÚ“®
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰èˆ¹ã®ç§»å‹•
  *
- * @param	f_dat		ƒtƒB[ƒ‹ƒh‘Dƒfƒ‚ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	f_dat		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰èˆ¹ãƒ‡ãƒ¢ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL		TRUE:–Ú“I‹——£ˆÚ“®@FALSE:ˆÚ“®Œp‘±
+ * @return	BOOL		TRUE:ç›®çš„è·é›¢ç§»å‹•ã€€FALSE:ç§»å‹•ç¶™ç¶š
  *
  */
 //-----------------------------------------------------------------------------
@@ -421,20 +421,20 @@ static BOOL MoveShip(FSHIPDEMO_DAT *f_dat)
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒh‘D‚ÌˆÚ“®
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰èˆ¹ã®ç§»å‹•
  *
- * @param	inBridge	ƒAƒjƒŠJn‚·‚é‘DˆÚ“®‹——£
- * @param	inNow		Œ»İ‚ÌˆÚ“®‹——£
- * @param	outFlg		ƒAƒjƒŠJnƒtƒ‰ƒOƒ|ƒCƒ“ƒ^
+ * @param	inBridge	ã‚¢ãƒ‹ãƒ¡é–‹å§‹ã™ã‚‹èˆ¹ç§»å‹•è·é›¢
+ * @param	inNow		ç¾åœ¨ã®ç§»å‹•è·é›¢
+ * @param	outFlg		ã‚¢ãƒ‹ãƒ¡é–‹å§‹ãƒ•ãƒ©ã‚°ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL		TRUE:ƒAƒjƒŠJn@FALSE:ƒAƒjƒŠJn‘Ò‚¿
+ * @return	BOOL		TRUE:ã‚¢ãƒ‹ãƒ¡é–‹å§‹ã€€FALSE:ã‚¢ãƒ‹ãƒ¡é–‹å§‹å¾…ã¡
  *
  */
 //-----------------------------------------------------------------------------
 static BOOL CheckBridge(const fx32 *inBridge, const fx32 *inNow, u8 *outFlg)
 {
 	if ((*inBridge) <= (*inNow)){
-		(*outFlg) = 1;	//ƒtƒ‰ƒO¬—§
+		(*outFlg) = 1;	//ãƒ•ãƒ©ã‚°æˆç«‹
 		return TRUE;
 	}else{
 		return FALSE;
@@ -443,9 +443,9 @@ static BOOL CheckBridge(const fx32 *inBridge, const fx32 *inNow, u8 *outFlg)
 
 //----------------------------------------------------------------------------
 /**
- * @brief	’µ‚Ë‹´ƒAƒjƒƒZƒbƒgƒAƒbƒv
+ * @brief	è·³ã­æ©‹ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -462,8 +462,8 @@ static void SetBridgeAnime(FIELDSYS_WORK * fsys)
 		rc = MPTL_CheckMap3DObj(fsys, obj_id[i], NULL, NULL);
 			
 		if (rc){
-			//’µ‚Ë‹´‚ ‚Á‚½
-			//ƒf[ƒ^ì¬
+			//è·³ã­æ©‹ã‚ã£ãŸ
+			//ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			NNSG3dResMdl* model;
 			NNSG3dResFileHeader** res_file;
 			M3DO_PTR obj_ptr;
@@ -474,7 +474,7 @@ static void SetBridgeAnime(FIELDSYS_WORK * fsys)
 			rc = MPTL_CheckMap3DObj(fsys, obj_id[i], &obj_ptr,NULL);
 			GF_ASSERT(rc);
 			render_obj = M3DO_GetRenderObj(obj_ptr);
-			//ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒAƒbƒv
+			//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			F3DASub_SetUpAnimation( fsys->field_3d_anime,
 									fsys->AnimeContMng,
 									anm_code[i],	
@@ -482,21 +482,21 @@ static void SetBridgeAnime(FIELDSYS_WORK * fsys)
 									render_obj,
 									model,
 									GetMapResourceBmTexturePTR(fsys->MapResource),
-									1,				//ƒAƒjƒ”1
-									1,				//ƒ‹[ƒv1‰ñ
-									FALSE			//”½“]‚µ‚È‚¢
+									1,				//ã‚¢ãƒ‹ãƒ¡æ•°1
+									1,				//ãƒ«ãƒ¼ãƒ—1å›
+									FALSE			//åè»¢ã—ãªã„
 									);	
 		}else{
-			GF_ASSERT(0&&"‹´‚ ‚è‚Ü‚¹‚ñ");
+			GF_ASSERT(0&&"æ©‹ã‚ã‚Šã¾ã›ã‚“");
 		}
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰•â³
+ * @brief	ã‚«ãƒ¡ãƒ©è£œæ­£
  *
- * @param	f_dat		ƒtƒB[ƒ‹ƒh‘Dƒfƒ‚ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	f_dat		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰èˆ¹ãƒ‡ãƒ¢ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *

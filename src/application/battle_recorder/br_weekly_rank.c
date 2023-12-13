@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_weekly_rank.c
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2008.01.08(‰Î)
+ * @date	2008.01.08(ç«)
  *
- * ‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -40,10 +40,10 @@
 #include "br_private.h"
 
 /*
-	ã‰æ–Ê‚ğƒƒCƒ“
-	‰º‰æ–Ê‚ğƒTƒu
+	ä¸Šç”»é¢ã‚’ãƒ¡ã‚¤ãƒ³
+	ä¸‹ç”»é¢ã‚’ã‚µãƒ–
 	
-	‚É“ü‚ê‘Ö‚¦‚Äg—p‚µ‚Ä‚¢‚Ü‚·B
+	ã«å…¥ã‚Œæ›¿ãˆã¦ä½¿ç”¨ã—ã¦ã„ã¾ã™ã€‚
 */
 
 typedef struct {	
@@ -52,17 +52,17 @@ typedef struct {
 	int				evb;
 	int				color;
 	
-	int				ranking_no;				///< ‚Ç‚Ìƒ‰ƒ“ƒLƒ“ƒOŒ©‚Ä‚é‚©
-	int				ranking_no_max;			///< ƒ‰ƒ“ƒLƒ“ƒO‚ÌÅ‘å’l@ƒNƒŠƒAó‹µ‚É‚æ‚Á‚Ä•Ï“®‚·‚é	max = 2 or 3
-	int				group_no;				///< ‚Ç‚ÌƒOƒ‹[ƒvŒ©‚Ä‚é‚©
-	int				group_no_max;			///< ƒOƒ‹[ƒv‚ÌÅ‘å’l@ŒÅ’èH
-	int				ranking_mode;			///< ƒ‰ƒ“ƒLƒ“ƒO@¡T@æT
+	int				ranking_no;				///< ã©ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¦‹ã¦ã‚‹ã‹
+	int				ranking_no_max;			///< ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®æœ€å¤§å€¤ã€€ã‚¯ãƒªã‚¢çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰å‹•ã™ã‚‹	max = 2 or 3
+	int				group_no;				///< ã©ã®ã‚°ãƒ«ãƒ¼ãƒ—è¦‹ã¦ã‚‹ã‹
+	int				group_no_max;			///< ã‚°ãƒ«ãƒ¼ãƒ—ã®æœ€å¤§å€¤ã€€å›ºå®šï¼Ÿ
+	int				ranking_mode;			///< ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã€€ä»Šé€±ã€€å…ˆé€±
 	
-	int				ranking_num;			///< ‰½Œ‚ ‚é‚©
+	int				ranking_num;			///< ä½•ä»¶ã‚ã‚‹ã‹
 	
 	GF_BGL_BMPWIN	win_m[ 6 ];
 	GF_BGL_BMPWIN	win_s[ 2 ];
-	OAM_BUTTON		obtn[ 2 ];				///< ‘—‚é@–ß‚é@‘—‚é‚Íí‚ÉƒrƒWƒuƒ‹
+	OAM_BUTTON		obtn[ 2 ];				///< é€ã‚‹ã€€æˆ»ã‚‹ã€€é€ã‚‹ã¯å¸¸ã«ãƒ“ã‚¸ãƒ–ãƒ«
 	BUTTON_MAN*		btn_man;
 
 	GT_LAST_WEEK_RANKING_ALL_RECV		last_week_data_dmy;
@@ -78,9 +78,9 @@ typedef struct {
 	MSGDATA_MANAGER*					man_trtype;
 	STRBUF*								unit_str;
 
-	///< ƒŠƒXƒg—p
-	TL_INFO				tl_info[ 3 ][ 20 ];	///< ‚Ç[‚µ‚Ä‚à‰Â•Ï‚É‚È‚é‚Ì‚Å
-	TOUCH_LIST_HEADER	tl_head;			///< ‚Ç[‚µ‚Ä‚à‰Â•Ï‚É‚È‚é‚Ì‚Å
+	///< ãƒªã‚¹ãƒˆç”¨
+	TL_INFO				tl_info[ 3 ][ 20 ];	///< ã©ãƒ¼ã—ã¦ã‚‚å¯å¤‰ã«ãªã‚‹ã®ã§
+	TOUCH_LIST_HEADER	tl_head;			///< ã©ãƒ¼ã—ã¦ã‚‚å¯å¤‰ã«ãªã‚‹ã®ã§
 
 } RANK_WORK;
 
@@ -110,7 +110,7 @@ extern void BR_Response_RankingUpdate(void *work, const GDS_RAP_ERROR_INFO *erro
 
 // -----------------------------------------
 //
-//	ƒ‰ƒ“ƒLƒ“ƒO
+//	ãƒ©ãƒ³ã‚­ãƒ³ã‚°
 //
 // -----------------------------------------
 static BOOL BR_WeeklyRanking_Init( BR_WORK* wk );
@@ -160,41 +160,41 @@ static const int ranking_win_group[][ 4 ] = {
 // =============================================================================
 //
 //
-//	¡ƒ^ƒbƒ`ƒŠƒXƒg
+//	â– ã‚¿ãƒƒãƒãƒªã‚¹ãƒˆ
 //
 //
 // =============================================================================
 static const TOUCH_LIST_HEADER tl_head_this_week = {
 	NULL,
-	12,					///< ‰Â•Ï
-	1,					///< 1s•
+	12,					///< å¯å¤‰
+	1,					///< 1è¡Œå¹…
 
 	 4,15,
 	24, 8,
 	256,
 	GF_BGL_FRAME2_M,
 
-	4,					///< •\¦Œ”
-	NULL,				///< “–‚½‚è”»’è
+	4,					///< è¡¨ç¤ºä»¶æ•°
+	NULL,				///< å½“ãŸã‚Šåˆ¤å®š
 };
 
 static const TOUCH_LIST_HEADER tl_head_last_week = {
 	NULL,
-	12,					///< ‰Â•Ï
-	2,					///< 1s•
+	12,					///< å¯å¤‰
+	2,					///< 1è¡Œå¹…
 
 	 4,15,
 	24, 8,
 	256,
 	GF_BGL_FRAME2_M,
 
-	2,					///< •\¦Œ”
-	NULL,				///< “–‚½‚è”»’è
+	2,					///< è¡¨ç¤ºä»¶æ•°
+	NULL,				///< å½“ãŸã‚Šåˆ¤å®š
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒwƒbƒ_[make
+ * @brief	ãƒ˜ãƒƒãƒ€ãƒ¼make
  *
  * @param	wk	
  *
@@ -218,14 +218,14 @@ static void TL_HeaderMake( BR_WORK* wk )
 	rwk->tl_head.info = rwk->tl_info[ rwk->ranking_no ];
 //	rwk->tl_head.info = rwk->tl_info[ rwk->group_no ];
 
-	///< ƒ^ƒbƒ`ƒŠƒXƒg‰Šú‰»
+	///< ã‚¿ãƒƒãƒãƒªã‚¹ãƒˆåˆæœŸåŒ–
 	CATS_SystemActiveSet( wk, TRUE );
 	TouchList_WorkClear( &wk->sys.touch_list );
 //	TouchList_InitEx( &wk->sys.touch_list, wk, rwk->man_trtype, &rwk->tl_head );
 	TouchList_InitRanking( &wk->sys.touch_list, wk, rwk->man_trtype, &rwk->tl_head, rwk->ranking_no, rwk->group_no, rwk->unit_str );
-	Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ƒAƒjƒƒ`ƒFƒbƒN
-	TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_MAIN );	///< ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹“o˜^
-	TouchList_CursorPosSet( &wk->sys.touch_list, 112, 184 );				///< ƒJ[ƒ\ƒ‹‚ÌˆÊ’u•ÏX
+	Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ã‚¢ãƒ‹ãƒ¡ãƒã‚§ãƒƒã‚¯
+	TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_MAIN );	///< ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ç™»éŒ²
+	TouchList_CursorPosSet( &wk->sys.touch_list, 112, 184 );				///< ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®å¤‰æ›´
 	CATS_SystemActiveSet( wk, FALSE );
 }
 
@@ -441,7 +441,7 @@ static void Ranking_WinTitleDel( BR_WORK* wk )
 	}
 }
 
-///< ƒXƒRƒA‚Ì’PˆÊƒe[ƒuƒ‹
+///< ã‚¹ã‚³ã‚¢ã®å˜ä½ãƒ†ãƒ¼ãƒ–ãƒ«
 // MatchComment: possibly removed in plat US?
 //static const int Score_Unit_IndexTable[ REC_NUM ] = {
 //	msg_br_rank_500,
@@ -627,7 +627,7 @@ static u32 RecordID_Table[ REC_NUM ] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŒƒR[ƒh‚Ì’læ“¾
+ * @brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ã®å€¤å–å¾—
  *
  * @param	wk	
  * @param	no	
@@ -644,7 +644,7 @@ static u32 Send_RECORD_Get( BR_WORK* wk, int no )
 	index = no;
 	
 	if ( index >= REC_NUM ){
-		OS_Printf( "ƒŒƒR[ƒh‚Ì’l‚ª‚Å‚©‚¢ = %d\n", index );
+		OS_Printf( "ãƒ¬ã‚³ãƒ¼ãƒ‰ã®å€¤ãŒã§ã‹ã„ = %d\n", index );
 		index = 0;
 		GF_ASSERT( 0 );
 	}
@@ -660,7 +660,7 @@ static u32 Send_RECORD_Get( BR_WORK* wk, int no )
 		
 	data = RECORD_Get( SaveData_GetRecord( wk->save ), RecordID_Table[ index ] );
 	
-//	OS_Printf( "rec id = %d ‚Ì ’l‚Í %d@‚Å‚·\n", index, data );
+//	OS_Printf( "rec id = %d ã® å€¤ã¯ %dã€€ã§ã™\n", index, data );
 	
 	return data;
 }
@@ -677,7 +677,7 @@ static void Ranking_WinTitlePut( BR_WORK* wk )
 	temp = STRBUF_Create( 255, HEAPID_BR );
 	wset = BR_WORDSET_Create( HEAPID_BR );
 	
-	///< ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒgƒ‹
+	///< ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒˆãƒ«
 	GF_BGL_BmpWinDataFill( &rwk->win_m[ 0 ], 0x00 );
 	
 	if ( rwk->ranking_mode == BR_EX_DATA_THIS_WEEK_RANK ){
@@ -693,7 +693,7 @@ static void Ranking_WinTitlePut( BR_WORK* wk )
 	GF_BGL_BmpWinOnVReq( &rwk->win_m[ 0 ] );
 	STRBUF_Delete( str1 );
 	
-	///< “à—e
+	///< å†…å®¹
 	GF_BGL_BmpWinDataFill( &rwk->win_m[ 1 ], 0x00 );
 	
 	if ( rwk->ranking_mode == BR_EX_DATA_THIS_WEEK_RANK ){
@@ -709,7 +709,7 @@ static void Ranking_WinTitlePut( BR_WORK* wk )
 	name = GDS_Profile_CreateNameString( wk->br_gpp[ 0 ], HEAPID_BR );
 	BR_ErrorStrChange( wk, name );
 	
-	///< Q‰ÁƒOƒ‹[ƒv
+	///< å‚åŠ ã‚°ãƒ«ãƒ¼ãƒ—
 	switch ( rwk->group_no ){
 	case 0:
 		{
@@ -734,7 +734,7 @@ static void Ranking_WinTitlePut( BR_WORK* wk )
 			int egg	= GDS_Profile_GetEggFlag( wk->br_gpp[ 0 ] );
 			str1 = MSGMAN_AllocString( wk->sys.man, msg_509 );
 			if ( egg ){
-				monsno = MONSNO_TAMAGO;	///< ƒ^ƒ}ƒS‚È‚çƒ^ƒ}ƒS
+				monsno = MONSNO_TAMAGO;	///< ã‚¿ãƒã‚´ãªã‚‰ã‚¿ãƒã‚´
 			}
 			if ( monsno ){
 				str2 = STRBUF_Create( 255, HEAPID_BR );
@@ -766,13 +766,13 @@ static void ButtonOAM_PoeSet( BR_WORK* wk, int mode )
 	RANK_WORK* rwk = wk->sub_work;
 	
 	if ( mode == 0 ){
-		///< 2ŒÂ
+		///< 2å€‹
 		CATS_ObjectEnableCap( rwk->obtn[ 0 ].cap, TRUE );
 		FONTOAM_SetDrawFlag( rwk->obtn[ 0 ].font_obj, TRUE );
 		CATS_ObjectPosSetCap( rwk->obtn[ 1 ].cap, 128, 232 );
 	}
 	else {
-		///< 1ŒÂ
+		///< 1å€‹
 		CATS_ObjectEnableCap( rwk->obtn[ 0 ].cap, FALSE );
 		FONTOAM_SetDrawFlag( rwk->obtn[ 0 ].font_obj, FALSE );
 		CATS_ObjectPosSetCap( rwk->obtn[ 1 ].cap, 80, 232 );
@@ -819,7 +819,7 @@ static void FontButton_Delete( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Šeƒ‰ƒ“ƒLƒ“ƒO‚ÌãŒÀ‚ğì¬
+ * @brief	å„ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®ä¸Šé™ã‚’ä½œæˆ
  *
  * @param	rwk	
  *
@@ -836,9 +836,9 @@ static void RankingPageLimit_Init( RANK_WORK* rwk )
 
 
 static const RECT_HIT_TBL hit_table_01[] = {
-	{ DTC(  3 ), DTC(  7 ), DTC( 6 ), DTC( 26 ) },	///< ‚³‚¢‚µ‚ñ‚Q‚O
-	{ DTC( 10 ), DTC( 14 ), DTC( 6 ), DTC( 26 ) },	///< ƒvƒƒtƒB[ƒ‹	
-	{ 152, 184, 80, 176 },	///< –ß‚é
+	{ DTC(  3 ), DTC(  7 ), DTC( 6 ), DTC( 26 ) },	///< ã•ã„ã—ã‚“ï¼’ï¼
+	{ DTC( 10 ), DTC( 14 ), DTC( 6 ), DTC( 26 ) },	///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«	
+	{ 152, 184, 80, 176 },	///< æˆ»ã‚‹
 };
 
 static void Btn_CallBack_01( u32 button, u32 event, void* work )
@@ -872,7 +872,7 @@ static void Btn_CallBack_01( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -891,7 +891,7 @@ static BOOL BR_WeeklyRanking_Init( BR_WORK* wk )
 	rwk->ranking_mode	= wk->ex_param1;
 	rwk->ranking_no_max = GT_RANKING_WEEK_NUM;
 	
-	if ( BR_IsGameClear( wk ) == FALSE ){		///< ƒNƒŠƒA‚µ‚Ä–³‚¢‚Æ‚PŒÂŒ¸‚ç‚·
+	if ( BR_IsGameClear( wk ) == FALSE ){		///< ã‚¯ãƒªã‚¢ã—ã¦ç„¡ã„ã¨ï¼‘å€‹æ¸›ã‚‰ã™
 		rwk->ranking_no_max--;
 	}	
 	rwk->group_no_max	= 3;					///< trtype birth poke
@@ -917,7 +917,7 @@ static BOOL BR_WeeklyRanking_Init( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒbƒeƒBƒ“ƒO
+ * @brief	ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°
  *
  * @param	wk	
  *
@@ -978,7 +978,7 @@ static BOOL BR_WeeklyRanking_Send_Recv( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:
-		///< ‰Šú‰»
+		///< åˆæœŸåŒ–
 		HormingCursor_Init( wk, wk->cur_wk, COMM_HORMING_CUR_CX, COMM_HORMING_CUR_CY );
 		Cursor_Visible( wk->cur_wk, TRUE );
 		Cursor_R_Set( wk->cur_wk, COMM_HORMING_R, COMM_HORMING_R );
@@ -988,7 +988,7 @@ static BOOL BR_WeeklyRanking_Send_Recv( BR_WORK* wk )
 		break;
 		
 	case 1:
-		///< Œ»İŠJÃ’†‚Ìƒf[ƒ^‚Ìæ“¾	
+		///< ç¾åœ¨é–‹å‚¬ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã®å–å¾—	
 		if( GDSRAP_Tool_Send_RankingTypeDownload( BR_GDSRAP_WorkGet( wk ) ) == TRUE ){
 			wk->sub_seq++;
 		}
@@ -996,7 +996,7 @@ static BOOL BR_WeeklyRanking_Send_Recv( BR_WORK* wk )
 	
 	case 2:
 		if( GDSRAP_ErrorInfoGet( BR_GDSRAP_WorkGet( wk ), &error_info ) == TRUE ){
-			//ƒGƒ‰[”­¶‚Ìˆ—
+			//ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿæ™‚ã®å‡¦ç†
 			Snd_SeStopBySeqNo( eBR_SND_SEARCH, 0 );
 			Tool_InfoMessageMainDel( wk );
 			BR_ErrorSet( wk, eERR_RANKING_TYPE_RECV, error_info->result, error_info->type );
@@ -1005,7 +1005,7 @@ static BOOL BR_WeeklyRanking_Send_Recv( BR_WORK* wk )
 		}
 		else{
 			{
-				///< ©•ª‚Ìƒf[ƒ^‚Ì‘—M
+				///< è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡
 				rwk->ranking_type = &rwk->ranking_type_dmy;
 
 			//	GDS_CONV_GDSProfile_to_GTRankingProfile( wk->save, wk->br_gpp[ 0 ], &rwk->send_data.profile );
@@ -1039,7 +1039,7 @@ static BOOL BR_WeeklyRanking_Send_Recv( BR_WORK* wk )
 	case 4:
 		Tool_InfoMessageMainDel( wk );
 		if( GDSRAP_ErrorInfoGet( BR_GDSRAP_WorkGet( wk ), &error_info ) == TRUE){
-			//ƒGƒ‰[”­¶‚Ìˆ—
+			//ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿæ™‚ã®å‡¦ç†
 			Snd_SeStopBySeqNo( eBR_SND_SEARCH, 0 );
 			BR_ErrorSet( wk, eERR_RANKING_SEND, error_info->result, error_info->type );
 			Cursor_Visible( wk->cur_wk, FALSE );
@@ -1078,7 +1078,7 @@ static BOOL BR_WeeklyRanking_Send_Recv( BR_WORK* wk )
 		break;
 	
 	case 5:
-		///< ƒGƒ‰[‚ÌI—¹ˆ—
+		///< ã‚¨ãƒ©ãƒ¼æ™‚ã®çµ‚äº†å‡¦ç†
 		CATS_SystemActiveSet( wk, TRUE );
 		FontButton_Delete( wk );
 //		MSGMAN_Delete( rwk->man_trtype );
@@ -1113,8 +1113,8 @@ static BOOL BR_WeeklyRanking_Send_Recv( BR_WORK* wk )
 
 	default:
 //		if ( !GF_TP_GetTrg() ){ break; }		
-		///< ƒŠƒXƒg—p‚Ìƒf[ƒ^‚ğì¬
-		TL_InfoMake( wk );	///< ƒ‰ƒ“ƒLƒ“ƒOóMƒf[ƒ^ƒRƒs[
+		///< ãƒªã‚¹ãƒˆç”¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
+		TL_InfoMake( wk );	///< ãƒ©ãƒ³ã‚­ãƒ³ã‚°å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 //		Tool_InfoMessageMainDel( wk );
 		Cursor_Visible( wk->cur_wk, FALSE );
 		Cursor_R_Set( wk->cur_wk, 0, 0 );
@@ -1127,7 +1127,7 @@ static BOOL BR_WeeklyRanking_Send_Recv( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“ ƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³ ã‚¤ãƒ³
  *
  * @param	wk	
  *
@@ -1149,8 +1149,8 @@ static BOOL BR_WeeklyRanking_MainIn( BR_WORK* wk )
 		Ranking_WinTitleAdd( wk );
 		Ranking_WinTitlePut( wk );
 		CATS_SystemActiveSet( wk, TRUE );
-		Slider_InitEx( &wk->sys.slider, wk, eTAG_EX_BOX_SLIDER );			///< g‚¢‚Ü‚í‚·
-		TL_HeaderMake( wk );												///< ‰Šú‰»Aİ’è‚È‚Ç
+		Slider_InitEx( &wk->sys.slider, wk, eTAG_EX_BOX_SLIDER );			///< ä½¿ã„ã¾ã‚ã™
+		TL_HeaderMake( wk );												///< åˆæœŸåŒ–ã€è¨­å®šãªã©
 		CATS_SystemActiveSet( wk, FALSE );
 		Group_WinAdd( wk );
 		
@@ -1168,7 +1168,7 @@ static BOOL BR_WeeklyRanking_MainIn( BR_WORK* wk )
 			wk->sub_seq++;
 		}
 		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_OBJ,	LINE_OTHER_SUB_PALETTE, rwk->color, wk->sys.logo_color );
-		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, rwk->color, wk->sys.logo_color );		///< ã‰ºƒJ[ƒ\ƒ‹‚ªƒ^ƒOƒpƒŒƒbƒg‚È‚Ì‚Å
+		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, rwk->color, wk->sys.logo_color );		///< ä¸Šä¸‹ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚¿ã‚°ãƒ‘ãƒ¬ãƒƒãƒˆãªã®ã§
 		break;
 		
 	default:
@@ -1196,7 +1196,7 @@ static BOOL BR_WeeklyRanking_Main( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒF[ƒh
+ * @brief	ãƒ•ã‚§ãƒ¼ãƒ‰
  *
  * @param	wk	
  *
@@ -1211,12 +1211,12 @@ static BOOL BR_WeeklyRanking_FadeOut( BR_WORK* wk )
 	switch ( wk->sub_seq ){
 	case 0:	
 		CATS_SystemActiveSet( wk, TRUE );
-		Slider_Exit( &wk->sys.slider );					///< ƒXƒ‰ƒCƒ_[‚Ì”jŠü
-		TouchList_Exit( &wk->sys.touch_list );			///< ƒŠƒXƒg‚Ì”jŠü
+		Slider_Exit( &wk->sys.slider );					///< ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã®ç ´æ£„
+		TouchList_Exit( &wk->sys.touch_list );			///< ãƒªã‚¹ãƒˆã®ç ´æ£„
 		if ( rwk->unit_str ){
 			STRBUF_Delete( rwk->unit_str );
 		}
-		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹”jŠü	
+		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ç ´æ£„	
 		CATS_SystemActiveSet( wk, FALSE );
 		Cursor_Visible( wk->cur_wk_top, FALSE );
 		GF_Disp_GXS_VisibleControl(  GX_PLANEMASK_BG2, VISIBLE_OFF );
@@ -1230,7 +1230,7 @@ static BOOL BR_WeeklyRanking_FadeOut( BR_WORK* wk )
 			wk->sub_seq++;
 		}
 		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_OBJ,	LINE_OTHER_SUB_PALETTE, rwk->color, wk->sys.logo_color );
-		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, rwk->color, wk->sys.logo_color );		///< ã‰ºƒJ[ƒ\ƒ‹‚ªƒ^ƒOƒpƒŒƒbƒg‚È‚Ì‚Å
+		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, rwk->color, wk->sys.logo_color );		///< ä¸Šä¸‹ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚¿ã‚°ãƒ‘ãƒ¬ãƒƒãƒˆãªã®ã§
 		break;
 
 	default:
@@ -1244,7 +1244,7 @@ static BOOL BR_WeeklyRanking_FadeOut( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	wk	
  *
@@ -1306,7 +1306,7 @@ static BOOL BR_WeeklyRanking_Exit( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒLƒ“ƒO•”•ªØ‚è‘Ö‚¦
+ * @brief	ãƒ©ãƒ³ã‚­ãƒ³ã‚°éƒ¨åˆ†åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  *
@@ -1324,7 +1324,7 @@ static BOOL BR_WeeklyRanking_RankChange( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‹[ƒv•”•ªØ‚è‘Ö‚¦
+ * @brief	ã‚°ãƒ«ãƒ¼ãƒ—éƒ¨åˆ†åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  *
@@ -1341,11 +1341,11 @@ static BOOL BR_WeeklyRanking_GroupChange( BR_WORK* wk )
 		TL_InfoMake( wk );
 		RankingPageLimit_Init( rwk );
 		Ranking_WinTitleDel( wk );
-		TouchList_Exit( &wk->sys.touch_list );			///< ƒŠƒXƒg‚Ì”jŠü
+		TouchList_Exit( &wk->sys.touch_list );			///< ãƒªã‚¹ãƒˆã®ç ´æ£„
 		if ( rwk->unit_str ){
 			STRBUF_Delete( rwk->unit_str );
 		}
-		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹”jŠü
+		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ç ´æ£„
 		wk->sub_seq++;
 		break;
 	
@@ -1376,10 +1376,10 @@ static BOOL BR_WeeklyRanking_GroupChange( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠJÃ’†‚Ìƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvƒ_ƒEƒ“ƒ[ƒh‚ÌƒŒƒXƒ|ƒ“ƒXƒR[ƒ‹ƒoƒbƒN
+ * @brief   é–‹å‚¬ä¸­ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æ™‚ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param   work			
- * @param   error_info		ƒGƒ‰[î•ñ
+ * @param   error_info		ã‚¨ãƒ©ãƒ¼æƒ…å ±
  */
 //--------------------------------------------------------------
 void BR_Response_RankingType(void *work, const GDS_RAP_ERROR_INFO *error_info)
@@ -1387,13 +1387,13 @@ void BR_Response_RankingType(void *work, const GDS_RAP_ERROR_INFO *error_info)
 	BR_WORK* wk = work;
 	RANK_WORK* rwk = wk->sub_work;
 	
-	OS_TPrintf("ŠJÃ’†‚Ìƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒv‚Ìƒ_ƒEƒ“ƒ[ƒhƒŒƒXƒ|ƒ“ƒXæ“¾\n");
+	OS_TPrintf("é–‹å‚¬ä¸­ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ¬ã‚¹ãƒãƒ³ã‚¹å–å¾—\n");
 	if(error_info->occ == TRUE){
-		//TRUE‚È‚ç‚ÎƒGƒ‰[”­¶‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚±‚Åƒƒjƒ…[‚ğ–ß‚·‚Æ‚©ƒAƒvƒŠI—¹ƒ‚[ƒh‚ÖˆÚs‚Æ‚©‚·‚é
+		//TRUEãªã‚‰ã°ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã—ã¦ã„ã‚‹ã®ã§ã€ã“ã“ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æˆ»ã™ã¨ã‹ã‚¢ãƒ—ãƒªçµ‚äº†ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œã¨ã‹ã™ã‚‹
 		rwk->ranking_type = &rwk->ranking_type_dmy;
 	}
 	else{
-		//³í‚È‚ç‚ÎóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^æ“¾‚È‚Ç‚ğs‚¤
+		//æ­£å¸¸æ™‚ãªã‚‰ã°å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿å–å¾—ãªã©ã‚’è¡Œã†
 		GT_RANKING_TYPE_RECV *recv_type;
 		int i;		
 		GDS_RAP_RESPONSE_RankingType_Download_RecvPtr_Set( BR_GDSRAP_WorkGet( wk ), &rwk->ranking_type );
@@ -1403,10 +1403,10 @@ void BR_Response_RankingType(void *work, const GDS_RAP_ERROR_INFO *error_info)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ‰ƒ“ƒLƒ“ƒOXV‚ÌƒŒƒXƒ|ƒ“ƒXƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°æ™‚ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param   work			
- * @param   error_info		ƒGƒ‰[î•ñ
+ * @param   error_info		ã‚¨ãƒ©ãƒ¼æƒ…å ±
  */
 //--------------------------------------------------------------
 void BR_Response_RankingUpdate(void *work, const GDS_RAP_ERROR_INFO *error_info)
@@ -1414,14 +1414,14 @@ void BR_Response_RankingUpdate(void *work, const GDS_RAP_ERROR_INFO *error_info)
 	BR_WORK* wk = work;
 	RANK_WORK* rwk = wk->sub_work;
 	
-	OS_TPrintf("ƒ‰ƒ“ƒLƒ“ƒOXV‚ÌƒŒƒXƒ|ƒ“ƒXæ“¾\n");
+	OS_TPrintf("ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹å–å¾—\n");
 	if(error_info->occ == TRUE){
-		//TRUE‚È‚ç‚ÎƒGƒ‰[”­¶‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚±‚Åƒƒjƒ…[‚ğ–ß‚·‚Æ‚©ƒAƒvƒŠI—¹ƒ‚[ƒh‚ÖˆÚs‚Æ‚©‚·‚é
+		//TRUEãªã‚‰ã°ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã—ã¦ã„ã‚‹ã®ã§ã€ã“ã“ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æˆ»ã™ã¨ã‹ã‚¢ãƒ—ãƒªçµ‚äº†ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œã¨ã‹ã™ã‚‹
 		rwk->last_week_data = &rwk->last_week_data_dmy;
 		rwk->this_week_data = &rwk->this_week_data_dmy;
 	}
 	else{
-		//³í‚È‚ç‚ÎóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^æ“¾‚È‚Ç‚ğs‚¤
+		//æ­£å¸¸æ™‚ãªã‚‰ã°å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿å–å¾—ãªã©ã‚’è¡Œã†
 //		GT_LAST_WEEK_RANKING_ALL_RECV *last_week;
 //		GT_THIS_WEEK_RANKING_DATA_ALL_RECV *this_week;
 		GDS_RAP_RESPONSE_RankingUpdate_Download_RecvPtr_Set( BR_GDSRAP_WorkGet( wk ), &rwk->last_week_data, &rwk->this_week_data );
@@ -1432,24 +1432,24 @@ void BR_Response_RankingUpdate(void *work, const GDS_RAP_ERROR_INFO *error_info)
 		{
 			int i;
 			for( i = 0; i < GT_RANKING_WEEK_NUM; i++ ){
-				OS_TPrintf("¡T‚Ìƒ^ƒCƒv ‚»‚Ì%d = %d\n", i, rwk->this_week_data->ranking_data[ i ].ranking_type );
-				OS_TPrintf("æT‚Ìƒ^ƒCƒv ‚»‚Ì%d = %d\n", i, rwk->last_week_data->ranking_data[ i ].ranking_type );
+				OS_TPrintf("ä»Šé€±ã®ã‚¿ã‚¤ãƒ— ãã®%d = %d\n", i, rwk->this_week_data->ranking_data[ i ].ranking_type );
+				OS_TPrintf("å…ˆé€±ã®ã‚¿ã‚¤ãƒ— ãã®%d = %d\n", i, rwk->last_week_data->ranking_data[ i ].ranking_type );
 			}
 		}
 //		{
 //			int i;			
 //			for ( i = 0; i < 10; i++ ){
-//				OS_Printf( "æT = %d\n", rwk->last_week_data->ranking_data[ 0 ].monsno_ranking[ i ] );
-//				OS_Printf( "æT = %d\n", rwk->last_week_data->ranking_data[ 0 ].birthday_month_ranking[ i ] );
-//				OS_Printf( "æT = %d\n", rwk->last_week_data->ranking_data[ 0 ].trainer_type_ranking[ i ] );
+//				OS_Printf( "å…ˆé€± = %d\n", rwk->last_week_data->ranking_data[ 0 ].monsno_ranking[ i ] );
+//				OS_Printf( "å…ˆé€± = %d\n", rwk->last_week_data->ranking_data[ 0 ].birthday_month_ranking[ i ] );
+//				OS_Printf( "å…ˆé€± = %d\n", rwk->last_week_data->ranking_data[ 0 ].trainer_type_ranking[ i ] );
 //			}
 //		}
 	#if 0
 		for(i = 0; i < GT_RANKING_WEEK_NUM; i++){
-			OS_TPrintf("æT‚Ìƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒv ‚»‚Ì%d=%d", i, last_week->ranking_data[i].ranking_type);
+			OS_TPrintf("å…ˆé€±ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ— ãã®%d=%d", i, last_week->ranking_data[i].ranking_type);
 		}
 		for(i = 0; i < GT_RANKING_WEEK_NUM; i++){
-			OS_TPrintf("¡T‚Ìƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒv ‚»‚Ì%d=%d", i, this_week->ranking_data[i].ranking_type);
+			OS_TPrintf("ä»Šé€±ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ— ãã®%d=%d", i, this_week->ranking_data[i].ranking_type);
 		}
 	#endif
 	}

@@ -1,6 +1,6 @@
 /**
  *	@file	fld_nmixer.c
- *	@brief	ƒtƒB[ƒ‹ƒh—p@ƒiƒbƒcƒ~ƒLƒT[ƒwƒbƒ_
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ã€€ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ãƒ˜ãƒƒãƒ€
  *	@author	Miyuki Iwasawa
  *	@date	06.04.06
  */
@@ -11,28 +11,28 @@
 
 #include "application/nutmixer.h"
 
-///ƒvƒŒƒCƒ‚[ƒh’è‹`
-#define NUTMIXER_CALL_LOCAL	(0)	///<ˆêlƒvƒŒƒCƒ‚[ƒh
-#define NUTMIXER_CALL_COMM	(1)	///<’ÊMƒvƒŒƒCƒ‚[ƒh
+///ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰å®šç¾©
+#define NUTMIXER_CALL_LOCAL	(0)	///<ä¸€äººãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰
+#define NUTMIXER_CALL_COMM	(1)	///<é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰
 
 /**
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[ŒÄ‚Ño‚µƒ[ƒNƒf[ƒ^ì¬
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	mode	NUTMIXER_CALL_LOCAL:0	ˆêlƒvƒŒƒCƒ‚[ƒh
- *					NUTMIXER_CALL_COMM:1	’ÊMƒ‚[ƒh
+ *	@param	mode	NUTMIXER_CALL_LOCAL:0	ä¸€äººãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰
+ *					NUTMIXER_CALL_COMM:1	é€šä¿¡ãƒ¢ãƒ¼ãƒ‰
  */
 extern NUTMIXER_PARAM* NutMixer_CreateCallWork(int mode,SAVEDATA* savedata,int heapID);
 
 /**
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[ŒÄ‚Ño‚µ
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼å‘¼ã³å‡ºã—
  *
- *	@param	mode	NUTMIXER_CALL_LOCAL:0	ˆêlƒvƒŒƒCƒ‚[ƒh
- *					NUTMIXER_CALL_COMM:1	’ÊMƒ‚[ƒh
+ *	@param	mode	NUTMIXER_CALL_LOCAL:0	ä¸€äººãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰
+ *					NUTMIXER_CALL_COMM:1	é€šä¿¡ãƒ¢ãƒ¼ãƒ‰
  */
 extern NUTMIXER_PARAM* FieldNutMixer_InitCall(FIELDSYS_WORK* fsys,int mode,int heapID);
 
 /**
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[ WIFIŒÄ‚Ño‚µ
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ WIFIå‘¼ã³å‡ºã—
  */
 extern NUTMIXER_PARAM* FieldNutMixer_InitCallWiFi(FIELDSYS_WORK* fsys,int heapID,BOOL vchat);
 

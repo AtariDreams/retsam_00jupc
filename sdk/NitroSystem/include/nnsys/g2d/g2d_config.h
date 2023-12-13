@@ -28,7 +28,7 @@ extern "C" {
 
 
 
-// NNS_G2D_DMA_NO �� 3 ���� GX_GetDefaultDMA() �ւƕύX�ɂȂ�܂����B
+// NNS_G2D_DMA_NO は 3 から GX_GetDefaultDMA() へと変更になりました。
 // #define NNS_G2D_DMA_NO 3 
 #define NNS_G2D_DMA_NO      GX_GetDefaultDMA() 
 
@@ -43,17 +43,17 @@ extern "C" {
 #define NNS_G2D_NON_ZERO_ASSERT( val )  SDK_ASSERTMSG( (val) != 0, "Non zero value is expexted in the context." )
 
 
-// �ߋ��̃o�[�W�����̃Z���T�C�Y������L���ɂ���
+// 過去のバージョンのセルサイズ制限を有効にする
 //#define NNS_G2D_LIMIT_CELL_X_128
 
-// ���o�[�W�����̃t�H���g���\�[�X���g�p����
+// 旧バージョンのフォントリソースを使用する
 #define NNS_G2D_FONT_USE_OLD_RESOURCE
 
-// �c����/�c�����T�|�[�g��L���ɂ���
+// 縦書き/縦持ちサポートを有効にする
 #define NNS_G2D_FONT_ENABLE_DIRECTION_SUPPORT
 
-// ���̓f�[�^�ɔ{�p�A�t�B��OBJ���܂܂��ꍇ�A
-// �{�p�A�t�B��OBJ�̈ʒu�␳���s���Ă���Ɖ��肷�邩�H
+// 入力データに倍角アフィンOBJが含まれる場合、
+// 倍角アフィンOBJの位置補正が行われていると仮定するか？
 #define NNS_G2D_ASSUME_DOUBLEAFFINE_OBJPOS_ADJUSTED
 
 

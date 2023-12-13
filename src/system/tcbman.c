@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	tcbman.c
- * @brief	�eTCB�V�X�e������ă^�X�N�������Ăяo��
+ * @brief	各TCBシステムを介してタスク処理を呼び出す
  * @author	taya
  * @date	2005.10.07
  */
@@ -12,13 +12,13 @@
 
 //------------------------------------------------------------------
 /**
- * TCB�o�^�i���C�����[�v���ɌĂ΂��^�X�N�j
+ * TCB登録（メインループ中に呼ばれるタスク）
  *
- * @param   func		�^�X�N���s�֐�
- * @param   work		�^�X�N�Ɋ֘A�t���郏�[�N�G���A�̃A�h���X
- * @param   pri			�^�X�N�v���C�I���e�B
+ * @param   func		タスク実行関数
+ * @param   work		タスクに関連付けるワークエリアのアドレス
+ * @param   pri			タスクプライオリティ
  *
- * @retval  TCB_PTR		�o�^���ꂽTCB�|�C���^
+ * @retval  TCB_PTR		登録されたTCBポインタ
  */
 //------------------------------------------------------------------
 TCB_PTR TCB_Add(TCB_FUNC func, void* work, u32 pri)
@@ -27,13 +27,13 @@ TCB_PTR TCB_Add(TCB_FUNC func, void* work, u32 pri)
 }
 //------------------------------------------------------------------
 /**
- * TCB�o�^�iVBlank���荞�ݒ��ɌĂ΂��^�X�N�j
+ * TCB登録（VBlank割り込み中に呼ばれるタスク）
  *
- * @param   func		�^�X�N���s�֐�
- * @param   work		�^�X�N�Ɋ֘A�t���郏�[�N�G���A�̃A�h���X
- * @param   pri			�^�X�N�v���C�I���e�B
+ * @param   func		タスク実行関数
+ * @param   work		タスクに関連付けるワークエリアのアドレス
+ * @param   pri			タスクプライオリティ
  *
- * @retval  TCB_PTR		�o�^���ꂽTCB�|�C���^
+ * @retval  TCB_PTR		登録されたTCBポインタ
  */
 //------------------------------------------------------------------
 TCB_PTR VIntrTCB_Add( TCB_FUNC func, void* work, u32 pri )
@@ -43,13 +43,13 @@ TCB_PTR VIntrTCB_Add( TCB_FUNC func, void* work, u32 pri )
 
 //------------------------------------------------------------------
 /**
- * TCB�o�^�i�����o�̓^�X�N=VBlank���荞�ݑO�ɌĂ΂��j
+ * TCB登録（文字出力タスク=VBlank割り込み前に呼ばれる）
  *
- * @param   func		�^�X�N���s�֐�
- * @param   work		�^�X�N�Ɋ֘A�t���郏�[�N�G���A�̃A�h���X
- * @param   pri			�^�X�N�v���C�I���e�B
+ * @param   func		タスク実行関数
+ * @param   work		タスクに関連付けるワークエリアのアドレス
+ * @param   pri			タスクプライオリティ
  *
- * @retval  TCB_PTR		�o�^���ꂽTCB�|�C���^
+ * @retval  TCB_PTR		登録されたTCBポインタ
  */
 //------------------------------------------------------------------
 TCB_PTR PrintTCB_Add( TCB_FUNC func, void* work, u32 pri )
@@ -59,13 +59,13 @@ TCB_PTR PrintTCB_Add( TCB_FUNC func, void* work, u32 pri )
 
 //------------------------------------------------------------------
 /**
- * TCB�o�^�i���C�����[�v�I���҂���̓����p�^�X�N�j
+ * TCB登録（メインループ終了待ち後の同期用タスク）
  *
- * @param   func		�^�X�N���s�֐�
- * @param   work		�^�X�N�Ɋ֘A�t���郏�[�N�G���A�̃A�h���X
- * @param   pri			�^�X�N�v���C�I���e�B
+ * @param   func		タスク実行関数
+ * @param   work		タスクに関連付けるワークエリアのアドレス
+ * @param   pri			タスクプライオリティ
  *
- * @retval  TCB_PTR		�o�^���ꂽTCB�|�C���^
+ * @retval  TCB_PTR		登録されたTCBポインタ
  */
 //------------------------------------------------------------------
 TCB_PTR VWaitTCB_Add( TCB_FUNC func, void* work, u32 pri )
@@ -76,9 +76,9 @@ TCB_PTR VWaitTCB_Add( TCB_FUNC func, void* work, u32 pri )
 
 //------------------------------------------------------------------
 /**
- * TCB�폜
+ * TCB削除
  *
- * @param   TCB_PTR		�폜����TCB�|�C���^
+ * @param   TCB_PTR		削除するTCBポインタ
  */
 //------------------------------------------------------------------
 void TCB_Delete(TCB_PTR tcb)
@@ -88,17 +88,17 @@ void TCB_Delete(TCB_PTR tcb)
 
 
 //==============================================================================
-//	�f�o�b�O�p�֐�
+//	デバッグ用関数
 //==============================================================================
 #ifdef PM_DEBUG
 //--------------------------------------------------------------
 /**
- * @brief   VIntrTCB�Ɋ��ɑΏۊ֐����o�^����Ă��邩���ׂ�
+ * @brief   VIntrTCBに既に対象関数が登録されているか調べる
  *
  * @param   func		
  *
- * @retval  TRUE:�o�^�ς�
- * @retval  FALSE:�o�^����Ă��Ȃ�
+ * @retval  TRUE:登録済み
+ * @retval  FALSE:登録されていない
  */
 //--------------------------------------------------------------
 BOOL DebugTCB_VintrFuncCheck(TCB_FUNC func)

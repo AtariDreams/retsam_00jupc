@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_scrcmd.c
- * @brief	ƒtƒƒ“ƒeƒBƒA—pƒXƒNƒŠƒvƒgFƒRƒ}ƒ“ƒhŠÖ”
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆï¼šã‚³ãƒãƒ³ãƒ‰é–¢æ•°
  * @author	matsuda
- * @date	2007.03.28(…)
+ * @date	2007.03.28(æ°´)
  */
 //==============================================================================
 #include "common.h"
@@ -23,15 +23,15 @@
 #include "poketool/status_rcv.h"		//PokeParty_RecoverAll
 #include "system/procsys.h"
 
-//#include "battle/fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
-//#include "battle/server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
-//#include "battle/client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
+//#include "battle/fight_def.h"		///<BattleWorkã¸ã®ä¾å­˜åº¦ãŒé«˜ã„?/ãƒ¼ã‚¹ãªã®ã§ã€è¨±å¯
+//#include "battle/server_def.h"		///<ServerParamã¸ã®ä¾å­˜åº¦ãŒé«˜ã„?/ãƒ¼ã‚¹ãªã®ã§ã€è¨±å¯
+//#include "battle/client_def.h"		///<ClientParamã¸ã®ä¾å­˜åº¦ãŒé«˜ã„?/ãƒ¼ã‚¹ãªã®ã§ã€è¨±å¯
 
 #include "field/eventflag.h"
 #include "field/evwkdef.h"
 #include "../field/scr_tool.h"
 
-//MAKE‚ÌˆË‘¶ŠÖŒW‚ÉŠÜ‚ß‚é‚½‚ß‚ÉIncludei–{—ˆ‚Í•K—v‚È‚¢j
+//MAKEã®ä¾å­˜é–¢ä¿‚ã«å«ã‚ã‚‹ãŸã‚ã«Includeï¼ˆæœ¬æ¥ã¯å¿…è¦ãªã„ï¼‰
 #include "battle/skill/waza_seq.naix"
 #include "battle/skill/be_seq.naix"
 #include "battle/skill/sub_seq.naix"
@@ -50,26 +50,26 @@
 #include "fss_scene.h"
 #include "frontier_def.h"
 #include "frontier_tool.h"
-//ƒTƒEƒ“ƒh
+//ã‚µã‚¦ãƒ³ãƒ‰
 #include "fssc_sound.h"
-//ƒtƒ@ƒNƒgƒŠ[
+//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 #include "fssc_factory.h"
-//ƒoƒgƒ‹ƒ^ƒ[
+//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 #include "fssc_tower.h"
-//ƒXƒe[ƒW
+//ã‚¹ãƒ†ãƒ¼ã‚¸
 #include "fssc_stage.h"
-//ƒLƒƒƒbƒXƒ‹
+//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 #include "fssc_castle.h"
-//ƒ‹[ƒŒƒbƒg
+//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 #include "fssc_roulette.h"
-//WiFió•t
+//WiFiå—ä»˜
 #include "fssc_wifi_counter.h"
-//˜^‰æ
+//éŒ²ç”»
 #include "savedata/battle_rec.h"
 #include "../field/field_subproc.h"
-//ƒ[ƒhƒZƒbƒg
+//ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 #include "msgdata/msg.naix"							//NARC_msg_??_dat
-//’ÊM
+//é€šä¿¡
 #include "communication/comm_info.h"
 #include "communication/comm_system.h"
 #include "communication/comm_tool.h"
@@ -86,37 +86,37 @@
 #include "savedata/wifilist.h"
 
 #include "savedata/tv_work.h"
-#include "../field/tv_topic.h"						//ƒeƒŒƒrƒgƒsƒbƒN¶¬—p
+#include "../field/tv_topic.h"						//ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆç”¨
 #include "field/tvtopic_extern.h"
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-//ƒŒƒWƒXƒ^”äŠr‚ÌŒ‹‰Ê’è‹`
+//ãƒ¬ã‚¸ã‚¹ã‚¿æ¯”è¼ƒã®çµæœå®šç¾©
 enum {
-	MINUS_RESULT = 0,	//”äŠrŒ‹‰Ê‚ªƒ}ƒCƒiƒX
-	EQUAL_RESULT,		//”äŠrŒ‹‰Ê‚ªƒCƒR[ƒ‹
-	PLUS_RESULT			//”äŠrŒ‹‰Ê‚ªƒvƒ‰ƒX
+	MINUS_RESULT = 0,	//æ¯”è¼ƒçµæœãŒãƒã‚¤ãƒŠã‚¹
+	EQUAL_RESULT,		//æ¯”è¼ƒçµæœãŒã‚¤ã‚³ãƒ¼ãƒ«
+	PLUS_RESULT			//æ¯”è¼ƒçµæœãŒãƒ—ãƒ©ã‚¹
 };
 
-///ƒAƒNƒ^[¶¬A’†SÀ•W‚É‚·‚éˆ×‚É‘«‚µ‚±‚ŞƒIƒtƒZƒbƒgX
+///ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆæ™‚ã€ä¸­å¿ƒåº§æ¨™ã«ã™ã‚‹ç‚ºã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆX
 #define FSS_ACTOR_SET_OFFSET_X		(-8)
-///ƒAƒNƒ^[¶¬A‘«Œ³À•W‚É‚·‚éˆ×‚É‘«‚µ‚±‚ŞƒIƒtƒZƒbƒgY
+///ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆæ™‚ã€è¶³å…ƒåº§æ¨™ã«ã™ã‚‹ç‚ºã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define FSS_ACTOR_SET_OFFSET_Y		(-16)
 
-///ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‚Å©—R‚Ég—p‚µ‚Ä‚à‚æ‚¢ƒtƒŒ[ƒ€–Ê
+///ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§è‡ªç”±ã«ä½¿ç”¨ã—ã¦ã‚‚ã‚ˆã„ãƒ•ãƒ¬ãƒ¼ãƒ é¢
 #define ENCOUNT_EFF_FRAME		(FRMAP_FRAME_WIN)
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static const BMPWIN_DAT YesNoBmpDat = {
 	FRMAP_FRAME_WIN, FFD_YESNO_WIN_PX, FFD_YESNO_WIN_PY,
 	FFD_YESNO_WIN_SX, FFD_YESNO_WIN_SY, FFD_YESNO_WIN_PAL, FFD_YESNO_WIN_CGX
 };
 
-//ğŒ•ªŠò—pƒe[ƒuƒ‹
+//æ¡ä»¶åˆ†å²ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 ConditionTable[6][3] =
 {
 //	  MINUS  EQUAL  PLUS
@@ -129,7 +129,7 @@ static const u8 ConditionTable[6][3] =
 };
 
 //============================================================================================
-//	BMPWINƒf[ƒ^
+//	BMPWINãƒ‡ãƒ¼ã‚¿
 //============================================================================================
 //static const BMPWIN_DAT YesNoBmpWin = {
 //	GF_BGL_FRAME2_M, 23, 13, 7, 4, MENU_MSG_PAL_NO, MENU_MSG_START
@@ -137,7 +137,7 @@ static const u8 ConditionTable[6][3] =
 
 //==============================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================
 //static u16 GetEventWorkValue(FSS_TASK *core, u16 work_no );
@@ -289,8 +289,8 @@ static BOOL ov104_2231F5C( FSS_TASK * core );
 
 //============================================================================================
 /**
- *	–½—ßƒe[ƒuƒ‹
- *	frontier_seq_def.h‚ÌƒCƒ“ƒfƒbƒNƒX‚Æˆê‘Î‚É‚È‚é‚æ‚¤‚É‚·‚é
+ *	å‘½ä»¤ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	frontier_seq_def.hã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ä¸€å¯¾ã«ãªã‚‹ã‚ˆã†ã«ã™ã‚‹
  */
 //============================================================================================
 
@@ -376,14 +376,14 @@ const FRSCR_CMD FSSCmdTable[]={
 	FSS_WndSet,
 	FSS_WndWait,
 	
-	//CPƒEƒBƒ“ƒhƒE
+	//CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	FSSC_CPWinWrite,
 	FSSC_CPWinDel,
 	FSSC_CPWrite,
-	//OBJ“®ìƒR[ƒh
+	//OBJå‹•ä½œã‚³ãƒ¼ãƒ‰
 	FSSC_ObjMoveCode_Reset,
 	FSSC_ObjMoveCode_Kyoro,
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	FSSC_SePlay,
 	FSSC_SeStop,
 	FSSC_SeWait,
@@ -391,7 +391,7 @@ const FRSCR_CMD FSSCmdTable[]={
 	FSSC_MeWait,
 	FSSC_BgmPlay,
 	FSSC_BgmStop,
-	//ƒtƒ@ƒNƒgƒŠ[
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 	FSSC_FactoryWorkAlloc,
 	FSSC_FactoryWorkInit,
 	FSSC_FactoryWorkFree,
@@ -408,14 +408,14 @@ const FRSCR_CMD FSSCmdTable[]={
 	FSSC_FactorySendBuf,
 	FSSC_FactoryRecvBuf,
 	FSSC_FactoryTalkMsgAppear,
-	//˜^‰æ
+	//éŒ²ç”»
 	FSSC_BattleRecInit,
 	FSSC_BattleRecSave,
 	FSSC_BattleRecLoad,
 	FSSC_BattleRecExit,
 	FSSC_BattleRecDataOccCheck,
 	FSSC_BattleRecServerVersionCheck,
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 	FSSC_ReportSave,
 	FSSC_ReportDivSave,
 	FSSC_ExtraSaveInit,
@@ -423,7 +423,7 @@ const FRSCR_CMD FSSCmdTable[]={
 	FSSC_StageRenshouCopyExtra,
 	FSSC_TimeWaitIconAdd,
 	FSSC_TimeWaitIconDel,
-	//ƒ[ƒhƒZƒbƒg
+	//ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 	FSSC_ItemName,
 	FSSC_NumberName,
 	FSSC_PlayerName,
@@ -432,11 +432,11 @@ const FRSCR_CMD FSSCmdTable[]={
 	FSSC_PokemonNameExtra,
 	FSSC_TypeName,
 	FSSC_RivalName,
-	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒg
+	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆ
 	FSSC_CheckBtlPoint,
 	FSSC_AddBtlPoint,
 	FSSC_SubBtlPoint,
-	//ƒoƒgƒ‹ƒ^ƒ[
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 	FSSC_TowerScrWork,
 	FSSC_TowerTalkMsgAppear,
 	FSSC_TowerWorkRelease,
@@ -444,7 +444,7 @@ const FRSCR_CMD FSSCmdTable[]={
 	FSSC_TowerCallGetResult,
 	FSSC_TowerSendBuf,
 	FSSC_TowerRecvBuf,
-	//ƒXƒe[ƒW
+	//ã‚¹ãƒ†ãƒ¼ã‚¸
 	FSSC_StageWorkAlloc,
 	FSSC_StageWorkEnemySet,
 	FSSC_StageWorkFree,
@@ -458,7 +458,7 @@ const FRSCR_CMD FSSCmdTable[]={
 	FSSC_StageTalkMsgAppear,
 	//
 	FSSC_DebugPrint,
-	//ƒLƒƒƒbƒXƒ‹
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 	FSSC_CastleWorkAlloc,
 	FSSC_CastleWorkInit,
 	FSSC_CastleWorkFree,
@@ -478,7 +478,7 @@ const FRSCR_CMD FSSCmdTable[]={
 	FSSC_CastleSubCP,
 	FSSC_CastleAddCP,
 	FSSC_CastleTalkMsgAppear,
-	//WiFió•t
+	//WiFiå—ä»˜
 	FSSC_WiFiCounterWorkAlloc,
 	FSSC_WiFiCounterWorkFree,
 	FSSC_WiFiCounterSendBuf,
@@ -493,7 +493,7 @@ const FRSCR_CMD FSSCmdTable[]={
 	FSSC_WiFiCounterTowerRecvTrainerData,
 	FSSC_WiFiCounterTowerCallAfter,
 	FSSC_WifiCounterListSetLastPlayDate,
-	//ƒ‹[ƒŒƒbƒg
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 	FSSC_RouletteWorkAlloc,
 	FSSC_RouletteWorkInit,
 	FSSC_RouletteWorkFree,
@@ -531,11 +531,11 @@ const u32 FSSCmdTableMax = NELEMS(FSSCmdTable);
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒ“ƒ‰ƒCƒ“ŠÖ”Fƒ[ƒN‚ğæ“¾‚·‚é
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u16 *	ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°ï¼šãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹
+ * @param	core	ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u16 *	ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * Ÿ‚Ì2ƒoƒCƒg‚ğƒ[ƒN‚ğw’è‚·‚éID‚Æ‚İ‚È‚µ‚ÄAƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+ * æ¬¡ã®2ãƒã‚¤ãƒˆã‚’ãƒ¯ãƒ¼ã‚¯ã‚’æŒ‡å®šã™ã‚‹IDã¨ã¿ãªã—ã¦ã€ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 //static inline u16 * FSSTGetWork(FSS_TASK *core)
@@ -546,7 +546,7 @@ u16 * FSSTGetWork(FSS_TASK *core)
 	
 	work = FSS_GetEventWorkAdrs( core, no );
 	if( work == NULL ){
-		OS_Printf( "work‚ªNULL no = %d\n", no );
+		OS_Printf( "workãŒNULL no = %d\n", no );
 	}
 	GF_ASSERT(work != NULL);
 	return work;
@@ -554,12 +554,12 @@ u16 * FSSTGetWork(FSS_TASK *core)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒ“ƒ‰ƒCƒ“ŠÖ”Fƒ[ƒN‚©‚ç’l‚ğæ“¾‚·‚é
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u16		’l
+ * @brief	ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°ï¼šãƒ¯ãƒ¼ã‚¯ã‹ã‚‰å€¤ã‚’å–å¾—ã™ã‚‹
+ * @param	core	ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u16		å€¤
  *
- * Ÿ‚Ì2ƒoƒCƒg‚ªFSW_LOCAL_STARTˆÈ‰º‚Å‚ ‚ê‚Î’l‚Æ‚µ‚Äó‚¯æ‚éB
- * ‚»‚êˆÈã‚Ìê‡‚Íƒ[ƒN‚ğw’è‚·‚éID‚Æ‚İ‚È‚µ‚ÄA‚»‚Ìƒ[ƒN‚©‚ç’l‚ğæ“¾‚·‚é
+ * æ¬¡ã®2ãƒã‚¤ãƒˆãŒFSW_LOCAL_STARTä»¥ä¸‹ã§ã‚ã‚Œã°å€¤ã¨ã—ã¦å—ã‘å–ã‚‹ã€‚
+ * ãã‚Œä»¥ä¸Šã®å ´åˆã¯ãƒ¯ãƒ¼ã‚¯ã‚’æŒ‡å®šã™ã‚‹IDã¨ã¿ãªã—ã¦ã€ãã®ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰å€¤ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 //static inline u16 FSSTGetWorkValue(FSS_TASK * core)
@@ -570,12 +570,12 @@ u16 FSSTGetWorkValue(FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ[ƒNID‚©‚çg—p‚·‚éƒ[ƒN‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+ * @brief   ãƒ¯ãƒ¼ã‚¯IDã‹ã‚‰ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
  * @param   core		
- * @param   wk_id		ƒ[ƒNID
+ * @param   wk_id		ãƒ¯ãƒ¼ã‚¯ID
  *
- * @retval  ƒ[ƒNƒAƒhƒŒƒX
+ * @retval  ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 //static u16 * GetEventWorkAdrs(FSS_TASK *core, u16 wk_id)
@@ -594,7 +594,7 @@ u16 * FSS_GetEventWorkAdrs(FSS_TASK *core, u16 wk_id)
 	else if(wk_id < FSW_REG_MAX){
 		return &core->reg[wk_id - FSW_REG_START];
 	}
-	//ˆÈ‰ºA“Á•Êˆ—
+	//ä»¥ä¸‹ã€ç‰¹åˆ¥å‡¦ç†
 	else if(wk_id == FSS_DATA_END_CODE){
 		return NULL;
 	}
@@ -605,18 +605,18 @@ u16 * FSS_GetEventWorkAdrs(FSS_TASK *core, u16 wk_id)
 		return NULL;
 	}
 	
-	GF_ASSERT(0);	//‘¶İ‚µ‚È‚¢ƒ[ƒNID
+	GF_ASSERT(0);	//å­˜åœ¨ã—ãªã„ãƒ¯ãƒ¼ã‚¯ID
 	return NULL;
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒ[ƒN‚Ì’l‚ğæ“¾
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’å–å¾—
  *
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	work_no		ƒ[ƒNƒiƒ“ƒo[
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	work_no		ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	"ƒ[ƒN‚Ì’l"
+ * @return	"ãƒ¯ãƒ¼ã‚¯ã®å€¤"
  */
 //------------------------------------------------------------------
 //static u16 GetEventWorkValue(FSS_TASK *core, u16 work_id )
@@ -630,7 +630,7 @@ u16 FSS_GetEventWorkValue(FSS_TASK *core, u16 work_id )
 
 //==============================================================================
 //
-//	–½—ßŠÖ”ŒQ
+//	å‘½ä»¤é–¢æ•°ç¾¤
 //
 //==============================================================================
 
@@ -639,24 +639,24 @@ u16 FSS_GetEventWorkValue(FSS_TASK *core, u16 work_id )
 //==============================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ‰½‚à‚µ‚È‚¢iƒfƒoƒbƒK‚Åˆø‚ÁŠ|‚¯‚é‚½‚ß‚Ì–½—ßj
+ * ä½•ã‚‚ã—ãªã„ï¼ˆãƒ‡ãƒãƒƒã‚¬ã§å¼•ã£æ›ã‘ã‚‹ãŸã‚ã®å‘½ä»¤ï¼‰
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_Dummy( FSS_TASK * core )
 {
-	OS_TPrintf("FSSC ƒ_ƒ~[\n");
+	OS_TPrintf("FSSC ãƒ€ãƒŸãƒ¼\n");
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg‚ÌI—¹
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®çµ‚äº†
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -670,7 +670,7 @@ static BOOL FSSC_End( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief   2Dƒ}ƒbƒvI—¹
+ * @brief   2Dãƒãƒƒãƒ—çµ‚äº†
  *
  * @param   core		
  */
@@ -684,7 +684,7 @@ static BOOL FSSC_ScriptFinish(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ}ƒbƒvØ‚è‘Ö‚¦
+ * @brief   ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   core		
  *
@@ -703,7 +703,7 @@ static BOOL FSSC_MapChange(FSS_TASK *core)
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL MapChangeWait(FSS_TASK * core)
 {
 	return 1;
@@ -711,7 +711,7 @@ static BOOL MapChangeWait(FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ}ƒbƒvØ‚è‘Ö‚¦(ƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹‚à“Ç‚İ‚İ‚È‚¨‚·)
+ * @brief   ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ(ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚‚èª­ã¿è¾¼ã¿ãªãŠã™)
  *
  * @param   core		
  *
@@ -725,18 +725,18 @@ static BOOL FSSC_MapChangeEX(FSS_TASK *core)
 	
 	scene_id = FSSTGetWorkValue( core );
 	event_id = FSSTGetWorkValue( core );
-	OS_Printf( "ƒ}ƒbƒvØ‚è‘Ö‚¦ƒV[ƒ“ = %d\n", scene_id );
+	OS_Printf( "ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã‚·ãƒ¼ãƒ³ = %d\n", scene_id );
 	Frontier_MapChangeReq(fss->fmain, scene_id, event_id);
 
 	FSST_End( core );
-	return 0;	//ƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹‚ğØ‚è‘Ö‚¦‚é‚Ì‚ÅAFSST_End‚ª‚±‚Ìê‚Å”½‰f‚³‚ê‚é‚æ‚¤‚É0‚Å•Ô‚·
+	return 0;	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã®ã§ã€FSST_EndãŒã“ã®å ´ã§åæ˜ ã•ã‚Œã‚‹ã‚ˆã†ã«0ã§è¿”ã™
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒEƒFƒCƒgˆ—
+ * ã‚¦ã‚§ã‚¤ãƒˆå‡¦ç†
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -749,17 +749,17 @@ static BOOL FSSC_TimeWait( FSS_TASK * core )
 
 	*ret_wk = num;
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	FSST_SetWait( core, EvWaitTime );
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL EvWaitTime(FSS_TASK * core)
 {
-	u16* ret_wk = FSS_GetEventWorkAdrs( core, core->reg[0] );	//’ˆÓI
+	u16* ret_wk = FSS_GetEventWorkAdrs( core, core->reg[0] );	//æ³¨æ„ï¼
 
 	(*ret_wk)--;
 	if( *ret_wk == 0 ){ 
@@ -770,9 +770,9 @@ static BOOL EvWaitTime(FSS_TASK * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒN‚É’l‚ğŠi”[
+ * ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’æ ¼ç´
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -788,9 +788,9 @@ static BOOL FSSC_LoadWkValue( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒN‚Éƒ[ƒN‚Ì’l‚ğŠi”[
+ * ãƒ¯ãƒ¼ã‚¯ã«ãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’æ ¼ç´
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -808,9 +808,9 @@ static BOOL FSSC_LoadWkWk( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒN‚É’l‚ğ‘«‚·
+ * ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’è¶³ã™
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -826,9 +826,9 @@ static BOOL FSSC_WkAdd( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒN‚É’l‚ğˆø‚­
+ * ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’å¼•ã
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -844,10 +844,10 @@ static BOOL FSSC_WkSub( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Q‚Â‚Ì’l‚ğ”äŠr
+ * ï¼’ã¤ã®å€¤ã‚’æ¯”è¼ƒ
  *
- * @param	r1		’l‚P
- * @param	r2		’l‚Q
+ * @param	r1		å€¤ï¼‘
+ * @param	r2		å€¤ï¼’
  *
  * @retval	"r1 < r2 : MISUS_RESULT"
  * @retval	"r1 = r2 : EQUAL_RESULT"
@@ -866,9 +866,9 @@ static BOOL FSSC_CmpMain( u16 r1, u16 r2 )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒN‚Æ’l‚ğ”äŠr
+ * ãƒ¯ãƒ¼ã‚¯ã¨å€¤ã‚’æ¯”è¼ƒ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -887,9 +887,9 @@ static BOOL FSSC_CmpWkValue( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒN‚Æƒ[ƒN‚ğ”äŠr
+ * ãƒ¯ãƒ¼ã‚¯ã¨ãƒ¯ãƒ¼ã‚¯ã‚’æ¯”è¼ƒ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -909,10 +909,10 @@ static BOOL FSSC_CmpWkWk( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰¼‘zƒ}ƒVƒ“ƒWƒƒƒ“ƒv–½—ß
+ * ä»®æƒ³ãƒã‚·ãƒ³ã‚¸ãƒ£ãƒ³ãƒ—å‘½ä»¤
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	adrs		ƒWƒƒƒ“ƒvæƒAƒhƒŒƒX
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	adrs		ã‚¸ãƒ£ãƒ³ãƒ—å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @return	none
  */
@@ -924,15 +924,15 @@ void FSSC_Jump( FSS_TASK * core, FSS_CODE * adrs )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgƒWƒƒƒ“ƒv
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¸ãƒ£ãƒ³ãƒ—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  *
  * @li	EVCMD_JUMP
  *
- *	•\‹LF	EVCMD_JUMP	JumpOffset(s16)
+ *	è¡¨è¨˜ï¼š	EVCMD_JUMP	JumpOffset(s16)
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_GlobalJump( FSS_TASK * core )
@@ -945,9 +945,9 @@ static BOOL FSSC_GlobalJump( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgğŒƒWƒƒƒ“ƒv
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ¡ä»¶ã‚¸ãƒ£ãƒ³ãƒ—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -968,15 +968,15 @@ static BOOL FSSC_IfJump( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgƒR[ƒ‹
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒ¼ãƒ«
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  *
  * @li	EVCMD_CALL
  *
- *	•\‹LF	EVCMD_CALL	CallOffset(s16)
+ *	è¡¨è¨˜ï¼š	EVCMD_CALL	CallOffset(s16)
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_GlobalCall( FSS_TASK * core )
@@ -988,9 +988,9 @@ static BOOL FSSC_GlobalCall( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgƒŠƒ^[ƒ“
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒªã‚¿ãƒ¼ãƒ³
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1003,9 +1003,9 @@ static BOOL FSSC_Ret( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgğŒƒR[ƒ‹
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ¡ä»¶ã‚³ãƒ¼ãƒ«
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1026,11 +1026,11 @@ static BOOL FSSC_IfCall( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ@ƒƒbƒZ[ƒW•\¦(ˆêŠ‡•\¦)
+ * ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º(ä¸€æ‹¬è¡¨ç¤º)
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	í‚É0
+ * @return	å¸¸ã«0
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_TalkMsgAllPut( FSS_TASK * core )
@@ -1038,25 +1038,25 @@ static BOOL FSSC_TalkMsgAllPut( FSS_TASK * core )
 	FSCR_TALK_EX_PARAM talk_ex_param;
 	u16 msg_id = FSSTGetU16(core);
 
-	talk_ex_param.msg_speed = MSG_ALLPUT;		///<ƒƒbƒZ[ƒW‘¬“x
-	talk_ex_param.auto_flag = 0;				///<©“®‘—‚èİ’è(MSG_AUTO_???)
-	talk_ex_param.font		= FONT_TALK;		///<ƒtƒHƒ“ƒg
+	talk_ex_param.msg_speed = MSG_ALLPUT;		///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€Ÿåº¦
+	talk_ex_param.auto_flag = 0;				///<è‡ªå‹•é€ã‚Šè¨­å®š(MSG_AUTO_???)
+	talk_ex_param.font		= FONT_TALK;		///<ãƒ•ã‚©ãƒ³ãƒˆ
 	talk_ex_param.dummy		= 0;
 
 	FSSC_Sub_ScrTalkMsg(core->fss, core->msgman, msg_id, 0, &talk_ex_param);
 	//FSSC_Sub_ScrTalkMsg(core->fss, core->msgman, msg_id, 0, NULL);
 	//FSST_SetWait( core, TalkMsgWait );
-	//OS_TPrintf("ˆêŠ‡‰ï˜bƒƒbƒZ[ƒWŠJn\n");
+	//OS_TPrintf("ä¸€æ‹¬ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹\n");
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * “o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ@ƒƒbƒZ[ƒW•\¦(ƒXƒLƒbƒv‚È‚µ)
+ * ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º(ã‚¹ã‚­ãƒƒãƒ—ãªã—)
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	í‚É1
+ * @return	å¸¸ã«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_TalkMsgNoSkip( FSS_TASK * core )
@@ -1064,17 +1064,17 @@ static BOOL FSSC_TalkMsgNoSkip( FSS_TASK * core )
 	u16 msg_id = FSSTGetU16(core);
 	FSSC_Sub_ScrTalkMsg(core->fss, core->msgman, msg_id, 0, NULL);
 	FSST_SetWait( core, TalkMsgWait );
-	OS_TPrintf("‰ï˜bƒƒbƒZ[ƒWŠJn\n");
+	OS_TPrintf("ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹\n");
 	return 1;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * “o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ@ƒƒbƒZ[ƒW•\¦
+ * ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	í‚É1
+ * @return	å¸¸ã«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_TalkMsg( FSS_TASK * core )
@@ -1082,7 +1082,7 @@ static BOOL FSSC_TalkMsg( FSS_TASK * core )
 	u16 msg_id = FSSTGetU16(core);
 	FSSC_Sub_ScrTalkMsg(core->fss, core->msgman, msg_id, 1, NULL);
 	FSST_SetWait( core, TalkMsgWait );
-	OS_TPrintf("‰ï˜bƒƒbƒZ[ƒWŠJn\n");
+	OS_TPrintf("ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹\n");
 	return 1;
 }
 
@@ -1096,9 +1096,9 @@ static BOOL TalkMsgWait(FSS_TASK * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚é
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1111,25 +1111,25 @@ static BOOL FSSC_TalkWinClose( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒvƒtƒF[ƒhƒXƒ^[ƒg
+ * ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  *
- * ’ˆÓI@ƒtƒF[ƒh‚É‚©‚©‚éLCDABG–Ê‚Ìİ’è‚ÍŒÅ’è‚É‚µ‚Ä‚¢‚é
+ * æ³¨æ„ï¼ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã«ã‹ã‹ã‚‹LCDã€BGé¢ã®è¨­å®šã¯å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_WipeFadeStart( FSS_TASK * core )
 {
-	u16 div				= FSSTGetU16(core);		//ŠeƒƒCƒvˆ—‚Ì•ªŠ„”
-	u16 sync			= FSSTGetU16(core);		//ŠeƒƒCƒv‚Ìˆ—‚ğ•ªŠ„‚µ‚½‚P•Ğ‚ÌƒVƒ“ƒN”
-	u16 type			= FSSTGetU16(core);		//ƒ^ƒCƒv
-	u16 color			= FSSTGetU16(core);		//ƒJƒ‰[
+	u16 div				= FSSTGetU16(core);		//å„ãƒ¯ã‚¤ãƒ—å‡¦ç†ã®åˆ†å‰²æ•°
+	u16 sync			= FSSTGetU16(core);		//å„ãƒ¯ã‚¤ãƒ—ã®å‡¦ç†ã‚’åˆ†å‰²ã—ãŸï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+	u16 type			= FSSTGetU16(core);		//ã‚¿ã‚¤ãƒ—
+	u16 color			= FSSTGetU16(core);		//ã‚«ãƒ©ãƒ¼
 
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, type, type, color, div, sync, HEAPID_WORLD );
 
-	//ƒEƒBƒ“ƒhƒEƒ}ƒXƒNó‘Ô‚ğ‰ğœ
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯çŠ¶æ…‹ã‚’è§£é™¤
 	WIPE_ResetWndMask( WIPE_DISP_MAIN );
 	WIPE_ResetWndMask( WIPE_DISP_SUB );
 
@@ -1138,13 +1138,13 @@ static BOOL FSSC_WipeFadeStart( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒvƒtƒF[ƒhI—¹ƒ`ƒFƒbƒN
+ * ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  *
- * ’ˆÓI@ƒ`ƒFƒbƒN‚·‚éLCD‚Ìİ’è‚ÍŒÅ’è‚É‚µ‚Ä‚¢‚é
+ * æ³¨æ„ï¼ã€€ãƒã‚§ãƒƒã‚¯ã™ã‚‹LCDã®è¨­å®šã¯å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_WipeFadeCheck( FSS_TASK * core )
@@ -1153,7 +1153,7 @@ static BOOL FSSC_WipeFadeCheck( FSS_TASK * core )
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitWipeFadeCheck(FSS_TASK * core)
 {
 	if( WIPE_SYS_EndCheck() == TRUE ){
@@ -1164,11 +1164,11 @@ static BOOL WaitWipeFadeCheck(FSS_TASK * core)
 }
 
 //==============================================================================
-//	BMPƒƒjƒ…[
+//	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	‰Šú‰»
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1184,12 +1184,12 @@ static BOOL FSSC_BmpMenuInit( FSS_TASK * core )
 	u8 cancel			= FSSTGetU8(core);
 	u16 wk_id			= FSSTGetU16( core );
 	
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	fss->ev_win	= FSSC_Sub_BmpMenu_Init(fss, x, y, cursor, cancel, 
 								FSS_GetEventWorkAdrs(core, wk_id), fss->wordset, 
 								NULL );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	return 1;
@@ -1197,7 +1197,7 @@ static BOOL FSSC_BmpMenuInit( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	‰Šú‰»(“Ç‚İ‚ñ‚Å‚¢‚égmmƒtƒ@ƒCƒ‹‚ğg—p‚·‚é)
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	åˆæœŸåŒ–(èª­ã¿è¾¼ã‚“ã§ã„ã‚‹gmmãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹)
  *
  * @param	none
  *
@@ -1213,12 +1213,12 @@ static BOOL FSSC_BmpMenuInitEx( FSS_TASK * core )
 	u8 cancel			= FSSTGetU8(core);
 	u16 wk_id			= FSSTGetU16( core );
 	
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	fss->ev_win	= FSSC_Sub_BmpMenu_Init(fss, x, y, cursor, cancel, 
 								FSS_GetEventWorkAdrs(core,wk_id), fss->wordset, 
 								core->msgman );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	return 1;
@@ -1226,7 +1226,7 @@ static BOOL FSSC_BmpMenuInitEx( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒŠƒXƒgì¬(u16ƒo[ƒWƒ‡ƒ“)
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒªã‚¹ãƒˆä½œæˆ(u16ãƒãƒ¼ã‚¸ãƒ§ãƒ³)
  *
  * @param	none
  *
@@ -1241,7 +1241,7 @@ static BOOL FSSC_BmpMenuMakeList( FSS_TASK * core )
 //	msg_id	= FSSTGetWorkValue(core);
 //	param	= FSSTGetWorkValue(core);
 	msg_id = FSSTGetU16(core);
-	talk_msg_id = FSEV_WIN_TALK_MSG_NONE;		//ƒŠƒXƒgg—p‚Ì‰ï˜bƒƒbƒZ[ƒW‚È‚µ
+	talk_msg_id = FSEV_WIN_TALK_MSG_NONE;		//ãƒªã‚¹ãƒˆä½¿ç”¨æ™‚ã®ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 	param = FSSTGetU16(core);
 
 	FSSC_Sub_BmpMenu_MakeList(fss->ev_win, msg_id, talk_msg_id, param );
@@ -1250,7 +1250,7 @@ static BOOL FSSC_BmpMenuMakeList( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒŠƒXƒgì¬(u16ƒo[ƒWƒ‡ƒ“)(‰ï˜bƒEƒBƒ“ƒƒbƒZ[ƒWw’è‚ ‚è)
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒªã‚¹ãƒˆä½œæˆ(u16ãƒãƒ¼ã‚¸ãƒ§ãƒ³)(ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æŒ‡å®šã‚ã‚Š)
  *
  * @param	none
  *
@@ -1274,7 +1274,7 @@ static BOOL FSSC_BmpMenuMakeListTalkMsg( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ŠJn
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	é–‹å§‹
  *
  * @param	none
  *
@@ -1291,26 +1291,26 @@ static BOOL FSSC_BmpMenuStart( FSS_TASK * core )
 	return 1;
 }
 
-//ƒEƒFƒCƒgŠÖ”
+//ã‚¦ã‚§ã‚¤ãƒˆé–¢æ•°
 static BOOL EvSelMenuWinWait(FSS_TASK * core)
 {
 	FSS_PTR fss = core->fss;
-	u16* ret_wk = FSS_GetEventWorkAdrs(core, core->reg[0] );	//’ˆÓI
+	u16* ret_wk = FSS_GetEventWorkAdrs(core, core->reg[0] );	//æ³¨æ„ï¼
 
 	if( *ret_wk == FSEV_WIN_NOTHING ){
-		return FALSE;											//Œp‘±
+		return FALSE;											//ç¶™ç¶š
 	}
 
 	fss->ev_win = NULL;
-	return TRUE;												//I—¹
+	return TRUE;												//çµ‚äº†
 }
 
 //==============================================================================
-//	BMPƒŠƒXƒg
+//	BMPãƒªã‚¹ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	‰Šú‰»
+ * @brief	BMPãƒªã‚¹ãƒˆ	åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1326,12 +1326,12 @@ static BOOL FSSC_BmpListInit( FSS_TASK * core )
 	u8 cancel			= FSSTGetU8(core);
 	u16 wk_id			= FSSTGetU16( core );
 	
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	fss->ev_win	= FSSC_Sub_BmpList_Init(fss, x, y, cursor, cancel, 
 								FSS_GetEventWorkAdrs(core, wk_id), fss->wordset, 
 								NULL );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	return 1;
@@ -1339,7 +1339,7 @@ static BOOL FSSC_BmpListInit( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	‰Šú‰»(“Ç‚İ‚ñ‚Å‚¢‚égmmƒtƒ@ƒCƒ‹‚ğg—p‚·‚é)
+ * @brief	BMPãƒªã‚¹ãƒˆ	åˆæœŸåŒ–(èª­ã¿è¾¼ã‚“ã§ã„ã‚‹gmmãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹)
  *
  * @param	none
  *
@@ -1355,12 +1355,12 @@ static BOOL FSSC_BmpListInitEx( FSS_TASK * core )
 	u8 cancel			= FSSTGetU8(core);
 	u16 wk_id			= FSSTGetU16( core );
 	
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	fss->ev_win	= FSSC_Sub_BmpList_Init(fss, x, y, cursor, cancel, 
 								FSS_GetEventWorkAdrs(core,wk_id), fss->wordset, 
 								core->msgman );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	return 1;
@@ -1368,7 +1368,7 @@ static BOOL FSSC_BmpListInitEx( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒŠƒXƒgì¬(u16ƒo[ƒWƒ‡ƒ“)
+ * @brief	BMPãƒªã‚¹ãƒˆ	ãƒªã‚¹ãƒˆä½œæˆ(u16ãƒãƒ¼ã‚¸ãƒ§ãƒ³)
  *
  * @param	none
  *
@@ -1392,7 +1392,7 @@ static BOOL FSSC_BmpListMakeList( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ŠJn
+ * @brief	BMPãƒªã‚¹ãƒˆ	é–‹å§‹
  *
  * @param	none
  *
@@ -1411,33 +1411,33 @@ static BOOL FSSC_BmpListStart( FSS_TASK * core )
 }
 
 #if 0
-//ƒEƒFƒCƒgŠÖ”
+//ã‚¦ã‚§ã‚¤ãƒˆé–¢æ•°
 static BOOL EvSelListWinWait(FSS_TASK * core)
 {
 	FSS_PTR fss = core->fss;
-	u16* ret_wk = FSS_GetEventWorkAdrs(core, core->reg[0] );	//’ˆÓI
+	u16* ret_wk = FSS_GetEventWorkAdrs(core, core->reg[0] );	//æ³¨æ„ï¼
 
 	if( *ret_wk == FSEV_WIN_NOTHING ){
-		return FALSE;											//Œp‘±
+		return FALSE;											//ç¶™ç¶š
 
 	}else if( *ret_wk == FSEV_WIN_COMPULSION_DEL ){
-		FSSC_Sub_BmpList_Del( fss->ev_win );					//‹­§íœ
+		FSSC_Sub_BmpList_Del( fss->ev_win );					//å¼·åˆ¶å‰Šé™¤
 	}
 
 	fss->ev_win = NULL;
-	return TRUE;												//I—¹
+	return TRUE;												//çµ‚äº†
 }
 #endif
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	‹­§íœ
+ * @brief	BMPãƒªã‚¹ãƒˆ	å¼·åˆ¶å‰Šé™¤
  *
  * @param	none
  *
  * @retval	1
  *
- * ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹‚Ì‚İ‚Åg—p
+ * ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã®ã¿ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------
 static BOOL FSSC_BmpListDel( FSS_TASK * core )
@@ -1449,9 +1449,9 @@ static BOOL FSSC_BmpListDel( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚Í‚¢E‚¢‚¢‚¦vˆ—
+ * ã€Œã¯ã„ãƒ»ã„ã„ãˆã€å‡¦ç†
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	1
  */
@@ -1468,7 +1468,7 @@ static BOOL FSSC_YesNoWin( FSS_TASK * core )
 	fss->mw = BmpYesNoSelectInitEx(
 			fmap->bgl, &YesNoBmpDat, FR_MENU_WIN_CGX_NUM, FR_MENU_WIN_PAL, csr_pos, fss->heap_id );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	FSST_SetWait( core, EvYesNoSelect );
@@ -1480,7 +1480,7 @@ static BOOL EvYesNoSelect(FSS_TASK * core)
 {
 	u32	ret;
 	FSS_PTR fss = core->fss;
-	u16* ret_wk			= FSS_GetEventWorkAdrs(core, core->reg[0] );	//’ˆÓI
+	u16* ret_wk			= FSS_GetEventWorkAdrs(core, core->reg[0] );	//æ³¨æ„ï¼
 	
 	ret  = BmpYesNoSelectMain( fss->mw, fss->heap_id );
 
@@ -1496,7 +1496,7 @@ static BOOL EvYesNoSelect(FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‚ğ“o˜^
+ * @brief   ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚’ç™»éŒ²
  *
  * @param   core		
  */
@@ -1528,7 +1528,7 @@ static BOOL FSS_CharResourceSet(FSS_TASK *core)
 			my_status = SaveData_GetMyStatus(ex_param->savedata);
 			res.charid = FrontierTool_MyObjCodeGet(my_status);
 			
-			OS_TPrintf("ålŒö“o˜^ charid = %d, movetype = %d\n", res.charid, res.movetype);
+			OS_TPrintf("ä¸»äººå…¬ç™»éŒ² charid = %d, movetype = %d\n", res.charid, res.movetype);
 			FMap_CharResourceSet(fmap, &res);
 		}
 		else if(res.charid == FSS_CODE_SIO_PLAYER){
@@ -1541,12 +1541,12 @@ static BOOL FSS_CharResourceSet(FSS_TASK *core)
 					my_status = CommInfoGetMyStatus(i);
 					res.charid = FrontierTool_MyObjCodeGet(my_status);
 					
-					OS_TPrintf("’ÊMƒvƒŒƒCƒ„[“o˜^ charid = %d, movetype = %d\n", res.charid, res.movetype);
+					OS_TPrintf("é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç™»éŒ² charid = %d, movetype = %d\n", res.charid, res.movetype);
 					FMap_CharResourceSet(fmap, &res);
 				}
 			}
-			else{	//’ÊM‚µ‚Ä‚¢‚È‚¢
-				;		//‰½‚à“o˜^‚µ‚È‚¢
+			else{	//é€šä¿¡ã—ã¦ã„ãªã„
+				;		//ä½•ã‚‚ç™»éŒ²ã—ãªã„
 			}
 		}
 		else{
@@ -1561,7 +1561,7 @@ static BOOL FSS_CharResourceSet(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‚ğíœ
+ * @brief   ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚’å‰Šé™¤
  *
  * @param   core		
  */
@@ -1580,12 +1580,12 @@ static BOOL FSS_CharResourceFree(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒNƒ^[“o˜^
+ * @brief   ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   core		
  *
- * playid, charid‚¾‚¯ƒ[ƒNŒo—R‚Åó‚¯“n‚µ‰Â”\‚Å‚·
- * À•W‚Íƒ}ƒCƒiƒX‚ª‚ ‚è‚»‚¤‚È‚Ì‚Å‚â‚Á‚Ä‚¢‚Ü‚¹‚ñ
+ * playid, charidã ã‘ãƒ¯ãƒ¼ã‚¯çµŒç”±ã§å—ã‘æ¸¡ã—å¯èƒ½ã§ã™
+ * åº§æ¨™ã¯ãƒã‚¤ãƒŠã‚¹ãŒã‚ã‚Šãã†ãªã®ã§ã‚„ã£ã¦ã„ã¾ã›ã‚“
  */
 //--------------------------------------------------------------
 static BOOL FSS_ActorSet(FSS_TASK *core)
@@ -1613,7 +1613,7 @@ static BOOL FSS_ActorSet(FSS_TASK *core)
 		res.y = FSSTGetU16(core) + FSS_ACTOR_SET_OFFSET_Y;
 		res.visible = FSSTGetU8(core);
 		res.event_id = FSSTGetU8(core);
-		res.status = WF2DMAP_OBJST_C_NONE;	//ƒXƒe[ƒ^ƒX‚¾‚¯ŒÅ’è
+		res.status = WF2DMAP_OBJST_C_NONE;	//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã ã‘å›ºå®š
 		if(res.charid == FSS_CODE_MYSELF){
 			const MYSTATUS *my_status;
 			FRONTIER_EX_PARAM *ex_param;
@@ -1646,7 +1646,7 @@ static BOOL FSS_ActorSet(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒNƒ^[íœ
+ * @brief   ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  *
  * @param   core		
  */
@@ -1667,9 +1667,9 @@ static BOOL FSS_ActorFree(FSS_TASK *core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒNƒ^[•\¦E”ñ•\¦İ’è
+ * ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºãƒ»éè¡¨ç¤ºè¨­å®š
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1691,9 +1691,9 @@ static BOOL FSS_ActorVisibleSet( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒNƒ^[BG—Dæİ’è
+ * ã‚¢ã‚¯ã‚¿ãƒ¼BGå„ªå…ˆè¨­å®š
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1718,14 +1718,14 @@ static BOOL FSS_ActorBgPriSet( FSS_TASK * core )
 
 //==============================================================================
 //
-//	ƒAƒjƒ[ƒVƒ‡ƒ“
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 //
 //==============================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1742,29 +1742,29 @@ static BOOL FSSC_ObjAnime( FSS_TASK * core )
 	fss_actor = Frontier_ActorWorkSearch(fss->fmain, playid);
 
 	if( fss_actor == NULL ){
-		OS_Printf( "‘¶İ‚µ‚È‚¢ objid = %d\n", playid );
-		GF_ASSERT(0);	//‘¶İ‚µ‚È‚¢
+		OS_Printf( "å­˜åœ¨ã—ãªã„ objid = %d\n", playid );
+		GF_ASSERT(0);	//å­˜åœ¨ã—ãªã„
 	}
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒŠƒXƒgƒZƒbƒg
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	p = (FSS_CODE*)(core->PC+pos);
 	FSSC_AnimeListSet(
 		playid, fss_actor, (FSSC_ANIME_DATA*)p, fmap->actcmd_q, &fss->anm_count, fss->heap_id);
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì”‚ğ‘«‚·
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°ã‚’è¶³ã™
 	fss->anm_count++;
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   OBJƒAƒjƒ[ƒVƒ‡ƒ“ƒ[ƒN•TCB¶¬
+ * @brief   OBJã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¯ãƒ¼ã‚¯ï¼†TCBç”Ÿæˆ
  *
- * @param   playid				OBJWK”F¯”Ô†
- * @param   objwk				ƒIƒuƒWƒFƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   anmlist				ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   reqcmd_q			ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   anm_count_ptr		ƒAƒjƒ[ƒVƒ‡ƒ“ƒJƒEƒ“ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   playid				OBJWKèªè­˜ç•ªå·
+ * @param   objwk				ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   anmlist				ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   reqcmd_q			ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   anm_count_ptr		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚«ã‚¦ãƒ³ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void FSSC_AnimeListSet(u16 playid, FSS_ACTOR_WORK *fss_actor, const FSSC_ANIME_DATA *anmlist, WF2DMAP_ACTCMDQ *actcmd_q, u8 *anm_count_ptr, int heap_id)
@@ -1786,9 +1786,9 @@ static void FSSC_AnimeListSet(u16 playid, FSS_ACTOR_WORK *fss_actor, const FSSC_
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‘S‚Ä‚ÌƒAƒjƒ[ƒVƒ‡ƒ“I—¹‘Ò‚¿
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ã¦ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾…ã¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	1
  */
@@ -1801,9 +1801,9 @@ static BOOL FSSC_ObjAnimeWait( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒB[ƒ‹ƒhOBJ‘S‚Ä‚ÌƒAƒjƒ[ƒVƒ‡ƒ“I—¹‘Ò‚¿
- * @param   core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval 	1=I—¹
+ * @brief   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ã¦ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾…ã¡
+ * @param   core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval 	1=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL ObjAnmWait(FSS_TASK * core)
@@ -1817,11 +1817,11 @@ static BOOL ObjAnmWait(FSS_TASK * core)
 }
 
 //==============================================================================
-//	”z’u•¨ƒAƒNƒ^[
+//	é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ”z’u•¨‚ÌƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‚ğ“o˜^
+ * @brief   é…ç½®ç‰©ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚’ç™»éŒ²
  *
  * @param   core		
  */
@@ -1858,7 +1858,7 @@ static BOOL FSS_ArticleResourceSet(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”z’u•¨‚ÌƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‚ğíœ
+ * @brief   é…ç½®ç‰©ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚’å‰Šé™¤
  *
  * @param   core		
  */
@@ -1878,7 +1878,7 @@ static BOOL FSS_ArticleResourceFree(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”z’u•¨ƒAƒNƒ^[“o˜^
+ * @brief   é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   core		
  */
@@ -1920,7 +1920,7 @@ static BOOL FSS_ArticleActorSet(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”z’u•¨ƒAƒNƒ^[íœ
+ * @brief   é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  *
  * @param   core		
  */
@@ -1939,9 +1939,9 @@ static BOOL FSS_ArticleActorFree(FSS_TASK *core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[•\¦E”ñ•\¦İ’è
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºãƒ»éè¡¨ç¤ºè¨­å®š
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1963,9 +1963,9 @@ static BOOL FSS_ArticleActorVisibleSet( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[ƒtƒŠƒbƒv…•½•ûŒüİ’è
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ•ãƒªãƒƒãƒ—æ°´å¹³æ–¹å‘è¨­å®š
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1986,9 +1986,9 @@ static BOOL FSS_ArticleActorFlipHSet( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[OBJƒ‚[ƒhİ’è(0=’ÊíA1=”¼“§–¾)
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼OBJãƒ¢ãƒ¼ãƒ‰è¨­å®š(0=é€šå¸¸ã€1=åŠé€æ˜)
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2005,18 +2005,18 @@ static BOOL FSS_ArticleActorObjModeSet( FSS_TASK * core )
 	GF_ASSERT(cap != NULL);
 
 	if( flag == 0 ){
-		CATS_ObjectObjModeSet(cap->act, GX_OAM_MODE_NORMAL);		//ƒm[ƒ}ƒ‹
+		CATS_ObjectObjModeSet(cap->act, GX_OAM_MODE_NORMAL);		//ãƒãƒ¼ãƒãƒ«
 	}else{
-		CATS_ObjectObjModeSet(cap->act, GX_OAM_MODE_XLU);			//”¼“§–¾
+		CATS_ObjectObjModeSet(cap->act, GX_OAM_MODE_XLU);			//åŠé€æ˜
 	}
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ”z’u•¨ƒAƒNƒ^[:ƒAƒjƒŠJn
+ * @brief   é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼:ã‚¢ãƒ‹ãƒ¡é–‹å§‹
  *
- * @param   core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  "0"
  */
@@ -2036,9 +2036,9 @@ static BOOL FSS_ArticleActorAnimeStart( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief   ”z’u•¨ƒAƒNƒ^[:ƒAƒjƒŠJn
+ * @brief   é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼:ã‚¢ãƒ‹ãƒ¡é–‹å§‹
  *
- * @param   core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  "0"
  */
@@ -2054,9 +2054,9 @@ static BOOL FSS_ArticleActorAnimeStop( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief   ”z’u•¨ƒAƒNƒ^[:ƒAƒjƒI—¹‘Ò‚¿
+ * @brief   é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼:ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
  *
- * @param   core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  "1"
  */
@@ -2065,14 +2065,14 @@ static BOOL FSS_ArticleActorAnimeWait( FSS_TASK * core )
 {
 	u16 actwork_no	= FSSTGetWorkValue(core);
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = actwork_no;
 
 	FSST_SetWait( core, WaitArticleActorAnime );
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitArticleActorAnime(FSS_TASK *core)
 {
 	CATS_ACT_PTR cap;
@@ -2088,16 +2088,16 @@ static BOOL WaitArticleActorAnime(FSS_TASK *core)
 
 //==============================================================================
 //
-//	OBJ“®ìƒR[ƒhİ’è
+//	OBJå‹•ä½œã‚³ãƒ¼ãƒ‰è¨­å®š
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   OBJ“®ìƒR[ƒhİ’èF‹¤’Êˆ—
+ * @brief   OBJå‹•ä½œã‚³ãƒ¼ãƒ‰è¨­å®šï¼šå…±é€šå‡¦ç†
  *
  * @param   core			
- * @param   code			OBJ“®ìƒR[ƒh
- * @param   work_num		work‚É“n‚·—v‘f‚Ì”
+ * @param   code			OBJå‹•ä½œã‚³ãƒ¼ãƒ‰
+ * @param   work_num		workã«æ¸¡ã™è¦ç´ ã®æ•°
  */
 //--------------------------------------------------------------
 static void FSSC_ObjMoveCode_Core(FSS_TASK *core, int code, int work_num)
@@ -2120,7 +2120,7 @@ static void FSSC_ObjMoveCode_Core(FSS_TASK *core, int code, int work_num)
 
 //--------------------------------------------------------------
 /**
- * @brief   OBJ“®ìƒR[ƒhİ’èFƒŠƒZƒbƒg‚·‚é(OBJ“®ì‚È‚µ‚É‚·‚é)
+ * @brief   OBJå‹•ä½œã‚³ãƒ¼ãƒ‰è¨­å®šï¼šãƒªã‚»ãƒƒãƒˆã™ã‚‹(OBJå‹•ä½œãªã—ã«ã™ã‚‹)
  * @param   core		
  * @return	"0"
  */
@@ -2137,7 +2137,7 @@ static BOOL FSSC_ObjMoveCode_Reset(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   OBJ“®ìƒR[ƒhİ’èF‚«‚å‚ë‚«‚å‚ë
+ * @brief   OBJå‹•ä½œã‚³ãƒ¼ãƒ‰è¨­å®šï¼šãã‚‡ã‚ãã‚‡ã‚
  * @param   core		
  * @return	"0"
  */
@@ -2157,7 +2157,7 @@ static BOOL FSSC_ObjMoveCode_Kyoro(FSS_TASK *core)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –¼‘O“ü—Í‰æ–ÊŒÄ‚Ño‚µ	¦ƒTƒuPROCŒÄ‚Ño‚µ‚ÌƒeƒXƒg
+ * @brief   åå‰å…¥åŠ›ç”»é¢å‘¼ã³å‡ºã—	â€»ã‚µãƒ–PROCå‘¼ã³å‡ºã—ã®ãƒ†ã‚¹ãƒˆ
  *
  * @param   core		
  *
@@ -2181,20 +2181,20 @@ static BOOL FSSC_NameInProc(FSS_TASK *core)
 	return 1;
 }
 
-///–¼‘O“ü—Í‰æ–Ê‚Å“n‚µ‚½ƒ[ƒN‚Ì‰ğ•úˆ—
+///åå‰å…¥åŠ›ç”»é¢ã§æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†
 static void NameInFreeMemory(void *parent_work)
 {
 	NameIn_ParamDelete(parent_work);
 }
 
 //==============================================================================
-//	í“¬˜^‰æ
+//	æˆ¦é—˜éŒ²ç”»
 //==============================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^‰Šú‰»
+ * ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2204,13 +2204,13 @@ static BOOL FSSC_BattleRecInit( FSS_TASK * core )
 	LOAD_RESULT ret;
 	FRONTIER_EX_PARAM *ex_param = Frontier_ExParamGet(core->fss->fmain);
 
-	//‘Îí˜^‰æƒf[ƒ^‚Ì‰Šú‰»
+	//å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	BattleRec_Init( ex_param->savedata, HEAPID_WORLD, &ret );
 #if 0
-	LOAD_RESULT_NULL = 0,		///<ƒf[ƒ^‚È‚µ
-	LOAD_RESULT_OK,				///<ƒf[ƒ^³í“Ç‚İ‚İ
-	LOAD_RESULT_NG,				///<ƒf[ƒ^ˆÙí
-	LOAD_RESULT_BREAK,			///<”j‰óA•œ‹Œ•s”\ 
+	LOAD_RESULT_NULL = 0,		///<ãƒ‡ãƒ¼ã‚¿ãªã—
+	LOAD_RESULT_OK,				///<ãƒ‡ãƒ¼ã‚¿æ­£å¸¸èª­ã¿è¾¼ã¿
+	LOAD_RESULT_NG,				///<ãƒ‡ãƒ¼ã‚¿ç•°å¸¸
+	LOAD_RESULT_BREAK,			///<ç ´å£Šã€å¾©æ—§ä¸èƒ½ 
 #endif
 
 	return 0;
@@ -2218,9 +2218,9 @@ static BOOL FSSC_BattleRecInit( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZ[ƒu
+ * ã‚»ãƒ¼ãƒ–
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -2229,22 +2229,22 @@ static BOOL FSSC_BattleRecSave( FSS_TASK * core )
 {
 	FSS_PTR fss = core->fss;
 	u16 fr_no	= FSSTGetU16(core);
-	u16 type	= FSSTGetWorkValue(core);		//ƒoƒgƒ‹ƒ^ƒCƒv
-	u16 rensyou	= FSSTGetWorkValue(core);		//Œ»İ‚Ì˜AŸ”
-	u16* ret_wk	= FSSTGetWork(core);			//Œ‹‰Êæ“¾
+	u16 type	= FSSTGetWorkValue(core);		//ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—
+	u16 rensyou	= FSSTGetWorkValue(core);		//ç¾åœ¨ã®é€£å‹æ•°
+	u16* ret_wk	= FSSTGetWork(core);			//çµæœå–å¾—
 
-	OS_Printf( "{İƒiƒ“ƒo[ = %d\n", fr_no );
-	OS_Printf( "ƒoƒgƒ‹ƒ^ƒCƒv = %d\n", type );
-	OS_Printf( "‰½í–Ú‚©(˜AŸ”‚©‚çæ“¾) = %d\n", rensyou );
+	OS_Printf( "æ–½è¨­ãƒŠãƒ³ãƒãƒ¼ = %d\n", fr_no );
+	OS_Printf( "ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ— = %d\n", type );
+	OS_Printf( "ä½•æˆ¦ç›®ã‹(é€£å‹æ•°ã‹ã‚‰å–å¾—) = %d\n", rensyou );
 
 #if 0
-	SAVE_RESULT_CONTINUE = 0,		///<ƒZ[ƒuˆ—Œp‘±’†
-	SAVE_RESULT_LAST,				///<ƒZ[ƒuˆ—Œp‘±’†AÅŒã‚Ìˆê‚Â‘O
-	SAVE_RESULT_OK,					///<ƒZ[ƒu³íI—¹
-	SAVE_RESULT_NG,					///<ƒZ[ƒu¸”sI—¹
+	SAVE_RESULT_CONTINUE = 0,		///<ã‚»ãƒ¼ãƒ–å‡¦ç†ç¶™ç¶šä¸­
+	SAVE_RESULT_LAST,				///<ã‚»ãƒ¼ãƒ–å‡¦ç†ç¶™ç¶šä¸­ã€æœ€å¾Œã®ä¸€ã¤å‰
+	SAVE_RESULT_OK,					///<ã‚»ãƒ¼ãƒ–æ­£å¸¸çµ‚äº†
+	SAVE_RESULT_NG,					///<ã‚»ãƒ¼ãƒ–å¤±æ•—çµ‚äº†
 #endif
 
-	//9999‚ğ‰z‚³‚È‚¢‚æ‚¤‚É§ŒÀ
+	//9999ã‚’è¶Šã•ãªã„ã‚ˆã†ã«åˆ¶é™
 	if( rensyou > REC_COUNTER_MAX ){
 		rensyou = REC_COUNTER_MAX;
 	}
@@ -2265,34 +2265,34 @@ static BOOL BattleRecSaveWait(FSS_TASK * core)
 	FRONTIER_EX_PARAM *ex_param = Frontier_ExParamGet(core->fss->fmain);
 	SAVE_RESULT ret;
 	
-	//‘Îí˜^‰æƒf[ƒ^‚ÌƒZ[ƒu
+	//å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ¼ãƒ–
 	ret = BattleRec_Save(ex_param->savedata, fss->save_rec_mode, fss->save_rensyou, 
 		LOADDATA_MYREC, &fss->save_seq0, &fss->save_seq1);
 	OS_Printf( "rec save = %d\n", ret );
 	if(ret == SAVE_RESULT_OK || ret == SAVE_RESULT_NG){
 		if(ret == SAVE_RESULT_OK){
-			*(fss->save_ret_wk) = 1;	//¬Œ÷
+			*(fss->save_ret_wk) = 1;	//æˆåŠŸ
 		}
 		else{
-			*(fss->save_ret_wk) = 0;	//¸”s
+			*(fss->save_ret_wk) = 0;	//å¤±æ•—
 		}
 		return 1;
 	}
 	return 0;
 }
 
-//‹L˜^ˆ—‚Ì{İNo‚ğæ“¾(‚±‚Ì’è‹`‚Í{İ‚Æƒoƒgƒ‹Œ`®‚ª‚í‚©‚é’è‹`)
+//è¨˜éŒ²å‡¦ç†ã®æ–½è¨­Noã‚’å–å¾—(ã“ã®å®šç¾©ã¯æ–½è¨­ã¨ãƒãƒˆãƒ«å½¢å¼ãŒã‚ã‹ã‚‹å®šç¾©)
 static int Frontier_GetRecModeNo( u16 fr_no, u16 type )
 {
 	int no;
 
-	//•ÛŒ¯
+	//ä¿é™º
 	no = RECMODE_TOWER_SINGLE;
 
 	switch( fr_no ){
 
 	////////////////////////////////////////////////////
-	//ƒoƒgƒ‹ƒ^ƒ[	
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	
 	case FRONTIER_NO_TOWER:
 
 		switch( type ){
@@ -2302,13 +2302,13 @@ static int Frontier_GetRecModeNo( u16 fr_no, u16 type )
 		case BTWR_MODE_DOUBLE:
 			no = RECMODE_TOWER_DOUBLE;
 			break;
-		case BTWR_MODE_MULTI:					//AIƒ}ƒ‹ƒ`
-		case BTWR_MODE_COMM_MULTI:				//’ÊMƒ}ƒ‹ƒ`
+		case BTWR_MODE_MULTI:					//AIãƒãƒ«ãƒ
+		case BTWR_MODE_COMM_MULTI:				//é€šä¿¡ãƒãƒ«ãƒ
 		case BTWR_MODE_WIFI_MULTI:				//wifi
 			no = RECMODE_TOWER_MULTI;
 			break;
-		case BTWR_MODE_WIFI:					//wifiƒ_ƒEƒ“ƒ[ƒh‚ÌƒVƒ“ƒOƒ‹
-		case BTWR_MODE_RETRY:					//wifiƒ_ƒEƒ“ƒ[ƒh‚ÌƒVƒ“ƒOƒ‹‚ÌƒŠƒgƒ‰ƒC
+		case BTWR_MODE_WIFI:					//wifiãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã®ã‚·ãƒ³ã‚°ãƒ«
+		case BTWR_MODE_RETRY:					//wifiãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã®ã‚·ãƒ³ã‚°ãƒ«ã®ãƒªãƒˆãƒ©ã‚¤
 			no = RECMODE_TOWER_WIFI_DL;
 			break;
 		default:
@@ -2318,7 +2318,7 @@ static int Frontier_GetRecModeNo( u16 fr_no, u16 type )
 		break;
 
 	////////////////////////////////////////////////////
-	//ƒtƒ@ƒNƒgƒŠ[50
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼50
 	case FRONTIER_NO_FACTORY_LV50:
 
 		switch( type ){
@@ -2339,7 +2339,7 @@ static int Frontier_GetRecModeNo( u16 fr_no, u16 type )
 		break;
 
 	////////////////////////////////////////////////////
-	//ƒtƒ@ƒNƒgƒŠ[100
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼100
 	case FRONTIER_NO_FACTORY_LV100:
 
 		switch( type ){
@@ -2360,7 +2360,7 @@ static int Frontier_GetRecModeNo( u16 fr_no, u16 type )
 		break;
 
 	////////////////////////////////////////////////////
-	//ƒLƒƒƒbƒXƒ‹
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 	case FRONTIER_NO_CASTLE:
 
 		switch( type ){
@@ -2381,7 +2381,7 @@ static int Frontier_GetRecModeNo( u16 fr_no, u16 type )
 		break;
 
 	////////////////////////////////////////////////////
-	//ƒXƒe[ƒW
+	//ã‚¹ãƒ†ãƒ¼ã‚¸
 	case FRONTIER_NO_STAGE:
 
 		switch( type ){
@@ -2402,7 +2402,7 @@ static int Frontier_GetRecModeNo( u16 fr_no, u16 type )
 		break;
 
 	////////////////////////////////////////////////////
-	//ƒ‹[ƒŒƒbƒg
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 	case FRONTIER_NO_ROULETTE:
 
 		switch( type ){
@@ -2426,11 +2426,11 @@ static int Frontier_GetRecModeNo( u16 fr_no, u16 type )
 
 #if 0
 
-	//“Á‚Éì‹Æ‚µ‚Ä‚¢‚È‚¢‚Ì‚Å•Û—¯
-#define RECMODE_COLOSSEUM_SINGLE		(12)		///<ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒVƒ“ƒOƒ‹
-#define RECMODE_COLOSSEUM_DOUBLE		(13)		///<ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ_ƒuƒ‹
-#define RECMODE_COLOSSEUM_MIX			(14)		///<ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ~ƒbƒNƒX
-#define RECMODE_COLOSSEUM_MULTI		(21)			///<ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ}ƒ‹ƒ`
+	//ç‰¹ã«ä½œæ¥­ã—ã¦ã„ãªã„ã®ã§ä¿ç•™
+#define RECMODE_COLOSSEUM_SINGLE		(12)		///<ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ã‚·ãƒ³ã‚°ãƒ«
+#define RECMODE_COLOSSEUM_DOUBLE		(13)		///<ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒ€ãƒ–ãƒ«
+#define RECMODE_COLOSSEUM_MIX			(14)		///<ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒŸãƒƒã‚¯ã‚¹
+#define RECMODE_COLOSSEUM_MULTI		(21)			///<ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒãƒ«ãƒ
 
 #endif
 
@@ -2439,9 +2439,9 @@ static int Frontier_GetRecModeNo( u16 fr_no, u16 type )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒh
+ * ãƒ­ãƒ¼ãƒ‰
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2455,23 +2455,23 @@ static BOOL FSSC_BattleRecLoad( FSS_TASK * core )
 	bp = sys_AllocMemory( HEAPID_WORLD, sizeof(BATTLE_PARAM) );
 	MI_CpuClear8( bp, sizeof(BATTLE_PARAM) );
 
-	//bp	ƒ[ƒh‚µ‚½ƒf[ƒ^‚©‚ç¶¬‚·‚éBATTLE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	//num	ƒ[ƒh‚·‚éƒf[ƒ^ƒiƒ“ƒo[iLOADDATA_MYRECALOADDATA_DOWNLOAD1ALOADDATA_DOWNLOAD2cj
+	//bp	ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ç”Ÿæˆã™ã‚‹BATTLE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	//num	ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ï¼ˆLOADDATA_MYRECã€LOADDATA_DOWNLOAD1ã€LOADDATA_DOWNLOAD2â€¦ï¼‰
 
-	//‘Îí˜^‰æƒf[ƒ^‚Ìƒ[ƒh
+	//å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
 	BattleRec_Load( ex_param->savedata, HEAPID_WORLD, &ret, bp, LOADDATA_MYREC );
 	OS_Printf( "battle_load ret = %d\n", ret );
 #if 0
-	LOAD_RESULT_NULL = 0,		///<ƒf[ƒ^‚È‚µ
-	LOAD_RESULT_OK,				///<ƒf[ƒ^³í“Ç‚İ‚İ
-	LOAD_RESULT_NG,				///<ƒf[ƒ^ˆÙí
-	LOAD_RESULT_BREAK,			///<”j‰óA•œ‹Œ•s”\ 
+	LOAD_RESULT_NULL = 0,		///<ãƒ‡ãƒ¼ã‚¿ãªã—
+	LOAD_RESULT_OK,				///<ãƒ‡ãƒ¼ã‚¿æ­£å¸¸èª­ã¿è¾¼ã¿
+	LOAD_RESULT_NG,				///<ãƒ‡ãƒ¼ã‚¿ç•°å¸¸
+	LOAD_RESULT_BREAK,			///<ç ´å£Šã€å¾©æ—§ä¸èƒ½ 
 #endif
 
-#if 1	//ƒfƒoƒbƒN(í“¬Ø‚è‘Ö‚¦)
-	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );	//ƒoƒgƒ‹‹ÈÄ¶
+#if 1	//ãƒ‡ãƒãƒƒã‚¯(æˆ¦é—˜åˆ‡ã‚Šæ›¿ãˆ)
+	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );	//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
     Frontier_SubProcSet( core->fss->fmain, &TestBattleProcData, bp, TRUE, NULL );
-	OS_Printf( "˜^‰æí“¬ŒÄ‚Ño‚µƒeƒXƒg\n" );
+	OS_Printf( "éŒ²ç”»æˆ¦é—˜å‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆ\n" );
 	return 1;
 #endif
 
@@ -2480,9 +2480,9 @@ static BOOL FSSC_BattleRecLoad( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^”jŠü
+ * ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2495,9 +2495,9 @@ static BOOL FSSC_BattleRecExit( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˜^‰æƒf[ƒ^‚ª‚·‚Å‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+ * éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒã™ã§ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2515,20 +2515,20 @@ static BOOL FSSC_BattleRecDataOccCheck( FSS_TASK * core )
 
 
 //============================================================================================
-//	ƒŒƒ|[ƒgƒZ[ƒu
+//	ãƒ¬ãƒãƒ¼ãƒˆã‚»ãƒ¼ãƒ–
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒ|[ƒg
+ * ãƒ¬ãƒãƒ¼ãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_ReportSave( FSS_TASK * core )
 {
-	//‰¼‚Å‚·I
+	//ä»®ã§ã™ï¼
 
 	FRONTIER_EX_PARAM *ex_param = Frontier_ExParamGet(core->fss->fmain);
 	u16* ret_wk	= FSSTGetWork( core );
@@ -2537,8 +2537,8 @@ static BOOL FSSC_ReportSave( FSS_TASK * core )
 		OS_Printf( "save TRUE\n" );
 	} else {
 		OS_Printf( "save FALSE\n" );
-		//SAVE_RESULT_OKˆÈŠO‚Ìê‡‚Í‚È‚ñ‚É‚¹‚æ
-		//“®ì‚ª‚¨‚©‚µ‚¢‚Ì‚Å¸”s‚Æ‚İ‚È‚·
+		//SAVE_RESULT_OKä»¥å¤–ã®å ´åˆã¯ãªã‚“ã«ã›ã‚ˆ
+		//å‹•ä½œãŒãŠã‹ã—ã„ã®ã§å¤±æ•—ã¨ã¿ãªã™
 	}
 
 	return 0;
@@ -2546,9 +2546,9 @@ static BOOL FSSC_ReportSave( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒ|[ƒg(•ªŠ„ƒZ[ƒu)
+ * ãƒ¬ãƒãƒ¼ãƒˆ(åˆ†å‰²ã‚»ãƒ¼ãƒ–)
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -2567,7 +2567,7 @@ static BOOL FSSC_ReportDivSave( FSS_TASK * core )
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL EvWaitDivSave(FSS_TASK * core)
 {
 	SAVE_RESULT result;
@@ -2575,16 +2575,16 @@ static BOOL EvWaitDivSave(FSS_TASK * core)
 
 	result = SaveData_DivSave_Main(ex_param->savedata);
 
-	//ƒZ[ƒuI—¹A¬Œ÷
+	//ã‚»ãƒ¼ãƒ–çµ‚äº†ã€æˆåŠŸ
 	if( result == SAVE_RESULT_OK ){
 		sys_SioErrorNG_PtrFree();
 		sys_SoftResetOK(SOFTRESET_TYPE_SAVELOAD);
 		return 1;
 	}
 
-	//ƒZ[ƒuI—¹A¸”s
+	//ã‚»ãƒ¼ãƒ–çµ‚äº†ã€å¤±æ•—
 	if( result == SAVE_RESULT_NG ){
-		OS_Printf( "ƒZ[ƒu¸”s\n" );
+		OS_Printf( "ã‚»ãƒ¼ãƒ–å¤±æ•—\n" );
 		sys_SioErrorNG_PtrFree();
 		sys_SoftResetOK(SOFTRESET_TYPE_SAVELOAD);
 		return 1;
@@ -2595,9 +2595,9 @@ static BOOL EvWaitDivSave(FSS_TASK * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠO•”ƒZ[ƒu‚Ì‰Šú‰»
+ * å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã®åˆæœŸåŒ–
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2611,9 +2611,9 @@ static BOOL FSSC_ExtraSaveInit( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠO•”ƒZ[ƒu‚ª‰Šú‰»Ï‚İ‚©ƒ`ƒFƒbƒN
+ * å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãŒåˆæœŸåŒ–æ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2628,8 +2628,8 @@ static BOOL FSSC_ExtraSaveInitCheck( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‘Ò‹@ƒAƒCƒRƒ“•\¦
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	0
  */
 //--------------------------------------------------------------------------------------------
@@ -2643,8 +2643,8 @@ static BOOL FSSC_TimeWaitIconAdd( FSS_TASK * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‘Ò‹@ƒAƒCƒRƒ“Á‹
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³æ¶ˆå»
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	0
  */
 //--------------------------------------------------------------------------------------------
@@ -2656,14 +2656,14 @@ static BOOL FSSC_TimeWaitIconDel( FSS_TASK * core)
 }
 
 //============================================================================================
-//	ƒ[ƒhƒZƒbƒg
+//	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€–¼‚ğw’èƒoƒbƒtƒ@‚É“o˜^
+ * ã‚¢ã‚¤ãƒ†ãƒ åã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2679,9 +2679,9 @@ static BOOL FSSC_ItemName( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”’l‚ğw’èƒoƒbƒtƒ@‚É“o˜^
+ * æ•°å€¤ã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2698,11 +2698,11 @@ static BOOL FSSC_NumberName( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * “n‚³‚ê‚½’l‚ÌŒ…”‚ğæ“¾
+ * æ¸¡ã•ã‚ŒãŸå€¤ã®æ¡æ•°ã‚’å–å¾—
  *
- * @param   num			’l
+ * @param   num			å€¤
  *
- * @retval  "Œ…”"
+ * @retval  "æ¡æ•°"
  */
 //--------------------------------------------------------------
 static u16 GetNumKeta(u32 num)
@@ -2716,14 +2716,14 @@ static u16 GetNumKeta(u32 num)
 	else if( num / 10000000 == 0 ) return 7;
 	else if( num / 100000000 == 0 ) return 8;
 
-	return 1;	//“–‚Ä‚Í‚Ü‚ç‚È‚©‚Á‚½‚ç‚PŒ…‚ğ•Ô‚·
+	return 1;	//å½“ã¦ã¯ã¾ã‚‰ãªã‹ã£ãŸã‚‰ï¼‘æ¡ã‚’è¿”ã™
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒŒƒCƒ„[–¼‚ğw’èƒoƒbƒtƒ@‚É“o˜^
+ * ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2739,9 +2739,9 @@ static BOOL FSSC_PlayerName( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒp[ƒgƒi[–¼‚ğw’èƒoƒbƒtƒ@‚É“o˜^
+ * ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2757,9 +2757,9 @@ static BOOL FSSC_PairName( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *@‹Z–¼‚ğƒoƒbƒtƒ@‚Ö
+ *ã€€æŠ€åã‚’ãƒãƒƒãƒ•ã‚¡ã¸
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2774,9 +2774,9 @@ BOOL FSSC_WazaName( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©‚çƒ|ƒPƒ‚ƒ“–¼‚ğw’èƒoƒbƒtƒ@‚É“o˜^
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³åã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2789,12 +2789,12 @@ BOOL FSSC_PokemonNameExtra( FSS_TASK * core )
 	u8 flag		= FSSTGetU8(core);
 	STRBUF* buf	= PokeNameGetAlloc( mons, HEAPID_WORLD );
 
-	//’PŒêƒZƒbƒg
-	//ƒoƒbƒtƒ@ID
-	//•¶š—ñ
-	//«•ÊƒR[ƒh
-	//’P^•¡iTRUE‚Å’P”j
-	//Œ¾ŒêƒR[ƒh
+	//å˜èªã‚»ãƒƒãƒˆ
+	//ãƒãƒƒãƒ•ã‚¡ID
+	//æ–‡å­—åˆ—
+	//æ€§åˆ¥ã‚³ãƒ¼ãƒ‰
+	//å˜ï¼è¤‡ï¼ˆTRUEã§å˜æ•°ï¼‰
+	//è¨€èªã‚³ãƒ¼ãƒ‰
 	WORDSET_RegisterWord( core->fss->wordset, idx, buf, sex, flag, PM_LANG );
 	STRBUF_Delete( buf );
 	return 0;
@@ -2814,9 +2814,9 @@ static STRBUF * PokeNameGetAlloc( u16 id, u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- *@‹Z–¼‚ğƒoƒbƒtƒ@‚Ö
+ *ã€€æŠ€åã‚’ãƒãƒƒãƒ•ã‚¡ã¸
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2831,9 +2831,9 @@ static BOOL FSSC_TypeName( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ‰ƒCƒoƒ‹–¼‚ğw’èƒoƒbƒtƒ@‚É“o˜^
+ * ãƒ©ã‚¤ãƒãƒ«åã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2847,14 +2847,14 @@ static BOOL FSSC_RivalName( FSS_TASK * core )
 }
 
 //============================================================================================
-//	ƒoƒgƒ‹ƒ|ƒCƒ“ƒg
+//	ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆ
 //============================================================================================
 #include "savedata/b_tower.h"
 //--------------------------------------------------------------------------------------------
 /**
- * Šƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğæ“¾
+ * æ‰€æŒãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2871,9 +2871,9 @@ static BOOL FSSC_CheckBtlPoint( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğ‰Á‚¦‚é
+ * ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’åŠ ãˆã‚‹
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2884,14 +2884,14 @@ static BOOL FSSC_AddBtlPoint( FSS_TASK * core )
 	FRONTIER_EX_PARAM *ex_param = Frontier_ExParamGet(core->fss->fmain);
 	u16 value					= FSSTGetWorkValue(core);
 
-	//šfssc_tower.c TowerScr_AddBtlPoint‚àƒ`ƒFƒbƒN‚·‚é
+	//â˜…fssc_tower.c TowerScr_AddBtlPointã‚‚ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 
-	//TV:ƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼l
+	//TV:ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäºº
 	tvwk = SaveData_GetTvWork( ex_param->savedata );
 	TVTOPIC_BPTemp_Set( tvwk, value );
 	//TVTOPIC_Entry_Record_BP( ex_param->savedata );
 
-	//ƒŒƒR[ƒhXV
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°
 	RECORD_Add( SaveData_GetRecord(ex_param->savedata), RECID_WIN_BP, value );
 
 	TowerScoreData_SetBattlePoint(
@@ -2902,9 +2902,9 @@ static BOOL FSSC_AddBtlPoint( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğˆø‚­
+ * ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’å¼•ã
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2914,7 +2914,7 @@ static BOOL FSSC_SubBtlPoint( FSS_TASK * core )
 	FRONTIER_EX_PARAM *ex_param = Frontier_ExParamGet(core->fss->fmain);
 	u16 value = FSSTGetWorkValue(core);
 
-	//ƒŒƒR[ƒhXV
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°
 	RECORD_Add( SaveData_GetRecord(ex_param->savedata), RECID_USE_BP, value );
 
 	TowerScoreData_SetBattlePoint(
@@ -2925,15 +2925,15 @@ static BOOL FSSC_SubBtlPoint( FSS_TASK * core )
 
 //============================================================================================
 //
-//	’ÊMŠÖ˜A
+//	é€šä¿¡é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ğ”­s‚·‚é
+ * ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã™ã‚‹
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2942,19 +2942,19 @@ static BOOL FSSC_CommTimingSyncStart( FSS_TASK * core )
 {
 	u16 no = FSSTGetWorkValue( core );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = no;
 
 	CommTimingSyncStart( no );
 
 	FSST_SetWait( core, EvWaitCommIsTimingSync );
 
-	OS_Printf("“¯Šú‘Ò‚¿@”Ô†%d\n",no);
+	OS_Printf("åŒæœŸå¾…ã¡ã€€ç•ªå·ï¼%d\n",no);
 
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL EvWaitCommIsTimingSync(FSS_TASK * core)
 {
 	int result;
@@ -2968,9 +2968,9 @@ static BOOL EvWaitCommIsTimingSync(FSS_TASK * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒZƒbƒgƒRƒ}ƒ“ƒh‚ğ”­s‚·‚é
+ * ãƒªã‚»ãƒƒãƒˆã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã™ã‚‹
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -2983,9 +2983,9 @@ static BOOL FSSC_CommTempDataReset( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMƒ_ƒCƒŒƒNƒgƒR[ƒi[‚ÌI—¹ˆ—‚ğŠJn‚·‚é
+ * é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼ã®çµ‚äº†å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -2997,7 +2997,7 @@ static BOOL FSSC_CommDirectEnd( FSS_TASK * core )
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL EvWaitCommDirectEnd(FSS_TASK * core)
 {
 	if( CommStateIsInitialize() != TRUE ){
@@ -3010,9 +3010,9 @@ static BOOL EvWaitCommDirectEnd(FSS_TASK * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * —”‚Ìæ“¾
+ * ä¹±æ•°ã®å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -3029,9 +3029,9 @@ static BOOL FSSC_GetRand( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒZƒ“‰ñ•œˆ—
+ * ãƒã‚±ã‚»ãƒ³å›å¾©å‡¦ç†
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -3046,11 +3046,11 @@ static BOOL FSSC_PcKaifuku( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒL[ƒEƒFƒCƒg
+ * ã‚­ãƒ¼ã‚¦ã‚§ã‚¤ãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	í‚É1
+ * @return	å¸¸ã«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_ABKeyWait( FSS_TASK * core )
@@ -3059,7 +3059,7 @@ static BOOL FSSC_ABKeyWait( FSS_TASK * core )
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL EvWaitABKey(FSS_TASK * core)
 {
 	if( sys.trg & ( PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL ) ){
@@ -3070,11 +3070,11 @@ static BOOL EvWaitABKey(FSS_TASK * core)
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒL[ƒEƒFƒCƒg or ŠÔ‘Ò‚¿
+ * ã‚­ãƒ¼ã‚¦ã‚§ã‚¤ãƒˆ or æ™‚é–“å¾…ã¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	í‚É1
+ * @return	å¸¸ã«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_ABKeyTimeWait( FSS_TASK * core )
@@ -3084,7 +3084,7 @@ static BOOL FSSC_ABKeyTimeWait( FSS_TASK * core )
 	return 1;
 }
 
-//ƒL[orŠÔ‘Ò‚¿
+//ã‚­ãƒ¼oræ™‚é–“å¾…ã¡
 static BOOL EvWaitABKeyTime(FSS_TASK * core)
 {
 	//if (sys.trg & (PAD_BUTTON_A | PAD_BUTTON_B)) {
@@ -3101,9 +3101,9 @@ static BOOL EvWaitABKeyTime(FSS_TASK * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[”s–kƒ`ƒFƒbƒN
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ•—åŒ—ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -3121,9 +3121,9 @@ BOOL FSSC_TrainerLoseCheck( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒZ[ƒuƒ[ƒN‚Ö’l‚ğƒZƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã¸å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -3143,9 +3143,9 @@ BOOL FSSC_SaveEventWorkSet( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒZ[ƒuƒ[ƒN‚Ì’l‚ğæ“¾
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -3192,7 +3192,7 @@ typedef struct {
 	int laster_mode;	///< LASTER_MODE_???
 } HC_LASTER_SYS;
 
-// \‘¢‘Ì(”Ä—p)
+// æ§‹é€ ä½“(æ±ç”¨)
 typedef struct {
 	
 	FMAP_PTR fmap;
@@ -3220,17 +3220,17 @@ static BOOL EncountEffect_004(FSS_ECE* wk);
 static BOOL EncountEffect_005(FSS_ECE* wk);
 static BOOL EncountEffect_006(FSS_ECE* wk);
 
-//¦FR_ENCOUNT_EFF_???‚Ì’è‹`‚Æ•À‚Ñ‚ğ“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆI
+//â€»FR_ENCOUNT_EFF_???ã®å®šç¾©ã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼
 static BOOL ( * const EncountEffect_Table[] )( FSS_ECE* wk ) = {
-	EncountEffect_001,		///< ƒƒCƒv
-	EncountEffect_002,		///< ƒ{ƒbƒNƒX‰º‚©‚çÜ‚è•Ô‚µ‚ÄÏ‚Ş
-	EncountEffect_003,		///< ƒ{ƒbƒNƒX¶‰E‚©‚çÜ‚è•Ô‚µ
-	EncountEffect_004,		///< ƒ‰ƒXƒ^[Ü
-	EncountEffect_005,		///< ƒ‰ƒXƒ^[ƒWƒOƒUƒO
-	EncountEffect_006,		///< ÀŒ±
+	EncountEffect_001,		///< ãƒ¯ã‚¤ãƒ—
+	EncountEffect_002,		///< ãƒœãƒƒã‚¯ã‚¹ä¸‹ã‹ã‚‰æŠ˜ã‚Šè¿”ã—ã¦ç©ã‚€
+	EncountEffect_003,		///< ãƒœãƒƒã‚¯ã‚¹å·¦å³ã‹ã‚‰æŠ˜ã‚Šè¿”ã—
+	EncountEffect_004,		///< ãƒ©ã‚¹ã‚¿ãƒ¼æŠ˜è¾¼
+	EncountEffect_005,		///< ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¸ã‚°ã‚¶ã‚°
+	EncountEffect_006,		///< å®Ÿé¨“
 };
 
-///< ƒƒCƒvƒ[ƒ‹Œn
+///< ãƒ¯ã‚¤ãƒ—ãƒ­ãƒ¼ãƒ«ç³»
 static BOOL EncountEffect_001(FSS_ECE* wk)
 {
 	switch ( wk->seq ){
@@ -3258,7 +3258,7 @@ static BOOL EncountEffect_001(FSS_ECE* wk)
 	return TRUE;
 }
 
-/// ƒuƒƒbƒNÏ‚İã‚°Œn
+/// ãƒ–ãƒ­ãƒƒã‚¯ç©ã¿ä¸Šã’ç³»
 static BOOL EncountEffect_002(FSS_ECE* wk)
 {
 	switch ( wk->seq ){
@@ -3688,7 +3688,7 @@ static BOOL EncountEffect_006(FSS_ECE* wk)
 		if ( wk->state == FALSE ){ break; }
 		
 		{
-			///< BMPì¬
+			///< BMPä½œæˆ
 			GXRgb color = 0;
 			GF_BGL_PaletteSet( ENCOUNT_EFF_FRAME, &color, sizeof(short), 2*15 );
 			wk->p_bmp = GF_BGL_BmpWinAllocGet( HEAPID_WORLD, 1 );
@@ -3700,7 +3700,7 @@ static BOOL EncountEffect_006(FSS_ECE* wk)
 			
 		}
 		{
-			///< ƒ‰ƒXƒ^[ˆ—
+			///< ãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†
 			wk->flag	 = FALSE;
 			wk->hls		 = sys_AllocMemory( HEAPID_WORLD, sizeof( HC_LASTER_SYS ) );
 			wk->hls->dlp = FEFTool_InitDefLaster(LASTER_SCROLL_MBG2,
@@ -3760,11 +3760,11 @@ static BOOL EncountEffect_006(FSS_ECE* wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŒÄ‚Ño‚µ
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	í‚É1
+ * @return	å¸¸ã«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL FSSC_EncountEffect( FSS_TASK * core )
@@ -3776,7 +3776,7 @@ static BOOL FSSC_EncountEffect( FSS_TASK * core )
 
 	core->reg[0] = FSSTGetWorkValue(core);	
 	
-	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ƒoƒgƒ‹‹ÈÄ¶
+	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
 	OS_Printf( " EncountEffect No = %2d\n", core->reg[0] );
 	
 	fss_ece				= sys_AllocMemory( HEAPID_WORLD, sizeof( FSS_ECE ) );
@@ -3789,13 +3789,13 @@ static BOOL FSSC_EncountEffect( FSS_TASK * core )
 	
 	FSST_SetWait( core, EncountEffectWait );
 
-	//ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhF‚ğ•‚É‚µ‚Ä‚¨‚­
+	//ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰è‰²ã‚’é»’ã«ã—ã¦ãŠã
 	PaletteWork_Clear(fss_ece->fmap->pfd, FADE_MAIN_BG, FADEBUF_ALL, 0x0000, 0, 1);
 
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL EncountEffectWait(FSS_TASK * core)
 {
 	BOOL active;
@@ -3816,9 +3816,9 @@ static BOOL EncountEffectWait(FSS_TASK * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ålŒö‚Ìl•¨OBJƒR[ƒh‚ğæ“¾
+ * ä¸»äººå…¬ã®äººç‰©OBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -3843,12 +3843,12 @@ static BOOL FSSC_GetMineObj( FSS_TASK * core )
 
 //==============================================================================
 //
-//	ƒp[ƒeƒBƒNƒ‹
+//	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ğì¬‚µAƒŠƒ\[ƒX“Ç‚İ‚İ•“o˜^
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½œæˆã—ã€ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ï¼†ç™»éŒ²
  *
  * @param   core		
  */
@@ -3870,7 +3870,7 @@ static BOOL FSS_ParticleSPALoad(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ğ”jŠü‚·‚é
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’ç ´æ£„ã™ã‚‹
  *
  * @param   core		
  */
@@ -3889,7 +3889,7 @@ static BOOL FSS_ParticleSPAExit(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ğ¶¬‚·‚é
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   core		
  */
@@ -3912,7 +3912,7 @@ static BOOL FSS_ParticleAddEmitter(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶¬‚³‚ê‚Ä‚¢‚é‘S‚Ä‚Ìƒp[ƒeƒBƒNƒ‹‚ÌI—¹‚ğ‘Ò‚Â
+ * @brief   ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹å…¨ã¦ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®çµ‚äº†ã‚’å¾…ã¤
  *
  * @param   core		
  */
@@ -3923,7 +3923,7 @@ static BOOL FSS_ParticleWait(FSS_TASK *core)
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL ParticleEmitWait(FSS_TASK * core)
 {
 	FSS_PTR fss = core->fss;
@@ -3937,7 +3937,7 @@ static BOOL ParticleEmitWait(FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’nkƒZƒbƒg
+ * @brief   åœ°éœ‡ã‚»ãƒƒãƒˆ
  *
  * @param   core		
  */
@@ -3972,7 +3972,7 @@ static BOOL FSS_ShakeSet(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’nk‚ÌI—¹‚ğ‘Ò‚Â
+ * @brief   åœ°éœ‡ã®çµ‚äº†ã‚’å¾…ã¤
  *
  * @param   core		
  */
@@ -3983,7 +3983,7 @@ static BOOL FSS_ShakeWait(FSS_TASK *core)
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL ShakeEndWait(FSS_TASK * core)
 {
 	FSS_PTR fss = core->fss;
@@ -3997,7 +3997,7 @@ static BOOL ShakeEndWait(FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief   Window‹@”\ƒZƒbƒg
+ * @brief   Windowæ©Ÿèƒ½ã‚»ãƒƒãƒˆ
  *
  * @param   core		
  */
@@ -4029,7 +4029,7 @@ static BOOL FSS_WndSet(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   Window‹@”\‚ÌI—¹‚ğ‘Ò‚Â
+ * @brief   Windowæ©Ÿèƒ½ã®çµ‚äº†ã‚’å¾…ã¤
  *
  * @param   core		
  */
@@ -4040,7 +4040,7 @@ static BOOL FSS_WndWait(FSS_TASK *core)
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WndEndWait(FSS_TASK * core)
 {
 	FSS_PTR fss = core->fss;
@@ -4054,9 +4054,9 @@ static BOOL WndEndWait(FSS_TASK * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒN
+ * ãƒ‡ãƒãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -4071,16 +4071,16 @@ static BOOL FSSC_DebugPrint( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[•\¦
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤º
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
-//evy		ŒW”(0`16) (•ÏX‚Ì“x‡‚¢A0(Œ³‚ÌF)`2,3..(’†ŠÔF)`16(w’è‚µ‚½F)
-//next_rgb	•ÏXŒã‚ÌF‚ğw’è
-#define STAGE_EVY			( 8 ) //ˆÃ‚¢(14)//–¾‚é‚¢( 1 )
+//evy		ä¿‚æ•°(0ã€œ16) (å¤‰æ›´ã®åº¦åˆã„ã€0(å…ƒã®è‰²)ã€œ2,3..(ä¸­é–“è‰²)ã€œ16(æŒ‡å®šã—ãŸè‰²)
+//next_rgb	å¤‰æ›´å¾Œã®è‰²ã‚’æŒ‡å®š
+#define STAGE_EVY			( 8 ) //æš—ã„(14)//æ˜ã‚‹ã„( 1 )
 #define STAGE_COLOR_FADE	( GX_RGB( 0,0,0 ) )
 
 static BOOL FSSC_TemotiPokeActAdd( FSS_TASK * core )
@@ -4097,11 +4097,11 @@ static BOOL FSSC_TemotiPokeActAdd( FSS_TASK * core )
 	u16 next_rgb = FSSTGetU16( core );
 	
 	ex_param = Frontier_ExParamGet( core->fss->fmain );
-	party = SaveData_GetTemotiPokemon( ex_param->savedata );	//è‚¿ƒp[ƒeƒBæ“¾
+	party = SaveData_GetTemotiPokemon( ex_param->savedata );	//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 	pp = PokeParty_GetMemberPointer( party, pos );
 
 	/***********************************/
-	//ÀŒ±’†‚Ì‚½‚ßA’¼Ú’l‚ğ“ü‚ê‚Ä‚¢‚Ü‚·
+	//å®Ÿé¨“ä¸­ã®ãŸã‚ã€ç›´æ¥å€¤ã‚’å…¥ã‚Œã¦ã„ã¾ã™
 	/***********************************/
 
 	evy		= STAGE_EVY;
@@ -4113,9 +4113,9 @@ static BOOL FSSC_TemotiPokeActAdd( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[íœ
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -4131,7 +4131,7 @@ static BOOL FSSC_TemotiPokeActDel( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒuƒŒ[ƒ“í‚ÌƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‚ğ”­“®
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ãƒ¼ãƒ³æˆ¦ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç™ºå‹•
  *
  * @param   core		
  *
@@ -4149,13 +4149,13 @@ static BOOL FSSC_BrainEncountEffect(FSS_TASK *core)
 	BrainCutin_EffectStart(effect_no, fmap->bgl, fmap->clactsys.csp, fmap->clactsys.crp, 
 		fmap->pfd, &core->reg[0], map_x, map_y);
 
-	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_PL_BA_BRAIN, 1 );		//ƒoƒgƒ‹‹ÈÄ¶
+	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_PL_BA_BRAIN, 1 );		//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
 	
 	FSST_SetWait( core, BrainEncountEffectWait );
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL BrainEncountEffectWait(FSS_TASK * core)
 {
 	FSS_PTR fss = core->fss;
@@ -4169,7 +4169,7 @@ static BOOL BrainEncountEffectWait(FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŒƒR[ƒhƒf[ƒ^‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+ * @brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  *
  * @param   core		
  *
@@ -4189,7 +4189,7 @@ static BOOL FSSC_RecordInc(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŒƒR[ƒhƒf[ƒ^‚Ì’Ç‰Á
+ * @brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
  *
  * @param   core		
  *
@@ -4210,7 +4210,7 @@ static BOOL FSSC_RecordAdd(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒRƒA‚Ì’Ç‰Á
+ * @brief	ã‚¹ã‚³ã‚¢ã®è¿½åŠ 
  *
  * @param   core		
  *
@@ -4230,19 +4230,19 @@ static BOOL FSSC_ScoreAdd(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief	©•ªA‘Šè‚Ì‚Ç‚¿‚ç‚©‚ªDP‚©ƒ`ƒFƒbƒN
+ * @brief	è‡ªåˆ†ã€ç›¸æ‰‹ã®ã©ã¡ã‚‰ã‹ãŒDPã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   core		
  *
  * @retval  "0"
  *
- * "1 = DP‚ ‚è"
+ * "1 = DPã‚ã‚Š"
  */
 //--------------------------------------------------------------
 static BOOL FSSC_CheckDPRomCode(FSS_TASK *core)
 {
 	FRONTIER_EX_PARAM *ex_param;
-	u16* ret_wk	= FSSTGetWork(core);			//Œ‹‰Êæ“¾
+	u16* ret_wk	= FSSTGetWork(core);			//çµæœå–å¾—
 
 	ex_param= Frontier_ExParamGet(core->fss->fmain);
 	*ret_wk = Frontier_CheckDPRomCode( ex_param->savedata );
@@ -4251,7 +4251,7 @@ static BOOL FSSC_CheckDPRomCode(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief	©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½‚©ƒ`ƒFƒbƒN
+ * @brief	è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   core		
  *
@@ -4260,7 +4260,7 @@ static BOOL FSSC_CheckDPRomCode(FSS_TASK *core)
 //--------------------------------------------------------------
 static BOOL FSSC_BattleRecServerVersionCheck(FSS_TASK *core)
 {
-	u16* ret_wk	= FSSTGetWork(core);			//Œ‹‰Êæ“¾
+	u16* ret_wk	= FSSTGetWork(core);			//çµæœå–å¾—
 	*ret_wk = BattleRec_ServerVersionCheck();
 	OS_Printf( "server result = %d\n", *ret_wk );
 	return 0;
@@ -4268,7 +4268,7 @@ static BOOL FSSC_BattleRecServerVersionCheck(FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief   “ú‚Ì‹L˜^‚ğ‚Â‚¯‚é(ƒtƒƒ“ƒeƒBƒAê—p)
+ * @brief   æ—¥æ™‚ã®è¨˜éŒ²ã‚’ã¤ã‘ã‚‹(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å°‚ç”¨)
  *
  * @param   core		
  *
@@ -4289,9 +4289,9 @@ static BOOL FSSC_WifiCounterListSetLastPlayDate(FSS_TASK *core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * TV:ƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µTEMPƒZƒbƒg
+ * TV:ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—TEMPã‚»ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -4300,17 +4300,17 @@ static BOOL FSSC_TVTempFriendSet( FSS_TASK * core )
 {
 	u16 bf_no;
 	TV_WORK * tvwk;
-	MYSTATUS* my;												//ƒp[ƒgƒi[‚ÌMyStatus
+	MYSTATUS* my;												//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®MyStatus
 	FRONTIER_EX_PARAM *ex_param;
 
 	ex_param	= Frontier_ExParamGet(core->fss->fmain);
 	tvwk		= SaveData_GetTvWork( ex_param->savedata );
 	bf_no		= FSSTGetWorkValue( core );
 
-	//ƒp[ƒgƒi[‚ÌMyStatus‚ğæ“¾
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®MyStatusã‚’å–å¾—
 	my = CommInfoGetMyStatus( 1 - CommGetCurrentID() );
 
-	//ƒƒCƒAƒŒƒX‚Ì‚İŒÄ‚Ô‚æ‚¤‚É‚µ‚È‚¢‚Æƒ_ƒI
+	//ãƒ¯ã‚¤ã‚¢ãƒ¬ã‚¹ã®ã¿å‘¼ã¶ã‚ˆã†ã«ã—ãªã„ã¨ãƒ€ãƒ¡ï¼
 	
 	TVTOPIC_FriendTemp_Set( tvwk, bf_no, my );
 	return 0;
@@ -4318,9 +4318,9 @@ static BOOL FSSC_TVTempFriendSet( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * WIFI‚Åˆê‹C‚Éƒf[ƒ^‚ğ‘—‚é‚Ì‘Î‰
+ * WIFIã§ä¸€æ°—ã«ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹æ™‚ã®å¯¾å¿œ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */

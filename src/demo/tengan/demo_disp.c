@@ -69,7 +69,7 @@ int Demo_MSG_Set( DEMO_SYSTEM* sys, DEMO_TENGAN_PARAM* param, int msg )
 	STRBUF_Delete( str );
 	STRBUF_Delete( tmp );		
 	
-	sys->msg_index = index;	///< –ß‚è’l‚Å•Ô‚µ‚Äg‚¤‚¯‚ÇAƒ[ƒNˆê‚¾‚©‚ç‚Æ‚è‚ ‚¦‚¸“ü‚ê‚Æ‚­
+	sys->msg_index = index;	///< æˆ»ã‚Šå€¤ã§è¿”ã—ã¦ä½¿ã†ã‘ã©ã€ãƒ¯ãƒ¼ã‚¯ä¸€ç·’ã ã‹ã‚‰ã¨ã‚Šã‚ãˆãšå…¥ã‚Œã¨ã
 	
 	return index;
 }
@@ -92,7 +92,7 @@ void Demo_MSG_Off( DEMO_SYSTEM* sys )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒCƒgİ’è
+ * @brief	ãƒ©ã‚¤ãƒˆè¨­å®š
  *
  * @param	sys
  *
@@ -105,12 +105,12 @@ void Demo_Light( DEMO_SYSTEM* sys )
 	VecFx32 vec0 = { 0, -FX32_ONE, -FX32_ONE };
 	VecFx32 vec1 = { -2043,-3548,110 };
 	
-	///< ƒMƒ‰ƒeƒBƒi‚Ìƒ‰ƒCƒg
+	///< ã‚®ãƒ©ãƒ†ã‚£ãƒŠã®ãƒ©ã‚¤ãƒˆ
 	VEC_Normalize( &vec0, &vec0 );
 	NNS_G3dGlbLightVector( 0, vec0.x, vec0.y, vec0.z );
 	NNS_G3dGlbLightColor( 0, GX_RGB( 31, 31, 31 ) );
 	
-	///< MAP‘¤‚Ìƒ‰ƒCƒg
+	///< MAPå´ã®ãƒ©ã‚¤ãƒˆ
 	VEC_Normalize( &vec1, &vec1 );
 	NNS_G3dGlbLightVector( 1, vec1.x, vec1.y, vec1.z );
 	NNS_G3dGlbLightColor( 1, GX_RGB( 23, 23, 25 ) );
@@ -122,7 +122,7 @@ void Demo_Light( DEMO_SYSTEM* sys )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‘€ì
+ * @brief	ã‚«ãƒ¡ãƒ©æ“ä½œ
  *
  * @param	sys	
  *
@@ -207,7 +207,7 @@ BOOL Camera_Work_Main( CAMERA_WORK* cw )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚PŒÂ•`‰æŠÖ” ƒAƒjƒl—¶
+ * @brief	ï¼‘å€‹æç”»é–¢æ•° ã‚¢ãƒ‹ãƒ¡è€ƒæ…®
  *
  * @param	mdl	
  *
@@ -486,7 +486,7 @@ void BG_PaletteFade_Sub_UMA( DEMO_SYSTEM* sys, int poke_type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“ƒfƒBƒXƒvƒŒƒC‚ª‚Ç‚Á‚¿‚©w’è‚·‚é
+ * @brief	ãƒ¡ã‚¤ãƒ³ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãŒã©ã£ã¡ã‹æŒ‡å®šã™ã‚‹
  *
  * @param	mode	DISP_3D_TO_SUB	DISP_3D_TO_MAIN
  *
@@ -503,7 +503,7 @@ void Demo_MainDispSet( int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒuƒ‰ƒCƒgƒlƒXİ’è
+ * @brief	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è¨­å®š
  *
  * @param	wk	
  * @param	para	

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	gds_rap_response.h
- * @brief	gds_rap.c‚©‚çóMƒf[ƒ^‚Ì”»’è‚âæ“¾•”•ª‚ğ“Æ—§‚³‚¹‚½‚à‚Ì
+ * @brief	gds_rap.cã‹ã‚‰å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®åˆ¤å®šã‚„å–å¾—éƒ¨åˆ†ã‚’ç‹¬ç«‹ã•ã›ãŸã‚‚ã®
  * @author	matsuda
- * @date	2008.01.13(“ú)
+ * @date	2008.01.13(æ—¥)
  */
 //==============================================================================
 #ifndef __GDS_RAP_RESPONSE_H__
@@ -11,7 +11,7 @@
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern int GDS_RAP_RESPONSE_DressupShot_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res);
 extern int GDS_RAP_RESPONSE_DressupShot_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res);
@@ -28,7 +28,7 @@ extern int GDS_RAP_RESPONSE_BattleVideo_Favorite_Upload(GDS_RAP_WORK *gdsrap,
 	POKE_NET_RESPONSE *res);
 
 //--------------------------------------------------------------
-//	óMƒoƒbƒtƒ@‚©‚çƒf[ƒ^æ“¾
+//	å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿å–å¾—
 //--------------------------------------------------------------
 extern int GDS_RAP_RESPONSE_DressupShot_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, 
 	GT_GDS_DRESS_RECV **dress_array, int array_max);

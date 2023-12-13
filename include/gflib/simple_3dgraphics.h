@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	simple_3dgraphic.h
- * @brief	Šî–{‚R‚cƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€
+ * @brief	åŸºæœ¬ï¼“ï¼¤ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
  */
 //=============================================================================================
 #ifndef __SIMPLE_3DGRAPHIC_H__
@@ -17,25 +17,25 @@
 #define GLOBAL extern
 #endif
 
-#define LINK_VRAM_MANAGER	//ƒŠƒ“ƒNƒhVRAMƒ}ƒl[ƒWƒƒ[‚ğg—p
+#define LINK_VRAM_MANAGER	//ãƒªãƒ³ã‚¯ãƒ‰VRAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ä½¿ç”¨
 
 #include "tcb.h"
 
-typedef void (*pCallBackFunc)(void *);	// ŠÖ”ƒ|ƒCƒ“ƒ^Œ^
+typedef void (*pCallBackFunc)(void *);	// é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å‹
 typedef void (*pSetTexAnmCallBackFunc)(NNSG3dRenderObj* ,
 		NNSG3dAnmObj* ,
 		NNSG3dResMdl* ,
-		NNSG3dResTex* );	// ŠÖ”ƒ|ƒCƒ“ƒ^Œ^
+		NNSG3dResTex* );	// é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å‹
 
 typedef struct VRAM_MANAGER_MEM_tag * VRAM_MANAGER_MEM_PTR;
 
 typedef struct G3D_CLEAR_COLOR_tag
 {
-	GXRgb RGB;		//ƒNƒŠƒAƒJƒ‰[‚ÌRGB¬•ª
+	GXRgb RGB;		//ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®RGBæˆåˆ†
 	int Alpha;		//0 <= alpha <= 31
-	int Depth;		//ƒNƒŠƒAƒfƒvƒX’l
-	int PolygonID;	//ƒAƒgƒŠƒrƒ…[ƒgƒoƒbƒtƒ@‚Ìƒ|ƒŠƒSƒ“ID‰Šú’l
-	BOOL Fog;		//ƒAƒgƒŠƒrƒ…[ƒgƒoƒbƒtƒ@‚ÌƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚Ì‘I‘ğ
+	int Depth;		//ã‚¯ãƒªã‚¢ãƒ‡ãƒ—ã‚¹å€¤
+	int PolygonID;	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒƒãƒ•ã‚¡ã®ãƒãƒªã‚´ãƒ³IDåˆæœŸå€¤
+	BOOL Fog;		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒƒãƒ•ã‚¡ã®ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã®é¸æŠ
 }G3D_CLEAR_COLOR;
 
 typedef enum{
@@ -45,14 +45,14 @@ typedef enum{
 
 typedef struct G3D_SETUP_PARAM_tag
 {
-	GF_SHADE_MODE ShadeMode;		//ƒVƒF[ƒfƒBƒ“ƒOƒ‚[ƒh
-	int Priority;		//3D–Êƒvƒ‰ƒCƒIƒŠƒeƒB(0`3)
-	int Ref;			//ƒ¿ƒeƒXƒg‚ğs‚¤ê‡‚Ì”äŠr’l
-	BOOL AntiAlias;		//ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX—L–³
-	BOOL EdgeMarking;	//ƒGƒbƒWƒ}[ƒLƒ“ƒO—L–³
-	BOOL AlphaTest;		//ƒ¿ƒeƒXƒg—L–³
-	BOOL AlphaBlend;	//ƒ¿ƒuƒŒƒ“ƒh—L–³
-	//ƒNƒŠƒAƒJƒ‰[î•ñ
+	GF_SHADE_MODE ShadeMode;		//ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
+	int Priority;		//3Dé¢ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£(0ã€œ3)
+	int Ref;			//Î±ãƒ†ã‚¹ãƒˆã‚’è¡Œã†å ´åˆã®æ¯”è¼ƒå€¤
+	BOOL AntiAlias;		//ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹æœ‰ç„¡
+	BOOL EdgeMarking;	//ã‚¨ãƒƒã‚¸ãƒãƒ¼ã‚­ãƒ³ã‚°æœ‰ç„¡
+	BOOL AlphaTest;		//Î±ãƒ†ã‚¹ãƒˆæœ‰ç„¡
+	BOOL AlphaBlend;	//Î±ãƒ–ãƒ¬ãƒ³ãƒ‰æœ‰ç„¡
+	//ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼æƒ…å ±
 	G3D_CLEAR_COLOR ClearColor;
 }G3D_SETUP_PARAM;
 
@@ -78,9 +78,9 @@ typedef struct VRAM_MAN_PARAM_tag
 }VRAM_MAN_PARAM;
 
 /*---------------------------------------------------------------------------*
-	ƒOƒ[ƒoƒ‹ŠÖ”
+	ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°
  *---------------------------------------------------------------------------*/
-GLOBAL BOOL TexKeyLive( NNSG3dResTex* pTex );	// ƒeƒNƒXƒ`ƒƒƒL[‚ªŠ„‚èU‚ç‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+GLOBAL BOOL TexKeyLive( NNSG3dResTex* pTex );	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ãŒå‰²ã‚ŠæŒ¯ã‚‰ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 
 GLOBAL void simple_3DModelSetResFileAlready
 	(NNSG3dRenderObj* object_p,

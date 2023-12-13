@@ -1,11 +1,11 @@
 /**
  *	@file	poruto_util.h
- *	@brief	�|���g�f�[�^�@�A�N�Z�X�n�֐���`�t�@�C��
+ *	@brief	ポルトデータ　アクセス系関数定義ファイル
  *	@author	Miyuki Iwasawa
  *	@date	06.02.28
  *
- *	�����f�[�^�Q�Ƃ��s�v�̏ꏊ�ł́A���̃w�b�_�ɒ�`���ꂽ
- *	�@�A�N�Z�X�֐���ʂ��ăf�[�^������
+ *	＊実データ参照が不要の場所では、このヘッダに定義された
+ *	　アクセス関数を通してデータを扱う
  */
 
 #ifndef __H_PORUTO_UTIL_H__
@@ -16,187 +16,187 @@
 
 //------------------------------------------------------------
 /**
- * @brief	�|���g�Z�[�u�f�[�^�u���b�N�Ǘ��\���ւ̕s���S�^�|�C���^
+ * @brief	ポルトセーブデータブロック管理構造への不完全型ポインタ
  *
- * ���g�͌����Ȃ����ǃ|�C���^�o�R�ŎQ�Ƃ͂ł���
+ * 中身は見えないけどポインタ経由で参照はできる
  */
 //------------------------------------------------------------
 typedef struct _PORUTO_BLOCK PORUTO_BLOCK;
 
 //------------------------------------------------------------
 /**
- * @brief	�|���g�f�[�^�Ǘ��\���ւ̕s���S�^�|�C���^
+ * @brief	ポルトデータ管理構造への不完全型ポインタ
  *
- * ���g�͌����Ȃ����ǃ|�C���^�o�R�ŎQ�Ƃ͂ł���
+ * 中身は見えないけどポインタ経由で参照はできる
  */
 //------------------------------------------------------------
 typedef struct _PORUTO_DATA PORUTO_DATA;
 
 
 /**
- *	@brief	�Z�[�u�f�[�^�u���b�N�ւ̃|�C���^���擾
+ *	@brief	セーブデータブロックへのポインタを取得
  */
 extern PORUTO_BLOCK* SaveData_GetPorutoBlock(SAVEDATA* sv);
 
 /**
- *	@brief	�|���g�Z�[�u�f�[�^�T�C�Y�擾
+ *	@brief	ポルトセーブデータサイズ取得
  */
 extern int PORUTO_GetSaveWorkSize(void);
 
 /**
- *	@brief	�|���g�f�[�^�z�񏉊���
+ *	@brief	ポルトデータ配列初期化
  */
 extern void PORUTO_Init(PORUTO_BLOCK* dat);
 
 /**
- *	@brief	�|���g�Z�[�u�f�[�^�̋󂫗̈��T��
+ *	@brief	ポルトセーブデータの空き領域を探す
  *
- *	@retval	PORUTO_DATA_NULL	�󂫗̈悪�Ȃ�
- *	@retval "���̑�"			�󂫗̈��IndexNo
+ *	@retval	PORUTO_DATA_NULL	空き領域がない
+ *	@retval "その他"			空き領域のIndexNo
  */
 extern u16 PORUTO_SearchNullData(PORUTO_BLOCK* block);
 
 /**
- *	@brief	�|���g�f�[�^���Z�[�u�f�[�^�󂫗̈�ɒǉ�����
+ *	@brief	ポルトデータをセーブデータ空き領域に追加する
  *
- *	@retval	PORUTO_DATA_NULL	�󂫗̈悪�Ȃ��Ēǉ��ł��Ȃ�����
- *	@retval "���̑�"			�ǉ������̈��index
+ *	@retval	PORUTO_DATA_NULL	空き領域がなくて追加できなかった
+ *	@retval "その他"			追加した領域のindex
  */
 extern u16 PORUTO_AddData(PORUTO_BLOCK* block,PORUTO_DATA* dat);
 
 /**
- *	@brief	�|���g�f�[�^���Z�[�u�f�[�^����폜����(index�w��)
+ *	@brief	ポルトデータをセーブデータから削除する(index指定)
  *
  */
 extern BOOL PORUTO_DelData(PORUTO_BLOCK* block,u16 idx);
 
 /**
- *	@brief	�|���g�Z�[�u�f�[�^�𐮗�����
+ *	@brief	ポルトセーブデータを整理する
  *
- *	���f�[�^�z��̌��󂫂��l�߂�
+ *	＊データ配列の穴空きを詰める
  */
 extern void PORUTO_DataAdjust(PORUTO_BLOCK* block);
 
 /**
- *	@brief	�Z�[�u�f�[�^�̈�ɂ���L���ȃ|���g�f�[�^����Ԃ�
+ *	@brief	セーブデータ領域にある有効なポルトデータ数を返す
  */
 extern u16	PORUTO_GetDataNum(PORUTO_BLOCK* block);
 
 /**
- *	@brief	�|���g�f�[�^���Z�[�u�f�[�^����擾����(index�w��)
+ *	@brief	ポルトデータをセーブデータから取得する(index指定)
  *
- *	�������n���ꂽPORUTO_DATA�\���̌^�̈�ցA�Z�[�u�f�[�^���R�s�[���ĕԂ�
+ *	＊引き渡されたPORUTO_DATA構造体型領域へ、セーブデータをコピーして返す
  */
 extern void PORUTO_GetData(PORUTO_BLOCK* block,u16 idx,PORUTO_DATA* dest);
 
 /**
- *	@brief	�|���g�f�[�^���Z�[�u�f�[�^����擾����(index�w��/�������m�۔�)
+ *	@brief	ポルトデータをセーブデータから取得する(index指定/メモリ確保版)
  *
- *	��PORUTO_DATA�\���̌^�̈���m�ۂ��A�Z�[�u�f�[�^���R�s�[���ĕԂ�
- *	�@�Ăяo�����������I�ɉ�����邱�ƁI
+ *	＊PORUTO_DATA構造体型領域を確保し、セーブデータをコピーして返す
+ *	　呼び出し側が明示的に解放すること！
  */
 extern PORUTO_DATA* PORUTO_GetDataAlloc(PORUTO_BLOCK* block,u16 idx,int heapID);
 
 //============================================================
 /**
- *	�|���g�f�[�^�A�N�Z�X�n�֐�
+ *	ポルトデータアクセス系関数
  */
 //============================================================
 /**
- *	@brief	�|���g�f�[�^�T�C�Y�擾
+ *	@brief	ポルトデータサイズ取得
  */
 extern int PorutoData_GetWorkSize(void);
 
 /**
- *	@brief	���̃|���g�f�[�^���L�����ǂ����Ԃ�
+ *	@brief	そのポルトデータが有効かどうか返す
  */
 extern BOOL PorutoData_IsEnable(PORUTO_DATA* dat);
 
 /**
- *	@brief	�|���g�f�[�^���[�N�쐬
+ *	@brief	ポルトデータワーク作成
  */
 extern PORUTO_DATA* PorutoData_AllocWork(int heapID);
 
 /**
- *	@brief	�|���g�f�[�^�N���A
+ *	@brief	ポルトデータクリア
  */
 extern void PorutoData_Clear(PORUTO_DATA* dat);
 
 /**
- *	@brief	�|���g�f�[�^�R�s�[
+ *	@brief	ポルトデータコピー
  */
 extern void PorutoData_Copy(PORUTO_DATA* src,PORUTO_DATA* dest);
 
 /**
- *	@brief	�|���g�̃p�����[�^���擾
+ *	@brief	ポルトのパラメータを取得
  *
  *	@param	dat
- *	@param	id	enum PORUTO_PARAID�^(poruto_def.h�Q��)
+ *	@param	id	enum PORUTO_PARAID型(poruto_def.h参照)
  *
- *	@return	u8:�擾�����p�����[�^
+ *	@return	u8:取得したパラメータ
  */
 extern u8 PorutoData_GetParam(PORUTO_DATA* dat,PORUTO_PARAID id);
 
 /**
- *	@brief	�|���g�̃p�����[�^���Z�b�g
+ *	@brief	ポルトのパラメータをセット
  *
  *	@param	dat
- *	@param	value	�Z�b�g�������f�[�^
- *	@param	id	enum PORUTO_PARAID�^(poruto_def.h�Q��)
+ *	@param	value	セットしたいデータ
+ *	@param	id	enum PORUTO_PARAID型(poruto_def.h参照)
  *
  */
 extern void PorutoData_SetParam(PORUTO_DATA* dat,u8 valid,PORUTO_PARAID id);
 
 /**
- *	@brief	���Ǝ|������|���g�̎�ނ����肵�A�p�����[�^���Z�b�g���ĕԂ�
+ *	@brief	味と旨味からポルトの種類を決定し、パラメータをセットして返す
  *
- *	@param	dat	PORUTO_DATA*:�p�����[�^���Z�b�g����|���g�f�[�^�^�\����
- *	@param	prm	u8[5]:5��ނ̖��l���i�[
- *	@param	taste	�|���l���i�[
- *	@param	mazui	�����I�ɕs�����|���g�ɂȂ邩�ǂ����H TRUE�Ȃ�܂����|���g
+ *	@param	dat	PORUTO_DATA*:パラメータをセットするポルトデータ型構造体
+ *	@param	prm	u8[5]:5種類の味値を格納
+ *	@param	taste	旨味値を格納
+ *	@param	mazui	強制的に不味いポルトになるかどうか？ TRUEならまずいポルト
  *
- *	@return	PORUTO_FLAVORID	�쐬���ꂽ�|���g�̃t���o�[ID
+ *	@return	PORUTO_FLAVORID	作成されたポルトのフレバーID
  */
 extern PORUTO_FLAVORID PorutoData_CalcParam(PORUTO_DATA* dat,u8 *prm,u8 taste,BOOL mazui);
 
 /**
- *	@brief	�|���g�p�����[�^�擾(�z���)
+ *	@brief	ポルトパラメータ取得(配列版)
  *
- *	���Ăяo�����Ńf�[�^�̎擾�ꏊ��p�ӂ���o�[�W����
- *	�@u8[PORUTO_PARAID_NUM] ���̃������G���A���K�v
+ *	＊呼び出し側でデータの取得場所を用意するバージョン
+ *	　u8[PORUTO_PARAID_NUM] 分のメモリエリアが必要
  */
 extern void PorutoData_GetParamArray(PORUTO_DATA* dat,u8* array);
 
 /**
- *	@brief	�|���g�p�����[�^�擾(�z��,�������m�۔�)
+ *	@brief	ポルトパラメータ取得(配列,メモリ確保版)
  *
- *	���֐����ŕK�v�ȃo�b�t�@���擾���ĕԂ��o�[�W����
- *	�@�Ăяo�����Ŗ����I�ȃ�����������K�v
+ *	＊関数内で必要なバッファを取得して返すバージョン
+ *	　呼び出し側で明示的なメモリ解放が必要
  */
 extern u8* PorutoData_GetParamArrayMem(PORUTO_DATA* dat,int heapID);
 
 /**
- *	@brief	�|���g�̃��x�����擾
+ *	@brief	ポルトのレベルを取得
  */
 extern u8 PorutoData_GetLevel(PORUTO_DATA* dat);
 
-//08.02.19 �ǉ�
+//08.02.19 追加
 /**
- *	@brief	�|���g�Z�[�u�f�[�^�̋󂫗̈搔���擾
+ *	@brief	ポルトセーブデータの空き領域数を取得
  *
- *	@retval �󂫗̈搔
+ *	@retval 空き領域数
  */
 extern u16 PORUTO_GetNullDataCount(PORUTO_BLOCK* block);
 
 
-//�f�o�b�O��p
+//デバッグ専用
 #ifdef PM_DEBUG
 /**
- *	@brief	�|���g�f�o�b�O�@�f�[�^�S������
+ *	@brief	ポルトデバッグ　データ全部消す
  */
 extern void PorutoDebug_AllDataDelete(PORUTO_BLOCK* block);
 /**
- *	@brief	�|���g�f�o�b�O�@�e�L�g�[�ȃ|���g���w�肵�����ǉ�
+ *	@brief	ポルトデバッグ　テキトーなポルトを指定した数追加
  */
 extern u16 PorutoDebug_AddRndData(PORUTO_BLOCK* block,u16 num);
 #endif	//PM_DEBUG

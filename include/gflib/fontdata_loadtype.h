@@ -1,13 +1,13 @@
 //=============================================================================================
 /**
  * @file	fontdata_loadtype.h
- * @brief	�t�H���g�f�[�^�̓ǂݏo��������`
+ * @brief	フォントデータの読み出し方式定義
  * @author	taya
  * @date	2006.02.24
  *
- * @li	�{���� fontdata_man.h �ɒu���āA����� fontproc.h ���� include ����Ηǂ����A
- *		��������� STRCODE ��`�Ȃǂ����킹�ēǂݍ��܂Ȃ���΂Ȃ�Ȃ��Ȃ�Ȃǂ�����݂������̂�
- *		�����������B����� fontdata_man.h, fontproc.h ���� include ����Ηǂ��B
+ * @li	本当は fontdata_man.h に置いて、それを fontproc.h から include すれば良いが、
+ *		そうすると STRCODE 定義なども合わせて読み込まなければならなくなるなどしがらみが多いので
+ *		これを作った。これを fontdata_man.h, fontproc.h から include すれば良い。
  */
 //=============================================================================================
 #ifndef __FONTDATA_LOADTYPE_H__
@@ -15,12 +15,12 @@
 
 //--------------------------------------------------------------
 /**
- * �t�H���g�f�[�^�̓ǂݏo������
+ * フォントデータの読み出し方式
  */
 //--------------------------------------------------------------
 typedef enum {
-	FONTDATA_LOADTYPE_ON_MEMORY,	///< �S�������q�[�v�ɏ풓�����Ă����A��������ǂݏo��
-	FONTDATA_LOADTYPE_READ_FILE,	///< �K�v�ȕ����̂݁A�����t�@�C������ǂݏo��
+	FONTDATA_LOADTYPE_ON_MEMORY,	///< 全文字をヒープに常駐させておき、そこから読み出す
+	FONTDATA_LOADTYPE_READ_FILE,	///< 必要な文字のみ、逐次ファイルから読み出す
 }FONTDATA_LOADTYPE;
 
 #endif

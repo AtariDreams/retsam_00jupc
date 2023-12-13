@@ -13,8 +13,8 @@
 
   $Log: WCM_Finish.html,v $
   Revision 1.2  2005/07/22 13:00:24  terui
-  "�t�F�[�Y"��"���"�ɗp�ꓝ��
-  �����̏��œ��𓝈�
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
 
   Revision 1.1  2005/07/20 13:11:10  terui
   Initial upload
@@ -23,7 +23,7 @@
  ==========================================================================-->
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>WCM_Finish</TITLE>
 		<LINK rel="stylesheet" href="../../css/nitro.css">
@@ -32,7 +32,7 @@
 	<BODY>
 		<H1>WCM_Finish</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -43,49 +43,49 @@ s32   WCM_Finish( void );
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-			WCM ���C�u�������I�������A�������O�̏�Ԃɖ߂������֐��ł��B<BR>
-			<A href="WCM_Init.html"><CODE>WCM_Init</CODE> �֐�</A>�ɂ���ď�����������ł���A
-			���� WCM ���C�u�����̓�����Ԃ� <CODE>WCM_PHASE_WAIT</CODE> �ł��鎞�ɂ̂ݎ��s���邱�Ƃ��ł��܂��B<BR>
+			WCM ライブラリを終了させ、初期化前の状態に戻す同期関数です。<BR>
+			<A href="WCM_Init.html"><CODE>WCM_Init</CODE> 関数</A>によって初期化した後であり、
+			かつ WCM ライブラリの内部状態が <CODE>WCM_PHASE_WAIT</CODE> である時にのみ実行することができます。<BR>
 			<BR>
-			�I�������ɐ��������ꍇ�A<A href="WCM_Init.html"><CODE>WCM_Init</CODE> �֐�</A>�ɂ���čď���������܂ł� WCM ���C�u�����Ɋ܂܂�� API ���g�p���邱�Ƃ��ł��Ȃ��Ȃ�܂����A
-			<A href="WCM_Init.html"><CODE>WCM_Init</CODE> �֐�</A>�ŗ^�������[�N�o�b�t�@�͕ʂ̗p�r�Ɏg�p�ł���悤�������܂��B
+			終了処理に成功した場合、<A href="WCM_Init.html"><CODE>WCM_Init</CODE> 関数</A>によって再初期化するまでは WCM ライブラリに含まれる API を使用することができなくなりますが、
+			<A href="WCM_Init.html"><CODE>WCM_Init</CODE> 関数</A>で与えたワークバッファは別の用途に使用できるよう解放されます。
 		</P>
 
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<P>
-			����܂���B
+			ありません。
 		</P>
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<P>
-			�ȉ��̂����ꂩ�̏������ʂ�Ԃ��܂��B
+			以下のいずれかの処理結果を返します。
 		</P>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>WCM_RESULT_SUCCESS</CODE></STRONG></EM></TD>
-					<TD width="75%">�I������������Ɋ����������Ƃ������܂��B</TD>
+					<TD width="75%">終了処理が正常に完了したことを示します。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_RESULT_FAILURE</CODE></STRONG></EM></TD>
-					<TD>WCM ���C�u����������������Ă��Ȃ��A������Ԃ� <CODE>WCM_PHASE_WAIT</CODE> �łȂ��A�Ȃǂ̌����ŏI�������Ɏ��s�������Ƃ������܂��B</TD>
+					<TD>WCM ライブラリが初期化されていない、内部状態が <CODE>WCM_PHASE_WAIT</CODE> でない、などの原因で終了処理に失敗したことを示します。</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<CODE>
 				<A href="WCM_Init.html">WCM_Init</A>, <A href="WCM_CleanupAsync.html">WCM_CleapupAsync</A>, <A href="WCM_TerminateAsync.html">WCM_TerminateAsync</A>
 			</CODE>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2005/07/22 ����<BR>
+			2005/07/22 初版<BR>
 		</P>
 
 	</BODY>

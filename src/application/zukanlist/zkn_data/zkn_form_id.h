@@ -1,4 +1,4 @@
-/* 形ID　ヘッダーファイル */
+/* 蠖｢ID縲繝倥ャ繝繝ｼ繝輔ぃ繧､繝ｫ */
 #ifndef __ZKN_FORM_ID_H__
 #define __ZKN_FORM_ID_H__
 #define ZKN_FROM_FOUR_LEGS	(0)

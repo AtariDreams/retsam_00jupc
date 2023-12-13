@@ -27,7 +27,7 @@
   fixed that when locking mutex with OS_TryLockMutex(), it's not added to mutex list.
 
   Revision 1.12  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.11  2005/02/28 05:26:29  yosizaki
   do-indent.
@@ -39,28 +39,28 @@
   only change comment
 
   Revision 1.8  2004/04/02 12:48:49  yada
-  mutex‚ÉƒŠƒXƒg‚ğ’Ç‰Á‚µAƒXƒŒƒbƒhw’è‚Å‘S‚Ä‚Ìmutex‚ğ‰ğ•ú‚Å‚«‚é‚æ‚¤‚É‚µ‚½B
+  mutexã«ãƒªã‚¹ãƒˆã‚’è¿½åŠ ã—ã€ã‚¹ãƒ¬ãƒƒãƒ‰æŒ‡å®šã§å…¨ã¦ã®mutexã‚’è§£æ”¾ã§ãã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.7  2004/03/01 11:54:24  yada
-  ‰pŒê‚ÌŠÖ”commentì¬
+  è‹±èªã®é–¢æ•°commentä½œæˆ
 
   Revision 1.6  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.5  2004/01/18 02:25:37  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.4  2003/12/25 07:31:26  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.3  2003/12/11 11:53:36  yada
-  OS_CreateThreadQueue() ¨ OS_InitThreadQueue() ‚Ì‰ü–¼‚É‚æ‚éC³
+  OS_CreateThreadQueue() â†’ OS_InitThreadQueue() ã®æ”¹åã«ã‚ˆã‚‹ä¿®æ­£
 
   Revision 1.2  2003/11/30 04:19:25  yasu
-  OS_EnableInterrupt/DisableInterrupt ‚Ì–ß‚è’l‚ÌŒ^‚Ì•ÏX
+  OS_EnableInterrupt/DisableInterrupt ã®æˆ»ã‚Šå€¤ã®å‹ã®å¤‰æ›´
 
   Revision 1.1  2003/11/29 10:10:29  yada
-  ‰”Å
+  åˆç‰ˆ
 
 
   $NoKeywords: $

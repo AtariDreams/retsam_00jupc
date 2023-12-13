@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_hide.c
- * @brief	ÉtÉBÅ[ÉãÉhOBJâBÇÍñ™
+ * @brief	„Éï„Ç£„Éº„É´„ÉâOBJÈö†„ÇåËìë
  * @author	kagaya
  * @data	05.07.13
  *
@@ -24,12 +24,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_HIDEå^
+///	FE_HIDEÂûã
 //--------------------------------------------------------------
 typedef struct _TAG_FE_HIDE * FE_HIDE_PTR;
 
 //--------------------------------------------------------------
-///	FE_HIDEç\ë¢ëÃ
+///	FE_HIDEÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct _TAG_FE_HIDE
 {
@@ -38,10 +38,10 @@ typedef struct _TAG_FE_HIDE
 	FRO_OBJ robj[HIDE_MAX];
 }FE_HIDE;
 
-#define FE_HIDE_SIZE (sizeof(FE_HIDE)) ///<FE_HIDEÉTÉCÉY
+#define FE_HIDE_SIZE (sizeof(FE_HIDE)) ///<FE_HIDE„Çµ„Ç§„Ç∫
 
 //--------------------------------------------------------------
-///	HIDE_ADD_Hç\ë¢ëÃ
+///	HIDE_ADD_HÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
@@ -53,7 +53,7 @@ typedef struct
 }HIDE_ADD_H;
 
 //--------------------------------------------------------------
-///	HIDE_WORKç\ë¢ëÃ
+///	HIDE_WORKÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
@@ -67,7 +67,7 @@ typedef struct
 #define HIDE_WORK_SIZE (sizeof(HIDE_WORK))
 
 //==============================================================================
-//	ÉvÉçÉgÉ^ÉCÉv
+//	„Éó„É≠„Éà„Çø„Ç§„Éó
 //==============================================================================
 static void Hide_GraphicInit( FE_HIDE_PTR hide );
 static void Hide_GraphicDelete( FE_HIDE_PTR hide );
@@ -78,11 +78,11 @@ static const EOA_H_NPP DATA_EoaH_Hide;
 static const u32 DATA_3DModelArcID_Hide[HIDE_MAX];
 
 //==============================================================================
-//	âBÇÍñ™Å@ÉVÉXÉeÉÄ
+//	Èö†„ÇåËìë„ÄÄ„Ç∑„Çπ„ÉÜ„É†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * âBÇÍñ™èâä˙âª
+ * Èö†„ÇåËìëÂàùÊúüÂåñ
  * @param	fes		FE_SYS_PTR
  * @retval	FE_HIDE_PTR		FE_HIDE_PTR
  */
@@ -100,7 +100,7 @@ void * FE_Hide_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * âBÇÍñ™çÌèú
+ * Èö†„ÇåËìëÂâäÈô§
  * @param	hide		FE_HIDE_PTR
  * @retval	nothing
  */
@@ -113,11 +113,11 @@ void FE_Hide_Delete( void *work )
 }
 
 //==============================================================================
-//	âBÇÍñ™Å@ÉOÉâÉtÉBÉbÉN
+//	Èö†„ÇåËìë„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * âBÇÍñ™ ÉOÉâÉtÉBÉbÉNèâä˙âª
+ * Èö†„ÇåËìë „Ç∞„É©„Éï„Ç£„ÉÉ„ÇØÂàùÊúüÂåñ
  * @param	hide		FE_HIDE_PTR
  * @retval	nothing
  */
@@ -135,7 +135,7 @@ static void Hide_GraphicInit( FE_HIDE_PTR hide )
 
 //--------------------------------------------------------------
 /**
- * âBÇÍñ™Å@ÉOÉâÉtÉBÉbÉNçÌèú
+ * Èö†„ÇåËìë„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØÂâäÈô§
  * @param	hide		FE_HIDE_PTR
  * @retval	nothing
  */
@@ -151,11 +151,11 @@ static void Hide_GraphicDelete( FE_HIDE_PTR hide )
 
 //--------------------------------------------------------------
 /**
- * éwíËÉ^ÉCÉvÇÃÉåÉìÉ_éÊìæ
+ * ÊåáÂÆö„Çø„Ç§„Éó„ÅÆ„É¨„É≥„ÉÄÂèñÂæó
  * @param	hide	FE_HIDE_PTR
  * @param	type	HIDETYPE
  * @param	attr	HIDE_ATTR
- * @retval	NNSG3dRenderObj éwíËÇÃÉåÉìÉ_
+ * @retval	NNSG3dRenderObj ÊåáÂÆö„ÅÆ„É¨„É≥„ÉÄ
  */
 //--------------------------------------------------------------
 static FRO_OBJ * Hide_TypeOBJGet( FE_HIDE_PTR hide, HIDETYPE type )
@@ -164,11 +164,11 @@ static FRO_OBJ * Hide_TypeOBJGet( FE_HIDE_PTR hide, HIDETYPE type )
 }
 
 //==============================================================================
-//	âBÇÍñ™Å@EOA
+//	Èö†„ÇåËìë„ÄÄEOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhOBJâBÇÍñ™í«â¡
+ * „Éï„Ç£„Éº„É´„ÉâOBJÈö†„ÇåËìëËøΩÂä†
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	type	HIDETYPE
  * @retval	eoa		EOA_PTR
@@ -209,10 +209,10 @@ EOA_PTR FE_FldOBJHide_Add( FIELD_OBJ_PTR fldobj, HIDETYPE type )
 
 //--------------------------------------------------------------
 /**
- * EOA âBÇÍñ™Å@èâä˙âª
+ * EOA Èö†„ÇåËìë„ÄÄÂàùÊúüÂåñ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
- * @retval	int TRUE=ê≥èÌèIóπÅBFALSE=àŸèÌèIóπ
+ * @retval	int TRUE=Ê≠£Â∏∏ÁµÇ‰∫Ü„ÄÇFALSE=Áï∞Â∏∏ÁµÇ‰∫Ü
  */
 //--------------------------------------------------------------
 static int EoaHide_Init( EOA_PTR eoa, void *wk )
@@ -229,7 +229,7 @@ static int EoaHide_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA âBÇÍñ™Å@çÌèú
+ * EOA Èö†„ÇåËìë„ÄÄÂâäÈô§
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -247,7 +247,7 @@ static void EoaHide_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA âBÇÍñ™Å@ìÆçÏ
+ * EOA Èö†„ÇåËìë„ÄÄÂãï‰Ωú
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -269,7 +269,7 @@ static void EoaHide_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA âBÇÍñ™Å@ï`âÊ
+ * EOA Èö†„ÇåËìë„ÄÄÊèèÁîª
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -291,7 +291,7 @@ static void EoaHide_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	âBÇÍñ™EOA_H
+///	Èö†„ÇåËìëEOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Hide =
 {
@@ -306,7 +306,7 @@ static const EOA_H_NPP DATA_EoaH_Hide =
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	âBÇÍñ™imdÉeÅ[ÉuÉãÅ@ï¿Ç—ÇÕHIDETYPEÇÃílÇ…àÍív
+///	Èö†„ÇåËìëimd„ÉÜ„Éº„Éñ„É´„ÄÄ‰∏¶„Å≥„ÅØHIDETYPE„ÅÆÂÄ§„Å´‰∏ÄËá¥
 //--------------------------------------------------------------
 static const u32 DATA_3DModelArcID_Hide[HIDE_MAX] =
 {

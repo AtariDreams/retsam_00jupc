@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_217.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			217�@�˂ނ��Ԃ̑���ɔ{�̃_���[�W��^���邪�A�˂ނ��Ԃ�����B�y�����z�̃o�[�W�����Ⴂ�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			217　ねむり状態の相手に倍のダメージを与えるが、ねむり状態が治る。【きつけ】のバージョン違い。
  *
  *@author	HisashiSogabe
  *@data		2006.02.10
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_217:
-	//�݂���肪����ꍇ�́A�˂ނ�`�F�b�N���X���[
+	//みがわりがいる場合は、ねむりチェックをスルー
 	MIGAWARI_CHECK	SIDE_DEFENCE,BE_217_NEXT
 	IF_PSP			IF_FLAG_BIT,SIDE_DEFENCE,ID_PSP_condition,CONDITION_NEMURI,BE_217_NEMURI
 	VALUE			VAL_SET,BUF_PARA_DAMAGE_VALUE,10

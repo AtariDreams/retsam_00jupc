@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.4  2005/06/14 00:57:07  yasu
-  -s ƒIƒvƒVƒ‡ƒ“‚Ì’Ç‰Á
+  -s ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¿½åŠ 
 
   Revision 1.3  2005/06/13 08:52:26  yasu
-  %f ‚ğƒVƒ“ƒ{ƒ‹–¼‚É‘Î‰
+  %f ã‚’ã‚·ãƒ³ãƒœãƒ«åã«å¯¾å¿œ
 
   Revision 1.2  2005/06/13 02:56:34  yasu
-  ƒIƒvƒVƒ‡ƒ“‚ÌC³AƒeƒXƒgì¬‚É‚æ‚é“®ì‚ÌŠm”F
+  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ä¿®æ­£ã€ãƒ†ã‚¹ãƒˆä½œæˆã«ã‚ˆã‚‹å‹•ä½œã®ç¢ºèª
 
   Revision 1.1  2005/06/10 12:55:43  yasu
-  1st ƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO
+  1st ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -36,17 +36,17 @@ static u32 section_add_string(Section * s, const char *string);
 /*---------------------------------------------------------------------------*
   Name:         add_datasec
   
-  Description:  ƒf[ƒ^ƒZƒNƒVƒ‡ƒ“‚ğ’Ç‰Á‚·‚é
+  Description:  ãƒ‡ãƒ¼ã‚¿ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ ã™ã‚‹
 
-  Arguments:    obj                   ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                section_rodata        “Ç‚İ‚İê—p‚Ìƒf[ƒ^ƒZƒNƒVƒ‡ƒ“–¼
-                section_rwdata        “Ç‚İ‘‚«‰Â”\‚Èƒf[ƒ^ƒZƒNƒVƒ‡ƒ“–¼
-                symbol_format_begin   ƒVƒ“ƒ{ƒ‹–¼(%f •ÏŠ·‘O)-æ“ª
-                symbol_format_end     ƒVƒ“ƒ{ƒ‹–¼(%f •ÏŠ·‘O)-ÅŒã”ö
-                filename              “ü—ÍƒoƒCƒiƒŠƒtƒ@ƒCƒ‹–¼
+  Arguments:    obj                   ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                section_rodata        èª­ã¿è¾¼ã¿å°‚ç”¨ã®ãƒ‡ãƒ¼ã‚¿ã‚»ã‚¯ã‚·ãƒ§ãƒ³å
+                section_rwdata        èª­ã¿æ›¸ãå¯èƒ½ãªãƒ‡ãƒ¼ã‚¿ã‚»ã‚¯ã‚·ãƒ§ãƒ³å
+                symbol_format_begin   ã‚·ãƒ³ãƒœãƒ«å(%f å¤‰æ›å‰)-å…ˆé ­
+                symbol_format_end     ã‚·ãƒ³ãƒœãƒ«å(%f å¤‰æ›å‰)-æœ€å¾Œå°¾
+                filename              å…¥åŠ›ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«å
                 writable              TRUE .data  FALSE .rodata
-                align                 ƒAƒ‰ƒCƒ“ƒƒ“ƒg
-  Returns:      TRUE ¬Œ÷  FALSE ¸”s
+                align                 ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆ
+  Returns:      TRUE æˆåŠŸ  FALSE å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL add_datasec(Object * obj,
                  const char *section_rodata, const char *section_rwdata,
@@ -55,11 +55,11 @@ BOOL add_datasec(Object * obj,
 {
     s32     n;
     DataSection *d;
-    char   *symbol_begin;              // ƒVƒ“ƒ{ƒ‹–¼(%f •ÏŠ·Œã)-æ“ª
-    char   *symbol_end;                // ƒVƒ“ƒ{ƒ‹–¼(%f •ÏŠ·Œã)-ÅŒã”ö
+    char   *symbol_begin;              // ã‚·ãƒ³ãƒœãƒ«å(%f å¤‰æ›å¾Œ)-å…ˆé ­
+    char   *symbol_end;                // ã‚·ãƒ³ãƒœãƒ«å(%f å¤‰æ›å¾Œ)-æœ€å¾Œå°¾
 
     //
-    //  ƒf[ƒ^ƒZƒNƒVƒ‡ƒ““Ç‚İ‚İ
+    //  ãƒ‡ãƒ¼ã‚¿ã‚»ã‚¯ã‚·ãƒ§ãƒ³èª­ã¿è¾¼ã¿
     //
     if (0 > (n = read_datasec(obj, filename)))
     {
@@ -67,10 +67,10 @@ BOOL add_datasec(Object * obj,
     }
 
     //
-    //  ƒf[ƒ^ƒZƒNƒVƒ‡ƒ“‚Ì“o˜^
+    //  ãƒ‡ãƒ¼ã‚¿ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ç™»éŒ²
     //
     d = &obj->data[n];
-    if (writable)                      // .rodata or .data ‚Ìˆ—
+    if (writable)                      // .rodata or .data ã®å‡¦ç†
     {
         d->index =
             add_section(obj, section_rwdata, SHT_PROGBITS, SHF_WRITE | SHF_ALLOC, d->section.size,
@@ -83,7 +83,7 @@ BOOL add_datasec(Object * obj,
     }
 
     //
-    //  ƒVƒ“ƒ{ƒ‹‚Ì“o˜^
+    //  ã‚·ãƒ³ãƒœãƒ«ã®ç™»éŒ²
     //
     symbol_begin = create_symbol_string(filename, symbol_format_begin);
     symbol_end = create_symbol_string(filename, symbol_format_end);
@@ -98,12 +98,12 @@ BOOL add_datasec(Object * obj,
 /*---------------------------------------------------------------------------*
   Name:         read_datasec
   
-  Description:  ƒf[ƒ^ƒZƒNƒVƒ‡ƒ“‚ğ“Ç‚İ‚Ş
+  Description:  ãƒ‡ãƒ¼ã‚¿ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’èª­ã¿è¾¼ã‚€
 
-  Arguments:    obj        ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                filename   “ü—ÍƒoƒCƒiƒŠƒtƒ@ƒCƒ‹–¼
+  Arguments:    obj        ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                filename   å…¥åŠ›ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«å
   
-  Returns:      TRUE ¬Œ÷  FALSE ¸”s
+  Returns:      TRUE æˆåŠŸ  FALSE å¤±æ•—
  *---------------------------------------------------------------------------*/
 static s32 read_datasec(Object * obj, const char *filename)
 {
@@ -113,8 +113,8 @@ static s32 read_datasec(Object * obj, const char *filename)
     Section *s = &obj->data[n].section;
 
     //
-    //  data section ‚Ì—Ìˆæ‚ğƒq[ƒv‚©‚ç“ü—Íƒtƒ@ƒCƒ‹ƒTƒCƒY•ª‚¾‚¯Šm•Û‚µA
-    //  ‚»‚±‚Ö“ü—Íƒtƒ@ƒCƒ‹ filename ‚ğ“Ç‚İ‚Ş
+    //  data section ã®é ˜åŸŸã‚’ãƒ’ãƒ¼ãƒ—ã‹ã‚‰å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºåˆ†ã ã‘ç¢ºä¿ã—ã€
+    //  ãã“ã¸å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ« filename ã‚’èª­ã¿è¾¼ã‚€
     //
     if (stat(filename, &st) || !S_ISREG(st.st_mode) || st.st_size < 0
         || NULL == (fp = fopen(filename, "rb")))
@@ -148,19 +148,19 @@ static s32 read_datasec(Object * obj, const char *filename)
 /*---------------------------------------------------------------------------*
   Name:         add_section_name
 
-  Description:  ƒZƒNƒVƒ‡ƒ“–¼‚Ì’Ç‰Á
+  Description:  ã‚»ã‚¯ã‚·ãƒ§ãƒ³åã®è¿½åŠ 
 
-  Arguments:    obj      ƒIƒuƒWƒFƒNƒg
-                name     ƒZƒNƒVƒ‡ƒ“–¼
+  Arguments:    obj      ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+                name     ã‚»ã‚¯ã‚·ãƒ§ãƒ³å
   
-  Returns:      ’Ç‰Á‚µ‚½ƒZƒNƒVƒ‡ƒ“–¼‚ÌƒZƒNƒVƒ‡ƒ“–¼ƒe[ƒuƒ‹‚Å‚Ìæ“ªˆÊ’u
+  Returns:      è¿½åŠ ã—ãŸã‚»ã‚¯ã‚·ãƒ§ãƒ³åã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«ã§ã®å…ˆé ­ä½ç½®
  *---------------------------------------------------------------------------*/
 u32 add_section_name(Object * obj, const char *name)
 {
-    // ƒZƒNƒVƒ‡ƒ““à‚Ö‚Ì“o˜^
+    // ã‚»ã‚¯ã‚·ãƒ§ãƒ³å†…ã¸ã®ç™»éŒ²
     u32     pos = section_add_string(&obj->section_name, name);
 
-    // ƒZƒNƒVƒ‡ƒ“î•ñ(ƒTƒCƒY)‚ÌXV
+    // ã‚»ã‚¯ã‚·ãƒ§ãƒ³æƒ…å ±(ã‚µã‚¤ã‚º)ã®æ›´æ–°
     if (obj->header.e_shstrndx > 0)
     {
         obj->section[obj->header.e_shstrndx].sh_size = obj->section_name.size;
@@ -171,16 +171,16 @@ u32 add_section_name(Object * obj, const char *name)
 /*---------------------------------------------------------------------------*
   Name:         add_section
   
-  Description:  ƒZƒNƒVƒ‡ƒ“‚ğ’Ç‰Á
+  Description:  ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ 
 
-  Arguments:    obj     ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                name    ƒVƒ“ƒ{ƒ‹–¼(‚à‚µNULL‚È‚ç NULL SECTION ‚É‚·‚é)
+  Arguments:    obj     ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                name    ã‚·ãƒ³ãƒœãƒ«å(ã‚‚ã—NULLãªã‚‰ NULL SECTION ã«ã™ã‚‹)
                 type    SHT_*
                 flags   SHF_*
-                size    ƒZƒNƒVƒ‡ƒ“‚ÌƒTƒCƒY
-                align   ƒZƒNƒVƒ‡ƒ“‚ÌƒAƒ‰ƒCƒ“ƒƒ“ƒg
+                size    ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚µã‚¤ã‚º
+                align   ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆ
   
-  Returns:      “o˜^‚µ‚½index
+  Returns:      ç™»éŒ²ã—ãŸindex
  *---------------------------------------------------------------------------*/
 u32 add_section(Object * obj, const char *name, u32 type, u32 flags, u32 size, u32 align)
 {
@@ -216,22 +216,22 @@ u32 add_section(Object * obj, const char *name, u32 type, u32 flags, u32 size, u
 /*---------------------------------------------------------------------------*
   Name:         add_symbol_name
 
-  Description:  ƒVƒ“ƒ{ƒ‹–¼‚Ì’Ç‰Á
+  Description:  ã‚·ãƒ³ãƒœãƒ«åã®è¿½åŠ 
 
-  Arguments:    obj      ƒIƒuƒWƒFƒNƒg
-                name     ƒVƒ“ƒ{ƒ‹–¼
+  Arguments:    obj      ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+                name     ã‚·ãƒ³ãƒœãƒ«å
   
-  Returns:      ’Ç‰Á‚µ‚½ƒVƒ“ƒ{ƒ‹–¼‚ÌƒZƒNƒVƒ‡ƒ“–¼ƒe[ƒuƒ‹‚Å‚Ìæ“ªˆÊ’u
+  Returns:      è¿½åŠ ã—ãŸã‚·ãƒ³ãƒœãƒ«åã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«ã§ã®å…ˆé ­ä½ç½®
  *---------------------------------------------------------------------------*/
 u32 add_symbol_name(Object * obj, const char *name)
 {
     u32     pos;
 
-    // ƒZƒNƒVƒ‡ƒ““à‚Ö‚Ì“o˜^
-    // name ‚ª NULL ‚Ìê‡‚Í "" ‚Æ‚µ‚Äˆµ‚í‚ê‚é
+    // ã‚»ã‚¯ã‚·ãƒ§ãƒ³å†…ã¸ã®ç™»éŒ²
+    // name ãŒ NULL ã®å ´åˆã¯ "" ã¨ã—ã¦æ‰±ã‚ã‚Œã‚‹
     pos = section_add_string(&obj->symbol_name, name ? name : "");
 
-    // ƒZƒNƒVƒ‡ƒ“î•ñ(ƒTƒCƒY)‚ÌXV
+    // ã‚»ã‚¯ã‚·ãƒ§ãƒ³æƒ…å ±(ã‚µã‚¤ã‚º)ã®æ›´æ–°
     if (obj->symbol_name_index > 0)
     {
         obj->section[obj->symbol_name_index].sh_size = obj->symbol_name.size;
@@ -242,15 +242,15 @@ u32 add_symbol_name(Object * obj, const char *name)
 /*---------------------------------------------------------------------------*
   Name:         add_symbol
 
-  Description:  ƒVƒ“ƒ{ƒ‹‚ğ’Ç‰Á‚·‚é
+  Description:  ã‚·ãƒ³ãƒœãƒ«ã‚’è¿½åŠ ã™ã‚‹
 
-  Arguments:    obj		ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                symbol		ƒVƒ“ƒ{ƒ‹–¼(‚à‚µNULL‚È‚ç NULL SYMBOL ‚É‚·‚é)
-                value		ƒVƒ“ƒ{ƒ‹‚Ì’l
-                size		ƒVƒ“ƒ{ƒ‹‚ÌƒTƒCƒY
-                section		ŠÖ˜AƒZƒNƒVƒ‡ƒ“
+  Arguments:    obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                symbol		ã‚·ãƒ³ãƒœãƒ«å(ã‚‚ã—NULLãªã‚‰ NULL SYMBOL ã«ã™ã‚‹)
+                value		ã‚·ãƒ³ãƒœãƒ«ã®å€¤
+                size		ã‚·ãƒ³ãƒœãƒ«ã®ã‚µã‚¤ã‚º
+                section		é–¢é€£ã‚»ã‚¯ã‚·ãƒ§ãƒ³
   
-  Returns:      “o˜^‚µ‚½ index
+  Returns:      ç™»éŒ²ã—ãŸ index
  *---------------------------------------------------------------------------*/
 u32 add_symbol(Object * obj, const char *symbol, u32 value, u32 size, u32 section)
 {
@@ -262,7 +262,7 @@ u32 add_symbol(Object * obj, const char *symbol, u32 value, u32 size, u32 sectio
     {
         if (symbol)
         {
-            // C Œ¾Œê‚È‚Ç‚ÌƒVƒ“ƒ{ƒ‹‚Ìê‡‚Í’Êí‚ÌŠÖ”–¼‚Ì‘O‚É '_' ‚ğ‚Â‚¯‚é
+            // C è¨€èªãªã©ã®ã‚·ãƒ³ãƒœãƒ«ã®å ´åˆã¯é€šå¸¸ã®é–¢æ•°åã®å‰ã« '_' ã‚’ã¤ã‘ã‚‹
             l->st_name = add_symbol_name(obj, symbol);
             l->st_value = value;
             l->st_size = size;
@@ -276,7 +276,7 @@ u32 add_symbol(Object * obj, const char *symbol, u32 value, u32 size, u32 sectio
             memset(l, 0, sizeof(ELF32_Symbol));
         }
 
-        // ƒVƒ“ƒ{ƒ‹ƒe[ƒuƒ‹XV
+        // ã‚·ãƒ³ãƒœãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«æ›´æ–°
         symtab->sh_info = n;
         symtab->sh_size = (n + 1) * symtab->sh_entsize;
     }
@@ -290,12 +290,12 @@ u32 add_symbol(Object * obj, const char *symbol, u32 value, u32 size, u32 sectio
 /*---------------------------------------------------------------------------*
   Name:         section_add_string
 
-  Description:  ƒZƒNƒVƒ‡ƒ“‚Ö‚Ì•¶š—ñ‚Ì’Ç‰Á
+  Description:  ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¸ã®æ–‡å­—åˆ—ã®è¿½åŠ 
 
-  Arguments:    section  ƒZƒNƒVƒ‡ƒ“
-                string   •¶š—ñ
+  Arguments:    section  ã‚»ã‚¯ã‚·ãƒ§ãƒ³
+                string   æ–‡å­—åˆ—
   
-  Returns:      ’Ç‰Á‚µ‚½•¶š—ñ‚Ìƒe[ƒuƒ‹‚Å‚Ìæ“ªˆÊ’u(=ŒÄ‚Ño‚µ‘O‚ÌƒTƒCƒY)
+  Returns:      è¿½åŠ ã—ãŸæ–‡å­—åˆ—ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã§ã®å…ˆé ­ä½ç½®(=å‘¼ã³å‡ºã—å‰ã®ã‚µã‚¤ã‚º)
  *---------------------------------------------------------------------------*/
 static u32 section_add_string(Section * s, const char *string)
 {

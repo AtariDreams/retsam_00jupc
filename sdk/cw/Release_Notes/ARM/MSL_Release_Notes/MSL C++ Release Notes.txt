@@ -374,7 +374,6 @@ For code that looks like:
 #include <fstream>
 #include <ostream>
 #include <cstdio>
- 
 int main()
 {
    std::FILE* fp = ...
@@ -388,7 +387,7 @@ Change it to:
 #include <msl_c_filebuf>
 #include <ostream>
 #include <cstdio>
- 
+„Éè
 int main()
 {
    std::FILE* fp = ...
@@ -527,7 +526,7 @@ functions.
 
 namespace Metrowerks
 {
- 
+„Éè
 template <class charT, class traits = std::char_traits<charT> >
 class bufferedbuf
 	: public std::basic_streambuf<charT, traits>
@@ -539,23 +538,23 @@ public:
 	typedef typename traits::pos_type pos_type;
 	typedef typename traits::off_type off_type;
 	typedef traits                    traits_type;
-	 
+	„Éè
 	virtual ~bufferedbuf();
-	 
+	„Éè
 	bool is_open() const {return open_;}
- 
+„Éè
 protected:
- 
+„Éè
 	explicit bufferedbuf(std::size_t buffer_size_bytes);
-	 
+	„Éè
 	void open(bool init_put);
 	bufferedbuf* close();
-	 
+	„Éè
 	virtual std::streamsize showmanyc();
 	virtual int_type underflow();
 	virtual int_type pbackfail(int_type c = traits::eof());
 	virtual int_type overflow (int_type c = traits::eof());
-	 
+	„Éè
 	virtual std::basic_streambuf<charT,traits_type>* setbuf(char_type* s, std::streamsize n);
 	virtual pos_type seekoff(off_type off, std::ios_base::seekdir way,
 	                                       std::ios_base::openmode which = std::ios_base::in |
@@ -564,12 +563,12 @@ protected:
 	                                                                       std::ios_base::out);
 	virtual int      sync();
 	virtual void     imbue(const std::locale& loc);
- 
+„Éè
 private:
- 
+„Éè
 	bufferedbuf(const bufferedbuf&);             // not defined
 	bufferedbuf& operator=(const bufferedbuf&);  // not defined
-	 
+	„Éè
 	virtual std::ptrdiff_t write_chars(const char* buf, std::ptrdiff_t n) = 0;
 	virtual std::ptrdiff_t read_chars(char* buf, std::ptrdiff_t n) = 0;
 	virtual off_type seek_device(off_type off, int whence) = 0;

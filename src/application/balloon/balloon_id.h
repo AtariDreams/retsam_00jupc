@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon_id.h
- * @brief	ƒLƒƒƒ‰IDAƒZƒ‹ID“™‚Ì’è‹`êŠ
+ * @brief	ã‚­ãƒ£ãƒ©IDã€ã‚»ãƒ«IDç­‰ã®å®šç¾©å ´æ‰€
  * @author	matsuda
- * @date	2007.11.27(‰Î)
+ * @date	2007.11.27(ç«)
  */
 //==============================================================================
 #ifndef __BALLOON_ID_H__
@@ -11,112 +11,112 @@
 
 
 //==============================================================================
-//	ƒLƒƒƒ‰ID
+//	ã‚­ãƒ£ãƒ©ID
 //==============================================================================
 enum{
 	CHARID_BALLOON_START = 10000,
 	
-	CHARID_TOUCH_PEN,		///<ƒ^ƒbƒ`ƒyƒ“
-	CHARID_COUNTER_WIN,		///<ƒJƒEƒ“ƒ^[‚ÌƒEƒBƒ“ƒhƒE
-	CHARID_BALLOON_AIM,		///<Æ€
+	CHARID_TOUCH_PEN,		///<ã‚¿ãƒƒãƒãƒšãƒ³
+	CHARID_COUNTER_WIN,		///<ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	CHARID_BALLOON_AIM,		///<ç…§æº–
 	
-	//-- ƒTƒu‰æ–Ê --//
-	CHARID_SUB_BALLOON_MIX,			///<FX‚ÈƒLƒƒƒ‰‚²‚¿‚á¬‚º
+	//-- ã‚µãƒ–ç”»é¢ --//
+	CHARID_SUB_BALLOON_MIX,			///<è‰²ã€…ãªã‚­ãƒ£ãƒ©ã”ã¡ã‚ƒæ··ãœ
 };
 
 //==============================================================================
-//	ƒpƒŒƒbƒgID
+//	ãƒ‘ãƒ¬ãƒƒãƒˆID
 //==============================================================================
 enum{
 	PLTTID_BALLOON_START = 10000,
 
-	PLTTID_OBJ_COMMON,	///<í’“OBJƒpƒŒƒbƒg
+	PLTTID_OBJ_COMMON,	///<å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆ
 	
-	PLTTID_TOUCH_PEN,	///<ƒ^ƒbƒ`ƒyƒ“
-	PLTTID_COUNTER,		///<ƒJƒEƒ“ƒ^[
-	PLTTID_COUNTER_WIN,	///<ƒJƒEƒ“ƒ^[‚ÌƒEƒBƒ“ƒhƒE
-	PLTTID_OBJ_AIM,		///<Æ€
+	PLTTID_TOUCH_PEN,	///<ã‚¿ãƒƒãƒãƒšãƒ³
+	PLTTID_COUNTER,		///<ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	PLTTID_COUNTER_WIN,	///<ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	PLTTID_OBJ_AIM,		///<ç…§æº–
 	
-	//-- ƒTƒu‰æ–Ê --//
-	PLTTID_SUB_OBJ_COMMON,	///<ƒTƒu‰æ–Ê‚Ìí’“OBJƒpƒŒƒbƒg
+	//-- ã‚µãƒ–ç”»é¢ --//
+	PLTTID_SUB_OBJ_COMMON,	///<ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆ
 };
 
 //--------------------------------------------------------------
-//	í’“OBJƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+//	å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 enum{
 	PALOFS_NONE = 0,
 
 	
-	BALLOON_COMMON_PAL_NUM = 3,	///<í’“OBJƒpƒŒƒbƒg‚Ì–{”
+	BALLOON_COMMON_PAL_NUM = 3,	///<å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã®æœ¬æ•°
 };
 
 //--------------------------------------------------------------
-//	ƒTƒu‰æ–Ê‚Ìí’“OBJƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+//	ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 enum{
-	PALOFS_SUB_AIR_BLUE = 1,			///<‹ó‹CFÂ
-	PALOFS_SUB_AIR_RED = 2,				///<‹ó‹CFÔ
-	PALOFS_SUB_AIR_GREEN = 4,			///<‹ó‹CF—Î
-	PALOFS_SUB_AIR_YELLOW = 3,			///<‹ó‹CF‰©
+	PALOFS_SUB_AIR_BLUE = 1,			///<ç©ºæ°—ï¼šé’
+	PALOFS_SUB_AIR_RED = 2,				///<ç©ºæ°—ï¼šèµ¤
+	PALOFS_SUB_AIR_GREEN = 4,			///<ç©ºæ°—ï¼šç·‘
+	PALOFS_SUB_AIR_YELLOW = 3,			///<ç©ºæ°—ï¼šé»„
 
-	PALOFS_SUB_EXPLODED = 5,				///<”š”­‚Ì†‚Ó‚Ô‚«
-	PALOFS_SUB_EXPLODED_SMOKE = 0,			///<”š”­‚Ì‰Œ
-	PALOFS_SUB_EXPLODED_CHIP_BLUE =6,		///<”j•Ğ:Â
-	PALOFS_SUB_EXPLODED_CHIP_RED =7,		///<”j•Ğ:Ô
-	PALOFS_SUB_EXPLODED_CHIP_YELLOW =8,		///<”j•Ğ:‰©
+	PALOFS_SUB_EXPLODED = 5,				///<çˆ†ç™ºæ™‚ã®ç´™ãµã¶ã
+	PALOFS_SUB_EXPLODED_SMOKE = 0,			///<çˆ†ç™ºæ™‚ã®ç…™
+	PALOFS_SUB_EXPLODED_CHIP_BLUE =6,		///<ç ´ç‰‡:é’
+	PALOFS_SUB_EXPLODED_CHIP_RED =7,		///<ç ´ç‰‡:èµ¤
+	PALOFS_SUB_EXPLODED_CHIP_YELLOW =8,		///<ç ´ç‰‡:é»„
 
-	PALOFS_SUB_ICON_BALLOON = 0,	///<•—‘DƒAƒCƒRƒ“
+	PALOFS_SUB_ICON_BALLOON = 0,	///<é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³
 	
-	PALOFS_SUB_JOINT = 0,			///<ƒWƒ‡ƒCƒ“ƒg
-	PALOFS_SUB_BOOSTER_BLUE = 1,	///<ƒu[ƒXƒ^[(Â)
-	PALOFS_SUB_BOOSTER_RED = 2,		///<ƒu[ƒXƒ^[(Ô)
-	PALOFS_SUB_BOOSTER_YELLOW = 3,	///<ƒu[ƒXƒ^[(‰©)
-	PALOFS_SUB_BOOSTER_GREEN = 4,	///<ƒu[ƒXƒ^[(—Î)
-	PALOFS_SUB_BOOSTER_HIT = 0,		///<ƒu[ƒXƒ^[:ƒqƒbƒgƒGƒtƒFƒNƒg
-	PALOFS_SUB_BOOSTER_LAND_SMOKE = 0,	///<ƒu[ƒXƒ^[:’…’n‚Ì‰Œ
-	PALOFS_SUB_BOOSTER_SHADOW = 1,	///<ƒu[ƒXƒ^[:‰e
+	PALOFS_SUB_JOINT = 0,			///<ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆ
+	PALOFS_SUB_BOOSTER_BLUE = 1,	///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é’)
+	PALOFS_SUB_BOOSTER_RED = 2,		///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(èµ¤)
+	PALOFS_SUB_BOOSTER_YELLOW = 3,	///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é»„)
+	PALOFS_SUB_BOOSTER_GREEN = 4,	///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(ç·‘)
+	PALOFS_SUB_BOOSTER_HIT = 0,		///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼:ãƒ’ãƒƒãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	PALOFS_SUB_BOOSTER_LAND_SMOKE = 0,	///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼:ç€åœ°ã®ç…™
+	PALOFS_SUB_BOOSTER_SHADOW = 1,	///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼:å½±
 	
-	BALLOON_SUB_COMMON_PAL_NUM = 9,	///<ƒTƒu‰æ–Ê‚Ìí’“OBJƒpƒŒƒbƒg‚Ì–{”
+	BALLOON_SUB_COMMON_PAL_NUM = 9,	///<ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã®æœ¬æ•°
 };
 
 //==============================================================================
-//	ƒZƒ‹ID
+//	ã‚»ãƒ«ID
 //==============================================================================
 enum{
 	CELLID_BALLOON_START = 10000,
 
-	CELLID_TOUCH_PEN,		///<ƒ^ƒbƒ`ƒyƒ“
-	CELLID_COUNTER_WIN,		///<ƒJƒEƒ“ƒ^[‚ÌƒEƒBƒ“ƒhƒE
-	CELLID_BALLOON_AIM,		///<Æ€
+	CELLID_TOUCH_PEN,		///<ã‚¿ãƒƒãƒãƒšãƒ³
+	CELLID_COUNTER_WIN,		///<ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	CELLID_BALLOON_AIM,		///<ç…§æº–
 
-	//-- ƒTƒu‰æ–Ê --//
-	CELLID_SUB_BALLOON_MIX,			///<FX‚ÈƒZƒ‹‚²‚¿‚á¬‚º
+	//-- ã‚µãƒ–ç”»é¢ --//
+	CELLID_SUB_BALLOON_MIX,			///<è‰²ã€…ãªã‚»ãƒ«ã”ã¡ã‚ƒæ··ãœ
 };
 
 //==============================================================================
-//	ƒZƒ‹ƒAƒjƒID
+//	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
 //==============================================================================
 enum{
 	CELLANMID_BALLOON_START = 10000,
 
-	CELLANMID_TOUCH_PEN,		///<ƒ^ƒbƒ`ƒyƒ“
-	CELLANMID_COUNTER_WIN,		///<ƒJƒEƒ“ƒ^[‚ÌƒEƒBƒ“ƒhƒE
-	CELLANMID_BALLOON_AIM,		///<Æ€
+	CELLANMID_TOUCH_PEN,		///<ã‚¿ãƒƒãƒãƒšãƒ³
+	CELLANMID_COUNTER_WIN,		///<ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	CELLANMID_BALLOON_AIM,		///<ç…§æº–
 
-	//-- ƒTƒu‰æ–Ê --//
-	CELLANMID_SUB_BALLOON_MIX,		///<FX‚ÈƒZƒ‹ƒAƒjƒ‚²‚¿‚á¬‚º
+	//-- ã‚µãƒ–ç”»é¢ --//
+	CELLANMID_SUB_BALLOON_MIX,		///<è‰²ã€…ãªã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã”ã¡ã‚ƒæ··ãœ
 };
 
 //==============================================================================
-//	ƒ}ƒ‹ƒ`ƒZƒ‹ID
+//	ãƒãƒ«ãƒã‚»ãƒ«ID
 //==============================================================================
 enum{
 	MCELLID_BALLOON_START = 10000,
 };
 
 //==============================================================================
-//	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒID
+//	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
 //==============================================================================
 enum{
 	MCELLANMID_BALLOON_START = 10000,

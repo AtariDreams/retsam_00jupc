@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	frontier_comm.c
- * @brief	comm_command_frontier.c‚©‚çŒÄ‚Î‚ê‚é’ÊMˆ—(”ñí’†)
+ * @brief	comm_command_frontier.cã‹ã‚‰å‘¼ã°ã‚Œã‚‹é€šä¿¡å‡¦ç†(éå¸¸ä¸­)
  * @author	nohara
  * @date    2007.12.05
  */
@@ -22,7 +22,7 @@
 #include "castle_tool.h"
 #include "castle_def.h"
 
-//óMŠÖ”‚ªŠO‚É‚ ‚é
+//å—ä¿¡é–¢æ•°ãŒå¤–ã«ã‚ã‚‹
 #include "factory/factory_sys.h"
 #include "stage/stage_sys.h"
 #include "castle/castle_sys.h"
@@ -36,10 +36,10 @@
 
 //==============================================================================
 //
-//  ƒe[ƒuƒ‹‚É‘‚­ŠÖ”‚Ì’è‹`
+//  ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ›¸ãé–¢æ•°ã®å®šç¾©
 //
 //==============================================================================
-//ƒtƒ@ƒNƒgƒŠ[
+//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 BOOL		CommFactorySendBasicData( FACTORY_SCRWORK* wk );
 void CommFactoryRecvBasicData(int id_no,int size,void *pData,void *work);
 BOOL		CommFactorySendTrData( FACTORY_SCRWORK* wk );
@@ -55,7 +55,7 @@ void CommFactoryRecvTradeYesNoFlag(int id_no,int size,void *pData,void *work);
 BOOL		CommFactorySendTemotiPokeData( FACTORY_SCRWORK* wk );
 void CommFactoryRecvTemotiPokeData(int id_no,int size,void *pData,void *work);
 
-//ƒXƒe[ƒW
+//ã‚¹ãƒ†ãƒ¼ã‚¸
 BOOL		CommStageSendMonsNo( STAGE_SCRWORK* wk, const POKEMON_PARAM* pp );
 void CommStageRecvMonsNo(int id_no,int size,void *pData,void *work);
 BOOL		CommStageSendBasicData( STAGE_SCRWORK* wk );
@@ -70,7 +70,7 @@ BOOL		CommStageSendBufTemotiPokeData( STAGE_SCRWORK* wk );
 void CommStageRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work);
 u8* CommStageGetRecvDataBuff( int netID, void*pWork, int size );
 
-//ƒLƒƒƒbƒXƒ‹
+//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 BOOL		CommCastleSendBufBasicData( CASTLE_SCRWORK* wk );
 void CommCastleRecvBufBasicData(int id_no,int size,void *pData,void *work);
 BOOL		CommCastleSendBufTrData( CASTLE_SCRWORK* wk );
@@ -87,7 +87,7 @@ BOOL		CommCastleSendBufTemotiPokeData( CASTLE_SCRWORK* wk );
 void CommCastleRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work);
 u8* CommCastleGetRecvDataBuff( int netID, void*pWork, int size );
 
-//WiFió•t
+//WiFiå—ä»˜
 #if 0
 BOOL CommFrWiFiCounterSendBufBFNo( FRWIFI_SCRWORK* wk );
 void CommFrWiFiCounterRecvBufBFNo(int id_no,int size,void *pData,void *work);
@@ -101,7 +101,7 @@ BOOL CommFrWiFiCounterSendBufGameContinue( FRWIFI_SCRWORK* wk, u16 flag );
 void CommFrWiFiCounterRecvBufGameContinue(int id_no,int size,void *pData,void *work);
 #endif
 
-//ƒ‹[ƒŒƒbƒg
+//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 BOOL		CommRouletteSendBufBasicData( ROULETTE_SCRWORK* wk );
 void CommRouletteRecvBufBasicData(int id_no,int size,void *pData,void *work);
 BOOL		CommRouletteSendBufTrData( ROULETTE_SCRWORK* wk );
@@ -119,20 +119,20 @@ u8* CommRouletteGetRecvDataBuff( int netID, void*pWork, int size );
 
 //==============================================================================
 //
-//	ƒXƒe[ƒW
+//	ã‚¹ãƒ†ãƒ¼ã‚¸
 //
-//	\‘¢‘Ì‚ğ‚«‚Á‚ÄA‚»‚ÌƒTƒCƒYAóM‚Í‚»‚ÌŒ^‚Å‘ã“ü‚É•ÏX—\’èBBB
+//	æ§‹é€ ä½“ã‚’ãã£ã¦ã€ãã®ã‚µã‚¤ã‚ºã€å—ä¿¡ã¯ãã®å‹ã§ä»£å…¥ã«å¤‰æ›´äºˆå®šã€‚ã€‚ã€‚
 //	
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‘—M–½—ß(ƒeƒXƒg—p)
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼é€ä¿¡å‘½ä»¤(ãƒ†ã‚¹ãƒˆç”¨)
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommStageSendMonsNo( STAGE_SCRWORK* wk, const POKEMON_PARAM* pp )
@@ -166,12 +166,12 @@ BOOL CommStageSendMonsNo( STAGE_SCRWORK* wk, const POKEMON_PARAM* pp )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[’ÊMóMˆ—(ƒeƒXƒg—p)
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼é€šä¿¡å—ä¿¡å‡¦ç†(ãƒ†ã‚¹ãƒˆç”¨)
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommStageRecvMonsNo(int id_no,int size,void *pData,void *work)
@@ -181,7 +181,7 @@ void CommStageRecvMonsNo(int id_no,int size,void *pData,void *work)
 
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -196,12 +196,12 @@ void CommStageRecvMonsNo(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Šî–{î•ñ‘—M–½—ß
+ * @brief   åŸºæœ¬æƒ…å ±é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommStageSendBasicData( STAGE_SCRWORK* wk )
@@ -212,10 +212,10 @@ BOOL CommStageSendBasicData( STAGE_SCRWORK* wk )
 	u16 *buf;
 	int ret,size;
 
-	OS_Printf( "******ƒXƒe[ƒW****** Šî–{î•ñ‘—M\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** åŸºæœ¬æƒ…å ±é€ä¿¡\n" );
 	//OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 
-	size = STAGE_COMM_BUF_LEN;							//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = STAGE_COMM_BUF_LEN;							//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 	num = 0;
 	my	= SaveData_GetMyStatus( wk->sv );
@@ -237,14 +237,14 @@ BOOL CommStageSendBasicData( STAGE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   Šî–{î•ñ ’ÊMóMˆ—
+ * @brief   åŸºæœ¬æƒ…å ± é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒoƒgƒ‹ƒXƒe[ƒWƒ[ƒN‚ğŠm•ÛŒãAÅ‰‚Éó‚¯æ‚éƒf[ƒ^
+ * ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿å¾Œã€æœ€åˆã«å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void CommStageRecvBasicData(int id_no,int size,void *pData,void *work)
@@ -253,13 +253,13 @@ void CommStageRecvBasicData(int id_no,int size,void *pData,void *work)
 	STAGE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒXƒe[ƒW****** Šî–{î•ñóM\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** åŸºæœ¬æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -271,7 +271,7 @@ void CommStageRecvBasicData(int id_no,int size,void *pData,void *work)
 	//wk-> = ;
 	num += 1;														//1
 
-	//–¼‘O
+	//åå‰
 	//for( i=0; i < (PERSON_NAME_SIZE + EOM_SIZE) ;i++ ){
 	num += (PERSON_NAME_SIZE + EOM_SIZE);							//9
 
@@ -280,12 +280,12 @@ void CommStageRecvBasicData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[î•ñ‘—M–½—ß
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommStageSendTrData( STAGE_SCRWORK* wk )
@@ -296,17 +296,17 @@ BOOL CommStageSendTrData( STAGE_SCRWORK* wk )
 	u16 *buf;
 	int ret,size;
 
-	OS_Printf( "******ƒXƒe[ƒW****** ƒgƒŒ[ƒi[î•ñ‘—M\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±é€ä¿¡\n" );
 	//OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 	
-	size = STAGE_COMM_BUF_LEN;								//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = STAGE_COMM_BUF_LEN;								//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 	num = 0;
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 	for( i=0; i < STAGE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		buf[i+num] = wk->tr_index[i];
-		OS_Printf( "‘—MFtr_index[%d] = %d\n", i, buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼štr_index[%d] = %d\n", i, buf[i+num] );
 	}
 	num += (STAGE_LAP_MULTI_ENEMY_MAX);						//10*2
 
@@ -322,12 +322,12 @@ BOOL CommStageSendTrData( STAGE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[î•ñ ’ÊMóMˆ—
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ± é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommStageRecvTrData(int id_no,int size,void *pData,void *work)
@@ -336,18 +336,18 @@ void CommStageRecvTrData(int id_no,int size,void *pData,void *work)
 	STAGE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒXƒe[ƒW****** ƒgƒŒ[ƒi[î•ñóM\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		return;
 	}
@@ -356,11 +356,11 @@ void CommStageRecvTrData(int id_no,int size,void *pData,void *work)
 	//OS_Printf( "pData[0] = %d\n", ((u8*)pData)[0] );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 	for( i=0; i < STAGE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		//wk->tr_index[i] = ((u8*)pData)[i+num];
 		wk->tr_index[i] = recv_buf[i+num];
-		OS_Printf( "óMFwk->tr_index[%d] = %d\n", i, wk->tr_index[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->tr_index[%d] = %d\n", i, wk->tr_index[i] );
 	}
 	num += (STAGE_LAP_MULTI_ENEMY_MAX);								//10*2
 
@@ -369,12 +369,12 @@ void CommStageRecvTrData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   “Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‘—M–½—ß
+ * @brief   æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommStageSendEnemyPokeData( STAGE_SCRWORK* wk )
@@ -383,17 +383,17 @@ BOOL CommStageSendEnemyPokeData( STAGE_SCRWORK* wk )
 	u16 *buf;
 	int ret,size;
 	
-	OS_Printf( "******ƒXƒe[ƒW****** “Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‘—M\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿é€ä¿¡\n" );
 	//OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 	
-	size = STAGE_COMM_BUF_LEN;								//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = STAGE_COMM_BUF_LEN;								//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 	num = 0;
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < STAGE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		buf[i] = wk->enemy_poke_index[i];
-		OS_Printf( "‘—MFenemy_index[%d] = %d\n", i, buf[i] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_index[%d] = %d\n", i, buf[i] );
 	}
 	num += STAGE_LAP_MULTI_ENEMY_MAX;									//20
 
@@ -408,12 +408,12 @@ BOOL CommStageSendEnemyPokeData( STAGE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   “Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^ ’ÊMóMˆ—
+ * @brief   æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommStageRecvEnemyPokeData(int id_no,int size,void *pData,void *work)
@@ -422,18 +422,18 @@ void CommStageRecvEnemyPokeData(int id_no,int size,void *pData,void *work)
 	STAGE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒXƒe[ƒW****** “Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^óM\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		return;
 	}
@@ -441,10 +441,10 @@ void CommStageRecvEnemyPokeData(int id_no,int size,void *pData,void *work)
 	OS_Printf( "size = %d\n", size );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < STAGE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		wk->enemy_poke_index[i] = recv_buf[i];
-		OS_Printf( "óMFwk->enemy_index[%d] = %d\n", i, wk->enemy_poke_index[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->enemy_index[%d] = %d\n", i, wk->enemy_poke_index[i] );
 	}
 	num += STAGE_LAP_MULTI_ENEMY_MAX;									//20
 
@@ -453,15 +453,15 @@ void CommStageRecvEnemyPokeData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚©‘—M–½—ß
+ * @brief   æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel				0=‚Â‚Ã‚¯‚éA0ˆÈŠO=ƒŠƒ^ƒCƒ„(‚«‚ë‚­‚·‚é‚Í‚¢‚ç‚È‚¢)
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel				0=ã¤ã¥ã‘ã‚‹ã€0ä»¥å¤–=ãƒªã‚¿ã‚¤ãƒ¤(ãã‚ãã™ã‚‹ã¯ã„ã‚‰ãªã„)
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  *
- * ‚¨Œİ‚¢‚ªu‚Â‚Ã‚¯‚év‚Ì‚ÍŒp‘±A
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ãŠäº’ã„ãŒã€Œã¤ã¥ã‘ã‚‹ã€ã®æ™‚ã¯ç¶™ç¶šã€
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommStageSendRetireFlag( STAGE_SCRWORK* wk, u8 retire_flag )
@@ -470,14 +470,14 @@ BOOL CommStageSendRetireFlag( STAGE_SCRWORK* wk, u8 retire_flag )
 	u16 *buf;
 	int ret,size;
 	
-	OS_Printf( "******ƒXƒe[ƒW****** í“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚©‘—M\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹é€ä¿¡\n" );
 	//OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 	
-	size = STAGE_COMM_BUF_LEN;								//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = STAGE_COMM_BUF_LEN;								//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 
 	buf[0] = retire_flag;
-	OS_Printf( "‘—MFretire_flag = %d\n", buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šretire_flag = %d\n", buf[0] );
 
 	if( CommSendData(FC_STAGE_RETIRE_FLAG,buf,size) == TRUE ){
 		ret = TRUE;
@@ -490,15 +490,15 @@ BOOL CommStageSendRetireFlag( STAGE_SCRWORK* wk, u8 retire_flag )
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚© ’ÊMóMˆ—
+ * @brief   æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹ é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ‚¨Œİ‚¢‚ªu‚Â‚Ã‚¯‚év‚Ì‚ÍŒp‘±A
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ãŠäº’ã„ãŒã€Œã¤ã¥ã‘ã‚‹ã€ã®æ™‚ã¯ç¶™ç¶šã€
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommStageRecvRetireFlag(int id_no,int size,void *pData,void *work)
@@ -506,12 +506,12 @@ void CommStageRecvRetireFlag(int id_no,int size,void *pData,void *work)
 	STAGE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒXƒe[ƒW****** í“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚©óM\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -522,20 +522,20 @@ void CommStageRecvRetireFlag(int id_no,int size,void *pData,void *work)
 
 	//wk->pair_retire_flag = ((u8*)pData)[0];
 	wk->pair_retire_flag = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éè‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒZƒbƒg
+ * @brief	send_bufã«æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
- * e‹@Aq‹@‚Ì—¼•û‚Æ‚à‘I‚ñ‚¾è‚¿‚ğ“n‚·•K—v‚ª‚ ‚é
+ * è¦ªæ©Ÿã€å­æ©Ÿã®ä¸¡æ–¹ã¨ã‚‚é¸ã‚“ã æ‰‹æŒã¡ã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚‹
  */
 //--------------------------------------------------------------
 BOOL CommStageSendBufTemotiPokeData( STAGE_SCRWORK* wk )
@@ -547,16 +547,16 @@ BOOL CommStageSendBufTemotiPokeData( STAGE_SCRWORK* wk )
 	num = 0;
 	size = STAGE_HUGE_BUF_LEN;
 
-	//POKEMON_PARAM‚ÌƒTƒCƒY‚ğæ“¾
+	//POKEMON_PARAMã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	pp_size = PokemonParam_GetWorkSize();
 	OS_Printf( "pokemon_param_size = %d\n", pp_size );
 
-	party = SaveData_GetTemotiPokemon( wk->sv );					//è‚¿ƒp[ƒeƒBæ“¾
+	party = SaveData_GetTemotiPokemon( wk->sv );					//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 	temp_poke = PokeParty_GetMemberPointer( party, wk->mine_poke_pos[0] );
 
 	MI_CpuCopy8( temp_poke, &wk->huge_buf[0], pp_size );
 
-	OS_Printf( "‘—MFpokemon_param\n" );
+	OS_Printf( "é€ä¿¡ï¼špokemon_param\n" );
 
 	if( CommSendHugeData(FC_STAGE_TEMOTI_POKE_DATA,wk->huge_buf,size) == TRUE ){
 		ret = TRUE;
@@ -564,22 +564,22 @@ BOOL CommStageSendBufTemotiPokeData( STAGE_SCRWORK* wk )
 		ret = FALSE;
 	}
 
-	OS_Printf( "‘—MŒ‹‰ÊFCommSendHugeData = %d\n", ret );
+	OS_Printf( "é€ä¿¡çµæœï¼šCommSendHugeData = %d\n", ret );
 	return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìè‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğæ“¾
+ * @brief	recv_bufã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	wk			STAGE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			STAGE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * e‹@Aq‹@‚Ì—¼•û‚Æ‚à‘I‚ñ‚¾è‚¿‚ğ“n‚·•K—v‚ª‚ ‚é
+ * è¦ªæ©Ÿã€å­æ©Ÿã®ä¸¡æ–¹ã¨ã‚‚é¸ã‚“ã æ‰‹æŒã¡ã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚‹
  *
- * pair_rental_...‚ğg‚¢‚Ü‚í‚µ‚Ä‚¢‚é
+ * pair_rental_...ã‚’ä½¿ã„ã¾ã‚ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 void CommStageRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work)
@@ -588,13 +588,13 @@ void CommStageRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work)
 	STAGE_SCRWORK* wk = work;
 	const u8* recv_buf = pData;
 
-	OS_Printf( "******ƒXƒe[ƒW****** è‚¿ƒ|ƒPƒ‚ƒ“î•ñóM\n" );
+	OS_Printf( "******ã‚¹ãƒ†ãƒ¼ã‚¸****** æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -610,7 +610,7 @@ void CommStageRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   óM—Ìˆææ“¾ŠÖ”(‹‘åƒf[ƒ^FCommSendHugeData‚ÌóM—p)
+ * @brief   å—ä¿¡é ˜åŸŸå–å¾—é–¢æ•°(å·¨å¤§ãƒ‡ãƒ¼ã‚¿ï¼šCommSendHugeDataã®å—ä¿¡ç”¨)
  *
  * @param   netID		
  * @param   pWork		
@@ -630,18 +630,18 @@ u8* CommStageGetRecvDataBuff( int netID, void*pWork, int size )
 
 //==============================================================================
 //
-//	ƒtƒ@ƒNƒgƒŠ[
+//	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 //
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   Šî–{î•ñ‘—M–½—ß
+ * @brief   åŸºæœ¬æƒ…å ±é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommFactorySendBasicData( FACTORY_SCRWORK* wk )
@@ -651,26 +651,26 @@ BOOL CommFactorySendBasicData( FACTORY_SCRWORK* wk )
 	u16 *buf;
 	int ret,size;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** Šî–{î•ñ‘—M\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** åŸºæœ¬æƒ…å ±é€ä¿¡\n" );
 	//OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 	
-	size = FACTORY_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FACTORY_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 	num = 0;
 	my	= SaveData_GetMyStatus( wk->sv );
 
 	//buf[0] = 
 
-	buf[1] = wk->trade_count;							//ŒğŠ·‰ñ”
-	buf[2] = wk->rensyou;								//Œ»İ‚Ì˜AŸ”
-	buf[3] = wk->lap;									//ü‰ñ”
+	buf[1] = wk->trade_count;							//äº¤æ›å›æ•°
+	buf[2] = wk->rensyou;								//ç¾åœ¨ã®é€£å‹æ•°
+	buf[3] = wk->lap;									//å‘¨å›æ•°
 	num += 4;											//4
 
 	OS_Printf( "____send trade_count = %d\n", buf[1] );
 	OS_Printf( "____send rensyou = %d\n", buf[2] );
 	OS_Printf( "____send lap = %d\n", buf[3] );
 
-	//–¼‘O
+	//åå‰
 	//for( i=0; i < (PERSON_NAME_SIZE + EOM_SIZE) ;i++ ){
 	num += (PERSON_NAME_SIZE + EOM_SIZE);					//12
 
@@ -685,12 +685,12 @@ BOOL CommFactorySendBasicData( FACTORY_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   Šî–{î•ñ ’ÊMóMˆ—
+ * @brief   åŸºæœ¬æƒ…å ± é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommFactoryRecvBasicData(int id_no,int size,void *pData,void *work)
@@ -699,13 +699,13 @@ void CommFactoryRecvBasicData(int id_no,int size,void *pData,void *work)
 	FACTORY_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** Šî–{î•ñóM\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** åŸºæœ¬æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -716,19 +716,19 @@ void CommFactoryRecvBasicData(int id_no,int size,void *pData,void *work)
 
 	//wk->	= ;
 	//
-	wk->pair_trade_count	= recv_buf[1];							//ŒğŠ·‰ñ”
-	OS_Printf( "óMFwk->pair_trade_count = %d\n", wk->pair_trade_count );
-	wk->pair_rensyou		= recv_buf[2];							//Œ»İ‚Ì˜AŸ”
-	OS_Printf( "óMFwk->pair_rensyou = %d\n", wk->pair_rensyou );
-	wk->pair_lap			= recv_buf[3];							//ü‰ñ”
-	OS_Printf( "óMFwk->pair_lap = %d\n", wk->pair_lap );
+	wk->pair_trade_count	= recv_buf[1];							//äº¤æ›å›æ•°
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_trade_count = %d\n", wk->pair_trade_count );
+	wk->pair_rensyou		= recv_buf[2];							//ç¾åœ¨ã®é€£å‹æ•°
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_rensyou = %d\n", wk->pair_rensyou );
+	wk->pair_lap			= recv_buf[3];							//å‘¨å›æ•°
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_lap = %d\n", wk->pair_lap );
 	num += 4;														//4
 
 	OS_Printf( "____recv trade_count = %d\n", recv_buf[1] );
 	OS_Printf( "____recv rensyou = %d\n", recv_buf[2] );
 	OS_Printf( "____recv lap = %d\n", recv_buf[3] );
 
-	//–¼‘O
+	//åå‰
 	//for( i=0; i < (PERSON_NAME_SIZE + EOM_SIZE) ;i++ ){
 	num += (PERSON_NAME_SIZE + EOM_SIZE);							//12
 
@@ -737,12 +737,12 @@ void CommFactoryRecvBasicData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[î•ñ‘—M–½—ß
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommFactorySendTrData( FACTORY_SCRWORK* wk )
@@ -751,17 +751,17 @@ BOOL CommFactorySendTrData( FACTORY_SCRWORK* wk )
 	u16 *buf;
 	int ret,size;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** ƒgƒŒ[ƒi[î•ñ‘—M\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±é€ä¿¡\n" );
 	//OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 	
-	size = FACTORY_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FACTORY_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 	num = 0;
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 	for( i=0; i < FACTORY_LAP_ENEMY_MAX*2 ;i++ ){
 		buf[i+num] = wk->tr_index[i];
-		OS_Printf( "‘—MFtr_index[%d] = %d\n", i, buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼štr_index[%d] = %d\n", i, buf[i+num] );
 	}
 	num += (FACTORY_LAP_ENEMY_MAX*2);						//14
 
@@ -777,12 +777,12 @@ BOOL CommFactorySendTrData( FACTORY_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[î•ñ ’ÊMóMˆ—
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ± é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommFactoryRecvTrData(int id_no,int size,void *pData,void *work)
@@ -791,18 +791,18 @@ void CommFactoryRecvTrData(int id_no,int size,void *pData,void *work)
 	FACTORY_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** ƒgƒŒ[ƒi[î•ñóM\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		return;
 	}
@@ -811,10 +811,10 @@ void CommFactoryRecvTrData(int id_no,int size,void *pData,void *work)
 	//OS_Printf( "pData[0] = %d\n", ((u8*)pData)[0] );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 	for( i=0; i < FACTORY_LAP_ENEMY_MAX*2 ;i++ ){
 		wk->tr_index[i] = recv_buf[i+num];
-		OS_Printf( "óMFwk->tr_index[%d] = %d\n", i, wk->tr_index[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->tr_index[%d] = %d\n", i, wk->tr_index[i] );
 	}
 	num += (FACTORY_LAP_ENEMY_MAX*2);								//14
 
@@ -823,12 +823,12 @@ void CommFactoryRecvTrData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒ“ƒ^ƒ‹€”õƒf[ƒ^ î•ñ‘—M–½—ß
+ * @brief   ãƒ¬ãƒ³ã‚¿ãƒ«æº–å‚™ãƒ‡ãƒ¼ã‚¿ æƒ…å ±é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommFactorySendRentalData( FACTORY_SCRWORK* wk )
@@ -837,36 +837,36 @@ BOOL CommFactorySendRentalData( FACTORY_SCRWORK* wk )
 	u16 *buf;
 	int ret,size;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** ƒŒƒ“ƒ^ƒ‹€”õƒf[ƒ^‘—M\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** ãƒ¬ãƒ³ã‚¿ãƒ«æº–å‚™ãƒ‡ãƒ¼ã‚¿é€ä¿¡\n" );
 	OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 	
-	size = FACTORY_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FACTORY_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 	num = 0;
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < FACTORY_RENTAL_POKE_MAX ;i++ ){
 		buf[i] = wk->pair_rental_poke_index[i];
-		OS_Printf( "‘—MFrental_index[%d] = %d\n", i, buf[i] );
+		OS_Printf( "é€ä¿¡ï¼šrental_index[%d] = %d\n", i, buf[i] );
 	}
 	num += FACTORY_RENTAL_POKE_MAX;										//6
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
+	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	for( i=0; i < FACTORY_RENTAL_POKE_MAX ;i++ ){
 		buf[i+num] = wk->pair_rental_pow_rnd[i];
-		OS_Printf( "‘—MFrental_pow_rnd[%d] = %d\n", i, buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼šrental_pow_rnd[%d] = %d\n", i, buf[i+num] );
 	}
 	num += FACTORY_RENTAL_POKE_MAX;										//12
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”(u32‚È‚Ì‚ÅAu16‚¸‚ÂƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°(u32ãªã®ã§ã€u16ãšã¤ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	for( i=0; i < FACTORY_RENTAL_POKE_MAX ;i++ ){
 		//u32 rental_personal_rnd[FACTORY_RENTAL_POKE_MAX];
 		buf[i+num] = (wk->pair_rental_personal_rnd[i] & 0xffff);
 		buf[i+num+FACTORY_RENTAL_POKE_MAX] = 
 								((wk->pair_rental_personal_rnd[i] >> 16) & 0xffff);
-		OS_Printf( "Œ³ƒf[ƒ^ rental_personal_rnd[%d] = %d\n", i, wk->pair_rental_personal_rnd[i] );
-		OS_Printf( "‘—MFrental_personal_rnd[%d] = %d\n", i, buf[i+num] );
-		OS_Printf( "‘—MFrental_personal_rnd[%d] = %d\n", i+FACTORY_RENTAL_POKE_MAX, 
+		OS_Printf( "å…ƒãƒ‡ãƒ¼ã‚¿ rental_personal_rnd[%d] = %d\n", i, wk->pair_rental_personal_rnd[i] );
+		OS_Printf( "é€ä¿¡ï¼šrental_personal_rnd[%d] = %d\n", i, buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼šrental_personal_rnd[%d] = %d\n", i+FACTORY_RENTAL_POKE_MAX, 
 													buf[i+num+FACTORY_RENTAL_POKE_MAX] );
 	}
 	num += (FACTORY_RENTAL_POKE_MAX * 2);								//24
@@ -889,12 +889,12 @@ BOOL CommFactorySendRentalData( FACTORY_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒ“ƒ^ƒ‹€”õƒf[ƒ^ ’ÊMóMˆ—
+ * @brief   ãƒ¬ãƒ³ã‚¿ãƒ«æº–å‚™ãƒ‡ãƒ¼ã‚¿ é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommFactoryRecvRentalData(int id_no,int size,void *pData,void *work)
@@ -904,21 +904,21 @@ void CommFactoryRecvRentalData(int id_no,int size,void *pData,void *work)
 	FACTORY_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** ƒŒƒ“ƒ^ƒ‹€”õƒf[ƒ^óM\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** ãƒ¬ãƒ³ã‚¿ãƒ«æº–å‚™ãƒ‡ãƒ¼ã‚¿å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
-		OS_Printf( "id_no = %d ©•ª‚Ìƒf[ƒ^‚Íó‚¯‚Æ‚ç‚È‚¢\n", id_no );
+		OS_Printf( "id_no = %d è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘ã¨ã‚‰ãªã„\n", id_no );
 		return;
 	}
 
-	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
-		OS_Printf( "id_no = %d e‚Í‘—M‚·‚é‚¾‚¯‚Åó‚¯æ‚ç‚È‚¢\n", id_no );
+		OS_Printf( "id_no = %d è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ã§å—ã‘å–ã‚‰ãªã„\n", id_no );
 		return;
 	}
 
@@ -926,35 +926,35 @@ void CommFactoryRecvRentalData(int id_no,int size,void *pData,void *work)
 	//OS_Printf( "pData[0] = %d\n", ((u8*)pData)[0] );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < FACTORY_RENTAL_POKE_MAX ;i++ ){
 		//wk->pair_rental_poke_index[i] = recv_buf[i];
-		//OS_Printf( "óMFwk->pair_rental_index[%d] = %d\n", i, wk->pair_rental_poke_index[i] );
+		//OS_Printf( "å—ä¿¡ï¼šwk->pair_rental_index[%d] = %d\n", i, wk->pair_rental_poke_index[i] );
 		wk->rental_poke_index[i] = recv_buf[i];
-		OS_Printf( "óMFwk->rental_index[%d] = %d\n", i, wk->rental_poke_index[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->rental_index[%d] = %d\n", i, wk->rental_poke_index[i] );
 	}
 	num += FACTORY_RENTAL_POKE_MAX;										//6
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
+	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	for( i=0; i < FACTORY_RENTAL_POKE_MAX ;i++ ){
 		//wk->pair_rental_pow_rnd[i] = recv_buf[i+num];
-		//OS_Printf( "óMFwk->pair_rental_pow_rnd[%d] = %d\n", i, wk->pair_rental_pow_rnd[i] );
+		//OS_Printf( "å—ä¿¡ï¼šwk->pair_rental_pow_rnd[%d] = %d\n", i, wk->pair_rental_pow_rnd[i] );
 		wk->rental_pow_rnd[i] = recv_buf[i+num];
-		OS_Printf( "óMFwk->rental_pow_rnd[%d] = %d\n", i, wk->rental_pow_rnd[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->rental_pow_rnd[%d] = %d\n", i, wk->rental_pow_rnd[i] );
 	}
 	num += FACTORY_RENTAL_POKE_MAX;										//12
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”(u32‚È‚Ì‚ÅAu16‚¸‚ÂƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°(u32ãªã®ã§ã€u16ãšã¤ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	for( i=0; i < FACTORY_RENTAL_POKE_MAX ;i++ ){
 		//u32 rental_personal_rnd[FACTORY_RENTAL_POKE_MAX];
 		//wk->pair_rental_personal_rnd[i] = recv_buf[i+num];
 		//wk->pair_rental_personal_rnd[i] |= (recv_buf[i+num+FACTORY_RENTAL_POKE_MAX] << 16);
-		//OS_Printf( "óMFwk->pair_rental_personal_rnd[%d] = %d\n", i, 
+		//OS_Printf( "å—ä¿¡ï¼šwk->pair_rental_personal_rnd[%d] = %d\n", i, 
 		//										wk->pair_rental_personal_rnd[i] );
 		wk->rental_personal_rnd[i] = recv_buf[i+num];
 		wk->rental_personal_rnd[i] |= (recv_buf[i+num+FACTORY_RENTAL_POKE_MAX] << 16);
 
-		OS_Printf( "óMFwk->rental_personal_rnd[%d] = %d\n", i, 
+		OS_Printf( "å—ä¿¡ï¼šwk->rental_personal_rnd[%d] = %d\n", i, 
 												wk->rental_personal_rnd[i] );
 	}
 	num += (FACTORY_RENTAL_POKE_MAX * 2);								//24
@@ -975,12 +975,12 @@ void CommFactoryRecvRentalData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   “Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^@‘—M–½—ß
+ * @brief   æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommFactorySendEnemyPokeData( FACTORY_SCRWORK* wk )
@@ -989,36 +989,36 @@ BOOL CommFactorySendEnemyPokeData( FACTORY_SCRWORK* wk )
 	u16 *buf;
 	int ret,size;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** “Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‘—M\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿é€ä¿¡\n" );
 	//OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 	
-	size = FACTORY_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FACTORY_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 	num = 0;
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < FACTORY_ENEMY_POKE_MAX ;i++ ){
 		buf[i] = wk->enemy_poke_index[i];
-		OS_Printf( "‘—MFenemy_index[%d] = %d\n", i, buf[i] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_index[%d] = %d\n", i, buf[i] );
 	}
 	num += FACTORY_ENEMY_POKE_MAX;										//4
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
+	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	for( i=0; i < FACTORY_ENEMY_POKE_MAX ;i++ ){
 		buf[i+num] = wk->enemy_pow_rnd[i];
-		OS_Printf( "‘—MFenemy_pow_rnd[%d] = %d\n", i, buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_pow_rnd[%d] = %d\n", i, buf[i+num] );
 	}
 	num += FACTORY_ENEMY_POKE_MAX;										//8
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”(u32‚È‚Ì‚ÅAu16‚¸‚ÂƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°(u32ãªã®ã§ã€u16ãšã¤ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	for( i=0; i < FACTORY_ENEMY_POKE_MAX ;i++ ){
 		//u32 enemy_personal_rnd[FACTORY_ENEMY_POKE_MAX];
 		buf[i+num] = (wk->enemy_personal_rnd[i] & 0xffff);
 		buf[i+num+FACTORY_ENEMY_POKE_MAX] = 
 								((wk->enemy_personal_rnd[i] >> 16) & 0xffff);
-		OS_Printf( "Œ³ƒf[ƒ^ enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
-		OS_Printf( "‘—MFenemy_personal_rnd[%d] = %d\n", i, buf[i+num] );
-		OS_Printf( "‘—MFenemy_personal_rnd[%d] = %d\n", i+FACTORY_ENEMY_POKE_MAX, 
+		OS_Printf( "å…ƒãƒ‡ãƒ¼ã‚¿ enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_personal_rnd[%d] = %d\n", i, buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_personal_rnd[%d] = %d\n", i+FACTORY_ENEMY_POKE_MAX, 
 													buf[i+num+FACTORY_ENEMY_POKE_MAX] );
 	}
 	num += (FACTORY_ENEMY_POKE_MAX * 2);								//16
@@ -1035,12 +1035,12 @@ BOOL CommFactorySendEnemyPokeData( FACTORY_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   “Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^ ’ÊMóMˆ—
+ * @brief   æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommFactoryRecvEnemyPokeData(int id_no,int size,void *pData,void *work)
@@ -1049,18 +1049,18 @@ void CommFactoryRecvEnemyPokeData(int id_no,int size,void *pData,void *work)
 	FACTORY_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** “Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^óM\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		return;
 	}
@@ -1069,33 +1069,33 @@ void CommFactoryRecvEnemyPokeData(int id_no,int size,void *pData,void *work)
 	//OS_Printf( "pData[0] = %d\n", ((u8*)pData)[0] );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < FACTORY_ENEMY_POKE_MAX ;i++ ){
 		wk->enemy_poke_index[i] = recv_buf[i];
-		OS_Printf( "óMFwk->enemy_index[%d] = %d\n", i, wk->enemy_poke_index[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->enemy_index[%d] = %d\n", i, wk->enemy_poke_index[i] );
 	}
 	num += FACTORY_ENEMY_POKE_MAX;										//4
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
+	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	for( i=0; i < FACTORY_ENEMY_POKE_MAX ;i++ ){
 		wk->enemy_pow_rnd[i] = recv_buf[i+num];
-		OS_Printf( "óMFwk->enemy_pow_rnd[%d] = %d\n", i, wk->enemy_pow_rnd[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->enemy_pow_rnd[%d] = %d\n", i, wk->enemy_pow_rnd[i] );
 	}
 	num += FACTORY_ENEMY_POKE_MAX;										//8
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”(u32‚È‚Ì‚ÅAu16‚¸‚ÂƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°(u32ãªã®ã§ã€u16ãšã¤ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	for( i=0; i < FACTORY_ENEMY_POKE_MAX ;i++ ){
 		//u32 enemy_personal_rnd[FACTORY_ENEMY_POKE_MAX];
 		wk->enemy_personal_rnd[i] = recv_buf[i+num];
 		wk->enemy_personal_rnd[i] |= (recv_buf[i+num+FACTORY_ENEMY_POKE_MAX] << 16);
-		OS_Printf( "óMFwk->enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
 	}
 	num += (FACTORY_ENEMY_POKE_MAX * 2);								//16
 
 #if 0
 	//B_TOWER_POKEMON enemy_poke[FACTORY_ENEMY_POKE_MAX];
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É¶¬
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ
 	Frontier_PokemonParamCreateAll(	wk->enemy_poke, wk->enemy_poke_index, 
 									wk->enemy_pow_rnd, wk->enemy_personal_rnd, NULL, 
 									FACTORY_ENEMY_POKE_MAX, HEAPID_WORLD, ARC_PL_BTD_PM );
@@ -1106,15 +1106,15 @@ void CommFactoryRecvEnemyPokeData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚©‘—M–½—ß
+ * @brief   æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel				0=‚Â‚Ã‚¯‚éA0ˆÈŠO=ƒŠƒ^ƒCƒ„(‚«‚ë‚­‚·‚é‚Í‚¢‚ç‚È‚¢)
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel				0=ã¤ã¥ã‘ã‚‹ã€0ä»¥å¤–=ãƒªã‚¿ã‚¤ãƒ¤(ãã‚ãã™ã‚‹ã¯ã„ã‚‰ãªã„)
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  *
- * ‚¨Œİ‚¢‚ªu‚Â‚Ã‚¯‚év‚Ì‚ÍŒp‘±A
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ãŠäº’ã„ãŒã€Œã¤ã¥ã‘ã‚‹ã€ã®æ™‚ã¯ç¶™ç¶šã€
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommFactorySendRetireFlag( FACTORY_SCRWORK* wk, u8 retire_flag )
@@ -1122,14 +1122,14 @@ BOOL CommFactorySendRetireFlag( FACTORY_SCRWORK* wk, u8 retire_flag )
 	u16 *buf;
 	int ret,size;
 	
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** í“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚©‚ğ‘—M\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹ã‚’é€ä¿¡\n" );
 	//OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 	
-	size = FACTORY_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FACTORY_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 
 	buf[0] = retire_flag;
-	OS_Printf( "‘—MFretire_flag = %d\n", buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šretire_flag = %d\n", buf[0] );
 
 	if( CommSendData(FC_FACTORY_RETIRE_FLAG,buf,size) == TRUE ){
 		ret = TRUE;
@@ -1142,15 +1142,15 @@ BOOL CommFactorySendRetireFlag( FACTORY_SCRWORK* wk, u8 retire_flag )
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚© ’ÊMóMˆ—
+ * @brief   æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹ é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ‚¨Œİ‚¢‚ªu‚Â‚Ã‚¯‚év‚Ì‚ÍŒp‘±A
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ãŠäº’ã„ãŒã€Œã¤ã¥ã‘ã‚‹ã€ã®æ™‚ã¯ç¶™ç¶šã€
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommFactoryRecvRetireFlag(int id_no,int size,void *pData,void *work)
@@ -1158,12 +1158,12 @@ void CommFactoryRecvRetireFlag(int id_no,int size,void *pData,void *work)
 	FACTORY_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** í“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚©óM\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -1174,22 +1174,22 @@ void CommFactoryRecvRetireFlag(int id_no,int size,void *pData,void *work)
 
 	//wk->pair_retire_flag = ((u8*)pData)[0];
 	wk->pair_retire_flag = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ŒğŠ·‚µ‚½‚¢‚©‚ğ‘—M–½—ß
+ * @brief   äº¤æ›ã—ãŸã„ã‹ã‚’é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel				0=‚Â‚Ã‚¯‚éA0ˆÈŠO=ƒŠƒ^ƒCƒ„(‚«‚ë‚­‚·‚é‚Í‚¢‚ç‚È‚¢)
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel				0=ã¤ã¥ã‘ã‚‹ã€0ä»¥å¤–=ãƒªã‚¿ã‚¤ãƒ¤(ãã‚ãã™ã‚‹ã¯ã„ã‚‰ãªã„)
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  *
- * ‚¨Œİ‚¢‚ªu‚Â‚Ã‚¯‚év‚Ì‚ÍŒp‘±A
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ãŠäº’ã„ãŒã€Œã¤ã¥ã‘ã‚‹ã€ã®æ™‚ã¯ç¶™ç¶šã€
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommFactorySendTradeYesNoFlag( FACTORY_SCRWORK* wk, u8 trade_yesno_flag )
@@ -1197,14 +1197,14 @@ BOOL CommFactorySendTradeYesNoFlag( FACTORY_SCRWORK* wk, u8 trade_yesno_flag )
 	u16 *buf;
 	int ret,size;
 	
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** ŒğŠ·‚µ‚½‚¢‚©‚ğ‘—M\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** äº¤æ›ã—ãŸã„ã‹ã‚’é€ä¿¡\n" );
 	//OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 	
-	size = FACTORY_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FACTORY_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 
 	buf[0] = trade_yesno_flag;
-	OS_Printf( "‘—MFtrade_yesno_flag = %d\n", buf[0] );
+	OS_Printf( "é€ä¿¡ï¼štrade_yesno_flag = %d\n", buf[0] );
 
 	if( CommSendData(FC_FACTORY_TRADE_YESNO_FLAG,buf,size) == TRUE ){
 		ret = TRUE;
@@ -1217,15 +1217,15 @@ BOOL CommFactorySendTradeYesNoFlag( FACTORY_SCRWORK* wk, u8 trade_yesno_flag )
 
 //--------------------------------------------------------------
 /**
- * @brief   ŒğŠ·‚µ‚½‚¢‚©‚ğ ’ÊMóMˆ—
+ * @brief   äº¤æ›ã—ãŸã„ã‹ã‚’ é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ‚¨Œİ‚¢‚ªu‚Â‚Ã‚¯‚év‚Ì‚ÍŒp‘±A
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ãŠäº’ã„ãŒã€Œã¤ã¥ã‘ã‚‹ã€ã®æ™‚ã¯ç¶™ç¶šã€
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommFactoryRecvTradeYesNoFlag(int id_no,int size,void *pData,void *work)
@@ -1233,12 +1233,12 @@ void CommFactoryRecvTradeYesNoFlag(int id_no,int size,void *pData,void *work)
 	FACTORY_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** ŒğŠ·‚µ‚½‚¢‚©‚ğóM\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** äº¤æ›ã—ãŸã„ã‹ã‚’å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -1248,18 +1248,18 @@ void CommFactoryRecvTradeYesNoFlag(int id_no,int size,void *pData,void *work)
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
 	wk->pair_trade_yesno_flag = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_trade_yesno_flag = %d\n", wk->pair_trade_yesno_flag );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_trade_yesno_flag = %d\n", wk->pair_trade_yesno_flag );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^@‘—M–½—ß
+ * @brief   æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€é€ä¿¡å‘½ä»¤
  *
- * @param   wk				ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommFactorySendTemotiPokeData( FACTORY_SCRWORK* wk )
@@ -1272,17 +1272,17 @@ BOOL CommFactorySendTemotiPokeData( FACTORY_SCRWORK* wk )
 	u8 pow_rnd[2];
 	POKEMON_PARAM* temp_poke;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** è‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‘—M\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿é€ä¿¡\n" );
 	//OS_Printf( "CommGetCurrentID() = %d\n", CommGetCurrentID() );
 	
-	size = FACTORY_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = FACTORY_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	buf = wk->buf;
 	num = 0;
 
-	//ƒ^ƒCƒv‚É‚æ‚Á‚Äƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
 	m_max = Factory_GetMinePokeNum( wk->type );
 
-	//è‚¿ƒ|ƒPƒp[ƒeƒB‚©‚çpow_rnd,personal_rnd‚ğæ“¾
+	//æ‰‹æŒã¡ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ã‹ã‚‰pow_rnd,personal_rndã‚’å–å¾—
 	//temp_poke = PokemonParam_AllocWork( HEAPID_WORLD );
 	for( i=0; i < m_max ;i++ ){
 		temp_poke = PokeParty_GetMemberPointer( wk->p_m_party, i );
@@ -1292,26 +1292,26 @@ BOOL CommFactorySendTemotiPokeData( FACTORY_SCRWORK* wk )
 	}
 	//sys_FreeMemoryEz( temp_poke );
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < m_max ;i++ ){
 		buf[i] = wk->temoti_poke_index[i];
-		OS_Printf( "‘—MFtemoti_index[%d] = %d\n", i, buf[i] );
+		OS_Printf( "é€ä¿¡ï¼štemoti_index[%d] = %d\n", i, buf[i] );
 	}
 	num += m_max;														//2
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
+	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	for( i=0; i < m_max ;i++ ){
 		buf[i+num] = pow_rnd[i];
-		OS_Printf( "‘—MFtemoti_pow_rnd[%d] = %d\n", i, buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼štemoti_pow_rnd[%d] = %d\n", i, buf[i+num] );
 	}
 	num += m_max;														//4
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”(u32‚È‚Ì‚ÅAu16‚¸‚ÂƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°(u32ãªã®ã§ã€u16ãšã¤ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	for( i=0; i < m_max ;i++ ){
 		buf[i+num] = (personal_rnd[i] & 0xffff);
 		buf[i+num+m_max] = ((personal_rnd[i] >> 16) & 0xffff);
-		OS_Printf( "‘—MFtemoti_personal_rnd[%d] = %d\n", i, buf[i+num] );
-		OS_Printf( "‘—MFtemoti_personal_rnd[%d] = %d\n", i+m_max, buf[i+num+m_max] );
+		OS_Printf( "é€ä¿¡ï¼štemoti_personal_rnd[%d] = %d\n", i, buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼štemoti_personal_rnd[%d] = %d\n", i+m_max, buf[i+num+m_max] );
 	}
 	num += (m_max * 2);													//8
 
@@ -1327,12 +1327,12 @@ BOOL CommFactorySendTemotiPokeData( FACTORY_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ ’ÊMóMˆ—
+ * @brief   æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommFactoryRecvTemotiPokeData(int id_no,int size,void *pData,void *work)
@@ -1345,13 +1345,13 @@ void CommFactoryRecvTemotiPokeData(int id_no,int size,void *pData,void *work)
 	FACTORY_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒtƒ@ƒNƒgƒŠ[****** è‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^óM\n" );
+	OS_Printf( "******ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼****** æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -1360,28 +1360,28 @@ void CommFactoryRecvTemotiPokeData(int id_no,int size,void *pData,void *work)
 	//OS_Printf( "pData[0] = %d\n", ((u8*)pData)[0] );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//ƒ^ƒCƒv‚É‚æ‚Á‚Äƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
 	m_max = Factory_GetMinePokeNum( wk->type );
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < m_max ;i++ ){
 		wk->pair_rental_poke_index[i] = recv_buf[i];
-		OS_Printf( "óMFwk->rental_index[%d] = %d\n", i, wk->pair_rental_poke_index[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->rental_index[%d] = %d\n", i, wk->pair_rental_poke_index[i] );
 	}
 	num += m_max;														//2
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
+	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	for( i=0; i < m_max ;i++ ){
 		wk->pair_rental_pow_rnd[i] = recv_buf[i+num];
-		OS_Printf( "óMFwk->rental_pow_rnd[%d] = %d\n", i, wk->pair_rental_pow_rnd[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->rental_pow_rnd[%d] = %d\n", i, wk->pair_rental_pow_rnd[i] );
 	}
 	num += m_max;														//4
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”(u32‚È‚Ì‚ÅAu16‚¸‚ÂƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°(u32ãªã®ã§ã€u16ãšã¤ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	for( i=0; i < m_max ;i++ ){
 		wk->pair_rental_personal_rnd[i] = recv_buf[i+num];
 		wk->pair_rental_personal_rnd[i] |= (recv_buf[i+num+m_max] << 16);
-		OS_Printf( "óMFwk->rental_personal_rnd[%d] = %d\n", i, wk->pair_rental_personal_rnd[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->rental_personal_rnd[%d] = %d\n", i, wk->pair_rental_personal_rnd[i] );
 	}
 	num += (m_max * 2);													//8
 
@@ -1396,19 +1396,19 @@ void CommFactoryRecvTemotiPokeData(int id_no,int size,void *pData,void *work)
 
 //==============================================================================
 //
-//	ƒLƒƒƒbƒXƒ‹
+//	ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 //
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉŠî–{î•ñ‚ğƒZƒbƒg
+ * @brief	send_bufã«åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  *
- * ƒLƒƒƒbƒXƒ‹ƒ[ƒN‚ğŠm•ÛŒãAÅ‰‚É‘—‚éƒf[ƒ^
+ * ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿å¾Œã€æœ€åˆã«é€ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 BOOL CommCastleSendBufBasicData( CASTLE_SCRWORK* wk )
@@ -1416,15 +1416,15 @@ BOOL CommCastleSendBufBasicData( CASTLE_SCRWORK* wk )
 	int i,num,ret,size;
 	CASTLESCORE* score_sv;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** Šî–{î•ñ‘—M\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** åŸºæœ¬æƒ…å ±é€ä¿¡\n" );
 
 	score_sv = SaveData_GetCastleScore( wk->sv );
-	size = CASTLE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = CASTLE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	num = 0;
 
 	//wk->send_buf[0]		= ;
-	wk->send_buf[1] = wk->rensyou;							//Œ»İ‚Ì˜AŸ”
-	wk->send_buf[2] = wk->lap;								//ü‰ñ”
+	wk->send_buf[1] = wk->rensyou;							//ç¾åœ¨ã®é€£å‹æ•°
+	wk->send_buf[2] = wk->lap;								//å‘¨å›æ•°
 	num += 3;												//3
 
 	//for( i=0; i < (PERSON_NAME_SIZE + EOM_SIZE) ;i++ ){
@@ -1435,7 +1435,7 @@ BOOL CommCastleSendBufBasicData( CASTLE_SCRWORK* wk )
 									CastleScr_GetCPRecordID(wk->type),
 									Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)) );
 
-	OS_Printf( "‘—MFcp = %d\n", wk->send_buf[num] );
+	OS_Printf( "é€ä¿¡ï¼šcp = %d\n", wk->send_buf[num] );
 	num+=1;													//12
 
 	if( CommSendData(FC_CASTLE_BASIC_DATA,wk->send_buf,size) == TRUE ){
@@ -1449,14 +1449,14 @@ BOOL CommCastleSendBufBasicData( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚ÌŠî–{î•ñ‚ğæ“¾
+ * @brief	recv_bufã®åŸºæœ¬æƒ…å ±ã‚’å–å¾—
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * ƒLƒƒƒbƒXƒ‹ƒ[ƒN‚ğŠm•ÛŒãAÅ‰‚Éó‚¯æ‚éƒf[ƒ^
+ * ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿å¾Œã€æœ€åˆã«å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void CommCastleRecvBufBasicData(int id_no,int size,void *pData,void *work)
@@ -1465,24 +1465,24 @@ void CommCastleRecvBufBasicData(int id_no,int size,void *pData,void *work)
 	CASTLE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** Šî–{î•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** åŸºæœ¬æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 	//OS_Printf( "wk->recieve_count = %d\n", wk->recieve_count );
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	//wk->					= recv_buf[0];
 	//
-	wk->pair_rensyou		= recv_buf[1];							//Œ»İ‚Ì˜AŸ”
-	OS_Printf( "óMFwk->pair_rensyou = %d\n", wk->pair_rensyou );
-	wk->pair_lap			= recv_buf[2];							//ü‰ñ”
-	OS_Printf( "óMFwk->pair_lap = %d\n", wk->pair_lap );
+	wk->pair_rensyou		= recv_buf[1];							//ç¾åœ¨ã®é€£å‹æ•°
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_rensyou = %d\n", wk->pair_rensyou );
+	wk->pair_lap			= recv_buf[2];							//å‘¨å›æ•°
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_lap = %d\n", wk->pair_lap );
 	num += 3;														//3
 
 	//for( i=0; i < (PERSON_NAME_SIZE + EOM_SIZE) ;i++ ){
@@ -1490,7 +1490,7 @@ void CommCastleRecvBufBasicData(int id_no,int size,void *pData,void *work)
 
 	//CP
 	wk->pair_cp = recv_buf[num];									//CP
-	OS_Printf( "óMFwk->pair_cp = %d\n", wk->pair_cp );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_cp = %d\n", wk->pair_cp );
 	num+=1;															//12
 
 	return;
@@ -1498,9 +1498,9 @@ void CommCastleRecvBufBasicData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉƒgƒŒ[ƒi[î•ñ‚ğƒZƒbƒg
+ * @brief	send_bufã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1509,15 +1509,15 @@ BOOL CommCastleSendBufTrData( CASTLE_SCRWORK* wk )
 {
 	int i,num,ret,size;
 	
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** ƒgƒŒ[ƒi[î•ñ‘—M\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±é€ä¿¡\n" );
 
 	num = 0;
-	size = CASTLE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = CASTLE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 	for( i=0; i < CASTLE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		wk->send_buf[i+num] = wk->tr_index[i];
-		OS_Printf( "‘—MFtr_index[%d] = %d\n", i, wk->send_buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼štr_index[%d] = %d\n", i, wk->send_buf[i+num] );
 	}
 	num += CASTLE_LAP_MULTI_ENEMY_MAX;						//14
 
@@ -1532,14 +1532,14 @@ BOOL CommCastleSendBufTrData( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚ÌƒgƒŒ[ƒi[î•ñ‚ğæ“¾
+ * @brief	recv_bufã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚’å–å¾—
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * ƒLƒƒƒbƒXƒ‹ƒ[ƒN‚ğŠm•ÛŒãAÅ‰‚Éó‚¯æ‚éƒf[ƒ^
+ * ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿å¾Œã€æœ€åˆã«å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void CommCastleRecvBufTrData(int id_no,int size,void *pData,void *work)
@@ -1548,26 +1548,26 @@ void CommCastleRecvBufTrData(int id_no,int size,void *pData,void *work)
 	CASTLE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** ƒgƒŒ[ƒi[î•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		return;
 	}
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 	for( i=0; i < CASTLE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		wk->tr_index[i] = recv_buf[i+num];
-		OS_Printf( "óMFwk->tr_index[%d] = %d\n", i, wk->tr_index[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->tr_index[%d] = %d\n", i, wk->tr_index[i] );
 	}
 	num += CASTLE_LAP_MULTI_ENEMY_MAX;								//14
 
@@ -1576,9 +1576,9 @@ void CommCastleRecvBufTrData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éƒ‰ƒ“ƒNA”²‚¯“¹‚È‚Ç‚ÌƒŠƒNƒGƒXƒg‚ğƒZƒbƒg
+ * @brief	send_bufã«ãƒ©ãƒ³ã‚¯ã€æŠœã‘é“ãªã©ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1588,33 +1588,33 @@ BOOL CommCastleSendBufSelData( CASTLE_SCRWORK* wk )
 	int i,num,ret,size;
 	MYSTATUS* my;
 	
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** ƒ‰ƒ“ƒNA”²‚¯“¹‚È‚Ç‚ÌƒŠƒNƒGƒXƒgî•ñ‘—M\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** ãƒ©ãƒ³ã‚¯ã€æŠœã‘é“ãªã©ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆæƒ…å ±é€ä¿¡\n" );
 
-	OS_Printf( "‰Šú’l\n" );
+	OS_Printf( "åˆæœŸå€¤\n" );
 	OS_Printf( "wk->sel_type = %d\n", wk->sel_type );
 	OS_Printf( "wk->pair_sel_type = %d\n\n", wk->pair_sel_type );
 	OS_Printf( "wk->parent_check_flag = %d\n", wk->parent_check_flag );
 
 	num = 0;
-	size = CASTLE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = CASTLE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
 	wk->send_buf[0] = wk->sel_type;
-	OS_Printf( "‘—MFtype = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼štype = %d\n", wk->send_buf[0] );
 
-	//e
+	//è¦ª
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 
-		//æ‚Éq‚Ì‘I‘ğ‚ª‚«‚Ä‚¢‚È‚­‚Ä’l‚ª“ü‚Á‚Ä‚¢‚È‚¢‚ÍAe‚ÌŒˆ’è‚ÍƒZƒbƒg‚µ‚Ä‚µ‚Ü‚¤
+		//å…ˆã«å­ã®é¸æŠãŒãã¦ã„ãªãã¦å€¤ãŒå…¥ã£ã¦ã„ãªã„æ™‚ã¯ã€è¦ªã®æ±ºå®šã¯ã‚»ãƒƒãƒˆã—ã¦ã—ã¾ã†
 		if( wk->parent_check_flag == CASTLE_SCR_MENU_NONE ){
 			wk->parent_check_flag = wk->sel_type;
 
-			//CPŒ¸‚ç‚·
+			//CPæ¸›ã‚‰ã™
 			//CASTLESCORE_SubCP( SaveData_GetCastleScore(wk->sv), CP_USE_NUKEMITI );
 			
-		//q‚Ì‘I‘ğ‚ª‚«‚Ä‚¢‚Ä‚»‚ê‚Å‚¢‚¢‚æA‚Æ‘—‚é‘O‚Éu‚½‚¢‚¹‚ñvƒ`ƒFƒbƒN
+		//å­ã®é¸æŠãŒãã¦ã„ã¦ãã‚Œã§ã„ã„ã‚ˆã€ã¨é€ã‚‹å‰ã«ã€ŒãŸã„ã›ã‚“ã€ãƒã‚§ãƒƒã‚¯
 		}else{
 
-			//q‚ª‚½‚¢‚¹‚ñ‚ğ‘I‚ñ‚Å‚¢‚Ä‚àAe‚ª‚½‚¢‚¹‚ñ‚ğ‘I‚ñ‚Å‚¢‚È‚©‚Á‚½‚çAeÌ—p
+			//å­ãŒãŸã„ã›ã‚“ã‚’é¸ã‚“ã§ã„ã¦ã‚‚ã€è¦ªãŒãŸã„ã›ã‚“ã‚’é¸ã‚“ã§ã„ãªã‹ã£ãŸã‚‰ã€è¦ªæ¡ç”¨
 			if( (wk->parent_check_flag-CASTLE_SCR_MENU_MAX) == CASTLE_SCR_MENU_TAISEN ){
 				if( wk->sel_type != CASTLE_SCR_MENU_TAISEN ){
 					wk->parent_check_flag = wk->sel_type;
@@ -1622,13 +1622,13 @@ BOOL CommCastleSendBufSelData( CASTLE_SCRWORK* wk )
 			}
 		}
 
-	//q
+	//å­
 	}else{
 
-		//‚·‚Å‚Ée‚Ì‘I‘ğ‚ª‚«‚Ä‚¢‚ÄA‚½‚¢‚¹‚ñ‚Ì
+		//ã™ã§ã«è¦ªã®é¸æŠãŒãã¦ã„ã¦ã€ãŸã„ã›ã‚“ã®æ™‚
 		if( wk->parent_check_flag == CASTLE_SCR_MENU_TAISEN ){
 
-			//q‚Ì‘I‘ğ‚ª‚½‚¢‚¹‚ñ‚Å‚È‚¢Aq‚ªÌ—p
+			//å­ã®é¸æŠãŒãŸã„ã›ã‚“ã§ãªã„æ™‚ã€å­ãŒæ¡ç”¨
 			if( wk->sel_type != CASTLE_SCR_MENU_TAISEN ){
 				wk->parent_check_flag = wk->sel_type + 6; // MatchComment: add 6
 			}
@@ -1636,7 +1636,7 @@ BOOL CommCastleSendBufSelData( CASTLE_SCRWORK* wk )
 	}
 
 	wk->send_buf[1] = wk->parent_check_flag;
-	OS_Printf( "‘—MFparent_check_flag = %d\n", wk->send_buf[1] );
+	OS_Printf( "é€ä¿¡ï¼šparent_check_flag = %d\n", wk->send_buf[1] );
 	OS_Printf( "wk->sel_type = %d\n", wk->sel_type );
 	OS_Printf( "wk->pair_sel_type = %d\n\n", wk->pair_sel_type );
 	OS_Printf( "wk->parent_check_flag = %d\n", wk->parent_check_flag );
@@ -1652,9 +1652,9 @@ BOOL CommCastleSendBufSelData( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìƒ‰ƒ“ƒNA”²‚¯“¹‚È‚Ç‚ÌƒŠƒNƒGƒXƒg‚ğæ“¾
+ * @brief	recv_bufã®ãƒ©ãƒ³ã‚¯ã€æŠœã‘é“ãªã©ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å–å¾—
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
@@ -1667,10 +1667,10 @@ void CommCastleRecvBufSelData(int id_no,int size,void *pData,void *work)
 	CASTLE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** ƒ‰ƒ“ƒNA”²‚¯“¹‚È‚Ç‚ÌƒŠƒNƒGƒXƒgî•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** ãƒ©ãƒ³ã‚¯ã€æŠœã‘é“ãªã©ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆæƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
-	OS_Printf( "‰Šú’l\n" );
+	OS_Printf( "åˆæœŸå€¤\n" );
 	OS_Printf( "wk->sel_type = %d\n", wk->sel_type );
 	OS_Printf( "wk->pair_sel_type = %d\n\n", wk->pair_sel_type );
 	OS_Printf( "wk->parent_check_flag = %d\n", wk->parent_check_flag );
@@ -1678,102 +1678,102 @@ void CommCastleRecvBufSelData(int id_no,int size,void *pData,void *work)
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	wk->pair_sel_type = recv_buf[0];
-	OS_Printf( "óMFwk->pair_sel_type = %d\n", wk->pair_sel_type );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_sel_type = %d\n", wk->pair_sel_type );
 
 	//wk->parent_check_flag = recv_buf[1];
-	//OS_Printf( "óMFwk->parent_check_flag = %d\n", wk->parent_check_flag );
+	//OS_Printf( "å—ä¿¡ï¼šwk->parent_check_flag = %d\n", wk->parent_check_flag );
 
-	//e
+	//è¦ª
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 
-		//e‚ÌŒˆ’è‚ª‚·‚Å‚ÉŒˆ‚Ü‚Á‚Ä‚¢‚½‚çAq‚Ì‘I‘ğ‚Í–³Œø
+		//è¦ªã®æ±ºå®šãŒã™ã§ã«æ±ºã¾ã£ã¦ã„ãŸã‚‰ã€å­ã®é¸æŠã¯ç„¡åŠ¹
 		if( wk->parent_check_flag != CASTLE_SCR_MENU_NONE ){
 
-			//e‚ªu‚½‚¢‚¹‚ñv‚ğ‘I‚ñ‚ÅAq‚ªu‚½‚¢‚¹‚ñv‚Å‚Í‚È‚¢‚ÍAq‚ğÌ—p
+			//è¦ªãŒã€ŒãŸã„ã›ã‚“ã€ã‚’é¸ã‚“ã§ã€å­ãŒã€ŒãŸã„ã›ã‚“ã€ã§ã¯ãªã„æ™‚ã¯ã€å­ã‚’æ¡ç”¨
 			if( wk->parent_check_flag == CASTLE_SCR_MENU_TAISEN ){
 				if( wk->pair_sel_type != CASTLE_SCR_MENU_TAISEN ){
 
-					//q‚Ì‘I‘ğ‚ªÌ—p‚³‚ê‚½‚±‚Æ‚ª‚í‚©‚é‚æ‚¤‚ÉƒIƒtƒZƒbƒg‚ğ‰Á‚¦‚é
+					//å­ã®é¸æŠãŒæ¡ç”¨ã•ã‚ŒãŸã“ã¨ãŒã‚ã‹ã‚‹ã‚ˆã†ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’åŠ ãˆã‚‹
 					wk->sel_type			= wk->pair_sel_type + CASTLE_SCR_MENU_MAX;
 					wk->parent_check_flag	= wk->pair_sel_type + CASTLE_SCR_MENU_MAX;
 				}
 			}
 		}else{
 
-			//e‚ÌŒˆ’è‚ªŒˆ‚Ü‚Á‚Ä‚¢‚È‚¢‚ÍAq‚É‚»‚ê‚Å‚¢‚¢‚æ‚Æ‘—M‚·‚é
+			//è¦ªã®æ±ºå®šãŒæ±ºã¾ã£ã¦ã„ãªã„æ™‚ã¯ã€å­ã«ãã‚Œã§ã„ã„ã‚ˆã¨é€ä¿¡ã™ã‚‹
 			//BOOL CommCastleSendBufSelData( CASTLE_SCRWORK* wk )
 
-			//‚±‚ê‚ÍAe‚ªƒŠƒXƒg‚ğ‘I‚ñ‚Å‚¢‚é‚ÉA‚»‚ê‚ğ‹­§‰ğœ‚µ‚ÄA
-			//æ‚Éi‚Ü‚¹‚éˆ—‚ª•K—v‚Æ‚¢‚¤‚±‚ÆB
-			//ƒŠƒXƒg‚Ìƒ|ƒCƒ“ƒ^‚©‚çA‹­§‰ğœŠÖ”‚ğŒÄ‚Ño‚·Š´‚¶
+			//ã“ã‚Œã¯ã€è¦ªãŒãƒªã‚¹ãƒˆã‚’é¸ã‚“ã§ã„ã‚‹æ™‚ã«ã€ãã‚Œã‚’å¼·åˆ¶è§£é™¤ã—ã¦ã€
+			//å…ˆã«é€²ã¾ã›ã‚‹å‡¦ç†ãŒå¿…è¦ã¨ã„ã†ã“ã¨ã€‚
+			//ãƒªã‚¹ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã€å¼·åˆ¶è§£é™¤é–¢æ•°ã‚’å‘¼ã³å‡ºã™æ„Ÿã˜
 
 #if 0
 			wk->sel_type = wk->pair_sel_type;
 			wk->parent_check_flag = wk->pair_sel_type;
 #else
-			//q‚Ì‘I‘ğ‚ªÌ—p‚³‚ê‚½‚±‚Æ‚ª‚í‚©‚é‚æ‚¤‚ÉƒIƒtƒZƒbƒg‚ğ‰Á‚¦‚é
+			//å­ã®é¸æŠãŒæ¡ç”¨ã•ã‚ŒãŸã“ã¨ãŒã‚ã‹ã‚‹ã‚ˆã†ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’åŠ ãˆã‚‹
 			//wk->sel_type = wk->pair_sel_type + CASTLE_SCR_MENU_MAX;
 			//
-			//óMA‘—M‚Ì—¬‚ê‚¾‚Æu‚½‚¢‚¹‚ñv‚ğ‘I‚ñ‚Å‚¢‚È‚¢‚Ì‚Éu‚½‚¢‚¹‚ñ‚Év‚É‚È‚Á‚Ä‚µ‚Ü‚¤‘Îˆ
+			//å—ä¿¡ã€é€ä¿¡ã®æµã‚Œã ã¨ã€ŒãŸã„ã›ã‚“ã€ã‚’é¸ã‚“ã§ã„ãªã„ã®ã«ã€ŒãŸã„ã›ã‚“ã«ã€ã«ãªã£ã¦ã—ã¾ã†å¯¾å‡¦
 
 			wk->parent_check_flag = wk->pair_sel_type + CASTLE_SCR_MENU_MAX;
 #endif
 
-			//u‚½‚¢‚¹‚ñvˆÈŠO‚ğ‘I‚ñ‚Å‚¢‚½‚çAƒŠƒXƒg‚ğíœ
+			//ã€ŒãŸã„ã›ã‚“ã€ä»¥å¤–ã‚’é¸ã‚“ã§ã„ãŸã‚‰ã€ãƒªã‚¹ãƒˆã‚’å‰Šé™¤
 			if( wk->pair_sel_type != CASTLE_SCR_MENU_TAISEN ){
 				*wk->list_del_work = FSEV_WIN_COMPULSION_DEL;
 			}
 		}
 
-	//q
+	//å­
 	}else{
 
 		wk->parent_check_flag = recv_buf[1];
-		OS_Printf( "óMFwk->parent_check_flag = %d\n", wk->parent_check_flag );
+		OS_Printf( "å—ä¿¡ï¼šwk->parent_check_flag = %d\n", wk->parent_check_flag );
 		
-		//q
+		//å­
 		//wk->parent_check_flag = wk->pair_sel_type;
 		
-		//u‚½‚¢‚¹‚ñvˆÈŠO‚ğ‘I‚ñ‚Å‚¢‚½‚çAƒŠƒXƒg‚ğíœ
+		//ã€ŒãŸã„ã›ã‚“ã€ä»¥å¤–ã‚’é¸ã‚“ã§ã„ãŸã‚‰ã€ãƒªã‚¹ãƒˆã‚’å‰Šé™¤
 		if( wk->parent_check_flag != CASTLE_SCR_MENU_TAISEN ){
 			*wk->list_del_work = FSEV_WIN_COMPULSION_DEL;
 		}
 
 #if 1
 		//08.07.05
-		//e‚ªu‚½‚¢‚¹‚ñv‚ğ‘I‚ñ‚Å‚¢‚ÄArecv_buf[1]‚Éu‚½‚¢‚¹‚ñv‚ª“ü‚Á‚Ä‚¢‚é
-		//ƒyƒA‚ªu‚½‚¢‚¹‚ñvˆÈŠO‚ğ‘I‚ñ‚¾‚ÍAƒƒjƒ…[‚ğ‹­§I—¹‚³‚¹‚é
+		//è¦ªãŒã€ŒãŸã„ã›ã‚“ã€ã‚’é¸ã‚“ã§ã„ã¦ã€recv_buf[1]ã«ã€ŒãŸã„ã›ã‚“ã€ãŒå…¥ã£ã¦ã„ã‚‹
+		//ãƒšã‚¢ãŒã€ŒãŸã„ã›ã‚“ã€ä»¥å¤–ã‚’é¸ã‚“ã æ™‚ã¯ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å¼·åˆ¶çµ‚äº†ã•ã›ã‚‹
 		//
-		//e‚ªu‚½‚¢‚¹‚ñv‚ğ‘I‚ñ‚Å‚¢‚ÄAq‚ªƒƒ“ƒeƒ“ƒ|’x‚ê‚Äu‚½‚¢‚¹‚ñvˆÈŠO‚ğ‘I‚ñ‚Å‚¢‚é‚ÆA
-		//parent_check_flag‚Íu‚½‚¢‚¹‚ñv‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚Ì‚ÅA
-		//q‚Ì©•ª‚Ì‘I‘ğ‚ªu‚½‚¢‚¹‚ñvˆÈŠO‚È‚çA‚»‚ê‚Åã‘‚«‚·‚é
+		//è¦ªãŒã€ŒãŸã„ã›ã‚“ã€ã‚’é¸ã‚“ã§ã„ã¦ã€å­ãŒãƒ¯ãƒ³ãƒ†ãƒ³ãƒé…ã‚Œã¦ã€ŒãŸã„ã›ã‚“ã€ä»¥å¤–ã‚’é¸ã‚“ã§ã„ã‚‹ã¨ã€
+		//parent_check_flagã¯ã€ŒãŸã„ã›ã‚“ã€ã«ãªã£ã¦ã—ã¾ã£ã¦ã„ã‚‹ã®ã§ã€
+		//å­ã®è‡ªåˆ†ã®é¸æŠãŒã€ŒãŸã„ã›ã‚“ã€ä»¥å¤–ãªã‚‰ã€ãã‚Œã§ä¸Šæ›¸ãã™ã‚‹
 
-		//e‚ªu‚½‚¢‚¹‚ñv‚ğ‘I‚ñ‚Å‚¢‚Ä
-		//šu‚¶‚Ô‚ñvu‚ ‚¢‚Äv‚Ì‚ÍæŸ‚¿‚É‚È‚é‚Ì‚Åu‚½‚¢‚¹‚ñv‚©‚Ìƒ`ƒFƒbƒN•K—vI
+		//è¦ªãŒã€ŒãŸã„ã›ã‚“ã€ã‚’é¸ã‚“ã§ã„ã¦
+		//â˜…ã€Œã˜ã¶ã‚“ã€ã€Œã‚ã„ã¦ã€ã®æ™‚ã¯å…ˆå‹ã¡ã«ãªã‚‹ã®ã§ã€ŒãŸã„ã›ã‚“ã€ã‹ã®ãƒã‚§ãƒƒã‚¯å¿…è¦ï¼
 		if( wk->pair_sel_type == CASTLE_SCR_MENU_TAISEN ){
 
 			OS_Printf( "\n**********\nwk->sel_type = %d\n", wk->sel_type );
 
-			//q‚ª‚·‚Å‚É‘I‘ğ‚µ‚Ä‚¢‚é
+			//å­ãŒã™ã§ã«é¸æŠã—ã¦ã„ã‚‹
 			if( wk->sel_type != CASTLE_SCR_MENU_NONE ){
 
-				//q‚ªu‚½‚¢‚¹‚ñvˆÈŠO‚ğ‘I‚ñ‚Å‚¢‚½‚ç
+				//å­ãŒã€ŒãŸã„ã›ã‚“ã€ä»¥å¤–ã‚’é¸ã‚“ã§ã„ãŸã‚‰
 				if( wk->sel_type != CASTLE_SCR_MENU_TAISEN ){
 				//if( (wk->sel_type - CASTLE_SCR_MENU_MAX) != CASTLE_SCR_MENU_TAISEN ){
 
-					//q‚Ì‘I‘ğ‚ªÌ—p‚³‚ê‚½‚±‚Æ‚ª‚í‚©‚é‚æ‚¤‚ÉƒIƒtƒZƒbƒg‚ğ‰Á‚¦‚é(’ˆÓ)
+					//å­ã®é¸æŠãŒæ¡ç”¨ã•ã‚ŒãŸã“ã¨ãŒã‚ã‹ã‚‹ã‚ˆã†ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’åŠ ãˆã‚‹(æ³¨æ„)
 					//wk->sel_type			= wk->sel_type + CASTLE_SCR_MENU_MAX;
 					wk->parent_check_flag	= wk->sel_type + CASTLE_SCR_MENU_MAX;
 				
 					//wk->parent_check_flag	= wk->sel_type;
-					OS_Printf( "‘Š·(q)Fwk->sel_type = %d\n", wk->sel_type );
-					OS_Printf( "‘Š·(q)Fwk->parent_check_flag = %d\n", wk->parent_check_flag );
+					OS_Printf( "æ›¸æ›(å­)ï¼šwk->sel_type = %d\n", wk->sel_type );
+					OS_Printf( "æ›¸æ›(å­)ï¼šwk->parent_check_flag = %d\n", wk->parent_check_flag );
 				}
 			}
 		}
@@ -1781,7 +1781,7 @@ void CommCastleRecvBufSelData(int id_no,int size,void *pData,void *work)
 
 	}
 
-	OS_Printf( "óMFwk->pair_sel_type = %d\n", wk->pair_sel_type );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_sel_type = %d\n", wk->pair_sel_type );
 	OS_Printf( "wk->sel_type = %d\n", wk->sel_type );
 	OS_Printf( "wk->pair_sel_type = %d\n\n", wk->pair_sel_type );
 	OS_Printf( "wk->parent_check_flag = %d\n", wk->parent_check_flag );
@@ -1790,9 +1790,9 @@ void CommCastleRecvBufSelData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚É“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒZƒbƒg
+ * @brief	send_bufã«æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1801,34 +1801,34 @@ BOOL CommCastleSendBufEnemyPokeData( CASTLE_SCRWORK* wk )
 {
 	int i,num,ret,size;
 	
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** “Gƒ|ƒPƒ‚ƒ“‘—M\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** æ•µãƒã‚±ãƒ¢ãƒ³é€ä¿¡\n" );
 
 	num = 0;
-	size = CASTLE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = CASTLE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
 		wk->send_buf[i] = wk->enemy_poke_index[i];
-		OS_Printf( "‘—MFenemy_index[%d] = %d\n", i, wk->send_buf[i] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_index[%d] = %d\n", i, wk->send_buf[i] );
 	}
 	num += CASTLE_ENEMY_POKE_MAX;										//4
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
+	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
 		wk->send_buf[i+num] = wk->enemy_pow_rnd[i];
-		OS_Printf( "‘—MFenemy_pow_rnd[%d] = %d\n", i, wk->send_buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_pow_rnd[%d] = %d\n", i, wk->send_buf[i+num] );
 	}
 	num += CASTLE_ENEMY_POKE_MAX;										//8
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”(u32‚È‚Ì‚ÅAu16‚¸‚ÂƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°(u32ãªã®ã§ã€u16ãšã¤ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
 		//u32 enemy_personal_rnd[CASTLE_ENEMY_POKE_MAX];
 		wk->send_buf[i+num] = (wk->enemy_personal_rnd[i] & 0xffff);
 		wk->send_buf[i+num+CASTLE_ENEMY_POKE_MAX] = 
 								((wk->enemy_personal_rnd[i] >> 16) & 0xffff);
-		OS_Printf( "Œ³ƒf[ƒ^ enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
-		OS_Printf( "‘—MFenemy_personal_rnd[%d] = %d\n", i, wk->send_buf[i+num] );
-		OS_Printf( "‘—MFenemy_personal_rnd[%d] = %d\n", i+CASTLE_ENEMY_POKE_MAX, 
+		OS_Printf( "å…ƒãƒ‡ãƒ¼ã‚¿ enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_personal_rnd[%d] = %d\n", i, wk->send_buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_personal_rnd[%d] = %d\n", i+CASTLE_ENEMY_POKE_MAX, 
 													wk->send_buf[i+num+CASTLE_ENEMY_POKE_MAX] );
 	}
 	num += (CASTLE_ENEMY_POKE_MAX * 2);								//16
@@ -1844,9 +1844,9 @@ BOOL CommCastleSendBufEnemyPokeData( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ì“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğæ“¾
+ * @brief	recv_bufã®æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
@@ -1858,18 +1858,18 @@ void CommCastleRecvBufEnemyPokeData(int id_no,int size,void *pData,void *work)
 	CASTLE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** “Gƒ|ƒPƒ‚ƒ“î•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** æ•µãƒã‚±ãƒ¢ãƒ³æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		return;
 	}
@@ -1877,26 +1877,26 @@ void CommCastleRecvBufEnemyPokeData(int id_no,int size,void *pData,void *work)
 	OS_Printf( "size = %d\n", size );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
 		wk->enemy_poke_index[i] = recv_buf[i];
-		OS_Printf( "óMFwk->enemy_index[%d] = %d\n", i, wk->enemy_poke_index[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->enemy_index[%d] = %d\n", i, wk->enemy_poke_index[i] );
 	}
 	num += CASTLE_ENEMY_POKE_MAX;										//4
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
+	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
 		wk->enemy_pow_rnd[i] = recv_buf[i+num];
-		OS_Printf( "óMFwk->enemy_pow_rnd[%d] = %d\n", i, wk->enemy_pow_rnd[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->enemy_pow_rnd[%d] = %d\n", i, wk->enemy_pow_rnd[i] );
 	}
 	num += CASTLE_ENEMY_POKE_MAX;										//8
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”(u32‚È‚Ì‚ÅAu16‚¸‚ÂƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°(u32ãªã®ã§ã€u16ãšã¤ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
 		//u32 enemy_personal_rnd[CASTLE_ENEMY_POKE_MAX];
 		wk->enemy_personal_rnd[i] = recv_buf[i+num];
 		wk->enemy_personal_rnd[i] |= (recv_buf[i+num+CASTLE_ENEMY_POKE_MAX] << 16);
-		OS_Printf( "óMFwk->enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
 	}
 	num += (CASTLE_ENEMY_POKE_MAX * 2);								//16
 
@@ -1905,25 +1905,25 @@ void CommCastleRecvBufEnemyPokeData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éí“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚©‚ğƒZƒbƒg
+ * @brief	send_bufã«æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel		0=‚Â‚Ã‚¯‚éA0ˆÈŠO=ƒŠƒ^ƒCƒ„(‚«‚ë‚­‚·‚é‚Í‚¢‚ç‚È‚¢)
+ * @param	wk		CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel		0=ã¤ã¥ã‘ã‚‹ã€0ä»¥å¤–=ãƒªã‚¿ã‚¤ãƒ¤(ãã‚ãã™ã‚‹ã¯ã„ã‚‰ãªã„)
  *
  * @return	none
  *
- * ‚¨Œİ‚¢‚ªu‚Â‚Ã‚¯‚év‚Ì‚ÍŒp‘±A
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ãŠäº’ã„ãŒã€Œã¤ã¥ã‘ã‚‹ã€ã®æ™‚ã¯ç¶™ç¶šã€
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommCastleSendBufRetireFlag( CASTLE_SCRWORK* wk, u16 retire_flag )
 {
 	int ret,size;
 
-	size = CASTLE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = CASTLE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
 	wk->send_buf[0] = retire_flag;
-	OS_Printf( "‘—MFretire_flag = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šretire_flag = %d\n", wk->send_buf[0] );
 
 	if( CommSendData(FC_CASTLE_RETIRE_FLAG,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -1936,15 +1936,15 @@ BOOL CommCastleSendBufRetireFlag( CASTLE_SCRWORK* wk, u16 retire_flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìí“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚©‚ğæ“¾
+ * @brief	recv_bufã®æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹ã‚’å–å¾—
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * ‚¨Œİ‚¢‚ªu‚Â‚Ã‚¯‚év‚Ì‚ÍŒp‘±A
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ãŠäº’ã„ãŒã€Œã¤ã¥ã‘ã‚‹ã€ã®æ™‚ã¯ç¶™ç¶šã€
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommCastleRecvBufRetireFlag(int id_no,int size,void *pData,void *work)
@@ -1953,13 +1953,13 @@ void CommCastleRecvBufRetireFlag(int id_no,int size,void *pData,void *work)
 	CASTLE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** ƒŠƒ^ƒCƒAî•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** ãƒªã‚¿ã‚¤ã‚¢æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -1969,16 +1969,16 @@ void CommCastleRecvBufRetireFlag(int id_no,int size,void *pData,void *work)
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
 	wk->pair_retire_flag = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉŒğŠ·‚µ‚½‚¢‚©‚ğ‚ğƒZƒbƒg
+ * @brief	send_bufã«äº¤æ›ã—ãŸã„ã‹ã‚’ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel		0=ŒğŠ·‚µ‚½‚¢A1=ŒğŠ·‚µ‚½‚­‚È‚¢
+ * @param	wk		CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel		0=äº¤æ›ã—ãŸã„ã€1=äº¤æ›ã—ãŸããªã„
  *
  * @return	none
  */
@@ -1987,10 +1987,10 @@ BOOL CommCastleSendBufTradeYesNoFlag( CASTLE_SCRWORK* wk, u16 trade_yesno_flag )
 {
 	int ret,size;
 
-	size = CASTLE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = CASTLE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
 	wk->send_buf[0] = trade_yesno_flag;
-	OS_Printf( "‘—MFtrade_yesno_flag = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼štrade_yesno_flag = %d\n", wk->send_buf[0] );
 
 	if( CommSendData(FC_CASTLE_TRADE_YESNO_FLAG,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -2003,9 +2003,9 @@ BOOL CommCastleSendBufTradeYesNoFlag( CASTLE_SCRWORK* wk, u16 trade_yesno_flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚ÌŒğŠ·‚µ‚½‚¢‚©‚ğæ“¾
+ * @brief	recv_bufã®äº¤æ›ã—ãŸã„ã‹ã‚’å–å¾—
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
@@ -2017,13 +2017,13 @@ void CommCastleRecvBufTradeYesNoFlag(int id_no,int size,void *pData,void *work)
 	CASTLE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** ŒğŠ·‚Í‚¢ ‚¢‚¢‚¦î•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** äº¤æ›ã¯ã„ ã„ã„ãˆæƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -2033,19 +2033,19 @@ void CommCastleRecvBufTradeYesNoFlag(int id_no,int size,void *pData,void *work)
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
 	wk->pair_trade_yesno_flag = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_trade_yesno_flag = %d\n", wk->pair_trade_yesno_flag );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_trade_yesno_flag = %d\n", wk->pair_trade_yesno_flag );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éè‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒZƒbƒg
+ * @brief	send_bufã«æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
- * e‹@Aq‹@‚Ì—¼•û‚Æ‚à‘I‚ñ‚¾è‚¿‚ğ“n‚·•K—v‚ª‚ ‚é
+ * è¦ªæ©Ÿã€å­æ©Ÿã®ä¸¡æ–¹ã¨ã‚‚é¸ã‚“ã æ‰‹æŒã¡ã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚‹
  */
 //--------------------------------------------------------------
 BOOL CommCastleSendBufTemotiPokeData( CASTLE_SCRWORK* wk )
@@ -2057,10 +2057,10 @@ BOOL CommCastleSendBufTemotiPokeData( CASTLE_SCRWORK* wk )
 	num = 0;
 	size = CASTLE_HUGE_BUF_LEN;
 
-	//ƒ^ƒCƒv‚É‚æ‚Á‚Äƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
 	m_max = Castle_GetMinePokeNum( wk->type, CASTLE_FLAG_SOLO );
 
-	//POKEMON_PARAM‚ÌƒTƒCƒY‚ğæ“¾
+	//POKEMON_PARAMã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	pp_size = PokemonParam_GetWorkSize();
 	OS_Printf( "pokemon_param_size = %d\n", pp_size );
 
@@ -2069,7 +2069,7 @@ BOOL CommCastleSendBufTemotiPokeData( CASTLE_SCRWORK* wk )
 		MI_CpuCopy8( temp_poke, &wk->huge_buf[i*pp_size], pp_size );
 	}
 
-	OS_Printf( "‘—MFpokemon_param\n" );
+	OS_Printf( "é€ä¿¡ï¼špokemon_param\n" );
 
 	if( CommSendHugeData(FC_CASTLE_TEMOTI_POKE_DATA,wk->huge_buf,size) == TRUE ){
 		ret = TRUE;
@@ -2077,22 +2077,22 @@ BOOL CommCastleSendBufTemotiPokeData( CASTLE_SCRWORK* wk )
 		ret = FALSE;
 	}
 
-	OS_Printf( "‘—MŒ‹‰ÊFCommSendHugeData = %d\n", ret );
+	OS_Printf( "é€ä¿¡çµæœï¼šCommSendHugeData = %d\n", ret );
 	return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìè‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğæ“¾
+ * @brief	recv_bufã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * e‹@Aq‹@‚Ì—¼•û‚Æ‚à‘I‚ñ‚¾è‚¿‚ğ“n‚·•K—v‚ª‚ ‚é
+ * è¦ªæ©Ÿã€å­æ©Ÿã®ä¸¡æ–¹ã¨ã‚‚é¸ã‚“ã æ‰‹æŒã¡ã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚‹
  *
- * pair_rental_...‚ğg‚¢‚Ü‚í‚µ‚Ä‚¢‚é
+ * pair_rental_...ã‚’ä½¿ã„ã¾ã‚ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 void CommCastleRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work)
@@ -2103,13 +2103,13 @@ void CommCastleRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work)
 	CASTLE_SCRWORK* wk = work;
 	const u8* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** è‚¿ƒ|ƒPƒ‚ƒ“î•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -2117,7 +2117,7 @@ void CommCastleRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work)
 	OS_Printf( "size = %d\n", size );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//ƒ^ƒCƒv‚É‚æ‚Á‚Äƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
 	m_max = Castle_GetMinePokeNum( wk->type, CASTLE_FLAG_SOLO );
 
 	pp_size = PokemonParam_GetWorkSize();
@@ -2130,20 +2130,20 @@ void CommCastleRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work)
 	sys_FreeMemoryEz( temp_poke );
 
 	//////////////////////////////////////////////////////
-	//q‚Íè‚¿ƒ|ƒPƒ‚ƒ“‚ğŒã‚ë‚É‚·‚é
+	//å­ã¯æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’å¾Œã‚ã«ã™ã‚‹
 	if( CommGetCurrentID() != COMM_PARENT_ID ){
 		PokeParty_ExchangePosition( wk->p_m_party, 0, 2 );
 		PokeParty_ExchangePosition( wk->p_m_party, 1, 3 );
 	}
 	//////////////////////////////////////////////////////
 
-	OS_Printf( "ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB” = %d\n",	PokeParty_GetPokeCount(wk->p_m_party) );
+	OS_Printf( "ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£æ•° = %d\n",	PokeParty_GetPokeCount(wk->p_m_party) );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   óM—Ìˆææ“¾ŠÖ”(‹‘åƒf[ƒ^FCommSendHugeData‚ÌóM—p)
+ * @brief   å—ä¿¡é ˜åŸŸå–å¾—é–¢æ•°(å·¨å¤§ãƒ‡ãƒ¼ã‚¿ï¼šCommSendHugeDataã®å—ä¿¡ç”¨)
  *
  * @param   netID		
  * @param   pWork		
@@ -2163,28 +2163,28 @@ u8* CommCastleGetRecvDataBuff( int netID, void*pWork, int size )
 
 //==============================================================================
 //
-//	ƒtƒƒ“ƒeƒBƒAWiFió•t
+//	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜
 //
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚É‘I‘ğ‚µ‚½{İNo‚ğƒZƒbƒg
+ * @brief	send_bufã«é¸æŠã—ãŸæ–½è¨­Noã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommFrWiFiCounterSendBufBFNo( FRWIFI_SCRWORK* wk )
 {
 	int ret,size;
 
-	OS_Printf( "******WIFIó•t****** ‘I‘ğ‚µ‚½{İNo‘—M\n" );
+	OS_Printf( "******WIFIå—ä»˜****** é¸æŠã—ãŸæ–½è¨­Noé€ä¿¡\n" );
 
 	size = FRWIFI_COMM_BUF_LEN;
 
-	wk->send_buf[0]	= wk->bf_no;								//{İNo
+	wk->send_buf[0]	= wk->bf_no;								//æ–½è¨­No
 
 	if( CommSendData(FC_WIFI_COUNTER_NO,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -2197,9 +2197,9 @@ BOOL CommFrWiFiCounterSendBufBFNo( FRWIFI_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ì‘I‘ğ‚µ‚½{İNo‚ğæ“¾
+ * @brief	recv_bufã®é¸æŠã—ãŸæ–½è¨­Noã‚’å–å¾—
  *
- * @param	wk			FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
@@ -2210,31 +2210,31 @@ void CommFrWiFiCounterRecvBufBFNo(int id_no,int size,void *pData,void *work)
 	FRWIFI_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ‘I‘ğ‚µ‚½{İNoóM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** é¸æŠã—ãŸæ–½è¨­Noå—ä¿¡\n" );
 
 	wk->recieve_count++;
 	//OS_Printf( "wk->recieve_count = %d\n", wk->recieve_count );
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	wk->pair_bf_no = (u8)recv_buf[0];							//{İNo
-	OS_Printf( "óMFwk->pair_bf_no = %d\n", wk->pair_bf_no );
+	wk->pair_bf_no = (u8)recv_buf[0];							//æ–½è¨­No
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_bf_no = %d\n", wk->pair_bf_no );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚É‘I‘ğˆ‚Å‰½‚ğ‘I‚ñ‚¾‚©‚ğƒZƒbƒg
+ * @brief	send_bufã«é¸æŠè‚¢ã§ä½•ã‚’é¸ã‚“ã ã‹ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel		0=‚Â‚Ã‚¯‚éA0ˆÈŠO=ƒŠƒ^ƒCƒ„(‚«‚ë‚­‚·‚é‚Í‚¢‚ç‚È‚¢)
+ * @param	wk		FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel		0=ã¤ã¥ã‘ã‚‹ã€0ä»¥å¤–=ãƒªã‚¿ã‚¤ãƒ¤(ãã‚ãã™ã‚‹ã¯ã„ã‚‰ãªã„)
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommFrWiFiCounterSendBufRetireFlag( FRWIFI_SCRWORK* wk, u16 retire_flag )
@@ -2243,10 +2243,10 @@ BOOL CommFrWiFiCounterSendBufRetireFlag( FRWIFI_SCRWORK* wk, u16 retire_flag )
 
 	size = FRWIFI_COMM_BUF_LEN;
 
-	OS_Printf( "******WIFIó•t****** ƒŠƒ^ƒCƒA‘—M\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒªã‚¿ã‚¤ã‚¢é€ä¿¡\n" );
 
 	wk->send_buf[0] = retire_flag;
-	OS_Printf( "‘—MFretire_flag = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šretire_flag = %d\n", wk->send_buf[0] );
 
 	if( CommSendData(FC_WIFI_COUNTER_RETIRE_FLAG,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -2259,14 +2259,14 @@ BOOL CommFrWiFiCounterSendBufRetireFlag( FRWIFI_SCRWORK* wk, u16 retire_flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ì‘I‘ğˆ‚Å‰½‚ğ‘I‚ñ‚¾‚©‚ğæ“¾
+ * @brief	recv_bufã®é¸æŠè‚¢ã§ä½•ã‚’é¸ã‚“ã ã‹ã‚’å–å¾—
  *
- * @param	wk			FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommFrWiFiCounterRecvBufRetireFlag(int id_no,int size,void *pData,void *work)
@@ -2275,27 +2275,27 @@ void CommFrWiFiCounterRecvBufRetireFlag(int id_no,int size,void *pData,void *wor
 	FRWIFI_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ƒŠƒ^ƒCƒAóM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒªã‚¿ã‚¤ã‚¢å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	wk->pair_retire_flag = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ğƒZƒbƒg
+ * @brief	send_bufã«ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2308,7 +2308,7 @@ BOOL CommFrWiFiCounterSendBufMonsNoItemNo( FRWIFI_SCRWORK* wk, u16 pos1, u16 pos
 
 	size = FRWIFI_COMM_BUF_LEN;
 
-	OS_Printf( "******WIFIó•t****** ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‘—M\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼é€ä¿¡\n" );
 
 	party = SaveData_GetTemotiPokemon( wk->sv );
 
@@ -2317,7 +2317,7 @@ BOOL CommFrWiFiCounterSendBufMonsNoItemNo( FRWIFI_SCRWORK* wk, u16 pos1, u16 pos
 	wk->mine_poke_pos[0] = pos1;
 	wk->mine_poke_pos[1] = pos2;
 	
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ä‚¢‚½‚ç
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦ã„ãŸã‚‰
 	if( pos1 == 0xff ){
 		wk->monsno[0] = 0;
 		wk->itemno[0] = 0;
@@ -2329,8 +2329,8 @@ BOOL CommFrWiFiCounterSendBufMonsNoItemNo( FRWIFI_SCRWORK* wk, u16 pos1, u16 pos
 
 	wk->send_buf[0] = wk->monsno[0];
 	wk->send_buf[1] = wk->itemno[0];
-	OS_Printf( "‘—MFmonsno1 = %d\n", wk->send_buf[0] );
-	OS_Printf( "‘—MFitemno1 = %d\n", wk->send_buf[1] );
+	OS_Printf( "é€ä¿¡ï¼šmonsno1 = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šitemno1 = %d\n", wk->send_buf[1] );
 
 	////////////////////////////////////////////////////////////
 	party = SaveData_GetTemotiPokemon( wk->sv );
@@ -2341,8 +2341,8 @@ BOOL CommFrWiFiCounterSendBufMonsNoItemNo( FRWIFI_SCRWORK* wk, u16 pos1, u16 pos
 
 	wk->send_buf[2] = wk->monsno[1];
 	wk->send_buf[3] = wk->itemno[1];
-	OS_Printf( "‘—MFmonsno2 = %d\n", wk->send_buf[2] );
-	OS_Printf( "‘—MFitemno2 = %d\n", wk->send_buf[3] );
+	OS_Printf( "é€ä¿¡ï¼šmonsno2 = %d\n", wk->send_buf[2] );
+	OS_Printf( "é€ä¿¡ï¼šitemno2 = %d\n", wk->send_buf[3] );
 
 	if( CommSendData(FC_WIFI_COUNTER_MONSNO_ITEMNO,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -2355,12 +2355,12 @@ BOOL CommFrWiFiCounterSendBufMonsNoItemNo( FRWIFI_SCRWORK* wk, u16 pos1, u16 pos
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ğæ“¾
+ * @brief	recv_bufã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommFrWiFiCounterRecvBufMonsNoItemNo(int id_no,int size,void *pData,void *work)
@@ -2368,37 +2368,37 @@ void CommFrWiFiCounterRecvBufMonsNoItemNo(int id_no,int size,void *pData,void *w
 	FRWIFI_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[óM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼å—ä¿¡\n" );
 
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//‘Šè‚Ìè‚¿‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğæ“¾(ƒyƒAƒ[ƒN‚É‘ã“ü)
+	//ç›¸æ‰‹ã®æ‰‹æŒã¡ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—(ãƒšã‚¢ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥)
 	wk->pair_monsno[0] = recv_buf[0];
 	wk->pair_itemno[0] = recv_buf[1];
 	wk->pair_monsno[1] = recv_buf[2];
 	wk->pair_itemno[1] = recv_buf[3];
-	OS_Printf( "óMFwk->pair_monsno[0] = %d\n", wk->pair_monsno[0] );
-	OS_Printf( "óMFwk->pair_itemno[0] = %d\n", wk->pair_itemno[0] );
-	OS_Printf( "óMFwk->pair_monsno[1] = %d\n", wk->pair_monsno[1] );
-	OS_Printf( "óMFwk->pair_itemno[1] = %d\n", wk->pair_itemno[1] );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_monsno[0] = %d\n", wk->pair_monsno[0] );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_itemno[0] = %d\n", wk->pair_itemno[0] );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_monsno[1] = %d\n", wk->pair_monsno[1] );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_itemno[1] = %d\n", wk->pair_itemno[1] );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉƒXƒe[ƒW‚Ì‹L˜^‚ğÁ‚µ‚Ä‚æ‚¢‚©‚ğƒZƒbƒg
+ * @brief	send_bufã«ã‚¹ãƒ†ãƒ¼ã‚¸ã®è¨˜éŒ²ã‚’æ¶ˆã—ã¦ã‚ˆã„ã‹ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel		0=‚Â‚Ã‚¯‚éA0ˆÈŠO=ƒŠƒ^ƒCƒ„(‚«‚ë‚­‚·‚é‚Í‚¢‚ç‚È‚¢)
+ * @param	wk		FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel		0=ã¤ã¥ã‘ã‚‹ã€0ä»¥å¤–=ãƒªã‚¿ã‚¤ãƒ¤(ãã‚ãã™ã‚‹ã¯ã„ã‚‰ãªã„)
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªu‚¢‚¢‚¦v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œã„ã„ãˆã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommFrWiFiCounterSendBufStageRecordDel( FRWIFI_SCRWORK* wk, u16 stage_del_flag )
@@ -2407,10 +2407,10 @@ BOOL CommFrWiFiCounterSendBufStageRecordDel( FRWIFI_SCRWORK* wk, u16 stage_del_f
 
 	size = FRWIFI_COMM_BUF_LEN;
 
-	OS_Printf( "******WIFIó•t****** ƒXƒe[ƒW‹L˜^Á‚µ‚Ä‚æ‚¢‚©‘—M\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ã‚¹ãƒ†ãƒ¼ã‚¸è¨˜éŒ²æ¶ˆã—ã¦ã‚ˆã„ã‹é€ä¿¡\n" );
 
 	wk->send_buf[0] = stage_del_flag;
-	OS_Printf( "‘—MFstage_del_flag = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šstage_del_flag = %d\n", wk->send_buf[0] );
 
 	if( CommSendData(FC_WIFI_COUNTER_STAGE_RECORD_DEL,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -2423,14 +2423,14 @@ BOOL CommFrWiFiCounterSendBufStageRecordDel( FRWIFI_SCRWORK* wk, u16 stage_del_f
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚ÌƒXƒe[ƒW‚Ì‹L˜^‚ğÁ‚µ‚Ä‚æ‚¢‚©‚ğæ“¾
+ * @brief	recv_bufã®ã‚¹ãƒ†ãƒ¼ã‚¸ã®è¨˜éŒ²ã‚’æ¶ˆã—ã¦ã‚ˆã„ã‹ã‚’å–å¾—
  *
- * @param	wk			FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªu‚¢‚¢‚¦v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œã„ã„ãˆã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommFrWiFiCounterRecvBufStageRecordDel(int id_no,int size,void *pData,void *work)
@@ -2439,32 +2439,32 @@ void CommFrWiFiCounterRecvBufStageRecordDel(int id_no,int size,void *pData,void 
 	FRWIFI_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ƒXƒe[ƒW‹L˜^Á‚µ‚Ä‚æ‚¢‚©óM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** ã‚¹ãƒ†ãƒ¼ã‚¸è¨˜éŒ²æ¶ˆã—ã¦ã‚ˆã„ã‹å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	wk->pair_stage_del = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_stage_del = %d\n", wk->pair_stage_del );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_stage_del = %d\n", wk->pair_stage_del );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éˆø‚«‘±‚«—V‚Ô‚©‚ğƒZƒbƒg
+ * @brief	send_bufã«å¼•ãç¶šãéŠã¶ã‹ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel		0=‚Í‚¢A1=‚¢‚¢‚¦
+ * @param	wk		FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel		0=ã¯ã„ã€1=ã„ã„ãˆ
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªu‚¢‚¢‚¦v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œã„ã„ãˆã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommFrWiFiCounterSendBufGameContinue( FRWIFI_SCRWORK* wk, u16 flag )
@@ -2473,10 +2473,10 @@ BOOL CommFrWiFiCounterSendBufGameContinue( FRWIFI_SCRWORK* wk, u16 flag )
 
 	size = FRWIFI_COMM_BUF_LEN;
 
-	OS_Printf( "******WIFIó•t****** ˆø‚«‘±‚«—V‚Ô‚©‚ğ‘—M\n" );
+	OS_Printf( "******WIFIå—ä»˜****** å¼•ãç¶šãéŠã¶ã‹ã‚’é€ä¿¡\n" );
 
 	wk->send_buf[0] = flag;
-	OS_Printf( "‘—MFgame_continue = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šgame_continue = %d\n", wk->send_buf[0] );
 
 	if( CommSendData(FC_WIFI_COUNTER_GAME_CONTINUE,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -2489,14 +2489,14 @@ BOOL CommFrWiFiCounterSendBufGameContinue( FRWIFI_SCRWORK* wk, u16 flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìˆø‚«‘±‚«—V‚Ô‚©‚ğæ“¾
+ * @brief	recv_bufã®å¼•ãç¶šãéŠã¶ã‹ã‚’å–å¾—
  *
- * @param	wk			FRWIFI_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FRWIFI_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªu‚¢‚¢‚¦v‚Ì‚Í’†~
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œã„ã„ãˆã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommFrWiFiCounterRecvBufGameContinue(int id_no,int size,void *pData,void *work)
@@ -2505,19 +2505,19 @@ void CommFrWiFiCounterRecvBufGameContinue(int id_no,int size,void *pData,void *w
 	FRWIFI_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******WIFIó•t****** ˆø‚«‘±‚«—V‚Ô‚©‚ğóM\n" );
+	OS_Printf( "******WIFIå—ä»˜****** å¼•ãç¶šãéŠã¶ã‹ã‚’å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	wk->pair_game_continue = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_game_continue = %d\n", wk->pair_game_continue );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_game_continue = %d\n", wk->pair_game_continue );
 	return;
 }
 #endif
@@ -2525,21 +2525,21 @@ void CommFrWiFiCounterRecvBufGameContinue(int id_no,int size,void *pData,void *w
 
 //==============================================================================
 //
-//	ƒ‹[ƒŒƒbƒg
+//	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 //
-//	\‘¢‘Ì‚ğ‚«‚Á‚ÄA‚»‚ÌƒTƒCƒYAóM‚Í‚»‚ÌŒ^‚Å‘ã“ü‚É•ÏX—\’èBBB
+//	æ§‹é€ ä½“ã‚’ãã£ã¦ã€ãã®ã‚µã‚¤ã‚ºã€å—ä¿¡ã¯ãã®å‹ã§ä»£å…¥ã«å¤‰æ›´äºˆå®šã€‚ã€‚ã€‚
 //	
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉŠî–{î•ñ‚ğƒZƒbƒg
+ * @brief	send_bufã«åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  *
- * ƒ‹[ƒŒƒbƒgƒ[ƒN‚ğŠm•ÛŒãAÅ‰‚É‘—‚éƒf[ƒ^
+ * ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿å¾Œã€æœ€åˆã«é€ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 BOOL CommRouletteSendBufBasicData( ROULETTE_SCRWORK* wk )
@@ -2547,15 +2547,15 @@ BOOL CommRouletteSendBufBasicData( ROULETTE_SCRWORK* wk )
 	int i,num,ret,size;
 	ROULETTESCORE* score_sv;
 
-	OS_Printf( "******ƒ‹[ƒŒƒbƒg****** Šî–{î•ñ‘—M\n" );
+	OS_Printf( "******ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ****** åŸºæœ¬æƒ…å ±é€ä¿¡\n" );
 
 	score_sv = SaveData_GetRouletteScore( wk->sv );
-	size = ROULETTE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = ROULETTE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 	num = 0;
 
 	//wk->send_buf[0]	= 
-	wk->send_buf[1] = wk->rensyou;						//Œ»İ‚Ì˜AŸ”
-	wk->send_buf[2] = wk->lap;							//ü‰ñ”
+	wk->send_buf[1] = wk->rensyou;						//ç¾åœ¨ã®é€£å‹æ•°
+	wk->send_buf[2] = wk->lap;							//å‘¨å›æ•°
 	num += 3;											//3
 
 	if( CommSendData(FC_ROULETTE_BASIC_DATA,wk->send_buf,size) == TRUE ){
@@ -2569,14 +2569,14 @@ BOOL CommRouletteSendBufBasicData( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚ÌŠî–{î•ñ‚ğæ“¾
+ * @brief	recv_bufã®åŸºæœ¬æƒ…å ±ã‚’å–å¾—
  *
- * @param	wk			ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * ƒ‹[ƒŒƒbƒgƒ[ƒN‚ğŠm•ÛŒãAÅ‰‚Éó‚¯æ‚éƒf[ƒ^
+ * ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿å¾Œã€æœ€åˆã«å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void CommRouletteRecvBufBasicData(int id_no,int size,void *pData,void *work)
@@ -2585,24 +2585,24 @@ void CommRouletteRecvBufBasicData(int id_no,int size,void *pData,void *work)
 	ROULETTE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒ‹[ƒŒƒbƒg****** Šî–{î•ñóM\n" );
+	OS_Printf( "******ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ****** åŸºæœ¬æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 	//OS_Printf( "wk->recieve_count = %d\n", wk->recieve_count );
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	//wk->	= 
 	//
-	wk->pair_rensyou		= recv_buf[1];							//Œ»İ‚Ì˜AŸ”
-	OS_Printf( "óMFwk->pair_rensyou = %d\n", wk->pair_rensyou );
-	wk->pair_lap			= recv_buf[2];							//ü‰ñ”
-	OS_Printf( "óMFwk->pair_lap = %d\n", wk->pair_lap );
+	wk->pair_rensyou		= recv_buf[1];							//ç¾åœ¨ã®é€£å‹æ•°
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_rensyou = %d\n", wk->pair_rensyou );
+	wk->pair_lap			= recv_buf[2];							//å‘¨å›æ•°
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_lap = %d\n", wk->pair_lap );
 	num += 3;														//3
 
 	return;
@@ -2610,9 +2610,9 @@ void CommRouletteRecvBufBasicData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉƒgƒŒ[ƒi[î•ñ‚ğƒZƒbƒg
+ * @brief	send_bufã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2621,15 +2621,15 @@ BOOL CommRouletteSendBufTrData( ROULETTE_SCRWORK* wk )
 {
 	int i,num,ret,size;
 	
-	OS_Printf( "******ƒ‹[ƒŒƒbƒg****** ƒgƒŒ[ƒi[î•ñ‘—M\n" );
+	OS_Printf( "******ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ****** ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±é€ä¿¡\n" );
 
 	num = 0;
-	size = ROULETTE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = ROULETTE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 	for( i=0; i < ROULETTE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		wk->send_buf[i+num] = wk->tr_index[i];
-		OS_Printf( "‘—MFtr_index[%d] = %d\n", i, wk->send_buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼štr_index[%d] = %d\n", i, wk->send_buf[i+num] );
 	}
 	num += ROULETTE_LAP_MULTI_ENEMY_MAX;						//14
 
@@ -2644,14 +2644,14 @@ BOOL CommRouletteSendBufTrData( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚ÌƒgƒŒ[ƒi[î•ñ‚ğæ“¾
+ * @brief	recv_bufã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚’å–å¾—
  *
- * @param	wk			ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * ƒ‹[ƒŒƒbƒgƒ[ƒN‚ğŠm•ÛŒãAÅ‰‚Éó‚¯æ‚éƒf[ƒ^
+ * ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿å¾Œã€æœ€åˆã«å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void CommRouletteRecvBufTrData(int id_no,int size,void *pData,void *work)
@@ -2660,26 +2660,26 @@ void CommRouletteRecvBufTrData(int id_no,int size,void *pData,void *work)
 	ROULETTE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒ‹[ƒŒƒbƒg****** ƒgƒŒ[ƒi[î•ñóM\n" );
+	OS_Printf( "******ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ****** ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		return;
 	}
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 	for( i=0; i < ROULETTE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		wk->tr_index[i] = recv_buf[i+num];
-		OS_Printf( "óMFwk->tr_index[%d] = %d\n", i, wk->tr_index[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->tr_index[%d] = %d\n", i, wk->tr_index[i] );
 	}
 	num += ROULETTE_LAP_MULTI_ENEMY_MAX;								//14
 
@@ -2688,9 +2688,9 @@ void CommRouletteRecvBufTrData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚É“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒZƒbƒg
+ * @brief	send_bufã«æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2699,34 +2699,34 @@ BOOL CommRouletteSendBufEnemyPokeData( ROULETTE_SCRWORK* wk )
 {
 	int i,num,ret,size;
 	
-	OS_Printf( "******ƒ‹[ƒŒƒbƒg****** “Gƒ|ƒPƒ‚ƒ“‘—M\n" );
+	OS_Printf( "******ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ****** æ•µãƒã‚±ãƒ¢ãƒ³é€ä¿¡\n" );
 
 	num = 0;
-	size = ROULETTE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = ROULETTE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < ROULETTE_ENEMY_POKE_MAX ;i++ ){
 		wk->send_buf[i] = wk->enemy_poke_index[i];
-		OS_Printf( "‘—MFenemy_index[%d] = %d\n", i, wk->send_buf[i] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_index[%d] = %d\n", i, wk->send_buf[i] );
 	}
 	num += ROULETTE_ENEMY_POKE_MAX;										//4
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
+	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	for( i=0; i < ROULETTE_ENEMY_POKE_MAX ;i++ ){
 		wk->send_buf[i+num] = wk->enemy_pow_rnd[i];
-		OS_Printf( "‘—MFenemy_pow_rnd[%d] = %d\n", i, wk->send_buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_pow_rnd[%d] = %d\n", i, wk->send_buf[i+num] );
 	}
 	num += ROULETTE_ENEMY_POKE_MAX;										//8
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”(u32‚È‚Ì‚ÅAu16‚¸‚ÂƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°(u32ãªã®ã§ã€u16ãšã¤ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	for( i=0; i < ROULETTE_ENEMY_POKE_MAX ;i++ ){
 		//u32 enemy_personal_rnd[ROULETTE_ENEMY_POKE_MAX];
 		wk->send_buf[i+num] = (wk->enemy_personal_rnd[i] & 0xffff);
 		wk->send_buf[i+num+ROULETTE_ENEMY_POKE_MAX] = 
 								((wk->enemy_personal_rnd[i] >> 16) & 0xffff);
-		OS_Printf( "Œ³ƒf[ƒ^ enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
-		OS_Printf( "‘—MFenemy_personal_rnd[%d] = %d\n", i, wk->send_buf[i+num] );
-		OS_Printf( "‘—MFenemy_personal_rnd[%d] = %d\n", i+ROULETTE_ENEMY_POKE_MAX, 
+		OS_Printf( "å…ƒãƒ‡ãƒ¼ã‚¿ enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_personal_rnd[%d] = %d\n", i, wk->send_buf[i+num] );
+		OS_Printf( "é€ä¿¡ï¼šenemy_personal_rnd[%d] = %d\n", i+ROULETTE_ENEMY_POKE_MAX, 
 													wk->send_buf[i+num+ROULETTE_ENEMY_POKE_MAX] );
 	}
 	num += (ROULETTE_ENEMY_POKE_MAX * 2);								//16
@@ -2744,9 +2744,9 @@ BOOL CommRouletteSendBufEnemyPokeData( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ì“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğæ“¾
+ * @brief	recv_bufã®æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	wk			ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
@@ -2758,18 +2758,18 @@ void CommRouletteRecvBufEnemyPokeData(int id_no,int size,void *pData,void *work)
 	ROULETTE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒ‹[ƒŒƒbƒg****** “Gƒ|ƒPƒ‚ƒ“î•ñóM\n" );
+	OS_Printf( "******ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ****** æ•µãƒã‚±ãƒ¢ãƒ³æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		return;
 	}
@@ -2778,38 +2778,38 @@ void CommRouletteRecvBufEnemyPokeData(int id_no,int size,void *pData,void *work)
 	//OS_Printf( "pData[0] = %d\n", ((u8*)pData)[0] );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i < ROULETTE_ENEMY_POKE_MAX ;i++ ){
 		wk->enemy_poke_index[i] = recv_buf[i];
-		OS_Printf( "óMFwk->enemy_index[%d] = %d\n", i, wk->enemy_poke_index[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->enemy_index[%d] = %d\n", i, wk->enemy_poke_index[i] );
 	}
 	num += ROULETTE_ENEMY_POKE_MAX;										//4
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
+	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	for( i=0; i < ROULETTE_ENEMY_POKE_MAX ;i++ ){
 		wk->enemy_pow_rnd[i] = recv_buf[i+num];
-		OS_Printf( "óMFwk->enemy_pow_rnd[%d] = %d\n", i, wk->enemy_pow_rnd[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->enemy_pow_rnd[%d] = %d\n", i, wk->enemy_pow_rnd[i] );
 	}
 	num += ROULETTE_ENEMY_POKE_MAX;										//8
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”(u32‚È‚Ì‚ÅAu16‚¸‚ÂƒZƒbƒg‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI)
+	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°(u32ãªã®ã§ã€u16ãšã¤ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼)
 	for( i=0; i < ROULETTE_ENEMY_POKE_MAX ;i++ ){
 		//u32 enemy_personal_rnd[ROULETTE_ENEMY_POKE_MAX];
 		wk->enemy_personal_rnd[i] = recv_buf[i+num];
 		wk->enemy_personal_rnd[i] |= (recv_buf[i+num+ROULETTE_ENEMY_POKE_MAX] << 16);
-		OS_Printf( "óMFwk->enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
+		OS_Printf( "å—ä¿¡ï¼šwk->enemy_personal_rnd[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
 	}
 	num += (ROULETTE_ENEMY_POKE_MAX * 2);								//16
 
 #if 0
 	//B_TOWER_POKEMON enemy_poke[ROULETTE_ENEMY_POKE_MAX];
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É¶¬
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ
 	Frontier_PokemonParamCreateAll(	wk->enemy_poke, wk->enemy_poke_index, 
 									wk->enemy_pow_rnd, wk->enemy_personal_rnd, NULL, 
 									ROULETTE_ENEMY_POKE_MAX, HEAPID_WORLD, ARC_PL_BTD_PM );
 
-	//“Gƒp[ƒeƒB‚ÌƒZƒbƒg
+	//æ•µãƒ‘ãƒ¼ãƒ†ã‚£ã®ã‚»ãƒƒãƒˆ
 	Roulette_EnemyPartySet( wk );
 #endif
 	return;
@@ -2817,25 +2817,25 @@ void CommRouletteRecvBufEnemyPokeData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éí“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚©‚ğƒZƒbƒg
+ * @brief	send_bufã«æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel		0=‚Â‚Ã‚¯‚éA0ˆÈŠO=ƒŠƒ^ƒCƒ„(‚«‚ë‚­‚·‚é‚Í‚¢‚ç‚È‚¢)
+ * @param	wk		ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel		0=ã¤ã¥ã‘ã‚‹ã€0ä»¥å¤–=ãƒªã‚¿ã‚¤ãƒ¤(ãã‚ãã™ã‚‹ã¯ã„ã‚‰ãªã„)
  *
  * @return	none
  *
- * ‚¨Œİ‚¢‚ªu‚Â‚Ã‚¯‚év‚Ì‚ÍŒp‘±A
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ãŠäº’ã„ãŒã€Œã¤ã¥ã‘ã‚‹ã€ã®æ™‚ã¯ç¶™ç¶šã€
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 BOOL CommRouletteSendBufRetireFlag( ROULETTE_SCRWORK* wk, u16 retire_flag )
 {
 	int ret,size;
 
-	size = ROULETTE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = ROULETTE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
 	wk->send_buf[0] = retire_flag;
-	OS_Printf( "‘—MFretire_flag = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šretire_flag = %d\n", wk->send_buf[0] );
 
 	if( CommSendData(FC_ROULETTE_RETIRE_FLAG,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -2848,15 +2848,15 @@ BOOL CommRouletteSendBufRetireFlag( ROULETTE_SCRWORK* wk, u16 retire_flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìí“¬Œã‚Ìƒƒjƒ…[‚Å‰½‚ğ‘I‚ñ‚¾‚©‚ğæ“¾
+ * @brief	recv_bufã®æˆ¦é—˜å¾Œã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ä½•ã‚’é¸ã‚“ã ã‹ã‚’å–å¾—
  *
- * @param	wk			ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * ‚¨Œİ‚¢‚ªu‚Â‚Ã‚¯‚év‚Ì‚ÍŒp‘±A
- * —¼•ûA‚Ç‚¿‚ç‚©‚ªuƒŠƒ^ƒCƒ„v‚Ì‚Í’†~
+ * ãŠäº’ã„ãŒã€Œã¤ã¥ã‘ã‚‹ã€ã®æ™‚ã¯ç¶™ç¶šã€
+ * ä¸¡æ–¹ã€ã©ã¡ã‚‰ã‹ãŒã€Œãƒªã‚¿ã‚¤ãƒ¤ã€ã®æ™‚ã¯ä¸­æ­¢
  */
 //--------------------------------------------------------------
 void CommRouletteRecvBufRetireFlag(int id_no,int size,void *pData,void *work)
@@ -2865,13 +2865,13 @@ void CommRouletteRecvBufRetireFlag(int id_no,int size,void *pData,void *work)
 	ROULETTE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒ‹[ƒŒƒbƒg****** ƒŠƒ^ƒCƒAî•ñóM\n" );
+	OS_Printf( "******ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ****** ãƒªã‚¿ã‚¤ã‚¢æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -2881,16 +2881,16 @@ void CommRouletteRecvBufRetireFlag(int id_no,int size,void *pData,void *work)
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
 	wk->pair_retire_flag = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_retire_flag = %d\n", wk->pair_retire_flag );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉŒğŠ·‚µ‚½‚¢‚©‚ğ‚ğƒZƒbƒg
+ * @brief	send_bufã«äº¤æ›ã—ãŸã„ã‹ã‚’ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sel		0=ŒğŠ·‚µ‚½‚¢A1=ŒğŠ·‚µ‚½‚­‚È‚¢
+ * @param	wk		ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sel		0=äº¤æ›ã—ãŸã„ã€1=äº¤æ›ã—ãŸããªã„
  *
  * @return	none
  */
@@ -2899,10 +2899,10 @@ BOOL CommRouletteSendBufTradeYesNoFlag( ROULETTE_SCRWORK* wk, u16 trade_yesno_fl
 {
 	int ret,size;
 
-	size = ROULETTE_COMM_BUF_LEN;						//ÀÛ‚Íu16ƒf[ƒ^‚È‚Ì‚Å‚±‚Ì”¼•ª
+	size = ROULETTE_COMM_BUF_LEN;						//å®Ÿéš›ã¯u16ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã“ã®åŠåˆ†
 
 	wk->send_buf[0] = trade_yesno_flag;
-	OS_Printf( "‘—MFtrade_yesno_flag = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼štrade_yesno_flag = %d\n", wk->send_buf[0] );
 
 	if( CommSendData(FC_ROULETTE_TRADE_YESNO_FLAG,wk->send_buf,size) == TRUE ){
 		ret = TRUE;
@@ -2915,9 +2915,9 @@ BOOL CommRouletteSendBufTradeYesNoFlag( ROULETTE_SCRWORK* wk, u16 trade_yesno_fl
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚ÌŒğŠ·‚µ‚½‚¢‚©‚ğæ“¾
+ * @brief	recv_bufã®äº¤æ›ã—ãŸã„ã‹ã‚’å–å¾—
  *
- * @param	wk			ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
@@ -2929,13 +2929,13 @@ void CommRouletteRecvBufTradeYesNoFlag(int id_no,int size,void *pData,void *work
 	ROULETTE_SCRWORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒ‹[ƒŒƒbƒg****** ŒğŠ·‚Í‚¢ ‚¢‚¢‚¦î•ñóM\n" );
+	OS_Printf( "******ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ****** äº¤æ›ã¯ã„ ã„ã„ãˆæƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -2945,19 +2945,19 @@ void CommRouletteRecvBufTradeYesNoFlag(int id_no,int size,void *pData,void *work
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
 	wk->pair_trade_yesno_flag = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_trade_yesno_flag = %d\n", wk->pair_trade_yesno_flag );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_trade_yesno_flag = %d\n", wk->pair_trade_yesno_flag );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éè‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒZƒbƒg
+ * @brief	send_bufã«æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
- * e‹@Aq‹@‚Ì—¼•û‚Æ‚à‘I‚ñ‚¾è‚¿‚ğ“n‚·•K—v‚ª‚ ‚é
+ * è¦ªæ©Ÿã€å­æ©Ÿã®ä¸¡æ–¹ã¨ã‚‚é¸ã‚“ã æ‰‹æŒã¡ã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚‹
  */
 //--------------------------------------------------------------
 BOOL CommRouletteSendBufTemotiPokeData( ROULETTE_SCRWORK* wk )
@@ -2969,10 +2969,10 @@ BOOL CommRouletteSendBufTemotiPokeData( ROULETTE_SCRWORK* wk )
 	num = 0;
 	size = ROULETTE_HUGE_BUF_LEN;
 
-	//ƒ^ƒCƒv‚É‚æ‚Á‚Äƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
 	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_SOLO );
 
-	//POKEMON_PARAM‚ÌƒTƒCƒY‚ğæ“¾
+	//POKEMON_PARAMã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	pp_size = PokemonParam_GetWorkSize();
 	OS_Printf( "pokemon_param_size = %d\n", pp_size );
 
@@ -2981,7 +2981,7 @@ BOOL CommRouletteSendBufTemotiPokeData( ROULETTE_SCRWORK* wk )
 		MI_CpuCopy8( temp_poke, &wk->huge_buf[i*pp_size], pp_size );
 	}
 
-	OS_Printf( "‘—MFpokemon_param\n" );
+	OS_Printf( "é€ä¿¡ï¼špokemon_param\n" );
 
 	if( CommSendHugeData(FC_ROULETTE_TEMOTI_POKE_DATA,wk->huge_buf,size) == TRUE ){
 		ret = TRUE;
@@ -2989,22 +2989,22 @@ BOOL CommRouletteSendBufTemotiPokeData( ROULETTE_SCRWORK* wk )
 		ret = FALSE;
 	}
 
-	OS_Printf( "‘—MŒ‹‰ÊFCommSendHugeData = %d\n", ret );
+	OS_Printf( "é€ä¿¡çµæœï¼šCommSendHugeData = %d\n", ret );
 	return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	recv_buf‚Ìè‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğæ“¾
+ * @brief	recv_bufã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	wk			ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	recv_buf	
  *
  * @return	none
  *
- * e‹@Aq‹@‚Ì—¼•û‚Æ‚à‘I‚ñ‚¾è‚¿‚ğ“n‚·•K—v‚ª‚ ‚é
+ * è¦ªæ©Ÿã€å­æ©Ÿã®ä¸¡æ–¹ã¨ã‚‚é¸ã‚“ã æ‰‹æŒã¡ã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚‹
  *
- * pair_rental_...‚ğg‚¢‚Ü‚í‚µ‚Ä‚¢‚é
+ * pair_rental_...ã‚’ä½¿ã„ã¾ã‚ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 void CommRouletteRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work)
@@ -3015,13 +3015,13 @@ void CommRouletteRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work
 	ROULETTE_SCRWORK* wk = work;
 	const u8* recv_buf = pData;
 
-	OS_Printf( "******ƒ‹[ƒŒƒbƒg****** è‚¿ƒ|ƒPƒ‚ƒ“î•ñóM\n" );
+	OS_Printf( "******ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ****** æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³æƒ…å ±å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -3030,7 +3030,7 @@ void CommRouletteRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work
 	//OS_Printf( "pData[0] = %d\n", ((u8*)pData)[0] );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//ƒ^ƒCƒv‚É‚æ‚Á‚Äƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
 	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_SOLO );
 
 	pp_size = PokemonParam_GetWorkSize();
@@ -3043,20 +3043,20 @@ void CommRouletteRecvBufTemotiPokeData(int id_no,int size,void *pData,void *work
 	sys_FreeMemoryEz( temp_poke );
 
 	//////////////////////////////////////////////////////
-	//q‚Íè‚¿ƒ|ƒPƒ‚ƒ“‚ğŒã‚ë‚É‚·‚é
+	//å­ã¯æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’å¾Œã‚ã«ã™ã‚‹
 	if( CommGetCurrentID() != COMM_PARENT_ID ){
 		PokeParty_ExchangePosition( wk->p_m_party, 0, 2 );
 		PokeParty_ExchangePosition( wk->p_m_party, 1, 3 );
 	}
 	//////////////////////////////////////////////////////
 
-	OS_Printf( "ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB” = %d\n",	PokeParty_GetPokeCount(wk->p_m_party) );
+	OS_Printf( "ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£æ•° = %d\n",	PokeParty_GetPokeCount(wk->p_m_party) );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   óM—Ìˆææ“¾ŠÖ”(‹‘åƒf[ƒ^FCommSendHugeData‚ÌóM—p)
+ * @brief   å—ä¿¡é ˜åŸŸå–å¾—é–¢æ•°(å·¨å¤§ãƒ‡ãƒ¼ã‚¿ï¼šCommSendHugeDataã®å—ä¿¡ç”¨)
  *
  * @param   netID		
  * @param   pWork		

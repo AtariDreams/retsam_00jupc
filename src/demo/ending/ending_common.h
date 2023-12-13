@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_common.h
- * @brief	ƒGƒ“ƒfƒBƒ“ƒO‹¤’Êƒwƒbƒ_
+ * @brief	ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°å…±é€šãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2008.04.07(ŒŽ)
+ * @date	2008.04.07(æœˆ)
  */
 //==============================================================================
 #ifndef __ENDING_COMMON_H__
@@ -11,45 +11,45 @@
 
 
 //==============================================================================
-//	ƒfƒoƒbƒO—p’è‹`
+//	ãƒ‡ãƒãƒƒã‚°ç”¨å®šç¾©
 //==============================================================================
 #ifdef PM_DEBUG
-///—LŒø‚É‚µ‚Ä‚¢‚é‚ÆƒV[ƒ“–ˆ‚ÉYƒ{ƒ^ƒ“‚ÅƒXƒLƒbƒv‰Â”\ 
+///æœ‰åŠ¹ã«ã—ã¦ã„ã‚‹ã¨ã‚·ãƒ¼ãƒ³æ¯Žã«Yãƒœã‚¿ãƒ³ã§ã‚¹ã‚­ãƒƒãƒ—å¯èƒ½ 
 //#define DEBUG_ENDING_SCENE_SKIP
-///—LŒø‚É‚µ‚Ä‚¢‚é‚ÆƒJƒƒ‰‚â”z’u•¨‚ð‚¢‚¶‚ê‚é
+///æœ‰åŠ¹ã«ã—ã¦ã„ã‚‹ã¨ã‚«ãƒ¡ãƒ©ã‚„é…ç½®ç‰©ã‚’ã„ã˜ã‚Œã‚‹
 //#define DEBUG_ENDING_CAMERA
 #endif
 
 
 //--------------------------------------------------------------
-//	ƒVƒXƒeƒ€
+//	ã‚·ã‚¹ãƒ†ãƒ 
 //--------------------------------------------------------------
-///ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒg‚Ì“WŠJˆÊ’u
+///ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã®å±•é–‹ä½ç½®
 #define SYSTEM_FONT_PAL			(15)
 
-///ƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh‘ÎÛ–Ê(ƒXƒ^ƒbƒtƒ[ƒ‹–Ê‚Ì‚Ýœ‚­)
+///ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰å¯¾è±¡é¢(ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«é¢ã®ã¿é™¤ã)
 #define ENDING_FADE_PLANE		(PLANEMASK_BG0 | PLANEMASK_BG2 | PLANEMASK_BG3 | PLANEMASK_OBJ | PLANEMASK_OBJ | PLANEMASK_BD)
 
-///ƒV[ƒ“Ø‚è‘Ö‚¦‚Ìƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh‘¬“x
+///ã‚·ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã®ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰é€Ÿåº¦
 #define ENDING_FADE_SYNC_SCENE		(24)
-///ƒLƒƒƒvƒ`ƒƒ‰æ‘œØ‚è‘Ö‚¦‚Ìƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh‘¬“x
+///ã‚­ãƒ£ãƒ—ãƒãƒ£ç”»åƒåˆ‡ã‚Šæ›¿ãˆã®ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰é€Ÿåº¦
 #define ENDING_FADE_SYNC_CAPTURE	(32)
 
-///BGƒtƒŒ[ƒ€Ý’è
-#define FRAME_M_STAFFROLL		(GF_BGL_FRAME1_M)	//ƒXƒ^ƒbƒtƒ[ƒ‹–Ê
-#define FRAME_M_BG				(GF_BGL_FRAME2_M)	//”wŒi
-#define FRAME_M_CAPTURE			(GF_BGL_FRAME3_M)	//ƒLƒƒƒvƒ`ƒƒ
-#define FRAME_S_STAFFROLL		(GF_BGL_FRAME1_S)	//ƒXƒ^ƒbƒtƒ[ƒ‹
-#define FRAME_S_EFF				(GF_BGL_FRAME2_S)	//ƒGƒtƒFƒNƒg(–¢Žg—p)
-#define FRAME_S_BG				(GF_BGL_FRAME3_S)	//”wŒi
+///BGãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
+#define FRAME_M_STAFFROLL		(GF_BGL_FRAME1_M)	//ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«é¢
+#define FRAME_M_BG				(GF_BGL_FRAME2_M)	//èƒŒæ™¯
+#define FRAME_M_CAPTURE			(GF_BGL_FRAME3_M)	//ã‚­ãƒ£ãƒ—ãƒãƒ£
+#define FRAME_S_STAFFROLL		(GF_BGL_FRAME1_S)	//ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«
+#define FRAME_S_EFF				(GF_BGL_FRAME2_S)	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ(æœªä½¿ç”¨)
+#define FRAME_S_BG				(GF_BGL_FRAME3_S)	//èƒŒæ™¯
 
-///BGƒtƒŒ[ƒ€Ý’è(ƒtƒBƒi[ƒŒˆÈ~)
-#define FRAME_FIN_M_BG			(GF_BGL_FRAME1_M)	//”wŒi
-#define FRAME_FIN_M_CAP_A		(GF_BGL_FRAME2_M)	//ƒLƒƒƒvƒ`ƒƒA
-#define FRAME_FIN_M_CAP_B		(GF_BGL_FRAME3_M)	//ƒLƒƒƒvƒ`ƒƒB
-#define FRAME_FIN_S_BG			(GF_BGL_FRAME3_S)	//”wŒi
+///BGãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š(ãƒ•ã‚£ãƒŠãƒ¼ãƒ¬ä»¥é™)
+#define FRAME_FIN_M_BG			(GF_BGL_FRAME1_M)	//èƒŒæ™¯
+#define FRAME_FIN_M_CAP_A		(GF_BGL_FRAME2_M)	//ã‚­ãƒ£ãƒ—ãƒãƒ£A
+#define FRAME_FIN_M_CAP_B		(GF_BGL_FRAME3_M)	//ã‚­ãƒ£ãƒ—ãƒãƒ£B
+#define FRAME_FIN_S_BG			(GF_BGL_FRAME3_S)	//èƒŒæ™¯
 
-///BGƒvƒ‰ƒCƒIƒŠƒeƒB
+///BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 enum{
 	FRAME_BGPRI_3D = 1,
 	
@@ -65,7 +65,7 @@ enum{
 	FRAME_BGPRI_FIN_M_CAPTURE_BOTTOM = 3,
 };
 
-///ƒGƒ“ƒfƒBƒ“ƒO‚ÌƒV[ƒ“”
+///ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã®ã‚·ãƒ¼ãƒ³æ•°
 enum{
 	ENDING_SCENE_MAP1,
 	ENDING_SCENE_CAPTURE1,
@@ -78,7 +78,7 @@ enum{
 	ENDING_SCENE_MAX,
 };
 
-///ƒGƒ“ƒfƒBƒ“ƒO‰æ–Ê‘JˆÚƒtƒŒ[ƒ€’l	¦ƒGƒ“ƒfƒBƒ“ƒO‹È 4•ª37•b(8310ƒtƒŒ[ƒ€)
+///ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ç”»é¢é·ç§»ãƒ•ãƒ¬ãƒ¼ãƒ å€¤	â€»ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°æ›² 4åˆ†37ç§’(8310ãƒ•ãƒ¬ãƒ¼ãƒ )
 enum{
 	ENDING_COUNTER_SCENE1_FUWANTE_0 = 30 * 30,
 	ENDING_COUNTER_SCENE1_FUWANTE_1 = 45 * 30,
@@ -87,13 +87,13 @@ enum{
 	
 	ENDING_COUNTER_CAP_SCENE1_END = 160 * 30 + 15,
 	
-	//-- ƒtƒB[ƒ‹ƒhFƒV[ƒ“‚Q --//
+	//-- ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼šã‚·ãƒ¼ãƒ³ï¼’ --//
 	ENDING_COUNTER_SCENE2_KYAMOME_ESCAPE = 199 * 30,
 	ENDING_COUNTER_SCENE2_END = 200 * 30,
 	
 	ENDING_COUNTER_CAP_SCENE2_END = 232 * 30,
 	
-	//-- ƒtƒB[ƒ‹ƒhFƒV[ƒ“‚R --//
+	//-- ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼šã‚·ãƒ¼ãƒ³ï¼“ --//
 	ENDING_COUNTER_SCENE3_STAR_0 = 240 * 30,
 	ENDING_COUNTER_SCENE3_STAR_1 = 246 * 30,
 	ENDING_COUNTER_SCENE3_STAR_2 = 248 * 30,
@@ -105,106 +105,106 @@ enum{
 	ENDING_COUNTER_COPYRIGHT_END = ENDING_COUNTER_FIELD_END + 60*30,
 };
 
-///ƒ}ƒbƒvƒV[ƒ“‚Q‚ÅŽg—p‚·‚éƒpƒŒƒbƒgƒAƒjƒ‚Ì–{”
+///ãƒžãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼’ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã®æœ¬æ•°
 #define ENDING_SCENE2_PALANM_NUM		(4)
 
-///ƒ}ƒbƒvƒV[ƒ“‚R‚ÅŽg—p‚·‚éƒpƒŒƒbƒgƒAƒjƒ‚Ì–{”
+///ãƒžãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼“ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã®æœ¬æ•°
 #define ENDING_SCENE3_PALANM_NUM		(8)
-///ƒ}ƒbƒvƒV[ƒ“‚R‚ÌƒpƒŒƒbƒgƒAƒjƒ“WŠJˆÊ’u
+///ãƒžãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼“ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡å±•é–‹ä½ç½®
 #define ENDING_SCENE3_PALANM_PAL_POS	(1)
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[
+//	ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------
-///ƒTƒuƒT[ƒtƒF[ƒXY(fx32)
+///ã‚µãƒ–ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹Y(fx32)
 #define ENDING_SUB_ACTOR_DISTANCE		((192 + 80) << FX32_SHIFT)
-///ƒTƒuƒT[ƒtƒF[ƒXY(int)
+///ã‚µãƒ–ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹Y(int)
 #define ENDING_SUB_ACTOR_DISTANCE_INTEGER		(ENDING_SUB_ACTOR_DISTANCE >> FX32_SHIFT)
 
-///ƒAƒNƒ^[ƒCƒ“ƒfƒbƒNƒX
+///ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum{
-	//ƒV[ƒ“ƒ}ƒbƒv‚P
+	//ã‚·ãƒ¼ãƒ³ãƒžãƒƒãƒ—ï¼‘
 	ACT_INDEX_SCENE1_HERO = 0,
 	ACT_INDEX_SCENE1_HERO_SCARF,
 	ACT_INDEX_SCENE1_FUWANTE_0,
 	ACT_INDEX_SCENE1_FUWANTE_1,
 	ACT_INDEX_SCENE1_FUWANTE_2,
 	
-	//ƒV[ƒ“ƒ}ƒbƒv‚Q
+	//ã‚·ãƒ¼ãƒ³ãƒžãƒƒãƒ—ï¼’
 	ACT_INDEX_SCENE2_HERO = 0,
 	ACT_INDEX_SCENE2_HERO_SCARF,
 	ACT_INDEX_SCENE2_KYAMOME_0,
 	ACT_INDEX_SCENE2_KYAMOME_1,
 
-	//ƒV[ƒ“ƒ}ƒbƒv‚R
+	//ã‚·ãƒ¼ãƒ³ãƒžãƒƒãƒ—ï¼“
 	ACT_INDEX_SCENE3_HERO = 0,
 	ACT_INDEX_SCENE3_HERO_SCARF,
 	ACT_INDEX_SCENE3_JIBA_0,
 	ACT_INDEX_SCENE3_STAR_MAIN,
 	ACT_INDEX_SCENE3_STAR_SUB,
 	
-	ACT_INDEX_MAX = ACT_INDEX_SCENE1_FUWANTE_2 + 1,		//ŠeƒV[ƒ“‚Ì’†‚Åˆê”Ô‘å‚«‚¢‚à‚Ì‚ðŽw’è
+	ACT_INDEX_MAX = ACT_INDEX_SCENE1_FUWANTE_2 + 1,		//å„ã‚·ãƒ¼ãƒ³ã®ä¸­ã§ä¸€ç•ªå¤§ãã„ã‚‚ã®ã‚’æŒ‡å®š
 };
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[BGƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ã‚¢ã‚¯ã‚¿ãƒ¼BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum{
-	ACTBGPRI_HERO = 1,			///<ŽålŒö
-	ACTBGPRI_STAR = 3,			///<—¬‚ê¯
+	ACTBGPRI_HERO = 1,			///<ä¸»äººå…¬
+	ACTBGPRI_STAR = 3,			///<æµã‚Œæ˜Ÿ
 	
-	//-- ƒTƒu‰æ–Ê --//
-	ACTBGPRI_SUB_FUWANTE = 2,		///<ƒtƒƒ“ƒe
-	ACTBGPRI_SUB_KYAMOME = 2,		///<ƒLƒƒƒ‚ƒ
-	ACTBGPRI_SUB_JIBA = 2,			///<ƒWƒoƒRƒCƒ‹
-	ACTBGPRI_SUB_STAR = 3,			///<—¬‚ê¯
+	//-- ã‚µãƒ–ç”»é¢ --//
+	ACTBGPRI_SUB_FUWANTE = 2,		///<ãƒ•ãƒ¯ãƒ³ãƒ†
+	ACTBGPRI_SUB_KYAMOME = 2,		///<ã‚­ãƒ£ãƒ¢ãƒ¡
+	ACTBGPRI_SUB_JIBA = 2,			///<ã‚¸ãƒã‚³ã‚¤ãƒ«
+	ACTBGPRI_SUB_STAR = 3,			///<æµã‚Œæ˜Ÿ
 };
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum{
-	SOFTPRI_HERO = 51,			///<ŽålŒö
-	SOFTPRI_HERO_SCARF = 60,	///<ŽålŒö‚ÌƒXƒJ[ƒt
+	SOFTPRI_HERO = 51,			///<ä¸»äººå…¬
+	SOFTPRI_HERO_SCARF = 60,	///<ä¸»äººå…¬ã®ã‚¹ã‚«ãƒ¼ãƒ•
 	
-	SOFTPRI_STAR = 200,			///<—¬‚ê¯
+	SOFTPRI_STAR = 200,			///<æµã‚Œæ˜Ÿ
 	
-	//-- ƒTƒu‰æ–Ê --//
-	SOFTPRI_SUB_FUWANTE = 150,		///<ƒtƒƒ“ƒe
-	SOFTPRI_SUB_KYAMOME = 150,		///<ƒLƒƒƒ‚ƒ
-	SOFTPRI_SUB_JIBA = 150,			///<ƒWƒoƒRƒCƒ‹
-	SOFTPRI_SUB_STAR = 200,			///<—¬‚ê¯
+	//-- ã‚µãƒ–ç”»é¢ --//
+	SOFTPRI_SUB_FUWANTE = 150,		///<ãƒ•ãƒ¯ãƒ³ãƒ†
+	SOFTPRI_SUB_KYAMOME = 150,		///<ã‚­ãƒ£ãƒ¢ãƒ¡
+	SOFTPRI_SUB_JIBA = 150,			///<ã‚¸ãƒã‚³ã‚¤ãƒ«
+	SOFTPRI_SUB_STAR = 200,			///<æµã‚Œæ˜Ÿ
 };
 
 //--------------------------------------------------------------
-//	3Dƒ‚ƒfƒ‹
+//	3Dãƒ¢ãƒ‡ãƒ«
 //--------------------------------------------------------------
-///ƒ‚ƒfƒ‹Å‘åŽg—p”
+///ãƒ¢ãƒ‡ãƒ«æœ€å¤§ä½¿ç”¨æ•°
 #define ENDING_MODEL_MAX		(10)
 
-///ƒ‚ƒfƒ‹ƒf[ƒ^Index
+///ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿Index
 enum{
-	//ƒV[ƒ“‚P
+	//ã‚·ãƒ¼ãƒ³ï¼‘
 	ENDING_SCENE1_MDL_TREE_A = 0,
 	ENDING_SCENE1_MDL_TREE_B,
 	
-	//ƒV[ƒ“‚Q
+	//ã‚·ãƒ¼ãƒ³ï¼’
 	ENDING_SCENE2_MDL_LIGHT = 0,
 	
-	//ƒV[ƒ“‚R
+	//ã‚·ãƒ¼ãƒ³ï¼“
 	ENDING_SCENE3_MDL_TREE_A = 0,
 	ENDING_SCENE3_MDL_TREE_A2,
 	ENDING_SCENE3_MDL_TREE_B,
 	ENDING_SCENE3_MDL_LIGHT,
 	
 	
-	ENDING_SCENE_MDL_MAX = ENDING_SCENE3_MDL_LIGHT + 1,	//ŠeƒV[ƒ“‚Ì’†‚Åˆê”Ô‘å‚«‚¢‚Ì‚ðŽw’è
+	ENDING_SCENE_MDL_MAX = ENDING_SCENE3_MDL_LIGHT + 1,	//å„ã‚·ãƒ¼ãƒ³ã®ä¸­ã§ä¸€ç•ªå¤§ãã„ã®ã‚’æŒ‡å®š
 };
 
-///ŠeƒV[ƒ“‚ÅŽg—p‚·‚é3DOBJ‚ÌÅ‘å”(ƒ‰ƒCƒ“’PˆÊ)
+///å„ã‚·ãƒ¼ãƒ³ã§ä½¿ç”¨ã™ã‚‹3DOBJã®æœ€å¤§æ•°(ãƒ©ã‚¤ãƒ³å˜ä½)
 #define ENDING_SCENE_LINE_3DOBJ_MAX		(16)
 
-///ƒ‰ƒCƒ“”
+///ãƒ©ã‚¤ãƒ³æ•°
 enum{
 	MODEL_LINE_0,
 	MODEL_LINE_1,
@@ -212,15 +212,15 @@ enum{
 };
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒXƒ^ƒbƒtƒ[ƒ‹§Œä\‘¢‘Ì‚Ö‚Ì•s’èŒ`ƒ|ƒCƒ“ƒ^
+///ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ä¸å®šå½¢ãƒã‚¤ãƒ³ã‚¿
 typedef struct _PL_ENDING_LIST_WORK	PL_ENDING_LIST_WORK;
 
-///”z’u•¨‚Ìƒ‰ƒCƒ“”z’uƒf[ƒ^
+///é…ç½®ç‰©ã®ãƒ©ã‚¤ãƒ³é…ç½®ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	s16 mdl_num;		///<START‚ÆEND‚ÌŠÔ‚É‚¢‚­‚Âƒ‚ƒfƒ‹‚ð’u‚­‚©
-	s16 move_frame;		///<‰½ƒtƒŒ[ƒ€‚ÅSTART‚©‚çEND‚Ü‚ÅˆÚ“®‚³‚¹‚é‚©
+	s16 mdl_num;		///<STARTã¨ENDã®é–“ã«ã„ãã¤ãƒ¢ãƒ‡ãƒ«ã‚’ç½®ãã‹
+	s16 move_frame;		///<ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ã§STARTã‹ã‚‰ENDã¾ã§ç§»å‹•ã•ã›ã‚‹ã‹
 #if 0
 	fx32 start_x;
 	fx32 end_x;
@@ -238,12 +238,12 @@ typedef struct{
 #endif
 }MDL_LINE_ARRANGE_DATA;
 
-///”z’u•¨‚Ì”z’uƒf[ƒ^
+///é…ç½®ç‰©ã®é…ç½®ãƒ‡ãƒ¼ã‚¿
 typedef struct{
 	MDL_LINE_ARRANGE_DATA arrange[MODEL_LINE_MAX];
 }MDL_ARRANGE_DATA;
 
-///ƒtƒƒ“ƒe“®ìƒ[ƒN
+///ãƒ•ãƒ¯ãƒ³ãƒ†å‹•ä½œãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	fx32 x;
 	fx32 y;
@@ -253,7 +253,7 @@ typedef struct{
 	s8 scale_dir;
 }FUWANTE_WORK;
 
-///ƒLƒƒƒ‚ƒ“®ìƒ[ƒN
+///ã‚­ãƒ£ãƒ¢ãƒ¡å‹•ä½œãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	fx32 x;
 	fx32 y;
@@ -274,7 +274,7 @@ typedef struct{
 	u8 seq;
 }KYAMOME_WORK;
 
-///ƒWƒoƒRƒCƒ‹“®ìƒ[ƒN
+///ã‚¸ãƒã‚³ã‚¤ãƒ«å‹•ä½œãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	fx32 x;
 	fx32 y;
@@ -283,65 +283,65 @@ typedef struct{
 	s8 rotate_dir;
 }JIBA_WORK;
 
-///ƒV[ƒ“Fƒ}ƒbƒv1‚Ìƒ[ƒN
+///ã‚·ãƒ¼ãƒ³ï¼šãƒžãƒƒãƒ—1ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	fx32 bg_scr_x;
 	fx32 bg_scr_y;
 	FUWANTE_WORK fuwante_work[ACT_INDEX_SCENE1_FUWANTE_2 - ACT_INDEX_SCENE1_FUWANTE_0 + 1];
 }SCENE_WORK_MAP1;
 
-///ƒV[ƒ“Fƒ}ƒbƒv2‚Ìƒ[ƒN
+///ã‚·ãƒ¼ãƒ³ï¼šãƒžãƒƒãƒ—2ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	fx32 bg_scr_x;
 	fx32 bg_scr_y;
 	u16 palanm_buf[ENDING_SCENE2_PALANM_NUM][16];
 	int anm_pos;
-	int evy;							///<EVY’l(‰ºˆÊ8ƒrƒbƒg¬”)
-	int evy_dir;						///<EVY‚Ì‰ÁŒ¸ŽZ‚Ì•ûŒü
+	int evy;							///<EVYå€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	int evy_dir;						///<EVYã®åŠ æ¸›ç®—ã®æ–¹å‘
 	KYAMOME_WORK kyamome_work[ACT_INDEX_SCENE2_KYAMOME_1 - ACT_INDEX_SCENE2_KYAMOME_0 + 1];
 }SCENE_WORK_MAP2;
 
-///ƒV[ƒ“Fƒ}ƒbƒv3‚Ìƒ[ƒN
+///ã‚·ãƒ¼ãƒ³ï¼šãƒžãƒƒãƒ—3ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	fx32 bg_scr_x;
 	fx32 bg_scr_y;
 	u16 palanm_buf[ENDING_SCENE3_PALANM_NUM][16];
 	int anm_pos;
-	int evy;							///<EVY’l(‰ºˆÊ8ƒrƒbƒg¬”)
-	int evy_dir;						///<EVY‚Ì‰ÁŒ¸ŽZ‚Ì•ûŒü
+	int evy;							///<EVYå€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	int evy_dir;						///<EVYã®åŠ æ¸›ç®—ã®æ–¹å‘
 	int anm_seq;
 	u32 anm_frame;
 
-	u8 star_move;			///<TRUE:ƒXƒ^[“®ì’†
-	u8 star_ud;				///<0:ã‰æ–Ê‚ÌƒXƒ^[“®ìA@1:‰º‰æ–Ê‚ÌƒXƒ^[“®ì
-	s8 ev1;					///<”¼“§–¾ŒW”
-	s8 ev2;					///<”¼“§–¾ŒW”
+	u8 star_move;			///<TRUE:ã‚¹ã‚¿ãƒ¼å‹•ä½œä¸­
+	u8 star_ud;				///<0:ä¸Šç”»é¢ã®ã‚¹ã‚¿ãƒ¼å‹•ä½œã€ã€€1:ä¸‹ç”»é¢ã®ã‚¹ã‚¿ãƒ¼å‹•ä½œ
+	s8 ev1;					///<åŠé€æ˜Žä¿‚æ•°
+	s8 ev2;					///<åŠé€æ˜Žä¿‚æ•°
 	
-	s32 mdl_sort_tblno;		///<•\Ž¦ƒ‚ƒfƒ‹ŽQÆæ
+	s32 mdl_sort_tblno;		///<è¡¨ç¤ºãƒ¢ãƒ‡ãƒ«å‚ç…§å…ˆ
 	
 	JIBA_WORK jiba_work[ACT_INDEX_SCENE3_JIBA_0 - ACT_INDEX_SCENE3_JIBA_0 + 1];
 }SCENE_WORK_MAP3;
 
-///ƒV[ƒ“FƒLƒƒƒvƒ`ƒƒ1‚Ìƒ[ƒN
+///ã‚·ãƒ¼ãƒ³ï¼šã‚­ãƒ£ãƒ—ãƒãƒ£1ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	u32 change_frame;			///<ƒLƒƒƒvƒ`ƒƒ‰æ‘œ‚ðØ‚è‘Ö‚¦‚éƒ^ƒCƒ~ƒ“ƒO‚ðƒJƒEƒ“ƒg
+	u32 change_frame;			///<ã‚­ãƒ£ãƒ—ãƒãƒ£ç”»åƒã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 }SCENE_WORK_CAP1;
 
-///ƒV[ƒ“FƒtƒB[ƒ‹ƒh1‚Ìƒ[ƒN
+///ã‚·ãƒ¼ãƒ³ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰1ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	u32 change_frame;			///<ƒLƒƒƒvƒ`ƒƒ‰æ‘œ‚ðØ‚è‘Ö‚¦‚éƒ^ƒCƒ~ƒ“ƒO‚ðƒJƒEƒ“ƒg
-	u8 change_num;				///<ƒLƒƒƒvƒ`ƒƒ‰æ‘œ‚ðØ‚è‘Ö‚¦‚½‰ñ”‚ðƒJƒEƒ“ƒg
+	u32 change_frame;			///<ã‚­ãƒ£ãƒ—ãƒãƒ£ç”»åƒã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
+	u8 change_num;				///<ã‚­ãƒ£ãƒ—ãƒãƒ£ç”»åƒã‚’åˆ‡ã‚Šæ›¿ãˆãŸå›žæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 	s8 ev1;
 	s8 ev2;
 	u32 plane1;
 }SCENE_WORK_FIELD1;
 
-///ƒV[ƒ“FƒRƒs[ƒ‰ƒCƒg‚Ìƒ[ƒN
+///ã‚·ãƒ¼ãƒ³ï¼šã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	u32 work;
 }SCENE_WORK_COPYRIGHT;
 
-///ŠeƒV[ƒ“‚ÌƒƒCƒ“‚ÅŽ©—R‚ÉŽg‚¦‚éƒ[ƒN
+///å„ã‚·ãƒ¼ãƒ³ã®ãƒ¡ã‚¤ãƒ³ã§è‡ªç”±ã«ä½¿ãˆã‚‹ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	int seq;
 	s16 wait;
@@ -356,62 +356,62 @@ typedef struct{
 	};
 }ENDING_SCENE_WORK;
 
-///ŽålŒöƒAƒjƒ—pƒ[ƒN
+///ä¸»äººå…¬ã‚¢ãƒ‹ãƒ¡ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	s16 mabataki_frame;
 	s16 mabataki_anmno;
-	s16 run_anm_count;		///<‘–‚èƒAƒjƒ‚ð‚µ‚Ä‚¢‚é‰ñ”
+	s16 run_anm_count;		///<èµ°ã‚Šã‚¢ãƒ‹ãƒ¡ã‚’ã—ã¦ã„ã‚‹å›žæ•°
 	s16 mabataki_count;
 }ENDING_HERO_ANM_WORK;
 
 
 //--------------------------------------------------------------
 /**
- *	ƒGƒ“ƒfƒBƒ“ƒO§Œä\‘¢‘Ì
+ *	ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°åˆ¶å¾¡æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 typedef struct{
 	ENDING_PARENT_PARAM *parent_work;
-	BOOL skipFlag;			///<TRUEFƒXƒLƒbƒvŽÀs’†
+	BOOL skipFlag;			///<TRUEï¼šã‚¹ã‚­ãƒƒãƒ—å®Ÿè¡Œä¸­
 
-	GF_BGL_INI		*bgl;				///<BGƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	PALETTE_FADE_PTR pfd;				///<ƒpƒŒƒbƒgƒVƒXƒeƒ€
+	GF_BGL_INI		*bgl;				///<BGã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	PALETTE_FADE_PTR pfd;				///<ãƒ‘ãƒ¬ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ 
 	GF_G3DMAN *g3Dman;
-	TCB_PTR update_tcb;					///<Update—pTCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	TCB_PTR update_tcb;					///<Updateç”¨TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	CATS_SYS_PTR		csp;
 	CATS_RES_PTR		crp;
 	
-	// •`‰æ‚Ü‚í‚è‚Ìƒ[ƒNiŽå‚ÉBMP—p‚Ì•¶Žš—ñŽü‚èj
-	MSGDATA_MANAGER *msgman;						// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
+	// æç”»ã¾ã‚ã‚Šã®ãƒ¯ãƒ¼ã‚¯ï¼ˆä¸»ã«BMPç”¨ã®æ–‡å­—åˆ—å‘¨ã‚Šï¼‰
+	MSGDATA_MANAGER *msgman;						// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 
-	// BMPWIN•`‰æŽü‚è
-	GF_BGL_BMPWIN		*win_fin;		///u‚¨‚í‚èv‚ÌBMPWIN
+	// BMPWINæç”»å‘¨ã‚Š
+	GF_BGL_BMPWIN		*win_fin;		///ã€ŒãŠã‚ã‚Šã€ã®BMPWIN
 
-	GF_CAMERA_PTR camera;				///<ƒJƒƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	GF_CAMERA_PTR camera;				///<ã‚«ãƒ¡ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	//3Dƒ‚ƒfƒ‹
-	D3DOBJ_MDL mdl[ENDING_SCENE_MDL_MAX];		///<ŠeƒV[ƒ“‚ÅŽg—p‚·‚éƒ‚ƒfƒ‹‚ÌÅ‘å”
-	D3DOBJ     obj[MODEL_LINE_MAX][ENDING_SCENE_LINE_3DOBJ_MAX];///<ŠeƒV[ƒ“‚ÅŽg—p‚·‚é3DOBJÅ‘å”
-	MDL_ARRANGE_DATA mdl_arrange;				///<”z’uƒf[ƒ^
+	//3Dãƒ¢ãƒ‡ãƒ«
+	D3DOBJ_MDL mdl[ENDING_SCENE_MDL_MAX];		///<å„ã‚·ãƒ¼ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ¢ãƒ‡ãƒ«ã®æœ€å¤§æ•°
+	D3DOBJ     obj[MODEL_LINE_MAX][ENDING_SCENE_LINE_3DOBJ_MAX];///<å„ã‚·ãƒ¼ãƒ³ã§ä½¿ç”¨ã™ã‚‹3DOBJæœ€å¤§æ•°
+	MDL_ARRANGE_DATA mdl_arrange;				///<é…ç½®ãƒ‡ãƒ¼ã‚¿
 	
-	ENDING_SCENE_WORK scene_work;		///<ƒV[ƒ“ƒ[ƒN
-	CATS_ACT_PTR cap[ACT_INDEX_MAX];	///<ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	u8 *hero_eye_charbuf;				///<ŽålŒö‚Ì–ÚƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@
+	ENDING_SCENE_WORK scene_work;		///<ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯
+	CATS_ACT_PTR cap[ACT_INDEX_MAX];	///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	u8 *hero_eye_charbuf;				///<ä¸»äººå…¬ã®ç›®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡
 	
-	ARCHANDLE *ending_hdl;				///<ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚Ö‚Ìƒnƒ“ƒhƒ‹
-	u32 main_counter;					///<ƒGƒ“ƒfƒBƒ“ƒOŠJŽn‚µ‚Ä‚©‚ç‚ÌƒtƒŒ[ƒ€”‚ðƒJƒEƒ“ƒg
-	u8 skip_seq;						///<ƒXƒLƒbƒv“®ìŽž‚ÌƒV[ƒPƒ“ƒX
-	u8 scene_no;						///<Œ»Ý‚ÌƒV[ƒ“”Ô†
-	u8 scene_init_ok;					///<TRUE:ƒV[ƒ“‚Ì‰Šú‰»ˆ—‚ð’Ê‚Á‚Ä‚¢‚é
-	u8 draw_3d;							///<TRUE:3D•`‰æOK
-	u8 mdl_line_num;					///<3Dƒ‚ƒfƒ‹‚ÌŽg—pƒ‰ƒCƒ“”
-	u8 cap_no;							///<ƒLƒƒƒvƒ`ƒƒ‰æ‘œ‚ð‰½”Ô–Ú‚Ü‚Å•\Ž¦‚µ‚½‚©
+	ARCHANDLE *ending_hdl;				///<ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+	u32 main_counter;					///<ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°é–‹å§‹ã—ã¦ã‹ã‚‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
+	u8 skip_seq;						///<ã‚¹ã‚­ãƒƒãƒ—å‹•ä½œæ™‚ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8 scene_no;						///<ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³ç•ªå·
+	u8 scene_init_ok;					///<TRUE:ã‚·ãƒ¼ãƒ³ã®åˆæœŸåŒ–å‡¦ç†ã‚’é€šã£ã¦ã„ã‚‹
+	u8 draw_3d;							///<TRUE:3Dæç”»OK
+	u8 mdl_line_num;					///<3Dãƒ¢ãƒ‡ãƒ«ã®ä½¿ç”¨ãƒ©ã‚¤ãƒ³æ•°
+	u8 cap_no;							///<ã‚­ãƒ£ãƒ—ãƒãƒ£ç”»åƒã‚’ä½•ç•ªç›®ã¾ã§è¡¨ç¤ºã—ãŸã‹
 	
-	PL_ENDING_LIST_WORK *list_work;		///<ƒXƒ^ƒbƒtƒ[ƒ‹§Œä
-	PL_ENDING_LIST_WORK *list_work_sub;	///<ƒTƒu‰æ–Ê—pƒXƒ^ƒbƒtƒ[ƒ‹§Œä
-	BOOL list_end_flag;					///<ƒXƒ^ƒbƒtƒ[ƒ‹I—¹ƒtƒ‰ƒO
+	PL_ENDING_LIST_WORK *list_work;		///<ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«åˆ¶å¾¡
+	PL_ENDING_LIST_WORK *list_work_sub;	///<ã‚µãƒ–ç”»é¢ç”¨ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«åˆ¶å¾¡
+	BOOL list_end_flag;					///<ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«çµ‚äº†ãƒ•ãƒ©ã‚°
 
-	ENDING_HERO_ANM_WORK hero_anm_work;	///<ŽålŒöƒAƒjƒ—pƒ[ƒN
+	ENDING_HERO_ANM_WORK hero_anm_work;	///<ä¸»äººå…¬ã‚¢ãƒ‹ãƒ¡ç”¨ãƒ¯ãƒ¼ã‚¯
 	
 #ifdef PM_DEBUG
 	int debug_mode;

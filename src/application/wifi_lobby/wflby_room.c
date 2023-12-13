@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_room.c
- *	@brief		WiFiƒƒr[	•”‰®ƒVƒXƒeƒ€
+ *	@brief		WiFiãƒ­ãƒ“ãƒ¼	éƒ¨å±‹ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.11.01
  *
@@ -57,29 +57,29 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 #ifdef PM_DEBUG
-//#define	WFLBY_DEBUG_ROOM_CAMERA		// ƒJƒƒ‰‚ð•Ï‚¦‚é
-#define	WFLBY_DEBUG_ROOM_DPRINT		// ƒfƒoƒbƒN•\Ž¦
-#define WFLBY_DEBUG_ROOM_ITEMCHG	// ƒKƒWƒFƒbƒg•ÏX
-//#define	WFLBY_DEBUG_ROOM_LIGHT	// ƒ‰ƒCƒg‚ð•\Ž¦
-//#define WFLBY_DEBUG_ROOM_TRTYPE_CHG	//  ƒgƒŒ[ƒiƒ^ƒCƒv•ÏX
-//#define WFLBY_DEBUG_ROOM_PRINT_TIME	// ˆ—‘¬“x‚ð•\Ž¦
+//#define	WFLBY_DEBUG_ROOM_CAMERA		// ã‚«ãƒ¡ãƒ©ã‚’å¤‰ãˆã‚‹
+#define	WFLBY_DEBUG_ROOM_DPRINT		// ãƒ‡ãƒãƒƒã‚¯è¡¨ç¤º
+#define WFLBY_DEBUG_ROOM_ITEMCHG	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆå¤‰æ›´
+//#define	WFLBY_DEBUG_ROOM_LIGHT	// ãƒ©ã‚¤ãƒˆã‚’è¡¨ç¤º
+//#define WFLBY_DEBUG_ROOM_TRTYPE_CHG	//  ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—å¤‰æ›´
+//#define WFLBY_DEBUG_ROOM_PRINT_TIME	// å‡¦ç†é€Ÿåº¦ã‚’è¡¨ç¤º
 
 #endif
 
@@ -116,13 +116,13 @@ static OSTick	WFLBY_DEBUG_ROOM_PRINT_TIME_Tick;
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-///	ƒƒCƒ“ƒV[ƒPƒ“ƒX
+///	ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	WFLBY_ROOM_MAINSEQ_FADEIN,
@@ -137,62 +137,62 @@ enum{
 };
 
 //-------------------------------------
-///	3DOBJCONTŠÖ˜A
+///	3DOBJCONTé–¢é€£
 //=====================================
 #define WFLBY_ROOM_3DOBJCONT_WKNUM		( 24 )
 
 //-------------------------------------
-///	•\Ž¦ƒVƒXƒeƒ€ŠÖ˜A
+///	è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ é–¢é€£
 //=====================================
-#define WFLBY_ROOM_VTRTSK_NUM			( 32 )	// VRAM“]‘—ƒ^ƒXƒN”
+#define WFLBY_ROOM_VTRTSK_NUM			( 32 )	// VRAMè»¢é€ã‚¿ã‚¹ã‚¯æ•°
 
 //-------------------------------------
 // BG
 //=====================================
 enum{
-	// ƒƒCƒ“‰æ–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢
 	WFLBY_ROOM_BGCNT_MAIN_MSGWIN,
 	
-	// ƒTƒu‰æ–Ê
+	// ã‚µãƒ–ç”»é¢
 	WFLBY_ROOM_BGCNT_SUB_BACK,
 	WFLBY_ROOM_BGCNT_SUB_BTTN_TR,
 	WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG,
 
-	WFLBY_ROOM_BGCNT_NUM,	// ‚a‚fƒRƒ“ƒgƒ[ƒ‹ƒe[ƒuƒ‹”
+	WFLBY_ROOM_BGCNT_NUM,	// ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 };
-enum {	// ƒƒCƒ“–ÊƒpƒŒƒbƒg
-	WFLBY_ROOM_BGPL_DMY,				//@ƒ_ƒ~[
-	WFLBY_ROOM_BGPL_TALKWIN,			// ‰ï˜bƒEƒBƒ“ƒhƒE
-	WFLBY_ROOM_BGPL_BOARDWIN,			// ŠÅ”ÂƒEƒBƒ“ƒhƒE
-	WFLBY_ROOM_BGPL_SYSWIN,				// ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE
-	WFLBY_ROOM_BGPL_TALKFONT_CL,		// ‰ï˜bƒtƒHƒ“ƒg
-	WFLBY_ROOM_BGPL_SYSFONT_CL,			// ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
+enum {	// ãƒ¡ã‚¤ãƒ³é¢ãƒ‘ãƒ¬ãƒƒãƒˆ
+	WFLBY_ROOM_BGPL_DMY,				//ã€€ãƒ€ãƒŸãƒ¼
+	WFLBY_ROOM_BGPL_TALKWIN,			// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_ROOM_BGPL_BOARDWIN,			// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_ROOM_BGPL_SYSWIN,				// ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_ROOM_BGPL_TALKFONT_CL,		// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆ
+	WFLBY_ROOM_BGPL_SYSFONT_CL,			// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
 
-	WFLBY_ROOM_BGPL_NUM,		// •”‰®‚ªŽg—p‚·‚éƒpƒŒƒbƒg
+	WFLBY_ROOM_BGPL_NUM,		// éƒ¨å±‹ãŒä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆ
 };
-enum {	// ƒTƒu–ÊƒpƒŒƒbƒg
-	WFLBY_ROOM_BGSPL_BACK00,			// ”wŒi‚â‚ç‚È‚ñ‚â‚ç
-	WFLBY_ROOM_BGSPL_BACK01,			// ”wŒi‚â‚ç‚È‚ñ‚â‚ç
-	WFLBY_ROOM_BGSPL_BACK02,			// ”wŒi‚â‚ç‚È‚ñ‚â‚ç
-	WFLBY_ROOM_BGSPL_BACK03,			// ”wŒi‚â‚ç‚È‚ñ‚â‚ç
-	WFLBY_ROOM_BGSPL_BACK04,			// ”wŒi‚â‚ç‚È‚ñ‚â‚ç
-	WFLBY_ROOM_BGSPL_FONTCL,			// ƒtƒHƒ“ƒgƒJƒ‰[
+enum {	// ã‚µãƒ–é¢ãƒ‘ãƒ¬ãƒƒãƒˆ
+	WFLBY_ROOM_BGSPL_BACK00,			// èƒŒæ™¯ã‚„ã‚‰ãªã‚“ã‚„ã‚‰
+	WFLBY_ROOM_BGSPL_BACK01,			// èƒŒæ™¯ã‚„ã‚‰ãªã‚“ã‚„ã‚‰
+	WFLBY_ROOM_BGSPL_BACK02,			// èƒŒæ™¯ã‚„ã‚‰ãªã‚“ã‚„ã‚‰
+	WFLBY_ROOM_BGSPL_BACK03,			// èƒŒæ™¯ã‚„ã‚‰ãªã‚“ã‚„ã‚‰
+	WFLBY_ROOM_BGSPL_BACK04,			// èƒŒæ™¯ã‚„ã‚‰ãªã‚“ã‚„ã‚‰
+	WFLBY_ROOM_BGSPL_FONTCL,			// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
 	WFLBY_ROOM_BGSPL_NONE01,			// 
 	WFLBY_ROOM_BGSPL_NONE02,			// 
 	WFLBY_ROOM_BGSPL_NONE03,			// 
 	WFLBY_ROOM_BGSPL_NONE04,			// 
-	WFLBY_ROOM_BGSPL_BACK05,			// ”wŒi‚â‚ç‚È‚ñ‚â‚ç
-	WFLBY_ROOM_BGSPL_WAZATYPE0,			// ‹Zƒ^ƒCƒv0
-	WFLBY_ROOM_BGSPL_WAZATYPE1,			// ‹Zƒ^ƒCƒv1
-	WFLBY_ROOM_BGSPL_WAZATYPE2,			// ‹Zƒ^ƒCƒv2 
+	WFLBY_ROOM_BGSPL_BACK05,			// èƒŒæ™¯ã‚„ã‚‰ãªã‚“ã‚„ã‚‰
+	WFLBY_ROOM_BGSPL_WAZATYPE0,			// æŠ€ã‚¿ã‚¤ãƒ—0
+	WFLBY_ROOM_BGSPL_WAZATYPE1,			// æŠ€ã‚¿ã‚¤ãƒ—1
+	WFLBY_ROOM_BGSPL_WAZATYPE2,			// æŠ€ã‚¿ã‚¤ãƒ—2 
 	WFLBY_ROOM_BGSPL_NONE08,			// 
-	WFLBY_ROOM_BGSPL_BACK06,			// ”wŒi‚â‚ç‚È‚ñ‚â‚ç
+	WFLBY_ROOM_BGSPL_BACK06,			// èƒŒæ™¯ã‚„ã‚‰ãªã‚“ã‚„ã‚‰
 
-	WFLBY_ROOM_BGSPL_NUM,		// •”‰®‚ªŽg—p‚·‚éƒpƒŒƒbƒg
+	WFLBY_ROOM_BGSPL_NUM,		// éƒ¨å±‹ãŒä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆ
 };
 
 //-------------------------------------
-// ƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //=====================================
 #define WFLBY_TALKWINGRA_CGX		( 1 )
 #define WFLBY_BOARDWINGRA_CGX		( WFLBY_TALKWINGRA_CGX+TALK_WIN_CGX_SIZ )
@@ -204,27 +204,27 @@ enum {	// ƒTƒu–ÊƒpƒŒƒbƒg
 //-------------------------------------
 // OAM
 //=====================================
-#define WFLBY_ROOM_OAM_CONTNUM			( 24 )	// OAMŠÇ—”
-#define WFLBY_ROOM_OAM_RESNUM			( 4 )	// ƒŠƒ\[ƒXŠÇ—Ží—Þ
+#define WFLBY_ROOM_OAM_CONTNUM			( 24 )	// OAMç®¡ç†æ•°
+#define WFLBY_ROOM_OAM_RESNUM			( 4 )	// ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ç¨®é¡ž
 #define WFLBY_ROOM_CLACT_NUM			( 24 )
 #define WFLBY_ROOM_CLACT_SUBSURFACE_Y	( 256*FX32_ONE )
 
 
 //-------------------------------------
-//ƒvƒƒWƒFƒNƒVƒ‡ƒ“ƒ}ƒgƒŠƒNƒX‚ð‘€ì‚·‚éÛ‚Ì‚yƒIƒtƒZƒbƒg
+//ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ãƒžãƒˆãƒªã‚¯ã‚¹ã‚’æ“ä½œã™ã‚‹éš›ã®ï¼ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //=====================================
 #define	WFLBY_ROOM_PRO_MAT_Z_OFS	(1)
 
 
 
 //-------------------------------------
-///	‹­§I—¹ƒƒbƒZ[ƒWƒEƒGƒCƒg
+///	å¼·åˆ¶çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¨ã‚¤ãƒˆ
 //=====================================
 #define WFLBY_MSG_WAIT	( 60 )
 
 
 //-------------------------------------
-// ‰ï˜bƒEƒBƒ“ƒhƒE
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define WFLBY_TALKWIN_X			( 2 )
 #define WFLBY_TALKWIN_Y			( 19 )
@@ -232,22 +232,22 @@ enum {	// ƒTƒu–ÊƒpƒŒƒbƒg
 #define WFLBY_TALKWIN_SIZY		( 4 )
 #define WFLBY_TALKWIN_CGX		( WFLBY_SYSWINGRA_CGXEND )
 #define WFLBY_TALKWIN_CGXEND	( WFLBY_TALKWIN_CGX+(WFLBY_TALKWIN_SIZX*WFLBY_TALKWIN_SIZY) )
-#define WFLBY_TALKWIN_STRBUFNUM	( 384 )	// •¶Žšƒoƒbƒtƒ@”
+#define WFLBY_TALKWIN_STRBUFNUM	( 384 )	// æ–‡å­—ãƒãƒƒãƒ•ã‚¡æ•°
 #define WFLBY_TALKWIN_MSGCOL	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )	
 
 //-------------------------------------
-// ƒŠƒXƒgƒEƒBƒ“ƒhƒE
+// ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define WFLBY_LISTWIN_X			( 16 )
 #define WFLBY_LISTWIN_Y			( 3 )
 #define WFLBY_LISTWIN_SIZX		( 15 )
-#define WFLBY_LISTWIN_SIZY		( 18 )	// ƒŠƒXƒgÅ‘åƒTƒCƒY
+#define WFLBY_LISTWIN_SIZY		( 18 )	// ãƒªã‚¹ãƒˆæœ€å¤§ã‚µã‚¤ã‚º
 #define WFLBY_LISTWIN_CGX		( WFLBY_TALKWIN_CGXEND )
 #define WFLBY_LISTWIN_CGXEND	( WFLBY_LISTWIN_CGX+(WFLBY_LISTWIN_SIZX*WFLBY_LISTWIN_SIZY) )
 #define WFLBY_LISTWIN_MSGCOL	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )	
 
-#define WFLBY_LISTWIN_CLACT_RESNUM	(4)	// ƒZƒ‹ƒŠƒ\[ƒX”
-#define WFLBY_LISTWIN_CLACT_OBJNUM	(2)	// ƒAƒNƒ^[ƒIƒuƒWƒF”
+#define WFLBY_LISTWIN_CLACT_RESNUM	(4)	// ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹æ•°
+#define WFLBY_LISTWIN_CLACT_OBJNUM	(2)	// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚ªãƒ–ã‚¸ã‚§æ•°
 #define WFLBY_LISTWIN_CLACT_RESCONT_ID	( 5000 )
 #define WFLBY_LISTWIN_CLACT_X		( 192 )
 static const u8 sc_WFLBY_LISTWIN_CLACT_Y[ WFLBY_LISTWIN_CLACT_OBJNUM ] = {
@@ -255,7 +255,7 @@ static const u8 sc_WFLBY_LISTWIN_CLACT_Y[ WFLBY_LISTWIN_CLACT_OBJNUM ] = {
 };
 
 //-------------------------------------
-///	ƒGƒ‰[•\Ž¦ƒEƒBƒ“ƒhƒE
+///	ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define WFLBY_ERRWIN_X			( 4 )
 #define WFLBY_ERRWIN_Y			( 4 )
@@ -266,7 +266,7 @@ static const u8 sc_WFLBY_LISTWIN_CLACT_Y[ WFLBY_LISTWIN_CLACT_OBJNUM ] = {
 #define WFLBY_ERRWIN_MSGCOL		( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )	
 
 //-------------------------------------
-///	ƒTƒuƒEƒBƒ“ƒhƒE
+///	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define WFLBY_SUBWIN_MSGCOL		( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )	
 
@@ -275,31 +275,31 @@ static const u8 sc_WFLBY_LISTWIN_CLACT_Y[ WFLBY_LISTWIN_CLACT_OBJNUM ] = {
 //-------------------------------------
 ///	YesNoWin
 //=====================================
-#define WFLBY_YESNOWIN_DATANUM	( 2 )		// €–Ú”
+#define WFLBY_YESNOWIN_DATANUM	( 2 )		// é …ç›®æ•°
 
 
 //-------------------------------------
-/// Lêê—pƒƒbƒZ[ƒW
+/// åºƒå ´å°‚ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //=====================================
 #define WFLBY_DEFMSG_STRNUM		( 480 )
 
 
 //-------------------------------------
-// ‰º‰æ–Ê
+// ä¸‹ç”»é¢
 //=====================================
-enum {	// •`‰æó‘Ô
-	WFLBY_UNDERWIN_DRAW_NONE,		// ‰½‚à‚È‚µ
-	WFLBY_UNDERWIN_DRAW_BTTN,		// ƒ{ƒ^ƒ“•\Ž¦
-	WFLBY_UNDERWIN_DRAW_PROFILE,	// ƒvƒƒtƒB[ƒ‹•\Ž¦
-	WFLBY_UNDERWIN_DRAW_FLOAT,		// ƒtƒ[ƒg—pƒ{ƒ^ƒ“•\Ž¦
-	WFLBY_UNDERWIN_DRAW_BTTN_DUMMY,	// ƒ{ƒ^ƒ“•\Ž¦@ƒ_ƒ~[iÅ‰‚Éƒ^ƒbƒ`ƒgƒC‚ð‚à‚ç‚¤‚Æ‚«j
+enum {	// æç”»çŠ¶æ…‹
+	WFLBY_UNDERWIN_DRAW_NONE,		// ä½•ã‚‚ãªã—
+	WFLBY_UNDERWIN_DRAW_BTTN,		// ãƒœã‚¿ãƒ³è¡¨ç¤º
+	WFLBY_UNDERWIN_DRAW_PROFILE,	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«è¡¨ç¤º
+	WFLBY_UNDERWIN_DRAW_FLOAT,		// ãƒ•ãƒ­ãƒ¼ãƒˆç”¨ãƒœã‚¿ãƒ³è¡¨ç¤º
+	WFLBY_UNDERWIN_DRAW_BTTN_DUMMY,	// ãƒœã‚¿ãƒ³è¡¨ç¤ºã€€ãƒ€ãƒŸãƒ¼ï¼ˆæœ€åˆã«ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’ã‚‚ã‚‰ã†ã¨ãï¼‰
 } ;
-enum{	// “®ìƒV[ƒPƒ“ƒX
-	WFLBY_UNDERWIN_SEQ_STARTWAIT,			// ŠJŽn‘Ò‚¿
-	WFLBY_UNDERWIN_SEQ_STARTFADEOUT,		// ŠJŽnƒtƒF[ƒhƒAƒEƒg
-	WFLBY_UNDERWIN_SEQ_STARTFADEOUTWAIT,	// ŠJŽnƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
-	WFLBY_UNDERWIN_SEQ_STARTFADEIN,			// ŠJŽnƒtƒF[ƒhƒCƒ“
-	WFLBY_UNDERWIN_SEQ_STARTFADEINWAIT,		// ŠJŽnƒtƒF[ƒhƒCƒ“‘Ò‚¿
+enum{	// å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	WFLBY_UNDERWIN_SEQ_STARTWAIT,			// é–‹å§‹å¾…ã¡
+	WFLBY_UNDERWIN_SEQ_STARTFADEOUT,		// é–‹å§‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+	WFLBY_UNDERWIN_SEQ_STARTFADEOUTWAIT,	// é–‹å§‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
+	WFLBY_UNDERWIN_SEQ_STARTFADEIN,			// é–‹å§‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+	WFLBY_UNDERWIN_SEQ_STARTFADEINWAIT,		// é–‹å§‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 	WFLBY_UNDERWIN_SEQ_NORMAL,
 	WFLBY_UNDERWIN_SEQ_FADEOUT,
 	WFLBY_UNDERWIN_SEQ_FADEOUTWAIT,
@@ -310,15 +310,15 @@ enum{	// “®ìƒV[ƒPƒ“ƒX
 #define WFLBY_UNDERWIN_FASE_DIV		( 3 )
 #define WFLBY_UNDERWIN_FASE_SYNC	( 1 )
 
-#define WFLBY_UNDERWIN_BGCG_END		( 320 )	// ”wŒi‚ÆƒtƒŒ[ƒ€—pCGX‚ÌƒIƒƒŠ
+#define WFLBY_UNDERWIN_BGCG_END		( 320 )	// èƒŒæ™¯ã¨ãƒ•ãƒ¬ãƒ¼ãƒ ç”¨CGXã®ã‚ªãƒ¯ãƒª
 
 
 
 //-------------------------------------
-// trainerƒJ[ƒh
+// trainerã‚«ãƒ¼ãƒ‰
 //=====================================
-#define WFLBY_TRCARD_STRBUF	( 64 )		// •¶Žš—ñƒoƒbƒtƒ@—v—Ì
-enum{	// ƒEƒBƒ“ƒhƒE’è”
+#define WFLBY_TRCARD_STRBUF	( 64 )		// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡è¦é ˜
+enum{	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šæ•°
 	WFLBY_TRCARD_WIN_NAME,
 	WFLBY_TRCARD_WIN_COUNTRY,
 	WFLBY_TRCARD_WIN_TRSTART,
@@ -356,7 +356,7 @@ enum{	// ƒEƒBƒ“ƒhƒE’è”
 #define WFLBY_TRCARD_WIN_VIPAIKOTOBA_SIZY	( 8 )
 #define WFLBY_TRCARD_WIN_VIPAIKOTOBA_CGX	( WFLBY_TRCARD_WIN_COUNTRY_CGX+(WFLBY_TRCARD_WIN_COUNTRY_SIZX*WFLBY_TRCARD_WIN_COUNTRY_SIZY) )
 
-// ‹Zƒ^ƒCƒv
+// æŠ€ã‚¿ã‚¤ãƒ—
 #define WFLBY_TRCARD_WIN_WAZATYPE1_X		( 26 )
 #define WFLBY_TRCARD_WIN_WAZATYPE1_Y		( 2 )
 #define WFLBY_TRCARD_WIN_WAZATYPE1_SIZEX	( 4 )
@@ -439,22 +439,22 @@ static const BMPWIN_DAT sc_WFLBY_TRCARD_WIN_DATA[ WFLBY_TRCARD_WIN_NUM ] = {
 		WFLBY_TRCARD_WIN_VIPAIKOTOBA_CGX,
 	},
 };
-// •¶ŽšF
+// æ–‡å­—è‰²
 #define WFLBY_TRCARD_COL_RED	( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )
 #define WFLBY_TRCARD_COL_BLUE	( GF_PRINTCOLOR_MAKE( 7, 8, 0 ) )
 #define WFLBY_TRCARD_COL_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )
-// ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 #define WFLBY_TRCARD_ICON_RESID		( 100 )
-#define WFLBY_TRCARD_ICON_PLTTNUM	( 3 )		// ƒpƒŒƒbƒg–{”
-#define WFLBY_TRCARD_ICON_BGPRI		( 0 )		// BG—Dæ‡ˆÊ
-#define WFLBY_TRCARD_ICON_SFPRI		( 16 )		// —Dæ‡ˆÊ
+#define WFLBY_TRCARD_ICON_PLTTNUM	( 3 )		// ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°
+#define WFLBY_TRCARD_ICON_BGPRI		( 0 )		// BGå„ªå…ˆé †ä½
+#define WFLBY_TRCARD_ICON_SFPRI		( 16 )		// å„ªå…ˆé †ä½
 #define WFLBY_TRCARD_ICON_X			( FX32_CONST( 208 ) )
 #define WFLBY_TRCARD_ICON_Y			( FX32_CONST( 152 )+WFLBY_ROOM_CLACT_SUBSURFACE_Y )
 #define WFLBY_TRCARD_TRVIEW_RESID	( 101 )
 #define WFLBY_TRCARD_TRVIEW_BGPRI	( 3 )
 #define WFLBY_TRCARD_TRVIEW_SFPRI	( 32 )
 
-// ƒtƒB[ƒ‹ƒhƒgƒŒ[ƒi‚h‚c‚ðƒoƒgƒ‹ƒgƒŒ[ƒiƒ^ƒCƒv‚É•ÏŠ·‚·‚éƒe[ƒuƒ‹
+// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒˆãƒ¬ãƒ¼ãƒŠï¼©ï¼¤ã‚’ãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—ã«å¤‰æ›ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«
 typedef struct {
 	u16 fld_trno;
 	u16  btl_trtype;
@@ -484,7 +484,7 @@ static const WFLBY_TRCARD_TRTYPE sc_WFLBY_TRCARD_TRTYPE[WFLBY_TRCARD_TRTYPE_NUM]
 	{  COWGIRL,		TRTYPE_COWGIRL,	38,	35 },
 	{  GORGGEOUSW,	TRTYPE_PRINCESS,40,	44 },
 };
-// —š—ðƒŠƒ\[ƒX
+// å±¥æ­´ãƒªã‚½ãƒ¼ã‚¹
 enum{
 	WFLBY_TRCARD_RIREKI_RES_UNIONOBJ,
 	WFLBY_TRCARD_RIREKI_RES_ICON,
@@ -493,8 +493,8 @@ enum{
 	WFLBY_TRCARD_RIREKI_RES_NUM,
 };
 #define WFLBY_TRCARD_RIREKI_RESID		( 150 )
-#define WFLBY_TRCARD_RIREKI_BGPRI		( 0 )		// BG—Dæ‡ˆÊ
-// ‘‚­—š—ð‚É‘Î‰ž‚µ‚½ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXƒf[ƒ^
+#define WFLBY_TRCARD_RIREKI_BGPRI		( 0 )		// BGå„ªå…ˆé †ä½
+// æ›¸ãå±¥æ­´ã«å¯¾å¿œã—ãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
 typedef struct{
 	u8 arcid;
 	u8 paloffs;
@@ -556,26 +556,26 @@ static const VecFx32 sc_WFLBY_TRCARD_RIREKI_POS[ WFLBY_LASTACT_BUFFNUM ] = {
 
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒ{ƒ^ƒ“
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒœã‚¿ãƒ³
 //=====================================
 enum{
-	WFLBY_ROOM_UNDERWIN_BTTN_MODE_GADGET,		// ƒKƒWƒFƒbƒg
-	WFLBY_ROOM_UNDERWIN_BTTN_MODE_FLOAT,		// ƒtƒ[ƒg
+	WFLBY_ROOM_UNDERWIN_BTTN_MODE_GADGET,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
+	WFLBY_ROOM_UNDERWIN_BTTN_MODE_FLOAT,		// ãƒ•ãƒ­ãƒ¼ãƒˆ
 };
-enum{	// ƒAƒjƒƒtƒŒ[ƒ€
+enum{	// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ 
 	WFLBY_ROOM_UNDERWIN_BTTN_ANM_UP,
 	WFLBY_ROOM_UNDERWIN_BTTN_ANM_DOWN,
 	WFLBY_ROOM_UNDERWIN_BTTN_ANM_CENTER,
 	WFLBY_ROOM_UNDERWIN_BTTN_ANM_NUM,
 };
-enum{	//  ƒ{ƒ^ƒ““®ìƒXƒe[ƒ^ƒX
-	WFLBY_ROOM_UNDERWIN_BTTN_STATUS_ON,		// ‰Ÿ‚µ‚Ä‘åä•v
-	WFLBY_ROOM_UNDERWIN_BTTN_STATUS_WAIT,	// ‰Ÿ‚µ‚¿‚á‚¾‚ß
+enum{	//  ãƒœã‚¿ãƒ³å‹•ä½œã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	WFLBY_ROOM_UNDERWIN_BTTN_STATUS_ON,		// æŠ¼ã—ã¦å¤§ä¸ˆå¤«
+	WFLBY_ROOM_UNDERWIN_BTTN_STATUS_WAIT,	// æŠ¼ã—ã¡ã‚ƒã ã‚
 };
-#define WFLBY_ROOM_UNDERWIN_BTTN_WAIT	( 90 )	// ƒ{ƒ^ƒ“‚ð‰Ÿ‚¹‚È‚¢ŠÔŠu
-#define WFLBY_ROOM_UNDERWIN_BTTN_FLOAT_FRAME_NUM	(2)// ƒtƒ[ƒg—pƒ{ƒ^ƒ“‚ÌƒtƒŒ[ƒ€”
+#define WFLBY_ROOM_UNDERWIN_BTTN_WAIT	( 90 )	// ãƒœã‚¿ãƒ³ã‚’æŠ¼ã›ãªã„é–“éš”
+#define WFLBY_ROOM_UNDERWIN_BTTN_FLOAT_FRAME_NUM	(2)// ãƒ•ãƒ­ãƒ¼ãƒˆç”¨ãƒœã‚¿ãƒ³ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
-#define WFLBY_UNDERWIN_BTTN_ICON_BGCG_END		( WFLBY_UNDERWIN_BGCG_END+144 )	// ”wŒi‚ÆƒtƒŒ[ƒ€—pCGX‚ÌƒIƒƒŠ
+#define WFLBY_UNDERWIN_BTTN_ICON_BGCG_END		( WFLBY_UNDERWIN_BGCG_END+144 )	// èƒŒæ™¯ã¨ãƒ•ãƒ¬ãƒ¼ãƒ ç”¨CGXã®ã‚ªãƒ¯ãƒª
 
 
 #define WFLBY_BTTN_WIN_TITLE_X		( 1 )
@@ -595,22 +595,22 @@ static const BMPWIN_DAT sc_WFLBY_BTTN_WIN_DATA = {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€
+///	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
 	// BG
 	GF_BGL_INI*				p_bgl;
 
 	// OAM
-    CLACT_SET_PTR           p_clactset;		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-    CLACT_U_EASYRENDER_DATA renddata;       // ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-    CLACT_U_RES_MANAGER_PTR p_resman[WFLBY_ROOM_OAM_RESNUM]; // ƒLƒƒƒ‰EƒpƒŒƒbƒgƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	NNSG2dCellTransferState*	p_celltransarray;		///< ƒZƒ‹Vram“]‘—ƒ}ƒl[ƒWƒƒ[—Ìˆæ
+    CLACT_SET_PTR           p_clactset;		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+    CLACT_U_EASYRENDER_DATA renddata;       // ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+    CLACT_U_RES_MANAGER_PTR p_resman[WFLBY_ROOM_OAM_RESNUM]; // ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
+	NNSG2dCellTransferState*	p_celltransarray;		///< ã‚»ãƒ«Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼é ˜åŸŸ
 
 	// 3D
 	GF_G3DMAN*		p_3dman;
@@ -618,7 +618,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	‰ï˜bƒƒbƒZ[ƒW•\Ž¦
+///	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 //=====================================
 typedef struct {
 	GF_BGL_BMPWIN	win;
@@ -629,7 +629,7 @@ typedef struct {
 } WFLBY_ROOM_TALKMSG;
 
 //-------------------------------------
-///	ƒŠƒXƒg•\Ž¦
+///	ãƒªã‚¹ãƒˆè¡¨ç¤º
 //=====================================
 typedef struct {
 	BMPLIST_HEADER	data;
@@ -639,9 +639,9 @@ typedef struct {
 	u16					bmplistnum;
 	u16					list_num;
 
-	// ã‰º@ƒZƒ‹ƒAƒNƒ^[
+	// ä¸Šä¸‹ã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 	BOOL				clact_draw;
-	CLACT_U_RES_OBJ_PTR		resObj[WFLBY_LISTWIN_CLACT_RESNUM];	// ‚»‚ê‚¼‚ê‚ÌƒŠƒ\[ƒXƒIƒuƒWƒF”
+	CLACT_U_RES_OBJ_PTR		resObj[WFLBY_LISTWIN_CLACT_RESNUM];	// ãã‚Œãžã‚Œã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§æ•°
 	CLACT_WORK_PTR clact[ WFLBY_LISTWIN_CLACT_OBJNUM ];
 } WFLBY_ROOM_LISTWIN;
 
@@ -649,27 +649,27 @@ typedef struct {
 ///	YESNOWIN
 //=====================================
 typedef struct {
-	BMP_MENULIST_DATA*	p_bmplist;		// ƒŠƒXƒg
+	BMP_MENULIST_DATA*	p_bmplist;		// ãƒªã‚¹ãƒˆ
 	BMPLIST_HEADER		bmplist;
 } WFLBY_ROOM_YESNOWIN;
 
 
 //-------------------------------------
-///	ƒGƒ‰[ƒƒbƒZ[ƒW•\Ž¦
+///	ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 //=====================================
 typedef struct {
 	GF_BGL_BMPWIN	win;
 } WFLBY_ROOM_ERRMSG;
 
 //-------------------------------------
-///	ƒTƒuƒEƒBƒ“ƒhƒE•\Ž¦
+///	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 //=====================================
 typedef struct {
 	GF_BGL_BMPWIN	win;
 } WFLBY_ROOM_SUBWIN;
 
 //-------------------------------------
-///	LêƒƒbƒZ[ƒWƒf[ƒ^
+///	åºƒå ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	WORDSET*			p_wordset;
@@ -679,40 +679,40 @@ typedef struct {
 } WFLBY_ROOM_DEFMSG;
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒ{ƒ^ƒ“
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒœã‚¿ãƒ³
 //=====================================
 typedef struct {
 	s16	lock_wait;
 	u8 seq;
 	u8 bttnevent;
 	u16 lastbttnevent;
-	u16 bttnstop;		// ƒ{ƒ^ƒ“’âŽ~ŽžTRUE
-	u16 mode;			// ƒ{ƒ^ƒ“ƒ‚[ƒh	WFLBY_ROOM_UNDERWIN_BTTN_MODE_`
-	u16 bttn_itemno;	// ƒ{ƒ^ƒ“‚ª‘Î‰ž‚µ‚Ä‚¢‚éƒAƒCƒeƒ€‚Ì’limode‚É‚æ‚Á‚Ä’†‚Ì’l‚ÌˆÓ–¡‚ª•Ï‚í‚è‚Ü‚·j
+	u16 bttnstop;		// ãƒœã‚¿ãƒ³åœæ­¢æ™‚TRUE
+	u16 mode;			// ãƒœã‚¿ãƒ³ãƒ¢ãƒ¼ãƒ‰	WFLBY_ROOM_UNDERWIN_BTTN_MODE_ã€œ
+	u16 bttn_itemno;	// ãƒœã‚¿ãƒ³ãŒå¯¾å¿œã—ã¦ã„ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®å€¤ï¼ˆmodeã«ã‚ˆã£ã¦ä¸­ã®å€¤ã®æ„å‘³ãŒå¤‰ã‚ã‚Šã¾ã™ï¼‰
 
-	// ƒEƒBƒ“ƒhƒE
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	GF_BGL_BMPWIN		win;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£
 	BUTTON_MAN*	p_bttnman;
 
-	// ƒŠƒ\[ƒX
+	// ãƒªã‚½ãƒ¼ã‚¹
 	void*				p_scrnbuff[ WFLBY_ROOM_UNDERWIN_BTTN_ANM_NUM ];
 	NNSG2dScreenData*	p_scrn[ WFLBY_ROOM_UNDERWIN_BTTN_ANM_NUM ];
 } WFLBY_GADGET_BTTN;
 
 //-------------------------------------
-///	ƒgƒŒ[ƒi[ƒJ[ƒh
+///	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰
 //=====================================
 typedef struct {
 	u32 aikotoba_draw;
 	
-	// ƒEƒBƒ“ƒhƒE
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	GF_BGL_BMPWIN		win[WFLBY_TRCARD_WIN_NUM];
 
 
-	// «ˆÈ‰º‰æ–Ê‚ð•\Ž¦‚·‚é‚½‚Ñ‚ÉXV‚ð‚©‚¯‚é‚à‚Ì
-	// ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+	// â†“ä»¥ä¸‹ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹ãŸã³ã«æ›´æ–°ã‚’ã‹ã‘ã‚‹ã‚‚ã®
+	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 	CLACT_WORK_PTR		p_itemicon;
 	CLACT_U_RES_OBJ_PTR p_itemiconres[WFLBY_ROOM_OAM_RESNUM];
 
@@ -720,7 +720,7 @@ typedef struct {
 	CLACT_U_RES_OBJ_PTR p_trres[WFLBY_ROOM_OAM_RESNUM];
 
 
-	// —š—ðƒŠƒ\[ƒX
+	// å±¥æ­´ãƒªã‚½ãƒ¼ã‚¹
 	CLACT_WORK_PTR		p_rireki[WFLBY_LASTACT_BUFFNUM];
 	CLACT_U_RES_OBJ_PTR p_rirekires_pal[WFLBY_TRCARD_RIREKI_RES_NUM];
 	CLACT_U_RES_OBJ_PTR p_rirekires_cg[WFLBY_LASTACT_BUFFNUM];
@@ -730,101 +730,101 @@ typedef struct {
 } WFLBY_TR_CARD;
 
 //-------------------------------------
-///	‰º‰æ–Ê@ƒ[ƒN
+///	ä¸‹ç”»é¢ã€€ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	u8					seq;			// “®ìƒV[ƒPƒ“ƒX
-	u8					now;			// ¡‚Ì•`‰æó‘Ô
-	u8					req;			// •`‰æ•ÏXƒŠƒNƒGƒXƒg
-	u8					req_tridx;		// ƒŠƒNƒGƒXƒg‚ðŽó‚¯‚½ƒgƒŒ[ƒiIDX
-	u16					req_aikotoba;	// ‡Œ¾—t‚ð‚Ð‚å‚¤‚¶‚·‚é‚Ì‚©
-	u16					bttn_start;		// “ü‚èŒû‚ÅƒKƒWƒFƒbƒgŽæ“¾ŒãTRUE‚É‚È‚é
+	u8					seq;			// å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8					now;			// ä»Šã®æç”»çŠ¶æ…‹
+	u8					req;			// æç”»å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	u8					req_tridx;		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å—ã‘ãŸãƒˆãƒ¬ãƒ¼ãƒŠIDX
+	u16					req_aikotoba;	// åˆè¨€è‘‰ã‚’ã²ã‚‡ã†ã˜ã™ã‚‹ã®ã‹
+	u16					bttn_start;		// å…¥ã‚Šå£ã§ã‚¬ã‚¸ã‚§ãƒƒãƒˆå–å¾—å¾ŒTRUEã«ãªã‚‹
 	WFLBY_TR_CARD		tr_card;
 	WFLBY_GADGET_BTTN	bttn;
 	ARCHANDLE*			p_handle;
 
-	// ƒtƒ[ƒgƒAƒjƒI—¹ƒ`ƒFƒbƒN—p
+	// ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯ç”¨
 	u16		flt_float_idx;
 	u8		flt_anm_idx;
 	u8		flt_anm_flag;
 
-	// VBlankƒpƒŒƒbƒg“]‘—ƒf[ƒ^
-	// VBLANK“]‘—ƒ^ƒXƒN“à‚Å‚Ì‚ÝŽg—p‰Â”\	‚»‚Ì‘¼‚ÌêŠ‚Å‚Í•s’è’l
+	// VBlankãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒ‡ãƒ¼ã‚¿
+	// VBLANKè»¢é€ã‚¿ã‚¹ã‚¯å†…ã§ã®ã¿ä½¿ç”¨å¯èƒ½	ãã®ä»–ã®å ´æ‰€ã§ã¯ä¸å®šå€¤
 	u16					dataidx;
 	u16					heapID;
 } WFLBY_UNDER_WIN;
 
 //-------------------------------------
-///	ŠeNPCƒ[ƒJƒ‹ó‘Ô‚Å‚Ì”½‰ž‰Â”\ƒtƒ‰ƒO
+///	å„NPCãƒ­ãƒ¼ã‚«ãƒ«çŠ¶æ…‹ã§ã®åå¿œå¯èƒ½ãƒ•ãƒ©ã‚°
 //=====================================
 typedef struct {
-	u8 talk_busy[ WFLBY_PLAYER_MAX ];			// ‰ï˜bó‘ÔBUSY
-	u8 info_draw_busy[ WFLBY_PLAYER_MAX ];		// î•ñ‚Ì•\Ž¦BUSY
+	u8 talk_busy[ WFLBY_PLAYER_MAX ];			// ä¼šè©±çŠ¶æ…‹BUSY
+	u8 info_draw_busy[ WFLBY_PLAYER_MAX ];		// æƒ…å ±ã®è¡¨ç¤ºBUSY
 } WFLBY_NPC_BUSY;
 
 //-------------------------------------
-///	Lêƒ[ƒN
+///	åºƒå ´ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WFLBY_ROOMWK{
-	// ŠeŽíƒtƒ‰ƒO
-	u8 end_flag;		// I—¹ƒtƒ‰ƒO
-	u8 end_ret;			// WFLBY_ROOM_RET‚±‚ê
-	u8 plno;			// ƒvƒŒƒCƒ„[ƒiƒ“ƒo[
-	u8 fade_flag;		// ƒtƒF[ƒh’†TRUE
-	u8 err_check:4;		// ’ÊMƒGƒ‰[‚ðƒ`ƒFƒbƒN‚·‚é‚©
-	u8 err_flag:4;		// ’ÊMƒGƒ‰[ƒtƒ‰ƒO
-	u8 evno;			// Å‹ß‹N“®‚µ‚½ƒCƒxƒ“ƒg		ƒCƒxƒ“ƒgƒVƒXƒeƒ€“à‚Å‚Ìƒ`ƒFƒbƒN—p
-	u8 timeout;			// ƒ^ƒCƒ€ƒAƒEƒg
-	u8 timeout_off;		// ƒ^ƒCƒ€ƒAƒEƒgƒ`ƒFƒbƒN‚ðs‚¤‚©‚Ìƒtƒ‰ƒO
+	// å„ç¨®ãƒ•ãƒ©ã‚°
+	u8 end_flag;		// çµ‚äº†ãƒ•ãƒ©ã‚°
+	u8 end_ret;			// WFLBY_ROOM_RETã“ã‚Œ
+	u8 plno;			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u8 fade_flag;		// ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­TRUE
+	u8 err_check:4;		// é€šä¿¡ã‚¨ãƒ©ãƒ¼ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‹
+	u8 err_flag:4;		// é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°
+	u8 evno;			// æœ€è¿‘èµ·å‹•ã—ãŸã‚¤ãƒ™ãƒ³ãƒˆ		ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ å†…ã§ã®ãƒã‚§ãƒƒã‚¯ç”¨
+	u8 timeout;			// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+	u8 timeout_off;		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã‹ã®ãƒ•ãƒ©ã‚°
 	s32 msg_wait;
 
 #if PL_T0867_080716_FIX
-	// ŽålŒö‚ªAƒCƒxƒ“ƒgŒãAˆÚ“®‚·‚é‰Â”\«‚ª‚ ‚é‚Ì‚©H‚Æ‚¢‚¤ƒtƒ‰ƒO
-	// ‘¼l‚ª‰ï˜bƒWƒƒƒ“ƒv‚ðs‚¤‚±‚Æ‚ª‚Å‚«‚é‚Ì‚©‚ÉŽg—p
+	// ä¸»äººå…¬ãŒã€ã‚¤ãƒ™ãƒ³ãƒˆå¾Œã€ç§»å‹•ã™ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã‹ï¼Ÿã¨ã„ã†ãƒ•ãƒ©ã‚°
+	// ä»–äººãŒä¼šè©±ã‚¸ãƒ£ãƒ³ãƒ—ã‚’è¡Œã†ã“ã¨ãŒã§ãã‚‹ã®ã‹ã«ä½¿ç”¨
 	BOOL player_ev_after_move;
 #endif
 
-	// ŠeNPC”½‰ž‰Â”\ƒtƒ‰ƒO
+	// å„NPCåå¿œå¯èƒ½ãƒ•ãƒ©ã‚°
 	WFLBY_NPC_BUSY npc_busy;
  
-	// ƒVƒXƒeƒ€î•ñ
+	// ã‚·ã‚¹ãƒ†ãƒ æƒ…å ±
 	WFLBY_SYSTEM* p_system;
 
-	// LêƒZ[ƒuƒf[ƒ^
+	// åºƒå ´ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	WFLBY_ROOM_SAVE* p_save;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€‰Šú‰»
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	WFLBY_GRAPHICCONT	graphic;
 
-	// ‚µ‚½‰æ–Ê
+	// ã—ãŸç”»é¢
 	WFLBY_UNDER_WIN		under_win;
 
-	// ƒƒbƒZ[ƒWƒVƒXƒeƒ€
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ 
 	WFLBY_ROOM_DEFMSG	def_msg;
 
-	// ƒEƒBƒ“ƒhƒE
-	WFLBY_ROOM_TALKMSG	talkwin;	// ‰ï˜bƒEƒBƒ“ƒhƒE
-	WFLBY_ROOM_TALKMSG	boardwin;	// ŠÅ”ÂƒEƒBƒ“ƒhƒE
-	WFLBY_ROOM_LISTWIN	listwin;	// ƒŠƒXƒgƒEƒBƒ“ƒhƒE
-	WFLBY_ROOM_ERRMSG	errwin;		// ƒGƒ‰[ƒEƒBƒ“ƒhƒE
-	WFLBY_ROOM_YESNOWIN yesnowin;	// YESNOƒEƒBƒ“ƒhƒE
-	WFLBY_ROOM_SUBWIN	subwin;		// ƒTƒuƒEƒBƒ“ƒhƒE
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_ROOM_TALKMSG	talkwin;	// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_ROOM_TALKMSG	boardwin;	// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_ROOM_LISTWIN	listwin;	// ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_ROOM_ERRMSG	errwin;		// ã‚¨ãƒ©ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_ROOM_YESNOWIN yesnowin;	// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_ROOM_SUBWIN	subwin;		// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-	// ƒKƒWƒFƒbƒg
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
 	WFLBY_GADGET*			p_gadget;
-	BOOL					gadget_flag;	// ƒKƒWƒFƒbƒg“®ìƒtƒ‰ƒO
+	BOOL					gadget_flag;	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆå‹•ä½œãƒ•ãƒ©ã‚°
 
-	// ƒ^ƒCƒ€ƒCƒxƒ“ƒg
+	// ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆ
 	WFLBY_TIMEEVENT*		p_timeevent;
 
-	// ŠeŠÇ—ƒVƒXƒeƒ€
+	// å„ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 	WFLBY_3DOBJCONT*		p_objcont;
 	WFLBY_3DMAPOBJ_CONT*	p_mapobjcont;
 	WFLBY_MAPCONT*			p_mapcont;
 	WFLBY_CAMERA*			p_camera;
 	WFLBY_EVENT*			p_event;
 
-	// ƒZ[ƒuƒf[ƒ^
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	MYSTATUS*			p_mystatus;
 } WFLBY_ROOMWK;
 
@@ -832,14 +832,14 @@ typedef struct _WFLBY_ROOMWK{
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒf[ƒ^ƒe[ƒuƒ‹
+ *				ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒOƒ‰ƒtƒBƒbƒNŠÖ˜A
+///	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢é€£
 //=====================================
-// ƒGƒbƒWƒ}[ƒLƒ“ƒOÝ’è
-//ƒGƒbƒWƒ}[ƒLƒ“ƒOƒe[ƒuƒ‹
+// ã‚¨ãƒƒã‚¸ãƒžãƒ¼ã‚­ãƒ³ã‚°è¨­å®š
+//ã‚¨ãƒƒã‚¸ãƒžãƒ¼ã‚­ãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const GXRgb sc_WFLBY_ROOM_EDGECOLOR[8] = {
     GX_RGB(0, 0, 0),
     GX_RGB(4, 4, 4),
@@ -850,23 +850,23 @@ static const GXRgb sc_WFLBY_ROOM_EDGECOLOR[8] = {
     GX_RGB(4, 4, 4),
     GX_RGB(4, 4, 4)
 };
-// ƒoƒ“ƒNÝ’è
+// ãƒãƒ³ã‚¯è¨­å®š
 static const GF_BGL_DISPVRAM sc_WFLBY_ROOM_BANK = {
-//	GX_VRAM_BG_32_FG,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-//	GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_OBJ_32_FG,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_TEX_01_AC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-	GX_VRAM_TEXPLTT_0123_E			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+//	GX_VRAM_BG_32_FG,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+//	GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_OBJ_32_FG,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_TEX_01_AC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+	GX_VRAM_TEXPLTT_0123_E			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 };
 
-// BGÝ’è
+// BGè¨­å®š
 static const GF_BGL_SYS_HEADER sc_BGINIT = {
 	GX_DISPMODE_GRAPHICS,
 	GX_BGMODE_0,
@@ -874,7 +874,7 @@ static const GF_BGL_SYS_HEADER sc_BGINIT = {
 	GX_BG0_AS_3D
 };
 
-// BGƒRƒ“ƒgƒ[ƒ‹
+// BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 static const u32 sc_WFLBY_ROOM_BGCNT_FRM[ WFLBY_ROOM_BGCNT_NUM ] = {
 	GF_BGL_FRAME1_M,
 	GF_BGL_FRAME0_S,
@@ -882,14 +882,14 @@ static const u32 sc_WFLBY_ROOM_BGCNT_FRM[ WFLBY_ROOM_BGCNT_NUM ] = {
 	GF_BGL_FRAME2_S,
 };
 static const GF_BGL_BGCNT_HEADER sc_WFLBY_ROOM_BGCNT_DATA[ WFLBY_ROOM_BGCNT_NUM ] = {
-	// ƒƒCƒ“‰æ–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢
 	{	// GF_BGL_FRAME1_M
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
 		0, 0, 0, FALSE
 	},
 
-	// ƒTƒu‰æ–Ê
+	// ã‚µãƒ–ç”»é¢
 	{	// GF_BGL_FRAME0_S
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -907,36 +907,36 @@ static const GF_BGL_BGCNT_HEADER sc_WFLBY_ROOM_BGCNT_DATA[ WFLBY_ROOM_BGCNT_NUM 
 	},
 };
 
-// OAMÝ’è
+// OAMè¨­å®š
 static const CHAR_MANAGER_MAKE sc_WFLBY_ROOM_CHARMAN_INIT = {
 	WFLBY_ROOM_OAM_CONTNUM,
-	32*1024,	// 128K->ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹‚ðƒtƒB[ƒ‹ƒh‚Æ‹¤’Ê‚ÅŽg—p‚·‚é‚Ì‚Å32K‚É‚·‚é
+	32*1024,	// 128K->ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ã‚’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨å…±é€šã§ä½¿ç”¨ã™ã‚‹ã®ã§32Kã«ã™ã‚‹
 	16*1024,	// 16K
 	HEAPID_WFLBY_ROOM
 };
 
 
-// YESNOWINƒf[ƒ^
+// YESNOWINãƒ‡ãƒ¼ã‚¿
 static const BMPLIST_HEADER sc_WFLBY_ROOM_YESNO_HEADER = {
 	NULL,
 	NULL,
 	NULL,
 	NULL,
 
-	0,								//ƒŠƒXƒg€–Ú”
-	WFLBY_YESNOWIN_DATANUM,			//•\Ž¦Å‘å€–Ú”
-	0,								//ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-	8,								//€–Ú•\Ž¦‚wÀ•W
-	0,								//ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-	0,								//•\Ž¦‚xÀ•W
-	FBMP_COL_BLACK,					//•\Ž¦•¶ŽšF
-	FBMP_COL_WHITE,					//•\Ž¦”wŒiF
-	FBMP_COL_BLK_SDW,				//•\Ž¦•¶Žš‰eF
-	0,								//•¶ŽšŠÔŠu‚w
-	16,								//•¶ŽšŠÔŠu‚x
-	BMPLIST_NO_SKIP,				//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,					//•¶ŽšŽw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚ÆŽv‚¤‚Ì‚Å)
-	0,								//‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	0,								//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	WFLBY_YESNOWIN_DATANUM,			//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,								//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,								//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,								//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,								//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,					//è¡¨ç¤ºæ–‡å­—è‰²
+	FBMP_COL_WHITE,					//è¡¨ç¤ºèƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,				//è¡¨ç¤ºæ–‡å­—å½±è‰²
+	0,								//æ–‡å­—é–“éš”ï¼¸
+	16,								//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_NO_SKIP,				//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,					//æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0,								//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 
 	NULL
 };
@@ -945,7 +945,7 @@ static const BMPLIST_HEADER sc_WFLBY_ROOM_YESNO_HEADER = {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_VBlank( void* p_work );
@@ -1037,7 +1037,7 @@ static void WFLBY_ROOM_Msg_ClearWordSet( WFLBY_ROOM_DEFMSG* p_wk );
 static void WFLBY_ROOM_GadGet_SetFlag( WFLBY_ROOMWK* p_wk );
 
 //-------------------------------------
-///	‰º‰æ–Ê
+///	ä¸‹ç”»é¢
 //=====================================
 static void WFLBY_ROOM_UNDERWIN_Init( WFLBY_UNDER_WIN* p_wk, const WFLBY_ROOM_SAVE* cp_save, WFLBY_GRAPHICCONT* p_sys, const MYSTATUS* cp_mystatus, u32 heapID );
 static void WFLBY_ROOM_UNDERWIN_Exit( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOM_TALKMSG* p_boardwin, WFLBY_GRAPHICCONT* p_sys );
@@ -1138,13 +1138,13 @@ PROC_RESULT WFLBY_ROOM_ExitDebug(PROC* p_proc, int* p_seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	éƒ¨å±‹ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	p_proc		ƒvƒƒZƒXƒ[ƒN
- *	@param	p_seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval	PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval	PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval	PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBY_ROOM_Init(PROC* p_proc, int* p_seq)
@@ -1153,55 +1153,55 @@ PROC_RESULT WFLBY_ROOM_Init(PROC* p_proc, int* p_seq)
 	WFLBY_ROOM_PARAM* p_param;
 
 #ifdef WFLBY_DEBUG_ROOM_CAMERA
-	OS_TPrintf( "¡ƒJƒƒ‰‘€ì\n" );
-	OS_TPrintf( "	³ŽË‰e‚Æ“§Ž‹ŽË‰e‚ðØ‚è‘Ö‚¦‚é	SELECT\n" );
+	OS_TPrintf( "â– ã‚«ãƒ¡ãƒ©æ“ä½œ\n" );
+	OS_TPrintf( "	æ­£å°„å½±ã¨é€è¦–å°„å½±ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹	SELECT\n" );
 #endif
 
 #ifdef WFLBY_DEBUG_ROOM_ITEMCHG
-//	OS_TPrintf( "¡ƒ^ƒbƒ`ƒgƒC‘€ì" );
-//	OS_TPrintf( " ƒ^ƒbƒ`ƒgƒC‚ðŽŸ‚Ì‚à‚Ì‚É•Ï‚¦‚é	L\n" );
+//	OS_TPrintf( "â– ã‚¿ãƒƒãƒãƒˆã‚¤æ“ä½œ" );
+//	OS_TPrintf( " ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’æ¬¡ã®ã‚‚ã®ã«å¤‰ãˆã‚‹	L\n" );
 #endif
 
 	OS_TPrintf( "sub char max %d\n", WFLBY_TRCARD_WIN_VIPAIKOTOBA_CGX );
 
-	// ƒpƒ‰ƒ[ƒ^Žæ“¾
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	p_param = PROC_GetParentWork( p_proc );
 
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WFLBY_ROOM, 0x3a000 );
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WFLBY_ROOMGRA, 0x3d000 );
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk = PROC_AllocWork( p_proc, sizeof(WFLBY_ROOMWK), HEAPID_WFLBY_ROOM );
 	memset( p_wk, 0, sizeof(WFLBY_ROOMWK) );
 
-	// •”‰®•Û‘¶ƒf[ƒ^Ý’èæ‚ð•Û‘¶
+	// éƒ¨å±‹ä¿å­˜ãƒ‡ãƒ¼ã‚¿è¨­å®šå…ˆã‚’ä¿å­˜
 	p_wk->p_save = &p_param->save;
 
-	// ƒVƒXƒeƒ€î•ñ‚ðŽæ“¾
+	// ã‚·ã‚¹ãƒ†ãƒ æƒ…å ±ã‚’å–å¾—
 	p_wk->p_system = p_param->p_system;
 
-	// ƒvƒŒƒCƒ„[ƒiƒ“ƒo[Ý’è
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼è¨­å®š
 	p_wk->plno = WFLBY_SYSTEM_GetMyIdx( p_wk->p_system );
 	GF_ASSERT( WFLBY_SYSTEM_GetMyIdx( p_wk->p_system ) != DWC_LOBBY_USERIDTBL_IDX_NONE );
 
-	// ƒƒbƒZ[ƒW•\Ž¦ŠÖŒW‚ðÝ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–¢ä¿‚ã‚’è¨­å®š
 	MsgPrintSkipFlagSet(MSG_SKIP_ON);
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
 	MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
 
 
-	// ƒZ[ƒuƒf[ƒ^Ý’è
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_wk->p_mystatus = SaveData_GetMyStatus( p_param->p_save );
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€‰Šú‰»
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	WFLBY_ROOM_GraphicInit( &p_wk->graphic, p_param->p_save, HEAPID_WFLBY_ROOM );
 
-	// ƒ}ƒbƒvŠÇ—ƒVƒXƒeƒ€ì¬
+	// ãƒžãƒƒãƒ—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_wk->p_mapcont = WFLBY_MAPCONT_Init( HEAPID_WFLBY_ROOM );
 
 
-	// ƒIƒuƒWƒFƒNƒgŠÇ—ƒVƒXƒeƒ€ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	{
 		u32 sex;
 		sex = MyStatus_GetMySex( p_wk->p_mystatus );
@@ -1210,31 +1210,31 @@ PROC_RESULT WFLBY_ROOM_Init(PROC* p_proc, int* p_seq)
 
 	}
 
-	// ƒ}ƒbƒvƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€ì¬
+	// ãƒžãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_wk->p_mapobjcont = WFLBY_3DMAPOBJCONT_Init( p_param->season, p_param->room, p_wk->p_mapcont, HEAPID_WFLBY_ROOM, HEAPID_WFLBY_ROOMGRA );
 	
 
-	// ƒJƒƒ‰‰Šú‰»
+	// ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
 	p_wk->p_camera = WFLBY_CAMERA_Init( HEAPID_WFLBY_ROOM );
 
-	// ƒEƒBƒ“ƒhƒE
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	WFLBY_ROOM_TalkWin_Init( &p_wk->talkwin, &p_wk->graphic, p_param->p_save, HEAPID_WFLBY_ROOM );
 	WFLBY_ROOM_TalkWin_Board_Init( &p_wk->boardwin, &p_wk->graphic, p_param->p_save, HEAPID_WFLBY_ROOM );
 	WFLBY_ROOM_ListWin_Init( &p_wk->listwin, &p_wk->graphic, HEAPID_WFLBY_ROOM );
 	WFLBY_ROOM_ErrWin_Init( &p_wk->errwin, &p_wk->graphic, HEAPID_WFLBY_ROOM );
 	WFLBY_ROOM_SubWin_Init( &p_wk->subwin, &p_wk->graphic, HEAPID_WFLBY_ROOM );
 
-	// ƒGƒ‰[ƒƒbƒZ[ƒW
+	// ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	WFLBY_ROOM_Msg_Init( &p_wk->def_msg, HEAPID_WFLBY_ROOM );
 
-	// YESNOƒEƒBƒ“ƒhƒE
+	// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	WFLBY_ROOM_YesNoWin_Init( &p_wk->yesnowin, &p_wk->def_msg, HEAPID_WFLBY_ROOM );
 
 
-	// ‚µ‚½‰æ–Ê‰Šú‰»
+	// ã—ãŸç”»é¢åˆæœŸåŒ–
 	WFLBY_ROOM_UNDERWIN_Init( &p_wk->under_win, p_wk->p_save, &p_wk->graphic, p_wk->p_mystatus, HEAPID_WFLBY_ROOM );
 
-	// ƒ^ƒbƒ`ƒgƒC‚ð•\Ž¦‚Å‚«‚éó‘Ô‚È‚ç•\Ž¦‚·‚é
+	// ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’è¡¨ç¤ºã§ãã‚‹çŠ¶æ…‹ãªã‚‰è¡¨ç¤ºã™ã‚‹
 	{
 		const WFLBY_USER_PROFILE* cp_profile;
 
@@ -1246,29 +1246,29 @@ PROC_RESULT WFLBY_ROOM_Init(PROC* p_proc, int* p_seq)
 		}
 	}
 
-	// ƒCƒxƒ“ƒgƒVƒXƒeƒ€ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_wk->p_event = WFLBY_EVENT_Init( p_wk, HEAPID_WFLBY_ROOM );
 
-	// ƒQ[ƒ€ƒCƒxƒ“ƒgŠJŽn
+	// ã‚²ãƒ¼ãƒ ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
 	WFLBY_EV_DEF_StartPlayer( p_wk );
 	WFLBY_EV_DEF_StartNpc( p_wk );
 
-	// ƒKƒWƒFƒbƒg‰Šú‰»
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆåˆæœŸåŒ–
 	p_wk->p_gadget = WFLBY_GADGET_Init( p_wk->p_system, p_wk->p_mapcont, p_wk->p_camera, p_wk->p_objcont, HEAPID_WFLBY_ROOM, HEAPID_WFLBY_ROOMGRA );
 
-	// ƒ^ƒCƒ€ƒCƒxƒ“ƒg‰Šú‰»
+	// ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆåˆæœŸåŒ–
 	p_wk->p_timeevent = WFLBY_TIMEEVENT_Init( HEAPID_WFLBY_ROOM, p_wk );
 
-	// VBlankŠÖ”Ý’è
+	// VBlanké–¢æ•°è¨­å®š
 	sys_VBlankFuncChange( WFLBY_ROOM_VBlank, p_wk );
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 	
 	return	PROC_RES_FINISH;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒVƒXƒeƒ€	ƒƒCƒ“
+ *	@brief	éƒ¨å±‹ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³
  */	
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
@@ -1325,7 +1325,7 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 			static int roop = 100;
 
 			roop --;
-			// I—¹‚Ö
+			// çµ‚äº†ã¸
 			if( roop <= 0 ){
 				(*p_seq) = WFLBY_ROOM_MAINSEQ_FADEOUT;
 				break;
@@ -1334,7 +1334,7 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 #endif
 		
 
-		// ƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚½‚çI—¹
+		// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ãŸã‚‰çµ‚äº†
 		if( p_wk->err_check == TRUE ){
 
 			if( (WFLBY_ERR_CheckError() == TRUE) || 
@@ -1343,27 +1343,27 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 			}
 		}
 
-		// ƒ^ƒCƒ€ƒAƒEƒgI—¹ƒ`ƒFƒbƒN
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆçµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( p_wk->timeout_off == FALSE ){
 			if( WFLBY_SYSTEM_Event_GetEnd( p_wk->p_system ) == TRUE ){
-				// ƒ^ƒCƒ€ƒAƒEƒgó‘Ô‚ÌI—¹
+				// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆçŠ¶æ…‹ã®çµ‚äº†
 				p_wk->timeout	= TRUE;
 				WFLBY_ROOM_SetEndRet( p_wk, WFLBY_ROOM_RET_ROOM_TIMEOUT );
 			}
 		}
 
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( (p_wk->end_flag == TRUE) || (p_wk->err_flag == TRUE) || (p_wk->timeout == TRUE) ){
 
-			// ƒGƒ‰[ó‘Ô
+			// ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹
 			if( p_wk->err_flag ){
 				(*p_seq) = WFLBY_ROOM_MAINSEQ_ERR_MSG;
 
-			// ƒ^ƒCƒ€ƒAƒEƒgó‘Ô
+			// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆçŠ¶æ…‹
 			}else if( p_wk->timeout == TRUE ){
 				(*p_seq) = WFLBY_ROOM_MAINSEQ_TIMEOUT_MSG;
 
-			// ’ÊíI—¹
+			// é€šå¸¸çµ‚äº†
 			}else{
 				(*p_seq) = WFLBY_ROOM_MAINSEQ_FADEOUT;
 			}
@@ -1371,26 +1371,26 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 		}
 		break;
 
-	// ƒGƒ‰[ƒƒbƒZ[ƒW
+	// ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_ROOM_MAINSEQ_ERR_MSG:
 		{
-			// ‘SƒƒbƒZ[ƒW‚ðÁ‚·
+			// å…¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ¶ˆã™
 			WFLBY_ROOM_TalkWin_Off( &p_wk->talkwin );
 			WFLBY_ROOM_ListWin_End( &p_wk->listwin, NULL, NULL );
 			WFLBY_ROOM_SubWin_End( &p_wk->subwin );
 			WFLBY_ROOM_YesNoWin_Exit( &p_wk->yesnowin );
 			
 			if( CommStateIsWifiError() ){
-				// DWCŒnƒGƒ‰[
+				// DWCç³»ã‚¨ãƒ©ãƒ¼
 				WFLBY_ROOM_ErrWin_DrawDwcErr( &p_wk->errwin, &p_wk->def_msg);
 			}
 			else if( CommStateWifiLobbyError() ){
-				// ƒƒr[ŒnƒGƒ‰[
+				// ãƒ­ãƒ“ãƒ¼ç³»ã‚¨ãƒ©ãƒ¼
 				WFLBY_ROOM_ErrWin_DrawLobbyErr( &p_wk->errwin, &p_wk->def_msg, 
 						DWC_LOBBY_GetErr() );
 			}
 			else {
-				// ƒƒr[ƒVƒXƒeƒ€ŒnƒGƒ‰[
+				// ãƒ­ãƒ“ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ç³»ã‚¨ãƒ©ãƒ¼
 				WFLBY_ROOM_ErrWin_DrawSystemErr( &p_wk->errwin, &p_wk->def_msg, 
 					WFLBY_SYSTEM_GetError( p_wk->p_system )	);
 			}
@@ -1398,17 +1398,17 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 		}
 		break;
 		
-	// ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 	case WFLBY_ROOM_MAINSEQ_ERR_MSGWAIT:
 		if( sys.trg & PAD_BUTTON_DECIDE ){
 			(*p_seq) = WFLBY_ROOM_MAINSEQ_FADEOUT;
 		}
 		break;
 
-	// ƒ^ƒCƒ€ƒAƒEƒgƒƒbƒZ[ƒW
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_ROOM_MAINSEQ_TIMEOUT_MSG:
 		{
-			// ‘SƒƒbƒZ[ƒW‚ðÁ‚·
+			// å…¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ¶ˆã™
 			WFLBY_ROOM_TalkWin_Off( &p_wk->talkwin );
 			WFLBY_ROOM_ListWin_End( &p_wk->listwin, NULL, NULL );
 			WFLBY_ROOM_SubWin_End( &p_wk->subwin );
@@ -1423,7 +1423,7 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 		}
 		break;
 		
-	// ƒ^ƒCƒ€ƒAƒEƒgƒƒbƒZ[ƒW‘Ò‚¿
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 	case WFLBY_ROOM_MAINSEQ_TIMEOUT_MSGWAIT:
 		if( WFLBY_ROOM_TalkWin_EndWait( &p_wk->talkwin ) ){
 			p_wk->msg_wait --;
@@ -1437,10 +1437,10 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 		{
 			u32 seq;
 
-			// ƒTƒu–Êó‘Ô‚ÅƒtƒF[ƒh‚Ìˆ—‚ð•ªŠò‚·‚é
+			// ã‚µãƒ–é¢çŠ¶æ…‹ã§ãƒ•ã‚§ãƒ¼ãƒ‰ã®å‡¦ç†ã‚’åˆ†å²ã™ã‚‹
 			seq = WFLBY_ROOM_UNDERWIN_GetSeq( &p_wk->under_win );
 
-			// ƒm[ƒ}ƒ‹ó‘Ô‚È‚çƒƒCƒvŠJŽn
+			// ãƒŽãƒ¼ãƒžãƒ«çŠ¶æ…‹ãªã‚‰ãƒ¯ã‚¤ãƒ—é–‹å§‹
 			if( seq == WFLBY_UNDERWIN_SEQ_NORMAL ){
 				WIPE_SYS_Start(WIPE_PATTERN_WMS, 
 						WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
@@ -1451,7 +1451,7 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 				break;
 			}
 
-			// ŠJŽn‘Ò‚¿’†‚È‚çƒƒCƒ“‰æ–Ê‚¾‚¯ƒƒCƒv
+			// é–‹å§‹å¾…ã¡ä¸­ãªã‚‰ãƒ¡ã‚¤ãƒ³ç”»é¢ã ã‘ãƒ¯ã‚¤ãƒ—
 			if( seq == WFLBY_UNDERWIN_SEQ_STARTWAIT ){
 				WIPE_SYS_Start(WIPE_PATTERN_WMS, 
 						WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
@@ -1462,7 +1462,7 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 				break;
 			}
 
-			// ‚»‚Ì‘¼‚Ìê‡‚Í‚¢‚Â‚©NORMAL‚É‚È‚é
+			// ãã®ä»–ã®å ´åˆã¯ã„ã¤ã‹NORMALã«ãªã‚‹
 			
 		}
 		break;
@@ -1477,14 +1477,14 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 	}
 
 
-	// ƒGƒ‰[’†ƒ^ƒCƒ€ƒAƒEƒgŽž‚É‚ÍXV‚µ‚È‚¢
-	// •”‰®ƒƒCƒ“ˆ—
+	// ã‚¨ãƒ©ãƒ¼ä¸­ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚ã«ã¯æ›´æ–°ã—ãªã„
+	// éƒ¨å±‹ãƒ¡ã‚¤ãƒ³å‡¦ç†
 	WFLBY_ROOM_RoomMain( p_wk );
 
-	// •”‰®•`‰æˆ—
+	// éƒ¨å±‹æç”»å‡¦ç†
 	WFLBY_ROOM_RoomDraw( p_wk );
 
-	// ƒ‰ƒCƒg‚ð‰½’iŠK‚©‚Å•ÏX
+	// ãƒ©ã‚¤ãƒˆã‚’ä½•æ®µéšŽã‹ã§å¤‰æ›´
 #ifdef WFLBY_DEBUG_ROOM_LIGHT
 	{
 		static const WFLBY_DEBUG_ROOM_LIGHTDATA sc_WFLBY_DEBUG_Light[ 2 ] = {
@@ -1530,7 +1530,7 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 	}
 #endif
 
-	// Œ»ó‚ð•\Ž¦
+	// ç¾çŠ¶ã‚’è¡¨ç¤º
 #ifdef	WFLBY_DEBUG_ROOM_DPRINT
 	if( sys.trg & PAD_BUTTON_Y ){
 		NNS_GfdDumpLnkTexVramManager();
@@ -1552,7 +1552,7 @@ PROC_RESULT WFLBY_ROOM_Main(PROC* p_proc, int* p_seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒVƒXƒeƒ€	ƒTƒu
+ *	@brief	éƒ¨å±‹ã‚·ã‚¹ãƒ†ãƒ 	ã‚µãƒ–
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBY_ROOM_Exit(PROC* p_proc, int* p_seq)
@@ -1563,31 +1563,31 @@ PROC_RESULT WFLBY_ROOM_Exit(PROC* p_proc, int* p_seq)
 	p_wk	= PROC_GetWork( p_proc );
 	p_param = PROC_GetParentWork( p_proc );
 
-	// I—¹ƒf[ƒ^‚ÌÝ’è
+	// çµ‚äº†ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
 	{
 		p_param->ret = p_wk->end_ret;
 	}
 
-	// Š„‚èž‚ÝÝ’è
+	// å‰²ã‚Šè¾¼ã¿è¨­å®š
 	sys_VBlankFuncChange( NULL, NULL );
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ƒ^ƒCƒ€ƒCƒxƒ“ƒg”jŠü
+	// ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆç ´æ£„
 	WFLBY_TIMEEVENT_Exit( p_wk->p_timeevent );
 
-	// ƒKƒWƒFƒbƒg”jŠü
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆç ´æ£„
 	WFLBY_GADGET_Exit( p_wk->p_gadget );
 
-	// ƒCƒxƒ“ƒgƒVƒXƒeƒ€”jŠü
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_EVENT_Exit( p_wk->p_event );
 
-	// ‚µ‚½‰æ–Ê”jŠü
+	// ã—ãŸç”»é¢ç ´æ£„
 	WFLBY_ROOM_UNDERWIN_Exit( &p_wk->under_win, &p_wk->boardwin, &p_wk->graphic );
 
-	// ƒGƒ‰[ƒƒbƒZ[ƒW
+	// ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	WFLBY_ROOM_Msg_Exit( &p_wk->def_msg );
 
-	// ƒEƒBƒ“ƒhƒE”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	WFLBY_ROOM_TalkWin_Exit( &p_wk->talkwin );
 	WFLBY_ROOM_TalkWin_Board_Exit( &p_wk->boardwin );
 	WFLBY_ROOM_ListWin_Exit( &p_wk->listwin, &p_wk->graphic );
@@ -1595,30 +1595,30 @@ PROC_RESULT WFLBY_ROOM_Exit(PROC* p_proc, int* p_seq)
 	WFLBY_ROOM_YesNoWin_Exit( &p_wk->yesnowin );
 	WFLBY_ROOM_SubWin_Exit( &p_wk->subwin );
 
-	// ƒJƒƒ‰”jŠü
+	// ã‚«ãƒ¡ãƒ©ç ´æ£„
 	WFLBY_CAMERA_Exit( p_wk->p_camera );
 
-	// ƒ}ƒbƒvƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€”jŠü
+	// ãƒžãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_3DMAPOBJCONT_Exit( p_wk->p_mapobjcont );
 	
-	// ƒIƒuƒWƒFƒNƒgŠÇ—ƒVƒXƒeƒ€”jŠü
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_3DOBJCONT_Exit( p_wk->p_objcont );	
 
-	// ƒ}ƒbƒvŠÇ—ƒVƒXƒeƒ€”jŠü
+	// ãƒžãƒƒãƒ—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_MAPCONT_Exit( p_wk->p_mapcont );
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_ROOM_GraphicExit( &p_wk->graphic );
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_wk );
 
-	// ƒq[ƒv”jŠü
+	// ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_WFLBY_ROOM );
 	sys_DeleteHeap( HEAPID_WFLBY_ROOMGRA );
 
 
-	// Se‚ð‘S’âŽ~
+	// Seã‚’å…¨åœæ­¢
 	Snd_SeStopAll( 0 );
 	Snd_PMVoiceStop( 0 );
 
@@ -1631,7 +1631,7 @@ PROC_RESULT WFLBY_ROOM_Exit(PROC* p_proc, int* p_seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒf[ƒ^‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 WFLBY_SYSTEM* WFLBY_ROOM_GetSystemData( WFLBY_ROOMWK* p_wk )
@@ -1641,7 +1641,7 @@ WFLBY_SYSTEM* WFLBY_ROOM_GetSystemData( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒZ[ƒuƒf[ƒ^‚ðŽæ“¾‚·‚é
+ *	@brief	éƒ¨å±‹ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 WFLBY_ROOM_SAVE* WFLBY_ROOM_GetSaveData( WFLBY_ROOMWK* p_wk )
@@ -1651,7 +1651,7 @@ WFLBY_ROOM_SAVE* WFLBY_ROOM_GetSaveData( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨ŠÇ—ƒVƒXƒeƒ€‚ðŽæ“¾‚·‚é
+ *	@brief	äººç‰©ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DOBJCONT* WFLBY_ROOM_GetObjCont( WFLBY_ROOMWK* p_wk )
@@ -1661,7 +1661,7 @@ WFLBY_3DOBJCONT* WFLBY_ROOM_GetObjCont( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒv‚¨‚Ô‚¶‚¥ŠÇ—ƒVƒXƒeƒ€‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒžãƒƒãƒ—ãŠã¶ã˜ã‡ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DMAPOBJ_CONT* WFLBY_ROOM_GetMapObjCont( WFLBY_ROOMWK* p_wk )
@@ -1671,7 +1671,7 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_ROOM_GetMapObjCont( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvŠÇ—ƒVƒXƒeƒ€‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒžãƒƒãƒ—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 WFLBY_MAPCONT* WFLBY_ROOM_GetMapCont( WFLBY_ROOMWK* p_wk )
@@ -1681,7 +1681,7 @@ WFLBY_MAPCONT* WFLBY_ROOM_GetMapCont( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰ŠÇ—ƒVƒXƒeƒ€‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚«ãƒ¡ãƒ©ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 WFLBY_CAMERA* WFLBY_ROOM_GetCamera( WFLBY_ROOMWK* p_wk )
@@ -1691,7 +1691,7 @@ WFLBY_CAMERA* WFLBY_ROOM_GetCamera( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 WFLBY_EVENT* WFLBY_ROOM_GetEvent( WFLBY_ROOMWK* p_wk )
@@ -1703,10 +1703,10 @@ WFLBY_EVENT* WFLBY_ROOM_GetEvent( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ‰[ƒ`ƒFƒbƒNƒtƒ‰ƒO‚ðÝ’è
+ *	@brief	ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	flag	ƒtƒ‰ƒO
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SetErrorCheckFlag( WFLBY_ROOMWK* p_wk, BOOL flag )
@@ -1716,12 +1716,12 @@ void WFLBY_ROOM_SetErrorCheckFlag( WFLBY_ROOMWK* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ‰[ƒ`ƒFƒbƒNƒtƒ‰ƒO‚ðŽæ“¾
+ *	@brief	ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒ`ƒFƒbƒN‚µ‚Ä‚é
- *	@retval	FALSE	ƒ`ƒFƒbƒN‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ãƒã‚§ãƒƒã‚¯ã—ã¦ã‚‹
+ *	@retval	FALSE	ãƒã‚§ãƒƒã‚¯ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_GetErrorCheckFlag( const WFLBY_ROOMWK* cp_wk )
@@ -1732,7 +1732,7 @@ BOOL WFLBY_ROOM_GetErrorCheckFlag( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒöƒvƒŒƒCƒ„[ƒiƒ“ƒo[‚ðŽæ“¾‚·‚é
+ *	@brief	ä¸»äººå…¬ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_ROOM_GetPlno( const WFLBY_ROOMWK* cp_wk )
@@ -1742,9 +1742,9 @@ u32 WFLBY_ROOM_GetPlno( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒh’†‚©ƒ`ƒFƒbƒN
- *	@retval	TRUE	ƒtƒF[ƒh’†
- *	@retval	FALSE	ƒtƒF[ƒh‚µ‚Ä‚È‚¢
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã‹ãƒã‚§ãƒƒã‚¯
+ *	@retval	TRUE	ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
+ *	@retval	FALSE	ãƒ•ã‚§ãƒ¼ãƒ‰ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_GetFadeFlag( const WFLBY_ROOMWK* cp_wk )
@@ -1754,10 +1754,10 @@ BOOL WFLBY_ROOM_GetFadeFlag( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒtƒ‰ƒOŽæ“¾
+ *	@brief	çµ‚äº†ãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	‘±s
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	ç¶šè¡Œ
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_GetEndFlag( const WFLBY_ROOMWK* cp_wk )
@@ -1767,9 +1767,9 @@ BOOL WFLBY_ROOM_GetEndFlag( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ROOM‚ðŒÄ‚ñ‚¾ƒVƒXƒeƒ€‚É•Ô‚·’l
+ *	@brief	ROOMã‚’å‘¼ã‚“ã ã‚·ã‚¹ãƒ†ãƒ ã«è¿”ã™å€¤
  *
- *	@return	’l
+ *	@return	å€¤
  */
 //-----------------------------------------------------------------------------
 u8 WFLBY_ROOM_GetEndRet( const WFLBY_ROOMWK* cp_wk )
@@ -1779,10 +1779,10 @@ u8 WFLBY_ROOM_GetEndRet( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒtƒ‰ƒO‚ðÝ’è‚·‚é
+ *	@brief	çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		ƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SetEndFlag( WFLBY_ROOMWK* p_wk, BOOL flag )
@@ -1792,10 +1792,10 @@ void WFLBY_ROOM_SetEndFlag( WFLBY_ROOMWK* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹Žž‚ÉROOM‚ðŒÄ‚ñ‚¾ƒVƒXƒeƒ€‚É•Ô‚·’l
+ *	@brief	çµ‚äº†æ™‚ã«ROOMã‚’å‘¼ã‚“ã ã‚·ã‚¹ãƒ†ãƒ ã«è¿”ã™å€¤
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	retdata		ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	retdata		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SetEndRet( WFLBY_ROOMWK* p_wk,  u8 retdata )
@@ -1805,10 +1805,10 @@ void WFLBY_ROOM_SetEndRet( WFLBY_ROOMWK* p_wk,  u8 retdata )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒiƒ“ƒo[‚ðÝ’è‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	evno		ƒCƒxƒ“ƒgƒiƒ“ƒo[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	evno		ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SetEvNo( WFLBY_ROOMWK* p_wk, u8 evno )
@@ -1818,11 +1818,11 @@ void WFLBY_ROOM_SetEvNo( WFLBY_ROOMWK* p_wk, u8 evno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒiƒ“ƒo[‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒCƒxƒ“ƒgƒiƒ“ƒo[
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u8 WFLBY_ROOM_GetEvNo( const WFLBY_ROOMWK* cp_wk )
@@ -1832,9 +1832,9 @@ u8 WFLBY_ROOM_GetEvNo( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒAƒEƒgƒ`ƒFƒbƒN‚ð’âŽ~‚µ‚Ü‚·
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒã‚§ãƒƒã‚¯ã‚’åœæ­¢ã—ã¾ã™
  *		
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_OffTimeOutCheck( WFLBY_ROOMWK* p_wk )
@@ -1845,10 +1845,10 @@ void WFLBY_ROOM_OffTimeOutCheck( WFLBY_ROOMWK* p_wk )
 #if PL_T0867_080716_FIX
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒö‚ªƒCƒxƒ“ƒgŒãAƒI[ƒg‚ÅˆÚ“®‚·‚é‰Â”\«‚ª‚ ‚é‚Ì‚©H‚ðÝ’è
+ *	@brief	ä¸»äººå…¬ãŒã‚¤ãƒ™ãƒ³ãƒˆå¾Œã€ã‚ªãƒ¼ãƒˆã§ç§»å‹•ã™ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã‹ï¼Ÿã‚’è¨­å®š
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	flag		ƒtƒ‰ƒO
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SetPlayerEventAfterMove( WFLBY_ROOMWK* p_wk, BOOL flag )
@@ -1858,12 +1858,12 @@ void WFLBY_ROOM_SetPlayerEventAfterMove( WFLBY_ROOMWK* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒö‚ªƒCƒxƒ“ƒgŒãAƒI[ƒg‚ÅˆÚ“®‚·‚é‰Â”\«‚ª‚ ‚é‚Ì‚©H‚ðÝ’è
+ *	@brief	ä¸»äººå…¬ãŒã‚¤ãƒ™ãƒ³ãƒˆå¾Œã€ã‚ªãƒ¼ãƒˆã§ç§»å‹•ã™ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã‹ï¼Ÿã‚’è¨­å®š
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ˆÚ“®‚·‚é		‘¼l‚Ì‰ï˜bƒWƒƒƒ“ƒv•s‰Â”\
- *	@retval	FALSE	ˆÚ“®‚µ‚È‚¢		‘¼l‚Ì‰ï˜bƒWƒƒƒ“ƒv‰Â”\
+ *	@retval	TRUE	ç§»å‹•ã™ã‚‹		ä»–äººã®ä¼šè©±ã‚¸ãƒ£ãƒ³ãƒ—ä¸å¯èƒ½
+ *	@retval	FALSE	ç§»å‹•ã—ãªã„		ä»–äººã®ä¼šè©±ã‚¸ãƒ£ãƒ³ãƒ—å¯èƒ½
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_CheckPlayerEventAfterMove( const WFLBY_ROOMWK* cp_wk )
@@ -1874,11 +1874,11 @@ BOOL WFLBY_ROOM_CheckPlayerEventAfterMove( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPC‰ï˜bƒrƒW[ó‘ÔÝ’è
+ *	@brief	NPCä¼šè©±ãƒ“ã‚¸ãƒ¼çŠ¶æ…‹è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	plno		ƒvƒŒƒCƒ„[ƒiƒ“ƒo[
- *	@param	busy		BUSYó‘Ô	TRUEFBUSY	FALSEFNORMAL
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	busy		BUSYçŠ¶æ…‹	TRUEï¼šBUSY	FALSEï¼šNORMAL
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SetNpcTalkBusy( WFLBY_ROOMWK* p_wk, u8 plno, BOOL busy )
@@ -1889,13 +1889,13 @@ void WFLBY_ROOM_SetNpcTalkBusy( WFLBY_ROOMWK* p_wk, u8 plno, BOOL busy )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPC‰ï˜b‰Â”\‚©ƒ`ƒFƒbƒN
+ *	@brief	NPCä¼šè©±å¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	plno		ƒvƒŒƒCƒ„[ƒiƒ“ƒo[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	TRUE	‰ï˜b•s‰Â”\
- *	@retval	FALSE	‰ï˜b‰Â”\
+ *	@retval	TRUE	ä¼šè©±ä¸å¯èƒ½
+ *	@retval	FALSE	ä¼šè©±å¯èƒ½
  */
 //-----------------------------------------------------------------------------
 BOOL WFBLY_ROOM_CheckNpcTalkBusy( const WFLBY_ROOMWK* cp_wk, u8 plno )
@@ -1905,11 +1905,11 @@ BOOL WFBLY_ROOM_CheckNpcTalkBusy( const WFLBY_ROOMWK* cp_wk, u8 plno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPCó‘Ô•\Ž¦‰Â”\Ý’è		NPC‚Ì“®ì‚ðŽålŒö‘¤‚ª‘€ì‚Å‚«‚é•K—v‚à‚ ‚è‚Ü‚·B
+ *	@brief	NPCçŠ¶æ…‹è¡¨ç¤ºå¯èƒ½è¨­å®š		NPCã®å‹•ä½œã‚’ä¸»äººå…¬å´ãŒæ“ä½œã§ãã‚‹å¿…è¦ã‚‚ã‚ã‚Šã¾ã™ã€‚
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	plno		ƒvƒŒƒCƒ„[ƒiƒ“ƒo[
- *	@param	busy		BUSYó‘Ô	TRUE:BUSY		FALSE:NORMAL
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	busy		BUSYçŠ¶æ…‹	TRUE:BUSY		FALSE:NORMAL
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SetNpcInfoDrawBusy( WFLBY_ROOMWK* p_wk, u8 plno, BOOL busy )
@@ -1920,13 +1920,13 @@ void WFLBY_ROOM_SetNpcInfoDrawBusy( WFLBY_ROOMWK* p_wk, u8 plno, BOOL busy )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPCó‘Ô•\Ž¦‰Â”\‚©ƒ`ƒFƒbƒN	NPC‚Ì“®ì‚ðŽålŒö‘¤‚ª‘€ì‚Å‚«‚é•K—v‚à‚ ‚è‚Ü‚·B
+ *	@brief	NPCçŠ¶æ…‹è¡¨ç¤ºå¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯	NPCã®å‹•ä½œã‚’ä¸»äººå…¬å´ãŒæ“ä½œã§ãã‚‹å¿…è¦ã‚‚ã‚ã‚Šã¾ã™ã€‚
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	plno		ƒvƒŒƒCƒ„[ƒiƒ“ƒo[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	TRUE	‰ï˜b•s‰Â”\
- *	@retval	FALSE	‰ï˜b‰Â”\
+ *	@retval	TRUE	ä¼šè©±ä¸å¯èƒ½
+ *	@retval	FALSE	ä¼šè©±å¯èƒ½
  */
 //-----------------------------------------------------------------------------
 BOOL WFBLY_ROOM_CheckNpcInfoDrawBusy( const WFLBY_ROOMWK* cp_wk, u8 plno )
@@ -1940,10 +1940,10 @@ BOOL WFBLY_ROOM_CheckNpcInfoDrawBusy( const WFLBY_ROOMWK* cp_wk, u8 plno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•\Ž¦
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_TALKWIN_PrintStr( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str )
@@ -1953,10 +1953,10 @@ void WFLBY_ROOM_TALKWIN_PrintStr( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•\Ž¦	ˆê“x‚É‘S•”•\Ž¦
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ä¸€åº¦ã«å…¨éƒ¨è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_TALKWIN_PrintStrAllPut( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str )
@@ -1966,12 +1966,12 @@ void WFLBY_ROOM_TALKWIN_PrintStrAllPut( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW‚Ì•\Ž¦‚ªŠ®—¹‚µ‚½‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤ºãŒå®Œäº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒƒbƒZ[ƒWI—¹
- *	@retval	FALSE	ƒƒbƒZ[ƒW•\Ž¦’†
+ *	@retval	TRUE	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†
+ *	@retval	FALSE	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_TALKWIN_WaitEnd( const WFLBY_ROOMWK* cp_wk )
@@ -1981,9 +1981,9 @@ BOOL WFLBY_ROOM_TALKWIN_WaitEnd( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽžŠÔƒEƒGƒCƒgƒAƒCƒRƒ“‚ð•\Ž¦‚·‚é
+ *	@brief	æ™‚é–“ã‚¦ã‚¨ã‚¤ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_TALKWIN_StartTimeWait( WFLBY_ROOMWK* p_wk )
@@ -1993,9 +1993,9 @@ void WFLBY_ROOM_TALKWIN_StartTimeWait( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽžŠÔƒEƒGƒCƒgƒAƒCƒRƒ“‚ðÁ‚·
+ *	@brief	æ™‚é–“ã‚¦ã‚¨ã‚¤ãƒˆã‚¢ã‚¤ã‚³ãƒ³ã‚’æ¶ˆã™
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_TALKWIN_StopTimeWait( WFLBY_ROOMWK* p_wk )
@@ -2005,12 +2005,12 @@ void WFLBY_ROOM_TALKWIN_StopTimeWait( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒg•\Ž¦’†‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆè¡¨ç¤ºä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒ^ƒCƒ€ƒEƒGƒCƒg•\Ž¦’†
- *	@retval	FALSE	ƒ^ƒCƒ€ƒEƒGƒCƒgo‚µ‚Ä‚Ü‚¹‚ñ
+ *	@retval	TRUE	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆè¡¨ç¤ºä¸­
+ *	@retval	FALSE	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆå‡ºã—ã¦ã¾ã›ã‚“
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_TALKWIN_CheckTimeWait( const WFLBY_ROOMWK* cp_wk )
@@ -2020,9 +2020,9 @@ BOOL WFLBY_ROOM_TALKWIN_CheckTimeWait( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE‚ðÁ‚·
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_TALKWIN_Off( WFLBY_ROOMWK* p_wk )
@@ -2035,10 +2035,10 @@ void WFLBY_ROOM_TALKWIN_Off( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÅ”ÂƒEƒBƒ“ƒhƒE	ƒƒbƒZ[ƒW•\Ž¦
+ *	@brief	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_BOARDWIN_PrintStr( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str )
@@ -2048,10 +2048,10 @@ void WFLBY_ROOM_BOARDWIN_PrintStr( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÅ”ÂƒEƒBƒ“ƒhƒE	ƒƒbƒZ[ƒWˆê‹C‚É•\Ž¦
+ *	@brief	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä¸€æ°—ã«è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_BOARDWIN_PrintStrAllPut( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str )
@@ -2061,12 +2061,12 @@ void WFLBY_ROOM_BOARDWIN_PrintStrAllPut( WFLBY_ROOMWK* p_wk, const STRBUF* cp_st
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÅ”ÂƒEƒBƒ“ƒhƒE	ƒƒbƒZ[ƒW•\Ž¦Š®—¹‘Ò‚¿
+ *	@brief	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå®Œäº†å¾…ã¡
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_BOARDWIN_WaitEnd( const WFLBY_ROOMWK* cp_wk )
@@ -2076,9 +2076,9 @@ BOOL WFLBY_ROOM_BOARDWIN_WaitEnd( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÅ”ÂƒEƒBƒ“ƒhƒE‚Ì•\Ž¦Á‚µ
+ *	@brief	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºæ¶ˆã—
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_BOARDWIN_Off( WFLBY_ROOMWK* p_wk )
@@ -2088,10 +2088,10 @@ void WFLBY_ROOM_BOARDWIN_Off( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	€–ÚƒŠƒXƒgì¬
+ *	@brief	é …ç›®ãƒªã‚¹ãƒˆä½œæˆ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	num			ƒŠƒXƒg”
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	num			ãƒªã‚¹ãƒˆæ•°
  */
 //-----------------------------------------------------------------------------
 
@@ -2108,9 +2108,9 @@ void WFLBY_ROOM_LISTWIN_CreateBmpList_WithThirdArg( WFLBY_ROOMWK* p_wk, u32 num,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	€–ÚƒŠƒXƒg”jŠü
+ *	@brief	é …ç›®ãƒªã‚¹ãƒˆç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_LISTWIN_DeleteBmpList( WFLBY_ROOMWK* p_wk )
@@ -2120,11 +2120,11 @@ void WFLBY_ROOM_LISTWIN_DeleteBmpList( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	€–Ú‚Ì’Ç‰Á
+ *	@brief	é …ç›®ã®è¿½åŠ 
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
- *	@param	param		ƒpƒ‰ƒ[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_LISTWIN_SetBmpListStr( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str, u32 param )
@@ -2134,11 +2134,11 @@ void WFLBY_ROOM_LISTWIN_SetBmpListStr( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	€–ÚƒŠƒXƒgƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+ *	@brief	é …ç›®ãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ|ƒCƒ“ƒ^
+ *	@return	ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 const BMP_MENULIST_DATA* WFLBY_ROOM_LISTWIN_GetBmpList( const WFLBY_ROOMWK* cp_wk )
@@ -2148,13 +2148,13 @@ const BMP_MENULIST_DATA* WFLBY_ROOM_LISTWIN_GetBmpList( const WFLBY_ROOMWK* cp_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg‚Éparam‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆã«paramãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	‚ ‚é
- *	@retval	FALSE	‚È‚¢
+ *	@retval	TRUE	ã‚ã‚‹
+ *	@retval	FALSE	ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_LISTWIN_CheckBmpListParam( const WFLBY_ROOMWK* cp_wk, u32 param )
@@ -2165,12 +2165,12 @@ BOOL WFLBY_ROOM_LISTWIN_CheckBmpListParam( const WFLBY_ROOMWK* cp_wk, u32 param 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒEƒBƒ“ƒhƒE	‰Šú‰»
+ *	@brief	ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		•\Ž¦ƒŠƒXƒgƒf[ƒ^
- *	@param	list_p		ƒŠƒXƒg‰ŠúˆÊ’u
- *	@param	cursor_p	ƒŠƒXƒg‰ŠúƒJ[ƒ\ƒ‹
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		è¡¨ç¤ºãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	list_p		ãƒªã‚¹ãƒˆåˆæœŸä½ç½®
+ *	@param	cursor_p	ãƒªã‚¹ãƒˆåˆæœŸã‚«ãƒ¼ã‚½ãƒ«
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_LISTWIN_Start( WFLBY_ROOMWK* p_wk, const BMPLIST_HEADER* cp_data, u16 list_p, u16 cursor_p )
@@ -2181,15 +2181,15 @@ void WFLBY_ROOM_LISTWIN_Start( WFLBY_ROOMWK* p_wk, const BMPLIST_HEADER* cp_data
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒEƒBƒ“ƒhƒE	‰Šú‰»
+ *	@brief	ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		•\Ž¦ƒŠƒXƒgƒf[ƒ^
- *	@param	list_p		ƒŠƒXƒg‰ŠúˆÊ’u
- *	@param	cursor_p	ƒŠƒXƒg‰ŠúƒJ[ƒ\ƒ‹
- *	@param	cx			ƒrƒbƒgƒ}ƒbƒvƒLƒƒƒ‰‚˜
- *	@param	cy			ƒrƒbƒgƒ}ƒbƒvƒLƒƒƒ‰‚™
- *	@param	szcx		ƒrƒbƒgƒ}ƒbƒvƒLƒƒƒ‰ƒTƒCƒY‚˜
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		è¡¨ç¤ºãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	list_p		ãƒªã‚¹ãƒˆåˆæœŸä½ç½®
+ *	@param	cursor_p	ãƒªã‚¹ãƒˆåˆæœŸã‚«ãƒ¼ã‚½ãƒ«
+ *	@param	cx			ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚­ãƒ£ãƒ©ï½˜
+ *	@param	cy			ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚­ãƒ£ãƒ©ï½™
+ *	@param	szcx		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚ºï½˜
  */
 //-----------------------------------------------------------------------------
 extern void WFLBY_ROOM_LISTWIN_Start_Ex( WFLBY_ROOMWK* p_wk, const BMPLIST_HEADER* cp_data, u16 list_p, u16 cursor_p, u8 cx, u8 cy, u8 szcx )
@@ -2199,13 +2199,13 @@ extern void WFLBY_ROOM_LISTWIN_Start_Ex( WFLBY_ROOMWK* p_wk, const BMPLIST_HEADE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒEƒBƒ“ƒhƒE	ƒƒCƒ“
+ *	@brief	ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"param = ‘I‘ðƒpƒ‰ƒ[ƒ^"
- * @retval	"BMPLIST_NULL = ‘I‘ð’†"
- * @retval	"BMPLIST_CANCEL	= ƒLƒƒƒ“ƒZƒ‹(‚aƒ{ƒ^ƒ“)"
+ * @retval	"param = é¸æŠžãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿"
+ * @retval	"BMPLIST_NULL = é¸æŠžä¸­"
+ * @retval	"BMPLIST_CANCEL	= ã‚­ãƒ£ãƒ³ã‚»ãƒ«(ï¼¢ãƒœã‚¿ãƒ³)"
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_ROOM_LISTWIN_Main( WFLBY_ROOMWK* p_wk )
@@ -2215,11 +2215,11 @@ u32 WFLBY_ROOM_LISTWIN_Main( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒEƒBƒ“ƒhƒE	I—¹
+ *	@brief	ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	çµ‚äº†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_list_p	ƒŠƒXƒgƒJ[ƒ\ƒ‹ˆÊ’uŽæ“¾
- *	@param	p_cursor_p	ƒJ[ƒ\ƒ‹ˆÊ’uŽæ“¾
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_list_p	ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—
+ *	@param	p_cursor_p	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_LISTWIN_End( WFLBY_ROOMWK* p_wk, u16* p_list_p, u16* p_cursor_p )
@@ -2229,10 +2229,10 @@ void WFLBY_ROOM_LISTWIN_End( WFLBY_ROOMWK* p_wk, u16* p_list_p, u16* p_cursor_p 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒEƒBƒ“ƒhƒE	–îˆó@ONOFF
+ *	@brief	ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	çŸ¢å°ã€€ONOFF
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		•\Ž¦ƒtƒ‰ƒO	TRUEF•\Ž¦
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		è¡¨ç¤ºãƒ•ãƒ©ã‚°	TRUEï¼šè¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_LISTWIN_YAZIRUSHI_SetDraw( WFLBY_ROOMWK* p_wk, BOOL flag )
@@ -2243,13 +2243,13 @@ void WFLBY_ROOM_LISTWIN_YAZIRUSHI_SetDraw( WFLBY_ROOMWK* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE•\Ž¦
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cx			‚˜ƒLƒƒƒ‰ˆÊ’u
- *	@param	cy			‚™ƒLƒƒƒ‰ˆÊ’u
- *	@param	szcx		‚˜ƒLƒƒƒ‰ƒTƒCƒY
- *	@param	szcy		‚™ƒLƒƒƒ‰ƒTƒCƒY
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cx			ï½˜ã‚­ãƒ£ãƒ©ä½ç½®
+ *	@param	cy			ï½™ã‚­ãƒ£ãƒ©ä½ç½®
+ *	@param	szcx		ï½˜ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+ *	@param	szcy		ï½™ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SUBWIN_Start( WFLBY_ROOMWK* p_wk, u8 cx, u8 cy, u8 szcx, u8 szcy )
@@ -2259,9 +2259,9 @@ void WFLBY_ROOM_SUBWIN_Start( WFLBY_ROOMWK* p_wk, u8 cx, u8 cy, u8 szcx, u8 szcy
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE•\Ž¦OFF
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºOFF
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SUBWIN_End( WFLBY_ROOMWK* p_wk )
@@ -2271,12 +2271,12 @@ void WFLBY_ROOM_SUBWIN_End( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE	ƒƒbƒZ[ƒW•\Ž¦
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		ƒƒbƒZ[ƒW
- *	@param	x			‚˜ƒhƒbƒgÀ•W
- *	@param	y			‚™ƒhƒbƒgÀ•W
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	x			ï½˜ãƒ‰ãƒƒãƒˆåº§æ¨™
+ *	@param	y			ï½™ãƒ‰ãƒƒãƒˆåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SUBWIN_Print( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str, u8 x, u8 y )
@@ -2286,9 +2286,9 @@ void WFLBY_ROOM_SUBWIN_Print( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str, u8 x, u8
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE	•\Ž¦•¨ƒNƒŠƒA
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	è¡¨ç¤ºç‰©ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SUBWIN_Clear( WFLBY_ROOMWK* p_wk )
@@ -2298,13 +2298,13 @@ void WFLBY_ROOM_SUBWIN_Clear( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹éŒ`ƒNƒŠƒAˆ—
+ *	@brief	çŸ©å½¢ã‚¯ãƒªã‚¢å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
- *	@param	sx		‚˜ƒTƒCƒY
- *	@param	sy		‚™ƒTƒCƒY
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
+ *	@param	sx		ï½˜ã‚µã‚¤ã‚º
+ *	@param	sy		ï½™ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_SUBWIN_ClearRect( WFLBY_ROOMWK* p_wk, u16 x, u16 y, u16 sx, u16 sy )
@@ -2314,9 +2314,9 @@ void WFLBY_ROOM_SUBWIN_ClearRect( WFLBY_ROOMWK* p_wk, u16 x, u16 y, u16 sx, u16 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒE	ŠJŽn
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_YESNOWIN_Start( WFLBY_ROOMWK* p_wk )
@@ -2327,9 +2327,9 @@ void WFLBY_ROOM_YESNOWIN_Start( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒE	ŠJŽn	‚¢‚¢‚¦‚©‚çŠJŽn
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	é–‹å§‹	ã„ã„ãˆã‹ã‚‰é–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_YESNOWIN_StartNo( WFLBY_ROOMWK* p_wk )
@@ -2340,13 +2340,13 @@ void WFLBY_ROOM_YESNOWIN_StartNo( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒE@ƒƒCƒ“
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	WFLBY_ROOM_YESNO_OK,	// ‚Í‚¢
- *	@retval	WFLBY_ROOM_YESNO_NO,	// ‚¢‚¢‚¦
- *	@retval	WFLBY_ROOM_YESNO_WAIT,	// ‘I‚Ñ’†
+ *	@retval	WFLBY_ROOM_YESNO_OK,	// ã¯ã„
+ *	@retval	WFLBY_ROOM_YESNO_NO,	// ã„ã„ãˆ
+ *	@retval	WFLBY_ROOM_YESNO_WAIT,	// é¸ã³ä¸­
  */
 //-----------------------------------------------------------------------------
 WFLBY_ROOM_YESNO_RET WFLBY_ROOM_YESNOWIN_Main( WFLBY_ROOMWK* p_wk )
@@ -2355,17 +2355,17 @@ WFLBY_ROOM_YESNO_RET WFLBY_ROOM_YESNOWIN_Main( WFLBY_ROOMWK* p_wk )
 
 	result = WFLBY_ROOM_ListWin_Main( &p_wk->listwin );
 	switch( result ){
-	// ‚¢‚¢‚¦
+	// ã„ã„ãˆ
 	case BMPLIST_CANCEL:
 		Snd_SePlay( WFLBY_SND_CURSOR );
 	case WFLBY_ROOM_YESNO_NO:
 		return WFLBY_ROOM_YESNO_NO;
 
-	//  ‚Í‚¢
+	//  ã¯ã„
 	case WFLBY_ROOM_YESNO_OK:
 		return WFLBY_ROOM_YESNO_OK;
 
-	// ‘I‘ð’†
+	// é¸æŠžä¸­
 	default:
 		break;
 	}
@@ -2375,26 +2375,26 @@ WFLBY_ROOM_YESNO_RET WFLBY_ROOM_YESNOWIN_Main( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒE@I—¹
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€çµ‚äº†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_YESNOWIN_End( WFLBY_ROOMWK* p_wk )
 {
-	// ƒŠƒXƒgÁ‚·
+	// ãƒªã‚¹ãƒˆæ¶ˆã™
 	WFLBY_ROOM_ListWin_End( &p_wk->listwin, NULL, NULL );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Lêê—pƒƒbƒZ[ƒWƒf[ƒ^‚ÌÝ’è
+ *	@brief	åºƒå ´å°‚ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	type		ƒƒbƒZ[ƒWƒ^ƒCƒv
- *	@param	stridx		•¶Žš—ñIDX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
+ *	@param	stridx		æ–‡å­—åˆ—IDX
  *
- *	@return	ƒƒbƒZ[ƒWƒf[ƒ^
+ *	@return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 STRBUF* WFLBY_ROOM_MSG_Get( WFLBY_ROOMWK* p_wk, WFLBY_DEFMSG_TYPE type, u32 stridx )
@@ -2404,13 +2404,13 @@ STRBUF* WFLBY_ROOM_MSG_Get( WFLBY_ROOMWK* p_wk, WFLBY_DEFMSG_TYPE type, u32 stri
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”Žš‚ðÝ’è
+ *	@brief	æ•°å­—ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	num			”Žš
- *	@param	keta		Œ…
- *	@param	bufid		ƒoƒbƒtƒ@‚h‚c
- *	@param	disptype	¶‚Â‚ß‚Æ‚©
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	num			æ•°å­—
+ *	@param	keta		æ¡
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ï¼©ï¼¤
+ *	@param	disptype	å·¦ã¤ã‚ã¨ã‹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_MSG_SetNumber( WFLBY_ROOMWK* p_wk, u32  num, u32 keta, u32 bufid, NUMBER_DISPTYPE disptype )
@@ -2420,11 +2420,11 @@ void WFLBY_ROOM_MSG_SetNumber( WFLBY_ROOMWK* p_wk, u32  num, u32 keta, u32 bufid
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚ÉƒvƒŒƒCƒ„[–¼‚ðÝ’è
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *	@param	cp_mystatus	MYSTATUS
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_MSG_SetPlayerName( WFLBY_ROOMWK* p_wk, const MYSTATUS* cp_mystatus, u32 bufid )
@@ -2434,11 +2434,11 @@ void WFLBY_ROOM_MSG_SetPlayerName( WFLBY_ROOMWK* p_wk, const MYSTATUS* cp_mystat
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚ÉƒvƒŒƒCƒ„[–¼‚ðÝ’è
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_MSG_SetIdxPlayerName( WFLBY_ROOMWK* p_wk, u32 idx, u32 bufid )
@@ -2460,11 +2460,11 @@ void WFLBY_ROOM_MSG_SetIdxPlayerName( WFLBY_ROOMWK* p_wk, u32 idx, u32 bufid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€‚ðÝ’è
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	type		ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_MSG_SetMinigame( WFLBY_ROOMWK* p_wk, WFLBY_GAMETYPE type, u32 bufid )
@@ -2474,11 +2474,11 @@ void WFLBY_ROOM_MSG_SetMinigame( WFLBY_ROOMWK* p_wk, WFLBY_GAMETYPE type, u32 bu
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒCƒxƒ“ƒg–¼‚ðÝ’è
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆåã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	type		ƒ^ƒCƒ€ƒCƒxƒ“ƒgGMMƒ^ƒCƒv
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆGMMã‚¿ã‚¤ãƒ—
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_MSG_SetTimeEvent( WFLBY_ROOMWK* p_wk, WFLBY_EVENTGMM_TYPE type, u32 bufid )
@@ -2488,11 +2488,11 @@ void WFLBY_ROOM_MSG_SetTimeEvent( WFLBY_ROOMWK* p_wk, WFLBY_EVENTGMM_TYPE type, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€‚ðÝ’è
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	item		ƒAƒCƒeƒ€
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	item		ã‚¢ã‚¤ãƒ†ãƒ 
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_MSG_SetItem( WFLBY_ROOMWK* p_wk, WFLBY_ITEMTYPE item, u32 bufid )
@@ -2502,9 +2502,9 @@ void WFLBY_ROOM_MSG_SetItem( WFLBY_ROOMWK* p_wk, WFLBY_ITEMTYPE item, u32 bufid 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚ÌƒNƒŠƒA
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã®ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_MSG_ClearWordSet( WFLBY_ROOMWK* p_wk )
@@ -2514,7 +2514,7 @@ void WFLBY_ROOM_MSG_ClearWordSet( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚Éƒ^ƒCƒ€ƒ][ƒ“‚ÌƒƒbƒZ[ƒW‚ð’Ç‰Á‚·‚é
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿½åŠ ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_MSG_SetAisatsuJapan( WFLBY_ROOMWK* p_wk, u32 bufID, u32 time_zone )
@@ -2544,7 +2544,7 @@ void WFLBY_ROOM_MSG_SetAisatsuSpain( WFLBY_ROOMWK* p_wk, u32 bufID, u32 time_zon
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚É‹Zƒ^ƒCƒv–¼‚ðÝ’è
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«æŠ€ã‚¿ã‚¤ãƒ—åã‚’è¨­å®š
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_MSG_SetWazaType( WFLBY_ROOMWK* p_wk, u32 bufID, WFLBY_POKEWAZA_TYPE type )
@@ -2555,16 +2555,16 @@ void WFLBY_ROOM_MSG_SetWazaType( WFLBY_ROOMWK* p_wk, u32 bufID, WFLBY_POKEWAZA_T
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒJ[ƒh‚Ì•\Ž¦
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰ã®è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
- *	@param	aikotoba	‡Œ¾—t‚ª‚ ‚éê‡•\Ž¦‚·‚é‚©	TRUE:•\Ž¦‚·‚é
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	aikotoba	åˆè¨€è‘‰ãŒã‚ã‚‹å ´åˆè¡¨ç¤ºã™ã‚‹ã‹	TRUE:è¡¨ç¤ºã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_UNDERWIN_TrCardOn( WFLBY_ROOMWK* p_wk, u32 idx, BOOL aikotoba )
 {
-	// •\Ž¦•ÏX‚·‚é•K—v‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// è¡¨ç¤ºå¤‰æ›´ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( (WFLBY_ROOM_UNDERWIN_GetTrCardPlIdx( &p_wk->under_win ) == idx) &&
 		(WFLBY_ROOM_UNDERWIN_CheckTrCardDraw( &p_wk->under_win ) == TRUE) &&
 #if PL_T0862_080712_FIX
@@ -2578,10 +2578,10 @@ void WFLBY_ROOM_UNDERWIN_TrCardOn( WFLBY_ROOMWK* p_wk, u32 idx, BOOL aikotoba )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒhƒKƒWƒFƒbƒg•ÏX
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã‚¬ã‚¸ã‚§ãƒƒãƒˆå¤‰æ›´
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	item		•ÏX‚·‚éƒAƒCƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	item		å¤‰æ›´ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_UNDERWIN_TrCardGadGetChange( WFLBY_ROOMWK* p_wk, WFLBY_ITEMTYPE item )
@@ -2591,9 +2591,9 @@ void WFLBY_ROOM_UNDERWIN_TrCardGadGetChange( WFLBY_ROOMWK* p_wk, WFLBY_ITEMTYPE 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒJ[ƒh@‹Zƒ^ƒCƒv‚ð‚ðÄ•`‰æ
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰ã€€æŠ€ã‚¿ã‚¤ãƒ—ã‚’ã‚’å†æç”»
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_UNDERWIN_TrCardWazaTypeWrite( WFLBY_ROOMWK* p_wk )
@@ -2601,7 +2601,7 @@ void WFLBY_ROOM_UNDERWIN_TrCardWazaTypeWrite( WFLBY_ROOMWK* p_wk )
 	const WFLBY_USER_PROFILE* cp_profile;
 	u32 plidx;
 
-	// •\Ž¦•ÏX‚·‚é•K—v‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// è¡¨ç¤ºå¤‰æ›´ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( (WFLBY_ROOM_UNDERWIN_CheckTrCardDraw( &p_wk->under_win ) == FALSE) ){
 		return;
 	}
@@ -2614,9 +2614,9 @@ void WFLBY_ROOM_UNDERWIN_TrCardWazaTypeWrite( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒJ[ƒh‚Ì”ñ•\Ž¦
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰ã®éžè¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_UNDERWIN_TrCardOff( WFLBY_ROOMWK* p_wk )
@@ -2626,11 +2626,11 @@ void WFLBY_ROOM_UNDERWIN_TrCardOff( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦’†‚ÌƒvƒŒƒCƒ„[ID‚ðŽæ“¾‚·‚é
+ *	@brief	è¡¨ç¤ºä¸­ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼IDã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return ƒvƒŒƒCƒ„[ƒiƒ“ƒo[
+ *	@return ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_ROOM_UNDERWIN_TrCardGetPlIdx( const WFLBY_ROOMWK* cp_wk )
@@ -2640,12 +2640,12 @@ u32 WFLBY_ROOM_UNDERWIN_TrCardGetPlIdx( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒJ[ƒh‚ð•\Ž¦‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰ã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒgƒŒ[ƒiƒJ[ƒh‚ð•\Ž¦‚µ‚Ä‚¢‚é
- *	@retval	FALSE	ƒgƒŒ[ƒiƒJ[ƒh‚ð•\Ž¦‚µ‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰ã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹
+ *	@retval	FALSE	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰ã‚’è¡¨ç¤ºã—ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_UNDERWIN_TrCardGetDraw( const WFLBY_ROOMWK* cp_wk )
@@ -2655,15 +2655,15 @@ BOOL WFLBY_ROOM_UNDERWIN_TrCardGetDraw( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒJ[ƒh‚ðOFF‚É‚·‚é‚±‚Æ‚ª‚©‚Ì‚¤‚©H
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰ã‚’OFFã«ã™ã‚‹ã“ã¨ãŒã‹ã®ã†ã‹ï¼Ÿ
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‰Â”\
- *	@retval	FALSE	•s‰Â”\
+ *	@retval	TRUE	å¯èƒ½
+ *	@retval	FALSE	ä¸å¯èƒ½
  *
- *	‚¿‚å‚Á‚Æ‚í‚©‚è‚É‚­‚¢‚Å‚·‚ªA
- *	ƒŠƒNƒGƒXƒg‚ªNONE‚ÅƒgƒŒ[ƒi[ƒJ[ƒh•\Ž¦’†‚©H‚Æ‚¢‚¤‚±‚Æ‚Å‚·B
+ *	ã¡ã‚‡ã£ã¨ã‚ã‹ã‚Šã«ãã„ã§ã™ãŒã€
+ *	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒNONEã§ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰è¡¨ç¤ºä¸­ã‹ï¼Ÿã¨ã„ã†ã“ã¨ã§ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_UNDERWIN_TrCardCheckCanOff( const WFLBY_ROOMWK* cp_wk )
@@ -2673,12 +2673,12 @@ BOOL WFLBY_ROOM_UNDERWIN_TrCardCheckCanOff( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚µ‚½‰æ–Ê‚ª’Êíó‘Ô‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ã—ãŸç”»é¢ãŒé€šå¸¸çŠ¶æ…‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	’Êíó‘Ô
- *	@retval	FALSE	‚»‚Ì‘¼‚Ìó‘Ô
+ *	@retval	TRUE	é€šå¸¸çŠ¶æ…‹
+ *	@retval	FALSE	ãã®ä»–ã®çŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_UNDERWIN_CheckSeqNormal( const WFLBY_ROOMWK* cp_wk )
@@ -2695,9 +2695,9 @@ BOOL WFLBY_ROOM_UNDERWIN_CheckSeqNormal( const WFLBY_ROOMWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒ{ƒ^ƒ“•\Ž¦
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãƒœã‚¿ãƒ³è¡¨ç¤º
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_UNDERWIN_FloatBttnOn( WFLBY_ROOMWK* p_wk )
@@ -2707,9 +2707,9 @@ void WFLBY_ROOM_UNDERWIN_FloatBttnOn( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒ{ƒ^ƒ“”ñ•\Ž¦
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãƒœã‚¿ãƒ³éžè¡¨ç¤º
  *	
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_UNDERWIN_FloatBttnOff( WFLBY_ROOMWK* p_wk )
@@ -2719,13 +2719,13 @@ void WFLBY_ROOM_UNDERWIN_FloatBttnOff( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒAƒjƒ’†‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	flaotidx	ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flaotidx	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	ƒAƒjƒ’†
- *	@retval	FALSE	ƒAƒjƒ‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ã‚¢ãƒ‹ãƒ¡ä¸­
+ *	@retval	FALSE	ã‚¢ãƒ‹ãƒ¡ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_FLOAT_CheckShakeAnm( const WFLBY_ROOMWK* cp_wk, u32 floatidx )
@@ -2735,10 +2735,10 @@ BOOL WFLBY_ROOM_FLOAT_CheckShakeAnm( const WFLBY_ROOMWK* cp_wk, u32 floatidx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg‚ðŽæ“¾‚µ‚½‚çTRUE‚ð“ü‚ê‚é
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚’å–å¾—ã—ãŸã‚‰TRUEã‚’å…¥ã‚Œã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	get			ƒKƒWƒFƒbƒg
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	get			ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_GadGet_Get( WFLBY_ROOMWK* p_wk )
@@ -2748,10 +2748,10 @@ void WFLBY_ROOM_GadGet_Get( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“‚Ì“®ìó‘Ô‚ðÝ’è‚·‚é	ƒ{ƒ^ƒ“”½‰ž‚ð’âŽ~‚³‚¹‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
+ *	@brief	ãƒœã‚¿ãƒ³ã®å‹•ä½œçŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹	ãƒœã‚¿ãƒ³åå¿œã‚’åœæ­¢ã•ã›ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	stop		’âŽ~‚³‚¹‚é‚Æ‚«TRUE
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	stop		åœæ­¢ã•ã›ã‚‹ã¨ãTRUE
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_GadGet_SetStop( WFLBY_ROOMWK* p_wk, BOOL stop )
@@ -2761,9 +2761,9 @@ void WFLBY_ROOM_GadGet_SetStop( WFLBY_ROOMWK* p_wk, BOOL stop )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒƒbƒN	ƒNƒŠƒA
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ­ãƒƒã‚¯	ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_GadGet_ClearLockWait( WFLBY_ROOMWK* p_wk )
@@ -2773,12 +2773,12 @@ void WFLBY_ROOM_GadGet_ClearLockWait( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ž©•ª‚ªƒKƒWƒFƒbƒg‚ð‹N“®‚·‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	è‡ªåˆ†ãŒã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚’èµ·å‹•ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‹N“®
- *	@retval	FALSE	‚µ‚È‚¢
+ *	@retval	TRUE	èµ·å‹•
+ *	@retval	FALSE	ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_GadGet_GetFlag( WFLBY_ROOMWK* p_wk )
@@ -2792,10 +2792,10 @@ BOOL WFLBY_ROOM_GadGet_GetFlag( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg‚ð—¬‚·
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚’æµã™
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_ROOM_GadGet_Play( WFLBY_ROOMWK* p_wk, u32 idx )
@@ -2809,7 +2809,7 @@ void WFLBY_ROOM_GadGet_Play( WFLBY_ROOMWK* p_wk, u32 idx )
 	gadget		= WFLBY_SYSTEM_GetProfileItem( cp_profile );
 	WFLBY_GADGET_Start( p_wk->p_gadget, idx, gadget );
 
-	// Ž©•ª‚¾‚Á‚½‚ç‚Ý‚ñ‚È‚É‘—‚é
+	// è‡ªåˆ†ã ã£ãŸã‚‰ã¿ã‚“ãªã«é€ã‚‹
 	if( idx == WFLBY_SYSTEM_GetMyIdx( p_wk->p_system ) ){
 		WFLBY_SYSTEM_SendGadGetData( p_wk->p_system, gadget );
 	}
@@ -2818,13 +2818,13 @@ void WFLBY_ROOM_GadGet_Play( WFLBY_ROOMWK* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg‚ªI‚í‚é‚Ì‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒçµ‚ã‚ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE		I‚í‚Á‚½
- *	@retval	FALSE		“r’†
+ *	@retval	TRUE		çµ‚ã‚ã£ãŸ
+ *	@retval	FALSE		é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ROOM_GadGet_PlayWait( const WFLBY_ROOMWK* cp_wk, u32 idx )
@@ -2842,12 +2842,12 @@ BOOL WFLBY_ROOM_GadGet_PlayWait( const WFLBY_ROOMWK* cp_wk, u32 idx )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBLANKŠÖ”
+ *	@brief	VBLANKé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_VBlank( void* p_work )
@@ -2862,32 +2862,32 @@ static void WFLBY_ROOM_VBlank( void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦ƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_save		ƒZ[ƒuƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_save		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_GraphicInit( WFLBY_GRAPHICCONT* p_sys, SAVEDATA* p_save, u32 heapID )
 {
 
-	// ”¼“§–¾ƒŒƒWƒXƒ^OFF
+	// åŠé€æ˜Žãƒ¬ã‚¸ã‚¹ã‚¿OFF
 	G2_BlendNone();
 	G2S_BlendNone();
 
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒì¬
+	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	initVramTransferManagerHeap( WFLBY_ROOM_VTRTSK_NUM, heapID );
 
-	// ƒoƒ“ƒNÝ’è
+	// ãƒãƒ³ã‚¯è¨­å®š
 	GF_Disp_SetBank( &sc_WFLBY_ROOM_BANK );
 
-	// •`‰æ–Ê•ÏX
-	// ƒƒCƒ“‚ÆƒTƒu‚ðØ‚è‘Ö‚¦‚é
+	// æç”»é¢å¤‰æ›´
+	// ãƒ¡ã‚¤ãƒ³ã¨ã‚µãƒ–ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 
-	// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚ð•‚É‚·‚é
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚’é»’ã«ã™ã‚‹
 	{
 		GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0 );
 	}
@@ -2910,7 +2910,7 @@ static void WFLBY_ROOM_GraphicInit( WFLBY_GRAPHICCONT* p_sys, SAVEDATA* p_save, 
 	}
 
 
-	// ƒEƒBƒ“ƒhƒEÝ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	{
 		CONFIG* p_config;
 		u8 winnum;
@@ -2918,11 +2918,11 @@ static void WFLBY_ROOM_GraphicInit( WFLBY_GRAPHICCONT* p_sys, SAVEDATA* p_save, 
 		p_config = SaveData_GetConfig( p_save );
 		winnum = CONFIG_GetWindowType( p_config );
 
-		// •¶ŽšƒpƒŒƒbƒg
+		// æ–‡å­—ãƒ‘ãƒ¬ãƒƒãƒˆ
 		SystemFontPaletteLoad( PALTYPE_MAIN_BG, WFLBY_ROOM_BGPL_SYSFONT_CL*32, heapID );
 		TalkFontPaletteLoad( PALTYPE_MAIN_BG, WFLBY_ROOM_BGPL_TALKFONT_CL*32, heapID );
 
-		// ƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 		MenuWinGraphicSet(
 				p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_MAIN_MSGWIN], WFLBY_SYSWINGRA_CGX,
 				WFLBY_ROOM_BGPL_SYSWIN, 0, heapID );
@@ -2934,7 +2934,7 @@ static void WFLBY_ROOM_GraphicInit( WFLBY_GRAPHICCONT* p_sys, SAVEDATA* p_save, 
 			WFLBY_BOARDWINGRA_CGX, WFLBY_ROOM_BGPL_BOARDWIN, 
 			BOARD_TYPE_INFO, 0, heapID );
 
-		// ƒpƒŒƒbƒg‚¾‚¯Aƒƒr[—pƒpƒŒƒbƒg‚ðŽg—p‚·‚é
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã ã‘ã€ãƒ­ãƒ“ãƒ¼ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨ã™ã‚‹
 		ArcUtil_PalSet( ARC_WIFILOBBY_OTHER_GRA, NARC_wifi_lobby_other_lobby_board_NCLR, 
 				PALTYPE_MAIN_BG, WFLBY_ROOM_BGPL_BOARDWIN*32, 32, heapID );
 	}
@@ -2944,58 +2944,58 @@ static void WFLBY_ROOM_GraphicInit( WFLBY_GRAPHICCONT* p_sys, SAVEDATA* p_save, 
 	{
 		int i;
 
-		// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+		// OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 		NNS_G2dInitOamManagerModule();
 
-		// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-		// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-		// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+		// å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+		// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+		// ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 		REND_OAMInit(
-			0, 126,     // ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 31,      // ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 126,     // ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 31,      // ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 126,     // ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 31,      // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 126,     // ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 31,      // ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			heapID);
 
 
-		// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
-		InitCharManagerReg(&sc_WFLBY_ROOM_CHARMAN_INIT, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_64K ); //ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹‚ðƒtƒB[ƒ‹ƒh‚Æ‹¤’Ê‚ÅŽg—p‚·‚é‚Ì‚Å32K‚É‚·‚é
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+		InitCharManagerReg(&sc_WFLBY_ROOM_CHARMAN_INIT, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_64K ); //ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ã‚’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨å…±é€šã§ä½¿ç”¨ã™ã‚‹ã®ã§32Kã«ã™ã‚‹
 	
-		// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 		InitPlttManager(WFLBY_ROOM_OAM_CONTNUM, heapID);
 
-		// “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+		// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 		CharLoadStartAll();
 		PlttLoadStartAll();
 
-		//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
-		CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);	//ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹‚ðƒtƒB[ƒ‹ƒh‚Æ‹¤’Ê‚ÅŽg—p‚·‚é‚Ì‚Å32K‚É‚·‚é
+		//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
+		CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);	//ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ã‚’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨å…±é€šã§ä½¿ç”¨ã™ã‚‹ã®ã§32Kã«ã™ã‚‹
 		CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 
 
-		// ‰º‰æ–Ê‚É’ÊMƒAƒCƒRƒ“‚ðo‚·
-		WirelessIconEasy();  // Ú‘±’†‚È‚Ì‚ÅƒAƒCƒRƒ“•\Ž¦
+		// ä¸‹ç”»é¢ã«é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‡ºã™
+		WirelessIconEasy();  // æŽ¥ç¶šä¸­ãªã®ã§ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 
 
-		// ƒZƒ‹ƒAƒNƒ^[ì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆ
 		p_sys->p_clactset = CLACT_U_SetEasyInit( WFLBY_ROOM_CLACT_NUM, &p_sys->renddata, heapID );
 		CLACT_U_SetSubSurfaceMatrix( &p_sys->renddata, 0, WFLBY_ROOM_CLACT_SUBSURFACE_Y );
 
-		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 		for( i=0; i<WFLBY_ROOM_OAM_RESNUM; i++ ){
 			p_sys->p_resman[i] = CLACT_U_ResManagerInit(WFLBY_ROOM_OAM_CONTNUM, i, heapID);
 		}
 
-		// ƒZƒ‹Vram“]‘—ƒ}ƒl[ƒWƒƒì¬
+		// ã‚»ãƒ«Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 		p_sys->p_celltransarray = InitCellTransfer(WFLBY_ROOM_OAM_CONTNUM, heapID );
 		
 
-		// •\Ž¦ŠJŽn
+		// è¡¨ç¤ºé–‹å§‹
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 	}
 
-	// 3DÝ’è
+	// 3Dè¨­å®š
 	{
 		p_sys->p_3dman = GF_G3DMAN_Init( heapID, GF_G3DMAN_LNK, GF_G3DTEX_256K, 
 				GF_G3DMAN_LNK, GF_G3DPLT_64K, WFLBY_ROOM_DrawSys3DSetUp );
@@ -3004,9 +3004,9 @@ static void WFLBY_ROOM_GraphicInit( WFLBY_GRAPHICCONT* p_sys, SAVEDATA* p_save, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒVƒXƒeƒ€	ƒƒCƒ“ˆ—
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_GraphicMain( WFLBY_GRAPHICCONT* p_sys )
@@ -3018,17 +3018,17 @@ static void WFLBY_ROOM_GraphicMain( WFLBY_GRAPHICCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *	
- *	@param	p_sys		ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_GraphicExit( WFLBY_GRAPHICCONT* p_sys )
 {
-	// VRAM“]‘—ƒ}ƒl[ƒWƒƒ”jŠü
+	// VRAMè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	DellVramTransferManager();
 
-	// BG‚Ì”jŠü
+	// BGã®ç ´æ£„
 	{
 		int i;
 
@@ -3036,35 +3036,35 @@ static void WFLBY_ROOM_GraphicExit( WFLBY_GRAPHICCONT* p_sys )
 			GF_BGL_BGControlExit( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[i] );
 		}
 
-		// BGL”jŠü
+		// BGLç ´æ£„
 		sys_FreeMemoryEz( p_sys->p_bgl );
 	}
 
-	// OAM‚Ì”jŠü
+	// OAMã®ç ´æ£„
 	{
 		int i;
 
 		DeleteCellTransfer( p_sys->p_celltransarray );
 		p_sys->p_celltransarray = NULL;
 
-		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 		for( i=0; i<WFLBY_ROOM_OAM_RESNUM; i++ ){
 			CLACT_U_ResManagerDelete( p_sys->p_resman[i] );
 		}
 
-		// ƒZƒ‹ƒAƒNƒ^[”jŠü
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 		CLACT_DestSet( p_sys->p_clactset );
 
 
-		// ƒŠƒ\[ƒX‰ð•ú
+		// ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 		DeleteCharManager();
 		DeletePlttManager();
 
-		//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+		//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 		REND_OAM_Delete();
 	}
 
-	// BG‚Ì”jŠü
+	// BGã®ç ´æ£„
 	{
 		GF_G3D_Exit( p_sys->p_3dman );
 	}
@@ -3073,70 +3073,70 @@ static void WFLBY_ROOM_GraphicExit( WFLBY_GRAPHICCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNVBlankˆ—
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯VBlankå‡¦ç†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_GraphicVblank( WFLBY_GRAPHICCONT* p_sys )
 {
-    // BG‘‚«Š·‚¦
+    // BGæ›¸ãæ›ãˆ
     GF_BGL_VBlankFunc( p_sys->p_bgl );
 
-    // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+    // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
     REND_OAMTrans();
 
-	// Vram“]‘—
+	// Vramè»¢é€
 	DoVramTransferManager();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3DƒZƒbƒgƒAƒbƒv
+ *	@brief	3Dã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_DrawSys3DSetUp( void )
 {
-	// ‚R‚cŽg—p–Ê‚ÌÝ’è(•\Ž¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// ŠeŽí•`‰æƒ‚[ƒh‚ÌÝ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜Ž)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 
 	G3X_EdgeMarking( TRUE );
 	G3X_SetEdgeColorTable(sc_WFLBY_ROOM_EDGECOLOR);
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚ÌÝ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(26,26,26),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
-	// ƒrƒ…[ƒ|[ƒg‚ÌÝ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 
 	{
 		VecFx16 vec;
-		// ƒ‰ƒCƒg0
+		// ãƒ©ã‚¤ãƒˆ0
 		{
 			NNS_G3dGlbLightVector( 0, 0xfffff805, 0xfffff224, 0x6e );
 		}
-		// ƒ‰ƒCƒg1
+		// ãƒ©ã‚¤ãƒˆ1
 		{
 			VEC_Fx16Set( &vec, 0, 0, FX16_ONE );
 			VEC_Fx16Normalize( &vec, &vec );
 			NNS_G3dGlbLightVector( 1, vec.x, vec.y, vec.z );
 		}
-		// ƒ‰ƒCƒg2
-		// ¢ŠEŽžŒv‚âƒjƒ…[ƒX‚È‚ÇƒNƒ[ƒYŒã–¾‚©‚è‚ðÁ‚·‚à‚Ì—p
+		// ãƒ©ã‚¤ãƒˆ2
+		// ä¸–ç•Œæ™‚è¨ˆã‚„ãƒ‹ãƒ¥ãƒ¼ã‚¹ãªã©ã‚¯ãƒ­ãƒ¼ã‚ºå¾Œæ˜Žã‹ã‚Šã‚’æ¶ˆã™ã‚‚ã®ç”¨
 		{
 			VEC_Fx16Set( &vec, 0, 0, FX16_ONE );
 			VEC_Fx16Normalize( &vec, &vec );
 			NNS_G3dGlbLightVector( 2, vec.x, vec.y, vec.z );
 			NNS_G3dGlbLightColor( 2, GX_RGB( 31,31,31 ) );
 		}
-		// ƒ‰ƒCƒg3
+		// ãƒ©ã‚¤ãƒˆ3
 		{
 			VEC_Fx16Set( &vec, 0, 0, FX16_ONE );
 			VEC_Fx16Normalize( &vec, &vec );
@@ -3148,24 +3148,24 @@ static void WFLBY_ROOM_DrawSys3DSetUp( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ““®ì
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_RoomMain( WFLBY_ROOMWK* p_wk )
 {
 	WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_INIT;
 
-	// l•¨“®ì
+	// äººç‰©å‹•ä½œ
 	WFLBY_3DOBJCONT_Move( p_wk->p_objcont );
 	WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT( __LINE__ );
 
 
-	// ƒGƒ‰[‚Æƒ^ƒCƒ€ƒAƒEƒg‚Å“®ì‚µ‚È‚¢
+	// ã‚¨ãƒ©ãƒ¼ã¨ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã§å‹•ä½œã—ãªã„
 	if( (p_wk->err_flag == FALSE) && (p_wk->timeout == FALSE) ){	
 
-		// ƒCƒxƒ“ƒgŽÀs	BEFORE
+		// ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ	BEFORE
 		{
 			WFLBY_EVENT_MainBefore( p_wk->p_event );
 		}
@@ -3174,38 +3174,38 @@ static void WFLBY_ROOM_RoomMain( WFLBY_ROOMWK* p_wk )
 	}
 
 
-	// ”z’uƒIƒuƒWƒF“®ì
+	// é…ç½®ã‚ªãƒ–ã‚¸ã‚§å‹•ä½œ
 	WFLBY_3DMAPOBJCONT_Main( p_wk->p_mapobjcont );
 	WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT( __LINE__ );
 
 
-	// ƒGƒ‰[‚Æƒ^ƒCƒ€ƒAƒEƒg‚Å“®ì‚µ‚È‚¢
+	// ã‚¨ãƒ©ãƒ¼ã¨ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã§å‹•ä½œã—ãªã„
 	if( (p_wk->err_flag == FALSE) && (p_wk->timeout == FALSE) ){	
-		// l•¨“®ìƒŠƒNƒGƒXƒg”½‰f
+		// äººç‰©å‹•ä½œãƒªã‚¯ã‚¨ã‚¹ãƒˆåæ˜ 
 		WFLBY_3DOBJCONT_ReqMove( p_wk->p_objcont );
 		WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT( __LINE__ );
 
-		// ƒCƒxƒ“ƒgŽÀs	AFTER
+		// ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ	AFTER
 		{
 			WFLBY_EVENT_MainAfter( p_wk->p_event );
 		}
 		WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT( __LINE__ );
 
-		// ƒ^ƒCƒ€ƒCƒxƒ“ƒgƒƒCƒ“
+		// ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆãƒ¡ã‚¤ãƒ³
 		WFLBY_TIMEEVENT_Main( p_wk->p_timeevent );
 		WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT( __LINE__ );
 	}
 
 
-	// ”z’uƒIƒuƒWƒFƒAƒjƒŠÇ—
+	// é…ç½®ã‚ªãƒ–ã‚¸ã‚§ã‚¢ãƒ‹ãƒ¡ç®¡ç†
 	WFLBY_ROOM_MapAnmCont( p_wk );
 	WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT( __LINE__ );
 
 	
-	// ‚µ‚½‰æ–ÊƒƒCƒ“ˆ—
+	// ã—ãŸç”»é¢ãƒ¡ã‚¤ãƒ³å‡¦ç†
 	if( p_wk->fade_flag == FALSE ){
 		BOOL no_input;
-		// I—¹ˆ—‚É‚¢‚Á‚Ä‚¢‚½‚çAƒ^ƒbƒ`‚È‚ÇŽó‚¯•t‚¯‚È‚¢
+		// çµ‚äº†å‡¦ç†ã«ã„ã£ã¦ã„ãŸã‚‰ã€ã‚¿ãƒƒãƒãªã©å—ã‘ä»˜ã‘ãªã„
 		if( (p_wk->err_flag == TRUE) || (p_wk->timeout == TRUE) || (p_wk->end_flag == TRUE) ){	
 			no_input = TRUE;
 		}else{
@@ -3215,16 +3215,16 @@ static void WFLBY_ROOM_RoomMain( WFLBY_ROOMWK* p_wk )
 	}
 	WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT( __LINE__ );
 
-	// ƒKƒWƒFƒbƒgƒAƒjƒ
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 	WFLBY_GADGET_Main( p_wk->p_gadget );
 	WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT( __LINE__ );
 
-	// ƒ~ƒjƒQ[ƒ€ŽQ‰ÁƒƒbƒNƒJƒEƒ“ƒ^
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‚åŠ ãƒ­ãƒƒã‚¯ã‚«ã‚¦ãƒ³ã‚¿
 
 
 #ifdef WFLBY_DEBUG_ROOM_CAMERA
 
-	// ƒJƒƒ‰‚ð•Ï‚¦‚é
+	// ã‚«ãƒ¡ãƒ©ã‚’å¤‰ãˆã‚‹
 	if( sys.trg & PAD_BUTTON_SELECT ){
 		WFLBY_DEBUG_ROOM_CAMERA_FLAG ^= 1;
 		WFLBY_CAMERA_Exit( p_wk->p_camera );
@@ -3233,14 +3233,14 @@ static void WFLBY_ROOM_RoomMain( WFLBY_ROOMWK* p_wk )
 		}else{
 			p_wk->p_camera = WFLBY_CAMERA_Init( HEAPID_WFLBY_ROOM );
 		}
-		// ƒ^[ƒQƒbƒg‚ðÝ’è
+		// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’è¨­å®š
 		WFLBY_CAMERA_SetTargetPerson( p_wk->p_camera,
 				WFLBY_3DOBJCONT_GetPlayer( p_wk->p_objcont ) );
 	}
 #endif
 
 #ifdef WFLBY_DEBUG_ROOM_ITEMCHG
-	// ƒ^ƒbƒ`ƒgƒC‚ð•Ï‚¦‚é
+	// ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’å¤‰ãˆã‚‹
 	if( sys.trg & PAD_BUTTON_L ){
 		WFLBY_USER_PROFILE* p_profile;
 		u32 item;
@@ -3258,9 +3258,9 @@ static void WFLBY_ROOM_RoomMain( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—
+ *	@brief	æç”»å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */	
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_RoomDraw( WFLBY_ROOMWK* p_wk )
@@ -3272,15 +3272,15 @@ static void WFLBY_ROOM_RoomDraw( WFLBY_ROOMWK* p_wk )
 	GF_G3X_Reset();
 
 
-	// ƒJƒƒ‰Ý’è
+	// ã‚«ãƒ¡ãƒ©è¨­å®š
 	WFLBY_CAMERA_Draw( p_wk->p_camera );
 	WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT_DRAW( __LINE__ );
 
-	// ƒ}ƒbƒv‚Ì•\Ž¦
+	// ãƒžãƒƒãƒ—ã®è¡¨ç¤º
 	WFLBY_3DMAPOBJCONT_Draw( p_wk->p_mapobjcont );
 	WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT_DRAW( __LINE__ );
 
-	//ƒvƒƒWƒFƒNƒVƒ‡ƒ“ƒ}ƒgƒŠƒNƒX‚Ì•ÏŠ·
+	//ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ãƒžãƒˆãƒªã‚¯ã‚¹ã®å¤‰æ›
 #if 0
 	{
 		const MtxFx44 *m;
@@ -3292,39 +3292,39 @@ static void WFLBY_ROOM_RoomDraw( WFLBY_ROOMWK* p_wk )
 		pm = org_pm;
 		pm._32 += FX_Mul(pm._22,WFLBY_ROOM_PRO_MAT_Z_OFS*FX32_ONE);
 		NNS_G3dGlbSetProjectionMtx(&pm);
-//		NNS_G3dGlbFlush();		//@ƒWƒIƒƒgƒŠƒRƒ}ƒ“ƒh‚ð“]‘—
+//		NNS_G3dGlbFlush();		//ã€€ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚³ãƒžãƒ³ãƒ‰ã‚’è»¢é€
 	}
 #endif
 	
-	// l•¨‚Ì•\Ž¦
+	// äººç‰©ã®è¡¨ç¤º
 	WFLBY_3DOBJCONT_Draw( p_wk->p_objcont );
 	WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT_DRAW( __LINE__ );
 
-	//ƒvƒƒWƒFƒNƒVƒ‡ƒ“ƒ}ƒgƒŠƒNƒX‚ðŒ³‚É–ß‚·
+	//ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ãƒžãƒˆãƒªã‚¯ã‚¹ã‚’å…ƒã«æˆ»ã™
 #if 0
 	{
 		NNS_G3dGlbSetProjectionMtx(&org_pm);
-		NNS_G3dGlbFlush();		//@ƒWƒIƒƒgƒŠƒRƒ}ƒ“ƒh‚ð“]‘—
+		NNS_G3dGlbFlush();		//ã€€ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚³ãƒžãƒ³ãƒ‰ã‚’è»¢é€
 	}
 #endif
 
-	// ƒKƒWƒFƒbƒg
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
 	WFLBY_GADGET_Draw( p_wk->p_gadget );
 	WFLBY_DEBUG_ROOM_PRINT_TIME_TICK_PRINT_DRAW( __LINE__ );
 	
 	GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO,GX_BUFFERMODE_Z);
 
-	// •`‰æƒVƒXƒeƒ€ƒƒCƒ“
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ã‚¤ãƒ³
 	WFLBY_ROOM_GraphicMain( &p_wk->graphic );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒAƒjƒƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	ãƒžãƒƒãƒ—ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	’N‚ªƒAƒjƒ‚ðŠÇ—‚·‚é‚©‚í‚©‚ç‚ñ‚à‚Ì‚Í‚±‚±‚ÅŠÇ—‚·‚é
+ *	èª°ãŒã‚¢ãƒ‹ãƒ¡ã‚’ç®¡ç†ã™ã‚‹ã‹ã‚ã‹ã‚‰ã‚“ã‚‚ã®ã¯ã“ã“ã§ç®¡ç†ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 static  void WFLBY_ROOM_MapAnmCont( WFLBY_ROOMWK* p_wk )
@@ -3336,20 +3336,20 @@ static  void WFLBY_ROOM_MapAnmCont( WFLBY_ROOMWK* p_wk )
 	u32 gametype;
 	BOOL minigame_end;
 
-	// ƒ~ƒjƒQ[ƒ€I—¹‚µ‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµ‚äº†ã—ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	minigame_end = WFLBY_SYSTEM_Event_GetMiniGameStop( p_wk->p_system );
 	
-	// ƒ~ƒjƒQ[ƒ€
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
 	for( i=0; i<DWC_LOBBY_MG_NUM; i++ ){
-		recruit = DWC_LOBBY_MG_CheckRecruit( i );				// •åW’†‚©
+		recruit = DWC_LOBBY_MG_CheckRecruit( i );				// å‹Ÿé›†ä¸­ã‹
 		if( recruit == TRUE ){
-			if( DWC_LOBBY_MG_CheckEntryOk( i ) == FALSE ){		// •åW’†‚Å‚Ü‚¾‚ ‚»‚ñ‚Å‚È‚¢‚©
+			if( DWC_LOBBY_MG_CheckEntryOk( i ) == FALSE ){		// å‹Ÿé›†ä¸­ã§ã¾ã ã‚ãã‚“ã§ãªã„ã‹
 				play = TRUE;
 			}else{
 				play = FALSE;
 			}
 		}else{
-			play = FALSE;	// •åW‚µ‚Ä‚È‚¢‚Ì‚Å‚ ‚»‚ñ‚Å‚é‚í‚¯‚È‚¢
+			play = FALSE;	// å‹Ÿé›†ã—ã¦ãªã„ã®ã§ã‚ãã‚“ã§ã‚‹ã‚ã‘ãªã„
 		}
 		num = DWC_LOBBY_MG_GetEntryNum( i );
 		WFLBY_3DMAPOBJCONT_MAP_SetMGAnm(  p_wk->p_mapobjcont, WFLBY_GAME_BALLSLOW+i, num, 
@@ -3363,18 +3363,18 @@ static  void WFLBY_ROOM_MapAnmCont( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	p_save		ƒZ[ƒuƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_save		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Init( WFLBY_ROOM_TALKMSG* p_wk, WFLBY_GRAPHICCONT* p_sys, SAVEDATA* p_save, u32 heapID )
 {
 
-	//  ƒrƒbƒgƒ}ƒbƒvŠm•Û
+	//  ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç¢ºä¿
 	GF_BGL_BmpWinAdd(
 				p_sys->p_bgl, &p_wk->win, 
 				sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_MAIN_MSGWIN],
@@ -3382,13 +3382,13 @@ static void WFLBY_ROOM_TalkWin_Init( WFLBY_ROOM_TALKMSG* p_wk, WFLBY_GRAPHICCONT
 				WFLBY_TALKWIN_SIZX, WFLBY_TALKWIN_SIZY, WFLBY_ROOM_BGPL_TALKFONT_CL,
 				WFLBY_TALKWIN_CGX );
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 
-	// •¶Žš—ñƒoƒbƒtƒ@ì¬
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	p_wk->p_str = STRBUF_Create( WFLBY_TALKWIN_STRBUFNUM, heapID );
 
-	// ƒƒbƒZ[ƒW•\Ž¦ƒEƒGƒCƒg‚ðÝ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚¦ã‚¨ã‚¤ãƒˆã‚’è¨­å®š
 	{
 		CONFIG* p_config;
 		p_config = SaveData_GetConfig( p_save );
@@ -3398,86 +3398,86 @@ static void WFLBY_ROOM_TalkWin_Init( WFLBY_ROOM_TALKMSG* p_wk, WFLBY_GRAPHICCONT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Exit( WFLBY_ROOM_TALKMSG* p_wk )
 {
-	//  ‚·‚×‚Ä’âŽ~
+	//  ã™ã¹ã¦åœæ­¢
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 	WFLBY_ROOM_TalkWin_StopTimeWait_NoTrans( p_wk );
 	
-	// •¶Žš—ñƒoƒbƒtƒ@”jŠü
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	STRBUF_Delete( p_wk->p_str );
 
-	// ƒrƒbƒgƒ}ƒbƒv”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç ´æ£„
 	GF_BGL_BmpWinDel( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW‚Ì•\Ž¦ˆ—
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤ºå‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Print( WFLBY_ROOM_TALKMSG* p_wk, const STRBUF* cp_str )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv‚ÌƒNƒŠƒA
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã®ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 	
-	// •¶Žš—ñƒRƒs[
+	// æ–‡å­—åˆ—ã‚³ãƒ”ãƒ¼
 	STRBUF_Copy( p_wk->p_str, cp_str );
 	p_wk->msgno = GF_STR_PrintColor( &p_wk->win, FONT_TALK, p_wk->p_str, 0, 0,
 			p_wk->msgwait, WFLBY_TALKWIN_MSGCOL, NULL );
 
-	// ƒEƒBƒ“ƒhƒE‚ð‘‚«ž‚Þ
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ›¸ãè¾¼ã‚€
 	BmpTalkWinWrite( &p_wk->win, WINDOW_TRANS_OFF, WFLBY_TALKWINGRA_CGX, WFLBY_ROOM_BGPL_TALKWIN );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•\Ž¦	ˆê“x‚É‘S•”•\Ž¦‚·‚é
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º	ä¸€åº¦ã«å…¨éƒ¨è¡¨ç¤ºã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_PrintAll( WFLBY_ROOM_TALKMSG* p_wk, const STRBUF* cp_str )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv‚ÌƒNƒŠƒA
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã®ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 	
-	// •¶Žš—ñƒRƒs[
+	// æ–‡å­—åˆ—ã‚³ãƒ”ãƒ¼
 	STRBUF_Copy( p_wk->p_str, cp_str );
 	GF_STR_PrintColor( &p_wk->win, FONT_TALK, p_wk->p_str, 0, 0,
 			MSG_NO_PUT, WFLBY_TALKWIN_MSGCOL, NULL );
 
-	// ƒEƒBƒ“ƒhƒE‚ð‘‚«ž‚Þ
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ›¸ãè¾¼ã‚€
 	BmpTalkWinWrite( &p_wk->win, WINDOW_TRANS_OFF, WFLBY_TALKWINGRA_CGX, WFLBY_ROOM_BGPL_TALKWIN );
 	GF_BGL_BmpWinOnVReq( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒgƒAƒCƒRƒ“ŠJŽn
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚¢ã‚¤ã‚³ãƒ³é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_StartTimeWait( WFLBY_ROOM_TALKMSG* p_wk )
@@ -3489,9 +3489,9 @@ static void WFLBY_ROOM_TalkWin_StartTimeWait( WFLBY_ROOM_TALKMSG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒgƒAƒCƒRƒ“I—¹
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚¢ã‚¤ã‚³ãƒ³çµ‚äº†
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_StopTimeWait( WFLBY_ROOM_TALKMSG* p_wk )
@@ -3504,9 +3504,9 @@ static void WFLBY_ROOM_TalkWin_StopTimeWait( WFLBY_ROOM_TALKMSG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒgƒAƒCƒRƒ“I—¹
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚¢ã‚¤ã‚³ãƒ³çµ‚äº†
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_StopTimeWait_NoTrans( WFLBY_ROOM_TALKMSG* p_wk )
@@ -3519,12 +3519,12 @@ static void WFLBY_ROOM_TalkWin_StopTimeWait_NoTrans( WFLBY_ROOM_TALKMSG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒg‚ð•\Ž¦‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒ^ƒCƒ€ƒEƒGƒCƒg’†
- *	@retval	FALSE	ƒ^ƒCƒ€ƒEƒGƒCƒg•\Ž¦‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆä¸­
+ *	@retval	FALSE	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆè¡¨ç¤ºã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_ROOM_TalkWin_CheckTimeWait( const WFLBY_ROOM_TALKMSG* cp_wk )
@@ -3537,12 +3537,12 @@ static BOOL WFLBY_ROOM_TalkWin_CheckTimeWait( const WFLBY_ROOM_TALKMSG* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•\Ž¦I—¹
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºçµ‚äº†
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_ROOM_TalkWin_EndWait( const WFLBY_ROOM_TALKMSG* cp_wk )
@@ -3555,25 +3555,25 @@ static BOOL WFLBY_ROOM_TalkWin_EndWait( const WFLBY_ROOM_TALKMSG* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE”ñ•\Ž¦
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦éžè¡¨ç¤º
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Off( WFLBY_ROOM_TALKMSG* p_wk )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 
-	// ƒ^ƒCƒ€ƒEƒGƒCƒg‚àÁ‚·
+	// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚‚æ¶ˆã™
 	WFLBY_ROOM_TalkWin_StopTimeWait_NoTrans( p_wk );
 
-	// ‘S‘Ì‚ðÁ‚·
+	// å…¨ä½“ã‚’æ¶ˆã™
 	BmpTalkWinClear( &p_wk->win, WINDOW_TRANS_OFF );
 
-	// VƒŠƒNƒGƒXƒg
+	// Vãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	GF_BGL_BmpWinOffVReq( &p_wk->win );
 }
 
@@ -3581,26 +3581,26 @@ static void WFLBY_ROOM_TalkWin_Off( WFLBY_ROOM_TALKMSG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE@”h¶	ŠÅ”ÂƒEƒBƒ“ƒhƒE	‰Šú‰»
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€æ´¾ç”Ÿ	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	åˆæœŸåŒ–
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_sys			ƒVƒXƒeƒ€
- *	@param	p_save			ƒZ[ƒuƒf[ƒ^
- *	@param	heapID			ƒq[ƒv‚h‚c
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_save			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Board_Init( WFLBY_ROOM_TALKMSG* p_wk, WFLBY_GRAPHICCONT* p_sys, SAVEDATA* p_save, u32 heapID )
 {
 	WFLBY_ROOM_TalkWin_Init( p_wk, p_sys, p_save, heapID );
-	// ƒpƒŒƒbƒgƒiƒ“ƒo[‚¾‚¯•ÏX
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã ã‘å¤‰æ›´
 	GF_BGL_BmpWinSet_Pal( &p_wk->win, WFLBY_ROOM_BGPL_BOARDWIN );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE@”h¶	ŠÅ”ÂƒEƒBƒ“ƒhƒE	”jŠü
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€æ´¾ç”Ÿ	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Board_Exit( WFLBY_ROOM_TALKMSG* p_wk )
@@ -3610,34 +3610,34 @@ static void WFLBY_ROOM_TalkWin_Board_Exit( WFLBY_ROOM_TALKMSG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE@”h¶	ŠÅ”ÂƒEƒBƒ“ƒhƒE@ƒƒbƒZ[ƒW‘‚«ž‚Ý
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€æ´¾ç”Ÿ	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ›¸ãè¾¼ã¿
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Board_Print( WFLBY_ROOM_TALKMSG* p_wk, const STRBUF* cp_str )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv‚ÌƒNƒŠƒA
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã®ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 	
-	// •¶Žš—ñƒRƒs[
+	// æ–‡å­—åˆ—ã‚³ãƒ”ãƒ¼
 	STRBUF_Copy( p_wk->p_str, cp_str );
 	p_wk->msgno = GF_STR_PrintSimple( &p_wk->win, FONT_TALK, p_wk->p_str, 0, 0,
 			p_wk->msgwait, NULL );
 
-	// ƒEƒBƒ“ƒhƒE‚ð‘‚«ž‚Þ
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ›¸ãè¾¼ã‚€
 	BmpBoardWinWrite( &p_wk->win, WINDOW_TRANS_OFF, WFLBY_BOARDWINGRA_CGX, WFLBY_ROOM_BGPL_BOARDWIN, BOARD_TYPE_INFO );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE	”h¶	ŠÅ”ÂƒEƒBƒ“ƒhƒE@ƒƒbƒZ[ƒW‘S•”•`‰æ
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	æ´¾ç”Ÿ	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å…¨éƒ¨æç”»
  *
  *	@param	p_wk
  *	@param	cp_str 
@@ -3645,79 +3645,79 @@ static void WFLBY_ROOM_TalkWin_Board_Print( WFLBY_ROOM_TALKMSG* p_wk, const STRB
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Board_PrintAll( WFLBY_ROOM_TALKMSG* p_wk, const STRBUF* cp_str )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv‚ÌƒNƒŠƒA
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã®ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 	
-	// •¶Žš—ñƒRƒs[
+	// æ–‡å­—åˆ—ã‚³ãƒ”ãƒ¼
 	STRBUF_Copy( p_wk->p_str, cp_str );
 	GF_STR_PrintSimple( &p_wk->win, FONT_TALK, p_wk->p_str, 0, 0,
 			MSG_NO_PUT, NULL );
 
-	// ƒEƒBƒ“ƒhƒE‚ð‘‚«ž‚Þ
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ›¸ãè¾¼ã‚€
 	BmpBoardWinWrite( &p_wk->win, WINDOW_TRANS_OFF, WFLBY_BOARDWINGRA_CGX, WFLBY_ROOM_BGPL_BOARDWIN, BOARD_TYPE_INFO );
 	GF_BGL_BmpWinOnVReq( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÅ”ÂƒEƒBƒ“ƒhƒE‚ðOFF‚³‚¹‚é
+ *	@brief	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’OFFã•ã›ã‚‹
  *
- *	@param	p_wk ƒ[ƒN
+ *	@param	p_wk ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Board_Off( WFLBY_ROOM_TALKMSG* p_wk )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 
-	// ƒ^ƒCƒ€ƒEƒGƒCƒg‚àÁ‚·
+	// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚‚æ¶ˆã™
 	WFLBY_ROOM_TalkWin_StopTimeWait_NoTrans( p_wk );
 
-	// ‘S‘Ì‚ðÁ‚·
+	// å…¨ä½“ã‚’æ¶ˆã™
 	BmpBoardWinClear( &p_wk->win, BOARD_TYPE_INFO, WINDOW_TRANS_OFF );
 
-	// VƒŠƒNƒGƒXƒg
+	// Vãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	GF_BGL_BmpWinOffVReq( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÅ”Âƒ{[ƒh@ƒNƒŠƒAƒEƒBƒ“ƒhƒE
+ *	@brief	çœ‹æ¿ãƒœãƒ¼ãƒ‰ã€€ã‚¯ãƒªã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Board_ClearWin( WFLBY_ROOM_TALKMSG* p_wk )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv‚ÌƒNƒŠƒA
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã®ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒ“ƒvƒ‹‚ÉƒƒbƒZ[ƒW‚ð‘‚«ž‚Þ
+ *	@brief	ã‚·ãƒ³ãƒ—ãƒ«ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ›¸ãè¾¼ã‚€
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
- *	@param	cp_str	•¶Žš—ñ
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
+ *	@param	cp_str	æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Board_PrintSimple( WFLBY_ROOM_TALKMSG* p_wk, u8 x, u8 y, const STRBUF* cp_str )
 {
-	// •¶Žš—ñƒRƒs[
+	// æ–‡å­—åˆ—ã‚³ãƒ”ãƒ¼
 	STRBUF_Copy( p_wk->p_str, cp_str );
 	GF_STR_PrintSimple( &p_wk->win, FONT_TALK, p_wk->p_str, x, y,
 			MSG_NO_PUT, NULL );
@@ -3725,29 +3725,29 @@ static void WFLBY_ROOM_TalkWin_Board_PrintSimple( WFLBY_ROOM_TALKMSG* p_wk, u8 x
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒE‚Ì•\Ž¦	VBLANK’†‚É
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º	VBLANKä¸­ã«
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Board_OnVReq( WFLBY_ROOM_TALKMSG* p_wk )
 {
-	// ƒEƒBƒ“ƒhƒE‚ð‘‚«ž‚Þ
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ›¸ãè¾¼ã‚€
 	BmpBoardWinWrite( &p_wk->win, WINDOW_TRANS_OFF, WFLBY_BOARDWINGRA_CGX, WFLBY_ROOM_BGPL_BOARDWIN, BOARD_TYPE_INFO );
 	GF_BGL_BmpWinOnVReq( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‚ÌƒpƒŒƒbƒg”Ô†‚ðÝ’è
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	pal		ƒpƒŒƒbƒg”Ô†
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	pal		ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_TalkWin_Board_SetPalNo( WFLBY_ROOM_TALKMSG* p_wk, u16 pal )
 {
-	// ƒpƒŒƒbƒgƒiƒ“ƒo[‚¾‚¯•ÏX
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã ã‘å¤‰æ›´
 	GF_BGL_BmpWinSet_Pal( &p_wk->win, pal );
 }
 
@@ -3756,11 +3756,11 @@ static void WFLBY_ROOM_TalkWin_Board_SetPalNo( WFLBY_ROOM_TALKMSG* p_wk, u16 pal
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒVƒXƒeƒ€		‰Šú‰»
+ *	@brief	ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ 		åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_sys	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ListWin_Init( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 heapID )
@@ -3769,9 +3769,9 @@ static void WFLBY_ROOM_ListWin_Init( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT
 	CLACT_ADD_SIMPLE add;
 	int i;
 
-	// ƒAƒNƒ^[ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	ARCHANDLE* p_handle = ArchiveDataHandleOpen( ARC_SHOP_GRA, heapID );
-	// ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	p_wk->resObj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_sys->p_resman[ CLACT_U_CHAR_RES ],
 			p_handle, NARC_shop_gra_shop_arw_NCGR, 
@@ -3802,7 +3802,7 @@ static void WFLBY_ROOM_ListWin_Init( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT
 	CLACT_U_CharManagerSetAreaCont( p_wk->resObj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerSetCleanArea( p_wk->resObj[ CLACT_U_PLTT_RES ] );
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader(
 			&head,
 			WFLBY_LISTWIN_CLACT_RESCONT_ID,
@@ -3818,7 +3818,7 @@ static void WFLBY_ROOM_ListWin_Init( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT
 			p_sys->p_resman[ 3 ],
 			NULL, NULL );
 	
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	add.ClActSet = p_sys->p_clactset;
 	add.ClActHeader = &head;
 	add.pri		= 0;
@@ -3838,26 +3838,26 @@ static void WFLBY_ROOM_ListWin_Init( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒVƒXƒeƒ€		”jŠü
+ *	@brief	ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ 		ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ListWin_Exit( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT* p_sys )
 {
 	int i;
 	
-	// ƒŠƒXƒgƒf[ƒ^‚ªŽc‚Á‚Ä‚¢‚½‚ç‚Í‚«
+	// ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ãŒæ®‹ã£ã¦ã„ãŸã‚‰ã¯ã
 	if( p_wk->p_bmplist != NULL ){
 		WFLBY_ROOM_ListWin_DeleteBmpList( p_wk ); // TODO__fix_me
 	}
 	
-	// “®ì‚µ‚Ä‚¢‚½‚ç‚·‚×‚Ä‚Í‚«
+	// å‹•ä½œã—ã¦ã„ãŸã‚‰ã™ã¹ã¦ã¯ã
 	if( p_wk->p_listwk != NULL ){
 		WFLBY_ROOM_ListWin_End( p_wk, NULL, NULL );
 	}
 
-	// ƒAƒNƒ^[”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	for( i=0; i<WFLBY_LISTWIN_CLACT_OBJNUM; i++ ){
 		CLACT_Delete( p_wk->clact[i] );
 		p_wk->clact[i] = NULL;
@@ -3873,11 +3873,11 @@ static void WFLBY_ROOM_ListWin_Exit( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	€–ÚƒŠƒXƒg‚ðì¬‚·‚é
+ *	@brief	é …ç›®ãƒªã‚¹ãƒˆã‚’ä½œæˆã™ã‚‹
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	num			ƒŠƒXƒg”
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	num			ãƒªã‚¹ãƒˆæ•°
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ListWin_CreateBmpList( WFLBY_ROOM_LISTWIN* p_wk, u32 num, u32 heapID, u32 a3 )
@@ -3898,9 +3898,9 @@ static void WFLBY_ROOM_ListWin_CreateBmpList( WFLBY_ROOM_LISTWIN* p_wk, u32 num,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	€–ÚƒŠƒXƒg‚ð”jŠü‚·‚é
+ *	@brief	é …ç›®ãƒªã‚¹ãƒˆã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ListWin_DeleteBmpList( WFLBY_ROOM_LISTWIN* p_wk )
@@ -3914,11 +3914,11 @@ static void WFLBY_ROOM_ListWin_DeleteBmpList( WFLBY_ROOM_LISTWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	€–Ú‚Ì’Ç‰Á
+ *	@brief	é …ç›®ã®è¿½åŠ 
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
- *	@param	param		ƒpƒ‰ƒ[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ListWin_SetBmpListStr( WFLBY_ROOM_LISTWIN* p_wk, const STRBUF* cp_str, u32 param )
@@ -3928,11 +3928,11 @@ static void WFLBY_ROOM_ListWin_SetBmpListStr( WFLBY_ROOM_LISTWIN* p_wk, const ST
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	€–ÚƒŠƒXƒg‚ðŽæ“¾‚·‚é
+ *	@brief	é …ç›®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	€–ÚƒŠƒXƒg
+ *	@return	é …ç›®ãƒªã‚¹ãƒˆ
  */	
 //-----------------------------------------------------------------------------
 static const BMP_MENULIST_DATA* WFLBY_ROOM_ListWin_GetBmpList( const WFLBY_ROOM_LISTWIN* cp_wk )
@@ -3942,13 +3942,13 @@ static const BMP_MENULIST_DATA* WFLBY_ROOM_ListWin_GetBmpList( const WFLBY_ROOM_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg	‚Éparam‚ª‚à‚¤“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆ	ã«paramãŒã‚‚ã†å…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	‚ ‚é
- *	@retval	FALSE	‚È‚µ
+ *	@retval	TRUE	ã‚ã‚‹
+ *	@retval	FALSE	ãªã—
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_ROOM_ListWin_CheckBmpListParam( const WFLBY_ROOM_LISTWIN* cp_wk, u32 param )
@@ -3966,33 +3966,33 @@ static BOOL WFLBY_ROOM_ListWin_CheckBmpListParam( const WFLBY_ROOM_LISTWIN* cp_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒVƒXƒeƒ€	•\Ž¦ŠJŽn
+ *	@brief	ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ 	è¡¨ç¤ºé–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
- *	@param	p_sys		•\Ž¦ƒVƒXƒeƒ€
- *	@param	list_p		‰Šú‰»ƒŠƒXƒgˆÊ’u
- *	@param	cursor_p	ƒJ[ƒ\ƒ‹ˆÊ’u
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_sys		è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	list_p		åˆæœŸåŒ–ãƒªã‚¹ãƒˆä½ç½®
+ *	@param	cursor_p	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ListWin_Start( WFLBY_ROOM_LISTWIN* p_wk, const BMPLIST_HEADER* cp_data, WFLBY_GRAPHICCONT* p_sys, u16 list_p, u16 cursor_p, u32 heapID, u8 cx, u8 cy, u8 szcx )
 {
 	GF_ASSERT( p_wk->p_listwk == NULL );
-	// ƒTƒCƒY‚ªŠÔ‚É‡‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã‚µã‚¤ã‚ºãŒé–“ã«åˆã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( (cp_data->line*2) < WFLBY_LISTWIN_SIZY );
 
-	// ƒwƒbƒ_[ƒRƒs[
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ã‚³ãƒ”ãƒ¼
 	p_wk->data		= *cp_data;
 	p_wk->data.win	= &p_wk->win;
 
-	// ƒŠƒXƒg‘”
+	// ãƒªã‚¹ãƒˆç·æ•°
 	p_wk->list_num	= cp_data->count;
 
-	// ƒŠƒXƒgƒR[ƒ‹ƒoƒbƒNÝ’è
+	// ãƒªã‚¹ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è¨­å®š
 	p_wk->data.call_back = WFLBY_ROOM_ListWin_CurCallBack;
 
-	// ƒrƒbƒgƒ}ƒbƒv‚¾‚¯ì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã ã‘ä½œæˆ
 	GF_BGL_BmpWinAdd(
 				p_sys->p_bgl, &p_wk->win, 
 				sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_MAIN_MSGWIN],
@@ -4000,27 +4000,27 @@ static void WFLBY_ROOM_ListWin_Start( WFLBY_ROOM_LISTWIN* p_wk, const BMPLIST_HE
 				szcx, cp_data->line*2, WFLBY_ROOM_BGPL_SYSFONT_CL,
 				WFLBY_LISTWIN_CGX );
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 	
-	// ƒŠƒXƒgì¬
+	// ãƒªã‚¹ãƒˆä½œæˆ
     // MatchComment: move BmpMenuWinWrite above BmpListSet call & assignment
     BmpMenuWinWrite( &p_wk->win, WINDOW_TRANS_OFF, WFLBY_SYSWINGRA_CGX, WFLBY_ROOM_BGPL_SYSWIN );
     p_wk->p_listwk = BmpListSet(&p_wk->data, list_p, cursor_p, heapID );
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	GF_BGL_BmpWinOnVReq( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒVƒXƒeƒ€	ƒƒCƒ“
+ *	@brief	ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"param = ‘I‘ðƒpƒ‰ƒ[ƒ^"
- * @retval	"BMPLIST_NULL = ‘I‘ð’†"
- * @retval	"BMPLIST_CANCEL	= ƒLƒƒƒ“ƒZƒ‹(‚aƒ{ƒ^ƒ“)"
+ * @retval	"param = é¸æŠžãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿"
+ * @retval	"BMPLIST_NULL = é¸æŠžä¸­"
+ * @retval	"BMPLIST_CANCEL	= ã‚­ãƒ£ãƒ³ã‚»ãƒ«(ï¼¢ãƒœã‚¿ãƒ³)"
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_ROOM_ListWin_Main( WFLBY_ROOM_LISTWIN* p_wk )
@@ -4036,7 +4036,7 @@ static u32 WFLBY_ROOM_ListWin_Main( WFLBY_ROOM_LISTWIN* p_wk )
 	switch( result ){
 	case BMPLIST_NULL:
 	case BMPLIST_CANCEL:
-		//  ƒAƒNƒ^[§Œä
+		//  ã‚¢ã‚¯ã‚¿ãƒ¼åˆ¶å¾¡
 		WFLBY_ROOM_ListWin_ContClactDraw( p_wk );
 		break;
 		
@@ -4050,11 +4050,11 @@ static u32 WFLBY_ROOM_ListWin_Main( WFLBY_ROOM_LISTWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒgƒVƒXƒeƒ€	”jŠü
+ *	@brief	ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_list_p	ƒŠƒXƒgˆÊ’uŠi”[æ
- *	@param	p_cursor_p	ƒJ[ƒ\ƒ‹ˆÊ’uŠi”[æ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_list_p	ãƒªã‚¹ãƒˆä½ç½®æ ¼ç´å…ˆ
+ *	@param	p_cursor_p	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ListWin_End( WFLBY_ROOM_LISTWIN* p_wk, u16* p_list_p, u16* p_cursor_p )
@@ -4067,12 +4067,12 @@ static void WFLBY_ROOM_ListWin_End( WFLBY_ROOM_LISTWIN* p_wk, u16* p_list_p, u16
 	BmpListExit( p_wk->p_listwk, p_list_p, p_cursor_p );
 	p_wk->p_listwk = NULL;
 
-	// ƒEƒBƒ“ƒhƒE‚ð”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç ´æ£„
     BmpMenuWinClear( &p_wk->win, WINDOW_TRANS_OFF );
 	GF_BGL_BmpWinOffVReq( &p_wk->win );
 	GF_BGL_BmpWinDel( &p_wk->win );
 
-	// OAM”ñ•\Ž¦
+	// OAMéžè¡¨ç¤º
 	p_wk->clact_draw = FALSE;
 	for( i=0; i<WFLBY_LISTWIN_CLACT_OBJNUM; i++ ){
 		CLACT_SetDrawFlag( p_wk->clact[i], FALSE );
@@ -4081,11 +4081,11 @@ static void WFLBY_ROOM_ListWin_End( WFLBY_ROOM_LISTWIN* p_wk, u16* p_list_p, u16
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒJ[ƒ\ƒ‹ƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	p_wk		ƒŠƒXƒgƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
- *	@param	mode		ƒ‚[ƒh 
+ *	@param	p_wk		ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	mode		ãƒ¢ãƒ¼ãƒ‰ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ListWin_CurCallBack( BMPLIST_WORK* p_wk,u32 param,u8 mode )
@@ -4097,10 +4097,10 @@ static void WFLBY_ROOM_ListWin_CurCallBack( BMPLIST_WORK* p_wk,u32 param,u8 mode
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–îˆóƒAƒNƒ^[‚Ì•\Ž¦Ý’è
+ *	@brief	çŸ¢å°ã‚¢ã‚¯ã‚¿ãƒ¼ã®è¡¨ç¤ºè¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN	
- *	@param	flag	ƒtƒ‰ƒO
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯	
+ *	@param	flag	ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ListWin_SetClactDraw( WFLBY_ROOM_LISTWIN* p_wk, BOOL flag )
@@ -4110,23 +4110,23 @@ static void WFLBY_ROOM_ListWin_SetClactDraw( WFLBY_ROOM_LISTWIN* p_wk, BOOL flag
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒg@ƒZƒ‹ƒAƒNƒ^[•\Ž¦§Œä
+ *	@brief	ãƒªã‚¹ãƒˆã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºåˆ¶å¾¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ListWin_ContClactDraw( WFLBY_ROOM_LISTWIN* p_wk )
 {
 	u16 list_pos;
 
-	// ”ñ•\Ž¦’†‚Í‚¸‚Á‚Æ”ñ•\Ž¦
+	// éžè¡¨ç¤ºä¸­ã¯ãšã£ã¨éžè¡¨ç¤º
 	if( p_wk->clact_draw == FALSE ){
 		CLACT_SetDrawFlag( p_wk->clact[0], FALSE );
 		CLACT_SetDrawFlag( p_wk->clact[1], FALSE );
 		return ;
 	}
 	
-	// ƒŠƒXƒgˆÊ’uŽæ“¾
+	// ãƒªã‚¹ãƒˆä½ç½®å–å¾—
 	BmpListPosGet( p_wk->p_listwk, &list_pos, NULL );
 	
 	if( (list_pos <= 0) ){
@@ -4145,22 +4145,22 @@ static void WFLBY_ROOM_ListWin_ContClactDraw( WFLBY_ROOM_LISTWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE	‰Šú‰»
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_SubWin_Init( WFLBY_ROOM_SUBWIN* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 heapID )
 {
-	// ‚Æ‚­‚É‚È‚µ
+	// ã¨ãã«ãªã—
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE	”jŠü
- *	@param	p_wk		ƒ[ƒN
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ç ´æ£„
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_SubWin_Exit( WFLBY_ROOM_SUBWIN* p_wk )
@@ -4170,20 +4170,20 @@ static void WFLBY_ROOM_SubWin_Exit( WFLBY_ROOM_SUBWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE	ŠJŽn
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
- *	@param	cx			‚˜ƒLƒƒƒ‰ˆÊ’u
- *	@param	cy			‚™ƒLƒƒƒ‰ˆÊ’u
- *	@param	szcx		‚˜ƒLƒƒƒ‰ƒTƒCƒY
- *	@param	szcy		‚™ƒLƒƒƒ‰ƒTƒCƒY
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	cx			ï½˜ã‚­ãƒ£ãƒ©ä½ç½®
+ *	@param	cy			ï½™ã‚­ãƒ£ãƒ©ä½ç½®
+ *	@param	szcx		ï½˜ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+ *	@param	szcy		ï½™ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_SubWin_Start( WFLBY_ROOM_SUBWIN* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 heapID, u8 cx, u8 cy, u8 szcx, u8 szcy )
 {
-	// ƒrƒbƒgƒ}ƒbƒv‚¾‚¯ì¬
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã ã‘ä½œæˆ
 	GF_BGL_BmpWinAdd(
 				p_sys->p_bgl, &p_wk->win, 
 				sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_MAIN_MSGWIN],
@@ -4193,25 +4193,25 @@ static void WFLBY_ROOM_SubWin_Start( WFLBY_ROOM_SUBWIN* p_wk, WFLBY_GRAPHICCONT*
 
     BmpMenuWinWrite( &p_wk->win, WINDOW_TRANS_OFF, WFLBY_SYSWINGRA_CGX, WFLBY_ROOM_BGPL_SYSWIN );
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	GF_BGL_BmpWinOnVReq( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE	I—¹
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	çµ‚äº†
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_SubWin_End( WFLBY_ROOM_SUBWIN* p_wk )
 {
-	// ƒEƒBƒ“ƒhƒE‚ð‘‚«‚µ‚Ä‚¢‚È‚¯‚ê‚Î”jŠü‚·‚é
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ›¸ãã—ã¦ã„ãªã‘ã‚Œã°ç ´æ£„ã™ã‚‹
 	if( GF_BGL_BmpWinAddCheck( &p_wk->win ) == TRUE ){
-		// ƒEƒBƒ“ƒhƒE‚ð”jŠü
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç ´æ£„
 		BmpMenuWinClear( &p_wk->win, WINDOW_TRANS_OFF );
 		GF_BGL_BmpWinOffVReq( &p_wk->win );
 		GF_BGL_BmpWinDel( &p_wk->win );
@@ -4220,17 +4220,17 @@ static void WFLBY_ROOM_SubWin_End( WFLBY_ROOM_SUBWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE‚É•¶Žš—ñ‚ð•`‰æ
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«æ–‡å­—åˆ—ã‚’æç”»
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
- *	@param	x			‚˜À•Wiƒhƒbƒgj
- *	@param	y			‚™À•Wiƒhƒbƒgj
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
+ *	@param	x			ï½˜åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+ *	@param	y			ï½™åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_SubWin_PrintAll( WFLBY_ROOM_SUBWIN* p_wk, const STRBUF* cp_str, u8 x, u8 y )
 {
-	// •\Ž¦
+	// è¡¨ç¤º
 	GF_STR_PrintColor( &p_wk->win, FONT_SYSTEM, cp_str, x, y,
 			MSG_NO_PUT, WFLBY_SUBWIN_MSGCOL, NULL );
 
@@ -4239,31 +4239,31 @@ static void WFLBY_ROOM_SubWin_PrintAll( WFLBY_ROOM_SUBWIN* p_wk, const STRBUF* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE•\Ž¦‚ðƒNƒŠƒA
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã‚’ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_SubWin_Clear( WFLBY_ROOM_SUBWIN* p_wk )
 {
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒEƒBƒ“ƒhƒE•\Ž¦‚ÌƒNƒŠƒA
+ *	@brief	ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã®ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	x			‚˜À•W		‘S•”ƒhƒbƒg’PˆÊ
- *	@param	y			‚™À•W
- *	@param	sx			ƒTƒCƒY‚˜
- *	@param	sy			ƒTƒCƒY‚™
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	x			ï½˜åº§æ¨™		å…¨éƒ¨ãƒ‰ãƒƒãƒˆå˜ä½
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	sx			ã‚µã‚¤ã‚ºï½˜
+ *	@param	sy			ã‚µã‚¤ã‚ºï½™
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_SubWin_ClearRect( WFLBY_ROOM_SUBWIN* p_wk, u16 x, u16 y, u16 sx, u16 sy )
 {
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinFill( &p_wk->win, 15, x, y, sx, sy );
 }
 
@@ -4272,11 +4272,11 @@ static void WFLBY_ROOM_SubWin_ClearRect( WFLBY_ROOM_SUBWIN* p_wk, u16 x, u16 y, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YesNoƒEƒBƒ“ƒhƒEƒf[ƒ^ì¬
+ *	@brief	YesNoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_wk		ƒ[ƒN	
- *	@param	p_msg		ƒƒbƒZ[ƒWƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯	
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_YesNoWin_Init( WFLBY_ROOM_YESNOWIN* p_wk, WFLBY_ROOM_DEFMSG* p_msg, u32 heapID )
@@ -4287,14 +4287,14 @@ static void WFLBY_ROOM_YesNoWin_Init( WFLBY_ROOM_YESNOWIN* p_wk, WFLBY_ROOM_DEFM
 	
 	p_wk->p_bmplist = BMP_MENULIST_Create( WFLBY_YESNOWIN_DATANUM, heapID );
 
-	// ƒf[ƒ^ì¬
+	// ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_str = WFLBY_ROOM_Msg_Get(p_msg, WFLBY_DEFMSG_TYPE_HIROBA, msg_wifi_hirobawin_02 );
 	BMP_MENULIST_AddString( p_wk->p_bmplist, p_str, WFLBY_ROOM_YESNO_OK );
 	p_str = WFLBY_ROOM_Msg_Get(p_msg, WFLBY_DEFMSG_TYPE_HIROBA, msg_wifi_hirobawin_01 );
 	BMP_MENULIST_AddString( p_wk->p_bmplist, p_str, WFLBY_ROOM_YESNO_NO );
 
 
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒwƒbƒ_[‚ÉÝ’è
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã«è¨­å®š
 	p_wk->bmplist			= sc_WFLBY_ROOM_YESNO_HEADER;
 	p_wk->bmplist.count		= WFLBY_YESNOWIN_DATANUM;
 	p_wk->bmplist.list		= p_wk->p_bmplist;
@@ -4302,9 +4302,9 @@ static void WFLBY_ROOM_YesNoWin_Init( WFLBY_ROOM_YESNOWIN* p_wk, WFLBY_ROOM_DEFM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YesNoƒEƒBƒ“ƒhƒE@ƒŠƒXƒgƒf[ƒ^”jŠü
+ *	@brief	YesNoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_YesNoWin_Exit( WFLBY_ROOM_YESNOWIN* p_wk )
@@ -4318,16 +4318,16 @@ static void WFLBY_ROOM_YesNoWin_Exit( WFLBY_ROOM_YESNOWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ‰[ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ã‚¨ãƒ©ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ErrWin_Init( WFLBY_ROOM_ERRMSG* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 heapID )
 {
-	//  ƒrƒbƒgƒ}ƒbƒvŠm•Û
+	//  ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç¢ºä¿
 	GF_BGL_BmpWinAdd(
 				p_sys->p_bgl, &p_wk->win, 
 				sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_MAIN_MSGWIN],
@@ -4335,29 +4335,29 @@ static void WFLBY_ROOM_ErrWin_Init( WFLBY_ROOM_ERRMSG* p_wk, WFLBY_GRAPHICCONT* 
 				WFLBY_ERRWIN_SIZX, WFLBY_ERRWIN_SIZY, WFLBY_ROOM_BGPL_SYSFONT_CL,
 				WFLBY_ERRWIN_CGX );
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ‰[•\Ž¦ƒVƒXƒeƒ€	”jŠü
+ *	@brief	ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ErrWin_Exit( WFLBY_ROOM_ERRMSG* p_wk )
 {
-	// ƒrƒbƒgƒ}ƒbƒv”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç ´æ£„
 	GF_BGL_BmpWinDel( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ‰[ƒƒbƒZ[ƒW‚Ì•\Ž¦
+ *	@brief	ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ErrWin_DrawErr( WFLBY_ROOM_ERRMSG* p_wk, const STRBUF* cp_str )
@@ -4365,18 +4365,18 @@ static void WFLBY_ROOM_ErrWin_DrawErr( WFLBY_ROOM_ERRMSG* p_wk, const STRBUF* cp
 	GF_STR_PrintColor( &p_wk->win, FONT_SYSTEM, cp_str, 0, 0,
 			MSG_NO_PUT, WFLBY_ERRWIN_MSGCOL, NULL );
 
-	// ƒEƒBƒ“ƒhƒE‚ð‘‚«ž‚Þ
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ›¸ãè¾¼ã‚€
 	BmpMenuWinWrite( &p_wk->win, WINDOW_TRANS_OFF, WFLBY_SYSWINGRA_CGX, WFLBY_ROOM_BGPL_SYSWIN );
 	GF_BGL_BmpWinOnVReq( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	DWCƒGƒ‰[‚Ì•\Ž¦ˆ—
+ *	@brief	DWCã‚¨ãƒ©ãƒ¼ã®è¡¨ç¤ºå‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒ[ƒN
- *	@param	errno		ƒGƒ‰[ƒiƒ“ƒo[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
+ *	@param	errno		ã‚¨ãƒ©ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ErrWin_DrawDwcErr( WFLBY_ROOM_ERRMSG* p_wk, WFLBY_ROOM_DEFMSG* p_msg )
@@ -4386,23 +4386,23 @@ static void WFLBY_ROOM_ErrWin_DrawDwcErr( WFLBY_ROOM_ERRMSG* p_wk, WFLBY_ROOM_DE
     COMMSTATE_DWCERROR* pErr;
 
     pErr = CommStateGetWifiError();
-	// ƒƒbƒZ[ƒWŽæ“¾
-	msgno = WFLBY_ERR_GetStrID(  pErr->errorCode,  pErr->errorType );	// ƒƒbƒZ[ƒW‚m‚nŽæ“¾
-	WFLBY_ROOM_Msg_SetNumber( p_msg, pErr->errorCode, 5, 0, NUMBER_DISPTYPE_ZERO );	// ‚d‚q‚q‚m‚nÝ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
+	msgno = WFLBY_ERR_GetStrID(  pErr->errorCode,  pErr->errorType );	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼®ï¼¯å–å¾—
+	WFLBY_ROOM_Msg_SetNumber( p_msg, pErr->errorCode, 5, 0, NUMBER_DISPTYPE_ZERO );	// ï¼¥ï¼²ï¼²ï¼®ï¼¯è¨­å®š
 	p_str = WFLBY_ROOM_Msg_Get( p_msg, WFLBY_DEFMSG_TYPE_ERR, msgno );
 
-	// •`‰æ
+	// æç”»
 	WFLBY_ROOM_ErrWin_DrawErr( p_wk, p_str );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[“àƒGƒ‰[‚Ì•\Ž¦
+ *	@brief	ãƒ­ãƒ“ãƒ¼å†…ã‚¨ãƒ©ãƒ¼ã®è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒVƒXƒeƒ€
- *	@param	errno		ƒGƒ‰[ƒiƒ“ƒo[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	errno		ã‚¨ãƒ©ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ErrWin_DrawLobbyErr( WFLBY_ROOM_ERRMSG* p_wk, WFLBY_ROOM_DEFMSG* p_msg, int errno )
@@ -4413,30 +4413,30 @@ static void WFLBY_ROOM_ErrWin_DrawLobbyErr( WFLBY_ROOM_ERRMSG* p_wk, WFLBY_ROOM_
 
 	draw_no = DWC_LOBBY_GetErrNo( errno );
 
-	// ƒƒbƒZ[ƒWŽæ“¾
-	WFLBY_ROOM_Msg_SetNumber( p_msg, draw_no, 5, 0, NUMBER_DISPTYPE_ZERO );	// ‚d‚q‚q‚m‚nÝ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
+	WFLBY_ROOM_Msg_SetNumber( p_msg, draw_no, 5, 0, NUMBER_DISPTYPE_ZERO );	// ï¼¥ï¼²ï¼²ï¼®ï¼¯è¨­å®š
 	p_str = WFLBY_ROOM_Msg_Get( p_msg, WFLBY_DEFMSG_TYPE_ERR, dwc_lobby_0001 );
 
-	// •`‰æ
+	// æç”»
 	WFLBY_ROOM_ErrWin_DrawErr( p_wk, p_str );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒVƒXƒeƒ€ˆ—@‚Ì	ƒGƒ‰[•\Ž¦
+ *	@brief	ãƒ­ãƒ“ãƒ¼ã‚·ã‚¹ãƒ†ãƒ å‡¦ç†ã€€ã®	ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒVƒXƒeƒ€
- *	@param	type		ƒGƒ‰[ƒ^ƒCƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	type		ã‚¨ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_ErrWin_DrawSystemErr( WFLBY_ROOM_ERRMSG* p_wk, WFLBY_ROOM_DEFMSG* p_msg, WFLBY_SYSTEM_ERR_TYPE type )
 {
 	STRBUF*  p_str;
 
-	// ƒƒbƒZ[ƒWŽæ“¾
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 	p_str = WFLBY_ROOM_Msg_Get( p_msg, WFLBY_DEFMSG_TYPE_ERR, dwc_error_0015 );
-	// •`‰æ
+	// æç”»
 	WFLBY_ROOM_ErrWin_DrawErr( p_wk, p_str );
 }
 
@@ -4445,10 +4445,10 @@ static void WFLBY_ROOM_ErrWin_DrawSystemErr( WFLBY_ROOM_ERRMSG* p_wk, WFLBY_ROOM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWƒVƒXƒeƒ€ì¬	‰Šú‰»
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_Init( WFLBY_ROOM_DEFMSG* p_wk, u32 heapID )
@@ -4471,9 +4471,9 @@ static void WFLBY_ROOM_Msg_Init( WFLBY_ROOM_DEFMSG* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW	”jŠü
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */	
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_Exit( WFLBY_ROOM_DEFMSG* p_wk )
@@ -4489,9 +4489,9 @@ static void WFLBY_ROOM_Msg_Exit( WFLBY_ROOM_DEFMSG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWŽæ“¾
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static STRBUF* WFLBY_ROOM_Msg_Get( WFLBY_ROOM_DEFMSG* p_wk, WFLBY_DEFMSG_TYPE type, u32 strid )
@@ -4503,13 +4503,13 @@ static STRBUF* WFLBY_ROOM_Msg_Get( WFLBY_ROOM_DEFMSG* p_wk, WFLBY_DEFMSG_TYPE ty
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚É”Žš‚ðÝ’è
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«æ•°å­—ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	num			”Žš
- *	@param	keta		Œ…
- *	@param	bufid		ƒoƒbƒtƒ@‚h‚c
- *	@param	disptype	¶‚Â‚ß‚Æ‚©
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	num			æ•°å­—
+ *	@param	keta		æ¡
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ï¼©ï¼¤
+ *	@param	disptype	å·¦ã¤ã‚ã¨ã‹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_SetNumber( WFLBY_ROOM_DEFMSG* p_wk, u32  num, u32 keta, u32 bufid, NUMBER_DISPTYPE disptype )
@@ -4519,11 +4519,11 @@ static void WFLBY_ROOM_Msg_SetNumber( WFLBY_ROOM_DEFMSG* p_wk, u32  num, u32 ket
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚ÉƒvƒŒƒCƒ„[–¼‚ðÝ’è
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *	@param	cp_mystatus	MYSTATUS
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_SetPlayerName( WFLBY_ROOM_DEFMSG* p_wk, const MYSTATUS* cp_mystatus, u32 bufid )
@@ -4533,11 +4533,11 @@ static void WFLBY_ROOM_Msg_SetPlayerName( WFLBY_ROOM_DEFMSG* p_wk, const MYSTATU
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€‚ðÝ’è
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	type		ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_SetMinigame( WFLBY_ROOM_DEFMSG* p_wk, WFLBY_GAMETYPE type, u32 bufid )
@@ -4547,11 +4547,11 @@ static void WFLBY_ROOM_Msg_SetMinigame( WFLBY_ROOM_DEFMSG* p_wk, WFLBY_GAMETYPE 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€‚ðÝ’è
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	type		ƒ^ƒCƒ€ƒCƒxƒ“ƒgƒ^ƒCƒv
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_SetTimeevent( WFLBY_ROOM_DEFMSG* p_wk, WFLBY_EVENTGMM_TYPE type, u32 bufid )
@@ -4561,11 +4561,11 @@ static void WFLBY_ROOM_Msg_SetTimeevent( WFLBY_ROOM_DEFMSG* p_wk, WFLBY_EVENTGMM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€‚ðÝ’è
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	item		ƒKƒWƒFƒbƒgƒ^ƒCƒv
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	item		ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_SetItem( WFLBY_ROOM_DEFMSG* p_wk, WFLBY_ITEMTYPE item, u32 bufid )
@@ -4575,11 +4575,11 @@ static void WFLBY_ROOM_Msg_SetItem( WFLBY_ROOM_DEFMSG* p_wk, WFLBY_ITEMTYPE item
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘–¼‚ðÝ’è
+ *	@brief	å›½åã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN	
- *	@param	country		‘ID
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯	
+ *	@param	country		å›½ID
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_SetCountry( WFLBY_ROOM_DEFMSG* p_wk, u32 country, u32 bufid )
@@ -4589,12 +4589,12 @@ static void WFLBY_ROOM_Msg_SetCountry( WFLBY_ROOM_DEFMSG* p_wk, u32 country, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’nˆæ–¼‚ðÝ’è
+ *	@brief	åœ°åŸŸåã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	country		‘ID
- *	@param	area		’nˆæID
- *	@param	bufid		ƒoƒbƒtƒ@ID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	country		å›½ID
+ *	@param	area		åœ°åŸŸID
+ *	@param	bufid		ãƒãƒƒãƒ•ã‚¡ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_SetArea( WFLBY_ROOM_DEFMSG* p_wk, u32 country, u32 area, u32 bufid )
@@ -4604,11 +4604,11 @@ static void WFLBY_ROOM_Msg_SetArea( WFLBY_ROOM_DEFMSG* p_wk, u32 country, u32 ar
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÈˆÕ‰ï˜b‚ðÝ’è
+ *	@brief	ç°¡æ˜“ä¼šè©±ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	bufID		ƒoƒbƒtƒ@ID
- *	@param	word		’PŒêID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	bufID		ãƒãƒƒãƒ•ã‚¡ID
+ *	@param	word		å˜èªžID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_SetPMSWord( WFLBY_ROOM_DEFMSG* p_wk, u32 bufID, PMS_WORD word )
@@ -4618,9 +4618,9 @@ static void WFLBY_ROOM_Msg_SetPMSWord( WFLBY_ROOM_DEFMSG* p_wk, u32 bufID, PMS_W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚Ìƒoƒbƒtƒ@ƒNƒŠƒA
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã®ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_Msg_ClearWordSet( WFLBY_ROOM_DEFMSG* p_wk )
@@ -4630,9 +4630,9 @@ static void WFLBY_ROOM_Msg_ClearWordSet( WFLBY_ROOM_DEFMSG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg‹N“®ƒtƒ‰ƒO‚ðÝ’è‚·‚é
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆèµ·å‹•ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_GadGet_SetFlag( WFLBY_ROOMWK* p_wk )
@@ -4645,40 +4645,40 @@ static void WFLBY_ROOM_GadGet_SetFlag( WFLBY_ROOMWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚µ‚½‰æ–Ê‰Šú‰»ˆ—
+ *	@brief	ã—ãŸç”»é¢åˆæœŸåŒ–å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *	@param	cp_mystatus	MYSTATUS
- *	@param	heapID		ƒq[ƒv
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Init( WFLBY_UNDER_WIN* p_wk, const WFLBY_ROOM_SAVE* cp_save, WFLBY_GRAPHICCONT* p_sys, const MYSTATUS* cp_mystatus, u32 heapID )
 {
 	u32 sex;
 
-	// «•ÊŽæ“¾
+	// æ€§åˆ¥å–å¾—
 	sex = MyStatus_GetMySex( cp_mystatus );
 	
 	p_wk->p_handle = ArchiveDataHandleOpen( ARC_WIFILOBBY_OTHER_GRA, heapID );
 	WFLBY_ROOM_UNDERWIN_Common_Init( p_wk, p_sys, p_wk->p_handle, sex, heapID );
 
-	// ƒgƒŒ[ƒiƒJ[ƒh
+	// ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰
 	WFLBY_ROOM_UNDERWIN_TrCard_Init( &p_wk->tr_card, p_sys, p_wk->p_handle, heapID );
 
-	// ƒ{ƒ^ƒ“‚Ì‰Šú‰»
+	// ãƒœã‚¿ãƒ³ã®åˆæœŸåŒ–
 	WFLBY_ROOM_UNDERWIN_Button_Init( &p_wk->bttn, p_sys, p_wk->p_handle, heapID );
 	
-	// ƒV[ƒPƒ“ƒXó‘Ô‚ð’²®
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çŠ¶æ…‹ã‚’èª¿æ•´
 	p_wk->req = WFLBY_UNDERWIN_DRAW_NONE;
 	p_wk->now = WFLBY_UNDERWIN_DRAW_NONE;
 	if( cp_save->pl_inevno == WFLBY_EV_DEF_PLAYERIN_NORMAL ){
 		p_wk->seq = WFLBY_UNDERWIN_SEQ_STARTWAIT;
 
-		// ƒoƒbƒNƒpƒŒƒbƒgƒJƒ‰[‚ð•‚É‚µ‚Ä‚¨‚­
+		// ãƒãƒƒã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã‚’é»’ã«ã—ã¦ãŠã
 		GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0 );
 		
-		// ƒTƒu–Ê‘S•””ñ•\Ž¦
+		// ã‚µãƒ–é¢å…¨éƒ¨éžè¡¨ç¤º
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
@@ -4691,19 +4691,19 @@ static void WFLBY_ROOM_UNDERWIN_Init( WFLBY_UNDER_WIN* p_wk, const WFLBY_ROOM_SA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚µ‚½‰æ–Ê”jŠüˆ—
+ *	@brief	ã—ãŸç”»é¢ç ´æ£„å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_boardwin	ŠÅ”Âƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_boardwin	çœ‹æ¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Exit( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOM_TALKMSG* p_boardwin, WFLBY_GRAPHICCONT* p_sys )
 {
-	// ƒ{ƒ^ƒ“”jŠü
+	// ãƒœã‚¿ãƒ³ç ´æ£„
 	WFLBY_ROOM_UNDERWIN_Button_Exit( &p_wk->bttn );
 	
-	// ƒgƒŒ[ƒiƒJ[ƒh
+	// ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰
 	WFLBY_ROOM_UNDERWIN_TrCard_Exit( &p_wk->tr_card, p_boardwin, p_sys );
 
 	WFLBY_ROOM_UNDERWIN_Common_Exit( p_wk, p_sys );
@@ -4712,11 +4712,11 @@ static void WFLBY_ROOM_UNDERWIN_Exit( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOM_TALKMSG*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ““®ì
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_room		•”‰®ƒ[ƒN
- *	@param	no_input	ƒ{ƒ^ƒ““ü—Í‚È‚ÇŽó‚¯•t‚¯‚È‚¢‚Æ‚«FTRUE
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_room		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	no_input	ãƒœã‚¿ãƒ³å…¥åŠ›ãªã©å—ã‘ä»˜ã‘ãªã„ã¨ãï¼šTRUE
  *	@param	heapID
  */
 //-----------------------------------------------------------------------------
@@ -4731,44 +4731,44 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 	p_sys		= &p_room->graphic;
 	p_msg		= &p_room->def_msg;
 	
-	// “®ìƒV[ƒPƒ“ƒX
+	// å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	switch( p_wk->seq ){
-	// ŠJŽn‘Ò‚¿
+	// é–‹å§‹å¾…ã¡
 	case WFLBY_UNDERWIN_SEQ_STARTWAIT:			
 		if( p_wk->bttn_start == TRUE ){
 			p_wk->seq ++;
 		}
 		break;
-	// ŠJŽnƒtƒF[ƒhƒAƒEƒg
+	// é–‹å§‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case WFLBY_UNDERWIN_SEQ_STARTFADEOUT:		
 		WIPE_SYS_Start(WIPE_PATTERN_S, 
 				WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
 				WIPE_FADE_WHITE, 4, 1, heapID );
 		p_wk->seq ++;
 		break;
-	// ŠJŽnƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+	// é–‹å§‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 	case WFLBY_UNDERWIN_SEQ_STARTFADEOUTWAIT:	
 		if( WIPE_SYS_EndCheck() == TRUE ){
 
-			// Ž©•ª‚ÌƒgƒŒ[ƒiƒJ[ƒh‚ð•\Ž¦
+			// è‡ªåˆ†ã®ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰ã‚’è¡¨ç¤º
 #if 0
 			{
 				const WFLBY_USER_PROFILE* cp_myprofile;
 				BOOL vip;
 
-				// Ž©•ª‚ÌƒvƒƒtƒB[ƒ‹Žæ“¾
+				// è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å–å¾—
 				cp_myprofile = WFLBY_SYSTEM_GetMyProfileLocal( p_system );
 
-				// VIPƒf[ƒ^‚ðŽæ“¾
+				// VIPãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 				vip			= WFLBY_SYSTEM_GetUserVipFlag( p_system, WFLBY_SYSTEM_GetMyIdx( p_system ) );
 				WFLBY_ROOM_UNDERWIN_StartTrCard( p_wk, &p_room->boardwin, p_sys, p_msg, TRUE, heapID, 
 						cp_myprofile, cp_myprofile, vip, FALSE, NULL, FALSE );
 
-				// ó‘Ô‚ðƒXƒ^[ƒgƒvƒƒtƒB[ƒ‹ó‘Ô‚É‚·‚é
+				// çŠ¶æ…‹ã‚’ã‚¹ã‚¿ãƒ¼ãƒˆãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«çŠ¶æ…‹ã«ã™ã‚‹
 				p_wk->now = WFLBY_UNDERWIN_DRAW_PROFILE;
 			}
 #endif
-			// ƒKƒWƒFƒbƒg•\Ž¦
+			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆè¡¨ç¤º
 			{
 				const WFLBY_USER_PROFILE* cp_profile;
 				cp_profile = WFLBY_SYSTEM_GetMyProfileLocal( p_system );
@@ -4776,7 +4776,7 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 				p_wk->now = WFLBY_UNDERWIN_DRAW_BTTN_DUMMY;
 			}
 
-			// ƒTƒu–Ê‘S•”•\Ž¦ŠJŽn
+			// ã‚µãƒ–é¢å…¨éƒ¨è¡¨ç¤ºé–‹å§‹
 			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
@@ -4784,14 +4784,14 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 			p_wk->seq ++;
 		}
 		break;
-	// ŠJŽnƒtƒF[ƒhƒCƒ“
+	// é–‹å§‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	case WFLBY_UNDERWIN_SEQ_STARTFADEIN:			
 		WIPE_SYS_Start(WIPE_PATTERN_S, 
 				WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 				WIPE_FADE_WHITE, 6, 1, heapID );
 		p_wk->seq ++;
 		break;
-	// ŠJŽnƒtƒF[ƒhƒCƒ“‘Ò‚¿
+	// é–‹å§‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 	case WFLBY_UNDERWIN_SEQ_STARTFADEINWAIT:		
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			p_wk->seq ++;
@@ -4800,36 +4800,36 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 
 	case WFLBY_UNDERWIN_SEQ_NORMAL:
 
-		// “ü—Í‚ðŽó‚¯•t‚¯‚È‚¢ê‡
-		// ‚È‚É‚à‚µ‚È‚¢
+		// å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ãªã„å ´åˆ
+		// ãªã«ã‚‚ã—ãªã„
 		if( no_input == TRUE ){
 			break;
 		}
 
 
 		switch( p_wk->now ){
-		// ƒKƒWƒFƒbƒgƒ{ƒ^ƒ“
+		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒœã‚¿ãƒ³
 		case WFLBY_UNDERWIN_DRAW_BTTN:
 			result = WFLBY_ROOM_UNDERWIN_Button_Main( &p_wk->bttn, p_sys, p_wk->p_handle, heapID );
 			if( result == TRUE ){
-				// Ž©•ª‚ÌƒKƒWƒFƒbƒg‹N“®
+				// è‡ªåˆ†ã®ã‚¬ã‚¸ã‚§ãƒƒãƒˆèµ·å‹•
 				WFLBY_ROOM_GadGet_SetFlag( p_room );
 			}
 			break;
 
-		// ƒKƒWƒFƒbƒgƒ{ƒ^ƒ“@ƒ_ƒ~[
+		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒœã‚¿ãƒ³ã€€ãƒ€ãƒŸãƒ¼
 		case WFLBY_UNDERWIN_DRAW_BTTN_DUMMY:
 			break;
 			
-		// ƒtƒ[ƒg
+		// ãƒ•ãƒ­ãƒ¼ãƒˆ
 		case WFLBY_UNDERWIN_DRAW_FLOAT:
-			// ƒAƒjƒÄ¶’†‚È‚çÄ¶’†‚ÌƒAƒjƒI—¹‘Ò‚¿
+			// ã‚¢ãƒ‹ãƒ¡å†ç”Ÿä¸­ãªã‚‰å†ç”Ÿä¸­ã®ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 			if( p_wk->flt_anm_flag ){
 				if( WFLBY_TIMEEVENT_FLOAT_CheckAnm( p_room->p_timeevent, 
 							p_wk->flt_float_idx, p_wk->flt_anm_idx ) == FALSE ){
 					p_wk->flt_anm_flag = FALSE;
 
-					// ƒ{ƒ^ƒ“•œ‹A
+					// ãƒœã‚¿ãƒ³å¾©å¸°
 					WFLBY_ROOM_UNDERWIN_Button_BttnLockClear( &p_wk->bttn );
 				}
 			}
@@ -4837,11 +4837,11 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 			
 			result = WFLBY_ROOM_UNDERWIN_Button_Main( &p_wk->bttn, p_sys, p_wk->p_handle, heapID );
 			if( result == TRUE ){
-				// ƒtƒ[ƒgƒAƒjƒ‹N“®
+				// ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡èµ·å‹•
 				WFLBY_SYSTEM_SetFloatAnm( p_system, WFLBY_SYSTEM_GetMyIdx( p_system ) );
-				WFLBY_SYSTEM_SendFloatAnm( p_system );	// ƒAƒjƒƒf[ƒ^‘—M
+				WFLBY_SYSTEM_SendFloatAnm( p_system );	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 
-				// Ä¶‚µ‚½ƒtƒ[ƒgƒAƒjƒî•ñŽæ“¾
+				// å†ç”Ÿã—ãŸãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡æƒ…å ±å–å¾—
 				{
 					u32 reserve_idx, float_idx, float_ofs;
 
@@ -4855,7 +4855,7 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 			}
 			break;
 
-		// ƒvƒƒtƒB[ƒ‹
+		// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 		case WFLBY_UNDERWIN_DRAW_PROFILE:
 			WFLBY_ROOM_UNDERWIN_TrCard_Main( &p_wk->tr_card, &p_room->boardwin );
 			break;
@@ -4865,7 +4865,7 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 		}
 
 
-		// •ÏXƒŠƒNƒGƒXƒg‚ª—ˆ‚Ä‚¢‚½‚ç•ÏX‚·‚é
+		// å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ¥ã¦ã„ãŸã‚‰å¤‰æ›´ã™ã‚‹
 		if( p_wk->req != WFLBY_UNDERWIN_DRAW_NONE ){
 			p_wk->seq ++;
 		}
@@ -4882,7 +4882,7 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 	case WFLBY_UNDERWIN_SEQ_FADEOUTWAIT:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 
-			// ”jŠüˆ—
+			// ç ´æ£„å‡¦ç†
 			switch( p_wk->now ){
 			case WFLBY_UNDERWIN_DRAW_BTTN:
 			case WFLBY_UNDERWIN_DRAW_BTTN_DUMMY:
@@ -4907,9 +4907,9 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 			const WFLBY_AIKOTOBA_DATA* cp_aikotoba;
 
 #if PL_G0200_080716_FIX
-			// ƒvƒƒtƒB[ƒ‹‚ÌŽæ“¾‚ª•s‰Â”\‚È‚Ì‚Å‚ ‚ê‚ÎAƒ{ƒ^ƒ“•\Ž¦‚É‚·‚é
+			// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®å–å¾—ãŒä¸å¯èƒ½ãªã®ã§ã‚ã‚Œã°ã€ãƒœã‚¿ãƒ³è¡¨ç¤ºã«ã™ã‚‹
 			if( p_wk->req == WFLBY_UNDERWIN_DRAW_PROFILE ){
-				// Ž©•ª‚©ƒ`ƒFƒbƒN
+				// è‡ªåˆ†ã‹ãƒã‚§ãƒƒã‚¯
 				if( p_wk->req_tridx != WFLBY_SYSTEM_GetMyIdx( p_system ) ){
 					cp_profile = WFLBY_SYSTEM_GetUserProfile( p_system, p_wk->req_tridx );
 					if( cp_profile == NULL ){
@@ -4932,10 +4932,10 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 					BOOL  mydata;
 					const WFLBY_USER_PROFILE* cp_myprofile;
 
-					// Ž©•ª‚ÌƒvƒƒtƒB[ƒ‹Žæ“¾
+					// è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å–å¾—
 					cp_myprofile = WFLBY_SYSTEM_GetMyProfileLocal( p_system );
 
-					// Ž©•ª‚©ƒ`ƒFƒbƒN
+					// è‡ªåˆ†ã‹ãƒã‚§ãƒƒã‚¯
 					if( p_wk->req_tridx == WFLBY_SYSTEM_GetMyIdx( p_system ) ){
 						cp_profile = WFLBY_SYSTEM_GetMyProfileLocal( p_system );
 						mydata = TRUE;
@@ -4944,12 +4944,12 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 						mydata = FALSE;
 					}
 
-					// VIPƒf[ƒ^‚ðŽæ“¾
+					// VIPãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 					vip			= WFLBY_SYSTEM_GetUserVipFlag( p_system, p_wk->req_tridx );
-					if( p_wk->req_aikotoba == TRUE ){	// ‡Œ¾—t•\Ž¦‚ª‚ ‚é‚Æ‚«‚¾‚¯‡Œ¾—t‚Ìî•ñ‚ðŽæ“¾‚·‚é
+					if( p_wk->req_aikotoba == TRUE ){	// åˆè¨€è‘‰è¡¨ç¤ºãŒã‚ã‚‹ã¨ãã ã‘åˆè¨€è‘‰ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 						aikotoba	= WFLBY_SYSTEM_GetUserAikotobaFlag( p_system, p_wk->req_tridx );
 						cp_aikotoba	= WFLBY_SYSTEM_GetUserAikotobaStr( p_system, p_wk->req_tridx );
-						if( cp_aikotoba == NULL ){	// ‡Œ¾—t‚ª‚È‚©‚Á‚½‚çâ‘Î‚É‡Œ¾—t•\Ž¦‚È‚µ‚É‚·‚éi”O‚Ì‚½‚ßj
+						if( cp_aikotoba == NULL ){	// åˆè¨€è‘‰ãŒãªã‹ã£ãŸã‚‰çµ¶å¯¾ã«åˆè¨€è‘‰è¡¨ç¤ºãªã—ã«ã™ã‚‹ï¼ˆå¿µã®ãŸã‚ï¼‰
 							aikotoba = FALSE;
 						}
 					}else{
@@ -4968,8 +4968,8 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 					idx = WFLBY_SYSTEM_GetFloatPlIdxReserve( p_system, WFLBY_SYSTEM_GetMyIdx( p_system ) );
 					if( idx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
 						GF_ASSERT(0);
-						// —\–ñ‚µ‚Ä‚È‚¢
-						idx = 0;	// 0‚É‚µ‚Ä‚µ‚Ü‚¤
+						// äºˆç´„ã—ã¦ãªã„
+						idx = 0;	// 0ã«ã—ã¦ã—ã¾ã†
 					}
 					WFLBY_SYSTEM_GetFloatIdxOfs( idx, &floatidx, &floatoffs );
 					WFLBY_ROOM_UNDERWIN_StartBttnFloat( p_wk, p_sys, heapID, floatoffs );
@@ -4988,7 +4988,7 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 				WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 				WIPE_FADE_BLACK, WFLBY_UNDERWIN_FASE_DIV, WFLBY_UNDERWIN_FASE_SYNC, heapID );
 
-		// ŽŸ‚ªƒgƒŒ[ƒi[ƒJ[ƒh‚È‚çˆê“xƒgƒŒ[ƒi[ƒJ[ƒh‚ÌƒƒCƒ“‚ðŽÀs
+		// æ¬¡ãŒãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãªã‚‰ä¸€åº¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ã‚’å®Ÿè¡Œ
 		if( p_wk->now == WFLBY_UNDERWIN_DRAW_PROFILE ){
 			WFLBY_ROOM_UNDERWIN_TrCard_Main( &p_wk->tr_card, &p_room->boardwin );
 		}
@@ -5009,12 +5009,12 @@ static void WFLBY_ROOM_UNDERWIN_Main( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOMWK* p_roo
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚µ‚½‰æ–Ê‚ªƒtƒF[ƒh’†‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+ *	@brief	ã—ãŸç”»é¢ãŒãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒtƒF[ƒh’†
- *	@retval	FALSE	ƒtƒF[ƒh‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
+ *	@retval	FALSE	ãƒ•ã‚§ãƒ¼ãƒ‰ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_ROOM_UNDERWIN_CheckFade( const WFLBY_UNDER_WIN* cp_wk )
@@ -5027,11 +5027,11 @@ static BOOL WFLBY_ROOM_UNDERWIN_CheckFade( const WFLBY_UNDER_WIN* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚µ‚½‰æ–Ê‚ÌƒV[ƒPƒ“ƒX‚ðŽæ“¾‚·‚é
+ *	@brief	ã—ãŸç”»é¢ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒV[ƒPƒ“ƒX
+ *	@return	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_ROOM_UNDERWIN_GetSeq( const WFLBY_UNDER_WIN* cp_wk )
@@ -5041,11 +5041,11 @@ static u32 WFLBY_ROOM_UNDERWIN_GetSeq( const WFLBY_UNDER_WIN* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦Ø‘ÖƒŠƒNƒGƒXƒg
+ *	@brief	è¡¨ç¤ºåˆ‡æ›¿ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
- *	@param	aikotoba	‡Œ¾—t‚ð‚Ð‚å‚¤‚¶‚·‚é‚Ì‚©
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	aikotoba	åˆè¨€è‘‰ã‚’ã²ã‚‡ã†ã˜ã™ã‚‹ã®ã‹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_ReqTrCard( WFLBY_UNDER_WIN* p_wk, u32 idx, BOOL aikotoba )
@@ -5057,12 +5057,12 @@ static void WFLBY_ROOM_UNDERWIN_ReqTrCard( WFLBY_UNDER_WIN* p_wk, u32 idx, BOOL 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚µ‚½‰æ–ÊƒgƒŒ[ƒiƒJ[ƒh	ƒAƒCƒeƒ€ƒAƒCƒRƒ“•ÏX
+ *	@brief	ã—ãŸç”»é¢ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰	ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³å¤‰æ›´
  *	
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_sys	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	item	ƒAƒCƒeƒ€
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	item	ã‚¢ã‚¤ãƒ†ãƒ 
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_ChangeItemTrCard( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 item, u32 heapID )
@@ -5070,18 +5070,18 @@ static void WFLBY_ROOM_UNDERWIN_ChangeItemTrCard( WFLBY_UNDER_WIN* p_wk, WFLBY_G
 	GF_ASSERT( item < WFLBY_ITEM_NUM );
 	GF_ASSERT( p_wk->now == WFLBY_UNDERWIN_DRAW_PROFILE );
 
-	// ‚Ö‚ñ‚±‚¤‚Å‚«‚é‚Ì‚©H
+	// ã¸ã‚“ã“ã†ã§ãã‚‹ã®ã‹ï¼Ÿ
 	if( ( p_wk->now == WFLBY_UNDERWIN_DRAW_PROFILE ) ){
-		// •ÏX
+		// å¤‰æ›´
 		WFLBY_ROOM_UNDERWIN_TrCard_ChangeItem( &p_wk->tr_card, p_sys, p_wk->p_handle, heapID, item );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“Ø‚è‘Ö‚¦ƒŠƒNƒGƒXƒg
+ *	@brief	ãƒœã‚¿ãƒ³åˆ‡ã‚Šæ›¿ãˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_ReqBttn( WFLBY_UNDER_WIN* p_wk )
@@ -5093,9 +5093,9 @@ static void WFLBY_ROOM_UNDERWIN_ReqBttn( WFLBY_UNDER_WIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒ{ƒ^ƒ“Ø‚è‘Ö‚¦ƒŠƒNƒGƒXƒg
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãƒœã‚¿ãƒ³åˆ‡ã‚Šæ›¿ãˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_ReqBttnFloat( WFLBY_UNDER_WIN* p_wk )
@@ -5107,11 +5107,11 @@ static void WFLBY_ROOM_UNDERWIN_ReqBttnFloat( WFLBY_UNDER_WIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒJ[ƒh‚ÌƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
+ *	@return	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_ROOM_UNDERWIN_GetTrCardPlIdx( const WFLBY_UNDER_WIN* cp_wk )
@@ -5121,12 +5121,12 @@ static u32 WFLBY_ROOM_UNDERWIN_GetTrCardPlIdx( const WFLBY_UNDER_WIN* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	trainerƒJ[ƒh‚ð•\Ž¦‚µ‚Ä‚¢‚é‚©‚ðŽæ“¾‚·‚é
+ *	@brief	trainerã‚«ãƒ¼ãƒ‰ã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹ã‹ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	trainerƒJ[ƒh•\Ž¦’†
- *	@retval	FALSE	trainerƒJ[ƒh•\Ž¦‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	trainerã‚«ãƒ¼ãƒ‰è¡¨ç¤ºä¸­
+ *	@retval	FALSE	trainerã‚«ãƒ¼ãƒ‰è¡¨ç¤ºã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_ROOM_UNDERWIN_CheckTrCardDraw( const WFLBY_UNDER_WIN* cp_wk )
@@ -5142,15 +5142,15 @@ static BOOL WFLBY_ROOM_UNDERWIN_CheckTrCardDraw( const WFLBY_UNDER_WIN* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒJ[ƒh‚ðOFF‚É‚·‚é‚±‚Æ‚ª‚©‚Ì‚¤‚©H
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰ã‚’OFFã«ã™ã‚‹ã“ã¨ãŒã‹ã®ã†ã‹ï¼Ÿ
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‰Â”\
- *	@retval	FALSE	•s‰Â”\
+ *	@retval	TRUE	å¯èƒ½
+ *	@retval	FALSE	ä¸å¯èƒ½
  *
- *	‚¿‚å‚Á‚Æ‚í‚©‚è‚É‚­‚¢‚Å‚·‚ªA
- *	ƒŠƒNƒGƒXƒg‚ªNONE‚ÅƒgƒŒ[ƒi[ƒJ[ƒh•\Ž¦’†‚©H‚Æ‚¢‚¤‚±‚Æ‚Å‚·B
+ *	ã¡ã‚‡ã£ã¨ã‚ã‹ã‚Šã«ãã„ã§ã™ãŒã€
+ *	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒNONEã§ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰è¡¨ç¤ºä¸­ã‹ï¼Ÿã¨ã„ã†ã“ã¨ã§ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_ROOM_UNDERWIN_CheckTrCardCanOff( const WFLBY_UNDER_WIN* cp_wk )
@@ -5163,12 +5163,12 @@ static BOOL WFLBY_ROOM_UNDERWIN_CheckTrCardCanOff( const WFLBY_UNDER_WIN* cp_wk 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒh‡Œ¾—t‚ð•\Ž¦‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰åˆè¨€è‘‰ã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•\Ž¦‚µ‚Ä‚é
- *	@retval	FALSE	•\Ž¦‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	è¡¨ç¤ºã—ã¦ã‚‹
+ *	@retval	FALSE	è¡¨ç¤ºã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_ROOM_UNDERWIN_CheckTrCardAikotobaDraw( const WFLBY_UNDER_WIN* cp_wk )
@@ -5179,12 +5179,12 @@ static BOOL WFLBY_ROOM_UNDERWIN_CheckTrCardAikotobaDraw( const WFLBY_UNDER_WIN* 
 #if PL_T0862_080712_FIX
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‚©‚©‚Á‚Ä‚¢‚é
- *	@retval	FALSE	‚©‚©‚Á‚Ä‚È‚¢
+ *	@retval	TRUE	ã‹ã‹ã£ã¦ã„ã‚‹
+ *	@retval	FALSE	ã‹ã‹ã£ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_ROOM_UNDERWIN_CheckReqNone( const WFLBY_UNDER_WIN* cp_wk )
@@ -5198,26 +5198,26 @@ static BOOL WFLBY_ROOM_UNDERWIN_CheckReqNone( const WFLBY_UNDER_WIN* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒe[ƒ^ƒX•\Ž¦ŠJŽn
+ *	@brief	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºé–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_boardwin	ŠÅ”ÂƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
- *	@param	p_sys		ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€
- *	@param	p_msg		ƒƒbƒZ[ƒW
- *	@param	mydata		Ž©•ª‚Ìƒf[ƒ^‚©
- *	@param	heapID		ƒq[ƒv‚h‚c	
- *	@param	cp_profile	ƒ†[ƒUƒvƒƒtƒB[ƒ‹
- *	@param	cp_myprofileƒ†[ƒUƒvƒƒtƒB[ƒ‹
- *	@param	vip			VIPƒtƒ‰ƒO
- *	@param	aikotoba	‡Œ¾—t•`‰æƒtƒ‰ƒO
- *	@param	cp_aikotoba	‡Œ¾—t•¶Žš—ñ
- *	@param	draw_item	ƒAƒCƒeƒ€‚ð•\Ž¦‚·‚é‚©
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_boardwin	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_sys		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	mydata		è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‹
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤	
+ *	@param	cp_profile	ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	cp_myprofileãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	vip			VIPãƒ•ãƒ©ã‚°
+ *	@param	aikotoba	åˆè¨€è‘‰æç”»ãƒ•ãƒ©ã‚°
+ *	@param	cp_aikotoba	åˆè¨€è‘‰æ–‡å­—åˆ—
+ *	@param	draw_item	ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¡¨ç¤ºã™ã‚‹ã‹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_StartTrCard( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOM_TALKMSG* p_boardwin, WFLBY_GRAPHICCONT* p_sys, WFLBY_ROOM_DEFMSG* p_msg, BOOL mydata, u32 heapID, const WFLBY_USER_PROFILE* cp_profile, const WFLBY_USER_PROFILE* cp_myprofile, BOOL vip, BOOL aikotoba, const WFLBY_AIKOTOBA_DATA* cp_aikotoba, BOOL draw_item )
 {
 
-	// ƒvƒƒtƒB[ƒ‹‚ð•\Ž¦’†‚È‚ç‚¢‚Á‚½‚ñÁ‚·
+	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’è¡¨ç¤ºä¸­ãªã‚‰ã„ã£ãŸã‚“æ¶ˆã™
 	if( p_wk->now == WFLBY_UNDERWIN_DRAW_PROFILE ){
 		WFLBY_ROOM_UNDERWIN_EndTrCard( p_wk, p_boardwin, p_sys );
 	}
@@ -5228,11 +5228,11 @@ static void WFLBY_ROOM_UNDERWIN_StartTrCard( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOM_T
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒJ[ƒh•\Ž¦‚n‚e‚e
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰è¡¨ç¤ºï¼¯ï¼¦ï¼¦
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_boardwin	ŠÅ”ÂƒEƒBƒ“ƒhƒE
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_boardwin	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_EndTrCard( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOM_TALKMSG* p_boardwin, WFLBY_GRAPHICCONT* p_sys )
@@ -5243,18 +5243,18 @@ static void WFLBY_ROOM_UNDERWIN_EndTrCard( WFLBY_UNDER_WIN* p_wk, WFLBY_ROOM_TAL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“‚Ì‹N“®
+ *	@brief	ãƒœã‚¿ãƒ³ã®èµ·å‹•
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_msg		ƒƒbƒZ[ƒW
- *	@param	heapID		ƒq[ƒvID
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_StartBttn( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHICCONT* p_sys, WFLBY_ROOM_DEFMSG* p_msg, u32 heapID, const WFLBY_USER_PROFILE* cp_profile )
 {
-	// ƒ{ƒ^ƒ“‚ð•\Ž¦’†‚È‚ç‚¢‚Á‚½‚ñÁ‚·
+	// ãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºä¸­ãªã‚‰ã„ã£ãŸã‚“æ¶ˆã™
 	if( (p_wk->now == WFLBY_UNDERWIN_DRAW_BTTN) ||
 		(p_wk->now == WFLBY_UNDERWIN_DRAW_BTTN_DUMMY) ||
 		(p_wk->now == WFLBY_UNDERWIN_DRAW_FLOAT) ){
@@ -5268,17 +5268,17 @@ static void WFLBY_ROOM_UNDERWIN_StartBttn( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHICC
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒ{ƒ^ƒ“‚Ì‹N“®
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãƒœã‚¿ãƒ³ã®èµ·å‹•
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_sys			ƒVƒXƒeƒ€
- *	@param	heapID			ƒq[ƒv‚h‚c
- *	@param	idx				ƒtƒ[ƒg‚½‚Á‚Ä‚¢‚é‚Æ‚±‚ëƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
+ *	@param	idx				ãƒ•ãƒ­ãƒ¼ãƒˆãŸã£ã¦ã„ã‚‹ã¨ã“ã‚ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_StartBttnFloat( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 heapID, u32 idx )
 {
-	// ƒ{ƒ^ƒ“‚ð•\Ž¦’†‚È‚ç‚¢‚Á‚½‚ñÁ‚·
+	// ãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºä¸­ãªã‚‰ã„ã£ãŸã‚“æ¶ˆã™
 	if( p_wk->now == WFLBY_UNDERWIN_DRAW_FLOAT ){
 		WFLBY_ROOM_UNDERWIN_EndBttn( p_wk, p_sys );
 	}
@@ -5290,10 +5290,10 @@ static void WFLBY_ROOM_UNDERWIN_StartBttnFloat( WFLBY_UNDER_WIN* p_wk, WFLBY_GRA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“‚ÌI—¹
+ *	@brief	ãƒœã‚¿ãƒ³ã®çµ‚äº†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_EndBttn( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHICCONT* p_sys )
@@ -5305,10 +5305,10 @@ static void WFLBY_ROOM_UNDERWIN_EndBttn( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHICCON
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ““®ì’âŽ~Ý’è
+ *	@brief	ãƒœã‚¿ãƒ³å‹•ä½œåœæ­¢è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	stop		’âŽ~‚³‚¹‚é‚Æ‚«TRUE
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	stop		åœæ­¢ã•ã›ã‚‹ã¨ãTRUE
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_SetBttnStop( WFLBY_UNDER_WIN* p_wk, BOOL stop )
@@ -5318,55 +5318,55 @@ static void WFLBY_ROOM_UNDERWIN_SetBttnStop( WFLBY_UNDER_WIN* p_wk, BOOL stop )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WIFIƒƒr[‰º‰æ–Ê—pƒpƒŒƒbƒgVBlank“]‘—ƒVƒXƒeƒ€
+ *	@brief	WIFIãƒ­ãƒ“ãƒ¼ä¸‹ç”»é¢ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆVBlankè»¢é€ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	dataidx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	dataidx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_PalTrans( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 dataidx, u32 heapID )
 {
 	p_wk->dataidx	= dataidx;
 	p_wk->heapID	= heapID;
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	VWaitTCB_Add( WFLBY_ROOM_UNDERWIN_PalTransVTcb, p_wk, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒg“]‘—TCB
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€TCB
  *
  *	@param	p_tcb		TCB
- *	@param	p_work		ƒ[ƒN
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_PalTransVTcb( TCB_PTR p_tcb, void* p_work )
 {
 	WFLBY_UNDER_WIN* p_wk = p_work;
 	
-	// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰
 	{
-		// ƒJƒ‰[ƒpƒŒƒbƒg
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 		ArcUtil_HDL_PalSet( p_wk->p_handle, 
 				p_wk->dataidx, 
 				PALTYPE_SUB_BG, 0, 
 				0, p_wk->heapID );
 	}
 
-	//  •¶Žš‘‚«ž‚Ý—p
+	//  æ–‡å­—æ›¸ãè¾¼ã¿ç”¨
 	{
 		SystemFontPaletteLoad( PALTYPE_SUB_BG, WFLBY_ROOM_BGSPL_FONTCL*32, p_wk->heapID );
 	}
 
-	// ‹Zƒ^ƒCƒv‘‚«ž‚Ý—pƒpƒŒƒbƒg
+	// æŠ€ã‚¿ã‚¤ãƒ—æ›¸ãè¾¼ã¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
 	{
 		ArcUtil_PalSet( WazaTypeIcon_ArcIDGet(), 
 				WazaTypeIcon_PlttIDGet(), PALTYPE_SUB_BG, WFLBY_ROOM_BGSPL_WAZATYPE0*32, 3*32, p_wk->heapID );
 	}
 
-	// ƒ^ƒXƒN”jŠü
+	// ã‚¿ã‚¹ã‚¯ç ´æ£„
 	TCB_Delete( p_tcb );
 }
 
@@ -5374,20 +5374,20 @@ static void WFLBY_ROOM_UNDERWIN_PalTransVTcb( TCB_PTR p_tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’ÊƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ *	@brief	å…±é€šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	sex			Ž©•ª‚Ì«•Ê
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	sex			è‡ªåˆ†ã®æ€§åˆ¥
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Common_Init( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHICCONT* p_sys, ARCHANDLE* p_handle, u32 sex, u32 heapID )
 {
-	// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰
 	{
-		// ƒJƒ‰[ƒpƒŒƒbƒg
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 		if( sex == PM_MALE ){
 			ArcUtil_HDL_PalSet( p_handle, 
 					NARC_wifi_lobby_other_gadget_sub_NCLR, 
@@ -5400,13 +5400,13 @@ static void WFLBY_ROOM_UNDERWIN_Common_Init( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHI
 					0, heapID );
 		}
 
-		// ƒLƒƒƒ‰ƒNƒ^
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 		ArcUtil_HDL_BgCharSet( p_handle, 
 				NARC_wifi_lobby_other_gadget_bg_NCGR, p_sys->p_bgl, 
 				sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BACK], 0, 0, FALSE, heapID );
 	}
 
-	//  •¶Žš‘‚«ž‚Ý—p
+	//  æ–‡å­—æ›¸ãè¾¼ã¿ç”¨
 	{
 		SystemFontPaletteLoad( PALTYPE_SUB_BG, WFLBY_ROOM_BGSPL_FONTCL*32, heapID );
 	}
@@ -5414,10 +5414,10 @@ static void WFLBY_ROOM_UNDERWIN_Common_Init( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’ÊƒOƒ‰ƒtƒBƒbƒN”jŠü
+ *	@brief	å…±é€šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Common_Exit( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHICCONT* p_sys )
@@ -5426,14 +5426,14 @@ static void WFLBY_ROOM_UNDERWIN_Common_Exit( WFLBY_UNDER_WIN* p_wk, WFLBY_GRAPHI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“‘‚«ž‚Ý‹¤’Êˆ—
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãè¾¼ã¿å…±é€šå‡¦ç†
  *
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	scrnid		ƒXƒNƒŠ[ƒ“‚h‚c
- *	@param	bg_frame	BGƒtƒŒ[ƒ€
- *	@param	cgofs		‚b‚fofs
- *	@param	heapID		ƒq[ƒv‚h‚c
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	scrnid		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ï¼©ï¼¤
+ *	@param	bg_frame	BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	cgofs		ï¼£ï¼§ofs
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Common_LoadScrn( WFLBY_GRAPHICCONT* p_sys, ARCHANDLE* p_handle, u32 scrnid, u32 bg_frame, u32 cgofs, u32 heapID )
@@ -5443,7 +5443,7 @@ static void WFLBY_ROOM_UNDERWIN_Common_LoadScrn( WFLBY_GRAPHICCONT* p_sys, ARCHA
 	p_buff = ArcUtil_HDL_ScrnDataGet( p_handle, scrnid,  FALSE,
 			 &p_scrn, heapID );
 
-	// ƒXƒNƒŠ[ƒ“ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg’l‚ð‘‚«Š·‚¦
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’æ›¸ãæ›ãˆ
 	{
 		int i;
 		u16* p_scrndata;
@@ -5451,7 +5451,7 @@ static void WFLBY_ROOM_UNDERWIN_Common_LoadScrn( WFLBY_GRAPHICCONT* p_sys, ARCHA
 
 		size = p_scrn->szByte / 2;
 
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘ã“ü
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ä»£å…¥
 		p_scrndata = (u16*)p_scrn->rawData;
 
 		for(i=0; i<size; i++){
@@ -5459,11 +5459,11 @@ static void WFLBY_ROOM_UNDERWIN_Common_LoadScrn( WFLBY_GRAPHICCONT* p_sys, ARCHA
 		}
 	}
 
-	// ‚a‚f‚k‚É‘‚«ž‚Þ
+	// ï¼¢ï¼§ï¼¬ã«æ›¸ãè¾¼ã‚€
 	GF_BGL_ScrWrite( p_sys->p_bgl, bg_frame, p_scrn->rawData, 
 			0, 0, p_scrn->screenWidth/8, p_scrn->screenHeight/8 );
 
-	// “]‘—ƒtƒ‰ƒO‚ð—§‚Ä‚é
+	// è»¢é€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GF_BGL_LoadScreenV_Req( p_sys->p_bgl, bg_frame );
 
 	sys_FreeMemoryEz( p_buff );
@@ -5471,17 +5471,17 @@ static void WFLBY_ROOM_UNDERWIN_Common_LoadScrn( WFLBY_GRAPHICCONT* p_sys, ARCHA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	trainerƒJ[ƒh	‰Šú‰»
+ *	@brief	trainerã‚«ãƒ¼ãƒ‰	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_Init( WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICCONT* p_sys, ARCHANDLE* p_handle, u32 heapID )
 {
-	// ƒEƒBƒ“ƒhƒE‰Šú‰»
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	{
 		int i;
 
@@ -5493,21 +5493,21 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_Init( WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICC
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[‚È[ƒJ[ƒh”jŠüˆ—
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãªãƒ¼ã‚«ãƒ¼ãƒ‰ç ´æ£„å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_boardwin	ŠÅ”ÂƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_boardwin	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_Exit( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_TALKMSG* p_boardwin, WFLBY_GRAPHICCONT* p_sys )
 {
-	// End‚ªŒÄ‚Î‚ê‚Ä‚¢‚È‚¢ó‘Ô‚È‚ç”jŠü
+	// EndãŒå‘¼ã°ã‚Œã¦ã„ãªã„çŠ¶æ…‹ãªã‚‰ç ´æ£„
 	if( p_wk->p_itemicon != NULL ){
 		WFLBY_ROOM_UNDERWIN_TrCard_End( p_wk, p_boardwin, p_sys );
 	}
 
-	// ƒEƒBƒ“ƒhƒE”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	{
 		int i;
 
@@ -5519,10 +5519,10 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_Exit( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_TAL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	trainerƒJ[ƒhƒƒCƒ“ˆ—
+ *	@brief	trainerã‚«ãƒ¼ãƒ‰ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_boardwin	ŠÅ”Âƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_boardwin	çœ‹æ¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_Main( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_TALKMSG* p_boardwin )
@@ -5531,21 +5531,21 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_Main( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_TAL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	trainerƒJ[ƒh	ŠJŽn
+ *	@brief	trainerã‚«ãƒ¼ãƒ‰	é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_boardwin	ŠÅ”ÂƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
- *	@param	p_sys		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒW
- *	@param	mydata		Ž©•ª‚Ìƒf[ƒ^‚©
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
- *	@param	cp_myprofileŽ©•ª‚ÌƒvƒƒtƒB[ƒ‹
- *	@param	vip			VIPƒtƒ‰ƒO
- *	@param	aikotoba	‡Œ¾—t•`‰æƒtƒ‰ƒO
- *	@param	cp_aikotoba	‡Œ¾—t•¶Žš—ñ
- *	@param	item_draw	ƒ^ƒbƒ`ƒgƒC‚ð•\Ž¦‚·‚é‚©
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_boardwin	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_sys		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	mydata		è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‹
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	cp_myprofileè‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	vip			VIPãƒ•ãƒ©ã‚°
+ *	@param	aikotoba	åˆè¨€è‘‰æç”»ãƒ•ãƒ©ã‚°
+ *	@param	cp_aikotoba	åˆè¨€è‘‰æ–‡å­—åˆ—
+ *	@param	item_draw	ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’è¡¨ç¤ºã™ã‚‹ã‹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_Start( WFLBY_UNDER_WIN* p_ugwk, WFLBY_ROOM_TALKMSG* p_boardwin, WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICCONT* p_sys, WFLBY_ROOM_DEFMSG* p_msg, BOOL mydata, ARCHANDLE* p_handle, u32 heapID, const WFLBY_USER_PROFILE* cp_profile, const WFLBY_USER_PROFILE* cp_myprofile, BOOL vip, BOOL aikotoba, const WFLBY_AIKOTOBA_DATA* cp_aikotoba, BOOL item_draw )
@@ -5553,49 +5553,49 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_Start( WFLBY_UNDER_WIN* p_ugwk, WFLBY_ROO
 	GF_PRINTCOLOR col;
 	MYSTATUS* p_mystatus;
 
-	// ƒ[ƒhƒZƒbƒg‚Ì’†gƒNƒŠƒA
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã®ä¸­èº«ã‚¯ãƒªã‚¢
 	WFLBY_ROOM_Msg_ClearWordSet( p_msg );
 	
-	// «•Ê‚©‚çƒJƒ‰[‚ðŽæ“¾
+	// æ€§åˆ¥ã‹ã‚‰ã‚«ãƒ©ãƒ¼ã‚’å–å¾—
 	if( WFLBY_SYSTEM_GetProfileSex( cp_profile ) == PM_MALE ){
 		col = WFLBY_TRCARD_COL_BLUE;
 
-		//  VBlankŠúŠÔƒJƒ‰[ƒpƒŒƒbƒg“]‘—
+		//  VBlankæœŸé–“ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		if( vip == FALSE ){
 			WFLBY_ROOM_UNDERWIN_PalTrans( p_ugwk, p_sys, NARC_wifi_lobby_other_gadget_sub_NCLR, heapID );
 		}else{
-			// VIP‚È‚çVIPƒJƒ‰[
+			// VIPãªã‚‰VIPã‚«ãƒ©ãƒ¼
 			WFLBY_ROOM_UNDERWIN_PalTrans( p_ugwk, p_sys, NARC_wifi_lobby_other_gadget_sub_3_NCLR, heapID );
 		}
 	}else{
 		col = WFLBY_TRCARD_COL_RED;
 
-		//  VBlankŠúŠÔƒJƒ‰[ƒpƒŒƒbƒg“]‘—
+		//  VBlankæœŸé–“ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		if( vip == FALSE ){
 			WFLBY_ROOM_UNDERWIN_PalTrans( p_ugwk, p_sys, NARC_wifi_lobby_other_gadget_sub_2_NCLR, heapID );
 		}else{
-			// VIP‚È‚çVIPƒJƒ‰[
+			// VIPãªã‚‰VIPã‚«ãƒ©ãƒ¼
 			WFLBY_ROOM_UNDERWIN_PalTrans( p_ugwk, p_sys, NARC_wifi_lobby_other_gadget_sub_3_NCLR, heapID );
 		}
 	}
 
-	// •`‰æƒXƒNƒŠ[ƒ“ƒNƒŠƒA
+	// æç”»ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢
 	GF_BGL_ScrClearCodeVReq( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BACK], 0 );
 	GF_BGL_ScrClearCodeVReq( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN_TR], 0 );
 	GF_BGL_ScrClearCodeVReq( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG], 0 );
 	WFLBY_ROOM_UNDERWIN_TrCard_WinClear( p_wk );
 	
-	// ƒXƒNƒŠ[ƒ““]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	WFLBY_ROOM_UNDERWIN_Common_LoadScrn( p_sys, p_handle, 
 			NARC_wifi_lobby_other_profile2_NSCR, 
 			sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BACK], 0, heapID );
 
-	// ƒvƒƒtƒB[ƒ‹‚©‚çMyStatus‚ðì¬‚·‚é
+	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‹ã‚‰MyStatusã‚’ä½œæˆã™ã‚‹
 	p_mystatus = MyStatus_AllocWork( heapID );
 	WFLBY_SYSTEM_GetProfileMyStatus( cp_profile, p_mystatus, heapID );
 	
-	// ƒEƒBƒ“ƒhƒE‚Ö‚Ì‘‚«ž‚Ý
-	// –¼‘O
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¸ã®æ›¸ãè¾¼ã¿
+	// åå‰
 	{
 		u32 namesize;
 		
@@ -5608,55 +5608,55 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_Start( WFLBY_UNDER_WIN* p_ugwk, WFLBY_ROO
 		WFLBY_ROOM_UNDERWIN_TrCard_WinPrintRightSide( p_wk, p_msg, WFLBY_TRCARD_WIN_NAME, 
 				msg_hiroba_profile_05_01, 122, 0, WFLBY_TRCARD_COL_BLACK );
 
-		// –¼‘O
+		// åå‰
 		WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_NAME, 
 				msg_hiroba_profile_02, 0, 16, col );
-		// ‚È‚Ü‚¦
+		// ãªã¾ãˆ
 		WFLBY_ROOM_UNDERWIN_TrCard_WinSetName( p_wk, p_msg, p_mystatus );
 		WFLBY_ROOM_UNDERWIN_TrCard_WinPrintRightSide( p_wk, p_msg, WFLBY_TRCARD_WIN_NAME, 
 				msg_hiroba_profile_05_02, 122, 16, WFLBY_TRCARD_COL_BLACK );
 
-		// ƒEƒBƒ“ƒhƒE‚Ì“]‘—
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è»¢é€
 		WFLBY_ROOM_UNDERWIN_TrCard_WinOn( p_wk, WFLBY_TRCARD_WIN_NAME );
 	}
 
-	// ’nˆæ–¼
+	// åœ°åŸŸå
 	{
-		// ‚·‚ñ‚Å‚é‚Î‚µ‚å
+		// ã™ã‚“ã§ã‚‹ã°ã—ã‚‡
 		WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_COUNTRY, 
 				msg_hiroba_profile_03, 0, 0, col );
 
-		// ’nˆæ‚ª‚ ‚é‚©
+		// åœ°åŸŸãŒã‚ã‚‹ã‹
 		if( WFLBY_SYSTEM_GetProfileNation( cp_profile ) == WFLBY_WLDDATA_NATION_NONE ) {
-			// ƒ_ƒ~[ƒƒbƒZ[ƒW
+			// ãƒ€ãƒŸãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 			WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_COUNTRY, 
 					msg_hiroba_profile_06, 32, 16, WFLBY_TRCARD_COL_BLACK );
 		}else{
 
-			// ‘–¼
+			// å›½å
 			WFLBY_ROOM_UNDERWIN_TrCard_WinSetCountry( p_wk, p_msg, cp_profile );
 			WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_COUNTRY, 
 					msg_hiroba_profile_05_03, 32, 16, WFLBY_TRCARD_COL_BLACK );
 		 }
 
 
-		// ƒEƒBƒ“ƒhƒE‚Ì“]‘—
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è»¢é€
 		WFLBY_ROOM_UNDERWIN_TrCard_WinOn( p_wk, WFLBY_TRCARD_WIN_COUNTRY );
 		
 	}
 
-	// ‡Œ¾—t‚ª‚ ‚é[„‡Œ¾—t•\Ž¦
-	//		@ ‚È‚¢[„–`Œ¯‚ðŽn‚ß‚½‚Æ‚«‚ÆAÅŒã‚É‚µ‚½‚±‚Æ•\Ž¦
+	// åˆè¨€è‘‰ãŒã‚ã‚‹ãƒ¼ï¼žåˆè¨€è‘‰è¡¨ç¤º
+	//		ã€€ ãªã„ãƒ¼ï¼žå†’é™ºã‚’å§‹ã‚ãŸã¨ãã¨ã€æœ€å¾Œã«ã—ãŸã“ã¨è¡¨ç¤º
 	if( aikotoba ){
-		// ‡Œ¾—t
+		// åˆè¨€è‘‰
 		p_wk->aikotoba_draw = TRUE;
 
-		// ƒ^ƒCƒgƒ‹
+		// ã‚¿ã‚¤ãƒˆãƒ«
 		WFLBY_ROOM_UNDERWIN_TrCard_WinSetName( p_wk, p_msg, p_mystatus );
 		WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_VIPAIKOTOBA, 
 				msg_hiroba_profile_07, 8, 0, col );
 
-		// ‡Œ¾—tÝ’è
+		// åˆè¨€è‘‰è¨­å®š
 		WFLBY_ROOM_UNDERWIN_TrCard_WinSetAikotoba( p_wk, p_msg, cp_aikotoba );
 		WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_VIPAIKOTOBA, 
 				msg_hiroba_profile_10, 6, 24, WFLBY_TRCARD_COL_BLACK );
@@ -5667,35 +5667,35 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_Start( WFLBY_UNDER_WIN* p_ugwk, WFLBY_ROO
 		WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_VIPAIKOTOBA, 
 				msg_hiroba_profile_13, 90, 44, WFLBY_TRCARD_COL_BLACK );
 
-		// ƒEƒBƒ“ƒhƒE‚Ì“]‘—
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è»¢é€
 		WFLBY_ROOM_UNDERWIN_TrCard_WinOn( p_wk, WFLBY_TRCARD_WIN_VIPAIKOTOBA );
 		
 	}else{
 		p_wk->aikotoba_draw = FALSE;
 
-		// ‚Ú‚¤‚¯‚ñ‚ð‚Í‚¶‚ß‚½‚Æ‚«
+		// ã¼ã†ã‘ã‚“ã‚’ã¯ã˜ã‚ãŸã¨ã
 		WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_VIPAIKOTOBA, 
 				msg_hiroba_profile_05, 8, 0, col );
 
-		// ƒEƒBƒ“ƒhƒE‚Ì“]‘—
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è»¢é€
 		WFLBY_ROOM_UNDERWIN_TrCard_WinOn( p_wk, WFLBY_TRCARD_WIN_VIPAIKOTOBA );
 
-		// s“®—š—ð‚ð‚P‚QŒo‚·
+		// è¡Œå‹•å±¥æ­´ã‚’ï¼‘ï¼’ä»¶å‡ºã™
 		WFLBY_ROOM_UNDERWIN_TrCard_InitRireki( p_wk, p_sys, p_handle, heapID, cp_profile, cp_myprofile );
 		
 #if 0
-		//  –`Œ¯‚ð‚Í‚¶‚ß‚½‚Æ‚«
+		//  å†’é™ºã‚’ã¯ã˜ã‚ãŸã¨ã
 		{
 			RTCDate date;
 			RTCTime time;
 			s64	start_sec;
 			BOOL sec_check;
 
-			// ‚Ú‚¤‚¯‚ñ‚ð‚Í‚¶‚ß‚½‚Æ‚«
+			// ã¼ã†ã‘ã‚“ã‚’ã¯ã˜ã‚ãŸã¨ã
 			WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_TRSTART, 
 					msg_hiroba_profile_04, 0, 0, col );
 
-			//  “ú•tŽæ“¾
+			//  æ—¥ä»˜å–å¾—
 			sec_check	= WFLBY_SYSTEM_CheckProfileGameStartTime( cp_profile );
 
 			if( sec_check == TRUE ){
@@ -5703,71 +5703,71 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_Start( WFLBY_UNDER_WIN* p_ugwk, WFLBY_ROO
 				RTC_ConvertSecondToDateTime( &date, &time, 
 						start_sec );
 				
-				// ”N
-				// year‚Ì’†g‚Í2007‚È‚ç07 2008”N‚È‚ç08‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚Å2000‚ð‘«‚·
+				// å¹´
+				// yearã®ä¸­èº«ã¯2007ãªã‚‰07 2008å¹´ãªã‚‰08ãŒå…¥ã£ã¦ã„ã‚‹ã®ã§2000ã‚’è¶³ã™
 				WFLBY_ROOM_Msg_SetNumber( p_msg, 2000+date.year, 4, 0, NUMBER_DISPTYPE_ZERO );
 				WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_TRSTART, 
 						msg_hiroba_profile_05_04, 58, 16, WFLBY_TRCARD_COL_BLACK );
-				// ŒŽ
+				// æœˆ
 				WFLBY_ROOM_Msg_SetNumber( p_msg, date.month, 2, 0, NUMBER_DISPTYPE_ZERO );
 				WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_TRSTART, 
 						msg_hiroba_profile_05_05, 102, 16, WFLBY_TRCARD_COL_BLACK );
-				// “ú
+				// æ—¥
 				WFLBY_ROOM_Msg_SetNumber( p_msg, date.day, 2, 0, NUMBER_DISPTYPE_ZERO );
 				WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_TRSTART, 
 						msg_hiroba_profile_05_05, 128, 16, WFLBY_TRCARD_COL_BLACK );
 			}else{
 
-				// ‘S•”HHHH
+				// å…¨éƒ¨ï¼Ÿï¼Ÿï¼Ÿï¼Ÿ
 
-				// ”N
+				// å¹´
 				WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_TRSTART, 
 						msg_hiroba_profile_08, 58, 16, WFLBY_TRCARD_COL_BLACK );
-				// ŒŽ
+				// æœˆ
 				WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_TRSTART, 
 						msg_hiroba_profile_09, 102, 16, WFLBY_TRCARD_COL_BLACK );
-				// “ú
+				// æ—¥
 				WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_TRSTART, 
 						msg_hiroba_profile_09, 128, 16, WFLBY_TRCARD_COL_BLACK );
 
 			}
 
-			// ƒEƒBƒ“ƒhƒE‚Ì“]‘—
+			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è»¢é€
 			WFLBY_ROOM_UNDERWIN_TrCard_WinOn( p_wk, WFLBY_TRCARD_WIN_TRSTART );
 
 		}
 
 
-		//  ÅŒã‚É‚µ‚½‚±‚Æ
+		//  æœ€å¾Œã«ã—ãŸã“ã¨
 		{
-			// ‚Ú‚¤‚¯‚ñ‚ð‚Í‚¶‚ß‚½‚Æ‚«
+			// ã¼ã†ã‘ã‚“ã‚’ã¯ã˜ã‚ãŸã¨ã
 			WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_LASTACTION, 
 					msg_hiroba_profile_05, 0, 0, col );
 
-			// ‚µ‚½‚±‚Æ
+			// ã—ãŸã“ã¨
 			WFLBY_ROOM_UNDERWIN_TrCard_WinSetLastAction( p_wk, p_msg, cp_profile );
 			WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( p_wk, p_msg, WFLBY_TRCARD_WIN_LASTACTION, 
 					msg_hiroba_profile_05_06, 32, 16, WFLBY_TRCARD_COL_BLACK );
 
-			// ƒEƒBƒ“ƒhƒE‚Ì“]‘—
+			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è»¢é€
 			WFLBY_ROOM_UNDERWIN_TrCard_WinOn( p_wk, WFLBY_TRCARD_WIN_LASTACTION );
 		}
 #endif
 	}
 
-	// ƒAƒCƒeƒ€ƒAƒCƒRƒ“Ý’è
+	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³è¨­å®š
 	WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Init( p_wk, p_sys, p_handle, heapID, 
 			WFLBY_SYSTEM_GetProfileItem( cp_profile ), item_draw );
 
 
 
-	// ƒgƒŒ[ƒiƒOƒ‰ƒtƒBƒbƒN•\Ž¦
+	// ãƒˆãƒ¬ãƒ¼ãƒŠã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤º
 #ifndef WFLBY_DEBUG_ROOM_TRTYPE_CHG
 	{
 		u32 tr_type;
 		if( mydata == TRUE ){
-			// Ž©•ª‚Ìƒf[ƒ^‚È‚çA
-			// ŽålŒö‚ÌƒLƒƒƒ‰ƒNƒ^
+			// è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ãªã‚‰ã€
+			// ä¸»äººå…¬ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 			if( WFLBY_SYSTEM_GetProfileSex( cp_profile ) == PM_FEMALE ){
 				tr_type = HEROINE;
 			}else{
@@ -5775,8 +5775,8 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_Start( WFLBY_UNDER_WIN* p_ugwk, WFLBY_ROO
 			}
 		}else{
 
-			// ‘¼l‚Ìƒf[ƒ^‚È‚çA
-			// ‚»‚Ì‚Ü‚Ü‚
+			// ä»–äººã®ãƒ‡ãƒ¼ã‚¿ãªã‚‰ã€
+			// ãã®ã¾ã¾ï½
 			tr_type = WFLBY_SYSTEM_GetProfileTrType( cp_profile );
 		}
 		WFLBY_ROOM_UNDERWIN_TrCard_TrView_Init( p_wk, p_sys, p_handle, heapID,
@@ -5792,22 +5792,22 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_Start( WFLBY_UNDER_WIN* p_ugwk, WFLBY_ROO
 	}
 #endif
 
-	// ‹Zƒ^ƒCƒv•\Ž¦
+	// æŠ€ã‚¿ã‚¤ãƒ—è¡¨ç¤º
 	WFLBY_ROOM_UNDERWIN_TrCard_WriteWazaType( p_ugwk, p_wk, p_sys, heapID, cp_profile );
 
-	// MyStatus”jŠü
+	// MyStatusç ´æ£„
 	sys_FreeMemoryEz( p_mystatus );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒv‚ð•`‰æ‚·‚é
+ *	@brief	ã‚¿ã‚¤ãƒ—ã‚’æç”»ã™ã‚‹
  *
- *	@param	p_ugwk		‚µ‚½‰æ–Êƒ[ƒN
- *	@param	p_wk		ƒvƒƒtƒB[ƒ‹ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID	iƒOƒ‰ƒtƒBƒbƒN‚ð“Ç‚Ýž‚Þ@ƒeƒ“ƒ|ƒ‰ƒŠ‚ÌRAM‚ÌŠm•Û‚Ì‚Ýj
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹ƒ[ƒN
+ *	@param	p_ugwk		ã—ãŸç”»é¢ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID	ï¼ˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’èª­ã¿è¾¼ã‚€ã€€ãƒ†ãƒ³ãƒãƒ©ãƒªã®RAMã®ç¢ºä¿ã®ã¿ï¼‰
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_WriteWazaType( WFLBY_UNDER_WIN* p_ugwk, WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 heapID, const WFLBY_USER_PROFILE* cp_profile )
@@ -5824,10 +5824,10 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WriteWazaType( WFLBY_UNDER_WIN* p_ugwk, W
 		
 		if( type != WFLBY_POKEWAZA_TYPE_NONE ){
 
-			// Lê“à‹Zƒ^ƒCƒv‚©‚çƒoƒgƒ‹—p‹Zƒ^ƒCƒv‚É•ÏX
+			// åºƒå ´å†…æŠ€ã‚¿ã‚¤ãƒ—ã‹ã‚‰ãƒãƒˆãƒ«ç”¨æŠ€ã‚¿ã‚¤ãƒ—ã«å¤‰æ›´
 			bt_type = WFLBY_BattleWazaType_Get( type );
 
-			// ƒLƒƒƒ‰ƒNƒ^“WŠJ
+			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å±•é–‹
 			p_char = ArcUtil_Load( WazaTypeIcon_ArcIDGet(),
 					WazaTypeIcon_CgrIDGet( bt_type ),
 					TRUE, heapID, ALLOC_BOTTOM );
@@ -5839,7 +5839,7 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WriteWazaType( WFLBY_UNDER_WIN* p_ugwk, W
 					sc_WFLBY_TRCARD_WAZATYPE_CGX[i] );
 			sys_FreeMemoryEz( p_char );
 
-			// ƒXƒNƒŠ[ƒ“‘‚«ž‚Ý
+			// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãè¾¼ã¿
 			GF_BGL_ScrWriteExpand( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG],
 					WFLBY_TRCARD_WIN_WAZATYPE1_X,
 					WFLBY_TRCARD_WIN_WAZATYPE1_Y+(WFLBY_TRCARD_WIN_WAZATYPE1_SIZEY*i), 
@@ -5849,7 +5849,7 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WriteWazaType( WFLBY_UNDER_WIN* p_ugwk, W
 					0, 0, 
 					WFLBY_TRCARD_WIN_WAZATYPE1_SIZEX, WFLBY_TRCARD_WIN_WAZATYPE1_SIZEY );
 
-			// ƒpƒŒƒbƒgÝ’è
+			// ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
 			GF_BGL_ScrPalChange( p_sys->p_bgl, 
 					sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG],
 					WFLBY_TRCARD_WIN_WAZATYPE1_X,
@@ -5865,30 +5865,30 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WriteWazaType( WFLBY_UNDER_WIN* p_ugwk, W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒJ[ƒh•`‰æI—¹
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰æç”»çµ‚äº†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_End( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_TALKMSG* p_boardwin, WFLBY_GRAPHICCONT* p_sys )
 {
-	// ‡Œ¾—tƒEƒBƒ“ƒhƒE”jŠü
+	// åˆè¨€è‘‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	if( p_wk->aikotoba_draw == TRUE ){
 		p_wk->aikotoba_draw = FALSE;
 	}else{
 
-		// —š—ðƒ[ƒN”jŠü
+		// å±¥æ­´ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		WFLBY_ROOM_UNDERWIN_TrCard_ExitRireki( p_wk, p_sys );
 	}
 	
 	
-	// ƒAƒCƒRƒ“”jŠü
+	// ã‚¢ã‚¤ã‚³ãƒ³ç ´æ£„
 	WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Exit( p_wk, p_sys );
 
-	// ƒgƒŒ[ƒiƒOƒ‰ƒtƒBƒbƒN”jŠü
+	// ãƒˆãƒ¬ãƒ¼ãƒŠã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
 	WFLBY_ROOM_UNDERWIN_TrCard_TrView_Exit( p_wk, p_sys );
 	
-	// •`‰æƒXƒNƒŠ[ƒ“ƒNƒŠƒA
+	// æç”»ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢
 	GF_BGL_ScrClear( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BACK] );
 	GF_BGL_ScrClear( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN_TR] );
 	GF_BGL_ScrClear( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG] );
@@ -5896,34 +5896,34 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_End( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_TALK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒhƒAƒCƒeƒ€‚ð•ÏX
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’å¤‰æ›´
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	p_handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
- *	@param	itemno		ƒAƒCƒeƒ€ID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	itemno		ã‚¢ã‚¤ãƒ†ãƒ ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_ChangeItem( WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICCONT* p_sys, ARCHANDLE* p_handle, u32 heapID, WFLBY_ITEMTYPE itemno )
 {
 	
-	// ƒAƒCƒRƒ“”jŠü
+	// ã‚¢ã‚¤ã‚³ãƒ³ç ´æ£„
 	WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Exit( p_wk, p_sys );
 
-	// ƒAƒCƒeƒ€ƒAƒCƒRƒ“Ý’è
+	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³è¨­å®š
 	WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Init( p_wk, p_sys, p_handle, heapID, 
 			itemno, TRUE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒh	‡Œ¾—t•\Ž¦’†‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰	åˆè¨€è‘‰è¡¨ç¤ºä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‡Œ¾—t•\Ž¦’†
- *	@retval	FALSE	‡Œ¾—t”ñ•\Ž¦’†
+ *	@retval	TRUE	åˆè¨€è‘‰è¡¨ç¤ºä¸­
+ *	@retval	FALSE	åˆè¨€è‘‰éžè¡¨ç¤ºä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_ROOM_UNDERWIN_TrCard_CheckAikotobaDraw( const WFLBY_TR_CARD* cp_wk )
@@ -5933,14 +5933,14 @@ static BOOL WFLBY_ROOM_UNDERWIN_TrCard_CheckAikotobaDraw( const WFLBY_TR_CARD* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€ƒAƒCƒRƒ“	‰Šú‰»
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒv‚h‚c
- *	@param	itemno		ƒAƒCƒeƒ€‚m‚n
- *	@param	draw_flag	•\Ž¦‚·‚é‚©
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
+ *	@param	itemno		ã‚¢ã‚¤ãƒ†ãƒ ï¼®ï¼¯
+ *	@param	draw_flag	è¡¨ç¤ºã™ã‚‹ã‹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Init( WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICCONT* p_sys, ARCHANDLE* p_handle, u32 heapID, WFLBY_ITEMTYPE itemno, BOOL draw_flag )
@@ -5950,23 +5950,23 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Init( WFLBY_TR_CARD* p_wk, WFLBY
 	GF_ASSERT( itemno < WFLBY_ITEM_NUM );
 	GF_ASSERT( p_wk->p_itemicon == NULL );
 
-	// ƒAƒCƒeƒ€‚Ìƒ^ƒCƒv
+	// ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¿ã‚¤ãƒ—
 	itemtype	= itemno / WFLBY_ITEM_DANKAI;
 	itemanm		= itemno % WFLBY_ITEM_DANKAI;
 	
-	// itemno‚ÌƒAƒCƒRƒ“ƒŠƒ\[ƒX‚ð“Ç‚Ýž‚Þ
+	// itemnoã®ã‚¢ã‚¤ã‚³ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 	{
 		BOOL result;
-		// ƒLƒƒƒ‰ƒNƒ^
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 		p_wk->p_itemiconres[0] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 				p_sys->p_resman[0], p_handle,
 				NARC_wifi_lobby_other_gadget_icon1_NCGR + (itemtype * 3),
 				FALSE, WFLBY_TRCARD_ICON_RESID, NNS_G2D_VRAM_TYPE_2DSUB, heapID );
-		// VRAM“]‘—
+		// VRAMè»¢é€
 		result =CLACT_U_CharManagerSetAreaCont( p_wk->p_itemiconres[0] );
 		GF_ASSERT( result );
 		CLACT_U_ResManagerResOnlyDelete( p_wk->p_itemiconres[0] );
-		// ƒpƒŒƒbƒg
+		// ãƒ‘ãƒ¬ãƒƒãƒˆ
 		p_wk->p_itemiconres[1] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 				p_sys->p_resman[1], p_handle,
 				NARC_wifi_lobby_other_gadget_oam_NCLR, 
@@ -5975,12 +5975,12 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Init( WFLBY_TR_CARD* p_wk, WFLBY
 		result =CLACT_U_PlttManagerSetCleanArea( p_wk->p_itemiconres[1] );
 		GF_ASSERT( result );
 		CLACT_U_ResManagerResOnlyDelete( p_wk->p_itemiconres[1] );
-		// ƒZƒ‹	
+		// ã‚»ãƒ«	
 		p_wk->p_itemiconres[2] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( 
 				p_sys->p_resman[2], p_handle,
 				NARC_wifi_lobby_other_gadget_icon1_NCER + (itemtype * 3),
 				FALSE, WFLBY_TRCARD_ICON_RESID, CLACT_U_CELL_RES, heapID );
-		// ƒZƒ‹ƒAƒjƒ	
+		// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡	
 		p_wk->p_itemiconres[3] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( 
 				p_sys->p_resman[3], p_handle,
 				NARC_wifi_lobby_other_gadget_icon1_NANR + (itemtype * 3),
@@ -5988,11 +5988,11 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Init( WFLBY_TR_CARD* p_wk, WFLBY
 
 	}
 
-	// ’Ç‰Á
+	// è¿½åŠ 
 	{
 		CLACT_HEADER header;
 		CLACT_ADD_SIMPLE add = {NULL};
-		// ƒwƒbƒ_[ì¬
+		// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 		CLACT_U_MakeHeader( &header, WFLBY_TRCARD_ICON_RESID, WFLBY_TRCARD_ICON_RESID,
 				WFLBY_TRCARD_ICON_RESID, WFLBY_TRCARD_ICON_RESID,
 				CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
@@ -6012,7 +6012,7 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Init( WFLBY_TR_CARD* p_wk, WFLBY
 		add.mat.y		= WFLBY_TRCARD_ICON_Y;
 		p_wk->p_itemicon = CLACT_AddSimple( &add );
 
-		// ƒAƒjƒÝ’è
+		// ã‚¢ãƒ‹ãƒ¡è¨­å®š
 		CLACT_AnmChg( p_wk->p_itemicon, itemanm );
 
 		CLACT_SetDrawFlag( p_wk->p_itemicon, draw_flag );
@@ -6021,19 +6021,19 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Init( WFLBY_TR_CARD* p_wk, WFLBY
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€ƒAƒCƒRƒ“	”jŠü
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Exit( WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICCONT* p_sys )
 {
-	// Icon”jŠü
+	// Iconç ´æ£„
 	CLACT_Delete( p_wk->p_itemicon );
 	p_wk->p_itemicon = NULL;
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	{
 		int i;
 		
@@ -6041,7 +6041,7 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Exit( WFLBY_TR_CARD* p_wk, WFLBY
 		CLACT_U_CharManagerDelete( p_wk->p_itemiconres[0] );
 		CLACT_U_PlttManagerDelete( p_wk->p_itemiconres[1] );
 
-		// ƒŠƒ\[ƒX
+		// ãƒªã‚½ãƒ¼ã‚¹
 		for( i=0; i<WFLBY_ROOM_OAM_RESNUM; i++ ){
 			CLACT_U_ResManagerResDelete( p_sys->p_resman[i], p_wk->p_itemiconres[i] );
 		}
@@ -6050,13 +6050,13 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_ItemIcon_Exit( WFLBY_TR_CARD* p_wk, WFLBY
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiŒ©‚½–Ú•\Ž¦
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠè¦‹ãŸç›®è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒv
- *	@param	trtype		ƒgƒŒ[ƒiƒ^ƒCƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
+ *	@param	trtype		ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_Init( WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICCONT* p_sys, ARCHANDLE* p_handle, u32 heapID, u32 trtype )
@@ -6068,7 +6068,7 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_Init( WFLBY_TR_CARD* p_wk, WFLBY_G
 	
 	GF_ASSERT( p_wk->p_tr == NULL );
 
-	// ƒgƒŒ[ƒiƒ^ƒCƒvƒOƒ‰ƒtƒBƒbƒNŽæ“¾
+	// ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å–å¾—
 	for( i=0; i<WFLBY_TRCARD_TRTYPE_NUM; i++ ){
 		if( sc_WFLBY_TRCARD_TRTYPE[i].fld_trno == trtype ){
 			btl_trtype	= sc_WFLBY_TRCARD_TRTYPE[i].btl_trtype;
@@ -6078,17 +6078,17 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_Init( WFLBY_TR_CARD* p_wk, WFLBY_G
 	}
 	TrCLACTGraDataGet( btl_trtype, PARA_FRONT, &tr_gradata );
 	
-	// ƒgƒŒ[ƒiƒŠƒ\[ƒX‚ð“Ç‚Ýž‚Þ
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 	{
 		BOOL result;
-		// ƒLƒƒƒ‰ƒNƒ^
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 		p_wk->p_trres[0] = CLACT_U_ResManagerResAddArcChar( 
 				p_sys->p_resman[0], tr_gradata.arcID,
 				tr_gradata.ncgrID,
 				FALSE, WFLBY_TRCARD_TRVIEW_RESID, NNS_G2D_VRAM_TYPE_2DSUB, heapID );
 		result = CLACT_U_CharManagerSetAreaCont( p_wk->p_trres[0] );
 		GF_ASSERT( result );
-		// ƒpƒŒƒbƒg
+		// ãƒ‘ãƒ¬ãƒƒãƒˆ
 		p_wk->p_trres[1] = CLACT_U_ResManagerResAddArcPltt( 
 				p_sys->p_resman[1], tr_gradata.arcID,
 				tr_gradata.nclrID, 
@@ -6098,12 +6098,12 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_Init( WFLBY_TR_CARD* p_wk, WFLBY_G
 		result =CLACT_U_PlttManagerSetCleanArea( p_wk->p_trres[1] );
 		GF_ASSERT( result );
 		CLACT_U_ResManagerResOnlyDelete( p_wk->p_trres[1] );
-		// ƒZƒ‹	
+		// ã‚»ãƒ«	
 		p_wk->p_trres[2] = CLACT_U_ResManagerResAddArcKindCell( 
 				p_sys->p_resman[2], tr_gradata.arcID,
 				tr_gradata.ncerID,
 				FALSE, WFLBY_TRCARD_TRVIEW_RESID, CLACT_U_CELL_RES, heapID );
-		// ƒZƒ‹ƒAƒjƒ	
+		// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡	
 		p_wk->p_trres[3] = CLACT_U_ResManagerResAddArcKindCell( 
 				p_sys->p_resman[3], tr_gradata.arcID,
 				tr_gradata.nanrID,
@@ -6111,11 +6111,11 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_Init( WFLBY_TR_CARD* p_wk, WFLBY_G
 
 	}
 
-	// ’Ç‰Á
+	// è¿½åŠ 
 	{
 		CLACT_HEADER header;
 		CLACT_ADD_SIMPLE add = {NULL};
-		// ƒwƒbƒ_[ì¬
+		// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 		CLACT_U_MakeHeader( &header, WFLBY_TRCARD_TRVIEW_RESID, WFLBY_TRCARD_TRVIEW_RESID,
 				WFLBY_TRCARD_TRVIEW_RESID, WFLBY_TRCARD_TRVIEW_RESID,
 				CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
@@ -6139,10 +6139,10 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_Init( WFLBY_TR_CARD* p_wk, WFLBY_G
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiŒ©‚½–Ú”jŠü
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠè¦‹ãŸç›®ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_Exit( WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICCONT* p_sys )
@@ -6151,7 +6151,7 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_Exit( WFLBY_TR_CARD* p_wk, WFLBY_G
 	CLACT_Delete( p_wk->p_tr );
 	p_wk->p_tr = NULL;
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	{
 		int i;
 		
@@ -6159,7 +6159,7 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_Exit( WFLBY_TR_CARD* p_wk, WFLBY_G
 		CLACT_U_CharManagerDelete( p_wk->p_trres[0] );
 		CLACT_U_PlttManagerDelete( p_wk->p_trres[1] );
 
-		// ƒŠƒ\[ƒX
+		// ãƒªã‚½ãƒ¼ã‚¹
 		for( i=0; i<WFLBY_ROOM_OAM_RESNUM; i++ ){
 			CLACT_U_ResManagerResDelete( p_sys->p_resman[i], p_wk->p_trres[i] );
 		}
@@ -6168,9 +6168,9 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_Exit( WFLBY_TR_CARD* p_wk, WFLBY_G
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒg‚ÌF‚ð•ÏX
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã®è‰²ã‚’å¤‰æ›´
  *
- *	@param	p_pltt	ƒpƒŒƒbƒg
+ *	@param	p_pltt	ãƒ‘ãƒ¬ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_PallColorChange( NNSG2dPaletteData* p_pltt )
@@ -6179,9 +6179,9 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_PallColorChange( NNSG2dPaletteData
 	int pal_size;
 	u16* p_pal;
 
-	// ƒZƒsƒAƒJƒ‰[‚É‚·‚é
+	// ã‚»ãƒ”ã‚¢ã‚«ãƒ©ãƒ¼ã«ã™ã‚‹
 	
-	pal_size	= p_pltt->szByte / 2;	// 1ƒpƒŒƒbƒg’PˆÊ‚ÌƒTƒCƒY‚É‚·‚é
+	pal_size	= p_pltt->szByte / 2;	// 1ãƒ‘ãƒ¬ãƒƒãƒˆå˜ä½ã®ã‚µã‚¤ã‚ºã«ã™ã‚‹
 	p_pal		= p_pltt->pRawData;
 
 	for(i = 0; i < pal_size; i++){
@@ -6207,9 +6207,9 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_TrView_PallColorChange( NNSG2dPaletteData
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	trainerƒJ[ƒhƒEƒBƒ“ƒhƒEƒNƒŠƒA
+ *	@brief	trainerã‚«ãƒ¼ãƒ‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
  *	
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_WinClear( WFLBY_TR_CARD* p_wk )
@@ -6222,34 +6222,34 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WinClear( WFLBY_TR_CARD* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒE‚Ì•\Ž¦
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒW
- *	@param	winno		ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *	@param	strid		ƒƒbƒZ[ƒWid
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	col			ƒJƒ‰[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	winno		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *	@param	strid		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸id
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	col			ã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_WinPrint( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_DEFMSG* p_msg, u32 winno, u32 strid, u8 x, u8 y, GF_PRINTCOLOR col )
 {
 	STRBUF* p_str;
 	
-	// •\Ž¦
+	// è¡¨ç¤º
 	p_str = WFLBY_ROOM_Msg_Get( p_msg, WFLBY_DEFMSG_TYPE_HIROBA, strid );
 	GF_STR_PrintColor( &p_wk->win[ winno ], FONT_SYSTEM, p_str, 
 			x, y, MSG_NO_PUT, col, NULL );
 }
-// ‰E’[•\Ž¦ƒo[ƒWƒ‡ƒ“
+// å³ç«¯è¡¨ç¤ºãƒãƒ¼ã‚¸ãƒ§ãƒ³
 static void WFLBY_ROOM_UNDERWIN_TrCard_WinPrintRightSide( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_DEFMSG* p_msg, u32 winno, u32 strid, u8 x, u8 y, GF_PRINTCOLOR col )
 {
 	STRBUF* p_str;
 	u32 strsize;
 	s32 draw_x;
 	
-	// •\Ž¦
+	// è¡¨ç¤º
 	p_str = WFLBY_ROOM_Msg_Get( p_msg, WFLBY_DEFMSG_TYPE_HIROBA, strid );
 
 	strsize = FontProc_GetPrintStrWidth( FONT_SYSTEM, p_str, 0 );
@@ -6265,10 +6265,10 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WinPrintRightSide( WFLBY_TR_CARD* p_wk, W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒJ[ƒhon
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ¼ãƒ‰on
  *	
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * idx
 	WFLBY_TRCARD_WIN_NAME,
@@ -6285,10 +6285,10 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WinOn( WFLBY_TR_CARD* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–¼‘O‚ÌÝ’è
+ *	@brief	åå‰ã®è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_mystatus	MyƒXƒe[ƒ^ƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_mystatus	Myã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_WinSetName( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_DEFMSG* p_msg,const MYSTATUS* cp_mystatus )
@@ -6298,10 +6298,10 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WinSetName( WFLBY_TR_CARD* p_wk, WFLBY_RO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘‚Æ’n–¼‚ðÝ’è
+ *	@brief	å›½ã¨åœ°åã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_WinSetCountry( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_DEFMSG* p_msg,const WFLBY_USER_PROFILE* cp_profile )
@@ -6318,10 +6318,10 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WinSetCountry( WFLBY_TR_CARD* p_wk, WFLBY
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅŒã‚É‚µ‚½‚±‚Æ‚ðÝ’è
+ *	@brief	æœ€å¾Œã«ã—ãŸã“ã¨ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_WinSetLastAction( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_DEFMSG* p_msg,const WFLBY_USER_PROFILE* cp_profile )
@@ -6335,11 +6335,11 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WinSetLastAction( WFLBY_TR_CARD* p_wk, WF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‡Œ¾—tÝ’è
+ *	@brief	åˆè¨€è‘‰è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒ[ƒN
- *	@param	cp_aikotoba	‡Œ¾—tƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_aikotoba	åˆè¨€è‘‰ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_WinSetAikotoba( WFLBY_TR_CARD* p_wk, WFLBY_ROOM_DEFMSG* p_msg, const WFLBY_AIKOTOBA_DATA* cp_aikotoba )
@@ -6352,14 +6352,14 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_WinSetAikotoba( WFLBY_TR_CARD* p_wk, WFLB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—š—ð‚ð•\Ž¦‚·‚é
+ *	@brief	å±¥æ­´ã‚’è¡¨ç¤ºã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€	
- *	@param	p_handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
- *	@param	cp_myprofileŽ©•ª‚ÌƒvƒƒtƒB[ƒ‹
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 	
+ *	@param	p_handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	cp_myprofileè‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_InitRireki( WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICCONT* p_sys, ARCHANDLE* p_handle, u32 heapID, const WFLBY_USER_PROFILE* cp_profile, const WFLBY_USER_PROFILE* cp_myprofile )
@@ -6395,20 +6395,20 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_InitRireki( WFLBY_TR_CARD* p_wk, WFLBY_GR
 	};
 
 
-	// ƒ†ƒjƒIƒ“ƒIƒuƒWƒF@•\Œü‚«‚ÌƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚ªãƒ–ã‚¸ã‚§ã€€è¡¨å‘ãã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	p_union_handle = ArchiveDataHandleOpen( ARC_2DUNIONOBJ_FRONT, heapID );
 
 
-	// Ž©•ª‚Ìƒ†[ƒUIDXŽæ“¾
+	// è‡ªåˆ†ã®ãƒ¦ãƒ¼ã‚¶IDXå–å¾—
 	my_userid	= WFLBY_SYSTEM_GetProfileUserID( cp_myprofile );
 	my_sex		= WFLBY_SYSTEM_GetProfileSex( cp_myprofile );
  
 
-	// ƒpƒŒƒbƒg‚ÆƒZƒ‹ƒf[ƒ^‚Í‘S•”“Ç‚Ýž‚Þ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã¨ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã¯å…¨éƒ¨èª­ã¿è¾¼ã‚€
 	for( i=0; i<WFLBY_TRCARD_RIREKI_RES_NUM; i++ ){
 
-		// WFLBY_TRCARD_RIREKI_RES_HEROBOY‚ÆWFLBY_TRCARD_RIREKI_RES_HEROGIRL‚Í
-		// Ž©•ª‚Ì«•Ê‚Å“Ç‚Ýž‚Þ‚©Œˆ‚ß‚é
+		// WFLBY_TRCARD_RIREKI_RES_HEROBOYã¨WFLBY_TRCARD_RIREKI_RES_HEROGIRLã¯
+		// è‡ªåˆ†ã®æ€§åˆ¥ã§èª­ã¿è¾¼ã‚€ã‹æ±ºã‚ã‚‹
 		if( i == WFLBY_TRCARD_RIREKI_RES_HEROBOY ){
 			if( my_sex == PM_FEMALE ){
 				p_wk->p_rirekires_pal[i] = NULL;
@@ -6442,19 +6442,19 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_InitRireki( WFLBY_TR_CARD* p_wk, WFLBY_GR
 		CLACT_U_ResManagerResOnlyDelete( p_wk->p_rirekires_pal[i] );
 
 
-		// ƒZƒ‹	
+		// ã‚»ãƒ«	
 		p_wk->p_rirekires_cell[i] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( 
 				p_sys->p_resman[2], p_work_handle,
 				sc_CELL[i],
 				FALSE, WFLBY_TRCARD_RIREKI_RESID+i, CLACT_U_CELL_RES, heapID );
-		// ƒZƒ‹ƒAƒjƒ	
+		// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡	
 		p_wk->p_rirekires_anm[i] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( 
 				p_sys->p_resman[3], p_work_handle,
 				sc_ANM[i],
 				FALSE, WFLBY_TRCARD_RIREKI_RESID+i, CLACT_U_CELLANM_RES, heapID );
 	}
 
-	// ƒLƒƒƒ‰ƒNƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿
 	for( i=0; i<WFLBY_LASTACT_BUFFNUM; i++ ){
 		
 		last_action = WFLBY_SYSTEM_GetProfileLastAction( cp_profile, i );
@@ -6466,7 +6466,7 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_InitRireki( WFLBY_TR_CARD* p_wk, WFLBY_GR
 			p_wk->p_rireki[i] = NULL;
 		}else{
 
-			// —š—ðƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ðŽæ“¾
+			// å±¥æ­´ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 			cp_chardata = WFLBY_ROOM_UNDERWIN_TrCard_GetRirekiData( last_action, last_action_userid, my_userid, my_sex );
 
 			if( cp_chardata->arcid == WFLBY_TRCARD_RIREKI_RES_ICON ){
@@ -6475,17 +6475,17 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_InitRireki( WFLBY_TR_CARD* p_wk, WFLBY_GR
 				p_work_handle = p_union_handle;
 			}
 
-			// ƒLƒƒƒ‰ƒNƒ^
+			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 			p_wk->p_rirekires_cg[i] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 					p_sys->p_resman[0], p_work_handle,
 					cp_chardata->dataid,
 					FALSE, WFLBY_TRCARD_RIREKI_RESID+i, NNS_G2D_VRAM_TYPE_2DSUB, heapID );
-			// VRAM“]‘—
+			// VRAMè»¢é€
 			result =CLACT_U_CharManagerSetAreaCont( p_wk->p_rirekires_cg[i] );
 			GF_ASSERT( result );
 			CLACT_U_ResManagerResOnlyDelete( p_wk->p_rirekires_cg[i] );
 
-			// ƒAƒNƒ^[ì¬
+			// ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆ
 			CLACT_U_MakeHeader( &header, WFLBY_TRCARD_RIREKI_RESID+i, 
 					WFLBY_TRCARD_RIREKI_RESID + cp_chardata->arcid,
 					WFLBY_TRCARD_RIREKI_RESID + cp_chardata->arcid,
@@ -6509,7 +6509,7 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_InitRireki( WFLBY_TR_CARD* p_wk, WFLBY_GR
 
 			p_wk->p_rireki[i] = CLACT_AddSimple( &add );
 
-			// ƒpƒŒƒbƒgƒIƒtƒZƒbƒgÝ’è
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
 			CLACT_PaletteOffsetChgAddTransPlttNo( p_wk->p_rireki[i], cp_chardata->paloffs );
 		}
 	}
@@ -6520,17 +6520,17 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_InitRireki( WFLBY_TR_CARD* p_wk, WFLBY_GR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—š—ð•\Ž¦OFF
+ *	@brief	å±¥æ­´è¡¨ç¤ºOFF
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_TrCard_ExitRireki( WFLBY_TR_CARD* p_wk, WFLBY_GRAPHICCONT* p_sys )
 {
 	int i;
 	
-	// ƒAƒNƒ^[”jŠü{ƒLƒƒƒ‰ƒNƒ^VRAM	
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„ï¼‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿VRAM	
 	for( i=0; i<WFLBY_LASTACT_BUFFNUM; i++ ){
 		if( p_wk->p_rirekires_cg[i] != NULL ){
 			CLACT_Delete( p_wk->p_rireki[i] );
@@ -6541,7 +6541,7 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_ExitRireki( WFLBY_TR_CARD* p_wk, WFLBY_GR
 			p_wk->p_rirekires_cg[i] = NULL;
 		}
 	}
-	// ƒpƒŒƒbƒg ƒZƒ‹@ƒAƒjƒ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ ã‚»ãƒ«ã€€ã‚¢ãƒ‹ãƒ¡
 	for( i=0; i<WFLBY_TRCARD_RIREKI_RES_NUM; i++ ){
 		if( p_wk->p_rirekires_pal[i] != NULL ){
 			CLACT_U_PlttManagerDelete( p_wk->p_rirekires_pal[i] );
@@ -6555,16 +6555,16 @@ static void WFLBY_ROOM_UNDERWIN_TrCard_ExitRireki( WFLBY_TR_CARD* p_wk, WFLBY_GR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—š—ð‚Å“Ç‚Ýž‚ÞƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ðŽæ“¾‚·‚é
+ *	@brief	å±¥æ­´ã§èª­ã¿è¾¼ã‚€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	last_act	ƒAƒNƒVƒ‡ƒ““à—e
- *	@param	userid		‚»‚Ìƒ†[ƒUID
- *	@param	myid		Ž©•ª‚ÌID
+ *	@param	last_act	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å†…å®¹
+ *	@param	userid		ãã®ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	myid		è‡ªåˆ†ã®ID
  */
 //-----------------------------------------------------------------------------
 static const WFLBY_TRCARD_RIREKI_CHAR* WFLBY_ROOM_UNDERWIN_TrCard_GetRirekiData( WFLBY_LASTACTION_TYPE last_act, s32 userid, s32 myid, u32 sex )
 {
-	// Ž©•ª‚Æ“¯‚¶l‚È‚çŽ©•ª‚ÌŠG‚ðo‚·
+	// è‡ªåˆ†ã¨åŒã˜äººãªã‚‰è‡ªåˆ†ã®çµµã‚’å‡ºã™
 	if( userid == myid ){
 		return &sc_WFLBY_TRCARD_RIREKI_HERO_CHAR[ sex ];
 	}
@@ -6575,29 +6575,29 @@ static const WFLBY_TRCARD_RIREKI_CHAR* WFLBY_ROOM_UNDERWIN_TrCard_GetRirekiData(
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚µ‚½‰æ–Ê	ƒKƒWƒFƒbƒgƒ{ƒ^ƒ“	‰Šú‰»
+ *	@brief	ã—ãŸç”»é¢	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒœã‚¿ãƒ³	åˆæœŸåŒ–
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_sys			•`‰æƒVƒXƒeƒ€
- *	@param	p_handle		ƒnƒ“ƒhƒ‹
- *	@param	heapID			ƒq[ƒvID
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys			æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_handle		ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Button_Init( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAPHICCONT* p_sys, ARCHANDLE* p_handle, u32 heapID )
 {
 	int i;
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‰Šú‰»
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	GF_BGL_BmpWinAddEx( p_sys->p_bgl, &p_wk->win, &sc_WFLBY_BTTN_WIN_DATA );
 	
-	// ŠeƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ð“Ç‚Ýž‚Þ
+	// å„ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	for( i=0; i<WFLBY_ROOM_UNDERWIN_BTTN_ANM_NUM; i++ ){
 		p_wk->p_scrnbuff[i] = ArcUtil_HDL_ScrnDataGet( p_handle, 
 				NARC_wifi_lobby_other_gadget_but0_n_NSCR+i, FALSE,
 				&p_wk->p_scrn[i], heapID );
 	}
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	{
 		static const TP_HIT_TBL sc_HitTbl = { 32, 160, 40, 216 };
 
@@ -6605,28 +6605,28 @@ static void WFLBY_ROOM_UNDERWIN_Button_Init( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAP
 				WFLBY_ROOM_UNDERWIN_Button_BttnCallBack, p_wk, heapID );
 	}
 
-	p_wk->bttnstop = TRUE;	// Å‰‚Í”½‰ž‚È‚µ
+	p_wk->bttnstop = TRUE;	// æœ€åˆã¯åå¿œãªã—
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“”jŠüˆ—
+ *	@brief	ãƒœã‚¿ãƒ³ç ´æ£„å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Button_Exit( WFLBY_GADGET_BTTN* p_wk )
 {
 	int i;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	BMN_Delete( p_wk->p_bttnman );	
 
-	//  ƒrƒbƒgƒ}ƒbƒv”jŠü
+	//  ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç ´æ£„
 	GF_BGL_BmpWinDel( &p_wk->win );
 	
-	// ‘SƒŠƒ\[ƒX”jŠü
+	// å…¨ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	for( i=0; i<WFLBY_ROOM_UNDERWIN_BTTN_ANM_NUM; i++ ){
 		sys_FreeMemoryEz( p_wk->p_scrnbuff[i] );
 	}
@@ -6635,22 +6635,22 @@ static void WFLBY_ROOM_UNDERWIN_Button_Exit( WFLBY_GADGET_BTTN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒ{ƒ^ƒ“	ƒƒCƒ““®ì
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒœã‚¿ãƒ³	ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	ƒKƒWƒFƒbƒg‹N“®
- *	@retval	FALSE	ƒKƒWƒFƒbƒg‹N“®‚È‚µ
+ *	@retval	TRUE	ã‚¬ã‚¸ã‚§ãƒƒãƒˆèµ·å‹•
+ *	@retval	FALSE	ã‚¬ã‚¸ã‚§ãƒƒãƒˆèµ·å‹•ãªã—
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_ROOM_UNDERWIN_Button_Main( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAPHICCONT* p_sys,  ARCHANDLE* p_handle, u32 heapID )
 {
 	BOOL ret = FALSE;
 
-	// ƒKƒWƒFƒbƒg”½‰ž‚ ‚è‚Ì‚Æ‚«‚¾‚¯ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆåå¿œã‚ã‚Šã®ã¨ãã ã‘ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£
 	if( p_wk->bttnstop == FALSE ){
 		BMN_Main( p_wk->p_bttnman );
 	}else{
@@ -6658,7 +6658,7 @@ static BOOL WFLBY_ROOM_UNDERWIN_Button_Main( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAP
 	}
 	
 
-	// ƒV[ƒPƒ“ƒXŠÇ—
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç®¡ç†
 	if( p_wk->seq == WFLBY_ROOM_UNDERWIN_BTTN_STATUS_WAIT ){
 		if( p_wk->lock_wait == FALSE ){
 			p_wk->seq = WFLBY_ROOM_UNDERWIN_BTTN_STATUS_ON;
@@ -6666,15 +6666,15 @@ static BOOL WFLBY_ROOM_UNDERWIN_Button_Main( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAP
 		}
 	}
 
-	// ƒCƒxƒ“ƒg‚Æ‚ª•Ï‚í‚Á‚½I
+	// ã‚¤ãƒ™ãƒ³ãƒˆã¨ãŒå¤‰ã‚ã£ãŸï¼
 	if( p_wk->bttnevent != p_wk->lastbttnevent ){
 		p_wk->lastbttnevent = p_wk->bttnevent;
 
-		// ŠG‚ð•ÏX
+		// çµµã‚’å¤‰æ›´
 		if( p_wk->bttnevent == BMN_EVENT_HOLD ){
 			WFLBY_ROOM_UNDERWIN_Button_DrawButton( p_wk, p_sys, WFLBY_ROOM_UNDERWIN_BTTN_ANM_DOWN, p_handle, heapID );
 		}else{
-			// ‰Ÿ‚µ‚Ä‚¢‚¢‚Æ‚«‚Æ‚¾‚ß‚È‚Æ‚«‚Å‰ŠúƒOƒ‰ƒtƒBƒbƒN‚ð•Ï‚¦‚é
+			// æŠ¼ã—ã¦ã„ã„ã¨ãã¨ã ã‚ãªã¨ãã§åˆæœŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å¤‰ãˆã‚‹
 			if( p_wk->seq == WFLBY_ROOM_UNDERWIN_BTTN_STATUS_ON ){
 				WFLBY_ROOM_UNDERWIN_Button_DrawButton( p_wk, p_sys, WFLBY_ROOM_UNDERWIN_BTTN_ANM_UP, p_handle, heapID );
 			}else{
@@ -6682,7 +6682,7 @@ static BOOL WFLBY_ROOM_UNDERWIN_Button_Main( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAP
 			}
 		}
 
-		// ƒ{ƒ^ƒ“‹N“®ƒ`ƒFƒbƒN
+		// ãƒœã‚¿ãƒ³èµ·å‹•ãƒã‚§ãƒƒã‚¯
 		if( (p_wk->seq == WFLBY_ROOM_UNDERWIN_BTTN_STATUS_ON) &&
 			(p_wk->bttnevent == BMN_EVENT_HOLD) ){
 			ret = TRUE;
@@ -6696,29 +6696,29 @@ static BOOL WFLBY_ROOM_UNDERWIN_Button_Main( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAP
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒ{ƒ^ƒ“	ŠJŽn
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒœã‚¿ãƒ³	é–‹å§‹
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_sys			•`‰æƒVƒXƒeƒ€
- *	@param	p_msg			ƒƒbƒZ[ƒW
- *	@param	cp_profile		ƒvƒƒtƒB[ƒ‹
- *	@param	p_handle		ƒnƒ“ƒhƒ‹
- *	@param	heapID			ƒq[ƒvID
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys			æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_msg			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	cp_profile		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	p_handle		ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Button_Start( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAPHICCONT* p_sys, WFLBY_ROOM_DEFMSG* p_msg, const WFLBY_USER_PROFILE* cp_profile, ARCHANDLE* p_handle, u32 heapID )
 {
-	// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhÝ’è
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰è¨­å®š
 	{
 		ArcUtil_HDL_ScrnSet( p_handle, NARC_wifi_lobby_other_gadget_bg_NSCR,
 				p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BACK],
 				0, 0, FALSE, heapID );
 	}
 
-	// “®ìƒ‚[ƒhÝ’è
+	// å‹•ä½œãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	p_wk->mode = WFLBY_ROOM_UNDERWIN_BTTN_MODE_GADGET;
 
-	// ã‚Éo‚·‚ªƒWƒFƒbƒg‚ÌŠG‚ðo‚·
+	// ä¸Šã«å‡ºã™ãŒã‚¸ã‚§ãƒƒãƒˆã®çµµã‚’å‡ºã™
 	{
 
 		p_wk->bttn_itemno = WFLBY_SYSTEM_GetProfileItem( cp_profile );
@@ -6732,11 +6732,11 @@ static void WFLBY_ROOM_UNDERWIN_Button_Start( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRA
 				WFLBY_UNDERWIN_BGCG_END, heapID );
 	}
 
-	// ƒ^ƒCƒgƒ‹•\Ž¦
+	// ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
 	{	
 		STRBUF* p_str;
 		
-		// •\Ž¦
+		// è¡¨ç¤º
 		p_str = WFLBY_ROOM_Msg_Get( p_msg, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_profile_14 );
 		GF_BGL_BmpWinDataFill( &p_wk->win, 0 );
 		GF_STR_PrintColor( &p_wk->win, FONT_SYSTEM, p_str, 
@@ -6744,7 +6744,7 @@ static void WFLBY_ROOM_UNDERWIN_Button_Start( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRA
 	}
 
 
-	// ‰Ÿ‚µ‚Ä‚¢‚¢‚Æ‚«‚Æ‚¾‚ß‚È‚Æ‚«‚Å‰ŠúƒOƒ‰ƒtƒBƒbƒN‚ð•Ï‚¦‚é
+	// æŠ¼ã—ã¦ã„ã„ã¨ãã¨ã ã‚ãªã¨ãã§åˆæœŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å¤‰ãˆã‚‹
 	if( p_wk->seq == WFLBY_ROOM_UNDERWIN_BTTN_STATUS_ON ){
 		WFLBY_ROOM_UNDERWIN_Button_DrawButton( p_wk, p_sys, WFLBY_ROOM_UNDERWIN_BTTN_ANM_UP, p_handle, heapID );
 	}else{
@@ -6754,37 +6754,37 @@ static void WFLBY_ROOM_UNDERWIN_Button_Start( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ŠJŽn	ƒtƒ[ƒg—p
+ *	@brief	ãƒœã‚¿ãƒ³é–‹å§‹	ãƒ•ãƒ­ãƒ¼ãƒˆç”¨
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_sys			•`‰æƒVƒXƒeƒ€
- *	@param	idx				ƒtƒ[ƒgæ‚èž‚ÝˆÊ’uƒCƒ“ƒfƒbƒNƒXi‚O`‚Qj
- *	@param	p_handle		ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- *	@param	heapID			ƒq[ƒv‚h‚c
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys			æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx				ãƒ•ãƒ­ãƒ¼ãƒˆä¹—ã‚Šè¾¼ã¿ä½ç½®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆï¼ã€œï¼’ï¼‰
+ *	@param	p_handle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Button_StartFloat( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 idx, ARCHANDLE* p_handle, u32 heapID )
 {
 	GF_ASSERT( idx < WFLBY_FLOAT_ON_NUM );
 	
-	// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhÝ’è
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰è¨­å®š
 	{
 		ArcUtil_HDL_ScrnSet( p_handle, NARC_wifi_lobby_other_gadget_bg_NSCR,
 				p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BACK],
 				0, 0, FALSE, heapID );
 	}
 
-	// “®ìƒ‚[ƒhÝ’è
+	// å‹•ä½œãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	p_wk->mode			= WFLBY_ROOM_UNDERWIN_BTTN_MODE_FLOAT;
 	p_wk->bttn_itemno	= idx;
 
-	// ã‚Éo‚·ŠG‚ðo‚·
+	// ä¸Šã«å‡ºã™çµµã‚’å‡ºã™
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifi_lobby_other_float_a_NCGR+p_wk->bttn_itemno,
 			p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG],
 			WFLBY_UNDERWIN_BGCG_END, 0, FALSE, heapID );
 
 
-	// ‰Ÿ‚µ‚Ä‚¢‚¢‚Æ‚«‚Æ‚¾‚ß‚È‚Æ‚«‚Å‰ŠúƒOƒ‰ƒtƒBƒbƒN‚ð•Ï‚¦‚é
+	// æŠ¼ã—ã¦ã„ã„ã¨ãã¨ã ã‚ãªã¨ãã§åˆæœŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å¤‰ãˆã‚‹
 	if( p_wk->seq == WFLBY_ROOM_UNDERWIN_BTTN_STATUS_ON ){
 		WFLBY_ROOM_UNDERWIN_Button_DrawButton( p_wk, p_sys, WFLBY_ROOM_UNDERWIN_BTTN_ANM_UP, p_handle, heapID );
 	}else{
@@ -6794,20 +6794,20 @@ static void WFLBY_ROOM_UNDERWIN_Button_StartFloat( WFLBY_GADGET_BTTN* p_wk, WFLB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒ{ƒ^ƒ“	ŠJŽn
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒœã‚¿ãƒ³	é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Button_End( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAPHICCONT* p_sys )
 {
-	// ƒXƒNƒŠ[ƒ“ƒNƒŠƒA
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢
 	GF_BGL_ScrClear( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BACK] );
 	GF_BGL_ScrClear( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN_TR] );
 	GF_BGL_ScrClear( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG] );
 
-	// ƒXƒNƒ[ƒ‹À•WÝ’è
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™è¨­å®š
 	GF_BGL_ScrollSet( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG],
 			GF_BGL_SCROLL_Y_SET, 0 );
 }
@@ -6816,13 +6816,13 @@ static void WFLBY_ROOM_UNDERWIN_Button_End( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAPH
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“•`‰æ	
+ *	@brief	ãƒœã‚¿ãƒ³æç”»	
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Button_DrawButton( WFLBY_GADGET_BTTN* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 idx, ARCHANDLE* p_handle, u32 heapID )
@@ -6843,14 +6843,14 @@ static void WFLBY_ROOM_UNDERWIN_Button_DrawButton( WFLBY_GADGET_BTTN* p_wk, WFLB
 	GF_BGL_LoadScreenV_Req( p_sys->p_bgl , sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN_TR] );
 
 
-	// ƒtƒ[ƒgƒ‚[ƒh‚È‚çƒtƒ[ƒƒOƒ‰ƒtƒBƒbƒN‚à•ÏX
+	// ãƒ•ãƒ­ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ãªã‚‰ãƒ•ãƒ­ãƒ¼ãƒ­ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚‚å¤‰æ›´
 	if( p_wk->mode == WFLBY_ROOM_UNDERWIN_BTTN_MODE_FLOAT ){
 		static const u8 sc_FLOAT_BTTN_IDX[ WFLBY_ROOM_UNDERWIN_BTTN_ANM_NUM ] = {
 			0, 1, 0
 		};
 		u32 scrn_idx;
 		
-		// ƒtƒ[ƒgƒ{ƒ^ƒ“‚Ì‚Æ‚«‚ÍƒXƒNƒŠ[ƒ“‚à“]‘—
+		// ãƒ•ãƒ­ãƒ¼ãƒˆãƒœã‚¿ãƒ³ã®ã¨ãã¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚‚è»¢é€
 		scrn_idx = (p_wk->bttn_itemno*WFLBY_ROOM_UNDERWIN_BTTN_FLOAT_FRAME_NUM)+sc_FLOAT_BTTN_IDX[ idx ];
 		WFLBY_ROOM_UNDERWIN_Common_LoadScrn( p_sys, p_handle, 
 				NARC_wifi_lobby_other_float_a1_NSCR+scrn_idx, 
@@ -6858,19 +6858,19 @@ static void WFLBY_ROOM_UNDERWIN_Button_DrawButton( WFLBY_GADGET_BTTN* p_wk, WFLB
 				WFLBY_UNDERWIN_BGCG_END, heapID );
 	}
 
-	// idx‚É‚æ‚Á‚ÄBsc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG]–Ê‚Ì
-	// YÀ•W‚ð’²®
+	// idxã«ã‚ˆã£ã¦ã€‚sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG]é¢ã®
+	// Yåº§æ¨™ã‚’èª¿æ•´
 	GF_BGL_ScrollReq( p_sys->p_bgl, sc_WFLBY_ROOM_BGCNT_FRM[WFLBY_ROOM_BGCNT_SUB_BTTN2_MSG],
 			GF_BGL_SCROLL_Y_SET, sc_BUTTON_Y[idx] );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	bttnno		ƒ{ƒ^ƒ“ƒiƒ“ƒo[
- *	@param	event		ƒCƒxƒ“ƒg
- *	@param	p_work		ƒ[ƒN
+ *	@param	bttnno		ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆ
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Button_BttnCallBack( u32 bttnno, u32 event, void* p_work )
@@ -6880,11 +6880,11 @@ static void WFLBY_ROOM_UNDERWIN_Button_BttnCallBack( u32 bttnno, u32 event, void
 	p_wk->bttnevent = event;
 
 	
-	// uŠÔ‚Ìƒf[ƒ^‚Í‚¢‚ç‚È‚¢
+	// çž¬é–“ã®ãƒ‡ãƒ¼ã‚¿ã¯ã„ã‚‰ãªã„
 	if( p_wk->bttnevent == BMN_EVENT_TOUCH ){
 		p_wk->bttnevent = BMN_EVENT_HOLD;
 	}else{
-		// —£‚µ‚½Ží—Þ‚à‚¢‚ç‚È‚¢
+		// é›¢ã—ãŸç¨®é¡žã‚‚ã„ã‚‰ãªã„
 		if( p_wk->bttnevent == BMN_EVENT_SLIDEOUT ){
 			p_wk->bttnevent = BMN_EVENT_RELEASE;
 		}
@@ -6893,9 +6893,9 @@ static void WFLBY_ROOM_UNDERWIN_Button_BttnCallBack( u32 bttnno, u32 event, void
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“@ƒƒbƒNƒEƒGƒCƒg‚ðƒNƒŠƒA
+ *	@brief	ãƒœã‚¿ãƒ³ã€€ãƒ­ãƒƒã‚¯ã‚¦ã‚¨ã‚¤ãƒˆã‚’ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_ROOM_UNDERWIN_Button_BttnLockClear( WFLBY_GADGET_BTTN* p_wk )

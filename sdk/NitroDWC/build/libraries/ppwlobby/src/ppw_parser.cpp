@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ‰ƒbƒp[ƒ†[ƒeƒBƒŠƒeƒB[ ƒ\[ƒX
+ * @brief ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ©ãƒƒãƒ‘ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ¼ ã‚½ãƒ¼ã‚¹
  */
 
 #include "ppw_parser.h"
@@ -22,7 +22,7 @@
 
 BOOL PPW_LobbyMessage::Parse(const DWCi_String& message, Result& result)
 {
-    // ƒwƒbƒ_‚Æƒ{ƒfƒB‚ğ•ª‚¯‚é
+    // ãƒ˜ãƒƒãƒ€ã¨ãƒœãƒ‡ã‚£ã‚’åˆ†ã‘ã‚‹
     std::vector<DWCi_String, DWCi_Allocator<DWCi_String> > headerBody = DWCi_SplitByStr<DWCi_String>(message, PPW_LOBBY_MESSAGE_HEADER_BODY_SEPALATOR, 2);
 
     if(headerBody.size() != 2)
@@ -30,19 +30,19 @@ BOOL PPW_LobbyMessage::Parse(const DWCi_String& message, Result& result)
         return FALSE;
     }
 
-    // ƒwƒbƒ_‚ª‹K’è‚æ‚è‘å‚«‚©‚Á‚½‚ç–³‹‚·‚é
+    // ãƒ˜ãƒƒãƒ€ãŒè¦å®šã‚ˆã‚Šå¤§ãã‹ã£ãŸã‚‰ç„¡è¦–ã™ã‚‹
     if(headerBody[0].length() > MAX_MESSAGE_HEADER_SIZE)
     {
         return FALSE;
     }
     
-    // ƒ{ƒfƒB‚ª‹K’è‚æ‚è‘å‚«‚©‚Á‚½‚ç–³‹‚·‚é
+    // ãƒœãƒ‡ã‚£ãŒè¦å®šã‚ˆã‚Šå¤§ãã‹ã£ãŸã‚‰ç„¡è¦–ã™ã‚‹
     if(headerBody[1].length() > PPW_LOBBY_MAX_STRING_SIZE)
     {
         return FALSE;
     }
 
-    // ƒwƒbƒ_‚ğ•ª‰ğ‚µƒZƒbƒg‚·‚é
+    // ãƒ˜ãƒƒãƒ€ã‚’åˆ†è§£ã—ã‚»ãƒƒãƒˆã™ã‚‹
     {
         std::vector<DWCi_String, DWCi_Allocator<DWCi_String> > headerBlocks
             = DWCi_SplitByStr<DWCi_String>(headerBody[0], PPW_LOBBY_MESSAGE_HEADER_BLOCK_SEPALATOR);
@@ -52,14 +52,14 @@ BOOL PPW_LobbyMessage::Parse(const DWCi_String& message, Result& result)
         }
         char* endptr;
         result.version = strtoul(headerBlocks[0].c_str(), &endptr, 16);
-        result.blockNum = strtoul(headerBlocks[1].c_str(), &endptr, 16);    // ¡‚Ì‚Æ‚±‚ëƒuƒƒbƒN‚Ì”‚Í‹C‚É‚µ‚È‚¢
+        result.blockNum = strtoul(headerBlocks[1].c_str(), &endptr, 16);    // ä»Šã®ã¨ã“ã‚ãƒ–ãƒ­ãƒƒã‚¯ã®æ•°ã¯æ°—ã«ã—ãªã„
         result.format = DWCi_StrnicmpChar(headerBlocks[2].c_str(), "B", 1) == 0 ? FORMAT_BASE64 : FORMAT_STRING;
         result.target = DWCi_StrnicmpChar(headerBlocks[3].c_str(), "S", 1) == 0 ? TARGET_SYSTEM : TARGET_APPLICATION;
         
         result.type = strtol(headerBlocks[4].c_str(), &endptr, 16);
     }
     
-    // ƒ{ƒfƒB‚ğƒZƒbƒg‚·‚é
+    // ãƒœãƒ‡ã‚£ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
     if(result.format == FORMAT_BASE64)
     {
         if(!DWCi_Base64Decode(headerBody[1].c_str(), result.data))
@@ -71,7 +71,7 @@ BOOL PPW_LobbyMessage::Parse(const DWCi_String& message, Result& result)
     else // result.format == FORMAT_STRING
     {
         result.data.assign((const u8*)headerBody[1].c_str(), (const u8*)headerBody[1].c_str() + headerBody[1].length());
-        result.data.push_back('\0');    // FORMAT_STRING‚Ìê‡‚ÍNULLI’[‚ğ•ÛØ‚·‚é
+        result.data.push_back('\0');    // FORMAT_STRINGã®å ´åˆã¯NULLçµ‚ç«¯ã‚’ä¿è¨¼ã™ã‚‹
     }
     
     return TRUE;
@@ -90,12 +90,12 @@ BOOL PPW_LobbyMessage::Build(FORMAT format, TARGET target, s32 type, const char*
 
     dstStr = "";
 
-    dstStr += DWCi_SNPrintf<DWCi_String>(3, "%x", CURRENT_MESSAGE_VERSION);    // ƒo[ƒWƒ‡ƒ“
+    dstStr += DWCi_SNPrintf<DWCi_String>(3, "%x", CURRENT_MESSAGE_VERSION);    // ãƒãƒ¼ã‚¸ãƒ§ãƒ³
     dstStr += PPW_LOBBY_MESSAGE_HEADER_BLOCK_SEPALATOR;
-    dstStr += DWCi_SNPrintf<DWCi_String>(2, "%x", CURRENT_HEADER_BLOCK_NUM);   // ƒuƒƒbƒN‚ÌŒÂ”
+    dstStr += DWCi_SNPrintf<DWCi_String>(2, "%x", CURRENT_HEADER_BLOCK_NUM);   // ãƒ–ãƒ­ãƒƒã‚¯ã®å€‹æ•°
     dstStr += PPW_LOBBY_MESSAGE_HEADER_BLOCK_SEPALATOR;
 
-    // •¶š—ñƒtƒH[ƒ}ƒbƒg
+    // æ–‡å­—åˆ—ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
     switch(format)
     {
     case FORMAT_STRING:
@@ -111,7 +111,7 @@ BOOL PPW_LobbyMessage::Build(FORMAT format, TARGET target, s32 type, const char*
 
     dstStr += PPW_LOBBY_MESSAGE_HEADER_BLOCK_SEPALATOR;
 
-    // ‘ÎÛ
+    // å¯¾è±¡
     switch(target)
     {
     case PPW_LobbyMessage::TARGET_APPLICATION:
@@ -127,17 +127,17 @@ BOOL PPW_LobbyMessage::Build(FORMAT format, TARGET target, s32 type, const char*
     
     dstStr += PPW_LOBBY_MESSAGE_HEADER_BLOCK_SEPALATOR;
     
-    // ƒ^ƒCƒv
-    dstStr += DWCi_SNPrintf<DWCi_String>(8, "%x", type);   // ƒuƒƒbƒN‚ÌŒÂ”
+    // ã‚¿ã‚¤ãƒ—
+    dstStr += DWCi_SNPrintf<DWCi_String>(8, "%x", type);   // ãƒ–ãƒ­ãƒƒã‚¯ã®å€‹æ•°
     dstStr += PPW_LOBBY_MESSAGE_HEADER_BLOCK_SEPALATOR;
     
-    // ƒIƒvƒVƒ‡ƒ“
-    dstStr += PPW_LOBBY_MESSAGE_NO_OPTION;    // ƒIƒvƒVƒ‡ƒ“–³‚µ
+    // ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+    dstStr += PPW_LOBBY_MESSAGE_NO_OPTION;    // ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç„¡ã—
 
     dstStr += PPW_LOBBY_MESSAGE_HEADER_BODY_SEPALATOR;
 
 
-    // ƒ{ƒfƒB‚ğ\’z‚·‚é
+    // ãƒœãƒ‡ã‚£ã‚’æ§‹ç¯‰ã™ã‚‹
     switch(format)
     {
     case FORMAT_STRING:

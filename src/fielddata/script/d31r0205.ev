@@ -15,12 +15,12 @@
 //	.include	"../../../src/field/b_tower_deb.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 #define HERO_OBJ		D31R0205_HERO
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d31r0205_flag_change
 _EVENT_DATA		ev_tower_rooms_common_entry
@@ -71,18 +71,18 @@ ev_tower_rooms_common_heal:
 
 //====================================================================
 /********************************************************************/
-/*	�V���O���ΐ핔��in	�R����										*/
+/*	シングル対戦部屋in	コモン										*/
 /********************************************************************/
 //====================================================================
 
-//��������ޏꂵ�Ď󂯕t���ɖ߂�
+//部屋から退場して受け付けに戻る
 ev_tower_rooms_common_exit:
-	//�E�F�C�g
+	//ウェイト
 	_TIME_WAIT		30,SCWK_ANSWER
 
-	//��t�߂�t���O�Z�b�g
+	//受付戻りフラグセット
 	_LDVAL			WK_SCENE_D31R0201,1
-	//�����Ă����Q�[�g�ʒu�֖߂�
+	//入ってきたゲート位置へ戻る
 	_BTOWER_TOOLS	BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,SCWK_ANSWER
 
 	_SWITCH			SCWK_ANSWER
@@ -98,12 +98,12 @@ ev_tower_rooms_comexit_01:
 	_EVENT_END
 	_END
 
-//���߂ĕ����ɓ��ꂵ����
+//初めて部屋に入場した時
 ev_tower_rooms_common_entry:
 	_EVENT_START
 	_LDVAL			WK_SCENE_D31R0205,3
 
-	//�G���[����
+	//エラー処理
 	_BTOWER_TOOLS	BTWR_DEB_IS_WORK_NULL,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_tower_rooms_common_exit
 
@@ -111,61 +111,61 @@ ev_tower_rooms_common_entry:
 	_JUMP			ev_tower_rooms_sbtl_01
 	_END
 
-//��������ŕ����ɓ��ꂵ����
+//続きからで部屋に入場した時
 ev_tower_rooms_common_continue:
 	_EVENT_START
 	_LDVAL			WK_SCENE_D31R0205,3
 	
-	//�G���[����
+	//エラー処理
 	_BTOWER_TOOLS	BTWR_DEB_IS_WORK_NULL,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_tower_rooms_common_exit
 
 	_CALL			ev_tower_rooms_comanm_in
 	_CALL			ev_tower_rooms_comanm_continue
 
-	//���́H�l�ڂ́c�c
+	//次は？人目の……
 	_JUMP			ev_tower_rooms_if_leader_battle
 	_END
 
-//�V���O���o�g���Ăяo���R����
+//シングルバトル呼び出しコモン
 ev_tower_rooms_common_sbtl_call:
-	//���I
+	//抽選
 	_BTOWER_TOOLS		BTWR_SUB_CHOICE_BTL_PARTNER,BTWR_NULL_PARAM,BTWR_NULL_PARAM
-	//�G�l�~�[����
+	//エネミー入場
 	_CALL				ev_tower_rooms_comanm_enein
 
-	//�ΐ�O�䎌
+	//対戦前台詞
 	_TALKMSG_BTOWER_APPEAR	0
 	_AB_KEYWAIT
 	_TALK_CLOSE
-	//�݂��ɋ߂Â�
+	//互いに近づく
 	_CALL				ev_tower_rooms_comanm_sbtl_start
 
-	//�o�g���Ăяo��
+	//バトル呼び出し
 	_BTOWER_TOOLS		BTWR_SUB_LOCAL_BTL_CALL,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_LDWK				SCWK_TEMP0,SCWK_ANSWER
 	_RET
 
-//�����Ė߂�Ƃ��̏���
+//負けて戻るときの処理
 ev_tower_rooms_common_lose:
-	//�s��p�����[�^�Z�b�g
+	//敗戦パラメータセット
 	_BTOWER_TOOLS	BTWR_SUB_SET_LOSE_SCORE,BTWR_NULL_PARAM,BTWR_NULL_PARAM	
 	_JUMP			ev_tower_rooms_common_exit
 	_END
 
-//�N���A���Ė߂�Ƃ��̏���
+//クリアして戻るときの処理
 ev_tower_rooms_common_clear_ret:
-	//�N���A�p�����[�^�Z�b�g
+	//クリアパラメータセット
 	_BTOWER_TOOLS	BTWR_SUB_SET_CLEAR_SCORE,BTWR_NULL_PARAM,BTWR_NULL_PARAM	
 	_JUMP			ev_tower_rooms_common_exit
 	_END
 
-//�x�ނƂ��̏���
+//休むときの処理
 ev_tower_rooms_common_rest:
 	_LDVAL			WK_SCENE_D31R0201,2
 
-	//�v���C�f�[�^�Z�[�u
+	//プレイデータセーブ
 	_BTOWER_TOOLS	BTWR_SUB_SAVE_REST_PLAY_DATA,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_BTOWER_WORK_RELEASE
 
@@ -181,30 +181,30 @@ ev_tower_rooms_common_rest:
 	_TALK_CLOSE
 
 //	_VANISH_DUMMY_OBJ_DEL
-	//���Z�b�g�R�}���h
+	//リセットコマンド
 	_BTOWER_TOOLS	BTWR_TOOL_SYSTEM_RESET,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_END
 
-//���^�C�A����Ƃ��̏���
+//リタイアするときの処理
 ev_tower_rooms_common_retire:
 	_JUMP			ev_tower_rooms_common_lose
 	_END
 
-//�V���O���o�g���������p�����[�^�Z�b�g�R����
+//シングルバトル勝利時パラメータセットコモン
 ev_tower_rooms_common_win_param:
-	//���E���h���X�V
+	//ラウンド数更新
 	_BTOWER_TOOLS	BTWR_SUB_INC_ROUND,BTWR_NULL_PARAM,SCWK_ANSWER
-	//�N���A���Ă邩�`�F�b�N
+	//クリアしてるかチェック
 	_BTOWER_TOOLS	BTWR_SUB_IS_CLEAR,BTWR_NULL_PARAM,SCWK_ANSWER
 	_RET
 
 
 //====================================================================
 /********************************************************************/
-/*	�V���O���ΐ�													*/
+/*	シングル対戦													*/
 /********************************************************************/
 //====================================================================
-//�V���O���ΐ�t���[
+//シングル対戦フロー
 ev_tower_rooms_sbtl_01:
 	_CALL			ev_tower_rooms_common_sbtl_call
 
@@ -212,55 +212,55 @@ ev_tower_rooms_sbtl_01:
 #else
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,0,ev_tower_rooms_common_lose
 #endif
-	//���������̏���(�N���A���Ă邩�ǂ�����SCWK_ANSWER�ɂ�����)
+	//勝った時の処理(クリアしてるかどうかをSCWK_ANSWERにかえす)
 	_CALL			ev_tower_rooms_common_win_param
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_tower_rooms_common_clear_ret
 
-	//�G�l�~�[�ޏ�
+	//エネミー退場
 	_CALL			ev_tower_rooms_comanm_eneout
 
-	//�v���C���[�U�����
+	//プレイヤー振り向き
 	_CALL			ev_tower_rooms_comanm_sbtl_end
 	
-	//�A�폈��
+	//連戦処理
 
-	//�|�P������
+	//ポケモン回復
 	_CALL			ev_tower_rooms_common_heal
 
-	//�o�g�����[�_�[��`�F�b�N
+	//バトルリーダー戦チェック
 	_JUMP			ev_tower_rooms_if_leader_battle
 	_END
 
 
-//�ʏ�A�� ���́H�l�ڂ̑���ł�
+//通常連戦 次は？人目の相手です
 ev_tower_rooms_sbtl_02:
 	_BTOWER_TOOLS	BTWR_SUB_GET_NOW_ROUND,BTWR_NULL_PARAM,SCWK_TEMP0
 	_NUMBER_NAME	0,SCWK_TEMP0
 	_TALKMSG		msg_tower_66
 
-	_BMPLIST_INIT		21,11,0,0,SCWK_ANSWER		//B�L�����Z������
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,EV_WIN_TALK_MSG_NONE,0		//�Â���
-	_BMPLIST_MAKE_LIST	msg_tower_choice_07,EV_WIN_TALK_MSG_NONE,1		//�₷��
-	_BMPLIST_MAKE_LIST	msg_tower_choice_08,EV_WIN_TALK_MSG_NONE,2		//���^�C�A
+	_BMPLIST_INIT		21,11,0,0,SCWK_ANSWER		//Bキャンセル無効
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,EV_WIN_TALK_MSG_NONE,0		//つづける
+	_BMPLIST_MAKE_LIST	msg_tower_choice_07,EV_WIN_TALK_MSG_NONE,1		//やすむ
+	_BMPLIST_MAKE_LIST	msg_tower_choice_08,EV_WIN_TALK_MSG_NONE,2		//リタイア
 	_BMPLIST_START
 	
 	_TALK_CLOSE
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_tower_rooms_next			//�Â���
-	_CASE_JUMP		1,ev_tower_rooms_is_rest		//�₷��
-	_CASE_JUMP		2,ev_tower_rooms_is_retire		//���^�C�A
-	_JUMP			ev_tower_rooms_next			//�Â���
+	_CASE_JUMP		0,ev_tower_rooms_next			//つづける
+	_CASE_JUMP		1,ev_tower_rooms_is_rest		//やすむ
+	_CASE_JUMP		2,ev_tower_rooms_is_retire		//リタイア
+	_JUMP			ev_tower_rooms_next			//つづける
 	_END
 
-//�A��Ȃ�����
+//連戦つなぎ処理
 ev_tower_rooms_next:
-	//�ē�����Ƃ̈ʒu��
+	//案内嬢もとの位置へ
 	_CALL		ev_tower_rooms_comanm_guide_out
-	//�o�g��
+	//バトル
 	_JUMP		ev_tower_rooms_sbtl_01
 	_END
 
-//���f���ċx�ނ��ǂ����H
+//中断して休むかどうか？
 ev_tower_rooms_is_rest:
 	_TALKMSG		msg_tower_67
 	_YES_NO_WIN		SCWK_ANSWER
@@ -270,7 +270,7 @@ ev_tower_rooms_is_rest:
 	_JUMP			ev_tower_rooms_sbtl_02
 	_END
 
-//���^�C�A���邩�ǂ����H
+//リタイアするかどうか？
 ev_tower_rooms_is_retire:
 	_TALKMSG		msg_tower_68
 	_YES_NO_WIN		SCWK_ANSWER
@@ -283,52 +283,52 @@ ev_tower_rooms_is_retire:
 
 //====================================================================
 /********************************************************************/
-/*	���[�_�[�ΐ�													*/
+/*	リーダー対戦													*/
 /********************************************************************/
 //====================================================================
 ev_tower_rooms_if_leader_battle:
-	//�V���O���o�g�����[�h���ǂ����H
+	//シングルバトルモードかどうか？
 	_BTOWER_TOOLS	BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,NE,BTWR_MODE_SINGLE,ev_tower_rooms_sbtl_02
 
-	//�V���O���Ȃ烉�E���h�`�F�b�N
+	//シングルならラウンドチェック
 	_BTOWER_TOOLS	BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,LEADER_SET_1ST,ev_tower_rooms_leader_comin
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,LEADER_SET_2ND,ev_tower_rooms_leader_comin
 	_JUMP			ev_tower_rooms_sbtl_02
 	_END
 
-//����
+//共通
 ev_tower_rooms_leader_comin:
-	//�^���[�^�C�N�[���Ƃ̐퓬�ɂȂ�܂�
+	//タワータイクーンとの戦闘になります
 	_TALK_KEYWAIT		msg_tower_boss_01
 
-	_BMPLIST_INIT		21,11,0,0,SCWK_ANSWER		//B�L�����Z������
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,EV_WIN_TALK_MSG_NONE,0		//�Â���
-	_BMPLIST_MAKE_LIST	msg_tower_choice_07,EV_WIN_TALK_MSG_NONE,1		//�₷��
-	_BMPLIST_MAKE_LIST	msg_tower_choice_08,EV_WIN_TALK_MSG_NONE,2		//���^�C�A
+	_BMPLIST_INIT		21,11,0,0,SCWK_ANSWER		//Bキャンセル無効
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,EV_WIN_TALK_MSG_NONE,0		//つづける
+	_BMPLIST_MAKE_LIST	msg_tower_choice_07,EV_WIN_TALK_MSG_NONE,1		//やすむ
+	_BMPLIST_MAKE_LIST	msg_tower_choice_08,EV_WIN_TALK_MSG_NONE,2		//リタイア
 	_BMPLIST_START
 	
 	_TALK_CLOSE
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_tower_rooms_leader_entry	//�Â���
-	_CASE_JUMP		1,ev_tower_rooms_is_rest		//�₷��
-	_CASE_JUMP		2,ev_tower_rooms_is_retire		//���^�C�A
-	_JUMP			ev_tower_rooms_leader_entry	//�Â���
+	_CASE_JUMP		0,ev_tower_rooms_leader_entry	//つづける
+	_CASE_JUMP		1,ev_tower_rooms_is_rest		//やすむ
+	_CASE_JUMP		2,ev_tower_rooms_is_retire		//リタイア
+	_JUMP			ev_tower_rooms_leader_entry	//つづける
 	_END
 
-//���[�_�[����
+//リーダー入場
 ev_tower_rooms_leader_entry:
-	//�ē�����Ƃ̈ʒu��
+	//案内嬢もとの位置へ
 	_CALL			ev_tower_rooms_comanm_guide_out
 
-	//���[�_�[�f�[�^�Z�b�g
+	//リーダーデータセット
 	_BTOWER_TOOLS		BTWR_SUB_CHOICE_BTL_PARTNER,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	
-	//���[�_�[����
+	//リーダー入場
 	_CALL			ev_tower_rooms_comanm_leader_in
 
-	//���[�_�[�ΐ�O�䎌
+	//リーダー対戦前台詞
 	_BTOWER_TOOLS	BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,LEADER_SET_2ND,ev_tower_rooms_leader_talk_01
 	_PLAYER_NAME	0
@@ -337,20 +337,20 @@ ev_tower_rooms_leader_entry:
 
 ev_tower_rooms_leader_talk01_end:
 	_TALK_CLOSE
-	//�݂��ɋ߂Â�
+	//互いに近づく
 	_CALL			ev_tower_rooms_comanm_sbtl_start
 
-	//�o�g���Ăяo��
+	//バトル呼び出し
 	_BTOWER_TOOLS		BTWR_SUB_LOCAL_BTL_CALL,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 
-	//���������`�F�b�N
+	//勝ち負けチェック
 	_LDWK				SCWK_TEMP0,SCWK_ANSWER
 #ifdef BTOWER_AUTO_DEB
 #else
 	_IFVAL_JUMP			SCWK_TEMP0,EQ,0,ev_tower_rooms_common_lose
 #endif
-	//���[�_�[�����䎌
+	//リーダー負け台詞
 	_BTOWER_TOOLS	BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,LEADER_SET_2ND,ev_tower_rooms_leader_talk_02
 	_TALK_KEYWAIT	msg_tower_boss_04
@@ -361,11 +361,11 @@ ev_tower_rooms_leader_talk02_end:
 	
 	_CALL				ev_tower_rooms_common_win_param
 
-	//���[�_�[��̏ꍇ�A�K���I���
+	//リーダー戦の場合、必ず終わり
 	_JUMP				ev_tower_rooms_common_clear_ret
 	_END
 
-//����
+//二回目
 ev_tower_rooms_leader_talk_01:
 	_TALK_KEYWAIT	msg_tower_boss_03
 	_JUMP			ev_tower_rooms_leader_talk01_end
@@ -378,70 +378,70 @@ ev_tower_rooms_leader_talk_02:
 
 //====================================================================
 /********************************************************************/
-/*	�o�g���^���[�V���O���ΐ핔���A�j���R����						*/
+/*	バトルタワーシングル対戦部屋アニメコモン						*/
 /********************************************************************/
 //====================================================================
-//���@�Ǝ󂯕t�������
+//自機と受け付け嬢入場
 ev_tower_rooms_comanm_in:
 	_OBJ_ANIME	HERO_OBJ,anm_d31r0205_player_01
 	_OBJ_ANIME_WAIT
 	_RET
 
-//���@�Ǝ󂯕t����@��������n�߂��Ƃ��̓����
+//自機と受け付け嬢　続きから始めたときの入場後
 ev_tower_rooms_comanm_continue:
 	_OBJ_ANIME	D31R0205_PCWOMAN2,anm_d31r0205_pcwoman2_02
 	_OBJ_ANIME	HERO_OBJ,anm_d31r0205_player_05
 	_OBJ_ANIME_WAIT
 	_RET
 
-//�G�l�~�[����
+//エネミー入場
 ev_tower_rooms_comanm_enein:
-	//�L�����w��
+	//キャラ指定
 	_BTOWER_TOOLS	BTWR_SUB_GET_ENEMY_OBJ,0,SCWK_ANSWER
 	_LDWK			OBJCHRWORK1,SCWK_ANSWER
 
-	//�o�j�b�V���t���OOFF
+	//バニッシュフラグOFF
 	_FLAG_RESET		FV_D31R0205_TRAINER
 	_OBJ_ADD		D31R0205_TRAINER
 	_OBJ_ANIME		D31R0205_TRAINER,anm_d31r0205_enemy_01	
 	_OBJ_ANIME_WAIT
 	_RET
 
-//�V���O���o�g���O�@�݂��Ɉ���߂Â�
+//シングルバトル前　互いに一歩近づく
 ev_tower_rooms_comanm_sbtl_start:
 	_OBJ_ANIME		HERO_OBJ,anm_d31r0205_player_02
 	_OBJ_ANIME		D31R0205_TRAINER,anm_d31r0205_enemy_02
 	_OBJ_ANIME_WAIT
 	_RET
 
-//�v���C���[������@�G�l�~�[�ޏ�
+//プレイヤー勝利後　エネミー退場
 ev_tower_rooms_comanm_eneout:
 	_OBJ_ANIME		D31R0205_TRAINER,anm_d31r0205_enemy_03
 	_OBJ_ANIME_WAIT
-	//�o�j�b�V���t���OON
+	//バニッシュフラグON
 	_FLAG_SET		FV_D31R0205_TRAINER
 	_OBJ_DEL		D31R0205_TRAINER
 	_RET
 
-//�v���C���[������@�v���C���[�U�����&�ē���߂Â�
+//プレイヤー勝利後　プレイヤー振り向き&案内嬢近づき
 ev_tower_rooms_comanm_sbtl_end:
 	_OBJ_ANIME		HERO_OBJ,anm_d31r0205_player_03
 	_OBJ_ANIME		D31R0205_PCWOMAN2,anm_d31r0205_pcwoman2_02
 	_OBJ_ANIME_WAIT
 	_RET
 
-//�񕜌�@�v���C���[�U��������ē��쉺����
+//回復後　プレイヤー振り向き＆案内嬢下がる
 ev_tower_rooms_comanm_guide_out:
 	_OBJ_ANIME		HERO_OBJ,anm_d31r0205_player_04
 	_OBJ_ANIME		D31R0205_PCWOMAN2,anm_d31r0205_pcwoman2_03
 	_OBJ_ANIME_WAIT
 	_RET
 
-//���[�_�[����
+//リーダー入場
 ev_tower_rooms_comanm_leader_in:
-	//�_�~�[�Ńh�b�y���Q���K�[����
+	//ダミーでドッペルゲンガー入場
 	_LDVAL			OBJCHRWORK1,TOWERBOSS
-	//�o�j�b�V���t���OOFF
+	//バニッシュフラグOFF
 	_FLAG_RESET		FV_D31R0205_TRAINER
 	_OBJ_ADD		D31R0205_TRAINER
 	_OBJ_ANIME		D31R0205_TRAINER,anm_d31r0205_leader_01
@@ -449,7 +449,7 @@ ev_tower_rooms_comanm_leader_in:
 	_RET
 
 //--------------------------------------------------------------------
-//�󂯕t����@�����ʒu�ֈړ�
+//受け付け嬢　初期位置へ移動
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_pcwoman2_01
 	_ANIME_DATA	AC_WAIT_4F,1
@@ -461,7 +461,7 @@ _ANIME_LABEL	anm_d31r0205_pcwoman2_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���@�@�����ʒu�ֈړ�
+//自機　初期位置へ移動
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_player_01
 	_ANIME_DATA	AC_WAIT_4F,1
@@ -474,7 +474,7 @@ _ANIME_LABEL	anm_d31r0205_player_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�G�l�~�[�@�����ʒu�ֈړ�
+//エネミー　初期位置へ移動
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_enemy_01
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -486,21 +486,21 @@ _ANIME_LABEL	anm_d31r0205_enemy_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���@�@�ΐ�O�Ɉ���O��
+//自機　対戦前に一歩前へ
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_player_02
 	_ANIME_DATA	AC_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�G�l�~�[�@�ΐ�O�Ɉ���O��
+//エネミー　対戦前に一歩前へ
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_enemy_02
 	_ANIME_DATA	AC_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�G�l�~�[�@�s���ޏ�
+//エネミー　敗戦後退場
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_enemy_03
 	_ANIME_DATA	AC_DIR_R,1
@@ -514,7 +514,7 @@ _ANIME_LABEL	anm_d31r0205_enemy_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���@�@�ΐ폟����@��������U�����
+//自機　対戦勝利後　一歩引き振り向き
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_player_03
 	_ANIME_DATA	AC_WALK_L_8F,1
@@ -522,21 +522,21 @@ _ANIME_LABEL	anm_d31r0205_player_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�ē���@�ΐ폟����@�߂Â�
+//案内嬢　対戦勝利後　近づき
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_pcwoman2_02
 	_ANIME_DATA	AC_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���@�@�񕜌�U�����
+//自機　回復後振り向き
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_player_04
 	_ANIME_DATA	AC_DIR_R,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�ē���@�񕜌㉺����
+//案内嬢　回復後下がる
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_pcwoman2_03
 	_ANIME_DATA	AC_DIR_L,1
@@ -545,14 +545,14 @@ _ANIME_LABEL	anm_d31r0205_pcwoman2_03
 	_ANIME_DATA	ACMD_END,0
 	
 //--------------------------------------------------------------------
-//���@�@��������
+//自機　続きから
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_player_05
 	_ANIME_DATA	AC_DIR_L,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���[�_�[����@�����ʒu�ֈړ�
+//リーダー入場　初期位置へ移動
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_leader_01
 	_ANIME_DATA	AC_WALK_D_16F,1

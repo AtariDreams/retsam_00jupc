@@ -56,16 +56,16 @@ void MIi_CardDmaCopy32(u32 dmaNo, const void *src, void *dest, u32 size)
 
     MIi_ASSERT_DMANO(dmaNo);
     MIi_ASSERT_DEST_ALIGN4(dest);
-    /* �T�C�Y�͂��̊֐����ł͎g�p���Ȃ�������̂��߂Ɏw�� */
+    /* サイズはこの関数内では使用しないが判定のために指定 */
     MIi_ASSERT_SRC_ALIGN512(size);
     MIi_WARNING_ADDRINTCM(dest, size);
     (void)size;
 
 #ifdef SDK_ARM9
     /*
-     * CARD �͑��� DMA �ƈ���āu���킪����Ɂv�Ƃ������Ƃ��L�肦�Ȃ�.
-     * �Ăяo�����ł��� CARD ���C�u�����ňꌳ�Ǘ��͂��Ă��邪,
-     * ���������̃`�F�b�N�@�\�Ȃ̂œ�������o����悤 MIi_DMA_TIMING_ANY ��ݒ�.
+     * CARD は他の DMA と違って「同種が並列に」ということが有りえない.
+     * 呼び出し側である CARD ライブラリで一元管理はしているが,
+     * せっかくのチェック機能なので同種も検出するよう MIi_DMA_TIMING_ANY を設定.
      */
     MIi_CheckAnotherAutoDMA(dmaNo, MIi_DMA_TIMING_ANY);
 #endif
@@ -81,7 +81,7 @@ void MIi_CardDmaCopy32(u32 dmaNo, const void *src, void *dest, u32 size)
     MIi_DmaSetParams(dmaNo, (u32)src, (u32)dest,
                      (u32)(MI_CNT_CARDRECV32(4) | MI_DMA_CONTINUOUS_ON));
     /*
-     * �����ł͎����N���� ON �ɂȂ�������.
-     * CARD ���W�X�^�փR�}���h��ݒ肵�ď��߂ċN������.
+     * ここでは自動起動が ON になっただけ.
+     * CARD レジスタへコマンドを設定して初めて起動する.
      */
 }

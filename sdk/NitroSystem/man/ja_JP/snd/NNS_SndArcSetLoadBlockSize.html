@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndArcSetLoadBlockSize</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>NNS_SndArcSetLoadBlockSize</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndArcSetLoadBlockSize( s32 <var>loadBlockSize</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA0LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,36 +25,36 @@
 <tbody>
 <tr>
 <td><em><strong><code>loadBlockSize</code></strong></em></td>
-<td>���[�h�u���b�N�T�C�Y�ł��B�P�ʂ̓o�C�g�ł��B</td>
+<td>ロードブロックサイズです。単位はバイトです。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAQMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAXMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�f�[�^�ǂݍ��ݎ��̃��[�h�u���b�N�T�C�Y��ݒ肵�܂��B
-���[�h�u���b�N�T�C�Y�̃f�t�H���g�͂O�ł��B
+データ読み込み時のロードブロックサイズを設定します。
+ロードブロックサイズのデフォルトは０です。
       </p>
 <p>
-���[�h�u���b�N�T�C�Y���傫�ȃf�[�^�����[�h����Ƃ��́A
-���[�h�u���b�N�T�C�Y�P�ʂŕ������A������ɕ����ă��[�h���s����悤�ɂȂ�܂��B
-�������A���[�h�u���b�N�T�C�Y���O�̏ꍇ�́A�������[�h�͍s���܂���B
+ロードブロックサイズより大きなデータをロードするときは、
+ロードブロックサイズ単位で分割し、複数回に分けてロードが行われるようになります。
+ただし、ロードブロックサイズが０の場合は、分割ロードは行われません。
 </p>
       <p>
-���[�h�u���b�N�T�C�Y�̐ݒ�́A�J�����g�T�E���h�A�[�J�C�u�ɑ΂��čs���܂��B
+ロードブロックサイズの設定は、カレントサウンドアーカイブに対して行われます。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcGetLoadBlockSize.html">NNS_SndArcGetLoadBlockSize</a></p>
-<h2>����</h2>
-<p>2007/10/17 ����<br></p>
+<h2>履歴</h2>
+<p>2007/10/17 初版<br></p>
 </div>
 </body>
 </html>

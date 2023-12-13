@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_cursor.h
- *	@brief		}ŠÓcursor“®ìƒVƒXƒeƒ€
+ *	@brief		å›³é‘‘cursorå‹•ä½œã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2006.03.02
  *
@@ -20,53 +20,53 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	“®ìID
+//	å‹•ä½œID
 //=====================================
 enum{
-	ZKN_CURSOR_MOVE_NORMAL,		// ’Êíˆ—
-	ZKN_CURSOR_MOVE_STOP,		// ƒXƒgƒbƒv‚³‚¹‚é
-	ZKN_CURSOR_MOVE_SKIP,		// ƒXƒLƒbƒv‚³‚¹‚é
+	ZKN_CURSOR_MOVE_NORMAL,		// é€šå¸¸å‡¦ç†
+	ZKN_CURSOR_MOVE_STOP,		// ã‚¹ãƒˆãƒƒãƒ—ã•ã›ã‚‹
+	ZKN_CURSOR_MOVE_SKIP,		// ã‚¹ã‚­ãƒƒãƒ—ã•ã›ã‚‹
 };
 
 //-------------------------------------
-//	“®ìƒRƒ}ƒ“ƒh
+//	å‹•ä½œã‚³ãƒžãƒ³ãƒ‰
 //=====================================
 enum{
-	ZKN_CURSOR_CONT_ADD_X,		// X•ûŒüˆÚ“®	
-	ZKN_CURSOR_CONT_ADD_Y,		// Y•ûŒüˆÚ“®	
-	ZKN_CURSOR_CONT_SET_X,		// X•ûŒüÝ’è	
-	ZKN_CURSOR_CONT_SET_Y,		// Y•ûŒüÝ’è	
-	ZKN_CURSOR_CONT_SET_CONTID,	// ŠÇ—ID‚ÌˆÊ’u‚ÉƒJ[ƒ\ƒ‹‚ðˆÚ“®
+	ZKN_CURSOR_CONT_ADD_X,		// Xæ–¹å‘ç§»å‹•	
+	ZKN_CURSOR_CONT_ADD_Y,		// Yæ–¹å‘ç§»å‹•	
+	ZKN_CURSOR_CONT_SET_X,		// Xæ–¹å‘è¨­å®š	
+	ZKN_CURSOR_CONT_SET_Y,		// Yæ–¹å‘è¨­å®š	
+	ZKN_CURSOR_CONT_SET_CONTID,	// ç®¡ç†IDã®ä½ç½®ã«ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•
 };
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	cursor1ƒf[ƒ^
+//	cursor1ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	int x;			// XÀ•W
-	int y;			// YÀ•W
-	int size_x;		// XƒTƒCƒY
-	int size_y;		// YƒTƒCƒY
-	int movex_id;	// X•ûŒü“®ìID
-	int movey_id;	// Y•ûŒü“®ìID
-	int cont_id;	// ƒ†[ƒU[ŠÇ—ID
+	int x;			// Xåº§æ¨™
+	int y;			// Yåº§æ¨™
+	int size_x;		// Xã‚µã‚¤ã‚º
+	int size_y;		// Yã‚µã‚¤ã‚º
+	int movex_id;	// Xæ–¹å‘å‹•ä½œID
+	int movey_id;	// Yæ–¹å‘å‹•ä½œID
+	int cont_id;	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç®¡ç†ID
 } ZKN_CURSOR_ONEDATA;
 
-// ŠÇ—ƒVƒXƒeƒ€
+// ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 typedef struct _ZKN_CURSOR ZKN_CURSOR;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL ZKN_CURSOR* ZKN_CURSOR_Alloc( int heap );
@@ -81,7 +81,7 @@ GLOBAL void ZKN_CURSOR_GetSize( const ZKN_CURSOR* cp_cursor, int* p_x, int* p_y 
 GLOBAL void ZKN_CURSOR_SetOneData( ZKN_CURSOR_ONEDATA* p_data, int x, int y, int size_x, int size_y, int movex_id, int movey_id, int cont_id );
 
 
-//@•`‰æŠÖŒW
+//ã€€æç”»é–¢ä¿‚
 enum{
 	ZKN_CURSOR_MAT_TOP_LEFT,
 	ZKN_CURSOR_MAT_TOP_RIGHT,
@@ -94,7 +94,7 @@ GLOBAL void ZKN_CURSOR_GetRectMat( const ZKN_CURSOR* cp_cursor, int way, int* p_
 
 //-----------------------------------------------------------------------------
 /**
- *			”Ä—pŠÖ”
+ *			æ±Žç”¨é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_CURSOR_UTIL_GetRectMat( int way, int* p_x, int* p_y, int def_x, int def_y, int size_x, int size_y );

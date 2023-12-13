@@ -1,6 +1,6 @@
 //====================================================================
 //							r213r0201
-//					�������Ƃ͂����@�́@����
+//					あしあとはかせ　の　いえ
 //====================================================================
 
 	.text
@@ -12,11 +12,11 @@
 	.include	"../../field/scr_ribbon.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r213r0201_flag_change
 _EVENT_DATA		ev_r213r0201_footmark
@@ -27,13 +27,13 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_r213r0201_flag_change:
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_R213R0201	//����
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_R213R0201	//到着
 	_END
 
 
 /********************************************************************/
-/*							���Ր肢								*/
-/*	SCWK_PARAM0,1,2�g�p�B�@�����̃��[�N��j�󂷂�֐��͎g�p�s��	*/
+/*							足跡占い								*/
+/*	SCWK_PARAM0,1,2使用。　これらのワークを破壊する関数は使用不可	*/
 /********************************************************************/
 #define R213R0201_FUTOMAKI_POS_X		(5)
 #define R213R0201_FUTOMAKI_POS_Z		(6)
@@ -41,19 +41,19 @@ ev_r213r0201_flag_change:
 ev_r213r0201_footmark:
 	_TALK_OBJ_START
 
-	//�擪�|�P�����ԍ�(�^�}�S�������j���擾
+	//先頭ポケモン番号(タマゴを除く）を取得
 	_FRONT_POKEMON	SCWK_PARAM2
 
-	//�|�P�������{��l�����{�j�b�N�l�[�����o�b�t�@�֎擾 �S�e�L�X�g�ʒu�Œ�
+	//ポケモン名＋主人公名＋ニックネームをバッファへ取得 全テキスト位置固定
 	_POKEMON_NAME		0,SCWK_PARAM2
 	_PLAYER_NAME		1
 	_NICK_NAME			2,SCWK_PARAM2
 
-	//���Ղ̗L���A��ގ擾
+	//足跡の有無、種類取得
 	_ASHIATO_CHK	SCWK_PARAM0,SCWK_PARAM1,SCWK_PARAM2
 
 
-	//2�x�ڈȍ~
+	//2度目以降
 	_IF_FLAGON_JUMP	FE_R213R0201_FOOTMARK,ev_footmark_02
 
 	_FLAG_SET		FE_R213R0201_FOOTMARK
@@ -62,14 +62,14 @@ ev_r213r0201_footmark:
 	_TALK_CLOSE
 	_JUMP			ev_footmark_move_01
 
-//2�x�ڈȍ~
+//2度目以降
 ev_footmark_02:
 	_TALK_KEYWAIT	msg_footmark_02
 	_TALK_CLOSE
 	_JUMP			ev_footmark_move_01
 
 
-//�t�g�}�L�ړ�
+//フトマキ移動
 ev_footmark_move_01:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
@@ -79,7 +79,7 @@ ev_footmark_move_01:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//�t�g�}�L�ジ����
+	//フトマキ後ずさる
 	_CALL			ev_futomaki_move_back
 
 	_TIME_WAIT		20,SCWK_ANSWER
@@ -89,7 +89,7 @@ ev_footmark_move_01:
 
 
 ev_futomaki_move_back:
-	//�v���C���[�̈ʒu�Z�o
+	//プレイヤーの位置算出
 	_PLAYER_POS_GET	SCWK_TEMP1,SCWK_TEMP2
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,R213R0201_FUTOMAKI_POS_X-1,anm_call_footmark_back_l
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,R213R0201_FUTOMAKI_POS_X+1,anm_call_footmark_back_r
@@ -118,7 +118,7 @@ anm_call_footmark_back_d:
 
 
 ev_futomaki_move_forward:
-	//�v���C���[�̈ʒu�Z�o
+	//プレイヤーの位置算出
 	_PLAYER_POS_GET	SCWK_TEMP1,SCWK_TEMP2
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,R213R0201_FUTOMAKI_POS_X-1,anm_call_footmark_forward_l
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,R213R0201_FUTOMAKI_POS_X+1,anm_call_footmark_forward_r
@@ -146,38 +146,38 @@ anm_call_footmark_forward_d:
 	_RET
 
 
-//����
+//分析
 ev_footmark_chk_01:
 	_IFVAL_JUMP		SCWK_PARAM1,EQ,KAWAII_KEI,	ev_footmark_kawaii
 	_IFVAL_JUMP		SCWK_PARAM1,EQ,KAKKOII_KEI,	ev_footmark_kakkoii
 	_IFVAL_JUMP		SCWK_PARAM1,EQ,KOWAI_KEI,	ev_footmark_kowai
 	_IFVAL_JUMP		SCWK_PARAM1,EQ,OTOBOKE_KEI,	ev_footmark_otoboke
-	_JUMP										ev_footmark_un_01				//�A���m�[���n�͒���JUMP
+	_JUMP										ev_footmark_un_01				//アンノーン系は直でJUMP
 
-//���킢���n
+//かわいい系
 ev_footmark_kawaii:
 	_IFVAL_JUMP		SCWK_PARAM0,EQ,ASHIATO_ARI,	ev_footmark_kawaii_ashi_ari
 	_JUMP										ev_footmark_kawaii_ashi_nashi
 
-//�����������n
+//かっこいい系
 ev_footmark_kakkoii:
 	_IFVAL_JUMP		SCWK_PARAM0,EQ,ASHIATO_ARI,	ev_footmark_kakkoii_ashi_ari
 	_JUMP										ev_footmark_kakkoii_ashi_nashi
 
-//���킢�n
+//こわい系
 ev_footmark_kowai:
 	_IFVAL_JUMP		SCWK_PARAM0,EQ,ASHIATO_ARI,	ev_footmark_kowai_ashi_ari
 	_JUMP										ev_footmark_kowai_ashi_nashi
 
-//���Ƃڂ��n
+//おとぼけ系
 ev_footmark_otoboke:
 	_IFVAL_JUMP		SCWK_PARAM0,EQ,ASHIATO_ARI,	ev_footmark_otoboke_ashi_ari
 	_JUMP										ev_footmark_otoboke_ashi_nashi
 
 
-//���킢���n ���Ղ���
+//かわいい系 足跡あり
 ev_footmark_kawaii_ashi_ari:
-	//�Ȃ��x�`�F�b�N
+	//なつき度チェック
 	_GET_NATSUKI SCWK_ANSWER,SCWK_PARAM2
 	_IFVAL_JUMP		SCWK_ANSWER,GE,255,ev_footmark_a1_05
 	_IFVAL_JUMP		SCWK_ANSWER,GE,200,ev_footmark_a1_04
@@ -185,9 +185,9 @@ ev_footmark_kawaii_ashi_ari:
 	_IFVAL_JUMP		SCWK_ANSWER,GE, 70,ev_footmark_a1_02
 	_JUMP							ev_footmark_a1_01
 
-//���킢���n ���ՂȂ�
+//かわいい系 足跡なし
 ev_footmark_kawaii_ashi_nashi:
-	//�Ȃ��x�`�F�b�N
+	//なつき度チェック
 	_GET_NATSUKI SCWK_ANSWER,SCWK_PARAM2
 	_IFVAL_JUMP		SCWK_ANSWER,GE,255,ev_footmark_a2_05
 	_IFVAL_JUMP		SCWK_ANSWER,GE,200,ev_footmark_a2_04
@@ -196,9 +196,9 @@ ev_footmark_kawaii_ashi_nashi:
 	_JUMP							ev_footmark_a2_01
 
 
-//�����������n ���Ղ���
+//かっこいい系 足跡あり
 ev_footmark_kakkoii_ashi_ari:
-	//�Ȃ��x�`�F�b�N
+	//なつき度チェック
 	_GET_NATSUKI SCWK_ANSWER,SCWK_PARAM2
 	_IFVAL_JUMP		SCWK_ANSWER,GE,255,ev_footmark_b1_05
 	_IFVAL_JUMP		SCWK_ANSWER,GE,200,ev_footmark_b1_04
@@ -206,9 +206,9 @@ ev_footmark_kakkoii_ashi_ari:
 	_IFVAL_JUMP		SCWK_ANSWER,GE, 70,ev_footmark_b1_02
 	_JUMP							ev_footmark_b1_01
 
-//���킢���n ���ՂȂ�
+//かわいい系 足跡なし
 ev_footmark_kakkoii_ashi_nashi:
-	//�Ȃ��x�`�F�b�N
+	//なつき度チェック
 	_GET_NATSUKI SCWK_ANSWER,SCWK_PARAM2
 	_IFVAL_JUMP		SCWK_ANSWER,GE,255,ev_footmark_b2_05
 	_IFVAL_JUMP		SCWK_ANSWER,GE,200,ev_footmark_b2_04
@@ -217,9 +217,9 @@ ev_footmark_kakkoii_ashi_nashi:
 	_JUMP							ev_footmark_b2_01
 
 
-//���킢�n ���Ղ���
+//こわい系 足跡あり
 ev_footmark_kowai_ashi_ari:
-	//�Ȃ��x�`�F�b�N
+	//なつき度チェック
 	_GET_NATSUKI SCWK_ANSWER,SCWK_PARAM2
 	_IFVAL_JUMP		SCWK_ANSWER,GE,255,ev_footmark_c1_05
 	_IFVAL_JUMP		SCWK_ANSWER,GE,200,ev_footmark_c1_04
@@ -227,9 +227,9 @@ ev_footmark_kowai_ashi_ari:
 	_IFVAL_JUMP		SCWK_ANSWER,GE, 70,ev_footmark_c1_02
 	_JUMP							ev_footmark_c1_01
 
-//���킢�n ���ՂȂ�
+//こわい系 足跡なし
 ev_footmark_kowai_ashi_nashi:
-	//�Ȃ��x�`�F�b�N
+	//なつき度チェック
 	_GET_NATSUKI SCWK_ANSWER,SCWK_PARAM2
 	_IFVAL_JUMP		SCWK_ANSWER,GE,255,ev_footmark_c2_05
 	_IFVAL_JUMP		SCWK_ANSWER,GE,200,ev_footmark_c2_04
@@ -238,9 +238,9 @@ ev_footmark_kowai_ashi_nashi:
 	_JUMP							ev_footmark_c2_01
 
 
-//���Ƃڂ��n ���Ղ���
+//おとぼけ系 足跡あり
 ev_footmark_otoboke_ashi_ari:
-	//�Ȃ��x�`�F�b�N
+	//なつき度チェック
 	_GET_NATSUKI SCWK_ANSWER,SCWK_PARAM2
 	_IFVAL_JUMP		SCWK_ANSWER,GE,255,ev_footmark_d1_05
 	_IFVAL_JUMP		SCWK_ANSWER,GE,200,ev_footmark_d1_04
@@ -248,9 +248,9 @@ ev_footmark_otoboke_ashi_ari:
 	_IFVAL_JUMP		SCWK_ANSWER,GE, 70,ev_footmark_d1_02
 	_JUMP							ev_footmark_d1_01
 
-//���Ƃڂ��n ���ՂȂ�
+//おとぼけ系 足跡なし
 ev_footmark_otoboke_ashi_nashi:
-	//�Ȃ��x�`�F�b�N
+	//なつき度チェック
 	_GET_NATSUKI SCWK_ANSWER,SCWK_PARAM2
 	_IFVAL_JUMP		SCWK_ANSWER,GE,255,ev_footmark_d2_05
 	_IFVAL_JUMP		SCWK_ANSWER,GE,200,ev_footmark_d2_04
@@ -259,9 +259,9 @@ ev_footmark_otoboke_ashi_nashi:
 	_JUMP							ev_footmark_d2_01
 
 
-//���킢���n
+//かわいい系
 
-//���Ղ���
+//足跡あり
 ev_footmark_a1_01:
 	_TALK_KEYWAIT	msg_footmark_a1_01
 	_JUMP			ev_footmark_03
@@ -282,7 +282,7 @@ ev_footmark_a1_05:
 	_TALK_KEYWAIT	msg_footmark_a1_05
 	_JUMP			ev_footmark_ashi_ari_ribbon_chk
 
-//���ՂȂ�
+//足跡なし
 ev_footmark_a2_01:
 	_TALK_KEYWAIT	msg_footmark_a2_01
 	_JUMP			ev_footmark_04
@@ -303,9 +303,9 @@ ev_footmark_a2_05:
 	_TALK_KEYWAIT	msg_footmark_a2_05
 	_JUMP			ev_footmark_ashi_nashi_ribbon_chk
 
-//�����������n
+//かっこいい系
 
-//���Ղ���
+//足跡あり
 ev_footmark_b1_01:
 	_TALK_KEYWAIT	msg_footmark_b1_01
 	_JUMP			ev_footmark_03
@@ -326,7 +326,7 @@ ev_footmark_b1_05:
 	_TALK_KEYWAIT	msg_footmark_b1_05
 	_JUMP			ev_footmark_ashi_ari_ribbon_chk
 
-//���ՂȂ�
+//足跡なし
 ev_footmark_b2_01:
 	_TALK_KEYWAIT	msg_footmark_b2_01
 	_JUMP			ev_footmark_04
@@ -347,9 +347,9 @@ ev_footmark_b2_05:
 	_TALK_KEYWAIT	msg_footmark_b2_05
 	_JUMP			ev_footmark_ashi_nashi_ribbon_chk
 
-//���킢�n
+//こわい系
 
-//���Ղ���
+//足跡あり
 ev_footmark_c1_01:
 	_TALK_KEYWAIT	msg_footmark_c1_01
 	_JUMP			ev_footmark_03
@@ -370,7 +370,7 @@ ev_footmark_c1_05:
 	_TALK_KEYWAIT	msg_footmark_c1_05
 	_JUMP			ev_footmark_ashi_ari_ribbon_chk
 
-//���ՂȂ�
+//足跡なし
 ev_footmark_c2_01:
 	_TALK_KEYWAIT	msg_footmark_c2_01
 	_JUMP			ev_footmark_04
@@ -391,9 +391,9 @@ ev_footmark_c2_05:
 	_TALK_KEYWAIT	msg_footmark_c2_05
 	_JUMP			ev_footmark_ashi_nashi_ribbon_chk
 
-//���Ƃڂ��n
+//おとぼけ系
 
-//���Ղ���
+//足跡あり
 ev_footmark_d1_01:
 	_TALK_KEYWAIT	msg_footmark_d1_01
 	_JUMP			ev_footmark_03
@@ -414,7 +414,7 @@ ev_footmark_d1_05:
 	_TALK_KEYWAIT	msg_footmark_d1_05
 	_JUMP			ev_footmark_ashi_ari_ribbon_chk
 
-//���ՂȂ�
+//足跡なし
 ev_footmark_d2_01:
 	_TALK_KEYWAIT	msg_footmark_d2_01
 	_JUMP			ev_footmark_04
@@ -436,41 +436,41 @@ ev_footmark_d2_05:
 	_JUMP			ev_footmark_ashi_nashi_ribbon_chk
 
 
-//���Ղ���@���{���擾�`�F�b�N
+//足跡あり　リボン取得チェック
 ev_footmark_ashi_ari_ribbon_chk:
-	//���ɂ������ƃ��{���������Ă��Ȃ� > ���{���Q�b�g
+	//既にあしあとリボンをもっていない > リボンゲット
 	_CHK_RIBBON		SCWK_ANSWER,SCWK_PARAM2,RIBBON_SINOU_ASHIATO_RIBBON
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_footmark_06
 	_JUMP			ev_footmark_03
 
-//���ՂȂ��@���{���擾�`�F�b�N
+//足跡なし　リボン取得チェック
 ev_footmark_ashi_nashi_ribbon_chk:
-	//���ɂ������ƃ��{���������Ă��Ȃ� > ���{���Q�b�g
+	//既にあしあとリボンをもっていない > リボンゲット
 	_CHK_RIBBON		SCWK_ANSWER,SCWK_PARAM2,RIBBON_SINOU_ASHIATO_RIBBON
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_footmark_07
 	_JUMP			ev_footmark_04
 
-//�A���m�[���n
+//アンノーン系
 ev_footmark_un_01:
 	_TALK_KEYWAIT	msg_footmark_un_01
 
-	//�Ȃ��x�`�F�b�N
+	//なつき度チェック
 	_GET_NATSUKI SCWK_ANSWER,SCWK_PARAM2
-	_IFVAL_JUMP		SCWK_ANSWER,LT,255,ev_footmark_05		//�Ȃ��x�Q�T�T��艺�̓m�[�}��
+	_IFVAL_JUMP		SCWK_ANSWER,LT,255,ev_footmark_05		//なつき度２５５より下はノーマル
 
-	//���ɂ������ƃ��{���������Ă��Ȃ� > ���{���Q�b�g
+	//既にあしあとリボンをもっていない > リボンゲット
 	_CHK_RIBBON		SCWK_ANSWER,SCWK_PARAM2,RIBBON_SINOU_ASHIATO_RIBBON
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_footmark_08
 
 	_JUMP			ev_footmark_05
 
-//���Ղ���@�߂̈��A
+//足跡あり　閉めの挨拶
 ev_footmark_03:
 
 	_TALK_CLOSE
 	_TIME_WAIT		20,SCWK_ANSWER
 
-	//�t�g�}�L�O��
+	//フトマキ前へ
 	_CALL			ev_futomaki_move_forward
 
 	_TIME_WAIT		10,SCWK_ANSWER
@@ -481,12 +481,12 @@ ev_footmark_03:
 	_TALK_OBJ_END
 	_END
 
-//���ՂȂ��@�߂̈��A
+//足跡なし　閉めの挨拶
 ev_footmark_04:
 	_TALK_CLOSE
 	_TIME_WAIT		20,SCWK_ANSWER
 
-	//�t�g�}�L�O��
+	//フトマキ前へ
 	_CALL			ev_futomaki_move_forward
 
 	_TIME_WAIT		10,SCWK_ANSWER
@@ -497,12 +497,12 @@ ev_footmark_04:
 	_TALK_OBJ_END
 	_END
 
-//�����i�A���m�[���n�j
+//無口（アンノーン系）
 ev_footmark_05:
 	_TALK_CLOSE
 	_TIME_WAIT		20,SCWK_ANSWER
 
-	//�t�g�}�L�O��
+	//フトマキ前へ
 	_CALL			ev_futomaki_move_forward
 
 	_TIME_WAIT		10,SCWK_ANSWER
@@ -515,12 +515,12 @@ ev_footmark_05:
 
 
 
-//���Ղ���@���{���������
+//足跡あり　リボンをくれる
 ev_footmark_06:
 	_TALK_CLOSE
 	_TIME_WAIT		20,SCWK_ANSWER
 
-	//�t�g�}�L�O��
+	//フトマキ前へ
 	_CALL			ev_futomaki_move_forward
 
 	_TIME_WAIT		10,SCWK_ANSWER
@@ -541,12 +541,12 @@ ev_footmark_06:
 	_END
 
 
-//���ՂȂ��@���{���������
+//足跡なし　リボンをくれる
 ev_footmark_07:
 	_TALK_CLOSE
 	_TIME_WAIT		20,SCWK_ANSWER
 
-	//�t�g�}�L�O��
+	//フトマキ前へ
 	_CALL			ev_futomaki_move_forward
 
 	_TIME_WAIT		10,SCWK_ANSWER
@@ -566,12 +566,12 @@ ev_footmark_07:
 	_TALK_OBJ_END
 	_END
 
-//�����i�A���m�[���n�j�@���{���������
+//無口（アンノーン系）　リボンをくれる
 ev_footmark_08:
 	_TALK_CLOSE
 	_TIME_WAIT		20,SCWK_ANSWER
 
-	//�t�g�}�L�O��
+	//フトマキ前へ
 	_CALL			ev_futomaki_move_forward
 
 	_TIME_WAIT		10,SCWK_ANSWER
@@ -596,7 +596,7 @@ ev_footmark_08:
 
 
 //--------------------------------------------------------------------
-//��l������ジ����
+//主人公から後ずさる
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_footmark_back_l
 	_ANIME_DATA	AC_DIR_PAUSE_ON,1
@@ -623,7 +623,7 @@ _ANIME_LABEL	anm_footmark_back_d
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��l���ɋߊ��
+//主人公に近寄る
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_footmark_forward_l
 	_ANIME_DATA	AC_WALK_L_8F,1

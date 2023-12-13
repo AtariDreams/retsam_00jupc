@@ -1,8 +1,8 @@
 #=============================================================================================
 #
-#	ƒtƒB[ƒ‹ƒhƒAƒCƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ“ƒo[ƒ^
+#	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒ³ãƒãƒ¼ã‚¿
 #
-#	_FLD_ITEM_EVENT‹Lq‚ðfld_item.ev‚Éo—Í‚·‚é
+#	_FLD_ITEM_EVENTè¨˜è¿°ã‚’fld_item.evã«å‡ºåŠ›ã™ã‚‹
 #
 #	05.11.04 Satoshi Nohara
 #
@@ -11,13 +11,13 @@ BEGIN{
 
 	#=================================================================
 	#
-	#ƒAƒCƒeƒ€’è‹`ƒtƒ@ƒCƒ‹“Ç‚Ýž‚Ý
+	#ã‚¢ã‚¤ãƒ†ãƒ å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 	#
 	#=================================================================
 	ITEMSYM_H = "../../../include/itemtool/itemsym.h"
 
-	#getline = ‚Ps“Ç‚Ýž‚Ý
-	#‚P‚Í–ß‚è’l
+	#getline = ï¼‘è¡Œèª­ã¿è¾¼ã¿
+	#ï¼‘ã¯æˆ»ã‚Šå€¤
 	while ( 1 == getline < ITEMSYM_H ) {
 		if ( NF == 7 && $1 =="#define" ) {
 			ItemName[$7] = $2
@@ -25,16 +25,16 @@ BEGIN{
 	}
 	close(ITEMSYM_H)
 
-	file1 = "fld_item.ev"		#ƒXƒNƒŠƒvƒg
+	file1 = "fld_item.ev"		#ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 }
 
 NR >= 4{
 
-	#€–Ú”ƒ`ƒFƒbƒN
+	#é …ç›®æ•°ãƒã‚§ãƒƒã‚¯
 	if( NF < 6 ) next
 
-	if( $1 == "ƒ}ƒbƒv–¼" )	next
-	if( $1 ~ "ƒAƒCƒeƒ€" )	next
+	if( $1 == "ãƒžãƒƒãƒ—å" )	next
+	if( $1 ~ "ã‚¢ã‚¤ãƒ†ãƒ " )	next
 
 	print "/********************************************************************/" >> file1
 	print "//\tMAP=" $2 " X=" $3 " Y=" $4 " ITEM=" $5 " FLAG=" $6 >> file1

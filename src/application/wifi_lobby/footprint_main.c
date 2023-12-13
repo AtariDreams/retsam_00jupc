@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	footprint_main.c
- * @brief	‘«Õƒ{[ƒhƒƒCƒ“
+ * @brief	è¶³è·¡ãƒœãƒ¼ãƒ‰ãƒ¡ã‚¤ãƒ³
  * @author	matsuda
- * @date	2008.01.18(‹à)
+ * @date	2008.01.18(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -41,24 +41,24 @@
 #include "footprint_control.h"
 #include "footprint_snd_def.h"
 
-#include "battle/battle_common.h"	//POKEMON_TEMOTI_MAX’è‹`
+#include "battle/battle_common.h"	//POKEMON_TEMOTI_MAXå®šç¾©
 #include "poketool/poke_tool.h"
 #include "poketool/pokeparty.h"
-#include "poketool/pokefoot.h"	//POKEFOOT_ARC_CHAR_DMMY’è‹`‚Ìˆ×
+#include "poketool/pokefoot.h"	//POKEFOOT_ARC_CHAR_DMMYå®šç¾©ã®ç‚º
 #include "system/touch_subwindow.h"
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///HEAPID_FOOTPRINT‚ªŠm•Û‚·‚éƒq[ƒvƒTƒCƒY
+///HEAPID_FOOTPRINTãŒç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º
 #define FOOTPRINT_HEAP_SIZE		(0x50000)
 
-///ŠÇ—‚·‚éƒtƒHƒ“ƒgOAM”
-#define FOOT_FONTOAM_MAX		(4)	//­‚µ‘½‚ß‚É
+///ç®¡ç†ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆOAMæ•°
+#define FOOT_FONTOAM_MAX		(4)	//å°‘ã—å¤šã‚ã«
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰İ’è
+//	ã‚«ãƒ¡ãƒ©è¨­å®š
 //--------------------------------------------------------------
 #define FOOTPRINT_CAMERA_MODE			GF_CAMERA_PERSPECTIV	//(GF_CAMERA_ORTHO)
 
@@ -69,16 +69,16 @@
 #define FOOTPRINT_CAMERA_TY				( -FX32_ONE * 8 )
 #define FOOTPRINT_CAMERA_TZ				( 0 )
 
-///ƒJƒƒ‰‚Ì’‹“_‚Ü‚Å‚Ì‹——£
+///ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–ç‚¹ã¾ã§ã®è·é›¢
 #define FOOTPRINT_CAMERA_DISTANCE		(0x7c000)	//(0x96 << FX32_SHIFT)
 
-///ƒJƒƒ‰ƒAƒ“ƒOƒ‹
+///ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«
 static const CAMERA_ANGLE FootprintCameraAngle = {
 	FX_GET_ROTA_NUM(0), FX_GET_ROTA_NUM(0), FX_GET_ROTA_NUM(0),
 };
 
 //--------------------------------------------------------------
-//	ƒ{[ƒh‚Ìƒ‚ƒfƒ‹İ’è
+//	ãƒœãƒ¼ãƒ‰ã®ãƒ¢ãƒ‡ãƒ«è¨­å®š
 //--------------------------------------------------------------
 #define BOARD_X		(FX32_CONST(0))
 #define BOARD_Y		(FX32_CONST(0))
@@ -86,123 +86,123 @@ static const CAMERA_ANGLE FootprintCameraAngle = {
 #define BOARD_SCALE	(FX32_CONST(1.00f))
 
 //--------------------------------------------------------------
-//	CL_ACT—p‚Ì’è”’è‹`
+//	CL_ACTç”¨ã®å®šæ•°å®šç¾©
 //--------------------------------------------------------------
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJn
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define FOOTPRINT_OAM_START_MAIN			(0)
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define FOOTPRINT_OAM_END_MAIN				(128)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define FOOTPRINT_OAM_AFFINE_START_MAIN		(0)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define FOOTPRINT_OAM_AFFINE_END_MAIN		(32)
-///ƒTƒu	OAMŠÇ——ÌˆæEŠJn
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define FOOTPRINT_OAM_START_SUB				(0)
-///ƒTƒu	OAMŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define FOOTPRINT_OAM_END_SUB				(128)
-///ƒTƒu ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn
+///ã‚µãƒ– ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define FOOTPRINT_OAM_AFFINE_START_SUB		(0)
-///ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define FOOTPRINT_OAM_AFFINE_END_SUB		(32)
 
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒLƒƒƒ‰ƒNƒ^IDŠÇ—”(ã‰æ–Ê{‰º‰æ–Ê)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDç®¡ç†æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define FOOTPRINT_CHAR_MAX					(48 + 48)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define FOOTPRINT_CHAR_VRAMSIZE_MAIN		(1024 * 0x40)	//64K
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define FOOTPRINT_CHAR_VRAMSIZE_SUB			(512 * 0x20)	//32K
 
-///ƒƒCƒ“‰æ–Ê{ƒTƒu‰æ–Ê‚Åg—p‚·‚éƒAƒNƒ^[‘”
-#define FOOTPRINT_ACTOR_MAX					(64 + 64)	//ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê
+///ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‹ã‚µãƒ–ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç·æ•°
+#define FOOTPRINT_ACTOR_MAX					(64 + 64)	//ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢
 
-///OBJ‚Åg—p‚·‚éƒpƒŒƒbƒg–{”(ã‰æ–Ê{‰º‰æ–Ê)
+///OBJã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define FOOTPRINT_OAM_PLTT_MAX				(16 + 16)
 
-///OAMƒŠƒ\[ƒXFƒLƒƒƒ‰“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define FOOTPRINT_OAMRESOURCE_CHAR_MAX		(FOOTPRINT_CHAR_MAX)
-///OAMƒŠƒ\[ƒXFƒpƒŒƒbƒg“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define FOOTPRINT_OAMRESOURCE_PLTT_MAX		(FOOTPRINT_OAM_PLTT_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define FOOTPRINT_OAMRESOURCE_CELL_MAX		(64)
-///OAMƒŠƒ\[ƒXFƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define FOOTPRINT_OAMRESOURCE_CELLANM_MAX	(64)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒãƒ«ãƒã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define FOOTPRINT_OAMRESOURCE_MCELL_MAX		(8)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define FOOTPRINT_OAMRESOURCE_MCELLANM_MAX	(8)
 
 //--------------------------------------------------------------
-//	ƒVƒXƒeƒ€
+//	ã‚·ã‚¹ãƒ†ãƒ 
 //--------------------------------------------------------------
-///Q‰ÁÒƒŠƒXƒg‚ğXV‚·‚éŠÔŠÔŠu
+///å‚åŠ è€…ãƒªã‚¹ãƒˆã‚’æ›´æ–°ã™ã‚‹æ™‚é–“é–“éš”
 #define ENTRY_LIST_UPDATE_TIME				(30)
 
-///ƒ^ƒCƒ€ƒAƒbƒv‚µ‚Ä‚©‚çI—¹‚Ü‚Å‚Ì‘Ò‚¿ŠÔ
+///ã‚¿ã‚¤ãƒ ã‚¢ãƒƒãƒ—ã—ã¦ã‹ã‚‰çµ‚äº†ã¾ã§ã®å¾…ã¡æ™‚é–“
 #define FOOT_TIMEUP_WAIT					(90)
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[
+//	ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------
-///ƒCƒ“ƒN‚ÌXÀ•WŠJnˆÊ’u
+///ã‚¤ãƒ³ã‚¯ã®Xåº§æ¨™é–‹å§‹ä½ç½®
 #define INK_POS_START_X		(16)
-///ƒCƒ“ƒN‚Ì—×‚è‡‚¤ƒCƒ“ƒN‚Æ‚Ì”z’uŠÔŠuX
+///ã‚¤ãƒ³ã‚¯ã®éš£ã‚Šåˆã†ã‚¤ãƒ³ã‚¯ã¨ã®é…ç½®é–“éš”X
 #define INK_POS_SPACE_X		(32)
-///ƒCƒ“ƒN‚ÌYÀ•W
+///ã‚¤ãƒ³ã‚¯ã®Yåº§æ¨™
 #define INK_POS_Y			(176)
 
-///ƒCƒ“ƒN‚Ì‰º’n‚ÌXÀ•WŠJnˆÊ’u
+///ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ°ã®Xåº§æ¨™é–‹å§‹ä½ç½®
 #define INK_FOUNDATION_POS_START_X		(INK_POS_START_X)
-///ƒCƒ“ƒN‚Ì‰º’n‚Ì—×‚è‡‚¤ƒCƒ“ƒN‚Ì‰º’n‚Æ‚Ì”z’uŠÔŠuX
+///ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ°ã®éš£ã‚Šåˆã†ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ°ã¨ã®é…ç½®é–“éš”X
 #define INK_FOUNDATION_POS_SPACE_X		(INK_POS_SPACE_X)
-///ƒCƒ“ƒN‚Ì‰º’n‚ÌYÀ•W
+///ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ°ã®Yåº§æ¨™
 #define INK_FOUNDATION_POS_Y			(INK_POS_Y)
 
-///ƒCƒ“ƒN‚Ì‘«Õ‚ÌXÀ•WŠJnˆÊ’u
+///ã‚¤ãƒ³ã‚¯ã®è¶³è·¡ã®Xåº§æ¨™é–‹å§‹ä½ç½®
 #define INK_FOOT_POS_START_X		(INK_POS_START_X)
-///ƒCƒ“ƒN‚Ì‘«Õ‚Ì—×‚è‡‚¤ƒCƒ“ƒN‚Ì‘«Õ‚Æ‚Ì”z’uŠÔŠuX
+///ã‚¤ãƒ³ã‚¯ã®è¶³è·¡ã®éš£ã‚Šåˆã†ã‚¤ãƒ³ã‚¯ã®è¶³è·¡ã¨ã®é…ç½®é–“éš”X
 #define INK_FOOT_POS_SPACE_X		(INK_POS_SPACE_X)
-///ƒCƒ“ƒN‚Ì‘«Õ‚ÌYÀ•W
+///ã‚¤ãƒ³ã‚¯ã®è¶³è·¡ã®Yåº§æ¨™
 #define INK_FOOT_POS_Y			(INK_POS_Y)
 
-///ƒ^ƒbƒ`ƒGƒtƒFƒNƒg‚ğ“¯‚Éo‚¹‚éÅ‘å”
+///ã‚¿ãƒƒãƒã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’åŒæ™‚ã«å‡ºã›ã‚‹æœ€å¤§æ•°
 #define TOUCH_EFF_MAX			(3)
 
 //--------------------------------------------------------------
-//	ƒXƒNƒŠ[ƒ“
+//	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 //--------------------------------------------------------------
-///ƒCƒ“ƒN‚Ì˜g‚ÌXÀ•WŠJnˆÊ’u
+///ã‚¤ãƒ³ã‚¯ã®æ ã®Xåº§æ¨™é–‹å§‹ä½ç½®
 #define SCRN_INK_POS_START_X		(0)
-///ƒCƒ“ƒN‚Ì˜g‚ÌYÀ•W
+///ã‚¤ãƒ³ã‚¯ã®æ ã®Yåº§æ¨™
 #define SCRN_INK_POS_Y			(0x14)
-///ƒCƒ“ƒN‚Ì˜g‚Ì—×‚è‡‚¤ƒCƒ“ƒN‚Ì˜g‚Æ‚Ì”z’uŠÔŠuX
+///ã‚¤ãƒ³ã‚¯ã®æ ã®éš£ã‚Šåˆã†ã‚¤ãƒ³ã‚¯ã®æ ã¨ã®é…ç½®é–“éš”X
 #define SCRN_INK_POS_SIZE_X		(4)
-///ƒCƒ“ƒN‚Ì˜g‚Ì—×‚è‡‚¤ƒCƒ“ƒN‚Ì˜g‚Æ‚Ì”z’uŠÔŠuX
+///ã‚¤ãƒ³ã‚¯ã®æ ã®éš£ã‚Šåˆã†ã‚¤ãƒ³ã‚¯ã®æ ã¨ã®é…ç½®é–“éš”X
 #define SCRN_INK_POS_SIZE_Y		(4)
 
-///ƒTƒu‰æ–ÊF–¼‘OƒŠƒXƒg‚ÌƒpƒŒƒbƒgFŠJnƒJƒ‰[ˆÊ’u
+///ã‚µãƒ–ç”»é¢ï¼šåå‰ãƒªã‚¹ãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆè‰²é–‹å§‹ã‚«ãƒ©ãƒ¼ä½ç½®
 #define SUBBG_LIST_COLOR_START	(2 * 16 + 1)
 
-///–¼‘O•\¦ƒŠƒXƒg‚ÌƒXƒNƒŠ[ƒ“ƒTƒCƒY
+///åå‰è¡¨ç¤ºãƒªã‚¹ãƒˆã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
 #define NAMELIST_SCRN_SIZE		(0x800)
 
 //--------------------------------------------------------------
-//	u‚â‚ß‚évƒ{ƒ^ƒ“
+//	ã€Œã‚„ã‚ã‚‹ã€ãƒœã‚¿ãƒ³
 //--------------------------------------------------------------
-///u‚â‚ß‚évƒ{ƒ^ƒ“‚ÌBGƒJƒ‰[ˆÊ’u
+///ã€Œã‚„ã‚ã‚‹ã€ãƒœã‚¿ãƒ³ã®BGã‚«ãƒ©ãƒ¼ä½ç½®
 #define EXIT_BUTTON_COLOR_POS		(0*16 + 9)
-///u‚â‚ß‚évƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚É‚©‚¯‚éƒtƒF[ƒhevy’l
+///ã€Œã‚„ã‚ã‚‹ã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚ã«ã‹ã‘ã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰evyå€¤
 #define EXIT_BUTTON_COLOR_EVY		(8)
-///u‚â‚ß‚évƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚É‚©‚¯‚éƒtƒF[ƒh‚ÌƒJƒ‰[ƒR[ƒh
+///ã€Œã‚„ã‚ã‚‹ã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚ã«ã‹ã‘ã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ã®ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 #define EXIT_BUTTON_COLOR_CODE		(0x0000)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///FootPrintTool_NameAllUpdateŠÖ”‚Ì–ß‚è’l
+///FootPrintTool_NameAllUpdateé–¢æ•°ã®æˆ»ã‚Šå€¤
 typedef enum{
-	FOOTPRINT_NAME_UPDATE_STATUS_NULL,			///<•Ï‰»‚È‚µ
-	FOOTPRINT_NAME_UPDATE_STATUS_ENTRY,			///<V‹KƒGƒ“ƒgƒŠ[”­¶
-	FOOTPRINT_NAME_UPDATE_STATUS_LEAVE_ROOM,	///<‘ŞºÒ”­¶
+	FOOTPRINT_NAME_UPDATE_STATUS_NULL,			///<å¤‰åŒ–ãªã—
+	FOOTPRINT_NAME_UPDATE_STATUS_ENTRY,			///<æ–°è¦ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç™ºç”Ÿ
+	FOOTPRINT_NAME_UPDATE_STATUS_LEAVE_ROOM,	///<é€€å®¤è€…ç™ºç”Ÿ
 }FOOTPRINT_NAME_UPDATE_STATUS;
 
 
@@ -210,21 +210,21 @@ typedef enum{
 //	
 //--------------------------------------------------------------
 enum{
-	FONTOAM_LEFT,		///<X¶’[À•W
-	FONTOAM_CENTER,		///<X’†SÀ•W
+	FONTOAM_LEFT,		///<Xå·¦ç«¯åº§æ¨™
+	FONTOAM_CENTER,		///<Xä¸­å¿ƒåº§æ¨™
 };
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒ{[ƒh§Œä\‘¢‘Ì
+///ãƒœãƒ¼ãƒ‰åˆ¶å¾¡æ§‹é€ ä½“
 typedef struct{
 	D3DOBJ_MDL  mdl;
 	D3DOBJ      obj;
 }BOARD_PARAM;
 
-///ƒtƒHƒ“ƒgƒAƒNƒ^[ƒ[ƒN
+///ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	FONTOAM_OBJ_PTR fontoam;
 	CHAR_MANAGER_ALLOCDATA cma;
@@ -232,79 +232,79 @@ typedef struct{
 }FONT_ACTOR;
 
 
-///‘«Õƒ{[ƒh§Œä\‘¢‘Ì
+///è¶³è·¡ãƒœãƒ¼ãƒ‰åˆ¶å¾¡æ§‹é€ ä½“
 typedef struct _FOOTPRINT_SYS{
 	FOOTPRINT_PARAM *parent_work;		///<parent_work
-	SAVEDATA *sv;						///<ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	SAVEDATA *sv;						///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	GF_BGL_INI		*bgl;				///<BGƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	PALETTE_FADE_PTR pfd;				///<ƒpƒŒƒbƒgƒVƒXƒeƒ€
-	FONTOAM_SYS_PTR fontoam_sys;		///<ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	GF_BGL_INI		*bgl;				///<BGã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	PALETTE_FADE_PTR pfd;				///<ãƒ‘ãƒ¬ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	FONTOAM_SYS_PTR fontoam_sys;		///<ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	GF_G3DMAN *g3Dman;
-	TCB_PTR update_tcb;					///<Update—pTCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	TCB_PTR update_tcb;					///<Updateç”¨TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	CATS_SYS_PTR		csp;
 	CATS_RES_PTR		crp;
 	
-	TOUCH_SW_SYS *yesno_button;			///<ƒ{ƒ^ƒ“‚Ìu‚Í‚¢E‚¢‚¢‚¦vƒVƒXƒeƒ€
-	u8 yesno_button_use;				///<TRUE:u‚Í‚¢E‚¢‚¢‚¦vƒ{ƒ^ƒ“‚ğg—p’†
-	u8 timeup_wait;						///<ƒ^ƒCƒ€ƒAƒbƒv‚µ‚Ä‚©‚çI—¹‚Ü‚Å‚Ì‘Ò‚¿ŠÔ
+	TOUCH_SW_SYS *yesno_button;			///<ãƒœã‚¿ãƒ³ã®ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ã‚·ã‚¹ãƒ†ãƒ 
+	u8 yesno_button_use;				///<TRUE:ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ãƒœã‚¿ãƒ³ã‚’ä½¿ç”¨ä¸­
+	u8 timeup_wait;						///<ã‚¿ã‚¤ãƒ ã‚¢ãƒƒãƒ—ã—ã¦ã‹ã‚‰çµ‚äº†ã¾ã§ã®å¾…ã¡æ™‚é–“
 	
-	// •`‰æ‚Ü‚í‚è‚Ìƒ[ƒNiå‚ÉBMP—p‚Ì•¶š—ñü‚èj
-	WORDSET			*wordset;							// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *msgman;						// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
+	// æç”»ã¾ã‚ã‚Šã®ãƒ¯ãƒ¼ã‚¯ï¼ˆä¸»ã«BMPç”¨ã®æ–‡å­—åˆ—å‘¨ã‚Šï¼‰
+	WORDSET			*wordset;							// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *msgman;						// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 
-	// BMPWIN•`‰æü‚è
-	GF_BGL_BMPWIN		name_win[FOOTPRINT_BMPWIN_NAME_MAX]; //–¼‘O•\¦—p‚ÌBMPWIN
-	GF_BGL_BMPWIN		talk_win;					 //‰ï˜bƒƒbƒZ[ƒW—p‚ÌBMPWIN
-	STRBUF *talk_strbuf;				///<‰ï˜bƒƒbƒZ[ƒW—pƒoƒbƒtƒ@
-	u8 msg_index;						///<ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+	// BMPWINæç”»å‘¨ã‚Š
+	GF_BGL_BMPWIN		name_win[FOOTPRINT_BMPWIN_NAME_MAX]; //åå‰è¡¨ç¤ºç”¨ã®BMPWIN
+	GF_BGL_BMPWIN		talk_win;					 //ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ã®BMPWIN
+	STRBUF *talk_strbuf;				///<ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒãƒƒãƒ•ã‚¡
+	u8 msg_index;						///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	GF_CAMERA_PTR camera;				///<ƒJƒƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	fx32 world_width;					///<İ’u‚³‚ê‚Ä‚¢‚éƒJƒƒ‰‚É•\¦‚³‚ê‚Ä‚¢‚éƒ[ƒ‹ƒhÀ•W‚Ì•
-	fx32 world_height;					///<İ’u‚³‚ê‚Ä‚¢‚éƒJƒƒ‰‚É•\¦‚³‚ê‚Ä‚¢‚éƒ[ƒ‹ƒhÀ•W‚Ì‚‚³
+	GF_CAMERA_PTR camera;				///<ã‚«ãƒ¡ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	fx32 world_width;					///<è¨­ç½®ã•ã‚Œã¦ã„ã‚‹ã‚«ãƒ¡ãƒ©ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã®å¹…
+	fx32 world_height;					///<è¨­ç½®ã•ã‚Œã¦ã„ã‚‹ã‚«ãƒ¡ãƒ©ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã®é«˜ã•
 	
-	//ƒ{[ƒh
-	BOARD_PARAM board;					///<ƒ{[ƒh§Œäƒ[ƒN
+	//ãƒœãƒ¼ãƒ‰
+	BOARD_PARAM board;					///<ãƒœãƒ¼ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 	
-	ARCHANDLE *handle_footprint;		///<footprint_board.narc‚Ìƒnƒ“ƒhƒ‹
-	ARCHANDLE *handle_footmark;			///<‘«ÕƒOƒ‰ƒtƒBƒbƒN‚Ìƒnƒ“ƒhƒ‹
+	ARCHANDLE *handle_footprint;		///<footprint_board.narcã®ãƒãƒ³ãƒ‰ãƒ«
+	ARCHANDLE *handle_footmark;			///<è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ãƒãƒ³ãƒ‰ãƒ«
 	
-	FOOTPRINT_MY_COMM_STATUS my_comm_status;	///<©•ª‚Ì’ÊMƒXƒe[ƒ^ƒX
+	FOOTPRINT_MY_COMM_STATUS my_comm_status;	///<è‡ªåˆ†ã®é€šä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	
-	s32 entry_userid[FOOTPRINT_ENTRY_MAX];		///<Q‰ÁÒ‚Ìƒ†[ƒU[IDƒŠƒXƒg
-	int entry_list_update_timer;			///<Q‰ÁÒ‚Ìƒ†[ƒU[IDƒŠƒXƒg‚ğXV‚·‚éƒ^ƒCƒ€‚ğƒJƒEƒ“ƒg
+	s32 entry_userid[FOOTPRINT_ENTRY_MAX];		///<å‚åŠ è€…ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼IDãƒªã‚¹ãƒˆ
+	int entry_list_update_timer;			///<å‚åŠ è€…ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼IDãƒªã‚¹ãƒˆã‚’æ›´æ–°ã™ã‚‹ã‚¿ã‚¤ãƒ ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 	
-	STAMP_SYSTEM_WORK ssw;				///<ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN
-	STAMP_PARAM my_stamp_param[POKEMON_TEMOTI_MAX];		///<©•ª‚Ìè‚¿ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^
-	u8 select_no;						///<‘I‘ğ‚µ‚Ä‚¢‚é‘«ÕƒXƒ^ƒ“ƒv‚Ì”Ô†
-	u8 yameru_pal_pos;					///<u‚â‚ß‚évƒtƒHƒ“ƒgOAM‚ÌƒpƒŒƒbƒg”Ô†
+	STAMP_SYSTEM_WORK ssw;				///<ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	STAMP_PARAM my_stamp_param[POKEMON_TEMOTI_MAX];		///<è‡ªåˆ†ã®æ‰‹æŒã¡ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	u8 select_no;						///<é¸æŠã—ã¦ã„ã‚‹è¶³è·¡ã‚¹ã‚¿ãƒ³ãƒ—ã®ç•ªå·
+	u8 yameru_pal_pos;					///<ã€Œã‚„ã‚ã‚‹ã€ãƒ•ã‚©ãƒ³ãƒˆOAMã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 	
-	CATS_ACT_PTR cap_ink[POKEMON_TEMOTI_MAX];	///<ƒCƒ“ƒNƒAƒNƒ^[
-	CATS_ACT_PTR cap_ink_foundation[POKEMON_TEMOTI_MAX];	///<ƒCƒ“ƒN‚Ì‰º’nƒAƒNƒ^[
-	CATS_ACT_PTR cap_ink_foot[POKEMON_TEMOTI_MAX];	///<ƒCƒ“ƒN‚Ìã‚É”z’u‚·‚é‘«ÕƒAƒNƒ^[
-	CATS_ACT_PTR cap_name_frame;				///<–¼‘O‚ğˆÍ‚Ş˜gƒAƒNƒ^[
-	CATS_ACT_PTR cap_name_foot[FOOTPRINT_ENTRY_MAX];	///<–¼‘O‚Ì‰¡‚Ì‘«ÕƒAƒNƒ^[
-	CATS_ACT_PTR cap_touch_eff[TOUCH_EFF_MAX];	///<ƒ^ƒbƒ`ƒGƒtƒFƒNƒgƒAƒNƒ^[
+	CATS_ACT_PTR cap_ink[POKEMON_TEMOTI_MAX];	///<ã‚¤ãƒ³ã‚¯ã‚¢ã‚¯ã‚¿ãƒ¼
+	CATS_ACT_PTR cap_ink_foundation[POKEMON_TEMOTI_MAX];	///<ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ°ã‚¢ã‚¯ã‚¿ãƒ¼
+	CATS_ACT_PTR cap_ink_foot[POKEMON_TEMOTI_MAX];	///<ã‚¤ãƒ³ã‚¯ã®ä¸Šã«é…ç½®ã™ã‚‹è¶³è·¡ã‚¢ã‚¯ã‚¿ãƒ¼
+	CATS_ACT_PTR cap_name_frame;				///<åå‰ã‚’å›²ã‚€æ ã‚¢ã‚¯ã‚¿ãƒ¼
+	CATS_ACT_PTR cap_name_foot[FOOTPRINT_ENTRY_MAX];	///<åå‰ã®æ¨ªã®è¶³è·¡ã‚¢ã‚¯ã‚¿ãƒ¼
+	CATS_ACT_PTR cap_touch_eff[TOUCH_EFF_MAX];	///<ã‚¿ãƒƒãƒã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼
 	
-	u16 name_foot_monsno[FOOTPRINT_ENTRY_MAX];	///<–¼‘O‚Ì‰¡‚Éo‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”Ô†
-	u16 name_foot_color[FOOTPRINT_ENTRY_MAX];	///<–¼‘O‚Ì‰¡‚Éo‚µ‚Ä‚¢‚éƒJƒ‰[
+	u16 name_foot_monsno[FOOTPRINT_ENTRY_MAX];	///<åå‰ã®æ¨ªã«å‡ºã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+	u16 name_foot_color[FOOTPRINT_ENTRY_MAX];	///<åå‰ã®æ¨ªã«å‡ºã—ã¦ã„ã‚‹ã‚«ãƒ©ãƒ¼
 	
-	int game_status;					///<ƒQ[ƒ€ó‘Ô(FOOTPRINT_GAME_STATUS_???)
+	int game_status;					///<ã‚²ãƒ¼ãƒ çŠ¶æ…‹(FOOTPRINT_GAME_STATUS_???)
 	
-	u16 namelist_scrn[NAMELIST_SCRN_SIZE];			///<ƒTƒu‰æ–Ê‚Ì–¼‘O•\¦ƒŠƒXƒg‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^
+	u16 namelist_scrn[NAMELIST_SCRN_SIZE];			///<ã‚µãƒ–ç”»é¢ã®åå‰è¡¨ç¤ºãƒªã‚¹ãƒˆã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
-	FONT_ACTOR fontoam_exit;			///<u‚â‚ß‚év
+	FONT_ACTOR fontoam_exit;			///<ã€Œã‚„ã‚ã‚‹ã€
 
-	int ink_now;						///<ƒCƒ“ƒN‚ÌŒ»İ‚Ìc‚è
-	int ink_calc;						///<ƒCƒ“ƒNƒQ[ƒW‚ÌŒ»İŒvZˆÊ’u
-	int ink_sub;						///<ƒCƒ“ƒN‚ÌŒ¸Z—Ê
+	int ink_now;						///<ã‚¤ãƒ³ã‚¯ã®ç¾åœ¨ã®æ®‹ã‚Š
+	int ink_calc;						///<ã‚¤ãƒ³ã‚¯ã‚²ãƒ¼ã‚¸ã®ç¾åœ¨è¨ˆç®—ä½ç½®
+	int ink_sub;						///<ã‚¤ãƒ³ã‚¯ã®æ¸›ç®—é‡
 	
-	BOOL arceus_flg;					///<TRUE:ƒAƒ‹ƒZƒEƒXOK
+	BOOL arceus_flg;					///<TRUE:ã‚¢ãƒ«ã‚»ã‚¦ã‚¹OK
 }FOOTPRINT_SYS;
 
 
 //==============================================================================
-//	CLACT—pƒf[ƒ^
+//	CLACTç”¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static	const TCATS_OAM_INIT FootprintTcats = {
 	FOOTPRINT_OAM_START_MAIN, FOOTPRINT_OAM_END_MAIN,
@@ -317,7 +317,7 @@ static	const TCATS_CHAR_MANAGER_MAKE FootprintCcmm = {
 	FOOTPRINT_CHAR_MAX,
 	FOOTPRINT_CHAR_VRAMSIZE_MAIN,
 	FOOTPRINT_CHAR_VRAMSIZE_SUB,
-	GX_OBJVRAMMODE_CHAR_1D_128K,	//64K	ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒGƒtƒFƒNƒg‚ª128KOBJ‚È‚Ì‚Å‡‚í‚¹‚½
+	GX_OBJVRAMMODE_CHAR_1D_128K,	//64K	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒ128KOBJãªã®ã§åˆã‚ã›ãŸ
 	GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
@@ -332,9 +332,9 @@ static const TCATS_RESOURCE_NUM_LIST FootprintResourceList = {
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///Q‰ÁÒ‚Ì–¼‘O•\¦ˆÊ’u(BMPWIN‚ÌˆÊ’u)
+///å‚åŠ è€…ã®åå‰è¡¨ç¤ºä½ç½®(BMPWINã®ä½ç½®)
 ALIGN4 static const u8 NameBmpwinPos[][2] = {	//X,Y
 	{7,		5},
 	{0x16,	5},
@@ -346,7 +346,7 @@ ALIGN4 static const u8 NameBmpwinPos[][2] = {	//X,Y
 	{0x16,	5 + 5*3},
 };
 
-///ƒTƒu‰æ–ÊF–¼‘O‰¡‚Ì‘«ÕƒAƒNƒ^[‚ÌÀ•W
+///ã‚µãƒ–ç”»é¢ï¼šåå‰æ¨ªã®è¶³è·¡ã‚¢ã‚¯ã‚¿ãƒ¼ã®åº§æ¨™
 ALIGN4 static const s16 Sub_FootmarkPos[][2] = {	//x, y
 	{32,		48},
 	{0x13*8,	48},
@@ -358,7 +358,7 @@ ALIGN4 static const s16 Sub_FootmarkPos[][2] = {	//x, y
 	{0x13*8,	48 + 15*8},
 };
 
-///ƒTƒu‰æ–ÊF©•ª‚ğ•\‚·–¼‘O‚ğˆÍ‚ŞƒtƒŒ[ƒ€‚ÌƒAƒNƒ^[À•W
+///ã‚µãƒ–ç”»é¢ï¼šè‡ªåˆ†ã‚’è¡¨ã™åå‰ã‚’å›²ã‚€ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¢ã‚¯ã‚¿ãƒ¼åº§æ¨™
 ALIGN4 static const s16 Sub_NameFramePos[][2] = {	//x, y
 	{9*8,		6*8 + 5*8*0},
 	{0x18*8,	6*8 + 5*8*0},
@@ -370,7 +370,7 @@ ALIGN4 static const s16 Sub_NameFramePos[][2] = {	//x, y
 	{0x18*8,	6*8 + 5*8*3},
 };
 
-///ƒTƒu‰æ–ÊF–¼‘OƒŠƒXƒg‚Ì‹éŒ`”ÍˆÍ(ƒXƒNƒŠ[ƒ“)
+///ã‚µãƒ–ç”»é¢ï¼šåå‰ãƒªã‚¹ãƒˆã®çŸ©å½¢ç¯„å›²(ã‚¹ã‚¯ãƒªãƒ¼ãƒ³)
 ALIGN4 static const u16 Sub_ListScrnRange[][4] = {	//x, y, size_x, size_y
 	{2,			4 + 5*0,		14, 4},
 	{0x11,		4 + 5*0,		14, 4},
@@ -385,118 +385,118 @@ ALIGN4 static const u16 Sub_ListScrnRange[][4] = {	//x, y, size_x, size_y
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///è‚¿ƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚¢‚ÉƒCƒ“ƒNƒpƒŒƒbƒg‚ğ–„‚ß‚éƒXƒNƒŠ[ƒ“ƒR[ƒh
-static const u16 MyInkPaletteEraseScrnCode[] = {	//1’i–ÚA2’i–Úc
+///æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãŒã„ãªã„æ™‚ã«ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚’åŸ‹ã‚ã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚³ãƒ¼ãƒ‰
+static const u16 MyInkPaletteEraseScrnCode[] = {	//1æ®µç›®ã€2æ®µç›®â€¦
 	0x15, 0x35, 0x35, 0x55,
 };
 
 //==============================================================================
-//	ƒAƒNƒ^[ƒwƒbƒ_
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 //==============================================================================
-///ƒCƒ“ƒN ƒAƒNƒ^[ƒwƒbƒ_
+///ã‚¤ãƒ³ã‚¯ ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S InkObjParam = {
 	0,0, 0,		//x, y, z
-	0, SOFTPRI_INK, PALOFS_INK,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_INK,			//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_INK,			//ƒZƒ‹
-		CELLANMID_INK,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_INK, PALOFS_INK,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_INK,			//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_INK,			//ã‚»ãƒ«
+		CELLANMID_INK,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_INK,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_INK,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒCƒ“ƒN‚Ì‰º’n ƒAƒNƒ^[ƒwƒbƒ_
+///ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ° ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S InkFoundationObjParam = {
 	0,0, 0,		//x, y, z
-	0, SOFTPRI_INK_FOUNDATION, PALOFS_INK_FOUNDATION,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_INK_FOUNDATION,			//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_INK_FOUNDATION,			//ƒZƒ‹
-		CELLANMID_INK_FOUNDATION,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_INK_FOUNDATION, PALOFS_INK_FOUNDATION,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_INK_FOUNDATION,			//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_INK_FOUNDATION,			//ã‚»ãƒ«
+		CELLANMID_INK_FOUNDATION,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_INK_FOUNDATION,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_INK_FOUNDATION,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒCƒ“ƒN‚Ìã‚É”z’u‚·‚é‘«Õ ƒAƒNƒ^[ƒwƒbƒ_
+///ã‚¤ãƒ³ã‚¯ã®ä¸Šã«é…ç½®ã™ã‚‹è¶³è·¡ ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S InkFootObjParam = {
 	0,0, 0,		//x, y, z
-	0, SOFTPRI_INK_FOOT, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_INK_FOOT_0,			//ƒLƒƒƒ‰
-		PLTTID_OBJ_INK_FOOT,	//ƒpƒŒƒbƒg
-		CELLID_INK_FOOT,			//ƒZƒ‹
-		CELLANMID_INK_FOOT,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_INK_FOOT, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_INK_FOOT_0,			//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_INK_FOOT,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_INK_FOOT,			//ã‚»ãƒ«
+		CELLANMID_INK_FOOT,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_INK_FOOT,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_INK_FOOT,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒCƒ“ƒNƒpƒŒƒbƒg‚ğƒ^ƒbƒ`‚µ‚½‚Éo‚·ƒGƒtƒFƒNƒg ƒAƒNƒ^[ƒwƒbƒ_
+///ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚¿ãƒƒãƒã—ãŸæ™‚ã«å‡ºã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S TouchEffObjParam = {
 	0,0, 0,		//x, y, z
-	0, SOFTPRI_TOUCH_EFF, PALOFS_TOUCH_EFF,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_TOUCH_EFF,			//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_TOUCH_EFF,			//ƒZƒ‹
-		CELLANMID_TOUCH_EFF,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_TOUCH_EFF, PALOFS_TOUCH_EFF,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_TOUCH_EFF,			//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_TOUCH_EFF,			//ã‚»ãƒ«
+		CELLANMID_TOUCH_EFF,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_TOUCH_EFF,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_TOUCH_EFF,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///–¼‘O‚ğˆÍ‚Ş˜g ƒAƒNƒ^[ƒwƒbƒ_
+///åå‰ã‚’å›²ã‚€æ  ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S NameFrameObjParam = {
 	0,0, 0,		//x, y, z
-	0, SOFTPRI_SUB_NAME_FRAME, PALOFS_SUB_NAME_FRAME,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_NAME_FRAME,			//ƒLƒƒƒ‰
-		PLTTID_SUB_OBJ_COMMON,			//ƒpƒŒƒbƒg
-		CELLID_SUB_NAME_FRAME,			//ƒZƒ‹
-		CELLANMID_SUB_NAME_FRAME,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_SUB_NAME_FRAME, PALOFS_SUB_NAME_FRAME,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_NAME_FRAME,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_OBJ_COMMON,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_NAME_FRAME,			//ã‚»ãƒ«
+		CELLANMID_SUB_NAME_FRAME,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_SUB_NAME_FRAME,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_SUB_NAME_FRAME,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///–¼‘O‚Ì‰¡‚Éo‚·‘«Õ ƒAƒNƒ^[ƒwƒbƒ_
+///åå‰ã®æ¨ªã«å‡ºã™è¶³è·¡ ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S NameFootObjParam = {
 	0,0, 0,		//x, y, z
-	0, SOFTPRI_SUB_NAME_FOOT, PALOFS_SUB_NAME_FOOT,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_NAME_FOOT_0,			//ƒLƒƒƒ‰
-		PLTTID_SUB_OBJ_COMMON,			//ƒpƒŒƒbƒg
-		CELLID_SUB_NAME_FOOT,			//ƒZƒ‹
-		CELLANMID_SUB_NAME_FOOT,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_SUB_NAME_FOOT, PALOFS_SUB_NAME_FOOT,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_NAME_FOOT_0,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_OBJ_COMMON,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_NAME_FOOT,			//ã‚»ãƒ«
+		CELLANMID_SUB_NAME_FOOT,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_SUB_NAME_FOOT,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_SUB_NAME_FOOT,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void Footprint_Update(TCB_PTR tcb, void *work);
 static void VBlankFunc( void * work );
@@ -540,17 +540,17 @@ static BOOL Footprint_InkGauge_Consume(FOOTPRINT_SYS_PTR fps, int consume_num);
 
 
 //==============================================================================
-//	ƒfƒoƒbƒO—p•Ï”‚È‚Ç
+//	ãƒ‡ãƒãƒƒã‚°ç”¨å¤‰æ•°ãªã©
 //==============================================================================
 #ifdef PM_DEBUG
-//“®ìƒ^ƒCƒv‡‚É•À‚×‚½«Ši’l
+//å‹•ä½œã‚¿ã‚¤ãƒ—é †ã«ä¸¦ã¹ãŸæ€§æ ¼å€¤
 static const u32 DebugSeikakuTbl[] = {1, 14, 6, 5, 0, 3, 8, 9, 18, 15};
 
-///ƒfƒoƒbƒO—pƒ[ƒN
+///ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ¯ãƒ¼ã‚¯
 static struct{
-	u8 occ_seikaku;		//«Ši§Œä—LŒø
-	u8 move_type;		//ƒXƒ^ƒ“ƒv‚Ì“®ìƒ^ƒCƒv
-	u8 consume_zero;	//TRUE=ƒCƒ“ƒNƒQ[ƒW‚ªŒ¸‚ç‚È‚­‚È‚é
+	u8 occ_seikaku;		//æ€§æ ¼åˆ¶å¾¡æœ‰åŠ¹
+	u8 move_type;		//ã‚¹ã‚¿ãƒ³ãƒ—ã®å‹•ä½œã‚¿ã‚¤ãƒ—
+	u8 consume_zero;	//TRUE=ã‚¤ãƒ³ã‚¯ã‚²ãƒ¼ã‚¸ãŒæ¸›ã‚‰ãªããªã‚‹
 	u32 backup_personal_rnd;
 }DebugFoot = {0};
 #endif
@@ -559,20 +559,20 @@ static struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT FootPrintProc_Init( PROC * proc, int * seq )
 {
 	FOOTPRINT_SYS *fps;
 	
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -608,12 +608,12 @@ PROC_RESULT FootPrintProc_Init( PROC * proc, int * seq )
 //	simple_3DBGInit(HEAPID_FOOTPRINT);
 	fps->g3Dman = Footprint_3D_Init(HEAPID_FOOTPRINT);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	fps->pfd = PaletteFadeInit(HEAPID_FOOTPRINT);
 	PaletteTrans_AutoSet(fps->pfd, TRUE);
 	PaletteFadeWorkAllocSet(fps->pfd, FADE_MAIN_BG, 0x200, HEAPID_FOOTPRINT);
 	PaletteFadeWorkAllocSet(fps->pfd, FADE_SUB_BG, 0x200, HEAPID_FOOTPRINT);
-	PaletteFadeWorkAllocSet(fps->pfd, FADE_MAIN_OBJ, 0x200-0x40, HEAPID_FOOTPRINT);	//’ÊMƒAƒCƒRƒ“-ƒ[ƒJƒ‰ƒCƒY—p
+	PaletteFadeWorkAllocSet(fps->pfd, FADE_MAIN_OBJ, 0x200-0x40, HEAPID_FOOTPRINT);	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³-ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨
 	PaletteFadeWorkAllocSet(fps->pfd, FADE_SUB_OBJ, 0x200, HEAPID_FOOTPRINT);
 	PaletteTrans_AutoSet(fps->pfd, TRUE);
 	
@@ -623,44 +623,44 @@ PROC_RESULT FootPrintProc_Init( PROC * proc, int * seq )
 
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-	//VRAMŠ„‚è“–‚Äİ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	FootPrint_VramBankSet(fps->bgl);
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
-	// ƒ{ƒ^ƒ“—pƒtƒHƒ“ƒg‚ğ“Ç‚İ‚İ
+	// ãƒœã‚¿ãƒ³ç”¨ãƒ•ã‚©ãƒ³ãƒˆã‚’èª­ã¿è¾¼ã¿
 	FontProc_LoadFont(FONT_BUTTON, HEAPID_FOOTPRINT);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	fps->wordset		 = WORDSET_Create(HEAPID_FOOTPRINT);
 	fps->msgman       = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wflby_footprint_dat, HEAPID_FOOTPRINT );
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€ì¬
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	fps->fontoam_sys = FONTOAM_SysInit(FOOT_FONTOAM_MAX, HEAPID_FOOTPRINT);
 
-	//ƒnƒ“ƒhƒ‹‚ğŠJ‚¯‚é(‘«Õ‚È‚Ç•p”É‚ÉƒOƒ‰ƒtƒBƒbƒNƒ[ƒh‚ªs‚í‚ê‚é‚Ì‚Åƒnƒ“ƒhƒ‹ŠJ‚¯‚Á•ú‚µ‚É‚·‚é
+	//ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‹ã‘ã‚‹(è¶³è·¡ãªã©é »ç¹ã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰ãŒè¡Œã‚ã‚Œã‚‹ã®ã§ãƒãƒ³ãƒ‰ãƒ«é–‹ã‘ã£æ”¾ã—ã«ã™ã‚‹
 	fps->handle_footprint = ArchiveDataHandleOpen( ARC_FOOTPRINT_GRA, HEAPID_FOOTPRINT );
 	fps->handle_footmark = ArchiveDataHandleOpen(ARC_POKEFOOT_GRA, HEAPID_FOOTPRINT);
 
-	// BGƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	BgGraphicSet( fps, fps->handle_footprint );
-	//3Dƒ‚ƒfƒ‹“]‘—
+	//3Dãƒ¢ãƒ‡ãƒ«è»¢é€
 	Model3DSet(fps, fps->handle_footprint);
 
-	//ƒJƒƒ‰ì¬
+	//ã‚«ãƒ¡ãƒ©ä½œæˆ
 	Footprint_CameraInit(fps);
 
-	// BMPWINŠm•Û
+	// BMPWINç¢ºä¿
 	BmpWinInit( fps );
 	
 	fps->talk_strbuf = STRBUF_Create(256, HEAPID_FOOTPRINT);
 	
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€ì¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	fps->csp=CATS_AllocMemory(HEAPID_FOOTPRINT);
 	CATS_SystemInit(fps->csp,&FootprintTcats,&FootprintCcmm,FOOTPRINT_OAM_PLTT_MAX);
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(
 		NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -669,37 +669,37 @@ PROC_RESULT FootPrintProc_Init( PROC * proc, int * seq )
 	CATS_ResourceManagerInit(fps->csp,fps->crp,&FootprintResourceList);
 	CLACT_U_SetSubSurfaceMatrix(CATS_EasyRenderGet(fps->csp), 0, FOOTPRINT_SUB_ACTOR_DISTANCE);
 
-	// Wifi’ÊMƒAƒCƒRƒ“
+	// Wifié€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
     WirelessIconEasy();
 
-	//ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ì¬
+	//ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	StampSys_Init(&fps->ssw, fps->arceus_flg);
 
-	//í’“OBJ“o˜^
+	//å¸¸é§OBJç™»éŒ²
 	DefaultResourceSet_Main(fps, fps->handle_footprint);
 	DefaultResourceSet_Sub(fps, fps->handle_footprint);
 	DefaultActorSet_Main(fps);
 	DefaultActorSet_Sub(fps);
 
-	//©•ª‚ÌƒCƒ“ƒNƒpƒŒƒbƒg‰Šúİ’è
+	//è‡ªåˆ†ã®ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆåˆæœŸè¨­å®š
 	MyInkPaletteSettings(fps);
 	
-	//ƒ{ƒ^ƒ“u‚Í‚¢E‚¢‚¢‚¦v
+	//ãƒœã‚¿ãƒ³ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 	fps->yesno_button = TOUCH_SW_AllocWork(HEAPID_FOOTPRINT);
 	
-	// ƒƒCƒvƒtƒF[ƒhŠJn
+	// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 
 		WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_FOOTPRINT );
 
-	// BGM‚ğƒtƒF[ƒhƒAƒEƒg
+	// BGMã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	if( fps->parent_work->wflby_sys != NULL ){
 		WFLBY_SYSTEM_SetBGMVolumeDown( fps->parent_work->wflby_sys, TRUE );
 	}
 
-	// ‘«Õƒ{[ƒh‚É“ü‚Á‚½‰¹Ä¶
+	// è¶³è·¡ãƒœãƒ¼ãƒ‰ã«å…¥ã£ãŸéŸ³å†ç”Ÿ
 //	Snd_SePlay( WFLBY_SND_FOOTIN );
 
-	// BG–Ê•\¦ON
+	// BGé¢è¡¨ç¤ºON
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG1, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG2, VISIBLE_ON );
@@ -707,7 +707,7 @@ PROC_RESULT FootPrintProc_Init( PROC * proc, int * seq )
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
-	//ƒƒCƒ“‰æ–Êİ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢è¨­å®š
 	sys.disp3DSW = DISP_3D_TO_SUB;
 	GF_Disp_DispSelect();
 	GF_Disp_DispOn();
@@ -728,12 +728,12 @@ PROC_RESULT FootPrintProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
@@ -753,15 +753,15 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 		SEQ_OUT_WAIT,
 	};
 	
-	//ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€XV
+	//ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ æ›´æ–°
 	StampSys_Update(&fps->ssw, fps->camera, fps->game_status, fps->parent_work->board_type);
 
 	switch(*seq){
 	case SEQ_INIT:
-		//’ÊM
-		fps->my_comm_status.ready = TRUE;	//‘S‚Ä‚Ì‰Šú‰»‚ªŠ®—¹‚µ‚½‚Ì‚ÅóMOK
+		//é€šä¿¡
+		fps->my_comm_status.ready = TRUE;	//å…¨ã¦ã®åˆæœŸåŒ–ãŒå®Œäº†ã—ãŸã®ã§å—ä¿¡OK
 		Footprint_Comm_Init(fps);
-		{//“üºî•ñ‘—M
+		{//å…¥å®¤æƒ…å ±é€ä¿¡
 			FOOTPRINT_IN_PARAM in_para;
 			Footprint_InParamCreate(fps, &in_para);
 //			Footprint_Send_PlayerIn(&in_para);
@@ -803,8 +803,8 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 				}
 			#endif
 			}
-			else{	//ƒCƒ“ƒN‚ª‘«‚è‚È‚¢
-				;		//‰½‚©SE‚Æ‚©–Â‚ç‚·‚©‚à
+			else{	//ã‚¤ãƒ³ã‚¯ãŒè¶³ã‚Šãªã„
+				;		//ä½•ã‹SEã¨ã‹é³´ã‚‰ã™ã‹ã‚‚
 			}
 		}
 
@@ -816,7 +816,7 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 				fps->select_no = hit;
 				Footprint_TouchEffAdd(fps, hit);
 			}
-			else if((*seq) == SEQ_MAIN && hit == FOOT_TOUCH_RET_EXIT){	//u‚â‚ß‚év‚ğ‰Ÿ‚µ‚½
+			else if((*seq) == SEQ_MAIN && hit == FOOT_TOUCH_RET_EXIT){	//ã€Œã‚„ã‚ã‚‹ã€ã‚’æŠ¼ã—ãŸ
 				Snd_SePlay(FOOTPRINT_SE_TOUCH_EXIT);
 				SoftFadePfd(fps->pfd, FADE_MAIN_BG, EXIT_BUTTON_COLOR_POS, 1, 
 					EXIT_BUTTON_COLOR_EVY, EXIT_BUTTON_COLOR_CODE);
@@ -827,11 +827,11 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	case SEQ_EXIT_SELECT_INIT:
-		//‰ï˜bƒEƒBƒ“ƒhƒE•`‰æ
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 		GF_BGL_BmpWinDataFill(&fps->talk_win, 0xf);
 		BmpTalkWinWrite(&fps->talk_win, WINDOW_TRANS_ON, 
 			WINCGX_TALKWIN_START, FOOT_MAINBG_TALKWIN_PAL);
-		//ƒƒbƒZ[ƒW•\¦
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		MSGMAN_GetString(fps->msgman, msg_footprint_exit_select, fps->talk_strbuf);
 		fps->msg_index = GF_STR_PrintSimple(&fps->talk_win, FONT_TALK, 
 			fps->talk_strbuf, 0, 0, 
@@ -840,7 +840,7 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 		break;
 	case SEQ_EXIT_SELECT_MSG_WAIT:
 		if(GF_MSG_PrintEndCheck(fps->msg_index) == 0){
-			//u‚Í‚¢E‚¢‚¢‚¦vƒ{ƒ^ƒ“‚ğo‚·
+			//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ãƒœã‚¿ãƒ³ã‚’å‡ºã™
 			TOUCH_SW_PARAM tsp;
 			
 			tsp.p_bgl	  = fps->bgl;
@@ -856,7 +856,7 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	case SEQ_EXIT_SELECT:
-		//VWaitƒ^ƒXƒN‚Å“]‘—‚³‚ê‚Ä‚¢‚é‚Ì‚ÅAInit‚Å‚Í‚È‚­‚±‚±‚ÅVRAM‚©‚çƒRƒs[‚·‚é
+		//VWaitã‚¿ã‚¹ã‚¯ã§è»¢é€ã•ã‚Œã¦ã„ã‚‹ã®ã§ã€Initæ™‚ã§ã¯ãªãã“ã“ã§VRAMã‹ã‚‰ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		PaletteWorkSet_VramCopy(fps->pfd, 
 			FADE_MAIN_BG, FOOT_MAINBG_BUTTON_YESNO_PAL*16, 0x20*2);
 		{
@@ -871,7 +871,7 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 				//SoftFadePfd(fps->pfd, FADE_MAIN_OBJ, fps->yameru_pal_pos * 16, 16, 
 				//	0, EXIT_BUTTON_COLOR_CODE);
 				
-				fps->my_comm_status.ready = FALSE;	//I—¹ˆ—‚É“ü‚é‚Ì‚ÅóMó‚¯æ‚ç‚È‚¢
+				fps->my_comm_status.ready = FALSE;	//çµ‚äº†å‡¦ç†ã«å…¥ã‚‹ã®ã§å—ä¿¡å—ã‘å–ã‚‰ãªã„
 				fps->game_status = FOOTPRINT_GAME_STATUS_FINISH;
 				*seq = SEQ_OUT_INIT;
 				break;
@@ -889,11 +889,11 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	case SEQ_TIMEUP_INIT:
-		//‰ï˜bƒEƒBƒ“ƒhƒE•`‰æ
+		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 		GF_BGL_BmpWinDataFill(&fps->talk_win, 0xf);
 		BmpTalkWinWrite(&fps->talk_win, WINDOW_TRANS_ON, 
 			WINCGX_TALKWIN_START, FOOT_MAINBG_TALKWIN_PAL);
-		//ƒƒbƒZ[ƒW•\¦
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		MSGMAN_GetString(fps->msgman, msg_footprint_timeup, fps->talk_strbuf);
 		fps->msg_index = GF_STR_PrintSimple(&fps->talk_win, FONT_TALK, 
 			fps->talk_strbuf, 0, 0, 
@@ -913,14 +913,14 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 		break;
 	
 	case SEQ_OUT_INIT:
-		//‘Şºî•ñ‘—M
+		//é€€å®¤æƒ…å ±é€ä¿¡
 //		Footprint_Send_PlayerOut();
 
 		if(WIPE_SYS_EndCheck() == FALSE){
-			WIPE_SYS_ExeEnd();	//‹°‚ç‚­ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg‚Ìƒtƒ‰ƒbƒVƒ…’†‚È‚Ì‚ÅØ‚é
+			WIPE_SYS_ExeEnd();	//æã‚‰ãã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ä¸­ãªã®ã§åˆ‡ã‚‹
 		}
 
-		// ƒƒCƒvƒtƒF[ƒhŠJn
+		// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, 
 			WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_FOOTPRINT );
 		(*seq)++;
@@ -931,7 +931,7 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	default:
-		DWC_LOBBY_SUBCHAN_CleanMsgCmd();	//ƒRƒ}ƒ“ƒhƒNƒŠ[ƒ“
+		DWC_LOBBY_SUBCHAN_CleanMsgCmd();	//ã‚³ãƒãƒ³ãƒ‰ã‚¯ãƒªãƒ¼ãƒ³
 		return PROC_RES_FINISH;
 	}
 
@@ -939,36 +939,36 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 	Footprint_InkGaugeUpdate(fps);
 
 	if(fps->game_status == FOOTPRINT_GAME_STATUS_NORMAL){
-		//Q‰ÁÒƒŠƒXƒgXVˆ—
+		//å‚åŠ è€…ãƒªã‚¹ãƒˆæ›´æ–°å‡¦ç†
 		fps->entry_list_update_timer++;
 		if(fps->entry_list_update_timer > ENTRY_LIST_UPDATE_TIME){
 			fps->entry_list_update_timer = 0;
 			FootPrintTool_NameAllUpdate(fps);
 		}
 		
-		//ƒCƒ“ƒNƒpƒŒƒbƒgƒ^ƒbƒ`”»’èˆ—
+		//ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚¿ãƒƒãƒåˆ¤å®šå‡¦ç†
 		if(((WFLBY_ERR_CheckError() == TRUE) 
 				|| (WFLBY_SYSTEM_Event_GetEndCM(fps->parent_work->wflby_sys) == TRUE))
-				&& (*seq) != SEQ_EXIT_SELECT_MSG_WAIT){	//ƒƒbƒZ[ƒW•`‰æ’†‚Íˆ—‚µ‚È‚¢
-			//WIFILê‚Ì§ŒÀŠÔ‚ª‚«‚½
+				&& (*seq) != SEQ_EXIT_SELECT_MSG_WAIT){	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»ä¸­ã¯å‡¦ç†ã—ãªã„
+			//WIFIåºƒå ´ã®åˆ¶é™æ™‚é–“ãŒããŸ
 			if(fps->yesno_button_use == TRUE){
-				//u‚Í‚¢E‚¢‚¢‚¦vƒ{ƒ^ƒ“‚ªo‚Ä‚¢‚é‚È‚çÁ‚·
+				//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ãƒœã‚¿ãƒ³ãŒå‡ºã¦ã„ã‚‹ãªã‚‰æ¶ˆã™
 				TOUCH_SW_Reset(fps->yesno_button);
 			}
-			fps->my_comm_status.ready = FALSE;	//I—¹ˆ—‚É“ü‚é‚Ì‚ÅóMó‚¯æ‚ç‚È‚¢
+			fps->my_comm_status.ready = FALSE;	//çµ‚äº†å‡¦ç†ã«å…¥ã‚‹ã®ã§å—ä¿¡å—ã‘å–ã‚‰ãªã„
 			fps->game_status = FOOTPRINT_GAME_STATUS_FINISH;
-			if(WFLBY_ERR_CheckError() == TRUE){	//’ÊMƒGƒ‰[‚É‚æ‚éI—¹
+			if(WFLBY_ERR_CheckError() == TRUE){	//é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã‚ˆã‚‹çµ‚äº†
 				(*seq) = SEQ_OUT_INIT;
 			}
-			else{	//ƒ^ƒCƒ€ƒAƒbƒv‚É‚æ‚éI—¹
+			else{	//ã‚¿ã‚¤ãƒ ã‚¢ãƒƒãƒ—ã«ã‚ˆã‚‹çµ‚äº†
 				Snd_SePlay(FOOTPRINT_SE_TIMEUP);
-				WFLBY_SYSTEM_APLFLAG_SetForceEnd( fps->parent_work->wflby_sys );	// ‹­§I—¹‚µ‚½‚±‚Æ‚ğƒƒr[ƒVƒXƒeƒ€‚É’Ê’m2.18 tomoya takahashi
+				WFLBY_SYSTEM_APLFLAG_SetForceEnd( fps->parent_work->wflby_sys );	// å¼·åˆ¶çµ‚äº†ã—ãŸã“ã¨ã‚’ãƒ­ãƒ“ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã«é€šçŸ¥2.18 tomoya takahashi
 				(*seq) = SEQ_TIMEUP_INIT;
 			}
 		}
 	}
 
-	//ƒfƒoƒbƒOƒJƒƒ‰ˆÚ“®
+	//ãƒ‡ãƒãƒƒã‚°ã‚«ãƒ¡ãƒ©ç§»å‹•
 	Debug_CameraMove(fps);
 	
 #ifdef PM_DEBUG
@@ -980,7 +980,7 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 		if(DebugFoot.move_type >= NELEMS(DebugSeikakuTbl)){
 			DebugFoot.move_type = 0;
 		}
-		OS_TPrintf("ƒfƒoƒbƒO move_type = %d\n", DebugFoot.move_type);
+		OS_TPrintf("ãƒ‡ãƒãƒƒã‚° move_type = %d\n", DebugFoot.move_type);
 	}
 	if(sys.trg & PAD_BUTTON_Y){
 		DebugFoot.consume_zero ^= 1;
@@ -992,12 +992,12 @@ PROC_RESULT FootPrintProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT FootPrintProc_End( PROC * proc, int * seq )
@@ -1009,60 +1009,60 @@ PROC_RESULT FootPrintProc_End( PROC * proc, int * seq )
 	DefaultActorDel_Main(fps);
 	DefaultActorDel_Sub(fps);
 
-	//ƒ{ƒ^ƒ“‚Ìu‚Í‚¢E‚¢‚¢‚¦víœ
+	//ãƒœã‚¿ãƒ³ã®ã€Œã¯ã„ãƒ»ã„ã„ãˆã€å‰Šé™¤
 	TOUCH_SW_FreeWork(fps->yesno_button);
 	
-	//ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€”jŠü
+	//ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	StampSys_Exit(&fps->ssw);
 
 	STRBUF_Delete(fps->talk_strbuf);
 	
-	//ƒtƒHƒ“ƒgíœ
+	//ãƒ•ã‚©ãƒ³ãƒˆå‰Šé™¤
 	FontProc_UnloadFont(FONT_BUTTON);
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€íœ
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	FONTOAM_SysDelete(fps->fontoam_sys);
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ğ•ú
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	MSGMAN_Delete( fps->msgman );
 	WORDSET_Delete( fps->wordset );
 	
 	BmpWinDelete( fps );
 	
-	// BG_SYSTEM‰ğ•ú
+	// BG_SYSTEMè§£æ”¾
 	BgExit( fps->bgl );
 	sys_FreeMemoryEz( fps->bgl );
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	CATS_ResourceDestructor_S(fps->csp,fps->crp);
 	CATS_FreeMemory(fps->csp);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(fps->pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(fps->pfd, FADE_SUB_BG);
 	PaletteFadeWorkAllocFree(fps->pfd, FADE_MAIN_OBJ);
 	PaletteFadeWorkAllocFree(fps->pfd, FADE_SUB_OBJ);
 	PaletteFadeFree(fps->pfd);
 
-	//3Dƒ‚ƒfƒ‹‰ğ•ú
+	//3Dãƒ¢ãƒ‡ãƒ«è§£æ”¾
 	Model3DDel(fps);
-	//ƒJƒƒ‰íœ
+	//ã‚«ãƒ¡ãƒ©å‰Šé™¤
 	Footprint_CameraExit(fps);
 
 	//simple_3DBGExit();
 	Footprint_3D_Exit(fps->g3Dman);
 
-	//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+	//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 	ArchiveDataHandleClose( fps->handle_footprint );
 	ArchiveDataHandleClose( fps->handle_footmark );
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
 	MsgPrintSkipFlagSet(MSG_SKIP_OFF);
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
@@ -1072,12 +1072,12 @@ PROC_RESULT FootPrintProc_End( PROC * proc, int * seq )
 
 #ifdef PM_DEBUG
 	if(fps->parent_work->wflby_sys == NULL){
-		//ƒfƒoƒbƒOŒÄ‚Ño‚µ‚Ìê‡‚Íparent_work‚Ì‰ğ•ú‚às‚¤
+		//ãƒ‡ãƒãƒƒã‚°å‘¼ã³å‡ºã—ã®å ´åˆã¯parent_workã®è§£æ”¾ã‚‚è¡Œã†
 		sys_FreeMemoryEz(fps->parent_work);
 	}
 #endif
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	sys_DeleteHeap( HEAPID_FOOTPRINT );
 
 	return PROC_RES_FINISH;
@@ -1100,14 +1100,14 @@ static void Footprint_Update(TCB_PTR tcb, void *work)
 	GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 	
 
-#ifdef PM_DEBUG		//ƒ|ƒŠƒSƒ“‚Ìƒ‰ƒCƒ“ƒYƒI[ƒo[ƒ`ƒFƒbƒN
+#ifdef PM_DEBUG		//ãƒãƒªã‚´ãƒ³ã®ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 	if(G3X_IsLineBufferUnderflow() != 0){
-		OS_TPrintf("--------------ƒ‰ƒCƒ“ƒYƒI[ƒo[”­¶II----------\n");
-		//GF_ASSERT(0 && "ƒ‰ƒCƒ“ƒYƒI[ƒo[‚ª”­¶‚µ‚Ü‚µ‚½");
+		OS_TPrintf("--------------ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ç™ºç”Ÿï¼ï¼----------\n");
+		//GF_ASSERT(0 && "ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ");
 		G3X_ResetLineBufferUnderflow();
 	}
 	else if(G3X_GetRenderedLineCount() < 10){
-		OS_TPrintf("========== ƒ‰ƒCƒ“ƒYƒI[ƒo[‚ª”­¶‚µ‚»‚¤‚Å‚·c Count = %d\n", 
+		OS_TPrintf("========== ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãŒç™ºç”Ÿã—ãã†ã§ã™â€¦ Count = %d\n", 
 			G3X_GetRenderedLineCount());
 	}
 #endif
@@ -1115,7 +1115,7 @@ static void Footprint_Update(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -1128,10 +1128,10 @@ static void VBlankFunc( void * work )
 	
 	StampSys_VWaitUpdate(&fps->ssw, fps->game_status);
 
-	// ƒZƒ‹ƒAƒNƒ^[Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(fps->pfd);
 	
@@ -1142,9 +1142,9 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNİ’è‚ğs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void FootPrint_VramBankSet(GF_BGL_INI *bgl)
@@ -1152,27 +1152,27 @@ static void FootPrint_VramBankSet(GF_BGL_INI *bgl)
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -1187,22 +1187,22 @@ static void FootPrint_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FOOT_FRAME_WIN	ƒEƒBƒ“ƒhƒE–Ê
+			///<FOOT_FRAME_WIN	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01,
 				FOOT_BGPRI_WIN, 0, 0, FALSE
 			},
-			///<FOOT_FRAME_PANEL	ƒpƒlƒ‹–Ê
+			///<FOOT_FRAME_PANEL	ãƒ‘ãƒãƒ«é¢
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
 				FOOT_BGPRI_PANEL, 0, 0, FALSE
 			},
-			///<FOOT_FRAME_BG	”wŒi
+			///<FOOT_FRAME_BG	èƒŒæ™¯
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
@@ -1224,26 +1224,26 @@ static void FootPrint_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_ScrollSet(bgl, FOOT_FRAME_BG, GF_BGL_SCROLL_X_SET, 0);
 		GF_BGL_ScrollSet(bgl, FOOT_FRAME_BG, GF_BGL_SCROLL_Y_SET, 0);
 
-		//3D–Ê
+		//3Dé¢
 		G2_SetBG0Priority(FOOT_BGPRI_3D);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FOOT_SUBFRAME_WIN	ƒeƒLƒXƒg–Ê
+			///<FOOT_SUBFRAME_WIN	ãƒ†ã‚­ã‚¹ãƒˆé¢
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x7000, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
 				FOOT_SUBBGPRI_WIN, 0, 0, FALSE
 			},
-			///<FOOT_SUBFRAME_PLATE	ƒvƒŒ[ƒg
+			///<FOOT_SUBFRAME_PLATE	ãƒ—ãƒ¬ãƒ¼ãƒˆ
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
 				FOOT_SUBBGPRI_PLATE, 0, 0, FALSE
 			},
-			///<FOOT_SUBFRAME_BG	”wŒi
+			///<FOOT_SUBFRAME_BG	èƒŒæ™¯
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x6800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -1271,9 +1271,9 @@ static void FootPrint_VramBankSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1291,9 +1291,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	fps		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	fps		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1303,7 +1303,7 @@ static void BgGraphicSet( FOOTPRINT_SYS * fps, ARCHANDLE* p_handle )
 	GF_BGL_INI *bgl = fps->bgl;
 	u16 *panel_scrn;
 	
-	//-- ƒƒCƒ“‰æ–Ê --//
+	//-- ãƒ¡ã‚¤ãƒ³ç”»é¢ --//
 	PaletteWorkSet_Arc(fps->pfd, ARC_FOOTPRINT_GRA, NARC_footprint_board_a_board_sita_NCLR, 
 		HEAPID_FOOTPRINT, FADE_MAIN_BG, 0x200-0x40, 0);
 	ArcUtil_HDL_BgCharSet(p_handle, NARC_footprint_board_a_board_sita_NCGR, fps->bgl, 
@@ -1313,7 +1313,7 @@ static void BgGraphicSet( FOOTPRINT_SYS * fps, ARCHANDLE* p_handle )
 	ArcUtil_HDL_ScrnSet(p_handle, NARC_footprint_board_a_board_sita_bg_NSCR, fps->bgl, 
 		FOOT_FRAME_BG, 0, 0, 0, HEAPID_FOOTPRINT);
 
-	//-- ƒTƒu‰æ–Ê --//
+	//-- ã‚µãƒ–ç”»é¢ --//
 	PaletteWorkSet_Arc(fps->pfd, ARC_FOOTPRINT_GRA, NARC_footprint_board_ashiato_board_NCLR, 
 		HEAPID_FOOTPRINT, FADE_SUB_BG, 0, 0);
 	if(fps->parent_work->board_type == FOOTPRINT_BOARD_TYPE_WHITE){
@@ -1334,14 +1334,14 @@ static void BgGraphicSet( FOOTPRINT_SYS * fps, ARCHANDLE* p_handle )
 	
 		win_type = CONFIG_GetWindowType(SaveData_GetConfig(fps->sv));
 		
-		// ‰ï˜bƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg“]‘—
+		// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		PaletteWorkSet_Arc(fps->pfd, ARC_WINFRAME, TalkWinPalArcGet(win_type), HEAPID_FOOTPRINT, 
 			FADE_MAIN_BG, 0x20, FOOT_MAINBG_TALKWIN_PAL * 16);
-		// ‰ï˜bƒEƒCƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN“]‘—
+		// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 		TalkWinGraphicSet(fps->bgl, FOOT_FRAME_WIN, WINCGX_TALKWIN_START, 
 			FOOT_MAINBG_TALKWIN_PAL,  win_type, HEAPID_FOOTPRINT);
 
-		//ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+		//ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		PaletteWorkSet_Arc(fps->pfd, ARC_FONT, NARC_font_system_ncrl, HEAPID_FOOTPRINT, 
 			FADE_MAIN_BG, 0x20, FOOT_MAINBG_TALKFONT_PAL * 16);
 		if(fps->parent_work->board_type == FOOTPRINT_BOARD_TYPE_WHITE){
@@ -1360,7 +1360,7 @@ static void BgGraphicSet( FOOTPRINT_SYS * fps, ARCHANDLE* p_handle )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒg
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆ
  *
  * @param   fps		
  */
@@ -1370,12 +1370,12 @@ static void DefaultResourceSet_Main(FOOTPRINT_SYS *fps, ARCHANDLE *hdl_main)
 	int i, pal_pos;
 	u16 color_code;
 	
-	//-- ƒƒCƒ“‰æ–ÊOBJí’“ƒpƒŒƒbƒg --//
+	//-- ãƒ¡ã‚¤ãƒ³ç”»é¢OBJå¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆ --//
 	CATS_LoadResourcePlttWorkArcH(fps->pfd, FADE_MAIN_OBJ, fps->csp, fps->crp, 
 		hdl_main, NARC_footprint_board_a_board_eff_NCLR, 0, FOOTPRINT_COMMON_PAL_NUM, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, PLTTID_OBJ_COMMON);
 
-	//-- ƒCƒ“ƒN(ƒCƒ“ƒN‚Ì‰º’n‚à‹¤’Ê) --//
+	//-- ã‚¤ãƒ³ã‚¯(ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ°ã‚‚å…±é€š) --//
 	CATS_LoadResourceCharArcH(fps->csp, fps->crp, hdl_main, 
 		NARC_footprint_board_ashiato_gage_NCGR, 0, NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_INK);
 	CATS_LoadResourceCellArcH(fps->csp, fps->crp, hdl_main, 
@@ -1383,7 +1383,7 @@ static void DefaultResourceSet_Main(FOOTPRINT_SYS *fps, ARCHANDLE *hdl_main)
 	CATS_LoadResourceCellAnmArcH(fps->csp, fps->crp, hdl_main, 
 		NARC_footprint_board_ashiato_gage_NANR, 0, CELLANMID_INK);
 
-	//-- ƒCƒ“ƒN‚Ìã‚É”z’u‚·‚é‘«Õ --//
+	//-- ã‚¤ãƒ³ã‚¯ã®ä¸Šã«é…ç½®ã™ã‚‹è¶³è·¡ --//
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		CATS_LoadResourceCharArcH(fps->csp, fps->crp, hdl_main, 
 			NARC_footprint_board_wifi_mark_NCGR, 0, 
@@ -1393,9 +1393,9 @@ static void DefaultResourceSet_Main(FOOTPRINT_SYS *fps, ARCHANDLE *hdl_main)
 		NARC_footprint_board_wifi_mark_NCER, 0, CELLID_INK_FOOT);
 	CATS_LoadResourceCellAnmArcH(fps->csp, fps->crp, hdl_main, 
 		NARC_footprint_board_wifi_mark_NANR, 0, CELLANMID_INK_FOOT);
-	//ƒCƒ“ƒN‚Ìã‚É”z’u‚·‚é‘«Õ‚ÌƒpƒŒƒbƒg(ƒf[ƒ^‚Íƒ_ƒ~[B—Ìˆæ‚¾‚¯Šm•Û)
-	//ƒ_ƒ~[ƒOƒ‰ƒtƒBƒbƒN‚Í7A‘«Õƒf[ƒ^‚Í4”Ô‚ÌƒJƒ‰[‚Å‘‚©‚ê‚Ä‚¢‚é‚Ì‚ÅA
-	//ˆê–{Šm•Û‚µ‚ÄA‘«Õ—p‚ÉŠ„‚è“–‚Ä‚Ä‚µ‚Ü‚¤B‘S‚Ä‚ÌƒJƒ‰[‚ğ‘«Õ‚ÌF‚Å–„‚ß‚é
+	//ã‚¤ãƒ³ã‚¯ã®ä¸Šã«é…ç½®ã™ã‚‹è¶³è·¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆ(ãƒ‡ãƒ¼ã‚¿ã¯ãƒ€ãƒŸãƒ¼ã€‚é ˜åŸŸã ã‘ç¢ºä¿)
+	//ãƒ€ãƒŸãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¯7ã€è¶³è·¡ãƒ‡ãƒ¼ã‚¿ã¯4ç•ªã®ã‚«ãƒ©ãƒ¼ã§æ›¸ã‹ã‚Œã¦ã„ã‚‹ã®ã§ã€
+	//ä¸€æœ¬ç¢ºä¿ã—ã¦ã€è¶³è·¡ç”¨ã«å‰²ã‚Šå½“ã¦ã¦ã—ã¾ã†ã€‚å…¨ã¦ã®ã‚«ãƒ©ãƒ¼ã‚’è¶³è·¡ã®è‰²ã§åŸ‹ã‚ã‚‹
 	pal_pos = CATS_LoadResourcePlttWorkArcH(fps->pfd, FADE_MAIN_OBJ, fps->csp, fps->crp, 
 		hdl_main, NARC_footprint_board_a_board_eff_NCLR, 0, 1, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, PLTTID_OBJ_INK_FOOT);
@@ -1408,7 +1408,7 @@ static void DefaultResourceSet_Main(FOOTPRINT_SYS *fps, ARCHANDLE *hdl_main)
 	PaletteWork_Clear(fps->pfd, FADE_MAIN_OBJ, FADEBUF_ALL, color_code, 
 		pal_pos * 16, pal_pos * 16 + 16);
 	
-	//-- ƒ^ƒbƒ`ƒGƒtƒFƒNƒg --//
+	//-- ã‚¿ãƒƒãƒã‚¨ãƒ•ã‚§ã‚¯ãƒˆ --//
 	CATS_LoadResourceCharArcH(fps->csp, fps->crp, hdl_main, 
 		NARC_footprint_board_a_board_eff_NCGR, 0, NNS_G2D_VRAM_TYPE_2DMAIN, CHARID_TOUCH_EFF);
 	CATS_LoadResourceCellArcH(fps->csp, fps->crp, hdl_main, 
@@ -1425,7 +1425,7 @@ static void DefaultResourceSet_Main(FOOTPRINT_SYS *fps, ARCHANDLE *hdl_main)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   fps		
  */
@@ -1435,7 +1435,7 @@ static void DefaultActorSet_Main(FOOTPRINT_SYS *fps)
 	int i;
 	TCATS_OBJECT_ADD_PARAM_S head;
 	
-	//-- ƒCƒ“ƒN --//
+	//-- ã‚¤ãƒ³ã‚¯ --//
 	head = InkObjParam;
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		head.x = INK_POS_START_X + INK_POS_SPACE_X * i;
@@ -1445,7 +1445,7 @@ static void DefaultActorSet_Main(FOOTPRINT_SYS *fps)
 		CATS_ObjectUpdate(fps->cap_ink[i]->act);
 	}
 
-	//-- ƒCƒ“ƒN‚Ì‰º’n --//
+	//-- ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ° --//
 	head = InkFoundationObjParam;
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		head.x = INK_FOUNDATION_POS_START_X + INK_FOUNDATION_POS_SPACE_X * i;
@@ -1455,7 +1455,7 @@ static void DefaultActorSet_Main(FOOTPRINT_SYS *fps)
 		CATS_ObjectUpdate(fps->cap_ink_foundation[i]->act);
 	}
 	
-	//-- ƒCƒ“ƒN‚Ìã‚É”z’u‚·‚é‘«Õ --//
+	//-- ã‚¤ãƒ³ã‚¯ã®ä¸Šã«é…ç½®ã™ã‚‹è¶³è·¡ --//
 	head = InkFootObjParam;
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		head.x = INK_FOOT_POS_START_X + INK_FOOT_POS_SPACE_X * i;
@@ -1465,7 +1465,7 @@ static void DefaultActorSet_Main(FOOTPRINT_SYS *fps)
 		CATS_ObjectUpdate(fps->cap_ink_foot[i]->act);
 	}
 
-	//-- u‚â‚ß‚évFONTOAM --//
+	//-- ã€Œã‚„ã‚ã‚‹ã€FONTOAM --//
 	{
 		STRBUF *str_ptr;
 		
@@ -1482,7 +1482,7 @@ static void DefaultActorSet_Main(FOOTPRINT_SYS *fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   fps		
  */
@@ -1491,17 +1491,17 @@ static void DefaultActorDel_Main(FOOTPRINT_SYS *fps)
 {
 	int i;
 	
-	//-- ƒCƒ“ƒN --//
+	//-- ã‚¤ãƒ³ã‚¯ --//
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		CATS_ActorPointerDelete_S(fps->cap_ink[i]);
 	}
 	
-	//-- ƒCƒ“ƒN‚Ì‰º’n --//
+	//-- ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ° --//
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		CATS_ActorPointerDelete_S(fps->cap_ink_foundation[i]);
 	}
 
-	//-- ƒCƒ“ƒN‚Ìã‚É”z’u‚·‚é‘«Õ --//
+	//-- ã‚¤ãƒ³ã‚¯ã®ä¸Šã«é…ç½®ã™ã‚‹è¶³è·¡ --//
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		CATS_ActorPointerDelete_S(fps->cap_ink_foot[i]);
 	}
@@ -1512,7 +1512,7 @@ static void DefaultActorDel_Main(FOOTPRINT_SYS *fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒg
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆ
  *
  * @param   fps		
  */
@@ -1521,12 +1521,12 @@ static void DefaultResourceSet_Sub(FOOTPRINT_SYS *fps, ARCHANDLE *hdl_main)
 {
 	int i;
 	
-	//-- ƒTƒu‰æ–ÊOBJí’“ƒpƒŒƒbƒg --//
+	//-- ã‚µãƒ–ç”»é¢OBJå¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆ --//
 	CATS_LoadResourcePlttWorkArcH(fps->pfd, FADE_SUB_OBJ, fps->csp, fps->crp, 
 		hdl_main, NARC_footprint_board_ashiato_frame_NCLR, 0, FOOTPRINT_SUB_COMMON_PAL_NUM, 
 		NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_SUB_OBJ_COMMON);
 
-	//-- –¼‘O‚ğˆÍ‚ŞƒtƒŒ[ƒ€ --//
+	//-- åå‰ã‚’å›²ã‚€ãƒ•ãƒ¬ãƒ¼ãƒ  --//
 	CATS_LoadResourceCharArcH(fps->csp, fps->crp, hdl_main, 
 		NARC_footprint_board_ashiato_frame_NCGR, 0, NNS_G2D_VRAM_TYPE_2DSUB, 
 		CHARID_SUB_NAME_FRAME);
@@ -1535,7 +1535,7 @@ static void DefaultResourceSet_Sub(FOOTPRINT_SYS *fps, ARCHANDLE *hdl_main)
 	CATS_LoadResourceCellAnmArcH(fps->csp, fps->crp, hdl_main, 
 		NARC_footprint_board_ashiato_frame_NANR, 0, CELLANMID_SUB_NAME_FRAME);
 		
-	//-- –¼‘O‚Ì‰¡‚Ì‘«Õ --//
+	//-- åå‰ã®æ¨ªã®è¶³è·¡ --//
 	for(i = 0; i < FOOTPRINT_ENTRY_MAX; i++){
 		CATS_LoadResourceCharArcH(fps->csp, fps->crp, hdl_main, 
 			NARC_footprint_board_foot_dummy_NCGR, 0, NNS_G2D_VRAM_TYPE_2DSUB, 
@@ -1549,7 +1549,7 @@ static void DefaultResourceSet_Sub(FOOTPRINT_SYS *fps, ARCHANDLE *hdl_main)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   fps		
  */
@@ -1559,12 +1559,12 @@ static void DefaultActorSet_Sub(FOOTPRINT_SYS *fps)
 	int i;
 	TCATS_OBJECT_ADD_PARAM_S head;
 	
-	//-- –¼‘O‚ğˆÍ‚Ş˜g --//
+	//-- åå‰ã‚’å›²ã‚€æ  --//
 	fps->cap_name_frame = CATS_ObjectAdd_S(fps->csp, fps->crp, &NameFrameObjParam);
 	CATS_ObjectUpdate(fps->cap_name_frame->act);
-	CATS_ObjectEnableCap(fps->cap_name_frame, CATS_ENABLE_FALSE);	//Å‰‚Í”ñ•\¦
+	CATS_ObjectEnableCap(fps->cap_name_frame, CATS_ENABLE_FALSE);	//æœ€åˆã¯éè¡¨ç¤º
 
-	//-- –¼‘O‚Ì‰¡‚Ì‘«Õ --//
+	//-- åå‰ã®æ¨ªã®è¶³è·¡ --//
 	head = NameFootObjParam;
 	for(i = 0; i < FOOTPRINT_ENTRY_MAX; i++){
 		head.id[CLACT_U_CHAR_RES] = CHARID_SUB_NAME_FOOT_0 + i;
@@ -1572,13 +1572,13 @@ static void DefaultActorSet_Sub(FOOTPRINT_SYS *fps)
 		CATS_ObjectPosSetCap_SubSurface(fps->cap_name_foot[i], 
 			Sub_FootmarkPos[i][0], Sub_FootmarkPos[i][1], FOOTPRINT_SUB_ACTOR_DISTANCE);
 		CATS_ObjectUpdate(fps->cap_name_foot[i]->act);
-		CATS_ObjectEnableCap(fps->cap_name_foot[i], CATS_ENABLE_FALSE);	//Å‰‚Í”ñ•\¦
+		CATS_ObjectEnableCap(fps->cap_name_foot[i], CATS_ENABLE_FALSE);	//æœ€åˆã¯éè¡¨ç¤º
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   fps		
  */
@@ -1587,10 +1587,10 @@ static void DefaultActorDel_Sub(FOOTPRINT_SYS *fps)
 {
 	int i;
 	
-	//-- –¼‘O‚ğˆÍ‚Ş˜g --//
+	//-- åå‰ã‚’å›²ã‚€æ  --//
 	CATS_ActorPointerDelete_S(fps->cap_name_frame);
 	
-	//-- –¼‘O‚Ì‰¡‚Ì‘«Õ --//
+	//-- åå‰ã®æ¨ªã®è¶³è·¡ --//
 	for(i = 0; i < FOOTPRINT_ENTRY_MAX; i++){
 		CATS_ActorPointerDelete_S(fps->cap_name_foot[i]);
 	}
@@ -1598,7 +1598,7 @@ static void DefaultActorDel_Sub(FOOTPRINT_SYS *fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚ÌƒCƒ“ƒNƒpƒŒƒbƒg‚Ì‰Šúİ’è‚ğs‚¤
+ * @brief   è‡ªåˆ†ã®ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã®åˆæœŸè¨­å®šã‚’è¡Œã†
  *
  * @param  fps
  */
@@ -1618,7 +1618,7 @@ static void MyInkPaletteSettings(FOOTPRINT_SYS *fps)
 			CATS_ObjectEnableCap(fps->cap_ink_foundation[i], CATS_ENABLE_FALSE);
 			CATS_ObjectEnableCap(fps->cap_ink_foot[i], CATS_ENABLE_FALSE);
 
-			//BG‚ÌƒCƒ“ƒN‚Ì˜g‚ğÁ‚·
+			//BGã®ã‚¤ãƒ³ã‚¯ã®æ ã‚’æ¶ˆã™
 			for(y = 0; y < SCRN_INK_POS_SIZE_Y; y++){
 				GF_BGL_ScrFill(fps->bgl, FOOT_FRAME_PANEL, MyInkPaletteEraseScrnCode[y], 
 					SCRN_INK_POS_START_X + SCRN_INK_POS_SIZE_X * i, SCRN_INK_POS_Y + y,
@@ -1626,15 +1626,15 @@ static void MyInkPaletteSettings(FOOTPRINT_SYS *fps)
 			}
 		}
 		else{
-			//‘«Õ‚ÌƒLƒƒƒ‰‚ğ‘‚«Š·‚¦‚é
+			//è¶³è·¡ã®ã‚­ãƒ£ãƒ©ã‚’æ›¸ãæ›ãˆã‚‹
 			OBJFootCharRewrite(fps->my_stamp_param[i].monsno, fps->my_stamp_param[i].form_no, 
 				fps->cap_ink_foot[i], fps->handle_footprint,
 				fps->handle_footmark, NNS_G2D_VRAM_TYPE_2DMAIN, fps->arceus_flg);
 			
-			//ƒCƒ“ƒN‚ÌƒJƒ‰[‚ğ•ÏX‚·‚é
+			//ã‚¤ãƒ³ã‚¯ã®ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 			def_pal[PALOFS_INK * 16 + COLOR_NO_INK_START + i] = fps->my_stamp_param[i].color;
 			trans_pal[PALOFS_INK * 16 + COLOR_NO_INK_START + i] = fps->my_stamp_param[i].color;
-			//ƒCƒ“ƒN‚Ì‰º’n‚ğ•ÏX‚·‚é(•‚Á‚Û‚­‚·‚é)
+			//ã‚¤ãƒ³ã‚¯ã®ä¸‹åœ°ã‚’å¤‰æ›´ã™ã‚‹(é»’ã£ã½ãã™ã‚‹)
 			SoftFade(&def_pal[PALOFS_INK * 16 + COLOR_NO_INK_START + i],
 				&def_pal[PALOFS_INK_FOUNDATION * 16 + COLOR_NO_INK_START + i],
 				1, INK_FOUNDATION_EVY, INK_FOUNDATION_COLOR);
@@ -1653,16 +1653,16 @@ static void MyInkPaletteSettings(FOOTPRINT_SYS *fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   OBJ‚Ì‘«Õƒ}[ƒN‚ğ‘‚«Š·‚¦‚é
+ * @brief   OBJã®è¶³è·¡ãƒãƒ¼ã‚¯ã‚’æ›¸ãæ›ãˆã‚‹
  *
- * @param   monsno			ƒ|ƒPƒ‚ƒ“”Ô†
- * @param   cap				‘‚«Š·‚¦‘ÎÛ‚ÌƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   hdl_mark		‘«ÕƒOƒ‰ƒtƒBƒbƒN‚Ìƒnƒ“ƒhƒ‹
+ * @param   monsno			ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+ * @param   cap				æ›¸ãæ›ãˆå¯¾è±¡ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   hdl_mark		è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ãƒãƒ³ãƒ‰ãƒ«
  * @param   NNS_G2D_VRAM_TYPE	NNS_G2D_VRAM_TYPE_2DMAIN or NNS_G2D_VRAM_TYPE_2DSUB
- * @param   arceus_flg		ƒAƒ‹ƒZƒEƒXŒöŠJƒtƒ‰ƒO(TRUE:ŒöŠJOK)
+ * @param   arceus_flg		ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å…¬é–‹ãƒ•ãƒ©ã‚°(TRUE:å…¬é–‹OK)
  *
- * @retval  TRUE:‘‚«Š·‚¦‚½
- * @retval  FALSE:‘‚«Š·‚¦‚È‚©‚Á‚½
+ * @retval  TRUE:æ›¸ãæ›ãˆãŸ
+ * @retval  FALSE:æ›¸ãæ›ãˆãªã‹ã£ãŸ
  */
 //--------------------------------------------------------------
 static BOOL OBJFootCharRewrite(int monsno, int form_no, CATS_ACT_PTR cap, ARCHANDLE *hdl_main, ARCHANDLE *hdl_mark, NNS_G2D_VRAM_TYPE vram_type, BOOL arceus_flg)
@@ -1677,17 +1677,17 @@ static BOOL OBJFootCharRewrite(int monsno, int form_no, CATS_ACT_PTR cap, ARCHAN
 		return FALSE;
 	}
 	
-	OS_TPrintf("‘‚«Š·‚¦monsno = %d\n", monsno);
+	OS_TPrintf("æ›¸ãæ›ãˆmonsno = %d\n", monsno);
 	if(FootprintTool_FootDispCheck(monsno, form_no, arceus_flg) == TRUE){
-		pSrc = ArcUtil_HDL_Load(hdl_mark, POKEFOOT_ARC_CHAR_DMMY + monsno, //‘«Õ
+		pSrc = ArcUtil_HDL_Load(hdl_mark, POKEFOOT_ARC_CHAR_DMMY + monsno, //è¶³è·¡
 			TRUE, HEAPID_FOOTPRINT, ALLOC_BOTTOM);
 		NNS_G2dGetUnpackedCharacterData(pSrc, &pChar);
 		DC_FlushRange(pChar->pRawData, 0x20 * 8);
-		read_up = &((u8*)pChar->pRawData)[0x20 * 4];	//128Kƒ}ƒbƒsƒ“ƒO‚Å‹ó”’‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚Å
+		read_up = &((u8*)pChar->pRawData)[0x20 * 4];	//128Kãƒãƒƒãƒ”ãƒ³ã‚°ã§ç©ºç™½ãŒå…¥ã£ã¦ã„ã‚‹ã®ã§
 		read_bottom = pChar->pRawData;
 	}
-	else{	//‘«Õ‚ª–³‚¢‚Ì‚ÅWifiƒ}[ƒN
-		pSrc = ArcUtil_HDL_Load(hdl_main, NARC_footprint_board_wifi_mark_NCGR, //WIFIƒ}[ƒN
+	else{	//è¶³è·¡ãŒç„¡ã„ã®ã§Wifiãƒãƒ¼ã‚¯
+		pSrc = ArcUtil_HDL_Load(hdl_main, NARC_footprint_board_wifi_mark_NCGR, //WIFIãƒãƒ¼ã‚¯
 			FALSE, HEAPID_FOOTPRINT, ALLOC_BOTTOM);
 		NNS_G2dGetUnpackedCharacterData(pSrc, &pChar);
 		DC_FlushRange(pChar->pRawData, 0x20 * 4);
@@ -1703,7 +1703,7 @@ static BOOL OBJFootCharRewrite(int monsno, int form_no, CATS_ACT_PTR cap, ARCHAN
 	}
 	image = CLACT_ImageProxyGet(cap->act);
 	
-	//‘‚«‚İ
+	//æ›¸ãè¾¼ã¿
 	MI_CpuCopy16(read_up, (void*)((u32)obj_vram
 		+ image->vramLocation.baseAddrOfVram[vram_type]), 
 		0x20 * 2);
@@ -1717,9 +1717,9 @@ static BOOL OBJFootCharRewrite(int monsno, int form_no, CATS_ACT_PTR cap, ARCHAN
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰ì¬
+ * @brief   ã‚«ãƒ¡ãƒ©ä½œæˆ
  *
- * @param   fps		ƒQ[ƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fps		ã‚²ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Footprint_CameraInit(FOOTPRINT_SYS *fps)
@@ -1735,7 +1735,7 @@ static void Footprint_CameraInit(FOOTPRINT_SYS *fps)
 	
 	GFC_AttachCamera(fps->camera);
 	
-	{//İ’è‚µ‚½ƒJƒƒ‰ˆÊ’u‚Å‚ÌAƒ[ƒ‹ƒh‹óŠÔ‚Ì”ÍˆÍ‚ğæ“¾‚·‚é
+	{//è¨­å®šã—ãŸã‚«ãƒ¡ãƒ©ä½ç½®ã§ã®ã€ãƒ¯ãƒ¼ãƒ«ãƒ‰ç©ºé–“ã®ç¯„å›²ã‚’å–å¾—ã™ã‚‹
 		u16 persp_way;
 		fx32 distance, aspect;
 		fx32 width, height;
@@ -1753,9 +1753,9 @@ static void Footprint_CameraInit(FOOTPRINT_SYS *fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‰ğ•ú
+ * @brief   ã‚«ãƒ¡ãƒ©è§£æ”¾
  *
- * @param   fps		ƒQ[ƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fps		ã‚²ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Footprint_CameraExit(FOOTPRINT_SYS *fps)
@@ -1765,7 +1765,7 @@ static void Footprint_CameraExit(FOOTPRINT_SYS *fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹ƒZƒbƒg
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆ
  *
  * @param   fps		
  */
@@ -1781,13 +1781,13 @@ static void Model3DSet( FOOTPRINT_SYS * fps, ARCHANDLE* p_handle )
 		data_id = NARC_footprint_board_a_board1_nsbmd;
 	}
 	
-    //ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚İ‚İ
+    //ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	D3DOBJ_MdlLoadH(&fps->board.mdl, p_handle, data_id, HEAPID_FOOTPRINT);
 
-    //ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+    //ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
     D3DOBJ_Init( &fps->board.obj, &fps->board.mdl );
 
-    //À•Wİ’è
+    //åº§æ¨™è¨­å®š
     D3DOBJ_SetMatrix( &fps->board.obj, BOARD_X, BOARD_Y, BOARD_Z);
     D3DOBJ_SetScale(&fps->board.obj, BOARD_SCALE, BOARD_SCALE, BOARD_SCALE);
     D3DOBJ_SetDraw( &fps->board.obj, TRUE );
@@ -1795,7 +1795,7 @@ static void Model3DSet( FOOTPRINT_SYS * fps, ARCHANDLE* p_handle )
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹íœ
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«å‰Šé™¤
  *
  * @param   fps		
  *
@@ -1806,13 +1806,13 @@ static void Model3DSet( FOOTPRINT_SYS * fps, ARCHANDLE* p_handle )
 //--------------------------------------------------------------
 static void Model3DDel(FOOTPRINT_SYS *fps)
 {
-    // ‘SƒŠƒ\[ƒX”jŠü
+    // å…¨ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
     D3DOBJ_MdlDelete( &fps->board.mdl ); 
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹XV
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«æ›´æ–°
  *
  * @param   fps		
  *
@@ -1836,34 +1836,34 @@ static void Model3D_Update(FOOTPRINT_SYS *fps)
 	
 	MTX_Identity33(&rot);
 
-	//‚R‚c•`‰æŠJn
+	//ï¼“ï¼¤æç”»é–‹å§‹
 	GF_G3X_Reset();
 	
 	GFC_AttachCamera(fps->camera);
-	GFC_SetCameraView(FOOTPRINT_CAMERA_MODE, fps->camera); //³Ë‰eİ’è
+	GFC_SetCameraView(FOOTPRINT_CAMERA_MODE, fps->camera); //æ­£å°„å½±è¨­å®š
 	GFC_CameraLookAt();
 
-	// ƒ‰ƒCƒg‚ÆƒAƒ“ƒrƒGƒ“ƒg
+	// ãƒ©ã‚¤ãƒˆã¨ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
 	NNS_G3dGlbLightVector( 0, 0, -FX32_ONE, 0 );
 	NNS_G3dGlbLightColor( 0, GX_RGB( 28,28,28 ) );
 	NNS_G3dGlbMaterialColorDiffAmb( GX_RGB( 31,31,31 ), GX_RGB( 31,31,31 ), FALSE );
 	NNS_G3dGlbMaterialColorSpecEmi( GX_RGB( 31,31,31 ), GX_RGB( 31,31,31 ), FALSE );
 	
-	// ˆÊ’uİ’è
+	// ä½ç½®è¨­å®š
 	NNS_G3dGlbSetBaseTrans(&trans);
-	// Šp“xİ’è
+	// è§’åº¦è¨­å®š
 	NNS_G3dGlbSetBaseRot(&rot);
-	// ƒXƒP[ƒ‹İ’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
 	NNS_G3dGlbSetBaseScale(&scale_vec);
 
 //	NNS_G3dGlbFlush();
 	
-	// •`‰æ
+	// æç”»
 	NNS_G3dGePushMtx();
 	{
-		//ƒ{[ƒh
+		//ãƒœãƒ¼ãƒ‰
 		D3DOBJ_Draw( &fps->board.obj );
-		//ƒXƒ^ƒ“ƒv
+		//ã‚¹ã‚¿ãƒ³ãƒ—
 		StampSys_ObjDraw(&fps->ssw);
 	}
 	NNS_G3dGePopMtx(1);
@@ -1871,7 +1871,7 @@ static void Model3D_Update(FOOTPRINT_SYS *fps)
 
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶šƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   fps		
  *
@@ -1882,13 +1882,13 @@ static void BmpWinInit( FOOTPRINT_SYS *fps )
 {
 	int i;
 	
-	//-- ƒƒCƒ“‰æ–Ê --//
+	//-- ãƒ¡ã‚¤ãƒ³ç”»é¢ --//
 	GF_BGL_BmpWinAdd(fps->bgl, &fps->talk_win, FOOT_FRAME_WIN,
 		2, 1, 27, 4, FOOT_MAINBG_TALKFONT_PAL, WINCGX_MESSAGE_START);
 	GF_BGL_BmpWinDataFill(&fps->talk_win, 0xf);
 	
-	//-- ƒTƒu‰æ–Ê --//
-	//Q‰ÁÒ‚Ì–¼‘O•\¦
+	//-- ã‚µãƒ–ç”»é¢ --//
+	//å‚åŠ è€…ã®åå‰è¡¨ç¤º
 	for(i = 0; i < FOOTPRINT_BMPWIN_NAME_MAX; i++){
 		GF_BGL_BmpWinAdd(fps->bgl, &fps->name_win[i], FOOT_SUBFRAME_WIN,
 			NameBmpwinPos[i][0], NameBmpwinPos[i][1], 
@@ -1901,7 +1901,7 @@ static void BmpWinInit( FOOTPRINT_SYS *fps )
 
 //------------------------------------------------------------------
 /**
- * $brief   Šm•Û‚µ‚½BMPWIN‚ğ‰ğ•ú
+ * $brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   fps		
  *
@@ -1912,10 +1912,10 @@ static void BmpWinDelete( FOOTPRINT_SYS *fps )
 {
 	int i;
 	
-	//-- ƒƒCƒ“‰æ–Ê --//
+	//-- ãƒ¡ã‚¤ãƒ³ç”»é¢ --//
 	GF_BGL_BmpWinDel(&fps->talk_win);
 	
-	//-- ƒTƒu‰æ–Ê --//
+	//-- ã‚µãƒ–ç”»é¢ --//
 	for(i = 0; i < FOOTPRINT_BMPWIN_NAME_MAX; i++){
 		GF_BGL_BmpWinDel(&fps->name_win[i]);
 	}
@@ -1923,9 +1923,9 @@ static void BmpWinDelete( FOOTPRINT_SYS *fps )
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘«Õƒ{[ƒh—p3DBG‰Šú‰»ŠÖ”
+ * @brief   è¶³è·¡ãƒœãƒ¼ãƒ‰ç”¨3DBGåˆæœŸåŒ–é–¢æ•°
  * 
- * @param   ƒq[ƒvID
+ * @param   ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 static GF_G3DMAN * Footprint_3D_Init(int heap_id)
@@ -1939,28 +1939,28 @@ static GF_G3DMAN * Footprint_3D_Init(int heap_id)
 
 static void FootprintSimpleSetUp(void)
 {
-	// ‚R‚cg—p–Ê‚Ìİ’è(•\¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘«Õƒ{[ƒh—p3DBGI—¹ˆ—
+ * @brief   è¶³è·¡ãƒœãƒ¼ãƒ‰ç”¨3DBGçµ‚äº†å‡¦ç†
  *
  * @param   g3Dman		
  */
@@ -1972,7 +1972,7 @@ static void Footprint_3D_Exit(GF_G3DMAN *g3Dman)
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚Ì’ÊMƒXƒe[ƒ^ƒX‚ğƒZƒbƒg‚·‚é
+ * @brief   è‡ªåˆ†ã®é€šä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param   fps		
  */
@@ -1988,10 +1988,10 @@ static void Footprint_MyCommStatusSet(FOOTPRINT_SYS *fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   FOOTPRINT_IN_PARAM‚Ì’†g‚ğì¬‚·‚é
+ * @brief   FOOTPRINT_IN_PARAMã®ä¸­èº«ã‚’ä½œæˆã™ã‚‹
  *
  * @param   fps			
- * @param   in_para		ƒf[ƒ^ƒZƒbƒgæ
+ * @param   in_para		ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå…ˆ
  */
 //--------------------------------------------------------------
 static void Footprint_InParamCreate(FOOTPRINT_SYS_PTR fps, FOOTPRINT_IN_PARAM *in_para)
@@ -2001,9 +2001,9 @@ static void Footprint_InParamCreate(FOOTPRINT_SYS_PTR fps, FOOTPRINT_IN_PARAM *i
 	MI_CpuClear8(in_para, sizeof(FOOTPRINT_IN_PARAM));
 	stamp = &in_para->stamp;
 	
-	//Å‰‚É–¼‘O‚Ì‰¡‚É•\¦‚³‚¹‚é‘«Õ‚Ìó‘Ô‚ğƒZƒbƒg‚·‚é
-	//æ“ª‚É‚¢‚éƒ|ƒPƒ‚ƒ“‚Ì‘«Õ‚ğƒZƒbƒgB
-	//ƒ^ƒ}ƒS‚Ìê‡‚Í”ò‚Î‚·
+	//æœ€åˆã«åå‰ã®æ¨ªã«è¡¨ç¤ºã•ã›ã‚‹è¶³è·¡ã®çŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	//å…ˆé ­ã«ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®è¶³è·¡ã‚’ã‚»ãƒƒãƒˆã€‚
+	//ã‚¿ãƒã‚´ã®å ´åˆã¯é£›ã°ã™
 	stamp->monsno = 150;
 	stamp->color = 0x001f;
 	stamp->personal_rnd = 0x0101;
@@ -2012,9 +2012,9 @@ static void Footprint_InParamCreate(FOOTPRINT_SYS_PTR fps, FOOTPRINT_IN_PARAM *i
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚Ì’ÊMƒXƒe[ƒ^ƒX‚ğæ“¾‚·‚é
+ * @brief   è‡ªåˆ†ã®é€šä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—ã™ã‚‹
  * @param   fps		
- * @retval  ’ÊMƒXƒe[ƒ^ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  é€šä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 FOOTPRINT_MY_COMM_STATUS * Footprint_MyCommStatusGet(FOOTPRINT_SYS_PTR fps)
@@ -2024,11 +2024,11 @@ FOOTPRINT_MY_COMM_STATUS * Footprint_MyCommStatusGet(FOOTPRINT_SYS_PTR fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒ|ƒPƒ‚ƒ“‚ğƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^‚ÉƒZƒbƒg‚·‚é
+ * @brief   æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   board_type		ƒ{[ƒh‚Ìí—Ş(FOOTPRINT_BOARD_TYPE_???)
- * @param   sv				ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   stamp_array		‘ã“üæ(ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^)
+ * @param   board_type		ãƒœãƒ¼ãƒ‰ã®ç¨®é¡(FOOTPRINT_BOARD_TYPE_???)
+ * @param   sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   stamp_array		ä»£å…¥å…ˆ(ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿)
  */
 //--------------------------------------------------------------
 static void Footprint_Temoti_to_StampParam(int board_type, SAVEDATA * sv, STAMP_PARAM *stamp_array)
@@ -2050,7 +2050,7 @@ static void Footprint_Temoti_to_StampParam(int board_type, SAVEDATA * sv, STAMP_
 		stamp_array[i].color 
 			= FootprintTool_StampColorGet(board_type, PokeParaGet(pp, ID_PARA_id_no, NULL));
 	#ifdef PM_DEBUG
-		if(sys.cont & PAD_BUTTON_B){	//ƒ‰ƒ“ƒ_ƒ€‚ÅF‚ğ•Ï‚¦‚é
+		if(sys.cont & PAD_BUTTON_B){	//ãƒ©ãƒ³ãƒ€ãƒ ã§è‰²ã‚’å¤‰ãˆã‚‹
 			stamp_array[i].color = FootprintTool_StampColorGet(board_type, gf_rand());
 		}
 	#endif
@@ -2059,11 +2059,11 @@ static void Footprint_Temoti_to_StampParam(int board_type, SAVEDATA * sv, STAMP_
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰İ’uˆÊ’u‚Å‚ÌAƒ[ƒ‹ƒh‹óŠÔÀ•W”ÍˆÍ‚ğæ“¾‚·‚é
+ * @brief   ã‚«ãƒ¡ãƒ©è¨­ç½®ä½ç½®ã§ã®ã€ãƒ¯ãƒ¼ãƒ«ãƒ‰ç©ºé–“åº§æ¨™ç¯„å›²ã‚’å–å¾—ã™ã‚‹
  *
  * @param   fps		
- * @param   width		İ’u‚³‚ê‚Ä‚¢‚éƒJƒƒ‰‚É•\¦‚³‚ê‚Ä‚¢‚éƒ[ƒ‹ƒhÀ•W‚Ì•
- * @param   height		İ’u‚³‚ê‚Ä‚¢‚éƒJƒƒ‰‚É•\¦‚³‚ê‚Ä‚¢‚éƒ[ƒ‹ƒhÀ•W‚Ì‚‚³
+ * @param   width		è¨­ç½®ã•ã‚Œã¦ã„ã‚‹ã‚«ãƒ¡ãƒ©ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã®å¹…
+ * @param   height		è¨­ç½®ã•ã‚Œã¦ã„ã‚‹ã‚«ãƒ¡ãƒ©ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã®é«˜ã•
  */
 //--------------------------------------------------------------
 void Footprint_WorldWidthHeightGet(FOOTPRINT_SYS_PTR fps, fx32 *width, fx32 *height)
@@ -2074,12 +2074,12 @@ void Footprint_WorldWidthHeightGet(FOOTPRINT_SYS_PTR fps, fx32 *width, fx32 *hei
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv‚ğ¶¬‚·‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   fps			
- * @param   param		ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^
+ * @param   param		ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:¬Œ÷B@FALSE:¸”s
+ * @retval  TRUE:æˆåŠŸã€‚ã€€FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL Footprint_StampAdd(FOOTPRINT_SYS_PTR fps, const STAMP_PARAM *param, s32 user_id)
@@ -2090,7 +2090,7 @@ BOOL Footprint_StampAdd(FOOTPRINT_SYS_PTR fps, const STAMP_PARAM *param, s32 use
 	ret = StampSys_Add(fps, &fps->ssw, param, 
 		fps->handle_footprint, fps->handle_footmark, fps->arceus_flg);
 	if(ret == TRUE){
-		//ã‰æ–Ê‚Ì‘«Õƒ}[ƒN‚ğ•ÏX‚·‚é
+		//ä¸Šç”»é¢ã®è¶³è·¡ãƒãƒ¼ã‚¯ã‚’å¤‰æ›´ã™ã‚‹
 		user_index = DWC_LOBBY_SUBCHAN_GetUserIDIdx(user_id);
 		if(user_index != DWC_LOBBY_USERIDTBL_IDX_NONE){
 			if(fps->name_foot_monsno[user_index] != param->monsno
@@ -2101,7 +2101,7 @@ BOOL Footprint_StampAdd(FOOTPRINT_SYS_PTR fps, const STAMP_PARAM *param, s32 use
 					fps->handle_footprint, fps->handle_footmark, 
 					NNS_G2D_VRAM_TYPE_2DSUB, fps->arceus_flg);
 				CATS_ObjectEnableCap(fps->cap_name_foot[user_index], CATS_ENABLE_TRUE);
-				//ƒpƒŒƒbƒg‚à•Ï‚¦‚é
+				//ãƒ‘ãƒ¬ãƒƒãƒˆã‚‚å¤‰ãˆã‚‹
 				PaletteWork_Clear(fps->pfd, FADE_SUB_BG, FADEBUF_ALL, param->color, 
 					SUBBG_LIST_COLOR_START + user_index, SUBBG_LIST_COLOR_START + user_index + 1);
 			}
@@ -2115,7 +2115,7 @@ BOOL Footprint_StampAdd(FOOTPRINT_SYS_PTR fps, const STAMP_PARAM *param, s32 use
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚ÌƒŠƒXƒg‚ğQÆ‚µ‚Ä–¼‘OƒŠƒXƒg‚ğXV‚·‚é
+ * @brief   ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒªã‚¹ãƒˆã‚’å‚ç…§ã—ã¦åå‰ãƒªã‚¹ãƒˆã‚’æ›´æ–°ã™ã‚‹
  *
  * @param   msgman		
  * @param   wordset		
@@ -2124,7 +2124,7 @@ BOOL Footprint_StampAdd(FOOTPRINT_SYS_PTR fps, const STAMP_PARAM *param, s32 use
  * @param   entry_userid[]		
  *
  * @retval  FOOTPRINT_NAME_UPDATE_STATUS_???
- * 			(ENTRY‚ÆLEAVE_ROOM‚Ì—¼•û‚ª”­¶‚µ‚½ê‡‚ÍENTRY‚ğ—Dæ‚µ‚Ä•Ô‚µ‚Ü‚·)
+ * 			(ENTRYã¨LEAVE_ROOMã®ä¸¡æ–¹ãŒç™ºç”Ÿã—ãŸå ´åˆã¯ENTRYã‚’å„ªå…ˆã—ã¦è¿”ã—ã¾ã™)
  */
 //--------------------------------------------------------------
 static FOOTPRINT_NAME_UPDATE_STATUS FootPrintTool_NameAllUpdate(FOOTPRINT_SYS *fps)
@@ -2135,16 +2135,16 @@ static FOOTPRINT_NAME_UPDATE_STATUS FootPrintTool_NameAllUpdate(FOOTPRINT_SYS *f
 	entry_num = 0;
 	out_num = 0;
 	
-	DWC_LOBBY_SUBCHAN_GetUserIDTbl(&chan_user);	// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹“àƒ†[ƒUID—ñ‹“æ“¾
+	DWC_LOBBY_SUBCHAN_GetUserIDTbl(&chan_user);	// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«å†…ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™å–å¾—
 	for(i = 0; i < FOOTPRINT_ENTRY_MAX; i++){
 		OS_TPrintf("chan_user.cp_tbl[%d] = %d\n", i, chan_user.cp_tbl[i]);
 		if(fps->entry_userid[i] != chan_user.cp_tbl[i]){
-			//•ÏX‚ª‚ ‚Á‚½‚à‚Ì‚¾‚¯Ä•`‰æ
+			//å¤‰æ›´ãŒã‚ã£ãŸã‚‚ã®ã ã‘å†æç”»
 			if(chan_user.cp_tbl[i] != DWC_LOBBY_INVALID_USER_ID){
-				OS_TPrintf("V‹Kƒ†[ƒU[–¼•`‰æ index = %d\n", i);
+				OS_TPrintf("æ–°è¦ãƒ¦ãƒ¼ã‚¶ãƒ¼åæç”» index = %d\n", i);
 				FootPrintTool_NameDraw(fps->msgman, fps->wordset, fps->name_win, 
 					fps->parent_work->wflby_sys, chan_user.cp_tbl[i]);
-				//–¼‘OƒŠƒXƒg‚ÌƒXƒNƒŠ[ƒ“•`‰æ
+				//åå‰ãƒªã‚¹ãƒˆã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»
 				{
 					u16 *panel_scrn;
 					int x, y;
@@ -2161,11 +2161,11 @@ static FOOTPRINT_NAME_UPDATE_STATUS FootPrintTool_NameAllUpdate(FOOTPRINT_SYS *f
 				entry_num++;
 			}
 			else{
-				OS_TPrintf("ƒ†[ƒU[–¼Á‹@index = %d”Ô\n", i);
+				OS_TPrintf("ãƒ¦ãƒ¼ã‚¶ãƒ¼åæ¶ˆå»ã€€index = %dç•ª\n", i);
 				FootPrintTool_NameErase(fps->name_win, i);
 				fps->name_foot_monsno[i] = 0;
 				fps->name_foot_color[i] = 0;
-				CATS_ObjectEnableCap(fps->cap_name_foot[i], CATS_ENABLE_FALSE);	//‘«Õ”ñ•\¦
+				CATS_ObjectEnableCap(fps->cap_name_foot[i], CATS_ENABLE_FALSE);	//è¶³è·¡éè¡¨ç¤º
 				GF_BGL_ScrFill(fps->bgl, FOOT_SUBFRAME_PLATE, 0, 
 					Sub_ListScrnRange[i][0], Sub_ListScrnRange[i][1],
 					Sub_ListScrnRange[i][2], Sub_ListScrnRange[i][3], GF_BGL_SCRWRT_PALNL);
@@ -2173,7 +2173,7 @@ static FOOTPRINT_NAME_UPDATE_STATUS FootPrintTool_NameAllUpdate(FOOTPRINT_SYS *f
 				out_num++;
 			}
 			
-			//©•ª‚ğ•\‚·˜g‚ÌˆÊ’u‚ğƒZƒbƒg
+			//è‡ªåˆ†ã‚’è¡¨ã™æ ã®ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
 			if(chan_user.cp_tbl[i] == fps->my_comm_status.user_id){
 				CATS_ObjectPosSetCap_SubSurface(fps->cap_name_frame,
 					Sub_NameFramePos[i][0], Sub_NameFramePos[i][1], FOOTPRINT_SUB_ACTOR_DISTANCE);
@@ -2181,10 +2181,10 @@ static FOOTPRINT_NAME_UPDATE_STATUS FootPrintTool_NameAllUpdate(FOOTPRINT_SYS *f
 			}
 		}
 		fps->entry_userid[i] = chan_user.cp_tbl[i];
-//		OS_TPrintf("Q‰ÁÒ(%d)‚Ìuserid = %d\n", i, chan_user.cp_tbl[i]);
+//		OS_TPrintf("å‚åŠ è€…(%d)ã®userid = %d\n", i, chan_user.cp_tbl[i]);
 	}
 
-	//Q‰Ál”‚ğƒJƒEƒ“ƒg
+	//å‚åŠ äººæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 	player_max = 0;
 	for(i = 0; i < FOOTPRINT_ENTRY_MAX; i++){
 		if(fps->entry_userid[i] != DWC_LOBBY_INVALID_USER_ID){
@@ -2206,10 +2206,10 @@ static FOOTPRINT_NAME_UPDATE_STATUS FootPrintTool_NameAllUpdate(FOOTPRINT_SYS *f
 
 //--------------------------------------------------------------
 /**
- * @brief   Q‰ÁÒ‚Ì–¼‘O•`‰æ
+ * @brief   å‚åŠ è€…ã®åå‰æç”»
  *
  * @param   fps				
- * @param   user_index		ƒ†[ƒU[id
+ * @param   user_index		ãƒ¦ãƒ¼ã‚¶ãƒ¼id
  */
 //--------------------------------------------------------------
 void Footprint_NameWrite(FOOTPRINT_SYS_PTR fps, s32 user_id)
@@ -2220,10 +2220,10 @@ void Footprint_NameWrite(FOOTPRINT_SYS_PTR fps, s32 user_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   Q‰ÁÒ‚Ì–¼‘O‚ğÁ‹‚·‚é
+ * @brief   å‚åŠ è€…ã®åå‰ã‚’æ¶ˆå»ã™ã‚‹
  *
  * @param   fps		
- * @param   user_index		ƒ†[ƒU[index
+ * @param   user_index		ãƒ¦ãƒ¼ã‚¶ãƒ¼index
  */
 //--------------------------------------------------------------
 void Footprint_NameErase(FOOTPRINT_SYS_PTR fps, u32 user_index)
@@ -2233,10 +2233,10 @@ void Footprint_NameErase(FOOTPRINT_SYS_PTR fps, u32 user_index)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒGƒtƒFƒNƒg‚ğ¶¬‚·‚é
+ * @brief   ã‚¿ãƒƒãƒã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   fps			
- * @param   hit_pos		ƒCƒ“ƒNƒpƒŒƒbƒg‚ÌƒqƒbƒgˆÊ’u
+ * @param   hit_pos		ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ’ãƒƒãƒˆä½ç½®
  */
 //--------------------------------------------------------------
 static void Footprint_TouchEffAdd(FOOTPRINT_SYS_PTR fps, int hit_pos)
@@ -2244,7 +2244,7 @@ static void Footprint_TouchEffAdd(FOOTPRINT_SYS_PTR fps, int hit_pos)
 	TCATS_OBJECT_ADD_PARAM_S head;
 	int i;
 	
-	//ƒ^ƒbƒ`ƒGƒtƒFƒNƒgƒAƒNƒ^[¶¬
+	//ã‚¿ãƒƒãƒã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	head = TouchEffObjParam;
 	for(i = 0; i < TOUCH_EFF_MAX; i++){
 		if(fps->cap_touch_eff[i] == NULL){
@@ -2263,23 +2263,23 @@ static void Footprint_TouchEffAdd(FOOTPRINT_SYS_PTR fps, int hit_pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»İ‘I‘ğ’†‚ÌƒCƒ“ƒNƒpƒŒƒbƒg‚ÌF‚ğ—‚Æ‚·
+ * @brief   ç¾åœ¨é¸æŠä¸­ã®ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã®è‰²ã‚’è½ã¨ã™
  *
  * @param   fps			
- * @param   hit_pos		ƒCƒ“ƒNƒpƒŒƒbƒg‚ÌƒqƒbƒgˆÊ’u
+ * @param   hit_pos		ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ’ãƒƒãƒˆä½ç½®
  */
 //--------------------------------------------------------------
 static void Footprint_SelectInkPaletteFade(FOOTPRINT_SYS_PTR fps, int hit_pos)
 {
 	u16 *def_pal, *trans_pal;
 
-	//‰Ÿ‚µ‚½Š‚ÌƒCƒ“ƒNƒpƒŒƒbƒg‚ÌF‚ğ—‚Æ‚·
+	//æŠ¼ã—ãŸæ‰€ã®ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã®è‰²ã‚’è½ã¨ã™
 	def_pal = PaletteWorkDefaultWorkGet(fps->pfd, FADE_MAIN_OBJ);
 	trans_pal = PaletteWorkTransWorkGet(fps->pfd, FADE_MAIN_OBJ);
-	//ƒpƒŒƒbƒg‚ğ‚Ü‚¸Œ³’Ê‚è‚É‚·‚é
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã¾ãšå…ƒé€šã‚Šã«ã™ã‚‹
 	MI_CpuCopy16(&def_pal[PALOFS_INK * 16 + COLOR_NO_INK_START], 
 		&trans_pal[PALOFS_INK * 16 + COLOR_NO_INK_START], POKEMON_TEMOTI_MAX * 2);
-	//‘ÎÛˆÊ’u‚ÌƒpƒŒƒbƒg‚ğˆÃ‚­‚·‚é
+	//å¯¾è±¡ä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’æš—ãã™ã‚‹
 	SoftFade(&def_pal[PALOFS_INK * 16 + COLOR_NO_INK_START + hit_pos],
 		&trans_pal[PALOFS_INK * 16 + COLOR_NO_INK_START + hit_pos], 
 		1, TOUCH_EFF_EVY, TOUCH_EFF_COLOR);
@@ -2287,7 +2287,7 @@ static void Footprint_SelectInkPaletteFade(FOOTPRINT_SYS_PTR fps, int hit_pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒGƒtƒFƒNƒgXVˆ—
+ * @brief   ã‚¿ãƒƒãƒã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ›´æ–°å‡¦ç†
  *
  * @param   fps		
  */
@@ -2311,18 +2311,18 @@ static void Footprint_TouchEffUpdate(FOOTPRINT_SYS_PTR fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒHƒ“ƒgOAM‚ğì¬‚·‚é
+ * @brief   ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’ä½œæˆã™ã‚‹
  *
- * @param   aci			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_actor	¶¬‚µ‚½ƒtƒHƒ“ƒgOAMŠÖ˜A‚Ìƒ[ƒN‘ã“üæ
- * @param   str			•¶š—ñ
- * @param   font_type	ƒtƒHƒ“ƒgƒ^ƒCƒv(FONT_SYSTEM“™)
- * @param   color		ƒtƒHƒ“ƒgƒJƒ‰[\¬
- * @param   pal_offset	ƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
- * @param   pal_id		“o˜^ŠJnƒpƒŒƒbƒgID
- * @param   x			À•WX
- * @param   y			À•WY
- * @param   pos_center  FONTOAM_LEFT(X¶’[À•W) or FONTOAM_CENTER(X’†SÀ•W)
+ * @param   aci			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_actor	ç”Ÿæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆOAMé–¢é€£ã®ãƒ¯ãƒ¼ã‚¯ä»£å…¥å…ˆ
+ * @param   str			æ–‡å­—åˆ—
+ * @param   font_type	ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—(FONT_SYSTEMç­‰)
+ * @param   color		ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼æ§‹æˆ
+ * @param   pal_offset	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   pal_id		ç™»éŒ²é–‹å§‹ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   x			åº§æ¨™X
+ * @param   y			åº§æ¨™Y
+ * @param   pos_center  FONTOAM_LEFT(Xå·¦ç«¯åº§æ¨™) or FONTOAM_CENTER(Xä¸­å¿ƒåº§æ¨™)
  */
 //--------------------------------------------------------------
 static void Sub_FontOamCreate(FOOTPRINT_SYS_PTR fps, FONT_ACTOR *font_actor, const STRBUF *str, 
@@ -2343,10 +2343,10 @@ static void Sub_FontOamCreate(FOOTPRINT_SYS_PTR fps, FONT_ACTOR *font_actor, con
 	bgl = fps->bgl;
 	crp = fps->crp;
 	
-	//•¶š—ñ‚Ìƒhƒbƒg•‚©‚çAg—p‚·‚éƒLƒƒƒ‰”‚ğZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	FontLenGet(str, font_type, &font_len, &char_len);
 
-	//BMPì¬
+	//BMPä½œæˆ
 	GF_BGL_BmpWinInit(&bmpwin);
 	GF_BGL_BmpWinObjAdd(bgl, &bmpwin, char_len, 16 / 8, 0, 0);
 	GF_STR_PrintExpand(&bmpwin, font_type, str, 0, 0, MSG_NO_PUT, color, 
@@ -2356,7 +2356,7 @@ static void Sub_FontOamCreate(FOOTPRINT_SYS_PTR fps, FONT_ACTOR *font_actor, con
 	vram_size = FONTOAM_NeedCharSize(&bmpwin, NNS_G2D_VRAM_TYPE_2DMAIN,  HEAPID_FOOTPRINT);
 	CharVramAreaAlloc(vram_size, CHARM_CONT_AREACONT, NNS_G2D_VRAM_TYPE_2DMAIN, &cma);
 	
-	//À•WˆÊ’uC³
+	//åº§æ¨™ä½ç½®ä¿®æ­£
 	if(pos_center == FONTOAM_CENTER){
 		x -= font_len / 2;
 	}
@@ -2381,7 +2381,7 @@ static void Sub_FontOamCreate(FOOTPRINT_SYS_PTR fps, FONT_ACTOR *font_actor, con
 	FONTOAM_SetPaletteOffsetAddTransPlttNo(fontoam, pal_offset);
 	FONTOAM_SetMat(fontoam, x, y);
 	
-	//‰ğ•úˆ—
+	//è§£æ”¾å‡¦ç†
 	GF_BGL_BmpWinDel(&bmpwin);
 	
 	font_actor->fontoam = fontoam;
@@ -2391,8 +2391,8 @@ static void Sub_FontOamCreate(FOOTPRINT_SYS_PTR fps, FONT_ACTOR *font_actor, con
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶¬‚³‚ê‚Ä‚¢‚éƒtƒHƒ“ƒgOAM‚ğ‘S‚Äíœ‚ğ‚·‚é
- * @param   fps		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’å…¨ã¦å‰Šé™¤ã‚’ã™ã‚‹
+ * @param   fps		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_FontOamDelete(FONT_ACTOR *font_actor)
@@ -2403,19 +2403,19 @@ static void Sub_FontOamDelete(FONT_ACTOR *font_actor)
 
 //--------------------------------------------------------------
 /**
- * @brief   •¶š—ñ‚Ì’·‚³‚ğæ“¾‚·‚é
+ * @brief   æ–‡å­—åˆ—ã®é•·ã•ã‚’å–å¾—ã™ã‚‹
  *
- * @param   str				•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_type		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   ret_dot_len		ƒhƒbƒg•‘ã“üæ
- * @param   ret_char_len	ƒLƒƒƒ‰•‘ã“üæ
+ * @param   str				æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_type		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   ret_dot_len		ãƒ‰ãƒƒãƒˆå¹…ä»£å…¥å…ˆ
+ * @param   ret_char_len	ã‚­ãƒ£ãƒ©å¹…ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void FontLenGet(const STRBUF *str, FONT_TYPE font_type, int *ret_dot_len, int *ret_char_len)
 {
 	int dot_len, char_len;
 	
-	//•¶š—ñ‚Ìƒhƒbƒg•‚©‚çAg—p‚·‚éƒLƒƒƒ‰”‚ğZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	dot_len = FontProc_GetPrintStrWidth(font_type, str, 0);
 	char_len = dot_len / 8;
 	if(FX_ModS32(dot_len, 8) != 0){
@@ -2428,7 +2428,7 @@ static void FontLenGet(const STRBUF *str, FONT_TYPE font_type, int *ret_dot_len,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒ“ƒNƒQ[ƒWXVˆ—
+ * @brief   ã‚¤ãƒ³ã‚¯ã‚²ãƒ¼ã‚¸æ›´æ–°å‡¦ç†
  *
  * @param   fps		
  */
@@ -2437,21 +2437,21 @@ static void Footprint_InkGaugeUpdate(FOOTPRINT_SYS_PTR fps)
 {
 	int offset_y, i;
 	
-	if(fps->ink_now == fps->ink_calc){	//ƒCƒ“ƒN‚ğ‰ñ•œ
+	if(fps->ink_now == fps->ink_calc){	//ã‚¤ãƒ³ã‚¯ã‚’å›å¾©
 		fps->ink_now += INK_GAUGE_RESTORE_NUM;
 		if(fps->ink_now > INK_GAUGE_TANK_MAX){
 			fps->ink_now = INK_GAUGE_TANK_MAX;
 		}
 		fps->ink_calc = fps->ink_now;
 	}
-	else{	//ƒCƒ“ƒN‚ğŒ¸‚ç‚µ’†
+	else{	//ã‚¤ãƒ³ã‚¯ã‚’æ¸›ã‚‰ã—ä¸­
 		fps->ink_calc -= fps->ink_sub;
 		if(fps->ink_calc < fps->ink_now){
 			fps->ink_calc = fps->ink_now;
 		}
 	}
 	
-	//ƒCƒ“ƒN‚Ì—Ê‚©‚çƒQ[ƒW‚ÌŒ»İ’n‚ğŒˆ’è
+	//ã‚¤ãƒ³ã‚¯ã®é‡ã‹ã‚‰ã‚²ãƒ¼ã‚¸ã®ç¾åœ¨åœ°ã‚’æ±ºå®š
 	offset_y = INK_GAUGE_LEN - (fps->ink_calc >> 8);
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		CATS_ObjectPosSetCap_SubSurface(fps->cap_ink[i],
@@ -2462,13 +2462,13 @@ static void Footprint_InkGaugeUpdate(FOOTPRINT_SYS_PTR fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒ“ƒNƒQ[ƒW‚ğÁ”ï‚·‚é
+ * @brief   ã‚¤ãƒ³ã‚¯ã‚²ãƒ¼ã‚¸ã‚’æ¶ˆè²»ã™ã‚‹
  *
  * @param   fps				
- * @param   consume_num		Á”ï—Ê
+ * @param   consume_num		æ¶ˆè²»é‡
  *
- * @retval  TRUE:ƒCƒ“ƒN‚ª‘«‚è‚½(Á”ïOK)
- * @retval  FALSE:ƒCƒ“ƒN‚ª‘«‚è‚È‚¢(Á”ïNG)
+ * @retval  TRUE:ã‚¤ãƒ³ã‚¯ãŒè¶³ã‚ŠãŸ(æ¶ˆè²»OK)
+ * @retval  FALSE:ã‚¤ãƒ³ã‚¯ãŒè¶³ã‚Šãªã„(æ¶ˆè²»NG)
  */
 //--------------------------------------------------------------
 static BOOL Footprint_InkGauge_Consume(FOOTPRINT_SYS_PTR fps, int consume_num)
@@ -2480,11 +2480,11 @@ static BOOL Footprint_InkGauge_Consume(FOOTPRINT_SYS_PTR fps, int consume_num)
 #endif
 
 	if(fps->ink_now < consume_num){
-		return FALSE;	//ƒCƒ“ƒN‚ª‘«‚è‚È‚¢
+		return FALSE;	//ã‚¤ãƒ³ã‚¯ãŒè¶³ã‚Šãªã„
 	}
 	
 	if(fps->ink_calc < fps->ink_now){
-		GF_ASSERT(0);	//ink_calc‚ªnow‚æ‚è‚à‰º‚Ì’l‚É‚È‚é–‚Í‚ ‚è‚¦‚È‚¢
+		GF_ASSERT(0);	//ink_calcãŒnowã‚ˆã‚Šã‚‚ä¸‹ã®å€¤ã«ãªã‚‹äº‹ã¯ã‚ã‚Šãˆãªã„
 		fps->ink_calc = fps->ink_now;
 	}
 	fps->ink_now -= consume_num;
@@ -2496,7 +2496,7 @@ static BOOL Footprint_InkGauge_Consume(FOOTPRINT_SYS_PTR fps, int consume_num)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO‹@”\FƒJƒƒ‰ˆÚ“®
+ * @brief   ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ï¼šã‚«ãƒ¡ãƒ©ç§»å‹•
  *
  * @param   fps		
  */
@@ -2510,9 +2510,9 @@ static void Debug_CameraMove(FOOTPRINT_SYS *fps)
 	CAMERA_ANGLE angle = {0,0,0,0};
 	int mode = 0;
 	enum{
-		MODE_SHIFT,			//•½sˆÚ“®
-		MODE_DISTANCE,		//‹——£
-		MODE_ANGLE_REV,		//Œö“]
+		MODE_SHIFT,			//å¹³è¡Œç§»å‹•
+		MODE_DISTANCE,		//è·é›¢
+		MODE_ANGLE_REV,		//å…¬è»¢
 	};
 	
 	if((sys.cont & PAD_BUTTON_L) && (sys.cont & PAD_BUTTON_R)){
@@ -2550,7 +2550,7 @@ static void Debug_CameraMove(FOOTPRINT_SYS *fps)
 		}
 		GFC_ShiftCamera(&move, fps->camera);
 		move = GFC_GetCameraPos(fps->camera);
-		OS_TPrintf("ƒJƒƒ‰ˆÊ’u x=%d(16i:%x), y=%d(16i:%x), z=%d(16i:%x)\n", move.x, move.x, move.y, move.y, move.z, move.z);
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©ä½ç½® x=%d(16é€²:%x), y=%d(16é€²:%x), z=%d(16é€²:%x)\n", move.x, move.x, move.y, move.y, move.z, move.z);
 		break;
 	
 	case MODE_ANGLE_REV:
@@ -2574,7 +2574,7 @@ static void Debug_CameraMove(FOOTPRINT_SYS *fps)
 		}
 		GFC_AddCameraAngleRev(&angle, fps->camera);
 		angle = GFC_GetCameraAngle(fps->camera);
-		OS_TPrintf("ƒJƒƒ‰ƒAƒ“ƒOƒ‹@x=%d, y=%d, z=%d\n", angle.x, angle.y, angle.z);
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã€€x=%d, y=%d, z=%d\n", angle.x, angle.y, angle.z);
 		break;
 	case MODE_DISTANCE:
 		if(sys.cont & PAD_KEY_UP){
@@ -2583,7 +2583,7 @@ static void Debug_CameraMove(FOOTPRINT_SYS *fps)
 		if(sys.cont & PAD_KEY_DOWN){
 			GFC_AddCameraDistance(-FX32_ONE, fps->camera);
 		}
-		OS_TPrintf("ƒJƒƒ‰‹——£%d(16i:%x)\n", GFC_GetCameraDistance(fps->camera), GFC_GetCameraDistance(fps->camera));
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©è·é›¢ï¼%d(16é€²:%x)\n", GFC_GetCameraDistance(fps->camera), GFC_GetCameraDistance(fps->camera));
 		break;
 	}
 #endif

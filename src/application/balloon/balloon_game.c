@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon_game.c
- * @brief	•—‘D–c‚ç‚Ü‚µƒQ[ƒ€ƒƒCƒ“
+ * @brief	é¢¨èˆ¹è†¨ã‚‰ã¾ã—ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³
  * @author	matsuda
- * @date	2007.11.01(–Ø)
+ * @date	2007.11.01(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -47,22 +47,22 @@
 #include "../../particledata/pl_etc/pl_etc_particle_def.h"
 #include "../../particledata/pl_etc/pl_etc_particle_lst.h"
 #include "msgdata/msg_balloon.h"
-#include "graphic/wlmngm_tool.naix"		//ƒ^ƒbƒ`ƒyƒ“ƒOƒ‰ƒtƒBƒbƒN
+#include "graphic/wlmngm_tool.naix"		//ã‚¿ãƒƒãƒãƒšãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 #include "system/window.h"
 
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‘—M‘O‚Ì“¯Šúæ‚è”Ô†
+///ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³é€ä¿¡å‰ã®åŒæœŸå–ã‚Šç•ªå·
 #define BALLOON_INIT_TIMING_NO			(211)
 
-///Vram“]‘—ƒ}ƒl[ƒWƒƒ[ƒ^ƒXƒN”
+///Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¿ã‚¹ã‚¯æ•°
 #define BALLOON_VRAM_TRANSFER_TASK_NUM	(64)
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰İ’è
+//	ã‚«ãƒ¡ãƒ©è¨­å®š
 //--------------------------------------------------------------
 #define BALLOON_CAMERA_PERSPWAY		(FX_GET_ROTA_NUM(22))
 #define BALLOON_CAMERA_NEAR			( FX32_ONE )
@@ -74,19 +74,19 @@
 #define BALLOON_CAMERA_PY			( BALLOON_CAMERA_TY )
 #define BALLOON_CAMERA_PZ			( FX32_ONE * 5)
 
-///ƒJƒƒ‰‚Ì’‹“_‚Ü‚Å‚Ì‹——£
+///ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–ç‚¹ã¾ã§ã®è·é›¢
 #define BALLOON_CAMERA_DISTANCE		(0x7b << FX32_SHIFT)
 
-///3Dƒ‚ƒfƒ‹—p‚ÌƒJƒƒ‰‚Ì’‹“_‚Ü‚Å‚Ì‹——£
+///3Dãƒ¢ãƒ‡ãƒ«ç”¨ã®ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–ç‚¹ã¾ã§ã®è·é›¢
 #define MODEL_3D_CAMERA_DISTANCE		(80 << FX32_SHIFT)
 
-///ƒJƒƒ‰ƒAƒ“ƒOƒ‹
+///ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«
 static const CAMERA_ANGLE BalloonCameraAngle = {
 	FX_GET_ROTA_NUM(0), FX_GET_ROTA_NUM(0), FX_GET_ROTA_NUM(0),
 };
 
 //--------------------------------------------------------------
-//	ƒpƒCƒvƒ‚ƒfƒ‹İ’è
+//	ãƒ‘ã‚¤ãƒ—ãƒ¢ãƒ‡ãƒ«è¨­å®š
 //--------------------------------------------------------------
 #define PIPE_AIR_X		(FX32_CONST(0))
 #define PIPE_AIR_Y		(FX32_CONST(-25))
@@ -94,7 +94,7 @@ static const CAMERA_ANGLE BalloonCameraAngle = {
 #define PIPE_AIR_SCALE	(FX32_CONST(1.00f))
 
 //--------------------------------------------------------------
-//	‘äÀƒ‚ƒfƒ‹İ’è
+//	å°åº§ãƒ¢ãƒ‡ãƒ«è¨­å®š
 //--------------------------------------------------------------
 #define DAIZA_X			(FX32_CONST(0))
 #define DAIZA_Y			(FX32_CONST(-25))
@@ -102,9 +102,9 @@ static const CAMERA_ANGLE BalloonCameraAngle = {
 #define DAIZA_SCALE		(FX32_CONST(1.00f))
 
 //--------------------------------------------------------------
-//	BMPƒEƒBƒ“ƒhƒE
+//	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
-///BMPƒEƒBƒ“ƒhƒECGXƒGƒŠƒAŠJnˆÊ’u(ƒIƒtƒZƒbƒg)
+///BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦CGXã‚¨ãƒªã‚¢é–‹å§‹ä½ç½®(ã‚ªãƒ•ã‚»ãƒƒãƒˆ)
 #define BMPWIN_CGX_START			((0x8000 - 0x2000) / 32)
 
 #define BMPWIN_TALK_COLOR			(0xe)
@@ -115,17 +115,17 @@ static const CAMERA_ANGLE BalloonCameraAngle = {
 #define BMPWIN_DEBUG_CGX_OFFSET		(BMPWIN_TALK_CGX_OFFSET + BMPWIN_TALK_CGX_SIZE)
 #define BMPWIN_DEBUG_CGX_SIZE		(20 * 4)
 
-//-- ƒTƒu‰æ–Ê—pBMPƒEƒBƒ“ƒhƒE --//
-///ƒTƒu‰æ–ÊƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE‚ÌƒpƒŒƒbƒg”Ô†
+//-- ã‚µãƒ–ç”»é¢ç”¨BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ --//
+///ã‚µãƒ–ç”»é¢ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define BMPWIN_SUB_SYSTEM_WIN_COLOR		(6)
-///ƒTƒu‰æ–ÊBMPƒEƒBƒ“ƒhƒE‚ÌƒpƒŒƒbƒg”Ô†
+///ã‚µãƒ–ç”»é¢BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define BMPWIN_SUB_TALK_COLOR			(5)	//(0xd)
-///ƒTƒu‰æ–Ê—pƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒJƒ‰[w’è
-#define	BMPWIN_SUB_STR_PRINTCOLOR	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
-///ƒTƒu‰æ–Ê—pƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒJƒ‰[w’è(VIP—p)
+///ã‚µãƒ–ç”»é¢ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼æŒ‡å®š
+#define	BMPWIN_SUB_STR_PRINTCOLOR	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+///ã‚µãƒ–ç”»é¢ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼æŒ‡å®š(VIPç”¨)
 #define	BMPWIN_SUB_STR_PRINTCOLOR_VIP	( GF_PRINTCOLOR_MAKE( 7, 8, 15 ) )
 
-///ƒTƒu‰æ–ÊBMPƒEƒBƒ“ƒhƒECGXƒGƒŠƒAŠJnˆÊ’u(ƒIƒtƒZƒbƒg)
+///ã‚µãƒ–ç”»é¢BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦CGXã‚¨ãƒªã‚¢é–‹å§‹ä½ç½®(ã‚ªãƒ•ã‚»ãƒƒãƒˆ)
 #define BMPWIN_SUB_CGX_START		((0x8000 - 0x2000) / 32)
 
 #define BMPWIN_SUB_CGX_NAME_SIZE		(10 * 2)
@@ -137,107 +137,107 @@ static const CAMERA_ANGLE BalloonCameraAngle = {
 
 
 //--------------------------------------------------------------
-//	CL_ACT—p‚Ì’è”’è‹`
+//	CL_ACTç”¨ã®å®šæ•°å®šç¾©
 //--------------------------------------------------------------
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJn
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define BALLOON_OAM_START_MAIN			(0)
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define BALLOON_OAM_END_MAIN				(128)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define BALLOON_OAM_AFFINE_START_MAIN		(0)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define BALLOON_OAM_AFFINE_END_MAIN		(32)
-///ƒTƒu	OAMŠÇ——ÌˆæEŠJn
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define BALLOON_OAM_START_SUB				(0)
-///ƒTƒu	OAMŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define BALLOON_OAM_END_SUB				(128)
-///ƒTƒu ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn
+///ã‚µãƒ– ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define BALLOON_OAM_AFFINE_START_SUB		(0)
-///ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define BALLOON_OAM_AFFINE_END_SUB		(32)
 
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒLƒƒƒ‰ƒNƒ^IDŠÇ—”(ã‰æ–Ê{‰º‰æ–Ê)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDç®¡ç†æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define BALLOON_CHAR_MAX					(48 + 48)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define BALLOON_CHAR_VRAMSIZE_MAIN		(1024 * 0x40)	//64K
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define BALLOON_CHAR_VRAMSIZE_SUB			(512 * 0x20)	//32K
 
-///ƒƒCƒ“‰æ–Ê{ƒTƒu‰æ–Ê‚Åg—p‚·‚éƒAƒNƒ^[‘”
-#define BALLOON_ACTOR_MAX					(96 + 128)	//ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê
+///ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‹ã‚µãƒ–ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç·æ•°
+#define BALLOON_ACTOR_MAX					(96 + 128)	//ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢
 
-///OBJ‚Åg—p‚·‚éƒpƒŒƒbƒg–{”(ã‰æ–Ê{‰º‰æ–Ê)
+///OBJã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define BALLOON_OAM_PLTT_MAX				(16 + 16)
 
-///“]‘—ƒ‚[ƒh 3D = 0 main = 1 sub = 2 main/sub = 3
+///è»¢é€ãƒ¢ãƒ¼ãƒ‰ 3D = 0 main = 1 sub = 2 main/sub = 3
 #define BALLOON_OAM_VRAM_TRANS			(3)
 
-///OAMƒŠƒ\[ƒXFƒLƒƒƒ‰“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define BALLOON_OAMRESOURCE_CHAR_MAX		(BALLOON_CHAR_MAX)
-///OAMƒŠƒ\[ƒXFƒpƒŒƒbƒg“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define BALLOON_OAMRESOURCE_PLTT_MAX		(BALLOON_OAM_PLTT_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define BALLOON_OAMRESOURCE_CELL_MAX		(64)
-///OAMƒŠƒ\[ƒXFƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define BALLOON_OAMRESOURCE_CELLANM_MAX	(64)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒãƒ«ãƒã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define BALLOON_OAMRESOURCE_MCELL_MAX		(2)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define BALLOON_OAMRESOURCE_MCELLANM_MAX	(2)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///OBJƒpƒŒƒbƒgFPFDŠÇ—–{”(ƒpƒŒƒbƒg’PˆÊ)
-#define BALLOON_MAIN_OBJPAL_NUM				(16 - 2)	//-2 = ’ÊMƒAƒCƒRƒ“{ƒ[ƒJƒ‰ƒCƒY—p
-///OBJƒpƒŒƒbƒgFPFDŠÇ—–{”(ƒJƒ‰[’PˆÊ)
+///OBJãƒ‘ãƒ¬ãƒƒãƒˆï¼šPFDç®¡ç†æœ¬æ•°(ãƒ‘ãƒ¬ãƒƒãƒˆå˜ä½)
+#define BALLOON_MAIN_OBJPAL_NUM				(16 - 2)	//-2 = é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ï¼‹ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨
+///OBJãƒ‘ãƒ¬ãƒƒãƒˆï¼šPFDç®¡ç†æœ¬æ•°(ã‚«ãƒ©ãƒ¼å˜ä½)
 #define BALLOON_MAIN_OBJPAL_COLOR_NUM		(BALLOON_MAIN_OBJPAL_NUM * 16)
-///OBJƒpƒŒƒbƒgFƒoƒCƒgƒTƒCƒY
+///OBJãƒ‘ãƒ¬ãƒƒãƒˆï¼šãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 #define BALLOON_MAIN_OBJPAL_SIZE			(BALLOON_MAIN_OBJPAL_COLOR_NUM * sizeof(u16))
-///OBJƒpƒŒƒbƒgFƒtƒF[ƒhbit
+///OBJãƒ‘ãƒ¬ãƒƒãƒˆï¼šãƒ•ã‚§ãƒ¼ãƒ‰bit
 //#define BALLOON_MAIN_OBJPAL_FADEBIT			(0x3fff)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒTƒu‰æ–ÊBG‚ÌƒXƒNƒŠ[ƒ“ƒNƒŠƒAƒR[ƒh
+///ã‚µãƒ–ç”»é¢BGã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 #define SUB_BG_CLEAR_CODE		(0)
 
-///•—‘DBG‚ÌƒpƒŒƒbƒg‚Åg—p‚·‚éƒpƒŒƒbƒg–{”
+///é¢¨èˆ¹BGã®ãƒ‘ãƒ¬ãƒƒãƒˆã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°
 #define FUSEN_BG_LOAD_SIZE		(0x20 * 10)
-///•—‘DBG‚ÌƒpƒŒƒbƒg“WŠJŠJnˆÊ’u
+///é¢¨èˆ¹BGã®ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹é–‹å§‹ä½ç½®
 #define FUSEN_BG_LOAD_POS		(6)
-///•—‘DBG‚ÌƒpƒŒƒbƒg“Ç‚İ‚İŠJnˆÊ’u
+///é¢¨èˆ¹BGã®ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®
 #define FUSEN_BG_READ_POS		(6)
 
 //--------------------------------------------------------------
 //	FONTOAM
 //--------------------------------------------------------------
-///ƒtƒHƒ“ƒgOAM‚ÌÅ‘å”
-#define BALLOON_FONTOAM_MAX_MAIN	(BALLOON_COUNTER_MAX * BALLOON_COUNTER_KETA_MAX + BALLOON_COUNTER_KETA_MAX + 1)	//ƒJƒEƒ“ƒ^[{ƒ_ƒ~[ƒJƒEƒ“ƒ^[{"CC"
+///ãƒ•ã‚©ãƒ³ãƒˆOAMã®æœ€å¤§æ•°
+#define BALLOON_FONTOAM_MAX_MAIN	(BALLOON_COUNTER_MAX * BALLOON_COUNTER_KETA_MAX + BALLOON_COUNTER_KETA_MAX + 1)	//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ï¼‹ãƒ€ãƒŸãƒ¼ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ï¼‹"CC"
 
 //--------------------------------------------------------------
-//	ƒoƒbƒtƒ@
+//	ãƒãƒƒãƒ•ã‚¡
 //--------------------------------------------------------------
-///•¶š—ñƒoƒbƒtƒ@‚ÌƒTƒCƒY
-#define BALLOON_MESSAGE_BUF_SIZE	(2*160)		///<b’è‚Å‚P‚U‚O•¶š•ª
+///æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+#define BALLOON_MESSAGE_BUF_SIZE	(2*160)		///<æš«å®šã§ï¼‘ï¼–ï¼æ–‡å­—åˆ†
 
 //--------------------------------------------------------------
-//	ƒp[ƒeƒBƒNƒ‹
+//	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 //--------------------------------------------------------------
-///í“¬ƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰ƒjƒAİ’è
+///æˆ¦é—˜ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ãƒ‹ã‚¢è¨­å®š
 #define BP_NEAR			(FX32_ONE)
-///í“¬ƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰ƒtƒ@[İ’è
+///æˆ¦é—˜ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ãƒ•ã‚¡ãƒ¼è¨­å®š
 #define BP_FAR			(FX32_ONE * 900)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void BalloonVBlank(void *work);
 static GF_G3DMAN * Balloon_3D_Init(int heap_id);
@@ -292,16 +292,16 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp);
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt);
 
 
-///BalloonMainSeqTbl‚Ì–ß‚è’l‚Æ‚µ‚Äg—p
+///BalloonMainSeqTblã®æˆ»ã‚Šå€¤ã¨ã—ã¦ä½¿ç”¨
 enum{
-	ASRET_CONTINUE,		///<Œ»óˆÛ
-	ASRET_NEXT,			///<Ÿ‚ÌƒV[ƒPƒ“ƒX‚Ö
-	ASRET_SELECT_SEQ,	///<select_seqƒ[ƒN‚É“ü‚Á‚Ä‚¢‚éƒV[ƒPƒ“ƒX‚Öi‚Ş
-	ASRET_END,			///<I—¹
+	ASRET_CONTINUE,		///<ç¾çŠ¶ç¶­æŒ
+	ASRET_NEXT,			///<æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
+	ASRET_SELECT_SEQ,	///<select_seqãƒ¯ãƒ¼ã‚¯ã«å…¥ã£ã¦ã„ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸é€²ã‚€
+	ASRET_END,			///<çµ‚äº†
 };
 
 #if 0
-///‰‰‹Z—Í•”–åƒƒCƒ“ŠÖ”‚ÌƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+///æ¼”æŠ€åŠ›éƒ¨é–€ãƒ¡ã‚¤ãƒ³é–¢æ•°ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 static int (* const BalloonMainSeqTbl[])(BALLOON_GAME_WORK *game, BALLOON_LOCAL_WORK *local) = {
 	BalloonSeq_Init,
 	BalloonSeq_Practice_FastTalk,
@@ -320,7 +320,7 @@ static int (* const BalloonMainSeqTbl[])(BALLOON_GAME_WORK *game, BALLOON_LOCAL_
 	BalloonSeq_TurnEnd,
 	BalloonSeq_End,
 };
-///BalloonMainSeqTbl‚ÌƒV[ƒPƒ“ƒX”Ô†	¦BalloonMainSeqTbl‚Æ•À‚Ñ‚ğ“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆII
+///BalloonMainSeqTblã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·	â€»BalloonMainSeqTblã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼ï¼
 enum{
 	ASEQ_INIT,
 	ASEQ_PRACTICE_FAST_TALK,
@@ -342,35 +342,35 @@ enum{
 #endif
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ƒT[ƒo[‚ÌƒQ[ƒ€isŠÖ”ƒe[ƒuƒ‹
+///ã‚µãƒ¼ãƒãƒ¼ã®ã‚²ãƒ¼ãƒ é€²è¡Œé–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static int (* const ServerPlayFuncTbl[])(BALLOON_GAME_PTR, BALLOON_SERVER_WORK *) = {
 	ServerPlay_Start,
 	ServerPlay_Game,
 	ServerPlay_Finish,
 };
 
-///ƒvƒŒƒCƒ„[‚Ì•\¦ˆÊ’uŠÖŒWFQ‰Ál”4l(ƒlƒbƒgID‚ªá‚¢‡@¦ŒŠ”²‚¯‚ª‚ ‚é‚Ì‚ÅƒlƒbƒgID‚Æ‚Å‚Í‚È‚¢)
+///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¡¨ç¤ºä½ç½®é–¢ä¿‚ï¼šå‚åŠ äººæ•°4äºº(ãƒãƒƒãƒˆIDãŒè‹¥ã„é †ã€€â€»ç©´æŠœã‘ãŒã‚ã‚‹ã®ã§ãƒãƒƒãƒˆIDã¨ï¼ã§ã¯ãªã„)
 ALIGN4 static const u8 BalloonPlayerSort[][WFLBY_MINIGAME_MAX] = {
-	{0, },			//player_max‚»‚Ì‚Ü‚Ü‚ÅƒAƒNƒZƒX‚Å‚«‚é‚æ‚¤‚É1origin‰»‚Ìˆ×‚Ìƒ_ƒ~[
-	{0, },			//Q‰Ál”1l(ƒfƒoƒbƒO—p)
-	{0, 1, },		//Q‰Ál”2l	‰ºAã
-	{0, 2, 1,}	,	//Q‰Ál”3l	‰ºA¶A‰E
-	{0, 3, 1, 2},	//Q‰Ál”4l	‰ºA¶AãA‰E
+	{0, },			//player_maxãã®ã¾ã¾ã§ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹ã‚ˆã†ã«1originåŒ–ã®ç‚ºã®ãƒ€ãƒŸãƒ¼
+	{0, },			//å‚åŠ äººæ•°1äºº(ãƒ‡ãƒãƒƒã‚°ç”¨)
+	{0, 1, },		//å‚åŠ äººæ•°2äºº	ä¸‹ã€ä¸Š
+	{0, 2, 1,}	,	//å‚åŠ äººæ•°3äºº	ä¸‹ã€å·¦ã€å³
+	{0, 3, 1, 2},	//å‚åŠ äººæ•°4äºº	ä¸‹ã€å·¦ã€ä¸Šã€å³
 };
 
-///ƒvƒŒƒCƒ„[‚Ì•\¦ˆÊ’uŠÖŒWFQ‰Ál”4l(ƒlƒbƒgID‚ªá‚¢‡@¦ŒŠ”²‚¯‚ª‚ ‚é‚Ì‚ÅƒlƒbƒgID‚Æ‚Å‚Í‚È‚¢)
+///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¡¨ç¤ºä½ç½®é–¢ä¿‚ï¼šå‚åŠ äººæ•°4äºº(ãƒãƒƒãƒˆIDãŒè‹¥ã„é †ã€€â€»ç©´æŠœã‘ãŒã‚ã‚‹ã®ã§ãƒãƒƒãƒˆIDã¨ï¼ã§ã¯ãªã„)
 ALIGN4 static const u8 BalloonPlayerSortBmpNamePosTbl[][WFLBY_MINIGAME_MAX] = {
-	{0, },	//player_max‚»‚Ì‚Ü‚Ü‚ÅƒAƒNƒZƒX‚Å‚«‚é‚æ‚¤‚É1origin‰»‚Ìˆ×‚Ìƒ_ƒ~[
-	{0, },			//Q‰Ál”1l(ƒfƒoƒbƒO—p)
-	{0, BALLOON_BMPWIN_NAME_1, },		//Q‰Ál”2l	‰ºAã
-	{0, BALLOON_BMPWIN_NAME_3, BALLOON_BMPWIN_NAME_2,}	,	//Q‰Ál”3l	‰ºA¶A‰E
-	{0, BALLOON_BMPWIN_NAME_3, BALLOON_BMPWIN_NAME_1, BALLOON_BMPWIN_NAME_2},	//Q‰Ál”4l	‰ºA¶AãA‰E
+	{0, },	//player_maxãã®ã¾ã¾ã§ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹ã‚ˆã†ã«1originåŒ–ã®ç‚ºã®ãƒ€ãƒŸãƒ¼
+	{0, },			//å‚åŠ äººæ•°1äºº(ãƒ‡ãƒãƒƒã‚°ç”¨)
+	{0, BALLOON_BMPWIN_NAME_1, },		//å‚åŠ äººæ•°2äºº	ä¸‹ã€ä¸Š
+	{0, BALLOON_BMPWIN_NAME_3, BALLOON_BMPWIN_NAME_2,}	,	//å‚åŠ äººæ•°3äºº	ä¸‹ã€å·¦ã€å³
+	{0, BALLOON_BMPWIN_NAME_3, BALLOON_BMPWIN_NAME_1, BALLOON_BMPWIN_NAME_2},	//å‚åŠ äººæ•°4äºº	ä¸‹ã€å·¦ã€ä¸Šã€å³
 };
 
 //==============================================================================
-//	CLACT—pƒf[ƒ^
+//	CLACTç”¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static	const TCATS_OAM_INIT BalloonTcats = {
 	BALLOON_OAM_START_MAIN, BALLOON_OAM_END_MAIN,
@@ -383,7 +383,7 @@ static	const TCATS_CHAR_MANAGER_MAKE BalloonCcmm = {
 	BALLOON_CHAR_MAX,
 	BALLOON_CHAR_VRAMSIZE_MAIN,
 	BALLOON_CHAR_VRAMSIZE_SUB,
-	GX_OBJVRAMMODE_CHAR_1D_128K,	//64K	ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒGƒtƒFƒNƒg‚ª128KOBJ‚È‚Ì‚Å‡‚í‚¹‚½
+	GX_OBJVRAMMODE_CHAR_1D_128K,	//64K	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒ128KOBJãªã®ã§åˆã‚ã›ãŸ
 	GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
@@ -397,7 +397,7 @@ static const TCATS_RESOURCE_NUM_LIST BalloonResourceList = {
 };
 
 //--------------------------------------------------------------
-//	ƒvƒŒƒCƒ„[ˆÊ’u‚É‚æ‚Á‚Ä•Ï‚¦‚éƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+//	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 static const struct{
 	u32 pipe_mdl_id;
@@ -439,20 +439,20 @@ static const struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT BalloonGameProc_Init( PROC * proc, int * seq )
 {
 	BALLOON_GAME_WORK *game;
 
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-//	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+//	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -466,7 +466,7 @@ PROC_RESULT BalloonGameProc_Init( PROC * proc, int * seq )
 	game = PROC_AllocWork(proc, sizeof(BALLOON_GAME_WORK), HEAPID_BALLOON );
 	MI_CpuClear8(game, sizeof(BALLOON_GAME_WORK));
     
-    // ƒAƒƒP[ƒ^ì¬
+    // ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆ
 	sys_InitAllocator(&game->allocator, HEAPID_BALLOON, 32 );
 
 //	simple_3DBGInit(HEAPID_BALLOON);
@@ -489,10 +489,10 @@ PROC_RESULT BalloonGameProc_Init( PROC * proc, int * seq )
 	CommCommandBalloonInitialize(game);
 #endif
 
-	//ƒT[ƒo[’S“–‚ğŒˆ‚ß‚é
+	//ã‚µãƒ¼ãƒãƒ¼æ‹…å½“ã‚’æ±ºã‚ã‚‹
 //	Balloon_ServerSelect(game);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	game->pfd = PaletteFadeInit(HEAPID_BALLOON);
 	PaletteTrans_AutoSet(game->pfd, TRUE);
 	PaletteFadeWorkAllocSet(game->pfd, FADE_MAIN_BG, 0x200, HEAPID_BALLOON);
@@ -506,20 +506,20 @@ PROC_RESULT BalloonGameProc_Init( PROC * proc, int * seq )
 
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-	//VRAMŠ„‚è“–‚Äİ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	BalloonSys_VramBankSet(game->bgl);
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
 	//3D
 	Balloon_CameraInit(game);
 	
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€ì¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	game->csp=CATS_AllocMemory(HEAPID_BALLOON);
 	CATS_SystemInit(game->csp,&BalloonTcats,&BalloonCcmm,BALLOON_OAM_PLTT_MAX);
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 	game->crp=CATS_ResourceCreate(game->csp);
@@ -527,16 +527,16 @@ PROC_RESULT BalloonGameProc_Init( PROC * proc, int * seq )
 	CATS_ResourceManagerInit(game->csp,game->crp,&BalloonResourceList);
 	CLACT_U_SetSubSurfaceMatrix(CATS_EasyRenderGet(game->csp), 0, BALLOON_SUB_ACTOR_DISTANCE);
 
-	BalloonParticleInit(game);	//ƒp[ƒeƒBƒNƒ‹‰Šú‰»
+	BalloonParticleInit(game);	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	game->msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_balloon_dat, 
 		HEAPID_BALLOON);
 
-	game->wordset = WORDSET_Create(HEAPID_BALLOON);	//’PŒêƒoƒbƒtƒ@ì¬
-	game->msg_buf = STRBUF_Create(BALLOON_MESSAGE_BUF_SIZE, HEAPID_BALLOON);//•¶š—ñƒoƒbƒtƒ@ì¬
+	game->wordset = WORDSET_Create(HEAPID_BALLOON);	//å˜èªãƒãƒƒãƒ•ã‚¡ä½œæˆ
+	game->msg_buf = STRBUF_Create(BALLOON_MESSAGE_BUF_SIZE, HEAPID_BALLOON);//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€ì¬
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	game->fontoam_sys = FONTOAM_SysInit(BALLOON_FONTOAM_MAX_MAIN, HEAPID_BALLOON);
 	
 	Booster_Init(game, &game->booster);
@@ -544,52 +544,52 @@ PROC_RESULT BalloonGameProc_Init( PROC * proc, int * seq )
 	{
 		ARCHANDLE* hdl;
 	
-		//ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+		//ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 		hdl  = ArchiveDataHandleOpen(ARC_BALLOON_GRA,  HEAPID_BALLOON); 
 	
-		//í’“BGƒZƒbƒg
+		//å¸¸é§BGã‚»ãƒƒãƒˆ
 		BalloonDefaultBGSet(game, hdl);
 		BalloonDefaultBGSet_Sub(game, hdl);
 
-		//BMPƒEƒBƒ“ƒhƒE’Ç‰Á
+		//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
 		BalloonSys_DefaultBmpWinAdd(game);
 
-		//í’“OBJƒZƒbƒg
+		//å¸¸é§OBJã‚»ãƒƒãƒˆ
 		BalloonDefaultOBJSet(game, hdl);
 		BalloonDefaultOBJSet_Sub(game, hdl);
 
-		//3Dƒ‚ƒfƒ‹ƒZƒbƒg
+		//3Dãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆ
 		BalloonDefault3DSet(game, hdl);
 		
-		//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+		//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 		ArchiveDataHandleClose( hdl );
 	}
 
-	//ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒgFƒƒCƒ“‰æ–Ê
+	//ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆï¼šãƒ¡ã‚¤ãƒ³ç”»é¢
 	PaletteWorkSet_Arc(game->pfd, ARC_FONT, NARC_font_system_ncrl, 
 		HEAPID_BALLOON, FADE_MAIN_BG, 0x20, BMPWIN_TALK_COLOR * 16);
-	//ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒgFƒTƒu‰æ–Ê
+	//ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆï¼šã‚µãƒ–ç”»é¢
 	PaletteWorkSet_Arc(game->pfd, ARC_FONT, NARC_font_system_ncrl, 
 		HEAPID_BALLOON, FADE_SUB_BG, 0x20, BMPWIN_SUB_TALK_COLOR * 16);
 
-	//ƒvƒŒƒCƒ„[–¼•`‰æ
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åæç”»
 	PlayerName_Draw(game);
 	PlayerName_Erase(game, FALSE);
-	//à–¾•¶•\¦
+	//èª¬æ˜æ–‡è¡¨ç¤º
 	GameStartMessageDraw(game);
 
-	WirelessIconEasy();	//’ÊMƒAƒCƒRƒ“
+	WirelessIconEasy();	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
 	
-	//ƒ\[ƒiƒ“ƒX‰Šúİ’è
+	//ã‚½ãƒ¼ãƒŠãƒ³ã‚¹åˆæœŸè¨­å®š
 	game->sns = Sonas_Init(game);
 	
-	// ‹P“x•ÏXƒZƒbƒg
+	// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 	WIPE_SYS_Start(WIPE_PATTERN_WMS, WIPE_TYPE_DOORIN, WIPE_TYPE_DOORIN, WIPE_FADE_BLACK, 
 		WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_BALLOON);
 
 	game->update_tcb = TCB_Add(BalloonUpdate, game, TCBPRI_BALLOON_UPDATE);
 
-	//ƒƒCƒ“‰æ–Êİ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢è¨­å®š
 	sys.disp3DSW = DISP_3D_TO_SUB;
 	GF_Disp_DispSelect();
 
@@ -597,19 +597,19 @@ PROC_RESULT BalloonGameProc_Init( PROC * proc, int * seq )
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 
-	//ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒRƒ“ƒeƒXƒg)
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
 //	Snd_DataSetByScene( SND_SCENE_CONTEST, SEQ_CON_TEST, 1 );
 
-	//ƒƒbƒZ[ƒWİ’è
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¨­å®š
 	{
 		MsgPrintAutoFlagSet(MSG_AUTO_ON);
 		MsgPrintSkipFlagSet(MSG_SKIP_OFF);
 		MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
 	}
 	
-	//ƒ~ƒjƒQ[ƒ€‹¤’ÊƒJƒEƒ“ƒgƒ_ƒEƒ“ƒVƒXƒeƒ€
+	//ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚·ã‚¹ãƒ†ãƒ 
 	game->mgcount = MNGM_COUNT_Init(CATS_GetClactSetPtr(game->crp), HEAPID_BALLOON);
-	//ƒ~ƒjƒQ[ƒ€‹¤’ÊƒJƒEƒ“ƒgƒ_ƒEƒ“ƒVƒXƒeƒ€‚Åg—p‚µ‚Ä‚¢‚éƒpƒŒƒbƒg‚ğPFD‚É‚à“WŠJ
+	//ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã‚’PFDã«ã‚‚å±•é–‹
 	{
 		int pal_pos;
 		pal_pos = MNGM_PalNoGet(game->mgcount);
@@ -627,12 +627,12 @@ PROC_RESULT BalloonGameProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT BalloonGameProc_Main( PROC * proc, int * seq )
@@ -649,19 +649,19 @@ PROC_RESULT BalloonGameProc_Main( PROC * proc, int * seq )
 		SEQ_OUT,
 	};
 
-	// ’ÊMØ’fƒ`ƒFƒbƒN
+	// é€šä¿¡åˆ‡æ–­ãƒã‚§ãƒƒã‚¯
 	if( game->bsw->dis_error == TRUE ){
 
 		switch( game->bsw->dis_error_seq ){
 		case 0:
-			// ^‚Á•‚É‚·‚é
+			// çœŸã£é»’ã«ã™ã‚‹
 			if( WIPE_SYS_EndCheck() == TRUE ){
 				WIPE_SYS_ExeEnd();
 			}
 			WIPE_SetBrightnessFadeOut(WIPE_FADE_BLACK);
 
 
-			// WND”jŠü
+			// WNDç ´æ£„
 			GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
 			game->bsw->dis_error_seq ++;
@@ -669,9 +669,9 @@ PROC_RESULT BalloonGameProc_Main( PROC * proc, int * seq )
 
 		default:
 		case 1:
-			// ‚Ü‚Ã‚Í’ÊMØ’f
+			// ã¾ã¥ã¯é€šä¿¡åˆ‡æ–­
 			if( MNGM_ERROR_DisconnectWait( &game->bsw->entry_param ) == TRUE ){
-				// I—¹ˆ—‚Ö
+				// çµ‚äº†å‡¦ç†ã¸
 				return PROC_RES_FINISH;
 			}
 			break;
@@ -687,7 +687,7 @@ PROC_RESULT BalloonGameProc_Main( PROC * proc, int * seq )
 
 		#ifdef PM_DEBUG
 			if(game->bsw->debug_offline == TRUE){
-				Balloon_ServerSelect(game);		//ƒT[ƒo[’S“–‚ğŒˆ‚ß‚é
+				Balloon_ServerSelect(game);		//ã‚µãƒ¼ãƒãƒ¼æ‹…å½“ã‚’æ±ºã‚ã‚‹
 				(*seq) = SEQ_MAIN;
 				break;
 			}
@@ -695,7 +695,7 @@ PROC_RESULT BalloonGameProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	
-	case SEQ_INIT_TIMING:			//ƒT[ƒo[ƒo[ƒWƒ‡ƒ“æ“¾‘O‚Ì“¯Šúæ‚è
+	case SEQ_INIT_TIMING:			//ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å–å¾—å‰ã®åŒæœŸå–ã‚Š
 		CommTimingSyncStart(BALLOON_INIT_TIMING_NO);
 		(*seq)++;
 		break;
@@ -704,21 +704,21 @@ PROC_RESULT BalloonGameProc_Main( PROC * proc, int * seq )
 			(*seq)++;
 		}
 		break;
-	case SEQ_SERVER_VERSION_SEND:	//ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‘—M
+	case SEQ_SERVER_VERSION_SEND:	//ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³é€ä¿¡
 		if(Send_CommServerVersion(game) == TRUE){
 			(*seq)++;
 		}
 		break;
-	case SEQ_SERVER_VERSION_RECV_WAIT:	//ƒT[ƒo[ƒo[ƒWƒ‡ƒ“óM‘Ò‚¿
+	case SEQ_SERVER_VERSION_RECV_WAIT:	//ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å—ä¿¡å¾…ã¡
 		if(game->recv_server_version_cnt >= game->bsw->player_max){
-			Balloon_ServerSelect(game);		//ƒT[ƒo[’S“–‚ğŒˆ‚ß‚é
+			Balloon_ServerSelect(game);		//ã‚µãƒ¼ãƒãƒ¼æ‹…å½“ã‚’æ±ºã‚ã‚‹
 			(*seq)++;
 		}
 		break;
 
 	case SEQ_MAIN:
 		if(game->game_end == TRUE){
-			//WIPE‚ÅƒEƒBƒ“ƒhƒE‹@”\‚ªg‚í‚ê‚é‚Ì‚Åƒ_ƒ~[ƒJƒEƒ“ƒ^[‚ğ¶¬
+			//WIPEã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ãŒä½¿ã‚ã‚Œã‚‹ã®ã§ãƒ€ãƒŸãƒ¼ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚’ç”Ÿæˆ
 			CounterDummyNumber_ActorCreate(game);
 			
 			WIPE_SYS_Start(WIPE_PATTERN_WMS, WIPE_TYPE_DOOROUT, WIPE_TYPE_DOOROUT, 
@@ -726,19 +726,19 @@ PROC_RESULT BalloonGameProc_Main( PROC * proc, int * seq )
 			(*seq)++;
 		}
 
-		//ƒT[ƒo[“®ìƒV[ƒPƒ“ƒXÀs
+		//ã‚µãƒ¼ãƒãƒ¼å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®Ÿè¡Œ
 		Server_GamePlayingManage(game);
 
 		switch(game->countdown_eff){
 		case BALLOON_COUNTDOWN_TOUCHPEN_DEMO_INIT:
-			//ƒEƒBƒ“ƒhƒEİ’è	WIPE‚Åg‚Á‚Ä‚¢‚é‚Ì‚Å‚±‚±‚Åİ’è
+			//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š	WIPEã§ä½¿ã£ã¦ã„ã‚‹ã®ã§ã“ã“ã§è¨­å®š
 			GX_SetVisibleWnd(GX_WNDMASK_W1);
-			G2_SetWnd1Position(4, 192-32+8, 8*9+4, 192-8);	//ƒJƒEƒ“ƒ^[ƒEƒBƒ“ƒhƒE‚ğˆÍ‚Ş
-			G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_OBJ, FALSE);	//ƒJƒEƒ“ƒ^[OBJ‚µ‚©•\¦‚³‚ê‚È‚¢‚æ‚¤İ’è
+			G2_SetWnd1Position(4, 192-32+8, 8*9+4, 192-8);	//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å›²ã‚€
+			G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_OBJ, FALSE);	//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼OBJã—ã‹è¡¨ç¤ºã•ã‚Œãªã„ã‚ˆã†è¨­å®š
 			G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | 
 				GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
 
-			//–{•¨‚ÌƒJƒEƒ“ƒ^[‚ª•\¦‚³‚ê‚é‚Ì‚Åƒ_ƒ~[‚Ííœ
+			//æœ¬ç‰©ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã®ã§ãƒ€ãƒŸãƒ¼ã¯å‰Šé™¤
 			CounterDummyNumber_ActorDelete(game);
 
 			game->countdown_eff = BALLOON_COUNTDOWN_TOUCHPEN_DEMO;
@@ -766,7 +766,7 @@ PROC_RESULT BalloonGameProc_Main( PROC * proc, int * seq )
 			break;
 		case BALLOON_COUNTDOWN_TIMEUP:
 			MNGM_COUNT_StartTimeUp(game->mgcount);
-			OS_TPrintf("©•ª‚Ì“ü‚ê‚½‹ó‹C‚Ì‡Œv = %d\n", game->my_total_air);
+			OS_TPrintf("è‡ªåˆ†ã®å…¥ã‚ŒãŸç©ºæ°—ã®åˆè¨ˆ = %d\n", game->my_total_air);
 			game->countdown_eff = BALLOON_COUNTDOWN_TIMEUP_WAIT;
 			break;
 		case BALLOON_COUNTDOWN_TIMEUP_WAIT:
@@ -776,17 +776,17 @@ PROC_RESULT BalloonGameProc_Main( PROC * proc, int * seq )
 			break;
 		}
 		
-		//“¯ŠúƒŠƒNƒGƒXƒg‚ª‚ ‚éê‡‚Í•Ô–‚ğ•Ô‚·
+		//åŒæœŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã‚‹å ´åˆã¯è¿”äº‹ã‚’è¿”ã™
 		Timing_AnswerSend(game);
 		
-		//óMƒoƒbƒtƒ@Šm”F
+		//å—ä¿¡ãƒãƒƒãƒ•ã‚¡ç¢ºèª
 		BalloonSio_CommRecv(game);
 
 		if(game->game_finish == TRUE){
 			break;
 		}
 		
-		//‘—Mƒoƒbƒtƒ@‚É—­‚Ü‚Á‚Ä‚¢‚éƒf[ƒ^‚ğ‘—M
+		//é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡
 		if(BalloonSio_CommSend(game) == TRUE){
 			game->sio_wait = BALLOON_SIO_SEND_WAIT;
 		}
@@ -825,12 +825,12 @@ PROC_RESULT BalloonGameProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT BalloonGameProc_End( PROC * proc, int * seq )
@@ -838,75 +838,75 @@ PROC_RESULT BalloonGameProc_End( PROC * proc, int * seq )
 	BALLOON_GAME_WORK * game = PROC_GetWork( proc );
 	int i;
 
-	//Š„‚Á‚½”‚ğŒ‹‰Ê‰æ–Ê—pƒ[ƒN‚ÖƒZƒbƒg
+	//å‰²ã£ãŸæ•°ã‚’çµæœç”»é¢ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã‚»ãƒƒãƒˆ
 	game->bsw->result_param.balloon = game->exploded_count;
 	
-	//ƒ~ƒjƒQ[ƒ€‹¤’ÊƒJƒEƒ“ƒgƒ_ƒEƒ“ƒVƒXƒeƒ€íœ
+	//ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	MNGM_COUNT_Exit(game->mgcount);
 	
 	Air_ActorAllDelete(game);
 	Exploded_AllDelete(game);
 	
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-//	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+//	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	BalloonParticleExit(game);
 
-	//í’“OBJíœ
+	//å¸¸é§OBJå‰Šé™¤
 	BalloonDefaultOBJDel(game);
 	BalloonDefaultOBJDel_Sub(game);
-	//í’“BGíœ
+	//å¸¸é§BGå‰Šé™¤
 	BalloonDefaultBGDel(game);
 	BalloonDefaultBGDel_Sub(game);
-	//í’“3Dƒ‚ƒfƒ‹íœ
+	//å¸¸é§3Dãƒ¢ãƒ‡ãƒ«å‰Šé™¤
 	BalloonDefault3DDel(game);
 	
-	//ƒ\[ƒiƒ“ƒXíœ
+	//ã‚½ãƒ¼ãƒŠãƒ³ã‚¹å‰Šé™¤
 	Sonans_Exit(game, game->sns);
 	
-	//BMPŠJ•ú
+	//BMPé–‹æ”¾
 	for(i = 0; i < BALLOON_BMPWIN_MAX; i++){
 		GF_BGL_BmpWinDel(&game->win[i]);
 	}
 	
-	//ƒƒCƒ“‰æ–ÊBGíœ
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢BGå‰Šé™¤
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_BGL_BGControlExit(game->bgl, BALLOON_FRAME_WIN );
 	GF_BGL_BGControlExit(game->bgl, BALLOON_FRAME_EFF );
 	GF_BGL_BGControlExit(game->bgl, BALLOON_FRAME_BACK );
-	//ƒTƒu‰æ–ÊBGíœ
+	//ã‚µãƒ–ç”»é¢BGå‰Šé™¤
 	GF_BGL_BGControlExit(game->bgl, GF_BGL_FRAME0_S );
 	GF_BGL_BGControlExit(game->bgl, GF_BGL_FRAME1_S );
 	GF_BGL_BGControlExit(game->bgl, GF_BGL_FRAME2_S );
 	GF_BGL_BGControlExit(game->bgl, GF_BGL_FRAME3_S );
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€íœ
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	FONTOAM_SysDelete(game->fontoam_sys);
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	CATS_ResourceDestructor_S(game->csp,game->crp);
 	CATS_FreeMemory(game->csp);
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(game->pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(game->pfd, FADE_SUB_BG);
 	PaletteFadeWorkAllocFree(game->pfd, FADE_MAIN_OBJ);
 	PaletteFadeWorkAllocFree(game->pfd, FADE_SUB_OBJ);
 	PaletteFadeFree(game->pfd);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã®å‰Šé™¤
 	STRBUF_Delete(game->msg_buf);
 	WORDSET_Delete(game->wordset);
 	MSGMAN_Delete(game->msgman);
 
-	//BGLŠJ•ú
+	//BGLé–‹æ”¾
 	sys_FreeMemoryEz(game->bgl);
 
-	//ƒJƒƒ‰íœ
+	//ã‚«ãƒ¡ãƒ©å‰Šé™¤
 	Balloon_CameraExit(game);
 	
 	TCB_Delete(game->update_tcb);
@@ -917,9 +917,9 @@ PROC_RESULT BalloonGameProc_End( PROC * proc, int * seq )
 	//simple_3DBGExit();
 	Balloon_3D_Exit(game->g3Dman);
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
-	PROC_FreeWork(proc);				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork(proc);				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	
 	MsgPrintSkipFlagSet(MSG_SKIP_OFF);
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
@@ -932,9 +932,9 @@ PROC_RESULT BalloonGameProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
- * @param	work	‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	work	æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none	
  *
@@ -946,7 +946,7 @@ static void BalloonVBlank(void *work)
 	
 	Sonans_VBlank(game, game->sns);
 	
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	DoVramTransferManager();	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(game->pfd);
 	
@@ -966,9 +966,9 @@ static void BalloonVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg—p3DBG‰Šú‰»ŠÖ”
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨3DBGåˆæœŸåŒ–é–¢æ•°
  * 
- * @param   ƒq[ƒvID
+ * @param   ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 static GF_G3DMAN * Balloon_3D_Init(int heap_id)
@@ -982,28 +982,28 @@ static GF_G3DMAN * Balloon_3D_Init(int heap_id)
 
 static void BalloonSimpleSetUp(void)
 {
-	// ‚R‚cg—p–Ê‚Ìİ’è(•\¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg—p3DBGI—¹ˆ—
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨3DBGçµ‚äº†å‡¦ç†
  *
  * @param   g3Dman		
  */
@@ -1015,9 +1015,9 @@ static void Balloon_3D_Exit(GF_G3DMAN *g3Dman)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰ì¬
+ * @brief   ã‚«ãƒ¡ãƒ©ä½œæˆ
  *
- * @param   game		ƒQ[ƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   game		ã‚²ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Balloon_CameraInit(BALLOON_GAME_WORK *game)
@@ -1037,7 +1037,7 @@ static void Balloon_CameraInit(BALLOON_GAME_WORK *game)
 	GFC_AttachCamera(game->camera);
 
 
-	//3Dƒ‚ƒfƒ‹—pƒJƒƒ‰
+	//3Dãƒ¢ãƒ‡ãƒ«ç”¨ã‚«ãƒ¡ãƒ©
 	game->camera_3d = GFC_AllocCamera( HEAPID_BALLOON );
 	GFC_InitCameraTDA(&target, MODEL_3D_CAMERA_DISTANCE, &BalloonCameraAngle,
 						BALLOON_CAMERA_PERSPWAY, GF_CAMERA_ORTHO, FALSE, game->camera_3d);
@@ -1046,9 +1046,9 @@ static void Balloon_CameraInit(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‰ğ•ú
+ * @brief   ã‚«ãƒ¡ãƒ©è§£æ”¾
  *
- * @param   game		ƒQ[ƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   game		ã‚²ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Balloon_CameraExit(BALLOON_GAME_WORK *game)
@@ -1059,9 +1059,9 @@ static void Balloon_CameraExit(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚És‚¤ƒVƒXƒeƒ€ŠÖ˜A‚ÌXVˆ—
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã«è¡Œã†ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ã®æ›´æ–°å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		game
  */
 //--------------------------------------------------------------
@@ -1083,44 +1083,44 @@ static void BalloonUpdate(TCB_PTR tcb, void *work)
 	
 	Balloon_CounterUpdate(game, &game->counter);
 
-	//ƒu[ƒXƒ^[XVˆ—
+	//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼æ›´æ–°å‡¦ç†
 	Booster_Update(game, &game->booster);
 	SioBooster_Update(game, &game->sio_booster);
 
-	//‹ó‹CXVˆ—
+	//ç©ºæ°—æ›´æ–°å‡¦ç†
 	Air_Update(game);
 
-	//•—‘DXVˆ—
+	//é¢¨èˆ¹æ›´æ–°å‡¦ç†
 	BalloonTool_BalloonUpdate(game, game->bgl, &game->bst);
 	
-	//”j—ôXVˆ—
+	//ç ´è£‚æ›´æ–°å‡¦ç†
 	Exploded_Update(game);
 
-	//‹ó‹Cƒ‚ƒfƒ‹XVˆ—
+	//ç©ºæ°—ãƒ¢ãƒ‡ãƒ«æ›´æ–°å‡¦ç†
 	Air3D_Update(game);
 
-	//•—‘DƒAƒCƒRƒ“XVˆ—
+	//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³æ›´æ–°å‡¦ç†
 	IconBalloon_Update(game);
 
 	{
-		//‚R‚c•`‰æŠJn
+		//ï¼“ï¼¤æç”»é–‹å§‹
 		GF_G3X_Reset();
 		
 		GFC_AttachCamera(game->camera);
-		GFC_SetCameraView(GF_CAMERA_ORTHO, game->camera); //³Ë‰eİ’è
+		GFC_SetCameraView(GF_CAMERA_ORTHO, game->camera); //æ­£å°„å½±è¨­å®š
 		GFC_CameraLookAt();
 
-		// ƒ‰ƒCƒg‚ÆƒAƒ“ƒrƒGƒ“ƒg
+		// ãƒ©ã‚¤ãƒˆã¨ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
 		NNS_G3dGlbLightVector( 0, 0, -FX32_ONE, 0 );
 		NNS_G3dGlbLightColor( 0, GX_RGB( 28,28,28 ) );
 		NNS_G3dGlbMaterialColorDiffAmb( GX_RGB( 31,31,31 ), GX_RGB( 31,31,31 ), FALSE );
 		NNS_G3dGlbMaterialColorSpecEmi( GX_RGB( 31,31,31 ), GX_RGB( 31,31,31 ), FALSE );
 		
-	// ˆÊ’uİ’è
+	// ä½ç½®è¨­å®š
 		NNS_G3dGlbSetBaseTrans(&trans);
-		// Šp“xİ’è
+		// è§’åº¦è¨­å®š
 		NNS_G3dGlbSetBaseRot(&rot);
-		// ƒXƒP[ƒ‹İ’è
+		// ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
 		NNS_G3dGlbSetBaseScale(&scale_vec);
 	
 		NNS_G3dGlbFlush();
@@ -1130,32 +1130,32 @@ static void BalloonUpdate(TCB_PTR tcb, void *work)
 		Sonans_Update(game, game->sns);
 
 //		GFC_AttachCamera(game->camera_3d);
-//		GFC_SetCameraView(GF_CAMERA_ORTHO, game->camera_3d); //³Ë‰eİ’è
+//		GFC_SetCameraView(GF_CAMERA_ORTHO, game->camera_3d); //æ­£å°„å½±è¨­å®š
 //		GFC_CameraLookAt();
-		// •`‰æ
+		// æç”»
 		NNS_G3dGePushMtx();
 		{
-			//‘äÀ
+			//å°åº§
 			D3DOBJ_Draw( &game->daiza.obj );
-			//ƒpƒCƒv•‹ó‹C•`‰æ
+			//ãƒ‘ã‚¤ãƒ—ï¼†ç©ºæ°—æç”»
 			D3DOBJ_Draw( &game->pipe_air.pipe_obj );
 			Air3D_Draw(game);
 		}
 		NNS_G3dGePopMtx(1);
 	}
 
-	{//ƒp[ƒeƒBƒNƒ‹
+	{//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 		int draw_num;
 
 		GF_G3X_Reset();
 		
-		draw_num = Particle_DrawAll();	//ƒp[ƒeƒBƒNƒ‹•`‰æ
+		draw_num = Particle_DrawAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æç”»
 		if(draw_num > 0){
-			//ƒp[ƒeƒBƒNƒ‹‚Ì•`‰æ‚ªI—¹‚µ‚½‚Ì‚ÅAÄ‚Ñƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg—pƒJƒƒ‰‚Éİ’è
+			//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®æç”»ãŒçµ‚äº†ã—ãŸã®ã§ã€å†ã³ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ã‚«ãƒ¡ãƒ©ã«è¨­å®š
 			GF_G3X_Reset();
 		}
 
-		Particle_CalcAll();	//ƒp[ƒeƒBƒNƒ‹ŒvZ
+		Particle_CalcAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è¨ˆç®—
 	}
 
 //	BattleParticle_Main();
@@ -1165,14 +1165,14 @@ static void BalloonUpdate(TCB_PTR tcb, void *work)
 	
 	CommErrorCheck(HEAPID_BALLOON, game->bgl);
 
-#ifdef PM_DEBUG		//ƒ|ƒŠƒSƒ“‚Ìƒ‰ƒCƒ“ƒYƒI[ƒo[ƒ`ƒFƒbƒN
+#ifdef PM_DEBUG		//ãƒãƒªã‚´ãƒ³ã®ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 	if(G3X_IsLineBufferUnderflow() != 0){
-		OS_TPrintf("--------------ƒ‰ƒCƒ“ƒYƒI[ƒo[”­¶II----------\n");
-		//GF_ASSERT(0 && "ƒ‰ƒCƒ“ƒYƒI[ƒo[‚ª”­¶‚µ‚Ü‚µ‚½");
+		OS_TPrintf("--------------ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ç™ºç”Ÿï¼ï¼----------\n");
+		//GF_ASSERT(0 && "ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ");
 		G3X_ResetLineBufferUnderflow();
 	}
 	else if(G3X_GetRenderedLineCount() < 10){
-		OS_TPrintf("========== ƒ‰ƒCƒ“ƒYƒI[ƒo[‚ª”­¶‚µ‚»‚¤‚Å‚·c Count = %d\n", 
+		OS_TPrintf("========== ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãŒç™ºç”Ÿã—ãã†ã§ã™â€¦ Count = %d\n", 
 			G3X_GetRenderedLineCount());
 	}
 #endif
@@ -1180,32 +1180,32 @@ static void BalloonUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNİ’è‚ğs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonSys_VramBankSet(GF_BGL_INI *bgl)
 {
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
-		GF_Disp_SetBank( &vramSetTable );	//H32‚ª—]‚èBƒTƒuBG–Ê‚ÌŠg’£ƒpƒŒƒbƒg‚Æ‚µ‚Ä“–‚Ä‚ç‚ê‚é
+		GF_Disp_SetBank( &vramSetTable );	//H32ãŒä½™ã‚Šã€‚ã‚µãƒ–BGé¢ã®æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã¨ã—ã¦å½“ã¦ã‚‰ã‚Œã‚‹
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -1220,23 +1220,23 @@ static void BalloonSys_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME1_M	ƒEƒBƒ“ƒhƒE
+			///<FRAME1_M	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 //				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
 				BALLOON_BGPRI_WINDOW, 0, 0, FALSE
 			},
-			///<FRAME2_M	ƒGƒtƒFƒNƒg
+			///<FRAME2_M	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
 				BALLOON_BGPRI_EFFECT, 0, 0, FALSE
 			},
-			///<FRAME3_M	”wŒi
+			///<FRAME3_M	èƒŒæ™¯
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
@@ -1260,26 +1260,26 @@ static void BalloonSys_VramBankSet(GF_BGL_INI *bgl)
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
 
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		int i;
 		static const GF_BGL_BGCNT_HEADER SubBgCntDat[] = {
-			{//GF_BGL_FRAME0_S	ƒEƒBƒ“ƒhƒE
+			{//GF_BGL_FRAME0_S	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01,
 				BALLOON_SUBBG_WIN_PRI, 0, 0, FALSE
 			},
-			{//GF_BGL_FRAME1_S	ƒpƒCƒv
+			{//GF_BGL_FRAME1_S	ãƒ‘ã‚¤ãƒ—
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
 				BALLOON_SUBBG_PIPE_PRI, 0, 0, FALSE
 			},
-			{//GF_BGL_FRAME2_S	”wŒi
+			{//GF_BGL_FRAME2_S	èƒŒæ™¯
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x4000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
 				BALLOON_SUBBG_BACK_PRI, 0, 0, FALSE
 			},
-			{//GF_BGL_FRAME3_S	•—‘D
+			{//GF_BGL_FRAME3_S	é¢¨èˆ¹
 				0, 0, 0x400, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
 				GX_BG_SCRBASE_0x6000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01,
 				BALLOON_SUBBG_BALLOON_PRI, 0, 0, FALSE
@@ -1298,16 +1298,16 @@ static void BalloonSys_VramBankSet(GF_BGL_INI *bgl)
 			GF_BGL_ScrollSet(bgl, GF_BGL_FRAME0_S + i, GF_BGL_SCROLL_X_SET, 0);
 			GF_BGL_ScrollSet(bgl, GF_BGL_FRAME0_S + i, GF_BGL_SCROLL_Y_SET, 0);
 		}
-		//Å‰‚Í•—‘DBG”ñ•\¦
+		//æœ€åˆã¯é¢¨èˆ¹BGéè¡¨ç¤º
 		GF_BGL_VisibleSet(BALLOON_SUBFRAME_BALLOON, VISIBLE_OFF);
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ŠúBMPƒEƒBƒ“ƒhƒE‚ğİ’è‚·‚é
+ * @brief   åˆæœŸBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¨­å®šã™ã‚‹
  *
- * @param   game		‰‰‹Z—ÍŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   game		æ¼”æŠ€åŠ›ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonSys_DefaultBmpWinAdd(BALLOON_GAME_WORK *game)
@@ -1318,7 +1318,7 @@ static void BalloonSys_DefaultBmpWinAdd(BALLOON_GAME_WORK *game)
 		11, 0x13, 20, 4, BMPWIN_TALK_COLOR, BMPWIN_TALK_CGX_OFFSET);
 	
 	
-	//-- ƒTƒu‰æ–Ê—p --//
+	//-- ã‚µãƒ–ç”»é¢ç”¨ --//
 	GF_BGL_BmpWinAdd(game->bgl, &game->win[BALLOON_BMPWIN_NAME_1], BALLOON_SUBFRAME_WIN, 
 		0x12, 1, 10, 2, BMPWIN_SUB_TALK_COLOR, BMPWIN_SUB_CGX_OFFSET_NAME_1);
 	GF_BGL_BmpWinAdd(game->bgl, &game->win[BALLOON_BMPWIN_NAME_2], BALLOON_SUBFRAME_WIN, 
@@ -1330,7 +1330,7 @@ static void BalloonSys_DefaultBmpWinAdd(BALLOON_GAME_WORK *game)
 	GF_BGL_BmpWinDataFill(&game->win[BALLOON_BMPWIN_NAME_2], 0xf);
 	GF_BGL_BmpWinDataFill(&game->win[BALLOON_BMPWIN_NAME_3], 0xf);
 
-	//ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	GF_BGL_BmpWinAdd(game->bgl, &game->win[BALLOON_BMPWIN_SUB_TALK], BALLOON_SUBFRAME_WIN, 
 		2, 0x13, 0x1c, 4, BMPWIN_SUB_TALK_COLOR, BMPWIN_SUB_CGX_OFFSET_SUB_TALK);
 	GF_BGL_BmpWinDataFill(&game->win[BALLOON_BMPWIN_SUB_TALK], 0xf);
@@ -1338,7 +1338,7 @@ static void BalloonSys_DefaultBmpWinAdd(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€ŠJnƒƒbƒZ[ƒW•\¦
+ * @brief   ã‚²ãƒ¼ãƒ é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
  * @param   game		
  */
@@ -1360,7 +1360,7 @@ static void GameStartMessageDraw(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€ŠJnƒƒbƒZ[ƒW‚ğÁ‚·
+ * @brief   ã‚²ãƒ¼ãƒ é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ¶ˆã™
  *
  * @param   game		
  */
@@ -1376,7 +1376,7 @@ static void GameStartMessageErase(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒƒCƒ„[–¼•`‰æ
+ * @brief   ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åæç”»
  *
  * @param   game		
  */
@@ -1411,7 +1411,7 @@ static void PlayerName_Draw(BALLOON_GAME_WORK *game)
 				print_color = BMPWIN_SUB_STR_PRINTCOLOR;
 			}
 			dot_len = FontProc_GetPrintStrWidth(FONT_SYSTEM, name, 0);
-			draw_x_offset = 8*10/2 - dot_len/2;	//ƒZƒ“ƒ^[Šñ‚¹
+			draw_x_offset = 8*10/2 - dot_len/2;	//ã‚»ãƒ³ã‚¿ãƒ¼å¯„ã›
 			if(dot_len & 1){
 				draw_x_offset--;
 			}
@@ -1446,34 +1446,34 @@ static void PlayerName_Draw(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   –¼‘O‚ğÁ‹‚·‚é
+ * @brief   åå‰ã‚’æ¶ˆå»ã™ã‚‹
  *
  * @param   game		
- * @param   all_erase	TRUE:‘SÁ‹B@FALSE:Q‰ÁÒ‚ª‚¢‚È‚¢Š‚¾‚¯Á‹
+ * @param   all_erase	TRUE:å…¨æ¶ˆå»ã€‚ã€€FALSE:å‚åŠ è€…ãŒã„ãªã„æ‰€ã ã‘æ¶ˆå»
  */
 //--------------------------------------------------------------
 static void PlayerName_Erase(BALLOON_GAME_PTR game, int all_erase)
 {
 	if(all_erase == TRUE){
-		//¶
+		//å·¦
 		GF_BGL_ScrFill(game->bgl, BALLOON_SUBFRAME_WIN, 1023, 0, 13, 12, 4, GF_BGL_SCRWRT_PALIN);
-		//ã
+		//ä¸Š
 		GF_BGL_ScrFill(game->bgl, BALLOON_SUBFRAME_WIN, 1023, 0x11, 0, 12, 4, GF_BGL_SCRWRT_PALIN);
-		//‰E
+		//å³
 		GF_BGL_ScrFill(game->bgl,BALLOON_SUBFRAME_WIN, 1023, 0x14, 13, 12, 4, GF_BGL_SCRWRT_PALIN);
 	}
 	else{
 		switch(game->bsw->player_max){
 		case 2:
-			//¶
+			//å·¦
 			GF_BGL_ScrFill(game->bgl, BALLOON_SUBFRAME_WIN, 
 				1023, 0, 13, 12, 4, GF_BGL_SCRWRT_PALIN);
-			//‰E
+			//å³
 			GF_BGL_ScrFill(game->bgl,BALLOON_SUBFRAME_WIN, 
 				1023, 0x14, 13, 12, 4, GF_BGL_SCRWRT_PALIN);
 			break;
 		case 3:
-			//ã
+			//ä¸Š
 			GF_BGL_ScrFill(game->bgl, BALLOON_SUBFRAME_WIN, 
 				1023, 0x11, 0, 12, 4, GF_BGL_SCRWRT_PALIN);
 			break;
@@ -1485,7 +1485,7 @@ static void PlayerName_Erase(BALLOON_GAME_PTR game, int all_erase)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z•”–å—pƒp[ƒeƒBƒNƒ‹‰Šú‰»
+ * @brief   æ¼”æŠ€éƒ¨é–€ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
  */
 //--------------------------------------------------------------
 static void BalloonParticleInit(BALLOON_GAME_PTR game)
@@ -1494,7 +1494,7 @@ static void BalloonParticleInit(BALLOON_GAME_PTR game)
 	GF_CAMERA_PTR camera_ptr;
 	void *resource;
 
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‰Šú‰»
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	Particle_SystemWorkInit();
 	
 	heap = sys_AllocMemory(HEAPID_BALLOON, PARTICLE_LIB_HEAP_SIZE);
@@ -1503,7 +1503,7 @@ static void BalloonParticleInit(BALLOON_GAME_PTR game)
 	camera_ptr = Particle_GetCameraPtr(game->ptc);
 	GFC_SetCameraClip(BP_NEAR, BP_FAR, camera_ptr);
 
-	//ƒŠƒ\[ƒX“Ç‚İ‚İ•“o˜^
+	//ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ï¼†ç™»éŒ²
 	resource = Particle_ArcResourceLoad(
 		ARC_PL_ETC_PARTICLE, BALLOON_SPA, HEAPID_BALLOON);
 	Particle_ResourceSet(game->ptc, resource, PTC_AUTOTEX_LNK | PTC_AUTOPLTT_LNK, TRUE);
@@ -1511,7 +1511,7 @@ static void BalloonParticleInit(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€íœ
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
  *
  * @param   game		
  */
@@ -1527,7 +1527,7 @@ static void BalloonParticleExit(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^¶¬
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ç”Ÿæˆ
  *
  * @param   game		
  * @param   emit_no		
@@ -1555,12 +1555,12 @@ void BalloonParticle_EmitAdd(BALLOON_GAME_PTR game, int emit_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param   is4x4comp	4x4ˆ³kƒeƒNƒXƒ`ƒƒ‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(TRUE=ˆ³kƒeƒNƒXƒ`ƒƒ)
+ * @param   size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param   is4x4comp	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(TRUE=åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£)
  *
- * @retval  “Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval  èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 static u32 sAllocTex(u32 size, BOOL is4x4comp)
@@ -1569,22 +1569,22 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
 	GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_TEXKEY);
-	Particle_LnkTexKeySet(key);		//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_LnkTexKeySet(key);		//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	return NNS_GfdGetTexKeyAddr(key);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆVRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param	size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param	is4pltt		4FƒpƒŒƒbƒg‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @param	size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param	is4pltt		4è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- * @retval	“Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval	èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * directŒ`®‚ÌƒeƒNƒXƒ`ƒƒ‚Ìê‡ASPL_LoadTexPlttByCallbackFunction‚Í
- * ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ño‚µ‚Ü‚¹‚ñB
+ * directå½¢å¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã€SPL_LoadTexPlttByCallbackFunctionã¯
+ * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
@@ -1594,20 +1594,20 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 	key = NNS_GfdAllocPlttVram(size, is4pltt, NNS_GFD_ALLOC_FROM_LOW);
 	GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 	
-	Particle_PlttLnkTexKeySet(key);	//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_PlttLnkTexKeySet(key);	//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	return NNS_GfdGetPlttKeyAddr(key);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ì“o˜^‚ğs‚¤
- * @param   game		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   game		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonDefaultOBJSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 {
-	//-- ƒJƒEƒ“ƒ^[ --//
+	//-- ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ --//
 	{
         int x;
 		STRBUF *str0, *str1;
@@ -1646,10 +1646,10 @@ static void BalloonDefaultOBJSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 
 		Balloon_CounterPosUpdate(&game->counter);
 		
-		//ƒJƒEƒ“ƒ^[ƒ_ƒ~[ƒAƒNƒ^[(WIPE‚ªƒEƒBƒ“ƒhƒE‹@”\‚ğg‚Á‚Ä‚¢‚é‚Ì‚Åˆê“I‚É¶¬)
+		//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼(WIPEãŒã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ã‚’ä½¿ã£ã¦ã„ã‚‹ã®ã§ä¸€æ™‚çš„ã«ç”Ÿæˆ)
 		CounterDummyNumber_ActorCreate(game);
 
-		//BG‚Ì‰º‚É•~‚­ƒAƒNƒ^[
+		//BGã®ä¸‹ã«æ•·ãã‚¢ã‚¯ã‚¿ãƒ¼
 		CATS_LoadResourcePlttWorkArcH(game->pfd, FADE_MAIN_OBJ, game->csp, game->crp, 
 			hdl, MINI_FUSEN_CCOBJ_NCLR, 0, 
 			1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTTID_COUNTER_WIN);
@@ -1662,7 +1662,7 @@ static void BalloonDefaultOBJSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 		game->counter.win_cap = CounterWindow_ActorCreate(game);
 	}
 
-	//ƒ^ƒbƒ`ƒyƒ“
+	//ã‚¿ãƒƒãƒãƒšãƒ³
 	CATS_LoadResourcePlttWorkArc(game->pfd, FADE_MAIN_OBJ, game->csp, game->crp, 
 		ARC_WLMNGM_TOOL_GRA, NARC_wlmngm_tool_touchpen_NCLR, 0, 
 		1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTTID_TOUCH_PEN);
@@ -1678,8 +1678,8 @@ static void BalloonDefaultOBJSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ìíœ‚ğs‚¤
- * @param   game		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   game		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonDefaultOBJDel(BALLOON_GAME_WORK *game)
@@ -1699,18 +1699,18 @@ static void BalloonDefaultOBJDel(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊOBJF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ì“o˜^‚ğs‚¤
- * @param   game		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢OBJï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   game		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonDefaultOBJSet_Sub(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 {
-	//í’“OBJƒpƒŒƒbƒgƒ[ƒh
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArcH(game->pfd, FADE_SUB_OBJ, game->csp, game->crp, 
 		hdl, MINI_FUSEN_OBJ_NCLR, 0, 
 		BALLOON_SUB_COMMON_PAL_NUM, NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_SUB_OBJ_COMMON);
 	
-	//•—‘D‚È‚Ç‚ÌƒLƒƒƒ‰•ƒZƒ‹“o˜^
+	//é¢¨èˆ¹ãªã©ã®ã‚­ãƒ£ãƒ©ï¼†ã‚»ãƒ«ç™»éŒ²
 	CATS_LoadResourceCharArcH(game->csp, game->crp, hdl, MINI_FUSEN_OBJ_NCGR, 0, 
 		NNS_G2D_VRAM_TYPE_2DSUB, CHARID_SUB_BALLOON_MIX);
 	CATS_LoadResourceCellArcH(game->csp, game->crp, hdl, MINI_FUSEN_OBJ_NCER, 0, 
@@ -1718,27 +1718,27 @@ static void BalloonDefaultOBJSet_Sub(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 	CATS_LoadResourceCellAnmArcH(game->csp, game->crp, hdl, MINI_FUSEN_OBJ_NANR,
 		0, CELLANMID_SUB_BALLOON_MIX);
 
-	//•—‘DƒAƒCƒRƒ“ƒAƒNƒ^[¶¬
+	//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	IconBalloon_AllCreate(game);
 
 	Joint_ActorCreateAll(game, &game->joint);
 	Booster_ActorCreateAll(game, &game->booster);
 	SioBooster_ActorCreateAll(game, &game->sio_booster);
 	
-	//ƒJƒ‰[ƒXƒƒbƒv
+	//ã‚«ãƒ©ãƒ¼ã‚¹ãƒ¯ãƒƒãƒ—
 	BalloonTool_PaletteSwap_PlayerOBJ(game);
 	BalloonTool_PaletteSwap_Storm(game);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊOBJF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ìíœ‚ğs‚¤
- * @param   game		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢OBJï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   game		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonDefaultOBJDel_Sub(BALLOON_GAME_WORK *game)
 {
-	//•—‘DƒAƒCƒRƒ“ƒAƒNƒ^[íœ
+	//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 	IconBalloon_AllDelete(game);
 	Joint_ActorDeleteAll(game, &game->joint);
 	Booster_ActorDeleteAll(game, &game->booster);
@@ -1747,36 +1747,36 @@ static void BalloonDefaultOBJDel_Sub(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–ÊBGF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚ÌƒZƒbƒg‚ğs‚¤
- * @param   game		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢BGï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’è¡Œã†
+ * @param   game		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonDefaultBGSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 {
-	//BG‹¤’ÊƒpƒŒƒbƒg
+	//BGå…±é€šãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(game->pfd, ARC_BALLOON_GRA, MINI_FUSEN_BOTTOM_NCLR, 
 		HEAPID_BALLOON, FADE_MAIN_BG, 0, 0);
 
-	//”wŒi
+	//èƒŒæ™¯
 	ArcUtil_HDL_BgCharSet(hdl, MINI_FUSEN_BOTTOM_NCGR, game->bgl, 
 		BALLOON_FRAME_BACK, 0, 0, 0, HEAPID_BALLOON);
 	ArcUtil_HDL_ScrnSet(hdl, MINI_FUSEN_BOTTOM_NSCR, game->bgl, 
 		BALLOON_FRAME_BACK, 0, 0, 0, HEAPID_BALLOON);
-	//ƒEƒBƒ“ƒhƒE
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	ArcUtil_HDL_BgCharSet(hdl, MINI_FUSEN_CCWIN_NCGR, game->bgl, 
 		BALLOON_FRAME_EFF, 0, 0, 0, HEAPID_BALLOON);
 	ArcUtil_HDL_ScrnSet(hdl, MINI_FUSEN_CCWIN_NSCR, game->bgl, 
 		BALLOON_FRAME_EFF, 0, 0, 0, HEAPID_BALLOON);
 
 	
-	//ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚É•‚ÌƒJƒ‰[‚ğ“ü‚ê‚é
+	//ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã«é»’ã®ã‚«ãƒ©ãƒ¼ã‚’å…¥ã‚Œã‚‹
 	PaletteWork_Clear(game->pfd, FADE_MAIN_BG, FADEBUF_ALL, 0x0000, 0, 1);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–ÊBGF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚Ìíœˆ—‚ğs‚¤
- * @param   game		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢BGï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
+ * @param   game		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonDefaultBGDel(BALLOON_GAME_WORK *game)
@@ -1786,26 +1786,26 @@ static void BalloonDefaultBGDel(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊBGF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚ÌƒZƒbƒg‚ğs‚¤
- * @param   game		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢BGï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’è¡Œã†
+ * @param   game		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonDefaultBGSet_Sub(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 {
-	//BG‹¤’ÊƒpƒŒƒbƒg
+	//BGå…±é€šãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(game->pfd, ARC_BALLOON_GRA, MINI_FUSEN_TOP_NCLR, 
 		HEAPID_BALLOON, FADE_SUB_BG, 5 * 0x20, 0);
-	//BG‹¤’ÊƒpƒŒƒbƒg
+	//BGå…±é€šãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSetEx_Arc(game->pfd, ARC_BALLOON_GRA, MINI_FUSEN_POKEFUSEN_NCLR, HEAPID_BALLOON, 
 		FADE_SUB_BG, FUSEN_BG_LOAD_SIZE, FUSEN_BG_LOAD_POS * 16, FUSEN_BG_READ_POS * 16);
 
-	//”wŒi
+	//èƒŒæ™¯
 	ArcUtil_HDL_BgCharSet(hdl, MINI_FUSEN_BG_NCGR, game->bgl, 
 		BALLOON_SUBFRAME_BACK, 0, 0, 0, HEAPID_BALLOON);
 	ArcUtil_HDL_ScrnSet(hdl, MINI_FUSEN_BG_NSCR, game->bgl, 
 		BALLOON_SUBFRAME_BACK, 0, 0, 0, HEAPID_BALLOON);
 
-	//ƒpƒCƒv
+	//ãƒ‘ã‚¤ãƒ—
 	ArcUtil_HDL_BgCharSet(hdl, MINI_FUSEN_WINDOW_NCGR, game->bgl, 
 		BALLOON_SUBFRAME_PIPE, 0, 0, 0, HEAPID_BALLOON);
 	switch(game->bsw->player_max){
@@ -1823,30 +1823,30 @@ static void BalloonDefaultBGSet_Sub(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 		break;
 	}
 
-	//ƒEƒBƒ“ƒhƒE–Ê
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢
 	ArcUtil_HDL_BgCharSet(hdl, MINI_FUSEN_WINDOW_NCGR, game->bgl, 
 		BALLOON_SUBFRAME_WIN, 0, 0, 0, HEAPID_BALLOON);
 	ArcUtil_HDL_ScrnSet(hdl, MINI_FUSEN_WINDOW_NSCR, game->bgl, 
 		BALLOON_SUBFRAME_WIN, 0, 0, 0, HEAPID_BALLOON);
 
-	//ƒvƒŒƒCƒ„[ˆÊ’u‚É]‚Á‚ÄƒJƒ‰[ƒXƒƒbƒv‚ğs‚¤
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã«å¾“ã£ã¦ã‚«ãƒ©ãƒ¼ã‚¹ãƒ¯ãƒƒãƒ—ã‚’è¡Œã†
 	BalloonTool_PaletteSwap_Pipe(game);
-	//–¼‘OƒEƒBƒ“ƒhƒE‚ÌƒpƒŒƒbƒg”Ô†‚ğQ‰Ál”‚É‰‚¶‚Ä‘‚«Š·‚¦
+	//åå‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’å‚åŠ äººæ•°ã«å¿œã˜ã¦æ›¸ãæ›ãˆ
 	BalloonTool_NameWindowPalNoSwap(game);
 
-	//ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE‚ğ“o˜^
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç™»éŒ²
 	MenuWinGraphicSet(game->bgl, BALLOON_SUBFRAME_WIN, BMPWIN_SUB_CGX_OFFSET_SYSTEM, 
 		BMPWIN_SUB_SYSTEM_WIN_COLOR, MENU_TYPE_SYSTEM, HEAPID_BALLOON);
 	PaletteWorkSet_VramCopy(game->pfd, FADE_SUB_BG, BMPWIN_SUB_SYSTEM_WIN_COLOR * 16, 0x20);
 	
-	//ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚É•‚ÌƒJƒ‰[‚ğ“ü‚ê‚é
+	//ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã«é»’ã®ã‚«ãƒ©ãƒ¼ã‚’å…¥ã‚Œã‚‹
 	PaletteWork_Clear(game->pfd, FADE_SUB_BG, FADEBUF_ALL, 0x0000, 0, 1);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊBGF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚Ìíœˆ—‚ğs‚¤
- * @param   game		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢BGï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
+ * @param   game		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonDefaultBGDel_Sub(BALLOON_GAME_WORK *game)
@@ -1856,7 +1856,7 @@ static void BalloonDefaultBGDel_Sub(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   í’“‚·‚é3Dƒ‚ƒfƒ‹‚Ì“o˜^
+ * @brief   å¸¸é§ã™ã‚‹3Dãƒ¢ãƒ‡ãƒ«ã®ç™»éŒ²
  *
  * @param   game	
  * @param   hdl		
@@ -1873,32 +1873,32 @@ static void BalloonDefault3DSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 	entry_pos = Balloon_NetID_to_EntryNo(game, CommGetCurrentID());
 
 	
-	//-- ƒpƒCƒv --//
-    //ƒ‚ƒfƒ‹ÃŞ°À“Ç‚İ‚İ
+	//-- ãƒ‘ã‚¤ãƒ— --//
+    //ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	D3DOBJ_MdlLoadH(&pa->pipe_mdl, hdl, PlayerPosGraphicID[entry_pos].pipe_mdl_id, HEAPID_BALLOON);
-    //ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+    //ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
     D3DOBJ_Init( &pa->pipe_obj, &pa->pipe_mdl );
-    //À•Wİ’è
+    //åº§æ¨™è¨­å®š
     D3DOBJ_SetMatrix( &pa->pipe_obj, PIPE_AIR_X, PIPE_AIR_Y, PIPE_AIR_Z);
     D3DOBJ_SetScale(&pa->pipe_obj, PIPE_AIR_SCALE, PIPE_AIR_SCALE, PIPE_AIR_SCALE);
     D3DOBJ_SetDraw( &pa->pipe_obj, TRUE );
 
-	//-- ‹ó‹C --//
-    //ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	//-- ç©ºæ°— --//
+    //ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	D3DOBJ_MdlLoadH(&pa->air_mdl[PIPE_3D_AIR_TYPE_SMALL], 
 		hdl, PlayerPosGraphicID[entry_pos].air_s_mdl_id, HEAPID_BALLOON);
-    //ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚İ‚İ
+    //ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	D3DOBJ_MdlLoadH(&pa->air_mdl[PIPE_3D_AIR_TYPE_MIDDLE], 
 		hdl, PlayerPosGraphicID[entry_pos].air_m_mdl_id, HEAPID_BALLOON);
-    //ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚İ‚İ
+    //ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	D3DOBJ_MdlLoadH(&pa->air_mdl[PIPE_3D_AIR_TYPE_BIG], 
 		hdl, PlayerPosGraphicID[entry_pos].air_l_mdl_id, HEAPID_BALLOON);
-    //ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚İ‚İ
+    //ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	D3DOBJ_MdlLoadH(&pa->air_mdl[PIPE_3D_AIR_TYPE_SPECIAL], 
 		hdl, PlayerPosGraphicID[entry_pos].air_sp_mdl_id, HEAPID_BALLOON);
 	for(i = 0; i < PIPE_AIR_AIR_MAX; i++){
 		for(s = 0; s < PIPE_3D_AIR_TYPE_MAX; s++){
-			//ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+			//ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 			if(anm_resource == NULL){
 				D3DOBJ_AnmLoadH(&pa->air[i][s].anm, &pa->air_mdl[s], hdl, 
 					SONANS_BALL1_NSBCA + s, HEAPID_BALLOON, &game->allocator);
@@ -1912,12 +1912,12 @@ static void BalloonDefault3DSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 		}
 	}
 	
-	//-- ‘äÀ --//
-    //ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	//-- å°åº§ --//
+    //ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	D3DOBJ_MdlLoadH(&daiza->mdl, hdl, SONANS_DAIZA_NSBMD, HEAPID_BALLOON);
-    //ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+    //ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
     D3DOBJ_Init( &daiza->obj, &daiza->mdl );
-    //À•Wİ’è
+    //åº§æ¨™è¨­å®š
     D3DOBJ_SetMatrix( &daiza->obj, DAIZA_X, DAIZA_Y, DAIZA_Z);
     D3DOBJ_SetScale(&daiza->obj, DAIZA_SCALE, DAIZA_SCALE, DAIZA_SCALE);
     D3DOBJ_SetDraw( &daiza->obj, TRUE );
@@ -1925,7 +1925,7 @@ static void BalloonDefault3DSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 
 //--------------------------------------------------------------
 /**
- * @brief   í’“‚·‚é3Dƒ‚ƒfƒ‹‚ğíœ
+ * @brief   å¸¸é§ã™ã‚‹3Dãƒ¢ãƒ‡ãƒ«ã‚’å‰Šé™¤
  *
  * @param   game		
  */
@@ -1949,12 +1949,12 @@ static void BalloonDefault3DDel(BALLOON_GAME_WORK *game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹Cƒ‚ƒfƒ‹‚ğƒGƒ“ƒgƒŠ[‚³‚¹‚é
+ * @brief   ç©ºæ°—ãƒ¢ãƒ‡ãƒ«ã‚’ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã•ã›ã‚‹
  *
  * @param   game			
- * @param   air_size		‹ó‹C—Ê
+ * @param   air_size		ç©ºæ°—é‡
  *
- * @retval  TRUE:ƒGƒ“ƒgƒŠ[¬Œ÷  FALSE:¸”s
+ * @retval  TRUE:ã‚¨ãƒ³ãƒˆãƒªãƒ¼æˆåŠŸ  FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL Air3D_EntryAdd(BALLOON_GAME_PTR game, int air)
@@ -1963,7 +1963,7 @@ BOOL Air3D_EntryAdd(BALLOON_GAME_PTR game, int air)
 	D3DOBJ_MDL *mdl;
 	int i, air_size;
 	
-	if(air > SONANS_POMP_MAX_AIR){	//Ô‚­‚È‚Á‚Ä‚¢‚é or ƒŒƒA‘¾‚¢
+	if(air > SONANS_POMP_MAX_AIR){	//èµ¤ããªã£ã¦ã„ã‚‹æ™‚ or ãƒ¬ã‚¢å¤ªã„
 		air_size = PIPE_3D_AIR_TYPE_SPECIAL;
 	}
 	else if(air > PIPE_3D_AIR_TYPE_SPECIAL / 3 * 2){
@@ -1978,19 +1978,19 @@ BOOL Air3D_EntryAdd(BALLOON_GAME_PTR game, int air)
 	
 	mdl = &pa->air_mdl[air_size];
 #ifdef OSP_BALLOON_ON
-	OS_TPrintf("‹ó‹CƒTƒCƒY%d\n", air_size);
+	OS_TPrintf("ç©ºæ°—ã‚µã‚¤ã‚ºï¼%d\n", air_size);
 #endif
 	
 	for(i = 0; i < PIPE_AIR_AIR_MAX; i++){
 		if(pa->air[i][air_size].occ == FALSE){
-			//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+			//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 			D3DOBJ_Init(&pa->air[i][air_size].obj, mdl);
-			//À•Wİ’è
+			//åº§æ¨™è¨­å®š
 			D3DOBJ_SetMatrix( &pa->air[i][air_size].obj, PIPE_AIR_X, PIPE_AIR_Y, PIPE_AIR_Z);
 			D3DOBJ_SetScale(&pa->air[i][air_size].obj, 
 				PIPE_AIR_SCALE, PIPE_AIR_SCALE, PIPE_AIR_SCALE);
 			D3DOBJ_SetDraw( &pa->air[i][air_size].obj, TRUE );
-			//ƒAƒjƒŠÖ˜A•t‚¯
+			//ã‚¢ãƒ‹ãƒ¡é–¢é€£ä»˜ã‘
 			D3DOBJ_AnmSet(&pa->air[i][air_size].anm, 0);
 			D3DOBJ_AddAnm(&pa->air[i][air_size].obj, &pa->air[i][air_size].anm);
 			
@@ -2000,27 +2000,27 @@ BOOL Air3D_EntryAdd(BALLOON_GAME_PTR game, int air)
 		}
 	}
 	
-	//GF_ASSERT(0);	//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É‹ó‚«‚ª‚È‚¢
+	//GF_ASSERT(0);	//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç©ºããŒãªã„
 #ifdef OSP_BALLOON_ON
-	OS_TPrintf("‹ó‹C3D‚ÌƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É‹ó‚«‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+	OS_TPrintf("ç©ºæ°—3Dã®ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç©ºããŒã‚ã‚Šã¾ã›ã‚“\n");
 #endif
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹Cƒ‚ƒfƒ‹‚ğíœ‚·‚é
+ * @brief   ç©ºæ°—ãƒ¢ãƒ‡ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   game		
- * @param   air_no		‹ó‹Cƒ‚ƒfƒ‹‚ÌŠÇ—”Ô†
- * @param   air_size	‹ó‹C‚ÌƒTƒCƒY
+ * @param   air_no		ç©ºæ°—ãƒ¢ãƒ‡ãƒ«ã®ç®¡ç†ç•ªå·
+ * @param   air_size	ç©ºæ°—ã®ã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------
 void Air3D_Delete(BALLOON_GAME_PTR game, int air_no, int air_size)
 {
 	PIPE_AIR_WORK *pa = &game->pipe_air;
 	
-	//ƒAƒjƒ‚ÌŠÖ˜A•t‚¯‚ğØ‚é
+	//ã‚¢ãƒ‹ãƒ¡ã®é–¢é€£ä»˜ã‘ã‚’åˆ‡ã‚‹
 	D3DOBJ_DelAnm(&pa->air[air_no][air_size].obj, &pa->air[air_no][air_size].anm);
 	
 	pa->air[air_no][air_size].occ = FALSE;
@@ -2028,7 +2028,7 @@ void Air3D_Delete(BALLOON_GAME_PTR game, int air_no, int air_size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹Cƒ‚ƒfƒ‹XVˆ—
+ * @brief   ç©ºæ°—ãƒ¢ãƒ‡ãƒ«æ›´æ–°å‡¦ç†
  *
  * @param   game		
  */
@@ -2051,7 +2051,7 @@ void Air3D_Update(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹Cƒ‚ƒfƒ‹•`‰æˆ—
+ * @brief   ç©ºæ°—ãƒ¢ãƒ‡ãƒ«æç”»å‡¦ç†
  *
  * @param   game		
  */
@@ -2072,11 +2072,11 @@ void Air3D_Draw(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚ªƒT[ƒo[‚©Šm”F
+ * @brief   è‡ªåˆ†ãŒã‚µãƒ¼ãƒãƒ¼ã‹ç¢ºèª
  *
  * @param   game		
  *
- * @retval  TRUE:©•ª‚ªƒT[ƒo[
+ * @retval  TRUE:è‡ªåˆ†ãŒã‚µãƒ¼ãƒãƒ¼
  */
 //--------------------------------------------------------------
 BOOL Balloon_ServerCheck(BALLOON_GAME_PTR game)
@@ -2095,11 +2095,11 @@ BOOL Balloon_ServerCheck(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[’S“–‚ğ’N‚É‚·‚é‚©Œˆ‚ß‚é
+ * @brief   ã‚µãƒ¼ãƒãƒ¼æ‹…å½“ã‚’èª°ã«ã™ã‚‹ã‹æ±ºã‚ã‚‹
  *
  * @param   game		
  *
- * @retval  ƒT[ƒo[‚É‚È‚Á‚½l‚ÌƒlƒbƒgID
+ * @retval  ã‚µãƒ¼ãƒãƒ¼ã«ãªã£ãŸäººã®ãƒãƒƒãƒˆID
  */
 //--------------------------------------------------------------
 int Balloon_ServerSelect(BALLOON_GAME_PTR game)
@@ -2113,8 +2113,8 @@ int Balloon_ServerSelect(BALLOON_GAME_PTR game)
 	}
 #endif
 
-	//ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚ªˆê”Ô‚‚¢l‚ªƒT[ƒo[‚É‚È‚éB
-	//“¯‚¶ê‡‚ÍƒlƒbƒgID‚ªá‚¢•û‚ª—Dæ
+	//ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒä¸€ç•ªé«˜ã„äººãŒã‚µãƒ¼ãƒãƒ¼ã«ãªã‚‹ã€‚
+	//åŒã˜å ´åˆã¯ãƒãƒƒãƒˆIDãŒè‹¥ã„æ–¹ãŒå„ªå…ˆ
 	server_netid = game->bsw->player_netid[0];
 	now_version = game->recv_server_version[0];
 	for(i = 1; i < game->bsw->player_max; i++){
@@ -2124,17 +2124,17 @@ int Balloon_ServerSelect(BALLOON_GAME_PTR game)
 		}
 	}
 	game->server_netid = server_netid;
-	OS_TPrintf("ƒT[ƒo[’S“–‚Í%d”Ô(Version = %d)\n", game->server_netid, now_version);
+	OS_TPrintf("ã‚µãƒ¼ãƒãƒ¼æ‹…å½“ã¯%dç•ª(Version = %d)\n", game->server_netid, now_version);
 	return game->server_netid;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   óMƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param   game		
- * @param   net_id		‘ÎÛƒf[ƒ^‚ÌƒlƒbƒgID
- * @param   src			ƒZƒbƒg‚·‚éƒf[ƒ^
+ * @param   net_id		å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒˆID
+ * @param   src			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void BalloonSio_RecvBufferSet(BALLOON_GAME_PTR game, int net_id, const BALLOON_SIO_PLAY_WORK *src)
@@ -2146,15 +2146,15 @@ void BalloonSio_RecvBufferSet(BALLOON_GAME_PTR game, int net_id, const BALLOON_S
 		return;
 	}
 	
-	//ƒf[ƒ^‚ª—­‚Ü‚è‚·‚¬‚½Aread‚Æwrite‚Åring_no‚Ì‰ñ‚è‚İ‚ª”­¶‚µ‚È‚¢‚æ‚¤‚É
-	//ring_no‚Íí‚ÉƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‘±‚¯Aƒoƒbƒtƒ@‚Ö‚ÌƒAƒNƒZƒX‚ÍœZ‚µ‚½è—]‚Ås‚¤
+	//ãƒ‡ãƒ¼ã‚¿ãŒæºœã¾ã‚Šã™ããŸæ™‚ã€readã¨writeã§ring_noã®å›ã‚Šè¾¼ã¿ãŒç™ºç”Ÿã—ãªã„ã‚ˆã†ã«
+	//ring_noã¯å¸¸ã«ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ç¶šã‘ã€ãƒãƒƒãƒ•ã‚¡ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã¯é™¤ç®—ã—ãŸå‰°ä½™ã§è¡Œã†
 	ring_no = game->recv_write_ring_no[net_id] % SIO_BUFFER_CHAIN_MAX;
 	recv = &game->recv_buf[net_id].play_work[ring_no];
 	
-	game->recv_write_ring_no[net_id]++;	//‘‚«‚İ—pƒŠƒ“ƒOƒoƒbƒtƒ@”Ô†‚ği‚ß‚é
+	game->recv_write_ring_no[net_id]++;	//æ›¸ãè¾¼ã¿ç”¨ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ç•ªå·ã‚’é€²ã‚ã‚‹
 	
-	//‚â‚èæ‚è‚·‚é‚Ì‚Í‰‰oƒf[ƒ^‚¾‚¯‚È‚Ì‚Åã‘‚«‚µ‚Ä‚à–â‘è‚È‚¢‚ª
-	//ƒfƒoƒbƒO’†‚Í‚Ç‚ê‚®‚ç‚¢ã‘‚«‚ª”­¶‚·‚é‚©Šm”F‚·‚éˆ×AASSERT‚Å~‚ß‚é
+	//ã‚„ã‚Šå–ã‚Šã™ã‚‹ã®ã¯æ¼”å‡ºãƒ‡ãƒ¼ã‚¿ã ã‘ãªã®ã§ä¸Šæ›¸ãã—ã¦ã‚‚å•é¡Œãªã„ãŒ
+	//ãƒ‡ãƒãƒƒã‚°ä¸­ã¯ã©ã‚Œãã‚‰ã„ä¸Šæ›¸ããŒç™ºç”Ÿã™ã‚‹ã‹ç¢ºèªã™ã‚‹ç‚ºã€ASSERTã§æ­¢ã‚ã‚‹
 	GF_ASSERT(recv->order_code == ORDER_CODE_NULL);
 	
 	*recv = *src;
@@ -2162,12 +2162,12 @@ void BalloonSio_RecvBufferSet(BALLOON_GAME_PTR game, int net_id, const BALLOON_S
 
 //--------------------------------------------------------------
 /**
- * @brief   óMƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ğæ‚èo‚·(“Ç‚İæ‚è—p)
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™(èª­ã¿å–ã‚Šç”¨)
  *
  * @param   game		
- * @param   net_id		æ‚èo‚·‘ÎÛ‚ÌƒlƒbƒgID
+ * @param   net_id		å–ã‚Šå‡ºã™å¯¾è±¡ã®ãƒãƒƒãƒˆID
  *
- * @retval  “Ç‚İæ‚èˆÊ’u‚Ìƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^Bƒf[ƒ^‚ª‚È‚¢ê‡‚ÍNULLB
+ * @retval  èª­ã¿å–ã‚Šä½ç½®ã®ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã€‚ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã¯NULLã€‚
  */
 //--------------------------------------------------------------
 BALLOON_SIO_PLAY_WORK * BalloonSio_RecvBufferReadPtrGet(BALLOON_GAME_PTR game, int net_id)
@@ -2175,28 +2175,28 @@ BALLOON_SIO_PLAY_WORK * BalloonSio_RecvBufferReadPtrGet(BALLOON_GAME_PTR game, i
 	BALLOON_SIO_PLAY_WORK *recv;
 	int ring_no;
 	
-	//ƒf[ƒ^‚ª—­‚Ü‚è‚·‚¬‚½Aread‚Æwrite‚Åring_no‚Ì‰ñ‚è‚İ‚ª”­¶‚µ‚È‚¢‚æ‚¤‚É
-	//ring_no‚Íí‚ÉƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‘±‚¯Aƒoƒbƒtƒ@‚Ö‚ÌƒAƒNƒZƒX‚ÍœZ‚µ‚½è—]‚Ås‚¤
+	//ãƒ‡ãƒ¼ã‚¿ãŒæºœã¾ã‚Šã™ããŸæ™‚ã€readã¨writeã§ring_noã®å›ã‚Šè¾¼ã¿ãŒç™ºç”Ÿã—ãªã„ã‚ˆã†ã«
+	//ring_noã¯å¸¸ã«ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ç¶šã‘ã€ãƒãƒƒãƒ•ã‚¡ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã¯é™¤ç®—ã—ãŸå‰°ä½™ã§è¡Œã†
 	ring_no = game->recv_read_ring_no[net_id] % SIO_BUFFER_CHAIN_MAX;
 	recv = &game->recv_buf[net_id].play_work[ring_no];
 	
 	if(recv->order_code != ORDER_CODE_NULL){
-		//ƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚½‚È‚ç‚Î“Ç‚İ‚İ—pƒŠƒ“ƒOƒoƒbƒtƒ@”Ô†‚ği‚ß‚é
+		//ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ãŸãªã‚‰ã°èª­ã¿è¾¼ã¿ç”¨ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ç•ªå·ã‚’é€²ã‚ã‚‹
 		game->recv_read_ring_no[net_id]++;
 		return recv;
 	}
-	return NULL;	//ƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚È‚¢
+	return NULL;	//ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ãªã„
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   d—vƒf[ƒ^‚ğóMƒoƒbƒtƒ@‚ÉƒZƒbƒg‚·‚é
+ * @brief   é‡è¦ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param   game		
- * @param   net_id		‘ÎÛƒf[ƒ^‚ÌƒlƒbƒgID
- * @param   src			ƒZƒbƒg‚·‚éƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   net_id		å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒˆID
+ * @param   src			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:ƒZƒbƒg‚µ‚½B@FALSE:d—vƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚Ì‚ÅƒZƒbƒg‚µ‚È‚©‚Á‚½
+ * @retval  TRUE:ã‚»ãƒƒãƒˆã—ãŸã€‚ã€€FALSE:é‡è¦ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã®ã§ã‚»ãƒƒãƒˆã—ãªã‹ã£ãŸ
  */
 //--------------------------------------------------------------
 static BOOL BalloonSio_ImportantRecvBufferSet(BALLOON_GAME_PTR game, int net_id, const BALLOON_SIO_PLAY_WORK *src)
@@ -2217,10 +2217,10 @@ static BOOL BalloonSio_ImportantRecvBufferSet(BALLOON_GAME_PTR game, int net_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘—Mƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+ * @brief   é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param   game		
- * @param   src			ƒZƒbƒg‚·‚éƒf[ƒ^
+ * @param   src			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void BalloonSio_SendBufferSet(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *src)
@@ -2232,29 +2232,29 @@ void BalloonSio_SendBufferSet(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK
 		return;
 	}
 	
-	//ƒf[ƒ^‚ª—­‚Ü‚è‚·‚¬‚½Aread‚Æwrite‚Åring_no‚Ì‰ñ‚è‚İ‚ª”­¶‚µ‚È‚¢‚æ‚¤‚É
-	//ring_no‚Íí‚ÉƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‘±‚¯Aƒoƒbƒtƒ@‚Ö‚ÌƒAƒNƒZƒX‚ÍœZ‚µ‚½è—]‚Ås‚¤
+	//ãƒ‡ãƒ¼ã‚¿ãŒæºœã¾ã‚Šã™ããŸæ™‚ã€readã¨writeã§ring_noã®å›ã‚Šè¾¼ã¿ãŒç™ºç”Ÿã—ãªã„ã‚ˆã†ã«
+	//ring_noã¯å¸¸ã«ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ç¶šã‘ã€ãƒãƒƒãƒ•ã‚¡ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã¯é™¤ç®—ã—ãŸå‰°ä½™ã§è¡Œã†
 	ring_no = game->send_write_ring_no % SIO_BUFFER_CHAIN_MAX;
 	send = &game->send_buf.play_work[ring_no];
 	
-	game->send_write_ring_no++;	//‘‚«‚İ—pƒŠƒ“ƒOƒoƒbƒtƒ@”Ô†‚ği‚ß‚é
+	game->send_write_ring_no++;	//æ›¸ãè¾¼ã¿ç”¨ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ç•ªå·ã‚’é€²ã‚ã‚‹
 	
-	//‚â‚èæ‚è‚·‚é‚Ì‚Í‰‰oƒf[ƒ^‚¾‚¯‚È‚Ì‚Åã‘‚«‚µ‚Ä‚à–â‘è‚È‚¢‚ª
-	//ƒfƒoƒbƒO’†‚Í‚Ç‚ê‚®‚ç‚¢ã‘‚«‚ª”­¶‚·‚é‚©Šm”F‚·‚éˆ×AASSERT‚Å~‚ß‚é
+	//ã‚„ã‚Šå–ã‚Šã™ã‚‹ã®ã¯æ¼”å‡ºãƒ‡ãƒ¼ã‚¿ã ã‘ãªã®ã§ä¸Šæ›¸ãã—ã¦ã‚‚å•é¡Œãªã„ãŒ
+	//ãƒ‡ãƒãƒƒã‚°ä¸­ã¯ã©ã‚Œãã‚‰ã„ä¸Šæ›¸ããŒç™ºç”Ÿã™ã‚‹ã‹ç¢ºèªã™ã‚‹ç‚ºã€ASSERTã§æ­¢ã‚ã‚‹
 	GF_ASSERT(send->order_code == ORDER_CODE_NULL);
 	
 	*send = *src;
-	OS_TPrintf("ˆê”Êƒf[ƒ^‘—Mƒoƒbƒtƒ@‚ÖƒZƒbƒg order_code = %d, ring_no = %d\n", src->order_code, ring_no);
+	OS_TPrintf("ä¸€èˆ¬ãƒ‡ãƒ¼ã‚¿é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã¸ã‚»ãƒƒãƒˆ order_code = %d, ring_no = %d\n", src->order_code, ring_no);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   d—vƒf[ƒ^‚ğ‘—Mƒoƒbƒtƒ@‚ÉƒZƒbƒg‚·‚é
+ * @brief   é‡è¦ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param   game		
- * @param   src			ƒZƒbƒg‚·‚éƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   src			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:ƒZƒbƒg‚µ‚½B@FALSE:d—vƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚Ì‚ÅƒZƒbƒg‚µ‚È‚©‚Á‚½
+ * @retval  TRUE:ã‚»ãƒƒãƒˆã—ãŸã€‚ã€€FALSE:é‡è¦ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã®ã§ã‚»ãƒƒãƒˆã—ãªã‹ã£ãŸ
  */
 //--------------------------------------------------------------
 static BOOL BalloonSio_ImportantSendBufferSet(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *src)
@@ -2267,20 +2267,20 @@ static BOOL BalloonSio_ImportantSendBufferSet(BALLOON_GAME_PTR game, const BALLO
 	case ORDER_CODE_TIMING:
 	case ORDER_CODE_TOUCHPEN_DEMO:
 		if(game->send_important.order_code == ORDER_CODE_NULL){
-			OS_TPrintf("d—vƒf[ƒ^‘—Mƒoƒbƒtƒ@‚ÖƒZƒbƒg order_code = %d\n", src->order_code);
+			OS_TPrintf("é‡è¦ãƒ‡ãƒ¼ã‚¿é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã¸ã‚»ãƒƒãƒˆ order_code = %d\n", src->order_code);
 			game->send_important = *src;
 			return TRUE;
 		}
 		else if(src->order_code == game->send_important.order_code){
-			//“¯‚¶–½—ß‚ğŠù‚ÉƒŠƒNƒGƒXƒgÏ‚İB
-			//d—vƒf[ƒ^ƒŠƒNƒGƒXƒg‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Íˆê”Êƒf[ƒ^‚ğ‘—M‚µ‚È‚¢‚æ‚¤‚ÉTRUE‚Å•Ô‚·
-			OS_TPrintf("d—vƒf[ƒ^2dƒŠƒNƒGƒXƒg”­¶ order_code = %d\n", src->order_code);
+			//åŒã˜å‘½ä»¤ã‚’æ—¢ã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ¸ˆã¿ã€‚
+			//é‡è¦ãƒ‡ãƒ¼ã‚¿ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä¸€èˆ¬ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã—ãªã„ã‚ˆã†ã«TRUEã§è¿”ã™
+			OS_TPrintf("é‡è¦ãƒ‡ãƒ¼ã‚¿2é‡ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºç”Ÿ order_code = %d\n", src->order_code);
 			return TRUE;
 		}
 		else{
-			//d—vƒf[ƒ^‚ÌƒŠƒNƒGƒXƒg‚ªŠù‚É”­¶‚µ‚Ä‚¢‚é‚Ì‚ÉAˆá‚¤í—Ş‚Ìd—vƒf[ƒ^‚Ì
-			//ƒŠƒNƒGƒXƒg‚ğ‚©‚¯‚Ä‚¢‚é
-			OS_TPrintf("—­‚Ü‚Á‚Ä‚¢‚éorder_code = %d, V‹K‚ÉƒŠƒNƒGƒXƒg‚µ‚½order_code = %d\n", game->send_important.order_code, src->order_code);
+			//é‡è¦ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ—¢ã«ç™ºç”Ÿã—ã¦ã„ã‚‹ã®ã«ã€é•ã†ç¨®é¡ã®é‡è¦ãƒ‡ãƒ¼ã‚¿ã®
+			//ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ã‹ã‘ã¦ã„ã‚‹
+			OS_TPrintf("æºœã¾ã£ã¦ã„ã‚‹order_code = %d, æ–°è¦ã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆã—ãŸorder_code = %d\n", game->send_important.order_code, src->order_code);
 			GF_ASSERT(0);
 			return FALSE;
 		}
@@ -2291,14 +2291,14 @@ static BOOL BalloonSio_ImportantSendBufferSet(BALLOON_GAME_PTR game, const BALLO
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘—Mƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ğæ‚èo‚·(“Ç‚İæ‚è—p)
+ * @brief   é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™(èª­ã¿å–ã‚Šç”¨)
  *
  * @param   game		
  *
- * @retval  “Ç‚İæ‚èˆÊ’u‚Ìƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^Bƒf[ƒ^‚ª‚È‚¢ê‡‚ÍNULLB
+ * @retval  èª­ã¿å–ã‚Šä½ç½®ã®ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã€‚ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã¯NULLã€‚
  *
- * ‘—Mƒoƒbƒtƒ@‚Ìread_ring_no‚ÍAæ‚èo‚µ‚Ä‚àA‘—M¸”s‚Ì‰Â”\«‚ª‚ ‚é‚Ì‚Å
- * ‚±‚ÌŠÖ”“à‚Å‚ÍƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‚È‚¢
+ * é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã®read_ring_noã¯ã€å–ã‚Šå‡ºã—ã¦ã‚‚ã€é€ä¿¡å¤±æ•—ã®å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§
+ * ã“ã®é–¢æ•°å†…ã§ã¯ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ãªã„
  */
 //--------------------------------------------------------------
 BALLOON_SIO_PLAY_WORK * BalloonSio_SendBufferReadPtrGet(BALLOON_GAME_PTR game)
@@ -2306,8 +2306,8 @@ BALLOON_SIO_PLAY_WORK * BalloonSio_SendBufferReadPtrGet(BALLOON_GAME_PTR game)
 	BALLOON_SIO_PLAY_WORK *send;
 	int ring_no;
 	
-	//ƒf[ƒ^‚ª—­‚Ü‚è‚·‚¬‚½Aread‚Æwrite‚Åring_no‚Ì‰ñ‚è‚İ‚ª”­¶‚µ‚È‚¢‚æ‚¤‚É
-	//ring_no‚Íí‚ÉƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‘±‚¯Aƒoƒbƒtƒ@‚Ö‚ÌƒAƒNƒZƒX‚ÍœZ‚µ‚½è—]‚Ås‚¤
+	//ãƒ‡ãƒ¼ã‚¿ãŒæºœã¾ã‚Šã™ããŸæ™‚ã€readã¨writeã§ring_noã®å›ã‚Šè¾¼ã¿ãŒç™ºç”Ÿã—ãªã„ã‚ˆã†ã«
+	//ring_noã¯å¸¸ã«ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ç¶šã‘ã€ãƒãƒƒãƒ•ã‚¡ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã¯é™¤ç®—ã—ãŸå‰°ä½™ã§è¡Œã†
 	ring_no = game->send_read_ring_no % SIO_BUFFER_CHAIN_MAX;
 	send = &game->send_buf.play_work[ring_no];
 	
@@ -2315,16 +2315,16 @@ BALLOON_SIO_PLAY_WORK * BalloonSio_SendBufferReadPtrGet(BALLOON_GAME_PTR game)
 //		game->send_read_ring_no++;
 		return send;
 	}
-	return NULL;	//ƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚È‚¢
+	return NULL;	//ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ãªã„
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘—Mƒoƒbƒtƒ@‚É—­‚Ü‚Á‚Ä‚¢‚éƒf[ƒ^‚ğ‘—M‚·‚é
+ * @brief   é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹
  *
  * @param   game		
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M‚µ‚È‚©‚Á‚½(ƒf[ƒ^‚ª‚È‚¢ê‡‚à‚±‚ê)
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡ã—ãªã‹ã£ãŸ(ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã‚‚ã“ã‚Œ)
  */
 //--------------------------------------------------------------
 static int BalloonSio_CommSend(BALLOON_GAME_PTR game)
@@ -2338,20 +2338,20 @@ static int BalloonSio_CommSend(BALLOON_GAME_PTR game)
 #endif
 
 	if(game->sio_wait > 0){
-		game->sio_wait--;	//Wifiƒ{ƒCƒXƒ`ƒƒƒbƒg•‰‰×‚É‘Ï‚¦‚ç‚ê‚é‚æ‚¤‚ÉŸ‚Ì‘—M‚Ü‚ÅŠÔ‚ğ‚¨‚­
+		game->sio_wait--;	//Wifiãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆè² è·ã«è€ãˆã‚‰ã‚Œã‚‹ã‚ˆã†ã«æ¬¡ã®é€ä¿¡ã¾ã§é–“ã‚’ãŠã
 		return FALSE;
 	}
 
 #ifdef PM_DEBUG
 	if(game->bsw->debug_offline == TRUE){
-		//d—vƒf[ƒ^
+		//é‡è¦ãƒ‡ãƒ¼ã‚¿
 		if(game->send_important.order_code != ORDER_CODE_NULL){
 			game->recv_important = game->send_important;
 			game->send_important.order_code = ORDER_CODE_NULL;
 			return TRUE;
 		}
 
-		//ˆê”Êƒf[ƒ^‘—M
+		//ä¸€èˆ¬ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 		send = BalloonSio_SendBufferReadPtrGet(game);
 		if(send == NULL){
 			return FALSE;
@@ -2363,10 +2363,10 @@ static int BalloonSio_CommSend(BALLOON_GAME_PTR game)
 	}
 #endif
 
-	//d—vƒf[ƒ^‚ª‚ ‚éê‡‚Í—Dæ“I‚É‘—M
+	//é‡è¦ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯å„ªå…ˆçš„ã«é€ä¿¡
 	if(game->send_important.order_code != ORDER_CODE_NULL){
 		if(Send_CommBalloonPlayData(game, &game->send_important) == TRUE){
-			OS_TPrintf("‘—MFd—vƒf[ƒ^ order_code = %d\n", game->send_important.order_code);
+			OS_TPrintf("é€ä¿¡ï¼šé‡è¦ãƒ‡ãƒ¼ã‚¿ order_code = %d\n", game->send_important.order_code);
 			game->send_important.order_code = ORDER_CODE_NULL;
 			return TRUE;
 		}
@@ -2375,13 +2375,13 @@ static int BalloonSio_CommSend(BALLOON_GAME_PTR game)
 		}
 	}
 	
-	//ˆê”Êƒf[ƒ^‘—M
+	//ä¸€èˆ¬ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 	send = BalloonSio_SendBufferReadPtrGet(game);
 	if(send == NULL){
 		return FALSE;
 	}
 	if(Send_CommBalloonPlayData(game, send) == TRUE){
-		OS_TPrintf("‘—MFˆê”Êƒf[ƒ^ order_code = %d\n", send->order_code);
+		OS_TPrintf("é€ä¿¡ï¼šä¸€èˆ¬ãƒ‡ãƒ¼ã‚¿ order_code = %d\n", send->order_code);
 		send->order_code = ORDER_CODE_NULL;
 		game->send_read_ring_no++;
 		return TRUE;
@@ -2391,7 +2391,7 @@ static int BalloonSio_CommSend(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   óMƒoƒbƒtƒ@‚É—­‚Ü‚Á‚Ä‚¢‚éƒf[ƒ^‚ğ‰ğßAÀs‚·‚é
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’è§£é‡ˆã€å®Ÿè¡Œã™ã‚‹
  *
  * @param   game		
  */
@@ -2402,14 +2402,14 @@ static void BalloonSio_CommRecv(BALLOON_GAME_PTR game)
 	BALLOON_SIO_PLAY_WORK *recv;
 	int ret, order_code;
 	
-	//d—vƒf[ƒ^‚ª‚ ‚éê‡‚Í—Dæ“I‚ÉÀs
+	//é‡è¦ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯å„ªå…ˆçš„ã«å®Ÿè¡Œ
 	order_code = game->recv_important.order_code;
 	if(RecvBalloon_FuncCall(game, &game->recv_important) == TRUE){
-		OS_TPrintf("óMFd—vƒf[ƒ^ order_code = %d\n", order_code);
+		OS_TPrintf("å—ä¿¡ï¼šé‡è¦ãƒ‡ãƒ¼ã‚¿ order_code = %d\n", order_code);
 		return;
 	}
 	
-	//ˆê”Êƒf[ƒ^ƒ`ƒFƒbƒN
+	//ä¸€èˆ¬ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 	recv = &game->recv_important;
 	for(player_no = 0; player_no < game->bsw->player_max; player_no++){
 		while(1){
@@ -2420,7 +2420,7 @@ static void BalloonSio_CommRecv(BALLOON_GAME_PTR game)
 			order_code = recv->order_code;
 			ret = RecvBalloon_FuncCall(game, recv);
 			if(ret == TRUE){
-				OS_TPrintf("óMFˆê”Êƒf[ƒ^ order_code = %d\n", order_code);
+				OS_TPrintf("å—ä¿¡ï¼šä¸€èˆ¬ãƒ‡ãƒ¼ã‚¿ order_code = %d\n", order_code);
 			}
 		}
 	}
@@ -2428,11 +2428,11 @@ static void BalloonSio_CommRecv(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D”Ô†æ“¾
+ * @brief   é¢¨èˆ¹ç•ªå·å–å¾—
  *
  * @param   game		
  *
- * @retval  •—‘D”Ô†
+ * @retval  é¢¨èˆ¹ç•ªå·
  */
 //--------------------------------------------------------------
 int Balloon_BalloonNoGet(BALLOON_GAME_PTR game)
@@ -2442,12 +2442,12 @@ int Balloon_BalloonNoGet(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒlƒbƒgID‚©‚ç‚»‚ÌƒvƒŒƒCƒ„[‚ÌˆÊ’u‚ğæ“¾‚·‚é
+ * @brief   ãƒãƒƒãƒˆIDã‹ã‚‰ãã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
  *
  * @param   game		
- * @param   net_id		ƒlƒbƒgID
+ * @param   net_id		ãƒãƒƒãƒˆID
  *
- * @retval  6‚ÌˆÊ’u‚ğ0‚Æ‚µ‚Ä¶‰ñ‚è‚ÉA‚PC‚QC‚REE‚Æ‚È‚é
+ * @retval  6æ™‚ã®ä½ç½®ã‚’0ã¨ã—ã¦å·¦å›ã‚Šã«ã€ï¼‘ï¼Œï¼’ï¼Œï¼“ãƒ»ãƒ»ã¨ãªã‚‹
  */
 //--------------------------------------------------------------
 int Balloon_NetID_to_PlayerPos(BALLOON_GAME_PTR game, int net_id)
@@ -2468,7 +2468,7 @@ int Balloon_NetID_to_PlayerPos(BALLOON_GAME_PTR game, int net_id)
 	target_index = 0xff;
 	my_index = 0xff;
 	
-	//Q‰ÁƒlƒbƒgIDƒŠƒXƒg‚©‚ç‰½”Ô–Ú‚ÌQ‰ÁÒ‚©Index‚ğæ“¾
+	//å‚åŠ ãƒãƒƒãƒˆIDãƒªã‚¹ãƒˆã‹ã‚‰ä½•ç•ªç›®ã®å‚åŠ è€…ã‹Indexã‚’å–å¾—
 	for(i = 0; i < game->bsw->player_max; i++){
 		if(game->bsw->player_netid[i] == current_id){
 			my_index = i;
@@ -2485,18 +2485,18 @@ int Balloon_NetID_to_PlayerPos(BALLOON_GAME_PTR game, int net_id)
 #endif
 	GF_ASSERT(target_index != 0xff && my_index != 0xff);
 	
-	//‚±‚Ìƒ}ƒVƒ“‚ÌƒlƒbƒgID‚ğŠî€‚ÉIndex‚©‚çˆÊ’uŠÖŒW‚ğ”cˆ¬
+	//ã“ã®ãƒã‚·ãƒ³ã®ãƒãƒƒãƒˆIDã‚’åŸºæº–ã«Indexã‹ã‚‰ä½ç½®é–¢ä¿‚ã‚’æŠŠæ¡
 	for(i = 0; i < game->bsw->player_max; i++){
 		if(BalloonPlayerSort[game->bsw->player_max][i] == my_index){
 			my_pos = i;
 		#ifdef OSP_BALLOON_ON
-			OS_TPrintf("my_pos Œˆ’è =%d\n", my_pos);
+			OS_TPrintf("my_pos æ±ºå®š =%d\n", my_pos);
 		#endif
 		}
 		if(BalloonPlayerSort[game->bsw->player_max][i] == target_index){
 			target_pos = i;
 		#ifdef OSP_BALLOON_ON
-			OS_TPrintf("target_pos Œˆ’è =%d\n", target_pos);
+			OS_TPrintf("target_pos æ±ºå®š =%d\n", target_pos);
 		#endif
 		}
 	}
@@ -2511,24 +2511,24 @@ int Balloon_NetID_to_PlayerPos(BALLOON_GAME_PTR game, int net_id)
 #ifdef OSP_BALLOON_ON
 	OS_TPrintf("offset_pos = %d\n", offset_pos);
 #endif
-	return offset_pos;	//‰º‚©‚çŒv‰ñ‚è‚Å‰½”Ô–Ú
+	return offset_pos;	//ä¸‹ã‹ã‚‰æ™‚è¨ˆå›ã‚Šã§ä½•ç•ªç›®
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒlƒbƒgID‚©‚ç‰½”Ô–Ú‚ÌQ‰ÁÒ‚È‚Ì‚©‚ğæ“¾
+ * @brief   ãƒãƒƒãƒˆIDã‹ã‚‰ä½•ç•ªç›®ã®å‚åŠ è€…ãªã®ã‹ã‚’å–å¾—
  *
  * @param   game		
  * @param   net_id		
  *
- * @retval  ‰½”Ô–Ú‚ÌQ‰ÁÒ‚©
+ * @retval  ä½•ç•ªç›®ã®å‚åŠ è€…ã‹
  */
 //--------------------------------------------------------------
 int Balloon_NetID_to_EntryNo(BALLOON_GAME_PTR game, int net_id)
 {
 	int i;
 	
-	//Q‰ÁƒlƒbƒgIDƒŠƒXƒg‚©‚ç‰½”Ô–Ú‚ÌQ‰ÁÒ‚©Index‚ğæ“¾
+	//å‚åŠ ãƒãƒƒãƒˆIDãƒªã‚¹ãƒˆã‹ã‚‰ä½•ç•ªç›®ã®å‚åŠ è€…ã‹Indexã‚’å–å¾—
 	for(i = 0; i < game->bsw->player_max; i++){
 		if(game->bsw->player_netid[i] == net_id){
 			return i;
@@ -2540,11 +2540,11 @@ int Balloon_NetID_to_EntryNo(BALLOON_GAME_PTR game, int net_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   “¯Šúæ‚è•Ô–ƒŠƒNƒGƒXƒgƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+ * @brief   åŒæœŸå–ã‚Šè¿”äº‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
  * @param   game			
  * @param   timing_req		TIMING_REQ_???
- * @param   timing_no		“¯Šú”Ô†
+ * @param   timing_no		åŒæœŸç•ªå·
  */
 //--------------------------------------------------------------
 void Timing_AnswerReqParamSet(BALLOON_GAME_PTR game, int timing_req, u8 timing_no)
@@ -2557,11 +2557,11 @@ void Timing_AnswerReqParamSet(BALLOON_GAME_PTR game, int timing_req, u8 timing_n
 
 //--------------------------------------------------------------
 /**
- * @brief   “¯Šúæ‚è‚Ì•Ô–ƒŠƒNƒGƒXƒg‚ª”­¶‚µ‚Ä‚¢‚éê‡AğŒ‚É]‚Á‚Ä“¯ŠúƒRƒ}ƒ“ƒh‚ğ‘—M‚·‚é
+ * @brief   åŒæœŸå–ã‚Šã®è¿”äº‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã€æ¡ä»¶ã«å¾“ã£ã¦åŒæœŸã‚³ãƒãƒ³ãƒ‰ã‚’é€ä¿¡ã™ã‚‹
  *
  * @param   game		
  *
- * @retval  TRUE:“¯Šúæ‚èƒRƒ}ƒ“ƒh‚ğ‘—M‚µ‚½
+ * @retval  TRUE:åŒæœŸå–ã‚Šã‚³ãƒãƒ³ãƒ‰ã‚’é€ä¿¡ã—ãŸ
  */
 //--------------------------------------------------------------
 static BOOL Timing_AnswerSend(BALLOON_GAME_PTR game)
@@ -2611,11 +2611,11 @@ static BOOL Timing_AnswerSend(BALLOON_GAME_PTR game)
 
 		CommTimingSyncStart(game->timing_no);
 		if(Balloon_ServerCheck(game) == TRUE){
-			//ƒT[ƒo[‚ÍóMŠm”F‚ÅNULL‰»‚·‚éˆ×AWAIT
+			//ã‚µãƒ¼ãƒãƒ¼ã¯å—ä¿¡ç¢ºèªã§NULLåŒ–ã™ã‚‹ç‚ºã€WAIT
 			game->timing_req = TIMING_REQ_WAIT;
 		}
 		else{
-			//ƒNƒ‰ƒCƒAƒ“ƒg‚Í‚±‚Ìê‚ÅNULL‰»
+			//ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã¯ã“ã®å ´ã§NULLåŒ–
 			game->timing_req = TIMING_REQ_NULL;
 		}
 		return TRUE;
@@ -2625,13 +2625,13 @@ static BOOL Timing_AnswerSend(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   “¯Šúæ‚èƒRƒ}ƒ“ƒh‚ğ‘—MÏ‚İ‚Ìê‡A‘¼‚Ìƒ}ƒVƒ“‚Ì“¯ŠúŠm”F‚ğs‚¤
+ * @brief   åŒæœŸå–ã‚Šã‚³ãƒãƒ³ãƒ‰ã‚’é€ä¿¡æ¸ˆã¿ã®å ´åˆã€ä»–ã®ãƒã‚·ãƒ³ã®åŒæœŸç¢ºèªã‚’è¡Œã†
  *
  * @param   game		
  *
- * @retval  “¯Šú‚ªæ‚ê‚½ê‡F‚»‚Ì“¯ŠúƒŠƒNƒGƒXƒg”Ô†
- * @retval	“¯Šú‘Ò‚¿FTIMING_REQ_WAIT
- * @retval	ƒŠƒNƒGƒXƒg‚ª”­¶‚µ‚Ä‚¢‚È‚¢ê‡FTIMING_REQ_NULL
+ * @retval  åŒæœŸãŒå–ã‚ŒãŸå ´åˆï¼šãã®åŒæœŸãƒªã‚¯ã‚¨ã‚¹ãƒˆç•ªå·
+ * @retval	åŒæœŸå¾…ã¡ï¼šTIMING_REQ_WAIT
+ * @retval	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒç™ºç”Ÿã—ã¦ã„ãªã„å ´åˆï¼šTIMING_REQ_NULL
  */
 //--------------------------------------------------------------
 static int Timing_Recv(BALLOON_GAME_PTR game, int server_timing_no)
@@ -2648,11 +2648,11 @@ static int Timing_Recv(BALLOON_GAME_PTR game, int server_timing_no)
 	}
 	
 	if(game->timing_no != server_timing_no){
-		return FALSE;	//ƒT[ƒo[‚Ì‹‚ß‚Ä‚¢‚é“¯Šú”Ô†‚Æˆá‚¤
+		return FALSE;	//ã‚µãƒ¼ãƒãƒ¼ã®æ±‚ã‚ã¦ã„ã‚‹åŒæœŸç•ªå·ã¨é•ã†
 	}
 	
 	if(CommIsTimingSync(game->timing_no) == TRUE){
-		OS_TPrintf("“¯Šú‚µ‚½ no = %d\n", game->timing_no);
+		OS_TPrintf("åŒæœŸã—ãŸ no = %d\n", game->timing_no);
 		game->timing_req = TIMING_REQ_NULL;
 		return TRUE;
 	}
@@ -2661,23 +2661,23 @@ static int Timing_Recv(BALLOON_GAME_PTR game, int server_timing_no)
 
 //==============================================================================
 //
-//	ƒT[ƒo[“®ì
+//	ã‚µãƒ¼ãƒãƒ¼å‹•ä½œ
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[“®ìFƒQ[ƒ€ŠJnˆ—
+ * @brief   ã‚µãƒ¼ãƒãƒ¼å‹•ä½œï¼šã‚²ãƒ¼ãƒ é–‹å§‹å‡¦ç†
  *
  * @param   game		
- * @param   server		ƒT[ƒo[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   server		ã‚µãƒ¼ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚±‚ÌŠÖ”‚Ì“®ìI—¹
+ * @retval  TRUE:ã“ã®é–¢æ•°ã®å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------
 static int ServerPlay_Start(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 {
 	switch(server->local_seq){
-	//ƒQ[ƒ€ŠJn‘O‚Ì“¯Šúæ‚è
+	//ã‚²ãƒ¼ãƒ é–‹å§‹å‰ã®åŒæœŸå–ã‚Š
 	case 0:
 		SendBalloon_Timing(game, TIMING_REQ_NORMAL, server->req_timing_no);
 		server->local_seq++;
@@ -2689,7 +2689,7 @@ static int ServerPlay_Start(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 		}
 		break;
 	
-	//ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚‚ÌŠJn‚Æ“¯Šú‘Ò‚¿
+	//ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢ã®é–‹å§‹ã¨åŒæœŸå¾…ã¡
 	case 2:
 		SendBalloon_TouchPenDemo(game, server->req_timing_no);
 		server->local_seq++;
@@ -2708,7 +2708,7 @@ static int ServerPlay_Start(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 		}
 		break;
 		
-	//ŠJn‰‰o‚Æ‰‰oI—¹‚Ì“¯Šú‘Ò‚¿
+	//é–‹å§‹æ¼”å‡ºã¨æ¼”å‡ºçµ‚äº†ã®åŒæœŸå¾…ã¡
 	case 4:
 		SendBalloon_Start(game, server->req_timing_no);
 		server->local_seq++;
@@ -2725,12 +2725,12 @@ static int ServerPlay_Start(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[“®ìFƒQ[ƒ€ƒvƒŒƒC’†‚Ì“®ì§Œä
+ * @brief   ã‚µãƒ¼ãƒãƒ¼å‹•ä½œï¼šã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ä¸­ã®å‹•ä½œåˆ¶å¾¡
  *
  * @param   game		
- * @param   server		ƒT[ƒo[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   server		ã‚µãƒ¼ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚±‚ÌŠÖ”‚Ì“®ìI—¹
+ * @retval  TRUE:ã“ã®é–¢æ•°ã®å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------
 static int ServerPlay_Game(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
@@ -2742,7 +2742,7 @@ static int ServerPlay_Game(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 		SEQ_EXPLODED_TIMING_WAIT,
 	};
 	
-	//ƒ~ƒjƒQ[ƒ€I—¹ŠÔƒ`ƒFƒbƒN
+	//ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµ‚äº†æ™‚é–“ãƒã‚§ãƒƒã‚¯
 	if(game->time > BALLOON_GAME_PLAY_TIME){
 		if(game->timing_req == TIMING_REQ_NULL 
 				&& game->send_important.order_code == ORDER_CODE_NULL
@@ -2750,12 +2750,12 @@ static int ServerPlay_Game(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 			return TRUE;
 		}
 		else{
-//			OS_TPrintf("I—¹‚É“’B‚µ‚Ä‚¢‚é‚¯‚ÇI—¹o—ˆ‚È‚¢ timing_req = %d, send_code = %d, recv_code = %d\n", game->timing_req, game->send_important.order_code, game->recv_important.order_code);
+//			OS_TPrintf("çµ‚äº†æ™‚åˆ»ã«åˆ°é”ã—ã¦ã„ã‚‹ã‘ã©çµ‚äº†å‡ºæ¥ãªã„ timing_req = %d, send_code = %d, recv_code = %d\n", game->timing_req, game->send_important.order_code, game->recv_important.order_code);
 		}
 	}
 	
 	switch(server->local_seq){
-	//•—‘D“oê
+	//é¢¨èˆ¹ç™»å ´
 	case SEQ_APPEAR:
 		OS_TPrintf("SEQ_APPEAR\n");
 		SendBalloon_Appear(game, game->balloon_no, 
@@ -2769,11 +2769,11 @@ static int ServerPlay_Game(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 		if(Timing_Recv(game, server->req_timing_no) == TRUE){
 			server->req_timing_no++;
 			server->local_seq++;
-			OS_TPrintf("SEQ_APPEAR_TIMING_WAIT“¯ŠúŠ®—¹\n");
+			OS_TPrintf("SEQ_APPEAR_TIMING_WAITåŒæœŸå®Œäº†\n");
 		}
 		break;
 	
-	//•—‘D‚Ì‹ó‹C‚ª”j—ôó‘Ô‚É‚È‚é‚Ü‚Å‘Ò‚Á‚Ä”j—ôƒŠƒNƒGƒXƒg‚ğ‘—‚é
+	//é¢¨èˆ¹ã®ç©ºæ°—ãŒç ´è£‚çŠ¶æ…‹ã«ãªã‚‹ã¾ã§å¾…ã£ã¦ç ´è£‚ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’é€ã‚‹
 	case SEQ_EXPLODED:
 //		OS_TPrintf("SEQ_EXPLODED\n");
 	#ifdef PM_DEBUG
@@ -2785,7 +2785,7 @@ static int ServerPlay_Game(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 			game->balloon_no++;
 			SendBalloon_Exploded(game, Balloon_BalloonNoGet(game), server->req_timing_no);
 			server->local_seq++;
-			OS_TPrintf("SEQ_EXPLODED‘—M max_air=%d, air=%d\n", game->bst.max_air, game->bst.air);
+			OS_TPrintf("SEQ_EXPLODEDé€ä¿¡ max_air=%d, air=%d\n", game->bst.max_air, game->bst.air);
 		}
 		break;
 	case SEQ_EXPLODED_TIMING_WAIT:
@@ -2795,7 +2795,7 @@ static int ServerPlay_Game(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 		if(Timing_Recv(game, server->req_timing_no) == TRUE){
 			server->req_timing_no++;
 			server->local_seq = SEQ_APPEAR;
-			OS_TPrintf("SEQ_EXPLODED_TIMING_WAIT“¯ŠúŠ®—¹\n");
+			OS_TPrintf("SEQ_EXPLODED_TIMING_WAITåŒæœŸå®Œäº†\n");
 		}
 		break;
 	}
@@ -2804,18 +2804,18 @@ static int ServerPlay_Game(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[“®ìFƒQ[ƒ€I—¹ˆ—
+ * @brief   ã‚µãƒ¼ãƒãƒ¼å‹•ä½œï¼šã‚²ãƒ¼ãƒ çµ‚äº†å‡¦ç†
  *
  * @param   game		
- * @param   server		ƒT[ƒo[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   server		ã‚µãƒ¼ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚±‚ÌŠÖ”‚Ì“®ìI—¹
+ * @retval  TRUE:ã“ã®é–¢æ•°ã®å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------
 static int ServerPlay_Finish(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 {
 	switch(server->local_seq){
-	//I—¹‰‰o‚Æ‰‰oI—¹‚Ì“¯Šú‘Ò‚¿
+	//çµ‚äº†æ¼”å‡ºã¨æ¼”å‡ºçµ‚äº†ã®åŒæœŸå¾…ã¡
 	case 0:
 		SendBalloon_Finish(game, server->req_timing_no);
 		server->local_seq++;
@@ -2832,10 +2832,10 @@ static int ServerPlay_Finish(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 		}
 		break;
 		
-	//ƒQ[ƒ€ˆÃ“]‚ÖˆÚs‚·‚é
-	case 3:		//I—¹‘O‚ÌƒEƒFƒCƒg(‹ó‹CƒAƒNƒ^[‚È‚Ç‚ª‘S‚Äíœ‚³‚ê‚é‚Ì‚ğ‘Ò‚Â)
+	//ã‚²ãƒ¼ãƒ æš—è»¢ã¸ç§»è¡Œã™ã‚‹
+	case 3:		//çµ‚äº†å‰ã®ã‚¦ã‚§ã‚¤ãƒˆ(ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ãªã©ãŒå…¨ã¦å‰Šé™¤ã•ã‚Œã‚‹ã®ã‚’å¾…ã¤)
 		server->local_wait++;
-		if(server->local_wait < 90){	//¦checkb’è
+		if(server->local_wait < 90){	//â€»checkæš«å®š
 			OS_TPrintf("local_wait = %d, finish = %d\n", server->local_wait, game->game_finish);
 			break;
 		}
@@ -2857,11 +2857,11 @@ static int ServerPlay_Finish(BALLOON_GAME_PTR game, BALLOON_SERVER_WORK *server)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[‚ÌƒQ[ƒ€is§ŒäƒƒCƒ“
+ * @brief   ã‚µãƒ¼ãƒãƒ¼ã®ã‚²ãƒ¼ãƒ é€²è¡Œåˆ¶å¾¡ãƒ¡ã‚¤ãƒ³
  *
  * @param   game		
  *
- * @retval  TRUE:‘S‚Ä‚Ì“®ì‚ªI—¹‚µ‚½
+ * @retval  TRUE:å…¨ã¦ã®å‹•ä½œãŒçµ‚äº†ã—ãŸ
  */
 //--------------------------------------------------------------
 static BOOL Server_GamePlayingManage(BALLOON_GAME_PTR game)
@@ -2893,7 +2893,7 @@ static BOOL Server_GamePlayingManage(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO‹@”\FƒJƒƒ‰ˆÚ“®
+ * @brief   ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ï¼šã‚«ãƒ¡ãƒ©ç§»å‹•
  *
  * @param   camera
  */
@@ -2907,9 +2907,9 @@ static void Debug_CameraMove(GF_CAMERA_PTR camera)
 	CAMERA_ANGLE angle = {0,0,0,0};
 	int mode = 0;
 	enum{
-		MODE_SHIFT,			//•½sˆÚ“®
-		MODE_DISTANCE,		//‹——£
-		MODE_ANGLE_REV,		//Œö“]
+		MODE_SHIFT,			//å¹³è¡Œç§»å‹•
+		MODE_DISTANCE,		//è·é›¢
+		MODE_ANGLE_REV,		//å…¬è»¢
 	};
 	
 	if((sys.cont & PAD_BUTTON_L) && (sys.cont & PAD_BUTTON_R)){
@@ -2947,7 +2947,7 @@ static void Debug_CameraMove(GF_CAMERA_PTR camera)
 		}
 		GFC_ShiftCamera(&move, camera);
 		move = GFC_GetCameraPos(camera);
-		OS_TPrintf("ƒJƒƒ‰ˆÊ’u x=%d(16i:%x), y=%d(16i:%x), z=%d(16i:%x)\n", move.x, move.x, move.y, move.y, move.z, move.z);
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©ä½ç½® x=%d(16é€²:%x), y=%d(16é€²:%x), z=%d(16é€²:%x)\n", move.x, move.x, move.y, move.y, move.z, move.z);
 		break;
 	
 	case MODE_ANGLE_REV:
@@ -2971,7 +2971,7 @@ static void Debug_CameraMove(GF_CAMERA_PTR camera)
 		}
 		GFC_AddCameraAngleRev(&angle, camera);
 		angle = GFC_GetCameraAngle(camera);
-		OS_TPrintf("ƒJƒƒ‰ƒAƒ“ƒOƒ‹@x=%d, y=%d, z=%d\n", angle.x, angle.y, angle.z);
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã€€x=%d, y=%d, z=%d\n", angle.x, angle.y, angle.z);
 		break;
 	case MODE_DISTANCE:
 		if(sys.cont & PAD_KEY_UP){
@@ -2980,7 +2980,7 @@ static void Debug_CameraMove(GF_CAMERA_PTR camera)
 		if(sys.cont & PAD_KEY_DOWN){
 			GFC_AddCameraDistance(-FX32_ONE, camera);
 		}
-		OS_TPrintf("ƒJƒƒ‰‹——£%d(16i:%x)\n", GFC_GetCameraDistance(camera), GFC_GetCameraDistance(camera));
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©è·é›¢ï¼%d(16é€²:%x)\n", GFC_GetCameraDistance(camera), GFC_GetCameraDistance(camera));
 		break;
 	}
 #endif

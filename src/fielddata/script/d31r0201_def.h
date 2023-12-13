@@ -1,7 +1,7 @@
 #ifndef _D31R0201_DEF_H_
 #define _D31R0201_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_TOWER_GATE_LOCAL_01		(1)
 #define	SCRID_TOWER_GATE_MULTI_01		(2)
 #define	SCRID_TOWER_GATE_WIFI_01		(3)
@@ -26,6 +26,6 @@
 #define	SCRID_D31R0201_FLAG_CHANGE		(22)
 #define	SCRID_D31R0201_OBJ_CHANGE		(23)
 #define	SCRID_TOWER_JUDGE		(24)
-#define	SCRID_D31R0201_DATA_MAX		(24)		//最大数
+#define	SCRID_D31R0201_DATA_MAX		(24)		//譛螟ｧ謨ｰ
 
 #endif //_D31R0201_DEF_H_

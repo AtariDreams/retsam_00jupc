@@ -1,6 +1,6 @@
 /**
  *  @file	fld_comact.c
- *	@brief	ƒtƒB[ƒ‹ƒhã‚É‹¤—L•`‰æ‚³‚ê‚éƒJ[ƒ\ƒ‹ƒAƒNƒ^[‚ÌƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã«å…±æœ‰æç”»ã•ã‚Œã‚‹ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *	@author	Miyuki iwasawa
  *	@date	06.03.23
  */
@@ -38,18 +38,18 @@ enum {
 #define DOWNCUR_ANMNO	(1)
 
 static const TCATS_RESOURCE_FILE_LIST FCA_ResFileList = {
-	"data/fcomact_chr.resdat",	// ƒLƒƒƒ‰ƒNƒ^
-	"data/fcomact_pal.resdat",	// ƒpƒŒƒbƒg
-	"data/fcomact_cell.resdat",	// ƒZƒ‹
-	"data/fcomact_canm.resdat",	// ƒZƒ‹ƒAƒjƒ
-	NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹
-	NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
-	"data/fcomact_h.cldat"		// ƒwƒbƒ_[
+	"data/fcomact_chr.resdat",	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+	"data/fcomact_pal.resdat",	// ãƒ‘ãƒ¬ãƒƒãƒˆ
+	"data/fcomact_cell.resdat",	// ã‚»ãƒ«
+	"data/fcomact_canm.resdat",	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+	NULL,						// ãƒãƒ«ãƒã‚»ãƒ«
+	NULL,						// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+	"data/fcomact_h.cldat"		// ãƒ˜ãƒƒãƒ€ãƒ¼
 };
 
 static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 {
-	{	// ƒAƒbƒvƒJ[ƒ\ƒ‹
+	{	// ã‚¢ãƒƒãƒ—ã‚«ãƒ¼ã‚½ãƒ«
 		CURSOR_PX, UPCUR_PY, 0,
 		UPCUR_ANMNO, CURSOR_SPRI, CURSOR_PAL, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{
@@ -58,7 +58,7 @@ static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 		},
 		CURSOR_PRI, 0
 	},
-	{	//ƒ_ƒEƒ“ƒJ[ƒ\ƒ‹ 
+	{	//ãƒ€ã‚¦ãƒ³ã‚«ãƒ¼ã‚½ãƒ« 
 		CURSOR_PX, DOWNCUR_PY, 0,
 		DOWNCUR_ANMNO, CURSOR_SPRI, CURSOR_PAL, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{
@@ -70,7 +70,7 @@ static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 };
 
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg@‹¤’ÊƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆã€€å…±é€šã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  */
 FLD_COMACT_WORK* FComAct_Init(int heapID)
 {
@@ -86,7 +86,7 @@ FLD_COMACT_WORK* FComAct_Init(int heapID)
 	wk = sys_AllocMemory(heapID,sizeof(FLD_COMACT_WORK));
 	MI_CpuClear8(wk,sizeof(FLD_COMACT_WORK));
 
-	//ƒtƒB[ƒ‹ƒhƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	FieldCellActSet_S( &wk->fcat, &crnl, FCA_ACTMAX, HEAPID_WORLD );
 
 	p_handle = ArchiveDataHandleOpen( ARC_FLDCOMACT_GRA, heapID );
@@ -116,7 +116,7 @@ FLD_COMACT_WORK* FComAct_Init(int heapID)
 }
 
 /**
- *	@brief	ƒRƒ“ƒgƒ[ƒ‰[”jŠü
+ *	@brief	ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ç ´æ£„
  */
 void FComAct_Delete(FLD_COMACT_WORK* wk)
 {
@@ -133,7 +133,7 @@ void FComAct_Delete(FLD_COMACT_WORK* wk)
 }
 
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  */
 void FActCom_Main(FLD_COMACT_WORK* wk)
 {
@@ -148,11 +148,11 @@ void FActCom_Main(FLD_COMACT_WORK* wk)
 }
 
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ƒ|ƒWƒVƒ‡ƒ“ƒZƒbƒg
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
  *
- *	@param	px	ƒJ[ƒ\ƒ‹XÀ•W
- *	@param	uy	ƒAƒbƒvƒJ[ƒ\ƒ‹YÀ•W
- *	@param	dy	ƒ_ƒEƒ“ƒJ[ƒ\ƒ‹YÀ•W
+ *	@param	px	ã‚«ãƒ¼ã‚½ãƒ«Xåº§æ¨™
+ *	@param	uy	ã‚¢ãƒƒãƒ—ã‚«ãƒ¼ã‚½ãƒ«Yåº§æ¨™
+ *	@param	dy	ãƒ€ã‚¦ãƒ³ã‚«ãƒ¼ã‚½ãƒ«Yåº§æ¨™
  */
 void FComAct_CursorPosSet(FLD_COMACT_WORK* wk,s16 px,s16 uy,s16 dy)
 {
@@ -161,9 +161,9 @@ void FComAct_CursorPosSet(FLD_COMACT_WORK* wk,s16 px,s16 uy,s16 dy)
 }
 
 /**
- *	@brief	•`‰æó‘ÔƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	æç”»çŠ¶æ…‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- *	@param	vanish	TRUE:•`‰æ,FALSE:ƒoƒjƒbƒVƒ…
+ *	@param	vanish	TRUE:æç”»,FALSE:ãƒãƒ‹ãƒƒã‚·ãƒ¥
  */
 void FComAct_SetDrawFlg(FLD_COMACT_WORK* wk,u16 idx,BOOL draw)
 {
@@ -174,9 +174,9 @@ void FComAct_SetDrawFlg(FLD_COMACT_WORK* wk,u16 idx,BOOL draw)
 }
 
 /**
- *	@brief	ƒI[ƒgƒAƒjƒó‘ÔƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡çŠ¶æ…‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- *	@param	anm	TRUE:ƒI[ƒgƒAƒjƒ,FALSE:ƒI[ƒgƒAƒjƒOff
+ *	@param	anm	TRUE:ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡,FALSE:ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡Off
  */
 void FComAct_SetAutoAnmFlg(FLD_COMACT_WORK* wk,u16 idx,BOOL anm)
 {

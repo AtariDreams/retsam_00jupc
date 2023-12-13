@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	encount.h	
- * @brief	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+ * @brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  * @author	GAME FREAK inc.
  */
 //=============================================================================
@@ -20,76 +20,76 @@
 
 //-------------------------------------
 //	
-//	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgNo
+//	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆNo
 //
-//	ŒvŽZŽ®‚Å–ì¶í‚ÆƒgƒŒ[ƒi[í‚ÍA
-//	ƒGƒ“ƒJƒEƒ“ƒg‚ðŒˆ‚ß‚Ä‚¢‚é‚½‚ßA
-//	–ì¶‚ÆAƒgƒŒ[ƒi[‚ÌƒGƒtƒFƒNƒg‡”Ô‚ð•Ï‚¦‚é‚±‚Æ‚Í‹ÖŽ~
+//	è¨ˆç®—å¼ã§é‡Žç”Ÿæˆ¦ã¨ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ã¯ã€
+//	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚’æ±ºã‚ã¦ã„ã‚‹ãŸã‚ã€
+//	é‡Žç”Ÿã¨ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé †ç•ªã‚’å¤‰ãˆã‚‹ã“ã¨ã¯ç¦æ­¢
 //=====================================
 enum{
-	// ƒtƒB[ƒ‹ƒh
-	ENCOUNT_FIELD_GRASS_LEVEL_LOW,	// ‘@ƒŒƒxƒ‹’á‚¢
-	ENCOUNT_FIELD_GRASS_LEVEL_HIGH,	// ‘@ƒŒƒxƒ‹‚‚¢
-	ENCOUNT_FIELD_WATER_LEVEL_LOW,	// …@ƒŒƒxƒ‹’á‚¢
-	ENCOUNT_FIELD_WATER_LEVEL_HIGH,	// …@ƒŒƒxƒ‹‚‚¢
-	ENCOUNT_FIELD_DAN_LEVEL_LOW,	// ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹’á‚¢
-	ENCOUNT_FIELD_DAN_LEVEL_HIGH,	// ƒ_ƒ“ƒWƒ‡ƒ“@ƒŒƒxƒ‹‚‚¢
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+	ENCOUNT_FIELD_GRASS_LEVEL_LOW,	// è‰ã€€ãƒ¬ãƒ™ãƒ«ä½Žã„
+	ENCOUNT_FIELD_GRASS_LEVEL_HIGH,	// è‰ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
+	ENCOUNT_FIELD_WATER_LEVEL_LOW,	// æ°´ã€€ãƒ¬ãƒ™ãƒ«ä½Žã„
+	ENCOUNT_FIELD_WATER_LEVEL_HIGH,	// æ°´ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
+	ENCOUNT_FIELD_DAN_LEVEL_LOW,	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«ä½Žã„
+	ENCOUNT_FIELD_DAN_LEVEL_HIGH,	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
 
-	// ƒgƒŒ[ƒi[
-	ENCOUNT_TRAINER_GRASS_LEVEL_LOW,	// ‘@ƒŒƒxƒ‹’á‚¢
-	ENCOUNT_TRAINER_GRASS_LEVEL_HIGH,	// ‘@ƒŒƒxƒ‹‚‚¢
-	ENCOUNT_TRAINER_WATER_LEVEL_LOW,	// …@ƒŒƒxƒ‹’á
-	ENCOUNT_TRAINER_WATER_LEVEL_HIGH,	// …@ƒŒƒxƒ‹‚‚¢
-	ENCOUNT_TRAINER_DAN_LEVEL_LOW,		// ƒ_ƒ“@ƒŒƒxƒ‹’á
-	ENCOUNT_TRAINER_DAN_LEVEL_HIGH,		// ƒ_ƒ“@ƒŒƒxƒ‹‚‚¢
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+	ENCOUNT_TRAINER_GRASS_LEVEL_LOW,	// è‰ã€€ãƒ¬ãƒ™ãƒ«ä½Žã„
+	ENCOUNT_TRAINER_GRASS_LEVEL_HIGH,	// è‰ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
+	ENCOUNT_TRAINER_WATER_LEVEL_LOW,	// æ°´ã€€ãƒ¬ãƒ™ãƒ«ä½Ž
+	ENCOUNT_TRAINER_WATER_LEVEL_HIGH,	// æ°´ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
+	ENCOUNT_TRAINER_DAN_LEVEL_LOW,		// ãƒ€ãƒ³ã€€ãƒ¬ãƒ™ãƒ«ä½Ž
+	ENCOUNT_TRAINER_DAN_LEVEL_HIGH,		// ãƒ€ãƒ³ã€€ãƒ¬ãƒ™ãƒ«é«˜ã„
 
-	// ƒWƒ€@
-	ENCOUNT_SPTR_KUROGANE_GYM,		// ƒNƒƒKƒlƒWƒ€
-	ENCOUNT_SPTR_HAKUTAI_GYM,		// ƒnƒNƒ^ƒCƒWƒ€
-	ENCOUNT_SPTR_NOMOSE_GYM,		// ƒmƒ‚ƒZƒWƒ€
-	ENCOUNT_SPTR_TOBARI_GYM,		// ƒgƒoƒŠƒWƒ€
-	ENCOUNT_SPTR_YOSUGA_GYM,		// ƒˆƒXƒKƒgƒWƒ€
-	ENCOUNT_SPTR_KISSAKI_GYM,		// ƒLƒbƒTƒLƒWƒ€
-	ENCOUNT_SPTR_MIO_GYM,			// ƒ~ƒIƒWƒ€
-	ENCOUNT_SPTR_NAGISA_GYM,		// ƒiƒMƒTƒWƒ€
+	// ã‚¸ãƒ ã€€
+	ENCOUNT_SPTR_KUROGANE_GYM,		// ã‚¯ãƒ­ã‚¬ãƒã‚¸ãƒ 
+	ENCOUNT_SPTR_HAKUTAI_GYM,		// ãƒã‚¯ã‚¿ã‚¤ã‚¸ãƒ 
+	ENCOUNT_SPTR_NOMOSE_GYM,		// ãƒŽãƒ¢ã‚»ã‚¸ãƒ 
+	ENCOUNT_SPTR_TOBARI_GYM,		// ãƒˆãƒãƒªã‚¸ãƒ 
+	ENCOUNT_SPTR_YOSUGA_GYM,		// ãƒ¨ã‚¹ã‚¬ãƒˆã‚¸ãƒ 
+	ENCOUNT_SPTR_KISSAKI_GYM,		// ã‚­ãƒƒã‚µã‚­ã‚¸ãƒ 
+	ENCOUNT_SPTR_MIO_GYM,			// ãƒŸã‚ªã‚¸ãƒ 
+	ENCOUNT_SPTR_NAGISA_GYM,		// ãƒŠã‚®ã‚µã‚¸ãƒ 
 	
-	// Žl“V‰¤
+	// å››å¤©çŽ‹
 	ENCOUNT_SPTR_SITEN_00,
 	ENCOUNT_SPTR_SITEN_01,
 	ENCOUNT_SPTR_SITEN_02,
 	ENCOUNT_SPTR_SITEN_03,
 	
-	// ƒ`ƒƒƒ“ƒsƒIƒ“
+	// ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
 	ENCOUNT_SPTR_CHANPION,
 	
-	// “`à@ƒpƒbƒP[ƒW
-	ENCOUNT_LEGEND_NORMAL,		// “`àƒ|ƒPƒ‚ƒ“
-	ENCOUNT_LEGEND_PACKAGE,		// PACKAGEƒ|ƒPƒ‚ƒ“
+	// ä¼èª¬ã€€ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸
+	ENCOUNT_LEGEND_NORMAL,		// ä¼èª¬ãƒã‚±ãƒ¢ãƒ³
+	ENCOUNT_LEGEND_PACKAGE,		// PACKAGEãƒã‚±ãƒ¢ãƒ³
 	
-	// ‹â‰Í’c
-	ENCOUNT_GINGA_NORMAL,		// ‹â‰Í’c’Êí
-	ENCOUNT_GINGA_SPECIAL,		// ‹â‰Í’cŠ²•”
+	// éŠ€æ²³å›£
+	ENCOUNT_GINGA_NORMAL,		// éŠ€æ²³å›£é€šå¸¸
+	ENCOUNT_GINGA_SPECIAL,		// éŠ€æ²³å›£å¹¹éƒ¨
 
-	// “ÁŽê
-	ENCOUNT_SPECIAL_TOWER,		// ƒoƒgƒ‹ƒ^ƒ[@ƒtƒƒ“ƒg
-	ENCOUNT_SPECIAL_DOUBLE,		// ƒ_ƒuƒ‹ƒoƒgƒ‹
+	// ç‰¹æ®Š
+	ENCOUNT_SPECIAL_TOWER,		// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒ•ãƒ­ãƒ³ãƒˆ
+	ENCOUNT_SPECIAL_DOUBLE,		// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
 
-/*	ENCOUNT_MOTIONBL00,		// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒGƒtƒFƒNƒg‰ñ“]
-	ENCOUNT_MOTIONBL01,		// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒGƒtƒFƒNƒg‰¡—h‚ê//*/
+/*	ENCOUNT_MOTIONBL00,		// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå›žè»¢
+	ENCOUNT_MOTIONBL01,		// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ¨ªæºã‚Œ//*/
 	ENCOUNT_NUM
 
 };
-#define ENCOUNT_MAIN_NONE	(ENCOUNT_NUM)	// ˆø‚«Œp‚®ƒGƒ“ƒJƒEƒ“ƒg‚ª‚È‚¢‚Æ‚«‚ÉŽw’è
+#define ENCOUNT_MAIN_NONE	(ENCOUNT_NUM)	// å¼•ãç¶™ãã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãŒãªã„ã¨ãã«æŒ‡å®š
 
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŠJŽn
+ *@brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *@param	No		ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgNO
- *@param	*fsw	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- *@param	end		I—¹ƒ`ƒFƒbƒN—p@TRUEFI—¹‚µ‚½ 
+ *@param	No		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆNO
+ *@param	*fsw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	end		çµ‚äº†ãƒã‚§ãƒƒã‚¯ç”¨ã€€TRUEï¼šçµ‚äº†ã—ãŸ 
  *
  *@return	none
  *
@@ -101,8 +101,8 @@ GLOBAL void EncountEffectStart(int No, FIELDSYS_WORK *fsw, BOOL* end );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚©‚ç
- *		‘Î‰ž‚·‚éƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒiƒ“ƒo[‚ð•Ô‚·
+ *		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰
+ *		å¯¾å¿œã™ã‚‹ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  */
 //-----------------------------------------------------------------------------
 GLOBAL u32 ENCEFF_GetEffectNo( const BATTLE_PARAM * p_battleparam );

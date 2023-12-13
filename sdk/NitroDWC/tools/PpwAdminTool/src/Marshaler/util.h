@@ -1,6 +1,6 @@
 #pragma once
 
-// vectorのデータバッファを取得する。vector::data()
+// vector縺ｮ繝�繝ｼ繧ｿ繝舌ャ繝輔ぃ繧貞叙蠕励☆繧九Ｗector::data()
 template <class T, class AllocatorT>
 T* DWCi_GetVectorBuffer(const std::vector<T, AllocatorT>& vec)
 {

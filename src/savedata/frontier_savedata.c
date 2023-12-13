@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_savedata.c
- * @brief	ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒAŠÖ˜A‚ÌƒZ[ƒuƒf[ƒ^
+ * @brief	ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢é–¢é€£ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  * @author	matsuda
- * @date	2007.04.26(–Ø)
+ * @date	2007.04.26(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -37,9 +37,9 @@
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒA@ƒZ[ƒuƒf[ƒ^ƒuƒƒbƒNƒTƒCƒY‚ğæ“¾
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- * @retval  ƒZ[ƒuƒf[ƒ^ƒuƒƒbƒNƒTƒCƒY
+ * @retval  ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------
 int FrontierData_GetWorkSize(void)
@@ -49,32 +49,32 @@ int FrontierData_GetWorkSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒA@ƒZ[ƒuƒf[ƒ^ƒuƒƒbƒN‰Šú‰»
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯åˆæœŸåŒ–
  *
  * @param   save		
  */
 //--------------------------------------------------------------
 void FrontierData_Init(FRONTIER_SAVEWORK* save)
 {
-	//‹¤’Êƒ[ƒN‰Šú‰»
+	//å…±é€šãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 //	TowerPlayData_Clear(&save->play);
 	MI_CpuClear8(save, sizeof(FRONTIER_SAVEWORK));
 	
-	//ƒoƒgƒ‹ƒ^ƒ[‰Šú‰»
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼åˆæœŸåŒ–
 	TowerScoreData_Clear(&save->tower.score);
 	TowerPlayerMsg_Clear(&save->tower.player_msg);
 	TowerWifiData_Clear(&save->tower.wifi);
 	
-	//ƒtƒ@ƒNƒgƒŠ[‰Šú‰»
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼åˆæœŸåŒ–
 	FACTORYSCORE_Init(&save->factory.score);	
 
-	//ƒXƒe[ƒW‰Šú‰»
+	//ã‚¹ãƒ†ãƒ¼ã‚¸åˆæœŸåŒ–
 	STAGESCORE_Init(&save->stage.score);	
 
-	//ƒLƒƒƒbƒXƒ‹‰Šú‰»
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«åˆæœŸåŒ–
 	CASTLESCORE_Init(&save->castle.score);	
 
-	//ƒ‹[ƒŒƒbƒg‰Šú‰»
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆåˆæœŸåŒ–
 	ROULETTESCORE_Init(&save->roulette.score);	
 
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_FRONTIER)
@@ -85,11 +85,11 @@ void FrontierData_Init(FRONTIER_SAVEWORK* save)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒA‚ÌƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^æ“¾
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
  * @param   sv		
  *
- * @retval  ƒtƒƒ“ƒeƒBƒAƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @retval  ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 FRONTIER_SAVEWORK * SaveData_GetFrontier(SAVEDATA * sv)
@@ -103,17 +103,17 @@ FRONTIER_SAVEWORK * SaveData_GetFrontier(SAVEDATA * sv)
 
 
 //==============================================================================
-//	ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒh
+//	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒhƒf[ƒ^æ“¾
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
  * @param   save			
- * @param   id				æ‚èo‚·ƒf[ƒ^ID(FRID_???)
- * @param   friend_no		—F’Bè’ ”Ô†(—F’Bƒf[ƒ^‚Å‚È‚¢ê‡‚ÍFRONTIER_RECORD_NOT_FRIENDw’è)
+ * @param   id				å–ã‚Šå‡ºã™ãƒ‡ãƒ¼ã‚¿ID(FRID_???)
+ * @param   friend_no		å‹é”æ‰‹å¸³ç•ªå·(å‹é”ãƒ‡ãƒ¼ã‚¿ã§ãªã„å ´åˆã¯FRONTIER_RECORD_NOT_FRIENDæŒ‡å®š)
  *
- * @retval  ƒŒƒR[ƒhƒf[ƒ^
+ * @retval  ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 u16 FrontierRecord_Get(FRONTIER_SAVEWORK* save, int id, int friend_no)
@@ -137,11 +137,11 @@ u16 FrontierRecord_Get(FRONTIER_SAVEWORK* save, int id, int friend_no)
 		}
 		return frs->record[id];
 	}
-	else{	//—F’Bè’ –ˆ‚Ìƒf[ƒ^
+	else{	//å‹é”æ‰‹å¸³æ¯ã®ãƒ‡ãƒ¼ã‚¿
 		//GF_ASSERT(friend_no != FRONTIER_RECORD_NOT_FRIEND);
 		
 		if( friend_no == -1 ){
-			OS_Printf( "friend_no = -1 ‚Ü‚¾Ú‘±‚µ‚Ä‚¢‚È‚¢‚Ì‚Å—F’B”Ô†‚ğæ“¾o—ˆ‚Ü‚¹‚ñI\n" );
+			OS_Printf( "friend_no = -1 ã¾ã æ¥ç¶šã—ã¦ã„ãªã„ã®ã§å‹é”ç•ªå·ã‚’å–å¾—å‡ºæ¥ã¾ã›ã‚“ï¼\n" );
 			GF_ASSERT(0);
 			return 0;
 		}
@@ -151,14 +151,14 @@ u16 FrontierRecord_Get(FRONTIER_SAVEWORK* save, int id, int friend_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒhƒf[ƒ^ƒZƒbƒg
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
  * @param   save		
- * @param   id			ƒf[ƒ^ID(FRID_???)
- * @param   friend_no	—F’Bè’ ”Ô†(—F’Bƒf[ƒ^‚Å‚È‚¢ê‡‚ÍFRONTIER_RECORD_NOT_FRIENDw’è)
- * @param   data		ƒZƒbƒg‚·‚éƒf[ƒ^
+ * @param   id			ãƒ‡ãƒ¼ã‚¿ID(FRID_???)
+ * @param   friend_no	å‹é”æ‰‹å¸³ç•ªå·(å‹é”ãƒ‡ãƒ¼ã‚¿ã§ãªã„å ´åˆã¯FRONTIER_RECORD_NOT_FRIENDæŒ‡å®š)
+ * @param   data		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿
  *
- * @retval	ƒZƒbƒgŒã‚Ì’l
+ * @retval	ã‚»ãƒƒãƒˆå¾Œã®å€¤
  */
 //--------------------------------------------------------------
 u16 FrontierRecord_Set(FRONTIER_SAVEWORK* save, int id, int friend_no, u16 data)
@@ -196,7 +196,7 @@ u16 FrontierRecord_Set(FRONTIER_SAVEWORK* save, int id, int friend_no, u16 data)
 			frs->record[id] = data;
 		}
 	}
-	else{	//—F’Bè’ –ˆ‚Ìƒf[ƒ^
+	else{	//å‹é”æ‰‹å¸³æ¯ã®ãƒ‡ãƒ¼ã‚¿
 		GF_ASSERT(friend_no != FRONTIER_RECORD_NOT_FRIEND);
 		frs->wififriend_record[friend_no][id - FRID_MAX] = data;
 	}
@@ -209,7 +209,7 @@ u16 FrontierRecord_Set(FRONTIER_SAVEWORK* save, int id, int friend_no, u16 data)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒhƒf[ƒ^‰Šú‰»(—F’Bè’ –ˆ‚É‚Âƒf[ƒ^‚Ì‚İíœ)
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–(å‹é”æ‰‹å¸³æ¯ã«æŒã¤ãƒ‡ãƒ¼ã‚¿ã®ã¿å‰Šé™¤)
  *
  * @param   save		
  */
@@ -227,10 +227,10 @@ void FrontierRecord_DataCrear(FRONTIER_SAVEWORK *save)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒhƒf[ƒ^‚ğÁ‚·
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
  *
  * @param   save			
- * @param   friend_no		—F’Bè’ ”Ô†
+ * @param   friend_no		å‹é”æ‰‹å¸³ç•ªå·
  */
 //--------------------------------------------------------------
 void FrontierRecord_ResetData(FRONTIER_SAVEWORK* save, int friend_no)
@@ -259,19 +259,19 @@ void FrontierRecord_ResetData(FRONTIER_SAVEWORK* save, int friend_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒhƒf[ƒ^‚ğA‚Ìl‚Ìƒf[ƒ^‚ğB‚Ìl‚Éƒ}[ƒW‚·‚é
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’Aã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’Bã®äººã«ãƒãƒ¼ã‚¸ã™ã‚‹
  *
  * @param   save			
  * @param   delNo			
- * @param   friend_no		—F’Bè’ ”Ô†
+ * @param   friend_no		å‹é”æ‰‹å¸³ç•ªå·
  */
 //--------------------------------------------------------------
 void FrontierRecord_DataMarge(FRONTIER_SAVEWORK* save, int delNo, int friend_no)
 {
 	FRONTIER_RECORD_SAVEWORK *frs = &save->frontier_record;
 	
-	//ƒƒCƒ„ƒŒƒX‚Åƒf[ƒ^‚ª‰ÁZ‚³‚ê‚é–‚Í‚È‚¢‚Ì‚ÅAƒ}[ƒWæ‚àŒ³‚à‚Ç‚¿‚ç‚à0B‚»‚Ì‚½‚ßdelNo‚Ì
-	//Š‚¾‚¯”O‚Ì‚½‚ßƒNƒŠƒAˆ—‚ğ“ü‚ê‚é‚¾‚¯‚É‚·‚éB
+	//ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹ã§ãƒ‡ãƒ¼ã‚¿ãŒåŠ ç®—ã•ã‚Œã‚‹äº‹ã¯ãªã„ã®ã§ã€ãƒãƒ¼ã‚¸å…ˆã‚‚å…ƒã‚‚ã©ã¡ã‚‰ã‚‚0ã€‚ãã®ãŸã‚delNoã®
+	//æ‰€ã ã‘å¿µã®ãŸã‚ã‚¯ãƒªã‚¢å‡¦ç†ã‚’å…¥ã‚Œã‚‹ã ã‘ã«ã™ã‚‹ã€‚
 	MI_CpuClear8(frs->wififriend_record[delNo], sizeof(u16)*(FRID_WIFI_MAX - FRID_MAX));
 
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_FRONTIER)
@@ -281,14 +281,14 @@ void FrontierRecord_DataMarge(FRONTIER_SAVEWORK* save, int delNo, int friend_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒhƒf[ƒ^ ‰ÁZ
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ åŠ ç®—
  *
  * @param   save		
- * @param   id			æ‚èo‚·ƒf[ƒ^ID(FRID_???)
- * @param   friend_no	—F’Bè’ ”Ô†(—F’Bƒf[ƒ^‚Å‚È‚¢ê‡‚ÍFRONTIER_RECORD_NOT_FRIENDw’è)
- * @param   add_value	‰ÁZ’l
+ * @param   id			å–ã‚Šå‡ºã™ãƒ‡ãƒ¼ã‚¿ID(FRID_???)
+ * @param   friend_no	å‹é”æ‰‹å¸³ç•ªå·(å‹é”ãƒ‡ãƒ¼ã‚¿ã§ãªã„å ´åˆã¯FRONTIER_RECORD_NOT_FRIENDæŒ‡å®š)
+ * @param   add_value	åŠ ç®—å€¤
  * 
- * @retval	XV‚³‚ê‚½’l
+ * @retval	æ›´æ–°ã•ã‚ŒãŸå€¤
  */
 //--------------------------------------------------------------
 u16 FrontierRecord_Add(FRONTIER_SAVEWORK* save, int id, int friend_no, int add_value)
@@ -303,14 +303,14 @@ u16 FrontierRecord_Add(FRONTIER_SAVEWORK* save, int id, int friend_no, int add_v
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒhƒf[ƒ^ Œ¸Z
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ æ¸›ç®—
  *
  * @param   save		
- * @param   id			æ‚èo‚·ƒf[ƒ^ID(FRID_???)
- * @param   friend_no	—F’Bè’ ”Ô†(—F’Bƒf[ƒ^‚Å‚È‚¢ê‡‚ÍFRONTIER_RECORD_NOT_FRIENDw’è)
- * @param   sub_value	Œ¸Z’l
+ * @param   id			å–ã‚Šå‡ºã™ãƒ‡ãƒ¼ã‚¿ID(FRID_???)
+ * @param   friend_no	å‹é”æ‰‹å¸³ç•ªå·(å‹é”ãƒ‡ãƒ¼ã‚¿ã§ãªã„å ´åˆã¯FRONTIER_RECORD_NOT_FRIENDæŒ‡å®š)
+ * @param   sub_value	æ¸›ç®—å€¤
  * 
- * @retval	XV‚³‚ê‚½’l
+ * @retval	æ›´æ–°ã•ã‚ŒãŸå€¤
  */
 //--------------------------------------------------------------
 u16 FrontierRecord_Sub(FRONTIER_SAVEWORK* save, int id, int friend_no, int sub_value)
@@ -328,13 +328,13 @@ u16 FrontierRecord_Sub(FRONTIER_SAVEWORK* save, int id, int friend_no, int sub_v
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒhƒf[ƒ^ ƒCƒ“ƒNƒŠƒƒ“ƒg
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  *
  * @param   save		
- * @param   id			æ‚èo‚·ƒf[ƒ^ID(FRID_???)
- * @param   friend_no	—F’Bè’ ”Ô†(—F’Bƒf[ƒ^‚Å‚È‚¢ê‡‚ÍFRONTIER_RECORD_NOT_FRIENDw’è)
+ * @param   id			å–ã‚Šå‡ºã™ãƒ‡ãƒ¼ã‚¿ID(FRID_???)
+ * @param   friend_no	å‹é”æ‰‹å¸³ç•ªå·(å‹é”ãƒ‡ãƒ¼ã‚¿ã§ãªã„å ´åˆã¯FRONTIER_RECORD_NOT_FRIENDæŒ‡å®š)
  * 
- * @retval	XV‚³‚ê‚½’l
+ * @retval	æ›´æ–°ã•ã‚ŒãŸå€¤
  */
 //--------------------------------------------------------------
 u16 FrontierRecord_Inc(FRONTIER_SAVEWORK* save, int id, int friend_no)
@@ -344,14 +344,14 @@ u16 FrontierRecord_Inc(FRONTIER_SAVEWORK* save, int id, int friend_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘å‚«‚¯‚ê‚ÎƒŒƒR[ƒh‚ğXV‚·‚é
+ * @brief   å¤§ãã‘ã‚Œã°ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’æ›´æ–°ã™ã‚‹
  *
  * @param   save		
- * @param   id			ƒf[ƒ^ID(FRID_???)
- * @param   friend_no	—F’Bè’ ”Ô†(—F’Bƒf[ƒ^‚Å‚È‚¢ê‡‚ÍFRONTIER_RECORD_NOT_FRIENDw’è)
- * @param   data		ƒZƒbƒg‚·‚éƒf[ƒ^
+ * @param   id			ãƒ‡ãƒ¼ã‚¿ID(FRID_???)
+ * @param   friend_no	å‹é”æ‰‹å¸³ç•ªå·(å‹é”ãƒ‡ãƒ¼ã‚¿ã§ãªã„å ´åˆã¯FRONTIER_RECORD_NOT_FRIENDæŒ‡å®š)
+ * @param   data		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿
  *
- * @retval  Œ‹‰Ê‚Ì’l
+ * @retval  çµæœã®å€¤
  */
 //--------------------------------------------------------------
 u16 FrontierRecord_SetIfLarge(FRONTIER_SAVEWORK *save, int id, int friend_no, u16 data)
@@ -363,7 +363,7 @@ u16 FrontierRecord_SetIfLarge(FRONTIER_SAVEWORK *save, int id, int friend_no, u1
 	if(now < data){
 		return FrontierRecord_Set(save, id, friend_no, data);
 	} else {
-		if(now > FRONTIER_RECORD_LIMIT){	//Œ»İ’l‚ªƒŠƒ~ƒbƒgƒI[ƒo[‚µ‚Ä‚¢‚½‚Ì’ù³ˆ—
+		if(now > FRONTIER_RECORD_LIMIT){	//ç¾åœ¨å€¤ãŒãƒªãƒŸãƒƒãƒˆã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã„ãŸæ™‚ã®è¨‚æ­£å‡¦ç†
 			return FrontierRecord_Set(save, id, friend_no, FRONTIER_RECORD_LIMIT);
 		}
 		return now;

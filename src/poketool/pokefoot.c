@@ -2,7 +2,7 @@
 /**
  *
  *	@file		pokefoot.c
- *	@brief		ƒ|ƒPƒ‚ƒ“‘«ÕƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^æ“¾ŠÖ”
+ *	@brief		ãƒã‚±ãƒ¢ãƒ³è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—é–¢æ•°
  *	@author		tomoya takahashi
  *	@data		2006.01.31
  *
@@ -20,42 +20,42 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©‚ç‘«ÕƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+ *	@brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰è¶³è·¡ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	mons_no		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	heap		ƒq[ƒv
- *	@param	alloc_type	ƒAƒƒbƒNƒ^ƒCƒv
+ *	@param	mons_no		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	alloc_type	ã‚¢ãƒ­ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
  *
- *	@return	ƒtƒ@ƒCƒ‹ƒf[ƒ^
+ *	@return	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void* PokeFootCharPtrGet( int mons_no, int heap, ALLOC_TYPE alloc_type )
@@ -66,7 +66,7 @@ void* PokeFootCharPtrGet( int mons_no, int heap, ALLOC_TYPE alloc_type )
 
 	p_buff = ArcUtil_Load( ARC_POKEFOOT_GRA, POKEFOOT_ARC_CHAR_DMMY + mons_no, TRUE, heap, alloc_type );
 
-	// æ“¾¸”s
+	// å–å¾—å¤±æ•—
 	GF_ASSERT( p_buff );
 
 	return p_buff;
@@ -74,12 +74,12 @@ void* PokeFootCharPtrGet( int mons_no, int heap, ALLOC_TYPE alloc_type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«ÕƒpƒŒƒbƒgƒf[ƒ^æ“¾
+ *	@brief	è¶³è·¡ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	heap	ƒq[ƒv
- *	@param	alloc_type	ƒAƒƒbƒNƒ^ƒCƒv
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
+ *	@param	alloc_type	ã‚¢ãƒ­ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
  *
- *	@return	ƒtƒ@ƒCƒ‹ƒf[ƒ^
+ *	@return	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void* PokeFootPlttPtrGet( int heap, ALLOC_TYPE alloc_type )
@@ -88,7 +88,7 @@ void* PokeFootPlttPtrGet( int heap, ALLOC_TYPE alloc_type )
 	
 	p_buff = ArcUtil_Load( ARC_POKEFOOT_GRA, POKEFOOT_ARC_PLTT, FALSE, heap, alloc_type );
 
-	// æ“¾¸”s
+	// å–å¾—å¤±æ•—
 	GF_ASSERT( p_buff );
 
 	return p_buff;
@@ -96,12 +96,12 @@ void* PokeFootPlttPtrGet( int heap, ALLOC_TYPE alloc_type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«ÕƒZƒ‹ƒf[ƒ^æ“¾
+ *	@brief	è¶³è·¡ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	heap	ƒq[ƒv
- *	@param	alloc_type	ƒAƒƒbƒNƒ^ƒCƒv
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
+ *	@param	alloc_type	ã‚¢ãƒ­ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
  *
- *	@return	ƒtƒ@ƒCƒ‹ƒf[ƒ^
+ *	@return	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void* PokeFootCellPtrGet( int heap, ALLOC_TYPE alloc_type )
@@ -110,7 +110,7 @@ void* PokeFootCellPtrGet( int heap, ALLOC_TYPE alloc_type )
 	
 	p_buff = ArcUtil_Load( ARC_POKEFOOT_GRA, POKEFOOT_ARC_CELL, TRUE, heap, alloc_type );
 
-	// æ“¾¸”s
+	// å–å¾—å¤±æ•—
 	GF_ASSERT( p_buff );
 
 	return p_buff;
@@ -118,12 +118,12 @@ void* PokeFootCellPtrGet( int heap, ALLOC_TYPE alloc_type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«ÕƒZƒ‹ƒAƒjƒƒf[ƒ^æ“¾
+ *	@brief	è¶³è·¡ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	heap	ƒq[ƒv
- *	@param	alloc_type	ƒAƒƒbƒNƒ^ƒCƒv
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
+ *	@param	alloc_type	ã‚¢ãƒ­ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
  *
- *	@return	ƒtƒ@ƒCƒ‹ƒf[ƒ^
+ *	@return	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void* PokeFootCellAnmPtrGet( int heap, ALLOC_TYPE alloc_type )
@@ -132,7 +132,7 @@ void* PokeFootCellAnmPtrGet( int heap, ALLOC_TYPE alloc_type )
 	
 	p_buff = ArcUtil_Load( ARC_POKEFOOT_GRA, POKEFOOT_ARC_CELLANM, TRUE, heap, alloc_type );
 
-	// æ“¾¸”s
+	// å–å¾—å¤±æ•—
 	GF_ASSERT( p_buff );
 
 	return p_buff;
@@ -140,14 +140,14 @@ void* PokeFootCellAnmPtrGet( int heap, ALLOC_TYPE alloc_type )
 
 
 
-// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹IDX@ƒf[ƒ^IDX
+// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«IDXã€€ãƒ‡ãƒ¼ã‚¿IDX
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹IDXæ“¾
+ *	@brief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«IDXå–å¾—
  *
  *	@param	none	
  *
- *	@return	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹IDX
+ *	@return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«IDX
  */
 //-----------------------------------------------------------------------------
 int PokeFootArcFileGet( void )
@@ -157,11 +157,11 @@ int PokeFootArcFileGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^IDXæ“¾
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿IDXå–å¾—
  *
- *	@param	mons_no		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	mons_no		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^IDX
+ *	@return	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿IDX
  */
 //-----------------------------------------------------------------------------
 int PokeFootCharDataIdxGet( int mons_no )
@@ -170,11 +170,11 @@ int PokeFootCharDataIdxGet( int mons_no )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^IDXæ“¾
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿IDXå–å¾—
  *
  *	@param	none
  *
- *	@return	ƒpƒŒƒbƒgƒf[ƒ^IDX
+ *	@return	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿IDX
  */
 //-----------------------------------------------------------------------------
 int PokeFootPlttDataIdxGet( void )
@@ -183,11 +183,11 @@ int PokeFootPlttDataIdxGet( void )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒf[ƒ^IDXæ“¾
+ *	@brief	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿IDXå–å¾—
  *
  *	@param	none
  *
- *	@return	ƒZƒ‹ƒf[ƒ^IDX
+ *	@return	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿IDX
  */
 //-----------------------------------------------------------------------------
 int PokeFootCellDataIdxGet( void )
@@ -196,11 +196,11 @@ int PokeFootCellDataIdxGet( void )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒjƒƒf[ƒ^IDXæ“¾
+ *	@brief	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿IDXå–å¾—
  *
  *	@param	none
  *
- *	@return	ƒZƒ‹ƒAƒjƒƒf[ƒ^IDX
+ *	@return	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿IDX
  */
 //-----------------------------------------------------------------------------
 int PokeFootCellAnmDataIdxGet( void )

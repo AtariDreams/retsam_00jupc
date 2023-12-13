@@ -12,31 +12,31 @@
 
   $Log: seq.h,v $
   Revision 1.27  2006/03/20 01:58:27  ida
-  SND_SetMuteTrackExŠÖ”’Ç‰Á
+  SND_SetMuteTrackExé–¢æ•°è¿½åŠ 
 
   Revision 1.26  2006/01/18 02:12:28  kitase_hirotake
   do-indent
 
   Revision 1.25  2005/06/06 01:59:11  ida
-  –³Œø‚ÈŠÖ”éŒ¾‚Ìœ‹
+  ç„¡åŠ¹ãªé–¢æ•°å®£è¨€ã®é™¤å»
 
   Revision 1.24  2005/04/14 06:51:49  ida
-  SND_PrepareSeqŠÖ”‚Ì’Ç‰Á
+  SND_PrepareSeqé–¢æ•°ã®è¿½åŠ 
 
   Revision 1.23  2005/03/24 04:35:33  ida
   sound patch for NITRO-System 2005/03/28
 
   Revision 1.18  2005/03/17 02:10:29  ida
-  SND_SkipSeqŠÖ”‚Ì’Ç‰Á
+  SND_SkipSeqé–¢æ•°ã®è¿½åŠ 
 
   Revision 1.17  2005/03/01 02:15:53  ida
-  pan_rangeƒƒ“ƒo’Ç‰Á
+  pan_rangeãƒ¡ãƒ³ãƒè¿½åŠ 
 
   Revision 1.16  2005/01/06 04:07:49  ida
-  ’˜ìŒ ”NŸ•\‹L‚ğXV
+  è‘—ä½œæ¨©å¹´æ¬¡è¡¨è¨˜ã‚’æ›´æ–°
 
   Revision 1.15  2005/01/05 07:09:09  ida
-  SND_MmlPrintEnableŠÖ”’Ç‰Á
+  SND_MmlPrintEnableé–¢æ•°è¿½åŠ 
 
   Revision 1.14  2004/07/13 05:44:11  ida
   SND_SetTrackAllocatableChannel become private
@@ -165,7 +165,7 @@ extern "C" {
 
 #define SND_TRACK_CALL_STACK_DEPTH 3
 
-// SNDSharedWork ‚ÌƒTƒCƒY‚É‰e‹¿‚·‚é‚Ì‚ÅAæ‚èˆµ‚¢’ˆÓ
+// SNDSharedWork ã®ã‚µã‚¤ã‚ºã«å½±éŸ¿ã™ã‚‹ã®ã§ã€å–ã‚Šæ‰±ã„æ³¨æ„
 #define SND_PLAYER_VARIABLE_NUM 16
 #define SND_GLOBAL_VARIABLE_NUM 16
 

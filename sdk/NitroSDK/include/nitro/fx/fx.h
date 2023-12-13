@@ -12,31 +12,31 @@
 
   $Log: fx.h,v $
   Revision 1.45  2006/04/28 07:29:19  okubata_ryoma
-  FX32_CASTÇÃí«â¡
+  FX32_CAST„ÅÆËøΩÂä†
 
   Revision 1.44  2006/01/18 02:11:20  kitase_hirotake
   do-indent
 
   Revision 1.43  2005/11/14 05:10:03  okubata_ryoma
-  SDK_INLINE Ç…ëŒâû
+  SDK_INLINE „Å´ÂØæÂøú
 
   Revision 1.42  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL ÇÃîªíËïîï™Ç… SDK_WIN32 Ç≈ÇÃîªíËÇ‡í«â¡
+  SDK_FROM_TOOL „ÅÆÂà§ÂÆöÈÉ®ÂàÜ„Å´ SDK_WIN32 „Åß„ÅÆÂà§ÂÆö„ÇÇËøΩÂä†
 
   Revision 1.41  2005/09/08 11:33:00  yasu
-  VC.net Ç…Ç®ÇØÇÈÉÅÉìÉoÅ[ñºÇÃÇ»Ç¢ç\ë¢ëÃÇ÷ÇÃëŒâûèàóùÇ nitro_win32.h Ç÷à⁄ìÆ
+  VC.net „Å´„Åä„Åë„Çã„É°„É≥„Éê„ÉºÂêç„ÅÆ„Å™„ÅÑÊßãÈÄ†‰Ωì„Å∏„ÅÆÂØæÂøúÂá¶ÁêÜ„Çí nitro_win32.h „Å∏ÁßªÂãï
 
   Revision 1.40  2005/09/08 11:28:06  yasu
-  _MSC_VER íËã`É`ÉFÉbÉNÇÃèCê≥
+  _MSC_VER ÂÆöÁæ©„ÉÅ„Çß„ÉÉ„ÇØ„ÅÆ‰øÆÊ≠£
 
   Revision 1.39  2005/09/08 11:15:25  yasu
-  VC.net Ç…Ç®ÇØÇÈÉÅÉìÉoÅ[ñºÇÃÇ»Ç¢ç\ë¢ëÃÇ÷ÇÃëŒâû
+  VC.net „Å´„Åä„Åë„Çã„É°„É≥„Éê„ÉºÂêç„ÅÆ„Å™„ÅÑÊßãÈÄ†‰Ωì„Å∏„ÅÆÂØæÂøú
 
   Revision 1.38  2005/09/05 09:57:13  takano_makoto
-  FX_FX64C_TO_F32É}ÉNÉçÇÃèCê≥
+  FX_FX64C_TO_F32„Éû„ÇØ„É≠„ÅÆ‰øÆÊ≠£
 
   Revision 1.37  2005/03/01 01:57:00  yosizaki
-  copyright ÇÃîNÇèCê≥.
+  copyright „ÅÆÂπ¥„Çí‰øÆÊ≠£.
 
   Revision 1.36  2005/02/28 05:26:13  yosizaki
   do-indent.
@@ -45,7 +45,7 @@
   SDK_ARM -> SDK_CODE_ARM
 
   Revision 1.34  2004/06/14 04:07:48  takano_makoto
-  FX16_CONST, FX64_CONST, FX64C_CONSTí«â¡ÅAFX_F32_TO_FX32èCê≥
+  FX16_CONST, FX64_CONST, FX64C_CONSTËøΩÂä†„ÄÅFX_F32_TO_FX32‰øÆÊ≠£
 
   Revision 1.33  2004/05/25 00:19:47  yasu
   add FX32_CONST(x)

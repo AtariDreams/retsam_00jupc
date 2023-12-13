@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	codein.c
- * @brief	•¶Žš“ü—ÍƒCƒ“ƒ^[ƒtƒF[ƒX
+ * @brief	æ–‡å­—å…¥åŠ›ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  * @author	goto
- * @date	2007.07.11(…)
+ * @date	2007.07.11(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -45,7 +45,7 @@
 
 // ----------------------------------------
 //
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //
 // ----------------------------------------
 static void CI_VramBankSet( GF_BGL_INI* bgl );
@@ -53,7 +53,7 @@ static void CI_VBlank( void* work );
 
 // ----------------------------------------
 //
-//	ƒvƒƒZƒX’è‹`
+//	ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©
 //
 // ----------------------------------------
 static PROC_RESULT CI_Proc_Init( PROC * proc, int * seq );
@@ -70,7 +70,7 @@ const PROC_DATA CodeInput_ProcData = {
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	proc	
  * @param	seq	
@@ -89,15 +89,15 @@ static PROC_RESULT CI_Proc_Init( PROC * proc, int * seq )
 	memset( wk, 0, sizeof( CODEIN_WORK ) );
 	wk->param = *( ( CODEIN_PARAM* )PROC_GetParentWork( proc ) );
 	
-	///< ‰Šú‰»
-	sys_VBlankFuncChange( NULL, NULL );		///< VBlankƒZƒbƒg
-	sys_HBlankIntrStop();					///< HBlankŠ„‚èž‚Ý’âŽ~
+	///< åˆæœŸåŒ–
+	sys_VBlankFuncChange( NULL, NULL );		///< VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();					///< HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
 	GXS_SetVisiblePlane( 0 );
 
-	///< ƒVƒXƒeƒ€ƒ[ƒN‚Ìì¬	
+	///< ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ä½œæˆ	
 	wk->sys.p_handle = ArchiveDataHandleOpen( ARC_CODE_GRA, HEAPID_CODEIN );	
 	wk->sys.bgl		 = GF_BGL_BglIniAlloc( HEAPID_CODEIN );	
 	wk->sys.pfd		 = PaletteFadeInit( HEAPID_CODEIN );
@@ -108,16 +108,16 @@ static PROC_RESULT CI_Proc_Init( PROC * proc, int * seq )
 	PaletteFadeWorkAllocSet( wk->sys.pfd, FADE_MAIN_OBJ, 0x200, HEAPID_CODEIN );
 	PaletteFadeWorkAllocSet( wk->sys.pfd, FADE_SUB_OBJ,	 0x200, HEAPID_CODEIN );	
 
-	///< VramÝ’è
+	///< Vramè¨­å®š
 	CI_VramBankSet( wk->sys.bgl );	
 	
-	///< OAMÝ’è
+	///< OAMè¨­å®š
 	CI_pv_disp_CATS_Init( wk );
 	
-	///< Ý’è‰Šú‰»
+	///< è¨­å®šåˆæœŸåŒ–
 	CI_pv_ParamInit( wk );
 	
-	///< Touch PanelÝ’è
+	///< Touch Panelè¨­å®š
 	{
 		InitTPSystem();
 		InitTPNoBuff( 4 );		
@@ -144,7 +144,7 @@ static PROC_RESULT CI_Proc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
  * @param	proc	
  * @param	seq	
@@ -174,7 +174,7 @@ static PROC_RESULT CI_Proc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	proc	
  * @param	seq	
@@ -244,7 +244,7 @@ static PROC_RESULT CI_Proc_Exit( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	CODEIN_PARAM ‚Ìƒ[ƒN‚ðì¬‚·‚é
+ * @brief	CODEIN_PARAM ã®ãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆã™ã‚‹
  *
  * @param	heap_id	
  * @param	word_len	
@@ -295,7 +295,7 @@ CODEIN_PARAM* sub_208941C( int heap_id, int word_len, int block[], CONFIG* cfg, 
 
 //--------------------------------------------------------------
 /**
- * @brief	CODEIN_PARAM ‚Ìƒ[ƒN‚ð‰ð•ú
+ * @brief	CODEIN_PARAM ã®ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾
  *
  * @param	codein_param	
  *
@@ -327,30 +327,30 @@ static void CI_VramBankSet( GF_BGL_INI* bgl )
 {
 	GF_Disp_GX_VisibleControlInit();
 	
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 	}
 	
-		//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+		//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -384,7 +384,7 @@ static void CI_VramBankSet( GF_BGL_INI* bgl )
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 	}
 	
-	///< ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	///< ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			{	/// font
@@ -430,7 +430,7 @@ static void CI_VramBankSet( GF_BGL_INI* bgl )
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 	}
 	
-	///< SUB‰æ–Ê‚ðƒƒCƒ“‰æ–Ê‚É‚·‚é‚½‚ß
+	///< SUBç”»é¢ã‚’ãƒ¡ã‚¤ãƒ³ç”»é¢ã«ã™ã‚‹ãŸã‚
 	sys.disp3DSW = DISP_3D_TO_SUB;
 	GF_Disp_DispSelect();
 	
@@ -452,7 +452,7 @@ static void CI_VBlank( void* work )
 {
 	CODEIN_WORK* wk = work;
 
-	DoVramTransferManager();			///< Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	DoVramTransferManager();			///< Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	
 	CATS_RenderOamTrans();
 

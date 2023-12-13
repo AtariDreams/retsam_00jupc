@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 	<TITLE>NNS_G3dTexLoad</TITLE>
@@ -12,7 +12,7 @@
 
 <H1 align="left">NNS_G3dTexLoad</H1>
 
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nnsys/g3d/kernel.h&gt;</CODE></PRE>
@@ -23,42 +23,42 @@ NNS_G3dTexLoad(
 );</CODE></PRE>
 </DL>
 
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>pTex</STRONG></EM></TD>
-      <TD width="87%">�e�N�X�`�����\�[�X�ւ̃|�C���^</TD>
+      <TD width="87%">テクスチャリソースへのポインタ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>exec_begin_end</STRONG></EM></TD>
-      <TD width="87%"><CODE>TRUE</CODE>�̎��ANITRO-SDK��<CODE>GX_BeginLoadTex</CODE>�֐���<CODE>GX_EndLoadTex</CODE>�֐����Ăт܂�</TD>
+      <TD width="87%"><CODE>TRUE</CODE>の時、NITRO-SDKの<CODE>GX_BeginLoadTex</CODE>関数と<CODE>GX_EndLoadTex</CODE>関数を呼びます</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
+<H2>返り値</H2>
+<P>なし。</P>
 
-<H2>����</H2>
-<P>�e�N�X�`�����\�[�X���Ɋi�[����Ă���e�N�X�`�����A�ݒ肳��Ă���e�N�X�`���E�L�[���w������VRAM�̈�Ƀ��[�h����Ɠ����ɁA
-�e�N�X�`�����\�[�X���̃e�N�X�`����VRAM�Ƀ��[�h�������������t���b�O���Z�b�g���܂��B
-���̊֐����ĂԑO�ɁA�K��<CODE>NNS_G3dTexSetTexKey</CODE>�֐���p���āA�e�N�X�`���E�L�[��ݒ肵�Ă����K�v������܂��B
-�܂��A�e�N�X�`���̃��[�h��DMA�]�����g�p���邽�߁A���炩����<CODE>DC_Flush*</CODE>/<CODE>DC_Store*</CODE>�֐�����p���ăe�N�X�`�����������Ƀ��C�g�o�b�N���Ă����K�v������܂��B</P>
-<P><I><B>exec_begin_end</B></I>��<CODE>TRUE</CODE>���w�肳��Ă���ꍇ�A�e�N�X�`���f�[�^��VRAM�ւ̃��[�h�̑O��ɁA NITRO-SDK��API�ł���<CODE>GX_BeginLoadTex</CODE>�֐���<CODE>GX_EndLoadTex</CODE>�֐����Ăт܂��B <B><I>exec_begin_end</I></B>��<CODE>FALSE</CODE>���w�肵���ꍇ�́A���[�U����<CODE>GX_BeginLoadTex</CODE>�֐���<CODE>GX_EndLoadTex</CODE>�֐����Ăяo���K�v������܂��B �A�����ăe�N�X�`���f�[�^�����[�h����ꍇ�ɂ́A<B><I>exec_begin_end</I></B>��<CODE>FALSE</CODE>���w�肵�āA ���[�U����<CODE>GX_BeginLoadTex</CODE>�֐���<CODE>GX_EndLoadTex</CODE>�֐����Ăяo�������������I�ł��B</P>
+<H2>説明</H2>
+<P>テクスチャリソース内に格納されているテクスチャを、設定されているテクスチャ・キーが指し示すVRAM領域にロードすると同時に、
+テクスチャリソース内のテクスチャをVRAMにロードした事を示すフラッグをセットします。
+この関数を呼ぶ前に、必ず<CODE>NNS_G3dTexSetTexKey</CODE>関数を用いて、テクスチャ・キーを設定しておく必要があります。
+また、テクスチャのロードにDMA転送を使用するため、あらかじめ<CODE>DC_Flush*</CODE>/<CODE>DC_Store*</CODE>関数等を用いてテクスチャをメモリにライトバックしておく必要があります。</P>
+<P><I><B>exec_begin_end</B></I>に<CODE>TRUE</CODE>が指定されている場合、テクスチャデータのVRAMへのロードの前後に、 NITRO-SDKのAPIである<CODE>GX_BeginLoadTex</CODE>関数と<CODE>GX_EndLoadTex</CODE>関数を呼びます。 <B><I>exec_begin_end</I></B>に<CODE>FALSE</CODE>を指定した場合は、ユーザ側で<CODE>GX_BeginLoadTex</CODE>関数と<CODE>GX_EndLoadTex</CODE>関数を呼び出す必要があります。 連続してテクスチャデータをロードする場合には、<B><I>exec_begin_end</I></B>に<CODE>FALSE</CODE>を指定して、 ユーザ側で<CODE>GX_BeginLoadTex</CODE>関数と<CODE>GX_EndLoadTex</CODE>関数を呼び出した方が効率的です。</P>
 
 
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE>
 <A href="NNS_G3dTexSetTexKey.html">NNS_G3dTexSetTexKey</A>
 <A href="NNS_G3dTexReleaseTexKey.html">NNS_G3dTexReleaseTexKey</A>
 </CODE></P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2008/01/23 DMA�]�����g�p����|��ǋL<BR>
-2004/08/19 �������̌�L���C��<BR>
-2004/08/02 ����
+2008/01/23 DMA転送を使用する旨を追記<BR>
+2004/08/19 説明文の誤記を修正<BR>
+2004/08/02 初版
 </P>
 </BODY>
 

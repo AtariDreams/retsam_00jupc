@@ -1,7 +1,7 @@
 #ifndef _T03_DEF_H_
 #define _T03_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T03_FLAG_CHANGE		(1)
 #define	SCRID_T03_GINGAM		(2)
 #define	SCRID_T03_BOY1		(3)
@@ -13,6 +13,6 @@
 #define	SCRID_T03_SIGN2		(9)
 #define	SCRID_T03_SIGN3		(10)
 #define	SCRID_T03_WOMAN2		(11)
-#define	SCRID_T03_DATA_MAX		(11)		//最大数
+#define	SCRID_T03_DATA_MAX		(11)		//譛螟ｧ謨ｰ
 
 #endif //_T03_DEF_H_

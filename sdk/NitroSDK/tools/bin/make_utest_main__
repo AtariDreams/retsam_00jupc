@@ -13,10 +13,10 @@
 #
 # $Log: make_utest_main__,v $
 # Revision 1.2  2007/07/17 01:58:53  yasu
-# CR �R�[�h�𖳎�����悤�ɐݒ�
+# CR コードを無視するように設定
 #
 # Revision 1.1  2005/06/24 03:04:43  yasu
-# ���j�b�g�e�X�g�̒ǉ�
+# ユニットテストの追加
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------
@@ -163,8 +163,8 @@ fi
 ' > $UTEST_OUT && echo "Create... $UTEST_OUT" || rm $UTEST_OUT
 
 #
-# �Ԓl����� TRUE �ɂ��Ă���̂� $UTEST_OUT ���o���邩�ǂ����Ŏ��̏�����
-# �i�ނ��ǂ����𔻒肷��ׂ�
+# 返値を常に TRUE にしているので $UTEST_OUT が出来るかどうかで次の処理に
+# 進むかどうかを判定するべし
 #
 
 #===== End of makeutest =====

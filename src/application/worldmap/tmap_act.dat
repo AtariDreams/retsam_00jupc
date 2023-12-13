@@ -1,6 +1,6 @@
 /**
 	@file	tmap_act.dat
-	@brief	タウンマップアクター定数定義ファイル
+	@brief	繧ｿ繧ｦ繝ｳ繝槭ャ繝励い繧ｯ繧ｿ繝ｼ螳壽焚螳夂ｾｩ繝輔ぃ繧､繝ｫ
 	@author	Miyuki Iwasawa
 	@date	06.04.01
 */
@@ -32,7 +32,7 @@ typedef enum{
 
 #define TMAP_ACT_TANMF (16)
 
-///アクターソフトウェアプライオリティ
+///繧｢繧ｯ繧ｿ繝ｼ繧ｽ繝輔ヨ繧ｦ繧ｧ繧｢繝励Λ繧､繧ｪ繝ｪ繝�繧｣
 #define TMAP_SPRI_FOOT	(2)
 #define TMAP_SPRI_HERO	(1)
 #define TMAP_SPRI_CUR	(0)

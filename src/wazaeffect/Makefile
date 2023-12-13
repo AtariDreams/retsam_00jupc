@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ‹ZƒGƒtƒFƒNƒg
+# Project:  æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -33,7 +33,7 @@ include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
 
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(WE_SRC:.s=.bin) we.arc $(WESUB_SRC:.s=.bin) we_sub.narc $(WP_DIR)waza_particle.narc $(WP_DIR)ball_particle.narc 
 
 #----------------------------------------------------------------------------
@@ -41,10 +41,10 @@ LDIRT_CLEAN	= $(WE_SRC:.s=.bin) we.arc $(WESUB_SRC:.s=.bin) we_sub.narc $(WP_DIR
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 
 #-------------------------------
-#	Às‡
-#		ƒŠƒ\[ƒXƒRƒs[
-#		ƒŠƒ\[ƒXƒA[ƒJƒCƒu
-#		‹ZƒGƒtƒFƒNƒgƒA[ƒJƒCƒu
+#	å®Ÿè¡Œé †
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚³ãƒ”ãƒ¼
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+#		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 #-------------------------------
 do-build: res_cp mklst $(NARC_DIR)wechar.narc $(NARC_DIR)wepltt.narc $(NARC_DIR)wecell.narc $(NARC_DIR)wecellanm.narc $(WP_DIR)waza_particle.narc $(WP_DIR)ball_particle.narc $(WE_SRC:.s=.bin) $(SE_SRC:.s=.bin) $(WESUB_SRC:.s=.bin) we.arc we_sub.narc 
 %.bin: %.s west.h
@@ -55,48 +55,48 @@ do-build: res_cp mklst $(NARC_DIR)wechar.narc $(NARC_DIR)wepltt.narc $(NARC_DIR)
 	rm $*.elf
 	touch we_sys.c
 
-#---------- ‹ZƒGƒtƒFƒNƒg‚ğƒA[ƒJƒCƒu‚·‚é ----------
+#---------- æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ ----------
 we.arc: $(wildcard *.bin)
 	nnsarc -c -l -n we.arc we_*.bin
 
-#---------- ó‘ÔˆÙíƒGƒtƒFƒNƒg‚ğƒA[ƒJƒCƒu‚·‚é ----------
+#---------- çŠ¶æ…‹ç•°å¸¸ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ ----------
 we_sub.narc: $(wildcard *.bin)
 	nnsarc -c -l -n we_sub.narc wesub_*.bin
 
-#---------- ƒXƒe[ƒ^ƒXƒGƒtƒFƒNƒg‚ğƒA[ƒJƒCƒu‚·‚é ----------
+#---------- ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ ----------
 se.narc: $(wildcard *.bin)
 #	nnsarc -c -l -n se.narc se_*.bin
 	
-#---------- ƒTƒuƒGƒtƒFƒNƒg ----------
+#---------- ã‚µãƒ–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ----------
 #we_sub.narc: we_s*.s
 #	nnsarc -c -l -n -i we_sub.narc -S we_sub.lst
 #	effectclact/etd effectclact\we_sub.naix
 
-#----------- ƒŠƒXƒg‚Ìì¬ ----------
+#----------- ãƒªã‚¹ãƒˆã®ä½œæˆ ----------
 mklst:
-	#----- ƒƒCƒ“ƒGƒtƒFƒNƒg -----
+	#----- ãƒ¡ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ -----
 #	ls -1 we_*.s > temp
 #	listmk temp srcfile.lst
 #	rm temp
 
-	#----- ƒTƒuƒGƒtƒFƒNƒg -----
+	#----- ã‚µãƒ–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ -----
 #	ls -1 wesub_*.s > temp
 #	listmk temp srcfile_sub.lst
 #	rm temp
 
-	#----- ƒXƒe[ƒ^ƒXƒGƒtƒFƒNƒg -----
+	#----- ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ -----
 #	ls -1 se_*.s > temp
 #	listmk temp srcfile_se.lst
 #	rm temp
 
-#----------- ƒT[ƒo[‚©‚çƒRƒs[‚·‚é -----------
+#----------- ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã‚³ãƒ”ãƒ¼ã™ã‚‹ -----------
 res_cp:
 	xcopy /d /y /q $(CP_RES_DIR)*.NCGR .\\effectclact\\resource
 	xcopy /d /y /q $(CP_RES_DIR)*.NCER .\\effectclact\\resource
 	xcopy /d /y /q $(CP_RES_DIR)*.NCLR .\\effectclact\\resource
 	xcopy /d /y /q $(CP_RES_DIR)*.NANR .\\effectclact\\resource
 
-#----------- ƒA[ƒJƒCƒu‚·‚é ----------- 
+#----------- ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ ----------- 
 $(NARC_DIR)wechar.narc: $(RES_DIR)*.NCGR
 #	nnsarc -c -l -n -i $(NARC_DIR)wechar.narc $(RES_DIR)*.NCGR
 #	nnsarc -c -l -n -i $(NARC_DIR)wechar.narc -S effectclact\wechar.lst
@@ -122,7 +122,7 @@ $(NARC_DIR)wecellanm.narc: $(RES_DIR)*.NANR
 	$(NITRO_COMP) $(NITROSDK_ROOT) effectclact\wecellanm.lst wecellanm.narc wecellanm.naix
 
 
-#---------- ‹ZƒGƒtƒFƒNƒg—pƒp[ƒeƒBƒNƒ‹‚ğƒA[ƒJƒCƒu‚·‚é ----------
+#---------- æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ ----------
 $(WP_DIR)waza_particle.narc: $(WP_DIR)*.spa
 	nnsarc -c -l -n -i $(WP_DIR)waza_particle.narc -S effectdata\waza_particle.lst
 	$(ETD) effectdata\waza_particle.naix
@@ -135,4 +135,4 @@ $(WP_DIR)ball_particle.narc: $(WP_DIR)*.spa
 #	nnsarc -c -l -n -i $(PT_DEBUG_DIR)debug_particle.narc -S pt_debug\debug_particle.lst
 #	$(ETD) effectdata\debug_particle.naix
 	
-#---------- SE’è‹`XV‚É”º‚¢A*.s‚ğtouch‚·‚é ----------
+#---------- SEå®šç¾©æ›´æ–°ã«ä¼´ã„ã€*.sã‚’touchã™ã‚‹ ----------

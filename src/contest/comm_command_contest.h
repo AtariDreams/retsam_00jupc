@@ -1,9 +1,9 @@
 //=============================================================================
 /**
  * @file	comm_command_contest.h
- * @brief	’ÊM‚ÌƒRƒ}ƒ“ƒhˆê——  ƒRƒ“ƒeƒXƒg—p
+ * @brief	é€šä¿¡ã®ã‚³ãƒãƒ³ãƒ‰ä¸€è¦§  ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨
  * @author	matsuda
- * @date    2005.12.15(–Ø)
+ * @date    2005.12.15(æœ¨)
  */
 //=============================================================================
 
@@ -14,35 +14,35 @@
 #include "poketool/poke_tool.h"
 
 
-/// ƒoƒgƒ‹ê—p’ÊMƒRƒ}ƒ“ƒh‚Ì’è‹`B
+/// ãƒãƒˆãƒ«å°‚ç”¨é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ã®å®šç¾©ã€‚
 enum CommCommandBattle_e {
-  CC_EXIT_CONTEST = CS_COMMAND_MAX, ///<ƒRƒ“ƒeƒXƒg‚ğI—¹‚µƒtƒB[ƒ‹ƒh‚É–ß‚é–‚ğ‘—M
+  CC_EXIT_CONTEST = CS_COMMAND_MAX, ///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚’çµ‚äº†ã—ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«æˆ»ã‚‹äº‹ã‚’é€ä¿¡
 
-	CC_TIMING_DATA,				///<“¯Šúæ‚è—p
-	CC_NORMAL_DATA,				///<’Êíƒf[ƒ^‘—M
-	CC_DANCE_DATA,				///<ƒ_ƒ“ƒX—pƒf[ƒ^‘—M
-	CC_FAST_PARAM,				///<‰‰ñƒf[ƒ^‘—óM
-	CC_POKEPARA_DATA,			///<ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
-	CC_POKEPARA_ALL_DATA,		///<ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^(‘Sˆõ•ª)
-	CC_BREEDER_DATA,			///<ƒuƒŠ[ƒ_[ƒf[ƒ^
-	CC_JUDGE_DATA,				///<R”»ƒf[ƒ^
-	CC_NAME_DATA,				///<ƒuƒŠ[ƒ_[–¼
-	CC_IMC_DATA,				///<ƒNƒŠƒbƒvƒf[ƒ^
-	CC_IMC_ALL_DATA,			///<ƒNƒŠƒbƒvƒf[ƒ^(‘Sˆõ•ª)
-	CC_IMC_LOCAL,				///<ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–Ê—pƒf[ƒ^‘—M
-	CC_IMC_FORCE_END,			///<ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–Ê—pF‹­§I—¹ƒtƒ‰ƒO‘—M
-	CC_PERAP_DATA,				///<‚Øƒ‰ƒbƒvƒf[ƒ^
-	CC_ETC_DATA,				///<ŒÅ’è’·‚Ì×‚©‚¢ƒf[ƒ^ŒQ
+	CC_TIMING_DATA,				///<åŒæœŸå–ã‚Šç”¨
+	CC_NORMAL_DATA,				///<é€šå¸¸ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CC_DANCE_DATA,				///<ãƒ€ãƒ³ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CC_FAST_PARAM,				///<åˆå›ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡
+	CC_POKEPARA_DATA,			///<ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	CC_POKEPARA_ALL_DATA,		///<ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(å…¨å“¡åˆ†)
+	CC_BREEDER_DATA,			///<ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CC_JUDGE_DATA,				///<å¯©åˆ¤ãƒ‡ãƒ¼ã‚¿
+	CC_NAME_DATA,				///<ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼å
+	CC_IMC_DATA,				///<ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+	CC_IMC_ALL_DATA,			///<ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿(å…¨å“¡åˆ†)
+	CC_IMC_LOCAL,				///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢ç”¨ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CC_IMC_FORCE_END,			///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢ç”¨ï¼šå¼·åˆ¶çµ‚äº†ãƒ•ãƒ©ã‚°é€ä¿¡
+	CC_PERAP_DATA,				///<ãºãƒ©ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+	CC_ETC_DATA,				///<å›ºå®šé•·ã®ç´°ã‹ã„ãƒ‡ãƒ¼ã‚¿ç¾¤
 	
-  //------------------------------------------------‚±‚±‚Ü‚Å
-  CC_COMMAND_MAX   // I’[--------------‚±‚ê‚ÍˆÚ“®‚³‚¹‚È‚¢‚Å‚­‚¾‚³‚¢
+  //------------------------------------------------ã“ã“ã¾ã§
+  CC_COMMAND_MAX   // çµ‚ç«¯--------------ã“ã‚Œã¯ç§»å‹•ã•ã›ãªã„ã§ãã ã•ã„
 };
 
 extern void CommCommandContestInitialize(void* pWork);
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern BOOL CommContestSendFastParam(CONTEST_SYSTEM *consys);
 extern BOOL CommContestSendPokePara(CONTEST_SYSTEM *consys, int breeder_no, 

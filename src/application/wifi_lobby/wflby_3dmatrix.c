@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_3dmatrix.c
- *	@brief		Lê•”‰®	‚RDÀ•WŠÇ—ŠÖ”
+ *	@brief		åºƒå ´éƒ¨å±‹	ï¼“Dåº§æ¨™ç®¡ç†é–¢æ•°
  *	@author		tomoya takahashi
  *	@data		2007.11.13
  *
@@ -15,45 +15,45 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
-*/
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-/**
- *					\‘¢‘ÌéŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
+*/
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+/**
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	wf2dƒVƒXƒeƒ€‚Ìƒ|ƒWƒVƒ‡ƒ“À•W‚ð‚RDÀ•W‚É•ÏŠ·‚·‚é
+ *	@brief	wf2dã‚·ã‚¹ãƒ†ãƒ ã®ãƒã‚¸ã‚·ãƒ§ãƒ³åº§æ¨™ã‚’ï¼“Dåº§æ¨™ã«å¤‰æ›ã™ã‚‹
  *
- *	@param	cp_pos		ƒ|ƒWƒVƒ‡ƒ“
- *	@param	p_vec		‚RDÀ•W
+ *	@param	cp_pos		ãƒã‚¸ã‚·ãƒ§ãƒ³
+ *	@param	p_vec		ï¼“Dåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMATRIX_GetPosVec( const WF2DMAP_POS* cp_pos, VecFx32* p_vec )
@@ -65,10 +65,10 @@ void WFLBY_3DMATRIX_GetPosVec( const WF2DMAP_POS* cp_pos, VecFx32* p_vec )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDÀ•W‚ðwf2dƒVƒXƒeƒ€‚Ìƒ|ƒWƒVƒ‡ƒ“À•W‚É•ÏŠ·‚·‚é
+ *	@brief	ï¼“Dåº§æ¨™ã‚’wf2dã‚·ã‚¹ãƒ†ãƒ ã®ãƒã‚¸ã‚·ãƒ§ãƒ³åº§æ¨™ã«å¤‰æ›ã™ã‚‹
  *
- *	@param	cp_vec	‚RDÀ•W
- *	@param	p_pos	ƒ|ƒWƒVƒ‡ƒ“
+ *	@param	cp_vec	ï¼“Dåº§æ¨™
+ *	@param	p_pos	ãƒã‚¸ã‚·ãƒ§ãƒ³
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMATRIX_GetVecPos( const VecFx32* cp_vec, WF2DMAP_POS* p_pos )
@@ -83,49 +83,49 @@ void WFLBY_3DMATRIX_GetVecPos( const VecFx32* cp_vec, WF2DMAP_POS* p_pos )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”Ä—pŠÖ”	ƒeƒNƒXƒ`ƒƒ‚ð“WŠJ‚µ‚ÄŽÀƒf[ƒ^‚ð”jŠü‚·‚é
+ *	@brief	æ±Žç”¨é–¢æ•°	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å±•é–‹ã—ã¦å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	pp_in		“Ç‚Ýž‚ñ‚¾ƒoƒbƒtƒ@Ši”[æ
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	data_idx	ƒf[ƒ^IDX
- *	@param	gheapID		ƒq[ƒvID
+ *	@param	pp_in		èª­ã¿è¾¼ã‚“ã ãƒãƒƒãƒ•ã‚¡æ ¼ç´å…ˆ
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	data_idx	ãƒ‡ãƒ¼ã‚¿IDX
+ *	@param	gheapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJ_TEX_LoatCutTex( void** pp_in, ARCHANDLE* p_handle, u32 data_idx, u32 gheapID )
 {
 	u32 tex_cut_size;
 	void* p_file;
-	NNSGfdTexKey	texKey;		// ƒeƒNƒXƒ`ƒƒƒL[
-	NNSGfdTexKey	tex4x4Key;	// 4x4ƒeƒNƒXƒ`ƒƒƒL[
-	NNSGfdPlttKey	plttKey;	// ƒpƒŒƒbƒgƒL[
+	NNSGfdTexKey	texKey;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+	NNSGfdTexKey	tex4x4Key;	// 4x4ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+	NNSGfdPlttKey	plttKey;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
 	NNSG3dResTex*	p_tex;
 
-	// ‚Ü‚¸•’Ê‚Éƒ‚ƒfƒ‹‚ð“Ç‚Ýž‚Þ
+	// ã¾ãšæ™®é€šã«ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 	p_file = ArcUtil_HDL_Load( p_handle, data_idx, FALSE, gheapID, ALLOC_BOTTOM );
 
-	// VRAM‚É“WŠJ
+	// VRAMã«å±•é–‹
 	{
-		// ˆêŽž“I‚ÉŠeƒ|ƒCƒ“ƒ^‚ðŽæ“¾‚·‚é
+		// ä¸€æ™‚çš„ã«å„ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
 		p_tex		= NNS_G3dGetTex( p_file );
-		// “]‘—‚·‚é
+		// è»¢é€ã™ã‚‹
 		LoadVRAMTexture( p_tex );
 	}
 
-	// ƒeƒNƒXƒ`ƒƒƒL[Žæ“¾
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼å–å¾—
 	{
 		NNS_G3dTexReleaseTexKey( p_tex, &texKey, &tex4x4Key );
 		plttKey = NNS_G3dPlttReleasePlttKey( p_tex );	
 	}
 
 	
-	// ƒeƒNƒXƒ`ƒƒ•”•ª‚ð”jŠü‚·‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£éƒ¨åˆ†ã‚’ç ´æ£„ã™ã‚‹
 	{
-		tex_cut_size		= TEXRESM_TOOL_CutTexDataSizeGet( p_file );	// ƒeƒNƒXƒ`ƒƒ‚ð”jŠü‚µ‚½•ª‚ÌƒTƒCƒY‚ðŽæ“¾
-		*pp_in		= sys_AllocMemory( gheapID, tex_cut_size );	// ƒeƒNƒXƒ`ƒƒ‚ð”jŠü‚µ‚½ƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ðŠm•Û
-		memcpy( *pp_in, p_file, tex_cut_size );	// ƒƒ‚ƒŠ‚ðƒRƒs[
+		tex_cut_size		= TEXRESM_TOOL_CutTexDataSizeGet( p_file );	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ç ´æ£„ã—ãŸåˆ†ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
+		*pp_in		= sys_AllocMemory( gheapID, tex_cut_size );	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ç ´æ£„ã—ãŸã‚µã‚¤ã‚ºã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
+		memcpy( *pp_in, p_file, tex_cut_size );	// ãƒ¡ãƒ¢ãƒªã‚’ã‚³ãƒ”ãƒ¼
 	}
 
-	// ƒeƒNƒXƒ`ƒƒƒL[‚ðÝ’è
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’è¨­å®š
 	{
 		p_tex		= NNS_G3dGetTex( *pp_in );
 		NNS_G3dTexSetTexKey(p_tex, texKey, tex4x4Key);
@@ -133,20 +133,20 @@ void WFLBY_3DMAPOBJ_TEX_LoatCutTex( void** pp_in, ARCHANDLE* p_handle, u32 data_
 	}
 
 
-	// ˆêŽžƒtƒ@ƒCƒ‹‚ð”jŠü
+	// ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç ´æ£„
 	sys_FreeMemoryEz( p_file );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒŠƒ“ƒOƒ`ƒFƒbƒN
+ *	@brief	ã‚«ãƒªãƒ³ã‚°ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_mdl		ƒ‚ƒfƒ‹
- *	@param	cp_obj		•`‰æƒIƒuƒWƒF
+ *	@param	cp_mdl		ãƒ¢ãƒ‡ãƒ«
+ *	@param	cp_obj		æç”»ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@retval	TRUE	•`‰æ‚·‚é
- *	@retval	FALSE	•`‰æ‚µ‚È‚¢
+ *	@retval	TRUE	æç”»ã™ã‚‹
+ *	@retval	FALSE	æç”»ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJ_MDL_BOXCheck( const D3DOBJ_MDL* cp_mdl, const D3DOBJ* cp_obj )
@@ -166,7 +166,7 @@ BOOL WFLBY_3DMAPOBJ_MDL_BOXCheck( const D3DOBJ_MDL* cp_mdl, const D3DOBJ* cp_obj
 	rot_y = D3DOBJ_GetRota( cp_obj, D3DOBJ_ROTA_WAY_Y );
 	rot_z = D3DOBJ_GetRota( cp_obj, D3DOBJ_ROTA_WAY_Z );
 
-	// ‰ñ“]s—ñì¬
+	// å›žè»¢è¡Œåˆ—ä½œæˆ
 	MTX_Identity33( &mtx );
 	MTX_RotX33( &calc_mtx, FX_SinIdx( rot_x ), FX_CosIdx( rot_x ) );
 	MTX_Concat33( &calc_mtx, &mtx, &mtx );
@@ -175,7 +175,7 @@ BOOL WFLBY_3DMAPOBJ_MDL_BOXCheck( const D3DOBJ_MDL* cp_mdl, const D3DOBJ* cp_obj
 	MTX_RotY33( &calc_mtx, FX_SinIdx( rot_y ), FX_CosIdx( rot_y ) );
 	MTX_Concat33( &calc_mtx, &mtx, &mtx );
 	
-	// •`‰æƒ`ƒFƒbƒN
+	// æç”»ãƒã‚§ãƒƒã‚¯
 	return BB_CullingCheck3DModel( cp_mdl->pModel, 
 				&matrix,
 				&mtx,

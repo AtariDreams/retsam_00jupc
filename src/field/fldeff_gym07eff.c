@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_gym07eff.c
- * @brief	Ši“¬ƒWƒ€ƒGƒtƒFƒNƒg
+ * @brief	æ ¼é—˜ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  * @author	kagaya
  * @data	05.07.13
  *
@@ -20,38 +20,38 @@
 #define BOX_OY_FX (NUM_FX32(6))
 
 //--------------------------------------------------------------
-///	ƒ‚ƒfƒ‹Ží—Þ
+///	ãƒ¢ãƒ‡ãƒ«ç¨®é¡ž
 //--------------------------------------------------------------
 enum
 {
-	GYM07MDL_BOX_BREAK,	///<–Ø” ”j‰ó
-	GYM07MDL_BOX,		///<–Ø” 
-	GYM07MDL_SBAG,		///<ƒTƒ“ƒhƒoƒbƒO
-	GYM07MDL_MAX,		///<ƒ‚ƒfƒ‹Å‘å
+	GYM07MDL_BOX_BREAK,	///<æœ¨ç®±ç ´å£Š
+	GYM07MDL_BOX,		///<æœ¨ç®±
+	GYM07MDL_SBAG,		///<ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°
+	GYM07MDL_MAX,		///<ãƒ¢ãƒ‡ãƒ«æœ€å¤§
 };
 
 //--------------------------------------------------------------
-///	ƒAƒjƒŽí—Þ
+///	ã‚¢ãƒ‹ãƒ¡ç¨®é¡ž
 //--------------------------------------------------------------
 enum
 {
-	GYM07ANM_SBAG01_U,	///<ƒTƒ“ƒhƒoƒbƒO
-	GYM07ANM_SBAG01_D,	///<ƒTƒ“ƒhƒoƒbƒO
-	GYM07ANM_SBAG01_L,	///<ƒTƒ“ƒhƒoƒbƒO
-	GYM07ANM_SBAG01_R,	///<ƒTƒ“ƒhƒoƒbƒO
-	GYM07ANM_SBAG02_U,	///<ƒTƒ“ƒhƒoƒbƒO
-	GYM07ANM_SBAG02_D,	///<ƒTƒ“ƒhƒoƒbƒO
-	GYM07ANM_SBAG02_L,	///<ƒTƒ“ƒhƒoƒbƒO
-	GYM07ANM_SBAG02_R,	///<ƒTƒ“ƒhƒoƒbƒO
-	GYM07ANM_BOX_BREAK_ICA,	///<” ”j‰óƒAƒjƒ
-	GYM07ANM_BOX_BREAK_IMA,	///<” ”j‰óƒAƒjƒ
-	GYM07ANM_BOX_BREAK_ITA,	///<” ”j‰óƒAƒjƒ
-	GYM07ANM_BOX_BREAK_ITP,	///<” ”j‰óƒAƒjƒ
-	GYM07ANM_MAX,		///<ƒAƒjƒÅ‘å
+	GYM07ANM_SBAG01_U,	///<ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°
+	GYM07ANM_SBAG01_D,	///<ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°
+	GYM07ANM_SBAG01_L,	///<ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°
+	GYM07ANM_SBAG01_R,	///<ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°
+	GYM07ANM_SBAG02_U,	///<ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°
+	GYM07ANM_SBAG02_D,	///<ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°
+	GYM07ANM_SBAG02_L,	///<ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°
+	GYM07ANM_SBAG02_R,	///<ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°
+	GYM07ANM_BOX_BREAK_ICA,	///<ç®±ç ´å£Šã‚¢ãƒ‹ãƒ¡
+	GYM07ANM_BOX_BREAK_IMA,	///<ç®±ç ´å£Šã‚¢ãƒ‹ãƒ¡
+	GYM07ANM_BOX_BREAK_ITA,	///<ç®±ç ´å£Šã‚¢ãƒ‹ãƒ¡
+	GYM07ANM_BOX_BREAK_ITP,	///<ç®±ç ´å£Šã‚¢ãƒ‹ãƒ¡
+	GYM07ANM_MAX,		///<ã‚¢ãƒ‹ãƒ¡æœ€å¤§
 };
 
 //--------------------------------------------------------------
-///	” ƒAƒjƒŽí—Þ
+///	ç®±ã‚¢ãƒ‹ãƒ¡ç¨®é¡ž
 //--------------------------------------------------------------
 enum
 {
@@ -63,7 +63,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	” ƒAƒjƒƒrƒbƒg
+///	ç®±ã‚¢ãƒ‹ãƒ¡ãƒ“ãƒƒãƒˆ
 //--------------------------------------------------------------
 #define BOXANMBIT_ICA (1<<0)
 #define BOXANMBIT_IMA (1<<1)
@@ -72,7 +72,7 @@ enum
 #define BOXANMBIT_ALL (BOXANMBIT_ICA|BOXANMBIT_IMA|BOXANMBIT_ITA|BOXANMBIT_ITP)
 		
 //--------------------------------------------------------------
-///	EOAŽí—Þ
+///	EOAç¨®é¡ž
 //--------------------------------------------------------------
 enum
 {
@@ -81,7 +81,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	” ƒV[ƒPƒ“ƒX
+///	ç®±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //--------------------------------------------------------------
 enum
 {
@@ -90,7 +90,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒTƒ“ƒhƒoƒbƒOƒV[ƒPƒ“ƒX
+///	ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //--------------------------------------------------------------
 enum
 {
@@ -102,12 +102,12 @@ enum
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_GYM07EFFŒ^
+///	FE_GYM07EFFåž‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GYM07EFF * FE_GYM07EFF_PTR;
 
 //--------------------------------------------------------------
-///	FE_GYM07EFF\‘¢‘Ì
+///	FE_GYM07EFFæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GYM07EFF
 {
@@ -120,7 +120,7 @@ typedef struct _TAG_FE_GYM07EFF
 	EOA_PTR *eoa_bag_tbl;
 }FE_GYM07EFF;
 
-#define FE_GYM07EFF_SIZE (sizeof(FE_GYM07EFF)) ///<FE_GYM07EFFƒTƒCƒY
+#define FE_GYM07EFF_SIZE (sizeof(FE_GYM07EFF)) ///<FE_GYM07EFFã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
 ///	GYM07EFF_ADD_H
@@ -177,7 +177,7 @@ typedef struct
 }GYM07BOX_EOA_WORK;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Gym07Eff_GraphicInit( FE_GYM07EFF_PTR gym07eff );
 static void Gym07Eff_GraphicDelete( FE_GYM07EFF_PTR gym07eff );
@@ -195,11 +195,11 @@ static const u32 DATA_Gym07AnmArcIdxTbl[GYM07ANM_MAX];
 static const u32 DATA_BoxAnmNo_ResNo[BOXANM_MAX];
 
 //==============================================================================
-//	Ši“¬ƒWƒ€ƒGƒtƒFƒNƒg@ƒVƒXƒeƒ€
+//	æ ¼é—˜ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Ši“¬ƒWƒ€ƒGƒtƒFƒNƒg‰Šú‰»
+ * æ ¼é—˜ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_GYM07EFF_PTR	FE_GYM07EFF_PTR
  */
@@ -217,7 +217,7 @@ void * FE_Gym07Eff_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * Ši“¬ƒWƒ€ƒGƒtƒFƒNƒgíœ
+ * æ ¼é—˜ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‰Šé™¤
  * @param	gym07eff		FE_GYM07EFF_PTR
  * @retval	nothing
  */
@@ -240,10 +240,10 @@ void FE_Gym07Eff_Delete( void *work )
 
 //--------------------------------------------------------------
 /**
- * Ši“¬ƒWƒ€ƒGƒtƒFƒNƒg@ƒTƒ“ƒhƒoƒbƒOA” Å‘å”‚ðÝ’è
+ * æ ¼é—˜ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã€ç®±æœ€å¤§æ•°ã‚’è¨­å®š
  * @param	fes	FE_SYS_PTR
- * @param	box_max	BOXÅ‘å
- * @param	bag ƒTƒ“ƒhƒoƒbƒOÅ‘å
+ * @param	box_max	BOXæœ€å¤§
+ * @param	bag ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°æœ€å¤§
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -269,11 +269,11 @@ void FE_Gym07Eff_BoxSandbagMaxSet( FE_SYS *fes, int box_max, int bag_max )
 }
 
 //==============================================================================
-//	Ši“¬ƒWƒ€ƒGƒtƒFƒNƒg@ƒOƒ‰ƒtƒBƒbƒN
+//	æ ¼é—˜ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Ši“¬ƒWƒ€ƒGƒtƒFƒNƒg ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * æ ¼é—˜ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	gym07eff	FE_GYM07EFF_PTR
  * @retval	nothing
  */
@@ -297,7 +297,7 @@ static void Gym07Eff_GraphicInit( FE_GYM07EFF_PTR gym07 )
 
 //--------------------------------------------------------------
 /**
- * Ši“¬ƒWƒ€ƒGƒtƒFƒNƒg ƒOƒ‰ƒtƒBƒbƒNíœ
+ * æ ¼é—˜ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	gym07eff	FE_GYM07EFF_PTR
  * @retval	nothing
  */
@@ -316,16 +316,16 @@ static void Gym07Eff_GraphicDelete( FE_GYM07EFF_PTR gym07 )
 }
 
 //==============================================================================
-//	eoa	ƒp[ƒc
+//	eoa	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA’Ç‰Á‹¤’Ê•”•ª
+ * EOAè¿½åŠ å…±é€šéƒ¨åˆ†
  * @param	fes	FE_SYS
- * @param	 gx	ƒOƒŠƒbƒhX
- * @param	 gz	ƒOƒŠƒbƒhZ
- * @param	 oy YÀ•WƒIƒtƒZƒbƒg
- * @retval	EOA_PTR	‹ó‚ÌEOA_PTR
+ * @param	 gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	 gz	ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	 oy Yåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	EOA_PTR	ç©ºã®EOA_PTR
  */
 //--------------------------------------------------------------
 static EOA_PTR * EoaGym07EffAddWorkInit(
@@ -368,7 +368,7 @@ static EOA_PTR * EoaGym07EffAddWorkInit(
 
 //--------------------------------------------------------------
 /**
- * GYM07 EOA ‰Šú‰»‹¤’Ê•”•ª
+ * GYM07 EOA åˆæœŸåŒ–å…±é€šéƒ¨åˆ†
  * @param	eoa		EOA_PTR
  * @param	work	GYM07EOA_WORK
  * @retval	nothing
@@ -392,16 +392,16 @@ static void EoaGym07WorkInit( EOA_PTR eoa, GYM07EOA_WORK *work )
 }
 
 //==============================================================================
-//	eoa	” 
+//	eoa	ç®±
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ” ‚ð’Ç‰Á
+ * ç®±ã‚’è¿½åŠ 
  * @param	fes	FE_SYS
- * @param	 gx	ƒOƒŠƒbƒhX
- * @param	 gz	ƒOƒŠƒbƒhZ
- * @param	 oy YÀ•WƒIƒtƒZƒbƒg
- * @retval	EOA_PTR	’Ç‰Á‚µ‚½EOA_PTR
+ * @param	 gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	 gz	ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	 oy Yåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	EOA_PTR	è¿½åŠ ã—ãŸEOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_Gym07Eff_BoxAdd( FIELDSYS_WORK *fsys, int gx, int gz, fx32 oy )
@@ -418,7 +418,7 @@ EOA_PTR FE_Gym07Eff_BoxAdd( FIELDSYS_WORK *fsys, int gx, int gz, fx32 oy )
 
 //--------------------------------------------------------------
 /**
- * ” ”j‰óƒAƒjƒƒZƒbƒg
+ * ç®±ç ´å£Šã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
  * @param	eoa	EOA_PTR
  * @retval	nothing
  */
@@ -432,7 +432,7 @@ void FE_Gym07Eff_BoxBreakAnmSet( EOA_PTR eoa )
 	work = EOA_LocalWorkGet( eoa );
 	gym07 = work->head.gym07;
 	
-	GF_ASSERT( work->bk_anm == NULL );	//ƒZƒbƒgÏ‚Ý
+	GF_ASSERT( work->bk_anm == NULL );	//ã‚»ãƒƒãƒˆæ¸ˆã¿
 	
 	work->seq_no = SEQNO_BOX_ANM;
 	
@@ -453,9 +453,9 @@ void FE_Gym07Eff_BoxBreakAnmSet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ” ”j‰óƒAƒjƒI—¹ƒ`ƒFƒbƒN
+ * ç®±ç ´å£Šã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	eoa	EOA_PTR
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL FE_Gym07Eff_BoxBreakAnmCheck( EOA_PTR eoa )
@@ -463,7 +463,7 @@ BOOL FE_Gym07Eff_BoxBreakAnmCheck( EOA_PTR eoa )
 	GYM07BOX_EOA_WORK *work;
 	
 	work = EOA_LocalWorkGet( eoa );
-	GF_ASSERT( work->bk_anm != NULL );	//–¢ƒZƒbƒg
+	GF_ASSERT( work->bk_anm != NULL );	//æœªã‚»ãƒƒãƒˆ
 	
 	if( work->bk_anm->anm_end == BOXANMBIT_ALL ){
 		return( TRUE );
@@ -474,10 +474,10 @@ BOOL FE_Gym07Eff_BoxBreakAnmCheck( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ” @‰Šú‰»
+ * EOA ç®±ã€€åˆæœŸåŒ–
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
- * @retval	int	TRUE=³íI—¹ FALSE=ˆÙíI—¹
+ * @retval	int	TRUE=æ­£å¸¸çµ‚äº† FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaGym07Box_Init( EOA_PTR eoa, void *wk )
@@ -504,7 +504,7 @@ static int EoaGym07Box_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ” @íœ
+ * EOA ç®±ã€€å‰Šé™¤
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -527,7 +527,7 @@ static void EoaGym07Box_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ” @“®ì
+ * EOA ç®±ã€€å‹•ä½œ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -545,7 +545,7 @@ static void EoaGym07Box_Move( EOA_PTR eoa, void *wk )
 			int i;
 			GYM07BOX_ANM_WORK *anm;
 			
-			GF_ASSERT( work->bk_anm != NULL );	//–¢ƒZƒbƒg
+			GF_ASSERT( work->bk_anm != NULL );	//æœªã‚»ãƒƒãƒˆ
 			anm = work->bk_anm;
 			
 			for( i = 0; i < BOXANM_MAX; i++ ){
@@ -564,7 +564,7 @@ static void EoaGym07Box_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ” @•`‰æ
+ * EOA ç®±ã€€æç”»
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -579,7 +579,7 @@ static void EoaGym07Box_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA ”  ƒwƒbƒ_
+///	EOA ç®± ãƒ˜ãƒƒãƒ€
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Gym07Box =
 {
@@ -591,16 +591,16 @@ static const EOA_H_NPP DATA_EoaH_Gym07Box =
 };
 
 //==============================================================================
-//	eoa	ƒTƒ“ƒhƒoƒbƒO
+//	eoa	ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒTƒ“ƒhƒoƒbƒO‚ð’Ç‰Á
+ * ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã‚’è¿½åŠ 
  * @param	fes	FE_SYS
- * @param	 gx	ƒOƒŠƒbƒhX
- * @param	 gz	ƒOƒŠƒbƒhZ
- * @param	 oy YÀ•WƒIƒtƒZƒbƒg
- * @retval	EOA_PTR	’Ç‰Á‚µ‚½EOA_PTR
+ * @param	 gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	 gz	ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	 oy Yåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	EOA_PTR	è¿½åŠ ã—ãŸEOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_Gym07Eff_SandbagAdd( FIELDSYS_WORK *fsys, int gx, int gz, fx32 oy )
@@ -617,10 +617,10 @@ EOA_PTR FE_Gym07Eff_SandbagAdd( FIELDSYS_WORK *fsys, int gx, int gz, fx32 oy )
 
 //--------------------------------------------------------------
 /**
- * ƒTƒ“ƒhƒoƒbƒO@—h‚êƒAƒjƒƒZƒbƒg
+ * ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã€€æºã‚Œã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
  * @param	EOA_PTR	eoa
- * @param	dir	—h‚ê‚é•ûŒü
- * @param	big	TRUE=‘å‚«‚­—h‚ê‚é
+ * @param	dir	æºã‚Œã‚‹æ–¹å‘
+ * @param	big	TRUE=å¤§ããæºã‚Œã‚‹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -657,9 +657,9 @@ void FE_Gym07Eff_SandbagShakeSet( EOA_PTR eoa, int dir, BOOL big )
 
 //--------------------------------------------------------------
 /**
- * ƒTƒ“ƒhƒoƒbƒO@ƒAƒjƒ‘¬“xƒZƒbƒg
+ * ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã€€ã‚¢ãƒ‹ãƒ¡é€Ÿåº¦ã‚»ãƒƒãƒˆ
  * @param	EOA_PTR	eoa
- * @param	speed	‘¬“x
+ * @param	speed	é€Ÿåº¦
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -675,9 +675,9 @@ void FE_Gym07Eff_SandbagAnmSpeedSet( EOA_PTR eoa, fx32 speed )
 
 //--------------------------------------------------------------
 /**
- * ƒTƒ“ƒhƒoƒbƒO@ƒAƒjƒI—¹ƒ`ƒFƒbƒN
+ * ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã€€ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	EOA_PTR	eoa
- * @retval	BOOL TRUE=I—¹
+ * @retval	BOOL TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL FE_Gym07Eff_SandbagAnmEndCheck( EOA_PTR eoa )
@@ -689,10 +689,10 @@ BOOL FE_Gym07Eff_SandbagAnmEndCheck( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒTƒ“ƒhƒoƒbƒO@‰Šú‰»
+ * EOA ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã€€åˆæœŸåŒ–
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
- * @retval	int	TRUE=³íI—¹ FALSE=ˆÙíI—¹
+ * @retval	int	TRUE=æ­£å¸¸çµ‚äº† FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaGym07Bag_Init( EOA_PTR eoa, void *wk )
@@ -708,7 +708,7 @@ static int EoaGym07Bag_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒTƒ“ƒhƒoƒbƒO@íœ
+ * EOA ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã€€å‰Šé™¤
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -725,7 +725,7 @@ static void EoaGym07Bag_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒTƒ“ƒhƒoƒbƒO@“®ì
+ * EOA ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã€€å‹•ä½œ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -750,7 +750,7 @@ static void EoaGym07Bag_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒTƒ“ƒhƒoƒbƒO@•`‰æ
+ * EOA ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã€€æç”»
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -765,7 +765,7 @@ static void EoaGym07Bag_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA ƒTƒ“ƒhƒoƒbƒO ƒwƒbƒ_
+///	EOA ã‚µãƒ³ãƒ‰ãƒãƒƒã‚° ãƒ˜ãƒƒãƒ€
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Gym07Bag =
 {
@@ -780,7 +780,7 @@ static const EOA_H_NPP DATA_EoaH_Gym07Bag =
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒ‚ƒfƒ‹ƒf[ƒ^@ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹
+///	ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const u32 DATA_Gym07MdlArcIdxTbl[GYM07MDL_MAX] =
 {
@@ -790,7 +790,7 @@ static const u32 DATA_Gym07MdlArcIdxTbl[GYM07MDL_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒAƒjƒƒf[ƒ^@ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹
+///	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const u32 DATA_Gym07AnmArcIdxTbl[GYM07ANM_MAX] =
 {
@@ -809,7 +809,7 @@ static const u32 DATA_Gym07AnmArcIdxTbl[GYM07ANM_MAX] =
 };
 
 //--------------------------------------------------------------
-///	” ƒAƒjƒŽí—Þ->ƒAƒjƒƒCƒ“ƒfƒbƒNƒX
+///	ç®±ã‚¢ãƒ‹ãƒ¡ç¨®é¡ž->ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 //--------------------------------------------------------------
 static const u32 DATA_BoxAnmNo_ResNo[BOXANM_MAX] =
 {

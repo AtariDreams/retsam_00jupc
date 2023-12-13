@@ -15,28 +15,28 @@
   indent source
 
   Revision 1.16  2006/10/25 04:46:45  kitase_hirotake
-  OSOwnerInfo �̕ύX
+  OSOwnerInfo の変更
 
   Revision 1.15  2006/10/17 05:27:43  okubata_ryoma
-  �؍���IPL�ɑΉ�
+  韓国版IPLに対応
 
   Revision 1.14  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.13  2005/05/14 03:03:13  terui
-  SDK_NVRAM_FORMAT��300�ȏ�̏ꍇ�̂ݒ�����̌���R�[�h����`�����悤�C��
+  SDK_NVRAM_FORMATが300以上の場合のみ中国語の言語コードが定義されるよう修正
 
   Revision 1.12  2005/04/26 08:01:54  terui
   Fix comment
 
   Revision 1.11  2005/04/18 12:28:10  terui
-  OSi_CheckOwnerInfo�֐����폜
+  OSi_CheckOwnerInfo関数を削除
 
   Revision 1.10  2005/04/12 10:49:15  terui
-  ������Ή��ׂ̈ɉ���
+  中国語対応の為に改造
 
   Revision 1.9  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.8  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -54,13 +54,13 @@
   Only fix comment.
 
   Revision 1.4  2004/09/03 08:00:53  terui
-  OS_GetOwnerRtcOffset�֐���ǉ��B
+  OS_GetOwnerRtcOffset関数を追加。
 
   Revision 1.3  2004/09/03 04:35:21  yasu
   Add "#include <nitro/spec.h>"
 
   Revision 1.2  2004/09/03 04:29:15  terui
-  NVRAM�����[�U�[���Ɋւ���\���̒�`�����ɔ����C���B
+  NVRAM内ユーザー情報に関する構造体定義整理に伴う修正。
 
   Revision 1.1  2004/09/02 06:20:49  terui
   Initial upload
@@ -87,7 +87,7 @@ extern "C" {
 
 
 
-/* �{�̏�� : �u���C�ɓ���̐F�v��` (0-15) */
+/* 本体情報 : 「お気に入りの色」定義 (0-15) */
 #define	OS_FAVORITE_COLOR_GRAY         0x00
 #define	OS_FAVORITE_COLOR_BROWN        0x01
 #define	OS_FAVORITE_COLOR_RED          0x02
@@ -107,7 +107,7 @@ extern "C" {
 #define	OS_FAVORITE_COLOR_BITMASK      0x0F
 #define	OS_FAVORITE_COLOR_MAX          0x10
 
-/* �{�̏�� : �u���C�ɓ���̐F�v�萔 (GXRgb) */
+/* 本体情報 : 「お気に入りの色」定数 (GXRgb) */
 #define	OS_FAVORITE_COLOR_VALUE_GRAY         GX_RGB(12,16,19)
 #define	OS_FAVORITE_COLOR_VALUE_BROWN        GX_RGB(23, 9, 0)
 #define	OS_FAVORITE_COLOR_VALUE_RED          GX_RGB(31, 0, 3)
@@ -130,70 +130,70 @@ extern "C" {
 #if ( SDK_TS_VERSION >= 200 || SDK_NVRAM_FORMAT >= 100 )
 
 /*---------------------------------------------------------------------------*
-    �萔��`
+    定数定義
  *---------------------------------------------------------------------------*/
-// ����R�[�h
+// 言語コード
 typedef enum OSLanguage
 {
-    OS_LANGUAGE_JAPANESE = NVRAM_CONFIG_LANG_JAPANESE,  // 0: ���{��
-    OS_LANGUAGE_ENGLISH = NVRAM_CONFIG_LANG_ENGLISH,    // 1: �p��
-    OS_LANGUAGE_FRENCH = NVRAM_CONFIG_LANG_FRENCH,      // 2: �t�����X��
-    OS_LANGUAGE_GERMAN = NVRAM_CONFIG_LANG_GERMAN,      // 3: �h�C�c��
-    OS_LANGUAGE_ITALIAN = NVRAM_CONFIG_LANG_ITALIAN,    // 4: �C�^���A��
-    OS_LANGUAGE_SPANISH = NVRAM_CONFIG_LANG_SPANISH,    // 5: �X�y�C����
+    OS_LANGUAGE_JAPANESE = NVRAM_CONFIG_LANG_JAPANESE,  // 0: 日本語
+    OS_LANGUAGE_ENGLISH = NVRAM_CONFIG_LANG_ENGLISH,    // 1: 英語
+    OS_LANGUAGE_FRENCH = NVRAM_CONFIG_LANG_FRENCH,      // 2: フランス語
+    OS_LANGUAGE_GERMAN = NVRAM_CONFIG_LANG_GERMAN,      // 3: ドイツ語
+    OS_LANGUAGE_ITALIAN = NVRAM_CONFIG_LANG_ITALIAN,    // 4: イタリア語
+    OS_LANGUAGE_SPANISH = NVRAM_CONFIG_LANG_SPANISH,    // 5: スペイン語
 #if ( SDK_NVRAM_FORMAT >= 300 )
-    OS_LANGUAGE_CHINESE = NVRAM_CONFIG_LANG_CHINESE,    // 6: ������
-    OS_LANGUAGE_HANGUL = NVRAM_CONFIG_LANG_HANGUL,      // 7: �؍���
+    OS_LANGUAGE_CHINESE = NVRAM_CONFIG_LANG_CHINESE,    // 6: 中国語
+    OS_LANGUAGE_HANGUL = NVRAM_CONFIG_LANG_HANGUL,      // 7: 韓国語
 #endif
     OS_LANGUAGE_CODE_MAX = NVRAM_CONFIG_LANG_CODE_MAX
 }
 OSLanguage;
 
 
-// ������ő咷
+// 文字列最大長
 #define     OS_OWNERINFO_NICKNAME_MAX       NVRAM_CONFIG_NICKNAME_LENGTH
 #define     OS_OWNERINFO_COMMENT_MAX        NVRAM_CONFIG_COMMENT_LENGTH
 
 
 /*---------------------------------------------------------------------------*
-    �\���̒�`
+    構造体定義
  *---------------------------------------------------------------------------*/
-// �a�������
+// 誕生日情報
 typedef struct OSBirthday
 {
-    u8      month;                     // ��( 1 �` 12 )
-    u8      day;                       // ��( 1 �` 31 )
+    u8      month;                     // 月( 1 〜 12 )
+    u8      day;                       // 日( 1 〜 31 )
 
 }
 OSBirthday;
 
-// �I�[�i�[���
+// オーナー情報
 typedef struct OSOwnerInfo
 {
-    u8      language;                  // ����R�[�h
-    u8      favoriteColor;             // ���C�ɓ���̐F ( 0 �` 15 )
-    OSBirthday birthday;               // �a����
+    u8      language;                  // 言語コード
+    u8      favoriteColor;             // お気に入りの色 ( 0 〜 15 )
+    OSBirthday birthday;               // 誕生日
     u16     nickName[OS_OWNERINFO_NICKNAME_MAX + 1];
-    // �j�b�N�l�[�� (Unicode(UTF16)�ōő�10�����A�I�[�R�[�h�Ȃ�)
-    u16     nickNameLength;            // �j�b�N�l�[��������( 0 �` 10 )
+    // ニックネーム (Unicode(UTF16)で最大10文字、終端コードなし)
+    u16     nickNameLength;            // ニックネーム文字数( 0 〜 10 )
     u16     comment[OS_OWNERINFO_COMMENT_MAX + 1];
-    // �R�����g (Unicode(UTF16)�ōő�26�����A�I�[�R�[�h�Ȃ�)
-    u16     commentLength;             // �R�����g������( 0 �` 26 )
+    // コメント (Unicode(UTF16)で最大26文字、終端コードなし)
+    u16     commentLength;             // コメント文字数( 0 〜 26 )
 
 }
 OSOwnerInfo;
 
 
 /*---------------------------------------------------------------------------*
-    �֐���`
+    関数定義
  *---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*
   Name:         OS_GetOwnerInfo
 
-  Description:  �I�[�i�[�����擾����B
+  Description:  オーナー情報を取得する。
 
-  Arguments:    info    -   �I�[�i�[�����擾����o�b�t�@�ւ̃|�C���^�B
-                            ���̃o�b�t�@�Ƀf�[�^���������܂��B
+  Arguments:    info    -   オーナー情報を取得するバッファへのポインタ。
+                            このバッファにデータが書き込まれる。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -204,14 +204,14 @@ void    OS_GetOwnerInfo(OSOwnerInfo *info);
 /*---------------------------------------------------------------------------*
   Name:         OS_GetOwnerRtcOffset
 
-  Description:  �I�[�i�[��RTC�ݒ��ύX����x�ɂ��̒l�ɉ����đ�������I�t�Z�b�g
-                �l(�P�ʂ͕b)���擾����B
-                �Đݒ蒼�O��RTC�������疢���ɐi�߂�ꂽ�ꍇ�͐i�߂����Ԃ����Z
-                �����B�ߋ��ɖ߂��ꂽ�ꍇ�͖߂������Ԃ����Z�����B
+  Description:  オーナーがRTC設定を変更する度にその値に応じて増減するオフセット
+                値(単位は秒)を取得する。
+                再設定直前のRTC時刻から未来に進められた場合は進めた時間が加算
+                される。過去に戻された場合は戻した時間が減算される。
 
   Arguments:    None.
 
-  Returns:      s64 -   RTC�ݒ�I�t�Z�b�g�l��Ԃ��B
+  Returns:      s64 -   RTC設定オフセット値を返す。
  *---------------------------------------------------------------------------*/
 s64     OS_GetOwnerRtcOffset(void);
 
@@ -220,10 +220,10 @@ s64     OS_GetOwnerRtcOffset(void);
 /*---------------------------------------------------------------------------*
   Name:         OS_GetMacAddress
 
-  Description:  �����n�[�h�E�F�A��MAC�A�h���X���擾����B
+  Description:  無線ハードウェアのMACアドレスを取得する。
 
-  Arguments:    macAddress  -   MAC�A�h���X���擾����o�b�t�@�ւ̃|�C���^�B
-                                ���̃o�b�t�@��6�o�C�g�̃f�[�^���������܂��B
+  Arguments:    macAddress  -   MACアドレスを取得するバッファへのポインタ。
+                                このバッファに6バイトのデータが書き込まれる。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -232,25 +232,25 @@ void    OS_GetMacAddress(u8 *macAddress);
 /*---------------------------------------------------------------------------*
   Name:         OS_GetFavoriteColorTable
 
-  Description:  OSOwnerInfo �\���̂̃����o favoriteColor �̔ԍ��ɑΉ�����
-                �u���C�ɓ���̐F�v�̔z��ւ̃|�C���^���擾���܂��B
+  Description:  OSOwnerInfo 構造体のメンバ favoriteColor の番号に対応する
+                「お気に入りの色」の配列へのポインタを取得します。
 
   Arguments:    None.
 
-  Returns:      �Ή�����F�l���i�[���� GXRgb �^�̒萔�z��ւ̃|�C���^.
+  Returns:      対応する色値を格納した GXRgb 型の定数配列へのポインタ.
  *---------------------------------------------------------------------------*/
 const GXRgb *OS_GetFavoriteColorTable(void);
 
 /*---------------------------------------------------------------------------*
   Name:         OS_GetMacAddress
 
-  Description:  �w��̔ԍ��ɑΉ�����u���C�ɓ���̐F�v���擾���܂��B
+  Description:  指定の番号に対応する「お気に入りの色」を取得します。
 
-  Arguments:    index  -   �w�肷��u���C�ɓ���̐F�v�̔ԍ�.
-                           ���̃C���f�b�N�X�́u���C�ɓ���̐F�v�����ł���
-                           16 �F(4bit)�Ń}�X�N����܂��B
+  Arguments:    index  -   指定する「お気に入りの色」の番号.
+                           このインデックスは「お気に入りの色」総数である
+                           16 色(4bit)でマスクされます。
 
-  Returns:      �w�肵���ԍ��ɑΉ����� GXRgb �^�̐F�l.
+  Returns:      指定した番号に対応する GXRgb 型の色値.
  *---------------------------------------------------------------------------*/
 static inline GXRgb OS_GetFavoriteColor(int index)
 {

@@ -13,7 +13,7 @@
 #
 # $Log: Makefile,v $
 # Revision 1.16  2007/04/12 00:07:54  yasu
-# 著作年度修正
+# 闡嶺ｽ懷ｹｴ蠎ｦ菫ｮ豁｣
 #
 # Revision 1.15  2007/04/11 08:37:57  yosizaki
 # add mi_cache.c
@@ -25,10 +25,10 @@
 # fix Copyright Header.
 #
 # Revision 1.12  2005/01/28 13:11:57  takano_makoto
-# mi_compress.cを追加
+# mi_compress.c繧定ｿｽ蜉
 #
 # Revision 1.11  2004/11/30 10:52:40  takano_makoto
-# mi_uncomp_stream.cを追加
+# mi_uncomp_stream.c繧定ｿｽ蜉
 #
 # Revision 1.10  2004/10/08 11:58:41  yosizaki
 # add mi_dma_card.c
@@ -55,13 +55,13 @@
 # add mi_card.c
 #
 # Revision 1.2  2004/03/30 11:00:11  yada
-# バイトアクセス関数をARM7専用から共通に
+# 繝舌う繝医い繧ｯ繧ｻ繧ｹ髢｢謨ｰ繧但RM7蟆ら畑縺九ｉ蜈ｱ騾壹↓
 #
 # Revision 1.1  2004/02/12 11:32:11  yasu
 # makefile for NitroSDK/build/libraries/mi/ARM9
 #
 # Revision 1.5  2004/02/10 01:22:57  yada
-# mi_memory.c, mi_uncompress.c, mi_swap.c を追加
+# mi_memory.c, mi_uncompress.c, mi_swap.c 繧定ｿｽ蜉
 #
 # Revision 1.4  2004/02/09 11:17:49  yasu
 # support thumb version library
@@ -70,10 +70,10 @@
 # change SDK prefix iris -> nitro
 #
 # Revision 1.2  2004/01/26 12:43:52  yada
-# mi_dma.c 追加
+# mi_dma.c 霑ｽ蜉
 #
 # Revision 1.1  2003/12/24 07:52:02  yada
-# GXからMI に WRAM関連移管
+# GX縺九ｉMI 縺ｫ WRAM髢｢騾｣遘ｻ邂｡
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

@@ -15,10 +15,10 @@
   indent source
 
   Revision 1.2  2006/04/07 03:28:23  okubata_ryoma
-  �R�����g�̏C��
+  コメントの修正
 
   Revision 1.1  2006/04/05 10:34:15  okubata_ryoma
-  AGB�o�b�N�A�b�v���C�u������SDK���^�̂��߂̕ύX
+  AGBバックアップライブラリのSDK収録のための変更
 
 
   $NoKeywords: $
@@ -32,18 +32,18 @@
 extern "C" {
 #endif
 
-/* �f�o�b�O�p */
+/* デバッグ用 */
 //#ifndef __SRAM_DEBUG
-#define CTRDG_AGB_SRAM_ADR          0x0A000000  /* SRAM�擪�A�h���X */
-#define CTRDG_AGB_SRAM_SIZE_256K    0x00008000  /* 256KSRAM�T�C�Y */
-#define CTRDG_AGB_SRAM_SIZE_512K    0x00010000  /* 512KSRAM�T�C�Y */
+#define CTRDG_AGB_SRAM_ADR          0x0A000000  /* SRAM先頭アドレス */
+#define CTRDG_AGB_SRAM_SIZE_256K    0x00008000  /* 256KSRAMサイズ */
+#define CTRDG_AGB_SRAM_SIZE_512K    0x00010000  /* 512KSRAMサイズ */
 //#else
 //#define CTRDG_AGB_SRAM_ADR        0x02018000
 //#define CTRDG_AGB_SRAM_SIZE_256K    0x00000400
 //#define CTRDG_AGB_SRAM_SIZE_512K    0x00000800
 //#endif
 
-/* CTRDG_WriteAgbSramEx�֐����g���C�񐔏�� */
+/* CTRDG_WriteAgbSramEx関数リトライ回数上限 */
 #define CTRDG_AGB_SRAM_RETRY_MAX    3
 
 
@@ -51,21 +51,21 @@ extern "C" {
 --------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------*/
-/*          �f�[�^�ǂݏo��                                          */
+/*          データ読み出し                                          */
 /*------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_ReadAgbSram
                 CTRDG_ReadAgbSramAsync
   
-                �Ή�����AGB���̊֐��Fextern void ReadSram(u8 *src,u8 *dst,u32 size)
+                対応するAGB時の関数：extern void ReadSram(u8 *src,u8 *dst,u32 size)
 
-  Description:  �����Ŏw�肳�ꂽSRAM�A�h���X����Asize�o�C�g�̃f�[�^�����[�N��dst
-                �A�h���X�ȍ~�ɓǂݏo���܂��B
+  Description:  引数で指定されたSRAMアドレスから、sizeバイトのデータをワークのdst
+                アドレス以降に読み出します。
                 
-  Arguments:    src       : ���[�h����SRAM�̃A�h���X�iAGB�������}�b�v��̃A�h���X�j
-                dst       : ���[�h�����f�[�^���i�[���郏�[�N�̈�̃A�h���X�iAGB�������}�b�v��̃A�h���X�j
-                size      : �o�C�g�P�ʂł̃��[�h�T�C�Y
-                callback  : Read�����I�����ɌĂяo�����R�[���o�b�N�֐�(�񓯊��֐��̏ꍇ�̂�)
+  Arguments:    src       : リード元のSRAMのアドレス（AGBメモリマップ上のアドレス）
+                dst       : リードしたデータを格納するワーク領域のアドレス（AGBメモリマップ上のアドレス）
+                size      : バイト単位でのリードサイズ
+                callback  : Read処理終了時に呼び出されるコールバック関数(非同期関数の場合のみ)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -74,21 +74,21 @@ extern void CTRDG_ReadAgbSramAsync(u32 src, void *dst, u32 size, CTRDG_TASK_FUNC
 
 
 /*------------------------------------------------------------------*/
-/*          �f�[�^��������                                          */
+/*          データ書き込み                                          */
 /*------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_WriteAgbSram
                 CTRDG_WriteAgbSramAsync
                 
-                �Ή�����AGB���̊֐��Fextern void WriteSram(u8 *dst,u8 *src,u32 size)
+                対応するAGB時の関数：extern void WriteSram(u8 *dst,u8 *src,u32 size)
 
-  Description:  �����Ŏw�肳�ꂽ���[�N�̈�A�h���X����Asize�o�C�g�̃f�[�^��SRAM��
-                dst�A�h���X�ȍ~�ɏ������݂܂��B
+  Description:  引数で指定されたワーク領域アドレスから、sizeバイトのデータをSRAMの
+                dstアドレス以降に書き込みます。
                 
-  Arguments:    dst       : ���C�g���SRAM�̃A�h���X�iAGB�������}�b�v��̃A�h���X�j
-                src       : ���C�g���̃��[�N�̈�̃A�h���X
-                size      : �o�C�g�P�ʂł̃��C�g�T�C�Y
-                callback  : Write�����I�����ɌĂяo�����R�[���o�b�N�֐�(�񓯊��֐��̏ꍇ�̂�)
+  Arguments:    dst       : ライト先のSRAMのアドレス（AGBメモリマップ上のアドレス）
+                src       : ライト元のワーク領域のアドレス
+                size      : バイト単位でのライトサイズ
+                callback  : Write処理終了時に呼び出されるコールバック関数(非同期関数の場合のみ)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -97,54 +97,54 @@ extern void CTRDG_WriteAgbSramAsync(u32 dst, const void *src, u32 size, CTRDG_TA
 
 
 /*------------------------------------------------------------------*/
-/*          �f�[�^�x���t�@�C                                        */
+/*          データベリファイ                                        */
 /*------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_VerifyAgbSram
                 CTRDG_VerifyAgbSramAsync
                 
-                �Ή�����AGB���̊֐��Fextern u32 VerifySram(u8 *tgt,u8 *src,u32 size)
+                対応するAGB時の関数：extern u32 VerifySram(u8 *tgt,u8 *src,u32 size)
 
-  Description:  ���[�N�̈��src�A�h���X����̃f�[�^��SRAM��tgt�A�h���X�̃f�[�^��size�o�C�g���x���t�@�C���܂��B
-                �{�֐��́A�x���t�@�C������ɏI�������Ȃ�΂O��Ԃ��A�x���t�@�C�G���[
-                ���������Ȃ�΃G���[�̔��������A�h���X��Ԃ��܂��B
-                �܂��A�񓯊��łł́A�{���[�`���̌Ăяo����ɕԂ��Ă���R�[���o�b�N�֐��̈����ł���
-                �\���� CTRDGTaskInfo �̃����o result ���Q�Ƃ��邱�ƂŁA Verify�����ɐ��������̂���m�邱�Ƃ��ł��܂��B
+  Description:  ワーク領域のsrcアドレスからのデータとSRAMのtgtアドレスのデータをsizeバイト分ベリファイします。
+                本関数は、ベリファイが正常に終了したならば０を返し、ベリファイエラー
+                があったならばエラーの発生したアドレスを返します。
+                また、非同期版では、本ルーチンの呼び出し後に返ってくるコールバック関数の引数である
+                構造体 CTRDGTaskInfo のメンバ result を参照することで、 Verify処理に成功したのかを知ることができます。
                 
-  Arguments:    tgt       : �x���t�@�C��SRAM�A�h���X�ւ̃|�C���^ (�������ݐ�̃f�[�^�AAGB�������}�b�v��̃A�h���X�j
-                src       : �x���t�@�C�����[�N�̈�A�h���X�ւ̃|�C���^ �i�I���W�i���̃f�[�^�j
-                size      : �o�C�g�P�ʂł̃x���t�@�C�T�C�Y
-                callback  : Verify�����I�����ɌĂяo�����R�[���o�b�N�֐�(�񓯊��֐��̏ꍇ�̂�)
+  Arguments:    tgt       : ベリファイ先SRAMアドレスへのポインタ (書き込み先のデータ、AGBメモリマップ上のアドレス）
+                src       : ベリファイ元ワーク領域アドレスへのポインタ （オリジナルのデータ）
+                size      : バイト単位でのベリファイサイズ
+                callback  : Verify処理終了時に呼び出されるコールバック関数(非同期関数の場合のみ)
 
-  Returns:      0     : ����I��
-                0�ȊO : �x���t�@�C�G���[���̓f�o�C�X���G���[�A�h���X��Ԃ��܂��B(�����֐��̏ꍇ�̂�)
+  Returns:      0     : 正常終了
+                0以外 : ベリファイエラー時はデバイス側エラーアドレスを返します。(同期関数の場合のみ)
  *---------------------------------------------------------------------------*/
 extern u32 CTRDG_VerifyAgbSram(u32 tgt, const void *src, u32 size);
 extern void CTRDG_VerifyAgbSramAsync(u32 tgt, const void *src, u32 size, CTRDG_TASK_FUNC callback);
 
 
 /*------------------------------------------------------------------*/
-/*          �f�[�^�������݁��x���t�@�C                              */
+/*          データ書き込み＆ベリファイ                              */
 /*------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_WriteAndVerifyAgbSram
                 CTRDG_WriteAndVerifyAgbSramAsync
                 
-                �Ή�����AGB���̊֐��Fextern u32 WriteSramEx(u8 *dst, u8 *src, u32 size)
+                対応するAGB時の関数：extern u32 WriteSramEx(u8 *dst, u8 *src, u32 size)
 
-  Description:  ������CTRDG_WriteAgbSram�ŏ������݂��s������CTRDG_VerifyAgbSram�Ńx���t�@�C���s���A
-                �G���[�̏ꍇ�͍ő��CTRDG_AGB_SRAM_RETRY_MAX�ictrdg_sram.h�ɂĒ�`�j�񃊃g���C���s���܂��B
+  Description:  内部でCTRDG_WriteAgbSramで書き込みを行った後CTRDG_VerifyAgbSramでベリファイを行い、
+                エラーの場合は最大でCTRDG_AGB_SRAM_RETRY_MAX（ctrdg_sram.hにて定義）回リトライを行います。
                 
-                �܂��A�񓯊��łł́A�{���[�`���̌Ăяo����ɕԂ��Ă���R�[���o�b�N�֐��̈����ł���
-                �\���� CTRDGTaskInfo �̃����o result ���Q�Ƃ��邱�ƂŁA WriteAndVerify�����ɐ��������̂���m�邱�Ƃ��ł��܂��B
+                また、非同期版では、本ルーチンの呼び出し後に返ってくるコールバック関数の引数である
+                構造体 CTRDGTaskInfo のメンバ result を参照することで、 WriteAndVerify処理に成功したのかを知ることができます。
                 
-  Arguments:    dst       : ���C�g���SRAM�̃A�h���X�iAGB�������}�b�v��̃A�h���X�j
-                src       : ���C�g���̃��[�N�̈�̃A�h���X
-                size      : �o�C�g�P�ʂł̃��C�g/�x���t�@�C�T�C�Y
-                callback  : WritrAndVerify�����I�����ɌĂяo�����R�[���o�b�N�֐�(�񓯊��֐��̏ꍇ�̂�)
+  Arguments:    dst       : ライト先のSRAMのアドレス（AGBメモリマップ上のアドレス）
+                src       : ライト元のワーク領域のアドレス
+                size      : バイト単位でのライト/ベリファイサイズ
+                callback  : WritrAndVerify処理終了時に呼び出されるコールバック関数(非同期関数の場合のみ)
 
-  Returns:      0     : ����I��
-                0�ȊO : �x���t�@�C�G���[���̓f�o�C�X���G���[�A�h���X��Ԃ��܂��B(�����֐��̏ꍇ�̂�)
+  Returns:      0     : 正常終了
+                0以外 : ベリファイエラー時はデバイス側エラーアドレスを返します。(同期関数の場合のみ)
  *---------------------------------------------------------------------------*/
 extern u32 CTRDG_WriteAndVerifyAgbSram(u32 dst, const void *src, u32 size);
 extern void CTRDG_WriteAndVerifyAgbSramAsync(u32 dst, const void *src, u32 size,

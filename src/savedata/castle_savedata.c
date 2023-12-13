@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	castle_savedata.c
- * @brief	uƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹vƒZ[ƒuƒf[ƒ^
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  * @author	Satoshi Nohara
  * @date	2007.06.27
  */
@@ -20,7 +20,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 int CASTLEDATA_GetWorkSize( void );
@@ -32,7 +32,7 @@ void CASTLEDATA_SetSaveFlag( CASTLEDATA* wk, BOOL flag );
 void CASTLEDATA_PutPlayData( CASTLEDATA* wk, u8 id, u8 param, u8 param2, const void* buf );
 u32 CASTLEDATA_GetPlayData( CASTLEDATA* wk, u8 id, u8 param, u8 param2, void* buf );
 
-//¬Ñ
+//æˆç¸¾
 int CASTLESCORE_GetWorkSize( void );
 void CASTLESCORE_Init( CASTLESCORE* wk );
 CASTLESCORE * SaveData_GetCastleScore( SAVEDATA * sv );
@@ -42,17 +42,17 @@ u32 CASTLESCORE_GetScoreData( CASTLESCORE* wk, u8 id, u8 param, u8 param2, void*
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	(’†’fƒf[ƒ^)ƒLƒƒƒbƒXƒ‹ƒZ[ƒuƒ[ƒN‚ÌƒTƒCƒYŽæ“¾
+ * @brief	(ä¸­æ–­ãƒ‡ãƒ¼ã‚¿)ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
  *
  * @param	none
  *
- * @return	int		ƒTƒCƒY(ƒoƒCƒg’PˆÊ)
+ * @return	int		ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆå˜ä½)
  */
 //----------------------------------------------------------
 int CASTLEDATA_GetWorkSize( void )
@@ -62,9 +62,9 @@ int CASTLEDATA_GetWorkSize( void )
 
 //----------------------------------------------------------
 /**
- * @brief	(’†’fƒf[ƒ^)ƒLƒƒƒbƒXƒ‹ƒ[ƒN‚Ì‰Šú‰»
+ * @brief	(ä¸­æ–­ãƒ‡ãƒ¼ã‚¿)ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- * @param	wk		CASTLEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -81,11 +81,11 @@ void CASTLEDATA_Init( CASTLEDATA* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒbƒXƒ‹ƒZ[ƒuƒf[ƒ^‚ÌŽæ“¾(ƒvƒŒƒCƒf[ƒ^)
+ * @brief	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å–å¾—(ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿)
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	CASTLEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	CASTLEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 CASTLEDATA * SaveData_GetCastleData( SAVEDATA * sv )
@@ -101,18 +101,18 @@ CASTLEDATA * SaveData_GetCastleData( SAVEDATA * sv )
 
 //============================================================================================
 //
-//	ƒƒ“ƒoƒAƒNƒZƒX
+//	ãƒ¡ãƒ³ãƒã‚¢ã‚¯ã‚»ã‚¹
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@³‚µ‚­ƒZ[ƒuÏ‚Ý‚©‚Ç‚¤‚©H
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€æ­£ã—ãã‚»ãƒ¼ãƒ–æ¸ˆã¿ã‹ã©ã†ã‹ï¼Ÿ
  *
- * @param	wk		CASTLEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLEDATAåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	TRUE	³‚µ‚­ƒZ[ƒu‚³‚ê‚Ä‚¢‚é
- * @retval	FALSE	ƒZ[ƒu‚³‚ê‚Ä‚¢‚È‚¢
+ * @retval	TRUE	æ­£ã—ãã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ã‚‹
+ * @retval	FALSE	ã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ãªã„
  */
 //----------------------------------------------------------
 BOOL CASTLEDATA_GetSaveFlag( CASTLEDATA* wk )
@@ -122,10 +122,10 @@ BOOL CASTLEDATA_GetSaveFlag( CASTLEDATA* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@ƒZ[ƒuó‘Ôƒtƒ‰ƒO‚ðƒZƒbƒg
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒ¼ãƒ–çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	TRUEAFALSE
+ * @param	wk		CASTLEDATAåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	TRUEã€FALSE
  *
  * @retval	none
  */
@@ -141,11 +141,11 @@ void CASTLEDATA_SetSaveFlag( CASTLEDATA* wk, BOOL flag )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@ƒZƒbƒg
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		Žæ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^‚ðŠi”[‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLEDATAåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -158,55 +158,55 @@ void CASTLEDATA_PutPlayData( CASTLEDATA* wk, u8 id, u8 param, u8 param2, const v
 
 	switch( id ){
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ
 	case CASTLEDATA_ID_TYPE:
 		wk->type = buf8[0];
 		OS_Printf( "wk->type = %d\n", wk->type );
 		break;
 
-	//¡‰½l–ÚH
+	//ä»Šä½•äººç›®ï¼Ÿ
 	case CASTLEDATA_ID_ROUND:
 		wk->round = buf8[0];
 		OS_Printf( "wk->round = %d\n", wk->round );
 		break;
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌHP
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®HP
 	case CASTLEDATA_ID_TEMOTI_HP:
 		wk->hp[param] = buf16[0];
 		OS_Printf( "wk->hp[%d] = %d\n", param, wk->hp[param] );
 		break;
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌPP
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®PP
 	case CASTLEDATA_ID_TEMOTI_PP:
 		wk->pp[param][param2] = buf8[0];
 		OS_Printf( "wk->pp[%d][%d] = %d\n", param, param2, wk->pp[param][param2] );
 		break;
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌCONDITION
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®CONDITION
 	case CASTLEDATA_ID_TEMOTI_CONDITION:
 		wk->condition[param] = buf32[0];
 		OS_Printf( "wk->condition[%d] = %d\n", param, wk->condition[param] );
 		break;
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌITEM
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ITEM
 	case CASTLEDATA_ID_TEMOTI_ITEM:
 		wk->item[param] = buf16[0];
 		OS_Printf( "wk->item[%d] = %d\n", param, wk->item[param] );
 		break;
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	case CASTLEDATA_ID_TR_INDEX:
 		wk->tr_index[param] = buf16[0];
 		OS_Printf( "wk->tr_index[%d] = %d\n", param, wk->tr_index[param] );
 		break;
 
-	//ŽQ‰Á‚µ‚Ä‚¢‚éŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	case CASTLEDATA_ID_MINE_POKE_POS:
 		wk->mine_poke_pos[param] = buf8[0];
 		OS_Printf( "wk->mine_poke_pos[%d] = %d\n", param, wk->mine_poke_pos[param] );
 		break;
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚É•Û‘¶
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«ä¿å­˜
 	case CASTLEDATA_ID_ENEMY_POKE_INDEX:
 		wk->enemy_poke_index[param] = buf16[0];
 		OS_Printf("wk->enemy_poke_index[%d] = %d\n", param, wk->enemy_poke_index[param] );
@@ -225,54 +225,54 @@ void CASTLEDATA_PutPlayData( CASTLEDATA* wk, u8 id, u8 param, u8 param2, const v
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@Žæ“¾
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€å–å¾—
  *
- * @param	wk		CASTLEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		Žæ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^Žæ“¾ƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLEDATAåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * –ß‚è’l‚ðŽæ“¾‚·‚éŽž‚ÉŒ^ƒLƒƒƒXƒg‚ðŽg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒRƒsƒy’ˆÓI
+ * æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹æ™‚ã«åž‹ã‚­ãƒ£ã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚³ãƒ”ãƒšæ³¨æ„ï¼
  */
 //----------------------------------------------------------
 u32 CASTLEDATA_GetPlayData( CASTLEDATA* wk, u8 id, u8 param, u8 param2, void* buf )
 {
 	switch( id ){
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ
 	case CASTLEDATA_ID_TYPE:
 		return (u32)wk->type;
 
-	//¡‰½l–ÚH
+	//ä»Šä½•äººç›®ï¼Ÿ
 	case CASTLEDATA_ID_ROUND:
 		return (u32)wk->round;
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌHP
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®HP
 	case CASTLEDATA_ID_TEMOTI_HP:
 		return (u32)wk->hp[param];
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌPP
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®PP
 	case CASTLEDATA_ID_TEMOTI_PP:
 		return (u32)wk->pp[param][param2];
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌCONDITION
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®CONDITION
 	case CASTLEDATA_ID_TEMOTI_CONDITION:
 		return (u32)wk->condition[param];
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌITEM
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ITEM
 	case CASTLEDATA_ID_TEMOTI_ITEM:
 		return (u32)wk->item[param];
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	case CASTLEDATA_ID_TR_INDEX:
 		return (u32)wk->tr_index[param];
 
-	//ŽQ‰Á‚µ‚Ä‚¢‚éŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	case CASTLEDATA_ID_MINE_POKE_POS:
 		return wk->mine_poke_pos[param];
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚É•Û‘¶
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«ä¿å­˜
 	case CASTLEDATA_ID_ENEMY_POKE_INDEX:
 		return wk->enemy_poke_index[param];
 
@@ -287,17 +287,17 @@ u32 CASTLEDATA_GetPlayData( CASTLEDATA* wk, u8 id, u8 param, u8 param2, void* bu
 
 //============================================================================================
 //
-//	¬ÑŠÖ˜A
+//	æˆç¸¾é–¢é€£
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	(¬Ñƒf[ƒ^)ƒLƒƒƒbƒXƒ‹ƒZ[ƒuƒ[ƒN‚ÌƒTƒCƒYŽæ“¾
+ * @brief	(æˆç¸¾ãƒ‡ãƒ¼ã‚¿)ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
  *
  * @param	none
  *
- * @return	int		ƒTƒCƒY(ƒoƒCƒg’PˆÊ)
+ * @return	int		ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆå˜ä½)
  */
 //----------------------------------------------------------
 int CASTLESCORE_GetWorkSize( void )
@@ -307,9 +307,9 @@ int CASTLESCORE_GetWorkSize( void )
 
 //----------------------------------------------------------
 /**
- * @brief	(¬Ñƒf[ƒ^)ƒLƒƒƒbƒXƒ‹ƒ[ƒN‚Ì‰Šú‰»
+ * @brief	(æˆç¸¾ãƒ‡ãƒ¼ã‚¿)ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- * @param	wk		CASTLESCORE‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLESCOREã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -329,11 +329,11 @@ void CASTLESCORE_Init( CASTLESCORE* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒbƒXƒ‹ƒZ[ƒuƒf[ƒ^‚ÌŽæ“¾(¬Ñƒf[ƒ^)
+ * @brief	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å–å¾—(æˆç¸¾ãƒ‡ãƒ¼ã‚¿)
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	CASTLEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	CASTLEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 CASTLESCORE * SaveData_GetCastleScore( SAVEDATA * sv )
@@ -347,11 +347,11 @@ CASTLESCORE * SaveData_GetCastleScore( SAVEDATA * sv )
 
 //----------------------------------------------------------
 /**
- * @brief	¬Ñƒf[ƒ^@ƒZƒbƒg
+ * @brief	æˆç¸¾ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLESCOREŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		Žæ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^‚ðŠi”[‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLESCOREåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -364,18 +364,18 @@ void CASTLESCORE_PutScoreData( CASTLESCORE* wk, u8 id, u8 param, u8 param2, cons
 
 	switch( id ){
 
-	//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°
 	case CASTLESCORE_ID_CLEAR_FLAG:
 		OS_Printf( "before clear_flag = %d\n", wk->clear_flag );
 		if( buf8[0] >= 1 ){
-			wk->clear_flag |= (1 << param);					//ƒZƒbƒg
+			wk->clear_flag |= (1 << param);					//ã‚»ãƒƒãƒˆ
 		}else{
-			wk->clear_flag &= (0xff ^ (1 << param));		//ƒŠƒZƒbƒg
+			wk->clear_flag &= (0xff ^ (1 << param));		//ãƒªã‚»ãƒƒãƒˆ
 		}
 		OS_Printf( "after clear_flag = %d\n", wk->clear_flag );
 		break;
 
-	//à–¾Žó‚¯‚½‚©ƒtƒ‰ƒO
+	//èª¬æ˜Žå—ã‘ãŸã‹ãƒ•ãƒ©ã‚°
 	case CASTLESCORE_ID_GUIDE_FLAG:
 		wk->guide_flag = 1;
 		OS_Printf( "guide_flag = %d\n", wk->guide_flag );
@@ -394,15 +394,15 @@ void CASTLESCORE_PutScoreData( CASTLESCORE* wk, u8 id, u8 param, u8 param2, cons
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@Žæ“¾
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€å–å¾—
  *
- * @param	wk		CASTLESCOREŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		Žæ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^Žæ“¾ƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLESCOREåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * –ß‚è’l‚ðŽæ“¾‚·‚éŽž‚ÉŒ^ƒLƒƒƒXƒg‚ðŽg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒRƒsƒy’ˆÓI
+ * æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹æ™‚ã«åž‹ã‚­ãƒ£ã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚³ãƒ”ãƒšæ³¨æ„ï¼
  */
 //----------------------------------------------------------
 u32 CASTLESCORE_GetScoreData( CASTLESCORE* wk, u8 id, u8 param, u8 param2, void* buf )
@@ -412,12 +412,12 @@ u32 CASTLESCORE_GetScoreData( CASTLESCORE* wk, u8 id, u8 param, u8 param2, void*
 
 	switch( id ){
 
-	//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°
 	case CASTLESCORE_ID_CLEAR_FLAG:
 		OS_Printf( "get clear_flag = %d\n", wk->clear_flag );
 		return (u32)((wk->clear_flag >> param) & 0x01);
 
-	//à–¾Žó‚¯‚½‚©ƒtƒ‰ƒO
+	//èª¬æ˜Žå—ã‘ãŸã‹ãƒ•ãƒ©ã‚°
 	case CASTLESCORE_ID_GUIDE_FLAG:
 		OS_Printf( "guide_flag = %d\n", wk->guide_flag );
 		return (u32)wk->guide_flag;

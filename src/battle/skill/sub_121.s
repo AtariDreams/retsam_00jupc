@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_121.s
- *@brief	�퓬�V�[�P���X
- *			�݂炢�悿�����V�[�P���X
+ *@brief	戦闘シーケンス
+ *			みらいよち発動シーケンス
  *@author	HisashiSogabe
  *@data		2006.02.02
  *
@@ -22,9 +22,9 @@ SUB_121:
 	VALUE			VAL_SET,BUF_PARA_WAZA_EFF_CNT,1
 	WAZA_EFFECT2	SIDE_WORK,SIDE_ATTACK_WORK,SIDE_WORK
 	SERVER_WAIT
-	//����^�[���ŋZ�G�t�F�N�g���o�Ă���Əd�˂ďo���Ȃ��̂ŁA�t���O�𗎂Ƃ��Ă���
+	//同一ターンで技エフェクトが出ていると重ねて出せないので、フラグを落としておく
 	VALUE			VAL_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_WAZA_EFFECT
-	//�݂����`�F�b�N
+	//みがわりチェック
 	IF_PSP			IF_FLAG_NBIT,SIDE_WORK,ID_PSP_condition2,CONDITION2_MIGAWARI,WazaHit
 	VALUE			VAL_MUL,BUF_PARA_HP_CALC_WORK,-1
 	IF_PSP_WORK		IF_FLAG_NC,SIDE_WORK,ID_PSP_wkw_migawari_hp,BUF_PARA_HP_CALC_WORK,MigawariDel
@@ -40,7 +40,7 @@ Migawari:
 WazaHit:
 	HP1_CHECK		SIDE_WORK
 	GOSUB			SUB_SEQ_HP_CALC
-	//������`�F�b�N
+	//いかりチェック
 	IF_PSP			IF_FLAG_NBIT,SIDE_WORK,ID_PSP_condition2,CONDITION2_IKARI,SUB_121_END
 	IF_PSP			IF_FLAG_EQ,SIDE_WORK,ID_PSP_hp,0,SUB_121_END
 	IF_PSP			IF_FLAG_EQ,SIDE_WORK,ID_PSP_abiritycnt_pow,12,SUB_121_END
@@ -55,7 +55,7 @@ SUB_121_END:
 	MESSAGE			ItemKoraetaMineMsg,TAG_NICK_ITEM,SIDE_WORK,SIDE_CLIENT_WORK
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//��������HPMAX�ł��炦�鎞�́A�A�C�e��������
+	//装備効果HPMAXでこらえる時は、アイテムを消す
 	SOUBI_CHECK		SOUBI_NO_HAVE,SIDE_WORK,SOUBI_HPMAXDEITIGEKISISINAI,SUB_121_RET
 	KILL_ITEM		SIDE_WORK
 SUB_121_RET:

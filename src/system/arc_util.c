@@ -1,10 +1,10 @@
 //============================================================================================
 /**
  * @file	arc_util.c
- * @bfief	ƒA[ƒJƒCƒuƒf[ƒ^‚ğ•Ö—˜‚Ég‚¤‚½‚ß‚Ìƒ†[ƒeƒBƒŠƒeƒBŠÖ”ŒQ
+ * @bfief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ä¾¿åˆ©ã«ä½¿ã†ãŸã‚ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°ç¾¤
  * @author	taya
  * @date	05.08.30
- * @date	07.01.23	HANDLEƒo[ƒWƒ‡ƒ“‚ğì¬	tomoya takahashi
+ * @date	07.01.23	HANDLEãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ä½œæˆ	tomoya takahashi
  */
 //============================================================================================
 #include "common.h"
@@ -32,18 +32,18 @@ static void* ArcUtil_AnimBankDataGetCommon( void* p_data, NNSG2dAnimBankData** a
 
 //------------------------------------------------------------------
 /**
- * BG·¬×ÃŞ°À‚Ì VRAM “]‘—
+ * BGã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã® VRAM è»¢é€
  *
- * @param   fileIdx			±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   dataIndex		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   bgl				BGLÃŞ°À
- * @param   frm				“]‘—æÌÚ°ÑÅİÊŞ
- * @param   offs			“]‘—µÌ¾¯Äi·¬×’PˆÊj
- * @param	transSize		“]‘—‚·‚é»²½ŞiÊŞ²Ä’PˆÊ ==0‚Å‘S“]‘—j
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚éÃŞ°À‚©H
- * @param   heapID			ÃŞ°À“Ç‚İ‚İE‰ğ“€ÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   fileIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   bgl				BGLãƒ‡ãƒ¼ã‚¿
+ * @param   frm				è»¢é€å…ˆãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒ
+ * @param   offs			è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param	transSize		è»¢é€ã™ã‚‹ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ ==0ã§å…¨è»¢é€ï¼‰
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   heapID			ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ»è§£å‡ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
- * @return  “]‘—‚µ‚½ƒf[ƒ^ƒTƒCƒYiƒoƒCƒgj
+ * @return  è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 u32 ArcUtil_BgCharSet(u32 fileIdx, u32 dataIdx, GF_BGL_INI* bgl, u32 frm, u32 offs, u32 transSize, BOOL compressedFlag, u32 heapID)
@@ -53,17 +53,17 @@ u32 ArcUtil_BgCharSet(u32 fileIdx, u32 dataIdx, GF_BGL_INI* bgl, u32 frm, u32 of
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ½¸Ø°İÃŞ°À‚Ì VRAM “]‘—
- * ¦ BGL‘¤‚É ½¸Ø°İÊŞ¯Ì§ ‚ª—pˆÓ‚³‚ê‚Ä‚¢‚ê‚ÎA½¸Ø°İÊŞ¯Ì§ ‚Ö‚Ì“]‘—‚às‚¤
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã® VRAM è»¢é€
+ * â€» BGLå´ã« ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ ãŒç”¨æ„ã•ã‚Œã¦ã„ã‚Œã°ã€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ ã¸ã®è»¢é€ã‚‚è¡Œã†
  *
- * @param   fileIdx			±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   arcIndex		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   bgl				BGLÃŞ°À
- * @param   frm				“]‘—æÌÚ°ÑÅİÊŞ
- * @param   offs			“]‘—µÌ¾¯Äi·¬×’PˆÊj
- * @param	transSize		“]‘—‚·‚é»²½ŞiÊŞ²Ä’PˆÊ ==0‚Å‘S“]‘—j
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚éÃŞ°À‚©H
- * @param   heapID			ÃŞ°À“Ç‚İ‚İE‰ğ“€ÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   fileIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   arcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   bgl				BGLãƒ‡ãƒ¼ã‚¿
+ * @param   frm				è»¢é€å…ˆãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒ
+ * @param   offs			è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param	transSize		è»¢é€ã™ã‚‹ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ ==0ã§å…¨è»¢é€ï¼‰
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   heapID			ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ»è§£å‡ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
  */
 //--------------------------------------------------------------------------------------------
@@ -74,14 +74,14 @@ void ArcUtil_ScrnSet(u32 fileIdx, u32 dataIdx, GF_BGL_INI* bgl, u32 frm, u32 off
 }
 //------------------------------------------------------------------
 /**
- * ÊßÚ¯ÄÃŞ°À ‚Ì VRAM “]‘—
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€
  *
- * @param   fileIdx		±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   dataIdx		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   palType		ÊßÚ¯Ä“]‘—æÀ²Ìß
- * @param   offs		ÊßÚ¯Ä“]‘—æµÌ¾¯Ä
- * @param   transSize	ÊßÚ¯Ä“]‘—»²½Şi0 ‚Å‘S“]‘—j
- * @param   heapID		ÃŞ°À“Ç‚İ‚İÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   fileIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   palType		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   offs		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   transSize	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚µã‚¤ã‚ºï¼ˆ0 ã§å…¨è»¢é€ï¼‰
+ * @param   heapID		ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
  */
 //------------------------------------------------------------------
@@ -92,15 +92,15 @@ void ArcUtil_PalSet( u32 fileIdx, u32 dataIdx, PALTYPE palType, u32 offs, u32 tr
 
 //------------------------------------------------------------------
 /**
- * ÊßÚ¯ÄÃŞ°À ‚Ì VRAM “]‘—i“]‘—Œ³‚Ì“Ç‚İ‚İŠJnµÌ¾¯Äw’è”Åj
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼ˆè»¢é€å…ƒã®èª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆæŒ‡å®šç‰ˆï¼‰
  *
- * @param   fileIdx		±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   dataIdx		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   palType		ÊßÚ¯Ä“]‘—æÀ²Ìß
- * @param   srcOfs		ÊßÚ¯Ä“]‘—Œ³“Ç‚İ‚İŠJnµÌ¾¯Ä
- * @param   dstOfs		ÊßÚ¯Ä“]‘—æµÌ¾¯Ä
- * @param   transSize	ÊßÚ¯Ä“]‘—»²½Şi0 ‚Å‘S“]‘—j
- * @param   heapID		ÃŞ°À“Ç‚İ‚İÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   fileIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   palType		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   srcOfs		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ƒèª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   dstOfs		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   transSize	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚µã‚¤ã‚ºï¼ˆ0 ã§å…¨è»¢é€ï¼‰
+ * @param   heapID		ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
  */
 //------------------------------------------------------------------
@@ -112,17 +112,17 @@ void ArcUtil_PalSetEx( u32 fileIdx, u32 dataIdx, PALTYPE palType, u32 srcOfs, u3
 
 //------------------------------------------------------------------
 /**
- * OBJ ·¬×ÃŞ°À ‚Ì VRAM “]‘—
+ * OBJ ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€
  *
- * @param   fileIdx				±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   dataIdx				±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   objType				OBJÀ²Ìß(OBJTYPE_MAIN or OBJTYPE_SUBj
- * @param   offs				µÌ¾¯ÄiÊŞ²Ä’PˆÊj
- * @param   transSize			“]‘—»²½ŞiÊŞ²Ä’PˆÊ : 0 ‚Å‘S“]‘—j
- * @param   compressedFlag		ˆ³k‚³‚ê‚½ÃŞ°À‚©H
- * @param   heapID				“Ç‚İ‚İE‰ğ“€ÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   fileIdx				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   objType				OBJã‚¿ã‚¤ãƒ—(OBJTYPE_MAIN or OBJTYPE_SUBï¼‰
+ * @param   offs				ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
+ * @param   transSize			è»¢é€ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ : 0 ã§å…¨è»¢é€ï¼‰
+ * @param   compressedFlag		åœ§ç¸®ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   heapID				èª­ã¿è¾¼ã¿ãƒ»è§£å‡ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
- * @return  “]‘—‚µ‚½ƒf[ƒ^ƒTƒCƒYiƒoƒCƒgj
+ * @return  è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 u32 ArcUtil_ObjCharSet( u32 fileIdx, u32 dataIdx, OBJTYPE objType, u32 offs, u32 transSize, BOOL compressedFlag, u32 heapID )
@@ -133,15 +133,15 @@ u32 ArcUtil_ObjCharSet( u32 fileIdx, u32 dataIdx, OBJTYPE objType, u32 offs, u32
 
 //------------------------------------------------------------------
 /**
- * ÊßÚ¯ÄÃŞ°À ‚Ì VRAM “]‘—• NITRO System ÊßÚ¯ÄÌßÛ·¼ ‚ğì¬
- *i3D, OBJ —p‚É‚Ì‚İ‘Î‰BBG ‚É‚Íg‚¢‚Ü‚¹‚ñj
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼† NITRO System ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚­ã‚· ã‚’ä½œæˆ
+ *ï¼ˆ3D, OBJ ç”¨ã«ã®ã¿å¯¾å¿œã€‚BG ã«ã¯ä½¿ã„ã¾ã›ã‚“ï¼‰
  *
- * @param   fileIdx		[in] ±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   dataIdx		[in] ±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   type		[in] “]‘—æÀ²Ìß
- * @param   offs		[in] “]‘—µÌ¾¯Ä
- * @param   heapID		[in] Ë°ÌßID
- * @param   proxy		[out]ì¬‚·‚éÌßÛ·¼±ÄŞÚ½
+ * @param   fileIdx		[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx		[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   type		[in] è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   offs		[in] è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   heapID		[in] ãƒ’ãƒ¼ãƒ—ID
+ * @param   proxy		[out]ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *	[ type ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -157,26 +157,26 @@ void ArcUtil_PalSysLoad( u32 fileIdx, u32 dataIdx, NNS_G2D_VRAM_TYPE type, u32 o
 }
 //------------------------------------------------------------------
 /**
- * ·¬×ÃŞ°À ‚Ì VRAM “]‘—• NITRO System ²Ò°¼ŞÌßÛ·¼ ‚ğì¬
- *i3D, OBJ —p‚É‚Ì‚İ‘Î‰BBG ‚É‚Íg‚¢‚Ü‚¹‚ñj
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼† NITRO System ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚­ã‚· ã‚’ä½œæˆ
+ *ï¼ˆ3D, OBJ ç”¨ã«ã®ã¿å¯¾å¿œã€‚BG ã«ã¯ä½¿ã„ã¾ã›ã‚“ï¼‰
  *
  *
- * @param   fileIdx			[in] ±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   dataIdx			[in] ±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	[in] ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- * @param   mapType			[in] Ï¯Ëßİ¸ŞÀ²Ìß
- * @param   transSize		[in] “]‘—ƒTƒCƒYB‚O‚È‚ç‘S“]‘—B
- * @param   vramType		[in] “]‘—æÀ²Ìß
- * @param   offs			[in] “]‘—µÌ¾¯Ä
- * @param   heapID			[in] ÃİÎß×Ø‚Ég‚¤Ë°ÌßID
- * @param   proxy			[out] ì¬‚·‚éÌßÛ·¼±ÄŞÚ½
+ * @param   fileIdx			[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx			[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	[in] åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ * @param   mapType			[in] ãƒãƒƒãƒ”ãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+ * @param   transSize		[in] è»¢é€ã‚µã‚¤ã‚ºã€‚ï¼ãªã‚‰å…¨è»¢é€ã€‚
+ * @param   vramType		[in] è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   offs			[in] è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   heapID			[in] ãƒ†ãƒ³ãƒãƒ©ãƒªã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
+ * @param   proxy			[out] ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *
  *	[ mapType ]
  *		CHAR_MAP_1D = 0,
  *		CHAR_MAP_2D = 1,
  *
- *	¦ VRAM“]‘—Œ^‚Í•ÊŠÖ” ArcUtil_TranCharSysLoad ‚ğg‚¤
+ *	â€» VRAMè»¢é€å‹ã¯åˆ¥é–¢æ•° ArcUtil_TranCharSysLoad ã‚’ä½¿ã†
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -194,27 +194,27 @@ u32 ArcUtil_CharSysLoad( u32 fileIdx, u32 dataIdx, BOOL compressedFlag, CHAR_MAP
 
 //------------------------------------------------------------------
 /**
- * ·¬×ÃŞ°À ‚Ì VRAM “]‘—• NITRO System ²Ò°¼ŞÌßÛ·¼ ‚ğì¬
- *i3D, OBJ —p‚É‚Ì‚İ‘Î‰BBG ‚É‚Íg‚¢‚Ü‚¹‚ñj
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼† NITRO System ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚­ã‚· ã‚’ä½œæˆ
+ *ï¼ˆ3D, OBJ ç”¨ã«ã®ã¿å¯¾å¿œã€‚BG ã«ã¯ä½¿ã„ã¾ã›ã‚“ï¼‰
  *
- * ·¬×ÃŞ°À‚ÌÏ¯Ëßİ¸ŞÓ°ÄŞ’l‚ğAŒ»İ‚ÌÚ¼Ş½Àİ’è‚É‡‚í‚¹‚Ä‘‚«Š·‚¦‚Ü‚·
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰å€¤ã‚’ã€ç¾åœ¨ã®ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®šã«åˆã‚ã›ã¦æ›¸ãæ›ãˆã¾ã™
  *
- * @param   fileIdx			[in] ±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   dataIdx			[in] ±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	[in] ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- * @param   mapType			[in] Ï¯Ëßİ¸ŞÀ²Ìß
- * @param   transSize		[in] “]‘—ƒTƒCƒYB‚O‚È‚ç‘S“]‘—B
- * @param   vramType		[in] “]‘—æÀ²Ìß
- * @param   offs			[in] “]‘—µÌ¾¯Ä
- * @param   heapID			[in] ÃİÎß×Ø‚Ég‚¤Ë°ÌßID
- * @param   proxy			[out] ì¬‚·‚éÌßÛ·¼±ÄŞÚ½
+ * @param   fileIdx			[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx			[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	[in] åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ * @param   mapType			[in] ãƒãƒƒãƒ”ãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+ * @param   transSize		[in] è»¢é€ã‚µã‚¤ã‚ºã€‚ï¼ãªã‚‰å…¨è»¢é€ã€‚
+ * @param   vramType		[in] è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   offs			[in] è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   heapID			[in] ãƒ†ãƒ³ãƒãƒ©ãƒªã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
+ * @param   proxy			[out] ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *
  *	[ mapType ]
  *		CHAR_MAP_1D = 0,
  *		CHAR_MAP_2D = 1,
  *
- *	¦ VRAM“]‘—Œ^‚Í•ÊŠÖ” ArcUtil_TranCharSysLoad ‚ğg‚¤
+ *	â€» VRAMè»¢é€å‹ã¯åˆ¥é–¢æ•° ArcUtil_TranCharSysLoad ã‚’ä½¿ã†
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -232,22 +232,22 @@ void ArcUtil_CharSysLoadSyncroMappingMode( u32 fileIdx, u32 dataIdx, BOOL compre
 
 //------------------------------------------------------------------
 /**
- * ·¬×ÃŞ°À ‚Ì VRAM “]‘—• NITRO System ²Ò°¼ŞÌßÛ·¼ ‚ğì¬BVRAM“]‘—Œ^‚Ì‰æ‘œ‘fŞ—pB
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼† NITRO System ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚­ã‚· ã‚’ä½œæˆã€‚VRAMè»¢é€å‹ã®ç”»åƒç´ æç”¨ã€‚
  *
- * ¦ ‚±‚ÌŠÖ”‚ğg‚Á‚Ä‚àAVRAM‚É‰æ‘œ‚Í“]‘—‚³‚ê‚Ü‚¹‚ñ
- *    ‚±‚ÌŠÖ”‚ÅÛ°ÄŞ‚µ‚½ÃŞ°À‚Í‰ğ•ú‚³‚ê‚Ü‚¹‚ñB–ß‚è’l‚Ìconst void*‚ğŠÇ—‚µ‚ÄA
- *    •s—v‚É‚È‚Á‚½‚ç‰ğ•úˆ—‚ğs‚Á‚Ä‚­‚¾‚³‚¢B
+ * â€» ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦ã‚‚ã€VRAMã«ç”»åƒã¯è»¢é€ã•ã‚Œã¾ã›ã‚“
+ *    ã“ã®é–¢æ•°ã§ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã¯è§£æ”¾ã•ã‚Œã¾ã›ã‚“ã€‚æˆ»ã‚Šå€¤ã®const void*ã‚’ç®¡ç†ã—ã¦ã€
+ *    ä¸è¦ã«ãªã£ãŸã‚‰è§£æ”¾å‡¦ç†ã‚’è¡Œã£ã¦ãã ã•ã„ã€‚
  *
- * @param   fileIdx			[in] ±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   dataIdx			[in] ±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	[in] ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- * @param   vramType		[in] “]‘—æÀ²Ìß
- * @param   offs			[in] “]‘—µÌ¾¯Ä
- * @param   heapID			[in] ÃİÎß×Ø‚Ég‚¤Ë°ÌßID
- * @param   proxy			[out] ì¬‚·‚éÌßÛ·¼‚Ì±ÄŞÚ½
- * @param   charData		[out] ·¬×ÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
+ * @param   fileIdx			[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx			[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	[in] åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ * @param   vramType		[in] è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   offs			[in] è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   heapID			[in] ãƒ†ãƒ³ãƒãƒ©ãƒªã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
+ * @param   proxy			[out] ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   charData		[out] ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval  const void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ì±ÄŞÚ½
+ * @retval  const void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -267,15 +267,15 @@ const void* ArcUtil_TransTypeCharSysLoad( u32 fileIdx, u32 dataIdx, BOOL compres
 
 //------------------------------------------------------------------
 /**
- * ·¬×ÃŞ°À‚ğ Û°ÄŞ‚µ‚Ä Unpack ‚·‚é‚¾‚¯‚Å‚·B‰ğ•ú‚ÍŠe©‚ÅB
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’ ãƒ­ãƒ¼ãƒ‰ã—ã¦ Unpack ã™ã‚‹ã ã‘ã§ã™ã€‚è§£æ”¾ã¯å„è‡ªã§ã€‚
  *
- * @param   fileIdx				[in] ±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   dataIdx				[in] ÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag		[in] ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- * @param   charData			[out] ·¬×ÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
- * @param   heapID				[in] Ë°ÌßID
+ * @param   fileIdx				[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx				[in] ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag		[in] åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ * @param   charData			[out] ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   heapID				[in] ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ìæ“ªÎß²İÀ
+ * @retval  void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void* ArcUtil_CharDataGet( u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2dCharacterData** charData, u32 heapID )
@@ -285,15 +285,15 @@ void* ArcUtil_CharDataGet( u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2d
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ½¸Ø°İÃŞ°À‚ğ Û°ÄŞ‚µ‚Ä Unpack ‚·‚é‚¾‚¯‚Å‚·B‰ğ•ú‚ÍŠe©‚ÅB
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ ãƒ­ãƒ¼ãƒ‰ã—ã¦ Unpack ã™ã‚‹ã ã‘ã§ã™ã€‚è§£æ”¾ã¯å„è‡ªã§ã€‚
  *
- * @param   fileIdx			[in] ±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   arcIndex		[in] ±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	[in] ˆ³k‚³‚ê‚Ä‚¢‚éÃŞ°À‚©H
- * @param   scrnData		[out] ½¸Ø°İÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
- * @param   heapID			[in] Ë°ÌßID
+ * @param   fileIdx			[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   arcIndex		[in] ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	[in] åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   scrnData		[out] ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   heapID			[in] ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ìæ“ªÎß²İÀ
+ * @retval  void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void* ArcUtil_ScrnDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2dScreenData** scrnData, u32 heapID)
@@ -303,14 +303,14 @@ void* ArcUtil_ScrnDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2dS
 }
 //------------------------------------------------------------------
 /**
- * ÊßÚ¯ÄÃŞ°À‚ğÛ°ÄŞ‚µ‚Ä Unpack ‚·‚é‚¾‚¯‚Å‚·B‰ğ•ú‚ÍŠe©‚ÅB
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ Unpack ã™ã‚‹ã ã‘ã§ã™ã€‚è§£æ”¾ã¯å„è‡ªã§ã€‚
  *
- * @param   fileIdx			±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   arcIndex		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   palData			ÊßÚ¯ÄÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
- * @param   heapID			Ë°ÌßID
+ * @param   fileIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   arcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   palData			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ìæ“ªÎß²İÀ
+ * @retval  void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void* ArcUtil_PalDataGet( u32 fileIdx, u32 dataIdx, NNSG2dPaletteData** palData, u32 heapID )
@@ -320,16 +320,16 @@ void* ArcUtil_PalDataGet( u32 fileIdx, u32 dataIdx, NNSG2dPaletteData** palData,
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ¾ÙÊŞİ¸ÃŞ°À‚ğ Û°ÄŞ‚µ‚Ä Unpack ‚·‚é‚¾‚¯‚Å‚·B‰ğ•ú‚ÍŠe©‚ÅB
+ * ã‚»ãƒ«ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ ãƒ­ãƒ¼ãƒ‰ã—ã¦ Unpack ã™ã‚‹ã ã‘ã§ã™ã€‚è§£æ”¾ã¯å„è‡ªã§ã€‚
  *
- * @param   fileIdx			±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   arcIndex		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚éÃŞ°À‚©H
- * @param   cellBank		¾ÙÊŞİ¸ÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
- * @param   heapID			Ë°ÌßID
- * @param   pSize			¾ÙÊŞİ¸‚ÌÊŞ²Ä»²½Ş‚ğó‚¯æ‚é•Ï”Îß²İÀi—v‚ç‚È‚¯‚ê‚ÎNULL‚Åj
+ * @param   fileIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   arcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   cellBank		ã‚»ãƒ«ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   heapID			ãƒ’ãƒ¼ãƒ—ID
+ * @param   pSize			ã‚»ãƒ«ãƒãƒ³ã‚¯ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’å—ã‘å–ã‚‹å¤‰æ•°ãƒã‚¤ãƒ³ã‚¿ï¼ˆè¦ã‚‰ãªã‘ã‚Œã°NULLã§ï¼‰
  *
- * @retval  void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ìæ“ªÎß²İÀ
+ * @retval  void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void* ArcUtil_CellBankDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2dCellDataBank** cellBank, u32 heapID )
@@ -340,15 +340,15 @@ void* ArcUtil_CellBankDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNS
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ±ÆÒÊŞİ¸ÃŞ°À‚ğ Û°ÄŞ‚µ‚Ä Unpack ‚·‚é‚¾‚¯‚Å‚·B‰ğ•ú‚ÍŠe©‚ÅB
+ * ã‚¢ãƒ‹ãƒ¡ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ ãƒ­ãƒ¼ãƒ‰ã—ã¦ Unpack ã™ã‚‹ã ã‘ã§ã™ã€‚è§£æ”¾ã¯å„è‡ªã§ã€‚
  *
- * @param   fileIdx			±°¶²ÌŞÌ§²Ù²İÃŞ¯¸½
- * @param   arcIndex		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚éÃŞ°À‚©H
- * @param   anmBank			±ÆÒÊŞİ¸ÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
- * @param   heapID			Ë°ÌßID
+ * @param   fileIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   arcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   anmBank			ã‚¢ãƒ‹ãƒ¡ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ìæ“ªÎß²İÀ
+ * @retval  void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void* ArcUtil_AnimBankDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2dAnimBankData** anmBank, u32 heapID)
@@ -369,13 +369,13 @@ void* ArcUtil_AnimBankDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNS
 
 //------------------------------------------------------------------
 /**
- * LZˆ³kŒãƒA[ƒJƒCƒu‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ğ“Ç‚İo‚µA‰ğ“€‚µ‚Ä•Ô‚·
+ * LZåœ§ç¸®å¾Œã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—ã€è§£å‡ã—ã¦è¿”ã™
  *
- * @param   fileIdx		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param   dataIdx		ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   heapID		“Ç‚İo‚µE‰ğ“€‚Ég‚¤ƒq[ƒv‚h‚c
+ * @param   fileIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   heapID		èª­ã¿å‡ºã—ãƒ»è§£å‡ã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- * @retval  void*		‰ğ“€Œã‚Ìƒf[ƒ^•Û‘¶æƒAƒhƒŒƒX
+ * @retval  void*		è§£å‡å¾Œã®ãƒ‡ãƒ¼ã‚¿ä¿å­˜å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //------------------------------------------------------------------
 void* ArcUtil_UnCompress(u32 fileIdx, u32 dataIdx, u32 heapID)
@@ -385,15 +385,15 @@ void* ArcUtil_UnCompress(u32 fileIdx, u32 dataIdx, u32 heapID)
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^‚Ì“Ç‚İo‚µiƒƒ‚ƒŠŠm•Û‚·‚éj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—ï¼ˆãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ï¼‰
  *
- * @param   fileIdx			ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param   dataIdx			ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚é‚©H
- * @param   heapID			ƒƒ‚ƒŠŠm•Û‚Ég‚¤ƒq[ƒv‚h‚c
- * @param   allocType		ƒq[ƒv‚Ì‚Ç‚ÌˆÊ’u‚©‚çƒƒ‚ƒŠŠm•Û‚·‚é‚©
+ * @param   fileIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹ï¼Ÿ
+ * @param   heapID			ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
+ * @param   allocType		ãƒ’ãƒ¼ãƒ—ã®ã©ã®ä½ç½®ã‹ã‚‰ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ã‹
  *
- * @retval  void*			“Ç‚İo‚µ—Ìˆæƒ|ƒCƒ“ƒ^
+ * @retval  void*			èª­ã¿å‡ºã—é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void* ArcUtil_Load(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, u32 heapID, ALLOC_TYPE allocType)
@@ -437,16 +437,16 @@ void* ArcUtil_Load(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, u32 heapID, AL
 }
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^‚Ì“Ç‚İo‚µi“Ç‚İo‚µ‚½ƒTƒCƒY‚àæ“¾‚Å‚«‚éj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—ï¼ˆèª­ã¿å‡ºã—ãŸã‚µã‚¤ã‚ºã‚‚å–å¾—ã§ãã‚‹ï¼‰
  *
- * @param   fileIdx			ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param   dataIdx			ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚é‚©H
- * @param   heapID			ƒƒ‚ƒŠŠm•Û‚Ég‚¤ƒq[ƒv‚h‚c
- * @param   allocType		ƒq[ƒv‚Ì‚Ç‚ÌˆÊ’u‚©‚çƒƒ‚ƒŠŠm•Û‚·‚é‚©
- * @param   pSize			Àƒf[ƒ^‚ÌƒoƒCƒgƒTƒCƒYiˆ³k‚³‚ê‚Ä‚¢‚éê‡‚Í“WŠJŒãj
+ * @param   fileIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   dataIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹ï¼Ÿ
+ * @param   heapID			ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
+ * @param   allocType		ãƒ’ãƒ¼ãƒ—ã®ã©ã®ä½ç½®ã‹ã‚‰ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ã‹
+ * @param   pSize			å®Ÿãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºï¼ˆåœ§ç¸®ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯å±•é–‹å¾Œï¼‰
  *
- * @retval  void*			“Ç‚İo‚µ—Ìˆæƒ|ƒCƒ“ƒ^
+ * @retval  void*			èª­ã¿å‡ºã—é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void* ArcUtil_LoadEx(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, u32 heapID, ALLOC_TYPE allocType, u32* pSize)
@@ -496,23 +496,23 @@ void* ArcUtil_LoadEx(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, u32 heapID, 
 
 //-----------------------------------------------------------------------------
 /**
- *		ARCHANDLEƒo[ƒWƒ‡ƒ“
+ *		ARCHANDLEãƒãƒ¼ã‚¸ãƒ§ãƒ³
  */
 //-----------------------------------------------------------------------------
 //------------------------------------------------------------------
 /**
- * BG·¬×ÃŞ°À‚Ì VRAM “]‘—
+ * BGã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã® VRAM è»¢é€
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   arcIndex		ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   bgl				BGLÃŞ°À
- * @param   frm				“]‘—æÌÚ°ÑÅİÊŞ
- * @param   offs			“]‘—µÌ¾¯Äi·¬×’PˆÊj
- * @param	transSize		“]‘—‚·‚é»²½ŞiÊŞ²Ä’PˆÊ ==0‚Å‘S“]‘—j
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚éÃŞ°À‚©H
- * @param   heapID			ÃŞ°À“Ç‚İ‚İE‰ğ“€ÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   arcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   bgl				BGLãƒ‡ãƒ¼ã‚¿
+ * @param   frm				è»¢é€å…ˆãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒ
+ * @param   offs			è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param	transSize		è»¢é€ã™ã‚‹ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ ==0ã§å…¨è»¢é€ï¼‰
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   heapID			ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ»è§£å‡ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
- * @return  “]‘—‚µ‚½ƒf[ƒ^ƒTƒCƒYiƒoƒCƒgj
+ * @return  è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 u32 ArcUtil_HDL_BgCharSet(ARCHANDLE* handle, u32 dataIdx, GF_BGL_INI* bgl, u32 frm, u32 offs, u32 transSize, BOOL compressedFlag, u32 heapID)
@@ -523,17 +523,17 @@ u32 ArcUtil_HDL_BgCharSet(ARCHANDLE* handle, u32 dataIdx, GF_BGL_INI* bgl, u32 f
 
 //--------------------------------------------------------------------------------------------
 /**
- * ½¸Ø°İÃŞ°À‚Ì VRAM “]‘—
- * ¦ BGL‘¤‚É ½¸Ø°İÊŞ¯Ì§ ‚ª—pˆÓ‚³‚ê‚Ä‚¢‚ê‚ÎA½¸Ø°İÊŞ¯Ì§ ‚Ö‚Ì“]‘—‚às‚¤
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã® VRAM è»¢é€
+ * â€» BGLå´ã« ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ ãŒç”¨æ„ã•ã‚Œã¦ã„ã‚Œã°ã€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ ã¸ã®è»¢é€ã‚‚è¡Œã†
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   arcIndex		ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   bgl				BGLÃŞ°À
- * @param   frm				“]‘—æÌÚ°ÑÅİÊŞ
- * @param   offs			“]‘—µÌ¾¯Äi·¬×’PˆÊj
- * @param	transSize		“]‘—‚·‚é»²½ŞiÊŞ²Ä’PˆÊ ==0‚Å‘S“]‘—j
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚éÃŞ°À‚©H
- * @param   heapID			ÃŞ°À“Ç‚İ‚İE‰ğ“€ÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   arcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   bgl				BGLãƒ‡ãƒ¼ã‚¿
+ * @param   frm				è»¢é€å…ˆãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒ
+ * @param   offs			è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param	transSize		è»¢é€ã™ã‚‹ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ ==0ã§å…¨è»¢é€ï¼‰
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   heapID			ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ»è§£å‡ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
  */
 //--------------------------------------------------------------------------------------------
@@ -545,17 +545,17 @@ void ArcUtil_HDL_ScrnSet(ARCHANDLE* handle, u32 dataIdx, GF_BGL_INI* bgl, u32 fr
 
 //------------------------------------------------------------------
 /**
- * OBJ ·¬×ÃŞ°À ‚Ì VRAM “]‘—
+ * OBJ ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€
  *
- * @param   handle				ƒnƒ“ƒhƒ‹
- * @param   dataIdx				ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   objType				OBJÀ²Ìß
- * @param   offs				µÌ¾¯ÄiÊŞ²Ä’PˆÊj
- * @param   transSize			“]‘—»²½ŞiÊŞ²Ä’PˆÊ : 0 ‚Å‘S“]‘—j
- * @param   compressedFlag		ˆ³k‚³‚ê‚½ÃŞ°À‚©H
- * @param   heapID				“Ç‚İ‚İE‰ğ“€ÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   handle				ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   objType				OBJã‚¿ã‚¤ãƒ—
+ * @param   offs				ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
+ * @param   transSize			è»¢é€ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ : 0 ã§å…¨è»¢é€ï¼‰
+ * @param   compressedFlag		åœ§ç¸®ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   heapID				èª­ã¿è¾¼ã¿ãƒ»è§£å‡ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
- * @return  “]‘—‚µ‚½ƒf[ƒ^ƒTƒCƒYiƒoƒCƒgj
+ * @return  è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 u32 ArcUtil_HDL_ObjCharSet( ARCHANDLE* handle, u32 dataIdx, OBJTYPE objType, u32 offs, u32 transSize, BOOL compressedFlag, u32 heapID )
@@ -566,14 +566,14 @@ u32 ArcUtil_HDL_ObjCharSet( ARCHANDLE* handle, u32 dataIdx, OBJTYPE objType, u32
 
 //------------------------------------------------------------------
 /**
- * ÊßÚ¯ÄÃŞ°À ‚Ì VRAM “]‘—
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€
  *
- * @param   handle		ƒnƒ“ƒhƒ‹
- * @param   dataIdx		ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   palType		ÊßÚ¯Ä“]‘—æÀ²Ìß
- * @param   offs		ÊßÚ¯Ä“]‘—æµÌ¾¯Ä
- * @param   transSize	ÊßÚ¯Ä“]‘—»²½Şi0 ‚Å‘S“]‘—j
- * @param   heapID		ÃŞ°À“Ç‚İ‚İÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   palType		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   offs		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   transSize	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚µã‚¤ã‚ºï¼ˆ0 ã§å…¨è»¢é€ï¼‰
+ * @param   heapID		ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
  */
 //------------------------------------------------------------------
@@ -585,15 +585,15 @@ void ArcUtil_HDL_PalSet( ARCHANDLE* handle, u32 dataIdx, PALTYPE palType, u32 of
 
 //------------------------------------------------------------------
 /**
- * ÊßÚ¯ÄÃŞ°À ‚Ì VRAM “]‘—i“]‘—Œ³‚Ì“Ç‚İ‚İŠJnµÌ¾¯Äw’è”Åj
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼ˆè»¢é€å…ƒã®èª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆæŒ‡å®šç‰ˆï¼‰
  *
- * @param   handle		ƒnƒ“ƒhƒ‹
- * @param   dataIdx		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   palType		ÊßÚ¯Ä“]‘—æÀ²Ìß
- * @param   srcOfs		ÊßÚ¯Ä“]‘—Œ³“Ç‚İ‚İŠJnµÌ¾¯Ä
- * @param   dstOfs		ÊßÚ¯Ä“]‘—æµÌ¾¯Ä
- * @param   transSize	ÊßÚ¯Ä“]‘—»²½Şi0 ‚Å‘S“]‘—j
- * @param   heapID		ÃŞ°À“Ç‚İ‚İÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   palType		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   srcOfs		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ƒèª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   dstOfs		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   transSize	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚µã‚¤ã‚ºï¼ˆ0 ã§å…¨è»¢é€ï¼‰
+ * @param   heapID		ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
  */
 //------------------------------------------------------------------
@@ -606,15 +606,15 @@ void ArcUtil_HDL_PalSetEx( ARCHANDLE* handle, u32 dataIdx, PALTYPE palType, u32 
 
 //------------------------------------------------------------------
 /**
- * ÊßÚ¯ÄÃŞ°À ‚Ì VRAM “]‘—• NITRO System ÊßÚ¯ÄÌßÛ·¼ ‚ğì¬
- *i3D, OBJ —p‚É‚Ì‚İ‘Î‰BBG ‚É‚Íg‚¢‚Ü‚¹‚ñj
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼† NITRO System ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚­ã‚· ã‚’ä½œæˆ
+ *ï¼ˆ3D, OBJ ç”¨ã«ã®ã¿å¯¾å¿œã€‚BG ã«ã¯ä½¿ã„ã¾ã›ã‚“ï¼‰
  *
- * @param   handle		ƒnƒ“ƒhƒ‹
- * @param   dataIdx		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   type		“]‘—æÀ²Ìß
- * @param   offs		“]‘—µÌ¾¯Ä
- * @param   heapID		Ë°ÌßID
- * @param   proxy		ì¬‚·‚éÌßÛ·¼‚Ì±ÄŞÚ½
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   type		è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   offs		è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   heapID		ãƒ’ãƒ¼ãƒ—ID
+ * @param   proxy		ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *	[ type ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -631,27 +631,27 @@ void ArcUtil_HDL_PalSysLoad( ARCHANDLE* handle, u32 dataIdx, NNS_G2D_VRAM_TYPE t
 
 //------------------------------------------------------------------
 /**
- * ·¬×ÃŞ°À ‚Ì VRAM “]‘—• NITRO System ²Ò°¼ŞÌßÛ·¼ ‚ğì¬
- *i3D, OBJ —p‚É‚Ì‚İ‘Î‰BBG ‚É‚Íg‚¢‚Ü‚¹‚ñj
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼† NITRO System ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚­ã‚· ã‚’ä½œæˆ
+ *ï¼ˆ3D, OBJ ç”¨ã«ã®ã¿å¯¾å¿œã€‚BG ã«ã¯ä½¿ã„ã¾ã›ã‚“ï¼‰
  *
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   dataIdx			±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- * @param   mapType			Ï¯Ëßİ¸ŞÀ²Ìß
- * @param   transSize		“]‘—»²½Şi0‚È‚ç‘S“]‘—j
- * @param   vramType		“]‘—æÀ²Ìß
- * @param   offs			“]‘—µÌ¾¯Ä
- * @param   heapID			ÃİÎß×Ø‚Ég‚¤Ë°ÌßID
- * @param   proxy			ì¬‚·‚éÌßÛ·¼‚Ì±ÄŞÚ½
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ * @param   mapType			ãƒãƒƒãƒ”ãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+ * @param   transSize		è»¢é€ã‚µã‚¤ã‚ºï¼ˆ0ãªã‚‰å…¨è»¢é€ï¼‰
+ * @param   vramType		è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   offs			è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   heapID			ãƒ†ãƒ³ãƒãƒ©ãƒªã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
+ * @param   proxy			ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval  “]‘—‚³‚ê‚½ÃŞ°À»²½ŞiÊŞ²Ä’PˆÊj
+ * @retval  è»¢é€ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  *
  *	[ mapType ]
  *		MAP_TYPE_1D = 0,
  *		MAP_TYPE_2D = 1,
  *
- *	¦ VRAM“]‘—Œ^‚Í•ÊŠÖ” ArcUtil_TranCharSysLoad ‚ğg‚¤
+ *	â€» VRAMè»¢é€å‹ã¯åˆ¥é–¢æ•° ArcUtil_TranCharSysLoad ã‚’ä½¿ã†
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -669,27 +669,27 @@ u32 ArcUtil_HDL_CharSysLoad( ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag
 
 //------------------------------------------------------------------
 /**
- * ·¬×ÃŞ°À ‚Ì VRAM “]‘—• NITRO System ²Ò°¼ŞÌßÛ·¼ ‚ğì¬
- *i3D, OBJ —p‚É‚Ì‚İ‘Î‰BBG ‚É‚Íg‚¢‚Ü‚¹‚ñj
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼† NITRO System ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚­ã‚· ã‚’ä½œæˆ
+ *ï¼ˆ3D, OBJ ç”¨ã«ã®ã¿å¯¾å¿œã€‚BG ã«ã¯ä½¿ã„ã¾ã›ã‚“ï¼‰
  *
- * ·¬×ÃŞ°À‚ÌÏ¯Ëßİ¸ŞÓ°ÄŞ’l‚ğAŒ»İ‚ÌÚ¼Ş½Àİ’è‚É‡‚í‚¹‚Ä‘‚«Š·‚¦‚Ü‚·
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰å€¤ã‚’ã€ç¾åœ¨ã®ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®šã«åˆã‚ã›ã¦æ›¸ãæ›ãˆã¾ã™
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   dataIdx			±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- * @param   mapType			Ï¯Ëßİ¸ŞÀ²Ìß
- * @param   transSize		“]‘—ƒTƒCƒYB‚O‚È‚ç‘S“]‘—B
- * @param   vramType		“]‘—æÀ²Ìß
- * @param   offs			“]‘—µÌ¾¯Ä
- * @param   heapID			ÃİÎß×Ø‚Ég‚¤Ë°ÌßID
- * @param   proxy			ì¬‚·‚éÌßÛ·¼±ÄŞÚ½
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ * @param   mapType			ãƒãƒƒãƒ”ãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+ * @param   transSize		è»¢é€ã‚µã‚¤ã‚ºã€‚ï¼ãªã‚‰å…¨è»¢é€ã€‚
+ * @param   vramType		è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   offs			è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   heapID			ãƒ†ãƒ³ãƒãƒ©ãƒªã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
+ * @param   proxy			ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *
  *	[ mapType ]
  *		CHAR_MAP_1D = 0,
  *		CHAR_MAP_2D = 1,
  *
- *	¦ VRAM“]‘—Œ^‚Í•ÊŠÖ” ArcUtil_TranCharSysLoad ‚ğg‚¤
+ *	â€» VRAMè»¢é€å‹ã¯åˆ¥é–¢æ•° ArcUtil_TranCharSysLoad ã‚’ä½¿ã†
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -707,22 +707,22 @@ void ArcUtil_HDL_CharSysLoadSyncroMappingMode( ARCHANDLE* handle, u32 dataIdx, B
 
 //------------------------------------------------------------------
 /**
- * ·¬×ÃŞ°À ‚Ì VRAM “]‘—• NITRO System ²Ò°¼ŞÌßÛ·¼ ‚ğì¬BVRAM“]‘—Œ^‚Ì‰æ‘œ‘fŞ—pB
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼† NITRO System ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚­ã‚· ã‚’ä½œæˆã€‚VRAMè»¢é€å‹ã®ç”»åƒç´ æç”¨ã€‚
  *
- * ¦ ‚±‚ÌŠÖ”‚ğg‚Á‚Ä‚àAVRAM‚É‰æ‘œ‚Í“]‘—‚³‚ê‚Ü‚¹‚ñ
- *    ‚±‚ÌŠÖ”‚ÅÛ°ÄŞ‚µ‚½ÃŞ°À‚Í‰ğ•ú‚³‚ê‚Ü‚¹‚ñB–ß‚è’l‚Ìconst void*‚ğŠÇ—‚µ‚ÄA
- *    •s—v‚É‚È‚Á‚½‚ç‰ğ•úˆ—‚ğs‚Á‚Ä‚­‚¾‚³‚¢B
+ * â€» ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦ã‚‚ã€VRAMã«ç”»åƒã¯è»¢é€ã•ã‚Œã¾ã›ã‚“
+ *    ã“ã®é–¢æ•°ã§ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã¯è§£æ”¾ã•ã‚Œã¾ã›ã‚“ã€‚æˆ»ã‚Šå€¤ã®const void*ã‚’ç®¡ç†ã—ã¦ã€
+ *    ä¸è¦ã«ãªã£ãŸã‚‰è§£æ”¾å‡¦ç†ã‚’è¡Œã£ã¦ãã ã•ã„ã€‚
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   dataIdx			±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- * @param   vramType		“]‘—æÀ²Ìß
- * @param   offs			“]‘—µÌ¾¯Ä
- * @param   heapID			ÃİÎß×Ø‚Ég‚¤Ë°ÌßID
- * @param   proxy			ì¬‚·‚éÌßÛ·¼‚Ì±ÄŞÚ½
- * @param   charData		·¬×ÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ * @param   vramType		è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ * @param   offs			è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   heapID			ãƒ†ãƒ³ãƒãƒ©ãƒªã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
+ * @param   proxy			ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   charData		ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval  const void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ì±ÄŞÚ½
+ * @retval  const void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -740,15 +740,15 @@ const void* ArcUtil_HDL_TransTypeCharSysLoad( ARCHANDLE* handle, u32 dataIdx, BO
 
 //------------------------------------------------------------------
 /**
- * ·¬×ÃŞ°À‚ğ Û°ÄŞ‚µ‚Ä Unpack ‚·‚é‚¾‚¯‚Å‚·B‰ğ•ú‚ÍŠe©‚ÅB
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’ ãƒ­ãƒ¼ãƒ‰ã—ã¦ Unpack ã™ã‚‹ã ã‘ã§ã™ã€‚è§£æ”¾ã¯å„è‡ªã§ã€‚
  *
- * @param   handle				ƒnƒ“ƒhƒ‹
- * @param   dataIdx				ÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- * @param   charData			·¬×ÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
- * @param   heapID				Ë°ÌßID
+ * @param   handle				ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx				ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ * @param   charData			ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   heapID				ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ìæ“ªÎß²İÀ
+ * @retval  void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void* ArcUtil_HDL_CharDataGet( ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, NNSG2dCharacterData** charData, u32 heapID )
@@ -759,15 +759,15 @@ void* ArcUtil_HDL_CharDataGet( ARCHANDLE* handle, u32 dataIdx, BOOL compressedFl
 
 //--------------------------------------------------------------------------------------------
 /**
- * ½¸Ø°İÃŞ°À‚ğ Û°ÄŞ‚µ‚Ä Unpack ‚·‚é‚¾‚¯‚Å‚·B‰ğ•ú‚ÍŠe©‚ÅB
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ ãƒ­ãƒ¼ãƒ‰ã—ã¦ Unpack ã™ã‚‹ã ã‘ã§ã™ã€‚è§£æ”¾ã¯å„è‡ªã§ã€‚
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   arcIndex		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚éÃŞ°À‚©H
- * @param   scrnData		½¸Ø°İÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
- * @param   heapID			ÃŞ°À“Ç‚İ‚İE‰ğ“€ÃİÎß×Ø‚Æ‚µ‚Äg‚¤Ë°ÌßID
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   arcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   scrnData		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   heapID			ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ»è§£å‡ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ã†ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ìæ“ªÎß²İÀ
+ * @retval  void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void* ArcUtil_HDL_ScrnDataGet(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, NNSG2dScreenData** scrnData, u32 heapID)
@@ -778,14 +778,14 @@ void* ArcUtil_HDL_ScrnDataGet(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFla
 
 //------------------------------------------------------------------
 /**
- * ÊßÚ¯ÄÃŞ°À‚ğÛ°ÄŞ‚µ‚Ä Unpack ‚·‚é‚¾‚¯‚Å‚·B‰ğ•ú‚ÍŠe©‚ÅB
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ Unpack ã™ã‚‹ã ã‘ã§ã™ã€‚è§£æ”¾ã¯å„è‡ªã§ã€‚
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   arcIndex		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   palData			ÊßÚ¯ÄÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
- * @param   heapID			Ë°ÌßID
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   arcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   palData			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ìæ“ªÎß²İÀ
+ * @retval  void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 extern void* ArcUtil_HDL_PalDataGet( ARCHANDLE* handle, u32 dataIdx, NNSG2dPaletteData** palData, u32 heapID )
@@ -796,15 +796,15 @@ extern void* ArcUtil_HDL_PalDataGet( ARCHANDLE* handle, u32 dataIdx, NNSG2dPalet
 
 //--------------------------------------------------------------------------------------------
 /**
- * ¾ÙÊŞİ¸ÃŞ°À‚ğ Û°ÄŞ‚µ‚Ä Unpack ‚·‚é‚¾‚¯‚Å‚·B‰ğ•ú‚ÍŠe©‚ÅB
+ * ã‚»ãƒ«ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ ãƒ­ãƒ¼ãƒ‰ã—ã¦ Unpack ã™ã‚‹ã ã‘ã§ã™ã€‚è§£æ”¾ã¯å„è‡ªã§ã€‚
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   arcIndex		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚éÃŞ°À‚©H
- * @param   cellBank		¾ÙÊŞİ¸ÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
- * @param   heapID			Ë°ÌßID
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   arcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   cellBank		ã‚»ãƒ«ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ìæ“ªÎß²İÀ
+ * @retval  void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void* ArcUtil_HDL_CellBankDataGet(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, NNSG2dCellDataBank** cellBank, u32 heapID )
@@ -816,15 +816,15 @@ void* ArcUtil_HDL_CellBankDataGet(ARCHANDLE* handle, u32 dataIdx, BOOL compresse
 
 //--------------------------------------------------------------------------------------------
 /**
- * ±ÆÒÊŞİ¸ÃŞ°À‚ğ Û°ÄŞ‚µ‚Ä Unpack ‚·‚é‚¾‚¯‚Å‚·B‰ğ•ú‚ÍŠe©‚ÅB
+ * ã‚¢ãƒ‹ãƒ¡ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ ãƒ­ãƒ¼ãƒ‰ã—ã¦ Unpack ã™ã‚‹ã ã‘ã§ã™ã€‚è§£æ”¾ã¯å„è‡ªã§ã€‚
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   arcIndex		±°¶²ÌŞÃŞ°À²İÃŞ¯¸½
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚éÃŞ°À‚©H
- * @param   anmBank			±ÆÒÊŞİ¸ÃŞ°À±ÄŞÚ½‚ğ•Û‚·‚éÎß²İÀ‚Ì±ÄŞÚ½
- * @param   heapID			Ë°ÌßID
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   arcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ï¼Ÿ
+ * @param   anmBank			ã‚¢ãƒ‹ãƒ¡ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  void*		Û°ÄŞ‚µ‚½ÃŞ°À‚Ìæ“ªÎß²İÀ
+ * @retval  void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void* ArcUtil_HDL_AnimBankDataGet(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, NNSG2dAnimBankData** anmBank, u32 heapID)
@@ -836,13 +836,13 @@ void* ArcUtil_HDL_AnimBankDataGet(ARCHANDLE* handle, u32 dataIdx, BOOL compresse
 
 //------------------------------------------------------------------
 /**
- * LZˆ³kŒãƒA[ƒJƒCƒu‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ğ“Ç‚İo‚µA‰ğ“€‚µ‚Ä•Ô‚·
+ * LZåœ§ç¸®å¾Œã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—ã€è§£å‡ã—ã¦è¿”ã™
  *
- * @param   handle		ƒnƒ“ƒhƒ‹
- * @param   dataIdx		ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   heapID		“Ç‚İo‚µE‰ğ“€‚Ég‚¤ƒq[ƒv‚h‚c
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   heapID		èª­ã¿å‡ºã—ãƒ»è§£å‡ã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- * @retval  void*		‰ğ“€Œã‚Ìƒf[ƒ^•Û‘¶æƒAƒhƒŒƒX
+ * @retval  void*		è§£å‡å¾Œã®ãƒ‡ãƒ¼ã‚¿ä¿å­˜å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //------------------------------------------------------------------
 void* ArcUtil_HDL_UnCompress(ARCHANDLE* handle, u32 dataIdx, u32 heapID)
@@ -853,19 +853,19 @@ void* ArcUtil_HDL_UnCompress(ARCHANDLE* handle, u32 dataIdx, u32 heapID)
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^‚Ì“Ç‚İo‚µ
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   dataIdx			ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚é‚©H
- * @param   heapID			ƒƒ‚ƒŠŠm•Û‚Ég‚¤ƒq[ƒv‚h‚c
- * @param   allocType		ƒq[ƒv‚Ì‚Ç‚ÌˆÊ’u‚©‚çƒƒ‚ƒŠŠm•Û‚·‚é‚©
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹ï¼Ÿ
+ * @param   heapID			ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
+ * @param   allocType		ãƒ’ãƒ¼ãƒ—ã®ã©ã®ä½ç½®ã‹ã‚‰ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ã‹
  *
  * [allocType]
- *		ALLOC_TOP		ƒq[ƒvæ“ª‚©‚çŠm•Û
- *		ALLOC_BOTTOM	ƒq[ƒvŒã•û‚©‚çŠm•Û
+ *		ALLOC_TOP		ãƒ’ãƒ¼ãƒ—å…ˆé ­ã‹ã‚‰ç¢ºä¿
+ *		ALLOC_BOTTOM	ãƒ’ãƒ¼ãƒ—å¾Œæ–¹ã‹ã‚‰ç¢ºä¿
  *
- * @retval  void*			“Ç‚İo‚µ—Ìˆæƒ|ƒCƒ“ƒ^
+ * @retval  void*			èª­ã¿å‡ºã—é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void* ArcUtil_HDL_Load(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, u32 heapID, ALLOC_TYPE allocType)
@@ -876,20 +876,20 @@ void* ArcUtil_HDL_Load(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, u32 
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^‚Ì“Ç‚İo‚µ•ƒf[ƒ^ƒTƒCƒYæ“¾iˆ³k‚³‚ê‚Ä‚¢‚½‚ç‰ğ“€Œã‚ÌƒTƒCƒY‚ğæ“¾‚·‚éj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—ï¼†ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—ï¼ˆåœ§ç¸®ã•ã‚Œã¦ã„ãŸã‚‰è§£å‡å¾Œã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ï¼‰
  *
- * @param   handle			ƒnƒ“ƒhƒ‹
- * @param   dataIdx			ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚é‚©H
- * @param   heapID			ƒƒ‚ƒŠŠm•Û‚Ég‚¤ƒq[ƒv‚h‚c
- * @param   allocType		ƒq[ƒv‚Ì‚Ç‚ÌˆÊ’u‚©‚çƒƒ‚ƒŠŠm•Û‚·‚é‚©
- * @param   pSize			Àƒf[ƒ^‚ÌƒoƒCƒgƒTƒCƒY‚ğó‚¯æ‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹ï¼Ÿ
+ * @param   heapID			ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
+ * @param   allocType		ãƒ’ãƒ¼ãƒ—ã®ã©ã®ä½ç½®ã‹ã‚‰ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ã‹
+ * @param   pSize			å®Ÿãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’å—ã‘å–ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * [allocType]
- *		ALLOC_TOP		ƒq[ƒvæ“ª‚©‚çŠm•Û
- *		ALLOC_BOTTOM	ƒq[ƒvŒã•û‚©‚çŠm•Û
+ *		ALLOC_TOP		ãƒ’ãƒ¼ãƒ—å…ˆé ­ã‹ã‚‰ç¢ºä¿
+ *		ALLOC_BOTTOM	ãƒ’ãƒ¼ãƒ—å¾Œæ–¹ã‹ã‚‰ç¢ºä¿
  *
- * @retval  void*			“Ç‚İo‚µ—Ìˆæƒ|ƒCƒ“ƒ^
+ * @retval  void*			èª­ã¿å‡ºã—é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void* ArcUtil_HDL_LoadEx(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, u32 heapID, ALLOC_TYPE allocType, u32* pSize)
@@ -940,20 +940,20 @@ void* ArcUtil_HDL_LoadEx(ARCHANDLE* handle, u32 dataIdx, BOOL compressedFlag, u3
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒLƒƒƒ‰ƒf[ƒ^‚ÌVRAM“]‘—‹¤’Ê•”•ª
+ *	@brief	BGã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®VRAMè»¢é€å…±é€šéƒ¨åˆ†
  *
- *	@param	p_data			ƒf[ƒ^
- *	@param	bgl				BGLƒf[ƒ^
- *	@param	frm				“]‘—æƒtƒŒ[ƒ€ƒiƒ“ƒo
- *	@param	offs			“]‘—ƒIƒtƒZƒbƒgiƒLƒƒƒ‰’PˆÊj
- *	@param	transSize		“]‘—ƒTƒCƒYiƒoƒCƒg’PˆÊ ==0‚Å‘S“]‘—j
+ *	@param	p_data			ãƒ‡ãƒ¼ã‚¿
+ *	@param	bgl				BGLãƒ‡ãƒ¼ã‚¿
+ *	@param	frm				è»¢é€å…ˆãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒ
+ *	@param	offs			è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ *	@param	transSize		è»¢é€ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ ==0ã§å…¨è»¢é€ï¼‰
  *
- *	@return	“]‘—‚µ‚½ƒf[ƒ^ƒTƒCƒYiƒoƒCƒgj
+ *	@return	è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆï¼‰
  */
 //-----------------------------------------------------------------------------
 static u32 ArcUtil_BgCharSetCommon( void* p_data, GF_BGL_INI* bgl, u32 frm, u32 offs, u32 transSize )
@@ -978,14 +978,14 @@ static u32 ArcUtil_BgCharSetCommon( void* p_data, GF_BGL_INI* bgl, u32 frm, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“ƒf[ƒ^VRAM“]‘—
- *	¦ BGL‘¤‚É ½¸Ø°İÊŞ¯Ì§ ‚ª—pˆÓ‚³‚ê‚Ä‚¢‚ê‚ÎA½¸Ø°İÊŞ¯Ì§ ‚Ö‚Ì“]‘—‚às‚¤
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿VRAMè»¢é€
+ *	â€» BGLå´ã« ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ ãŒç”¨æ„ã•ã‚Œã¦ã„ã‚Œã°ã€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ ã¸ã®è»¢é€ã‚‚è¡Œã†
  *
- *	@param	p_data			ƒf[ƒ^
- *	@param	bgl				GBLƒf[ƒ^
- *	@param	frm				“]‘—æƒtƒŒ[ƒ€
- *	@param	offs			“]‘—ƒIƒtƒZƒbƒgiƒLƒƒƒ‰’PˆÊj
- *	@param	transSize		“]‘—ƒTƒCƒYiƒoƒCƒg’PˆÊ ==0‚Å‘S“]‘—j
+ *	@param	p_data			ãƒ‡ãƒ¼ã‚¿
+ *	@param	bgl				GBLãƒ‡ãƒ¼ã‚¿
+ *	@param	frm				è»¢é€å…ˆãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	offs			è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ *	@param	transSize		è»¢é€ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ ==0ã§å…¨è»¢é€ï¼‰
  */
 //-----------------------------------------------------------------------------
 static void ArcUtil_ScrnSetCommon( void* p_data, GF_BGL_INI* bgl, u32 frm, u32 offs, u32 transSize )
@@ -1013,14 +1013,14 @@ static void ArcUtil_ScrnSetCommon( void* p_data, GF_BGL_INI* bgl, u32 frm, u32 o
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OBJ ·¬×ÃŞ°À ‚Ì VRAM “]‘—
+ *	@brief	OBJ ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€
  *
- *	@param	p_data		ƒf[ƒ^
- *	@param	objType		OBJƒ^ƒCƒviOBJTYPE_MAIN or OBJTYPE_SUBj
- *	@param	offs		ƒIƒtƒZƒbƒgiƒoƒCƒg’PˆÊj
- *	@param	transSize	“]‘—ƒTƒCƒYiƒoƒCƒg’PˆÊ ==0‚Å‘S“]‘—j
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	objType		OBJã‚¿ã‚¤ãƒ—ï¼ˆOBJTYPE_MAIN or OBJTYPE_SUBï¼‰
+ *	@param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
+ *	@param	transSize	è»¢é€ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ ==0ã§å…¨è»¢é€ï¼‰
  *
- *	@return	“]‘—‚µ‚½ƒf[ƒ^ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ *	@return	è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //-----------------------------------------------------------------------------
 static u32 ArcUtil_ObjCharSetCommon( void* p_data, OBJTYPE objType, u32 offs, u32 transSize )
@@ -1051,13 +1051,13 @@ static u32 ArcUtil_ObjCharSetCommon( void* p_data, OBJTYPE objType, u32 offs, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ÌVRAM“]‘—
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®VRAMè»¢é€
  *
- *	@param	p_data			ƒf[ƒ^
- *	@param	palType			ƒpƒŒƒbƒg“]‘—ƒ^ƒCƒv
- *	@param	srcOfs			ƒpƒŒƒbƒg“]‘—Œ³“Ç‚İ‚İŠJnƒIƒtƒZƒbƒg
- *	@param	dstOfs			ƒpƒŒƒbƒg“]‘—æƒIƒtƒZƒbƒg
- *	@param	transSize		“]‘—ƒTƒCƒYi‚O‚Å‘S“]‘—j
+ *	@param	p_data			ãƒ‡ãƒ¼ã‚¿
+ *	@param	palType			ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚¿ã‚¤ãƒ—
+ *	@param	srcOfs			ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ƒèª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	dstOfs			ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	transSize		è»¢é€ã‚µã‚¤ã‚ºï¼ˆï¼ã§å…¨è»¢é€ï¼‰
  */
 //-----------------------------------------------------------------------------
 static void ArcUtil_PalSetEzCommon( void* p_data, PALTYPE palType, u32 srcOfs, u32 dstOfs, u32 transSize )
@@ -1123,13 +1123,13 @@ static void ArcUtil_PalSetEzCommon( void* p_data, PALTYPE palType, u32 srcOfs, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ÌVRAM“]‘—•NITROSystemƒpƒŒƒbƒgƒvƒƒNƒV‚ğì¬
- *	i3D,OBJ—p‚É‚Ì‚İ‘Î‰@BG‚É‚Íg‚¢‚Ü‚¹‚ñj
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®VRAMè»¢é€ï¼†NITROSystemãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·ã‚’ä½œæˆ
+ *	ï¼ˆ3D,OBJç”¨ã«ã®ã¿å¯¾å¿œã€€BGã«ã¯ä½¿ã„ã¾ã›ã‚“ï¼‰
  *
- *	@param	p_data		ƒf[ƒ^
- *	@param	type		“]‘—æƒ^ƒCƒv
- *	@param	offs		“]‘—ƒIƒtƒZƒbƒg
- *	@param	proxy		ì¬‚·‚éƒvƒƒNƒV
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	type		è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ *	@param	offs		è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	proxy		ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚¯ã‚·
  *	[ type ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
  *		NNS_G2D_VRAM_TYPE_2DMAIN = 1,
@@ -1164,28 +1164,28 @@ static void ArcUtil_PalSysLoadCommon( void* p_data, NNS_G2D_VRAM_TYPE type, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒf[ƒ^‚ÌVRAM“]‘—•NITRO SystemƒCƒ[ƒWƒvƒƒLƒV‚ğì¬
- *	i3D,OBJ—p‚É‚Ì‚İ‘Î‰@BG‚É‚Íg‚¢‚Ü‚¹‚ñj
+ *	@brief	ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®VRAMè»¢é€ï¼†NITRO Systemã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚­ã‚·ã‚’ä½œæˆ
+ *	ï¼ˆ3D,OBJç”¨ã«ã®ã¿å¯¾å¿œã€€BGã«ã¯ä½¿ã„ã¾ã›ã‚“ï¼‰
  *
- *	@param	p_data			ƒf[ƒ^
- *	@param	mapType			ƒ}ƒbƒsƒ“ƒOƒ^ƒCƒv
- *	@param	transSize		“]‘—ƒTƒCƒYi‚O‘S“]‘—j
- *	@param	vramType		“]‘—æƒ^ƒCƒv
- *	@param	offs			“]‘—æƒIƒtƒZƒbƒg
- *	@param	proxy			ì¬‚·‚éƒvƒƒLƒVƒAƒhƒŒƒX
+ *	@param	p_data			ãƒ‡ãƒ¼ã‚¿
+ *	@param	mapType			ãƒãƒƒãƒ”ãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+ *	@param	transSize		è»¢é€ã‚µã‚¤ã‚ºï¼ˆï¼ï¼å…¨è»¢é€ï¼‰
+ *	@param	vramType		è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ *	@param	offs			è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	proxy			ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *	[ mapType ]
  *		CHAR_MAP_1D = 0,
  *		CHAR_MAP_2D = 1,
  *
- *	¦ VRAM“]‘—Œ^‚Í•ÊŠÖ” ArcUtil_TranCharSysLoad ‚ğg‚¤
+ *	â€» VRAMè»¢é€å‹ã¯åˆ¥é–¢æ•° ArcUtil_TranCharSysLoad ã‚’ä½¿ã†
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
  *		NNS_G2D_VRAM_TYPE_2DMAIN = 1,
  *		NNS_G2D_VRAM_TYPE_2DSUB  = 2,
  *
- *	@return	“]‘—‚µ‚½ƒf[ƒ^ƒTƒCƒY
+ *	@return	è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static u32 ArcUtil_CharSysLoadCommon( void* p_data, CHAR_MAPPING_TYPE mapType, u32 transSize, NNS_G2D_VRAM_TYPE vramType, u32 offs, NNSG2dImageProxy* proxy )
@@ -1217,22 +1217,22 @@ static u32 ArcUtil_CharSysLoadCommon( void* p_data, CHAR_MAPPING_TYPE mapType, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒf[ƒ^‚ÌVRAM“]‘—•NITRO SystemƒCƒ[ƒWƒvƒƒLƒV‚ğì¬
- *	i3D,OBJ—p‚É‚Ì‚İ‘Î‰@BG‚É‚Íg‚¢‚Ü‚¹‚ñj
- * ·¬×ÃŞ°À‚ÌÏ¯Ëßİ¸ŞÓ°ÄŞ’l‚ğAŒ»İ‚ÌÚ¼Ş½Àİ’è‚É‡‚í‚¹‚Ä‘‚«Š·‚¦‚Ü‚·
+ *	@brief	ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®VRAMè»¢é€ï¼†NITRO Systemã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚­ã‚·ã‚’ä½œæˆ
+ *	ï¼ˆ3D,OBJç”¨ã«ã®ã¿å¯¾å¿œã€€BGã«ã¯ä½¿ã„ã¾ã›ã‚“ï¼‰
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰å€¤ã‚’ã€ç¾åœ¨ã®ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®šã«åˆã‚ã›ã¦æ›¸ãæ›ãˆã¾ã™
  *
- *	@param	p_data			ƒf[ƒ^
- *	@param	mapType			ƒ}ƒbƒsƒ“ƒOƒ^ƒCƒv
- *	@param	transSize		“]‘—ƒTƒCƒYi‚O‘S“]‘—j
- *	@param	vramType		“]‘—æƒ^ƒCƒv
- *	@param	offs			“]‘—æƒIƒtƒZƒbƒg
- *	@param	proxy			ì¬‚·‚éƒvƒƒLƒVƒAƒhƒŒƒX
+ *	@param	p_data			ãƒ‡ãƒ¼ã‚¿
+ *	@param	mapType			ãƒãƒƒãƒ”ãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+ *	@param	transSize		è»¢é€ã‚µã‚¤ã‚ºï¼ˆï¼ï¼å…¨è»¢é€ï¼‰
+ *	@param	vramType		è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ *	@param	offs			è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	proxy			ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *	[ mapType ]
  *		CHAR_MAP_1D = 0,
  *		CHAR_MAP_2D = 1,
  *
- *	¦ VRAM“]‘—Œ^‚Í•ÊŠÖ” ArcUtil_TranCharSysLoad ‚ğg‚¤
+ *	â€» VRAMè»¢é€å‹ã¯åˆ¥é–¢æ•° ArcUtil_TranCharSysLoad ã‚’ä½¿ã†
  *
  *	[ vramType ]
  *		NNS_G2D_VRAM_TYPE_3DMAIN = 0,
@@ -1274,19 +1274,19 @@ static void ArcUtil_CharSysLoadSyncroMappingModeCommon( void* p_data, CHAR_MAPPI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	·¬×ÃŞ°À ‚Ì VRAM “]‘—• NITRO System ²Ò°¼ŞÌßÛ·¼ ‚ğì¬BVRAM“]‘—Œ^‚Ì‰æ‘œ‘fŞ—pB
+ *	@brief	ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ ã® VRAM è»¢é€ï¼† NITRO System ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚­ã‚· ã‚’ä½œæˆã€‚VRAMè»¢é€å‹ã®ç”»åƒç´ æç”¨ã€‚
  *
- * ¦ ‚±‚ÌŠÖ”‚ğg‚Á‚Ä‚àAVRAM‚É‰æ‘œ‚Í“]‘—‚³‚ê‚Ü‚¹‚ñ
- *    ‚±‚ÌŠÖ”‚ÅÛ°ÄŞ‚µ‚½ÃŞ°À‚Í‰ğ•ú‚³‚ê‚Ü‚¹‚ñB–ß‚è’l‚Ìconst void*‚ğŠÇ—‚µ‚ÄA
- *    •s—v‚É‚È‚Á‚½‚ç‰ğ•úˆ—‚ğs‚Á‚Ä‚­‚¾‚³‚¢B
+ * â€» ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦ã‚‚ã€VRAMã«ç”»åƒã¯è»¢é€ã•ã‚Œã¾ã›ã‚“
+ *    ã“ã®é–¢æ•°ã§ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã¯è§£æ”¾ã•ã‚Œã¾ã›ã‚“ã€‚æˆ»ã‚Šå€¤ã®const void*ã‚’ç®¡ç†ã—ã¦ã€
+ *    ä¸è¦ã«ãªã£ãŸã‚‰è§£æ”¾å‡¦ç†ã‚’è¡Œã£ã¦ãã ã•ã„ã€‚
  *
- *	@param	p_data			ƒf[ƒ^
- *	@param	vramType		“]‘—æƒ^ƒCƒv
- *	@param	offs			“]‘—ƒIƒtƒZƒbƒg
- *	@param	proxy			ì¬‚·‚éƒvƒƒLƒV
- *	@param	charData		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒAƒhƒŒƒXŠi”[æ
+ *	@param	p_data			ãƒ‡ãƒ¼ã‚¿
+ *	@param	vramType		è»¢é€å…ˆã‚¿ã‚¤ãƒ—
+ *	@param	offs			è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	proxy			ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·
+ *	@param	charData		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹æ ¼ç´å…ˆ
  *
- *	@return const void*		ƒ[ƒh‚µ‚½ƒf[ƒ^ƒAƒhƒŒƒX
+ *	@return const void*		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //-----------------------------------------------------------------------------
 static const void* ArcUtil_TransTypeCharSysLoadCommon( void* p_data, NNS_G2D_VRAM_TYPE vramType, u32 offs, NNSG2dImageProxy* proxy, NNSG2dCharacterData** charData )
@@ -1303,12 +1303,12 @@ static const void* ArcUtil_TransTypeCharSysLoadCommon( void* p_data, NNS_G2D_VRA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğƒAƒ“ƒpƒbƒN
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯
  *
- *	@param	p_data		ƒf[ƒ^
- *	@param	charData	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒAƒ“ƒpƒbƒNæ
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	charData	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯å…ˆ
  *
- *	@return ƒf[ƒ^ƒ[ƒN
+ *	@return ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void* ArcUtil_CharDataGetCommon( void* p_data, NNSG2dCharacterData** charData )
@@ -1317,7 +1317,7 @@ static void* ArcUtil_CharDataGetCommon( void* p_data, NNSG2dCharacterData** char
 	{
 		if( NNS_G2dGetUnpackedBGCharacterData( p_data, charData ) == FALSE)
 		{
-			// ¸”s‚µ‚½‚çNULL
+			// å¤±æ•—ã—ãŸã‚‰NULL
 			sys_FreeMemoryEz( p_data );
 			return NULL;
 		}
@@ -1327,12 +1327,12 @@ static void* ArcUtil_CharDataGetCommon( void* p_data, NNSG2dCharacterData** char
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒAƒ“ƒpƒbƒN
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯
  *
- *	@param	p_data		ƒf[ƒ^
- *	@param	scrnData	ƒXƒNƒŠ[ƒ“ƒf[ƒ^Ši”[æ
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	scrnData	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- *	@return ƒf[ƒ^ƒ[ƒN
+ *	@return ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void* ArcUtil_ScrnDataGetCommon( void* p_data, NNSG2dScreenData** scrnData )
@@ -1350,12 +1350,12 @@ static void* ArcUtil_ScrnDataGetCommon( void* p_data, NNSG2dScreenData** scrnDat
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^ƒAƒ“ƒpƒbƒNŠÖ”
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯é–¢æ•°
  *
- *	@param	p_data		ƒf[ƒ^
- *	@param	palData		ƒpƒŒƒbƒgƒf[ƒ^Ši”[æ
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	palData		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- *	@return ƒf[ƒ^ƒ[ƒN
+ *	@return ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void* ArcUtil_PalDataGetCommon( void* p_data, NNSG2dPaletteData** palData )
@@ -1373,12 +1373,12 @@ static void* ArcUtil_PalDataGetCommon( void* p_data, NNSG2dPaletteData** palData
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒf[ƒ^ƒAƒ“ƒpƒbƒNŠÖ”
+ *	@brief	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯é–¢æ•°
  *
- *	@param	p_data		ƒf[ƒ^
- *	@param	cellBank	ƒZƒ‹ƒf[ƒ^Ši”[æ
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	cellBank	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- *	@return	ƒf[ƒ^ƒ[ƒN
+ *	@return	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void* ArcUtil_CellBankDataGetCommon( void* p_data, NNSG2dCellDataBank** cellBank )
@@ -1396,12 +1396,12 @@ static void* ArcUtil_CellBankDataGetCommon( void* p_data, NNSG2dCellDataBank** c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒjƒƒf[ƒ^ƒAƒ“ƒpƒbƒN
+ *	@brief	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯
  *
- *	@param	p_data		ƒf[ƒ^
- *	@param	anmBank		ƒZƒ‹ƒAƒjƒƒf[ƒ^Ši”[æ
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	anmBank		ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- *	@return	ƒf[ƒ^ƒ[ƒN
+ *	@return	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void* ArcUtil_AnimBankDataGetCommon( void* p_data, NNSG2dAnimBankData** anmBank )

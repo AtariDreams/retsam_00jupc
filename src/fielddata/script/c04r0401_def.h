@@ -1,13 +1,13 @@
 #ifndef _C04R0401_DEF_H_
 #define _C04R0401_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C04R0401_FLAG_CHANGE		(1)
 #define	SCRID_C04R0401_SHOPM1		(2)
 #define	SCRID_POS_C04R0401_STOPPER_IN		(3)
 #define	SCRID_POS_C04R0401_STOPPER_OUT		(4)
 #define	SCRID_C04R0401_ASSISTANTM		(5)
 #define	SCRID_C04R0401_CYCLE_CHECK		(6)
-#define	SCRID_C04R0401_DATA_MAX		(6)		//最大数
+#define	SCRID_C04R0401_DATA_MAX		(6)		//譛螟ｧ謨ｰ
 
 #endif //_C04R0401_DEF_H_

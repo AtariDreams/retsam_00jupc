@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_079.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			079�@�g�o�̍ő�l�̂S���̂P���g���Ď����̕��g�����i�ϐg�̕ύX��Y�ꂸ�Ɂj
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			079　ＨＰの最大値の４分の１を使って自分の分身を作る（変身の変更を忘れずに）
  *
  *@author	HisashiSogabe
  *@data		2006.01.25

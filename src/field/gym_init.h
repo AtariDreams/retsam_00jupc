@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	gym_init.h
- * @bfief	ƒWƒ€dŠ|‚¯‰Šú‰»‚Æ‚©
+ * @bfief	ã‚¸ãƒ ä»•æ›ã‘åˆæœŸåŒ–ã¨ã‹
  * @author	Nozomu Saito
  *
  */
@@ -13,9 +13,9 @@
 
 //---------------------------------------------------------------------------
 /**
- * @brief	…ƒWƒ€:‰Šú‰»
+ * @brief	æ°´ã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -24,9 +24,9 @@ void GYM_InitWaterGym(FIELDSYS_WORK *fsys);
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒS[ƒXƒgƒWƒ€:‰Šú‰»
+ * @brief	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -35,9 +35,9 @@ void GYM_InitGhostGym(FIELDSYS_WORK *fsys);
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:‰Šú‰»
+ * @brief	é‹¼ã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -47,9 +47,9 @@ extern void GYM_InitSteelGym(FIELDSYS_WORK *fsys);
 #if 0	//DP
 //---------------------------------------------------------------------------
 /**
- * @brief	Ši“¬ƒWƒ€:‰Šú‰»
+ * @brief	æ ¼é—˜ã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -59,9 +59,9 @@ extern void GYM_InitCombatGym(FIELDSYS_WORK *fsys);
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“d‹CƒWƒ€:‰Šú‰»
+ * @brief	é›»æ°—ã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -70,11 +70,11 @@ extern void GYM_InitElecGym(FIELDSYS_WORK *fsys, const u8 inRoomNo);
 
 //---------------------------------------------------------------------------
 /**
- * @brief	PL ‘ƒWƒ€:‰Šú‰» kaga
+ * @brief	PL è‰ã‚¸ãƒ :åˆæœŸåŒ– kaga
  * 
- * @param	inBit				‘ÎÛƒrƒbƒg
- * @param	inVal				’l
- * @param	outData			ƒf[ƒ^
+ * @param	inBit				å¯¾è±¡ãƒ“ãƒƒãƒˆ
+ * @param	inVal				å€¤
+ * @param	outData			ãƒ‡ãƒ¼ã‚¿
  * 
  * @return	none
  */
@@ -83,9 +83,9 @@ extern void GYM_InitPLGrassGym( FIELDSYS_WORK *fsys );
 
 //---------------------------------------------------------------------------
 /**
- * @brief	PL Ši“¬ƒWƒ€:‰Šú‰» kaga
+ * @brief	PL æ ¼é—˜ã‚¸ãƒ :åˆæœŸåŒ– kaga
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -94,9 +94,9 @@ extern void GYM_InitPLFightGym(FIELDSYS_WORK *fsys);
 
 //---------------------------------------------------------------------------
 /**
- * @brief	PLƒS[ƒXƒgƒWƒ€:‰Šú‰»
+ * @brief	PLã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -105,7 +105,7 @@ extern void GYM_InitPLGhostGym(FIELDSYS_WORK *fsys);
 
 //--------------------------------------------------------------
 /**
- * •Ê‘‘@‰Šú‰»
+ * åˆ¥è˜ã€€åˆæœŸåŒ–
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -114,7 +114,7 @@ extern void FldVilla_Init( FIELDSYS_WORK *fsys );
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@‰Šú‰»
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€åˆæœŸåŒ–
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -123,14 +123,14 @@ extern void FldTornWorld_Init( FIELDSYS_WORK *fsys );
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒMƒ~ƒbƒNƒR[ƒh‚ªw’èID‚ÌƒR[ƒh‚Æ“¯ˆê‚©ƒ`ƒFƒbƒN
+ * @brief   ã‚®ãƒŸãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ãŒæŒ‡å®šIDã®ã‚³ãƒ¼ãƒ‰ã¨åŒä¸€ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   gimmick_id		ƒMƒ~ƒbƒNƒR[ƒh
+ * @param   gimmick_id		ã‚®ãƒŸãƒƒã‚¯ã‚³ãƒ¼ãƒ‰
  *
- * @retval  TRUE:ˆê’vB@FALSE:•sˆê’v
+ * @retval  TRUE:ä¸€è‡´ã€‚ã€€FALSE:ä¸ä¸€è‡´
  *
- * gym.c‚ğê—p‚ÌƒI[ƒo[ƒŒƒC—Ìˆæ(fieldmap_sub_gym)‚ÉˆÚ‚µ‚½ˆ×A
- * gym.c‚ÌŠÖ”‚ğŒÄ‚Ô‘O‚É‚±‚ê‚Åƒ`ƒFƒbƒN‚·‚é
+ * gym.cã‚’å°‚ç”¨ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸ(fieldmap_sub_gym)ã«ç§»ã—ãŸç‚ºã€
+ * gym.cã®é–¢æ•°ã‚’å‘¼ã¶å‰ã«ã“ã‚Œã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  */
 //--------------------------------------------------------------
 extern BOOL GYM_GimmickCodeCheck(FIELDSYS_WORK *fsys, int gimmick_id);

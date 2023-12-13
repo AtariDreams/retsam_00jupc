@@ -1,6 +1,6 @@
 /**
  *	@file	fld_ranking.c
- *	@brief	ƒtƒB[ƒ‹ƒh@ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒO•\¦
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤º
  *	@author	Miyuki Iwasawa
  *	@date	06.06.06
  */
@@ -41,42 +41,42 @@
 #include "fld_ranking.h"
 #include "field/ranking.naix"
 
-#define RANKLIST_MAX	(7)	///<ƒ‰ƒ“ƒLƒ“ƒOƒŠƒXƒg‚ÌÅ‘å”
+#define RANKLIST_MAX	(7)	///<ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒªã‚¹ãƒˆã®æœ€å¤§æ•°
 
-#define UNITBUF_NUM	(7)		///<’PˆÊŒnƒƒbƒZ[ƒWƒoƒbƒtƒ@”
-#define MSGBUF_NUM	(3)		///<ƒƒbƒZ[ƒWŒnƒoƒbƒtƒ@”
+#define UNITBUF_NUM	(7)		///<å˜ä½ç³»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡æ•°
+#define MSGBUF_NUM	(3)		///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç³»ãƒãƒƒãƒ•ã‚¡æ•°
 
-#define RANKING_ACTMAX	(2)	///<ƒAƒNƒ^[”
+#define RANKING_ACTMAX	(2)	///<ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
 typedef struct _RANK_MSG{
 	MSGDATA_MANAGER*	pMan;
 
-	WORDSET* wset;	//ƒ[ƒN
-	STRBUF*	tmp;	//”Ä—p
-	STRBUF* ebuf;	//‚Æ‚¶‚é
-	STRBUF* sbuf;	//‚Ç‚Ì‹L˜^‚ğ
-	STRBUF* dbuf;	//‹L˜^‚ğÁ‚·
-	STRBUF* nbuf;	//–¼‘O
-	STRBUF*	ubuf[UNITBUF_NUM];	//’PˆÊ
+	WORDSET* wset;	//ãƒ¯ãƒ¼ã‚¯
+	STRBUF*	tmp;	//æ±ç”¨
+	STRBUF* ebuf;	//ã¨ã˜ã‚‹
+	STRBUF* sbuf;	//ã©ã®è¨˜éŒ²ã‚’
+	STRBUF* dbuf;	//è¨˜éŒ²ã‚’æ¶ˆã™
+	STRBUF* nbuf;	//åå‰
+	STRBUF*	ubuf[UNITBUF_NUM];	//å˜ä½
 	STRBUF*	rbuf[6];
 	STRBUF*	gbuf[6];
 	STRBUF*	mbuf[MSGBUF_NUM];
 }RANK_MSG;
 
 typedef struct _RANK{
-	GNS_RECORD*	rp;	//ƒŒƒR[ƒhƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u16	valid_f;	//—LŒø–³Œøƒtƒ‰ƒO
-	u8	my_id;		//©•ª‚Ìƒf[ƒ^‚Ö‚Ìindex
+	GNS_RECORD*	rp;	//ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u16	valid_f;	//æœ‰åŠ¹ç„¡åŠ¹ãƒ•ãƒ©ã‚°
+	u8	my_id;		//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¸ã®index
 }RANK;
 
 typedef struct _RANK_LIST{
-	int		num;	//ƒŠƒXƒg‚Ì€–Ú”
+	int		num;	//ãƒªã‚¹ãƒˆã®é …ç›®æ•°
 	RANK	list[RANKLIST_MAX];
 }RANK_LIST;
 
 typedef struct _RANK_UNIT{
-	u32	max;	///<Å‘å’l
-	u16	keta;	///<Œ…”
-	u16	unit;	///<’PˆÊŒnƒiƒ“ƒo[
+	u32	max;	///<æœ€å¤§å€¤
+	u16	keta;	///<æ¡æ•°
+	u16	unit;	///<å˜ä½ç³»ãƒŠãƒ³ãƒãƒ¼
 }RANK_UNIT;
 
 typedef struct _RANKING_VIEW_MAIN{
@@ -85,26 +85,26 @@ typedef struct _RANKING_VIEW_MAIN{
 	int	main_seq;
 	int	seq;
 
-	u16	bg0_pri;	///<BG0‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB•Û‘¶
-	u16	bg2_pri;	///<BG2‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB•Û‘¶
-	u16	mode;		///<ŒÄ‚Ño‚µƒ‚[ƒh
-	u8	dataType;	///<ƒf[ƒ^ƒ^ƒCƒv
-	u8	grpType;	///<ƒOƒ‹[ƒvƒ^ƒCƒv
-	u8	blockNum;	///<ƒuƒƒbƒN”
-	u8	gnsIdx;		///<ƒMƒlƒXƒuƒƒbƒNƒAƒNƒZƒXIndex
+	u16	bg0_pri;	///<BG0ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ä¿å­˜
+	u16	bg2_pri;	///<BG2ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ä¿å­˜
+	u16	mode;		///<å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰
+	u8	dataType;	///<ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
+	u8	grpType;	///<ã‚°ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¤ãƒ—
+	u8	blockNum;	///<ãƒ–ãƒ­ãƒƒã‚¯æ•°
+	u8	gnsIdx;		///<ã‚®ãƒã‚¹ãƒ–ãƒ­ãƒƒã‚¯ã‚¢ã‚¯ã‚»ã‚¹Index
 		
-	u16	msg_spd;	///<ƒRƒ“ƒtƒBƒOƒƒbƒZ[ƒWƒXƒs[ƒh
-	u16	win_type;	///<ƒRƒ“ƒtƒBƒOƒEƒBƒ“ƒhƒEƒ^ƒCƒv
+	u16	msg_spd;	///<ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰
+	u16	win_type;	///<ã‚³ãƒ³ãƒ•ã‚£ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—
 
 	u8	msgIdx;
-	u8	sel_block;		///<‘I‚ñ‚¾ƒuƒƒbƒN
-	u8	sel_data;		///<‘I‚ñ‚¾ƒf[ƒ^
-	u8	rec_list_num;	///<Œ»İ‚Ì•\¦ƒŒƒR[ƒhƒŠƒXƒg‚Ì”
+	u8	sel_block;		///<é¸ã‚“ã ãƒ–ãƒ­ãƒƒã‚¯
+	u8	sel_data;		///<é¸ã‚“ã ãƒ‡ãƒ¼ã‚¿
+	u8	rec_list_num;	///<ç¾åœ¨ã®è¡¨ç¤ºãƒ¬ã‚³ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆã®æ•°
 	u16	blk_list;
 	u16	blk_cur;
 	u16	rec_list;
 	u16	rec_cur;
-	RANK_MSG	msgDat;	///<ƒƒbƒZ[ƒWŠÖ˜Aƒf[ƒ^
+	RANK_MSG	msgDat;	///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ãƒ‡ãƒ¼ã‚¿
 
 	BMPLIST_HEADER	bmplist_h;
 	BMPLIST_WORK*	blistWk; 
@@ -135,7 +135,7 @@ typedef struct _RANKING_VIEW_EVENT{
 
 
 //----------------------------------------------
-//’è”’è‹`
+//å®šæ•°å®šç¾©
 //----------------------------------------------
 #define WORDSET_RANKING_BUFLEN	(38*2)
 
@@ -163,7 +163,7 @@ enum{
 #define BMPL_MENU_WIN_PAL	(FLD_MENUFRAME_PAL)
 #define BMPL_TALK_WIN_PAL	(FLD_MESFRAME_PAL)
 
-//‰ï˜bƒEƒBƒ“ƒhƒE
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_TALK_PX	(FLD_MSG_WIN_PX)
 #define BMPL_TALK_PY	(FLD_MSG_WIN_PY)
 #define BMPL_TALK_SX	(FLD_MSG_WIN_SX)
@@ -171,7 +171,7 @@ enum{
 #define BMPL_TALK_PAL	(FLD_MSG_WIN_PAL)
 #define BMPL_TALK_CGX	(BMPL_MENU_WIN_CGX-BMPL_TALK_SX*BMPL_TALK_SY)
 
-//YNƒEƒBƒ“ƒhƒE
+//YNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_YESNO_PX	(FLD_YESNO_WIN_PX)
 #define BMPL_YESNO_PY	(FLD_YESNO_WIN_PY)
 #define BMPL_YESNO_SX	(FLD_YESNO_WIN_SX)
@@ -179,13 +179,13 @@ enum{
 #define BMPL_YESNO_PAL	(FLD_YESNO_WIN_PAL)
 #define BMPL_YESNO_CGX	(BMPL_TALK_CGX-BMPL_YESNO_SX*BMPL_YESNO_SY)
 
-//«©‘O‚ÌƒEƒBƒ“ƒhƒE
+//â†“è‡ªå‰ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define RANKING_CGX_START	(BMPL_YESNO_CGX)
 #define RANKING_FRAME		(FLD_MBGFRM_FONT)
 #define RANKING_FRAME2		(FLD_MBGFRM_EFFECT1)
 #define RANKING_FPAL		(FLD_SYSFONT_PAL)
 
-//Selectƒƒjƒ…[ƒEƒBƒ“ƒhƒE
+//Selectãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define EXP_WIN_PX		(8)
 #define EXP_WIN_PY		(14)
 #define EXP_WIN_SX		(8)
@@ -194,7 +194,7 @@ enum{
 #define EXP_WIN_FRM		(RAINKING_FRAME)
 #define EXP_WIN_CGX		(RANKING_CGX_START-(EXP_WIN_SX*EXP_WIN_SY))
 
-//ƒuƒƒbƒNƒEƒBƒ“ƒhƒE(YƒTƒCƒY‰Â•Ï)
+//ãƒ–ãƒ­ãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦(Yã‚µã‚¤ã‚ºå¯å¤‰)
 #define LIST_WIN_PX		(4)
 #define LIST_WIN_PY		(1)
 #define LIST_WIN_SX		(24)
@@ -208,7 +208,7 @@ enum{
 #define FRAME2_CGX_NUM	(LIST_WIN_SX*(LIST_WIN_SY+2)+MENU_WIN_CGX_SIZE+1)
 
 //=======================================
-//ƒAƒNƒ^[ŠÖ˜A’è‹`
+//ã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£å®šç¾©
 //=======================================
 #define RANKING_CHR_RES_MAX	(1)
 #define RANKING_PAL_RES_MAX	(1)
@@ -249,31 +249,31 @@ enum {
 
 #define LIST_X_OFS	(8)
 //------------------------------------------------------------------
-///	€–ÚƒŠƒXƒgƒf[ƒ^
+///	é …ç›®ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 //------------------------------------------------------------------
 static const BMPLIST_HEADER RankingListHeader = {
-	NULL,			//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,			//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,			//‚Ps‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,			//GF_BGL_BMPWIN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	0,				//ƒŠƒXƒg€–Ú”
-	7,					//•\¦Å‘å€–Ú”
-	2,					//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	LIST_X_OFS,			//€–Ú•\¦‚wÀ•W
-	1,					//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,					//•\¦‚xÀ•W
-	FBMP_COL_BLACK,		//•¶šF
-	FBMP_COL_WHITE,		//”wŒiF
-	FBMP_COL_BLK_SDW,	//•¶š‰eF
-	0,					//•¶šŠÔŠu‚w
-	0,					//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,		//•¶šw’è
-	1,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
-	NULL,				//ƒ[ƒNƒ|ƒCƒ“ƒ^
+	NULL,			//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,			//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,			//ï¼‘è¡Œã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,			//GF_BGL_BMPWINæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	0,				//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	7,					//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	2,					//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	LIST_X_OFS,			//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	1,					//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,					//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,		//æ–‡å­—è‰²
+	FBMP_COL_WHITE,		//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,	//æ–‡å­—å½±è‰²
+	0,					//æ–‡å­—é–“éš”ï¼¸
+	0,					//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,		//æ–‡å­—æŒ‡å®š
+	1,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+	NULL,				//ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 
-///ƒŠƒXƒg•`‰æ’PˆÊŒnƒf[ƒ^
+///ãƒªã‚¹ãƒˆæç”»å˜ä½ç³»ãƒ‡ãƒ¼ã‚¿
 static const RANK_UNIT unit_btl[] = {
  {9999,4,msg_count_00},
  {9999,4,msg_count_00},
@@ -298,7 +298,7 @@ static const RANK_UNIT* const unit_list[] = {
  unit_btl,unit_poke,unit_contest
 };
 //------------------------------------------------------------------
-///	ƒvƒƒgƒ^ƒCƒv
+///	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //------------------------------------------------------------------
 static void ranking_GetSaveData(RANKING_VIEW_MAIN* wk,SAVEDATA* sv);
 static void ranking_FreeSaveData(RANKING_VIEW_MAIN* wk);
@@ -319,17 +319,17 @@ static void ranking_RecordMenuStart(RANKING_VIEW_MAIN* wk,u16 cur);
 static void ranking_RecordMenuEnd(RANKING_VIEW_MAIN* wk);
 
 //------------------------------------------------------------------
-///	ƒƒCƒ“ƒV[ƒPƒ“ƒX
+///	ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //------------------------------------------------------------------
 /**
- *	@brief	‘S‘Ì‰Šú‰»
+ *	@brief	å…¨ä½“åˆæœŸåŒ–
  */
 static int RankSeq_Init(RANKING_VIEW_EVENT* main,FIELDSYS_WORK* fsys,u16 mode) 
 {
 	RANKING_VIEW_MAIN *wk;
 	SAVEDATA* sv = fsys->savedata;
 	
-	//ƒq[ƒvì¬
+	//ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_RANKING_VIEW,0x6000);
 	HeapStatePush();
 
@@ -338,7 +338,7 @@ static int RankSeq_Init(RANKING_VIEW_EVENT* main,FIELDSYS_WORK* fsys,u16 mode)
 
 	wk->heapID = HEAPID_RANKING_VIEW;
 
-	//ƒf[ƒ^ƒ^ƒCƒv‚ÆƒOƒ‹[ƒvƒ^ƒCƒv‚ğæ“¾
+	//ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ã¨ã‚°ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 	wk->dataType = mode%3;
 	wk->grpType = mode/3;
 	wk->blockNum = GNSRank_GetTypeBlockNum(wk->dataType);
@@ -346,10 +346,10 @@ static int RankSeq_Init(RANKING_VIEW_EVENT* main,FIELDSYS_WORK* fsys,u16 mode)
 	wk->fsys = fsys;
 	wk->bgl = fsys->bgl;
 
-	//ƒMƒlƒXƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ã‚®ãƒã‚¹ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	wk->gnsSave = SaveData_GetGuinnessData(sv);
 
-	//ƒRƒ“ƒtƒBƒOŠÖ˜A
+	//ã‚³ãƒ³ãƒ•ã‚£ã‚°é–¢é€£
 	wk->msg_spd = CONFIG_GetMsgPrintSpeed(SaveData_GetConfig(sv));
 	wk->win_type = CONFIG_GetWindowType(SaveData_GetConfig(sv));
 
@@ -359,7 +359,7 @@ static int RankSeq_Init(RANKING_VIEW_EVENT* main,FIELDSYS_WORK* fsys,u16 mode)
 }
 
 /**
- *	@brief	‘S‘ÌI—¹ˆ—
+ *	@brief	å…¨ä½“çµ‚äº†å‡¦ç†
  */
 static int RankSeq_End(RANKING_VIEW_EVENT* main)
 {
@@ -367,7 +367,7 @@ static int RankSeq_End(RANKING_VIEW_EVENT* main)
 	RANK*	lp;
 	RANKING_VIEW_MAIN* wk = main->app_wk;
 
-	//ƒZ[ƒuƒf[ƒ^”½‰fˆ—
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åæ˜ å‡¦ç†
 	for(i = 0; i < wk->blockNum;i++){
 		ct = 0;
 		for(j = 0;j < wk->viewList[i].num;j++){
@@ -375,17 +375,17 @@ static int RankSeq_End(RANKING_VIEW_EVENT* main)
 			if(lp->my_id == 0xFF || lp->valid_f){
 				continue;
 			}
-			//ƒZ[ƒuƒf[ƒ^íœ
+			//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 			GuinnessData_DelRecord(wk->gnsSave,(wk->grpType*GNS_RECORD_NUM)+wk->gnsIdx+i,lp->my_id-ct);
 			++ct;
 		}
 	}
-	//ƒƒ‚ƒŠ‰ğ•ú
+	//ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	heapID = wk->heapID;
 	sys_FreeMemoryEz(wk);
 	MI_CpuClear8(wk,sizeof(RANKING_VIEW_MAIN));
 
-	//ƒq[ƒv‰ğ•ú
+	//ãƒ’ãƒ¼ãƒ—è§£æ”¾
 	HeapStatePop();
 	HeapStateCheck(heapID);	
 	sys_DeleteHeap(heapID);
@@ -393,7 +393,7 @@ static int RankSeq_End(RANKING_VIEW_EVENT* main)
 	return RANK_SEQ_EXIT;
 }
 /**
- *	@brief	ƒf[ƒ^‰Šú‰»
+ *	@brief	ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  */
 static int RankSeq_DataInit(RANKING_VIEW_MAIN* wk,SAVEDATA* sv)
 {
@@ -406,7 +406,7 @@ static int RankSeq_DataInit(RANKING_VIEW_MAIN* wk,SAVEDATA* sv)
 }
 
 /**
- *	@brief	ƒf[ƒ^‰ğ•ú
+ *	@brief	ãƒ‡ãƒ¼ã‚¿è§£æ”¾
  */
 static int RankSeq_DataRelease(RANKING_VIEW_MAIN* wk)
 {
@@ -418,7 +418,7 @@ static int RankSeq_DataRelease(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒuƒƒbƒN‘I‘ğƒŠƒXƒg‰Šú‰»
+ *	@brief	ãƒ–ãƒ­ãƒƒã‚¯é¸æŠãƒªã‚¹ãƒˆåˆæœŸåŒ–
  */
 static int RankSeq_BlockListStart(RANKING_VIEW_MAIN* wk)
 {
@@ -427,7 +427,7 @@ static int RankSeq_BlockListStart(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒuƒƒbƒN‘I‘ğƒŠƒXƒgƒƒCƒ“
+ *	@brief	ãƒ–ãƒ­ãƒƒã‚¯é¸æŠãƒªã‚¹ãƒˆãƒ¡ã‚¤ãƒ³
  */
 static int RankSeq_BlockListMain(RANKING_VIEW_MAIN* wk)
 {
@@ -462,7 +462,7 @@ static int RankSeq_BlockListMain(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒŒƒR[ƒhƒƒjƒ…[ƒXƒ^[ƒg
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
  */
 static int RankSeq_RecordListStart(RANKING_VIEW_MAIN* wk)
 {
@@ -471,7 +471,7 @@ static int RankSeq_RecordListStart(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒŒƒR[ƒhƒƒjƒ…[ƒƒCƒ“
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ã‚¤ãƒ³
  */
 static int RankSeq_RecordListMain(RANKING_VIEW_MAIN* wk)
 {
@@ -491,28 +491,28 @@ static int RankSeq_RecordListMain(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒŒƒR[ƒhíœƒƒCƒ“
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰å‰Šé™¤ãƒ¡ã‚¤ãƒ³
  */
 static int RankSeq_RecordDelMain(RANKING_VIEW_MAIN* wk)
 {
 	RANK* rp;
 	if(sys.trg & (PAD_BUTTON_CANCEL)){
-		//íœƒ‚[ƒhI—¹
+		//å‰Šé™¤ãƒ¢ãƒ¼ãƒ‰çµ‚äº†
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 		ranking_ViewModeStateWrite(wk);
 		return RANK_SEQ_RECORD_MAIN;
 	}
 
-	//–{“–‚ÉÁ‚µ‚Ü‚·‚©H
+	//æœ¬å½“ã«æ¶ˆã—ã¾ã™ã‹ï¼Ÿ
 	if(sys.trg & PAD_BUTTON_DECIDE){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 		wk->seq = 0;
 		wk->pNRank = &(wk->viewList[wk->sel_block].list[wk->list_idx[wk->rec_cur]]);
 		if(wk->pNRank->my_id == 0xFF){
-			//©•ª‚È‚Ì‚ÅÁ‚¹‚È‚¢
+			//è‡ªåˆ†ãªã®ã§æ¶ˆã›ãªã„
 			return RANK_SEQ_RECORD_DEL_NG;
 		}
-		//–{“–‚ÉÁ‚µ‚Ü‚·‚©H
+		//æœ¬å½“ã«æ¶ˆã—ã¾ã™ã‹ï¼Ÿ
 		return RANK_SEQ_RECORD_DEL;
 	}
 	
@@ -535,7 +535,7 @@ static int RankSeq_RecordDelMain(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	YNƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	YNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  */
 static void ranking_YesNoInit(RANKING_VIEW_MAIN* wk)
 {
@@ -549,7 +549,7 @@ static void ranking_YesNoInit(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒŒƒR[ƒhíœƒtƒ[
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰å‰Šé™¤ãƒ•ãƒ­ãƒ¼
  */
 static int RankSeq_RecordDel(RANKING_VIEW_MAIN* wk)
 {
@@ -557,47 +557,47 @@ static int RankSeq_RecordDel(RANKING_VIEW_MAIN* wk)
 	
 	switch(wk->seq){
 	case 0:
-		//–{“–‚ÉÁ‚µ‚Ü‚·‚©ƒƒbƒZ[ƒW•`‰æ
+		//æœ¬å½“ã«æ¶ˆã—ã¾ã™ã‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 		GF_BGL_BmpWinDataFill(&wk->msgwin,APP_WINCLR_COL(FBMP_COL_WHITE));
 		wk->msgIdx = GF_STR_PrintColor(&wk->msgwin, FONT_TALK,wk->msgDat.mbuf[1],
 			0, 0, wk->msg_spd, TALK_FCOL, NULL );
 
-		//‘I‘ğƒJ[ƒ\ƒ‹‚ğŠDF‚É•ÏX
+		//é¸æŠã‚«ãƒ¼ã‚½ãƒ«ã‚’ç°è‰²ã«å¤‰æ›´
 		CATS_ObjectPaletteSetCap(wk->act[ACT_CURSOR],CURSOR_PALF);
 		wk->seq++;
 		break;
 	case 1:
-		//•`‰æI—¹‘Ò‚¿
+		//æç”»çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msgIdx )){
 			break;
 		}
-		//yesnoƒEƒBƒ“ƒhƒE•`‰æ
+		//yesnoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 		ranking_YesNoInit(wk);
 		wk->seq++;
 		break;
 	case 2:
-		//yesno‘I‘ğ‘Ò‚¿
+		//yesnoé¸æŠå¾…ã¡
 		switch( BmpYesNoSelectMain( wk->ynmenu_wk, wk->heapID) ){
-		case 0:	//‚Í‚¢
+		case 0:	//ã¯ã„
 	//		Snd_SePlay(PORUC_SE_DECIDE);
 			wk->seq++;
 			break;
-		case BMPMENU_CANCEL: //‚¢‚¢‚¦
+		case BMPMENU_CANCEL: //ã„ã„ãˆ
 	//		Snd_SePlay(PORUC_SE_DECIDE);
 			wk->seq = 0xFF;
 			break;
 		}
 		break;
 	case 3:
-		//ƒf[ƒ^‚Ì—LŒøƒtƒ‰ƒO‚ğ—‚Æ‚·
+		//ãƒ‡ãƒ¼ã‚¿ã®æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 		wk->pNRank->valid_f = 0;
-		//ƒŠƒXƒgÄ•`‰æ
+		//ãƒªã‚¹ãƒˆå†æç”»
 		ranking_RecordMenuWrite(wk,TRUE);
 		CATS_ObjectPaletteSetCap(wk->act[ACT_CURSOR],CURSOR_PALT);
 		wk->seq = 0;
 		return RANK_SEQ_RECORD_DEL_MAIN;
 	case 0xFF:
-		//‚â‚Á‚Ï~‚ß‚½
+		//ã‚„ã£ã±æ­¢ã‚ãŸ
 		ranking_RecordDelMsgWrite(wk);
 		CATS_ObjectPaletteSetCap(wk->act[ACT_CURSOR],CURSOR_PALT);
 		wk->seq = 0;
@@ -607,7 +607,7 @@ static int RankSeq_RecordDel(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	©•ª‚Ìƒf[ƒ^‚Ííœ‚Å‚«‚Ü‚¹‚ñ
+ *	@brief	è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å‰Šé™¤ã§ãã¾ã›ã‚“
  */
 static int RankSeq_RecordDelNg(RANKING_VIEW_MAIN* wk)
 {
@@ -615,19 +615,19 @@ static int RankSeq_RecordDelNg(RANKING_VIEW_MAIN* wk)
 	
 	switch(wk->seq){
 	case 0:
-		//NG‰¹
+		//NGéŸ³
 		//Snd_SePlay( SEQ_SE_DP_BOX03 );
 		Snd_SePlay( SEQ_SE_DP_CUSTOM06 );
-		//©•ª‚Ìƒf[ƒ^‚ÍÁ‚¹‚Ü‚¹‚ñƒƒbƒZ[ƒW•`‰æ
+		//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯æ¶ˆã›ã¾ã›ã‚“ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 		GF_BGL_BmpWinDataFill(&wk->msgwin,APP_WINCLR_COL(FBMP_COL_WHITE));
 		wk->msgIdx = GF_STR_PrintColor(&wk->msgwin, FONT_TALK,wk->msgDat.mbuf[2],
 			0, 0, wk->msg_spd, TALK_FCOL, NULL );
-		//‘I‘ğƒJ[ƒ\ƒ‹‚ğŠDF‚É•ÏX
+		//é¸æŠã‚«ãƒ¼ã‚½ãƒ«ã‚’ç°è‰²ã«å¤‰æ›´
 		CATS_ObjectPaletteSetCap(wk->act[ACT_CURSOR],CURSOR_PALF);
 		wk->seq++;
 		break;
 	case 1:
-		//•`‰æI—¹‘Ò‚¿
+		//æç”»çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msgIdx )){
 			break;
 		}
@@ -638,7 +638,7 @@ static int RankSeq_RecordDelNg(RANKING_VIEW_MAIN* wk)
 			break;
 		}
 		Snd_SePlay( SEQ_SE_DP_SELECT );
-		//Á‚·‹L˜^‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢
+		//æ¶ˆã™è¨˜éŒ²ã‚’é¸ã‚“ã§ãã ã•ã„
 		ranking_RecordDelMsgWrite(wk);
 		CATS_ObjectPaletteSetCap(wk->act[ACT_CURSOR],CURSOR_PALT);
 		wk->seq = 0;
@@ -649,21 +649,21 @@ static int RankSeq_RecordDelNg(RANKING_VIEW_MAIN* wk)
 
 
 /**
- *	@brief	ƒ‚[ƒh•ÊƒZ[ƒuƒf[ƒ^æ“¾
+ *	@brief	ãƒ¢ãƒ¼ãƒ‰åˆ¥ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
  */
 static void ranking_GetSaveData(RANKING_VIEW_MAIN* wk,SAVEDATA* sv)
 {
 	int i,j,ct,flag;
 	GNS_RANKING*	gp;
 	
-	//ƒŒƒR[ƒhƒŠƒXƒg‘€ì—pƒƒ‚ƒŠæ“¾
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆæ“ä½œç”¨ãƒ¡ãƒ¢ãƒªå–å¾—
 	wk->viewList = sys_AllocMemory(wk->heapID,sizeof(RANK_LIST)*wk->blockNum);
 	MI_CpuClear8(wk->viewList,sizeof(RANK_LIST)*wk->blockNum);
 
-	//©•ª‚ÌƒŒƒR[ƒhƒf[ƒ^
+	//è‡ªåˆ†ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 	wk->rank[0] = GNSRank_AllocMyData(sv,wk->dataType,wk->heapID);
 
-	//ƒŒƒR[ƒhƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿
 	for(i = 0;i < wk->blockNum;i++){
 		wk->rank[i+1] = GNSRank_AllocRankingData(wk->gnsSave,
 			(wk->grpType*GNS_RECORD_NUM)+wk->gnsIdx+i,wk->heapID);
@@ -673,7 +673,7 @@ static void ranking_GetSaveData(RANKING_VIEW_MAIN* wk,SAVEDATA* sv)
 		flag = 0;
 #if 1
 		if(gp->num == 0){
-			//©•ª‚¾‚¯
+			//è‡ªåˆ†ã ã‘
 			wk->viewList[i].list[0].rp = &(wk->rank[0]->rank[i]);
 			wk->viewList[i].list[0].valid_f = 1;
 			wk->viewList[i].list[0].my_id = 0xFF;
@@ -682,7 +682,7 @@ static void ranking_GetSaveData(RANKING_VIEW_MAIN* wk,SAVEDATA* sv)
 			for(j = 0;j < gp->num;j++){
 				if(	(flag == 0) && 
 					(wk->rank[0]->rank[i].record >= gp->rank[j].record)){
-					//©•ª‚ğ‘}“ü
+					//è‡ªåˆ†ã‚’æŒ¿å…¥
 					wk->viewList[i].list[ct].rp = &(wk->rank[0]->rank[i]);
 					wk->viewList[i].list[ct].valid_f = 1;
 					wk->viewList[i].list[ct].my_id = 0xFF;
@@ -699,7 +699,7 @@ static void ranking_GetSaveData(RANKING_VIEW_MAIN* wk,SAVEDATA* sv)
 				++ct;
 			}
 			if(!flag){
-				//ÅŒã‚É©•ª‚ğ’Ç‰Á
+				//æœ€å¾Œã«è‡ªåˆ†ã‚’è¿½åŠ 
 				wk->viewList[i].list[ct].rp = &(wk->rank[0]->rank[i]);
 				wk->viewList[i].list[ct].valid_f = 1;
 				wk->viewList[i].list[ct].my_id = 0xFF;
@@ -711,7 +711,7 @@ static void ranking_GetSaveData(RANKING_VIEW_MAIN* wk,SAVEDATA* sv)
 }
 
 /**
- *	@brief	ƒZ[ƒuƒf[ƒ^æ“¾—Ìˆæ‰ğ•ú
+ *	@brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—é ˜åŸŸè§£æ”¾
  */
 static void ranking_FreeSaveData(RANKING_VIEW_MAIN* wk)
 {
@@ -724,7 +724,7 @@ static void ranking_FreeSaveData(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒƒbƒZ[ƒWƒfƒtƒHƒ‹ƒgƒŠƒ\[ƒXæ“¾
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒªã‚½ãƒ¼ã‚¹å–å¾—
  */
 static void ranking_GetMsgData(RANKING_VIEW_MAIN* wk)
 {
@@ -735,30 +735,30 @@ static void ranking_GetMsgData(RANKING_VIEW_MAIN* wk)
 	
 	wk->msgDat.wset = WORDSET_CreateEx(2,WORDSET_RANKING_BUFLEN,wk->heapID);
 
-	//ƒfƒtƒHƒ‹ƒg•¶š—ñæ“¾
+	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—åˆ—å–å¾—
 	wk->msgDat.tmp = STRBUF_Create(WORDSET_RANKING_BUFLEN,wk->heapID);
-	//‚Æ‚¶‚é
+	//ã¨ã˜ã‚‹
 	wk->msgDat.ebuf = MSGMAN_AllocString(wk->msgDat.pMan,msg_end_00);
-	//‚Ç‚Ì‹L˜^‚ğ
+	//ã©ã®è¨˜éŒ²ã‚’
 	wk->msgDat.sbuf = MSGMAN_AllocString(wk->msgDat.pMan,msg_guide_00);
-	//‹L˜^‚ğÁ‚·
+	//è¨˜éŒ²ã‚’æ¶ˆã™
 	wk->msgDat.dbuf = MSGMAN_AllocString(wk->msgDat.pMan,msg_delete_00);
-	//–¼‘O“WŠJêŠ
+	//åå‰å±•é–‹å ´æ‰€
 	wk->msgDat.nbuf = MSGMAN_AllocString(wk->msgDat.pMan,msg_ranking_01);
 
-	//ƒuƒƒbƒN‘I‘ğƒŠƒXƒg
+	//ãƒ–ãƒ­ãƒƒã‚¯é¸æŠãƒªã‚¹ãƒˆ
 	for(i = 0;i < wk->blockNum;i++){
 		wk->msgDat.rbuf[i] = 
 			MSGMAN_AllocString(wk->msgDat.pMan,msg_battle_00+wk->gnsIdx+i);	
 		wk->msgDat.gbuf[i] = 
 			MSGMAN_AllocString(wk->msgDat.pMan,msg_guide_01+wk->gnsIdx+i);	
 	}
-	//ƒJƒEƒ“ƒg
+	//ã‚«ã‚¦ãƒ³ãƒˆ
 	for(i = 0;i < UNITBUF_NUM;i++){
 		wk->msgDat.ubuf[i] = 
 			MSGMAN_AllocString(wk->msgDat.pMan,msg_count_00+i);
 	}
-	//ƒƒbƒZ[ƒW
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	for(i = 0;i< MSGBUF_NUM;i++){
 		wk->msgDat.mbuf[i] = 
 			MSGMAN_AllocString(wk->msgDat.pMan,msg_delete_01+i);
@@ -766,7 +766,7 @@ static void ranking_GetMsgData(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒƒbƒZ[ƒWƒfƒtƒHƒ‹ƒgƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  */
 static void ranking_FreeMsgData(RANKING_VIEW_MAIN* wk)
 {
@@ -793,11 +793,11 @@ static void ranking_FreeMsgData(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒfƒtƒHƒ‹ƒgƒEƒBƒ“ƒhƒE’Ç‰Á
+ *	@brief	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
  */
 static void ranking_AddComWin(RANKING_VIEW_MAIN* wk)
 {
-	//ƒGƒtƒFƒNƒg—pBG–Ê‚ğ“Á•Ê‚Ég‚¤
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨BGé¢ã‚’ç‰¹åˆ¥ã«ä½¿ã†
 	GF_BGL_ClearCharSet(RANKING_FRAME2,32*FRAME2_CGX_NUM,0,wk->heapID);
 	GF_BGL_ScrFill(wk->bgl,RANKING_FRAME2,0x0000,0,0,32,32,GF_BGL_SCRWRT_PALIN);
 	GF_BGL_LoadScreenV_Req(wk->bgl,RANKING_FRAME2);
@@ -807,7 +807,7 @@ static void ranking_AddComWin(RANKING_VIEW_MAIN* wk)
 	GF_BGL_PrioritySet(GF_BGL_FRAME0_M,2);
 	GF_BGL_PrioritySet(RANKING_FRAME2,1);
 	
-	//ƒRƒ‚ƒ“ƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+	//ã‚³ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 	TalkWinGraphicSet(wk->bgl,RANKING_FRAME,
 			BMPL_TALK_WIN_CGX,BMPL_TALK_WIN_PAL,wk->win_type,wk->heapID);
 	MenuWinGraphicSet(wk->bgl,RANKING_FRAME,
@@ -818,7 +818,7 @@ static void ranking_AddComWin(RANKING_VIEW_MAIN* wk)
 	SystemFontPaletteLoad(PALTYPE_MAIN_BG,FLD_SYSFONT_PAL*32,wk->heapID);
 	TalkFontPaletteLoad(PALTYPE_MAIN_BG,FLD_MESFONT_PAL*32,wk->heapID);
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE’Ç‰Á
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
 	GF_BGL_BmpWinAdd(
 			wk->bgl, &wk->msgwin, RANKING_FRAME,
 			BMPL_TALK_PX,BMPL_TALK_PY,BMPL_TALK_SX,BMPL_TALK_SY,
@@ -828,7 +828,7 @@ static void ranking_AddComWin(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒfƒtƒHƒ‹ƒgƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  */
 static void ranking_DelComWin(RANKING_VIEW_MAIN* wk)
 {
@@ -836,7 +836,7 @@ static void ranking_DelComWin(RANKING_VIEW_MAIN* wk)
 	GF_BGL_BmpWinOff(&wk->msgwin);	
 	GF_BGL_BmpWinDel(&wk->msgwin);
 	
-	//ƒGƒtƒFƒNƒg–Ê—ÌˆæƒNƒŠƒA
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢é ˜åŸŸã‚¯ãƒªã‚¢
 	GF_BGL_ClearCharSet(RANKING_FRAME2,32*FRAME2_CGX_NUM,0,wk->heapID);
 	GF_BGL_ScrFill(wk->bgl,RANKING_FRAME2,0x0000,0,0,32,32,GF_BGL_SCRWRT_PALIN);
 	GF_BGL_LoadScreenV_Req(wk->bgl,RANKING_FRAME2);
@@ -847,7 +847,7 @@ static void ranking_DelComWin(RANKING_VIEW_MAIN* wk)
 
 
 /**
- *	@brief	ƒAƒNƒ^[‰Šú‰»
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  */
 static void ranking_ActorInit(RANKING_VIEW_MAIN* wk)
 {
@@ -859,7 +859,7 @@ static void ranking_ActorInit(RANKING_VIEW_MAIN* wk)
 
 	static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 	{
-		{	// ‘I‘ğƒJ[ƒ\ƒ‹
+		{	// é¸æŠã‚«ãƒ¼ã‚½ãƒ«
 			CURSOR_PX, CURSOR_PY, 0,
 			CURSOR_ANMNO, CURSOR_SPRI, CURSOR_PALT, NNS_G2D_VRAM_TYPE_2DMAIN,
 			{
@@ -868,7 +868,7 @@ static void ranking_ActorInit(RANKING_VIEW_MAIN* wk)
 			},
 			CURSOR_PRI, 0
 		},
-		{	// ‹L˜^‚ğÁ‚·ƒpƒlƒ‹ 
+		{	// è¨˜éŒ²ã‚’æ¶ˆã™ãƒ‘ãƒãƒ« 
 			PANEL_PX, PANEL_PY, 0,
 			PANEL_ANMNO, PANEL_SPRI, PANEL_PAL, NNS_G2D_VRAM_TYPE_2DMAIN,
 			{
@@ -879,7 +879,7 @@ static void ranking_ActorInit(RANKING_VIEW_MAIN* wk)
 		},
 	};
 	
-	//ƒtƒB[ƒ‹ƒhƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	FieldCellActSet_S( &wk->fcat, &crnl, RANKING_ACTMAX, wk->heapID);
 	
 	{
@@ -909,11 +909,11 @@ static void ranking_ActorInit(RANKING_VIEW_MAIN* wk)
 	for(i = 0;i < RANKING_ACTMAX;i++){
 		wk->act[i] = FieldCellActAdd_S( &wk->fcat, &ActAddParam_S[i] );
 	}
-	//ƒpƒlƒ‹‚Ì‰Šúó‘Ô‚Í”ñ•\¦
+	//ãƒ‘ãƒãƒ«ã®åˆæœŸçŠ¶æ…‹ã¯éè¡¨ç¤º
 	CATS_ObjectEnableCap(wk->act[ACT_PANEL],FALSE);
 }
 /**
- *	@brief	ƒAƒNƒ^[íœ
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  */
 static void ranking_ActorRelease(RANKING_VIEW_MAIN* wk)
 {
@@ -928,7 +928,7 @@ static void ranking_ActorRelease(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒuƒƒbƒNƒƒjƒ…[ì¬
+ *	@brief	ãƒ–ãƒ­ãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
  */
 static void ranking_BlockMenuStart(RANKING_VIEW_MAIN* wk,u16 list,u16 cur)
 {
@@ -944,10 +944,10 @@ static void ranking_BlockMenuStart(RANKING_VIEW_MAIN* wk,u16 list,u16 cur)
 	for(i = 0;i < wk->blockNum;i++){
 		BMP_MENULIST_AddString(wk->menulist,wk->msgDat.rbuf[i],i);
 	}
-	//•Â‚¶‚é’Ç‰Á
+	//é–‰ã˜ã‚‹è¿½åŠ 
 	BMP_MENULIST_AddString(wk->menulist,wk->msgDat.ebuf,RANK_MENU_EXIT);
 
-	//BMPƒŠƒXƒgİ’è
+	//BMPãƒªã‚¹ãƒˆè¨­å®š
 	MI_CpuCopy8((void*)&RankingListHeader,(void*)&(wk->bmplist_h),sizeof(BMPLIST_HEADER));
 	wk->bmplist_h.win = &(wk->bmpwin);
 	wk->bmplist_h.list = wk->menulist;
@@ -960,52 +960,52 @@ static void ranking_BlockMenuStart(RANKING_VIEW_MAIN* wk,u16 list,u16 cur)
 	wk->blistWk = BmpListSet(&(wk->bmplist_h),list,cur,wk->heapID);
 	BmpMenuWinWrite( &wk->bmpwin, WINDOW_TRANS_ON, BMPL_MENU_WIN_CGX, BMPL_MENU_WIN_PAL );
 
-	//‚Ç‚Ì‹L˜^‚ğŒ©‚Ü‚·‚©HƒƒbƒZ[ƒW•`‰æ
+	//ã©ã®è¨˜éŒ²ã‚’è¦‹ã¾ã™ã‹ï¼Ÿãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 	BmpTalkWinWrite( &wk->msgwin, WINDOW_TRANS_OFF, BMPL_TALK_WIN_CGX, BMPL_TALK_WIN_PAL);		
 	GF_BGL_BmpWinDataFill(&wk->msgwin,APP_WINCLR_COL(FBMP_COL_WHITE));
 	GF_STR_PrintColor(
 		&wk->msgwin, FONT_TALK,wk->msgDat.sbuf,
 		0, 0, MSG_ALLPUT, TALK_FCOL, NULL );
 	
-	//ƒJ[ƒ\ƒ‹ƒAƒNƒ^[•\¦
+	//ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤º
 	CATS_ObjectEnableCap(wk->act[ACT_CURSOR],TRUE);
 
 	GF_BGL_LoadScreenV_Req(wk->bgl,RANKING_FRAME);
 }
 
 /**
- *	@brief	ƒuƒƒbƒNƒƒjƒ…[”jŠü
+ *	@brief	ãƒ–ãƒ­ãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç ´æ£„
  */
 static void ranking_BlockMenuEnd(RANKING_VIEW_MAIN* wk)
 {
-	//BMPƒŠƒXƒg‚ÌŠJ•ú
-	BmpListExit(wk->blistWk,&(wk->blk_list),&(wk->blk_cur));	//ƒŠƒXƒg”jŠü
-	BMP_MENULIST_Delete(wk->menulist);	//ƒƒjƒ…[•¶š—ñ”jŠü
+	//BMPãƒªã‚¹ãƒˆã®é–‹æ”¾
+	BmpListExit(wk->blistWk,&(wk->blk_list),&(wk->blk_cur));	//ãƒªã‚¹ãƒˆç ´æ£„
+	BMP_MENULIST_Delete(wk->menulist);	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ–‡å­—åˆ—ç ´æ£„
 
 	GF_BGL_BmpWinOff(&(wk->bmpwin));	//WindowOFF	
 	BmpMenuWinClear( &(wk->bmpwin),WINDOW_TRANS_ON);
 	GF_BGL_BmpWinDel(&(wk->bmpwin));	//BMP Window Del
 	
-	//ƒJ[ƒ\ƒ‹ƒAƒNƒ^[‚ğ‰B‚·
+	//ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’éš ã™
 	CATS_ObjectEnableCap(wk->act[ACT_CURSOR],FALSE);
 	
 	GF_BGL_LoadScreenV_Req(wk->bgl,RANKING_FRAME);	
 }
 
 /**
- *	@brief	ƒuƒƒbƒNƒƒjƒ…[@ƒJ[ƒ\ƒ‹ˆÚ“®ƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒ–ãƒ­ãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 static void ranking_CB_BlockListMove(BMPLIST_WORK * work, u32 param, u8 mode)
 {
 	u16	scr,cur,ct;
 	RANKING_VIEW_MAIN* wk = (RANKING_VIEW_MAIN*)BmpListParamGet(work,BMPLIST_ID_WORK);
 
-	//‰Šú‰»‚Í–Â‚ç‚³‚È‚¢
+	//åˆæœŸåŒ–æ™‚ã¯é³´ã‚‰ã•ãªã„
 	if( mode == 0 ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
 
-	//ƒJ[ƒ\ƒ‹ˆÚ“®
+	//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 	BmpListPosGet( work, &scr, &cur );
 	ct = BmpListParamGet(work,BMPLIST_ID_COUNT);
 
@@ -1013,23 +1013,23 @@ static void ranking_CB_BlockListMove(BMPLIST_WORK * work, u32 param, u8 mode)
 }
 
 /**
- *	@brief	Á‚·‹L˜^‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢ƒƒbƒZ[ƒW•`‰æ
+ *	@brief	æ¶ˆã™è¨˜éŒ²ã‚’é¸ã‚“ã§ãã ã•ã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
  */
 static void ranking_RecordDelMsgWrite(RANKING_VIEW_MAIN* wk)
 {
-	//Á‚µ‚½‚¢‹L˜^‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢
+	//æ¶ˆã—ãŸã„è¨˜éŒ²ã‚’é¸ã‚“ã§ãã ã•ã„
 	GF_BGL_BmpWinDataFill(&wk->msgwin,APP_WINCLR_COL(FBMP_COL_WHITE));
 	GF_STR_PrintColor(&wk->msgwin, FONT_TALK,wk->msgDat.mbuf[0],
 		0, 0, MSG_ALLPUT, TALK_FCOL, NULL );
 }
 
 /**
- *	@brief	íœƒ‚[ƒhƒXƒ^[ƒg•`‰æ
+ *	@brief	å‰Šé™¤ãƒ¢ãƒ¼ãƒ‰ã‚¹ã‚¿ãƒ¼ãƒˆæç”»
  */
 static void ranking_DelModeStateWrite(RANKING_VIEW_MAIN* wk)
 {
 //	ranking_RecordDelMsgWrite(wk);
-	//Á‚µ‚½‚¢‹L˜^‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢
+	//æ¶ˆã—ãŸã„è¨˜éŒ²ã‚’é¸ã‚“ã§ãã ã•ã„
 	ranking_RecordDelMsgWrite(wk);
 	
 	CATS_ObjectPosSetCap(wk->act[ACT_CURSOR],CURSOR_PX,CURSOR_PY+wk->rec_cur*16);
@@ -1037,11 +1037,11 @@ static void ranking_DelModeStateWrite(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief	ƒŒƒR[ƒh‰{——ƒ‚[ƒhƒXƒ^[ƒg•`‰æ
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰é–²è¦§ãƒ¢ãƒ¼ãƒ‰ã‚¹ã‚¿ãƒ¼ãƒˆæç”»
  */
 static void ranking_ViewModeStateWrite(RANKING_VIEW_MAIN* wk)
 {
-	//ƒKƒCƒhƒƒbƒZ[ƒW•`‰æ
+	//ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 	GF_BGL_BmpWinDataFill(&wk->msgwin,APP_WINCLR_COL(FBMP_COL_WHITE));
 	GF_STR_PrintColor(
 		&wk->msgwin, FONT_TALK,wk->msgDat.gbuf[wk->sel_block],
@@ -1052,7 +1052,7 @@ static void ranking_ViewModeStateWrite(RANKING_VIEW_MAIN* wk)
 }
 
 /**
- *	@brief ƒŒƒR[ƒhƒƒjƒ…[•`‰æ
+ *	@brief ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼æç”»
  */
 static void ranking_RecordMenuWrite(RANKING_VIEW_MAIN* wk,BOOL cur_f)
 {
@@ -1073,7 +1073,7 @@ static void ranking_RecordMenuWrite(RANKING_VIEW_MAIN* wk,BOOL cur_f)
 		if(!lp->list[i].valid_f){
 			continue;
 		}
-		//ƒ‰ƒ“ƒLƒ“ƒOƒiƒ“ƒo[‚ğZo
+		//ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒŠãƒ³ãƒãƒ¼ã‚’ç®—å‡º
 		value = lp->list[i].rp->record;
 		if(value > up->max){
 			value = up->max;
@@ -1081,7 +1081,7 @@ static void ranking_RecordMenuWrite(RANKING_VIEW_MAIN* wk,BOOL cur_f)
 		if(value < value2){
 			++rank;
 		}
-		//ƒ‰ƒ“ƒLƒ“ƒO‚Æ–¼‘O
+		//ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã¨åå‰
 		WORDSET_RegisterNumber(wk->msgDat.wset,0,rank,1,
 					NUMBER_DISPTYPE_SPACE,NUMBER_CODETYPE_DEFAULT);
 		WORDSET_RegisterWord( wk->msgDat.wset,1,
@@ -1092,7 +1092,7 @@ static void ranking_RecordMenuWrite(RANKING_VIEW_MAIN* wk,BOOL cur_f)
 		GF_STR_PrintColor(&wk->bmpwin, FONT_SYSTEM,wk->msgDat.tmp,
 			LIST_X_OFS, ct*16, MSG_NO_PUT, TALK_FCOL, NULL );
 
-		//ƒŒƒR[ƒh
+		//ãƒ¬ã‚³ãƒ¼ãƒ‰
 		WORDSET_RegisterNumber(wk->msgDat.wset,0,value,up->keta,
 				NUMBER_DISPTYPE_SPACE,NUMBER_CODETYPE_DEFAULT);
 		WORDSET_ExpandStr(wk->msgDat.wset,wk->msgDat.tmp,
@@ -1104,44 +1104,44 @@ static void ranking_RecordMenuWrite(RANKING_VIEW_MAIN* wk,BOOL cur_f)
 			MSG_NO_PUT, TALK_FCOL, NULL );
 
 		wk->list_idx[ct] = i;
-		value2 = value;	//‚Ğ‚Æ‚Â‘O‚Ì’l‚ğŠo‚¦‚Ä‚¨‚­
+		value2 = value;	//ã²ã¨ã¤å‰ã®å€¤ã‚’è¦šãˆã¦ãŠã
 		if(++ct >= 6){
-			break;	//•`‰æ‚·‚éƒŠƒXƒg‚Í6‚Ü‚Å
+			break;	//æç”»ã™ã‚‹ãƒªã‚¹ãƒˆã¯6ã¾ã§
 		}
 	}
 	GF_BGL_BmpWinOn(&wk->bmpwin);
 	
-	//Œ»İ‚Ì•\¦ƒŒƒR[ƒh”‚ğ•Û‘¶
+	//ç¾åœ¨ã®è¡¨ç¤ºãƒ¬ã‚³ãƒ¼ãƒ‰æ•°ã‚’ä¿å­˜
 	wk->rec_list_num = ct;
-	//ƒJ[ƒ\ƒ‹ˆÊ’u’²®
+	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®èª¿æ•´
 	if((wk->rec_cur > 0 ) && (wk->rec_cur >= wk->rec_list_num)){
 		wk->rec_cur--;
 	}
 	
-	if(cur_f){	//íœƒ‚[ƒh
+	if(cur_f){	//å‰Šé™¤ãƒ¢ãƒ¼ãƒ‰
 		ranking_DelModeStateWrite(wk);
-	}else{	//‰{——ƒ‚[ƒh
+	}else{	//é–²è¦§ãƒ¢ãƒ¼ãƒ‰
 		ranking_ViewModeStateWrite(wk);
 	}
 }
 
 /**
- *	@brief	ƒŒƒR[ƒhƒƒjƒ…[ì¬
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
  */
 static void ranking_RecordMenuStart(RANKING_VIEW_MAIN* wk,u16 cur)
 {
-	//ƒƒjƒ…[—pƒEƒBƒ“ƒhƒE’Ç‰Á
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->bmpwin,LIST_WIN_FRM,LIST_WIN_PX,LIST_WIN_PY,
 			LIST_WIN_SX,LIST_WIN_SY,LIST_WIN_PAL,LIST_WIN_CGX02);
 	
-	//ƒŠƒXƒg•`‰æ
+	//ãƒªã‚¹ãƒˆæç”»
 	BmpMenuWinWrite( &wk->bmpwin, WINDOW_TRANS_OFF, BMPL_MENU_WIN_CGX, BMPL_MENU_WIN_PAL );
 	ranking_RecordMenuWrite(wk,FALSE);
 
-	//‹L˜^‚ğÁ‚·ƒpƒlƒ‹•`‰æ
+	//è¨˜éŒ²ã‚’æ¶ˆã™ãƒ‘ãƒãƒ«æç”»
 	CATS_ObjectEnableCap(wk->act[ACT_PANEL],TRUE);
 	
-	//‹L˜^‚ğÁ‚·ƒEƒBƒ“ƒhƒE’Ç‰Á
+	//è¨˜éŒ²ã‚’æ¶ˆã™ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
 	GF_BGL_BmpWinAdd(
 			wk->bgl, &wk->expwin, RANKING_FRAME,
 			EXP_WIN_PX,EXP_WIN_PY,EXP_WIN_SX,EXP_WIN_SY,
@@ -1155,33 +1155,33 @@ static void ranking_RecordMenuStart(RANKING_VIEW_MAIN* wk,u16 cur)
 }
 
 /**
- *	@brief	ƒŒƒR[ƒhƒƒjƒ…[”jŠü
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç ´æ£„
  */
 static void ranking_RecordMenuEnd(RANKING_VIEW_MAIN* wk)
 {
-	//ƒŠƒXƒgƒEƒBƒ“ƒhƒEÁ‹
+	//ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆå»
 	GF_BGL_BmpWinOff(&wk->bmpwin);
 	BmpMenuWinClear(&wk->bmpwin,WINDOW_TRANS_ON);
 	GF_BGL_BmpWinDel(&wk->bmpwin);
 
-	//‹L˜^‚ğÁ‚·ƒ{ƒ^ƒ“Á‹
+	//è¨˜éŒ²ã‚’æ¶ˆã™ãƒœã‚¿ãƒ³æ¶ˆå»
 	GF_BGL_BmpWinOff(&wk->expwin);	
 	GF_BGL_BmpWinDel(&wk->expwin);	
 
-	//ƒJ[ƒ\ƒ‹ƒAƒNƒ^[‚ğ‰B‚·
+	//ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’éš ã™
 	CATS_ObjectEnableCap(wk->act[ACT_CURSOR],FALSE);
-	//ƒpƒlƒ‹ƒAƒNƒ^[‚ğ‰B‚·
+	//ãƒ‘ãƒãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’éš ã™
 	CATS_ObjectEnableCap(wk->act[ACT_PANEL],FALSE);
 }
 
 //========================================================
-//	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒh
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰
 //========================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒO‰æ–ÊƒCƒxƒ“ƒg 
+ * @brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»é¢ã‚¤ãƒ™ãƒ³ãƒˆ 
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL RankingViewEvent_Main( GMEVENT_CONTROL *ev )
@@ -1246,9 +1246,9 @@ static BOOL RankingViewEvent_Main( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒLƒ“ƒO‰æ–ÊƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * @brief	ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»é¢ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  * @param	event	GMEVENT_CONTROL*
- * @param	dir		ˆÚ“®•ûŒü
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */

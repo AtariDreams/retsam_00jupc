@@ -1,38 +1,38 @@
-�� NitroSDK2.0FC �� 2.0RC1 �� WM �̕ύX�ւ̑Ή���
-                                                                  2004�N10��6��
+■ NitroSDK2.0FC → 2.0RC1 の WM の変更への対応例
+                                                                  2004年10月6日
 
-���̃h�L�������g�� 2.0RC1 �ł̃v���O������̔�݊��_�̏C���̃T�|�[�g��
-�ړI�Ƃ��ċL�q���ꂽ���̂ł��B
-�S�̂̕ύX�_�ɂ��ẮAchangelog.html �����m�F���������B
+このドキュメントは 2.0RC1 でのプログラム上の非互換点の修正のサポートを
+目的として記述されたものです。
+全体の変更点については、changelog.html をご確認ください。
 
-1. �Q�[���O���[�vID�̌^�ύX
+1. ゲームグループIDの型変更
 ===========================
 
-WMParentParam (������ WMpparam �ł����p�\) �̍\�����ύX����܂����B
-�����o�ϐ���3�ԖڂɃp�f�B���O�ړI�̃_�~�[��u16�ϐ����}������Ă��܂��B
-�܂��Au16 ggid[2] �� u32 ggid �ɕύX����܂����B
+WMParentParam (旧名の WMpparam でも利用可能) の構造が変更されました。
+メンバ変数の3番目にパディング目的のダミーのu16変数が挿入されています。
+また、u16 ggid[2] は u32 ggid に変更されました。
 
-����āA�ȉ��̂悤�ȕύX���K�v�ɂȂ�܂��B
+よって、以下のような変更が必要になります。
 
   static const WMParentParam   wcDefaultParameter =
   {
       NULL ,  0 ,
- -    { (u16)WC_GGID , (u16)(WC_GGID>>16) } ,  // �Q�[���O���[�vID
+ -    { (u16)WC_GGID , (u16)(WC_GGID>>16) } ,  // ゲームグループID
  +    0 ,                         // padding
- +    WC_GGID ,                   // �Q�[���O���[�vID
-      0x0000 ,                    // temporary ID (����+1�����)
-      1 ,                         // �G���g���[���t���O
+ +    WC_GGID ,                   // ゲームグループID
+      0x0000 ,                    // temporary ID (毎回+1される)
+      1 ,                         // エントリー許可フラグ
 
-WC_GGID �̕����ɂ͔C�V�����犄��U��ꂽ�Q�[���O���[�vID�� u32 �̒l�Ƃ���
-�ݒ肵�Ă��������B
+WC_GGID の部分には任天堂から割り振られたゲームグループIDを u32 の値として
+設定してください。
 
-�܂��AWMGameInfo �� u16 ggid[2] ���� u32 ggid �ɕύX����Ă��܂��B
-�e�@�� WMStarScan �ŃX�L�����������ʂ̃`�F�b�N��
-ggid �̔�r���s���Ă��镔��������͂��ł��̂ŁA
-������̕ύX���s���K�v������܂��B
-�ύX��͈ȉ��̂悤�ɂȂ�܂��B
+また、WMGameInfo も u16 ggid[2] から u32 ggid に変更されています。
+親機を WMStarScan でスキャンした結果のチェックで
+ggid の比較を行っている部分があるはずですので、
+そちらの変更を行う必要もあります。
+変更例は以下のようになります。
 
-      // GameGroupID����v���邩���m�F
+      // GameGroupIDが一致するかを確認
       if(
           ( ( wcWmBssDesc->length * 2 ) >= ( 64 + 8 ) ) &&
  -        ( wcWmBssDesc->gameInfo.ggid[ 0 ] == wcDefaultParameter.ggid[ 0 ] ) &&
@@ -41,23 +41,23 @@ ggid �̔�r���s���Ă��镔��������͂��ł��̂ŁA
       )
       {
 
- �� ����̕ύX�Ƃ͊֌W����܂��񂪁AwcWmBssDesc->length ���r���Ă��镔����
-    �Â� SDK �̃f���ł͔����Ă������Ƃɒ��ӂ��Ă��������B
-    WMBssDesc.gameInfo �ɗL���Ȓl�������Ă��邩�̃`�F�b�N��*�K��*�K�v�ł��̂ŁA
-    WMBssDesc.length �܂��� WMBssDesc.gameInfoLength �̒l�̃`�F�b�N��
-    ������ƈׂ���Ă��邩�A���̋@��ɂ��m�F���������B
+ ※ 今回の変更とは関係ありませんが、wcWmBssDesc->length を比較している部分が
+    古い SDK のデモでは抜けていたことに注意してください。
+    WMBssDesc.gameInfo に有効な値が入っているかのチェックが*必ず*必要ですので、
+    WMBssDesc.length または WMBssDesc.gameInfoLength の値のチェックが
+    きちんと為されているか、この機会にご確認ください。
 
 
-2. MAC�A�h���X�̌^�ύX
+2. MACアドレスの型変更
 ======================
 
-MAC�A�h���X�̕\���� u16 macAddress[3] ���� u8 macAddress[6] ��
-�ύX����Ă��܂��B
-WM_StartParent �ւ̃R�[���o�b�N�ɗ��� WM_STATECODE_CONNECTED �ʒm��
-�n�߂Ƃ����AMAC�A�h���X���󂯎��ӏ���K�v�ɉ����ĕύX���Ă��������B
+MACアドレスの表現が u16 macAddress[3] から u8 macAddress[6] に
+変更されています。
+WM_StartParent へのコールバックに来る WM_STATECODE_CONNECTED 通知を
+始めとした、MACアドレスを受け取る箇所を必要に応じて変更してください。
 
-�܂��A�X�L�������ɐݒ肷�� WMScanParam.bssid �� u8 bssid[6] ��
-�ύX�ɂȂ��Ă��܂��̂ŁA�Ⴆ�Έȉ��̂悤�ȕύX���K�v�ɂȂ�܂��B
+また、スキャン時に設定する WMScanParam.bssid も u8 bssid[6] に
+変更になっていますので、例えば以下のような変更が必要になります。
 
       wcScanParameter->channel = WC_DEFAULT_CHAN;
       wcScanParameter->maxChannelTime = WC_SCAN_TIME_MAX;
@@ -72,12 +72,12 @@ WM_StartParent �ւ̃R�[���o�b�N�ɗ��� WM_STATECODE_CONNECTED �ʒm��
  +    wcScanParameter->bssid[ 5 ] = 0xff;
 
 
-3. WM_StartMPEx �̃C���^�[�t�F�C�X�ύX
+3. WM_StartMPEx のインターフェイス変更
 ======================================
 
-WM_StartMPEx �Ɉ��� BOOL ignoreFatalError ���ǉ�����Ă��܂��B
-�ʏ�̃A�v���P�[�V�����ł͈����̍Ō�� FALSE ��ǉ�����悤�ɂ��Ă��������B
-�Ȃ��AWM_StartMP ���g���Ă���A�v���P�[�V�����ł͕ύX�͂���܂���B
+WM_StartMPEx に引数 BOOL ignoreFatalError が追加されています。
+通常のアプリケーションでは引数の最後に FALSE を追加するようにしてください。
+なお、WM_StartMP を使っているアプリケーションでは変更はありません。
 
       wmResult = WM_StartMPEx(
           WcCb_StartMP ,
@@ -90,7 +90,7 @@ WM_StartMPEx �Ɉ��� BOOL ignoreFatalError ���ǉ�����Ă��܂��B
           TRUE,
           TRUE,
           FALSE
- +        , FALSE       // ����ǉ����ꂽ ignoreFatalError
+ +        , FALSE       // 今回追加された ignoreFatalError
       );
 
 

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		nutmix_comm_pack.h
- *	@brief		�ʐMPACKAGE�V�X�e��
+ *	@brief		通信PACKAGEシステム
  *	@author		tomoya takahashi
  *	@data		2006.05.23
  *
@@ -22,30 +22,30 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	�ʐM�p�b�N�t���O
+//	通信パックフラグ
 //=====================================
-#define NUTMIX_COMM_PACK_ONE	( 0 )	// ��l�p
-#define NUTMIX_COMM_PACK_COMM	( 1 )	// �ʐM
+#define NUTMIX_COMM_PACK_ONE	( 0 )	// 一人用
+#define NUTMIX_COMM_PACK_COMM	( 1 )	// 通信
 
 //-------------------------------------
-//	�_�~�[�R�[���o�b�N���[�N��
+//	ダミーコールバックワーク数
 //=====================================
 #define NUTMIX_COMM_PACK_DUMMY_WORK_NUM	( 8 )
 
 //-------------------------------------
-//	�_�~�[�R�[���o�b�N�@�V�X�e��TCB�@
-//	VWAIT�^�X�N�D�揇��
+//	ダミーコールバック　システムTCB　
+//	VWAITタスク優先順位
 //=====================================
-//�o���邾���AVWAIT�̈�ԍŌ�ɂ�����
+//出来るだけ、VWAITの一番最後にしたい
 #define NUTMIX_COMM_PACK_DUMMY_TCB_PRI	( 5000 )
 
 //-------------------------------------
-//	�_�~�[�R�[���o�b�N�̂Ƃ���
-//	�ڑ�ID�i�_�~�[�j
+//	ダミーコールバックのときの
+//	接続ID（ダミー）
 //=====================================
 #define NUTMIX_COMM_PACK_DUMMY_NETID	( COMM_PARENT_ID )
 
@@ -54,15 +54,15 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
-// �p�b�N�V�X�e�����[�N
+// パックシステムワーク
 typedef struct _NUTMIX_COMMPACK_WORK NUTMIX_COMMPACK_WORK;
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 GLOBAL NUTMIX_COMMPACK_WORK* NMIX_CommPack_CommandInitialize( const CommPacketTbl* pCommPacketLocal,int listNum,void* pWork, int comm_flg, int heapID );

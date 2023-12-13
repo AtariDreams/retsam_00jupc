@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWCGHTTPCompletedCallback</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWCGHTTPCompletedCallback</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>#include &lt;dwc.h&gt;
@@ -21,125 +21,125 @@ typedef void (*DWCGHTTPCompletedCallback)( const char* buf,
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-		  <A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A> / <A href="DWC_GetGHTTPData.html">DWC_GetGHTTPData</A> / <A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>�֐��ɂ��f�[�^�̃A�b�v���[�h�A�_�E�����[�h�����������ۂɌĂяo����܂��B
+		  <A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A> / <A href="DWC_GetGHTTPData.html">DWC_GetGHTTPData</A> / <A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>関数によるデータのアップロード、ダウンロードが完了した際に呼び出されます。
 		</P>
 		<P>
-		  �{�R�[���o�b�N�֐���<A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A> / <A href="DWC_GetGHTTPData.html">DWC_GetGHTTPData</A> / <A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>�֐��ɂ���Đݒ肷�邱�Ƃ��ł��܂��B
+		  本コールバック関数は<A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A> / <A href="DWC_GetGHTTPData.html">DWC_GetGHTTPData</A> / <A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>関数によって設定することができます。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>buf</CODE></STRONG></EM></TD>
-					<TD width="75%">��M�f�[�^�i�[�o�b�t�@�B�A�b�v���[�h�̎���NULL</TD>
+					<TD width="75%">受信データ格納バッファ。アップロードの時はNULL</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>len</CODE></STRONG></EM></TD>
-					<TD>��M�f�[�^�̃T�C�Y�B�A�b�v���[�h�̎���0�B</TD>
+					<TD>受信データのサイズ。アップロードの時は0。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>result</CODE></STRONG></EM></TD>
-					<TD>�A�b�v���[�h�A�_�E�����[�h�̌��ʁB�G���[�����������ꍇ�́ADWC�̃G���[�����C�u�����ɂ���ăZ�b�g����Ă��܂��BDWC�̃G���[��<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>�֐��Ŏ擾�ł��܂��B</TD>
+					<TD>アップロード、ダウンロードの結果。エラーが発生した場合は、DWCのエラーがライブラリによってセットされています。DWCのエラーは<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>関数で取得できます。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>param</CODE></STRONG></EM></TD>
-					<TD><A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A> / <A href="DWC_GetGHTTPData.html">DWC_GetGHTTPData</A> / <A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>�Ŏw�肵���R�[���o�b�N�p�p�����[�^</TD>
+					<TD><A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A> / <A href="DWC_GetGHTTPData.html">DWC_GetGHTTPData</A> / <A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>で指定したコールバック用パラメータ</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 		<P>
-		  result�̒l�͈ȉ��̂����ꂩ�ɂȂ�܂��B
+		  resultの値は以下のいずれかになります。
 		</P>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>DWC_GHTTP_SUCCESS</CODE></STRONG></EM></TD>
-					<TD width="75%">�t�@�C���擾����</TD>
+					<TD width="75%">ファイル取得成功</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_OUT_OF_MEMORY</CODE></STRONG></EM></TD>
-					<TD>���������蓖�Ď��s</TD>
+					<TD>メモリ割り当て失敗</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_BUFFER_OVERFLOW</CODE></STRONG></EM></TD>
-					<TD>�������ꂽ�o�b�t�@�����������邽�߁A�t�@�C���̎擾���s</TD>
+					<TD>供給されたバッファが小さすぎるため、ファイルの取得失敗</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_PARSE_URL_FAILED</CODE></STRONG></EM></TD>
-					<TD>URL��̓G���[</TD>
+					<TD>URL解析エラー</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_HOST_LOOKUP_FAILED</CODE></STRONG></EM></TD>
-					<TD>�z�X�g���������s</TD>
+					<TD>ホスト名検索失敗</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_SOCKET_FAILED</CODE></STRONG></EM></TD>
-					<TD>�\�P�b�g�̍쐬�A�������A�ǂݏo���A�������ݎ��s</TD>
+					<TD>ソケットの作成、初期化、読み出し、書き込み失敗</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_CONNECT_FAILED</CODE></STRONG></EM></TD>
-					<TD>HTTP�T�[�o�ւ̐ڑ����s</TD>
+					<TD>HTTPサーバへの接続失敗</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_BAD_RESPONSE</CODE></STRONG></EM></TD>
-					<TD>HTTP�T�[�o����̃��X�|���X�̉�̓G���[</TD>
+					<TD>HTTPサーバからのレスポンスの解析エラー</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_REQUEST_REJECTED</CODE></STRONG></EM></TD>
-					<TD>HTTP�T�[�o�̃��N�G�X�g����</TD>
+					<TD>HTTPサーバのリクエスト拒否</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_UNAUTHORIZED</CODE></STRONG></EM></TD>
-					<TD>�t�@�C���擾������</TD>
+					<TD>ファイル取得未許可</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_FORBIDDEN</CODE></STRONG></EM></TD>
-					<TD>HTTP�T�[�o�̃t�@�C�����M����</TD>
+					<TD>HTTPサーバのファイル送信拒否</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_FILE_NOT_FOUND</CODE></STRONG></EM></TD>
-					<TD>HTTP�T�[�o��̃t�@�C���������s</TD>
+					<TD>HTTPサーバ上のファイル検索失敗</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_SERVER_ERROR</CODE></STRONG></EM></TD>
-					<TD>HTTP�T�[�o�����G���[</TD>
+					<TD>HTTPサーバ内部エラー</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_FILE_WRITE_FAILED</CODE></STRONG></EM></TD>
-					<TD>���[�J���t�@�C���ւ̏������݃G���[</TD>
+					<TD>ローカルファイルへの書き込みエラー</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_FILE_READ_FAILED</CODE></STRONG></EM></TD>
-					<TD>���[�J���t�@�C������̓ǂݏo���G���[</TD>
+					<TD>ローカルファイルからの読み出しエラー</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_FILE_INCOMPLETE</CODE></STRONG></EM></TD>
-					<TD>�_�E�����[�h�̒��f</TD>
+					<TD>ダウンロードの中断</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_FILE_TOO_BIG</CODE></STRONG></EM></TD>
-					<TD>�t�@�C�����傫�����邽�߃_�E�����[�h�s�\</TD>
+					<TD>ファイルが大きすぎるためダウンロード不可能</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_ENCRYPTION_ERROR</CODE></STRONG></EM></TD>
-					<TD>�Í����G���[</TD>
+					<TD>暗号化エラー</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_GHTTP_MEMORY_ERROR</CODE></STRONG></EM></TD>
-					<TD>���������蓖�Ď��s</TD>
+					<TD>メモリ割り当て失敗</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<P>
-		  �Ȃ�
+		  なし
 		</P>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<CODE>
 				<A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A>,
@@ -148,10 +148,10 @@ typedef void (*DWCGHTTPCompletedCallback)( const char* buf,
 			</CODE>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2005/12/16 �R�[���o�b�N�ݒ�֐��ɂ��ĒǋL<BR>
-			2005/10/27 ����<BR>
+			2005/12/16 コールバック設定関数について追記<BR>
+			2005/10/27 初版<BR>
 		</P>
 
 	</BODY>

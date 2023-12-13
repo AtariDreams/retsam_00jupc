@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_tool.c
- * @bfief	ƒXƒNƒŠƒvƒg‚ÅŽg—p‚·‚éƒvƒƒOƒ‰ƒ€(í’“)
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ä½¿ç”¨ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ (å¸¸é§)
  * @author	Satoshi Nohara
  * @date	05.11.16
  */
@@ -39,7 +39,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾	
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€	
 //
 //============================================================================================
 u16 GetNumKeta(u32 num);
@@ -55,17 +55,17 @@ u8 debug_frontier_key_set = 0;
 
 //============================================================================================
 //
-//	‚»‚Ì‘¼
+//	ãã®ä»–
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * “n‚³‚ê‚½’l‚ÌŒ…”‚ðŽæ“¾
+ * æ¸¡ã•ã‚ŒãŸå€¤ã®æ¡æ•°ã‚’å–å¾—
  *
- * @param   num			’l
+ * @param   num			å€¤
  *
- * @retval  "Œ…”"
+ * @retval  "æ¡æ•°"
  */
 //--------------------------------------------------------------
 u16 GetNumKeta(u32 num)
@@ -79,22 +79,22 @@ u16 GetNumKeta(u32 num)
 	else if( num / 10000000 == 0 ) return 7;
 	else if( num / 100000000 == 0 ) return 8;
 
-	return 1;	//“–‚Ä‚Í‚Ü‚ç‚È‚©‚Á‚½‚ç‚PŒ…‚ð•Ô‚·
+	return 1;	//å½“ã¦ã¯ã¾ã‚‰ãªã‹ã£ãŸã‚‰ï¼‘æ¡ã‚’è¿”ã™
 }
 
 //--------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[‚©ƒ`ƒFƒbƒN
+ * æŠ€ãƒžã‚·ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   itemno		ƒAƒCƒeƒ€ƒiƒ“ƒo[
+ * @param   itemno		ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  TRUE		‹Zƒ}ƒVƒ“
- * @retval  FALSE		‚»‚êˆÈŠO
+ * @retval  TRUE		æŠ€ãƒžã‚·ãƒ³
+ * @retval  FALSE		ãã‚Œä»¥å¤–
  */
 //--------------------------------------------------------------
 u16 WazaMachineItemNoCheck( u16 itemno )
 {
-	//‹Zƒ}ƒVƒ“‚©ƒ`ƒFƒbƒN
+	//æŠ€ãƒžã‚·ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
 	if( (itemno >= ITEM_WAZAMASIN01) && (itemno <= ITEM_HIDENMASIN08) ){
 		return TRUE;
 	}
@@ -105,23 +105,23 @@ u16 WazaMachineItemNoCheck( u16 itemno )
 
 //============================================================================================
 //
-//	}ŠÓ•]‰¿
+//	å›³é‘‘è©•ä¾¡
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * ƒVƒ“ƒIƒE}ŠÓ•]‰¿ƒƒbƒZ[ƒWIDŽæ“¾
+ * ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘è©•ä¾¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDå–å¾—
  *
- * @param   num		‰B‚µ6•C‚ðœ‚¢‚½Œ©‚½”
- * @param	c04_arrive	c04ƒnƒNƒ^ƒCƒVƒeƒB‚Ì“ž’…ƒtƒ‰ƒO
+ * @param   num		éš ã—6åŒ¹ã‚’é™¤ã„ãŸè¦‹ãŸæ•°
+ * @param	c04_arrive	c04ãƒã‚¯ã‚¿ã‚¤ã‚·ãƒ†ã‚£ã®åˆ°ç€ãƒ•ãƒ©ã‚°
  *
- * @retval  "ƒƒbƒZ[ƒWID"
+ * @retval  "ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID"
  */
 //--------------------------------------------------------------
 u16 GetShinouZukanHyoukaMsgID( u16 num ,u16 c04_arrive)
 {
-	//ƒVƒ“ƒIƒE}ŠÓŠ®¬‚µ‚Ä‚é‚©ƒ`ƒFƒbƒN
+	//ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘å®Œæˆã—ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( num <= 15 ){	return msg_hyouka_s00; }
 	if( num <= 30 ){	return msg_hyouka_s01; }
 	if( num <= 45 ){	return msg_hyouka_s02; }
@@ -135,24 +135,24 @@ u16 GetShinouZukanHyoukaMsgID( u16 num ,u16 c04_arrive)
 	if( num <= 200 ){	return msg_hyouka_s10; }
 	if( num <= 209 ){	return msg_hyouka_s11; }
 
-	//‚±‚±‚ÅŠ®¬
+	//ã“ã“ã§å®Œæˆ
 	if(c04_arrive){
-		//ƒnƒNƒ^ƒC‚É“ž’…‚µ‚Ä‚¢‚½‚çAŒ¤‹†Š‚Ö‚¨‚¢‚ÅƒƒbƒZ[ƒW
+		//ãƒã‚¯ã‚¿ã‚¤ã«åˆ°ç€ã—ã¦ã„ãŸã‚‰ã€ç ”ç©¶æ‰€ã¸ãŠã„ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		return msg_hyouka_doctor_07;
 	}else{
-		//“ž’…‚µ‚Ä‚¢‚È‚¯‚ê‚ÎA‘S•”Œ©‚½‚ËƒƒbƒZ[ƒW
+		//åˆ°ç€ã—ã¦ã„ãªã‘ã‚Œã°ã€å…¨éƒ¨è¦‹ãŸã­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		return msg_hyouka_doctor_08;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * •]‰¿ƒƒbƒZ[ƒWIDŽæ“¾
+ * è©•ä¾¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDå–å¾—
  *
- * @param   num		‰B‚µ‚ðœ‚¢‚½•ß‚Ü‚¦‚½”
- * @param	sex		ŽålŒö‚Ì«•Ê
+ * @param   num		éš ã—ã‚’é™¤ã„ãŸæ•ã¾ãˆãŸæ•°
+ * @param	sex		ä¸»äººå…¬ã®æ€§åˆ¥
  *
- * @retval  "ƒƒbƒZ[ƒWID"
+ * @retval  "ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID"
  */
 //--------------------------------------------------------------
 u16 GetZenkokuZukanHyoukaMsgID( u16 num ,u16 sex)
@@ -170,7 +170,7 @@ u16 GetZenkokuZukanHyoukaMsgID( u16 num ,u16 sex)
 	if( num <= 379 ){	return msg_hyouka_z10; }
 	if( num <= 409 ){	return msg_hyouka_z11; }
 	if( num <= 429 ){
-		if(sex){	//—‚ÌŽqver
+		if(sex){	//å¥³ã®å­ver
 			return msg_hyouka_z19;
 		}else{
 			return msg_hyouka_z12; 
@@ -182,7 +182,7 @@ u16 GetZenkokuZukanHyoukaMsgID( u16 num ,u16 sex)
 	if( num <= 475 ){	return msg_hyouka_z16; }
 	if( num <= 481 ){	return msg_hyouka_z17; }
 
-	//Š®¬
+	//å®Œæˆ
 	if(sex){
 		return msg_hyouka_z20;
 	}else{
@@ -192,11 +192,11 @@ u16 GetZenkokuZukanHyoukaMsgID( u16 num ,u16 sex)
 
 //--------------------------------------------------------------
 /**
- * æ“ªƒ|ƒPƒ‚ƒ“ŽZo
+ * å…ˆé ­ãƒã‚±ãƒ¢ãƒ³ç®—å‡º
  *
- * @param   sv		ƒ|ƒPƒ‚ƒ“ƒZ[ƒuî•ñ\‘¢‘Ì
+ * @param   sv		ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¼ãƒ–æƒ…å ±æ§‹é€ ä½“
  *
- * @retval  ”Ô†
+ * @retval  ç•ªå·
  */
 //--------------------------------------------------------------
 u16 GetFrontPokemon(SAVEDATA * sv)
@@ -209,18 +209,18 @@ u16 GetFrontPokemon(SAVEDATA * sv)
 	for(i=0;i<max;i++){
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(sv), i);
 
-		//ƒ‚ƒ“ƒXƒ^[”Ô†Žæ“¾(0ˆÈŠO‚È‚çƒ^ƒ}ƒS‚¶‚á‚È‚¢j
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç•ªå·å–å¾—(0ä»¥å¤–ãªã‚‰ã‚¿ãƒžã‚´ã˜ã‚ƒãªã„ï¼‰
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
 			return i;
 		}
 	}
 
-	return 0;	//¦•s³‚Èƒ|ƒPƒ‚ƒ““™‘Îôi’Êí‚Í‚±‚±‚Í’Ê‚è‚Ü‚¹‚ñj
+	return 0;	//â€»ä¸æ­£ãªãƒã‚±ãƒ¢ãƒ³ç­‰å¯¾ç­–ï¼ˆé€šå¸¸ã¯ã“ã“ã¯é€šã‚Šã¾ã›ã‚“ï¼‰
 }
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒŒƒWƒLƒ“ƒOƒCƒxƒ“ƒg@ŽèŽ‚¿‚ÉƒAƒCƒXEƒƒbƒNEƒXƒ`ƒ‹‚ª‚¢‚é‚©‚Ç‚¤‚©H
+ *	@brief	ãƒ¬ã‚¸ã‚­ãƒ³ã‚°ã‚¤ãƒ™ãƒ³ãƒˆã€€æ‰‹æŒã¡ã«ã‚¢ã‚¤ã‚¹ãƒ»ãƒ­ãƒƒã‚¯ãƒ»ã‚¹ãƒãƒ«ãŒã„ã‚‹ã‹ã©ã†ã‹ï¼Ÿ
  */
 //--------------------------------------------------------------
 BOOL EventCheck_IsReziUnseal(SAVEDATA* sv)
@@ -252,7 +252,7 @@ BOOL EventCheck_IsReziUnseal(SAVEDATA* sv)
 }
 
 //--------------------------------------------------------------
-///ƒtƒB[ƒ‹ƒhOBJ‚ð—h‚ç‚¸ƒAƒjƒ
+///ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚’æºã‚‰ãšã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 typedef struct _OBJ_SHAKE_ANM{
 	FIELD_OBJ_PTR	obj;
@@ -263,14 +263,14 @@ typedef struct _OBJ_SHAKE_ANM{
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒF‚ð—h‚ç‚·ƒCƒxƒ“ƒg 
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚’æºã‚‰ã™ã‚¤ãƒ™ãƒ³ãƒˆ 
  * @param	ev	GMEVENT_CONTROL *
- * @param	obj		FIELD_OBJ_PTR	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒF‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	time	—h‚ç‚·‰ñ”
- * @param	spd		—h‚ç‚·ƒXƒs[ƒh(360‚ðŠ„‚èØ‚ê‚é”Žš‚ª‚æ‚¢)
- * @param	ofsx	—h‚ç‚·•X	
- * @param	ofsz	—h‚ç‚·•Z	
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @param	obj		FIELD_OBJ_PTR	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	time	æºã‚‰ã™å›žæ•°
+ * @param	spd		æºã‚‰ã™ã‚¹ãƒ”ãƒ¼ãƒ‰(360ã‚’å‰²ã‚Šåˆ‡ã‚Œã‚‹æ•°å­—ãŒã‚ˆã„)
+ * @param	ofsx	æºã‚‰ã™å¹…X	
+ * @param	ofsz	æºã‚‰ã™å¹…Z	
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL FieldobjAnmEvent_ObjShake( GMEVENT_CONTROL *ev )
@@ -318,7 +318,7 @@ void EventCmd_ObjShakeAnm( GMEVENT_CONTROL *event,FIELD_OBJ_PTR obj,
 }
 
 //--------------------------------------------------------------
-///ƒtƒB[ƒ‹ƒhOBJ‚ðBlink‚³‚¹‚éƒAƒjƒ
+///ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚’Blinkã•ã›ã‚‹ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 typedef struct _OBJ_BLINK_ANM{
 	FIELD_OBJ_PTR	obj;
@@ -330,11 +330,11 @@ typedef struct _OBJ_BLINK_ANM{
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒF‚ðBlink‚³‚¹‚éƒAƒjƒƒCƒxƒ“ƒg 
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚’Blinkã•ã›ã‚‹ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ™ãƒ³ãƒˆ 
  * @param	ev		GMEVENT_CONTROL *
- * @param	obj		FIELD_OBJ_PTR	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒF‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	count	Blink‚³‚¹‚é‰ñ”
- * @param	time	onoff‚ðØ‚è‘Ö‚¦‚éƒCƒ“ƒ^[ƒoƒ‹
+ * @param	obj		FIELD_OBJ_PTR	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	count	Blinkã•ã›ã‚‹å›žæ•°
+ * @param	time	onoffã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«
  */
 //--------------------------------------------------------------
 static BOOL FieldobjAnmEvent_ObjBlink( GMEVENT_CONTROL *ev )
@@ -372,7 +372,7 @@ void EventCmd_ObjBlinkAnm(GMEVENT_CONTROL *event,FIELD_OBJ_PTR obj,u16 count,u16
 
 //============================================================================================
 //
-//	ƒtƒ@ƒNƒgƒŠ[‚ÅŽg—p(frontier,field‚ÅŽg—p‚³‚ê‚é)
+//	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã§ä½¿ç”¨(frontier,fieldã§ä½¿ç”¨ã•ã‚Œã‚‹)
 //
 //============================================================================================
 int FactoryScr_GetWinRecordID( u8 level, u8 type );
@@ -382,11 +382,11 @@ int FactoryScr_GetMaxTradeRecordID( u8 level, u8 type );
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ»Ý‚Ì˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	ç¾åœ¨ã®é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		FACTORY_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scrcmd.c EvCmdFactorySetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scrcmd.c EvCmdFactorySetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int FactoryScr_GetWinRecordID( u8 level, u8 type )
@@ -412,16 +412,16 @@ int FactoryScr_GetWinRecordID( u8 level, u8 type )
 		break;
 	};
 
-	return ret_id + (level * FACTORY_RECID_SIZE);		//LV50‚ÆLV100‚ ‚í‚¹‚é
+	return ret_id + (level * FACTORY_RECID_SIZE);		//LV50ã¨LV100ã‚ã‚ã›ã‚‹
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	Å‘å˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	æœ€å¤§é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		FACTORY_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scrcmd.c EvCmdFactorySetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scrcmd.c EvCmdFactorySetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int FactoryScr_GetMaxWinRecordID( u8 level, u8 type )
@@ -447,16 +447,16 @@ int FactoryScr_GetMaxWinRecordID( u8 level, u8 type )
 		break;
 	};
 
-	return ret_id + (level * FACTORY_RECID_SIZE);		//LV50‚ÆLV100‚ ‚í‚¹‚é
+	return ret_id + (level * FACTORY_RECID_SIZE);		//LV50ã¨LV100ã‚ã‚ã›ã‚‹
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ»Ý‚ÌŒðŠ·”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	ç¾åœ¨ã®äº¤æ›æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		FACTORY_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scrcmd.c EvCmdFactorySetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scrcmd.c EvCmdFactorySetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int FactoryScr_GetTradeRecordID( u8 level, u8 type )
@@ -482,16 +482,16 @@ int FactoryScr_GetTradeRecordID( u8 level, u8 type )
 		break;
 	};
 
-	return ret_id + (level * FACTORY_RECID_SIZE);		//LV50‚ÆLV100‚ ‚í‚¹‚é
+	return ret_id + (level * FACTORY_RECID_SIZE);		//LV50ã¨LV100ã‚ã‚ã›ã‚‹
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	Å‘å˜AŸŽž‚ÌŒðŠ·”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	æœ€å¤§é€£å‹æ™‚ã®äº¤æ›æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		FACTORY_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scrcmd.c EvCmdFactorySetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scrcmd.c EvCmdFactorySetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int FactoryScr_GetMaxTradeRecordID( u8 level, u8 type )
@@ -517,13 +517,13 @@ int FactoryScr_GetMaxTradeRecordID( u8 level, u8 type )
 		break;
 	};
 
-	return ret_id + (level * FACTORY_RECID_SIZE);		//LV50‚ÆLV100‚ ‚í‚¹‚é
+	return ret_id + (level * FACTORY_RECID_SIZE);		//LV50ã¨LV100ã‚ã‚ã›ã‚‹
 }
 
 
 //============================================================================================
 //
-//	ƒoƒgƒ‹ƒXƒe[ƒW‚ÅŽg—p(frontier,field‚ÅŽg—p‚³‚ê‚é)
+//	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã§ä½¿ç”¨(frontier,fieldã§ä½¿ç”¨ã•ã‚Œã‚‹)
 //
 //============================================================================================
 int StageScr_GetTypeLevelRecordID( u8 type, u8 csr_pos );
@@ -534,11 +534,11 @@ int StageScr_GetExMaxWinRecordID( u8 type );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒvƒŒƒxƒ‹‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	ã‚¿ã‚¤ãƒ—ãƒ¬ãƒ™ãƒ«ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		STAGE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scr_stage_sub.c EvCmdStageSetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scr_stage_sub.c EvCmdStageSetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int StageScr_GetTypeLevelRecordID( u8 type, u8 csr_pos )
@@ -564,10 +564,10 @@ int StageScr_GetTypeLevelRecordID( u8 type, u8 csr_pos )
 		break;
 	};
 
-	//ƒIƒtƒZƒbƒg‚ð‚ ‚í‚·(2‚Â‚¸‚ÂŠi”[‚µ‚Ä‚¢‚é)
+	//ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã‚ã‚ã™(2ã¤ãšã¤æ ¼ç´ã—ã¦ã„ã‚‹)
 	ret_id += (csr_pos / 2);
 
-	OS_Printf( "==============\nTypeLevel‚ðŽæ“¾%d\n" );
+	OS_Printf( "==============\nTypeLevelã‚’å–å¾—%d\n" );
 	OS_Printf( "type = %d\n", type );
 	OS_Printf( "ret_id = %d\n", ret_id );
 	return ret_id;
@@ -575,11 +575,11 @@ int StageScr_GetTypeLevelRecordID( u8 type, u8 csr_pos )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ»Ý‚Ì˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	ç¾åœ¨ã®é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		STAGE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scr_stage_sub.c EvCmdStageSetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scr_stage_sub.c EvCmdStageSetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int StageScr_GetWinRecordID( u8 type )
@@ -610,11 +610,11 @@ int StageScr_GetWinRecordID( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	Å‘å˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	æœ€å¤§é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		STAGE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scr_stage_sub.c EvCmdStageSetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scr_stage_sub.c EvCmdStageSetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int StageScr_GetMaxWinRecordID( u8 type )
@@ -645,9 +645,9 @@ int StageScr_GetMaxWinRecordID( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	’§í’†‚Ìƒ|ƒPƒ‚ƒ“‚ÌŽí—ÞƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	æŒ‘æˆ¦ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã®ç¨®é¡žãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		STAGE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 int StageScr_GetMonsNoRecordID( u8 type )
@@ -678,9 +678,9 @@ int StageScr_GetMonsNoRecordID( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠO•”ƒZ[ƒu‚ÌÅ‘å˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã®æœ€å¤§é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		STAGE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 int StageScr_GetExMaxWinRecordID( u8 type )
@@ -690,20 +690,20 @@ int StageScr_GetExMaxWinRecordID( u8 type )
 	switch( type ){
 
 	case STAGE_TYPE_SINGLE:
-		ret_id = FREXID_STAGE_RENSHOU_SINGLE;			///<ƒXƒe[ƒWFƒVƒ“ƒOƒ‹Å‘å˜AŸ”
+		ret_id = FREXID_STAGE_RENSHOU_SINGLE;			///<ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šã‚·ãƒ³ã‚°ãƒ«æœ€å¤§é€£å‹æ•°
 		break;
 
 	case STAGE_TYPE_DOUBLE:
-		ret_id = FREXID_STAGE_RENSHOU_DOUBLE;			///<ƒXƒe[ƒWFƒ_ƒuƒ‹Å‘å˜AŸ”
+		ret_id = FREXID_STAGE_RENSHOU_DOUBLE;			///<ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šãƒ€ãƒ–ãƒ«æœ€å¤§é€£å‹æ•°
 		break;
 
 	case STAGE_TYPE_MULTI:
-		ret_id = FREXID_STAGE_RENSHOU_MULTI;			///<ƒXƒe[ƒWFƒƒCƒ„ƒŒƒXÅ‘å˜AŸ”
+		ret_id = FREXID_STAGE_RENSHOU_MULTI;			///<ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹æœ€å¤§é€£å‹æ•°
 		break;
 
 	case STAGE_TYPE_WIFI_MULTI:
-		ret_id = FREXID_STAGE_RENSHOU_MULTI;			///<ƒXƒe[ƒWFƒƒCƒ„ƒŒƒXÅ‘å˜AŸ”
-		//ret_id = FREXID_STAGE_RENSHOU_WIFI,			///<ƒXƒe[ƒWFWIFIÅ‘å˜AŸ”
+		ret_id = FREXID_STAGE_RENSHOU_MULTI;			///<ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹æœ€å¤§é€£å‹æ•°
+		//ret_id = FREXID_STAGE_RENSHOU_WIFI,			///<ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šWIFIæœ€å¤§é€£å‹æ•°
 		GF_ASSERT( 0 );
 		break;
 	};
@@ -714,7 +714,7 @@ int StageScr_GetExMaxWinRecordID( u8 type )
 
 //============================================================================================
 //
-//	ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹‚ÅŽg—p(frontier,field‚ÅŽg—p‚³‚ê‚é)
+//	ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã§ä½¿ç”¨(frontier,fieldã§ä½¿ç”¨ã•ã‚Œã‚‹)
 //
 //============================================================================================
 int CastleScr_GetRankRecordID( u8 type, u8 id );
@@ -726,11 +726,11 @@ int CastleScr_GetRemainderCPRecordID( u8 type );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒN(‰ñ•œAƒŒƒ“ƒ^ƒ‹Aî•ñ)‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	ãƒ©ãƒ³ã‚¯(å›žå¾©ã€ãƒ¬ãƒ³ã‚¿ãƒ«ã€æƒ…å ±)ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scrcmd.c EvCmdCastleSetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scrcmd.c EvCmdCastleSetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int CastleScr_GetRankRecordID( u8 type, u8 id )
@@ -756,18 +756,18 @@ int CastleScr_GetRankRecordID( u8 type, u8 id )
 		break;
 	};
 
-	//‰ñ•œAƒŒƒ“ƒ^ƒ‹Aî•ñ
+	//å›žå¾©ã€ãƒ¬ãƒ³ã‚¿ãƒ«ã€æƒ…å ±
 	ret_id += id;
 	return ret_id;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ»Ý‚Ì˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	ç¾åœ¨ã®é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scrcmd.c EvCmdCastleSetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scrcmd.c EvCmdCastleSetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int CastleScr_GetWinRecordID( u8 type )
@@ -798,11 +798,11 @@ int CastleScr_GetWinRecordID( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	Å‘å˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	æœ€å¤§é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scrcmd.c EvCmdCastleSetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scrcmd.c EvCmdCastleSetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int CastleScr_GetMaxWinRecordID( u8 type )
@@ -833,9 +833,9 @@ int CastleScr_GetMaxWinRecordID( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ»Ý‚ÌCP‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	ç¾åœ¨ã®CPã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 int CastleScr_GetCPRecordID( u8 type )
@@ -866,9 +866,9 @@ int CastleScr_GetCPRecordID( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	Žg—p‚µ‚½CP‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	ä½¿ç”¨ã—ãŸCPã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 int CastleScr_GetUsedCPRecordID( u8 type )
@@ -899,9 +899,9 @@ int CastleScr_GetUsedCPRecordID( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	Å‘å˜AŸ”‚ð‹L˜^‚µ‚½Žž‚ÌŽc‚èCP‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	æœ€å¤§é€£å‹æ•°ã‚’è¨˜éŒ²ã—ãŸæ™‚ã®æ®‹ã‚ŠCPã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 int CastleScr_GetRemainderCPRecordID( u8 type )
@@ -932,11 +932,11 @@ int CastleScr_GetRemainderCPRecordID( u8 type )
 
 //--------------------------------------------------------------
 /**
- *	@brief	(ƒ^ƒ[)ŽQ‰ÁŽw’è‚µ‚½ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌðŒƒ`ƒFƒbƒN
+ *	@brief	(ã‚¿ãƒ¯ãƒ¼)å‚åŠ æŒ‡å®šã—ãŸæ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®æ¡ä»¶ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	0	ŽQ‰ÁOK
- *	@retval	1	“¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é
- *	@retval 2	“¯‚¶ƒAƒCƒeƒ€‚ðŽ‚Á‚Ä‚¢‚é
+ *	@retval	0	å‚åŠ OK
+ *	@retval	1	åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹
+ *	@retval 2	åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 #if 0
@@ -962,11 +962,11 @@ int TowerScr_CheckEntryPokeSub( u8* pos_tbl, u8 max, SAVEDATA* savedata )
 		}
 		for(j = 0;j < i;j++){
 			if(monsno[i] == monsno[j]){
-				//“¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é
+				//åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹
 				return 1;
 			}
 			if((itemno[i] != 0) && (itemno[i] == itemno[j])){
-				//“¯‚¶ƒAƒCƒeƒ€‚ð‚à‚Á‚Ä‚¢‚é
+				//åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚‚ã£ã¦ã„ã‚‹
 				return 2;
 			}
 		}
@@ -978,9 +978,9 @@ int TowerScr_CheckEntryPokeSub( u8* pos_tbl, u8 max, SAVEDATA* savedata )
 
 //--------------------------------------------------------------
 /**
- * @brief	—F’B”Ô†Žæ“¾
+ * @brief	å‹é”ç•ªå·å–å¾—
  *
- * @param	wk			FACTORY_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FACTORY_SCRWORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -989,11 +989,11 @@ int TowerScr_CheckEntryPokeSub( u8* pos_tbl, u8 max, SAVEDATA* savedata )
 int Frontier_GetFriendIndex( u32 record_no );
 int Frontier_GetFriendIndex( u32 record_no )
 {
-	//ƒŒƒR[ƒhƒiƒ“ƒo[‚É‚æ‚Á‚Ä•ªŠò
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒŠãƒ³ãƒãƒ¼ã«ã‚ˆã£ã¦åˆ†å²
 	//
-	//’ÊMó‘Ô‚ðƒ`ƒFƒbƒN‚È‚Ç‚ª•K—v‚©‚àB
+	//é€šä¿¡çŠ¶æ…‹ã‚’ãƒã‚§ãƒƒã‚¯ãªã©ãŒå¿…è¦ã‹ã‚‚ã€‚
 	
-	if( record_no < FRID_SINGLE_END ){			//CLEAR‚ÌƒŒƒR[ƒh‚Ì’Ç‰ÁêŠ‚É‚ ‚í‚¹‚½
+	if( record_no < FRID_SINGLE_END ){			//CLEARã®ãƒ¬ã‚³ãƒ¼ãƒ‰ã®è¿½åŠ å ´æ‰€ã«ã‚ã‚ã›ãŸ
 	//if( record_no < FRID_MAX ){
 		return FRONTIER_RECORD_NOT_FRIEND;
 	}
@@ -1004,14 +1004,14 @@ int Frontier_GetFriendIndex( u32 record_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	Ú‘±’†‚Ì‘ŠŽè‚ÌVersion‚ðŽæ“¾
+ * @brief	æŽ¥ç¶šä¸­ã®ç›¸æ‰‹ã®Versionã‚’å–å¾—
  *
  * @param	none	
  *
  * @retval	u8			rom_code
  *
- * ƒ_ƒCƒ„Aƒp[ƒ‹‚Í0(POKEMON_DP_ROM_CODE)
- * ƒvƒ‰ƒ`ƒi‚È‚Ç‚ÍVERSION_PLATINUM‚Ì’l‚ª“ü‚é
+ * ãƒ€ã‚¤ãƒ¤ã€ãƒ‘ãƒ¼ãƒ«ã¯0(POKEMON_DP_ROM_CODE)
+ * ãƒ—ãƒ©ãƒãƒŠãªã©ã¯VERSION_PLATINUMã®å€¤ãŒå…¥ã‚‹
  */
 //--------------------------------------------------------------
 u8 Frontier_GetPairRomCode( void );
@@ -1027,11 +1027,11 @@ u8 Frontier_GetPairRomCode( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	Ž©•ªA‘ŠŽè‚Ì‚Ç‚¿‚ç‚©‚ªDP‚©ƒ`ƒFƒbƒN
+ * @brief	è‡ªåˆ†ã€ç›¸æ‰‹ã®ã©ã¡ã‚‰ã‹ãŒDPã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param	none	
  *
- * @retval	"1 = DP‚ ‚è"
+ * @retval	"1 = DPã‚ã‚Š"
  */
 //--------------------------------------------------------------
 u8 Frontier_CheckDPRomCode( SAVEDATA* sv );
@@ -1051,7 +1051,7 @@ u8 Frontier_CheckDPRomCode( SAVEDATA* sv )
 
 //============================================================================================
 //
-//	ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg‚ÅŽg—p(frontier,field‚ÅŽg—p‚³‚ê‚é)
+//	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã§ä½¿ç”¨(frontier,fieldã§ä½¿ç”¨ã•ã‚Œã‚‹)
 //
 //============================================================================================
 int RouletteScr_GetWinRecordID( u8 type );
@@ -1062,11 +1062,11 @@ int RouletteScr_GetRemainderCPRecordID( u8 type );
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ»Ý‚Ì˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	ç¾åœ¨ã®é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scrcmd.c EvCmdRouletteSetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scrcmd.c EvCmdRouletteSetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int RouletteScr_GetWinRecordID( u8 type )
@@ -1097,11 +1097,11 @@ int RouletteScr_GetWinRecordID( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	Å‘å˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	æœ€å¤§é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * "scrcmd.c EvCmdRouletteSetContinueNG‚Å‚à“¯‚¶‚æ‚¤‚Èˆ—‚ð‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓI"
+ * "scrcmd.c EvCmdRouletteSetContinueNGã§ã‚‚åŒã˜ã‚ˆã†ãªå‡¦ç†ã‚’ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„ï¼"
  */
 //--------------------------------------------------------------
 int RouletteScr_GetMaxWinRecordID( u8 type )
@@ -1133,7 +1133,7 @@ int RouletteScr_GetMaxWinRecordID( u8 type )
 
 //============================================================================================
 //
-//	ƒ^ƒ[‚ÅŽg—p(frontier,field‚ÅŽg—p‚³‚ê‚é)
+//	ã‚¿ãƒ¯ãƒ¼ã§ä½¿ç”¨(frontier,fieldã§ä½¿ç”¨ã•ã‚Œã‚‹)
 //
 //============================================================================================
 int TowerScr_GetWinRecordID( u8 type );
@@ -1141,9 +1141,9 @@ int TowerScr_GetMaxWinRecordID( u8 type );
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ»Ý‚Ì˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	ç¾åœ¨ã®é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	type		ƒVƒ“ƒOƒ‹‚È‚Ç
+ * @param	type		ã‚·ãƒ³ã‚°ãƒ«ãªã©
  */
 //--------------------------------------------------------------
 int TowerScr_GetWinRecordID( u8 type )
@@ -1160,24 +1160,24 @@ int TowerScr_GetWinRecordID( u8 type )
 		ret_id = FRID_TOWER_DOUBLE_RENSHOU_CNT;
 		break;
 
-	case BTWR_MODE_MULTI:		//AIƒ}ƒ‹ƒ`
+	case BTWR_MODE_MULTI:		//AIãƒžãƒ«ãƒ
 		ret_id = FRID_TOWER_MULTI_NPC_RENSHOU_CNT;
 		break;
 
-	case BTWR_MODE_COMM_MULTI:	//ƒ}ƒ‹ƒ`
+	case BTWR_MODE_COMM_MULTI:	//ãƒžãƒ«ãƒ
 		ret_id = FRID_TOWER_MULTI_COMM_RENSHOU_CNT;
 		break;
 
-	case BTWR_MODE_WIFI:		//WIFIƒ_ƒEƒ“ƒ[ƒh
+	case BTWR_MODE_WIFI:		//WIFIãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 		ret_id = FRID_TOWER_WIFI_DL_RENSHOU_CNT;
 		break;
 
-	case BTWR_MODE_WIFI_MULTI:	//WIFIƒ}ƒ‹ƒ`
+	case BTWR_MODE_WIFI_MULTI:	//WIFIãƒžãƒ«ãƒ
 		ret_id = FRID_TOWER_MULTI_WIFI_RENSHOU_CNT;
 		break;
 
 	default:
-		GF_ASSERT_MSG( 0, "tower type‚ª‘Î‰ž‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" );
+		GF_ASSERT_MSG( 0, "tower typeãŒå¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" );
 		break;
 	};
 
@@ -1186,9 +1186,9 @@ int TowerScr_GetWinRecordID( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	Å‘å˜AŸ”‚ÌƒŒƒR[ƒh’è‹`‚ðŽæ“¾
+ * @brief	æœ€å¤§é€£å‹æ•°ã®ãƒ¬ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’å–å¾—
  *
- * @param	type		ƒVƒ“ƒOƒ‹‚È‚Ç
+ * @param	type		ã‚·ãƒ³ã‚°ãƒ«ãªã©
  */
 //--------------------------------------------------------------
 int TowerScr_GetMaxWinRecordID( u8 type )
@@ -1205,24 +1205,24 @@ int TowerScr_GetMaxWinRecordID( u8 type )
 		ret_id = FRID_TOWER_DOUBLE_RENSHOU;
 		break;
 
-	case BTWR_MODE_MULTI:		//AIƒ}ƒ‹ƒ`
+	case BTWR_MODE_MULTI:		//AIãƒžãƒ«ãƒ
 		ret_id = FRID_TOWER_MULTI_NPC_RENSHOU;
 		break;
 
-	case BTWR_MODE_COMM_MULTI:	//ƒ}ƒ‹ƒ`
+	case BTWR_MODE_COMM_MULTI:	//ãƒžãƒ«ãƒ
 		ret_id = FRID_TOWER_MULTI_COMM_RENSHOU;
 		break;
 
-	case BTWR_MODE_WIFI:		//WIFIƒ_ƒEƒ“ƒ[ƒh
+	case BTWR_MODE_WIFI:		//WIFIãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 		ret_id = FRID_TOWER_WIFI_DL_RENSHOU;
 		break;
 
-	case BTWR_MODE_WIFI_MULTI:	//WIFIƒ}ƒ‹ƒ`
+	case BTWR_MODE_WIFI_MULTI:	//WIFIãƒžãƒ«ãƒ
 		ret_id = FRID_TOWER_MULTI_WIFI_RENSHOU;
 		break;
 
 	default:
-		GF_ASSERT_MSG( 0, "tower type‚ª‘Î‰ž‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" );
+		GF_ASSERT_MSG( 0, "tower typeãŒå¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" );
 		break;
 	};
 
@@ -1239,14 +1239,14 @@ u16 FrontierScrTools_CheckEntryPokeNum( u16 num, SAVEDATA* savedata );
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒtƒƒ“ƒeƒBƒA@ŽQ‰Á‰Â”\‚Èƒ|ƒPƒ‚ƒ“”‚Ìƒ`ƒFƒbƒN
+ *	@brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã€€å‚åŠ å¯èƒ½ãªãƒã‚±ãƒ¢ãƒ³æ•°ã®ãƒã‚§ãƒƒã‚¯
  *
- *	@param	num			ŽQ‰Á‚É•K—v‚Èƒ|ƒPƒ‚ƒ“”
- *	@param	savedata	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	num			å‚åŠ ã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³æ•°
+ *	@param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	"0=ŽQ‰Á‰Â”\A‚»‚êˆÈŠO‚Í‘«‚è‚È‚¢”"
+ *	@retval	"0=å‚åŠ å¯èƒ½ã€ãã‚Œä»¥å¤–ã¯è¶³ã‚Šãªã„æ•°"
  *
- *	ƒLƒƒƒbƒXƒ‹‚Æƒ‹[ƒŒƒbƒg‚ÅŽg—p‚µ‚Ä‚¢‚é
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã¨ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã§ä½¿ç”¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 u16 FrontierScrTools_CheckEntryPokeNum( u16 num, SAVEDATA* savedata )
@@ -1259,21 +1259,21 @@ u16 FrontierScrTools_CheckEntryPokeNum( u16 num, SAVEDATA* savedata )
 	party	= SaveData_GetTemotiPokemon( savedata );
 	pokenum = PokeParty_GetPokeCount( party );
 
-	//ŽèŽ‚¿‚Ì”‚æ‚è•K—v‚Èƒ|ƒPƒ‚ƒ“”‚ª‘½‚¢Žž
+	//æ‰‹æŒã¡ã®æ•°ã‚ˆã‚Šå¿…è¦ãªãƒã‚±ãƒ¢ãƒ³æ•°ãŒå¤šã„æ™‚
 	if( pokenum < num ){
 		return (num - pokenum);
 	}
 
 	for( i=0, ct=0; i < pokenum ;i++ ){
 		pp		= PokeParty_GetMemberPointer( party, i );
-		monsno	= PokeParaGet( pp, ID_PARA_monsno, NULL );		//ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+		monsno	= PokeParaGet( pp, ID_PARA_monsno, NULL );		//ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
 		
-		//ƒ^ƒ}ƒS‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+		//ã‚¿ãƒžã‚´ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if( PokeParaGet(pp,ID_PARA_tamago_flag,NULL) != 0 ){
 			continue;
 		}
 
-		//ƒoƒgƒ‹ƒ^ƒ[‚ÉŽQ‰Á‚Å‚«‚È‚¢ƒ|ƒPƒ‚ƒ“‚©‚ðƒ`ƒFƒbƒN
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã«å‚åŠ ã§ããªã„ãƒã‚±ãƒ¢ãƒ³ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 		if( BattleTowerExPokeCheck_MonsNo(monsno) == TRUE ){
 			continue;
 		}
@@ -1281,7 +1281,7 @@ u16 FrontierScrTools_CheckEntryPokeNum( u16 num, SAVEDATA* savedata )
 		ct++;
 	}
 
-	//ðŒ‚ð’Ê‰ß‚µ‚½ƒ|ƒPƒ‚ƒ“”‚ðƒ`ƒFƒbƒN
+	//æ¡ä»¶ã‚’é€šéŽã—ãŸãƒã‚±ãƒ¢ãƒ³æ•°ã‚’ãƒã‚§ãƒƒã‚¯
 	if( ct < num ){
 		return (num - ct);
 	}

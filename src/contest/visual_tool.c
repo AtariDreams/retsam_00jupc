@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	visual_tool.c
- * @brief	ƒrƒWƒ…ƒAƒ‹•”–åƒc[ƒ‹—Ş
+ * @brief	ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ãƒ„ãƒ¼ãƒ«é¡
  * @author	matsuda
- * @date	2005.12.10(“y)
+ * @date	2005.12.10(åœŸ)
  */
 //==============================================================================
 #include "common.h"
@@ -37,62 +37,62 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ŠÏ‹qƒn[ƒg‚ÌŠp“x‰ÁZ’l(FX32)
+///è¦³å®¢ãƒãƒ¼ãƒˆã®è§’åº¦åŠ ç®—å€¤(FX32)
 #define AUDIENCE_HEART_ADD_ANGLE		(6 << FX32_SHIFT)
-///ŠÏ‹qƒn[ƒg‚Ì‚Ó‚è•
+///è¦³å®¢ãƒãƒ¼ãƒˆã®ãµã‚Šå¹…
 #define AUDIENCE_HEART_FURIHABA			(8)
-///ŠÏ‹qƒn[ƒg‚ÌYÀ•W‰ÁZ’l(‰ºˆÊ8ƒrƒbƒg­”)
+///è¦³å®¢ãƒãƒ¼ãƒˆã®Yåº§æ¨™åŠ ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°‘æ•°)
 #define AUDIENCE_HEART_ADD_Y			(0x0100)
-///ŠÏ‹qƒn[ƒg‚ÌI—¹‚Ü‚Å‚ÌƒtƒŒ[ƒ€”
+///è¦³å®¢ãƒãƒ¼ãƒˆã®çµ‚äº†ã¾ã§ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define AUDIENCE_HEART_END_FRAME		(60)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ŠÏ‹qƒn[ƒg“®ì—pƒ[ƒN
+///è¦³å®¢ãƒãƒ¼ãƒˆå‹•ä½œç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	u8 *count_work;			///<“®ì’†‚Ìƒn[ƒg‚Ì”‚ğƒJƒEƒ“ƒg‚·‚é‚½‚ß‚Ì‹¤’Êƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	CATS_ACT_PTR cap;		///<ƒn[ƒgƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	s32 x;					///<‰ºˆÊ‚Wƒrƒbƒg¬”
-	s32 y;					///<‰ºˆÊ‚Wƒrƒbƒg¬”
-	fx32 angle;				///<Šp“x(‰ºˆÊ‚Wƒrƒbƒg¬”)
-	u8 seq;					///<ƒV[ƒPƒ“ƒX”Ô†
-	u16 frame;				///<¶¬‚³‚ê‚Ä‚©‚ç‚ÌƒtƒŒ[ƒ€”‚ğƒJƒEƒ“ƒg
+	u8 *count_work;			///<å‹•ä½œä¸­ã®ãƒãƒ¼ãƒˆã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãŸã‚ã®å…±é€šãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	CATS_ACT_PTR cap;		///<ãƒãƒ¼ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	s32 x;					///<ä¸‹ä½ï¼˜ãƒ“ãƒƒãƒˆå°æ•°
+	s32 y;					///<ä¸‹ä½ï¼˜ãƒ“ãƒƒãƒˆå°æ•°
+	fx32 angle;				///<è§’åº¦(ä¸‹ä½ï¼˜ãƒ“ãƒƒãƒˆå°æ•°)
+	u8 seq;					///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u16 frame;				///<ç”Ÿæˆã•ã‚Œã¦ã‹ã‚‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 }AUDIENCE_HEART_WORK;
 
 
 //==============================================================================
-//	ƒAƒNƒ^[ƒwƒbƒ_
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 //==============================================================================
-///ŠÏ‹qƒn[ƒgƒAƒNƒ^[ƒwƒbƒ_
+///è¦³å®¢ãƒãƒ¼ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S AudienceHeartObjParam = {
 	0, 0, 0,		//x, y, z
-	0, V_AUDIENCE_HEART_SOFTPRI, PALOFS_SUB_AUDIENCE_HEART,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		V_CHARID_AUDIENCE_HEART,	//ƒLƒƒƒ‰
-		V_PLTTID_OBJ_COMMON_SUB,	//ƒpƒŒƒbƒg
-		V_CELLID_AUDIENCE_HEART,	//ƒZƒ‹
-		V_CELLANMID_AUDIENCE_HEART,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, V_AUDIENCE_HEART_SOFTPRI, PALOFS_SUB_AUDIENCE_HEART,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		V_CHARID_AUDIENCE_HEART,	//ã‚­ãƒ£ãƒ©
+		V_PLTTID_OBJ_COMMON_SUB,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		V_CELLID_AUDIENCE_HEART,	//ã‚»ãƒ«
+		V_CELLANMID_AUDIENCE_HEART,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	V_AUDIENCE_HEART_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	V_AUDIENCE_HEART_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒrƒWƒ…ƒAƒ‹•”–åƒm[ƒ}ƒ‹‰ï˜bƒƒbƒZ[ƒWƒf[ƒ^ ¦A_TALK_VISUAL_???‚Ì’è‹`‚Æ•À‚Ñ‚ğ“¯‚¶‚É‚µ‚Ä‚¨‚­–II
+///ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ãƒãƒ¼ãƒãƒ«ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ â€»A_TALK_VISUAL_???ã®å®šç¾©ã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãäº‹ï¼ï¼
 static const VISUAL_MESSAGE_PARAM VisualTalkMsgData[] = {
-	{0,									VTAG_NONE},	//ƒ_ƒ~[
+	{0,									VTAG_NONE},	//ãƒ€ãƒŸãƒ¼
 
 	{msg_con_visual_host_01,			VTAG_NONE},
 	{msg_con_v_prac_02,					VTAG_NONE},
@@ -112,7 +112,7 @@ static const VISUAL_MESSAGE_PARAM VisualTalkMsgData[] = {
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void AudienceHeartMoveTask(TCB_PTR tcb, void *work);
 
@@ -120,10 +120,10 @@ static void AudienceHeartMoveTask(TCB_PTR tcb, void *work);
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg(ƒ|ƒPƒ‚ƒ“)‚ğ¶¬‚·‚é
+ * @brief   ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ(ãƒã‚±ãƒ¢ãƒ³)ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   sys				ƒrƒWƒ…ƒAƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @param   sys				ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  */
 //--------------------------------------------------------------
 void VT_SoftSpriteAdd(VISUAL_SYSTEM_PARAM *sys, int breeder_no)
@@ -138,17 +138,17 @@ void VT_SoftSpriteAdd(VISUAL_SYSTEM_PARAM *sys, int breeder_no)
 		PARA_FRONT, &sys->exchr_param[breeder_no], HEAPID_VISUAL, 
 		VISUAL_APPEAR_X, VISUAL_APPEAR_Y, VISUAL_POKEPOS_Z);
 	
-	//•\¦OFF
+	//è¡¨ç¤ºOFF
 	SoftSpriteParaSet(sys->ss[breeder_no], SS_PARA_VANISH, TRUE);
 //	SoftSpriteParaSet(sys->ss[breeder_no], SS_PARA_DRAW_STOP, TRUE);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ÌƒuƒŠ[ƒ_[‚Ìƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg(ƒ|ƒPƒ‚ƒ“)‚ğ¶¬‚·‚é
+ * @brief   å…¨ã¦ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ(ãƒã‚±ãƒ¢ãƒ³)ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   sys		ƒrƒWƒ…ƒAƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp		‘SƒuƒŠ[ƒ_[‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ª“ü‚Á‚Ä‚¢‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sys		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp		å…¨ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void VT_SoftSpriteAddAll(VISUAL_SYSTEM_PARAM *sys)
@@ -162,10 +162,10 @@ void VT_SoftSpriteAddAll(VISUAL_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg(ƒ|ƒPƒ‚ƒ“)‚ğíœ‚·‚é
+ * @brief   ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ(ãƒã‚±ãƒ¢ãƒ³)ã‚’å‰Šé™¤ã™ã‚‹
  *
- * @param   sys				ƒrƒWƒ…ƒAƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @param   sys				ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  */
 //--------------------------------------------------------------
 void VT_SoftSpriteDel(VISUAL_SYSTEM_PARAM *sys, int breeder_no)
@@ -184,8 +184,8 @@ void VT_SoftSpriteDel(VISUAL_SYSTEM_PARAM *sys, int breeder_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ÌƒuƒŠ[ƒ_[‚Ìƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg(ƒ|ƒPƒ‚ƒ“)‚ğíœ‚·‚é
- * @param   sys		ƒrƒWƒ…ƒAƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨ã¦ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ(ãƒã‚±ãƒ¢ãƒ³)ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   sys		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void VT_SoftSpriteDelAll(VISUAL_SYSTEM_PARAM *sys)
@@ -199,7 +199,7 @@ void VT_SoftSpriteDelAll(VISUAL_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠÏ‹qƒn[ƒg‚ÌƒŠƒ\[ƒXƒ[ƒh‚·‚é
+ * @brief   è¦³å®¢ãƒãƒ¼ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param   csp
  * @param   crp
@@ -207,7 +207,7 @@ void VT_SoftSpriteDelAll(VISUAL_SYSTEM_PARAM *sys)
 //--------------------------------------------------------------
 void VT_AudienceHeartResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *hdl_obj)
 {
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚ğg—p‚·‚é‚Ì‚Åƒ[ƒh‚È‚µ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ãƒ­ãƒ¼ãƒ‰ãªã—
 	CATS_LoadResourceCharArcH(csp, crp, hdl_obj, 
 		AUDIENCE_HEART_NCGR_BIN, 1, 
 		NNS_G2D_VRAM_TYPE_2DSUB, V_CHARID_AUDIENCE_HEART);
@@ -220,14 +220,14 @@ void VT_AudienceHeartResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE 
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠÏ‹qƒn[ƒg‚ÌƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
+ * @brief   è¦³å®¢ãƒãƒ¼ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
  *
  * @param   crp		
  */
 //--------------------------------------------------------------
 void VT_AudienceHeartResourceFree(CATS_RES_PTR crp)
 {
-	//ƒpƒŒƒbƒg‚Íí’“ƒpƒŒƒbƒg‚È‚Ì‚Åíœ‚È‚µ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã¯å¸¸é§ãƒ‘ãƒ¬ãƒƒãƒˆãªã®ã§å‰Šé™¤ãªã—
 	CATS_FreeResourceChar(crp, V_CHARID_AUDIENCE_HEART);
 	CATS_FreeResourceCell(crp, V_CELLID_AUDIENCE_HEART);
 	CATS_FreeResourceCellAnm(crp, V_CELLANMID_AUDIENCE_HEART);
@@ -235,12 +235,12 @@ void VT_AudienceHeartResourceFree(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠÏ‹qƒn[ƒg‚ÌƒAƒNƒ^[‚ğ¶¬‚·‚é
+ * @brief   è¦³å®¢ãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   x			•\¦À•WX
- * @param   y			•\¦À•WY
- * @param   angle		‰ŠúŠp“x(FX32)
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   x			è¡¨ç¤ºåº§æ¨™X
+ * @param   y			è¡¨ç¤ºåº§æ¨™Y
+ * @param   angle		åˆæœŸè§’åº¦(FX32)
  * @param   anm_type	AUDIENCE_HEART_ANMTYPE_???
  */
 //--------------------------------------------------------------
@@ -269,9 +269,9 @@ void VT_AudienceHeartActorAdd(VISUAL_PROC_WORK *vpw, int x, int y, fx32 angle, i
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠÏ‹qƒn[ƒg‚ÌƒAƒNƒ^[“®ìƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ŠÏ‹qƒn[ƒg“®ì—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è¦³å®¢ãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		è¦³å®¢ãƒãƒ¼ãƒˆå‹•ä½œç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void AudienceHeartMoveTask(TCB_PTR tcb, void *work)
@@ -305,9 +305,9 @@ static void AudienceHeartMoveTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[‚ğ¶¬
- * @param   vpw				ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚’ç”Ÿæˆ
+ * @param   vpw				ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  */
 //--------------------------------------------------------------
 void VT_TrainerAdd(VISUAL_PROC_WORK *vpw, int breeder_no)
@@ -324,8 +324,8 @@ void VT_TrainerAdd(VISUAL_PROC_WORK *vpw, int breeder_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[‚ğíœ
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚’å‰Šé™¤
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void VT_TrainerDel(VISUAL_PROC_WORK *vpw)
@@ -339,12 +339,12 @@ void VT_TrainerDel(VISUAL_PROC_WORK *vpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒWƒ^ƒO“WŠJ
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚°å±•é–‹
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   msg_tag		ƒ^ƒOƒR[ƒh
- * @param   tagpara		ƒ^ƒO“WŠJ‚·‚éê‡AQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Ş
- *                      (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   msg_tag		ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰
+ * @param   tagpara		ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡
+ *                      (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
  */
 //--------------------------------------------------------------
 static void VT_MessageTagExpand(VISUAL_PROC_WORK *vpw, int msg_tag, const VTAG_PARAM *tagpara)
@@ -366,20 +366,20 @@ static void VT_MessageTagExpand(VISUAL_PROC_WORK *vpw, int msg_tag, const VTAG_P
 		break;
 
 	default:
-		GF_ASSERT(0 && "”F¯‚Å‚«‚È‚¢ƒ^ƒO‚Å‚·\n");
+		GF_ASSERT(0 && "èªè­˜ã§ããªã„ã‚¿ã‚°ã§ã™\n");
 		break;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒƒbƒZ[ƒWƒZƒbƒg
+ * @brief   ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   msg_id		ƒƒbƒZ[ƒWID
- * @param   msg_tag		ƒ^ƒOƒR[ƒh
- * @param   tagpara		ƒ^ƒO“WŠJ‚·‚éê‡AQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Ş
- *                      (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param   msg_tag		ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰
+ * @param   tagpara		ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡
+ *                      (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
  */
 //--------------------------------------------------------------
 static void VT_TalkMessageSet(VISUAL_PROC_WORK *vpw, MSGDATA_MANAGER *msg_man, 
@@ -410,12 +410,12 @@ static void VT_TalkMessageSet(VISUAL_PROC_WORK *vpw, MSGDATA_MANAGER *msg_man,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒm[ƒ}ƒ‹‰ï˜b—p‚ÌƒƒbƒZ[ƒWƒZƒbƒg
+ * @brief   ãƒãƒ¼ãƒãƒ«ä¼šè©±ç”¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param   vpw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   a_talk_id		A_TALK_???
- * @param   tagpara		ƒ^ƒO“WŠJ‚·‚éê‡AQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Ş
- *                      (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
+ * @param   tagpara		ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡
+ *                      (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
  */
 //--------------------------------------------------------------
 void VT_A_TalkMessageSet(VISUAL_PROC_WORK *vpw, u32 a_talk_id, const VTAG_PARAM *tagpara)
@@ -431,9 +431,9 @@ void VT_A_TalkMessageSet(VISUAL_PROC_WORK *vpw, u32 a_talk_id, const VTAG_PARAM 
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒƒbƒZ[ƒWƒtƒHƒ“ƒg‚ª•\¦‚µ‚«‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
- * @param   dpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  0=I—¹
+ * @brief   ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆãŒè¡¨ç¤ºã—ãã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+ * @param   dpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  0=çµ‚äº†
  */
 //--------------------------------------------------------------
 int VT_TalkMessageEndCheck(VISUAL_PROC_WORK *vpw)
@@ -443,9 +443,9 @@ int VT_TalkMessageEndCheck(VISUAL_PROC_WORK *vpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   BP•]‰¿‚Éo‚·ƒƒbƒZ[ƒW‚ÌID‚ğæ“¾‚·‚é
+ * @brief   BPè©•ä¾¡æ™‚ã«å‡ºã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®IDã‚’å–å¾—ã™ã‚‹
  * @param   con_type		CONTYPE_???
- * @retval  A_TALK—pƒƒbƒZ[ƒWID
+ * @retval  A_TALKç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //--------------------------------------------------------------
 u32 VT_A_TalkIDGet_BPAppeal(int con_type)

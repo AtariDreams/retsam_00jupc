@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	visual.c
- * @brief	ƒrƒWƒ…ƒAƒ‹•”–å
+ * @brief	ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€
  * @author	matsuda
- * @date	2005.12.10(“y)
+ * @date	2005.12.10(åœŸ)
  */
 //==============================================================================
 #include "common.h"
@@ -56,127 +56,127 @@ FS_EXTERN_OVERLAY(ol_imageclip);
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///Œ»İ‚Ì“®ìó‘Ô
+///ç¾åœ¨ã®å‹•ä½œçŠ¶æ…‹
 enum{
-	VPW_PROC_MODE_INIT,		///<‰Šú‰»’†
-	VPW_PROC_MODE_MAIN,		///<ƒƒCƒ“
-	VPW_PROC_MODE_ETC,		///<‚»‚êˆÈŠO
+	VPW_PROC_MODE_INIT,		///<åˆæœŸåŒ–ä¸­
+	VPW_PROC_MODE_MAIN,		///<ãƒ¡ã‚¤ãƒ³
+	VPW_PROC_MODE_ETC,		///<ãã‚Œä»¥å¤–
 };
 
-///Vram“]‘—ƒ}ƒl[ƒWƒƒ[ƒ^ƒXƒN”
+///Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¿ã‚¹ã‚¯æ•°
 #define VISUAL_VRAM_TRANSFER_TASK_NUM	(BATTLE_VRAM_TRANSFER_TASK_NUM)
 
 //--------------------------------------------------------------
-//	BMPƒEƒBƒ“ƒhƒE
+//	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
-///BMPƒEƒBƒ“ƒhƒECGXƒGƒŠƒAŠJnˆÊ’u(ƒIƒtƒZƒbƒg)
+///BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦CGXã‚¨ãƒªã‚¢é–‹å§‹ä½ç½®(ã‚ªãƒ•ã‚»ãƒƒãƒˆ)
 #define BMPWIN_CGX_START			(TALK_WIN_CGX_SIZ + VISUAL_TALKWIN_CGX_OFFSET)
 
 #define BMPWIN_TALK_COLOR			(13)
 #define BMPWIN_TALK_CGX_OFFSET		(BMPWIN_CGX_START)
 
 //--------------------------------------------------------------
-//	CL_ACT—p‚Ì’è”’è‹`
+//	CL_ACTç”¨ã®å®šæ•°å®šç¾©
 //--------------------------------------------------------------
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJn
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define VISUAL_OAM_START_MAIN			(BATTLE_OAM_START_MAIN)
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define VISUAL_OAM_END_MAIN				(BATTLE_OAM_END_MAIN)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define VISUAL_OAM_AFFINE_START_MAIN		(BATTLE_OAM_AFFINE_START_MAIN)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define VISUAL_OAM_AFFINE_END_MAIN		(BATTLE_OAM_AFFINE_END_MAIN)
-///ƒTƒu	OAMŠÇ——ÌˆæEŠJn
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define VISUAL_OAM_START_SUB				(BATTLE_OAM_START_SUB)
-///ƒTƒu	OAMŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define VISUAL_OAM_END_SUB				(BATTLE_OAM_END_SUB)
-///ƒTƒu ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn
+///ã‚µãƒ– ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define VISUAL_OAM_AFFINE_START_SUB		(BATTLE_OAM_AFFINE_START_SUB)
-///ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define VISUAL_OAM_AFFINE_END_SUB		(BATTLE_OAM_AFFINE_END_SUB)
 
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒLƒƒƒ‰ƒNƒ^IDŠÇ—”(ã‰æ–Ê{‰º‰æ–Ê)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDç®¡ç†æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define VISUAL_CHAR_MAX					(BATTLE_CHAR_MAX)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define VISUAL_CHAR_VRAMSIZE_MAIN		(BATTLE_CHAR_VRAMSIZE_MAIN)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define VISUAL_CHAR_VRAMSIZE_SUB			(BATTLE_CHAR_VRAMSIZE_SUB)
 
-///ƒƒCƒ“‰æ–Ê{ƒTƒu‰æ–Ê‚Åg—p‚·‚éƒAƒNƒ^[‘”
+///ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‹ã‚µãƒ–ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç·æ•°
 #define VISUAL_ACTOR_MAX					(BATTLE_ACTOR_MAX)
 
-///OBJ‚Åg—p‚·‚éƒpƒŒƒbƒg–{”(ã‰æ–Ê{‰º‰æ–Ê)
+///OBJã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define VISUAL_OAM_PLTT_MAX				(BATTLE_OAM_PLTT_MAX)
 
-///“]‘—ƒ‚[ƒh 3D = 0 main = 1 sub = 2 main/sub = 3
+///è»¢é€ãƒ¢ãƒ¼ãƒ‰ 3D = 0 main = 1 sub = 2 main/sub = 3
 #define VISUAL_OAM_VRAM_TRANS			(BATTLE_OAM_VRAM_TRANS)
 
-///OAMƒŠƒ\[ƒXFƒLƒƒƒ‰“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define VISUAL_OAMRESOURCE_CHAR_MAX		(BATTLE_OAMRESOURCE_CHAR_MAX)
-///OAMƒŠƒ\[ƒXFƒpƒŒƒbƒg“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define VISUAL_OAMRESOURCE_PLTT_MAX		(BATTLE_OAMRESOURCE_PLTT_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define VISUAL_OAMRESOURCE_CELL_MAX		(BATTLE_OAMRESOURCE_CELL_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define VISUAL_OAMRESOURCE_CELLANM_MAX	(BATTLE_OAMRESOURCE_CELLANM_MAX)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒãƒ«ãƒã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define VISUAL_OAMRESOURCE_MCELL_MAX		(BATTLE_OAMRESOURCE_MCELL_MAX)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define VISUAL_OAMRESOURCE_MCELLANM_MAX	(BATTLE_OAMRESOURCE_MCELLANM_MAX)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒTƒu‰æ–ÊBG‚ÌƒXƒNƒŠ[ƒ“ƒNƒŠƒAƒR[ƒh
+///ã‚µãƒ–ç”»é¢BGã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 #define SUB_BG_CLEAR_CODE		(0)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///‚Ç‚ñ‚¿‚å‚¤‚ÌƒpƒŒƒbƒg”Ô†
+///ã©ã‚“ã¡ã‚‡ã†ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define DONTYOU_PALNO			(0xc)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒAƒEƒgFƒtƒF[ƒh‘¬“x
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆï¼šãƒ•ã‚§ãƒ¼ãƒ‰é€Ÿåº¦
 #define DFO_WAIT			(16)//(3)
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒAƒEƒgFŠJnEVY
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆï¼šé–‹å§‹EVY
 #define DFO_START_EVY		(0)
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒAƒEƒgFI—¹EVY
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆï¼šçµ‚äº†EVY
 #define DFO_END_EVY			(-16)
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒAƒEƒgF•ÏXŒã‚ÌF
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆï¼šå¤‰æ›´å¾Œã®è‰²
 #define DFO_NEXT_RGB		(0x0000)
 
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒCƒ“FƒtƒF[ƒh‘¬“x
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ï¼šãƒ•ã‚§ãƒ¼ãƒ‰é€Ÿåº¦
 #define DFI_WAIT			(2)
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒCƒ“FŠJnEVY
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ï¼šé–‹å§‹EVY
 #define DFI_START_EVY		(DFO_END_EVY)
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒCƒ“FI—¹EVY
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ï¼šçµ‚äº†EVY
 #define DFI_END_EVY			(4)
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒCƒ“F•ÏXŒã‚ÌF
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ï¼šå¤‰æ›´å¾Œã®è‰²
 #define DFI_NEXT_RGB		(DFO_NEXT_RGB)
 
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒCƒ“ÅŒãFƒtƒF[ƒh‘¬“x
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æœ€å¾Œï¼šãƒ•ã‚§ãƒ¼ãƒ‰é€Ÿåº¦
 #define DFE_WAIT			(1)
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒCƒ“ÅŒãFŠJnEVY
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æœ€å¾Œï¼šé–‹å§‹EVY
 #define DFE_START_EVY		(DFI_END_EVY)
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒCƒ“ÅŒãFI—¹EVY
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æœ€å¾Œï¼šçµ‚äº†EVY
 #define DFE_END_EVY			(0)
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒCƒ“ÅŒãF•ÏXŒã‚ÌF
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æœ€å¾Œï¼šå¤‰æ›´å¾Œã®è‰²
 #define DFE_NEXT_RGB		(DFO_NEXT_RGB)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒrƒWƒ…ƒAƒ‹•”–åŠJn‚ÌÅ‰‚ÌƒtƒF[ƒhƒCƒ“‚ÌƒEƒFƒCƒg
+///ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€é–‹å§‹æ™‚ã®æœ€åˆã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define VISUAL_START_FADEIN_WAIT		(6)
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void VisualVBlank(void *work);
 static void VisualUpdate(TCB_PTR tcb, void *work);
@@ -215,21 +215,21 @@ static int VisualSeq_DonchouEffectUp(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *l
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 
 //==============================================================================
-//	ƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
-///VisualMainSeqTbl‚Ì–ß‚è’l‚Æ‚µ‚Äg—p
+///VisualMainSeqTblã®æˆ»ã‚Šå€¤ã¨ã—ã¦ä½¿ç”¨
 enum{
-	VSRET_CONTINUE,		///<Œ»óˆÛ
-	VSRET_NEXT,			///<Ÿ‚ÌƒV[ƒPƒ“ƒX‚Ö
-	VSRET_SELECT_SEQ,	///<select_seqƒ[ƒN‚É“ü‚Á‚Ä‚¢‚éƒV[ƒPƒ“ƒX‚Öi‚Ş
-	VSRET_END,			///<I—¹
+	VSRET_CONTINUE,		///<ç¾çŠ¶ç¶­æŒ
+	VSRET_NEXT,			///<æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
+	VSRET_SELECT_SEQ,	///<select_seqãƒ¯ãƒ¼ã‚¯ã«å…¥ã£ã¦ã„ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸é€²ã‚€
+	VSRET_END,			///<çµ‚äº†
 };
 
-///ƒrƒWƒ…ƒAƒ‹•”–åƒƒCƒ“ŠÖ”‚ÌƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+///ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ãƒ¡ã‚¤ãƒ³é–¢æ•°ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 static int (* const VisualMainSeqTbl[])(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local) = {
 	VisualSeq_Init,
 	VisualSeq_JudgeFastTalk,
@@ -257,7 +257,7 @@ static int (* const VisualMainSeqTbl[])(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK
 	VisualSeq_EndTalk,
 	VisualSeq_End,
 };
-///VisualMainSeqTbl‚ÌƒV[ƒPƒ“ƒX”Ô†	¦VisualMainSeqTbl‚Æ•À‚Ñ‚ğ“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆII
+///VisualMainSeqTblã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·	â€»VisualMainSeqTblã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼ï¼
 enum{
 	VSEQ_INIT,
 	VSEQ_JUDGE_FAST_TALK,
@@ -287,7 +287,7 @@ enum{
 };
 
 //==============================================================================
-//	CLACT—pƒf[ƒ^
+//	CLACTç”¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static	const TCATS_OAM_INIT VisualTcats = {
 	VISUAL_OAM_START_MAIN, VISUAL_OAM_END_MAIN,
@@ -317,20 +317,20 @@ static const TCATS_RESOURCE_NUM_LIST VisualResourceList = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT VisualProc_Init( PROC * proc, int * seq )
 {
 	VISUAL_PROC_WORK *vpw;
 
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -355,7 +355,7 @@ PROC_RESULT VisualProc_Init( PROC * proc, int * seq )
 	vpw->sys.c_game = &vpw->consys->c_game;
 	VisualSystemWorkInit(vpw);
 	
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	vpw->sys.pfd = PaletteFadeInit(HEAPID_VISUAL);
 	PaletteTrans_AutoSet(vpw->sys.pfd, TRUE);
 	PaletteFadeWorkAllocSet(vpw->sys.pfd, FADE_MAIN_BG, 0x200, HEAPID_VISUAL);
@@ -371,23 +371,23 @@ PROC_RESULT VisualProc_Init( PROC * proc, int * seq )
 
 //	vpw->aip = AINPUT_SystemInit(&vpw->sys);
 
-	//VRAMŠ„‚è“–‚Äİ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	VisualSys_VramBankSet(vpw->sys.bgl);
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
-	// ƒ{ƒ^ƒ“—pƒtƒHƒ“ƒg‚ğ“Ç‚İ‚İ
+	// ãƒœã‚¿ãƒ³ç”¨ãƒ•ã‚©ãƒ³ãƒˆã‚’èª­ã¿è¾¼ã¿
 	FontProc_LoadFont(FONT_BUTTON, HEAPID_VISUAL);
 
-	// ˆø”‚ğ•Û‘¶
+	// å¼•æ•°ã‚’ä¿å­˜
 //	SetVisualWorkParameter(vpw, (NAMEIN_PARAM*)PROC_GetParentWork(proc));
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€ì¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	vpw->sys.csp=CATS_AllocMemory(HEAPID_VISUAL);
 	CATS_SystemInit(vpw->sys.csp,&VisualTcats,&VisualCcmm,VISUAL_OAM_PLTT_MAX);
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 	vpw->sys.crp=CATS_ResourceCreate(vpw->sys.csp);
@@ -396,9 +396,9 @@ PROC_RESULT VisualProc_Init( PROC * proc, int * seq )
 	CLACT_U_SetSubSurfaceMatrix(CATS_EasyRenderGet(vpw->sys.csp), 0, VISUAL_SUB_ACTOR_DISTANCE);
 
 	vpw->sys.soft_sprite = SoftSpriteInit(HEAPID_VISUAL);
-	VisualParticleInit();	//ƒp[ƒeƒBƒNƒ‹‰Šú‰»
+	VisualParticleInit();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	vpw->sys.visual_msg = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_cmsg_visual_dat, 
 		HEAPID_VISUAL);
 	vpw->sys.wordset = WORDSET_Create(HEAPID_VISUAL);
@@ -408,39 +408,39 @@ PROC_RESULT VisualProc_Init( PROC * proc, int * seq )
 		ARCHANDLE* hdl_bg;
 		ARCHANDLE* hdl_obj;
 	
-		//ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+		//ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 		hdl_bg  = ArchiveDataHandleOpen(ARC_CONTEST_BG,  HEAPID_VISUAL); 
 		hdl_obj = ArchiveDataHandleOpen(ARC_CONTEST_OBJ, HEAPID_VISUAL);
 		
-		//í’“BGƒZƒbƒg
+		//å¸¸é§BGã‚»ãƒƒãƒˆ
 		VisualDefaultBGSet(vpw, hdl_bg);
 		VisualDefaultBGSet_Sub(vpw, hdl_bg);
 
-		//BMPƒEƒBƒ“ƒhƒE’Ç‰Á
+		//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
 		VisualSys_DefaultBmpWinAdd(vpw);
 
-		//í’“OBJƒZƒbƒg
+		//å¸¸é§OBJã‚»ãƒƒãƒˆ
 		VisualDefaultOBJSet(vpw, hdl_obj);
 		VisualDefaultOBJSet_Sub(vpw, hdl_obj);
 
-		//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+		//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 		ArchiveDataHandleClose( hdl_bg );
 		ArchiveDataHandleClose( hdl_obj );
 	}
 	
-	//“]‘—ƒpƒŒƒbƒg‚ğ^‚Á”’‚É‚·‚é(ƒoƒbƒOƒOƒ‰ƒEƒ“ƒh‚Íœ‚­)
+	//è»¢é€ãƒ‘ãƒ¬ãƒƒãƒˆã‚’çœŸã£ç™½ã«ã™ã‚‹(ãƒãƒƒã‚°ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã¯é™¤ã)
 	PaletteWork_Clear(vpw->sys.pfd, FADE_MAIN_BG, FADEBUF_TRANS, 0x7fff, 1, 16*16);
 	PaletteWork_Clear(vpw->sys.pfd, FADE_SUB_BG, FADEBUF_TRANS, 0x7fff, 1, 16*16);
 	PaletteWork_Clear(vpw->sys.pfd, FADE_MAIN_OBJ, FADEBUF_TRANS, 0x7fff, 0, 
 		CONTEST_MAIN_OBJPAL_COLOR_NUM);
 	PaletteWork_Clear(vpw->sys.pfd, FADE_SUB_OBJ, FADEBUF_TRANS, 0x7fff, 0, 16*16);
 	
-	//ƒ|ƒPƒ‚ƒ“(ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg)¶¬
+	//ãƒã‚±ãƒ¢ãƒ³(ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ)ç”Ÿæˆ
 	//VT_SoftSpriteAddAll(&vpw->sys);
 
-	WirelessIconEasy();	//’ÊMƒAƒCƒRƒ“
+	WirelessIconEasy();	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
 	
-	// ‹P“x•ÏXƒZƒbƒg
+	// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 //	ChangeBrightnessRequest(
 //		8, 0, -16, PLANEMASK_ALL, MASK_DOUBLE_DISPLAY );
 	WIPE_SYS_Start(WIPE_PATTERN_FMAS, WIPE_TYPE_DOORIN, WIPE_TYPE_DOORIN, WIPE_FADE_BLACK, 
@@ -453,8 +453,8 @@ PROC_RESULT VisualProc_Init( PROC * proc, int * seq )
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 
-	//ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒRƒ“ƒeƒXƒg)
-	Snd_SceneSet( SND_SCENE_DUMMY );		//•K‚¸ƒ[ƒh‚³‚ê‚é‚æ‚¤‚ÉƒNƒŠƒA‚·‚éI
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	Snd_SceneSet( SND_SCENE_DUMMY );		//å¿…ãšãƒ­ãƒ¼ãƒ‰ã•ã‚Œã‚‹ã‚ˆã†ã«ã‚¯ãƒªã‚¢ã™ã‚‹ï¼
 	Snd_DataSetByScene( SND_SCENE_CONTEST, SEQ_CON_TEST, 1 );
 	//Snd_Stop();
 	//Snd_BgmPlay(SEQ_CON_TEST);
@@ -470,12 +470,12 @@ PROC_RESULT VisualProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT VisualProc_Main( PROC * proc, int * seq )
@@ -556,12 +556,12 @@ PROC_RESULT VisualProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT VisualProc_End( PROC * proc, int * seq )
@@ -571,66 +571,66 @@ PROC_RESULT VisualProc_End( PROC * proc, int * seq )
 
 	Particle_SystemExitAll();
 
-	//í’“OBJíœ
+	//å¸¸é§OBJå‰Šé™¤
 	VisualDefaultOBJDel(vpw);
 	VisualDefaultOBJDel_Sub(vpw);
-	//í’“BGíœ
+	//å¸¸é§BGå‰Šé™¤
 	VisualDefaultBGDel(vpw);
 	VisualDefaultBGDel_Sub(vpw);
 
-	//BMPŠJ•ú
+	//BMPé–‹æ”¾
 	for(i = 0; i < VISUAL_BMPWIN_MAX; i++){
 		GF_BGL_BmpWinDel(&vpw->sys.win[i]);
 	}
 
-	//ƒƒCƒ“‰æ–ÊBGíœ
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢BGå‰Šé™¤
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_BGL_BGControlExit(vpw->sys.bgl, VISUAL_FRAME_WIN );
 	GF_BGL_BGControlExit(vpw->sys.bgl, VISUAL_FRAME_EFF );
 	GF_BGL_BGControlExit(vpw->sys.bgl, VISUAL_FRAME_BACKGROUND );
-	//ƒTƒu‰æ–ÊBGíœ
+	//ã‚µãƒ–ç”»é¢BGå‰Šé™¤
 	GF_BGL_VisibleSet(VISUAL_FRAME_SUB_AUDIENCE, VISIBLE_OFF);
 	GF_BGL_BGControlExit(vpw->sys.bgl, VISUAL_FRAME_SUB_AUDIENCE);
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	CATS_ResourceDestructor_S(vpw->sys.csp,vpw->sys.crp);
 	CATS_FreeMemory(vpw->sys.csp);
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	//ƒCƒ[ƒWƒNƒŠƒbƒvíœ
+	//ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å‰Šé™¤
 	for(i = 0; i < BREEDER_MAX; i++){
 		if(vpw->imcwork[i].imc_ptr != NULL){
 			IMC_PlayerEnd(vpw->imcwork[i].imc_ptr);
 		}
 	}
 
-	//ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgíœ
+	//ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå‰Šé™¤
 	VT_SoftSpriteDelAll(&vpw->sys);
 	VT_TrainerDel(vpw);
 	SoftSpriteEnd(vpw->sys.soft_sprite);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã®å‰Šé™¤
 //	MSGMAN_Delete(vpw->fight_msg);
 
-	//ƒtƒHƒ“ƒgíœ
+	//ãƒ•ã‚©ãƒ³ãƒˆå‰Šé™¤
 	FontProc_UnloadFont(FONT_BUTTON);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(vpw->sys.pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(vpw->sys.pfd, FADE_SUB_BG);
 	PaletteFadeWorkAllocFree(vpw->sys.pfd, FADE_MAIN_OBJ);
 	PaletteFadeWorkAllocFree(vpw->sys.pfd, FADE_SUB_OBJ);
 	PaletteFadeFree(vpw->sys.pfd);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã®å‰Šé™¤
 	WORDSET_Delete(vpw->sys.wordset);
 	STRBUF_Delete(vpw->sys.msg_buf);
 	MSGMAN_Delete(vpw->sys.visual_msg);
 
-	//BGLŠJ•ú
+	//BGLé–‹æ”¾
 	sys_FreeMemoryEz(vpw->sys.bgl);
 
 	TCB_Delete(vpw->update_tcb);
@@ -638,12 +638,12 @@ PROC_RESULT VisualProc_End( PROC * proc, int * seq )
 //	simple_3DBGExit();
 	ADV_Contest_3D_Exit(vpw->g3Dman);
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
-	PROC_FreeWork(proc);				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork(proc);				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	sys_DeleteHeap(HEAPID_VISUAL);
 
@@ -659,7 +659,7 @@ PROC_RESULT VisualProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
  * @param	work	
  *
@@ -671,7 +671,7 @@ static void VisualVBlank(void *work)
 {
 	VISUAL_PROC_WORK *vpw = work;
 
-	{//ƒEƒBƒ“ƒhƒEÀ•W
+	{//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åº§æ¨™
 		G2_SetWnd0Position(vpw->wnd0_x1, vpw->wnd0_y1, vpw->wnd0_x2, vpw->wnd0_y2);
 		G2_SetWnd1Position(vpw->wnd1_x1, vpw->wnd1_y1, vpw->wnd1_x2, vpw->wnd1_y2);
 	}
@@ -686,7 +686,7 @@ static void VisualVBlank(void *work)
 		}
 	}
 
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	DoVramTransferManager();	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(vpw->sys.pfd);
 
@@ -697,9 +697,9 @@ static void VisualVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚És‚¤ƒVƒXƒeƒ€ŠÖ˜A‚ÌXVˆ—
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã«è¡Œã†ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ã®æ›´æ–°å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		vpw
  */
 //--------------------------------------------------------------
@@ -708,7 +708,7 @@ static void VisualUpdate(TCB_PTR tcb, void *work)
 	VISUAL_PROC_WORK *vpw = work;
 	
 	if(vpw->proc_mode == VPW_PROC_MODE_MAIN){
-		SoftSpriteMain(vpw->sys.soft_sprite);	//ƒgƒŒ[ƒi[—p‚ÉŒvZ•K—v
+		SoftSpriteMain(vpw->sys.soft_sprite);	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”¨ã«è¨ˆç®—å¿…è¦
 		{
 			int i;
 			for(i = 0; i < BREEDER_MAX; i++){
@@ -728,32 +728,32 @@ static void VisualUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNİ’è‚ğs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualSys_VramBankSet(GF_BGL_INI *bgl)
 {
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -768,23 +768,23 @@ static void VisualSys_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME1_M	ƒEƒBƒ“ƒhƒE
+			///<FRAME1_M	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 //				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
 				VISUAL_BGPRI_WIN, 0, 0, FALSE
 			},
-			///<FRAME2_M	ƒGƒtƒFƒNƒg
+			///<FRAME2_M	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
 				VISUAL_BGPRI_EFF, 0, 0, FALSE
 			},
-			///<FRAME3_M	”wŒi
+			///<FRAME3_M	èƒŒæ™¯
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -807,10 +807,10 @@ static void VisualSys_VramBankSet(GF_BGL_INI *bgl)
 		G2_SetBG0Priority(VISUAL_3DBG_PRIORITY);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER SubBgCntDat[] = {
-			///<FRAME0_S	ŠÏ‹q
+			///<FRAME0_S	è¦³å®¢
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -826,9 +826,9 @@ static void VisualSys_VramBankSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ŠúBMPƒEƒBƒ“ƒhƒE‚ğİ’è‚·‚é
+ * @brief   åˆæœŸBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¨­å®šã™ã‚‹
  *
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualSys_DefaultBmpWinAdd(VISUAL_PROC_WORK *vpw)
@@ -839,7 +839,7 @@ static void VisualSys_DefaultBmpWinAdd(VISUAL_PROC_WORK *vpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹•”–å—pƒp[ƒeƒBƒNƒ‹‰Šú‰»
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
  */
 //--------------------------------------------------------------
 static void VisualParticleInit(void)
@@ -848,7 +848,7 @@ static void VisualParticleInit(void)
 	NNSGfdPlttKey pltt_key;
 	u32 tex_addrs, pltt_addrs;
 	
-	//ƒ|ƒPƒ‚ƒ“‚Åg—p‚·‚é•ª‚ğŠm•Û
+	//ãƒã‚±ãƒ¢ãƒ³ã§ä½¿ç”¨ã™ã‚‹åˆ†ã‚’ç¢ºä¿
 	tex_key = NNS_GfdAllocTexVram(0x2000 * CLIENT_MAX, 0, 0);
 	pltt_key = NNS_GfdAllocPlttVram(0x20 * CLIENT_MAX, 0, 0);
 	
@@ -856,17 +856,17 @@ static void VisualParticleInit(void)
 	GF_ASSERT(pltt_key != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 	tex_addrs = NNS_GfdGetTexKeyAddr(tex_key);
 	pltt_addrs = NNS_GfdGetPlttKeyAddr(pltt_key);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒeƒNƒXƒ`ƒƒVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", tex_addrs);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒpƒŒƒbƒgVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", pltt_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", tex_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆVramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", pltt_addrs);
 
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‰Šú‰»
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	Particle_SystemWorkInit();
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ì‰Šúƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualSystemWorkInit(VISUAL_PROC_WORK *vpw)
@@ -884,13 +884,13 @@ static void VisualSystemWorkInit(VISUAL_PROC_WORK *vpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ì“o˜^‚ğs‚¤
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualDefaultOBJSet(VISUAL_PROC_WORK *vpw, ARCHANDLE *hdl_obj)
 {
-	//í’“OBJƒpƒŒƒbƒgƒ[ƒh
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArcH(vpw->sys.pfd, FADE_MAIN_OBJ, vpw->sys.csp, vpw->sys.crp, 
 		hdl_obj, CONTEST_VISUAL_OBJ_NCLR, 0, 
 		VISUAL_COMMON_PAL_NUM, NNS_G2D_VRAM_TYPE_2DMAIN, V_PLTTID_OBJ_COMMON);
@@ -906,8 +906,8 @@ static void VisualDefaultOBJSet(VISUAL_PROC_WORK *vpw, ARCHANDLE *hdl_obj)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ìíœ‚ğs‚¤
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualDefaultOBJDel(VISUAL_PROC_WORK *vpw)
@@ -917,19 +917,19 @@ static void VisualDefaultOBJDel(VISUAL_PROC_WORK *vpw)
 	ADV_FlowerActorDelAll(&vpw->sys.flower);
 	ADV_FlowerResourceFree(vpw->sys.crp, V_CHARID_FLOWER, -1, V_CELLID_FLOWER, V_CELLANMID_FLOWER);
 	
-	//í’“OBJƒpƒŒƒbƒg‰ğ•ú‚·‚é
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆè§£æ”¾ã™ã‚‹
 	CATS_FreeResourcePltt(vpw->sys.crp, V_PLTTID_OBJ_COMMON);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊOBJFƒrƒWƒ…ƒAƒ‹•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ì“o˜^‚ğs‚¤
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢OBJï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualDefaultOBJSet_Sub(VISUAL_PROC_WORK *vpw, ARCHANDLE *hdl_obj)
 {
-	//í’“OBJƒpƒŒƒbƒgƒ[ƒh
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArc(vpw->sys.pfd, FADE_SUB_OBJ, vpw->sys.csp, vpw->sys.crp, 
 		ARC_CONTEST_OBJ, CONTEST_VISUAL_SUB_OBJ_NCLR, 0, 
 		VISUAL_SUB_COMMON_PAL_NUM, NNS_G2D_VRAM_TYPE_2DSUB, V_PLTTID_OBJ_COMMON_SUB);
@@ -937,50 +937,50 @@ static void VisualDefaultOBJSet_Sub(VISUAL_PROC_WORK *vpw, ARCHANDLE *hdl_obj)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊOBJFƒrƒWƒ…ƒAƒ‹•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ìíœ‚ğs‚¤
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢OBJï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualDefaultOBJDel_Sub(VISUAL_PROC_WORK *vpw)
 {
-	//í’“OBJƒpƒŒƒbƒg‰ğ•ú‚·‚é
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆè§£æ”¾ã™ã‚‹
 	CATS_FreeResourcePltt(vpw->sys.crp, V_PLTTID_OBJ_COMMON_SUB);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–ÊBGFƒrƒWƒ…ƒAƒ‹•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚ÌƒZƒbƒg‚ğs‚¤
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢BGï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’è¡Œã†
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualDefaultBGSet(VISUAL_PROC_WORK *vpw, ARCHANDLE *hdl_bg)
 {
 	WINTYPE win_type;
 	
-	//ƒLƒƒƒ‰ƒNƒ^
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 	ArcUtil_HDL_BgCharSet(hdl_bg, CON_VISUAL_BG_NCGR_BIN, vpw->sys.bgl, 
 		VISUAL_FRAME_BACKGROUND, 0, 0, 1, HEAPID_VISUAL);
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_HDL_ScrnSet(hdl_bg, CON_VISUAL_BG_NSCR_BIN, vpw->sys.bgl, 
 		VISUAL_FRAME_BACKGROUND, 0, 0, 1, HEAPID_VISUAL);
 	GF_BGL_ScrClear(vpw->sys.bgl, VISUAL_FRAME_WIN);
 
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(vpw->sys.pfd, ARC_CONTEST_BG, CONTEST_VISUAL_BG_NCLR, 
 		HEAPID_VISUAL, FADE_MAIN_BG, 0, 0);
-	//ƒtƒHƒ“ƒg—pƒpƒŒƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(vpw->sys.pfd, ARC_CONTEST_BG, CON_BG_FONT_NCLR, 
 		HEAPID_VISUAL, FADE_MAIN_BG, 0x20, BMPWIN_TALK_COLOR * 16);
 
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	win_type = CONFIG_GetWindowType(vpw->consys->config);
 	TalkWinGraphicSet(vpw->sys.bgl, VISUAL_FRAME_WIN, VISUAL_TALKWIN_CGX_OFFSET, 
 		VISUAL_TALKWIN_BACK_COLOR, win_type, HEAPID_VISUAL);
 	PaletteWorkSet_Arc(vpw->sys.pfd, ARC_WINFRAME, TalkWinPalArcGet(win_type), 
 		HEAPID_VISUAL, FADE_MAIN_BG, 0x20, VISUAL_TALKWIN_PALNO * 16);
 
-	//‚Ç‚ñ‚¿‚å‚¤
+	//ã©ã‚“ã¡ã‚‡ã†
 	ArcUtil_HDL_BgCharSet(hdl_bg, DONTYOU_ANIM_NCGR_BIN, vpw->sys.bgl, 
 		VISUAL_FRAME_EFF, 0, 0, 1, HEAPID_VISUAL);
 	ArcUtil_HDL_ScrnSet(hdl_bg, CON_VISUAL_DONCHOU_NSCR_BIN, vpw->sys.bgl, 
@@ -991,8 +991,8 @@ static void VisualDefaultBGSet(VISUAL_PROC_WORK *vpw, ARCHANDLE *hdl_bg)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–ÊBGFƒrƒWƒ…ƒAƒ‹•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚Ìíœˆ—‚ğs‚¤
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢BGï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualDefaultBGDel(VISUAL_PROC_WORK *vpw)
@@ -1002,28 +1002,28 @@ static void VisualDefaultBGDel(VISUAL_PROC_WORK *vpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊBGFƒrƒWƒ…ƒAƒ‹•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚ÌƒZƒbƒg‚ğs‚¤
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢BGï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’è¡Œã†
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualDefaultBGSet_Sub(VISUAL_PROC_WORK *vpw, ARCHANDLE *hdl_bg)
 {
-	//ƒLƒƒƒ‰ƒNƒ^
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 	ArcUtil_HDL_BgCharSet(hdl_bg, CON_VISUAL_SUB_BG_NCGR_BIN, vpw->sys.bgl, 
 		VISUAL_FRAME_SUB_AUDIENCE, 0, 0, 1, HEAPID_VISUAL);
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_HDL_ScrnSet(hdl_bg, CON_VISUAL__SUB_BG_NSCR_BIN, vpw->sys.bgl, 
 		VISUAL_FRAME_SUB_AUDIENCE, 0, 0, 1, HEAPID_VISUAL);
 
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(vpw->sys.pfd, ARC_CONTEST_BG, CONTEST_VISUAL_SUB_BG_NCLR, 
 		HEAPID_VISUAL, FADE_SUB_BG, 0, 0);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊBGFƒrƒWƒ…ƒAƒ‹•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚Ìíœˆ—‚ğs‚¤
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢BGï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VisualDefaultBGDel_Sub(VISUAL_PROC_WORK *vpw)
@@ -1035,17 +1035,17 @@ static void VisualDefaultBGDel_Sub(VISUAL_PROC_WORK *vpw)
 
 //==============================================================================
 //
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXF‰Šú‰»ˆ—
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šåˆæœŸåŒ–å‡¦ç†
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_Init(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1056,9 +1056,9 @@ static int VisualSeq_Init(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 			break;
 		}
 		
-		//ƒNƒŠƒbƒv‚Ì“¾“_ŒvZ
+		//ã‚¯ãƒªãƒƒãƒ—ã®å¾—ç‚¹è¨ˆç®—
 		ADV_ClipScoreCalc(vpw->consys, HEAPID_VISUAL);
-		//BP‚Ì“¾“_ŒvZ
+		//BPã®å¾—ç‚¹è¨ˆç®—
 		ADV_BPScoreCalc(vpw->consys);
 		
 		//VT_SoftSpriteAddAll(&vpw->sys);
@@ -1078,12 +1078,12 @@ static int VisualSeq_Init(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFR”»‚ÌÅ‰‚Ì‰ï˜b•ª
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šå¯©åˆ¤ã®æœ€åˆã®ä¼šè©±åˆ†
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_JudgeFastTalk(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1116,12 +1116,12 @@ static int VisualSeq_JudgeFastTalk(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *loc
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“‘I‘ğ
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠ
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_PokeSelect(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1147,12 +1147,12 @@ static int VisualSeq_PokeSelect(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXF‚Ç‚ñ‚¿‚å‚¤‚ğƒtƒF[ƒhƒAƒEƒg
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã©ã‚“ã¡ã‚‡ã†ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_DonchouFadeOut(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1180,12 +1180,12 @@ static int VisualSeq_DonchouFadeOut(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *lo
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXF‚Ç‚ñ‚¿‚å‚¤‚ğƒtƒF[ƒhƒCƒ“
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã©ã‚“ã¡ã‚‡ã†ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_DonchouFadeIn(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1213,12 +1213,12 @@ static int VisualSeq_DonchouFadeIn(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *loc
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFŠ®‘S‚É–¾‚é‚­
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šå®Œå…¨ã«æ˜ã‚‹ã
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_FullFadeIn(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1246,12 +1246,12 @@ static int VisualSeq_FullFadeIn(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXF‚Ç‚ñ‚¿‚å‚¤‚ğƒGƒtƒFƒNƒgã¸
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã©ã‚“ã¡ã‚‡ã†ã‚’ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸Šæ˜‡
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_DonchouEffectUp(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1275,12 +1275,12 @@ static int VisualSeq_DonchouEffectUp(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *l
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ““oê
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³ç™»å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_Appear(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1304,12 +1304,12 @@ static int VisualSeq_Appear(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXF‚Ç‚ñ‚¿‚å‚¤ã‚°‚é
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã©ã‚“ã¡ã‚‡ã†ä¸Šã’ã‚‹
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_DonchouUp(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1333,12 +1333,12 @@ static int VisualSeq_DonchouUp(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFƒgƒŒ[ƒi[“oê
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_TrainerIn(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1362,12 +1362,12 @@ static int VisualSeq_TrainerIn(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFĞ‰îƒƒbƒZ[ƒW
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šç´¹ä»‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_IntroduceTalk(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1411,12 +1411,12 @@ static int VisualSeq_IntroduceTalk(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *loc
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ““oêƒGƒtƒFƒNƒg
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_AppearEffect(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1440,12 +1440,12 @@ static int VisualSeq_AppearEffect(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *loca
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFƒgƒŒ[ƒi[‘Şê
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_TrainerOut(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1469,12 +1469,12 @@ static int VisualSeq_TrainerOut(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“‘Oi
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³å‰é€²
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_Advance(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1498,12 +1498,12 @@ static int VisualSeq_Advance(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFŠÏ‹q•]‰¿
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šè¦³å®¢è©•ä¾¡
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_AudienceEvaluate(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1619,12 +1619,12 @@ static int VisualSeq_AudienceEvaluate(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“‘Şê
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³é€€å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_PokeOut(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1655,12 +1655,12 @@ static int VisualSeq_PokeOut(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXF‚Ç‚ñ‚¿‚å‚¤‰º‚°‚é
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã©ã‚“ã¡ã‚‡ã†ä¸‹ã’ã‚‹
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_DonchouDown(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1684,12 +1684,12 @@ static int VisualSeq_DonchouDown(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFŸ‚Ìƒ|ƒPƒ‚ƒ“‚Öi‚Ş‘O‚ÌŒãˆ—
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ã¸é€²ã‚€å‰ã®å¾Œå‡¦ç†
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_NextPoke(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1711,12 +1711,12 @@ static int VisualSeq_NextPoke(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFƒrƒWƒ…ƒAƒ‹•”–å‚ğI—¹‚·‚é‚ÌƒƒbƒZ[ƒW•\¦
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã‚’çµ‚äº†ã™ã‚‹æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_EndTalk(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1767,12 +1767,12 @@ static int VisualSeq_EndTalk(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹ƒV[ƒPƒ“ƒXFI—¹ˆ—
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int VisualSeq_End(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
@@ -1787,7 +1787,7 @@ static int VisualSeq_End(VISUAL_PROC_WORK *vpw, VISUAL_LOCAL_WORK *local)
 //		if(CO_RequestBitNumCheck(&vpw->cow) == 0){
 //		if(CO_AnswerCountCheck(&vpw->cow, vpw->consys->c_game.player_num, 
 //				vpw->consys->c_game.my_breeder_no, vpw->consys->c_game.server_no) == TRUE){
-		//’ÊMBTS#0467‘Îˆ‚Ìˆ×Aƒvƒ‰ƒ`ƒiq‹@‚Ì‚İI—¹“¯Šú‚ğæ‚é
+		//é€šä¿¡BTS#0467å¯¾å‡¦ã®ç‚ºã€ãƒ—ãƒ©ãƒãƒŠå­æ©Ÿã®ã¿çµ‚äº†åŒæœŸã‚’å–ã‚‹
 		if(CO_AnswerCountCheck(&vpw->cow, 
 				vpw->consys->c_game.player_num - vpw->consys->sio_dp_num - 1, 
 				vpw->consys->c_game.my_breeder_no, vpw->consys->c_game.server_no) == TRUE){

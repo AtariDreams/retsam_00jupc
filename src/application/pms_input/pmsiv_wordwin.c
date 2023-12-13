@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pmsiv_wordwin.c
- * @bfief	�ȈՉ�b���͉�ʁi�`�扺�����F�P��\���E�B���h�E�j
+ * @bfief	簡易会話入力画面（描画下請け：単語表示ウィンドウ）
  * @author	taya
  * @date	06.02.10
  */
@@ -27,7 +27,7 @@
 enum {
 	INPUTAREA_PALTYPE_MAX = 10,
 
-	STR_TMPBUF_LEN = 128,	// �\���O�̃e���|�����Ƃ��Ďg�p�B�ő啶�����B
+	STR_TMPBUF_LEN = 128,	// 表示前のテンポラリとして使用。最大文字数。
 };
 
 enum {
@@ -59,11 +59,11 @@ enum {
 	WORDWIN_SCROLL_WAIT_UNIT = PMSI_FRAMES(2),
 
 
-	// �܂�Ԃ��O�̈ꎞ�I�ȕ�����`��̈�p
+	// 折り返し前の一時的な文字列描画領域用
 	WORD_TMPWIN_WIDTH = 12,
 	WORD_TMPWIN_HEIGHT = 2,
 
-	// �J�[�\���`��ʒu
+	// カーソル描画位置
 	CURSOR_WIDTH = 12*8,
 	CURSOR_HEIGHT = 16,
 	CURSOR_OX = (WORDWIN_XORG*8)+(CURSOR_WIDTH/2) - 8,
@@ -256,7 +256,7 @@ static void setup_actor( PMSIV_WORDWIN* wk )
 
 //------------------------------------------------------------------
 /**
- * �P����e��BitmapWindow�ɕ`��
+ * 単語内容をBitmapWindowに描画
  *
  * @param   wk		
  *
@@ -295,7 +295,7 @@ void PMSIV_WORDWIN_SetupWord( PMSIV_WORDWIN* wk )
 
 //------------------------------------------------------------------
 /**
- * �t�F�[�h�C���G�t�F�N�g�J�n
+ * フェードインエフェクト開始
  *
  * @param   wk		
  *
@@ -307,7 +307,7 @@ void PMSIV_WORDWIN_StartFadeIn( PMSIV_WORDWIN* wk )
 //G2_SetBlendAlpha( GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 6, 10 );
 	GF_BGL_VisibleSet( FRM_MAIN_WORDWIN, TRUE );
 
-	// �㉺�ۂ̃X�N���[��������������Ȃ��悤�ɃE�B���h�E�ŉB��
+	// 上下際のスクロール文字列を見られないようにウィンドウで隠す
 	G2_SetWnd1InsidePlane(GX_WND_PLANEMASK_ALL, TRUE);
 
 	wk->winout_backup = G2_GetWndOutsidePlane();
@@ -321,7 +321,7 @@ void PMSIV_WORDWIN_StartFadeIn( PMSIV_WORDWIN* wk )
 }
 //------------------------------------------------------------------
 /**
- * �t�F�[�h�C���G�t�F�N�g�I���҂�
+ * フェードインエフェクト終了待ち
  *
  * @param   wk		
  *
@@ -346,7 +346,7 @@ BOOL PMSIV_WORDWIN_WaitFadeIn( PMSIV_WORDWIN* wk )
 
 //------------------------------------------------------------------
 /**
- * �t�F�[�h�A�E�g�G�t�F�N�g�J�n
+ * フェードアウトエフェクト開始
  *
  * @param   wk		
  *
@@ -359,7 +359,7 @@ void PMSIV_WORDWIN_StartFadeOut( PMSIV_WORDWIN* wk )
 }
 //------------------------------------------------------------------
 /**
- * �t�F�[�h�A�E�g�G�t�F�N�g�I���҂�
+ * フェードアウトエフェクト終了待ち
  *
  * @param   wk		
  *
@@ -393,7 +393,7 @@ BOOL PMSIV_WORDWIN_WaitFadeOut( PMSIV_WORDWIN* wk )
 
 //------------------------------------------------------------------
 /**
- * �J�[�\���\���I���I�t
+ * カーソル表示オンオフ
  *
  * @param   wk		
  * @param   flag		
@@ -418,7 +418,7 @@ void PMSIV_WORDWIN_VisibleCursor( PMSIV_WORDWIN* wk, BOOL flag )
 
 //------------------------------------------------------------------
 /**
- * �J�[�\���ړ�
+ * カーソル移動
  *
  * @param   wk		
  * @param   pos		
@@ -444,7 +444,7 @@ void PMSIV_WORDWIN_MoveCursor( PMSIV_WORDWIN* wk, u32 pos )
 
 //------------------------------------------------------------------
 /**
- * �X�N���[���J�n
+ * スクロール開始
  *
  * @param   wk		
  * @param   vector		
@@ -498,7 +498,7 @@ void PMSIV_WORDWIN_StartScroll( PMSIV_WORDWIN* wk, int vector )
 
 //------------------------------------------------------------------
 /**
- * �X�N���[���I���҂�
+ * スクロール終了待ち
  *
  * @param   wk		
  *

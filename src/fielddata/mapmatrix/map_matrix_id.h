@@ -1,4 +1,4 @@
-//���̃t�@�C���̓R���o�[�^�ɂ�萶������܂�
+//このファイルはコンバータにより生成されます
 enum {
 	MATRIX_ID_SINOU,
 	MATRIX_ID_SINGLE,

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_156.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			156 �g�p�����|�P�����́u�ڂ�����v���P�i�K�グ��{�u�܂邭�Ȃ�v��Ԃɂ���
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			156 使用したポケモンの「ぼうぎょ」を１段階上げる＋「まるくなる」状態にする
  *
  *@author	HisashiSogabe
  *@data		2005.11.24
@@ -15,8 +15,8 @@
 	.include	"waza_seq_def.h"
 
 BE_156:
-	//�u�܂邭�Ȃ�v�t���O�𗧂Ă�
+	//「まるくなる」フラグを立てる
 	PSP_VALUE	VAL_BIT,SIDE_ATTACK,ID_PSP_condition2,CONDITION2_MARUKUNARU
-	//�u�ڂ�����v���P�i�K�グ��
+	//「ぼうぎょ」を１段階上げる
 	VALUE		VAL_SET,BUF_PARA_ADD_STATUS_DIRECT,ADD_COND2_DEFUP|ADD_STATUS_ATTACK
 	SEQ_END

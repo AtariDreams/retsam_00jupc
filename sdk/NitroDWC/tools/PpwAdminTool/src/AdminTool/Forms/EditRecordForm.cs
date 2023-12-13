@@ -24,7 +24,7 @@ namespace AdminTool
 
             BindingSource bindingSource = new BindingSource();
             bindingSource.AllowNew = true;
-            bindingSource.DataSource = typeof(RequestInterface.LobbyScheduleRecord);    // ‚±‚Ìƒf[ƒ^ƒ\[ƒX‚Ì‹K’è‚ÌŒ^‚ğw’è
+            bindingSource.DataSource = typeof(RequestInterface.LobbyScheduleRecord);    // ã“ã®ãƒ‡ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹ã®è¦å®šã®å‹ã‚’æŒ‡å®š
 
             foreach (RequestInterface.LobbyScheduleRecord item in dataSource)
             {
@@ -32,8 +32,8 @@ namespace AdminTool
             }
 
             DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
-            text.DataPropertyName = "Time"; // ƒpƒuƒŠƒbƒN‚ÈƒvƒƒpƒeƒB–¼‚ğw’è‚µ‚È‚¢‚Æ•\¦‚³‚ê‚È‚¢‚±‚Æ‚É’ˆÓ
-            text.Name = "(•b)";
+            text.DataPropertyName = "Time"; // ãƒ‘ãƒ–ãƒªãƒƒã‚¯ãªãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åã‚’æŒ‡å®šã—ãªã„ã¨è¡¨ç¤ºã•ã‚Œãªã„ã“ã¨ã«æ³¨æ„
+            text.Name = "æ™‚åˆ»(ç§’)";
             text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns.Add(text);
             
@@ -41,10 +41,10 @@ namespace AdminTool
             List<RequestInterface.PPW_LOBBY_TIME_EVENT> list =
                 new List<RequestInterface.PPW_LOBBY_TIME_EVENT>
                 ((RequestInterface.PPW_LOBBY_TIME_EVENT[])Enum.GetValues(typeof(RequestInterface.PPW_LOBBY_TIME_EVENT)));
-            list.RemoveAt(0);   // Enum—v‘f‚Ì“àAÅ‰‚ÌLock‚ğœŠO‚·‚éB
+            list.RemoveAt(0);   // Enumè¦ç´ ã®å†…ã€æœ€åˆã®Lockã‚’é™¤å¤–ã™ã‚‹ã€‚
             combo.DataSource = list;
             combo.DataPropertyName = "TimeEvent";
-            combo.Name = "ƒCƒxƒ“ƒg";
+            combo.Name = "ã‚¤ãƒ™ãƒ³ãƒˆ";
             combo.MaxDropDownItems = 20;
             dataGridView.Columns.Add(combo);
 

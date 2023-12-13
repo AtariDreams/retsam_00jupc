@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_226.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			226�@�G�A�����A������I�����Ď��s�B�����_���ŃX�e�[�^�X�̂����ꂩ�̒l�����[��Əグ��B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			226　敵、味方、自分を選択して実行。ランダムでステータスのいずれかの値をぐーんと上げる。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_226:
-	//�݂������o����Ă���Ƃ��́A���s����
+	//みがわりを出されているときは、失敗する
 	MIGAWARI_CHECK	SIDE_DEFENCE,Umakukimaran
 
 	TUBOWOTUKU		Umakukimaran

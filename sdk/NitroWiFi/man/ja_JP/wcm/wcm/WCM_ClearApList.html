@@ -13,8 +13,8 @@
 
   $Log: WCM_ClearApList.html,v $
   Revision 1.2  2005/07/22 13:00:24  terui
-  "�t�F�[�Y"��"���"�ɗp�ꓝ��
-  �����̏��œ��𓝈�
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
 
   Revision 1.1  2005/07/20 13:11:10  terui
   Initial upload
@@ -23,7 +23,7 @@
  ==========================================================================-->
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>WCM_ClearApList</TITLE>
 		<LINK rel="stylesheet" href="../../css/nitro.css">
@@ -32,7 +32,7 @@
 	<BODY>
 		<H1>WCM_ClearApList</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -43,25 +43,25 @@ void  WCM_ClearApList( void );
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-			�����A�N�Z�X�|�C���g�����T�����ɔ������ꂽ�@��̏���ޔ����Ă����������X�g�o�b�t�@�̓��e���������铯���֐��ł��B
-			<A href="WCM_LockApList.html"><CODE>WCM_LockApList</CODE> �֐�</A>�ɂ��X�V���E�֎~�ݒ�Ɋւ�炸�A���ɑޔ�����Ă�����͑S�ď�������܂��B
-			�܂��A���֐����Ăяo���Ă��X�V���E�֎~�ݒ�͕ύX����܂���B<BR>
-			�Ȃ��AWCM ���C�u����������������O�̌Ăяo���͖�������܂��B
+			無線アクセスポイント自動探索中に発見された機器の情報を退避しておく内部リストバッファの内容を消去する同期関数です。
+			<A href="WCM_LockApList.html"><CODE>WCM_LockApList</CODE> 関数</A>による更新許可・禁止設定に関わらず、既に退避されている情報は全て消去されます。
+			また、当関数を呼び出しても更新許可・禁止設定は変更されません。<BR>
+			なお、WCM ライブラリを初期化する前の呼び出しは無視されます。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<P>
-			����܂���B
+			ありません。
 		</P>
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<P>
-			����܂���B
+			ありません。
 		</P>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<CODE>
 				<A href="WCM_Init.html">WCM_Init</A>, <A href="WCMConfig.html">WCMConfig</A>, <A href="WCM_LockApList.html">WCM_LockApList</A>,
@@ -69,9 +69,9 @@ void  WCM_ClearApList( void );
 			</CODE>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2005/07/22 ����<BR>
+			2005/07/22 初版<BR>
 		</P>
 
 	</BODY>

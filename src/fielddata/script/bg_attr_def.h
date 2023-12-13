@@ -1,7 +1,7 @@
 #ifndef _BG_ATTR_DEF_H_
 #define _BG_ATTR_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_LITTLE_RACK1		(2500)
 #define	SCRID_LITTLE_RACK2		(2501)
 #define	SCRID_RACK1		(2502)
@@ -11,6 +11,6 @@
 #define	SCRID_SHOP_RACK2		(2506)
 #define	SCRID_SHOP_RACK3		(2507)
 #define	SCRID_TMAP_BG		(2508)
-#define	SCRID_BG_ATTR_DATA_MAX		(9)		//最大数
+#define	SCRID_BG_ATTR_DATA_MAX		(9)		//譛螟ｧ謨ｰ
 
 #endif //_BG_ATTR_DEF_H_

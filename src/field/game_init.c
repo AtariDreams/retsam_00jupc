@@ -1,11 +1,11 @@
 //===========================================================================
 /**
  * @file	game_init.c
- * @brief	ƒQ[ƒ€ŠJŽn—p‰ŠúÝ’è
+ * @brief	ã‚²ãƒ¼ãƒ é–‹å§‹ç”¨åˆæœŸè¨­å®š
  * @author	tamada GAME FREAK Inc.
  * @date	2005.10.13
  *
- * 2006.06.17	debug_init.c‚©‚çƒŠƒl[ƒ€‚µ‚½
+ * 2006.06.17	debug_init.cã‹ã‚‰ãƒªãƒãƒ¼ãƒ ã—ãŸ
  */
 //===========================================================================
 #include "common.h"
@@ -59,32 +59,32 @@
 
 //============================================================================================
 //
-//		ƒQ[ƒ€ÄŠJŽž‚ÌƒZ[ƒuƒf[ƒ^“Ç‚Ýž‚Ý
+//		ã‚²ãƒ¼ãƒ å†é–‹æ™‚ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 //
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒf[ƒ^ˆ—FƒRƒ“ƒeƒBƒjƒ…[
- * @param	savedata	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å‡¦ç†ï¼šã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
+ * @param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void GameData_SetContinueData(int heapID, SAVEDATA * savedata)
 {
 	if (!SaveData_Load(savedata)) {
-		OS_Printf("ƒZ[ƒuƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+		OS_Printf("ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“\n");
 		OS_ResetSystem(0);
 	}
 }
 
 //============================================================================================
 //
-//		ƒQ[ƒ€ŠJŽnŽž‚ÌƒZ[ƒuƒf[ƒ^‰ŠúÝ’è
+//		ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åˆæœŸè¨­å®š
 //
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒf[ƒ^ˆ—FV‹KƒQ[ƒ€
- * @param	savedata	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å‡¦ç†ï¼šæ–°è¦ã‚²ãƒ¼ãƒ 
+ * @param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void GameData_SetNewGame(int heapID, SAVEDATA * savedata)
@@ -93,17 +93,17 @@ void GameData_SetNewGame(int heapID, SAVEDATA * savedata)
 
 	SaveData_ClearData(savedata);
 
-	//‰ŠúƒXƒ^[ƒgˆÊ’uÝ’è
+	//åˆæœŸã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®è¨­å®š
 	LOCATION_GameInit(savedata);
 
-	//‚¨‹à‚¾‚¯ƒZƒbƒg
+	//ãŠé‡‘ã ã‘ã‚»ãƒƒãƒˆ
 	my = SaveData_GetMyStatus(savedata);
 	MyStatus_SetGold(my, 3000);
 
-	//ŽèŽ‚¿ƒRƒCƒ“ƒZƒbƒg
+	//æ‰‹æŒã¡ã‚³ã‚¤ãƒ³ã‚»ãƒƒãƒˆ
 	//COIN_Set(SaveData_GetMyCoin(savedata), 100);
 
-	//ƒƒjƒ…[uƒoƒbƒOv
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œãƒãƒƒã‚°ã€
 	SysFlag_BagSet( SaveData_GetEventWork(savedata) );
 }
 
@@ -113,7 +113,7 @@ void GameData_SetNewGame(int heapID, SAVEDATA * savedata)
 //============================================================================================
 //
 //
-//		ƒQ[ƒ€ŠJŽnŽž‚ÌƒZ[ƒuƒf[ƒ^‰ŠúÝ’èEƒfƒoƒbƒO—p
+//		ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åˆæœŸè¨­å®šãƒ»ãƒ‡ãƒãƒƒã‚°ç”¨
 //
 //
 //============================================================================================
@@ -134,8 +134,8 @@ static int DebugPersonMax;
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒf[ƒ^ˆ—FV‹KƒQ[ƒ€iƒfƒoƒbƒOj
- * @param	savedata	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å‡¦ç†ï¼šæ–°è¦ã‚²ãƒ¼ãƒ ï¼ˆãƒ‡ãƒãƒƒã‚°ï¼‰
+ * @param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void GameData_SetDebugNewGame(int heapID, SAVEDATA * savedata, int usr_id)
@@ -155,7 +155,7 @@ void GameData_SetDebugNewGame(int heapID, SAVEDATA * savedata, int usr_id)
 //============================================================================================
 //============================================================================================
 static const MINEPOKE MinePokeList[] = {
-#if 0	//TPCƒvƒŒƒ[ƒ“—p‚É•ÏX 2007.05.23(…) matsuda
+#if 0	//TPCãƒ—ãƒ¬ã‚¼ãƒ³ç”¨ã«å¤‰æ›´ 2007.05.23(æ°´) matsuda
 	{MONSNO_GOUKAZARU,	99},
 	{MONSNO_POTTYAMA,	99},
 	{MONSNO_UOTTO,		99},
@@ -172,7 +172,7 @@ static const MINEPOKE MinePokeList[] = {
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—pF‰ŠúƒZ[ƒuƒf[ƒ^Ý’è
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨ï¼šåˆæœŸã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿è¨­å®š
  */
 //------------------------------------------------------------------
 void Debug_MakeStartData(int heapID, SAVEDATA * savedata, int usr_id)
@@ -182,34 +182,34 @@ void Debug_MakeStartData(int heapID, SAVEDATA * savedata, int usr_id)
 	ZUKAN_WORK * zw;
 	CONFIG * cfg;
 
-	//‰ŠúƒXƒ^[ƒgˆÊ’uÝ’è
+	//åˆæœŸã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®è¨­å®š
 	//LOCATION_GameInit(savedata);
 	LOCATION_GameInit_Debug(savedata);
 
-	//“K“–‚ÉŽ©•ªó‘Ôƒf[ƒ^¶¬
+	//é©å½“ã«è‡ªåˆ†çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	my = SaveData_GetMyStatus(savedata);
 	Debug_SetMyStatus(my, usr_id);
 
 	MyStatus_SetGold(my, 123456);
 
-	//“K“–‚ÉƒvƒŒƒCŽžŠÔ‚ðƒZƒbƒg
+	//é©å½“ã«ãƒ—ãƒ¬ã‚¤æ™‚é–“ã‚’ã‚»ãƒƒãƒˆ
 	//PLAYTIME_Set(SaveData_GetPlayTime(savedata), 789, 56, 43);
 
-	//ƒfƒoƒbƒO‚ÅŽn‚ß‚½‚Æ‚«‚ÍMSG‘¬“x‚ðÅ‘¬‚É‚·‚é
+	//ãƒ‡ãƒãƒƒã‚°ã§å§‹ã‚ãŸã¨ãã¯MSGé€Ÿåº¦ã‚’æœ€é€Ÿã«ã™ã‚‹
 	cfg = SaveData_GetConfig(savedata);
 	CONFIG_SetMsgSpeed(cfg, MSGSPEED_FAST);
 
-	//ŽèŽ‚¿ƒAƒCƒeƒ€‚ð“K“–‚É¶¬
+	//æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ã‚’é©å½“ã«ç”Ÿæˆ
 	bag = SaveData_GetMyItem(savedata);
 	Debug_MyItem_MakeBag(bag, HEAPID_BASE_DEBUG);
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ð“K“–‚É¶¬
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’é©å½“ã«ç”Ÿæˆ
 	AddMonsList(heapID, savedata, MinePokeList);
 
-	//ŽèŽ‚¿ƒRƒCƒ“ƒZƒbƒg
+	//æ‰‹æŒã¡ã‚³ã‚¤ãƒ³ã‚»ãƒƒãƒˆ
 	COIN_Set(SaveData_GetMyCoin(savedata), 500);
 
-	//ƒVƒXƒeƒ€ƒtƒ‰ƒOƒZƒbƒg
+	//ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	{
 		SITUATION *situ;
 		PLAYER_SAVE_DATA *jikisave;
@@ -218,19 +218,19 @@ void Debug_MakeStartData(int heapID, SAVEDATA * savedata, int usr_id)
 		jikisave = Situation_GetPlayerSaveData( situ );
 		Player_SaveDataDashSet( jikisave, TRUE );
 
-		//ƒƒjƒ…[u}ŠÓv
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œå›³é‘‘ã€
 		zw = SaveData_GetZukanWork( savedata );
 		ZukanWork_SetZukanGetFlag( zw );
 
-		//ƒƒjƒ…[uƒoƒbƒOv
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œãƒãƒƒã‚°ã€
 		SysFlag_BagSet( SaveData_GetEventWork(savedata) );
 
-		//ƒƒjƒ…[uƒ|ƒPƒ‚ƒ“v(’ˆÓI@Å‰‚Ìƒ|ƒPƒ‚ƒ“‚ÍƒtƒVƒMƒ_ƒlŒÅ’èI)
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œãƒã‚±ãƒ¢ãƒ³ã€(æ³¨æ„ï¼ã€€æœ€åˆã®ãƒã‚±ãƒ¢ãƒ³ã¯ãƒ•ã‚·ã‚®ãƒ€ãƒå›ºå®šï¼)
 		SysWork_FirstPokeNoSet( SaveData_GetEventWork(savedata), MONSNO_HUSIGIDANE );
 	}
 
 
-	//ŒÂl‚²‚Æ‚ÌÝ’èŒÄ‚Ño‚µ
+	//å€‹äººã”ã¨ã®è¨­å®šå‘¼ã³å‡ºã—
 	Debug_PersonalSetting(heapID, savedata, usr_id);
 }
 
@@ -388,7 +388,7 @@ int Debug_GetMyID(void)
 #elif	defined(DEBUG_ONLY_FOR_tomoya_takahashi)
 	return DEBUG_NAME_TOMOYA;
 #elif	defined(DEBUG_ONLY_FOR_ohno)
-	return DEBUG_NAME_OHNO + gf_mtRand() % 10; // Ž©•ª‚Ì–¼‘OˆÈŠO‚ð“K“–‚É
+	return DEBUG_NAME_OHNO + gf_mtRand() % 10; // è‡ªåˆ†ã®åå‰ä»¥å¤–ã‚’é©å½“ã«
 #elif	defined(DEBUG_ONLY_FOR_nishino)
 	return DEBUG_NAME_NISHINO;
 #elif	defined(DEBUG_ONLY_FOR_tetsuji_ohta)
@@ -415,7 +415,7 @@ int Debug_GetMyID(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	ŒÂl–ˆ‚ÌMyStatus‰Šú‰»
+ * @brief	å€‹äººæ¯Žã®MyStatusåˆæœŸåŒ–
  */
 //------------------------------------------------------------------
 static void Debug_SetMyStatus(MYSTATUS * my, int usr_id)
@@ -435,7 +435,7 @@ static void Debug_SetMyStatus(MYSTATUS * my, int usr_id)
 
 //------------------------------------------------------------------
 /**
- * @brief	ŒÂl–ˆ‚Ì‰ŠúÝ’èŒÄ‚Ño‚µ
+ * @brief	å€‹äººæ¯Žã®åˆæœŸè¨­å®šå‘¼ã³å‡ºã—
  */
 //------------------------------------------------------------------
 static void Debug_PersonalSetting(int heapID, SAVEDATA * sv, int usr_id)
@@ -489,7 +489,7 @@ static void AddMonsList(int heapID, SAVEDATA * savedata, const MINEPOKE * addlis
 //============================================================================================
 //============================================================================================
 //------------------------------------------------------------------
-///	ƒeƒcƒW[—p‰Šú‰»ƒ‹[ƒ`ƒ“
+///	ãƒ†ãƒ„ã‚¸ãƒ¼ç”¨åˆæœŸåŒ–ãƒ«ãƒ¼ãƒãƒ³
 //------------------------------------------------------------------
 static void DebugTetsujiSetting(int heapID, SAVEDATA * sv)
 {
@@ -502,12 +502,12 @@ static void DebugTetsujiSetting(int heapID, SAVEDATA * sv)
 		{MONSNO_METAGUROSU, 50},
 	};
 	POKEPARTY * temoti = SaveData_GetTemotiPokemon(sv);
-	PokeParty_InitWork(temoti);	//ŽèŽ‚¿‰Šú‰»
+	PokeParty_InitWork(temoti);	//æ‰‹æŒã¡åˆæœŸåŒ–
 
 	AddMonsList(heapID, sv, plist);
 }
 //------------------------------------------------------------------
-///	‹Ê“c—p‰Šú‰»ƒ‹[ƒ`ƒ“
+///	çŽ‰ç”°ç”¨åˆæœŸåŒ–ãƒ«ãƒ¼ãƒãƒ³
 //------------------------------------------------------------------
 static void DebugTamadaSetting(int heapID, SAVEDATA * sv)
 {
@@ -518,7 +518,7 @@ static void DebugTamadaSetting(int heapID, SAVEDATA * sv)
 		{0,0},
 	};
 	POKEPARTY * temoti = SaveData_GetTemotiPokemon(sv);
-	PokeParty_InitWork(temoti);	//ŽèŽ‚¿‰Šú‰»
+	PokeParty_InitWork(temoti);	//æ‰‹æŒã¡åˆæœŸåŒ–
 
 	AddMonsList(heapID, sv, plist);
 
@@ -537,7 +537,7 @@ static void DebugTamadaSetting(int heapID, SAVEDATA * sv)
 }
 
 //------------------------------------------------------------------
-///	–ìŒ´—p‰Šú‰»ƒ‹[ƒ`ƒ“
+///	é‡ŽåŽŸç”¨åˆæœŸåŒ–ãƒ«ãƒ¼ãƒãƒ³
 //------------------------------------------------------------------
 static void DebugNoharaSetting(int heapID, SAVEDATA * sv)
 {
@@ -546,7 +546,7 @@ static void DebugNoharaSetting(int heapID, SAVEDATA * sv)
 	POKEPARTY * temoti = SaveData_GetTemotiPokemon(sv);
 	loc = Situation_GetNowLocation(SaveData_GetSituation(sv));
 	place_id = ZoneData_GetPlaceNameID(loc->zone_id);
-	PokeParty_InitWork(temoti);	//ŽèŽ‚¿‰Šú‰»
+	PokeParty_InitWork(temoti);	//æ‰‹æŒã¡åˆæœŸåŒ–
 
 	EvPoke_Add(heapID, sv, MONSNO_KAIRIKII, 99,
 			ITEM_KURABONOMI, place_id, GROUND_ID_FLOOR);
@@ -557,14 +557,14 @@ static void DebugNoharaSetting(int heapID, SAVEDATA * sv)
 }
 
 //------------------------------------------------------------------
-///	’‰Žm—p‰Šú‰»ƒ‹[ƒ`ƒ“
+///	å¿ å£«ç”¨åˆæœŸåŒ–ãƒ«ãƒ¼ãƒãƒ³
 //------------------------------------------------------------------
 static void DebugTadashiSetting(int heapID, SAVEDATA * sv)
 {
 	LOCATION_WORK * loc;
 	int place_id;
 	POKEPARTY * temoti = SaveData_GetTemotiPokemon(sv);
-	PokeParty_InitWork(temoti);	//ŽèŽ‚¿‰Šú‰»
+	PokeParty_InitWork(temoti);	//æ‰‹æŒã¡åˆæœŸåŒ–
 	loc = Situation_GetNowLocation(SaveData_GetSituation(sv));
 	place_id = ZoneData_GetPlaceNameID(loc->zone_id);
 	EvPoke_Add(HEAPID_BASE_DEBUG, sv, MONSNO_TATETOPUSU, 2,
@@ -580,7 +580,7 @@ static void DebugNGNameSetting(int heapID, SAVEDATA * sv)
 	LOCATION_WORK * loc;
 	int place_id;
 	MyItem_Init(myitem);
-	PokeParty_InitWork(temoti);	//ŽèŽ‚¿‰Šú‰»
+	PokeParty_InitWork(temoti);	//æ‰‹æŒã¡åˆæœŸåŒ–
 	loc = Situation_GetNowLocation(SaveData_GetSituation(sv));
 	place_id = ZoneData_GetPlaceNameID(loc->zone_id);
 	EvPoke_Add(HEAPID_BASE_DEBUG, sv, MONSNO_TATETOPUSU, 2, 0, place_id, GROUND_ID_FLOOR);

@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		bucket.c
- *	@brief		�o�P�b�g�Q�[��
+ *	@brief		バケットゲーム
  *	@author		tomoya takahashi
  *	@data		2007.06.19
  *
@@ -31,29 +31,29 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�R�[�f�B���O�K��
- *		���֐���
- *				�P�����ڂ͑啶������ȍ~�͏������ɂ���
- *		���ϐ���
- *				�E�ϐ�����
- *						const�ɂ� c_ ��t����
- *						static�ɂ� s_ ��t����
- *						�|�C���^�ɂ� p_ ��t����
- *						�S�č��킳��� csp_ �ƂȂ�
- *				�E�O���[�o���ϐ�
- *						�P�����ڂ͑啶��
- *				�E�֐����ϐ�
- *						�������Ɓh�Q�h�Ɛ������g�p���� �֐��̈���������Ɠ���
+ *					コーディング規約
+ *		●関数名
+ *				１文字目は大文字それ以降は小文字にする
+ *		●変数名
+ *				・変数共通
+ *						constには c_ を付ける
+ *						staticには s_ を付ける
+ *						ポインタには p_ を付ける
+ *						全て合わさると csp_ となる
+ *				・グローバル変数
+ *						１文字目は大文字
+ *				・関数内変数
+ *						小文字と”＿”と数字を使用する 関数の引数もこれと同じ
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 #define BCT_VRAMTR_MAN_NUM	( 32 )
 
-// ���C���V�[�P���X
+// メインシーケンス
 enum{
 	BCT_MAINSEQ_ENTRY_INIT,
 	BCT_MAINSEQ_ENTRY_WAIT,
@@ -73,10 +73,10 @@ enum{
 	BCT_MAINSEQ_RESULT_WAIT,
 };
 
-// PLNETID�̃e�[�u���ɏ����l�Ƃ��ē����Ă���l
+// PLNETIDのテーブルに初期値として入っている値
 #define BCT_PLNETID_DEF		( 0xffff )
 
-// �Ƃ肠����
+// とりあえず
 #ifdef BCT_DEBUG_TIMESELECT
 static u32 BCT_TIME_LIMIT = 1500;	// 50
 #else
@@ -85,7 +85,7 @@ static u32 BCT_TIME_LIMIT = 1500;	// 50
 
 
 #ifdef PM_DEBUG
-//#define BCT_DEBUG_ENTRY_CHG	// �G���g���[��ʂ����낢��ς���
+//#define BCT_DEBUG_ENTRY_CHG	// エントリー画面をいろいろ変える
 #endif
 #ifdef BCT_DEBUG_ENTRY_CHG
 static int DEBUG_ENTRY_COUNT = 0;
@@ -93,14 +93,14 @@ static int DEBUG_ENTRY_COUNT = 0;
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 
 
 //-------------------------------------
-///	�o�P�b�g�Q�[�����[�N
+///	バケットゲームワーク
 //=====================================
 typedef struct _BUCKET_WK{
 	MNGM_ENTRYWK*		p_entry;
@@ -111,26 +111,26 @@ typedef struct _BUCKET_WK{
 	BCT_CLIENT*			p_client;
 	BOOL start;
 	BOOL end;
-	BOOL score_get;	// �݂�Ȃ̓��_����M������
+	BOOL score_get;	// みんなの得点を受信したか
 	u16 netid;
 	u16 plno;
-	BCT_GAMEDATA		gamedata;	// �Q�[���f�[�^
-	u32 raregame;		// rare�Q�[��
+	BCT_GAMEDATA		gamedata;	// ゲームデータ
+	u32 raregame;		// rareゲーム
 	u32	comm_num;
 
-	u32 err_seq;	// �r�����f�V�[�P���X
+	u32 err_seq;	// 途中中断シーケンス
 	 
 
 
 	u32 check_middle_score_count;
-	BOOL all_middle_count_ok;		// �e����q�ɒʐM����������
+	BOOL all_middle_count_ok;		// 親から子に通信許可がきたか
 
-	u8 middle_score_get_count[ BCT_PLAYER_NUM ];	// �݂�Ȃ̓r�����_����M������
+	u8 middle_score_get_count[ BCT_PLAYER_NUM ];	// みんなの途中得点を受信したか
 } ;
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 static void BCT_VBlank( void* p_work );
@@ -146,13 +146,13 @@ static BOOL BCT_GAMESendData( BUCKET_WK* p_wk, int command, const void* data, in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�o�P�b�g�Q�[���v���Z�X�@�쐬
+ *	@brief	バケットゲームプロセス　作成
  *
- *	@param	p_proc		���[�N
- *	@param	p_seq		�V�[�P���X
+ *	@param	p_proc		ワーク
+ *	@param	p_seq		シーケンス
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<����p����
- *	@retval	PROC_RES_FINISH,			///<����I��
+ *	@retval	PROC_RES_CONTINUE = 0,		///<動作継続中
+ *	@retval	PROC_RES_FINISH,			///<動作終了
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT BucketProc_Init( PROC * p_proc, int * p_seq )
@@ -162,43 +162,43 @@ PROC_RESULT BucketProc_Init( PROC * p_proc, int * p_seq )
 	BOOL result;
 
 #ifdef BCT_DEBUG_TIMESELECT
-	OS_Printf( "���[�h�������ł������� x[40] a[45] b[50] y[55]\n" );
+	OS_Printf( "モードをえらんでください x[40] a[45] b[50] y[55]\n" );
 	result = FALSE;
 
 	if( sys.cont & PAD_BUTTON_X ){
 		BCT_TIME_LIMIT = 30*40;
 		result = TRUE;
-		OS_Printf( "40�b���[�h\n" );
+		OS_Printf( "40秒モード\n" );
 	}else if( sys.cont & PAD_BUTTON_A ){
 		BCT_TIME_LIMIT = 30*45;
 		result = TRUE;
-		OS_Printf( "45�b���[�h\n" );
+		OS_Printf( "45秒モード\n" );
 	}else if( sys.cont & PAD_BUTTON_B ){
 		BCT_TIME_LIMIT = 30*50;
 		result = TRUE;
-		OS_Printf( "50�b���[�h\n" );
+		OS_Printf( "50秒モード\n" );
 	}else if( sys.cont & PAD_BUTTON_Y ){
 		BCT_TIME_LIMIT = 30*55;
 		result = TRUE;
-		OS_Printf( "55�b���[�h\n" );
+		OS_Printf( "55秒モード\n" );
 	}
 	if( result == FALSE ){
 		return PROC_RES_CONTINUE;
 	}
 #endif
 
-	// �q�[�v�쐬
+	// ヒープ作成
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_BUCKET, 0x60000 );
 
-	// ���[�N�쐬
+	// ワーク作成
 	p_wk = PROC_AllocWork( p_proc, sizeof(BUCKET_WK), HEAPID_BUCKET );
 	memset( p_wk, 0, sizeof(BUCKET_WK) );
 
 
-	// �G���g���[�E���ʉ�ʃp�����[�^�쐬
+	// エントリー・結果画面パラメータ作成
 	MNGM_ENRES_PARAM_Init( &p_wk->enres_param, pp->wifi_lobby, pp->p_save, pp->vchat, &pp->lobby_wk );
 
-	// �Q�[���\���f�[�^�ǂݍ���
+	// ゲーム構成データ読み込み
 	BCT_GAMEDATA_Load( p_wk, HEAPID_BUCKET );
 
 
@@ -207,13 +207,13 @@ PROC_RESULT BucketProc_Init( PROC * p_proc, int * p_seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�o�P�b�g�Q�[���v���Z�X�@���s
+ *	@brief	バケットゲームプロセス　実行
  *
- *	@param	p_proc		���[�N
- *	@param	p_seq		�V�[�P���X
+ *	@param	p_proc		ワーク
+ *	@param	p_seq		シーケンス
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<����p����
- *	@retval	PROC_RES_FINISH,			///<����I��
+ *	@retval	PROC_RES_CONTINUE = 0,		///<動作継続中
+ *	@retval	PROC_RES_FINISH,			///<動作終了
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
@@ -223,12 +223,12 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 	BOOL result;
 	u32 check;
 
-	// �ؒf�G���[����
+	// 切断エラー処理
 	if( (MNGM_ERROR_CheckDisconnect( &p_wk->enres_param ) == TRUE) ){
 
 		switch( p_wk->err_seq ){
 		case 0:
-			// �^�����ɂ���
+			// 真っ黒にする
 			if( WIPE_SYS_EndCheck() == TRUE ){
 				WIPE_SYS_ExeEnd();
 			}
@@ -237,15 +237,15 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 			break;
 
 		case 1:
-			// �ʐM�ؒf
+			// 通信切断
 			if( MNGM_ERROR_DisconnectWait( &p_wk->enres_param ) == TRUE ){
 				p_wk->err_seq ++;
 			}
 			break;
 
 		case 2:
-			// ���[�N�j��
-			// �S�V�X�e����~���j��
+			// ワーク破棄
+			// 全システム停止＆破棄
 			BCT_ErrAllSysEnd( p_wk, pp );
 			return PROC_RES_FINISH;
 
@@ -257,7 +257,7 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 	}
 
 	
-	// ���C�����[�v����
+	// メインループ処理
 	switch( (*p_seq) ){
 	case BCT_MAINSEQ_ENTRY_INIT:
 #ifdef BCT_DEBUG_ENTRY_CHG
@@ -297,52 +297,52 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 			break;
 		}
 
-		// V�u�����NH�u�����N�֐��ݒ�
-		sys_VBlankFuncChange( BCT_VBlank, p_wk );	// VBlank�Z�b�g
-		sys_HBlankIntrStop();	//HBlank���荞�ݒ�~
+		// VブランクHブランク関数設定
+		sys_VBlankFuncChange( BCT_VBlank, p_wk );	// VBlankセット
+		sys_HBlankIntrStop();	//HBlank割り込み停止
 
-		// �e��t���O�̏�����
+		// 各種フラグの初期化
 		p_wk->start		= FALSE;
 		p_wk->end		= FALSE;
 		p_wk->score_get = FALSE;
 		memset( p_wk->middle_score_get_count, 0, sizeof(u8)*BCT_PLAYER_NUM );
 
-		// VramTransferManager������
+		// VramTransferManager初期化
 		initVramTransferManagerHeap( BCT_VRAMTR_MAN_NUM, HEAPID_BUCKET );
 
-		// �ʐM�J�n
+		// 通信開始
 		CommCommandBCTInitialize( p_wk );
 
-		// �ŏ��͒ʐM����
+		// 最初は通信許可
 		p_wk->all_middle_count_ok = TRUE;
 
-		// �ʐM�l�����擾
+		// 通信人数を取得
 		p_wk->comm_num = CommInfoGetEntryNum();
 		GF_ASSERT( p_wk->comm_num > 1 );
 
-		// �ʐMID�擾
+		// 通信ID取得
 		p_wk->netid = CommGetCurrentID();
 		p_wk->plno = MNGM_ENRES_PARAM_GetNetIDtoPlNO( &p_wk->enres_param, p_wk->netid );
 
-		// �T�[�o�[������
+		// サーバー初期化
 		if( p_wk->netid == COMM_PARENT_ID ){
 			p_wk->p_surver = BCT_SURVER_Init( HEAPID_BUCKET, BCT_TIME_LIMIT, p_wk->comm_num, &p_wk->gamedata );
 
-			// �r���o�߃X�R�A�@�J�E���^�l��ݒ�
+			// 途中経過スコア　カウンタ値を設定
 			p_wk->check_middle_score_count = 1;
 		}
 		p_wk->p_client = BCT_CLIENT_Init( HEAPID_BUCKET, BCT_TIME_LIMIT, p_wk->comm_num, p_wk->plno, &p_wk->gamedata );
 
-		WirelessIconEasy();  // �ڑ����Ȃ̂ŃA�C�R���\��
+		WirelessIconEasy();  // 接続中なのでアイコン表示
 
 		// VChatOn
 		if( pp->vchat ){
-			// �{�C�X�`���b�g�J�n
+			// ボイスチャット開始
 			mydwc_startvchat( HEAPID_BUCKET );
 			TOMOYA_PRINT( "vct on\n" );
 		}
 
-		// ���A�Q�[���`�F�b�N���s��
+		// レアゲームチェックを行う
 		{
 			BCT_GAME_TYPE_WK gametype;
 
@@ -350,17 +350,17 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 
 			switch( p_wk->raregame ){
 			case MNGM_RAREGAME_BUCKET_NORMAL:
-				// ���̂܂�
+				// そのまま
 				gametype.scale_rev	= FALSE;
 				gametype.rota_rev	= FALSE;
 				break;
 			case MNGM_RAREGAME_BUCKET_REVERSE:
-				// �t��]
+				// 逆回転
 				gametype.scale_rev	= FALSE;
 				gametype.rota_rev	= TRUE;
 				break;
 			case MNGM_RAREGAME_BUCKET_BIG:
-				// �X�P�[�����]
+				// スケール反転
 				gametype.scale_rev	= TRUE;
 				gametype.rota_rev	= FALSE;
 				break;
@@ -385,7 +385,7 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 
 	case BCT_MAINSEQ_WIPE_IN:
 
-		// ��������������܂ő҂�
+		// 同期が完了するまで待つ
 		if(!CommIsTimingSync(BCT_SYNCID_GAMESTART)){
 			break;
 		}
@@ -397,9 +397,9 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 		break;
 
 	case BCT_MAINSEQ_WIPE_INWAIT:
-		BCT_CLIENT_StartMain( p_wk->p_client, BCT_CLIENT_STARTEVENT_NONE );	// �}���m�[�����܂킵�Ă���
+		BCT_CLIENT_StartMain( p_wk->p_client, BCT_CLIENT_STARTEVENT_NONE );	// マルノームをまわしておく
 		if( WIPE_SYS_EndCheck() ){
-			// �e�Ȃ�Q�[���X�^�[�g�𑗐M
+			// 親ならゲームスタートを送信
 			if( p_wk->netid == COMM_PARENT_ID ){
 				result = CommSendData( CNM_BCT_START, NULL,  0 );
 				if( result ){
@@ -412,14 +412,14 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 		break;
 
 	case BCT_MAINSEQ_STARTWAIT:
-		BCT_CLIENT_StartMain( p_wk->p_client, BCT_CLIENT_STARTEVENT_NONE );	// �}���m�[�����܂킵�Ă���
+		BCT_CLIENT_StartMain( p_wk->p_client, BCT_CLIENT_STARTEVENT_NONE );	// マルノームをまわしておく
 		if( p_wk->start ){
 			(*p_seq) ++;
 		}
 		break;
 
-	case BCT_MAINSEQ_COUNTDOWN:	// �J�E���g�_�E������
-		result = BCT_CLIENT_StartMain( p_wk->p_client, BCT_CLIENT_STARTEVENT_COUNT_START );	// �J�E���g�_�E��
+	case BCT_MAINSEQ_COUNTDOWN:	// カウントダウン処理
+		result = BCT_CLIENT_StartMain( p_wk->p_client, BCT_CLIENT_STARTEVENT_COUNT_START );	// カウントダウん
 		if( result == FALSE ){
 			(*p_seq) ++;
 		}
@@ -429,7 +429,7 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 		if( (p_wk->end) ){
 			u32 score;
 			score = BCT_CLIENT_ScoreGet( p_wk->p_client );
-			// �����̃X�R�A�𑗐M
+			// 自分のスコアを送信
 			result = CommSendData( CNM_BCT_SCORE, &score, sizeof(u32) );
 
 			if( result ){
@@ -442,21 +442,21 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 		if( p_wk->netid == COMM_PARENT_ID ){
 			result = BCT_SURVER_Main( p_wk->p_surver );
 
-			// �Q�[�����x���̕ύX�𑗐M
+			// ゲームレベルの変更を送信
 			if( BCT_SURVER_CheckGameLevelChange( p_wk->p_surver ) ){
 				u32 level;
 				BOOL result;
 				level = BCT_SURVER_GetGameLevel( p_wk->p_surver );
 				result = BCT_GAMESendData( p_wk, CNM_BCT_GAME_LEVEL, &level, sizeof(u32) );
 
-				// ���M�ł������`�F�b�N
+				// 送信できたかチェック
 				if( result == TRUE ){
-					// ���M�����̂Ńt���OOFF
+					// 送信したのでフラグOFF
 					BCT_SURVER_ClearGameLevelChange( p_wk->p_surver );
 				}
 			}
 			
-			// �I���̑��M
+			// 終了の送信
 			if( result == FALSE ){
 				BCT_GAMESendData( p_wk, CNM_BCT_END, NULL,  0 );
 			}
@@ -468,17 +468,17 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 		}
 		BCT_CLIENT_Main( p_wk->p_client );
 
-		// �؂̎��f�[�^���M
+		// 木の実データ送信
 		BCT_ClientNutsSend( p_wk );
 
-		// �r���o�߂̑��M�`�F�b�N
+		// 途中経過の送信チェック
 		BCT_ClientMiddleScoreSend( p_wk );
 		break;
 
 	case BCT_MAINSEQ_SCORECOMM:
 		BCT_CLIENT_EndMain( p_wk->p_client, BCT_CLIENT_STARTEVENT_NONE );	
 		if( p_wk->netid == COMM_PARENT_ID ){
-			// �e�݂͂�Ȃ��瓾�_�����W���Ă݂�Ȃɑ���
+			// 親はみんなから得点を収集してみんなに送る
 			result = BCT_SURVER_ScoreAllUserGetCheck( p_wk->p_surver );
 			if( result == TRUE ){
 				BCT_SCORE_COMM score;
@@ -489,7 +489,7 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 				}
 			}
 		}else{
-			// �N���C�A���g�͂����Ɍ��ʎ�M����
+			// クライアントはすぐに結果受信町へ
 			(*p_seq) ++;
 		}
 		break;
@@ -502,7 +502,7 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 		break;
 		
 	case BCT_MAINSEQ_RESULT:
-		// ���ʔ��\ 
+		// 結果発表 
 		result = BCT_CLIENT_EndMain( p_wk->p_client, BCT_CLIENT_ENDEVENT_RESULTON );	
 		if( result == FALSE ){
 			(*p_seq)++;
@@ -521,14 +521,14 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 		BCT_CLIENT_EndMain( p_wk->p_client, BCT_CLIENT_ENDEVENT_RESULTON );	
 		if( WIPE_SYS_EndCheck() ){
 
-			// �I�������J�n
+			// 終了同期開始
 			CommTimingSyncStart(BCT_SYNCID_END);
 			(*p_seq) ++;
 		}
 		break;
 
 	case BCT_MAINSEQ_DELETE:
-		// ��������������܂ő҂�
+		// 同期が完了するまで待つ
 		if(!CommIsTimingSync(BCT_SYNCID_END)){
 			TOMOYA_PRINT( "sync_wait\n" );
 			return PROC_RES_CONTINUE;
@@ -536,7 +536,7 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 
 		// VChatOff
 		if( pp->vchat ){
-			// �{�C�X�`���b�g�I��
+			// ボイスチャット終了
 			mydwc_stopvchat();
 			TOMOYA_PRINT( "vct off\n" );
 		}
@@ -548,8 +548,8 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 		BCT_CLIENT_Delete( p_wk->p_client );
 		p_wk->p_client = NULL;
 
-		sys_VBlankFuncChange( NULL, NULL );	// VBlank�Z�b�g
-		sys_HBlankIntrStop();	//HBlank���荞�ݒ�~
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankセット
+		sys_HBlankIntrStop();	//HBlank割り込み停止
 
 		//
 		DellVramTransferManager();
@@ -562,10 +562,10 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 		{
 			u32 rank;
 
-			// ���ʌv�Z
+			// 順位計算
 			MNGM_RESULT_CalcRank( &p_wk->result_param, p_wk->enres_param.num );
 
-			// ���ʂ���K�W�F�b�g�A�b�v�`�F�b�N
+			// 順位からガジェットアップチェック
 			rank = p_wk->result_param.result[ p_wk->plno ];
 			
 		}
@@ -601,7 +601,7 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 			
 			if( MNGM_RESULT_Wait( p_wk->p_result ) == TRUE ){
 				
-				// replay�`�F�b�N
+				// replayチェック
 				replay = MNGM_RESULT_GetReplay( p_wk->p_result );
 				
 				MNGM_RESULT_Exit( p_wk->p_result );
@@ -621,13 +621,13 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�o�P�b�g�Q�[���v���Z�X�@�j��
+ *	@brief	バケットゲームプロセス　破棄
  *
- *	@param	p_proc		���[�N
- *	@param	p_seq		�V�[�P���X
+ *	@param	p_proc		ワーク
+ *	@param	p_seq		シーケンス
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<����p����
- *	@retval	PROC_RES_FINISH,			///<����I��
+ *	@retval	PROC_RES_CONTINUE = 0,		///<動作継続中
+ *	@retval	PROC_RES_FINISH,			///<動作終了
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT BucketProc_End( PROC* p_proc, int* p_seq )
@@ -642,31 +642,31 @@ PROC_RESULT BucketProc_End( PROC* p_proc, int* p_seq )
 
 		dis_error = MNGM_ERROR_CheckDisconnect( &p_wk->enres_param );
 		
-		// �Q�[���\���f�[�^�j��
+		// ゲーム構成データ破棄
 		BCT_GAMEDATA_Release( p_wk );
 
-		// ���[�N�j��
+		// ワーク破棄
 		PROC_FreeWork( p_proc );
 
-		// �q�[�v�j��
+		// ヒープ破棄
 		sys_DeleteHeap( HEAPID_BUCKET );
 
 		CommStateSetErrorCheck(FALSE,TRUE);
 
-		// �ؒf�G���[���������Ă���Ȃ炻�̂܂܏I���
+		// 切断エラーが発生しているならそのまま終わる
 		if( dis_error == TRUE ){
 			return PROC_RES_FINISH;
 		}
 		
 
-		// �ʐM����
+		// 通信同期
 		CommTimingSyncStart(BCT_SYNCID_ERR_END);
 		(*p_seq)++;
 		break;
 
 	case 1:
 		if(	CommIsTimingSync(BCT_SYNCID_ERR_END) || 
-			(CommGetConnectNum() < CommInfoGetEntryNum()) ){	// �l�������Ȃ��Ȃ����炻�̂܂ܔ�����
+			(CommGetConnectNum() < CommInfoGetEntryNum()) ){	// 人数が少なくなったらそのまま抜ける
 			return PROC_RES_FINISH;
 		}
 		break;
@@ -681,9 +681,9 @@ PROC_RESULT BucketProc_End( PROC* p_proc, int* p_seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�o�P�b�g�J�n
+ *	@brief	バケット開始
  *
- *	@param	p_wk	���[�N
+ *	@param	p_wk	ワーク
  */
 //-----------------------------------------------------------------------------
 void Bucket_StartSet( BUCKET_WK* p_wk )
@@ -693,9 +693,9 @@ void Bucket_StartSet( BUCKET_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�o�P�b�g�I��
+ *	@brief	バケット終了
  *
- *	@param	p_wk	���[�N
+ *	@param	p_wk	ワーク
  */
 //-----------------------------------------------------------------------------
 void Bucket_EndSet( BUCKET_WK* p_wk )
@@ -705,27 +705,27 @@ void Bucket_EndSet( BUCKET_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�T�[�o�[�ɖ؂̎��f�[�^��n��
+ *	@brief	サーバーに木の実データを渡す
  *
- *	@param	p_wk		���[�N
- *	@param	cp_data		�؂̎��f�[�^
- *	@param	netid		�l�b�gID
+ *	@param	p_wk		ワーク
+ *	@param	cp_data		木の実データ
+ *	@param	netid		ネットID
  */
 //-----------------------------------------------------------------------------
 void Bucket_SurverNutsSet( BUCKET_WK* p_wk, const BCT_NUT_COMM* cp_data, u32 netid )
 {
 	u32 pl_no;
-	pl_no = MNGM_ENRES_PARAM_GetNetIDtoPlNO( &p_wk->enres_param, netid );	// �v���C���[NO�ɂ��ēn��
+	pl_no = MNGM_ENRES_PARAM_GetNetIDtoPlNO( &p_wk->enres_param, netid );	// プレイヤーNOにして渡す
 	BCT_SURVER_SetNutData( p_wk->p_surver, cp_data, pl_no );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�N���C�A���g�ɖ؂̎��f�[�^��n��
+ *	@brief	クライアントに木の実データを渡す
  *
- *	@param	p_wk		���[�N
- *	@param	cp_data		�؂̎��f�[�^
- *	@param	netid		�l�b�gID
+ *	@param	p_wk		ワーク
+ *	@param	cp_data		木の実データ
+ *	@param	netid		ネットID
  */
 //-----------------------------------------------------------------------------
 void Bucket_ClientNutsSet( BUCKET_WK* p_wk, const BCT_NUT_COMM* cp_data, u32 netid )
@@ -735,17 +735,17 @@ void Bucket_ClientNutsSet( BUCKET_WK* p_wk, const BCT_NUT_COMM* cp_data, u32 net
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�T�[�o�[���[�N�ɃX�R�A��ݒ肷��
+ *	@brief	サーバーワークにスコアを設定する
  *
- *	@param	p_wk		���[�N
- *	@param	score		�X�R�A
- *	@param	netid		�l�b�gID
+ *	@param	p_wk		ワーク
+ *	@param	score		スコア
+ *	@param	netid		ネットID
  */
 //-----------------------------------------------------------------------------
 void Bucket_SurverScoreSet( BUCKET_WK* p_wk, u32 score, u32 netid )
 {
 	u32 pl_no;
-	pl_no = MNGM_ENRES_PARAM_GetNetIDtoPlNO( &p_wk->enres_param, netid );	// �v���C���[NO�ɂ��ēn��
+	pl_no = MNGM_ENRES_PARAM_GetNetIDtoPlNO( &p_wk->enres_param, netid );	// プレイヤーNOにして渡す
 	if( p_wk->p_surver != NULL ){
 		BCT_SURVER_ScoreSet( p_wk->p_surver, score, pl_no );
 	}
@@ -753,11 +753,11 @@ void Bucket_SurverScoreSet( BUCKET_WK* p_wk, u32 score, u32 netid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�S�����̃X�R�A����M
+ *	@brief	全員分のスコアを受信
  *
- *	@param	p_wk		���[�N
- *	@param	cp_data		�f�[�^
- *	@param	netid		�l�b�gID
+ *	@param	p_wk		ワーク
+ *	@param	cp_data		データ
+ *	@param	netid		ネットID
  */
 //-----------------------------------------------------------------------------
 void Bucket_ClientAllScoreSet( BUCKET_WK* p_wk, const BCT_SCORE_COMM* cp_data, u32 netid )
@@ -766,7 +766,7 @@ void Bucket_ClientAllScoreSet( BUCKET_WK* p_wk, const BCT_SCORE_COMM* cp_data, u
 	p_wk->score_get = TRUE;
 
 
-	// �X�R�A���猋�ʔ��\�p�����[�^���쐬����
+	// スコアから結果発表パラメータを作成する
 	{
 		int i;
 		for( i=0; i<BCT_PLAYER_NUM; i++ ){
@@ -777,10 +777,10 @@ void Bucket_ClientAllScoreSet( BUCKET_WK* p_wk, const BCT_SCORE_COMM* cp_data, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�N���C�A���g���[�N�ɃQ�[���f�[�^�̒i�K��ݒ�
+ *	@brief	クライアントワークにゲームデータの段階を設定
  *
- *	@param	p_wk	���[�N
- *	@param	idx		�Q�[���f�[�^�̒i�K
+ *	@param	p_wk	ワーク
+ *	@param	idx		ゲームデータの段階
  */
 //-----------------------------------------------------------------------------
 void Bucket_ClientGameDataIdxSet( BUCKET_WK* p_wk, u32 idx )
@@ -790,11 +790,11 @@ void Bucket_ClientGameDataIdxSet( BUCKET_WK* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�N���C�A���g�ɓr���̓��_��ݒ肷��
+ *	@brief	クライアントに途中の得点を設定する
  *
- *	@param	p_wk		���[�N
- *	@param	score		���_
- *	@param	netid		�l�b�gID
+ *	@param	p_wk		ワーク
+ *	@param	score		得点
+ *	@param	netid		ネットID
  */
 //-----------------------------------------------------------------------------
 void Bucket_ClientMiddleScoreSet( BUCKET_WK* p_wk, u32 score, u32 netid )
@@ -803,13 +803,13 @@ void Bucket_ClientMiddleScoreSet( BUCKET_WK* p_wk, u32 score, u32 netid )
 	int i;
 
 
-	pl_no = MNGM_ENRES_PARAM_GetNetIDtoPlNO( &p_wk->enres_param, netid );	// �v���C���[NO�ɂ��ēn��
+	pl_no = MNGM_ENRES_PARAM_GetNetIDtoPlNO( &p_wk->enres_param, netid );	// プレイヤーNOにして渡す
 	BCT_CLIENT_MiddleScoreSet( p_wk->p_client, score, pl_no );
 
-	// �r���̓��_��M
+	// 途中の得点受信
 	p_wk->middle_score_get_count[ pl_no ] ++;
 
-	// �e�Ȃ�S������r���o�߂�������q�@�ɒʐM�����o��
+	// 親なら全員から途中経過がきたら子機に通信許可を出す
 	if( p_wk->netid == COMM_PARENT_ID ){
 		BOOL send_ok = TRUE;
 
@@ -820,8 +820,8 @@ void Bucket_ClientMiddleScoreSet( BUCKET_WK* p_wk, u32 score, u32 netid )
 		}
 
 		if( send_ok == TRUE ){
-			OS_TPrintf( "�e middle score ok\n" );
-			p_wk->check_middle_score_count ++;	// ���̃J�E���g�l��
+			OS_TPrintf( "親 middle score ok\n" );
+			p_wk->check_middle_score_count ++;	// 次のカウント値へ
 			CommSendData( CNM_BCT_MIDDLESCORE_OK, NULL, 0 );
 		}
 	}
@@ -829,9 +829,9 @@ void Bucket_ClientMiddleScoreSet( BUCKET_WK* p_wk, u32 score, u32 netid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�r���o�߃X�R�A�擾	�i�ʐM���j
+ *	@brief	途中経過スコア取得	（通信許可）
  *
- *	@param	p_wk	���[�N
+ *	@param	p_wk	ワーク
  */
 //-----------------------------------------------------------------------------
 void Bucket_ClientMiddleScoreOkSet( BUCKET_WK* p_wk )
@@ -840,7 +840,7 @@ void Bucket_ClientMiddleScoreOkSet( BUCKET_WK* p_wk )
 	
 	p_wk->all_middle_count_ok = TRUE;
 
-	// �N���C�A���g�V�X�e���̃^�C���J�E���g��i�߂�
+	// クライアントシステムのタイムカウントを進める
 	// OFF
 /*	BCT_CLIENT_TimeCountFlagSet( p_wk->p_client, TRUE );
 	if( p_wk->netid == COMM_PARENT_ID ){
@@ -851,12 +851,12 @@ void Bucket_ClientMiddleScoreOkSet( BUCKET_WK* p_wk )
 
 //-----------------------------------------------------------------------------
 /**
- *				�v���C�x�[�g�֐�
+ *				プライベート関数
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlank�֐�
+ *	@brief	VBlank関数
  */
 //-----------------------------------------------------------------------------
 static void BCT_VBlank( void* p_work )
@@ -868,9 +868,9 @@ static void BCT_VBlank( void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�N���C�A���g�̖؂̎��f�[�^�𑗐M����
+ *	@brief	クライアントの木の実データを送信する
  *
- *	@param	p_wk	���[�N
+ *	@param	p_wk	ワーク
  */
 //-----------------------------------------------------------------------------
 static void BCT_ClientNutsSend( BUCKET_WK* p_wk )
@@ -879,7 +879,7 @@ static void BCT_ClientNutsSend( BUCKET_WK* p_wk )
 	
 #ifndef BCT_DEBUG_AUTOSLOW
 	while( BCT_CLIENT_NutsDataGet( p_wk->p_client, &comm ) == TRUE ){
-		// ���M�ł��Ȃ��Ƃ������邯��ǁA����͂���ł��傤���Ȃ��Ƃ���
+		// 送信できないときもあるけれど、それはそれでしょうがないとする
 		BCT_GAMESendData( p_wk, CNM_BCT_NUTS, &comm, sizeof(BCT_NUT_COMM) );
 	}
 #else
@@ -890,7 +890,7 @@ static void BCT_ClientNutsSend( BUCKET_WK* p_wk )
 	while( BCT_CLIENT_NutsDataGet( p_wk->p_client, &comm ) == TRUE ){
 	}
 
-	// ����^�C�~���O�ő��M����
+	// あるタイミングで送信する
 	count ++;
 	if( count >= timing ){
 		comm.pl_no = p_wk->plno;
@@ -919,9 +919,9 @@ static void BCT_ClientNutsSend( BUCKET_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�r���o�ߓ��_�𑗐M����
+ *	@brief	途中経過得点を送信する
  *
- *	@param	p_wk	���[�N
+ *	@param	p_wk	ワーク
  */
 //-----------------------------------------------------------------------------
 static void BCT_ClientMiddleScoreSend( BUCKET_WK* p_wk )
@@ -932,7 +932,7 @@ static void BCT_ClientMiddleScoreSend( BUCKET_WK* p_wk )
 
 	time = BCT_CLIENT_GetTime( p_wk->p_client );
 
-	// �ŏ��͑���Ȃ�
+	// 最初は送らない
 	if( time == 0 ){
 		return;
 	}
@@ -940,19 +940,19 @@ static void BCT_ClientMiddleScoreSend( BUCKET_WK* p_wk )
 	if( (time % BCT_MIDDLE_SCORE_SEND_TIMING) == 0 ){
 
 		if( p_wk->all_middle_count_ok == TRUE ){
-			// ���M
+			// 送信
 			score = BCT_CLIENT_ScoreGet( p_wk->p_client );
 			result = BCT_GAMESendData( p_wk, CNM_BCT_MIDDLESCORE, &score, sizeof(u32) );
 			GF_ASSERT( result );
 
 			// OFF
-/*			// �N���C�A���g�V�X�e���̃^�C���J�E���g���~
+/*			// クライアントシステムのタイムカウントを停止
 			BCT_CLIENT_TimeCountFlagSet( p_wk->p_client, FALSE );
 			if( p_wk->netid == COMM_PARENT_ID ){
 				BCT_SURVER_SetCountDown( p_wk->p_surver, FALSE );
 			}
 //*/
-			// �e����ʐM����҂�
+			// 親から通信許可を待つ
 			p_wk->all_middle_count_ok = FALSE;
 
 			OS_TPrintf( "middle score ok wait\n" );
@@ -963,10 +963,10 @@ static void BCT_ClientMiddleScoreSend( BUCKET_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�Q�[���\���f�[�^�ǂݍ���
+ *	@brief	ゲーム構成データ読み込み
  *
- *	@param	p_wk		���[�N
- *	@param	heapID		�q�[�vID
+ *	@param	p_wk		ワーク
+ *	@param	heapID		ヒープID
  */
 //-----------------------------------------------------------------------------
 static void BCT_GAMEDATA_Load( BUCKET_WK* p_wk, u32 heapID )
@@ -986,9 +986,9 @@ static void BCT_GAMEDATA_Load( BUCKET_WK* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�Q�[���\���f�[�^�j��
+ *	@brief	ゲーム構成データ破棄
  *
- *	@param	p_wk		���[�N
+ *	@param	p_wk		ワーク
  */
 //-----------------------------------------------------------------------------
 static void BCT_GAMEDATA_Release( BUCKET_WK* p_wk )
@@ -1000,18 +1000,18 @@ static void BCT_GAMEDATA_Release( BUCKET_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�ʐM�G���[	�I������
+ *	@brief	通信エラー	終了処理
  *
- *	@param	p_wk	���[�N
- *	@param	pp		�p�����[�^
+ *	@param	p_wk	ワーク
+ *	@param	pp		パラメータ
  */
 //-----------------------------------------------------------------------------
 static void BCT_ErrAllSysEnd( BUCKET_WK* p_wk, BUCKET_PROC_WORK* pp )
 {
-	sys_VBlankFuncChange( NULL, NULL );	// VBlank�Z�b�g
-	sys_HBlankIntrStop();	//HBlank���荞�ݒ�~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankセット
+	sys_HBlankIntrStop();	//HBlank割り込み停止
 
-	// �S�������j��
+	// 全メモリ破棄
 	if( p_wk->p_entry != NULL ){
 		MNGM_ENTRY_Exit( p_wk->p_entry );
 		p_wk->p_entry = NULL;
@@ -1025,7 +1025,7 @@ static void BCT_ErrAllSysEnd( BUCKET_WK* p_wk, BUCKET_PROC_WORK* pp )
 		DellVramTransferManager();
 	}
 	if( pp->vchat ){
-		// �{�C�X�`���b�g�I��
+		// ボイスチャット終了
 		mydwc_stopvchat();
 	}
 	if( p_wk->p_result != NULL ){
@@ -1037,24 +1037,24 @@ static void BCT_ErrAllSysEnd( BUCKET_WK* p_wk, BUCKET_PROC_WORK* pp )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�Q�[�����i�؂̎���r���o�߃X�R�A�f�[�^�j�̑��M�p�֐�
+ *	@brief	ゲーム情報（木の実や途中経過スコアデータ）の送信用関数
  *
- *	@param	p_wk		���[�N
- *	@param	command		�R�}���h
- *	@param	data		�f�[�^
- *	@param	size		�T�C�Y
+ *	@param	p_wk		ワーク
+ *	@param	command		コマンド
+ *	@param	data		データ
+ *	@param	size		サイズ
  *
- *	@retval	TRUE	���M�ł���
- *	@retval	FALSE	���M���s
+ *	@retval	TRUE	送信できた
+ *	@retval	FALSE	送信失敗
  */
 //-----------------------------------------------------------------------------
 static BOOL BCT_GAMESendData( BUCKET_WK* p_wk, int command, const void* data, int size )
 {
 	if( p_wk->all_middle_count_ok == FALSE ){
 		OS_TPrintf( "!!!!!!not send data!!!!\n" );
-		return FALSE;	// �ꏏ�̂Ƃ���܂ŗ��ĂȂ��̂ő��M�ł��Ȃ�
+		return FALSE;	// 一緒のところまで来てないので送信できない
 	}
 	
-	// �Q���v���C���[�S���̓r���o�ߎ�M�J�E���^�������łȂ��Ƒ��M���Ă͂����Ȃ�
+	// 参加プレイヤー全員の途中経過受信カウンタが同じでないと送信してはいけない
 	return CommSendData( command, data, size );
 }

@@ -1,7 +1,7 @@
 #ifndef _HIDEN_DEF_H_
 #define _HIDEN_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_HIDEN_IAIGIRI		(10000)
 #define	SCRID_HIDEN_IWAKUDAKI		(10001)
 #define	SCRID_HIDEN_KAIRIKI		(10002)
@@ -18,6 +18,6 @@
 #define	SCRID_HIDEN_TAKINOBORI_MENU		(10013)
 #define	SCRID_HIDEN_KIRIBARAI_MENU		(10014)
 #define	SCRID_HIDEN_FLASH_MENU		(10015)
-#define	SCRID_HIDEN_DATA_MAX		(16)		//最大数
+#define	SCRID_HIDEN_DATA_MAX		(16)		//譛螟ｧ謨ｰ
 
 #endif //_HIDEN_DEF_H_

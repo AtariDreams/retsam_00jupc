@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  *	@file	fld_debug.c
- *	@brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[—pƒ\[ƒX
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ã‚½ãƒ¼ã‚¹
  *
  *	@date	04/12/17
  *	@author	Game Freak Inc.
@@ -68,7 +68,7 @@
 #include "fielddata/script/saveflag.h"
 
 #include "fieldmap_work.h"			//FIELDMAP_WORK
-#include "fieldmap_func.h"			//FLDMAPFUNC_`
+#include "fieldmap_func.h"			//FLDMAPFUNC_ã€œ
 
 #include "msgdata/msg_debug_fldmenu.h"
 #include "msgdata/msg_debug_tamada.h"
@@ -94,7 +94,7 @@ typedef enum {
 }DEBUG_VIEW_MODE;
 /********************************************************************/
 /*                                                                  */
-/*	ƒOƒ[ƒoƒ‹’è‹`													*/
+/*	ã‚°ãƒ­ãƒ¼ãƒãƒ«å®šç¾©													*/
 /*                                                                  */
 /********************************************************************/
 //pFunc	DebugUserfunc	= {0};
@@ -113,13 +113,13 @@ typedef struct _FLD_DEB_DAT{
 	void (*finish_func)(FIELDSYS_WORK *);
 }FLD_DEB_DAT;
 
-///gmm‚©‚çƒƒjƒ…[•¶š—ñ‚ğæ‚é‚Æ‚«—p‚ÌƒŠƒXƒg’è‹`\‘¢‘Ì
+///gmmã‹ã‚‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ–‡å­—åˆ—ã‚’å–ã‚‹ã¨ãç”¨ã®ãƒªã‚¹ãƒˆå®šç¾©æ§‹é€ ä½“
 typedef struct _GMM_MENU_PARAM{
-	u32	str_id;	///<ƒƒbƒZ[ƒWID
-	u32	param;	///<ƒpƒ‰ƒ[ƒ^
+	u32	str_id;	///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+	u32	param;	///<ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 }GMM_MENU_PARAM;
 
-///”Ä—p”’l“ü—ÍƒCƒ“ƒ^[ƒtƒF[ƒXƒŠƒXƒg’è‹`
+///æ±ç”¨æ•°å€¤å…¥åŠ›ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ãƒªã‚¹ãƒˆå®šç¾©
 typedef void (*DEBUG_NUMINPUT_FUNC)(SAVEDATA* sv,u32 param,u32 value);
 typedef u32 (*DEBUG_NUMGET_FUNC)(SAVEDATA* sv,u32 param);
 typedef struct{
@@ -132,8 +132,8 @@ typedef struct{
 
 typedef struct{
 	FIELDSYS_WORK* fsys;
-	FLD_DEB_DAT * pFdd;	//ƒtƒB[ƒ‹ƒhƒƒjƒ…[ƒ[ƒN
-	GF_BGL_BMPWIN win;	//BMPƒEƒBƒ“ƒhƒE
+	FLD_DEB_DAT * pFdd;	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	GF_BGL_BMPWIN win;	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	const DEBUG_NUMINPUT_LIST*	pList;
 	const GMM_MENU_PARAM*		pMenu;
 	int						list_num;
@@ -149,43 +149,43 @@ typedef struct{
 
 /********************************************************************/
 /*                                                                  */
-/*	ƒ[ƒJƒ‹’è‹`													*/
+/*	ãƒ­ãƒ¼ã‚«ãƒ«å®šç¾©													*/
 /*                                                                  */
 /********************************************************************/
-//œƒfƒoƒbƒO€–ÚƒEƒCƒ“ƒhƒEƒf[ƒ^
-#define	FDBG_LIST_PX1		(0)		//‚wÀ•W1
-#define	FDBG_LIST_PY1		(1+4)		//‚xÀ•W1
-#define	FDBG_LIST_PX2		(20)	//‚wÀ•W2
-#define	FDBG_LIST_PY2		(4)		//‚xÀ•W2
-#define	FDBG_LIST_SX		(13)	//‚wƒTƒCƒY
-#define	FDBG_LIST_SY		(18)	//‚xƒTƒCƒY
-#define	FDBG_LIST_PL		(FLD_SYSFONT_PAL)	//ƒpƒŒƒbƒgƒiƒ“ƒo[
+//â—ãƒ‡ãƒãƒƒã‚°é …ç›®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+#define	FDBG_LIST_PX1		(0)		//ï¼¸åº§æ¨™1
+#define	FDBG_LIST_PY1		(1+4)		//ï¼¹åº§æ¨™1
+#define	FDBG_LIST_PX2		(20)	//ï¼¸åº§æ¨™2
+#define	FDBG_LIST_PY2		(4)		//ï¼¹åº§æ¨™2
+#define	FDBG_LIST_SX		(13)	//ï¼¸ã‚µã‚¤ã‚º
+#define	FDBG_LIST_SY		(18)	//ï¼¹ã‚µã‚¤ã‚º
+#define	FDBG_LIST_PL		(FLD_SYSFONT_PAL)	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 #define	FDBG_LIST_CH		(8)
 
-//œƒ}ƒbƒvî•ñƒEƒCƒ“ƒhƒEƒf[ƒ^
-#define	FDBG_INFO_PX1		(0)		//‚wÀ•W1
-#define	FDBG_INFO_PY1		(17)	//‚xÀ•W1
-#define	FDBG_INFO_PX2		(0)		//‚wÀ•W2
-#define	FDBG_INFO_PY2		(0)		//‚xÀ•W2
-#define	FDBG_INFO_SX		(30)	//‚wƒTƒCƒY
-#define	FDBG_INFO_SY		(3)		//‚xƒTƒCƒY
-#define	FDBG_INFO_PL		(FLD_SYSFONT_PAL)	//ƒpƒŒƒbƒgƒiƒ“ƒo[
+//â—ãƒãƒƒãƒ—æƒ…å ±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+#define	FDBG_INFO_PX1		(0)		//ï¼¸åº§æ¨™1
+#define	FDBG_INFO_PY1		(17)	//ï¼¹åº§æ¨™1
+#define	FDBG_INFO_PX2		(0)		//ï¼¸åº§æ¨™2
+#define	FDBG_INFO_PY2		(0)		//ï¼¹åº§æ¨™2
+#define	FDBG_INFO_SX		(30)	//ï¼¸ã‚µã‚¤ã‚º
+#define	FDBG_INFO_SY		(3)		//ï¼¹ã‚µã‚¤ã‚º
+#define	FDBG_INFO_PL		(FLD_SYSFONT_PAL)	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 #define	FDBG_INFO_CH		(FDBG_LIST_CH + FDBG_LIST_SX * FDBG_LIST_SY)
 
-//œˆ—î•ñƒEƒCƒ“ƒhƒEƒf[ƒ^
-#define	FDBG_RSLT_PX		(0)		//‚wÀ•W
-#define	FDBG_RSLT_PY		(16)	//‚xÀ•W
-#define	FDBG_RSLT_SX		(30)	//‚wƒTƒCƒY
-#define	FDBG_RSLT_SY		(4)		//‚xƒTƒCƒY
-#define	FDBG_RSLT_PL		(FLD_SYSFONT_PAL)	//ƒpƒŒƒbƒgƒiƒ“ƒo[
+//â—å‡¦ç†æƒ…å ±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+#define	FDBG_RSLT_PX		(0)		//ï¼¸åº§æ¨™
+#define	FDBG_RSLT_PY		(16)	//ï¼¹åº§æ¨™
+#define	FDBG_RSLT_SX		(30)	//ï¼¸ã‚µã‚¤ã‚º
+#define	FDBG_RSLT_SY		(4)		//ï¼¹ã‚µã‚¤ã‚º
+#define	FDBG_RSLT_PL		(FLD_SYSFONT_PAL)	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 #define	FDBG_RSLT_CH		(8)
 
-//œ‹¤—pƒ†[ƒU[ƒEƒCƒ“ƒhƒEƒf[ƒ^
-#define	FDBG_USER_PX		(5)		//‚wÀ•W
-#define	FDBG_USER_PY		(1)		//‚xÀ•W
-#define	FDBG_USER_SX		(20)	//‚wƒTƒCƒY
-#define	FDBG_USER_SY		(16)	//‚xƒTƒCƒY
-#define	FDBG_USER_PL		(FLD_SYSFONT_PAL)	//ƒpƒŒƒbƒgƒiƒ“ƒo[
+//â—å…±ç”¨ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+#define	FDBG_USER_PX		(5)		//ï¼¸åº§æ¨™
+#define	FDBG_USER_PY		(1)		//ï¼¹åº§æ¨™
+#define	FDBG_USER_SX		(20)	//ï¼¸ã‚µã‚¤ã‚º
+#define	FDBG_USER_SY		(16)	//ï¼¹ã‚µã‚¤ã‚º
+#define	FDBG_USER_PL		(FLD_SYSFONT_PAL)	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 #define	FDBG_USER_CH		(8)
 
 #define STRESS_INFO_PAL_OFFSET	(64)
@@ -232,13 +232,13 @@ extern void DBJump_JumpMapControl(struct _FIELDSYS_WORK * fsys);
 
 /********************************************************************/
 /*                                                                  */
-/*				ƒƒjƒ…[ŠÖ”										*/
+/*				ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢æ•°										*/
 /*                                                                  */
 /********************************************************************/
 
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚í‚½‚È‚×v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œã‚ãŸãªã¹ã€
 //--------------------------------------------------------------------
 static void Debug_staff_watanabe(TCB_PTR tcb,void* work)
 {
@@ -252,7 +252,7 @@ static void Debug_staff_watanabe(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚à‚èv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œã‚‚ã‚Šã€
 //--------------------------------------------------------------------
 static void Debug_staff_mori(TCB_PTR tcb,void* work)
 {
@@ -265,12 +265,12 @@ static void Debug_staff_mori(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚Æ‚à‚İ‚¿v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œã¨ã‚‚ã¿ã¡ã€
 //--------------------------------------------------------------------
 static void Debug_staff_tomomiti(TCB_PTR tcb,void* work)
 {
 	
-	// ŒÄ‚Ô‚Æ—‚¿‚Ä‚µ‚Ü‚¤‚Ì‚Åˆê’UI—¹‚·‚é‚æ‚¤‚É‚µ‚½
+	// å‘¼ã¶ã¨è½ã¡ã¦ã—ã¾ã†ã®ã§ä¸€æ—¦çµ‚äº†ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 	FieldDebugExit(tcb,work);
 
 #if 0
@@ -281,7 +281,7 @@ static void Debug_staff_tomomiti(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚È‚©‚Ş‚çv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œãªã‹ã‚€ã‚‰ã€
 //--------------------------------------------------------------------
 static void Debug_staff_nakahiro(TCB_PTR tcb,void* work)
 {
@@ -293,7 +293,7 @@ static void Debug_staff_nakahiro(TCB_PTR tcb,void* work)
 	DebugNakamuraInit( tmp );
 }
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚³‚¢‚Æ‚¤v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œã•ã„ã¨ã†ã€
 //--------------------------------------------------------------------
 static void Debug_staff_saitou(TCB_PTR tcb,void* work)
 {
@@ -307,7 +307,7 @@ static void Debug_staff_saitou(TCB_PTR tcb,void* work)
 	DBGSAI_MapNumDebugListSet(fsys);
 }
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚Æ‚à‚âv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œã¨ã‚‚ã‚„ã€
 //--------------------------------------------------------------------
 static void Debug_staff_tomoya(TCB_PTR tcb,void* work)
 {
@@ -318,7 +318,7 @@ static void Debug_staff_tomoya(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚¢‚í‚³‚ív
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œã„ã‚ã•ã‚ã€
 //--------------------------------------------------------------------
 static void Debug_staff_miyuki(TCB_PTR tcb,void* work)
 {
@@ -332,20 +332,20 @@ static void Debug_staff_miyuki(TCB_PTR tcb,void* work)
 
 
 //--------------------------------------------------------------------
-//ƒƒjƒ…[€–ÚF‹ó‚ğ”ò‚Ô
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šç©ºã‚’é£›ã¶
 //--------------------------------------------------------------------
 extern void DebugSkyJump_CreateTask(FIELDSYS_WORK* fsys);
 static void Debug_skyjump(TCB_PTR tcb,void* work)
 {
 	FLD_DEB_DAT	* wk = (FLD_DEB_DAT *)work;
 
-	//‹ó‚ğ”ò‚Ôƒ^ƒXƒNì¬
+	//ç©ºã‚’é£›ã¶ã‚¿ã‚¹ã‚¯ä½œæˆ
 	DebugSkyJump_CreateTask(wk->fsys);	
 	FieldDebugExitCall(tcb, work);
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFGTS
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šGTS
 //--------------------------------------------------------------------
 static void Debug_gts_jump(TCB_PTR tcb, void* work)
 {
@@ -355,7 +355,7 @@ static void Debug_gts_jump(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒA
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢
 //--------------------------------------------------------------------
 static void Debug_frontier_jump(TCB_PTR tcb, void* work)
 {
@@ -365,7 +365,7 @@ static void Debug_frontier_jump(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒoƒgƒ‹ƒ^ƒ[
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 //--------------------------------------------------------------------
 static void Debug_btower_jump(TCB_PTR tcb, void* work)
 {
@@ -375,7 +375,7 @@ static void Debug_btower_jump(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 //--------------------------------------------------------------------
 static void Debug_bfactory_jump(TCB_PTR tcb, void* work)
 {
@@ -385,7 +385,7 @@ static void Debug_bfactory_jump(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒoƒgƒ‹ƒXƒe[ƒW
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 //--------------------------------------------------------------------
 static void Debug_bstage_jump(TCB_PTR tcb, void* work)
 {
@@ -395,7 +395,7 @@ static void Debug_bstage_jump(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 //--------------------------------------------------------------------
 static void Debug_bcastle_jump(TCB_PTR tcb, void* work)
 {
@@ -405,7 +405,7 @@ static void Debug_bcastle_jump(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 //--------------------------------------------------------------------
 static void Debug_broulette_jump(TCB_PTR tcb, void* work)
 {
@@ -415,7 +415,7 @@ static void Debug_broulette_jump(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒ|ƒPƒZƒ“’n‰º
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒã‚±ã‚»ãƒ³åœ°ä¸‹
 //--------------------------------------------------------------------
 static void Debug_pcug_jump(TCB_PTR tcb, void* work)
 {
@@ -425,7 +425,7 @@ static void Debug_pcug_jump(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚»‚ª‚×v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€ŒããŒã¹ã€
 //--------------------------------------------------------------------
 static void Debug_staff_sogabe(TCB_PTR tcb,void* work)
 {
@@ -444,7 +444,7 @@ static void Debug_staff_sogabe(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚½‚Ü‚¾v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€ŒãŸã¾ã ã€
 //--------------------------------------------------------------------
 static void Debug_staff_tamada(TCB_PTR tcb,void* work)
 {
@@ -456,7 +456,7 @@ static void Debug_staff_tamada(TCB_PTR tcb,void* work)
 
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚Ü‚Â‚¾v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œã¾ã¤ã ã€
 //--------------------------------------------------------------------
 static void Debug_staff_matsuda(TCB_PTR tcb,void* work)
 {
@@ -468,7 +468,7 @@ static void Debug_staff_matsuda(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚©‚ª‚âv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œã‹ãŒã‚„ã€
 //--------------------------------------------------------------------
 static void Debug_staff_kagaya(TCB_PTR tcb,void* work)
 {
@@ -483,7 +483,7 @@ static void Debug_staff_kagaya(TCB_PTR tcb,void* work)
 
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚Ì‚Í‚çv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œã®ã¯ã‚‰ã€
 //--------------------------------------------------------------------
 static void Debug_staff_nohara(TCB_PTR tcb,void* work)
 {
@@ -492,7 +492,7 @@ static void Debug_staff_nohara(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚½‚âv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€ŒãŸã‚„ã€
 //--------------------------------------------------------------------
 static void Debug_staff_taya(TCB_PTR tcb,void* work)
 {
@@ -503,7 +503,7 @@ static void Debug_staff_taya(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚²‚Æ‚¤v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€Œã”ã¨ã†ã€
 //--------------------------------------------------------------------
 static void Debug_staff_gotou(TCB_PTR tcb,void* work)
 {
@@ -520,7 +520,7 @@ static void Debug_staff_gotou(TCB_PTR tcb,void* work)
 
 extern void DebugCommMenuInit(void* pFSys);  // d_ohno.c
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒXƒ^ƒbƒt‚æ‚¤v¨u‚¨‚¨‚Ìv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚¹ã‚¿ãƒƒãƒ•ã‚ˆã†ã€â†’ã€ŒãŠãŠã®ã€
 //--------------------------------------------------------------------
 static void Debug_staff_ohno(TCB_PTR tcb,void* work)
 {
@@ -529,13 +529,13 @@ static void Debug_staff_ohno(TCB_PTR tcb,void* work)
 
 	FieldDebugExitCall(tcb, work);
 
-	DebugCommMenuInit(tmp);  // ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€‚ğ“n‚·
+	DebugCommMenuInit(tmp);  // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã‚’æ¸¡ã™
 //	FieldDebugExit(tcb,work);
 }
 
 //--------------------------------------------------------------------
 /*
- *	@brief	ƒƒjƒ…[€–Ú:ƒeƒXƒg
+ *	@brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ãƒ†ã‚¹ãƒˆ
  */
 //--------------------------------------------------------------------
 static void Debug_test_func(void)
@@ -545,7 +545,7 @@ static void Debug_test_func(void)
 	}
 }
 
-//•‰‰×î•ñ•\¦—L–³ƒZƒbƒgŠÖ”
+//è² è·æƒ…å ±è¡¨ç¤ºæœ‰ç„¡ã‚»ãƒƒãƒˆé–¢æ•°
 void DebugStressDispSet(const BOOL inFlg)
 {
 	DebugStressFlg = inFlg;
@@ -559,7 +559,7 @@ void DebugStressDispSet(const BOOL inFlg)
 
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF‚Ó‚©ƒ`ƒFƒbƒN—pƒvƒŠƒ“ƒg‚ğ‘S•”•\¦ON
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãµã‹ãƒã‚§ãƒƒã‚¯ç”¨ãƒ—ãƒªãƒ³ãƒˆã‚’å…¨éƒ¨è¡¨ç¤ºON
 //--------------------------------------------------------------------
 static void Debug_huka_check_on(TCB_PTR tcb,void* work)
 {
@@ -573,7 +573,7 @@ static void Debug_huka_check_on(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFˆÊ’uŠm”F‚Ì‚½‚ß‚¾‚¯‚Ì•\¦ON
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šä½ç½®ç¢ºèªã®ãŸã‚ã ã‘ã®è¡¨ç¤ºON
 //--------------------------------------------------------------------
 static void Debug_ichi_check_on(TCB_PTR tcb,void* work)
 {
@@ -589,7 +589,7 @@ static void Debug_ichi_check_on(TCB_PTR tcb,void* work)
 	FieldDebugExit(tcb,work);
 }
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒ†ƒjƒIƒ“—pƒr[ƒRƒ“•\¦ON
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ç”¨ãƒ“ãƒ¼ã‚³ãƒ³è¡¨ç¤ºON
 //--------------------------------------------------------------------
 static void Debug_union_beacon_on(TCB_PTR tcb, void* work)
 {
@@ -606,7 +606,7 @@ static void Debug_union_beacon_on(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ŠO•”ŒÄo‚µFˆÊ’uŠm”F‚Ì‚½‚ß‚¾‚¯‚Ì•\¦ON
+///å¤–éƒ¨å‘¼å‡ºã—ï¼šä½ç½®ç¢ºèªã®ãŸã‚ã ã‘ã®è¡¨ç¤ºON
 //--------------------------------------------------------------------
 void DebugIchiCheckOn(FIELDSYS_WORK* fsys)
 {
@@ -617,7 +617,7 @@ void DebugIchiCheckOn(FIELDSYS_WORK* fsys)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒ}ƒbƒvƒWƒƒƒ“ƒv(ã‰º)
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—(ä¸Šä¸‹)
 //--------------------------------------------------------------------
 static void Debug_map_jump_up_down(TCB_PTR tcb,void* work)
 {
@@ -625,15 +625,15 @@ static void Debug_map_jump_up_down(TCB_PTR tcb,void* work)
 	FLD_DEB_DAT	* wk = (FLD_DEB_DAT *)work;	
 	fsys = wk->fsys;
 
-    // ƒfƒoƒbƒOƒƒjƒ…[‚©‚ç‚¢‚­ê‡ “¯‚¶êŠ‚É‰º‚è‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½
-    // ”é–§Šî’n‚É~‚è‚ç‚ê‚é‚Æ‚Ü‚¸‚¢ˆ×‚Å‚· k.ohno
+    // ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã„ãå ´åˆ åŒã˜å ´æ‰€ã«ä¸‹ã‚Šã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸ
+    // ç§˜å¯†åŸºåœ°ã«é™ã‚Šã‚‰ã‚Œã‚‹ã¨ã¾ãšã„ç‚ºã§ã™ k.ohno
     Debug_ChangeUnderGroundDirect(fsys, 47, 384);
 	FieldDebugExit(tcb,work);
 	
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒ}ƒbƒvƒWƒƒƒ“ƒv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—
 //--------------------------------------------------------------------
 static void Debug_map_jump(TCB_PTR tcb,void* work)
 {
@@ -648,7 +648,7 @@ static void Debug_map_jump(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF ƒ†ƒjƒIƒ“ƒ‹[ƒ€
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ 
 //--------------------------------------------------------------------
 static void Debug_map_jump_union(TCB_PTR tcb, void* work)
 {
@@ -660,7 +660,7 @@ static void Debug_map_jump_union(TCB_PTR tcb, void* work)
 
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF’nãƒtƒB[ƒ‹ƒh Town01‚É‹­§ƒWƒƒƒ“ƒv(º“àƒnƒ}ƒŠ‚Ì‰ñ”ğ—p)
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šåœ°ä¸Šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ Town01ã«å¼·åˆ¶ã‚¸ãƒ£ãƒ³ãƒ—(å®¤å†…ãƒãƒãƒªã®å›é¿ç”¨)
 //--------------------------------------------------------------------
 static void Debug_map_jump_t01(TCB_PTR tcb, void* work)
 {
@@ -671,7 +671,7 @@ static void Debug_map_jump_t01(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF ƒmƒ‚ƒZ…ƒWƒ€ƒWƒƒƒ“ƒv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š ãƒãƒ¢ã‚»æ°´ã‚¸ãƒ ã‚¸ãƒ£ãƒ³ãƒ—
 //--------------------------------------------------------------------
 static void Debug_map_jump_gym01_00_00(TCB_PTR tcb, void* work)
 {
@@ -682,10 +682,10 @@ static void Debug_map_jump_gym01_00_00(TCB_PTR tcb, void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒŠƒXƒg/‚Ç‚±‚Å‚àƒWƒƒƒ“ƒvƒƒjƒ…[ƒRƒ“ƒgƒ[ƒ‰
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒªã‚¹ãƒˆ/ã©ã“ã§ã‚‚ã‚¸ãƒ£ãƒ³ãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
 //--------------------------------------------------------------------
 //--------------------------------------------------------------------
-///	”j‚ê‚½¢ŠEƒWƒƒƒ“ƒvÀ•WƒZƒbƒg
+///	ç ´ã‚ŒãŸä¸–ç•Œã‚¸ãƒ£ãƒ³ãƒ—åº§æ¨™ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------------
 #include "../fielddata/tornworld/debug_tornworld.dat"
 static void DebugMapJumpPosTornWorld( u32 zone_id, u16 *x, u16 *z )
@@ -708,10 +708,10 @@ static void DebugMapJumpPosTornWorld( u32 zone_id, u16 *x, u16 *z )
 
 //------------------------------------------------------------------
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒWƒƒƒ“ƒv—pƒƒCƒ“§Œäƒ^ƒXƒN
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ã‚¸ãƒ£ãƒ³ãƒ—ç”¨ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		TCB_PTR:ŒÄ‚Ño‚µŒ³ƒ^ƒXƒNƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	work	void*:ŒÄ‚Ño‚µŒ³ƒ^ƒXƒNƒuƒƒbƒNƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	tcb		TCB_PTR:å‘¼ã³å‡ºã—å…ƒã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	work	void*:å‘¼ã³å‡ºã—å…ƒã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void FieldDebugListJumpMenuTask(TCB_PTR tcb,void* work)
@@ -724,7 +724,7 @@ static void FieldDebugListJumpMenuTask(TCB_PTR tcb,void* work)
 	wp = (FLD_DEB_DAT*)work;
 
 	ret_code = BmpListMain(wp->blistWk);
-	//ƒL[‘€ì”»’è
+	//ã‚­ãƒ¼æ“ä½œåˆ¤å®š
 	if(sys.trg & PAD_BUTTON_A){
 		if(ret_code){
 #if 0
@@ -745,7 +745,7 @@ static void FieldDebugListJumpMenuTask(TCB_PTR tcb,void* work)
 		FieldDebugExit(tcb,work);
 		return;
 	}
-	//ƒƒjƒ…[ƒLƒƒƒ“ƒZƒ‹
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if(sys.trg & PAD_BUTTON_B){
 		if (wp->finish_func != NULL) {
 			FIELDSYS_WORK * fsys = wp->fsys;
@@ -760,13 +760,13 @@ static void FieldDebugListJumpMenuTask(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒŠƒXƒgƒWƒƒƒ“ƒvƒƒjƒ…[€–Ú’è‹`
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒªã‚¹ãƒˆã‚¸ãƒ£ãƒ³ãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®å®šç¾©
 //--------------------------------------------------------------------
 #include "msgdata/msg.naix"
 #include "msgdata/msg_debug_list_jump.h"
 
 static const GMM_MENU_PARAM FieldDebugListJumpMenu1[] = {
-	{ msg_label_listjump1,	BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
+	{ msg_label_listjump1,	BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
 	{ msg_buil01_00_00,	ZONE_ID_C03R0101},	//
 	{ msg_buil02_00_00,	ZONE_ID_C04R0202},	//
 	{ msg_buil03_00_00,	ZONE_ID_C04R0203},	//
@@ -784,10 +784,10 @@ static const GMM_MENU_PARAM FieldDebugListJumpMenu1[] = {
 	{ msg_gate03_00_00,	ZONE_ID_C04R0401},	//
 	{ msg_d12r0101,		ZONE_ID_D12R0101},	//
 	{ msg_t04r0101,		ZONE_ID_T04R0101},	//
-	{ msg_exit_listjump,		 0x00000000},		//00:•Â‚¶‚é
+	{ msg_exit_listjump,		 0x00000000},		//00:é–‰ã˜ã‚‹
 };
 static const GMM_MENU_PARAM FieldDebugListJumpMenu2[] = {
-	{ msg_label_listjump2,	BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
+	{ msg_label_listjump2,	BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
 	{ msg_libra01_00_00,ZONE_ID_C02R0101},	//
 	{ msg_libra02_00_00,ZONE_ID_C02R0102},	//
 	{ msg_libra03_00_00,ZONE_ID_C02R0103},	//
@@ -798,10 +798,10 @@ static const GMM_MENU_PARAM FieldDebugListJumpMenu2[] = {
 	{ msg_comp03_00_00,	ZONE_ID_C01R0103},	//
 	{ msg_shouse01_00_00,ZONE_ID_C07R0101},	//
 	{ msg_phouse01_00_00,ZONE_ID_D02R0101},	//
-	{ msg_exit_listjump,		 0x00000000},		//00:•Â‚¶‚é
+	{ msg_exit_listjump,		 0x00000000},		//00:é–‰ã˜ã‚‹
 };
 static const GMM_MENU_PARAM FieldDebugListJumpMenu3[] = {
-	{ msg_label_listjump3,	BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
+	{ msg_label_listjump3,	BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
 	{ msg_hotel01_00_00,	ZONE_ID_R213R0301},	//
 	{ msg_hotel02_00_00,	ZONE_ID_R213R0401},	//
 	{ msg_hotel03_00_00,	ZONE_ID_L02R0101},	//
@@ -825,11 +825,11 @@ static const GMM_MENU_PARAM FieldDebugListJumpMenu3[] = {
 	{ msg_tv05_00_00,		ZONE_ID_C01R0205},	//
 	{ msg_tv06_00_00,		ZONE_ID_C01R0206},	//
 	{ msg_fhouse01_00_00,	ZONE_ID_T03R0101},	//
-	{ msg_exit_listjump,		 0x00000000},		//00:•Â‚¶‚é
+	{ msg_exit_listjump,		 0x00000000},		//00:é–‰ã˜ã‚‹
 };
 
 static const GMM_MENU_PARAM FieldDebugListJumpMenu4[] = {
-	{ msg_label_listjump4,	BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
+	{ msg_label_listjump4,	BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
 	{ msg_tower01_00_00,	ZONE_ID_D31R0201},	//
 	{ msg_tower02_00_00,	ZONE_ID_D31R0202},	//
 	{ msg_tower03_00_00,	ZONE_ID_D31R0203},	//
@@ -850,11 +850,11 @@ static const GMM_MENU_PARAM FieldDebugListJumpMenu4[] = {
 	{ msg_dun0515_00_00,	ZONE_ID_D05R0115},	//
 	{ msg_game01_00_00,		ZONE_ID_C07R0101},	//
 	{ msg_gift01_00_00,		ZONE_ID_C07R0401},	//
-	{ msg_exit_listjump,		 0x00000000},		//00:•Â‚¶‚é
+	{ msg_exit_listjump,		 0x00000000},		//00:é–‰ã˜ã‚‹
 };
 
 static const GMM_MENU_PARAM FieldDebugListJumpMenu5[] = {
-	{ msg_label_listjump5,	BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
+	{ msg_label_listjump5,	BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
 	{ msg_dun0901_00_00,	ZONE_ID_D09R0101},	//
 	{ msg_dun0902_00_00,	ZONE_ID_D09R0102},	//
 	{ msg_dun0903_00_00,	ZONE_ID_D09R0103},	//
@@ -872,10 +872,10 @@ static const GMM_MENU_PARAM FieldDebugListJumpMenu5[] = {
 	{ msg_champ01_00_00,	ZONE_ID_C10R0111},	//
 	{ msg_dendou01_00_00,	ZONE_ID_C10R0112},	//
 	{ msg_dendou02_00_00,	ZONE_ID_C10R0113},	//
-	{ msg_exit_listjump,		 0x00000000},		//00:•Â‚¶‚é
+	{ msg_exit_listjump,		 0x00000000},		//00:é–‰ã˜ã‚‹
 };
 static const GMM_MENU_PARAM FieldDebugListJumpMenu6[] = {
-	{ msg_label_listjump6,	BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
+	{ msg_label_listjump6,	BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
 	{ msg_gate07_00_00,	ZONE_ID_R206R0101},	//
 	{ msg_gate05_00_00,	ZONE_ID_R221R0101},	//
 	{ msg_view01_00_00,ZONE_ID_C06R0101},	//
@@ -894,11 +894,11 @@ static const GMM_MENU_PARAM FieldDebugListJumpMenu6[] = {
 	{ msg_rich01_00_00,ZONE_ID_R212AR0101},	//
 	{ msg_rich02_00_00,ZONE_ID_R212AR0102},	//
 	{ msg_dun2301_00_00,ZONE_ID_D23R0101},	//
-	{ msg_exit_listjump,		 0x00000000},		//00:•Â‚¶‚é
+	{ msg_exit_listjump,		 0x00000000},		//00:é–‰ã˜ã‚‹
 };
 
 static const GMM_MENU_PARAM FieldDebugListJumpMenuAn[] = {
-	{ msg_label_listjump_an,BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
+	{ msg_label_listjump_an,BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
 	{ msg_dun0701_00_00,	ZONE_ID_D07R0101},	//
 	{ msg_dun0702_00_00,	ZONE_ID_D07R0102},	//
 	{ msg_dun0703_00_00,	ZONE_ID_D07R0103},	//
@@ -917,10 +917,10 @@ static const GMM_MENU_PARAM FieldDebugListJumpMenuAn[] = {
 	{ msg_dun0716_00_00,	ZONE_ID_D07R0116},	//
 	{ msg_dun0717_00_00,	ZONE_ID_D07R0117},	//
 	{ msg_dun0718_00_00,	ZONE_ID_D07R0118},	//
-	{ msg_exit_listjump,		 0x00000000},		//00:•Â‚¶‚é
+	{ msg_exit_listjump,		 0x00000000},		//00:é–‰ã˜ã‚‹
 };
 static const GMM_MENU_PARAM FieldDebugListJumpMenuGym[] = {
-	{ msg_label_listjump_gym,	BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
+	{ msg_label_listjump_gym,	BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
 	{ msg_gym01_00_00,	ZONE_ID_C06GYM0101},	//
 	{ msg_gym02_00_00,	ZONE_ID_C02GYM0101},	//
 	{ msg_gym03_00_00,	ZONE_ID_C03GYM0101},	//
@@ -935,10 +935,10 @@ static const GMM_MENU_PARAM FieldDebugListJumpMenuGym[] = {
 	{ msg_gym0801_00_00,	ZONE_ID_C08GYM0101},	//
 	{ msg_gym0802_00_00,	ZONE_ID_C08GYM0102},	//
 	{ msg_gym0803_00_00,	ZONE_ID_C08GYM0103},	//
-	{ msg_exit_listjump,		 0x00000000},		//00:•Â‚¶‚é
+	{ msg_exit_listjump,		 0x00000000},		//00:é–‰ã˜ã‚‹
 };
 static const GMM_MENU_PARAM FieldDebugListJumpMenuHakai[] = {
-	{ msg_label_listjump_hakai,	BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
+	{ msg_label_listjump_hakai,	BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
 	{ msg_d34_00_00,	ZONE_ID_D34R0101},	//
 	{ msg_d34_00_01,	ZONE_ID_D34R0102},	//
 	{ msg_d34_00_02,	ZONE_ID_D34R0103},	//
@@ -950,11 +950,11 @@ static const GMM_MENU_PARAM FieldDebugListJumpMenuHakai[] = {
 	{ msg_d34_00_08,	ZONE_ID_D34R0109},	//
 	{ msg_d34_00_09,	ZONE_ID_D34R0110},	//
 	{ msg_d34_00_10,	ZONE_ID_D34R0111},	//
-	{ msg_exit_listjump,		 0x00000000},		//00:•Â‚¶‚é
+	{ msg_exit_listjump,		 0x00000000},		//00:é–‰ã˜ã‚‹
 };
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒWƒ€ƒWƒƒƒ“ƒv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šã‚¸ãƒ ã‚¸ãƒ£ãƒ³ãƒ—
 //--------------------------------------------------------------------
 static void Debug_map_jump_list_gym(TCB_PTR tcb,void* work)
 {
@@ -966,11 +966,11 @@ static void Debug_map_jump_list_gym(TCB_PTR tcb,void* work)
 			FieldDebugListJumpMenuGym, NELEMS(FieldDebugListJumpMenuGym),FieldDebugListJumpMenuTask);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒŠƒXƒgƒWƒƒƒ“ƒv1
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒªã‚¹ãƒˆã‚¸ãƒ£ãƒ³ãƒ—1
 //--------------------------------------------------------------------
 static void Debug_map_jump_list(TCB_PTR tcb,void* work)
 {
@@ -982,12 +982,12 @@ static void Debug_map_jump_list(TCB_PTR tcb,void* work)
 			FieldDebugListJumpMenu1, NELEMS(FieldDebugListJumpMenu1),FieldDebugListJumpMenuTask);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒŠƒXƒgƒWƒƒƒ“ƒv2
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒªã‚¹ãƒˆã‚¸ãƒ£ãƒ³ãƒ—2
 //--------------------------------------------------------------------
 static void Debug_map_jump_list2(TCB_PTR tcb,void* work)
 {
@@ -999,12 +999,12 @@ static void Debug_map_jump_list2(TCB_PTR tcb,void* work)
 			FieldDebugListJumpMenu2, NELEMS(FieldDebugListJumpMenu2),FieldDebugListJumpMenuTask);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒŠƒXƒgƒWƒƒƒ“ƒv3
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒªã‚¹ãƒˆã‚¸ãƒ£ãƒ³ãƒ—3
 //--------------------------------------------------------------------
 static void Debug_map_jump_list3(TCB_PTR tcb,void* work)
 {
@@ -1016,12 +1016,12 @@ static void Debug_map_jump_list3(TCB_PTR tcb,void* work)
 			FieldDebugListJumpMenu3, NELEMS(FieldDebugListJumpMenu3),FieldDebugListJumpMenuTask);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒŠƒXƒgƒWƒƒƒ“ƒv4
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒªã‚¹ãƒˆã‚¸ãƒ£ãƒ³ãƒ—4
 //--------------------------------------------------------------------
 static void Debug_map_jump_list4(TCB_PTR tcb,void* work)
 {
@@ -1033,12 +1033,12 @@ static void Debug_map_jump_list4(TCB_PTR tcb,void* work)
 			FieldDebugListJumpMenu4, NELEMS(FieldDebugListJumpMenu4),FieldDebugListJumpMenuTask);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒŠƒXƒgƒWƒƒƒ“ƒv5
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒªã‚¹ãƒˆã‚¸ãƒ£ãƒ³ãƒ—5
 //--------------------------------------------------------------------
 static void Debug_map_jump_list5(TCB_PTR tcb,void* work)
 {
@@ -1050,12 +1050,12 @@ static void Debug_map_jump_list5(TCB_PTR tcb,void* work)
 			FieldDebugListJumpMenu5, NELEMS(FieldDebugListJumpMenu5),FieldDebugListJumpMenuTask);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒŠƒXƒgƒWƒƒƒ“ƒv6
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒªã‚¹ãƒˆã‚¸ãƒ£ãƒ³ãƒ—6
 //--------------------------------------------------------------------
 static void Debug_map_jump_list6(TCB_PTR tcb,void* work)
 {
@@ -1067,12 +1067,12 @@ static void Debug_map_jump_list6(TCB_PTR tcb,void* work)
 			FieldDebugListJumpMenu6, NELEMS(FieldDebugListJumpMenu6),FieldDebugListJumpMenuTask);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒŠƒXƒgƒWƒƒƒ“ƒv ƒAƒ“ƒm[ƒ“ƒ_ƒ“ƒWƒ‡ƒ“
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãƒªã‚¹ãƒˆã‚¸ãƒ£ãƒ³ãƒ— ã‚¢ãƒ³ãƒãƒ¼ãƒ³ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 //--------------------------------------------------------------------
 static void Debug_map_jump_list_an(TCB_PTR tcb,void* work)
 {
@@ -1084,12 +1084,12 @@ static void Debug_map_jump_list_an(TCB_PTR tcb,void* work)
 			FieldDebugListJumpMenuAn, NELEMS(FieldDebugListJumpMenuAn),FieldDebugListJumpMenuTask);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF‚â‚Ô‚ê‚½‚¹‚©‚¢
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šã‚„ã¶ã‚ŒãŸã›ã‹ã„
 //--------------------------------------------------------------------
 static void Debug_yaburew_jump(TCB_PTR tcb, void* work)
 {
@@ -1107,13 +1107,13 @@ static void Debug_yaburew_jump(TCB_PTR tcb, void* work)
 			FieldDebugListJumpMenuTask);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 #endif
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF‚Ç‚±‚Å‚àƒWƒƒƒ“ƒv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šã©ã“ã§ã‚‚ã‚¸ãƒ£ãƒ³ãƒ—
 //--------------------------------------------------------------------
 static void Debug_map_jump_flex(TCB_PTR tcb,void* work)
 {
@@ -1127,7 +1127,7 @@ static void Debug_map_jump_flex(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒAƒEƒgƒŒƒ“ƒW•\¦
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šã‚¢ã‚¦ãƒˆãƒ¬ãƒ³ã‚¸è¡¨ç¤º
 //--------------------------------------------------------------------
 static void Debug_out_range_disp(TCB_PTR tcb,void* work)
 {
@@ -1142,7 +1142,7 @@ static void Debug_out_range_disp(TCB_PTR tcb,void* work)
 
 extern void DebugItemMakeInit( void * fsys );
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF ƒf[ƒ^‚³‚­‚¹‚¢EƒAƒCƒeƒ€
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š ãƒ‡ãƒ¼ã‚¿ã•ãã›ã„ãƒ»ã‚¢ã‚¤ãƒ†ãƒ 
 //--------------------------------------------------------------------
 static void Debug_itemmake(TCB_PTR tcb,void* work)
 {
@@ -1156,7 +1156,7 @@ static void Debug_itemmake(TCB_PTR tcb,void* work)
 
 extern void DebugPokemonMakeInit( void * fsys );
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF ƒf[ƒ^‚³‚­‚¹‚¢Eƒ|ƒPƒ‚ƒ“‚³‚­‚¹‚¢
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š ãƒ‡ãƒ¼ã‚¿ã•ãã›ã„ãƒ»ãƒã‚±ãƒ¢ãƒ³ã•ãã›ã„
 //--------------------------------------------------------------------
 static void Debug_pokemonmake(TCB_PTR tcb,void* work)
 {
@@ -1169,7 +1169,7 @@ static void Debug_pokemonmake(TCB_PTR tcb,void* work)
 
 extern void DebugPokemonChangeInit( void * fsys );
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF ƒf[ƒ^‚³‚­‚¹‚¢Eƒ|ƒPƒ‚ƒ“‚©‚«‚©‚¦
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š ãƒ‡ãƒ¼ã‚¿ã•ãã›ã„ãƒ»ãƒã‚±ãƒ¢ãƒ³ã‹ãã‹ãˆ
 //--------------------------------------------------------------------
 static void Debug_pokemonchg(TCB_PTR tcb,void* work)
 {
@@ -1182,7 +1182,7 @@ static void Debug_pokemonchg(TCB_PTR tcb,void* work)
 
 extern void DebugDameTamagoSet( void * fsys );
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF ƒf[ƒ^‚³‚­‚¹‚¢Eƒ_ƒƒ^ƒ}ƒS
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š ãƒ‡ãƒ¼ã‚¿ã•ãã›ã„ãƒ»ãƒ€ãƒ¡ã‚¿ãƒã‚´
 //--------------------------------------------------------------------
 static void Debug_dametamago(TCB_PTR tcb,void* work)
 {
@@ -1195,7 +1195,7 @@ static void Debug_dametamago(TCB_PTR tcb,void* work)
 
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF‚»‚Ì‘¼‚Ìƒ}ƒbƒvØ‘Ö
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šãã®ä»–ã®ãƒãƒƒãƒ—åˆ‡æ›¿
 //--------------------------------------------------------------------
 static void Debug_jump_other(TCB_PTR tcb, void * work)
 {
@@ -1206,9 +1206,9 @@ static void Debug_jump_other(TCB_PTR tcb, void * work)
 }
 //--------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[€–ÚFƒ^ƒCƒgƒ‹‚É–ß‚é
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
  *
- * ƒŠ[ƒN‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN—pH
+ * ãƒªãƒ¼ã‚¯ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯ç”¨ï¼Ÿ
  */
 
 //--------------------------------------------------------------------
@@ -1222,7 +1222,7 @@ static void Debug_return_title(TCB_PTR tcb, void * work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚFƒAƒgƒŠƒrƒ…[ƒgŠm”F
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç¢ºèª
 //--------------------------------------------------------------------
 static void Debug_check_attribute(TCB_PTR tcb,void* work)
 {
@@ -1235,7 +1235,7 @@ static void Debug_check_attribute(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:u‚Æ‚¯‚¢v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã¨ã‘ã„ã€
 //--------------------------------------------------------------------
 static void Debug_control_time(TCB_PTR tcb,void* work)
 {
@@ -1245,7 +1245,7 @@ static void Debug_control_time(TCB_PTR tcb,void* work)
 	FieldDebugRTCListSet(fsys);
 }
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:u3D‚¹‚Á‚Ä‚¢v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œ3Dã›ã£ã¦ã„ã€
 //--------------------------------------------------------------------
 static void Debug_g3x_setting(TCB_PTR tcb,void* work)
 {
@@ -1256,7 +1256,7 @@ static void Debug_g3x_setting(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:u‰Š‚«‚è‚©‚¦v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œâ™‚â™€ãã‚Šã‹ãˆã€
 //--------------------------------------------------------------------
 static void Debug_sex_change(TCB_PTR tcb,void* work)
 {
@@ -1264,14 +1264,14 @@ static void Debug_sex_change(TCB_PTR tcb,void* work)
 	FIELDSYS_WORK * fsys = wk->fsys;
 	MYSTATUS * my = SaveData_GetMyStatus(fsys->savedata);
 
-	//«•Ê‚ğ‹t“]‚·‚é
+	//æ€§åˆ¥ã‚’é€†è»¢ã™ã‚‹
 	if (MyStatus_GetMySex(my) == PM_MALE) {
 		MyStatus_SetMySex(my, PM_FEMALE);
 	} else {
 		MyStatus_SetMySex(my, PM_MALE);
 	}
 
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚ÌŒ©‚½–Ú”Ô†‚à•ÏX‚·‚é
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã®è¦‹ãŸç›®ç•ªå·ã‚‚å¤‰æ›´ã™ã‚‹
 	{
 		u8 view;
 		view = UnionView_GetTrainerType( MyStatus_GetID(my), MyStatus_GetMySex(my), 0 );
@@ -1281,13 +1281,13 @@ static void Debug_sex_change(TCB_PTR tcb,void* work)
 
 	FieldDebugExit(tcb, work);
 	
-	//Œ»İ’n‚Ö”ò‚Ñ‚È‚¨‚·
+	//ç¾åœ¨åœ°ã¸é£›ã³ãªãŠã™
 	EventSet_EasyMapChange(fsys, fsys->location->zone_id, DOOR_ID_JUMP_CODE,
 			Player_NowGPosXGet(fsys->player), Player_NowGPosZGet(fsys->player), DIR_DOWN);
 	
 }
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:uƒQ[ƒ€ƒtƒ‰ƒOv
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°ã€
 //--------------------------------------------------------------------
 static void Debug_sysflag(TCB_PTR tcb, void *work)
 {
@@ -1299,7 +1299,7 @@ static void Debug_sysflag(TCB_PTR tcb, void *work)
 
 extern void DebugEncountSetInit( void * fsys );
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF ƒVƒXƒeƒ€EƒGƒ“ƒJƒEƒ“ƒg
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š ã‚·ã‚¹ãƒ†ãƒ ãƒ»ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 //--------------------------------------------------------------------
 static void Debug_encountset(TCB_PTR tcb,void* work)
 {
@@ -1312,7 +1312,7 @@ static void Debug_encountset(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF	ƒVƒXƒeƒ€E‚Í‚¢‚½‚Â‚¢‚ñ
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š	ã‚·ã‚¹ãƒ†ãƒ ãƒ»ã¯ã„ãŸã¤ã„ã‚“
 //--------------------------------------------------------------------
 static void Debug_postman(TCB_PTR tcb, void* work)
 {
@@ -1337,7 +1337,7 @@ static void Debug_tv(TCB_PTR tcb, void * work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF ƒVƒXƒeƒ€EBGM
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š ã‚·ã‚¹ãƒ†ãƒ ãƒ»BGM
 //--------------------------------------------------------------------
 static void Debug_bgm(TCB_PTR tcb,void* work)
 {
@@ -1346,7 +1346,7 @@ static void Debug_bgm(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF ƒVƒXƒeƒ€ESCRIPT
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š ã‚·ã‚¹ãƒ†ãƒ ãƒ»SCRIPT
 //--------------------------------------------------------------------
 static void Debug_script(TCB_PTR tcb,void* work)
 {
@@ -1355,7 +1355,7 @@ static void Debug_script(TCB_PTR tcb,void* work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–ÚF ƒVƒXƒeƒ€E‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ì
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ï¼š ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãµã—ããªãŠãã‚Šã‚‚ã®
 //--------------------------------------------------------------------
 static void Debug_WiFiHusigi(TCB_PTR tcb,void* work)
 {
@@ -1367,12 +1367,12 @@ static void Debug_WiFiHusigi(TCB_PTR tcb,void* work)
 	sysdt = SaveData_GetSystemData(fsys->savedata);
 
 	f = SYSTEMDATA_GetWifiMPOpenFlag(sysdt);
-	OS_Printf("WiFi•sv‹cƒtƒ‰ƒO Œ³[%d]\n",f);
+	OS_Printf("WiFiä¸æ€è­°ãƒ•ãƒ©ã‚° å…ƒ[%d]\n",f);
 
 	SYSTEMDATA_SetWifiMPOpenFlag(sysdt,1);
 
 	f = SYSTEMDATA_GetWifiMPOpenFlag(sysdt);
-	OS_Printf("WiFi•sv‹cƒtƒ‰ƒO Œã[%d]\n",f);
+	OS_Printf("WiFiä¸æ€è­°ãƒ•ãƒ©ã‚° å¾Œ[%d]\n",f);
 
 	FieldDebugExit(tcb,work);
 }
@@ -1396,14 +1396,14 @@ static void Debug_save02(TCB_PTR tcb, void * work)
 	FieldDebugExit(tcb,work);
 }
 //--------------------------------------------------------------------
-///ƒJƒEƒ“ƒgƒXƒgƒbƒv’¼‘OE‚Å‚ñ‚Ç‚¤‚¢‚è
+///ã‚«ã‚¦ãƒ³ãƒˆã‚¹ãƒˆãƒƒãƒ—ç›´å‰ãƒ»ã§ã‚“ã©ã†ã„ã‚Š
 //--------------------------------------------------------------------
 static void Debug_cntstop_dendou(TCB_PTR tcb, void * work)
 {
 	FieldDebugExit(tcb,work);
 }
 //--------------------------------------------------------------------
-///ƒJƒEƒ“ƒgƒXƒgƒbƒvEƒeƒŒƒr
+///ã‚«ã‚¦ãƒ³ãƒˆã‚¹ãƒˆãƒƒãƒ—ãƒ»ãƒ†ãƒ¬ãƒ“
 //--------------------------------------------------------------------
 static void Debug_cntstop_tv(TCB_PTR tcb, void * work)
 {
@@ -1412,9 +1412,9 @@ static void Debug_cntstop_tv(TCB_PTR tcb, void * work)
 	SAVEDATA * sv = fsys->savedata;
 	POKEPARTY * party = SaveData_GetTemotiPokemon(fsys->savedata);
 
-	//ƒXƒƒbƒgãŒÀƒ`ƒFƒbƒN—pƒgƒsƒbƒNƒZƒbƒg
+	//ã‚¹ãƒ­ãƒƒãƒˆä¸Šé™ãƒã‚§ãƒƒã‚¯ç”¨ãƒˆãƒ”ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 	TVTOPIC_Entry_Record_Slot(fsys, 3, 50000, 65566 * 65536 - 1);
-	//ƒTƒtƒ@ƒŠãŒÀƒ`ƒFƒbƒN—pƒgƒsƒbƒNƒZƒbƒg
+	//ã‚µãƒ•ã‚¡ãƒªä¸Šé™ãƒã‚§ãƒƒã‚¯ç”¨ãƒˆãƒ”ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 	{
 		int count;
 		TV_WORK * tvwk = SaveData_GetTvWork(sv);
@@ -1424,7 +1424,7 @@ static void Debug_cntstop_tv(TCB_PTR tcb, void * work)
 		}
 		TVTOPIC_Entry_Watch_Safari(fsys);
 	}
-	//•ßŠlãŒÀƒ`ƒFƒbƒN—pƒgƒsƒbƒNƒZƒbƒg
+	//æ•ç²ä¸Šé™ãƒã‚§ãƒƒã‚¯ç”¨ãƒˆãƒ”ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 	{
 		TVWATCH_BATTLE_WORK * tvwbw = TVWatchBattleWork_Create(HEAPID_FIELD);
 
@@ -1441,7 +1441,7 @@ static void Debug_cntstop_tv(TCB_PTR tcb, void * work)
 	FieldDebugExit(tcb,work);
 }
 //--------------------------------------------------------------------
-///ƒJƒEƒ“ƒgƒXƒgƒbƒv’¼‘OE‚Â‚¤‚µ‚ñƒRƒ“ƒeƒXƒg
+///ã‚«ã‚¦ãƒ³ãƒˆã‚¹ãƒˆãƒƒãƒ—ç›´å‰ãƒ»ã¤ã†ã—ã‚“ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 //--------------------------------------------------------------------
 static void Debug_cntstop_contest(TCB_PTR tcb, void * work)
 {
@@ -1463,33 +1463,33 @@ static void Debug_cntstop_contest(TCB_PTR tcb, void * work)
 		}
 	}
 
-	//‚Â‚¤‚µ‚ñƒRƒ“ƒeƒXƒg¬Ñ
+	//ã¤ã†ã—ã‚“ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæˆç¸¾
 	FieldDebugExit(tcb,work);
 }
 
 //--------------------------------------------------------------------
-///ƒJƒEƒ“ƒgƒXƒgƒbƒv’¼‘OE‚»‚Ì‘¼
+///ã‚«ã‚¦ãƒ³ãƒˆã‚¹ãƒˆãƒƒãƒ—ç›´å‰ãƒ»ãã®ä»–
 //--------------------------------------------------------------------
 static void Debug_cntstop_etc(TCB_PTR tcb, void * work)
 {
 	FLD_DEB_DAT * wk = work;
 	FIELDSYS_WORK * fsys = wk->fsys;
 	SAVEDATA * sv = fsys->savedata;
-	//‚¨‚±‚Ã‚©‚¢
+	//ãŠã“ã¥ã‹ã„
 	{
 		MYSTATUS * my = SaveData_GetMyStatus(sv);
 		MyStatus_SetGold(my, 999999 - 1);
 	}
-	//ƒvƒŒƒCŠÔ
+	//ãƒ—ãƒ¬ã‚¤æ™‚é–“
 	{
 		PLAYTIME * ptime = SaveData_GetPlayTime(sv);
 		PLAYTIME_Set(ptime, 999, 58, 0);
 	}
-	//—h‚ê‘˜A½”
+	//æºã‚Œè‰é€£é–æ•°
 	{
 		SwayGrass_DebugSetChain(fsys, SWAY_GRASS_CHAIN_MAX-1);
 	}
-	//ƒXƒRƒA
+	//ã‚¹ã‚³ã‚¢
 	{
 		RECORD * rec = SaveData_GetRecord(sv);
 		RECORD_Score_DebugSet(rec, SCORE_MAX-1);
@@ -1499,7 +1499,7 @@ static void Debug_cntstop_etc(TCB_PTR tcb, void * work)
 }
 
 //--------------------------------------------------------------------
-///ƒƒjƒ…[€–Ú:u‚·‚¤‚¿‚É‚ã‚¤‚è‚å‚­v
+///ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®:ã€Œã™ã†ã¡ã«ã‚…ã†ã‚Šã‚‡ãã€
 //--------------------------------------------------------------------
 static void FieldDebugNumInputList(FIELDSYS_WORK * fsys,
 	const DEBUG_NUMINPUT_LIST* pList,const GMM_MENU_PARAM* pMenu,int num);
@@ -1516,7 +1516,7 @@ static u32 DNumInput_TowerWifiRankGet(SAVEDATA* sv,u32 param);
 static void DNumInput_TowerWifiRankSet(SAVEDATA* sv,u32 param,u32 value);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/10/30
-// ålŒö‚ÌƒgƒŒ[ƒi[ID‚ğ•ÏX‚·‚éƒfƒoƒbƒO‹@”\‚ğ’Ç‰Á
+// ä¸»äººå…¬ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å¤‰æ›´ã™ã‚‹ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã‚’è¿½åŠ 
 static u32 DNumInput_TrainerIdGet(SAVEDATA* sv,u32 param);
 static void DNumInput_TrainerIdSet(SAVEDATA* sv,u32 param,u32 value);
 // ----------------------------------------------------------------------------
@@ -1551,7 +1551,7 @@ static void Debug_numinput_record(TCB_PTR tcb, void *work)
 }
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/10/30
-// ålŒö‚ÌƒgƒŒ[ƒi[ID‚ğ•ÏX‚·‚éƒfƒoƒbƒO‹@”\‚ğ’Ç‰Á
+// ä¸»äººå…¬ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å¤‰æ›´ã™ã‚‹ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã‚’è¿½åŠ 
 static void Debug_numinput_trainerid(TCB_PTR tcb, void *work)
 {
 	FLD_DEB_DAT	* wk = (FLD_DEB_DAT *)work;
@@ -1615,7 +1615,7 @@ static const GMM_MENU_PARAM FieldDebugListTop[] = {
 	{DF_NI_RECORD,	(u32)Debug_numinput_record},
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/10/30
-	// ålŒö‚ÌƒgƒŒ[ƒi[ID‚ğ•ÏX‚·‚éƒfƒoƒbƒO‹@”\‚ğ’Ç‰Á
+	// ä¸»äººå…¬ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å¤‰æ›´ã™ã‚‹ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã‚’è¿½åŠ 
 	{DF_TRAINERID,	(u32)Debug_numinput_trainerid},
 	// ----------------------------------------------------------------------------
 	{DF_LABEL04,BMPLIST_RABEL},
@@ -1650,12 +1650,12 @@ static const GMM_MENU_PARAM FieldDebugListTop[] = {
 
 /********************************************************************/
 /*                                                                  */
-/*	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒgİ’è							*/
+/*	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆè¨­å®š							*/
 /*                                                                  */
 /********************************************************************/
 //------------------------------------------------------------------
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒgİ’è
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆè¨­å®š
  *
  *	@param	fsys
  */
@@ -1667,7 +1667,7 @@ void FieldDebugListSet(FIELDSYS_WORK * fsys)
 			FieldDebugListTop, NELEMS(FieldDebugListTop), NULL);
 	wp->finish_func = NULL;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
@@ -1694,17 +1694,17 @@ static void FieldDebugMapChangeList(FIELDSYS_WORK * fsys)
 			FieldDebugJumpListGMM, NELEMS(FieldDebugJumpListGMM), NULL);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //============================================================================================
 //
-//		ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[F3Dİ’è—pƒTƒuƒƒjƒ…[
+//		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼š3Dè¨­å®šç”¨ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒGƒbƒWƒ}[ƒLƒ“ƒO—LŒø
+///	ã‚¨ãƒƒã‚¸ãƒãƒ¼ã‚­ãƒ³ã‚°æœ‰åŠ¹
 //--------------------------------------------------------------------
 static void Debug_edgemarking_on(TCB_PTR tcb, void * work)
 {
@@ -1712,7 +1712,7 @@ static void Debug_edgemarking_on(TCB_PTR tcb, void * work)
 	G3X_EdgeMarking(TRUE);
 }
 //--------------------------------------------------------------------
-///	ƒGƒbƒWƒ}[ƒLƒ“ƒO–³Œø
+///	ã‚¨ãƒƒã‚¸ãƒãƒ¼ã‚­ãƒ³ã‚°ç„¡åŠ¹
 //--------------------------------------------------------------------
 static void Debug_edgemarking_off(TCB_PTR tcb, void * work)
 {
@@ -1720,7 +1720,7 @@ static void Debug_edgemarking_off(TCB_PTR tcb, void * work)
 	G3X_EdgeMarking(FALSE);
 }
 //--------------------------------------------------------------------
-///	ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX—LŒø
+///	ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹æœ‰åŠ¹
 //--------------------------------------------------------------------
 static void Debug_antialias_on(TCB_PTR tcb, void * work)
 {
@@ -1728,7 +1728,7 @@ static void Debug_antialias_on(TCB_PTR tcb, void * work)
 	G3X_AntiAlias(TRUE);
 }
 //--------------------------------------------------------------------
-///	ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX–³Œø
+///	ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ç„¡åŠ¹
 //--------------------------------------------------------------------
 static void Debug_antialias_off(TCB_PTR tcb, void * work)
 {
@@ -1793,13 +1793,13 @@ static void FieldDebugG3XList(FIELDSYS_WORK * fsys)
 			FieldDebugG3XListGMM, NELEMS(FieldDebugG3XListGMM), NULL);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //============================================================================================
 //
-//		ƒTƒuƒƒjƒ…[F‚½‚Ü‚¾ê—p
+//		ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼šãŸã¾ã å°‚ç”¨
 //
 //============================================================================================
 //--------------------------------------------------------------------
@@ -1865,7 +1865,7 @@ static BOOL AntiAliasFlag = TRUE;
 //--------------------------------------------------------------------
 static void Debug_tamada_test01(TCB_PTR tcb, void * work)
 {
-	//ƒ|ƒPƒ‚ƒ“‚ÌHP=4,“Åó‘Ô‚É‚·‚é
+	//ãƒã‚±ãƒ¢ãƒ³ã®HP=4,æ¯’çŠ¶æ…‹ã«ã™ã‚‹
 	u32 buf;
 	FLD_DEB_DAT * wk = work;
 	POKEMON_PARAM * pp = PokeParty_GetMemberPointer(
@@ -1900,7 +1900,7 @@ static void Debug_tamada_test03(TCB_PTR tcb, void * work)
 	FieldDebugExit(tcb,work);
 }
 //--------------------------------------------------------------------
-///ƒ|ƒPƒp[ƒNƒf[ƒ^’Ç‰Á‚P
+///ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿è¿½åŠ ï¼‘
 //--------------------------------------------------------------------
 static void Debug_tamada_ppdata1(TCB_PTR tcb, void * work)
 {
@@ -1915,7 +1915,7 @@ static void Debug_tamada_ppdata1(TCB_PTR tcb, void * work)
 }
 
 //--------------------------------------------------------------------
-///ƒ|ƒPƒp[ƒNƒf[ƒ^’Ç‰Á‚Q
+///ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿è¿½åŠ ï¼’
 //--------------------------------------------------------------------
 static void Debug_tamada_ppdata2(TCB_PTR tcb, void * work)
 {
@@ -1930,7 +1930,7 @@ static void Debug_tamada_ppdata2(TCB_PTR tcb, void * work)
 	FieldDebugExit(tcb, work);
 }
 //--------------------------------------------------------------------
-///‚q‚s‚bƒyƒiƒ‹ƒeƒBó‘Ôƒ`ƒFƒbƒN
+///ï¼²ï¼´ï¼£ãƒšãƒŠãƒ«ãƒ†ã‚£çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
 //--------------------------------------------------------------------
 static void Debug_tamada_rtc_check(TCB_PTR tcb, void * work)
 {
@@ -1994,13 +1994,13 @@ static void FieldDebugTamadaListSet(FIELDSYS_WORK * fsys)
 			FieldDebugTamadaListGMM, NELEMS(FieldDebugTamadaListGMM), NULL);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //============================================================================================
 //
-//		ƒTƒuƒƒjƒ…[FƒeƒŒƒr
+//		ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼šãƒ†ãƒ¬ãƒ“
 //
 //============================================================================================
 //--------------------------------------------------------------------
@@ -2139,14 +2139,14 @@ static void FieldDebugTVListSet(FIELDSYS_WORK * fsys)
 			FieldDebugTVListGMM, NELEMS(FieldDebugTVListGMM), NULL);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 
 //============================================================================================
 //
-//		ƒTƒuƒƒjƒ…[FŠÔ
+//		ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼šæ™‚é–“
 //
 //============================================================================================
 //--------------------------------------------------------------------
@@ -2237,13 +2237,13 @@ static void FieldDebugRTCListSet(FIELDSYS_WORK * fsys)
 			FieldDebugRTCListGMM, NELEMS(FieldDebugRTCListGMM), NULL);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
 //============================================================================================
 //
-//		ƒTƒuƒƒjƒ…[FƒVƒXƒeƒ€ƒtƒ‰ƒO
+//		ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼šã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°
 //
 //============================================================================================
 //--------------------------------------------------------------------
@@ -2516,7 +2516,7 @@ static void FieldDebugSysFlagList(FIELDSYS_WORK * fsys)
 			FieldDebugSysFlagListGMM, NELEMS(FieldDebugSysFlagListGMM), NULL);
 	wp->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
@@ -2529,17 +2529,17 @@ static void FieldDebugSysFlagList(FIELDSYS_WORK * fsys)
 //============================================================================================
 //
 //
-//		ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[‹¤’Êˆ—
+//		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼å…±é€šå‡¦ç†
 //
 //
 //============================================================================================
 /********************************************************************/
 /*                                                                  */
-/*				ƒf[ƒ^ŒS											*/
+/*				ãƒ‡ãƒ¼ã‚¿éƒ¡											*/
 /*                                                                  */
 /********************************************************************/
 //------------------------------------------------------------------
-//	ƒrƒbƒgƒ}ƒbƒvƒVƒXƒeƒ€—pƒf[ƒ^
+//	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ‡ãƒ¼ã‚¿
 //------------------------------------------------------------------
 static const u8 FieldDebugListPos[][4] = {
 	{FDBG_LIST_PX1,FDBG_LIST_PY1,FDBG_INFO_PX1,FDBG_INFO_PY1},
@@ -2571,32 +2571,32 @@ static const BMPWIN_DAT	FieldDebugUserWindowData = {
 };
 
 //------------------------------------------------------------------
-//	€–ÚƒŠƒXƒgƒf[ƒ^
+//	é …ç›®ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 //------------------------------------------------------------------
 static const BMPLIST_HEADER FieldDebugListHeader = {
-	NULL,				//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,				//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	InfoCallBack2,		//‚Ps‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,				//GF_BGL_BMPWIN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	0,					//ƒŠƒXƒg€–Ú”
-	8,					//•\¦Å‘å€–Ú”
-	2,					//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	12,					//€–Ú•\¦‚wÀ•W
-	1,					//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	8,					//•\¦‚xÀ•W
-	FBMP_COL_WHITE,		//•¶šF
-	FBMP_COL_BLACK,		//”wŒiF
-	FBMP_COL_BLK_SDW,	//•¶š‰eF
-	0,					//•¶šŠÔŠu‚w
-	0,					//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	POKE_SYS,			//•¶šw’è
-	0,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
-	NULL,				//ƒ[ƒNƒ|ƒCƒ“ƒ^
+	NULL,				//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,				//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	InfoCallBack2,		//ï¼‘è¡Œã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,				//GF_BGL_BMPWINæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	0,					//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	8,					//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	2,					//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	12,					//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	1,					//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,					//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,		//æ–‡å­—è‰²
+	FBMP_COL_BLACK,		//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,	//æ–‡å­—å½±è‰²
+	0,					//æ–‡å­—é–“éš”ï¼¸
+	0,					//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	POKE_SYS,			//æ–‡å­—æŒ‡å®š
+	0,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+	NULL,				//ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 
 //------------------------------------------------------------------
-//	ƒŠƒXƒgƒVƒXƒeƒ€‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒN¦ˆês•\¦‚²‚Æ
+//	ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯â€»ä¸€è¡Œè¡¨ç¤ºã”ã¨
 //------------------------------------------------------------------
 static void	InfoCallBack2(BMPLIST_WORK* lw,u32 param,u8 y)
 {
@@ -2608,11 +2608,11 @@ static void	InfoCallBack2(BMPLIST_WORK* lw,u32 param,u8 y)
 }
 
 
-///b’è“I‚É‚±‚±‚Éì¬(FLD—pWindowƒLƒƒƒ‰ƒNƒ^‚ª‘µ‚Á‚½‚çˆÚ“®)
+///æš«å®šçš„ã«ã“ã“ã«ä½œæˆ(FLDç”¨Windowã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒæƒã£ãŸã‚‰ç§»å‹•)
 
 //------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU[w’è‚ÌƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ƒNƒ^‚ÆƒpƒŒƒbƒg‚ğVRAM‚ÉƒZƒbƒg‚·‚é
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’VRAMã«ã‚»ãƒƒãƒˆã™ã‚‹
  *
  *	@param	none
  *	@return none
@@ -2625,13 +2625,13 @@ void FieldBitMapWinCgxSet( GF_BGL_INI * ini )
 
 /********************************************************************/
 /*                                                                  */
-/*	ƒfƒoƒbƒOƒŠƒXƒgİ’è												*/
+/*	ãƒ‡ãƒãƒƒã‚°ãƒªã‚¹ãƒˆè¨­å®š												*/
 /*                                                                  */
 /********************************************************************/
 static void		FieldDebugListInit(FLD_DEB_DAT* wp, const GMM_MENU_PARAM * list)
 {
 	if((wp->DebugList == 0)&&(wp->DebugCursor == 0)){
-		//ˆês–Ú‚ªƒ‰ƒxƒ‹‚¾‚Á‚½‚ç‚»‚±‚Í”ğ‚¯‚é
+		//ä¸€è¡Œç›®ãŒãƒ©ãƒ™ãƒ«ã ã£ãŸã‚‰ãã“ã¯é¿ã‘ã‚‹
 		if (list != NULL &&list[wp->DebugList].param == BMPLIST_RABEL) {
 			wp->DebugList	= 0;
 			wp->DebugCursor	= 1;
@@ -2641,27 +2641,27 @@ static void		FieldDebugListInit(FLD_DEB_DAT* wp, const GMM_MENU_PARAM * list)
 
 //------------------------------------------------------------------
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[ƒ^ƒXƒN”jŠüƒ^ƒXƒN
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¿ã‚¹ã‚¯ç ´æ£„ã‚¿ã‚¹ã‚¯
  *
- *	ƒ[ƒNƒGƒŠƒA‚ÌŠJ•ú‚ğs‚Á‚Ä‚¢‚é‚Ì‚ÅAƒfƒoƒbƒOƒƒjƒ…[ŠJ•ú‚É•K‚¸ŒÄ‚ñ‚Å‰º‚³‚¢
+ *	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã®é–‹æ”¾ã‚’è¡Œã£ã¦ã„ã‚‹ã®ã§ã€ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‹æ”¾æ™‚ã«å¿…ãšå‘¼ã‚“ã§ä¸‹ã•ã„
  *
- *	@param	tcb		TCB_PTR:ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[ƒƒCƒ“ƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	work	void*:FLD_DEB_DATŒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	tcb		TCB_PTR:ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	work	void*:FLD_DEB_DATå‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void FieldDebugListExitTask(TCB_PTR tcb,void* work)
 {
-	//ƒ[ƒNƒƒ‚ƒŠŠJ•ú
+	//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 	sys_FreeMemoryEz(work);
 	TCB_Delete(tcb);
 
-	//OBJ“™‚Ì“®ì’â~‰ğœ
+	//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 	FieldSystemProc_SeqHoldEnd();
 	return;
 }
 
 //------------------------------------------------------------------
-//BMPƒŠƒXƒgİ’è
+//BMPãƒªã‚¹ãƒˆè¨­å®š
 //------------------------------------------------------------------
 static BMP_MENULIST_DATA * MakeFieldDebugMenu(int arcID, const GMM_MENU_PARAM * list, int count)
 {
@@ -2681,11 +2681,11 @@ static BMP_MENULIST_DATA * MakeFieldDebugMenu(int arcID, const GMM_MENU_PARAM * 
 }
 
 //------------------------------------------------------------------
-//BMPƒŠƒXƒgİ’èi‚Ç‚±‚Å‚àƒWƒƒƒ“ƒv—pj
+//BMPãƒªã‚¹ãƒˆè¨­å®šï¼ˆã©ã“ã§ã‚‚ã‚¸ãƒ£ãƒ³ãƒ—ç”¨ï¼‰
 //------------------------------------------------------------------
 static BMP_MENULIST_DATA * MakeEveryWhereMenu(int count)
 {
-	//‚Ç‚±‚Å‚àƒWƒƒƒ“ƒv—p‚Ì“Á•Êˆ—
+	//ã©ã“ã§ã‚‚ã‚¸ãƒ£ãƒ³ãƒ—ç”¨ã®ç‰¹åˆ¥å‡¦ç†
 	int i;
 	STRCODE	tmpbuf[128];
 	STRBUF	*mstr = STRBUF_Create(128,HEAPID_BASE_DEBUG);
@@ -2695,7 +2695,7 @@ static BMP_MENULIST_DATA * MakeEveryWhereMenu(int count)
 		PM_strclear(tmpbuf,EOM_,128);
 		STRBUF_Clear(mstr);
 		
-		//ƒ][ƒ“–¼æ“¾
+		//ã‚¾ãƒ¼ãƒ³åå–å¾—
 		if(ASCIIcode2DSuni(0,(u8*)ZoneData_GetZoneName(i+2),tmpbuf)){
 			tmpbuf[0] = EOM_;
 		}
@@ -2708,14 +2708,14 @@ static BMP_MENULIST_DATA * MakeEveryWhereMenu(int count)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒg‚Ì¶¬(gmm‚©‚ç•¶š—ñæ“¾”Å)
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã®ç”Ÿæˆ(gmmã‹ã‚‰æ–‡å­—åˆ—å–å¾—ç‰ˆ)
  * @param	fsys
- * @param	arcID	gmm‚ÌƒA[ƒJƒCƒuID
- * @param	list	ƒƒjƒ…[ƒŠƒXƒg
- * @param	count	ƒƒjƒ…[ƒŠƒXƒg‚Ì—v‘f”
- * @param	func	ƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‰‚Ìƒ|ƒCƒ“ƒ^(NULL=FieldDebugListControlTask)
+ * @param	arcID	gmmã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	list	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆ
+ * @param	count	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã®è¦ç´ æ•°
+ * @param	func	ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®ãƒã‚¤ãƒ³ã‚¿(NULL=FieldDebugListControlTask)
  *
- * ‰ğ•ú‚Í FieldDebugListFree(void* work)‚ğ‹¤—L‚µ‚Ä‚æ‚¢
+ * è§£æ”¾ã¯ FieldDebugListFree(void* work)ã‚’å…±æœ‰ã—ã¦ã‚ˆã„
  */
 //------------------------------------------------------------------
 static FLD_DEB_DAT * FieldDebugListCreateGMM(FIELDSYS_WORK * fsys,
@@ -2728,7 +2728,7 @@ static FLD_DEB_DAT * FieldDebugListCreateGMM(FIELDSYS_WORK * fsys,
 
 	wp = sys_AllocMemory(HEAPID_FIELD,sizeof(FLD_DEB_DAT));
 	if(wp == NULL){
-		//ƒ[ƒNƒGƒŠƒA‚ªæ“¾‚Å‚«‚È‚¯‚ê‚Î‰½‚à‚µ‚È‚¢
+		//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ãŒå–å¾—ã§ããªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„
 		OS_Printf("field debug menu crate failed\n");
 		return NULL;
 	}
@@ -2736,24 +2736,24 @@ static FLD_DEB_DAT * FieldDebugListCreateGMM(FIELDSYS_WORK * fsys,
 
 	wp->fsys = fsys;
 
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	if(func == NULL){
 		pTcb = TCB_Add(FieldDebugListControlTask,wp,0);
 	}else{
 		pTcb = TCB_Add(func,wp,0);
 	}
 
-	//ƒfƒoƒbƒOƒƒjƒ…[—p•Ï”‰Šú‰»
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨å¤‰æ•°åˆæœŸåŒ–
 	FieldDebugListInit(wp, list);
 
-	//ƒfƒoƒbƒOƒƒjƒ…[—pƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ƒNƒ^&ƒpƒŒƒbƒgƒZƒbƒg
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿&ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	FieldBitMapWinCgxSet( wp->fsys->bgl );
 
-	//BITMAP’Ç‰Á
+	//BITMAPè¿½åŠ 
 	wp->pBmpwin = GF_BGL_BmpWinAllocGet(HEAPID_FIELD,1);
 	GF_BGL_BmpWinAddEx(wp->fsys->bgl,wp->pBmpwin,&FieldDebugListWindowData);
 
-	//BMPƒŠƒXƒgİ’è
+	//BMPãƒªã‚¹ãƒˆè¨­å®š
 	if (list != NULL) {
 		wp->menulist = MakeFieldDebugMenu(arcID, list, count);
 	} else {
@@ -2771,7 +2771,7 @@ static FLD_DEB_DAT * FieldDebugListCreateGMM(FIELDSYS_WORK * fsys,
 
 //------------------------------------------------------------------
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒg‚Ì”jŠü
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã®ç ´æ£„
  *
  *	@param	work	void*:
  */
@@ -2782,17 +2782,17 @@ static void FieldDebugListFree(void* work)
 
 	wp = (FLD_DEB_DAT*)work;
 
-	//BMPƒEƒBƒ“ƒhƒEOFF
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OFF
 	GF_BGL_BmpWinOff(wp->pBmpwin);
 
-	//BMPƒŠƒXƒg”jŠü
+	//BMPãƒªã‚¹ãƒˆç ´æ£„
 	BMP_MENULIST_Delete(wp->menulist);
 	BmpListExit(wp->blistWk,&(wp->DebugList),&(wp->DebugCursor));
 
-	//BMPWindowÁ‹
+	//BMPWindowæ¶ˆå»
 	GF_BGL_BmpWinDel(wp->pBmpwin);
 
-	//ƒ[ƒN‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	sys_FreeMemoryEz(wp->pBmpwin);
 	return;
 }
@@ -2800,10 +2800,10 @@ static void FieldDebugListFree(void* work)
 
 //------------------------------------------------------------------
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[I—¹ƒƒbƒZ[ƒW•\¦Wait
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºWait
  *
- *	@param	tcb		TCB_PTR:ŒÄ‚Ño‚µŒ³ƒ^ƒXƒNƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	work	void*:ŒÄ‚Ño‚µŒ³ƒ^ƒXƒNƒuƒƒbƒNƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	tcb		TCB_PTR:å‘¼ã³å‡ºã—å…ƒã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	work	void*:å‘¼ã³å‡ºã—å…ƒã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void	FieldDebugListExitMsgWait(TCB_PTR tcb,void* work)
@@ -2822,46 +2822,46 @@ static void	FieldDebugListExitMsgWait(TCB_PTR tcb,void* work)
 
 //------------------------------------------------------------------
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒO‚ÌI—¹‚Ö‘JˆÚ
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ã®çµ‚äº†ã¸é·ç§»
  *
- *	ƒfƒoƒbƒOƒƒjƒ…[—pƒ[ƒN‚ÆƒŠƒXƒg‚Ì”jŠü‚ğs‚¤
- *	@param	tcb		TCB_PTR:ŒÄ‚Ño‚µŒ³ƒ^ƒXƒNƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	work	void*:ŒÄ‚Ño‚µŒ³ƒ^ƒXƒNƒuƒƒbƒNƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ãƒ¯ãƒ¼ã‚¯ã¨ãƒªã‚¹ãƒˆã®ç ´æ£„ã‚’è¡Œã†
+ *	@param	tcb		TCB_PTR:å‘¼ã³å‡ºã—å…ƒã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	work	void*:å‘¼ã³å‡ºã—å…ƒã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void FieldDebugExit(TCB_PTR tcb,void* work)
 {
-	//ƒŠƒXƒg‚ÌŠJ•úˆ—
+	//ãƒªã‚¹ãƒˆã®é–‹æ”¾å‡¦ç†
 	FieldDebugListFree(work);
-	//ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒ^ƒXƒN‹¤’ÊI—¹ˆ—‚Ö
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ã‚¿ã‚¹ã‚¯å…±é€šçµ‚äº†å‡¦ç†ã¸
 	TCB_ChangeFunc(tcb,FieldDebugListExitTask);
 	return;
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[I—¹ˆ—
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼çµ‚äº†å‡¦ç†
  */
 //------------------------------------------------------------------
 static void FieldDebugExitCall(TCB_PTR tcb,void* work)
 {
-	//ƒŠƒXƒg‚ÌŠJ•úˆ—
+	//ãƒªã‚¹ãƒˆã®é–‹æ”¾å‡¦ç†
 	FieldDebugListFree(work);
 
-	//ƒ[ƒNƒƒ‚ƒŠŠJ•ú
+	//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 	sys_FreeMemoryEz(work);
 	TCB_Delete(tcb);
 
-	//OBJ“™‚Ì“®ì’â~‰ğœ
+	//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 	//FieldSystemProc_SeqHoldEnd();
 	return;
 }
 
 //------------------------------------------------------------------
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒCƒ“§Œäƒ^ƒXƒN
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		TCB_PTR:ŒÄ‚Ño‚µŒ³ƒ^ƒXƒNƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	work	void*:ŒÄ‚Ño‚µŒ³ƒ^ƒXƒNƒuƒƒbƒNƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	tcb		TCB_PTR:å‘¼ã³å‡ºã—å…ƒã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	work	void*:å‘¼ã³å‡ºã—å…ƒã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void FieldDebugListControlTask(TCB_PTR tcb,void* work)
@@ -2874,7 +2874,7 @@ static void FieldDebugListControlTask(TCB_PTR tcb,void* work)
 
 	ret_code = BmpListMain(wp->blistWk);
 
-	//ƒL[‘€ì”»’è
+	//ã‚­ãƒ¼æ“ä½œåˆ¤å®š
 	if(sys.trg & PAD_BUTTON_A){
 		if(ret_code){
 			func = (TCB_FUNC)ret_code;
@@ -2882,7 +2882,7 @@ static void FieldDebugListControlTask(TCB_PTR tcb,void* work)
 		}
 		return;
 	}
-	//ƒƒjƒ…[ƒLƒƒƒ“ƒZƒ‹
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if(sys.trg & PAD_BUTTON_B){
 		if (wp->finish_func != NULL) {
 			FIELDSYS_WORK * fsys = wp->fsys;
@@ -2896,47 +2896,47 @@ static void FieldDebugListControlTask(TCB_PTR tcb,void* work)
 	}
 }
 
-//ƒŒƒR[ƒh‹L˜^‚ÌŒ»İ’l‚ğæ“¾‚·‚éŠÖ”
+//ãƒ¬ã‚³ãƒ¼ãƒ‰è¨˜éŒ²ã®ç¾åœ¨å€¤ã‚’å–å¾—ã™ã‚‹é–¢æ•°
 static u32 DNumInput_RecordGet(SAVEDATA* sv,u32 param)
 {
 	return RECORD_Get(SaveData_GetRecord(sv),param);
 }
-//ƒŒƒR[ƒh‹L˜^‚É’l‚ğƒZƒbƒg‚·‚éŠÖ”
+//ãƒ¬ã‚³ãƒ¼ãƒ‰è¨˜éŒ²ã«å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°
 static void DNumInput_RecordSet(SAVEDATA* sv,u32 param,u32 value)
 {
 	RECORD_Set(SaveData_GetRecord(sv),param,value);
 }
-//ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒh‹L˜^‚ÌŒ»İ’l‚ğæ“¾‚·‚éŠÖ”
+//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰è¨˜éŒ²ã®ç¾åœ¨å€¤ã‚’å–å¾—ã™ã‚‹é–¢æ•°
 static u32 DNumInput_FrontierRecordGet(SAVEDATA* sv,u32 param)
 {
 	return FrontierRecord_Get(SaveData_GetFrontier(sv),param, FRONTIER_RECORD_NOT_FRIEND );
 	//return FrontierRecord_Get(SaveData_GetFrontier(sv),param, Frontier_GetFriendIndex(param));
 }
-//ƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒh‹L˜^‚É’l‚ğƒZƒbƒg‚·‚éŠÖ”
+//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰è¨˜éŒ²ã«å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°
 static void DNumInput_FrontierRecordSet(SAVEDATA* sv,u32 param,u32 value)
 {
 	FrontierRecord_Set(SaveData_GetFrontier(sv),param, FRONTIER_RECORD_NOT_FRIEND ,value);
 	//FrontierRecord_Set(SaveData_GetFrontier(sv),param,Frontier_GetFriendIndex(param),value);
 }
-//ƒ^ƒ[‚Ìü‰ñ”‚ğƒQƒbƒg‚·‚éŠÖ”
+//ã‚¿ãƒ¯ãƒ¼ã®å‘¨å›æ•°ã‚’ã‚²ãƒƒãƒˆã™ã‚‹é–¢æ•°
 static u32 DNumInput_TowerStageGet(SAVEDATA* sv,u32 param)
 {
 	BTLTOWER_SCOREWORK* score = SaveData_GetTowerScoreData(sv);
 	return TowerScoreData_SetStage(score,param,BTWR_DATA_get);
 }
-//ƒ^ƒ[‚Ìü‰ñ”‚ğƒZƒbƒg‚·‚éŠÖ”
+//ã‚¿ãƒ¯ãƒ¼ã®å‘¨å›æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°
 static void DNumInput_TowerStageSet(SAVEDATA* sv,u32 param,u32 value)
 {
 	BTLTOWER_SCOREWORK* score = SaveData_GetTowerScoreData(sv);
 	TowerScoreData_DebugSetStageValue(score,param,value);
 }
-//ƒ^ƒ[‚É’§í’†‚Ìƒtƒ‰ƒO‚ğON/Off‚·‚é
+//ã‚¿ãƒ¯ãƒ¼ã«æŒ‘æˆ¦ä¸­ã®ãƒ•ãƒ©ã‚°ã‚’ON/Offã™ã‚‹
 static u32 DNumInput_TowerChallengeGet(SAVEDATA* sv,u32 param)
 {
 	BTLTOWER_SCOREWORK* score = SaveData_GetTowerScoreData(sv);
 	return TowerScoreData_SetFlags(score,param,BTWR_DATA_get);
 }
-//ƒ^ƒ[‚É’§í’†‚Ìƒtƒ‰ƒO‚ğON/Off‚·‚é
+//ã‚¿ãƒ¯ãƒ¼ã«æŒ‘æˆ¦ä¸­ã®ãƒ•ãƒ©ã‚°ã‚’ON/Offã™ã‚‹
 static void DNumInput_TowerChallengeSet(SAVEDATA* sv,u32 param,u32 value)
 {
 	BTLTOWER_SCOREWORK* score = SaveData_GetTowerScoreData(sv);
@@ -2946,13 +2946,13 @@ static void DNumInput_TowerChallengeSet(SAVEDATA* sv,u32 param,u32 value)
 		TowerScoreData_SetFlags(score,param,BTWR_DATA_reset);
 	}
 }
-//ƒ^ƒ[wifiƒ‰ƒ“ƒN‚ğæ“¾
+//ã‚¿ãƒ¯ãƒ¼wifiãƒ©ãƒ³ã‚¯ã‚’å–å¾—
 static u32 DNumInput_TowerWifiRankGet(SAVEDATA* sv,u32 param)
 {
 	BTLTOWER_SCOREWORK* score = SaveData_GetTowerScoreData(sv);
 	return TowerScoreData_SetWifiRank(score,BTWR_DATA_get);
 }
-//ƒ^ƒ[wifiƒ‰ƒ“ƒN‚ğƒZƒbƒg
+//ã‚¿ãƒ¯ãƒ¼wifiãƒ©ãƒ³ã‚¯ã‚’ã‚»ãƒƒãƒˆ
 static void DNumInput_TowerWifiRankSet(SAVEDATA* sv,u32 param,u32 value)
 {
 	u32 i;
@@ -2966,8 +2966,8 @@ static void DNumInput_TowerWifiRankSet(SAVEDATA* sv,u32 param,u32 value)
 }
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/10/30
-// ålŒö‚ÌƒgƒŒ[ƒi[ID‚ğ•ÏX‚·‚éƒfƒoƒbƒO‹@”\‚ğ’Ç‰Á
-//ƒgƒŒ[ƒi[ID‚ğæ“¾
+// ä¸»äººå…¬ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å¤‰æ›´ã™ã‚‹ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã‚’è¿½åŠ 
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—
 static u32 DNumInput_TrainerIdGet(SAVEDATA* sv,u32 param)
 {
 	MYSTATUS* mystatus = SaveData_GetMyStatus(sv);
@@ -2982,7 +2982,7 @@ static u32 DNumInput_TrainerIdGet(SAVEDATA* sv,u32 param)
 
 	return 0;
 }
-//ƒgƒŒ[ƒi[ID‚ğƒZƒbƒg
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’ã‚»ãƒƒãƒˆ
 static void DNumInput_TrainerIdSet(SAVEDATA* sv,u32 param,u32 value)
 {
 	MYSTATUS* mystatus = SaveData_GetMyStatus(sv);
@@ -3005,13 +3005,13 @@ static void DNumInput_TrainerIdSet(SAVEDATA* sv,u32 param,u32 value)
 //============================================================================================
 //
 //
-//		ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[ ‹¤’Ê”’lƒCƒ“ƒvƒbƒgˆ—
+//		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ å…±é€šæ•°å€¤ã‚¤ãƒ³ãƒ—ãƒƒãƒˆå‡¦ç†
 //
 //
 //============================================================================================
 /**
- *	”’l“ü—Í—p‚ÌŒ©o‚µ•¶š—ñw’èAparam‚Í0‚©‚ç‚Ì˜A”Ô
- *	Debug_NumInput_List‚Æ•À‚Ñ‚ğ‚»‚ë‚¦‚Ä‚¨‚­•K—v‚ ‚èI
+ *	æ•°å€¤å…¥åŠ›ç”¨ã®è¦‹å‡ºã—æ–‡å­—åˆ—æŒ‡å®šã€paramã¯0ã‹ã‚‰ã®é€£ç•ª
+ *	Debug_NumInput_Listã¨ä¸¦ã³ã‚’ãã‚ãˆã¦ãŠãå¿…è¦ã‚ã‚Šï¼
  */
 #include "application/app_tool.h"
 #if 0
@@ -3038,7 +3038,7 @@ static const GMM_MENU_PARAM Debug_NumInput_Gmm[] = {
  {dni_tower_stage05,	19},	
  {dni_rec_tower_entry,		20},	
  {dni_rec_tower_win,		21},	
- //ª‚±‚±‚Ü‚Åƒoƒgƒ‹ƒ^ƒ[
+ //â†‘ã“ã“ã¾ã§ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
  
 };	
 static const DEBUG_NUMINPUT_LIST Debug_NumInput_List[] = {
@@ -3064,14 +3064,14 @@ static const DEBUG_NUMINPUT_LIST Debug_NumInput_List[] = {
  {0,9999,	4,DNumInput_TowerStageSet,DNumInput_TowerStageGet},
  {0,99999,RECID_BTOWER_CHALLENGE,DNumInput_RecordSet,DNumInput_RecordGet},
  {0,99999,RECID_BTOWER_WIN,DNumInput_RecordSet,DNumInput_RecordGet},
- //ª‚±‚±‚Ü‚Åƒoƒgƒ‹ƒ^ƒ[
+ //â†‘ã“ã“ã¾ã§ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 };
 #endif
 
 static void DebugNumInputControlTask(TCB_PTR tcb,void* work);
 
 /**
- *	@brief	”Ä—pƒfƒoƒbƒO”’l“ü—ÍƒCƒ“ƒ^[ƒtƒF[ƒX
+ *	@brief	æ±ç”¨ãƒ‡ãƒãƒƒã‚°æ•°å€¤å…¥åŠ›ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  */
 static void FieldDebugNumInputList(FIELDSYS_WORK * fsys,
 	const DEBUG_NUMINPUT_LIST* pList,const GMM_MENU_PARAM* pMenu,int num)
@@ -3097,13 +3097,13 @@ static void FieldDebugNumInputList(FIELDSYS_WORK * fsys,
 	wk->pMenu = pMenu;
 	wk->list_num = num;
 
-	//”š—ñ•`‰æ—pbmpƒEƒBƒ“ƒhƒE‚ğ’Ç‰Á
+	//æ•°å­—åˆ—æç”»ç”¨bmpã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¿½åŠ 
 	GF_BGL_BmpWinAdd( fsys->bgl, &wk->win, FLD_MBGFRM_FONT, 16, 1, 12, 2,
 			FDBG_LIST_PL,FDBG_LIST_CH+(FDBG_LIST_SX*FDBG_LIST_SY));
 	GF_BGL_BmpWinDataFill(&wk->win,APP_WINCLR_COL(FBMP_COL_WHITE));
 	GF_BGL_BmpWinOn(&wk->win);
 
-	//•¶šƒZƒbƒg’Ç‰Á
+	//æ–‡å­—ã‚»ãƒƒãƒˆè¿½åŠ 
 	wset = WORDSET_CreateEx(1,2,HEAPID_FIELD);
 	pMan = MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,
 			NARC_msg_debug_numinput_dat,HEAPID_FIELD);
@@ -3119,20 +3119,20 @@ static void FieldDebugNumInputList(FIELDSYS_WORK * fsys,
 	MSGMAN_Delete(pMan);
 	WORDSET_Delete(wset);
 
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(DebugNumInputControlTask,wk,0);
 
-	//ƒfƒoƒbƒOƒƒjƒ…[—p•Ï”‰Šú‰»
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨å¤‰æ•°åˆæœŸåŒ–
 	FieldDebugListInit(wk->pFdd,wk->pMenu);
 
-	//ƒfƒoƒbƒOƒƒjƒ…[—pƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ƒNƒ^&ƒpƒŒƒbƒgƒZƒbƒg
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿&ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	FieldBitMapWinCgxSet( fsys->bgl );
 
-	//BITMAP’Ç‰Á
+	//BITMAPè¿½åŠ 
 	wk->pFdd->pBmpwin = GF_BGL_BmpWinAllocGet(HEAPID_FIELD,1);
 	GF_BGL_BmpWinAddEx(fsys->bgl,wk->pFdd->pBmpwin,&FieldDebugListWindowData);
 
-	//BMPƒŠƒXƒgİ’è
+	//BMPãƒªã‚¹ãƒˆè¨­å®š
 	wk->pFdd->menulist = MakeFieldDebugMenu(NARC_msg_debug_numinput_dat,
 //			Debug_NumInput_Gmm,NELEMS(Debug_NumInput_Gmm));
 			wk->pMenu,wk->list_num);
@@ -3145,7 +3145,7 @@ static void FieldDebugNumInputList(FIELDSYS_WORK * fsys,
 
 	wk->pFdd->finish_func = FieldDebugListSet;
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 }
 
@@ -3220,7 +3220,7 @@ static int ninput_side(DEBUG_NUMINPUT_WORK* wk,int mode)
 }
 
 /**
- *	@brief	”’l“ü—ÍƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	æ•°å€¤å…¥åŠ›ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  */
 static void DebugNumInputControlTask(TCB_PTR tcb,void* work)
 {
@@ -3275,12 +3275,12 @@ static void DebugNumInputControlTask(TCB_PTR tcb,void* work)
 		ninput_print(wk);
 		wk->seq++;
 		break;
-	case 1:	//”’l“ü—Í
+	case 1:	//æ•°å€¤å…¥åŠ›
 		if(sys.trg & PAD_BUTTON_CANCEL){
 			wk->seq++;
 			return;
 		}else if(sys.trg & PAD_BUTTON_DECIDE){
-			//”’l“K—p
+			//æ•°å€¤é©ç”¨
 			(wk->pList[wk->now].set_func)(
 				wk->fsys->savedata,wk->pList[wk->now].param,wk->value);
 			wk->seq++;
@@ -3296,7 +3296,7 @@ static void DebugNumInputControlTask(TCB_PTR tcb,void* work)
 		}else if(sys.trg & PAD_KEY_RIGHT){
 			flag = ninput_side(wk,1);	
 		}
-		//•`‰æXV
+		//æç”»æ›´æ–°
 		if(flag){
 			ninput_print(wk);
 		}
@@ -3313,7 +3313,7 @@ static void DebugNumInputControlTask(TCB_PTR tcb,void* work)
 //============================================================================================
 //
 //
-//		ƒfƒoƒbƒO—pî•ñ•\¦ŠÖ˜A
+//		ãƒ‡ãƒãƒƒã‚°ç”¨æƒ…å ±è¡¨ç¤ºé–¢é€£
 //
 //
 //============================================================================================
@@ -3330,8 +3330,8 @@ static NNSG2dPaletteData *pal;
 static u32 store_ticks2[DEBUG_TICK_MAX2];
 //------------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—p•\¦ƒtƒbƒNˆ—
- * @param	flag	BOOL	ƒtƒbƒN‚·‚é‚©‚Ç‚¤‚©
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨è¡¨ç¤ºãƒ•ãƒƒã‚¯å‡¦ç†
+ * @param	flag	BOOL	ãƒ•ãƒƒã‚¯ã™ã‚‹ã‹ã©ã†ã‹
  */
 //------------------------------------------------------------------
 void DebugStressDispHookSet(BOOL flag)
@@ -3342,7 +3342,7 @@ void DebugStressDispHookSet(BOOL flag)
 //------------------------------------------------------------------
 /**
  * 
- * DEBUG 1•¶šƒXƒNƒŠ[ƒ“”½‰f
+ * DEBUG 1æ–‡å­—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åæ˜ 
  * 
  **/
 //------------------------------------------------------------------
@@ -3354,7 +3354,7 @@ static void DebugCharPut(u16 *screen, char c, int x, int y)
 	if(c=='='){
 		c = 0x30+10;
 	}
-	if(c=='-'){   // ƒ}ƒCƒiƒX•\¦‚ªo‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ÅM‚É’uŠ·
+	if(c=='-'){   // ãƒã‚¤ãƒŠã‚¹è¡¨ç¤ºãŒå‡ºã¦ã„ãªã‹ã£ãŸã®ã§Mã«ç½®æ›
 		c = 'M';
 	}
 	screen[x+y*SCREEN_CHARA_W] = 0x2000+(c-0x2F);
@@ -3363,7 +3363,7 @@ static void DebugCharPut(u16 *screen, char c, int x, int y)
 //------------------------------------------------------------------
 /**
  * 
- * DEBUG •¶š—ñƒXƒNƒŠ[ƒ“”½‰f
+ * DEBUG æ–‡å­—åˆ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åæ˜ 
  * 
  **/
 //------------------------------------------------------------------
@@ -3407,45 +3407,45 @@ static void DebugBgPrint_Position( GF_BGL_INI * ini, FIELDSYS_WORK * fsys, char 
 
 //------------------------------------------------------------------
 /**
- * @brief	3D•`‰æî•ñ•\¦
+ * @brief	3Dæç”»æƒ…å ±è¡¨ç¤º
  */
 //------------------------------------------------------------------
 static void DebugBgPrint_Stress( GF_BGL_INI * ini, FIELDSYS_WORK * fsys, char * str )
 {
-	//ƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‚ªó‚¯æ‚Á‚½ƒ|ƒŠƒSƒ“”
+	//ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³ãŒå—ã‘å–ã£ãŸãƒãƒªã‚´ãƒ³æ•°
 	sprintf(str,"REG POLY LIST = %04d",G3X_GetPolygonListRamCount());
 	DebugStrPut(ini,str,1,2);
 
-	//NitroSystem‚É“n‚µ‚½ƒ|ƒŠƒSƒ“”
+	//NitroSystemã«æ¸¡ã—ãŸãƒãƒªã‚´ãƒ³æ•°
 	sprintf(str,"MDL POLY LIST = %04d",D_3D_DC_DrawPolygonGet());
 	DebugStrPut(ini,str,1,3);
 
-	//ƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‚ªó‚¯æ‚Á‚½’¸“_”
+	//ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³ãŒå—ã‘å–ã£ãŸé ‚ç‚¹æ•°
 	sprintf(str,"REG VTX COUNT = %04d",G3X_GetVtxListRamCount());
 	DebugStrPut(ini,str,1,4);
 
-	//NitroSystem‚É“n‚µ‚½’¸“_”
+	//NitroSystemã«æ¸¡ã—ãŸé ‚ç‚¹æ•°
 	sprintf(str,"MDL VTX COUNT = %04d",D_3D_DC_DrawVertexGet());
 	DebugStrPut(ini,str,1,5);
 
-	//NitroSystem‚Åƒ|ƒŠƒSƒ“•`‰æ‚ğŒÄ‚Ño‚µ‚½‰ñ”
+	//NitroSystemã§ãƒãƒªã‚´ãƒ³æç”»ã‚’å‘¼ã³å‡ºã—ãŸå›æ•°
 	sprintf(str,"DRAW COUNT    = %04d",D_3D_DC_DrawNumGet());
 	DebugStrPut(ini,str,1,6);
 
-	//ƒeƒNƒXƒ`ƒƒVRAM‚É“]‘—‚µ‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Ì—Ê
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMã«è»¢é€ã—ã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é‡
 //	sprintf(str,"VRAM TEX    = %09d",D_3D_DC_VramTexSizeGet());
 	sprintf(str,"VRAM TEX    = %08XH",D_3D_DC_VramTexSizeGet());
 	DebugStrPut(ini,str,1,7);	
 
-	//ƒpƒŒƒbƒgVRAM‚É“]‘—‚µ‚Ä‚¢‚éƒpƒŒƒbƒg‚Ì—Ê
+	//ãƒ‘ãƒ¬ãƒƒãƒˆVRAMã«è»¢é€ã—ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã®é‡
 	sprintf(str,"PAL  TEX    = %08d",D_3D_DC_VramPalSizeGet());
 	DebugStrPut(ini,str,1,8);
 
 
-	//Šeˆ—‚Ì•‰‰×‚ğƒ^ƒCƒ}[‚Åæ“¾
+	//å„å‡¦ç†ã®è² è·ã‚’ã‚¿ã‚¤ãƒãƒ¼ã§å–å¾—
 	DEBUG_PrintTickResult(ini, str, 1, 9);
 
-    // make‚µ‚½“ú‚ğ•\¦
+    // makeã—ãŸæ—¥æ™‚ã‚’è¡¨ç¤º
 	sprintf(str,"BUILD %s %s", BuildDate, BuildTime);
     {
         int i;
@@ -3465,7 +3465,7 @@ static void DebugBgPrint_Stress( GF_BGL_INI * ini, FIELDSYS_WORK * fsys, char * 
         DebugStrPut(ini,str,1,13);
     }
 
-	// ƒtƒB[ƒ‹ƒhHEAP‚Ìc‚è‚ğ•\¦
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰HEAPã®æ®‹ã‚Šã‚’è¡¨ç¤º
 	{
 		sprintf(str, "REMAIN RAM %08XH\n",sys_GetHeapFreeSize( HEAPID_FIELD ));
 		DebugStrPut( ini, str, 1,14 );
@@ -3476,7 +3476,7 @@ static void DebugBgPrint_Stress( GF_BGL_INI * ini, FIELDSYS_WORK * fsys, char * 
 
 //------------------------------------------------------------------
 /**
- * @brief	ŒÂ•Êƒr[ƒRƒ“î•ñ•\¦ƒ‹[ƒ`ƒ“
+ * @brief	å€‹åˆ¥ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±è¡¨ç¤ºãƒ«ãƒ¼ãƒãƒ³
  */
 //------------------------------------------------------------------
 static void DebugBeaconPut( GF_BGL_INI * ini, const _GF_BSS_DATA_INFO * gfdata, char * str, int y)
@@ -3510,7 +3510,7 @@ static void DebugBeaconPut( GF_BGL_INI * ini, const _GF_BSS_DATA_INFO * gfdata, 
 
 //------------------------------------------------------------------
 /**
- * @brief	ŒÂ•Êƒr[ƒRƒ“î•ñ•\¦ƒ‹[ƒ`ƒ“
+ * @brief	å€‹åˆ¥ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±è¡¨ç¤ºãƒ«ãƒ¼ãƒãƒ³
  */
 //------------------------------------------------------------------
 static void DebugBeaconPut2( GF_BGL_INI * ini, const _GF_BSS_DATA_INFO * gfdata, char * str, int y)
@@ -3546,7 +3546,7 @@ static void MakeMACAddressStr(char * str, const u8 * mac)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒr[ƒRƒ“î•ñ•\¦
+ * @brief	ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±è¡¨ç¤º
  */
 //------------------------------------------------------------------
 static void DebugBgPrint_CommBeacon( GF_BGL_INI * ini, FIELDSYS_WORK * fsys, char * str )
@@ -3590,9 +3590,9 @@ static void DebugBgPrint_CommBeacon( GF_BGL_INI * ini, FIELDSYS_WORK * fsys, cha
 //------------------------------------------------------------------
 /**
  * 
- * DEBUG •¶š—ñ•`‰æ(ƒtƒB[ƒ‹ƒhê—pABG1–Ê‚É•`‰æj
+ * DEBUG æ–‡å­—åˆ—æç”»(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å°‚ç”¨ã€BG1é¢ã«æç”»ï¼‰
  * 
- * ‰üs‚È‚µAu‚O`‚XA‚`‚a‚bi‘å•¶š‚Ì‚İjAAƒXƒy[ƒXv‚ğ•\¦
+ * æ”¹è¡Œãªã—ã€ã€Œï¼ã€œï¼™ã€ï¼¡ï¼¢ï¼£ï¼ˆå¤§æ–‡å­—ã®ã¿ï¼‰ã€ï¼ã€ã‚¹ãƒšãƒ¼ã‚¹ã€ã‚’è¡¨ç¤º
  * 
  * 
  **/
@@ -3613,8 +3613,8 @@ void DebugBgPrint(GF_BGL_INI *ini, FIELDSYS_WORK *fsys)
 		return;
 	}
 	
-	//ålŒöÀ•W
-	#if 0	//ƒOƒŠƒbƒhY‚à•\¦ 071102 kaga
+	//ä¸»äººå…¬åº§æ¨™
+	#if 0	//ã‚°ãƒªãƒƒãƒ‰Yã‚‚è¡¨ç¤º 071102 kaga
 	sprintf(str,"GRIDX = %03d, GRIDZ = %03d  ",Player_NowGPosXGet(fsys->player),Player_NowGPosZGet(fsys->player));
 	DebugStrPut(ini, str,1,1);
 	#else
@@ -3645,12 +3645,12 @@ void DebugBgPrint(GF_BGL_INI *ini, FIELDSYS_WORK *fsys)
 		DebugBgPrint_CommBeacon( ini, fsys, str );
 		break;
 	}
-	GF_BGL_LoadScreenReq( ini,FLD_MBGFRM_EFFECT1 );	//ƒfƒoƒbƒO•¶š—ñ–Ê‚ÌƒXƒNƒŠ[ƒ“‚ğ“]‘—
+	GF_BGL_LoadScreenReq( ini,FLD_MBGFRM_EFFECT1 );	//ãƒ‡ãƒãƒƒã‚°æ–‡å­—åˆ—é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’è»¢é€
 #endif	
 }
 
 //--------------------------------------------------------------------
-// ƒfƒoƒbƒO•\¦‚Ì‚½‚ß‚ÉPALE·¬×“]‘—
+// ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºã®ãŸã‚ã«PALãƒ»ã‚­ãƒ£ãƒ©è»¢é€
 //--------------------------------------------------------------------
 static void DebugBgCharPalSet(GF_BGL_INI *ini)
 {
@@ -3660,38 +3660,38 @@ static void DebugBgCharPalSet(GF_BGL_INI *ini)
 
 }
 //--------------------------------------------------------------------
-//	ƒpƒŒƒbƒg—pƒ[ƒN‚ğŠJ•ú
+//	ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ã‚’é–‹æ”¾
 //--------------------------------------------------------------------
 static void DebugBgCharPalFree(void)
 {
-	// DEBUG•¶š—ñ—p‚ÌƒpƒŒƒbƒg—Ìˆæ‚ğ‰ğ•ú
+	// DEBUGæ–‡å­—åˆ—ç”¨ã®ãƒ‘ãƒ¬ãƒƒãƒˆé ˜åŸŸã‚’è§£æ”¾
 	sys_FreeMemoryEz(palwork);
 }
 
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒh§Œäƒ^ƒXƒNFƒfƒoƒbƒO•‰‰×•\¦’è‹`ƒf[ƒ^
- * @param	fwk		ƒtƒB[ƒ‹ƒh§Œäƒ^ƒXƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	work	”Ä—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^i–¢g—pj
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ï¼šãƒ‡ãƒãƒƒã‚°è² è·è¡¨ç¤ºå®šç¾©ãƒ‡ãƒ¼ã‚¿
+ * @param	fwk		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	æ±ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
  */
 //--------------------------------------------------------------------
 static void DebugBgPrint_Create(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void * work)
 {
 	GF_BGL_PrioritySet(FLD_MBGFRM_EFFECT1, 0);
-	//ƒfƒtƒHƒ‹ƒg‚Í”ñ•\¦‚É‚µ‚Æ‚­
+	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯éè¡¨ç¤ºã«ã—ã¨ã
 	DebugStressDispSet(DEBUG_VIEW_OFF);
-	//ƒfƒoƒbƒO•¶š•\¦—pƒLƒƒƒ‰ƒNƒ^EƒpƒŒƒbƒg“]‘—
+	//ãƒ‡ãƒãƒƒã‚°æ–‡å­—è¡¨ç¤ºç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	DebugBgCharPalSet(fsys->bgl);
 }
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒh§Œäƒ^ƒXƒNFƒfƒoƒbƒO•‰‰×•\¦’è‹`ƒf[ƒ^
- * @param	fwk		ƒtƒB[ƒ‹ƒh§Œäƒ^ƒXƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	work	”Ä—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^i–¢g—pj
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ï¼šãƒ‡ãƒãƒƒã‚°è² è·è¡¨ç¤ºå®šç¾©ãƒ‡ãƒ¼ã‚¿
+ * @param	fwk		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	æ±ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
  */
 //--------------------------------------------------------------------
 static void DebugBgPrint_Delete(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void * work)
@@ -3701,10 +3701,10 @@ static void DebugBgPrint_Delete(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, voi
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒh§Œäƒ^ƒXƒNFƒfƒoƒbƒO•‰‰×•\¦’è‹`ƒf[ƒ^
- * @param	fwk		ƒtƒB[ƒ‹ƒh§Œäƒ^ƒXƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	work	”Ä—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^i–¢g—pj
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ï¼šãƒ‡ãƒãƒƒã‚°è² è·è¡¨ç¤ºå®šç¾©ãƒ‡ãƒ¼ã‚¿
+ * @param	fwk		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	æ±ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
  */
 //--------------------------------------------------------------------
 static void DebugBgPrint_Update(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void * work)
@@ -3714,7 +3714,7 @@ static void DebugBgPrint_Update(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, voi
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒh§Œäƒ^ƒXƒNFƒfƒoƒbƒO•‰‰×•\¦’è‹`ƒf[ƒ^
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ï¼šãƒ‡ãƒãƒƒã‚°è² è·è¡¨ç¤ºå®šç¾©ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------
 static const FLDMAPFUNC_DATA DebugBgPrtData = {
@@ -3728,8 +3728,8 @@ static const FLDMAPFUNC_DATA DebugBgPrtData = {
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒh§Œäƒ^ƒXƒNFƒfƒoƒbƒO•‰‰×•\¦‚Ì’Ç‰Á
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ï¼šãƒ‡ãƒãƒƒã‚°è² è·è¡¨ç¤ºã®è¿½åŠ 
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void Debug_Entry_StressPrintTask(FIELDSYS_WORK * fsys)
@@ -3741,14 +3741,14 @@ void Debug_Entry_StressPrintTask(FIELDSYS_WORK * fsys)
 //============================================================================================
 //
 //
-//			ƒfƒoƒbƒO—pˆ—•‰‰×ƒ`ƒFƒbƒNŠÖ˜A
+//			ãƒ‡ãƒãƒƒã‚°ç”¨å‡¦ç†è² è·ãƒã‚§ãƒƒã‚¯é–¢é€£
 //
 //
 //============================================================================================
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—pˆ—•‰‰×ŠÈˆÕƒ‚ƒjƒ^A‰Šú‰»
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨å‡¦ç†è² è·ç°¡æ˜“ãƒ¢ãƒ‹ã‚¿ã€åˆæœŸåŒ–
  */
 //--------------------------------------------------------------------
 void DEBUG_InitTick(void)
@@ -3758,8 +3758,8 @@ void DEBUG_InitTick(void)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—pˆ—•‰‰×ŠÈˆÕƒ‚ƒjƒ^AƒRƒXƒg‚Ìæ“¾
- * @param	id	•Ûƒ[ƒN‚ÌIDw’è
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨å‡¦ç†è² è·ç°¡æ˜“ãƒ¢ãƒ‹ã‚¿ã€ã‚³ã‚¹ãƒˆã®å–å¾—
+ * @param	id	ä¿æŒãƒ¯ãƒ¼ã‚¯ã®IDæŒ‡å®š
  */
 //--------------------------------------------------------------------
 void DEBUG_StoreTick(int id)
@@ -3774,7 +3774,7 @@ void DEBUG_StoreTick(int id)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—pˆ—•‰‰×Å‘å’l‚ÌƒNƒŠƒA
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨å‡¦ç†è² è·æœ€å¤§å€¤ã®ã‚¯ãƒªã‚¢
  */
 //--------------------------------------------------------------------
 void DEBUG_ClearMaxTick(void)
@@ -3795,7 +3795,7 @@ void DEBUG_PrintTickResult(GF_BGL_INI *ini, char * str, int x, int y)
 	int i;
 	int result= 0;
 
-	//ŠeŠÖ”‚ÌŠÔ‚É–„‚ß‚ñ‚¾Tick”‚Ì•\¦
+	//å„é–¢æ•°ã®é–“ã«åŸ‹ã‚è¾¼ã‚“ã Tickæ•°ã®è¡¨ç¤º
 	DebugStrPut(ini,"TICKS ", x, y);	
 	for (i = 0; i < DEBUG_TICK_MAX; i++) {
 		sprintf(str, "-%05d", store_ticks[i]);
@@ -3804,11 +3804,11 @@ void DEBUG_PrintTickResult(GF_BGL_INI *ini, char * str, int x, int y)
 		DebugStrPut(ini,str, x + 6 + 6 * i, y + 1);
 	}
 
-	//ƒƒCƒ“ƒ‹[ƒvŠúŠÔ‚É‘Î‚µ‚Ä‚Ìƒp[ƒZƒ“ƒe[ƒW
+	//ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—æœŸé–“ã«å¯¾ã—ã¦ã®ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸
 	for(i=0;i<DEBUG_TICK_MAX;i++){
 		result += store_ticks[i];
 	}
-									// ‚P‚O‚Oƒp[ƒZƒ“ƒg‚ÅA1Sync‚ÌƒNƒƒbƒN”‚ğ(1Sync+Ÿ‚ÌSync‚ÌVblankŠúŠÔ‚Ü‚Å)‚ğ262ƒ‰ƒCƒ“‚ÅŠ„‚é
+									// ï¼‘ï¼ï¼ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆã§ã€1Syncã®ã‚¯ãƒ­ãƒƒã‚¯æ•°ã‚’(1Sync+æ¬¡ã®Syncã®VblankæœŸé–“ã¾ã§)ã‚’262ãƒ©ã‚¤ãƒ³ã§å‰²ã‚‹
 	sprintf(str,"MAINSTRESS = %d  ",(100*result)/(16700 * (192+262)/262));
 	DebugStrPut(ini,str, x, y+2);
 
@@ -3816,8 +3816,8 @@ void DEBUG_PrintTickResult(GF_BGL_INI *ini, char * str, int x, int y)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—pˆ—•‰‰×ŠÈˆÕƒ‚ƒjƒ^AƒRƒXƒg‚Ìæ“¾
- * @param	id	•Ûƒ[ƒN‚ÌIDw’è
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨å‡¦ç†è² è·ç°¡æ˜“ãƒ¢ãƒ‹ã‚¿ã€ã‚³ã‚¹ãƒˆã®å–å¾—
+ * @param	id	ä¿æŒãƒ¯ãƒ¼ã‚¯ã®IDæŒ‡å®š
  */
 //--------------------------------------------------------------------
 void DEBUG_StoreTick2(int id)
@@ -3838,7 +3838,7 @@ void DEBUG_OS_PrintTick(void)
 	int i;
 	int result= 0;
 
-	//ŠeŠÖ”‚ÌŠÔ‚É–„‚ß‚ñ‚¾Tick”‚Ì•\¦
+	//å„é–¢æ•°ã®é–“ã«åŸ‹ã‚è¾¼ã‚“ã Tickæ•°ã®è¡¨ç¤º
 	for (i = 0; i < DEBUG_TICK_MAX2; i++) {
 		OS_Printf("%d:-%d\n", i,store_ticks2[i]);
 	}
@@ -3850,7 +3850,7 @@ void DEBUG_OS_PrintTick(void)
 
 //-----------------------------------------------------------------------------
 /**
- *	‚±‚±‚©‚ç		2007.10.25	e’†—Ìˆæ‚ğ‘‚â‚·‚½‚ß‚É@gflib/fntsys‚©‚çˆÚ“®
+ *	ã“ã“ã‹ã‚‰		2007.10.25	éŠƒä¸­é ˜åŸŸã‚’å¢—ã‚„ã™ãŸã‚ã«ã€€gflib/fntsysã‹ã‚‰ç§»å‹•
  */
 //-----------------------------------------------------------------------------
 //===============================================
@@ -3868,246 +3868,246 @@ typedef struct{
 
 #define TRANS_DS2A2B_CODE_MAX		240
 static DS_ASCII2_TRANS ds_to_ascii2_trans[TRANS_DS2A2B_CODE_MAX]={
- {spc_,'@'},
- {a_,'‚ '},
- {i_,'‚¢'},
- {u_,'‚¤'},
- {e_,'‚¦'},
- {o_,'‚¨'},
- {ka_,'‚©'},
- {ki_,'‚«'},
- {ku_,'‚­'},
- {ke_,'‚¯'},
- {ko_,'‚±'},
- {sa_,'‚³'},
- {si_,'‚µ'},
- {su_,'‚·'},
- {se_,'‚¹'},
- {so_,'‚»'},
- {ta_,'‚½'},
- {ti_,'‚¿'},
- {tu_,'‚Â'},
- {te_,'‚Ä'},
- {to_,'‚Æ'},
- {na_,'‚È'},
- {ni_,'‚É'},
- {nu_,'‚Ê'},
- {ne_,'‚Ë'},
- {no_,'‚Ì'},
- {ha_,'‚Í'},
- {hi_,'‚Ğ'},
- {hu_,'‚Ó'},
- {he_,'‚Ö'},
- {ho_,'‚Ù'},
- {ma_,'‚Ü'},
- {mi_,'‚İ'},
- {mu_,'‚Ş'},
- {me_,'‚ß'},
- {mo_,'‚à'},
- {ya_,'‚â'},
- {yu_,'‚ä'},
- {yo_,'‚æ'},
- {ra_,'‚ç'},
- {ri_,'‚è'},
- {ru_,'‚é'},
- {re_,'‚ê'},
- {ro_,'‚ë'},
- {wa_,'‚í'},
- {wo_,'‚ğ'},
- {n_,'‚ñ'},
- {aa_,'‚Ÿ'},
- {ii_,'‚¡'},
- {uu_,'‚£'},
- {ee_,'‚¥'},
- {oo_,'‚§'},
- {yya_,'‚á'},
- {yyu_,'‚ã'},
- {yyo_,'‚å'},
- {ga_,'‚ª'},
- {gi_,'‚¬'},
- {gu_,'‚®'},
- {ge_,'‚°'},
- {go_,'‚²'},
- {za_,'‚´'},
- {zi_,'‚¶'},
- {zu_,'‚¸'},
- {ze_,'‚º'},
- {zo_,'‚¼'},
- {da_,'‚¾'},
- {di_,'‚À'},
- {du_,'‚Ã'},
- {de_,'‚Å'},
- {do_,'‚Ç'},
- {ba_,'‚Î'},
- {bi_,'‚Ñ'},
- {bu_,'‚Ô'},
- {be_,'‚×'},
- {bo_,'‚Ú'},
- {pa_,'‚Ï'},
- {pi_,'‚Ò'},
- {pu_,'‚Õ'},
- {pe_,'‚Ø'},
- {po_,'‚Û'},
- {ttu_,'‚Á'},
- {A_,'ƒA'},
- {I_,'ƒC'},
- {U_,'ƒE'},
- {E_,'ƒG'},
- {O_,'ƒI'},
- {KA_,'ƒJ'},
- {KI_,'ƒL'},
- {KU_,'ƒN'},
- {KE_,'ƒP'},
- {KO_,'ƒR'},
- {SA_,'ƒT'},
- {SI_,'ƒV'},
- {SU_,'ƒX'},
- {SE_,'ƒZ'},
- {SO_,'ƒ\'},
- {TA_,'ƒ^'},
- {TI_,'ƒ`'},
- {TU_,'ƒc'},
- {TE_,'ƒe'},
- {TO_,'ƒg'},
- {NA_,'ƒi'},
- {NI_,'ƒj'},
- {NU_,'ƒk'},
- {NE_,'ƒl'},
- {NO_,'ƒm'},
- {HA_,'ƒn'},
- {HI_,'ƒq'},
- {HU_,'ƒt'},
- {HE_,'ƒw'},
- {HO_,'ƒz'},
- {MA_,'ƒ}'},
- {MI_,'ƒ~'},
- {MU_,'ƒ€'},
- {ME_,'ƒ'},
- {MO_,'ƒ‚'},
- {YA_,'ƒ„'},
- {YU_,'ƒ†'},
- {YO_,'ƒˆ'},
- {RA_,'ƒ‰'},
- {RI_,'ƒŠ'},
- {RU_,'ƒ‹'},
- {RE_,'ƒŒ'},
- {RO_,'ƒ'},
- {WA_,'ƒ'},
- {WO_,'ƒI'},
- {N_,'ƒ“'},
- {AA_,'ƒ@'},
- {II_,'ƒB'},
- {UU_,'ƒD'},
- {EE_,'ƒF'},
- {OO_,'ƒH'},
- {YYA_,'ƒƒ'},
- {YYU_,'ƒ…'},
- {YYO_,'ƒ‡'},
- {GA_,'ƒK'},
- {GI_,'ƒM'},
- {GU_,'ƒO'},
- {GE_,'ƒQ'},
- {GO_,'ƒS'},
- {ZA_,'ƒU'},
- {ZI_,'ƒW'},
- {ZU_,'ƒY'},
- {ZE_,'ƒ['},
- {ZO_,'ƒ]'},
- {DA_,'ƒ_'},
- {DI_,'ƒa'},
- {DU_,'ƒd'},
- {DE_,'ƒf'},
- {DO_,'ƒh'},
- {BA_,'ƒo'},
- {BI_,'ƒr'},
- {BU_,'ƒu'},
- {BE_,'ƒx'},
- {BO_,'ƒ{'},
- {PA_,'ƒp'},
- {PI_,'ƒs'},
- {PU_,'ƒv'},
- {PE_,'ƒy'},
- {PO_,'ƒ|'},
- {TTU_,'ƒb'},
- {n0_,'‚O'},
- {n1_,'‚P'},
- {n2_,'‚Q'},
- {n3_,'‚R'},
- {n4_,'‚S'},
- {n5_,'‚T'},
- {n6_,'‚U'},
- {n7_,'‚V'},
- {n8_,'‚W'},
- {n9_,'‚X'},
- {gyoe_,'I'},
- {hate_,'H'},
- {kten_,'B'},
- {bou_,'['},
- {tenten_,'c'},
- {kako2_,'w'},
- {kakot2_,'x'},
- {kako_,'u'},
- {kakot_,'v'},
- {osu_,'‰'},
- {mesu_,'Š'},
- {yen_,''},
- {ten_,'A'},
- {times_,'~'},
- {sura_,'^'},
- {A__,'‚`'},
- {B__,'‚a'},
- {C__,'‚b'},
- {D__,'‚c'},
- {E__,'‚d'},
- {F__,'‚e'},
- {G__,'‚f'},
- {H__,'‚g'},
- {I__,'‚h'},
- {J__,'‚i'},
- {K__,'‚j'},
- {L__,'‚k'},
- {M__,'‚l'},
- {N__,'‚m'},
- {O__,'‚n'},
- {P__,'‚o'},
- {Q__,'‚p'},
- {R__,'‚q'},
- {S__,'‚r'},
- {T__,'‚s'},
- {U__,'‚t'},
- {V__,'‚u'},
- {W__,'‚v'},
- {X__,'‚w'},
- {Y__,'‚x'},
- {Z__,'‚y'},
- {a__,'‚'},
- {b__,'‚‚'},
- {c__,'‚ƒ'},
- {d__,'‚„'},
- {e__,'‚…'},
- {f__,'‚†'},
- {g__,'‚‡'},
- {h__,'‚ˆ'},
- {i__,'‚‰'},
- {j__,'‚Š'},
- {k__,'‚‹'},
- {l__,'‚Œ'},
- {m__,'‚'},
- {n__,'‚'},
- {o__,'‚'},
- {p__,'‚'},
- {q__,'‚‘'},
- {r__,'‚’'},
- {s__,'‚“'},
- {t__,'‚”'},
- {u__,'‚•'},
- {v__,'‚–'},
- {w__,'‚—'},
- {x__,'‚˜'},
- {y__,'‚™'},
- {z__,'‚š'},
- {cursor_,'„'},
- {colon_,'F'},
+ {spc_,'ã€€'},
+ {a_,'ã‚'},
+ {i_,'ã„'},
+ {u_,'ã†'},
+ {e_,'ãˆ'},
+ {o_,'ãŠ'},
+ {ka_,'ã‹'},
+ {ki_,'ã'},
+ {ku_,'ã'},
+ {ke_,'ã‘'},
+ {ko_,'ã“'},
+ {sa_,'ã•'},
+ {si_,'ã—'},
+ {su_,'ã™'},
+ {se_,'ã›'},
+ {so_,'ã'},
+ {ta_,'ãŸ'},
+ {ti_,'ã¡'},
+ {tu_,'ã¤'},
+ {te_,'ã¦'},
+ {to_,'ã¨'},
+ {na_,'ãª'},
+ {ni_,'ã«'},
+ {nu_,'ã¬'},
+ {ne_,'ã­'},
+ {no_,'ã®'},
+ {ha_,'ã¯'},
+ {hi_,'ã²'},
+ {hu_,'ãµ'},
+ {he_,'ã¸'},
+ {ho_,'ã»'},
+ {ma_,'ã¾'},
+ {mi_,'ã¿'},
+ {mu_,'ã‚€'},
+ {me_,'ã‚'},
+ {mo_,'ã‚‚'},
+ {ya_,'ã‚„'},
+ {yu_,'ã‚†'},
+ {yo_,'ã‚ˆ'},
+ {ra_,'ã‚‰'},
+ {ri_,'ã‚Š'},
+ {ru_,'ã‚‹'},
+ {re_,'ã‚Œ'},
+ {ro_,'ã‚'},
+ {wa_,'ã‚'},
+ {wo_,'ã‚’'},
+ {n_,'ã‚“'},
+ {aa_,'ã'},
+ {ii_,'ãƒ'},
+ {uu_,'ã…'},
+ {ee_,'ã‡'},
+ {oo_,'ã‰'},
+ {yya_,'ã‚ƒ'},
+ {yyu_,'ã‚…'},
+ {yyo_,'ã‚‡'},
+ {ga_,'ãŒ'},
+ {gi_,'ã'},
+ {gu_,'ã'},
+ {ge_,'ã’'},
+ {go_,'ã”'},
+ {za_,'ã–'},
+ {zi_,'ã˜'},
+ {zu_,'ãš'},
+ {ze_,'ãœ'},
+ {zo_,'ã'},
+ {da_,'ã '},
+ {di_,'ã¢'},
+ {du_,'ã¥'},
+ {de_,'ã§'},
+ {do_,'ã©'},
+ {ba_,'ã°'},
+ {bi_,'ã³'},
+ {bu_,'ã¶'},
+ {be_,'ã¹'},
+ {bo_,'ã¼'},
+ {pa_,'ã±'},
+ {pi_,'ã´'},
+ {pu_,'ã·'},
+ {pe_,'ãº'},
+ {po_,'ã½'},
+ {ttu_,'ã£'},
+ {A_,'ã‚¢'},
+ {I_,'ã‚¤'},
+ {U_,'ã‚¦'},
+ {E_,'ã‚¨'},
+ {O_,'ã‚ª'},
+ {KA_,'ã‚«'},
+ {KI_,'ã‚­'},
+ {KU_,'ã‚¯'},
+ {KE_,'ã‚±'},
+ {KO_,'ã‚³'},
+ {SA_,'ã‚µ'},
+ {SI_,'ã‚·'},
+ {SU_,'ã‚¹'},
+ {SE_,'ã‚»'},
+ {SO_,'ã‚½'},
+ {TA_,'ã‚¿'},
+ {TI_,'ãƒ'},
+ {TU_,'ãƒ„'},
+ {TE_,'ãƒ†'},
+ {TO_,'ãƒˆ'},
+ {NA_,'ãƒŠ'},
+ {NI_,'ãƒ‹'},
+ {NU_,'ãƒŒ'},
+ {NE_,'ãƒ'},
+ {NO_,'ãƒ'},
+ {HA_,'ãƒ'},
+ {HI_,'ãƒ’'},
+ {HU_,'ãƒ•'},
+ {HE_,'ãƒ˜'},
+ {HO_,'ãƒ›'},
+ {MA_,'ãƒ'},
+ {MI_,'ãƒŸ'},
+ {MU_,'ãƒ '},
+ {ME_,'ãƒ¡'},
+ {MO_,'ãƒ¢'},
+ {YA_,'ãƒ¤'},
+ {YU_,'ãƒ¦'},
+ {YO_,'ãƒ¨'},
+ {RA_,'ãƒ©'},
+ {RI_,'ãƒª'},
+ {RU_,'ãƒ«'},
+ {RE_,'ãƒ¬'},
+ {RO_,'ãƒ­'},
+ {WA_,'ãƒ¯'},
+ {WO_,'ã‚ª'},
+ {N_,'ãƒ³'},
+ {AA_,'ã‚¡'},
+ {II_,'ã‚£'},
+ {UU_,'ã‚¥'},
+ {EE_,'ã‚§'},
+ {OO_,'ã‚©'},
+ {YYA_,'ãƒ£'},
+ {YYU_,'ãƒ¥'},
+ {YYO_,'ãƒ§'},
+ {GA_,'ã‚¬'},
+ {GI_,'ã‚®'},
+ {GU_,'ã‚°'},
+ {GE_,'ã‚²'},
+ {GO_,'ã‚´'},
+ {ZA_,'ã‚¶'},
+ {ZI_,'ã‚¸'},
+ {ZU_,'ã‚º'},
+ {ZE_,'ã‚¼'},
+ {ZO_,'ã‚¾'},
+ {DA_,'ãƒ€'},
+ {DI_,'ãƒ‚'},
+ {DU_,'ãƒ…'},
+ {DE_,'ãƒ‡'},
+ {DO_,'ãƒ‰'},
+ {BA_,'ãƒ'},
+ {BI_,'ãƒ“'},
+ {BU_,'ãƒ–'},
+ {BE_,'ãƒ™'},
+ {BO_,'ãƒœ'},
+ {PA_,'ãƒ‘'},
+ {PI_,'ãƒ”'},
+ {PU_,'ãƒ—'},
+ {PE_,'ãƒš'},
+ {PO_,'ãƒ'},
+ {TTU_,'ãƒƒ'},
+ {n0_,'ï¼'},
+ {n1_,'ï¼‘'},
+ {n2_,'ï¼’'},
+ {n3_,'ï¼“'},
+ {n4_,'ï¼”'},
+ {n5_,'ï¼•'},
+ {n6_,'ï¼–'},
+ {n7_,'ï¼—'},
+ {n8_,'ï¼˜'},
+ {n9_,'ï¼™'},
+ {gyoe_,'ï¼'},
+ {hate_,'ï¼Ÿ'},
+ {kten_,'ã€‚'},
+ {bou_,'ãƒ¼'},
+ {tenten_,'â€¦'},
+ {kako2_,'ã€'},
+ {kakot2_,'ã€'},
+ {kako_,'ã€Œ'},
+ {kakot_,'ã€'},
+ {osu_,'â™‚'},
+ {mesu_,'â™€'},
+ {yen_,'Â¥'},
+ {ten_,'ã€'},
+ {times_,'Ã—'},
+ {sura_,'ï¼'},
+ {A__,'ï¼¡'},
+ {B__,'ï¼¢'},
+ {C__,'ï¼£'},
+ {D__,'ï¼¤'},
+ {E__,'ï¼¥'},
+ {F__,'ï¼¦'},
+ {G__,'ï¼§'},
+ {H__,'ï¼¨'},
+ {I__,'ï¼©'},
+ {J__,'ï¼ª'},
+ {K__,'ï¼«'},
+ {L__,'ï¼¬'},
+ {M__,'ï¼­'},
+ {N__,'ï¼®'},
+ {O__,'ï¼¯'},
+ {P__,'ï¼°'},
+ {Q__,'ï¼±'},
+ {R__,'ï¼²'},
+ {S__,'ï¼³'},
+ {T__,'ï¼´'},
+ {U__,'ï¼µ'},
+ {V__,'ï¼¶'},
+ {W__,'ï¼·'},
+ {X__,'ï¼¸'},
+ {Y__,'ï¼¹'},
+ {Z__,'ï¼º'},
+ {a__,'ï½'},
+ {b__,'ï½‚'},
+ {c__,'ï½ƒ'},
+ {d__,'ï½„'},
+ {e__,'ï½…'},
+ {f__,'ï½†'},
+ {g__,'ï½‡'},
+ {h__,'ï½ˆ'},
+ {i__,'ï½‰'},
+ {j__,'ï½Š'},
+ {k__,'ï½‹'},
+ {l__,'ï½Œ'},
+ {m__,'ï½'},
+ {n__,'ï½'},
+ {o__,'ï½'},
+ {p__,'ï½'},
+ {q__,'ï½‘'},
+ {r__,'ï½’'},
+ {s__,'ï½“'},
+ {t__,'ï½”'},
+ {u__,'ï½•'},
+ {v__,'ï½–'},
+ {w__,'ï½—'},
+ {x__,'ï½˜'},
+ {y__,'ï½™'},
+ {z__,'ï½š'},
+ {cursor_,'ï¼'},
+ {colon_,'ï¼š'},
 };
 
 #define TRANS_DS2A1B_CODE_MAX	73	
@@ -4187,7 +4187,7 @@ static DS_ASCII1_TRANS ds_to_ascii1_trans[TRANS_DS2A1B_CODE_MAX]={
  {colon_,':'},
 };
 /**
- *	@brief	ˆø‚«“n‚³‚ê‚½ƒR[ƒh‚ª—LŒø‚ÈASCIIƒ}ƒ‹ƒ`ƒoƒCƒgƒR[ƒh‚©‚Ç‚¤‚©‚ğ•Ô‚·
+ *	@brief	å¼•ãæ¸¡ã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ãŒæœ‰åŠ¹ãªASCIIãƒãƒ«ãƒãƒã‚¤ãƒˆã‚³ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã‚’è¿”ã™
  */
 static BOOL isMulti(u16* code)
 {
@@ -4208,17 +4208,17 @@ static BOOL isMulti(u16* code)
 }
 //---------------------------------------------------------------------------------------------
 /*
- *	•¶šƒR[ƒh•ÏŠ·@ASCII->ƒ|ƒPƒ‚ƒ“‚c‚o
- *	¦’Êí•¶šAI—¹A‰üs‘Î‰
- *	@ƒgƒŠƒK[‘Ò‚¿Aƒoƒbƒtƒ@ƒƒbƒZ[ƒWAƒ|ƒPƒ‚ƒ““ÁêƒR[ƒh”ñ‘Î‰
+ *	æ–‡å­—ã‚³ãƒ¼ãƒ‰å¤‰æ›ã€€ASCII->ãƒã‚±ãƒ¢ãƒ³ï¼¤ï¼°
+ *	â€»é€šå¸¸æ–‡å­—ã€çµ‚äº†ã€æ”¹è¡Œå¯¾å¿œ
+ *	ã€€ãƒˆãƒªã‚¬ãƒ¼å¾…ã¡ã€ãƒãƒƒãƒ•ã‚¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€ãƒã‚±ãƒ¢ãƒ³ç‰¹æ®Šã‚³ãƒ¼ãƒ‰éå¯¾å¿œ
  *
- *	ƒfƒoƒbƒOê—p‚Å‚·I
+ *	ãƒ‡ãƒãƒƒã‚°å°‚ç”¨ã§ã™ï¼
  *
- * @param	c_id		‘”Ô†(0:“ú–{,1:....)
- * @param	agb_str		“ü—Í‚·‚éASCII•¶š—ñ‚Ìƒ|ƒCƒ“ƒ^
- * @param	ds_str		o—Í‚·‚éDS•¶š—ñ‚Ìƒ|ƒCƒ“ƒ^
+ * @param	c_id		å›½ç•ªå·(0:æ—¥æœ¬,1:....)
+ * @param	agb_str		å…¥åŠ›ã™ã‚‹ASCIIæ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ds_str		å‡ºåŠ›ã™ã‚‹DSæ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ret		0:–â‘è‚È‚µ,1:‰ğß•s‰Â”\‚ÈƒR[ƒh‚ª‚ ‚Á‚½i•ÏŠ·¸”sj
+ * @retval	ret		0:å•é¡Œãªã—,1:è§£é‡ˆä¸å¯èƒ½ãªã‚³ãƒ¼ãƒ‰ãŒã‚ã£ãŸï¼ˆå¤‰æ›å¤±æ•—ï¼‰
  */
 //---------------------------------------------------------------------------------------------
 u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str)
@@ -4226,14 +4226,14 @@ u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str)
 	u8 i,j,chk;
 	u16	*wide;
 
-	//Œ»İ‘—¿‚ª‚È‚¢‚½‚ßA“ú–{Œê‚Ì‚İ‘Î‰
+	//ç¾åœ¨è³‡æ–™ãŒãªã„ãŸã‚ã€æ—¥æœ¬èªã®ã¿å¯¾å¿œ
 	if(c_id!=0) return 1;
 	for(i=0;i < 255;i++){
-		if(*ascii_str == 0x00){	//I—¹
+		if(*ascii_str == 0x00){	//çµ‚äº†
 			*ds_str = EOM_;
 			return 0;
 		}
-		//‰üsæ“¾
+		//æ”¹è¡Œå–å¾—
 		if(*ascii_str == 0x0D && *(ascii_str+1) == 0x0A){
 			*ds_str = CR_;
 			ascii_str += 2;
@@ -4243,7 +4243,7 @@ u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str)
 			++ascii_str;
 			continue;
 		}
-		//1or2byteƒR[ƒh
+		//1or2byteã‚³ãƒ¼ãƒ‰
 		chk = 0;
 		if(isMulti((u16*)ascii_str)){
 			wide = (u16*)ascii_str;
@@ -4263,7 +4263,7 @@ u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str)
 				}
 			}
 		}
-		//ŠY“–ƒR[ƒh‚ª‚È‚©‚Á‚½‚Æ‚«ƒGƒ‰[
+		//è©²å½“ã‚³ãƒ¼ãƒ‰ãŒãªã‹ã£ãŸã¨ãã‚¨ãƒ©ãƒ¼
 		if(chk==0){
 			return 1;
 		}
@@ -4271,12 +4271,12 @@ u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str)
 		ds_str++;
 	}
 
-	//EOM_‚ªŒŸo‚Å‚«‚È‚¢or•¶Í‚ª255•¶šˆÈã‚Ì‚Æ‚«‚ÍƒGƒ‰[
+	//EOM_ãŒæ¤œå‡ºã§ããªã„oræ–‡ç« ãŒ255æ–‡å­—ä»¥ä¸Šã®ã¨ãã¯ã‚¨ãƒ©ãƒ¼
 	return 1;
 }
 //-----------------------------------------------------------------------------
 /**
- *			‚±‚±‚Ü‚Å@2007.10.25	e’†—Ìˆæ‚ğ‘‚â‚·‚½‚ß‚É@gflib/fntsys‚©‚çˆÚ“®
+ *			ã“ã“ã¾ã§ã€€2007.10.25	éŠƒä¸­é ˜åŸŸã‚’å¢—ã‚„ã™ãŸã‚ã«ã€€gflib/fntsysã‹ã‚‰ç§»å‹•
  */
 //-----------------------------------------------------------------------------
 

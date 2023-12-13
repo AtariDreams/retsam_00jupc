@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWC_GetMyAID</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWC_GetMyAID</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -21,36 +21,36 @@ u8 DWC_GetMyAID( void );
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-		  ������AID���擾���܂��B
+		  自分のAIDを取得します。
 		</P>
 		<P>
-		  AID�̓��b�V���^�l�b�g���[�N���ł̊eDS�̎��ʔԍ��ŁA0�`�i�l�b�g���[�N�\���䐔-1�j�̐��l���p�����܂��B
-		  �Ⴆ��4�l�Ń}�b�`���C�N�����������ꍇ�Ȃ�A0, 1, 2, 3 ��4�䂪���݂��AAID = 1 �̐l���l�b�g���[�N���甲����΁A�c��� 0, 2, 3 �ƂȂ�܂��B<BR>
-		  �T�[�o�N���C�A���g�}�b�`���C�N�ɂ����Ă̓T�[�oDS��AID���K��0�ɂȂ�܂��B
-		</P>
-
-		<H2>����</H2>
-		<P>
-		  �Ȃ�
-		</P>
-		<H2>�Ԃ�l</H2>
-		<P>
-		  ������AID�B<A href="FriendsMatch.html">FriendsMatch���C�u����</A>�񓮍쒆�ɖ{�֐����Ăяo�����ꍇ��0��Ԃ��B
+		  AIDはメッシュ型ネットワーク内での各DSの識別番号で、0〜（ネットワーク構成台数-1）の数値が用いられます。
+		  例えば4人でマッチメイクを完了した場合なら、0, 1, 2, 3 の4台が存在し、AID = 1 の人がネットワークから抜ければ、残りは 0, 2, 3 となります。<BR>
+		  サーバクライアントマッチメイクにおいてはサーバDSのAIDが必ず0になります。
 		</P>
 
-		<H2>�Q��</H2>
+		<H2>引数</H2>
+		<P>
+		  なし
+		</P>
+		<H2>返り値</H2>
+		<P>
+		  自分のAID。<A href="FriendsMatch.html">FriendsMatchライブラリ</A>非動作中に本関数を呼び出した場合は0を返す。
+		</P>
+
+		<H2>参照</H2>
 		<P>
 			<A href="DWC_GetAIDList.html">DWC_GetAIDList</A>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2006/02/22 �T�[�o�N���C�A���g�}�b�`���C�N����AID�ɂ��Ă̋L�q��ǉ�<BR>
-			2006/01/31 �Ԃ�l�̐�����FriendsMatch���C�u������p���ďC��<BR>
-			2005/12/16 AID�̐����ƁA�Ԃ�l�̐�����ǉ�<BR>
-			2005/07/22 ����<BR>
+			2006/02/22 サーバクライアントマッチメイク時のAIDについての記述を追加<BR>
+			2006/01/31 返り値の説明をFriendsMatchライブラリを用いて修正<BR>
+			2005/12/16 AIDの説明と、返り値の説明を追加<BR>
+			2005/07/22 初版<BR>
 		</P>
 
 	</BODY>

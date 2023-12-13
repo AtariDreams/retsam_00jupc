@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_028.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			028@ƒGƒ“ƒJƒEƒ“ƒgí“¬Žž‚Í‹­§“I‚Éí“¬‚ðI—¹‚³‚¹‚éA
- *				 ƒgƒŒ[ƒi[í‚ÅŽg—p‚·‚é‚Æƒ|ƒPƒ‚ƒ“‚ð‹­§“I‚É“ü‚ê‘Ö‚¦‚³‚¹‚éi“G‚ÉŒðŠ·‚·‚éƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚¢ê‡A‹Z‚ÍŽ¸”s‚·‚éj
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			028ã€€ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæˆ¦é—˜æ™‚ã¯å¼·åˆ¶çš„ã«æˆ¦é—˜ã‚’çµ‚äº†ã•ã›ã‚‹ã€
+ *				 ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ã§ä½¿ç”¨ã™ã‚‹ã¨ãƒã‚±ãƒ¢ãƒ³ã‚’å¼·åˆ¶çš„ã«å…¥ã‚Œæ›¿ãˆã•ã›ã‚‹ï¼ˆæ•µã«äº¤æ›ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒã„ãªã„å ´åˆã€æŠ€ã¯å¤±æ•—ã™ã‚‹ï¼‰
  *
  *@author	HisashiSogabe
  *@data		2006.01.26

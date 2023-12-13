@@ -23,8 +23,8 @@
 /*---------------------------------------------------------------------------*
     NNS_G3dAllocRenderObj
 
-    NNSG3dRenderObj�̂��߂̗̈���q�[�v�̈悩��m�ۂ��܂��B
-    �C�j�V�����C�Y�͕ʓrNNS_G3dRenderObjInit�ōs���Ă��������B
+    NNSG3dRenderObjのための領域をヒープ領域から確保します。
+    イニシャライズは別途NNS_G3dRenderObjInitで行ってください。
  *---------------------------------------------------------------------------*/
 NNSG3dRenderObj*
 NNS_G3dAllocRenderObj(NNSFndAllocator* pAlloc)
@@ -39,9 +39,9 @@ NNS_G3dAllocRenderObj(NNSFndAllocator* pAlloc)
 /*---------------------------------------------------------------------------*
     NNS_G3dFreeRenderObj
 
-    NNSG3dRenderObj�̗̈��������܂��B
-    NNSG3dRenderObj���ێ����Ă���|�C���^���Q�Ƃ���̈�͉�����܂���B
-    �ʓr���[�U�[���������K�v������܂��B
+    NNSG3dRenderObjの領域を解放します。
+    NNSG3dRenderObjが保持しているポインタが参照する領域は解放しません。
+    別途ユーザーが解放する必要があります。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dFreeRenderObj(NNSFndAllocator* pAlloc,
@@ -56,8 +56,8 @@ NNS_G3dFreeRenderObj(NNSFndAllocator* pAlloc,
 /*---------------------------------------------------------------------------*
     NNS_G3dAllocAnmObj
 
-    NNSG3dAnmObj�̂��߂̗̈���q�[�v�̈悩��m�ۂ��܂��B
-    �C�j�V�����C�Y�͕ʓrNNS_G3dAnmObjInit�ōs���Ă��������B
+    NNSG3dAnmObjのための領域をヒープ領域から確保します。
+    イニシャライズは別途NNS_G3dAnmObjInitで行ってください。
  *---------------------------------------------------------------------------*/
 NNSG3dAnmObj*
 NNS_G3dAllocAnmObj(NNSFndAllocator* pAlloc,
@@ -77,9 +77,9 @@ NNS_G3dAllocAnmObj(NNSFndAllocator* pAlloc,
 /*---------------------------------------------------------------------------*
     NNS_G3dFreeAnmObj
 
-    NNSG3dAnmObj�̗̈��������܂��B
-    NNSG3dAnmObj���ێ����Ă���|�C���^���Q�Ƃ���̈�͉�����܂���B
-    �ʓr���[�U�[���������K�v������܂��B
+    NNSG3dAnmObjの領域を解放します。
+    NNSG3dAnmObjが保持しているポインタが参照する領域は解放しません。
+    別途ユーザーが解放する必要があります。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dFreeAnmObj(NNSFndAllocator* pAlloc,
@@ -94,9 +94,9 @@ NNS_G3dFreeAnmObj(NNSFndAllocator* pAlloc,
 /*---------------------------------------------------------------------------*
     NNS_G3dAllocRecBufferJnt
 
-    NNSG3dRenderObj���ێ����邱�Ƃ��ł���A�W���C���g�̌v�Z���ʂ�ێ����邽�߂�
-    �o�b�t�@�̈���m�ۂ��܂��B�̈�̑傫����NNSG3dResMdl�ɑ��݂���W���C���g�̐�
-    �ɂ���Č��܂�܂��B
+    NNSG3dRenderObjが保持することができる、ジョイントの計算結果を保持するための
+    バッファ領域を確保します。領域の大きさはNNSG3dResMdlに存在するジョイントの数
+    によって決まります。
  *---------------------------------------------------------------------------*/
 NNSG3dJntAnmResult*
 NNS_G3dAllocRecBufferJnt(NNSFndAllocator* pAlloc,
@@ -117,7 +117,7 @@ NNS_G3dAllocRecBufferJnt(NNSFndAllocator* pAlloc,
 /*---------------------------------------------------------------------------*
     NNS_G3dFreeRecBufferJnt
 
-    �W���C���g�̌v�Z���ʂ�ێ����邽�߂̃o�b�t�@�̈��������܂��B
+    ジョイントの計算結果を保持するためのバッファ領域を解放します。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dFreeRecBufferJnt(NNSFndAllocator* pAlloc,
@@ -132,9 +132,9 @@ NNS_G3dFreeRecBufferJnt(NNSFndAllocator* pAlloc,
 /*---------------------------------------------------------------------------*
     NNS_G3dAllocRecBufferMat
 
-    NNSG3dRenderObj���ێ����邱�Ƃ��ł���A�}�e���A���̌v�Z���ʂ�ێ����邽�߂�
-    �o�b�t�@�̈���m�ۂ��܂��B�̈�̑傫����NNSG3dResMdl�ɑ��݂���}�e���A���̐�
-    �ɂ���Č��܂�܂��B
+    NNSG3dRenderObjが保持することができる、マテリアルの計算結果を保持するための
+    バッファ領域を確保します。領域の大きさはNNSG3dResMdlに存在するマテリアルの数
+    によって決まります。
  *---------------------------------------------------------------------------*/
 NNSG3dMatAnmResult*
 NNS_G3dAllocRecBufferMat(NNSFndAllocator* pAlloc,
@@ -155,7 +155,7 @@ NNS_G3dAllocRecBufferMat(NNSFndAllocator* pAlloc,
 /*---------------------------------------------------------------------------*
     NNS_G3dFreeRecBufferMat
 
-    �}�e���A���̌v�Z���ʂ�ێ����邽�߂̃o�b�t�@�̈��������܂��B
+    マテリアルの計算結果を保持するためのバッファ領域を解放します。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dFreeRecBufferMat(NNSFndAllocator* pAlloc,

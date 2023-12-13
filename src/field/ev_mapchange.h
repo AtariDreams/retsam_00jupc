@@ -13,19 +13,19 @@
 #include "field_event.h"
 
 //-----------------------------------------------------------------------------
-//	3D–ÊƒZƒbƒg
+//	3Dé¢ã‚»ãƒƒãƒˆ
 //-----------------------------------------------------------------------------
 extern void MapChg_Set3DDisplay(FIELDSYS_WORK *fsys);
 
 //-----------------------------------------------------------------------------
-//	ƒCƒxƒ“ƒgŠJn
+//	ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
 //-----------------------------------------------------------------------------
 extern void EventSet_FirstMapIn(FIELDSYS_WORK * fsys);
 extern void EventSet_ContinueMapIn(FIELDSYS_WORK * fsys);
 extern void EventSet_ErrorContinueMapIn(FIELDSYS_WORK * fsys);
 
 //-----------------------------------------------------------------------------
-//	ŠÈˆÕƒ}ƒbƒvˆÚ“®
+//	ç°¡æ˜“ãƒãƒƒãƒ—ç§»å‹•
 //-----------------------------------------------------------------------------
 extern void EventSet_EasyMapChange(FIELDSYS_WORK * fsys,
 		int zone, int door_id, int x, int z, int dir );
@@ -37,13 +37,13 @@ extern void EventCmd_EasyMapChangeByLocation(GMEVENT_CONTROL * event, const LOCA
 
 
 //-----------------------------------------------------------------------------
-//	ƒ^ƒCƒgƒ‹‚Ö–ß‚éƒCƒxƒ“ƒgiƒfƒoƒbƒO—pj
+//	ã‚¿ã‚¤ãƒˆãƒ«ã¸æˆ»ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆï¼ˆãƒ‡ãƒãƒƒã‚°ç”¨ï¼‰
 //-----------------------------------------------------------------------------
 extern void EventSet_ReturnToTitle(FIELDSYS_WORK * fsys);
 
 
 //-----------------------------------------------------------------------------
-//	ƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒ}ƒbƒvˆÚ“®
+//	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒãƒƒãƒ—ç§»å‹•
 //-----------------------------------------------------------------------------
 extern void EventSet_UnionRoomMapChange(FIELDSYS_WORK * fsys);
 extern void EventSet_UnionRoomMapChangeIn(FIELDSYS_WORK * fsys);
@@ -53,7 +53,7 @@ extern void EventCmd_UnionRoomMapChangeOut(GMEVENT_CONTROL * event);
 extern void EventCmd_UnionRoomMapChangeIn(GMEVENT_CONTROL * event);
 
 //-----------------------------------------------------------------------------
-//		’ÊM‘Îí•”‰®—pƒ}ƒbƒvˆÚ“®
+//		é€šä¿¡å¯¾æˆ¦éƒ¨å±‹ç”¨ãƒãƒƒãƒ—ç§»å‹•
 //-----------------------------------------------------------------------------
 extern void EventCmd_ColosseumMapChangeIn(GMEVENT_CONTROL * event,
 		int zone_id, int door_id, int x, int z, int dir);
@@ -61,7 +61,7 @@ extern void EventCmd_ColosseumMapChangeOut(GMEVENT_CONTROL * event);
 extern void EventSet_ColosseumMapChangeOut(FIELDSYS_WORK * fsys);
 
 //-----------------------------------------------------------------------------
-//	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒh
+//	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰
 //-----------------------------------------------------------------------------
 extern void EventCmd_FinishFieldMap(GMEVENT_CONTROL * event);
 extern void EventCmd_StartFieldMap(GMEVENT_CONTROL * event);
@@ -84,15 +84,15 @@ extern void EventChange_MapChangeByAnanuke(
 extern void EventCmd_WarpPoint(FIELDSYS_WORK * fsys, int zone, int door_id);
 
 
-//ƒQ[ƒ€ƒI[ƒo[ŠÖ˜A
+//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼é–¢é€£
 extern void EventCmd_NormalLose(GMEVENT_CONTROL * event);
 extern BOOL GMEVENT_NormalGameOver(GMEVENT_CONTROL * event);
 
-//ƒQ[ƒ€ƒNƒŠƒAŠÖ˜A
+//ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢é–¢é€£
 extern void EventCmd_GameClear(GMEVENT_CONTROL * event);
 
 //-----------------------------------------------------------------------------
-//	’n‰º—pƒ}ƒbƒvˆÚ“®
+//	åœ°ä¸‹ç”¨ãƒãƒƒãƒ—ç§»å‹•
 //-----------------------------------------------------------------------------
 extern void ChangeUnderGroundDirect(FIELDSYS_WORK * fsys);
 #ifdef PM_DEBUG
@@ -108,7 +108,7 @@ extern void * MakeUGChangeWork(FIELDSYS_WORK * fsys);
 
 
 //-----------------------------------------------------------------------------
-//		ƒf[ƒ^‘€ì‚È‚Ç
+//		ãƒ‡ãƒ¼ã‚¿æ“ä½œãªã©
 //-----------------------------------------------------------------------------
 extern void FNoteStartDataSet( FIELDSYS_WORK * fsys );
 extern void MapChg_UpdateGameData(FIELDSYS_WORK * fsys, BOOL walk_flag);

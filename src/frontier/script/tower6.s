@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	tower_6.s
- * @brief	�u�o�g���^���[�v�t�����e�B�A�X�N���v�g(�^���[�}���`�ΐ핔��)
+ * @brief	「バトルタワー」フロンティアスクリプト(タワーマルチ対戦部屋)
  * @author	nohara
  * @date	2007.05.29
  */
@@ -22,35 +22,35 @@
 
 //--------------------------------------------------------------------
 //
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //
-//	FSW_LOCAL0	�ʐM���ʂȂǂɎg�p
-//	FSW_LOCAL1	�A�j�������鎩����OBJID
-//	FSW_LOCAL2	�A�j��������p�[�g�i�[��OBJID
-//	FSW_LOCAL3	(SCWK_TEMP0��u�������A���p���ɒ��ӁI)
-//	FSW_LOCAL4	�u���΂炭���܂����������v��\�����ăE�B���h�E���폜���邩���ʗp
-//	FSW_LOCAL5	�L�^�������Ɏg�p
-//	FSW_LOCAL6	�L�^������
+//	FSW_LOCAL0	通信結果などに使用
+//	FSW_LOCAL1	アニメさせる自分のOBJID
+//	FSW_LOCAL2	アニメさせるパートナーのOBJID
+//	FSW_LOCAL3	(SCWK_TEMP0を置き換え、引継ぎに注意！)
+//	FSW_LOCAL4	「しばらくおまちください」を表示してウィンドウを削除するか判別用
+//	FSW_LOCAL5	記録処理中に使用
+//	FSW_LOCAL6	記録したか
 //
-//	FSW_PARAM0	����
-//	FSW_PARAM1	�p�[�g�i�[
-//	FSW_PARAM2	�G�g���[�i�[1
-//	FSW_PARAM3	�G�g���[�i�[2
+//	FSW_PARAM0	自分
+//	FSW_PARAM1	パートナー
+//	FSW_PARAM2	敵トレーナー1
+//	FSW_PARAM3	敵トレーナー2
 //
 //--------------------------------------------------------------------
-_EVENT_DATA		fss_tower_6_start	//��ԏ��EVENT_DATA�͎������s
-_EVENT_DATA_END						//�I��
+_EVENT_DATA		fss_tower_6_start	//一番上のEVENT_DATAは自動実行
+_EVENT_DATA_END						//終了
 
 //--------------------------------------------------------------------
-//					     �f�o�b�N��`
+//					     デバック定義
 //--------------------------------------------------------------------
-//#define DEBUG_7_WIN					//7�A���f�o�b�N
-//#define DEBUG_BTL_OFF					//�o�g���I�t�f�o�b�N
-//#define DEBUG_BTL_LOSE_OFF			//�o�g���s�k�I�t�f�o�b�N
+//#define DEBUG_7_WIN					//7連勝デバック
+//#define DEBUG_BTL_OFF					//バトルオフデバック
+//#define DEBUG_BTL_LOSE_OFF			//バトル敗北オフデバック
 
 
 //--------------------------------------------------------------------
-//							���W��`
+//							座標定義
 //--------------------------------------------------------------------
 #define PLAYER_X		(8*15)//(8*16)
 #define PLAYER_Y		(8*15)//(8*16)
@@ -74,79 +74,79 @@ _EVENT_DATA_END						//�I��
 
 /********************************************************************/
 //
-//		SCENE_TOWER:���\�[�X���x��(���IN���ɏ풓�����郊�\�[�X�Q)
+//		SCENE_TOWER:リソースラベル(画面IN時に常駐させるリソース群)
 //
 /********************************************************************/
-//AI�}���`
+//AIマルチ
 _RESOURCE_LABEL	default_set_resource
-	_PLAYER_RESOURCE_DATA		//�������g(HEROorHEROINE)�̃L�����Z�b�g
+	_PLAYER_RESOURCE_DATA		//自分自身(HEROorHEROINE)のキャラセット
 	_CHAR_RESOURCE_DATA		FSW_PARAM6,WF2DC_C_MOVENORMAL
-	//_CHAR_RESOURCE_DATA	FSW_PARAM0,WF2DC_C_MOVENORMAL	//����
-	_CHAR_RESOURCE_DATA		FSW_PARAM1,WF2DC_C_MOVENORMAL	//�p�[�g�i�[
+	//_CHAR_RESOURCE_DATA	FSW_PARAM0,WF2DC_C_MOVENORMAL	//自分
+	_CHAR_RESOURCE_DATA		FSW_PARAM1,WF2DC_C_MOVENORMAL	//パートナー
 	_CHAR_RESOURCE_DATA_END
 
-//�ʐM�}���`
+//通信マルチ
 _RESOURCE_LABEL	comm_multi_set_resource
-	_PLAYER_RESOURCE_DATA		//�������g(HEROorHEROINE)�̃L�����Z�b�g
-	_SIO_PLAYER_RESOURCE_DATA	//�ʐM�v���C���[�S���̃L�����Z�b�g
+	_PLAYER_RESOURCE_DATA		//自分自身(HEROorHEROINE)のキャラセット
+	_SIO_PLAYER_RESOURCE_DATA	//通信プレイヤー全員のキャラセット
 	_CHAR_RESOURCE_DATA		FSW_PARAM6,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
-/*�G�g���[�i�[�̌���^�C�~���O���r���Ȃ̂ŕ�����*/
+/*敵トレーナーの決定タイミングが途中なので分けた*/
 _RESOURCE_LABEL	enemy_set_resource
-	_CHAR_RESOURCE_DATA		FSW_PARAM2,WF2DC_C_MOVENORMAL	//�G1
-	_CHAR_RESOURCE_DATA		FSW_PARAM3,WF2DC_C_MOVENORMAL	//�G2
+	_CHAR_RESOURCE_DATA		FSW_PARAM2,WF2DC_C_MOVENORMAL	//敵1
+	_CHAR_RESOURCE_DATA		FSW_PARAM3,WF2DC_C_MOVENORMAL	//敵2
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_TOWER:�A�N�^�[(���IN���ɏ풓������A�N�^�[�Q)
+//	SCENE_TOWER:アクター(画面IN時に常駐させるアクター群)
 //====================================================================
 #define OBJID_PLAYER				(0)
 #define OBJID_PCWOMAN2_01			(1)
 #define OBJID_PCWOMAN2_02			(2)
-#define OBJID_ENEMY					(3)			//�G1
-#define OBJID_ENEMY2				(4)			//�G2
-#define OBJID_MINE					(5)			//AI�F����
-#define OBJID_PAIR					(6)			//AI�F�p�[�g�i�[
-#define OBJID_SIO_USER_0			(7)			//�ʐM�F����
-#define OBJID_SIO_USER_1			(8)			//�ʐM�F�p�[�g�i�[
+#define OBJID_ENEMY					(3)			//敵1
+#define OBJID_ENEMY2				(4)			//敵2
+#define OBJID_MINE					(5)			//AI：自分
+#define OBJID_PAIR					(6)			//AI：パートナー
+#define OBJID_SIO_USER_0			(7)			//通信：自分
+#define OBJID_SIO_USER_1			(8)			//通信：パートナー
 
-//�X�N���v�gID(����Ή��\��)
+//スクリプトID(今後対応予定)
 #define EVENTID_TEST_SCR_OBJ1		(1)
 
-//AI�}���`
+//AIマルチ
 _ACTOR_LABEL	default_set_actor
 	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_DOWN, \
-							PLAYER_X,PLAYER_Y,OFF/*�������g�A�N�^�[�Z�b�g*/
-	//�W��
+							PLAYER_X,PLAYER_Y,OFF/*自分自身アクターセット*/
+	//係り
 	_ACTOR_DATA				OBJID_PCWOMAN2_01,FSW_PARAM6,WF2DMAP_WAY_C_RIGHT, \
 							PCWOMAN2_01_X,PCWOMAN2_01_Y,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_PCWOMAN2_02,FSW_PARAM6,WF2DMAP_WAY_C_RIGHT, \
 							PCWOMAN2_02_X,PCWOMAN2_02_Y,ON,EVENTID_TEST_SCR_OBJ1
-	//�����A�p�[�g�i�[
+	//自分、パートナー
 	_ACTOR_DATA				OBJID_MINE,FSW_PARAM0,WF2DMAP_WAY_C_UP, \
 							MINE_X,MINE_Y,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_PAIR,FSW_PARAM1,WF2DMAP_WAY_C_UP, \
 							PAIR_X,PAIR_Y,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
-//�ʐM�}���`
+//通信マルチ
 _ACTOR_LABEL	comm_multi_set_actor
 	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_DOWN, \
-							PLAYER_X,PLAYER_Y,OFF/*�������g�A�N�^�[�Z�b�g*/
-	//�W��
+							PLAYER_X,PLAYER_Y,OFF/*自分自身アクターセット*/
+	//係り
 	_ACTOR_DATA				OBJID_PCWOMAN2_01,FSW_PARAM6,WF2DMAP_WAY_C_RIGHT, \
 							PCWOMAN2_01_X,PCWOMAN2_01_Y,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_PCWOMAN2_02,FSW_PARAM6,WF2DMAP_WAY_C_RIGHT, \
 							PCWOMAN2_02_X,PCWOMAN2_02_Y,ON,EVENTID_TEST_SCR_OBJ1
-	//�����A�p�[�g�i�[
+	//自分、パートナー
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_UP, \
 							SIO_USER_0_X,SIO_USER_0_Y,ON
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_UP, \
 							SIO_USER_1_X,SIO_USER_1_Y,ON
 	_ACTOR_DATA_END
 
-/*�G�g���[�i�[�̌���^�C�~���O���r���Ȃ̂ŕ�����*/
+/*敵トレーナーの決定タイミングが途中なので分けた*/
 _ACTOR_LABEL	enemy_set_actor
 	_ACTOR_DATA				OBJID_ENEMY,FSW_PARAM2,WF2DMAP_WAY_C_DOWN, \
 							ENEMY_X,ENEMY_Y,ON,EVENTID_TEST_SCR_OBJ1
@@ -156,11 +156,11 @@ _ACTOR_LABEL	enemy_set_actor
 
 
 /********************************************************************/
-//							�A�j��
+//							アニメ
 /********************************************************************/
 
 //--------------------------------------------------------------------
-//���@/�p�[�g�i�[�@�����ʒu�ֈړ�
+//自機/パートナー　初期位置へ移動
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0206_player_01
 	_ANIME_DATA	FC_WALK_U_8F,1
@@ -176,7 +176,7 @@ _ANIME_LABEL	anm_d31r0206_partner_01
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//�G�l�~�[/�G�l�~�[�Q�@�����ʒu�ֈړ�
+//エネミー/エネミー２　初期位置へ移動
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0206_enemy1_01
 	_ANIME_DATA	FC_WALK_D_8F,1
@@ -193,27 +193,27 @@ _ANIME_LABEL	anm_d31r0206_enemy2_01
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//���@/�p�[�g�i�[���ʁ@�ΐ�O�Ɉ���O��
+//自機/パートナー共通　対戦前に一歩前へ
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0206_player_02
 	_ANIME_DATA	FC_WALK_R_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//�G�l�~�[���ʁ@�ΐ�O�Ɉ���O��
+//エネミー共通　対戦前に一歩前へ
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0206_enemy_02
 	_ANIME_DATA	FC_WALK_L_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-/*�G�l�~�[���ʁ@�ΐ탁�b�Z�[�W�\�����ɑ�����*/
+/*エネミー共通　対戦メッセージ表示時に足踏み*/
 _ANIME_LABEL	anm_d31r0206_enemy_03
 	_ANIME_DATA	FC_STAY_WALK_L_16F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//�G�l�~�[/�G�l�~�[�Q�@�s���ޏ�
+//エネミー/エネミー２　敗戦後退場
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0206_enemy1_03
 	_ANIME_DATA	FC_WALK_U_8F,3
@@ -227,7 +227,7 @@ _ANIME_LABEL	anm_d31r0206_enemy2_03
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//���@/�p�[�g�i�[�@�ΐ폟����@��������U�����
+//自機/パートナー　対戦勝利後　一歩引き振り向き
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0206_player_03
 	_ANIME_DATA	FC_WALK_L_8F,1
@@ -235,21 +235,21 @@ _ANIME_LABEL	anm_d31r0206_player_03
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//�ē���@�ΐ폟����@�߂Â�
+//案内嬢　対戦勝利後　近づき
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0206_pcwoman2_01
 	_ANIME_DATA	FC_WALK_R_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//���@/�p�[�g�i�[�@�񕜌�U�����
+//自機/パートナー　回復後振り向き
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0206_player_04
 	_ANIME_DATA	FC_DIR_R,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//�ē���@�񕜌㉺����
+//案内嬢　回復後下がる
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0206_pcwoman2_02
 	_ANIME_DATA	FC_DIR_L,1
@@ -258,7 +258,7 @@ _ANIME_LABEL	anm_d31r0206_pcwoman2_02
 	_ANIME_DATA_END
 	
 //--------------------------------------------------------------------
-//���@�@��������
+//自機　続きから
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0206_player_05
 	_ANIME_DATA	FC_DIR_L,1
@@ -266,46 +266,46 @@ _ANIME_LABEL	anm_d31r0206_player_05
 
 
 /********************************************************************/
-/*								�J�n								*/
+/*								開始								*/
 /********************************************************************/
 fss_tower_6_start:
 
-	/*���[�N�m��*/
+	/*ワーク確保*/
 	_BATTLE_REC_INIT
 
-	/*FLAG���x��*/
+	/*FLAGラベル*/
 	_CALL				ev_d31r0206_flag_change
 
-	/*OBJ���x��*/
+	/*OBJラベル*/
 	_CALL				ev_d31r0206_obj_change
 
-	/*�u���낭����v�Ŏg�p���郏�[�N�Ȃ̂ŃN���A���Ă���*/
+	/*「きろくする」で使用するワークなのでクリアしておく*/
 	_LDVAL				FSW_LOCAL6,0
 
-	/*�ʐM�}���`*/
+	/*通信マルチ*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_COMM_MULTI,comm_tower_6_start
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_WIFI_MULTI,comm_tower_6_start
 
-	/*AI�}���`*/
+	/*AIマルチ*/
 	_LDVAL				FSW_LOCAL1,OBJID_MINE
 	_LDVAL				FSW_LOCAL2,OBJID_PAIR
 	_LDVAL				FSW_PARAM6,BFSW1
-	_CHAR_RESOURCE_SET	default_set_resource				/*�L�����N�^���\�[�X�o�^*/
-	_ACTOR_SET			default_set_actor					/*�A�N�^�[�o�^*/
+	_CHAR_RESOURCE_SET	default_set_resource				/*キャラクタリソース登録*/
+	_ACTOR_SET			default_set_actor					/*アクター登録*/
 	_JUMP				comm_tower_6_start2
 	_END
 
 comm_tower_6_start:
 
-	/*���s�Ɋ֌W�Ȃ��ʐM�t�����e�B�A�ɒ���(�ʐM�͒��f���Ȃ��̂Ő擪�ŏ������Ă����v)*/
+	/*勝敗に関係なく通信フロンティアに挑戦(通信は中断がないので先頭で処理しても大丈夫)*/
 	_SCORE_ADD			SCORE_ID_FRONTIER_COMM
 
 	_LDVAL				FSW_LOCAL1,OBJID_SIO_USER_0
 	_LDVAL				FSW_LOCAL2,OBJID_SIO_USER_1
 	_LDVAL				FSW_PARAM6,BFSW1
-	_CHAR_RESOURCE_SET	comm_multi_set_resource				/*�L�����N�^���\�[�X�o�^*/
-	_ACTOR_SET			comm_multi_set_actor				/*�A�N�^�[�o�^*/
+	_CHAR_RESOURCE_SET	comm_multi_set_resource				/*キャラクタリソース登録*/
+	_ACTOR_SET			comm_multi_set_actor				/*アクター登録*/
 	_JUMP				comm_tower_6_start2
 	_END
 
@@ -313,7 +313,7 @@ comm_tower_6_start2:
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*SCENE���x��*/
+	/*SCENEラベル*/
 	_SAVE_EVENT_WORK_GET	WK_SCENE_D31R0206,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_common_entry
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_tower_roomd_common_continue
@@ -321,7 +321,7 @@ comm_tower_6_start2:
 
 
 /********************************************************************/
-/*					���߂ĕ����ɓ��ꂵ���Ƃ�						*/
+/*					初めて部屋に入場したとき						*/
 /********************************************************************/
 ev_tower_roomd_common_entry:
 	//_LDVAL			WK_SCENE_D31R0206,3
@@ -336,7 +336,7 @@ ev_tower_roomd_common_entry:
 	_JUMP				ev_tower_roomd_aibtl_01
 	_END
 
-//���@�ƃp�[�g�i�[����
+//自機とパートナー入場
 ev_tower_roomd_comanm_in:
 	_OBJ_ANIME			FSW_LOCAL1,anm_d31r0206_player_01
 	_OBJ_ANIME			FSW_LOCAL2,anm_d31r0206_partner_01
@@ -344,7 +344,7 @@ ev_tower_roomd_comanm_in:
 	_RET
 
 ev_tower_roomd_siobtl_01:
-	/*SIO�}���`�o�g���Ăяo���R����*/
+	/*SIOマルチバトル呼び出しコモン*/
 	_CALL				ev_tower_roomd_common_siobtl_call
 
 #ifndef DEBUG_BTL_LOSE_OFF	/********************************************/
@@ -353,81 +353,81 @@ ev_tower_roomd_siobtl_01:
 #endif
 #endif	/****************************************************************/
 
-	//���������̏���
+	//勝った時の処理
 	_CALL				ev_tower_roomd_common_win_param
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_common_clear_ret
 
-	//�G�l�~�[�ޏ�
+	//エネミー退場
 	_CALL				ev_tower_roomd_comanm_eneout
 
-	//�v���C���[�U�����
+	//プレイヤー振り向き
 	_CALL				ev_tower_roomd_comanm_btl_end
 
-	//�|�P������
+	//ポケモン回復
 	_CALL				ev_tower_roomd_common_heal
 	_JUMP				ev_tower_roomd_siobtl_02
 	_END
 
-//�A��
+//連戦
 ev_tower_roomd_siobtl_02:
 	_BTOWER_TOOLS		BTWR_SUB_GET_NOW_ROUND,BTWR_NULL_PARAM,FSW_ANSWER
 	_NUMBER_NAME		0,FSW_ANSWER
 	_TALKMSG			msg_tower_82
 
-	/*�܂��L�^���Ă��Ȃ��A���f���A�ł͂Ȃ����́u���낭����v���j���[�ǉ�*/
+	/*まだ記録していない、中断復帰ではない時は「きろくする」メニュー追加*/
 	_IFVAL_JUMP			FSW_LOCAL6,EQ,0,ev_tower_roomd_siobtl_02_rec
 
-	_BMPLIST_INIT		24,13,0,0,FSW_ANSWER		//B�L�����Z������
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0		//�Â���
+	_BMPLIST_INIT		24,13,0,0,FSW_ANSWER		//Bキャンセル無効
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0		//つづける
 	_JUMP				ev_tower_roomd_roomd_siobtl_02_sub
 	_END
 
 ev_tower_roomd_siobtl_02_rec:
 
-	/*���C�A���X�ŁADP���܂܂�Ă�����A�L�^�����͂���Ȃ�*/
+	/*ワイアレスで、DPが含まれていたら、記録処理はいらない*/
 	_CALL				ev_tower_multi_dp_check
-	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_siobtl_03_rec	/*�L�^�Ȃ�*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_siobtl_03_rec	/*記録なし*/
 
-	/*������ROM���������T�[�o�[�o�[�W�����œ����Ă������́u���낭����v�o���Ȃ�*/
+	/*自分のROMよりも高いサーバーバージョンで動いていた時は「きろくする」出さない*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_tower_roomd_siobtl_03_rec	/*�L�^�Ȃ�*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_tower_roomd_siobtl_03_rec	/*記録なし*/
 
-	_BMPLIST_INIT		23,11,0,0,FSW_ANSWER		//B�L�����Z������
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0		//�Â���
-	_BMPLIST_MAKE_LIST	msg_tower_choice_13,FSEV_WIN_TALK_MSG_NONE,1		/*���낭����*/
+	_BMPLIST_INIT		23,11,0,0,FSW_ANSWER		//Bキャンセル無効
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0		//つづける
+	_BMPLIST_MAKE_LIST	msg_tower_choice_13,FSEV_WIN_TALK_MSG_NONE,1		/*きろくする*/
 	_JUMP				ev_tower_roomd_roomd_siobtl_02_sub
 	_END
 
-/*���C�A���X�ŁADP���܂܂�Ă�����A�L�^�����͂���Ȃ�*/
+/*ワイアレスで、DPが含まれていたら、記録処理はいらない*/
 ev_tower_roomd_siobtl_03_rec:
-	_BMPLIST_INIT		24,13,0,0,FSW_ANSWER		//B�L�����Z������
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0		//�Â���
+	_BMPLIST_INIT		24,13,0,0,FSW_ANSWER		//Bキャンセル無効
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0		//つづける
 	_JUMP				ev_tower_roomd_roomd_siobtl_02_sub
 	_END
 
 ev_tower_roomd_roomd_siobtl_02_sub:
-	_BMPLIST_MAKE_LIST	msg_tower_choice_08,FSEV_WIN_TALK_MSG_NONE,2		//���^�C�A
+	_BMPLIST_MAKE_LIST	msg_tower_choice_08,FSEV_WIN_TALK_MSG_NONE,2		//リタイア
 	_BMPLIST_START
 	
 	_TALK_CLOSE
 
-	_LDVAL				FSW_LOCAL0,0				//���^�C�A���I�΂���1�ɂȂ�
+	_LDVAL				FSW_LOCAL0,0				//リタイアが選ばれると1になる
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_tower_roomd_is_sio_retire
 
-	/*���낭����*/
+	/*きろくする*/
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_is_sio_rec
 
 	_JUMP				ev_tower_roomd_siobtl_03
 	_END
 
-//�����邩�ǂ����̑I��(LOCAL0��1�Ȃ烊�^�C�A)
+//続けるかどうかの選択(LOCAL0が1ならリタイア)
 ev_tower_roomd_siobtl_03:
-	/*���[�N���N���A���Ă���*/
+	/*ワークをクリアしておく*/
 	_LDVAL				FSW_LOCAL6,0
 
-	//���F�B�̑I����҂��Ă��܂�
+	//お友達の選択を待っています
 	_TALKMSG			msg_tower_114
-	//�I��҂��ʐM����
+	//選択待ち通信同期
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	TOWER_COMM_MULTI_NEXT_SELECT
 
@@ -435,44 +435,44 @@ ev_tower_roomd_siobtl_03:
 	_JUMP				ev_tower_roomd_siobtl_03_retry
 	_END
 
-/*���M���s������đ��M*/
+/*送信失敗したら再送信*/
 ev_tower_roomd_siobtl_03_retry:
-	//�I�����ʑ��M
+	//選択結果送信
 	_BTOWER_SEND_BUF	2,FSW_LOCAL0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_tower_roomd_siobtl_03_retry
 
-	//�I�����ʎ�M
+	//選択結果受信
 	_BTOWER_RECV_BUF	2,FSW_LOCAL0
 
 	_TALK_CLOSE
 	_SWITCH				FSW_LOCAL0	
-	_CASE_JUMP			1,ev_tower_roomd_sio_retire	//���^�C�A
+	_CASE_JUMP			1,ev_tower_roomd_sio_retire	//リタイア
 
-	//�A���I��
-	//�ē�����Ƃ̈ʒu��
+	//連戦を選択
+	//案内嬢もとの位置へ
 	_CALL				ev_tower_roomd_comanm_guide_out
 
-	//�o�g��
+	//バトル
 	_JUMP				ev_tower_roomd_siobtl_01
 	_END
 
 
 /********************************************************************/
-/*					�}���`�ΐ핔��in	�R����						*/
+/*					マルチ対戦部屋in	コモン						*/
 /********************************************************************/
-//��������ޏꂵ�Ď󂯕t���ɖ߂�
+//部屋から退場して受け付けに戻る
 ev_tower_roomd_common_exit:
-	/*���[�N�J��*/
+	/*ワーク開放*/
 	_BATTLE_REC_EXIT
 
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_COMM_MULTI,ev_tower_roomd_sio_exit_multi
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_WIFI_MULTI,ev_tower_roomd_sio_exit
 
-	//�E�F�C�g
+	//ウェイト
 	_TIME_WAIT			30,FSW_ANSWER
 
-	//��t�߂�t���O�Z�b�g
+	//受付戻りフラグセット
 	//_LDVAL			WK_SCENE_D31R0201,1
 	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0201,1
 
@@ -492,44 +492,44 @@ ev_tower_roomd_common_exit:
 	//_MAP_CHANGE			FSS_SCENEID_TOWER
 	//_END
 
-	_SCRIPT_FINISH			/*_END����2D�}�b�v�I��*/
+	_SCRIPT_FINISH			/*_ENDして2Dマップ終了*/
 
-/*�}���`�̂�*/
+/*マルチのみ*/
 ev_tower_roomd_sio_exit_multi:
-	/*TV����*/
+	/*TV処理*/
 	_TV_TEMP_FRIEND_SET	FRONTIER_NO_TOWER
 	_JUMP				ev_tower_roomd_sio_exit
 	_END
 
-//�ʐM�}���`��������o�Ė߂�
+//通信マルチ部屋から出て戻る
 ev_tower_roomd_sio_exit:
 
-	//�E�F�C�g
+	//ウェイト
 	_TIME_WAIT			30,FSW_ANSWER
 	
-	//��t�߂�t���O�Z�b�g
+	//受付戻りフラグセット
 	//_LDVAL			WK_SCENE_D31R0201,1
 	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0201,1
 	
-	//�ʐM����
+	//通信同期
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	TOWER_COMM_MULTI_EXIT_WAIT
 
-	/*���b�Z�[�W�E�B���h�E���폜���锻�ʗp*/
+	/*メッセージウィンドウを削除する判別用*/
 	_IFVAL_CALL			FSW_LOCAL4,EQ,100,ev_tower_roomd_sio_exit_close
 
-	//WIFI(�|�P�Z���n��)�̂�
+	//WIFI(ポケセン地下)のみ
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,BTWR_MODE_WIFI_MULTI,comm_tower_roomd_common_report_wifi
 
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	
-	//�ʐM����
+	//通信同期
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	TOWER_COMM_MULTI_SIO_END
 
-	/*�ʐM�}���`(���C�A���X�ʐM�̂ݒʐM�ؒf����)*/
+	/*通信マルチ(ワイアレス通信のみ通信切断する)*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,BTWR_MODE_COMM_MULTI,comm_tower_6_direct_end
 	//_IFVAL_CALL			FSW_ANSWER,EQ,BTWR_MODE_WIFI_MULTI,comm_tower_6_direct_end
@@ -549,24 +549,24 @@ ev_tower_roomd_sio_exit:
 	//_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 
-	//WIFI(�|�P�Z���n��)�̂�
+	//WIFI(ポケセン地下)のみ
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_WIFI_MULTI,comm_tower_roomd_common_exit_wifi
 
 	//_END
-	_SCRIPT_FINISH			/*_END����2D�}�b�v�I��*/
+	_SCRIPT_FINISH			/*_ENDして2Dマップ終了*/
 
-/*���b�Z�[�W�E�B���h�E���폜���锻�ʗp*/
+/*メッセージウィンドウを削除する判別用*/
 ev_tower_roomd_sio_exit_close:
 	_TALK_CLOSE
 	_RET
 
 
 /********************************************************************/
-/*						WIFI�͑҂����킹��ʂ֖߂�					*/
+/*						WIFIは待ち合わせ画面へ戻る					*/
 //
-/*	WiFi�Ăяo���̎��͂����ŏI�����Ă��܂��̂ŁA					*/
-/*	�����Ń��[�h�Ń��[�N�̊J�����K�v								*/
+/*	WiFi呼び出しの時はここで終了してしまうので、					*/
+/*	ここでモードでワークの開放が必要								*/
 /********************************************************************/
 comm_tower_roomd_common_exit_wifi:
 	_FR_WIFI_COUNTER_TOWER_CALL_AFTER
@@ -574,7 +574,7 @@ comm_tower_roomd_common_exit_wifi:
 	_MAP_CHANGE_EX		FSS_SCENEID_WIFI_COUNTER,1
 	_END
 
-//WIFI(�|�P�Z���n��)�̂�
+//WIFI(ポケセン地下)のみ
 comm_tower_roomd_common_report_wifi:
 	_TALKMSG_ALL_PUT	msg_tower_117
 	_ADD_WAITICON
@@ -587,7 +587,7 @@ comm_tower_roomd_common_report_wifi:
 
 
 /********************************************************************/
-/*					���C�A���X�ʐM�͒ʐM�ؒf						*/
+/*					ワイアレス通信は通信切断						*/
 /********************************************************************/
 comm_tower_6_direct_end:
 	_COMM_DIRECT_END
@@ -595,23 +595,23 @@ comm_tower_6_direct_end:
 
 
 /********************************************************************/
-/*					��������ŕ����ɓ��ꂵ����						*/
+/*					続きからで部屋に入場した時						*/
 /********************************************************************/
 ev_tower_roomd_common_continue:
 	//_LDVAL			WK_SCENE_D31R0206,3
 	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0206,3
 	
-	/*�L�^�������[�N�Ƀf�[�^���������܂�Ă��Ȃ��̂Ń��j���[�\�����Ȃ�*/
+	/*記録したワークにデータが書き込まれていないのでメニュー表示しない*/
 	_LDVAL				FSW_LOCAL6,1
 
 	_CALL				ev_tower_roomd_comanm_in
 	_CALL				ev_tower_roomd_comanm_continue
 
-	//�u���́H�l�ڂ́c�c�v
+	//「次は？人目の……」
 	_JUMP				ev_tower_roomd_aibtl_02
 	_END
 
-//���@�ƃp�[�g�i�[/�󂯕t����@��������n�߂��Ƃ��̓����
+//自機とパートナー/受け付け嬢　続きから始めたときの入場後
 ev_tower_roomd_comanm_continue:
 	_OBJ_ANIME			OBJID_PCWOMAN2_01,anm_d31r0206_pcwoman2_01
 	_OBJ_ANIME			OBJID_PCWOMAN2_02,anm_d31r0206_pcwoman2_01
@@ -622,59 +622,59 @@ ev_tower_roomd_comanm_continue:
 
 
 /********************************************************************/
-/*					�ʏ�A�� ���́H�l�ڂ̑���ł�					*/
+/*					通常連戦 次は？人目の相手です					*/
 /********************************************************************/
 ev_tower_roomd_aibtl_02:
 	_BTOWER_TOOLS		BTWR_SUB_GET_NOW_ROUND,BTWR_NULL_PARAM,FSW_ANSWER
 	_NUMBER_NAME		0,FSW_ANSWER
 	_TALKMSG			msg_tower_82
 
-	/*�܂��L�^���Ă��Ȃ��A���f���A�ł͂Ȃ����́u���낭����v���j���[�ǉ�*/
+	/*まだ記録していない、中断復帰ではない時は「きろくする」メニュー追加*/
 	_IFVAL_JUMP			FSW_LOCAL6,EQ,0,ev_tower_roomd_aibtl_02_rec
 
-	_BMPLIST_INIT		24,11,0,0,FSW_ANSWER			//B�L�����Z������
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//�Â���
+	_BMPLIST_INIT		24,11,0,0,FSW_ANSWER			//Bキャンセル無効
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//つづける
 	_JUMP				ev_tower_roomd_aibtl_02_sub
 	_END
 
 ev_tower_roomd_aibtl_02_rec:
-	_BMPLIST_INIT		23,9,0,0,FSW_ANSWER				//B�L�����Z������
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//�Â���
-	_BMPLIST_MAKE_LIST	msg_tower_choice_13,FSEV_WIN_TALK_MSG_NONE,1			/*���낭����*/
+	_BMPLIST_INIT		23,9,0,0,FSW_ANSWER				//Bキャンセル無効
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//つづける
+	_BMPLIST_MAKE_LIST	msg_tower_choice_13,FSEV_WIN_TALK_MSG_NONE,1			/*きろくする*/
 	_JUMP				ev_tower_roomd_aibtl_02_sub
 	_END
 
 ev_tower_roomd_aibtl_02_sub:
-	_BMPLIST_MAKE_LIST	msg_tower_choice_07,FSEV_WIN_TALK_MSG_NONE,2			//�₷��
-	_BMPLIST_MAKE_LIST	msg_tower_choice_08,FSEV_WIN_TALK_MSG_NONE,3			//���^�C�A
+	_BMPLIST_MAKE_LIST	msg_tower_choice_07,FSEV_WIN_TALK_MSG_NONE,2			//やすむ
+	_BMPLIST_MAKE_LIST	msg_tower_choice_08,FSEV_WIN_TALK_MSG_NONE,3			//リタイア
 	_BMPLIST_START
 	
 	_TALK_CLOSE
 
 	_SWITCH				FSW_ANSWER
-	_CASE_JUMP			0,ev_tower_roomd_ai_next		//�Â���
-	_CASE_JUMP			1,ev_tower_roomd_is_ai_rec		/*���낭����*/
-	_CASE_JUMP			2,ev_tower_roomd_is_ai_rest		//�₷��
-	_CASE_JUMP			3,ev_tower_roomd_is_ai_retire	//���^�C�A
-	_JUMP				ev_tower_roomd_ai_next			//�Â���
+	_CASE_JUMP			0,ev_tower_roomd_ai_next		//つづける
+	_CASE_JUMP			1,ev_tower_roomd_is_ai_rec		/*きろくする*/
+	_CASE_JUMP			2,ev_tower_roomd_is_ai_rest		//やすむ
+	_CASE_JUMP			3,ev_tower_roomd_is_ai_retire	//リタイア
+	_JUMP				ev_tower_roomd_ai_next			//つづける
 	_END
 
 
 /********************************************************************/
-/*							�Â���								*/
+/*							つづける								*/
 /********************************************************************/
 ev_tower_roomd_ai_next:
-	//�ē�����Ƃ̈ʒu��
+	//案内嬢もとの位置へ
 	_CALL				ev_tower_roomd_comanm_guide_out
 
-	/*���[�N���N���A���Ă���*/
+	/*ワークをクリアしておく*/
 	_LDVAL				FSW_LOCAL6,0
 
-	//�o�g��
+	//バトル
 	_JUMP				ev_tower_roomd_aibtl_01
 	_END
 
-//�񕜌�@�v���C���[�U��������ē��쉺����
+//回復後　プレイヤー振り向き＆案内嬢下がる
 ev_tower_roomd_comanm_guide_out:
 	_OBJ_ANIME			FSW_LOCAL1,anm_d31r0206_player_04
 	_OBJ_ANIME			FSW_LOCAL2,anm_d31r0206_player_04
@@ -685,44 +685,44 @@ ev_tower_roomd_comanm_guide_out:
 
 
 /********************************************************************/
-/*						�L�^����(AI�}���`)							*/
+/*						記録する(AIマルチ)							*/
 /********************************************************************/
 ev_tower_roomd_is_ai_rec:
-	/*�u�����قǂ́@�킢���@�L�^���܂����H�v*/
+	/*「さきほどの　戦いを　記録しますか？」*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_room_rec_msg1		/*�Ȃ���*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower6_room_rec_msg2		/*���鎞*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_room_rec_msg1		/*ない時*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower6_room_rec_msg2		/*ある時*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER									/*�������f�t�H���g*/
+	_YES_NO_WIN_EX	FSW_ANSWER									/*いいえデフォルト*/
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_tower_roomd_aibtl_02
 
-	_CALL			ev_tower6_room_rec_win		/*�����̋L�^*/
+	_CALL			ev_tower6_room_rec_win		/*勝利の記録*/
 	_JUMP			ev_tower_roomd_aibtl_02
 	_END
 
 
 /********************************************************************/
-/*							���ʋL�^*/
+/*							共通記録*/
 /********************************************************************/
-/*����*/
+/*勝ち*/
 ev_tower6_room_rec_win:
-	_CALL				ev_tower6_room_rec_common		/*ANSWER,LOCAL5�g�p��*/
+	_CALL				ev_tower6_room_rec_common		/*ANSWER,LOCAL5使用中*/
 	//_ADD_WK			FSW_LOCAL5,1
-	//_SUB_WK			FSW_LOCAL5,1					/*���E���h���ł͂Ȃ��������Ȃ̂�*/
+	//_SUB_WK			FSW_LOCAL5,1					/*ラウンド数ではなく勝利数なので*/
 	_JUMP				ev_tower6_room_rec
 	_END
 
-/*����*/
+/*負け*/
 ev_tower6_room_rec_lose:
-	_CALL				ev_tower6_room_rec_common		/*ANSWER,LOCAL5�g�p��*/
+	_CALL				ev_tower6_room_rec_common		/*ANSWER,LOCAL5使用中*/
 	_ADD_WK				FSW_LOCAL5,1
 	_JUMP				ev_tower6_room_rec
 	_END
 
-/*���ʕ���*/
+/*共通部分*/
 ev_tower6_room_rec_common:
-	/*�^��f�[�^�Z�[�u*/
-	_BTOWER_TOOLS		BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,FSW_LOCAL5		/*�A����*/
+	/*録画データセーブ*/
+	_BTOWER_TOOLS		BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,FSW_LOCAL5		/*連勝数*/
 	_RET
 
 ev_tower6_room_rec:
@@ -730,12 +730,12 @@ ev_tower6_room_rec:
 	_END
 
 ev_tower6_room_rec_sub:
-	/*�L�^�������[�N�Z�b�g*/
+	/*記録したワークセット*/
 	_LDVAL				FSW_LOCAL6,1
 
 	_TALKMSG_ALL_PUT	msg_tower_101_05
-	/*BTWR_MODE_MULTI(AI�}���`�̂���),BTWR_MODE_COMM_MULTI,BTWR_MODE_WIFI_MULTI*/
-	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER		/*���[�h*/
+	/*BTWR_MODE_MULTI(AIマルチのこと),BTWR_MODE_COMM_MULTI,BTWR_MODE_WIFI_MULTI*/
+	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER		/*モード*/
 	_ADD_WAITICON
 	_BATTLE_REC_SAVE	FRONTIER_NO_TOWER,FSW_ANSWER,FSW_LOCAL5,FSW_LOCAL5
 	_DEL_WAITICON
@@ -744,30 +744,30 @@ ev_tower6_room_rec_sub:
 
 	_IFVAL_JUMP			FSW_LOCAL5,EQ,1,ev_tower6_room_rec_true
 
-	/*�u�L�^�o���܂���ł����v*/
+	/*「記録出来ませんでした」*/
 	_TALKMSG			msg_tower_101_03
 	_RET
 
 ev_tower6_room_rec_true:
 	_SE_PLAY			SEQ_SE_DP_SAVE
-	/*�u�L�^����܂����v*/
+	/*「記録されました」*/
 	_PLAYER_NAME		0
 	_TALKMSG			msg_tower_101_02
 	_RET
 	
-/*�^��f�[�^���Ȃ������b�Z�[�W*/
+/*録画データがない時メッセージ*/
 ev_tower6_room_rec_msg1:
 	_TALKMSG			msg_tower_101_01
 	_RET
 
-/*���łɘ^��f�[�^�����鎞���b�Z�[�W*/
+/*すでに録画データがある時メッセージ*/
 ev_tower6_room_rec_msg2:
 	_TALKMSG			msg_tower_101_04
 	_RET
 
 
 /********************************************************************/
-/*				AI�}���`���f���ċx�ނ��ǂ����H						*/
+/*				AIマルチ中断して休むかどうか？						*/
 /********************************************************************/
 ev_tower_roomd_is_ai_rest:
 	_TALKMSG			msg_tower_83
@@ -779,19 +779,19 @@ ev_tower_roomd_is_ai_rest:
 	_JUMP				ev_tower_roomd_aibtl_02
 	_END
 
-//�x�ނƂ��̏���
+//休むときの処理
 ev_tower_roomd_common_rest:
 	//_LDVAL			WK_SCENE_D31R0201,2
 	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0201,2
 
-	//�v���C�f�[�^�Z�[�u
+	//プレイデータセーブ
 	_BTOWER_TOOLS		BTWR_SUB_SAVE_REST_PLAY_DATA,BTWR_NULL_PARAM,FSW_ANSWER
 	_BTOWER_WORK_RELEASE
 
 	_TALKMSG			msg_tower_79
 	_ADD_WAITICON
 	_REPORT_SAVE		FSW_ANSWER
-	//_REPORT_DIV_SAVE	FSW_ANSWER				/*�ʐM���Ă��Ȃ�(AI�}���`�̏����̗���)*/
+	//_REPORT_DIV_SAVE	FSW_ANSWER				/*通信していない(AIマルチの処理の流れ)*/
 	_DEL_WAITICON
 	_SE_PLAY			SEQ_SE_DP_SAVE
 	_SE_WAIT			SEQ_SE_DP_SAVE
@@ -800,18 +800,18 @@ ev_tower_roomd_common_rest:
 	_WIPE_FADE_END_CHECK
 	_TALK_CLOSE
 
-	/*���[�N�J��*/
+	/*ワーク開放*/
 	_BATTLE_REC_EXIT
 
-	//���Z�b�g�R�}���h
+	//リセットコマンド
 	_BTOWER_TOOLS		BTWR_TOOL_SYSTEM_RESET,BTWR_NULL_PARAM,FSW_ANSWER
 	_END
 
 
 /********************************************************************/
-/*							���^�C�A								*/
+/*							リタイア								*/
 /********************************************************************/
-//AI�}���`���^�C�A���邩�ǂ����H
+//AIマルチリタイアするかどうか？
 ev_tower_roomd_is_ai_retire:
 	_TALKMSG			msg_tower_84
 	_YES_NO_WIN_EX		FSW_ANSWER
@@ -822,21 +822,21 @@ ev_tower_roomd_is_ai_retire:
 	_JUMP				ev_tower_roomd_aibtl_02
 	_END
 
-//���^�C�A����Ƃ��̏���(�^�悷�闬��Ȃ�)
+//リタイアするときの処理(録画する流れなし)
 ev_tower_roomd_common_retire:
-	//�s��p�����[�^�Z�b�g
+	//敗戦パラメータセット
 	_BTOWER_TOOLS		BTWR_SUB_SET_LOSE_SCORE,BTWR_NULL_PARAM,FSW_ANSWER
 
-	//�����Ă���LOCALWORk0��0����
+	//負けてたらLOCALWORk0に0を代入
 	_LDVAL				FSW_LOCAL0,0
 
 	_JUMP				ev_tower_roomd_common_exit
 	_END
 
-//�����Ė߂�Ƃ��̏���
+//負けて戻るときの処理
 ev_tower_roomd_common_lose:
 
-	//�����Ă���LOCALWORk0��0����
+	//負けてたらLOCALWORk0に0を代入
 	_LDVAL				FSW_LOCAL0,0
 
 	_JUMP				ev_tower_roomd_common_rec_lose
@@ -844,12 +844,12 @@ ev_tower_roomd_common_lose:
 
 
 /********************************************************************/
-/*				�u�����قǂ́@�킢���@�L�^���܂����H�v				*/
+/*				「さきほどの　戦いを　記録しますか？」				*/
 /********************************************************************/
 ev_tower_roomd_common_rec_win:
 
 #if 1
-	/*�ʐM�}���`*/
+	/*通信マルチ*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_COMM_MULTI,comm_tower_roomd_common_rec_win_check
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_WIFI_MULTI,comm_tower_roomd_common_rec_win_check
@@ -857,13 +857,13 @@ ev_tower_roomd_common_rec_win:
 	_END
 
 comm_tower_roomd_common_rec_win_check:
-	/*������ROM���������T�[�o�[�o�[�W�����œ����Ă������́u���낭����v�o���Ȃ�*/
+	/*自分のROMよりも高いサーバーバージョンで動いていた時は「きろくする」出さない*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_tower_roomd_common_rec_win_sub	/*�L�^�Ȃ�*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_tower_roomd_common_rec_win_sub	/*記録なし*/
 
-	/*���C�A���X�ŁADP���܂܂�Ă�����A�L�^�����͂���Ȃ�*/
+	/*ワイアレスで、DPが含まれていたら、記録処理はいらない*/
 	_CALL				ev_tower_multi_dp_check
-	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_common_rec_win_sub	/*�L�^�Ȃ�*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_common_rec_win_sub	/*記録なし*/
 
 	_JUMP				ev_tower_roomd_common_rec_ok_win
 	_END
@@ -871,25 +871,25 @@ comm_tower_roomd_common_rec_win_check:
 #endif
 
 ev_tower_roomd_common_rec_ok_win:
-	/*�u�����قǂ́@�킢���@�L�^���܂����H�v*/
+	/*「さきほどの　戦いを　記録しますか？」*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_room_rec_msg1		/*�Ȃ���*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower6_room_rec_msg2		/*���鎞*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_room_rec_msg1		/*ない時*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower6_room_rec_msg2		/*ある時*/
 
-	_YES_NO_WIN_EX		FSW_ANSWER									/*�������f�t�H���g*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_win_rec_yes		/*�u�͂��v*/
+	_YES_NO_WIN_EX		FSW_ANSWER									/*いいえデフォルト*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_win_rec_yes		/*「はい」*/
 	_JUMP				ev_tower_roomd_common_rec_win_sub
 	_END
 
 ev_tower_roomd_common_rec_win_sub:
 
-	//�N���A�p�����[�^�Z�b�g
+	//クリアパラメータセット
 	_BTOWER_TOOLS		BTWR_SUB_SET_CLEAR_SCORE,BTWR_NULL_PARAM,FSW_ANSWER
 
-	/*�u�V��˔j���߂łƂ��v*/
+	/*「７戦突破おめでとう」*/
 	_TALKMSG			msg_tower_115
 
-	/*�u�v���C���[�͂a�o����������v*/
+	/*「プレイヤーはＢＰをもらった」*/
 	_BTOWER_TOOLS		BTWR_SUB_ADD_BATTLE_POINT,BTWR_NULL_PARAM,FSW_ANSWER
 	_NUMBER_NAME		1,FSW_ANSWER
 	_PLAYER_NAME		0
@@ -897,7 +897,7 @@ ev_tower_roomd_common_rec_win_sub:
 	_ME_PLAY			ME_BP_GET
 	_ME_WAIT
 	
-	/*�ʐM�̎��͕K���u���΂炭���܂����������v�\��*/
+	/*通信の時は必ず「しばらくおまちください」表示*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_COMM_MULTI,ev_tower_roomd_common_rec_win_sub3
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_WIFI_MULTI,ev_tower_roomd_common_rec_win_sub3
@@ -906,8 +906,8 @@ ev_tower_roomd_common_rec_win_sub:
 	_JUMP				ev_tower_roomd_common_exit
 	_END
 
-ev_tower_roomd_common_rec_win_sub3:	/*�L�^�Ȃ��̗���*/
-	/*���b�Z�[�W�E�B���h�E���폜���锻�ʗp*/
+ev_tower_roomd_common_rec_win_sub3:	/*記録なしの流れ*/
+	/*メッセージウィンドウを削除する判別用*/
 	_LDVAL				FSW_LOCAL4,100
 	_TALKMSG_NOSKIP		msg_tower_118
 	_JUMP				ev_tower_roomd_common_exit
@@ -915,11 +915,11 @@ ev_tower_roomd_common_rec_win_sub3:	/*�L�^�Ȃ��̗���*/
 
 ev_tower_roomd_common_rec_lose:
 
-	/*���b�Z�[�W�E�B���h�E���폜���锻�ʗp���N���A*/
+	/*メッセージウィンドウを削除する判別用をクリア*/
 	_LDVAL				FSW_LOCAL4,0
 
 #if 1
-	/*�ʐM�}���`*/
+	/*通信マルチ*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_COMM_MULTI,comm_tower_roomd_common_rec_lose_check
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_WIFI_MULTI,comm_tower_roomd_common_rec_lose_check
@@ -927,39 +927,39 @@ ev_tower_roomd_common_rec_lose:
 	_END
 
 comm_tower_roomd_common_rec_lose_check:
-	/*������ROM���������T�[�o�[�o�[�W�����œ����Ă������́u���낭����v�o���Ȃ�*/
+	/*自分のROMよりも高いサーバーバージョンで動いていた時は「きろくする」出さない*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_tower_roomd_common_rec_lose_sub2	/*�L�^�Ȃ�*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_tower_roomd_common_rec_lose_sub2	/*記録なし*/
 
-	/*���C�A���X�ŁADP���܂܂�Ă�����A�L�^�����͂���Ȃ�*/
+	/*ワイアレスで、DPが含まれていたら、記録処理はいらない*/
 	_CALL				ev_tower_multi_dp_check
-	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_common_rec_lose_sub	/*�L�^�Ȃ�*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_common_rec_lose_sub	/*記録なし*/
 
 	_JUMP				ev_tower_roomd_common_rec_ok_lose
 	_END
 
 #endif
 
-/*�u���΂炭���܂����������v*/
+/*「しばらくおまちください」*/
 ev_tower_roomd_common_rec_lose_sub2:
-	/*���b�Z�[�W�E�B���h�E���폜���锻�ʗp*/
+	/*メッセージウィンドウを削除する判別用*/
 	_LDVAL				FSW_LOCAL4,100
 	_TALKMSG_NOSKIP		msg_tower_118
 	_JUMP				ev_tower_roomd_common_rec_lose_sub
 	_END
 
-/*�u���낭���܂����H�v*/
+/*「きろくしますか？」*/
 ev_tower_roomd_common_rec_ok_lose:
-	/*�u�����قǂ́@�킢���@�L�^���܂����H�v*/
+	/*「さきほどの　戦いを　記録しますか？」*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_room_rec_msg1		/*�Ȃ���*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower6_room_rec_msg2		/*���鎞*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_room_rec_msg1		/*ない時*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower6_room_rec_msg2		/*ある時*/
 
-	_YES_NO_WIN_EX		FSW_ANSWER									/*�������f�t�H���g*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_lose_rec_yes		/*�u�͂��v*/
+	_YES_NO_WIN_EX		FSW_ANSWER									/*いいえデフォルト*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_lose_rec_yes		/*「はい」*/
 
-	/*�ʐM�}���`*/
-	/*�u���΂炭���܂����������v�\����*/
+	/*通信マルチ*/
+	/*「しばらくおまちください」表示へ*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_COMM_MULTI,ev_tower_roomd_common_rec_lose_sub2
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_WIFI_MULTI,ev_tower_roomd_common_rec_lose_sub2
@@ -970,24 +970,24 @@ ev_tower_roomd_common_rec_ok_lose:
 
 ev_tower_roomd_common_rec_lose_sub:
 
-	//�s��p�����[�^�Z�b�g
+	//敗戦パラメータセット
 	_BTOWER_TOOLS		BTWR_SUB_SET_LOSE_SCORE,BTWR_NULL_PARAM,FSW_ANSWER
 
 	_JUMP				ev_tower_roomd_common_exit
 	_END
 
-/*�u�͂��v*/
+/*「はい」*/
 ev_tower6_lose_rec_yes:
-	_CALL				ev_tower6_room_rec_lose		/*�s�k�̋L�^*/
+	_CALL				ev_tower6_room_rec_lose		/*敗北の記録*/
 	_RET
 
 ev_tower6_win_rec_yes:
-	_CALL				ev_tower6_room_rec_win		/*�����̋L�^*/
+	_CALL				ev_tower6_room_rec_win		/*勝利の記録*/
 	_RET
 
 
 /********************************************************************/
-/*							AI�}���`�ΐ�							*/
+/*							AIマルチ対戦							*/
 /********************************************************************/
 ev_tower_roomd_aibtl_01:
 	_CALL				ev_tower_roomd_common_aibtl_call
@@ -998,59 +998,59 @@ ev_tower_roomd_aibtl_01:
 #endif
 #endif	/****************************************************************/
 
-	//���������̏���(�N���A���Ă邩�ǂ�����FSW_ANSWER�ɂ�����)
+	//勝った時の処理(クリアしてるかどうかをFSW_ANSWERにかえす)
 	_CALL				ev_tower_roomd_common_win_param
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_common_clear_ret
 
-	//�G�l�~�[�ޏ�
+	//エネミー退場
 	_CALL				ev_tower_roomd_comanm_eneout
 
-	//�v���C���[�U�����
+	//プレイヤー振り向き
 	_CALL				ev_tower_roomd_comanm_btl_end
 
-	//�|�P������
+	//ポケモン回復
 	_CALL				ev_tower_roomd_common_heal
 
 	_JUMP				ev_tower_roomd_aibtl_02
 	_END
 
-//�o�g���������p�����[�^�Z�b�g�R����
+//バトル勝利時パラメータセットコモン
 ev_tower_roomd_common_win_param:
-	//���E���h���X�V
+	//ラウンド数更新
 	_BTOWER_TOOLS		BTWR_SUB_INC_ROUND,BTWR_NULL_PARAM,FSW_ANSWER
 
-	//�N���A���Ă邩�`�F�b�N
+	//クリアしてるかチェック
 	_BTOWER_TOOLS		BTWR_SUB_IS_CLEAR,BTWR_NULL_PARAM,FSW_ANSWER
 	_RET
 
-//�N���A���Ė߂�Ƃ��̏���
+//クリアして戻るときの処理
 ev_tower_roomd_common_clear_ret:
-	//�����Ă���LOCAL0��1����
+	//勝ってたらLOCAL0に1を代入
 	_LDVAL				FSW_LOCAL0,1
 
 	_JUMP				ev_tower_roomd_common_rec_win
 	_END
 
-//�v���C���[������@�G�l�~�[�ޏ�
+//プレイヤー勝利後　エネミー退場
 ev_tower_roomd_comanm_eneout:
 	_OBJ_ANIME			OBJID_ENEMY,anm_d31r0206_enemy1_03
 	_OBJ_ANIME			OBJID_ENEMY2,anm_d31r0206_enemy2_03
 	_OBJ_ANIME_WAIT
 
-	/*�ΐ�g���[�i�[�폜*/
+	/*対戦トレーナー削除*/
 	_ACTOR_FREE			OBJID_ENEMY
 	_ACTOR_FREE			OBJID_ENEMY2
 	_CHAR_RESOURCE_FREE	FSW_PARAM2
 	_CHAR_RESOURCE_FREE	FSW_PARAM3
 
-	//�o�j�b�V���t���OON
+	//バニッシュフラグON
 	//_FLAG_SET			FV_OBJID_ENEMY
 	//_FLAG_SET			FV_OBJID_ENEMY2
 	//_OBJ_DEL			OBJID_ENEMY
 	//_OBJ_DEL			OBJID_ENEMY2
 	_RET
 
-//�v���C���[������@�v���C���[�U�����&�ē���߂Â�
+//プレイヤー勝利後　プレイヤー振り向き&案内嬢近づき
 ev_tower_roomd_comanm_btl_end:
 	_OBJ_ANIME			FSW_LOCAL1,anm_d31r0206_player_03
 	_OBJ_ANIME			FSW_LOCAL2,anm_d31r0206_player_03
@@ -1068,16 +1068,16 @@ ev_tower_roomd_common_heal:
 
 
 /********************************************************************/
-/*					AI�}���`�o�g���Ăяo���R����					*/
+/*					AIマルチバトル呼び出しコモン					*/
 /********************************************************************/
 ev_tower_roomd_common_aibtl_call:
-	//���I
+	//抽選
 	_BTOWER_TOOLS		BTWR_SUB_CHOICE_BTL_PARTNER,BTWR_NULL_PARAM,FSW_ANSWER
 
-	//�G�l�~�[����
+	//エネミー入場
 	_CALL				ev_tower_roomd_comanm_enein
 
-	//�ΐ�O�䎌
+	//対戦前台詞
 	_CALL				ev_tower_roomd_comanm_ene1_msganm
 	_TALKMSG_BTOWER_APPEAR	0
 	_AB_KEYWAIT
@@ -1088,7 +1088,7 @@ ev_tower_roomd_common_aibtl_call:
 	_AB_KEYWAIT
 	_TALK_CLOSE
 
-	//�݂��ɋ߂Â�
+	//互いに近づく
 	_CALL				ev_tower_roomd_comanm_btl_start
 
 	//_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -1096,7 +1096,7 @@ ev_tower_roomd_common_aibtl_call:
 	_ENCOUNT_EFFECT		FR_ENCOUNT_EFF_WIPE
 
 #ifndef DEBUG_BTL_OFF	/************************************************/
-	/*�퓬�Ăяo��*/
+	/*戦闘呼び出し*/
 	//_BTOWER_TOOLS		BTWR_SUB_LOCAL_BTL_CALL,BTWR_NULL_PARAM,FSW_ANSWER
 	_BTOWER_BATTLE_CALL
 	//_TRAINER_LOSE_CHECK FSW_ANSWER
@@ -1104,14 +1104,14 @@ ev_tower_roomd_common_aibtl_call:
 	_BTOWER_CALL_GET_RESULT	FSW_LOCAL3
 #endif	/****************************************************************/
 
-	/*�t�F�[�h�C��*/
+	/*フェードイン*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	_RET
 
-//�G�l�~�[����
+//エネミー入場
 ev_tower_roomd_comanm_enein:
-	//�L�����w��
+	//キャラ指定
 	_BTOWER_TOOLS		BTWR_SUB_GET_ENEMY_OBJ,0,FSW_PARAM2
 	_BTOWER_TOOLS		BTWR_SUB_GET_ENEMY_OBJ,1,FSW_PARAM3
 	//_BTOWER_TOOLS		BTWR_SUB_GET_ENEMY_OBJ,0,FSW_ANSWER
@@ -1119,10 +1119,10 @@ ev_tower_roomd_comanm_enein:
 	//_BTOWER_TOOLS		BTWR_SUB_GET_ENEMY_OBJ,1,FSW_ANSWER
 	//_LDWK				OBJCHRWORK3,FSW_ANSWER
 
-	_CHAR_RESOURCE_SET	enemy_set_resource				/*�L�����N�^���\�[�X�o�^*/
-	_ACTOR_SET			enemy_set_actor					/*�A�N�^�[�o�^*/
+	_CHAR_RESOURCE_SET	enemy_set_resource				/*キャラクタリソース登録*/
+	_ACTOR_SET			enemy_set_actor					/*アクター登録*/
 
-	//�o�j�b�V���t���OOFF
+	//バニッシュフラグOFF
 	//_FLAG_RESET		FV_OBJID_ENEMY
 	//_FLAG_RESET		FV_OBJID_ENEMY2
 	//_OBJ_ADD			OBJID_ENEMY
@@ -1132,7 +1132,7 @@ ev_tower_roomd_comanm_enein:
 	_OBJ_ANIME_WAIT
 	_RET
 
-//�o�g���O�@�݂��Ɉ���߂Â�
+//バトル前　互いに一歩近づく
 ev_tower_roomd_comanm_btl_start:
 	_OBJ_ANIME			FSW_LOCAL1,anm_d31r0206_player_02
 	_OBJ_ANIME			FSW_LOCAL2,anm_d31r0206_player_02
@@ -1141,7 +1141,7 @@ ev_tower_roomd_comanm_btl_start:
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*�o�g���O���b�Z�[�W�\�����ɂ��̏ꑫ����*/
+/*バトル前メッセージ表示時にその場足踏み*/
 ev_tower_roomd_comanm_ene1_msganm:
 	_OBJ_ANIME			OBJID_ENEMY,anm_d31r0206_enemy_03
 	_OBJ_ANIME_WAIT
@@ -1154,16 +1154,16 @@ ev_tower_roomd_comanm_ene2_msganm:
 
 
 /********************************************************************/
-/*				SIO�}���`�o�g���Ăяo���R����						*/
+/*				SIOマルチバトル呼び出しコモン						*/
 /********************************************************************/
 ev_tower_roomd_common_siobtl_call:
-	//���I
+	//抽選
 	_BTOWER_TOOLS		BTWR_SUB_CHOICE_BTL_PARTNER,BTWR_NULL_PARAM,FSW_ANSWER
 
-	//�G�l�~�[����
+	//エネミー入場
 	_CALL				ev_tower_roomd_comanm_enein
 
-	//�ΐ�O�䎌
+	//対戦前台詞
 	_CALL				ev_tower_roomd_comanm_ene1_msganm
 	_TALKMSG_BTOWER_APPEAR	0
 	_TIME_WAIT			30,FSW_ANSWER
@@ -1174,13 +1174,13 @@ ev_tower_roomd_common_siobtl_call:
 	_TIME_WAIT			30,FSW_ANSWER
 	_TALK_CLOSE
 	
-	//�݂��ɋ߂Â�
+	//互いに近づく
 	_CALL				ev_tower_roomd_comanm_btl_start
 
-	/*�u���΂炭���܂����������v*/
+	/*「しばらくおまちください」*/
 	_TALKMSG_NOSKIP		msg_tower_118
 
-	//�ʐM����
+	//通信同期
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	TOWER_COMM_MULTI_BATTLE_START
 	
@@ -1188,7 +1188,7 @@ ev_tower_roomd_common_siobtl_call:
 	_ENCOUNT_EFFECT		FR_ENCOUNT_EFF_WIPE
 
 #ifndef DEBUG_BTL_OFF	/************************************************/
-	/*�퓬�Ăяo��*/
+	/*戦闘呼び出し*/
 	//_BTOWER_TOOLS		BTWR_SUB_LOCAL_BTL_CALL,BTWR_NULL_PARAM,FSW_ANSWER
 	_BTOWER_BATTLE_CALL
 	//_TRAINER_LOSE_CHECK FSW_ANSWER
@@ -1196,63 +1196,63 @@ ev_tower_roomd_common_siobtl_call:
 	_BTOWER_CALL_GET_RESULT	FSW_LOCAL3
 #endif	/****************************************************************/
 
-	/*�t�F�[�h�C��*/
+	/*フェードイン*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	_RET
 
-//�{���Ƀ��^�C�A��I�����邩�ǂ����H
+//本当にリタイアを選択するかどうか？
 ev_tower_roomd_is_sio_retire:
 	_TALKMSG			msg_tower_84
 	_YES_NO_WIN_EX		FSW_ANSWER
 
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_siobtl_02
 
-	//�L�����Z�����I�΂ꂽ�̂�FSW_LOCAL0��1����
+	//キャンセルが選ばれたのでFSW_LOCAL0に1を代入
 	_LDVAL				FSW_LOCAL0,1
 	_JUMP				ev_tower_roomd_siobtl_03
 	_END
 
-//�{���Ƀ��^�C�A
+//本当にリタイア
 ev_tower_roomd_sio_retire:
 	_TALKMSG			msg_tower_113
 
-	//�E�F�C�g
+	//ウェイト
 	_TIME_WAIT			30,FSW_ANSWER
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	TOWER_COMM_MULTI_RETIRE_WAIT
 
 	_TALK_CLOSE
-	_JUMP				ev_tower_roomd_common_retire	//���^�C�A
+	_JUMP				ev_tower_roomd_common_retire	//リタイア
 	_END
 
 
 /********************************************************************/
-/*						�L�^����(�ʐM)								*/
+/*						記録する(通信)								*/
 /********************************************************************/
 ev_tower_roomd_is_sio_rec:
 
-	/*���C�A���X�ŁADP���܂܂�Ă�����A�L�^�����͂���Ȃ�*/
+	/*ワイアレスで、DPが含まれていたら、記録処理はいらない*/
 	_CALL				ev_tower_multi_dp_check
-	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_siobtl_02	/*�L�^�Ȃ�*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_roomd_siobtl_02	/*記録なし*/
 
-	/*������ROM���������T�[�o�[�o�[�W�����œ����Ă������́u���낭����v�o���Ȃ�*/
+	/*自分のROMよりも高いサーバーバージョンで動いていた時は「きろくする」出さない*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_tower_roomd_siobtl_02	/*�L�^�Ȃ�*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_tower_roomd_siobtl_02	/*記録なし*/
 
 	_JUMP				ev_tower_roomd_is_sio_rec_sub
 	_END
 
 ev_tower_roomd_is_sio_rec_sub:
-	/*�u�����قǂ́@�킢���@�L�^���܂����H�v*/
+	/*「さきほどの　戦いを　記録しますか？」*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_room_rec_msg1		/*�Ȃ���*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower6_room_rec_msg2		/*���鎞*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower6_room_rec_msg1		/*ない時*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower6_room_rec_msg2		/*ある時*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER									/*�������f�t�H���g*/
+	_YES_NO_WIN_EX	FSW_ANSWER									/*いいえデフォルト*/
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_tower_roomd_siobtl_02
 
-	_CALL			ev_tower6_room_rec_win		/*�����̋L�^*/
+	_CALL			ev_tower6_room_rec_win		/*勝利の記録*/
 	_JUMP			ev_tower_roomd_siobtl_02
 	_END
 
@@ -1267,8 +1267,8 @@ ev_d31r0206_flag_change:
 	//_FLAG_SET			FV_D31R0206_TRAINER02
 
 	/*
-	  �ʐM�̎q�̎��͐e�q�̍��E�ʒu�����ꂩ����
-	  �J�����gID�擾�֐��͔�ڑ����ɌĂԂ�0���Ԃ�
+	  通信の子の時は親子の左右位置をいれかえる
+	  カレントID取得関数は非接続時に呼ぶと0が返る
 	*/
 
 	//_COMM_GET_CURRENT_ID	FSW_LOCAL0
@@ -1277,7 +1277,7 @@ ev_d31r0206_flag_change:
 	_BTOWER_TOOLS		BTWR_SUB_GET_MINE_OBJ,BTWR_PTCODE_MINE,FSW_PARAM0
 	_BTOWER_TOOLS		BTWR_SUB_GET_MINE_OBJ,BTWR_PTCODE_MINE2,FSW_PARAM1
 
-	/*��ڑ����Ɛe�̂Ƃ�*/
+	/*非接続時と親のとき*/
 	//_BTOWER_TOOLS		BTWR_SUB_GET_MINE_OBJ,BTWR_PTCODE_MINE,FSW_PARAM2
 	//_BTOWER_TOOLS		BTWR_SUB_GET_MINE_OBJ,BTWR_PTCODE_MINE,FSW_LOCAL0
 	//_LDWK				OBJCHRWORK0,FSW_LOCAL0
@@ -1289,7 +1289,7 @@ ev_d31r0206_flag_change:
 ev_d31r0206_flag_change_end:
 	_RET
 
-/*�ʐM�̎q�̎�*/
+/*通信の子の時*/
 ev_d31r0206_flag_change_child:
 	_BTOWER_TOOLS		BTWR_SUB_GET_MINE_OBJ,BTWR_PTCODE_MINE,FSW_PARAM0
 	_BTOWER_TOOLS		BTWR_SUB_GET_MINE_OBJ,BTWR_PTCODE_MINE2,FSW_PARAM1
@@ -1320,7 +1320,7 @@ ev_d31r0206_obj_change_02:
 
 ev_d31r0206_obj_player:
 	//_OBJ_INVISIBLE	OBJID_MINE
-	//���}�X���炷
+	//半マスずらす
 	//_PLAYER_POS_OFFSET_SET	8,0,0
 	_RET
 
@@ -1335,17 +1335,17 @@ ev_d31r0206_obj_char_set:
 
 
 /********************************************************************/
-/*		���C�A���X�ŁADP���܂܂�Ă�����A�L�^�����͂���Ȃ�		*/
+/*		ワイアレスで、DPが含まれていたら、記録処理はいらない		*/
 /********************************************************************/
 ev_tower_multi_dp_check:
-	/*���C�A���X�̎�*/
+	/*ワイアレスの時*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_COMM_MULTI,ev_tower_roomd_is_sio_rec_check1
 
 	_LDVAL				FSW_ANSWER,0
 	_RET
 
-/*���C�A���X�ŁADP���܂܂�Ă�����A�L�^�����͂���Ȃ�*/
+/*ワイアレスで、DPが含まれていたら、記録処理はいらない*/
 ev_tower_roomd_is_sio_rec_check1:
 	_CHECK_DP_ROM_CODE	FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_multi_dp_check_ari
@@ -1354,7 +1354,7 @@ ev_tower_roomd_is_sio_rec_check1:
 	_RET
 
 ev_tower_multi_dp_check_ari:
-	_LDVAL				FSW_ANSWER,1		/*DP����*/
+	_LDVAL				FSW_ANSWER,1		/*DPあり*/
 	_RET
 
 

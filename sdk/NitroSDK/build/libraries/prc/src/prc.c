@@ -18,22 +18,22 @@
   do-indent.
 
   Revision 1.5  2004/07/19 06:52:06  seiki_masashi
-  ¯•Êq–¼‚Ì®—
+  è­˜åˆ¥å­åã®æ•´ç†
 
   Revision 1.4  2004/06/25 13:32:11  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€ 'Standard' ‚Ì’Ç‰Á
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  'Standard' ã®è¿½åŠ 
 
   Revision 1.3  2004/06/24 08:07:34  seiki_masashi
-  PRCi_Init ‚Ì2dŒÄ‚Ño‚µ‚É‘Î‰
+  PRCi_Init ã®2é‡å‘¼ã³å‡ºã—ã«å¯¾å¿œ
 
   Revision 1.2  2004/06/24 07:03:39  seiki_masashi
-  ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ğ•ªŠ„E®—‚µ‚Ü‚µ‚½
+  ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²ãƒ»æ•´ç†ã—ã¾ã—ãŸ
 
   Revision 1.1  2004/06/23 11:59:30  seiki_masashi
   add 'PRC*' to SDK
 
   Revision 1.3  2004/06/17 02:30:29  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚Ì·‚µ‘Ö‚¦‚ğ—eˆÕ‚É‚·‚é‚½‚ß‚É prc_algo_* ‚É•ªŠ„‚µ‚Ü‚µ‚½
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®å·®ã—æ›¿ãˆã‚’å®¹æ˜“ã«ã™ã‚‹ãŸã‚ã« prc_algo_* ã«åˆ†å‰²ã—ã¾ã—ãŸ
 
   Revision 1.2  2004/06/17 00:52:36  seiki_masashi
   PRC_InitPrototypeDBEX, PRC_InitInputPatternEX
@@ -64,8 +64,8 @@ static BOOL PRCi_Initialized = FALSE;
 /*---------------------------------------------------------------------------*
   Name:         PRCi_Init
 
-  Description:  }Œ`”F¯ API ‚ğ‰Šú‰»‚µ‚Ü‚·.
-                Še”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚Ì‰Šú‰»ƒ‹[ƒ`ƒ“‚©‚çÅ‰‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·.
+  Description:  å›³å½¢èªè­˜ API ã‚’åˆæœŸåŒ–ã—ã¾ã™.
+                å„èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®åˆæœŸåŒ–ãƒ«ãƒ¼ãƒãƒ³ã‹ã‚‰æœ€åˆã«å‘¼ã³å‡ºã•ã‚Œã¾ã™.
 
   Arguments:    None.
 
@@ -84,12 +84,12 @@ void PRCi_Init(void)
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetEntryStrokes
 
-  Description:  Œ©–{DB‚ÆŒ©–{DBƒGƒ“ƒgƒŠ‚©‚çA“_—ñƒf[ƒ^‚ğ“¾‚Ü‚·.
+  Description:  è¦‹æœ¬DBã¨è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã‹ã‚‰ã€ç‚¹åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã¾ã™.
 
-  Arguments:    strokes         “¾‚ç‚ê‚½“_—ñƒf[ƒ^.
-                                ‘‚«Š·‚¦‚Ä‚Í‚¢‚¯‚Ü‚¹‚ñ.
-                prototypeList   Œ©–{ƒpƒ^[ƒ“‚Ìˆê——.
-                entry           Œ©–{DBƒGƒ“ƒgƒŠ.
+  Arguments:    strokes         å¾—ã‚‰ã‚ŒãŸç‚¹åˆ—ãƒ‡ãƒ¼ã‚¿.
+                                æ›¸ãæ›ãˆã¦ã¯ã„ã‘ã¾ã›ã‚“.
+                prototypeList   è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§.
+                entry           è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒª.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -114,12 +114,12 @@ PRC_GetEntryStrokes(PRCStrokes *strokes,
 /*---------------------------------------------------------------------------*
   Name:         PRC_CopyStrokes
 
-  Description:  “_—ñƒf[ƒ^‚ğƒfƒB[ƒvƒRƒs[‚µ‚Ü‚·.
+  Description:  ç‚¹åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ‡ã‚£ãƒ¼ãƒ—ã‚³ãƒ”ãƒ¼ã—ã¾ã™.
 
-  Arguments:    srcstrokes         ƒRƒs[Œ³‚Ì PRC_Strokes \‘¢‘Ì
-                dststrokes         ƒRƒs[æ‚Ì PRC_Strokes \‘¢‘Ì.
+  Arguments:    srcstrokes         ã‚³ãƒ”ãƒ¼å…ƒã® PRC_Strokes æ§‹é€ ä½“
+                dststrokes         ã‚³ãƒ”ãƒ¼å…ˆã® PRC_Strokes æ§‹é€ ä½“.
 
-  Returns:      ƒRƒs[‚Å‚«‚½‚ç TRUE.
+  Returns:      ã‚³ãƒ”ãƒ¼ã§ããŸã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 BOOL PRC_CopyStrokes(const PRCStrokes *srcStrokes, PRCStrokes *dstStrokes)
 {

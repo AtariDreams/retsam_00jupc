@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d17r0104evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d17r0104_init_change
 _EVENT_DATA		ev_d17r0104_legend_01
@@ -51,7 +51,7 @@ ev_d17r0104_init_change_obj_del:
 
 
 /********************************************************************/
-/*		ƒLƒ}ƒCƒ‰ƒ“ƒCƒxƒ“ƒgŠJŽn(‚â‚Ô‚ê‚½¢ŠE‚Å•ßŠl‚µ‚È‚©‚Á‚½ê‡)	*/
+/*		ã‚­ãƒžã‚¤ãƒ©ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹(ã‚„ã¶ã‚ŒãŸä¸–ç•Œã§æ•ç²ã—ãªã‹ã£ãŸå ´åˆ)	*/
 /********************************************************************/
 ev_d17r0104_legend_01:
 	_EVENT_START
@@ -63,7 +63,7 @@ ev_d17r0104_legend_01:
 	_TALK_KEYWAIT	msg_d17r0104_sppoke10_01
 	_TALK_CLOSE
 
-	//í“¬ŠJŽn
+	//æˆ¦é—˜é–‹å§‹
 	_FLAG_SET		FE_INIT_CHANGE_OBJ_DEL
 	_SP_WILD_BTL_SET	MONSNO_KIMAIRAN,47
 	_FLAG_RESET		FE_INIT_CHANGE_OBJ_DEL
@@ -71,40 +71,40 @@ ev_d17r0104_legend_01:
 	_LOSE_CHECK		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d17r0104_legend_lose
 
-	/*DP‚Å‚Í“|‚µ‚½‚çI—¹‚¾‚Á‚½‚ªAƒvƒ‰ƒ`ƒi‚Í•ßŠl‚·‚é‚Ü‚Å•œŠˆ‚·‚é*/
+	/*DPã§ã¯å€’ã—ãŸã‚‰çµ‚äº†ã ã£ãŸãŒã€ãƒ—ãƒ©ãƒãƒŠã¯æ•ç²ã™ã‚‹ã¾ã§å¾©æ´»ã™ã‚‹*/
 	_HAIFU_POKE_RETRY_CHECK SCWK_ANSWER
 	//_SEACRET_POKE_RETRY_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d17r0104_legend_capture_ng
 	_JUMP			ev_d17r0104_legend_event_clear
 	_END
 
-//ƒLƒ}ƒCƒ‰ƒ“•ß‚Ü‚¦‚½
+//ã‚­ãƒžã‚¤ãƒ©ãƒ³æ•ã¾ãˆãŸ
 ev_d17r0104_legend_event_clear:
-	//ƒNƒŠƒAƒtƒ‰ƒOon
+	//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°on
 	_FLAG_SET		FE_D17R0104_LEGEND_CLEAR
 	_FLAG_SET		FV_D17R0104_LEGEND
-	/*ŽŸ—ˆ‚½‚ç‚²–J”üƒAƒCƒeƒ€‚ª‚ ‚é*/
+	/*æ¬¡æ¥ãŸã‚‰ã”è¤’ç¾Žã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚‹*/
 	//_FLAG_RESET		FV_D17R0104_ITEM
 	_EVENT_END
 	_END
 
-/*ƒLƒ}ƒCƒ‰ƒ““¦‚µ‚½A“|‚µ‚½*/
+/*ã‚­ãƒžã‚¤ãƒ©ãƒ³é€ƒã—ãŸã€å€’ã—ãŸ*/
 ev_d17r0104_legend_capture_ng:
 	_TALKMSG		msg_d17r0104_sppoke10_02
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	/*c10r0113.ev‚Å“a“°“ü‚èŒã‚ÉÄ’§í‚Å‚«‚é*/
+	/*c10r0113.evã§æ®¿å ‚å…¥ã‚Šå¾Œã«å†æŒ‘æˆ¦ã§ãã‚‹*/
 
-	/*“¦‚µ‚½ê‡AŽŸ—ˆ‚½‚ç‚¢‚é*/
+	/*é€ƒã—ãŸå ´åˆã€æ¬¡æ¥ãŸã‚‰ã„ã‚‹*/
 	//_FLAG_RESET	FV_D17R0104_LEGEND
 
 	_EVENT_END
 	_END
 
-/*‘S–Å*/
+/*å…¨æ»…*/
 ev_d17r0104_legend_lose:
-	/*“¦‚µ‚½ê‡AŽŸ—ˆ‚½‚ç‚¢‚é*/
+	/*é€ƒã—ãŸå ´åˆã€æ¬¡æ¥ãŸã‚‰ã„ã‚‹*/
 	_FLAG_RESET		FV_D17R0104_LEGEND
 
 	_NORMAL_LOSE	
@@ -113,53 +113,53 @@ ev_d17r0104_legend_lose:
 
 
 /********************************************************************/
-/*	ƒAƒCƒeƒ€Žæ“¾ƒCƒxƒ“ƒgŠJŽn										*/
+/*	ã‚¢ã‚¤ãƒ†ãƒ å–å¾—ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹										*/
 /********************************************************************/
 ev_d17r0104_item_01:
 	_TALK_START
 	_IFVAL_JUMP		WK_D17SYSTEM_PATH_MAP,EQ,3,ev_d17r0104_item_get01
 	_IFVAL_JUMP		WK_D17SYSTEM_PATH_MAP,LT,15,ev_d17r0104_item_get02
-	//‚Ù‚µ‚Ì‚·‚È
+	//ã»ã—ã®ã™ãª
 	_LDVAL			SCWK_TEMP0,ITEM_HOSINOSUNA
 
 ev_d17r0104_item_decide:
-	/*”‘ã“ü*/
+	/*æ•°ä»£å…¥*/
 	_LDVAL			SCWK_TEMP1,1
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d17r0104_item_get_failed
 
-	//ƒAƒCƒeƒ€ƒQƒbƒg SCWK_TEMP0‚ÉƒAƒCƒeƒ€No,SCWK_TEMP1‚ÉŒÂ”‘ã“ü‚µ‚ÄŒÄ‚Ño‚·
-//	_CHG_COMMON_SCR	SCRID_ITEM_EVENTKEYWAIT	/*¥‚ ‚è*/
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT	/*¥‚È‚µ*/
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚²ãƒƒãƒˆ SCWK_TEMP0ã«ã‚¢ã‚¤ãƒ†ãƒ No,SCWK_TEMP1ã«å€‹æ•°ä»£å…¥ã—ã¦å‘¼ã³å‡ºã™
+//	_CHG_COMMON_SCR	SCRID_ITEM_EVENTKEYWAIT	/*â–¼ã‚ã‚Š*/
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT	/*â–¼ãªã—*/
 	_TALK_CLOSE
 
-	//ƒAƒCƒeƒ€OBJ‰B‚·
+	//ã‚¢ã‚¤ãƒ†ãƒ OBJéš ã™
 	_OBJ_DEL	D17R0104_ITEM
 
-	//ŽŸ—ˆ‚½‚ç‚à‚¤ˆê“xo‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­(d17r0101.ev‚ÉˆÚ“®)
+	//æ¬¡æ¥ãŸã‚‰ã‚‚ã†ä¸€åº¦å‡ºã‚‹ã‚ˆã†ã«ã—ã¦ãŠã(d17r0101.evã«ç§»å‹•)
 	//_FLAG_RESET	FV_D17R0104_ITEM
 	_TALK_END
 	_END
 
 ev_d17r0104_item_get01:
-	_LDVAL			SCWK_TEMP0,ITEM_REIKAINONUNO	//—ìŠE‚Ì•z
+	_LDVAL			SCWK_TEMP0,ITEM_REIKAINONUNO	//éœŠç•Œã®å¸ƒ
 	_JUMP			ev_d17r0104_item_decide
 
 ev_d17r0104_item_get02:
-	_LDVAL			SCWK_TEMP0,ITEM_KITYOUNAHONE	//‚«‚¿‚å‚¤‚Èœ
+	_LDVAL			SCWK_TEMP0,ITEM_KITYOUNAHONE	//ãã¡ã‚‡ã†ãªéª¨
 	_JUMP			ev_d17r0104_item_decide
 
-/*ƒoƒbƒN‚ª‚¢‚Á‚Ï‚¢*/
+/*ãƒãƒƒã‚¯ãŒã„ã£ã±ã„*/
 ev_d17r0104_item_get_failed:
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL	/*‚´‚ñ‚Ë‚ñ@ƒoƒbƒN‚ª‚¢‚Á‚Ï‚¢‚¾*/
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL	/*ã–ã‚“ã­ã‚“ã€€ãƒãƒƒã‚¯ãŒã„ã£ã±ã„ã */
 	_TALK_CLOSE
 	_TALK_END
 	_END
 
 
 /********************************************************************/
-/*					ƒŒƒR[ƒhŽQÆƒCƒxƒ“ƒgŠJŽn						*/
+/*					ãƒ¬ã‚³ãƒ¼ãƒ‰å‚ç…§ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹						*/
 /********************************************************************/
 ev_d17r0104_record_01:
 	_TALK_START
@@ -171,7 +171,7 @@ ev_d17r0104_record_01:
 
 
 /********************************************************************/
-/*					‚â‚Ô‚ê‚½‚¹‚©‚¢‚Öƒ[ƒv‚·‚éŒŠ					*/
+/*					ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã¸ãƒ¯ãƒ¼ãƒ—ã™ã‚‹ç©´					*/
 /********************************************************************/
 ev_d17r0104_warp:
 	_TALK_START
@@ -180,11 +180,11 @@ ev_d17r0104_warp:
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_d17r0104_warp_01
 
-	/*u‚¢‚¢‚¦v*/
+	/*ã€Œã„ã„ãˆã€*/
 	_JUMP			ev_d17r0104_warp_end
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_d17r0104_warp_01:
 	_PLAYER_NAME	0
 	_TALKMSG		msg_d17r0104_sppoke10_04

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		touch_subwindow.c
- *	@brief		ƒTƒu‰æ–Ê@G‚ê‚éƒEƒBƒ“ƒhƒEƒ{ƒ^ƒ“ƒVƒXƒeƒ€
+ *	@brief		ã‚µãƒ–ç”»é¢ã€€è§¦ã‚Œã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒœã‚¿ãƒ³ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2006.03.23
  *
@@ -26,49 +26,49 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// Šeƒoƒbƒtƒ@Eƒ[ƒN‚Ì”
+// å„ãƒãƒƒãƒ•ã‚¡ãƒ»ãƒ¯ãƒ¼ã‚¯ã®æ•°
 enum{		
 	TOUCH_SW_BUF_YES,
 	TOUCH_SW_BUF_NO,
 	TOUCH_SW_BUF_NUM,
 
 
-	TOUCH_SW_BUF_NO_TOUCH,	// ƒ^ƒbƒ`‚³‚ê‚½‚©ƒ`ƒFƒbƒN‚ÌG‚Á‚Ä‚¢‚È‚¢’è”
+	TOUCH_SW_BUF_NO_TOUCH,	// ã‚¿ãƒƒãƒã•ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯æ™‚ã®è§¦ã£ã¦ã„ãªã„å®šæ•°
 };
-#define TOUCH_SW_Y_OFS	( 40 )	// NO‚Ì•û‚ÌƒIƒtƒZƒbƒg
+#define TOUCH_SW_Y_OFS	( 40 )	// NOã®æ–¹ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ŠÖŒW
-#define TOUCH_SW_ANIME_NUM		( 4 )		// ƒAƒjƒ[ƒVƒ‡ƒ“”
-#define TOUCH_SW_ANIME_SP		( FX32_HALF )// ƒAƒjƒƒXƒs[ƒh
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢ä¿‚
+#define TOUCH_SW_ANIME_NUM		( 4 )		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ•°
+#define TOUCH_SW_ANIME_SP		( FX32_HALF )// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
 #define TOUCH_SW_ANIME_TIMING	( FX32_ONE * 1 )
 
-// ¡‚Ìƒ[ƒN“à‚Ìó‘Ô
+// ä»Šã®ãƒ¯ãƒ¼ã‚¯å†…ã®çŠ¶æ…‹
 enum{
-	TOUCH_SW_PARAM_NODATA,	// ‹ó
-	TOUCH_SW_PARAM_DO,		// Àsƒf[ƒ^Ši”[
+	TOUCH_SW_PARAM_NODATA,	// ç©º
+	TOUCH_SW_PARAM_DO,		// å®Ÿè¡Œãƒ‡ãƒ¼ã‚¿æ ¼ç´
 };
 
-// VRAM“]‘—ƒ^ƒXƒN
+// VRAMè»¢é€ã‚¿ã‚¹ã‚¯
 #define TOUCH_SW_VRAM_TRANS_TSK_PRI	( 128 )
 
 #define TOUCH_FLG_INIT	( 0x8 )
@@ -76,11 +76,11 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒAƒjƒƒf[ƒ^
+//	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	const fx32* cp_anime_tbl;
@@ -90,38 +90,38 @@ typedef struct {
 
 
 //-------------------------------------
-//	ƒ{ƒ^ƒ“ƒf[ƒ^‰Šú‰»ƒf[ƒ^
+//	ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	GF_BGL_INI* ini;
-	u32 bg_frame;			// BGƒiƒ“ƒo[
-	u32 fileidx;	// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹
-	u32 scrn_arcidx[ TOUCH_SW_ANIME_NUM ];	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	u32 char_offs;	// ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
-	u32 pltt_offs;	// ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
-	const fx32* cp_anime_tbl;	// ƒAƒjƒƒe[ƒuƒ‹
-	u32 tbl_num;				// ƒe[ƒuƒ‹”
-	u8 ofs_x;		// ‚˜
-	u8 ofs_y;		// ‚™
+	u32 bg_frame;			// BGãƒŠãƒ³ãƒãƒ¼
+	u32 fileidx;	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«
+	u32 scrn_arcidx[ TOUCH_SW_ANIME_NUM ];	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u32 char_offs;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32 pltt_offs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	const fx32* cp_anime_tbl;	// ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«
+	u32 tbl_num;				// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+	u8 ofs_x;		// ï½˜
+	u8 ofs_y;		// ï½™
 } TOUCH_SW_BUTTON_PARAM;
 
 //-------------------------------------
-//	1ƒ{ƒ^ƒ“ƒf[ƒ^
+//	1ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	GF_BGL_INI* ini;
-	u32 bg_frame;			// BGƒiƒ“ƒo[
-	void* p_scrn_buff[ TOUCH_SW_ANIME_NUM ];		// ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@
-	NNSG2dScreenData* p_scrn[ TOUCH_SW_ANIME_NUM ];	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
+	u32 bg_frame;			// BGãƒŠãƒ³ãƒãƒ¼
+	void* p_scrn_buff[ TOUCH_SW_ANIME_NUM ];		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡
+	NNSG2dScreenData* p_scrn[ TOUCH_SW_ANIME_NUM ];	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
 	TOUCH_SW_ANIME anime;
-	u8 ofs_x;	// ‚˜À•W
-	u8 ofs_y;	// ‚™À•W
-	u8 anm_idx;	// ¡‚Ì”½‰f‚³‚ê‚Ä‚¢‚éƒXƒNƒŠ[ƒ“IDX
+	u8 ofs_x;	// ï½˜åº§æ¨™
+	u8 ofs_y;	// ï½™åº§æ¨™
+	u8 anm_idx;	// ä»Šã®åæ˜ ã•ã‚Œã¦ã„ã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³IDX
 	u8 dummy1;
 } TOUCH_SW_BUTTON;
 
 //-------------------------------------
-//	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—ƒ^ƒXƒN
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€ã‚¿ã‚¹ã‚¯
 //=====================================
 typedef struct {
 	GF_BGL_INI* ini;
@@ -132,45 +132,45 @@ typedef struct {
 } TOUCH_SW_CHARACTER_TRANS;
 
 //-------------------------------------
-//	Vƒuƒ‰ƒ“ƒN@ƒpƒŒƒbƒgƒf[ƒ^“]‘—ƒ^ƒXƒN
+//	Vãƒ–ãƒ©ãƒ³ã‚¯ã€€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€ã‚¿ã‚¹ã‚¯
 //=====================================
 typedef struct {
 	NNSG2dPaletteData* p_pltt;
 	void* p_buff;	
-	int pltype;	// ƒpƒŒƒbƒg“]‘—æ
+	int pltype;	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆ
 	int ofs;
 	int size;
 } TOUCH_SW_PALETTE_TRANS;
 
 
 //-------------------------------------
-//	ƒVƒXƒeƒ€ƒ[ƒN
+//	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _TOUCH_SW_SYS{
-	BUTTON_MAN* p_button_man;// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ
-	TP_HIT_TBL hit_tbl[ TOUCH_SW_BUF_NUM ];		// ƒ{ƒ^ƒ“ƒf[ƒ^
-	TOUCH_SW_BUTTON button[ TOUCH_SW_BUF_NUM ];	// ƒ{ƒ^ƒ“ƒf[ƒ^
-	GF_BGL_INI* p_bgl;		// BGLƒVƒXƒeƒ€ƒ[ƒN
-	u32 bg_frame;			// BGƒiƒ“ƒo[
-	u32 heapid;				// g—pƒq[ƒvID
-	fx32 anime_tbl[ TOUCH_SW_ANIME_NUM ];	// ƒAƒjƒƒe[ƒuƒ‹
-	u8 x;					// xÀ•Wi·¬×¸À’PˆÊj
-	u8 y;					// yÀ•Wi·¬×¸À’PˆÊj
-	u8 button_move_flag;	// ƒ{ƒ^ƒ““®ìƒtƒ‰ƒO
-	u8 now_work_param : 4;	// Œ»İ‚Ìƒ[ƒN“à‚Ìó‘Ô
-	u8 touch_flg: 4;		// ƒ^ƒbƒ`‚µ‚½uŠÔŠ´’m
+	BUTTON_MAN* p_button_man;// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£
+	TP_HIT_TBL hit_tbl[ TOUCH_SW_BUF_NUM ];		// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
+	TOUCH_SW_BUTTON button[ TOUCH_SW_BUF_NUM ];	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
+	GF_BGL_INI* p_bgl;		// BGLã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	u32 bg_frame;			// BGãƒŠãƒ³ãƒãƒ¼
+	u32 heapid;				// ä½¿ç”¨ãƒ’ãƒ¼ãƒ—ID
+	fx32 anime_tbl[ TOUCH_SW_ANIME_NUM ];	// ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«
+	u8 x;					// xåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
+	u8 y;					// yåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
+	u8 button_move_flag;	// ãƒœã‚¿ãƒ³å‹•ä½œãƒ•ãƒ©ã‚°
+	u8 now_work_param : 4;	// ç¾åœ¨ã®ãƒ¯ãƒ¼ã‚¯å†…ã®çŠ¶æ…‹
+	u8 touch_flg: 4;		// ã‚¿ãƒƒãƒã—ãŸç¬é–“æ„ŸçŸ¥
 };
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void TouchSW_CleanWork( TOUCH_SW_SYS* p_touch_sw, u32 heapid );
 
 //-------------------------------------
-//	‚ ‚é’ö“xˆ—‚ğ‚Ü‚Æ‚ß‚½ŠÖ”
+//	ã‚ã‚‹ç¨‹åº¦å‡¦ç†ã‚’ã¾ã¨ã‚ãŸé–¢æ•°
 //=====================================
 static void TouchSW_SYS_CharTrans( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PARAM* cp_param );
 static void TouchSW_SYS_PlttTrans( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PARAM* cp_param );
@@ -178,12 +178,12 @@ static void TouchSW_SYS_ButtonInit( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PAR
 static void TouchSW_SYS_ButtonManaInit( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PARAM* cp_param );
 
 //-------------------------------------
-//	ƒ{ƒ^ƒ““®ìƒVƒXƒeƒ€
+//	ãƒœã‚¿ãƒ³å‹•ä½œã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 static void TouchSW_ButtonCallBack( u32 button_no, u32 event, void* p_work );
 
 //-------------------------------------
-//	ƒ{ƒ^ƒ“ƒ[ƒN‘€ìŠÖ”ŒS
+//	ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯æ“ä½œé–¢æ•°éƒ¡
 //=====================================
 static void TouchSW_ButtonInit( TOUCH_SW_BUTTON* p_bttn, const TOUCH_SW_BUTTON_PARAM* cp_param, u32 heapid );
 static BOOL TouchSW_ButtonMain( TOUCH_SW_BUTTON* p_bttn );
@@ -192,7 +192,7 @@ static void TouchSW_FrameScrnSet( TOUCH_SW_BUTTON* p_bttn );
 
 
 //-------------------------------------
-//	ƒAƒjƒƒf[ƒ^‘€ìŠÖ”
+//	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿æ“ä½œé–¢æ•°
 //=====================================
 static void TouchSW_AnimeInit( TOUCH_SW_ANIME* p_anime, const fx32* cp_anime_tbl, u32 tbl_num );
 static void TouchSW_AnimeAdd( TOUCH_SW_ANIME* p_anime, fx32 frame );
@@ -201,7 +201,7 @@ static fx32 TouchSW_AnimeGet( const TOUCH_SW_ANIME* cp_anime );
 static u32 TouchSW_AnimeIdxGet( const TOUCH_SW_ANIME* cp_anime );
 
 //-------------------------------------
-//	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^@ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã€€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 //=====================================
 static void TouchSW_CharTransReq( u32 fileIdx, u32 dataIdx, GF_BGL_INI* bgl, u32 frm, u32 offs, u32 heapID );
 static void TouchSW_PlttTransReq( u32 fileIdx, u32 dataIdx, PALTYPE palType, u32 offs, u32 transSize, u32 heapID );
@@ -210,7 +210,7 @@ static void TouchSW_PlttTransTsk( TCB_PTR tcb, void* p_work );
 
 
 //-------------------------------------
-//	ƒXƒNƒŠ[ƒ“‚Ì”½‰f‚ğs‚¤
+//	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®åæ˜ ã‚’è¡Œã†
 //=====================================
 static void TouchSW_ScrnSet( GF_BGL_INI* bg_ini, int frame, const NNSG2dScreenData* scrn, int x, int y );
 static void TouchSW_ScrnCharOfsSet( const NNSG2dScreenData* scrn, int char_offs );
@@ -218,11 +218,11 @@ static void TouchSW_ScrnPlttOfsSet( const NNSG2dScreenData* scrn, int pltt_offs 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒ[ƒNì¬
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *	
- *	@param	heapid	g—pƒq[ƒvID 
+ *	@param	heapid	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—ID 
  *	
- *	@return	ƒ[ƒNƒ|ƒCƒ“ƒ^
+ *	@return	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 TOUCH_SW_SYS* TOUCH_SW_AllocWork( u32 heapid )
@@ -230,7 +230,7 @@ TOUCH_SW_SYS* TOUCH_SW_AllocWork( u32 heapid )
 	TOUCH_SW_SYS* p_touch_sw;
 	p_touch_sw = sys_AllocMemory( heapid, sizeof(TOUCH_SW_SYS) );
 
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	TouchSW_CleanWork( p_touch_sw, heapid );
 
 	return p_touch_sw;
@@ -238,14 +238,14 @@ TOUCH_SW_SYS* TOUCH_SW_AllocWork( u32 heapid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒ[ƒN”jŠü
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *	
- *	@param	p_touch_sw	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_touch_sw	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void TOUCH_SW_FreeWork( TOUCH_SW_SYS* p_touch_sw )
 {
-	// Àsƒf[ƒ^Ši”[Ï‚İ‚È‚çƒŠƒZƒbƒg
+	// å®Ÿè¡Œãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãªã‚‰ãƒªã‚»ãƒƒãƒˆ
 	if( p_touch_sw->now_work_param == TOUCH_SW_PARAM_DO ){
 		TOUCH_SW_Reset( p_touch_sw );
 	}
@@ -254,63 +254,63 @@ void TOUCH_SW_FreeWork( TOUCH_SW_SYS* p_touch_sw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_touch_sw	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_param	ƒVƒXƒeƒ€“®ìƒf[ƒ^
+ *	@param	p_touch_sw	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_param	ã‚·ã‚¹ãƒ†ãƒ å‹•ä½œãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void TOUCH_SW_Init( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PARAM* cp_param )
 {
 	
-	// ƒf[ƒ^Ši”[
+	// ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	p_touch_sw->p_bgl		= cp_param->p_bgl;
 	p_touch_sw->bg_frame	= cp_param->bg_frame;
 	p_touch_sw->x			= cp_param->x;
 	p_touch_sw->y			= cp_param->y;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	TouchSW_SYS_CharTrans( p_touch_sw, cp_param );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 	TouchSW_SYS_PlttTrans( p_touch_sw, cp_param );
 	
-	// ƒ{ƒ^ƒ“ƒf[ƒ^‰Šú‰»
+	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	TouchSW_SYS_ButtonInit( p_touch_sw, cp_param );
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ‰Šú‰»
+	// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 	TouchSW_SYS_ButtonManaInit( p_touch_sw, cp_param );
 
-	// Àsƒf[ƒ^•Û
+	// å®Ÿè¡Œãƒ‡ãƒ¼ã‚¿ä¿æŒ
 	p_touch_sw->now_work_param = TOUCH_SW_PARAM_DO;
 
-	// ƒ^ƒbƒ`ƒtƒ‰ƒO
+	// ã‚¿ãƒƒãƒãƒ•ãƒ©ã‚°
 	p_touch_sw->touch_flg = TOUCH_FLG_INIT;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒƒCƒ““®ì
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	p_touch_sw	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_touch_sw	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TOUCH_SW_RET_NORMAL	// ‰½‚à‚È‚µ
- *	@retval	TOUCH_SW_RET_YES	// ‚Í‚¢
- *	@retval	TOUCH_SW_RET_NO	// ‚¢‚¢‚¦
- *	@retval	TOUCH_SW_RET_YES_TOUCH	// ‚Í‚¢‰Ÿ‚µ‚½uŠÔ
- *	@retval	TOUCH_SW_RET_NO_TOUCH	// ‚¢‚¢‚¦‰Ÿ‚µ‚½uŠÔ
+ *	@retval	TOUCH_SW_RET_NORMAL	// ä½•ã‚‚ãªã—
+ *	@retval	TOUCH_SW_RET_YES	// ã¯ã„
+ *	@retval	TOUCH_SW_RET_NO	// ã„ã„ãˆ
+ *	@retval	TOUCH_SW_RET_YES_TOUCH	// ã¯ã„æŠ¼ã—ãŸç¬é–“
+ *	@retval	TOUCH_SW_RET_NO_TOUCH	// ã„ã„ãˆæŠ¼ã—ãŸç¬é–“
  */
 //-----------------------------------------------------------------------------
 u32 TOUCH_SW_MainMC( TOUCH_SW_SYS* p_touch_sw )
 {
 	u32 ret;
 
-	// ƒ^ƒbƒ`ƒtƒ‰ƒO‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 	p_touch_sw->touch_flg = TOUCH_FLG_INIT;
 
 	ret = TOUCH_SW_Main( p_touch_sw );
 
-	// ‰Ÿ‚³‚ê‚½uŠÔ‚à•Ô‚·
+	// æŠ¼ã•ã‚ŒãŸç¬é–“ã‚‚è¿”ã™
 	if( ret == TOUCH_SW_RET_NORMAL ){
 		if( p_touch_sw->touch_flg == BMN_EVENT_TOUCH ){
 			if( p_touch_sw->button_move_flag == TOUCH_SW_BUF_YES ){
@@ -325,35 +325,35 @@ u32 TOUCH_SW_MainMC( TOUCH_SW_SYS* p_touch_sw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒƒCƒ““®ì
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	p_touch_sw	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_touch_sw	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TOUCH_SW_RET_NORMAL	// ‰½‚à‚È‚µ
- *	@retval	TOUCH_SW_RET_YES	// ‚Í‚¢
- *	@retval	TOUCH_SW_RET_NO		// ‚¢‚¢‚¦
+ *	@retval	TOUCH_SW_RET_NORMAL	// ä½•ã‚‚ãªã—
+ *	@retval	TOUCH_SW_RET_YES	// ã¯ã„
+ *	@retval	TOUCH_SW_RET_NO		// ã„ã„ãˆ
  */
 //-----------------------------------------------------------------------------
 u32 TOUCH_SW_Main( TOUCH_SW_SYS* p_touch_sw )
 {
 	BOOL check;
 	
-	// Àsƒf[ƒ^İ’èÏ‚İ
+	// å®Ÿè¡Œãƒ‡ãƒ¼ã‚¿è¨­å®šæ¸ˆã¿
 	GF_ASSERT( p_touch_sw->now_work_param == TOUCH_SW_PARAM_DO );
 	
-	// G‚Á‚½ƒ{ƒ^ƒ“‚ª–³‚¢‚Æ‚«‚Íƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ‚ğÀs
+	// è§¦ã£ãŸãƒœã‚¿ãƒ³ãŒç„¡ã„ã¨ãã¯ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’å®Ÿè¡Œ
 	if( p_touch_sw->button_move_flag == TOUCH_SW_BUF_NO_TOUCH ){
 		BMN_Main( p_touch_sw->p_button_man );
 	}
 
-	// ƒ{ƒ^ƒ“‚ğG‚Á‚Ä‚¢‚½‚çG‚Á‚½ƒ{ƒ^ƒ“‚ğ“®ì
+	// ãƒœã‚¿ãƒ³ã‚’è§¦ã£ã¦ã„ãŸã‚‰è§¦ã£ãŸãƒœã‚¿ãƒ³ã‚’å‹•ä½œ
 	check = FALSE;
 	if( p_touch_sw->button_move_flag != TOUCH_SW_BUF_NO_TOUCH ){
 
 		check = TouchSW_ButtonMain( &p_touch_sw->button[ p_touch_sw->button_move_flag ] );
 	}
 
-	// ƒAƒjƒI—¹‚Ì‚Æ‚«‚Í‚Í‚¢‚©‚¢‚¢‚¦‚ª‚«‚Ü‚Á‚½
+	// ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã®ã¨ãã¯ã¯ã„ã‹ã„ã„ãˆãŒãã¾ã£ãŸ
 	if( check == TRUE ){
 		if( p_touch_sw->button_move_flag == TOUCH_SW_BUF_YES ){
 			return TOUCH_SW_RET_YES;
@@ -367,9 +367,9 @@ u32 TOUCH_SW_Main( TOUCH_SW_SYS* p_touch_sw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒf[ƒ^ƒŠƒZƒbƒg	(Init‚Ì‘O‚Ìó‘Ô‚É‚·‚é@‚¢‚ç‚È‚¢‚©‚à‚µ‚ê‚È‚¢)
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ	(Initã®å‰ã®çŠ¶æ…‹ã«ã™ã‚‹ã€€ã„ã‚‰ãªã„ã‹ã‚‚ã—ã‚Œãªã„)
  *
- *	@param	p_touch_sw	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_touch_sw	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -378,15 +378,15 @@ void TOUCH_SW_Reset( TOUCH_SW_SYS* p_touch_sw )
 {
 	int i;
 	
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	BMN_Delete( p_touch_sw->p_button_man );
 
-	// ƒ{ƒ^ƒ“ƒf[ƒ^”jŠü
+	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	for( i=0; i<TOUCH_SW_BUF_NUM; i++ ){
 		TouchSW_ButtonDelete( &p_touch_sw->button[ i ] );
 	}
 
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	TouchSW_CleanWork( p_touch_sw, p_touch_sw->heapid );
 }
 
@@ -394,13 +394,13 @@ void TOUCH_SW_Reset( TOUCH_SW_SYS* p_touch_sw )
 
 //-----------------------------------------------------------------------------
 /**
- *		static ŠÖ”
+ *		static é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‚Ì‰Šú‰»
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
  *	@param	p_touch_sw 
  *	@param	heapid
@@ -412,7 +412,7 @@ static void TouchSW_CleanWork( TOUCH_SW_SYS* p_touch_sw, u32 heapid )
 {
 	memset( p_touch_sw, 0, sizeof(TOUCH_SW_SYS) );
 
-	p_touch_sw->now_work_param = TOUCH_SW_PARAM_NODATA;	// ‹óID
+	p_touch_sw->now_work_param = TOUCH_SW_PARAM_NODATA;	// ç©ºID
 	p_touch_sw->heapid = heapid;
 	p_touch_sw->button_move_flag = TOUCH_SW_BUF_NO_TOUCH;
 	p_touch_sw->touch_flg = TOUCH_FLG_INIT;
@@ -421,7 +421,7 @@ static void TouchSW_CleanWork( TOUCH_SW_SYS* p_touch_sw, u32 heapid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—ˆ—
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€å‡¦ç†
  *
  *	@param	p_touch_sw
  *	@param	cp_param 
@@ -431,7 +431,7 @@ static void TouchSW_CleanWork( TOUCH_SW_SYS* p_touch_sw, u32 heapid )
 //-----------------------------------------------------------------------------
 static void TouchSW_SYS_CharTrans( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PARAM* cp_param )
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	TouchSW_CharTransReq( ARC_TOUCH_SUBWINDOW_GRA, NARC_touch_subwindow_yes_no_dutton_lzh_NCGR, 
 			p_touch_sw->p_bgl, p_touch_sw->bg_frame, cp_param->char_offs,
 			p_touch_sw->heapid );
@@ -440,7 +440,7 @@ static void TouchSW_SYS_CharTrans( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PARA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
  *
  *	@param	p_touch_sw
  *	@param	cp_param 
@@ -464,7 +464,7 @@ static void TouchSW_SYS_PlttTrans( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PARA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒf[ƒ^‰Šú‰»
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
  *	@param	p_touch_sw
  *	@param	cp_param 
@@ -477,12 +477,12 @@ static void TouchSW_SYS_ButtonInit( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PAR
 	int i,j;
 	TOUCH_SW_BUTTON_PARAM bt_pr;
 
-	// ƒ{ƒ^ƒ“ƒAƒjƒƒf[ƒ^ì¬
+	// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<TOUCH_SW_ANIME_NUM; i++ ){
 		p_touch_sw->anime_tbl[ i ] = TOUCH_SW_ANIME_TIMING * (i+1);
 	}
 
-	// ƒ{ƒ^ƒ“ƒf[ƒ^ì¬
+	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	bt_pr.ini		= p_touch_sw->p_bgl;
 	bt_pr.bg_frame	= p_touch_sw->bg_frame;
 	bt_pr.fileidx	= ARC_TOUCH_SUBWINDOW_GRA;
@@ -493,25 +493,25 @@ static void TouchSW_SYS_ButtonInit( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PAR
 	bt_pr.ofs_x		= p_touch_sw->x;
 	for( i=0; i<TOUCH_SW_BUF_NUM; i++ ){
 
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ì¬
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 		for( j=0; j<TOUCH_SW_ANIME_NUM; j++ ){
 			bt_pr.scrn_arcidx[ j ] = NARC_touch_subwindow_yes_button01_lzh_NSCR + (j * TOUCH_SW_BUF_NUM) + i;
 		}
 
-		// YƒIƒtƒZƒbƒg’l
+		// Yã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 		bt_pr.ofs_y = (i*(TOUCH_SW_Y_OFS/8)) + p_touch_sw->y;
 
-		// ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		bt_pr.pltt_offs += i;
 
-		// ƒ{ƒ^ƒ“‰Šú‰»
+		// ãƒœã‚¿ãƒ³åˆæœŸåŒ–
 		TouchSW_ButtonInit( &p_touch_sw->button[i], &bt_pr, p_touch_sw->heapid );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ‰Šú‰»
+ *	@brief	ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  *
  *	@param	p_touch_sw
  *	@param	cp_param 
@@ -523,7 +523,7 @@ static void TouchSW_SYS_ButtonManaInit( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW
 {
 	int i;
 	
-	// ƒ{ƒ^ƒ“‚ ‚½‚è”»’èƒf[ƒ^ì¬
+	// ãƒœã‚¿ãƒ³ã‚ãŸã‚Šåˆ¤å®šãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<TOUCH_SW_BUF_NUM; i++ ){
 		p_touch_sw->hit_tbl[ i ].rect.top	= (p_touch_sw->y*8) + (i*TOUCH_SW_Y_OFS);
 		p_touch_sw->hit_tbl[ i ].rect.bottom = (p_touch_sw->y*8) + (i*TOUCH_SW_Y_OFS) + (TOUCH_SW_USE_SCRN_Y*8);
@@ -538,7 +538,7 @@ static void TouchSW_SYS_ButtonManaInit( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  *	@param	button_no
  *	@param	event
@@ -554,7 +554,7 @@ static void TouchSW_ButtonCallBack( u32 button_no, u32 event, void* p_work )
 	p_touch_sw->touch_flg = event;
 
 	if( event == BMN_EVENT_TOUCH ){	
-		// G‚Á‚½ƒ{ƒ^ƒ“•Û‘¶
+		// è§¦ã£ãŸãƒœã‚¿ãƒ³ä¿å­˜
 		p_touch_sw->button_move_flag = button_no;
 
 		Snd_SePlay( SE_TOUCH_SUB_WIN );
@@ -564,11 +564,11 @@ static void TouchSW_ButtonCallBack( u32 button_no, u32 event, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒ[ƒN‰Šú‰»
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- *	@param	p_bttn		ƒ{ƒ^ƒ“ƒ[ƒN
- *	@param	cp_param	ƒ{ƒ^ƒ“‰Šú‰»ƒf[ƒ^
- *	@param	heapid		ƒq[ƒvID
+ *	@param	p_bttn		ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_param	ãƒœã‚¿ãƒ³åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapid		ãƒ’ãƒ¼ãƒ—ID
  *
  *	@return	none
  */
@@ -577,58 +577,58 @@ static void TouchSW_ButtonInit( TOUCH_SW_BUTTON* p_bttn, const TOUCH_SW_BUTTON_P
 {
 	int i;
 	
-	// ƒAƒjƒƒf[ƒ^“o˜^
+	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 	TouchSW_AnimeInit( &p_bttn->anime, cp_param->cp_anime_tbl, cp_param->tbl_num );
 
-	// ƒf[ƒ^‘ã“ü
+	// ãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	p_bttn->ini		= cp_param->ini;
 	p_bttn->bg_frame= cp_param->bg_frame;
 	p_bttn->ofs_x	= cp_param->ofs_x;
 	p_bttn->ofs_y	= cp_param->ofs_y;
 
-	// ƒXƒNƒŠ[ƒ“ƒ[ƒN“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯èª­ã¿è¾¼ã¿
 	for( i=0; i<TOUCH_SW_ANIME_NUM; i++ ){
 		p_bttn->p_scrn_buff[i] = ArcUtil_ScrnDataGet( cp_param->fileidx, cp_param->scrn_arcidx[i], 
 				TRUE, &p_bttn->p_scrn[ i ], heapid );
 
-		// ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg‚ğİ’è
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨­å®š
 		TouchSW_ScrnCharOfsSet( p_bttn->p_scrn[ i ], cp_param->char_offs );
-		// ƒpƒŒƒbƒgƒIƒtƒZƒbƒg‚ğİ’è
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨­å®š
 		TouchSW_ScrnPlttOfsSet( p_bttn->p_scrn[ i ], cp_param->pltt_offs );
 	}
 	
-	// ƒXƒNƒŠ[ƒ“‚Ì”½‰f‚ğs‚¤
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®åæ˜ ã‚’è¡Œã†
 	TouchSW_FrameScrnSet( p_bttn );
 	p_bttn->anm_idx = 0;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒ[ƒN@“®ì	iƒAƒjƒj
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯ã€€å‹•ä½œ	ï¼ˆã‚¢ãƒ‹ãƒ¡ï¼‰
  *
- *	@param	p_bttn		ƒ{ƒ^ƒ“ƒ[ƒN
+ *	@param	p_bttn		ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒ{ƒ^ƒ“‚ÌƒAƒjƒ‚ªI—¹‚µ‚½	
- *	@retval	FALSE	ƒ{ƒ^ƒ“‚ÌƒAƒjƒ“r’†
+ *	@retval	TRUE	ãƒœã‚¿ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãŒçµ‚äº†ã—ãŸ	
+ *	@retval	FALSE	ãƒœã‚¿ãƒ³ã®ã‚¢ãƒ‹ãƒ¡é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL TouchSW_ButtonMain( TOUCH_SW_BUTTON* p_bttn )
 {
 	u32 new_anime = TouchSW_AnimeIdxGet( &p_bttn->anime );
 	
-	// ƒAƒjƒ‚ği‚ß@ÅIƒAƒjƒƒtƒŒ[ƒ€‚És‚Á‚½‚çI‚í‚è
+	// ã‚¢ãƒ‹ãƒ¡ã‚’é€²ã‚ã€€æœ€çµ‚ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã«è¡Œã£ãŸã‚‰çµ‚ã‚ã‚Š
 	if( p_bttn->anm_idx != new_anime ){
 		TouchSW_FrameScrnSet( p_bttn );
 		p_bttn->anm_idx = new_anime;
 
 	}
 
-	// ƒAƒjƒI—¹ŒŸ’m
+	// ã‚¢ãƒ‹ãƒ¡çµ‚äº†æ¤œçŸ¥
 	if( new_anime == (p_bttn->anime.tbl_num - 1) ){
 		return TRUE;
 	}
 
-	// ƒAƒjƒ‚ği‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ã‚’é€²ã‚ã‚‹
 	TouchSW_AnimeAdd( &p_bttn->anime, TOUCH_SW_ANIME_SP );
 
 
@@ -637,9 +637,9 @@ static BOOL TouchSW_ButtonMain( TOUCH_SW_BUTTON* p_bttn )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒf[ƒ^”jŠü
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_bttn		ƒ{ƒ^ƒ“ƒ[ƒN
+ *	@param	p_bttn		ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -648,13 +648,13 @@ static void TouchSW_ButtonDelete( TOUCH_SW_BUTTON* p_bttn )
 {
 	int i;
 	
-	// ƒXƒNƒŠ[ƒ“—Ìˆæ‚ğ‰Šú‰»
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³é ˜åŸŸã‚’åˆæœŸåŒ–
 	GF_BGL_ScrFill( p_bttn->ini, p_bttn->bg_frame, 0, 
 			p_bttn->ofs_x, p_bttn->ofs_y,
 			p_bttn->p_scrn[0]->screenWidth/8, p_bttn->p_scrn[0]->screenHeight/8, 0 );
 	GF_BGL_LoadScreenV_Req( p_bttn->ini, p_bttn->bg_frame );
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	for( i=0; i<TOUCH_SW_ANIME_NUM; i++ ){
 		sys_FreeMemoryEz( p_bttn->p_scrn_buff[ i ] );
 	}
@@ -664,9 +664,9 @@ static void TouchSW_ButtonDelete( TOUCH_SW_BUTTON* p_bttn )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“‚ÌƒtƒŒ[ƒ€”‚ÌƒXƒNƒŠ[ƒ“‚ğİ’è
+ *	@brief	ãƒœã‚¿ãƒ³ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’è¨­å®š
  *
- *	@param	p_bttn		ƒ{ƒ^ƒ“ƒ[ƒN
+ *	@param	p_bttn		ãƒœã‚¿ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -682,11 +682,11 @@ static void TouchSW_FrameScrnSet( TOUCH_SW_BUTTON* p_bttn )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒf[ƒ^‰Šú‰»
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *	
- *	@param	p_anime			ƒAƒjƒƒ[ƒN
- *	@param	cp_anime_tbl	ƒAƒjƒƒe[ƒuƒ‹
- *	@param	tbl_num			ƒAƒjƒƒe[ƒuƒ‹”
+ *	@param	p_anime			ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_anime_tbl	ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	tbl_num			ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
  *	@return	none
  */
@@ -700,10 +700,10 @@ static void TouchSW_AnimeInit( TOUCH_SW_ANIME* p_anime, const fx32* cp_anime_tbl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒtƒŒ[ƒ€‚ği‚ß‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’é€²ã‚ã‚‹
  *
- *	@param	p_anime		ƒAƒjƒƒ[ƒN
- *	@param	frame		ƒtƒŒ[ƒ€”
+ *	@param	p_anime		ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	frame		ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
  *	@return	none
  */
@@ -715,10 +715,10 @@ static void TouchSW_AnimeAdd( TOUCH_SW_ANIME* p_anime, fx32 frame )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒtƒŒ[ƒ€‚ğİ’è‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_anime		ƒAƒjƒƒ[ƒN
- *	@param	frame		ƒtƒŒ[ƒ€”
+ *	@param	p_anime		ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
+ *	@param	frame		ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
  *	@return	none
  */
@@ -730,11 +730,11 @@ static void TouchSW_AnimeSet( TOUCH_SW_ANIME* p_anime, fx32 frame )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒtƒŒ[ƒ€‚ğæ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—
  *
- *	@param	cp_anime	ƒAƒjƒƒ[ƒN
+ *	@param	cp_anime	ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒtƒŒ[ƒ€”	
+ *	@return	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°	
  */
 //-----------------------------------------------------------------------------
 static fx32 TouchSW_AnimeGet( const TOUCH_SW_ANIME* cp_anime )
@@ -744,11 +744,11 @@ static fx32 TouchSW_AnimeGet( const TOUCH_SW_ANIME* cp_anime )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»İ‚ÌƒAƒjƒƒCƒ“ƒfƒbƒNƒX”‚ğæ“¾
+ *	@brief	ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ•°ã‚’å–å¾—
  *
- *	@param	cp_anime	ƒAƒjƒƒ[ƒN
+ *	@param	cp_anime	ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒAƒjƒƒCƒ“ƒfƒbƒNƒX”	i‰½”Ô–Ú‚ÌƒXƒNƒŠ[ƒ“‚ğ•\¦‚·‚é‚©j
+ *	@return	ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ•°	ï¼ˆä½•ç•ªç›®ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‹ï¼‰
  */
 //-----------------------------------------------------------------------------
 static u32 TouchSW_AnimeIdxGet( const TOUCH_SW_ANIME* cp_anime )
@@ -757,7 +757,7 @@ static u32 TouchSW_AnimeIdxGet( const TOUCH_SW_ANIME* cp_anime )
 
 	for( i=0; i<cp_anime->tbl_num; i++ ){
 
-		//@‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚ÌÅŒã‚Ì’lˆÈ‰º‚Ì‚Æ‚«‚Í‚»‚ÌƒCƒ“ƒfƒbƒNƒX
+		//ã€€ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æœ€å¾Œã®å€¤ä»¥ä¸‹ã®ã¨ãã¯ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 		if( cp_anime->cp_anime_tbl[ i ] >= cp_anime->frame ){
 			return i;
 		}
@@ -769,14 +769,14 @@ static u32 TouchSW_AnimeIdxGet( const TOUCH_SW_ANIME* cp_anime )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—ƒŠƒNƒGƒXƒg
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	fileIdx		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- *	@param	dataIdx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	bgl			BGƒf[ƒ^
- *	@param	frm			ÌÚ°Ñƒiƒ“ƒo[
- *	@param	offs		ƒIƒtƒZƒbƒg
- *	@param	heapID		ƒq[ƒv
+ *	@param	fileIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	dataIdx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	bgl			BGãƒ‡ãƒ¼ã‚¿
+ *	@param	frm			ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
+ *	@param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -788,28 +788,28 @@ static void TouchSW_CharTransReq( u32 fileIdx, u32 dataIdx, GF_BGL_INI* bgl, u32
 	p_tw = sys_AllocMemory( heapID, sizeof(TOUCH_SW_CHARACTER_TRANS) );
 	memset( p_tw, 0, sizeof(TOUCH_SW_CHARACTER_TRANS) );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_tw->p_buff = ArcUtil_CharDataGet( fileIdx, dataIdx, TRUE, &p_tw->p_char, heapID );
 
-	// “]‘—ƒf[ƒ^Ši”[
+	// è»¢é€ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	p_tw->ini = bgl;
 	p_tw->bg_frame = frm;
 	p_tw->char_ofs = offs;
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	VWaitTCB_Add( TouchSW_CharTransTsk, p_tw, TOUCH_SW_VRAM_TRANS_TSK_PRI );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^“]‘—ƒŠƒNƒGƒXƒg
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	fileIdx		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- *	@param	dataIdx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	palType		ƒpƒŒƒbƒg“]‘—æ
- *	@param	offs		ƒIƒtƒZƒbƒg
- *	@param	transSize	“]‘—size
- *	@param	heapID		ƒq[ƒv
+ *	@param	fileIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	dataIdx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	palType		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆ
+ *	@param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	transSize	è»¢é€size
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -821,21 +821,21 @@ static void TouchSW_PlttTransReq( u32 fileIdx, u32 dataIdx, PALTYPE palType, u32
 	p_tw = sys_AllocMemory( heapID, sizeof(TOUCH_SW_PALETTE_TRANS) );
 	memset( p_tw, 0, sizeof(TOUCH_SW_PALETTE_TRANS) );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_tw->p_buff = ArcUtil_PalDataGet( fileIdx, dataIdx, &p_tw->p_pltt, heapID );
 
-	// “]‘—ƒf[ƒ^Ši”[
+	// è»¢é€ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	p_tw->pltype = palType;
 	p_tw->ofs = offs;
 	p_tw->size = transSize;
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	VWaitTCB_Add( TouchSW_PlttTransTsk, p_tw, TOUCH_SW_VRAM_TRANS_TSK_PRI );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—ƒ^ƒXƒN
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€ã‚¿ã‚¹ã‚¯
  *
  *	@param	tcb
  *	@param	p_work 
@@ -852,7 +852,7 @@ static void TouchSW_CharTransTsk( TCB_PTR tcb, void* p_work )
 	GF_BGL_LoadCharacter( p_tw->ini, p_tw->bg_frame, 
 			p_tw->p_char->pRawData, p_tw->p_char->szByte, p_tw->char_ofs );
 
-	// ƒƒ‚ƒŠ‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	TCB_Delete( tcb );
 	sys_FreeMemoryEz( p_tw->p_buff );
 	sys_FreeMemoryEz( p_tw );
@@ -860,7 +860,7 @@ static void TouchSW_CharTransTsk( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^“]‘—ƒ^ƒXƒN
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€ã‚¿ã‚¹ã‚¯
  *
  *	@param	tcb
  *	@param	p_work 
@@ -881,7 +881,7 @@ static void TouchSW_PlttTransTsk( TCB_PTR tcb, void* p_work )
 		GXS_LoadBGPltt( p_tw->p_pltt->pRawData, p_tw->ofs, p_tw->size );
 	}
 
-	// ƒƒ‚ƒŠ‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	TCB_Delete( tcb );
 	sys_FreeMemoryEz( p_tw->p_buff );
 	sys_FreeMemoryEz( p_tw );
@@ -889,20 +889,20 @@ static void TouchSW_PlttTransTsk( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
  *
- *	@param	bg_ini		BGƒVƒXƒeƒ€ƒ[ƒN
- *	@param	frame		BGƒiƒ“ƒo[
- *	@param	scrn		ƒXƒNƒŠ[ƒ“ƒ[ƒN
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
+ *	@param	bg_ini		BGã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	frame		BGãƒŠãƒ³ãƒãƒ¼
+ *	@param	scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void TouchSW_ScrnSet( GF_BGL_INI* bg_ini, int frame, const NNSG2dScreenData* scrn, int x, int y )
 {
-	// ‘‚«‚¾‚µ
+	// æ›¸ãã ã—
 	GF_BGL_ScrWriteExpand(
 				bg_ini, frame,
 				x, y,
@@ -917,24 +917,24 @@ static void TouchSW_ScrnSet( GF_BGL_INI* bg_ini, int frame, const NNSG2dScreenDa
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ÌƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€‚Ì’l‚ğƒIƒtƒZƒbƒg•ª‚¸‚ç‚·
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ ã®å€¤ã‚’ã‚ªãƒ•ã‚»ãƒƒãƒˆåˆ†ãšã‚‰ã™
  *
- *	@param	scrn			ƒXƒNƒŠ[ƒ“ƒf[ƒ^
- *	@param	char_offs		ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg	ƒLƒƒƒ‰ƒNƒ^’PˆÊ
+ *	@param	scrn			ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	char_offs		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½
  *
  *	@return	none
  *
- * ƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€Å‘å’lƒ`ƒFƒbƒN‚ğ‚µ‚Ä‚¢‚È‚¢‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ æœ€å¤§å€¤ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¦ã„ãªã„ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„
  *
  */
 //-----------------------------------------------------------------------------
 static void TouchSW_ScrnCharOfsSet( const NNSG2dScreenData* scrn, int char_offs )
 {
-	int i;							// ƒ‹[ƒv—p
-	u16* scrndata;					// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	int size = scrn->szByte / 2;	// ƒ‹[ƒv‰ñ”	‚Q=2byte
+	int i;							// ãƒ«ãƒ¼ãƒ—ç”¨
+	u16* scrndata;					// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	int size = scrn->szByte / 2;	// ãƒ«ãƒ¼ãƒ—å›æ•°	ï¼’=2byte
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘ã“ü
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	scrndata = (u16*)scrn->rawData;
 	for(i=0; i<size; i++){
 
@@ -944,21 +944,21 @@ static void TouchSW_ScrnCharOfsSet( const NNSG2dScreenData* scrn, int char_offs 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒIƒtƒZƒbƒg‚ğƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚Éİ’è
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã«è¨­å®š
  *
- *	@param	scrn		ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@
- *	@param	pltt_offs	ƒpƒŒƒbƒgƒIƒtƒZƒbƒg	(ƒpƒŒƒbƒg–{”’PˆÊ)
+ *	@param	scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡
+ *	@param	pltt_offs	ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ	(ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°å˜ä½)
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void TouchSW_ScrnPlttOfsSet( const NNSG2dScreenData* scrn, int pltt_offs )
 {
-	int i;							// ƒ‹[ƒv—p
-	u16* scrndata;					// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	int size = scrn->szByte / 2;	// ƒ‹[ƒv‰ñ”	‚Q=2byte
+	int i;							// ãƒ«ãƒ¼ãƒ—ç”¨
+	u16* scrndata;					// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	int size = scrn->szByte / 2;	// ãƒ«ãƒ¼ãƒ—å›æ•°	ï¼’=2byte
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘ã“ü
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	scrndata = (u16*)scrn->rawData;
 	for(i=0; i<size; i++){
 

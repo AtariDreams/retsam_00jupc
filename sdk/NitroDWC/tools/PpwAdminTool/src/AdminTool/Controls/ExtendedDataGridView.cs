@@ -20,7 +20,7 @@ namespace AdminTool
         {
             DataGridView dgv = (DataGridView)sender;
 
-            // V‹Ks‚Ì‘OŒiF‚ğƒOƒŒ[‚É‚·‚é
+            // æ–°è¦è¡Œã®å‰æ™¯è‰²ã‚’ã‚°ãƒ¬ãƒ¼ã«ã™ã‚‹
             if (dgv.Rows[e.RowIndex].IsNewRow)
             {
                 e.CellStyle.ForeColor = Color.Gray;
@@ -39,7 +39,7 @@ namespace AdminTool
             {
                 switch (e.KeyCode)
                 {
-                    // ƒy[ƒXƒg
+                    // ãƒšãƒ¼ã‚¹ãƒˆ
                     case Keys.V:
                         List<List<string>> stringArray = Util.TsvTextToArray(Clipboard.GetText());
                         SetStringArray(stringArray);
@@ -58,7 +58,7 @@ namespace AdminTool
                 return;
             }
 
-            // ’P‚É‘I‘ğ‚·‚é
+            // å˜ã«é¸æŠã™ã‚‹
             dgv.ClearSelection();
             dgv[e.ColumnIndex, e.RowIndex].Selected = true;
         }
@@ -74,7 +74,7 @@ namespace AdminTool
             {
                 if (Rows[startRow + i].IsNewRow)
                 {
-                    MessageBox.Show("V‹Ks(*‚ª‚Â‚¢‚Ä‚¢‚és)‚É‚Íƒy[ƒXƒg‚Å‚«‚Ü‚¹‚ñB");
+                    MessageBox.Show("æ–°è¦è¡Œ(*ãŒã¤ã„ã¦ã„ã‚‹è¡Œ)ã«ã¯ãƒšãƒ¼ã‚¹ãƒˆã§ãã¾ã›ã‚“ã€‚");
                     continue;
                 }
 
@@ -84,25 +84,25 @@ namespace AdminTool
 
                     if (this[startColumn + j, startRow + i].ReadOnly)
                     {
-                        // ƒŠ[ƒhƒIƒ“ƒŠ[‚Éİ’è‚³‚ê‚Ä‚¢‚éB
-                        MessageBox.Show("“Ç‚İæ‚èê—p‚ÌƒZƒ‹‚É‚Íƒy[ƒXƒg‚Å‚«‚Ü‚¹‚ñB");
+                        // ãƒªãƒ¼ãƒ‰ã‚ªãƒ³ãƒªãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ã€‚
+                        MessageBox.Show("èª­ã¿å–ã‚Šå°‚ç”¨ã®ã‚»ãƒ«ã«ã¯ãƒšãƒ¼ã‚¹ãƒˆã§ãã¾ã›ã‚“ã€‚");
                         return;
                     }
 
                     if (stringArray[i][j] == "")
                     {
-                        // ‘I‘ğ”ÍˆÍ‚ª’·•ûŒ`‚Å‚Í‚È‚¢
-                        MessageBox.Show("’·•ûŒ`‚Å‚È‚¢‘I‘ğ”ÍˆÍ‚ÌƒRƒs[•ƒy[ƒXƒg‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñB");
+                        // é¸æŠç¯„å›²ãŒé•·æ–¹å½¢ã§ã¯ãªã„
+                        MessageBox.Show("é•·æ–¹å½¢ã§ãªã„é¸æŠç¯„å›²ã®ã‚³ãƒ”ãƒ¼ï¼†ãƒšãƒ¼ã‚¹ãƒˆã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“ã€‚");
                         return;
                     }
 
                     this[startColumn + j, startRow + i].Value = stringArray[i][j];
 
-                    // “ü—Íƒf[ƒ^‚ª‚¨‚©‚µ‚¢“™‚Ì——R‚ÅƒZƒbƒg‚³‚ê‚Ä‚¢‚È‚©‚Á‚½ê‡‚Í’†’f‚·‚éB•\¦ƒeƒLƒXƒg‚ğ”äŠr
+                    // å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ãŒãŠã‹ã—ã„ç­‰ã®ç†ç”±ã§ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãªã‹ã£ãŸå ´åˆã¯ä¸­æ–­ã™ã‚‹ã€‚è¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆã‚’æ¯”è¼ƒ
                     if (this[startColumn + j, startRow + i].FormattedValue.ToString() != stringArray[i][j])
                     {
-                        // “ü—Í‘O‚Ì’l‚É–ß‚·
-                        // DataErrorƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰‚Åe.Cancel = false‚ğ‚·‚é‚Æ‰º‹L‚Í•K—v‚È‚¢
+                        // å…¥åŠ›å‰ã®å€¤ã«æˆ»ã™
+                        // DataErrorã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ã§e.Cancel = falseã‚’ã™ã‚‹ã¨ä¸‹è¨˜ã¯å¿…è¦ãªã„
                         //this[startColumn + j, startRow + i].Value = orgValue;
                         return;
                     }
@@ -110,8 +110,8 @@ namespace AdminTool
             }
         }
 
-        // ˆê”Ô¶ã‚ÌƒZƒ‹‚ğ•Ô‚·
-        // ‹éŒ`‘I‘ğ‚É‘Î‰ACtrl‰Ÿ‚µ‚È‚ª‚ç‚Ì•¡”‘I‘ğ‚Í“K“–‚É‘Î‰
+        // ä¸€ç•ªå·¦ä¸Šã®ã‚»ãƒ«ã‚’è¿”ã™
+        // çŸ©å½¢é¸æŠã«å¯¾å¿œã€CtrlæŠ¼ã—ãªãŒã‚‰ã®è¤‡æ•°é¸æŠã¯é©å½“ã«å¯¾å¿œ
         public static DataGridViewCell SelectMostTopLeftCell(DataGridViewSelectedCellCollection dataGridViewSelectedCellCollection)
         {
             int? minRow = null;
@@ -142,9 +142,9 @@ namespace AdminTool
         public static void ShowDataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
-            MessageBox.Show("“ü—Í‚à‚µ‚­‚Íƒy[ƒXƒg‚³‚ê‚½ƒf[ƒ^Œ`®‚ª‚»‚ÌƒZƒ‹‚ÌŒ`®‚Æˆê’v‚µ‚Ä‚¢‚Ü‚¹‚ñB\n"
-                + "ƒZƒ‹‚ÌˆÊ’u: " + (e.RowIndex + 1) + "s–ÚAu" + dgv.Columns[e.ColumnIndex].Name + "vƒJƒ‰ƒ€\n"
-                + "Ú×î•ñ: " + e.Exception.Message);
+            MessageBox.Show("å…¥åŠ›ã‚‚ã—ãã¯ãƒšãƒ¼ã‚¹ãƒˆã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿å½¢å¼ãŒãã®ã‚»ãƒ«ã®å½¢å¼ã¨ä¸€è‡´ã—ã¦ã„ã¾ã›ã‚“ã€‚\n"
+                + "ã‚»ãƒ«ã®ä½ç½®: " + (e.RowIndex + 1) + "è¡Œç›®ã€ã€Œ" + dgv.Columns[e.ColumnIndex].Name + "ã€ã‚«ãƒ©ãƒ \n"
+                + "è©³ç´°æƒ…å ±: " + e.Exception.Message);
         }
 
     }

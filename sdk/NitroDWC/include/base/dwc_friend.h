@@ -12,130 +12,130 @@
 
   $Log: dwc_friend.h,v $
   Revision 1.32  2006/02/27 02:19:17  nakata
-  Base64�֘A�̃��b�p�֐��̈����^���C���B
+  Base64関連のラッパ関数の引数型を修正。
 
   Revision 1.31  2006/01/25 07:50:50  arakit
-  �f�[�^�X�g���[�W�T�[�o�E���[�h�֐�DWC_LoadOwnPublicDataAsync(),
-  DWC_LoadOwnPrivateDataAsync()��ǉ������B
+  データストレージサーバ・ロード関数DWC_LoadOwnPublicDataAsync(),
+  DWC_LoadOwnPrivateDataAsync()を追加した。
 
   Revision 1.30  2006/01/23 04:50:43  arakit
-  ����p��ɍ��킹�ăR�����g���C��
+  統一用語に合わせてコメントを修正
 
   Revision 1.29  2006/01/17 07:17:25  arakit
-  �EDWCFriendStatusCallback�̐ݒ�݂̂��s���֐� DWC_SetFriendStatusCallback()
-  �@���쐬�����B
-  �EDWC_SetBuddyFriendCallback(), DWC_SetStorageServerCallback() �̖߂�l��
-  �@void����BOOL�ɕύX���A����ϐ��m�ۑO�͉���������FALSE��Ԃ��悤�ɂ����B
-  �EBase64�G���R�[�h�E�f�R�[�h�֐��iAuth�̃��b�v�֐��jDWC_Base64Encode(),
-  �@DWC_Base64Decode()���쐬�����B
+  ・DWCFriendStatusCallbackの設定のみを行う関数 DWC_SetFriendStatusCallback()
+  　を作成した。
+  ・DWC_SetBuddyFriendCallback(), DWC_SetStorageServerCallback() の戻り値を
+  　voidからBOOLに変更し、制御変数確保前は何もせずにFALSEを返すようにした。
+  ・Base64エンコード・デコード関数（Authのラップ関数）DWC_Base64Encode(),
+  　DWC_Base64Decode()を作成した。
 
   Revision 1.28  2005/12/21 03:08:32  arakit
-  ����\���̂̃����oplayerName�̃t�H�[�}�b�g�̕ύX�ɑΉ������B
+  制御構造体のメンバplayerNameのフォーマットの変更に対応した。
 
   Revision 1.27  2005/11/07 02:54:59  sasakit
-  GsStatus->OwnStatus�ɕύX�B
+  GsStatus->OwnStatusに変更。
 
   Revision 1.26  2005/11/04 11:36:44  arakit
-  DWCLoadFromServerCallback�̈���profileID���A�F�B���X�g�C���f�b�N�X�iindex�j�ɕύX�����B
+  DWCLoadFromServerCallbackの引数profileIDを、友達リストインデックス（index）に変更した。
 
   Revision 1.25  2005/11/04 05:44:59  arakit
-  �X�y���~�X���C�������B
+  スペルミスを修正した。
 
   Revision 1.24  2005/11/04 05:07:18  arakit
-  Persistent�T�[�o�ւ̃��O�C���A���O�A�E�g�֐���ǉ����APersistent�T�[�o�ւ�
-  �A�N�Z�X���\�ɂ����B
+  Persistentサーバへのログイン、ログアウト関数を追加し、Persistentサーバへの
+  アクセスを可能にした。
 
   Revision 1.23  2005/11/02 02:49:33  arakit
-  �t�@�C���̃C���N���[�h�֌W�𒲐������B
+  ファイルのインクルード関係を調整した。
 
   Revision 1.22  2005/10/28 09:11:05  arakit
-  �֐������́u�`�ʐM���ɓˑR�d����؂����ꍇ�Ȃǂ�10�b�߂��O�̏�Ԃ��c��܂��v
-  �Ƃ����R�����g�́A�����\���Ă��Ȃ��̂ŏC�������B
+  関数説明の「〜通信中に突然電源を切った場合などは10秒近く前の状態が残ります」
+  というコメントは、実情を表していないので修正した。
 
   Revision 1.21  2005/10/06 07:00:54  arakit
-  �֐��̐��������኱�C��
+  関数の説明文を若干修正
 
   Revision 1.20  2005/10/03 04:05:04  arakit
-  gp��TCP�ڑ����؂��Ȃ��悤�ɃL�[�v�A���C�u����̊֐��Ăяo����ǉ������B
+  gpのTCP接続が切られないようにキープアライブ代わりの関数呼び出しを追加した。
 
   Revision 1.19  2005/10/01 07:14:07  arakit
-  �F�B���X�g�ҏW�\��Ԏ擾�֐� BOOL DWC_CanChangeFriendList(void) ��ǉ������B
+  友達リスト編集可能状態取得関数 BOOL DWC_CanChangeFriendList(void) を追加した。
 
   Revision 1.18  2005/09/28 05:17:28  arakit
-  �F�B�f�[�^���������A�o�f�B�֌W����������֐�DWC_DeleteBuddyFriendData()���쐬�����B
+  友達データを消去し、バディ関係も解消する関数DWC_DeleteBuddyFriendData()を作成した。
 
   Revision 1.17  2005/09/27 13:01:42  arakit
-  �g��Ȃ��Ȃ����萔���폜�����B
+  使わなくなった定数を削除した。
 
   Revision 1.16  2005/09/20 10:03:40  sasakit
-  gpSendBuddyRequest()�̕ԓ�������dwc_friend.c�Ɉڂ����B
+  gpSendBuddyRequest()の返答処理をdwc_friend.cに移した。
 
   Revision 1.15  2005/09/16 07:26:40  arakit
-  �R�[���o�b�N�̈�������ύX
+  コールバックの引数名を変更
 
   Revision 1.14  2005/09/13 11:12:22  arakit
-  �EMP�F�B�f�[�^����ProfileSearch���s�������ɁA���肪������Ȃ������ꍇ��
-  �@�s����C�������B
-  �EDWC_UpdateServersAsync()�������ȊO�Ƀo�f�B����������Ԃ��R�[���o�b�N��
-  �@�ݒ�ł���悤�ɂ����B
+  ・MP友達データからProfileSearchを行った時に、相手が見つからなかった場合の
+  　不具合を修正した。
+  ・DWC_UpdateServersAsync()処理中以外にバディ成立したら返すコールバックを
+  　設定できるようにした。
 
   Revision 1.13  2005/09/12 07:50:25  arakit
-  �Egp��Alloc�΍�Ƃ��āAProfileSearch���P�l���s���悤�ɂ����B
-  �E�I�����C�����Ƀo�f�B�֌W�̐�������������悤�A�C�������B
-  �E�F�B���X�g�����R�[���o�b�N�̈����ɁA�����ꂽ���̂Ɠ����Ɣ��肳�ꂽ�F�B�f�[�^�́A
-  �@�F�B���X�g�C���f�b�N�X���n���悤�ɂ����B
+  ・gpのAlloc対策として、ProfileSearchを１人ずつ行うようにした。
+  ・オンライン中にバディ関係の成立が完了するよう、修正した。
+  ・友達リスト消去コールバックの引数に、消されたものと同じと判定された友達データの、
+  　友達リストインデックスも渡すようにした。
 
   Revision 1.12  2005/09/09 09:54:09  arakit
-  �o�[�W�����Ⴂ�̃��C�u�������m�Ń}�b�`���O���Ȃ��悤�ɕύX�����B
+  バージョン違いのライブラリ同士でマッチングしないように変更した。
 
   Revision 1.11  2005/09/05 11:43:31  arakit
-  �EPersistent�T�[�o���[�h�֐�DWC_LoadOthersDataAsync()�̈���profaileID��
-  �@�F�B���X�g�C���f�b�N�X�ɕύX�����B
-  �EgpStatus������̂����A���C�u������locationString�A�Q�[����statusString��
-  �@�g�p����悤�ɂ��Ă������AstatusString�̓f�t�H���g��"Offline"�̕�����
-  �@�����Ă��܂��̂ŁA���C�u������statusString�A�Q�[����locationString��
-  �@�g�p����悤�ɓ���ւ����B
-  �E�o�C�i���f�[�^���e�L�X�g�G���R�[�h����gpStatus��locationString��
-  �@�Z�b�g����֐�DWC_SetGsStatusData()�A���̃f�[�^���G���R�[�h���ēǂފ֐�
-  �@DWC_GetGsStatusData()�ƁA�F�B��Status�o�C�i���f�[�^��ǂފ֐�
-  �@DWC_GetFriendStatusData(), DWC_GetFriendStatusDataSC()��ǉ������B
+  ・Persistentサーバロード関数DWC_LoadOthersDataAsync()の引数profaileIDを
+  　友達リストインデックスに変更した。
+  ・gpStatus文字列のうち、ライブラリがlocationString、ゲームがstatusStringを
+  　使用するようにしていたが、statusStringはデフォルトで"Offline"の文字が
+  　入ってしまうので、ライブラリがstatusString、ゲームがlocationStringを
+  　使用するように入れ替えた。
+  ・バイナリデータをテキストエンコードしてgpStatusのlocationStringに
+  　セットする関数DWC_SetGsStatusData()、そのデータをエンコードして読む関数
+  　DWC_GetGsStatusData()と、友達のStatusバイナリデータを読む関数
+  　DWC_GetFriendStatusData(), DWC_GetFriendStatusDataSC()を追加した。
 
   Revision 1.10  2005/09/03 13:03:35  arakit
-  �EfriendList����n�O���֐� DWC_SetFriendDataToList(), DWC_SetGsProfileIDToList(),
-  �@DWC_DeleteFriendFromList()�����������B
-  �EGameSpy�v���t�@�C��ID�𒼐ڈ����֐� DWC_GetProfileIDFromList(),
-  �@DWC_GetFriendListIndex() ������֐��ɕύX�����B
-  �EDWC_GetFriendStatus(), DWC_GetFriendStatusSC() �̈������A�u�F�B���X�g�ւ�
-  �@�|�C���^�{�F�B���X�g���v����A�u�F�B�f�[�^�ւ̃|�C���^�v�ɕύX�����B
-  �E�F�B���X�g�����X�V���ɗF�B�f�[�^����������Ă��A���X�g��O�l�߂��Ȃ��悤��
-  �@�ύX�����B����ɔ����A�O�l�߂�O��Ƃ��Ă����������C�������B
-  �EMP�����F�B�f�[�^����F�B��GameSpy�v���t�@�C��ID���擾����ۂɁA
-  �@�F�B���܂���x�����O�C�����Ă��Ȃ��������ɕs����������Ă����̂��C�������B
-  �E�o�f�B���N�G�X�g��M���̏��F�������A�ŏI�d�l�ɍ��킹���B
+  ・friendList操作系外部関数 DWC_SetFriendDataToList(), DWC_SetGsProfileIDToList(),
+  　DWC_DeleteFriendFromList()を消去した。
+  ・GameSpyプロファイルIDを直接扱う関数 DWC_GetProfileIDFromList(),
+  　DWC_GetFriendListIndex() を内部関数に変更した。
+  ・DWC_GetFriendStatus(), DWC_GetFriendStatusSC() の引数を、「友達リストへの
+  　ポインタ＋友達リスト長」から、「友達データへのポインタ」に変更した。
+  ・友達リスト同期更新時に友達データが消去されても、リストを前詰めしないように
+  　変更した。それに伴い、前詰めを前提としていた処理を修正した。
+  ・MP交換友達データから友達のGameSpyプロファイルIDを取得する際に、
+  　友達がまだ一度もログインしていなかった時に不具合が発生していたのを修正した。
+  ・バディリクエスト受信時の承認処理を、最終仕様に合わせた。
 
   Revision 1.9  2005/08/29 06:35:56  arakit
-  �EgpStatus��statusString���Q�[�����ŁAlocationString�����C�u��������
-  �ǂݏ����ł���悤�ɂ����B
-  �E�T�[�o�N���C�A���g�^�}�b�`���O�ŁA�ő�ڑ��l���A���ݐڑ��l����gpStatus��
-  locationString�ɃZ�b�g����悤�ɂ��A���̒l���Q�Ƃ��邽�߂̊֐���p�ӂ����B
+  ・gpStatusのstatusStringをゲーム側で、locationStringをライブラリ側で
+  読み書きできるようにした。
+  ・サーバクライアント型マッチングで、最大接続人数、現在接続人数をgpStatusの
+  locationStringにセットするようにし、その値を参照するための関数を用意した。
 
   Revision 1.8  2005/08/26 08:15:22  arakit
-  �EASSERT�ƃ��W���[������ϐ��̃`�F�b�N�𐮗������B
-  �E�O���֐�DWC_ShutdownFriendsMatch()�̈������Ƃ�Ȃ��悤�ɕύX�����B
-  �܂��A���֐�����e���W���[���̐���ϐ���NULL�N���A����悤�ɂ����B
-  �E�G���[�����֐���ύX���A�G���[�Z�b�g�A�G���[�`�F�b�N��K�v�ȉӏ��ɓ��ꂽ�B
+  ・ASSERTとモジュール制御変数のチェックを整理した。
+  ・外部関数DWC_ShutdownFriendsMatch()の引数をとらないように変更した。
+  また、同関数から各モジュールの制御変数をNULLクリアするようにした。
+  ・エラー処理関数を変更し、エラーセット、エラーチェックを必要な箇所に入れた。
 
   Revision 1.7  2005/08/23 13:39:20  arakit
-  �E�O���֐�DWC_HasProflieIDInList(), DWC_HasOnlyMPFriendKeyInList()�����������B
-  �E�O���֐�DWC_GetProfileIDFromfList()�ƈꕔ�����֐����A���[�U�f�[�^��������
-  ���悤�ɕύX�����B
+  ・外部関数DWC_HasProflieIDInList(), DWC_HasOnlyMPFriendKeyInList()を消去した。
+  ・外部関数DWC_GetProfileIDFromfList()と一部内部関数を、ユーザデータを引数に
+  取るように変更した。
 
   Revision 1.6  2005/08/20 07:01:19  sasakit
-  �w�b�_�C���N���[�h�K�[�h�̏����𓝈ꂵ���B
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
-  �w�b�_��Copyright�������B
-  �\���̖̂��O��Ԃ��ł��邾�����[���ɂ����Â����B
-  util_wifiidtool.h��dwc_backup.h�̊֌W���኱�C���B
+  ヘッダインクルードガードの書式を統一した。
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
+  ヘッダにCopyrightをつけた。
+  構造体の名前空間をできるだけルールにちかづけた。
+  util_wifiidtool.hとdwc_backup.hの関係を若干修正。
 
 
   $NoKeywords: $
@@ -151,70 +151,70 @@ extern "C" {
 //----------------------------------------------------------------------------
 // define
 //----------------------------------------------------------------------------
-// GameSpy Status������ő咷�iNULL�I�[�܂ށj�B256�����B
+// GameSpy Status文字列最大長（NULL終端含む）。256文字。
 #define DWC_GS_STATUS_STRING_LEN GP_LOCATION_STRING_LEN
 
-// DWC���䉺��Persistet�f�[�^�̃Z�[�u�E���[�h�ł��邱�Ƃ�\���t���O
+// DWC制御下のPersistetデータのセーブ・ロードであることを表すフラグ
 #define DWC_PERS_KEY_ID_MASK         0x80000000
 #define DWC_PERS_KEY_ID_PLAYER_NAME  (DWC_PERS_KEY_ID_MASK | 0x01)
 
-// gpProcess()�Ăяo���Ԋu�i�P�ʁFmsec�j
+// gpProcess()呼び出し間隔（単位：msec）
 #define DWC_GP_PROCESS_INTERVAL      300
 
-// �F�B���X�g�����������J�n����܂ł�gpProcess()�Ăяo����
-#define DWC_FRIEND_UPDATE_WAIT_COUNT 7    // 300�~7 = 2.1sec
+// 友達リスト同期処理を開始するまでのgpProcess()呼び出し回数
+#define DWC_FRIEND_UPDATE_WAIT_COUNT 7    // 300×7 = 2.1sec
 
-// GP�L�[�v�A���C�u���MgpProcess()�Ăяo����
-#define DWC_GP_KEEP_ALIVE_COUNT      256  // 300�~256 = 76.8sec
+// GPキープアライブ送信gpProcess()呼び出し回数
+#define DWC_GP_KEEP_ALIVE_COUNT      256  // 300×256 = 76.8sec
 
-// gpStatus��statusString�ɐݒ肷��Akey������i�K���R�����j
-#define DWC_GP_SSTR_KEY_MATCH_VERSION    "VER"  // �}�b�`���C�N�̃v���g�R���o�[�W����
-#define DWC_GP_SSTR_KEY_MATCH_FRIEND_NUM "FME"  // �F�B�w��s�A�}�b�`���C�N�̊�]�ڑ��l��
-#define DWC_GP_SSTR_KEY_DISTANT_FRIEND   "MDF"  // �F�B�w��s�A�}�b�`���C�N�ŗF�B�̗F�B���������ǂ���
-#define DWC_GP_SSTR_KEY_MATCH_SC_MAX     "SCM"  // �T�[�o�N���C�A���g�}�b�`���C�N�̍ő�ڑ��l��
-#define DWC_GP_SSTR_KEY_MATCH_SC_NUM     "SCN"  // �T�[�o�N���C�A���g�}�b�`���C�N�̌��ݐڑ��l��
+// gpStatusのstatusStringに設定する、key文字列（必ず３文字）
+#define DWC_GP_SSTR_KEY_MATCH_VERSION    "VER"  // マッチメイクのプロトコルバージョン
+#define DWC_GP_SSTR_KEY_MATCH_FRIEND_NUM "FME"  // 友達指定ピアマッチメイクの希望接続人数
+#define DWC_GP_SSTR_KEY_DISTANT_FRIEND   "MDF"  // 友達指定ピアマッチメイクで友達の友達を許すかどうか
+#define DWC_GP_SSTR_KEY_MATCH_SC_MAX     "SCM"  // サーバクライアントマッチメイクの最大接続人数
+#define DWC_GP_SSTR_KEY_MATCH_SC_NUM     "SCN"  // サーバクライアントマッチメイクの現在接続人数
 
-// gpStatus��status��ύX���Ȃ����Ƃ�\��status�l
+// gpStatusのstatusを変更しないことを表すstatus値
 #define DWC_GP_STATUS_NO_CHANGE -1
 
     
 //----------------------------------------------------------------------------
 // enum
 //----------------------------------------------------------------------------
-// �F�B�̒ʐM��ԁiGPEnum��Status�{�����Ē�`���Ďg�p�j
+// 友達の通信状態（GPEnumのStatus＋αを再定義して使用）
 enum {
-    DWC_STATUS_OFFLINE = 0,    // �I�t���C��
-    DWC_STATUS_ONLINE,         // �I�����C���iGP�T�[�o�Ƀ��O�C���ς݁j
-    DWC_STATUS_PLAYING,        // �Q�[���v���C��
-    DWC_STATUS_MATCH_ANYBODY,  // �F�B���w��s�A�}�b�`���C�N��
-    DWC_STATUS_MATCH_FRIEND,   // �F�B�w��s�A�}�b�`���C�N��
-    DWC_STATUS_MATCH_SC_CL,    // �T�[�o�N���C�A���g�}�b�`���C�N���̃N���C�A���g
-    DWC_STATUS_MATCH_SC_SV,    // �T�[�o�N���C�A���g�}�b�`���C�N���̃T�[�o
+    DWC_STATUS_OFFLINE = 0,    // オフライン
+    DWC_STATUS_ONLINE,         // オンライン（GPサーバにログイン済み）
+    DWC_STATUS_PLAYING,        // ゲームプレイ中
+    DWC_STATUS_MATCH_ANYBODY,  // 友達無指定ピアマッチメイク中
+    DWC_STATUS_MATCH_FRIEND,   // 友達指定ピアマッチメイク中
+    DWC_STATUS_MATCH_SC_CL,    // サーバクライアントマッチメイク中のクライアント
+    DWC_STATUS_MATCH_SC_SV,    // サーバクライアントマッチメイク中のサーバ
     DWC_STATUS_NUM
 };
     
-// �F�B�Ǘ��������
+// 友達管理処理状態
 typedef enum {
-    DWC_FRIEND_STATE_INIT = 0,      // �������
-    DWC_FRIEND_STATE_PERS_LOGIN,    // Persistent�T�[�o���O�C�����F�B���X�g����������
-    DWC_FRIEND_STATE_LOGON,         // Persistent�T�[�o���O�C����
+    DWC_FRIEND_STATE_INIT = 0,      // 初期状態
+    DWC_FRIEND_STATE_PERS_LOGIN,    // Persistentサーバログイン＆友達リスト同期処理中
+    DWC_FRIEND_STATE_LOGON,         // Persistentサーバログイン後
     DWC_FRIEND_STATE_NUM
 } DWCFriendState;
 
-// ���[�J���F�B���X�g��GP�o�f�B���X�g�Ƃ̓����������
+// ローカル友達リストとGPバディリストとの同期処理状態
 enum {
-    DWC_BUDDY_UPDATE_STATE_WAIT = 0,  // �o�f�B���X�g�_�E�����[�h�����҂�
-    DWC_BUDDY_UPDATE_STATE_CHECK,     // �o�f�B���X�g�`�F�b�N��
-    DWC_BUDDY_UPDATE_STATE_PSEARCH,   // �v���t�@�C���T�[�`��
-    DWC_BUDDY_UPDATE_STATE_COMPLETE,  // �o�f�B���X�g������������
+    DWC_BUDDY_UPDATE_STATE_WAIT = 0,  // バディリストダウンロード完了待ち
+    DWC_BUDDY_UPDATE_STATE_CHECK,     // バディリストチェック中
+    DWC_BUDDY_UPDATE_STATE_PSEARCH,   // プロファイルサーチ中
+    DWC_BUDDY_UPDATE_STATE_COMPLETE,  // バディリスト同期処理完了
     DWC_BUDDY_UPDATE_STATE_NUM
 };
 
-// Persistent�T�[�o���O�C�����
+// Persistentサーバログイン状態
 enum {
-    DWC_PERS_STATE_INIT = 0,   // �������
-    DWC_PERS_STATE_LOGIN,      // ���O�C����
-    DWC_PERS_STATE_CONNECTED,  // �ڑ����
+    DWC_PERS_STATE_INIT = 0,   // 初期状態
+    DWC_PERS_STATE_LOGIN,      // ログイン中
+    DWC_PERS_STATE_CONNECTED,  // 接続状態
     DWC_PERS_STATE_NUM
 };
 
@@ -223,73 +223,73 @@ enum {
 // typedef - function
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  �F�B���X�g���������R�[���o�b�N�^
-  �����@�Ferror     DWC�G���[���
-          isChanged TRUE :�����������ɗF�B���X�g������������ꂽ�A
-                    FALSE:�F�B���X�g�̏��������Ȃ�
-          param     �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
+  友達リスト同期処理コールバック型
+  引数　：error     DWCエラー種別
+          isChanged TRUE :同期処理中に友達リストが書き換えられた、
+                    FALSE:友達リストの書き換えなし
+          param     コールバック用パラメータ
+  戻り値：なし
  *---------------------------------------------------------------------------*/
 typedef void (*DWCUpdateServersCallback)(DWCError error, BOOL isChanged, void* param);
 
 /*---------------------------------------------------------------------------*
-  �F�B��ԕω��ʒm�R�[���o�b�N�^
-  �����@�Findex        ��Ԃ��ω������F�B�̗F�B���X�g�C���f�b�N�X
-          status       �F�B�̏�ԁBDWC_STATUS_* �̗񋓎q�B
-          statusString �Q�[���Œ�`����GameSpy status������B
-                       ������͍ő�255�����{NULL�I�[�B
-          param  �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
+  友達状態変化通知コールバック型
+  引数　：index        状態が変化した友達の友達リストインデックス
+          status       友達の状態。DWC_STATUS_* の列挙子。
+          statusString ゲームで定義したGameSpy status文字列。
+                       文字列は最大255文字＋NULL終端。
+          param  コールバック用パラメータ
+  戻り値：なし
  *---------------------------------------------------------------------------*/
 typedef void (*DWCFriendStatusCallback)(int index, u8 status, const char* statusString, void* param);
 
 /*---------------------------------------------------------------------------*
-  �F�B���X�g�폜�R�[���o�b�N�^
-  �����@�FdeletedIndex �폜���ꂽ�F�B�̗F�B���X�g�C���f�b�N�X
-          srcIndex     �����F�B���Ɣ��肳�ꂽ�F�B���X�g�C���f�b�N�X
-          param        �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
-  DWC_UpdateServersAsync()�̏������ɁA�F�B���X�g���ɓ����F�B���������A
-  ���C�u�������ŏ����������ɌĂ΂��
+  友達リスト削除コールバック型
+  引数　：deletedIndex 削除された友達の友達リストインデックス
+          srcIndex     同じ友達情報と判定された友達リストインデックス
+          param        コールバック用パラメータ
+  戻り値：なし
+  DWC_UpdateServersAsync()の処理中に、友達リスト中に同じ友達情報を見つけ、
+  ライブラリ側で消去した時に呼ばれる
  *---------------------------------------------------------------------------*/
 typedef void (*DWCDeleteFriendListCallback)(int deletedIndex, int srcIndex, void* param);
 
 /*---------------------------------------------------------------------------*
-  �o�f�B�����R�[���o�b�N�^
-  �����@�Findex GP�T�[�o��Ńo�f�B�֌W�����������F�B�́A�F�B���X�g�C���f�b�N�X
-          param �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
+  バディ成立コールバック型
+  引数　：index GPサーバ上でバディ関係が成立した友達の、友達リストインデックス
+          param コールバック用パラメータ
+  戻り値：なし
  *---------------------------------------------------------------------------*/
 typedef void (*DWCBuddyFriendCallback)(int index, void* param);
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�o�E���O�C���R�[���o�b�N�^
-  �����@�Ferror DWC�G���[���
-          param �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
+  データストレージサーバ・ログインコールバック型
+  引数　：error DWCエラー種別
+          param コールバック用パラメータ
+  戻り値：なし
  *---------------------------------------------------------------------------*/
 typedef void (*DWCStorageLoginCallback)(DWCError error, void* param);
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�o�E�Z�[�u�����R�[���o�b�N�^
-  �����@�Fsuccess  TRUE:�Z�[�u�����AFALSE:�Z�[�u���s
-          isPublic TRUE:�Z�[�u�����f�[�^���p�u���b�N�f�[�^�AFALSE:�v���C�x�[�g�f�[�^
-          param  �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
+  データストレージサーバ・セーブ完了コールバック型
+  引数　：success  TRUE:セーブ成功、FALSE:セーブ失敗
+          isPublic TRUE:セーブしたデータがパブリックデータ、FALSE:プライベートデータ
+          param  コールバック用パラメータ
+  戻り値：なし
  *---------------------------------------------------------------------------*/
 typedef void (*DWCSaveToServerCallback)(BOOL success, BOOL isPublic, void* param);
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�o�E���[�h�����R�[���o�b�N�^
-  �����@�Fsuccess   TRUE:���[�h�����AFALSE:���[�h���s
-          index     ���[�h���f�[�^�ێ��҂̗F�B���X�g�C���f�b�N�X�B
-                    �����̏ꍇ�ƁA���[�h�����O�ɗF�B�łȂ��Ȃ����ꍇ��-1�ɂȂ�B
-          data      ���[�h�����f�[�^�ikey/value�g�̕�����j
-          len       ���[�h�f�[�^��
-          param     �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
-  ���[�h�֐��Ŏw�肵���L�[�����݂��Ȃ������ꍇ��A���l��DWC_SavePrivateDataAsync()
-  �ŃZ�[�u�����L�[��ǂ����Ƃ����ꍇ�� success = FALSE �ɂȂ�B
+  データストレージサーバ・ロード完了コールバック型
+  引数　：success   TRUE:ロード成功、FALSE:ロード失敗
+          index     ロード元データ保持者の友達リストインデックス。
+                    自分の場合と、ロード完了前に友達でなくなった場合は-1になる。
+          data      ロードしたデータ（key/value組の文字列）
+          len       ロードデータ長
+          param     コールバック用パラメータ
+  戻り値：なし
+  ロード関数で指定したキーが存在しなかった場合や、他人がDWC_SavePrivateDataAsync()
+  でセーブしたキーを読もうとした場合も success = FALSE になる。
  *---------------------------------------------------------------------------*/
 typedef void (*DWCLoadFromServerCallback)(BOOL success, int index, char* data, int len, void* param);
 
@@ -297,49 +297,49 @@ typedef void (*DWCLoadFromServerCallback)(BOOL success, int index, char* data, i
 //----------------------------------------------------------------------------
 // struct
 //----------------------------------------------------------------------------
-// �F�B���X�g�p���p��
-#define DWC_FRIEND_DATA_SIZE 16  // �F�B���X�g�T�C�Y�i�P�ʁF�o�C�g�j�i���͎g���Ă��Ȃ��j
+// 友達リスト用共用体
+#define DWC_FRIEND_DATA_SIZE 16  // 友達リストサイズ（単位：バイト）（今は使っていない）
 typedef union DWCunFriendDataOld
 {
-    u8  mpFriendKey[DWC_FRIEND_DATA_SIZE];  // MP�F�B������
+    u8  mpFriendKey[DWC_FRIEND_DATA_SIZE];  // MP友達交換鍵
     struct {
-        int id;                             // �v���t�@�C��ID�i��Í�����ԁj
-        u8  pad[DWC_FRIEND_DATA_SIZE-sizeof(int)];  // �p�f�B���O
+        int id;                             // プロファイルID（非暗号化状態）
+        u8  pad[DWC_FRIEND_DATA_SIZE-sizeof(int)];  // パディング
     } profile;
-    u8  flags[DWC_FRIEND_DATA_SIZE];  // �t���O�Q�Ɨp�i[15]�̏��2bit���t���O�j
+    u8  flags[DWC_FRIEND_DATA_SIZE];  // フラグ参照用（[15]の上位2bitがフラグ）
 } DWCFriendDataOld;
 
 typedef struct DWCstFriendControl
 {
-    DWCFriendState state;    // �F�B�Ǘ��������
+    DWCFriendState state;    // 友達管理処理状態
         
-    GPConnection* pGpObj;    // gp�R�l�N�V�����\���̃|�C���^�ւ̃|�C���^
-    u32 gpProcessCount;      // gpProcess�Ăяo����
-    OSTick lastGpProcess;    // gpProcess���Ō�ɌĂяo��������
+    GPConnection* pGpObj;    // gpコネクション構造体ポインタへのポインタ
+    u32 gpProcessCount;      // gpProcess呼び出し回数
+    OSTick lastGpProcess;    // gpProcessを最後に呼び出した時間
         
-    int friendListLen;       // �F�B���X�g�ő咷
-    DWCFriendData* friendList;  // �F�B���X�g
+    int friendListLen;       // 友達リスト最大長
+    DWCFriendData* friendList;  // 友達リスト
 
-    u8  buddyUpdateIdx;      // �F�B���X�g�����������C���f�b�N�X
-    u8  friendListChanged;   // 1:�t�����h���X�g�ɕύX���������A0:�Ȃ�����
-    u8  buddyUpdateState;    // �F�B���X�g����������ԁBDWC_BUDDY_UPDATE_STATE_*�񋓎q�Œ�`�B
-    vu8 svUpdateComplete;    // �F�B���X�g�������������t���O�B2�œ�����������
-    u32 persCallbackLevel;   // Persistent�f�[�^�Z�[�u�E���[�h�R�[���o�b�N�҂�����
-    int profileID;           // �����̃v���t�@�C��ID
-    const u16* playerName;   // ���̃��[�U���Q�Ƃ��鎩���̃v���C���[���ւ̃|�C���^
+    u8  buddyUpdateIdx;      // 友達リスト同期処理中インデックス
+    u8  friendListChanged;   // 1:フレンドリストに変更があった、0:なかった
+    u8  buddyUpdateState;    // 友達リスト同期処理状態。DWC_BUDDY_UPDATE_STATE_*列挙子で定義。
+    vu8 svUpdateComplete;    // 友達リスト同期処理完了フラグ。2で同期処理完了
+    u32 persCallbackLevel;   // Persistentデータセーブ・ロードコールバック待ち件数
+    int profileID;           // 自分のプロファイルID
+    const u16* playerName;   // 他のユーザも参照する自分のプレイヤー名へのポインタ
 
-    DWCUpdateServersCallback updateCallback;     // �F�B���X�g�������������R�[���o�b�N
-    void* updateParam;       // ��L�R�[���o�b�N�p�p�����[�^
-    DWCFriendStatusCallback statusCallback;      // �F�B��ԕω��ʒm�R�[���o�b�N
-    void* statusParam;       // ��L�R�[���o�b�N�p�p�����[�^
-    DWCDeleteFriendListCallback deleteCallback;  // �F�B���X�g�폜�R�[���o�b�N
-    void* deleteParam;       // ��L�R�[���o�b�N�p�p�����[�^
-    DWCBuddyFriendCallback buddyCallback;        // �o�f�B�֌W�����R�[���o�b�N
-    void* buddyParam;        // ��L�R�[���o�b�N�p�p�����[�^
-    DWCStorageLoginCallback persLoginCallback;   // Persistent�T�[�o���O�C�������ʒm�R�[���o�b�N
-    void* persLoginParam;    // ��L�R�[���o�b�N�p�p�����[�^
-    DWCSaveToServerCallback saveCallback;        // Persistent�T�[�o�Z�[�u�R�[���o�b�N
-    DWCLoadFromServerCallback loadCallback;      // Persistent�T�[�o���[�h�R�[���o�b�N
+    DWCUpdateServersCallback updateCallback;     // 友達リスト同期処理完了コールバック
+    void* updateParam;       // 上記コールバック用パラメータ
+    DWCFriendStatusCallback statusCallback;      // 友達状態変化通知コールバック
+    void* statusParam;       // 上記コールバック用パラメータ
+    DWCDeleteFriendListCallback deleteCallback;  // 友達リスト削除コールバック
+    void* deleteParam;       // 上記コールバック用パラメータ
+    DWCBuddyFriendCallback buddyCallback;        // バディ関係成立コールバック
+    void* buddyParam;        // 上記コールバック用パラメータ
+    DWCStorageLoginCallback persLoginCallback;   // Persistentサーバログイン完了通知コールバック
+    void* persLoginParam;    // 上記コールバック用パラメータ
+    DWCSaveToServerCallback saveCallback;        // Persistentサーバセーブコールバック
+    DWCLoadFromServerCallback loadCallback;      // Persistentサーバロードコールバック
 } DWCFriendControl;
 
 
@@ -347,160 +347,160 @@ typedef struct DWCstFriendControl
 // function - external
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  �F�B�ʐM��Ԏ擾�֐�
-  �����@�FfriendData   �F�B���ւ̃|�C���^
-          statusString �Q�[���Œ�`����GameSpy status������i�[��|�C���^�B
-                       NULL��n���Ε�����̃R�s�[�͍s��Ȃ��B
-                       ������͍ő�255�����{NULL�I�[�B
-  �߂�l�F�ʐM���enum�l�idwc_friend.h ��DWC_STATUS_*�j�B
-          �������I�t���C���̎��ȂǂɌĂяo����DWC_STATUS_OFFLINE�����Ԃ��Ȃ��B
-          �܂����肪�܂�GP�̃o�f�B���X�g�ɓo�^����Ă��Ȃ�����
-          DWC_STATUS_OFFLINE�Ԃ��B
-  �p�r�@�F���[�J���ɃL���b�V�����ꂽ�A�w��̗F�B�̒ʐM��Ԃ��擾����B
-  �@�@�@�@�ʐM�͍s��Ȃ��B
-          �F�B�̒ʐM��Ԃ́A�ω�������x��GP�T�[�o����ʒm�����B
-          �������A�ʐM���ɓˑR�d����؂����ꍇ�Ȃǂ͐����Ԃ͑O�̏�Ԃ��c��B
+  友達通信状態取得関数
+  引数　：friendData   友達情報へのポインタ
+          statusString ゲームで定義したGameSpy status文字列格納先ポインタ。
+                       NULLを渡せば文字列のコピーは行わない。
+                       文字列は最大255文字＋NULL終端。
+  戻り値：通信状態enum値（dwc_friend.h のDWC_STATUS_*）。
+          自分がオフラインの時などに呼び出すとDWC_STATUS_OFFLINEしか返さない。
+          また相手がまだGPのバディリストに登録されていない時も
+          DWC_STATUS_OFFLINE返す。
+  用途　：ローカルにキャッシュされた、指定の友達の通信状態を取得する。
+  　　　　通信は行わない。
+          友達の通信状態は、変化がある度にGPサーバから通知される。
+          ただし、通信中に突然電源を切った場合などは数分間は前の状態が残る。
  *---------------------------------------------------------------------------*/
 extern u8   DWC_GetFriendStatus(const DWCFriendData* friendData, char* statusString);
 
 
 /*---------------------------------------------------------------------------*
-  �F�B�ʐM��Ԏ擾�֐��i�T�[�o�N���C�A���g�}�b�`���C�N�Q�[���p�j
-  �����@�FfriendData   �F�B���ւ̃|�C���^
-          maxEntry     �F�B���T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�𗧂Ă�
-                       ����ꍇ�̍ő�ڑ��l���B
-                       �i�[��|�C���^�BNULL��n���Ύ擾���Ȃ��B
-          numEntry     �F�B���T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�𗧂Ă�
-                       ����ꍇ�̌��ݐڑ��l���B
-                       �i�[��|�C���^�BNULL��n���Ύ擾���Ȃ��B
-          statusString �Q�[���Œ�`����GameSpy status������i�[��|�C���^�B
-                       NULL��n���Ε�����̃R�s�[�͍s��Ȃ��B
-                       ������͍ő�255�����{NULL�I�[�B
-  �߂�l�F�ʐM���enum�l�idwc_friend.h ��DWC_STATUS_*�j�B
-          �������I�t���C���̎��ȂǂɌĂяo����DWC_STATUS_OFFLINE�����Ԃ��Ȃ��B
-          �܂����肪�܂�GP�̃o�f�B���X�g�ɓo�^����Ă��Ȃ�����
-          DWC_STATUS_OFFLINE�Ԃ��B
-  �p�r�@�F���[�J���ɃL���b�V�����ꂽ�A�w��̗F�B�̒ʐM��Ԃ��擾����B
-  �@�@�@�@�ʐM�͍s��Ȃ��B
-          �F�B�̒ʐM��Ԃ́A�ω�������x��GP�T�[�o����ʒm�����B
-          �������A�ʐM���ɓˑR�d����؂����ꍇ�Ȃǂ͐����Ԃ͑O�̏�Ԃ��c��B
+  友達通信状態取得関数（サーバクライアントマッチメイクゲーム用）
+  引数　：friendData   友達情報へのポインタ
+          maxEntry     友達がサーバクライアントマッチメイクのサーバを立てて
+                       いる場合の最大接続人数。
+                       格納先ポインタ。NULLを渡せば取得しない。
+          numEntry     友達がサーバクライアントマッチメイクのサーバを立てて
+                       いる場合の現在接続人数。
+                       格納先ポインタ。NULLを渡せば取得しない。
+          statusString ゲームで定義したGameSpy status文字列格納先ポインタ。
+                       NULLを渡せば文字列のコピーは行わない。
+                       文字列は最大255文字＋NULL終端。
+  戻り値：通信状態enum値（dwc_friend.h のDWC_STATUS_*）。
+          自分がオフラインの時などに呼び出すとDWC_STATUS_OFFLINEしか返さない。
+          また相手がまだGPのバディリストに登録されていない時も
+          DWC_STATUS_OFFLINE返す。
+  用途　：ローカルにキャッシュされた、指定の友達の通信状態を取得する。
+  　　　　通信は行わない。
+          友達の通信状態は、変化がある度にGPサーバから通知される。
+          ただし、通信中に突然電源を切った場合などは数分間は前の状態が残る。
  *---------------------------------------------------------------------------*/
 extern u8   DWC_GetFriendStatusSC(const DWCFriendData* friendData, u8* maxEntry, u8* numEntry, char* statusString);
 
 
 /*---------------------------------------------------------------------------*
-  �F�B�ʐM��Ԏ擾�֐��istatusData�Łj
-  �����@�FfriendData �F�B���ւ̃|�C���^
-          statusData �Q�[���Œ�`����GameSpy status�f�[�^�i�[��|�C���^�B
-                     NULL��n���΃f�[�^�̃R�s�[�͍s��Ȃ��B
-          size       �Q�[���Œ�`����GameSpy status�f�[�^���̊i�[��|�C���^�B
-                     �����ȃf�[�^�̏ꍇ��-1���i�[�����B
-  �߂�l�F�ʐM���enum�l�idwc_friend.h ��DWC_STATUS_*�j�B
-          �������I�t���C���̎��ȂǂɌĂяo����DWC_STATUS_OFFLINE�����Ԃ��Ȃ��B
-          �܂����肪�܂�GP�̃o�f�B���X�g�ɓo�^����Ă��Ȃ�����
-          DWC_STATUS_OFFLINE�Ԃ��B
-  �p�r�@�F���[�J���ɃL���b�V�����ꂽ�A�w��̗F�B�̒ʐM��Ԃ��擾����B
-  �@�@�@�@�ʐM�͍s��Ȃ��B
-          �F�B�̒ʐM��Ԃ́A�ω�������x��GP�T�[�o����ʒm�����B
-          �������A�ʐM���ɓˑR�d����؂����ꍇ�Ȃǂ͐����Ԃ͑O�̏�Ԃ��c��B
-          �߂�l��DWC_STATUS_OFFLINE�̏ꍇ�́A*size = -1 ���Z�b�g����ȊO��
-          �l���Z�b�g�����ɕԂ��܂��B
+  友達通信状態取得関数（statusData版）
+  引数　：friendData 友達情報へのポインタ
+          statusData ゲームで定義したGameSpy statusデータ格納先ポインタ。
+                     NULLを渡せばデータのコピーは行わない。
+          size       ゲームで定義したGameSpy statusデータ長の格納先ポインタ。
+                     無効なデータの場合は-1が格納される。
+  戻り値：通信状態enum値（dwc_friend.h のDWC_STATUS_*）。
+          自分がオフラインの時などに呼び出すとDWC_STATUS_OFFLINEしか返さない。
+          また相手がまだGPのバディリストに登録されていない時も
+          DWC_STATUS_OFFLINE返す。
+  用途　：ローカルにキャッシュされた、指定の友達の通信状態を取得する。
+  　　　　通信は行わない。
+          友達の通信状態は、変化がある度にGPサーバから通知される。
+          ただし、通信中に突然電源を切った場合などは数分間は前の状態が残る。
+          戻り値がDWC_STATUS_OFFLINEの場合は、*size = -1 をセットする以外は
+          値をセットせずに返します。
  *---------------------------------------------------------------------------*/
 extern u8 DWC_GetFriendStatusData(const DWCFriendData* friendData, char* statusData, int* size);
 
 
 /*---------------------------------------------------------------------------*
-  �F�B�ʐM��Ԏ擾�֐��i�T�[�o�N���C�A���g�}�b�`���C�N�Q�[���pstatusData�Łj
-  �����@�FfriendData �F�B���ւ̃|�C���^
-          maxEntry   �F�B���T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�𗧂Ă�
-                     ����ꍇ�̍ő�ڑ��l���B
-                     �i�[��|�C���^�BNULL��n���Ύ擾���Ȃ��B
-          numEntry   �F�B���T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�o�𗧂Ă�
-                     ����ꍇ�̌��ݐڑ��l���B
-                     �i�[��|�C���^�BNULL��n���Ύ擾���Ȃ��B
-          statusData �Q�[���Œ�`����GameSpy status������i�[��|�C���^�B
-                     NULL��n���Ε�����̃R�s�[�͍s��Ȃ��B
-          size       �Q�[���Œ�`����GameSpy status�f�[�^���̊i�[��|�C���^�B
-                     �����ȃf�[�^�̏ꍇ��-1���i�[�����B
-  �߂�l�F�ʐM���enum�l�idwc_friend.h ��DWC_STATUS_*�j�B
-          �������I�t���C���̎��ȂǂɌĂяo����DWC_STATUS_OFFLINE�����Ԃ��Ȃ��B
-          �܂����肪�܂�GP�̃o�f�B���X�g�ɓo�^����Ă��Ȃ�����
-          DWC_STATUS_OFFLINE�Ԃ��B
-  �p�r�@�F���[�J���ɃL���b�V�����ꂽ�A�w��̗F�B�̒ʐM��Ԃ��擾����B
-  �@�@�@�@�ʐM�͍s��Ȃ��B
-          �F�B�̒ʐM��Ԃ́A�ω�������x��GP�T�[�o����ʒm�����B
-          �������A�ʐM���ɓˑR�d����؂����ꍇ�Ȃǂ͐����Ԃ͑O�̏�Ԃ��c��B
-          �߂�l��DWC_STATUS_OFFLINE�̏ꍇ�́A*size = -1 ���Z�b�g����ȊO��
-          �l���Z�b�g�����ɕԂ��܂��B
+  友達通信状態取得関数（サーバクライアントマッチメイクゲーム用statusData版）
+  引数　：friendData 友達情報へのポインタ
+          maxEntry   友達がサーバクライアントマッチメイクのサーバを立てて
+                     いる場合の最大接続人数。
+                     格納先ポインタ。NULLを渡せば取得しない。
+          numEntry   友達がサーバクライアントマッチメイクのサーバを立てて
+                     いる場合の現在接続人数。
+                     格納先ポインタ。NULLを渡せば取得しない。
+          statusData ゲームで定義したGameSpy status文字列格納先ポインタ。
+                     NULLを渡せば文字列のコピーは行わない。
+          size       ゲームで定義したGameSpy statusデータ長の格納先ポインタ。
+                     無効なデータの場合は-1が格納される。
+  戻り値：通信状態enum値（dwc_friend.h のDWC_STATUS_*）。
+          自分がオフラインの時などに呼び出すとDWC_STATUS_OFFLINEしか返さない。
+          また相手がまだGPのバディリストに登録されていない時も
+          DWC_STATUS_OFFLINE返す。
+  用途　：ローカルにキャッシュされた、指定の友達の通信状態を取得する。
+  　　　　通信は行わない。
+          友達の通信状態は、変化がある度にGPサーバから通知される。
+          ただし、通信中に突然電源を切った場合などは数分間は前の状態が残る。
+          戻り値がDWC_STATUS_OFFLINEの場合は、*size = -1 をセットする以外は
+          値をセットせずに返します。
  *---------------------------------------------------------------------------*/
 extern u8 DWC_GetFriendStatusDataSC(const DWCFriendData* friendData, u8* maxEntry, u8* numEntry, char* statusData, int* size);
 
 
 /*---------------------------------------------------------------------------*
-  �F�B���擾�֐�
-  �����@�FfriendList    �F�B���X�g
-          friendListLen �F�B���X�g�̍ő咷�i�v�f���j
-  �߂�l�F�F�B���X�g�ɓo�^����Ă���F�B�̐�
-  �p�r�@�F���[�J���̗F�B���X�g���Q�Ƃ��āA�F�B�o�^����Ԃ��B�ʐM�͍s��Ȃ��B
+  友達数取得関数
+  引数　：friendList    友達リスト
+          friendListLen 友達リストの最大長（要素数）
+  戻り値：友達リストに登録されている友達の数
+  用途　：ローカルの友達リストを参照して、友達登録数を返す。通信は行わない。
  *---------------------------------------------------------------------------*/
 extern int  DWC_GetNumFriend(const DWCFriendData friendList[], int friendListLen);
 
 
 /*---------------------------------------------------------------------------*
-  GameSpy Status������Z�b�g�֐�
-  �����@�FstatusString GameSpy��Status�ɃZ�b�g���镶����B255�����{NULL�I�[�܂ŁB
-  �߂�l�FTRUE :�Z�b�g����
-          FALSE:���O�C���O�ȂǂŃZ�b�g���s
-  �p�r�@�F������GameSpy Status�ɕ�������Z�b�g����B
-          �Z�b�g���ꂽ������́A���̃z�X�g�����DWC_GetFriendStatus()��
-          �擾���邱�Ƃ��ł���B
-          '/'��'\\'�͎��ʕ����Ƃ��ă��C�u�������g���̂ŁA�����񒆂�
-          �g�p���Ȃ��ŉ������B
-          �Z�b�g���ꂽ������́ADWC_ShutdownFriendsMatch()���Ă΂���
-          �N���A����܂��B
+  GameSpy Status文字列セット関数
+  引数　：statusString GameSpyのStatusにセットする文字列。255文字＋NULL終端まで。
+  戻り値：TRUE :セット成功
+          FALSE:ログイン前などでセット失敗
+  用途　：自分のGameSpy Statusに文字列をセットする。
+          セットされた文字列は、他のホストからもDWC_GetFriendStatus()で
+          取得することができる。
+          '/'と'\\'は識別文字としてライブラリが使うので、文字列中に
+          使用しないで下さい。
+          セットされた文字列は、DWC_ShutdownFriendsMatch()が呼ばれると
+          クリアされます。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_SetOwnStatusString(const char* statusString);
 
 
 /*---------------------------------------------------------------------------*
-  GameSpy Status������擾�֐�
-  �����@�FstatusString GameSpy��Status������i�[��|�C���^�B255�����{NULL�I�[�܂ŁB
-  �߂�l�FTRUE :�擾�����AFALSE:���O�C���O�ȂǂŎ擾���s
-  �p�r�@�F���݂̎�����GameSpy Status��������擾����B
+  GameSpy Status文字列取得関数
+  引数　：statusString GameSpyのStatus文字列格納先ポインタ。255文字＋NULL終端まで。
+  戻り値：TRUE :取得成功、FALSE:ログイン前などで取得失敗
+  用途　：現在の自分のGameSpy Status文字列を取得する。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_GetOwnStatusString(char* statusString);
 
 
 /*---------------------------------------------------------------------------*
-  GameSpy Status�f�[�^�Z�b�g�֐�
-  �����@�FstatusData GameSpy��Status�ɃZ�b�g����o�C�i���f�[�^�ւ̃|�C���^�B
-          size       �o�C�i���f�[�^�̃T�C�Y�B189Byte�܂ŁB
-  �߂�l�FTRUE :�Z�b�g����
-          FALSE:���O�C���O�A�e�ʃI�[�o�[�ȂǂŃZ�b�g���s
-  �p�r�@�F������GameSpy Status�Ƀo�C�i���f�[�^��Base64�Ńe�L�X�g������
-          �Z�b�g����B
-          �Z�b�g���ꂽ�f�[�^�́A���̃z�X�g����DWC_GetFriendStatusData()��
-          �擾���邱�Ƃ��ł���B
-          �Z�b�g���ꂽ�f�[�^�́ADWC_ShutdownFriendsMatch()���Ă΂���
-          �N���A����܂��B
+  GameSpy Statusデータセット関数
+  引数　：statusData GameSpyのStatusにセットするバイナリデータへのポインタ。
+          size       バイナリデータのサイズ。189Byteまで。
+  戻り値：TRUE :セット成功
+          FALSE:ログイン前、容量オーバーなどでセット失敗
+  用途　：自分のGameSpy StatusにバイナリデータをBase64でテキスト化して
+          セットする。
+          セットされたデータは、他のホストからDWC_GetFriendStatusData()で
+          取得することができる。
+          セットされたデータは、DWC_ShutdownFriendsMatch()が呼ばれると
+          クリアされます。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_SetOwnStatusData(const char* statusData, u32 size);
 
 
 /*---------------------------------------------------------------------------*
-  GameSpy Status�f�[�^�擾�֐�
-  �����@�FstatusData GameSpy��Status�f�[�^�i�[��|�C���^
-  �߂�l�F-1:���O�C���O�ȂǂŎ擾���s�A
-          �񕉐���:�擾�����o�C�i���f�[�^�̃T�C�Y
-  �p�r�@�F���݂̎�����GameSpy Status�f�[�^���擾����B
-          ����statusData��NULL��n���ƁA�o�C�i���f�[�^�̃T�C�Y�̂ݎ擾����B
+  GameSpy Statusデータ取得関数
+  引数　：statusData GameSpyのStatusデータ格納先ポインタ
+  戻り値：-1:ログイン前などで取得失敗、
+          非負整数:取得したバイナリデータのサイズ
+  用途　：現在の自分のGameSpy Statusデータを取得する。
+          引数statusDataにNULLを渡すと、バイナリデータのサイズのみ取得する。
  *---------------------------------------------------------------------------*/
 extern int DWC_GetOwnStatusData(char* statusData);
 
 
 /*---------------------------------------------------------------------------*
   [obsolute functions]
-  �݊����̂��߂ɁA�Â��֐����C�����C���Ŏc���Ă����B
+  互換性のために、古い関数をインラインで残しておく。
  *---------------------------------------------------------------------------*/
 inline BOOL DWC_SetGsStatusString(const char* statusString)
 {
@@ -520,201 +520,201 @@ inline int DWC_GetGsStatusData(char* statusData)
 }
 
 /*---------------------------------------------------------------------------*
-  �F�B���X�g�ҏW�\��Ԏ擾�֐�
-  �����@�F�Ȃ�
-  �߂�l�FTRUE:�F�B���X�g��ҏW���ėǂ��AFALSE:�F�B���X�g��ҏW���Ă͂����Ȃ�
-  �p�r�@�F�F�B���X�g��ҏW���Ă��ǂ��^�C�~���O���ǂ����𒲂ׂ�B
-          �����ł̖߂�l�́A����DWC_ProcessFriendsMatch()���Ă΂��܂ŗL���B
+  友達リスト編集可能状態取得関数
+  引数　：なし
+  戻り値：TRUE:友達リストを編集して良い、FALSE:友達リストを編集してはいけない
+  用途　：友達リストを編集しても良いタイミングかどうかを調べる。
+          ここでの戻り値は、次にDWC_ProcessFriendsMatch()が呼ばれるまで有効。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_CanChangeFriendList(void);
 
 
 /*---------------------------------------------------------------------------*
-  �F�B��񊮑S�����֐�
-  �����@�FfriendData �F�B���ւ̃|�C���^
-  �߂�l�F�Ȃ�
-  �p�r�@�F�F�B�����[���N���A���AGP�T�[�o��̃o�f�B�֌W����������B
+  友達情報完全消去関数
+  引数　：friendData 友達情報へのポインタ
+  戻り値：なし
+  用途　：友達情報をゼロクリアし、GPサーバ上のバディ関係も消去する。
  *---------------------------------------------------------------------------*/
 extern void DWC_DeleteBuddyFriendData(DWCFriendData* friendData);
 
 
 /*---------------------------------------------------------------------------*
-  �o�f�B�����R�[���o�b�N�o�^�֐�
-  �����@�Fcallback �o�f�B�����R�[���o�b�N
-          param    �R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :�o�^����
-          FALSE:FriendsMatch���C�u�����񓮍쒆�œo�^���s
-  �p�r�@�F���[�J���̗F�B���X�g�ɓo�^���ꂽ�F�B���ADWC_UpdateServersAsync()
-          �ďo�����ȊO�̃^�C�~���O�ŁAGP�T�[�o��ł��o�f�B�Ƃ���
-          �F�߂�ꂽ���ɌĂяo�����R�[���o�b�N��o�^����
+  バディ成立コールバック登録関数
+  引数　：callback バディ成立コールバック
+          param    コールバック用パラメータ
+  戻り値：TRUE :登録成功
+          FALSE:FriendsMatchライブラリ非動作中で登録失敗
+  用途　：ローカルの友達リストに登録された友達が、DWC_UpdateServersAsync()
+          呼出し中以外のタイミングで、GPサーバ上でもバディとして
+          認められた時に呼び出されるコールバックを登録する
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_SetBuddyFriendCallback(DWCBuddyFriendCallback callback, void* param);
 
 
 /*---------------------------------------------------------------------------*
-  �F�B��ԕω��ʒm�R�[���o�b�N�o�^�֐�
-  �����@�Fcallback �F�B��ԕω��ʒm�R�[���o�b�N
-          param    �R�[���o�b�N�p�p�����[�^�BNULL��n���Ή����Z�b�g���Ȃ��B
-                   �R�[���o�b�N�p�p�����[�^�̃f�t�H���g�l��NULL�B
-  �߂�l�FTRUE :�o�^����
-          FALSE:FriendsMatch���C�u�����񓮍쒆�œo�^���s
-  �p�r�@�F�F�B�̒ʐM��Ԃ��ω��������ɒʒm�����R�[���o�b�N��o�^����B
-          �ʏ��DWC_UpdateServersAsync()�œo�^�ł��邪�A
-          DWC_UpdateServersAsync()���g��Ȃ����F�B�̏�Ԃ͎擾�������Ƃ���
-          �ꍇ�ɖ{�֐���p����B
+  友達状態変化通知コールバック登録関数
+  引数　：callback 友達状態変化通知コールバック
+          param    コールバック用パラメータ。NULLを渡せば何もセットしない。
+                   コールバック用パラメータのデフォルト値はNULL。
+  戻り値：TRUE :登録成功
+          FALSE:FriendsMatchライブラリ非動作中で登録失敗
+  用途　：友達の通信状態が変化した時に通知されるコールバックを登録する。
+          通常はDWC_UpdateServersAsync()で登録できるが、
+          DWC_UpdateServersAsync()を使わないが友達の状態は取得したいという
+          場合に本関数を用いる。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_SetFriendStatusCallback(DWCFriendStatusCallback callback, void* param);
 
 
 /*---------------------------------------------------------------------------*
-  Base64�G���R�[�h�֐�
-  �����@�Fsrc    �ϊ����f�[�^�ւ̃|�C���^
-          srclen �ϊ����f�[�^��
-          dst    �ϊ���f�[�^�i�[�p�o�b�t�@�ւ̃|�C���^�B
-                 NULL���w�肷��Εϊ���ɕK�v�ȍő�o�b�t�@�T�C�Y��Ԃ������B
-          dstlen �ϊ���f�[�^�i�[�p�o�b�t�@�̃T�C�Y�i�����񒷁j
-  �߂�l�F-1      :�ϊ����s�B�K�v�ȕϊ���o�b�t�@�T�C�Y��dstlen���z���Ă���B
-          ����ȊO:�ϊ����ʂ̕�����
-  �p�r�@�F�^����ꂽ�f�[�^��Base64�ŃG���R�[�h���Achar�^�̕�����Ƃ��ďo�͂���
+  Base64エンコード関数
+  引数　：src    変換元データへのポインタ
+          srclen 変換元データ長
+          dst    変換後データ格納用バッファへのポインタ。
+                 NULLを指定すれば変換後に必要な最大バッファサイズを返すだけ。
+          dstlen 変換後データ格納用バッファのサイズ（文字列長）
+  戻り値：-1      :変換失敗。必要な変換後バッファサイズがdstlenを越えている。
+          それ以外:変換結果の文字列長
+  用途　：与えられたデータをBase64でエンコードし、char型の文字列として出力する
  *---------------------------------------------------------------------------*/
 extern int DWC_Base64Encode(const char *src, const u32 srclen, char *dst, const u32 dstlen);
 
 
 /*---------------------------------------------------------------------------*
-  Base64�f�R�[�h�֐�
-  �����@�Fsrc    Base64�f�[�^�ւ̃|�C���^
-          srclen Base64�f�[�^���i�����񒷁j
-          dst    �ϊ���f�[�^�i�[�p�o�b�t�@�ւ̃|�C���^�B
-                 NULL���w�肷��Εϊ���ɕK�v�ȍő�o�b�t�@�T�C�Y��Ԃ������B
-          dstlen �ϊ���f�[�^�i�[�p�o�b�t�@�̃T�C�Y
-  �߂�l�F-1      :�ϊ����s�B�K�v�ȕϊ���o�b�t�@�T�C�Y��dstlen���z���Ă���B
-          ����ȊO:�ϊ����ʂ̃f�[�^�T�C�Y
-  �p�r�@�F�^����ꂽBase64�f�[�^���f�R�[�h���Achar�^�̃f�[�^�Ƃ��ďo�͂���
+  Base64デコード関数
+  引数　：src    Base64データへのポインタ
+          srclen Base64データ長（文字列長）
+          dst    変換後データ格納用バッファへのポインタ。
+                 NULLを指定すれば変換後に必要な最大バッファサイズを返すだけ。
+          dstlen 変換後データ格納用バッファのサイズ
+  戻り値：-1      :変換失敗。必要な変換後バッファサイズがdstlenを越えている。
+          それ以外:変換結果のデータサイズ
+  用途　：与えられたBase64データをデコードし、char型のデータとして出力する
  *---------------------------------------------------------------------------*/
 extern int DWC_Base64Decode(const char *src, const u32 srclen, char *dst, const u32 dstlen);
 
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�o�ւ̃��O�C���֐�
-  �����@�Fcallback ���O�C�������ʒm�R�[���o�b�N
-          param    �R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE :���O�C���J�n�B���������s�ŃR�[���o�b�N���Ԃ��Ă���B
-          FALSE:DWC_LoginAsync()�����O�A���Ƀ��O�C���ς݂ȂǂŃ��O�C����
-                �J�n���Ȃ������B�R�[���o�b�N�͕Ԃ��Ă��Ȃ��B
-  �p�r�@�FGameSpy�f�[�^�X�g���[�W�T�[�o�ւ̃��O�C�����s�Ȃ��B
-          ���O�C�����Ȃ��ƃf�[�^�X�g���[�W�T�[�o�ւ̃Z�[�u�E���[�h�͂ł��Ȃ��B
+  データストレージサーバへのログイン関数
+  引数　：callback ログイン完了通知コールバック
+          param    コールバック用パラメータ
+  戻り値：TRUE :ログイン開始。成功か失敗でコールバックが返ってくる。
+          FALSE:DWC_LoginAsync()完了前、既にログイン済みなどでログインを
+                開始しなかった。コールバックは返ってこない。
+  用途　：GameSpyデータストレージサーバへのログインを行なう。
+          ログインしないとデータストレージサーバへのセーブ・ロードはできない。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_LoginToStorageServerAsync(DWCStorageLoginCallback callback, void* param);
 
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�o����̃��O�A�E�g�֐�
-  �����@�F�Ȃ�
-  �߂�l�F�Ȃ�
-  �p�r�@�FGameSpy�f�[�^�X�g���[�W�T�[�o���烍�O�A�E�g���A
-          ����I�u�W�F�N�g���������B
-          ���̊֐����Ă΂Ȃ��Ă��ADWC_ShutdownFriendsMatch()���Ăׂ΁A
-          ���O�A�E�g�������s�Ȃ���B
+  データストレージサーバからのログアウト関数
+  引数　：なし
+  戻り値：なし
+  用途　：GameSpyデータストレージサーバからログアウトし、
+          制御オブジェクトを解放する。
+          この関数を呼ばなくても、DWC_ShutdownFriendsMatch()を呼べば、
+          ログアウト処理が行なわれる。
  *---------------------------------------------------------------------------*/
 extern void DWC_LogoutFromStorageServer(void);
 
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�o �f�[�^�Z�[�u�E���[�h�����ʒm�R�[���o�b�N�o�^�֐�
-  �����@�FsaveCallback �Z�[�u�����ʒm�R�[���o�b�N
-          loadCallback ���[�h�����ʒm�R�[���o�b�N
-  �߂�l�FTRUE :�o�^����
-          FALSE:FriendsMatch���C�u�����񓮍쒆�œo�^���s
-  �p�r�@�F�f�[�^�X�g���[�W�ւ̃Z�[�u�E���[�h�������������ɌĂяo�����
-          �R�[���o�b�N��o�^����
+  データストレージサーバ データセーブ・ロード完了通知コールバック登録関数
+  引数　：saveCallback セーブ完了通知コールバック
+          loadCallback ロード完了通知コールバック
+  戻り値：TRUE :登録成功
+          FALSE:FriendsMatchライブラリ非動作中で登録失敗
+  用途　：データストレージへのセーブ・ロードが完了した時に呼び出される
+          コールバックを登録する
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_SetStorageServerCallback(DWCSaveToServerCallback saveCallback,
                                          DWCLoadFromServerCallback loadCallback);
 
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�oPublic�f�[�^�Z�[�u�֐�
-  �����@�Fkeyvalues �f�[�^�x�[�X������ikey/value�l�j�ւ̃|�C���^
-          param     �R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE:�Z�[�u�J�n�AFALSE�F�I�t���C����Ԃ��ʐM�G���[���ŃZ�[�u�ł��Ȃ�
-  �p�r�@�F�N�ł��Q�Ɖ\�ȃf�[�^���f�[�^�X�g���[�W�T�[�o�ɃZ�[�u����B
-          �Z�[�u����f�[�^��NULL�I�[�̕�����ŁAkey/value�̑g�ł���K�v������B
-          �i"\\name\\mario\\stage\\3"�̂悤��'\\'�ŋ�؂��ċL�q����B
-          ���̗�̂悤�ɕ�����key/value�g����x�ɃZ�[�u���邱�Ƃ��ł���j
-          �f�[�^�̃Z�b�g������������R�[���o�b�N���Ă΂��B
+  データストレージサーバPublicデータセーブ関数
+  引数　：keyvalues データベース文字列（key/value値）へのポインタ
+          param     コールバック用パラメータ
+  戻り値：TRUE:セーブ開始、FALSE：オフライン状態か通信エラー中でセーブできない
+  用途　：誰でも参照可能なデータをデータストレージサーバにセーブする。
+          セーブするデータはNULL終端の文字列で、key/valueの組である必要がある。
+          （"\\name\\mario\\stage\\3"のように'\\'で区切って記述する。
+          この例のように複数のkey/value組を一度にセーブすることができる）
+          データのセットが完了したらコールバックが呼ばれる。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_SavePublicDataAsync(char* keyvalues, void* param);
 
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�oPrivate�f�[�^�Z�[�u�֐�
-  �����@�Fkeyvalues �Z�[�u�������f�[�^�x�[�X������ikey/value�l�j�ւ̃|�C���^
-          param     �R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE:�Z�[�u�J�n�AFALSE�F�I�t���C����Ԃ��ʐM�G���[���ŃZ�[�u�ł��Ȃ�
-  �p�r�@�F�{�l�̂ݎQ�Ɖ\�ȃf�[�^���f�[�^�X�g���[�W�T�[�o�ɃZ�[�u����B
-          �Z�[�u����f�[�^��NULL�I�[�̕�����ŁAkey/value�̑g�ł���K�v������B
-          �i"\\name\\mario\\stage\\3"�̂悤��'\\'�ŋ�؂��ċL�q����B
-          ���̗�̂悤�ɕ�����key/value�g����x�ɃZ�[�u���邱�Ƃ��ł���j
-          �f�[�^�̃Z�b�g������������R�[���o�b�N���Ă΂��B
+  データストレージサーバPrivateデータセーブ関数
+  引数　：keyvalues セーブしたいデータベース文字列（key/value値）へのポインタ
+          param     コールバック用パラメータ
+  戻り値：TRUE:セーブ開始、FALSE：オフライン状態か通信エラー中でセーブできない
+  用途　：本人のみ参照可能なデータをデータストレージサーバにセーブする。
+          セーブするデータはNULL終端の文字列で、key/valueの組である必要がある。
+          （"\\name\\mario\\stage\\3"のように'\\'で区切って記述する。
+          この例のように複数のkey/value組を一度にセーブすることができる）
+          データのセットが完了したらコールバックが呼ばれる。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_SavePrivateDataAsync(char* keyvalues, void* param);
 
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�o ������Public�f�[�^���[�h�֐�
-  �����@�Fkeys  ���[�h�������f�[�^��key������ւ̃|�C���^
-          param �R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE:���[�h�J�n�AFALSE�F�I�t���C����Ԃ��ʐM�G���[���Ń��[�h�ł��Ȃ�
-  �p�r�@�F�f�[�^�X�g���[�W�T�[�o����Public�f�[�^�����[�h����B
-          ���[�h����f�[�^��key�Ŏw�肵�ANULL�I�[�̕�����ł���K�v������B
-          �i"\\name\\stage"�̂悤��'\\'�ŋ�؂��ċL�q����B
-          ���̗�̂悤�ɕ�����key����x�Ƀ��[�h���邱�Ƃ��ł���j
-          �f�[�^�̃��[�h������������R�[���o�b�N���Ă΂��B
+  データストレージサーバ 自分のPublicデータロード関数
+  引数　：keys  ロードしたいデータのkey文字列へのポインタ
+          param コールバック用パラメータ
+  戻り値：TRUE:ロード開始、FALSE：オフライン状態か通信エラー中でロードできない
+  用途　：データストレージサーバからPublicデータをロードする。
+          ロードするデータはkeyで指定し、NULL終端の文字列である必要がある。
+          （"\\name\\stage"のように'\\'で区切って記述する。
+          この例のように複数のkeyを一度にロードすることができる）
+          データのロードが完了したらコールバックが呼ばれる。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_LoadOwnPublicDataAsync(char* keys, void* param);
 
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�o ������Private�f�[�^���[�h�֐�
-  �����@�Fkeys  ���[�h�������f�[�^��key������ւ̃|�C���^
-          param �R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE:���[�h�J�n�AFALSE�F�I�t���C����Ԃ��ʐM�G���[���Ń��[�h�ł��Ȃ�
-  �p�r�@�F�f�[�^�X�g���[�W�T�[�o����Private�f�[�^�����[�h����B
-          ���[�h����f�[�^��key�Ŏw�肵�ANULL�I�[�̕�����ł���K�v������B
-          �i"\\name\\stage"�̂悤��'\\'�ŋ�؂��ċL�q����B
-          ���̗�̂悤�ɕ�����key����x�Ƀ��[�h���邱�Ƃ��ł���j
-          �f�[�^�̃��[�h������������R�[���o�b�N���Ă΂��B
+  データストレージサーバ 自分のPrivateデータロード関数
+  引数　：keys  ロードしたいデータのkey文字列へのポインタ
+          param コールバック用パラメータ
+  戻り値：TRUE:ロード開始、FALSE：オフライン状態か通信エラー中でロードできない
+  用途　：データストレージサーバからPrivateデータをロードする。
+          ロードするデータはkeyで指定し、NULL終端の文字列である必要がある。
+          （"\\name\\stage"のように'\\'で区切って記述する。
+          この例のように複数のkeyを一度にロードすることができる）
+          データのロードが完了したらコールバックが呼ばれる。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_LoadOwnPrivateDataAsync(char* keys, void* param);
 
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�o �����̃f�[�^���[�h�֐�  (obsolete function)
-  �����@�Fkeys  ���[�h�������f�[�^��key������ւ̃|�C���^
-          param �R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE:���[�h�J�n�AFALSE�F�I�t���C����Ԃ��ʐM�G���[���Ń��[�h�ł��Ȃ�
-  �p�r�@�F�f�[�^�X�g���[�W�T�[�o����f�[�^�����[�h����B
-          ���[�h����f�[�^��key�Ŏw�肵�ANULL�I�[�̕�����ł���K�v������B
-          �i"\\name\\stage"�̂悤��'\\'�ŋ�؂��ċL�q����B
-          ���̗�̂悤�ɕ�����key����x�Ƀ��[�h���邱�Ƃ��ł���j
-          �f�[�^�̃��[�h������������R�[���o�b�N���Ă΂��B
-          ���������e�̊֐���DWC_LoadOwnPrivateDataAsync()�ɉ������܂����B
+  データストレージサーバ 自分のデータロード関数  (obsolete function)
+  引数　：keys  ロードしたいデータのkey文字列へのポインタ
+          param コールバック用パラメータ
+  戻り値：TRUE:ロード開始、FALSE：オフライン状態か通信エラー中でロードできない
+  用途　：データストレージサーバからデータをロードする。
+          ロードするデータはkeyで指定し、NULL終端の文字列である必要がある。
+          （"\\name\\stage"のように'\\'で区切って記述する。
+          この例のように複数のkeyを一度にロードすることができる）
+          データのロードが完了したらコールバックが呼ばれる。
+          →同じ内容の関数はDWC_LoadOwnPrivateDataAsync()に改名しました。
  *---------------------------------------------------------------------------*/
 #define DWC_LoadOwnDataAsync DWC_LoadOwnPrivateDataAsync
 
 
 /*---------------------------------------------------------------------------*
-  �f�[�^�X�g���[�W�T�[�o ���l��Public�f�[�^���[�h�֐�
-  �����@�Fkeys  ���[�h�������f�[�^��key������ւ̃|�C���^
-          index ���[�h���������[�U�̗F�B���X�g�C���f�b�N�X
-          param �R�[���o�b�N�p�p�����[�^
-  �߂�l�FTRUE:���[�h�J�n�A
-          FALSE�F�������I�t���C����Ԃ����肪�F�B�łȂ��A�ʐM�G���[���Ń��[�h�ł��Ȃ�
-  �p�r�@�F�f�[�^�X�g���[�W�T�[�o����Public�f�[�^�����[�h����B
-          ���[�h����f�[�^��key�Ŏw�肵�ANULL�I�[�̕�����ł���K�v������B
-          �i"\\name\\stage"�̂悤��'\\'�ŋ�؂��ċL�q����B
-          ���̗�̂悤�ɕ�����key����x�Ƀ��[�h���邱�Ƃ��ł���j
-          �f�[�^�̃��[�h������������R�[���o�b�N���Ă΂��B
+  データストレージサーバ 他人のPublicデータロード関数
+  引数　：keys  ロードしたいデータのkey文字列へのポインタ
+          index ロードしたいユーザの友達リストインデックス
+          param コールバック用パラメータ
+  戻り値：TRUE:ロード開始、
+          FALSE：自分がオフライン状態か相手が友達でない、通信エラー中でロードできない
+  用途　：データストレージサーバからPublicデータをロードする。
+          ロードするデータはkeyで指定し、NULL終端の文字列である必要がある。
+          （"\\name\\stage"のように'\\'で区切って記述する。
+          この例のように複数のkeyを一度にロードすることができる）
+          データのロードが完了したらコールバックが呼ばれる。
  *---------------------------------------------------------------------------*/
 extern BOOL DWC_LoadOthersDataAsync(char* keys, int index, void* param);
 

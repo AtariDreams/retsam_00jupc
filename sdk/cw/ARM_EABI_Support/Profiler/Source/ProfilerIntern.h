@@ -3,7 +3,7 @@
   
   These structures are shared between the collection library and the viewer application.
   
-  Copyright © 1993-1994, 2003 Metrowerks Inc.   All rights reserved.
+  Copyright 1993-1994, 2003 Metrowerks Inc.   All rights reserved.
 
  */
 

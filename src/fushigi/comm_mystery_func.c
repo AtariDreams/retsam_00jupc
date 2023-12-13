@@ -11,7 +11,7 @@
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAM‰Šú‰»
+ * VRAMåˆæœŸåŒ–
  *
  * @param	none
  * @return	none
@@ -20,16 +20,16 @@
 void CommMysteryFunc_VramBankSet(void)
 {
   GF_BGL_DISPVRAM vramSetTable = {
-    GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-    GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_SUB_BG_32_H,			/* ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG */
-    GX_VRAM_SUB_BGEXTPLTT_NONE,		/* ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg */
-    GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-    GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-    GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-    GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+    GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+    GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_SUB_BG_32_H,			/* ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG */
+    GX_VRAM_SUB_BGEXTPLTT_NONE,		/* ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ */
+    GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+    GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+    GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+    GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
   };
   GF_Disp_SetBank( &vramSetTable );
 }
@@ -37,7 +37,7 @@ void CommMysteryFunc_VramBankSet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	BG‰Šú‰»
+ * @brief	BGåˆæœŸåŒ–
  * @param	none
  * @return	none
  */
@@ -99,7 +99,7 @@ void CommMysteryFunc_BgInit( GF_BGL_INI * ini )
 
 //------------------------------------------------------------------
 /**
- * @brief	‚¨‚­‚è‚à‚Ì‚ð‚à‚ç‚¦‚é‚©ƒ`ƒFƒbƒN
+ * @brief	ãŠãã‚Šã‚‚ã®ã‚’ã‚‚ã‚‰ãˆã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  * @param	NONE
  * @return	NONE
  */
@@ -110,20 +110,20 @@ int CommMysteryFunc_CheckGetGift(SAVEDATA *sv, GIFT_COMM_PACK *gcp)
   FUSHIGI_DATA *fdata = SaveData_GetFushigiData(sv);
 
 #if 0
-  // ƒfƒoƒbƒO—p‚Ì‹­§ƒGƒ‰[”­¶ƒR[ƒh
+  // ãƒ‡ãƒãƒƒã‚°ç”¨ã®å¼·åˆ¶ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã‚³ãƒ¼ãƒ‰
   return COMMMYSTERYFUNC_ERROR_GROUNDCHILD;
 #endif
 #ifdef DEBUG_ONLY_FOR_mituhara
-  OS_TPrintf("E‚Á‚½ƒr[ƒRƒ“‚Ìƒo[ƒWƒ‡ƒ“‚Í %08X ‚Å‚·\n", gcp->beacon.version);
-  OS_TPrintf("ˆê“x‚µ‚©Žó‚¯Žæ‚ê‚È‚¢ƒtƒ‰ƒO: %d\n", gcp->beacon.only_one_flag);
-  OS_TPrintf("ƒJ[ƒh•t‚«‚¨‚­‚è‚à‚Ìƒtƒ‰ƒO: %d\n", gcp->beacon.have_card);
-  OS_TPrintf("‘·”z•zƒtƒ‰ƒO: %d\n", gcp->beacon.groundchild_flag);
+  OS_TPrintf("æ‹¾ã£ãŸãƒ“ãƒ¼ã‚³ãƒ³ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¯ %08X ã§ã™\n", gcp->beacon.version);
+  OS_TPrintf("ä¸€åº¦ã—ã‹å—ã‘å–ã‚Œãªã„ãƒ•ãƒ©ã‚°: %d\n", gcp->beacon.only_one_flag);
+  OS_TPrintf("ã‚«ãƒ¼ãƒ‰ä»˜ããŠãã‚Šã‚‚ã®ãƒ•ãƒ©ã‚°: %d\n", gcp->beacon.have_card);
+  OS_TPrintf("å­«é…å¸ƒãƒ•ãƒ©ã‚°: %d\n", gcp->beacon.groundchild_flag);
 #endif
 
   
   version = gcp->beacon.version;
   
-  // ƒfƒoƒbƒO—p‚Ì‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚ÌÁ‹Žˆ—
+  // ãƒ‡ãƒãƒƒã‚°ç”¨ã®ãµã—ãŽãªãŠãã‚Šã‚‚ã®æ¶ˆåŽ»å‡¦ç†
   if(version == 0xFFFFFFFF && gcp->beacon.event_id == 0xFFFF){
     FUSHIGIDATA_Init(fdata);
     SaveData_SaveParts(sv, SVBLK_ID_NORMAL);
@@ -131,38 +131,38 @@ int CommMysteryFunc_CheckGetGift(SAVEDATA *sv, GIFT_COMM_PACK *gcp)
   }
 
 
-    //100`152‚Ì‚o‚a‚q‚Ìƒf[ƒ^‚ð‹à‹âƒvƒ‰ƒ`ƒi‚ÅŽó‚¯Žæ‚é‚½‚ß‚Éƒo[ƒWƒ‡ƒ“ƒrƒbƒg‚ð‘‚â‚µ‚Ä‚¢‚é
+    //100ã€œ152ã®ï¼°ï¼¢ï¼²ã®ãƒ‡ãƒ¼ã‚¿ã‚’é‡‘éŠ€ãƒ—ãƒ©ãƒãƒŠã§å—ã‘å–ã‚‹ãŸã‚ã«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ“ãƒƒãƒˆã‚’å¢—ã‚„ã—ã¦ã„ã‚‹
     // k.ohno  2007/6/20
     if((gcp->beacon.event_id >= 100) && (gcp->beacon.event_id <= 152)){
         version |= (1<<VERSION_PLATINUM)+(1<<VERSION_GOLD)+(1<<VERSION_SILVER);
     }
 
-  // ‘ÎÛƒo[ƒWƒ‡ƒ“‚ª‚O‚È‚ç‚Î‘S‚Ä‚Ìƒo[ƒWƒ‡ƒ“‚ÅŽó‚¯Žæ‚ê‚é
+  // å¯¾è±¡ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒï¼ãªã‚‰ã°å…¨ã¦ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å—ã‘å–ã‚Œã‚‹
   if(version == 0)
     version = ~0;
 
-  // ‘ÎÛƒo[ƒWƒ‡ƒ“‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+  // å¯¾è±¡ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«å«ã¾ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
   if((version & (1 << PM_VERSION)) == FALSE)
     return COMMMYSTERYFUNC_ERROR_VERSION;
 
-  // ˆê“x‚µ‚©Žó‚¯Žæ‚ê‚È‚¢‚¨‚­‚è‚à‚Ì‚ÍA
+  // ä¸€åº¦ã—ã‹å—ã‘å–ã‚Œãªã„ãŠãã‚Šã‚‚ã®ã¯ã€
   if(gcp->beacon.only_one_flag == TRUE &&
-     // ‚·‚Å‚ÉŽó‚¯Žæ‚Á‚Ä‚¢‚é‚©’²‚×‚é
+     // ã™ã§ã«å—ã‘å–ã£ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
      FUSHIGIDATA_IsEventRecvFlag(fdata, gcp->beacon.event_id) == TRUE)
     return COMMMYSTERYFUNC_ERROR_HAVE;
 
-  // ƒJ[ƒh•t‚«‚¨‚­‚è‚à‚Ì‚Í
+  // ã‚«ãƒ¼ãƒ‰ä»˜ããŠãã‚Šã‚‚ã®ã¯
   if(gcp->beacon.have_card == TRUE &&
-     // ƒJ[ƒhî•ñ‚ªƒZ[ƒu‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+     // ã‚«ãƒ¼ãƒ‰æƒ…å ±ãŒã‚»ãƒ¼ãƒ–ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
     FUSHIGIDATA_CheckCardDataSpace(fdata) == FALSE)
     return COMMMYSTERYFUNC_ERROR_FULLCARD;
 
-  // ‚³‚ç‚É”z’Bˆõî•ñ‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚¨‚­‚è‚à‚Ì‚Í
-  // ”z’Bˆõ‚ÌƒXƒƒbƒg‚àƒ`ƒFƒbƒN‚·‚é
+  // ã•ã‚‰ã«é…é”å“¡æƒ…å ±ãŒå«ã¾ã‚Œã¦ã„ã‚‹ãŠãã‚Šã‚‚ã®ã¯
+  // é…é”å“¡ã®ã‚¹ãƒ­ãƒƒãƒˆã‚‚ãƒã‚§ãƒƒã‚¯ã™ã‚‹
   if(FUSHIGIDATA_CheckDeliDataSpace(fdata) == FALSE)
     return COMMMYSTERYFUNC_ERROR_FULLGIFT;
 
-  // ‘·”z•z‚Ìƒ`ƒFƒbƒN
+  // å­«é…å¸ƒã®ãƒã‚§ãƒƒã‚¯
   if(gcp->beacon.groundchild_flag == 1)
     return COMMMYSTERYFUNC_ERROR_GROUNDCHILD;
 

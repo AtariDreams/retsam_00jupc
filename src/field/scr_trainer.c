@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_trainer.c
- * @bfief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒgƒŒ[ƒi[ŠÖ˜A
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é–¢é€£
  * @author	Satoshi Nohara
  * @date	06.06.26
  */
@@ -20,7 +20,7 @@
 #include "system/snd_tool.h"
 #include "fld_bgm.h"
 
-#include "battle/battle_common.h"	//«ƒCƒ“ƒNƒ‹[ƒh‚É•K—v
+#include "battle/battle_common.h"	//â†“ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã«å¿…è¦
 #include "poketool/tr_tool.h"		//TT_TrainerMessageGet
 #include "ev_trainer.h"				//EvTrainer
 #include "field_encount.h"			//DebugFieldEncount
@@ -30,7 +30,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL EvCmdEyeTrainerMoveSet( VM_MACHINE * core );
@@ -57,15 +57,15 @@ BOOL EvCmdBattleResultGet( VM_MACHINE * core );
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹üFƒgƒŒ[ƒi[ˆÚ“®ŒÄ‚Ño‚µ
+ * è¦–ç·šï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç§»å‹•å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -81,9 +81,9 @@ BOOL EvCmdEyeTrainerMoveSet( VM_MACHINE * core )
 	FIELD_OBJ_PTR* fldobj;
 	PLAYER_STATE_PTR player;
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16 pos				= VMGetWorkValue(core);								//‹üƒf[ƒ^‚Ì0,1‚©H
+	u16 pos				= VMGetWorkValue(core);								//è¦–ç·šãƒ‡ãƒ¼ã‚¿ã®0,1ã‹ï¼Ÿ
 
-	//‹üƒf[ƒ^‚Ì0,1‚©H
+	//è¦–ç·šãƒ‡ãƒ¼ã‚¿ã®0,1ã‹ï¼Ÿ
 	if( pos == 0 ){
 		range	= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_TR0_RANGE );	//
 		dir		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_TR0_DIR );	//
@@ -102,12 +102,12 @@ BOOL EvCmdEyeTrainerMoveSet( VM_MACHINE * core )
 		tcb		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_TR1_TCB );
 	}
 
-	player	= fsys->player;													//ålŒö
+	player	= fsys->player;													//ä¸»äººå…¬
 
 	//GMEVENT_Call_TrEyeMeetEventStart( fsys, core->event_work, *fldobj, 
 	//									EvCall_TrEyeMeetMoveAddTcb(*fldobj,player,*dir,*range) );
 	
-	//‹üˆÚ“®‚ğ‚³‚¹‚é‚½‚ß‚É“®ìƒ|[ƒY‚ğ‰ğœ
+	//è¦–ç·šç§»å‹•ã‚’ã•ã›ã‚‹ãŸã‚ã«å‹•ä½œãƒãƒ¼ã‚ºã‚’è§£é™¤
 //	FieldOBJ_MovePauseClear( *fldobj );
 
 	*tcb = EvTrainerEyeMoveSet( fsys, *fldobj, player, *dir, *range, 0, *tr_type, pos );
@@ -118,9 +118,9 @@ BOOL EvCmdEyeTrainerMoveSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹üFƒgƒŒ[ƒi[ˆÚ“®I—¹ƒ`ƒFƒbƒN
+ * è¦–ç·šï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç§»å‹•çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -128,7 +128,7 @@ BOOL EvCmdEyeTrainerMoveSet( VM_MACHINE * core )
 BOOL EvCmdEyeTrainerMoveCheck( VM_MACHINE * core )
 {
 	TCB_PTR* tcb;
-	u16 pos		= VMGetWorkValue(core);					//‹üƒf[ƒ^‚Ì0,1‚©H
+	u16 pos		= VMGetWorkValue(core);					//è¦–ç·šãƒ‡ãƒ¼ã‚¿ã®0,1ã‹ï¼Ÿ
 	u16* ret_wk	= VMGetWork( core );
 
 	*ret_wk = 0;
@@ -139,7 +139,7 @@ BOOL EvCmdEyeTrainerMoveCheck( VM_MACHINE * core )
 		tcb	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_TR1_TCB );
 	}
 
-	//“o˜^‚³‚ê‚Ä‚¢‚È‚¢
+	//ç™»éŒ²ã•ã‚Œã¦ã„ãªã„æ™‚
 	if( *tcb == NULL ){
 		*ret_wk = 1;
 		return 1;
@@ -147,29 +147,29 @@ BOOL EvCmdEyeTrainerMoveCheck( VM_MACHINE * core )
 
 	if( EvTrainerEyeMoveEndCheck(*tcb) == TRUE ){
 		EvTrainerEyeMoveEnd( *tcb );
-		*tcb = NULL;	//ƒNƒŠƒA‚¢‚ê‚È‚¢‚Æ‚Ü‚¸‚»‚¤
+		*tcb = NULL;	//ã‚¯ãƒªã‚¢ã„ã‚Œãªã„ã¨ã¾ãšãã†
 		*ret_wk = 1;
 	}
 	
-	//return"1"‚ğ•Ô‚³‚È‚¢‚Æƒ`ƒFƒbƒN‚ªƒ‹[ƒv‚µ‚Ä‚µ‚Ü‚¤‚Ì‚Å’ˆÓI
+	//return"1"ã‚’è¿”ã•ãªã„ã¨ãƒã‚§ãƒƒã‚¯ãŒãƒ«ãƒ¼ãƒ—ã—ã¦ã—ã¾ã†ã®ã§æ³¨æ„ï¼
 	
 	return 1;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹üFƒgƒŒ[ƒi[ƒ^ƒCƒvæ“¾
+ * è¦–ç·šï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  *
- * TR0_TYPE‚ÉŒÅ’èI
+ * TR0_TYPEã«å›ºå®šï¼
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdEyeTrainerTypeGet( VM_MACHINE * core )
 {
-	u16* type	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_TR0_TYPE );		//TR0_TYPEŒÅ’è
+	u16* type	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_TR0_TYPE );		//TR0_TYPEå›ºå®š
 	u16* ret_wk	= VMGetWork( core );
 
 	*ret_wk = *type;
@@ -180,9 +180,9 @@ BOOL EvCmdEyeTrainerTypeGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹üFƒgƒŒ[ƒi[IDæ“¾
+ * è¦–ç·šï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDå–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -191,7 +191,7 @@ BOOL EvCmdEyeTrainerIdGet( VM_MACHINE * core )
 {
 	u16* tr_id_0	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_TR0_ID );		//
 	u16* tr_id_1	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_TR1_ID );		//
-	u16 pos			= VMGetWorkValue(core);					//‹üƒf[ƒ^‚Ì0,1‚©H
+	u16 pos			= VMGetWorkValue(core);					//è¦–ç·šãƒ‡ãƒ¼ã‚¿ã®0,1ã‹ï¼Ÿ
 	u16* ret_wk		= VMGetWork( core );
 
 	//OS_Printf( "\n===========%d\n", pos );
@@ -208,15 +208,15 @@ BOOL EvCmdEyeTrainerIdGet( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	í“¬ŠÖ˜A(ÀŒ±’†)
+//	æˆ¦é—˜é–¢é€£(å®Ÿé¨“ä¸­)
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[IDæ“¾
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDå–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -227,16 +227,16 @@ BOOL EvCmdTrainerIdGet( VM_MACHINE * core )
 	u16* script_id			= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_SCRIPT_ID );
 	u16* wk					= VMGetWork( core );
 
-	//ƒXƒNƒŠƒvƒgID‚©‚çAƒgƒŒ[ƒi[ID‚ğæ“¾
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—
 	*wk = GetTrainerIdByScriptId( *script_id );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[í“¬ŒÄ‚Ño‚µ
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦é—˜å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -262,7 +262,7 @@ BOOL EvCmdTrainerBattleSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‘ÎíŒÄ‚Ño‚µiƒ}ƒ‹ƒ`ƒoƒgƒ‹j
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å¯¾æˆ¦å‘¼ã³å‡ºã—ï¼ˆãƒãƒ«ãƒãƒãƒˆãƒ«ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdTrainerMultiBattleSet( VM_MACHINE * core )
@@ -280,9 +280,9 @@ BOOL EvCmdTrainerMultiBattleSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‰ï˜b‚Ìí—Şæ“¾
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ä¼šè©±ã®ç¨®é¡å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -295,26 +295,26 @@ BOOL EvCmdTrainerTalkTypeGet( VM_MACHINE * core )
 	u16* wk2				= VMGetWork( core );
 	u16* wk3				= VMGetWork( core );
 
-	//ƒXƒNƒŠƒvƒgID‚©‚çAƒgƒŒ[ƒi[ID‚ğæ“¾Aƒ_ƒuƒ‹ƒoƒgƒ‹ƒ^ƒCƒv‚©æ“¾
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—ã€ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã‹å–å¾—
 	btl_type = CheckTrainer2vs2Type( GetTrainerIdByScriptId(*script_id) );
 
-	//ƒVƒ“ƒOƒ‹‚©ƒ_ƒuƒ‹‚©ƒ`ƒFƒbƒN
+	//ã‚·ãƒ³ã‚°ãƒ«ã‹ãƒ€ãƒ–ãƒ«ã‹ãƒã‚§ãƒƒã‚¯
 	if( btl_type == 0 ){
-		//ƒVƒ“ƒOƒ‹
+		//ã‚·ãƒ³ã‚°ãƒ«
 		start_type = TRMSG_FIGHT_START;
 		after_type = TRMSG_FIGHT_AFTER;
 		one_type   = 0;
 	}else{
-		//ƒ_ƒuƒ‹
+		//ãƒ€ãƒ–ãƒ«
 		lr = GetTrainerLRByScriptId( *script_id );
 
 		if( lr == 0 ){
-			//¶
+			//å·¦
 			start_type = TRMSG_FIGHT_START_1;
 			after_type = TRMSG_FIGHT_AFTER_1;
 			one_type = TRMSG_POKE_ONE_1;
 		}else{
-			//‰E
+			//å³
 			start_type = TRMSG_FIGHT_START_2;
 			after_type = TRMSG_FIGHT_AFTER_2;
 			one_type = TRMSG_POKE_ONE_2;
@@ -334,9 +334,9 @@ BOOL EvCmdTrainerTalkTypeGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÄíƒgƒŒ[ƒi[‰ï˜b‚Ìí—Şæ“¾
+ * å†æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ä¼šè©±ã®ç¨®é¡å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -349,26 +349,26 @@ BOOL EvCmdRevengeTrainerTalkTypeGet( VM_MACHINE * core )
 	u16* wk2				= VMGetWork( core );
 	u16* wk3				= VMGetWork( core );
 
-	//ƒXƒNƒŠƒvƒgID‚©‚çAƒgƒŒ[ƒi[ID‚ğæ“¾Aƒ_ƒuƒ‹ƒoƒgƒ‹ƒ^ƒCƒv‚©æ“¾
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—ã€ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã‹å–å¾—
 	btl_type = CheckTrainer2vs2Type( GetTrainerIdByScriptId(*script_id) );
 
-	//ƒVƒ“ƒOƒ‹‚©ƒ_ƒuƒ‹‚©ƒ`ƒFƒbƒN
+	//ã‚·ãƒ³ã‚°ãƒ«ã‹ãƒ€ãƒ–ãƒ«ã‹ãƒã‚§ãƒƒã‚¯
 	if( btl_type == 0 ){
-		//ƒVƒ“ƒOƒ‹
+		//ã‚·ãƒ³ã‚°ãƒ«
 		start_type = TRMSG_REVENGE_FIGHT_START;
 		after_type = 0;
 		one_type   = 0;
 	}else{
-		//ƒ_ƒuƒ‹
+		//ãƒ€ãƒ–ãƒ«
 		lr = GetTrainerLRByScriptId( *script_id );
 
 		if( lr == 0 ){
-			//¶
+			//å·¦
 			start_type = TRMSG_REVENGE_FIGHT_START_1;
 			after_type = 0;
 			one_type   = TRMSG_POKE_ONE_1;
 		}else{
-			//‰E
+			//å³
 			start_type = TRMSG_REVENGE_FIGHT_START_2;
 			after_type = 0;
 			one_type   = TRMSG_POKE_ONE_2;
@@ -388,9 +388,9 @@ BOOL EvCmdRevengeTrainerTalkTypeGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒ^ƒCƒvæ“¾
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -400,16 +400,16 @@ BOOL EvCmdTrainerTypeGet( VM_MACHINE * core )
 	u16* script_id	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_SCRIPT_ID );
 	u16* ret_wk		= VMGetWork( core );
 
-	//ƒXƒNƒŠƒvƒgID‚©‚çAƒgƒŒ[ƒi[ID‚ğæ“¾Aƒ_ƒuƒ‹ƒoƒgƒ‹ƒ^ƒCƒv‚©æ“¾
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—ã€ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã‹å–å¾—
 	*ret_wk = CheckTrainer2vs2Type( GetTrainerIdByScriptId(*script_id) );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[BGMÄ¶
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼BGMå†ç”Ÿ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -423,9 +423,9 @@ BOOL EvCmdTrainerBgmSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[”s–k
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ•—åŒ—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -438,9 +438,9 @@ BOOL EvCmdTrainerLose( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[”s–kƒ`ƒFƒbƒN
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ•—åŒ—ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -457,9 +457,9 @@ BOOL EvCmdTrainerLoseCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰B‚µƒ|ƒPƒ‚ƒ“í“¬@Äí‰Â•s‰Âƒ`ƒFƒbƒN
+ * éš ã—ãƒã‚±ãƒ¢ãƒ³æˆ¦é—˜ã€€å†æˆ¦å¯ä¸å¯ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -475,9 +475,9 @@ BOOL EvCmdSeacretPokeRetryCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”z•zƒ|ƒPƒ‚ƒ“í“¬@Äí‰Â•s‰Âƒ`ƒFƒbƒN
+ * é…å¸ƒãƒã‚±ãƒ¢ãƒ³æˆ¦é—˜ã€€å†æˆ¦å¯ä¸å¯ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -493,9 +493,9 @@ BOOL EvCmdHaifuPokeRetryCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * è‚¿ƒ`ƒFƒbƒN 2vs2‚ª‰Â”\‚©æ“¾
+ * æ‰‹æŒã¡ãƒã‚§ãƒƒã‚¯ 2vs2ãŒå¯èƒ½ã‹å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -510,9 +510,9 @@ BOOL EvCmd2vs2BattleCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒNí“¬ŒÄ‚Ño‚µ(ÀŒ±’†)
+ * ãƒ‡ãƒãƒƒã‚¯æˆ¦é—˜å‘¼ã³å‡ºã—(å®Ÿé¨“ä¸­)
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -522,10 +522,10 @@ BOOL EvCmdDebugBattleSet( VM_MACHINE * core )
 	FIELDSYS_WORK * fsys = core->fsys;
 	BOOL * win_flag			= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WIN_FLAG );
 
-	//ƒCƒxƒ“ƒg‚ªØ‚è‘Ö‚í‚Á‚Ä‚µ‚Ü‚¤‚Ì‚Å‰¼III
+	//ã‚¤ãƒ™ãƒ³ãƒˆãŒåˆ‡ã‚Šæ›¿ã‚ã£ã¦ã—ã¾ã†ã®ã§ä»®ï¼ï¼ï¼
 	//DebugFieldEncount( fsys );
 	
-	//ƒCƒxƒ“ƒgƒR[ƒ‹‚È‚Ì‚ÅAƒXƒNƒŠƒvƒg‚É•œ‹A‚µ‚Ü‚·B
+	//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«ãªã®ã§ã€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«å¾©å¸°ã—ã¾ã™ã€‚
 	//EventCmd_TrainerBattle( core->event_work, 0 );
 	//EventCmd_TrainerBattle( core->event_work, 0, FIGHT_TYPE_TRAINER, HEAPID_WORLD ,win_flag );
 	EventCmd_TrainerBattle( core->event_work, 1, 0, 0, HEAPID_WORLD ,win_flag );
@@ -535,9 +535,9 @@ BOOL EvCmdDebugBattleSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒNƒgƒŒ[ƒi[ƒtƒ‰ƒOƒZƒbƒg(10Œ––ROM—pA‚ ‚Æ‚Åíœ‚µ‚Ü‚·I)
+ * ãƒ‡ãƒãƒƒã‚¯ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ(10æœˆæœ«ROMç”¨ã€ã‚ã¨ã§å‰Šé™¤ã—ã¾ã™ï¼)
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -555,9 +555,9 @@ BOOL EvCmdDebugTrainerFlagSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒNƒgƒŒ[ƒi[ƒtƒ‰ƒOƒZƒbƒg(10Œ––ROM—pA‚ ‚Æ‚Åíœ‚µ‚Ü‚·I)
+ * ãƒ‡ãƒãƒƒã‚¯ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ(10æœˆæœ«ROMç”¨ã€ã‚ã¨ã§å‰Šé™¤ã—ã¾ã™ï¼)
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -575,11 +575,11 @@ BOOL EvCmdDebugTrainerFlagOnJump( VM_MACHINE * core )
 
 	ret = CheckEventFlagTrainer( FieldOBJ_FieldSysWorkGet(*fldobj), FieldOBJ_OBJIDGet(*fldobj) );
 
-	//ƒtƒ‰ƒO‚ªON‚È‚çƒWƒƒƒ“ƒv
+	//ãƒ•ãƒ©ã‚°ãŒONãªã‚‰ã‚¸ãƒ£ãƒ³ãƒ—
 	if( ret == TRUE ){
 		VMJump( core, (VM_CODE *)(core->PC+pos) );	//JUMP
 		//VM_End( core );
-		return 1;			//10ŒROM‚Ì‚¬‚è‚¬‚è‚Ì•ÏX‚É‘Îˆ‚·‚é‚½‚ß‰¼IIIII
+		return 1;			//10æœˆROMã®ãã‚Šãã‚Šã®å¤‰æ›´ã«å¯¾å‡¦ã™ã‚‹ãŸã‚ä»®ï¼ï¼ï¼ï¼ï¼
 	}
 
 	return 0;
@@ -587,9 +587,9 @@ BOOL EvCmdDebugTrainerFlagOnJump( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * í“¬Œ‹‰Ê‚ğæ“¾
+ * æˆ¦é—˜çµæœã‚’å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */

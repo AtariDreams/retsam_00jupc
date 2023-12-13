@@ -12,7 +12,7 @@
 
   $Log: mmap_shared.h,v $
   Revision 1.43  2006/08/10 00:05:10  okubata_ryoma
-  ƒJ[ƒgƒŠƒbƒW‚ÌŠˆü‘}”²‚ÉŠÖ‚·‚é•s‹ï‡C³
+  ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®æ´»ç·šæŒ¿æŠœã«é–¢ã™ã‚‹ä¸å…·åˆä¿®æ­£
 
   Revision 1.42  2006/07/05 09:14:54  yosizaki
   delete definitions of OSSystemWork. (moved to os/systemWork.h)
@@ -21,13 +21,13 @@
   do-indent
 
   Revision 1.40  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL ‚Ì”»’è•”•ª‚É SDK_WIN32 ‚Å‚Ì”»’è‚à’Ç‰Á
+  SDK_FROM_TOOL ã®åˆ¤å®šéƒ¨åˆ†ã« SDK_WIN32 ã§ã®åˆ¤å®šã‚‚è¿½åŠ 
 
   Revision 1.39  2005/07/27 07:45:30  seiki_masashi
-  OSSystemWork ‚Ì wm_keyshare_control ‚ð wm_rssi_pool ‚É•ÏX
+  OSSystemWork ã® wm_keyshare_control ã‚’ wm_rssi_pool ã«å¤‰æ›´
 
   Revision 1.38  2005/06/02 10:28:11  terui
-  OSSystemWork\‘¢‘Ì“à‚Ìfile_control‹y‚Ñis_reservedƒƒ“ƒo‚ð“‡‚µ‚Ärom_headerƒƒ“ƒo‚É•Ï–¼
+  OSSystemWorkæ§‹é€ ä½“å†…ã®file_controlåŠã³is_reservedãƒ¡ãƒ³ãƒã‚’çµ±åˆã—ã¦rom_headerãƒ¡ãƒ³ãƒã«å¤‰å
 
   Revision 1.37  2005/05/20 03:10:53  yosizaki
   add HW_CARD_ROM_HEADER, HW_DOWNLOAD_PARAMETER.
@@ -57,7 +57,7 @@
   place VBlank count buffer in shared area
 
   Revision 1.28  2004/08/07 00:58:46  terui
-  wm_control‚ðíœAwm_callback_control wm_keyshare_control‚ð’Ç‰Á
+  wm_controlã‚’å‰Šé™¤ã€wm_callback_control wm_keyshare_controlã‚’è¿½åŠ 
 
   Revision 1.27  2004/08/03 01:36:27  terui
   Add wm_control
@@ -109,7 +109,7 @@
   ram checker deleted, because put checker for main and sub.
 
   Revision 1.12  2004/05/10 08:15:46  yada
-  HW_COMPONENT_PARAM ‚ÌˆÊ’u•Ï‚¦
+  HW_COMPONENT_PARAM ã®ä½ç½®å¤‰ãˆ
 
   Revision 1.11  2004/05/06 00:38:14  yada
   add HW_IS_RESERVED
@@ -136,28 +136,28 @@
   fix header comment
 
   Revision 1.3  2004/03/15 11:02:15  yada
-  ƒCƒ“ƒNƒ‹[ƒhƒK[ƒh–¼C³
+  ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚¬ãƒ¼ãƒ‰åä¿®æ­£
 
   Revision 1.2  2004/03/12 12:11:10  yada
   only arrange tab
 
   Revision 1.1  2004/02/18 07:51:36  yada
-  mmap_shared.h ‚ð A7/9‹¤’Ê‚É
+  mmap_shared.h ã‚’ A7/9å…±é€šã«
 
   Revision 1.5  2004/02/18 01:24:57  yada
-  XYƒ{ƒ^ƒ“î•ñ—Ìˆæ‚ð’Ç‰Á
+  XYãƒœã‚¿ãƒ³æƒ…å ±é ˜åŸŸã‚’è¿½åŠ 
 
   Revision 1.4  2004/02/17 06:51:02  yada
-  ‚æ‚è’¼Š´“I‚È•\‹L‚Ö•ÏX
+  ã‚ˆã‚Šç›´æ„Ÿçš„ãªè¡¨è¨˜ã¸å¤‰æ›´
 
   Revision 1.3  2004/02/14 06:57:48  yasu
   add HW_COMPONENT_PARAM
 
   Revision 1.2  2004/02/13 10:39:58  yada
-  ARENA‚ð‚UŒÂ‚©‚ç‚XŒÂ‚É‚µ‚ÄƒCƒ“ƒtƒHƒGƒŠƒAŠg‘å
+  ARENAã‚’ï¼–å€‹ã‹ã‚‰ï¼™å€‹ã«ã—ã¦ã‚¤ãƒ³ãƒ•ã‚©ã‚¨ãƒªã‚¢æ‹¡å¤§
 
   Revision 1.1  2004/02/13 01:52:31  yada
-  ARM7—p‚É’Ç‰Á (temporary?)
+  ARM7ç”¨ã«è¿½åŠ  (temporary?)
 
   Revision 1.11  2004/02/12 10:56:04  yasu
   new location of include files ARM9/ARM7
@@ -166,32 +166,32 @@
   change SDK prefix iris -> nitro
 
   Revision 1.9  2004/01/19 02:29:10  yada
-  systemWork ‚ð 0x200¨0x280‚Æ‘‚â‚µ‚½B
-  ‚»‚ê‚É”º‚¢ƒƒ“ƒo‚ÌƒIƒtƒZƒbƒg‚ªŽ»‚­•ÏX‚ÉB
+  systemWork ã‚’ 0x200â†’0x280ã¨å¢—ã‚„ã—ãŸã€‚
+  ãã‚Œã«ä¼´ã„ãƒ¡ãƒ³ãƒã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãŒæ‚‰ãå¤‰æ›´ã«ã€‚
 
   Revision 1.8  2004/01/17 11:43:29  yada
-  ƒAƒŠ[ƒiî•ñˆÊ’u•ÏX‚É‚Â‚«
+  ã‚¢ãƒªãƒ¼ãƒŠæƒ…å ±ä½ç½®å¤‰æ›´ã«ã¤ã
 
   Revision 1.7  2004/01/16 11:49:18  yada
-  ƒŠƒU[ƒu—Ìˆæ‚ð’Ç‰Á
+  ãƒªã‚¶ãƒ¼ãƒ–é ˜åŸŸã‚’è¿½åŠ 
 
   Revision 1.6  2004/01/16 04:13:19  yada
-  ƒAƒŠ[ƒi’è‹`C³
+  ã‚¢ãƒªãƒ¼ãƒŠå®šç¾©ä¿®æ­£
 
   Revision 1.5  2004/01/15 12:14:13  yada
-  SystemWork ‚ÉƒAƒŠ[ƒi\‘¢‘Ì‚ðŽæ‚é‚æ‚¤‚É‚µ‚½
+  SystemWork ã«ã‚¢ãƒªãƒ¼ãƒŠæ§‹é€ ä½“ã‚’å–ã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.4  2004/01/07 01:41:34  yada
-  arena—p‚ÌƒfƒtƒHƒ‹ƒgLo/Hi’l’è‹`
+  arenaç”¨ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆLo/Hiå€¤å®šç¾©
 
   Revision 1.3  2003/12/25 07:30:42  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  åž‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.2  2003/12/22 13:38:04  yasu
-  OS_GetSystemWrok‚ðƒ}ƒNƒ‚É OS_LockWord ‚ð struct ƒ^ƒO‚ÅƒAƒNƒZƒX‚·‚é‚æ‚¤•ÏX
+  OS_GetSystemWrokã‚’ãƒžã‚¯ãƒ­ã« OS_LockWord ã‚’ struct ã‚¿ã‚°ã§ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã‚ˆã†å¤‰æ›´
 
   Revision 1.1  2003/12/17 06:05:39  yasu
-  mmap_reserved.h ‚ð mmap_tcm.h ‚Æ mmap_shared.h ‚É•ªŠ„
+  mmap_reserved.h ã‚’ mmap_tcm.h ã¨ mmap_shared.h ã«åˆ†å‰²
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -255,17 +255,17 @@ extern "C" {
 #define HW_NVRAM_USER_INFO              (HW_MAIN_MEM + 0x007ffc80)      // NVRAM user info (END-0x380)
 #define HW_NVRAM_USER_INFO_END          (HW_MAIN_MEM + 0x007ffd80)      //                 (END-0x280)
 
-#define HW_BIOS_EXCP_STACK_MAIN         (HW_MAIN_MEM + 0x007ffd80)      // MAINPƒfƒoƒbƒKƒ‚ƒjƒ^—áŠOƒnƒ“ƒhƒ‰ (END-0x280)
+#define HW_BIOS_EXCP_STACK_MAIN         (HW_MAIN_MEM + 0x007ffd80)      // MAINPãƒ‡ãƒãƒƒã‚¬ãƒ¢ãƒ‹ã‚¿ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒ© (END-0x280)
 #define HW_BIOS_EXCP_STACK_MAIN_END     (HW_MAIN_MEM + 0x007ffd9c)      //                                 (END-0x264)
-#define HW_EXCP_VECTOR_MAIN             (HW_MAIN_MEM + 0x007ffd9c)      // MAINP—pHW_EXCP_VECTOR_BUF       (END-0x264)
+#define HW_EXCP_VECTOR_MAIN             (HW_MAIN_MEM + 0x007ffd9c)      // MAINPç”¨HW_EXCP_VECTOR_BUF       (END-0x264)
 
-#define HW_ARENA_INFO_BUF               (HW_MAIN_MEM + 0x007ffda0)      // ƒAƒŠ[ƒiî•ñ\‘¢‘Ì(27F_FDA0`27F_FDE7) (END-0x260)
+#define HW_ARENA_INFO_BUF               (HW_MAIN_MEM + 0x007ffda0)      // ã‚¢ãƒªãƒ¼ãƒŠæƒ…å ±æ§‹é€ ä½“(27F_FDA0ã€œ27F_FDE7) (END-0x260)
 #define HW_REAL_TIME_CLOCK_BUF          (HW_MAIN_MEM + 0x007ffde8)      // RTC
 
-#define HW_DMA_CLEAR_DATA_BUF           (HW_MAIN_MEM + 0x007ffdf0)      // DMAƒNƒŠƒAƒf[ƒ^Eƒoƒbƒtƒ@ (END-0x210)
-#define HW_DMA_CLEAR_DATA_BUF_END       (HW_MAIN_MEM + 0x007ffe00)      //  (‚±‚Ì—Ìˆæ‚Í ARM9-TEG ‚É‚Ì‚ÝŽg—p‚·‚é)
+#define HW_DMA_CLEAR_DATA_BUF           (HW_MAIN_MEM + 0x007ffdf0)      // DMAã‚¯ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿ãƒ»ãƒãƒƒãƒ•ã‚¡ (END-0x210)
+#define HW_DMA_CLEAR_DATA_BUF_END       (HW_MAIN_MEM + 0x007ffe00)      //  (ã“ã®é ˜åŸŸã¯ ARM9-TEG ã«ã®ã¿ä½¿ç”¨ã™ã‚‹)
 
-#define HW_ROM_HEADER_BUF               (HW_MAIN_MEM + 0x007ffe00)      // ‚q‚n‚l“à“o˜^ƒGƒŠƒAƒf[ƒ^Eƒoƒbƒtƒ@ (END-0x200)
+#define HW_ROM_HEADER_BUF               (HW_MAIN_MEM + 0x007ffe00)      // ï¼²ï¼¯ï¼­å†…ç™»éŒ²ã‚¨ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿ãƒ»ãƒãƒƒãƒ•ã‚¡ (END-0x200)
 #define HW_ROM_HEADER_BUF_END           (HW_MAIN_MEM + 0x007fff60)      //                                    (END-0x0a0)
 #define HW_ISD_RESERVED                 (HW_MAIN_MEM + 0x007fff60)      // IS DEBUGGER Reserved (END-0xa0)
 #define HW_ISD_RESERVED_END             (HW_MAIN_MEM + 0x007fff80)      //                      (END-0x80)
@@ -275,16 +275,16 @@ extern "C" {
 #define HW_PXI_HANDLE_CHECKER_ARM9      (HW_MAIN_MEM + 0x007fff88)      // PXI Handle Checker for ARM9
 #define HW_PXI_HANDLE_CHECKER_ARM7      (HW_MAIN_MEM + 0x007fff8c)      // PXI Handle Checker for ARM7
 
-#define HW_MIC_LAST_ADDRESS             (HW_MAIN_MEM + 0x007fff90)      // MIC ÅVƒTƒ“ƒvƒŠƒ“ƒOƒf[ƒ^Ši”[ƒAƒhƒŒƒX
-#define HW_MIC_SAMPLING_DATA            (HW_MAIN_MEM + 0x007fff94)      // MIC ’P‘ÌƒTƒ“ƒvƒŠƒ“ƒOŒ‹‰Ê
+#define HW_MIC_LAST_ADDRESS             (HW_MAIN_MEM + 0x007fff90)      // MIC æœ€æ–°ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿æ ¼ç´ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define HW_MIC_SAMPLING_DATA            (HW_MAIN_MEM + 0x007fff94)      // MIC å˜ä½“ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°çµæžœ
 
-#define HW_WM_CALLBACK_CONTROL          (HW_MAIN_MEM + 0x007fff96)      // WM ƒR[ƒ‹ƒoƒbƒN“¯Šú—pƒpƒ‰ƒ[ƒ^
-#define HW_WM_RSSI_POOL                 (HW_MAIN_MEM + 0x007fff98)      // WM ŽóM‹­“x‚É‚æ‚é—”Œ¹
+#define HW_WM_CALLBACK_CONTROL          (HW_MAIN_MEM + 0x007fff96)      // WM ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯åŒæœŸç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+#define HW_WM_RSSI_POOL                 (HW_MAIN_MEM + 0x007fff98)      // WM å—ä¿¡å¼·åº¦ã«ã‚ˆã‚‹ä¹±æ•°æº
 
 #define HW_SET_CTRDG_MODULE_INFO_ONCE   (HW_MAIN_MEM + 0x007fff9a)      // set ctrdg module info flag
 #define HW_IS_CTRDG_EXIST               (HW_MAIN_MEM + 0x007fff9b)      // ctrdg exist flag
 
-#define HW_COMPONENT_PARAM              (HW_MAIN_MEM + 0x007fff9c)      // Component “¯Šú—pƒpƒ‰ƒ[ƒ^
+#define HW_COMPONENT_PARAM              (HW_MAIN_MEM + 0x007fff9c)      // Component åŒæœŸç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
 #define HW_THREADINFO_MAIN              (HW_MAIN_MEM + 0x007fffa0)      // ThreadInfo for Main processor
 #define HW_THREADINFO_SUB               (HW_MAIN_MEM + 0x007fffa4)      // ThreadInfo for Sub  processor
@@ -296,18 +296,18 @@ extern "C" {
 #define HW_LOCK_ID_FLAG_SUB             (HW_MAIN_MEM + 0x007fffb8)      // lockID flag for Sub processor
 
 // SpinLock Mutex
-#define HW_VRAM_C_LOCK_BUF              (HW_MAIN_MEM + 0x007fffc0)      // ‚u‚q‚`‚l|‚bEƒƒbƒNƒoƒbƒtƒ@ (END-0x40)
-#define HW_VRAM_D_LOCK_BUF              (HW_MAIN_MEM + 0x007fffc8)      // ‚u‚q‚`‚l|‚cEƒƒbƒNƒoƒbƒtƒ@ (END-0x38)
-#define HW_WRAM_BLOCK0_LOCK_BUF         (HW_MAIN_MEM + 0x007fffd0)      // ‚b‚o‚t“à•”ƒ[ƒN‚q‚`‚lEƒuƒƒbƒN‚OEƒƒbƒNƒoƒbƒtƒ@ (END-0x30)
-#define HW_WRAM_BLOCK1_LOCK_BUF         (HW_MAIN_MEM + 0x007fffd8)      // ‚b‚o‚t“à•”ƒ[ƒN‚q‚`‚lEƒuƒƒbƒN‚PEƒƒbƒNƒoƒbƒtƒ@ (END-0x28)
-#define HW_CARD_LOCK_BUF                (HW_MAIN_MEM + 0x007fffe0)      // ƒJ[ƒhEƒƒbƒNƒoƒbƒtƒ@ (END-0x20)
-#define HW_CTRDG_LOCK_BUF               (HW_MAIN_MEM + 0x007fffe8)      // ƒJ[ƒgƒŠƒbƒWEƒƒbƒNƒoƒbƒtƒ@ (END-0x18)
-#define HW_INIT_LOCK_BUF                (HW_MAIN_MEM + 0x007ffff0)      // ‰Šú‰»ƒƒbƒNƒoƒbƒtƒ@ (END-0x10)
+#define HW_VRAM_C_LOCK_BUF              (HW_MAIN_MEM + 0x007fffc0)      // ï¼¶ï¼²ï¼¡ï¼­âˆ’ï¼£ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ (END-0x40)
+#define HW_VRAM_D_LOCK_BUF              (HW_MAIN_MEM + 0x007fffc8)      // ï¼¶ï¼²ï¼¡ï¼­âˆ’ï¼¤ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ (END-0x38)
+#define HW_WRAM_BLOCK0_LOCK_BUF         (HW_MAIN_MEM + 0x007fffd0)      // ï¼£ï¼°ï¼µå†…éƒ¨ãƒ¯ãƒ¼ã‚¯ï¼²ï¼¡ï¼­ãƒ»ãƒ–ãƒ­ãƒƒã‚¯ï¼ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ (END-0x30)
+#define HW_WRAM_BLOCK1_LOCK_BUF         (HW_MAIN_MEM + 0x007fffd8)      // ï¼£ï¼°ï¼µå†…éƒ¨ãƒ¯ãƒ¼ã‚¯ï¼²ï¼¡ï¼­ãƒ»ãƒ–ãƒ­ãƒƒã‚¯ï¼‘ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ (END-0x28)
+#define HW_CARD_LOCK_BUF                (HW_MAIN_MEM + 0x007fffe0)      // ã‚«ãƒ¼ãƒ‰ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ (END-0x20)
+#define HW_CTRDG_LOCK_BUF               (HW_MAIN_MEM + 0x007fffe8)      // ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ (END-0x18)
+#define HW_INIT_LOCK_BUF                (HW_MAIN_MEM + 0x007ffff0)      // åˆæœŸåŒ–ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ (END-0x10)
 
 #define HW_MMEMCHECKER_MAIN             (HW_MAIN_MEM + 0x007ffff8)      // MainMomory Size Checker for Main processor (END-8)
 #define HW_MMEMCHECKER_SUB              (HW_MAIN_MEM + 0x007ffffa)      // MainMomory Size Checker for Sub processor  (END-6)
 
-#define HW_CMD_AREA                     (HW_MAIN_MEM + 0x007ffffe)      // ƒƒCƒ“ƒƒ‚ƒŠƒRƒ}ƒ“ƒh”­sƒGƒŠƒAiŽg—p‹ÖŽ~ƒGƒŠƒAj(END-2)
+#define HW_CMD_AREA                     (HW_MAIN_MEM + 0x007ffffe)      // ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªã‚³ãƒžãƒ³ãƒ‰ç™ºè¡Œã‚¨ãƒªã‚¢ï¼ˆä½¿ç”¨ç¦æ­¢ã‚¨ãƒªã‚¢ï¼‰(END-2)
 
 //--------------------------------------------------------------------
 //---- Lock area

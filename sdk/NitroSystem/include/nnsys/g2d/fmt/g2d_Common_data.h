@@ -75,7 +75,7 @@ typedef struct NNSG2dBinaryBlockHeader
 }NNSG2dBinaryBlockHeader;
 
 //------------------------------------------------------------------------------
-// ƒ†[ƒUŠg’£—ÌˆæƒuƒƒbƒNƒwƒbƒ_
+// ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µé ˜åŸŸãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€
 typedef struct NNSG2dUserExDataBlock
 {
     u32        blkTypeID;
@@ -109,9 +109,9 @@ NNS_G2D_INLINE u16 NNS_G2dMakeVersionData( u8 majorVer, u8 minorVer )
 }
 
 //------------------------------------------------------------------------------
-// Žw’è‚µ‚½ID‚ðŽ‚Âƒ†[ƒUŠg’£ƒuƒƒbƒN‚ðŽæ“¾‚·‚éB
-// pExtendData        ƒ†[ƒUŠg’£ƒf[ƒ^‚Ìæ“ª‚ð‚³‚·ƒ|ƒCƒ“ƒ^
-// blkTypeID          ƒ†[ƒUŠg’£ƒf[ƒ^ƒuƒƒbƒNID
+// æŒ‡å®šã—ãŸIDã‚’æŒã¤ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹ã€‚
+// pExtendData        ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚’ã•ã™ãƒã‚¤ãƒ³ã‚¿
+// blkTypeID          ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ID
 //
 NNS_G2D_INLINE const NNSG2dUserExDataBlock* NNSi_G2dGetUserExDataBlkByID
 (
@@ -123,12 +123,12 @@ NNS_G2D_INLINE const NNSG2dUserExDataBlock* NNSi_G2dGetUserExDataBlkByID
     {
         const NNSG2dUserExDataBlock* pBlk = (const NNSG2dUserExDataBlock*)pExtendData;    
         
-        // Žw’è‚µ‚½ID‚ÌƒuƒƒbƒN‚ª”­Œ©‚³‚ê‚½
+        // æŒ‡å®šã—ãŸIDã®ãƒ–ãƒ­ãƒƒã‚¯ãŒç™ºè¦‹ã•ã‚ŒãŸ
         if( pBlk->blkTypeID == blkTypeID )
         {
             return pBlk;
         }
-        // ŽŸ‚ÌƒuƒƒbƒN‚Ö...
+        // æ¬¡ã®ãƒ–ãƒ­ãƒƒã‚¯ã¸...
         pBlk = (const NNSG2dUserExDataBlock*)((const u8*)pBlk + pBlk->blkSize);        
     }
     return NULL;

@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	tower_tool.h
- * @brief	ƒoƒgƒ‹ƒ^ƒ[ŠÖ˜Aƒc[ƒ‹—Ş
+ * @brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é–¢é€£ãƒ„ãƒ¼ãƒ«é¡
  * @author	nohara
  * @date	2007.05.28
  */
@@ -17,7 +17,7 @@
 
 
 //==============================================================================
-//	externéŒ¾
+//	externå®£è¨€
 //==============================================================================
 extern BOOL FSRomBattleTowerTrainerDataMake(BTOWER_SCRWORK* wk,B_TOWER_PARTNER_DATA *tr_data,u16 tr_no,int cnt,u16 *set_poke_no,u16 *set_item_no,B_TOWER_PAREPOKE_PARAM* poke,int heapID);
 extern void btltower_BtlPartnerSelectWifi(SAVEDATA* sv,B_TOWER_PARTNER_DATA* wk,const u8 round);

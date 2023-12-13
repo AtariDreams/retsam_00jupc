@@ -58,7 +58,7 @@ static NNS_SND_INLINE const SNDDriverInfo* GetCurDriverInfo( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndInit
 
-  Description:  ƒTƒEƒ“ƒhƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
 
   Arguments:    None.
 
@@ -67,28 +67,28 @@ static NNS_SND_INLINE const SNDDriverInfo* GetCurDriverInfo( void )
 void NNS_SndInit( void )
 {
     {
-        // ‚Qd‰Šú‰»ƒ`ƒFƒbƒN
+        // ï¼’é‡åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯
         static BOOL initialized = FALSE;
         if ( initialized ) return;
         initialized = TRUE;
     }
     
-    // ƒTƒEƒ“ƒhƒhƒ‰ƒCƒo‚Ì‰Šú‰»
+    // ã‚µã‚¦ãƒ³ãƒ‰ãƒ‰ãƒ©ã‚¤ãƒã®åˆæœŸåŒ–
     SND_Init();
     
-    // ƒXƒŠ[ƒvƒR[ƒ‹ƒoƒbƒN‚Ì“o˜^
+    // ã‚¹ãƒªãƒ¼ãƒ—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®ç™»éŒ²
     PM_SetSleepCallbackInfo( &sPreSleepCallback, BeginSleep, NULL );
     PM_SetSleepCallbackInfo( &sPostSleepCallback, EndSleep, NULL );
     
     PM_PrependPreSleepCallback( &sPreSleepCallback );
     PM_AppendPostSleepCallback( &sPostSleepCallback );
     
-    // Šeƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
+    // å„ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
     NNSi_SndInitResourceMgr();
     NNSi_SndCaptureInit();
     NNSi_SndPlayerInit();
     
-    // ƒhƒ‰ƒCƒoî•ñ‚Ì‰Šú‰»
+    // ãƒ‰ãƒ©ã‚¤ãƒæƒ…å ±ã®åˆæœŸåŒ–
     sCurDriverInfo = -1;
     sDriverInfoFirstFlag = TRUE;
 }
@@ -96,7 +96,7 @@ void NNS_SndInit( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndMain
 
-  Description:  ƒTƒEƒ“ƒhƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒtƒŒ[ƒ€ƒ[ƒN
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
 
   Arguments:    None.
 
@@ -104,26 +104,26 @@ void NNS_SndInit( void )
  *---------------------------------------------------------------------------*/
 void NNS_SndMain( void )
 {
-    // ARM7‰“šóM
+    // ARM7å¿œç­”å—ä¿¡
     while ( SND_RecvCommandReply( SND_COMMAND_NOBLOCK ) != NULL ) {}
     
-    // Šeƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒtƒŒ[ƒ€ƒ[ƒN
+    // å„ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
     NNSi_SndPlayerMain();
     NNSi_SndCaptureMain();
 #ifndef SDK_SMALL_BUILD    
     NNSi_SndArcStrmMain();
 #endif /* SDK_SMALL_BUILD */
     
-    // ARM7ƒRƒ}ƒ“ƒh”­s
+    // ARM7ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œ
     (void)SND_FlushCommand( SND_COMMAND_NOBLOCK );
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndSetMasterVolume
 
-  Description:  ƒ}ƒXƒ^[ƒ{ƒŠƒ…[ƒ€‚Ìİ’è
+  Description:  ãƒã‚¹ã‚¿ãƒ¼ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®è¨­å®š
 
-  Arguments:    volume - ƒ}ƒXƒ^[ƒ{ƒŠƒ…[ƒ€
+  Arguments:    volume - ãƒã‚¹ã‚¿ãƒ¼ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -137,9 +137,9 @@ void NNS_SndSetMasterVolume( int volume )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndSetMonoFlag
 
-  Description:  ƒ‚ƒmƒ‰ƒ‹ƒtƒ‰ƒO‚Ì•ÏX
+  Description:  ãƒ¢ãƒãƒ©ãƒ«ãƒ•ãƒ©ã‚°ã®å¤‰æ›´
 
-  Arguments:    flag - ƒ‚ƒmƒ‰ƒ‹‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©
+  Arguments:    flag - ãƒ¢ãƒãƒ©ãƒ«ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -152,7 +152,7 @@ void NNS_SndSetMonoFlag( BOOL flag )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStopSoundAll
 
-  Description:  ‘SƒTƒEƒ“ƒh‚Ì‘¦’â~
+  Description:  å…¨ã‚µã‚¦ãƒ³ãƒ‰ã®å³æ™‚åœæ­¢
 
   Arguments:    None.
 
@@ -171,7 +171,7 @@ void NNS_SndStopSoundAll( void )
     SNDi_SetSurroundDecay( 0 );    
     SND_StopTimer( 0xffff, 0xffff, 0xffff, 0 );
     
-    // ARM7‚Å‚Ìˆ—‘Ò‚¿
+    // ARM7ã§ã®å‡¦ç†å¾…ã¡
     commandTag = SND_GetCurrentCommandTag();
     (void)SND_FlushCommand( SND_COMMAND_BLOCK );
     SND_WaitForCommandProc( commandTag );
@@ -180,7 +180,7 @@ void NNS_SndStopSoundAll( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStopChannelAll
 
-  Description:  ‘Sƒ`ƒƒƒ“ƒlƒ‹‚Ì’â~
+  Description:  å…¨ãƒãƒ£ãƒ³ãƒãƒ«ã®åœæ­¢
 
   Arguments:    None.
 
@@ -194,25 +194,25 @@ void NNS_SndStopChannelAll( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndUpdateDriverInfo
 
-  Description:  ƒhƒ‰ƒCƒoî•ñ‚ÌXV
+  Description:  ãƒ‰ãƒ©ã‚¤ãƒæƒ…å ±ã®æ›´æ–°
 
   Arguments:    None.
 
-  Returns:      XV‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æ›´æ–°ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndUpdateDriverInfo( void )
 {
     if ( ! sDriverInfoFirstFlag )
     {
-        // ARM7‰“šóM
+        // ARM7å¿œç­”å—ä¿¡
         while ( SND_RecvCommandReply( SND_COMMAND_NOBLOCK ) != NULL ) {}
         
         if ( ! SND_IsFinishedCommandTag( sDriverInfoCommandTag ) ) {
-            // XV–¢Š®—¹
+            // æ›´æ–°æœªå®Œäº†
             return FALSE;
         }
         
-        // XVŠ®—¹
+        // æ›´æ–°å®Œäº†
         if ( sCurDriverInfo < 0 ) sCurDriverInfo = 1;
         
         SND_ReadDriverInfo( &sDriverInfo[ sCurDriverInfo ] );
@@ -223,14 +223,14 @@ BOOL NNS_SndUpdateDriverInfo( void )
         
         DC_InvalidateRange( &sDriverInfo[ sCurDriverInfo ], sizeof( SNDDriverInfo ) );
         
-        // ARM7ƒRƒ}ƒ“ƒh”­s
+        // ARM7ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œ
         (void)SND_FlushCommand( SND_COMMAND_NOBLOCK );
         
         return TRUE;
     }
     else
     {
-        // n‚ß‚Ä‚ÌXV
+        // å§‹ã‚ã¦ã®æ›´æ–°
         SND_ReadDriverInfo( &sDriverInfo[0] );
         sDriverInfoCommandTag = SND_GetCurrentCommandTag();
         sDriverInfoFirstFlag = FALSE;
@@ -241,12 +241,12 @@ BOOL NNS_SndUpdateDriverInfo( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndReadDriverChannelInfo
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹î•ñ‚Ìæ“¾
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã®å–å¾—
 
-  Arguments:    chNo - ƒ`ƒƒƒ“ƒlƒ‹”Ô†
-                info - æ“¾‚µ‚½î•ñ‚ğŠi”[‚·‚éƒ`ƒƒƒ“ƒlƒ‹î•ñ\‘¢‘Ì
+  Arguments:    chNo - ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·
+                info - å–å¾—ã—ãŸæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±æ§‹é€ ä½“
 
-  Returns:      æ“¾‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      å–å¾—ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndReadDriverChannelInfo( int chNo, SNDChannelInfo* info )
 {
@@ -267,12 +267,12 @@ BOOL NNS_SndReadDriverChannelInfo( int chNo, SNDChannelInfo* info )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndReadDriverPlayerInfo
 
-  Description:  ƒvƒŒƒCƒ„[î•ñ‚Ìæ“¾
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã®å–å¾—
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†i•¨—”Ô†j
-                info - æ“¾‚µ‚½î•ñ‚ğŠi”[‚·‚éƒvƒŒƒCƒ„[î•ñ\‘¢‘Ì
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·ï¼ˆç‰©ç†ç•ªå·ï¼‰
+                info - å–å¾—ã—ãŸæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±æ§‹é€ ä½“
 
-  Returns:      æ“¾‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      å–å¾—ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNSi_SndReadDriverPlayerInfo( int playerNo, SNDPlayerInfo* info )
 {
@@ -289,13 +289,13 @@ BOOL NNSi_SndReadDriverPlayerInfo( int playerNo, SNDPlayerInfo* info )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndReadDriverTrackInfo
 
-  Description:  ƒgƒ‰ƒbƒNî•ñ‚Ìæ“¾
+  Description:  ãƒˆãƒ©ãƒƒã‚¯æƒ…å ±ã®å–å¾—
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†i•¨—”Ô†j
-                trackNo - ƒgƒ‰ƒbƒN”Ô†
-                info - æ“¾‚µ‚½î•ñ‚ğŠi”[‚·‚éƒgƒ‰ƒbƒNî•ñ\‘¢‘Ì
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·ï¼ˆç‰©ç†ç•ªå·ï¼‰
+                trackNo - ãƒˆãƒ©ãƒƒã‚¯ç•ªå·
+                info - å–å¾—ã—ãŸæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒˆãƒ©ãƒƒã‚¯æƒ…å ±æ§‹é€ ä½“
 
-  Returns:      æ“¾‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      å–å¾—ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNSi_SndReadDriverTrackInfo( int playerNo, int trackNo, SNDTrackInfo* info )
 {
@@ -316,7 +316,7 @@ BOOL NNSi_SndReadDriverTrackInfo( int playerNo, int trackNo, SNDTrackInfo* info 
 /*---------------------------------------------------------------------------*
   Name:         BeginSleep
 
-  Description:  ƒXƒŠ[ƒvƒ‚[ƒh‘Oˆ—
+  Description:  ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰å‰å‡¦ç†
 
   Arguments:    None.
 
@@ -328,10 +328,10 @@ static void BeginSleep( void* )
     
     NNSi_SndCaptureBeginSleep();
     
-    // ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@‚ğ‹ó‚É‚·‚é‚½‚ßAƒ_ƒ~[ƒRƒ}ƒ“ƒh‘—o
+    // ã‚³ãƒãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ç©ºã«ã™ã‚‹ãŸã‚ã€ãƒ€ãƒŸãƒ¼ã‚³ãƒãƒ³ãƒ‰é€å‡º
     SND_StopTimer( 0, 0, 0, 0 );
     
-    // ARM7‚Å‚Ìˆ—‘Ò‚¿
+    // ARM7ã§ã®å‡¦ç†å¾…ã¡
     commandTag = SND_GetCurrentCommandTag();
     (void)SND_FlushCommand( SND_COMMAND_BLOCK );
     SND_WaitForCommandProc( commandTag );
@@ -340,7 +340,7 @@ static void BeginSleep( void* )
 /*---------------------------------------------------------------------------*
   Name:         EndSleep
 
-  Description:  ƒXƒŠ[ƒvƒ‚[ƒhŒãˆ—
+  Description:  ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰å¾Œå‡¦ç†
 
   Arguments:    None.
 

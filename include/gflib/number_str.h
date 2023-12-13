@@ -3,28 +3,28 @@
 
 //-----------------------------------------------------------
 /**
- * ���l�𕶎��񉻂���ۂ̕\���^�C�v
+ * 数値を文字列化する際の表示タイプ
  */
 //-----------------------------------------------------------
 typedef enum {
-	NUMBER_DISPTYPE_LEFT,		///< ���l��
-	NUMBER_DISPTYPE_SPACE,		///< �E�l�߁i�ő包�ɑ���Ȃ��ꍇ�̓X�y�[�X�Ŗ��߂�j
-	NUMBER_DISPTYPE_ZERO,		///< �E�l�߁i�ő包�ɑ���Ȃ��ꍇ�̓[���Ŗ��߂�j
+	NUMBER_DISPTYPE_LEFT,		///< 左詰め
+	NUMBER_DISPTYPE_SPACE,		///< 右詰め（最大桁に足りない場合はスペースで埋める）
+	NUMBER_DISPTYPE_ZERO,		///< 右詰め（最大桁に足りない場合はゼロで埋める）
 }NUMBER_DISPTYPE;
 
 //-----------------------------------------------------------
 /**
- * ���l�𕶎��񉻂���ۂ̕����R�[�h�^�C�v
+ * 数値を文字列化する際の文字コードタイプ
  */
 //-----------------------------------------------------------
 typedef enum {
-	NUMBER_CODETYPE_ZENKAKU,	///< �S�p
-	NUMBER_CODETYPE_HANKAKU,	///< ���p
+	NUMBER_CODETYPE_ZENKAKU,	///< 全角
+	NUMBER_CODETYPE_HANKAKU,	///< 半角
 
-	// ����{�I�ɂ̓R�����g���B�R�C�c�����ɉ����ď���������B
+	// ↓基本的にはコレを使う。コイツを国に応じて書き換える。
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/10/12
-	// �����̕\���͊�{�I�ɔ��p��
+	// 数字の表示は基本的に半角で
 	NUMBER_CODETYPE_DEFAULT = NUMBER_CODETYPE_HANKAKU,
 	// ----------------------------------------------------------------------------
 }NUMBER_CODETYPE;

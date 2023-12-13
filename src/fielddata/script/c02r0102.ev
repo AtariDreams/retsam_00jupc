@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_c02r0102evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c02r0102_boy1
 _EVENT_DATA		ev_c02r0102_books1
@@ -39,12 +39,12 @@ ev_c02r0102_flag_change_myth:
 
 
 /********************************************************************/
-/*							­”N									*/
+/*							å°‘å¹´									*/
 /********************************************************************/
 ev_c02r0102_boy1:
 	_TALK_OBJ_START
 
-	/*’nk”­¶Œã`ŽŸ‚ÌƒCƒxƒ“ƒg‚ª‹N‚«‚é‚Ü‚Å*/
+	/*åœ°éœ‡ç™ºç”Ÿå¾Œã€œæ¬¡ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒèµ·ãã‚‹ã¾ã§*/
 	_IF_FLAGON_JUMP	FE_L02_NEWS,ev_c02r0102_boy1_02
 
 	_TALKMSG	msg_c02r0102_boy1_01
@@ -54,7 +54,7 @@ ev_c02r0102_boy1:
 	_TALK_OBJ_END
 	_END
 
-/*’nk”­¶Œã`ŽŸ‚ÌƒCƒxƒ“ƒg‚ª‹N‚«‚é‚Ü‚Å*/
+/*åœ°éœ‡ç™ºç”Ÿå¾Œã€œæ¬¡ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒèµ·ãã‚‹ã¾ã§*/
 ev_c02r0102_boy1_02:
 	_TALKMSG	msg_c02r0102_boy1_02
 	_LAST_KEYWAIT
@@ -65,12 +65,12 @@ ev_c02r0102_boy1_02:
 
 
 /********************************************************************/
-/*								–{									*/
+/*								æœ¬									*/
 /********************************************************************/
 ev_c02r0102_books1:
 	_TALK_START
 
-	/*}‘ŠÙƒAƒ‹ƒZƒEƒXŽR’jƒCƒxƒ“ƒgI—¹Œã*/
+	/*å›³æ›¸é¤¨ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å±±ç”·ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†å¾Œ*/
 	_IFVAL_JUMP			SYS_WORK_ARUSEUSU,GE,3,ev_c02r0102_books1_02
 
 	_TALK_KEYWAIT		msg_c02r0102_books1_01
@@ -83,7 +83,7 @@ ev_c02r0102_books1_end:
 	_TALK_END
 	_END
 
-/*}‘ŠÙƒAƒ‹ƒZƒEƒXŽR’jƒCƒxƒ“ƒgI—¹Œã*/
+/*å›³æ›¸é¤¨ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å±±ç”·ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†å¾Œ*/
 ev_c02r0102_books1_02:
 	_PLAYER_NAME		0
 	_TALK_KEYWAIT		msg_c02r0102_books_01
@@ -92,7 +92,7 @@ ev_c02r0102_books1_02:
 
 
 /********************************************************************/
-/*								–{									*/
+/*								æœ¬									*/
 /********************************************************************/
 ev_c02r0102_books2:
 	_EASY_MSG		msg_c02r0102_books2_01
@@ -100,7 +100,7 @@ ev_c02r0102_books2:
 
 
 /********************************************************************/
-/*							ƒ|ƒXƒ^[								*/
+/*							ãƒã‚¹ã‚¿ãƒ¼								*/
 /********************************************************************/
 ev_c02r0102_poster:
 	_EASY_MSG		msg_c02r0102_poster_01
@@ -108,12 +108,12 @@ ev_c02r0102_poster:
 
 
 /********************************************************************/
-/*						ƒAƒ‹ƒZƒEƒXŽR’j								*/
+/*						ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å±±ç”·								*/
 /********************************************************************/
 ev_c02r0102_myth:
 	_EVENT_START
 
-	/*‹ß‚Ã‚¢‚Ä‚­‚é*/
+	/*è¿‘ã¥ã„ã¦ãã‚‹*/
 	_OBJ_ANIME		C02R0102_MYTH,anm_c02r0102_myth_01
 	_OBJ_ANIME_WAIT
 
@@ -123,7 +123,7 @@ ev_c02r0102_myth:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c02r0102_myth_01
 	_END
 
-/*‚P‰ñ–Úu‚¢‚¢‚¦v*/
+/*ï¼‘å›žç›®ã€Œã„ã„ãˆã€*/
 no_c02r0102_myth_01:
 	_TALK_KEYWAIT	msg_myth_06
 	_YES_NO_WIN		SCWK_ANSWER
@@ -131,12 +131,12 @@ no_c02r0102_myth_01:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c02r0102_myth_01
 	_END
 
-/*‚P‰ñ–Úu‚Í‚¢v*/
+/*ï¼‘å›žç›®ã€Œã¯ã„ã€*/
 yes_c02r0102_myth_01:
 	_TALK_KEYWAIT	msg_myth_07
 	_TALK_CLOSE
 
-	/*ƒLƒ‡ƒƒLƒ‡ƒ*/
+	/*ã‚­ãƒ§ãƒ­ã‚­ãƒ§ãƒ­*/
 	_OBJ_ANIME		C02R0102_MYTH,anm_c02r0102_myth_10
 	_OBJ_ANIME_WAIT
 
@@ -146,7 +146,7 @@ yes_c02r0102_myth_01:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c02r0102_myth_02
 	_END
 
-/*‚Q‰ñ–Úu‚¢‚¢‚¦v*/
+/*ï¼’å›žç›®ã€Œã„ã„ãˆã€*/
 no_c02r0102_myth_02:
 	_TALK_KEYWAIT	msg_myth_09
 	_YES_NO_WIN		SCWK_ANSWER
@@ -154,26 +154,26 @@ no_c02r0102_myth_02:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c02r0102_myth_02
 	_END
 
-/*‚Q‰ñ–Úu‚Í‚¢v*/
+/*ï¼’å›žç›®ã€Œã¯ã„ã€*/
 yes_c02r0102_myth_02:
 	_TALK_KEYWAIT	msg_myth_10
 	_TALK_CLOSE
 
-	/*¶‚ðŒü‚¢‚Ä*/
+	/*å·¦ã‚’å‘ã„ã¦*/
 	_OBJ_ANIME		C02R0102_MYTH,anm_c02r0102_myth_20
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_myth_11
 	_TALK_CLOSE
 
-	/*Œü‚«‡‚¤*/
+	/*å‘ãåˆã†*/
 	_OBJ_ANIME		C02R0102_MYTH,anm_c02r0102_myth_30
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_myth_12
 	_TALK_CLOSE
 
-	/*‘Þê*/
+	/*é€€å ´*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c02r0102_player_40
 	_OBJ_ANIME		C02R0102_MYTH,anm_c02r0102_myth_40
 	_OBJ_ANIME_WAIT
@@ -184,7 +184,7 @@ yes_c02r0102_myth_02:
 	_END
 
 //--------------------------------------------------------------------
-//ŽR’j	‹ß‚Ã‚­
+//å±±ç”·	è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c02r0102_myth_01
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
@@ -195,7 +195,7 @@ _ANIME_LABEL anm_c02r0102_myth_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽR’j	ƒLƒ‡ƒƒLƒ‡ƒ
+//å±±ç”·	ã‚­ãƒ§ãƒ­ã‚­ãƒ§ãƒ­
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c02r0102_myth_10
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -204,21 +204,21 @@ _ANIME_LABEL anm_c02r0102_myth_10
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽR’j	¶‚ðŒü‚­
+//å±±ç”·	å·¦ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c02r0102_myth_20
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽR’j	Œü‚«‡‚¤
+//å±±ç”·	å‘ãåˆã†
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c02r0102_myth_30
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽR’j	‘Þê
+//å±±ç”·	é€€å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c02r0102_myth_40
 	_ANIME_DATA	AC_WAIT_8F,2
@@ -226,7 +226,7 @@ _ANIME_LABEL anm_c02r0102_myth_40
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	“¹‚ð‚ ‚¯‚é
+//ä¸»äººå…¬	é“ã‚’ã‚ã‘ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c02r0102_player_40
 	_ANIME_DATA	AC_WALK_D_8F,1

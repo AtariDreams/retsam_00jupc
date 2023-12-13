@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWC_RnkPutScoreAsync</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWC_RnkPutScoreAsync</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -24,82 +24,82 @@ DWCRnkError    DWC_RnkPutScoreAsync( u32              category,
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-		  �X�R�A��o�^����񓯊��������J�n���܂��B�����Ɏ��s�ł���񓯊�������1�݂̂ł��B�����̔񓯊����������s���悤�Ƃ����ꍇ��DWC_RNK_ERROR_PUT_NOTREADY���Ԃ���܂��B
+		  スコアを登録する非同期処理を開始します。同時に実行できる非同期処理は1つのみです。複数の非同期処理を実行しようとした場合はDWC_RNK_ERROR_PUT_NOTREADYが返されます。
 		</P>
 		<P>
-		  �񓯊��������́A����I��<a href="DWC_RnkProcess.html">DWC_RnkProcess</a>�֐����Ăяo���Ă��������B��������<a href="DWC_RnkProcess.html">DWC_RnkProcess</a>�֐���DWC_RNK_SUCCESS��Ԃ��܂��B
+		  非同期処理中は、定期的に<a href="DWC_RnkProcess.html">DWC_RnkProcess</a>関数を呼び出してください。処理中は<a href="DWC_RnkProcess.html">DWC_RnkProcess</a>関数がDWC_RNK_SUCCESSを返します。
 		</P>
 		<P>
-		  �񓯊��������̐i�s�󋵂��擾����ɂ́A<a href="DWC_RnkGetState.html">DWC_RnkGetState</a>�֐����Ăяo���Ă��������B
+		  非同期処理中の進行状況を取得するには、<a href="DWC_RnkGetState.html">DWC_RnkGetState</a>関数を呼び出してください。
 		</P>
 		<P>
-		  <a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>�֐��Ŏ擾����DWCRnkData�\���̓��̃����o�̈ꕔ�͎�M�o�b�t�@�𒼐ڎQ�Ƃ��Ă��邽�߁A�����Ĕ񓯊��������s���ꍇ�͕K�v�ɉ����đޔ����Ă��������B
+		  <a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>関数で取得するDWCRnkData構造体内のメンバの一部は受信バッファを直接参照しているため、続けて非同期処理を行う場合は必要に応じて退避してください。
 		</P>
 		<P>
-		  ���[�U�[��`�f�[�^���g�p���Ȃ��ꍇ�́Adata��NULL�Asize��0���w�肵�Ă��������B
+		  ユーザー定義データを使用しない場合は、dataにNULL、sizeに0を指定してください。
 		</P>
 		<P>
-		  data�Ɏw�肵�����[�U�[��`�f�[�^�̃T�C�Y�̓T�[�o���4�̔{���̃T�C�Y�ɕ␳����܂��B�Ⴆ��size��3�o�C�g�Ǝw�肵���ꍇ�̓_�~�[�f�[�^��1�o�C�g�ǉ�����4�o�C�g�ŋL�^����܂��B<a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>�֐��Ŏ擾����f�[�^�T�C�Y�͂��̕␳��̃T�C�Y�ɂȂ�܂��B
+		  dataに指定したユーザー定義データのサイズはサーバ上で4の倍数のサイズに補正されます。例えばsizeに3バイトと指定した場合はダミーデータが1バイト追加され4バイトで記録されます。<a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>関数で取得するデータサイズはこの補正後のサイズになります。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>category</CODE></STRONG></EM></TD>
-					<TD width="75%">�����L���O�����ʂ��邽�߂̃J�e�S���[ID(0�`DWC_RNK_CATEGORY_MAX�܂ł̐��l)</TD>
+					<TD width="75%">ランキングを識別するためのカテゴリーID(0〜DWC_RNK_CATEGORY_MAXまでの数値)</TD>
 				</TR>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>region</CODE></STRONG></EM></TD>
-					<TD width="75%">���[�W�����R�[�h�B<a href="DWCRnkRegion.html">DWCRnkRegion</a>�̒������w�肵�܂��B</TD>
+					<TD width="75%">リージョンコード。<a href="DWCRnkRegion.html">DWCRnkRegion</a>の中から一つ指定します。</TD>
 				</TR>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>score</CODE></STRONG></EM></TD>
-					<TD width="75%">�X�R�A�B�C�ӂ̐��l���w�肵�܂��B</TD>
+					<TD width="75%">スコア。任意の数値を指定します。</TD>
 				</TR>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>data</CODE></STRONG></EM></TD>
-					<TD width="75%">���[�U�[��`�f�[�^�̃o�b�t�@�ւ̃|�C���^</TD>
+					<TD width="75%">ユーザー定義データのバッファへのポインタ</TD>
 				</TR>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>size</CODE></STRONG></EM></TD>
-					<TD width="75%">data�̃T�C�Y(DWC_RNK_DATA_MAX�ȉ�)</TD>
+					<TD width="75%">dataのサイズ(DWC_RNK_DATA_MAX以下)</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>DWC_RNK_SUCCESS</CODE></STRONG></EM></TD>
-					<TD width="75%">����</TD>
+					<TD width="75%">成功</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_RNK_IN_ERROR</CODE></STRONG></EM></TD>
-					<TD width="75%">�G���[������</TD>
+					<TD width="75%">エラー発生中</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_RNK_ERROR_PUT_NOTREADY</CODE></STRONG></EM></TD>
-					<TD width="75%">�ʐM�������ł��Ă��Ȃ�</TD>
+					<TD width="75%">通信準備ができていない</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_RNK_ERROR_INVALID_PARAMETER</CODE></STRONG></EM></TD>
-					<TD width="75%">�s���ȃp�����[�^</TD>
+					<TD width="75%">不正なパラメータ</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_RNK_ERROR_PUT_INVALID_KEY</CODE></STRONG></EM></TD>
-					<TD width="75%">�Í����L�[���s��</TD>
+					<TD width="75%">暗号化キーが不正</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>DWC_RNK_ERROR_PUT_NOMEMORY</CODE></STRONG></EM></TD>
-					<TD width="75%">�������[�s��</TD>
+					<TD width="75%">メモリー不足</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 		  <code>
 		    <a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>
@@ -109,12 +109,12 @@ DWCRnkError    DWC_RnkPutScoreAsync( u32              category,
 		  </code>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2006/07/21 �K�C�h���C���֘A���ǋL<BR>
-			2006/06/22 ���[�U�[��`�f�[�^���g�p���Ȃ��P�[�X�Ɋւ���ǋL<BR>
-			2006/06/20 ��L����<BR>
-			2006/04/14 ����<BR>
+			2006/07/21 ガイドライン関連情報追記<BR>
+			2006/06/22 ユーザー定義データを使用しないケースに関する追記<BR>
+			2006/06/20 誤記訂正<BR>
+			2006/04/14 初版<BR>
 		</P>
 
 	</BODY>

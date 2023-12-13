@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_105.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			105@‘Šè‚ª‘•”õ‚µ‚Ä‚¢‚é‚Ç‚¤‚®‚ğ“‚Ş
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			105ã€€ç›¸æ‰‹ãŒè£…å‚™ã—ã¦ã„ã‚‹ã©ã†ãã‚’ç›—ã‚€
  *
  *@author	HisashiSogabe
  *@data		2006.01.25

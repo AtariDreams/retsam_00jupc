@@ -1,14 +1,14 @@
 //====================================================================
-//						‰B‚µƒAƒCƒeƒ€ƒf[ƒ^
+//						éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 //
 // 05.11.17 Satoshi Nohara
 //
-// œhide_item.xls‚ðƒRƒ“ƒo[ƒg‚µ‚Äo—Í‚µ‚Ä‚¢‚Ü‚·
+// â—hide_item.xlsã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦å‡ºåŠ›ã—ã¦ã„ã¾ã™
 //
 //====================================================================
 
 const HIDE_ITEM_DATA hide_item_data[] = {
-	//ƒAƒCƒeƒ€ƒiƒ“ƒo[ ŒÂ” ”½‰ž “ÁŽê ƒtƒ‰ƒOƒCƒ“ƒfƒbƒNƒX
+	//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ å€‹æ•° åå¿œ ç‰¹æ®Š ãƒ•ãƒ©ã‚°ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	{ ITEM_PIIPIIMAKKUSU,	1,	2,	0,	0 },
 	{ ITEM_TAMAMUSIPUREETO,	1,	0,	0,	1 },
 	{ ITEM_RYUUNOPUREETO,	1,	0,	0,	2 },

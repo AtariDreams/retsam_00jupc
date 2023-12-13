@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  *
- * í“¬˜^‰æ
+ * æˆ¦é—˜éŒ²ç”»
  *
  */
 //==============================================================================
@@ -16,108 +16,108 @@
 
 //----------------------------------------------------------
 /**
- *	˜^‰æƒZ[ƒuƒf[ƒ^–{‘Ìi7272bytej
+ *	éŒ²ç”»ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ï¼ˆ7272byteï¼‰
  */
 //----------------------------------------------------------
 typedef struct {
-	GT_REC_BATTLE_PARAM	bp;						//í“¬ŠJŽnƒpƒ‰ƒ[ƒ^	336byte
-	GT_RECORD_PARAM		rp;						//˜^‰æƒoƒbƒtƒ@			4096byte
-	GT_REC_POKEPARTY	rec_party[GT_CLIENT_MAX];	//ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^	628 * 4
-	GT_MYSTATUS			my_status[GT_CLIENT_MAX];	//ƒvƒŒƒCƒ„[î•ñ		32byte * 4
-	GT_CONFIG			config;					//ƒRƒ“ƒtƒBƒO			2byte
+	GT_REC_BATTLE_PARAM	bp;						//æˆ¦é—˜é–‹å§‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	336byte
+	GT_RECORD_PARAM		rp;						//éŒ²ç”»ãƒãƒƒãƒ•ã‚¡			4096byte
+	GT_REC_POKEPARTY	rec_party[GT_CLIENT_MAX];	//ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	628 * 4
+	GT_MYSTATUS			my_status[GT_CLIENT_MAX];	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±		32byte * 4
+	GT_CONFIG			config;					//ã‚³ãƒ³ãƒ•ã‚£ã‚°			2byte
 	u16 magic_key;
 	
-	//u32					checksum;	//ƒ`ƒFƒbƒNƒTƒ€	4byte
+	//u32					checksum;	//ãƒã‚§ãƒƒã‚¯ã‚µãƒ 	4byte
 	GT_GDS_CRC crc;							///< CRC						4
 }GT_BATTLE_REC_WORK;
 
 //--------------------------------------------------------------
 /**
- *	í“¬˜^‰æ‚Ìƒwƒbƒ_
+ *	æˆ¦é—˜éŒ²ç”»ã®ãƒ˜ãƒƒãƒ€
  *		100byte
  */
 //--------------------------------------------------------------
 typedef struct {
-	u16 monsno[GT_HEADER_MONSNO_MAX];	///<ƒ|ƒPƒ‚ƒ“”Ô†(•\Ž¦‚·‚é•K—v‚ª‚È‚¢‚Ì‚Åƒ^ƒ}ƒS‚Ìê‡‚Í0)	24
-	u8 form_no[GT_HEADER_MONSNO_MAX];	///<ƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€”Ô†								12
+	u16 monsno[GT_HEADER_MONSNO_MAX];	///<ãƒã‚±ãƒ¢ãƒ³ç•ªå·(è¡¨ç¤ºã™ã‚‹å¿…è¦ãŒãªã„ã®ã§ã‚¿ãƒžã‚´ã®å ´åˆã¯0)	24
+	u8 form_no[GT_HEADER_MONSNO_MAX];	///<ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ç•ªå·								12
 
-	u16 battle_counter;		///<˜AŸ”												2
-	u8 mode;				///<í“¬ƒ‚[ƒh(ƒtƒ@ƒNƒgƒŠ[50Aƒtƒ@ƒNƒgƒŠ[100A’ÊM‘Îí...)
+	u16 battle_counter;		///<é€£å‹æ•°												2
+	u8 mode;				///<æˆ¦é—˜ãƒ¢ãƒ¼ãƒ‰(ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼50ã€ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼100ã€é€šä¿¡å¯¾æˆ¦...)
 	
-	u8 secure;				///<TRUE:ˆÀ‘S‚ª•Ûá‚³‚ê‚Ä‚¢‚éB@FALSEFÄ¶‚µ‚½Ž–‚ª‚È‚¢
+	u8 secure;				///<TRUE:å®‰å…¨ãŒä¿éšœã•ã‚Œã¦ã„ã‚‹ã€‚ã€€FALSEï¼šå†ç”Ÿã—ãŸäº‹ãŒãªã„
 	
-	GT_REGULATION regulation;			///<ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^		32
+	GT_REGULATION regulation;			///<ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿		32
 
-	u16 magic_key;			///<ƒ}ƒWƒbƒNƒL[
+	u16 magic_key;			///<ãƒžã‚¸ãƒƒã‚¯ã‚­ãƒ¼
 	
-	u8 work[14];			///< —\”õ										16
+	u8 work[14];			///< äºˆå‚™										16
 	
-	GT_DATA_NUMBER data_number;		///<ƒf[ƒ^ƒiƒ“ƒo[(ƒT[ƒo[‘¤‚ÅƒZƒbƒg‚³‚ê‚é)	8
+	GT_DATA_NUMBER data_number;		///<ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼(ã‚µãƒ¼ãƒãƒ¼å´ã§ã‚»ãƒƒãƒˆã•ã‚Œã‚‹)	8
 	GT_GDS_CRC crc;							///< CRC						4
 }GT_BATTLE_REC_HEADER;
 
 //--------------------------------------------------------------
 /**
- *	‘—Mƒf[ƒ^Fí“¬˜^‰æ
+ *	é€ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šæˆ¦é—˜éŒ²ç”»
  *	7500byte
  */
 //--------------------------------------------------------------
 typedef struct {
-	GT_GDS_PROFILE profile;		///<GDSƒvƒƒtƒB[ƒ‹		88
-	GT_BATTLE_REC_HEADER head;		///<í“¬˜^‰æ‚Ìƒwƒbƒ_	100
-	GT_BATTLE_REC_WORK rec;		///<˜^‰æƒf[ƒ^–{‘Ì			7272
+	GT_GDS_PROFILE profile;		///<GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«		88
+	GT_BATTLE_REC_HEADER head;		///<æˆ¦é—˜éŒ²ç”»ã®ãƒ˜ãƒƒãƒ€	100
+	GT_BATTLE_REC_WORK rec;		///<éŒ²ç”»ãƒ‡ãƒ¼ã‚¿æœ¬ä½“			7272
 }GT_BATTLE_REC_SEND;
 
 //--------------------------------------------------------------
 /**
- *	‘—Mƒf[ƒ^FŒŸõƒŠƒNƒGƒXƒg
+ *	é€ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šæ¤œç´¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *	16byte
  */
 //--------------------------------------------------------------
 typedef struct{
-	u16 monsno;					///< ƒ|ƒPƒ‚ƒ“”Ô†
-	u8 battle_mode;				///< ŒŸõŽ{Ý
-	u8 country_code;			///< Z‚ñ‚Å‚¢‚é‘ƒR[ƒh
-	u8 local_code;				///< Z‚ñ‚Å‚¢‚é’n•ûƒR[ƒh
+	u16 monsno;					///< ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+	u8 battle_mode;				///< æ¤œç´¢æ–½è¨­
+	u8 country_code;			///< ä½ã‚“ã§ã„ã‚‹å›½ã‚³ãƒ¼ãƒ‰
+	u8 local_code;				///< ä½ã‚“ã§ã„ã‚‹åœ°æ–¹ã‚³ãƒ¼ãƒ‰
 	
-	u8 padding[3];				//ƒpƒfƒBƒ“ƒO
+	u8 padding[3];				//ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
 	
-	u32 server_version;			///< ROM‚ÌƒT[ƒo[ƒo[ƒWƒ‡ƒ“
+	u32 server_version;			///< ROMã®ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 	
-	u8 work[4];					///<—\”õ
+	u8 work[4];					///<äºˆå‚™
 }GT_BATTLE_REC_SEARCH_SEND;
 
 //--------------------------------------------------------------
 /**
- *	‘—Mƒf[ƒ^Fƒ‰ƒ“ƒLƒ“ƒOŽæ“¾
+ *	é€ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šãƒ©ãƒ³ã‚­ãƒ³ã‚°å–å¾—
  */
 //--------------------------------------------------------------
 typedef struct{
-	u32 server_version;			///< ROM‚ÌƒT[ƒo[ƒo[ƒWƒ‡ƒ“
+	u32 server_version;			///< ROMã®ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 }GT_BATTLE_REC_RANKING_SEARCH_SEND;
 
 
 //--------------------------------------------------------------
 /**
- *	ŽóMƒf[ƒ^FŠT—vˆê——Žæ“¾Žž
+ *	å—ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šæ¦‚è¦ä¸€è¦§å–å¾—æ™‚
  *	228byte
  */
 //--------------------------------------------------------------
 typedef struct {
-	GT_GDS_PROFILE profile;		///<GDSƒvƒƒtƒB[ƒ‹
-	GT_BATTLE_REC_HEADER head;		///<í“¬˜^‰æ‚Ìƒwƒbƒ_
+	GT_GDS_PROFILE profile;		///<GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+	GT_BATTLE_REC_HEADER head;		///<æˆ¦é—˜éŒ²ç”»ã®ãƒ˜ãƒƒãƒ€
 }GT_BATTLE_REC_OUTLINE_RECV;
 
 //--------------------------------------------------------------
 /**
- *	ŽóMƒf[ƒ^FˆêŒ‚ÌŒŸõŒ‹‰ÊŽæ“¾Žž
+ *	å—ä¿¡ãƒ‡ãƒ¼ã‚¿ï¼šä¸€ä»¶ã®æ¤œç´¢çµæžœå–å¾—æ™‚
  *	7500byte
  */
 //--------------------------------------------------------------
 typedef struct{
-	GT_GDS_PROFILE profile;		///<GDSƒvƒƒtƒB[ƒ‹
-	GT_BATTLE_REC_HEADER head;		///<í“¬˜^‰æ‚Ìƒwƒbƒ_
-	GT_BATTLE_REC_WORK rec;		///<í“¬˜^‰æ–{‘Ì
+	GT_GDS_PROFILE profile;		///<GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+	GT_BATTLE_REC_HEADER head;		///<æˆ¦é—˜éŒ²ç”»ã®ãƒ˜ãƒƒãƒ€
+	GT_BATTLE_REC_WORK rec;		///<æˆ¦é—˜éŒ²ç”»æœ¬ä½“
 }GT_BATTLE_REC_RECV;
 
 

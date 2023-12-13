@@ -18,10 +18,10 @@
 
 #include <nitro.h>
 
-// ��[����] �|�P�����Ńo�g������v���O���������炤���́A
-//          ���ׂĂ���"ADAJ"�ɂ��Ă����B����Ńo�g������̃v���O�����ł�
-//          �K������"ADAJ"�Ń`�F�b�N����B
-//          �Ȃ̂ŁA�ύX���Ă͂����Ȃ��I�I
+// ★[注意] ポケモンでバトルからプログラムをもらう物は、
+//          すべてこの"ADAJ"にしておく。一方でバトルからのプログラムでは
+//          必ずこの"ADAJ"でチェックする。
+//          なので、変更してはいけない！！
 #define GAME_CODE_ADAJ     (('A' << 0) | ('D' << 8) | ('A' << 16) | ('J' << 24))
 #define MAKER_CODE_01      (('0' << 0) | ('1' << 8))
 
@@ -29,14 +29,14 @@
 /* function */
 
 /*
- * FS���C�u�����W����ROM�A�[�J�C�u���w���t�@�C���V�X�e�����A
- * �w���݂̃v���O�����x�łȂ��w�{�̃v���O�����x�̂��̂ɕ␳���܂��B
- * ����Ƀ|�P�����_�C�A�����h�̃C�j�V�����R�[�h���g�p���āAROM�̐�������
- * �`�F�b�N���Ă��܂��B(�ł��̂ŁA�{�֐��̓|�P������p�֐��ł��B)
- * �{�̃v���O�������g���炱�̊֐����Ăяo�����ꍇ�́A
- * ���̏������s���܂��B
+ * FSライブラリ標準のROMアーカイブが指すファイルシステムを、
+ * 『現在のプログラム』でなく『本体プログラム』のものに補正します。
+ * さらにポケモンダイアモンドのイニシャルコードを使用して、ROMの正当性を
+ * チェックしています。(ですので、本関数はポケモン専用関数です。)
+ * 本体プログラム自身からこの関数を呼び出した場合は、
+ * その準備が行われます。
  *
- * ���̊֐��� FS_Init �֐��Ăяo���̒���ɌĂяo���K�v������܂��B
+ * この関数は FS_Init 関数呼び出しの直後に呼び出す必要があります。
  */
 SDK_INLINE
 void NormalizeRomArchive(void)
@@ -57,7 +57,7 @@ void NormalizeRomArchive(void)
             CARDRomHeader * const org_header = (CARDRomHeader *)HW_CARD_ROM_HEADER;
             if (arg_buffer->game_code == 0)
             {
-                // ROM�w�b�_�̓��e��ޔ�̈�ɃR�s�[���܂��B
+                // ROMヘッダの内容を退避領域にコピーします。
                 CARD_Init();
                 MI_CpuCopy8(app_header, arg_buffer, HW_CARD_ROM_HEADER_SIZE);
                 MI_CpuCopy8(app_header, org_header, HW_CARD_ROM_HEADER_SIZE);
@@ -73,7 +73,7 @@ void NormalizeRomArchive(void)
         if (header->game_code != GAME_CODE_ADAJ ||
             header->maker_code != MAKER_CODE_01)
         {
-            // �ʏ킠�蓾�Ȃ����A�o�g������󂯎��ׂ�ROM�łȂ��B�m�f�B
+            // 通常あり得ないが、バトルから受け取るべきROMでない。ＮＧ。
             OS_TPanic("illegal rom");
         }
     }

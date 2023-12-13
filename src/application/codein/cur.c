@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	cur.c
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2007.07.23(Œ)
+ * @date	2007.07.23(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -306,7 +306,7 @@ void Cursor_OAM_Create( CURSOR_WORK* wk )
 	for ( i = 0; i < wk->param.use; i++ ){
 		wk->cur[ i ].cap = CATS_ObjectAdd_S( csp, crp, &coap );
 		CATS_ObjectUpdateCap( wk->cur[ i ].cap );
-	//	CATS_ObjectObjModeSetCap( wk->cur[ i ].cap, GX_OAM_MODE_XLU );				///< ”¼“§–¾
+	//	CATS_ObjectObjModeSetCap( wk->cur[ i ].cap, GX_OAM_MODE_XLU );				///< åŠé€æ˜
 		CATS_ObjectPosSetCap( wk->cur[ i ].cap, 256 / 2, 192 / 2 );
 		#if 0
 		CATS_ObjectPosSetCap( wk->cur[ i ].cap, 72 + ( i * 8 ) + 4, POS_CODE_Y );
@@ -340,7 +340,7 @@ void Cursor_OAM_Delete( CURSOR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	€”õ	OAMì¬‚Æ‚©Tcbì¬‚Æ‚©
+ * @brief	æº–å‚™	OAMä½œæˆã¨ã‹Tcbä½œæˆã¨ã‹
  *
  * @param	wk	
  *
@@ -352,7 +352,7 @@ BOOL Cursor_Create( CURSOR_WORK* wk, int color )
 {
 	wk->sys.p_handle = ArchiveDataHandleOpen( ARC_BR_GRA, HEAPID_CURSOR( wk ) );
 	
-	///< “Ç‚İ‚İ + ì¬
+	///< èª­ã¿è¾¼ã¿ + ä½œæˆ
 	Cursor_OAM_Load( wk, color );
 	Cursor_OAM_Create( wk );
 	
@@ -365,10 +365,10 @@ BOOL Cursor_Create( CURSOR_WORK* wk, int color )
 
 //--------------------------------------------------------------
 /**
- * @brief	“®ìİ’è
+ * @brief	å‹•ä½œè¨­å®š
  *
  * @param	wk	
- * @param	active	TRUE = “®‚­FALSE = ~‚Ü‚é
+ * @param	active	TRUE = å‹•ãFALSE = æ­¢ã¾ã‚‹
  *
  * @retval	BOOL	
  *
@@ -384,7 +384,7 @@ BOOL Cursor_Active( CURSOR_WORK* wk, BOOL active )
 
 //--------------------------------------------------------------
 /**
- * @brief	À•W‚Ìİ’è
+ * @brief	åº§æ¨™ã®è¨­å®š
  *
  * @param	wk	
  * @param	x	
@@ -439,7 +439,7 @@ BOOL Cursor_PosSet_Check( CURSOR_WORK* wk, s16 x, s16 y )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚Ìƒ^[ƒQƒbƒg‚ª“¯‚¶ê‡‚ÍÄİ’è‚µ‚È‚¢B
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒåŒã˜å ´åˆã¯å†è¨­å®šã—ãªã„ã€‚
  *
  * @param	wk	
  * @param	x	
@@ -492,7 +492,7 @@ BOOL Cursor_PosSetFix( CURSOR_WORK* wk, s16 x, s16 y )
 
 //--------------------------------------------------------------
 /**
- * @brief	íœ
+ * @brief	å‰Šé™¤
  *
  * @param	wk	
  *

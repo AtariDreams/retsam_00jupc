@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_146.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			146 �ǉ����ʂő��肪�Ђ�ށ{������Ƃԏ�Ԃ̑����2�{�_���[�W
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			146 追加効果で相手がひるむ＋そらをとぶ状態の相手に2倍ダメージ
  *
  *@author	HisashiSogabe
  *@data		2005.11.24
@@ -16,7 +16,7 @@
 
 BE_146:
 	VALUE			VAL_SET,BUF_PARA_ADD_STATUS_INDIRECT,ADD_COND2_HIRUMU|ADD_STATUS_DEFENCE
-	//������ƂԂ����Ă��鑊��ɂ�2�{�_���[�W��^����
+	//そらをとぶをしている相手には2倍ダメージを与える
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_SORAWOTOBU_HIT
 	VALUE			VAL_SET,BUF_PARA_DAMAGE_VALUE,10
 	IF_PSP			IF_FLAG_NBIT,SIDE_DEFENCE,ID_PSP_waza_kouka,WAZAKOUKA_SORAWOTOBU,BE_146_NEXT

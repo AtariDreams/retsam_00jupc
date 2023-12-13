@@ -32,10 +32,10 @@ extern "C" {
 #define NNS_G2D_BLKSIG_MULTICELLBANK           (u32)'MCBK'
 
 //
-// ƒo[ƒWƒ‡ƒ“î•ñ
-// Ver         •ÏX“_
+// ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±
+// Ver         å¤‰æ›´ç‚¹
 // -------------------------------------
-// 1.0         ‰”Å
+// 1.0         åˆç‰ˆ
 //
 #define NNS_G2D_NMCR_MAJOR_VER             (u8)1
 #define NNS_G2D_NMCR_MINOR_VER             (u8)0
@@ -60,14 +60,14 @@ typedef enum NNSG2dMCAnimationPlayMode
 //------------------------------------------------------------------------------
 typedef struct NNSG2dMultiCellHierarchyData
 {
-    u16         animSequenceIdx;        // NNSG2dCellAnimation ‚ª Ä¶‚·‚éƒV[ƒPƒ“ƒX”Ô†
-    s16         posX;                   // MultiCell ƒ[ƒJƒ‹Œn‚Å‚Ì NNSG2dCellAnimation ‚Ì ˆÊ’u
-    s16         posY;                   // MultiCell ƒ[ƒJƒ‹Œn‚Å‚Ì NNSG2dCellAnimation ‚Ì ˆÊ’u
+    u16         animSequenceIdx;        // NNSG2dCellAnimation ãŒ å†ç”Ÿã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+    s16         posX;                   // MultiCell ãƒ­ãƒ¼ã‚«ãƒ«ç³»ã§ã® NNSG2dCellAnimation ã® ä½ç½®
+    s16         posY;                   // MultiCell ãƒ­ãƒ¼ã‚«ãƒ«ç³»ã§ã® NNSG2dCellAnimation ã® ä½ç½®
                                         
                                         
-    u16         nodeAttr;               // Node‘®« ( NNSG2dMCAnimationPlayMode ‚È‚Ç 
+    u16         nodeAttr;               // Nodeå±æ€§ ( NNSG2dMCAnimationPlayMode ãªã© 
                                         // 16 ............ 8 ... 5 .....4 .........................0
-                                        //   ƒZƒ‹ƒAƒjƒ”Ô†   —\–ñ    ‰Â‹   NNSG2dMCAnimationPlayMode
+                                        //   ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç•ªå·   äºˆç´„    å¯è¦–   NNSG2dMCAnimationPlayMode
                                         //
     
     
@@ -75,16 +75,16 @@ typedef struct NNSG2dMultiCellHierarchyData
 
 
 //------------------------------------------------------------------------------
-// NNSG2dMultiCellData ’è‹`ƒf[ƒ^
-// NNSG2dMultiCellAnimation ’è‹`ƒtƒ@ƒCƒ‹‚ÉŠi”[‚³‚ê‚éƒf[ƒ^
-// NNSG2dMultiCellInstance ‚É‚æ‚Á‚ÄQÆ‚³‚ê‚é
+// NNSG2dMultiCellData å®šç¾©ãƒ‡ãƒ¼ã‚¿
+// NNSG2dMultiCellAnimation å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«æ ¼ç´ã•ã‚Œã‚‹ãƒ‡ãƒ¼ã‚¿
+// NNSG2dMultiCellInstance ã«ã‚ˆã£ã¦å‚ç…§ã•ã‚Œã‚‹
 //
 typedef struct NNSG2dMultiCellData
 {
     u16                             numNodes;
-//  u16                             numTotalOams;     // MultiCell‚Ì•`‰æ‚É•K—v‚È‘Oam”(–¢À‘•Fg—p•s‰Â)
-    u16                             numCellAnim;      // •K—v‚É‚È‚éƒZƒ‹ƒAƒjƒÀ‘Ì‚Ì”
-    NNSG2dMultiCellHierarchyData*   pHierDataArray;   // Ä¶ƒV[ƒPƒ“ƒXAˆÊ’uA‚È‚Ç(numNodes •ª )
+//  u16                             numTotalOams;     // MultiCellã®æç”»ã«å¿…è¦ãªç·Oamæ•°(æœªå®Ÿè£…ï¼šä½¿ç”¨ä¸å¯)
+    u16                             numCellAnim;      // å¿…è¦ã«ãªã‚‹ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡å®Ÿä½“ã®æ•°
+    NNSG2dMultiCellHierarchyData*   pHierDataArray;   // å†ç”Ÿã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã€ä½ç½®ã€ãªã©(numNodes åˆ† )
 
 }NNSG2dMultiCellData;
 
@@ -98,19 +98,19 @@ typedef struct NNSG2dMultiCellDataBank
     NNSG2dMultiCellHierarchyData*   pHierarchyDataArray;
     void*                           pStringBank;
     void*                           pExtendedData;        // offset addr (if it exists.)
-    // MultiCell‚ğ\¬‚·‚é NNSG2dCellAnimation‚ª’è‹`‚³‚ê‚Ä‚¢‚é NNSG2dAnimBankData
-    // const NNSG2dAnimBankData*      pAnimDataBank;// ŠÖ˜A‚·‚éAnimBank (ƒ‰ƒ“ƒ^ƒCƒ€‚É‚ÄUnpack‚Éİ’è‚³‚ê‚Ü‚·)
+    // MultiCellã‚’æ§‹æˆã™ã‚‹ NNSG2dCellAnimationãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ NNSG2dAnimBankData
+    // const NNSG2dAnimBankData*      pAnimDataBank;// é–¢é€£ã™ã‚‹AnimBank (ãƒ©ãƒ³ã‚¿ã‚¤ãƒ ã«ã¦Unpackæ™‚ã«è¨­å®šã•ã‚Œã¾ã™)
     //
-    // •ÏXF‚±‚Ìî•ñ‚ÍNNSG2dMultiCellInstance(À‘Ì‘¤)‚Å•Û‚·‚é‚±‚Æ‚Æ‚·‚é
+    // å¤‰æ›´ï¼šã“ã®æƒ…å ±ã¯NNSG2dMultiCellInstance(å®Ÿä½“å´)ã§ä¿æŒã™ã‚‹ã“ã¨ã¨ã™ã‚‹
     // 
-    // NNSG2dMultiCellInstance(ƒ‰ƒ“ƒ^ƒCƒ€À‘Ì)‚Å‚Ìg—pƒP[ƒX‚ğl‚¦‚é‚ÆA 
-    // pAnimDataBankî•ñ ‚Í NNSG2dMultiCellData ‚Å•Û‚µ‚½‚¢î•ñ‚¾‚ªANNSG2dMultiCellData‚Å•Û‚·‚é‚Æ
-    //  Eƒf[ƒ^—Ê‘‰Á‚ª‘å‚«‚¢( æ NNSG2dMultiCellData ‚Í ”—Ê‚ª‚Æ‚Ä‚à‘½‚¢ê‡‚ªl‚¦‚ç‚ê‚é )
-    //  EpAnimDataBank ƒf[ƒ^‚Íd•¡‚·‚éê‡‚ª‘½‚¢
+    // NNSG2dMultiCellInstance(ãƒ©ãƒ³ã‚¿ã‚¤ãƒ å®Ÿä½“)ã§ã®ä½¿ç”¨ã‚±ãƒ¼ã‚¹ã‚’è€ƒãˆã‚‹ã¨ã€ 
+    // pAnimDataBankæƒ…å ± ã¯ NNSG2dMultiCellData ã§ä¿æŒã—ãŸã„æƒ…å ±ã ãŒã€NNSG2dMultiCellDataã§ä¿æŒã™ã‚‹ã¨
+    //  ãƒ»ãƒ‡ãƒ¼ã‚¿é‡å¢—åŠ ãŒå¤§ãã„( âˆµ NNSG2dMultiCellData ã¯ æ•°é‡ãŒã¨ã¦ã‚‚å¤šã„å ´åˆãŒè€ƒãˆã‚‰ã‚Œã‚‹ )
+    //  ãƒ»pAnimDataBank ãƒ‡ãƒ¼ã‚¿ã¯é‡è¤‡ã™ã‚‹å ´åˆãŒå¤šã„
     // 
-    // ‚»‚ê‚È‚ç‚ÎANNSG2dMultiCellData ‚ğ ‚à‚Â NNSG2dMultiCellInstance ‚Å ƒf[ƒ^‚ğ‚Â‚±‚Æ‚Æ‚·‚éB
-    // ã‹L‚ÌŒ‡“_‚ğ‚Ü‚Á‚½‚­‰ñ”ğ‚Å‚«‚È‚¢‚ªAƒ‰ƒ“ƒ^ƒCƒ€‘¤‚ÅŠÖ˜A•t‚¯‚é•ª‚¾‚¯_“î«‚Í‚‚¢B
-    // (“Á‚É •¡”‚Ì NNSG2dMultiCellInstance ‚ª NNSG2dMultiCellData ‚ğ‹¤—L‚·‚éƒP[ƒX‚Å©—R“x‚ª‚‚¢B)
+    // ãã‚Œãªã‚‰ã°ã€NNSG2dMultiCellData ã‚’ ã‚‚ã¤ NNSG2dMultiCellInstance ã§ ãƒ‡ãƒ¼ã‚¿ã‚’æŒã¤ã“ã¨ã¨ã™ã‚‹ã€‚
+    // ä¸Šè¨˜ã®æ¬ ç‚¹ã‚’ã¾ã£ãŸãå›é¿ã§ããªã„ãŒã€ãƒ©ãƒ³ã‚¿ã‚¤ãƒ å´ã§é–¢é€£ä»˜ã‘ã‚‹åˆ†ã ã‘æŸ”è»Ÿæ€§ã¯é«˜ã„ã€‚
+    // (ç‰¹ã« è¤‡æ•°ã® NNSG2dMultiCellInstance ãŒ NNSG2dMultiCellData ã‚’å…±æœ‰ã™ã‚‹ã‚±ãƒ¼ã‚¹ã§è‡ªç”±åº¦ãŒé«˜ã„ã€‚)
     // 
     
     
@@ -135,7 +135,7 @@ typedef struct NNSG2dUserExMultiCellAttr
 typedef struct NNSG2dUserExMultiCellAttrBank
 {
     u16                          numMultiCells; // 
-    u16                          numAttribute;  // ƒAƒgƒŠƒrƒ…[ƒg”FŒ»İ‚Í1ŒÅ’è
+    u16                          numAttribute;  // ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæ•°ï¼šç¾åœ¨ã¯1å›ºå®š
     NNSG2dUserExMultiCellAttr*   pMCAttrArray;   
     
 }NNSG2dUserExMultiCellAttrBank;
@@ -148,8 +148,8 @@ typedef struct NNSG2dUserExMultiCellAttrBank
 
 
 //------------------------------------------------------------------------------
-// ƒ}ƒ‹ƒ`ƒZƒ‹ƒm[ƒhƒAƒgƒŠƒrƒ…[ƒg‚ğİ’è‚µ‚Ü‚·
-// ƒRƒ“ƒo[ƒ^‚ªg—p‚·‚éŠÖ”‚Å‚·B
+// ãƒãƒ«ãƒã‚»ãƒ«ãƒãƒ¼ãƒ‰ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’è¨­å®šã—ã¾ã™
+// ã‚³ãƒ³ãƒãƒ¼ã‚¿ãŒä½¿ç”¨ã™ã‚‹é–¢æ•°ã§ã™ã€‚
 // 
 NNS_G2D_INLINE void 
 NNSi_G2dSetMultiCellNodeAttribute
@@ -164,7 +164,7 @@ NNSi_G2dSetMultiCellNodeAttribute
 }
 
 //------------------------------------------------------------------------------
-// Node‚Ì‰Â‹ó‘Ô‚ğæ“¾‚µ‚Ü‚·
+// Nodeã®å¯è¦–çŠ¶æ…‹ã‚’å–å¾—ã—ã¾ã™
 NNS_G2D_INLINE BOOL 
 NNSi_G2dIsMultiCellNodeVisible
 ( 
@@ -175,7 +175,7 @@ NNSi_G2dIsMultiCellNodeVisible
 }
 
 //------------------------------------------------------------------------------
-// Node‚ÉƒoƒCƒ“ƒh‚³‚ê‚éƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶•û®‚ğæ“¾‚µ‚Ü‚·
+// Nodeã«ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã‚‹ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ–¹å¼ã‚’å–å¾—ã—ã¾ã™
 NNS_G2D_INLINE NNSG2dMCAnimationPlayMode 
 NNSi_G2dGetMultiCellNodePlayMode
 ( 
@@ -190,8 +190,8 @@ NNSi_G2dGetMultiCellNodePlayMode
     return mode;
 }
 //------------------------------------------------------------------------------
-// Node‚ªQÆ‚·‚éƒZƒ‹ƒAƒjƒ‚Ì”Ô†‚ğİ’è‚µ‚Ü‚·
-// ƒRƒ“ƒo[ƒ^‚©‚ç—˜—p‚³‚ê‚éŠÖ”‚Å‚·B
+// NodeãŒå‚ç…§ã™ã‚‹ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ç•ªå·ã‚’è¨­å®šã—ã¾ã™
+// ã‚³ãƒ³ãƒãƒ¼ã‚¿ã‹ã‚‰åˆ©ç”¨ã•ã‚Œã‚‹é–¢æ•°ã§ã™ã€‚
 NNS_G2D_INLINE void NNSi_G2dSetMC2NodeCellAinmIdx
 ( 
     NNSG2dMultiCellHierarchyData*  pNodeData, 
@@ -203,7 +203,7 @@ NNS_G2D_INLINE void NNSi_G2dSetMC2NodeCellAinmIdx
 }
 
 //------------------------------------------------------------------------------
-// Node‚ªQÆ‚·‚éƒZƒ‹ƒAƒjƒ‚Ì”Ô†‚ğæ“¾‚µ‚Ü‚·
+// NodeãŒå‚ç…§ã™ã‚‹ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ç•ªå·ã‚’å–å¾—ã—ã¾ã™
 NNS_G2D_INLINE u16 
 NNSi_G2dGetMC2NodeCellAinmIdx
 ( 
@@ -216,23 +216,23 @@ NNSi_G2dGetMC2NodeCellAinmIdx
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetUserExCellAttrBankFromMCBank
 
-  Description:  ƒ}ƒ‹ƒ`ƒZƒ‹ƒoƒ“ƒN‚©‚çƒZƒ‹Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒoƒ“ƒN‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒãƒ«ãƒã‚»ãƒ«ãƒãƒ³ã‚¯ã‹ã‚‰ã‚»ãƒ«æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒ³ã‚¯ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
                 
-  Arguments:    pMCBank   :           ƒ}ƒ‹ƒ`ƒZƒ‹ƒoƒ“ƒN
+  Arguments:    pMCBank   :           ãƒãƒ«ãƒã‚»ãƒ«ãƒãƒ³ã‚¯
                 
                 
-  Returns:      ƒZƒ‹Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒoƒ“ƒN
+  Returns:      ã‚»ãƒ«æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒ³ã‚¯
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE const NNSG2dUserExCellAttrBank* 
 NNS_G2dGetUserExCellAttrBankFromMCBank( const NNSG2dMultiCellDataBank* pMCBank )
 {
-    // ƒuƒƒbƒN‚ğæ“¾‚µ‚Ü‚·
+    // ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã—ã¾ã™
     const NNSG2dUserExDataBlock* pBlk 
         = NNSi_G2dGetUserExDataBlkByID( pMCBank->pExtendedData,
                                         NNS_G2D_USEREXBLK_CELLATTR );
-    // ƒuƒƒbƒN‚Ìæ“¾‚É¬Œ÷‚µ‚½‚ç...
+    // ãƒ–ãƒ­ãƒƒã‚¯ã®å–å¾—ã«æˆåŠŸã—ãŸã‚‰...
     if( pBlk != NULL )
     {
         return (const NNSG2dUserExCellAttrBank*)(pBlk + 1);

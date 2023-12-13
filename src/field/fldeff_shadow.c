@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_shadow.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ‰e
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå½±
  * @author	kagaya
  * @data	05.07.13
  *
@@ -19,11 +19,11 @@
 //==============================================================================
 //	define
 //==============================================================================
-//#define DEBUG_SHADOW_WRITE_OFF	//’è‹`‚Å‰e•`‰æOFF
+//#define DEBUG_SHADOW_WRITE_OFF	//å®šç¾©ã§å½±æç”»OFF
 #define DEBUG_SHADOW_TIME
 
 //#define SHADOW_DRAW_Z_OFFSET (FX32_ONE*(3))
-//#define SHADOW_DRAW_Z_OFFSET (FX32_ONE*(5))			///<‰e•`‰æƒIƒtƒZƒbƒgZ²
+//#define SHADOW_DRAW_Z_OFFSET (FX32_ONE*(5))			///<å½±æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆZè»¸
 #define SHADOW_DRAW_Z_OFFSET (FX32_ONE*(3))				
 
 #define SHADOW_SCALE_SPEED (0x0010)
@@ -41,12 +41,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_SHADOWŒ^
+///	FE_SHADOWå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_SHADOW * FE_SHADOW_PTR;
 
 //--------------------------------------------------------------
-///	FE_SHADOW\‘¢‘Ì
+///	FE_SHADOWæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_SHADOW
 {
@@ -62,37 +62,37 @@ typedef struct _TAG_FE_SHADOW
 	FRO_OBJ robj[SHADOW_MAX];
 }FE_SHADOW;
 
-#define FE_SHADOW_SIZE (sizeof(FE_SHADOW)) ///<FE_SHADOWƒTƒCƒY
+#define FE_SHADOW_SIZE (sizeof(FE_SHADOW)) ///<FE_SHADOWã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	SHADOW_ADD_H\‘¢‘Ì
+///	SHADOW_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	FE_SYS *fes;								///<FE_SYS *
 	FE_SHADOW_PTR shadow;						///<FE_SHADOW_PTR
-	FIELD_OBJ_PTR fldobj;						///<‰e‚Ì‘ÎÛFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<å½±ã®å¯¾è±¡FIELD_OBJ_PTR
 }SHADOW_ADD_H;
 
-#define SHADOW_ADD_H_SIZE (sizeof(SHADOW_ADD_H)) ///<SHADOW_ADD_HƒTƒCƒY
+#define SHADOW_ADD_H_SIZE (sizeof(SHADOW_ADD_H)) ///<SHADOW_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	SHADOW_WORK\‘¢‘Ì
+///	SHADOW_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int obj_code;								///<‰e‘ÎÛOBJƒR[ƒh
-	int obj_id;									///<‰e‘ÎÛOBJID
-	int zone_id;								///<‰e‘ÎÛƒ][ƒ“ID
-	int vanish_sw;								///<”ñ•\¦SW
-	int type;									///<SHADOW_BLACK“™
-	SHADOW_ADD_H head;							///<’Ç‰Á‚ÌSHADOW_ADD_H
+	int obj_code;								///<å½±å¯¾è±¡OBJã‚³ãƒ¼ãƒ‰
+	int obj_id;									///<å½±å¯¾è±¡OBJID
+	int zone_id;								///<å½±å¯¾è±¡ã‚¾ãƒ¼ãƒ³ID
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	int type;									///<SHADOW_BLACKç­‰
+	SHADOW_ADD_H head;							///<è¿½åŠ æ™‚ã®SHADOW_ADD_H
 }SHADOW_WORK;
 
-#define SHADOW_WORK_SIZE (sizeof(SHADOW_WORK))	///<SHADOW_WORKƒTƒCƒY
+#define SHADOW_WORK_SIZE (sizeof(SHADOW_WORK))	///<SHADOW_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Shadow_TimeProcAdd( FE_SHADOW_PTR sd );
 static void Shadow_TimeProcDelete( FE_SHADOW_PTR sd );
@@ -114,13 +114,13 @@ const fx32 DATA_ShadowTimeAlphaTbl[];
 static const DATA_ShadowArcIdx[SHADOW_MAX];
 
 //==============================================================================
-//	‰e@ƒVƒXƒeƒ€
+//	å½±ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰e‰Šú‰»
+ * å½±åˆæœŸåŒ–
  * @param	fes		FE_SYS *
- * @retval	void*	ƒGƒtƒFƒNƒgg—pƒ[ƒN
+ * @retval	void*	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 void * FE_Shadow_Init( FE_SYS *fes )
@@ -138,8 +138,8 @@ void * FE_Shadow_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ‰eíœ
- * @param	work	ƒGƒtƒFƒNƒgg—pƒ[ƒN
+ * å½±å‰Šé™¤
+ * @param	work	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -152,11 +152,11 @@ void FE_Shadow_Delete( void *work )
 }
 
 //==============================================================================
-//	‰e@ŠÔ‘Ñ‚É‚æ‚éŠgkA”Z“xˆ—
+//	å½±ã€€æ™‚é–“å¸¯ã«ã‚ˆã‚‹æ‹¡ç¸®ã€æ¿ƒåº¦å‡¦ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰eŠÔ‘Ñˆ—‚ğ’Ç‰Á
+ * å½±æ™‚é–“å¸¯å‡¦ç†ã‚’è¿½åŠ 
  * @param	sd		FE_SHADOW_PTR
  * @retval	nothing
  */
@@ -164,14 +164,14 @@ void FE_Shadow_Delete( void *work )
 static void Shadow_TimeProcAdd( FE_SHADOW_PTR sd )
 {
 	FIELDSYS_WORK *fsys = FE_FieldSysWorkGet( sd->fes );
-	int pri = FieldOBJSys_TCBStandardPriorityGet( fsys->fldobjsys ) - 1; //FieldOBJ‚æ‚è‚à‘‚­
+	int pri = FieldOBJSys_TCBStandardPriorityGet( fsys->fldobjsys ) - 1; //FieldOBJã‚ˆã‚Šã‚‚æ—©ã
 	TCB_PTR tcb = TCB_Add( Shadow_TimeProc, sd, pri );
 	sd->tcb_time_proc = tcb;
 }
 
 //--------------------------------------------------------------
 /**
- * ‰eŠÔ‘Ñˆ—‚ğíœ
+ * å½±æ™‚é–“å¸¯å‡¦ç†ã‚’å‰Šé™¤
  * @param	sd		FE_SHADOW_PTR
  * @retval	nothing
  */
@@ -183,9 +183,9 @@ static void Shadow_TimeProcDelete( FE_SHADOW_PTR sd )
 
 //--------------------------------------------------------------
 /**
- * ‰eŠÔ‘Ñ‚©‚çŠgk—¦‚ğæ“¾
+ * å½±æ™‚é–“å¸¯ã‹ã‚‰æ‹¡ç¸®ç‡ã‚’å–å¾—
  * @param	sd		FE_SHADOW_PTR
- * @param	scale	Šgk—¦Ši”[æ
+ * @param	scale	æ‹¡ç¸®ç‡æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -196,8 +196,8 @@ static void Shadow_TimeScaleGet( FE_SHADOW_PTR sd, VecFx32 *scale )
 
 //--------------------------------------------------------------
 /**
- * ‰eŠÔ‘Ñ•Ê‚Ì”Z“x‚ğ0-31‚Åæ“¾
- * @param	alpha	fx32’PˆÊ‚Ì”Z“x
+ * å½±æ™‚é–“å¸¯åˆ¥ã®æ¿ƒåº¦ã‚’0-31ã§å–å¾—
+ * @param	alpha	fx32å˜ä½ã®æ¿ƒåº¦
  * @retval	int		0-31
  */
 //--------------------------------------------------------------
@@ -208,9 +208,9 @@ static int Shadow_TimeAlpha031( int alpha )
 
 //--------------------------------------------------------------
 /**
- * ‰eŠÔ‘Ñ•Ê‚Ì”Z“xAŠgk—¦ƒZƒbƒg
+ * å½±æ™‚é–“å¸¯åˆ¥ã®æ¿ƒåº¦ã€æ‹¡ç¸®ç‡ã‚»ãƒƒãƒˆ
  * @param	sd		FE_SHADOW_PTR
- * @param	zone TIMEZONE_MORNING“™
+ * @param	zone TIMEZONE_MORNINGç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -222,10 +222,10 @@ static void Shadow_TimeAlphaScaleSet( FE_SHADOW_PTR sd, int zone )
 
 //--------------------------------------------------------------
 /**
- * ‘ÎÛ‚Ì‘Œ¸
- * @param	val0	‘ÎÛ
- * @param	val1	–Ú•W
- * @param	add		‘Œ¸’l
+ * å¯¾è±¡ã®å¢—æ¸›
+ * @param	val0	å¯¾è±¡
+ * @param	val1	ç›®æ¨™
+ * @param	add		å¢—æ¸›å€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -242,7 +242,7 @@ static void Shadow_ValueAdd( fx32 *val0, fx32 val1, fx32 add )
 
 //--------------------------------------------------------------
 /**
- * ‰eŠÔ‘Ñˆ—
+ * å½±æ™‚é–“å¸¯å‡¦ç†
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work *
  * @retval	nothing
@@ -256,7 +256,7 @@ static void Shadow_TimeProc( TCB_PTR tcb, void *wk )
 	now_zone = GF_RTC_GetTimeZone();
 	
 	switch( sd->time_seq_no ){
-	case 0:													//‰Šú‰»
+	case 0:													//åˆæœŸåŒ–
 		sd->time_zone = now_zone;
 		Shadow_TimeAlphaScaleSet( sd, sd->time_zone );
 		Shadow_GraphicAlphaSet( sd, Shadow_TimeAlpha031(sd->alpha) );
@@ -293,11 +293,11 @@ static void Shadow_TimeProc( TCB_PTR tcb, void *wk )
 }
 
 //==============================================================================
-//	‰e@ƒOƒ‰ƒtƒBƒbƒN
+//	å½±ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰e ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * å½± ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	sd	FE_SHADOW_PTR
  * @retval	nothing
  */
@@ -314,7 +314,7 @@ static void Shadow_GraphicInit( FE_SHADOW_PTR sd )
 
 //--------------------------------------------------------------
 /**
- * ‰e ƒOƒ‰ƒtƒBƒbƒNíœ
+ * å½± ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	sd	FE_SHADOW_PTR
  * @retval	nothing
  */
@@ -329,9 +329,9 @@ static void Shadow_GraphicDelete( FE_SHADOW_PTR sd )
 
 //--------------------------------------------------------------
 /**
- * ‰e‚É”Z“x‚ğƒZƒbƒg
+ * å½±ã«æ¿ƒåº¦ã‚’ã‚»ãƒƒãƒˆ
  * @param	sd		FE_SHADOW_PTR
- * @param	alpha	”¼“§–¾”Z“x0-31
+ * @param	alpha	åŠé€æ˜æ¿ƒåº¦0-31
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -342,11 +342,11 @@ static void Shadow_GraphicAlphaSet( FE_SHADOW_PTR sd, int alpha )
 }
 
 //==============================================================================
-//	‰e@EOA
+//	å½±ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ—p‰e’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨å½±è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -372,10 +372,10 @@ void FE_FldOBJShadow_Add( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰e@‰Šú‰»
+ * EOA å½±ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaShadow_Init( EOA_PTR eoa, void *wk )
@@ -402,7 +402,7 @@ static int EoaShadow_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰e@íœ
+ * EOA å½±ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -414,7 +414,7 @@ static void EoaShadow_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰e@“®ì
+ * EOA å½±ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -430,7 +430,7 @@ static void EoaShadow_Move( EOA_PTR eoa, void *wk )
 	
 	if( FieldOBJ_CheckSameIDOBJCodeIn(
 		fldobj,work->obj_code,work->obj_id,work->zone_id) == FALSE ){
-		FE_EoaDelete( eoa );										//“¯ˆê‚Å‚Í‚È‚¢
+		FE_EoaDelete( eoa );										//åŒä¸€ã§ã¯ãªã„
 		return;
 	}
 	
@@ -443,7 +443,7 @@ static void EoaShadow_Move( EOA_PTR eoa, void *wk )
 	
 	if( FieldOBJ_StatusBit_CheckEasy(fldobj,
 		FLDOBJ_STA_BIT_VANISH|FLDOBJ_STA_BIT_SHADOW_VANISH) == TRUE ){
-		work->vanish_sw = TRUE;									//”ñ•\¦
+		work->vanish_sw = TRUE;									//éè¡¨ç¤º
 		return;
 	}
 	
@@ -457,7 +457,7 @@ static void EoaShadow_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰e@•`‰æ
+ * EOA å½±ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -482,7 +482,7 @@ static void EoaShadow_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	‰eEOA_H
+///	å½±EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Shadow =
 {
@@ -494,13 +494,13 @@ static const EOA_H_NPP DATA_EoaH_Shadow =
 };
 
 //==============================================================================
-//	Ô‰eA•‰e
+//	èµ¤å½±ã€é»’å½±
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚É‰e‚ğ•t‚¯‚é
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã«å½±ã‚’ä»˜ã‘ã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	type	SHADOW_BLACK“™
+ * @param	type	SHADOW_BLACKç­‰
  * @retval	eoa		EOA_PTR
  */
 //--------------------------------------------------------------
@@ -525,7 +525,7 @@ EOA_PTR FE_FldOBJShadowSet( FIELD_OBJ_PTR fldobj, int type )
 
 //--------------------------------------------------------------
 /**
- * EOA Ô‰e•‰e@“®ì
+ * EOA èµ¤å½±é»’å½±ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -541,7 +541,7 @@ static void EoaShadowType_Move( EOA_PTR eoa, void *wk )
 	
 	if( FieldOBJ_CheckSameIDOBJCodeIn(
 		fldobj,work->obj_code,work->obj_id,work->zone_id) == FALSE ){
-		FE_EoaDelete( eoa );										//“¯ˆê‚Å‚Í‚È‚¢
+		FE_EoaDelete( eoa );										//åŒä¸€ã§ã¯ãªã„
 		return;
 	}
 	
@@ -549,7 +549,7 @@ static void EoaShadowType_Move( EOA_PTR eoa, void *wk )
 	
 	if( FieldOBJ_StatusBit_CheckEasy(fldobj,
 		FLDOBJ_STA_BIT_VANISH|FLDOBJ_STA_BIT_SHADOW_VANISH) == TRUE ){
-		work->vanish_sw = TRUE;									//”ñ•\¦
+		work->vanish_sw = TRUE;									//éè¡¨ç¤º
 		return;
 	}
 	
@@ -562,7 +562,7 @@ static void EoaShadowType_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰e@•`‰æ
+ * EOA å½±ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -591,7 +591,7 @@ static void EoaShadowType_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	‰eƒ^ƒCƒvEOA_H
+///	å½±ã‚¿ã‚¤ãƒ—EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_ShadowType =
 {
@@ -606,7 +606,7 @@ static const EOA_H_NPP DATA_EoaH_ShadowType =
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ŠÔ‘Ñ•ÊŠg‘å—¦
+///	æ™‚é–“å¸¯åˆ¥æ‹¡å¤§ç‡
 //--------------------------------------------------------------
 static const VecFx32 DATA_ShadowTimeScaleTbl[] =
 {
@@ -618,7 +618,7 @@ static const VecFx32 DATA_ShadowTimeScaleTbl[] =
 };
 
 //--------------------------------------------------------------
-///	ŠÔ‘Ñ•Ê”¼“§–¾”Z“x
+///	æ™‚é–“å¸¯åˆ¥åŠé€æ˜æ¿ƒåº¦
 //--------------------------------------------------------------
 static const fx32 DATA_ShadowTimeAlphaTbl[] =
 {
@@ -630,7 +630,7 @@ static const fx32 DATA_ShadowTimeAlphaTbl[] =
 };
 
 //--------------------------------------------------------------
-///	‰eí—Ş•ÊƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+///	å½±ç¨®é¡åˆ¥ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 //--------------------------------------------------------------
 static const DATA_ShadowArcIdx[SHADOW_MAX] =
 {

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	calendar_enc.c
- * @brief	ƒJƒŒƒ“ƒ_[‚ª‚ç‚Ý‚ÌƒGƒ“ƒJƒEƒ“ƒg
+ * @brief	ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ãŒã‚‰ã¿ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  * @author	Nozomu Saito
  * @date	2006.05.16
  */
@@ -35,95 +35,95 @@ enum {
 
 typedef u16 CAL_ENC_DAY_DATA;
 
-//1ŒŽ
+//1æœˆ
 static const CAL_ENC_DAY_DATA JanData[JAN_DAT_MAX] = {
-	DAY_DATA( 1,3),			//Œ³’U		New Year's Dayi–k•ÄEƒCƒMEƒCƒ^EƒXEƒtEƒhj
-	DAY_DATA(11,2),			//‹¾ŠJ‚«
+	DAY_DATA( 1,3),			//å…ƒæ—¦		New Year's Dayï¼ˆåŒ—ç±³ãƒ»ã‚¤ã‚®ãƒ»ã‚¤ã‚¿ãƒ»ã‚¹ãƒ»ãƒ•ãƒ»ãƒ‰ï¼‰
+	DAY_DATA(11,2),			//é¡é–‹ã
 	DAY_DATA(12,4),			//B
-	DAY_DATA(29,2)			//FRLG”­”„
+	DAY_DATA(29,2)			//FRLGç™ºå£²
 };
 
-//2ŒŽ
+//2æœˆ
 static const CAL_ENC_DAY_DATA FebData[FEB_DAT_MAX] = {
-	DAY_DATA( 3,2),			//ß•ª
-	DAY_DATA(11,2),			//Œš‘‹L”O“ú
-	DAY_DATA(14,0),			//ƒoƒŒƒ“ƒ^ƒCƒ“ƒf[(–k•Ä)
-	DAY_DATA(27,4)			//Ô—Î”­”„
+	DAY_DATA( 3,2),			//ç¯€åˆ†
+	DAY_DATA(11,2),			//å»ºå›½è¨˜å¿µæ—¥
+	DAY_DATA(14,0),			//ãƒãƒ¬ãƒ³ã‚¿ã‚¤ãƒ³ãƒ‡ãƒ¼(åŒ—ç±³)
+	DAY_DATA(27,4)			//èµ¤ç·‘ç™ºå£²
 };
 
-//3ŒŽ
+//3æœˆ
 static const CAL_ENC_DAY_DATA MarData[MAR_DAT_MAX] = {
-	DAY_DATA( 3,2),			//‚Ð‚ÈÕ‚è
-	DAY_DATA(18,2),			//ƒ|ƒPƒp[ƒNŠJ‰€
-	DAY_DATA(21,3),			//t•ª‚Ì“ú
+	DAY_DATA( 3,2),			//ã²ãªç¥­ã‚Š
+	DAY_DATA(18,2),			//ãƒã‚±ãƒ‘ãƒ¼ã‚¯é–‹åœ’
+	DAY_DATA(21,3),			//æ˜¥åˆ†ã®æ—¥
 };
 
-//4ŒŽ
+//4æœˆ
 static const CAL_ENC_DAY_DATA AprData[APR_DAT_MAX] = {
-	DAY_DATA( 1,2),			//ƒAƒjƒŠJŽn
-	DAY_DATA(25,2),			//ƒ|ƒPƒZƒ“ƒI[ƒvƒ“
-	DAY_DATA(26,1),			//GFÝ—§
+	DAY_DATA( 1,2),			//ã‚¢ãƒ‹ãƒ¡é–‹å§‹
+	DAY_DATA(25,2),			//ãƒã‚±ã‚»ãƒ³ã‚ªãƒ¼ãƒ—ãƒ³
+	DAY_DATA(26,1),			//GFè¨­ç«‹
 	DAY_DATA(29,2),
 };
 
-//5ŒŽ
+//5æœˆ
 static const CAL_ENC_DAY_DATA MayData[MAY_DAT_MAX] = {
-	DAY_DATA( 1,0),			//‚l‚x		ƒ[ƒf[(ŒÜŒŽÕ)i–k•ÄEƒCƒMEƒCƒ^EƒXEƒtEƒhj
-	DAY_DATA( 3,2),			//Œ›–@‹L”O“ú
-	DAY_DATA( 4,0),			//‘–¯‚Ì‹x“ú
-	DAY_DATA( 5,2),			//‚±‚Ç‚à‚Ì“ú
+	DAY_DATA( 1,0),			//ï¼­ï¼¹		ãƒ¡ãƒ¼ãƒ‡ãƒ¼(äº”æœˆç¥­)ï¼ˆåŒ—ç±³ãƒ»ã‚¤ã‚®ãƒ»ã‚¤ã‚¿ãƒ»ã‚¹ãƒ»ãƒ•ãƒ»ãƒ‰ï¼‰
+	DAY_DATA( 3,2),			//æ†²æ³•è¨˜å¿µæ—¥
+	DAY_DATA( 4,0),			//å›½æ°‘ã®ä¼‘æ—¥
+	DAY_DATA( 5,2),			//ã“ã©ã‚‚ã®æ—¥
 };
 
-//6ŒŽ
+//6æœˆ
 static const CAL_ENC_DAY_DATA JunData[JUN_DAT_MAX] = {
 	DAY_DATA(21,2),			//DUMMY
 };
 
-//7ŒŽ
+//7æœˆ
 static const CAL_ENC_DAY_DATA JulData[JUL_DAT_MAX] = {
-	DAY_DATA( 7,4),			//Žµ—[
-	DAY_DATA(18,2),			//Œ€ê”Å‘æˆê’e
+	DAY_DATA( 7,4),			//ä¸ƒå¤•
+	DAY_DATA(18,2),			//åŠ‡å ´ç‰ˆç¬¬ä¸€å¼¾
 	DAY_DATA(24,2)			//DUMMY
 };
 
-//8ŒŽ
+//8æœˆ
 static const CAL_ENC_DAY_DATA AugData[AUG_DAT_MAX] = {
-	DAY_DATA(13,1),			//‚¨–~
-	DAY_DATA(14,1),			//‚¨–~
-	DAY_DATA(15,2),			//‚¨–~
-	DAY_DATA(16,1),			//‚¨–~
+	DAY_DATA(13,1),			//ãŠç›†
+	DAY_DATA(14,1),			//ãŠç›†
+	DAY_DATA(15,2),			//ãŠç›†
+	DAY_DATA(16,1),			//ãŠç›†
 };
 
-//9ŒŽ
+//9æœˆ
 static const CAL_ENC_DAY_DATA SepData[SEP_DAT_MAX] = {
-	DAY_DATA(7,2),			//\ŒÜ–é
-	DAY_DATA(12,2),			//\ŒÜ–é
-	DAY_DATA(15,2),			//\ŒÜ–é
+	DAY_DATA(7,2),			//åäº”å¤œ
+	DAY_DATA(12,2),			//åäº”å¤œ
+	DAY_DATA(15,2),			//åäº”å¤œ
 	DAY_DATA(20,2),			//
-	DAY_DATA(23,3),			//H•ª‚Ì“ú
+	DAY_DATA(23,3),			//ç§‹åˆ†ã®æ—¥
 	DAY_DATA(28,2)
 };
 
-//10ŒŽ
+//10æœˆ
 static const CAL_ENC_DAY_DATA OctData[OCT_DAT_MAX] = {
-	DAY_DATA( 5,2),			//ÔÂ”­”„(‰¢B)
-	DAY_DATA(15,2),			//Â”­”„
+	DAY_DATA( 5,2),			//èµ¤é’ç™ºå£²(æ¬§å·ž)
+	DAY_DATA(15,2),			//é’ç™ºå£²
 	DAY_DATA(30,2),			//
 };
 
-//11ŒŽ
+//11æœˆ
 static const CAL_ENC_DAY_DATA NovData[NOV_DAT_MAX] = {
-	DAY_DATA( 3,1),			//•¶‰»‚Ì“ú
-	DAY_DATA(12,2),			//Œ€ê”Å‘æˆê’eŒöŠJ(–k•Ä)
-	DAY_DATA(21,2),			//‹à‹âRS”­”„
-	DAY_DATA(23,0)			//‹Î˜JŠ´ŽÓ‚Ì“ú
+	DAY_DATA( 3,1),			//æ–‡åŒ–ã®æ—¥
+	DAY_DATA(12,2),			//åŠ‡å ´ç‰ˆç¬¬ä¸€å¼¾å…¬é–‹(åŒ—ç±³)
+	DAY_DATA(21,2),			//é‡‘éŠ€RSç™ºå£²
+	DAY_DATA(23,0)			//å‹¤åŠ´æ„Ÿè¬ã®æ—¥
 };
 
-//12ŒŽ
+//12æœˆ
 static const CAL_ENC_DAY_DATA DecData[DEC_DAT_MAX] = {
-	DAY_DATA(14,2),			//ƒNƒŠƒXƒ^ƒ‹”­”„
-	DAY_DATA(23,2),			//“Vc’a¶“ú
-	DAY_DATA(31,1),			//‘åŠA“ú
+	DAY_DATA(14,2),			//ã‚¯ãƒªã‚¹ã‚¿ãƒ«ç™ºå£²
+	DAY_DATA(23,2),			//å¤©çš‡èª•ç”Ÿæ—¥
+	DAY_DATA(31,1),			//å¤§æ™¦æ—¥
 };
 
 typedef struct CAL_ENC_MONTH_DATA_tag{
@@ -148,12 +148,12 @@ static void DebugPrint(void);
 */
 //-----------------------------------------------------------------------------
 /**
- * “ú‚É‚¿‚É‚æ‚éŠm—¦ŒvŽZ
+ * æ—¥ã«ã¡ã«ã‚ˆã‚‹ç¢ºçŽ‡è¨ˆç®—
  *
- * @param	inProb			Œ»ÝƒGƒ“ƒJƒEƒ“ƒgŠm—¦
- * @param	inPenalty		ƒyƒiƒ‹ƒeƒB[
+ * @param	inProb			ç¾åœ¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç¢ºçŽ‡
+ * @param	inPenalty		ãƒšãƒŠãƒ«ãƒ†ã‚£ãƒ¼
  *
- * @return	int				ƒGƒ“ƒJƒEƒ“ƒgŠm—¦
+ * @return	int				ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç¢ºçŽ‡
  */
 //-----------------------------------------------------------------------------
 int CalEnc_GetProb(const int inProb, const BOOL inPenalty)
@@ -163,7 +163,7 @@ int CalEnc_GetProb(const int inProb, const BOOL inPenalty)
 	RTCDate date;
 	const CAL_ENC_MONTH_DATA * data;
 
-	//ŽžŠÔ•s³•ÏX‚³‚ê‚½ê‡‚ÍAˆ—‚µ‚È‚¢
+	//æ™‚é–“ä¸æ­£å¤‰æ›´ã•ã‚ŒãŸå ´åˆã¯ã€å‡¦ç†ã—ãªã„
 	if (inPenalty){
 		return inProb;
 	}

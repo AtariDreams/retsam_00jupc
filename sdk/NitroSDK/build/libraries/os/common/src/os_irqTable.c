@@ -39,7 +39,7 @@
   only arrange comment
 
   Revision 1.11  2004/03/16 07:07:41  yada
-  IRQƒe[ƒuƒ‹C³Bƒ_ƒ~[‚ğ’Ç‰Á
+  IRQãƒ†ãƒ¼ãƒ–ãƒ«ä¿®æ­£ã€‚ãƒ€ãƒŸãƒ¼ã‚’è¿½åŠ 
 
   Revision 1.10  2004/03/01 12:18:16  yada
   small bug fix
@@ -54,35 +54,35 @@
   add comment
 
   Revision 1.6  2004/02/02 05:32:23  yada
-  timerŠ„‚è‚İ‚ÌƒR[ƒ‹ƒoƒbƒN‚ğl—¶B
-  callbackˆÈ‘O‚ÉƒR[ƒ‹ƒoƒbƒNî•ñ‚ğÁ‚·‚æ‚¤‚É‚µ‚½B
+  timerå‰²ã‚Šè¾¼ã¿ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è€ƒæ…®ã€‚
+  callbackä»¥å‰ã«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æƒ…å ±ã‚’æ¶ˆã™ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.5  2004/01/18 02:25:37  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.4  2004/01/17 11:44:20  yada
-  DMA “]‘—‚É Async ƒ‚[ƒh‚ğì¬
+  DMA è»¢é€ã« Async ãƒ¢ãƒ¼ãƒ‰ã‚’ä½œæˆ
 
   Revision 1.3  2003/12/25 07:31:26  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.2  2003/12/16 05:25:51  yasu
-  Œ‡‚¯‚Ä‚¢‚½ jump  vector ‚Ì’Ç‰Á
+  æ¬ ã‘ã¦ã„ãŸ jump  vector ã®è¿½åŠ 
 
   Revision 1.1  2003/11/29 04:29:27  yasu
-  osInterruptTable.c -> os_irqTable.c ‚Ö–¼Ì•ÏX
+  osInterruptTable.c -> os_irqTable.c ã¸åç§°å¤‰æ›´
 
   Revision 1.4  2003/11/25 10:43:29  yada
-  OS_xxxInterruptxxx ¨ OS_xxxIRQxxx ‚É–¼Ì•ÏX‚³‚ê‚½‚±‚Æ‚É‚æ‚éC³
+  OS_xxxInterruptxxx â†’ OS_xxxIRQxxx ã«åç§°å¤‰æ›´ã•ã‚ŒãŸã“ã¨ã«ã‚ˆã‚‹ä¿®æ­£
 
   Revision 1.3  2003/11/25 06:28:47  yasu
-  include ƒtƒ@ƒCƒ‹‚ÌŒÀ’è
+  include ãƒ•ã‚¡ã‚¤ãƒ«ã®é™å®š
 
   Revision 1.2  2003/11/10 02:33:19  yasu
-  interrupt table ‚Ì’Ç‰Á
+  interrupt table ã®è¿½åŠ 
 
   Revision 1.1  2003/11/06 12:14:18  yada
-  b’è”Å
+  æš«å®šç‰ˆ
 
 
   $NoKeywords: $

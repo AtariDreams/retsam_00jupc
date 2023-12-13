@@ -1,9 +1,9 @@
-#ƒTƒtƒ@ƒŠ–]‰“‹¾À•Wˆê——ì¬
+#ã‚µãƒ•ã‚¡ãƒªæœ›é é¡åº§æ¨™ä¸€è¦§ä½œæˆ
 ss = open("bin/safari_scope.bin","w")
 ss_csv_file = open("safari_scope.csv","r")
 
-line = ss_csv_file.gets    ## 1s“Ç‚İ”ò‚Î‚µ
-line = ss_csv_file.gets    ## 1s“Ç‚İ”ò‚Î‚µ
+line = ss_csv_file.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
+line = ss_csv_file.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
 
 while line = ss_csv_file.gets
 	column = line.split ","

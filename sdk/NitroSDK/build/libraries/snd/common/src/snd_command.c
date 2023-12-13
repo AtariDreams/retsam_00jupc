@@ -15,43 +15,43 @@
   indent source
 
   Revision 1.7  2006/11/14 06:33:29  ida
-  1.6‚ÌC³ƒ~ƒX‚ğC³
+  1.6ã®ä¿®æ­£ãƒŸã‚¹ã‚’ä¿®æ­£
 
   Revision 1.5  2006/03/20 01:57:52  ida
-  SND_SetMuteTrackExŠÖ”’Ç‰Á
+  SND_SetMuteTrackExé–¢æ•°è¿½åŠ 
 
   Revision 1.4  2006/01/18 02:12:29  kitase_hirotake
   do-indent
 
   Revision 1.3  2005/06/28 02:10:28  ida
-  IsCommandAvailableƒ`ƒFƒbƒN’Ç‰Á
+  IsCommandAvailableãƒã‚§ãƒƒã‚¯è¿½åŠ 
 
   Revision 1.2  2005/04/14 06:52:23  ida
-  SND_COMMAND_PREPARE_SEQƒRƒ}ƒ“ƒh‚Ì’Ç‰Á
+  SND_COMMAND_PREPARE_SEQã‚³ãƒãƒ³ãƒ‰ã®è¿½åŠ 
 
   Revision 1.1  2005/04/12 06:16:12  ida
-  SND‚ğNITRO-SDK‚ÖˆÚİ
+  SNDã‚’NITRO-SDKã¸ç§»è¨­
 
   Revision 1.27  2005/03/17 02:11:01  ida
-  SND_COMMAND_SKIP_SEQƒRƒ}ƒ“ƒh‚Ì’Ç‰Á
+  SND_COMMAND_SKIP_SEQã‚³ãƒãƒ³ãƒ‰ã®è¿½åŠ 
 
   Revision 1.26  2005/03/01 02:14:22  ida
-  SND_COMMAND_IMMEDIATEƒtƒ‰ƒO’Ç‰Á
+  SND_COMMAND_IMMEDIATEãƒ•ãƒ©ã‚°è¿½åŠ 
 
   Revision 1.25  2005/02/21 02:37:17  ida
-  Œx‘Îô
+  è­¦å‘Šå¯¾ç­–
 
   Revision 1.24  2005/02/16 07:47:40  ida
-  ƒhƒ‰ƒCƒoî•ñæ“¾ŠÖ”’Ç‰Á
+  ãƒ‰ãƒ©ã‚¤ãƒæƒ…å ±å–å¾—é–¢æ•°è¿½åŠ 
 
   Revision 1.23  2005/01/06 02:52:13  ida
-  ’˜ìŒ ”NŸ•\‹L‚ğXV
+  è‘—ä½œæ¨©å¹´æ¬¡è¡¨è¨˜ã‚’æ›´æ–°
 
   Revision 1.22  2005/01/05 06:59:10  ida
-  ARM9‚©‚ç‚ÌƒTƒEƒ“ƒhƒŒƒWƒXƒ^QÆ‹@”\À‘•
+  ARM9ã‹ã‚‰ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ¬ã‚¸ã‚¹ã‚¿å‚ç…§æ©Ÿèƒ½å®Ÿè£…
 
   Revision 1.21  2004/12/27 01:17:32  ida
-  ‘Ò‚¿ƒ‹[ƒv’†‚Å‚ÍAŠ„‚è‚İ‹Ö~‚ğ‰ğœ‚·‚é‚æ‚¤‚É‚µ‚½
+  å¾…ã¡ãƒ«ãƒ¼ãƒ—ä¸­ã§ã¯ã€å‰²ã‚Šè¾¼ã¿ç¦æ­¢ã‚’è§£é™¤ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.20  2004/11/22 04:30:17  ida
   workaround thread safe
@@ -149,21 +149,21 @@
 
 #ifdef SDK_ARM9
 
-static SNDCommand sCommandArray[SND_COMMAND_NUM] ATTRIBUTE_ALIGN(32);   /* ƒRƒ}ƒ“ƒh”z—ñ */
-static SNDCommand *sFreeList;          /* ‹ó‚«ƒRƒ}ƒ“ƒhƒŠƒXƒg */
-static SNDCommand *sFreeListEnd;       /* ‹ó‚«ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ÌI’[ */
+static SNDCommand sCommandArray[SND_COMMAND_NUM] ATTRIBUTE_ALIGN(32);   /* ã‚³ãƒãƒ³ãƒ‰é…åˆ— */
+static SNDCommand *sFreeList;          /* ç©ºãã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆ */
+static SNDCommand *sFreeListEnd;       /* ç©ºãã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®çµ‚ç«¯ */
 
-static SNDCommand *sReserveList;       /* —\–ñÏ‚İƒRƒ}ƒ“ƒhƒŠƒXƒg */
-static SNDCommand *sReserveListEnd;    /* —\–ñÏ‚İƒRƒ}ƒ“ƒhƒŠƒXƒg‚ÌI’[ */
+static SNDCommand *sReserveList;       /* äºˆç´„æ¸ˆã¿ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆ */
+static SNDCommand *sReserveListEnd;    /* äºˆç´„æ¸ˆã¿ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®çµ‚ç«¯ */
 
 static SNDCommand *sWaitingCommandListQueue[SND_PXI_FIFO_MESSAGE_BUFSIZE + 1];
 static int sWaitingCommandListQueueRead;
 static int sWaitingCommandListQueueWrite;
 
-static int sWaitingCommandListCount;   /* ”­sÏ‚İƒRƒ}ƒ“ƒhƒŠƒXƒg‚Ì” */
+static int sWaitingCommandListCount;   /* ç™ºè¡Œæ¸ˆã¿ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®æ•° */
 
-static u32 sCurrentTag;                /* ƒJƒŒƒ“ƒgƒ^ƒO */
-static u32 sFinishedTag;               /* Š®—¹Ï‚İƒ^ƒO */
+static u32 sCurrentTag;                /* ã‚«ãƒ¬ãƒ³ãƒˆã‚¿ã‚° */
+static u32 sFinishedTag;               /* å®Œäº†æ¸ˆã¿ã‚¿ã‚° */
 
 static SNDSharedWork sSharedWork ATTRIBUTE_ALIGN(32);
 
@@ -202,7 +202,7 @@ static void ReadDriverInfo(SNDDriverInfo * info);
 /*---------------------------------------------------------------------------*
   Name:         SND_CommandInit
 
-  Description:  ƒRƒ}ƒ“ƒhƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
 
   Arguments:    None.
 
@@ -222,7 +222,7 @@ void SND_CommandInit(void)
     InitPXI();
 
 #ifdef SDK_ARM9
-    /* ƒtƒŠ[ƒŠƒXƒg‚Ìì¬ */
+    /* ãƒ•ãƒªãƒ¼ãƒªã‚¹ãƒˆã®ä½œæˆ */
     sFreeList = &sCommandArray[0];
     for (i = 0; i < SND_COMMAND_NUM - 1; i++)
     {
@@ -231,11 +231,11 @@ void SND_CommandInit(void)
     sCommandArray[SND_COMMAND_NUM - 1].next = NULL;
     sFreeListEnd = &sCommandArray[SND_COMMAND_NUM - 1];
 
-    /* ƒŠƒU[ƒuƒŠƒXƒg‚Ì‰Šú‰» */
+    /* ãƒªã‚¶ãƒ¼ãƒ–ãƒªã‚¹ãƒˆã®åˆæœŸåŒ– */
     sReserveList = NULL;
     sReserveListEnd = NULL;
 
-    /* ‚»‚Ì‘¼•Ï”‰Šú‰» */
+    /* ãã®ä»–å¤‰æ•°åˆæœŸåŒ– */
     sWaitingCommandListCount = 0;
 
     sWaitingCommandListQueueRead = 0;
@@ -244,7 +244,7 @@ void SND_CommandInit(void)
     sCurrentTag = 1;
     sFinishedTag = 0;
 
-    /* ‹¤—Lƒ[ƒN‚Ì‰Šú‰» */
+    /* å…±æœ‰ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ– */
     SNDi_SharedWork = &sSharedWork;
     SNDi_InitSharedWork(SNDi_SharedWork);
 
@@ -271,11 +271,11 @@ void SND_CommandInit(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_RecvCommandReply
   
-  Description:  •Ô“š‚ÌóM(ThreadSafe)
+  Description:  è¿”ç­”ã®å—ä¿¡(ThreadSafe)
   
   Arguments:    flags - BLOCK or NOBLOCK
   
-  Returns:      ˆ—Ï‚İƒRƒ}ƒ“ƒhƒŠƒXƒg‚Ü‚½‚ÍANULL
+  Returns:      å‡¦ç†æ¸ˆã¿ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã¾ãŸã¯ã€NULL
   *---------------------------------------------------------------------------*/
 const SNDCommand *SND_RecvCommandReply(u32 flags)
 {
@@ -302,20 +302,20 @@ const SNDCommand *SND_RecvCommandReply(u32 flags)
         }
     }
 
-    /* ‘Ò‚¿ƒRƒ}ƒ“ƒhƒŠƒXƒg‚©‚ç‚Ì‚o‚n‚o */
+    /* å¾…ã¡ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‹ã‚‰ã®ï¼°ï¼¯ï¼° */
     commandList = sWaitingCommandListQueue[sWaitingCommandListQueueRead];
     sWaitingCommandListQueueRead++;
     if (sWaitingCommandListQueueRead > SND_PXI_FIFO_MESSAGE_BUFSIZE)
         sWaitingCommandListQueueRead = 0;
 
-    /* ƒRƒ}ƒ“ƒhƒŠƒXƒg––”ö‚Ìæ“¾ */
+    /* ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆæœ«å°¾ã®å–å¾— */
     commandListEnd = commandList;
     while (commandListEnd->next != NULL)
     {
         commandListEnd = commandListEnd->next;
     }
 
-    /* ƒtƒŠ[ƒŠƒXƒg‚Ì––”ö‚ÖŒ‹‡ */
+    /* ãƒ•ãƒªãƒ¼ãƒªã‚¹ãƒˆã®æœ«å°¾ã¸çµåˆ */
     if (sFreeListEnd != NULL)
     {
         sFreeListEnd->next = commandList;
@@ -326,7 +326,7 @@ const SNDCommand *SND_RecvCommandReply(u32 flags)
     }
     sFreeListEnd = commandListEnd;
 
-    /* ƒJƒEƒ“ƒ^XV */
+    /* ã‚«ã‚¦ãƒ³ã‚¿æ›´æ–° */
     sWaitingCommandListCount--;
     sFinishedTag++;
 
@@ -337,11 +337,11 @@ const SNDCommand *SND_RecvCommandReply(u32 flags)
 /*---------------------------------------------------------------------------*
   Name:         SND_AllocCommand
 
-  Description:  ƒRƒ}ƒ“ƒh‚ÌŠm•Û(ThreadSafe)
+  Description:  ã‚³ãƒãƒ³ãƒ‰ã®ç¢ºä¿(ThreadSafe)
 
   Arguments:    flags - BLOCK or NOBLOCK
 
-  Returns:      ƒRƒ}ƒ“ƒh
+  Returns:      ã‚³ãƒãƒ³ãƒ‰
  *---------------------------------------------------------------------------*/
 SNDCommand *SND_AllocCommand(u32 flags)
 {
@@ -359,30 +359,30 @@ SNDCommand *SND_AllocCommand(u32 flags)
 
     if (SND_CountWaitingCommand() > 0)
     {
-        /* ˆ—‘Ò‚¿ƒRƒ}ƒ“ƒh‚ª‘¶İ‚·‚é */
+        /* å‡¦ç†å¾…ã¡ã‚³ãƒãƒ³ãƒ‰ãŒå­˜åœ¨ã™ã‚‹ */
 
-        /* Š®—¹ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ğóM‚µ‚Ä‚İ‚é */
+        /* å®Œäº†ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚’å—ä¿¡ã—ã¦ã¿ã‚‹ */
         while (SND_RecvCommandReply(SND_COMMAND_NOBLOCK) != NULL)
         {
         }
 
-        /* ‹ó‚«ƒRƒ}ƒ“ƒh‚ª‚Å‚«‚½‚©H */
+        /* ç©ºãã‚³ãƒãƒ³ãƒ‰ãŒã§ããŸã‹ï¼Ÿ */
         command = AllocCommand();
         if (command != NULL)
             return command;
     }
     else
     {
-        /* ˆ—‘Ò‚¿ƒRƒ}ƒ“ƒh‚Í‚È‚¢ */
+        /* å‡¦ç†å¾…ã¡ã‚³ãƒãƒ³ãƒ‰ã¯ãªã„ */
 
-        /* Œ»İ‚ÌƒRƒ}ƒ“ƒhƒŠƒXƒg‚ğ”­s */
+        /* ç¾åœ¨ã®ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚’ç™ºè¡Œ */
         (void)SND_FlushCommand(SND_COMMAND_BLOCK);
     }
 
-    /* ‘¦ˆ——v‹ */
+    /* å³æ™‚å‡¦ç†è¦æ±‚ */
     RequestCommandProc();
 
-    /* ƒRƒ}ƒ“ƒhˆ—Š®—¹‘Ò‚¿ */
+    /* ã‚³ãƒãƒ³ãƒ‰å‡¦ç†å®Œäº†å¾…ã¡ */
     do
     {
         (void)SND_RecvCommandReply(SND_COMMAND_BLOCK);
@@ -395,9 +395,9 @@ SNDCommand *SND_AllocCommand(u32 flags)
 /*---------------------------------------------------------------------------*
   Name:         SND_PushCommand
 
-  Description:  ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ÖƒRƒ}ƒ“ƒh‚Ì’Ç‰Á(ThreadSafe)
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã¸ã‚³ãƒãƒ³ãƒ‰ã®è¿½åŠ (ThreadSafe)
 
-  Arguments:    ’Ç‰Á‚·‚éƒRƒ}ƒ“ƒh
+  Arguments:    è¿½åŠ ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -430,11 +430,11 @@ void SND_PushCommand(struct SNDCommand *command)
 /*---------------------------------------------------------------------------*
   Name:         SND_FlushCommand
 
-  Description:  ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ğ‘—M(ThreadSafe)
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚’é€ä¿¡(ThreadSafe)
 
   Arguments:    flags - BLOCK or NOBLOCK
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL SND_FlushCommand(u32 flags)
 {
@@ -442,14 +442,14 @@ BOOL SND_FlushCommand(u32 flags)
 
     if (sReserveList == NULL)
     {
-        /* —\–ñÏ‚İƒRƒ}ƒ“ƒh‚ª–³‚¢‚Ì‚Å‰½‚à‚µ‚È‚¢ */
+        /* äºˆç´„æ¸ˆã¿ã‚³ãƒãƒ³ãƒ‰ãŒç„¡ã„ã®ã§ä½•ã‚‚ã—ãªã„ */
         (void)OS_RestoreInterrupts(bak_psr);
         return TRUE;
     }
 
     if (sWaitingCommandListCount >= SND_PXI_FIFO_MESSAGE_BUFSIZE)
     {
-        /* ARM7‚Å‚ÌƒRƒ}ƒ“ƒhˆ—‚ª‘Ø‚Á‚Ä‚¢‚é */
+        /* ARM7ã§ã®ã‚³ãƒãƒ³ãƒ‰å‡¦ç†ãŒæ»ã£ã¦ã„ã‚‹ */
         if ((flags & SND_COMMAND_BLOCK) == 0)
         {
             (void)OS_RestoreInterrupts(bak_psr);
@@ -461,16 +461,16 @@ BOOL SND_FlushCommand(u32 flags)
             (void)SND_RecvCommandReply(SND_COMMAND_BLOCK);
         } while (sWaitingCommandListCount >= SND_PXI_FIFO_MESSAGE_BUFSIZE);
 
-        /* SND_RecvCommandReply‚ÅAŠ„‚è‚İˆ—”­¶‚Ì‚½‚ßAÄŠm”F */
+        /* SND_RecvCommandReplyã§ã€å‰²ã‚Šè¾¼ã¿å‡¦ç†ç™ºç”Ÿã®ãŸã‚ã€å†ç¢ºèª */
         if (sReserveList == NULL)
         {
-            /* —\–ñÏ‚İƒRƒ}ƒ“ƒh‚ª–³‚¢‚Ì‚Å‰½‚à‚µ‚È‚¢ */
+            /* äºˆç´„æ¸ˆã¿ã‚³ãƒãƒ³ãƒ‰ãŒç„¡ã„ã®ã§ä½•ã‚‚ã—ãªã„ */
             (void)OS_RestoreInterrupts(bak_psr);
             return TRUE;
         }
     }
 
-    /* ƒRƒ}ƒ“ƒhƒŠƒXƒg”­s */
+    /* ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆç™ºè¡Œ */
     DC_FlushRange(sCommandArray, sizeof(sCommandArray));
     if (PXI_SendWordByFifo(PXI_FIFO_TAG_SOUND, (u32)sReserveList, FALSE) < 0)
     {
@@ -483,29 +483,29 @@ BOOL SND_FlushCommand(u32 flags)
         while (sWaitingCommandListCount >= SND_PXI_FIFO_MESSAGE_BUFSIZE ||
                PXI_SendWordByFifo(PXI_FIFO_TAG_SOUND, (u32)sReserveList, FALSE) < 0)
         {
-            /* ¬Œ÷‚·‚é‚Ü‚Å‘Ò‚Â */
+            /* æˆåŠŸã™ã‚‹ã¾ã§å¾…ã¤ */
             (void)OS_RestoreInterrupts(bak_psr);
             (void)SND_RecvCommandReply(SND_COMMAND_NOBLOCK);
             bak_psr = OS_DisableInterrupts();
 
             DC_FlushRange(sCommandArray, sizeof(sCommandArray));
-            /* Š„‚è‚İˆ—”­¶‚Ì‚½‚ßAÄŠm”F */
+            /* å‰²ã‚Šè¾¼ã¿å‡¦ç†ç™ºç”Ÿã®ãŸã‚ã€å†ç¢ºèª */
             if (sReserveList == NULL)
             {
-                /* —\–ñÏ‚İƒRƒ}ƒ“ƒh‚ª–³‚¢‚Ì‚Å‰½‚à‚µ‚È‚¢ */
+                /* äºˆç´„æ¸ˆã¿ã‚³ãƒãƒ³ãƒ‰ãŒç„¡ã„ã®ã§ä½•ã‚‚ã—ãªã„ */
                 (void)OS_RestoreInterrupts(bak_psr);
                 return TRUE;
             }
         }
     }
 
-    /* ‘Ò‚¿ƒRƒ}ƒ“ƒhƒLƒ…[‚Ö‚o‚t‚r‚g */
+    /* å¾…ã¡ã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã¸ï¼°ï¼µï¼³ï¼¨ */
     sWaitingCommandListQueue[sWaitingCommandListQueueWrite] = sReserveList;
     sWaitingCommandListQueueWrite++;
     if (sWaitingCommandListQueueWrite > SND_PXI_FIFO_MESSAGE_BUFSIZE)
         sWaitingCommandListQueueWrite = 0;
 
-    /* •Ï”‚ÌXV */
+    /* å¤‰æ•°ã®æ›´æ–° */
     sReserveList = NULL;
     sReserveListEnd = NULL;
 
@@ -516,7 +516,7 @@ BOOL SND_FlushCommand(u32 flags)
 
     if (flags & SND_COMMAND_IMMEDIATE)
     {
-        /* ‘¦ƒRƒ}ƒ“ƒhˆ—‚ğ—v‹ */
+        /* å³æ™‚ã‚³ãƒãƒ³ãƒ‰å‡¦ç†ã‚’è¦æ±‚ */
         RequestCommandProc();
     }
 
@@ -526,9 +526,9 @@ BOOL SND_FlushCommand(u32 flags)
 /*---------------------------------------------------------------------------*
   Name:         SND_WaitForCommandProc
 
-  Description:  ƒRƒ}ƒ“ƒhˆ—Š®—¹“¯Šú(ThreadSafe)
+  Description:  ã‚³ãƒãƒ³ãƒ‰å‡¦ç†å®Œäº†åŒæœŸ(ThreadSafe)
 
-  Arguments:    tag - ƒRƒ}ƒ“ƒhƒ^ƒO
+  Arguments:    tag - ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -536,24 +536,24 @@ void SND_WaitForCommandProc(u32 tag)
 {
     if (SND_IsFinishedCommandTag(tag))
     {
-        /* Šù‚ÉŠ®—¹Ï‚İ */
+        /* æ—¢ã«å®Œäº†æ¸ˆã¿ */
         return;
     }
 
-    /* Š®—¹ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ğóM‚µ‚Ä‚İ‚é */
+    /* å®Œäº†ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚’å—ä¿¡ã—ã¦ã¿ã‚‹ */
     while (SND_RecvCommandReply(SND_COMMAND_NOBLOCK) != NULL)
     {
     }
     if (SND_IsFinishedCommandTag(tag))
     {
-        /* Š®—¹‚µ‚Ä‚¢‚½ */
+        /* å®Œäº†ã—ã¦ã„ãŸ */
         return;
     }
 
-    /* ‘¦ƒRƒ}ƒ“ƒhˆ—‚ğ—v‹ */
+    /* å³æ™‚ã‚³ãƒãƒ³ãƒ‰å‡¦ç†ã‚’è¦æ±‚ */
     RequestCommandProc();
 
-    /* Š®—¹‘Ò‚¿ */
+    /* å®Œäº†å¾…ã¡ */
     while (!SND_IsFinishedCommandTag(tag))
     {
         (void)SND_RecvCommandReply(SND_COMMAND_BLOCK);
@@ -563,9 +563,9 @@ void SND_WaitForCommandProc(u32 tag)
 /*---------------------------------------------------------------------------*
   Name:         SND_WaitForFreeCommand
 
-  Description:  ‹ó‚«ƒRƒ}ƒ“ƒh‘Ò‚¿(ThreadSafe)
+  Description:  ç©ºãã‚³ãƒãƒ³ãƒ‰å¾…ã¡(ThreadSafe)
 
-  Arguments:    count - •K—v‚È‹ó‚«ƒRƒ}ƒ“ƒh‚Ì”
+  Arguments:    count - å¿…è¦ãªç©ºãã‚³ãƒãƒ³ãƒ‰ã®æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -580,29 +580,29 @@ void SND_WaitForFreeCommand(int count)
 
     if (freeCount + SND_CountWaitingCommand() >= count)
     {
-        /* ˆ—‘Ò‚¿ƒRƒ}ƒ“ƒh‚ÌŠ®—¹‚ğ‘Ò‚Ä‚Î‚n‚j */
+        /* å‡¦ç†å¾…ã¡ã‚³ãƒãƒ³ãƒ‰ã®å®Œäº†ã‚’å¾…ã¦ã°ï¼¯ï¼« */
 
-        /* Š®—¹ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ğóM‚µ‚Ä‚İ‚é */
+        /* å®Œäº†ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚’å—ä¿¡ã—ã¦ã¿ã‚‹ */
         while (SND_RecvCommandReply(SND_COMMAND_NOBLOCK) != NULL)
         {
         }
 
-        /* ‹ó‚«ƒRƒ}ƒ“ƒh‚ª‚Å‚«‚½‚©H */
+        /* ç©ºãã‚³ãƒãƒ³ãƒ‰ãŒã§ããŸã‹ï¼Ÿ */
         if (SND_CountFreeCommand() >= count)
             return;
     }
     else
     {
-        /* —\–ñÏ‚İƒRƒ}ƒ“ƒh‚ğˆ—‚·‚é•K—v‚ª‚ ‚é */
+        /* äºˆç´„æ¸ˆã¿ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ */
 
-        /* Œ»İ‚ÌƒRƒ}ƒ“ƒhƒŠƒXƒg‚ğ”­s */
+        /* ç¾åœ¨ã®ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚’ç™ºè¡Œ */
         (void)SND_FlushCommand(SND_COMMAND_BLOCK);
     }
 
-    /* ‘¦ˆ——v‹ */
+    /* å³æ™‚å‡¦ç†è¦æ±‚ */
     RequestCommandProc();
 
-    /* ƒRƒ}ƒ“ƒhˆ—Š®—¹‘Ò‚¿ */
+    /* ã‚³ãƒãƒ³ãƒ‰å‡¦ç†å®Œäº†å¾…ã¡ */
     do
     {
         (void)SND_RecvCommandReply(SND_COMMAND_BLOCK);
@@ -612,11 +612,11 @@ void SND_WaitForFreeCommand(int count)
 /*---------------------------------------------------------------------------*
   Name:         SND_GetCurrentCommandTag
 
-  Description:  ƒRƒ}ƒ“ƒhƒ^ƒO‚Ìæ“¾(ThreadSafe)
+  Description:  ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚°ã®å–å¾—(ThreadSafe)
 
   Arguments:    None.
 
-  Returns:      ƒRƒ}ƒ“ƒhƒ^ƒO
+  Returns:      ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚°
  *---------------------------------------------------------------------------*/
 u32 SND_GetCurrentCommandTag(void)
 {
@@ -639,11 +639,11 @@ u32 SND_GetCurrentCommandTag(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_IsFinishedCommandTag
 
-  Description:  ƒRƒ}ƒ“ƒhƒ^ƒO‚ªˆ—Ï‚İ‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN(ThreadSafe)
+  Description:  ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚°ãŒå‡¦ç†æ¸ˆã¿ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯(ThreadSafe)
 
-  Arguments:    tag - ƒRƒ}ƒ“ƒhƒ^ƒO
+  Arguments:    tag - ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚°
 
-  Returns:      ˆ—Ï‚İ‚©‚Ç‚¤‚©
+  Returns:      å‡¦ç†æ¸ˆã¿ã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL SND_IsFinishedCommandTag(u32 tag)
 {
@@ -680,11 +680,11 @@ BOOL SND_IsFinishedCommandTag(u32 tag)
 /*---------------------------------------------------------------------------*
   Name:         SND_CountFreeCommand
 
-  Description:  ‹ó‚«ƒRƒ}ƒ“ƒh”‚Ìæ“¾(ThreadSafe)
+  Description:  ç©ºãã‚³ãƒãƒ³ãƒ‰æ•°ã®å–å¾—(ThreadSafe)
 
   Arguments:    None.
 
-  Returns:      ‹ó‚«ƒRƒ}ƒ“ƒh”
+  Returns:      ç©ºãã‚³ãƒãƒ³ãƒ‰æ•°
  *---------------------------------------------------------------------------*/
 int SND_CountFreeCommand(void)
 {
@@ -706,11 +706,11 @@ int SND_CountFreeCommand(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_CountReservedCommand
 
-  Description:  —\–ñÏ‚İƒRƒ}ƒ“ƒh”‚Ìæ“¾(ThreadSafe)
+  Description:  äºˆç´„æ¸ˆã¿ã‚³ãƒãƒ³ãƒ‰æ•°ã®å–å¾—(ThreadSafe)
 
   Arguments:    None.
 
-  Returns:      —\–ñÏ‚İƒRƒ}ƒ“ƒh”
+  Returns:      äºˆç´„æ¸ˆã¿ã‚³ãƒãƒ³ãƒ‰æ•°
  *---------------------------------------------------------------------------*/
 int SND_CountReservedCommand(void)
 {
@@ -732,7 +732,7 @@ int SND_CountReservedCommand(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_CountWaitingCommand
 
-  Description:  ˆ—‘Ò‚¿ƒRƒ}ƒ“ƒh”‚Ìæ“¾(ThreadSafe)
+  Description:  å‡¦ç†å¾…ã¡ã‚³ãƒãƒ³ãƒ‰æ•°ã®å–å¾—(ThreadSafe)
 
   Arguments:    None.
 
@@ -751,7 +751,7 @@ int SND_CountWaitingCommand(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_CommandProc
 
-  Description:  ƒRƒ}ƒ“ƒhƒŠƒXƒg‚Ìˆ—
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®å‡¦ç†
 
   Arguments:    None.
 
@@ -955,7 +955,7 @@ void SND_CommandProc(void)
 
         }                              // end of while ( command_p != NULL )
 
-        /* ƒRƒ}ƒ“ƒhƒŠƒXƒgˆ—Š®—¹ */
+        /* ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆå‡¦ç†å®Œäº† */
         SDK_NULL_ASSERT(SNDi_SharedWork);
         SNDi_SharedWork->finishCommandTag++;
     }
@@ -970,11 +970,11 @@ void SND_CommandProc(void)
 /*---------------------------------------------------------------------------*
   Name:         PxiFifoCallback
 
-  Description:  PXIƒR[ƒ‹ƒoƒbƒN
+  Description:  PXIã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    tag  - PXIƒ^ƒO
-                data - ƒ†[ƒU[ƒf[ƒ^iƒAƒhƒŒƒX‚Ü‚½‚ÍƒƒbƒZ[ƒW”Ô†j
-                err  - ƒGƒ‰[ƒtƒ‰ƒO
+  Arguments:    tag  - PXIã‚¿ã‚°
+                data - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã¾ãŸã¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç•ªå·ï¼‰
+                err  - ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1000,7 +1000,7 @@ static void PxiFifoCallback(PXIFifoTag tag, u32 data, BOOL /*err */ )
 
     if (data >= HW_MAIN_MEM)
     {
-        /* ‘—M‘¤‚Å—}§‚µ‚Ä‚¢‚é‚Ì‚ÅA¸”s‚µ‚È‚¢‚Í‚¸ */
+        /* é€ä¿¡å´ã§æŠ‘åˆ¶ã—ã¦ã„ã‚‹ã®ã§ã€å¤±æ•—ã—ãªã„ã¯ãš */
         result = OS_SendMessage(&sCommandMesgQueue, (OSMessage)data, OS_MESSAGE_NOBLOCK);
         SDK_ASSERTMSG(result, "Failed OS_SendMessage");
     }
@@ -1024,7 +1024,7 @@ static void PxiFifoCallback(PXIFifoTag tag, u32 data, BOOL /*err */ )
 /*---------------------------------------------------------------------------*
   Name:         InitPXI
 
-  Description:  PXI‚Ì‰Šú‰»
+  Description:  PXIã®åˆæœŸåŒ–
 
   Arguments:    None.
 
@@ -1032,7 +1032,7 @@ static void PxiFifoCallback(PXIFifoTag tag, u32 data, BOOL /*err */ )
  *---------------------------------------------------------------------------*/
 static void InitPXI(void)
 {
-    // ƒR[ƒ‹ƒoƒbƒN‚ğ“o˜^‚µ, ‘Šè‚Æ‰Šú“¯Šú‚ğ‚Í‚©‚é.
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ç™»éŒ²ã—, ç›¸æ‰‹ã¨åˆæœŸåŒæœŸã‚’ã¯ã‹ã‚‹.
     PXI_SetFifoRecvCallback(PXI_FIFO_TAG_SOUND, PxiFifoCallback);
 
 #ifdef SDK_ARM9
@@ -1051,7 +1051,7 @@ static void InitPXI(void)
 /*---------------------------------------------------------------------------*
   Name:         RequestCommandProc
 
-  Description:  ƒRƒ}ƒ“ƒhˆ—‚Ì—v‹(ThreadSafe)
+  Description:  ã‚³ãƒãƒ³ãƒ‰å‡¦ç†ã®è¦æ±‚(ThreadSafe)
 
   Arguments:    None.
 
@@ -1068,11 +1068,11 @@ static void RequestCommandProc(void)
 /*---------------------------------------------------------------------------*
   Name:         AllocCommand
 
-  Description:  ƒRƒ}ƒ“ƒh‚ÌŠm•Û(ThreadSafe)
+  Description:  ã‚³ãƒãƒ³ãƒ‰ã®ç¢ºä¿(ThreadSafe)
 
   Arguments:    None.
 
-  Returns:      ƒRƒ}ƒ“ƒh‚Ü‚½‚ÍANULL
+  Returns:      ã‚³ãƒãƒ³ãƒ‰ã¾ãŸã¯ã€NULL
  *---------------------------------------------------------------------------*/
 static SNDCommand *AllocCommand(void)
 {
@@ -1098,11 +1098,11 @@ static SNDCommand *AllocCommand(void)
 /*---------------------------------------------------------------------------*
   Name:         IsCommandAvailable
 
-  Description:  ƒRƒ}ƒ“ƒhƒ‹[ƒ`ƒ“‚ª—LŒø‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒ«ãƒ¼ãƒãƒ³ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 
   Arguments:    None.
 
-  Returns:      ƒRƒ}ƒ“ƒhƒ‹[ƒ`ƒ“‚ª—LŒø‚©‚Ç‚¤‚©
+  Returns:      ã‚³ãƒãƒ³ãƒ‰ãƒ«ãƒ¼ãƒãƒ³ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 static BOOL IsCommandAvailable(void)
 {
@@ -1114,7 +1114,7 @@ static BOOL IsCommandAvailable(void)
 
     prev_mode = OS_DisableInterrupts();
 
-    /* ƒTƒEƒ“ƒh—LŒøŠm”F */
+    /* ã‚µã‚¦ãƒ³ãƒ‰æœ‰åŠ¹ç¢ºèª */
     *(vu32 *)0x4fff200 = 0x10;
     res = *(vu32 *)0x4fff200;
 

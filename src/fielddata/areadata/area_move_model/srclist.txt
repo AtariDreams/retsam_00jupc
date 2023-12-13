@@ -1,4 +1,4 @@
-#Ž©“®¶¬‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Å‚·
+#è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã§ã™
 SRCFILES	=	\
 	field.s \
 	room.s \

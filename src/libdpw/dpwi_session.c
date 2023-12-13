@@ -35,15 +35,15 @@
 #endif
 
 /*-----------------------------------------------------------------------*
-					Œ^E’è”éŒ¾
+					åž‹ãƒ»å®šæ•°å®£è¨€
  *-----------------------------------------------------------------------*/
 
-#define HASH_LENGTH		40								// ƒnƒbƒVƒ…‚Ì’·‚³
-#define TOKEN_LENGTH	32								// ƒg[ƒNƒ“‚Ì’·‚³
-#define KEY_LENGTH		20								// ”é–§Œ®‚Ì’·‚³
-#define KEYTOKEN_LENGTH		(TOKEN_LENGTH + KEY_LENGTH + 1)	// ”é–§Œ®{ƒg[ƒNƒ“
+#define HASH_LENGTH		40								// ãƒãƒƒã‚·ãƒ¥ã®é•·ã•
+#define TOKEN_LENGTH	32								// ãƒˆãƒ¼ã‚¯ãƒ³ã®é•·ã•
+#define KEY_LENGTH		20								// ç§˜å¯†éµã®é•·ã•
+#define KEYTOKEN_LENGTH		(TOKEN_LENGTH + KEY_LENGTH + 1)	// ç§˜å¯†éµï¼‹ãƒˆãƒ¼ã‚¯ãƒ³
 
-#define SECRET_KEY		"sAdeqWo3voLeC5r16DYv"			// ”é–§Œ®
+#define SECRET_KEY		"sAdeqWo3voLeC5r16DYv"			// ç§˜å¯†éµ
 
 #define COMMON_ERROR_MSG_LENGTH		22
 
@@ -55,13 +55,13 @@
 #define COMMON_ERROR_INCORRECT_HASH		"error: incorrect hash "
 
 /*-----------------------------------------------------------------------*
-					ƒOƒ[ƒoƒ‹•Ï”’è‹`
+					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®šç¾©
  *-----------------------------------------------------------------------*/
 
 
 /**
  * 
- * ƒZƒbƒVƒ‡ƒ“î•ñ‚ð•ÛŽ‚·‚é\‘¢‘Ì•Ï”
+ * ã‚»ãƒƒã‚·ãƒ§ãƒ³æƒ…å ±ã‚’ä¿æŒã™ã‚‹æ§‹é€ ä½“å¤‰æ•°
  * 
  * [  base url ]?pid=[-----]&hash=[-----]&data=[-----------------------]
  * |                              |            |
@@ -73,21 +73,21 @@ struct{
 
 	DpwiSessionState	state;
 
-	int		reqid;		//!< ƒŠƒNƒGƒXƒgŽ¯•ÊŽq
-	int		lasterr;	//!< ƒ‰ƒXƒgƒGƒ‰[
-	int		reslen;		//!< ƒŒƒXƒ|ƒ“ƒX‚Ìƒf[ƒ^ƒTƒCƒY
+	int		reqid;		//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆè­˜åˆ¥å­
+	int		lasterr;	//!< ãƒ©ã‚¹ãƒˆã‚¨ãƒ©ãƒ¼
+	int		reslen;		//!< ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
 	int		pid;		//!< PID
 
-	void*	srcbuf;		//!< ‘—Mƒf[ƒ^ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
-	int		srcbuflen;	//!< ‘—Mƒf[ƒ^ƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	void*	resbuf;		//!< ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^Ši”[ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
-	int		resbuflen;	//!< ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^Ši”[ƒoƒbƒtƒ@‚ÌƒTƒCƒY
+	void*	srcbuf;		//!< é€ä¿¡ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
+	int		srcbuflen;	//!< é€ä¿¡ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	void*	resbuf;		//!< ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
+	int		resbuflen;	//!< ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 
-	char*	request;	//!< ƒŠƒNƒGƒXƒg•¶Žš—ñ
-	char*	hash;		//!< ƒŠƒNƒGƒXƒg•¶Žš—ñ’†‚ÌƒnƒbƒVƒ…ˆÊ’u
-	char*	data;		//!< ƒŠƒNƒGƒXƒg•¶Žš—ñ’†‚Ìƒf[ƒ^ˆÊ’u
-	int		datasize;	//!< data‚ÌƒTƒCƒY
+	char*	request;	//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ–‡å­—åˆ—
+	char*	hash;		//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ–‡å­—åˆ—ä¸­ã®ãƒãƒƒã‚·ãƒ¥ä½ç½®
+	char*	data;		//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ–‡å­—åˆ—ä¸­ã®ãƒ‡ãƒ¼ã‚¿ä½ç½®
+	int		datasize;	//!< dataã®ã‚µã‚¤ã‚º
 
 }g_session = { DPWI_COMMON_SESSION_STATE_ERROR, 0, 0, 0 };
 
@@ -95,42 +95,42 @@ struct{
 static void setlasterror( int err ){
 
 	switch( err ){
-	// ƒGƒ‰[”­¶’†
+	// ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
 	case DWC_GHTTP_IN_ERROR:
 		g_session.lasterr = DPWI_COMMON_SESSION_ERROR_IN_ERROR;
 		break;
-	// –³Œø‚È‘—M
+	// ç„¡åŠ¹ãªé€ä¿¡
 	case DWC_GHTTP_INVALID_POST:
 		g_session.lasterr = DPWI_COMMON_SESSION_ERROR_INVALID_POST;
 		break;
-	// ƒƒ‚ƒŠ•s‘«
+	// ãƒ¡ãƒ¢ãƒªä¸è¶³
 	case DWC_GHTTP_INSUFFICIENT_MEMORY:
 		g_session.lasterr = DPWI_COMMON_SESSION_ERROR_INSUFFICIENT_MEMORY;
 		break;
-	// –³Œø‚Èƒtƒ@ƒCƒ‹–¼
+	// ç„¡åŠ¹ãªãƒ•ã‚¡ã‚¤ãƒ«å
 	case DWC_GHTTP_INVALID_FILE_NAME:
 		g_session.lasterr = DPWI_COMMON_SESSION_ERROR_INVALID_FILE_NAME;
 		break;
-	// –³Œø‚Èƒoƒbƒtƒ@ƒTƒCƒY
+	// ç„¡åŠ¹ãªãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 	case DWC_GHTTP_INVALID_BUFFER_SIZE:
 		g_session.lasterr = DPWI_COMMON_SESSION_ERROR_INVALID_BUFFER_SIZE;
 		break;
-	// –³Œø‚ÈURL
+	// ç„¡åŠ¹ãªURL
 	case DWC_GHTTP_INVALID_URL:
 		g_session.lasterr = DPWI_COMMON_SESSION_ERROR_INVALID_URL;
 		break;
-	// ‚»‚Ì‘¼‚ÌƒGƒ‰[
+	// ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼
 	case DWC_GHTTP_UNSPECIFIED_ERROR:
 		g_session.lasterr = DPWI_COMMON_SESSION_ERROR_UNSPECIFIED_ERROR;
 		break;
-	// ¬Œ÷
+	// æˆåŠŸ
 	default:
 		g_session.lasterr = 0;
 	}
 
 }
 
-// Š®—¹ƒR[ƒ‹ƒoƒbƒNŠÖ”
+// å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void Completed(	const char* buf,
 						int len,
 						DWCGHTTPResult result,
@@ -138,10 +138,10 @@ static void Completed(	const char* buf,
 {
 #pragma unused(param)
 	
-	// GHTTP‚Ìˆ—‚ðs‚Á‚Ä‚¢‚È‚¢‚±‚Æ‚ðŽ¦‚·ƒtƒ‰ƒO‚ð—§‚Ä‚é
+	// GHTTPã®å‡¦ç†ã‚’è¡Œã£ã¦ã„ãªã„ã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	g_session.reqid = -1;
 	
-	// ƒXƒe[ƒg‚ªƒGƒ‰[‚¾‚Á‚½‚çI—¹
+	// ã‚¹ãƒ†ãƒ¼ãƒˆãŒã‚¨ãƒ©ãƒ¼ã ã£ãŸã‚‰çµ‚äº†
 	//
 	if( g_session.state == DPWI_COMMON_SESSION_STATE_ERROR ){
 
@@ -150,53 +150,53 @@ static void Completed(	const char* buf,
 	}
 
 	
-	// HTTP’ÊM‚ÌŒ‹‰Ê‚ðˆ—
+	// HTTPé€šä¿¡ã®çµæžœã‚’å‡¦ç†
 	//
-	// HTTP GET 200 ‚ÌƒŒƒXƒ|ƒ“ƒX‚Ì‚Ýˆ—
-	// ‚»‚êˆÈŠO 404‚â500‚Å‚ÍƒGƒ‰[‚ð”­¶‚µ‚ÄI—¹‚·‚é
+	// HTTP GET 200 ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ã¿å‡¦ç†
+	// ãã‚Œä»¥å¤– 404ã‚„500ã§ã¯ã‚¨ãƒ©ãƒ¼ã‚’ç™ºç”Ÿã—ã¦çµ‚äº†ã™ã‚‹
 	// 
 	if ( result == DWC_GHTTP_SUCCESS ){
 
 		switch( g_session.state ){
 
-		// ƒg[ƒNƒ“Žæ“¾
+		// ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—
 		//-------------------
 		case DPWI_COMMON_SESSION_STATE_GETTING_TOKEN:
 
-			// ƒg[ƒNƒ“‚ÌƒTƒCƒY‚ª³‚µ‚¢‚©‚Ç‚¤‚©
+			// ãƒˆãƒ¼ã‚¯ãƒ³ã®ã‚µã‚¤ã‚ºãŒæ­£ã—ã„ã‹ã©ã†ã‹
 			//
-			// ³‚µ‚¯‚ê‚ÎƒnƒbƒVƒ…‚ð‹‚ßAƒf[ƒ^‚ðˆÃ†‰»‚µ‚ÄŽŸ‚Ì’ÊM‚ðs‚¤€”õ
-			// ‚ð‚·‚éB
+			// æ­£ã—ã‘ã‚Œã°ãƒãƒƒã‚·ãƒ¥ã‚’æ±‚ã‚ã€ãƒ‡ãƒ¼ã‚¿ã‚’æš—å·åŒ–ã—ã¦æ¬¡ã®é€šä¿¡ã‚’è¡Œã†æº–å‚™
+			// ã‚’ã™ã‚‹ã€‚
 			// 
 			if(len == TOKEN_LENGTH){
 
 				//
-				// ƒƒ‚ƒŠ[‚ð‚Ý‚Ý‚Á‚¿‚­ß–ñ‚·‚éÝŒv‚È‚Ì‚Å‚í‚©‚è‚É‚­‚¢EEE
+				// ãƒ¡ãƒ¢ãƒªãƒ¼ã‚’ã¿ã¿ã£ã¡ãç¯€ç´„ã™ã‚‹è¨­è¨ˆãªã®ã§ã‚ã‹ã‚Šã«ãã„ãƒ»ãƒ»ãƒ»
 				//
-				int i;										// ƒ‹[ƒvƒJƒEƒ“ƒ^
-				u8* hashtmp = (u8*)(g_session.hash + 20);	// ƒnƒbƒVƒ…ˆêŽž—Ìˆæ
-				char data[KEYTOKEN_LENGTH];					// ”é–§Œ®{ƒg[ƒNƒ“
-				DpwiEncResult res;							// ˆÃ†‰»Œ‹‰Ê
-				const char hextbl[] = "0123456789abcdef";	// hex•ÏŠ·ƒe[ƒuƒ‹
+				int i;										// ãƒ«ãƒ¼ãƒ—ã‚«ã‚¦ãƒ³ã‚¿
+				u8* hashtmp = (u8*)(g_session.hash + 20);	// ãƒãƒƒã‚·ãƒ¥ä¸€æ™‚é ˜åŸŸ
+				char data[KEYTOKEN_LENGTH];					// ç§˜å¯†éµï¼‹ãƒˆãƒ¼ã‚¯ãƒ³
+				DpwiEncResult res;							// æš—å·åŒ–çµæžœ
+				const char hextbl[] = "0123456789abcdef";	// hexå¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«
 
-				// ”é–§Œ®‚ðŠi”[
+				// ç§˜å¯†éµã‚’æ ¼ç´
 				strcpy( data, SECRET_KEY );
 
-				// ƒg[ƒNƒ“‚ð˜AŒ‹
+				// ãƒˆãƒ¼ã‚¯ãƒ³ã‚’é€£çµ
 				strncat( data, buf, (u32)len );
 				
-				// ƒnƒbƒVƒ…ŒvŽZ
+				// ãƒãƒƒã‚·ãƒ¥è¨ˆç®—
 				MATH_CalcSHA1((u8*)hashtmp, (const u8*)data, strlen(data));
 
-				// ƒpƒ‰ƒ[ƒ^[–¼’Ç‰Á
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼åè¿½åŠ 
 				// 
-				// ‚±‚ÌŽž“_‚Å‚Írequest‚É‚Í"*?pid=****"‚Ü‚Å‘‚©‚ê‚Ä‚¢‚é
+				// ã“ã®æ™‚ç‚¹ã§ã¯requestã«ã¯"*?pid=****"ã¾ã§æ›¸ã‹ã‚Œã¦ã„ã‚‹
 				// 
 				strcat( g_session.request, "&hash=" );
 
-				// hex•ÏŠ·
+				// hexå¤‰æ›
 				//
-				// ‘‚«ž‚Ýæ‚Íg_session.request’†‚Ì"hash="‚ÌŒã40bytes
+				// æ›¸ãè¾¼ã¿å…ˆã¯g_session.requestä¸­ã®"hash="ã®å¾Œ40bytes
 				// 
 				for(i=0; i<20; i++){
 					g_session.hash[i*2]   = hextbl[hashtmp[i] >> 4];
@@ -204,13 +204,13 @@ static void Completed(	const char* buf,
 				}
 				g_session.hash[HASH_LENGTH] = '\0';
 
-				// URL‚É‚Â‚È‚®
+				// URLã«ã¤ãªã
 				strcat( g_session.request, "&data=" );
 
 
-				// ‘—Mƒf[ƒ^‚ÌˆÃ†‰»
+				// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®æš—å·åŒ–
 				// 
-				// ˆÃ†‰»‚³‚ê‚½ƒf[ƒ^‚Íg_session.request‚É’¼Œ‹‚³‚ê‚é
+				// æš—å·åŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã¯g_session.requestã«ç›´çµã•ã‚Œã‚‹
 				//
 				res = DpwiEncrypt(	(u32)g_session.pid,
 									(u8 *)g_session.srcbuf,
@@ -220,29 +220,29 @@ static void Completed(	const char* buf,
 
 				switch(res){
 
-				// ¬Œ÷
+				// æˆåŠŸ
 				case DPWI_COMMON_ENC_SUCCESS:
 					break;
 
-				// ƒƒ‚ƒŠ[•s‘«ƒGƒ‰[
+				// ãƒ¡ãƒ¢ãƒªãƒ¼ä¸è¶³ã‚¨ãƒ©ãƒ¼
 				case DPWI_COMMON_ENC_ERROR_NOMEMORY:
 				case DPWI_COMMON_ENC_ERROR_NOBUFFER:
 
-					// ƒGƒ‰[
+					// ã‚¨ãƒ©ãƒ¼
 					g_session.state = DPWI_COMMON_SESSION_STATE_ERROR;
 
 					return;
 				}
 
-				// ŽŸ‚ÌƒXƒe[ƒg‚Ö
+				// æ¬¡ã®ã‚¹ãƒ†ãƒ¼ãƒˆã¸
 				//
-				// -> ƒg[ƒNƒ“Žæ“¾Š®—¹ƒXƒe[ƒg
+				// -> ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å®Œäº†ã‚¹ãƒ†ãƒ¼ãƒˆ
 				// 
 				g_session.state = DPWI_COMMON_SESSION_STATE_GOT_TOKEN;
 
 			}else{
 
-				// ƒGƒ‰[
+				// ã‚¨ãƒ©ãƒ¼
 				g_session.state = DPWI_COMMON_SESSION_STATE_ERROR;
 
 			}
@@ -250,14 +250,14 @@ static void Completed(	const char* buf,
 			break;
 
 
-		// ƒf[ƒ^‘—MŠ®—¹
+		// ãƒ‡ãƒ¼ã‚¿é€ä¿¡å®Œäº†
 		//-------------------
 		case DPWI_COMMON_SESSION_STATE_SENDING_DATA:
 
-			// ƒŒƒXƒ|ƒ“ƒX‚ðŽæ“¾
+			// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å–å¾—
 			//
 			
-			// ƒGƒ‰[‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+			// ã‚¨ãƒ©ãƒ¼ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 			if( len == COMMON_ERROR_MSG_LENGTH ){
 
 				if( strncmp(buf, COMMON_ERROR_CHECKSUM, COMMON_ERROR_MSG_LENGTH) == 0 ){
@@ -287,33 +287,33 @@ static void Completed(	const char* buf,
 				}
 			}
 
-			// ƒŒƒXƒ|ƒ“ƒXƒoƒbƒtƒ@‚ÉŽû‚Ü‚é‚©‚ðƒ`ƒFƒbƒN
+			// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒãƒƒãƒ•ã‚¡ã«åŽã¾ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 			// 
 			if( len <= g_session.resbuflen ){
 
-				// ƒRƒs[
+				// ã‚³ãƒ”ãƒ¼
 				memcpy(g_session.resbuf, buf, (u32)len);
 
-				// I—¹ƒXƒe[ƒg‚Ö
+				// çµ‚äº†ã‚¹ãƒ†ãƒ¼ãƒˆã¸
 				g_session.state = DPWI_COMMON_SESSION_STATE_COMPLETED;
 
 			}else{
 
-				// ƒŒƒXƒ|ƒ“ƒX‚ðŠi”[‚·‚éƒoƒbƒtƒ@ƒTƒCƒY‚ª‘«‚è‚È‚¢
+				// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªã„
 				//
-				// ˆê‰ž‘‚«ž‚ß‚é‚¾‚¯‘‚«ž‚Þ
-				// ‘S•”‘‚«ž‚ß‚È‚©‚Á‚½ƒGƒ‰[‚Í•Ô‚·
+				// ä¸€å¿œæ›¸ãè¾¼ã‚ã‚‹ã ã‘æ›¸ãè¾¼ã‚€
+				// å…¨éƒ¨æ›¸ãè¾¼ã‚ãªã‹ã£ãŸã‚¨ãƒ©ãƒ¼ã¯è¿”ã™
 				//
 
-				// ƒoƒbƒtƒ@ƒTƒCƒY•ª‚¾‚¯ƒRƒs[
+				// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºåˆ†ã ã‘ã‚³ãƒ”ãƒ¼
 				memcpy(g_session.resbuf, buf, (u32)g_session.resbuflen );
 
-				// ƒGƒ‰[ƒXƒe[ƒg‚Ö
+				// ã‚¨ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã¸
 				g_session.state = DPWI_COMMON_SESSION_STATE_ERROR;
 				g_session.lasterr = DPWI_COMMON_SESSION_ERROR_BUFFER_OVER;
 			}
 
-			// ƒŒƒXƒ|ƒ“ƒX‚ÌƒTƒCƒY‚ð•ÛŽ
+			// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ã‚µã‚¤ã‚ºã‚’ä¿æŒ
 			g_session.reslen = len;
 
 			break;
@@ -322,69 +322,69 @@ static void Completed(	const char* buf,
 
 	}else{
 
-		// HTTPƒGƒ‰[
+		// HTTPã‚¨ãƒ©ãƒ¼
 		//
 		g_session.state = DPWI_COMMON_SESSION_STATE_ERROR;
 
-		// ƒGƒ‰[ƒR[ƒh‚ð”»•Ê
+		// ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’åˆ¤åˆ¥
 		switch ( result ){
-		// ƒƒ‚ƒŠŠ„‚è“–‚ÄŽ¸”s
+		// ãƒ¡ãƒ¢ãƒªå‰²ã‚Šå½“ã¦å¤±æ•—
 		case DWC_GHTTP_OUT_OF_MEMORY:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_OUT_OF_MEMORY;
 			break;
-		// ‹Ÿ‹‹‚³‚ê‚½ƒoƒbƒtƒ@‚ª¬‚³‚·‚¬‚é‚½‚ßAƒtƒ@ƒCƒ‹‚ÌŽæ“¾Ž¸”s 
+		// ä¾›çµ¦ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ãŒå°ã•ã™ãŽã‚‹ãŸã‚ã€ãƒ•ã‚¡ã‚¤ãƒ«ã®å–å¾—å¤±æ•— 
 		case DWC_GHTTP_BUFFER_OVERFLOW:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_BUFFER_OVERFLOW;
 			break;
-		// URL‰ðÍƒGƒ‰[
+		// URLè§£æžã‚¨ãƒ©ãƒ¼
 		case DWC_GHTTP_PARSE_URL_FAILED:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_PARSE_URL_FAILED;
 			break;
-		// ƒzƒXƒg–¼ŒŸõŽ¸”s
+		// ãƒ›ã‚¹ãƒˆåæ¤œç´¢å¤±æ•—
 		case DWC_GHTTP_HOST_LOOKUP_FAILED:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_HOST_LOOKUP_FAILED;
 			break;
-		// ƒ\ƒPƒbƒg‚Ìì¬A‰Šú‰»A“Ç‚Ýo‚µA‘‚«ž‚ÝŽ¸”s 
+		// ã‚½ã‚±ãƒƒãƒˆã®ä½œæˆã€åˆæœŸåŒ–ã€èª­ã¿å‡ºã—ã€æ›¸ãè¾¼ã¿å¤±æ•— 
 		case DWC_GHTTP_SOCKET_FAILED:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_SOCKET_FAILED;
 			break;
-		// HTTPƒT[ƒo‚Ö‚ÌÚ‘±Ž¸”s 
+		// HTTPã‚µãƒ¼ãƒã¸ã®æŽ¥ç¶šå¤±æ•— 
 		case DWC_GHTTP_CONNECT_FAILED:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_CONNECT_FAILED;
 			break;
-		// HTTPƒT[ƒo‚©‚ç‚ÌƒŒƒXƒ|ƒ“ƒX‚Ì‰ðÍƒGƒ‰[ 
+		// HTTPã‚µãƒ¼ãƒã‹ã‚‰ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®è§£æžã‚¨ãƒ©ãƒ¼ 
 		case DWC_GHTTP_BAD_RESPONSE:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_BAD_RESPONSE;
 			break;
-		// HTTPƒT[ƒo‚ÌƒŠƒNƒGƒXƒg‹‘”Û 
+		// HTTPã‚µãƒ¼ãƒã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ‹’å¦ 
 		case DWC_GHTTP_REQUEST_REJECTED:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_REQUEST_REJECTED;
 			break;
-		// ƒtƒ@ƒCƒ‹Žæ“¾–¢‹–‰Â 
+		// ãƒ•ã‚¡ã‚¤ãƒ«å–å¾—æœªè¨±å¯ 
 		case DWC_GHTTP_UNAUTHORIZED:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_UNAUTHORIZED;
 			break;
-		// HTTPƒT[ƒo‚Ìƒtƒ@ƒCƒ‹‘—M‹‘”Û 
+		// HTTPã‚µãƒ¼ãƒã®ãƒ•ã‚¡ã‚¤ãƒ«é€ä¿¡æ‹’å¦ 
 		case DWC_GHTTP_FORBIDDEN:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_FORBIDDEN;
 			break;
-		// HTTPƒT[ƒoã‚Ìƒtƒ@ƒCƒ‹ŒŸõŽ¸”s 
+		// HTTPã‚µãƒ¼ãƒä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«æ¤œç´¢å¤±æ•— 
 		case DWC_GHTTP_FILE_NOT_FOUND:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_FILE_NOT_FOUND;
 			break;
-		// HTTPƒT[ƒo“à•”ƒGƒ‰[
+		// HTTPã‚µãƒ¼ãƒå†…éƒ¨ã‚¨ãƒ©ãƒ¼
 		case DWC_GHTTP_SERVER_ERROR:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_SERVER_ERROR;
 			break;
-		// ƒ_ƒEƒ“ƒ[ƒh‚Ì’†’f
+		// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã®ä¸­æ–­
 		case DWC_GHTTP_FILE_INCOMPLETE:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_FILE_INCOMPLETE;
 			break;
-		// ƒtƒ@ƒCƒ‹‚ª‘å‚«‚·‚¬‚é‚½‚ßƒ_ƒEƒ“ƒ[ƒh•s‰Â”\ 
+		// ãƒ•ã‚¡ã‚¤ãƒ«ãŒå¤§ãã™ãŽã‚‹ãŸã‚ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸å¯èƒ½ 
 		case DWC_GHTTP_FILE_TOO_BIG:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_FILE_TOO_BIG;
 			break;
-		// ƒƒ‚ƒŠ[ƒGƒ‰[
+		// ãƒ¡ãƒ¢ãƒªãƒ¼ã‚¨ãƒ©ãƒ¼
 		case DWC_GHTTP_MEMORY_ERROR:
 			g_session.lasterr = DPWI_COMMON_SESSION_ERROR_MEMORY_ERROR;
 			break;
@@ -396,20 +396,20 @@ static void Completed(	const char* buf,
 
 
 /*!
-	ƒZƒbƒVƒ‡ƒ“‚ð‰Šú‰»‚µ‚Ü‚·
+	ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’åˆæœŸåŒ–ã—ã¾ã™
 	
 	
 */
 void DpwiSessionInitialize( void ){
 
-	// ƒXƒe[ƒ^ƒXƒtƒ‰ƒO‚ðƒZƒbƒg
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	g_session.state = DPWI_COMMON_SESSION_STATE_INITIAL;
 	g_session.reqid = -1;
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	if ( !DWC_InitGHTTP(NULL) ){
 
-		// GHTTP‚Ì‰Šú‰»‚ÉŽ¸”s
+		// GHTTPã®åˆæœŸåŒ–ã«å¤±æ•—
 		g_session.state = DPWI_COMMON_SESSION_STATE_ERROR;
 
 	}
@@ -420,20 +420,20 @@ void DpwiSessionInitialize( void ){
 
 
 /*!
-	ƒŠƒNƒGƒXƒg‚ð”­s‚µ‚Ü‚·
+	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ç™ºè¡Œã—ã¾ã™
 	
-	ƒZƒbƒVƒ‡ƒ“‚ðŠm—§‚µ‚ÄAƒf[ƒ^‚ð‘—M‚µAƒŒƒXƒ|ƒ“ƒX‚ðŽóM‚µ‚Ü‚·B
+	ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’ç¢ºç«‹ã—ã¦ã€ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã—ã€ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å—ä¿¡ã—ã¾ã™ã€‚
 	
-	@param[in]		url		ƒXƒNƒŠƒvƒg‚ÌURL
+	@param[in]		url		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®URL
 	@param[in]		pid		GameSpy Profile ID
-	@param[in]		data	‘—M‚·‚éƒf[ƒ^
-	@param[in]		len		data‚ÌƒTƒCƒY
-	@param[in]		resbuf	ƒŒƒXƒ|ƒ“ƒX‚ðŽó‚¯Žæ‚é‚½‚ß‚Ìƒoƒbƒtƒ@
-	@param[in]		buflen	resbuf‚ÌƒTƒCƒY
+	@param[in]		data	é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+	@param[in]		len		dataã®ã‚µã‚¤ã‚º
+	@param[in]		resbuf	ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å—ã‘å–ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡
+	@param[in]		buflen	resbufã®ã‚µã‚¤ã‚º
 
-	@retval	DPWI_COMMON_SESSION_SUCCESS					¬Œ÷
-	@retval	DPWI_COMMON_SESSION_ERROR_NOTINITIALIZED	–¢‰Šú‰»
-	@retval	DPWI_COMMON_SESSION_ERROR_NOMEMORY			ƒƒ‚ƒŠ[•s‘«
+	@retval	DPWI_COMMON_SESSION_SUCCESS					æˆåŠŸ
+	@retval	DPWI_COMMON_SESSION_ERROR_NOTINITIALIZED	æœªåˆæœŸåŒ–
+	@retval	DPWI_COMMON_SESSION_ERROR_NOMEMORY			ãƒ¡ãƒ¢ãƒªãƒ¼ä¸è¶³
 
 */
 DpwiSessionResult DpwiSessionRequest(	const u8* url,
@@ -444,18 +444,18 @@ DpwiSessionResult DpwiSessionRequest(	const u8* url,
 										int ressize ){
 
 
-	// ‰Šú‰»ƒ`ƒFƒbƒN
+	// åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯
 	if( g_session.state != DPWI_COMMON_SESSION_STATE_INITIAL )
 		return DPWI_COMMON_SESSION_ERROR_NOTINITIALIZED;
 
-	// ŠeŽí•Ï”‚ð•ÛŽ
+	// å„ç¨®å¤‰æ•°ã‚’ä¿æŒ
 	g_session.pid		= pid;
 	g_session.srcbuf	= (void*)data;
 	g_session.srcbuflen	= len;
 	g_session.resbuf	= resbuf;
 	g_session.resbuflen	= ressize;
 
-	// ƒŠƒNƒGƒXƒg•¶Žš—ñ—pƒƒ‚ƒŠ[‚ðŠm•Û
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ–‡å­—åˆ—ç”¨ãƒ¡ãƒ¢ãƒªãƒ¼ã‚’ç¢ºä¿
 	// ( baseurllen + param[pid] + param[hash] + base64data + few more )
 	g_session.request = (char*)DWC_Alloc( (DWCAllocType)DPWI_ALLOC,
 									strlen((const char*)url)
@@ -463,12 +463,12 @@ DpwiSessionResult DpwiSessionRequest(	const u8* url,
 	if( g_session.request == NULL )
 		return DPWI_COMMON_SESSION_ERROR_NOMEMORY;
 
-	// ƒx[ƒX‚t‚q‚k‚ÆPID‚ðƒŠƒNƒGƒXƒg‚ÉŠi”[
+	// ãƒ™ãƒ¼ã‚¹ï¼µï¼²ï¼¬ã¨PIDã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«æ ¼ç´
 	sprintf( g_session.request, "%s?pid=%d", url, pid );
 
-	// ƒpƒ‰ƒ[ƒ^[‚ÌƒIƒtƒZƒbƒg‚ð•ÛŽ
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ä¿æŒ
 	//
-	// ƒƒ‚ƒŠ[ß–ñ‚Ì‚½‚ß‚É“¯ˆêƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^‚ð•ÛŽ‚·‚é
+	// ãƒ¡ãƒ¢ãƒªãƒ¼ç¯€ç´„ã®ãŸã‚ã«åŒä¸€ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿æŒã™ã‚‹
 	// 
 	g_session.hash	= g_session.request + strlen(g_session.request)
 						+ strlen("&hash=");
@@ -476,7 +476,7 @@ DpwiSessionResult DpwiSessionRequest(	const u8* url,
 	g_session.datasize = (int)(DpwiB64Size(8 + (u32)len) + 1);
 
 
-	// ŠJŽn
+	// é–‹å§‹
 	g_session.state = DPWI_COMMON_SESSION_STATE_REQUEST;
 
 	return DPWI_COMMON_SESSION_SUCCESS;
@@ -484,9 +484,9 @@ DpwiSessionResult DpwiSessionRequest(	const u8* url,
 
 
 /*!
-	”ñ“¯Šúˆ—‚ði‚ß‚Ü‚·
+	éžåŒæœŸå‡¦ç†ã‚’é€²ã‚ã¾ã™
 
-	@return	ƒZƒbƒVƒ‡ƒ“‚ÌƒXƒe[ƒ^ƒX
+	@return	ã‚»ãƒƒã‚·ãƒ§ãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 */
 DpwiSessionState DpwiSessionThink( void ){
 
@@ -494,26 +494,26 @@ DpwiSessionState DpwiSessionThink( void ){
 
 	switch( g_session.state ){
 
-	// ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
 	//-----------------------
 	case DPWI_COMMON_SESSION_STATE_CANCELED:
 		break;
 
-	// ƒGƒ‰[
+	// ã‚¨ãƒ©ãƒ¼
 	//-----------------------
 	case DPWI_COMMON_SESSION_STATE_ERROR:
 		break;
 
-	// ‰Šú‰»Œã
+	// åˆæœŸåŒ–å¾Œ
 	//-----------------------
 	case DPWI_COMMON_SESSION_STATE_INITIAL:
 		break;
 
-	// ƒŠƒNƒGƒXƒg€”õŠ®—¹
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆæº–å‚™å®Œäº†
 	//-----------------------
 	case DPWI_COMMON_SESSION_STATE_REQUEST:
 
-		// ƒg[ƒNƒ“Žæ“¾ƒŠƒNƒGƒXƒg‘—M
+		// ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡
 		g_session.reqid = DWC_GetGHTTPData(	g_session.request,
 											Completed,
 											&g_session );
@@ -527,7 +527,7 @@ DpwiSessionState DpwiSessionThink( void ){
 
 		break;
 	
-	// ƒg[ƒNƒ“Žæ“¾’†
+	// ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—ä¸­
 	//-----------------------
 	case DPWI_COMMON_SESSION_STATE_GETTING_TOKEN:
 
@@ -540,11 +540,11 @@ DpwiSessionState DpwiSessionThink( void ){
 
 		break;
 
-	// ƒg[ƒNƒ“Žæ“¾Š®—¹
+	// ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å®Œäº†
 	//-----------------------
 	case DPWI_COMMON_SESSION_STATE_GOT_TOKEN:
 
-		// ƒf[ƒ^‘—MƒŠƒNƒGƒXƒg‘—M
+		// ãƒ‡ãƒ¼ã‚¿é€ä¿¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡
 		g_session.reqid = DWC_GetGHTTPData(	g_session.request,
 											Completed,
 											&g_session );
@@ -558,7 +558,7 @@ DpwiSessionState DpwiSessionThink( void ){
 
 		break;
 
-	// ƒf[ƒ^‘—M’†
+	// ãƒ‡ãƒ¼ã‚¿é€ä¿¡ä¸­
 	//-----------------------
 	case DPWI_COMMON_SESSION_STATE_SENDING_DATA:
 
@@ -571,7 +571,7 @@ DpwiSessionState DpwiSessionThink( void ){
 
 		break;
 
-	// ˆ—Š®—¹
+	// å‡¦ç†å®Œäº†
 	//-----------------------
 	case DPWI_COMMON_SESSION_STATE_COMPLETED:
 		break;
@@ -582,9 +582,9 @@ DpwiSessionState DpwiSessionThink( void ){
 
 
 /*!
-	ƒZƒbƒVƒ‡ƒ“‚ð’†’f‚µ‚Ü‚·
+	ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’ä¸­æ–­ã—ã¾ã™
 	
-	ƒZƒbƒVƒ‡ƒ“‚ð’†’f‚µ‚Ü‚·
+	ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’ä¸­æ–­ã—ã¾ã™
 	
 */
 void DpwiSessionCancel( void ){
@@ -599,14 +599,14 @@ void DpwiSessionCancel( void ){
 }
 
 /*!
-	ƒZƒbƒVƒ‡ƒ“‚ðI—¹‚µ‚Ü‚·
+	ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’çµ‚äº†ã—ã¾ã™
 	
-	ƒZƒbƒVƒ‡ƒ“‚ðI—¹‚µ‚Äƒƒ‚ƒŠ[‚ð‰ð•ú‚µ‚Ü‚·
+	ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’çµ‚äº†ã—ã¦ãƒ¡ãƒ¢ãƒªãƒ¼ã‚’è§£æ”¾ã—ã¾ã™
 	
 */
 void DpwiSessionShutdown( void ){
 
-	// ƒƒ‚ƒŠ[ŠJ•ú
+	// ãƒ¡ãƒ¢ãƒªãƒ¼é–‹æ”¾
 	if( g_session.request != NULL){
 	
 		DWC_Free( (DWCAllocType)DPWI_ALLOC, g_session.request, (u32)0 );
@@ -614,10 +614,10 @@ void DpwiSessionShutdown( void ){
 
 	}
 
-	// GHTTPŠJ•ú
+	// GHTTPé–‹æ”¾
 	DWC_ShutdownGHTTP();
 
-	// ƒXƒe[ƒ^ƒX‚ð–³Œø‚É‚·‚é
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 	g_session.state = DPWI_COMMON_SESSION_STATE_ERROR;
 
 	return;
@@ -626,7 +626,7 @@ void DpwiSessionShutdown( void ){
 
 
 /*!
-	ÅŒã‚ÌƒGƒ‰[‚ðŽæ“¾‚µ‚Ü‚·
+	æœ€å¾Œã®ã‚¨ãƒ©ãƒ¼ã‚’å–å¾—ã—ã¾ã™
 	
 	
 */
@@ -637,7 +637,7 @@ DpwiHttpError DpwiGetLastError( void ){
 }
 
 /*!
-	ƒŒƒXƒ|ƒ“ƒX‚Ìƒf[ƒ^ƒTƒCƒY‚ð•Ô‚µ‚Ü‚·
+	ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
 	
 	
 */

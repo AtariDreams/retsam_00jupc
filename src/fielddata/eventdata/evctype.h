@@ -3,19 +3,19 @@
 
 typedef struct _TAG_FIELD_OBJ_H
 {
-	unsigned short id;			///<Ž¯•ÊID
-	unsigned short obj_code;		///<•\Ž¦‚·‚éOBJƒR[ƒh
-	unsigned short move_code;	///<“®ìƒR[ƒh
-	unsigned short event_type;	///<ƒCƒxƒ“ƒgƒ^ƒCƒv
-	unsigned short event_flag;		///<ƒCƒxƒ“ƒgƒtƒ‰ƒO
-	unsigned short event_id;		///<ƒCƒxƒ“ƒgID
-	short dir;			///<Žw’è•ûŒü
-	unsigned short param;		///<Žw’èƒpƒ‰ƒƒ^
-	short move_limit_x;	///<X•ûŒüˆÚ“®§ŒÀ
-	short move_limit_z;	///<Z•ûŒüˆÚ“®§ŒÀ
-	unsigned short gx;			///<ƒOƒŠƒbƒhX		//ƒOƒŠƒbƒhÀ•W‚àint‚Åˆµ‚¤‚±‚Æ‚Í‚È‚¢‚Ì‚Å unsigned short‚Å‚¨Šè‚¢‚µ‚Ü‚·
-	unsigned short gz;			///<ƒOƒŠƒbƒhZ
-	int gy;			///<Y’l	Y’l‚Ìgy‚ÌŒ^‚Í fx32‚Å‚¨Šè‚¢‚µ‚Ü‚·
+	unsigned short id;			///<è­˜åˆ¥ID
+	unsigned short obj_code;		///<è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰
+	unsigned short move_code;	///<å‹•ä½œã‚³ãƒ¼ãƒ‰
+	unsigned short event_type;	///<ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+	unsigned short event_flag;		///<ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
+	unsigned short event_id;		///<ã‚¤ãƒ™ãƒ³ãƒˆID
+	short dir;			///<æŒ‡å®šæ–¹å‘
+	unsigned short param;		///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+	short move_limit_x;	///<Xæ–¹å‘ç§»å‹•åˆ¶é™
+	short move_limit_z;	///<Zæ–¹å‘ç§»å‹•åˆ¶é™
+	unsigned short gx;			///<ã‚°ãƒªãƒƒãƒ‰X		//ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã‚‚intã§æ‰±ã†ã“ã¨ã¯ãªã„ã®ã§ unsigned shortã§ãŠé¡˜ã„ã—ã¾ã™
+	unsigned short gz;			///<ã‚°ãƒªãƒƒãƒ‰Z
+	int gy;			///<Yå€¤	Yå€¤ã®gyã®åž‹ã¯ fx32ã§ãŠé¡˜ã„ã—ã¾ã™
 }_TAG_FIELD_OBJ_H;
 
 #define SCRID_NULL 0

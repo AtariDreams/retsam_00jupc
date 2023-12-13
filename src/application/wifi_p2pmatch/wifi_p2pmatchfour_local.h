@@ -1,24 +1,24 @@
 #ifndef __WIFI_P2PMATCHFOUR_LOCAL_H__
 #define __WIFI_P2PMATCHFOUR_LOCAL_H__
 
-#define WIFI_P2PMATCH_NUM_MAX	(4)	// �ő�S�l�}�b�`���O
+#define WIFI_P2PMATCH_NUM_MAX	(4)	// 最大４人マッチング
 
 enum{
-	WFP2PMF_CON_NG,		// �ʐMNG
-	WFP2PMF_CON_OK,		// �ʐMOK
-	WFP2PMF_CON_LOCK,	// ���e���Z����
+	WFP2PMF_CON_NG,		// 通信NG
+	WFP2PMF_CON_OK,		// 通信OK
+	WFP2PMF_CON_LOCK,	// 今親が忙しい
 };
 
 typedef struct _WFP2P_WK WFP2P_WK;
 
 
-// �ʐM�f�[�^
+// 通信データ
 typedef struct {
-	u16 netID;	// �l�b�gID
-	u32 flag;	// WFP2PMF_CON_�`
+	u16 netID;	// ネットID
+	u32 flag;	// WFP2PMF_CON_〜
 } WFP2PMF_COMM_RESULT;
 
-// VCHAT�f�[�^
+// VCHATデータ
 typedef struct {
 	u8 vchat_now[WIFI_P2PMATCH_NUM_MAX];
 } WFP2PMF_COMM_VCHAT;

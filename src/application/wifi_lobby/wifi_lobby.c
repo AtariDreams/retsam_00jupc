@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wifi_lobby.c
- *	@brief		WiFiƒƒr[ƒƒCƒ“ƒVƒXƒeƒ€
+ *	@brief		WiFiãƒ­ãƒ“ãƒ¼ãƒ¡ã‚¤ãƒ³ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.09.14
  *
@@ -29,24 +29,24 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
@@ -54,16 +54,16 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	WiFiƒƒr[ƒƒCƒ“ƒ[ƒN
+///	WiFiãƒ­ãƒ“ãƒ¼ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	SAVEDATA*		p_save;		// ƒZ[ƒuƒf[ƒ^
-	WFLBY_SYSTEM*	p_commsys;	// WiFiƒƒr[‹¤’Êˆ—ƒVƒXƒeƒ€
-	WFLBY_APL*		p_apl;		// WiFiƒƒr[ƒAƒvƒŠŠÇ—ƒVƒXƒeƒ€
+	SAVEDATA*		p_save;		// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+	WFLBY_SYSTEM*	p_commsys;	// WiFiãƒ­ãƒ“ãƒ¼å…±é€šå‡¦ç†ã‚·ã‚¹ãƒ†ãƒ 
+	WFLBY_APL*		p_apl;		// WiFiãƒ­ãƒ“ãƒ¼ã‚¢ãƒ—ãƒªç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 	TCB_PTR p_vtcb;				// VBLANKTCB
 } WFLBY_WK;
 
@@ -71,7 +71,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WFLBY_VBlankFunc( TCB_PTR p_tcb, void* p_work );
@@ -79,13 +79,13 @@ static void WFLBY_VBlankFunc( TCB_PTR p_tcb, void* p_work );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Šú‰»ˆ—
+ *	@brief	åˆæœŸåŒ–å‡¦ç†
  *
- *	@param	p_proc		ƒ[ƒN
- *	@param	p_seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_proc		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval	PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval	PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval	PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBYProc_Init( PROC* p_proc, int* p_seq )
@@ -94,44 +94,44 @@ PROC_RESULT WFLBYProc_Init( PROC* p_proc, int* p_seq )
 	WFLBY_PROC_PARAM* p_param;
 
 	{
-		// ƒI[ƒo[ƒŒƒC
+		// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤
 		FS_EXTERN_OVERLAY(wifi_2dmapsys);
 		Overlay_Load( FS_OVERLAY_ID(wifi_2dmapsys), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
-		// WiFiƒI[ƒo[ƒŒƒCŠJŽn
+		// WiFiã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é–‹å§‹
 		DwcOverlayStart();
 
-		// ¢ŠEŒðŠ·ighttpƒ‰ƒCƒuƒ‰ƒŠ‚Ì‚½‚ßj
+		// ä¸–ç•Œäº¤æ›ï¼ˆghttpãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãŸã‚ï¼‰
 		DpwCommonOverlayStart();
 	}
 	
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WFLOBBY, 0x5000 );
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk = PROC_AllocWork( p_proc, sizeof(WFLBY_WK), HEAPID_WFLOBBY );
 	memset( p_wk, 0, sizeof(WFLBY_WK) );
 
-	// ƒpƒ‰ƒ[ƒ^ƒ[ƒNŽæ“¾
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯å–å¾—
 	p_param = PROC_GetParentWork( p_proc );
 
-	// ƒZ[ƒuƒf[ƒ^Žæ“¾
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_wk->p_save = p_param->p_save;
 
-	// ‹¤’Êˆ—ƒVƒXƒeƒ€ì¬
+	// å…±é€šå‡¦ç†ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_wk->p_commsys = WFLBY_SYSTEM_Init( p_wk->p_save, HEAPID_WFLOBBY );
 	p_wk->p_apl = WFLBY_APL_Init( p_param->check_skip, p_param->p_save, 
 			p_param->p_wflby_counter, p_wk->p_commsys, HEAPID_WFLOBBY );
 
-	// Vƒuƒ‰ƒ“ƒNHƒuƒ‰ƒ“ƒNŠÖ”Ý’è
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	// Vãƒ–ãƒ©ãƒ³ã‚¯Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°è¨­å®š
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 
-	// íŽž“®ìVBLANKƒ^ƒXƒN¶¬
+	// å¸¸æ™‚å‹•ä½œVBLANKã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	p_wk->p_vtcb = VWaitTCB_Add( WFLBY_VBlankFunc, p_wk, 0 );
 
-	// ƒvƒƒbƒNŠJŽn
+	// ãƒ—ãƒ­ãƒƒã‚¯é–‹å§‹
 	WFLBY_APL_Start( p_wk->p_apl );
 	
 	return PROC_RES_FINISH;
@@ -139,13 +139,13 @@ PROC_RESULT WFLBYProc_Init( PROC* p_proc, int* p_seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ˆ—
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_proc		ƒ[ƒN
- *	@param	p_seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_proc		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval	PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval	PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval	PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBYProc_Main( PROC* p_proc, int* p_seq )
@@ -155,14 +155,14 @@ PROC_RESULT WFLBYProc_Main( PROC* p_proc, int* p_seq )
 
 	p_wk = PROC_GetWork( p_proc );
 
-	// ƒAƒvƒŠƒƒCƒ“
+	// ã‚¢ãƒ—ãƒªãƒ¡ã‚¤ãƒ³
 	apl_ret = WFLBY_APL_Main( p_wk->p_apl );
 
-	// ‹¤’Êˆ—ƒƒCƒ“
-	// ˆÊ’u‚ÍƒAƒvƒŠ‚Ì‚ ‚ÆŒÅ’èIIII
+	// å…±é€šå‡¦ç†ãƒ¡ã‚¤ãƒ³
+	// ä½ç½®ã¯ã‚¢ãƒ—ãƒªã®ã‚ã¨å›ºå®šï¼ï¼ï¼ï¼
 	WFLBY_SYSTEM_Main( p_wk->p_commsys );
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( apl_ret == WFLBY_APL_RET_END ){
 		return PROC_RES_FINISH;
 	}
@@ -171,13 +171,13 @@ PROC_RESULT WFLBYProc_Main( PROC* p_proc, int* p_seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”jŠüˆ—
+ *	@brief	ç ´æ£„å‡¦ç†
  *
- *	@param	p_proc		ƒ[ƒN
- *	@param	p_seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_proc		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval	PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval	PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval	PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBYProc_Exit( PROC* p_proc, int* p_seq )
@@ -186,34 +186,34 @@ PROC_RESULT WFLBYProc_Exit( PROC* p_proc, int* p_seq )
 
 	p_wk = PROC_GetWork( p_proc );
 
-	// íŽž“®ìVƒuƒ‰ƒ“ƒNTCB”jŠü
+	// å¸¸æ™‚å‹•ä½œVãƒ–ãƒ©ãƒ³ã‚¯TCBç ´æ£„
 	TCB_Delete( p_wk->p_vtcb );
 	
-	// Vƒuƒ‰ƒ“ƒNHƒuƒ‰ƒ“ƒNŠÖ”Ý’è
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	// Vãƒ–ãƒ©ãƒ³ã‚¯Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°è¨­å®š
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ƒAƒvƒŠƒVƒXƒeƒ€”jŠü
+	// ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_APL_Exit( p_wk->p_apl );
 
-	// ‹¤’Êˆ—ƒVƒXƒeƒ€”jŠü
+	// å…±é€šå‡¦ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_SYSTEM_Exit( p_wk->p_commsys );
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	PROC_FreeWork( p_proc );
 
-	// ƒq[ƒv”jŠü
+	// ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_WFLOBBY );
 
-	// ‚QDƒ}ƒbƒvƒVƒXƒeƒ€‚ðƒI[ƒo[ƒŒƒC‚ð”jŠü
+	// ï¼’Dãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’ç ´æ£„
 	{
 		FS_EXTERN_OVERLAY(wifi_2dmapsys);
 		Overlay_UnloadID( FS_OVERLAY_ID(wifi_2dmapsys) );
 
-		// ¢ŠEŒðŠ·ighttpƒ‰ƒCƒuƒ‰ƒŠ‚Ì‚½‚ßj
+		// ä¸–ç•Œäº¤æ›ï¼ˆghttpãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãŸã‚ï¼‰
 		DpwCommonOverlayEnd();
 
-		// WiFiƒI[ƒo[ƒŒƒCI—¹
+		// WiFiã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤çµ‚äº†
 		DwcOverlayEnd();
 	}
 
@@ -226,15 +226,15 @@ PROC_RESULT WFLBYProc_Exit( PROC* p_proc, int* p_seq )
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankŠÖ”
+ *	@brief	VBlanké–¢æ•°
  *
- *	@param	p_tcb		TCBƒ|ƒCƒ“ƒ^
- *	@param	p_work		ƒ[ƒN
+ *	@param	p_tcb		TCBãƒã‚¤ãƒ³ã‚¿
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_VBlankFunc( TCB_PTR p_tcb, void* p_work )

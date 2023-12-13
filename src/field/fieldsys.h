@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	fieldsys.h	
- * @brief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒVƒXƒeƒ€
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ 
  * @author	GAME FREAK inc.
  */
 //=============================================================================
@@ -13,7 +13,7 @@
 //==============================================================================
 #include "field_common.h"
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 #include "system/pms_data.h"
 #include "worldmap_def.h"
 #include "mapresource_def.h"
@@ -80,36 +80,36 @@
 #define GLOBAL extern
 #endif
 
-//’è‹`‚Å”j‚ê‚½¢ŠE‚Å‚Í“VŒóˆ—‚ğƒIƒt
+//å®šç¾©ã§ç ´ã‚ŒãŸä¸–ç•Œã§ã¯å¤©å€™å‡¦ç†ã‚’ã‚ªãƒ•
 #define TORNWORLD_WEATHER_OFF
 
 //==============================================================================
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿
 //--------------------------------------------------------------
 enum
 {
-	FIELDSYS_BLACTSET_FIELD_OBJ = 0,	///<ƒtƒB[ƒ‹ƒhOBJ add kaga
-	FIELDSYS_BLACTSET_DEBUG_KUSA,		///<‰¼‘—p add kaga
-	FIELDSYS_BLACTSET_COMM,				///<’ÊMƒGƒtƒFƒNƒg add ohno
-	FIELDSYS_BLACTSET_FIELD_EFFECT,		///<ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg add kaga
+	FIELDSYS_BLACTSET_FIELD_OBJ = 0,	///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ add kaga
+	FIELDSYS_BLACTSET_DEBUG_KUSA,		///<ä»®è‰ç”¨ add kaga
+	FIELDSYS_BLACTSET_COMM,				///<é€šä¿¡ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ add ohno
+	FIELDSYS_BLACTSET_FIELD_EFFECT,		///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ add kaga
 	
-	FIELDSYS_BLACTSET_NUM,				///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒg“o˜^”
+	FIELDSYS_BLACTSET_NUM,				///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç™»éŒ²æ•°
 };
 
 //add pl kaga 080621
-#define FLDOBJ_FRAME_TRANS_MAX_UNION (5) ///<ƒ†ƒjƒIƒ“—pFLDOBJƒtƒŒ[ƒ€“]‘—Å‘å”
+#define FLDOBJ_FRAME_TRANS_MAX_UNION (5) ///<ãƒ¦ãƒ‹ã‚ªãƒ³ç”¨FLDOBJãƒ•ãƒ¬ãƒ¼ãƒ è»¢é€æœ€å¤§æ•°
 
 //--------------------------------------------------------------
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //--------------------------------------------------------------
 #define FE_EFFECT_MAX			(FE_PROC_MAX)
 //#define FE_HEAP_SIZE			(0x18000)
-//#define FE_EOA_MAX				(64)	///<ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@EOAÅ‘å”
-#define FE_EOA_MAX				(80)	///<ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@EOAÅ‘å”
-#define FE_BLACT_MAX			(32)	///<ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒrƒ‹ƒ{[ƒhÅ‘å”
+//#define FE_EOA_MAX				(64)	///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€EOAæœ€å¤§æ•°
+#define FE_EOA_MAX				(80)	///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€EOAæœ€å¤§æ•°
+#define FE_BLACT_MAX			(32)	///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰æœ€å¤§æ•°
 #define FE_BLACT_MDL_MAX		(32)
 #define FE_BLACT_MDL_HEAP_SIZE	(0x0500*(FE_BLACT_MDL_MAX/2))
 #define FE_BLACT_ANM_MAX		(32)
@@ -118,19 +118,19 @@ enum
 #define FE_BLACT_TEX_HEAP_SIZE	(0x0800*FE_BLACT_TEX_MAX)
 
 //------------------------------------------------------------------
-///	ƒTƒu‰æ–Ê‚Ìí—Ş
+///	ã‚µãƒ–ç”»é¢ã®ç¨®é¡
 //------------------------------------------------------------------
 typedef enum {
-	FIELD_SUBSCRN_POKETCH = 1,		///<’Êíiƒ|ƒPƒbƒ`j
-	FIELD_SUBSCRN_UNDER,			///<’YziƒŒ[ƒ_[‰æ–Êj
-	FIELD_SUBSCRN_UNION,			///<ƒ†ƒjƒIƒ“ƒ‹[ƒ€ (Œf¦”Â‰æ–Ê)
-	FIELD_SUBSCRN_NO_POKETCH,		///<ƒ|ƒPƒbƒ`‚È‚µAƒ{[ƒ‹‚Ì‚İ‰æ–Ê
+	FIELD_SUBSCRN_POKETCH = 1,		///<é€šå¸¸ï¼ˆãƒã‚±ãƒƒãƒï¼‰
+	FIELD_SUBSCRN_UNDER,			///<ç‚­é‰±ï¼ˆãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ï¼‰
+	FIELD_SUBSCRN_UNION,			///<ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ  (æ²ç¤ºæ¿ç”»é¢)
+	FIELD_SUBSCRN_NO_POKETCH,		///<ãƒã‚±ãƒƒãƒãªã—ã€ãƒœãƒ¼ãƒ«ã®ã¿ç”»é¢
 
 	FIELD_SUBSCRN_MAX,
 }FIELD_SUBSCRN_TYPE;
 
 //--------------------------------------------------------------
-///	ƒJƒƒ‰	test kaga 070927
+///	ã‚«ãƒ¡ãƒ©	test kaga 070927
 //--------------------------------------------------------------
 typedef enum
 {
@@ -142,22 +142,22 @@ typedef enum
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	§Œäƒ[ƒN—p’è‹`
+///	åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ç”¨å®šç¾©
 //--------------------------------------------------------------
 typedef struct _CONTROL_WORK CONTROL_WORK;
 
 //--------------------------------------------------------------
-///	ENCOUNT_CHECK\‘¢‘Ì
+///	ENCOUNT_CHECKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct {
-	u16	walk_count;		// •à”ƒJƒEƒ“ƒ^
-//	u16	before_attr;	// ‘O‰ñ‚ÌƒAƒgƒŠƒrƒ…[ƒg
-//	u16	plus_per;		// Šm—¦ƒvƒ‰ƒX’l
+	u16	walk_count;		// æ­©æ•°ã‚«ã‚¦ãƒ³ã‚¿
+//	u16	before_attr;	// å‰å›ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+//	u16	plus_per;		// ç¢ºç‡ãƒ—ãƒ©ã‚¹å€¤
 	u16	WinPokeCount;
 }ENCOUNT_CHECK;
 
 //--------------------------------------------------------------
-///EVENTDATA\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+///EVENTDATAæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 //--------------------------------------------------------------
 typedef struct EVENT_DATA EVENT_DATA;
 
@@ -168,106 +168,106 @@ typedef struct MMDL_WORK MMDL_WORK;
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒv“àŒÀ’èƒ[ƒN
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—å†…é™å®šãƒ¯ãƒ¼ã‚¯
  *
- * FIELDSYS_WORK‚Ìƒƒ“ƒo‚Ì’†‚ÅAƒtƒB[ƒ‹ƒhƒ}ƒbƒv“à‚Å‚µ‚©
- * ƒAƒNƒZƒX‚µ‚È‚¢‚à‚Ì‚Í‚±‚¿‚ç‚ÖˆÚ‚·‚±‚ÆB
+ * FIELDSYS_WORKã®ãƒ¡ãƒ³ãƒã®ä¸­ã§ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—å†…ã§ã—ã‹
+ * ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ã‚‚ã®ã¯ã“ã¡ã‚‰ã¸ç§»ã™ã“ã¨ã€‚
  */
 //--------------------------------------------------------------
 typedef struct FIELDMAP_WORK FIELDMAP_WORK;
 
 //--------------------------------------------------------------
-///ƒVƒXƒeƒ€ƒRƒ“ƒgƒ[ƒ‹ƒ[ƒN\‘¢‘Ì
+///ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _FIELDSYS_WORK	{
 
-	CONTROL_WORK * ctrl;	///<§Œä—pƒ[ƒN
+	CONTROL_WORK * ctrl;	///<åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯
 
 	FIELDMAP_WORK * fldmap;
 
-	GF_BGL_INI * bgl;		///<BGLƒf[ƒ^
+	GF_BGL_INI * bgl;		///<BGLãƒ‡ãƒ¼ã‚¿
 
-	SAVEDATA * savedata;	///<ƒZ[ƒu‚³‚ê‚éƒQ[ƒ€isƒf[ƒ^
+	SAVEDATA * savedata;	///<ã‚»ãƒ¼ãƒ–ã•ã‚Œã‚‹ã‚²ãƒ¼ãƒ é€²è¡Œãƒ‡ãƒ¼ã‚¿
 
-	GMEVENT_CONTROL * event;	///<ƒCƒxƒ“ƒg§Œä
+	GMEVENT_CONTROL * event;	///<ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡
 
-	EVENT_DATA * eventdata;		///<ƒ][ƒ“–ˆƒCƒxƒ“ƒgƒf[ƒ^
+	EVENT_DATA * eventdata;		///<ã‚¾ãƒ¼ãƒ³æ¯ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 
-	FIELD_SUBSCRN_TYPE subscreen;	///<ƒTƒu‰æ–Ê‚Ìí—Şw’è
-	//fldmap‚ÉˆÚ“®	POKETCH_WORK * poketch;
+	FIELD_SUBSCRN_TYPE subscreen;	///<ã‚µãƒ–ç”»é¢ã®ç¨®é¡æŒ‡å®š
+	//fldmapã«ç§»å‹•	POKETCH_WORK * poketch;
 
-	LOCATION_WORK * location;		///<ˆÊ’uî•ñ
+	LOCATION_WORK * location;		///<ä½ç½®æƒ…å ±
 	
-	FIELD_CAMERA_TYPE camera_type;	//ƒJƒƒ‰ƒ^ƒCƒv test kaga 070927
-	GF_CAMERA_PTR	camera_ptr;		//ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
-	DMC_PTR	map_cont_dat;	//•ªŠ„ƒ[ƒh\‘¢‘Ì‚ÌŒo—RQÆ—pƒ|ƒCƒ“ƒ^
+	FIELD_CAMERA_TYPE camera_type;	//ã‚«ãƒ¡ãƒ©ã‚¿ã‚¤ãƒ— test kaga 070927
+	GF_CAMERA_PTR	camera_ptr;		//ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
+	DMC_PTR	map_cont_dat;	//åˆ†å‰²ãƒ­ãƒ¼ãƒ‰æ§‹é€ ä½“ã®çµŒç”±å‚ç…§ç”¨ãƒã‚¤ãƒ³ã‚¿
 	
 	WORLD_MAP_PTR World;
 
-	MAP_RESOURCE_PTR MapResource;	//ƒtƒB[ƒ‹ƒh•\¦ƒŠƒ\[ƒXQÆ—pƒ|ƒCƒ“ƒ^
-	MMDL_WORK * mmdl;			///<ƒGƒŠƒA•Ê“®ìƒ‚ƒfƒ‹ƒŠƒXƒgƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MAP_RESOURCE_PTR MapResource;	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰è¡¨ç¤ºãƒªã‚½ãƒ¼ã‚¹å‚ç…§ç”¨ãƒã‚¤ãƒ³ã‚¿
+	MMDL_WORK * mmdl;			///<ã‚¨ãƒªã‚¢åˆ¥å‹•ä½œãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	///PCD_PTR player_cont_dat;//©‹@À•W\‘¢‘Ì‚ÌŒo—RQÆ—pƒ|ƒCƒ“ƒ^
-	FIELD_OBJ_SYS_PTR fldobjsys;	//ƒtƒB[ƒ‹ƒhOBJQÆ*
-	PLAYER_STATE_PTR player;	//©‹@î•ñQÆƒ|ƒCƒ“ƒ^
+	///PCD_PTR player_cont_dat;//è‡ªæ©Ÿåº§æ¨™æ§‹é€ ä½“ã®çµŒç”±å‚ç…§ç”¨ãƒã‚¤ãƒ³ã‚¿
+	FIELD_OBJ_SYS_PTR fldobjsys;	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‚ç…§*
+	PLAYER_STATE_PTR player;	//è‡ªæ©Ÿæƒ…å ±å‚ç…§ãƒã‚¤ãƒ³ã‚¿
 	
-	FE_SYS *fes;				//ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgQÆƒ|ƒCƒ“ƒ^
+	FE_SYS *fes;				//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‚ç…§ãƒã‚¤ãƒ³ã‚¿
 	
-	GLST_DATA_PTR		glst_data;		// ƒ‰ƒCƒgEƒ}ƒeƒŠƒAƒ‹‚Ìó‘Ô•Û‘¶—Ìˆæ
-	FOG_DATA_PTR		fog_data;		// ƒtƒHƒO‚Ìó‘Ô•Û‘¶—Ìˆæ
-	LIGHT_CONT_PTR		light_cont_data;// ‚P“ú•\Œ»ƒ‰ƒCƒgEƒ}ƒeƒŠƒAƒ‹‘€ìƒf[ƒ^
-	//fldmap‚ÉˆÚ“®	WEATHER_MANAGER_PTR weather_data;	// “V‹Cƒf[ƒ^
-	//fldmap‚ÉˆÚ“®	FIELD_ANIME_PTR		field_trans_anime;	// “]‘—ƒAƒjƒƒVƒXƒeƒ€
+	GLST_DATA_PTR		glst_data;		// ãƒ©ã‚¤ãƒˆãƒ»ãƒãƒ†ãƒªã‚¢ãƒ«ã®çŠ¶æ…‹ä¿å­˜é ˜åŸŸ
+	FOG_DATA_PTR		fog_data;		// ãƒ•ã‚©ã‚°ã®çŠ¶æ…‹ä¿å­˜é ˜åŸŸ
+	LIGHT_CONT_PTR		light_cont_data;// ï¼‘æ—¥è¡¨ç¾ãƒ©ã‚¤ãƒˆãƒ»ãƒãƒ†ãƒªã‚¢ãƒ«æ“ä½œãƒ‡ãƒ¼ã‚¿
+	//fldmapã«ç§»å‹•	WEATHER_MANAGER_PTR weather_data;	// å¤©æ°—ãƒ‡ãƒ¼ã‚¿
+	//fldmapã«ç§»å‹•	FIELD_ANIME_PTR		field_trans_anime;	// è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ 
 	FLD_3D_ANM_MNG_PTR		field_3d_anime;
 	ANIME_CONT_MNG_PTR	AnimeContMng;
 	SMD_PTR				SpMatData;
 	MTL_CONST_PTR		map_tool_list;
 ///	DFL_CONST_PTR		div_func_list;
 	DIV_MAP_MODE		DivMapMode;
-	//fldmap‚ÉˆÚ“®	PNC_PTR				place_name_cont;//’n–¼•\¦
+	//fldmapã«ç§»å‹•	PNC_PTR				place_name_cont;//åœ°åè¡¨ç¤º
 
-	BOARD_WORK * board;		// ŠÅ”Â•\¦
+	BOARD_WORK * board;		// çœ‹æ¿è¡¨ç¤º
 	
 	BOOL	main_mode_flag;
 
-	UG_RADAR_WORK    *UnderGroundRadar;		// ’YzƒŒ[ƒ_[ƒ[ƒNQÆ—pƒ|ƒCƒ“ƒ^
-	MAP_MODE MapMode;		//’nã‚©’n‰º‚©‚ğ”»•Ê‚·‚é‚Ì‚Ég—p
+	UG_RADAR_WORK    *UnderGroundRadar;		// ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ãƒ¯ãƒ¼ã‚¯å‚ç…§ç”¨ãƒã‚¤ãƒ³ã‚¿
+	MAP_MODE MapMode;		//åœ°ä¸Šã‹åœ°ä¸‹ã‹ã‚’åˆ¤åˆ¥ã™ã‚‹ã®ã«ä½¿ç”¨
 	const MAP_MODE_DATA * MapModeData;
 
-	ENCOUNT_CHECK	encount;	// ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN—pƒ[ƒN
-	COMM_UNIONROOM_WORK *union_work;			// ƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒ[ƒNƒ|ƒCƒ“ƒ^
-	COMM_UNIONROOM_VIEW *union_view;			// ƒ†ƒjƒIƒ“ƒ‹[ƒ€•`‰æˆ——pƒ[ƒN
-	UNION_BOARD_WORK    *union_board;			// ƒ†ƒjƒIƒ“ƒ‹[ƒ€Œf¦”ÂiƒTƒu‰æ–Êjƒ[ƒN
+	ENCOUNT_CHECK	encount;	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ç”¨ãƒ¯ãƒ¼ã‚¯
+	COMM_UNIONROOM_WORK *union_work;			// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+	COMM_UNIONROOM_VIEW *union_view;			// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ æç”»å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯
+	UNION_BOARD_WORK    *union_board;			// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ æ²ç¤ºæ¿ï¼ˆã‚µãƒ–ç”»é¢ï¼‰ãƒ¯ãƒ¼ã‚¯
 	TRADELIST_WORK      *tradelist_work;
 
-	TP_TO_3D_PTR		TpTo3DPtr;				//3D°–Ê‚Æ‚Ìƒ^ƒbƒ`”»’è—p
+	TP_TO_3D_PTR		TpTo3DPtr;				//3DåºŠé¢ã¨ã®ã‚¿ãƒƒãƒåˆ¤å®šç”¨
 
-	int	startmenu_pos;					//ƒtƒB[ƒ‹ƒh/’n‰º‚Ìƒƒjƒ…[‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+	int	startmenu_pos;					//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰/åœ°ä¸‹ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 
 	SWAY_GRASS_PTR SwayGrass;
-	BAG_CURSOR * bag_cursor;			//ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹î•ñ
-	FNOTE_DATA * fnote;					//‘ÎÛ–`Œ¯ƒm[ƒgƒy[ƒW‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	BAG_CURSOR * bag_cursor;			//ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«æƒ…å ±
+	FNOTE_DATA * fnote;					//å¯¾è±¡å†’é™ºãƒãƒ¼ãƒˆãƒšãƒ¼ã‚¸ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	EHL_PTR	ExHeightList;
-	M3DOL_PTR Map3DObjExp;			//Šg’£”z’uƒ‚ƒfƒ‹
+	M3DOL_PTR Map3DObjExp;			//æ‹¡å¼µé…ç½®ãƒ¢ãƒ‡ãƒ«
 
-	HTD_PTR HoneyTreePtr;			//–¨“h‚è—p
+	HTD_PTR HoneyTreePtr;			//èœœå¡—ã‚Šç”¨
 
-	BTOWER_SCRWORK*	btower_wk;		///<ƒoƒgƒ‹ƒ^ƒ[§Œä—pƒ[ƒNƒ|ƒCƒ“ƒ^
-    const REGULATION* regulation;     ///< ¡‰ñ“K—p‚³‚ê‚éƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒ|ƒCƒ“ƒ^
-	ZKN_DATA_WORK*	p_zukandata;	///<}ŠÓƒOƒ[ƒoƒ‹ƒf[ƒ^
-	BOOL scope_mode_flag;				///<–]‰“‹¾ƒ‚[ƒhƒtƒ‰ƒO
+	BTOWER_SCRWORK*	btower_wk;		///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+    const REGULATION* regulation;     ///< ä»Šå›é©ç”¨ã•ã‚Œã‚‹ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒã‚¤ãƒ³ã‚¿
+	ZKN_DATA_WORK*	p_zukandata;	///<å›³é‘‘ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	BOOL scope_mode_flag;				///<æœ›é é¡ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 	
-	BATTLE_CURSOR_DISP *battle_cursor;		///<í“¬ƒJ[ƒ\ƒ‹‚Ì‰Šú•\¦ó‘Ô
+	BATTLE_CURSOR_DISP *battle_cursor;		///<æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®åˆæœŸè¡¨ç¤ºçŠ¶æ…‹
 
-	u32	fldmap_update_msk;			///< ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒAƒbƒvƒf[ƒgƒ}ƒXƒN
+	u32	fldmap_update_msk;			///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒã‚¹ã‚¯
 
-	WFLBY_COUNTER_TIME	wflby_counter;	///< WiFi‚Ğ‚ë‚Î“üºŠÔ
+	WFLBY_COUNTER_TIME	wflby_counter;	///< WiFiã²ã‚ã°å…¥å®¤æ™‚é–“
 };
 
 
 
 //==============================================================================
-//	ŠO•”QÆ
+//	å¤–éƒ¨å‚ç…§
 //==============================================================================
 GLOBAL void FieldSystemProc_SeqHold(void);
 GLOBAL void FieldSystemProc_SeqHoldEnd(void);
@@ -283,7 +283,7 @@ extern BOOL GameSystem_CheckFieldMain(FIELDSYS_WORK * fsys);
 extern void GameSystem_CreateFieldProc(FIELDSYS_WORK * fsys);
 extern void GameSystem_FinishFieldProc(FIELDSYS_WORK * fsys);
 
-//‚½‚Ô‚ñƒfƒoƒbƒO‚Å‚µ‚©g—p‚µ‚È‚¢
+//ãŸã¶ã‚“ãƒ‡ãƒãƒƒã‚°ã§ã—ã‹ä½¿ç”¨ã—ãªã„
 extern void GameSystem_FinishGame(FIELDSYS_WORK * fsys);
 
 
@@ -296,7 +296,7 @@ extern SAVEDATA * GameSystem_GetSaveData(void * fsys);
 #undef GLOBAL
 
 
-//ƒTƒuƒvƒƒZƒX‚ÌQÆéŒ¾‚Í‚±‚Ì’†‚Éc
+//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã®å‚ç…§å®£è¨€ã¯ã“ã®ä¸­ã«â€¦
 #include "field_subproc.h"
 
 #endif	/* __FIELDSYS_H__ */

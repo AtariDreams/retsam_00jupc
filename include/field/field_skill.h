@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_skill.h
- * @brief	�t�B�[���h�Z�����i��`�Z�Ȃǁj
+ * @brief	フィールド技処理（秘伝技など）
  * @author	Hiroyuki Nakamura
  * @date	2005.12.01
  */
@@ -17,71 +17,71 @@
 
 
 //============================================================================================
-//	�萔��`
+//	定数定義
 //============================================================================================
-// �Z�C���f�b�N�X�i�|�P�������X�g�Ɠ������тɂ��邱�ƁI�j
-#define	FLD_SKILL_IAIGIRI		( 0 )		// ����������
-#define	FLD_SKILL_SORAWOTOBU	( 1 )		// ������Ƃ�
-#define	FLD_SKILL_NAMINORI		( 2 )		// �Ȃ݂̂�
-#define	FLD_SKILL_KAIRIKI		( 3 )		// �����肫
-#define	FLD_SKILL_KIRIBARAI		( 4 )		// ����΂炢
-#define	FLD_SKILL_IWAKUDAKI		( 5 )		// ���킭����
-#define	FLD_SKILL_TAKINOBORI	( 6 )		// �����̂ڂ�
-#define	FLD_SKILL_ROCKCLIMB		( 7 )		// ���b�N�N���C��
-#define	FLD_SKILL_FLASH			( 8 )		// �t���b�V��
-#define	FLD_SKILL_TELEPORT		( 9 )		// �e���|�[�g
-#define	FLD_SKILL_ANAWOHORU		( 10 )		// ���Ȃ��ق�
-#define	FLD_SKILL_AMAIKAORI		( 11 )		// ���܂�������
-#define	FLD_SKILL_OSYABERI		( 12 )		// ������ׂ�
+// 技インデックス（ポケモンリストと同じ並びにすること！）
+#define	FLD_SKILL_IAIGIRI		( 0 )		// いあいぎり
+#define	FLD_SKILL_SORAWOTOBU	( 1 )		// そらをとぶ
+#define	FLD_SKILL_NAMINORI		( 2 )		// なみのり
+#define	FLD_SKILL_KAIRIKI		( 3 )		// かいりき
+#define	FLD_SKILL_KIRIBARAI		( 4 )		// きりばらい
+#define	FLD_SKILL_IWAKUDAKI		( 5 )		// いわくだき
+#define	FLD_SKILL_TAKINOBORI	( 6 )		// たきのぼり
+#define	FLD_SKILL_ROCKCLIMB		( 7 )		// ロッククライム
+#define	FLD_SKILL_FLASH			( 8 )		// フラッシュ
+#define	FLD_SKILL_TELEPORT		( 9 )		// テレポート
+#define	FLD_SKILL_ANAWOHORU		( 10 )		// あなをほる
+#define	FLD_SKILL_AMAIKAORI		( 11 )		// あまいかおり
+#define	FLD_SKILL_OSYABERI		( 12 )		// おしゃべり
 
-// �Z�g�p���[�N�ւ̕s���S�^�|�C���^
+// 技使用ワークへの不完全型ポインタ
 typedef struct SKILLUSE_WORK SKILLUSE_WORK;
 
-// �Z�g�p�`�F�b�N���[�N�ւ̕s���S�^�|�C���^
+// 技使用チェックワークへの不完全型ポインタ
 typedef struct SKILLCHECK_WORK SKILLCHECK_WORK;
 
-typedef int (*SKILLCHECK_FUNC)(const SKILLCHECK_WORK*);	// �Z�g�p�`�F�b�N�֐�
+typedef int (*SKILLCHECK_FUNC)(const SKILLCHECK_WORK*);	// 技使用チェック関数
 
-typedef void (*SKILLUSE_FUNC)(SKILLUSE_WORK*, const SKILLCHECK_WORK *);	// �Z�g�p�֐�
+typedef void (*SKILLUSE_FUNC)(SKILLUSE_WORK*, const SKILLCHECK_WORK *);	// 技使用関数
 
-// �Z�g�p�֐��擾�p�����[�^
+// 技使用関数取得パラメータ
 enum {
-	FIELDSKILL_PRM_USEFUNC = 0,	// �g�p�֐�
-	FIELDSKILL_PRM_CHECKFUNC	// �`�F�b�N�֐�
+	FIELDSKILL_PRM_USEFUNC = 0,	// 使用関数
+	FIELDSKILL_PRM_CHECKFUNC	// チェック関数
 };
 
-// �g�p�`�F�b�N�̖߂�l
+// 使用チェックの戻り値
 enum {
-	FIELDSKILL_USE_TRUE = 0,	// �g�p�\ 
-	FIELDSKILL_USE_FALSE,		// �g�p�s�i�����ł͎g���܂���j
-	FIELDSKILL_NO_BADGE,		// �g�p�s�E�o�b�W�Ȃ�
-	FIELDSKILL_COMPANION,		// �g�p�s�E�A�����
-	FIELDSKILL_PLAYER_SWIM,		// �g�p�s�E�Ȃ݂̂蒆
+	FIELDSKILL_USE_TRUE = 0,	// 使用可能 
+	FIELDSKILL_USE_FALSE,		// 使用不可（ここでは使えません）
+	FIELDSKILL_NO_BADGE,		// 使用不可・バッジなし
+	FIELDSKILL_COMPANION,		// 使用不可・連れ歩き
+	FIELDSKILL_PLAYER_SWIM,		// 使用不可・なみのり中
 };
 
 
 //============================================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �g�p�֐��擾
+ * 使用関数取得
  *
- * @param	prm		�擾�p�����[�^
- * @param	id		�֐�ID
+ * @param	prm		取得パラメータ
+ * @param	id		関数ID
  *
- * @return	�g�p�֐�
+ * @return	使用関数
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 FieldSkill_FuncGet( u16 prm, u16 id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �g�p�`�F�b�N���[�N�쐬
+ * 使用チェックワーク作成
  *
- * @param	fsys	�t�B�[���h���[�N
- * @param	id		�`�F�b�N���[�N
+ * @param	fsys	フィールドワーク
+ * @param	id		チェックワーク
  *
  * @return	none
  */

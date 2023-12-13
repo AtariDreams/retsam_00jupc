@@ -18,7 +18,7 @@
   small fix
 
   Revision 1.16  2007/07/31 02:15:14  tokunaga_eiji
-  RTC_GetDateTimeExByTick �֐��ƕt����������֐���ǉ��B
+  RTC_GetDateTimeExByTick 関数と付随する内部関数を追加。
 
   Revision 1.15  2006/07/05 09:12:56  yosizaki
   fix about include header.
@@ -33,35 +33,35 @@
   do-indent.
 
   Revision 1.11  2004/11/02 04:13:31  terui
-  �R�����g�C���B
+  コメント修正。
 
   Revision 1.10  2004/08/19 13:43:01  terui
-  HourFormat�֘A�̒�`���폜�B
+  HourFormat関連の定義を削除。
 
   Revision 1.9  2004/08/19 12:50:36  terui
-  24���ԕ\�L�Œ艻�ɔ����C���B
+  24時間表記固定化に伴う修正。
 
   Revision 1.8  2004/08/19 07:49:37  terui
-  RTC_GetAlarmStatusAsync�֐�����"Adjust"�ł̏㏑���ҏW�����̏�ԂɏC���B
+  RTC_GetAlarmStatusAsync関数内の"Adjust"での上書き編集を元の状態に修正。
 
   Revision 1.7  2004/08/04 05:31:48  miya
-  �H��ݒ�p�Ɋ֐��ǉ�
+  工場設定用に関数追加
 
   Revision 1.6  2004/07/01 03:16:52  yosizaki
   change around RTCHourFormat to internal use.
 
   Revision 1.5  2004/05/31 08:44:45  terui
-  PXI�R�[���o�b�N�֐��̃��W�b�N��ύX�B
+  PXIコールバック関数のロジックを変更。
 
   Revision 1.4  2004/05/18 01:37:33  terui
-  ARM7�Ƃ�PXI�̓����@�\�ɑΉ�
+  ARM7とのPXIの同期機構に対応
 
   Revision 1.3  2004/05/18 01:15:12  terui
-  ARM7�Ƃ�PXI�̓����@�\�ɑΉ�
+  ARM7とのPXIの同期機構に対応
 
   Revision 1.2  2004/05/17 11:05:20  terui
-  PXI�������ʂ�API��p�������ʂɉ����B
-  �񓯊��֐���BOOL���珈�����ʎ�ʂ�Ԃ��悤�ɕύX�B
+  PXI処理結果をAPI専用処理結果に改造。
+  非同期関数をBOOLから処理結果種別を返すように変更。
 
   Revision 1.1  2004/05/12 02:36:08  terui
   initial upload
@@ -74,66 +74,66 @@
 
 
 /*---------------------------------------------------------------------------*
-    �\���̒�`
+    構造体定義
  *---------------------------------------------------------------------------*/
-// �񓯊��֐��r�������p���b�N��`
+// 非同期関数排他処理用ロック定義
 typedef enum RTCLock
 {
-    RTC_LOCK_OFF = 0,                  // ���b�N�J�����
-    RTC_LOCK_ON,                       // ���b�N�{�����
+    RTC_LOCK_OFF = 0,                  // ロック開錠状態
+    RTC_LOCK_ON,                       // ロック施錠状態
     RTC_LOCK_MAX
 }
 RTCLock;
 
-// �A���R�}���h���M���܂ޏ����p�̃V�[�P���X��`
+// 連続コマンド送信を含む処理用のシーケンス定義
 typedef enum RTCSequence
 {
-    RTC_SEQ_GET_DATE = 0,              // ���t�擾�V�[�P���X
-    RTC_SEQ_GET_TIME,                  // �����擾�V�[�P���X
-    RTC_SEQ_GET_DATETIME,              // ���t�E�����擾�V�[�P���X
-    RTC_SEQ_SET_DATE,                  // ���t�ݒ�V�[�P���X
-    RTC_SEQ_SET_TIME,                  // �����ݒ�V�[�P���X
-    RTC_SEQ_SET_DATETIME,              // ���t�E�����ݒ�V�[�P���X
-    RTC_SEQ_GET_ALARM1_STATUS,         // �A���[���P��Ԏ擾�V�[�P���X
-    RTC_SEQ_GET_ALARM2_STATUS,         // �A���[���Q��Ԏ擾�V�[�P���X
-    RTC_SEQ_GET_ALARM_PARAM,           // �A���[���ݒ�l�擾�V�[�P���X
-    RTC_SEQ_SET_ALARM1_STATUS,         // �A���[���P��ԕύX�V�[�P���X
-    RTC_SEQ_SET_ALARM2_STATUS,         // �A���[���Q��ԕύX�V�[�P���X
-    RTC_SEQ_SET_ALARM1_PARAM,          // �A���[���P�ݒ�l�ύX�V�[�P���X
-    RTC_SEQ_SET_ALARM2_PARAM,          // �A���[���Q�ݒ�l�ύX�V�[�P���X
-    RTC_SEQ_SET_HOUR_FORMAT,           // ���ԕ\�L�t�H�[�}�b�g�ύX�V�[�P���X
-    RTC_SEQ_SET_REG_STATUS2,           // �X�e�[�^�X�Q���W�X�^�������݃V�[�P���X
-    RTC_SEQ_SET_REG_ADJUST,            // �A�W���X�g���W�X�^�������݃V�[�P���X
+    RTC_SEQ_GET_DATE = 0,              // 日付取得シーケンス
+    RTC_SEQ_GET_TIME,                  // 時刻取得シーケンス
+    RTC_SEQ_GET_DATETIME,              // 日付・時刻取得シーケンス
+    RTC_SEQ_SET_DATE,                  // 日付設定シーケンス
+    RTC_SEQ_SET_TIME,                  // 時刻設定シーケンス
+    RTC_SEQ_SET_DATETIME,              // 日付・時刻設定シーケンス
+    RTC_SEQ_GET_ALARM1_STATUS,         // アラーム１状態取得シーケンス
+    RTC_SEQ_GET_ALARM2_STATUS,         // アラーム２状態取得シーケンス
+    RTC_SEQ_GET_ALARM_PARAM,           // アラーム設定値取得シーケンス
+    RTC_SEQ_SET_ALARM1_STATUS,         // アラーム１状態変更シーケンス
+    RTC_SEQ_SET_ALARM2_STATUS,         // アラーム２状態変更シーケンス
+    RTC_SEQ_SET_ALARM1_PARAM,          // アラーム１設定値変更シーケンス
+    RTC_SEQ_SET_ALARM2_PARAM,          // アラーム２設定値変更シーケンス
+    RTC_SEQ_SET_HOUR_FORMAT,           // 時間表記フォーマット変更シーケンス
+    RTC_SEQ_SET_REG_STATUS2,           // ステータス２レジスタ書き込みシーケンス
+    RTC_SEQ_SET_REG_ADJUST,            // アジャストレジスタ書き込みシーケンス
     RTC_SEQ_MAX
 }
 RTCSequence;
 
-// ���[�N�p�\����
+// ワーク用構造体
 typedef struct RTCWork
 {
-    u32     lock;                      // �r�����b�N
-    RTCCallback callback;              // �񓯊��֐��R�[���o�b�N�ޔ�p
-    void   *buffer[2];                 // �񓯊��֐��p�����[�^�ޔ�p
-    void   *callbackArg;               // �R�[���o�b�N�֐��̈����ۑ��p
-    u32     sequence;                  // �A���������[�h�Ǘ��p
-    u32     index;                     // �A�������̏󋵊Ǘ��p
-    RTCInterrupt interrupt;            // �A���[���ʒm���̌Ăяo���֐��ޔ�p
-    RTCResult commonResult;            // �񓯊��֐��̏������ʑޔ�p
+    u32     lock;                      // 排他ロック
+    RTCCallback callback;              // 非同期関数コールバック退避用
+    void   *buffer[2];                 // 非同期関数パラメータ退避用
+    void   *callbackArg;               // コールバック関数の引数保存用
+    u32     sequence;                  // 連続処理モード管理用
+    u32     index;                     // 連続処理の状況管理用
+    RTCInterrupt interrupt;            // アラーム通知時の呼び出し関数退避用
+    RTCResult commonResult;            // 非同期関数の処理結果退避用
 
 }
 RTCWork;
 
 /*---------------------------------------------------------------------------*
-    �ÓI�ϐ���`
+    静的変数定義
  *---------------------------------------------------------------------------*/
-static u16 rtcInitialized;             // �������m�F�t���O
-static RTCWork rtcWork;                // ���[�N�ϐ����܂Ƃ߂��\����
-static u16     rtcTickInitialized;     // �`�b�N�������m�F�t���O
-static OSTick  rtcInitialTotalTicks;   // �`�b�N���������ɕۑ������ 2000/01/01
-                                       // 00:00:00 ����̑��`�b�N���B
+static u16 rtcInitialized;             // 初期化確認フラグ
+static RTCWork rtcWork;                // ワーク変数をまとめた構造体
+static u16     rtcTickInitialized;     // チック初期化確認フラグ
+static OSTick  rtcInitialTotalTicks;   // チック初期化時に保存される 2000/01/01
+                                       // 00:00:00 からの総チック数。
 
 /*---------------------------------------------------------------------------*
-    �����֐���`
+    内部関数定義
  *---------------------------------------------------------------------------*/
 static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err);
 static u32 RtcBCD2HEX(u32 bcd);
@@ -150,11 +150,11 @@ static void RtcConvertTickToDateTimeEx(RTCDate * date, RTCTimeEx *time, OSTick t
 /*---------------------------------------------------------------------------*
   Name:         RTC_Init
 
-  Description:  RTC���C�u����������������B
-       Notice:  �R���|�[�l���g���̏������ɂ���ēd�������`�F�b�N���s����B
-                ���̍ہARTC�ւ̓d����������U��~����Ă����ꍇ��RTC������Ԃ�
-                ���Z�b�g����A2000/01/01/00:00:00(12���ԕ\�L)0�j��(���j��)�ɂȂ�B
-                �A���[���ݒ�l��0�N���A�����B
+  Description:  RTCライブラリを初期化する。
+       Notice:  コンポーネント側の初期化によって電源投入チェックが行われる。
+                この際、RTCへの電源供給が一旦停止されていた場合はRTC内部状態は
+                リセットされ、2000/01/01/00:00:00(12時間表記)0曜日(日曜日)になる。
+                アラーム設定値も0クリアされる。
 
   Arguments:    None.
 
@@ -162,40 +162,40 @@ static void RtcConvertTickToDateTimeEx(RTCDate * date, RTCTimeEx *time, OSTick t
  *---------------------------------------------------------------------------*/
 void RTC_Init(void)
 {
-    // ���������m�F
+    // 未初期化確認
     if (rtcInitialized)
     {
         return;
     }
     rtcInitialized = 1;
 
-    // ���[�N�p�ϐ�������
+    // ワーク用変数初期化
     rtcWork.lock = RTC_LOCK_OFF;
     rtcWork.callback = NULL;
     rtcWork.interrupt = NULL;
     rtcWork.buffer[0] = NULL;
     rtcWork.buffer[1] = NULL;
 
-    // ARM7��RTC���C�u�������J�n�����܂ő҂�
+    // ARM7のRTCライブラリが開始されるまで待つ
     PXI_Init();
     while (!PXI_IsCallbackReady(PXI_FIFO_TAG_RTC, PXI_PROC_ARM7))
     {
     }
 
-    // PXI�R�[���o�b�N�֐���ݒ�
+    // PXIコールバック関数を設定
     PXI_SetFifoRecvCallback(PXI_FIFO_TAG_RTC, RtcCommonCallback);
 }
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetDateAsync
 
-  Description:  RTC������t�f�[�^��񓯊��œǂݏo���B
+  Description:  RTCから日付データを非同期で読み出す。
 
-  Arguments:    date      - ���t�f�[�^���i�[����o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    date      - 日付データを格納するバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetDateAsync(RTCDate *date, RTCCallback callback, void *arg)
 {
@@ -204,7 +204,7 @@ RTCResult RTC_GetDateAsync(RTCDate *date, RTCCallback callback, void *arg)
     SDK_ASSERT(date != NULL);
     SDK_ASSERT(callback != NULL);
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -214,7 +214,7 @@ RTCResult RTC_GetDateAsync(RTCDate *date, RTCCallback callback, void *arg)
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // ���t�ǂݏo���R�}���h�𑗐M
+    // 日付読み出しコマンドを送信
     rtcWork.sequence = RTC_SEQ_GET_DATE;
     rtcWork.index = 0;
     rtcWork.buffer[0] = (void *)date;
@@ -233,11 +233,11 @@ RTCResult RTC_GetDateAsync(RTCDate *date, RTCCallback callback, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetDate
 
-  Description:  RTC������t�f�[�^��ǂݏo���B
+  Description:  RTCから日付データを読み出す。
 
-  Arguments:    date      - ���t�f�[�^���i�[����o�b�t�@���w��B
+  Arguments:    date      - 日付データを格納するバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetDate(RTCDate *date)
 {
@@ -252,13 +252,13 @@ RTCResult RTC_GetDate(RTCDate *date)
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetTimeAsync
 
-  Description:  RTC���玞���f�[�^��񓯊��œǂݏo���B
+  Description:  RTCから時刻データを非同期で読み出す。
 
-  Arguments:    time      - �����f�[�^���i�[����o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    time      - 時刻データを格納するバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetTimeAsync(RTCTime *time, RTCCallback callback, void *arg)
 {
@@ -267,7 +267,7 @@ RTCResult RTC_GetTimeAsync(RTCTime *time, RTCCallback callback, void *arg)
     SDK_NULL_ASSERT(time);
     SDK_NULL_ASSERT(callback);
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -277,7 +277,7 @@ RTCResult RTC_GetTimeAsync(RTCTime *time, RTCCallback callback, void *arg)
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // �����ǂݏo���R�}���h�𑗐M
+    // 時刻読み出しコマンドを送信
     rtcWork.sequence = RTC_SEQ_GET_TIME;
     rtcWork.index = 0;
     rtcWork.buffer[0] = (void *)time;
@@ -296,11 +296,11 @@ RTCResult RTC_GetTimeAsync(RTCTime *time, RTCCallback callback, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetTime
 
-  Description:  RTC���玞���f�[�^��ǂݏo���B
+  Description:  RTCから時刻データを読み出す。
 
-  Arguments:    time      - �����f�[�^���i�[����o�b�t�@���w��B
+  Arguments:    time      - 時刻データを格納するバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetTime(RTCTime *time)
 {
@@ -315,14 +315,14 @@ RTCResult RTC_GetTime(RTCTime *time)
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetDateTimeAsync
 
-  Description:  RTC������t�E�����f�[�^��񓯊��œǂݏo���B
+  Description:  RTCから日付・時刻データを非同期で読み出す。
 
-  Arguments:    date      - ���t�f�[�^���i�[����o�b�t�@���w��B
-                time      - �����f�[�^���i�[����o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    date      - 日付データを格納するバッファを指定。
+                time      - 時刻データを格納するバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetDateTimeAsync(RTCDate *date, RTCTime *time, RTCCallback callback, void *arg)
 {
@@ -332,7 +332,7 @@ RTCResult RTC_GetDateTimeAsync(RTCDate *date, RTCTime *time, RTCCallback callbac
     SDK_NULL_ASSERT(time);
     SDK_NULL_ASSERT(callback);
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -342,7 +342,7 @@ RTCResult RTC_GetDateTimeAsync(RTCDate *date, RTCTime *time, RTCCallback callbac
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // �����ǂݏo���R�}���h�𑗐M
+    // 時刻読み出しコマンドを送信
     rtcWork.sequence = RTC_SEQ_GET_DATETIME;
     rtcWork.index = 0;
     rtcWork.buffer[0] = (void *)date;
@@ -362,12 +362,12 @@ RTCResult RTC_GetDateTimeAsync(RTCDate *date, RTCTime *time, RTCCallback callbac
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetDateTime
 
-  Description:  RTC������t�E�����f�[�^��ǂݏo���B
+  Description:  RTCから日付・時刻データを読み出す。
 
-  Arguments:    date      - ���t�f�[�^���i�[����o�b�t�@���w��B
-                time      - �����f�[�^���i�[����o�b�t�@���w��B
+  Arguments:    date      - 日付データを格納するバッファを指定。
+                time      - 時刻データを格納するバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetDateTime(RTCDate *date, RTCTime *time)
 {
@@ -418,13 +418,13 @@ RTCResult RTC_GetDateTimeExByTick(RTCDate *date, RTCTimeEx *time)
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetDateAsync
 
-  Description:  RTC�ɓ��t�f�[�^��񓯊��ŏ������ށB
+  Description:  RTCに日付データを非同期で書き込む。
 
-  Arguments:    date      - ���t�f�[�^���i�[����Ă���o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    date      - 日付データが格納されているバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetDateAsync(const RTCDate *date, RTCCallback callback, void *arg)
 {
@@ -433,13 +433,13 @@ RTCResult RTC_SetDateAsync(const RTCDate *date, RTCCallback callback, void *arg)
     SDK_NULL_ASSERT(date);
     SDK_NULL_ASSERT(callback);
 
-    // �Z�b�g������t���m�F�A�ҏW
+    // セットする日付を確認、編集
     if (!RtcCheckDate(date, &(((RTCRawData *)(OS_GetSystemWork()->real_time_clock))->t.date)))
     {
         return RTC_RESULT_ILLEGAL_PARAMETER;
     }
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -449,7 +449,7 @@ RTCResult RTC_SetDateAsync(const RTCDate *date, RTCCallback callback, void *arg)
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // ���t�������݃R�}���h�𑗐M
+    // 日付書き込みコマンドを送信
     rtcWork.sequence = RTC_SEQ_SET_DATE;
     rtcWork.index = 0;
     rtcWork.callback = callback;
@@ -467,11 +467,11 @@ RTCResult RTC_SetDateAsync(const RTCDate *date, RTCCallback callback, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetDate
 
-  Description:  RTC�ɓ��t�f�[�^���������ށB
+  Description:  RTCに日付データを書き込む。
 
-  Arguments:    date      - ���t�f�[�^���i�[����Ă���o�b�t�@���w��B
+  Arguments:    date      - 日付データが格納されているバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetDate(const RTCDate *date)
 {
@@ -486,13 +486,13 @@ RTCResult RTC_SetDate(const RTCDate *date)
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetTimeAsync
 
-  Description:  RTC�Ɏ����f�[�^��񓯊��ŏ������ށB
+  Description:  RTCに時刻データを非同期で書き込む。
 
-  Arguments:    time      - �����f�[�^���i�[����Ă���o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    time      - 時刻データが格納されているバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetTimeAsync(const RTCTime *time, RTCCallback callback, void *arg)
 {
@@ -501,13 +501,13 @@ RTCResult RTC_SetTimeAsync(const RTCTime *time, RTCCallback callback, void *arg)
     SDK_NULL_ASSERT(time);
     SDK_NULL_ASSERT(callback);
 
-    // �Z�b�g���鎞�����m�F�A�ҏW
+    // セットする時刻を確認、編集
     if (!RtcCheckTime(time, &(((RTCRawData *)(OS_GetSystemWork()->real_time_clock))->t.time)))
     {
         return RTC_RESULT_ILLEGAL_PARAMETER;
     }
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -517,7 +517,7 @@ RTCResult RTC_SetTimeAsync(const RTCTime *time, RTCCallback callback, void *arg)
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // �����������݃R�}���h�𑗐M
+    // 時刻書き込みコマンドを送信
     rtcWork.sequence = RTC_SEQ_SET_TIME;
     rtcWork.index = 0;
     rtcWork.callback = callback;
@@ -535,11 +535,11 @@ RTCResult RTC_SetTimeAsync(const RTCTime *time, RTCCallback callback, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetTime
 
-  Description:  RTC�Ɏ����f�[�^���������ށB
+  Description:  RTCに時刻データを書き込む。
 
-  Arguments:    time      - �����f�[�^���i�[����Ă���o�b�t�@���w��B
+  Arguments:    time      - 時刻データが格納されているバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̌��ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetTime(const RTCTime *time)
 {
@@ -554,14 +554,14 @@ RTCResult RTC_SetTime(const RTCTime *time)
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetDateTimeAsync
 
-  Description:  RTC�ɓ��t�E�����f�[�^��񓯊��ŏ������ށB
+  Description:  RTCに日付・時刻データを非同期で書き込む。
 
-  Arguments:    date      - ���t�f�[�^���i�[����Ă���o�b�t�@���w��B
-                time      - �����f�[�^���i�[����Ă���o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    date      - 日付データが格納されているバッファを指定。
+                time      - 時刻データが格納されているバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult
 RTC_SetDateTimeAsync(const RTCDate *date, const RTCTime *time, RTCCallback callback, void *arg)
@@ -572,7 +572,7 @@ RTC_SetDateTimeAsync(const RTCDate *date, const RTCTime *time, RTCCallback callb
     SDK_NULL_ASSERT(time);
     SDK_NULL_ASSERT(callback);
 
-    // �Z�b�g������t�E�������m�F�A�ҏW
+    // セットする日付・時刻を確認、編集
     if (!RtcCheckDate(date, &(((RTCRawData *)(OS_GetSystemWork()->real_time_clock))->t.date)))
     {
         return RTC_RESULT_ILLEGAL_PARAMETER;
@@ -582,7 +582,7 @@ RTC_SetDateTimeAsync(const RTCDate *date, const RTCTime *time, RTCCallback callb
         return RTC_RESULT_ILLEGAL_PARAMETER;
     }
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -592,7 +592,7 @@ RTC_SetDateTimeAsync(const RTCDate *date, const RTCTime *time, RTCCallback callb
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // ���t�E�����������݃R�}���h�𑗐M
+    // 日付・時刻書き込みコマンドを送信
     rtcWork.sequence = RTC_SEQ_SET_DATETIME;
     rtcWork.index = 0;
     rtcWork.callback = callback;
@@ -610,12 +610,12 @@ RTC_SetDateTimeAsync(const RTCDate *date, const RTCTime *time, RTCCallback callb
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetDateTime
 
-  Description:  RTC�ɓ��t�E�����f�[�^���������ށB
+  Description:  RTCに日付・時刻データを書き込む。
 
-  Arguments:    date      - ���t�f�[�^���i�[����Ă���o�b�t�@���w��B
-                time      - �����f�[�^���i�[����Ă���o�b�t�@���w��B
+  Arguments:    date      - 日付データが格納されているバッファを指定。
+                time      - 時刻データが格納されているバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetDateTime(const RTCDate *date, const RTCTime *time)
 {
@@ -633,13 +633,13 @@ RTCResult RTC_SetDateTime(const RTCDate *date, const RTCTime *time)
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetRegStatus2Async
 
-  Description:  RTC�X�e�[�^�X�Q���W�X�^�Ƀf�[�^����������
+  Description:  RTCステータス２レジスタにデータを書き込む
 
-  Arguments:    status2   - �X�e�[�^�X�Q���W�X�^���e���i�[����Ă���o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    status2   - ステータス２レジスタ内容が格納されているバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTCi_SetRegStatus2Async(const RTCRawStatus2 *status2, RTCCallback callback, void *arg)
 {
@@ -653,11 +653,11 @@ RTCResult RTCi_SetRegStatus2Async(const RTCRawStatus2 *status2, RTCCallback call
         status2->intr2_mode;
     ((RTCRawData *)(OS_GetSystemWork()->real_time_clock))->a.status2.test = status2->test;
 
-    /* �p�����[�^�`�F�b�N���� */
+    /* パラメータチェック無し */
     // return RTC_RESULT_ILLEGAL_PARAMETER;
 
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -667,7 +667,7 @@ RTCResult RTCi_SetRegStatus2Async(const RTCRawStatus2 *status2, RTCCallback call
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // �X�e�[�^�X�Q���W�X�^�������݃R�}���h�𑗐M
+    // ステータス２レジスタ書き込みコマンドを送信
     rtcWork.sequence = RTC_SEQ_SET_REG_STATUS2;
     rtcWork.index = 0;
     rtcWork.callback = callback;
@@ -685,11 +685,11 @@ RTCResult RTCi_SetRegStatus2Async(const RTCRawStatus2 *status2, RTCCallback call
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetRegStatus2
 
-  Description:  RTC�X�e�[�^�X�Q���W�X�^�Ƀf�[�^����������
+  Description:  RTCステータス２レジスタにデータを書き込む
 
-  Arguments:    status2   - �X�e�[�^�X�Q���W�X�^���e���i�[����Ă���o�b�t�@���w��B
+  Arguments:    status2   - ステータス２レジスタ内容が格納されているバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTCi_SetRegStatus2(const RTCRawStatus2 *status2)
 {
@@ -705,13 +705,13 @@ RTCResult RTCi_SetRegStatus2(const RTCRawStatus2 *status2)
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetRegAdjustAsync
 
-  Description:  RTC�A�W���X�g���W�X�^�Ƀf�[�^����������
+  Description:  RTCアジャストレジスタにデータを書き込む
 
-  Arguments:    adjust    - �A�W���X�g���W�X�^���e���i�[����Ă���o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    adjust    - アジャストレジスタ内容が格納されているバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTCi_SetRegAdjustAsync(const RTCRawAdjust *adjust, RTCCallback callback, void *arg)
 {
@@ -722,10 +722,10 @@ RTCResult RTCi_SetRegAdjustAsync(const RTCRawAdjust *adjust, RTCCallback callbac
 
     ((RTCRawData *)(OS_GetSystemWork()->real_time_clock))->a.adjust.adjust = adjust->adjust;
 
-    /* �p�����[�^�`�F�b�N���� */
+    /* パラメータチェック無し */
     // return RTC_RESULT_ILLEGAL_PARAMETER;
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -735,7 +735,7 @@ RTCResult RTCi_SetRegAdjustAsync(const RTCRawAdjust *adjust, RTCCallback callbac
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // �X�e�[�^�X�Q���W�X�^�������݃R�}���h�𑗐M
+    // ステータス２レジスタ書き込みコマンドを送信
     rtcWork.sequence = RTC_SEQ_SET_REG_ADJUST;
     rtcWork.index = 0;
     rtcWork.callback = callback;
@@ -754,11 +754,11 @@ RTCResult RTCi_SetRegAdjustAsync(const RTCRawAdjust *adjust, RTCCallback callbac
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetRegAdjust
 
-  Description:  RTC�A�W���X�g���W�X�^�Ƀf�[�^����������
+  Description:  RTCアジャストレジスタにデータを書き込む
 
-  Arguments:    status2   - �A�W���X�g���W�X�^���e���i�[����Ă���o�b�t�@���w��B
+  Arguments:    status2   - アジャストレジスタ内容が格納されているバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTCi_SetRegAdjust(const RTCRawAdjust *Adjust)
 {
@@ -775,14 +775,14 @@ RTCResult RTCi_SetRegAdjust(const RTCRawAdjust *Adjust)
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetAlarmStatusAsync
 
-  Description:  RTC����A���[����ON/OFF��Ԃ�񓯊��œǂݏo���B
+  Description:  RTCからアラームのON/OFF状態を非同期で読み出す。
 
-  Arguments:    chan      - �A���[���̃`�����l�����w��B
-                status    - �A���[����Ԃ��i�[����o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    chan      - アラームのチャンネルを指定。
+                status    - アラーム状態を格納するバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult
 RTC_GetAlarmStatusAsync(RTCAlarmChan chan, RTCAlarmStatus *status, RTCCallback callback, void *arg)
@@ -792,12 +792,12 @@ RTC_GetAlarmStatusAsync(RTCAlarmChan chan, RTCAlarmStatus *status, RTCCallback c
     SDK_NULL_ASSERT(status);
     SDK_NULL_ASSERT(callback);
 
-    // �p�����[�^���m�F
+    // パラメータを確認
     if (chan >= RTC_ALARM_CHAN_MAX)
     {
         return RTC_RESULT_ILLEGAL_PARAMETER;
     }
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -807,7 +807,7 @@ RTC_GetAlarmStatusAsync(RTCAlarmChan chan, RTCAlarmStatus *status, RTCCallback c
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // �X�e�[�^�X�Q���W�X�^�ǂݏo���R�}���h�𑗐M
+    // ステータス２レジスタ読み出しコマンドを送信
     switch (chan)
     {
     case RTC_ALARM_CHAN_1:
@@ -834,12 +834,12 @@ RTC_GetAlarmStatusAsync(RTCAlarmChan chan, RTCAlarmStatus *status, RTCCallback c
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetAlarmStatus
 
-  Description:  RTC����A���[����ON/OFF��Ԃ�ǂݏo���B
+  Description:  RTCからアラームのON/OFF状態を読み出す。
 
-  Arguments:    chan      - �A���[���̃`�����l�����w��B
-                status    - �A���[����Ԃ��i�[����o�b�t�@���w��B
+  Arguments:    chan      - アラームのチャンネルを指定。
+                status    - アラーム状態を格納するバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetAlarmStatus(RTCAlarmChan chan, RTCAlarmStatus *status)
 {
@@ -854,14 +854,14 @@ RTCResult RTC_GetAlarmStatus(RTCAlarmChan chan, RTCAlarmStatus *status)
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetAlarmParamAsync
 
-  Description:  RTC����A���[���̐ݒ�l��񓯊��œǂݏo���B
+  Description:  RTCからアラームの設定値を非同期で読み出す。
 
-  Arguments:    chan      - �A���[���̃`�����l�����w��B
-                param     - �A���[���ݒ�l���i�[����o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    chan      - アラームのチャンネルを指定。
+                param     - アラーム設定値を格納するバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult
 RTC_GetAlarmParamAsync(RTCAlarmChan chan, RTCAlarmParam *param, RTCCallback callback, void *arg)
@@ -871,13 +871,13 @@ RTC_GetAlarmParamAsync(RTCAlarmChan chan, RTCAlarmParam *param, RTCCallback call
     SDK_NULL_ASSERT(param);
     SDK_NULL_ASSERT(callback);
 
-    // �p�����[�^�m�F
+    // パラメータ確認
     if (chan >= RTC_ALARM_CHAN_MAX)
     {
         return RTC_RESULT_ILLEGAL_PARAMETER;
     }
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -887,7 +887,7 @@ RTC_GetAlarmParamAsync(RTCAlarmChan chan, RTCAlarmParam *param, RTCCallback call
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // �A���[���Por�Q�ݒ�l�ǂݏo���R�}���h�𑗐M
+    // アラーム１or２設定値読み出しコマンドを送信
     rtcWork.sequence = RTC_SEQ_GET_ALARM_PARAM;
     rtcWork.index = 0;
     rtcWork.buffer[0] = (void *)param;
@@ -917,12 +917,12 @@ RTC_GetAlarmParamAsync(RTCAlarmChan chan, RTCAlarmParam *param, RTCCallback call
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetAlarmParam
 
-  Description:  RTC����A���[���̐ݒ�l��ǂݏo���B
+  Description:  RTCからアラームの設定値を読み出す。
 
-  Arguments:    chan      - �A���[���̃`�����l�����w��B
-                param     - �A���[���ݒ�l���i�[����o�b�t�@���w��B
+  Arguments:    chan      - アラームのチャンネルを指定。
+                param     - アラーム設定値を格納するバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetAlarmParam(RTCAlarmChan chan, RTCAlarmParam *param)
 {
@@ -937,9 +937,9 @@ RTCResult RTC_GetAlarmParam(RTCAlarmChan chan, RTCAlarmParam *param)
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetAlarmInterrupt
 
-  Description:  �A���[�������ݔ������̃R�[���o�b�N�֐���ݒ肷��B
+  Description:  アラーム割込み発生時のコールバック関数を設定する。
 
-  Arguments:    interrupt - �R�[���o�b�N�֐����w��B
+  Arguments:    interrupt - コールバック関数を指定。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -951,14 +951,14 @@ void RTC_SetAlarmInterrupt(RTCInterrupt interrupt)
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetAlarmStatusAsync
 
-  Description:  RTC�ɃA���[����Ԃ�񓯊��ŏ������ށB
+  Description:  RTCにアラーム状態を非同期で書き込む。
 
-  Arguments:    chan      - �A���[���̃`�����l�����w��B
-                status    - �A���[����Ԃ��i�[����Ă���o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    chan      - アラームのチャンネルを指定。
+                status    - アラーム状態が格納されているバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult
 RTC_SetAlarmStatusAsync(RTCAlarmChan chan, const RTCAlarmStatus *status, RTCCallback callback,
@@ -969,7 +969,7 @@ RTC_SetAlarmStatusAsync(RTCAlarmChan chan, const RTCAlarmStatus *status, RTCCall
     SDK_NULL_ASSERT(status);
     SDK_NULL_ASSERT(callback);
 
-    // �p�����[�^�m�F
+    // パラメータ確認
     if (chan >= RTC_ALARM_CHAN_MAX)
     {
         return RTC_RESULT_ILLEGAL_PARAMETER;
@@ -979,7 +979,7 @@ RTC_SetAlarmStatusAsync(RTCAlarmChan chan, const RTCAlarmStatus *status, RTCCall
         return RTC_RESULT_ILLEGAL_PARAMETER;
     }
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -989,7 +989,7 @@ RTC_SetAlarmStatusAsync(RTCAlarmChan chan, const RTCAlarmStatus *status, RTCCall
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // �X�e�[�^�X�Q���W�X�^�ǂݏo���R�}���h�𑗐M
+    // ステータス２レジスタ読み出しコマンドを送信
     switch (chan)
     {
     case RTC_ALARM_CHAN_1:
@@ -1016,12 +1016,12 @@ RTC_SetAlarmStatusAsync(RTCAlarmChan chan, const RTCAlarmStatus *status, RTCCall
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetAlarmStatus
 
-  Description:  RTC�ɃA���[����Ԃ��������ށB
+  Description:  RTCにアラーム状態を書き込む。
 
-  Arguments:    chan      - �A���[���̃`�����l�����w��B
-                status    - �A���[����Ԃ��i�[����Ă���o�b�t�@���w��B
+  Arguments:    chan      - アラームのチャンネルを指定。
+                status    - アラーム状態が格納されているバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetAlarmStatus(RTCAlarmChan chan, const RTCAlarmStatus *status)
 {
@@ -1036,16 +1036,16 @@ RTCResult RTC_SetAlarmStatus(RTCAlarmChan chan, const RTCAlarmStatus *status)
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetAlarmParamAsync
 
-  Description:  RTC�ɃA���[���ݒ��񓯊��ŏ������ށB
-       Notice:  RTC�̃A���[����Ԃ�ON�ɂȂ��Ă��Ȃ��ꍇ�A�f�o�C�X���Ń��C�g��
-                �󂯕t���Ă���Ȃ��̂ŁA�������݂͎��s����B
+  Description:  RTCにアラーム設定を非同期で書き込む。
+       Notice:  RTCのアラーム状態がONになっていない場合、デバイス側でライトを
+                受け付けてくれないので、書き込みは失敗する。
 
-  Arguments:    chan      - �A���[���̃`�����l�����w��B
-                param     - �A���[���ݒ�l���i�[����Ă���o�b�t�@���w��B
-                callback  - �񓯊����������������ۂɌĂяo���֐����w��B
-                arg       - �R�[���o�b�N�֐��Ăяo�����̈������w��B
+  Arguments:    chan      - アラームのチャンネルを指定。
+                param     - アラーム設定値が格納されているバッファを指定。
+                callback  - 非同期処理が完了した際に呼び出す関数を指定。
+                arg       - コールバック関数呼び出し時の引数を指定。
 
-  Returns:      RTCResult - �񓯊��f�o�C�X����J�n�̏������ʂ�Ԃ��B
+  Returns:      RTCResult - 非同期デバイス操作開始の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult
 RTC_SetAlarmParamAsync(RTCAlarmChan chan, const RTCAlarmParam *param, RTCCallback callback,
@@ -1058,7 +1058,7 @@ RTC_SetAlarmParamAsync(RTCAlarmChan chan, const RTCAlarmParam *param, RTCCallbac
     SDK_NULL_ASSERT(param);
     SDK_NULL_ASSERT(callback);
 
-    // �p�����[�^���m�F
+    // パラメータを確認
     if (chan >= RTC_ALARM_CHAN_MAX)
     {
         return RTC_RESULT_ILLEGAL_PARAMETER;
@@ -1068,7 +1068,7 @@ RTC_SetAlarmParamAsync(RTCAlarmChan chan, const RTCAlarmParam *param, RTCCallbac
         return RTC_RESULT_ILLEGAL_PARAMETER;
     }
 
-    // ���b�N�m�F
+    // ロック確認
     enabled = OS_DisableInterrupts();
     if (rtcWork.lock != RTC_LOCK_OFF)
     {
@@ -1078,21 +1078,21 @@ RTC_SetAlarmParamAsync(RTCAlarmChan chan, const RTCAlarmParam *param, RTCCallbac
     rtcWork.lock = RTC_LOCK_ON;
     (void)OS_RestoreInterrupts(enabled);
 
-    // �ݒ肷��f�[�^��ҏW
+    // 設定するデータを編集
     rtcWork.index = 0;
     rtcWork.callback = callback;
     rtcWork.callbackArg = arg;
     ((RTCRawData *)(OS_GetSystemWork()->real_time_clock))->a.alarm = RtcMakeAlarmParam(param);
-    // �A���[���ԍ��ɂ�著�M�R�}���h��U�蕪��
+    // アラーム番号により送信コマンドを振り分け
     switch (chan)
     {
     case RTC_ALARM_CHAN_1:
-        // �A���[���P���W�X�^�������݃R�}���h�𑗐M
+        // アラーム１レジスタ書き込みコマンドを送信
         rtcWork.sequence = RTC_SEQ_SET_ALARM1_PARAM;
         result = RTCi_WriteRawAlarm1Async();
         break;
     case RTC_ALARM_CHAN_2:
-        // �A���[���Q���W�X�^�������݃R�}���h�𑗐M
+        // アラーム２レジスタ書き込みコマンドを送信
         rtcWork.sequence = RTC_SEQ_SET_ALARM2_PARAM;
         result = RTCi_WriteRawAlarm2Async();
         break;
@@ -1107,12 +1107,12 @@ RTC_SetAlarmParamAsync(RTCAlarmChan chan, const RTCAlarmParam *param, RTCCallbac
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetAlarmParam
 
-  Description:  RTC�ɃA���[���ݒ�l���������ށB
+  Description:  RTCにアラーム設定値を書き込む。
 
-  Arguments:    chan      - �A���[���̃`�����l�����w��B
-                param     - �A���[���ݒ�l���i�[����Ă���o�b�t�@���w��B
+  Arguments:    chan      - アラームのチャンネルを指定。
+                param     - アラーム設定値が格納されているバッファを指定。
 
-  Returns:      RTCResult - �f�o�C�X����̏������ʂ�Ԃ��B
+  Returns:      RTCResult - デバイス操作の処理結果を返す。
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetAlarmParam(RTCAlarmChan chan, const RTCAlarmParam *param)
 {
@@ -1127,7 +1127,7 @@ RTCResult RTC_SetAlarmParam(RTCAlarmChan chan, const RTCAlarmParam *param)
 /*---------------------------------------------------------------------------*
   Name:         RtcCommonCallback
 
-  Description:  �񓯊�RTC�֐��p�̋��ʃR�[���o�b�N�֐��B
+  Description:  非同期RTC関数用の共通コールバック関数。
 
   Arguments:    tag -  PXI tag which show message type.
                 data - message from ARM7.
@@ -1144,10 +1144,10 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
     u8      command;
     RTCCallback cb;
 
-    // PXI�ʐM�G���[���m�F
+    // PXI通信エラーを確認
     if (err)
     {
-        // �V�[�P���X�������I��
+        // シーケンスを強制終了
         if (rtcWork.index)
         {
             rtcWork.index = 0;
@@ -1165,30 +1165,30 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
         return;
     }
 
-    // ��M�f�[�^�����
+    // 受信データを解析
     command = (u8)((data & RTC_PXI_COMMAND_MASK) >> RTC_PXI_COMMAND_SHIFT);
     pxiresult = (RTCPxiResult)((data & RTC_PXI_RESULT_MASK) >> RTC_PXI_RESULT_SHIFT);
 
-    // �A���[�������݂��m�F
+    // アラーム割込みを確認
     if (command == RTC_PXI_COMMAND_INTERRUPT)
     {
-        // pxiresult�ɂăA���[���Por�Q�𔻒f�\�����A
-        // �R�[���o�b�N�𓝈ꂵ�Ă���̂łǂ���ł��邩�͖�������B
+        // pxiresultにてアラーム１or２を判断可能だが、
+        // コールバックを統一しているのでどちらであるかは無視する。
         if (rtcWork.interrupt)
         {
-            // �A���[�������ݒʒm���R�[���o�b�N
+            // アラーム割込み通知をコールバック
             rtcWork.interrupt();
         }
         return;
     }
 
-    // �������������Ȃ�A������Ԃɉ����Ċe�펖�㏈��
+    // 処理成功応答なら、内部状態に応じて各種事後処理
     if (pxiresult == RTC_PXI_RESULT_SUCCESS)
     {
         result = RTC_RESULT_SUCCESS;
         switch (rtcWork.sequence)
         {
-            // ���t�擾�V�[�P���X
+            // 日付取得シーケンス
         case RTC_SEQ_GET_DATE:
             {
                 RTCDate *pDst = (RTCDate *)(rtcWork.buffer[0]);
@@ -1200,7 +1200,7 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
                 pDst->week = RTC_GetDayOfWeek(pDst);
             }
             break;
-            // �����擾�V�[�P���X
+            // 時刻取得シーケンス
         case RTC_SEQ_GET_TIME:
             {
                 RTCTime *pDst = (RTCTime *)(rtcWork.buffer[0]);
@@ -1211,13 +1211,13 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
                 pDst->second = RtcBCD2HEX(pSrc->second);
             }
             break;
-            // ���t�E�����擾�V�[�P���X
+            // 日付・時刻取得シーケンス
         case RTC_SEQ_GET_DATETIME:
             {
                 RTCDate *pDst = (RTCDate *)(rtcWork.buffer[0]);
                 RTCRawDate *pSrc = &(((RTCRawData *)(OS_GetSystemWork()->real_time_clock))->t.date);
 
-                //pDst->year =  RtcBCD2HEX( pSrc->year );   // �Ȃ����l���n����Ȃ��̂ŉ��̃R�[�h�ɕύX
+                //pDst->year =  RtcBCD2HEX( pSrc->year );   // なぜか値が渡されないので下のコードに変更
                 pDst->year = RtcBCD2HEX(*(u32 *)pSrc & 0x000000ff);
                 pDst->month = RtcBCD2HEX(pSrc->month);
                 pDst->day = RtcBCD2HEX(pSrc->day);
@@ -1232,13 +1232,13 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
                 pDst->second = RtcBCD2HEX(pSrc->second);
             }
             break;
-            // ���t�ύX�V�[�P���X
+            // 日付変更シーケンス
         case RTC_SEQ_SET_DATE:
         case RTC_SEQ_SET_TIME:
         case RTC_SEQ_SET_DATETIME:
-            // ���ɏ����Ȃ�
+            // 特に処理なし
             break;
-            // �A���[���P��Ԏ擾�V�[�P���X
+            // アラーム１状態取得シーケンス
         case RTC_SEQ_GET_ALARM1_STATUS:
             {
                 RTCAlarmStatus *pDst = (RTCAlarmStatus *)(rtcWork.buffer[0]);
@@ -1255,7 +1255,7 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
                 }
             }
             break;
-            // �A���[���Q��Ԏ擾�V�[�P���X
+            // アラーム２状態取得シーケンス
         case RTC_SEQ_GET_ALARM2_STATUS:
             {
                 RTCAlarmStatus *pDst = (RTCAlarmStatus *)(rtcWork.buffer[0]);
@@ -1272,7 +1272,7 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
                 }
             }
             break;
-            // �A���[���Por�Q�ݒ�l�擾�V�[�P���X
+            // アラーム１or２設定値取得シーケンス
         case RTC_SEQ_GET_ALARM_PARAM:
             {
                 RTCAlarmParam *pDst = (RTCAlarmParam *)(rtcWork.buffer[0]);
@@ -1291,40 +1291,40 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
                     pDst->enable += RTC_ALARM_ENABLE_MINUTE;
             }
             break;
-            // �A���[���P��Ԑݒ�V�[�P���X
+            // アラーム１状態設定シーケンス
         case RTC_SEQ_SET_ALARM1_STATUS:
             if (rtcWork.index == 0)
             {
                 RTCRawStatus2 *pSrc =
                     &(((RTCRawData *)(OS_GetSystemWork()->real_time_clock))->a.status2);
 
-                // �X�e�[�^�X�Q���W�X�^�ǂݏo������
+                // ステータス２レジスタ読み出し結果
                 if (*(RTCAlarmStatus *)(rtcWork.buffer[0]) == RTC_ALARM_STATUS_ON)
                 {
-                    // �����݋�����ꍇ
+                    // 割込み許可する場合
                     if (pSrc->intr_mode != RTC_INTERRUPT_MODE_ALARM)
                     {
-                        // �X�e�[�^�X�Q���W�X�^��������
-                        rtcWork.index++;        // ���̃V�[�P���X�ֈڍs
+                        // ステータス２レジスタ書き込み
+                        rtcWork.index++;        // 次のシーケンスへ移行
                         pSrc->intr_mode = RTC_INTERRUPT_MODE_ALARM;
                         if (!RTCi_WriteRawStatus2Async())
                         {
-                            rtcWork.index = 0;  // �V�[�P���X�𒆒f
+                            rtcWork.index = 0;  // シーケンスを中断
                             result = RTC_RESULT_SEND_ERROR;
                         }
                     }
                 }
                 else
                 {
-                    // �����݋֎~����ꍇ
+                    // 割込み禁止する場合
                     if (pSrc->intr_mode != RTC_INTERRUPT_MODE_NONE)
                     {
-                        // �X�e�[�^�X�Q���W�X�^��������
-                        rtcWork.index++;        // ���̃V�[�P���X�ֈڍs
+                        // ステータス２レジスタ書き込み
+                        rtcWork.index++;        // 次のシーケンスへ移行
                         pSrc->intr_mode = RTC_INTERRUPT_MODE_NONE;
                         if (!RTCi_WriteRawStatus2Async())
                         {
-                            rtcWork.index = 0;  // �V�[�P���X�𒆒f
+                            rtcWork.index = 0;  // シーケンスを中断
                             result = RTC_RESULT_SEND_ERROR;
                         }
                     }
@@ -1332,44 +1332,44 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
             }
             else
             {
-                // �X�e�[�^�X�Q���W�X�^�������݌���
-                rtcWork.index = 0;     // �V�[�P���X�I��
+                // ステータス２レジスタ書き込み結果
+                rtcWork.index = 0;     // シーケンス終了
             }
             break;
-            // �A���[���Q��Ԑݒ�V�[�P���X
+            // アラーム２状態設定シーケンス
         case RTC_SEQ_SET_ALARM2_STATUS:
             if (rtcWork.index == 0)
             {
                 RTCRawStatus2 *pSrc =
                     &(((RTCRawData *)(OS_GetSystemWork()->real_time_clock))->a.status2);
 
-                // �X�e�[�^�X�Q���W�X�^�ǂݏo������
+                // ステータス２レジスタ読み出し結果
                 if (*(RTCAlarmStatus *)(rtcWork.buffer[0]) == RTC_ALARM_STATUS_ON)
                 {
-                    // �����݋�����ꍇ
+                    // 割込み許可する場合
                     if (!pSrc->intr2_mode)
                     {
-                        // �X�e�[�^�X�Q���W�X�^��������
-                        rtcWork.index++;        // ���̃V�[�P���X�ֈڍs
+                        // ステータス２レジスタ書き込み
+                        rtcWork.index++;        // 次のシーケンスへ移行
                         pSrc->intr2_mode = 1;
                         if (!RTCi_WriteRawStatus2Async())
                         {
-                            rtcWork.index = 0;  // �V�[�P���X�𒆒f
+                            rtcWork.index = 0;  // シーケンスを中断
                             result = RTC_RESULT_SEND_ERROR;
                         }
                     }
                 }
                 else
                 {
-                    // �����݋֎~����ꍇ
+                    // 割込み禁止する場合
                     if (pSrc->intr2_mode)
                     {
-                        // �X�e�[�^�X�Q���W�X�^��������
-                        rtcWork.index++;        // ���̃V�[�P���X�ֈڍs
+                        // ステータス２レジスタ書き込み
+                        rtcWork.index++;        // 次のシーケンスへ移行
                         pSrc->intr2_mode = 0;
                         if (!RTCi_WriteRawStatus2Async())
                         {
-                            rtcWork.index = 0;  // �V�[�P���X�𒆒f
+                            rtcWork.index = 0;  // シーケンスを中断
                             result = RTC_RESULT_SEND_ERROR;
                         }
                     }
@@ -1377,24 +1377,24 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
             }
             else
             {
-                // �X�e�[�^�X�Q���W�X�^�������݌���
-                rtcWork.index = 0;     // �V�[�P���X�I��
+                // ステータス２レジスタ書き込み結果
+                rtcWork.index = 0;     // シーケンス終了
             }
             break;
-            // �A���[���P�p�����[�^�ݒ�V�[�P���X
+            // アラーム１パラメータ設定シーケンス
         case RTC_SEQ_SET_ALARM1_PARAM:
-            // �A���[���Q�p�����[�^�ݒ�V�[�P���X
+            // アラーム２パラメータ設定シーケンス
         case RTC_SEQ_SET_ALARM2_PARAM:
-            // ���ԕ\�L�ύX�V�[�P���X
+            // 時間表記変更シーケンス
         case RTC_SEQ_SET_HOUR_FORMAT:
-            // �X�e�[�^�X�Q���W�X�^�������݃V�[�P���X
+            // ステータス２レジスタ書き込みシーケンス
         case RTC_SEQ_SET_REG_STATUS2:
-            // �A�W���X�g���W�X�^�������݃V�[�P���X
+            // アジャストレジスタ書き込みシーケンス
         case RTC_SEQ_SET_REG_ADJUST:
-            // ���ɏ����Ȃ�
+            // 特に処理なし
             break;
 
-            // ���̑���̃V�[�P���X
+            // その他謎のシーケンス
         default:
             result = RTC_RESULT_INVALID_COMMAND;
             rtcWork.index = 0;
@@ -1402,9 +1402,9 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
     }
     else
     {
-        // �R�}���h�Ɏ��s�������Ԃ��ꂽ�̂ŃV�[�P���X���f
+        // コマンドに失敗応答が返されたのでシーケンス中断
         rtcWork.index = 0;
-        // PXI�ʐM������ʂ��珈�����ʂ�����
+        // PXI通信応答種別から処理結果を決定
         switch (pxiresult)
         {
         case RTC_PXI_RESULT_INVALID_COMMAND:
@@ -1422,15 +1422,15 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
         }
     }
 
-    // �A�������V�[�P���X�������Ȃ�΁A�V�[�P���X�̏I������
+    // 連続したシーケンスが完了ならば、シーケンスの終了処理
     if (rtcWork.index == 0)
     {
-        // �r�����b�N�J��
+        // 排他ロック開錠
         if (rtcWork.lock != RTC_LOCK_OFF)
         {
             rtcWork.lock = RTC_LOCK_OFF;
         }
-        // �R�[���o�b�N�֐����Ăяo��
+        // コールバック関数を呼び出し
         if (rtcWork.callback)
         {
             cb = rtcWork.callback;
@@ -1443,12 +1443,12 @@ static void RtcCommonCallback(PXIFifoTag tag, u32 data, BOOL err)
 /*---------------------------------------------------------------------------*
   Name:         RtcBCD2HEX
 
-  Description:  BCD�^�ŕ\�����ꂽ���l����ʓI��u32�ŕ\���������l�ɕϊ�����B
+  Description:  BCD型で表現された数値を一般的なu32で表現した数値に変換する。
 
-  Arguments:    bcd  - BCD�^�ŕ\�����ꂽ���l�B
+  Arguments:    bcd  - BCD型で表現された数値。
 
-  Returns:      u32  - ��ʓI��u32�ŕ\�������������l�B
-                       ���̓p�����[�^��BCD�^�łȂ��ꍇ�A0��Ԃ��B
+  Returns:      u32  - 一般的なu32で表現し直した数値。
+                       入力パラメータがBCD型でない場合、0を返す。
  *---------------------------------------------------------------------------*/
 static u32 RtcBCD2HEX(u32 bcd)
 {
@@ -1456,16 +1456,16 @@ static u32 RtcBCD2HEX(u32 bcd)
     s32     i;
     s32     w;
 
-    // 0xA ~ 0xF ���ǂ��̌��ɂ��܂܂�Ă��Ȃ����Ƃ��m�F
+    // 0xA ~ 0xF がどこの桁にも含まれていないことを確認
     for (i = 0; i < 8; i++)
     {
         if (((bcd >> (i * 4)) & 0x0000000f) >= 0x0a)
         {
-            return hex;                // �ϊ��𒆒f���ċ����I��"0"��Ԃ�
+            return hex;                // 変換を中断して強制的に"0"を返す
         }
     }
 
-    // �ϊ����[�v
+    // 変換ループ
     for (i = 0, w = 1; i < 8; i++, w *= 10)
     {
         hex += (((bcd >> (i * 4)) & 0x0000000f) * w);
@@ -1476,12 +1476,12 @@ static u32 RtcBCD2HEX(u32 bcd)
 /*---------------------------------------------------------------------------*
   Name:         RtcHEX2BCD
 
-  Description:  ��ʓI��u32�ŕ\���������l��BCD�^�ŕ\�����ꂽ���l�ɕϊ�����B
+  Description:  一般的なu32で表現した数値をBCD型で表現された数値に変換する。
 
-  Arguments:    hex  - ��ʓI��u32�ŕ\���������l�B
+  Arguments:    hex  - 一般的なu32で表現した数値。
 
-  Returns:      u32  - BCD�^�ŕ\�������������l�B
-                       ���̓p�����[�^��BCD�^�ŕ\���ł��Ȃ��ꍇ�A0��Ԃ��B
+  Returns:      u32  - BCD型で表現し直した数値。
+                       入力パラメータがBCD型で表現できない場合、0を返す。
  *---------------------------------------------------------------------------*/
 static u32 RtcHEX2BCD(u32 hex)
 {
@@ -1489,13 +1489,13 @@ static u32 RtcHEX2BCD(u32 hex)
     s32     i;
     u32     w;
 
-    // 99999999���z���Ă��Ȃ����Ƃ��m�F
+    // 99999999を越えていないことを確認
     if (hex > 99999999)
     {
         return 0;
     }
 
-    // �ϊ����[�v
+    // 変換ループ
     for (i = 0, w = hex; i < 8; i++)
     {
         bcd += ((w % 10) << (i * 4));
@@ -1507,12 +1507,12 @@ static u32 RtcHEX2BCD(u32 hex)
 /*---------------------------------------------------------------------------*
   Name:         RtcCheckAlarmParam
 
-  Description:  �A���[���ݒ�l��RTC�ɃZ�b�g���Ė��Ȃ��l���ǂ������`�F�b�N����B
+  Description:  アラーム設定値がRTCにセットして問題ない値かどうかをチェックする。
 
-  Arguments:    param  - �`�F�b�N����A���[���ݒ�l�B
+  Arguments:    param  - チェックするアラーム設定値。
 
-  Returns:      BOOL   - �A���[���ݒ�l�Ƃ��Ė��Ȃ��ꍇ��TRUE���A���炩��
-                         ��肪����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL   - アラーム設定値として問題ない場合はTRUEを、何らかの
+                         問題がある場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static BOOL RtcCheckAlarmParam(const RTCAlarmParam *param)
 {
@@ -1530,36 +1530,36 @@ static BOOL RtcCheckAlarmParam(const RTCAlarmParam *param)
 /*---------------------------------------------------------------------------*
   Name:         RtcMakeAlarmParam
 
-  Description:  �A���[���ݒ�l��RTC�ɃZ�b�g�ł���`�ɕϊ�����B
+  Description:  アラーム設定値をRTCにセットできる形に変換する。
 
-  Arguments:    param  - �ϊ�����ΏۂƂȂ�A���[���ݒ�l�B
+  Arguments:    param  - 変換する対象となるアラーム設定値。
 
-  Returns:      RTCRawAlarm - RTC�ɃZ�b�g�ł���`�ɕϊ����ꂽ�f�[�^�B
+  Returns:      RTCRawAlarm - RTCにセットできる形に変換されたデータ。
  *---------------------------------------------------------------------------*/
 static RTCRawAlarm RtcMakeAlarmParam(const RTCAlarmParam *param)
 {
     RTCRawAlarm dst;
 
-    // �߂�l��0�N���A
+    // 戻り値を0クリア
     *((u32 *)(&dst)) = 0;
 
-    // �O�̂��ߐݒ�l�̐��������m�F
+    // 念のため設定値の整合性を確認
     if (!RtcCheckAlarmParam(param))
     {
         return dst;
     }
 
-    // �j���f�[�^
+    // 曜日データ
     dst.week = (u32)(param->week);
-    // ���ԃf�[�^�A�y�ьߑO�E�ߌ�t���O
+    // 時間データ、及び午前・午後フラグ
     if (param->hour >= 12)
     {
         dst.afternoon = 1;
     }
     dst.hour = RtcHEX2BCD(param->hour);
-    // ���f�[�^
+    // 分データ
     dst.minute = RtcHEX2BCD(param->minute);
-    // �L���t���O
+    // 有効フラグ
     if (param->enable & RTC_ALARM_ENABLE_WEEK)
     {
         dst.we = 1;
@@ -1579,17 +1579,17 @@ static RTCRawAlarm RtcMakeAlarmParam(const RTCAlarmParam *param)
 /*---------------------------------------------------------------------------*
   Name:         RtcCheckDate
 
-  Description:  ���t��RTC�ɃZ�b�g���Ė��Ȃ��l���ǂ������`�F�b�N����B
-                ���Ȃ����RTC�ɃZ�b�g�ł���`�ɕҏW����B
+  Description:  日付がRTCにセットして問題ない値かどうかをチェックする。
+                問題なければRTCにセットできる形に編集する。
 
-  Arguments:    date - �`�F�b�N������t����́B
-                raw  - RTC�ɃZ�b�g�ł���`�ɕҏW���ꂽ�f�[�^���o�́B
+  Arguments:    date - チェックする日付を入力。
+                raw  - RTCにセットできる形に編集されたデータを出力。
 
-  Returns:      BOOL - �`�F�b�N���Ė�肪����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - チェックして問題がある場合にFALSEを返す。
  *---------------------------------------------------------------------------*/
 static BOOL RtcCheckDate(const RTCDate *date, RTCRawDate *raw)
 {
-    // �e�����o�����e�͈͓����`�F�b�N
+    // 各メンバが許容範囲内かチェック
     if (date->year >= 100)
         return FALSE;
     if ((date->month < 1) || (date->month > 12))
@@ -1599,8 +1599,8 @@ static BOOL RtcCheckDate(const RTCDate *date, RTCRawDate *raw)
     if (date->week >= RTC_WEEK_MAX)
         return FALSE;
 
-    // ���f�[�^�̌^�ɕҏW
-    //raw->year  = RtcHEX2BCD( date->year );    // �Ȃ����l���i�[����Ȃ��̂ŉ��̃R�[�h�ɕύX
+    // 生データの型に編集
+    //raw->year  = RtcHEX2BCD( date->year );    // なぜか値が格納されないので下のコードに変更
     *(u32 *)raw = RtcHEX2BCD(date->year);
     raw->month = RtcHEX2BCD(date->month);
     raw->day = RtcHEX2BCD(date->day);
@@ -1611,17 +1611,17 @@ static BOOL RtcCheckDate(const RTCDate *date, RTCRawDate *raw)
 /*---------------------------------------------------------------------------*
   Name:         RtcCheckTime
 
-  Description:  ������RTC�ɃZ�b�g���Ė��Ȃ��l���ǂ������`�F�b�N����B
-                ���Ȃ����RTC�ɃZ�b�g�ł���`�ɕҏW����B
+  Description:  時刻がRTCにセットして問題ない値かどうかをチェックする。
+                問題なければRTCにセットできる形に編集する。
 
-  Arguments:    date - �`�F�b�N���鎞������́B
-                raw  - RTC�ɃZ�b�g�ł���`�ɕҏW���ꂽ�f�[�^���o�́B
+  Arguments:    date - チェックする時刻を入力。
+                raw  - RTCにセットできる形に編集されたデータを出力。
 
-  Returns:      BOOL - �`�F�b�N���Ė�肪����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - チェックして問題がある場合にFALSEを返す。
  *---------------------------------------------------------------------------*/
 static BOOL RtcCheckTime(const RTCTime *time, RTCRawTime *raw)
 {
-    // �e�����o�����e�͈͓����`�F�b�N
+    // 各メンバが許容範囲内かチェック
     if (time->hour >= 24)
         return FALSE;
     if (time->minute >= 60)
@@ -1629,7 +1629,7 @@ static BOOL RtcCheckTime(const RTCTime *time, RTCRawTime *raw)
     if (time->second >= 60)
         return FALSE;
 
-    // ���f�[�^�̌^�ɕҏW
+    // 生データの型に編集
     if (time->hour >= 12)
     {
         raw->afternoon = 1;
@@ -1648,10 +1648,10 @@ static BOOL RtcCheckTime(const RTCTime *time, RTCRawTime *raw)
 /*---------------------------------------------------------------------------*
   Name:         RtcGetResultCallback
 
-  Description:  �񓯊������̊������ɌĂяo����A�����ϐ��̏������ʂ��X�V����B
+  Description:  非同期処理の完了時に呼び出され、内部変数の処理結果を更新する。
 
-  Arguments:    result - �񓯊��֐��̏������ʁB
-                arg    - �g�p���Ȃ��B
+  Arguments:    result - 非同期関数の処理結果。
+                arg    - 使用しない。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1715,7 +1715,7 @@ static RTCResult RtcTickInit(void)
 /*---------------------------------------------------------------------------*
   Name:         RtcWaitBusy
 
-  Description:  RTC�̔񓯊����������b�N����Ă���ԑ҂B
+  Description:  RTCの非同期処理がロックされている間待つ。
 
   Arguments:    None.
 

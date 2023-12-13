@@ -10,11 +10,11 @@
 	.include	"../eventdata/zone_d05r0112evd.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d05r0112_gingaw
 _EVENT_DATA		ev_d05r0112_gingam
@@ -35,20 +35,20 @@ ev_d05r0112_gingaw:
 ev_d05r0112_gingam:
 	_TALK_OBJ_START_TURN_NOT
 
-	/*‰º‚ðŒü‚­*/
+	/*ä¸‹ã‚’å‘ã*/
 	_OBJ_ANIME		D05R0112_GINGAM,anm_d05r0112_gingam_01
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d05r0112_gingam_01
 
-	/*ã‚ðŒü‚­*/
+	/*ä¸Šã‚’å‘ã*/
 	_OBJ_ANIME		D05R0112_GINGAM_2,anm_d05r0112_gingam_02
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d05r0112_gingam_02
 	_TALK_CLOSE
 
-	/*¶‚ðŒü‚­*/
+	/*å·¦ã‚’å‘ã*/
 	_OBJ_ANIME		D05R0112_GINGAM,anm_d05r0112_gingam_03
 	_OBJ_ANIME		D05R0112_GINGAM_2,anm_d05r0112_gingam_03
 	_OBJ_ANIME_WAIT
@@ -57,21 +57,21 @@ ev_d05r0112_gingam:
 	_END
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	‰º‚ðŒü‚­
+//ã‚®ãƒ³ã‚¬å›£	ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d05r0112_gingam_01
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	ã‚ðŒü‚­
+//ã‚®ãƒ³ã‚¬å›£	ä¸Šã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d05r0112_gingam_02
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	¶‚ðŒü‚­
+//ã‚®ãƒ³ã‚¬å›£	å·¦ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d05r0112_gingam_03
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1

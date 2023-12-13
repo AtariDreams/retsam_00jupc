@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_031.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			031 ’Ç‰ÁŒø‰Ê‚Å‘Šè‚ª‚Ğ‚é‚Ş
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			031 è¿½åŠ åŠ¹æœã§ç›¸æ‰‹ãŒã²ã‚‹ã‚€
  *
  *@author	HisashiSogabe
  *@data		2005.11.24

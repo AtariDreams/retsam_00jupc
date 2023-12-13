@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	hakai_warp.c
- * @brief	”j‚ê‚½¢ŠE“Ë“üƒfƒ‚
+ * @brief	ç ´ã‚ŒãŸä¸–ç•Œçªå…¥ãƒ‡ãƒ¢
  * @author	matsuda
- * @date	2008.04.15(‰Î)
+ * @date	2008.04.15(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -27,57 +27,57 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///HEAPID_TITLE_DEMO‚ªŠm•Û‚·‚éƒq[ƒvƒTƒCƒY
+///HEAPID_TITLE_DEMOãŒç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º
 #define HAKAI_WARP_HEAP_SIZE		(0x50000)
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰İ’è
+//	ã‚«ãƒ¡ãƒ©è¨­å®š
 //--------------------------------------------------------------
 #define HAKAI_WARP_CAMERA_MODE			GF_CAMERA_PERSPECTIV	//(GF_CAMERA_ORTHO)
 
 #define HAKAI_WARP_CAMERA_CLIP_NEAR		(0)
 #define HAKAI_WARP_CAMERA_CLIP_FAR		(FX32_ONE*300)
 
-///ƒfƒ‚—pƒJƒƒ‰İ’è
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©è¨­å®š
 #define DEMO_CAMERA_PERSPWAY		(FX_GET_ROTA_NUM(22))
 #define DEMO_CAMERA_TX			( 0 )		/// target
 #define DEMO_CAMERA_TY			( 0 )
 #define DEMO_CAMERA_TZ			( 0 )
-///ƒfƒ‚—pƒJƒƒ‰‚Ì’‹“_‚Ü‚Å‚Ì‹——£
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–ç‚¹ã¾ã§ã®è·é›¢
 #define DEMO_CAMERA_DISTANCE		(160 << FX32_SHIFT)
 
-///ƒfƒ‚—pƒJƒƒ‰‚ÌˆÚ“®‘¬“x
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®ç§»å‹•é€Ÿåº¦
 #define DEMO_CAMERA_MOVE_SPEED		(0xa00)
 enum{
-	DEMO_CAMERA_MOVE_FRAME = 60,			//ˆÚ“®‚µ‚Ä‚¢‚éƒtƒŒ[ƒ€
-	DEMO_KAO_ANM_START_FRAME = 75,			//ŠçƒAƒjƒŠJnƒtƒŒ[ƒ€
-	DEMO_CAMERA_ANGLE_START_FRAME = 90 + 160,		//Šp“x•ÏXŠJnƒtƒŒ[ƒ€
-	DEMO_CAMERA_ANGLE_RETURN_FRAME = 95,	//Šp“x•ÏXÜ‚è•Ô‚µƒtƒŒ[ƒ€
-	DEMO_CAMERA_ANGLE_END_FRAME = 105,		//Šp“x–ß‚µI—¹ƒtƒŒ[ƒ€
-	DEMO_CAMERA_DISTANCE_MOVE_FRAME = 100,//115,	//‹——£‹l‚ß‚éŠJnƒtƒŒ[ƒ€
+	DEMO_CAMERA_MOVE_FRAME = 60,			//ç§»å‹•ã—ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DEMO_KAO_ANM_START_FRAME = 75,			//é¡”ã‚¢ãƒ‹ãƒ¡é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DEMO_CAMERA_ANGLE_START_FRAME = 90 + 160,		//è§’åº¦å¤‰æ›´é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DEMO_CAMERA_ANGLE_RETURN_FRAME = 95,	//è§’åº¦å¤‰æ›´æŠ˜ã‚Šè¿”ã—ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DEMO_CAMERA_ANGLE_END_FRAME = 105,		//è§’åº¦æˆ»ã—çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DEMO_CAMERA_DISTANCE_MOVE_FRAME = 100,//115,	//è·é›¢è©°ã‚ã‚‹é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 };
-///ƒfƒ‚—pƒJƒƒ‰‚ÌƒXƒ^[ƒgƒIƒtƒZƒbƒgZ(ˆÚ“®‹——£)
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®ã‚¹ã‚¿ãƒ¼ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆZ(ç§»å‹•è·é›¢)
 #define DEMO_CAMERA_MOVE_OFFSET_Z	(DEMO_CAMERA_MOVE_SPEED * DEMO_CAMERA_MOVE_FRAME)
 
-///ƒfƒ‚—pƒJƒƒ‰‚Ì“Ë‚Á‚İ‘O‚ÌŠp“x‰ÁZ’l‚Ì‰Šú’l
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®çªã£è¾¼ã¿å‰ã®è§’åº¦åŠ ç®—å€¤ã®åˆæœŸå€¤
 #define DEMO_CAMERA_ADD_ANGLE_INIT		(0x10000 - 0x1c7d)	//(40)
 #define DEMO_CAMERA_ADD_ANGLE_FRAME		(30)
-#define DEMO_CAMERA_ADD_ANGLE_END		(0x10000 - 0x3fef)//(90 - DEMO_CAMERA_ADD_ANGLE_INIT-1)	//ÅI“I‚ÈŠp“x‚ª90“x(end+init)‚¾‚Æ^‚ÁˆÃ‚É‚È‚é
+#define DEMO_CAMERA_ADD_ANGLE_END		(0x10000 - 0x3fef)//(90 - DEMO_CAMERA_ADD_ANGLE_INIT-1)	//æœ€çµ‚çš„ãªè§’åº¦ãŒ90åº¦(end+init)ã ã¨çœŸã£æš—ã«ãªã‚‹
 
-///ƒfƒ‚—pƒJƒƒ‰‚Ì“Ë‚Á‚İ‘O‚Ì‹——£‰ÁZ’l‚Ì‰Šú’l
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®çªã£è¾¼ã¿å‰ã®è·é›¢åŠ ç®—å€¤ã®åˆæœŸå€¤
 #define DEMO_CAMERA_ADD_DISTANCE_INIT	(FX32_ONE)
-///ƒfƒ‚—pƒJƒƒ‰‚Ì“Ë‚Á‚İ‘O‚Ìƒp[ƒX‰ÁZ’l‚Ì‰Šú’l
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®çªã£è¾¼ã¿å‰ã®ãƒ‘ãƒ¼ã‚¹åŠ ç®—å€¤ã®åˆæœŸå€¤
 #define DEMO_CAMERA_ADD_PERSPWAY_INIT	(60 << 8)
-///ƒfƒ‚—pƒJƒƒ‰‚Ì“Ë‚Á‚İ‚Ìƒp[ƒXŒ¸Z’l‚ÌÅ’á’n
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®çªã£è¾¼ã¿ã®ãƒ‘ãƒ¼ã‚¹æ¸›ç®—å€¤ã®æœ€ä½åœ°
 #define DEMO_CAMERA_ADD_PERSPWAY_KEEP	(16 << 8)
-///ƒfƒ‚—pƒJƒƒ‰‚Ì“Ë‚Á‚İ‘O‚Ìƒp[ƒXŒ¸Z’l‚Ì‰Šú’l
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®çªã£è¾¼ã¿å‰ã®ãƒ‘ãƒ¼ã‚¹æ¸›ç®—å€¤ã®åˆæœŸå€¤
 #define DEMO_CAMERA_ADD_PERSPWAY_SUB	(0x0080)
 
 
 //--------------------------------------------------------------
-//	ƒ‚ƒfƒ‹
+//	ãƒ¢ãƒ‡ãƒ«
 //--------------------------------------------------------------
 #define ANA_3D_X		(0)	//fx32
 #define ANA_3D_Y		(0)	//fx32
@@ -87,17 +87,17 @@ enum{
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///”j‰ó“Ë“üƒfƒ‚§Œä\‘¢‘Ì
+///ç ´å£Šçªå…¥ãƒ‡ãƒ¢åˆ¶å¾¡æ§‹é€ ä½“
 typedef struct _WARP_SYS{
 	GF_G3DMAN *g3Dman;
-	GF_CAMERA_PTR camera;				///<ƒJƒƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	GF_CAMERA_PTR camera;				///<ã‚«ãƒ¡ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	TCB_PTR update_tcb;					///<Update—pTCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	TCB_PTR update_tcb;					///<Updateç”¨TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
 	int frame_count;
-	int se_counter;						//SEÄ¶—p‚ÌƒJƒEƒ“ƒ^[(08.04.17)
+	int se_counter;						//SEå†ç”Ÿç”¨ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼(08.04.17)
 	
 	D3DOBJ ana_obj;
 	D3DOBJ_ANM ana_ica_anm;
@@ -115,7 +115,7 @@ typedef struct _WARP_SYS{
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void HakaiWarp_Update(TCB_PTR tcb, void *work);
 static void VBlankFunc( void * work );
@@ -139,20 +139,20 @@ static void Warp_Demo_CameraMove(WARP_SYS *warp);
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT HakaiWarpProc_Init( PROC * proc, int * seq )
 {
 	WARP_SYS *warp;
 	
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -174,24 +174,24 @@ PROC_RESULT HakaiWarpProc_Init( PROC * proc, int * seq )
 
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-	//VRAMŠ„‚è“–‚Äİ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	HakaiWarp_VramBankSet();
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
-	//3Dƒ‚ƒfƒ‹“]‘—
+	//3Dãƒ¢ãƒ‡ãƒ«è»¢é€
 	Model3DSet(warp);
 
-	//ƒJƒƒ‰ì¬
+	//ã‚«ãƒ¡ãƒ©ä½œæˆ
 	HakaiWarp_CameraInit(warp);
 
-	// ƒƒCƒvƒtƒF[ƒhŠJn
+	// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 
 		16, WIPE_DEF_SYNC, HEAPID_TITLE_DEMO );
 
-	//ƒƒCƒ“‰æ–Êİ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢è¨­å®š
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 	GF_Disp_DispOn();
@@ -209,12 +209,12 @@ PROC_RESULT HakaiWarpProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT HakaiWarpProc_Main( PROC * proc, int * seq )
@@ -245,7 +245,7 @@ PROC_RESULT HakaiWarpProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	case SEQ_OUT_INIT:
-		// ƒƒCƒvƒtƒF[ƒhŠJn
+		// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, 
 			20, WIPE_DEF_SYNC, HEAPID_TITLE_DEMO );
 		(*seq)++;
@@ -264,12 +264,12 @@ PROC_RESULT HakaiWarpProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT HakaiWarpProc_End( PROC * proc, int * seq )
@@ -278,24 +278,24 @@ PROC_RESULT HakaiWarpProc_End( PROC * proc, int * seq )
 
 	TCB_Delete(warp->update_tcb);
 
-	//3Dƒ‚ƒfƒ‹‰ğ•ú
+	//3Dãƒ¢ãƒ‡ãƒ«è§£æ”¾
 	Model3DDel(warp);
-	//ƒJƒƒ‰íœ
+	//ã‚«ãƒ¡ãƒ©å‰Šé™¤
 	HakaiWarp_CameraExit(warp);
 
 	//simple_3DBGExit();
 	HakaiWarp_3D_Exit(warp->g3Dman);
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
 	MsgPrintSkipFlagSet(MSG_SKIP_OFF);
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
 	MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	sys_DeleteHeap( HEAPID_TITLE_DEMO );
 
 	return PROC_RES_FINISH;
@@ -315,7 +315,7 @@ static void HakaiWarp_Update(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -331,7 +331,7 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNİ’è‚ğs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
  */
 //--------------------------------------------------------------
@@ -340,27 +340,27 @@ static void HakaiWarp_VramBankSet(void)
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -370,20 +370,20 @@ static void HakaiWarp_VramBankSet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰ì¬
+ * @brief   ã‚«ãƒ¡ãƒ©ä½œæˆ
  *
- * @param   warp		ƒQ[ƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   warp		ã‚²ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void HakaiWarp_CameraInit(WARP_SYS *warp)
 {
-	{//ƒfƒ‚—pƒJƒƒ‰ƒZƒbƒg
-		static const CAMERA_ANGLE DemoCameraAngle = {	//ƒJƒƒ‰ƒAƒ“ƒOƒ‹
+	{//ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
+		static const CAMERA_ANGLE DemoCameraAngle = {	//ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«
 			DEMO_CAMERA_ADD_ANGLE_INIT, FX_GET_ROTA_NUM(0), FX_GET_ROTA_NUM(0),
 		};
 		VecFx32	target = { DEMO_CAMERA_TX, DEMO_CAMERA_TY, DEMO_CAMERA_TZ };
 		
-		warp->camera = GFC_AllocCamera(HEAPID_TITLE_DEMO);	//ƒJƒƒ‰ì¬
+		warp->camera = GFC_AllocCamera(HEAPID_TITLE_DEMO);	//ã‚«ãƒ¡ãƒ©ä½œæˆ
 
 		GFC_InitCameraTDA(&target, DEMO_CAMERA_DISTANCE, &DemoCameraAngle,
 			DEMO_CAMERA_PERSPWAY, GF_CAMERA_PERSPECTIV, FALSE, warp->camera);
@@ -391,7 +391,7 @@ static void HakaiWarp_CameraInit(WARP_SYS *warp)
 		GFC_SetCameraClip( HAKAI_WARP_CAMERA_CLIP_NEAR, HAKAI_WARP_CAMERA_CLIP_FAR, 
 			warp->camera);
 
-		//ƒXƒNƒ[ƒ‹IN‚³‚¹‚é‚Ì‚Å‚¿‚å‚Á‚Æ—£‚·
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«INã•ã›ã‚‹ã®ã§ã¡ã‚‡ã£ã¨é›¢ã™
 		{
 //			VecFx32 move = {0,0,DEMO_CAMERA_MOVE_OFFSET_Z};
 //			GFC_ShiftCamera(&move, warp->camera);
@@ -411,9 +411,9 @@ static void HakaiWarp_CameraInit(WARP_SYS *warp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‰ğ•ú
+ * @brief   ã‚«ãƒ¡ãƒ©è§£æ”¾
  *
- * @param   warp		ƒQ[ƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   warp		ã‚²ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void HakaiWarp_CameraExit(WARP_SYS *warp)
@@ -423,7 +423,7 @@ static void HakaiWarp_CameraExit(WARP_SYS *warp)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹ƒZƒbƒg
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆ
  *
  * @param   warp		
  */
@@ -436,27 +436,27 @@ static void Model3DSet( WARP_SYS * warp)
 
 	hdl  = ArchiveDataHandleOpen(ARC_TITLE_PL, HEAPID_TITLE_DEMO); 
 
-	{//ŒŠ
-		//ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	{//ç©´
+		//ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		D3DOBJ_MdlLoadH(&warp->ana_mdl, hdl, NARC_titledemo_op_ana_nsbmd, HEAPID_TITLE_DEMO);
 		NNS_G3dMdlUseMdlAlpha(warp->ana_mdl.pModel);
 		NNS_G3dMdlUseMdlPolygonID(warp->ana_mdl.pModel);
-		//icaƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+		//icaã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		D3DOBJ_AnmLoadH(&warp->ana_ica_anm, &warp->ana_mdl, hdl, 
 			NARC_titledemo_op_ana_nsbca, HEAPID_TITLE_DEMO, &warp->allocater);
 		D3DOBJ_AnmSet(&warp->ana_ica_anm, 0);
-		//itaƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+		//itaã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		D3DOBJ_AnmLoadH(&warp->ana_ita_anm, &warp->ana_mdl, hdl, 
 			NARC_titledemo_op_ana_nsbta, HEAPID_TITLE_DEMO, &warp->allocater);
 		D3DOBJ_AnmSet(&warp->ana_ita_anm, 0);
 
-		//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+		//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 		D3DOBJ_Init(&warp->ana_obj, &warp->ana_mdl);
-		//À•Wİ’è
+		//åº§æ¨™è¨­å®š
 		D3DOBJ_SetMatrix( &warp->ana_obj, ANA_3D_X, ANA_3D_Y, ANA_3D_Z);
 		D3DOBJ_SetScale(&warp->ana_obj, ANA_3D_SCALE, ANA_3D_SCALE, ANA_3D_SCALE);
 		D3DOBJ_SetDraw( &warp->ana_obj, TRUE );
-		//ƒAƒjƒŠÖ˜A•t‚¯
+		//ã‚¢ãƒ‹ãƒ¡é–¢é€£ä»˜ã‘
 		D3DOBJ_AddAnm(&warp->ana_obj, &warp->ana_ica_anm);
 		D3DOBJ_AddAnm(&warp->ana_obj, &warp->ana_ita_anm);
 	}
@@ -471,7 +471,7 @@ static void Model3DSet( WARP_SYS * warp)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹íœ
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«å‰Šé™¤
  *
  * @param   warp		
  *
@@ -489,7 +489,7 @@ static void Model3DDel(WARP_SYS *warp)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹XV
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«æ›´æ–°
  *
  * @param   warp		
  *
@@ -513,30 +513,30 @@ static void Model3D_Update(WARP_SYS *warp)
 	
 	MTX_Identity33(&rot);
 
-	//‚R‚c•`‰æŠJn
+	//ï¼“ï¼¤æç”»é–‹å§‹
 	GF_G3X_Reset();
 	
 	GFC_AttachCamera(warp->camera);
-	GFC_SetCameraView(HAKAI_WARP_CAMERA_MODE, warp->camera); //³Ë‰eİ’è
+	GFC_SetCameraView(HAKAI_WARP_CAMERA_MODE, warp->camera); //æ­£å°„å½±è¨­å®š
 	GFC_CameraLookAt();
 
-	// ƒ‰ƒCƒg‚ÆƒAƒ“ƒrƒGƒ“ƒg
+	// ãƒ©ã‚¤ãƒˆã¨ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
 	NNS_G3dGlbLightVector( 0, 0, -FX32_ONE, 0 );
 	NNS_G3dGlbLightColor( 0, GX_RGB( 28,28,28 ) );
 	NNS_G3dGlbMaterialColorDiffAmb( GX_RGB( 31,31,31 ), GX_RGB( 31,31,31 ), FALSE );
 	NNS_G3dGlbMaterialColorSpecEmi( GX_RGB( 31,31,31 ), GX_RGB( 31,31,31 ), FALSE );
 	
-	// ˆÊ’uİ’è
+	// ä½ç½®è¨­å®š
 	NNS_G3dGlbSetBaseTrans(&trans);
-	// Šp“xİ’è
+	// è§’åº¦è¨­å®š
 	NNS_G3dGlbSetBaseRot(&rot);
-	// ƒXƒP[ƒ‹İ’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
 	NNS_G3dGlbSetBaseScale(&scale_vec);
 
 //	NNS_G3dGlbFlush();
 	
 	
-	//•`‰æ
+	//æç”»
 	D3DOBJ_AnmLoop(&warp->ana_ica_anm, FX32_ONE);
 	D3DOBJ_AnmLoop(&warp->ana_ita_anm, FX32_ONE);
 	NNS_G3dGePushMtx();
@@ -548,9 +548,9 @@ static void Model3D_Update(WARP_SYS *warp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”j‰ó“Ë“üƒfƒ‚—p3DBG‰Šú‰»ŠÖ”
+ * @brief   ç ´å£Šçªå…¥ãƒ‡ãƒ¢ç”¨3DBGåˆæœŸåŒ–é–¢æ•°
  * 
- * @param   ƒq[ƒvID
+ * @param   ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 static GF_G3DMAN * HakaiWarp_3D_Init(int heap_id)
@@ -564,28 +564,28 @@ static GF_G3DMAN * HakaiWarp_3D_Init(int heap_id)
 
 static void HakaiWarpSimpleSetUp(void)
 {
-	// ‚R‚cg—p–Ê‚Ìİ’è(•\¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ”j‰ó“Ë“üƒfƒ‚—p3DBGI—¹ˆ—
+ * @brief   ç ´å£Šçªå…¥ãƒ‡ãƒ¢ç”¨3DBGçµ‚äº†å‡¦ç†
  *
  * @param   g3Dman		
  */
@@ -597,7 +597,7 @@ static void HakaiWarp_3D_Exit(GF_G3DMAN *g3Dman)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒ‚—pƒJƒƒ‰‚ÌˆÚ“®
+ * @brief   ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®ç§»å‹•
  *
  * @param   warp		
  */

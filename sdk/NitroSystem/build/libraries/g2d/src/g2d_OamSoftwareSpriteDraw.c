@@ -49,8 +49,8 @@ typedef struct SpriteParams
 
 
 //
-// ƒpƒ‰ƒ[ƒ^ƒLƒƒƒbƒVƒ…
-// ‚Ü‚Á‚½‚­“¯‚¶ƒeƒNƒXƒ`ƒƒİ’è‚ÌƒXƒvƒ‰ƒCƒg‚ğ‘å—Ê‚É•`‰æ‚·‚éÛ‚Ég—p‚µ‚Ü‚·B
+// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥
+// ã¾ã£ãŸãåŒã˜ãƒ†ã‚¯ã‚¹ãƒãƒ£è¨­å®šã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’å¤§é‡ã«æç”»ã™ã‚‹éš›ã«ä½¿ç”¨ã—ã¾ã™ã€‚
 static SoftwareSpriteParamCache         softwareSpreiteParamCache_ =
 {
     0,
@@ -62,12 +62,12 @@ static SoftwareSpriteParamCache         softwareSpreiteParamCache_ =
 
 
 
-// Oamƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒGƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ ‚Åg—p‚³‚ê‚é UV’l•â³ŠÖ”ƒ|ƒCƒ“ƒ^
+// Oamã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ ã§ä½¿ç”¨ã•ã‚Œã‚‹ UVå€¤è£œæ­£é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
 static NNS_G2dOamSoftEmuUVFlipCorrectFunc        s_pUVFlipCorrectFunc   = NULL;
 
 
 
-// GXTexFmt ƒLƒƒƒ‰ƒNƒ^[ƒTƒCƒYƒe[ƒuƒ‹
+// GXTexFmt ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚µã‚¤ã‚ºãƒ†ãƒ¼ãƒ–ãƒ«
 static const u32 characterShiftSize_[] = 
 {
     0,// GX_TEXFMT_NONE   
@@ -79,7 +79,7 @@ static const u32 characterShiftSize_[] =
     0,// GX_TEXFMT_A5I3  
     0 // GX_TEXFMT_DIRECT
 };
-// GXOamShape ‚©‚ç GXTexSizeS ‚ğ ƒe[ƒuƒ‹ˆø‚«‚µ‚Ü‚·
+// GXOamShape ã‹ã‚‰ GXTexSizeS ã‚’ ãƒ†ãƒ¼ãƒ–ãƒ«å¼•ãã—ã¾ã™
 static const GXTexSizeS gxTexSizeSTbl [3][4] = 
 {
            {
@@ -102,7 +102,7 @@ static const GXTexSizeS gxTexSizeSTbl [3][4] =
            }
 };    
 
-// GXOamShape ‚©‚ç GXTexSizeT ‚ğ ƒe[ƒuƒ‹ˆø‚«‚µ‚Ü‚·
+// GXOamShape ã‹ã‚‰ GXTexSizeT ã‚’ ãƒ†ãƒ¼ãƒ–ãƒ«å¼•ãã—ã¾ã™
 static const GXTexSizeT gxTexSizeTTbl [3][4] = 
 {
            {
@@ -125,9 +125,9 @@ static const GXTexSizeT gxTexSizeTTbl [3][4] =
            }
 };
 
-static BOOL         bAutoZOffsetAdd_    = FALSE;    // ƒXƒvƒ‰ƒCƒg‚ğ•`‰æ‚·‚é‚½‚Ñ‚ÉZƒIƒtƒZƒbƒg‚ğ©“®‰ÁZ‚·‚é‚©‚Ç‚¤‚©
-static fx32         zOffset_            = 0;        // ƒXƒvƒ‰ƒCƒg‚É—^‚¦‚ç‚ê‚éAZƒIƒtƒZƒbƒg
-static fx32         zOffsetStep_        = -FX32_ONE; // ƒXƒvƒ‰ƒCƒg‚É—^‚¦‚ç‚ê‚éAZƒIƒtƒZƒbƒg‚Ì‘‰Á•ª
+static BOOL         bAutoZOffsetAdd_    = FALSE;    // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’æç”»ã™ã‚‹ãŸã³ã«Zã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è‡ªå‹•åŠ ç®—ã™ã‚‹ã‹ã©ã†ã‹
+static fx32         zOffset_            = 0;        // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«ä¸ãˆã‚‰ã‚Œã‚‹ã€Zã‚ªãƒ•ã‚»ãƒƒãƒˆ
+static fx32         zOffsetStep_        = -FX32_ONE; // ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«ä¸ãˆã‚‰ã‚Œã‚‹ã€Zã‚ªãƒ•ã‚»ãƒƒãƒˆã®å¢—åŠ åˆ†
 
 
 
@@ -135,7 +135,7 @@ static fx32         zOffsetStep_        = -FX32_ONE; // ƒXƒvƒ‰ƒCƒg‚É—^‚¦‚ç‚ê‚éA
 
 
 //------------------------------------------------------------------------------
-// GXTexSizeS‚©‚çƒeƒNƒXƒ`ƒƒƒTƒCƒY ‚ğ u32 ’l‚Å æ“¾‚µ‚Ü‚·
+// GXTexSizeSã‹ã‚‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º ã‚’ u32 å€¤ã§ å–å¾—ã—ã¾ã™
 static NNS_G2D_INLINE u32 GetNumTexChar_( GXTexSizeS texSize )
 {
     static const u32 texSize_ [] = 
@@ -156,7 +156,7 @@ static NNS_G2D_INLINE u32 GetNumTexChar_( GXTexSizeS texSize )
 }
 
 //------------------------------------------------------------------------------
-// ©“®ZƒIƒtƒZƒbƒg‚ÌƒIƒtƒZƒbƒg’l‚ğXV‚·‚é
+// è‡ªå‹•Zã‚ªãƒ•ã‚»ãƒƒãƒˆã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’æ›´æ–°ã™ã‚‹
 static NNS_G2D_INLINE void IncreaseAutoZOffset_()
 {
     if( bAutoZOffsetAdd_ )
@@ -166,7 +166,7 @@ static NNS_G2D_INLINE void IncreaseAutoZOffset_()
 }
 
 //------------------------------------------------------------------------------
-// fx32 Œ^ ‚Ì Z ’l ‚ğæ“¾‚·‚éA©“®ZƒIƒtƒZƒbƒg‚ğl—¶‚µ‚Ä‚¢‚é
+// fx32 å‹ ã® Z å€¤ ã‚’å–å¾—ã™ã‚‹ã€è‡ªå‹•Zã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è€ƒæ…®ã—ã¦ã„ã‚‹
 static NNS_G2D_INLINE fx32 GetFx32DepthValue_( int z )
 {
     if( bAutoZOffsetAdd_ )
@@ -178,7 +178,7 @@ static NNS_G2D_INLINE fx32 GetFx32DepthValue_( int z )
 }
 
 //------------------------------------------------------------------------------
-// NNS_G2dDrawOneOam3DDirect() “à‚Å‚ÌUV’lŒvZ‚ğs‚¢‚Ü‚·
+// NNS_G2dDrawOneOam3DDirect() å†…ã§ã®UVå€¤è¨ˆç®—ã‚’è¡Œã„ã¾ã™
 static NNS_G2D_INLINE void DoFlip_
 (
     BOOL bFlipH, BOOL bFlipV,
@@ -191,7 +191,7 @@ static NNS_G2D_INLINE void DoFlip_
     NNS_G2D_NULL_ASSERT( pRetV0 );
     NNS_G2D_NULL_ASSERT( pRetV1 );
     
-    // UVƒtƒŠƒbƒvˆ—
+    // UVãƒ•ãƒªãƒƒãƒ—å‡¦ç†
     {
         fx32 temp;
         if( bFlipH )
@@ -208,7 +208,7 @@ static NNS_G2D_INLINE void DoFlip_
             *pRetV1 = temp;
         }
        
-        // UV ’l•â³ŠÖ”‚ªİ’è‚³‚ê‚Ä‚¢‚é‚È‚ç‚ÎŒÄ‚Ño‚µ‚Ü‚·B
+        // UV å€¤è£œæ­£é–¢æ•°ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã°å‘¼ã³å‡ºã—ã¾ã™ã€‚
         if( s_pUVFlipCorrectFunc )
         {
             (*s_pUVFlipCorrectFunc)( pRetU0, pRetV0, pRetU1, pRetV1, bFlipH, bFlipV );
@@ -217,7 +217,7 @@ static NNS_G2D_INLINE void DoFlip_
 }
 
 //------------------------------------------------------------------------------
-// NNS_G2dDrawOneOam3DDirect() “à‚Å‚ÌUV’lŒvZ‚ğs‚¢‚Ü‚·
+// NNS_G2dDrawOneOam3DDirect() å†…ã§ã®UVå€¤è¨ˆç®—ã‚’è¡Œã„ã¾ã™
 static NNS_G2D_INLINE void CalcUVFor3DDirect2DMap_
 ( 
     const NNSG2dImageAttr*          pTexImageAttr, 
@@ -232,8 +232,8 @@ static NNS_G2D_INLINE void CalcUVFor3DDirect2DMap_
     GX_OBJVRAMMODE_CHAR_ASSERT( pTexImageAttr->mappingType );
     
     //
-    // ’ˆÓF2D ƒOƒ‰ƒtƒBƒbƒNƒGƒ“ƒWƒ“‚Ìd—l‚Å‚·B
-    // ÀÛ ‚Ì 8*8 ƒeƒNƒZƒ‹‚ÌƒLƒƒƒ‰ƒNƒ^”‚Í charName/2 ‚Å‚·B
+    // æ³¨æ„ï¼š2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¨ãƒ³ã‚¸ãƒ³ã®ä»•æ§˜ã§ã™ã€‚
+    // å®Ÿéš› ã® 8*8 ãƒ†ã‚¯ã‚»ãƒ«ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°ã¯ charName/2 ã§ã™ã€‚
     //
     if( pTexImageAttr->fmt == GX_TEXFMT_PLTT256 )
     {
@@ -242,7 +242,7 @@ static NNS_G2D_INLINE void CalcUVFor3DDirect2DMap_
     }
     
     {
-        // GX_OBJVRAMMODE_CHAR_2D‚Ìê‡
+        // GX_OBJVRAMMODE_CHAR_2Dã®å ´åˆ
         {
             const u32 numCharPerOneLine = GetNumTexChar_( pTexImageAttr->sizeS );
             
@@ -250,7 +250,7 @@ static NNS_G2D_INLINE void CalcUVFor3DDirect2DMap_
         	*pRetU0 = (fx32)( (( charName & ( numCharPerOneLine - 1 ) ) << 3) << FX32_SHIFT ); 
             
             //
-            // ’ˆÓF‚‘¬‰»‚Ì‚½‚ßBiGXTexSizeS‚Ì’l‚ÉˆË‘¶‚µ‚Ä‚¢‚Ü‚·Bj
+            // æ³¨æ„ï¼šé«˜é€ŸåŒ–ã®ãŸã‚ã€‚ï¼ˆGXTexSizeSã®å€¤ã«ä¾å­˜ã—ã¦ã„ã¾ã™ã€‚ï¼‰
             //
             //V = ((charName) / numCharPerOneLine ) * 8;
             *pRetV0 = (( charName >> pTexImageAttr->sizeS ) << 3) << FX32_SHIFT;
@@ -259,7 +259,7 @@ static NNS_G2D_INLINE void CalcUVFor3DDirect2DMap_
 }
 
 //------------------------------------------------------------------------------
-// NNS_G2dDrawOneOam3DDirect() “à‚Å‚ÌUV’lŒvZ‚ğs‚¢‚Ü‚·
+// NNS_G2dDrawOneOam3DDirect() å†…ã§ã®UVå€¤è¨ˆç®—ã‚’è¡Œã„ã¾ã™
 static NNS_G2D_INLINE void CalcUVFor3DDirect1DMap_
 ( 
     fx32*   pRetU0,  
@@ -274,10 +274,10 @@ static NNS_G2D_INLINE void CalcUVFor3DDirect1DMap_
         // GX_OBJVRAMMODE_CHAR_1D_32K:
         // GX_OBJVRAMMODE_CHAR_1D_64K:
         // GX_OBJVRAMMODE_CHAR_1D_128K:
-        // GX_OBJVRAMMODE_CHAR_1D_256K:‚Ìê‡
+        // GX_OBJVRAMMODE_CHAR_1D_256K:ã®å ´åˆ
         //
-        // baseOffset ‚Å ‘Î‰‚·‚é
-        // NNS_G2dDrawOneOam3DDirect() ‚ğ QÆ‚³‚ê‚½‚¢
+        // baseOffset ã§ å¯¾å¿œã™ã‚‹
+        // NNS_G2dDrawOneOam3DDirect() ã‚’ å‚ç…§ã•ã‚ŒãŸã„
         //
         *pRetU0 = 0; 
         *pRetV0 = 0;
@@ -303,7 +303,7 @@ static NNS_G2D_INLINE GXTexSizeS GetTexS_( GXOamShape shape )
 }
 
 //------------------------------------------------------------------------------
-// GXOamShape ‚©‚ç GXTexSizeT ‚ğ ƒe[ƒuƒ‹ˆø‚«‚µ‚Ü‚·
+// GXOamShape ã‹ã‚‰ GXTexSizeT ã‚’ ãƒ†ãƒ¼ãƒ–ãƒ«å¼•ãã—ã¾ã™
 static NNS_G2D_INLINE GXTexSizeT GetTexT_( GXOamShape shape )
 {
     GX_OAM_SHAPE_ASSERT( shape );
@@ -319,14 +319,14 @@ static NNS_G2D_INLINE GXTexSizeT GetTexT_( GXOamShape shape )
 
 
 //------------------------------------------------------------------------------
-// ƒpƒŒƒbƒg”Ô†‚ª¦‚·•ª‚ÌƒIƒtƒZƒbƒgƒoƒCƒg”‚ğŒvZ‚µ‚Ü‚·B
+// ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ãŒç¤ºã™åˆ†ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒã‚¤ãƒˆæ•°ã‚’è¨ˆç®—ã—ã¾ã™ã€‚
 static NNS_G2D_INLINE u32 GetOffsetByteSizeOfPlt_( GXTexFmt pltFmt, BOOL bExtendedPlt, u16 pltNo )
 {
     NNS_G2D_ASSERT( pltFmt == GX_TEXFMT_PLTT16 || pltFmt == GX_TEXFMT_PLTT256 );
     
     if( bExtendedPlt )
     {
-        // Šg’£ƒpƒŒƒbƒg 256 * 16 
+        // æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ 256 * 16 
         NNS_G2D_ASSERT( pltFmt == GX_TEXFMT_PLTT256 );
         
         //return pltNo * (sizeof( u16 ) * 256 );
@@ -335,7 +335,7 @@ static NNS_G2D_INLINE u32 GetOffsetByteSizeOfPlt_( GXTexFmt pltFmt, BOOL bExtend
         
         if( pltFmt == GX_TEXFMT_PLTT256 )
         {
-            // GX_TEXFMT_PLTT256 ‚Å‚Í ƒpƒŒƒbƒg”Ô†‚Í–³‹‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+            // GX_TEXFMT_PLTT256 ã§ã¯ ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã¯ç„¡è¦–ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
             //return pltNo * 0;
             return 0;
         }else{
@@ -367,7 +367,7 @@ static NNS_G2D_INLINE int GetCharacterNameShiftBit_( GXOBJVRamModeChar objMappin
     }
     */
     //
-    // ’ˆÓFenum ’è‹`‚ÉˆË‘¶‚·‚éˆ—‚Å‚·B
+    // æ³¨æ„ï¼šenum å®šç¾©ã«ä¾å­˜ã™ã‚‹å‡¦ç†ã§ã™ã€‚
     //
     /*
     GX_OBJVRAMMODE_CHAR_2D      = (0 << REG_GX_DISPCNT_OBJMAP_SHIFT) | (0 << REG_GX_DISPCNT_EXOBJ_SHIFT),
@@ -381,7 +381,7 @@ static NNS_G2D_INLINE int GetCharacterNameShiftBit_( GXOBJVRamModeChar objMappin
 
 
 //------------------------------------------------------------------------------
-// NNS_G2dDrawOneOam3DDirect() “à‚Å‚ÌTextureİ’è‚ğs‚¢‚Ü‚·
+// NNS_G2dDrawOneOam3DDirect() å†…ã§ã®Textureè¨­å®šã‚’è¡Œã„ã¾ã™
 static NNS_G2D_INLINE void SetTextureParamsFor3DDirect1DMap_
 (
     const NNSG2dImageAttr*          pTexImageAttr,
@@ -393,28 +393,28 @@ static NNS_G2D_INLINE void SetTextureParamsFor3DDirect1DMap_
     NNS_G2D_NULL_ASSERT( pTexImageAttr );
     
     // 
-    // ƒeƒNƒXƒ`ƒƒƒTƒCƒY‚ğİ’è‚·‚é
+    // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹
     // 
     {
         const u16 shapeBit   = (u16)(( shape & GX_OAM_ATTR01_SHAPE_MASK ) >> GX_OAM_ATTR01_SHAPE_SHIFT);
         const u16 sizeBit    = (u16)(( shape & GX_OAM_ATTR01_SIZE_MASK ) >> GX_OAM_ATTR01_SIZE_SHIFT);
         //
-        // ƒtƒH[ƒ}ƒbƒg‚É‰‚¶‚ÄA–{—ˆ‚ÌƒLƒƒƒ‰ƒNƒ^ƒuƒƒbƒN”‚ğƒVƒtƒgŒvZ‚µ‚Ä‹‚ß‚é
+        // ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¿œã˜ã¦ã€æœ¬æ¥ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ–ãƒ­ãƒƒã‚¯æ•°ã‚’ã‚·ãƒ•ãƒˆè¨ˆç®—ã—ã¦æ±‚ã‚ã‚‹
         //
-        // 5 ‚Í * 32(8*8ƒeƒNƒZƒ‹‚ÌƒoƒCƒgƒTƒCƒY) ‚ÌˆÓ
-        // –{—ˆ‚Í pTexImageAttr->fmt == GX_TEXFMT_PLTT256 ‚Ìê‡‚Í
-        //     ( (charName / 2) * ( 32 * 2 ) ) << shiftBit ‚Æ‚·‚×‚«‚Å‚·‚ªA
-        //     ‚±‚ê‚ÍA‚Ü‚Æ‚ß‚é‚Æ Œ‹‹Ç charName * 32 << shiftBit ‚Æ‚È‚è‚Ü‚·B
+        // 5 ã¯ * 32(8*8ãƒ†ã‚¯ã‚»ãƒ«ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º) ã®æ„
+        // æœ¬æ¥ã¯ pTexImageAttr->fmt == GX_TEXFMT_PLTT256 ã®å ´åˆã¯
+        //     ( (charName / 2) * ( 32 * 2 ) ) << shiftBit ã¨ã™ã¹ãã§ã™ãŒã€
+        //     ã“ã‚Œã¯ã€ã¾ã¨ã‚ã‚‹ã¨ çµå±€ charName * 32 << shiftBit ã¨ãªã‚Šã¾ã™ã€‚
         //
         const int shiftBit   = ( 5 + GetCharacterNameShiftBit_( pTexImageAttr->mappingType ) );
                           
         NNS_G2D_ASSERT( pTexImageAttr->mappingType != GX_OBJVRAMMODE_CHAR_2D );
 
         
-        // 1D ƒ}ƒbƒsƒ“ƒO‚È‚çAƒeƒNƒXƒ`ƒƒƒTƒCƒY == OBJ ƒTƒCƒY‚Å‚ ‚é 
+        // 1D ãƒãƒƒãƒ”ãƒ³ã‚°ãªã‚‰ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º == OBJ ã‚µã‚¤ã‚ºã§ã‚ã‚‹ 
         //
-        // G3_TexImageParam ‚ğg—p‚·‚é‚Æ ƒRƒ“ƒpƒCƒ‰‚ª
-        // SetTextureParamsFor3DDirect_‚ÌƒCƒ“ƒ‰ƒCƒ““WŠJ‚É¸”s‚·‚é‚Ì‚Å...        
+        // G3_TexImageParam ã‚’ä½¿ç”¨ã™ã‚‹ã¨ ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ãŒ
+        // SetTextureParamsFor3DDirect_ã®ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³å±•é–‹ã«å¤±æ•—ã™ã‚‹ã®ã§...        
         reg_G3_TEXIMAGE_PARAM 
            = GX_PACK_TEXIMAGE_PARAM( pTexImageAttr->fmt,   
                                      GX_TEXGEN_TEXCOORD, 
@@ -429,7 +429,7 @@ static NNS_G2D_INLINE void SetTextureParamsFor3DDirect1DMap_
 }
 
 //------------------------------------------------------------------------------
-// NNS_G2dDrawOneOam3DDirect() “à‚Å‚ÌTextureİ’è‚ğs‚¢‚Ü‚·
+// NNS_G2dDrawOneOam3DDirect() å†…ã§ã®Textureè¨­å®šã‚’è¡Œã„ã¾ã™
 static NNS_G2D_INLINE void SetTextureParamsFor3DDirect2DMap_
 (
     const NNSG2dImageAttr*          pTexImageAttr,
@@ -438,7 +438,7 @@ static NNS_G2D_INLINE void SetTextureParamsFor3DDirect2DMap_
 {
     NNS_G2D_NULL_ASSERT( pTexImageAttr );        
     {        
-        // 2D ƒ}ƒbƒsƒ“ƒO‚È‚çAƒeƒNƒXƒ`ƒƒƒTƒCƒY ‚Í ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌƒTƒCƒY
+        // 2D ãƒãƒƒãƒ”ãƒ³ã‚°ãªã‚‰ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º ã¯ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
         reg_G3_TEXIMAGE_PARAM 
            = GX_PACK_TEXIMAGE_PARAM( pTexImageAttr->fmt,   
                                      GX_TEXGEN_TEXCOORD, 
@@ -453,7 +453,7 @@ static NNS_G2D_INLINE void SetTextureParamsFor3DDirect2DMap_
 
 
 //------------------------------------------------------------------------------
-// NNS_G2dDrawOneOam3DDirect() “à‚Å‚ÌTextureİ’è‚ğs‚¢‚Ü‚·
+// NNS_G2dDrawOneOam3DDirect() å†…ã§ã®Textureè¨­å®šã‚’è¡Œã„ã¾ã™
 static NNS_G2D_INLINE void SetPaletteParamsFor3DDirect_
 (
     const NNSG2dImageAttr*          pTexImageAttr,
@@ -465,7 +465,7 @@ static NNS_G2D_INLINE void SetPaletteParamsFor3DDirect_
     NNS_G2D_NULL_ASSERT( pOam );
     
     //
-    // ƒpƒŒƒbƒgİ’è‚ğs‚¤
+    // ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®šã‚’è¡Œã†
     //
     {
         // const GXTexFmt pltFmt = ( pOam->colorMode ) ? GX_TEXFMT_PLTT256 : GX_TEXFMT_PLTT16;
@@ -487,9 +487,9 @@ static NNS_G2D_INLINE void SetPaletteParamsFor3DDirect_
 
 
 //------------------------------------------------------------------------------
-// ƒXƒvƒ‰ƒCƒg‚Ì•½sˆÚ“®’l‚ğİ’è‚µ‚Ü‚·
-// ŠÖ”“à‚ÅA”{ŠpƒAƒtƒBƒ“OBJ‚©‚Ç‚¤‚©‚ğ”»’è‚µA‚»‚ÌŒ‹‰Ê‚É‚æ‚Á‚Ä•`‰æˆÊ’u‚ğ
-// •Ï‰»‚³‚¹‚Ä‚¢‚Ü‚·B
+// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®å¹³è¡Œç§»å‹•å€¤ã‚’è¨­å®šã—ã¾ã™
+// é–¢æ•°å†…ã§ã€å€è§’ã‚¢ãƒ•ã‚£ãƒ³OBJã‹ã©ã†ã‹ã‚’åˆ¤å®šã—ã€ãã®çµæœã«ã‚ˆã£ã¦æç”»ä½ç½®ã‚’
+// å¤‰åŒ–ã•ã›ã¦ã„ã¾ã™ã€‚
 static NNS_G2D_INLINE void SetQuadTranslation_
 ( 
     const GXOamAttr* pOam, 
@@ -499,11 +499,11 @@ static NNS_G2D_INLINE void SetQuadTranslation_
 )
 {
     #pragma inline_max_size(20000)
-    // ”{ŠpƒAƒtƒBƒ“OBJ‚©”»’è‚µ‚Ü‚·
+    // å€è§’ã‚¢ãƒ•ã‚£ãƒ³OBJã‹åˆ¤å®šã—ã¾ã™
     if( G2_GetOBJEffect( pOam ) == GX_OAM_EFFECT_AFFINE_DOUBLE )
     {        
         const GXOamShape     oamShape = NNS_G2dGetOAMSize( pOam );
-        const int           halfW = NNS_G2dGetOamSizeX( &oamShape ) >> 1; // - 1 ‚Í / 2 ‚ÌˆÓ
+        const int           halfW = NNS_G2dGetOamSizeX( &oamShape ) >> 1; // - 1 ã¯ / 2 ã®æ„
         const int           halfH = NNS_G2dGetOamSizeY( &oamShape ) >> 1; 
            
         G3_Translate
@@ -523,7 +523,7 @@ static NNS_G2D_INLINE void SetQuadTranslation_
 }
 
 //------------------------------------------------------------------------------
-// ƒXƒvƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^‚ğŒvZ‚·‚éB
+// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 static void CalcSpriteParams_
 ( 
     const GXOamAttr*                pOam, 
@@ -542,18 +542,18 @@ static void CalcSpriteParams_
    
     if( pTexImageAttr->mappingType == GX_OBJVRAMMODE_CHAR_2D )
     {
-        // ƒeƒNƒXƒ`ƒƒ
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£
         SetTextureParamsFor3DDirect2DMap_( pTexImageAttr, texBaseAddr );
-        // UV 0 ’l‚ğZo‚·‚é
+        // UV 0 å€¤ã‚’ç®—å‡ºã™ã‚‹
         CalcUVFor3DDirect2DMap_( pTexImageAttr, charName, &pResult->u0, &pResult->v0 );          
     }else{
-        // ƒeƒNƒXƒ`ƒƒ
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£
         SetTextureParamsFor3DDirect1DMap_( pTexImageAttr, texBaseAddr, shapeOam, charName );
-        // UV 0 ’l‚ğZo‚·‚é
+        // UV 0 å€¤ã‚’ç®—å‡ºã™ã‚‹
         CalcUVFor3DDirect1DMap_( &pResult->u0, &pResult->v0 );
     }
        
-    // UV 1 ’l‚ğZo‚·‚é
+    // UV 1 å€¤ã‚’ç®—å‡ºã™ã‚‹
     pResult->u1 = pResult->u0 + ( pResult->sx << FX32_SHIFT );
     pResult->v1 = pResult->v0 + ( pResult->sy << FX32_SHIFT );
        
@@ -562,12 +562,12 @@ static void CalcSpriteParams_
              &pResult->u0, &pResult->u1 , 
              &pResult->v0, &pResult->v1 );
    
-    // ƒpƒŒƒbƒg
+    // ãƒ‘ãƒ¬ãƒƒãƒˆ
     SetPaletteParamsFor3DDirect_( pTexImageAttr, pltBaseAddr, pOam );
 }
 
 //------------------------------------------------------------------------------
-// ©“®Z’lƒIƒtƒZƒbƒg‹@”\‚ğ—LŒø‚É‚·‚éƒtƒ‰ƒO‚ğİ’è‚µ‚Ü‚·B
+// è‡ªå‹•Zå€¤ã‚ªãƒ•ã‚»ãƒƒãƒˆæ©Ÿèƒ½ã‚’æœ‰åŠ¹ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã—ã¾ã™ã€‚
 void NNSi_G2dSetOamSoftEmuAutoZOffsetFlag( BOOL flag )
 {
     bAutoZOffsetAdd_ = flag;
@@ -601,14 +601,14 @@ fx32 NNSi_G2dGetOamSoftEmuAutoZOffsetStep( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dDrawOneOam3DDirectFast
 
-  Description:  OamƒAƒgƒŠƒrƒ…[ƒg‚Ì“à—e‚ğ’¼Ú 3D Graphics Engine ‚ğ g—p‚µ‚Ä•`‰æ‚µ‚Ü‚·B
+  Description:  Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®å†…å®¹ã‚’ç›´æ¥ 3D Graphics Engine ã‚’ ä½¿ç”¨ã—ã¦æç”»ã—ã¾ã™ã€‚
                 
-  Arguments:    pOam          :     [IN]  OAMiGXOamAttrj
-                pTexImageAttr :     [IN]  ƒeƒNƒXƒ`ƒƒ‘®« 
-                texBaseAddr   :     [IN]  ƒeƒNƒXƒ`ƒƒƒx[ƒXƒAƒhƒŒƒX 
-                pltBaseAddr   :     [IN]  ƒpƒŒƒbƒgƒx[ƒXƒAƒhƒŒƒX 
+  Arguments:    pOam          :     [IN]  OAMï¼ˆGXOamAttrï¼‰
+                pTexImageAttr :     [IN]  ãƒ†ã‚¯ã‚¹ãƒãƒ£å±æ€§ 
+                texBaseAddr   :     [IN]  ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹ 
+                pltBaseAddr   :     [IN]  ãƒ‘ãƒ¬ãƒƒãƒˆãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹ 
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dDrawOneOam3DDirectFast
@@ -634,7 +634,7 @@ void NNS_G2dDrawOneOam3DDirectFast
                                spriteParams.u0, spriteParams.v0, 
                                spriteParams.u1, spriteParams.v1 );
         //
-        // ©“®ZƒIƒtƒZƒbƒg’l‚ÌXV
+        // è‡ªå‹•Zã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã®æ›´æ–°
         //
         IncreaseAutoZOffset_();   
     }
@@ -644,19 +644,19 @@ void NNS_G2dDrawOneOam3DDirectFast
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dDrawOneOam3DDirectWithPosFast
 
-  Description:  OamƒAƒgƒŠƒrƒ…[ƒg‚Ì“à—e‚ğˆÊ’u‚ğw’è‚µ‚Ä ’¼Ú 3D Graphics Engine ‚ğ g—p‚µ‚Ä•`‰æ‚µ‚Ü‚·B
+  Description:  Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®å†…å®¹ã‚’ä½ç½®ã‚’æŒ‡å®šã—ã¦ ç›´æ¥ 3D Graphics Engine ã‚’ ä½¿ç”¨ã—ã¦æç”»ã—ã¾ã™ã€‚
                 
   Arguments:    
-                posX          :        [IN]  ˆÊ’u X
-                posY          :        [IN]  ˆÊ’u Y
-                posZ          :        [IN]  ˆÊ’u Z
-                pOam          :        [IN]  OAMiGXOamAttrj
-                pTexImageAttr :        [IN]  ƒeƒNƒXƒ`ƒƒ‘®«
-                texBaseAddr   :        [IN]  VRAM ƒx[ƒXƒAƒhƒŒƒX
-                pltBaseAddr   :        [IN]  ƒpƒŒƒbƒg ƒx[ƒXƒAƒhƒŒƒX
+                posX          :        [IN]  ä½ç½® X
+                posY          :        [IN]  ä½ç½® Y
+                posZ          :        [IN]  ä½ç½® Z
+                pOam          :        [IN]  OAMï¼ˆGXOamAttrï¼‰
+                pTexImageAttr :        [IN]  ãƒ†ã‚¯ã‚¹ãƒãƒ£å±æ€§
+                texBaseAddr   :        [IN]  VRAM ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                pltBaseAddr   :        [IN]  ãƒ‘ãƒ¬ãƒƒãƒˆ ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
                 
                        
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void    NNS_G2dDrawOneOam3DDirectWithPosFast
@@ -677,10 +677,10 @@ void    NNS_G2dDrawOneOam3DDirectWithPosFast
         SpriteParams             spriteParams;
         CalcSpriteParams_( pOam, pTexImageAttr, texBaseAddr, pltBaseAddr, &spriteParams );
         //
-        // •`‰æ
+        // æç”»
         //
         //
-        // ƒŒƒ“ƒ_ƒ‰•`‰æ‚ÌÅ“K‰»‚Ì‚½‚ßAƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ‚ƒWƒ…[ƒ‹‚Ìˆ—‚ğ“WŠJ‚·‚éB 
+        // ãƒ¬ãƒ³ãƒ€ãƒ©æç”»ã®æœ€é©åŒ–ã®ãŸã‚ã€ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®å‡¦ç†ã‚’å±•é–‹ã™ã‚‹ã€‚ 
         //
         // T
         SetQuadTranslation_( pOam, posX, posY, posZ );
@@ -709,7 +709,7 @@ void    NNS_G2dDrawOneOam3DDirectWithPosFast
            G3_End( );
         }
         //
-        // ©“®ZƒIƒtƒZƒbƒg’l‚ÌXV
+        // è‡ªå‹•Zã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã®æ›´æ–°
         //
         IncreaseAutoZOffset_();   
     }
@@ -720,19 +720,19 @@ void    NNS_G2dDrawOneOam3DDirectWithPosFast
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dDrawOneOam3DDirectWithPosAffine
 
-  Description:  OamƒAƒgƒŠƒrƒ…[ƒg‚Ì“à—e‚ğˆÊ’u‚ğw’è‚µ‚Ä ’¼Ú 3D Graphics Engine ‚ğ g—p‚µ‚Ä•`‰æ‚µ‚Ü‚·B
+  Description:  Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®å†…å®¹ã‚’ä½ç½®ã‚’æŒ‡å®šã—ã¦ ç›´æ¥ 3D Graphics Engine ã‚’ ä½¿ç”¨ã—ã¦æç”»ã—ã¾ã™ã€‚
                 
   Arguments:    
-                posX          :        [IN]  ˆÊ’u X
-                posY          :        [IN]  ˆÊ’u Y
-                posZ          :        [IN]  ˆÊ’u Z
-                pOam          :        [IN]  OAMiGXOamAttrj
-                pTexImageAttr :        [IN]  ƒeƒNƒXƒ`ƒƒ‘®«
-                texBaseAddr   :        [IN]  VRAM ƒx[ƒXƒAƒhƒŒƒX
-                pltBaseAddr   :        [IN]  ƒpƒŒƒbƒg ƒx[ƒXƒAƒhƒŒƒX
-                pMtx          :        [IN]  ƒAƒtƒBƒ“•ÏŠ·s—ñ
+                posX          :        [IN]  ä½ç½® X
+                posY          :        [IN]  ä½ç½® Y
+                posZ          :        [IN]  ä½ç½® Z
+                pOam          :        [IN]  OAMï¼ˆGXOamAttrï¼‰
+                pTexImageAttr :        [IN]  ãƒ†ã‚¯ã‚¹ãƒãƒ£å±æ€§
+                texBaseAddr   :        [IN]  VRAM ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                pltBaseAddr   :        [IN]  ãƒ‘ãƒ¬ãƒƒãƒˆ ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                pMtx          :        [IN]  ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—
                        
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void    NNS_G2dDrawOneOam3DDirectWithPosAffineFast
@@ -755,7 +755,7 @@ void    NNS_G2dDrawOneOam3DDirectWithPosAffineFast
         CalcSpriteParams_( pOam, pTexImageAttr, texBaseAddr, pltBaseAddr, &spriteParams );
         
         //
-        // •`‰æ
+        // æç”»
         //
         if( G2_GetOBJEffect( pOam ) == GX_OAM_EFFECT_AFFINE )
         {
@@ -773,7 +773,7 @@ void    NNS_G2dDrawOneOam3DDirectWithPosAffineFast
         }
         
         //
-        // ©“®ZƒIƒtƒZƒbƒg’l‚ÌXV
+        // è‡ªå‹•Zã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã®æ›´æ–°
         //
         IncreaseAutoZOffset_();   
     }
@@ -782,33 +782,33 @@ void    NNS_G2dDrawOneOam3DDirectWithPosAffineFast
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetOamSoftEmuSpriteParamCache
 
-  Description:  ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg•`‰æ‚Ég—p‚·‚éA
-                ƒpƒ‰ƒ[ƒ^‚ÌƒLƒƒƒbƒVƒ…‚ğİ’è‚µ‚Ü‚·B
+  Description:  ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã«ä½¿ç”¨ã™ã‚‹ã€
+                ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’è¨­å®šã—ã¾ã™ã€‚
                 
-                ƒLƒƒƒbƒVƒ…‚ğ—˜—p‚µ‚½•`‰æ‚Í
-                NNS_G2dDrawOneOam3DDirectUsingParamCacheFast()ŠÖ”‚Ås‚¢‚Ü‚·B
+                ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’åˆ©ç”¨ã—ãŸæç”»ã¯
+                NNS_G2dDrawOneOam3DDirectUsingParamCacheFast()é–¢æ•°ã§è¡Œã„ã¾ã™ã€‚
                 
-                ƒpƒ‰ƒ[ƒ^‚Æ‚ÍUVƒpƒ‰ƒ[ƒ^‚Ì‚±‚Æ‚È‚Ì‚ÅA“¯ˆê‚ÌƒeƒNƒXƒ`ƒƒ‚ğQÆ‚·‚é
-                ƒXƒvƒ‰ƒCƒg‚ğ‘å—Ê‚É‘‚­Û‚ÉAUV’l‚ÌŒvZAİ’è‚ğˆê“x‚É‚Ü‚Æ‚ß 
-                Œø—¦‚æ‚­ˆ—‚ğs‚¤‚±‚Æ‚ª‰Â”\‚Æ‚È‚è‚Ü‚·B
+                ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨ã¯UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã“ã¨ãªã®ã§ã€åŒä¸€ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å‚ç…§ã™ã‚‹
+                ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’å¤§é‡ã«æ›¸ãéš›ã«ã€UVå€¤ã®è¨ˆç®—ã€è¨­å®šã‚’ä¸€åº¦ã«ã¾ã¨ã‚ 
+                åŠ¹ç‡ã‚ˆãå‡¦ç†ã‚’è¡Œã†ã“ã¨ãŒå¯èƒ½ã¨ãªã‚Šã¾ã™ã€‚
                 
                 
-                NNS_G2dDrawOneOam3DDirectUsingParamCache()‚Ì•`‰æ
+                NNS_G2dDrawOneOam3DDirectUsingParamCache()ã®æç”»
                   
-                  ˆ— = UVƒpƒ‰ƒ[ƒ^İ’è x 1 + •`‰æ x N
+                  å‡¦ç† = UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š x 1 + æç”» x N
                   
-                ’Êí‚Ì•`‰æ
-                  ˆ— = ( UVƒpƒ‰ƒ[ƒ^İ’è + •`‰æ ) x N
+                é€šå¸¸ã®æç”»
+                  å‡¦ç† = ( UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š + æç”» ) x N
                   
                 
                 
   Arguments:    
-                pOam          :        [IN]  OBJƒAƒgƒŠƒrƒ…[ƒg
-                pTexImageAttr :        [IN]  ƒeƒNƒXƒ`ƒƒ‘®«
-                texBaseAddr   :        [IN]  VRAM ƒx[ƒXƒAƒhƒŒƒX
-                pltBaseAddr   :        [IN]  ƒpƒŒƒbƒg ƒx[ƒXƒAƒhƒŒƒX
+                pOam          :        [IN]  OBJã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+                pTexImageAttr :        [IN]  ãƒ†ã‚¯ã‚¹ãƒãƒ£å±æ€§
+                texBaseAddr   :        [IN]  VRAM ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                pltBaseAddr   :        [IN]  ãƒ‘ãƒ¬ãƒƒãƒˆ ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
                        
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void    NNS_G2dSetOamSoftEmuSpriteParamCache
@@ -824,7 +824,7 @@ void    NNS_G2dSetOamSoftEmuSpriteParamCache
         CalcSpriteParams_( pOam, pTexImageAttr, texBaseAddr, pltBaseAddr, &spriteParams );
     
         //
-        // ƒLƒƒƒbƒVƒ…‚ÉŠi”[
+        // ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ ¼ç´
         //
         softwareSpreiteParamCache_.u0 = spriteParams.u0;
         softwareSpreiteParamCache_.v0 = spriteParams.v0;
@@ -836,44 +836,44 @@ void    NNS_G2dSetOamSoftEmuSpriteParamCache
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dDrawOneOam3DDirectUsingParamCacheFast
 
-  Description:  ƒpƒ‰ƒ[ƒ^‚ÌƒLƒƒƒbƒVƒ…‚ğg—p‚µ‚ÄOAM‚ğƒXƒvƒ‰ƒCƒg•`‰æ‚µ‚Ü‚·B
-                Às‘O‚ÉƒLƒƒƒbƒVƒ…ƒpƒ‰ƒ[ƒ^‚Ìİ’è‚ğs‚Á‚Ä‚­‚¾‚³‚¢B
-                ƒLƒƒƒbƒVƒ…ƒpƒ‰ƒ[ƒ^‚Ìİ’è‚Í
-                NNS_G2dSetOamSoftEmuSpriteParamCache()ŠÖ”‚Ås‚¢‚Ü‚·B
+  Description:  ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ä½¿ç”¨ã—ã¦OAMã‚’ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã—ã¾ã™ã€‚
+                å®Ÿè¡Œå‰ã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®šã‚’è¡Œã£ã¦ãã ã•ã„ã€‚
+                ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®šã¯
+                NNS_G2dSetOamSoftEmuSpriteParamCache()é–¢æ•°ã§è¡Œã„ã¾ã™ã€‚
                 
-                ŠÖ”ŒÄ‚Ño‚µ‚Ì‘OŒã‚ÅA3D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“‚ÌƒJƒŒƒ“ƒgs—ñ
-                ‚Í•Û‘¶‚³‚ê‚Ü‚¹‚ñB
-                
-                
-                ƒpƒ‰ƒ[ƒ^‚Æ‚ÍUVƒpƒ‰ƒ[ƒ^‚Ì‚±‚Æ‚È‚Ì‚ÅA“¯ˆê‚ÌƒeƒNƒXƒ`ƒƒ‚ğQÆ‚·‚é
-                ƒXƒvƒ‰ƒCƒg‚ğ‘å—Ê‚É‘‚­Û‚ÉAUV’l‚ÌŒvZAİ’è‚ğˆê“x‚É‚Ü‚Æ‚ß 
-                Œø—¦‚æ‚­ˆ—‚ğs‚¤‚±‚Æ‚ª‰Â”\‚Æ‚È‚è‚Ü‚·B
+                é–¢æ•°å‘¼ã³å‡ºã—ã®å‰å¾Œã§ã€3D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ã®ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—
+                ã¯ä¿å­˜ã•ã‚Œã¾ã›ã‚“ã€‚
                 
                 
-                ƒNƒ[ƒ“•`‰æ‚ÌƒtƒŠƒbƒvƒtƒ‰ƒO•ÏX‚ÍƒpƒtƒH[ƒ}ƒ“ƒX‚Ö‚Ì‰e‹¿‚ª‘å‚«‚¢‚½‚ßA
-                ƒTƒ|[ƒg‚µ‚È‚¢‚±‚Æ‚É‚µ‚Ü‚µ‚½B
-                ‚µ‚½‚ª‚Á‚ÄA–{ŠÖ”‚Å‚ÍAOAM‚ÌƒtƒŠƒbƒvƒtƒ‰ƒO‚ª–³‹‚³‚ê‚é“_‚É‚²’ˆÓ‚­‚¾‚³‚¢B
-                (UVƒpƒ‰ƒ[ƒ^‚ÍNNS_G2dSetOamSoftEmuSpriteParamCache()ŠÖ”Às‚É
-                Œˆ’è‚³‚ê‚Ä‚µ‚Ü‚¢‚Ü‚·B)
-                ƒtƒŠƒbƒv‚µ‚½ƒXƒvƒ‰ƒCƒg‚ğ•`‰æ‚·‚éê‡A
-                NNS_G2dSetOamSoftEmuSpriteParamCache()‚Ìˆø”‚Æ‚µ‚ÄƒtƒŠƒbƒvİ’è‚µ‚½
-                OAMiGXOamAttrj‚ğ“n‚µAƒLƒƒƒbƒVƒ…ƒpƒ‰ƒ[ƒ^‚ğXV‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+                ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨ã¯UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã“ã¨ãªã®ã§ã€åŒä¸€ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å‚ç…§ã™ã‚‹
+                ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’å¤§é‡ã«æ›¸ãéš›ã«ã€UVå€¤ã®è¨ˆç®—ã€è¨­å®šã‚’ä¸€åº¦ã«ã¾ã¨ã‚ 
+                åŠ¹ç‡ã‚ˆãå‡¦ç†ã‚’è¡Œã†ã“ã¨ãŒå¯èƒ½ã¨ãªã‚Šã¾ã™ã€‚
                 
                 
-                NNS_G2dDrawOneOam3DDirectUsingParamCache()‚Ì•`‰æ
+                ã‚¯ãƒ­ãƒ¼ãƒ³æç”»æ™‚ã®ãƒ•ãƒªãƒƒãƒ—ãƒ•ãƒ©ã‚°å¤‰æ›´ã¯ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã¸ã®å½±éŸ¿ãŒå¤§ãã„ãŸã‚ã€
+                ã‚µãƒãƒ¼ãƒˆã—ãªã„ã“ã¨ã«ã—ã¾ã—ãŸã€‚
+                ã—ãŸãŒã£ã¦ã€æœ¬é–¢æ•°ã§ã¯ã€OAMã®ãƒ•ãƒªãƒƒãƒ—ãƒ•ãƒ©ã‚°ãŒç„¡è¦–ã•ã‚Œã‚‹ç‚¹ã«ã”æ³¨æ„ãã ã•ã„ã€‚
+                (UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯NNS_G2dSetOamSoftEmuSpriteParamCache()é–¢æ•°å®Ÿè¡Œæ™‚ã«
+                æ±ºå®šã•ã‚Œã¦ã—ã¾ã„ã¾ã™ã€‚)
+                ãƒ•ãƒªãƒƒãƒ—ã—ãŸã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’æç”»ã™ã‚‹å ´åˆã€
+                NNS_G2dSetOamSoftEmuSpriteParamCache()ã®å¼•æ•°ã¨ã—ã¦ãƒ•ãƒªãƒƒãƒ—è¨­å®šã—ãŸ
+                OAMï¼ˆGXOamAttrï¼‰ã‚’æ¸¡ã—ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+                
+                
+                NNS_G2dDrawOneOam3DDirectUsingParamCache()ã®æç”»
                   
-                  ˆ— = UVƒpƒ‰ƒ[ƒ^İ’è x 1 + •`‰æ x N
+                  å‡¦ç† = UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š x 1 + æç”» x N
                   
-                ’Êí‚Ì•`‰æ
-                  ˆ— = ( UVƒpƒ‰ƒ[ƒ^İ’è + •`‰æ ) x N
+                é€šå¸¸ã®æç”»
+                  å‡¦ç† = ( UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š + æç”» ) x N
                 
   Arguments:    
-                posX          :        [IN]  ˆÊ’u X
-                posY          :        [IN]  ˆÊ’u Y
-                posZ          :        [IN]  ˆÊ’u Z
-                pOam          :        [IN]  OAMiGXOamAttrj
+                posX          :        [IN]  ä½ç½® X
+                posY          :        [IN]  ä½ç½® Y
+                posZ          :        [IN]  ä½ç½® Z
+                pOam          :        [IN]  OAMï¼ˆGXOamAttrï¼‰
                        
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void    NNS_G2dDrawOneOam3DDirectUsingParamCacheFast
@@ -890,17 +890,17 @@ void    NNS_G2dDrawOneOam3DDirectUsingParamCacheFast
         const int sy       = NNS_G2dGetOamSizeY( &shapeOam );        
         
         //
-        // ƒpƒ‰ƒ[ƒ^ƒLƒƒƒbƒVƒ…‚Ì’l‚ğg—p‚·‚éB
+        // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®å€¤ã‚’ä½¿ç”¨ã™ã‚‹ã€‚
         //
         const fx32   u0 = softwareSpreiteParamCache_.u0, 
                      u1 = softwareSpreiteParamCache_.u1, 
                      v0 = softwareSpreiteParamCache_.v0, 
                      v1 = softwareSpreiteParamCache_.v1;
         //
-        // •`‰æ
+        // æç”»
         //
         //
-        // •`‰æ‚ÌÅ“K‰»‚Ì‚½‚ßAƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ‚ƒWƒ…[ƒ‹‚Ìˆ—‚ğ“WŠJ‚·‚éB 
+        // æç”»ã®æœ€é©åŒ–ã®ãŸã‚ã€ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®å‡¦ç†ã‚’å±•é–‹ã™ã‚‹ã€‚ 
         
         //
         // T
@@ -933,7 +933,7 @@ void    NNS_G2dDrawOneOam3DDirectUsingParamCacheFast
            G3_End( );
         }
         //
-        // ©“®ZƒIƒtƒZƒbƒg’l‚ÌXV
+        // è‡ªå‹•Zã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã®æ›´æ–°
         //
         IncreaseAutoZOffset_();
     }
@@ -942,12 +942,12 @@ void    NNS_G2dDrawOneOam3DDirectUsingParamCacheFast
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetOamSoftEmuUVFlipCorrectFunc
 
-  Description:  Oamƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒGƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ 
-                ‚Åg—p‚³‚ê‚é UV’l•â³ŠÖ”ƒ|ƒCƒ“ƒ^‚ğİ’è‚µ‚Ü‚·B
+  Description:  Oamã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ 
+                ã§ä½¿ç”¨ã•ã‚Œã‚‹ UVå€¤è£œæ­£é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®šã—ã¾ã™ã€‚
                 
-  Arguments:    pFunc          :        [IN]  UV’l•â³ŠÖ”ƒ|ƒCƒ“ƒ^
+  Arguments:    pFunc          :        [IN]  UVå€¤è£œæ­£é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
                        
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void    NNS_G2dSetOamSoftEmuUVFlipCorrectFunc( NNS_G2dOamSoftEmuUVFlipCorrectFunc pFunc )
@@ -959,12 +959,12 @@ void    NNS_G2dSetOamSoftEmuUVFlipCorrectFunc( NNS_G2dOamSoftEmuUVFlipCorrectFun
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dResetOamSoftEmuUVFlipCorrectFunc
 
-  Description:  Oamƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒGƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ 
-                ‚Åg—p‚³‚ê‚é UV’l•â³ŠÖ”ƒ|ƒCƒ“ƒ^‚ğİ’è‚µ‚Ü‚·B
+  Description:  Oamã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ 
+                ã§ä½¿ç”¨ã•ã‚Œã‚‹ UVå€¤è£œæ­£é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®šã—ã¾ã™ã€‚
                 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
                        
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void    NNS_G2dResetOamSoftEmuUVFlipCorrectFunc()

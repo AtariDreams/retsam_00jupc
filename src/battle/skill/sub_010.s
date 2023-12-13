@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_010.s
- *@brief	戦闘シーケンス
- *			気絶によるポケモン入れ替えシーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			豌礼ｵｶ縺ｫ繧医ｋ繝昴こ繝｢繝ｳ蜈･繧梧崛縺医す繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2005.07.20
  *
@@ -32,7 +32,7 @@ POKE_RESHUFFLE:
 	HP_GAUGE_IN				SIDE_RESHUFFLE
 	SERVER_WAIT
 	GOSUB					SUB_SEQ_MAKIBISI_CHECK
-	//気絶していたら、気絶エフェクトへ
+	//豌礼ｵｶ縺励※縺�縺溘ｉ縲∵ｰ礼ｵｶ繧ｨ繝輔ぉ繧ｯ繝医∈
 	IF						IF_FLAG_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_KIZETSU,SUB_010_END
 	GOSUB					SUB_SEQ_KIZETSU
 SUB_010_END:

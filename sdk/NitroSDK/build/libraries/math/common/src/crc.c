@@ -18,13 +18,13 @@
   GetDigest -> GetHash
 
   Revision 1.3  2005/04/11 10:35:37  seiki_masashi
-  ƒ†[ƒeƒBƒŠƒeƒBŠÖ”‚Ì’Ç‰Á
+  ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°ã®è¿½åŠ 
 
   Revision 1.2  2005/04/11 08:24:27  seiki_masashi
   small fix
 
   Revision 1.1  2005/04/11 01:48:53  seiki_masashi
-  crc.c ‚Ì’Ç‰Á
+  crc.c ã®è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -32,16 +32,16 @@
 #include <nitro/math/crc.h>
 
 /*****************************************************************************/
-/* CRC-8 ‹¤’Ê                                                                */
+/* CRC-8 å…±é€š                                                                */
 /*****************************************************************************/
 
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC8InitTable
 
-  Description:  CRC-8 ’l‚ğ‹‚ß‚é‚½‚ß‚Ég‚¤ MATHCRC8Table \‘¢‘Ì‚ğ‰Šú‰»‚·‚éB
+  Description:  CRC-8 å€¤ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½¿ã† MATHCRC8Table æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
   
-  Arguments:    table MATHCRC8Table \‘¢‘Ì
-                poly  ¶¬‘½€®‚Ìƒrƒbƒg•\Œ»‚©‚çÅãˆÊƒrƒbƒg‚ğœ‚¢‚½”
+  Arguments:    table MATHCRC8Table æ§‹é€ ä½“
+                poly  ç”Ÿæˆå¤šé …å¼ã®ãƒ“ãƒƒãƒˆè¡¨ç¾ã‹ã‚‰æœ€ä¸Šä½ãƒ“ãƒƒãƒˆã‚’é™¤ã„ãŸæ•°
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -72,12 +72,12 @@ void MATHi_CRC8InitTable(MATHCRC8Table * table, u8 poly)
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC8InitTableRev
 
-  Description:  CRC-8 ’l‚ğ‹‚ß‚é‚½‚ß‚Ég‚¤ MATHCRC8Table \‘¢‘Ì‚ğ‰Šú‰»‚·‚éB
-                ‰ºˆÊƒrƒbƒg‚ğãˆÊ‚ÌŒ…‚Æ‚µ‚Äˆµ‚¤B
+  Description:  CRC-8 å€¤ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½¿ã† MATHCRC8Table æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
+                ä¸‹ä½ãƒ“ãƒƒãƒˆã‚’ä¸Šä½ã®æ¡ã¨ã—ã¦æ‰±ã†ã€‚
   
-  Arguments:    table MATHCRC8Table \‘¢‘Ì
-                poly  ¶¬‘½€®‚Ìƒrƒbƒg•\Œ»‚©‚çÅãˆÊƒrƒbƒg‚ğœ‚¢‚½”‚ğ
-                      ã‰º”½“]‚³‚¹‚½‚à‚Ì
+  Arguments:    table MATHCRC8Table æ§‹é€ ä½“
+                poly  ç”Ÿæˆå¤šé …å¼ã®ãƒ“ãƒƒãƒˆè¡¨ç¾ã‹ã‚‰æœ€ä¸Šä½ãƒ“ãƒƒãƒˆã‚’é™¤ã„ãŸæ•°ã‚’
+                      ä¸Šä¸‹åè»¢ã•ã›ãŸã‚‚ã®
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -108,12 +108,12 @@ void MATHi_CRC8InitTableRev(MATHCRC8Table * table, u8 poly)
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC8Update
 
-  Description:  CRC-8 ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
+  Description:  CRC-8 å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
   
-  Arguments:    table   ŒvZ—p‚Ìƒe[ƒuƒ‹ MATHCRC8Table ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                context MATHCRC8Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    table   è¨ˆç®—ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ« MATHCRC8Table ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                context MATHCRC8Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -136,16 +136,16 @@ MATHi_CRC8Update(const MATHCRC8Table * table, MATHCRC8Context * context, const v
 }
 
 /*****************************************************************************/
-/* CRC-16 ‹¤’Ê                                                               */
+/* CRC-16 å…±é€š                                                               */
 /*****************************************************************************/
 
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC16InitTable
 
-  Description:  CRC-16 ’l‚ğ‹‚ß‚é‚½‚ß‚Ég‚¤ MATHCRC16Table \‘¢‘Ì‚ğ‰Šú‰»‚·‚éB
+  Description:  CRC-16 å€¤ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½¿ã† MATHCRC16Table æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
   
-  Arguments:    table MATHCRC16Table \‘¢‘Ì
-                poly  ¶¬‘½€®‚Ìƒrƒbƒg•\Œ»‚©‚çÅãˆÊƒrƒbƒg‚ğœ‚¢‚½”
+  Arguments:    table MATHCRC16Table æ§‹é€ ä½“
+                poly  ç”Ÿæˆå¤šé …å¼ã®ãƒ“ãƒƒãƒˆè¡¨ç¾ã‹ã‚‰æœ€ä¸Šä½ãƒ“ãƒƒãƒˆã‚’é™¤ã„ãŸæ•°
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -176,12 +176,12 @@ void MATHi_CRC16InitTable(MATHCRC16Table * table, u16 poly)
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC16InitTableRev
 
-  Description:  CRC-16 ’l‚ğ‹‚ß‚é‚½‚ß‚Ég‚¤ MATHCRC16Table \‘¢‘Ì‚ğ‰Šú‰»‚·‚éB
-                ‰ºˆÊƒrƒbƒg‚ğãˆÊ‚ÌŒ…‚Æ‚µ‚Äˆµ‚¤B
+  Description:  CRC-16 å€¤ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½¿ã† MATHCRC16Table æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
+                ä¸‹ä½ãƒ“ãƒƒãƒˆã‚’ä¸Šä½ã®æ¡ã¨ã—ã¦æ‰±ã†ã€‚
   
-  Arguments:    table MATHCRC16Table \‘¢‘Ì
-                poly  ¶¬‘½€®‚Ìƒrƒbƒg•\Œ»‚©‚çÅãˆÊƒrƒbƒg‚ğœ‚¢‚½”‚ğ
-                      ã‰º”½“]‚³‚¹‚½‚à‚Ì
+  Arguments:    table MATHCRC16Table æ§‹é€ ä½“
+                poly  ç”Ÿæˆå¤šé …å¼ã®ãƒ“ãƒƒãƒˆè¡¨ç¾ã‹ã‚‰æœ€ä¸Šä½ãƒ“ãƒƒãƒˆã‚’é™¤ã„ãŸæ•°ã‚’
+                      ä¸Šä¸‹åè»¢ã•ã›ãŸã‚‚ã®
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -212,12 +212,12 @@ void MATHi_CRC16InitTableRev(MATHCRC16Table * table, u16 poly)
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC16Update
 
-  Description:  CRC-16 ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
+  Description:  CRC-16 å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
   
-  Arguments:    table   ŒvZ—p‚Ìƒe[ƒuƒ‹ MATHCRC16Table ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                context MATHCRC16Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    table   è¨ˆç®—ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ« MATHCRC16Table ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                context MATHCRC16Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -242,13 +242,13 @@ MATHi_CRC16Update(const MATHCRC16Table * table, MATHCRC16Context * context, cons
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC16UpdateRev
 
-  Description:  CRC-16 ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
-                ‰ºˆÊƒrƒbƒg‚ğãˆÊ‚ÌŒ…‚Æ‚µ‚Äˆµ‚¤B
+  Description:  CRC-16 å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
+                ä¸‹ä½ãƒ“ãƒƒãƒˆã‚’ä¸Šä½ã®æ¡ã¨ã—ã¦æ‰±ã†ã€‚
   
-  Arguments:    table   ŒvZ—p‚Ìƒe[ƒuƒ‹ MATHCRC16Table ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                context MATHCRC16Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    table   è¨ˆç®—ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ« MATHCRC16Table ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                context MATHCRC16Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -271,16 +271,16 @@ MATHi_CRC16UpdateRev(const MATHCRC16Table * table, MATHCRC16Context * context, c
 }
 
 /*****************************************************************************/
-/* CRC-32 ‹¤’Ê                                                               */
+/* CRC-32 å…±é€š                                                               */
 /*****************************************************************************/
 
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC32InitTable
 
-  Description:  CRC-32 ’l‚ğ‹‚ß‚é‚½‚ß‚Ég‚¤ MATHCRC32Table \‘¢‘Ì‚ğ‰Šú‰»‚·‚éB
+  Description:  CRC-32 å€¤ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½¿ã† MATHCRC32Table æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
   
-  Arguments:    table MATHCRC32Table \‘¢‘Ì
-                poly  ¶¬‘½€®‚Ìƒrƒbƒg•\Œ»‚©‚çÅãˆÊƒrƒbƒg‚ğœ‚¢‚½”
+  Arguments:    table MATHCRC32Table æ§‹é€ ä½“
+                poly  ç”Ÿæˆå¤šé …å¼ã®ãƒ“ãƒƒãƒˆè¡¨ç¾ã‹ã‚‰æœ€ä¸Šä½ãƒ“ãƒƒãƒˆã‚’é™¤ã„ãŸæ•°
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -311,12 +311,12 @@ void MATHi_CRC32InitTable(MATHCRC32Table * table, u32 poly)
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC32InitTableRev
 
-  Description:  CRC-32 ’l‚ğ‹‚ß‚é‚½‚ß‚Ég‚¤ MATHCRC32Table \‘¢‘Ì‚ğ‰Šú‰»‚·‚éB
-                ‰ºˆÊƒrƒbƒg‚ğãˆÊ‚ÌŒ…‚Æ‚µ‚Äˆµ‚¤B
+  Description:  CRC-32 å€¤ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½¿ã† MATHCRC32Table æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
+                ä¸‹ä½ãƒ“ãƒƒãƒˆã‚’ä¸Šä½ã®æ¡ã¨ã—ã¦æ‰±ã†ã€‚
   
-  Arguments:    table MATHCRC32Table \‘¢‘Ì
-                poly  ¶¬‘½€®‚Ìƒrƒbƒg•\Œ»‚©‚çÅãˆÊƒrƒbƒg‚ğœ‚¢‚½”‚ğ
-                      ã‰º”½“]‚³‚¹‚½‚à‚Ì
+  Arguments:    table MATHCRC32Table æ§‹é€ ä½“
+                poly  ç”Ÿæˆå¤šé …å¼ã®ãƒ“ãƒƒãƒˆè¡¨ç¾ã‹ã‚‰æœ€ä¸Šä½ãƒ“ãƒƒãƒˆã‚’é™¤ã„ãŸæ•°ã‚’
+                      ä¸Šä¸‹åè»¢ã•ã›ãŸã‚‚ã®
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -347,12 +347,12 @@ void MATHi_CRC32InitTableRev(MATHCRC32Table * table, u32 poly)
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC32Update
 
-  Description:  CRC-32 ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
+  Description:  CRC-32 å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
   
-  Arguments:    table   ŒvZ—p‚Ìƒe[ƒuƒ‹ MATHCRC32Table ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                context MATHCRC32Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    table   è¨ˆç®—ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ« MATHCRC32Table ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                context MATHCRC32Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -377,13 +377,13 @@ MATHi_CRC32Update(const MATHCRC32Table * table, MATHCRC32Context * context, cons
 /*---------------------------------------------------------------------------*
   Name:         MATHi_CRC32UpdateRev
 
-  Description:  CRC-32 ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
-                ‰ºˆÊƒrƒbƒg‚ğãˆÊ‚ÌŒ…‚Æ‚µ‚Äˆµ‚¤B
+  Description:  CRC-32 å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
+                ä¸‹ä½ãƒ“ãƒƒãƒˆã‚’ä¸Šä½ã®æ¡ã¨ã—ã¦æ‰±ã†ã€‚
   
-  Arguments:    table   ŒvZ—p‚Ìƒe[ƒuƒ‹ MATHCRC32Table ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                context MATHCRC32Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    table   è¨ˆç®—ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ« MATHCRC32Table ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                context MATHCRC32Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -407,19 +407,19 @@ MATHi_CRC32UpdateRev(const MATHCRC32Table * table, MATHCRC32Context * context, c
 
 
 /*****************************************************************************/
-/* ƒ†[ƒeƒBƒŠƒeƒBŠÖ”                                                        */
+/* ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°                                                        */
 /*****************************************************************************/
 
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcCRC8
 
-  Description:  CRC-8 ’l‚ğŒvZ‚·‚éB
+  Description:  CRC-8 å€¤ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 
-  Arguments:    table   ŒvZ—p‚Ìƒe[ƒuƒ‹ MATHCRC8Table ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    table   è¨ˆç®—ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ« MATHCRC8Table ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
 
-  Returns:      ŒvZŒ‹‰Ê.
+  Returns:      è¨ˆç®—çµæœ.
  *---------------------------------------------------------------------------*/
 u8 MATH_CalcCRC8(const MATHCRC8Table * table, const void *data, u32 dataLength)
 {
@@ -432,13 +432,13 @@ u8 MATH_CalcCRC8(const MATHCRC8Table * table, const void *data, u32 dataLength)
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcCRC16
 
-  Description:  CRC-16 ’l‚ğŒvZ‚·‚éB
+  Description:  CRC-16 å€¤ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 
-  Arguments:    table   ŒvZ—p‚Ìƒe[ƒuƒ‹ MATHCRC16Table ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    table   è¨ˆç®—ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ« MATHCRC16Table ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
 
-  Returns:      ŒvZŒ‹‰Ê.
+  Returns:      è¨ˆç®—çµæœ.
  *---------------------------------------------------------------------------*/
 u16 MATH_CalcCRC16(const MATHCRC16Table * table, const void *data, u32 dataLength)
 {
@@ -451,14 +451,14 @@ u16 MATH_CalcCRC16(const MATHCRC16Table * table, const void *data, u32 dataLengt
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcCRC16CCITT
 
-  Description:  CRC-16/CCITT ’l‚ğŒvZ‚·‚éB
+  Description:  CRC-16/CCITT å€¤ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 
-  Arguments:    table   ŒvZ—p‚Ìƒe[ƒuƒ‹ MATHCRC16Table ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-  Arguments:    data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    table   è¨ˆç®—ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ« MATHCRC16Table ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+  Arguments:    data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
 
-  Returns:      ŒvZŒ‹‰Ê.
+  Returns:      è¨ˆç®—çµæœ.
  *---------------------------------------------------------------------------*/
 u16 MATH_CalcCRC16CCITT(const MATHCRC16Table * table, const void *data, u32 dataLength)
 {
@@ -471,13 +471,13 @@ u16 MATH_CalcCRC16CCITT(const MATHCRC16Table * table, const void *data, u32 data
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcCRC32
 
-  Description:  CRC-32 ’l‚ğŒvZ‚·‚éB
+  Description:  CRC-32 å€¤ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 
-  Arguments:    table   ŒvZ—p‚Ìƒe[ƒuƒ‹ MATHCRC32Table ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    table   è¨ˆç®—ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ« MATHCRC32Table ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
 
-  Returns:      ŒvZŒ‹‰Ê.
+  Returns:      è¨ˆç®—çµæœ.
  *---------------------------------------------------------------------------*/
 u32 MATH_CalcCRC32(const MATHCRC32Table * table, const void *data, u32 dataLength)
 {
@@ -490,13 +490,13 @@ u32 MATH_CalcCRC32(const MATHCRC32Table * table, const void *data, u32 dataLengt
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcCRC32POSIX
 
-  Description:  CRC-32/POSIX ’l‚ğŒvZ‚·‚éB
+  Description:  CRC-32/POSIX å€¤ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 
-  Arguments:    table   ŒvZ—p‚Ìƒe[ƒuƒ‹ MATHCRC32Table ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    table   è¨ˆç®—ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ« MATHCRC32Table ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
 
-  Returns:      ŒvZŒ‹‰Ê.
+  Returns:      è¨ˆç®—çµæœ.
  *---------------------------------------------------------------------------*/
 u32 MATH_CalcCRC32POSIX(const MATHCRC32Table * table, const void *data, u32 dataLength)
 {

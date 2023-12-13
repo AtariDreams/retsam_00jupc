@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	demo_trade.h
- * @brief	ƒ|ƒPƒ‚ƒ“ŒğŠ·ƒfƒ‚
+ * @brief	ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¢
  * @author	taya
  * @date	2006.04.07
  */
@@ -16,50 +16,50 @@
 
 //----------------------------------------------
 /**
- * ”wŒiƒ^ƒCƒv
+ * èƒŒæ™¯ã‚¿ã‚¤ãƒ—
  */
 //----------------------------------------------
 typedef enum {
-	DEMO_TRADE_BGTYPE_MORNING,		///< ’©`’‹‚ÌÂ‚¢‹ó
-	DEMO_TRADE_BGTYPE_EVENING,		///< —[•û ‚ÌƒIƒŒƒ“ƒW‹ó
-	DEMO_TRADE_BGTYPE_NIGHT,		///< –é‚ÌˆÃ‚¢‹ó
-	DEMO_TRADE_BGTYPE_WIFI,			///< WI-FIê—pƒ`ƒ…[ƒu”wŒi
+	DEMO_TRADE_BGTYPE_MORNING,		///< æœã€œæ˜¼ã®é’ã„ç©º
+	DEMO_TRADE_BGTYPE_EVENING,		///< å¤•æ–¹é ƒã®ã‚ªãƒ¬ãƒ³ã‚¸ç©º
+	DEMO_TRADE_BGTYPE_NIGHT,		///< å¤œã®æš—ã„ç©º
+	DEMO_TRADE_BGTYPE_WIFI,			///< WI-FIå°‚ç”¨ãƒãƒ¥ãƒ¼ãƒ–èƒŒæ™¯
 }DEMO_TRADE_BGTYPE;
 
 //----------------------------------------------
 /**
- * Ä¶ƒV[ƒPƒ“ƒXw’è
+ * å†ç”Ÿã‚·ãƒ¼ã‚±ãƒ³ã‚¹æŒ‡å®š
  */
 //----------------------------------------------
 typedef enum {
-	DEMO_TRADE_SEQ_FULL = 1,			///< ‘S•”
-	DEMO_TRADE_SEQ_SEND_ONLY = 2,		///< ‘—‚é•”•ª‚¾‚¯
-	DEMO_TRADE_SEQ_RECV_ONLY = 4,		///< ó‚¯æ‚é•”•ª‚¾‚¯
+	DEMO_TRADE_SEQ_FULL = 1,			///< å…¨éƒ¨
+	DEMO_TRADE_SEQ_SEND_ONLY = 2,		///< é€ã‚‹éƒ¨åˆ†ã ã‘
+	DEMO_TRADE_SEQ_RECV_ONLY = 4,		///< å—ã‘å–ã‚‹éƒ¨åˆ†ã ã‘
 }DEMO_TRADE_SEQFLAG;
 
 
 
 //-------------------------------------------------
 /**
- *	PROC—pƒpƒ‰ƒ[ƒ^
+ *	PROCç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-------------------------------------------------
 typedef struct {
-	const POKEMON_PASO_PARAM*   sendPoke;	///< ‚±‚¿‚ç‚©‚ç‘—‚Á‚½ƒ|ƒPƒ‚ƒ“
-	const POKEMON_PASO_PARAM*   recvPoke;	///< ‚ ‚¿‚ç‚©‚ç‘—‚ç‚ê‚Ä‚«‚½ƒ|ƒPƒ‚ƒ“
-	const MYSTATUS*             partner;	///< ŒğŠ·‘Šè‚Ìƒpƒ‰ƒ[ƒ^
+	const POKEMON_PASO_PARAM*   sendPoke;	///< ã“ã¡ã‚‰ã‹ã‚‰é€ã£ãŸãƒã‚±ãƒ¢ãƒ³
+	const POKEMON_PASO_PARAM*   recvPoke;	///< ã‚ã¡ã‚‰ã‹ã‚‰é€ã‚‰ã‚Œã¦ããŸãƒã‚±ãƒ¢ãƒ³
+	const MYSTATUS*             partner;	///< äº¤æ›ç›¸æ‰‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	DEMO_TRADE_BGTYPE           bgType;		///< ƒfƒ‚”wŒiƒ^ƒCƒv
-	DEMO_TRADE_SEQFLAG          seqFlag;	///< Ä¶ƒV[ƒPƒ“ƒX
+	DEMO_TRADE_BGTYPE           bgType;		///< ãƒ‡ãƒ¢èƒŒæ™¯ã‚¿ã‚¤ãƒ—
+	DEMO_TRADE_SEQFLAG          seqFlag;	///< å†ç”Ÿã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 
-	const CONFIG*      config;		///< ƒ†[ƒUİ’èƒRƒ“ƒtƒBƒOƒf[ƒ^
+	const CONFIG*      config;		///< ãƒ¦ãƒ¼ã‚¶è¨­å®šã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
 
 }DEMO_TRADE_PARAM;
 
 
 //-------------------------------------------------
 /**
- *	PROCŠÖ”
+ *	PROCé–¢æ•°
  */
 //-------------------------------------------------
 extern PROC_RESULT TradeDemoProc_Init( PROC * proc, int * seq );
@@ -69,7 +69,7 @@ extern PROC_RESULT TradeDemoProc_Main( PROC * proc, int * seq );
 
 //-------------------------------------------------
 /**
- *	ƒI[ƒo[ƒŒƒCéŒ¾
+ *	ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤å®£è¨€
  */
 //-------------------------------------------------
 FS_EXTERN_OVERLAY(demo_trade);

@@ -11,8 +11,8 @@
 //----------------------------------------------------------------------------
 // variable
 //----------------------------------------------------------------------------
-static DWCError stDwcLastError = DWC_ERROR_NONE;  // �Ō�̃G���[
-static int stDwcErrorCode = 0;  // �Ō�̃G���[�R�[�h
+static DWCError stDwcLastError = DWC_ERROR_NONE;  // 最後のエラー
+static int stDwcErrorCode = 0;  // 最後のエラーコード
 
 
 //----------------------------------------------------------------------------
@@ -29,10 +29,10 @@ static int stDwcErrorCode = 0;  // �Ō�̃G���[�R�[�h
 // function - external
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  �G���[�擾�֐�
-  �����@�FerrorCode �G���[�R�[�h�i�[��|�C���^�B�K�v�Ȃ����NULL��n���Ηǂ��B
-  �߂�l�F�G���[���
-  �p�r�@�F�Ō�̒ʐM�G���[��ʁA�G���[�R�[�h���擾����
+  エラー取得関数
+  引数　：errorCode エラーコード格納先ポインタ。必要なければNULLを渡せば良い。
+  戻り値：エラー種別
+  用途　：最後の通信エラー種別、エラーコードを取得する
  *---------------------------------------------------------------------------*/
 DWCError DWC_GetLastError(int* errorCode)
 {
@@ -45,11 +45,11 @@ DWCError DWC_GetLastError(int* errorCode)
 
 // [arakit] main 051011
 /*---------------------------------------------------------------------------*
-  �g���ŃG���[�擾�֐�
-  �����@�FerrorCode �G���[�R�[�h�i�[��|�C���^�B�K�v�Ȃ����NULL��n���Ηǂ��B
-          errorType �G���[�����^�C�v�i�[��|�C���^�B�K�v�Ȃ����NULL��n���Ηǂ��B
-  �߂�l�F�G���[���
-  �p�r�@�F�Ō�̒ʐM�G���[��ʁA�G���[�R�[�h�A�G���[�����^�C�v���擾����
+  拡張版エラー取得関数
+  引数　：errorCode エラーコード格納先ポインタ。必要なければNULLを渡せば良い。
+          errorType エラー処理タイプ格納先ポインタ。必要なければNULLを渡せば良い。
+  戻り値：エラー種別
+  用途　：最後の通信エラー種別、エラーコード、エラー処理タイプを取得する
  *---------------------------------------------------------------------------*/
 DWCError DWC_GetLastErrorEx(int* errorCode, DWCErrorType* errorType)
 {
@@ -114,16 +114,16 @@ DWCError DWC_GetLastErrorEx(int* errorCode, DWCErrorType* errorType)
 
 
 /*---------------------------------------------------------------------------*
-  �G���[�N���A�֐�
-  �����@�F�Ȃ�
-  �߂�l�F�Ȃ�
-  �p�r�@�F�ʐM�G���[�̋L�^���N���A����BFatal Error�̓N���A�ł��Ȃ��B
+  エラークリア関数
+  引数　：なし
+  戻り値：なし
+  用途　：通信エラーの記録をクリアする。Fatal Errorはクリアできない。
  *---------------------------------------------------------------------------*/
 void DWC_ClearError(void)
 {
 
     if (stDwcLastError != DWC_ERROR_FATAL){
-        // FATAL_ERROR�̓N���A�֎~
+        // FATAL_ERRORはクリア禁止
         stDwcLastError = DWC_ERROR_NONE;
         stDwcErrorCode = 0;
     }
@@ -134,10 +134,10 @@ void DWC_ClearError(void)
 // function - internal
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  �G���[�`�F�b�N�֐�
-  �����@�F�Ȃ�
-  �߂�l�FTRUE:�G���[����AFALSE:�G���[�Ȃ�
-  �p�r�@�F�ʐM�G���[�������������ǂ������`�F�b�N����
+  エラーチェック関数
+  引数　：なし
+  戻り値：TRUE:エラーあり、FALSE:エラーなし
+  用途　：通信エラーが発生したかどうかをチェックする
  *---------------------------------------------------------------------------*/
 BOOL DWCi_IsError(void)
 {
@@ -148,17 +148,17 @@ BOOL DWCi_IsError(void)
 
 
 /*---------------------------------------------------------------------------*
-  �G���[�Z�b�g�֐�
-  �����@�Ferror �G���[���
-          errorCode �G���[�̏ڍׂ������G���[�R�[�h
-  �߂�l�F�Ȃ�
-  �p�r�@�F�ʐM�G���[�̔������L�^����BFatal Error�͏㏑���ł��Ȃ��B
+  エラーセット関数
+  引数　：error エラー種別
+          errorCode エラーの詳細を示すエラーコード
+  戻り値：なし
+  用途　：通信エラーの発生を記録する。Fatal Errorは上書きできない。
  *---------------------------------------------------------------------------*/
 void DWCi_SetError(DWCError error, int errorCode)
 {
 
     if (stDwcLastError != DWC_ERROR_FATAL){
-        // FATAL_ERROR�͏㏑���֎~
+        // FATAL_ERRORは上書き禁止
         stDwcLastError = error;
         stDwcErrorCode = errorCode;
     }

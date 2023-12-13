@@ -1,7 +1,7 @@
 #ifndef _T02R0101_DEF_H_
 #define _T02R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T02R0101_FLAG_CHANGE		(1)
 #define	SCRID_T02R0101_DOCTOR_ZUKAN		(2)
 #define	SCRID_T02R0101_DOCTOR		(3)
@@ -17,6 +17,6 @@
 #define	SCRID_T02R0101_BOOKS1		(13)
 #define	SCRID_T02R0101_FREEZER1		(14)
 #define	SCRID_T02R0101_DOCTOR_D17R0101		(15)
-#define	SCRID_T02R0101_DATA_MAX		(15)		//最大数
+#define	SCRID_T02R0101_DATA_MAX		(15)		//譛螟ｧ謨ｰ
 
 #endif //_T02R0101_DEF_H_

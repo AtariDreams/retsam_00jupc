@@ -27,10 +27,10 @@
   add mi/init.h
 
   Revision 1.8  2005/01/28 13:13:39  takano_makoto
-  mi/compress.hを追加
+  mi/compress.h繧定ｿｽ蜉
 
   Revision 1.7  2004/11/30 10:53:53  takano_makoto
-  uncomp_stream.hを追加
+  uncomp_stream.h繧定ｿｽ蜉
 
   Revision 1.6  2004/07/20 07:58:42  yada
   add stream.h
@@ -39,16 +39,16 @@
   add mi/card.h
 
   Revision 1.4  2004/03/30 11:00:30  yada
-  バイトアクセス関数をARM7専用から共通に
+  繝舌う繝医い繧ｯ繧ｻ繧ｹ髢｢謨ｰ繧但RM7蟆ら畑縺九ｉ蜈ｱ騾壹↓
 
   Revision 1.3  2004/03/23 00:54:05  yada
-  ARM7 の場合に byteAccess.hを追加
+  ARM7 縺ｮ蝣ｴ蜷医↓ byteAccess.h繧定ｿｽ蜉
 
   Revision 1.2  2004/02/12 13:37:44  yasu
   change include "" -> include <>
 
   Revision 1.1  2004/02/10 01:21:10  yada
-  mi/ のヘッダファイルが増えてきたので作成
+  mi/ 縺ｮ繝倥ャ繝繝輔ぃ繧､繝ｫ縺悟｢励∴縺ｦ縺阪◆縺ｮ縺ｧ菴懈��
 
 
   $NoKeywords: $

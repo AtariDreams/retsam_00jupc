@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	footprint_tool.c
- * @brief	‘«Õƒ{[ƒh‚Ìƒc[ƒ‹—Ş
+ * @brief	è¶³è·¡ãƒœãƒ¼ãƒ‰ã®ãƒ„ãƒ¼ãƒ«é¡
  * @author	matsuda
- * @date	2008.01.22(‰Î)
+ * @date	2008.01.22(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -44,12 +44,12 @@
 #include "footprint_snd_def.h"
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "footprint_control.dat"
 #include "footprint_foot.dat"
 
-///ƒCƒ“ƒNƒpƒŒƒbƒgƒ^ƒbƒ`ƒpƒlƒ‹—Ìˆæİ’è
+///ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL InkPaletteTouchData[] = {
 	//TOP BOTTOM LEFT RIGHT
 	{160, 192, 32*0, 32*1},
@@ -58,20 +58,20 @@ static const RECT_HIT_TBL InkPaletteTouchData[] = {
 	{160, 192, 32*3, 32*4},
 	{160, 192, 32*4, 32*5},
 	{160, 192, 32*5, 32*6},
-	{160, 192, 32*6, 255},		//‚â‚ß‚é
+	{160, 192, 32*6, 255},		//ã‚„ã‚ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[–¼‚ğ•`‰æ
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’æç”»
  *
- * @param   msgman			ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wordset			ƒ[ƒhƒZƒbƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   win[]			BMPWIN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wflby_sys		ƒƒCƒtƒ@ƒCƒƒr[ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   user_index		ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ†[ƒU[ID
+ * @param   msgman			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wordset			ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   win[]			BMPWINã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wflby_sys		ãƒ¯ã‚¤ãƒ•ã‚¡ã‚¤ãƒ­ãƒ“ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   user_index		ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ID
  */
 //--------------------------------------------------------------
 void FootPrintTool_NameDraw(MSGDATA_MANAGER *msgman, WORDSET *wordset, GF_BGL_BMPWIN win[], WFLBY_SYSTEM *wflby_sys, s32 user_id)
@@ -81,12 +81,12 @@ void FootPrintTool_NameDraw(MSGDATA_MANAGER *msgman, WORDSET *wordset, GF_BGL_BM
 	STRBUF *message_src;
 	STRBUF *expand_src;
 	STRBUF *name_src;
-	int expand_len = 64;	//ƒ[ƒhƒZƒbƒg“WŠJƒoƒbƒtƒ@‚ÌƒTƒCƒYB“K“–‚É‘å‚«‚­
+	int expand_len = 64;	//ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆå±•é–‹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚é©å½“ã«å¤§ãã
 	int sex;
 	u32 user_index, main_idx;
 	GF_PRINTCOLOR print_color;
 	
-	//ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ†[ƒU[ID‚©‚çƒƒCƒ“‚Ìƒ†[ƒU[Index‚ğæ“¾‚·‚é(“¹‚Ì‚è)
+	//ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼IDã‹ã‚‰ãƒ¡ã‚¤ãƒ³ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼Indexã‚’å–å¾—ã™ã‚‹(é“ã®ã‚Š)
 	user_index = DWC_LOBBY_SUBCHAN_GetUserIDIdx(user_id);
 	if(user_index == DWC_LOBBY_USERIDTBL_IDX_NONE){
 		return;
@@ -97,7 +97,7 @@ void FootPrintTool_NameDraw(MSGDATA_MANAGER *msgman, WORDSET *wordset, GF_BGL_BM
 	}
 	
 	OS_TPrintf("user_index = %d, main_idx = %d, user_id = %d\n", user_index, main_idx, user_id);
-	//ƒƒCƒ“‚Ìƒ†[ƒU[Index‚©‚çƒvƒƒtƒB[ƒ‹‚ğæ“¾
+	//ãƒ¡ã‚¤ãƒ³ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼Indexã‹ã‚‰ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—
 	wup = WFLBY_SYSTEM_GetUserProfile(wflby_sys, main_idx);
 	if(wup == NULL){
 		return;
@@ -138,10 +138,10 @@ void FootPrintTool_NameDraw(MSGDATA_MANAGER *msgman, WORDSET *wordset, GF_BGL_BM
 
 //--------------------------------------------------------------
 /**
- * @brief   Q‰ÁÒ–¼‚ğÁ‹‚·‚é
+ * @brief   å‚åŠ è€…åã‚’æ¶ˆå»ã™ã‚‹
  *
- * @param   win[]			BMPWIN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   user_index		ƒ†[ƒU[index
+ * @param   win[]			BMPWINã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   user_index		ãƒ¦ãƒ¼ã‚¶ãƒ¼index
  */
 //--------------------------------------------------------------
 void FootPrintTool_NameErase(GF_BGL_BMPWIN win[], u32 user_index)
@@ -155,12 +155,12 @@ void FootPrintTool_NameErase(GF_BGL_BMPWIN win[], u32 user_index)
 
 //--------------------------------------------------------------
 /**
- * @brief   e‚ÌID‚©‚çAƒXƒ^ƒ“ƒv‚ÌF‚ğæ“¾‚·‚é
+ * @brief   è¦ªã®IDã‹ã‚‰ã€ã‚¹ã‚¿ãƒ³ãƒ—ã®è‰²ã‚’å–å¾—ã™ã‚‹
  *
- * @param   board_type	ƒ{[ƒh‚Ìí—Ş(FOOTPRINT_BOARD_TYPE_???)
- * @param   oya_id		e‚ÌID
+ * @param   board_type	ãƒœãƒ¼ãƒ‰ã®ç¨®é¡(FOOTPRINT_BOARD_TYPE_???)
+ * @param   oya_id		è¦ªã®ID
  *
- * @retval  ƒJƒ‰[ƒR[ƒh
+ * @retval  ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 u16 FootprintTool_StampColorGet(int board_type, u32 oya_id)
@@ -170,11 +170,11 @@ u16 FootprintTool_StampColorGet(int board_type, u32 oya_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒ“ƒNƒpƒŒƒbƒg‚ªƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚é‚©‚ÌXVˆ—
+ * @brief   ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹ã‹ã®æ›´æ–°å‡¦ç†
  *
- * @param   my_stamp_array[]		©•ª‚ÌƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   my_stamp_array[]		è‡ªåˆ†ã®ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  0`5:ƒ^ƒbƒ`‚³‚ê‚½ƒCƒ“ƒNƒpƒŒƒbƒg or FOOT_TOUCH_RET_EXIT or FOOT_TOUCH_RET_NULL
+ * @retval  0ã€œ5:ã‚¿ãƒƒãƒã•ã‚ŒãŸã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆ or FOOT_TOUCH_RET_EXIT or FOOT_TOUCH_RET_NULL
  */
 //--------------------------------------------------------------
 int FootprintTool_InkPalTouchUpdate(STAMP_PARAM *my_stamp_array, int now_select_no)
@@ -183,13 +183,13 @@ int FootprintTool_InkPalTouchUpdate(STAMP_PARAM *my_stamp_array, int now_select_
 	int ret = FOOT_TOUCH_RET_NULL;
 	
 	hit = GF_TP_RectHitTrg(InkPaletteTouchData);
-	if(hit < 6){		//ƒCƒ“ƒNƒpƒŒƒbƒg‚ğ‰Ÿ‚µ‚½
+	if(hit < 6){		//ã‚¤ãƒ³ã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚’æŠ¼ã—ãŸ
 		if(now_select_no != hit 
 				&& my_stamp_array[hit].monsno != 0 && my_stamp_array[hit].monsno <= MONSNO_END){
 			ret = hit;
 		}
 	}
-	else if(hit == 6){	//u‚â‚ß‚évƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½
+	else if(hit == 6){	//ã€Œã‚„ã‚ã‚‹ã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸ
 		ret = FOOT_TOUCH_RET_EXIT;
 	}
 	else{
@@ -201,23 +201,23 @@ int FootprintTool_InkPalTouchUpdate(STAMP_PARAM *my_stamp_array, int now_select_
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘«Õ‚ª—L‚éƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN‚·‚é
+ * @brief   è¶³è·¡ãŒæœ‰ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @param   monsno		ƒ|ƒPƒ‚ƒ“”Ô†
- * @param   form_no		ƒtƒHƒ‹ƒ€”Ô†
- * @param   arceus_flg	ƒAƒ‹ƒZƒEƒXƒtƒ‰ƒO(TRUE:ŒöŠJOK)
+ * @param   monsno		ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+ * @param   form_no		ãƒ•ã‚©ãƒ«ãƒ ç•ªå·
+ * @param   arceus_flg	ã‚¢ãƒ«ã‚»ã‚¦ã‚¹ãƒ•ãƒ©ã‚°(TRUE:å…¬é–‹OK)
  *
- * @retval  TRUE:‘«Õ‚ª‚ ‚é
- * @retval  FALSE:‘«Õ‚ª‚È‚¢
+ * @retval  TRUE:è¶³è·¡ãŒã‚ã‚‹
+ * @retval  FALSE:è¶³è·¡ãŒãªã„
  */
 //--------------------------------------------------------------
 BOOL FootprintTool_FootDispCheck(int monsno, int form_no, BOOL arceus_flg)
 {
 	if(monsno == MONSNO_KIMAIRAN && form_no > 0){
-		return FALSE;	//ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚µ‚½ƒMƒ‰ƒeƒBƒi‚¾‚¯ŒÂ•Ê‚É”»’è
+		return FALSE;	//ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã—ãŸã‚®ãƒ©ãƒ†ã‚£ãƒŠã ã‘å€‹åˆ¥ã«åˆ¤å®š
 	}
 	if(monsno == MONSNO_AUSU && arceus_flg == FALSE){
-		return FALSE;	//ŒöŠJOK‚É‚È‚Á‚Ä‚¢‚È‚¢‚ÍƒAƒ‹ƒZƒEƒX‚Í‘«Õ–³‚µˆµ‚¢‚Å”»’è
+		return FALSE;	//å…¬é–‹OKã«ãªã£ã¦ã„ãªã„æ™‚ã¯ã‚¢ãƒ«ã‚»ã‚¦ã‚¹ã¯è¶³è·¡ç„¡ã—æ‰±ã„ã§åˆ¤å®š
 	}
 	
 	return PokeFootConvTbl[monsno].disp;
@@ -225,19 +225,19 @@ BOOL FootprintTool_FootDispCheck(int monsno, int form_no, BOOL arceus_flg)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘«Õ‚ª—L‚éƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN‚·‚é
+ * @brief   è¶³è·¡ãŒæœ‰ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @param   monsno		ƒ|ƒPƒ‚ƒ“”Ô†
- * @param   form_no		ƒtƒHƒ‹ƒ€”Ô†
+ * @param   monsno		ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+ * @param   form_no		ãƒ•ã‚©ãƒ«ãƒ ç•ªå·
  *
- * @retval  TRUE:‘«Õ‚ª‚ ‚é
- * @retval  FALSE:‘«Õ‚ª‚È‚¢
+ * @retval  TRUE:è¶³è·¡ãŒã‚ã‚‹
+ * @retval  FALSE:è¶³è·¡ãŒãªã„
  */
 //--------------------------------------------------------------
 BOOL FootprintTool_FootHitSizeGet(int monsno, int form_no)
 {
 	if(monsno == MONSNO_KIMAIRAN && form_no > 0){
-		return 2;	//ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚µ‚½ƒMƒ‰ƒeƒBƒi‚¾‚¯ŒÂ•Ê‚É”»’è
+		return 2;	//ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã—ãŸã‚®ãƒ©ãƒ†ã‚£ãƒŠã ã‘å€‹åˆ¥ã«åˆ¤å®š
 	}
 	
 	return PokeFootConvTbl[monsno].hit_size;

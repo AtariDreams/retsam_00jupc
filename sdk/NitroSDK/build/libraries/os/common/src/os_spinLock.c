@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.39  2005/11/21 05:42:31  yasu
-  OSi_WaitByLoop �� inline ��
+  OSi_WaitByLoop を inline 化
 
   Revision 1.38  2005/11/17 10:11:36  yasu
-  OS_SpinWait �� SVC_WaitByLoop �ōs�Ȃ��悤�ɏC��
+  OS_SpinWait を SVC_WaitByLoop で行なうように修正
 
   Revision 1.37  2005/03/04 10:06:01  yasu
-  �ߏ�� volatile ���폜
+  過剰な volatile を削除
 
   Revision 1.36  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.35  2005/02/28 05:26:29  yosizaki
   do-indent.
@@ -57,91 +57,91 @@
   put HW_LOCKID_FLAG_MAIN/SUB
 
   Revision 1.25  2004/04/20 06:56:11  yada
-  OS_TryLockCartridge() ���A�������� _ISDbgLib_AllocateEmualtor() ��
-  �Ă�ł����̂��C���B
+  OS_TryLockCartridge() が、無条件に _ISDbgLib_AllocateEmualtor() を
+  呼んでいたのを修正。
 
   Revision 1.24  2004/03/30 06:09:29  yada
-  ldconst �� lda �� ldr = ���g�p����L�q�ɂ����B
+  ldconst や lda を ldr = を使用する記述にした。
 
   Revision 1.23  2004/03/26 10:37:23  yada
-  OS_GetLockID(), OS_ReleaseLockID() �ǉ�
+  OS_GetLockID(), OS_ReleaseLockID() 追加
 
   Revision 1.22  2004/03/25 09:44:24  yada
-  �J�[�h��unlock, tryLock �֐��̒萔�C���B�E�F�C�g��ARM7��SVC�ĂԂ悤�ɁB
+  カードのunlock, tryLock 関数の定数修正。ウェイトでARM7はSVC呼ぶように。
 
   Revision 1.21  2004/03/25 09:22:39  yada
-  �������b�N�֐����ň�����FIQ�t���O�̏�����ς��������悭�����B
-  Card�̃��b�N�E�A�����b�N�C��
+  内部ロック関数等で引数のFIQフラグの順序を変え効率をよくした。
+  Cardのロック・アンロック修正
 
   Revision 1.20  2004/03/25 07:25:05  yada
-  OS_LockCard() ���J�[�h�̃��b�N�ɂ��Ēǉ�
+  OS_LockCard() 等カードのロックについて追加
 
   Revision 1.19  2004/03/25 02:38:30  yada
   MI_SetMainMemoryPriority(), MI_SetCardProcessor(),MI_SetCartridgeProcessor()
-  ���AMI_�`����MIi_�` �ɕύX�������֐��ɂ���悤�ɂ����B
+  を、MI_〜からMIi_〜 に変更し内部関数にするようにした。
 
   Revision 1.18  2004/03/04 09:47:50  yada
-  �J�[�g���b�W�̃��b�N�Ɍ���IRQ/FIQ�֎~�ɂ����B
+  カートリッジのロックに限りIRQ/FIQ禁止にした。
 
   Revision 1.17  2004/02/13 08:58:52  yasu
   nitro_sp.h -> nitro.h
 
   Revision 1.16  2004/02/13 01:33:58  yada
-  ARM9��AMR7 �ŃC���N���[�h�t�@�C���ꍇ�킯
+  ARM9とAMR7 でインクルードファイル場合わけ
 
   Revision 1.15  2004/02/10 02:04:23  yada
-  subp �p��include�C��
+  subp 用にinclude修正
 
   Revision 1.14  2004/02/10 01:25:06  yada
-  UTL_* �� MI_ �Ɏ�荞�񂾂��Ƃɂ��C��
+  UTL_* を MI_ に取り込んだことによる修正
 
   Revision 1.13  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.12  2004/02/05 02:00:37  yada
-  UTL_SwapWord �� os_utility.c �Ɉڍs
+  UTL_SwapWord を os_utility.c に移行
 
   Revision 1.11  2004/01/18 02:25:37  yada
-  �C���f���g���̐��`
+  インデント等の整形
 
   Revision 1.10  2004/01/14 01:44:01  yada
-  lock��unlock�̓r�����s�֐���ݒ�o����悤�ɂ������Ƃւ̑Ή�
+  lockやunlockの途中実行関数を設定出来るようにしたことへの対応
 
   Revision 1.9  2003/12/25 07:31:26  yada
-  �^���[������ɂ��ύX
+  型ルール統一による変更
 
   Revision 1.8  2003/12/22 13:40:59  yasu
-  memorymap.h �̖����I�ǂݍ���
+  memorymap.h の明示的読み込み
 
   Revision 1.7  2003/12/22 01:37:27  yada
-  WRAM, VRAM-c,d �̐ݒ���R�����g�A�E�g
+  WRAM, VRAM-c,d の設定をコメントアウト
 
   Revision 1.6  2003/12/18 07:17:09  yada
-  red-sdk �d�l����ύX
+  red-sdk 仕様から変更
 
   Revision 1.5  2003/12/17 08:21:56  yasu
-  ARM7 �Ƃ̋��p�R�[�h��
+  ARM7 との共用コード化
 
   Revision 1.4  2003/12/12 05:04:22  yasu
-  _ISDbgLib_* �֐��̒ǉ�
+  _ISDbgLib_* 関数の追加
 
   Revision 1.3  2003/12/10 10:56:18  yasu
-  ISDPrint �ŕK�v�� SpinLock �֐��݂̂̈ڐA
+  ISDPrint で必要な SpinLock 関数のみの移植
   OS_LockWord() -> OS_LockByWord()
-  volatile LockWord -> OS_LockWord �Ȃǂ̕ύX
+  volatile LockWord -> OS_LockWord などの変更
 
   Revision 1.2  2003/12/08 12:20:43  yada
-  12/3�@REDSDK �ւ̕ύX�Ή�
+  12/3　REDSDK への変更対応
 
   Revision 1.1  2003/11/29 01:25:46  yada
-  �t�@�C�����̕ύX
+  ファイル名称変更
 
   Revision 1.2  2003/11/28 01:56:22  yada
-  REDSDK��03-11-27���f
-  �A���w�ǂ��R�����g�A�E�g
+  REDSDKの03-11-27反映
+  但し殆どをコメントアウト
 
   Revision 1.1  2003/11/06 09:30:39  yada
-  �b���
+  暫定版
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -246,23 +246,23 @@ void OS_InitLock(void)
         lockp->lockFlag = 0;
         (void)OS_LockByWord(OS_MAINP_SYSTEM_LOCK_ID - 1, lockp, NULL);
 
-        // �T�u�v���Z�b�T�ɂ�鋤�L���\�[�X���g�p�`�F�b�N
+        // サブプロセッサによる共有リソース未使用チェック
         while (lockp->extension != 0)
         {
             OSi_WaitByLoop();
         }
 
-        // ���b�NID�J�E���^�p�t���O ������
+        // ロックIDカウンタ用フラグ 初期化
         ((u32 *)OSi_ANYP_LOCK_ID_FLAG)[0] = OSi_LOCKID_INITIAL_FLAG_0;
         ((u32 *)OSi_ANYP_LOCK_ID_FLAG)[1] = OSi_LOCKID_INITIAL_FLAG_1;
 
-        // ���b�N�o�b�t�@ �N���A�i�J�[�g���b�W�̈�ȊO�j
+        // ロックバッファ クリア（カートリッジ領域以外）
         MI_CpuClear32((void *)HW_SHARED_LOCK_BUF, HW_CTRDG_LOCK_BUF - HW_SHARED_LOCK_BUF);
 
-        // NITRO �J�[�h�A�N�Z�X�� �� �T�u�v���Z�b�T
+        // NITRO カードアクセス権 → サブプロセッサ
         MIi_SetCardProcessor(MI_PROCESSOR_ARM7);
 
-        // �J�[�g���b�W�A�N�Z�X��   �� �T�u�v���Z�b�T
+        // カートリッジアクセス権   → サブプロセッサ
         MIi_SetCartridgeProcessor(MI_PROCESSOR_ARM7);
 
 #ifndef SDK_FINALROM
@@ -289,11 +289,11 @@ void OS_InitLock(void)
         _ISDbgLib_Initialize();
 #endif
 
-        // ���b�NID�J�E���^�p�t���O ������
+        // ロックIDカウンタ用フラグ 初期化
         ((u32 *)OSi_ANYP_LOCK_ID_FLAG)[0] = OSi_LOCKID_INITIAL_FLAG_0;
         ((u32 *)OSi_ANYP_LOCK_ID_FLAG)[1] = OSi_LOCKID_INITIAL_FLAG_1;
 
-        // ���C���v���Z�b�T�Ƃ̏������I���̓���
+        // メインプロセッサとの初期化終了の同期
         lockp->extension = OS_SUBP_SYSTEM_LOCK_ID;
     }
 #endif
@@ -653,9 +653,9 @@ static void OSi_FreeCartridgeBus(void)
 
 /*
  * 20040708:yosizaki
- * TEG �ł� ARM9 �����b�N������ ARM7 �֓]���v������K�v������.
- * ���̂Ƃ����b�N�����L���� ARM9 �̃��b�N���� ARM 7 �����b�N�ł��Ȃ�.
- * �̂�, �P�ɌX�̃��b�N ID �ɂ���ăv���Z�b�T���ł̔r��������s��.
+ * TEG では ARM9 がロックした後 ARM7 へ転送要求する必要がある.
+ * このときロックが共有だと ARM9 のロック中で ARM 7 がロックできない.
+ * ので, 単に個々のロック ID によってプロセッサ内での排他制御を行う.
  */
 #if	defined(SDK_TEG)
 
@@ -787,12 +787,12 @@ static void OSi_FreeCardBus(void)
 
   Description:  read owner id of lock
 
-       �E���W���[��ID ����0 �̏ꍇ�͂��̎��_�łǂ���̃v���Z�b�T����
-         ���L���������Ă���̂����m�F�ł��܂��B
-       �E���L���\�[�X�̏ꍇ�́u���C���v���Z�b�T�������L���������Ă����ԁv
-         �݂̂����荞�݂��֎~���邱�Ƃɂ���Ĉێ����邱�Ƃ��ł��܂��B
-         ���̑��̏�Ԃ̓T�u�v���Z�b�T���ω������Ă��܂��\��������܂��B
-       �E���L���W���[��ID �� 0 �ł����Ă����b�N�ϐ�����������Ă���Ƃ͌���܂���B
+       ・モジュールID が非0 の場合はその時点でどちらのプロセッサ側が
+         所有権を持っているのかを確認できます。
+       ・共有リソースの場合は「メインプロセッサ側が所有権を持っている状態」
+         のみを割り込みを禁止することによって維持することができます。
+         その他の状態はサブプロセッサが変化させてしまう可能性があります。
+       ・所有モジュールID が 0 であってもロック変数が解除されているとは限りません。
 
   Arguments:    lockp            pointer to lock
 
@@ -816,21 +816,21 @@ u16 OS_ReadOwnerOfLockWord(OSLockWord *lockp)
   Returns:      OS_LOCK_ID_ERROR, if fail to get ID
 
                 if ARM9
-                   0x40�`0x6f       lockID
+                   0x40〜0x6f       lockID
                 else if ARM7
-                   0x80�`0xaf       lockID
+                   0x80〜0xaf       lockID
                 endif
 
                 *Notice:  ID is allocated only 48 pattern at a highest.
 
-                ID��48��ނ܂ł������蓖�Ă邱�Ƃ��ł��܂���B
-               ���W���[�����ɂĕ����̃��b�N�ϐ��𐧌䂷��ꍇ��
-               �ł��邾��1��ID���g�p����悤�ɂ��ĉ������B
+                IDは48種類までしか割り当てることができません。
+               モジュール内にて複数のロック変数を制御する場合は
+               できるだけ1つのIDを使用するようにして下さい。
  *---------------------------------------------------------------------------*/
 #include <nitro/code32.h>
 asm s32 OS_GetLockID( void )
 {
-    //---- �t���O�̑O32�r�b�g�ɗ����Ă���t���O(��ID)�����邩
+    //---- フラグの前32ビットに立っているフラグ(空きID)があるか
     ldr    r3, =OSi_ANYP_LOCK_ID_FLAG
     ldr    r1, [r3, #0]
 
@@ -852,7 +852,7 @@ _lp1:
 #endif
     cmp    r2, #32
 
-    //---- ��ID������Ƃ�
+    //---- 空きIDがあるとき
     bne @movne1
     b @movne2
 @movne1:
@@ -860,7 +860,7 @@ _lp1:
 @movne2:
     bne    _1
 
-    //---- ���323�r�b�g�ɗ����Ă���t���O(��ID)�����邩
+    //---- 後ろ323ビットに立っているフラグ(空きID)があるか
     add    r3, r3, #4
     ldr    r1, [r3, #0]
 #ifdef SDK_ARM9
@@ -881,7 +881,7 @@ _lp2:
 #endif
     cmp    r2, #32
 
-    //---- ��ID���Ȃ�
+    //---- 空きIDがない
     ldr    r0, =OS_LOCK_ID_ERROR
     beq @bxeq1
     b @bxeq2
@@ -889,7 +889,7 @@ _lp2:
     bx   lr
 @bxeq2:
 
-    //---- ��ID������Ƃ�
+    //---- 空きIDがあるとき
     mov    r0, #OSi_ANYP_LOCK_ID_START+32
 
 _1:

@@ -6,10 +6,10 @@ typedef s32 fx32;
 #include "../../field/check_data.h"
 #include "../../field/fieldobj_header.h"
 
-#define __EVBTYPE_H__		/* evbtype.h�̃C���N���[�h�𖳌��ɂ��Ă��� */
-#define __EVCTYPE_H__		/* evctype.h�̃C���N���[�h�𖳌��ɂ��Ă��� */
-#define __EVDTYPE_H__		/* evdtype.h�̃C���N���[�h�𖳌��ɂ��Ă��� */
-#define __EVPTYPE_H__		/* evptype.h�̃C���N���[�h�𖳌��ɂ��Ă��� */
+#define __EVBTYPE_H__		/* evbtype.hのインクルードを無効にしている */
+#define __EVCTYPE_H__		/* evctype.hのインクルードを無効にしている */
+#define __EVDTYPE_H__		/* evdtype.hのインクルードを無効にしている */
+#define __EVPTYPE_H__		/* evptype.hのインクルードを無効にしている */
 
 //#include "evbtype.h"
 //#include "evctype.h"

@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	field_effect.h
- * @brief	�t�B�[���h�G�t�F�N�g
+ * @brief	フィールドエフェクト
  * @author	kagaya
  * @data	05.07.13
  */
@@ -11,51 +11,51 @@
 
 //==============================================================================
 /*
-	�t�B�[���h�G�t�F�N�g�֘A�@�ȈՐ���
+	フィールドエフェクト関連　簡易説明
 	
-	���\�[�X�t�@�C����
-	field_effect.h �t�B�[���h�G�t�F�N�g�w�b�_�[
-	field_effect.c �t�B�[���h�G�t�F�N�g����
-	field_effect_data.c�@�G�t�F�N�g�o�^�\�[�X�t�@�C��
+	＜ソースファイル＞
+	field_effect.h フィールドエフェクトヘッダー
+	field_effect.c フィールドエフェクト処理
+	field_effect_data.c　エフェクト登録ソースファイル
 	
-	���ȉ��Afield_effect.h��inlcude�ς�
-	field_effect_code.h �t�B�[���h�G�t�F�N�g�p�V���{����`
-	field_effect_subproc.h�@�G�t�F�N�g�Q�ƃw�b�_�[�@�ꗗ
+	※以下、field_effect.hにinlcude済み
+	field_effect_code.h フィールドエフェクト用シンボル定義
+	field_effect_subproc.h　エフェクト参照ヘッダー　一覧
 	
-	���t�B�[���h�G�t�F�N�g�p�@�A�[�J�C�u�f�[�^�C���f�b�N�XID�t�@�C����
+	＜フィールドエフェクト用　アーカイブデータインデックスIDファイル＞
 	src\data\mmodel\fldeff.naix
-	��field_effect.h��inlcude�ς�
+	※field_effect.hにinlcude済み
 	
-	���V�K�G�t�F�N�g�̒ǉ����@��
-	�P�FFE_SUBPROC_INIT�^�̃G�t�F�N�g�������֐��AFE_SUBPROC_DELETE�^�̃G�t�F�N�g�폜�֐��쐬
-	�Q�F�V�K�G�t�F�N�g�֐��Q�ƃw�b�_�[��field_effect_subproc.h��inlcude
-	�R�Ffield_effect_code.h�@�ɐV�K�G�t�F�N�gID��ǉ�
-	�S�Ffield_effect_data.c�@�ɐV�K�G�t�F�N�gID�Ƃ���Ɋ֘A�����������A�폜�֐���`
-	�T�FFE_EffectRegist()���ŌĂяo���A����m�F
-	�U�Ffield_effect_subproc.h field_effect_code.h field_effect_data.c��commit
+	＜新規エフェクトの追加方法＞
+	１：FE_SUBPROC_INIT型のエフェクト初期化関数、FE_SUBPROC_DELETE型のエフェクト削除関数作成
+	２：新規エフェクト関数参照ヘッダーをfield_effect_subproc.hにinlcude
+	３：field_effect_code.h　に新規エフェクトIDを追加
+	４：field_effect_data.c　に新規エフェクトIDとそれに関連した初期化、削除関数定義
+	５：FE_EffectRegist()等で呼び出し、動作確認
+	６：field_effect_subproc.h field_effect_code.h field_effect_data.cをcommit
 	
-	���t�B�[���h�G�t�F�N�g��p�A�[�J�C�u�f�[�^�̍X�V���@��
-	�P�Fsrc\data\mmodel\fldeff_list�փA�[�J�C�u�Ώۃt�@�C�����`
-	�Q�F��L�f�B���N�g����make���s�B�A�[�J�C�u���쐬�����
-	�R�F����m�F
-	�S�F�A�[�J�C�u�Ώۃt�@�C����fldeff_list��commit����
-	��mmodel�f�B���N�g���ɂ�make���鎖�Ő��������R���o�[�g�f�[�^�t�@�C����commit�͋֎~
-	���A�[�J�C�u�t�@�C��(*.narc,*.naix)��commit���֎~�B�A�[�J�C�u�t�@�C�������͌X�̊��ōs��
+	＜フィールドエフェクト専用アーカイブデータの更新方法＞
+	１：src\data\mmodel\fldeff_listへアーカイブ対象ファイルを定義
+	２：上記ディレクトリでmake実行。アーカイブが作成される
+	３：動作確認
+	４：アーカイブ対象ファイルとfldeff_listをcommitする
+	※mmodelディレクトリにてmakeする事で生成されるコンバートデータファイルのcommitは禁止
+	※アーカイブファイル(*.narc,*.naix)のcommitも禁止。アーカイブファイル生成は個々の環境で行う
 	
-	���G�t�F�N�g�ǉ��A�폜�֘A�֐���
+	＜エフェクト追加、削除関連関数＞
 	FE_EffectRegist()
 	FE_EffectRegistMore()
 	FE_EffectDelete()
 	
-	���G�t�F�N�g�g�p���[�N�擾�֐���
+	＜エフェクト使用ワーク取得関数＞
 	FE_EffectWorkGet()
 	
-	���t�B�[���h�G�t�F�N�g��p�q�[�v�̈�֘A�֐���
+	＜フィールドエフェクト専用ヒープ領域関連関数＞
 	FE_AllocMemory()
 	FE_AllocClearMemory()
 	FE_FreeMemory()
 	
-	���t�B�[���h�G�t�F�N�g��p�A�[�J�C�u�f�[�^�֘A�֐���
+	＜フィールドエフェクト専用アーカイブデータ関連関数＞
 	FE_ArcDataLoad()
 	FE_ArcDataLoadAlloc()
 	FE_ArcDataSizeGet()
@@ -69,7 +69,7 @@
 #include "field_common.h"				//FIELD COMMON
 #include "fieldobj.h"					//FIELD_OBJ
 
-#include "field_effect_code.h"			//�G�t�F�N�g�V���{����`
+#include "field_effect_code.h"			//エフェクトシンボル定義
 #include "../data/mmodel/fldeff.naix"	//ARC_FLDEFF
 
 //#include "field_3dobj.h"		//kari
@@ -78,48 +78,48 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-///	�r���{�[�h�@�풓�@�]��
+///	ビルボード　常駐　転送
 //--------------------------------------------------------------
 enum
 {
-	FE_BLACT_TEX_VRAM = 0,									///<�e�N�X�`��VRAM�풓
-	FE_BLACT_TEX_TRANS,										///<�e�N�X�`���]��
+	FE_BLACT_TEX_VRAM = 0,									///<テクスチャVRAM常駐
+	FE_BLACT_TEX_TRANS,										///<テクスチャ転送
 };
 
 //==============================================================================
 //	typedef struct 
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_SYS�\���̖���`�@�t�B�[���h�G�t�F�N�g����Z�߂�
+///	FE_SYS構造体名定義　フィールドエフェクト情報を纏める
 //--------------------------------------------------------------
 typedef struct _TAG_FE_SYS FE_SYS;
 
 //--------------------------------------------------------------
-///	�G�t�F�N�g�������֐��^��`�B
-/// �����FFE_SYS * �߂�l�F�֐��Ŏg�p���郏�[�N *
+///	エフェクト初期化関数型定義。
+/// 引数：FE_SYS * 戻り値：関数で使用するワーク *
 //--------------------------------------------------------------
 typedef void * (*FE_SUBPROC_INIT)( FE_SYS * );
 
 //--------------------------------------------------------------
-///	�G�t�F�N�g�폜�֐��^��`�B
-/// �����Fvoid * = FE_SUBPROC_INIT�̖߂�l
+///	エフェクト削除関数型定義。
+/// 引数：void * = FE_SUBPROC_INITの戻り値
 //--------------------------------------------------------------
 typedef void (*FE_SUBPROC_DELETE)( void * );
 
 //--------------------------------------------------------------
-///	FE_SUBPROC_DATA�\���� �G�t�F�N�g�֐�ID�o�^�f�[�^
+///	FE_SUBPROC_DATA構造体 エフェクト関数ID登録データ
 //--------------------------------------------------------------
 typedef struct
 {
-	u32 id;								///<proc_init,proc_del���Ăяo���ׂ̎���ID
-	FE_SUBPROC_INIT proc_init;			///<id���w�肵���ۂɌĂ΂��G�t�F�N�g�������֐�
-	FE_SUBPROC_DELETE proc_del;			///<id���w�肵���ۂɌĂ΂��G�t�F�N�g�폜�֐�
+	u32 id;								///<proc_init,proc_delを呼び出す為の識別ID
+	FE_SUBPROC_INIT proc_init;			///<idを指定した際に呼ばれるエフェクト初期化関数
+	FE_SUBPROC_DELETE proc_del;			///<idを指定した際に呼ばれるエフェクト削除関数
 }FE_SUBPROC_DATA;
 
 #define FE_SUBPROC_DATA_SIZE (sizeof(FE_SUBPROC_DATA))
 
 //==============================================================================
-//	�O���Q��
+//	外部参照
 //==============================================================================
 extern FE_SYS * FE_Init( FIELDSYS_WORK *fsys, u32 reg_max, u32 heap_id );
 extern void FE_ParamInit_EOA( FE_SYS *fes, u32 eoa_max );
@@ -209,7 +209,7 @@ extern const u32 DATA_FE_UnderProcRegistTbl[FE_PROC_MAX+1];
 extern const u32 DATA_FE_TornWorldRegistTbl[FE_PROC_MAX+1];
 
 //==============================================================================
-//	field_effect.h�𗘗p�����֐���include
+//	field_effect.hを利用した関数のinclude
 //==============================================================================
 #include "field_effect_subproc.h"
 

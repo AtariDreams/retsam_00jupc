@@ -30,34 +30,34 @@ static void ClearFldMapMem( const u8 inIdx,
 							FMM_PTR mem);
 
 
-//ƒƒ‚ƒŠŠm•Û
+//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 FMM_PTR AllocFldMapMem(const BOOL inHeightDataValid)
 {
 	u8 i;
 	int height_mem_size;
 	FMM_PTR mem;
 	
-	//“Ç‚İ‚İƒGƒŠƒAŠm•Û
+	//èª­ã¿è¾¼ã¿ã‚¨ãƒªã‚¢ç¢ºä¿
 	mem = sys_AllocMemory( HEAPID_FIELD, sizeof(FLD_MAP_MEM) );
 	memset( mem, 0, sizeof(FLD_MAP_MEM) );
 	
 	mem->GroundAllocType = ALLOCTYPE_SOURCE;
 	if( inHeightDataValid ){ mem->HeightAllocType = ALLOCTYPE_MEMORY; }
 	
-	//ƒƒ‚ƒŠŠm•Û
+	//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	for(i=0;i<4;i++){
-		//’nŒ`ƒf[ƒ^ƒƒ‚ƒŠŠm•Û
+		//åœ°å½¢ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		mem->GroundData[i] = (void*)&FieldGroundData[i][0];
 		if (mem->GroundData[i] == NULL){
-			OS_Printf("%d,’nŒ`ƒf[ƒ^ƒƒ‚ƒŠŠm•Û¸”s\n",i);
+			OS_Printf("%d,åœ°å½¢ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—\n",i);
 			return NULL;
 		}
 		if (inHeightDataValid){
-			//‚‚³ƒf[ƒ^ƒƒ‚ƒŠŠm•Û
+			//é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªç¢ºä¿
 			mem->HeightData[i] = sys_AllocMemory( HEAPID_FIELD, FIELD_HEIGHT_DATA_SIZE );
 //			mem->HeightData[i] = (void*)&FieldHeightData[i][0];
 			if (mem->HeightData[i] == NULL){
-				OS_Printf("%d,‚‚³ƒf[ƒ^ƒƒ‚ƒŠŠm•Û¸”s\n",i);
+				OS_Printf("%d,é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—\n",i);
 				return NULL;
 			}
 			height_mem_size = FIELD_HEIGHT_DATA_SIZE;
@@ -68,28 +68,28 @@ FMM_PTR AllocFldMapMem(const BOOL inHeightDataValid)
 		ClearFldMapMem(i,FIELD_GROUND_DATA_SIZE,height_mem_size,mem);
 	}
 	
-	//ŠCƒAƒjƒƒf[ƒ^ƒƒ‚ƒŠŠm•Û
-	//’nŒ`ƒeƒNƒXƒ`ƒƒƒƒ‚ƒŠŠm•Û
+	//æµ·ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªç¢ºä¿
+	//åœ°å½¢ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	
 	return mem;
 }
 
-//ƒƒ‚ƒŠ‰ğ•ú
+//ãƒ¡ãƒ¢ãƒªè§£æ”¾
 void FreeFldMapMem(FMM_PTR mem)
 {
 	int i;
 	
-	//ƒƒ‚ƒŠ‰ğ•ú
+	//ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	for( i = 0; i < 4; i++ ){
-		//’nŒ`ƒf[ƒ^ƒƒ‚ƒŠ‰ğ•ú
+		//åœ°å½¢ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªè§£æ”¾
 		if( mem->GroundAllocType == ALLOCTYPE_MEMORY ){
 			sys_FreeMemoryEz( (void *)mem->GroundData[i] );
 		}
 		mem->GroundData[i] = NULL;
 		
-		//‚‚³ƒf[ƒ^‚Í‚È‚¢‚Æ‚«i’n‰º‚Æ‚©j‚à‚ ‚é‚Ì‚Å‚m‚t‚k‚kƒ`ƒFƒbƒN‚·‚é
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ã¯ãªã„ã¨ãï¼ˆåœ°ä¸‹ã¨ã‹ï¼‰ã‚‚ã‚ã‚‹ã®ã§ï¼®ï¼µï¼¬ï¼¬ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 		if (mem->HeightData[i] != NULL){
-			//‚‚³ƒf[ƒ^ƒƒ‚ƒŠ‰ğ•ú
+			//é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªè§£æ”¾
 			if( mem->HeightAllocType == ALLOCTYPE_MEMORY ){
 				sys_FreeMemoryEz( (void *)mem->HeightData[i] );
 			}
@@ -105,14 +105,14 @@ void FreeFldMapMem(FMM_PTR mem)
 void FreeFldMapMem(FMM_PTR mem)
 {
 	u8 i;
-	//ƒƒ‚ƒŠ‰ğ•ú
+	//ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	for(i=0;i<4;i++){
-		//’nŒ`ƒf[ƒ^ƒƒ‚ƒŠ‰ğ•ú
+		//åœ°å½¢ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªè§£æ”¾
 		//sys_FreeMemoryEz( (void *)mem->GroundData[i] );
 		mem->GroundData[i] = NULL;
-		//‚‚³ƒf[ƒ^‚Í‚È‚¢‚Æ‚«i’n‰º‚Æ‚©j‚à‚ ‚é‚Ì‚Å‚m‚t‚k‚kƒ`ƒFƒbƒN‚·‚é
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ã¯ãªã„ã¨ãï¼ˆåœ°ä¸‹ã¨ã‹ï¼‰ã‚‚ã‚ã‚‹ã®ã§ï¼®ï¼µï¼¬ï¼¬ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 		if (mem->HeightData[i] != NULL){
-			//‚‚³ƒf[ƒ^ƒƒ‚ƒŠ‰ğ•ú
+			//é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªè§£æ”¾
 			sys_FreeMemoryEz( (void *)mem->HeightData[i] );
 			mem->HeightData[i] = NULL;
 		}
@@ -122,13 +122,13 @@ void FreeFldMapMem(FMM_PTR mem)
 }
 #endif
 
-//’nŒ`ƒf[ƒ^ƒƒ‚ƒŠ‚Æƒ|ƒCƒ“ƒ^‚ğƒoƒCƒ“ƒh
+//åœ°å½¢ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªã¨ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒã‚¤ãƒ³ãƒ‰
 void BindGroundMem(const u8 inIdx, FMM_CONST_PTR mem, void **outPtr)
 {
 	*outPtr = mem->GroundData[inIdx];
 }
 
-//‚‚³ƒf[ƒ^ƒƒ‚ƒŠ‚Æƒ|ƒCƒ“ƒ^‚ğƒoƒCƒ“ƒh
+//é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªã¨ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒã‚¤ãƒ³ãƒ‰
 void BindHeightMem(const u8 inIdx, FMM_CONST_PTR mem, void **outPtr)
 {
 	*outPtr = mem->HeightData[inIdx];
@@ -143,8 +143,8 @@ static void ClearFldMapMem(	const u8 inIdx,
 	MI_CpuClear8(mem->HeightData[inIdx],inHeightMemSize);
 }
 
-//ƒAƒƒP[ƒgƒ^ƒCƒv
-#if 0	//ŒŠ”²‚¯‚ğl—¶‚µ‚½ˆêŠ‡ƒ^ƒCƒv@ƒTƒCƒY‚Å‚©‰ß‚¬‚Ä‹t‚É–³—
+//ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—
+#if 0	//ç©´æŠœã‘ã‚’è€ƒæ…®ã—ãŸä¸€æ‹¬ã‚¿ã‚¤ãƒ—ã€€ã‚µã‚¤ã‚ºã§ã‹éãã¦é€†ã«ç„¡ç†
 FMM_PTR AllocHeapFldMapMem( const BOOL inHeightDataValid )
 {
 	u8 *buf;
@@ -186,14 +186,14 @@ FMM_PTR AllocHeapFldMapMem( const BOOL inHeightDataValid )
 	return( mem );
 }
 
-//ƒAƒƒP[ƒgƒ^ƒCƒv@ƒƒ‚ƒŠŠJ•ú
+//ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—ã€€ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 void FreeHeapMapMem( FMM_PTR mem )
 {
 	sys_FreeMemoryEz( mem );
 }
 #endif
 
-//ƒAƒƒP[ƒgƒ^ƒCƒv
+//ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—
 FMM_PTR AllocHeapFldMapMem( const BOOL inHeightDataValid )
 {
 	u32 i;
@@ -229,9 +229,9 @@ FMM_PTR AllocHeapFldMapMem( const BOOL inHeightDataValid )
 
 //--------------------------------------------------------------
 /**
- * 2‚Â‚Ì’nŒ`ƒƒ‚ƒŠ‚ğŒğŠ·
- * @param	mem0	ŒğŠ·‚·‚éFMM_PTR‚»‚Ì1
- * @param	mem1	ŒğŠ·‚·‚éFMM_PTR‚»‚Ì2
+ * 2ã¤ã®åœ°å½¢ãƒ¡ãƒ¢ãƒªã‚’äº¤æ›
+ * @param	mem0	äº¤æ›ã™ã‚‹FMM_PTRãã®1
+ * @param	mem1	äº¤æ›ã™ã‚‹FMM_PTRãã®2
  * @retval
  */
 //--------------------------------------------------------------
@@ -253,9 +253,9 @@ void ExchangeFldMapMemGround( FMM_PTR mem0, FMM_PTR mem1 )
 #if 0
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒƒ‚ƒŠ‚ÌƒAƒƒbƒNƒ^ƒCƒv‚ğæ“¾
+ * åœ°å½¢ãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ­ãƒƒã‚¯ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  * @param	mem
- * @retval	BOOL	TRUE=ƒAƒƒbƒNƒƒ‚ƒŠŒ^
+ * @retval	BOOL	TRUE=ã‚¢ãƒ­ãƒƒã‚¯ãƒ¡ãƒ¢ãƒªå‹
  */
 //--------------------------------------------------------------
 BOOL CheckFldMapMemGroundAlloc( FMM_PTR mem )

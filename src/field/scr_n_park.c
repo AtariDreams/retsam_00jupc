@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_n_park.h
- * @bfief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhF©‘RŒö‰€ŠÖ˜A
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šè‡ªç„¶å…¬åœ’é–¢é€£
  * @author	Tomomichi Ohta
  * @date	06.06.26
  *
@@ -41,7 +41,7 @@
 
 //-----------------------------------------------------------------------------
 /**
- *	©‘RŒö‰€•à”ƒJƒEƒ“ƒgƒNƒŠƒA
+ *	è‡ªç„¶å…¬åœ’æ­©æ•°ã‚«ã‚¦ãƒ³ãƒˆã‚¯ãƒªã‚¢
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdNaturalParkWalkCountClear(VM_MACHINE * core)
@@ -52,7 +52,7 @@ BOOL EvCmdNaturalParkWalkCountClear(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	©‘RŒö‰€•à”ƒ`ƒFƒbƒN
+ *	è‡ªç„¶å…¬åœ’æ­©æ•°ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdNaturalParkWalkCountGet(VM_MACHINE * core)
@@ -65,7 +65,7 @@ BOOL EvCmdNaturalParkWalkCountGet(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	©‘RŒö‰€•à”ƒ`ƒFƒbƒN
+ *	è‡ªç„¶å…¬åœ’æ­©æ•°ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 static const u16 NaturalParkItemTbl[6][10]={
@@ -165,7 +165,7 @@ BOOL EvCmdNaturalParkAccessoryNoGet(VM_MACHINE * core)
 		j=5;
 		break;
 
-	default:	//¦”O‚Ì‚½‚ßƒGƒ‰[ˆ—
+	default:	//â€»å¿µã®ãŸã‚ã‚¨ãƒ©ãƒ¼å‡¦ç†
 		j=0;
 	}
 
@@ -188,17 +188,17 @@ static const u16 parkman_item_tbl[] = {
 	ITEM_DORINOMI,
 	ITEM_BERIBUNOMI,
 	///////////////////////////////////////////
-	IMC_ACCE_STONE05,		//‚¿‚ÑƒXƒg[ƒ“
-	IMC_ACCE_STONE01,		//‚«‚ç‚«‚çƒXƒg[ƒ“
-	IMC_ACCE_STONE04,		//‚Ü‚Á‚­‚ëƒXƒg[ƒ“
-	IMC_ACCE_UROKO04,		//‚¨‚¨‚«‚¢‚¤‚ë‚±
-	IMC_ACCE_LEAF01,		//‚¨‚¨‚«‚¢‚Í‚Á‚Ï
-	IMA_ACCE_MUSHROOM01,	//‚Ó‚Æ‚¢ƒLƒmƒR
-	IMC_ACCE_KIRIKABU00,	//‚«‚è‚©‚Ô
+	IMC_ACCE_STONE05,		//ã¡ã³ã‚¹ãƒˆãƒ¼ãƒ³
+	IMC_ACCE_STONE01,		//ãã‚‰ãã‚‰ã‚¹ãƒˆãƒ¼ãƒ³
+	IMC_ACCE_STONE04,		//ã¾ã£ãã‚ã‚¹ãƒˆãƒ¼ãƒ³
+	IMC_ACCE_UROKO04,		//ãŠãŠãã„ã†ã‚ã“
+	IMC_ACCE_LEAF01,		//ãŠãŠãã„ã¯ã£ã±
+	IMA_ACCE_MUSHROOM01,	//ãµã¨ã„ã‚­ãƒã‚³
+	IMC_ACCE_KIRIKABU00,	//ãã‚Šã‹ã¶
 
 };
 #define PARKMAN_ITEM_TBL_MAX	( NELEMS(parkman_item_tbl) )
-#define PARKMAN_ITEM_ACCE_START	( 9 )							//‚±‚Ì’lˆÈã‚ÍƒAƒNƒZƒTƒŠ[
+#define PARKMAN_ITEM_ACCE_START	( 9 )							//ã“ã®å€¤ä»¥ä¸Šã¯ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼
 
 BOOL EvCmdParkManItemIndexGet(VM_MACHINE * core);
 BOOL EvCmdParkManItemKindGet(VM_MACHINE * core);
@@ -206,7 +206,7 @@ BOOL EvCmdParkManItemNoGet(VM_MACHINE * core);
 
 //-----------------------------------------------------------------------------
 /**
- *	Œö‰€‚¨‚¶‚³‚ñ‚ÌE‚¢•¨ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ *	å…¬åœ’ãŠã˜ã•ã‚“ã®æ‹¾ã„ç‰©ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdParkManItemIndexGet(VM_MACHINE * core)
@@ -218,7 +218,7 @@ BOOL EvCmdParkManItemIndexGet(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	‚«‚Ì‚İ‚©AƒAƒNƒZƒTƒŠ[‚©‚ğæ“¾
+ *	ãã®ã¿ã‹ã€ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‹ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdParkManItemKindGet(VM_MACHINE * core)
@@ -227,16 +227,16 @@ BOOL EvCmdParkManItemKindGet(VM_MACHINE * core)
 	u16* ret_wk	= VMGetWork( core );
 
 	if( index < PARKMAN_ITEM_ACCE_START ){
-		*ret_wk = 0;	//‚«‚Ì‚İ
+		*ret_wk = 0;	//ãã®ã¿
 	}else{
-		*ret_wk = 1;	//ƒAƒNƒZƒTƒŠ
+		*ret_wk = 1;	//ã‚¢ã‚¯ã‚»ã‚µãƒª
 	}
 	return 0;
 }
 
 //-----------------------------------------------------------------------------
 /**
- *	Œö‰€‚¨‚¶‚³‚ñ‚ÌE‚¢•¨‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[‚ğæ“¾
+ *	å…¬åœ’ãŠã˜ã•ã‚“ã®æ‹¾ã„ç‰©ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdParkManItemNoGet(VM_MACHINE * core)

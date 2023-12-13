@@ -15,13 +15,13 @@
   *** empty log message ***
 
   Revision 1.3  2006/02/24 01:21:27  okubata_ryoma
-  NitroCrypto ‚ÌVİ@Crypt ‚©‚ç Crypto ‚Ö
+  NitroCrypto ã®æ–°è¨­ã€€Crypt ã‹ã‚‰ Crypto ã¸
 
   Revision 1.2  2005/12/21 14:44:05  seiki_masashi
   small fix
 
   Revision 1.1  2005/12/21 13:55:54  seiki_masashi
-  CRYPT_SetAllocator ŠÖ”‚ğ’Ç‰Á
+  CRYPT_SetAllocator é–¢æ•°ã‚’è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -36,12 +36,12 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_SetAllocator
 
-  Description:  CRYPTO ƒ‰ƒCƒuƒ‰ƒŠ‚Åg—p‚·‚éƒƒ‚ƒŠŠÇ—ŠÖ”‚ğ“o˜^‚·‚é
+  Description:  CRYPTO ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªç®¡ç†é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹
 
-  Arguments:    alloc - ƒƒ‚ƒŠŠm•ÛŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                free  - ƒƒ‚ƒŠ‰ğ•úŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    alloc - ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                free  - ãƒ¡ãƒ¢ãƒªè§£æ”¾é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void CRYPTO_SetAllocator(
     void* (*alloc) (u32),

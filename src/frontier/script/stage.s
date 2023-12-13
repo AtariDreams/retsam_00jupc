@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	stage.s
- * @brief	uƒoƒgƒ‹ƒXƒe[ƒWvƒtƒƒ“ƒeƒBƒAƒXƒNƒŠƒvƒg
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
  * @author	nohara
  * @date	2007.06.11
  */
@@ -22,68 +22,68 @@
 
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //
-//	FSW_PARAM0	ƒŠƒXƒg‚ÅŽg—p
-//	FSW_PARAM1	ŽålŒö‚ÌŒ©‚½–ÚŠi”[
-//	FSW_PARAM2	“GƒgƒŒ[ƒi[1‚ÌOBJƒR[ƒh
-//	FSW_PARAM3	“GƒgƒŒ[ƒi[2‚ÌOBJƒR[ƒh
-//	FSW_PARAM5	‰‰ñ‚©
-//	FSW_PARAM6	—U“±ˆõ‚ÌOBJƒR[ƒh
-//	FSW_LOCAL3	‹L˜^‚µ‚½‚©
-//	FSW_LOCAL5	‹L˜^ŒvŽZ—p
-//	FSW_LOCAL6	’ÊM’è‹`
+//	FSW_PARAM0	ãƒªã‚¹ãƒˆã§ä½¿ç”¨
+//	FSW_PARAM1	ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´
+//	FSW_PARAM2	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼1ã®OBJã‚³ãƒ¼ãƒ‰
+//	FSW_PARAM3	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼2ã®OBJã‚³ãƒ¼ãƒ‰
+//	FSW_PARAM5	åˆå›žã‹
+//	FSW_PARAM6	èª˜å°Žå“¡ã®OBJã‚³ãƒ¼ãƒ‰
+//	FSW_LOCAL3	è¨˜éŒ²ã—ãŸã‹
+//	FSW_LOCAL5	è¨˜éŒ²è¨ˆç®—ç”¨
+//	FSW_LOCAL6	é€šä¿¡å®šç¾©
 //
 //--------------------------------------------------------------------
-_EVENT_DATA		fss_stage_start	//ˆê”Ôã‚ÌEVENT_DATA‚ÍŽ©“®ŽÀs
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA		fss_stage_start	//ä¸€ç•ªä¸Šã®EVENT_DATAã¯è‡ªå‹•å®Ÿè¡Œ
+_EVENT_DATA_END						//çµ‚äº†
 
 //--------------------------------------------------------------------
-//					     ƒfƒoƒbƒN’è‹`
+//					     ãƒ‡ãƒãƒƒã‚¯å®šç¾©
 //--------------------------------------------------------------------
-//#define DEBUG_10_WIN					//10˜AŸƒfƒoƒbƒN
-//#define DEBUG_BTL_OFF					//ƒoƒgƒ‹ƒIƒtƒfƒoƒbƒN
-//#define DEBUG_BTL_LOSE_OFF			//ƒoƒgƒ‹”s–kƒIƒtƒfƒoƒbƒN
-//#define DEBUG_ANM_OFF				//ƒAƒjƒƒIƒtƒfƒoƒbƒN
-//#define DEBUG_7BTL_OFF				//ƒoƒgƒ‹10‰ñƒIƒtƒfƒoƒbƒN
+//#define DEBUG_10_WIN					//10é€£å‹ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_BTL_OFF					//ãƒãƒˆãƒ«ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_BTL_LOSE_OFF			//ãƒãƒˆãƒ«æ•—åŒ—ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_ANM_OFF				//ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_7BTL_OFF				//ãƒãƒˆãƒ«10å›žã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
 
 
 /********************************************************************/
 //
-//		SCENE_STAGE:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//		SCENE_STAGE:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	default_set_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		FSW_PARAM6,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 _RESOURCE_LABEL	default_set_resource_multi
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		FSW_PARAM6,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
-/*ƒgƒŒ[ƒi[‚ÅŽg—p‚·‚éOBJƒR[ƒh‚ÍŽg—p‚µ‚Ä‚Íƒ_ƒI*/
+/*ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã§ä½¿ç”¨ã™ã‚‹OBJã‚³ãƒ¼ãƒ‰ã¯ä½¿ç”¨ã—ã¦ã¯ãƒ€ãƒ¡ï¼*/
 _RESOURCE_LABEL	default_set_resource_boygirl
 	_CHAR_RESOURCE_DATA		SHOPM1,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		SHOPW1,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
-/*‘Îí•”‰®*/
+/*å¯¾æˆ¦éƒ¨å±‹*/
 _RESOURCE_LABEL	btl_set_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		MAID,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 _RESOURCE_LABEL	btl_set_resource_multi
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		MAID,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_STAGE:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_STAGE:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 #define OBJID_PLAYER				(0)
 #define OBJID_SIO_USER_0			(1)
@@ -100,11 +100,11 @@ _RESOURCE_LABEL	btl_set_resource_multi
 #define OBJID_ETC					(98)
 #define OBJID_ETC2					(99)
 
-//ƒXƒNƒŠƒvƒgID(¡Œã‘Î‰ž—\’è)
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(ä»Šå¾Œå¯¾å¿œäºˆå®š)
 #define EVENTID_TEST_SCR_OBJ1		(1)
 
 _ACTOR_LABEL	way_set_actor
-	_PLAYER_ACTOR_DATA	OBJID_PLAYER,WF2DMAP_WAY_C_DOWN,8*15,8*14,OFF/*Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA	OBJID_PLAYER,WF2DMAP_WAY_C_DOWN,8*15,8*14,OFF/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ*/
 	_ACTOR_DATA				OBJID_PCWOMAN2,FSW_PARAM6,WF2DMAP_WAY_C_DOWN, \
 							8*16,8*4,OFF,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_MINE,FSW_PARAM1,WF2DMAP_WAY_C_DOWN, \
@@ -112,17 +112,17 @@ _ACTOR_LABEL	way_set_actor
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	way_set_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_DOWN,8*15,8*14,OFF/*Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_DOWN,8*15,8*14,OFF/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ*/
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_DOWN,8*16,8*4,OFF
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_DOWN,8*16,8*4,OFF
 	_ACTOR_DATA				OBJID_PCWOMAN2,FSW_PARAM6,WF2DMAP_WAY_C_DOWN, \
 							8*16,8*4,OFF,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
-/*ƒoƒgƒ‹*/
+/*ãƒãƒˆãƒ«*/
 _ACTOR_LABEL	default_set_actor
-	_PLAYER_ACTOR_DATA	OBJID_PLAYER,WF2DMAP_WAY_C_DOWN,8*15,8*16,OFF/*Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg*/
-//_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_DOWN,8*16,8*16,ON/*Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA	OBJID_PLAYER,WF2DMAP_WAY_C_DOWN,8*15,8*16,OFF/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ*/
+//_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_DOWN,8*16,8*16,ON/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ*/
 	_ACTOR_DATA				OBJID_MAID,MAID,WF2DMAP_WAY_C_RIGHT, \
 							8*6,8*40,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_MINE,FSW_PARAM1,WF2DMAP_WAY_C_DOWN, \
@@ -130,7 +130,7 @@ _ACTOR_LABEL	default_set_actor
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	default_set_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_DOWN,8*15,8*16,OFF/*Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_DOWN,8*15,8*16,OFF/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ*/
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_DOWN,8*16,8*16,ON
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_DOWN,8*16,8*14,ON
 	_ACTOR_DATA				OBJID_MAID,MAID,WF2DMAP_WAY_C_RIGHT, \
@@ -139,11 +139,11 @@ _ACTOR_LABEL	default_set_actor_multi
 
 /********************************************************************/
 //
-//	SCENE_STAGE_BTL:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//	SCENE_STAGE_BTL:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	default_scene2_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		CAMPBOY, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		WAITER, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		WAITRESS, WF2DC_C_MOVENORMAL
@@ -153,8 +153,8 @@ _RESOURCE_LABEL	default_scene2_resource
 	_CHAR_RESOURCE_DATA_END
 
 _RESOURCE_LABEL	default_scene2_resource_multi
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		CAMPBOY, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		WAITER, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		WAITRESS, WF2DC_C_MOVENORMAL
@@ -164,11 +164,11 @@ _RESOURCE_LABEL	default_scene2_resource_multi
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_STAGE_BTL:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_STAGE_BTL:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 
 //--------------------------------------------------------------------
-//	ó‹µ‚É‚æ‚Á‚Ä•Ï‚¦‚éƒŠƒ\[ƒX
+//	çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ãƒªã‚½ãƒ¼ã‚¹
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------------
 _RESOURCE_LABEL	etc_set_resource
@@ -180,16 +180,16 @@ _RESOURCE_LABEL	etc_set_resource2
 	_CHAR_RESOURCE_DATA_END
 
 //--------------------------------------------------------------------
-//	ó‹µ‚É‚æ‚Á‚Ä•Ï‚¦‚éƒAƒNƒ^[
+//	çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------------
-/*æ“ª•à‚­(1l–Ú‚ÍOFF‚É‚µ‚Ä‚¨‚­)*/
+/*å…ˆé ­æ­©ã(1äººç›®ã¯OFFã«ã—ã¦ãŠã)*/
 _ACTOR_LABEL	etc_set_actor
 	_ACTOR_DATA			OBJID_ETC,FSW_PARAM2,WF2DMAP_WAY_C_DOWN, \
 							8*16,8*28,OFF,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
-/*Œã‚ë‚Â‚¢‚Ä‚­‚é*/
+/*å¾Œã‚ã¤ã„ã¦ãã‚‹*/
 _ACTOR_LABEL	etc_set_actor2
 	_ACTOR_DATA			OBJID_ETC2,FSW_PARAM3,WF2DMAP_WAY_C_DOWN, \
 							8*16,8*26,ON,EVENTID_TEST_SCR_OBJ1
@@ -197,12 +197,12 @@ _ACTOR_LABEL	etc_set_actor2
 
 /********************************************************************/
 //
-//					ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+//					ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 //
 /********************************************************************/
 
 //--------------------------------------------------------------------
-//‘Îí•”‰®‚Ü‚ÅˆÚ“®
+//å¯¾æˆ¦éƒ¨å±‹ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_door
 	_ANIME_DATA	FC_WAIT_8F,1
@@ -241,14 +241,14 @@ _ANIME_LABEL anm_player_go_door_pcwoman
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//˜b‚·“®ì
+//è©±ã™å‹•ä½œ
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_stay_walk_left
 	_ANIME_DATA	FC_STAY_WALK_L_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//’†‰›‚Ü‚ÅˆÚ“®
+//ä¸­å¤®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_center_scroll
 	_ANIME_DATA	FC_WALK_D_8F,12
@@ -272,14 +272,14 @@ _ANIME_LABEL anm_player_go_center
 	_ANIME_DATA	FC_STAY_WALK_R_8F,1
 	_ANIME_DATA_END
 
-/*’ÊMe(ˆÊ’uã)*/
+/*é€šä¿¡è¦ª(ä½ç½®ä¸Š)*/
 _ANIME_LABEL anm_sio_player_go_center
 	_ANIME_DATA	FC_WALK_D_8F,12
 	_ANIME_DATA	FC_WALK_L_8F,3
 	_ANIME_DATA	FC_STAY_WALK_R_8F,1
 	_ANIME_DATA_END
 
-/*’ÊMŽq(ˆÊ’u‰º)*/
+/*é€šä¿¡å­(ä½ç½®ä¸‹)*/
 _ANIME_LABEL anm_player_go_center_multi
 	_ANIME_DATA	FC_WALK_D_8F,13
 	_ANIME_DATA	FC_WALK_L_8F,2
@@ -295,7 +295,7 @@ _ANIME_LABEL anm_player_go_center_pcwoman
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//—¼ŽÒ‘O‚Ö
+//ä¸¡è€…å‰ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_btl_room
 	_ANIME_DATA	FC_WALK_R_8F,1
@@ -310,7 +310,7 @@ _ANIME_LABEL anm_player_go_btl_room_etc
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ŽålŒö‚Ì‘O‚Ü‚Å—ˆ‚é
+//ä¸»äººå…¬ã®å‰ã¾ã§æ¥ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_btl_room_100
 	_ANIME_DATA	FC_WALK_L_8F,5
@@ -322,7 +322,7 @@ _ANIME_LABEL anm_player_go_btl_room_101
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//“GƒgƒŒ[ƒi[‚ªƒoƒgƒ‹ƒ‹[ƒ€‚Ì’†‰›‚Ü‚ÅˆÚ“®
+//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã®ä¸­å¤®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL etc_anime_room_in
 	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1
@@ -331,7 +331,7 @@ _ANIME_LABEL etc_anime_room_in
 	_ANIME_DATA	FC_STAY_WALK_L_8F,1
 	_ANIME_DATA_END
 
-/*’ÊM(ˆÊ’uã)*/
+/*é€šä¿¡(ä½ç½®ä¸Š)*/
 _ANIME_LABEL etc_anime_room_in_sio
 	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1
 	_ANIME_DATA	FC_WALK_D_8F,6
@@ -340,7 +340,7 @@ _ANIME_LABEL etc_anime_room_in_sio
 	_ANIME_DATA	FC_STAY_WALK_L_8F,1
 	_ANIME_DATA_END
 
-/*’ÊM(ˆÊ’u‰º)*/
+/*é€šä¿¡(ä½ç½®ä¸‹)*/
 _ANIME_LABEL etc_anime_room_in_multi
 	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1
 	_ANIME_DATA	FC_WALK_D_8F,7
@@ -377,7 +377,7 @@ _ANIME_LABEL etc_anime_room_in_brain_3
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//“GƒgƒŒ[ƒi[‚ªƒoƒgƒ‹ƒ‹[ƒ€‚©‚ço‚Äs‚­
+//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã‹ã‚‰å‡ºã¦è¡Œã
 //--------------------------------------------------------------------
 _ANIME_LABEL etc_anime_go_out
 	_ANIME_DATA	FC_WALK_L_8F,2
@@ -385,7 +385,7 @@ _ANIME_LABEL etc_anime_go_out
 	_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1
 	_ANIME_DATA_END
 
-/*’ÊM(ˆÊ’u‰º)*/
+/*é€šä¿¡(ä½ç½®ä¸‹)*/
 _ANIME_LABEL etc_anime_go_out_sio
 	_ANIME_DATA	FC_WALK_U_8F,1
 	_ANIME_DATA	FC_WALK_L_8F,2
@@ -393,7 +393,7 @@ _ANIME_LABEL etc_anime_go_out_sio
 	_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1
 	_ANIME_DATA_END
 
-/*’ÊM(ˆÊ’uã)*/
+/*é€šä¿¡(ä½ç½®ä¸Š)*/
 _ANIME_LABEL etc_anime_go_out_multi
 	_ANIME_DATA	FC_WALK_L_8F,2
 	_ANIME_DATA	FC_WALK_U_8F,8
@@ -401,21 +401,21 @@ _ANIME_LABEL etc_anime_go_out_multi
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ˆê•à‰E‚Ö
+//ä¸€æ­©å³ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_right
 	_ANIME_DATA	FC_WALK_R_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ˆê•à¶‚Ö
+//ä¸€æ­©å·¦ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_left
 	_ANIME_DATA	FC_WALK_L_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒƒCƒh@ˆê•à¶‚Ö
+//ãƒ¡ã‚¤ãƒ‰ã€€ä¸€æ­©å·¦ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_maid_go_left
 	_ANIME_DATA	FC_WALK_L_8F,1
@@ -423,14 +423,14 @@ _ANIME_LABEL anm_maid_go_left
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//“ü‚èŒû‚Ü‚Å–ß‚·
+//å…¥ã‚Šå£ã¾ã§æˆ»ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_center_scroll_back
 	_ANIME_DATA	FC_WALK_U_8F,12
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//‰E‚ðŒü‚­
+//å³ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_dir_right
 	_ANIME_DATA	FC_STAY_WALK_R_8F,1
@@ -439,25 +439,25 @@ _ANIME_LABEL anm_player_dir_right
 
 /********************************************************************/
 //
-//								’Ê˜H
+//								é€šè·¯
 //
 /********************************************************************/
 fss_stage_start:
 	//_EVENT_START
 
-	/*lobby‚Å‘I‘ð‚µ‚½ƒ^ƒCƒv‚ª•K—v*/
+	/*lobbyã§é¸æŠžã—ãŸã‚¿ã‚¤ãƒ—ãŒå¿…è¦*/
 	_SAVE_EVENT_WORK_GET	WK_SCENE_STAGE_TYPE,FSW_LOCAL1	/*type*/
 	_SAVE_EVENT_WORK_GET	LOCALWORK3,FSW_LOCAL3			/*init*/
-	_SAVE_EVENT_WORK_GET	LOCALWORK2,FSW_LOCAL2			/*‘I‘ð‚µ‚ÄŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ˆÊ’u*/
-	_SAVE_EVENT_WORK_GET	LOCALWORK5,FSW_LOCAL0			/*‘I‘ð‚µ‚ÄŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ˆÊ’u2*/
+	_SAVE_EVENT_WORK_GET	LOCALWORK2,FSW_LOCAL2			/*é¸æŠžã—ã¦æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ä½ç½®*/
+	_SAVE_EVENT_WORK_GET	LOCALWORK5,FSW_LOCAL0			/*é¸æŠžã—ã¦æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ä½ç½®2*/
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_PARAM1
 
-	/*‰‰ñ”»•Êƒ[ƒN*/
+	/*åˆå›žåˆ¤åˆ¥ãƒ¯ãƒ¼ã‚¯*/
 	_LDVAL				FSW_PARAM5,0
 
-	/*ƒ[ƒNŠm•Û*/
+	/*ãƒ¯ãƒ¼ã‚¯ç¢ºä¿*/
 	_BATTLE_REC_INIT
 	_STAGE_WORK_ALLOC	FSW_LOCAL3,FSW_LOCAL1,FSW_LOCAL2,FSW_LOCAL0
 
@@ -465,37 +465,37 @@ fss_stage_start:
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_stage_start_multi
 
 	_LDVAL				FSW_PARAM6,BFSM
-	_CHAR_RESOURCE_SET	default_set_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			way_set_actor				/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			way_set_actor				/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_JUMP				ev_stage_start_data_set
 	_END
 
 ev_stage_start_multi:
 	_CALL				ev_stage_comm_command_initialize_1
 
-	/*Ÿ”s‚ÉŠÖŒW‚È‚­’ÊMƒtƒƒ“ƒeƒBƒA‚É’§í(’ÊM‚Í’†’f‚ª‚È‚¢‚Ì‚Åæ“ª‚Åˆ—‚µ‚Ä‚à‘åä•v)*/
+	/*å‹æ•—ã«é–¢ä¿‚ãªãé€šä¿¡ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã«æŒ‘æˆ¦(é€šä¿¡ã¯ä¸­æ–­ãŒãªã„ã®ã§å…ˆé ­ã§å‡¦ç†ã—ã¦ã‚‚å¤§ä¸ˆå¤«)*/
 	_SCORE_ADD			SCORE_ID_FRONTIER_COMM
 
 	_LDVAL				FSW_PARAM6,BFSW1
-	_CHAR_RESOURCE_SET	default_set_resource_multi	/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			way_set_actor_multi			/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource_multi	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			way_set_actor_multi			/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_JUMP				ev_stage_start_data_set
 	_END
 
 ev_stage_start_data_set:
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_STAGE_TOOL			FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_stage_start_data_set_del
 
-	/*‘Îí•”‰®‚Ü‚Å•à‚­*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PCWOMAN2,anm_player_go_door_pcwoman
 	_OBJ_ANIME			OBJID_MINE,anm_player_go_door
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí•”‰®‚Öƒ}ƒbƒvØ‚è‘Ö‚¦*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã¸ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ*/
 	_SE_PLAY			SEQ_SE_DP_KAIDAN2
 	_SE_WAIT			SEQ_SE_DP_KAIDAN2
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -509,13 +509,13 @@ ev_stage_start_data_set:
 	_END
 
 ev_stage_start_data_set_del:
-	/*‘Îí•”‰®‚Ü‚Å•à‚­*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã¾ã§æ­©ã*/
 	_OBJ_ANIME		OBJID_PCWOMAN2,anm_player_go_door_pcwoman
 	_OBJ_ANIME		OBJID_SIO_USER_0,anm_player_go_door
 	_OBJ_ANIME		OBJID_SIO_USER_1,anm_player_go_door_multi
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí•”‰®‚Öƒ}ƒbƒvØ‚è‘Ö‚¦*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã¸ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ*/
 	_SE_PLAY			SEQ_SE_DP_KAIDAN2
 	_SE_WAIT			SEQ_SE_DP_KAIDAN2
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -532,43 +532,43 @@ ev_stage_start_data_set_del:
 
 /********************************************************************/
 //
-//						‘Îí•”‰®(ƒXƒe[ƒW)
+//						å¯¾æˆ¦éƒ¨å±‹(ã‚¹ãƒ†ãƒ¼ã‚¸)
 //
 /********************************************************************/
 ev_stage_start_data_set_del_sub:
 	_MAP_CHANGE			FSS_SCENEID_STAGE_BTL
 
-	/*‚±‚±‚Å‚Í‚Ü‚¾ƒ[ƒN‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚¢*/
+	/*ã“ã“ã§ã¯ã¾ã ãƒ¯ãƒ¼ã‚¯ãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã„*/
 	_STAGE_TOOL			FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_stage_start_multi_btl_room
 
-	_CHAR_RESOURCE_SET	btl_set_resource			/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_set_actor			/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	btl_set_resource			/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_set_actor			/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_JUMP				ev_stage_start_data_set_btl_room
 	_END
 
 ev_stage_start_multi_btl_room:
-	_CHAR_RESOURCE_SET	btl_set_resource_multi		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_set_actor_multi		/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	btl_set_resource_multi		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_set_actor_multi		/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_JUMP				ev_stage_start_data_set_btl_room
 	_END
 
 ev_stage_start_data_set_btl_room:
-	/*ƒ|ƒPƒ‚ƒ“•\Ž¦*/
+	/*ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤º*/
 	_TEMOTI_POKE_ACT_ADD	FSW_LOCAL2,STAGE_POKE_ACT_X,STAGE_POKE_ACT_Y,POKE_DISP_MANAGER_ID_0, 0, 0x0000
 
-	/*ƒXƒ|ƒbƒgƒ‰ƒCƒgAƒXƒgƒƒ{*/
+	/*ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã€ã‚¹ãƒˆãƒ­ãƒœ*/
 	_PARTICLE_SPA_LOAD	SPAWORK_0, STAGE_SPA, FSS_CAMERA_ORTHO
 	_PARTICLE_ADD_EMITTER	SPAWORK_0, STAGE_BS_SPOT01
 	_PARTICLE_ADD_EMITTER	SPAWORK_0, STAGE_BS_SPOT01_BG
-	_CALL				call_se_pasya_01			/*ƒXƒgƒƒ{*/
+	_CALL				call_se_pasya_01			/*ã‚¹ãƒˆãƒ­ãƒœ*/
 	//_PARTICLE_WAIT
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	_WND_SET			72,160,230,192,0,1						/*ƒEƒBƒ“ƒhƒEON*/
+	_WND_SET			72,160,230,192,0,1						/*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ON*/
 	_JUMP				ev_stage_start_2
 	_END
 
@@ -585,21 +585,21 @@ ev_stage_start_2:
 //
 /********************************************************************/
 ev_stage_start_3:
-	/*u‚«‚ë‚­‚·‚év‚ÅŽg—p‚·‚éƒ[ƒN‚È‚Ì‚ÅƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ã€Œãã‚ãã™ã‚‹ã€ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ãªã®ã§ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL				FSW_LOCAL3,0
 
 #ifdef DEBUG_10_WIN	/************************************************/
 	_JUMP				ev_stage_room_18_win
 #endif	/************************************************************/
 
-	//_SE_PLAY			SEQ_SE_DP_DENDOU				/*Š½º*/
+	//_SE_PLAY			SEQ_SE_DP_DENDOU				/*æ­“å£°*/
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_STAGE_TOOL			FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_stage_start_3_multi
 
 #ifndef DEBUG_ANM_OFF	/********************************************/
-	/*’†‰›‚Ü‚Å•à‚­*/
+	/*ä¸­å¤®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center_scroll
 	//_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center
 	_OBJ_ANIME			OBJID_MINE,anm_player_go_center
@@ -610,10 +610,10 @@ ev_stage_start_3:
 	_END
 
 ev_stage_start_3_multi:
-	/*’Ê˜H‚É“ü‚Á‚Ä‚·‚®‚ÉˆÚ“®*/
+	/*é€šè·¯ã«å…¥ã£ã¦ã™ãã«ç§»å‹•*/
 	//_CALL			ev_stage_comm_command_initialize_1
 
-	/*’†‰›‚Ü‚Å•à‚­*/
+	/*ä¸­å¤®ã¾ã§æ­©ã*/
 	_OBJ_ANIME		OBJID_PLAYER,anm_player_go_center_scroll
 	_OBJ_ANIME		OBJID_SIO_USER_0,anm_sio_player_go_center
 	_OBJ_ANIME		OBJID_SIO_USER_1,anm_player_go_center_multi
@@ -623,56 +623,56 @@ ev_stage_start_3_multi:
 	_END
 
 ev_stage_room_start:
-	_WND_SET			10,160,230,192,0,0						/*ƒEƒBƒ“ƒhƒEOFF*/
+	_WND_SET			10,160,230,192,0,0						/*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OFF*/
 
-	/*ƒXƒ|ƒbƒgƒ‰ƒCƒgAƒXƒgƒƒ{‚ðÁ‚·*/
+	/*ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã€ã‚¹ãƒˆãƒ­ãƒœã‚’æ¶ˆã™*/
 	//_PARTICLE_SPA_EXIT	SPAWORK_0
 
 	//_PARTICLE_SPA_LOAD	SPAWORK_0, STAGE_SPA, FSS_CAMERA_ORTHO
-	_PARTICLE_ADD_EMITTER	SPAWORK_0,STAGE_BS_SPOT02		/*L‚ª‚éƒXƒ|ƒbƒgƒ‰ƒCƒg*/
+	_PARTICLE_ADD_EMITTER	SPAWORK_0,STAGE_BS_SPOT02		/*åºƒãŒã‚‹ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆ*/
 	//_PARTICLE_WAIT
 	_TIME_WAIT		30,FSW_ANSWER
 
-	/*ƒzƒƒCƒgƒAƒEƒg*/
+	/*ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ*/
 	_WHITE_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*‘½d–Ê‚ð•\Ž¦*/
+	/*å¤šé‡é¢ã‚’è¡¨ç¤º*/
 	_STAGE_TOOL			FS_ID_EFF_FRAME_ON,0,0,FSW_ANSWER
 
-	/*L‚ª‚éƒXƒ|ƒbƒgƒ‰ƒCƒg‚ðÁ‚·*/
+	/*åºƒãŒã‚‹ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã‚’æ¶ˆã™*/
 	_PARTICLE_SPA_EXIT	SPAWORK_0
 
 	//_SE_STOP		SEQ_SE_PL_HAND
 
-	/*ƒzƒƒCƒgƒCƒ“*/
+	/*ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³*/
 	_WHITE_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒ|ƒPƒ‚ƒ“íœ*/
+	/*ãƒã‚±ãƒ¢ãƒ³å‰Šé™¤*/
 	_TEMOTI_POKE_ACT_DEL	POKE_DISP_MANAGER_ID_0
 
-	/*¡‰½l–Ú‚©Žæ“¾*/
+	/*ä»Šä½•äººç›®ã‹å–å¾—*/
 	_STAGE_TOOL		FS_ID_GET_ROUND,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_room_renshou_0			/*0		*/
 
-	/*‹L˜^‚µ‚½ƒ[ƒN‚Éƒf[ƒ^‚ª‘‚«ž‚Ü‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒƒjƒ…[•\Ž¦‚µ‚È‚¢*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ãŒæ›¸ãè¾¼ã¾ã‚Œã¦ã„ãªã„ã®ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºã—ãªã„*/
 	_LDVAL			FSW_LOCAL3,1
 	_JUMP			ev_stage_room_saikai							/*1-7	*/
 	_END
 
 
 /********************************************************************/
-/*							˜AŸ” 0								*/
+/*							é€£å‹æ•° 0								*/
 /********************************************************************/
 ev_stage_room_renshou_0:
-	/*u‚Ç‚Ìƒ^ƒCƒv‚Æ‘Îí‚·‚éHv*/
+	/*ã€Œã©ã®ã‚¿ã‚¤ãƒ—ã¨å¯¾æˆ¦ã™ã‚‹ï¼Ÿã€*/
 	_TALKMSG		msg_stage_room_40
 
-	/*ƒ^ƒCƒv‘I‘ð‰æ–ÊŒÄ‚Ño‚µ‘O‚ÉAƒ^ƒCƒv‚Ìƒ‰ƒ“ƒN‚ª‘S‚Ä’§íÏ‚Ý‚ÌÅ‘å‚É‚È‚Á‚Ä‚¢‚½‚ç’²®‚ð‚©‚¯‚é*/
+	/*ã‚¿ã‚¤ãƒ—é¸æŠžç”»é¢å‘¼ã³å‡ºã—å‰ã«ã€ã‚¿ã‚¤ãƒ—ã®ãƒ©ãƒ³ã‚¯ãŒå…¨ã¦æŒ‘æˆ¦æ¸ˆã¿ã®æœ€å¤§ã«ãªã£ã¦ã„ãŸã‚‰èª¿æ•´ã‚’ã‹ã‘ã‚‹*/
 	_STAGE_TOOL		FS_ID_TYPE_LEVEL_MAX,0,0,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_STAGE_TOOL		FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_multi_room_go_rental
 
@@ -680,78 +680,78 @@ ev_stage_room_renshou_0:
 	_END
 
 ev_stage_multi_room_go_rental:
-	/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_stage_room_wait
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_BOTH_1
 	_COMM_RESET
 
-	_COMM_SET_WIFI_BOTH_NET	1												/*‘å—Êƒf[ƒ^ON*/
+	_COMM_SET_WIFI_BOTH_NET	1												/*å¤§é‡ãƒ‡ãƒ¼ã‚¿ON*/
 
 	_JUMP				ev_stage_multi_room_go_rental_retry
 	_END
 
 ev_stage_multi_room_go_rental_retry:
 
-	/*’ÊMFŽèŽ‚¿‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šæ‰‹æŒã¡ã‚„ã‚Šã¨ã‚Š*/
 	_LDVAL				FSW_LOCAL6,STAGE_COMM_TEMOTI
 	_STAGE_SEND_BUF		FSW_LOCAL6,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_stage_multi_room_go_rental_retry	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_stage_multi_room_go_rental_retry	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_STAGE_RECV_BUF		FSW_LOCAL6
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_BOTH_0
 	_COMM_RESET
 
-	_COMM_SET_WIFI_BOTH_NET	0												/*‘å—Êƒf[ƒ^OFF*/
+	_COMM_SET_WIFI_BOTH_NET	0												/*å¤§é‡ãƒ‡ãƒ¼ã‚¿OFF*/
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_POKETYPE_SEL
-	_COMM_RESET		/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET		/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 
 	_JUMP			ev_stage_room_go_rental_2
 	_END
 
 ev_stage_room_go_rental_2:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_TALK_CLOSE
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_STAGE_TOOL		FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_stage_room_type_sel_sync
 
-	/*ƒ^ƒCƒv‘I‘ð‰æ–ÊŒÄ‚Ño‚µ*/
+	/*ã‚¿ã‚¤ãƒ—é¸æŠžç”»é¢å‘¼ã³å‡ºã—*/
 	_STAGE_POKE_TYPE_SEL_CALL
 	//_SET_MAP_PROC
 
-	/*‘½d–Ê‚ð•\Ž¦*/
+	/*å¤šé‡é¢ã‚’è¡¨ç¤º*/
 	_STAGE_TOOL			FS_ID_EFF_FRAME_ON,0,0,FSW_ANSWER
 
-	/*•½•ûª‚ðŒvŽZ*/
+	/*å¹³æ–¹æ ¹ã‚’è¨ˆç®—*/
 	_STAGE_TOOL			FS_ID_SQRT,0,0,FSW_ANSWER
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*“GƒgƒŒ[ƒi[A“Gƒ|ƒPƒ‚ƒ“‚ð‘Io*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€æ•µãƒã‚±ãƒ¢ãƒ³ã‚’é¸å‡º*/
 	_STAGE_WORK_ENEMY_SET	FSW_LOCAL3
 
 	_JUMP			ev_stage_room_go
 	_END
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_stage_room_type_sel_sync:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_TYPE_SEL_CALL
 	_COMM_RESET
@@ -759,28 +759,28 @@ ev_stage_room_type_sel_sync:
 
 
 /********************************************************************/
-/*						ƒoƒgƒ‹‚ÖŒü‚©‚¤								*/
+/*						ãƒãƒˆãƒ«ã¸å‘ã‹ã†								*/
 /********************************************************************/
 ev_stage_room_go:
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_STAGE_TOOL		FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_room_go_2_multi
 
-	/*‰‰ñ‚Å‚Í‚È‚¢Žž‚Í‰E‚ðŒü‚­ƒAƒjƒ‚ð“ü‚ê‚é*/
+	/*åˆå›žã§ã¯ãªã„æ™‚ã¯å³ã‚’å‘ãã‚¢ãƒ‹ãƒ¡ã‚’å…¥ã‚Œã‚‹*/
 	_IFVAL_CALL		FSW_PARAM5,NE,0,ev_stage_room_go_right_anm
 	_LDVAL			FSW_PARAM5,1
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_STAGE_TOOL		FS_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_leader_1st_02
 	_IFVAL_JUMP		FSW_ANSWER,EQ,2,ev_stage_leader_2nd_02
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_stage_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
-	/*“GƒgƒŒ[ƒi[‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_CALL			ev_stage_trainer_set_1
 	_OBJ_ANIME		OBJID_ETC,etc_anime_room_in
 	_OBJ_ANIME_WAIT
@@ -790,13 +790,13 @@ ev_stage_room_go:
 	_OBJ_ANIME		OBJID_ETC,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_STAGE_TOOL	FS_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_STAGE_APPEAR	0
 	_AB_KEYWAIT
 	_TALK_CLOSE
 
-	/*—¼ŽÒ‘O‚ÖƒAƒjƒ*/
+	/*ä¸¡è€…å‰ã¸ã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME		OBJID_MINE,anm_player_go_btl_room
 	_OBJ_ANIME		OBJID_ETC,anm_player_go_btl_room_etc
 	_OBJ_ANIME_WAIT
@@ -810,11 +810,11 @@ ev_stage_room_go_sub:
 
 ev_stage_room_go_2_multi:
 
-	/*‰‰ñ‚Å‚Í‚È‚¢Žž‚Í‰E‚ðŒü‚­ƒAƒjƒ‚ð“ü‚ê‚é*/
+	/*åˆå›žã§ã¯ãªã„æ™‚ã¯å³ã‚’å‘ãã‚¢ãƒ‹ãƒ¡ã‚’å…¥ã‚Œã‚‹*/
 	_IFVAL_CALL		FSW_PARAM5,NE,0,ev_stage_room_go_right_anm_sio
 	_LDVAL			FSW_PARAM5,1
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_INIT_BEFORE
 	_COMM_RESET
@@ -827,12 +827,12 @@ ev_stage_room_go_2_multi:
 ev_stage_room_go_2_multi_retry:
 	_LDVAL			FSW_LOCAL6,STAGE_COMM_TR
 	_STAGE_SEND_BUF	FSW_LOCAL6,0,FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_room_go_2_multi_retry	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_room_go_2_multi_retry	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_STAGE_RECV_BUF	FSW_LOCAL6
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_TR_AFTER
 	_COMM_RESET
@@ -843,16 +843,16 @@ ev_stage_room_go_2_multi_retry:
 ev_stage_room_go_3_multi:
 	_LDVAL			FSW_LOCAL6,STAGE_COMM_ENEMY
 	_STAGE_SEND_BUF	FSW_LOCAL6,0,FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_room_go_3_multi	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_room_go_3_multi	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_STAGE_RECV_BUF	FSW_LOCAL6
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_TR_ENEMY
 
-	/*“GƒgƒŒ[ƒi[‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_CALL			ev_stage_trainer_set_2
 	_OBJ_ANIME		OBJID_ETC,etc_anime_room_in_sio
 	_OBJ_ANIME		OBJID_ETC2,etc_anime_room_in_multi
@@ -863,7 +863,7 @@ ev_stage_room_go_3_multi:
 	_OBJ_ANIME		OBJID_ETC,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_STAGE_TOOL		FS_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_STAGE_APPEAR	0
 	_TIME_WAIT		30,FSW_ANSWER
@@ -872,13 +872,13 @@ ev_stage_room_go_3_multi:
 	_OBJ_ANIME		OBJID_ETC2,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_STAGE_TOOL		FS_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_STAGE_APPEAR	1
 	_TIME_WAIT		30,FSW_ANSWER
 	_TALK_CLOSE
 
-	/*—¼ŽÒ‘O‚ÖƒAƒjƒ*/
+	/*ä¸¡è€…å‰ã¸ã‚¢ãƒ‹ãƒ¡*/
 	//_OBJ_ANIME		OBJID_PLAYER,anm_player_go_btl_room
 	_OBJ_ANIME		OBJID_SIO_USER_0,anm_player_go_btl_room
 	_OBJ_ANIME		OBJID_SIO_USER_1,anm_player_go_btl_room_multi
@@ -886,22 +886,22 @@ ev_stage_room_go_3_multi:
 	_OBJ_ANIME		OBJID_ETC2,anm_player_go_btl_room_etc
 	_OBJ_ANIME_WAIT
 
-	/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_stage_room_wait
 
 	_JUMP			ev_stage_battle
 	_END
 
-/*‰‰ñ‚Å‚Í‚È‚¢Žž‚Í‰E‚ðŒü‚­ƒAƒjƒ‚ð“ü‚ê‚é*/
+/*åˆå›žã§ã¯ãªã„æ™‚ã¯å³ã‚’å‘ãã‚¢ãƒ‹ãƒ¡ã‚’å…¥ã‚Œã‚‹*/
 ev_stage_room_go_right_anm:
-	/*ŽålŒö‘O‚ðŒ©‚éƒAƒjƒ*/
+	/*ä¸»äººå…¬å‰ã‚’è¦‹ã‚‹ã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME		OBJID_MINE,anm_player_dir_right
 	_OBJ_ANIME		OBJID_MAID,anm_maid_go_left
 	_OBJ_ANIME_WAIT
 	_RET
 
 ev_stage_room_go_right_anm_sio:
-	/*ŽålŒö‘O‚ðŒ©‚éƒAƒjƒ*/
+	/*ä¸»äººå…¬å‰ã‚’è¦‹ã‚‹ã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME		OBJID_SIO_USER_0,anm_player_dir_right
 	_OBJ_ANIME		OBJID_SIO_USER_1,anm_player_dir_right
 	_OBJ_ANIME		OBJID_MAID,anm_maid_go_left
@@ -910,7 +910,7 @@ ev_stage_room_go_right_anm_sio:
 
 
 /********************************************************************/
-/*					ƒgƒŒ[ƒi[‚ÌŒ©‚½–ÚƒZƒbƒg						*/
+/*					ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®è¦‹ãŸç›®ã‚»ãƒƒãƒˆ						*/
 /********************************************************************/
 ev_stage_trainer_set_1:
 	_STAGE_TOOL		FS_ID_GET_TR_OBJ_CODE,0,0,FSW_ANSWER
@@ -944,15 +944,15 @@ ev_stage_trainer_set_brain:
 //
 /********************************************************************/
 ev_stage_battle:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	//_BLACK_OUT	SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_STAGE_TOOL		FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_multi_battle_2
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_STAGE_TOOL		FS_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_leader_1st_33
 	_IFVAL_JUMP		FSW_ANSWER,EQ,2,ev_stage_leader_2nd_33
@@ -968,9 +968,9 @@ ev_stage_leader_2nd_33:
 	_JUMP			ev_stage_battle_2
 	_END
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_stage_multi_battle_2:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_BATTLE
 	_COMM_RESET
@@ -989,77 +989,77 @@ ev_stage_battle_2:
 #ifndef DEBUG_FRONTIER_LOOP
 
 #ifndef DEBUG_BTL_OFF	/************************************************/
-	/*í“¬ŒÄ‚Ño‚µ*/
+	/*æˆ¦é—˜å‘¼ã³å‡ºã—*/
 	_STAGE_BATTLE_CALL
 	_STAGE_CALL_GET_RESULT
 #endif	/****************************************************************/
 
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*ŠŽƒAƒCƒeƒ€‚ðŒ³‚É–ß‚·*/
+	/*æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ ã‚’å…ƒã«æˆ»ã™*/
 	_STAGE_TOOL		FS_ID_SET_TEMP_ITEM,0,0,FSW_ANSWER
 
-	/*‘½d–Ê‚ð•\Ž¦*/
+	/*å¤šé‡é¢ã‚’è¡¨ç¤º*/
 	_STAGE_TOOL			FS_ID_EFF_FRAME_ON,0,0,FSW_ANSWER
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 #ifndef DEBUG_FRONTIER_LOOP
 
 #ifndef DEBUG_BTL_LOSE_OFF	/********************************************/
-	/*í“¬Œ‹‰Ê‚Å•ªŠò*/
+	/*æˆ¦é—˜çµæžœã§åˆ†å²*/
 	_STAGE_LOSE_CHECK		FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_lose		/*”s–k*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_lose		/*æ•—åŒ—*/
 #endif	/****************************************************************/
 
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*Ÿ—˜*/
+	/*å‹åˆ©*/
 	_RECORD_INC		RECID_STAGE_WIN
 
-	/*ƒ^ƒCƒv‚ÌƒŒƒxƒ‹‚ðã‚°‚é*/
+	/*ã‚¿ã‚¤ãƒ—ã®ãƒ¬ãƒ™ãƒ«ã‚’ä¸Šã’ã‚‹*/
 	_STAGE_TOOL		FS_ID_INC_TYPE_LEVEL,0,0,FSW_ANSWER
 
-	/*ƒ^ƒCƒv‚ÌƒŒƒxƒ‹‚ðŽæ“¾*/
+	/*ã‚¿ã‚¤ãƒ—ã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—*/
 	_STAGE_TOOL		FS_ID_GET_TYPE_LEVEL,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,STAGE_TYPE_LEVEL_MAX,ev_stage_record_inc
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_STAGE_TOOL		FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_battle_2_multi
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_STAGE_TOOL		FS_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_leader_1st_03
 	_IFVAL_JUMP		FSW_ANSWER,EQ,2,ev_stage_leader_2nd_03
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_stage_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
 	_PARTICLE_SPA_LOAD	SPAWORK_0, STAGE_SPA, FSS_CAMERA_ORTHO
-	_CALL			se_kami_01							/*Ž†1*/
+	_CALL			se_kami_01							/*ç´™1*/
 	_PARTICLE_WAIT
 	_PARTICLE_SPA_EXIT	SPAWORK_0
 
 	_JUMP			ev_stage_battle_2_sub
 	_END
 
-/*ƒ^ƒCƒv‚ÌƒŒƒxƒ‹‚ª10‚ÉŸ—˜‚µ‚½‚çƒŒƒR[ƒhXV*/
+/*ã‚¿ã‚¤ãƒ—ã®ãƒ¬ãƒ™ãƒ«ãŒ10ã«å‹åˆ©ã—ãŸã‚‰ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°*/
 ev_stage_record_inc:
 	_RECORD_INC		RECID_STAGE_RANK10_WIN
 	_RET
 	
 ev_stage_battle_2_sub:
-	/*“GƒgƒŒ[ƒi[‘Þê*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´*/
 	_OBJ_ANIME		OBJID_ETC,etc_anime_go_out
 	_OBJ_ANIME_WAIT
 	_ACTOR_FREE		OBJID_ETC
 	_CHAR_RESOURCE_FREE	FSW_PARAM2
 
-	/*ŽålŒöˆê•à‰º‚ª‚é*/
+	/*ä¸»äººå…¬ä¸€æ­©ä¸‹ãŒã‚‹*/
 	_OBJ_ANIME		OBJID_MAID,anm_player_go_right
 	_OBJ_ANIME		OBJID_MINE,anm_player_go_left
 	_OBJ_ANIME_WAIT
@@ -1070,13 +1070,13 @@ ev_stage_battle_2_sub:
 ev_stage_battle_2_multi:
 	//
 	_PARTICLE_SPA_LOAD	SPAWORK_0, STAGE_SPA, FSS_CAMERA_ORTHO
-	_CALL			se_kami_01							/*Ž†1*/
+	_CALL			se_kami_01							/*ç´™1*/
 	_PARTICLE_WAIT
 	_PARTICLE_SPA_EXIT	SPAWORK_0
 
 	_CALL			ev_stage_comm_command_initialize_3
 
-	/*“GƒgƒŒ[ƒi[‘Þê*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´*/
 	_OBJ_ANIME		OBJID_ETC,etc_anime_go_out_sio
 	_OBJ_ANIME		OBJID_ETC2,etc_anime_go_out_multi
 	_OBJ_ANIME_WAIT
@@ -1085,7 +1085,7 @@ ev_stage_battle_2_multi:
 	_CHAR_RESOURCE_FREE	FSW_PARAM2
 	_CHAR_RESOURCE_FREE	FSW_PARAM3
 
-	/*ŽålŒöˆê•à‰º‚ª‚é*/
+	/*ä¸»äººå…¬ä¸€æ­©ä¸‹ãŒã‚‹*/
 	_OBJ_ANIME		OBJID_MAID,anm_player_go_right
 	_OBJ_ANIME		OBJID_SIO_USER_0,anm_player_go_left
 	_OBJ_ANIME		OBJID_SIO_USER_1,anm_player_go_left
@@ -1104,16 +1104,16 @@ ev_stage_battle_4:
 	_JUMP			ev_stage_room_renshou_17
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*¡‰½l–Ú+1*/
+	/*ä»Šä½•äººç›®+1*/
 	_STAGE_TOOL		FS_ID_INC_ROUND,1,0,FSW_ANSWER
 
-	/*˜AŸ”+1*/
+	/*é€£å‹æ•°+1*/
 	_STAGE_TOOL		FS_ID_INC_RENSYOU,0,0,FSW_ANSWER
 
 #ifndef DEBUG_7BTL_OFF	/********************************************/
-	/*¡10l–Ú‚Å‚È‚¢Žž‚Í“ª‚É–ß‚é*/
+	/*ä»Š10äººç›®ã§ãªã„æ™‚ã¯é ­ã«æˆ»ã‚‹*/
 	_STAGE_TOOL	FS_ID_GET_ROUND,0,0,FSW_ANSWER
-	_IFVAL_JUMP		FSW_ANSWER,NE,STAGE_LAP_ENEMY_MAX,ev_stage_room_renshou_17	/*˜AŸ”‚ª1-10‚ÌŽž*/
+	_IFVAL_JUMP		FSW_ANSWER,NE,STAGE_LAP_ENEMY_MAX,ev_stage_room_renshou_17	/*é€£å‹æ•°ãŒ1-10ã®æ™‚*/
 #endif	/************************************************************/
 
 	_JUMP			ev_stage_room_18_win
@@ -1121,20 +1121,20 @@ ev_stage_battle_4:
 
 
 /********************************************************************/
-/*							10˜AŸ‚µ‚½(‹L˜^)						*/
+/*							10é€£å‹ã—ãŸ(è¨˜éŒ²)						*/
 /********************************************************************/
 ev_stage_room_18_win:
 
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_room_18_win_bp_sub
 
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_stage_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_stage_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_stage_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_stage_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER									/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
+	_YES_NO_WIN_EX	FSW_ANSWER									/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_room_18_win_bp
 	_JUMP			ev_stage_room_18_win_rec_yes
 	_END
@@ -1144,42 +1144,42 @@ ev_stage_room_18_win_bp_sub:
 	_JUMP			ev_stage_room_18_win_bp
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_stage_room_18_win_rec_yes:
-	_CALL			ev_stage_room_rec_win		/*Ÿ—˜‚Ì‹L˜^*/
+	_CALL			ev_stage_room_rec_win		/*å‹åˆ©ã®è¨˜éŒ²*/
 	_JUMP			ev_stage_room_18_win_bp
 	_END
 
 
 /********************************************************************/
-/*							10˜AŸ‚µ‚½(BPŽæ“¾)						*/
+/*							10é€£å‹ã—ãŸ(BPå–å¾—)						*/
 /********************************************************************/
 ev_stage_room_18_win_bp:
-	//10˜AŸ(ƒNƒŠƒA)ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//10é€£å‹(ã‚¯ãƒªã‚¢)ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_STAGE_TOOL	FS_ID_SET_CLEAR,0,0,FSW_ANSWER
 
-	/*10˜AŸ‚µ‚½‚Ì‚ÅI—¹‚Ö*/
-	//_LDVAL			WK_SCENE_STAGE_LOBBY,1				/*10˜AŸ‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_STAGE_LOBBY,1			/*10˜AŸ‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	/*10é€£å‹ã—ãŸã®ã§çµ‚äº†ã¸*/
+	//_LDVAL			WK_SCENE_STAGE_LOBBY,1				/*10é€£å‹ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_STAGE_LOBBY,1			/*10é€£å‹ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
-	/*uƒoƒgƒ‹ƒgƒŒ[ƒh@‚V‚¹‚ñ@‚Æ‚Á‚Ï@‚¨‚ß‚Å‚Æ‚¤v*/
+	/*ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã€€ï¼—ã›ã‚“ã€€ã¨ã£ã±ã€€ãŠã‚ã§ã¨ã†ã€*/
 	_STAGE_TOOL		FS_ID_GET_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA	0,FSW_ANSWER,0,0
 	_TALKMSG		msg_stage_room_20
 
-	_PLAYER_NAME	0											/*ƒvƒŒƒCƒ„[–¼ƒZƒbƒg*/
+	_PLAYER_NAME	0											/*ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚»ãƒƒãƒˆ*/
 
-	/*ƒoƒgƒ‹ƒ|ƒCƒ“ƒg’Ç‰Á*/
+	/*ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆè¿½åŠ */
 	_STAGE_TOOL		FS_ID_GET_BP_POINT,0,0,FSW_ANSWER
-	_NUMBER_NAME	1,FSW_ANSWER								/*”’lƒZƒbƒg*/
+	_NUMBER_NAME	1,FSW_ANSWER								/*æ•°å€¤ã‚»ãƒƒãƒˆ*/
 	_BTL_POINT_ADD	FSW_ANSWER
 
-	/*u‚a‚o‚ð‚à‚ç‚Á‚½v*/
+	/*ã€Œï¼¢ï¼°ã‚’ã‚‚ã‚‰ã£ãŸã€*/
 	_TALKMSG		msg_stage_lobby_21
 	_ME_PLAY		ME_BP_GET
 	_ME_WAIT
 
-	/*TVˆ—(ŠÖ”“à‚ÅAƒVƒ“ƒOƒ‹‚ÌŽž‚¾‚¯’§í‚µ‚Ä‚¢‚éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ðƒZƒbƒg‚µ‚Ä‚¢‚é)*/
+	/*TVå‡¦ç†(é–¢æ•°å†…ã§ã€ã‚·ãƒ³ã‚°ãƒ«ã®æ™‚ã ã‘æŒ‘æˆ¦ã—ã¦ã„ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹)*/
 	_TV_TEMP_STAGE_SET	
 
 	_JUMP			ev_stage_room_bp_end
@@ -1187,7 +1187,7 @@ ev_stage_room_18_win_bp:
 
 
 /********************************************************************/
-/*							10˜AŸ‚µ‚½I—¹							*/
+/*							10é€£å‹ã—ãŸçµ‚äº†							*/
 /********************************************************************/
 ev_stage_room_bp_end:
 	_JUMP			ev_stage_lose_timing
@@ -1195,10 +1195,10 @@ ev_stage_room_bp_end:
 
 
 /********************************************************************/
-/*							˜AŸ” 1-10								*/
+/*							é€£å‹æ•° 1-10								*/
 /********************************************************************/
 ev_stage_room_renshou_17:
-	/*uƒ|ƒPƒ‚ƒ“‚ð@‚©‚¢‚Ó‚­@‚µ‚Ü‚µ‚å‚¤v*/
+	/*ã€Œãƒã‚±ãƒ¢ãƒ³ã‚’ã€€ã‹ã„ãµãã€€ã—ã¾ã—ã‚‡ã†ã€*/
 	_STAGE_TOOL		FS_ID_GET_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA	0,FSW_ANSWER,0,0
 	_TALKMSG		msg_stage_room_3
@@ -1211,10 +1211,10 @@ ev_stage_room_renshou_17:
 
 
 /********************************************************************/
-/*						’†’fƒZ[ƒu‚©‚ç‚ÌÄŠJ						*/
+/*						ä¸­æ–­ã‚»ãƒ¼ãƒ–ã‹ã‚‰ã®å†é–‹						*/
 /********************************************************************/
 ev_stage_room_saikai:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_stage_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
@@ -1222,7 +1222,7 @@ ev_stage_room_saikai:
 	_END
 	
 ev_stage_room_saikai_02:
-	/*uŽŸ‚Í@›í–Ú‚Å‚·‚æv*/
+	/*ã€Œæ¬¡ã¯ã€€â—‹æˆ¦ç›®ã§ã™ã‚ˆã€*/
 	_STAGE_TOOL		FS_ID_GET_ROUND,0,0,FSW_ANSWER
 	_ADD_WK			FSW_ANSWER,1
 	_NUMBER_NAME	0,FSW_ANSWER
@@ -1232,27 +1232,27 @@ ev_stage_room_saikai_02:
 
 
 /********************************************************************/
-/*							ƒƒjƒ…[¶¬							*/
+/*							ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”Ÿæˆ							*/
 /********************************************************************/
 ev_stage_room_menu_make:
 
 	_STAGE_TOOL		FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_room_menu_make_comm
 
-	/*‚Ü‚¾‹L˜^‚µ‚Ä‚¢‚È‚¢A’†’f•œ‹A‚Å‚Í‚È‚¢Žž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[’Ç‰Á*/
+	/*ã¾ã è¨˜éŒ²ã—ã¦ã„ãªã„ã€ä¸­æ–­å¾©å¸°ã§ã¯ãªã„æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ */
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,0,ev_stage_room_menu_make_04_set
 
 	_JUMP			ev_stage_room_menu_make_03_set
 	_END
 
-/*’ÊM‚ÌŽž‚Ìƒƒjƒ…[*/
+/*é€šä¿¡ã®æ™‚ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼*/
 ev_stage_room_menu_make_comm:
 
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_room_menu_make_01_set
 
-	/*‚Ü‚¾‹L˜^‚µ‚Ä‚¢‚È‚¢A’†’f•œ‹A‚Å‚Í‚È‚¢Žž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[’Ç‰Á*/
+	/*ã¾ã è¨˜éŒ²ã—ã¦ã„ãªã„ã€ä¸­æ–­å¾©å¸°ã§ã¯ãªã„æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ */
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,0,ev_stage_room_menu_make_02_set
 
 	_JUMP			ev_stage_room_menu_make_01_set
@@ -1278,7 +1278,7 @@ ev_stage_room_menu_make_04_set:
 	_JUMP				ev_stage_room_menu_make_sub
 	_END
 
-/*‚Ç‚Ìƒƒjƒ…[Œ`Ž®‚É‚·‚é‚©*/
+/*ã©ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å½¢å¼ã«ã™ã‚‹ã‹*/
 ev_stage_room_menu_make_sub:
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_stage_room_menu_make_01
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_stage_room_menu_make_02
@@ -1287,42 +1287,42 @@ ev_stage_room_menu_make_sub:
 	_END
 
 ev_stage_room_menu_make_01:
-	_BMPLIST_INIT_EX	24,13,0,0,FSW_PARAM0			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_stage_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*‚Â‚Ã‚¯‚é*/
+	_BMPLIST_INIT_EX	24,13,0,0,FSW_PARAM0			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_stage_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*ã¤ã¥ã‘ã‚‹*/
 	_JUMP			ev_stage_room_yasumu_next
 	_END
 
 ev_stage_room_menu_make_02:
-	_BMPLIST_INIT_EX	23,11,0,0,FSW_PARAM0			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_stage_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_stage_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1		/*‚«‚ë‚­‚·‚é*/
+	_BMPLIST_INIT_EX	23,11,0,0,FSW_PARAM0			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_stage_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_stage_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1		/*ãã‚ãã™ã‚‹*/
 	_JUMP			ev_stage_room_yasumu_next
 	_END
 
 ev_stage_room_menu_make_03:
-	_BMPLIST_INIT_EX	24,11,0,0,FSW_PARAM0			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_stage_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_stage_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2		/*‚â‚·‚Þ*/
+	_BMPLIST_INIT_EX	24,11,0,0,FSW_PARAM0			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_stage_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_stage_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2		/*ã‚„ã™ã‚€*/
 	_JUMP			ev_stage_room_yasumu_next
 	_END
 
 ev_stage_room_menu_make_04:
-	_BMPLIST_INIT_EX	23,9,0,0,FSW_PARAM0				/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_stage_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_stage_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1		/*‚«‚ë‚­‚·‚é*/
-	_BMPLIST_MAKE_LIST	msg_stage_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2		/*‚â‚·‚Þ*/
+	_BMPLIST_INIT_EX	23,9,0,0,FSW_PARAM0				/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_stage_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_stage_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1		/*ãã‚ãã™ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_stage_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2		/*ã‚„ã™ã‚€*/
 	_JUMP			ev_stage_room_yasumu_next
 	_END
 
 ev_stage_room_yasumu_next:
-	_BMPLIST_MAKE_LIST	msg_stage_room_choice_04,FSEV_WIN_TALK_MSG_NONE,3		/*ƒŠƒ^ƒCƒA*/
+	_BMPLIST_MAKE_LIST	msg_stage_room_choice_04,FSEV_WIN_TALK_MSG_NONE,3		/*ãƒªã‚¿ã‚¤ã‚¢*/
 	_BMPLIST_START
 	_JUMP			ev_stage_room_menu_sel
 	_END
 
 
 /********************************************************************/
-/*							ƒƒjƒ…[Œ‹‰Ê							*/
+/*							ãƒ¡ãƒ‹ãƒ¥ãƒ¼çµæžœ							*/
 /********************************************************************/
 ev_stage_room_menu_sel:
 
@@ -1330,27 +1330,27 @@ ev_stage_room_menu_sel:
 	_JUMP			ev_room_choice_01
 #endif	//DEBUG_FRONTIER_LOOP
 
-	_IFVAL_JUMP		FSW_PARAM0,EQ,0,ev_room_choice_01	/*‚Â‚Ã‚¯‚é*/
-	_IFVAL_JUMP		FSW_PARAM0,EQ,1,ev_room_choice_02	/*‚«‚ë‚­‚·‚é*/
-	_IFVAL_JUMP		FSW_PARAM0,EQ,2,ev_room_choice_03	/*‚â‚·‚Þ*/
-	_IFVAL_JUMP		FSW_PARAM0,EQ,3,ev_room_choice_04	/*ƒŠƒ^ƒCƒA*/
+	_IFVAL_JUMP		FSW_PARAM0,EQ,0,ev_room_choice_01	/*ã¤ã¥ã‘ã‚‹*/
+	_IFVAL_JUMP		FSW_PARAM0,EQ,1,ev_room_choice_02	/*ãã‚ãã™ã‚‹*/
+	_IFVAL_JUMP		FSW_PARAM0,EQ,2,ev_room_choice_03	/*ã‚„ã™ã‚€*/
+	_IFVAL_JUMP		FSW_PARAM0,EQ,3,ev_room_choice_04	/*ãƒªã‚¿ã‚¤ã‚¢*/
 	_JUMP			ev_room_choice_04
 	_END
 
 
 /********************************************************************/
-/*						u‚Â‚Ã‚¯‚év								*/
+/*						ã€Œã¤ã¥ã‘ã‚‹ã€								*/
 /********************************************************************/
 ev_room_choice_01:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_STAGE_TOOL		FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_room_choice_01_multi
 	_JUMP			ev_room_choice_01_2
 	_END
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_room_choice_01_multi:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME		0
 	_TALKMSG		msg_stage_room_10
 	_JUMP			ev_room_choice_01_multi_retry
@@ -1358,19 +1358,19 @@ ev_room_choice_01_multi:
 
 ev_room_choice_01_multi_retry:
 	_LDVAL			FSW_LOCAL6,STAGE_COMM_RETIRE
-	_STAGE_SEND_BUF	FSW_LOCAL6,0,FSW_ANSWER					/*0=‚Â‚Ã‚¯‚é*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_room_choice_01_multi_retry	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_STAGE_SEND_BUF	FSW_LOCAL6,0,FSW_ANSWER					/*0=ã¤ã¥ã‘ã‚‹*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_room_choice_01_multi_retry	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_STAGE_RECV_BUF	FSW_LOCAL6
 	_COMM_RESET
 
-	/*‘ŠŽè‚ª‘I‚ñ‚¾ƒƒjƒ…[‚ðŽæ“¾*/
+	/*ç›¸æ‰‹ãŒé¸ã‚“ã ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—*/
 	_STAGE_TOOL		FS_ID_GET_RETIRE_FLAG,0,0,FSW_ANSWER
 
-	/*ƒp[ƒgƒi[‚ªƒŠƒ^ƒCƒA‚µ‚½‚ç*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_room_giveup_yes_multi	/*ƒŠƒ^ƒCƒA*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒªã‚¿ã‚¤ã‚¢ã—ãŸã‚‰*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_room_giveup_yes_multi	/*ãƒªã‚¿ã‚¤ã‚¢*/
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_MENU
 	_COMM_RESET
@@ -1378,20 +1378,20 @@ ev_room_choice_01_multi_retry:
 	_JUMP			ev_room_choice_01_2
 	_END
 
-/*ƒp[ƒgƒi[‚ªƒŠƒ^ƒCƒA‚µ‚½‚ç*/
+/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒªã‚¿ã‚¤ã‚¢ã—ãŸã‚‰*/
 ev_stage_room_giveup_yes_multi:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME		0
 	_TALKMSG_NOSKIP		msg_stage_room_12
 	_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
 
-	/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_stage_room_wait
 	_JUMP			ev_stage_room_giveup_yes_multi_sync
 	_END
 
 ev_room_choice_01_2:
-	/*ƒ[ƒN‚ðƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL			FSW_LOCAL3,0
 
 	_JUMP			ev_stage_room_trade_yes_pair
@@ -1403,52 +1403,52 @@ ev_stage_room_trade_yes_pair:
 
 
 /********************************************************************/
-/*							‹L˜^‚·‚é*/
+/*							è¨˜éŒ²ã™ã‚‹*/
 /********************************************************************/
 ev_room_choice_02:
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_stage_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_stage_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_stage_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_stage_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER									/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
+	_YES_NO_WIN_EX	FSW_ANSWER									/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_room_rec_no
 	_JUMP			ev_stage_room_rec_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_stage_room_rec_yes:
-	_CALL			ev_stage_room_rec_win		/*Ÿ—˜‚Ì‹L˜^*/
-	_JUMP			ev_stage_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_CALL			ev_stage_room_rec_win		/*å‹åˆ©ã®è¨˜éŒ²*/
+	_JUMP			ev_stage_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_stage_room_rec_no:
-	_JUMP			ev_stage_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP			ev_stage_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*							‹¤’Ê‹L˜^*/
+/*							å…±é€šè¨˜éŒ²*/
 /********************************************************************/
-/*Ÿ‚¿*/
+/*å‹ã¡*/
 ev_stage_room_rec_win:
-	_CALL				ev_stage_room_rec_common		/*ANSWER,LOCAL5Žg—p’†*/
+	_CALL				ev_stage_room_rec_common		/*ANSWER,LOCAL5ä½¿ç”¨ä¸­*/
 	//_ADD_WK			FSW_LOCAL5,1
-	//_SUB_WK			FSW_LOCAL5,1					/*ƒ‰ƒEƒ“ƒh”‚Å‚Í‚È‚­Ÿ—˜”‚È‚Ì‚Å*/
+	//_SUB_WK			FSW_LOCAL5,1					/*ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã§ã¯ãªãå‹åˆ©æ•°ãªã®ã§*/
 	_JUMP				ev_stage_room_rec
 	_END
 
-/*•‰‚¯*/
+/*è² ã‘*/
 ev_stage_room_rec_lose:
-	_CALL				ev_stage_room_rec_common		/*ANSWER,LOCAL5Žg—p’†*/
+	_CALL				ev_stage_room_rec_common		/*ANSWER,LOCAL5ä½¿ç”¨ä¸­*/
 	_ADD_WK				FSW_LOCAL5,1
 	_JUMP				ev_stage_room_rec
 	_END
 
-/*‹¤’Ê•”•ª*/
+/*å…±é€šéƒ¨åˆ†*/
 ev_stage_room_rec_common:
-	/*˜^‰æƒf[ƒ^ƒZ[ƒu*/
+	/*éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–*/
 	_STAGE_TOOL			FS_ID_GET_RENSYOU,0,0,FSW_LOCAL5
 	_RET
 
@@ -1457,7 +1457,7 @@ ev_stage_room_rec:
 	_END
 
 ev_stage_room_rec_sub:
-	/*‹L˜^‚µ‚½ƒ[ƒNƒZƒbƒg*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ*/
 	_LDVAL				FSW_LOCAL3,1
 
 	_TALKMSG_ALL_PUT	msg_stage_room_6_4
@@ -1470,51 +1470,51 @@ ev_stage_room_rec_sub:
 
 	_IFVAL_JUMP			FSW_LOCAL5,EQ,1,ev_stage_room_rec_true
 
-	/*u‹L˜^o—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½v*/
+	/*ã€Œè¨˜éŒ²å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸã€*/
 	_TALKMSG			msg_stage_room_6_2
 	_RET
 
 ev_stage_room_rec_true:
-	/*u‹L˜^‚³‚ê‚Ü‚µ‚½v*/
+	/*ã€Œè¨˜éŒ²ã•ã‚Œã¾ã—ãŸã€*/
 	_SE_PLAY			SEQ_SE_DP_SAVE
 	_PLAYER_NAME		0
 	_TALKMSG			msg_stage_room_6_1
 	_RET
 	
-/*˜^‰æƒf[ƒ^‚ª‚È‚¢ŽžƒƒbƒZ[ƒW*/
+/*éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒãªã„æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_stage_room_rec_msg1:
 	_TALKMSG			msg_stage_room_6
 	_RET
 
-/*‚·‚Å‚É˜^‰æƒf[ƒ^‚ª‚ ‚éŽžƒƒbƒZ[ƒW*/
+/*ã™ã§ã«éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_stage_room_rec_msg2:
 	_TALKMSG			msg_stage_room_6_3
 	_RET
 
 
 /********************************************************************/
-/*							‚â‚·‚Þ*/
+/*							ã‚„ã™ã‚€*/
 /********************************************************************/
 ev_room_choice_03:
-	/*uƒŒƒ|[ƒg‚ð‚©‚¢‚ÄI—¹‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œãƒ¬ãƒãƒ¼ãƒˆã‚’ã‹ã„ã¦çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG		msg_stage_room_7
 	_YES_NO_WIN		FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_room_rest_no
 	_JUMP			ev_stage_room_rest_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_stage_room_rest_yes:
-	//_LDVAL			WK_SCENE_STAGE_LOBBY,2			/*‘±‚«‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_STAGE_LOBBY,2		/*‘±‚«‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_STAGE_LOBBY,2			/*ç¶šãã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_STAGE_LOBBY,2		/*ç¶šãã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
-	//ƒvƒŒƒCƒf[ƒ^ƒZ[ƒu
+	//ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 	_STAGE_TOOL	FS_ID_SAVE_REST_PLAY_DATA,0,0,FSW_ANSWER
 
-	//_CALL			ev_stage_save			/*07.08.24 _CALL‚É’u‚«Š·‚¦‚½*/
+	//_CALL			ev_stage_save			/*07.08.24 _CALLã«ç½®ãæ›ãˆãŸ*/
 	_CALL			ev_stage_save_rest
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_STAGE_WORK_FREE
 
@@ -1523,34 +1523,34 @@ ev_stage_room_rest_yes:
 
 	_TALK_CLOSE
 
-	//ƒŠƒZƒbƒgƒRƒ}ƒ“ƒh
+	//ãƒªã‚»ãƒƒãƒˆã‚³ãƒžãƒ³ãƒ‰
 	_STAGE_TOOL	FS_ID_SYSTEM_RESET,0,0,FSW_ANSWER
 
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_stage_room_rest_no:
-	_JUMP			ev_stage_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP			ev_stage_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*							ƒŠƒ^ƒCƒA*/
+/*							ãƒªã‚¿ã‚¤ã‚¢*/
 /********************************************************************/
 ev_room_choice_04:
-	/*uƒoƒgƒ‹ƒgƒŒ[ƒh‚Ì’§í‚ð’†Ž~‚·‚éHv*/
+	/*ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã®æŒ‘æˆ¦ã‚’ä¸­æ­¢ã™ã‚‹ï¼Ÿã€*/
 	_TALKMSG		msg_stage_room_8
 	_YES_NO_WIN_EX	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_room_giveup_no
 
-	/*’ÊM*/
+	/*é€šä¿¡*/
 	_STAGE_TOOL		FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_room_giveup_yes_multi_wait_msg
 
 	_JUMP			ev_stage_room_giveup_yes
 	_END
 
-/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 ev_stage_room_giveup_yes_multi_wait_msg:
 	_TALKMSG_NOSKIP	msg_stage_room_wait
 	_JUMP			ev_stage_room_giveup_yes_multi_retry
@@ -1558,8 +1558,8 @@ ev_stage_room_giveup_yes_multi_wait_msg:
 
 ev_stage_room_giveup_yes_multi_retry:
 	_LDVAL			FSW_LOCAL6,STAGE_COMM_RETIRE
-	_STAGE_SEND_BUF	FSW_LOCAL6,1,FSW_ANSWER						/*1=ƒŠƒ^ƒCƒ„*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_room_giveup_yes_multi_retry	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_STAGE_SEND_BUF	FSW_LOCAL6,1,FSW_ANSWER						/*1=ãƒªã‚¿ã‚¤ãƒ¤*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_room_giveup_yes_multi_retry	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	//_STAGE_RECV_BUF	FSW_LOCAL6
 	//_COMM_RESET
@@ -1568,7 +1568,7 @@ ev_stage_room_giveup_yes_multi_retry:
 
 ev_stage_room_giveup_yes_multi_sync:
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_GIVE
 	//_COMM_SYNCHRONIZE	DBC_TIM_STAGE_MENU
@@ -1576,39 +1576,39 @@ ev_stage_room_giveup_yes_multi_sync:
 	_JUMP			ev_stage_room_giveup_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_stage_room_giveup_yes:
-	//”síƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//æ•—æˆ¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_STAGE_TOOL		FS_ID_SET_LOSE,0,0,FSW_ANSWER
 
-	//_LDVAL			WK_SCENE_STAGE_LOBBY,3			/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_STAGE_LOBBY,3		/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_STAGE_LOBBY,3			/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_STAGE_LOBBY,3		/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
 	_JUMP			ev_stage_room_end_save
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_stage_room_giveup_no:
-	_JUMP			ev_stage_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP			ev_stage_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*								”s–k*/
+/*								æ•—åŒ—*/
 /********************************************************************/
 ev_stage_lose:
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_stage_lose_timing_sub
 
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_stage_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_stage_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_stage_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_stage_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER							/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_lose_rec_no/*u‚¢‚¢‚¦v*/
-	_JUMP			ev_stage_lose_rec_yes				/*u‚Í‚¢v*/
+	_YES_NO_WIN_EX	FSW_ANSWER							/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_stage_lose_rec_no/*ã€Œã„ã„ãˆã€*/
+	_JUMP			ev_stage_lose_rec_yes				/*ã€Œã¯ã„ã€*/
 	_END
 
 ev_stage_lose_timing_sub:
@@ -1616,23 +1616,23 @@ ev_stage_lose_timing_sub:
 	_JUMP			ev_stage_lose_timing_call
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_stage_lose_rec_yes:
-	_CALL			ev_stage_room_rec_lose		/*”s–k‚Ì‹L˜^*/
+	_CALL			ev_stage_room_rec_lose		/*æ•—åŒ—ã®è¨˜éŒ²*/
 	_JUMP			ev_stage_lose_timing_call
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_stage_lose_rec_no:
 	_JUMP			ev_stage_lose_timing_call
 	_END
 
 ev_stage_lose_timing_call:
-	//”síƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//æ•—æˆ¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_STAGE_TOOL		FS_ID_SET_LOSE,0,0,FSW_ANSWER
 
-	//_LDVAL			WK_SCENE_STAGE_LOBBY,3			/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_STAGE_LOBBY,3		/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_STAGE_LOBBY,3			/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_STAGE_LOBBY,3		/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
 	_JUMP			ev_stage_lose_timing
 	_END
@@ -1643,9 +1643,9 @@ ev_stage_lose_timing:
 	_JUMP			ev_stage_room_end_save
 	_END
 
-/*’ÊM“¯Šú*/
+/*é€šä¿¡åŒæœŸ*/
 ev_stage_multi_lose_timing:
-	/*u­X‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œå°‘ã€…ãŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_stage_room_wait
 
 	_COMM_RESET
@@ -1655,22 +1655,22 @@ ev_stage_multi_lose_timing:
 	_END
 
 ev_stage_room_end_save:
-	_CALL				ev_stage_save			/*07.08.24 _CALL‚É’u‚«Š·‚¦‚½*/
+	_CALL				ev_stage_save			/*07.08.24 _CALLã«ç½®ãæ›ãˆãŸ*/
 	_TALK_CLOSE
 	_JUMP				ev_stage_room_end
 	_END
 
 
 /********************************************************************/
-/*							‹¤’ÊI—¹								*/
+/*							å…±é€šçµ‚äº†								*/
 /********************************************************************/
 ev_stage_room_end:
 
-	/*ƒZ[ƒuŒã‚É“¯Šú‚³‚¹‚é*/
+	/*ã‚»ãƒ¼ãƒ–å¾Œã«åŒæœŸã•ã›ã‚‹*/
 	_STAGE_TOOL			FS_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_stage_multi_end_timing
 
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
@@ -1680,43 +1680,43 @@ ev_stage_room_end:
 	_STAGE_TOOL		FS_ID_GET_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,STAGE_TYPE_WIFI_MULTI,ev_stage_room_end_wifi
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_STAGE_WORK_FREE
 
-	/*2Dƒ}ƒbƒvT‚¦Žº‚Ö*/
+	/*2Dãƒžãƒƒãƒ—æŽ§ãˆå®¤ã¸*/
 	//
 
 	//_END
-	_SCRIPT_FINISH			/*_END‚µ‚Ä2Dƒ}ƒbƒvI—¹*/
+	_SCRIPT_FINISH			/*_ENDã—ã¦2Dãƒžãƒƒãƒ—çµ‚äº†*/
 
-/*ƒ}ƒ‹ƒ`‚Ì‚Ý*/
+/*ãƒžãƒ«ãƒã®ã¿*/
 ev_stage_room_multi_tv:
-	/*TVˆ—*/
+	/*TVå‡¦ç†*/
 	_TV_TEMP_FRIEND_SET	FRONTIER_NO_STAGE
 	_RET
 
 
 /********************************************************************/
-/*						ƒZ[ƒuŒã‚É“¯Šú‚³‚¹‚é						*/	
+/*						ã‚»ãƒ¼ãƒ–å¾Œã«åŒæœŸã•ã›ã‚‹						*/	
 /********************************************************************/
 ev_stage_multi_end_timing:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_SAVE_AFTER
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 	_RET
 
 
 /********************************************************************/
-/*						WIFI‚Í‘Ò‚¿‡‚í‚¹‰æ–Ê‚Ö–ß‚é					*/	
+/*						WIFIã¯å¾…ã¡åˆã‚ã›ç”»é¢ã¸æˆ»ã‚‹					*/	
 /********************************************************************/
 ev_stage_room_end_wifi:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	//_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_STAGE_WORK_FREE
 
@@ -1725,10 +1725,10 @@ ev_stage_room_end_wifi:
 
 
 /********************************************************************/
-//							ŠO•”ƒZ[ƒu‚È‚µ(‹x‚Þ)
+//							å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãªã—(ä¼‘ã‚€)
 /********************************************************************/
 ev_stage_save_rest:
-	/*uƒŒƒ|[ƒg‚É‘‚«ž‚ñ‚Å‚¢‚Ü‚·@“dŒ¹‚ðØ‚ç‚È‚¢‚Å‰º‚³‚¢v*/
+	/*ã€Œãƒ¬ãƒãƒ¼ãƒˆã«æ›¸ãè¾¼ã‚“ã§ã„ã¾ã™ã€€é›»æºã‚’åˆ‡ã‚‰ãªã„ã§ä¸‹ã•ã„ã€*/
 	_TALKMSG_ALL_PUT	msg_stage_lobby_24
 
 	_ADD_WAITICON
@@ -1742,20 +1742,20 @@ ev_stage_save_rest:
 
 
 /********************************************************************/
-//							‹¤’ÊƒZ[ƒu	
+//							å…±é€šã‚»ãƒ¼ãƒ–	
 /********************************************************************/
 ev_stage_save:
-	/*uƒŒƒ|[ƒg‚É‘‚«ž‚ñ‚Å‚¢‚Ü‚·@“dŒ¹‚ðØ‚ç‚È‚¢‚Å‰º‚³‚¢v*/
+	/*ã€Œãƒ¬ãƒãƒ¼ãƒˆã«æ›¸ãè¾¼ã‚“ã§ã„ã¾ã™ã€€é›»æºã‚’åˆ‡ã‚‰ãªã„ã§ä¸‹ã•ã„ã€*/
 	_TALKMSG_ALL_PUT	msg_stage_lobby_24
 
 	_ADD_WAITICON
 
-	/*ƒoƒgƒ‹ƒXƒe[ƒW‚ÌŠO•”˜AŸ‹L˜^‚ð‘‚«ž‚Ý*/
-	/*ƒZ[ƒuŽ¸”s‚Ì•ªŠò‚Í‚¢‚ç‚È‚¢(08.02.26 ¼“c‚³‚ñ‚æ‚è)*/
+	/*ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã®å¤–éƒ¨é€£å‹è¨˜éŒ²ã‚’æ›¸ãè¾¼ã¿*/
+	/*ã‚»ãƒ¼ãƒ–å¤±æ•—ã®åˆ†å²ã¯ã„ã‚‰ãªã„(08.02.26 æ¾ç”°ã•ã‚“ã‚ˆã‚Š)*/
 	_STAGE_RENSHOU_COPY_EXTRA	FSW_ANSWER
 
-	/*(WIFI_MULTIˆÈŠO‚Ìƒ^ƒCƒv)ŠO•”ƒZ[ƒu{’ÊíƒZ[ƒu‚ªŽÀs‚³‚ê‚È‚©‚Á‚½Žž‚ÆA*/
-	/*ƒŒƒR[ƒh“I‚ÉŠO•”ƒZ[ƒu‚Ì•K—v‚ª‚È‚©‚Á‚½Žž‚ÍA’ÊíƒZ[ƒu‚ð‚©‚¯‚é*/
+	/*(WIFI_MULTIä»¥å¤–ã®ã‚¿ã‚¤ãƒ—)å¤–éƒ¨ã‚»ãƒ¼ãƒ–ï¼‹é€šå¸¸ã‚»ãƒ¼ãƒ–ãŒå®Ÿè¡Œã•ã‚Œãªã‹ã£ãŸæ™‚ã¨ã€*/
+	/*ãƒ¬ã‚³ãƒ¼ãƒ‰çš„ã«å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã®å¿…è¦ãŒãªã‹ã£ãŸæ™‚ã¯ã€é€šå¸¸ã‚»ãƒ¼ãƒ–ã‚’ã‹ã‘ã‚‹*/
 	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_stage_save_sub
 
 	_DEL_WAITICON
@@ -1763,8 +1763,8 @@ ev_stage_save:
 	_SE_WAIT		SEQ_SE_DP_SAVE
 	_RET
 
-/*(WIFI_MULTIˆÈŠO‚Ìƒ^ƒCƒv)ŠO•”ƒZ[ƒu{’ÊíƒZ[ƒu‚ªŽÀs‚³‚ê‚È‚©‚Á‚½Žž‚ÆA*/
-/*ƒŒƒR[ƒh“I‚ÉŠO•”ƒZ[ƒu‚Ì•K—v‚ª‚È‚©‚Á‚½Žž‚ÍA’ÊíƒZ[ƒu‚ð‚©‚¯‚é*/
+/*(WIFI_MULTIä»¥å¤–ã®ã‚¿ã‚¤ãƒ—)å¤–éƒ¨ã‚»ãƒ¼ãƒ–ï¼‹é€šå¸¸ã‚»ãƒ¼ãƒ–ãŒå®Ÿè¡Œã•ã‚Œãªã‹ã£ãŸæ™‚ã¨ã€*/
+/*ãƒ¬ã‚³ãƒ¼ãƒ‰çš„ã«å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã®å¿…è¦ãŒãªã‹ã£ãŸæ™‚ã¯ã€é€šå¸¸ã‚»ãƒ¼ãƒ–ã‚’ã‹ã‘ã‚‹*/
 ev_stage_save_sub:
 	_REPORT_DIV_SAVE	FSW_ANSWER
 	_RET
@@ -1772,27 +1772,27 @@ ev_stage_save_sub:
 #if 0
 	_ACTOR_FREE		OBJID_PCWOMAN2
 	_ACTOR_FREE		OBJID_MINE
-	/*ŠÏ‹qíœ*/
+	/*è¦³å®¢å‰Šé™¤*/
 	_ACTOR_FREE		OBJID_SHOPM1
 	_ACTOR_FREE		OBJID_SHOPW1
 #endif
 
 
 /********************************************************************/
-/*							ƒXƒgƒƒ{‰‰o							*/
+/*							ã‚¹ãƒˆãƒ­ãƒœæ¼”å‡º							*/
 /********************************************************************/
 #define STAGE_PASYA_01_NUM	(2)
 #define STAGE_PASYA_02_NUM	(5)
 #define STAGE_PASYA_03_NUM	(10)
 
 call_se_pasya_01:
-	_SE_PLAY			SEQ_SE_DP_DENDOU				/*Š½º*/
-	//_SE_PLAY			SEQ_SE_PL_HAND					/*BGM‚Å‚à–Â‚Á‚Ä‚¢‚é‚Ì‚Å‚¢‚ç‚È‚¢*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU				/*æ­“å£°*/
+	//_SE_PLAY			SEQ_SE_PL_HAND					/*BGMã§ã‚‚é³´ã£ã¦ã„ã‚‹ã®ã§ã„ã‚‰ãªã„*/
 	//_SE_PLAY			SEQ_SE_PL_KATI
-	_STAGE_TOOL			FS_ID_GET_LAP,0,0,FSW_ANSWER						/*Žü‰ñ”Žæ“¾*/
-	_IFVAL_JUMP			FSW_ANSWER,LT,STAGE_PASYA_01_NUM,se_pasya_01		/*ƒXƒgƒƒ{¬*/
-	_IFVAL_JUMP			FSW_ANSWER,LT,STAGE_PASYA_02_NUM,se_pasya_02		/*ƒXƒgƒƒ{’†*/
-	_JUMP				se_pasya_03											/*ƒXƒgƒƒ{‘å*/
+	_STAGE_TOOL			FS_ID_GET_LAP,0,0,FSW_ANSWER						/*å‘¨å›žæ•°å–å¾—*/
+	_IFVAL_JUMP			FSW_ANSWER,LT,STAGE_PASYA_01_NUM,se_pasya_01		/*ã‚¹ãƒˆãƒ­ãƒœå°*/
+	_IFVAL_JUMP			FSW_ANSWER,LT,STAGE_PASYA_02_NUM,se_pasya_02		/*ã‚¹ãƒˆãƒ­ãƒœä¸­*/
+	_JUMP				se_pasya_03											/*ã‚¹ãƒˆãƒ­ãƒœå¤§*/
 	_END
 
 se_pasya_01:
@@ -1813,13 +1813,13 @@ se_pasya_03:
 
 
 /********************************************************************/
-/*						Ž†‚Ó‚Ô‚«(¬)‰‰o							*/
+/*						ç´™ãµã¶ã(å°)æ¼”å‡º							*/
 /********************************************************************/
 se_kami_01:
-	/*ƒ‰ƒEƒ“ƒh”‚ðŽæ“¾*/
+	/*ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’å–å¾—*/
 	_STAGE_TOOL		FS_ID_GET_ROUND,0,0,FSW_ANSWER
 	_ADD_WK			FSW_ANSWER,1
-	_IFVAL_JUMP		FSW_ANSWER,EQ,STAGE_LAP_ENEMY_MAX,se_kami_02	/*˜AŸ”‚ª10‚ÌŽž*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,STAGE_LAP_ENEMY_MAX,se_kami_02	/*é€£å‹æ•°ãŒ10ã®æ™‚*/
 
 	_SE_PLAY				SEQ_SE_DP_UG_022
 	_PARTICLE_ADD_EMITTER	SPAWORK_0, STAGE_BS_KAMI_01_L
@@ -1830,7 +1830,7 @@ se_kami_01:
 
 
 /********************************************************************/
-/*						Ž†‚Ó‚Ô‚«(‘å)‰‰o							*/
+/*						ç´™ãµã¶ã(å¤§)æ¼”å‡º							*/
 /********************************************************************/
 se_kami_02:
 	_SE_PLAY				SEQ_SE_DP_UG_022
@@ -1844,7 +1844,7 @@ se_kami_02:
 
 
 /********************************************************************/
-/*						Ž†‚Ó‚Ô‚«+‹âƒe[ƒv‰‰o						*/
+/*						ç´™ãµã¶ã+éŠ€ãƒ†ãƒ¼ãƒ—æ¼”å‡º						*/
 /********************************************************************/
 se_kami_03:
 	_SE_PLAY				SEQ_SE_DP_UG_022
@@ -1860,223 +1860,223 @@ se_kami_03:
 
 
 /********************************************************************/
-/*						ƒuƒŒ[ƒ“‚Ì—¬‚ê								*/
+/*						ãƒ–ãƒ¬ãƒ¼ãƒ³ã®æµã‚Œ								*/
 /********************************************************************/
 ev_stage_leader_1st_02:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_stage_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
-	/*“oê*/
+	/*ç™»å ´*/
 	_CALL				ev_stage_leader_appear
 
-	/*í“¬‘O‚ÌƒƒbƒZ[ƒW(1Žü–Ú)*/
+	/*æˆ¦é—˜å‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(1å‘¨ç›®)*/
 	_TALKMSG			msg_stage_room_boss_02
 	_TALK_CLOSE
 
-	/*Œ³‚ÌˆÊ’u‚É–ß‚é*/
+	/*å…ƒã®ä½ç½®ã«æˆ»ã‚‹*/
 	_CALL			ev_stage_leader_msg_after
 
 	_JUMP				ev_stage_room_go_sub
 	_END
 
 ev_stage_leader_2nd_02:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_stage_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
-	/*“oê*/
+	/*ç™»å ´*/
 	_CALL				ev_stage_leader_appear
 
-	/*í“¬‘O‚ÌƒƒbƒZ[ƒW(2Žü–Ú)*/
+	/*æˆ¦é—˜å‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(2å‘¨ç›®)*/
 	_TALKMSG			msg_stage_room_boss_03
 	_TALK_CLOSE
 
-	/*Œ³‚ÌˆÊ’u‚É–ß‚é*/
+	/*å…ƒã®ä½ç½®ã«æˆ»ã‚‹*/
 	_CALL			ev_stage_leader_msg_after
 
 	_JUMP				ev_stage_room_go_sub
 	_END
 
-/*Œ³‚ÌˆÊ’u‚É–ß‚é*/
+/*å…ƒã®ä½ç½®ã«æˆ»ã‚‹*/
 ev_stage_leader_msg_after:
 	_OBJ_ANIME		OBJID_ETC,anm_player_go_btl_room_101
 	_OBJ_ANIME_WAIT
 
 	_TIME_WAIT			30,FSW_ANSWER
 
-	/*—¼ŽÒ‘O‚ÖƒAƒjƒ*/
+	/*ä¸¡è€…å‰ã¸ã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME		OBJID_MINE,anm_player_go_btl_room
 	_OBJ_ANIME		OBJID_ETC,anm_player_go_btl_room_etc
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*“oê*/
+/*ç™»å ´*/
 ev_stage_leader_appear:
 
 	_CALL				ev_stage_trainer_set_brain
 
-	/*‘½d–Ê‚ð”ñ•\Ž¦*/
+	/*å¤šé‡é¢ã‚’éžè¡¨ç¤º*/
 	_STAGE_TOOL			FS_ID_EFF_FRAME_ON,1,0,FSW_ANSWER
 
-	/*ƒ|ƒPƒ‚ƒ“•\Ž¦*/
+	/*ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤º*/
 	_TEMOTI_POKE_ACT_ADD	FSW_LOCAL2,STAGE_POKE_ACT_X,STAGE_POKE_ACT_Y,POKE_DISP_MANAGER_ID_0, 0, 0x0000
 
-	_WND_SET			10,160,230,192,0,0						/*ƒEƒBƒ“ƒhƒEOFF*/
+	_WND_SET			10,160,230,192,0,0						/*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OFF*/
 
 	_TIME_WAIT			10,FSW_ANSWER
 
-	_WND_SET			10,160,230,192,54,1						/*ƒEƒBƒ“ƒhƒEON*/
+	_WND_SET			10,160,230,192,54,1						/*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ON*/
 
-	/*“ü‚èŒû‚Ü‚Å–ß‚·*/
+	/*å…¥ã‚Šå£ã¾ã§æˆ»ã™*/
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center_scroll_back
 	_OBJ_ANIME_WAIT
 
-	/*ƒp[ƒeƒBƒNƒ‹‰‰o*/
+	/*ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ¼”å‡º*/
 	_PARTICLE_SPA_LOAD		SPAWORK_0,STAGE_SPA, FSS_CAMERA_ORTHO
 
-	/*¶‰E“®‚«ƒXƒ|ƒbƒgƒ‰ƒCƒg*/
+	/*å·¦å³å‹•ãã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆ*/
 	_PARTICLE_ADD_EMITTER	SPAWORK_0,STAGE_BS_SPOT00
-	_PARTICLE_ADD_EMITTER	SPAWORK_0,STAGE_BS_SPOT00_BG	/*ƒXƒ|ƒbƒgƒ‰ƒCƒg*/
+	_PARTICLE_ADD_EMITTER	SPAWORK_0,STAGE_BS_SPOT00_BG	/*ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆ*/
 	//_PARTICLE_WAIT
 	//_TIME_WAIT			60,FSW_ANSWER
 	_TIME_WAIT			90,FSW_ANSWER
 
-	_PARTICLE_ADD_EMITTER	SPAWORK_0,STAGE_BS_SPOT01		/*ƒXƒ|ƒbƒgƒ‰ƒCƒg*/
+	_PARTICLE_ADD_EMITTER	SPAWORK_0,STAGE_BS_SPOT01		/*ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆ*/
 
-	/*ƒuƒŒ[ƒ““oê*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´*/
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain_3
 	_OBJ_ANIME_WAIT
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU					/*Š½º*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU					/*æ­“å£°*/
 	//_TIME_WAIT			30,FSW_ANSWER
 	_SE_WAIT			SEQ_SE_DP_DENDOU
 
-	/*ƒuƒŒ[ƒ“‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center_scroll_2
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain_2
 	_OBJ_ANIME_WAIT
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU					/*Š½º*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU					/*æ­“å£°*/
 	_PARTICLE_ADD_EMITTER	SPAWORK_0, STAGE_BS_PASYAPASYA03
 	_PARTICLE_ADD_EMITTER	SPAWORK_0, STAGE_BS_PASYAPASYA03BG
 	_SE_WAIT			SEQ_SE_DP_DENDOU
 
-	_WND_SET			10,160,230,192,10,0					/*ƒEƒBƒ“ƒhƒEOFF*/
+	_WND_SET			10,160,230,192,10,0					/*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OFF*/
 
-	/*ƒuƒŒ[ƒ“‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center_scroll_3
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain_2_2
 	_OBJ_ANIME_WAIT
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU					/*Š½º*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU					/*æ­“å£°*/
 	_PARTICLE_ADD_EMITTER	SPAWORK_0, STAGE_BS_PASYAPASYA03
 	_PARTICLE_ADD_EMITTER	SPAWORK_0, STAGE_BS_PASYAPASYA03BG
 	_SE_WAIT			SEQ_SE_DP_DENDOU
 
-	/*ƒuƒŒ[ƒ“‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center_scroll_4
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain_2_3
 	_OBJ_ANIME_WAIT
 
-	/*ƒ|ƒPƒ‚ƒ“íœ*/
+	/*ãƒã‚±ãƒ¢ãƒ³å‰Šé™¤*/
 	_TEMOTI_POKE_ACT_DEL	POKE_DISP_MANAGER_ID_0
 
-	/*ƒXƒ|ƒbƒgƒ‰ƒCƒg‚ðÁ‚·*/
+	/*ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã‚’æ¶ˆã™*/
 	//_PARTICLE_SPA_EXIT	SPAWORK_0
 
 	//_PARTICLE_SPA_LOAD	SPAWORK_0, STAGE_SPA, FSS_CAMERA_ORTHO
-	_PARTICLE_ADD_EMITTER	SPAWORK_0,STAGE_BS_SPOT02		/*L‚ª‚éƒXƒ|ƒbƒgƒ‰ƒCƒg*/
+	_PARTICLE_ADD_EMITTER	SPAWORK_0,STAGE_BS_SPOT02		/*åºƒãŒã‚‹ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆ*/
 	//_PARTICLE_WAIT
 	_TIME_WAIT			30,FSW_ANSWER
 
-	/*ƒzƒƒCƒgƒAƒEƒg*/
+	/*ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ*/
 	_WHITE_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*‘½d–Ê‚ð•\Ž¦*/
+	/*å¤šé‡é¢ã‚’è¡¨ç¤º*/
 	_STAGE_TOOL			FS_ID_EFF_FRAME_ON,0,0,FSW_ANSWER
 
-	/*ƒXƒ|ƒbƒgƒ‰ƒCƒgAƒXƒgƒƒ{‚ðÁ‚·*/
+	/*ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã€ã‚¹ãƒˆãƒ­ãƒœã‚’æ¶ˆã™*/
 	_PARTICLE_SPA_EXIT	SPAWORK_0
 
-	/*ƒzƒƒCƒgƒCƒ“*/
+	/*ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³*/
 	_WHITE_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ŽålŒö‚Ì‘O‚É—ˆ‚é*/
+	/*ä¸»äººå…¬ã®å‰ã«æ¥ã‚‹*/
 	_OBJ_ANIME		OBJID_ETC,anm_player_go_btl_room_100
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 /********************************************************************/
-/*						ƒuƒŒ[ƒ“‚ÉŸ—˜Œã‚Ì—¬‚ê						*/
+/*						ãƒ–ãƒ¬ãƒ¼ãƒ³ã«å‹åˆ©å¾Œã®æµã‚Œ						*/
 /********************************************************************/
 ev_stage_leader_1st_03:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_stage_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
-	/*ƒuƒŒ[ƒ“‚ð“|‚µ‚½Žž*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ã‚’å€’ã—ãŸæ™‚*/
 	_PARTICLE_SPA_LOAD	SPAWORK_0, STAGE_SPA, FSS_CAMERA_ORTHO
-	_CALL				se_kami_03						/*Ž†ƒe[ƒv*/
+	_CALL				se_kami_03						/*ç´™ãƒ†ãƒ¼ãƒ—*/
 	_PARTICLE_WAIT
 	_PARTICLE_SPA_EXIT	SPAWORK_0
 
-	/*Œ»Ý‚Ì‹L”OƒvƒŠƒ“ƒgó‘Ô‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆçŠ¶æ…‹ã‚’å–å¾—*/
 	_SAVE_EVENT_WORK_GET	SYS_WORK_MEMORY_PRINT_STAGE,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,MEMORY_PRINT_NONE,ev_stage_meory_print_put_1st
 
-	/*í“¬Œã‚ÌƒƒbƒZ[ƒW(1Žü–Ú)*/
+	/*æˆ¦é—˜å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(1å‘¨ç›®)*/
 	_TALKMSG			msg_stage_room_boss_04
 	_TALK_CLOSE
 	_JUMP				ev_stage_battle_2_sub
 	_END
 
-/*Žó•t‚Å1st‹L”OƒvƒŠƒ“ƒg‚ð–á‚¦‚é‚æ‚¤‚É‚·‚é*/
+/*å—ä»˜ã§1stè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’è²°ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 ev_stage_meory_print_put_1st:
 	_SAVE_EVENT_WORK_SET	SYS_WORK_MEMORY_PRINT_STAGE,MEMORY_PRINT_PUT_1ST
 	_RET
 
 ev_stage_leader_2nd_03:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL			ev_stage_rensyou_get
 	_NUMBER_NAME	0,FSW_ANSWER
 
 #if 1
-	/*ƒuƒŒ[ƒ“‚ð“|‚µ‚½Žž*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ã‚’å€’ã—ãŸæ™‚*/
 	_PARTICLE_SPA_LOAD	SPAWORK_0, STAGE_SPA, FSS_CAMERA_ORTHO
-	_CALL				se_kami_03						/*Ž†ƒe[ƒv*/
+	_CALL				se_kami_03						/*ç´™ãƒ†ãƒ¼ãƒ—*/
 	_PARTICLE_WAIT
 	_PARTICLE_SPA_EXIT	SPAWORK_0
 #endif
 
-	/*Œ»Ý‚Ì‹L”OƒvƒŠƒ“ƒgó‘Ô‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆçŠ¶æ…‹ã‚’å–å¾—*/
 	_SAVE_EVENT_WORK_GET	SYS_WORK_MEMORY_PRINT_STAGE,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,MEMORY_PRINT_PUT_OK_1ST,ev_stage_meory_print_put_2nd
 
-	/*í“¬Œã‚ÌƒƒbƒZ[ƒW(2Žü–Ú)*/
+	/*æˆ¦é—˜å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(2å‘¨ç›®)*/
 	_TALKMSG			msg_stage_room_boss_05
 	_TALK_CLOSE
 	_JUMP				ev_stage_battle_2_sub
 	_END
 
-/*Žó•t‚Å2nd‹L”OƒvƒŠƒ“ƒg‚ð–á‚¦‚é‚æ‚¤‚É‚·‚é*/
+/*å—ä»˜ã§2ndè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’è²°ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 ev_stage_meory_print_put_2nd:
 	_SAVE_EVENT_WORK_SET	SYS_WORK_MEMORY_PRINT_STAGE,MEMORY_PRINT_PUT_2ND
 	_RET
 
 
 /********************************************************************/
-/*					˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)					*/
+/*					é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)					*/
 /********************************************************************/
 ev_stage_rensyou_get:
-	/*˜AŸ”Žæ“¾*/
+	/*é€£å‹æ•°å–å¾—*/
 	_STAGE_TOOL			FS_ID_GET_RENSYOU,0,0,FSW_ANSWER
 
-	/*‚·‚Å‚É9999‚ÌŽž‚ÍA0 ƒIƒŠƒWƒ“‚Ì•â³‚ð‚©‚¯‚È‚¢*/
+	/*ã™ã§ã«9999ã®æ™‚ã¯ã€0 ã‚ªãƒªã‚¸ãƒ³ã®è£œæ­£ã‚’ã‹ã‘ãªã„*/
 	_IFVAL_JUMP			FSW_ANSWER,GE,STAGE_RENSYOU_MAX,ev_stage_rensyou_ret
 
 	_ADD_WK				FSW_ANSWER,1
@@ -2094,7 +2094,7 @@ ev_stage_comm_command_initialize_1:
 	_STAGE_TOOL			FS_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_INIT_1
 	_COMM_RESET
@@ -2105,7 +2105,7 @@ ev_stage_comm_command_initialize_2:
 	_STAGE_TOOL			FS_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_INIT_2
 	_COMM_RESET
@@ -2116,7 +2116,7 @@ ev_stage_comm_command_initialize_3:
 	_STAGE_TOOL			FS_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_STAGE_INIT_3
 	_COMM_RESET

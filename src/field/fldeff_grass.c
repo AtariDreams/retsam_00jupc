@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_grass.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ‘
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè‰
  * @author	kagaya
  * @data	05.07.13
  *
@@ -21,66 +21,66 @@
 //==============================================================================
 #define YURE_KUSA_SET
 
-///‘•\Ž¦ˆÊ’u@ƒOƒŠƒbƒh‚©‚ç‚ÌƒIƒtƒZƒbƒgX
+///è‰è¡¨ç¤ºä½ç½®ã€€ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆX
 #define GRASS_GIRD_VEC_OFFS_X (FLDOBJ_VEC_X_GRID_OFFS_FX32)
-///‘•\Ž¦ˆÊ’u@ƒOƒŠƒbƒh‚©‚ç‚ÌƒIƒtƒZƒbƒgZ
+///è‰è¡¨ç¤ºä½ç½®ã€€ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆZ
 //#define GRASS_GIRD_VEC_OFFS_Z (FLDOBJ_VEC_Z_GRID_OFFS_FX32+FLDOBJ_BLACT_Z_GROUND_OFFS_FX32);
 #define GRASS_GIRD_VEC_OFFS_Z \
 	(FLDOBJ_VEC_Z_GRID_OFFS_FX32+FLDOBJ_BLACT_Z_GROUND_OFFS_FX32+(FX32_ONE*4))
-///‘•\Ž¦ˆÊ’u@’n–Ê‚©‚ç‚ÌƒIƒtƒZƒbƒgY
+///è‰è¡¨ç¤ºä½ç½®ã€€åœ°é¢ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define GRASS_GROUND_OFFS_Y (FX32_ONE)
 
-///‘—h‚êƒAƒjƒƒtƒŒ[ƒ€”
+///è‰æºã‚Œã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define GRASS_SHAKE_FRAME (12)
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_GRASS\‘¢‘Ì
+///	FE_GRASSæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GRASS
 {
 	FE_SYS *fes;
 }FE_GRASS;
 
-#define FE_GRASS_SIZE (sizeof(FE_GRASS))	///<FE_GRASSƒTƒCƒY
+#define FE_GRASS_SIZE (sizeof(FE_GRASS))	///<FE_GRASSã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	GRASS_ADD_H\‘¢‘Ì
+///	GRASS_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int init_gx;								///<‰ŠúX ƒOƒŠƒbƒh
-	int init_gy;								///<‰ŠúY
-	int init_gz;								///<‰ŠúZ
+	int init_gx;								///<åˆæœŸX ã‚°ãƒªãƒƒãƒ‰
+	int init_gy;								///<åˆæœŸY
+	int init_gz;								///<åˆæœŸZ
 	FIELDSYS_WORK *fsys;						///<FIELDSYS_WORK *
 	FE_SYS *fes;								///<FE_SYS_PTR
 	FE_GRASS_PTR kusa;							///<FE_GRASS_PTR
-	FIELD_OBJ_PTR fldobj;						///<‘ÎÛ‚ÌFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<å¯¾è±¡ã®FIELD_OBJ_PTR
 }GRASS_ADD_H;
 
-#define GRASS_ADD_H_SIZE (sizeof(GRASS_ADD_H))	///<GRASS_ADD_HƒTƒCƒY
+#define GRASS_ADD_H_SIZE (sizeof(GRASS_ADD_H))	///<GRASS_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	GRASS_WORK\‘¢‘Ì
+///	GRASS_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int seq_no;									///<“®ì”Ô†
-	int obj_code;								///<‘ÎÛƒtƒB[ƒ‹ƒhOBJ OBJ CODE
-	int obj_id;									///<‘ÎÛƒtƒB[ƒ‹ƒhOBJ OBJ ID
-	int zone_id;								///<‘ÎÛƒtƒB[ƒ‹ƒhOBJ ZONE ID
-	int frame;									///<ƒtƒŒ[ƒ€
-	int height_get;								///<‚‚³Žæ“¾
-	GRASS_ADD_H head;							///<’Ç‰ÁŽž‚ÌGRASS_ADD_H
-	BLACT_WORK_PTR act;							///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
+	int seq_no;									///<å‹•ä½œç•ªå·
+	int obj_code;								///<å¯¾è±¡ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ OBJ CODE
+	int obj_id;									///<å¯¾è±¡ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ OBJ ID
+	int zone_id;								///<å¯¾è±¡ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ZONE ID
+	int frame;									///<ãƒ•ãƒ¬ãƒ¼ãƒ 
+	int height_get;								///<é«˜ã•å–å¾—
+	GRASS_ADD_H head;							///<è¿½åŠ æ™‚ã®GRASS_ADD_H
+	BLACT_WORK_PTR act;							///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
 }GRASS_WORK;
 
-#define GRASS_WORK_SIZE (sizeof(GRASS_WORK))	///<GRASS_WORKƒTƒCƒY
+#define GRASS_WORK_SIZE (sizeof(GRASS_WORK))	///<GRASS_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Grass_GraphicInit( FE_GRASS_PTR grass );
 static void Grass_GraphicDelete( FE_GRASS_PTR grass );
@@ -93,11 +93,11 @@ const BLACT_ANIME_TBL DATA_BlActAnmTbl_GrassBig[];
 const BLACT_ANIME_TBL DATA_BlActAnmTbl_GrassKiraKira[];
 
 //==============================================================================
-//	‘	ƒVƒXƒeƒ€
+//	è‰	ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘‰Šú‰»
+ * è‰åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_GRASS_PTR	FE_GRASS_PTR
  */
@@ -115,7 +115,7 @@ void * FE_Grass_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ‘íœ
+ * è‰å‰Šé™¤
  * @param	kusa		FE_GRASS_PTR
  * @retval	nothing
  */
@@ -128,11 +128,11 @@ void FE_Grass_Delete( void *work )
 }
 
 //==============================================================================
-//	‘@ƒOƒ‰ƒtƒBƒbƒN
+//	è‰ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * è‰ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	kusa	FE_GRASS_PTR
  * @retval	nothing
  */
@@ -183,7 +183,7 @@ static void Grass_GraphicInit( FE_GRASS_PTR kusa )
 
 //--------------------------------------------------------------
 /**
- * ‘@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * è‰ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	kusa	FE_GRASS_PTR
  * @retval	nothing
  */
@@ -211,17 +211,17 @@ static void Grass_GraphicDelete( FE_GRASS_PTR kusa )
 }
 
 //==============================================================================
-//	‘ƒp[ƒc
+//	è‰ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	‘@EOA
+//	è‰ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ—p‘’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨è‰è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
- * @param	shake		TRUE=‘‚ä‚ê‚©‚çŠJŽnBFALSE=—h‚ê‚È‚µ‚©‚çŠJŽn
+ * @param	shake		TRUE=è‰ã‚†ã‚Œã‹ã‚‰é–‹å§‹ã€‚FALSE=æºã‚Œãªã—ã‹ã‚‰é–‹å§‹
  * @retval	nothing		
  */
 //--------------------------------------------------------------
@@ -250,10 +250,10 @@ void FE_FldOBJGrass_Add( FIELD_OBJ_PTR fldobj, int shake )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘@‰Šú‰»
+ * EOA è‰ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaGrass_Init( EOA_PTR eoa, void *wk )
@@ -282,7 +282,7 @@ static int EoaGrass_Init( EOA_PTR eoa, void *wk )
 	
 	work->act = FE_BlActAddID( work->head.fes, FE_BLACT_H_ID_GRASS, &vec );
 	
-	if( EOA_AddParamGet(eoa) == FALSE ){						//‘—h‚ê‚È‚µ
+	if( EOA_AddParamGet(eoa) == FALSE ){						//è‰æºã‚Œãªã—
 		work->seq_no = 1;
 	}
 	
@@ -291,7 +291,7 @@ static int EoaGrass_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘@íœ
+ * EOA è‰ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -307,7 +307,7 @@ static void EoaGrass_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘@“®ì
+ * EOA è‰ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -346,7 +346,7 @@ static void EoaGrass_Move( EOA_PTR eoa, void *wk )
 	}
 	
 	switch( work->seq_no ){
-	case 0:													//—h‚ê
+	case 0:													//æºã‚Œ
 		BLACT_AnmFrameChg( work->act, FX32_ONE );
 		frame = BLACT_AnmFrameGetOffs( work->act ) / FX32_ONE;
 		
@@ -383,7 +383,7 @@ static void EoaGrass_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘@•`‰æ
+ * EOA è‰ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -409,7 +409,7 @@ static void EoaGrass_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	‘EOA_H
+///	è‰EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Grass =
 {
@@ -421,7 +421,7 @@ static const EOA_H_NPP DATA_EoaH_Grass =
 };
 
 //--------------------------------------------------------------
-///	‘ƒAƒjƒ
+///	è‰ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_BlActAnmTbl_Grass[] =
 {
@@ -430,12 +430,12 @@ static const BLACT_ANIME_TBL DATA_BlActAnmTbl_Grass[] =
 };
 
 //==============================================================================
-//	’n‰ºã©
+//	åœ°ä¸‹ç½ 
 //==============================================================================
 static const EOA_H_NPP DATA_EoaH_CommTrapGrass;
 
 //--------------------------------------------------------------
-//	TIKA_GRASS_ADD_H\‘¢‘Ì
+//	TIKA_GRASS_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -447,7 +447,7 @@ typedef struct
 }TIKA_GRASS_ADD_H;
 
 //--------------------------------------------------------------
-//	’n‰º‘—pƒ[ƒN
+//	åœ°ä¸‹è‰ç”¨ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct
 {
@@ -461,11 +461,11 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ’n‰ºã©—p‘’Ç‰Á
+ * åœ°ä¸‹ç½ ç”¨è‰è¿½åŠ 
  * @param	fsys		FIELDSYS_WORK *
- * @param	x			ƒOƒŠƒbƒhXÀ•W
- * @param	z			ƒOƒŠƒbƒhZÀ•W
- * @retval	EOA_PTR		‘“®ìEOA_PTR
+ * @param	x			ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	z			ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @retval	EOA_PTR		è‰å‹•ä½œEOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_CommTrapGrass_Add( FIELDSYS_WORK *fsys, int x, int z )
@@ -493,9 +493,9 @@ EOA_PTR FE_CommTrapGrass_Add( FIELDSYS_WORK *fsys, int x, int z )
 
 //--------------------------------------------------------------
 /**
- * ’n‰ºã©—p‘ƒAƒjƒI—¹ƒ`ƒFƒbƒN
- * @param	EOA_PTR		FE_CommTrapGrass_Add()–ß‚è’l
- * @retval	int		TRUE=I—¹BFALSE=‚Ü‚¾
+ * åœ°ä¸‹ç½ ç”¨è‰ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+ * @param	EOA_PTR		FE_CommTrapGrass_Add()æˆ»ã‚Šå€¤
+ * @retval	int		TRUE=çµ‚äº†ã€‚FALSE=ã¾ã 
  */
 //--------------------------------------------------------------
 int FE_CommTrapGrass_AnimeCheck( EOA_PTR eoa )
@@ -508,10 +508,10 @@ int FE_CommTrapGrass_AnimeCheck( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ’n‰º‘@‰Šú‰»
+ * EOA åœ°ä¸‹è‰ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaCommTrapGrass_Init( EOA_PTR eoa, void *wk )
@@ -532,7 +532,7 @@ static int EoaCommTrapGrass_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’n‰º‘@íœ
+ * EOA åœ°ä¸‹è‰ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -548,7 +548,7 @@ static void EoaCommTrapGrass_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’n‰º‘@“®ì
+ * EOA åœ°ä¸‹è‰ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -562,7 +562,7 @@ static void EoaCommTrapGrass_Move( EOA_PTR eoa, void *wk )
 	work = wk;
 	
 	switch( work->seq_no ){
-	case 0:													//—h‚ê
+	case 0:													//æºã‚Œ
 		BLACT_AnmFrameChg( work->act, FX32_ONE );
 		frame = BLACT_AnmFrameGetOffs( work->act ) / FX32_ONE;
 		
@@ -579,7 +579,7 @@ static void EoaCommTrapGrass_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’n‰º‘@•`‰æ
+ * EOA åœ°ä¸‹è‰ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -596,7 +596,7 @@ static void EoaCommTrapGrass_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	‘EOA_H
+///	è‰EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_CommTrapGrass =
 {
@@ -608,12 +608,12 @@ static const EOA_H_NPP DATA_EoaH_CommTrapGrass =
 };
 
 //==============================================================================
-//	‚ä‚ê‘ƒGƒ“ƒJƒEƒ“ƒg
+//	ã‚†ã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 //==============================================================================
 static const EOA_H_NPP DATA_EoaH_EncGrass;
 
 //--------------------------------------------------------------
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -625,7 +625,7 @@ typedef struct
 }ENC_GRASS_ADD_H;
 
 //--------------------------------------------------------------
-//	‚ä‚ê‘—pƒ[ƒN
+//	ã‚†ã‚Œè‰ç”¨ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct
 {
@@ -640,7 +640,7 @@ typedef struct
 #define ENC_GRASS_WORK_SIZE (sizeof(ENC_GRASS_WORK))
 
 //--------------------------------------------------------------
-///	‘ƒAƒjƒ
+///	è‰ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_BlActAnmTbl_GrassSmall[] =
 {
@@ -649,7 +649,7 @@ static const BLACT_ANIME_TBL DATA_BlActAnmTbl_GrassSmall[] =
 };
 
 //--------------------------------------------------------------
-///	‘ƒAƒjƒ
+///	è‰ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_BlActAnmTbl_GrassBig[] =
 {
@@ -658,7 +658,7 @@ static const BLACT_ANIME_TBL DATA_BlActAnmTbl_GrassBig[] =
 };
 
 //--------------------------------------------------------------
-///	‘ƒAƒjƒ
+///	è‰ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_BlActAnmTbl_GrassKiraKira[] =
 {
@@ -668,12 +668,12 @@ static const BLACT_ANIME_TBL DATA_BlActAnmTbl_GrassKiraKira[] =
 
 //--------------------------------------------------------------
 /**
- * ‚ä‚ê‘’Ç‰Á
+ * ã‚†ã‚Œè‰è¿½åŠ 
  * @param	fsys		FIELDSYS_WORK *
- * @param	x			ƒOƒŠƒbƒhXÀ•W
- * @param	z			ƒOƒŠƒbƒhZÀ•W
+ * @param	x			ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	z			ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
  * @param	type		FE_GRASS_TYPE
- * @retval	EOA_PTR		‘“®ìEOA_PTR
+ * @retval	EOA_PTR		è‰å‹•ä½œEOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_EncGrass_Add( FIELDSYS_WORK *fsys, int x, int z, FE_GRASS_TYPE type )
@@ -701,9 +701,9 @@ EOA_PTR FE_EncGrass_Add( FIELDSYS_WORK *fsys, int x, int z, FE_GRASS_TYPE type )
 
 //--------------------------------------------------------------
 /**
- * ’n‰ºã©—p‘ƒAƒjƒI—¹ƒ`ƒFƒbƒN
- * @param	EOA_PTR		FE_CommTrapGrass_Add()–ß‚è’l
- * @retval	int		TRUE=I—¹BFALSE=‚Ü‚¾
+ * åœ°ä¸‹ç½ ç”¨è‰ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+ * @param	EOA_PTR		FE_CommTrapGrass_Add()æˆ»ã‚Šå€¤
+ * @retval	int		TRUE=çµ‚äº†ã€‚FALSE=ã¾ã 
  */
 //--------------------------------------------------------------
 int FE_EncGrass_AnimeCheck( EOA_PTR eoa )
@@ -716,10 +716,10 @@ int FE_EncGrass_AnimeCheck( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ‚ä‚ê‘@‰Šú‰»
+ * EOA ã‚†ã‚Œè‰ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaEncGrass_Init( EOA_PTR eoa, void *wk )
@@ -746,16 +746,16 @@ static int EoaEncGrass_Init( EOA_PTR eoa, void *wk )
 	switch( work->type ){
 	case FE_GRASS_TYPE_ENCOUNT_SMALL:
 		head_id = FE_BLACT_H_ID_GRASS_ENCOUNT_SMALL;
-		OS_Printf( "—h‚ê‘@¬\n" );
+		OS_Printf( "æºã‚Œè‰ã€€å°\n" );
 		break;
 	case FE_GRASS_TYPE_ENCOUNT_BIG:
 		head_id = FE_BLACT_H_ID_GRASS_ENCOUNT_BIG;
-		OS_Printf( "—h‚ê‘@‘å\n" );
+		OS_Printf( "æºã‚Œè‰ã€€å¤§\n" );
 		break;
 	case FE_GRASS_TYPE_ENCOUNT_KIRAKIRA:
 	default:
 		head_id = FE_BLACT_H_ID_GRASS_ENCOUNT_KIRAKIRA;
-		OS_Printf( "—h‚ê‘@‚«‚ç‚«‚ç\n" );
+		OS_Printf( "æºã‚Œè‰ã€€ãã‚‰ãã‚‰\n" );
 	}
 	
 #ifndef YURE_KUSA_SET
@@ -768,7 +768,7 @@ static int EoaEncGrass_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‚ä‚ê‘@íœ
+ * EOA ã‚†ã‚Œè‰ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -784,7 +784,7 @@ static void EoaEncGrass_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‚ä‚ê‘@“®ì
+ * EOA ã‚†ã‚Œè‰ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -798,7 +798,7 @@ static void EoaEncGrass_Move( EOA_PTR eoa, void *wk )
 	work = wk;
 #ifdef YURE_KUSA_SET
 	switch( work->seq_no ){
-	case 0:													//—h‚ê
+	case 0:													//æºã‚Œ
 		if( BLACT_AnmFrameChg(work->act,FX32_ONE) == BLACT_ANISTA_END ){
 			work->end_flag = TRUE;
 			work->seq_no++;
@@ -810,7 +810,7 @@ static void EoaEncGrass_Move( EOA_PTR eoa, void *wk )
 	}
 #else
 	switch( work->seq_no ){
-	case 0:													//—h‚ê
+	case 0:													//æºã‚Œ
 		BLACT_AnmFrameChg( work->act, FX32_ONE );
 		work->frame++;
 		
@@ -828,7 +828,7 @@ static void EoaEncGrass_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‚ä‚ê‘@•`‰æ
+ * EOA ã‚†ã‚Œè‰ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -845,7 +845,7 @@ static void EoaEncGrass_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	‘EOA_H
+///	è‰EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_EncGrass =
 {

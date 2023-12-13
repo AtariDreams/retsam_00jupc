@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	itemuse.h
- * @brief	�t�B�[���h�A�C�e���g�p����
+ * @brief	フィールドアイテム使用処理
  * @author	Hiroyuki Nakamura
  * @date	05.12.12
  */
@@ -21,72 +21,72 @@
 
 
 //============================================================================================
-//	�萔��`
+//	定数定義
 //============================================================================================
-// �A�C�e���g�p���[�N
+// アイテム使用ワーク
 typedef struct {
-	GMEVENT_CONTROL * event;	// �C�x���g
-	u16	item;					// �A�C�e���ԍ�
-	u8	use_poke;				// �g�p����|�P����
+	GMEVENT_CONTROL * event;	// イベント
+	u16	item;					// アイテム番号
+	u8	use_poke;				// 使用するポケモン
 }ITEMUSE_WORK;
 
-// �A�C�e���g�p�`�F�b�N���[�N
+// アイテム使用チェックワーク
 typedef struct {
-	int	zone_id;	// �]�[��ID
-	BOOL Companion;	//�@�A�������Ԃ��H
-	int PlayerForm;	//�@���@�̌`��i���]�Ԃɏ���Ă��邩�Ƃ��j
-	u16 FrontAttr;	//�@���@�O���A�g���r���[�g
-	u16 NowAttr;	//�@���@���݃A�g���r���[�g
-	u16 SeedInfo;	//�g�p�\�ȃA�C�e�����i���̂݊֘A�j
-	PLAYER_STATE_PTR player;	//���@���Q�ƃ|�C���^
+	int	zone_id;	// ゾーンID
+	BOOL Companion;	//　連れ歩き状態か？
+	int PlayerForm;	//　自機の形状（自転車に乗っているかとか）
+	u16 FrontAttr;	//　自機前方アトリビュート
+	u16 NowAttr;	//　自機現在アトリビュート
+	u16 SeedInfo;	//使用可能なアイテム情報（きのみ関連）
+	PLAYER_STATE_PTR player;	//自機情報参照ポインタ
 	FIELDSYS_WORK * fsys;
 }ITEMCHECK_WORK;
 
-typedef u32 (*ITEMCHECK_FUNC)(const ITEMCHECK_WORK*);	// �A�C�e���g�p�`�F�b�N�֐�
+typedef u32 (*ITEMCHECK_FUNC)(const ITEMCHECK_WORK*);	// アイテム使用チェック関数
 
-typedef void (*ITEMUSE_FUNC)(ITEMUSE_WORK*, const ITEMCHECK_WORK *);	// �A�C�e���g�p�֐�
+typedef void (*ITEMUSE_FUNC)(ITEMUSE_WORK*, const ITEMCHECK_WORK *);	// アイテム使用関数
 
-// �A�C�e���g�p�֐��擾�p�����[�^
+// アイテム使用関数取得パラメータ
 enum {
-	ITEMUSE_PRM_USEFUNC = 0,	// �o�b�O����̎g�p�֐�
-	ITEMUSE_PRM_CNVFUNC,		// �֗��{�^������̎g�p�֐�
-	ITEMUSE_PRM_CHECKFUNC		// �`�F�b�N�֐�
+	ITEMUSE_PRM_USEFUNC = 0,	// バッグからの使用関数
+	ITEMUSE_PRM_CNVFUNC,		// 便利ボタンからの使用関数
+	ITEMUSE_PRM_CHECKFUNC		// チェック関数
 };
 
-// �A�C�e���g�p�`�F�b�N�̖߂�l
+// アイテム使用チェックの戻り値
 enum {
-	ITEMCHECK_TRUE = 0,				// �g�p�\ 
+	ITEMCHECK_TRUE = 0,				// 使用可能 
 
-	ITEMCHECK_ERR_CYCLE_OFF,		// ���]�Ԃ��~���Ȃ�
-	ITEMCHECK_ERR_COMPANION,		// �g�p�s�E�A�����
-	ITEMCHECK_ERR_TW_FISHING,		// �g�p�s�E��Ԃꂽ�������ނ�
+	ITEMCHECK_ERR_CYCLE_OFF,		// 自転車を降りれない
+	ITEMCHECK_ERR_COMPANION,		// 使用不可・連れ歩き
+	ITEMCHECK_ERR_TW_FISHING,		// 使用不可・やぶれたせかい釣り
 	
-	ITEMCHECK_FALSE = 0xffffffff	// �g�p�s�E���m�̌��t
+	ITEMCHECK_FALSE = 0xffffffff	// 使用不可・博士の言葉
 };
 
 
 //============================================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �g�p�֐��擾
+ * 使用関数取得
  *
- * @param	prm		�擾�p�����[�^
- * @param	id		�֐�ID
+ * @param	prm		取得パラメータ
+ * @param	id		関数ID
  *
- * @return	�g�p�֐�
+ * @return	使用関数
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 ItemUse_FuncGet( u16 prm, u16 id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �g�p�`�F�b�N���[�N�쐬
+ * 使用チェックワーク作成
  *
- * @param	fsys	�t�B�[���h���[�N
- * @param	id		�`�F�b�N���[�N
+ * @param	fsys	フィールドワーク
+ * @param	id		チェックワーク
  *
  * @return	none
  */
@@ -95,21 +95,21 @@ GLOBAL void ItemUse_CheckWorkMake( FIELDSYS_WORK * fsys, ITEMCHECK_WORK * icwk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���̂ݎg�p�^�C�v�擾
+ * きのみ使用タイプ取得
  *
- * @param	iuwk	�A�C�e���g�p���[�N
+ * @param	iuwk	アイテム使用ワーク
  *
- * @retval	"TRUE = ���߂�"
- * @retval	"FALSE = ����ȊO"
+ * @retval	"TRUE = 埋める"
+ * @retval	"FALSE = それ以外"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BOOL ItemUse_KinomiTypeCheck( const ITEMCHECK_WORK * icwk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �֗��{�^���N������
+ * 便利ボタン起動処理
  *
- * @param	repw	�t�B�[���h���[�N
+ * @param	repw	フィールドワーク
  *
  * @return	none
  */

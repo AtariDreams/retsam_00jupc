@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	record_corner.c
- * @bfief	ƒŒƒR[ƒhƒR[ƒi[‰æ–Êˆ—
+ * @bfief	ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ç”»é¢å‡¦ç†
  * @author	Akito Mori
  * @date	06.03.26
  */
@@ -51,7 +51,7 @@
 
 #include "msgdata/msg_ev_win.h"
 
-// SE—p’è‹`
+// SEç”¨å®šç¾©
 #define RECORD_MOVE_SE		(SEQ_SE_DP_SELECT)
 #define RECORD_DECIDE_SE	(SEQ_SE_DP_SELECT)
 #define RECORD_BS_SE		(SEQ_SE_DP_SELECT)
@@ -60,7 +60,7 @@
 
 #define RECORD_1SEC_WAIT	( 45 )
 
-#include "record.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "record.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 #include "../wifi_worldtrade/worldtrade.naix"
 #include "../../field/poketch/poketch_arc.h"
 
@@ -75,7 +75,7 @@
 #endif
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 enum {
 	SEQ_IN = 0,
@@ -85,18 +85,18 @@ enum {
 };
 
 enum{
-	LIMIT_MODE_NONE,	///<§ŒÀ‚È‚µ
-	LIMIT_MODE_TRUE,	///<§ŒÀ”­¶’†
-	LIMIT_MODE_ONLY,	///<§ŒÀ”­¶’†(ˆêl‚Ì‚İ)
+	LIMIT_MODE_NONE,	///<åˆ¶é™ãªã—
+	LIMIT_MODE_TRUE,	///<åˆ¶é™ç™ºç”Ÿä¸­
+	LIMIT_MODE_ONLY,	///<åˆ¶é™ç™ºç”Ÿä¸­(ä¸€äººã®ã¿)
 };
 
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void VBlankFunc( void * work );
 static void VramBankSet(void);
 static void BgInit( GF_BGL_INI * ini );
@@ -135,7 +135,7 @@ static int  RecordCorner_BeaconControl( RECORD_WORK *wk, int plus );
 static void PadControl( RECORD_WORK *wk );
 
 
-// FuncTable‚©‚çƒV[ƒPƒ“ƒX‘JˆÚ‚ÅŒÄ‚Î‚ê‚éŠÖ”
+// FuncTableã‹ã‚‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é·ç§»ã§å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static int Record_MainInit( RECORD_WORK *wk, int seq );
 static int Record_MainNormal( RECORD_WORK *wk, int seq );
 static int Record_StartRecordCommand( RECORD_WORK *wk, int seq );
@@ -170,7 +170,7 @@ static int Record_FroceEndMesWait( RECORD_WORK *wk, int seq );
 
 
 
-// ƒŒƒR[ƒhƒR[ƒi[ƒƒCƒ“ƒV[ƒPƒ“ƒX—pŠÖ””z—ñ’è‹`
+// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨é–¢æ•°é…åˆ—å®šç¾©
 static int (*FuncTable[])(RECORD_WORK *wk, int seq)={
 	Record_MainInit,				// 	RECORD_MODE_INIT  = 0, 
 	Record_NewMember, 		        // 	RECORD_MODE_NEWMEMBER,
@@ -197,12 +197,12 @@ static int (*FuncTable[])(RECORD_WORK *wk, int seq)={
 	Record_StartSelect,				// 	RECORD_MODE_START_SELECT,
 	Record_StartSelectWait,         // 	RECORD_MODE_START_SELECT_WAIT
 	Record_StartRecordCommand,		//  RECORD_MODE_START_RECORD_COMMAND
-	Record_RecordSendData,			//	RECORD_MODE_RECORD_SEND_DATA ‚±‚±‚ªƒŒƒR[ƒhƒf[ƒ^óMƒ`ƒFƒbƒN
+	Record_RecordSendData,			//	RECORD_MODE_RECORD_SEND_DATA ã“ã“ãŒãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿å—ä¿¡ãƒã‚§ãƒƒã‚¯
 
-	// ‚±‚±‚ç‚Ö‚ñ‚É¬‚º‚éˆ—‚ğ‘‚¢‚½‚è
-	// ƒZ[ƒu‚·‚éƒV[ƒPƒ“ƒX‚ğ‘‚¢‚½‚è‚µ‚æ‚¤
+	// ã“ã“ã‚‰ã¸ã‚“ã«æ··ãœã‚‹å‡¦ç†ã‚’æ›¸ã„ãŸã‚Š
+	// ã‚»ãƒ¼ãƒ–ã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’æ›¸ã„ãŸã‚Šã—ã‚ˆã†
 
-	Record_RecordMixData,			//	RECORD_MODE_RECORD_MIX_DATA	‚Ü‚º‚éƒV[ƒPƒ“ƒX
+	Record_RecordMixData,			//	RECORD_MODE_RECORD_MIX_DATA	ã¾ãœã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	
 	Record_CommSaveStart,			//  RECORD_MODE_COMM_SAVE_START
 	Record_CommSave,				//  RECORD_MODE_COMM_SAVE
@@ -215,17 +215,17 @@ static int (*FuncTable[])(RECORD_WORK *wk, int seq)={
 
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT RecordCornerProc_Init( PROC * proc, int * seq )
@@ -235,15 +235,15 @@ PROC_RESULT RecordCornerProc_Init( PROC * proc, int * seq )
 
 	switch(*seq){
 	case 0:
-		sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-		sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
 		GX_SetVisiblePlane( 0 );
 		GXS_SetVisiblePlane( 0 );
 
-		// ƒŒƒR[ƒhƒR[ƒi[—pƒq[ƒvì¬
+		// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ç”¨ãƒ’ãƒ¼ãƒ—ä½œæˆ
 		sys_CreateHeap( HEAPID_BASE_APP, HEAPID_RECORD, 0x41000 );
 
 		p_handle = ArchiveDataHandleOpen( ARC_RECORD_GRA, HEAPID_RECORD );
@@ -254,66 +254,66 @@ PROC_RESULT RecordCornerProc_Init( PROC * proc, int * seq )
 		wk->param = (RECORD_INPUT_PARAM*)PROC_GetParentWork( proc );
 		wk->savedata = wk->param->sv;
 		
-		// •¶š—ñƒ}ƒl[ƒWƒƒ[¶¬
+		// æ–‡å­—åˆ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”Ÿæˆ
 		wk->WordSet    = WORDSET_Create( HEAPID_RECORD );
 		wk->MsgManager = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_record_dat, HEAPID_RECORD );
 
 		sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-		// VRAM ƒoƒ“ƒNİ’è
+		// VRAM ãƒãƒ³ã‚¯è¨­å®š
 		VramBankSet();
 		
-		// BGLƒŒƒWƒXƒ^İ’è
+		// BGLãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
 		BgInit( wk->bgl );					
 
 		WIPE_ResetBrightness( WIPE_DISP_MAIN );
 		WIPE_ResetBrightness( WIPE_DISP_SUB );
 
-		// ƒƒCƒvƒtƒF[ƒhŠJn
+		// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_HOLEIN, WIPE_TYPE_HOLEIN, WIPE_FADE_BLACK, 16, 1, HEAPID_RECORD );
 		
 
-		//BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+		//BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 		BgGraphicSet( wk, p_handle );
 
-//		InitTPSystem();						// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+//		InitTPSystem();						// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 //		InitTPNoBuff(2);
   
-		// VBlankŠÖ”ƒZƒbƒg
+		// VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
 		sys_VBlankFuncChange( VBlankFunc, wk );	
   
 
-		// ƒ[ƒN‰Šú‰»
+		// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		InitWork( wk, p_handle );
 
-		// OBJƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+		// OBJã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 		char_pltt_manager_init();
 
-		// CellActorƒVƒXƒeƒ€‰Šú‰»
+		// CellActorã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 		InitCellActor(wk, p_handle);
 		
-		// CellActro•\¦“o˜^
+		// CellActroè¡¨ç¤ºç™»éŒ²
 		SetCellActor(wk);
 
-		// BMPWIN“o˜^E•`‰æ
+		// BMPWINç™»éŒ²ãƒ»æç”»
 		BmpWinInit(wk,proc);
 
-		// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(–¼‘O“ü—Í)(BGMˆøŒp‚¬)
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(åå‰å…¥åŠ›)(BGMå¼•ç¶™ã)
 		Snd_DataSetByScene( SND_SCENE_SUB_NAMEIN, 0, 0 );
 
-		// ‰æ–Êo—Í‚ğã‰º“ü‚ê‘Ö‚¦‚é
+		// ç”»é¢å‡ºåŠ›ã‚’ä¸Šä¸‹å…¥ã‚Œæ›¿ãˆã‚‹
 //		GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
-		// ’ÊMƒRƒ}ƒ“ƒh‚ğŒğŠ·ƒŠƒXƒg—p‚É•ÏX
+		// é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ã‚’äº¤æ›ãƒªã‚¹ãƒˆç”¨ã«å¤‰æ›´
 		CommCommandRecordInitialize( wk );
 
-		// ƒŒƒR[ƒhƒR[ƒi[ƒ‚[ƒh‚É•ÏX
+		// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«å¤‰æ›´
 		CommStateUnionRecordCornerChange();
 
-        // 3‘ä‚Ü‚ÅÚ‘±‰Â”\‚É‘‚«Š·‚¦
+        // 3å°ã¾ã§æ¥ç¶šå¯èƒ½ã«æ›¸ãæ›ãˆ
         CommStateSetLimitNum(3);
 
-		// e‚¾‚Á‚½‚çuƒŒƒR[ƒh’ÊM•åW’†v‚Éƒr[ƒRƒ“‘‚«Š·‚¦
+		// è¦ªã ã£ãŸã‚‰ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰é€šä¿¡å‹Ÿé›†ä¸­ã€ã«ãƒ“ãƒ¼ã‚³ãƒ³æ›¸ãæ›ãˆ
 		if(CommGetCurrentID()==0){
 			Union_BeaconChange( UNION_PARENT_MODE_RECORD_FREE );
 		}
@@ -344,12 +344,12 @@ static int debug_obj_no = 0;
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 
@@ -364,13 +364,13 @@ PROC_RESULT RecordCornerProc_Main( PROC * proc, int * seq )
 	switch( *seq ){
 	case SEQ_IN:
 		if( WIPE_SYS_EndCheck() ){
-			// ƒƒCƒvˆ—‘Ò‚¿
+			// ãƒ¯ã‚¤ãƒ—å‡¦ç†å¾…ã¡
 			*seq = SEQ_MAIN;
 
-			// ©•ª‚ªq‹@‚ÅÚ‘±‘ä”‚ª‚Q‘äˆÈã‚¾‚Á‚½ê‡‚Í‚à‚¤ŠG‚ª•`‚©‚ê‚Ä‚¢‚é
+			// è‡ªåˆ†ãŒå­æ©Ÿã§æ¥ç¶šå°æ•°ãŒï¼’å°ä»¥ä¸Šã ã£ãŸå ´åˆã¯ã‚‚ã†çµµãŒæã‹ã‚Œã¦ã„ã‚‹
 			if(CommGetCurrentID()!=0){
 				if(MyStatusGetNum()>2){
-					// q‹@—“üƒŠƒNƒGƒXƒg
+					// å­æ©Ÿä¹±å…¥ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 					CommSendData(CR_RECORD_CHILD_JOIN, NULL, 0);
 				}
 			}
@@ -379,23 +379,23 @@ PROC_RESULT RecordCornerProc_Main( PROC * proc, int * seq )
 		break;
 
 	case SEQ_MAIN:
-		// ƒJ[ƒ\ƒ‹ˆÚ“®
+		// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 
-		// ƒV[ƒPƒ“ƒX–ˆ‚Ì“®ì
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ¯ã®å‹•ä½œ
 		if(FuncTable[wk->seq]!=NULL){
 			*seq = (*FuncTable[wk->seq])( wk, *seq );
             RECORD_PRINT("RS %d %d\n",wk->seq,*seq);
 		}
-		if(wk->record_execute == FALSE){	//ƒŒƒR[ƒh¬‚º’†‚Ì‚ÍXV‚µ‚È‚¢
+		if(wk->record_execute == FALSE){	//ãƒ¬ã‚³ãƒ¼ãƒ‰æ··ãœä¸­ã®æ™‚ã¯æ›´æ–°ã—ãªã„
 			NameCheckPrint( wk->TrainerNameWin, 0, GF_PRINTCOLOR_MAKE(1, 3, 0), wk );
 		}
 		TrainerObjFunc(wk);
 
-		// •Ï‰»‚µ‚½l”‚É‰‚¶‚Äƒr[ƒRƒ“‚ğ•Ï‚¦‚é
+		// å¤‰åŒ–ã—ãŸäººæ•°ã«å¿œã˜ã¦ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å¤‰ãˆã‚‹
 		if(CommGetCurrentID()==0){
 			int temp = RecordCorner_BeaconControl( wk, 1 );
 			if(*seq==SEQ_MAIN){
-				// I—¹ƒV[ƒPƒ“ƒX‚È‚Ç‚É—¬‚ê‚Ä‚¢‚È‚¯‚ê‚Î•ÏX‚·‚é
+				// çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãªã©ã«æµã‚Œã¦ã„ãªã‘ã‚Œã°å¤‰æ›´ã™ã‚‹
 				*seq = temp;
 			}
 		}
@@ -412,25 +412,25 @@ PROC_RESULT RecordCornerProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	}
-	CLACT_Draw( wk->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+	CLACT_Draw( wk->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 
 	return PROC_RES_CONTINUE;
 }
 
 #define DEFAULT_NAME_MAX		18
 
-// ƒ_ƒCƒ„Eƒp[ƒ‹‚Å•Ï‚í‚é‚ñ‚¾‚ë‚¤
+// ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ã§å¤‰ã‚ã‚‹ã‚“ã ã‚ã†
 #define MALE_NAME_START			0
 #define FEMALE_NAME_START		18
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT RecordCornerProc_End( PROC * proc, int * seq )
@@ -438,68 +438,68 @@ PROC_RESULT RecordCornerProc_End( PROC * proc, int * seq )
 	RECORD_WORK  *wk    = PROC_GetWork( proc );
 	int i;
 
-	// ƒpƒŒƒbƒg“]‘—ƒ^ƒXƒNI—¹
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚¿ã‚¹ã‚¯çµ‚äº†
 	TCB_Delete( wk->trans_tcb );
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ğ•ú
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 
-	// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 //	CLACT_U_CharManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES]);
 //	CLACT_U_CharManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES]);
 	CLACT_U_CharManagerDelete(wk->resObjTbl[CHARA_RES][CLACT_U_CHAR_RES]);
 
-	// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 //	CLACT_U_PlttManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES]);
 //	CLACT_U_PlttManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES]);
 	CLACT_U_PlttManagerDelete(wk->resObjTbl[CHARA_RES][CLACT_U_PLTT_RES]);
 		
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for(i=0;i<CLACT_RESOURCE_NUM;i++){
 		CLACT_U_ResManagerDelete(wk->resMan[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->clactSet);
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
-	// ƒŠƒ\[ƒX‰ğ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	DeleteCharManager();
 	DeletePlttManager();
 
-	// BMPƒEƒBƒ“ƒhƒEŠJ•ú
+	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
 	BmpWinDelete( wk );
 
-	// BGLíœ
+	// BGLå‰Šé™¤
 	BgExit( wk->bgl );
 
-	// ’ÊMI—¹
+	// é€šä¿¡çµ‚äº†
 //	CommStateExitUnion();
     CommStateSetLimitNum(2);
 	CommStateUnionBconCollectionRestart();
 	UnionRoomView_ObjInit( wk->param->union_view );
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€I—¹
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
 //	StopTP();							
 
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ğ•ú
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	MSGMAN_Delete( wk->MsgManager );
 	WORDSET_Delete( wk->WordSet );
 
-	// ƒ[ƒN‰ğ•ú
+	// ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	FreeWork( wk );
 
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	// “ü‚ê‘Ö‚í‚Á‚Ä‚¢‚½ã‰º‰æ–Êo—Í‚ğŒ³‚É–ß‚·
+	// å…¥ã‚Œæ›¿ã‚ã£ã¦ã„ãŸä¸Šä¸‹ç”»é¢å‡ºåŠ›ã‚’å…ƒã«æˆ»ã™
 	GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-	// ƒr[ƒRƒ“‘‚«Š·‚¦
+	// ãƒ“ãƒ¼ã‚³ãƒ³æ›¸ãæ›ãˆ
 	Union_BeaconChange( UNION_PARENT_MODE_FREE );
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
 	sys_DeleteHeap( HEAPID_RECORD );
 
@@ -518,7 +518,7 @@ static const u8 palanimetable[][2]={
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒpƒŒƒbƒg“]‘—ƒ^ƒXƒN
+ * @brief   ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚¿ã‚¹ã‚¯
  *
  * @param   tcb		
  * @param   work		
@@ -531,7 +531,7 @@ static void TransPal( TCB_PTR tcb, void *work )
 	RECORD_WORK     *wk  = (RECORD_WORK *)work;
 	VTRANS_PAL_WORK *pal = &wk->palwork;
 	
-	// ƒpƒŒƒbƒgƒAƒjƒ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 	if(pal->sw){
 		if(pal->wait>palanimetable[pal->seq][0]){
 			u16 *src;
@@ -542,7 +542,7 @@ static void TransPal( TCB_PTR tcb, void *work )
 			}
 			src = (u16*)pal->palbuf->pRawData;
 			GX_LoadOBJPltt(&src[16*palanimetable[pal->seq][1]], 0, 32);
-//			OS_Printf("ƒpƒŒƒbƒg“]‘— seq = %d \n",pal->seq);
+//			OS_Printf("ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ seq = %d \n",pal->seq);
 		}else{
 			wk->palwork.wait++;
 		}
@@ -554,7 +554,7 @@ static void TransPal( TCB_PTR tcb, void *work )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -563,11 +563,11 @@ static void TransPal( TCB_PTR tcb, void *work )
 //--------------------------------------------------------------------------------------------
 static void VBlankFunc( void * work )
 {
-	// ƒZƒ‹ƒAƒNƒ^[
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 	
 	GF_BGL_VBlankFunc( (GF_BGL_INI*)work );
@@ -579,7 +579,7 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMİ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -589,29 +589,29 @@ static void VBlankFunc( void * work )
 static void VramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGİ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -626,7 +626,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	// ƒƒCƒ“‰æ–Ê•¶š”Å0
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢æ–‡å­—ç‰ˆ0
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -639,7 +639,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 	}
 
-	// ƒƒCƒ“‰æ–Ê1
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢1
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -650,7 +650,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME1_S );
 	}
 
-	// ƒƒCƒ“‰æ–Ê”wŒi
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -662,7 +662,7 @@ static void BgInit( GF_BGL_INI * ini )
 	}
 
 
-	// ƒTƒu‰æ–ÊƒeƒLƒXƒg–Ê
+	// ã‚µãƒ–ç”»é¢ãƒ†ã‚­ã‚¹ãƒˆé¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -673,7 +673,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME0_M );
 	}
 
-	// ƒTƒu‰æ–Ê”wŒi–Ê
+	// ã‚µãƒ–ç”»é¢èƒŒæ™¯é¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -694,7 +694,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 //------------------------------------------------------------------
 /**
- * ‚¨ŠG‚©‚«ƒ[ƒN‰Šú‰»
+ * ãŠçµµã‹ããƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		RECORD_WORK*
  *
@@ -714,22 +714,22 @@ static void InitWork( RECORD_WORK *wk, ARCHANDLE* p_handle )
 		wk->TrainerReq[i]       = RECORD_EXIST_NO;
 
 	}
-	// •¶š—ñƒoƒbƒtƒ@ì¬
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->TalkString  = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_RECORD );
 	wk->TitleString = STRBUF_Create( TITLE_MESSAGE_BUF_NUM, HEAPID_RECORD );
 
 	wk->seq = RECORD_MODE_INIT;
 	
-	// ƒŒƒR[ƒh‚±‚¤‚©‚ñ‚Ú‚µ‚ã‚¤’†I•¶š—ñæ“¾
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰ã“ã†ã‹ã‚“ã¼ã—ã‚…ã†ä¸­ï¼æ–‡å­—åˆ—å–å¾—
 	MSGMAN_GetString(  wk->MsgManager, msg_union_record_title_01, wk->TitleString );
 
-	// ƒtƒB[ƒ‹ƒhOBJ‰æ‘œ“Ç‚İ‚İ
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”»åƒèª­ã¿è¾¼ã¿
 	LoadFieldObjData( wk, p_handle );
 
 	wk->ObjPaletteTable = UnionView_PalleteTableAlloc( HEAPID_RECORD );
 
 
-	// ƒpƒŒƒbƒgƒAƒjƒ—pƒ[ƒN‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	wk->palwork.sw       = 0;
 	wk->palwork.wait     = 0;
 	wk->palwork.seq      = 0;
@@ -741,7 +741,7 @@ static void InitWork( RECORD_WORK *wk, ARCHANDLE* p_handle )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ[ƒN‰ğ•ú
+ * $brief   ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   wk		
  *
@@ -752,13 +752,13 @@ static void FreeWork( RECORD_WORK *wk )
 {
 	int i;
 
-	// ƒtƒB[ƒ‹ƒhOBJ‰æ‘œ‰ğ•ú
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”»åƒè§£æ”¾
 	FreeFieldObjData( wk );
 
-	// ‹@ŠB‚ÌƒpƒŒƒbƒgƒAƒjƒ—pƒf[ƒ^‰ğ•ú
+	// æ©Ÿæ¢°ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ç”¨ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	sys_FreeMemoryEz(wk->palwork.paldata);
 
-	// ƒ†ƒjƒIƒ“OBJ‚ÌƒpƒŒƒbƒgƒf[ƒ^‰ğ•ú
+	// ãƒ¦ãƒ‹ã‚ªãƒ³OBJã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	sys_FreeMemoryEz(wk->ObjPaletteTable);
 
 	for(i=0;i<RECORD_CORNER_MEMBER_MAX;i++){
@@ -771,9 +771,9 @@ static void FreeWork( RECORD_WORK *wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -793,9 +793,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -804,21 +804,21 @@ static void BgGraphicSet( RECORD_WORK * wk, ARCHANDLE* p_handle )
 {
 	GF_BGL_INI *bgl = wk->bgl;
 
-	// ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_HDL_PalSet( p_handle,  NARC_record_record_s_nclr, PALTYPE_MAIN_BG, 0, 16*16*2, HEAPID_RECORD );
 	ArcUtil_PalSet( ARC_POKETCH_IMG, NARC_poketch_before_nclr,  PALTYPE_SUB_BG,  0, 16*2,   HEAPID_RECORD );
 	
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, 13*0x20, HEAPID_RECORD );
 	TalkFontPaletteLoad( PALTYPE_SUB_BG,  13*0x20, HEAPID_RECORD );
 
 
 
 
-	// ƒƒCƒ“‰æ–ÊBG2ƒLƒƒƒ‰“]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚­ãƒ£ãƒ©è»¢é€
 //	ArcUtil_BgCharSet( ARC_RECORD_GRA, NARC_record_mainbg_lz_ncgr, bgl, GF_BGL_FRAME2_S, 0, 32*8*0x20, 1, HEAPID_RECORD);
 
-	// ƒƒCƒ“‰æ–ÊBG2ƒXƒNƒŠ[ƒ““]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 //	ArcUtil_ScrnSet(   ARC_RECORD_GRA, NARC_record_mainbg_lz_nscr, bgl, GF_BGL_FRAME2_S, 0, 32*24*2, 1, HEAPID_RECORD);
 
 
@@ -826,13 +826,13 @@ static void BgGraphicSet( RECORD_WORK * wk, ARCHANDLE* p_handle )
 	ArcUtil_BgCharSet( ARC_POKETCH_IMG, NARC_poketch_before_lz_ncgr, bgl, GF_BGL_FRAME2_S, 0, 0, 1, HEAPID_RECORD);
 	ArcUtil_ScrnSet(   ARC_POKETCH_IMG, NARC_poketch_before_lz_nscr, bgl, GF_BGL_FRAME2_S, 0, 0, 1, HEAPID_RECORD);
 
-	// ƒTƒu‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_record_subbg_lz_ncgr, bgl, GF_BGL_FRAME1_M, 0, 32*8*0x20, 1, HEAPID_RECORD);
 
-	// ƒTƒu‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_record_subbg_lz_nscr, bgl, GF_BGL_FRAME1_M, 0, 32*24*2, 1, HEAPID_RECORD);
 
-	// ƒTƒu‰æ–Ê‰ï˜bƒEƒCƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// ã‚µãƒ–ç”»é¢ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	TalkWinGraphicSet(
 				bgl, GF_BGL_FRAME0_M, 1, FLD_MESFRAME_PAL,  CONFIG_GetWindowType(wk->param->config), HEAPID_RECORD );
 
@@ -842,7 +842,7 @@ static void BgGraphicSet( RECORD_WORK * wk, ARCHANDLE* p_handle )
 }
 
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define RECORD_CHAR_CONT_NUM				(20)
 #define RECORD_CHAR_VRAMTRANS_MAIN_SIZE		(2048)
 #define RECORD_CHAR_VRAMTRANS_SUB_SIZE		(2048)
@@ -850,13 +850,13 @@ static void BgGraphicSet( RECORD_WORK * wk, ARCHANDLE* p_handle )
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 static void char_pltt_manager_init(void)
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			RECORD_CHAR_CONT_NUM,
@@ -866,10 +866,10 @@ static void char_pltt_manager_init(void)
 		};
 		InitCharManager(&cm);
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(RECORD_PLTT_CONT_NUM, HEAPID_RECORD);
 
-	// “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 }
@@ -877,9 +877,9 @@ static void char_pltt_manager_init(void)
 
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‰æ–Ê—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param   wk		ƒŒ[ƒ_[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¬ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -889,99 +889,99 @@ static void InitCellActor(RECORD_WORK *wk, ARCHANDLE* p_handle)
 	int i;
 	
 	
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			0, 126,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 126,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 126,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 126,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_RECORD);
 	
 	
 	
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->clactSet = CLACT_U_SetEasyInit( 30, &wk->renddata, HEAPID_RECORD );
 	
 	CLACT_U_SetSubSurfaceMatrix( &wk->renddata, 0, NAMEIN_SUB_ACTOR_DISTANCE );
 
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->resMan[i] = CLACT_U_ResManagerInit(3, i, HEAPID_RECORD);
 	}
 
 
-	//---------ã‰æ–Ê—p-------------------
+	//---------ä¸Šç”»é¢ç”¨-------------------
 #if 0
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(wk->resMan[CLACT_U_CHAR_RES], 
 							ARC_RECORD_GRA, NARC_record_obj_lz_ncgr, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_RECORD);
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(wk->resMan[CLACT_U_PLTT_RES],
 							ARC_RECORD_GRA, NARC_record_record_m_nclr, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAPID_RECORD);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(wk->resMan[CLACT_U_CELL_RES],
 							ARC_RECORD_GRA, NARC_record_obj_lz_ncer, 1, 0, CLACT_U_CELL_RES,HEAPID_RECORD);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(wk->resMan[CLACT_U_CELLANM_RES],
 							ARC_RECORD_GRA, NARC_record_obj_lz_nanr, 1, 0, CLACT_U_CELLANM_RES,HEAPID_RECORD);
 #endif
 
-	//---------ã‰æ–Êl•¨OBJ“Ç‚İ‚İ-------------------
+	//---------ä¸Šç”»é¢äººç‰©OBJèª­ã¿è¾¼ã¿-------------------
 
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[CHARA_RES][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 							p_handle, NARC_record_obj_s_lz_ncgr, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_RECORD);
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[CHARA_RES][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 							p_handle, NARC_record_record_s_obj_nclr, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 15, HEAPID_RECORD);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[CHARA_RES][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 							p_handle, NARC_record_obj_s_lz_ncer, 1, 2, CLACT_U_CELL_RES,HEAPID_RECORD);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[CHARA_RES][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 							p_handle, NARC_record_obj_s_lz_nanr, 1, 2, CLACT_U_CELLANM_RES,HEAPID_RECORD);
 
 
-	//---------‰º‰æ–Ê—p-------------------
+	//---------ä¸‹ç”»é¢ç”¨-------------------
 
 
 
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 //	wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(wk->resMan[CLACT_U_CHAR_RES], 
 //							ARC_RECORD_GRA, NARC_record_obj_lz_ncgr, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAPID_RECORD);
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 //	wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(wk->resMan[CLACT_U_PLTT_RES],
 //							ARC_RECORD_GRA, NARC_record_record_m_nclr, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAPID_RECORD);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 //	wk->resObjTbl[SUB_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(wk->resMan[CLACT_U_CELL_RES],
 //							ARC_RECORD_GRA, NARC_record_obj_lz_ncer, 1, 1, CLACT_U_CELL_RES,HEAPID_RECORD);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 //	wk->resObjTbl[SUB_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(wk->resMan[CLACT_U_CELLANM_RES],
 //							ARC_RECORD_GRA, NARC_record_obj_lz_nanr, 1, 1, CLACT_U_CELLANM_RES,HEAPID_RECORD);
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 
-	// Chara“]‘—
+	// Charaè»¢é€
 //	CLACT_U_CharManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] );
 //	CLACT_U_CharManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] );
 	CLACT_U_CharManagerSet( wk->resObjTbl[CHARA_RES][CLACT_U_CHAR_RES] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 //	CLACT_U_PlttManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] );
 //	CLACT_U_PlttManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] );
 	CLACT_U_PlttManagerSet( wk->resObjTbl[CHARA_RES][CLACT_U_PLTT_RES] );
@@ -1007,7 +1007,7 @@ static const u16 obj_pos_tbl[][2]={
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   wk			RECORD_WORK*
  *
@@ -1018,7 +1018,7 @@ static void SetCellActor(RECORD_WORK *wk)
 {
 	int i;
 #if 0
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 	CLACT_U_MakeHeader(&wk->clActHeader_m, 0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 	0, 0,
 	wk->resMan[CLACT_U_CHAR_RES],
@@ -1045,7 +1045,7 @@ static void SetCellActor(RECORD_WORK *wk)
 
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 
 		add.ClActSet	= wk->clactSet;
@@ -1060,9 +1060,9 @@ static void SetCellActor(RECORD_WORK *wk)
 		add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 		add.heap		= HEAPID_RECORD;
 
-		//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-		// ^‚ñ’†‚Ì‹@ŠB‚¾‚¯‚Í•\¦
+		// çœŸã‚“ä¸­ã®æ©Ÿæ¢°ã ã‘ã¯è¡¨ç¤º
 		add.mat.x = FX32_ONE *   obj_pos_tbl[0][0];
 		add.mat.y = FX32_ONE *   obj_pos_tbl[0][1];
 		wk->MainActWork[0] = CLACT_Add(&add);
@@ -1070,7 +1070,7 @@ static void SetCellActor(RECORD_WORK *wk)
 //		CLACT_AnmChg( wk->MainActWork[0], 0 );
 		CLACT_SetDrawFlag( wk->MainActWork[0], 1 );
 
-		// ƒƒCƒ“‰æ–Ê—p(l•¨‚Ì“o˜^j
+		// ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨(äººç‰©ã®ç™»éŒ²ï¼‰
 		for(i=0;i<5;i++){
 			add.mat.x = FX32_ONE *   obj_pos_tbl[i+1][0];
 			add.mat.y = FX32_ONE *   obj_pos_tbl[i+1][1];
@@ -1081,46 +1081,46 @@ static void SetCellActor(RECORD_WORK *wk)
 		}
 
 
-		//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
-		// ƒTƒu‰æ–Ê—p(–îˆó‚Ì“o˜^j
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
+		// ã‚µãƒ–ç”»é¢ç”¨(çŸ¢å°ã®ç™»éŒ²ï¼‰
 		for(i=0;i<5;i++){
 			add.mat.x = FX32_ONE *   TRAINER_NAME_POS_X;
 			add.mat.y = FX32_ONE * ( TRAINER_NAME_POS_Y + TRAINER_NAME_POS_SPAN*i ) + NAMEIN_SUB_ACTOR_DISTANCE;
 //			wk->SubActWork[i] = CLACT_Add(&add);
 //			CLACT_SetAnmFlag(wk->SubActWork[i],1);
 //			CLACT_AnmChg( wk->SubActWork[i], i );
-//			CLACT_DrawPriorityChg(wk->SubActWork[i], 1);	// ‚»‚ê‚¼‚ê‚ÌƒAƒNƒ^[‚Ìƒvƒ‰ƒCƒIƒŠƒeƒBİ’è
+//			CLACT_DrawPriorityChg(wk->SubActWork[i], 1);	// ãã‚Œãã‚Œã®ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£è¨­å®š
 //			CLACT_SetDrawFlag( wk->SubActWork[i], 0 );
 			
 		}
 		
 	}	
-	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒƒCƒ“‰æ–ÊOBJ–Ê‚n‚m
-	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒTƒu‰æ–ÊOBJ–Ê‚n‚m
+	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ãƒ¡ã‚¤ãƒ³ç”»é¢OBJé¢ï¼¯ï¼®
+	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ã‚µãƒ–ç”»é¢OBJé¢ï¼¯ï¼®
 	
 }
 
-// ‚¨‚¦‚©‚«ƒ{[ƒhBMPi‰º‰æ–Êj
+// ãŠãˆã‹ããƒœãƒ¼ãƒ‰BMPï¼ˆä¸‹ç”»é¢ï¼‰
 #define OEKAKI_BOARD_POSX	 ( 1 )
 #define OEKAKI_BOARD_POSY	 ( 2 )
 #define OEKAKI_BOARD_W	 ( 30 )
 #define OEKAKI_BOARD_H	 ( 15 )
 
 
-// –¼‘O•\¦BMPiã‰æ–Êj
+// åå‰è¡¨ç¤ºBMPï¼ˆä¸Šç”»é¢ï¼‰
 #define RECORD_NAME_BMP_W	 ( 16 )
 #define RECORD_NAME_BMP_H	 ( 11 )
 #define RECORD_NAME_BMP_SIZE (RECORD_NAME_BMP_W * RECORD_NAME_BMP_H)
 
 
-// u‚â‚ß‚év•¶š—ñBMPi‰º‰æ–Êj
+// ã€Œã‚„ã‚ã‚‹ã€æ–‡å­—åˆ—BMPï¼ˆä¸‹ç”»é¢ï¼‰
 #define OEKAKI_END_BMP_X	( 26 )
 #define OEKAKI_END_BMP_Y	( 20 )
 #define OEKAKI_END_BMP_W	( 6  )
 #define OEKAKI_END_BMP_H	( 2  )
 
 
-// ‰ï˜bƒEƒCƒ“ƒhƒE•\¦ˆÊ’u’è‹`
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä½ç½®å®šç¾©
 #define RECORD_TALK_X		(  2 )
 #define RECORD_TALK_Y		(  19 )
 
@@ -1137,7 +1137,7 @@ static void SetCellActor(RECORD_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶šƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -1146,26 +1146,26 @@ static void SetCellActor(RECORD_WORK *wk)
 //------------------------------------------------------------------
 static void BmpWinInit(RECORD_WORK *wk, PROC* proc)
 {
-	// ---------- ƒƒCƒ“‰æ–Ê ------------------
+	// ---------- ãƒ¡ã‚¤ãƒ³ç”»é¢ ------------------
 
-	// BG1–ÊBMPi‚â‚ß‚éjƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG1é¢BMPï¼ˆã‚„ã‚ã‚‹ï¼‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->EndWin, GF_BGL_FRAME1_S,
 	OEKAKI_END_BMP_X, OEKAKI_END_BMP_Y, OEKAKI_END_BMP_W, OEKAKI_END_BMP_H, 13,  1+OEKAKI_BOARD_W*OEKAKI_BOARD_H );
 
 	GF_BGL_BmpWinDataFill( &wk->EndWin, 0x0000 );
 
-	// ----------- ƒTƒu‰æ–Ê–¼‘O•\¦BMPŠm•Û ------------------
-	// BG0–ÊBMPi‰ï˜bƒEƒCƒ“ƒhƒEjŠm•Û
+	// ----------- ã‚µãƒ–ç”»é¢åå‰è¡¨ç¤ºBMPç¢ºä¿ ------------------
+	// BG0é¢BMPï¼ˆä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼‰ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		RECORD_TALK_X, RECORD_TALK_Y, FLD_MSG_WIN_SX, FLD_MSG_WIN_SY, 13,  RECORD_MSG_WIN_OFFSET );
 	GF_BGL_BmpWinDataFill( &wk->MsgWin, 0x0f0f );
 
-	// BG0–ÊBMPiƒ^ƒCƒgƒ‹ƒEƒCƒ“ƒhƒEjŠm•Û
+	// BG0é¢BMPï¼ˆã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼‰ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->TitleWin, GF_BGL_FRAME0_M,
 		RECORD_TITLE_X, RECORD_TITLE_Y, RECORD_TITLE_W, RECORD_TITLE_H, 15,  RECORD_TITLE_WIN_OFFSET );
 	CenteringPrint(&wk->TitleWin, wk->TitleString, MSG_ALLPUT);
 
-	// –¼‘O•\¦ƒEƒCƒ“ƒhƒE
+	// åå‰è¡¨ç¤ºã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 	{
 		int i;
 			GF_BGL_BmpWinAdd(wk->bgl, &wk->TrainerNameWin[0], GF_BGL_FRAME0_M,	
@@ -1173,7 +1173,7 @@ static void BmpWinInit(RECORD_WORK *wk, PROC* proc)
 
 			GF_BGL_BmpWinDataFill( &wk->TrainerNameWin[0], 0 );
 
-		//Å‰‚ÉŒ©‚¦‚Ä‚¢‚é–Ê‚È‚Ì‚Å•¶šƒpƒlƒ‹•`‰æ‚Æ“]‘—‚às‚¤
+		//æœ€åˆã«è¦‹ãˆã¦ã„ã‚‹é¢ãªã®ã§æ–‡å­—ãƒ‘ãƒãƒ«æç”»ã¨è»¢é€ã‚‚è¡Œã†
 		NameCheckPrint( wk->TrainerNameWin, 0, GF_PRINTCOLOR_MAKE(1, 3, 0), wk );
 
 
@@ -1193,7 +1193,7 @@ static void BmpWinInit(RECORD_WORK *wk, PROC* proc)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒZƒ“ƒ^ƒŠƒ“ƒO‚µ‚ÄƒvƒŠƒ“ƒg
+ * $brief   ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã—ã¦ãƒ—ãƒªãƒ³ãƒˆ
  *
  * @param   win		GF_BGL_BMPWIN
  * @param   strbuf	
@@ -1213,7 +1213,7 @@ static void CenteringPrint(GF_BGL_BMPWIN *win, STRBUF *strbuf, int wait)
 }
 
 
-// ‚Í‚¢E‚¢‚¢‚¦BMPi‰º‰æ–Êj
+// ã¯ã„ãƒ»ã„ã„ãˆBMPï¼ˆä¸‹ç”»é¢ï¼‰
 #define YESNO_WIN_FRAME_CHAR	( 1 + TALK_WIN_CGX_SIZ )
 #define YESNO_CHARA_OFFSET		( 1 + TALK_WIN_CGX_SIZ + MENU_WIN_CGX_SIZ + FLD_MSG_WIN_SX*FLD_MSG_WIN_SY )
 #define YESNO_WINDOW_X			( 22 )
@@ -1225,7 +1225,7 @@ static void CenteringPrint(GF_BGL_BMPWIN *win, STRBUF *strbuf, int wait)
 
 //------------------------------------------------------------------
 /**
- * $brief   Šm•Û‚µ‚½BMPWIN‚ğ‰ğ•ú
+ * $brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   wk		
  *
@@ -1252,12 +1252,12 @@ static void BmpWinDelete( RECORD_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * ˆÚ“®‚ÌŒ‹‰ÊƒJ[ƒ\ƒ‹‚ÌŒ`ó‚ª‚Ç‚Ì‚æ‚¤‚É•Ï‚í‚é‚©‚ğŒˆ’è‚·‚é
- * •¶š‚Ìã‚Å‚ ‚ê‚ÎA³•ûŒ`‚ÌƒJ[ƒ\ƒ‹Aƒ{ƒ^ƒ“‚Ìã‚Å‚ ‚ê‚Î’·•ûŒ`‚ÌƒJ[ƒ\ƒ‹
- * •¶š‚ÌXV‚ªs‚í‚ê‚é‚±‚Æ‚ÅAƒTƒu‰æ–Ê‚Ì’†‚ÌƒtƒHƒ“ƒg‚ÌXV‚às‚í‚ê‚é
+ * ç§»å‹•ã®çµæœã‚«ãƒ¼ã‚½ãƒ«ã®å½¢çŠ¶ãŒã©ã®ã‚ˆã†ã«å¤‰ã‚ã‚‹ã‹ã‚’æ±ºå®šã™ã‚‹
+ * æ–‡å­—ã®ä¸Šã§ã‚ã‚Œã°ã€æ­£æ–¹å½¢ã®ã‚«ãƒ¼ã‚½ãƒ«ã€ãƒœã‚¿ãƒ³ã®ä¸Šã§ã‚ã‚Œã°é•·æ–¹å½¢ã®ã‚«ãƒ¼ã‚½ãƒ«
+ * æ–‡å­—ã®æ›´æ–°ãŒè¡Œã‚ã‚Œã‚‹ã“ã¨ã§ã€ã‚µãƒ–ç”»é¢ã®ä¸­ã®ãƒ•ã‚©ãƒ³ãƒˆã®æ›´æ–°ã‚‚è¡Œã‚ã‚Œã‚‹
  *
  * @param   wk			RECORD_WORK*
- * @param   arrow		ˆÚ“®•ûŒü
+ * @param   arrow		ç§»å‹•æ–¹å‘
  *
  * @retval  none		
  */
@@ -1278,9 +1278,9 @@ static void CursorAppearUpDate(RECORD_WORK *wk, int arrow)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•ÏX‚·‚é
+ * $brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   x		
  * @param   y		
  *
@@ -1304,7 +1304,7 @@ static void SetCursor_Pos( CLACT_WORK_PTR act, int x, int y )
 
 //------------------------------------------------------------------
 /**
- * $brief   ŠJn‚ÌƒƒbƒZ[ƒW
+ * $brief   é–‹å§‹æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  *
  * @param   wk		
  * @param   seq		
@@ -1315,15 +1315,15 @@ static void SetCursor_Pos( CLACT_WORK_PTR act, int x, int y )
 static int Record_MainInit( RECORD_WORK *wk, int seq )
 {
 	
-    CommStateSetErrorCheck(FALSE,TRUE); // q‹@‚Ìo“ü‚è‚ªŠm’è‚·‚é‚Ü‚Å‚ÍƒGƒ‰[ˆµ‚¢‚µ‚È‚¢
-	// e‚Ì‚ÍAƒ{ƒ^ƒ“‚ÅŠJnƒƒbƒZ[ƒWBq‹@‚ÍŠJn‘Ò‚¿ƒƒbƒZ[ƒW
+    CommStateSetErrorCheck(FALSE,TRUE); // å­æ©Ÿã®å‡ºå…¥ã‚ŠãŒç¢ºå®šã™ã‚‹ã¾ã§ã¯ã‚¨ãƒ©ãƒ¼æ‰±ã„ã—ãªã„
+	// è¦ªã®æ™‚ã¯Aãƒœã‚¿ãƒ³ã§é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚å­æ©Ÿã¯é–‹å§‹å¾…ã¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	if(CommGetCurrentID()==0){
 
-/* ƒŒƒR[ƒhƒR[ƒi[‚Å3lˆÈã‚ÌA‚OD‚T•b‚®‚ç‚¢‚Ìƒ^ƒCƒ~ƒ“ƒO‚Åq‹@‚ª”²‚¯‚Äe‚ğˆêl‚É‚·‚é‚Æ
- u‚Â‚²‚¤‚ª‚Â‚©‚È‚¢ƒƒ“ƒo[‚ªcv‚Æ‚¢‚¤ƒƒbƒZ[ƒW‚ª‚Qd‚É•\¦‚³‚ê‚ÄƒEƒCƒ“ƒhƒE“à‚Å  
-  •\¦‚ª‰ó‚ê‚Ä‚µ‚Ü‚¤ƒoƒO‚ğ‘Îˆ */
+/* ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã§3äººä»¥ä¸Šã®æ™‚ã€ï¼ï¼ï¼•ç§’ãã‚‰ã„ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§å­æ©ŸãŒæŠœã‘ã¦è¦ªã‚’ä¸€äººã«ã™ã‚‹ã¨
+ ã€Œã¤ã”ã†ãŒã¤ã‹ãªã„ãƒ¡ãƒ³ãƒãƒ¼ãŒâ€¦ã€ã¨ã„ã†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒï¼’é‡ã«è¡¨ç¤ºã•ã‚Œã¦ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…ã§  
+  è¡¨ç¤ºãŒå£Šã‚Œã¦ã—ã¾ã†ãƒã‚°ã‚’å¯¾å‡¦ */
 #if AFTER_MASTER_070424_RECORDCONER_FIX
-		// Ú‘±l”‚ª2l‚æ‚è‘½‚¢ê‡‚ÍuAƒ{ƒ^ƒ“‚Å‚©‚¢‚µv‚ğ•\¦
+		// æ¥ç¶šäººæ•°ãŒ2äººã‚ˆã‚Šå¤šã„å ´åˆã¯ã€ŒAãƒœã‚¿ãƒ³ã§ã‹ã„ã—ã€ã‚’è¡¨ç¤º
 		if(CommGetConnectNum()>=2){
 			RecordMessagePrint(wk, msg_union_record_01_01, 0 );
 		}
@@ -1343,7 +1343,7 @@ static int Record_MainInit( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒŒƒR[ƒhƒR[ƒi[’Êíˆ—
+ * $brief   ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼é€šå¸¸å‡¦ç†
  *
  * @param   wk		
  * @param   seq		
@@ -1353,14 +1353,14 @@ static int Record_MainInit( RECORD_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Record_MainNormal( RECORD_WORK *wk, int seq )
 {
-	// ‘S‘Ì‘€ì‹Ö~‚Å‚È‚¯‚ê‚ÎƒL[“ü—Í
+	// å…¨ä½“æ“ä½œç¦æ­¢ã§ãªã‘ã‚Œã°ã‚­ãƒ¼å…¥åŠ›
 	PadControl( wk );
 
 	//TrainerObjFunc(wk);
 
 	
-	if(CommGetCurrentID()==0){				// e‹@‚Ì
-		if(OnlyParentCheck()!=1){			// ˆêl‚¶‚á‚È‚¢‚©H
+	if(CommGetCurrentID()==0){				// è¦ªæ©Ÿã®æ™‚
+		if(OnlyParentCheck()!=1){			// ä¸€äººã˜ã‚ƒãªã„ã‹ï¼Ÿ
 			RecordDataSendRecv( wk );
 		}
 	}else{
@@ -1373,7 +1373,7 @@ static int Record_MainNormal( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒL[“ü—ÍŠÇ—
+ * @brief   ã‚­ãƒ¼å…¥åŠ›ç®¡ç†
  *
  * @param   wk		
  *
@@ -1382,7 +1382,7 @@ static int Record_MainNormal( RECORD_WORK *wk, int seq )
 //------------------------------------------------------------------
 static void PadControl( RECORD_WORK *wk )
 {
-	// ƒŒƒR[ƒhŒğŠ·‚ğŠJn‚µ‚Ü‚·‚©Hie‚Ì‚İj
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›ã‚’é–‹å§‹ã—ã¾ã™ã‹ï¼Ÿï¼ˆè¦ªã®ã¿ï¼‰
 	if(sys.trg&PAD_BUTTON_A){
 		if(CommGetCurrentID()==0){
 			if(MyStatusGetNum()==wk->shareNum && wk->ridatu_bit == 0){
@@ -1390,10 +1390,10 @@ static void PadControl( RECORD_WORK *wk )
 				RecordMessagePrint( wk, msg_union_record_01_02, 0 );
 				SequenceChange_MesWait(wk,RECORD_MODE_START_SELECT);
 
-				// —£’E‹Ö~’Ê’B
+				// é›¢è„±ç¦æ­¢é€šé”
 				CommSendData( CR_RECORD_BAN, &flag, 1 );
 				
-				// Ú‘±l”§ŒÀON
+				// æ¥ç¶šäººæ•°åˆ¶é™ON
 				ChangeConnectMax( wk, 0 );
 			}
 			else{
@@ -1402,9 +1402,9 @@ static void PadControl( RECORD_WORK *wk )
 		}
 
 	}else if(sys.trg&PAD_BUTTON_B){
-		// ‚â‚ß‚Ü‚·‚©H
+		// ã‚„ã‚ã¾ã™ã‹ï¼Ÿ
 		if(CommGetCurrentID()){
-			// q‹@‚Íe‹@‚©‚ç‹Ö~‚ª—ˆ‚Ä‚¢‚éê‡‚ÍI—¹‚Å‚«‚È‚¢
+			// å­æ©Ÿã¯è¦ªæ©Ÿã‹ã‚‰ç¦æ­¢ãŒæ¥ã¦ã„ã‚‹å ´åˆã¯çµ‚äº†ã§ããªã„
 			if(wk->banFlag==0){
 				RecordMessagePrint( wk, msg_union_record_01_03, 0 );
 				SequenceChange_MesWait(wk,RECORD_MODE_END_SELECT);
@@ -1416,13 +1416,13 @@ static void PadControl( RECORD_WORK *wk )
 //			if( MyStatusGetNum()==wk->shareNum ){
 			if( CommGetConnectNum()==wk->shareNum && wk->ridatu_bit == 0){
 				u8 flag = RECORD_BAN_ON;
-				// e‹@‚ÍI—¹ƒƒjƒ…[‚Ö
+				// è¦ªæ©Ÿã¯çµ‚äº†ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
 				RecordMessagePrint( wk, msg_union_record_01_03, 0 );
 				SequenceChange_MesWait(wk,RECORD_MODE_END_SELECT);
-				// —£’E‹Ö~’Ê’B
+				// é›¢è„±ç¦æ­¢é€šé”
 				CommSendData( CR_RECORD_BAN, &flag, 1 );
 
-				// Ú‘±l”§ŒÀON
+				// æ¥ç¶šäººæ•°åˆ¶é™ON
 				ChangeConnectMax( wk, 0 );
 			}
 			else{
@@ -1434,7 +1434,7 @@ static void PadControl( RECORD_WORK *wk )
 		if(wk->beacon_flag == RECORD_BAN_NONE){
 			if(CommGetCurrentID() == 0 && CommGetConnectNum()==wk->shareNum){
 				u8 flag = RECORD_BAN_NONE;
-				// —£’E‹Ö~‰ğœ’Ê’B
+				// é›¢è„±ç¦æ­¢è§£é™¤é€šé”
 				CommSendData( CR_RECORD_BAN, &flag, 1 );
 			}
 		}
@@ -1444,7 +1444,7 @@ static void PadControl( RECORD_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   I—¹‘I‘ğˆ—‚Ì‹¤’Êˆ—ŠÖ”(Œã‚ë‚Å•`‰æ“™j
+ * $brief   çµ‚äº†é¸æŠå‡¦ç†ã®å…±é€šå‡¦ç†é–¢æ•°(å¾Œã‚ã§æç”»ç­‰ï¼‰
  *
  * @param   wk		
  *
@@ -1459,7 +1459,7 @@ static void EndSequenceCommonFunc( RECORD_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   V‚µ‚¢q‹@‚ª‚«‚½‚Ì‚Åe‹@‚ª‰æ‘œ‚ğ‘—M‚µ‚Í‚¶‚ß‚é
+ * $brief   æ–°ã—ã„å­æ©ŸãŒããŸã®ã§è¦ªæ©ŸãŒç”»åƒã‚’é€ä¿¡ã—ã¯ã˜ã‚ã‚‹
  *
  * @param   wk		
  * @param   seq		
@@ -1469,26 +1469,26 @@ static void EndSequenceCommonFunc( RECORD_WORK *wk )
 //------------------------------------------------------------------
 static int Record_NewMember( RECORD_WORK *wk, int seq )
 {
-	// œœœ‚³‚ñ‚ª‚Í‚¢‚Á‚Ä‚«‚Ü‚µ‚½
+	// â—â—â—ã•ã‚“ãŒã¯ã„ã£ã¦ãã¾ã—ãŸ
 //	RecordMessagePrint(wk, msg_oekaki_01);
 //	wk->seq = RECORD_MODE_NEWMEMBER_WAIT;
 	SequenceChange_MesWait(wk, RECORD_MODE_NEWMEMBER_END );
 
-	// ‰æ‘œ“]‘—ó‘Ô‚É‚È‚Á‚½‚ç‹P“xƒ_ƒEƒ“
+	// ç”»åƒè»¢é€çŠ¶æ…‹ã«ãªã£ãŸã‚‰è¼åº¦ãƒ€ã‚¦ãƒ³
 //	G2_SetBlendBrightness(  GX_BLEND_PLANEMASK_BG1|
 //							GX_BLEND_PLANEMASK_BG2|
 //							GX_BLEND_PLANEMASK_BG3|
 //							GX_BLEND_PLANEMASK_OBJ
 //								,  -6);
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒƒbƒZ[ƒWI—¹‚ğ‘Ò‚Á‚ÄŸ‚ÌƒV[ƒPƒ“ƒX‚És‚­ŠÖ”
+ * $brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†ã‚’å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«è¡Œãé–¢æ•°
  *
  * @param   wk		
  * @param   next		
@@ -1504,7 +1504,7 @@ static void SequenceChange_MesWait( RECORD_WORK *wk, int next )
 
 //------------------------------------------------------------------
 /**
- * $brief   V‚µ‚¢q‹@—p‚Ì‰æ‘œóM‘Ò‚¿
+ * $brief   æ–°ã—ã„å­æ©Ÿç”¨ã®ç”»åƒå—ä¿¡å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1517,7 +1517,7 @@ static int Record_MessageWaitSeq( RECORD_WORK *wk, int seq )
 	if( EndMessageWait( wk->MsgIndex ) ){
 		wk->seq = wk->nextseq;
 	}
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 	
@@ -1525,7 +1525,7 @@ static int Record_MessageWaitSeq( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   q‹@—“üóMI—¹
+ * $brief   å­æ©Ÿä¹±å…¥å—ä¿¡çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -1535,23 +1535,23 @@ static int Record_MessageWaitSeq( RECORD_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Record_NewMemberEnd( RECORD_WORK *wk, int seq )
 {
-	// ‹P“xƒ_ƒEƒ“‰ğœ
+	// è¼åº¦ãƒ€ã‚¦ãƒ³è§£é™¤
 //	G2_BlendNone();
 
 	if(CommGetCurrentID()==0){
 		int flag = RECORD_BAN_NONE;
-		// —£’E‹Ö~‰ğœ’Ê’B
+		// é›¢è„±ç¦æ­¢è§£é™¤é€šé”
 		CommSendData( CR_RECORD_BAN, &flag, 1 );
 	}
 
 	wk->seq = RECORD_MODE;
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
 
 
-// ‚Í‚¢E‚¢‚¢‚¦
+// ã¯ã„ãƒ»ã„ã„ãˆ
 #define	BMP_YESNO_PX	( 23 )
 #define	BMP_YESNO_PY	( 13 )
 #define	BMP_YESNO_SX	( 7 )
@@ -1560,7 +1560,7 @@ static int Record_NewMemberEnd( RECORD_WORK *wk, int seq )
 #define	BMP_YESNO_CGX	( RECORD_YESNO_WIN_OFFSET )
 
 
-// ‚Í‚¢E‚¢‚¢‚¦
+// ã¯ã„ãƒ»ã„ã„ãˆ
 static const BMPWIN_DAT YesNoBmpWin = {
 	GF_BGL_FRAME0_M, BMP_YESNO_PX, BMP_YESNO_PY,
 	BMP_YESNO_SX, BMP_YESNO_SY, BMP_YESNO_PAL, BMP_YESNO_CGX
@@ -1568,7 +1568,7 @@ static const BMPWIN_DAT YesNoBmpWin = {
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒŒƒR[ƒhƒR[ƒi[u‚â‚ß‚év‚ğ‘I‘ğ‚µ‚½
+ * $brief   ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã€Œã‚„ã‚ã‚‹ã€ã‚’é¸æŠã—ãŸæ™‚
  *
  * @param   wk		
  * @param   seq		
@@ -1578,17 +1578,17 @@ static const BMPWIN_DAT YesNoBmpWin = {
 //------------------------------------------------------------------
 static int Record_EndSelectPutString( RECORD_WORK *wk, int seq )
 {
-	// ‚Í‚¢E‚¢‚¢‚¦•\¦
+	// ã¯ã„ãƒ»ã„ã„ãˆè¡¨ç¤º
 	wk->YesNoMenuWork = BmpYesNoSelectInit(	wk->bgl, &YesNoBmpWin, YESNO_WIN_FRAME_CHAR, FLD_MENUFRAME_PAL, HEAPID_RECORD );
 
 	wk->seq = RECORD_MODE_END_SELECT_WAIT;
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   u‚â‚ß‚Ü‚·‚©Hv‚Í‚¢E‚¢‚¢‚¦‘I‘ğ‘Ò‚¿
+ * $brief   ã€Œã‚„ã‚ã¾ã™ã‹ï¼Ÿã€ã¯ã„ãƒ»ã„ã„ãˆé¸æŠå¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1601,44 +1601,44 @@ static int Record_EndSelectWait( RECORD_WORK *wk, int seq )
 	int result;
 	u32 ret;
 	
-	// q‹@‚Íe‹@‚©‚ç‘€ì‹Ö~‚ª‚«‚Ä‚¢‚éê‡‚Í‘€ì‚Å‚«‚È‚¢
+	// å­æ©Ÿã¯è¦ªæ©Ÿã‹ã‚‰æ“ä½œç¦æ­¢ãŒãã¦ã„ã‚‹å ´åˆã¯æ“ä½œã§ããªã„
 	if(CommGetCurrentID()){
 		if(wk->banFlag){
 			if(sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL | PAD_KEY_UP | PAD_KEY_DOWN)){
 				Snd_SePlay(SEQ_SE_DP_CUSTOM06);
 			}
-			EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+			EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 			return seq;
 		}
 	}
-	else{	//e‚Ìê‡
-		if(wk->ridatu_bit != 0){			//—£’E‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚éq‚ª‚¢‚é‚È‚ç‹–‰Â‚µ‚È‚¢
+	else{	//è¦ªã®å ´åˆ
+		if(wk->ridatu_bit != 0){			//é›¢è„±ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹å­ãŒã„ã‚‹ãªã‚‰è¨±å¯ã—ãªã„
 			if(sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL | PAD_KEY_UP | PAD_KEY_DOWN)){
 				Snd_SePlay(SEQ_SE_DP_CUSTOM06);
 			}
-			EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+			EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 			return seq;
 		}
 	}
 
-//	if(wk->shareNum != MyStatusGetNum()){	//ˆê’v‚µ‚Ä‚¢‚È‚¢‚È‚çu‚â‚ß‚év‹–‰Â‚µ‚È‚¢
+//	if(wk->shareNum != MyStatusGetNum()){	//ä¸€è‡´ã—ã¦ã„ãªã„ãªã‚‰ã€Œã‚„ã‚ã‚‹ã€è¨±å¯ã—ãªã„
 	if(MyStatusGetNum() != CommGetConnectNum()){
-		//ˆê’v‚µ‚Ä‚¢‚È‚¢‚È‚çu‚â‚ß‚év‹–‰Â‚µ‚È‚¢(q‚à’Ê‚é‚±‚±‚Íe‚µ‚©XV‚³‚ê‚È‚¢shareNum‚ÍŒ©‚È‚¢)
-		EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+		//ä¸€è‡´ã—ã¦ã„ãªã„ãªã‚‰ã€Œã‚„ã‚ã‚‹ã€è¨±å¯ã—ãªã„(å­ã‚‚é€šã‚‹ã“ã“ã¯è¦ªã—ã‹æ›´æ–°ã•ã‚Œãªã„shareNumã¯è¦‹ãªã„)
+		EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 		return seq;
 	}
 
-	// ƒƒjƒ…[“ü—Í
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å…¥åŠ›
 	ret = BmpYesNoSelectMain( wk->YesNoMenuWork, HEAPID_RECORD );
 
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
 			if(CommGetCurrentID()==0){
 				int flag = RECORD_BAN_NONE;
-				// —£’E‹Ö~‰ğœ’Ê’B
+				// é›¢è„±ç¦æ­¢è§£é™¤é€šé”
 				CommSendData( CR_RECORD_BAN, &flag, 1 );
 
-				// Ú‘±l”§ŒÀOFF
+				// æ¥ç¶šäººæ•°åˆ¶é™OFF
 				ChangeConnectMax( wk, 1 );
 			}
 			
@@ -1646,7 +1646,7 @@ static int Record_EndSelectWait( RECORD_WORK *wk, int seq )
 		}else{
 			if(CommGetCurrentID()==0){		
 				SequenceChange_MesWait( wk, RECORD_MODE_END_SELECT_PARENT );
-				RecordMessagePrint( wk, msg_union_record_01_13, 0 );		// ƒŠ[ƒ_[‚ª‚â‚ß‚é‚Æc
+				RecordMessagePrint( wk, msg_union_record_01_13, 0 );		// ãƒªãƒ¼ãƒ€ãƒ¼ãŒã‚„ã‚ã‚‹ã¨â€¦
 			}else{
 				COMM_RECORD_END_CHILD_WORK crec;
 				
@@ -1665,14 +1665,14 @@ static int Record_EndSelectWait( RECORD_WORK *wk, int seq )
 	}
 
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   u‚â‚ß‚Ü‚·‚©Hv„u‚Í‚¢vA‚Åe‚©‚ç—£’E‹–‰Â‘Ò‚¿
+ * $brief   ã€Œã‚„ã‚ã¾ã™ã‹ï¼Ÿã€ï¼ã€Œã¯ã„ã€ã€ã§è¦ªã‹ã‚‰é›¢è„±è¨±å¯å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1684,7 +1684,7 @@ static int Record_EndSelectAnswerWait( RECORD_WORK *wk, int seq )
 {
 	wk->ridatu_wait = 0;
 	
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 	
@@ -1692,7 +1692,7 @@ static int Record_EndSelectAnswerWait( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   u‚â‚ß‚Ü‚·‚©Hv„u‚Í‚¢vA‚Åe‚©‚ç—£’E‹–‰Â‘Ò‚¿„OK!
+ * $brief   ã€Œã‚„ã‚ã¾ã™ã‹ï¼Ÿã€ï¼ã€Œã¯ã„ã€ã€ã§è¦ªã‹ã‚‰é›¢è„±è¨±å¯å¾…ã¡ï¼OK!
  *
  * @param   wk		
  * @param   seq		
@@ -1707,7 +1707,7 @@ static int Record_EndSelectAnswerOK( RECORD_WORK *wk, int seq )
 		RECORD_PRINT("share_nuM = %d, Comm = %d, My = %d, Bit = %d\n", wk->oya_share_num, CommGetConnectNum(), MyStatusGetNum(), WH_GetBitmap());
 		wk->ridatu_wait = 0;
 		wk->seq = RECORD_MODE_END_SELECT_ANSWER_NG;
-		EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+		EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 		return seq;
 	}
 	
@@ -1726,14 +1726,14 @@ static int Record_EndSelectAnswerOK( RECORD_WORK *wk, int seq )
 		wk->seq = RECORD_MODE_END_CHILD;
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   u‚â‚ß‚Ü‚·‚©Hv„u‚Í‚¢vA‚Åe‚©‚ç—£’E‹–‰Â‘Ò‚¿„NG!
+ * $brief   ã€Œã‚„ã‚ã¾ã™ã‹ï¼Ÿã€ï¼ã€Œã¯ã„ã€ã€ã§è¦ªã‹ã‚‰é›¢è„±è¨±å¯å¾…ã¡ï¼NG!
  *
  * @param   wk		
  * @param   seq		
@@ -1746,9 +1746,9 @@ static int Record_EndSelectAnswerNG( RECORD_WORK *wk, int seq )
 	wk->status_end = FALSE;
 	SequenceChange_MesWait( wk, RECORD_MODE_INIT );
 	
-	RECORD_PRINT("==========—£’E‹­§ƒLƒƒƒ“ƒZƒ‹I===========\n");
+	RECORD_PRINT("==========é›¢è„±å¼·åˆ¶ã‚­ãƒ£ãƒ³ã‚»ãƒ«ï¼===========\n");
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
@@ -1756,7 +1756,7 @@ static int Record_EndSelectAnswerNG( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚±‚Ìƒƒ“ƒo[‚ÅƒŒƒR[ƒh‚ğŠJn‚µ‚Ü‚·‚©H
+ * $brief   ã“ã®ãƒ¡ãƒ³ãƒãƒ¼ã§ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’é–‹å§‹ã—ã¾ã™ã‹ï¼Ÿ
  *
  * @param   wk		
  * @param   seq		
@@ -1766,17 +1766,17 @@ static int Record_EndSelectAnswerNG( RECORD_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Record_StartSelect( RECORD_WORK *wk, int seq )
 {
-	// ‚Í‚¢E‚¢‚¢‚¦•\¦
+	// ã¯ã„ãƒ»ã„ã„ãˆè¡¨ç¤º
 	wk->YesNoMenuWork = BmpYesNoSelectInit(	wk->bgl, &YesNoBmpWin, YESNO_WIN_FRAME_CHAR, FLD_MENUFRAME_PAL, HEAPID_RECORD );
 
 	wk->seq = RECORD_MODE_START_SELECT_WAIT;
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   uŠJn‚µ‚Ü‚·‚©Hv‚Í‚¢E‚¢‚¢‚¦‘I‘ğ‘Ò‚¿
+ * $brief   ã€Œé–‹å§‹ã—ã¾ã™ã‹ï¼Ÿã€ã¯ã„ãƒ»ã„ã„ãˆé¸æŠå¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1789,12 +1789,12 @@ static int Record_StartSelectWait( RECORD_WORK *wk, int seq )
 	int result;
 	u32 ret;
 
-	if(MyStatusGetNum() != wk->shareNum 		//ˆê’v‚µ‚Ä‚¢‚È‚¢‚È‚ç‹–‰Â‚µ‚È‚¢
-			|| wk->ridatu_bit != 0){			//—£’E‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚éq‚ª‚¢‚é‚È‚ç‹–‰Â‚µ‚È‚¢
+	if(MyStatusGetNum() != wk->shareNum 		//ä¸€è‡´ã—ã¦ã„ãªã„ãªã‚‰è¨±å¯ã—ãªã„
+			|| wk->ridatu_bit != 0){			//é›¢è„±ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹å­ãŒã„ã‚‹ãªã‚‰è¨±å¯ã—ãªã„
 		if(sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL | PAD_KEY_UP | PAD_KEY_DOWN)){
 			Snd_SePlay(SEQ_SE_DP_CUSTOM06);
 		}
-		EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+		EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 		return seq;
 	}
 		
@@ -1803,21 +1803,21 @@ static int Record_StartSelectWait( RECORD_WORK *wk, int seq )
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
 			int flag = RECORD_BAN_NONE;
-			// —£’E‹Ö~‰ğœ’Ê’B
+			// é›¢è„±ç¦æ­¢è§£é™¤é€šé”
 			CommSendData( CR_RECORD_BAN, &flag, 1 );
 
-			// ƒr[ƒRƒ“ó‘Ô•ÏX
+			// ãƒ“ãƒ¼ã‚³ãƒ³çŠ¶æ…‹å¤‰æ›´
 			
 			ChangeConnectMax( wk, 1 );
 			SequenceChange_MesWait( wk, RECORD_MODE_INIT );
 
 
 		}else{
-			// â‘Î‚±‚±‚É‚­‚é‚Ì‚Íe‚¾‚¯‚Ç
+			// çµ¶å¯¾ã“ã“ã«ãã‚‹ã®ã¯è¦ªã ã‘ã©
 			if(CommGetCurrentID()==0){		
 //				SequenceChange_MesWait( wk, RECORD_MODE_STAET_RECORD_COMMAND );
-//				RecordMessagePrint( wk, msg_union_record_01_11, 1 );		// ‚Ü‚º‚Ä‚¢‚Ü‚·
-                // Ú‘±‹Ö~‚É‘‚«Š·‚¦
+//				RecordMessagePrint( wk, msg_union_record_01_11, 1 );		// ã¾ãœã¦ã„ã¾ã™
+                // æ¥ç¶šç¦æ­¢ã«æ›¸ãæ›ãˆ
 				wk->seq = RECORD_MODE_START_RECORD_COMMAND;
 				wk->start_num = MyStatusGetNum();
 			}else{
@@ -1828,7 +1828,7 @@ static int Record_StartSelectWait( RECORD_WORK *wk, int seq )
 	}
 
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 }
@@ -1836,7 +1836,7 @@ static int Record_StartSelectWait( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚ª
+ * $brief   è¦ªæ©ŸãŒ
  *
  * @param   wk		
  * @param   seq		
@@ -1853,7 +1853,7 @@ static int Record_StartRecordCommand( RECORD_WORK *wk, int seq )
 	}
 	
 //	SequenceChange_MesWait( wk, RECORD_MODE_RECORD_SEND_DATA );
-//	RecordMessagePrint( wk, msg_union_record_01_11, 1 );		// ‚Ü‚º‚Ä‚¢‚Ü‚·
+//	RecordMessagePrint( wk, msg_union_record_01_11, 1 );		// ã¾ãœã¦ã„ã¾ã™
 
 	return seq;
 
@@ -1861,7 +1861,7 @@ static int Record_StartRecordCommand( RECORD_WORK *wk, int seq )
 
 //==============================================================================
 /**
- * $brief   ƒ^ƒCƒgƒ‹ƒƒbƒZ[ƒW‚ğ•Ï‚¦‚éu‚±‚¤‚©‚ñ‚¿‚ã‚¤Iv
+ * $brief   ã‚¿ã‚¤ãƒˆãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰ãˆã‚‹ã€Œã“ã†ã‹ã‚“ã¡ã‚…ã†ï¼ã€
  *
  * @param   wk		
  *
@@ -1870,21 +1870,21 @@ static int Record_StartRecordCommand( RECORD_WORK *wk, int seq )
 //==============================================================================
 void RecordCornerTitleChange( RECORD_WORK *wk )
 {
-	// ƒŒƒR[ƒh‚±‚¤‚©‚ñ‚Ú‚µ‚ã‚¤’†I•¶š—ñæ“¾
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰ã“ã†ã‹ã‚“ã¼ã—ã‚…ã†ä¸­ï¼æ–‡å­—åˆ—å–å¾—
 	MSGMAN_GetString(  wk->MsgManager, msg_union_record_title_02, wk->TitleString );
 
 	CenteringPrint(&wk->TitleWin, wk->TitleString, MSG_ALLPUT);
 	
-	// ‹@ŠB‚ğƒAƒjƒ‚³‚¹‚é
+	// æ©Ÿæ¢°ã‚’ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹
 	CLACT_AnmChg( wk->MainActWork[0], 37 );
 
-	// VBLANKƒpƒŒƒbƒgƒAƒjƒŠJn
+	// VBLANKãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡é–‹å§‹
 	wk->palwork.sw = 1;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒf[ƒ^‘—MEóM‘Ò‚¿
+ * $brief   ãƒ‡ãƒ¼ã‚¿é€ä¿¡ãƒ»å—ä¿¡å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1902,19 +1902,19 @@ static int Record_RecordSendData( RECORD_WORK *wk, int seq )
 //	}
 
 	if( CommGetCurrentID() == 0 && CommGetConnectNum() != wk->start_num){
-		//ŠJn‚µ‚½‚Ìl”‚ÆŒ»İ‚Ìl”‚ª•Ï‚í‚Á‚Ä‚¢‚é‚È‚ç’ÊMƒGƒ‰[‚É‚·‚é
-//		RECORD_PRINT("l”‚ª•Ï‚í‚Á‚Ä‚¢‚é‚Ì‚Å‹­§“I‚É’ÊMƒGƒ‰[‚É‚µ‚Ü‚·@ŠJn%d, Œ»İ%d\n", wk->start_num, CommGetConnectNum());
+		//é–‹å§‹ã—ãŸæ™‚ã®äººæ•°ã¨ç¾åœ¨ã®äººæ•°ãŒå¤‰ã‚ã£ã¦ã„ã‚‹ãªã‚‰é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
+//		RECORD_PRINT("äººæ•°ãŒå¤‰ã‚ã£ã¦ã„ã‚‹ã®ã§å¼·åˆ¶çš„ã«é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã—ã¾ã™ã€€é–‹å§‹æ™‚ï¼%d, ç¾åœ¨ï¼%d\n", wk->start_num, CommGetConnectNum());
 //		CommStateSetError();
 	}
 	
-	// óM‚ªI—¹‚µ‚½l”‚ÆÚ‘±l”‚ª“¯‚¶‚É‚È‚Á‚½‚çI—¹
+	// å—ä¿¡ãŒçµ‚äº†ã—ãŸäººæ•°ã¨æ¥ç¶šäººæ•°ãŒåŒã˜ã«ãªã£ãŸã‚‰çµ‚äº†
 	if( CommGetConnectNum()==wk->recv_count ){
 
-		// ƒf[ƒ^¬‚º‚éˆ—‚Ö
+		// ãƒ‡ãƒ¼ã‚¿æ··ãœã‚‹å‡¦ç†ã¸
 		wk->seq = RECORD_MODE_RECORD_MIX_DATA;
 
 		for(i=0;i<RECORD_CORNER_MEMBER_MAX;i++){
-			RECORD_PRINT("óMƒf[ƒ^ id=%d, seed=%d, xor=%08x\n",i,wk->recv_data[i].seed, wk->recv_data[i]._xor);
+			RECORD_PRINT("å—ä¿¡ãƒ‡ãƒ¼ã‚¿ id=%d, seed=%d, xor=%08x\n",i,wk->recv_data[i].seed, wk->recv_data[i]._xor);
 		}
 	}
 
@@ -1922,7 +1922,7 @@ static int Record_RecordSendData( RECORD_WORK *wk, int seq )
 }
 //------------------------------------------------------------------
 /**
- * @brief	‚Ü‚º‚éˆ—
+ * @brief	ã¾ãœã‚‹å‡¦ç†
  *
  * @param	wk
  * @param	seq
@@ -1932,7 +1932,7 @@ static int Record_RecordSendData( RECORD_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Record_RecordMixData( RECORD_WORK *wk, int seq )
 {
-	// ƒf[ƒ^‚ğ¬‚º‚éˆ—
+	// ãƒ‡ãƒ¼ã‚¿ã‚’æ··ãœã‚‹å‡¦ç†
 	MixReceiveData(wk->savedata, wk->recv_data);
 
 	wk->seq = RECORD_MODE_COMM_SAVE_START;
@@ -1945,7 +1945,7 @@ static int Record_RecordMixData( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒŒƒR[ƒhŒğŠ·I—¹ƒZ[ƒu
+ * @brief   ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›çµ‚äº†ã‚»ãƒ¼ãƒ–
  *
  * @param   wk		
  * @param   seq		
@@ -1957,27 +1957,27 @@ static int Record_CommSaveStart( RECORD_WORK *wk, int seq )
 {
 	void *FnoteWork;
 
-	// ƒ\ƒtƒgƒŠƒZƒbƒg•s‰Â”\‚É‚·‚é
+	// ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆä¸å¯èƒ½ã«ã™ã‚‹
 	sys.DontSoftReset = 1;
 
-	// –`Œ¯ƒm[ƒgˆ—
+	// å†’é™ºãƒãƒ¼ãƒˆå‡¦ç†
 	FnoteWork = FNOTE_SioRecordDataMake( HEAPID_RECORD );
 	FNOTE_DataSave( wk->param->fnote, FnoteWork, FNOTE_TYPE_SIO );
 
-	// ƒXƒRƒA‚ğ‰ÁZ
+	// ã‚¹ã‚³ã‚¢ã‚’åŠ ç®—
 	RECORD_Score_Add( wk->param->record, SCORE_ID_COMM_RECORD_CORNER );
 
-	// ’ÊM“¯ŠúƒZ[ƒuˆ—‰Šú‰»
+	// é€šä¿¡åŒæœŸã‚»ãƒ¼ãƒ–å‡¦ç†åˆæœŸåŒ–
 	CommSyncronizeSaveInit( &wk->saveseq_work );
 	wk->seq = RECORD_MODE_COMM_SAVE;
-	OS_Printf("“¯ŠúƒZ[ƒuŠJn\n");
+	OS_Printf("åŒæœŸã‚»ãƒ¼ãƒ–é–‹å§‹\n");
 	return seq;
 }
 
 
 //==============================================================================
 /**
- * @brief   ƒŒƒR[ƒhŒğŠ·’ÊM“¯ŠúƒZ[ƒuI—¹‘Ò‚¿
+ * @brief   ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›é€šä¿¡åŒæœŸã‚»ãƒ¼ãƒ–çµ‚äº†å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1988,32 +1988,32 @@ static int Record_CommSaveStart( RECORD_WORK *wk, int seq )
 static int Record_CommSave( RECORD_WORK *wk, int seq ) 
 {
 	if( CommGetCurrentID() == 0 && CommGetConnectNum() != wk->start_num){
-		//ŠJn‚µ‚½‚Ìl”‚ÆŒ»İ‚Ìl”‚ª•Ï‚í‚Á‚Ä‚¢‚é‚È‚ç’ÊMƒGƒ‰[‚É‚·‚é
-//		RECORD_PRINT("l”‚ª•Ï‚í‚Á‚Ä‚¢‚é‚Ì‚Å‹­§“I‚É’ÊMƒGƒ‰[‚É‚µ‚Ü‚·@ŠJn%d, Œ»İ%d\n", wk->start_num, CommGetConnectNum());
+		//é–‹å§‹ã—ãŸæ™‚ã®äººæ•°ã¨ç¾åœ¨ã®äººæ•°ãŒå¤‰ã‚ã£ã¦ã„ã‚‹ãªã‚‰é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
+//		RECORD_PRINT("äººæ•°ãŒå¤‰ã‚ã£ã¦ã„ã‚‹ã®ã§å¼·åˆ¶çš„ã«é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã—ã¾ã™ã€€é–‹å§‹æ™‚ï¼%d, ç¾åœ¨ï¼%d\n", wk->start_num, CommGetConnectNum());
 //		CommStateSetError();
 	}
 
-	// ’ÊM“¯ŠúƒZ[ƒuI—¹‘Ò‚¿
+	// é€šä¿¡åŒæœŸã‚»ãƒ¼ãƒ–çµ‚äº†å¾…ã¡
 	if(CommSyncronizeSave(wk->param->sv, SVBLK_ID_MAX, &wk->saveseq_work)){
 
-		// SEI—¹
+		// SEçµ‚äº†
 		Snd_SeStopBySeqNo( SEQ_SE_DP_F209, 8 );
 
 
-		// uƒŒƒR[ƒhŒğŠ·‚ªI—¹‚µ‚Ü‚µ‚½Iv
+		// ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›ãŒçµ‚äº†ã—ã¾ã—ãŸï¼ã€
 		RecordMessagePrint( wk, msg_union_record_01_12, 0 );
 		SequenceChange_MesWait( wk, RECORD_MODE_END_MES_WAIT );
 
-		// ‹@ŠB‚ÌƒAƒjƒŒ³‚É–ß‚·
+		// æ©Ÿæ¢°ã®ã‚¢ãƒ‹ãƒ¡å…ƒã«æˆ»ã™
 		CLACT_AnmChg( wk->MainActWork[0], 0 );
 
-		// VBLANKƒpƒŒƒbƒgƒAƒjƒI—¹
+		// VBLANKãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡çµ‚äº†
 		wk->palwork.sw = 0;
 
 		wk->wait = 0;
-		OS_Printf("“¯ŠúƒZ[ƒuI—¹\n");
+		OS_Printf("åŒæœŸã‚»ãƒ¼ãƒ–çµ‚äº†\n");
 
-		// ƒ\ƒtƒgƒŠƒZƒbƒg‰Â”\‚É‚·‚é
+		// ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆå¯èƒ½ã«ã™ã‚‹
 		sys.DontSoftReset = 0;
 
 		wk->record_execute = FALSE;
@@ -2025,7 +2025,7 @@ static int Record_CommSave( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * @brief   ³íI—¹(ƒƒbƒZ[ƒW•\¦‚©‚ç‚P•b‚Ü‚Á‚ÄI—¹j
+ * @brief   æ­£å¸¸çµ‚äº†(ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‹ã‚‰ï¼‘ç§’ã¾ã£ã¦çµ‚äº†ï¼‰
  *
  * @param   wk		
  * @param   seq		
@@ -2036,7 +2036,7 @@ static int Record_CommSave( RECORD_WORK *wk, int seq )
 static int Record_EndMessageWait( RECORD_WORK *wk, int seq )
 {
 	if(wk->wait++ > 60){
-		// I—¹—p’ÊM“¯Šú
+		// çµ‚äº†ç”¨é€šä¿¡åŒæœŸ
 //		CommTimingSyncStart(RECORD_SYNCHRONIZE_END);
 		wk->seq = RECORD_MODE_FORCE_END_WAIT;
 	}
@@ -2047,7 +2047,7 @@ static int Record_EndMessageWait( RECORD_WORK *wk, int seq )
 // RECORD_MODE_END_CHILD
 //------------------------------------------------------------------
 /**
- * $brief   q‹@I—¹ƒƒbƒZ[ƒWŠJn
+ * $brief   å­æ©Ÿçµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹
  *
  * @param   wk		
  * @param   seq		
@@ -2059,16 +2059,16 @@ static int 	Record_EndChild( RECORD_WORK *wk, int seq )
 {
 	u8 temp;
 	
-	// ƒŒƒR[ƒhƒR[ƒi[‚ğ‚Ê‚¯‚Ü‚µ‚½
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã‚’ã¬ã‘ã¾ã—ãŸ
 	RecordMessagePrint( wk, msg_union_record_01_04, 0 );	
 
-	// I—¹’Ê’B
+	// çµ‚äº†é€šé”
 	temp = 0;
 //	CommSendData( CR_RECORD_END_CHILD, &temp, 1 );
 
 	SequenceChange_MesWait( wk, RECORD_MODE_END_CHILD_WAIT );
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 }
 				
@@ -2076,7 +2076,7 @@ static int 	Record_EndChild( RECORD_WORK *wk, int seq )
 // RECORD_MODE_END_CHILD_WAIT
 //------------------------------------------------------------------
 /**
- * $brief   q‹@I—¹ƒƒbƒZ[ƒW•\¦I—¹‘Ò‚¿
+ * $brief   å­æ©Ÿçµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºçµ‚äº†å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -2087,12 +2087,12 @@ static int 	Record_EndChild( RECORD_WORK *wk, int seq )
 static int 	Record_EndChildWait( RECORD_WORK *wk, int seq )
 {			
 	if( ++wk->wait > RECORD_CORNER_MESSAGE_END_WAIT ){
-		// ƒƒCƒvƒtƒF[ƒhŠJn
+		// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_HOLEOUT, WIPE_TYPE_HOLEOUT, WIPE_FADE_BLACK, 16, 1, HEAPID_RECORD );
-		seq = SEQ_OUT;						//I—¹ƒV[ƒPƒ“ƒX‚Ö
+		seq = SEQ_OUT;						//çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
@@ -2100,7 +2100,7 @@ static int 	Record_EndChildWait( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚ªI—¹‚·‚é‚Æ‚«‚Í‚à‚¤ˆê“xuƒŠ[ƒ_[‚ª‚â‚ß‚é‚Æcv‚Æ¿–â‚·‚é
+ * $brief   è¦ªæ©ŸãŒçµ‚äº†ã™ã‚‹ã¨ãã¯ã‚‚ã†ä¸€åº¦ã€Œãƒªãƒ¼ãƒ€ãƒ¼ãŒã‚„ã‚ã‚‹ã¨â€¦ã€ã¨è³ªå•ã™ã‚‹
  *
  * @param   wk		
  * @param   seq		
@@ -2111,19 +2111,19 @@ static int 	Record_EndChildWait( RECORD_WORK *wk, int seq )
 static int Record_EndSelectParent( RECORD_WORK *wk, int seq )
 {
 
-	// ‚Í‚¢E‚¢‚¢‚¦•\¦
+	// ã¯ã„ãƒ»ã„ã„ãˆè¡¨ç¤º
 	wk->YesNoMenuWork = BmpYesNoSelectInit(	wk->bgl, &YesNoBmpWin, YESNO_WIN_FRAME_CHAR, FLD_MENUFRAME_PAL, HEAPID_RECORD );
 
 	wk->seq = RECORD_MODE_END_SELECT_PARENT_WAIT;
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚Ì‚Q‰ñ–Ú‚Ìu‚Í‚¢E‚¢‚¢‚¦v
+ * $brief   è¦ªæ©Ÿã®ï¼’å›ç›®ã®ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
  *
  * @param   wk		
  * @param   seq		
@@ -2135,12 +2135,12 @@ static int Record_EndSelectParentWait( RECORD_WORK *wk, int seq )
 {
 	int ret;
 
-	if(wk->shareNum != MyStatusGetNum()			//ˆê’v‚µ‚Ä‚¢‚È‚¢‚È‚çu‚â‚ß‚év‹–‰Â‚µ‚È‚¢
-			|| wk->ridatu_bit != 0){			//—£’E‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚éq‚ª‚¢‚é‚È‚ç‹–‰Â‚µ‚È‚¢
+	if(wk->shareNum != MyStatusGetNum()			//ä¸€è‡´ã—ã¦ã„ãªã„ãªã‚‰ã€Œã‚„ã‚ã‚‹ã€è¨±å¯ã—ãªã„
+			|| wk->ridatu_bit != 0){			//é›¢è„±ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹å­ãŒã„ã‚‹ãªã‚‰è¨±å¯ã—ãªã„
 		if(sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL | PAD_KEY_UP | PAD_KEY_DOWN)){
 			Snd_SePlay(SEQ_SE_DP_CUSTOM06);
 		}
-		EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+		EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 		return seq;
 	}
 
@@ -2152,28 +2152,28 @@ static int Record_EndSelectParentWait( RECORD_WORK *wk, int seq )
 			
 			wk->seq = RECORD_MODE_INIT;
 
-			// —£’E‹Ö~‰ğœ’Ê’B
+			// é›¢è„±ç¦æ­¢è§£é™¤é€šé”
 			CommSendData( CR_RECORD_BAN, &flag, 1 );
 
-			// Ú‘±l”§ŒÀOFF
+			// æ¥ç¶šäººæ•°åˆ¶é™OFF
 			ChangeConnectMax( wk, 1 );
 
 		}else{
 			wk->seq = RECORD_MODE_FORCE_END;
-			CommSendData( CR_RECORD_END, NULL, 0 );						//I—¹’Ê’m
-			WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(0) );	// e‹@i©•ªj‚Ì–¼‘O‚ğWORDSET
+			CommSendData( CR_RECORD_END, NULL, 0 );						//çµ‚äº†é€šçŸ¥
+			WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(0) );	// è¦ªæ©Ÿï¼ˆè‡ªåˆ†ï¼‰ã®åå‰ã‚’WORDSET
 		}
 		wk->YesNoMenuWork = NULL;
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚ªI‚í‚è‚ÆŒ¾‚Á‚½‚Ì‚ÅI‚í‚é
+ * $brief   è¦ªæ©ŸãŒçµ‚ã‚ã‚Šã¨è¨€ã£ãŸã®ã§çµ‚ã‚ã‚‹
  *
  * @param   wk		
  * @param   seq		
@@ -2184,17 +2184,17 @@ static int Record_EndSelectParentWait( RECORD_WORK *wk, int seq )
 static int Record_ForceEnd( RECORD_WORK *wk, int seq )
 {
 	if(CommGetCurrentID()==0){
-		// ‚»‚ê‚Å‚Í@ƒŒƒR[ƒh’ÊM‚ğ‚¿‚ã‚¤‚µ@‚µ‚Ü‚·
+		// ãã‚Œã§ã¯ã€€ãƒ¬ã‚³ãƒ¼ãƒ‰é€šä¿¡ã‚’ã¡ã‚…ã†ã—ã€€ã—ã¾ã™
 		RecordMessagePrint( wk, msg_union_record_01_04, 0 );
 	}else{
-		// ‚Â‚²‚¤‚ª‚í‚é‚­‚È‚Á‚½ƒƒ“ƒo[‚ª‚¢‚é‚Ì‚Å‚©‚¢‚³‚ñ‚µ‚Ü‚·
-		WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(0) );	// e‹@i©•ªj‚Ì–¼‘O‚ğWORDSET
+		// ã¤ã”ã†ãŒã‚ã‚‹ããªã£ãŸãƒ¡ãƒ³ãƒãƒ¼ãŒã„ã‚‹ã®ã§ã‹ã„ã•ã‚“ã—ã¾ã™
+		WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(0) );	// è¦ªæ©Ÿï¼ˆè‡ªåˆ†ï¼‰ã®åå‰ã‚’WORDSET
 		RecordMessagePrint( wk, msg_union_record_01_15, 0 );
 	}
 	SequenceChange_MesWait(wk,RECORD_MODE_FORCE_END_MES_WAIT);
 	wk->wait = 0;
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
@@ -2202,7 +2202,7 @@ static int Record_ForceEnd( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‹­§I—¹ƒƒbƒZ[ƒW‚P•b‘Ò‚¿
+ * @brief   å¼·åˆ¶çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼‘ç§’å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -2217,13 +2217,13 @@ static int Record_FroceEndMesWait( RECORD_WORK *wk, int seq )
 		wk->seq = RECORD_MODE_FORCE_END_WAIT;
 	}
 	
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚ªI‚í‚è‚ÆŒ¾‚Á‚½‚Ì‚ÅI‚í‚é
+ * $brief   è¦ªæ©ŸãŒçµ‚ã‚ã‚Šã¨è¨€ã£ãŸã®ã§çµ‚ã‚ã‚‹
  *
  * @param   wk		
  * @param   seq		
@@ -2233,18 +2233,18 @@ static int Record_FroceEndMesWait( RECORD_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Record_ForceEndWait( RECORD_WORK *wk, int seq )
 {
-	// ’ÊM“¯Šú‘Ò‚¿
+	// é€šä¿¡åŒæœŸå¾…ã¡
 	CommTimingSyncStart(RECORD_SYNCHRONIZE_END);
 	wk->seq = RECORD_MODE_FORCE_END_SYNCHRONIZE;
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ‘Sˆõ‚Ì’ÊM“¯Šú‚ğ‘Ò‚Â
+ * $brief   å…¨å“¡ã®é€šä¿¡åŒæœŸã‚’å¾…ã¤
  *
  * @param   wk		
  * @param   seq		
@@ -2255,15 +2255,15 @@ static int Record_ForceEndWait( RECORD_WORK *wk, int seq )
 static int Record_ForceEndSynchronize( RECORD_WORK *wk, int seq )
 {
 	if(CommIsTimingSync(RECORD_SYNCHRONIZE_END)){
-	    CommStateSetErrorCheck(FALSE, FALSE); // I—¹ˆ—‚É“ü‚Á‚½‚Ì‚ÅØ’f‚Í‚à‚¤–³‹
+	    CommStateSetErrorCheck(FALSE, FALSE); // çµ‚äº†å‡¦ç†ã«å…¥ã£ãŸã®ã§åˆ‡æ–­ã¯ã‚‚ã†ç„¡è¦–
 
-		OS_Printf("I—¹“¯Šú¬Œ÷\n");
-		// ƒƒCƒvƒtƒF[ƒhŠJn
+		OS_Printf("çµ‚äº†æ™‚åŒæœŸæˆåŠŸ\n");
+		// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_HOLEOUT, WIPE_TYPE_HOLEOUT, WIPE_FADE_BLACK, 16, 1, HEAPID_RECORD);
 
-		seq = SEQ_OUT;						//I—¹ƒV[ƒPƒ“ƒX‚Ö
+		seq = SEQ_OUT;						//çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 	}
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
@@ -2271,7 +2271,7 @@ static int Record_ForceEndSynchronize( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   eˆêl‚É‚È‚Á‚½‚Ì‚ÅI—¹
+ * $brief   è¦ªä¸€äººã«ãªã£ãŸã®ã§çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -2281,27 +2281,27 @@ static int Record_ForceEndSynchronize( RECORD_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Record_EndParentOnly( RECORD_WORK *wk, int seq )
 {
-/* ƒŒƒR[ƒhƒR[ƒi[‚Å3lˆÈã‚ÌA‚OD‚T•b‚®‚ç‚¢‚Ìƒ^ƒCƒ~ƒ“ƒO‚Åq‹@‚ª”²‚¯‚Äe‚ğˆêl‚É‚·‚é‚Æ
- u‚Â‚²‚¤‚ª‚Â‚©‚È‚¢ƒƒ“ƒo[‚ªcv‚Æ‚¢‚¤ƒƒbƒZ[ƒW‚ª‚Qd‚É•\¦‚³‚ê‚ÄƒEƒCƒ“ƒhƒE“à‚Å  
-  •\¦‚ª‰ó‚ê‚Ä‚µ‚Ü‚¤ƒoƒO‚ğ‘Îˆ */
+/* ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã§3äººä»¥ä¸Šã®æ™‚ã€ï¼ï¼ï¼•ç§’ãã‚‰ã„ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§å­æ©ŸãŒæŠœã‘ã¦è¦ªã‚’ä¸€äººã«ã™ã‚‹ã¨
+ ã€Œã¤ã”ã†ãŒã¤ã‹ãªã„ãƒ¡ãƒ³ãƒãƒ¼ãŒâ€¦ã€ã¨ã„ã†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒï¼’é‡ã«è¡¨ç¤ºã•ã‚Œã¦ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…ã§  
+  è¡¨ç¤ºãŒå£Šã‚Œã¦ã—ã¾ã†ãƒã‚°ã‚’å¯¾å‡¦ */
 #if AFTER_MASTER_070424_RECORDCONER_FIX
-	// ƒƒbƒZ[ƒW•\¦’†‚ÍŒÄ‚Ño‚³‚È‚¢‚æ‚¤‚É‚·‚é
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ã¯å‘¼ã³å‡ºã•ãªã„ã‚ˆã†ã«ã™ã‚‹
 	if( EndMessageWait( wk->MsgIndex ) ){
-		RecordMessagePrint( wk, msg_union_record_01_08, 0 );	// ƒŠ[ƒ_[‚ª”²‚¯‚½‚Ì‚Å‰ğU‚µ‚Ü‚·B
+		RecordMessagePrint( wk, msg_union_record_01_08, 0 );	// ãƒªãƒ¼ãƒ€ãƒ¼ãŒæŠœã‘ãŸã®ã§è§£æ•£ã—ã¾ã™ã€‚
 	}
 #else
-		RecordMessagePrint( wk, msg_union_record_01_08, 0 );	// ƒŠ[ƒ_[‚ª”²‚¯‚½‚Ì‚Å‰ğU‚µ‚Ü‚·B
+		RecordMessagePrint( wk, msg_union_record_01_08, 0 );	// ãƒªãƒ¼ãƒ€ãƒ¼ãŒæŠœã‘ãŸã®ã§è§£æ•£ã—ã¾ã™ã€‚
 #endif
 	wk->seq = RECORD_MODE_END_PARENT_ONLY_WAIT;
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ˆêl‚É‚È‚Á‚½•¶Í‚ğ•\¦‚µ‚ÄI—¹ƒV[ƒPƒ“ƒX‚Ö
+ * $brief   ä¸€äººã«ãªã£ãŸæ–‡ç« ã‚’è¡¨ç¤ºã—ã¦çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
  *
  * @param   wk		
  * @param   seq		
@@ -2315,7 +2315,7 @@ static int Record_EndParentOnlyWait( RECORD_WORK *wk, int seq )
 		wk->seq = RECORD_MODE_END_CHILD_WAIT;
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
@@ -2323,7 +2323,7 @@ static int Record_EndParentOnlyWait( RECORD_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   œœœ‚³‚ñ‚ª‚©‚¦‚è‚Ü‚µ‚½
+ * $brief   â—â—â—ã•ã‚“ãŒã‹ãˆã‚Šã¾ã—ãŸ
  *
  * @param   wk		
  * @param   seq		
@@ -2333,32 +2333,32 @@ static int Record_EndParentOnlyWait( RECORD_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Record_LogoutChildMes( RECORD_WORK *wk, int seq )
 {
-	// œœœ‚³‚ñ‚ª‚©‚¦‚è‚Ü‚µ‚½
+	// â—â—â—ã•ã‚“ãŒã‹ãˆã‚Šã¾ã—ãŸ
 	if( wk->MsgIndex != 0xff && EndMessageWait( wk->MsgIndex ) == 0){
-		//•\¦’†‚ÌƒƒbƒZ[ƒW‚ª‚ ‚éê‡‚Í‹­§’â~
+		//è¡¨ç¤ºä¸­ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆã¯å¼·åˆ¶åœæ­¢
 		GF_STR_PrintForceStop(wk->MsgIndex);
 	}
 	RecordMessagePrint(wk, msg_union_record_01_14, 1 );
 	wk->seq = RECORD_MODE_LOGOUT_CHILD_WAIT;
 
-	// Ú‘±‰Â”\l”‚ğˆê’UŒ»İ‚ÌÚ‘±l”‚É—‚Æ‚·
+	// æ¥ç¶šå¯èƒ½äººæ•°ã‚’ä¸€æ—¦ç¾åœ¨ã®æ¥ç¶šäººæ•°ã«è½ã¨ã™
 	if(CommGetCurrentID()==0){
 		ChangeConnectMax( wk, 0 );
 	}
 
 
-	RECORD_PRINT("l”ƒ`ƒFƒbƒNlogout child %d\n", CommGetConnectNum());
+	RECORD_PRINT("äººæ•°ãƒã‚§ãƒƒã‚¯ï¼logout child %d\n", CommGetConnectNum());
 	wk->err_num = CommGetConnectNum();
     wk->err_num_timeout = ERRNUM_TIMEOUT;
 	
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   q‹@‚©”²‚¯‚½•¶ÍI—¹‘Ò‚¿
+ * $brief   å­æ©Ÿã‹æŠœã‘ãŸæ–‡ç« çµ‚äº†å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -2368,7 +2368,7 @@ static int Record_LogoutChildMes( RECORD_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Record_LogoutChildMesWait( RECORD_WORK *wk, int seq )
 {
-	// Ú‘±l”‚ª‚PŒ¸‚é‚©ƒ`ƒFƒbƒN
+	// æ¥ç¶šäººæ•°ãŒï¼‘æ¸›ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(wk->err_num != 0 && CommGetConnectNum() != wk->err_num){
 		wk->err_num = 0;
 	}
@@ -2376,14 +2376,14 @@ static int Record_LogoutChildMesWait( RECORD_WORK *wk, int seq )
 	wk->seq  = RECORD_MODE_LOGOUT_CHILD_CLOSE;
 	wk->wait = 0;
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   •\¦I—¹ƒEƒFƒCƒg
+ * $brief   è¡¨ç¤ºçµ‚äº†ã‚¦ã‚§ã‚¤ãƒˆ
  *
  * @param   wk		
  * @param   seq		
@@ -2394,7 +2394,7 @@ static int Record_LogoutChildMesWait( RECORD_WORK *wk, int seq )
 static int 	Record_LogoutChildClose( RECORD_WORK *wk, int seq )
 {			
 
-	// Ú‘±l”‚ª‚PŒ¸‚é‚Ü‚Å‚Í‘Ò‚Â
+	// æ¥ç¶šäººæ•°ãŒï¼‘æ¸›ã‚‹ã¾ã§ã¯å¾…ã¤
 	if(wk->err_num != 0 && CommGetConnectNum() != wk->err_num){
 		wk->err_num = 0;
 	}
@@ -2405,15 +2405,15 @@ static int 	Record_LogoutChildClose( RECORD_WORK *wk, int seq )
     
 	
 	if( ++wk->wait > RECORD_CORNER_MESSAGE_END_WAIT && wk->err_num == 0){
-		wk->seq = RECORD_MODE_INIT;//RECORD_MODE;				//I—¹ƒV[ƒPƒ“ƒX‚Ö
+		wk->seq = RECORD_MODE_INIT;//RECORD_MODE;				//çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 
-		// —£’EÒ‚ª‚¢‚È‚­‚È‚Á‚½‚Ì‚ÅA{‚Pó‘Ô‚Åˆêl‚Í“ü‚ê‚é‚æ‚¤‚É‚·‚é
+		// é›¢è„±è€…ãŒã„ãªããªã£ãŸã®ã§ã€ï¼‹ï¼‘çŠ¶æ…‹ã§ä¸€äººã¯å…¥ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
 		if(CommGetCurrentID()==0){
 			ChangeConnectMax( wk, 1 );
 		}
 	}
 
-	EndSequenceCommonFunc( wk );			//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );			//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
@@ -2421,7 +2421,7 @@ static int 	Record_LogoutChildClose( RECORD_WORK *wk, int seq )
 #if 0
 //------------------------------------------------------------------
 /**
- * $brief   œœœ‚³‚ñ‚ª‚©‚¦‚è‚Ü‚µ‚½
+ * $brief   â—â—â—ã•ã‚“ãŒã‹ãˆã‚Šã¾ã—ãŸ
  *
  * @param   wk		
  * @param   seq		
@@ -2431,17 +2431,17 @@ static int 	Record_LogoutChildClose( RECORD_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Record_LogoutChildMes( RECORD_WORK *wk, int seq )
 {
-	// œœœ‚³‚ñ‚ª‚©‚¦‚è‚Ü‚µ‚½
+	// â—â—â—ã•ã‚“ãŒã‹ãˆã‚Šã¾ã—ãŸ
 	wk->seq = RECORD_MODE_LOGOUT_CHILD_WAIT;
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   q‹@‚©”²‚¯‚½•¶ÍI—¹‘Ò‚¿
+ * $brief   å­æ©Ÿã‹æŠœã‘ãŸæ–‡ç« çµ‚äº†å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -2454,14 +2454,14 @@ static int Record_LogoutChildMesWait( RECORD_WORK *wk, int seq )
 		wk->seq  = RECORD_MODE_LOGOUT_CHILD_CLOSE;
 		wk->wait = 0;
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   •\¦I—¹ƒEƒFƒCƒg
+ * $brief   è¡¨ç¤ºçµ‚äº†ã‚¦ã‚§ã‚¤ãƒˆ
  *
  * @param   wk		
  * @param   seq		
@@ -2473,10 +2473,10 @@ static int 	Record_LogoutChildClose( RECORD_WORK *wk, int seq )
 {			
 
 	if( ++wk->wait > RECORD_CORNER_MESSAGE_END_WAIT ){
-		wk->seq = RECORD_MODE;				//I—¹ƒV[ƒPƒ“ƒX‚Ö
+		wk->seq = RECORD_MODE;				//çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 	}
 
-	EndSequenceCommonFunc( wk );			//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );			//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
@@ -2486,7 +2486,7 @@ static int 	Record_LogoutChildClose( RECORD_WORK *wk, int seq )
 
 //==============================================================================
 /**
- * $brief   ‚Ç‚ñ‚Èó‘Ô‚Å‚ ‚Á‚Ä‚à‹­§“I‚ÉƒƒCƒ“ƒV[ƒPƒ“ƒXƒ`ƒFƒ“ƒW
+ * $brief   ã©ã‚“ãªçŠ¶æ…‹ã§ã‚ã£ã¦ã‚‚å¼·åˆ¶çš„ã«ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒ³ã‚¸
  *
  * @param   wk		
  * @param   seq		
@@ -2509,10 +2509,10 @@ void RecordCorner_MainSeqForceChange( RECORD_WORK *wk, int seq, u8 id  )
 		break;
 	case RECORD_MODE_RECORD_SEND_DATA:
 		if(EndMessageWait(wk->MsgIndex) == 0){
-			//•\¦’†‚ÌƒƒbƒZ[ƒW‚ª‚ ‚éê‡‚Í‹­§’â~
+			//è¡¨ç¤ºä¸­ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆã¯å¼·åˆ¶åœæ­¢
 			GF_STR_PrintForceStop(wk->MsgIndex);
 		}
-		RecordMessagePrint( wk, msg_union_record_01_11, 0 );		// u‚Ü‚º‚Ä‚¢‚Ü‚·v•\¦
+		RecordMessagePrint( wk, msg_union_record_01_11, 0 );		// ã€Œã¾ãœã¦ã„ã¾ã™ã€è¡¨ç¤º
 		if(wk->YesNoMenuWork!=NULL){
 			BmpYesNoWinDel( wk->YesNoMenuWork, HEAPID_RECORD );
 			wk->YesNoMenuWork = NULL;
@@ -2520,11 +2520,11 @@ void RecordCorner_MainSeqForceChange( RECORD_WORK *wk, int seq, u8 id  )
 		break;
 	case RECORD_MODE_LOGOUT_CHILD:
 		if(wk->status_end == TRUE){
-			return;	//©•ª©g‚ª—£’Eˆ—’†
+			return;	//è‡ªåˆ†è‡ªèº«ãŒé›¢è„±å‡¦ç†ä¸­
 		}
 		WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(id) );	
 		if(id==CommGetCurrentID()){
-			// ©•ª‚ª—£’E‚·‚éq‹@‚¾‚Á‚½ê‡‚Íuq‹@‚ª‚¢‚È‚­‚È‚½‚æv‚Æ‚ÍŒ¾‚í‚È‚¢
+			// è‡ªåˆ†ãŒé›¢è„±ã™ã‚‹å­æ©Ÿã ã£ãŸå ´åˆã¯ã€Œå­æ©ŸãŒã„ãªããªãŸã‚ˆã€ã¨ã¯è¨€ã‚ãªã„
 			return;
 		}
 		if(wk->YesNoMenuWork!=NULL){
@@ -2540,7 +2540,7 @@ void RecordCorner_MainSeqForceChange( RECORD_WORK *wk, int seq, u8 id  )
 	case RECORD_MODE_END_SELECT_ANSWER_NG:
 		break;
 	default:
-		GF_ASSERT( "w’èˆÈŠO‚ÌƒV[ƒPƒ“ƒXƒ`ƒFƒ“ƒW‚ª—ˆ‚½" );
+		GF_ASSERT( "æŒ‡å®šä»¥å¤–ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒ³ã‚¸ãŒæ¥ãŸ" );
 		return;
 	}
 	wk->seq = seq;
@@ -2549,22 +2549,22 @@ void RecordCorner_MainSeqForceChange( RECORD_WORK *wk, int seq, u8 id  )
 
 //==============================================================================
 /**
- * $brief   ‰½‚©ˆ—‚ğ‚µ‚Ä‚©‚çƒƒCƒ“ƒ‹[ƒv“àƒV[ƒPƒ“ƒXƒ`ƒFƒ“ƒW(’Êíó‘Ô‚Å‚ ‚é‚±‚Æj
+ * $brief   ä½•ã‹å‡¦ç†ã‚’ã—ã¦ã‹ã‚‰ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—å†…ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒ³ã‚¸(é€šå¸¸çŠ¶æ…‹ã§ã‚ã‚‹ã“ã¨ï¼‰
  *
  * @param   wk		
- * @param   seq		‚±‚ÌƒƒCƒ“ƒV[ƒPƒ“ƒX‚Éƒ`ƒFƒ“ƒW‚µ‚½‚¢
+ * @param   seq		ã“ã®ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«ãƒã‚§ãƒ³ã‚¸ã—ãŸã„
  *
  * @retval  none		
  */
 //==============================================================================
 void RecordCorner_MainSeqCheckChange( RECORD_WORK *wk, int seq, u8 id  )
 {
-	// ’Êíó‘Ô‚È‚ç
+	// é€šå¸¸çŠ¶æ…‹ãªã‚‰
 	if(wk->seq == RECORD_MODE){
-		OS_Printf("q‹@%d‚Ì–¼‘O‚ğ“o˜^\n",id);
+		OS_Printf("å­æ©Ÿ%dã®åå‰ã‚’ç™»éŒ²\n",id);
 		switch(seq){
 		case RECORD_MODE_NEWMEMBER:	
-			// w’è‚Ìq‹@‚Ì–¼‘O‚ğWORDSET‚É“o˜^i—£’EE—“ü)
+			// æŒ‡å®šã®å­æ©Ÿã®åå‰ã‚’WORDSETã«ç™»éŒ²ï¼ˆé›¢è„±ãƒ»ä¹±å…¥æ™‚)
 			WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(id) );	
 			ChangeConnectMax( wk, 1 );
 			wk->seq      = seq;
@@ -2572,16 +2572,16 @@ void RecordCorner_MainSeqCheckChange( RECORD_WORK *wk, int seq, u8 id  )
 			wk->ridatu_bit = 0;
 			if(CommGetCurrentID()==0){
 				int flag = RECORD_BAN_ON;//NONE;
-				// —£’E‹Ö~‰ğœ’Ê’B
+				// é›¢è„±ç¦æ­¢è§£é™¤é€šé”
 				CommSendData( CR_RECORD_BAN, &flag, 1 );
 				
 			}
 			break;
-			// ««« 
+			// â†“â†“â†“ 
 		case RECORD_MODE_LOGOUT_CHILD:
 			WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(id) );	
 			if(id==CommGetCurrentID()){
-				// ©•ª‚ª—£’E‚·‚éq‹@‚¾‚Á‚½ê‡‚Íuq‹@‚ª‚¢‚È‚­‚È‚½‚æv‚Æ‚ÍŒ¾‚í‚È‚¢
+				// è‡ªåˆ†ãŒé›¢è„±ã™ã‚‹å­æ©Ÿã ã£ãŸå ´åˆã¯ã€Œå­æ©ŸãŒã„ãªããªãŸã‚ˆã€ã¨ã¯è¨€ã‚ãªã„
 				return;
 			}
 			if(CommGetCurrentID() == 0){
@@ -2590,7 +2590,7 @@ void RecordCorner_MainSeqCheckChange( RECORD_WORK *wk, int seq, u8 id  )
 			wk->seq = seq;
 			break;
 		default:
-			GF_ASSERT( 0&&"w’èˆÈŠO‚ÌƒV[ƒPƒ“ƒXƒ`ƒFƒ“ƒW‚ª—ˆ‚½" );
+			GF_ASSERT( 0&&"æŒ‡å®šä»¥å¤–ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒ³ã‚¸ãŒæ¥ãŸ" );
 			return;
 		}
 
@@ -2631,9 +2631,9 @@ void RecordCorner_MainSeqCheckChange( RECORD_WORK *wk, int seq, u8 id  )
 
 //------------------------------------------------------------------
 /**
- * ‹@ŠB‚ÌƒpƒŒƒbƒg•ÏXi“_–Åj
+ * æ©Ÿæ¢°ã®ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ï¼ˆç‚¹æ»…ï¼‰
  *
- * @param   CursorCol	sin‚É“n‚·ƒpƒ‰ƒ[ƒ^i360‚Ü‚Åj
+ * @param   CursorCol	sinã«æ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆ360ã¾ã§ï¼‰
  *
  * @retval  none		
  */
@@ -2660,7 +2660,7 @@ static void CursorColTrans(u16 *CursorCol)
 
 //------------------------------------------------------------------
 /**
- * $brief   Œ»İ‰½lÚ‘±‚µ‚Ä‚¢‚é‚©H
+ * $brief   ç¾åœ¨ä½•äººæ¥ç¶šã—ã¦ã„ã‚‹ã‹ï¼Ÿ
  *
  * @param   none		
  *
@@ -2687,7 +2687,7 @@ static int OnlyParentCheck( void )
 #define ID_STRING_NUM	(2+1+5+1)
 //------------------------------------------------------------------
 /**
- * $brief   ƒIƒ“ƒ‰ƒCƒ“ó‹µ‚ğŠm”F‚µ‚Äã‰æ–Ê‚É–¼‘O‚ÆID‚ğ•\¦‚·‚é
+ * $brief   ã‚ªãƒ³ãƒ©ã‚¤ãƒ³çŠ¶æ³ã‚’ç¢ºèªã—ã¦ä¸Šç”»é¢ã«åå‰ã¨IDã‚’è¡¨ç¤ºã™ã‚‹
  *
  * @param   win		
  * @param   frame		
@@ -2703,29 +2703,29 @@ static BOOL NameCheckPrint( GF_BGL_BMPWIN *win, int frame, GF_PRINTCOLOR color, 
 	STRBUF *id_str = NULL;
 
 
-	// –¼‘Oæ“¾‚Ìó‹µ‚É•Ï‰»‚ª–³‚¢ê‡‚Í‘‚«Š·‚¦‚È‚¢
+	// åå‰å–å¾—ã®çŠ¶æ³ã«å¤‰åŒ–ãŒç„¡ã„å ´åˆã¯æ›¸ãæ›ãˆãªã„
 	if(!MyStatusCheck(wk)){
 		return FALSE;
 	}
 
 
-	// ‚»‚ê‚¼‚ê‚Ì•¶šƒpƒlƒ‹‚Ì”wŒiF‚ÅƒNƒŠƒA
+	// ãã‚Œãã‚Œã®æ–‡å­—ãƒ‘ãƒãƒ«ã®èƒŒæ™¯è‰²ã§ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill(&win[0],0x0000);
 
-	// •`‰æ
+	// æç”»
 	for(i=0;i<RECORD_CORNER_MEMBER_MAX;i++){
 		if(wk->TrainerStatus[i][0]!=NULL){
-			// ƒgƒŒ[ƒi[ID‚Ìæ“¾
+			// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã®å–å¾—
 			u16 tid = MyStatus_GetID_Low( wk->TrainerStatus[i][0] );
 
-			// ©•ª‚Ì–¼‘Oæ“¾
+			// è‡ªåˆ†ã®åå‰å–å¾—
 			MyStatus_CopyNameString( wk->TrainerStatus[i][0], wk->TrainerName[i] );
 
-			// ƒgƒŒ[ƒi[ID‚ğ–„‚ß‚ñ‚¾•¶š—ñuID 12345v‚ğæ“¾
+			// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’åŸ‹ã‚è¾¼ã‚“ã æ–‡å­—åˆ—ã€ŒID 12345ã€ã‚’å–å¾—
 			WORDSET_RegisterNumber( wk->WordSet, 0, tid, 5, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_HANKAKU );
 			id_str = MSGDAT_UTIL_AllocExpandString( wk->WordSet, wk->MsgManager, msg_union_record_name_02, HEAPID_RECORD );
 			
-			if(id==i){	// ©•ª‚Ì–¼‘O‚Ì‚ÍÔF‚Å–¼‘O‚ÆID‚ğ•`‰æ
+			if(id==i){	// è‡ªåˆ†ã®åå‰ã®æ™‚ã¯èµ¤è‰²ã§åå‰ã¨IDã‚’æç”»
 				GF_STR_PrintColor(	&win[0], FONT_SYSTEM, wk->TrainerName[i], 5, 1+i*NAME_PRINT_HABA, MSG_NO_PUT, 
 										GF_PRINTCOLOR_MAKE(2,3,0),NULL);
 				GF_STR_PrintColor(	&win[0], FONT_SYSTEM, id_str, 5+13*5, 1+i*NAME_PRINT_HABA, MSG_NO_PUT, GF_PRINTCOLOR_MAKE(2,3,0),NULL);
@@ -2733,7 +2733,7 @@ static BOOL NameCheckPrint( GF_BGL_BMPWIN *win, int frame, GF_PRINTCOLOR color, 
 				GF_STR_PrintColor(	&win[0], FONT_SYSTEM, wk->TrainerName[i], 5, 1+i*NAME_PRINT_HABA, MSG_NO_PUT, color,NULL);
 				GF_STR_PrintColor(	&win[0], FONT_SYSTEM, id_str, 5+13*5, 1+i*NAME_PRINT_HABA, MSG_NO_PUT, color,NULL);
 			}
-			// ID•¶š—ñ‚ğ‰ğ•ú
+			// IDæ–‡å­—åˆ—ã‚’è§£æ”¾
 			STRBUF_Delete(id_str);
 		}
 	}
@@ -2765,7 +2765,7 @@ static const u8 plate_chara_no[][5]={
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ªŠm”F‚³‚ê‚½ê‡‚Í–¼‘O‚ğæ“¾‚·‚é
+ * $brief   æ¥ç¶šãŒç¢ºèªã•ã‚ŒãŸå ´åˆã¯åå‰ã‚’å–å¾—ã™ã‚‹
  *
  * @param   wk		
  *
@@ -2778,7 +2778,7 @@ static int ConnectCheck( RECORD_WORK *wk )
 	MYSTATUS *status;
 	STRCODE  *namecode;
 
-	// Ú‘±ƒ`ƒFƒbƒN
+	// æ¥ç¶šãƒã‚§ãƒƒã‚¯
 	for(i=0;i<RECORD_CORNER_MEMBER_MAX;i++){
 		wk->ConnectCheck[i][0] = wk->ConnectCheck[i][1];
 
@@ -2786,13 +2786,13 @@ static int ConnectCheck( RECORD_WORK *wk )
 
 	}
 
-	// Ú‘±‚ª‚¢‚½‚ç–¼‘O‚ğ”½‰f‚³‚¹‚é
+	// æ¥ç¶šãŒã„ãŸã‚‰åå‰ã‚’åæ˜ ã•ã›ã‚‹
 	for(i=0;i<RECORD_CORNER_MEMBER_MAX;i++){
-		if(wk->ConnectCheck[i][0]){				// Ú‘±‚µ‚Ä‚¢‚é‚©H
-			// Ú‘±‚µ‚Ä‚¢‚é
+		if(wk->ConnectCheck[i][0]){				// æ¥ç¶šã—ã¦ã„ã‚‹ã‹ï¼Ÿ
+			// æ¥ç¶šã—ã¦ã„ã‚‹
 
 			status = CommInfoGetMyStatus(i);
-			if(status!=NULL){					// MYSTATUS‚Íæ“¾‚Å‚«‚Ä‚¢‚é‚©H
+			if(status!=NULL){					// MYSTATUSã¯å–å¾—ã§ãã¦ã„ã‚‹ã‹ï¼Ÿ
 				namecode = (STRCODE*)MyStatus_GetMyName(status);
 				STRBUF_SetStringCode( wk->TrainerName[i], namecode );
 			}
@@ -2805,7 +2805,7 @@ static int ConnectCheck( RECORD_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚Ì‘—óM‚ğs‚¤
+ * $brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã®é€å—ä¿¡ã‚’è¡Œã†
  *
  * @param   wk		
  *
@@ -2820,7 +2820,7 @@ static void RecordDataSendRecv( RECORD_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Œ»İ‚ÌƒIƒ“ƒ‰ƒCƒ“”‚ğæ“¾
+ * $brief   ç¾åœ¨ã®ã‚ªãƒ³ãƒ©ã‚¤ãƒ³æ•°ã‚’å–å¾—
  *
  * @param   none		
  *
@@ -2840,11 +2840,11 @@ static int MyStatusGetNum( void )
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»İ‚ÌƒIƒ“ƒ‰ƒCƒ“”‚ğæ“¾(ƒOƒ[ƒoƒ‹ŠÖ””Å)
+ * @brief   ç¾åœ¨ã®ã‚ªãƒ³ãƒ©ã‚¤ãƒ³æ•°ã‚’å–å¾—(ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ç‰ˆ)
  *
  * @param   none		
  *
- * @retval  Ú‘±l”
+ * @retval  æ¥ç¶šäººæ•°
  */
 //--------------------------------------------------------------
 int RecordCorner_MyStatusGetNum(void)
@@ -2861,30 +2861,30 @@ int RecordCorner_MyStatusGetNum(void)
 
 //------------------------------------------------------------------
 /**
- * $brief   MYSTATUS‚Ìæ“¾ó‹µ‚É•Ï‰»‚ª‚ ‚Á‚½‚©H
+ * $brief   MYSTATUSã®å–å¾—çŠ¶æ³ã«å¤‰åŒ–ãŒã‚ã£ãŸã‹ï¼Ÿ
  *
  * @param   wk		
  *
- * @retval  int		‚ ‚Á‚½‚ç1,  –³‚¢ê‡‚Í0
+ * @retval  int		ã‚ã£ãŸã‚‰1,  ç„¡ã„å ´åˆã¯0
  */
 //------------------------------------------------------------------
 static BOOL MyStatusCheck( RECORD_WORK *wk )
 {
 	int i,result=FALSE;
 	
-	// Ú‘±‚ª‚¢‚½‚ç–¼‘O‚ğ”½‰f‚³‚¹‚é
+	// æ¥ç¶šãŒã„ãŸã‚‰åå‰ã‚’åæ˜ ã•ã›ã‚‹
 	for(i=0;i<RECORD_CORNER_MEMBER_MAX;i++){
 		wk->TrainerStatus[i][1] = wk->TrainerStatus[i][0];
 		wk->TrainerStatus[i][0] = CommInfoGetMyStatus(i);
 
-		// 080626 tomoya uŠÔ“I‚Él‚ª“ü‚ê‘Ö‚í‚Á‚½‚Æ‚«‚Ì‚±‚Æ‚ğl‚¦AƒgƒŒ[ƒiid‚ğ•Û‘¶
+		// 080626 tomoya ç¬é–“çš„ã«äººãŒå…¥ã‚Œæ›¿ã‚ã£ãŸã¨ãã®ã“ã¨ã‚’è€ƒãˆã€ãƒˆãƒ¬ãƒ¼ãƒŠidã‚’ä¿å­˜
 		wk->trainer_id[i][1]	= wk->trainer_id[i][0];
 		if( wk->TrainerStatus[i][0] != NULL ){
 			wk->trainer_id[i][0].data.tr_id	= MyStatus_GetID( wk->TrainerStatus[i][0] );
 			wk->trainer_id[i][0].data.in	= TRUE;
 
 		}else{
-			// ‘SOFF
+			// å…¨OFF
 			wk->trainer_id[i][0].check	= 0;
 		}
 
@@ -2894,10 +2894,10 @@ static BOOL MyStatusCheck( RECORD_WORK *wk )
 
 		if(wk->TrainerStatus[i][1] != wk->TrainerStatus[i][0]){
 
-			// •Ï‰»‚ ‚è
+			// å¤‰åŒ–ã‚ã‚Š
 			result = TRUE;
 
-			// “oêE‚³‚æ‚È‚çƒŠƒNƒGƒXƒg‚Ì”­s
+			// ç™»å ´ãƒ»ã•ã‚ˆãªã‚‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ç™ºè¡Œ
 			if(wk->TrainerStatus[i][0]==NULL){
 				wk->TrainerReq[i] = RECORD_EXIST_BYE_REQ;
 			}else{
@@ -2905,16 +2905,16 @@ static BOOL MyStatusCheck( RECORD_WORK *wk )
 			}
 		}else{
 
-			// 080626 tomoya uŠÔ“I‚Él‚ª“ü‚ê‘Ö‚í‚Á‚½‚Æ‚«‚Ì‚±‚Æ‚ğl‚¦
-			// ƒgƒŒ[ƒiID‚ª•Ï‚í‚Á‚Ä‚È‚¢‚©ƒ`ƒFƒbƒN
+			// 080626 tomoya ç¬é–“çš„ã«äººãŒå…¥ã‚Œæ›¿ã‚ã£ãŸã¨ãã®ã“ã¨ã‚’è€ƒãˆ
+			// ãƒˆãƒ¬ãƒ¼ãƒŠIDãŒå¤‰ã‚ã£ã¦ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( wk->trainer_id[i][0].check != wk->trainer_id[i][1].check ){
 
-				// •Ï‰»‚ ‚è
+				// å¤‰åŒ–ã‚ã‚Š
 				result = TRUE;
 
-				// uŠÔ“I‚Éi”Ô–Ú‚Ìl‚ª“ü‚ê‘Ö‚í‚Á‚½A
-				// uŠÔ“I‚É“üê‚³‚¹‚é
-				if( wk->trainer_id[i][0].data.in == FALSE ){	// ‚¨‚»‚ç‚­FALSE‚Å‚±‚±‚É—ˆ‚é‚±‚Æ‚Í‚È‚¢
+				// ç¬é–“çš„ã«iç•ªç›®ã®äººãŒå…¥ã‚Œæ›¿ã‚ã£ãŸã€
+				// ç¬é–“çš„ã«å…¥å ´ã•ã›ã‚‹
+				if( wk->trainer_id[i][0].data.in == FALSE ){	// ãŠãã‚‰ãFALSEã§ã“ã“ã«æ¥ã‚‹ã“ã¨ã¯ãªã„
 					wk->TrainerReq[i] = RECORD_EXIST_BYE_REQ;
 				}else{
 					wk->TrainerReq[i] = RECORD_EXIST_APPEAR_REQ;
@@ -2929,7 +2929,7 @@ static BOOL MyStatusCheck( RECORD_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\¦
+ * $brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -2938,7 +2938,7 @@ static BOOL MyStatusCheck( RECORD_WORK *wk )
 //------------------------------------------------------------------
 static void RecordMessagePrint( RECORD_WORK *wk, int msgno, int all_put )
 {
-	// •¶š—ñæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	STRBUF *tempbuf;
 	
 	tempbuf = STRBUF_Create(TALK_MESSAGE_BUF_NUM,HEAPID_RECORD);
@@ -2946,16 +2946,16 @@ static void RecordMessagePrint( RECORD_WORK *wk, int msgno, int all_put )
 	WORDSET_ExpandStr( wk->WordSet, wk->TalkString, tempbuf );
 	STRBUF_Delete(tempbuf);
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ æç”»
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, 1, FLD_MESFRAME_PAL );
 
-	// •¶š—ñ•`‰æŠJn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	if(all_put == 0){
 		wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, GetTalkSpeed(wk), NULL);
 	}
 	else{
-		//ˆêŠ‡•\¦‚Ìê‡‚ÍMsgIndex‚ª0xff‚É‚È‚é‚Ì‚Å’ˆÓI
+		//ä¸€æ‹¬è¡¨ç¤ºã®å ´åˆã¯MsgIndexãŒ0xffã«ãªã‚‹ã®ã§æ³¨æ„ï¼
 		GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, MSG_ALLPUT, NULL);
 		wk->MsgIndex = 0xff;
 	}
@@ -2964,7 +2964,7 @@ static void RecordMessagePrint( RECORD_WORK *wk, int msgno, int all_put )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜b•\¦ƒEƒCƒ“ƒhƒEI—¹‘Ò‚¿
+ * $brief   ä¼šè©±è¡¨ç¤ºã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦çµ‚äº†å¾…ã¡
  *
  * @param   msg_index		
  *
@@ -3002,7 +3002,7 @@ static void EndMessageWindowOff( RECORD_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[OBJ‚Ì•\¦§Œä
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼OBJã®è¡¨ç¤ºåˆ¶å¾¡
  *
  * @param   wk		
  *
@@ -3025,10 +3025,10 @@ static void TrainerObjFunc( RECORD_WORK *wk )
 				sex = MyStatus_GetMySex( wk->TrainerStatus[i][0] );
 				view  = MyStatus_GetTrainerView( wk->TrainerStatus[i][0] );
 				if(CommGetCurrentID()==i){
-					// ålŒöOBJ—p‚ÌƒAƒjƒ
+					// ä¸»äººå…¬OBJç”¨ã®ã‚¢ãƒ‹ãƒ¡
 					CLACT_AnmChg( wk->MainActWork[i+1], 38+sex*2 );
 				}else{
-					// ƒtƒB[ƒ‹ƒhOBJ—p‚ÌƒAƒjƒ
+					// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨ã®ã‚¢ãƒ‹ãƒ¡
 					TransFieldObjData( wk->FieldObjCharaData, wk->FieldObjPalData,  i, view, sex );
 					CLACT_AnmChg( wk->MainActWork[i+1], 27+i*2 );
 				}
@@ -3053,7 +3053,7 @@ static void TrainerObjFunc( RECORD_WORK *wk )
 		}
 	}
 	
-	// “oêSE‚ª•K—v‚Èê‡‚Í–Â‚ç‚·
+	// ç™»å ´SEãŒå¿…è¦ãªå ´åˆã¯é³´ã‚‰ã™
 	if(seflag){
 		Snd_SePlay( SE_GTC_APPEAR );
 	}
@@ -3062,7 +3062,7 @@ static void TrainerObjFunc( RECORD_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒtƒB[ƒ‹ƒhOBJ‰æ‘œ“Ç‚İ‚İiƒ†ƒjƒIƒ“‚Æ©‹@j
+ * @brief   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”»åƒèª­ã¿è¾¼ã¿ï¼ˆãƒ¦ãƒ‹ã‚ªãƒ³ã¨è‡ªæ©Ÿï¼‰
  *
  * @param   wk		
  *
@@ -3071,11 +3071,11 @@ static void TrainerObjFunc( RECORD_WORK *wk )
 //------------------------------------------------------------------
 static void LoadFieldObjData( RECORD_WORK *wk, ARCHANDLE* p_handle )
 {
-	// ƒpƒŒƒbƒg“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	wk->FieldObjPalBuf[0] = ArcUtil_PalDataGet( ARC_WORLDTRADE_GRA, NARC_worldtrade_hero_nclr, &(wk->FieldObjPalData[0]), HEAPID_RECORD );
 	wk->FieldObjPalBuf[1] = ArcUtil_HDL_PalDataGet( p_handle, NARC_record_union_chara_nclr, &(wk->FieldObjPalData[1]), HEAPID_RECORD );
 
-	// ‰æ‘œ“Ç‚İ‚İ
+	// ç”»åƒèª­ã¿è¾¼ã¿
 	wk->FieldObjCharaBuf[0] = ArcUtil_CharDataGet( ARC_WORLDTRADE_GRA, NARC_worldtrade_hero_lz_ncgr, 1, &(wk->FieldObjCharaData[0]), HEAPID_RECORD );
 	wk->FieldObjCharaBuf[1] = ArcUtil_HDL_CharDataGet( p_handle, NARC_record_union_chara_lz_ncgr,  1, &(wk->FieldObjCharaData[1]), HEAPID_RECORD );
 
@@ -3096,7 +3096,7 @@ static int _pal_no = 0;
 
 //------------------------------------------------------------------
 /**
- * @brief   “n‚³‚ê‚½ƒ†ƒjƒIƒ“Œ©‚½–ÚƒR[ƒh‚©‚çƒtƒB[ƒ‹ƒhOBJ‚ÌƒLƒƒƒ‰‚ğ“]‘—‚·‚é
+ * @brief   æ¸¡ã•ã‚ŒãŸãƒ¦ãƒ‹ã‚ªãƒ³è¦‹ãŸç›®ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ã‚­ãƒ£ãƒ©ã‚’è»¢é€ã™ã‚‹
  *
  * @param   id		
  * @param   view		
@@ -3110,7 +3110,7 @@ static void TransFieldObjData( NNSG2dCharacterData *CharaData[2], NNSG2dPaletteD
 	int pos;
 	u8 *chara, *pal;
 	
-	// ƒ†ƒjƒIƒ“ƒLƒƒƒ‰‚ğ“]‘—
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚’è»¢é€
 
 	pos   = UnionView_GetCharaNo( sex, view );
 
@@ -3120,7 +3120,7 @@ static void TransFieldObjData( NNSG2dCharacterData *CharaData[2], NNSG2dPaletteD
 	GX_LoadOBJ( &chara[OBJ_TRANS_SIZE*pos*0x20], obj_offset[id], OBJ_TRANS_SIZE*0x20 );
 	GX_LoadOBJPltt( &pal[pos*32], (id+FIELDOBJ_PAL_START)*32, 32 );
 
-	OS_Printf("ID=%d ‚Ìƒ†ƒjƒIƒ“Œ©‚½–Ú‚Í %d ƒAƒCƒRƒ“”Ô†‚Í %d\n", id, view, pos);
+	OS_Printf("ID=%d ã®ãƒ¦ãƒ‹ã‚ªãƒ³è¦‹ãŸç›®ã¯ %d ã‚¢ã‚¤ã‚³ãƒ³ç•ªå·ã¯ %d\n", id, view, pos);
 
 	
 	
@@ -3128,7 +3128,7 @@ static void TransFieldObjData( NNSG2dCharacterData *CharaData[2], NNSG2dPaletteD
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒtƒB[ƒ‹ƒhOBJ‰æ‘œ‰ğ•ú
+ * @brief   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”»åƒè§£æ”¾
  *
  * @param   wk		
  *
@@ -3147,7 +3147,7 @@ static void FreeFieldObjData( RECORD_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒXƒs[ƒh‚ğæ“¾
+ * @brief   ä¼šè©±ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å–å¾—
  *
  * @param   wk		
  *
@@ -3162,7 +3162,7 @@ static int GetTalkSpeed( RECORD_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   Ú‘±l”‚ª‚»‚ÌÚ‘±l”{‚P‚É‚È‚é‚æ‚¤‚ÉÄİ’è‚·‚é
+ * @brief   æ¥ç¶šäººæ•°ãŒãã®æ™‚æ¥ç¶šäººæ•°ï¼‹ï¼‘ã«ãªã‚‹ã‚ˆã†ã«å†è¨­å®šã™ã‚‹
  *
  * @param   wk		
  *
@@ -3174,7 +3174,7 @@ static void ChangeConnectMax( RECORD_WORK *wk, int plus )
 	if(CommGetCurrentID()==0){
 		if(plus == -1){
 			CommStateSetLimitNum(1);
-			OS_Printf("Ú‘±l”‚ğ‹­§“I‚É1l‚É•ÏX\n");
+			OS_Printf("æ¥ç¶šäººæ•°ã‚’å¼·åˆ¶çš„ã«1äººã«å¤‰æ›´\n");
 		}
 		else{
 			int num = CommGetConnectNum()+plus;
@@ -3182,7 +3182,7 @@ static void ChangeConnectMax( RECORD_WORK *wk, int plus )
 				num = 5;
 			}
 			CommStateSetLimitNum(num);
-			OS_Printf("Ú‘±l”‚ğ %dl‚É•ÏX\n",num);
+			OS_Printf("æ¥ç¶šäººæ•°ã‚’ %däººã«å¤‰æ›´\n",num);
 		}
 		
 		if(plus == -1){
@@ -3201,10 +3201,10 @@ static void ChangeConnectMax( RECORD_WORK *wk, int plus )
 
 //------------------------------------------------------------------
 /**
- * @brief   •åWl”‚Æƒr[ƒRƒ“î•ñ‚ğİ’è‚·‚é
+ * @brief   å‹Ÿé›†äººæ•°ã¨ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’è¨­å®šã™ã‚‹
  *
  * @param   wk		
- * @param   plus	1‚È‚ç•åW‚µ‚½‚¢A0‚È‚ç’÷‚ßØ‚è‚½‚¢‚Æ‚«
+ * @param   plus	1ãªã‚‰å‹Ÿé›†ã—ãŸã„æ™‚ã€0ãªã‚‰ç· ã‚åˆ‡ã‚ŠãŸã„ã¨ã
  *
  * @retval  none
  */
@@ -3212,12 +3212,12 @@ static void ChangeConnectMax( RECORD_WORK *wk, int plus )
 static int RecordCorner_BeaconControl( RECORD_WORK *wk, int plus )
 {
 	int num;
-	// ƒr[ƒRƒ“‚ğ‘‚«Š·‚¦‚é
+	// ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ›¸ãæ›ãˆã‚‹
 	num = MyStatusGetNum();
 
 	if(num>wk->shareNum){
 		u8 flag = RECORD_BAN_ON;
-		// —£’E‹Ö~‰ğœ’Ê’B
+		// é›¢è„±ç¦æ­¢è§£é™¤é€šé”
 		CommSendData( CR_RECORD_BAN, &flag, 1 );
 		wk->beacon_flag = RECORD_BAN_ON;
 	}
@@ -3225,20 +3225,20 @@ static int RecordCorner_BeaconControl( RECORD_WORK *wk, int plus )
 		wk->beacon_flag = RECORD_BAN_NONE;
 	}
 
-	// Ú‘±l”‚ÆƒŒƒR[ƒhŒğŠ·‰Â”\l”‚ªˆê’v‚·‚é‚Ü‚Å‚Í‘€ì‹Ö~
+	// æ¥ç¶šäººæ•°ã¨ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›å¯èƒ½äººæ•°ãŒä¸€è‡´ã™ã‚‹ã¾ã§ã¯æ“ä½œç¦æ­¢
 	if(num==wk->connectBackup){
 		return SEQ_MAIN;
 	}
 
-	RECORD_PRINT("l”‚ª•Ï‚í‚Á‚½\n");
+	RECORD_PRINT("äººæ•°ãŒå¤‰ã‚ã£ãŸ\n");
 
-	// ãŒÀ‚¶‚á‚È‚¢A‚©‚Â’÷‚ßØ‚è‚Å‚à‚È‚¢‚È‚ç•åW‘±s
+	// ä¸Šé™ã˜ã‚ƒãªã„ã€ã‹ã¤ç· ã‚åˆ‡ã‚Šã§ã‚‚ãªã„ãªã‚‰å‹Ÿé›†ç¶šè¡Œ
 	switch(num){
 	case 1:
-		// ‚Ğ‚Æ‚è‚É‚È‚Á‚½‚Ì‚ÅI—¹
+		// ã²ã¨ã‚Šã«ãªã£ãŸã®ã§çµ‚äº†
 		RECORD_PRINT("ONLY!! Comm = %d, My = %d, Bit = %d\n", CommGetConnectNum(), MyStatusGetNum(), WH_GetBitmap());
 		if(CommGetConnectNum() > 1 || WH_GetBitmap() > 1){
-			return SEQ_MAIN;	//Š®‘S‚Éˆêl‚É‚Í‚È‚Á‚Ä‚¢‚È‚¢‚Ì‚Å‚Ü‚¾‰½‚à‚µ‚È‚¢
+			return SEQ_MAIN;	//å®Œå…¨ã«ä¸€äººã«ã¯ãªã£ã¦ã„ãªã„ã®ã§ã¾ã ä½•ã‚‚ã—ãªã„
 		}
 		wk->seq = RECORD_MODE_END_PARENT_ONLY;
 		ChangeConnectMax( wk, -1 );
@@ -3249,10 +3249,10 @@ static int RecordCorner_BeaconControl( RECORD_WORK *wk, int plus )
 		return SEQ_LEAVE;
 		break;
 	case 2:	case 3:case 4:
-		// ‚Ü‚¾“ü‚ê‚é‚æ
+		// ã¾ã å…¥ã‚Œã‚‹ã‚ˆ
 		Union_BeaconChange( UNION_PARENT_MODE_RECORD_FREE );
 
-		// Ú‘±l”‚ªŒ¸‚Á‚½ê‡‚ÍÚ‘±Å‘ål”‚àŒ¸‚ç‚·
+		// æ¥ç¶šäººæ•°ãŒæ¸›ã£ãŸå ´åˆã¯æ¥ç¶šæœ€å¤§äººæ•°ã‚‚æ¸›ã‚‰ã™
 		if(num<wk->connectBackup){
 			switch(wk->limit_mode){
 			case LIMIT_MODE_NONE:
@@ -3266,14 +3266,14 @@ static int RecordCorner_BeaconControl( RECORD_WORK *wk, int plus )
 		}
 		break;
 	case 5:
-		// ‚¢‚Á‚Ï‚¢‚Å‚·
+		// ã„ã£ã±ã„ã§ã™
 		Union_BeaconChange( UNION_PARENT_MODE_RECORDNOW );
 		ChangeConnectMax( wk, plus );
 		break;
 	}
 
 	
-	// Ú‘±l”‚ğ•Û‘¶
+	// æ¥ç¶šäººæ•°ã‚’ä¿å­˜
 	wk->connectBackup = MyStatusGetNum();
 
 	return SEQ_MAIN;

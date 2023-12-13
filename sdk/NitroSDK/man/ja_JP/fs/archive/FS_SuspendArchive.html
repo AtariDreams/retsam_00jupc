@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_SuspendArchive</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_SuspendArchive</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,35 +22,35 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>p_arc</STRONG></EM></TD>
-      <TD width="87%">FSArchive�\���̂̃A�h���X</TD>
+      <TD width="87%">FSArchive構造体のアドレス</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�ύX�O�ɃA�[�J�C�u���T�X�y���h��Ԃł���� FALSE ���A�����łȂ��Ȃ� TRUE ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>変更前にアーカイブがサスペンド状態であれば FALSE を、そうでないなら TRUE を返します。</p>
 
-<H2>����</H2>
-<P>�A�[�J�C�u���~��Ԃɂ��܂��B<BR>
-��~���Ƀt�@�C���V�X�e�����瑗��ꂽ�R�}���h�͏����҂���ԂƂ��ĕۗ�����܂��B<BR>
-��~��Ԃ���ʏ��Ԃ֕��A������ɂ́AFS_ResumeArchive�֐����Ăяo���܂��B<BR>
+<H2>説明</H2>
+<P>アーカイブを停止状態にします。<BR>
+停止中にファイルシステムから送られたコマンドは処理待ち状態として保留されます。<BR>
+停止状態から通常状態へ復帰させるには、FS_ResumeArchive関数を呼び出します。<BR>
 <BR>
-���[�h����̏�Ԃ𐧌䂷��ɂ́AFS_LoadArchive�֐��̑O�ɂ��̊֐����ĂԕK�v������܂��B<BR>
+ロード直後の状態を制御するには、FS_LoadArchive関数の前にこの関数を呼ぶ必要があります。<BR>
 <BR>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/07/12 �߂�l�̌^��ύX<BR>
-2004/06/30 ����<BR>
+2004/07/12 戻り値の型を変更<BR>
+2004/06/30 初版<BR>
 </P>
 </body>
 </html>

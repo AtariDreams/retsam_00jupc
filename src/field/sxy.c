@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	sxy.c
- * @brief	ƒCƒxƒ“ƒgŠÖ˜Aˆ—
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆé–¢é€£å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2004.11.30
  */
@@ -25,28 +25,28 @@
 #include "sxy.h"
 
 #include "zonedata.h"
-#include "eventdata.h"		//ƒ][ƒ“–ˆ‚ÌƒCƒxƒ“ƒgƒf[ƒ^QÆ‚Ì‚½‚ß
+#include "eventdata.h"		//ã‚¾ãƒ¼ãƒ³æ¯ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å‚ç…§ã®ãŸã‚
 
 #include "scr_tool.h"
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// BG˜b‚µ‚©‚¯ƒCƒxƒ“ƒgF˜b‚µ‚©‚¯•ûŒü
+// BGè©±ã—ã‹ã‘ã‚¤ãƒ™ãƒ³ãƒˆï¼šè©±ã—ã‹ã‘æ–¹å‘
 enum {
-	BG_TALK_DIR_DOWN = 0,		// ‰º‚©‚ç
-	BG_TALK_DIR_LEFT,			// ¶‚©‚ç
-	BG_TALK_DIR_RIGHT,			// ‰E‚©‚ç
-	BG_TALK_DIR_UP,				// ã‚©‚ç
-	BG_TALK_DIR_ALL,			// ‘S•ûŒü
-	BG_TALK_DIR_SIDE,			// ¶‰E‚©‚ç
-	BG_TALK_DIR_UPDOWN,			// ã‰º‚©‚ç
+	BG_TALK_DIR_DOWN = 0,		// ä¸‹ã‹ã‚‰
+	BG_TALK_DIR_LEFT,			// å·¦ã‹ã‚‰
+	BG_TALK_DIR_RIGHT,			// å³ã‹ã‚‰
+	BG_TALK_DIR_UP,				// ä¸Šã‹ã‚‰
+	BG_TALK_DIR_ALL,			// å…¨æ–¹å‘
+	BG_TALK_DIR_SIDE,			// å·¦å³ã‹ã‚‰
+	BG_TALK_DIR_UPDOWN,			// ä¸Šä¸‹ã‹ã‚‰
 };
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static u8 TalkBgDirCheck( FIELDSYS_WORK * repw, const BG_TALK_DATA * bg );
 static u8 TalkBgHideItemCheck( FIELDSYS_WORK * repw, const BG_TALK_DATA * bg );
@@ -55,19 +55,19 @@ static u8 TalkBgHideItemCheck( FIELDSYS_WORK * repw, const BG_TALK_DATA * bg );
 
 //============================================================================================
 //============================================================================================
-//	˜b‚µ‚©‚¯ˆ—
+//	è©±ã—ã‹ã‘å‡¦ç†
 //============================================================================================
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ålŒö‚Ì‘O‚ÌˆÊ’u‚ğæ“¾
+ * ä¸»äººå…¬ã®å‰ã®ä½ç½®ã‚’å–å¾—
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒf[ƒ^
- * @param	gx		XÀ•WŠi”[êŠ
- * @param	gz		ZÀ•WŠi”[êŠ
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ * @param	gx		Xåº§æ¨™æ ¼ç´å ´æ‰€
+ * @param	gz		Zåº§æ¨™æ ¼ç´å ´æ‰€
  *
- * @return	Œü‚«
+ * @return	å‘ã
  */
 //--------------------------------------------------------------------------------------------
 static int Player_FrontPosGet( FIELDSYS_WORK * repw, int * gx, int * gz )
@@ -78,16 +78,16 @@ static int Player_FrontPosGet( FIELDSYS_WORK * repw, int * gx, int * gz )
 	*gz = Player_NowGPosZGet( repw->player );
 
 	switch( dir ){
-	case DIR_UP:		// ãŒü‚«
+	case DIR_UP:		// ä¸Šå‘ã
 		*gz -= 1;
 		break;
-	case DIR_DOWN:		// ‰ºŒü‚«
+	case DIR_DOWN:		// ä¸‹å‘ã
 		*gz += 1;
 		break;
-	case DIR_LEFT:		// ¶Œü‚«
+	case DIR_LEFT:		// å·¦å‘ã
 		*gx -= 1;
 		break;
-	case DIR_RIGHT:		// ‰EŒü‚«
+	case DIR_RIGHT:		// å³å‘ã
 		*gx += 1;
 		break;
 	}
@@ -98,13 +98,13 @@ static int Player_FrontPosGet( FIELDSYS_WORK * repw, int * gx, int * gz )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚‚³ƒ`ƒFƒbƒN
+ * é«˜ã•ãƒã‚§ãƒƒã‚¯
  *
- * @param	jiki	©‹@ƒf[ƒ^
- * @param	obj		‘ÎÛOBJƒf[ƒ^
+ * @param	jiki	è‡ªæ©Ÿãƒ‡ãƒ¼ã‚¿
+ * @param	obj		å¯¾è±¡OBJãƒ‡ãƒ¼ã‚¿
  *
- * @retval	"TRUE = “¯‚¶‚‚³"
- * @retval	"FALSE = ˆá‚¤‚‚³"
+ * @retval	"TRUE = åŒã˜é«˜ã•"
+ * @retval	"FALSE = é•ã†é«˜ã•"
  */
 //--------------------------------------------------------------------------------------------
 static u8 TalkObjEventHeightChack( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR obj )
@@ -120,13 +120,13 @@ static u8 TalkObjEventHeightChack( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR obj )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bƒLƒƒƒ‰OBJæ“¾
+ * ä¼šè©±ã‚­ãƒ£ãƒ©OBJå–å¾—
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒf[ƒ^
- * @param	obj		ƒLƒƒƒ‰ƒf[ƒ^Ši”[êŠ
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ * @param	obj		ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
- * @retval	"TRUE = ƒLƒƒƒ‰‚ª‚¢‚é"
- * @retval	"FALSE = ƒLƒƒƒ‰‚ª‚¢‚È‚¢"
+ * @retval	"TRUE = ã‚­ãƒ£ãƒ©ãŒã„ã‚‹"
+ * @retval	"FALSE = ã‚­ãƒ£ãƒ©ãŒã„ãªã„"
  */
 //--------------------------------------------------------------------------------------------
 void SXY_HeroFrontObjGet( FIELDSYS_WORK * repw, FIELD_OBJ_PTR * obj )
@@ -140,16 +140,16 @@ void SXY_HeroFrontObjGet( FIELDSYS_WORK * repw, FIELD_OBJ_PTR * obj )
 
 	if( MATR_IsCounter( attr ) == TRUE ){
 		switch( dir ){
-		case DIR_UP:		// ãŒü‚«
+		case DIR_UP:		// ä¸Šå‘ã
 			gz -= 1;
 			break;
-		case DIR_DOWN:		// ‰ºŒü‚«
+		case DIR_DOWN:		// ä¸‹å‘ã
 			gz += 1;
 			break;
-		case DIR_LEFT:		// ¶Œü‚«
+		case DIR_LEFT:		// å·¦å‘ã
 			gx -= 1;
 			break;
-		case DIR_RIGHT:		// ‰EŒü‚«
+		case DIR_RIGHT:		// å³å‘ã
 			gx += 1;
 			break;
 		}
@@ -159,13 +159,13 @@ void SXY_HeroFrontObjGet( FIELDSYS_WORK * repw, FIELD_OBJ_PTR * obj )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ˜b‚µ‚©‚¯‹N“®ƒ`ƒFƒbƒN
+ * OBJè©±ã—ã‹ã‘èµ·å‹•ãƒã‚§ãƒƒã‚¯
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒf[ƒ^
- * @param	obj		ƒtƒB[ƒ‹ƒhOBJƒf[ƒ^
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ * @param	obj		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ‡ãƒ¼ã‚¿
  *
- * @retval	"TRUE = ‹N“®ok"
- * @retval	"FALSE = OBJ‚ª‚¢‚È‚¢"
+ * @retval	"TRUE = èµ·å‹•ok"
+ * @retval	"FALSE = OBJãŒã„ãªã„"
  */
 //--------------------------------------------------------------------------------------------
 u8 TalkObjEventCheck( FIELDSYS_WORK * repw, FIELD_OBJ_PTR * obj )
@@ -189,16 +189,16 @@ u8 TalkObjEventCheck( FIELDSYS_WORK * repw, FIELD_OBJ_PTR * obj )
 
 	if( MATR_IsCounter( attr ) == TRUE ){
 		switch( dir ){
-		case DIR_UP:		// ãŒü‚«
+		case DIR_UP:		// ä¸Šå‘ã
 			gz -= 1;
 			break;
-		case DIR_DOWN:		// ‰ºŒü‚«
+		case DIR_DOWN:		// ä¸‹å‘ã
 			gz += 1;
 			break;
-		case DIR_LEFT:		// ¶Œü‚«
+		case DIR_LEFT:		// å·¦å‘ã
 			gx -= 1;
 			break;
-		case DIR_RIGHT:		// ‰EŒü‚«
+		case DIR_RIGHT:		// å³å‘ã
 			gx += 1;
 			break;
 		}
@@ -218,14 +218,14 @@ u8 TalkObjEventCheck( FIELDSYS_WORK * repw, FIELD_OBJ_PTR * obj )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG˜b‚µ‚©‚¯ƒCƒxƒ“ƒg‚ÌIDæ“¾
+ * BGè©±ã—ã‹ã‘ã‚¤ãƒ™ãƒ³ãƒˆã®IDå–å¾—
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒf[ƒ^
- * @param	data	BG˜b‚µ‚©‚¯ƒf[ƒ^
- * @param	size	BG˜b‚µ‚©‚¯ƒf[ƒ^”
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ * @param	data	BGè©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿
+ * @param	size	BGè©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿æ•°
  *
- * @retval	"EVENT_ID_NONE = ƒf[ƒ^‚È‚µ"
- * @retvel	"EVENT_ID_NONE != BGƒf[ƒ^‚ÌID"
+ * @retval	"EVENT_ID_NONE = ãƒ‡ãƒ¼ã‚¿ãªã—"
+ * @retvel	"EVENT_ID_NONE != BGãƒ‡ãƒ¼ã‚¿ã®ID"
  */
 //--------------------------------------------------------------------------------------------
 u16 TalkBgEventCheck( FIELDSYS_WORK * repw, void * data, int size )
@@ -257,23 +257,23 @@ u16 TalkBgEventCheck( FIELDSYS_WORK * repw, void * data, int size )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰B‚µƒAƒCƒeƒ€‚©‚Ç‚¤‚©
+ * éš ã—ã‚¢ã‚¤ãƒ†ãƒ ã‹ã©ã†ã‹
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒf[ƒ^
- * @param	bg		BG˜b‚µ‚©‚¯ƒf[ƒ^
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ * @param	bg		BGè©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿
  *
- * @retval	"TRUE = ‚»‚¤‚Å‚·"
- * @retvel	"FALSE = ‚¿‚ª‚¢‚Ü‚·"
+ * @retval	"TRUE = ãã†ã§ã™"
+ * @retvel	"FALSE = ã¡ãŒã„ã¾ã™"
  */
 //--------------------------------------------------------------------------------------------
 static u8 TalkBgHideItemCheck( FIELDSYS_WORK * repw, const BG_TALK_DATA * bg )
 {
-	//‰B‚µƒAƒCƒeƒ€‚©ƒ`ƒFƒbƒN
+	//éš ã—ã‚¢ã‚¤ãƒ†ãƒ ã‹ãƒã‚§ãƒƒã‚¯
 	if( bg->type != BG_TALK_TYPE_HIDE ){
 		return FALSE;
 	}
 
-	//‚·‚Å‚Éæ“¾Ï‚İ‚©ƒ`ƒFƒbƒN
+	//ã™ã§ã«å–å¾—æ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
 	if( CheckEventFlag(repw, GetHideItemFlagNoByScriptId(bg->id)) == 1 ){
 		return FALSE;
 	}
@@ -283,13 +283,13 @@ static u8 TalkBgHideItemCheck( FIELDSYS_WORK * repw, const BG_TALK_DATA * bg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGƒf[ƒ^‚ª˜b‚µ‚©‚¯•ûŒü‚É‘Î‰‚µ‚Ä‚¢‚é‚©
+ * BGãƒ‡ãƒ¼ã‚¿ãŒè©±ã—ã‹ã‘æ–¹å‘ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒf[ƒ^
- * @param	bg		BG˜b‚µ‚©‚¯ƒf[ƒ^
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ * @param	bg		BGè©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿
  *
- * @retval	"TRUE = ‚µ‚Ä‚Ü‚·"
- * @retvel	"FALSE = ‚µ‚Ä‚Ü‚¹‚ñ"
+ * @retval	"TRUE = ã—ã¦ã¾ã™"
+ * @retvel	"FALSE = ã—ã¦ã¾ã›ã‚“"
  */
 //--------------------------------------------------------------------------------------------
 static u8 TalkBgDirCheck( FIELDSYS_WORK * repw, const BG_TALK_DATA * bg )
@@ -297,22 +297,22 @@ static u8 TalkBgDirCheck( FIELDSYS_WORK * repw, const BG_TALK_DATA * bg )
 	if( bg->dir == BG_TALK_DIR_ALL ){ return TRUE; }
 
 	switch( Player_DirGet( repw->player ) ){
-	case DIR_UP:		// ãŒü‚«
+	case DIR_UP:		// ä¸Šå‘ã
 		if( bg->dir == BG_TALK_DIR_DOWN || bg->dir == BG_TALK_DIR_UPDOWN ){
 			return TRUE;
 		}
 		break;
-	case DIR_DOWN:		// ‰ºŒü‚«
+	case DIR_DOWN:		// ä¸‹å‘ã
 		if( bg->dir == BG_TALK_DIR_UP || bg->dir == BG_TALK_DIR_UPDOWN ){
 			return TRUE;
 		}
 		break;
-	case DIR_LEFT:		// ¶Œü‚«
+	case DIR_LEFT:		// å·¦å‘ã
 		if( bg->dir == BG_TALK_DIR_RIGHT || bg->dir == BG_TALK_DIR_SIDE ){
 			return TRUE;
 		}
 		break;
-	case DIR_RIGHT:		// ‰EŒü‚«
+	case DIR_RIGHT:		// å³å‘ã
 		if( bg->dir == BG_TALK_DIR_LEFT || bg->dir == BG_TALK_DIR_SIDE ){
 			return TRUE;
 		}
@@ -324,14 +324,14 @@ static u8 TalkBgDirCheck( FIELDSYS_WORK * repw, const BG_TALK_DATA * bg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGƒf[ƒ^‚ÌŠÅ”Â˜b‚µ‚©‚¯ƒ`ƒFƒbƒN
+ * BGãƒ‡ãƒ¼ã‚¿ã®çœ‹æ¿è©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒf[ƒ^
- * @param	data	BG˜b‚µ‚©‚¯ƒf[ƒ^
- * @param	size	BGƒf[ƒ^ƒTƒCƒY
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ * @param	data	BGè©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿
+ * @param	size	BGãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *
- * @retval	"EVENT_ID_NONE = ŠÅ”Â‚È‚µ"
- * @retvel	"EVENT_ID_NONE != ŠÅ”Â‚ ‚è"
+ * @retval	"EVENT_ID_NONE = çœ‹æ¿ãªã—"
+ * @retvel	"EVENT_ID_NONE != çœ‹æ¿ã‚ã‚Š"
  */
 //--------------------------------------------------------------------------------------------
 u16 TalkAutoBgBoardEventCheck( FIELDSYS_WORK * repw, void * data, int size )
@@ -359,13 +359,13 @@ u16 TalkAutoBgBoardEventCheck( FIELDSYS_WORK * repw, void * data, int size )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJƒf[ƒ^‚ÌŠÅ”Â˜b‚µ‚©‚¯ƒ`ƒFƒbƒN
+ * OBJãƒ‡ãƒ¼ã‚¿ã®çœ‹æ¿è©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒf[ƒ^
- * @param	obj		ƒtƒB[ƒ‹ƒhOBJƒf[ƒ^
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ * @param	obj		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ‡ãƒ¼ã‚¿
  *
- * @retval	"TRUE = ŠÅ”Â‚ ‚è"
- * @retvel	"FALSE = ŠÅ”Â‚È‚µ"
+ * @retval	"TRUE = çœ‹æ¿ã‚ã‚Š"
+ * @retvel	"FALSE = çœ‹æ¿ãªã—"
  */
 //--------------------------------------------------------------------------------------------
 u8 TalkAutoObjBoardEventCheck( FIELDSYS_WORK * repw, FIELD_OBJ_PTR * obj )
@@ -389,20 +389,20 @@ u8 TalkAutoObjBoardEventCheck( FIELDSYS_WORK * repw, FIELD_OBJ_PTR * obj )
 
 //============================================================================================
 //============================================================================================
-//	ˆÊ’u”­“®ƒCƒxƒ“ƒgˆ—	POS EVENT
+//	ä½ç½®ç™ºå‹•ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†	POS EVENT
 //============================================================================================
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * POSƒCƒxƒ“ƒgIDæ“¾
+ * POSã‚¤ãƒ™ãƒ³ãƒˆIDå–å¾—
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒf[ƒ^
- * @param	data	POSƒCƒxƒ“ƒgƒf[ƒ^
- * @param	size	POSƒCƒxƒ“ƒgƒf[ƒ^”
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ * @param	data	POSã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ * @param	size	POSã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æ•°
  *
- * @retval	"EVENT_ID_NONE = ƒf[ƒ^‚È‚µ"
- * @retvel	"EVENT_ID_NONE != POSƒCƒxƒ“ƒgƒf[ƒ^‚ÌID"
+ * @retval	"EVENT_ID_NONE = ãƒ‡ãƒ¼ã‚¿ãªã—"
+ * @retvel	"EVENT_ID_NONE != POSã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ID"
  */
 //--------------------------------------------------------------------------------------------
 u16 PosEventCheck( FIELDSYS_WORK * repw, void * data, int size )

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	bag_bmp.c
- * @brief	ƒoƒbƒO‰æ–ÊBMPˆ—
+ * @brief	ãƒãƒƒã‚°ç”»é¢BMPå‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	05.11.28
  */
@@ -40,73 +40,73 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	POCKET_NAME_AREA_SX		( 96 )		// ƒ|ƒPƒbƒg–¼•\¦ƒGƒŠƒAXƒTƒCƒY
-#define	POCKET_NAME_AREA_GX		( 50 )		// ƒ|ƒPƒbƒg–¼•\¦Šî€XÀ•W
-#define	POCKET_NAME_SCROLL_X	( 12 )		// ‚PƒJƒEƒ“ƒgƒXƒNƒ[ƒ‹‚·‚éƒhƒbƒg”
+#define	POCKET_NAME_AREA_SX		( 96 )		// ãƒã‚±ãƒƒãƒˆåè¡¨ç¤ºã‚¨ãƒªã‚¢Xã‚µã‚¤ã‚º
+#define	POCKET_NAME_AREA_GX		( 50 )		// ãƒã‚±ãƒƒãƒˆåè¡¨ç¤ºåŸºæº–Xåº§æ¨™
+#define	POCKET_NAME_SCROLL_X	( 12 )		// ï¼‘ã‚«ã‚¦ãƒ³ãƒˆã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹ãƒ‰ãƒƒãƒˆæ•°
 
-#define	MENU_INFO_STRLEN	( BMP_MENU_INFO_SX*2*2 )	// ƒƒjƒ…[à–¾•¶š—ñƒTƒCƒYWinSiz * 2s * ŠCŠO‘Î‰
+#define	MENU_INFO_STRLEN	( BMP_MENU_INFO_SX*2*2 )	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼èª¬æ˜æ–‡å­—åˆ—ã‚µã‚¤ã‚ºWinSiz * 2è¡Œ * æµ·å¤–å¯¾å¿œ
 
-#define	NUMSEL_EX		( BMP_SALE_NUM_SX * 8 )		// ”„‹pŠz‚Ì‰E’[‚ÌXÀ•W
+#define	NUMSEL_EX		( BMP_SALE_NUM_SX * 8 )		// å£²å´é¡ã®å³ç«¯ã®Xåº§æ¨™
 
-#define	NORMAL_INFO_PX	( 40 )		// ƒAƒCƒeƒ€î•ñ•\¦XÀ•W
+#define	NORMAL_INFO_PX	( 40 )		// ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±è¡¨ç¤ºXåº§æ¨™
 
-#define	INFO_TYPE_PX	( 0 )		// ‹Zƒ}ƒVƒ“î•ñ uƒ^ƒCƒvv•\¦XÀ•W
-#define	INFO_TYPE_PY	( 0 )		// ‹Zƒ}ƒVƒ“î•ñ uƒ^ƒCƒvv•\¦YÀ•W
-#define	INFO_PP_PX		( 0 )		// ‹Zƒ}ƒVƒ“î•ñ uPPv•\¦XÀ•W
-#define	INFO_PP_PY		( 16 )		// ‹Zƒ}ƒVƒ“î•ñ uPPv•\¦YÀ•W
-#define	INFO_KIND_PX	( 96 )		// ‹Zƒ}ƒVƒ“î•ñ u‚Ô‚ñ‚é‚¢v•\¦XÀ•W
-#define	INFO_KIND_PY	( 0 )		// ‹Zƒ}ƒVƒ“î•ñ u‚Ô‚ñ‚é‚¢v•\¦YÀ•W
-#define	INFO_POW_PX		( 96 )		// ‹Zƒ}ƒVƒ“î•ñ u‚¢‚è‚å‚­v•\¦XÀ•W
-#define	INFO_POW_PY		( 16 )		// ‹Zƒ}ƒVƒ“î•ñ u‚¢‚è‚å‚­v•\¦YÀ•W
-#define	INFO_HIT_PX		( 96 )		// ‹Zƒ}ƒVƒ“î•ñ u‚ß‚¢‚¿‚ã‚¤v•\¦XÀ•W
-#define	INFO_HIT_PY		( 32 )		// ‹Zƒ}ƒVƒ“î•ñ u‚ß‚¢‚¿‚ã‚¤v•\¦YXÀ•W
-#define	INFO_PPNUM_PX	( 48 )		// ‹Zƒ}ƒVƒ“î•ñ PP’l•\¦XÀ•W
-#define	INFO_PPNUM_PY	( 16 )		// ‹Zƒ}ƒVƒ“î•ñ PP’l•\¦YÀ•W
-#define	INFO_POWNUM_PX	( 96+64 )	// ‹Zƒ}ƒVƒ“î•ñ ˆĞ—Í’l•\¦XÀ•W
-#define	INFO_POWNUM_PY	( 16 )		// ‹Zƒ}ƒVƒ“î•ñ ˆĞ—Í’l•\¦YÀ•W
-#define	INFO_HITNUM_PX	( 96+64 )	// ‹Zƒ}ƒVƒ“î•ñ –½’†’l•\¦XÀ•W
-#define	INFO_HITNUM_PY	( 32 )		// ‹Zƒ}ƒVƒ“î•ñ –½’†’l•\¦YÀ•W
+#define	INFO_TYPE_PX	( 0 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± ã€Œã‚¿ã‚¤ãƒ—ã€è¡¨ç¤ºXåº§æ¨™
+#define	INFO_TYPE_PY	( 0 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± ã€Œã‚¿ã‚¤ãƒ—ã€è¡¨ç¤ºYåº§æ¨™
+#define	INFO_PP_PX		( 0 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± ã€ŒPPã€è¡¨ç¤ºXåº§æ¨™
+#define	INFO_PP_PY		( 16 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± ã€ŒPPã€è¡¨ç¤ºYåº§æ¨™
+#define	INFO_KIND_PX	( 96 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± ã€Œã¶ã‚“ã‚‹ã„ã€è¡¨ç¤ºXåº§æ¨™
+#define	INFO_KIND_PY	( 0 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± ã€Œã¶ã‚“ã‚‹ã„ã€è¡¨ç¤ºYåº§æ¨™
+#define	INFO_POW_PX		( 96 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± ã€Œã„ã‚Šã‚‡ãã€è¡¨ç¤ºXåº§æ¨™
+#define	INFO_POW_PY		( 16 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± ã€Œã„ã‚Šã‚‡ãã€è¡¨ç¤ºYåº§æ¨™
+#define	INFO_HIT_PX		( 96 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± ã€Œã‚ã„ã¡ã‚…ã†ã€è¡¨ç¤ºXåº§æ¨™
+#define	INFO_HIT_PY		( 32 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± ã€Œã‚ã„ã¡ã‚…ã†ã€è¡¨ç¤ºYXåº§æ¨™
+#define	INFO_PPNUM_PX	( 48 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± PPå€¤è¡¨ç¤ºXåº§æ¨™
+#define	INFO_PPNUM_PY	( 16 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± PPå€¤è¡¨ç¤ºYåº§æ¨™
+#define	INFO_POWNUM_PX	( 96+64 )	// æŠ€ãƒã‚·ãƒ³æƒ…å ± å¨åŠ›å€¤è¡¨ç¤ºXåº§æ¨™
+#define	INFO_POWNUM_PY	( 16 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± å¨åŠ›å€¤è¡¨ç¤ºYåº§æ¨™
+#define	INFO_HITNUM_PX	( 96+64 )	// æŠ€ãƒã‚·ãƒ³æƒ…å ± å‘½ä¸­å€¤è¡¨ç¤ºXåº§æ¨™
+#define	INFO_HITNUM_PY	( 32 )		// æŠ€ãƒã‚·ãƒ³æƒ…å ± å‘½ä¸­å€¤è¡¨ç¤ºYåº§æ¨™
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/22
-// ‚«‚Ì‚İ–¼‚Æuxv‚ªd‚È‚Á‚Ä‚µ‚Ü‚¤‚Ì‚ğC³
+// ãã®ã¿åã¨ã€Œxã€ãŒé‡ãªã£ã¦ã—ã¾ã†ã®ã‚’ä¿®æ­£
 
 #define MULTI_SX	(6)
 #define SPACE_SX	(1)
 #define NUMBER_SX	(6)
 
-#define	NUM_POS_EX	( 17*8-2 )										// ŒÂ”•\¦XÀ•WI’[
-#define	NX_POS_PX	( NUM_POS_EX-MULTI_SX-SPACE_SX-NUMBER_SX*3 )	// u‚˜v•\¦XÀ•Wi’Êíj
-#define	WX_POS_PX	( NX_POS_PX+NUMBER_SX )							// u‚˜v•\¦XÀ•Wi‹Zƒ}ƒVƒ“j
-#define	NUM_BUFLEN	( 10 )											// ("x???"+EOM_) x ŠCŠO
+#define	NUM_POS_EX	( 17*8-2 )										// å€‹æ•°è¡¨ç¤ºXåº§æ¨™çµ‚ç«¯
+#define	NX_POS_PX	( NUM_POS_EX-MULTI_SX-SPACE_SX-NUMBER_SX*3 )	// ã€Œï½˜ã€è¡¨ç¤ºXåº§æ¨™ï¼ˆé€šå¸¸ï¼‰
+#define	WX_POS_PX	( NX_POS_PX+NUMBER_SX )							// ã€Œï½˜ã€è¡¨ç¤ºXåº§æ¨™ï¼ˆæŠ€ãƒã‚·ãƒ³ï¼‰
+#define	NUM_BUFLEN	( 10 )											// ("x???"+EOM_) x æµ·å¤–
 
 // ----------------------------------------------------------------------------
 
-#define	WM_NO_Y_PLUS	( 5 )		// ‹Zƒ}ƒVƒ“‚ÌuNov•\¦YÀ•WƒIƒtƒZƒbƒg
+#define	WM_NO_Y_PLUS	( 5 )		// æŠ€ãƒã‚·ãƒ³ã®ã€ŒNoã€è¡¨ç¤ºYåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define	LIST_FILL_SY	( 16 )		// ‹Zƒ}ƒVƒ“ƒ|ƒPƒbƒg‚Ìu‚Æ‚¶‚év‚ğ•\¦‚·‚é‚½‚ß‚ÌYƒTƒCƒY
+#define	LIST_FILL_SY	( 16 )		// æŠ€ãƒã‚·ãƒ³ãƒã‚±ãƒƒãƒˆã®ã€Œã¨ã˜ã‚‹ã€ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®Yã‚µã‚¤ã‚º
 
-#define	LIST_ICON_SX	( 64 )		// u‚Ğ‚Å‚ñvu‚Æ‚¤‚ë‚­vƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^ƒTƒCƒYX
-#define	LIST_ICON_SY	( 16 )		// u‚Ğ‚Å‚ñvu‚Æ‚¤‚ë‚­vƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^ƒTƒCƒYY
+#define	LIST_ICON_SX	( 64 )		// ã€Œã²ã§ã‚“ã€ã€Œã¨ã†ã‚ãã€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºX
+#define	LIST_ICON_SY	( 16 )		// ã€Œã²ã§ã‚“ã€ã€Œã¨ã†ã‚ãã€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºY
 
-#define	HIREN_ICON_PX	( 40 )		// u‚Ğ‚Å‚ñvƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ÌŠJnXÀ•W
-#define	HIREN_ICON_PY	( 0 )		// u‚Ğ‚Å‚ñvƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ÌŠJnYÀ•W
-#define	HIREN_ICON_SX	( 24 )		// u‚Ğ‚Å‚ñvƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ÌXƒTƒCƒY
-#define	HIREN_ICON_SY	( 16 )		// u‚Ğ‚Å‚ñvƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ÌYƒTƒCƒY
+#define	HIREN_ICON_PX	( 40 )		// ã€Œã²ã§ã‚“ã€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹Xåº§æ¨™
+#define	HIREN_ICON_PY	( 0 )		// ã€Œã²ã§ã‚“ã€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹Yåº§æ¨™
+#define	HIREN_ICON_SX	( 24 )		// ã€Œã²ã§ã‚“ã€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®Xã‚µã‚¤ã‚º
+#define	HIREN_ICON_SY	( 16 )		// ã€Œã²ã§ã‚“ã€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®Yã‚µã‚¤ã‚º
 
-#define	CNV_ICON_PX			( 0 )	// u‚Æ‚¤‚ë‚­vƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ÌŠJnXÀ•W
-#define	CNV_ICON_PY			( 0 )	// u‚Æ‚¤‚ë‚­vƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ÌŠJnYÀ•W
-#define	CNV_ICON_SX			( 40 )	// u‚Æ‚¤‚ë‚­vƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ÌXƒTƒCƒY
-#define	CNV_ICON_SY			( 16 )	// u‚Æ‚¤‚ë‚­vƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ÌYƒTƒCƒY
-#define	CNV_ICON_SCRPUT_X	( 96 )	// u‚Æ‚¤‚ë‚­vƒAƒCƒRƒ“‚Ì•\¦XÀ•W
+#define	CNV_ICON_PX			( 0 )	// ã€Œã¨ã†ã‚ãã€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹Xåº§æ¨™
+#define	CNV_ICON_PY			( 0 )	// ã€Œã¨ã†ã‚ãã€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹Yåº§æ¨™
+#define	CNV_ICON_SX			( 40 )	// ã€Œã¨ã†ã‚ãã€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®Xã‚µã‚¤ã‚º
+#define	CNV_ICON_SY			( 16 )	// ã€Œã¨ã†ã‚ãã€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®Yã‚µã‚¤ã‚º
+#define	CNV_ICON_SCRPUT_X	( 96 )	// ã€Œã¨ã†ã‚ãã€ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºXåº§æ¨™
 
-#define	GOLD_EX			( BMP_GOLD_SX * 8 )		// Š‹à•\¦‚ÌI’[XÀ•W
+#define	GOLD_EX			( BMP_GOLD_SX * 8 )		// æ‰€æŒé‡‘è¡¨ç¤ºã®çµ‚ç«¯Xåº§æ¨™
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void BAG_HidenIconPut( BAG_WORK * wk, u32 py );
 static void BAG_WazaMashinePPPut( BAG_WORK * wk, u16 item );
@@ -115,9 +115,9 @@ static BOOL BAG_TalkMsgCallBack( MSG_PRINT_HEADER * mph, u16 value );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ‚Í‚¢E‚¢‚¢‚¦
+// ã¯ã„ãƒ»ã„ã„ãˆ
 static const BMPWIN_DAT YesNoBmpWin = {
 	BMP_YESNO_FRM, BMP_YESNO_PX, BMP_YESNO_PY,
 	BMP_YESNO_SX, BMP_YESNO_SY, BMP_YESNO_PAL, BMP_YESNO_CGX
@@ -127,9 +127,9 @@ static const BMPWIN_DAT YesNoBmpWin = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒEİ’è
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -190,9 +190,9 @@ void BagBmpWinSet( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒE”jŠü
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- * @param	win		BMPƒEƒBƒ“ƒhƒE
+ * @param	win		BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -208,15 +208,15 @@ void BagBmpWinExit( GF_BGL_BMPWIN * win )
 
 
 //============================================================================================
-//	ƒ|ƒPƒbƒg–¼
+//	ãƒã‚±ãƒƒãƒˆå
 //============================================================================================
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒg–¼æ“¾
+ * ãƒã‚±ãƒƒãƒˆåå–å¾—
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -237,9 +237,9 @@ void Bag_PocketNameMake( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒg–¼‰ğ•ú
+ * ãƒã‚±ãƒƒãƒˆåè§£æ”¾
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -255,13 +255,13 @@ void Bag_PocketNameRelease( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒg–¼‚ğƒXƒNƒŠ[ƒ“‚É”½‰f
+ * ãƒã‚±ãƒƒãƒˆåã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«åæ˜ 
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  *
- *	’Êí‚ÌBMPˆ—‚Å‚Í‚È‚¢‚½‚ßAw’èƒGƒŠƒA‚Ì‚İ‚ğƒXƒNƒŠ[ƒ“‚É”½‰f‚³‚¹‚é
+ *	é€šå¸¸ã®BMPå‡¦ç†ã§ã¯ãªã„ãŸã‚ã€æŒ‡å®šã‚¨ãƒªã‚¢ã®ã¿ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«åæ˜ ã•ã›ã‚‹
  */
 //--------------------------------------------------------------------------------------------
 void Bag_PocketNameScreenPut( BAG_WORK * wk )
@@ -283,11 +283,11 @@ void Bag_PocketNameScreenPut( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒg–¼•\¦EƒRƒA
+ * ãƒã‚±ãƒƒãƒˆåè¡¨ç¤ºãƒ»ã‚³ã‚¢
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
- * @param	str		•\¦‚·‚é•¶š—ñ
- * @param	cx		•¶š—ñ‚Ì•\¦’†SXÀ•W
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	str		è¡¨ç¤ºã™ã‚‹æ–‡å­—åˆ—
+ * @param	cx		æ–‡å­—åˆ—ã®è¡¨ç¤ºä¸­å¿ƒXåº§æ¨™
  *
  * @return	none
  */
@@ -304,9 +304,9 @@ static void PocketNamePutCore( BAG_WORK * wk, STRBUF * str, u16 cx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒg–¼•\¦
+ * ãƒã‚±ãƒƒãƒˆåè¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -339,16 +339,16 @@ void Bag_PocketNamePut( BAG_WORK * wk )
 
 
 //============================================================================================
-//	ƒ|ƒPƒbƒgƒAƒCƒRƒ“
+//	ãƒã‚±ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒgƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^æ“¾
+ * ãƒã‚±ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param	wk		ƒLƒƒƒ‰æ“¾êŠ
+ * @param	wk		ã‚­ãƒ£ãƒ©å–å¾—å ´æ‰€
  *
- * @return	ƒLƒƒƒ‰“WŠJ—Ìˆæ
+ * @return	ã‚­ãƒ£ãƒ©å±•é–‹é ˜åŸŸ
  */
 //--------------------------------------------------------------------------------------------
 static void * PocketIconCgxGet( BAG_WORK * wk, NNSG2dCharacterData ** chr )
@@ -362,11 +362,11 @@ static void * PocketIconCgxGet( BAG_WORK * wk, NNSG2dCharacterData ** chr )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒgƒAƒCƒRƒ“•\¦
+ * ãƒã‚±ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
- * @param	pos		•\¦ˆÊ’u
- * @param	flg		‘I‘ğƒtƒ‰ƒO	( 1 = ‘I‘ğ‚³‚ê‚Ä‚¢‚é )
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		è¡¨ç¤ºä½ç½®
+ * @param	flg		é¸æŠãƒ•ãƒ©ã‚°	( 1 = é¸æŠã•ã‚Œã¦ã„ã‚‹ )
  *
  * @return	none
  */
@@ -395,9 +395,9 @@ void Bag_PocketIconPut( BAG_WORK * wk, u8 pos, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘Sƒ|ƒPƒbƒgƒAƒCƒRƒ“•\¦
+ * å…¨ãƒã‚±ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -433,9 +433,9 @@ void Bag_PocketIconPutAll( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€–¼‚ğ’PŒê“o˜^
+ * ã‚¢ã‚¤ãƒ†ãƒ åã‚’å˜èªç™»éŒ²
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -447,7 +447,7 @@ static void ItemNameWordSet( BAG_WORK * wk, u32 pos, u32 buf_id )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/25
-// ‚Ç‚¤‚®”jŠü‚Ì‚Ç‚¤‚®–¼‚ğ”„‹p”‚Åo‚µ•ª‚¯
+// ã©ã†ãç ´æ£„æ™‚ã®ã©ã†ãåã‚’å£²å´æ•°ã§å‡ºã—åˆ†ã‘
 static void ItemNameWordSetPlural( BAG_WORK * wk, u32 pos, u32 buf_id )
 {
 	WORDSET_RegisterItemNamePlural( wk->wset, buf_id, Bag_PosItemGet(wk,pos,POS_GET_ID) );
@@ -457,9 +457,9 @@ static void ItemNameWordSetPlural( BAG_WORK * wk, u32 pos, u32 buf_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€à–¾•\¦
+ * ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -484,10 +484,10 @@ void Bag_ItemInfoPut( BAG_WORK * wk, u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“‚Ìî•ñ•\¦
+ * æŠ€ãƒã‚·ãƒ³ã®æƒ…å ±è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
  * @return	none
  */
@@ -502,7 +502,7 @@ void BagBmp_WazaMashineInfoPut( BAG_WORK * wk, u16 item )
 	win  = &wk->win[WIN_INFO];
 	waza = GetWazaNoItem( item );
 
-	// ƒ^ƒCƒv
+	// ã‚¿ã‚¤ãƒ—
 	str = MSGMAN_AllocString( wk->msg_man, mes_bag_107 );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, str, INFO_TYPE_PX, INFO_TYPE_PY, MSG_NO_PUT, BAGCOL_N_WHITE, NULL );
@@ -512,23 +512,23 @@ void BagBmp_WazaMashineInfoPut( BAG_WORK * wk, u16 item )
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, str, INFO_PP_PX, INFO_PP_PY, MSG_NO_PUT, BAGCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// ‚Ô‚ñ‚é‚¢
+	// ã¶ã‚“ã‚‹ã„
 	str = MSGMAN_AllocString( wk->msg_man, mes_bag_098 );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, str, INFO_KIND_PX, INFO_KIND_PY, MSG_NO_PUT, BAGCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// ‚¢‚è‚å‚­
+	// ã„ã‚Šã‚‡ã
 	str = MSGMAN_AllocString( wk->msg_man, mes_bag_096 );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, str, INFO_POW_PX, INFO_POW_PY, MSG_NO_PUT, BAGCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// ‚ß‚¢‚¿‚ã‚¤
+	// ã‚ã„ã¡ã‚…ã†
 	str = MSGMAN_AllocString( wk->msg_man, mes_bag_097 );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, str, INFO_HIT_PX, INFO_HIT_PY, MSG_NO_PUT, BAGCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
 
-	// PP’l
+	// PPå€¤
 	prm = WT_PPMaxGet( waza, 0 );
 	str = MSGMAN_AllocString( wk->msg_man, mes_bag_099 );
 	WORDSET_RegisterNumber( wk->wset, 0, prm, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
@@ -536,7 +536,7 @@ void BagBmp_WazaMashineInfoPut( BAG_WORK * wk, u16 item )
 	STRBUF_Delete( str );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, wk->expb, INFO_PPNUM_PX, INFO_PPNUM_PY, MSG_NO_PUT, BAGCOL_N_WHITE, NULL );
-	// ˆĞ—Í’l
+	// å¨åŠ›å€¤
 	prm = WT_WazaDataParaGet( waza, ID_WTD_damage );
 	if( prm <= 1 ){
 		str = MSGMAN_AllocString( wk->msg_man, msg_bag_025 );
@@ -548,7 +548,7 @@ void BagBmp_WazaMashineInfoPut( BAG_WORK * wk, u16 item )
 	STRBUF_Delete( str );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, wk->expb, INFO_POWNUM_PX, INFO_POWNUM_PY, MSG_NO_PUT, BAGCOL_N_WHITE, NULL );
-	// –½’†’l
+	// å‘½ä¸­å€¤
 	prm = WT_WazaDataParaGet(waza,ID_WTD_hitprobability);
 	if( prm == 0 ){
 		str = MSGMAN_AllocString( wk->msg_man, msg_bag_025 );
@@ -565,9 +565,9 @@ void BagBmp_WazaMashineInfoPut( BAG_WORK * wk, u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŒÂ”•\¦•¶š—ñæ“¾
+ * å€‹æ•°è¡¨ç¤ºæ–‡å­—åˆ—å–å¾—
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -580,9 +580,9 @@ void Bag_NumStrGet( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŒÂ”•\¦•¶š—ñ‰ğ•ú
+ * å€‹æ•°è¡¨ç¤ºæ–‡å­—åˆ—è§£æ”¾
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -595,9 +595,9 @@ void Bag_NumStrRelease( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒŠƒXƒgŒÂ”•\¦
+ * ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆå€‹æ•°è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -633,11 +633,11 @@ void Bag_ItemListNumPut( BAG_WORK * wk, u16 num, u16 y, u32 col )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“‚ÌNo•\¦
+ * æŠ€ãƒã‚·ãƒ³ã®Noè¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€ƒf[ƒ^
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -663,11 +663,11 @@ void BagBmp_WazaMachineNoPut( BAG_WORK * wk, MINEITEM * item, u32 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Ø‚ÌÀ‚ÌNo•\¦
+ * æœ¨ã®å®Ÿã®Noè¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€ƒf[ƒ^
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -682,12 +682,12 @@ void BagBmp_NutsNoPut( BAG_WORK * wk, MINEITEM * item, u32 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒO‰æ–Êê—p‚ÌƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ğæ“¾
+ * ãƒãƒƒã‚°ç”»é¢å°‚ç”¨ã®ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
- * @param	chr		ƒLƒƒƒ‰“WŠJêŠ
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	chr		ã‚­ãƒ£ãƒ©å±•é–‹å ´æ‰€
  *
- * @return	ƒA[ƒJƒCƒuƒf[ƒ^
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static void * ListIconCgxGet( BAG_WORK * wk, NNSG2dCharacterData ** chr )
@@ -701,10 +701,10 @@ static void * ListIconCgxGet( BAG_WORK * wk, NNSG2dCharacterData ** chr )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”é“`ƒAƒCƒRƒ“•\¦
+ * ç§˜ä¼ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -726,10 +726,10 @@ static void BAG_HidenIconPut( BAG_WORK * wk, u32 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“ƒy[ƒW‚Ìu‚Æ‚¶‚év•\¦
+ * æŠ€ãƒã‚·ãƒ³ãƒšãƒ¼ã‚¸ã®ã€Œã¨ã˜ã‚‹ã€è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -750,10 +750,10 @@ void BagBmp_WazaPageToziruPut( BAG_WORK * wk, u32 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ö—˜ƒ{ƒ^ƒ“ƒAƒCƒRƒ“•\¦
+ * ä¾¿åˆ©ãƒœã‚¿ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -776,14 +776,14 @@ void BagBmp_CnvButtonIconPut( BAG_WORK * wk, u32 py )
 
 
 //============================================================================================
-//	ƒƒjƒ…[
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[€–Úæ“¾
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®å–å¾—
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -806,9 +806,9 @@ void Bag_MenuStrGet( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[€–Ú‰ğ•ú
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®è§£æ”¾
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -824,11 +824,11 @@ void Bag_MenuStrRelease( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ì¬
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
- * @param	tbl		ƒƒjƒ…[ƒe[ƒuƒ‹
- * @param	max		ƒƒjƒ…[”
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	tbl		ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	max		ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ•°
  *
  * @return	none
  */
@@ -858,7 +858,7 @@ void Bag_ItemMenuSet( BAG_WORK * wk, u8 * tbl, u8 max )
 
 	wk->md = BMP_MENULIST_Create( max, HEAPID_BAG );
 
-	// ƒƒjƒ…[ƒf[ƒ^ì¬
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<max; i++ ){
 		BMP_MENULIST_AddString( wk->md, wk->menu_str[tbl[i]], Bag_MenuParamGet( tbl[i] ) );
 	}
@@ -884,7 +884,7 @@ void Bag_ItemMenuSet( BAG_WORK * wk, u8 * tbl, u8 max )
 		GF_BGL_BmpWinOnVReq( &wk->win[WIN_INFO] );
 		BagObj_WazaIconPut( wk, wk->dat->ret_item, ACT_ON );
 	}else{
-		// à–¾
+		// èª¬æ˜
 		BmpTalkWinWrite(
 			&wk->win[info], WINDOW_TRANS_OFF, TALK_WIN_CGX_NUM, TALKWIN_PAL );
 
@@ -912,9 +912,9 @@ void Bag_ItemMenuSet( BAG_WORK * wk, u8 * tbl, u8 max )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[”jŠüi’Êíj
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç ´æ£„ï¼ˆé€šå¸¸ï¼‰
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -952,9 +952,9 @@ void Bag_ItemMenuExit( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[”jŠüiu‚·‚Ä‚év‚Ìê‡j
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç ´æ£„ï¼ˆã€Œã™ã¦ã‚‹ã€ã®å ´åˆï¼‰
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -975,9 +975,9 @@ void Bag_ItemMenuExitSub( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦ƒƒbƒZ[ƒW•\¦i‚Ç‚±‚É‚¢‚ê‚Ü‚·‚©Hj
+ * å…¥ã‚Œæ›¿ãˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºï¼ˆã©ã“ã«ã„ã‚Œã¾ã™ã‹ï¼Ÿï¼‰
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */	
@@ -1008,9 +1008,9 @@ void Bag_ItemChgInfoMsgSet( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ì‚Ä‚éŠÖ˜AƒEƒBƒ“ƒhƒEƒZƒbƒg
+ * æ¨ã¦ã‚‹é–¢é€£ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */	
@@ -1048,9 +1048,9 @@ void Bag_DelNumSelWinSet( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ì‚Ä‚éŒÂ”•\¦
+ * æ¨ã¦ã‚‹å€‹æ•°è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */	
@@ -1076,9 +1076,9 @@ void Bag_SubNumPut( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ì‚Ä‚éŠÖ˜AƒEƒBƒ“ƒhƒE”jŠü
+ * æ¨ã¦ã‚‹é–¢é€£ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */	
@@ -1096,9 +1096,9 @@ void Bag_DelNumSelWinExit( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚·‚Ä‚Ä‚à‚¢‚¢‚Å‚·‚©Hv•\¦
+ * ã€Œã™ã¦ã¦ã‚‚ã„ã„ã§ã™ã‹ï¼Ÿã€è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */	
@@ -1117,7 +1117,7 @@ void Bag_SubTalkWinSet( BAG_WORK * wk )
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/25
-	// ‚Ç‚¤‚®”jŠü‚Ì‚Ç‚¤‚®–¼‚ğ”„‹p”‚Åo‚µ•ª‚¯
+	// ã©ã†ãç ´æ£„æ™‚ã®ã©ã†ãåã‚’å£²å´æ•°ã§å‡ºã—åˆ†ã‘
 	if (wk->sel_num == 1) {
 		ItemNameWordSet( wk, pocket->scr+pocket->cur-1, 0 );
 	} else {
@@ -1135,11 +1135,11 @@ void Bag_SubTalkWinSet( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bi•—jƒƒbƒZ[ƒW•\¦
+ * ä¼šè©±ï¼ˆé¢¨ï¼‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒƒbƒZ[ƒWID
+ * @return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //--------------------------------------------------------------------------------------------
 u8 Bag_TalkMsgPrint( BAG_WORK * wk )
@@ -1157,29 +1157,29 @@ u8 Bag_TalkMsgPrint( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bi•—jƒƒbƒZ[ƒWƒR[ƒ‹ƒoƒbƒN
+ * ä¼šè©±ï¼ˆé¢¨ï¼‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- * @param	mph		ƒƒbƒZ[ƒW•`‰æƒf[ƒ^
- * @param	value	ƒR[ƒ‹ƒoƒbƒNƒiƒ“ƒo
+ * @param	mph		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»ãƒ‡ãƒ¼ã‚¿
+ * @param	value	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒŠãƒ³ãƒ
  *
- * @retval	"TRUE = ‘Ò‚¿"
- * @retval	"FALSE = Ÿ‚Ìˆ—‚Ö"
+ * @retval	"TRUE = å¾…ã¡"
+ * @retval	"FALSE = æ¬¡ã®å‡¦ç†ã¸"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL BAG_TalkMsgCallBack( MSG_PRINT_HEADER * mph, u16 value )
 {
 	switch( value ){
-	case 1:		// SEI—¹‘Ò‚¿
+	case 1:		// SEçµ‚äº†å¾…ã¡
 		return Snd_SePlayCheckAll();
 
-	case 2:		// MEI—¹‘Ò‚¿
+	case 2:		// MEçµ‚äº†å¾…ã¡
 		return Snd_MePlayCheckBgmPlay();
 
-	case 3:		// "‚«‚Ç‚¤‚µ‚½"
+	case 3:		// "ãã©ã†ã—ãŸ"
 		Snd_SePlay( SEQ_SE_DP_PC_LOGIN );
 		break;
 
-	case 4:		// "‚«‚Ç‚¤‚µ‚½"‚ÌSEI—¹‘Ò‚¿
+	case 4:		// "ãã©ã†ã—ãŸ"ã®SEçµ‚äº†å¾…ã¡
 		return Snd_SePlayCheck( SEQ_SE_DP_PC_LOGIN );
 	}
 
@@ -1188,9 +1188,9 @@ static BOOL BAG_TalkMsgCallBack( MSG_PRINT_HEADER * mph, u16 value )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Í‚¢E‚¢‚¢‚¦ƒZƒbƒg
+ * ã¯ã„ãƒ»ã„ã„ãˆã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1203,10 +1203,10 @@ void Bag_YesNoSelInit( BAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”„‹p”‘I‘ğƒEƒBƒ“ƒhƒE•\¦
+ * å£²å´æ•°é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
- * @param	flg		0 = ƒEƒBƒ“ƒhƒE˜g‚İ•\¦, 0 != BMP‚Ì‚İ•\¦
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		0 = ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ è¾¼ã¿è¡¨ç¤º, 0 != BMPã®ã¿è¡¨ç¤º
  *
  * @return	none
  */
@@ -1246,10 +1246,10 @@ void Bag_SaleNumWinPut( BAG_WORK * wk, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Š‹àƒEƒBƒ“ƒhƒE•\¦
+ * æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
- * @param	flg		0 = ƒEƒBƒ“ƒhƒE˜g‚İ•\¦, 0 != BMP‚Ì‚İ•\¦
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		0 = ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ è¾¼ã¿è¡¨ç¤º, 0 != BMPã®ã¿è¡¨ç¤º
  *
  * @return	none
  */
@@ -1288,9 +1288,9 @@ void Bag_GoldWinPut( BAG_WORK * wk, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * uƒ|ƒtƒBƒ“‚Ì‚©‚¸v•\¦
+ * ã€Œãƒãƒ•ã‚£ãƒ³ã®ã‹ãšã€è¡¨ç¤º
  *
- * @param	wk		ƒoƒbƒO‰æ–Êƒ[ƒN
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */

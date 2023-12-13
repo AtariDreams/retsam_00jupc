@@ -13,11 +13,11 @@
 	.include	"../../../include/itemtool/itemsym.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_poruto_scr
 _EVENT_DATA_END
@@ -41,10 +41,10 @@ ev_poruto_scr:
 	_END
 
 
-//—¿—‘I‘ğ
+//æ–™ç†é¸æŠ
 ev_nmixer_start_menu_01:
 	_TALKMSG			msg_pgamestart_01_01
-	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER		//BƒLƒƒƒ“ƒZƒ‹—LŒø
+	_BMPMENU_INIT_EX	1,1,0,1,SCWK_ANSWER		//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 	_BMPMENU_MAKE_LIST	msg_pgamestart_select01_01,0
 	_BMPMENU_MAKE_LIST	msg_pgamestart_select01_02,1
 	_BMPMENU_MAKE_LIST	msg_pgamestart_select01_03,2
@@ -52,18 +52,18 @@ ev_nmixer_start_menu_01:
 	_BMPMENU_START
 	
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_nmixer_local		//ˆêl—p
-	_CASE_JUMP		1,ev_nmixer_comm		//’ÊMƒvƒŒƒC
-	_CASE_JUMP		2,ev_nmixer_exp			//à–¾‚ğ•·‚­
+	_CASE_JUMP		0,ev_nmixer_local		//ä¸€äººç”¨
+	_CASE_JUMP		1,ev_nmixer_comm		//é€šä¿¡ãƒ—ãƒ¬ã‚¤
+	_CASE_JUMP		2,ev_nmixer_exp			//èª¬æ˜ã‚’èã
 	_JUMP			ev_nmixer_common_exit
 	_END
 
 
 //--------------------------------------------------------------------
-//€–Ú‚ğ‘I‘ğ‚µ‚½
+//é …ç›®ã‚’é¸æŠã—ãŸ
 //--------------------------------------------------------------------
 
-//u‚â‚ß‚évI—¹
+//ã€Œã‚„ã‚ã‚‹ã€çµ‚äº†
 ev_nmixer_common_exit:
 	_TALKMSG	msg_pgamestart_07_01
 	_LAST_KEYWAIT
@@ -71,14 +71,14 @@ ev_nmixer_common_exit:
 	_TALK_OBJ_END
 	_END
 
-//à–¾‚ğ•·‚­
+//èª¬æ˜ã‚’èã
 ev_nmixer_exp:
 	_TALKMSG		msg_pgamestart_06_01
 	_LAST_KEYWAIT
 	_JUMP			ev_nmixer_start_menu_01
 	_END
 
-//ƒuƒ‰ƒbƒNƒAƒEƒg
+//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 ev_nmixer_call_blackout:
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
@@ -86,7 +86,7 @@ ev_nmixer_call_blackout:
 	_TALK_OBJ_END
 	_RET
 
-//ƒuƒ‰ƒbƒNƒCƒ“
+//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
 ev_nmixer_call_blackin:
 	_SET_MAP_PROC
 	_TALK_OBJ_START
@@ -94,7 +94,7 @@ ev_nmixer_call_blackin:
 	_WIPE_FADE_END_CHECK
 	_RET
 
-//ƒ|ƒ‹ƒgƒP[ƒX‚ª‚È‚¢
+//ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ãŒãªã„
 ev_nmixer_ng_porutocase:
 	_TALKMSG		msg_pgamestart_01_08
 	_LAST_KEYWAIT
@@ -102,22 +102,22 @@ ev_nmixer_ng_porutocase:
 	_TALK_OBJ_END
 	_END
 
-//–Ø‚ÌÀ‚ª‚È‚¢
+//æœ¨ã®å®ŸãŒãªã„
 ev_nmixer_ng_nuts:
 	_TALKMSG		msg_pgamestart_01_06
 	_JUMP			ev_nmixer_common_exit
 	_END
 
-//ƒ|ƒ‹ƒg‚ª‚¢‚Á‚Ï‚¢
+//ãƒãƒ«ãƒˆãŒã„ã£ã±ã„
 ev_nmixer_ng_poruto:
 	_TALKMSG		msg_pgamestart_01_07
 	_JUMP			ev_nmixer_common_exit
 	_END
 
 //////////////////////////////////////////////////
-//ˆêl—p
+//ä¸€äººç”¨
 ev_nmixer_local:
-	//ƒ|ƒ‹ƒgƒP[ƒXƒ`ƒFƒbƒN
+	//ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ãƒã‚§ãƒƒã‚¯
 	_ITEM_CHK		ITEM_POFINKEESU,1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_nmixer_ng_porutocase
 	
@@ -126,87 +126,87 @@ ev_nmixer_local:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_nmixer_ng_nuts
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_nmixer_ng_poruto
 	
-	_TIME_WAIT		30,SCWK_ANSWER	//1•b‘Ò‚¿
+	_TIME_WAIT		30,SCWK_ANSWER	//1ç§’å¾…ã¡
 
 	_CALL		ev_nmixer_call_blackout
 //	_TALK_CLOSE
-	//ƒQ[ƒ€ƒƒCƒ“ŒÄ‚Ño‚µ
+	//ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³å‘¼ã³å‡ºã—
 	_NUTMIXER_CALL 0 
 	_CALL		ev_nmixer_call_blackin
 	_JUMP		ev_nmixer_common_exit
 	_END
 
 //////////////////////////////////////////////////
-//’ÊMƒvƒŒƒC
+//é€šä¿¡ãƒ—ãƒ¬ã‚¤
 ev_nmixer_comm:
-	//ƒ|ƒ‹ƒgƒP[ƒXƒ`ƒFƒbƒN
+	//ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ãƒã‚§ãƒƒã‚¯
 	_ITEM_CHK		ITEM_POFINKEESU,1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_nmixer_ng_porutocase
 
-	//–Ø‚ÌÀ•ƒ|ƒ‹ƒgƒ`ƒFƒbƒN
+	//æœ¨ã®å®Ÿï¼†ãƒãƒ«ãƒˆãƒã‚§ãƒƒã‚¯
 	_NUTMIXER_PLAY_CHECK	SCWK_ANSWER
 //	_LDVAL			SCWK_ANSWER,0
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_nmixer_ng_nuts
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_nmixer_ng_poruto
 
-//’ÊMƒZ[ƒuŠJn
+//é€šä¿¡ã‚»ãƒ¼ãƒ–é–‹å§‹
 ev_nmixer_comm_save:
-	//ŠeíƒGƒ‰[ƒ`ƒFƒbƒN
+	//å„ç¨®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	//
-//	_JUMP	ev_nmixer_connect_menu01	//ƒZ[ƒu‚µ‚È‚¢‚Å”ò‚Ô
+//	_JUMP	ev_nmixer_connect_menu01	//ã‚»ãƒ¼ãƒ–ã—ãªã„ã§é£›ã¶
 
-	//ƒZ[ƒu‚µ‚Ü‚·‚©H(LOCALWORK0‚ÉŒ‹‰Ê‚ª‘ã“ü‚³‚ê‚é)
+	//ã‚»ãƒ¼ãƒ–ã—ã¾ã™ã‹ï¼Ÿ(LOCALWORK0ã«çµæœãŒä»£å…¥ã•ã‚Œã‚‹)
 	_CHG_COMMON_SCR	SCRID_REPORT_CALL
 	_LDWK			SCWK_ANSWER,LOCALWORK0
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_nmixer_connect_menu01	//¬Œ÷
-	_JUMP			ev_nmixer_common_exit		//I—¹‚Ö
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_nmixer_connect_menu01	//æˆåŠŸ
+	_JUMP			ev_nmixer_common_exit		//çµ‚äº†ã¸
 	_END
 
 
-//ƒRƒlƒNƒgƒƒjƒ…[01
+//ã‚³ãƒã‚¯ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼01
 ev_nmixer_connect_menu01:
 	_TALKMSG		msg_pgamestart_02_01
 	
-	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER	//BƒLƒƒƒ“ƒZƒ‹—LŒø
+	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER	//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 	_BMPMENU_MAKE_LIST	msg_ev_win_014,0
 	_BMPMENU_MAKE_LIST	msg_ev_win_015,1
 	_BMPMENU_MAKE_LIST	msg_ev_win_006,2
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_nmixer_connect_group		//ƒOƒ‹[ƒv
-	_CASE_JUMP		1,ev_nmixer_connect_leader		//ƒŠ[ƒ_[
-	_JUMP			ev_nmixer_common_exit		//I—¹‚Ö
+	_CASE_JUMP		0,ev_nmixer_connect_group		//ã‚°ãƒ«ãƒ¼ãƒ—
+	_CASE_JUMP		1,ev_nmixer_connect_leader		//ãƒªãƒ¼ãƒ€ãƒ¼
+	_JUMP			ev_nmixer_common_exit		//çµ‚äº†ã¸
 	_END
 
 //--------------------------------------------------------------------
-//ƒOƒ‹[ƒv
+//ã‚°ãƒ«ãƒ¼ãƒ—
 //--------------------------------------------------------------------
 ev_nmixer_connect_group:
-	//DSƒƒCƒ„ƒŒƒX’ÊM‚ğn‚ß‚Ü‚·‚©H
+	//DSãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿ
 	_TALKMSG		msg_pgamestart_01_02
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_nmixer_connect_menu01
 
 	_TALK_CLOSE
 
-	//e‹@‚ğ‘I‘ğ‚·‚éƒEƒBƒ“ƒhƒE‚ğŠJ‚­
+	//è¦ªæ©Ÿã‚’é¸æŠã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 	_SEL_PARENT_WIN	COMM_MODE_NUT_CRASH,0,0,SCWK_ANSWER
 
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_nmixer_connect_group_cancel//ƒLƒƒƒ“ƒZƒ‹
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_nmixer_connect_group_error			 //ƒGƒ‰[
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_nmixer_connect_group_cancel//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_nmixer_connect_group_error			 //ã‚¨ãƒ©ãƒ¼
 
-	//‚»‚êˆÈŠO
-	_JUMP			ev_nmixer_connect										//¬Œ÷
+	//ãã‚Œä»¥å¤–
+	_JUMP			ev_nmixer_connect										//æˆåŠŸ
 	_END
 
-//ƒLƒƒƒ“ƒZƒ‹
+//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_nmixer_connect_group_cancel:
 	_COMM_DIRECT_END
 	_JUMP			ev_nmixer_connect_menu01
 	_END
 
-//ƒGƒ‰[
+//ã‚¨ãƒ©ãƒ¼
 ev_nmixer_connect_group_error:
 	_COMM_DIRECT_END
 	_JUMP			ev_nmixer_connect_menu01
@@ -216,33 +216,33 @@ ev_nmixer_connect_group_error:
 	_END
 
 //--------------------------------------------------------------------
-//ƒŠ[ƒ_[
+//ãƒªãƒ¼ãƒ€ãƒ¼
 //--------------------------------------------------------------------
 ev_nmixer_connect_leader:
-	//DSƒƒCƒ„ƒŒƒX’ÊM‚ğn‚ß‚Ü‚·‚©H
+	//DSãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿ
 	_TALKMSG		msg_pgamestart_01_02
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_nmixer_connect_menu01
 
 	_TALK_CLOSE
 
-	//q‹@‚ğ‘I‘ğ‚·‚éƒEƒBƒ“ƒhƒE‚ğŠJ‚­
+	//å­æ©Ÿã‚’é¸æŠã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 	_SEL_CHILD_WIN	COMM_MODE_NUT_CRASH,0,0,SCWK_ANSWER
 
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_nmixer_connect_leader_cancel//ƒLƒƒƒ“ƒZƒ‹
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_nmixer_connect_leader_error  //ƒGƒ‰[
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_nmixer_connect_leader_cancel//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_nmixer_connect_leader_error  //ã‚¨ãƒ©ãƒ¼
 
-	//‚»‚êˆÈŠO
-	_JUMP			ev_nmixer_connect										//¬Œ÷
+	//ãã‚Œä»¥å¤–
+	_JUMP			ev_nmixer_connect										//æˆåŠŸ
 	_END
 
-//ƒLƒƒƒ“ƒZƒ‹
+//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_nmixer_connect_leader_cancel:
 	_COMM_DIRECT_END
 	_JUMP			ev_nmixer_connect_menu01
 	_END
 
-//ƒGƒ‰[
+//ã‚¨ãƒ©ãƒ¼
 ev_nmixer_connect_leader_error:
 	_COMM_DIRECT_END
 	_JUMP			ev_nmixer_connect_menu01
@@ -252,12 +252,12 @@ ev_nmixer_connect_leader_error:
 	_END
 
 //--------------------------------------------------------------------
-// Ú‘±•ƒvƒƒZƒXƒR[ƒ‹
+// æ¥ç¶šï¼†ãƒ—ãƒ­ã‚»ã‚¹ã‚³ãƒ¼ãƒ«
 //--------------------------------------------------------------------
 ev_nmixer_connect:
-	//ƒQ[ƒ€ŠJn
+	//ã‚²ãƒ¼ãƒ é–‹å§‹
 //	_TALKMSG_NOSKIP	msg_pgamestart_04_02
-///	_TIME_WAIT		30,SCWK_ANSWER	//1•b‘Ò‚¿
+///	_TIME_WAIT		30,SCWK_ANSWER	//1ç§’å¾…ã¡
 //	_CALL	ev_nmixer_call_blackout
 //	_TALK_CLOSE
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC

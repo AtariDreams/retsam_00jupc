@@ -1,6 +1,6 @@
 /**
  *	@file	nmix_stdata.h
- *	@biref	�i�b�c�~�L�T�[�@�풓�f�[�^�\���̒�`
+ *	@biref	ナッツミキサー　常駐データ構造体定義
  *	@author	Miyuki Iwasawa
  *	@date	06.04.07
  */
@@ -14,7 +14,7 @@
 #include "msgdata/msg.naix"
 #include "msgdata/msg_porutogame1.h"
 
-// �X�s�[�h���ӃR�����g
+// スピード注意コメント
 enum{
 	NMIX_STMSG_SPEED_KOGERU00,
 	NMIX_STMSG_SPEED_HAYAI00,
@@ -24,20 +24,20 @@ enum{
 	NMIX_STMSG_SPEED_NUM
 };
 
-// ���ʔ��\�R�����g
+// 結果発表コメント
 enum{
 	NMIX_STMSG_RESULT_COOK_TIME_TI,
 	NMIX_STMSG_RESULT_COOK_TIME,
 	NMIX_STMSG_RESULT_KOBOSI_NUM_TI,
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/25
-	// �񐔂ɂ���ĒP�ʂ̒P�����o������
+	// 回数によって単位の単複を出し分け
 	NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM,
 	// ----------------------------------------------------------------------------
 	NMIX_STMSG_RESULT_KOGASI_NUM_TI,
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/25
-	// �񐔂ɂ���ĒP�ʂ̒P�����o������
+	// 回数によって単位の単複を出し分け
 	NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM_PLURAL,
 	// ----------------------------------------------------------------------------
 	NMIX_STMSG_RESULT_PORUTO_TI,
@@ -48,28 +48,28 @@ enum{
 };
 
 
-///�풓���b�Z�[�W�f�[�^
+///常駐メッセージデータ
 typedef struct _NMIXER_MSG{
-	MSGDATA_MANAGER *man;	///<�}�l�[�W��
-	WORDSET* wset;		///<���[�N
-	STRBUF	*tmp;		///<�ėp
+	MSGDATA_MANAGER *man;	///<マネージャ
+	WORDSET* wset;		///<ワーク
+	STRBUF	*tmp;		///<汎用
 
-	STRBUF	*wait;		///<���̂܂܂��܂���������
-	STRBUF	*nuts_in;	///<�؂̎������
-	STRBUF	*tr_name;	///<�g���[�i�[��
+	STRBUF	*wait;		///<そのままおまちください
+	STRBUF	*nuts_in;	///<木の実いれる
+	STRBUF	*tr_name;	///<トレーナー名
 	
-	STRBUF	*casein;	///<�P�[�X�ɂ��܂�
-	STRBUF	*replay;	///<���������c�c
-	STRBUF	*exit;		///<���~
-	STRBUF	*bag_erabu;	///<�o�b�O���炦����
-	STRBUF	*poruto_ippai;	///<�|���g�������ς�
-	STRBUF	*nuts_none;	///<�؂̎�������܂���
+	STRBUF	*casein;	///<ケースにしまう
+	STRBUF	*replay;	///<引き続き……
+	STRBUF	*exit;		///<中止
+	STRBUF	*bag_erabu;	///<バッグからえらんで
+	STRBUF	*poruto_ippai;	///<ポルトがいっぱい
+	STRBUF	*nuts_none;	///<木の実がありません
 	
-	STRBUF	*end;		///<�����
-	STRBUF	*result;	///<���ʔ��\ �^�C�g��
+	STRBUF	*end;		///<おわり
+	STRBUF	*result;	///<結果発表 タイトル
 	
-	STRBUF	*spd[NMIX_STMSG_SPEED_NUM];	///<�X�s�[�h
-	STRBUF	*res[NMIX_STMSG_RESULT_NUM];	///<���ʕ\��
+	STRBUF	*spd[NMIX_STMSG_SPEED_NUM];	///<スピード
+	STRBUF	*res[NMIX_STMSG_RESULT_NUM];	///<結果表示
 }NMIXER_MSG;
 
 #define WORDSET_NMIXER_BUFLEN	(64)

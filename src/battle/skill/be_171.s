@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_171.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			171�@�܂Ђ��Ă��鑊��ɂ͔{�̃_���[�W��^���邪�A�܂Ђ�����
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			171　まひしている相手には倍のダメージを与えるが、まひが治る
  *
  *@author	HisashiSogabe
  *@data		2006.02.07
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_171:
-	//�݂���肪����ꍇ�́A�܂Ѓ`�F�b�N���X���[
+	//みがわりがいる場合は、まひチェックをスルー
 	MIGAWARI_CHECK	SIDE_DEFENCE,BE_171_NEXT
 	IF_PSP			IF_FLAG_BIT,SIDE_DEFENCE,ID_PSP_condition,CONDITION_MAHI,BE_171_MAHI
 	VALUE			VAL_SET,BUF_PARA_DAMAGE_VALUE,10

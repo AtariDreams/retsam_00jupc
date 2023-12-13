@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	poke_tool.c
- * @bfief	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^ƒc[ƒ‹ŒQ
+ * @bfief	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ„ãƒ¼ãƒ«ç¾¤
  * @author	HisashiSogabe
  * @date	05.05.30
  */
@@ -44,7 +44,7 @@
 
 #include	"cubelike.dat"
 
-//XV‚ª‚ ‚Á‚½‚çAMAKE‚ª‚©‚©‚é‚æ‚¤‚É‚·‚é‚½‚ß‚ÉINCLUDE
+//æ›´æ–°ãŒã‚ã£ãŸã‚‰ã€MAKEãŒã‹ã‹ã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«INCLUDE
 #include	"pokezukan.naix"
 #include	"pokegra/pokegra.naix"
 #include	"pokegra/otherpoke.naix"
@@ -63,27 +63,27 @@
 
 //============================================================================================
 /**
- * ’è”éŒ¾
+ * å®šæ•°å®£è¨€
  */
 //============================================================================================
 
-#define	POKE_GRA_SIZE	(6)		///<ƒ|ƒPƒ‚ƒ“‚P‘Ì‚É‚Â‚«A‘¶İ‚·‚éƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚Ì”
-#define	POKE_COL_OFS	(4)		///<ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹“à‚ÌƒpƒŒƒbƒgƒf[ƒ^‚Ü‚Å‚ÌƒIƒtƒZƒbƒg
+#define	POKE_GRA_SIZE	(6)		///<ãƒã‚±ãƒ¢ãƒ³ï¼‘ä½“ã«ã¤ãã€å­˜åœ¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°
+#define	POKE_COL_OFS	(4)		///<ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã¾ã§ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define	TR_GRA_SIZE		(2)		///<ƒgƒŒ[ƒi[‚P‘Ì‚É‚Â‚«A‘¶İ‚·‚éƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚Ì”
-#define	TR_COL_OFS		(1)		///<ƒgƒŒ[ƒi[‚P‘Ì‚É‚Â‚«A‘¶İ‚·‚éƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚Ì”
+#define	TR_GRA_SIZE		(2)		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼‘ä½“ã«ã¤ãã€å­˜åœ¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°
+#define	TR_COL_OFS		(1)		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼‘ä½“ã«ã¤ãã€å­˜åœ¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°
 
-#define	POKE_HEIGHT_SIZE	(4)	///<ƒ|ƒPƒ‚ƒ“‚P‘Ì‚É‚Â‚«A‘¶İ‚·‚é‚‚³î•ñƒtƒ@ƒCƒ‹‚Ì”
+#define	POKE_HEIGHT_SIZE	(4)	///<ãƒã‚±ãƒ¢ãƒ³ï¼‘ä½“ã«ã¤ãã€å­˜åœ¨ã™ã‚‹é«˜ã•æƒ…å ±ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°
 
-#define	DEOKISISU_OTHER_FORM_PERSONAL	(496-1)	//ƒfƒIƒLƒVƒX‚Ì•ÊƒtƒHƒ‹ƒ€ƒp[ƒ\ƒiƒ‹‚ÌŠJnƒiƒ“ƒo[
-#define	MINOMESU_OTHER_FORM_PERSONAL	(499-1)	//ƒ~ƒmƒƒX‚Ì•ÊƒtƒHƒ‹ƒ€ƒp[ƒ\ƒiƒ‹‚ÌŠJnƒiƒ“ƒo[
-#define	GIRATINA_OTHER_FORM_PERSONAL	(501-1)	//ƒMƒ‰ƒeƒBƒi‚Ì•ÊƒtƒHƒ‹ƒ€ƒp[ƒ\ƒiƒ‹‚ÌŠJnƒiƒ“ƒo[
-#define	SHEIMI_OTHER_FORM_PERSONAL		(502-1)	//ƒVƒFƒCƒ~‚Ì•ÊƒtƒHƒ‹ƒ€ƒp[ƒ\ƒiƒ‹‚ÌŠJnƒiƒ“ƒo[
-#define	ROTOMU_OTHER_FORM_PERSONAL		(503-1)	//ƒƒgƒ€‚Ì•ÊƒtƒHƒ‹ƒ€ƒp[ƒ\ƒiƒ‹‚ÌŠJnƒiƒ“ƒo[
+#define	DEOKISISU_OTHER_FORM_PERSONAL	(496-1)	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ã®é–‹å§‹ãƒŠãƒ³ãƒãƒ¼
+#define	MINOMESU_OTHER_FORM_PERSONAL	(499-1)	//ãƒŸãƒãƒ¡ã‚¹ã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ã®é–‹å§‹ãƒŠãƒ³ãƒãƒ¼
+#define	GIRATINA_OTHER_FORM_PERSONAL	(501-1)	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ã®é–‹å§‹ãƒŠãƒ³ãƒãƒ¼
+#define	SHEIMI_OTHER_FORM_PERSONAL		(502-1)	//ã‚·ã‚§ã‚¤ãƒŸã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ã®é–‹å§‹ãƒŠãƒ³ãƒãƒ¼
+#define	ROTOMU_OTHER_FORM_PERSONAL		(503-1)	//ãƒ­ãƒˆãƒ ã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ã®é–‹å§‹ãƒŠãƒ³ãƒãƒ¼
 
 //============================================================================================
 /**
- * ƒvƒƒgƒ^ƒCƒvéŒ¾
+ * ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //============================================================================================
 
@@ -291,38 +291,38 @@ static u8	PokeHeightGet_IMC(u16 mons_no,u8 sex,u8 dir,u8 form_no,u32 rnd);
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚ğ‰Šú‰»‚·‚é
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
- * @param[in]	pp	‰Šú‰»‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	åˆæœŸåŒ–ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeParaInit(POKEMON_PARAM *pp)
 {
 	MI_CpuClearFast(pp,sizeof(POKEMON_PARAM));
-//ƒpƒ‰ƒ[ƒ^‚ğˆÃ†‰»
+//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æš—å·åŒ–
 	PokeParaCoded(&pp->ppp.paradata,sizeof(POKEMON_PASO_PARAM1)*4,pp->ppp.checksum);
 	PokeParaCoded(&pp->pcp,sizeof(POKEMON_CALC_PARAM),pp->ppp.personal_rnd);
 }
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚ğ‰Šú‰»‚·‚é
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
- * @param[in]	ppp	‰Šú‰»‚·‚éƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	åˆæœŸåŒ–ã™ã‚‹ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokePasoParaInit(POKEMON_PASO_PARAM *ppp)
 {
 	MI_CpuClearFast(ppp,sizeof(POKEMON_PASO_PARAM));
-//ŒÂ«—”ƒZƒbƒg‚µ‚½‚Æ‚±‚ë‚ÅˆÃ†‰»
+//å€‹æ€§ä¹±æ•°ã‚»ãƒƒãƒˆã—ãŸã¨ã“ã‚ã§æš—å·åŒ–
 	PokeParaCoded(ppp->paradata,sizeof(POKEMON_PASO_PARAM1)*4,ppp->checksum);
 }
 
 //============================================================================================
 /**
- *	POKEMON_PARAM\‘¢‘Ì‚ÌƒTƒCƒY‚ğ•Ô‚·
+ *	POKEMON_PARAMæ§‹é€ ä½“ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
- * @retval	POKEMON_PARAM\‘¢‘Ì‚ÌƒTƒCƒY
+ * @retval	POKEMON_PARAMæ§‹é€ ä½“ã®ã‚µã‚¤ã‚º
  */
 //============================================================================================
 int		PokemonParam_GetWorkSize(void)
@@ -332,11 +332,11 @@ int		PokemonParam_GetWorkSize(void)
 
 //============================================================================================
 /**
- *	POKEMON_PARAM\‘¢‘Ì‚Ìƒ[ƒN‚ğŠm•ÛA‰Šú‰»‚µ‚Äƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ *	POKEMON_PARAMæ§‹é€ ä½“ã®ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿ã€åˆæœŸåŒ–ã—ã¦ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
- *	@param[in]	heapID	ƒƒ‚ƒŠ‚ğŠm•Û‚·‚éƒq[ƒvID
+ *	@param[in]	heapID	ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	POKEMON_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	POKEMON_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 POKEMON_PARAM	*PokemonParam_AllocWork(u32 heapID)
@@ -351,11 +351,11 @@ POKEMON_PARAM	*PokemonParam_AllocWork(u32 heapID)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚ÌƒAƒNƒZƒX‚ğ‚‘¬‰»ƒ‚[ƒh‚Ö
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã¸
  *
- * @param[in]	pp	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	FALSE:‚·‚Å‚É‚‘¬‰»ƒ‚[ƒh‚É‚È‚Á‚Ä‚¢‚é@TRUE:‚‘¬‰»ƒ‚[ƒh‚ÖˆÚs
+ * @retval	FALSE:ã™ã§ã«é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã«ãªã£ã¦ã„ã‚‹ã€€TRUE:é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œ
  */
 //============================================================================================
 BOOL	PokeParaFastModeOn(POKEMON_PARAM *pp)
@@ -366,7 +366,7 @@ BOOL	PokeParaFastModeOn(POKEMON_PARAM *pp)
 
 	if(pp->ppp.pp_fast_mode==0){
 		ret=TRUE;
-		GF_ASSERT_MSG(pp->ppp.ppp_fast_mode==0,"ppp‚ª‚‘¬‰»ƒ‚[ƒh‚É‚È‚Á‚Ä‚¢‚Ü‚·\n");
+		GF_ASSERT_MSG(pp->ppp.ppp_fast_mode==0,"pppãŒé«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã«ãªã£ã¦ã„ã¾ã™\n");
 		pp->ppp.pp_fast_mode=1;
 		pp->ppp.ppp_fast_mode=1;
 		PokeParaDecoded(&pp->pcp,sizeof(POKEMON_CALC_PARAM),pp->ppp.personal_rnd);
@@ -378,12 +378,12 @@ BOOL	PokeParaFastModeOn(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚ÌƒAƒNƒZƒX‚ğ’Êíƒ‚[ƒh‚Ö
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã¸
  *
- * @param[in]	pp	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	flag	ƒ‚[ƒhˆÚs‰Â”\‚©”»’f‚·‚é‚½‚ß‚Ìƒtƒ‰ƒOiFALSE:ˆÚs•s‰ÂATRUE:ˆÚs‚·‚éj
+ * @param[in]	pp	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	flag	ãƒ¢ãƒ¼ãƒ‰ç§»è¡Œå¯èƒ½ã‹åˆ¤æ–­ã™ã‚‹ãŸã‚ã®ãƒ•ãƒ©ã‚°ï¼ˆFALSE:ç§»è¡Œä¸å¯ã€TRUE:ç§»è¡Œã™ã‚‹ï¼‰
  *
- * @retval	FALSE:‚·‚Å‚É’Êíƒ‚[ƒh‚É‚È‚Á‚Ä‚¢‚é@TRUE:’Êíƒ‚[ƒh‚ÖˆÚs
+ * @retval	FALSE:ã™ã§ã«é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã«ãªã£ã¦ã„ã‚‹ã€€TRUE:é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œ
  */
 //============================================================================================
 BOOL	PokeParaFastModeOff(POKEMON_PARAM *pp,BOOL flag)
@@ -407,11 +407,11 @@ BOOL	PokeParaFastModeOff(POKEMON_PARAM *pp,BOOL flag)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚ÌƒAƒNƒZƒX‚ğ‚‘¬‰»ƒ‚[ƒh‚Ö
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã¸
  *
- * @param[in]	ppp	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	FALSE:‚·‚Å‚É‚‘¬‰»ƒ‚[ƒh‚É‚È‚Á‚Ä‚¢‚é@TRUE:‚‘¬‰»ƒ‚[ƒh‚ÖˆÚs
+ * @retval	FALSE:ã™ã§ã«é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã«ãªã£ã¦ã„ã‚‹ã€€TRUE:é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œ
  */
 //============================================================================================
 BOOL	PokePasoParaFastModeOn(POKEMON_PASO_PARAM *ppp)
@@ -431,12 +431,12 @@ BOOL	PokePasoParaFastModeOn(POKEMON_PASO_PARAM *ppp)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚ÌƒAƒNƒZƒX‚ğ’Êíƒ‚[ƒh‚Ö
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã¸
  *
- * @param[in]	ppp		ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	flag	ƒ‚[ƒhˆÚs‰Â”\‚©”»’f‚·‚é‚½‚ß‚Ìƒtƒ‰ƒOiFALSE:ˆÚs•s‰ÂATRUE:ˆÚs‚·‚éj
+ * @param[in]	ppp		ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	flag	ãƒ¢ãƒ¼ãƒ‰ç§»è¡Œå¯èƒ½ã‹åˆ¤æ–­ã™ã‚‹ãŸã‚ã®ãƒ•ãƒ©ã‚°ï¼ˆFALSE:ç§»è¡Œä¸å¯ã€TRUE:ç§»è¡Œã™ã‚‹ï¼‰
  *
- * @retval	FALSE:‚·‚Å‚É’Êíƒ‚[ƒh‚É‚È‚Á‚Ä‚¢‚é@TRUE:’Êíƒ‚[ƒh‚ÖˆÚs
+ * @retval	FALSE:ã™ã§ã«é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã«ãªã£ã¦ã„ã‚‹ã€€TRUE:é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œ
  */
 //============================================================================================
 BOOL	PokePasoParaFastModeOff(POKEMON_PASO_PARAM *ppp,BOOL flag)
@@ -458,17 +458,17 @@ BOOL	PokePasoParaFastModeOff(POKEMON_PASO_PARAM *ppp,BOOL flag)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ğ¶¬
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç”Ÿæˆ
  *
- * @param[in]	pp		ƒpƒ‰ƒ[ƒ^‚ğ¶¬‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	mons_no	ƒpƒ‰ƒ[ƒ^‚ğ¶¬‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	level	¶¬‚·‚éƒŒƒxƒ‹
- * @param[in]	pow		POW_RNDˆÈŠO:ƒZƒbƒg‚·‚éƒpƒ[—”@POW_RND:ƒpƒ[—”‚ğƒ‰ƒ“ƒ_ƒ€‚ÅƒZƒbƒg
- * @param[in]	rndflag	ŒÂ«—”ƒZƒbƒgƒtƒ‰ƒOiRND_NO_SET:ŒÂ«—”‚ğƒ‰ƒ“ƒ_ƒ€‚ÅƒZƒbƒg RND_SET:ˆø”rnd‚Ì’l‚ğƒZƒbƒg
- * @param[in]	rnd		rndflag‚ªRND_SET‚Ì‚ÉƒZƒbƒg‚³‚ê‚é’l
- * @param[in]	idflag	IDNoƒZƒbƒgƒtƒ‰ƒOiID_NO_SET:ƒvƒŒƒCƒ„[‚ÌID‚ğƒZƒbƒg ID_SET:ˆø”id‚Ì’l‚ğƒZƒbƒg
- *										@ID_NO_RARE:ŒÂ«—”‚Æ‚Ì‘g‚İ‡‚í‚¹‚ÅƒŒƒAƒ|ƒPƒ‚ƒ“‚É‚È‚ç‚È‚¢‚æ‚¤‚É’l‚ğ’²®‚µ‚ÄƒZƒbƒgj
- * @param[in]	id		idflag‚ªID_SET‚Ì‚ÉƒZƒbƒg‚³‚ê‚é’l
+ * @param[in]	pp		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	mons_no	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	level	ç”Ÿæˆã™ã‚‹ãƒ¬ãƒ™ãƒ«
+ * @param[in]	pow		POW_RNDä»¥å¤–:ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã€€POW_RND:ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§ã‚»ãƒƒãƒˆ
+ * @param[in]	rndflag	å€‹æ€§ä¹±æ•°ã‚»ãƒƒãƒˆãƒ•ãƒ©ã‚°ï¼ˆRND_NO_SET:å€‹æ€§ä¹±æ•°ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§ã‚»ãƒƒãƒˆ RND_SET:å¼•æ•°rndã®å€¤ã‚’ã‚»ãƒƒãƒˆ
+ * @param[in]	rnd		rndflagãŒRND_SETã®æ™‚ã«ã‚»ãƒƒãƒˆã•ã‚Œã‚‹å€¤
+ * @param[in]	idflag	IDNoã‚»ãƒƒãƒˆãƒ•ãƒ©ã‚°ï¼ˆID_NO_SET:ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®IDã‚’ã‚»ãƒƒãƒˆ ID_SET:å¼•æ•°idã®å€¤ã‚’ã‚»ãƒƒãƒˆ
+ *										ã€€ID_NO_RARE:å€‹æ€§ä¹±æ•°ã¨ã®çµ„ã¿åˆã‚ã›ã§ãƒ¬ã‚¢ãƒã‚±ãƒ¢ãƒ³ã«ãªã‚‰ãªã„ã‚ˆã†ã«å€¤ã‚’èª¿æ•´ã—ã¦ã‚»ãƒƒãƒˆï¼‰
+ * @param[in]	id		idflagãŒID_SETã®æ™‚ã«ã‚»ãƒƒãƒˆã•ã‚Œã‚‹å€¤
  */
 //============================================================================================
 void	PokeParaSet(POKEMON_PARAM *pp,int mons_no,int level,int pow,int rndflag,u32 rnd,int idflag,u32 id)
@@ -482,23 +482,23 @@ void	PokeParaSet(POKEMON_PARAM *pp,int mons_no,int level,int pow,int rndflag,u32
 
 	PokePasoParaSet((POKEMON_PASO_PARAM *)&pp->ppp,mons_no,level,pow,rndflag,rnd,idflag,id);
 
-//ŒÂ«—”‚ª‚«‚Ü‚Á‚½‚çAPCP‚ğÄˆÃ†‰»
+//å€‹æ€§ä¹±æ•°ãŒãã¾ã£ãŸã‚‰ã€PCPã‚’å†æš—å·åŒ–
 	PokeParaCoded(&pp->pcp,sizeof(POKEMON_CALC_PARAM),0);
 	PokeParaCoded(&pp->pcp,sizeof(POKEMON_CALC_PARAM),pp->ppp.personal_rnd);
 
-//ƒŒƒxƒ‹ƒZƒbƒg
+//ãƒ¬ãƒ™ãƒ«ã‚»ãƒƒãƒˆ
 	PokeParaPut(pp,ID_PARA_level,(u8 *)&level);
 
-//ƒ[ƒ‹ƒf[ƒ^
+//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 	mail_data=MailData_CreateWork(HEAPID_BASE_SYSTEM);
 	PokeParaPut(pp,ID_PARA_mail_data,mail_data);
 	sys_FreeMemoryEz(mail_data);
 
-//ƒJƒXƒ^ƒ€ƒ{[ƒ‹ID
+//ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ID
 	i=0;
 	PokeParaPut(pp,ID_PARA_cb_id,(u8 *)&i);
 
-//ƒJƒXƒ^ƒ€ƒ{[ƒ‹
+//ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
 //	cb_core=CustomBall_AllocSaveData(HEAPID_BASE_SYSTEM);
 //	PokeParaPut(pp,ID_PARA_cb_core,cb_core);
 //	sys_FreeMemoryEz(cb_core);
@@ -511,17 +511,17 @@ void	PokeParaSet(POKEMON_PARAM *pp,int mons_no,int level,int pow,int rndflag,u32
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ğ¶¬
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç”Ÿæˆ
  *
- * @param[in]	ppp		ƒpƒ‰ƒ[ƒ^‚ğ¶¬‚·‚éƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	mons_no	ƒpƒ‰ƒ[ƒ^‚ğ¶¬‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	level	¶¬‚·‚éƒŒƒxƒ‹
- * @param[in]	pow		POW_RNDˆÈŠO:ƒZƒbƒg‚·‚éƒpƒ[—”@POW_RND:ƒpƒ[—”‚ğƒ‰ƒ“ƒ_ƒ€‚ÅƒZƒbƒg
- * @param[in]	rndflag	ŒÂ«—”ƒZƒbƒgƒtƒ‰ƒOiRND_NO_SET:ŒÂ«—”‚ğƒ‰ƒ“ƒ_ƒ€‚ÅƒZƒbƒg RND_SET:ˆø”rnd‚Ì’l‚ğƒZƒbƒg
- * @param[in]	rnd		rndflag‚ªRND_SET‚Ì‚ÉƒZƒbƒg‚³‚ê‚é’l
- * @param[in]	idflag	IDNoƒZƒbƒgƒtƒ‰ƒOiID_NO_SET:ƒvƒŒƒCƒ„[‚ÌID‚ğƒZƒbƒg ID_SET:ˆø”id‚Ì’l‚ğƒZƒbƒg
- *										@ID_NO_RARE:ŒÂ«—”‚Æ‚Ì‘g‚İ‡‚í‚¹‚ÅƒŒƒAƒ|ƒPƒ‚ƒ“‚É‚È‚ç‚È‚¢‚æ‚¤‚É’l‚ğ’²®‚µ‚ÄƒZƒbƒgj
- * @param[in]	id		idflag‚ªID_SET‚Ì‚ÉƒZƒbƒg‚³‚ê‚é’l
+ * @param[in]	ppp		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	mons_no	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	level	ç”Ÿæˆã™ã‚‹ãƒ¬ãƒ™ãƒ«
+ * @param[in]	pow		POW_RNDä»¥å¤–:ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã€€POW_RND:ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§ã‚»ãƒƒãƒˆ
+ * @param[in]	rndflag	å€‹æ€§ä¹±æ•°ã‚»ãƒƒãƒˆãƒ•ãƒ©ã‚°ï¼ˆRND_NO_SET:å€‹æ€§ä¹±æ•°ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§ã‚»ãƒƒãƒˆ RND_SET:å¼•æ•°rndã®å€¤ã‚’ã‚»ãƒƒãƒˆ
+ * @param[in]	rnd		rndflagãŒRND_SETã®æ™‚ã«ã‚»ãƒƒãƒˆã•ã‚Œã‚‹å€¤
+ * @param[in]	idflag	IDNoã‚»ãƒƒãƒˆãƒ•ãƒ©ã‚°ï¼ˆID_NO_SET:ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®IDã‚’ã‚»ãƒƒãƒˆ ID_SET:å¼•æ•°idã®å€¤ã‚’ã‚»ãƒƒãƒˆ
+ *										ã€€ID_NO_RARE:å€‹æ€§ä¹±æ•°ã¨ã®çµ„ã¿åˆã‚ã›ã§ãƒ¬ã‚¢ãƒã‚±ãƒ¢ãƒ³ã«ãªã‚‰ãªã„ã‚ˆã†ã«å€¤ã‚’èª¿æ•´ã—ã¦ã‚»ãƒƒãƒˆï¼‰
+ * @param[in]	id		idflagãŒID_SETã®æ™‚ã«ã‚»ãƒƒãƒˆã•ã‚Œã‚‹å€¤
  */
 //============================================================================================
 void	PokePasoParaSet(POKEMON_PASO_PARAM *ppp,int mons_no,int level,int pow,int rndflag,u32 rnd,int idflag,u32 id)
@@ -534,13 +534,13 @@ void	PokePasoParaSet(POKEMON_PASO_PARAM *ppp,int mons_no,int level,int pow,int r
 
 	flag=PokePasoParaFastModeOn(ppp);
 
-//ŒÂ«—”ƒZƒbƒg
+//å€‹æ€§ä¹±æ•°ã‚»ãƒƒãƒˆ
 	if(!rndflag){
 		rnd=(gf_rand()|(gf_rand()<<16));
 	}
 	PokePasoParaPut(ppp,ID_PARA_personal_rnd,(u8 *)&rnd);
 
-//IDƒiƒ“ƒo[ƒZƒbƒg
+//IDãƒŠãƒ³ãƒãƒ¼ã‚»ãƒƒãƒˆ
 	if(idflag==ID_NO_RARE){
 		do{
 			id=(gf_rand()|(gf_rand()<<16));
@@ -551,32 +551,32 @@ void	PokePasoParaSet(POKEMON_PASO_PARAM *ppp,int mons_no,int level,int pow,int r
 	}
 	PokePasoParaPut(ppp,ID_PARA_id_no,(u8 *)&id);
 	
-//‘ƒR[ƒh
+//å›½ã‚³ãƒ¼ãƒ‰
 	PokePasoParaPut(ppp,ID_PARA_country_code,(u8 *)&CasetteLanguage);
 
-//ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[ƒZƒbƒg
+//ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚»ãƒƒãƒˆ
 	PokePasoParaPut(ppp,ID_PARA_monsno,(u8 *)&mons_no);
 
-//ƒjƒbƒNƒl[ƒ€ƒZƒbƒg
+//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚»ãƒƒãƒˆ
 //	MSGDAT_MonsNameGet(mons_no,HEAPID_BASE_SYSTEM,buf);
 //	PokePasoParaPut(ppp,ID_PARA_nickname,(u8 *)&buf);
 	PokePasoParaPut(ppp,ID_PARA_default_name,NULL);
 
-//ŒoŒ±’lƒZƒbƒg
+//çµŒé¨“å€¤ã‚»ãƒƒãƒˆ
 	i=PokeLevelExpGet(mons_no,level);
 	PokePasoParaPut(ppp,ID_PARA_exp,(u8 *)&i);
 
-//—FD’lƒZƒbƒg
+//å‹å¥½å€¤ã‚»ãƒƒãƒˆ
 	i=PokePersonalParaGet(mons_no,ID_PER_friend);
 	PokePasoParaPut(ppp,ID_PARA_friend,(u8 *)&i);
 
-//•ßŠlƒf[ƒ^ƒZƒbƒg
+//æ•ç²ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	PokePasoParaPut(ppp,ID_PARA_get_level,(u8 *)&level);
 	PokePasoParaPut(ppp,ID_PARA_get_cassette,(u8 *)&CasetteVersion);
-	i=ITEM_MONSUTAABOORU;	//ƒfƒtƒHƒ‹ƒg‚Íƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚É‚µ‚Ä‚¨‚­	
+	i=ITEM_MONSUTAABOORU;	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã«ã—ã¦ãŠã	
 	PokePasoParaPut(ppp,ID_PARA_get_ball,(u8 *)&i);
 
-//ƒpƒ[—”ƒZƒbƒg
+//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã‚»ãƒƒãƒˆ
 	if(pow<POW_RND){
 		PokePasoParaPut(ppp,ID_PARA_hp_rnd,(u8 *)&pow);
 		PokePasoParaPut(ppp,ID_PARA_pow_rnd,(u8 *)&pow);
@@ -602,7 +602,7 @@ void	PokePasoParaSet(POKEMON_PASO_PARAM *ppp,int mons_no,int level,int pow,int r
 		PokePasoParaPut(ppp,ID_PARA_spedef_rnd,(u8 *)&j);
 	}
 
-//“Áê”\—ÍƒZƒbƒg
+//ç‰¹æ®Šèƒ½åŠ›ã‚»ãƒƒãƒˆ
 	i=PokePersonalParaGet(mons_no,ID_PER_speabi1);
 	j=PokePersonalParaGet(mons_no,ID_PER_speabi2);
 	if(j!=0){
@@ -617,11 +617,11 @@ void	PokePasoParaSet(POKEMON_PASO_PARAM *ppp,int mons_no,int level,int pow,int r
 		PokePasoParaPut(ppp,ID_PARA_speabino,(u8 *)&i);
 	}
 
-//«•ÊƒZƒbƒg
+//æ€§åˆ¥ã‚»ãƒƒãƒˆ
 	i=PokePasoSexGet(ppp);
 	PokePasoParaPut(ppp,ID_PARA_sex,(u8 *)&i);
 
-//‹ZƒZƒbƒg
+//æŠ€ã‚»ãƒƒãƒˆ
 	PokePasoWazaOboe(ppp);
 
 	PokePasoParaFastModeOff(ppp,flag);
@@ -629,13 +629,13 @@ void	PokePasoParaSet(POKEMON_PASO_PARAM *ppp,int mons_no,int level,int pow,int r
 
 //============================================================================================
 /**
- *	PokeParaSetChr(ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚éB«Ši‚à‚«‚ß‚¤‚¿‚Åj
+ *	PokeParaSetChr(ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚æ€§æ ¼ã‚‚ãã‚ã†ã¡ã§ï¼‰
  *
- *	@param[in]	PP			ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	pokeno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- *	@param[in]	pokelevel	ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
- *	@param[in]	pow			ƒZƒbƒg‚·‚éƒpƒ[—”(POW_RND‚Ì‚Í—”‚ÅƒZƒbƒgj
- *	@param[in]	chr			ƒZƒbƒg‚·‚é«Šii‚O`‚Q‚Sj
+ *	@param[in]	PP			ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	pokeno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param[in]	pokelevel	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+ *	@param[in]	pow			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°(POW_RNDã®æ™‚ã¯ä¹±æ•°ã§ã‚»ãƒƒãƒˆï¼‰
+ *	@param[in]	chr			ã‚»ãƒƒãƒˆã™ã‚‹æ€§æ ¼ï¼ˆï¼ã€œï¼’ï¼”ï¼‰
 */
 //============================================================================================
 void	PokeParaSetChr(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u8 pow,u8 chr)
@@ -651,15 +651,15 @@ void	PokeParaSetChr(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u8 pow,u8 chr)
 
 //============================================================================================
 /**
- *	PokeParaSetSexChr(ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚éB«•ÊA«Ši‚à‚«‚ß‚¤‚¿‚Åj
- *	iƒGƒ“ƒJƒEƒ“ƒg‚Ìƒ|ƒPƒ‚ƒ“‚ğ¶¬‚·‚é‚Ì‚É‚Íg‚í‚È‚¢‚Å‚­‚¾‚³‚¢BŒÂ«—”‚ª•Î‚è‚Ü‚·j
+ *	PokeParaSetSexChr(ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚æ€§åˆ¥ã€æ€§æ ¼ã‚‚ãã‚ã†ã¡ã§ï¼‰
+ *	ï¼ˆã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã®ãƒã‚±ãƒ¢ãƒ³ã‚’ç”Ÿæˆã™ã‚‹ã®ã«ã¯ä½¿ã‚ãªã„ã§ãã ã•ã„ã€‚å€‹æ€§ä¹±æ•°ãŒåã‚Šã¾ã™ï¼‰
  *
- *	@param[in]	PP			ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	pokeno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- *	@param[in]	pokelevel	ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
- *	@param[in]	pow			ƒZƒbƒg‚·‚éƒpƒ[—”(POW_RND‚Ì‚Í—”‚ÅƒZƒbƒgj
- *	@param[in]	chr			ƒZƒbƒg‚·‚é«Šii‚O`‚Q‚Sj
- *	@param[in]	annon		ƒAƒ“ƒm[ƒ“‚ÌŒ`ó‚ài0:ŠÖŒW–³‚µj
+ *	@param[in]	PP			ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	pokeno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param[in]	pokelevel	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+ *	@param[in]	pow			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°(POW_RNDã®æ™‚ã¯ä¹±æ•°ã§ã‚»ãƒƒãƒˆï¼‰
+ *	@param[in]	chr			ã‚»ãƒƒãƒˆã™ã‚‹æ€§æ ¼ï¼ˆï¼ã€œï¼’ï¼”ï¼‰
+ *	@param[in]	annon		ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã®å½¢çŠ¶ã‚‚ï¼ˆ0:é–¢ä¿‚ç„¡ã—ï¼‰
 */
 //============================================================================================
 void	PokeParaSetSexChr(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u8 pow,u8 sex,u8 chr,u8 annon)
@@ -711,13 +711,13 @@ u32	PokeParaSexChrRndGet(u16 mons_no,u8 sex,u8 chr)
 //============================================================================================
 /**
  *
- *	PokeParaSetPowRnd(ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚éBƒpƒ[—”‚ğu32‚Åó‚¯æ‚Á‚Ä‘ã“üj
+ *	PokeParaSetPowRnd(ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã‚’u32ã§å—ã‘å–ã£ã¦ä»£å…¥ï¼‰
  *
- *	@param[in]	PP			ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	pokeno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- *	@param[in]	pokelevel	ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
- *	@param[in]	pow			ƒZƒbƒg‚·‚éƒpƒ[—”
- *	@param[in]	rnd			ƒZƒbƒg‚·‚éŒÂ«—”
+ *	@param[in]	PP			ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	pokeno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param[in]	pokelevel	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+ *	@param[in]	pow			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+ *	@param[in]	rnd			ã‚»ãƒƒãƒˆã™ã‚‹å€‹æ€§ä¹±æ•°
 */
 //============================================================================================
 void	PokeParaSetPowRnd(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u32 pow,u32 rnd)
@@ -732,13 +732,13 @@ void	PokeParaSetPowRnd(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u32 pow,u32 rnd
 //============================================================================================
 /**
  *
- *	PokeParaSetPowRndBuf(ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚éBƒpƒ[—”‚ğu8 *‚Åó‚¯æ‚Á‚Ä‘ã“üj
+ *	PokeParaSetPowRndBuf(ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã‚’u8 *ã§å—ã‘å–ã£ã¦ä»£å…¥ï¼‰
  *
- *	@param[in]	PP			ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	pokeno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- *	@param[in]	pokelevel	ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
- *	@param[in]	pow			ƒZƒbƒg‚·‚éƒpƒ[—”
- *	@param[in]	id			ƒZƒbƒg‚·‚éIDƒiƒ“ƒo[
+ *	@param[in]	PP			ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	pokeno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param[in]	pokelevel	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+ *	@param[in]	pow			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+ *	@param[in]	id			ã‚»ãƒƒãƒˆã™ã‚‹IDãƒŠãƒ³ãƒãƒ¼
 */
 //============================================================================================
 void	PokeParaSetPowRndBuf(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u8 *pow,u32 id)
@@ -758,13 +758,13 @@ void	PokeParaSetPowRndBuf(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u8 *pow,u32 
 //============================================================================================
 /**
  *
- *	PokeParaSetParaExp(ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚éB“w—Í’l‚àƒZƒbƒg‚·‚éj
+ *	PokeParaSetParaExp(ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚åŠªåŠ›å€¤ã‚‚ã‚»ãƒƒãƒˆã™ã‚‹ï¼‰
  *
- *	@param[in]	pp			ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	pokeno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- *	@param[in]	pokelevel	ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
- *	@param[in]	pow			ƒZƒbƒg‚·‚éƒpƒ[—”
- *	@param[in]	expbit		ƒZƒbƒg‚·‚é“w—Í’l‚Ìƒrƒbƒg(0bit:hp_exp 1bit:pow_exp 2bit:def_exp...j
+ *	@param[in]	pp			ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	pokeno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param[in]	pokelevel	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+ *	@param[in]	pow			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+ *	@param[in]	expbit		ã‚»ãƒƒãƒˆã™ã‚‹åŠªåŠ›å€¤ã®ãƒ“ãƒƒãƒˆ(0bit:hp_exp 1bit:pow_exp 2bit:def_exp...ï¼‰
 */
 //============================================================================================
 void	PokeParaSetParaExp(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u8 pow,u8 expbit)
@@ -794,15 +794,15 @@ void	PokeParaSetParaExp(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u8 pow,u8 expb
 
 //=========================================================================
 /**
- *	ƒoƒgƒ‹{İ—p‚ÌPokeParaSet
+ *	ãƒãƒˆãƒ«æ–½è¨­ç”¨ã®PokeParaSet
  *
- *	@param	pp			ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param	pokeno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- *	@param	pokelevel	ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
- *	@param	chr			ƒZƒbƒg‚·‚é«Ši
- *	@param	pow			ƒZƒbƒg‚·‚éƒpƒ[—”
- *	@param	expbit		ƒZƒbƒg‚·‚é“w—Í’l‚Ìƒrƒbƒg(0bit:hp_exp 1bit:pow_exp 2bit:def_exp...j
- *	@param	id			ƒZƒbƒg‚·‚éID
+ *	@param	pp			ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	pokeno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	pokelevel	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+ *	@param	chr			ã‚»ãƒƒãƒˆã™ã‚‹æ€§æ ¼
+ *	@param	pow			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+ *	@param	expbit		ã‚»ãƒƒãƒˆã™ã‚‹åŠªåŠ›å€¤ã®ãƒ“ãƒƒãƒˆ(0bit:hp_exp 1bit:pow_exp 2bit:def_exp...ï¼‰
+ *	@param	id			ã‚»ãƒƒãƒˆã™ã‚‹ID
  */
 //=========================================================================
 void	PokeParaSetBattleFrontier(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u8 chr,u8 pow,u8 expbit,u32 id)
@@ -838,9 +838,9 @@ void	PokeParaSetBattleFrontier(POKEMON_PARAM *pp,u16 pokeno,u8 pokelevel,u8 chr,
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^ŒvZƒ‹[ƒ`ƒ“
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨ˆç®—ãƒ«ãƒ¼ãƒãƒ³
  *
- * @param[in]	pp	ŒvZ‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	è¨ˆç®—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeParaCalc(POKEMON_PARAM *pp)
@@ -850,7 +850,7 @@ void	PokeParaCalc(POKEMON_PARAM *pp)
 
 	flag=PokeParaFastModeOn(pp);
 
-//ƒŒƒxƒ‹ƒZƒbƒg
+//ãƒ¬ãƒ™ãƒ«ã‚»ãƒƒãƒˆ
 	level=PokeParaLevelCalc(pp);
 	PokeParaPut(pp,ID_PARA_level,(u8 *)&level);
 
@@ -861,9 +861,9 @@ void	PokeParaCalc(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^ŒvZƒ‹[ƒ`ƒ“iƒŒƒxƒ‹ƒAƒbƒvê—pj
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨ˆç®—ãƒ«ãƒ¼ãƒãƒ³ï¼ˆãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æ™‚å°‚ç”¨ï¼‰
  *
- * @param[in]	pp	ŒvZ‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	è¨ˆç®—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeParaCalcLevelUp(POKEMON_PARAM *pp)
@@ -956,7 +956,7 @@ void	PokeParaCalcLevelUp(POKEMON_PARAM *pp)
 	PokeParaFastModeOff(pp,flag);
 }
 
-//ˆê‰c‚µ‚Ä‚¨‚­
+//ä¸€å¿œæ®‹ã—ã¦ãŠã
 #if 0
 	if(monsno==MONSNO_NUKENIN){
 		if((hp==0)&&(oldhpmax!=0)){
@@ -986,13 +986,13 @@ void	PokeParaCalcLevelUp(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚©‚ç”CˆÓ‚Å’l‚ğæ“¾iˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€ƒ`ƒFƒbƒN‚ ‚èj
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‹ã‚‰ä»»æ„ã§å€¤ã‚’å–å¾—ï¼ˆæš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ãƒã‚§ãƒƒã‚¯ã‚ã‚Šï¼‰
  *
- * @param[in]	pp	æ“¾‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[out]	buf	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ª”z—ñ‚Ì‚ÉŠi”[æ‚ÌƒAƒhƒŒƒX‚ğw’è
+ * @param[in]	pp	å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[out]	buf	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ãŒé…åˆ—ã®æ™‚ã«æ ¼ç´å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡å®š
  *
- * @return		æ“¾‚µ‚½ƒf[ƒ^
+ * @return		å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 u32	PokeParaGet(POKEMON_PARAM *pp,int id,void *buf)
@@ -1000,8 +1000,8 @@ u32	PokeParaGet(POKEMON_PARAM *pp,int id,void *buf)
 	u32	ret;
 	u16	sum;
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚Ì‚È‚²‚è
-//	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==0,"‚‘¬‰»ƒ‚[ƒh‚Ì‚Ü‚Ü‚É‚È‚Á‚Ä‚Ü‚·\n");
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸæ™‚ã®ãªã”ã‚Š
+//	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==0,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã®ã¾ã¾ã«ãªã£ã¦ã¾ã™\n");
 
 	if(pp->ppp.pp_fast_mode==0){
 		PokeParaDecoded(&pp->pcp,sizeof(POKEMON_CALC_PARAM),pp->ppp.personal_rnd);
@@ -1023,22 +1023,22 @@ u32	PokeParaGet(POKEMON_PARAM *pp,int id,void *buf)
 	return ret;
 }
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚¯‚ÇAPokeParaGet‚É“‡
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸã‘ã©ã€PokeParaGetã«çµ±åˆ
 #if 0
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚©‚ç”CˆÓ‚Å’l‚ğæ“¾i‚‘¬‰»ƒ‚[ƒhj
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‹ã‚‰ä»»æ„ã§å€¤ã‚’å–å¾—ï¼ˆé«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ï¼‰
  *
- * @param[in]	pp	æ“¾‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[out]	buf	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ª”z—ñ‚Ì‚ÉŠi”[æ‚ÌƒAƒhƒŒƒX‚ğw’è
+ * @param[in]	pp	å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[out]	buf	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ãŒé…åˆ—ã®æ™‚ã«æ ¼ç´å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡å®š
  *
- * @return		æ“¾‚µ‚½ƒf[ƒ^
+ * @return		å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 u32	PokeParaGetFast(POKEMON_PARAM *pp,int id,void *buf)
 {
-	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==1,"‚‘¬‰»ƒ‚[ƒh‚Å‚Í‚È‚¢‚Ì‚ÉŒÄ‚Î‚ê‚Ä‚¢‚Ü‚·\n");
+	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==1,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„ã®ã«å‘¼ã°ã‚Œã¦ã„ã¾ã™\n");
 
 	return PokeParaGetAct(pp,id,buf);
 }
@@ -1046,13 +1046,13 @@ u32	PokeParaGetFast(POKEMON_PARAM *pp,int id,void *buf)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚©‚ç”CˆÓ‚Å’l‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‹ã‚‰ä»»æ„ã§å€¤ã‚’å–å¾—
  *
- * @param[in]	pp	æ“¾‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[out]	buf	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ª”z—ñ‚Ì‚ÉŠi”[æ‚ÌƒAƒhƒŒƒX‚ğw’è
+ * @param[in]	pp	å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[out]	buf	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ãŒé…åˆ—ã®æ™‚ã«æ ¼ç´å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡å®š
  *
- * @return		æ“¾‚µ‚½ƒf[ƒ^
+ * @return		å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 static	u32	PokeParaGetAct(POKEMON_PARAM *pp,int id,void *buf)
@@ -1107,13 +1107,13 @@ static	u32	PokeParaGetAct(POKEMON_PARAM *pp,int id,void *buf)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚©‚ç”CˆÓ‚Å’l‚ğæ“¾iˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€ƒ`ƒFƒbƒN‚ ‚èj
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‹ã‚‰ä»»æ„ã§å€¤ã‚’å–å¾—ï¼ˆæš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ãƒã‚§ãƒƒã‚¯ã‚ã‚Šï¼‰
  *
- * @param[in]	pp	æ“¾‚·‚éƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[out]	buf	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ª”z—ñ‚Ì‚ÉŠi”[æ‚ÌƒAƒhƒŒƒX‚ğw’è
+ * @param[in]	pp	å–å¾—ã™ã‚‹ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[out]	buf	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ãŒé…åˆ—ã®æ™‚ã«æ ¼ç´å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡å®š
  *
- * @return		æ“¾‚µ‚½ƒf[ƒ^
+ * @return		å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 u32	PokePasoParaGet(POKEMON_PASO_PARAM *ppp,int id,void *buf)
@@ -1121,8 +1121,8 @@ u32	PokePasoParaGet(POKEMON_PASO_PARAM *ppp,int id,void *buf)
 	u16	sum;
 	u32	ret;
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚Ì‚È‚²‚è
-//	GF_ASSERT_MSG(ppp->ppp_fast_mode==0,"‚‘¬‰»ƒ‚[ƒh‚Ì‚Ü‚Ü‚É‚È‚Á‚Ä‚Ü‚·\n");
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸæ™‚ã®ãªã”ã‚Š
+//	GF_ASSERT_MSG(ppp->ppp_fast_mode==0,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã®ã¾ã¾ã«ãªã£ã¦ã¾ã™\n");
 
 	if(ppp->ppp_fast_mode==0){
 		PokeParaDecoded(ppp->paradata,sizeof(POKEMON_PASO_PARAM1)*4,ppp->checksum);
@@ -1142,22 +1142,22 @@ u32	PokePasoParaGet(POKEMON_PASO_PARAM *ppp,int id,void *buf)
 	return ret;
 }
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚¯‚ÇAPokePasoParaGet‚É“‡
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸã‘ã©ã€PokePasoParaGetã«çµ±åˆ
 #if 0
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚©‚ç”CˆÓ‚Å’l‚ğæ“¾i‚‘¬‰»ƒ‚[ƒhj
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‹ã‚‰ä»»æ„ã§å€¤ã‚’å–å¾—ï¼ˆé«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ï¼‰
  *
- * @param[in]	pp	æ“¾‚·‚éƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[out]	buf	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ª”z—ñ‚Ì‚ÉŠi”[æ‚ÌƒAƒhƒŒƒX‚ğw’è
+ * @param[in]	pp	å–å¾—ã™ã‚‹ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[out]	buf	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ãŒé…åˆ—ã®æ™‚ã«æ ¼ç´å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡å®š
  *
- * @return		æ“¾‚µ‚½ƒf[ƒ^
+ * @return		å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 u32	PokePasoParaGetFast(POKEMON_PASO_PARAM *ppp,int id,void *buf)
 {
-	GF_ASSERT_MSG(ppp->ppp_fast_mode==1,"‚‘¬‰»ƒ‚[ƒh‚Å‚Í‚È‚¢‚Ì‚ÉŒÄ‚Î‚ê‚Ä‚¢‚Ü‚·\n");
+	GF_ASSERT_MSG(ppp->ppp_fast_mode==1,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„ã®ã«å‘¼ã°ã‚Œã¦ã„ã¾ã™\n");
 
 	return PokePasoParaGetAct(ppp,id,buf);
 }
@@ -1165,13 +1165,13 @@ u32	PokePasoParaGetFast(POKEMON_PASO_PARAM *ppp,int id,void *buf)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚©‚ç”CˆÓ‚Å’l‚ğæ“¾
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‹ã‚‰ä»»æ„ã§å€¤ã‚’å–å¾—
  *
- * @param[in]	pp	æ“¾‚·‚éƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[out]	buf	æ“¾‚µ‚½‚¢ƒf[ƒ^‚ª”z—ñ‚Ì‚ÉŠi”[æ‚ÌƒAƒhƒŒƒX‚ğw’è
+ * @param[in]	pp	å–å¾—ã™ã‚‹ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[out]	buf	å–å¾—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ãŒé…åˆ—ã®æ™‚ã«æ ¼ç´å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡å®š
  *
- * @return		æ“¾‚µ‚½ƒf[ƒ^
+ * @return		å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 static	u32	PokePasoParaGetAct(POKEMON_PASO_PARAM *ppp,int id,void *buf)
@@ -1297,35 +1297,35 @@ static	u32	PokePasoParaGetAct(POKEMON_PASO_PARAM *ppp,int id,void *buf)
 		case ID_PARA_fur:
 			ret=ppp1->fur;
 			break;
-		case ID_PARA_sinou_champ_ribbon:				//ƒVƒ“ƒIƒEƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
-		case ID_PARA_sinou_battle_tower_ttwin_first:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜1‰ñ–Ú
-		case ID_PARA_sinou_battle_tower_ttwin_second:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜2‰ñ–Ú
-		case ID_PARA_sinou_battle_tower_2vs2_win50:		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ_ƒuƒ‹50˜AŸ
-		case ID_PARA_sinou_battle_tower_aimulti_win50:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[AIƒ}ƒ‹ƒ`50˜AŸ
-		case ID_PARA_sinou_battle_tower_siomulti_win50:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[’ÊMƒ}ƒ‹ƒ`50˜AŸ
-		case ID_PARA_sinou_battle_tower_wifi_rank5:		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[Wifiƒ‰ƒ“ƒN‚T“ü‚è
-		case ID_PARA_sinou_syakki_ribbon:				//ƒVƒ“ƒIƒE‚µ‚á‚Á‚«ƒŠƒ{ƒ“
-		case ID_PARA_sinou_dokki_ribbon:				//ƒVƒ“ƒIƒE‚Ç‚Á‚«ƒŠƒ{ƒ“
-		case ID_PARA_sinou_syonbo_ribbon:				//ƒVƒ“ƒIƒE‚µ‚å‚ñ‚ÚƒŠƒ{ƒ“
-		case ID_PARA_sinou_ukka_ribbon:					//ƒVƒ“ƒIƒE‚¤‚Á‚©ƒŠƒ{ƒ“
-		case ID_PARA_sinou_sukki_ribbon:				//ƒVƒ“ƒIƒE‚·‚Á‚«ƒŠƒ{ƒ“
-		case ID_PARA_sinou_gussu_ribbon:				//ƒVƒ“ƒIƒE‚®‚Á‚·ƒŠƒ{ƒ“
-		case ID_PARA_sinou_nikko_ribbon:				//ƒVƒ“ƒIƒE‚É‚Á‚±ƒŠƒ{ƒ“
-		case ID_PARA_sinou_gorgeous_ribbon:				//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒŠƒ{ƒ“
-		case ID_PARA_sinou_royal_ribbon:				//ƒVƒ“ƒIƒEƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_gorgeousroyal_ribbon:		//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_ashiato_ribbon:				//ƒVƒ“ƒIƒE‚ ‚µ‚ ‚ÆƒŠƒ{ƒ“
-		case ID_PARA_sinou_record_ribbon:				//ƒVƒ“ƒIƒEƒŒƒR[ƒhƒŠƒ{ƒ“
-		case ID_PARA_sinou_history_ribbon:				//ƒVƒ“ƒIƒEƒqƒXƒgƒŠ[ƒŠƒ{ƒ“
-		case ID_PARA_sinou_legend_ribbon:				//ƒVƒ“ƒIƒEƒŒƒWƒFƒ“ƒhƒŠƒ{ƒ“
-		case ID_PARA_sinou_red_ribbon:					//ƒVƒ“ƒIƒEƒŒƒbƒhƒŠƒ{ƒ“
-		case ID_PARA_sinou_green_ribbon:				//ƒVƒ“ƒIƒEƒOƒŠ[ƒ“ƒŠƒ{ƒ“
-		case ID_PARA_sinou_blue_ribbon:					//ƒVƒ“ƒIƒEƒuƒ‹[ƒŠƒ{ƒ“
-		case ID_PARA_sinou_festival_ribbon:				//ƒVƒ“ƒIƒEƒtƒFƒXƒeƒBƒoƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_carnival_ribbon:				//ƒVƒ“ƒIƒEƒJ[ƒjƒoƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_classic_ribbon:				//ƒVƒ“ƒIƒEƒNƒ‰ƒVƒbƒNƒŠƒ{ƒ“
-		case ID_PARA_sinou_premiere_ribbon:				//ƒVƒ“ƒIƒEƒvƒŒƒ~ƒAƒŠƒ{ƒ“
-		case ID_PARA_sinou_amari_ribbon:				//‚ ‚Ü‚è
+		case ID_PARA_sinou_champ_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
+		case ID_PARA_sinou_battle_tower_ttwin_first:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©1å›ç›®
+		case ID_PARA_sinou_battle_tower_ttwin_second:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©2å›ç›®
+		case ID_PARA_sinou_battle_tower_2vs2_win50:		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ãƒ€ãƒ–ãƒ«50é€£å‹
+		case ID_PARA_sinou_battle_tower_aimulti_win50:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼AIãƒãƒ«ãƒ50é€£å‹
+		case ID_PARA_sinou_battle_tower_siomulti_win50:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒãƒ«ãƒ50é€£å‹
+		case ID_PARA_sinou_battle_tower_wifi_rank5:		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼Wifiãƒ©ãƒ³ã‚¯ï¼•å…¥ã‚Š
+		case ID_PARA_sinou_syakki_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚ƒã£ããƒªãƒœãƒ³
+		case ID_PARA_sinou_dokki_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã©ã£ããƒªãƒœãƒ³
+		case ID_PARA_sinou_syonbo_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚‡ã‚“ã¼ãƒªãƒœãƒ³
+		case ID_PARA_sinou_ukka_ribbon:					//ã‚·ãƒ³ã‚ªã‚¦ã†ã£ã‹ãƒªãƒœãƒ³
+		case ID_PARA_sinou_sukki_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã™ã£ããƒªãƒœãƒ³
+		case ID_PARA_sinou_gussu_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãã£ã™ãƒªãƒœãƒ³
+		case ID_PARA_sinou_nikko_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã«ã£ã“ãƒªãƒœãƒ³
+		case ID_PARA_sinou_gorgeous_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒªãƒœãƒ³
+		case ID_PARA_sinou_royal_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_gorgeousroyal_ribbon:		//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_ashiato_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚ã—ã‚ã¨ãƒªãƒœãƒ³
+		case ID_PARA_sinou_record_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒªãƒœãƒ³
+		case ID_PARA_sinou_history_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ’ã‚¹ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+		case ID_PARA_sinou_legend_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚¸ã‚§ãƒ³ãƒ‰ãƒªãƒœãƒ³
+		case ID_PARA_sinou_red_ribbon:					//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ãƒƒãƒ‰ãƒªãƒœãƒ³
+		case ID_PARA_sinou_green_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚°ãƒªãƒ¼ãƒ³ãƒªãƒœãƒ³
+		case ID_PARA_sinou_blue_ribbon:					//ã‚·ãƒ³ã‚ªã‚¦ãƒ–ãƒ«ãƒ¼ãƒªãƒœãƒ³
+		case ID_PARA_sinou_festival_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ•ã‚§ã‚¹ãƒ†ã‚£ãƒãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_carnival_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚«ãƒ¼ãƒ‹ãƒãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_classic_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚¯ãƒ©ã‚·ãƒƒã‚¯ãƒªãƒœãƒ³
+		case ID_PARA_sinou_premiere_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ—ãƒ¬ãƒŸã‚¢ãƒªãƒœãƒ³
+		case ID_PARA_sinou_amari_ribbon:				//ã‚ã¾ã‚Š
 			bit=1;
 			ret=((ppp1->sinou_ribbon&(bit<<id-ID_PARA_sinou_champ_ribbon))!=0);
 			break;
@@ -1423,11 +1423,11 @@ static	u32	PokePasoParaGetAct(POKEMON_PASO_PARAM *ppp,int id,void *buf)
 			break;
 		case ID_PARA_sex:
 //			ret=ppp2->sex;
-			//•K‚¸ƒpƒ‰ƒ[ƒ^‚©‚çŒvZ‚µ‚Ä•Ô‚·‚æ‚¤‚ÉC³@2008.03.06 by soga
+			//å¿…ãšãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰è¨ˆç®—ã—ã¦è¿”ã™ã‚ˆã†ã«ä¿®æ­£ã€€2008.03.06 by soga
 			ret=PokeSexGetMonsNo(ppp1->monsno,ppp->personal_rnd);
-			//ÄŒvZ‚µ‚½‚à‚Ì‚ğ‘ã“ü‚µ‚Ä‚¨‚­
+			//å†è¨ˆç®—ã—ãŸã‚‚ã®ã‚’ä»£å…¥ã—ã¦ãŠã
 			ppp2->sex=ret;
-			//ƒ`ƒFƒbƒNƒTƒ€‚ğÄŒvZ
+			//ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’å†è¨ˆç®—
 			ppp->checksum=PokeParaCheckSum(&ppp->paradata,sizeof(POKEMON_PASO_PARAM1)*4);
 			break;
 		case ID_PARA_form_no:
@@ -1525,64 +1525,64 @@ static	u32	PokePasoParaGetAct(POKEMON_PASO_PARAM *ppp,int id,void *buf)
 			STRBUF_SetStringCode((STRBUF*)buf, ppp4->oyaname);
 			break;
 
-		case ID_PARA_get_year:							//•ß‚Ü‚¦‚½”N
-			ret=ppp4->get_year;							//•ß‚Ü‚¦‚½”N
+		case ID_PARA_get_year:							//æ•ã¾ãˆãŸå¹´
+			ret=ppp4->get_year;							//æ•ã¾ãˆãŸå¹´
 			break;
-		case ID_PARA_get_month:							//•ß‚Ü‚¦‚½Œ
-			ret=ppp4->get_month;							//•ß‚Ü‚¦‚½Œ
+		case ID_PARA_get_month:							//æ•ã¾ãˆãŸæœˆ
+			ret=ppp4->get_month;							//æ•ã¾ãˆãŸæœˆ
 			break;
-		case ID_PARA_get_day:							//•ß‚Ü‚¦‚½“ú
-			ret=ppp4->get_day;							//•ß‚Ü‚¦‚½“ú
+		case ID_PARA_get_day:							//æ•ã¾ãˆãŸæ—¥
+			ret=ppp4->get_day;							//æ•ã¾ãˆãŸæ—¥
 			break;
-		case ID_PARA_birth_year:						//¶‚Ü‚ê‚½”N
-			ret=ppp4->birth_year;						//¶‚Ü‚ê‚½”N
+		case ID_PARA_birth_year:						//ç”Ÿã¾ã‚ŒãŸå¹´
+			ret=ppp4->birth_year;						//ç”Ÿã¾ã‚ŒãŸå¹´
 			break;
-		case ID_PARA_birth_month:						//¶‚Ü‚ê‚½Œ
-			ret=ppp4->birth_month;						//¶‚Ü‚ê‚½Œ
+		case ID_PARA_birth_month:						//ç”Ÿã¾ã‚ŒãŸæœˆ
+			ret=ppp4->birth_month;						//ç”Ÿã¾ã‚ŒãŸæœˆ
 			break;
-		case ID_PARA_birth_day:							//¶‚Ü‚ê‚½“ú
-			ret=ppp4->birth_day;							//¶‚Ü‚ê‚½“ú
+		case ID_PARA_birth_day:							//ç”Ÿã¾ã‚ŒãŸæ—¥
+			ret=ppp4->birth_day;							//ç”Ÿã¾ã‚ŒãŸæ—¥
 			break;
-		case ID_PARA_get_place:							//•ß‚Ü‚¦‚½êŠ
-		case ID_PARA_new_get_place:						//•ß‚Ü‚¦‚½êŠ
-			//‹Œ—Ìˆæ‚Ì’l‚ªu‚Æ‚¨‚¢‚Î‚µ‚åv‚ÅAV—Ìˆæ‚Ì’l‚ª 0 ˆÈŠO‚È‚çAV—Ìˆæ‚Ì’l‚ğ•Ô‚· 
+		case ID_PARA_get_place:							//æ•ã¾ãˆãŸå ´æ‰€
+		case ID_PARA_new_get_place:						//æ•ã¾ãˆãŸå ´æ‰€
+			//æ—§é ˜åŸŸã®å€¤ãŒã€Œã¨ãŠã„ã°ã—ã‚‡ã€ã§ã€æ–°é ˜åŸŸã®å€¤ãŒ 0 ä»¥å¤–ãªã‚‰ã€æ–°é ˜åŸŸã®å€¤ã‚’è¿”ã™ 
 			if((ppp4->get_place==ID_TOOIBASYO)&&(ppp2->new_get_place)){
-				ret=ppp2->new_get_place;				//•ß‚Ü‚¦‚½êŠ
+				ret=ppp2->new_get_place;				//æ•ã¾ãˆãŸå ´æ‰€
 			}
-			//‘O€ˆÈŠO‚Ìê‡A‹Œ—Ìˆæ‚Ì’l‚ğ•Ô‚·
+			//å‰é …ä»¥å¤–ã®å ´åˆã€æ—§é ˜åŸŸã®å€¤ã‚’è¿”ã™
 			else{
-				ret=ppp4->get_place;					//•ß‚Ü‚¦‚½êŠ
+				ret=ppp4->get_place;					//æ•ã¾ãˆãŸå ´æ‰€
 			}
 			break;
-		case ID_PARA_birth_place:						//¶‚Ü‚ê‚½êŠ
-		case ID_PARA_new_birth_place:					//¶‚Ü‚ê‚½êŠ
-			//‹Œ—Ìˆæ‚Ì’l‚ªu‚Æ‚¨‚¢‚Î‚µ‚åv‚ÅAV—Ìˆæ‚Ì’l‚ª 0 ˆÈŠO‚È‚çAV—Ìˆæ‚Ì’l‚ğ•Ô‚· 
+		case ID_PARA_birth_place:						//ç”Ÿã¾ã‚ŒãŸå ´æ‰€
+		case ID_PARA_new_birth_place:					//ç”Ÿã¾ã‚ŒãŸå ´æ‰€
+			//æ—§é ˜åŸŸã®å€¤ãŒã€Œã¨ãŠã„ã°ã—ã‚‡ã€ã§ã€æ–°é ˜åŸŸã®å€¤ãŒ 0 ä»¥å¤–ãªã‚‰ã€æ–°é ˜åŸŸã®å€¤ã‚’è¿”ã™ 
 			if((ppp4->birth_place==ID_TOOIBASYO)&&(ppp2->new_birth_place)){
-				ret=ppp2->new_birth_place;				//•ß‚Ü‚¦‚½êŠ
+				ret=ppp2->new_birth_place;				//æ•ã¾ãˆãŸå ´æ‰€
 			}
-			//‘O€ˆÈŠO‚Ìê‡A‹Œ—Ìˆæ‚Ì’l‚ğ•Ô‚·
+			//å‰é …ä»¥å¤–ã®å ´åˆã€æ—§é ˜åŸŸã®å€¤ã‚’è¿”ã™
 			else{
-				ret=ppp4->birth_place;					//•ß‚Ü‚¦‚½êŠ
+				ret=ppp4->birth_place;					//æ•ã¾ãˆãŸå ´æ‰€
 			}
 			break;
 			break;
-		case ID_PARA_pokerus:							//ƒ|ƒPƒ‹ƒX
-			ret=ppp4->pokerus;							//ƒ|ƒPƒ‹ƒX
+		case ID_PARA_pokerus:							//ãƒã‚±ãƒ«ã‚¹
+			ret=ppp4->pokerus;							//ãƒã‚±ãƒ«ã‚¹
 			break;
-		case ID_PARA_get_ball:							//•ß‚Ü‚¦‚½ƒ{[ƒ‹
-			ret=ppp4->get_ball;							//•ß‚Ü‚¦‚½ƒ{[ƒ‹
+		case ID_PARA_get_ball:							//æ•ã¾ãˆãŸãƒœãƒ¼ãƒ«
+			ret=ppp4->get_ball;							//æ•ã¾ãˆãŸãƒœãƒ¼ãƒ«
 			break;
-		case ID_PARA_get_level:							//•ß‚Ü‚¦‚½ƒŒƒxƒ‹
-			ret=ppp4->get_level;							//•ß‚Ü‚¦‚½ƒŒƒxƒ‹
+		case ID_PARA_get_level:							//æ•ã¾ãˆãŸãƒ¬ãƒ™ãƒ«
+			ret=ppp4->get_level;							//æ•ã¾ãˆãŸãƒ¬ãƒ™ãƒ«
 			break;
-		case ID_PARA_oyasex:							//e‚Ì«•Ê
-			ret=ppp4->oyasex;							//e‚Ì«•Ê
+		case ID_PARA_oyasex:							//è¦ªã®æ€§åˆ¥
+			ret=ppp4->oyasex;							//è¦ªã®æ€§åˆ¥
 			break;
-		case ID_PARA_get_ground_id:						//•ß‚Ü‚¦‚½êŠ‚Ì’nŒ`ƒAƒgƒŠƒrƒ…[ƒgiƒ~ƒmƒbƒ`—pj
-			ret=ppp4->get_ground_id;						//•ß‚Ü‚¦‚½êŠ‚Ì’nŒ`ƒAƒgƒŠƒrƒ…[ƒgiƒ~ƒmƒbƒ`—pj
+		case ID_PARA_get_ground_id:						//æ•ã¾ãˆãŸå ´æ‰€ã®åœ°å½¢ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼ˆãƒŸãƒãƒƒãƒç”¨ï¼‰
+			ret=ppp4->get_ground_id;						//æ•ã¾ãˆãŸå ´æ‰€ã®åœ°å½¢ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼ˆãƒŸãƒãƒƒãƒç”¨ï¼‰
 			break;
-		case ID_PARA_dummy_p4_1:						//‚ ‚Ü‚è
-			ret=ppp4->dummy_p4_1;						//‚ ‚Ü‚è
+		case ID_PARA_dummy_p4_1:						//ã‚ã¾ã‚Š
+			ret=ppp4->dummy_p4_1;						//ã‚ã¾ã‚Š
 			break;
 
 		case ID_PARA_power_rnd:
@@ -1593,7 +1593,7 @@ static	u32	PokePasoParaGetAct(POKEMON_PASO_PARAM *ppp,int id,void *buf)
 				(ppp2->spepow_rnd	<<20)|
 				(ppp2->spedef_rnd	<<25);
 			break;
-		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ªƒjƒhƒ‰ƒ“‚Ì‚Énickname_flag‚ª—§‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ãŒãƒ‹ãƒ‰ãƒ©ãƒ³ã®æ™‚ã«nickname_flagãŒç«‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		case ID_PARA_nidoran_nickname:
 			if(((ppp1->monsno==MONSNO_NIDORAN_F)||(ppp1->monsno==MONSNO_NIDORAN_M))&&(ppp2->nickname_flag==0)){
 				ret=FALSE;
@@ -1611,7 +1611,7 @@ static	u32	PokePasoParaGetAct(POKEMON_PASO_PARAM *ppp,int id,void *buf)
 				ret=PokeFormNoPersonalParaGet(ppp1->monsno,ppp2->form_no,ID_PER_type1+(id-ID_PARA_type1));
 			}
 			break;
-		case ID_PARA_default_name:						//ƒ|ƒPƒ‚ƒ“‚ÌƒfƒtƒHƒ‹ƒg–¼
+		case ID_PARA_default_name:						//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå
 			MSGDAT_MonsNameGet(ppp1->monsno,HEAPID_BASE_SYSTEM,buf);
 			break;
 	}
@@ -1621,25 +1621,25 @@ static	u32	PokePasoParaGetAct(POKEMON_PASO_PARAM *ppp,int id,void *buf)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğŠi”[iˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€ƒ`ƒFƒbƒN‚ ‚èj
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’æ ¼ç´ï¼ˆæš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ãƒã‚§ãƒƒã‚¯ã‚ã‚Šï¼‰
  *
- * @param[in]	pp	Ši”[‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	Ši”[‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	buf	Ši”[‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	æ ¼ç´ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	buf	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeParaPut(POKEMON_PARAM *pp,int id,const void *buf)
 {
 	u16	sum;
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚Ì‚È‚²‚è
-//	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==0,"‚‘¬‰»ƒ‚[ƒh‚Ì‚Ü‚Ü‚É‚È‚Á‚Ä‚Ü‚·\n");
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸæ™‚ã®ãªã”ã‚Š
+//	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==0,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã®ã¾ã¾ã«ãªã£ã¦ã¾ã™\n");
 
 	if(pp->ppp.pp_fast_mode==0){
 		PokeParaDecoded(&pp->pcp,sizeof(POKEMON_CALC_PARAM),pp->ppp.personal_rnd);
 		PokeParaDecoded(&pp->ppp.paradata,sizeof(POKEMON_PASO_PARAM1)*4,pp->ppp.checksum);
 		sum=PokeParaCheckSum(&pp->ppp.paradata,sizeof(POKEMON_PASO_PARAM1)*4);
-		//•s³‚Èƒf[ƒ^‚Ì‚Í‘‚«‚İ‚ğ‚µ‚È‚¢
+		//ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã®æ™‚ã¯æ›¸ãè¾¼ã¿ã‚’ã—ãªã„
 		if(sum!=pp->ppp.checksum){
 			GF_ASSERT_MSG((sum==pp->ppp.checksum),"checksum Crash!\n");
 			pp->ppp.fusei_tamago_flag=1;
@@ -1657,22 +1657,22 @@ void	PokeParaPut(POKEMON_PARAM *pp,int id,const void *buf)
 	}
 }
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚¯‚ÇAPokeParaPut‚É“‡
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸã‘ã©ã€PokeParaPutã«çµ±åˆ
 #if 0
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğŠi”[i‚‘¬‰»ƒ‚[ƒhj
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’æ ¼ç´ï¼ˆé«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ï¼‰
  *
- * @param[in]	pp	Ši”[‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	Ši”[‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	buf	Ši”[‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	æ ¼ç´ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	buf	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeParaPutFast(POKEMON_PARAM *pp,int id,const void *buf)
 {
 	u16	sum;
 
-	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==1,"‚‘¬‰»ƒ‚[ƒh‚Å‚Í‚È‚¢‚Ì‚ÉŒÄ‚Î‚ê‚Ä‚¢‚Ü‚·\n");
+	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==1,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„ã®ã«å‘¼ã°ã‚Œã¦ã„ã¾ã™\n");
 
 	PokeParaPutAct(pp,id,buf);
 }
@@ -1680,11 +1680,11 @@ void	PokeParaPutFast(POKEMON_PARAM *pp,int id,const void *buf)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğŠi”[
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’æ ¼ç´
  *
- * @param[in]	pp	Ši”[‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	Ši”[‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	buf	Ši”[‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	æ ¼ç´ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	buf	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	PokeParaPutAct(POKEMON_PARAM *pp,int id,const void *buf)
@@ -1738,24 +1738,24 @@ static	void	PokeParaPutAct(POKEMON_PARAM *pp,int id,const void *buf)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğŠi”[iˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€ƒ`ƒFƒbƒN‚ ‚èj
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’æ ¼ç´ï¼ˆæš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ãƒã‚§ãƒƒã‚¯ã‚ã‚Šï¼‰
  *
- * @param[in]	ppp	Ši”[‚µ‚½‚¢ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	Ši”[‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	buf	Ši”[‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	æ ¼ç´ã—ãŸã„ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	buf	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokePasoParaPut(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 {
 	u16	sum;
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚Ì‚È‚²‚è
-//	GF_ASSERT_MSG(ppp->ppp_fast_mode==0,"‚‘¬‰»ƒ‚[ƒh‚Ì‚Ü‚Ü‚É‚È‚Á‚Ä‚Ü‚·\n");
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸæ™‚ã®ãªã”ã‚Š
+//	GF_ASSERT_MSG(ppp->ppp_fast_mode==0,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã®ã¾ã¾ã«ãªã£ã¦ã¾ã™\n");
 
 	if(ppp->ppp_fast_mode==0){
 		PokeParaDecoded(ppp->paradata,sizeof(POKEMON_PASO_PARAM1)*4,ppp->checksum);
 		sum=PokeParaCheckSum(ppp->paradata,sizeof(POKEMON_PASO_PARAM1)*4);
-		//•s³‚Èƒf[ƒ^‚Ì‚Í‘‚«‚İ‚ğ‚µ‚È‚¢
+		//ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã®æ™‚ã¯æ›¸ãè¾¼ã¿ã‚’ã—ãªã„
 		if(sum!=ppp->checksum){
 			GF_ASSERT_MSG((sum==ppp->checksum),"checksum Crash!\n");
 			ppp->fusei_tamago_flag=1;
@@ -1772,22 +1772,22 @@ void	PokePasoParaPut(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 	}
 }
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚¯‚ÇAPokePasoParaPut‚É“‡
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸã‘ã©ã€PokePasoParaPutã«çµ±åˆ
 #if 0
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğŠi”[i‚‘¬‰»ƒ‚[ƒhj
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’æ ¼ç´ï¼ˆé«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ï¼‰
  *
- * @param[in]	ppp	Ši”[‚µ‚½‚¢ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	Ši”[‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	buf	Ši”[‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	æ ¼ç´ã—ãŸã„ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	buf	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokePasoParaPutFast(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 {
 	u16	sum;
 
-	GF_ASSERT_MSG(ppp->ppp_fast_mode==1,"‚‘¬‰»ƒ‚[ƒh‚Å‚Í‚È‚¢‚Ì‚ÉŒÄ‚Î‚ê‚Ä‚¢‚Ü‚·\n");
+	GF_ASSERT_MSG(ppp->ppp_fast_mode==1,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„ã®ã«å‘¼ã°ã‚Œã¦ã„ã¾ã™\n");
 
 	PokePasoParaPutAct(ppp,id,buf);
 }
@@ -1795,11 +1795,11 @@ void	PokePasoParaPutFast(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğŠi”[
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’æ ¼ç´
  *
- * @param[in]	ppp	Ši”[‚µ‚½‚¢ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id	Ši”[‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	buf	Ši”[‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	æ ¼ç´ã—ãŸã„ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	buf	æ ¼ç´ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	PokePasoParaPutAct(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
@@ -1826,11 +1826,11 @@ static	void	PokePasoParaPutAct(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 			ppp->personal_rnd=buf32[0];
 			break;
 		case ID_PARA_pp_fast_mode:
-			GF_ASSERT_MSG((0),"fast_mode‚Ö•s³‚È‘‚«‚İ\n");
+			GF_ASSERT_MSG((0),"fast_modeã¸ä¸æ­£ãªæ›¸ãè¾¼ã¿\n");
 			ppp->pp_fast_mode=buf8[0];
 			break;
 		case ID_PARA_ppp_fast_mode:
-			GF_ASSERT_MSG((0),"fast_mode‚Ö•s³‚È‘‚«‚İ\n");
+			GF_ASSERT_MSG((0),"fast_modeã¸ä¸æ­£ãªæ›¸ãè¾¼ã¿\n");
 			ppp->ppp_fast_mode=buf8[0];
 			break;
 		case ID_PARA_fusei_tamago_flag:
@@ -1900,35 +1900,35 @@ static	void	PokePasoParaPutAct(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 		case ID_PARA_fur:
 			ppp1->fur=buf8[0];		
 			break;
-		case ID_PARA_sinou_champ_ribbon:				//ƒVƒ“ƒIƒEƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
-		case ID_PARA_sinou_battle_tower_ttwin_first:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜1‰ñ–Ú
-		case ID_PARA_sinou_battle_tower_ttwin_second:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜2‰ñ–Ú
-		case ID_PARA_sinou_battle_tower_2vs2_win50:		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ_ƒuƒ‹50˜AŸ
-		case ID_PARA_sinou_battle_tower_aimulti_win50:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[AIƒ}ƒ‹ƒ`50˜AŸ
-		case ID_PARA_sinou_battle_tower_siomulti_win50:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[’ÊMƒ}ƒ‹ƒ`50˜AŸ
-		case ID_PARA_sinou_battle_tower_wifi_rank5:		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[Wifiƒ‰ƒ“ƒN‚T“ü‚è
-		case ID_PARA_sinou_syakki_ribbon:				//ƒVƒ“ƒIƒE‚µ‚á‚Á‚«ƒŠƒ{ƒ“
-		case ID_PARA_sinou_dokki_ribbon:				//ƒVƒ“ƒIƒE‚Ç‚Á‚«ƒŠƒ{ƒ“
-		case ID_PARA_sinou_syonbo_ribbon:				//ƒVƒ“ƒIƒE‚µ‚å‚ñ‚ÚƒŠƒ{ƒ“
-		case ID_PARA_sinou_ukka_ribbon:					//ƒVƒ“ƒIƒE‚¤‚Á‚©ƒŠƒ{ƒ“
-		case ID_PARA_sinou_sukki_ribbon:				//ƒVƒ“ƒIƒE‚·‚Á‚«ƒŠƒ{ƒ“
-		case ID_PARA_sinou_gussu_ribbon:				//ƒVƒ“ƒIƒE‚®‚Á‚·ƒŠƒ{ƒ“
-		case ID_PARA_sinou_nikko_ribbon:				//ƒVƒ“ƒIƒE‚É‚Á‚±ƒŠƒ{ƒ“
-		case ID_PARA_sinou_gorgeous_ribbon:				//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒŠƒ{ƒ“
-		case ID_PARA_sinou_royal_ribbon:				//ƒVƒ“ƒIƒEƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_gorgeousroyal_ribbon:		//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_ashiato_ribbon:				//ƒVƒ“ƒIƒE‚ ‚µ‚ ‚ÆƒŠƒ{ƒ“
-		case ID_PARA_sinou_record_ribbon:				//ƒVƒ“ƒIƒEƒŒƒR[ƒhƒŠƒ{ƒ“
-		case ID_PARA_sinou_history_ribbon:				//ƒVƒ“ƒIƒEƒqƒXƒgƒŠ[ƒŠƒ{ƒ“
-		case ID_PARA_sinou_legend_ribbon:				//ƒVƒ“ƒIƒEƒŒƒWƒFƒ“ƒhƒŠƒ{ƒ“
-		case ID_PARA_sinou_red_ribbon:					//ƒVƒ“ƒIƒEƒŒƒbƒhƒŠƒ{ƒ“
-		case ID_PARA_sinou_green_ribbon:				//ƒVƒ“ƒIƒEƒOƒŠ[ƒ“ƒŠƒ{ƒ“
-		case ID_PARA_sinou_blue_ribbon:					//ƒVƒ“ƒIƒEƒuƒ‹[ƒŠƒ{ƒ“
-		case ID_PARA_sinou_festival_ribbon:				//ƒVƒ“ƒIƒEƒtƒFƒXƒeƒBƒoƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_carnival_ribbon:				//ƒVƒ“ƒIƒEƒJ[ƒjƒoƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_classic_ribbon:				//ƒVƒ“ƒIƒEƒNƒ‰ƒVƒbƒNƒŠƒ{ƒ“
-		case ID_PARA_sinou_premiere_ribbon:				//ƒVƒ“ƒIƒEƒvƒŒƒ~ƒAƒŠƒ{ƒ“
-		case ID_PARA_sinou_amari_ribbon:				//‚ ‚Ü‚è
+		case ID_PARA_sinou_champ_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
+		case ID_PARA_sinou_battle_tower_ttwin_first:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©1å›ç›®
+		case ID_PARA_sinou_battle_tower_ttwin_second:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©2å›ç›®
+		case ID_PARA_sinou_battle_tower_2vs2_win50:		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ãƒ€ãƒ–ãƒ«50é€£å‹
+		case ID_PARA_sinou_battle_tower_aimulti_win50:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼AIãƒãƒ«ãƒ50é€£å‹
+		case ID_PARA_sinou_battle_tower_siomulti_win50:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒãƒ«ãƒ50é€£å‹
+		case ID_PARA_sinou_battle_tower_wifi_rank5:		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼Wifiãƒ©ãƒ³ã‚¯ï¼•å…¥ã‚Š
+		case ID_PARA_sinou_syakki_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚ƒã£ããƒªãƒœãƒ³
+		case ID_PARA_sinou_dokki_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã©ã£ããƒªãƒœãƒ³
+		case ID_PARA_sinou_syonbo_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚‡ã‚“ã¼ãƒªãƒœãƒ³
+		case ID_PARA_sinou_ukka_ribbon:					//ã‚·ãƒ³ã‚ªã‚¦ã†ã£ã‹ãƒªãƒœãƒ³
+		case ID_PARA_sinou_sukki_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã™ã£ããƒªãƒœãƒ³
+		case ID_PARA_sinou_gussu_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãã£ã™ãƒªãƒœãƒ³
+		case ID_PARA_sinou_nikko_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã«ã£ã“ãƒªãƒœãƒ³
+		case ID_PARA_sinou_gorgeous_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒªãƒœãƒ³
+		case ID_PARA_sinou_royal_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_gorgeousroyal_ribbon:		//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_ashiato_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚ã—ã‚ã¨ãƒªãƒœãƒ³
+		case ID_PARA_sinou_record_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒªãƒœãƒ³
+		case ID_PARA_sinou_history_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ’ã‚¹ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+		case ID_PARA_sinou_legend_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚¸ã‚§ãƒ³ãƒ‰ãƒªãƒœãƒ³
+		case ID_PARA_sinou_red_ribbon:					//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ãƒƒãƒ‰ãƒªãƒœãƒ³
+		case ID_PARA_sinou_green_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚°ãƒªãƒ¼ãƒ³ãƒªãƒœãƒ³
+		case ID_PARA_sinou_blue_ribbon:					//ã‚·ãƒ³ã‚ªã‚¦ãƒ–ãƒ«ãƒ¼ãƒªãƒœãƒ³
+		case ID_PARA_sinou_festival_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ•ã‚§ã‚¹ãƒ†ã‚£ãƒãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_carnival_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚«ãƒ¼ãƒ‹ãƒãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_classic_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚¯ãƒ©ã‚·ãƒƒã‚¯ãƒªãƒœãƒ³
+		case ID_PARA_sinou_premiere_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ—ãƒ¬ãƒŸã‚¢ãƒªãƒœãƒ³
+		case ID_PARA_sinou_amari_ribbon:				//ã‚ã¾ã‚Š
 			bit=1<<(id-ID_PARA_sinou_champ_ribbon);
 			if(buf8[0]){
 				ppp1->sinou_ribbon|=bit;
@@ -1960,7 +1960,7 @@ static	void	PokePasoParaPutAct(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 		case ID_PARA_pp_max2:
 		case ID_PARA_pp_max3:
 		case ID_PARA_pp_max4:
-			OS_Printf("•s³‚È‘‚«‚İ\n");
+			OS_Printf("ä¸æ­£ãªæ›¸ãè¾¼ã¿\n");
 			break;
 		case ID_PARA_hp_rnd:
 			ppp2->hp_rnd=buf8[0];
@@ -2031,7 +2031,7 @@ static	void	PokePasoParaPutAct(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 			break;
 		case ID_PARA_sex:
 			//ppp2->sex=buf8[0];
-			//•K‚¸ƒpƒ‰ƒ[ƒ^‚©‚çŒvZ‚µ‚Ä‘ã“ü‚·‚é‚æ‚¤‚ÉC³@2008.03.06 by soga
+			//å¿…ãšãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰è¨ˆç®—ã—ã¦ä»£å…¥ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£ã€€2008.03.06 by soga
 			ppp2->sex=PokeSexGetMonsNo(ppp1->monsno,ppp->personal_rnd);
 			break;
 		case ID_PARA_form_no:
@@ -2048,8 +2048,8 @@ static	void	PokePasoParaPutAct(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 			{
 				STRCODE	def_name[MONS_NAME_SIZE+EOM_SIZE];
 
-				//ƒfƒtƒHƒ‹ƒg–¼‚Æ”äŠr‚µ‚ÄAƒfƒtƒHƒ‹ƒg–¼‚¾‚Á‚½‚çAƒjƒbƒNƒl[ƒ€ƒtƒ‰ƒO‚ğ—‚Æ‚·
-				//ŠCŠO”Å‚©‚ç‚«‚½ƒ|ƒPƒ‚ƒ“‚ÍAƒjƒbƒNƒl[ƒ€‚Ì•ÏX‚ª•s‰Â‚È‚Ì‚ÅA‘ƒR[ƒh‚ğŒ©‚é•K—v‚Í‚È‚µ
+				//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåã¨æ¯”è¼ƒã—ã¦ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåã ã£ãŸã‚‰ã€ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
+				//æµ·å¤–ç‰ˆã‹ã‚‰ããŸãƒã‚±ãƒ¢ãƒ³ã¯ã€ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã®å¤‰æ›´ãŒä¸å¯ãªã®ã§ã€å›½ã‚³ãƒ¼ãƒ‰ã‚’è¦‹ã‚‹å¿…è¦ã¯ãªã—
 				MSGDAT_MonsNameGet(ppp1->monsno,HEAPID_BASE_SYSTEM,&def_name[0]);
 				ppp2->nickname_flag=PM_strcmp(def_name,&buf16[0]);
 			}
@@ -2063,8 +2063,8 @@ static	void	PokePasoParaPutAct(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 				STRCODE	def_name[MONS_NAME_SIZE+EOM_SIZE];
 				STRCODE	buf_name[MONS_NAME_SIZE+EOM_SIZE];
 
-				//ƒfƒtƒHƒ‹ƒg–¼‚Æ”äŠr‚µ‚ÄAƒfƒtƒHƒ‹ƒg–¼‚¾‚Á‚½‚çAƒjƒbƒNƒl[ƒ€ƒtƒ‰ƒO‚ğ—‚Æ‚·
-				//ŠCŠO”Å‚©‚ç‚«‚½ƒ|ƒPƒ‚ƒ“‚ÍAƒjƒbƒNƒl[ƒ€‚Ì•ÏX‚ª•s‰Â‚È‚Ì‚ÅA‘ƒR[ƒh‚ğŒ©‚é•K—v‚Í‚È‚µ
+				//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåã¨æ¯”è¼ƒã—ã¦ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåã ã£ãŸã‚‰ã€ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
+				//æµ·å¤–ç‰ˆã‹ã‚‰ããŸãƒã‚±ãƒ¢ãƒ³ã¯ã€ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã®å¤‰æ›´ãŒä¸å¯ãªã®ã§ã€å›½ã‚³ãƒ¼ãƒ‰ã‚’è¦‹ã‚‹å¿…è¦ã¯ãªã—
 				MSGDAT_MonsNameGet(ppp1->monsno,HEAPID_BASE_SYSTEM,&def_name[0]);
 				STRBUF_GetStringCode((STRBUF*)buf, &buf_name[0], NELEMS(buf_name));
 				ppp2->nickname_flag=PM_strcmp(def_name,buf_name);
@@ -2116,71 +2116,71 @@ static	void	PokePasoParaPutAct(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 			STRBUF_GetStringCode((STRBUF*)buf, ppp4->oyaname, NELEMS(ppp4->oyaname));
 			break;
 
-		case ID_PARA_get_year:							//•ß‚Ü‚¦‚½”N
-			ppp4->get_year=buf8[0];						//•ß‚Ü‚¦‚½”N
+		case ID_PARA_get_year:							//æ•ã¾ãˆãŸå¹´
+			ppp4->get_year=buf8[0];						//æ•ã¾ãˆãŸå¹´
 			break;
-		case ID_PARA_get_month:							//•ß‚Ü‚¦‚½Œ
-			ppp4->get_month=buf8[0];					//•ß‚Ü‚¦‚½Œ
+		case ID_PARA_get_month:							//æ•ã¾ãˆãŸæœˆ
+			ppp4->get_month=buf8[0];					//æ•ã¾ãˆãŸæœˆ
 			break;
-		case ID_PARA_get_day:							//•ß‚Ü‚¦‚½“ú
-			ppp4->get_day=buf8[0];						//•ß‚Ü‚¦‚½“ú
+		case ID_PARA_get_day:							//æ•ã¾ãˆãŸæ—¥
+			ppp4->get_day=buf8[0];						//æ•ã¾ãˆãŸæ—¥
 			break;
-		case ID_PARA_birth_year:						//¶‚Ü‚ê‚½”N
-			ppp4->birth_year=buf8[0];					//¶‚Ü‚ê‚½”N
+		case ID_PARA_birth_year:						//ç”Ÿã¾ã‚ŒãŸå¹´
+			ppp4->birth_year=buf8[0];					//ç”Ÿã¾ã‚ŒãŸå¹´
 			break;
-		case ID_PARA_birth_month:						//¶‚Ü‚ê‚½Œ
-			ppp4->birth_month=buf8[0];					//¶‚Ü‚ê‚½Œ
+		case ID_PARA_birth_month:						//ç”Ÿã¾ã‚ŒãŸæœˆ
+			ppp4->birth_month=buf8[0];					//ç”Ÿã¾ã‚ŒãŸæœˆ
 			break;
-		case ID_PARA_birth_day:							//¶‚Ü‚ê‚½“ú
-			ppp4->birth_day=buf8[0];					//¶‚Ü‚ê‚½“ú
+		case ID_PARA_birth_day:							//ç”Ÿã¾ã‚ŒãŸæ—¥
+			ppp4->birth_day=buf8[0];					//ç”Ÿã¾ã‚ŒãŸæ—¥
 			break;
-		case ID_PARA_get_place:							//•ß‚Ü‚¦‚½êŠ
-		case ID_PARA_new_get_place:						//•ß‚Ü‚¦‚½êŠ
-			//DP‚É‚à‚ ‚Á‚½êŠ‚È‚çAV—Ìˆæ‚Æ‹Œ—Ìˆæ‚É‚»‚Ì’n–¼ID‚ğ‘‚«‚Ş
+		case ID_PARA_get_place:							//æ•ã¾ãˆãŸå ´æ‰€
+		case ID_PARA_new_get_place:						//æ•ã¾ãˆãŸå ´æ‰€
+			//DPã«ã‚‚ã‚ã£ãŸå ´æ‰€ãªã‚‰ã€æ–°é ˜åŸŸã¨æ—§é ˜åŸŸã«ãã®åœ°åIDã‚’æ›¸ãè¾¼ã‚€
 			if(buf16[0] == 0 || PlaceName_RangeCheckDP(buf16[0])==TRUE){
-				//get_place‚ª0‚©‚Ç‚¤‚©‚Åƒ^ƒ}ƒS‚Å›z‚Á‚½‚©A¶‘Ì‚Åæ“¾‚µ‚½‚©”»’è‚µ‚Ä‚¢‚é‚Ì‚Å
-				//get_place‚Ì0ƒZƒbƒg‚Í‚ ‚è‚É‚·‚é
-				ppp4->get_place=buf16[0];				//•ß‚Ü‚¦‚½êŠ
-				ppp2->new_get_place=buf16[0];			//•ß‚Ü‚¦‚½êŠ
+				//get_placeãŒ0ã‹ã©ã†ã‹ã§ã‚¿ãƒã‚´ã§å­µã£ãŸã‹ã€ç”Ÿä½“ã§å–å¾—ã—ãŸã‹åˆ¤å®šã—ã¦ã„ã‚‹ã®ã§
+				//get_placeã®0ã‚»ãƒƒãƒˆã¯ã‚ã‚Šã«ã™ã‚‹
+				ppp4->get_place=buf16[0];				//æ•ã¾ãˆãŸå ´æ‰€
+				ppp2->new_get_place=buf16[0];			//æ•ã¾ãˆãŸå ´æ‰€
 			}
-			//DP‚É‚È‚©‚Á‚½êŠ‚È‚çAV—Ìˆæ‚É‚»‚Ì’n–¼IDA‹Œ—Ìˆæ‚Éu‚Æ‚¨‚¢‚Î‚µ‚åv‚ğ‘‚«‚Ş
+			//DPã«ãªã‹ã£ãŸå ´æ‰€ãªã‚‰ã€æ–°é ˜åŸŸã«ãã®åœ°åIDã€æ—§é ˜åŸŸã«ã€Œã¨ãŠã„ã°ã—ã‚‡ã€ã‚’æ›¸ãè¾¼ã‚€
 			else{
-				ppp4->get_place=ID_TOOIBASYO;			//•ß‚Ü‚¦‚½êŠ
-				ppp2->new_get_place=buf16[0];			//•ß‚Ü‚¦‚½êŠ
+				ppp4->get_place=ID_TOOIBASYO;			//æ•ã¾ãˆãŸå ´æ‰€
+				ppp2->new_get_place=buf16[0];			//æ•ã¾ãˆãŸå ´æ‰€
 			}
 			break;
-		case ID_PARA_birth_place:						//¶‚Ü‚ê‚½êŠ
-		case ID_PARA_new_birth_place:					//¶‚Ü‚ê‚½êŠ
-			//DP‚É‚à‚ ‚Á‚½êŠ‚È‚çAV—Ìˆæ‚Æ‹Œ—Ìˆæ‚É‚»‚Ì’n–¼ID‚ğ‘‚«‚Ş
+		case ID_PARA_birth_place:						//ç”Ÿã¾ã‚ŒãŸå ´æ‰€
+		case ID_PARA_new_birth_place:					//ç”Ÿã¾ã‚ŒãŸå ´æ‰€
+			//DPã«ã‚‚ã‚ã£ãŸå ´æ‰€ãªã‚‰ã€æ–°é ˜åŸŸã¨æ—§é ˜åŸŸã«ãã®åœ°åIDã‚’æ›¸ãè¾¼ã‚€
 			if(buf16[0] == 0 || PlaceName_RangeCheckDP(buf16[0])==TRUE){
-				//”ÍˆÍŠOƒ}ƒbƒv‚Å•ß‚Ü‚¦‚½ƒ|ƒPƒ‚ƒ“‚Íu‚È‚¼‚Ì‚Î‚µ‚åv‚Æ•\¦‚·‚éˆ×A
-				//birth_place‚Ì0ƒZƒbƒg‚à‚ ‚è‚É‚µ‚½B
-				ppp4->birth_place=buf16[0];				//¶‚Ü‚ê‚½êŠ
-				ppp2->new_birth_place=buf16[0];			//¶‚Ü‚ê‚½êŠ
+				//ç¯„å›²å¤–ãƒãƒƒãƒ—ã§æ•ã¾ãˆãŸãƒã‚±ãƒ¢ãƒ³ã¯ã€Œãªãã®ã°ã—ã‚‡ã€ã¨è¡¨ç¤ºã™ã‚‹ç‚ºã€
+				//birth_placeã®0ã‚»ãƒƒãƒˆã‚‚ã‚ã‚Šã«ã—ãŸã€‚
+				ppp4->birth_place=buf16[0];				//ç”Ÿã¾ã‚ŒãŸå ´æ‰€
+				ppp2->new_birth_place=buf16[0];			//ç”Ÿã¾ã‚ŒãŸå ´æ‰€
 			}
-			//DP‚É‚È‚©‚Á‚½êŠ‚È‚çAV—Ìˆæ‚É‚»‚Ì’n–¼IDA‹Œ—Ìˆæ‚Éu‚Æ‚¨‚¢‚Î‚µ‚åv‚ğ‘‚«‚Ş
+			//DPã«ãªã‹ã£ãŸå ´æ‰€ãªã‚‰ã€æ–°é ˜åŸŸã«ãã®åœ°åIDã€æ—§é ˜åŸŸã«ã€Œã¨ãŠã„ã°ã—ã‚‡ã€ã‚’æ›¸ãè¾¼ã‚€
 			else{
-				ppp4->birth_place=ID_TOOIBASYO;			//¶‚Ü‚ê‚½êŠ
-				ppp2->new_birth_place=buf16[0];			//¶‚Ü‚ê‚½êŠ
+				ppp4->birth_place=ID_TOOIBASYO;			//ç”Ÿã¾ã‚ŒãŸå ´æ‰€
+				ppp2->new_birth_place=buf16[0];			//ç”Ÿã¾ã‚ŒãŸå ´æ‰€
 			}
 			break;
-		case ID_PARA_pokerus:							//ƒ|ƒPƒ‹ƒX
-			ppp4->pokerus=buf8[0];						//ƒ|ƒPƒ‹ƒX
+		case ID_PARA_pokerus:							//ãƒã‚±ãƒ«ã‚¹
+			ppp4->pokerus=buf8[0];						//ãƒã‚±ãƒ«ã‚¹
 			break;
-		case ID_PARA_get_ball:							//•ß‚Ü‚¦‚½ƒ{[ƒ‹
-			ppp4->get_ball=buf8[0];						//•ß‚Ü‚¦‚½ƒ{[ƒ‹
+		case ID_PARA_get_ball:							//æ•ã¾ãˆãŸãƒœãƒ¼ãƒ«
+			ppp4->get_ball=buf8[0];						//æ•ã¾ãˆãŸãƒœãƒ¼ãƒ«
 			break;
-		case ID_PARA_get_level:							//•ß‚Ü‚¦‚½ƒŒƒxƒ‹
-			ppp4->get_level=buf8[0];					//•ß‚Ü‚¦‚½ƒŒƒxƒ‹
+		case ID_PARA_get_level:							//æ•ã¾ãˆãŸãƒ¬ãƒ™ãƒ«
+			ppp4->get_level=buf8[0];					//æ•ã¾ãˆãŸãƒ¬ãƒ™ãƒ«
 			break;
-		case ID_PARA_oyasex:							//e‚Ì«•Ê
-			ppp4->oyasex=buf8[0];						//e‚Ì«•Ê
+		case ID_PARA_oyasex:							//è¦ªã®æ€§åˆ¥
+			ppp4->oyasex=buf8[0];						//è¦ªã®æ€§åˆ¥
 			break;
-		case ID_PARA_get_ground_id:						//•ß‚Ü‚¦‚½êŠ‚Ì’nŒ`ƒAƒgƒŠƒrƒ…[ƒgiƒ~ƒmƒbƒ`—pj
-			ppp4->get_ground_id=buf8[0];				//•ß‚Ü‚¦‚½êŠ‚Ì’nŒ`ƒAƒgƒŠƒrƒ…[ƒgiƒ~ƒmƒbƒ`—pj
+		case ID_PARA_get_ground_id:						//æ•ã¾ãˆãŸå ´æ‰€ã®åœ°å½¢ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼ˆãƒŸãƒãƒƒãƒç”¨ï¼‰
+			ppp4->get_ground_id=buf8[0];				//æ•ã¾ãˆãŸå ´æ‰€ã®åœ°å½¢ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼ˆãƒŸãƒãƒƒãƒç”¨ï¼‰
 			break;
-		case ID_PARA_dummy_p4_1:						//‚ ‚Ü‚è
-			ppp4->dummy_p4_1=buf16[0];					//‚ ‚Ü‚è
+		case ID_PARA_dummy_p4_1:						//ã‚ã¾ã‚Š
+			ppp4->dummy_p4_1=buf16[0];					//ã‚ã¾ã‚Š
 			break;
 
 		case ID_PARA_power_rnd:
@@ -2191,13 +2191,13 @@ static	void	PokePasoParaPutAct(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 			ppp2->spepow_rnd=(buf32[0]>>20)&0x0000001f;
 			ppp2->spedef_rnd=(buf32[0]>>25)&0x0000001f;
 			break;
-		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ªƒjƒhƒ‰ƒ“‚Ì‚Énickname_flag‚ª—§‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ãŒãƒ‹ãƒ‰ãƒ©ãƒ³ã®æ™‚ã«nickname_flagãŒç«‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		case ID_PARA_nidoran_nickname:
 		case ID_PARA_type1:
 		case ID_PARA_type2:
-			OS_Printf("•s³‚È‘‚«‚İ\n");
+			OS_Printf("ä¸æ­£ãªæ›¸ãè¾¼ã¿\n");
 			break;
-		case ID_PARA_default_name:						//ƒ|ƒPƒ‚ƒ“‚ÌƒfƒtƒHƒ‹ƒg–¼
+		case ID_PARA_default_name:						//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå
 			{
 				STRBUF	*name_buf;
 
@@ -2211,25 +2211,25 @@ static	void	PokePasoParaPutAct(POKEMON_PASO_PARAM *ppp,int id,const void *buf)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğ‰ÁZiˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€ƒ`ƒFƒbƒN‚ ‚èj
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’åŠ ç®—ï¼ˆæš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ãƒã‚§ãƒƒã‚¯ã‚ã‚Šï¼‰
  *
- * @param[in]	pp		‰ÁZ‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id		‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	value	‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp		åŠ ç®—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id		åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	value	åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeParaAdd(POKEMON_PARAM *pp,int id,int value)
 {
 	u16	sum;
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚Ì‚È‚²‚è
-//	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==0,"‚‘¬‰»ƒ‚[ƒh‚Ì‚Ü‚Ü‚É‚È‚Á‚Ä‚Ü‚·\n");
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸæ™‚ã®ãªã”ã‚Š
+//	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==0,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã®ã¾ã¾ã«ãªã£ã¦ã¾ã™\n");
 
 	if(pp->ppp.pp_fast_mode==0){
 		PokeParaDecoded(&pp->pcp,sizeof(POKEMON_CALC_PARAM),pp->ppp.personal_rnd);
 		PokeParaDecoded(&pp->ppp.paradata,sizeof(POKEMON_PASO_PARAM1)*4,pp->ppp.checksum);
 		sum=PokeParaCheckSum(&pp->ppp.paradata,sizeof(POKEMON_PASO_PARAM1)*4);
-		//•s³‚Èƒf[ƒ^‚Ì‚Í‘‚«‚İ‚ğ‚µ‚È‚¢
+		//ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã®æ™‚ã¯æ›¸ãè¾¼ã¿ã‚’ã—ãªã„
 		if(sum!=pp->ppp.checksum){
 			GF_ASSERT_MSG((sum==pp->ppp.checksum),"checksum Crash!\n");
 			PokeParaCoded(pp->ppp.paradata,sizeof(POKEMON_PASO_PARAM1)*4,pp->ppp.checksum);
@@ -2246,22 +2246,22 @@ void	PokeParaAdd(POKEMON_PARAM *pp,int id,int value)
 	}
 }
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚¯‚ÇAPokeParaAdd‚É“‡
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸã‘ã©ã€PokeParaAddã«çµ±åˆ
 #if 0
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğ‰ÁZi‚‘¬‰»ƒ‚[ƒhj
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’åŠ ç®—ï¼ˆé«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ï¼‰
  *
- * @param[in]	pp		‰ÁZ‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id		‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	value	‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp		åŠ ç®—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id		åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	value	åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeParaAddFast(POKEMON_PARAM *pp,int id,int value)
 {
 	u16	sum;
 
-	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==1,"‚‘¬‰»ƒ‚[ƒh‚Å‚Í‚È‚¢‚Ì‚ÉŒÄ‚Î‚ê‚Ä‚¢‚Ü‚·\n");
+	GF_ASSERT_MSG(pp->ppp.pp_fast_mode==1,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„ã®ã«å‘¼ã°ã‚Œã¦ã„ã¾ã™\n");
 
 	PokeParaAddAct(pp,id,value);
 }
@@ -2269,11 +2269,11 @@ void	PokeParaAddFast(POKEMON_PARAM *pp,int id,int value)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğ‰ÁZ
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’åŠ ç®—
  *
- * @param[in]	pp		‰ÁZ‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id		‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	value	‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp		åŠ ç®—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id		åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	value	åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	PokeParaAddAct(POKEMON_PARAM *pp,int id,int value)
@@ -2297,7 +2297,7 @@ static	void	PokeParaAddAct(POKEMON_PARAM *pp,int id,int value)
 		case ID_PARA_spepow:
 		case ID_PARA_spedef:
 		case ID_PARA_mail_data:
-			GF_ASSERT_MSG((0),"Add‚Å‚«‚È‚¢ƒpƒ‰ƒ[ƒ^‚Å‚·\n");
+			GF_ASSERT_MSG((0),"Addã§ããªã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ã™\n");
 			break;
 		default:
 			PokePasoParaAddAct((POKEMON_PASO_PARAM *)&pp->ppp,id,value);
@@ -2307,24 +2307,24 @@ static	void	PokeParaAddAct(POKEMON_PARAM *pp,int id,int value)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğ‰ÁZiˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€ƒ`ƒFƒbƒN‚ ‚èj
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’åŠ ç®—ï¼ˆæš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ãƒã‚§ãƒƒã‚¯ã‚ã‚Šï¼‰
  *
- * @param[in]	ppp		‰ÁZ‚µ‚½‚¢ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id		‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	value	‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp		åŠ ç®—ã—ãŸã„ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id		åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	value	åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokePasoParaAdd(POKEMON_PASO_PARAM *ppp,int id,int value)
 {
 	u16	sum;
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚Ì‚È‚²‚è
-//	GF_ASSERT_MSG(ppp->ppp_fast_mode==0,"‚‘¬‰»ƒ‚[ƒh‚Ì‚Ü‚Ü‚É‚È‚Á‚Ä‚Ü‚·\n");
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸæ™‚ã®ãªã”ã‚Š
+//	GF_ASSERT_MSG(ppp->ppp_fast_mode==0,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã®ã¾ã¾ã«ãªã£ã¦ã¾ã™\n");
 
 	if(ppp->ppp_fast_mode==0){
 		PokeParaDecoded(ppp->paradata,sizeof(POKEMON_PASO_PARAM1)*4,ppp->checksum);
 		sum=PokeParaCheckSum(ppp->paradata,sizeof(POKEMON_PASO_PARAM1)*4);
-		//•s³‚Èƒf[ƒ^‚Ì‚Í‘‚«‚İ‚ğ‚µ‚È‚¢
+		//ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã®æ™‚ã¯æ›¸ãè¾¼ã¿ã‚’ã—ãªã„
 		if(sum!=ppp->checksum){
 			GF_ASSERT_MSG((sum==ppp->checksum),"checksum Crash!\n");
 			PokeParaCoded(ppp->paradata,sizeof(POKEMON_PASO_PARAM1)*4,ppp->checksum);
@@ -2340,22 +2340,22 @@ void	PokePasoParaAdd(POKEMON_PASO_PARAM *ppp,int id,int value)
 	}
 }
 
-//ƒAƒT[ƒg‚ğo‚·‚½‚ß‚ÉŒÄ‚Ñ•ª‚¯‚Ä‚¢‚½‚¯‚ÇAPokePasoParaAdd‚É“‡
+//ã‚¢ã‚µãƒ¼ãƒˆã‚’å‡ºã™ãŸã‚ã«å‘¼ã³åˆ†ã‘ã¦ã„ãŸã‘ã©ã€PokePasoParaAddã«çµ±åˆ
 #if 0
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğ‰ÁZi‚‘¬‰»ƒ‚[ƒhj
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’åŠ ç®—ï¼ˆé«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ï¼‰
  *
- * @param[in]	ppp		‰ÁZ‚µ‚½‚¢ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id		‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	value	‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp		åŠ ç®—ã—ãŸã„ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id		åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	value	åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokePasoParaAddFast(POKEMON_PASO_PARAM *ppp,int id,int value)
 {
 	u16	sum;
 
-	GF_ASSERT_MSG(ppp->ppp_fast_mode==1,"‚‘¬‰»ƒ‚[ƒh‚Å‚Í‚È‚¢‚Ì‚ÉŒÄ‚Î‚ê‚Ä‚¢‚Ü‚·\n");
+	GF_ASSERT_MSG(ppp->ppp_fast_mode==1,"é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„ã®ã«å‘¼ã°ã‚Œã¦ã„ã¾ã™\n");
 
 	PokePasoParaAddAct(ppp,id,value);
 }
@@ -2363,11 +2363,11 @@ void	PokePasoParaAddFast(POKEMON_PASO_PARAM *ppp,int id,int value)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚É”CˆÓ‚Å’l‚ğ‰ÁZ
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã«ä»»æ„ã§å€¤ã‚’åŠ ç®—
  *
- * @param[in]	ppp		‰ÁZ‚µ‚½‚¢ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id		‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
- * @param[in]	value	‰ÁZ‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp		åŠ ç®—ã—ãŸã„ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id		åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	value	åŠ ç®—ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	PokePasoParaAddAct(POKEMON_PASO_PARAM *ppp,int id,int value)
@@ -2504,7 +2504,7 @@ static	void	PokePasoParaAddAct(POKEMON_PASO_PARAM *ppp,int id,int value)
 		case ID_PARA_pp_max2:
 		case ID_PARA_pp_max3:
 		case ID_PARA_pp_max4:
-			OS_Printf("•s³‚È‘«‚µ‚±‚İ\n");
+			OS_Printf("ä¸æ­£ãªè¶³ã—ã“ã¿\n");
 			break;
 		case ID_PARA_hp_rnd:
 			if((ppp2->hp_rnd+value)>POW_RND_MAX){
@@ -2564,35 +2564,35 @@ static	void	PokePasoParaAddAct(POKEMON_PASO_PARAM *ppp,int id,int value)
 		case ID_PARA_speabino:
 		case ID_PARA_mark:
 		case ID_PARA_country_code:
-		case ID_PARA_sinou_champ_ribbon:				//ƒVƒ“ƒIƒEƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
-		case ID_PARA_sinou_battle_tower_ttwin_first:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜1‰ñ–Ú
-		case ID_PARA_sinou_battle_tower_ttwin_second:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜2‰ñ–Ú
-		case ID_PARA_sinou_battle_tower_2vs2_win50:		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ_ƒuƒ‹50˜AŸ
-		case ID_PARA_sinou_battle_tower_aimulti_win50:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[AIƒ}ƒ‹ƒ`50˜AŸ
-		case ID_PARA_sinou_battle_tower_siomulti_win50:	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[’ÊMƒ}ƒ‹ƒ`50˜AŸ
-		case ID_PARA_sinou_battle_tower_wifi_rank5:		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[Wifiƒ‰ƒ“ƒN‚T“ü‚è
-		case ID_PARA_sinou_syakki_ribbon:				//ƒVƒ“ƒIƒE‚µ‚á‚Á‚«ƒŠƒ{ƒ“
-		case ID_PARA_sinou_dokki_ribbon:				//ƒVƒ“ƒIƒE‚Ç‚Á‚«ƒŠƒ{ƒ“
-		case ID_PARA_sinou_syonbo_ribbon:				//ƒVƒ“ƒIƒE‚µ‚å‚ñ‚ÚƒŠƒ{ƒ“
-		case ID_PARA_sinou_ukka_ribbon:					//ƒVƒ“ƒIƒE‚¤‚Á‚©ƒŠƒ{ƒ“
-		case ID_PARA_sinou_sukki_ribbon:				//ƒVƒ“ƒIƒE‚·‚Á‚«ƒŠƒ{ƒ“
-		case ID_PARA_sinou_gussu_ribbon:				//ƒVƒ“ƒIƒE‚®‚Á‚·ƒŠƒ{ƒ“
-		case ID_PARA_sinou_nikko_ribbon:				//ƒVƒ“ƒIƒE‚É‚Á‚±ƒŠƒ{ƒ“
-		case ID_PARA_sinou_gorgeous_ribbon:				//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒŠƒ{ƒ“
-		case ID_PARA_sinou_royal_ribbon:				//ƒVƒ“ƒIƒEƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_gorgeousroyal_ribbon:		//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_ashiato_ribbon:				//ƒVƒ“ƒIƒE‚ ‚µ‚ ‚ÆƒŠƒ{ƒ“
-		case ID_PARA_sinou_record_ribbon:				//ƒVƒ“ƒIƒEƒŒƒR[ƒhƒŠƒ{ƒ“
-		case ID_PARA_sinou_history_ribbon:				//ƒVƒ“ƒIƒEƒqƒXƒgƒŠ[ƒŠƒ{ƒ“
-		case ID_PARA_sinou_legend_ribbon:				//ƒVƒ“ƒIƒEƒŒƒWƒFƒ“ƒhƒŠƒ{ƒ“
-		case ID_PARA_sinou_red_ribbon:					//ƒVƒ“ƒIƒEƒŒƒbƒhƒŠƒ{ƒ“
-		case ID_PARA_sinou_green_ribbon:				//ƒVƒ“ƒIƒEƒOƒŠ[ƒ“ƒŠƒ{ƒ“
-		case ID_PARA_sinou_blue_ribbon:					//ƒVƒ“ƒIƒEƒuƒ‹[ƒŠƒ{ƒ“
-		case ID_PARA_sinou_festival_ribbon:				//ƒVƒ“ƒIƒEƒtƒFƒXƒeƒBƒoƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_carnival_ribbon:				//ƒVƒ“ƒIƒEƒJ[ƒjƒoƒ‹ƒŠƒ{ƒ“
-		case ID_PARA_sinou_classic_ribbon:				//ƒVƒ“ƒIƒEƒNƒ‰ƒVƒbƒNƒŠƒ{ƒ“
-		case ID_PARA_sinou_premiere_ribbon:				//ƒVƒ“ƒIƒEƒvƒŒƒ~ƒAƒŠƒ{ƒ“
-		case ID_PARA_sinou_amari_ribbon:				//‚ ‚Ü‚è
+		case ID_PARA_sinou_champ_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
+		case ID_PARA_sinou_battle_tower_ttwin_first:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©1å›ç›®
+		case ID_PARA_sinou_battle_tower_ttwin_second:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©2å›ç›®
+		case ID_PARA_sinou_battle_tower_2vs2_win50:		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ãƒ€ãƒ–ãƒ«50é€£å‹
+		case ID_PARA_sinou_battle_tower_aimulti_win50:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼AIãƒãƒ«ãƒ50é€£å‹
+		case ID_PARA_sinou_battle_tower_siomulti_win50:	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒãƒ«ãƒ50é€£å‹
+		case ID_PARA_sinou_battle_tower_wifi_rank5:		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼Wifiãƒ©ãƒ³ã‚¯ï¼•å…¥ã‚Š
+		case ID_PARA_sinou_syakki_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚ƒã£ããƒªãƒœãƒ³
+		case ID_PARA_sinou_dokki_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã©ã£ããƒªãƒœãƒ³
+		case ID_PARA_sinou_syonbo_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚‡ã‚“ã¼ãƒªãƒœãƒ³
+		case ID_PARA_sinou_ukka_ribbon:					//ã‚·ãƒ³ã‚ªã‚¦ã†ã£ã‹ãƒªãƒœãƒ³
+		case ID_PARA_sinou_sukki_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã™ã£ããƒªãƒœãƒ³
+		case ID_PARA_sinou_gussu_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãã£ã™ãƒªãƒœãƒ³
+		case ID_PARA_sinou_nikko_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã«ã£ã“ãƒªãƒœãƒ³
+		case ID_PARA_sinou_gorgeous_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒªãƒœãƒ³
+		case ID_PARA_sinou_royal_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_gorgeousroyal_ribbon:		//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_ashiato_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚ã—ã‚ã¨ãƒªãƒœãƒ³
+		case ID_PARA_sinou_record_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒªãƒœãƒ³
+		case ID_PARA_sinou_history_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ’ã‚¹ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+		case ID_PARA_sinou_legend_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚¸ã‚§ãƒ³ãƒ‰ãƒªãƒœãƒ³
+		case ID_PARA_sinou_red_ribbon:					//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ãƒƒãƒ‰ãƒªãƒœãƒ³
+		case ID_PARA_sinou_green_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚°ãƒªãƒ¼ãƒ³ãƒªãƒœãƒ³
+		case ID_PARA_sinou_blue_ribbon:					//ã‚·ãƒ³ã‚ªã‚¦ãƒ–ãƒ«ãƒ¼ãƒªãƒœãƒ³
+		case ID_PARA_sinou_festival_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ•ã‚§ã‚¹ãƒ†ã‚£ãƒãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_carnival_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚«ãƒ¼ãƒ‹ãƒãƒ«ãƒªãƒœãƒ³
+		case ID_PARA_sinou_classic_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ã‚¯ãƒ©ã‚·ãƒƒã‚¯ãƒªãƒœãƒ³
+		case ID_PARA_sinou_premiere_ribbon:				//ã‚·ãƒ³ã‚ªã‚¦ãƒ—ãƒ¬ãƒŸã‚¢ãƒªãƒœãƒ³
+		case ID_PARA_sinou_amari_ribbon:				//ã‚ã¾ã‚Š
 		case ID_PARA_waza1:
 		case ID_PARA_waza2:
 		case ID_PARA_waza3:
@@ -2664,37 +2664,37 @@ static	void	PokePasoParaAddAct(POKEMON_PASO_PARAM *ppp,int id,int value)
 		case ID_PARA_amari_ribbon:
 		case ID_PARA_oyaname:
 		case ID_PARA_oyaname_buf:
-		case ID_PARA_get_year:							//•ß‚Ü‚¦‚½”N
-		case ID_PARA_get_month:							//•ß‚Ü‚¦‚½Œ
-		case ID_PARA_get_day:							//•ß‚Ü‚¦‚½“ú
-		case ID_PARA_birth_year:						//¶‚Ü‚ê‚½”N
-		case ID_PARA_birth_month:						//¶‚Ü‚ê‚½Œ
-		case ID_PARA_birth_day:							//¶‚Ü‚ê‚½“ú
-		case ID_PARA_get_place:							//•ß‚Ü‚¦‚½êŠ
-		case ID_PARA_birth_place:						//¶‚Ü‚ê‚½êŠ
-		case ID_PARA_pokerus:							//ƒ|ƒPƒ‹ƒX
-		case ID_PARA_get_ball:							//•ß‚Ü‚¦‚½ƒ{[ƒ‹
-		case ID_PARA_get_level:							//•ß‚Ü‚¦‚½ƒŒƒxƒ‹
-		case ID_PARA_oyasex:							//e‚Ì«•Ê
-		case ID_PARA_get_ground_id:						//•ß‚Ü‚¦‚½êŠ‚Ì’nŒ`ƒAƒgƒŠƒrƒ…[ƒgiƒ~ƒmƒbƒ`—pj
-		case ID_PARA_dummy_p4_1:						//‚ ‚Ü‚è
+		case ID_PARA_get_year:							//æ•ã¾ãˆãŸå¹´
+		case ID_PARA_get_month:							//æ•ã¾ãˆãŸæœˆ
+		case ID_PARA_get_day:							//æ•ã¾ãˆãŸæ—¥
+		case ID_PARA_birth_year:						//ç”Ÿã¾ã‚ŒãŸå¹´
+		case ID_PARA_birth_month:						//ç”Ÿã¾ã‚ŒãŸæœˆ
+		case ID_PARA_birth_day:							//ç”Ÿã¾ã‚ŒãŸæ—¥
+		case ID_PARA_get_place:							//æ•ã¾ãˆãŸå ´æ‰€
+		case ID_PARA_birth_place:						//ç”Ÿã¾ã‚ŒãŸå ´æ‰€
+		case ID_PARA_pokerus:							//ãƒã‚±ãƒ«ã‚¹
+		case ID_PARA_get_ball:							//æ•ã¾ãˆãŸãƒœãƒ¼ãƒ«
+		case ID_PARA_get_level:							//æ•ã¾ãˆãŸãƒ¬ãƒ™ãƒ«
+		case ID_PARA_oyasex:							//è¦ªã®æ€§åˆ¥
+		case ID_PARA_get_ground_id:						//æ•ã¾ãˆãŸå ´æ‰€ã®åœ°å½¢ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼ˆãƒŸãƒãƒƒãƒç”¨ï¼‰
+		case ID_PARA_dummy_p4_1:						//ã‚ã¾ã‚Š
 		case ID_PARA_power_rnd:
 		case ID_PARA_nidoran_nickname:
 		case ID_PARA_type1:
 		case ID_PARA_type2:
-		case ID_PARA_default_name:						//ƒ|ƒPƒ‚ƒ“‚ÌƒfƒtƒHƒ‹ƒg–¼
+		case ID_PARA_default_name:						//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå
 		default:
-			GF_ASSERT_MSG((0),"•s³‚È‰ÁZ\n");
+			GF_ASSERT_MSG((0),"ä¸æ­£ãªåŠ ç®—\n");
 			break;
 	}
 }
 
 //==============================================================================
 /**
- * ƒp[ƒ\ƒiƒ‹ƒf[ƒ^ƒI[ƒvƒ“iƒtƒHƒ‹ƒ€w’è‚ ‚èj
+ * ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ¼ãƒ—ãƒ³ï¼ˆãƒ•ã‚©ãƒ«ãƒ æŒ‡å®šã‚ã‚Šï¼‰
  *
- * ‚±‚ÌŠÖ”‚ÅƒI[ƒvƒ“‚µ‚½ƒf[ƒ^‚ğPokePersonalPara_Get‚Åæ“¾‚µ‚Ü‚·
- * PokePersonalPara_Close‚Å‰ğ•ú
+ * ã“ã®é–¢æ•°ã§ã‚ªãƒ¼ãƒ—ãƒ³ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’PokePersonalPara_Getã§å–å¾—ã—ã¾ã™
+ * PokePersonalPara_Closeã§è§£æ”¾
  *
  * @param   mons_no		
  * @param   form_no		
@@ -2716,10 +2716,10 @@ POKEMON_PERSONAL_DATA *PokeFormNoPersonalPara_Open( int mons_no, int form_no, in
 
 //==============================================================================
 /**
- * ƒp[ƒ\ƒiƒ‹ƒf[ƒ^ƒI[ƒvƒ“
+ * ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ¼ãƒ—ãƒ³
  *
- * ‚±‚ÌŠÖ”‚ÅƒI[ƒvƒ“‚µ‚½ƒf[ƒ^‚ğPokePersonalPara_Get‚Åæ“¾‚µ‚Ü‚·
- * PokePersonalPara_Close‚Å‰ğ•ú
+ * ã“ã®é–¢æ•°ã§ã‚ªãƒ¼ãƒ—ãƒ³ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’PokePersonalPara_Getã§å–å¾—ã—ã¾ã™
+ * PokePersonalPara_Closeã§è§£æ”¾
  *
  * @param   mons_no		
  * @param   HeapID		
@@ -2739,10 +2739,10 @@ POKEMON_PERSONAL_DATA *PokePersonalPara_Open( int mons_no, int HeapID )
 
 //==============================================================================
 /**
- * ƒp[ƒ\ƒiƒ‹ƒf[ƒ^æ“¾
+ * ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * PokePersonalPara_Open‚ÅŠÖ”‚Å€”õ‚µ‚Ä‚©‚çƒf[ƒ^‚ğæ“¾‚µ‚Ü‚·
- * PokePersonalPara_Close‚Å‰ğ•ú
+ * PokePersonalPara_Openã§é–¢æ•°ã§æº–å‚™ã—ã¦ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¾ã™
+ * PokePersonalPara_Closeã§è§£æ”¾
  *
  * @param   ppd		
  * @param   para		
@@ -2757,103 +2757,103 @@ u32 PokePersonalPara_Get( POKEMON_PERSONAL_DATA *ppd, int para )
 	GF_ASSERT( ppd );
 	
 	switch(para){
-	case ID_PER_basic_hp:		//Šî–{‚g‚o
+	case ID_PER_basic_hp:		//åŸºæœ¬ï¼¨ï¼°
 		ret=ppd->basic_hp;
 		break;
-	case ID_PER_basic_pow:		//Šî–{UŒ‚—Í
+	case ID_PER_basic_pow:		//åŸºæœ¬æ”»æ’ƒåŠ›
 		ret=ppd->basic_pow;
 		break;
-	case ID_PER_basic_def:		//Šî–{–hŒä—Í
+	case ID_PER_basic_def:		//åŸºæœ¬é˜²å¾¡åŠ›
 		ret=ppd->basic_def;
 		break;
-	case ID_PER_basic_agi:		//Šî–{‘f‘‚³
+	case ID_PER_basic_agi:		//åŸºæœ¬ç´ æ—©ã•
 		ret=ppd->basic_agi;
 		break;
-	case ID_PER_basic_spepow:	//Šî–{“ÁêUŒ‚—Í
+	case ID_PER_basic_spepow:	//åŸºæœ¬ç‰¹æ®Šæ”»æ’ƒåŠ›
 		ret=ppd->basic_spepow;
 		break;
-	case ID_PER_basic_spedef:	//Šî–{“Áê–hŒä—Í
+	case ID_PER_basic_spedef:	//åŸºæœ¬ç‰¹æ®Šé˜²å¾¡åŠ›
 		ret=ppd->basic_spedef;
 		break;
-	case ID_PER_type1:			//‘®«‚P
+	case ID_PER_type1:			//å±æ€§ï¼‘
 		ret=ppd->type1;
 		break;
-	case ID_PER_type2:			//‘®«‚Q
+	case ID_PER_type2:			//å±æ€§ï¼’
 		ret=ppd->type2;
 		break;
-	case ID_PER_get_rate:		//•ßŠl—¦
+	case ID_PER_get_rate:		//æ•ç²ç‡
 		ret=ppd->get_rate;
 		break;
-	case ID_PER_give_exp:		//‘¡—^ŒoŒ±’l
+	case ID_PER_give_exp:		//è´ˆä¸çµŒé¨“å€¤
 		ret=ppd->give_exp;
 		break;
-	case ID_PER_pains_hp:		//‘¡—^“w—Í’l‚g‚o
+	case ID_PER_pains_hp:		//è´ˆä¸åŠªåŠ›å€¤ï¼¨ï¼°
 		ret=ppd->pains_hp;
 		break;
-	case ID_PER_pains_pow:		//‘¡—^“w—Í’lUŒ‚—Í
+	case ID_PER_pains_pow:		//è´ˆä¸åŠªåŠ›å€¤æ”»æ’ƒåŠ›
 		ret=ppd->pains_pow;
 		break;
-	case ID_PER_pains_def:		//‘¡—^“w—Í’l–hŒä—Í
+	case ID_PER_pains_def:		//è´ˆä¸åŠªåŠ›å€¤é˜²å¾¡åŠ›
 		ret=ppd->pains_def;
 		break;
-	case ID_PER_pains_agi:		//‘¡—^“w—Í’l‘f‘‚³
+	case ID_PER_pains_agi:		//è´ˆä¸åŠªåŠ›å€¤ç´ æ—©ã•
 		ret=ppd->pains_agi;
 		break;
-	case ID_PER_pains_spepow:	//‘¡—^“w—Í’l“ÁêUŒ‚—Í
+	case ID_PER_pains_spepow:	//è´ˆä¸åŠªåŠ›å€¤ç‰¹æ®Šæ”»æ’ƒåŠ›
 		ret=ppd->pains_spepow;
 		break;
-	case ID_PER_pains_spedef:	//‘¡—^“w—Í’l“Áê–hŒä—Í
+	case ID_PER_pains_spedef:	//è´ˆä¸åŠªåŠ›å€¤ç‰¹æ®Šé˜²å¾¡åŠ›
 		ret=ppd->pains_spedef;
 		break;
-	case ID_PER_item1:			//ƒAƒCƒeƒ€‚P
+	case ID_PER_item1:			//ã‚¢ã‚¤ãƒ†ãƒ ï¼‘
 		ret=ppd->item1;
 		break;
-	case ID_PER_item2:			//ƒAƒCƒeƒ€‚Q
+	case ID_PER_item2:			//ã‚¢ã‚¤ãƒ†ãƒ ï¼’
 		ret=ppd->item2;
 		break;
-	case ID_PER_sex:			//«•ÊƒxƒNƒgƒ‹
+	case ID_PER_sex:			//æ€§åˆ¥ãƒ™ã‚¯ãƒˆãƒ«
 		ret=ppd->sex;
 		break;
-	case ID_PER_egg_birth:		//ƒ^ƒ}ƒS‚Ì›z‰»•à”
+	case ID_PER_egg_birth:		//ã‚¿ãƒã‚´ã®å­µåŒ–æ­©æ•°
 		ret=ppd->egg_birth;
 		break;
-	case ID_PER_friend:			//‚È‚Â‚«“x‰Šú’l
+	case ID_PER_friend:			//ãªã¤ãåº¦åˆæœŸå€¤
 		ret=ppd->friend;
 		break;
-	case ID_PER_grow:			//¬’·‹Èü¯•Ê
+	case ID_PER_grow:			//æˆé•·æ›²ç·šè­˜åˆ¥
 		ret=ppd->grow;
 		break;
-	case ID_PER_egg_group1:		//‚±‚Ã‚­‚èƒOƒ‹[ƒv1
+	case ID_PER_egg_group1:		//ã“ã¥ãã‚Šã‚°ãƒ«ãƒ¼ãƒ—1
 		ret=ppd->egg_group1;
 		break;
-	case ID_PER_egg_group2:		//‚±‚Ã‚­‚èƒOƒ‹[ƒv2
+	case ID_PER_egg_group2:		//ã“ã¥ãã‚Šã‚°ãƒ«ãƒ¼ãƒ—2
 		ret=ppd->egg_group2;
 		break;
-	case ID_PER_speabi1:		//“Áê”\—Í‚P
+	case ID_PER_speabi1:		//ç‰¹æ®Šèƒ½åŠ›ï¼‘
 		ret=ppd->speabi1;
 		break;
-	case ID_PER_speabi2:		//“Áê”\—Í‚Q
+	case ID_PER_speabi2:		//ç‰¹æ®Šèƒ½åŠ›ï¼’
 		ret=ppd->speabi2;
 		break;
-	case ID_PER_escape:			//“¦‚°‚é—¦
+	case ID_PER_escape:			//é€ƒã’ã‚‹ç‡
 		ret=ppd->escape;
 		break;
-	case ID_PER_color:			//Fi}ŠÓ‚Åg—pj
+	case ID_PER_color:			//è‰²ï¼ˆå›³é‘‘ã§ä½¿ç”¨ï¼‰
 		ret=ppd->color;
 		break;
-	case ID_PER_reverse:		//”½“]ƒtƒ‰ƒO
+	case ID_PER_reverse:		//åè»¢ãƒ•ãƒ©ã‚°
 		ret=ppd->reverse;
 		break;
-	case ID_PER_machine1:		//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚P
+	case ID_PER_machine1:		//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼‘
 		ret=ppd->machine1;
 		break;
-	case ID_PER_machine2:		//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚Q
+	case ID_PER_machine2:		//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼’
 		ret=ppd->machine2;
 		break;
-	case ID_PER_machine3:		//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚R
+	case ID_PER_machine3:		//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼“
 		ret=ppd->machine3;
 		break;
-	case ID_PER_machine4:		//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚S
+	case ID_PER_machine4:		//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼”
 		ret=ppd->machine4;
 		break;
 	}
@@ -2862,9 +2862,9 @@ u32 PokePersonalPara_Get( POKEMON_PERSONAL_DATA *ppd, int para )
 
 //==============================================================================
 /**
- * ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‰ğ•ú
+ * ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿è§£æ”¾
  *
- * PokePersonalPara_Open‚ÅŠm•Û‚µ‚½ƒƒ‚ƒŠ‚ğ‰ğ•ú‚µ‚Ü‚·
+ * PokePersonalPara_Openã§ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã—ã¾ã™
  *
  * @param   ppd		
  *
@@ -2881,14 +2881,14 @@ void PokePersonalPara_Close( POKEMON_PERSONAL_DATA *ppd )
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹\‘¢‘Ìƒf[ƒ^‚©‚ç”CˆÓ‚Åƒf[ƒ^‚ğæ“¾
- *  iˆê”­‚Åƒf[ƒ^‚ğæ‚èo‚µ‚½‚¢‚Æ‚«‚Ég—p‚µ‚Ä‚­‚¾‚³‚¢A
- *    ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ğ‚½‚­‚³‚ñæ‚èo‚µ‚½‚¢‚Æ‚«‚ÍOpen,Get,Close‚µ‚½•û‚ªŒy‚¢‚Å‚·j
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä»»æ„ã§ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+ *  ï¼ˆä¸€ç™ºã§ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—ãŸã„ã¨ãã«ä½¿ç”¨ã—ã¦ãã ã•ã„ã€
+ *    ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãŸãã•ã‚“å–ã‚Šå‡ºã—ãŸã„ã¨ãã¯Open,Get,Closeã—ãŸæ–¹ãŒè»½ã„ã§ã™ï¼‰
  *  
- * @param[in]	pp		æ“¾‚µ‚½‚¢POKEMON_PARAM\‘¢‘Ì
- * @param[in]	para	æ“¾‚µ‚½ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
+ * @param[in]	pp		å–å¾—ã—ãŸã„POKEMON_PARAMæ§‹é€ ä½“
+ * @param[in]	para	å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
  *
- * @return	æ“¾‚µ‚½ƒf[ƒ^
+ * @return	å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 u32	PokeParaPersonalParaGet(POKEMON_PARAM *pp,int para)
@@ -2898,14 +2898,14 @@ u32	PokeParaPersonalParaGet(POKEMON_PARAM *pp,int para)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹\‘¢‘Ìƒf[ƒ^‚©‚ç”CˆÓ‚Åƒf[ƒ^‚ğæ“¾
- *  iˆê”­‚Åƒf[ƒ^‚ğæ‚èo‚µ‚½‚¢‚Æ‚«‚Ég—p‚µ‚Ä‚­‚¾‚³‚¢A
- *    ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ğ‚½‚­‚³‚ñæ‚èo‚µ‚½‚¢‚Æ‚«‚ÍOpen,Get,Close‚µ‚½•û‚ªŒy‚¢‚Å‚·j
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä»»æ„ã§ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+ *  ï¼ˆä¸€ç™ºã§ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—ãŸã„ã¨ãã«ä½¿ç”¨ã—ã¦ãã ã•ã„ã€
+ *    ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãŸãã•ã‚“å–ã‚Šå‡ºã—ãŸã„ã¨ãã¯Open,Get,Closeã—ãŸæ–¹ãŒè»½ã„ã§ã™ï¼‰
  *  
- * @param[in]	ppp		æ“¾‚µ‚½‚¢POKEMON_PASO_PARAM\‘¢‘Ì
- * @param[in]	para	æ“¾‚µ‚½ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
+ * @param[in]	ppp		å–å¾—ã—ãŸã„POKEMON_PASO_PARAMæ§‹é€ ä½“
+ * @param[in]	para	å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
  *
- * @return	æ“¾‚µ‚½ƒf[ƒ^
+ * @return	å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 u32	PokePasoParaPersonalParaGet(POKEMON_PASO_PARAM *ppp,int para)
@@ -2926,15 +2926,15 @@ u32	PokePasoParaPersonalParaGet(POKEMON_PASO_PARAM *ppp,int para)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹\‘¢‘Ìƒf[ƒ^‚©‚ç”CˆÓ‚Åƒf[ƒ^‚ğæ“¾
- *  iˆê”­‚Åƒf[ƒ^‚ğæ‚èo‚µ‚½‚¢‚Æ‚«‚Ég—p‚µ‚Ä‚­‚¾‚³‚¢A
- *    ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ğ‚½‚­‚³‚ñæ‚èo‚µ‚½‚¢‚Æ‚«‚ÍOpen,Get,Close‚µ‚½•û‚ªŒy‚¢‚Å‚·j
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä»»æ„ã§ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+ *  ï¼ˆä¸€ç™ºã§ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—ãŸã„ã¨ãã«ä½¿ç”¨ã—ã¦ãã ã•ã„ã€
+ *    ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãŸãã•ã‚“å–ã‚Šå‡ºã—ãŸã„ã¨ãã¯Open,Get,Closeã—ãŸæ–¹ãŒè»½ã„ã§ã™ï¼‰
  *  
- * @param[in]	mons_no	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	form_no	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
- * @param[in]	para	æ“¾‚µ‚½ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
+ * @param[in]	mons_no	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	form_no	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	para	å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
  *
- * @return	æ“¾‚µ‚½ƒf[ƒ^
+ * @return	å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 u32	PokeFormNoPersonalParaGet(int mons_no,int form_no,int para)
@@ -2944,13 +2944,13 @@ u32	PokeFormNoPersonalParaGet(int mons_no,int form_no,int para)
 
 	mons_no=PokeOtherFormMonsNoGet(mons_no,form_no);
 
-	// ƒp[ƒ\ƒiƒ‹ƒf[ƒ^AllocE“Ç‚İ‚İ
+	// ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿Allocãƒ»èª­ã¿è¾¼ã¿
 	ppd = PokePersonalPara_Open( mons_no, HEAPID_BASE_SYSTEM );
 
-	// ’læ“¾
+	// å€¤å–å¾—
 	ret = PokePersonalPara_Get( ppd, para );
 
-	// ƒf[ƒ^‰ğ•ú
+	// ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	PokePersonalPara_Close( ppd );
 
 	return ret;
@@ -2958,14 +2958,14 @@ u32	PokeFormNoPersonalParaGet(int mons_no,int form_no,int para)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹\‘¢‘Ìƒf[ƒ^‚©‚ç”CˆÓ‚Åƒf[ƒ^‚ğæ“¾
- *  iˆê”­‚Åƒf[ƒ^‚ğæ‚èo‚µ‚½‚¢‚Æ‚«‚Ég—p‚µ‚Ä‚­‚¾‚³‚¢A
- *    ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ğ‚½‚­‚³‚ñæ‚èo‚µ‚½‚¢‚Æ‚«‚ÍOpen,Get,Close‚µ‚½•û‚ªŒy‚¢‚Å‚·j
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä»»æ„ã§ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+ *  ï¼ˆä¸€ç™ºã§ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—ãŸã„ã¨ãã«ä½¿ç”¨ã—ã¦ãã ã•ã„ã€
+ *    ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãŸãã•ã‚“å–ã‚Šå‡ºã—ãŸã„ã¨ãã¯Open,Get,Closeã—ãŸæ–¹ãŒè»½ã„ã§ã™ï¼‰
  *  
- * @param[in]	mons_no	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	para	æ“¾‚µ‚½ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
+ * @param[in]	mons_no	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	para	å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
  *
- * @return	æ“¾‚µ‚½ƒf[ƒ^
+ * @return	å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 u32	PokePersonalParaGet(int mons_no,int para)
@@ -2973,13 +2973,13 @@ u32	PokePersonalParaGet(int mons_no,int para)
 	u32	ret;
 	POKEMON_PERSONAL_DATA *ppd;
 
-	// ƒp[ƒ\ƒiƒ‹ƒf[ƒ^AllocE“Ç‚İ‚İ
+	// ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿Allocãƒ»èª­ã¿è¾¼ã¿
 	ppd = PokePersonalPara_Open( mons_no, HEAPID_BASE_SYSTEM );
 
-	// ’læ“¾
+	// å€¤å–å¾—
 	ret = PokePersonalPara_Get( ppd, para );
 
-	// ƒf[ƒ^‰ğ•ú
+	// ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	PokePersonalPara_Close( ppd );
 
 	return ret;
@@ -2987,9 +2987,9 @@ u32	PokePersonalParaGet(int mons_no,int para)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚©‚çŸ‚ÌƒŒƒxƒ‹‚Ü‚Å‚ÌŒoŒ±’l‚ğ“‚Åæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‹ã‚‰æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã¾ã§ã®çµŒé¨“å€¤ã‚’ï¼…ã§å–å¾—
  *
- * @param[in]	pp	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 u8	PokeParaNextLevelExpRatioGet(POKEMON_PARAM *pp)
@@ -3019,9 +3019,9 @@ u8	PokeParaNextLevelExpRatioGet(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚©‚çŸ‚ÌƒŒƒxƒ‹‚Ü‚Å‚ÌŒoŒ±’l‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‹ã‚‰æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã¾ã§ã®çµŒé¨“å€¤ã‚’å–å¾—
  *
- * @param[in]	pp	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 u32		PokeParaNextLevelExpGet(POKEMON_PARAM *pp)
@@ -3031,9 +3031,9 @@ u32		PokeParaNextLevelExpGet(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚©‚çŸ‚ÌƒŒƒxƒ‹‚Ü‚Å‚ÌŒoŒ±’l‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‹ã‚‰æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã¾ã§ã®çµŒé¨“å€¤ã‚’å–å¾—
  *
- * @param[in]	pp	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 u32		PokePasoParaNextLevelExpGet(POKEMON_PASO_PARAM *ppp)
@@ -3047,9 +3047,9 @@ u32		PokePasoParaNextLevelExpGet(POKEMON_PASO_PARAM *ppp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚©‚çŒoŒ±’lƒf[ƒ^‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã‹ã‚‰çµŒé¨“å€¤ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	pp	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 u32	PokeParaLevelExpGet(POKEMON_PARAM *pp)
@@ -3059,10 +3059,10 @@ u32	PokeParaLevelExpGet(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ÆƒŒƒxƒ‹‚©‚çŒoŒ±’lƒf[ƒ^‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã¨ãƒ¬ãƒ™ãƒ«ã‹ã‚‰çµŒé¨“å€¤ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	mons_no		æ“¾‚·‚éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param[in]	level		æ“¾‚·‚éƒŒƒxƒ‹
+ * @param[in]	mons_no		å–å¾—ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	level		å–å¾—ã™ã‚‹ãƒ¬ãƒ™ãƒ«
  */
 //============================================================================================
 u32	PokeLevelExpGet(int	mons_no,int level)
@@ -3072,10 +3072,10 @@ u32	PokeLevelExpGet(int	mons_no,int level)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“¬’·ƒe[ƒuƒ‹ƒf[ƒ^‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³æˆé•·ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	para		æ“¾‚·‚é¬’·ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒXi0`7j
- * @param[out]	grow_tbl	æ“¾‚µ‚½¬’·ƒe[ƒuƒ‹‚ÌŠi”[æ
+ * @param[in]	para		å–å¾—ã™ã‚‹æˆé•·ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆ0ã€œ7ï¼‰
+ * @param[out]	grow_tbl	å–å¾—ã—ãŸæˆé•·ãƒ†ãƒ¼ãƒ–ãƒ«ã®æ ¼ç´å…ˆ
  */
 //============================================================================================
 void	PokeGrowDataGet(int para,u32 *grow_tbl)
@@ -3086,12 +3086,12 @@ void	PokeGrowDataGet(int para,u32 *grow_tbl)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“¬’·ƒe[ƒuƒ‹ƒf[ƒ^‚©‚ç”CˆÓ‚ÅŒoŒ±’lƒf[ƒ^‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³æˆé•·ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä»»æ„ã§çµŒé¨“å€¤ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	para		æ“¾‚·‚é¬’·ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒXi0`7j
- * @param[in]	level		æ“¾‚·‚é¬’·ƒe[ƒuƒ‹‚ÌƒŒƒxƒ‹i0`100j
+ * @param[in]	para		å–å¾—ã™ã‚‹æˆé•·ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆ0ã€œ7ï¼‰
+ * @param[in]	level		å–å¾—ã™ã‚‹æˆé•·ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ¬ãƒ™ãƒ«ï¼ˆ0ã€œ100ï¼‰
  *
- * @return	æ“¾‚µ‚½ŒoŒ±’lƒf[ƒ^
+ * @return	å–å¾—ã—ãŸçµŒé¨“å€¤ãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 u32	PokeGrowParaGet(int para,int level)
@@ -3114,11 +3114,11 @@ u32	PokeGrowParaGet(int para,int level)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
  *
- * @param[in]	pp	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	æ“¾‚µ‚½ƒŒƒxƒ‹
+ * @return	å–å¾—ã—ãŸãƒ¬ãƒ™ãƒ«
  */
 //============================================================================================
 u32	PokeParaLevelCalc(POKEMON_PARAM *pp)
@@ -3127,11 +3127,11 @@ u32	PokeParaLevelCalc(POKEMON_PARAM *pp)
 }
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚ğæ“¾
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
  *
- * @param[in]	ppp	æ“¾‚µ‚½‚¢ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	å–å¾—ã—ãŸã„ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	æ“¾‚µ‚½ƒŒƒxƒ‹
+ * @return	å–å¾—ã—ãŸãƒ¬ãƒ™ãƒ«
  */
 //============================================================================================
 u32	PokePasoLevelCalc(POKEMON_PASO_PARAM *ppp)
@@ -3152,13 +3152,13 @@ u32	PokePasoLevelCalc(POKEMON_PASO_PARAM *ppp)
 }
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[AŒoŒ±’l‚©‚çƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚ğŒvZ
- *	i“à•”‚Åƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ğƒ[ƒh‚·‚éj
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã€çµŒé¨“å€¤ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‚’è¨ˆç®—
+ *	ï¼ˆå†…éƒ¨ã§ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ï¼‰
  *
- * @param[in]	mons_no	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	exp		æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“‚ÌŒoŒ±’l
+ * @param[in]	mons_no	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	exp		å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ã®çµŒé¨“å€¤
  *
- * @return	æ“¾‚µ‚½ƒŒƒxƒ‹
+ * @return	å–å¾—ã—ãŸãƒ¬ãƒ™ãƒ«
  */
 //============================================================================================
 u32	PokeLevelCalc(u16 mons_no,u32 exp)
@@ -3177,14 +3177,14 @@ u32	PokeLevelCalc(u16 mons_no,u32 exp)
 }
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[AŒoŒ±’l‚©‚çƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚ğŒvZ
- *	iƒ[ƒhÏ‚İƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ğ—˜—p‚·‚éj
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã€çµŒé¨“å€¤ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‚’è¨ˆç®—
+ *	ï¼ˆãƒ­ãƒ¼ãƒ‰æ¸ˆã¿ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’åˆ©ç”¨ã™ã‚‹ï¼‰
  *
- * @param[in]	personalData	ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹ƒf[ƒ^
- * @param[in]	mons_no			ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	exp				ŒoŒ±’l
+ * @param[in]	personalData	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @param[in]	mons_no			ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	exp				çµŒé¨“å€¤
  *
- * @return	æ“¾‚µ‚½ƒŒƒxƒ‹
+ * @return	å–å¾—ã—ãŸãƒ¬ãƒ™ãƒ«
  */
 //============================================================================================
 u32 PokePersonal_LevelCalc( POKEMON_PERSONAL_DATA* personalData, u16 monsno, u32 exp )
@@ -3208,11 +3208,11 @@ u32 PokePersonal_LevelCalc( POKEMON_PERSONAL_DATA* personalData, u16 monsno, u32
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Ì«Ši‚ğæ“¾iˆø”‚ªPOKEMON_PARAM)
+ *	ãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼ã‚’å–å¾—ï¼ˆå¼•æ•°ãŒPOKEMON_PARAM)
  *
- * @param[in]	pp	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	æ“¾‚µ‚½«Ši
+ * @return	å–å¾—ã—ãŸæ€§æ ¼
  */
 //============================================================================================
 u8	PokeSeikakuGet(POKEMON_PARAM *pp)
@@ -3222,11 +3222,11 @@ u8	PokeSeikakuGet(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Ì«Ši‚ğæ“¾iˆø”‚ªPOKEMON_PASO_PARAM)
+ *	ãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼ã‚’å–å¾—ï¼ˆå¼•æ•°ãŒPOKEMON_PASO_PARAM)
  *
- * @param[in]	ppp	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	æ“¾‚µ‚½«Ši
+ * @return	å–å¾—ã—ãŸæ€§æ ¼
  */
 //============================================================================================
 u8	PokePasoSeikakuGet(POKEMON_PASO_PARAM *ppp)
@@ -3243,13 +3243,13 @@ u8	PokePasoSeikakuGet(POKEMON_PASO_PARAM *ppp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Ì«Ši‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼ã‚’å–å¾—
  *
- *	«Ši‚ÍAŒÂ«—”‚ğ25‚ÅŠ„‚Á‚½—]‚è‚©‚çZo‚³‚ê‚é
+ *	æ€§æ ¼ã¯ã€å€‹æ€§ä¹±æ•°ã‚’25ã§å‰²ã£ãŸä½™ã‚Šã‹ã‚‰ç®—å‡ºã•ã‚Œã‚‹
  *
- * @param[in]	rnd	æ“¾‚µ‚½‚¢ŒÂ«—”
+ * @param[in]	rnd	å–å¾—ã—ãŸã„å€‹æ€§ä¹±æ•°
  *
- * @return	æ“¾‚µ‚½«Ši
+ * @return	å–å¾—ã—ãŸæ€§æ ¼
  */
 //============================================================================================
 u8	PokeSeikakuGetRnd(u32 rnd)
@@ -3259,47 +3259,47 @@ u8	PokeSeikakuGetRnd(u32 rnd)
 
 //============================================================================================
 /**
- *	«Ši‚É‚æ‚éƒpƒ‰ƒ[ƒ^•Ï‰»’lƒe[ƒuƒ‹
+ *	æ€§æ ¼ã«ã‚ˆã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰åŒ–å€¤ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 static	const	s8	SeikakuAbiTbl[][5]={
 //		pow	def	agi	spepow	spedef
-	{	 0,	 0,	 0,	 0,		 0},		//‚ª‚ñ‚Î‚è‚â
-	{	 1,	-1,	 0,	 0,		 0},		//‚³‚İ‚µ‚ª‚è
-	{	 1,	 0,	-1,	 0,		 0},		//‚ä‚¤‚©‚ñ
-	{	 1,	 0,	 0,	-1,		 0},		//‚¢‚¶‚Á‚Ï‚è
-	{	 1,	 0,	 0,	 0,		-1},		//‚â‚ñ‚¿‚á
-	{	-1,	 1,	 0,	 0,		 0},		//‚¸‚Ô‚Æ‚¢
-	{	 0,	 0,	 0,	 0,		 0},		//‚·‚È‚¨
-	{	 0,	 1,	-1,	 0,		 0},		//‚Ì‚ñ‚«
-	{	 0,	 1,	 0,	-1,		 0},		//‚í‚ñ‚Ï‚­
-	{	 0,	 1,	 0,	 0,		-1},		//‚Ì‚¤‚Ä‚ñ‚«
-	{	-1,	 0,	 1,	 0,		 0},		//‚¨‚­‚Ñ‚å‚¤
-	{	 0,	-1,	 1,	 0,		 0},		//‚¹‚Á‚©‚¿
-	{	 0,	 0,	 0,	 0,		 0},		//‚Ü‚¶‚ß
-	{	 0,	 0,	 1,	-1,		 0},		//‚æ‚¤‚«
-	{	 0,	 0,	 1,	 0,		-1},		//‚Ş‚¶‚á‚«
-	{	-1,	 0,	 0,	 1,		 0},		//‚Ğ‚©‚¦‚ß
-	{	 0,	-1,	 0,	 1,		 0},		//‚¨‚Á‚Æ‚è
-	{	 0,	 0,	-1,	 1,		 0},		//‚ê‚¢‚¹‚¢
-	{	 0,	 0,	 0,	 0,		 0},		//‚Ä‚ê‚â
-	{	 0,	 0,	 0,	 1,		-1},		//‚¤‚Á‚©‚è‚â
-	{	-1,	 0,	 0,	 0,		 1},		//‚¨‚¾‚â‚©
-	{	 0,	-1,	 0,	 0,		 1},		//‚¨‚Æ‚È‚µ‚¢
-	{	 0,	 0,	-1,	 0,		 1},		//‚È‚Ü‚¢‚«
-	{	 0,	 0,	 0,	-1,		 1},		//‚µ‚ñ‚¿‚å‚¤
-	{	 0,	 0,	 0,	 0,		 0},		//‚«‚Ü‚®‚ê
+	{	 0,	 0,	 0,	 0,		 0},		//ãŒã‚“ã°ã‚Šã‚„
+	{	 1,	-1,	 0,	 0,		 0},		//ã•ã¿ã—ãŒã‚Š
+	{	 1,	 0,	-1,	 0,		 0},		//ã‚†ã†ã‹ã‚“
+	{	 1,	 0,	 0,	-1,		 0},		//ã„ã˜ã£ã±ã‚Š
+	{	 1,	 0,	 0,	 0,		-1},		//ã‚„ã‚“ã¡ã‚ƒ
+	{	-1,	 1,	 0,	 0,		 0},		//ãšã¶ã¨ã„
+	{	 0,	 0,	 0,	 0,		 0},		//ã™ãªãŠ
+	{	 0,	 1,	-1,	 0,		 0},		//ã®ã‚“ã
+	{	 0,	 1,	 0,	-1,		 0},		//ã‚ã‚“ã±ã
+	{	 0,	 1,	 0,	 0,		-1},		//ã®ã†ã¦ã‚“ã
+	{	-1,	 0,	 1,	 0,		 0},		//ãŠãã³ã‚‡ã†
+	{	 0,	-1,	 1,	 0,		 0},		//ã›ã£ã‹ã¡
+	{	 0,	 0,	 0,	 0,		 0},		//ã¾ã˜ã‚
+	{	 0,	 0,	 1,	-1,		 0},		//ã‚ˆã†ã
+	{	 0,	 0,	 1,	 0,		-1},		//ã‚€ã˜ã‚ƒã
+	{	-1,	 0,	 0,	 1,		 0},		//ã²ã‹ãˆã‚
+	{	 0,	-1,	 0,	 1,		 0},		//ãŠã£ã¨ã‚Š
+	{	 0,	 0,	-1,	 1,		 0},		//ã‚Œã„ã›ã„
+	{	 0,	 0,	 0,	 0,		 0},		//ã¦ã‚Œã‚„
+	{	 0,	 0,	 0,	 1,		-1},		//ã†ã£ã‹ã‚Šã‚„
+	{	-1,	 0,	 0,	 0,		 1},		//ãŠã ã‚„ã‹
+	{	 0,	-1,	 0,	 0,		 1},		//ãŠã¨ãªã—ã„
+	{	 0,	 0,	-1,	 0,		 1},		//ãªã¾ã„ã
+	{	 0,	 0,	 0,	-1,		 1},		//ã—ã‚“ã¡ã‚‡ã†
+	{	 0,	 0,	 0,	 0,		 0},		//ãã¾ãã‚Œ
 };
 
 //============================================================================================
 /**
- *	«Ši‚É‚æ‚éƒpƒ‰ƒ[ƒ^•Ï‰»ŒvZƒ‹[ƒ`ƒ“
+ *	æ€§æ ¼ã«ã‚ˆã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰åŒ–è¨ˆç®—ãƒ«ãƒ¼ãƒãƒ³
  *
- * @param[in]	chr		ŒvZ‚·‚é«Ši
- * @param[in]	para	ŒvZ‚·‚éƒpƒ‰ƒ[ƒ^’l
- * @param[in]	cond	æ‚èo‚·ƒpƒ‰ƒ[ƒ^•Ï‰»’lƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
+ * @param[in]	chr		è¨ˆç®—ã™ã‚‹æ€§æ ¼
+ * @param[in]	para	è¨ˆç®—ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€¤
+ * @param[in]	cond	å–ã‚Šå‡ºã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰åŒ–å€¤ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
  *
- * @return	ŒvZŒ‹‰Ê
+ * @return	è¨ˆç®—çµæœ
  */
 //============================================================================================
 u16	PokeChrAbiCalc(u8 chr,u16 para,u8 cond)
@@ -3326,12 +3326,12 @@ u16	PokeChrAbiCalc(u8 chr,u16 para,u8 cond)
 
 //============================================================================================
 /**
- *	«Ši‚É‚æ‚éƒpƒ‰ƒ[ƒ^•Ï‰»ƒe[ƒuƒ‹’læ“¾
+ *	æ€§æ ¼ã«ã‚ˆã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰åŒ–ãƒ†ãƒ¼ãƒ–ãƒ«å€¤å–å¾—
  *
- * @param[in]	chr		æ“¾‚·‚é«Ši
- * @param[in]	cond	æ“¾‚·‚éƒpƒ‰ƒ[ƒ^•Ï‰»’lƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
+ * @param[in]	chr		å–å¾—ã™ã‚‹æ€§æ ¼
+ * @param[in]	cond	å–å¾—ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰åŒ–å€¤ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
  *
- * @return	•Ï‰»ƒe[ƒuƒ‹’l
+ * @return	å¤‰åŒ–ãƒ†ãƒ¼ãƒ–ãƒ«å€¤
  */
 //============================================================================================
 s8	PokeChrAbiTableGet(u8 chr,u8 cond)
@@ -3341,20 +3341,20 @@ s8	PokeChrAbiTableGet(u8 chr,u8 cond)
 
 //============================================================================================
 /**
- *	‚È‚Â‚«“xŒvZƒe[ƒuƒ‹
+ *	ãªã¤ãåº¦è¨ˆç®—ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 static	const	s8	FriendParaTbl[][3]={
-	{  5,  3,  2},		//ƒŒƒxƒ‹ƒAƒbƒv
-	{  5,  3,  2},		//“w—Í’lƒAƒbƒvƒAƒCƒeƒ€iƒ^ƒEƒŠƒ““™jg—p
-	{  1,  1,  0},		//UŒ‚•â•ƒAƒCƒeƒ€iƒXƒs[ƒ_[“™jg—p
-	{  3,  2,  1},		//ƒ{ƒXí‚ÉQ‰ÁiƒWƒ€ƒŠ[ƒ_[Al“V‰¤Aƒ`ƒƒƒ“ƒvj
-	{  1,  1,  0},		//‹Zƒ}ƒVƒ“g—p
-	{  1,  1,  1},		//˜A‚ê•à‚«
-	{ -1, -1, -1},		//•m€
-	{ -5, -5,-10},		//‚Ç‚­‚Ì˜A‚ê•à‚«‚É‚æ‚é•m€
-	{ -5, -5,-10},		//ƒŒƒxƒ‹‚R‚O·ˆÈã‚Ì•m€
-	{  3,  2,  1},		//ƒRƒ“ƒeƒXƒg‚Å—DŸ
+	{  5,  3,  2},		//ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
+	{  5,  3,  2},		//åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ï¼ˆã‚¿ã‚¦ãƒªãƒ³ç­‰ï¼‰ä½¿ç”¨
+	{  1,  1,  0},		//æ”»æ’ƒè£œåŠ©ã‚¢ã‚¤ãƒ†ãƒ ï¼ˆã‚¹ãƒ”ãƒ¼ãƒ€ãƒ¼ç­‰ï¼‰ä½¿ç”¨
+	{  3,  2,  1},		//ãƒœã‚¹æˆ¦ã«å‚åŠ ï¼ˆã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã€å››å¤©ç‹ã€ãƒãƒ£ãƒ³ãƒ—ï¼‰
+	{  1,  1,  0},		//æŠ€ãƒã‚·ãƒ³ä½¿ç”¨
+	{  1,  1,  1},		//é€£ã‚Œæ­©ã
+	{ -1, -1, -1},		//ç€•æ­»
+	{ -5, -5,-10},		//ã©ãã®é€£ã‚Œæ­©ãã«ã‚ˆã‚‹ç€•æ­»
+	{ -5, -5,-10},		//ãƒ¬ãƒ™ãƒ«ï¼“ï¼å·®ä»¥ä¸Šã®ç€•æ­»
+	{  3,  2,  1},		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã§å„ªå‹
 };
 
 /*
@@ -3370,11 +3370,11 @@ static	const	s8	FriendParaTbl[][3]={
 
 //============================================================================================
 /**
- *	‚È‚Â‚«“xŒvZ
+ *	ãªã¤ãåº¦è¨ˆç®—
  *
- * @param[in]	pp		‚È‚Â‚«“x‚ğŒvZ‚·‚éƒ|ƒPƒ‚ƒ“\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	id		‚È‚Â‚«“xŒvZ‚·‚éƒ|ƒPƒ‚ƒ“‚És‚Á‚½s“®IDƒiƒ“ƒo[ipoke_tool.h‚É’è‹`j
- * @param[in]	placeID	Œ»İ’nID
+ * @param[in]	pp		ãªã¤ãåº¦ã‚’è¨ˆç®—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	id		ãªã¤ãåº¦è¨ˆç®—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã«è¡Œã£ãŸè¡Œå‹•IDãƒŠãƒ³ãƒãƒ¼ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
+ * @param[in]	placeID	ç¾åœ¨åœ°ID
  *
  */
 //============================================================================================
@@ -3387,7 +3387,7 @@ void	FriendCalc(POKEMON_PARAM *pp,u8 id,u16 placeID)
 	u8	ofs;
 	u8	eqp;
 
-	//˜A‚ê•à‚«‚Ì‚È‚Â‚«“xŒvZ‚ÌŠm—¦‚Í1/2
+	//é€£ã‚Œæ­©ãã®ãªã¤ãåº¦è¨ˆç®—ã®ç¢ºç‡ã¯1/2
 	if(id==FRIEND_TSUREARUKI){
 		if(gf_rand()&1){
 			return;
@@ -3441,11 +3441,11 @@ void	FriendCalc(POKEMON_PARAM *pp,u8 id,u16 placeID)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚©‚çƒ|ƒPƒ‚ƒ“‚Ì«•Ê‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ã‚’å–å¾—
  *
- * @param[in]	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param[in]	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  *
- * @retval	PARA_MALE:‰@PARA_FEMALE:Š@PARA_UNK:«•Ê•s–¾
+ * @retval	PARA_MALE:â™‚ã€€PARA_FEMALE:â™€ã€€PARA_UNK:æ€§åˆ¥ä¸æ˜
  */
 //============================================================================================
 u8	PokeSexGet(POKEMON_PARAM *pp)
@@ -3454,11 +3454,11 @@ u8	PokeSexGet(POKEMON_PARAM *pp)
 }
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚©‚çƒ|ƒPƒ‚ƒ“‚Ì«•Ê‚ğæ“¾
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ã‚’å–å¾—
  *
- * @param[in]	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param[in]	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  *
- * @retval	PARA_MALE:‰@PARA_FEMALE:Š@PARA_UNK:«•Ê•s–¾
+ * @retval	PARA_MALE:â™‚ã€€PARA_FEMALE:â™€ã€€PARA_UNK:æ€§åˆ¥ä¸æ˜
  */
 //============================================================================================
 u8	PokePasoSexGet(POKEMON_PASO_PARAM *ppp)
@@ -3476,12 +3476,12 @@ u8	PokePasoSexGet(POKEMON_PASO_PARAM *ppp)
 }
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Ì«•Ê‚ğæ“¾i“à•”‚Åƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ğƒ[ƒh‚·‚éj
+ *	ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ã‚’å–å¾—ï¼ˆå†…éƒ¨ã§ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ï¼‰
  *
- * @param[in]	monsno	«•Ê‚ğæ“¾‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	rnd		«•Ê‚ğæ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
+ * @param[in]	monsno	æ€§åˆ¥ã‚’å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	rnd		æ€§åˆ¥ã‚’å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
  *
- * @retval	PARA_MALE:‰@PARA_FEMALE:Š@PARA_UNK:«•Ê•s–¾
+ * @retval	PARA_MALE:â™‚ã€€PARA_FEMALE:â™€ã€€PARA_UNK:æ€§åˆ¥ä¸æ˜
  */
 //============================================================================================
 u8	PokeSexGetMonsNo(u16 monsno,u32 rnd)
@@ -3498,13 +3498,13 @@ u8	PokeSexGetMonsNo(u16 monsno,u32 rnd)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Ì«•Ê‚ğæ“¾iƒ[ƒhÏ‚İƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ğ—˜—p‚·‚éj
+ *	ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ã‚’å–å¾—ï¼ˆãƒ­ãƒ¼ãƒ‰æ¸ˆã¿ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’åˆ©ç”¨ã™ã‚‹ï¼‰
  *
- * @param[in]	personalData	ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	monsno			«•Ê‚ğæ“¾‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	rnd				«•Ê‚ğæ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
+ * @param[in]	personalData	ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	monsno			æ€§åˆ¥ã‚’å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	rnd				æ€§åˆ¥ã‚’å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
  *
- * @retval	PARA_MALE:‰@PARA_FEMALE:Š@PARA_UNK:«•Ê•s–¾
+ * @retval	PARA_MALE:â™‚ã€€PARA_FEMALE:â™€ã€€PARA_UNK:æ€§åˆ¥ä¸æ˜
  */
 //============================================================================================
 u8 PokePersonal_SexGet( POKEMON_PERSONAL_DATA* personalData, u16 monsno, u32 rnd )
@@ -3527,11 +3527,11 @@ u8 PokePersonal_SexGet( POKEMON_PERSONAL_DATA* personalData, u16 monsno, u32 rnd
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ªƒŒƒA‚©‚Ç‚¤‚©æ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãŒãƒ¬ã‚¢ã‹ã©ã†ã‹å–å¾—
  *
- * @param[in]	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param[in]	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  *
- * @retval	TRUE:ƒŒƒA@FALSE:ƒŒƒA‚¶‚á‚È‚¢
+ * @retval	TRUE:ãƒ¬ã‚¢ã€€FALSE:ãƒ¬ã‚¢ã˜ã‚ƒãªã„
  */
 //============================================================================================
 
@@ -3553,12 +3553,12 @@ u8		PokePasoRareGet(POKEMON_PASO_PARAM *ppp)
 
 //==============================================================================
 /**
- * @brief   ‚h‚c‚ÆŒÂ«—”‚©‚çƒŒƒA‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
+ * @brief   ï¼©ï¼¤ã¨å€‹æ€§ä¹±æ•°ã‹ã‚‰ãƒ¬ã‚¢ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
  *
  * @param   id		ID
- * @param   rnd		ŒÂ«—”
+ * @param   rnd		å€‹æ€§ä¹±æ•°
  *
- * @retval  u8		0:ƒŒƒA‚¶‚á‚È‚¢	0ˆÈŠO:ƒŒƒA
+ * @retval  u8		0:ãƒ¬ã‚¢ã˜ã‚ƒãªã„	0ä»¥å¤–:ãƒ¬ã‚¢
  */
 //==============================================================================
 u8		PokeRareGetPara(u32 id,u32 rnd)
@@ -3568,11 +3568,11 @@ u8		PokeRareGetPara(u32 id,u32 rnd)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”‚ğƒŒƒA‚É‚·‚é’l‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°ã‚’ãƒ¬ã‚¢ã«ã™ã‚‹å€¤ã‚’å–å¾—
  *
- * @param[in]	id		’l‚ğ“±‚­ƒgƒŒ[ƒi[‚ÌID
+ * @param[in]	id		å€¤ã‚’å°ããƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ID
  *
- * @retval	ŒÂ«—”
+ * @retval	å€‹æ€§ä¹±æ•°
  */
 //============================================================================================
 u32		PokeRareRndGet(u32 id)
@@ -3613,13 +3613,13 @@ u32		PokeRareRndGet(u32 id)
 
 //============================================================================================
 /**
- *	ƒA[ƒJƒCƒoƒtƒ@ƒCƒ‹æ‚èo‚µ—pƒwƒbƒ_ƒf[ƒ^¶¬ƒ‹[ƒ`ƒ“iƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNj
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒãƒ•ã‚¡ã‚¤ãƒ«å–ã‚Šå‡ºã—ç”¨ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆãƒ«ãƒ¼ãƒãƒ³ï¼ˆãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼‰
  *
- *	PokemonParam\‘¢‘Ì‚©‚çƒ|ƒPƒ‚ƒ“A“—YAF‚ğæ‚èo‚µ‚Ä¶¬
+ *	PokemonParamæ§‹é€ ä½“ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã€é›Œé›„ã€è‰²ã‚’å–ã‚Šå‡ºã—ã¦ç”Ÿæˆ
  *
- * @param[out]	ssa		ƒwƒbƒ_ƒf[ƒ^‚ğŠi”[‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	pp		PokemonParam\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	dir		¶¬‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
+ * @param[out]	ssa		ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	pp		PokemonParamæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	dir		ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
  */
 //============================================================================================
 void	PokeGraArcDataGetPP(SOFT_SPRITE_ARC *ssa,POKEMON_PARAM *pp,u8 dir)
@@ -3629,13 +3629,13 @@ void	PokeGraArcDataGetPP(SOFT_SPRITE_ARC *ssa,POKEMON_PARAM *pp,u8 dir)
 
 //============================================================================================
 /**
- *	ƒCƒ[ƒWƒNƒŠƒbƒv—p:ƒA[ƒJƒCƒoƒtƒ@ƒCƒ‹æ‚èo‚µ—pƒwƒbƒ_ƒf[ƒ^¶¬ƒ‹[ƒ`ƒ“iƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNj
+ *	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨:ã‚¢ãƒ¼ã‚«ã‚¤ãƒãƒ•ã‚¡ã‚¤ãƒ«å–ã‚Šå‡ºã—ç”¨ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆãƒ«ãƒ¼ãƒãƒ³ï¼ˆãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼‰
  *
- *	PokemonParam\‘¢‘Ì‚©‚çƒ|ƒPƒ‚ƒ“A“—YAF‚ğæ‚èo‚µ‚Ä¶¬
+ *	PokemonParamæ§‹é€ ä½“ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã€é›Œé›„ã€è‰²ã‚’å–ã‚Šå‡ºã—ã¦ç”Ÿæˆ
  *
- * @param[out]	ssa		ƒwƒbƒ_ƒf[ƒ^‚ğŠi”[‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	pp		PokemonParam\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	dir		¶¬‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
+ * @param[out]	ssa		ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	pp		PokemonParamæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	dir		ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
  */
 //============================================================================================
 void	PokeGraArcDataGetPP_IMC(SOFT_SPRITE_ARC *ssa,POKEMON_PARAM *pp,u8 dir)
@@ -3645,17 +3645,17 @@ void	PokeGraArcDataGetPP_IMC(SOFT_SPRITE_ARC *ssa,POKEMON_PARAM *pp,u8 dir)
 
 //============================================================================================
 /**
- *	ƒA[ƒJƒCƒoƒtƒ@ƒCƒ‹æ‚èo‚µ—pƒwƒbƒ_ƒf[ƒ^¶¬ƒ‹[ƒ`ƒ“iƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNj
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒãƒ•ã‚¡ã‚¤ãƒ«å–ã‚Šå‡ºã—ç”¨ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆãƒ«ãƒ¼ãƒãƒ³ï¼ˆãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼‰
  *
- *	PokemonPasoParam\‘¢‘Ì‚©‚çƒ|ƒPƒ‚ƒ“A“—YAF‚ğæ‚èo‚µ‚Ä¶¬
+ *	PokemonPasoParamæ§‹é€ ä½“ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã€é›Œé›„ã€è‰²ã‚’å–ã‚Šå‡ºã—ã¦ç”Ÿæˆ
  *
- * @param[out]	ssa			ƒwƒbƒ_ƒf[ƒ^‚ğŠi”[‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	ppp			PokemonPasoParam\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	dir			¶¬‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
- * @param[in]	imc_mode	FALSE:’Êíƒ‚[ƒhATRUE:IMCƒ‚[ƒh
+ * @param[out]	ssa			ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	ppp			PokemonPasoParamæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	dir			ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
+ * @param[in]	imc_mode	FALSE:é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã€TRUE:IMCãƒ¢ãƒ¼ãƒ‰
  * 
- * IMC(ƒCƒ[ƒWƒNƒŠƒbƒv)ƒ‚[ƒh‚Ìê‡Aƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á‚³‚ê‚½VƒtƒHƒ‹ƒ€‚È‚ç‚ÎVƒOƒ‰ƒtƒBƒbƒNA
- * ‚»‚êˆÈŠO‚ÍDPƒOƒ‰ƒtƒBƒbƒN‚É‚È‚é
+ * IMC(ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—)ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã€ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ ã•ã‚ŒãŸæ–°ãƒ•ã‚©ãƒ«ãƒ ãªã‚‰ã°æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã€
+ * ãã‚Œä»¥å¤–ã¯DPã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ãªã‚‹
  */
 //============================================================================================
 void	PokeGraArcDataGetPPP(SOFT_SPRITE_ARC *ssa,POKEMON_PASO_PARAM *ppp,u8 dir,int imc_mode)
@@ -3695,108 +3695,108 @@ void	PokeGraArcDataGetPPP(SOFT_SPRITE_ARC *ssa,POKEMON_PASO_PARAM *ppp,u8 dir,in
 
 //============================================================================================
 /**
- *	ƒA[ƒJƒCƒoƒtƒ@ƒCƒ‹æ‚èo‚µ—pƒwƒbƒ_ƒf[ƒ^¶¬ƒ‹[ƒ`ƒ“iƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNj
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒãƒ•ã‚¡ã‚¤ãƒ«å–ã‚Šå‡ºã—ç”¨ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆãƒ«ãƒ¼ãƒãƒ³ï¼ˆãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼‰
  *
- * @param[out]	ssa		ƒwƒbƒ_ƒf[ƒ^‚ğŠi”[‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	mons_no	¶¬‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	sex		¶¬‚·‚éƒ|ƒPƒ‚ƒ“‚Ì“—YiPARA_MALE:‰@PARA_FEMALE:Š@PARA_UNK:Unknownj
- * @param[in]	dir		¶¬‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
- * @param[in]	col		¶¬‚·‚éƒ|ƒPƒ‚ƒ“‚ÌFiPARA_NORMAL:ƒm[ƒ}ƒ‹@PARA_RARE:ƒŒƒAj
- * @param[in]	form_no	¶¬‚·‚é‚½‚ß‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[iƒ~ƒmƒ€ƒbƒ`Aƒ~ƒmƒƒX‚È‚Çj
- * @param[in]	rnd		¶¬‚·‚é‚½‚ß‚ÌŒÂ«—”iƒAƒ“ƒm[ƒ“Aƒpƒbƒ`[ƒ‹‚È‚Çj
+ * @param[out]	ssa		ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	mons_no	ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	sex		ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®é›Œé›„ï¼ˆPARA_MALE:â™‚ã€€PARA_FEMALE:â™€ã€€PARA_UNK:Unknownï¼‰
+ * @param[in]	dir		ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
+ * @param[in]	col		ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®è‰²ï¼ˆPARA_NORMAL:ãƒãƒ¼ãƒãƒ«ã€€PARA_RARE:ãƒ¬ã‚¢ï¼‰
+ * @param[in]	form_no	ç”Ÿæˆã™ã‚‹ãŸã‚ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ï¼ˆãƒŸãƒãƒ ãƒƒãƒã€ãƒŸãƒãƒ¡ã‚¹ãªã©ï¼‰
+ * @param[in]	rnd		ç”Ÿæˆã™ã‚‹ãŸã‚ã®å€‹æ€§ä¹±æ•°ï¼ˆã‚¢ãƒ³ãƒãƒ¼ãƒ³ã€ãƒ‘ãƒƒãƒãƒ¼ãƒ«ãªã©ï¼‰
  */
 //============================================================================================
 void	PokeGraArcDataGet(SOFT_SPRITE_ARC *ssa,u16 mons_no,u8 sex,u8 dir,u8 col,u8 form_no,u32 rnd)
 {
-	//‚Ô‚¿î•ñ‚ğ‰Šú‰»
+	//ã¶ã¡æƒ…å ±ã‚’åˆæœŸåŒ–
 	ssa->strike_mons=0;
 	ssa->form_no=0;
 	ssa->personal_rnd=0;
 
-	//ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ª•s³‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ãŒä¸æ­£ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	form_no=PokeFuseiFormNoCheck(mons_no,form_no);
 
 	switch(mons_no){
-	//ƒ~ƒmƒ€ƒbƒ`
+	//ãƒŸãƒãƒ ãƒƒãƒ
 	case MONSNO_MINOMUTTI:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_455_back_kusa_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_455_n_kusa_NCLR+col+form_no*2;
 		break;
-	//ƒ~ƒmƒƒX
+	//ãƒŸãƒãƒ¡ã‚¹
 	case MONSNO_MINOMESU:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_457_back_kusa_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_457_n_kusa_NCLR+col+form_no*2;
 		break;
-	//ƒV[ƒEƒV
+	//ã‚·ãƒ¼ã‚¦ã‚·
 	case MONSNO_SIIUSI:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_458_back_west_NCBR+dir+form_no;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_458_n_west_NCLR+col+form_no*2;
 		break;
-	//ƒV[ƒhƒ‹ƒS
+	//ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
 	case MONSNO_SIIDORUGO:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_459_back_west_NCBR+dir+form_no;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_459_n_west_NCLR+col+form_no*2;
 		break;
-	//ƒ`ƒFƒŠƒVƒ…
+	//ãƒã‚§ãƒªã‚·ãƒ¥
 	case MONSNO_THERISYU:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_483_back_normal_NCBR+dir+form_no;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_483_n_normal_NCLR+(col*2)+form_no;
 		break;
-	//ƒAƒEƒX
+	//ã‚¢ã‚¦ã‚¹
 	case MONSNO_AUSU:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_518_back_normal_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_518_n_normal_NCLR+col+form_no*2;
 		break;
-	//ƒ|ƒƒ‹ƒ“
+	//ãƒãƒ¯ãƒ«ãƒ³
 	case MONSNO_POWARUN:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_351_back_normal_NCBR+(dir*2)+form_no;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_351_n_normal_NCLR+(col*4)+form_no;
 		break;
-	//ƒfƒIƒLƒVƒX
+	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_DEOKISISU:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_386_back_n_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_386_n_NCLR+col;
 		break;
-	//ƒAƒ“ƒm[ƒ“
+	//ã‚¢ãƒ³ãƒãƒ¼ãƒ³
 	case MONSNO_ANNOON:
 		ssa->arc_no=ARC_OTHER_POKE;
 //		ssa->index_chr=NARC_pl_otherpoke_pmpl_una_back_o_NCBR+(dir/2)+PokemonUnknownFormGet(rnd)*2;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_una_back_o_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_201_n_NCLR+col;
 		break;
-	//ƒ^ƒ}ƒS
+	//ã‚¿ãƒã‚´
 	case MONSNO_TAMAGO:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_egg_normal_NCBR+form_no;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_egg_normal_NCLR+form_no;
 		break;
-	//ƒ_ƒƒ^ƒ}ƒS
+	//ãƒ€ãƒ¡ã‚¿ãƒã‚´
 	case MONSNO_DAMETAMAGO:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_egg_normal_NCBR;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_egg_normal_NCLR;
 		break;
-	//ƒVƒFƒCƒ~
-	case MONSNO_EURISU:		//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
+	//ã‚·ã‚§ã‚¤ãƒŸ
+	case MONSNO_EURISU:		//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_516_back_normal_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_516_n_NCLR+col+form_no*2;
 		break;
-	//ƒƒgƒ€
+	//ãƒ­ãƒˆãƒ 
 	case MONSNO_PURAZUMA:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_519_back_normal_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_pl_otherpoke_pmpl_519_n_normal_NCLR+col+form_no*2;
 		break;
-	//ƒMƒ‰ƒeƒBƒi
+	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 	case MONSNO_KIMAIRAN:
 		ssa->arc_no=ARC_OTHER_POKE;
 		ssa->index_chr=NARC_pl_otherpoke_pmpl_509_back_m_NCBR+(dir/2)+form_no*2;
@@ -3806,7 +3806,7 @@ void	PokeGraArcDataGet(SOFT_SPRITE_ARC *ssa,u16 mons_no,u8 sex,u8 dir,u8 col,u8 
 		ssa->arc_no=ARC_POKE_GRA;
 		ssa->index_chr=mons_no*POKE_GRA_SIZE+dir+(sex!=PARA_FEMALE?1:0);
 		ssa->index_pal=mons_no*POKE_GRA_SIZE+POKE_COL_OFS+col;
-		//ƒpƒbƒ`[ƒ‹‚Ì‚ÍA‚Ô‚¿ƒf[ƒ^‚ğŠi”[
+		//ãƒ‘ãƒƒãƒãƒ¼ãƒ«ã®æ™‚ã¯ã€ã¶ã¡ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
 		if((mons_no==MONSNO_PATTIIRU)&&(dir==PARA_FRONT)){
 			ssa->strike_mons=MONSNO_PATTIIRU;
 			ssa->form_no=0;
@@ -3818,106 +3818,106 @@ void	PokeGraArcDataGet(SOFT_SPRITE_ARC *ssa,u16 mons_no,u8 sex,u8 dir,u8 col,u8 
 
 //============================================================================================
 /**
- *	w’è‚³‚ê‚½ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚©‚ç•s³‚ÈƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN‚·‚é
+ *	æŒ‡å®šã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ä¸æ­£ãªãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @param[in]	mons_no	ƒ`ƒFƒbƒN‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	form_no	ƒ`ƒFƒbƒN‚·‚é‚½‚ß‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
+ * @param[in]	mons_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	form_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãŸã‚ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval ³‚µ‚¢F‚»‚Ì‚Ü‚Üform_no‚ğ•Ô‚·@•s³F‚O‚ğ•Ô‚·
+ * @retval æ­£ã—ã„ï¼šãã®ã¾ã¾form_noã‚’è¿”ã™ã€€ä¸æ­£ï¼šï¼ã‚’è¿”ã™
  */
 //============================================================================================
 u8	PokeFuseiFormNoCheck(u16 mons_no,u8 form_no)
 {
 	switch(mons_no){
-	//ƒ~ƒmƒ€ƒbƒ`
+	//ãƒŸãƒãƒ ãƒƒãƒ
 	case MONSNO_MINOMUTTI:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>FORMNO_MINOMUTTI_MAX){
 			form_no=0;
 		}
 		break;
-	//ƒ~ƒmƒƒX
+	//ãƒŸãƒãƒ¡ã‚¹
 	case MONSNO_MINOMESU:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>FORMNO_MINOMUTTI_MAX){
 			form_no=0;
 		}
 		break;
-	//ƒV[ƒEƒV
+	//ã‚·ãƒ¼ã‚¦ã‚·
 	case MONSNO_SIIUSI:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>FORMNO_SII_MAX){
 			form_no=0;
 		}
 		break;
-	//ƒV[ƒhƒ‹ƒS
+	//ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
 	case MONSNO_SIIDORUGO:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>FORMNO_SII_MAX){
 			form_no=0;
 		}
 		break;
-	//ƒ`ƒFƒŠƒVƒ…
+	//ãƒã‚§ãƒªã‚·ãƒ¥
 	case MONSNO_THERISYU:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>FORMNO_THERISYU_MAX){
 			form_no=0;
 		}
 		break;
-	//ƒAƒEƒX
+	//ã‚¢ã‚¦ã‚¹
 	case MONSNO_AUSU:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>POKE_WAZA_TYPE_MAX){
 			form_no=0;
 		}
 		break;
-	//ƒ|ƒƒ‹ƒ“
+	//ãƒãƒ¯ãƒ«ãƒ³
 	case MONSNO_POWARUN:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>FORMNO_POWARUN_MAX){
 			form_no=0;
 		}
 		break;
-	//ƒfƒIƒLƒVƒX
+	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_DEOKISISU:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>FORMNO_DEOKISISU_MAX){
 			form_no=0;
 		}
 		break;
-	//ƒAƒ“ƒm[ƒ“
+	//ã‚¢ãƒ³ãƒãƒ¼ãƒ³
 	case MONSNO_ANNOON:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>=UNK_END){
 			form_no=0;
 		}
 		break;
-	//ƒ^ƒ}ƒS
+	//ã‚¿ãƒã‚´
 	case MONSNO_TAMAGO:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>1){
 			form_no=0;
 		}
 		break;
-	//ƒVƒFƒCƒ~
-	case MONSNO_EURISU:		//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+	//ã‚·ã‚§ã‚¤ãƒŸ
+	case MONSNO_EURISU:		//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>FORMNO_SHEIMI_MAX){
 			form_no=0;
 		}
 		break;
 		
-	//ƒƒgƒ€
+	//ãƒ­ãƒˆãƒ 
 	case MONSNO_PURAZUMA:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>FORMNO_ROTOMU_MAX){
 			form_no=0;
 		}
 		break;
 		
-	//ƒMƒ‰ƒeƒBƒi
+	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 	case MONSNO_KIMAIRAN:
-		//’l‚ª•s³‚È‚çA0‚É‚·‚é
+		//å€¤ãŒä¸æ­£ãªã‚‰ã€0ã«ã™ã‚‹
 		if(form_no>FORMNO_GIRATINA_MAX){
 			form_no=0;
 		}
@@ -3928,101 +3928,101 @@ u8	PokeFuseiFormNoCheck(u16 mons_no,u8 form_no)
 
 //============================================================================================
 /**
- *	ƒCƒ[ƒWƒNƒŠƒbƒv—p‚ÌƒA[ƒJƒCƒoƒtƒ@ƒCƒ‹æ‚èo‚µ—pƒwƒbƒ_ƒf[ƒ^¶¬ƒ‹[ƒ`ƒ“iƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNj
+ *	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒãƒ•ã‚¡ã‚¤ãƒ«å–ã‚Šå‡ºã—ç”¨ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆãƒ«ãƒ¼ãƒãƒ³ï¼ˆãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼‰
  *
- * @param[out]	ssa		ƒwƒbƒ_ƒf[ƒ^‚ğŠi”[‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	mons_no	¶¬‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	sex		¶¬‚·‚éƒ|ƒPƒ‚ƒ“‚Ì“—YiPARA_MALE:‰@PARA_FEMALE:Š@PARA_UNK:Unknownj
- * @param[in]	dir		¶¬‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
- * @param[in]	col		¶¬‚·‚éƒ|ƒPƒ‚ƒ“‚ÌFiPARA_NORMAL:ƒm[ƒ}ƒ‹@PARA_RARE:ƒŒƒAj
- * @param[in]	form_no	¶¬‚·‚é‚½‚ß‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[iƒ~ƒmƒ€ƒbƒ`Aƒ~ƒmƒƒX‚È‚Çj
- * @param[in]	rnd		¶¬‚·‚é‚½‚ß‚ÌŒÂ«—”iƒAƒ“ƒm[ƒ“Aƒpƒbƒ`[ƒ‹‚È‚Çj
+ * @param[out]	ssa		ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	mons_no	ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	sex		ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®é›Œé›„ï¼ˆPARA_MALE:â™‚ã€€PARA_FEMALE:â™€ã€€PARA_UNK:Unknownï¼‰
+ * @param[in]	dir		ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
+ * @param[in]	col		ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®è‰²ï¼ˆPARA_NORMAL:ãƒãƒ¼ãƒãƒ«ã€€PARA_RARE:ãƒ¬ã‚¢ï¼‰
+ * @param[in]	form_no	ç”Ÿæˆã™ã‚‹ãŸã‚ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ï¼ˆãƒŸãƒãƒ ãƒƒãƒã€ãƒŸãƒãƒ¡ã‚¹ãªã©ï¼‰
+ * @param[in]	rnd		ç”Ÿæˆã™ã‚‹ãŸã‚ã®å€‹æ€§ä¹±æ•°ï¼ˆã‚¢ãƒ³ãƒãƒ¼ãƒ³ã€ãƒ‘ãƒƒãƒãƒ¼ãƒ«ãªã©ï¼‰
  *
- * ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á‚³‚ê‚½VƒtƒHƒ‹ƒ€‚È‚ç‚ÎVƒOƒ‰ƒtƒBƒbƒNA‚»‚êˆÈŠO‚ÍDPƒOƒ‰ƒtƒBƒbƒN‚É‚È‚é
+ * ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ ã•ã‚ŒãŸæ–°ãƒ•ã‚©ãƒ«ãƒ ãªã‚‰ã°æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã€ãã‚Œä»¥å¤–ã¯DPã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ãªã‚‹
  */
 //============================================================================================
 static void PokeGraArcDataGet_IMC(SOFT_SPRITE_ARC *ssa,u16 mons_no,u8 sex,u8 dir,u8 col,u8 form_no,u32 rnd)
 {
-	//‚Ô‚¿î•ñ‚ğ‰Šú‰»
+	//ã¶ã¡æƒ…å ±ã‚’åˆæœŸåŒ–
 	ssa->strike_mons=0;
 	ssa->form_no=0;
 	ssa->personal_rnd=0;
 
-	//ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ª•s³‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ãŒä¸æ­£ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	form_no=PokeFuseiFormNoCheck(mons_no,form_no);
 
 	switch(mons_no){
-	//ƒ~ƒmƒ€ƒbƒ`
+	//ãƒŸãƒãƒ ãƒƒãƒ
 	case MONSNO_MINOMUTTI:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 		ssa->index_chr=NARC_otherpoke_pmdp_455_back_kusa_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_otherpoke_pmdp_455_n_kusa_NCLR+col+form_no*2;
 		break;
-	//ƒ~ƒmƒƒX
+	//ãƒŸãƒãƒ¡ã‚¹
 	case MONSNO_MINOMESU:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 		ssa->index_chr=NARC_otherpoke_pmdp_457_back_kusa_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_otherpoke_pmdp_457_n_kusa_NCLR+col+form_no*2;
 		break;
-	//ƒV[ƒEƒV
+	//ã‚·ãƒ¼ã‚¦ã‚·
 	case MONSNO_SIIUSI:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 		ssa->index_chr=NARC_otherpoke_pmdp_458_back_west_NCBR+dir+form_no;
 		ssa->index_pal=NARC_otherpoke_pmdp_458_n_west_NCLR+col+form_no*2;
 		break;
-	//ƒV[ƒhƒ‹ƒS
+	//ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
 	case MONSNO_SIIDORUGO:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 		ssa->index_chr=NARC_otherpoke_pmdp_459_back_west_NCBR+dir+form_no;
 		ssa->index_pal=NARC_otherpoke_pmdp_459_n_west_NCLR+col+form_no*2;
 		break;
-	//ƒ`ƒFƒŠƒVƒ…
+	//ãƒã‚§ãƒªã‚·ãƒ¥
 	case MONSNO_THERISYU:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 		ssa->index_chr=NARC_otherpoke_pmdp_483_back_normal_NCBR+dir+form_no;
 		ssa->index_pal=NARC_otherpoke_pmdp_483_n_normal_NCLR+(col*2)+form_no;
 		break;
-	//ƒAƒEƒX
+	//ã‚¢ã‚¦ã‚¹
 	case MONSNO_AUSU:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 		ssa->index_chr=NARC_otherpoke_pmdp_518_back_normal_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_otherpoke_pmdp_518_n_normal_NCLR+col+form_no*2;
 		break;
-	//ƒ|ƒƒ‹ƒ“
+	//ãƒãƒ¯ãƒ«ãƒ³
 	case MONSNO_POWARUN:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 		ssa->index_chr=NARC_otherpoke_pmdp_351_back_normal_NCBR+(dir*2)+form_no;
 		ssa->index_pal=NARC_otherpoke_pmdp_351_n_normal_NCLR+(col*4)+form_no;
 		break;
-	//ƒfƒIƒLƒVƒX
+	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_DEOKISISU:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 		ssa->index_chr=NARC_otherpoke_pmdp_386_back_n_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_otherpoke_pmdp_386_n_NCLR+col;
 		break;
-	//ƒAƒ“ƒm[ƒ“
+	//ã‚¢ãƒ³ãƒãƒ¼ãƒ³
 	case MONSNO_ANNOON:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 //		ssa->index_chr=NARC_otherpoke_pmdp_una_back_o_NCBR+(dir/2)+PokemonUnknownFormGet(rnd)*2;
 		ssa->index_chr=NARC_otherpoke_pmdp_una_back_o_NCBR+(dir/2)+form_no*2;
 		ssa->index_pal=NARC_otherpoke_pmdp_201_n_NCLR+col;
 		break;
-	//ƒ^ƒ}ƒS
+	//ã‚¿ãƒã‚´
 	case MONSNO_TAMAGO:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 		ssa->index_chr=NARC_otherpoke_pmdp_egg_normal_NCBR+form_no;
 		ssa->index_pal=NARC_otherpoke_pmdp_egg_normal_NCLR+form_no;
 		break;
-	//ƒ_ƒƒ^ƒ}ƒS
+	//ãƒ€ãƒ¡ã‚¿ãƒã‚´
 	case MONSNO_DAMETAMAGO:
 		ssa->arc_no=ARC_DP_OTHER_POKE;
 		ssa->index_chr=NARC_otherpoke_pmdp_egg_normal_NCBR;
 		ssa->index_pal=NARC_otherpoke_pmdp_egg_normal_NCLR;
 		break;
-	//ƒVƒFƒCƒ~
-	case MONSNO_EURISU:		//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
+	//ã‚·ã‚§ã‚¤ãƒŸ
+	case MONSNO_EURISU:		//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
 		if(form_no > 0){
-			//ƒvƒ‰ƒ`ƒi‚©‚ç‚ÌV‹KƒtƒHƒ‹ƒ€‚Ìˆ×AVƒOƒ‰ƒtƒBƒbƒN‚Å•\¦
+			//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰ã®æ–°è¦ãƒ•ã‚©ãƒ«ãƒ ã®ç‚ºã€æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã§è¡¨ç¤º
 			ssa->arc_no=ARC_OTHER_POKE;
 			ssa->index_chr=NARC_pl_otherpoke_pmpl_516_back_normal_NCBR+(dir/2)+form_no*2;
 			ssa->index_pal=NARC_pl_otherpoke_pmpl_516_n_flower_NCLR+col;
@@ -4034,10 +4034,10 @@ static void PokeGraArcDataGet_IMC(SOFT_SPRITE_ARC *ssa,u16 mons_no,u8 sex,u8 dir
 		}
 		break;
 		
-	//ƒƒgƒ€
+	//ãƒ­ãƒˆãƒ 
 	case MONSNO_PURAZUMA:
 		if(form_no > 0){
-			//ƒvƒ‰ƒ`ƒi‚©‚ç‚ÌV‹KƒtƒHƒ‹ƒ€‚Ìˆ×AVƒOƒ‰ƒtƒBƒbƒN‚Å•\¦
+			//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰ã®æ–°è¦ãƒ•ã‚©ãƒ«ãƒ ã®ç‚ºã€æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã§è¡¨ç¤º
 			ssa->arc_no=ARC_OTHER_POKE;
 			ssa->index_chr=NARC_pl_otherpoke_pmpl_519_back_normal_NCBR+(dir/2)+form_no*2;
 			ssa->index_pal=NARC_pl_otherpoke_pmpl_519_n_normal_NCLR+col+form_no*2;
@@ -4049,10 +4049,10 @@ static void PokeGraArcDataGet_IMC(SOFT_SPRITE_ARC *ssa,u16 mons_no,u8 sex,u8 dir
 		}
 		break;
 		
-	//ƒMƒ‰ƒeƒBƒi
+	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 	case MONSNO_KIMAIRAN:
 		if(form_no > 0){
-			//ƒvƒ‰ƒ`ƒi‚©‚ç‚ÌV‹KƒtƒHƒ‹ƒ€‚Ìˆ×AVƒOƒ‰ƒtƒBƒbƒN‚Å•\¦
+			//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰ã®æ–°è¦ãƒ•ã‚©ãƒ«ãƒ ã®ç‚ºã€æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã§è¡¨ç¤º
 			ssa->arc_no=ARC_OTHER_POKE;
 			ssa->index_chr=NARC_pl_otherpoke_pmpl_509_back_m_NCBR+(dir/2)+form_no*2;
 			ssa->index_pal=NARC_pl_otherpoke_pmpl_509_n_NCLR+col+form_no*2;
@@ -4065,7 +4065,7 @@ static void PokeGraArcDataGet_IMC(SOFT_SPRITE_ARC *ssa,u16 mons_no,u8 sex,u8 dir
 		break;
 
 #if (PM_LANG == LANG_JAPAN)
-	// ƒŒƒWƒXƒ`ƒ‹	DP“ú–{”ÅƒOƒ‰ƒtƒBƒbƒN‚Í•\¦‚µ‚È‚¢
+	// ãƒ¬ã‚¸ã‚¹ãƒãƒ«	DPæ—¥æœ¬ç‰ˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¯è¡¨ç¤ºã—ãªã„
 	case MONSNO_REZISUTIRU:
 		ssa->arc_no=ARC_POKE_GRA;
 		ssa->index_chr=mons_no*POKE_GRA_SIZE+dir+(sex!=PARA_FEMALE?1:0);
@@ -4077,13 +4077,13 @@ static void PokeGraArcDataGet_IMC(SOFT_SPRITE_ARC *ssa,u16 mons_no,u8 sex,u8 dir
 		ssa->arc_no=ARC_DP_POKE_GRA;
 		ssa->index_chr=mons_no*POKE_GRA_SIZE+dir+(sex!=PARA_FEMALE?1:0);
 		ssa->index_pal=mons_no*POKE_GRA_SIZE+POKE_COL_OFS+col;
-		//ƒpƒbƒ`[ƒ‹‚Ì‚ÍA‚Ô‚¿ƒf[ƒ^‚ğŠi”[
+		//ãƒ‘ãƒƒãƒãƒ¼ãƒ«ã®æ™‚ã¯ã€ã¶ã¡ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
 		if((mons_no==MONSNO_PATTIIRU)&&(dir==PARA_FRONT)){
 			ssa->strike_mons=MONSNO_PATTIIRU;
 			ssa->form_no=0;
 			ssa->personal_rnd=rnd;
 		}
-		//OS_TPrintf("DPƒOƒ‰ƒtƒBƒbƒN arc_no = %d, index_chr = %d, pal = %d\n", ssa->arc_no, ssa->index_chr, ssa->index_pal);
+		//OS_TPrintf("DPã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ arc_no = %d, index_chr = %d, pal = %d\n", ssa->arc_no, ssa->index_chr, ssa->index_pal);
 //		ssa->index_chr = 1*POKE_GRA_SIZE;//;
 		break;
 	}
@@ -4091,10 +4091,10 @@ static void PokeGraArcDataGet_IMC(SOFT_SPRITE_ARC *ssa,u16 mons_no,u8 sex,u8 dir
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚‚³î•ñæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±å–å¾—
  *
- * @param[in]	pp		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚Ì\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	dir		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
+ * @param[in]	pp		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	dir		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
  */
 //============================================================================================
 u8	PokeParaHeightGet(POKEMON_PARAM *pp,u8 dir)
@@ -4104,10 +4104,10 @@ u8	PokeParaHeightGet(POKEMON_PARAM *pp,u8 dir)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚‚³î•ñæ“¾(ƒCƒ[ƒWƒNƒŠƒbƒv—p)
+ *	ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±å–å¾—(ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨)
  *
- * @param[in]	pp		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚Ì\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	dir		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
+ * @param[in]	pp		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	dir		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
  */
 //============================================================================================
 u8	PokeParaHeightGet_IMC(POKEMON_PARAM *pp,u8 dir)
@@ -4117,14 +4117,14 @@ u8	PokeParaHeightGet_IMC(POKEMON_PARAM *pp,u8 dir)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚‚³î•ñæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±å–å¾—
  *
- * @param[in]	ppp			æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚Ì\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	dir			æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
- * @param[in]	imc_mode	FALSE:’Êíƒ‚[ƒhATRUE:IMCƒ‚[ƒh
+ * @param[in]	ppp			å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	dir			å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
+ * @param[in]	imc_mode	FALSE:é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã€TRUE:IMCãƒ¢ãƒ¼ãƒ‰
  *
- * IMC(ƒCƒ[ƒWƒNƒŠƒbƒv)ƒ‚[ƒh‚Ìê‡Aƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á‚³‚ê‚½VƒtƒHƒ‹ƒ€‚È‚ç‚ÎVƒOƒ‰ƒtƒBƒbƒNA
- * ‚»‚êˆÈŠO‚ÍDPƒOƒ‰ƒtƒBƒbƒN‚É‚È‚é
+ * IMC(ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—)ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã€ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ ã•ã‚ŒãŸæ–°ãƒ•ã‚©ãƒ«ãƒ ãªã‚‰ã°æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã€
+ * ãã‚Œä»¥å¤–ã¯DPã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ãªã‚‹
  */
 //============================================================================================
 u8	PokePasoParaHeightGet(POKEMON_PASO_PARAM *ppp,u8 dir,int imc_mode)
@@ -4157,13 +4157,13 @@ u8	PokePasoParaHeightGet(POKEMON_PASO_PARAM *ppp,u8 dir,int imc_mode)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚‚³î•ñæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±å–å¾—
  *
- * @param[in]	mons_no	æ“¾‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	sex		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚Ì«•ÊiPARA_MALE:ƒIƒX@PARA_FEMALE:ƒƒX@PARA_UNKNOWNF«•Ê‚È‚µj
- * @param[in]	dir		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
- * @param[in]	form_no	æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
- * @param[in]	rnd		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
+ * @param[in]	mons_no	å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	sex		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ï¼ˆPARA_MALE:ã‚ªã‚¹ã€€PARA_FEMALE:ãƒ¡ã‚¹ã€€PARA_UNKNOWNï¼šæ€§åˆ¥ãªã—ï¼‰
+ * @param[in]	dir		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
+ * @param[in]	form_no	å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	rnd		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
  */
 //============================================================================================
 u8	PokeHeightGet(u16 mons_no,u8 sex,u8 dir,u8 form_no,u32 rnd)
@@ -4172,79 +4172,79 @@ u8	PokeHeightGet(u16 mons_no,u8 sex,u8 dir,u8 form_no,u32 rnd)
 	int	index;
 	u8	height;
 
-	//ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ª•s³‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ãŒä¸æ­£ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	form_no=PokeFuseiFormNoCheck(mons_no,form_no);
 
 	switch(mons_no){
-	//ƒ~ƒmƒ€ƒbƒ`
+	//ãƒŸãƒãƒ ãƒƒãƒ
 	case MONSNO_MINOMUTTI:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_455_back_kusa_bin+(dir/2)+form_no*2;
 		break;
-	//ƒ~ƒmƒƒX
+	//ãƒŸãƒãƒ¡ã‚¹
 	case MONSNO_MINOMESU:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_457_back_kusa_bin+(dir/2)+form_no*2;
 		break;
-	//ƒV[ƒEƒV
+	//ã‚·ãƒ¼ã‚¦ã‚·
 	case MONSNO_SIIUSI:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_458_back_west_bin+dir+form_no;
 		break;
-	//ƒV[ƒhƒ‹ƒS
+	//ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
 	case MONSNO_SIIDORUGO:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_459_back_west_bin+dir+form_no;
 		break;
-	//ƒ`ƒFƒŠƒVƒ…
+	//ãƒã‚§ãƒªã‚·ãƒ¥
 	case MONSNO_THERISYU:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_483_back_normal_bin+dir+form_no;
 		break;
-	//ƒAƒEƒX
+	//ã‚¢ã‚¦ã‚¹
 	case MONSNO_AUSU:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_518_back_normal_bin+(dir/2)+form_no*2;
 		break;
-	//ƒ|ƒƒ‹ƒ“
+	//ãƒãƒ¯ãƒ«ãƒ³
 	case MONSNO_POWARUN:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_351_back_normal_bin+dir*2+form_no;
 		break;
-	//ƒfƒIƒLƒVƒX
+	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_DEOKISISU:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_386_back_n_bin+(dir/2)+form_no*2;
 		break;
-	//ƒAƒ“ƒm[ƒ“
+	//ã‚¢ãƒ³ãƒãƒ¼ãƒ³
 	case MONSNO_ANNOON:
 		arcID=ARC_OTHER_HEIGHT;
 //		index=NARC_height_o_pmpl_una_back_o_bin+(dir/2)+PokemonUnknownFormGet(rnd)*2;
 		index=NARC_height_o_pmpl_una_back_o_bin+(dir/2)+form_no*2;
 		break;
-	//ƒ^ƒ}ƒS
+	//ã‚¿ãƒã‚´
 	case MONSNO_TAMAGO:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_egg_normal_bin+form_no;
 		break;
-	//ƒ_ƒƒ^ƒ}ƒS
+	//ãƒ€ãƒ¡ã‚¿ãƒã‚´
 	case MONSNO_DAMETAMAGO:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_egg_normal_bin;
 		break;
-	//ƒVƒFƒCƒ~
-	case MONSNO_EURISU:		//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
+	//ã‚·ã‚§ã‚¤ãƒŸ
+	case MONSNO_EURISU:		//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_516_back_normal_bin+(dir/2)+form_no*2;
 		break;
 		
-	// ƒƒgƒ€
+	// ãƒ­ãƒˆãƒ 
 	case MONSNO_PURAZUMA:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_519_back_normal_bin+(dir/2)+form_no*2;
 		break;
 		
-	// ƒMƒ‰ƒeƒBƒi
+	// ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 	case MONSNO_KIMAIRAN:
 		arcID=ARC_OTHER_HEIGHT;
 		index=NARC_height_o_pmpl_509_back_m_bin+(dir/2)+form_no*2;
@@ -4263,13 +4263,13 @@ u8	PokeHeightGet(u16 mons_no,u8 sex,u8 dir,u8 form_no,u32 rnd)
 
 //============================================================================================
 /**
- *	ƒCƒ[ƒWƒNƒŠƒbƒv—p‚Ìƒ|ƒPƒ‚ƒ“‚‚³î•ñæ“¾
+ *	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨ã®ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±å–å¾—
  *
- * @param[in]	mons_no	æ“¾‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	sex		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚Ì«•ÊiPARA_MALE:ƒIƒX@PARA_FEMALE:ƒƒX@PARA_UNKNOWNF«•Ê‚È‚µj
- * @param[in]	dir		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
- * @param[in]	form_no	æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
- * @param[in]	rnd		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
+ * @param[in]	mons_no	å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	sex		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ï¼ˆPARA_MALE:ã‚ªã‚¹ã€€PARA_FEMALE:ãƒ¡ã‚¹ã€€PARA_UNKNOWNï¼šæ€§åˆ¥ãªã—ï¼‰
+ * @param[in]	dir		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
+ * @param[in]	form_no	å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	rnd		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
  */
 //============================================================================================
 static u8	PokeHeightGet_IMC(u16 mons_no,u8 sex,u8 dir,u8 form_no,u32 rnd)
@@ -4278,70 +4278,70 @@ static u8	PokeHeightGet_IMC(u16 mons_no,u8 sex,u8 dir,u8 form_no,u32 rnd)
 	int	index;
 	u8	height;
 
-	//ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ª•s³‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ãŒä¸æ­£ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	form_no=PokeFuseiFormNoCheck(mons_no,form_no);
 
 	switch(mons_no){
-	//ƒ~ƒmƒ€ƒbƒ`
+	//ãƒŸãƒãƒ ãƒƒãƒ
 	case MONSNO_MINOMUTTI:
 		arcID=ARC_DP_OTHER_HEIGHT;
 		index=NARC_height_o_pmdp_455_back_kusa_bin+(dir/2)+form_no*2;
 		break;
-	//ƒ~ƒmƒƒX
+	//ãƒŸãƒãƒ¡ã‚¹
 	case MONSNO_MINOMESU:
 		arcID=ARC_DP_OTHER_HEIGHT;
 		index=NARC_height_o_pmdp_457_back_kusa_bin+(dir/2)+form_no*2;
 		break;
-	//ƒV[ƒEƒV
+	//ã‚·ãƒ¼ã‚¦ã‚·
 	case MONSNO_SIIUSI:
 		arcID=ARC_DP_OTHER_HEIGHT;
 		index=NARC_height_o_pmdp_458_back_west_bin+dir+form_no;
 		break;
-	//ƒV[ƒhƒ‹ƒS
+	//ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
 	case MONSNO_SIIDORUGO:
 		arcID=ARC_DP_OTHER_HEIGHT;
 		index=NARC_height_o_pmdp_459_back_west_bin+dir+form_no;
 		break;
-	//ƒ`ƒFƒŠƒVƒ…
+	//ãƒã‚§ãƒªã‚·ãƒ¥
 	case MONSNO_THERISYU:
 		arcID=ARC_DP_OTHER_HEIGHT;
 		index=NARC_height_o_pmdp_483_back_normal_bin+dir+form_no;
 		break;
-	//ƒAƒEƒX
+	//ã‚¢ã‚¦ã‚¹
 	case MONSNO_AUSU:
 		arcID=ARC_DP_OTHER_HEIGHT;
 		index=NARC_height_o_pmdp_518_back_normal_bin+(dir/2)+form_no*2;
 		break;
-	//ƒ|ƒƒ‹ƒ“
+	//ãƒãƒ¯ãƒ«ãƒ³
 	case MONSNO_POWARUN:
 		arcID=ARC_DP_OTHER_HEIGHT;
 		index=NARC_height_o_pmdp_351_back_normal_bin+dir*2+form_no;
 		break;
-	//ƒfƒIƒLƒVƒX
+	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_DEOKISISU:
 		arcID=ARC_DP_OTHER_HEIGHT;
 		index=NARC_height_o_pmdp_386_back_n_bin+(dir/2)+form_no*2;
 		break;
-	//ƒAƒ“ƒm[ƒ“
+	//ã‚¢ãƒ³ãƒãƒ¼ãƒ³
 	case MONSNO_ANNOON:
 		arcID=ARC_DP_OTHER_HEIGHT;
 //		index=NARC_height_o_pmdp_una_back_o_bin+(dir/2)+PokemonUnknownFormGet(rnd)*2;
 		index=NARC_height_o_pmdp_una_back_o_bin+(dir/2)+form_no*2;
 		break;
-	//ƒ^ƒ}ƒS
+	//ã‚¿ãƒã‚´
 	case MONSNO_TAMAGO:
 		arcID=ARC_DP_OTHER_HEIGHT;
 		index=NARC_height_o_pmdp_egg_normal_bin+form_no;
 		break;
-	//ƒ_ƒƒ^ƒ}ƒS
+	//ãƒ€ãƒ¡ã‚¿ãƒã‚´
 	case MONSNO_DAMETAMAGO:
 		arcID=ARC_DP_OTHER_HEIGHT;
 		index=NARC_height_o_pmdp_egg_normal_bin;
 		break;
-	//ƒVƒFƒCƒ~
-	case MONSNO_EURISU:		//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
+	//ã‚·ã‚§ã‚¤ãƒŸ
+	case MONSNO_EURISU:		//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
 		if(form_no > 0){
-			//ƒvƒ‰ƒ`ƒi‚©‚ç‚ÌV‹KƒtƒHƒ‹ƒ€‚Ìˆ×AVƒOƒ‰ƒtƒBƒbƒN‚Å•\¦
+			//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰ã®æ–°è¦ãƒ•ã‚©ãƒ«ãƒ ã®ç‚ºã€æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã§è¡¨ç¤º
 			arcID=ARC_OTHER_HEIGHT;
 			index=NARC_height_o_pmpl_516_back_normal_bin+(dir/2)+form_no*2;
 		}
@@ -4351,10 +4351,10 @@ static u8	PokeHeightGet_IMC(u16 mons_no,u8 sex,u8 dir,u8 form_no,u32 rnd)
 		}
 		break;
 		
-	// ƒƒgƒ€
+	// ãƒ­ãƒˆãƒ 
 	case MONSNO_PURAZUMA:
 		if(form_no > 0){
-			//ƒvƒ‰ƒ`ƒi‚©‚ç‚ÌV‹KƒtƒHƒ‹ƒ€‚Ìˆ×AVƒOƒ‰ƒtƒBƒbƒN‚Å•\¦
+			//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰ã®æ–°è¦ãƒ•ã‚©ãƒ«ãƒ ã®ç‚ºã€æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã§è¡¨ç¤º
 			arcID=ARC_OTHER_HEIGHT;
 			index=NARC_height_o_pmpl_519_back_normal_bin+(dir/2)+form_no*2;
 		}
@@ -4364,10 +4364,10 @@ static u8	PokeHeightGet_IMC(u16 mons_no,u8 sex,u8 dir,u8 form_no,u32 rnd)
 		}
 		break;
 		
-	// ƒMƒ‰ƒeƒBƒi
+	// ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 	case MONSNO_KIMAIRAN:
 		if(form_no > 0){
-			//ƒvƒ‰ƒ`ƒi‚©‚ç‚ÌV‹KƒtƒHƒ‹ƒ€‚Ìˆ×AVƒOƒ‰ƒtƒBƒbƒN‚Å•\¦
+			//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰ã®æ–°è¦ãƒ•ã‚©ãƒ«ãƒ ã®ç‚ºã€æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã§è¡¨ç¤º
 			arcID=ARC_OTHER_HEIGHT;
 			index=NARC_height_o_pmpl_509_back_m_bin+(dir/2)+form_no*2;
 		}
@@ -4378,7 +4378,7 @@ static u8	PokeHeightGet_IMC(u16 mons_no,u8 sex,u8 dir,u8 form_no,u32 rnd)
 		break;
 
 #if (PM_LANG == LANG_JAPAN)
-	// ƒŒƒWƒXƒ`ƒ‹	DP“ú–{”ÅƒOƒ‰ƒtƒBƒbƒN‚Í•\¦‚µ‚È‚¢
+	// ãƒ¬ã‚¸ã‚¹ãƒãƒ«	DPæ—¥æœ¬ç‰ˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¯è¡¨ç¤ºã—ãªã„
 	case MONSNO_REZISUTIRU:
 		arcID=ARC_POKE_HEIGHT;
 		index=mons_no*POKE_HEIGHT_SIZE+dir+(sex!=PARA_FEMALE?1:0);
@@ -4398,12 +4398,12 @@ static u8	PokeHeightGet_IMC(u16 mons_no,u8 sex,u8 dir,u8 form_no,u32 rnd)
 
 //============================================================================================
 /**
- *	ƒA[ƒJƒCƒoƒtƒ@ƒCƒ‹æ‚èo‚µ—pƒwƒbƒ_ƒf[ƒ^¶¬ƒ‹[ƒ`ƒ“iƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNj
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒãƒ•ã‚¡ã‚¤ãƒ«å–ã‚Šå‡ºã—ç”¨ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆãƒ«ãƒ¼ãƒãƒ³ï¼ˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼‰
  *
- * @param[out]	ssa		ƒwƒbƒ_ƒf[ƒ^‚ğŠi”[‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	trtype	¶¬‚·‚éƒgƒŒ[ƒi[í•Ê
- * @param[in]	dir		¶¬‚·‚éƒgƒŒ[ƒi[‚ÌŒü‚«iPARA_FRONT:³–Ê@PARA_BACK:”w–Êj
- * @param[in]	sex		¶¬‚·‚éƒgƒŒ[ƒi[‚Ì«•Ê
+ * @param[out]	ssa		ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	trtype	ç”Ÿæˆã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç¨®åˆ¥
+ * @param[in]	dir		ç”Ÿæˆã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®å‘ãï¼ˆPARA_FRONT:æ­£é¢ã€€PARA_BACK:èƒŒé¢ï¼‰
+ * @param[in]	sex		ç”Ÿæˆã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æ€§åˆ¥
  */
 //============================================================================================
 void	TrGraArcDataGet(SOFT_SPRITE_ARC *ssa,u16 trtype,u8 dir,u8 sex)
@@ -4419,7 +4419,7 @@ void	TrGraArcDataGet(SOFT_SPRITE_ARC *ssa,u16 trtype,u8 dir,u8 sex)
 	ssa->index_chr=trtype*TR_GRA_SIZE;
 	ssa->index_pal=trtype*TR_GRA_SIZE+TR_COL_OFS;
 
-	//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒN‚ÍAŒ`‘Ô•Ï‰»ƒf[ƒ^‚ğƒNƒŠƒA
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¯ã€å½¢æ…‹å¤‰åŒ–ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢
 	ssa->strike_mons=0;
 	ssa->form_no=0;
 	ssa->personal_rnd=0;
@@ -4427,10 +4427,10 @@ void	TrGraArcDataGet(SOFT_SPRITE_ARC *ssa,u16 trtype,u8 dir,u8 sex)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[out]	ssanm	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğŠi”[‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	monsno	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ * @param[out]	ssanm	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	monsno	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	PokeAnmDataSet(SOFT_SPRITE_ANIME *ssanm,u16 mons_no)
@@ -4451,15 +4451,15 @@ void	PokeAnmDataSetDP(SOFT_SPRITE_ANIME_DP *ssanm,u16 mons_no)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğƒZƒbƒgiƒvƒƒOƒ‰ƒ€ƒAƒjƒj
+ *	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆï¼ˆãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ï¼‰
  *
- * @param[in]	pasp	ƒAƒjƒ[ƒVƒ‡ƒ“ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	ss		ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğƒZƒbƒg‚·‚éSoftSprite‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	monsno	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	dir		ƒZƒbƒg‚·‚éŒü‚«
- * @param[in]	chr		ƒ|ƒPƒ‚ƒ“‚Ì«Šii”w–Ê‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğŒˆ’è‚·‚é‚Ì‚É•K—vj
- * @param[in]	reverse	HFLIP‚·‚é‚©‚Ç‚¤‚©H(PARA_HFLIP_OFF:HFLIP‚È‚µ@PARA_HFLIP_ON:HFLIP‚ ‚èj
- * @param[in]	index	ƒZƒbƒg‚·‚éƒVƒXƒeƒ€ƒ[ƒN‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @param[in]	pasp	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	ss		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹SoftSpriteã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	monsno	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	dir		ã‚»ãƒƒãƒˆã™ã‚‹å‘ã
+ * @param[in]	chr		ãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼ï¼ˆèƒŒé¢ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æ±ºå®šã™ã‚‹ã®ã«å¿…è¦ï¼‰
+ * @param[in]	reverse	HFLIPã™ã‚‹ã‹ã©ã†ã‹ï¼Ÿ(PARA_HFLIP_OFF:HFLIPãªã—ã€€PARA_HFLIP_ON:HFLIPã‚ã‚Šï¼‰
+ * @param[in]	index	ã‚»ãƒƒãƒˆã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //============================================================================================
 void	PokePrgAnmDataSet(POKE_ANM_SYS_PTR pasp,SOFT_SPRITE *ss,u16 mons_no,int dir,int chr,int reverse,int index)
@@ -4488,10 +4488,10 @@ void	PokePrgAnmDataSet(POKE_ANM_SYS_PTR pasp,SOFT_SPRITE *ss,u16 mons_no,int dir
 
 //============================================================================================
 /**
- *	ƒA[ƒJƒCƒoƒtƒ@ƒCƒ‹æ‚èo‚µ—pƒwƒbƒ_ƒf[ƒ^¶¬ƒ‹[ƒ`ƒ“iƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNj
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒãƒ•ã‚¡ã‚¤ãƒ«å–ã‚Šå‡ºã—ç”¨ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆãƒ«ãƒ¼ãƒãƒ³ï¼ˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼‰
  *
- * @param[out]	ssa		ƒwƒbƒ_ƒf[ƒ^‚ğŠi”[‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	trtype	¶¬‚·‚éƒgƒŒ[ƒi[ƒ^ƒCƒv
+ * @param[out]	ssa		ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	trtype	ç”Ÿæˆã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
  */
 //============================================================================================
 void	TrTypeGraArcDataGet(SOFT_SPRITE_ARC *ssa,u16 trtype)
@@ -4500,7 +4500,7 @@ void	TrTypeGraArcDataGet(SOFT_SPRITE_ARC *ssa,u16 trtype)
 	ssa->index_chr=trtype*TR_GRA_SIZE;
 	ssa->index_pal=trtype*TR_GRA_SIZE+TR_COL_OFS;
 
-	//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒN‚ÍA‚Ô‚¿ƒf[ƒ^‚ğƒNƒŠƒA
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¯ã€ã¶ã¡ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢
 	ssa->strike_mons=0;
 	ssa->form_no=0;
 	ssa->personal_rnd=0;
@@ -4508,23 +4508,23 @@ void	TrTypeGraArcDataGet(SOFT_SPRITE_ARC *ssa,u16 trtype)
 
 //============================================================================================
 /**
- *	ƒGƒ“ƒJƒEƒ“ƒgƒgƒŒ[ƒi[—pƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
  */
 //============================================================================================
 static const TCATS_OBJECT_ADD_PARAM_S EncountTrainerObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 0, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_ENCOUNT_TRAINER1,		//ƒLƒƒƒ‰
-		PLTTID_ENCOUNT_TRAINER1,		//ƒpƒŒƒbƒg
-		CELLID_ENCOUNT_TRAINER1,		//ƒZƒ‹
-		CELLANMID_ENCOUNT_TRAINER1,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 0, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_ENCOUNT_TRAINER1,		//ã‚­ãƒ£ãƒ©
+		PLTTID_ENCOUNT_TRAINER1,		//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_ENCOUNT_TRAINER1,		//ã‚»ãƒ«
+		CELLANMID_ENCOUNT_TRAINER1,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	2,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	1,			//Vram“]‘—ƒtƒ‰ƒO
+	2,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	1,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 static const int EncountTrainerPri[]={
@@ -4538,19 +4538,19 @@ static const int EncountTrainerPri[]={
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[ƒLƒƒƒ‰‚ÌCLACTƒŠƒ\[ƒX‚Ìƒ[ƒh‚ÆCLACT‚ÌƒZƒbƒg
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚­ãƒ£ãƒ©ã®CLACTãƒªã‚½ãƒ¼ã‚¹ã®ãƒ­ãƒ¼ãƒ‰ã¨CLACTã®ã‚»ãƒƒãƒˆ
  *
  * @param[in]	csp	
  * @param[in]	crp
  * @param[in]	pfd
- * @param[in]	pos_x	‰ŠúXÀ•W
- * @param[in]	pos_y	‰ŠúYÀ•W
- * @param[in]	trtype	ƒgƒŒ[ƒi[ƒ^ƒCƒv
- * @param[in]	dir		PARA_FRONT:³–Ê PARA_BACK:”w–Ê
- * @param[in]	id		CLACTƒŠƒ\[ƒXID‚Ö‚ÌƒIƒtƒZƒbƒg
- * @param[in]	heapID	ƒq[ƒvID
+ * @param[in]	pos_x	åˆæœŸXåº§æ¨™
+ * @param[in]	pos_y	åˆæœŸYåº§æ¨™
+ * @param[in]	trtype	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
+ * @param[in]	dir		PARA_FRONT:æ­£é¢ PARA_BACK:èƒŒé¢
+ * @param[in]	id		CLACTãƒªã‚½ãƒ¼ã‚¹IDã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param[in]	heapID	ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	CLACT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	CLACTã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 CATS_ACT_PTR	TrCLACTSet(CATS_SYS_PTR csp,CATS_RES_PTR crp,PALETTE_FADE_PTR pfd,
@@ -4564,9 +4564,9 @@ CATS_ACT_PTR	TrCLACTSet(CATS_SYS_PTR csp,CATS_RES_PTR crp,PALETTE_FADE_PTR pfd,
 
 	TrCLACTGraDataGet(trtype,dir,&tcg);
 
-	//ƒvƒ‰ƒ`ƒi‚Å‚ÍŠÔ“I§–ñ‚Åtrtype‚ğŒ©‚ÄƒpƒŒƒbƒg‚Ìg—p–{”‚ğŒˆ‚ß‚Ä‚¢‚é‚ªA
-	//‹à‹âˆÈ~‚Å‚ÍA0‚ğw’è‚·‚é‚±‚Æ‚É‚æ‚èA-pcmƒIƒvƒVƒ‡ƒ“‚Å¶¬‚³‚ê‚½ƒpƒŒƒbƒgƒf[ƒ^‚ÌÀƒf[ƒ^ƒTƒCƒY‚©‚ç
-	//g—p–{”‚ğZ’è‚·‚éˆ—‚Å‘Î‰—\’è
+	//ãƒ—ãƒ©ãƒãƒŠã§ã¯æ™‚é–“çš„åˆ¶ç´„ã§trtypeã‚’è¦‹ã¦ãƒ‘ãƒ¬ãƒƒãƒˆã®ä½¿ç”¨æœ¬æ•°ã‚’æ±ºã‚ã¦ã„ã‚‹ãŒã€
+	//é‡‘éŠ€ä»¥é™ã§ã¯ã€0ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã«ã‚ˆã‚Šã€-pcmã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§ç”Ÿæˆã•ã‚ŒãŸãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‹ã‚‰
+	//ä½¿ç”¨æœ¬æ•°ã‚’ç®—å®šã™ã‚‹å‡¦ç†ã§å¯¾å¿œäºˆå®š
 	if(trtype==TRTYPE_FBOSS4){
 		pal_size=2;
 	}
@@ -4599,14 +4599,14 @@ CATS_ACT_PTR	TrCLACTSet(CATS_SYS_PTR csp,CATS_RES_PTR crp,PALETTE_FADE_PTR pfd,
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[ƒLƒƒƒ‰‚ÌCLACTƒŠƒ\[ƒX‚ÌID‚ğæ“¾
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚­ãƒ£ãƒ©ã®CLACTãƒªã‚½ãƒ¼ã‚¹ã®IDã‚’å–å¾—
  *
- * @param[in]	trtype	ƒgƒŒ[ƒi[ƒ^ƒCƒv
- * @param[in]	dir		PARA_FRONT:³–Ê PARA_BACK:”w–Ê
- * @param[in]	id		CLACTƒŠƒ\[ƒXID‚Ö‚ÌƒIƒtƒZƒbƒg
- * @param[in]	heapID	ƒq[ƒvID
+ * @param[in]	trtype	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
+ * @param[in]	dir		PARA_FRONT:æ­£é¢ PARA_BACK:èƒŒé¢
+ * @param[in]	id		CLACTãƒªã‚½ãƒ¼ã‚¹IDã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param[in]	heapID	ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	CLACT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	CLACTã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	TrCLACTGraDataGet(int trtype,int dir,TR_CLACT_GRA *tcg)
@@ -4632,7 +4632,7 @@ void	TrCLACTGraDataGet(int trtype,int dir,TR_CLACT_GRA *tcg)
 
 //============================================================================================
 /**
- *	PokemonParam\‘¢‘Ì‚ÌƒTƒCƒY‚ğæ“¾
+ *	PokemonParamæ§‹é€ ä½“ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
  */
 //============================================================================================
 u32		PokemonParamSizeGet(void)
@@ -4642,7 +4642,7 @@ u32		PokemonParamSizeGet(void)
 
 //============================================================================================
 /**
- *	PokemonPasoParam\‘¢‘Ì‚ÌƒTƒCƒY‚ğæ“¾
+ *	PokemonPasoParamæ§‹é€ ä½“ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
  */
 //============================================================================================
 u32		PokemonPasoParamSizeGet(void)
@@ -4652,9 +4652,9 @@ u32		PokemonPasoParamSizeGet(void)
 
 //============================================================================================
 /**
- *	ƒAƒ“ƒm[ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ğƒQƒbƒg
+ *	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚²ãƒƒãƒˆ
  *
- * @param[in]	pp	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	0-25:A-Z 26:! 27:?
  */
@@ -4666,9 +4666,9 @@ u8	PokeParaUnknownFormGet(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒAƒ“ƒm[ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ğƒQƒbƒg
+ *	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚²ãƒƒãƒˆ
  *
- * @param[in]	ppp	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	0-25:A-Z 26:! 27:?
  */
@@ -4681,13 +4681,13 @@ u8	PokePasoParaUnknownFormGet(POKEMON_PASO_PARAM *ppp)
 //	return PokemonUnknownFormGet(annon_rnd);
 }
 
-//‚c‚r‚©‚çè‚¿î•ñ‚Éform_noƒƒ“ƒo‚ª‘‚¦‚½‚Ì‚ÅAŒÂ«—”‚©‚çæ“¾‚·‚é•û–@‚Ííœ
+//ï¼¤ï¼³ã‹ã‚‰æ‰‹æŒã¡æƒ…å ±ã«form_noãƒ¡ãƒ³ãƒãŒå¢—ãˆãŸã®ã§ã€å€‹æ€§ä¹±æ•°ã‹ã‚‰å–å¾—ã™ã‚‹æ–¹æ³•ã¯å‰Šé™¤
 #if 0
 //============================================================================================
 /**
- *	ƒAƒ“ƒm[ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ğƒQƒbƒg
+ *	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚²ãƒƒãƒˆ
  *
- * @param[in]	annon_rnd	æ“¾‚·‚éŒÂ«—”
+ * @param[in]	annon_rnd	å–å¾—ã™ã‚‹å€‹æ€§ä¹±æ•°
  *
  * @retval	0-25:A-Z 26:! 27:?
  */
@@ -4699,11 +4699,11 @@ u8	PokemonUnknownFormGet(u32 annon_rnd)
 
 //============================================================================================
 /**
- *	ƒAƒ“ƒm[ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚©‚çŒÂ«—”‚ğæ“¾
+ *	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰å€‹æ€§ä¹±æ•°ã‚’å–å¾—
  *
- * @param[in]	form	ƒAƒ“ƒm[ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
+ * @param[in]	form	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	ŒÂ«—”
+ * @retval	å€‹æ€§ä¹±æ•°
  */
 //============================================================================================
 u32	PokemonPasoUnknownFormRndGet(int form)
@@ -4714,9 +4714,9 @@ u32	PokemonPasoUnknownFormRndGet(int form)
 
 //============================================================================================
 /**
- *	POKEMON_PASO_PARAM‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	POKEMON_PASO_PARAMã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param[in]	pp	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	ppp
  */
@@ -4728,12 +4728,12 @@ POKEMON_PASO_PARAM	*PPPPointerGet(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹ƒAƒbƒvƒ`ƒFƒbƒN‚ğ‚·‚é
+ *	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ãƒã‚§ãƒƒã‚¯ã‚’ã™ã‚‹
  *
- * @param[in]	pp	ƒ`ƒFƒbƒN‚·‚éƒ|ƒPƒ‚ƒ“\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	0:ƒŒƒxƒ‹ƒAƒbƒv‚µ‚È‚¢
- *			1:ƒŒƒxƒ‹ƒAƒbƒv‚µ‚½i‚»‚Ìê‡level‚É+1‚·‚éj
+ * @retval	0:ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã—ãªã„
+ *			1:ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã—ãŸï¼ˆãã®å ´åˆlevelã«+1ã™ã‚‹ï¼‰
  */
 //============================================================================================
 u8	PokeLevelUpCheck(POKEMON_PARAM *pp)
@@ -4749,13 +4749,13 @@ u8	PokeLevelUpCheck(POKEMON_PARAM *pp)
 	exp=PokeParaGet(pp,ID_PARA_exp,NULL);
 	para=PokePersonalParaGet(monsno,ID_PER_grow);
 
-	//ŒoŒ±’l‚ªãŒÀ‚ğ’´‚¦‚Ä‚¢‚éê‡‚Í•â³‚·‚é
+	//çµŒé¨“å€¤ãŒä¸Šé™ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯è£œæ­£ã™ã‚‹
 	grow_exp=PokeGrowParaGet(para,100);
 	if(exp>grow_exp){
 		exp=grow_exp;
 		PokeParaPut(pp,ID_PARA_exp,(u8 *)&exp);
 	}
-	//ƒŒƒxƒ‹101ˆÈã‚ÍƒŒƒxƒ‹ƒAƒbƒv‚µ‚È‚¢
+	//ãƒ¬ãƒ™ãƒ«101ä»¥ä¸Šã¯ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã—ãªã„
 	if(level>100){
 		return 0;
 	}
@@ -4770,17 +4770,17 @@ u8	PokeLevelUpCheck(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	i‰»ƒ`ƒFƒbƒN
+ *	é€²åŒ–ãƒã‚§ãƒƒã‚¯
  *
- *	@param[in]	pp			ƒ`ƒFƒbƒN‚·‚éƒ|ƒPƒ‚ƒ“‚Ì\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	type		i‰»ğŒipoke_tool_def.h‚É’è‹`j
- *	@param[in]	itemno		ƒAƒCƒeƒ€i‰»ƒ`ƒFƒbƒN‚Ìg—pƒAƒCƒeƒ€iêŠi‰»‚Ìê‡‚ÍAshinka_place_modej
- *	@param[out]	shinka_cond	i‰»ğŒŠi”[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param[in]	pp			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	type		é€²åŒ–æ¡ä»¶ï¼ˆpoke_tool_def.hã«å®šç¾©ï¼‰
+ *	@param[in]	itemno		ã‚¢ã‚¤ãƒ†ãƒ é€²åŒ–ãƒã‚§ãƒƒã‚¯æ™‚ã®ä½¿ç”¨ã‚¢ã‚¤ãƒ†ãƒ ï¼ˆå ´æ‰€é€²åŒ–ã®å ´åˆã¯ã€shinka_place_modeï¼‰
+ *	@param[out]	shinka_cond	é€²åŒ–æ¡ä»¶æ ¼ç´ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	0 i‰»‚¹‚¸ 0ˆÈŠO i‰»‚µ‚½ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ *	@retval	0 é€²åŒ–ã›ãš 0ä»¥å¤– é€²åŒ–ã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
-#define	SHINKA_COND_MAX	(7)	//i‰»ğŒ‚ÌMAX
+#define	SHINKA_COND_MAX	(7)	//é€²åŒ–æ¡ä»¶ã®MAX
 u16	PokeShinkaCheck(POKEPARTY *ppt,POKEMON_PARAM *pp,u8 type,u16 itemno,int *shinka_cond)
 {
 	u16	monsno;
@@ -4804,9 +4804,9 @@ u16	PokeShinkaCheck(POKEPARTY *ppt,POKEMON_PARAM *pp,u8 type,u16 itemno,int *shi
 
 	eqp=ItemParamGet(item,ITEM_PRM_EQUIP,HEAPID_BASE_SYSTEM);
 
-	//ƒ†ƒ“ƒQƒ‰[‚Íâ‘Îi‰»
+	//ãƒ¦ãƒ³ã‚²ãƒ©ãƒ¼ã¯çµ¶å¯¾é€²åŒ–
 	if(monsno!=MONSNO_YUNGERAA){
-		//ƒAƒCƒeƒ€‚Åi‰»‚µ‚È‚¢‘•”õŒø‰Ê‚Íi‰»‚µ‚È‚¢
+		//ã‚¢ã‚¤ãƒ†ãƒ ã§é€²åŒ–ã—ãªã„è£…å‚™åŠ¹æœã¯é€²åŒ–ã—ãªã„
 		if((eqp==SOUBI_SINKASINAI)&&(type!=ITEM_SHINKA_CHECK)){
 			return 0;
 		}
@@ -4875,7 +4875,7 @@ u16	PokeShinkaCheck(POKEPARTY *ppt,POKEMON_PARAM *pp,u8 type,u16 itemno,int *shi
 					}
 				}
 				break;
-			case SHINKA_SPECIAL_RND_EVEN:		//ŒÂ«—”‚ğ10‚ÅŠ„‚Á‚½—]‚è‚ª‚T–¢–
+			case SHINKA_SPECIAL_RND_EVEN:		//å€‹æ€§ä¹±æ•°ã‚’10ã§å‰²ã£ãŸä½™ã‚ŠãŒï¼•æœªæº€
 				if(pst->psd[i].ShinkaData<=level){
 					if((rnd%10)<5){
 						ret=pst->psd[i].ShinkaMons;
@@ -4883,7 +4883,7 @@ u16	PokeShinkaCheck(POKEPARTY *ppt,POKEMON_PARAM *pp,u8 type,u16 itemno,int *shi
 					}
 				}
 				break;
-			case SHINKA_SPECIAL_RND_ODD:		//ŒÂ«—”‚ğ10‚ÅŠ„‚Á‚½—]‚è‚ª‚TˆÈã
+			case SHINKA_SPECIAL_RND_ODD:		//å€‹æ€§ä¹±æ•°ã‚’10ã§å‰²ã£ãŸä½™ã‚ŠãŒï¼•ä»¥ä¸Š
 				if(pst->psd[i].ShinkaData<=level){
 					if((rnd%10)>=5){
 						ret=pst->psd[i].ShinkaMons;
@@ -4891,17 +4891,17 @@ u16	PokeShinkaCheck(POKEPARTY *ppt,POKEMON_PARAM *pp,u8 type,u16 itemno,int *shi
 					}
 				}
 				break;
-			case SHINKA_SPECIAL_LEVELUP:		//è‚¿‚É‹ó‚«‚ª‚ ‚ê‚ÎAi‰»‚µ‚Â‚ÂA
-												//ƒJƒ‰‚ğc‚·
+			case SHINKA_SPECIAL_LEVELUP:		//æ‰‹æŒã¡ã«ç©ºããŒã‚ã‚Œã°ã€é€²åŒ–ã—ã¤ã¤ã€
+												//ã‚«ãƒ©ã‚’æ®‹ã™
 				if(pst->psd[i].ShinkaData<=level){
 					ret=pst->psd[i].ShinkaMons;
 					shinka_cond[0]=SHINKA_SPECIAL_LEVELUP;
 				}
 				break;
-			case SHINKA_SPECIAL_NUKENIN:		//è‚¿‚É‹ó‚«‚ª‚ ‚ê‚Î
+			case SHINKA_SPECIAL_NUKENIN:		//æ‰‹æŒã¡ã«ç©ºããŒã‚ã‚Œã°
 				shinka_cond[0]=SHINKA_SPECIAL_NUKENIN;
 				break;
-			case SHINKA_SPECIAL_BEAUTIFUL:		//”ü‚µ‚³‚Åi‰»
+			case SHINKA_SPECIAL_BEAUTIFUL:		//ç¾ã—ã•ã§é€²åŒ–
 				if(pst->psd[i].ShinkaData<=beautiful){
 					ret=pst->psd[i].ShinkaMons;
 					shinka_cond[0]=SHINKA_SPECIAL_BEAUTIFUL;
@@ -4968,7 +4968,7 @@ u16	PokeShinkaCheck(POKEPARTY *ppt,POKEMON_PARAM *pp,u8 type,u16 itemno,int *shi
 				}
 				break;
 			}
-			//i‰»ğŒ‚ªŒ©‚Â‚©‚Á‚½‚çA”²‚¯‚é
+			//é€²åŒ–æ¡ä»¶ãŒè¦‹ã¤ã‹ã£ãŸã‚‰ã€æŠœã‘ã‚‹
 			if(ret){
 				break;
 			}
@@ -4988,7 +4988,7 @@ u16	PokeShinkaCheck(POKEPARTY *ppt,POKEMON_PARAM *pp,u8 type,u16 itemno,int *shi
 				}
 				break;
 			}
-			//i‰»ğŒ‚ªŒ©‚Â‚©‚Á‚½‚çA”²‚¯‚é
+			//é€²åŒ–æ¡ä»¶ãŒè¦‹ã¤ã‹ã£ãŸã‚‰ã€æŠœã‘ã‚‹
 			if(ret){
 				break;
 			}
@@ -5017,7 +5017,7 @@ u16	PokeShinkaCheck(POKEPARTY *ppt,POKEMON_PARAM *pp,u8 type,u16 itemno,int *shi
 				shinka_cond[0]=0;
 				break;
 			}
-			//i‰»ğŒ‚ªŒ©‚Â‚©‚Á‚½‚çA”²‚¯‚é
+			//é€²åŒ–æ¡ä»¶ãŒè¦‹ã¤ã‹ã£ãŸã‚‰ã€æŠœã‘ã‚‹
 			if(ret){
 				break;
 			}
@@ -5030,9 +5030,9 @@ u16	PokeShinkaCheck(POKEPARTY *ppt,POKEMON_PARAM *pp,u8 type,u16 itemno,int *shi
 
 // =================================================================
 /**
- * @brief   “n‚µ‚½ƒ|ƒPƒ‚ƒ“ŠJ”­No‚Ì‘åŒ³‚Ìq‹Ÿ‚ğ•Ô‚µ‚Ü‚·(ˆê‚Â‘O‚¶‚á‚ ‚è‚Ü‚¹‚ñj
- * @param   monsno	ƒ|ƒPƒ‚ƒ“‚ÌŠJ”­No
- * @retval  u16		q‹Ÿ‚ÌŠJ”­Noiq‹Ÿ‚ª–³‚¢ê‡‚Í‚»‚Ì‚Ü‚Üˆø”‚ğ•Ô‚µ‚Ü‚·j
+ * @brief   æ¸¡ã—ãŸãƒã‚±ãƒ¢ãƒ³é–‹ç™ºNoã®å¤§å…ƒã®å­ä¾›ã‚’è¿”ã—ã¾ã™(ä¸€ã¤å‰ã˜ã‚ƒã‚ã‚Šã¾ã›ã‚“ï¼‰
+ * @param   monsno	ãƒã‚±ãƒ¢ãƒ³ã®é–‹ç™ºNo
+ * @retval  u16		å­ä¾›ã®é–‹ç™ºNoï¼ˆå­ä¾›ãŒç„¡ã„å ´åˆã¯ãã®ã¾ã¾å¼•æ•°ã‚’è¿”ã—ã¾ã™ï¼‰
  */
 // =================================================================
 u16 PokeSearchChild(const u16 monsno)
@@ -5040,15 +5040,15 @@ u16 PokeSearchChild(const u16 monsno)
 	FSFile		p_file;
 	u16			result=0;
 
-	GF_ASSERT_MSG((MONSNO_END+1)>monsno , "ƒ|ƒPƒ‚ƒ“NO‚ÌMAX‚ğ’´‚¦‚Ä‚¢‚é");
+	GF_ASSERT_MSG((MONSNO_END+1)>monsno , "ãƒã‚±ãƒ¢ãƒ³NOã®MAXã‚’è¶…ãˆã¦ã„ã‚‹");
 
 
 	FS_InitFile(&p_file);
 
-	FS_OpenFile(&p_file,"poketool/personal/pms.narc");			///< ‘åŒ³ƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹ƒI[ƒvƒ“
+	FS_OpenFile(&p_file,"poketool/personal/pms.narc");			///< å¤§å…ƒãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 
-	FS_SeekFile(&p_file,monsno*2,FS_SEEK_SET);				///< MONSNOx2•ª‚ğƒV[ƒN
-	FS_ReadFile(&p_file,&result,2);							///< “Ç‚İ‚İ
+	FS_SeekFile(&p_file,monsno*2,FS_SEEK_SET);				///< MONSNOx2åˆ†ã‚’ã‚·ãƒ¼ã‚¯
+	FS_ReadFile(&p_file,&result,2);							///< èª­ã¿è¾¼ã¿
 
 	FS_CloseFile(&p_file);
 
@@ -5058,16 +5058,16 @@ u16 PokeSearchChild(const u16 monsno)
 
 //==============================================================================
 /**
- * @brief   ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“—p‚Éi‰»ƒ|ƒPƒ‚ƒ“‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
+ * @brief   ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ã«é€²åŒ–ãƒã‚±ãƒ¢ãƒ³ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
  *
- * @param   monsno	ŠJ”­NO
+ * @param   monsno	é–‹ç™ºNO
  *
- * @retval  u16		i‰»ƒ|ƒPƒ‚ƒ“‚È‚çí‚ÌNO‚ğ•Ô‚·Aí‚È‚ç©•ª‚ÌNO‚ª•Ô‚é
+ * @retval  u16		é€²åŒ–ãƒã‚±ãƒ¢ãƒ³ãªã‚‰ç¨®ã®NOã‚’è¿”ã™ã€ç¨®ãªã‚‰è‡ªåˆ†ã®NOãŒè¿”ã‚‹
  */
 //==============================================================================
 u16 PokeChildCheck( const u16 monsno )
 {
-	// íƒ|ƒP‚ğ‚Á‚Ä‚¢‚é‚Ì‚¾‚ªA‚ ‚¦‚Äíˆµ‚¢‚µ‚Ä‚ ‚°‚éƒ|ƒPƒ‚ƒ“‚ğ—…—ñ
+	// ç¨®ãƒã‚±ã‚’æŒã£ã¦ã„ã‚‹ã®ã ãŒã€ã‚ãˆã¦ç¨®æ‰±ã„ã—ã¦ã‚ã’ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ç¾…åˆ—
 	switch( monsno ){
 	case MONSNO_SOONANSU:
 	case MONSNO_MARIRU:
@@ -5082,15 +5082,15 @@ u16 PokeChildCheck( const u16 monsno )
 		break;
 	}
 	
-	// ’Êíƒ|ƒPƒ‚ƒ“‚Ìíƒ|ƒPƒ‚ƒ“æ“¾ˆ—
+	// é€šå¸¸ãƒã‚±ãƒ¢ãƒ³ã®ç¨®ãƒã‚±ãƒ¢ãƒ³å–å¾—å‡¦ç†
 	return PokeSearchChild(monsno);
 }
 
 //============================================================================================
 /**
- *	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ÆƒŒƒxƒ‹‚©‚ç‹Z‚ğƒZƒbƒg‚·‚éB
+ *	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã¨ãƒ¬ãƒ™ãƒ«ã‹ã‚‰æŠ€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
  *
- * @param[in]	pp	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeWazaOboe(POKEMON_PARAM *pp)
@@ -5102,9 +5102,9 @@ void	PokeWazaOboe(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ÆƒŒƒxƒ‹‚©‚ç‹Z‚ğƒZƒbƒg‚·‚éB
+ *	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã¨ãƒ¬ãƒ™ãƒ«ã‹ã‚‰æŠ€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
  *
- * @param[in]	ppp	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokePasoWazaOboe(POKEMON_PASO_PARAM *ppp)
@@ -5146,14 +5146,14 @@ void	PokePasoWazaOboe(POKEMON_PASO_PARAM *ppp)
 
 //============================================================================================
 /**
- *	‚ ‚¢‚Ä‚¢‚éêŠ‚É‹Z‚ğ’Ç‰Á‚·‚éB‚ ‚¢‚Ä‚¢‚È‚¢ê‡‚Í‚»‚Ì|‚ğ•Ô‚·B
+ *	ã‚ã„ã¦ã„ã‚‹å ´æ‰€ã«æŠ€ã‚’è¿½åŠ ã™ã‚‹ã€‚ã‚ã„ã¦ã„ãªã„å ´åˆã¯ãã®æ—¨ã‚’è¿”ã™ã€‚
  *
- *	@param[in]	pp		ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	wazano	ƒZƒbƒg‚·‚é‹Zƒiƒ“ƒo[
+ *	@param[in]	pp		ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	wazano	ã‚»ãƒƒãƒˆã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retvl	wazano			³íI—¹
- *			SAME_WAZA_SET	‚·‚Å‚ÉŠo‚¦‚Ä‚¢‚é‹Z‚Æ“¯‚¶‹Z‚ğŠo‚¦‚æ‚¤‚Æ‚µ‚½
- *			NO_WAZA_SET		êŠ‚ª‹ó‚¢‚Ä‚¢‚È‚¢
+ *	@retvl	wazano			æ­£å¸¸çµ‚äº†
+ *			SAME_WAZA_SET	ã™ã§ã«è¦šãˆã¦ã„ã‚‹æŠ€ã¨åŒã˜æŠ€ã‚’è¦šãˆã‚ˆã†ã¨ã—ãŸ
+ *			NO_WAZA_SET		å ´æ‰€ãŒç©ºã„ã¦ã„ãªã„
  */
 //============================================================================================
 u16	PokeWazaSet(POKEMON_PARAM *pp,u16 wazano)
@@ -5165,14 +5165,14 @@ u16	PokeWazaSet(POKEMON_PARAM *pp,u16 wazano)
 
 //============================================================================================
 /**
- *	‚ ‚¢‚Ä‚¢‚éêŠ‚É‹Z‚ğ’Ç‰Á‚·‚éB‚ ‚¢‚Ä‚¢‚È‚¢ê‡‚Í‚»‚Ì|‚ğ•Ô‚·B
+ *	ã‚ã„ã¦ã„ã‚‹å ´æ‰€ã«æŠ€ã‚’è¿½åŠ ã™ã‚‹ã€‚ã‚ã„ã¦ã„ãªã„å ´åˆã¯ãã®æ—¨ã‚’è¿”ã™ã€‚
  *
- *	@param[in]	ppp		ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *	@param[in]	wazano	ƒZƒbƒg‚·‚é‹Zƒiƒ“ƒo[
+ *	@param[in]	ppp		ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param[in]	wazano	ã‚»ãƒƒãƒˆã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retvl	wazano			³íI—¹
- *			SAME_WAZA_SET	‚·‚Å‚ÉŠo‚¦‚Ä‚¢‚é‹Z‚Æ“¯‚¶‹Z‚ğŠo‚¦‚æ‚¤‚Æ‚µ‚½
- *			NO_WAZA_SET		êŠ‚ª‹ó‚¢‚Ä‚¢‚È‚¢
+ *	@retvl	wazano			æ­£å¸¸çµ‚äº†
+ *			SAME_WAZA_SET	ã™ã§ã«è¦šãˆã¦ã„ã‚‹æŠ€ã¨åŒã˜æŠ€ã‚’è¦šãˆã‚ˆã†ã¨ã—ãŸ
+ *			NO_WAZA_SET		å ´æ‰€ãŒç©ºã„ã¦ã„ãªã„
  */
 //============================================================================================
 u16	PokePasoWazaSet(POKEMON_PASO_PARAM *ppp,u16 wazano)
@@ -5194,7 +5194,7 @@ u16	PokePasoWazaSet(POKEMON_PASO_PARAM *ppp,u16 wazano)
 			break;
 		}
 		else{
-			//“¯‚¶‹Z‚ğŠo‚¦‚¿‚á‚¾‚ß
+			//åŒã˜æŠ€ã‚’è¦šãˆã¡ã‚ƒã ã‚
 			if(waza==wazano){
 				ret=SAME_WAZA_SET;
 				break;
@@ -5209,10 +5209,10 @@ u16	PokePasoWazaSet(POKEMON_PASO_PARAM *ppp,u16 wazano)
 
 //============================================================================================
 /**
- *	‰Ÿ‚µo‚µ®‚É‹Z‚ğŠo‚¦‚éB
+ *	æŠ¼ã—å‡ºã—å¼ã«æŠ€ã‚’è¦šãˆã‚‹ã€‚
  *
- * @param[in]	pp		ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	wazano	Šo‚¦‚é‹Z
+ * @param[in]	pp		ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	wazano	è¦šãˆã‚‹æŠ€
  */
 //============================================================================================
 void	PokeWazaOboeOshidashi(POKEMON_PARAM *pp,u16 wazano)
@@ -5224,10 +5224,10 @@ void	PokeWazaOboeOshidashi(POKEMON_PARAM *pp,u16 wazano)
 
 //============================================================================================
 /**
- *	‰Ÿ‚µo‚µ®‚É‹Z‚ğŠo‚¦‚éB
+ *	æŠ¼ã—å‡ºã—å¼ã«æŠ€ã‚’è¦šãˆã‚‹ã€‚
  *
- * @param[in]	ppp		ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	wazano	Šo‚¦‚é‹Z
+ * @param[in]	ppp		ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	wazano	è¦šãˆã‚‹æŠ€
  */
 //============================================================================================
 void	PokePasoWazaOboeOshidashi(POKEMON_PASO_PARAM *ppp,u16 wazano)
@@ -5261,11 +5261,11 @@ void	PokePasoWazaOboeOshidashi(POKEMON_PASO_PARAM *ppp,u16 wazano)
 
 //============================================================================================
 /**
- *	êŠ‚ğw’è‚µ‚Ä‹Z‚ğƒZƒbƒg‚·‚éB(pp_count‚ğ0ƒNƒŠƒA‚·‚é)
+ *	å ´æ‰€ã‚’æŒ‡å®šã—ã¦æŠ€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚(pp_countã‚’0ã‚¯ãƒªã‚¢ã™ã‚‹)
  *
- * @param[in]	pp		ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	wazano	ƒZƒbƒg‚·‚é‹Zƒiƒ“ƒo[
- * @param[in]	pos		‹Z‚ğƒZƒbƒg‚·‚éêŠ
+ * @param[in]	pp		ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	wazano	ã‚»ãƒƒãƒˆã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	pos		æŠ€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹å ´æ‰€
  */
 //============================================================================================
 void	PokeWazaSetPosPPCountClear(POKEMON_PARAM *pp,u16 wazano,u8 pos)
@@ -5285,11 +5285,11 @@ void	PokeWazaSetPosPPCountClear(POKEMON_PARAM *pp,u16 wazano,u8 pos)
 
 //============================================================================================
 /**
- *	êŠ‚ğw’è‚µ‚Ä‹Z‚ğƒZƒbƒg‚·‚éB
+ *	å ´æ‰€ã‚’æŒ‡å®šã—ã¦æŠ€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
  *
- * @param[in]	pp		ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	wazano	ƒZƒbƒg‚·‚é‹Zƒiƒ“ƒo[
- * @param[in]	pos		‹Z‚ğƒZƒbƒg‚·‚éêŠ
+ * @param[in]	pp		ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	wazano	ã‚»ãƒƒãƒˆã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	pos		æŠ€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹å ´æ‰€
  */
 //============================================================================================
 void	PokeWazaSetPos(POKEMON_PARAM *pp,u16 wazano,u8 pos)
@@ -5299,11 +5299,11 @@ void	PokeWazaSetPos(POKEMON_PARAM *pp,u16 wazano,u8 pos)
 
 //============================================================================================
 /**
- *	êŠ‚ğw’è‚µ‚Ä‹Z‚ğƒZƒbƒg‚·‚éB
+ *	å ´æ‰€ã‚’æŒ‡å®šã—ã¦æŠ€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
  *
- * @param[in]	ppp		ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	wazano	ƒZƒbƒg‚·‚é‹Zƒiƒ“ƒo[
- * @param[in]	pos		‹Z‚ğƒZƒbƒg‚·‚éêŠ
+ * @param[in]	ppp		ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	wazano	ã‚»ãƒƒãƒˆã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	pos		æŠ€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹å ´æ‰€
  */
 //============================================================================================
 void	PokePasoWazaSetPos(POKEMON_PASO_PARAM *ppp,u16 wazano,u8 pos)
@@ -5320,13 +5320,13 @@ void	PokePasoWazaSetPos(POKEMON_PASO_PARAM *ppp,u16 wazano,u8 pos)
 
 //============================================================================================
 /**
- *	ƒŒƒxƒ‹ƒAƒbƒv‚ÉŠo‚¦‚é‹Z‚ğƒZƒbƒg‚·‚éB
+ *	ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æ™‚ã«è¦šãˆã‚‹æŠ€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
  *
- * @param[in]		pp		ƒZƒbƒg‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in/out]	cnt		‹ZŠo‚¦ƒe[ƒuƒ‹‚ÌƒJƒEƒ“ƒ^
- * @param[in/out]	wazano	Šo‚¦‚½‹Z‚ÌŠi”[ƒ[ƒN
+ * @param[in]		pp		ã‚»ãƒƒãƒˆã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in/out]	cnt		æŠ€è¦šãˆãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚«ã‚¦ãƒ³ã‚¿
+ * @param[in/out]	wazano	è¦šãˆãŸæŠ€ã®æ ¼ç´ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	ƒZƒbƒg‚µ‚½‹Zƒiƒ“ƒo[iNO_WAZA_OBOE:Šo‚¦‚È‚©‚Á‚½ NO_WAZA_SET:‹Z‚ª‚¢‚Á‚Ï‚¢j
+ * @retval	ã‚»ãƒƒãƒˆã—ãŸæŠ€ãƒŠãƒ³ãƒãƒ¼ï¼ˆNO_WAZA_OBOE:è¦šãˆãªã‹ã£ãŸ NO_WAZA_SET:æŠ€ãŒã„ã£ã±ã„ï¼‰
  */
 //============================================================================================
 u16	PokeWazaOboeCheck(POKEMON_PARAM *pp,int *cnt,u16 *wazano)
@@ -5367,11 +5367,11 @@ u16	PokeWazaOboeCheck(POKEMON_PARAM *pp,int *cnt,u16 *wazano)
 
 //============================================================================================
 /**
- *	‹Z‚Ì“ü‚ê‘Ö‚¦‚ğ‚·‚é
+ *	æŠ€ã®å…¥ã‚Œæ›¿ãˆã‚’ã™ã‚‹
  *
- * @param[in]		pp			ƒZƒbƒg‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]		src_pos		“ü‚ê‘Ö‚¦Œ³ˆÊ’u
- * @param[in]		dest_pos	“ü‚ê‘Ö‚¦æˆÊ’u
+ * @param[in]		pp			ã‚»ãƒƒãƒˆã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]		src_pos		å…¥ã‚Œæ›¿ãˆå…ƒä½ç½®
+ * @param[in]		dest_pos	å…¥ã‚Œæ›¿ãˆå…ˆä½ç½®
  */
 //============================================================================================
 void	PokeParaWazaReplace(POKEMON_PARAM *pp,int src_pos,int dest_pos)
@@ -5381,11 +5381,11 @@ void	PokeParaWazaReplace(POKEMON_PARAM *pp,int src_pos,int dest_pos)
 
 //============================================================================================
 /**
- *	‹Z‚Ì“ü‚ê‘Ö‚¦‚ğ‚·‚é
+ *	æŠ€ã®å…¥ã‚Œæ›¿ãˆã‚’ã™ã‚‹
  *
- * @param[in]		pp			ƒZƒbƒg‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]		src_pos		“ü‚ê‘Ö‚¦Œ³ˆÊ’u
- * @param[in]		dest_pos	“ü‚ê‘Ö‚¦æˆÊ’u
+ * @param[in]		pp			ã‚»ãƒƒãƒˆã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]		src_pos		å…¥ã‚Œæ›¿ãˆå…ƒä½ç½®
+ * @param[in]		dest_pos	å…¥ã‚Œæ›¿ãˆå…ˆä½ç½®
  */
 //============================================================================================
 void	PokePasoParaWazaReplace(POKEMON_PASO_PARAM *ppp,int src_pos,int dest_pos)
@@ -5411,10 +5411,10 @@ void	PokePasoParaWazaReplace(POKEMON_PASO_PARAM *ppp,int src_pos,int dest_pos)
 
 //============================================================================================
 /**
- * w’èˆÊ’u‚Ì‹Z‚ğƒNƒŠƒA‚µ‚ÄAƒVƒtƒg‚·‚é
+ * æŒ‡å®šä½ç½®ã®æŠ€ã‚’ã‚¯ãƒªã‚¢ã—ã¦ã€ã‚·ãƒ•ãƒˆã™ã‚‹
  *
- * @param[in]	pp		ƒNƒŠƒA‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	pos		ƒNƒŠƒAˆÊ’u
+ * @param[in]	pp		ã‚¯ãƒªã‚¢ã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	pos		ã‚¯ãƒªã‚¢ä½ç½®
  */
 //============================================================================================
 void	PokeParaWazaDelPos(POKEMON_PARAM *pp,u32 pos)
@@ -5443,12 +5443,12 @@ void	PokeParaWazaDelPos(POKEMON_PARAM *pp,u32 pos)
 
 //============================================================================================
 /**
- * ‹Z‚ğ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * æŠ€ã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	pp		ƒ`ƒFƒbƒN‚·‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	waza_no	ƒ`ƒFƒbƒN‚·‚é‹Zƒiƒ“ƒo[
+ * @param[in]	pp		ãƒã‚§ãƒƒã‚¯ã™ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	waza_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval FALSE:‚à‚Á‚Ä‚¢‚È‚¢@TRUE:‚à‚Á‚Ä‚¢‚é
+ * @retval FALSE:ã‚‚ã£ã¦ã„ãªã„ã€€TRUE:ã‚‚ã£ã¦ã„ã‚‹
  */
 //============================================================================================
 BOOL	PokeParaWazaHaveCheck(POKEMON_PARAM *pp,u16 waza_no)
@@ -5466,11 +5466,11 @@ BOOL	PokeParaWazaHaveCheck(POKEMON_PARAM *pp,u16 waza_no)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒX‚Ì\‘¢‘ÌéŒ¾‚©‚çè‚¿‚Ì\‘¢‘ÌéŒ¾‚Öƒf[ƒ^‚ğ
- *	ƒRƒs[‚µ‚ÄÄŒvZ‚ğ‚·‚é
+ *	ãƒœãƒƒã‚¯ã‚¹ã®æ§‹é€ ä½“å®£è¨€ã‹ã‚‰æ‰‹æŒã¡ã®æ§‹é€ ä½“å®£è¨€ã¸ãƒ‡ãƒ¼ã‚¿ã‚’
+ *	ã‚³ãƒ”ãƒ¼ã—ã¦å†è¨ˆç®—ã‚’ã™ã‚‹
  *
- * @param[in]	ppp	ƒ{ƒbƒNƒX‚Ì\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	pp	ƒRƒs[‚·‚éè‚¿‚Ì\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	ãƒœãƒƒã‚¯ã‚¹ã®æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	pp	ã‚³ãƒ”ãƒ¼ã™ã‚‹æ‰‹æŒã¡ã®æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeReplace(POKEMON_PASO_PARAM *ppp,POKEMON_PARAM *pp)
@@ -5482,27 +5482,27 @@ void	PokeReplace(POKEMON_PASO_PARAM *ppp,POKEMON_PARAM *pp)
 
 	pp->ppp=*ppp;
 
-	//ppp‚ªfastƒ‚[ƒh‚È‚çApcp‚àfastƒ‚[ƒh‚É‚·‚é
+	//pppãŒfastãƒ¢ãƒ¼ãƒ‰ãªã‚‰ã€pcpã‚‚fastãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹
 	if(pp->ppp.ppp_fast_mode){
 		pp->ppp.pp_fast_mode=1;
 	}
 
-//ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒZƒbƒg
+//ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
 	PokeParaPut(pp,ID_PARA_condition,(u8 *)&i);
 
-//HP‰Šú‰»
+//HPåˆæœŸåŒ–
 	PokeParaPut(pp,ID_PARA_hp,(u8 *)&i);
 	PokeParaPut(pp,ID_PARA_hpmax,(u8 *)&i);
 
-//ƒ[ƒ‹ƒf[ƒ^
+//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 	mail_data=MailData_CreateWork(HEAPID_BASE_SYSTEM);
 	PokeParaPut(pp,ID_PARA_mail_data,mail_data);
 	sys_FreeMemoryEz(mail_data);
 
-//ƒJƒXƒ^ƒ€ƒ{[ƒ‹ID
+//ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ID
 	PokeParaPut(pp,ID_PARA_cb_id,(u8 *)&i);
 
-//ƒJƒXƒ^ƒ€ƒ{[ƒ‹
+//ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
 //	cb_core=CustomBall_AllocSaveData(HEAPID_BASE_SYSTEM);
 //	PokeParaPut(pp,ID_PARA_cb_core,cb_core);
 //	sys_FreeMemoryEz(cb_core);
@@ -5515,9 +5515,9 @@ void	PokeReplace(POKEMON_PASO_PARAM *ppp,POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	è‚¿ƒ|ƒPƒ‚ƒ“‚ÌÅ‘åƒŒƒxƒ‹‚ğæ“¾
+ *	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®æœ€å¤§ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
  *
- * @param[in]	pp	è‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^\‘¢‘Ì
+ * @param[in]	pp	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //============================================================================================
 u8 GetStockPokeMaxLevel(POKEPARTY *ppt)
@@ -5543,11 +5543,11 @@ u8 GetStockPokeMaxLevel(POKEPARTY *ppt)
 
 //============================================================================================
 /**
- *	‘S‘}ŠÓƒiƒ“ƒo[‚©‚çƒVƒ“ƒIƒE}ŠÓƒiƒ“ƒo[‚ğ•Ô‚·
+ *	å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param[in]	pp	è‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^\‘¢‘Ì
+ * @param[in]	pp	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  *
- * @retval	ƒVƒ“ƒIƒE}ŠÓƒiƒ“ƒo[
+ * @retval	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u16		PokeParaZenkokuNo2ShinouNo(POKEMON_PARAM *pp)
@@ -5557,11 +5557,11 @@ u16		PokeParaZenkokuNo2ShinouNo(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	‘S‘}ŠÓƒiƒ“ƒo[‚©‚çƒVƒ“ƒIƒE}ŠÓƒiƒ“ƒo[‚ğ•Ô‚·
+ *	å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param[in]	ppp	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒf[ƒ^\‘¢‘Ì
+ * @param[in]	ppp	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  *
- * @retval	ƒVƒ“ƒIƒE}ŠÓƒiƒ“ƒo[
+ * @retval	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u16		PokePasoParaZenkokuNo2ShinouNo(POKEMON_PASO_PARAM *ppp)
@@ -5571,11 +5571,11 @@ u16		PokePasoParaZenkokuNo2ShinouNo(POKEMON_PASO_PARAM *ppp)
 
 //============================================================================================
 /**
- *	‘S‘}ŠÓƒiƒ“ƒo[‚©‚çƒVƒ“ƒIƒE}ŠÓƒiƒ“ƒo[‚ğ•Ô‚·
+ *	å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param[in]	mons_no	‘S‘}ŠÓƒiƒ“ƒo[
+ * @param[in]	mons_no	å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	ƒVƒ“ƒIƒE}ŠÓƒiƒ“ƒo[
+ * @retval	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u16		PokeZenkokuNo2ShinouNo(u16 mons_no)
@@ -5589,11 +5589,11 @@ u16		PokeZenkokuNo2ShinouNo(u16 mons_no)
 
 //============================================================================================
 /**
- *	ƒVƒ“ƒIƒE}ŠÓƒiƒ“ƒo[‚©‚ç‘S‘}ŠÓƒiƒ“ƒo[‚ğ•Ô‚·
+ *	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param[in]	mons_no	ƒVƒ“ƒIƒE}ŠÓƒiƒ“ƒo[
+ * @param[in]	mons_no	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	‘S‘}ŠÓƒiƒ“ƒo[
+ * @retval	å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u16		PokeShinouNo2ZenkokuNo(u16 mons_no)
@@ -5609,12 +5609,12 @@ u16		PokeShinouNo2ZenkokuNo(u16 mons_no)
 
 //============================================================================================
 /**
- *	POKEMON_PARAM\‘¢‘Ì‚©‚çPOKEMON_PARAM\‘¢‘Ì‚ÖƒRƒs[
+ *	POKEMON_PARAMæ§‹é€ ä½“ã‹ã‚‰POKEMON_PARAMæ§‹é€ ä½“ã¸ã‚³ãƒ”ãƒ¼
  *
- * @param[in]	pp_src	ƒRƒs[Œ³POKEMON_PARAM\‘¢‘Ì
- * @param[in]	pp_dest	ƒRƒs[æPOKEMON_PARAM\‘¢‘Ì
+ * @param[in]	pp_src	ã‚³ãƒ”ãƒ¼å…ƒPOKEMON_PARAMæ§‹é€ ä½“
+ * @param[in]	pp_dest	ã‚³ãƒ”ãƒ¼å…ˆPOKEMON_PARAMæ§‹é€ ä½“
  *
- * @retval	‘S‘}ŠÓƒiƒ“ƒo[
+ * @retval	å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	PokeCopyPPtoPP(POKEMON_PARAM *pp_src,POKEMON_PARAM *pp_dest)
@@ -5626,12 +5626,12 @@ void	PokeCopyPPtoPP(POKEMON_PARAM *pp_src,POKEMON_PARAM *pp_dest)
 
 //============================================================================================
 /**
- *	POKEMON_PASO_PARAM\‘¢‘Ì‚©‚çPOKEMON_PASO_PARAM\‘¢‘Ì‚ÖƒRƒs[
+ *	POKEMON_PASO_PARAMæ§‹é€ ä½“ã‹ã‚‰POKEMON_PASO_PARAMæ§‹é€ ä½“ã¸ã‚³ãƒ”ãƒ¼
  *
- * @param[in]	ppp_src		ƒRƒs[Œ³POKEMON_PASO_PARAM\‘¢‘Ì
- * @param[in]	ppp_dest	ƒRƒs[æPOKEMON_PASO_PARAM\‘¢‘Ì
+ * @param[in]	ppp_src		ã‚³ãƒ”ãƒ¼å…ƒPOKEMON_PASO_PARAMæ§‹é€ ä½“
+ * @param[in]	ppp_dest	ã‚³ãƒ”ãƒ¼å…ˆPOKEMON_PASO_PARAMæ§‹é€ ä½“
  *
- * @retval	‘S‘}ŠÓƒiƒ“ƒo[
+ * @retval	å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	PokeCopyPPPtoPPP(POKEMON_PASO_PARAM *ppp_src,POKEMON_PASO_PARAM *ppp_dest)
@@ -5643,12 +5643,12 @@ void	PokeCopyPPPtoPPP(POKEMON_PASO_PARAM *ppp_src,POKEMON_PASO_PARAM *ppp_dest)
 
 //============================================================================================
 /**
- *	POKEMON_PARAM\‘¢‘Ì‚©‚çPOKEMON_PASO_PARAM\‘¢‘Ì‚ÖƒRƒs[
+ *	POKEMON_PARAMæ§‹é€ ä½“ã‹ã‚‰POKEMON_PASO_PARAMæ§‹é€ ä½“ã¸ã‚³ãƒ”ãƒ¼
  *
- * @param[in]	pp_src		ƒRƒs[Œ³POKEMON_PARAM\‘¢‘Ì
- * @param[in]	ppp_dest	ƒRƒs[æPOKEMON_PASO_PARAM\‘¢‘Ì
+ * @param[in]	pp_src		ã‚³ãƒ”ãƒ¼å…ƒPOKEMON_PARAMæ§‹é€ ä½“
+ * @param[in]	ppp_dest	ã‚³ãƒ”ãƒ¼å…ˆPOKEMON_PASO_PARAMæ§‹é€ ä½“
  *
- * @retval	‘S‘}ŠÓƒiƒ“ƒo[
+ * @retval	å…¨å›½å›³é‘‘ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	PokeCopyPPtoPPP(POKEMON_PARAM *pp_src,POKEMON_PASO_PARAM *ppp_dest)
@@ -5660,12 +5660,12 @@ void	PokeCopyPPtoPPP(POKEMON_PARAM *pp_src,POKEMON_PASO_PARAM *ppp_dest)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ÌD‚İ‚Ì–¡‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚±ãƒ¢ãƒ³ã®å¥½ã¿ã®å‘³ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	pp		POKEMON_PARAM\‘¢‘Ì
- * @param[in]	taste	ƒ`ƒFƒbƒN‚·‚é–¡
+ * @param[in]	pp		POKEMON_PARAMæ§‹é€ ä½“
+ * @param[in]	taste	ãƒã‚§ãƒƒã‚¯ã™ã‚‹å‘³
  *
- * @retval	-1:Œ™‚¢@0:•’Ê@1:D‚«
+ * @retval	-1:å«Œã„ã€€0:æ™®é€šã€€1:å¥½ã
  */
 //============================================================================================
 s8	PokeParaLikeTasteCheck(POKEMON_PARAM *pp,int taste)
@@ -5675,12 +5675,12 @@ s8	PokeParaLikeTasteCheck(POKEMON_PARAM *pp,int taste)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ÌD‚İ‚Ì–¡‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚±ãƒ¢ãƒ³ã®å¥½ã¿ã®å‘³ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	ppp		POKEMON_PASO_PARAM\‘¢‘Ì
- * @param[in]	taste	ƒ`ƒFƒbƒN‚·‚é–¡
+ * @param[in]	ppp		POKEMON_PASO_PARAMæ§‹é€ ä½“
+ * @param[in]	taste	ãƒã‚§ãƒƒã‚¯ã™ã‚‹å‘³
  *
- * @retval	-1:Œ™‚¢@0:•’Ê@1:D‚«
+ * @retval	-1:å«Œã„ã€€0:æ™®é€šã€€1:å¥½ã
  */
 //============================================================================================
 s8	PokePasoParaLikeTasteCheck(POKEMON_PASO_PARAM *ppp,int taste)
@@ -5690,12 +5690,12 @@ s8	PokePasoParaLikeTasteCheck(POKEMON_PASO_PARAM *ppp,int taste)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ÌD‚İ‚Ì–¡‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚±ãƒ¢ãƒ³ã®å¥½ã¿ã®å‘³ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	rnd		ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”i«Ši‚ğ“±‚­‚Ì‚É•K—vj
- * @param[in]	taste	ƒ`ƒFƒbƒN‚·‚é–¡
+ * @param[in]	rnd		ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°ï¼ˆæ€§æ ¼ã‚’å°ãã®ã«å¿…è¦ï¼‰
+ * @param[in]	taste	ãƒã‚§ãƒƒã‚¯ã™ã‚‹å‘³
  *
- * @retval	-1:Œ™‚¢@0:•’Ê@1:D‚«
+ * @retval	-1:å«Œã„ã€€0:æ™®é€šã€€1:å¥½ã
  */
 //============================================================================================
 s8	PokeLikeTasteCheck(u32 rnd,int taste)
@@ -5709,7 +5709,7 @@ s8	PokeLikeTasteCheck(u32 rnd,int taste)
 
 //==============================================================================
 /**
- * ƒŒƒxƒ‹ƒAƒbƒv‚ÅŠo‚¦‚é‹Z‚ğ‘S‚ÄƒŠƒXƒgƒAƒbƒv
+ * ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã§è¦šãˆã‚‹æŠ€ã‚’å…¨ã¦ãƒªã‚¹ãƒˆã‚¢ãƒƒãƒ—
  *
  * @param   monsno		
  * @param   ksw->wazalist		
@@ -5736,9 +5736,9 @@ int PokeOboeruWazaAllGet( int monsno, int form, u16 *wazalist )
 
 //==============================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Éƒ|ƒPƒ‹ƒX‚ğŠ´õ‚³‚¹‚é
+ *	ãƒã‚±ãƒ¢ãƒ³ã«ãƒã‚±ãƒ«ã‚¹ã‚’æ„ŸæŸ“ã•ã›ã‚‹
  *
- * @param	ppt		POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ppt		POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -5784,16 +5784,16 @@ void	PokerusSetCheck(POKEPARTY *ppt)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ªƒ|ƒPƒ‹ƒX‚ÉŠ´õ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚±ãƒ¢ãƒ³ãŒãƒã‚±ãƒ«ã‚¹ã«æ„ŸæŸ“ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	ppt			Š´õ‚ğƒ`ƒFƒbƒN‚·‚éPOKEPARTY\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	checkbit	0bit–Ú‚ğONFPP[0]‚ğƒ`ƒFƒbƒN
+ * @param[in]	ppt			æ„ŸæŸ“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEPARTYæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	checkbit	0bitç›®ã‚’ONï¼šPP[0]ã‚’ãƒã‚§ãƒƒã‚¯
  *									:
  *									:
- *							5bit–Ú‚ğONFPP[6]‚ğƒ`ƒFƒbƒN
- *							0‚Ì‚Æ‚«‚ÍAPP[0]‚¾‚¯‚ğƒ`ƒFƒbƒN
+ *							5bitç›®ã‚’ONï¼šPP[6]ã‚’ãƒã‚§ãƒƒã‚¯
+ *							0ã®ã¨ãã¯ã€PP[0]ã ã‘ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @retval	Š´õ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ğƒrƒbƒg‚Å•Ô‚·
+ * @retval	æ„ŸæŸ“ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ãƒ“ãƒƒãƒˆã§è¿”ã™
  */
 //============================================================================================
 u8	PokerusCheck(POKEPARTY *ppt,u8 check_bit)
@@ -5811,7 +5811,7 @@ u8	PokerusCheck(POKEPARTY *ppt,u8 check_bit)
 
 					count=PokeParty_GetPokeCount(ppt);
 
-					GF_ASSERT_MSG(count>pos,"POKEPARTY‚É“o˜^‚³‚ê‚Ä‚¢‚È‚¢ˆÊ’u‚ğQÆ‚µ‚æ‚¤‚Æ‚µ‚Ä‚Ü‚·\n");
+					GF_ASSERT_MSG(count>pos,"POKEPARTYã«ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ä½ç½®ã‚’å‚ç…§ã—ã‚ˆã†ã¨ã—ã¦ã¾ã™\n");
 				}
 #endif
 				pp=PokeParty_GetMemberPointer(ppt,pos);
@@ -5835,16 +5835,16 @@ u8	PokerusCheck(POKEPARTY *ppt,u8 check_bit)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ªƒ|ƒPƒ‹ƒX‚ÉŠ´õ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒNi‰ß‹‚ÉŠ´õ‚µ‚Ä‚¢‚½‚±‚Æ‚à‚İj
+ *	ãƒã‚±ãƒ¢ãƒ³ãŒãƒã‚±ãƒ«ã‚¹ã«æ„ŸæŸ“ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆéå»ã«æ„ŸæŸ“ã—ã¦ã„ãŸã“ã¨ã‚‚è¾¼ã¿ï¼‰
  *
- * @param[in]	ppt			Š´õ‚ğƒ`ƒFƒbƒN‚·‚éPOKEPARTY\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	checkbit	0bit–Ú‚ğONFPP[0]‚ğƒ`ƒFƒbƒN
+ * @param[in]	ppt			æ„ŸæŸ“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEPARTYæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	checkbit	0bitç›®ã‚’ONï¼šPP[0]ã‚’ãƒã‚§ãƒƒã‚¯
  *									:
  *									:
- *							5bit–Ú‚ğONFPP[6]‚ğƒ`ƒFƒbƒN
- *							0‚Ì‚Æ‚«‚ÍAPP[0]‚¾‚¯‚ğƒ`ƒFƒbƒN
+ *							5bitç›®ã‚’ONï¼šPP[6]ã‚’ãƒã‚§ãƒƒã‚¯
+ *							0ã®ã¨ãã¯ã€PP[0]ã ã‘ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @retval	Š´õ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ğƒrƒbƒg‚Å•Ô‚·
+ * @retval	æ„ŸæŸ“ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ãƒ“ãƒƒãƒˆã§è¿”ã™
  */
 //============================================================================================
 u8	PokerusedCheck(POKEPARTY *ppt,u8 check_bit)
@@ -5863,7 +5863,7 @@ u8	PokerusedCheck(POKEPARTY *ppt,u8 check_bit)
 
 					count=PokeParty_GetPokeCount(ppt);
 
-					GF_ASSERT_MSG(count>pos,"POKEPARTY‚É“o˜^‚³‚ê‚Ä‚¢‚È‚¢ˆÊ’u‚ğQÆ‚µ‚æ‚¤‚Æ‚µ‚Ä‚Ü‚·\n");
+					GF_ASSERT_MSG(count>pos,"POKEPARTYã«ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ä½ç½®ã‚’å‚ç…§ã—ã‚ˆã†ã¨ã—ã¦ã¾ã™\n");
 				}
 #endif
 				pp=PokeParty_GetMemberPointer(ppt,pos);
@@ -5887,10 +5887,10 @@ u8	PokerusedCheck(POKEPARTY *ppt,u8 check_bit)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‹ƒX‚Ì“ú”ƒJƒEƒ“ƒ^[‚ğƒfƒNƒŠƒƒ“ƒg‚·‚é
+ *	ãƒã‚±ãƒ«ã‚¹ã®æ—¥æ•°ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
  *
- * @param[in]	ppt		ƒ`ƒFƒbƒN‚·‚éPOKEPARTY\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	day		Œo‰ß“ú”
+ * @param[in]	ppt		ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEPARTYæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	day		çµŒéæ—¥æ•°
  *
  * @retval	none
  */
@@ -5926,9 +5926,9 @@ void	PokerusCounterDec(POKEPARTY *ppt,s32 day)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‹ƒX‚ÌŠ´õƒ`ƒFƒbƒNƒ‹[ƒ`ƒ“
+ *	ãƒã‚±ãƒ«ã‚¹ã®æ„ŸæŸ“ãƒã‚§ãƒƒã‚¯ãƒ«ãƒ¼ãƒãƒ³
  *
- * @param[in]	ppt	Š´õ‚ğƒ`ƒFƒbƒN‚·‚éPOKEPARTY\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppt	æ„ŸæŸ“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEPARTYæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokerusCatchCheck(POKEPARTY *ppt)
@@ -5967,11 +5967,11 @@ void	PokerusCatchCheck(POKEPARTY *ppt)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‹ƒX‚ÉŠ´õ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚±ãƒ«ã‚¹ã«æ„ŸæŸ“ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	pp	Š´õ‚ğƒ`ƒFƒbƒN‚·‚éPOKEMON_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	æ„ŸæŸ“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval FALSE:Š´õ‚µ‚Ä‚¢‚È‚¢@TRUE:Š´õ‚µ‚Ä‚¢‚é
+ * @retval FALSE:æ„ŸæŸ“ã—ã¦ã„ãªã„ã€€TRUE:æ„ŸæŸ“ã—ã¦ã„ã‚‹
  */
 //============================================================================================
 BOOL	PokeParaPokerusCheck(POKEMON_PARAM *pp)
@@ -5981,11 +5981,11 @@ BOOL	PokeParaPokerusCheck(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‹ƒX‚ÉŠ´õ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚±ãƒ«ã‚¹ã«æ„ŸæŸ“ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	ppp	Š´õ‚ğƒ`ƒFƒbƒN‚·‚éPOKEMON_PASO_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	æ„ŸæŸ“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEMON_PASO_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval FALSE:Š´õ‚µ‚Ä‚¢‚È‚¢@TRUE:Š´õ‚µ‚Ä‚¢‚é
+ * @retval FALSE:æ„ŸæŸ“ã—ã¦ã„ãªã„ã€€TRUE:æ„ŸæŸ“ã—ã¦ã„ã‚‹
  */
 //============================================================================================
 BOOL	PokePasoParaPokerusCheck(POKEMON_PASO_PARAM *ppp)
@@ -5995,11 +5995,11 @@ BOOL	PokePasoParaPokerusCheck(POKEMON_PASO_PARAM *ppp)
 
 //============================================================================================
 /**
- *	‰ß‹‚Éƒ|ƒPƒ‹ƒX‚ÉŠ´õ‚µ‚Ä‚¢‚½‚©ƒ`ƒFƒbƒN
+ *	éå»ã«ãƒã‚±ãƒ«ã‚¹ã«æ„ŸæŸ“ã—ã¦ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	pp	Š´õ‚ğƒ`ƒFƒbƒN‚·‚éPOKEMON_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	æ„ŸæŸ“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval FALSE:Š´õ‚µ‚Ä‚¢‚È‚¢@TRUE:Š´õ‚µ‚Ä‚¢‚½
+ * @retval FALSE:æ„ŸæŸ“ã—ã¦ã„ãªã„ã€€TRUE:æ„ŸæŸ“ã—ã¦ã„ãŸ
  */
 //============================================================================================
 BOOL	PokeParaPokerusedCheck(POKEMON_PARAM *pp)
@@ -6009,11 +6009,11 @@ BOOL	PokeParaPokerusedCheck(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	‰ß‹‚Éƒ|ƒPƒ‹ƒX‚ÉŠ´õ‚µ‚Ä‚¢‚½‚©ƒ`ƒFƒbƒN
+ *	éå»ã«ãƒã‚±ãƒ«ã‚¹ã«æ„ŸæŸ“ã—ã¦ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	ppp	Š´õ‚ğƒ`ƒFƒbƒN‚·‚éPOKEMON_PASO_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	æ„ŸæŸ“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEMON_PASO_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval FALSE:Š´õ‚µ‚Ä‚¢‚È‚¢@TRUE:Š´õ‚µ‚Ä‚¢‚½
+ * @retval FALSE:æ„ŸæŸ“ã—ã¦ã„ãªã„ã€€TRUE:æ„ŸæŸ“ã—ã¦ã„ãŸ
  */
 //============================================================================================
 BOOL	PokePasoParaPokerusedCheck(POKEMON_PASO_PARAM *ppp)
@@ -6022,7 +6022,7 @@ BOOL	PokePasoParaPokerusedCheck(POKEMON_PASO_PARAM *ppp)
 
 	pokerus=PokePasoParaGet(ppp,ID_PARA_pokerus,NULL);
 	
-	//¡A‚©‚©‚Á‚Ä‚¢‚éê‡‚ÍAFALSE
+	//ä»Šã€ã‹ã‹ã£ã¦ã„ã‚‹å ´åˆã¯ã€FALSE
 	if(pokerus&0x0f){
 		return FALSE;
 	}
@@ -6032,9 +6032,9 @@ BOOL	PokePasoParaPokerusedCheck(POKEMON_PASO_PARAM *ppp)
 
 //============================================================================================
 /**
- *	‘•”õ“¹‹ï‚ğ’²‚×‚ÄAƒAƒEƒX‚Ìform_no‚ğƒZƒbƒg
+ *	è£…å‚™é“å…·ã‚’èª¿ã¹ã¦ã€ã‚¢ã‚¦ã‚¹ã®form_noã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	pp	ƒZƒbƒg‚·‚éPOKEMON_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ã‚»ãƒƒãƒˆã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeParaAusuFormChange(POKEMON_PARAM *pp)
@@ -6044,9 +6044,9 @@ void	PokeParaAusuFormChange(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	‘•”õ“¹‹ï‚ğ’²‚×‚ÄAƒAƒEƒX‚Ìform_no‚ğƒZƒbƒg
+ *	è£…å‚™é“å…·ã‚’èª¿ã¹ã¦ã€ã‚¢ã‚¦ã‚¹ã®form_noã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	ppp	ƒZƒbƒg‚·‚éPOKEMON_PASO_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	ã‚»ãƒƒãƒˆã™ã‚‹POKEMON_PASO_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokePasoParaAusuFormChange(POKEMON_PASO_PARAM *ppp)
@@ -6068,11 +6068,11 @@ void	PokePasoParaAusuFormChange(POKEMON_PASO_PARAM *ppp)
 
 //============================================================================================
 /**
- *	‘•”õŒø‰Ê‚©‚çƒAƒEƒX‚Ìƒ^ƒCƒv‚ğæ“¾
+ *	è£…å‚™åŠ¹æœã‹ã‚‰ã‚¢ã‚¦ã‚¹ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- * @param[in]	item_param	ƒAƒCƒeƒ€‚Ì‘•”õŒø‰Ê
+ * @param[in]	item_param	ã‚¢ã‚¤ãƒ†ãƒ ã®è£…å‚™åŠ¹æœ
  *
- * @retval	ƒ^ƒCƒv
+ * @retval	ã‚¿ã‚¤ãƒ—
  */
 //============================================================================================
 u8	AusuTypeGet(u16	item_param)
@@ -6137,10 +6137,10 @@ u8	AusuTypeGet(u16	item_param)
 
 //============================================================================================
 /**
- *	‘•”õ“¹‹ï‚ğ’²‚×‚ÄAƒMƒ‰ƒeƒBƒi‚Ìform_no‚ğƒZƒbƒg
+ *	è£…å‚™é“å…·ã‚’èª¿ã¹ã¦ã€ã‚®ãƒ©ãƒ†ã‚£ãƒŠã®form_noã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	pp	ƒZƒbƒg‚·‚éPOKEMON_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @retval		ƒtƒHƒ‹ƒ€”Ô†(“n‚µ‚½pp‚ªƒMƒ‰ƒeƒBƒi‚Å‚È‚©‚Á‚½ê‡‚Í"-1")
+ * @param[in]	pp	ã‚»ãƒƒãƒˆã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval		ãƒ•ã‚©ãƒ«ãƒ ç•ªå·(æ¸¡ã—ãŸppãŒã‚®ãƒ©ãƒ†ã‚£ãƒŠã§ãªã‹ã£ãŸå ´åˆã¯"-1")
  */
 //============================================================================================
 int	PokeParaGirathinaFormChange(POKEMON_PARAM *pp)
@@ -6156,10 +6156,10 @@ int	PokeParaGirathinaFormChange(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	‘•”õ“¹‹ï‚ğ’²‚×‚ÄAƒMƒ‰ƒeƒBƒi‚Ìform_no‚ğƒZƒbƒg
+ *	è£…å‚™é“å…·ã‚’èª¿ã¹ã¦ã€ã‚®ãƒ©ãƒ†ã‚£ãƒŠã®form_noã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	ppp	ƒZƒbƒg‚·‚éPOKEMON_PASO_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @retval		ƒtƒHƒ‹ƒ€”Ô†(“n‚µ‚½pp‚ªƒMƒ‰ƒeƒBƒi‚Å‚È‚©‚Á‚½ê‡‚Í"-1")
+ * @param[in]	ppp	ã‚»ãƒƒãƒˆã™ã‚‹POKEMON_PASO_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval		ãƒ•ã‚©ãƒ«ãƒ ç•ªå·(æ¸¡ã—ãŸppãŒã‚®ãƒ©ãƒ†ã‚£ãƒŠã§ãªã‹ã£ãŸå ´åˆã¯"-1")
  */
 //============================================================================================
 int	PokePasoParaGirathinaFormChange(POKEMON_PASO_PARAM *ppp)
@@ -6182,11 +6182,11 @@ int	PokePasoParaGirathinaFormChange(POKEMON_PASO_PARAM *ppp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹­§“I‚ÉƒMƒ‰ƒeƒBƒi‚ğƒIƒŠƒWƒ“ƒtƒHƒ‹ƒ€‚É‚·‚é
+ * @brief   å¼·åˆ¶çš„ã«ã‚®ãƒ©ãƒ†ã‚£ãƒŠã‚’ã‚ªãƒªã‚¸ãƒ³ãƒ•ã‚©ãƒ«ãƒ ã«ã™ã‚‹
  *
- * @param   pp		ƒMƒ‰ƒeƒBƒiƒZƒbƒgÏ‚İ‚ÌPOKEMON_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pp		ã‚®ãƒ©ãƒ†ã‚£ãƒŠã‚»ãƒƒãƒˆæ¸ˆã¿ã®POKEMON_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ¦”j‚ê‚½¢ŠE—p
+ * â€»ç ´ã‚ŒãŸä¸–ç•Œç”¨
  */
 //--------------------------------------------------------------
 void PokeParaGirathinaOriginFormForceSet(POKEMON_PARAM *pp)
@@ -6202,11 +6202,11 @@ void PokeParaGirathinaOriginFormForceSet(POKEMON_PARAM *pp)
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿‚ÌƒMƒ‰ƒeƒBƒi‚ÌƒtƒHƒ‹ƒ€‚ğÄƒZƒbƒg‚·‚é
+ * @brief   æ‰‹æŒã¡ã®ã‚®ãƒ©ãƒ†ã‚£ãƒŠã®ãƒ•ã‚©ãƒ«ãƒ ã‚’å†ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   party			POKEPARTY‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   force_change	TRUE:è‚¿“¹‹ï‚ÉŠÖŒW‚È‚­AƒIƒŠƒWƒ“ƒtƒHƒ‹ƒ€‚É‚·‚é
- * 							FALSE:è‚¿“¹‹ï‚ğQÆ‚µ‚ÄA“KØ‚ÈƒtƒHƒ‹ƒ€‚É‚·‚é
+ * @param   party			POKEPARTYã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   force_change	TRUE:æ‰‹æŒã¡é“å…·ã«é–¢ä¿‚ãªãã€ã‚ªãƒªã‚¸ãƒ³ãƒ•ã‚©ãƒ«ãƒ ã«ã™ã‚‹
+ * 							FALSE:æ‰‹æŒã¡é“å…·ã‚’å‚ç…§ã—ã¦ã€é©åˆ‡ãªãƒ•ã‚©ãƒ«ãƒ ã«ã™ã‚‹
  */
 //--------------------------------------------------------------
 void PokePartyGirathinaFormUpdate(POKEPARTY *party, int force_change)
@@ -6228,9 +6228,9 @@ void PokePartyGirathinaFormUpdate(POKEPARTY *party, int force_change)
 
 //============================================================================================
 /**
- *	ƒVƒFƒCƒ~‚Ìform_no‚ğƒZƒbƒg
+ *	ã‚·ã‚§ã‚¤ãƒŸã®form_noã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	pp	ƒZƒbƒg‚·‚éPOKEMON_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp	ã‚»ãƒƒãƒˆã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeParaSheimiFormChange(POKEMON_PARAM *pp, int form_no)
@@ -6241,9 +6241,9 @@ void	PokeParaSheimiFormChange(POKEMON_PARAM *pp, int form_no)
 
 //============================================================================================
 /**
- *	ƒVƒFƒCƒ~‚Ìform_no‚ğƒZƒbƒg
+ *	ã‚·ã‚§ã‚¤ãƒŸã®form_noã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	ppp	ƒZƒbƒg‚·‚éPOKEMON_PASO_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp	ã‚»ãƒƒãƒˆã™ã‚‹POKEMON_PASO_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokePasoParaSheimiFormChange(POKEMON_PASO_PARAM *ppp, int form_no)
@@ -6261,11 +6261,11 @@ void	PokePasoParaSheimiFormChange(POKEMON_PASO_PARAM *ppp, int form_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   uƒOƒ‰ƒVƒfƒA‚Ì‚Í‚Èvg—p‰Â”\ƒ`ƒFƒbƒN
+ * @brief   ã€Œã‚°ãƒ©ã‚·ãƒ‡ã‚¢ã®ã¯ãªã€ä½¿ç”¨å¯èƒ½ãƒã‚§ãƒƒã‚¯
  *
- * @param   pp		‘ÎÛ‚Ìƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pp		å¯¾è±¡ã®ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:g—p‰Â”\B@FALSE:•s‰Â
+ * @retval  TRUE:ä½¿ç”¨å¯èƒ½ã€‚ã€€FALSE:ä¸å¯
  */
 //--------------------------------------------------------------
 BOOL GrashideaFeasibleCheck(POKEMON_PARAM *pp)
@@ -6277,14 +6277,14 @@ BOOL GrashideaFeasibleCheck(POKEMON_PARAM *pp)
 	form_no = PokeParaGet(pp, ID_PARA_form_no, NULL);
 	condition = PokeParaGet(pp, ID_PARA_condition, NULL);
 	hp = PokeParaGet(pp, ID_PARA_hp, NULL);
-	//ƒCƒxƒ“ƒg”z•z‚ÌƒVƒFƒCƒ~‚Å‚È‚¢‚ÆƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒWo—ˆ‚È‚¢
+	//ã‚¤ãƒ™ãƒ³ãƒˆé…å¸ƒã®ã‚·ã‚§ã‚¤ãƒŸã§ãªã„ã¨ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸å‡ºæ¥ãªã„
 	event_get_flag = PokeParaGet(pp, ID_PARA_event_get_flag, NULL);
 	
 	GF_RTC_GetTime(&time);
 	
 	if(monsno == MONSNO_EURISU && form_no == 0 && hp > 0 && event_get_flag == 1
-			&& ((condition & CONDITION_KOORI) == 0)	//•Xó‘Ô‚É‚È‚Á‚Ä‚¢‚È‚¢
-			&& (time.hour >= 4 && time.hour < 20)){	//AM4:00 ` PM19:59‚Ü‚Å‚ªƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‰Â”\ 
+			&& ((condition & CONDITION_KOORI) == 0)	//æ°·çŠ¶æ…‹ã«ãªã£ã¦ã„ãªã„
+			&& (time.hour >= 4 && time.hour < 20)){	//AM4:00 ã€œ PM19:59ã¾ã§ãŒãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸å¯èƒ½ 
 		return TRUE;
 	}
 	return FALSE;
@@ -6292,9 +6292,9 @@ BOOL GrashideaFeasibleCheck(POKEMON_PARAM *pp)
 
 //--------------------------------------------------------------
 /**
- * @brief   POKEPARTY‚ÌƒVƒFƒCƒ~‚ğ‘S‚Äƒm[ƒ}ƒ‹ƒtƒHƒ‹ƒ€‚É‚·‚é
+ * @brief   POKEPARTYã®ã‚·ã‚§ã‚¤ãƒŸã‚’å…¨ã¦ãƒãƒ¼ãƒãƒ«ãƒ•ã‚©ãƒ«ãƒ ã«ã™ã‚‹
  *
- * @param   ppt		POKEPARTY‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ppt		POKEPARTYã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void PokePartySheimiNormalFormChange(POKEPARTY *ppt)
@@ -6316,42 +6316,42 @@ void PokePartySheimiNormalFormChange(POKEPARTY *ppt)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚ª–é‚É•Ï‚í‚Á‚½ƒ^ƒCƒ~ƒ“ƒO‚È‚ç‚ÎAè‚¿‚ÌƒVƒFƒCƒ~‚ğ‘S‚Äƒm[ƒ}ƒ‹ƒtƒHƒ‹ƒ€‚É‚·‚é
+ * @brief   æ™‚åˆ»ãŒå¤œã«å¤‰ã‚ã£ãŸã‚¿ã‚¤ãƒŸãƒ³ã‚°ãªã‚‰ã°ã€æ‰‹æŒã¡ã®ã‚·ã‚§ã‚¤ãƒŸã‚’å…¨ã¦ãƒãƒ¼ãƒãƒ«ãƒ•ã‚©ãƒ«ãƒ ã«ã™ã‚‹
  *
- * @param   ppt				POKEPARTY‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   min_diff		Œo‰ß‚µ‚½ŠÔ(•ª’PˆÊ)
- * @param   now				Œ»İŠÔ
+ * @param   ppt				POKEPARTYã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   min_diff		çµŒéã—ãŸæ™‚é–“(åˆ†å˜ä½)
+ * @param   now				ç¾åœ¨æ™‚é–“
  *
- * @retval  TRUE:ƒm[ƒ}ƒ‹ƒtƒHƒ‹ƒ€‚Ö‚Ì•ÏX‚ğs‚Á‚½
+ * @retval  TRUE:ãƒãƒ¼ãƒãƒ«ãƒ•ã‚©ãƒ«ãƒ ã¸ã®å¤‰æ›´ã‚’è¡Œã£ãŸ
  */
 //--------------------------------------------------------------
 BOOL PokePartySheimiNormalFormChange_TimeUpdate(POKEPARTY *ppt, int min_diff, const RTCTime * now)
 {
 	s32 hour, min_pos;
 	
-	//Œ»İ‚ªNG‚Ìê‡(20:00 ` 27:59)
+	//ç¾åœ¨ãŒNGæ™‚åˆ»ã®å ´åˆ(20:00 ã€œ 27:59)
 	if(now->hour >= 20 || now->hour < 4){
 		hour = now->hour;
 		if(hour < 4){
-			hour += 24;		//—á)[–é2‚È‚ç‚Î26‚É•ÏŠ·‚·‚é
+			hour += 24;		//ä¾‹)æ·±å¤œ2æ™‚ãªã‚‰ã°26æ™‚ã«å¤‰æ›ã™ã‚‹
 		}
-		hour -= 20;	//20‚©‚ç‚ÌƒIƒtƒZƒbƒg‚É‚·‚é
-		min_pos = now->minute + hour * 60;	//20‚©‚ç‰½•ªŒo‰ß‚µ‚Ä‚¢‚é‚©
+		hour -= 20;	//20æ™‚ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã«ã™ã‚‹
+		min_pos = now->minute + hour * 60;	//20æ™‚ã‹ã‚‰ä½•åˆ†çµŒéã—ã¦ã„ã‚‹ã‹
 
-		min_diff++;	//•b”‚Ì’[”‚ğl—¶‚µ‚ÄØ‚èã‚°(’[”‚ª–³‚¢‚Ì‚ª1/60‚È‚Ì‚ÅƒfƒtƒH‚ÅØ‚èã‚°
+		min_diff++;	//ç§’æ•°ã®ç«¯æ•°ã‚’è€ƒæ…®ã—ã¦åˆ‡ã‚Šä¸Šã’(ç«¯æ•°ãŒç„¡ã„ã®ãŒ1/60ãªã®ã§ãƒ‡ãƒ•ã‚©ã§åˆ‡ã‚Šä¸Šã’
 
 		if(min_pos < min_diff){
-			//OS_TPrintf("ƒVƒFƒCƒ~ form XV\n");
+			//OS_TPrintf("ã‚·ã‚§ã‚¤ãƒŸ form æ›´æ–°\n");
 			PokePartySheimiNormalFormChange(ppt);
 			return TRUE;
 		}
 		return FALSE;
 	}
 	else{
-	//Œ»İ‚ªOK‚Ìê‡(4:00 ` 19:59)‚Ímin_diff‚ªNG‚ğ‚Ü‚½‚¢‚Å‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
-		min_pos = now->minute + (now->hour - 4) * 60;	//4‚©‚ç‰½•ªŒo‰ß‚µ‚Ä‚¢‚é‚©
+	//ç¾åœ¨ãŒOKæ™‚åˆ»ã®å ´åˆ(4:00 ã€œ 19:59)ã¯min_diffãŒNGæ™‚åˆ»ã‚’ã¾ãŸã„ã§ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
+		min_pos = now->minute + (now->hour - 4) * 60;	//4æ™‚ã‹ã‚‰ä½•åˆ†çµŒéã—ã¦ã„ã‚‹ã‹
 		if(min_pos < min_diff){
-			//OS_TPrintf("ƒVƒFƒCƒ~ form XV\n");
+			//OS_TPrintf("ã‚·ã‚§ã‚¤ãƒŸ form æ›´æ–°\n");
 			PokePartySheimiNormalFormChange(ppt);
 			return TRUE;
 		}
@@ -6361,15 +6361,15 @@ BOOL PokePartySheimiNormalFormChange_TimeUpdate(POKEPARTY *ppt, int min_diff, co
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒgƒ€‚ğƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚·‚é
+ * @brief   ãƒ­ãƒˆãƒ ã‚’ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã™ã‚‹
  *
- * @param   pp					ƒZƒbƒg‚·‚éPOKEMON_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   new_form_no			V‚µ‚¢ƒtƒHƒ‹ƒ€”Ô†
- * @param   del_waza_pos		‘Î‰‹Z‚ğŠo‚¦‚³‚¹‚éˆ×A‹Z‚ğíœ‚·‚éˆÊ’u
- * 								(‘Î‰‹Z‚Ìíœ‚ªs‚í‚ê‚½ê‡A‚»‚±‚ÉV‚µ‚¢‘Î‰‹Z‚ğ·‚µ‚Ş)
+ * @param   pp					ã‚»ãƒƒãƒˆã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   new_form_no			æ–°ã—ã„ãƒ•ã‚©ãƒ«ãƒ ç•ªå·
+ * @param   del_waza_pos		å¯¾å¿œæŠ€ã‚’è¦šãˆã•ã›ã‚‹ç‚ºã€æŠ€ã‚’å‰Šé™¤ã™ã‚‹ä½ç½®
+ * 								(å¯¾å¿œæŠ€ã®å‰Šé™¤ãŒè¡Œã‚ã‚ŒãŸå ´åˆã€ãã“ã«æ–°ã—ã„å¯¾å¿œæŠ€ã‚’å·®ã—è¾¼ã‚€)
  *
- * @retval  TRUE:ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW¬Œ÷
- * @retval	FALSE:ƒƒgƒ€‚Å‚Í‚È‚¢
+ * @retval  TRUE:ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸æˆåŠŸ
+ * @retval	FALSE:ãƒ­ãƒˆãƒ ã§ã¯ãªã„
  */
 //--------------------------------------------------------------
 BOOL PokeParaRotomuFormChange(POKEMON_PARAM *pp, int new_form_no, int del_waza_pos)
@@ -6396,18 +6396,18 @@ BOOL PokeParaRotomuFormChange(POKEMON_PARAM *pp, int new_form_no, int del_waza_p
 
 		new_wazano = pura_waza_tbl[new_form_no];
 		
-		//‘Î‰‹Z‚ğ‘S‚Ä–Y‚ê‚³‚¹‚é
+		//å¯¾å¿œæŠ€ã‚’å…¨ã¦å¿˜ã‚Œã•ã›ã‚‹
 		for(i = 0; i < 4; i++){
 			wazano = PokeParaGet(pp, ID_PARA_waza1 + i, NULL);
 			for(s = 1; s < NELEMS(pura_waza_tbl); s++){
 				if(wazano != 0 && wazano == pura_waza_tbl[s]){
 					if(new_wazano != 0){
-						//V‚µ‚¢ƒtƒHƒ‹ƒ€‚Ì‹Z‚Æ“ü‚ê‘Ö‚¦‚é
+						//æ–°ã—ã„ãƒ•ã‚©ãƒ«ãƒ ã®æŠ€ã¨å…¥ã‚Œæ›¿ãˆã‚‹
 						PokeWazaSetPosPPCountClear(pp, new_wazano, i);
 						new_wazano = 0;
 						break;
 					}
-					else{	//‹Z–Y‚ê
+					else{	//æŠ€å¿˜ã‚Œ
 						PokeParaWazaDelPos(pp, i);
 						i--;
 						break;
@@ -6416,12 +6416,12 @@ BOOL PokeParaRotomuFormChange(POKEMON_PARAM *pp, int new_form_no, int del_waza_p
 			}
 		}
 		
-		//‘Î‰‹Z‚ğŠo‚¦‚Ä‚¢‚È‚©‚Á‚½ê‡‚Í‚±‚±‚Å‹Z“ü‚ê‘Ö‚¦
+		//å¯¾å¿œæŠ€ã‚’è¦šãˆã¦ã„ãªã‹ã£ãŸå ´åˆã¯ã“ã“ã§æŠ€å…¥ã‚Œæ›¿ãˆ
 		if(new_wazano != 0){
 			for(i = 0; i < 4; i++){
 				if(PokeParaGet(pp, ID_PARA_waza1 + i, NULL) == 0){
 					PokeWazaSetPosPPCountClear(pp, new_wazano, i);
-					break;										//BTS ƒVƒiƒŠƒI 124 ‘Î‰
+					break;										//BTS ã‚·ãƒŠãƒªã‚ª 124 å¯¾å¿œ
 				}
 			}
 			if(i == 4){
@@ -6429,24 +6429,24 @@ BOOL PokeParaRotomuFormChange(POKEMON_PARAM *pp, int new_form_no, int del_waza_p
 			}
 		}
 		
-		//‘Î‰‹Z‚ğ–Y‚ê‚³‚¹‚½Œ‹‰Êè‚¿‚Ì‹Z‚ª0‚É‚È‚Á‚Ä‚¢‚½‚ç“d‹@ƒVƒ‡ƒbƒN‚ğŠo‚¦‚³‚¹‚é
+		//å¯¾å¿œæŠ€ã‚’å¿˜ã‚Œã•ã›ãŸçµæœæ‰‹æŒã¡ã®æŠ€ãŒ0ã«ãªã£ã¦ã„ãŸã‚‰é›»æ©Ÿã‚·ãƒ§ãƒƒã‚¯ã‚’è¦šãˆã•ã›ã‚‹
 		if(PokeParaGet(pp, ID_PARA_waza1, NULL) == 0){
 			PokeWazaSetPosPPCountClear(pp, WAZANO_DENKISYOKKU, 0);
 		}
 	}
 	
 	PokeParaPut(pp,ID_PARA_form_no,&new_form_no);
-	PokeParaSpeabiSet(pp);	//“Á«ÄƒZƒbƒg
-	PokeParaCalc(pp);		//ƒp[ƒ\ƒiƒ‹ÄŒvZ
+	PokeParaSpeabiSet(pp);	//ç‰¹æ€§å†ã‚»ãƒƒãƒˆ
+	PokeParaCalc(pp);		//ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«å†è¨ˆç®—
 	return TRUE;
 }
 
 //============================================================================================
 /**
- *	‹ZŠo‚¦ƒe[ƒuƒ‹ƒf[ƒ^‚ğæ“¾
+ *	æŠ€è¦šãˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	monsno		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[out]	wot		æ“¾‚µ‚½‹ZŠo‚¦ƒe[ƒuƒ‹‚ÌŠi”[æ
+ * @param[in]	monsno		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[out]	wot		å–å¾—ã—ãŸæŠ€è¦šãˆãƒ†ãƒ¼ãƒ–ãƒ«ã®æ ¼ç´å…ˆ
  */
 //============================================================================================
 void	PokeWazaOboeDataGet(int monsno,u16 *wot)
@@ -6456,11 +6456,11 @@ void	PokeWazaOboeDataGet(int monsno,u16 *wot)
 
 //============================================================================================
 /**
- *	‹ZŠo‚¦ƒe[ƒuƒ‹ƒf[ƒ^‚ğæ“¾
+ *	æŠ€è¦šãˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	monsno		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	form_no		æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
- * @param[out]	wot			æ“¾‚µ‚½‹ZŠo‚¦ƒe[ƒuƒ‹‚ÌŠi”[æ
+ * @param[in]	monsno		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	form_no		å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param[out]	wot			å–å¾—ã—ãŸæŠ€è¦šãˆãƒ†ãƒ¼ãƒ–ãƒ«ã®æ ¼ç´å…ˆ
  */
 //============================================================================================
 void	PokeFormNoWazaOboeDataGet(int monsno,int form_no,u16 *wot)
@@ -6472,31 +6472,31 @@ void	PokeFormNoWazaOboeDataGet(int monsno,int form_no,u16 *wot)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“–Â‚«ºÄ¶i‚Øƒ‰ƒbƒv”»’è‚ ‚èj
+ *	ãƒã‚±ãƒ¢ãƒ³é³´ãå£°å†ç”Ÿï¼ˆãºãƒ©ãƒƒãƒ—åˆ¤å®šã‚ã‚Šï¼‰
  *
- * @param[in]	p_voice		‚Øƒ‰ƒbƒv‚Ì–Â‚«ºƒf[ƒ^‚Ì“ü‚Á‚½ƒ[ƒN
- * @param[in]	voice		Voiceƒpƒ^[ƒ“
- * @param[in]	monsno		–Â‚©‚¹‚éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param[in]	form_no		ƒtƒHƒ‹ƒ€”Ô†
- * @param[in]	pan			ƒpƒ“ƒf[ƒ^
- * @param[in]	vol			ƒ{ƒŠƒ…[ƒ€ƒf[ƒ^
- * @param[in]	flag		‚Ö‚ñ‚µ‚ñƒtƒ‰ƒO
- * @param[in]	heapID		ƒq[ƒvID
+ * @param[in]	p_voice		ãºãƒ©ãƒƒãƒ—ã®é³´ãå£°ãƒ‡ãƒ¼ã‚¿ã®å…¥ã£ãŸãƒ¯ãƒ¼ã‚¯
+ * @param[in]	voice		Voiceãƒ‘ã‚¿ãƒ¼ãƒ³
+ * @param[in]	monsno		é³´ã‹ã›ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	form_no		ãƒ•ã‚©ãƒ«ãƒ ç•ªå·
+ * @param[in]	pan			ãƒ‘ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @param[in]	vol			ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+ * @param[in]	flag		ã¸ã‚“ã—ã‚“ãƒ•ãƒ©ã‚°
+ * @param[in]	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //============================================================================================
 void	PokeVoicePlaySet(PERAPVOICE *p_voice,int voice,u16 monsno,int form_no,int pan,int vol,int flag,int heapID)
 {
 	if(monsno==MONSNO_PERAPPU){
-		//–Â‚«ºÄ¶ƒpƒ^[ƒ“‚ª‹ZŒn‚Ì‚ÍƒfƒtƒHƒ‹ƒg‚Ì–Â‚«º‚ğÄ¶‚·‚é‚æ‚¤‚É‚·‚éI
+		//é³´ãå£°å†ç”Ÿãƒ‘ã‚¿ãƒ¼ãƒ³ãŒæŠ€ç³»ã®æ™‚ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®é³´ãå£°ã‚’å†ç”Ÿã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
 		if( Snd_PerapVoicePMVoiceTypeCheck( voice ) == FALSE ){
-			Snd_PerapVoiceDefaultFlagSet( TRUE );		//default‚Ì–Â‚«º‚ğÄ¶‚·‚éƒtƒ‰ƒOON
+			Snd_PerapVoiceDefaultFlagSet( TRUE );		//defaultã®é³´ãå£°ã‚’å†ç”Ÿã™ã‚‹ãƒ•ãƒ©ã‚°ON
 			Snd_PMVoicePlayEx(voice,monsno,pan,vol,heapID,form_no);
 		}else{
-			//‚Ö‚ñ‚µ‚ñƒyƒ‰ƒbƒv‚ÍAdefault‚Ì–Â‚«º‚ğÄ¶
+			//ã¸ã‚“ã—ã‚“ãƒšãƒ©ãƒƒãƒ—ã¯ã€defaultã®é³´ãå£°ã‚’å†ç”Ÿ
 			if(flag){
-				Snd_PerapVoiceDefaultFlagSet( TRUE );		//default‚Ì–Â‚«º‚ğÄ¶‚·‚éƒtƒ‰ƒOON
+				Snd_PerapVoiceDefaultFlagSet( TRUE );		//defaultã®é³´ãå£°ã‚’å†ç”Ÿã™ã‚‹ãƒ•ãƒ©ã‚°ON
 			}
-			Snd_PerapVoicePlay(p_voice,NULL,vol,pan);	//˜^‰¹‚µ‚½–Â‚«º‚ğÄ¶
+			Snd_PerapVoicePlay(p_voice,NULL,vol,pan);	//éŒ²éŸ³ã—ãŸé³´ãå£°ã‚’å†ç”Ÿ
 		}
 
 	}
@@ -6508,12 +6508,12 @@ void	PokeVoicePlaySet(PERAPVOICE *p_voice,int voice,u16 monsno,int form_no,int p
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒEƒFƒC‚Æ‚ ‚è‚Øƒ‰ƒbƒvVer
+ * @brief	ã‚¦ã‚§ã‚¤ã¨ã‚ã‚Šãºãƒ©ãƒƒãƒ—Ver
  *
  * @param	p_voice	
  * @param	voice	
  * @param	monsno	
- * @param	form_no		ƒtƒHƒ‹ƒ€”Ô†
+ * @param	form_no		ãƒ•ã‚©ãƒ«ãƒ ç•ªå·
  * @param	pan	
  * @param	vol	
  * @param	flag	
@@ -6527,16 +6527,16 @@ void	PokeVoicePlaySet(PERAPVOICE *p_voice,int voice,u16 monsno,int form_no,int p
 void	PokeVoiceWaitPlaySet(PERAPVOICE *p_voice,int voice,u16 monsno,int form_no,int pan,int vol,int flag,int heapID, u8 wait)
 {
 	if(monsno==MONSNO_PERAPPU){
-		//–Â‚«ºÄ¶ƒpƒ^[ƒ“‚ª‹ZŒn‚Ì‚ÍƒfƒtƒHƒ‹ƒg‚Ì–Â‚«º‚ğÄ¶‚·‚é‚æ‚¤‚É‚·‚éI
+		//é³´ãå£°å†ç”Ÿãƒ‘ã‚¿ãƒ¼ãƒ³ãŒæŠ€ç³»ã®æ™‚ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®é³´ãå£°ã‚’å†ç”Ÿã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
 		if( Snd_PerapVoicePMVoiceTypeCheck( voice ) == FALSE ){
-			Snd_PerapVoiceDefaultFlagSet( TRUE );		//default‚Ì–Â‚«º‚ğÄ¶‚·‚éƒtƒ‰ƒOON
+			Snd_PerapVoiceDefaultFlagSet( TRUE );		//defaultã®é³´ãå£°ã‚’å†ç”Ÿã™ã‚‹ãƒ•ãƒ©ã‚°ON
 			Snd_PMVoiceWaitPlayEx(voice,monsno,pan,vol,heapID,wait,form_no);
 		}else{
-			//‚Ö‚ñ‚µ‚ñƒyƒ‰ƒbƒv‚ÍAdefault‚Ì–Â‚«º‚ğÄ¶
+			//ã¸ã‚“ã—ã‚“ãƒšãƒ©ãƒƒãƒ—ã¯ã€defaultã®é³´ãå£°ã‚’å†ç”Ÿ
 			if(flag){
-				Snd_PerapVoiceDefaultFlagSet( TRUE );		//default‚Ì–Â‚«º‚ğÄ¶‚·‚éƒtƒ‰ƒOON
+				Snd_PerapVoiceDefaultFlagSet( TRUE );		//defaultã®é³´ãå£°ã‚’å†ç”Ÿã™ã‚‹ãƒ•ãƒ©ã‚°ON
 			}
-			Snd_PerapVoiceWaitPlay(p_voice,NULL,vol,pan, wait);	//˜^‰¹‚µ‚½–Â‚«º‚ğÄ¶
+			Snd_PerapVoiceWaitPlay(p_voice,NULL,vol,pan, wait);	//éŒ²éŸ³ã—ãŸé³´ãå£°ã‚’å†ç”Ÿ
 		}
 
 	}
@@ -6547,7 +6547,7 @@ void	PokeVoiceWaitPlaySet(PERAPVOICE *p_voice,int voice,u16 monsno,int form_no,i
 
 //--------------------------------------------------------------
 /**
- * @brief   Snd_PMVoicePlay‚ğpp‚ÅŒÄ‚Ño‚·‚æ‚¤‚Éƒ‰ƒbƒp‚µ‚½‚à‚Ì
+ * @brief   Snd_PMVoicePlayã‚’ppã§å‘¼ã³å‡ºã™ã‚ˆã†ã«ãƒ©ãƒƒãƒ‘ã—ãŸã‚‚ã®
  *
  * @param   pp		
  *
@@ -6565,7 +6565,7 @@ BOOL PokeVoicePlay_PP(POKEMON_PARAM *pp)
 
 //--------------------------------------------------------------
 /**
- * @brief   PokeVoicePlayEx_PP‚ğpp‚ÅŒÄ‚Ño‚·‚æ‚¤‚Éƒ‰ƒbƒp‚µ‚½‚à‚Ì
+ * @brief   PokeVoicePlayEx_PPã‚’ppã§å‘¼ã³å‡ºã™ã‚ˆã†ã«ãƒ©ãƒƒãƒ‘ã—ãŸã‚‚ã®
  *
  * @param   pp		
  *
@@ -6582,7 +6582,7 @@ BOOL PokeVoicePlayEx_PP(int ptn, POKEMON_PARAM *pp, int pan, int vol, int heap_i
 
 //--------------------------------------------------------------
 /**
- * @brief   PokeVoicePlayWaitPlay_PP‚ğpp‚ÅŒÄ‚Ño‚·‚æ‚¤‚Éƒ‰ƒbƒp‚µ‚½‚à‚Ì
+ * @brief   PokeVoicePlayWaitPlay_PPã‚’ppã§å‘¼ã³å‡ºã™ã‚ˆã†ã«ãƒ©ãƒƒãƒ‘ã—ãŸã‚‚ã®
  *
  * @param   pp		
  *
@@ -6599,7 +6599,7 @@ BOOL PokeVoicePlayWaitPlay_PP(POKEMON_PARAM *pp, u8 wait)
 
 //--------------------------------------------------------------
 /**
- * @brief   PokeVoicePlayWaitPlayEx_PP‚ğpp‚ÅŒÄ‚Ño‚·‚æ‚¤‚Éƒ‰ƒbƒp‚µ‚½‚à‚Ì
+ * @brief   PokeVoicePlayWaitPlayEx_PPã‚’ppã§å‘¼ã³å‡ºã™ã‚ˆã†ã«ãƒ©ãƒƒãƒ‘ã—ãŸã‚‚ã®
  *
  * @param   pp		
  *
@@ -6616,14 +6616,14 @@ void PokeVoicePlayWaitPlayEx_PP(int ptn, POKEMON_PARAM *pp, int pan, int vol, in
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“•ßŠlî•ñ‚ğŠi”[
+ *	ãƒã‚±ãƒ¢ãƒ³æ•ç²æƒ…å ±ã‚’æ ¼ç´
  *
- * @param[in]	pp			•ßŠlî•ñ‚ğŠi”[‚·‚éPOKEMON_PARAM\‘¢‘Ì
- * @param[in]	status		my_statusiIDNo‚Æe–¼‚Ìæ“¾‚É•K—vj
- * @param[in]	ball		•ßŠlƒ{[ƒ‹
- * @param[in]	place		•ßŠlêŠƒR[ƒh
- * @param[in]	ground_id	•ßŠlêŠƒAƒgƒŠƒrƒ…[ƒg
- * @param[in]	heapID		ƒq[ƒvIDie–¼Ši”[‚Ìƒoƒbƒtƒ@¶¬‚É•K—vj
+ * @param[in]	pp			æ•ç²æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“
+ * @param[in]	status		my_statusï¼ˆIDNoã¨è¦ªåã®å–å¾—ã«å¿…è¦ï¼‰
+ * @param[in]	ball		æ•ç²ãƒœãƒ¼ãƒ«
+ * @param[in]	place		æ•ç²å ´æ‰€ã‚³ãƒ¼ãƒ‰
+ * @param[in]	ground_id	æ•ç²å ´æ‰€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @param[in]	heapID		ãƒ’ãƒ¼ãƒ—IDï¼ˆè¦ªåæ ¼ç´æ™‚ã®ãƒãƒƒãƒ•ã‚¡ç”Ÿæˆã«å¿…è¦ï¼‰
  */
 //============================================================================================
 void	PokeParaGetInfoSet(POKEMON_PARAM *pp,MYSTATUS *status,int ball,int place,int ground_id,int heapID)
@@ -6632,7 +6632,7 @@ void	PokeParaGetInfoSet(POKEMON_PARAM *pp,MYSTATUS *status,int ball,int place,in
 
 	PokePasoParaGetInfoSet(&pp->ppp,status,ball,place,ground_id,heapID);
 
-	//•ßŠl‚µ‚½ƒ{[ƒ‹‚ªƒq[ƒ‹ƒ{[ƒ‹‚È‚ç‚ÎAHP‘S‰õAó‘ÔˆÙí‚à‰ñ•œ‚·‚é
+	//æ•ç²ã—ãŸãƒœãƒ¼ãƒ«ãŒãƒ’ãƒ¼ãƒ«ãƒœãƒ¼ãƒ«ãªã‚‰ã°ã€HPå…¨å¿«ã€çŠ¶æ…‹ç•°å¸¸ã‚‚å›å¾©ã™ã‚‹
 	if(ball==ITEM_HIIRUBOORU){
 		data=PokeParaGet(pp,ID_PARA_hpmax,NULL);
 		PokeParaPut(pp,ID_PARA_hp,&data);
@@ -6643,14 +6643,14 @@ void	PokeParaGetInfoSet(POKEMON_PARAM *pp,MYSTATUS *status,int ball,int place,in
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“•ßŠlî•ñ‚ğŠi”[
+ *	ãƒã‚±ãƒ¢ãƒ³æ•ç²æƒ…å ±ã‚’æ ¼ç´
  *
- * @param[in]	ppp			•ßŠlî•ñ‚ğŠi”[‚·‚éPOKEMON_PASO_PARAM\‘¢‘Ì
- * @param[in]	status		my_statusiIDNo‚Æe–¼‚Ìæ“¾‚É•K—vj
- * @param[in]	ball		•ßŠlƒ{[ƒ‹
- * @param[in]	place		•ßŠlêŠƒR[ƒh
- * @param[in]	ground_id	•ßŠlêŠƒAƒgƒŠƒrƒ…[ƒg
- * @param[in]	heapID		ƒq[ƒvIDie–¼Ši”[‚Ìƒoƒbƒtƒ@¶¬‚É•K—vj
+ * @param[in]	ppp			æ•ç²æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹POKEMON_PASO_PARAMæ§‹é€ ä½“
+ * @param[in]	status		my_statusï¼ˆIDNoã¨è¦ªåã®å–å¾—ã«å¿…è¦ï¼‰
+ * @param[in]	ball		æ•ç²ãƒœãƒ¼ãƒ«
+ * @param[in]	place		æ•ç²å ´æ‰€ã‚³ãƒ¼ãƒ‰
+ * @param[in]	ground_id	æ•ç²å ´æ‰€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @param[in]	heapID		ãƒ’ãƒ¼ãƒ—IDï¼ˆè¦ªåæ ¼ç´æ™‚ã®ãƒãƒƒãƒ•ã‚¡ç”Ÿæˆã«å¿…è¦ï¼‰
  */
 //============================================================================================
 void	PokePasoParaGetInfoSet(POKEMON_PASO_PARAM *ppp,MYSTATUS *status,int ball,int place,int ground_id,int heapID)
@@ -6660,53 +6660,53 @@ void	PokePasoParaGetInfoSet(POKEMON_PASO_PARAM *ppp,MYSTATUS *status,int ball,in
 
 //	GF_RTC_GetDate(&rtc_d);
 
-	//•ßŠlŠÔ‚ğƒZƒbƒg
+	//æ•ç²æ™‚é–“ã‚’ã‚»ãƒƒãƒˆ
 //	PokePasoParaPut(ppp,ID_PARA_get_year,&rtc_d.year);
 //	PokePasoParaPut(ppp,ID_PARA_get_month,&rtc_d.month);
 //	PokePasoParaPut(ppp,ID_PARA_get_day,&rtc_d.day);
 
-	//•ßŠl’nˆæ‚ğƒZƒbƒg
+	//æ•ç²åœ°åŸŸã‚’ã‚»ãƒƒãƒˆ
 //	PokePasoParaPut(ppp,ID_PARA_get_place,&place);
 
-	//•ßŠlƒŒƒxƒ‹‚ğƒZƒbƒg
+	//æ•ç²ãƒ¬ãƒ™ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 //	data=PokePasoParaGet(ppp,ID_PARA_level,NULL);
 //	PokePasoParaPut(ppp,ID_PARA_get_level,&data);
 
-	//IDNo‚ğƒZƒbƒg
+	//IDNoã‚’ã‚»ãƒƒãƒˆ
 //	data=MyStatus_GetID(status);
 //	PokePasoParaPut(ppp,ID_PARA_id_no,&data);
 
-	//e‚Ì«•Ê‚ğƒZƒbƒg
+	//è¦ªã®æ€§åˆ¥ã‚’ã‚»ãƒƒãƒˆ
 //	data=MyStatus_GetMySex(status);
 //	PokePasoParaPut(ppp,ID_PARA_oyasex,&data);
 
-	//e–¼‚ğƒZƒbƒg
+	//è¦ªåã‚’ã‚»ãƒƒãƒˆ
 //	str=MyStatus_CreateNameString(status,heapID);
 //	PokePasoParaPut(ppp,ID_PARA_oyaname_buf,str);
 //	STRBUF_Delete(str);
 
-	//ã‚Ì€–Ú‚ğˆêŠ‡‚µ‚ÄŠi”[‚·‚éŠÖ”‚É’u‚«Š·‚¦
+	//ä¸Šã®é …ç›®ã‚’ä¸€æ‹¬ã—ã¦æ ¼ç´ã™ã‚‹é–¢æ•°ã«ç½®ãæ›ãˆ
 	TrainerMemoSetPPP(ppp,status,TRMEMO_POKE_PLACESET,place,heapID);
 
-	//•ßŠlƒJƒZƒbƒgƒo[ƒWƒ‡ƒ“‚ğƒZƒbƒg
+	//æ•ç²ã‚«ã‚»ãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	PokePasoParaPut(ppp,ID_PARA_get_cassette,&CasetteVersion);
-	//•ßŠlƒ{[ƒ‹‚ğƒZƒbƒg
+	//æ•ç²ãƒœãƒ¼ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	PokePasoParaPut(ppp,ID_PARA_get_ball,&ball);
 
-	//•ßŠl’nŒ`ƒAƒgƒŠƒrƒ…[ƒg‚ğƒZƒbƒg
+	//æ•ç²åœ°å½¢ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	PokePasoParaPut(ppp,ID_PARA_get_ground_id,&ground_id);
 }
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“›z‰»î•ñ‚ğŠi”[
+ *	ãƒã‚±ãƒ¢ãƒ³å­µåŒ–æƒ…å ±ã‚’æ ¼ç´
  *
- * @param[in]	pp			›z‰»î•ñ‚ğŠi”[‚·‚éPOKEMON_PARAM\‘¢‘Ì
- * @param[in]	status		my_statusiIDNo‚Æe–¼‚Ìæ“¾‚É•K—vj
- * @param[in]	ball		›z‰»ƒ{[ƒ‹
- * @param[in]	place		›z‰»êŠƒR[ƒh
- * @param[in]	ground_id	›z‰»êŠƒAƒgƒŠƒrƒ…[ƒg
- * @param[in]	heapID		ƒq[ƒvIDie–¼Ši”[‚Ìƒoƒbƒtƒ@¶¬‚É•K—vj
+ * @param[in]	pp			å­µåŒ–æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“
+ * @param[in]	status		my_statusï¼ˆIDNoã¨è¦ªåã®å–å¾—ã«å¿…è¦ï¼‰
+ * @param[in]	ball		å­µåŒ–ãƒœãƒ¼ãƒ«
+ * @param[in]	place		å­µåŒ–å ´æ‰€ã‚³ãƒ¼ãƒ‰
+ * @param[in]	ground_id	å­µåŒ–å ´æ‰€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @param[in]	heapID		ãƒ’ãƒ¼ãƒ—IDï¼ˆè¦ªåæ ¼ç´æ™‚ã®ãƒãƒƒãƒ•ã‚¡ç”Ÿæˆã«å¿…è¦ï¼‰
  */
 //============================================================================================
 void	PokeParaBirthInfoSet(POKEMON_PARAM *pp,MYSTATUS *status,int ball,int place,int ground_id,int heapID)
@@ -6716,14 +6716,14 @@ void	PokeParaBirthInfoSet(POKEMON_PARAM *pp,MYSTATUS *status,int ball,int place,
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“›z‰»î•ñ‚ğŠi”[
+ *	ãƒã‚±ãƒ¢ãƒ³å­µåŒ–æƒ…å ±ã‚’æ ¼ç´
  *
- * @param[in]	pp			›z‰»î•ñ‚ğŠi”[‚·‚éPOKEMON_PARAM\‘¢‘Ì
- * @param[in]	status		my_statusiIDNo‚Æe–¼‚Ìæ“¾‚É•K—vj
- * @param[in]	ball		›z‰»ƒ{[ƒ‹
- * @param[in]	place		›z‰»êŠƒR[ƒh
- * @param[in]	ground_id	›z‰»êŠƒAƒgƒŠƒrƒ…[ƒg
- * @param[in]	heapID		ƒq[ƒvIDie–¼Ši”[‚Ìƒoƒbƒtƒ@¶¬‚É•K—vj
+ * @param[in]	pp			å­µåŒ–æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“
+ * @param[in]	status		my_statusï¼ˆIDNoã¨è¦ªåã®å–å¾—ã«å¿…è¦ï¼‰
+ * @param[in]	ball		å­µåŒ–ãƒœãƒ¼ãƒ«
+ * @param[in]	place		å­µåŒ–å ´æ‰€ã‚³ãƒ¼ãƒ‰
+ * @param[in]	ground_id	å­µåŒ–å ´æ‰€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @param[in]	heapID		ãƒ’ãƒ¼ãƒ—IDï¼ˆè¦ªåæ ¼ç´æ™‚ã®ãƒãƒƒãƒ•ã‚¡ç”Ÿæˆã«å¿…è¦ï¼‰
  */
 //============================================================================================
 void	PokePasoParaBirthInfoSet(POKEMON_PASO_PARAM *ppp,MYSTATUS *status,int ball,int place,int ground_id,int heapID)
@@ -6732,27 +6732,27 @@ void	PokePasoParaBirthInfoSet(POKEMON_PASO_PARAM *ppp,MYSTATUS *status,int ball,
 //	RTCDate	rtc_d;
 //	STRBUF	*str;
 
-	//•ßŠlî•ñ‚ğŠi”[
+	//æ•ç²æƒ…å ±ã‚’æ ¼ç´
 	PokePasoParaGetInfoSet(ppp,status,ball,place,ground_id,heapID);
 
 //	GF_RTC_GetDate(&rtc_d);
 
-	//›z‰»ŠÔ‚ğƒZƒbƒg
+	//å­µåŒ–æ™‚é–“ã‚’ã‚»ãƒƒãƒˆ
 //	PokePasoParaPut(ppp,ID_PARA_birth_year,&rtc_d.year);
 //	PokePasoParaPut(ppp,ID_PARA_birth_month,&rtc_d.month);
 //	PokePasoParaPut(ppp,ID_PARA_birth_day,&rtc_d.day);
 
-	//›z‰»’nˆæ‚ğƒZƒbƒg
+	//å­µåŒ–åœ°åŸŸã‚’ã‚»ãƒƒãƒˆ
 //	PokePasoParaPut(ppp,ID_PARA_birth_place,&place);
 }
 
 //============================================================================================
 /**
- *	–ì«ƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚éƒAƒCƒeƒ€‚ÌƒZƒbƒg
+ *	é‡æ€§ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚»ãƒƒãƒˆ
  *
- * @param[in]	pp			ƒAƒCƒeƒ€‚ğ‚½‚¹‚éPOKEMON_PARAM\‘¢‘Ì
- * @param[in]	fight_type	í“¬ƒ^ƒCƒv
- * @param[in]	range		Šm—¦ƒe[ƒuƒ‹IDipoke_tool.h‚É’è‹`j
+ * @param[in]	pp			ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒãŸã›ã‚‹POKEMON_PARAMæ§‹é€ ä½“
+ * @param[in]	fight_type	æˆ¦é—˜ã‚¿ã‚¤ãƒ—
+ * @param[in]	range		ç¢ºç‡ãƒ†ãƒ¼ãƒ–ãƒ«IDï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
  */
 //============================================================================================
 static const u16 ItemRangeTable[][2]={
@@ -6779,7 +6779,7 @@ void	PokeItemSet(POKEMON_PARAM *pp,u32 fight_type,int range)
 	item1=PokeFormNoPersonalParaGet(monsno,formno,ID_PER_item1);
 	item2=PokeFormNoPersonalParaGet(monsno,formno,ID_PER_item2);
 
-	//ƒAƒCƒeƒ€ƒf[ƒ^‚É—¼•û“¯‚¶ƒiƒ“ƒo[‚ª“ü‚Á‚Ä‚¢‚éê‡‚ÍA•K‚¸‚½‚¹‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã«ä¸¡æ–¹åŒã˜ãƒŠãƒ³ãƒãƒ¼ãŒå…¥ã£ã¦ã„ã‚‹å ´åˆã¯ã€å¿…ãšæŒãŸã›ã‚‹
 	if((item1==item2)&&(item1!=0)){
 		PokeParaPut(pp,ID_PARA_item,&item1);
 		return;
@@ -6797,12 +6797,12 @@ void	PokeItemSet(POKEMON_PARAM *pp,u32 fight_type,int range)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚É‹Zƒ}ƒVƒ“‚ªg‚¦‚é‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚±ãƒ¢ãƒ³ã«æŠ€ãƒã‚·ãƒ³ãŒä½¿ãˆã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	pp			ƒ`ƒFƒbƒN‚·‚éPOKEMON_PARAM\‘¢‘Ì
- * @param[in]	machine_no	ƒ`ƒFƒbƒN‚·‚é‹Zƒ}ƒVƒ“ƒiƒ“ƒo[
+ * @param[in]	pp			ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEMON_PARAMæ§‹é€ ä½“
+ * @param[in]	machine_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒã‚·ãƒ³ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:g‚¦‚È‚¢@TRUE:g‚¦‚é
+ * @retval	FALSE:ä½¿ãˆãªã„ã€€TRUE:ä½¿ãˆã‚‹
  */
 //============================================================================================
 BOOL	PokeParaWazaMachineCheck(POKEMON_PARAM *pp,u8 machine_no)
@@ -6812,12 +6812,12 @@ BOOL	PokeParaWazaMachineCheck(POKEMON_PARAM *pp,u8 machine_no)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚É‹Zƒ}ƒVƒ“‚ªg‚¦‚é‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚±ãƒ¢ãƒ³ã«æŠ€ãƒã‚·ãƒ³ãŒä½¿ãˆã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	ppp			ƒ`ƒFƒbƒN‚·‚éPOKEMON_PASO_PARAM\‘¢‘Ì
- * @param[in]	machine_no	ƒ`ƒFƒbƒN‚·‚é‹Zƒ}ƒVƒ“ƒiƒ“ƒo[
+ * @param[in]	ppp			ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEMON_PASO_PARAMæ§‹é€ ä½“
+ * @param[in]	machine_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒã‚·ãƒ³ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:g‚¦‚È‚¢@TRUE:g‚¦‚é
+ * @retval	FALSE:ä½¿ãˆãªã„ã€€TRUE:ä½¿ãˆã‚‹
  */
 //============================================================================================
 BOOL	PokePasoParaWazaMachineCheck(POKEMON_PASO_PARAM *ppp,u8 machine_no)
@@ -6833,13 +6833,13 @@ BOOL	PokePasoParaWazaMachineCheck(POKEMON_PASO_PARAM *ppp,u8 machine_no)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚É‹Zƒ}ƒVƒ“‚ªg‚¦‚é‚©ƒ`ƒFƒbƒN
+ *	ãƒã‚±ãƒ¢ãƒ³ã«æŠ€ãƒã‚·ãƒ³ãŒä½¿ãˆã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	mons_no		ƒ`ƒFƒbƒN‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	form_no		ƒ`ƒFƒbƒN‚·‚éƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
- * @param[in]	machine_no	ƒ`ƒFƒbƒN‚·‚é‹Zƒ}ƒVƒ“ƒiƒ“ƒo[
+ * @param[in]	mons_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	form_no		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	machine_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹æŠ€ãƒã‚·ãƒ³ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	FALSE:g‚¦‚È‚¢@TRUE:g‚¦‚é
+ * @retval	FALSE:ä½¿ãˆãªã„ã€€TRUE:ä½¿ãˆã‚‹
  */
 //============================================================================================
 BOOL	PokeWazaMachineCheck(u16 mons_no,int form_no,u8 machine_no)
@@ -6873,9 +6873,9 @@ BOOL	PokeWazaMachineCheck(u16 mons_no,int form_no,u8 machine_no)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚É“Á«‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³ã«ç‰¹æ€§ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	pp		POKEMON_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	pp		POKEMON_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokeParaSpeabiSet(POKEMON_PARAM *pp)
@@ -6885,9 +6885,9 @@ void	PokeParaSpeabiSet(POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚É“Á«‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³ã«ç‰¹æ€§ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	ppp		POKEMON_PASO_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ppp		POKEMON_PASO_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	PokePasoParaSpeabiSet(POKEMON_PASO_PARAM *ppp)
@@ -6903,7 +6903,7 @@ void	PokePasoParaSpeabiSet(POKEMON_PASO_PARAM *ppp)
 	rnd=PokePasoParaGet(ppp,ID_PARA_personal_rnd,NULL);
 	form_no=PokePasoParaGet(ppp,ID_PARA_form_no,NULL);
 
-//“Áê”\—ÍƒZƒbƒg
+//ç‰¹æ®Šèƒ½åŠ›ã‚»ãƒƒãƒˆ
 	speabi1=PokeFormNoPersonalParaGet(mons_no,form_no,ID_PER_speabi1);
 	speabi2=PokeFormNoPersonalParaGet(mons_no,form_no,ID_PER_speabi2);
 
@@ -6924,10 +6924,10 @@ void	PokePasoParaSpeabiSet(POKEMON_PASO_PARAM *ppp)
 
 //============================================================================================
 /**
- *	ŒÂ«—”‚ğ‘‚«Š·‚¦‚éiŒÂ«—”‚ğƒL[‚É‚µ‚Ä‚¢‚é‚à‚Ì‚ª‚ ‚é‚Ì‚ÅAê—pŠÖ”‚É‚·‚éj
+ *	å€‹æ€§ä¹±æ•°ã‚’æ›¸ãæ›ãˆã‚‹ï¼ˆå€‹æ€§ä¹±æ•°ã‚’ã‚­ãƒ¼ã«ã—ã¦ã„ã‚‹ã‚‚ã®ãŒã‚ã‚‹ã®ã§ã€å°‚ç”¨é–¢æ•°ã«ã™ã‚‹ï¼‰
  *
- * @param[in]	pp				POKEMON_PARAM\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	personal_rnd	‘‚«Š·‚¦‚éŒÂ«—”
+ * @param[in]	pp				POKEMON_PARAMæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	personal_rnd	æ›¸ãæ›ãˆã‚‹å€‹æ€§ä¹±æ•°
  */
 //============================================================================================
 void	PokeParaPersonalRndChange(POKEMON_PARAM *pp,u32 personal_rnd)
@@ -6975,15 +6975,15 @@ void	PokeParaPersonalRndChange(POKEMON_PARAM *pp,u32 personal_rnd)
 
 //============================================================================================
 /**
- *							ŠO•”ŒöŠJ‚µ‚È‚¢ŠÖ”ŒS
+ *							å¤–éƒ¨å…¬é–‹ã—ãªã„é–¢æ•°éƒ¡
  */
 //============================================================================================
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹\‘¢‘Ìƒf[ƒ^‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	mons_no	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[out]	ppd		æ“¾‚µ‚½ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ÌŠi”[æ‚ğw’è
+ * @param[in]	mons_no	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[out]	ppd		å–å¾—ã—ãŸãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆã‚’æŒ‡å®š
  */
 //============================================================================================
 static	void	PokePersonalDataGet(int mons_no,POKEMON_PERSONAL_DATA *ppd)
@@ -6993,11 +6993,11 @@ static	void	PokePersonalDataGet(int mons_no,POKEMON_PERSONAL_DATA *ppd)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹\‘¢‘Ìƒf[ƒ^‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	mons_no	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	form_no	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
- * @param[out]	ppd		æ“¾‚µ‚½ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ÌŠi”[æ‚ğw’è
+ * @param[in]	mons_no	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	form_no	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param[out]	ppd		å–å¾—ã—ãŸãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆã‚’æŒ‡å®š
  */
 //============================================================================================
 static	void	PokeFormNoPersonalDataGet(int mons_no,int form_no,POKEMON_PERSONAL_DATA *ppd)
@@ -7009,10 +7009,10 @@ static	void	PokeFormNoPersonalDataGet(int mons_no,int form_no,POKEMON_PERSONAL_D
 
 //============================================================================================
 /**
- *	i‰»ƒe[ƒuƒ‹\‘¢‘Ìƒf[ƒ^‚ğæ“¾
+ *	é€²åŒ–ãƒ†ãƒ¼ãƒ–ãƒ«æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	mons_no	æ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[out]	psd		æ“¾‚µ‚½i‰»ƒf[ƒ^‚ÌŠi”[æ‚ğw’è
+ * @param[in]	mons_no	å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[out]	psd		å–å¾—ã—ãŸé€²åŒ–ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆã‚’æŒ‡å®š
  */
 //============================================================================================
 static	void	PokeShinkaDataGet(int mons_no,POKEMON_SHINKA_TABLE *pst)
@@ -7023,11 +7023,11 @@ static	void	PokeShinkaDataGet(int mons_no,POKEMON_SHINKA_TABLE *pst)
 
 //============================================================================================
 /**
- *	ˆÃ†ˆ—
+ *	æš—å·å‡¦ç†
  *
- * @param[in]	data	ˆÃ†‰»‚·‚éƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	size	ˆÃ†‰»‚·‚éƒf[ƒ^‚ÌƒTƒCƒY
- * @param[in]	code	ˆÃ†‰»ƒL[‚Ì‰Šú’l
+ * @param[in]	data	æš—å·åŒ–ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	size	æš—å·åŒ–ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+ * @param[in]	code	æš—å·åŒ–ã‚­ãƒ¼ã®åˆæœŸå€¤
  */
 //============================================================================================
 static	void	PokeParaCoded(void *data,u32 size,u32 code)
@@ -7037,11 +7037,11 @@ static	void	PokeParaCoded(void *data,u32 size,u32 code)
 
 //============================================================================================
 /**
- *	•œ†ˆ—
+ *	å¾©å·å‡¦ç†
  *
- * @param[in]	data	•œ†‚·‚éƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	size	•œ†‚·‚éƒf[ƒ^‚ÌƒTƒCƒY
- * @param[in]	code	ˆÃ†‰»ƒL[‚Ì‰Šú’l
+ * @param[in]	data	å¾©å·ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	size	å¾©å·ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+ * @param[in]	code	æš—å·åŒ–ã‚­ãƒ¼ã®åˆæœŸå€¤
  */
 //============================================================================================
 static	void	PokeParaDecoded(void *data,u32 size,u32 code)
@@ -7051,12 +7051,12 @@ static	void	PokeParaDecoded(void *data,u32 size,u32 code)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚Ìƒ`ƒFƒbƒNƒTƒ€‚ğ¶¬
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’ç”Ÿæˆ
  *
- * @param[in]	data	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	size	ƒ`ƒFƒbƒNƒTƒ€‚ğ¶¬‚·‚éƒf[ƒ^‚ÌƒTƒCƒY
+ * @param[in]	data	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	size	ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’ç”Ÿæˆã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
  *
- * @return	¶¬‚µ‚½ƒ`ƒFƒbƒNƒTƒ€
+ * @return	ç”Ÿæˆã—ãŸãƒã‚§ãƒƒã‚¯ã‚µãƒ 
  */
 //============================================================================================
 static	u16	PokeParaCheckSum(void *data,u32	size)
@@ -7074,13 +7074,13 @@ static	u16	PokeParaCheckSum(void *data,u32	size)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì“à‚Ìƒƒ“ƒo‚ÌƒAƒhƒŒƒX‚ğæ“¾
+ *	ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å†…ã®ãƒ¡ãƒ³ãƒã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @param[in]	ppp	æ“¾‚µ‚½‚¢ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	rnd	\‘¢‘Ì“ü‚ê‘Ö‚¦‚ÌƒL[
- * @param[in]	id	æ‚èo‚µ‚½‚¢ƒƒ“ƒo‚ÌƒCƒ“ƒfƒbƒNƒXipoke_tool.h‚É’è‹`j
+ * @param[in]	ppp	å–å¾—ã—ãŸã„ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	rnd	æ§‹é€ ä½“å…¥ã‚Œæ›¿ãˆã®ã‚­ãƒ¼
+ * @param[in]	id	å–ã‚Šå‡ºã—ãŸã„ãƒ¡ãƒ³ãƒã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆpoke_tool.hã«å®šç¾©ï¼‰
  *
- * @return	æ“¾‚µ‚½ƒAƒhƒŒƒX
+ * @return	å–å¾—ã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //============================================================================================
 static	void	*PokeParaAdrsGet(POKEMON_PASO_PARAM *ppp,u32 rnd,u8 id)
@@ -7561,17 +7561,17 @@ static	void	*PokeParaAdrsGet(POKEMON_PASO_PARAM *ppp,u32 rnd,u8 id)
 
 //--------------------------------------------------------------
 /**
- * @brief	•ÊƒtƒHƒ‹ƒ€‚Ìƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚Ìæ“¾
+ * @brief	åˆ¥ãƒ•ã‚©ãƒ«ãƒ ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã®å–å¾—
  *
- * @param	mons_no	æ“¾‚·‚éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	form_no	æ“¾‚·‚éƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
+ * @param	mons_no	å–å¾—ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	form_no	å–å¾—ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @retval	mons_no	
  */
 //--------------------------------------------------------------
 static	int	PokeOtherFormMonsNoGet(int mons_no,int form_no)
 {
-	//ƒtƒHƒ‹ƒ€‚É‚æ‚Á‚ÄAƒp[ƒ\ƒiƒ‹‚ª•Ï‰»‚·‚é‚à‚Ì‚ğƒ`ƒFƒbƒN
+	//ãƒ•ã‚©ãƒ«ãƒ ã«ã‚ˆã£ã¦ã€ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãŒå¤‰åŒ–ã™ã‚‹ã‚‚ã®ã‚’ãƒã‚§ãƒƒã‚¯
 	switch(mons_no){
 	case MONSNO_DEOKISISU:
 		if((form_no)&&(form_no<=FORMNO_DEOKISISU_MAX)){
@@ -7584,7 +7584,7 @@ static	int	PokeOtherFormMonsNoGet(int mons_no,int form_no)
 		}
 		break;
 		
-	//«ˆÈ‰ºAƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á
+	//â†“ä»¥ä¸‹ã€ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ 
 	case MONSNO_KIMAIRAN:
 		if((form_no)&&(form_no<=FORMNO_GIRATINA_MAX)){
 			mons_no=GIRATINA_OTHER_FORM_PERSONAL+form_no;
@@ -7610,11 +7610,11 @@ static	int	PokeOtherFormMonsNoGet(int mons_no,int form_no)
 
 //============================================================================================
 /**
- *	No‚ğBit‚É•ÏŠ·(‚R‚P‚Ü‚Åj
+ *	Noã‚’Bitã«å¤‰æ›(ï¼“ï¼‘ã¾ã§ï¼‰
  *
- * @param[in]	no		•ÏŠ·‚·‚éƒiƒ“ƒo[
+ * @param[in]	no		å¤‰æ›ã™ã‚‹ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	no=0:0x01 c
+ * @retval	no=0:0x01 â€¦
  */
 //============================================================================================
 u32	No2Bit(int no)
@@ -7632,11 +7632,11 @@ u32	No2Bit(int no)
 
 //============================================================================================
 /**
- *	Bit‚ğNo‚É•ÏŠ·(‚R‚P‚Ü‚Åj
+ *	Bitã‚’Noã«å¤‰æ›(ï¼“ï¼‘ã¾ã§ï¼‰
  *
- * @param[in]	bit		•ÏŠ·‚·‚éƒiƒ“ƒo[
+ * @param[in]	bit		å¤‰æ›ã™ã‚‹ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	no=0x01:0c
+ * @retval	no=0x01:0â€¦
  */
 //============================================================================================
 int	Bit2No(u32 bit)
@@ -7656,12 +7656,12 @@ int	Bit2No(u32 bit)
 
 //============================================================================================
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[‚ÉQ‰Á‚Å‚«‚È‚¢ƒ|ƒPƒ‚ƒ“‚©‚ğƒ`ƒFƒbƒNiƒ|ƒPƒ‚ƒ“”Ô†‚©‚çj
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã«å‚åŠ ã§ããªã„ãƒã‚±ãƒ¢ãƒ³ã‹ã‚’ãƒã‚§ãƒƒã‚¯ï¼ˆãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‹ã‚‰ï¼‰
  *
- * @param	mons	ƒ|ƒPƒ‚ƒ“”Ô†
+ * @param	mons	ãƒã‚±ãƒ¢ãƒ³ç•ªå·
  *
- * @retval	"TRUE = ‚»‚¤‚Å‚·"
- * @retval	"FALSE = ˆá‚¢‚Ü‚·"
+ * @retval	"TRUE = ãã†ã§ã™"
+ * @retval	"FALSE = é•ã„ã¾ã™"
  */
 //============================================================================================
 static const u16 BattleTowerExPoke[BTOWER_EXPOKE_NUM] = {
@@ -7697,7 +7697,7 @@ BOOL BattleTowerExPokeCheck_MonsNo( u16 mons )
 	return FALSE;
 }
 
-//Q‰Á•s‰Â”\‚Èƒ|ƒPƒ‚ƒ“‚Ìƒ‚ƒ“ƒXƒ^[No‚ğ•Ô‚·
+//å‚åŠ ä¸å¯èƒ½ãªãƒã‚±ãƒ¢ãƒ³ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼Noã‚’è¿”ã™
 u16 BattleTowerExPoke_MonsNoGet(u8 idx)
 {
 	if(idx >= NELEMS(BattleTowerExPoke)){
@@ -7708,12 +7708,12 @@ u16 BattleTowerExPoke_MonsNoGet(u8 idx)
 
 //============================================================================================
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[‚ÉQ‰Á‚Å‚«‚È‚¢ƒ|ƒPƒ‚ƒ“‚©‚ğƒ`ƒFƒbƒNiPOKEMON_PARAM‚©‚çj
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã«å‚åŠ ã§ããªã„ãƒã‚±ãƒ¢ãƒ³ã‹ã‚’ãƒã‚§ãƒƒã‚¯ï¼ˆPOKEMON_PARAMã‹ã‚‰ï¼‰
  *
  * @param	pp		POKEMON_PARAM
  *
- * @retval	"TRUE = ‚»‚¤‚Å‚·"
- * @retval	"FALSE = ˆá‚¢‚Ü‚·"
+ * @retval	"TRUE = ãã†ã§ã™"
+ * @retval	"FALSE = é•ã„ã¾ã™"
  */
 //============================================================================================
 BOOL BattleTowerExPokeCheck_PokePara( POKEMON_PARAM * pp )
@@ -7725,10 +7725,10 @@ BOOL BattleTowerExPokeCheck_PokePara( POKEMON_PARAM * pp )
 
 //============================================================================================
 /**
- * @brief	©•ª‚Ìƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
- * @param	pp		‘ÎÛƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- * @param	my		ƒvƒŒ[ƒ„[ƒf[ƒ^
- * @retval	FALSE:‘¼l‚Ìƒ|ƒPƒ‚ƒ“@TRUE:©•ª‚Ìƒ|ƒPƒ‚ƒ“
+ * @brief	è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
+ * @param	pp		å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @param	my		ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ * @retval	FALSE:ä»–äººã®ãƒã‚±ãƒ¢ãƒ³ã€€TRUE:è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³
  */
 //============================================================================================
 BOOL	PokemonOyaCheckPP( POKEMON_PARAM* pp, MYSTATUS* my, int heapID )
@@ -7775,42 +7775,42 @@ BOOL	PokemonOyaCheckPPP( POKEMON_PASO_PARAM* ppp, MYSTATUS* my, int heapID )
 
 //============================================================================================
 /**
- * @brief	ƒgƒŒ[ƒi[‚Ì”w–Êtrtype‚ğæ“¾
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®èƒŒé¢trtypeã‚’å–å¾—
  *
- * @param	trtype		æ“¾‚·‚étrtype
+ * @param	trtype		å–å¾—ã™ã‚‹trtype
  *
- * @retval	•ÏŠ·‚µ‚½trtype
+ * @retval	å¤‰æ›ã—ãŸtrtype
  */
 //============================================================================================
 int	TrainerBTrTypeGet(int trtype)
 {
-	//”w–Ê‚Í‚·‚×‚Ä‚Ìtrtype‚É‘Î‰‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA‘Î‰‚µ‚Ä‚¢‚é‚à‚Ì‚¾‚¯•ÏŠ·
+	//èƒŒé¢ã¯ã™ã¹ã¦ã®trtypeã«å¯¾å¿œã—ã¦ã„ãªã„ã®ã§ã€å¯¾å¿œã—ã¦ã„ã‚‹ã‚‚ã®ã ã‘å¤‰æ›
 	switch(trtype){
-	case TRTYPE_BOY:		//’jålŒö
-	case TRTYPE_GIRL:		//—ålŒö
-		//‚»‚Ì‚Ü‚Ü‚ÅOK
+	case TRTYPE_BOY:		//ç”·ä¸»äººå…¬
+	case TRTYPE_GIRL:		//å¥³ä¸»äººå…¬
+		//ãã®ã¾ã¾ã§OK
 		break;
-	case TRTYPE_RIVAL:		//ƒ‰ƒCƒoƒ‹
+	case TRTYPE_RIVAL:		//ãƒ©ã‚¤ãƒãƒ«
 		trtype=TRTYPE_TRB_RIVAL;
 		break;
-	case TRTYPE_BTFIVE1:	//ŒÜlO
-	case TRTYPE_BTFIVE2:	//ŒÜlO
-	case TRTYPE_BTFIVE3:	//ŒÜlO
-	case TRTYPE_BTFIVE4:	//ŒÜlO
-	case TRTYPE_BTFIVE5:	//ŒÜlO
+	case TRTYPE_BTFIVE1:	//äº”äººè¡†
+	case TRTYPE_BTFIVE2:	//äº”äººè¡†
+	case TRTYPE_BTFIVE3:	//äº”äººè¡†
+	case TRTYPE_BTFIVE4:	//äº”äººè¡†
+	case TRTYPE_BTFIVE5:	//äº”äººè¡†
 		trtype=TRTYPE_TRB_BTFIVE1+(trtype-TRTYPE_BTFIVE1);
 		break;
-	case TRTYPE_BOY_DP:		//’jålŒö(DP)
-	case TRTYPE_GIRL_DP:	//—ålŒö(DP)
+	case TRTYPE_BOY_DP:		//ç”·ä¸»äººå…¬(DP)
+	case TRTYPE_GIRL_DP:	//å¥³ä¸»äººå…¬(DP)
 		trtype=TRTYPE_TRB_BOY_DP+(trtype-TRTYPE_BOY_DP);
 		break;
 	default:
-		//ƒ†ƒjƒIƒ“‘Îí‚ÅA”w–Ê‚Ì‚È‚¢trtype‚ª—ˆ‚é‚Ì‚ÅA«•Ê‚ğ‚ ‚í‚¹‚é
+		//ãƒ¦ãƒ‹ã‚ªãƒ³å¯¾æˆ¦ã§ã€èƒŒé¢ã®ãªã„trtypeãŒæ¥ã‚‹ã®ã§ã€æ€§åˆ¥ã‚’ã‚ã‚ã›ã‚‹
 		if(TT_TrainerTypeSexGet(trtype)==PARA_FEMALE){
-			trtype=TRTYPE_GIRL;		//—ålŒö
+			trtype=TRTYPE_GIRL;		//å¥³ä¸»äººå…¬
 		}
 		else{
-			trtype=TRTYPE_BOY;		//’jålŒö
+			trtype=TRTYPE_BOY;		//ç”·ä¸»äººå…¬
 		}
 		break;
 	}
@@ -7821,7 +7821,7 @@ int	TrainerBTrTypeGet(int trtype)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚Ìƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+ * @brief	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
  * @param	pp	
  *
@@ -7846,7 +7846,7 @@ void PokePara_CustomBallDataInit( POKEMON_PARAM * pp )
 
 //------------------------------------------------------------------
 /**
- * ‘SPP‚ğƒtƒ‹‰ñ•œ
+ * å…¨PPã‚’ãƒ•ãƒ«å›å¾©
  *
  * @param   ppp		
  *
@@ -7874,7 +7874,7 @@ void PokePasoPara_RecoverPP( POKEMON_PASO_PARAM* ppp )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œü‚«‚ğæ“¾
+ * @brief	å‘ãã‚’å–å¾—
  *
  * @param	client_type	
  *
@@ -7894,7 +7894,7 @@ static inline int PokemonDirGet( int client_type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒƒZƒbƒg
+ * @brief	ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
  *
  * @param	handle	
  * @param	ssanm	
@@ -7951,7 +7951,7 @@ void PokeEditData_AnimeSet( ARCHANDLE* handle, SOFT_SPRITE_ANIME* ssanm, u16 mon
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒZƒbƒg
+ * @brief	ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
  *
  * @param	handle	
  * @param	prg_anm	
@@ -7983,7 +7983,7 @@ void PokeEditData_PrgAnimeSet( ARCHANDLE* handle, POKE_ANM_SYS_PTR pasp, SOFT_SP
 
 //--------------------------------------------------------------
 /**
- * @brief	–Â‚«ºƒEƒFƒCƒgƒZƒbƒg
+ * @brief	é³´ãå£°ã‚¦ã‚§ã‚¤ãƒˆã‚»ãƒƒãƒˆ
  *
  * @param	handle	
  * @param	wait	
@@ -8008,7 +8008,7 @@ void PokeEditData_VoiceWaitSet( ARCHANDLE* handle, u8* wait, u16 mons_no, u16 cl
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒƒpƒbƒP[ƒWƒZƒbƒg
+ * @brief	ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
  * @param	handle	
  * @param	pad	
@@ -8033,7 +8033,7 @@ void PokeEditData_AnmPackSet( ARCHANDLE* handle, POKE_ANIME_DATA* pad, u16 mons_
 
 //--------------------------------------------------------------
 /**
- * @brief	‚‚³ƒZƒbƒg
+ * @brief	é«˜ã•ã‚»ãƒƒãƒˆ
  *
  * @param	handle	
  * @param	height
@@ -8055,7 +8055,7 @@ void PokeEditData_HeightSet( ARCHANDLE* handle, s8* height, u16 mons_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰eƒIƒtƒZƒbƒgƒZƒbƒg
+ * @brief	å½±ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚»ãƒƒãƒˆ
  *
  * @param	handle	
  * @param	ofs	
@@ -8076,7 +8076,7 @@ void PokeEditData_ShadowOfsXSet( ARCHANDLE* handle, s8* ofs, u16 mons_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰eƒTƒCƒYƒZƒbƒg
+ * @brief	å½±ã‚µã‚¤ã‚ºã‚»ãƒƒãƒˆ
  *
  * @param	handle	
  * @param	size	
@@ -8098,13 +8098,13 @@ void PokeEditData_ShadowSizeSet( ARCHANDLE* handle, u8* size, u16 mons_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[—pƒJƒXƒ^ƒ€ƒ{[ƒ‹¶¬
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”¨ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ç”Ÿæˆ
  *
- * @param	index	ƒ{[ƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	pp		ƒ|ƒPƒ‚ƒ“
+ * @param	index	ãƒœãƒ¼ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	pp		ãƒã‚±ãƒ¢ãƒ³
  * @param	heap	HEAPID
  *
- * @retval	BOOL	TRUE = ³í
+ * @retval	BOOL	TRUE = æ­£å¸¸
  *
  */
 //--------------------------------------------------------------
@@ -8144,10 +8144,10 @@ BOOL TrainerCBSet( int index, POKEMON_PARAM* pp, int heap )
 #if 0
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[out]	ssanm	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğŠi”[‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	monsno	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ * @param[out]	ssanm	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	monsno	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	PokeAnmDataSet(SOFT_SPRITE_ANIME *ssanm,u16 mons_no)
@@ -8160,15 +8160,15 @@ void	PokeAnmDataSet(SOFT_SPRITE_ANIME *ssanm,u16 mons_no)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğƒZƒbƒgiƒvƒƒOƒ‰ƒ€ƒAƒjƒj
+ *	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆï¼ˆãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ï¼‰
  *
- * @param[in]	pasp	ƒAƒjƒ[ƒVƒ‡ƒ“ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	ss		ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğƒZƒbƒg‚·‚éSoftSprite‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	monsno	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param[in]	dir		ƒZƒbƒg‚·‚éŒü‚«
- * @param[in]	chr		ƒ|ƒPƒ‚ƒ“‚Ì«Šii”w–Ê‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğŒˆ’è‚·‚é‚Ì‚É•K—vj
- * @param[in]	reverse	HFLIP‚·‚é‚©‚Ç‚¤‚©H(PARA_HFLIP_OFF:HFLIP‚È‚µ@PARA_HFLIP_ON:HFLIP‚ ‚èj
- * @param[in]	index	ƒZƒbƒg‚·‚éƒVƒXƒeƒ€ƒ[ƒN‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @param[in]	pasp	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	ss		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹SoftSpriteã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	monsno	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	dir		ã‚»ãƒƒãƒˆã™ã‚‹å‘ã
+ * @param[in]	chr		ãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼ï¼ˆèƒŒé¢ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æ±ºå®šã™ã‚‹ã®ã«å¿…è¦ï¼‰
+ * @param[in]	reverse	HFLIPã™ã‚‹ã‹ã©ã†ã‹ï¼Ÿ(PARA_HFLIP_OFF:HFLIPãªã—ã€€PARA_HFLIP_ON:HFLIPã‚ã‚Šï¼‰
+ * @param[in]	index	ã‚»ãƒƒãƒˆã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //============================================================================================
 void	PokePrgAnmDataSet(POKE_ANM_SYS_PTR pasp,SOFT_SPRITE *ss,u16 mons_no,int dir,int chr,int reverse,int index)
@@ -8199,15 +8199,15 @@ void	PokePrgAnmDataSet(POKE_ANM_SYS_PTR pasp,SOFT_SPRITE *ss,u16 mons_no,int dir
 
 //==============================================================================
 //
-//	í“¬˜^‰æ—pƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+//	æˆ¦é—˜éŒ²ç”»ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   POKEMON_PARAM‚ğREC_POKEPARA‚É•ÏŠ·‚·‚é
+ * @brief   POKEMON_PARAMã‚’REC_POKEPARAã«å¤‰æ›ã™ã‚‹
  *
- * @param   pp		•ÏŠ·Œ³ƒf[ƒ^
- * @param   rec		•ÏŠ·Œã‚Ìƒf[ƒ^‘ã“üæ
+ * @param   pp		å¤‰æ›å…ƒãƒ‡ãƒ¼ã‚¿
+ * @param   rec		å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void PokePara_to_RecPokePara(POKEMON_PARAM *pp, REC_POKEPARA *rec)
@@ -8220,7 +8220,7 @@ void PokePara_to_RecPokePara(POKEMON_PARAM *pp, REC_POKEPARA *rec)
 	int i;
 	u16 sum;
 	
-	//ˆÃ†•œ†
+	//æš—å·å¾©å·
 	if(pp->ppp.pp_fast_mode==0){
 		PokeParaDecoded(&pp->pcp,sizeof(POKEMON_CALC_PARAM),pp->ppp.personal_rnd);
 		PokeParaDecoded(&pp->ppp.paradata,sizeof(POKEMON_PASO_PARAM1)*4,pp->ppp.checksum);
@@ -8295,7 +8295,7 @@ void PokePara_to_RecPokePara(POKEMON_PARAM *pp, REC_POKEPARA *rec)
 	rec->spedef = pp->pcp.spedef;
 //	rec->cb_core = pp->pcp.cb_core;
 
-	//ˆÃ†‰»
+	//æš—å·åŒ–
 	if(pp->ppp.pp_fast_mode==0){
 		PokeParaCoded(&pp->pcp,sizeof(POKEMON_CALC_PARAM),pp->ppp.personal_rnd);
 		PokeParaCoded(&pp->ppp.paradata,sizeof(POKEMON_PASO_PARAM1)*4,pp->ppp.checksum);
@@ -8304,10 +8304,10 @@ void PokePara_to_RecPokePara(POKEMON_PARAM *pp, REC_POKEPARA *rec)
 
 //--------------------------------------------------------------
 /**
- * @brief   REC_POKEPARA‚ğPOKEMON_PARAM‚É•ÏŠ·‚·‚é
+ * @brief   REC_POKEPARAã‚’POKEMON_PARAMã«å¤‰æ›ã™ã‚‹
  *
- * @param   rec		•ÏŠ·Œ³ƒf[ƒ^
- * @param   pp		•ÏŠ·Œã‚Ìƒf[ƒ^‘ã“üæ
+ * @param   rec		å¤‰æ›å…ƒãƒ‡ãƒ¼ã‚¿
+ * @param   pp		å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void RecPokePara_to_PokePara(REC_POKEPARA *rec, POKEMON_PARAM *pp)
@@ -8392,7 +8392,7 @@ void RecPokePara_to_PokePara(REC_POKEPARA *rec, POKEMON_PARAM *pp)
 //	pp->pcp.cb_core = rec->cb_core;
 	
 	
-	//ˆÃ†‰»
+	//æš—å·åŒ–
 	PokeParaCoded(&pp->pcp,sizeof(POKEMON_CALC_PARAM),pp->ppp.personal_rnd);
 	pp->ppp.checksum=PokeParaCheckSum(&pp->ppp.paradata,sizeof(POKEMON_PASO_PARAM1)*4);
 	PokeParaCoded(&pp->ppp.paradata,sizeof(POKEMON_PASO_PARAM1)*4,pp->ppp.checksum);

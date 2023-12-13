@@ -27,34 +27,34 @@
   allocate sendBuf. (avoid to share with SetMPData's buffer)
 
   Revision 1.12  2004/11/22 12:56:22  takano_makoto
-  WM�̃X�e�[�^�X�o�b�t�@�擾�p�̍\���̃����o���폜
+  WMのステータスバッファ取得用の構造体メンバを削除
 
   Revision 1.11  2004/11/10 07:43:13  takano_makoto
-  mb_gameinfo.c�̒��̎q�@���̏�������MBw�֐���r��
+  mb_gameinfo.cの中の子機側の処理からMBw関数を排除
 
   Revision 1.10  2004/10/18 11:44:30  yosizaki
   add MB_StartParentEx, MB_EndEx.
 
   Revision 1.9  2004/10/05 09:45:29  terui
-  MAC�A�h���X��u8�^�̔z��ɓ���B
+  MACアドレスをu8型の配列に統一。
 
   Revision 1.7  2004/09/22 09:42:11  sato_masaki
-  IPL_branch 1.5.2.2�ƃ}�[�W
+  IPL_branch 1.5.2.2とマージ
 
   Revision 1.6  2004/09/17 11:35:06  sato_masaki
   add function MBi_IsStarted()
 
   Revision 1.5  2004/09/15 06:25:01  sato_masaki
-  MB_COMM_P_SENDLEN, MB_COMM_C_SENDLEN �̒�`�Ɉˑ����Ă���������ϐ����B
+  MB_COMM_P_SENDLEN, MB_COMM_C_SENDLEN の定義に依存していた部分を変数化。
 
   Revision 1.4  2004/09/14 02:41:32  sato_masaki
-  MBiParam �� mpBusy �ǉ��B
+  MBiParam に mpBusy 追加。
 
   Revision 1.2  2004/09/06 11:43:52  sato_masaki
-  MBi_GetTgid()�֐��̒ǉ��B
+  MBi_GetTgid()関数の追加。
 
   Revision 1.1  2004/09/03 07:06:28  sato_masaki
-  �t�@�C�����@�\�ʂɕ����B
+  ファイルを機能別に分割。
 
 
   $NoKeywords: $
@@ -70,20 +70,20 @@ extern "C" {
 #include <nitro.h>
 #include <nitro/wm.h>
 
-/* �ڑ��ő吔 */
+/* 接続最大数 */
 #define MB_NUM_PARENT_INFORMATIONS              16
 
 #define MB_MAX_SEND_BUFFER_SIZE         (0x400)
 
 /*
- * �}���`�u�[�g�e / �q�̑I��.
- * (�q�� IPL �łȂ��Ǝ��s�ł��Ȃ�)
+ * マルチブート親 / 子の選択.
+ * (子は IPL でないと実行できない)
  */
 #define MB_MODE_PARENT                          1
 #define MB_MODE_CHILD                           2
 
 /*
- * wm_lib �ŗL��`
+ * wm_lib 固有定義
  */
 
 #define MB_CALLBACK_CHILD_CONNECTED             0
@@ -130,12 +130,12 @@ extern "C" {
 #define MB_CALLBACK_MP_CHILD_SENT_TIMEOUT       41
 #define MB_CALLBACK_SEND_QUEUE_FULL_ERR         42
 
-#define MB_CALLBACK_API_ERROR                   255     // API�R�[���̖߂�l�ŃG���[
+#define MB_CALLBACK_API_ERROR                   255     // APIコールの戻り値でエラー
 #define MB_CALLBACK_ERROR                       256
 
 
 /*
- * �r�[�R���Ŏ�M�����X�̐e�@���. (�q�@�������ŊǗ�)
+ * ビーコンで受信した個々の親機情報. (子機が内部で管理)
  */
 typedef struct ParentInfo
 {
@@ -144,36 +144,36 @@ typedef struct ParentInfo
         WMBssDesc parentInfo[1];
         u8      parentInfo_area[WM_BSS_DESC_SIZE] ATTRIBUTE_ALIGN(32);
     };
-    /* ���� mac �� GameInfo �ȊO�S���g���Ă��Ȃ� */
+    /* 多分 mac と GameInfo 以外全く使っていない */
     WMStartScanCallback scan_data;
     u8      reserved1[8];
 }
 ParentInfo;
 
 
-/* MB �̃R�[���o�b�N�Ɏg�p����֐��̌`�� */
+/* MB のコールバックに使用する関数の形式 */
 typedef void (*MBCallbackFunc) (u16 type, void *arg);
 
 
 /*
- * wm_lib �p�����[�^�\����.
- * wm_lib - wm_tool �̋��n���������ꎞ�I�ɋ����A�������̂�,
- * union �̎g�����Ɋւ��� ANSI-STRICT �������Ă��Ȃ�����������.
- * (���ƂŒu������Ηǂ������̘b�Ȃ̂Ō��)
+ * wm_lib パラメータ構造体.
+ * wm_lib - wm_tool の橋渡し部分を一時的に強制連結したので,
+ * union の使い方に関して ANSI-STRICT 準拠していない部分がある.
+ * (あとで置換すれば良いだけの話なので後回し)
  */
 typedef struct
 {
-    /* �e�@���ݒ�(�e�@���g�p) */
+    /* 親機情報設定(親機が使用) */
     union
     {
         WMParentParam parentParam;
         u8      parentParam_area[WM_PARENT_PARAM_SIZE] ATTRIBUTE_ALIGN(32);
     };
 
-    /* StartMP �ɓn�� WM �����o�b�t�@. (SetMP �Ŏg���Ă͂Ȃ�Ȃ�) */
+    /* StartMP に渡す WM 内部バッファ. (SetMP で使ってはならない) */
     u16     sendBuf[MB_MAX_SEND_BUFFER_SIZE / sizeof(u16)] ATTRIBUTE_ALIGN(32);
 
-    /* �e�@���擾�o�b�t�@(�q�@���g�p) */
+    /* 親機情報取得バッファ(子機が使用) */
     union
     {
         WMBssDesc parentInfoBuf;
@@ -183,53 +183,53 @@ typedef struct
     u16     p_sendlen;
     u16     p_recvlen;
 
-    WMMpRecvBuf *recvBuf;              /* ��M�o�b�t�@ */
+    WMMpRecvBuf *recvBuf;              /* 受信バッファ */
 
-    /* �e�@ / �q�@ �R�[���o�b�N */
+    /* 親機 / 子機 コールバック */
     void    (*callback_ptr) (void *arg);
 
-    u8      mpBusy;                    /* MP���M���t���O */
+    u8      mpBusy;                    /* MP送信中フラグ */
     u8      mbIsStarted;
     u8      reserved0[10];
 
-    u16     sendBufSize;               // ���M�o�b�t�@�̃T�C�Y
-    u16     recvBufSize;               // MP��M�o�b�t�@�̃T�C�Y
+    u16     sendBufSize;               // 送信バッファのサイズ
+    u16     recvBufSize;               // MP受信バッファのサイズ
 
-    MBCallbackFunc callback;           // WM_lib�p�R�[���o�b�N
-    const WMBssDesc *pInfo;            // �ڑ���e�@���|�C���^(�q�@�Ŏg�p)
+    MBCallbackFunc callback;           // WM_lib用コールバック
+    const WMBssDesc *pInfo;            // 接続先親機情報ポインタ(子機で使用)
     u16     mode;                      // MB_MODE_***
     u16     endReq;
 
-    u16     mpStarted;                 // MP�J�n�ς݃t���O
-    u16     child_bitmap;              // �q�@�ڑ���
+    u16     mpStarted;                 // MP開始済みフラグ
+    u16     child_bitmap;              // 子機接続状況
 
-    /* �A�����M�֘A */
-    u16     contSend;                  // �A�����M���s�t���O(1:�A�����M, 0:1�t���[�����̒ʐM)
+    /* 連続送信関連 */
+    u16     contSend;                  // 連続送信実行フラグ(1:連続送信, 0:1フレーム毎の通信)
     u8      reserved1[2];
 
-    // gameinfo�֘A
+    // gameinfo関連
     u8      uname[WM_SIZE_USERNAME] ATTRIBUTE_ALIGN(4);
     u8      gname[WM_SIZE_GAMENAME] ATTRIBUTE_ALIGN(4);
-    u16     currentTgid;               // �ڑ���e�@��TGID(BeaconRecv.Ind�Ń`�F�b�N����)
+    u16     currentTgid;               // 接続先親機のTGID(BeaconRecv.Indでチェックする)
     u8      reserved2[22];
 
     u16     userGameInfo[((WM_SIZE_USER_GAMEINFO + 32) & ~(32 - 1)) /
                          sizeof(u16)] ATTRIBUTE_ALIGN(32);
 
-    /* �q�@�ŗL�̃f�[�^ */
+    /* 子機固有のデータ */
     struct
     {
         /*
-         * �����ςݐe�@��.
-         * �����l 0, StartScan ������ ++, StartConnect ���s�� 0.
-         * ����͌���N�����Ă��Ȃ���,
-         * BeconRecvState �ɂł�����Ă�����΃��[�U�ɂƂ��ĕ֗��ł��傤.
+         * 発見済み親機数.
+         * 初期値 0, StartScan 成功で ++, StartConnect 失敗で 0.
+         * これは現状誰も見ていないが,
+         * BeconRecvState にでも入れてあげればユーザにとって便利でしょう.
          */
         u16     found_parent_count;
         /*
-         * ���g�Ɋ��蓖�Ă�ꂽAID;
-         * �����l 0, StartConnect ������ n.
-         * ����͌���N�����Ă��Ȃ�.
+         * 自身に割り当てられたAID;
+         * 初期値 0, StartConnect 成功で n.
+         * これは現状誰も見ていない.
          */
         u16     my_aid;
 
@@ -239,7 +239,7 @@ typedef struct
 
         u8      reserved8[16];
 
-        /* �e�@ 16 �䕪�̏��z�� */
+        /* 親機 16 台分の情報配列 */
         ParentInfo parent_info[MB_NUM_PARENT_INFORMATIONS];
     };
 
@@ -250,13 +250,13 @@ MBiParam;
 // ===============================================================================
 // function
 
-/* �Ō�Ɍ��������e���擾 */
+/* 最後に見つかった親を取得 */
 int     MBi_GetLastFountParent(void);
 
-/* �e�� BSS ���擾 */
+/* 親の BSS を取得 */
 WMBssDesc *MBi_GetParentBssDesc(int parent);
 
-/* �ő�X�L�������Ԃ�ݒ� */
+/* 最大スキャン時間を設定 */
 void    MBi_SetMaxScanTime(u16 time);
 
 int     MBi_SendMP(const void *buf, int len, int pollbmp);

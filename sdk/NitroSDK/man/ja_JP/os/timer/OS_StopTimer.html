@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>OS_StopTimer</TITLE>
@@ -9,7 +9,7 @@
 </HEAD>
 <BODY>
 <H1 align="left">OS_StopTimer*</H1>
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
   <BR>
@@ -18,28 +18,28 @@
   void OS_StopTimer48( OS_Timer48Id id );<BR>
   void OS_StopTimer64( void );</CODE>
 </DL>
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>id</STRONG></EM></TD>
-      <TD width="87%">��~����^�C�}�̃^�C�}ID(��~����^�C�}�̌��ɂ���ĈقȂ�܂�)</TD>
+      <TD width="87%">停止するタイマのタイマID(停止するタイマの個数によって異なります)</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
-<H2>����</H2>
-<P>�����^�C�}�[���~���܂��B</P>
-<P><CODE>OS_StopTimer()</CODE> �͈��16�r�b�g�J�E���g�^�C�}���~���܂��B</P>
-<P><CODE>OS_StopTimer32()</CODE> �͘A������2�̃^�C�}���~���܂��B32�r�b�g�J�E���g�̃^�C�}���g�p���Ă���Ƃ��ɕ֗��ł��B</P>
-<P><CODE>OS_StopTimer48()</CODE> �͘A������3�̃^�C�}���~���܂��B48�r�b�g�J�E���g�̃^�C�}���g�p���Ă���Ƃ��ɕ֗��ł��B</P>
-<P><CODE>OS_StopTimer64()</CODE> �͘A������4�̃^�C�}���~���܂��B64�r�b�g�J�E���g�̃^�C�}���g�p���Ă���Ƃ��ɕ֗��ł��B</P>
-<P><B><I>id</I></B> �̓^�C�}ID�ŁA<A href="OS_StartTimer.html"><CODE>OS_StartTimer()</CODE></A> �̈����Ɠ��l�̈Ӗ��������܂��B(<A href="OS_StartTimer.html"><CODE>OS_StartTimer()</CODE></A> ���Q�Ƃ��Ă�������)</P>
-<H2>�Q��</H2>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>内部タイマーを停止します。</P>
+<P><CODE>OS_StopTimer()</CODE> は一つの16ビットカウントタイマを停止します。</P>
+<P><CODE>OS_StopTimer32()</CODE> は連続する2つのタイマを停止します。32ビットカウントのタイマを使用しているときに便利です。</P>
+<P><CODE>OS_StopTimer48()</CODE> は連続する3つのタイマを停止します。48ビットカウントのタイマを使用しているときに便利です。</P>
+<P><CODE>OS_StopTimer64()</CODE> は連続する4つのタイマを停止します。64ビットカウントのタイマを使用しているときに便利です。</P>
+<P><B><I>id</I></B> はタイマIDで、<A href="OS_StartTimer.html"><CODE>OS_StartTimer()</CODE></A> の引数と同様の意味を持ちます。(<A href="OS_StartTimer.html"><CODE>OS_StartTimer()</CODE></A> を参照してください)</P>
+<H2>参照</H2>
 <P><CODE><A href="OS_StartTimer.html">OS_StartTimer</A><BR>
 </CODE></P>
-<H2>����</H2>
-<P>2004/01/08 ����</P>
+<H2>履歴</H2>
+<P>2004/01/08 初版</P>
 </BODY>
 </HTML>

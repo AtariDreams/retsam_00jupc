@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	fldeff_grass.h
- * @brief	ƒtƒB[ƒ‹ƒhOBJ‘
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè‰
  * @author	kagaya
  * @data	05.07.13
  */
@@ -17,7 +17,7 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒGƒ“ƒJƒEƒ“ƒg‘í—Ş
+///	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè‰ç¨®é¡
 //--------------------------------------------------------------
 typedef enum
 {
@@ -30,22 +30,22 @@ typedef enum
 //	typedef
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_GRASS_PTRŒ^
+///	FE_GRASS_PTRå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GRASS * FE_GRASS_PTR;
 
 //==============================================================================
-//	ŠO•”QÆ
+//	å¤–éƒ¨å‚ç…§
 //==============================================================================
 extern void * FE_Grass_Init( FE_SYS *fes );
 extern void FE_Grass_Delete( void *work );
 extern void FE_FldOBJGrass_Add( FIELD_OBJ_PTR fldobj, int shake );
 
-//’n‰º‘
+//åœ°ä¸‹è‰
 extern EOA_PTR FE_CommTrapGrass_Add( FIELDSYS_WORK *fsys, int x, int z );
 extern int FE_CommTrapGrass_AnimeCheck( EOA_PTR eoa );
 
-//‚ä‚ê‘
+//ã‚†ã‚Œè‰
 extern EOA_PTR FE_EncGrass_Add( FIELDSYS_WORK *fsys, int x, int z, FE_GRASS_TYPE type );
 extern int FE_EncGrass_AnimeCheck( EOA_PTR eoa );
 

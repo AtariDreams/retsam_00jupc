@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	roulette_tool.h
- * @brief	ƒoƒgƒ‹ƒ‹[ƒŒƒbƒgŠÖ˜Aƒc[ƒ‹—Ş
+ * @brief	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé–¢é€£ãƒ„ãƒ¼ãƒ«é¡
  * @author	nohara
  * @date	2007.09.06
  */
@@ -14,26 +14,26 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚©‚ç‚Ì’Šo”ÍˆÍ
+///ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã®æŠ½å‡ºç¯„å›²
 typedef struct{
-	u16 trainer_index;	///<ƒgƒŒ[ƒi[Index(‚±‚ÌIndex–¢–‚ÌƒgƒŒ[ƒi[‚ª‘ÎÛ)
-	u16 start;			///<ƒ|ƒPƒ‚ƒ“IndexŠJnNo
-	u16 end;			///<ƒ|ƒPƒ‚ƒ“IndexI—¹No
-	u8 pow_rnd;			///<ƒpƒ[—”
+	u16 trainer_index;	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Index(ã“ã®Indexæœªæº€ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒå¯¾è±¡)
+	u16 start;			///<ãƒã‚±ãƒ¢ãƒ³Indexé–‹å§‹No
+	u16 end;			///<ãƒã‚±ãƒ¢ãƒ³Indexçµ‚äº†No
+	u8 pow_rnd;			///<ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	
-	u8 dummy;	///<4ƒoƒCƒg‹«ŠEƒIƒtƒZƒbƒg
+	u8 dummy;	///<4ãƒã‚¤ãƒˆå¢ƒç•Œã‚ªãƒ•ã‚»ãƒƒãƒˆ
 }ROULETTE_POKE_RANGE;
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void Roulette_EnemyLapAllTrainerIndexGet( u8 type, int lap, u16 trainer_index[], u8 num );
 extern u32 Roulette_PokemonParamCreate(B_TOWER_POKEMON *pwd,
@@ -58,7 +58,7 @@ extern const ROULETTE_POKE_RANGE *Roulette_EnemyPokemonRangeGet(int trainer_inde
 /******************************************************************************/
 //==============================================================================
 //
-//	04.07.11’Ç‰Á
+//	04.07.11è¿½åŠ 
 //
 //==============================================================================
 #include "battle/battle_common.h"
@@ -72,55 +72,55 @@ extern const ROULETTE_POKE_RANGE *Roulette_EnemyPokemonRangeGet(int trainer_inde
 
 //============================================================================================
 //
-//	ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg@ƒXƒNƒŠƒvƒgƒ[ƒN
+//	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯
 //
 //============================================================================================
 typedef struct{
 
-	int	heapID;											//ƒq[ƒv
+	int	heapID;											//ãƒ’ãƒ¼ãƒ—
 	SAVEDATA* sv;
-	ROULETTEDATA* roulette_savedata;					//ƒ‹[ƒŒƒbƒgƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	ROULETTEDATA* roulette_savedata;					//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	void* p_work;
 
-	u8	type;											//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
-	u8	round;											//¡‰½l–ÚH
-	u8	random_flag;									//ƒJ[ƒ\ƒ‹ƒ‰ƒ“ƒ_ƒ€ˆÚ“®onƒtƒ‰ƒO
-	u8	decide_ev_no;									//Œˆ’è‚µ‚½ƒCƒxƒ“ƒgƒiƒ“ƒo[
+	u8	type;											//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã€wifiãƒãƒ«ãƒ
+	u8	round;											//ä»Šä½•äººç›®ï¼Ÿ
+	u8	random_flag;									//ã‚«ãƒ¼ã‚½ãƒ«ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•onãƒ•ãƒ©ã‚°
+	u8	decide_ev_no;									//æ±ºå®šã—ãŸã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
 
-	int	weather;										//“VŒó
+	int	weather;										//å¤©å€™
 
-	u16	rensyou;										//Œ»İ‚Ì˜AŸ”
-	u16	lap;											//Œ»İ‚Ìü‰ñ”
+	u16	rensyou;										//ç¾åœ¨ã®é€£å‹æ•°
+	u16	lap;											//ç¾åœ¨ã®å‘¨å›æ•°
 
-	u8	csr_speed_level;								//ƒJ[ƒ\ƒ‹ƒXƒs[ƒh
-	u8	point;											//í“¬Œ‹‰Êƒ|ƒCƒ“ƒg
-	u8	brain_appear_msg_flag;							//ƒuƒŒ[ƒ““oêƒƒbƒZ[ƒW•\¦‚µ‚½‚©
-	u8	poke_safe_flag;									//’N‚àƒCƒxƒ“ƒg‚ÌŒø‰Ê‚ğ”­Šö‚µ‚È‚©‚Á‚½
+	u8	csr_speed_level;								//ã‚«ãƒ¼ã‚½ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰
+	u8	point;											//æˆ¦é—˜çµæœãƒã‚¤ãƒ³ãƒˆ
+	u8	brain_appear_msg_flag;							//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã—ãŸã‹
+	u8	poke_safe_flag;									//èª°ã‚‚ã‚¤ãƒ™ãƒ³ãƒˆã®åŠ¹æœã‚’ç™ºæ®ã—ãªã‹ã£ãŸ
 
-	u16	rand_pos;										//‹¤’Ê‚Ìƒ‰ƒ“ƒ_ƒ€
+	u16	rand_pos;										//å…±é€šã®ãƒ©ãƒ³ãƒ€ãƒ 
 	u16 dummy77;
 
-	u32	win_cnt;										//Œ»İ‚Ü‚Å‚Ì‘Ÿ—˜”
-	int winlose_flag;									//Ÿ‚¿•‰‚¯ƒtƒ‰ƒO
+	u32	win_cnt;										//ç¾åœ¨ã¾ã§ã®ç·å‹åˆ©æ•°
+	int winlose_flag;									//å‹ã¡è² ã‘ãƒ•ãƒ©ã‚°
 
-	//Q‰Á‚µ‚Ä‚¢‚éè‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	u8	mine_poke_pos[ROULETTE_ENTRY_POKE_MAX];
-	u8	clear_flag;										//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO(0‚©1)
+	u8	clear_flag;										//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°(0ã‹1)
 
-	//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 	CATS_ACT_PTR m_pokeicon[ROULETTE_MINE_POKE_MAX];
 	CATS_ACT_PTR e_pokeicon[ROULETTE_ENEMY_POKE_MAX];
 
-	//ƒAƒCƒeƒ€‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“
+	//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³
 	CATS_ACT_PTR m_itemkeep[ROULETTE_MINE_POKE_MAX];
 	CATS_ACT_PTR e_itemkeep[ROULETTE_ENEMY_POKE_MAX];
 
-	//ƒ‹[ƒŒƒbƒgê—p‰æ–Ê‚Ö“n‚·—p‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	POKEPARTY* p_m_party;								//–¡•û
-	POKEPARTY* p_e_party;								//“G
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆå°‚ç”¨ç”»é¢ã¸æ¸¡ã™ç”¨ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	POKEPARTY* p_m_party;								//å‘³æ–¹
+	POKEPARTY* p_e_party;								//æ•µ
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
-	u16 tr_index[ROULETTE_LAP_MULTI_ENEMY_MAX];			//ƒgƒŒ[ƒi[indexƒe[ƒuƒ‹(*2=ƒ_ƒuƒ‹)
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	u16 tr_index[ROULETTE_LAP_MULTI_ENEMY_MAX];			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼indexãƒ†ãƒ¼ãƒ–ãƒ«(*2=ãƒ€ãƒ–ãƒ«)
 
 	u32	temp_hp[ROULETTE_MINE_POKE_MAX];
 	u32	temp_pow[ROULETTE_MINE_POKE_MAX];
@@ -129,40 +129,40 @@ typedef struct{
 	u32	temp_spepow[ROULETTE_MINE_POKE_MAX];
 	u32	temp_spedef[ROULETTE_MINE_POKE_MAX];
 
-	//‘Îí‘Šèƒf[ƒ^Ši”[êŠ
+	//å¯¾æˆ¦ç›¸æ‰‹ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
 	B_TOWER_PARTNER_DATA tr_data[2];
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 enemy_poke_index[ROULETTE_ENEMY_POKE_MAX];		//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
-	u8	enemy_pow_rnd[ROULETTE_ENEMY_POKE_MAX];			//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
-	u32 enemy_personal_rnd[ROULETTE_ENEMY_POKE_MAX];	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
-	B_TOWER_POKEMON enemy_poke[ROULETTE_ENEMY_POKE_MAX];//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 dummy_enemy_eom;								//b’èˆ—(EOM‚ª2byte—]Œv‚É‘‚«‚Ü‚ê‚é‚½‚ß)
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 enemy_poke_index[ROULETTE_ENEMY_POKE_MAX];		//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
+	u8	enemy_pow_rnd[ROULETTE_ENEMY_POKE_MAX];			//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+	u32 enemy_personal_rnd[ROULETTE_ENEMY_POKE_MAX];	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
+	B_TOWER_POKEMON enemy_poke[ROULETTE_ENEMY_POKE_MAX];//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 dummy_enemy_eom;								//æš«å®šå‡¦ç†(EOMãŒ2byteä½™è¨ˆã«æ›¸ãè¾¼ã¾ã‚Œã‚‹ãŸã‚)
 
-	u16 itemno[ROULETTE_ENTRY_POKE_MAX];				//è‚¿ƒ|ƒPƒ‚ƒ“‚ÌŠƒAƒCƒeƒ€•Û‘¶—p
+	u16 itemno[ROULETTE_ENTRY_POKE_MAX];				//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ ä¿å­˜ç”¨
 
 	u16 ret_work[ROULETTE_RET_WORK_MAX];
 
-	//ƒAƒCƒeƒ€‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚ğ•\¦‚·‚éƒtƒ‰ƒO
+	//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ãƒ•ãƒ©ã‚°
 	//u16 itemkeep_draw_flag[ROULETTE_ENTRY_POKE_MAX];
 
-	//è‚¿ƒ|ƒPƒ‚ƒ“
-	//u16 item[ROULETTE_MINE_POKE_MAX];					//“¹‹ï
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
+	//u16 item[ROULETTE_MINE_POKE_MAX];					//é“å…·
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//’ÊM—pFƒf[ƒ^ƒoƒbƒtƒ@
+	//é€šä¿¡ç”¨ï¼šãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
 	u16	send_buf[ROULETTE_COMM_BUF_LEN];
 	u8	huge_buf[ROULETTE_HUGE_BUF_LEN];
 	u8	recieve_huge_buf[ROULETTE_COMM_PLAYER_NUM][ROULETTE_HUGE_BUF_LEN];
 
-	//’ÊM—pFŠî–{î•ñ
-	u8	pair_retire_flag;								//ƒŠƒ^ƒCƒ„‚ğ‘I‚ñ‚¾‚©=1
-	u8	pair_trade_yesno_flag;							//ŒğŠ·‚µ‚½‚¢‚©(0=‚µ‚½‚¢A1=‚µ‚½‚­‚È‚¢)
-	u16	pair_lap;										//ü‰ñ”
-	u16	pair_rensyou;									//Œ»İ‚Ì˜AŸ”(27l–Ú‚Æ‚©‚Ì•\¦‚É•K—v)
+	//é€šä¿¡ç”¨ï¼šåŸºæœ¬æƒ…å ±
+	u8	pair_retire_flag;								//ãƒªã‚¿ã‚¤ãƒ¤ã‚’é¸ã‚“ã ã‹=1
+	u8	pair_trade_yesno_flag;							//äº¤æ›ã—ãŸã„ã‹(0=ã—ãŸã„ã€1=ã—ãŸããªã„)
+	u16	pair_lap;										//å‘¨å›æ•°
+	u16	pair_rensyou;									//ç¾åœ¨ã®é€£å‹æ•°(27äººç›®ã¨ã‹ã®è¡¨ç¤ºã«å¿…è¦)
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 
-	u8	reverce_flag;									//ƒp[ƒeƒBƒNƒ‹”½“]ƒtƒ‰ƒO
+	u8	reverce_flag;									//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åè»¢ãƒ•ãƒ©ã‚°
 	u8	pair_sel_type;
 	u8	recieve_count;
 	u8	dummy22;
@@ -175,7 +175,7 @@ typedef struct{
 
 //============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //============================================================================================
 extern u8 Roulette_GetMinePokeNum( u8 type, BOOL flag );

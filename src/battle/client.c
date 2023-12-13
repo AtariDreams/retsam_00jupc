@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	client.c
- * @bfief	í“¬ƒNƒ‰ƒCƒAƒ“ƒgƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.05.24
  */
@@ -26,23 +26,23 @@
 #include "client_eff.h"
 #include "temoti_gauge.h"
 
-//ƒ_ƒuƒ‹ƒoƒgƒ‹‚É‚¨‚¢‚Ä‚Ö‚ñ‚µ‚ñ‚µ‚½ƒ|ƒPƒ‚ƒ“‚©‚ç‚Ç‚ë‚Ú‚¤‚·‚é‚ÆƒAƒCƒeƒ€‘B‚É‚È‚é•s‹ï‡‚ÌC³
-#define HENSHIN_ITEM_ZOUSYOKU_FIX			//ƒRƒƒ“ƒgƒAƒEƒg‚ğ‚Í‚¸‚·‚±‚Æ‚ÅC³@2006.10.26
+//ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã«ãŠã„ã¦ã¸ã‚“ã—ã‚“ã—ãŸãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰ã©ã‚ã¼ã†ã™ã‚‹ã¨ã‚¢ã‚¤ãƒ†ãƒ å¢—æ®–ã«ãªã‚‹ä¸å…·åˆã®ä¿®æ­£
+#define HENSHIN_ITEM_ZOUSYOKU_FIX			//ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã‚’ã¯ãšã™ã“ã¨ã§ä¿®æ­£ã€€2006.10.26
 
 //============================================================================================
 /**
- * ƒvƒƒgƒ^ƒCƒvéŒ¾
+ * ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //============================================================================================
 
-//ŠO•”ŒöŠJŠÖ”ŒQ
+//å¤–éƒ¨å…¬é–‹é–¢æ•°ç¾¤
 CLIENT_PARAM	*ClientInit(BATTLE_WORK *bw,FIGHT_SYSTEM_BOOT_PARAM *fsbp);
 void	ClientMain(BATTLE_WORK *battle_work,CLIENT_PARAM *client_param);
 void	ClientEnd(BATTLE_WORK *bw,CLIENT_PARAM *cp,int mode);
 
 void	ClientBMInit(BATTLE_WORK *battle_work,CLIENT_PARAM *client_param,int ballID,int sel_mons_no);
 
-//ŠÖ”ƒWƒƒƒ“ƒvƒe[ƒuƒ‹
+//é–¢æ•°ã‚¸ãƒ£ãƒ³ãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«
 static	void	ClientDummy(BATTLE_WORK *bw,CLIENT_PARAM *cp);
 static	void	ClientEncountEffect(BATTLE_WORK *bw,CLIENT_PARAM *cp);
 static	void	ClientPokemonEncount(BATTLE_WORK *bw,CLIENT_PARAM *cp);
@@ -111,7 +111,7 @@ static	void	ClientBGMPlay(BATTLE_WORK *bw,CLIENT_PARAM *cp);
 static	void	ClientWinLoseSet(BATTLE_WORK *bw,CLIENT_PARAM *cp);
 static	void	ClientBlankMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp);
 
-//ŠO•””ñŒöŠJŠÖ”ŒQ
+//å¤–éƒ¨éå…¬é–‹é–¢æ•°ç¾¤
 static	void	ClientCommandReset(CLIENT_PARAM *cp);
 
 extern	const	u8	BallMoveEffectTable[];
@@ -134,9 +134,9 @@ CLIENT_PARAM	*ClientInit(BATTLE_WORK *bw,FIGHT_SYSTEM_BOOT_PARAM *fsbp)
 
 	cp->handle = ArchiveDataHandleOpen( ARC_PM_EDIT, HEAPID_BATTLE );
 
-	//fight_tool.c‚ÉˆÚ“®
+	//fight_tool.cã«ç§»å‹•
 #if 0
-	//HPƒQ[ƒW¶¬
+	//HPã‚²ãƒ¼ã‚¸ç”Ÿæˆ
 	cp->gauge.bw = bw;
 	cp->gauge.type = Gauge_TypeGet(cp->client_type, BattleWorkFightTypeGet(bw));
 	Gauge_ActorResourceSet(&cp->gauge);
@@ -148,12 +148,12 @@ CLIENT_PARAM	*ClientInit(BATTLE_WORK *bw,FIGHT_SYSTEM_BOOT_PARAM *fsbp)
 
 //============================================================================================
 /**
- *	BM_Init‚ğŒÄ‚ÔiÅ‰‚ÌPOKEMON_APPEAR‚ÉƒƒbƒN‚ª‚©‚©‚ç‚È‚¢‚æ‚¤‚ÉƒŠƒ\[ƒX‚ğæ“Ç‚İ‚µ‚Ä‚¨‚­j
+ *	BM_Initã‚’å‘¼ã¶ï¼ˆæœ€åˆã®POKEMON_APPEARæ™‚ã«ãƒ­ãƒƒã‚¯ãŒã‹ã‹ã‚‰ãªã„ã‚ˆã†ã«ãƒªã‚½ãƒ¼ã‚¹ã‚’å…ˆèª­ã¿ã—ã¦ãŠãï¼‰
  *
- * @param	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
- * @param	cp		ƒNƒ‰ƒCƒAƒ“ƒgƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
- * @param	ballID	ƒZƒ‹ƒZƒbƒg‚·‚éƒ{[ƒ‹ID
- * @param	ballID	ƒZƒ‹ƒZƒbƒg‚·‚éƒ{[ƒ‹ID
+ * @param	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param	cp		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param	ballID	ã‚»ãƒ«ã‚»ãƒƒãƒˆã™ã‚‹ãƒœãƒ¼ãƒ«ID
+ * @param	ballID	ã‚»ãƒ«ã‚»ãƒƒãƒˆã™ã‚‹ãƒœãƒ¼ãƒ«ID
  */
 //============================================================================================
 void	ClientBMInit(BATTLE_WORK *bw,CLIENT_PARAM *cp,int ballID,int sel_mons_no)
@@ -161,11 +161,11 @@ void	ClientBMInit(BATTLE_WORK *bw,CLIENT_PARAM *cp,int ballID,int sel_mons_no)
 	TBALL_MOVE_DATA bmd;
 	s16				x,y;
 
-	//ƒTƒtƒ@ƒŠƒ][ƒ“Aƒ|ƒPƒp[ƒN‚Å‚ÍAæ“Ç‚İ‚·‚é•K—v‚È‚µ
+	//ã‚µãƒ•ã‚¡ãƒªã‚¾ãƒ¼ãƒ³ã€ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã§ã¯ã€å…ˆèª­ã¿ã™ã‚‹å¿…è¦ãªã—
 	if(BattleWorkFightTypeGet(bw)&(FIGHT_TYPE_SAFARI|FIGHT_TYPE_POKE_PARK)){
 		return;
 	}
-	//ƒgƒŒ[ƒi[í‚Å‚È‚¯‚ê‚Î“G‘¤‚Ìæ“Ç‚İ‚·‚é•K—v‚È‚µ
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ã§ãªã‘ã‚Œã°æ•µå´ã®å…ˆèª­ã¿ã™ã‚‹å¿…è¦ãªã—
 	if((cp->client_type&CLIENT_ENEMY_FLAG)&&((BattleWorkFightTypeGet(bw)&FIGHT_TYPE_TRAINER)==0)){
 		return;
 	}
@@ -190,7 +190,7 @@ void	ClientBMInit(BATTLE_WORK *bw,CLIENT_PARAM *cp,int ballID,int sel_mons_no)
 
 //============================================================================================
 /**
- *	ŠÖ”ƒWƒƒƒ“ƒvƒe[ƒuƒ‹
+ *	é–¢æ•°ã‚¸ãƒ£ãƒ³ãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 
@@ -284,9 +284,9 @@ void	ClientMain(BATTLE_WORK *battle_work,CLIENT_PARAM *client_param)
 //============================================================================================
 void	ClientEnd(BATTLE_WORK *bw,CLIENT_PARAM *cp,int mode)
 {
-	//–¼‘O“ü—Í‚ğ‚µ‚½Œã‚ÍAGauge_ActorResourceDel‚ğŒÄ‚Ô•K—v‚Í‚È‚µ
+	//åå‰å…¥åŠ›ã‚’ã—ãŸå¾Œã¯ã€Gauge_ActorResourceDelã‚’å‘¼ã¶å¿…è¦ã¯ãªã—
 	if(mode!=BW_PROC_MODE_NAMEIN_AFTER){
-		Gauge_ActorResourceDel(&cp->gauge);	//ƒQ[ƒWíœ
+		Gauge_ActorResourceDel(&cp->gauge);	//ã‚²ãƒ¼ã‚¸å‰Šé™¤
 	}
 	if(cp->cap){
 		CATS_ActorPointerDelete_S(cp->cap);
@@ -301,9 +301,9 @@ void	ClientEnd(BATTLE_WORK *bw,CLIENT_PARAM *cp,int mode)
 
 //============================================================================================
 /**
- *	ƒ_ƒ~[ŠÖ”iŠÖ”ƒe[ƒuƒ‹ƒiƒ“ƒo[‚ÍA1ƒIƒŠƒWƒ“‚È‚Ì‚ÅAƒ_ƒ~[ŠÖ”‚ğ—pˆÓj
+ *	ãƒ€ãƒŸãƒ¼é–¢æ•°ï¼ˆé–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼ã¯ã€1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§ã€ãƒ€ãƒŸãƒ¼é–¢æ•°ã‚’ç”¨æ„ï¼‰
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientDummy(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -312,9 +312,9 @@ static	void	ClientDummy(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‚ğƒZƒbƒg
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientEncountEffect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -324,16 +324,16 @@ static	void	ClientEncountEffect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 	BattleWorkRandTempSet(bw,eep->rand_temp);
 
 	CT_EncountEffectSet(bw,cp);
-	//ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‚ÍI—¹‘Ò‚¿‚Ì•K—v‚È‚µi‚Ì‚Í‚¸j
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã¯çµ‚äº†å¾…ã¡ã®å¿…è¦ãªã—ï¼ˆã®ã¯ãšï¼‰
 	SCIO_ServerQueClear(bw,cp->client_no,CL_ENCOUNT_EFFECT);
 	ClientCommandReset(cp);
 }
 
 //============================================================================================
 /**
- *	ƒGƒ“ƒJƒEƒ“ƒg—p‚Ìƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç”¨ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPokemonEncount(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -346,9 +346,9 @@ static	void	ClientPokemonEncount(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“oŒ»ƒGƒtƒFƒNƒg‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³å‡ºç¾ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPokemonEncountAppear(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -361,9 +361,9 @@ static	void	ClientPokemonEncountAppear(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“oŒ»ƒGƒtƒFƒNƒg‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³å‡ºç¾ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPokemonAppear(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -376,9 +376,9 @@ static	void	ClientPokemonAppear(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ˆø‚Á‚ß‚éƒGƒtƒFƒNƒg‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³å¼•ã£è¾¼ã‚ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPokemonReturn(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -391,9 +391,9 @@ static	void	ClientPokemonReturn(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‹z‚¢‚ŞƒGƒtƒFƒNƒg‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³å¸ã„è¾¼ã‚€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPokemonInhale(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -406,9 +406,9 @@ static	void	ClientPokemonInhale(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ğíœ
+ *	ãƒã‚±ãƒ¢ãƒ³ã‚’å‰Šé™¤
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPokemonDelete(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -420,9 +420,9 @@ static	void	ClientPokemonDelete(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒGƒ“ƒJƒEƒ“ƒg—p‚ÌƒgƒŒ[ƒi[‚ğƒZƒbƒg
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç”¨ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientTrainerEncount(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -435,9 +435,9 @@ static	void	ClientTrainerEncount(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[“Š‚°‚éƒGƒtƒFƒNƒg‚ÌƒZƒbƒg
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ•ã’ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientTrainerThrow(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -450,9 +450,9 @@ static	void	ClientTrainerThrow(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[‰æ–ÊŠOƒGƒtƒFƒNƒg‚ğƒZƒbƒg
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢å¤–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientTrainerOut(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -463,9 +463,9 @@ static	void	ClientTrainerOut(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[‰æ–Ê“àƒGƒtƒFƒNƒg‚ğƒZƒbƒg
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢å†…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientTrainerIn(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -478,9 +478,9 @@ static	void	ClientTrainerIn(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	HPƒQ[ƒW‰æ–ÊINƒGƒtƒFƒNƒg‚ğƒZƒbƒg
+ *	HPã‚²ãƒ¼ã‚¸ç”»é¢INã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientHPGaugeIn(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -493,9 +493,9 @@ static	void	ClientHPGaugeIn(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	HPƒQ[ƒW‰æ–ÊOUTƒGƒtƒFƒNƒg‚ğƒZƒbƒg
+ *	HPã‚²ãƒ¼ã‚¸ç”»é¢OUTã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientHPGaugeOut(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -506,16 +506,16 @@ static	void	ClientHPGaugeOut(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒRƒ}ƒ“ƒh‘I‘ğ‚ğ‹N“®
+ *	ã‚³ãƒãƒ³ãƒ‰é¸æŠã‚’èµ·å‹•
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientCommandSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 {
 	COMMAND_SELECT_PARAM	*csp=(COMMAND_SELECT_PARAM *)&cp->client_buffer[0];
 
-	//“ü‚ê‘Ö‚¦‚Å‚«‚È‚¢ClientNo‚ğbw‚Ìƒƒ“ƒo‚ÉƒZƒbƒgi’ÊM—pj
+	//å…¥ã‚Œæ›¿ãˆã§ããªã„ClientNoã‚’bwã®ãƒ¡ãƒ³ãƒã«ã‚»ãƒƒãƒˆï¼ˆé€šä¿¡ç”¨ï¼‰
 	BattleWorkNoReshuffleClientSet(bw,csp->no_reshuffle_client);
 
 	CT_CommandSelectSet(bw,cp,csp);
@@ -524,9 +524,9 @@ static	void	ClientCommandSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	‹Z‘I‘ğ‚ğ‹N“®
+ *	æŠ€é¸æŠã‚’èµ·å‹•
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientWazaSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -539,9 +539,9 @@ static	void	ClientWazaSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	UŒ‚‘ÎÛ‘I‘ğ‚ğ‹N“®
+ *	æ”»æ’ƒå¯¾è±¡é¸æŠã‚’èµ·å‹•
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientDirSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -554,9 +554,9 @@ static	void	ClientDirSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	“¹‹ï‘I‘ğ‚ğ‹N“®
+ *	é“å…·é¸æŠã‚’èµ·å‹•
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientItemSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -569,9 +569,9 @@ static	void	ClientItemSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‘I‘ğ‚ğ‹N“®
+ *	ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚’èµ·å‹•
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPokemonSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -584,9 +584,9 @@ static	void	ClientPokemonSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	Yes/No‘I‘ğ‚ğ‹N“®
+ *	Yes/Noé¸æŠã‚’èµ·å‹•
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientYesNoSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -599,9 +599,9 @@ static	void	ClientYesNoSelect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒAƒ^ƒbƒNƒƒbƒZ[ƒW‚ğ•\¦
+ *	ã‚¢ã‚¿ãƒƒã‚¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientAttackMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -614,9 +614,9 @@ static	void	ClientAttackMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒƒbƒZ[ƒW‚ğ•\¦
+ *	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -629,9 +629,9 @@ static	void	ClientMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	‹ZƒGƒtƒFƒNƒg‚ğ‹N“®
+ *	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èµ·å‹•
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientWazaEffect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -644,14 +644,14 @@ static	void	ClientWazaEffect(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒ_ƒ[ƒWƒuƒŠƒ“ƒNƒAƒNƒVƒ‡ƒ“‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒ–ãƒªãƒ³ã‚¯ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPokemonBlinkSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 {
-	//ƒoƒjƒbƒVƒ…ó‘Ô‚Ì‚ÍƒuƒŠƒ“ƒN‚µ‚È‚¢
+	//ãƒãƒ‹ãƒƒã‚·ãƒ¥çŠ¶æ…‹ã®æ™‚ã¯ãƒ–ãƒªãƒ³ã‚¯ã—ãªã„
 	if(SoftSpriteParaGet(cp->poke_ss,SS_PARA_VANISH)==SW_VANISH_ON){
 		SCIO_ServerQueClear(bw,cp->client_no,CL_POKEMON_BLINK);
 	}
@@ -663,9 +663,9 @@ static	void	ClientPokemonBlinkSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	HPƒQ[ƒWŒvZ‚ğƒZƒbƒg
+ *	HPã‚²ãƒ¼ã‚¸è¨ˆç®—ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientHPGaugeCalcSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -678,9 +678,9 @@ static	void	ClientHPGaugeCalcSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	EXPƒQ[ƒWŒvZ‚ğƒZƒbƒg
+ *	EXPã‚²ãƒ¼ã‚¸è¨ˆç®—ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientEXPGaugeCalcSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -693,9 +693,9 @@ static	void	ClientEXPGaugeCalcSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	‹CâƒGƒtƒFƒNƒg‚ğƒZƒbƒg
+ *	æ°—çµ¶ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClienKizetsuEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -708,9 +708,9 @@ static	void	ClienKizetsuEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	w’è‚³‚ê‚½SE‚ğ–Â‚ç‚·
+ *	æŒ‡å®šã•ã‚ŒãŸSEã‚’é³´ã‚‰ã™
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientSePlaySet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -723,9 +723,9 @@ static	void	ClientSePlaySet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	‰æ–ÊƒtƒF[ƒhƒAƒEƒg‚ğƒZƒbƒg
+ *	ç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientFadeOutSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -736,9 +736,9 @@ static	void	ClientFadeOutSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒoƒjƒbƒVƒ…ƒtƒ‰ƒO‚ÌON/OFF
+ *	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ã®ON/OFF
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPokemonVanishOnOff(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -751,9 +751,9 @@ static	void	ClientPokemonVanishOnOff(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	HPƒQ[ƒW‚Ìó‘ÔˆÙíƒAƒCƒRƒ“‚Ì•\¦
+ *	HPã‚²ãƒ¼ã‚¸ã®çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientHPGaugeStatusSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -766,9 +766,9 @@ static	void	ClientHPGaugeStatusSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[ƒƒbƒZ[ƒW‚Ì•\¦
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientTrainerMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -781,9 +781,9 @@ static	void	ClientTrainerMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	–ß‚·ƒƒbƒZ[ƒW‚ğ•\¦
+ *	æˆ»ã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientModosuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -796,9 +796,9 @@ static	void	ClientModosuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ŒJ‚èo‚·ƒƒbƒZ[ƒW‚ğ•\¦
+ *	ç¹°ã‚Šå‡ºã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientKuridasuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -811,9 +811,9 @@ static	void	ClientKuridasuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒGƒ“ƒJƒEƒ“ƒgƒƒbƒZ[ƒW‚ğ•\¦
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientEncountMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -824,9 +824,9 @@ static	void	ClientEncountMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒGƒ“ƒJƒEƒ“ƒg‚ÌŒJ‚èo‚·ƒƒbƒZ[ƒW‚ğ•\¦
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ™‚ã®ç¹°ã‚Šå‡ºã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientEncountKuridasuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -839,9 +839,9 @@ static	void	ClientEncountKuridasuMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒŒƒxƒ‹ƒAƒbƒvƒGƒtƒFƒNƒg‚ğ•\¦
+ *	ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientLevelUpEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -852,9 +852,9 @@ static	void	ClientLevelUpEffectSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒAƒ‰[ƒgƒƒbƒZ[ƒW‚ğ•\¦
+ *	ã‚¢ãƒ©ãƒ¼ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientAlertMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -867,9 +867,9 @@ static	void	ClientAlertMessageSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	HPƒQ[ƒW‚ğÄ•`‰æ
+ *	HPã‚²ãƒ¼ã‚¸ã‚’å†æç”»
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientHPGaugeRefresh(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -882,9 +882,9 @@ static	void	ClientHPGaugeRefresh(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	PSP‚©‚ç•K—v‚Èƒf[ƒ^‚ğPP‚É‘‚«–ß‚·
+ *	PSPã‹ã‚‰å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚’PPã«æ›¸ãæˆ»ã™
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPSPtoPPCopy(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -896,7 +896,7 @@ static	void	ClientPSPtoPPCopy(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 	pp=BattleWorkPokemonParamGet(bw,cp->client_no,ptpcp->sel_mons_no);
 
 #if AFTER_MASTER_061026_FIX
-	//‚Ö‚ñ‚µ‚ñ’†‚ÍAHP‚Æcondition‚Ì‚İ‘‚«–ß‚µ
+	//ã¸ã‚“ã—ã‚“ä¸­ã¯ã€HPã¨conditionã®ã¿æ›¸ãæˆ»ã—
 	if((ptpcp->condition2&CONDITION2_HENSHIN)==0){
 		for(i=0;i<WAZA_TEMOTI_MAX;i++){
 			if((ptpcp->monomane_bit&No2Bit(i))==0){
@@ -909,7 +909,7 @@ static	void	ClientPSPtoPPCopy(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 		PokeParaPut(pp,ID_PARA_item,	(u8 *)&ptpcp->item);
 	}
 #else AFTER_MASTER_061026_FIX
-	//‚Ö‚ñ‚µ‚ñ’†‚ÍAHP‚Æcondition‚Ì‚İ‘‚«–ß‚µ
+	//ã¸ã‚“ã—ã‚“ä¸­ã¯ã€HPã¨conditionã®ã¿æ›¸ãæˆ»ã—
 	if((ptpcp->condition2&CONDITION2_HENSHIN)==0){
 		for(i=0;i<WAZA_TEMOTI_MAX;i++){
 			if((ptpcp->monomane_bit&No2Bit(i))==0){
@@ -925,11 +925,11 @@ static	void	ClientPSPtoPPCopy(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 	PokeParaPut(pp,ID_PARA_hp,			(u8 *)&ptpcp->hp);
 	PokeParaPut(pp,ID_PARA_condition,	(u8 *)&ptpcp->condition);
 
-	//ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰ÁiFormNoA“Á«‚Ì‘‚«–ß‚µj
+	//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ ï¼ˆFormNoã€ç‰¹æ€§ã®æ›¸ãæˆ»ã—ï¼‰
 	if(ptpcp->form_flag){
 		PokeParaPut(pp,ID_PARA_form_no,	(u8 *)&ptpcp->form_no);
 	}
-	//ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰ÁiÄŒvZƒtƒ‰ƒO‚É]‚Á‚Äˆ—j
+	//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ ï¼ˆå†è¨ˆç®—ãƒ•ãƒ©ã‚°ã«å¾“ã£ã¦å‡¦ç†ï¼‰
 	if(ptpcp->calc_flag){
 		PokeParaPut(pp,ID_PARA_speabino,(u8 *)&ptpcp->speabi);
 		PokeParaCalc(pp);
@@ -941,9 +941,9 @@ static	void	ClientPSPtoPPCopy(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉƒgƒŒ[ƒi[BG‚ğSlideIn
+ *	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼BGã‚’SlideIn
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientTrainerBGSlideIn(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -967,9 +967,9 @@ static	void	ClientTrainerBGSlideIn(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒQ[ƒW‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒXƒgƒbƒv
+ *	ã‚²ãƒ¼ã‚¸ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚¹ãƒˆãƒƒãƒ—
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientGaugeAnimeStop(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -982,9 +982,9 @@ static	void	ClientGaugeAnimeStop(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Ìó‘ÔˆÙí‚ğ’¼‚·
+ *	ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹ç•°å¸¸ã‚’ç›´ã™
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientPokemonRefresh(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1018,9 +1018,9 @@ static	void	ClientPokemonRefresh(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	‹Z–Y‚êˆ—‚ğŒÄ‚Ño‚·
+ *	æŠ€å¿˜ã‚Œå‡¦ç†ã‚’å‘¼ã³å‡ºã™
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientWazaWasure(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1033,9 +1033,9 @@ static	void	ClientWazaWasure(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚Éƒ‚ƒUƒCƒN‚ğ‚©‚¯‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«ãƒ¢ã‚¶ã‚¤ã‚¯ã‚’ã‹ã‘ã‚‹
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientMosaicSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1048,9 +1048,9 @@ static	void	ClientMosaicSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ğ•Ï‚¦‚é
+ *	ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’å¤‰ãˆã‚‹
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientFormChgSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1090,9 +1090,9 @@ static	void	ClientFormChgSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	’nŒ`OBJ‚ğBG‚É•Ï‚¦‚é
+ *	åœ°å½¢OBJã‚’BGã«å¤‰ãˆã‚‹
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientBGChgSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1104,9 +1104,9 @@ static	void	ClientBGChgSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒTƒu‰æ–Ê‚Ì”wŒi•Ç†‚ğ•\¦
+ *	ã‚µãƒ–ç”»é¢ã®èƒŒæ™¯å£ç´™ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientSubBGWallPut(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1147,9 +1147,9 @@ static	void	ClientSubBGWallPut(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ{[ƒ‹ƒQ[ƒW‚ğ•\¦iƒGƒ“ƒJƒEƒ“ƒgj
+ *	ãƒœãƒ¼ãƒ«ã‚²ãƒ¼ã‚¸ã‚’è¡¨ç¤ºï¼ˆã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ™‚ï¼‰
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientBallGaugeEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1162,9 +1162,9 @@ static	void	ClientBallGaugeEncountSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ{[ƒ‹ƒQ[ƒW‚ğÁ‚·iƒGƒ“ƒJƒEƒ“ƒgj
+ *	ãƒœãƒ¼ãƒ«ã‚²ãƒ¼ã‚¸ã‚’æ¶ˆã™ï¼ˆã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ™‚ï¼‰
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientBallGaugeEncountOut(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1177,16 +1177,16 @@ static	void	ClientBallGaugeEncountOut(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ{[ƒ‹ƒQ[ƒW‚ğ•\¦
+ *	ãƒœãƒ¼ãƒ«ã‚²ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientBallGaugeSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 {
 	BALL_GAUGE_PARAM	*bgp=(BALL_GAUGE_PARAM *)&cp->client_buffer[0];
 
-	//ƒGƒ“ƒJƒEƒ“ƒg‚¶‚á‚È‚¢ƒ{[ƒ‹ƒQ[ƒW•\¦‚Í“G‘¤‚Ì‚İ
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã˜ã‚ƒãªã„ãƒœãƒ¼ãƒ«ã‚²ãƒ¼ã‚¸è¡¨ç¤ºã¯æ•µå´ã®ã¿
 	if(BattleWorkMineEnemyCheck(bw,cp->client_no)){
 		CT_BallGaugeSet(bw,cp,bgp);
 	}
@@ -1198,16 +1198,16 @@ static	void	ClientBallGaugeSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ{[ƒ‹ƒQ[ƒW‚ğÁ‚·
+ *	ãƒœãƒ¼ãƒ«ã‚²ãƒ¼ã‚¸ã‚’æ¶ˆã™
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientBallGaugeOut(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 {
 	BALL_GAUGE_PARAM	*bgp=(BALL_GAUGE_PARAM *)&cp->client_buffer[0];
 
-	//ƒGƒ“ƒJƒEƒ“ƒg‚¶‚á‚È‚¢ƒ{[ƒ‹ƒQ[ƒWÁ‹‚Í“G‘¤‚Ì‚İ
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã˜ã‚ƒãªã„ãƒœãƒ¼ãƒ«ã‚²ãƒ¼ã‚¸æ¶ˆå»ã¯æ•µå´ã®ã¿
 	if(BattleWorkMineEnemyCheck(bw,cp->client_no)){
 		CT_BallGaugeOut(bw,cp,bgp);
 	}
@@ -1219,9 +1219,9 @@ static	void	ClientBallGaugeOut(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ{[ƒ‹ƒQ[ƒW‚ÌƒŠƒ\[ƒX‚ğƒ[ƒh
+ *	ãƒœãƒ¼ãƒ«ã‚²ãƒ¼ã‚¸ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ­ãƒ¼ãƒ‰
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientBallGaugeResourceLoad(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1234,7 +1234,7 @@ static	void	ClientBallGaugeResourceLoad(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 	crp=BattleWorkCATS_RES_PTRGet(bw);
 	pfd=BattleWorkPfdGet(bw);
 
-	//ƒŠƒ\[ƒXƒ[ƒh‚ÌŠÖ”‚ğŒÄ‚Ño‚µ
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã—
 	TEMOTI_ResourceLoad(csp, crp, pfd);
 	
 	SCIO_ServerQueClear(bw,cp->client_no,CL_BALL_GAUGE_RESOURCE_LOAD);
@@ -1243,9 +1243,9 @@ static	void	ClientBallGaugeResourceLoad(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ{[ƒ‹ƒQ[ƒW‚ÌƒŠƒ\[ƒX‚ğÁ‹
+ *	ãƒœãƒ¼ãƒ«ã‚²ãƒ¼ã‚¸ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’æ¶ˆå»
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientBallGaugeResourceDelete(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1254,7 +1254,7 @@ static	void	ClientBallGaugeResourceDelete(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 	crp=BattleWorkCATS_RES_PTRGet(bw);
 
-	//ƒŠƒ\[ƒXÁ‹‚ÌŠÖ”‚ğŒÄ‚Ño‚µ
+	//ãƒªã‚½ãƒ¼ã‚¹æ¶ˆå»ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã—
 	TEMOTI_ResourceFree(crp);
 	
 	SCIO_ServerQueClear(bw,cp->client_no,CL_BALL_GAUGE_RESOURCE_DELETE);
@@ -1263,9 +1263,9 @@ static	void	ClientBallGaugeResourceDelete(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒJƒEƒ“ƒgƒAƒbƒvƒ[ƒN‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+ *	ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientIncRecord(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1273,13 +1273,13 @@ static	void	ClientIncRecord(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 	INC_RECORD_PARAM	*irp=(INC_RECORD_PARAM *)&cp->client_buffer[0];
 
 	if(irp->flag==CLIENT_BOOT_TYPE_MINE){
-		//©•ª§Œä‚ÌƒNƒ‰ƒCƒAƒ“ƒg‚Ì‚İƒJƒEƒ“ƒgƒAƒbƒv
+		//è‡ªåˆ†åˆ¶å¾¡ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 		if(cp->client_boot==CLIENT_BOOT_NORMAL){
 			BattleWorkIncRecord(bw,irp->id);
 		}
 	}
 	else{
-		//©•ª§Œä‚ÌƒNƒ‰ƒCƒAƒ“ƒg‚Å‚Í‚È‚¢‚ÉƒJƒEƒ“ƒgƒAƒbƒv
+		//è‡ªåˆ†åˆ¶å¾¡ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã§ã¯ãªã„æ™‚ã«ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 		if(cp->client_boot!=CLIENT_BOOT_NORMAL){
 			BattleWorkIncRecord(bw,irp->id);
 		}
@@ -1291,9 +1291,9 @@ static	void	ClientIncRecord(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	’ÊM‘Ò‹@ƒƒbƒZ[ƒW‚Ì•\¦
+ *	é€šä¿¡å¾…æ©Ÿãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientSioWaitMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1307,9 +1307,9 @@ static	void	ClientSioWaitMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	‘Ş”ğ‚µ‚Ä‚¢‚½ƒLƒƒƒ‰‚Ì•œ‹A
+ *	é€€é¿ã—ã¦ã„ãŸã‚­ãƒ£ãƒ©ã®å¾©å¸°
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientChrPop(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1322,9 +1322,9 @@ static	void	ClientChrPop(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚ğOAM‚É•ÏŠ·
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’OAMã«å¤‰æ›
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientSStoOAMCall(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1335,9 +1335,9 @@ static	void	ClientSStoOAMCall(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	OAM‚ğƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚É–ß‚·
+ *	OAMã‚’ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«æˆ»ã™
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientOAMtoSSCall(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1348,9 +1348,9 @@ static	void	ClientOAMtoSSCall(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	’ÊM‘Îí‚ÌŸ”sƒƒbƒZ[ƒW‚ğ•\¦
+ *	é€šä¿¡å¯¾æˆ¦æ™‚ã®å‹æ•—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientWinLoseMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1361,9 +1361,9 @@ static	void	ClientWinLoseMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	’ÊM‘Îí‚Ì‚É‚°‚éƒƒbƒZ[ƒW‚ğ•\¦
+ *	é€šä¿¡å¯¾æˆ¦æ™‚ã®ã«ã’ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientEscapeMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1377,9 +1377,9 @@ static	void	ClientEscapeMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[‚ÌƒŠƒ^ƒCƒAƒƒbƒZ[ƒW‚ğ•\¦
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ãƒªã‚¿ã‚¤ã‚¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientGiveUpMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1393,9 +1393,9 @@ static	void	ClientGiveUpMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	‚İ‚ª‚í‚èƒLƒƒƒ‰‚ğƒZƒbƒg
+ *	ã¿ãŒã‚ã‚Šã‚­ãƒ£ãƒ©ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientMigawariChrSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1408,9 +1408,9 @@ static	void	ClientMigawariChrSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	‹ZŒø‰ÊSE‚ÌƒZƒbƒg
+ *	æŠ€åŠ¹æœSEã®ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientWazaKoukaSESet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1423,9 +1423,9 @@ static	void	ClientWazaKoukaSESet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	‹È‚ÌƒZƒbƒg
+ *	æ›²ã®ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientBGMPlay(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1438,9 +1438,9 @@ static	void	ClientBGMPlay(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	win_lose_flag‚ğƒZƒbƒg
+ *	win_lose_flagã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientWinLoseSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1456,7 +1456,7 @@ static	void	ClientWinLoseSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 	BattleWorkBattleRecordRecvDataSet(bw,wlsp->size,wlsp->buf);
 
-	//ƒoƒgƒ‹ƒ^ƒ[‚ÍA‘—‚ç‚ê‚Ä‚«‚½win_lose_flag‚ğ‚»‚Ì‚Ü‚ÜƒZƒbƒg
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã¯ã€é€ã‚‰ã‚Œã¦ããŸwin_lose_flagã‚’ãã®ã¾ã¾ã‚»ãƒƒãƒˆ
 	if(BattleWorkFightTypeGet(bw)&FIGHT_TYPE_TOWER){
 		BattleWorkWinLoseSet(bw,wlsp->win_lose_flag);
 	}
@@ -1493,9 +1493,9 @@ static	void	ClientWinLoseSet(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE‚ğƒNƒŠƒA
+ *	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ã‚¯ãƒªã‚¢
  *
- * @param[in]	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientBlankMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
@@ -1511,9 +1511,9 @@ static	void	ClientBlankMessage(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 
 //============================================================================================
 /**
- *	ƒRƒ}ƒ“ƒhî•ñ‚ğƒŠƒZƒbƒg
+ *	ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆ
  *
- * @param[in]	cp		ƒNƒ‰ƒCƒAƒ“ƒg—pƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	cp		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	ClientCommandReset(CLIENT_PARAM *cp)

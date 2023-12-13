@@ -7,33 +7,33 @@
 
 //#include "grid_def.h"
 
-//XZ’¸“_ƒf[ƒ^
+//XZé ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 typedef struct XZ_VERTEX_tag
 {
 	fx32 X;
 	fx32 Z;
 }XZ_VERTEX;
 /**
-//ƒ|ƒŠƒSƒ“ƒf[ƒ^•”
+//ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿éƒ¨
 typedef struct SPLIT_GRID_DATA_tag{
-	u16		NumX;		//ƒOƒŠƒbƒh‚w”
-	u16		NumZ;		//ƒOƒŠƒbƒh‚y”
+	u16		NumX;		//ã‚°ãƒªãƒƒãƒ‰ï¼¸æ•°
+	u16		NumZ;		//ã‚°ãƒªãƒƒãƒ‰ï¼ºæ•°
 
-	fx32	StartX;		//n“_ˆÊ’u‚w
-	fx32	StartZ;		//n“_ˆÊ’u‚y
-	fx32	EndX;		//I“_ˆÊ’u‚w
-	fx32	EndZ;		//I“_ˆÊ’u‚y
-	fx32	SizeX;		//ƒOƒŠƒbƒh‚wƒTƒCƒY
-	fx32	SizeZ;		//ƒOƒŠƒbƒh‚yƒTƒCƒY
+	fx32	StartX;		//å§‹ç‚¹ä½ç½®ï¼¸
+	fx32	StartZ;		//å§‹ç‚¹ä½ç½®ï¼º
+	fx32	EndX;		//çµ‚ç‚¹ä½ç½®ï¼¸
+	fx32	EndZ;		//çµ‚ç‚¹ä½ç½®ï¼º
+	fx32	SizeX;		//ã‚°ãƒªãƒƒãƒ‰ï¼¸ã‚µã‚¤ã‚º
+	fx32	SizeZ;		//ã‚°ãƒªãƒƒãƒ‰ï¼ºã‚µã‚¤ã‚º
 }SPLIT_GRID_DATA;
 */
 typedef struct POLYGON_DATA_tag{
 	u16 vtx_idx0;
 	u16 vtx_idx1;
-///	u16 vtx_idx2;	//3Špƒ|ƒŠƒSƒ“‚ğŒ`¬‚·‚éA’¸“_ƒf[ƒ^”z—ñ‚Ö‚ÌƒCƒ“ƒfƒbƒNƒXNo
-	u16	nrm_idx;	//–@üƒf[ƒ^”z—ñ(³‹K‰»Ï‚İ)‚Ö‚ÌƒCƒ“ƒfƒbƒNƒXNo
+///	u16 vtx_idx2;	//3è§’ãƒãƒªã‚´ãƒ³ã‚’å½¢æˆã™ã‚‹ã€é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹No
+	u16	nrm_idx;	//æ³•ç·šãƒ‡ãƒ¼ã‚¿é…åˆ—(æ­£è¦åŒ–æ¸ˆã¿)ã¸ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹No
 	
-///	fx32	paramD;		//•½–Ê‚Ì•û’ö®‚©‚ç“±‚¢‚½A•â³’lD
+///	fx32	paramD;		//å¹³é¢ã®æ–¹ç¨‹å¼ã‹ã‚‰å°ã„ãŸã€è£œæ­£å€¤D
 	u16 d_idx;
 }POLYGON_DATA;
 
@@ -60,7 +60,7 @@ typedef struct MAP_HEIGHT_INFO_tag{
 	u16				*PolyIDList;
 	XZ_VERTEX		*VertexArray;
 	VecFx32			*NormalArray;
-	BOOL			DataValid;		//ƒf[ƒ^—LŒø—L–³
+	BOOL			DataValid;		//ãƒ‡ãƒ¼ã‚¿æœ‰åŠ¹æœ‰ç„¡
 	int				LineNum;
 }MAP_HEIGHT_INFO;
 

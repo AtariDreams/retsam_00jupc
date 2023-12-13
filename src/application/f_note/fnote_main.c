@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fnote_main.c
- * @brief	–`Œ¯ƒm[ƒg@•\¦ƒƒCƒ“ˆ—
+ * @brief	å†’é™ºãƒãƒ¼ãƒˆã€€è¡¨ç¤ºãƒ¡ã‚¤ãƒ³å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2006.03.06
  */
@@ -30,22 +30,22 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// ˆ—ƒV[ƒPƒ“ƒX
+// å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
-	SEQ_IN = 0,			// ‰ŠúƒtƒF[ƒh‘Ò‚¿
-	SEQ_MAIN,			// ƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‹
-	SEQ_PAGE_NOW,		// Œ»İ‚Ìƒy[ƒW‚Ö
-	SEQ_PAGE_PAST,		// ‰ß‹‚Ìƒy[ƒW‚Ö
-	SEQ_OUT,			// I—¹ƒtƒF[ƒh‘Ò‚¿
+	SEQ_IN = 0,			// åˆæœŸãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
+	SEQ_MAIN,			// ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+	SEQ_PAGE_NOW,		// ç¾åœ¨ã®ãƒšãƒ¼ã‚¸ã¸
+	SEQ_PAGE_PAST,		// éå»ã®ãƒšãƒ¼ã‚¸ã¸
+	SEQ_OUT,			// çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 };
 
-#define	TMP_MSG_BUFSIZ	( 128 )		// ƒeƒ“ƒ|ƒ‰ƒŠƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define	TMP_MSG_BUFSIZ	( 128 )		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void FNOTE_VBlankTask( TCB_PTR tcb, void * work );
 static void FNOTE_VBlank( void * work );
@@ -71,10 +71,10 @@ static u8 FNOTE_ScrnWritePast( FNOTE_WORK * wk );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 
-// ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦ƒe[ƒuƒ‹
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 ScrnChgTbl[9][32] =
 {
 	{ 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1a,0x1b,0x1c,0x1d,0x1e,0x1f },
@@ -102,17 +102,17 @@ static const u8 ScrnChgTbl[9][32] =
 
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT FantasyNoteProc_Init( PROC * proc, int * seq )
@@ -120,8 +120,8 @@ PROC_RESULT FantasyNoteProc_Init( PROC * proc, int * seq )
 	FNOTE_WORK * wk;
 	SAVEDATA * sv;
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();				// HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();				// HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -147,45 +147,45 @@ PROC_RESULT FantasyNoteProc_Init( PROC * proc, int * seq )
 
 	FontProc_LoadBitData( FONT_SYSTEM, HEAPID_FANTASYNOTE );
 
-//	InitTPSystem();					// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+//	InitTPSystem();					// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 //	InitTPNoBuff(4);
 
-	FNOTE_VramBankSet();			// VRAMŠ„‚è“–‚Ä
-	FNOTE_BgSet( wk->bgl );			// BG‰Šú‰»
-	FNOTE_BgGraphicSet( wk );		// BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+	FNOTE_VramBankSet();			// VRAMå‰²ã‚Šå½“ã¦
+	FNOTE_BgSet( wk->bgl );			// BGåˆæœŸåŒ–
+	FNOTE_BgGraphicSet( wk );		// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 
-	FNOTE_MsgBufCreate( wk );		// ƒƒbƒZ[ƒWŠÖ˜Aì¬
+	FNOTE_MsgBufCreate( wk );		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ä½œæˆ
 
-	FantasyNote_BmpAdd( wk );		// BMPİ’è
+	FantasyNote_BmpAdd( wk );		// BMPè¨­å®š
 
 //	Debug_FNOTE_BmpPut( wk, 0 );
 //	Debug_FNOTE_BmpPut( wk, 1 );
 	FantasyNote_BmpPut( wk, 0 );
 
-	FNOTE_BmpScrnCopy( wk );	// BMPƒXƒNƒŠ[ƒ“ƒRƒs[
+	FNOTE_BmpScrnCopy( wk );	// BMPã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚³ãƒ”ãƒ¼
 
-//	InitPageSet( wk );					// ‰Šúƒy[ƒWì¬
+//	InitPageSet( wk );					// åˆæœŸãƒšãƒ¼ã‚¸ä½œæˆ
 
-	sys_VBlankFuncChange( FNOTE_VBlank, wk );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( FNOTE_VBlank, wk );	// VBlankã‚»ãƒƒãƒˆ
 
 	GF_Disp_DispOn();
 
 	WirelessIconEasy();
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );		// MAIN DISP OBJ ON
 
-	Snd_DataSetByScene( SND_SCENE_SUB_FNOTE, 0, 0 );// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(–`Œ¯ƒm[ƒg)(BGMˆøŒp‚¬)
+	Snd_DataSetByScene( SND_SCENE_SUB_FNOTE, 0, 0 );// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(å†’é™ºãƒãƒ¼ãƒˆ)(BGMå¼•ç¶™ã)
 
 	return PROC_RES_FINISH;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT FantasyNoteProc_Main( PROC * proc, int * seq )
@@ -193,23 +193,23 @@ PROC_RESULT FantasyNoteProc_Main( PROC * proc, int * seq )
 	FNOTE_WORK * wk  = PROC_GetWork( proc );
 
 	switch( *seq ){
-	case SEQ_IN:			// ‰ŠúƒtƒF[ƒh‘Ò‚¿
+	case SEQ_IN:			// åˆæœŸãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		*seq = FNOTE_SeqIn( wk );
 		break;
 	
-	case SEQ_MAIN:			// ƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‹
+	case SEQ_MAIN:			// ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 		*seq = FNOTE_SeqMain( wk );
 		break;
 
-	case SEQ_PAGE_NOW:		// Œ»İ‚Ìƒy[ƒW‚Ö
+	case SEQ_PAGE_NOW:		// ç¾åœ¨ã®ãƒšãƒ¼ã‚¸ã¸
 		*seq = FNOTE_SeqPageNow( wk );
 		break;
 
-	case SEQ_PAGE_PAST:		// ‰ß‹‚Ìƒy[ƒW‚Ö
+	case SEQ_PAGE_PAST:		// éå»ã®ãƒšãƒ¼ã‚¸ã¸
 		*seq = FNOTE_SeqPagePast( wk );
 		break;
 
-	case SEQ_OUT:			// I—¹ƒtƒF[ƒh‘Ò‚¿
+	case SEQ_OUT:			// çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		if( FNOTE_SeqOut( wk ) == TRUE ){
 			return PROC_RES_FINISH;
 		}
@@ -220,36 +220,36 @@ PROC_RESULT FantasyNoteProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT FantasyNoteProc_End( PROC * proc, int * seq )
 {
 	FNOTE_WORK * wk  = PROC_GetWork( proc );
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
 
-	FantasyNote_BmpFree( wk );		// BMPƒEƒBƒ“ƒhƒEŠJ•ú
-	FNOTE_BgExit( wk->bgl );		// BGLíœ
+	FantasyNote_BmpFree( wk );		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
+	FNOTE_BgExit( wk->bgl );		// BGLå‰Šé™¤
 	FNOTE_MsgBufRelease( wk );
 
 	FontProc_UnloadBitData( FONT_SYSTEM );
 
 //	TCB_Delete( wk->vtask );
 
-	PROC_FreeWork( proc );				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
 	sys_DeleteHeap( HEAPID_FANTASYNOTE );
 
 	return PROC_RES_FINISH;
 }
 
-/** g—p‚µ‚Ä‚Ü‚¹‚ñ */
+/** ä½¿ç”¨ã—ã¦ã¾ã›ã‚“ */
 static void FNOTE_VBlankTask( TCB_PTR tcb, void * work )
 {
 	FNOTE_WORK * wk = work;
@@ -260,9 +260,9 @@ static void FNOTE_VBlankTask( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
- * @param	work	–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
+ * @param	work	å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -278,7 +278,7 @@ static void FNOTE_VBlank( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMİ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -288,25 +288,25 @@ static void FNOTE_VBlank( void * work )
 static void FNOTE_VramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_256_AB,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_256_AB,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGİ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -320,7 +320,7 @@ static void FNOTE_BgSet( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	// ã‰æ–Ê
+	// ä¸Šç”»é¢
 	{	// FONT (BMP)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -362,9 +362,9 @@ static void FNOTE_BgSet( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -383,9 +383,9 @@ static void FNOTE_BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -424,18 +424,18 @@ static void FNOTE_BgGraphicSet( FNOTE_WORK * wk )
 	MI_CpuCopy16( scrn_buf, wk->chr_scrn, 0x800 );
 	GF_BGL_ScreenBufSet( wk->bgl, GF_BGL_FRAME3_M, wk->chr_scrn, 0x800 );
 
-	// ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒgƒZƒbƒg
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 15 * 32, HEAPID_FANTASYNOTE );
 
-	// ‰º‰æ–Ê‚ÌƒJƒ‰[‚O‚ğ•‚É
+	// ä¸‹ç”»é¢ã®ã‚«ãƒ©ãƒ¼ï¼ã‚’é»’ã«
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0 );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aì¬
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -450,9 +450,9 @@ static void FNOTE_MsgBufCreate( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aíœ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -467,11 +467,11 @@ static void FNOTE_MsgBufRelease( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒtƒF[ƒhƒCƒ“
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int FNOTE_SeqIn( FNOTE_WORK * wk )
@@ -484,16 +484,16 @@ static int FNOTE_SeqIn( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒƒCƒ“
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int FNOTE_SeqMain( FNOTE_WORK * wk )
 {
-	// Œ»İ‚Ö
+	// ç¾åœ¨ã¸
 	if( sys.trg & PAD_KEY_LEFT ){
 		if( FNOTE_PageChangeCheck( wk, -1 ) == TRUE ){
 			return SEQ_PAGE_NOW;
@@ -501,7 +501,7 @@ static int FNOTE_SeqMain( FNOTE_WORK * wk )
 		return SEQ_MAIN;
 	}
 
-	// ‰ß‹‚Ö
+	// éå»ã¸
 	if( sys.trg & (PAD_BUTTON_A|PAD_KEY_RIGHT) ){
 		if( FNOTE_PageChangeCheck( wk, 1 ) == TRUE ){
 			return SEQ_PAGE_PAST;
@@ -509,7 +509,7 @@ static int FNOTE_SeqMain( FNOTE_WORK * wk )
 		return SEQ_MAIN;
 	}
 
-	// Œ»İ‚Ö or I—¹
+	// ç¾åœ¨ã¸ or çµ‚äº†
 	if( sys.trg & PAD_BUTTON_B ){
 		if( wk->page != 0 ){
 			if( FNOTE_PageChangeCheck( wk, -1 ) == TRUE ){
@@ -521,7 +521,7 @@ static int FNOTE_SeqMain( FNOTE_WORK * wk )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	if( sys.trg & PAD_BUTTON_START ){
 		APP_WipeStart( APP_WIPE_OUT, HEAPID_FANTASYNOTE );
 		return SEQ_OUT;
@@ -531,11 +531,11 @@ static int FNOTE_SeqMain( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒy[ƒW‘—‚èiŒ»İ‚Ìƒy[ƒW‚Öj
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒšãƒ¼ã‚¸é€ã‚Šï¼ˆç¾åœ¨ã®ãƒšãƒ¼ã‚¸ã¸ï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int FNOTE_SeqPageNow( FNOTE_WORK * wk )
@@ -544,9 +544,9 @@ static int FNOTE_SeqPageNow( FNOTE_WORK * wk )
 	case 0:
 		FNOTE_ScrnFrameSet( wk );
 		FNOTE_ScrnPalChg( wk, wk->new_chr_frm, wk->page-1 );
-//		Debug_FNOTE_BmpPut( wk, wk->page_write_flg^1 );	// ‰æ–Ê‘‚«‚İ
+//		Debug_FNOTE_BmpPut( wk, wk->page_write_flg^1 );	// ç”»é¢æ›¸ãè¾¼ã¿
 		wk->page--;
-		FantasyNote_BmpPut( wk, wk->page_write_flg^1 );	// ‰æ–Ê‘‚«‚İ
+		FantasyNote_BmpPut( wk, wk->page_write_flg^1 );	// ç”»é¢æ›¸ãè¾¼ã¿
 		wk->page_chg_seq = 1;
 		Snd_SePlay( SEQ_SE_DP_MEKURU3 );
 		break;
@@ -572,11 +572,11 @@ static int FNOTE_SeqPageNow( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒy[ƒW‘—‚èi‰ß‹‚Ìƒy[ƒW‚Öj
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒšãƒ¼ã‚¸é€ã‚Šï¼ˆéå»ã®ãƒšãƒ¼ã‚¸ã¸ï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int FNOTE_SeqPagePast( FNOTE_WORK * wk )
@@ -584,9 +584,9 @@ static int FNOTE_SeqPagePast( FNOTE_WORK * wk )
 	switch( wk->page_chg_seq ){
 	case 0:
 		FNOTE_ScrnFrameSet( wk );
-//		Debug_FNOTE_BmpPut( wk, wk->page_write_flg^1 );	// ‰æ–Ê‘‚«‚İ
+//		Debug_FNOTE_BmpPut( wk, wk->page_write_flg^1 );	// ç”»é¢æ›¸ãè¾¼ã¿
 		wk->page++;
-		FantasyNote_BmpPut( wk, wk->page_write_flg^1 );	// ‰æ–Ê‘‚«‚İ
+		FantasyNote_BmpPut( wk, wk->page_write_flg^1 );	// ç”»é¢æ›¸ãè¾¼ã¿
 		wk->page_chg_seq = 1;
 		Snd_SePlay( SEQ_SE_DP_MEKURU3 );
 		break;
@@ -606,11 +606,11 @@ static int FNOTE_SeqPagePast( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒtƒF[ƒhƒAƒEƒg
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒƒCƒvI—¹ƒ`ƒFƒbƒN
+ * @return	ãƒ¯ã‚¤ãƒ—çµ‚äº†ãƒã‚§ãƒƒã‚¯
  */
 //--------------------------------------------------------------------------------------------
 static int FNOTE_SeqOut( FNOTE_WORK * wk )
@@ -621,9 +621,9 @@ static int FNOTE_SeqOut( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •\¦‚·‚éBGƒtƒŒ[ƒ€‚ğİ’è
+ * è¡¨ç¤ºã™ã‚‹BGãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -645,13 +645,13 @@ static void FNOTE_ScrnFrameSet( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚Éƒf[ƒ^‚ª‚ ‚é‚©
+ * ãƒšãƒ¼ã‚¸ã«ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒW”Ô†
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸ç•ªå·
  *
- * @retval	"TRUE = ‚ ‚è"
- * @retval	"FALSE = ‚È‚µ"
+ * @retval	"TRUE = ã‚ã‚Š"
+ * @retval	"FALSE = ãªã—"
  */
 //--------------------------------------------------------------------------------------------
 static u8 FNOTE_PageCheck( FNOTE_WORK * wk, u8 page )
@@ -667,13 +667,13 @@ static u8 FNOTE_PageCheck( FNOTE_WORK * wk, u8 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚ğ‚ß‚­‚ê‚é‚©
+ * ãƒšãƒ¼ã‚¸ã‚’ã‚ãã‚Œã‚‹ã‹
  *
- * @param	wk		ƒ[ƒN
- * @param	mv		ˆÚ“®•ûŒü
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		ç§»å‹•æ–¹å‘
  *
- * @retval	"TRUE = ‚ß‚­‚ê‚Ü‚·"
- * @retval	"FALSE = ‚ß‚­‚ê‚Ü‚¹‚ñ"
+ * @retval	"TRUE = ã‚ãã‚Œã¾ã™"
+ * @retval	"FALSE = ã‚ãã‚Œã¾ã›ã‚“"
  */
 //--------------------------------------------------------------------------------------------
 static u8 FNOTE_PageChangeCheck( FNOTE_WORK * wk, s8 mv )
@@ -696,11 +696,11 @@ static u8 FNOTE_PageChangeCheck( FNOTE_WORK * wk, s8 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGƒXƒNƒŠ[ƒ“‚ÌƒpƒŒƒbƒg•ÏX
+ * BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
  *
- * @param	wk		ƒ[ƒN
- * @param	frm		BGƒtƒŒ[ƒ€
- * @param	pal		ƒpƒŒƒbƒg”Ô†
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	frm		BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	pal		ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  *
  * @return	none
  */
@@ -713,9 +713,9 @@ static void FNOTE_ScrnPalChg( FNOTE_WORK * wk, u8 frm, u8 pal )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMP–Ê‚ÌƒXƒNƒŠ[ƒ“‚ğƒRƒs[
+ * BMPé¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚³ãƒ”ãƒ¼
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -730,12 +730,12 @@ static void FNOTE_BmpScrnCopy( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚ß‚­‚èƒAƒjƒƒƒCƒ“
+ * ãƒšãƒ¼ã‚¸ã‚ãã‚Šã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
- * @param	scrn	‘‚«Š·‚¦ƒf[ƒ^
- * @param	frm		BGƒtƒŒ[ƒ€
- * @param	cnt		ƒJƒEƒ“ƒ^
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	scrn	æ›¸ãæ›ãˆãƒ‡ãƒ¼ã‚¿
+ * @param	frm		BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	cnt		ã‚«ã‚¦ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -762,9 +762,9 @@ static void FNOTE_ScrnWriteMain( FNOTE_WORK * wk, u16 * scrn, u16 frm, u16 cnt )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚ß‚­‚èƒAƒjƒiŒ»İ‚Öj
+ * ãƒšãƒ¼ã‚¸ã‚ãã‚Šã‚¢ãƒ‹ãƒ¡ï¼ˆç¾åœ¨ã¸ï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -789,9 +789,9 @@ static u8 FNOTE_ScrnWriteNow( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚ß‚­‚èƒAƒjƒi‰ß‹‚Öj
+ * ãƒšãƒ¼ã‚¸ã‚ãã‚Šã‚¢ãƒ‹ãƒ¡ï¼ˆéå»ã¸ï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */

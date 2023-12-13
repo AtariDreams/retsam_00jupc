@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_anketo.c
- *	@brief		ƒAƒ“ƒP[ƒg‰æ–Ê
+ *	@brief		ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆç”»é¢
  *	@author		tomoya takahashi
  *	@data		2008.05.29
  *
@@ -14,7 +14,7 @@
 #include "common.h"
 
 
-#include "gflib/strbuf_family.h"	// ”CˆÓ¿–â‚Åg—p
+#include "gflib/strbuf_family.h"	// ä»»æ„è³ªå•ã§ä½¿ç”¨
 
 #include "system/clact_util.h"
 #include "system/wipe.h"
@@ -52,19 +52,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 #ifdef PM_DEBUG
@@ -73,17 +73,17 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	•`‰æƒVƒXƒeƒ€
+///	æç”»ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
-// VRAM“]‘—ƒ^ƒXƒN
+// VRAMè»¢é€ã‚¿ã‚¹ã‚¯
 #define ANKETO_VRAMTRANS_TASKNUM		( 32 )
 // OAM
 #define ANKETO_OAM_CONTNUM		( 32 )
-#define ANKETO_RESMAN_NUM		( 4 )	// OAMƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”
+#define ANKETO_RESMAN_NUM		( 4 )	// OAMãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£æ•°
 #define ANKETO_SF_MAT_Y		( FX32_CONST(256) )
 static const CHAR_MANAGER_MAKE sc_ANKETO_CHARMAN_INIT = {
 	ANKETO_OAM_CONTNUM,
@@ -94,7 +94,7 @@ static const CHAR_MANAGER_MAKE sc_ANKETO_CHARMAN_INIT = {
 
 
 //-------------------------------------
-///	ƒpƒŒƒbƒgİ’è
+///	ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
 //=====================================
 enum {
 	ANKETO_PLTT_MAIN_BACK00,
@@ -119,13 +119,13 @@ enum {
 
 
 //-------------------------------------
-///	‰ï˜bƒEƒBƒ“ƒhƒE
+///	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define ANKETO_TALKWIN_CGX		(1)	
 #define ANKETO_TALKWIN_PAL		(ANKETO_PLTT_MAIN_TALKWIN)
 #define ANKETO_TALKWIN_CGXEND	(ANKETO_TALKWIN_CGX+TALK_WIN_CGX_SIZ)
 
-// ƒƒCƒ“‰æ–Ê‚ÌƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define ANKETO_SYSTEMWIN_CGX		(ANKETO_TALKWIN_CGXEND)
 #define ANKETO_SYSTEMWIN_PAL		(ANKETO_PLTT_MAIN_SYSWIN)
 #define ANKETO_SYSTEMWIN_CGXEND		(ANKETO_SYSTEMWIN_CGX+MENU_WIN_CGX_SIZ)
@@ -154,25 +154,25 @@ static const BMPWIN_DAT sc_YESNO_BMPDAT = {
 
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ’è”
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£å®šæ•°
 //=====================================
 enum {
-	ANKETO_MSGMAN_MSG,		// ’ÊíƒƒbƒZ[ƒW
-	ANKETO_MSGMAN_Q_NORMAL,	// ¿–âƒm[ƒ}ƒ‹
-	ANKETO_MSGMAN_Q_SPECIAL,// ¿–âSPECIAL
-	ANKETO_MSGMAN_A_N_A,	// ƒm[ƒ}ƒ‹	‰ñ“šA
-	ANKETO_MSGMAN_A_N_B,	// ƒm[ƒ}ƒ‹	‰ñ“šB
-	ANKETO_MSGMAN_A_N_C,	// ƒm[ƒ}ƒ‹	‰ñ“šC
-	ANKETO_MSGMAN_A_S_A,	// ƒXƒyƒVƒƒƒ‹	‰ñ“šA
-	ANKETO_MSGMAN_A_S_B,	// ƒXƒyƒVƒƒƒ‹	‰ñ“šB
-	ANKETO_MSGMAN_A_S_C,	// ƒXƒyƒVƒƒƒ‹	‰ñ“šC
-	ANKETO_MSGMAN_NUM,		// ƒ}ƒl[ƒWƒƒ”
+	ANKETO_MSGMAN_MSG,		// é€šå¸¸ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	ANKETO_MSGMAN_Q_NORMAL,	// è³ªå•ãƒãƒ¼ãƒãƒ«
+	ANKETO_MSGMAN_Q_SPECIAL,// è³ªå•SPECIAL
+	ANKETO_MSGMAN_A_N_A,	// ãƒãƒ¼ãƒãƒ«	å›ç­”A
+	ANKETO_MSGMAN_A_N_B,	// ãƒãƒ¼ãƒãƒ«	å›ç­”B
+	ANKETO_MSGMAN_A_N_C,	// ãƒãƒ¼ãƒãƒ«	å›ç­”C
+	ANKETO_MSGMAN_A_S_A,	// ã‚¹ãƒšã‚·ãƒ£ãƒ«	å›ç­”A
+	ANKETO_MSGMAN_A_S_B,	// ã‚¹ãƒšã‚·ãƒ£ãƒ«	å›ç­”B
+	ANKETO_MSGMAN_A_S_C,	// ã‚¹ãƒšã‚·ãƒ£ãƒ«	å›ç­”C
+	ANKETO_MSGMAN_NUM,		// ãƒãƒãƒ¼ã‚¸ãƒ£æ•°
 } ;
 #define ANKETO_MSGMAN_STRBUFNUM	(256)
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒg“ü—Í‰æ–Ê
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå…¥åŠ›ç”»é¢
 //=====================================
 enum {
 	ANKETO_INPUT_BMP_ANS,
@@ -201,19 +201,19 @@ static const BMPWIN_DAT sc_ANKETO_INPUT_BMPDAT[ ANKETO_INPUT_BMP_NUM ] = {
 };
 
 enum{
-	ANKETO_INPUT_SEQ_ANKETO_YARU_Q,		// ƒAƒ“ƒP[ƒg‚â‚éH
-	ANKETO_INPUT_SEQ_ANKETO_YARU_Q_ON,// ƒAƒ“ƒP[ƒg‚â‚éH
-	ANKETO_INPUT_SEQ_ANKETO_YARU_Q_WAIT,// ƒAƒ“ƒP[ƒg‚â‚éH
-//	ANKETO_INPUT_SEQ_ANKETO_RECV,		// óMŠJn
-//	ANKETO_INPUT_SEQ_ANKETO_RECVWAIT,	// óM’†
-	ANKETO_INPUT_SEQ_ANKETO_Q_DRAW00,	// ¿–â•`‰æ
-	ANKETO_INPUT_SEQ_ANKETO_Q_DRAW,		// ¿–â•`‰æ
-	ANKETO_INPUT_SEQ_ANKETO_Q_SELECT,	// ‰ñ“š‘I‘ğ
-	ANKETO_INPUT_SEQ_ANKETO_SEND,		// óMŠJn
-	ANKETO_INPUT_SEQ_ANKETO_SENDWAIT,	// óM’†
-	ANKETO_INPUT_SEQ_ANKETO_ARIGATO,	// ‚ ‚è‚ª‚Æ‚¤ƒƒbƒZ[ƒW•`‰æ
-	ANKETO_INPUT_SEQ_ANKETO_END,		// I—¹
-	ANKETO_INPUT_SEQ_ANKETO_MASWAIT,	// ƒƒbƒZ[ƒW‘Ò‚¿
+	ANKETO_INPUT_SEQ_ANKETO_YARU_Q,		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã‚„ã‚‹ï¼Ÿ
+	ANKETO_INPUT_SEQ_ANKETO_YARU_Q_ON,// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã‚„ã‚‹ï¼Ÿ
+	ANKETO_INPUT_SEQ_ANKETO_YARU_Q_WAIT,// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã‚„ã‚‹ï¼Ÿ
+//	ANKETO_INPUT_SEQ_ANKETO_RECV,		// å—ä¿¡é–‹å§‹
+//	ANKETO_INPUT_SEQ_ANKETO_RECVWAIT,	// å—ä¿¡ä¸­
+	ANKETO_INPUT_SEQ_ANKETO_Q_DRAW00,	// è³ªå•æç”»
+	ANKETO_INPUT_SEQ_ANKETO_Q_DRAW,		// è³ªå•æç”»
+	ANKETO_INPUT_SEQ_ANKETO_Q_SELECT,	// å›ç­”é¸æŠ
+	ANKETO_INPUT_SEQ_ANKETO_SEND,		// å—ä¿¡é–‹å§‹
+	ANKETO_INPUT_SEQ_ANKETO_SENDWAIT,	// å—ä¿¡ä¸­
+	ANKETO_INPUT_SEQ_ANKETO_ARIGATO,	// ã‚ã‚ŠãŒã¨ã†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
+	ANKETO_INPUT_SEQ_ANKETO_END,		// çµ‚äº†
+	ANKETO_INPUT_SEQ_ANKETO_MASWAIT,	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 };
 static const VecFx32 sc_ANKETO_INPUT_CURSOR_MAT[] = {
 	{ FX32_CONST(72),	FX32_CONST(64),0 },
@@ -224,36 +224,36 @@ static const VecFx32 sc_ANKETO_INPUT_CURSOR_MAT[] = {
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒgo—Í‰æ–Ê
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå‡ºåŠ›ç”»é¢
 //=====================================
 enum {
-//	ANKETO_OUTPUT_SEQ_ANKETO_RECV,			// ƒAƒ“ƒP[ƒgóM
-//	ANKETO_OUTPUT_SEQ_ANKETO_RECVWAIT,		// ƒAƒ“ƒP[ƒgóM’†
-	ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE00,	// ‚±‚ñ‚©‚¢‚Í
-	ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE01,	// “à—e
-	ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE02,	// ‚Å‚µ‚½
-	ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE03,	// ‚±‚ñ‚©‚¢‚Í‚±‚ñ‚È‚Å‚µ‚½
-	ANKETO_OUTPUT_SEQ_ANKETO_NRESULT,		// Œ‹‰Ê•\¦
-	ANKETO_OUTPUT_SEQ_ANKETO_NRESULT_MAIN,	// Œ‹‰Ê•\¦
-	ANKETO_OUTPUT_SEQ_ANKETO_NA_WAIT,		// Aƒ{ƒ^ƒ“‘Ò‚¿
-	ANKETO_OUTPUT_SEQ_ANKETO_YESNO_DRAW,	// YESNO•\¦
-	ANKETO_OUTPUT_SEQ_ANKETO_YESNO_WAIT,	// YESNO‘Ò‚¿
-	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEOUT,	// ˆê‰ñƒtƒF[ƒh
-	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEOUTWAIT,// ˆê‰ñƒtƒF[ƒh
-	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEIN,		// ˆê‰ñƒtƒF[ƒh
-	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEINWAIT,	// ˆê‰ñƒtƒF[ƒh
-	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE00,	// ‘O‰ñ‚Í
-	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE01,	// “à—e
-	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE02,	// ‚Å‚µ‚½
-	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE03,	// ‘O‰ñ‚Í‚±‚ñ‚È‚Å‚µ‚½
-	ANKETO_OUTPUT_SEQ_ANKETO_LRESULT,		// Œ‹‰Ê•\¦
-	ANKETO_OUTPUT_SEQ_ANKETO_LRESULT_MAIN,	// Œ‹‰Ê•\¦
-	ANKETO_OUTPUT_SEQ_ANKETO_LA_WAIT,		// Aƒ{ƒ^ƒ“‘Ò‚¿
+//	ANKETO_OUTPUT_SEQ_ANKETO_RECV,			// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå—ä¿¡
+//	ANKETO_OUTPUT_SEQ_ANKETO_RECVWAIT,		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå—ä¿¡ä¸­
+	ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE00,	// ã“ã‚“ã‹ã„ã¯
+	ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE01,	// å†…å®¹
+	ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE02,	// ã§ã—ãŸ
+	ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE03,	// ã“ã‚“ã‹ã„ã¯ã“ã‚“ãªã§ã—ãŸ
+	ANKETO_OUTPUT_SEQ_ANKETO_NRESULT,		// çµæœè¡¨ç¤º
+	ANKETO_OUTPUT_SEQ_ANKETO_NRESULT_MAIN,	// çµæœè¡¨ç¤º
+	ANKETO_OUTPUT_SEQ_ANKETO_NA_WAIT,		// Aãƒœã‚¿ãƒ³å¾…ã¡
+	ANKETO_OUTPUT_SEQ_ANKETO_YESNO_DRAW,	// YESNOè¡¨ç¤º
+	ANKETO_OUTPUT_SEQ_ANKETO_YESNO_WAIT,	// YESNOå¾…ã¡
+	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEOUT,	// ä¸€å›ãƒ•ã‚§ãƒ¼ãƒ‰
+	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEOUTWAIT,// ä¸€å›ãƒ•ã‚§ãƒ¼ãƒ‰
+	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEIN,		// ä¸€å›ãƒ•ã‚§ãƒ¼ãƒ‰
+	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEINWAIT,	// ä¸€å›ãƒ•ã‚§ãƒ¼ãƒ‰
+	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE00,	// å‰å›ã¯
+	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE01,	// å†…å®¹
+	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE02,	// ã§ã—ãŸ
+	ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE03,	// å‰å›ã¯ã“ã‚“ãªã§ã—ãŸ
+	ANKETO_OUTPUT_SEQ_ANKETO_LRESULT,		// çµæœè¡¨ç¤º
+	ANKETO_OUTPUT_SEQ_ANKETO_LRESULT_MAIN,	// çµæœè¡¨ç¤º
+	ANKETO_OUTPUT_SEQ_ANKETO_LA_WAIT,		// Aãƒœã‚¿ãƒ³å¾…ã¡
 
-	ANKETO_OUTPUT_SEQ_ANKETO_ENDMSG,		// I—¹ƒƒbƒZ[ƒW
-	ANKETO_OUTPUT_SEQ_ANKETO_END,			// I—¹
+	ANKETO_OUTPUT_SEQ_ANKETO_ENDMSG,		// çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	ANKETO_OUTPUT_SEQ_ANKETO_END,			// çµ‚äº†
 
-	ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT,		// ƒƒbƒZ[ƒW‘Ò‚¿
+	ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 };
 enum {
 	ANKETO_OUTPUT_BMP_TITLE,
@@ -375,7 +375,7 @@ static const BMPWIN_DAT sc_ANKETO_OUTPUT_BMPDAT[ ANKETO_OUTPUT_BMP_NUM ] = {
 };
 
 
-// ƒo[•\¦
+// ãƒãƒ¼è¡¨ç¤º
 #define ANKETO_BAR_100WIDTH	( 80 )
 #define ANKETO_BAR_COUNTMAX	( 20 )
 #define ANKETO_BAR_CG_X		( 247 )
@@ -384,23 +384,23 @@ static const BMPWIN_DAT sc_ANKETO_OUTPUT_BMPDAT[ ANKETO_OUTPUT_BMP_NUM ] = {
 #define ANKETO_BAR_CG_SIZY		( 16 )
 #define ANKETO_BAR_CGFILE_X		( 256 )
 #define ANKETO_BAR_CGFILE_Y		( 32 )
-#define ANKETO_BAR_WRITE_X		( 4 )		// BMP•`‰æŠJnˆÊ’u
+#define ANKETO_BAR_WRITE_X		( 4 )		// BMPæç”»é–‹å§‹ä½ç½®
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒg¿–â	ƒƒbƒZ[ƒWƒoƒbƒtƒ@
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆè³ªå•	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡
 //=====================================
 #define ANKETO_MESSAGE_BUFFNUM	( 256 )
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒgŠî–{î•ñ
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆåŸºæœ¬æƒ…å ±
 //
-//// óMƒƒbƒZ[ƒW
+//// å—ä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //=====================================
 typedef struct {
 	u32		question_no;
@@ -413,7 +413,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒg“ü—Í‰æ–Ê‚Ì‰Šú‰»
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå…¥åŠ›ç”»é¢ã®åˆæœŸåŒ–
 //=====================================
 typedef struct {
 	GF_BGL_BMPWIN win[ ANKETO_INPUT_BMP_NUM ];
@@ -427,14 +427,14 @@ typedef struct {
 } ANKETO_INPUT;
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒgo—Í‰æ–Ê‚Ì‰Šú‰»
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå‡ºåŠ›ç”»é¢ã®åˆæœŸåŒ–
 //=====================================
 typedef struct {
 	GF_BGL_BMPWIN win[ ANKETO_OUTPUT_BMP_NUM ];
 	u16 seq;
 	u16 ret_seq;
 
-	s32 count;	// ƒo[•\¦ƒJƒEƒ“ƒ^
+	s32 count;	// ãƒãƒ¼è¡¨ç¤ºã‚«ã‚¦ãƒ³ã‚¿
 	s32	draw_width[ANKETO_ANSWER_NUM]; 
 	s32	drawend_width[ANKETO_ANSWER_NUM]; 
 
@@ -450,7 +450,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	‰æ–Ê\¬ƒ[ƒN
+///	ç”»é¢æ§‹æˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef union{
 	ANKETO_INPUT input;
@@ -460,7 +460,7 @@ typedef union{
 
 
 //-------------------------------------
-///	‰ï˜bƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
+///	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
 	u32 msgno;
@@ -475,36 +475,36 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒWƒVƒXƒeƒ€‚Ì‰Šú‰»
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
 //=====================================
 typedef struct {
-	MSGDATA_MANAGER*	p_msgman[ANKETO_MSGMAN_NUM];		// Šî–{ƒƒbƒZ[ƒW
-	WORDSET*			p_wordset;							// ƒ[ƒhƒZƒbƒg
-	STRBUF*				p_msgstr;							// ƒƒbƒZ[ƒWƒoƒbƒtƒ@
-	STRBUF*				p_msgtmp;							// ƒƒbƒZ[ƒWƒoƒbƒtƒ@
+	MSGDATA_MANAGER*	p_msgman[ANKETO_MSGMAN_NUM];		// åŸºæœ¬ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WORDSET*			p_wordset;							// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	STRBUF*				p_msgstr;							// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡
+	STRBUF*				p_msgtmp;							// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡
 
-	WFLBY_SYSTEM*		p_system;							// –¼‘O•\¦—p
+	WFLBY_SYSTEM*		p_system;							// åå‰è¡¨ç¤ºç”¨
 } ANKETO_MSGMAN;
 
 
 //-------------------------------------
-///	•`‰æŒnƒ[ƒN
+///	æç”»ç³»ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	// BG
 	GF_BGL_INI*				p_bgl;
 
 	// OAM
-    CLACT_SET_PTR           p_clactset;		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-    CLACT_U_EASYRENDER_DATA renddata;       // ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-    CLACT_U_RES_MANAGER_PTR p_resman[ANKETO_RESMAN_NUM]; // ƒLƒƒƒ‰EƒpƒŒƒbƒgƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	// ƒA[ƒJƒCƒu
+    CLACT_SET_PTR           p_clactset;		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+    CLACT_U_EASYRENDER_DATA renddata;       // ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+    CLACT_U_RES_MANAGER_PTR p_resman[ANKETO_RESMAN_NUM]; // ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 	ARCHANDLE* p_handle;
 } ANKETO_DRAWSYS;
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒg\‘¢‘Ì
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæ§‹é€ ä½“
 //=====================================
 typedef struct {
 	ANKETO_DRAWSYS	drawsys;
@@ -515,13 +515,13 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void ANKETO_VBlank( void* p_work );
 
 //-------------------------------------
-///	•`‰æƒVƒXƒeƒ€
+///	æç”»ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 static void ANKETO_InitGraphic( ANKETO_DRAWSYS* p_wk, SAVEDATA* p_save, u32 heapID );
 static void ANKETO_ExitGraphic( ANKETO_DRAWSYS* p_wk );
@@ -534,7 +534,7 @@ static void ANKETO_OamExit( ANKETO_DRAWSYS* p_wk );
 
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒWƒVƒXƒeƒ€
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 static void ANKETO_MsgManInit( ANKETO_MSGMAN* p_wk, WFLBY_SYSTEM* p_system, u32 heapID );
 static void ANKETO_MsgManExit( ANKETO_MSGMAN* p_wk );
@@ -545,7 +545,7 @@ static void ANKETO_MsgManSetMyName( ANKETO_MSGMAN* p_wk, u32 bufno, u32 heapID )
 
 
 //-------------------------------------
-///	¿–âƒf[ƒ^ƒ[ƒN
+///	è³ªå•ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
 //=====================================
 static void ANKETO_QUESTION_DATA_DebugInit( ANKETO_QUESTION_DATA* p_wk );
 static void ANKETO_QUESTION_DATA_Init( ANKETO_QUESTION_DATA* p_wk, BOOL now, u32 heapID );
@@ -554,7 +554,7 @@ static STRBUF* ANKETO_QUESTION_DATA_GetQuestionStr( const ANKETO_QUESTION_DATA* 
 static STRBUF* ANKETO_QUESTION_DATA_GetAnswerStr( const ANKETO_QUESTION_DATA* cp_wk, ANKETO_MSGMAN* p_msg, u32 answer );
 
 //-------------------------------------
-///	Œ‹‰Êƒf[ƒ^ƒ[ƒN
+///	çµæœãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
 //=====================================
 static void ANKETO_QUESTION_RESULT_DebugInit( ANKETO_QUESTION_RESULT* p_wk );
 static void ANKETO_QUESTION_RESULT_Init( ANKETO_QUESTION_RESULT* p_wk );
@@ -563,7 +563,7 @@ static void ANKETO_QUESTION_RESULT_CalcHirobaResult( ANKETO_QUESTION_RESULT* p_w
 
 
 //-------------------------------------
-///	“ü—Í‰æ–Ê
+///	å…¥åŠ›ç”»é¢
 //=====================================
 static void ANKETO_LOCAL_INPUT_Init( ANKETO_LOCAL_WK* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, ANKETO_PARAM* p_param, u32 heapID );
 static BOOL ANKETO_LOCAL_INPUT_Main( ANKETO_LOCAL_WK* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, ANKETO_TALKWIN* p_talkwin, ANKETO_PARAM* p_param, u32 heapID );
@@ -578,7 +578,7 @@ static void ANKETO_INPUT_AnmCursor( ANKETO_INPUT* p_wk );
 
 
 //-------------------------------------
-///	o—Í‰æ–Ê
+///	å‡ºåŠ›ç”»é¢
 //=====================================
 static void ANKETO_LOCAL_OUTPUT_Init( ANKETO_LOCAL_WK* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, ANKETO_PARAM* p_param, u32 heapID );
 static BOOL ANKETO_LOCAL_OUTPUT_Main( ANKETO_LOCAL_WK* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, ANKETO_TALKWIN* p_talkwin, ANKETO_PARAM* p_param, u32 heapID );
@@ -595,7 +595,7 @@ static void ANKETO_OUTPUT_SetLastWeekGraphic( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN
 
 
 //-------------------------------------
-///	‰ï˜bƒEƒBƒ“ƒhƒE
+///	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 static void ANKETO_TalkWin_Init( ANKETO_TALKWIN* p_wk, ANKETO_DRAWSYS* p_sys, SAVEDATA* p_save, u32 heapID );
 static void ANKETO_TalkWin_Exit( ANKETO_TALKWIN* p_wk, u32 heapID );
@@ -613,27 +613,27 @@ static void ANKETO_TalkWin_EndYesNo( ANKETO_TALKWIN* p_wk, u32 heapID );
 
 //-----------------------------------------------------------------------------
 /**
- *					î•ñ
+ *					æƒ…å ±
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	BANKİ’è
+///	BANKè¨­å®š
 //=====================================
 static const GF_BGL_DISPVRAM sc_ANKETO_BANK = {
-	GX_VRAM_BG_256_AB,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_OBJ_16_G,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_OBJ_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-	GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+	GX_VRAM_BG_256_AB,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_OBJ_16_G,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_OBJ_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+	GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 };
 
 //-------------------------------------
-///	BGİ’è
+///	BGè¨­å®š
 //=====================================
 static const GF_BGL_SYS_HEADER sc_BGINIT = {
 	GX_DISPMODE_GRAPHICS,
@@ -643,9 +643,9 @@ static const GF_BGL_SYS_HEADER sc_BGINIT = {
 };
 
 //-------------------------------------
-///	‚a‚fƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^
+///	ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
-#define ANKETO_BGCNT_NUM	( 4 )	// ‚a‚fƒRƒ“ƒgƒ[ƒ‹ƒe[ƒuƒ‹”
+#define ANKETO_BGCNT_NUM	( 4 )	// ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 static const u32 sc_ANKETO_BGCNT_FRM[ ANKETO_BGCNT_NUM ] = {
 	GF_BGL_FRAME0_M,
 	GF_BGL_FRAME1_M,
@@ -653,23 +653,23 @@ static const u32 sc_ANKETO_BGCNT_FRM[ ANKETO_BGCNT_NUM ] = {
 	GF_BGL_FRAME0_S,
 };
 static const GF_BGL_BGCNT_HEADER sc_ANKETO_BGCNT_DATA[ ANKETO_BGCNT_NUM ] = {
-	{	// GF_BGL_FRAME0_M	i”wŒij
+	{	// GF_BGL_FRAME0_M	ï¼ˆèƒŒæ™¯ï¼‰
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xf800, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01,
 		3, 0, 0, FALSE
 	},
-	{	// GF_BGL_FRAME1_M	iƒtƒŒ[ƒ€–Êj
+	{	// GF_BGL_FRAME1_M	ï¼ˆãƒ•ãƒ¬ãƒ¼ãƒ é¢ï¼‰
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xf000, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
 		1, 0, 0, FALSE
 	},
-	{	// GF_BGL_FRAME2_M	iƒƒbƒZ[ƒW–Êj
+	{	// GF_BGL_FRAME2_M	ï¼ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¢ï¼‰
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xe800, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
 		2, 0, 0, FALSE
 	},
 
-	{	// GF_BGL_FRAME0_S	i‚µ‚½”wŒij
+	{	// GF_BGL_FRAME0_S	ï¼ˆã—ãŸèƒŒæ™¯ï¼‰
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xf800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
 		0, 0, 0, FALSE
@@ -679,7 +679,7 @@ static const GF_BGL_BGCNT_HEADER sc_ANKETO_BGCNT_DATA[ ANKETO_BGCNT_NUM ] = {
 
 
 //-------------------------------------
-///	Še‰æ–Ê	ŠÖ”ƒ|ƒCƒ“ƒ^
+///	å„ç”»é¢	é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
 //=====================================
 static void (*p_Init[ ANKETO_MOVE_TYPE_NUM ])( ANKETO_LOCAL_WK* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, ANKETO_PARAM* p_param, u32 heapID ) = {
 	ANKETO_LOCAL_INPUT_Init,
@@ -698,7 +698,7 @@ static void (*p_Exit[ ANKETO_MOVE_TYPE_NUM ])( ANKETO_LOCAL_WK* p_wk, ANKETO_MSG
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgƒvƒƒZƒX	‰Šú‰»
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ—ãƒ­ã‚»ã‚¹	åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT ANKETO_Init(PROC* p_proc, int* p_seq)
@@ -709,38 +709,38 @@ PROC_RESULT ANKETO_Init(PROC* p_proc, int* p_seq)
 
 	p_param = PROC_GetParentWork( p_proc );
 
-	//ƒq[ƒvƒGƒŠƒAì¬
+	//ãƒ’ãƒ¼ãƒ—ã‚¨ãƒªã‚¢ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_ANKETO, 0x50000 );
 
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk = PROC_AllocWork( p_proc, sizeof(ANKETO_WORK), HEAPID_ANKETO );
 	memset( p_wk, 0, sizeof(ANKETO_WORK) );
 
 
-	// •`‰æƒVƒXƒeƒ€‰Šú‰»
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	ANKETO_InitGraphic( &p_wk->drawsys, p_param->p_save, HEAPID_ANKETO );
 
-	// ƒƒbƒZ[ƒWƒVƒXƒeƒ€‰Šú‰»
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	ANKETO_MsgManInit( &p_wk->msgsys, p_param->p_system, HEAPID_ANKETO );
 
-	// ‰ï˜bƒEƒBƒ“ƒhƒE‰Šú‰»
+	// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	ANKETO_TalkWin_Init( &p_wk->talkwin,  &p_wk->drawsys, p_param->p_save, HEAPID_ANKETO );
 
-	// ‚»‚ê‚¼‚ê‚Ì‰æ–Ê‚Ì‰Šú‰»
+	// ãã‚Œãã‚Œã®ç”»é¢ã®åˆæœŸåŒ–
 	GF_ASSERT( p_param->move_type < ANKETO_MOVE_TYPE_NUM );
 	p_Init[ p_param->move_type ]( &p_wk->local_wk, &p_wk->msgsys, &p_wk->drawsys, p_param, HEAPID_ANKETO );
 
-	// Š„‚è‚İİ’è
+	// å‰²ã‚Šè¾¼ã¿è¨­å®š
 	sys_VBlankFuncChange( ANKETO_VBlank, p_wk );
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	return	PROC_RES_FINISH;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgƒvƒƒZƒX	ƒƒCƒ“
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ—ãƒ­ã‚»ã‚¹	ãƒ¡ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT ANKETO_Main(PROC* p_proc, int* p_seq)
@@ -758,7 +758,7 @@ PROC_RESULT ANKETO_Main(PROC* p_proc, int* p_seq)
 				WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 				WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_ANKETO );
 
-		// BGM‚ğƒtƒF[ƒhƒAƒEƒg
+		// BGMã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		WFLBY_SYSTEM_SetBGMVolumeDown( p_param->p_system, TRUE );
 
 		(*p_seq) ++;
@@ -773,7 +773,7 @@ PROC_RESULT ANKETO_Main(PROC* p_proc, int* p_seq)
 
 	case 2:
 
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( WIPE_SYS_EndCheck() == TRUE ){
 
 			if( WFLBY_SYSTEM_Event_GetEndCM( p_param->p_system ) == TRUE ){
@@ -789,7 +789,7 @@ PROC_RESULT ANKETO_Main(PROC* p_proc, int* p_seq)
 		}
 		
 
-		// ‚»‚ê‚¼‚ê‚ÌƒƒCƒ“ŠÖ”
+		// ãã‚Œãã‚Œã®ãƒ¡ã‚¤ãƒ³é–¢æ•°
 		result = p_Main[ p_param->move_type ]( &p_wk->local_wk, &p_wk->msgsys, &p_wk->drawsys, &p_wk->talkwin, p_param, HEAPID_ANKETO );
 
 		if( result == TRUE ){
@@ -808,22 +808,22 @@ PROC_RESULT ANKETO_Main(PROC* p_proc, int* p_seq)
 		result = WIPE_SYS_EndCheck();
 		if( result == TRUE ){
 
-			// BTS’ÊM549ƒoƒO‚ÌC³
-			// TimeWaitIcon‚Ì’â~
+			// BTSé€šä¿¡549ãƒã‚°ã®ä¿®æ­£
+			// TimeWaitIconã®åœæ­¢
 			ANKETO_TalkWin_StopTimeWait( &p_wk->talkwin );
 			return PROC_RES_FINISH;
 		}
 		break;
 	}
 
-	// •`‰æƒVƒXƒeƒ€
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ 
 	ANKETO_MainGraphic( &p_wk->drawsys );
 	return PROC_RES_CONTINUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgƒvƒƒZƒX	”jŠü
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ—ãƒ­ã‚»ã‚¹	ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT ANKETO_Exit(PROC* p_proc, int* p_seq)
@@ -834,30 +834,30 @@ PROC_RESULT ANKETO_Exit(PROC* p_proc, int* p_seq)
 	p_wk	= PROC_GetWork( p_proc );
 	p_param = PROC_GetParentWork( p_proc );
 
-	// Š„‚è‚İİ’è
+	// å‰²ã‚Šè¾¼ã¿è¨­å®š
 	sys_VBlankFuncChange( NULL, NULL );
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 
-	// ‚»‚ê‚¼‚ê‚Ì”jŠü
+	// ãã‚Œãã‚Œã®ç ´æ£„
 	p_Exit[ p_param->move_type ]( &p_wk->local_wk, &p_wk->msgsys, &p_wk->drawsys );
 
-	// ‰ï˜bƒEƒBƒ“ƒhƒE”jŠü
+	// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ANKETO_TalkWin_Exit( &p_wk->talkwin, HEAPID_ANKETO );
 
-	// ƒƒbƒZ[ƒWƒVƒXƒeƒ€”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	ANKETO_MsgManExit( &p_wk->msgsys );
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	ANKETO_ExitGraphic( &p_wk->drawsys );
 
-	//ƒ[ƒN”jŠü
+	//ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	PROC_FreeWork( p_proc );
 	
-	//ƒq[ƒv”jŠü
+	//ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_ANKETO );
 
-	// SEƒXƒgƒbƒv
+	// SEã‚¹ãƒˆãƒƒãƒ—
 	Snd_SeStopAll(0);
 
 	return PROC_RES_FINISH;
@@ -869,15 +869,15 @@ PROC_RESULT ANKETO_Exit(PROC* p_proc, int* p_seq)
 
 //-----------------------------------------------------------------------------
 /**
- *			‚Õ‚ç‚¢‚×[‚ÆŠÖ”
+ *			ã·ã‚‰ã„ã¹ãƒ¼ã¨é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgVBlankˆ—
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆVBlankå‡¦ç†
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_VBlank( void* p_work )
@@ -891,63 +891,63 @@ static void ANKETO_VBlank( void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_save		ƒZ[ƒuƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_save		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_InitGraphic( ANKETO_DRAWSYS* p_wk, SAVEDATA* p_save, u32 heapID )
 {
 	CONFIG*			p_config;
 	
-	// ƒRƒ“ƒtƒBƒOƒf[ƒ^æ“¾
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_config = SaveData_GetConfig( p_save );
 	
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‰Šú‰»
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«åˆæœŸåŒ–
 	p_wk->p_handle = ArchiveDataHandleOpen( ARC_WIFILOBBY_OTHER_GRA, heapID );
 
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒì¬
+	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	initVramTransferManagerHeap( ANKETO_VRAMTRANS_TASKNUM, heapID );
 
-	// ƒoƒ“ƒNİ’è
+	// ãƒãƒ³ã‚¯è¨­å®š
 	GF_Disp_SetBank( &sc_ANKETO_BANK );
 
-	// BG‰Šú‰»
+	// BGåˆæœŸåŒ–
 	ANKETO_BgInit( p_wk, p_config, heapID );	
 
-	// OAMİ’è
+	// OAMè¨­å®š
 	ANKETO_OamInit( p_wk, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN”jŠü
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_ExitGraphic( ANKETO_DRAWSYS* p_wk )
 {
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	ArchiveDataHandleClose( p_wk->p_handle );
 
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ”jŠü
+	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	DellVramTransferManager();
 	
-	// BGİ’è
+	// BGè¨­å®š
 	ANKETO_BgExit( p_wk );
 
-	// OAMİ’è
+	// OAMè¨­å®š
 	ANKETO_OamExit( p_wk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒƒCƒ“ˆ—
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_MainGraphic( ANKETO_DRAWSYS* p_wk )
@@ -957,20 +957,20 @@ static void ANKETO_MainGraphic( ANKETO_DRAWSYS* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNVBlankˆ—
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯VBlankå‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_VBlankGraphic( ANKETO_DRAWSYS* p_wk )
 {
-    // BG‘‚«Š·‚¦
+    // BGæ›¸ãæ›ãˆ
     GF_BGL_VBlankFunc( p_wk->p_bgl );
 
-    // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+    // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
     REND_OAMTrans();
 
-	// Vram“]‘—
+	// Vramè»¢é€
 	DoVramTransferManager();
 }
 
@@ -978,27 +978,27 @@ static void ANKETO_VBlankGraphic( ANKETO_DRAWSYS* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG‰Šú‰»
+ *	@brief	BGåˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_config	ƒRƒ“ƒtƒBƒOƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_config	ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_BgInit( ANKETO_DRAWSYS* p_wk, CONFIG* p_config, u32 heapID )
 {
-	// BGİ’è
+	// BGè¨­å®š
 	GF_BGL_InitBG(&sc_BGINIT);
 	
-	// BGLì¬
+	// BGLä½œæˆ
 	p_wk->p_bgl = GF_BGL_BglIniAlloc( heapID );
 
-	// ƒƒCƒ“‚ÆƒTƒu‚ğØ‚è‘Ö‚¦‚é
+	// ãƒ¡ã‚¤ãƒ³ã¨ã‚µãƒ–ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 
 
-	// BGƒRƒ“ƒgƒ[ƒ‹İ’è
+	// BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
 	{
 		int i;
 
@@ -1011,10 +1011,10 @@ static void ANKETO_BgInit( ANKETO_DRAWSYS* p_wk, CONFIG* p_config, u32 heapID )
 		}
 	}
 
-	// ƒtƒHƒ“ƒgƒJƒ‰[
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
     TalkFontPaletteLoad( PALTYPE_MAIN_BG, ANKETO_PLTT_MAIN_TALKFONT*0x20, heapID );
 
-	// ƒg[ƒNƒEƒBƒ“ƒhƒE
+	// ãƒˆãƒ¼ã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	{
 		u8 win_num = CONFIG_GetWindowType( p_config );
 		TalkWinGraphicSet( p_wk->p_bgl, GF_BGL_FRAME1_M,
@@ -1022,13 +1022,13 @@ static void ANKETO_BgInit( ANKETO_DRAWSYS* p_wk, CONFIG* p_config, u32 heapID )
 				win_num, heapID );
 	}
 
-	// ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE
+	// ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
     MenuWinGraphicSet(
         p_wk->p_bgl, GF_BGL_FRAME1_M, 
 		ANKETO_SYSTEMWIN_CGX, ANKETO_SYSTEMWIN_PAL, 0, heapID );
 
 
-	// ‚µ‚½‰æ–Ê‚ÉAWi|Fiƒ}[ƒN‚ğo‚·
+	// ã—ãŸç”»é¢ã«ã€Wiâˆ’Fiãƒãƒ¼ã‚¯ã‚’å‡ºã™
 	{
 		ArcUtil_BgCharSet(ARC_LOBBY_NEWS, NARC_lobby_news_wifi_mark_bg_NCGR, p_wk->p_bgl, GF_BGL_FRAME0_S, 0, 0, FALSE, heapID);
 		ArcUtil_ScrnSet(ARC_LOBBY_NEWS, NARC_lobby_news_wifi_mark_bg_NSCR, p_wk->p_bgl, GF_BGL_FRAME0_S, 0, 0, FALSE, heapID);
@@ -1038,14 +1038,14 @@ static void ANKETO_BgInit( ANKETO_DRAWSYS* p_wk, CONFIG* p_config, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG”jŠü
+ *	@brief	BGç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_BgExit( ANKETO_DRAWSYS* p_wk )
 {
-	// ‚a‚fƒRƒ“ƒgƒ[ƒ‹”jŠü
+	// ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ç ´æ£„
 	{
 		int i;
 
@@ -1054,100 +1054,100 @@ static void ANKETO_BgExit( ANKETO_DRAWSYS* p_wk )
 		}
 	}
 	
-	// BGL”jŠü
+	// BGLç ´æ£„
 	sys_FreeMemoryEz( p_wk->p_bgl );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒVƒXƒeƒ€‚Ì‰Šú‰»
+ *	@brief	OAMã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_OamInit( ANKETO_DRAWSYS* p_wk, u32 heapID )
 {
     int i;
 
-    // OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+    // OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
     NNS_G2dInitOamManagerModule();
 
-    // ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-    // ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-    // ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+    // å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
     REND_OAMInit(
-        0, 126,     // ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,      // ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-        0, 126,     // ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,      // ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+        0, 126,     // ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,      // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+        0, 126,     // ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,      // ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
         heapID);
 
 
-    // ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     InitCharManagerReg(&sc_ANKETO_CHARMAN_INIT, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K );
-    // ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     InitPlttManager(ANKETO_OAM_CONTNUM, heapID);
 
-    // “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+    // èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
     CharLoadStartAll();
     PlttLoadStartAll();
 
-    //’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+    //é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
     CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
     
 
-    // ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
     p_wk->p_clactset = CLACT_U_SetEasyInit( ANKETO_OAM_CONTNUM, &p_wk->renddata, heapID );
 
-    // ƒLƒƒƒ‰‚ÆƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+    // ã‚­ãƒ£ãƒ©ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
     for( i=0; i<ANKETO_RESMAN_NUM; i++ ){
         p_wk->p_resman[i] = CLACT_U_ResManagerInit(ANKETO_OAM_CONTNUM, i, heapID);
     }
 
-	// ‰º‰æ–Ê‚É’ÊMƒAƒCƒRƒ“‚ğo‚·
-	WirelessIconEasy();  // Ú‘±’†‚È‚Ì‚ÅƒAƒCƒRƒ“•\¦
+	// ä¸‹ç”»é¢ã«é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‡ºã™
+	WirelessIconEasy();  // æ¥ç¶šä¸­ãªã®ã§ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 
 
-	// •\¦ŠJn
+	// è¡¨ç¤ºé–‹å§‹
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒVƒXƒeƒ€‚Ì”jŠü
+ *	@brief	OAMã‚·ã‚¹ãƒ†ãƒ ã®ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_OamExit( ANKETO_DRAWSYS* p_wk )
 {
     int i;
 
-    // ƒAƒNƒ^[‚Ì”jŠü
+    // ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç ´æ£„
     CLACT_DestSet( p_wk->p_clactset );
 
     for( i=0; i<ANKETO_RESMAN_NUM; i++ ){
         CLACT_U_ResManagerDelete( p_wk->p_resman[i] );
     }
 
-    // ƒŠƒ\[ƒX‰ğ•ú
+    // ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
     DeleteCharManager();
     DeletePlttManager();
 
-    //OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+    //OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
     REND_OAM_Delete();
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWŠÇ—ƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_MsgManInit( ANKETO_MSGMAN* p_wk, WFLBY_SYSTEM* p_system, u32 heapID )
@@ -1167,25 +1167,25 @@ static void ANKETO_MsgManInit( ANKETO_MSGMAN* p_wk, WFLBY_SYSTEM* p_system, u32 
 
 	p_wk->p_system = p_system;
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£
 	for( i=0; i<ANKETO_MSGMAN_NUM; i++ ){
 		p_wk->p_msgman[i] = MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,
 				sc_ANKETO_MSGMANTBL[i],heapID );
 	}
 
-	// ƒ[ƒhƒZƒbƒg
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 	p_wk->p_wordset = WORDSET_Create( heapID );
 
-	// ‹¤—LƒƒbƒZ[ƒW—ÌˆæŠm•Û
+	// å…±æœ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é ˜åŸŸç¢ºä¿
 	p_wk->p_msgstr = STRBUF_Create( ANKETO_MSGMAN_STRBUFNUM, heapID );
 	p_wk->p_msgtmp = STRBUF_Create( ANKETO_MSGMAN_STRBUFNUM, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWŠÇ—ƒVƒXƒeƒ€”jŠü
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_MsgManExit( ANKETO_MSGMAN* p_wk )
@@ -1198,20 +1198,20 @@ static void ANKETO_MsgManExit( ANKETO_MSGMAN* p_wk )
 
 	WORDSET_Delete( p_wk->p_wordset );
 
-	// ‹¤—LƒƒbƒZ[ƒWƒoƒbƒtƒ@
+	// å…±æœ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡
 	STRBUF_Delete( p_wk->p_msgstr );
 	STRBUF_Delete( p_wk->p_msgtmp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW‚Ìæ“¾
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–å¾—
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	type	ƒ}ƒl[ƒWƒƒƒ^ƒCƒv
- *	@param	msg		ƒƒbƒZ[ƒWƒiƒ“ƒo[
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	type	ãƒãƒãƒ¼ã‚¸ãƒ£ã‚¿ã‚¤ãƒ—
+ *	@param	msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	ƒƒbƒZ[ƒW
+ *	@return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  */
 //-----------------------------------------------------------------------------
 static STRBUF* ANKETO_MsgManGetStr( ANKETO_MSGMAN* p_wk, u32 type, u32 msg )
@@ -1225,12 +1225,12 @@ static STRBUF* ANKETO_MsgManGetStr( ANKETO_MSGMAN* p_wk, u32 type, u32 msg )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	msgƒiƒ“ƒo[‚É‚ ‚Á‚½¿–â‚ğ•Ô‚·
+ *	@brief	msgãƒŠãƒ³ãƒãƒ¼ã«ã‚ã£ãŸè³ªå•ã‚’è¿”ã™
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	msg		ƒƒbƒZ[ƒWƒiƒ“ƒo[i‚O`‚S‚X’Êí@‚T‚O`‚T‚X“Á•Êj
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒŠãƒ³ãƒãƒ¼ï¼ˆï¼ã€œï¼”ï¼™é€šå¸¸ã€€ï¼•ï¼ã€œï¼•ï¼™ç‰¹åˆ¥ï¼‰
  *
- *	@return	ƒƒbƒZ[ƒW
+ *	@return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  */
 //-----------------------------------------------------------------------------
 static STRBUF* ANKETO_MsgManGetQuestionStr( ANKETO_MSGMAN* p_wk, u32 msg )
@@ -1249,13 +1249,13 @@ static STRBUF* ANKETO_MsgManGetQuestionStr( ANKETO_MSGMAN* p_wk, u32 msg )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	msgƒiƒ“ƒo[‚É‚ ‚Á‚½‰ñ“š‚ğ•Ô‚·
+ *	@brief	msgãƒŠãƒ³ãƒãƒ¼ã«ã‚ã£ãŸå›ç­”ã‚’è¿”ã™
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	msg		ƒƒbƒZ[ƒWƒiƒ“ƒo[i‚O`‚S‚X’Êí@‚T‚O`‚T‚X“Á•Êj
- *	@param	answer	‰ñ“šƒ^ƒCƒviANKETO_ANSWER_A@EEEj
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒŠãƒ³ãƒãƒ¼ï¼ˆï¼ã€œï¼”ï¼™é€šå¸¸ã€€ï¼•ï¼ã€œï¼•ï¼™ç‰¹åˆ¥ï¼‰
+ *	@param	answer	å›ç­”ã‚¿ã‚¤ãƒ—ï¼ˆANKETO_ANSWER_Aã€€ãƒ»ãƒ»ãƒ»ï¼‰
  *
- *	@return	‰ñ“š
+ *	@return	å›ç­”
  */
 //-----------------------------------------------------------------------------
 static STRBUF* ANKETO_MsgManGetAnswerStr( ANKETO_MSGMAN* p_wk, u32 msg, u32 answer )
@@ -1274,11 +1274,11 @@ static STRBUF* ANKETO_MsgManGetAnswerStr( ANKETO_MSGMAN* p_wk, u32 msg, u32 answ
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚Ì–¼‘O‚ğƒ[ƒhƒZƒbƒg‚Éİ’è
+ *	@brief	è‡ªåˆ†ã®åå‰ã‚’ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	bufno		ƒoƒbƒtƒ@ID
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	bufno		ãƒãƒƒãƒ•ã‚¡ID
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_MsgManSetMyName( ANKETO_MSGMAN* p_wk, u32 bufno, u32 heapID )
@@ -1290,7 +1290,7 @@ static void ANKETO_MsgManSetMyName( ANKETO_MSGMAN* p_wk, u32 bufno, u32 heapID )
 	cp_profile = WFLBY_SYSTEM_GetMyProfileLocal( p_wk->p_system );
 	WFLBY_SYSTEM_GetProfileMyStatus( cp_profile, p_mystatus, heapID );
 
-	// –¼‘O‚ğİ’è
+	// åå‰ã‚’è¨­å®š
 	WORDSET_RegisterPlayerName( p_wk->p_wordset, bufno, p_mystatus );
 
 	sys_FreeMemoryEz( p_mystatus );
@@ -1301,7 +1301,7 @@ static void ANKETO_MsgManSetMyName( ANKETO_MSGMAN* p_wk, u32 bufno, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	LOCAL_WK‚ğ‹¤’Êƒ[ƒN‚Æ‚µ‚ÄƒCƒ“ƒvƒbƒg‚ğŠÇ—‚·‚é
+ *	@brief	LOCAL_WKã‚’å…±é€šãƒ¯ãƒ¼ã‚¯ã¨ã—ã¦ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚’ç®¡ç†ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_LOCAL_INPUT_Init( ANKETO_LOCAL_WK* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, ANKETO_PARAM* p_param, u32 heapID )
@@ -1321,28 +1321,28 @@ static void ANKETO_LOCAL_INPUT_Exit( ANKETO_LOCAL_WK* p_wk, ANKETO_MSGMAN* p_msg
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ü—Í‰æ–Ê	‰Šú‰»
+ *	@brief	å…¥åŠ›ç”»é¢	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒVƒXƒeƒ€
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_INPUT_Init( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, u32 heapID )
 {
-	// ”wŒiİ’è
+	// èƒŒæ™¯è¨­å®š
 	{
 		ArcUtil_HDL_PalSet( p_drawsys->p_handle, NARC_wifi_lobby_other_bg_NCLR, PALTYPE_MAIN_BG, ANKETO_PLTT_MAIN_BACK00, ANKETO_PLTT_MAINBACK_PLTTNUM*32, heapID );
 		ArcUtil_HDL_BgCharSet( p_drawsys->p_handle, NARC_wifi_lobby_other_bg_NCGR, p_drawsys->p_bgl, GF_BGL_FRAME0_M, 0, 0, FALSE, heapID );
 		ArcUtil_HDL_ScrnSet( p_drawsys->p_handle, NARC_wifi_lobby_other_bg00_NSCR, p_drawsys->p_bgl, GF_BGL_FRAME0_M, 0, 0, FALSE, heapID );
 	}
 
-	// OAM“Ç‚İ‚İ
+	// OAMèª­ã¿è¾¼ã¿
 	{
 		BOOL result;
 
-		// ƒLƒƒƒ‰ƒNƒ^“Ç‚İ‚İ
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿
 		p_wk->p_cursor_res[0] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 				p_drawsys->p_resman[0], p_drawsys->p_handle,
 				NARC_wifi_lobby_other_oam_NCGR,
@@ -1360,25 +1360,25 @@ static void ANKETO_INPUT_Init( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 		CLACT_U_ResManagerResOnlyDelete( p_wk->p_cursor_res[0] );
 		CLACT_U_ResManagerResOnlyDelete( p_wk->p_cursor_res[1] );
 
-		// ƒZƒ‹
+		// ã‚»ãƒ«
 		p_wk->p_cursor_res[2] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( 
 				p_drawsys->p_resman[2], p_drawsys->p_handle,
 				NARC_wifi_lobby_other_oam_NCER,
 				FALSE, ANKETO_INPUT_OAM_CONTID, CLACT_U_CELL_RES, heapID );
 
-		// ƒZƒ‹ƒAƒjƒ
+		// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		p_wk->p_cursor_res[3] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( 
 				p_drawsys->p_resman[3], p_drawsys->p_handle,
 				NARC_wifi_lobby_other_oam_NANR,
 				FALSE, ANKETO_INPUT_OAM_CONTID, CLACT_U_CELLANM_RES, heapID );
 	}
 
-	// cursorì¬
+	// cursorä½œæˆ
 	{
 		CLACT_HEADER		header;
 		CLACT_ADD_SIMPLE	add = {0};
 
-		// ƒwƒbƒ_[ì¬
+		// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 		CLACT_U_MakeHeader( &header, ANKETO_INPUT_OAM_CONTID, 
 				ANKETO_INPUT_OAM_CONTID, 
 				ANKETO_INPUT_OAM_CONTID, 
@@ -1398,12 +1398,12 @@ static void ANKETO_INPUT_Init( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 		add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 		add.heap		= heapID;
 
-		// ƒAƒNƒ^[ì¬
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆ
 		p_wk->p_cursor_act = CLACT_AddSimple( &add );
 		CLACT_SetDrawFlag( p_wk->p_cursor_act, FALSE );
 	}
 	
-	// ƒEƒBƒ“ƒhƒEì¬
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	{
 		int i;
 
@@ -1418,12 +1418,12 @@ static void ANKETO_INPUT_Init( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ü—Í‰æ–ÊƒƒCƒ“
+ *	@brief	å…¥åŠ›ç”»é¢ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒVƒXƒeƒ€
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID	–––“n‚·‚¯‚ÇAINPUT_Exit‚ª‚¢‚ÂŒÄ‚Î‚ê‚Ä‚à‘åä•v‚È‚æ‚¤‚É‚·‚é‚±‚Æ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID	ï¼Šï¼Šï¼Šæ¸¡ã™ã‘ã©ã€INPUT_ExitãŒã„ã¤å‘¼ã°ã‚Œã¦ã‚‚å¤§ä¸ˆå¤«ãªã‚ˆã†ã«ã™ã‚‹ã“ã¨
  */
 //-----------------------------------------------------------------------------
 static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, ANKETO_TALKWIN* p_talkwin, ANKETO_PARAM* p_param, u32 heapID )
@@ -1432,7 +1432,7 @@ static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 	STRBUF* p_str;
 	
 	switch( p_wk->seq ){
-	case ANKETO_INPUT_SEQ_ANKETO_YARU_Q:		// ƒAƒ“ƒP[ƒg‚â‚éH
+	case ANKETO_INPUT_SEQ_ANKETO_YARU_Q:		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã‚„ã‚‹ï¼Ÿ
 		p_str = ANKETO_MsgManGetStr( p_msg, ANKETO_MSGMAN_MSG, msg_survey_monitor_b_n02 );
 		ANKETO_TalkWin_Print( p_talkwin, p_str );
 
@@ -1440,26 +1440,26 @@ static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 		p_wk->seq = ANKETO_INPUT_SEQ_ANKETO_MASWAIT;
 		break;
 
-	case ANKETO_INPUT_SEQ_ANKETO_YARU_Q_ON:// ƒAƒ“ƒP[ƒg‚â‚éH
+	case ANKETO_INPUT_SEQ_ANKETO_YARU_Q_ON:// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã‚„ã‚‹ï¼Ÿ
 		ANKETO_TalkWin_StartYesNo( p_talkwin, p_drawsys, heapID );
 		p_wk->seq = ANKETO_INPUT_SEQ_ANKETO_YARU_Q_WAIT;
 		break;
 
-	case ANKETO_INPUT_SEQ_ANKETO_YARU_Q_WAIT:// ƒAƒ“ƒP[ƒg‚â‚éH
+	case ANKETO_INPUT_SEQ_ANKETO_YARU_Q_WAIT:// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã‚„ã‚‹ï¼Ÿ
 		{
 			u32 result;
 
 			result = ANKETO_TalkWin_MainYesNo( p_talkwin, heapID );
 			switch( result ){
-			// ‚Í‚¢
+			// ã¯ã„
 			case 0:
-				// ‘I‘ğ‚Ö
+				// é¸æŠã¸
 				p_wk->seq = ANKETO_INPUT_SEQ_ANKETO_Q_DRAW00;
 				break;
 
-			// ‚Ì[
+			// ã®ãƒ¼
 			case BMPMENU_CANCEL:
-				// I—¹‚Ö
+				// çµ‚äº†ã¸
 				p_wk->seq = ANKETO_INPUT_SEQ_ANKETO_END;
 				break;
 			}
@@ -1468,23 +1468,23 @@ static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 
 
 #if 0
-	case ANKETO_INPUT_SEQ_ANKETO_RECV:		// óMŠJn
+	case ANKETO_INPUT_SEQ_ANKETO_RECV:		// å—ä¿¡é–‹å§‹
 
 		Snd_SePlay( ANKETO_SND_RECV_WAIT );
 
 //		ANKETO_QUESTION_DATA_DebugInit( &p_wk->question_now );
 
-		// óMƒƒbƒZ[ƒW
+		// å—ä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		p_str = ANKETO_MsgManGetStr( p_msg, ANKETO_MSGMAN_MSG, msg_survey_monitor_a_02_01 );
 		ANKETO_TalkWin_PrintAll( p_talkwin, p_str );
 
-		// ƒ^ƒCƒ€ƒEƒGƒCƒg•\¦
+		// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆè¡¨ç¤º
 		ANKETO_TalkWin_StartTimeWait( p_talkwin );
 
 		p_wk->seq = ANKETO_INPUT_SEQ_ANKETO_RECVWAIT;
 		break;
 
-	case ANKETO_INPUT_SEQ_ANKETO_RECVWAIT:	// óM’†
+	case ANKETO_INPUT_SEQ_ANKETO_RECVWAIT:	// å—ä¿¡ä¸­
 
 		if( (gf_mtRand() % 100) == 0 ){
 
@@ -1502,7 +1502,7 @@ static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 		break;
 #endif
 
-	case ANKETO_INPUT_SEQ_ANKETO_Q_DRAW00:	// ¿–â•`‰æ
+	case ANKETO_INPUT_SEQ_ANKETO_Q_DRAW00:	// è³ªå•æç”»
 		if( p_wk->question_now.special == FALSE ){
 			msg_idx = msg_survey_monitor_b_n01;
 		}else{
@@ -1515,26 +1515,26 @@ static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 		p_wk->seq = ANKETO_INPUT_SEQ_ANKETO_MASWAIT;
 		break;
 
-	case ANKETO_INPUT_SEQ_ANKETO_Q_DRAW:		// ¿–â•`‰æ
-		// ‰ñ“š“à—e‚ğ•\¦
+	case ANKETO_INPUT_SEQ_ANKETO_Q_DRAW:		// è³ªå•æç”»
+		// å›ç­”å†…å®¹ã‚’è¡¨ç¤º
 		ANKETO_INPUT_DrawAnswer( p_wk, p_msg, p_drawsys );
 
-		// ¿–â‚ğ•\¦
+		// è³ªå•ã‚’è¡¨ç¤º
 		p_str = ANKETO_QUESTION_DATA_GetQuestionStr( &p_wk->question_now, p_msg );
 		ANKETO_TalkWin_PrintAll( p_talkwin, p_str );
 
-		// OAM‚ğ•\¦
+		// OAMã‚’è¡¨ç¤º
 		ANKETO_INPUT_DrawCursor( p_wk );
 
-		// OAMƒAƒjƒ
+		// OAMã‚¢ãƒ‹ãƒ¡
 		ANKETO_INPUT_AnmCursor( p_wk );
 		
 		p_wk->seq = ANKETO_INPUT_SEQ_ANKETO_Q_SELECT;
 		break;
 
-	case ANKETO_INPUT_SEQ_ANKETO_Q_SELECT:	// ‰ñ“š‘I‘ğ
+	case ANKETO_INPUT_SEQ_ANKETO_Q_SELECT:	// å›ç­”é¸æŠ
 
-		// A‚Å‘I‘ğ
+		// Aã§é¸æŠ
 		if( sys.trg & PAD_BUTTON_DECIDE ){
 			Snd_SePlay( ANKETO_SND_SELECT );
 
@@ -1557,20 +1557,20 @@ static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 		ANKETO_INPUT_DrawCursor( p_wk );
 		break;
 
-	case ANKETO_INPUT_SEQ_ANKETO_SEND:		// óMŠJn
+	case ANKETO_INPUT_SEQ_ANKETO_SEND:		// å—ä¿¡é–‹å§‹
 
-		// Šî–{î•ñ‚É‘I‘ğ€–Ú‚ğİ’è
+		// åŸºæœ¬æƒ…å ±ã«é¸æŠé …ç›®ã‚’è¨­å®š
 		WFLBY_SYSTEM_SetAnketoData( p_param->p_system, 
 				p_wk->question_now.anketo_no, p_wk->cursor );
 
-		// ƒT[ƒo‚É‘—M
+		// ã‚µãƒ¼ãƒã«é€ä¿¡
 		DWC_LOBBY_ANKETO_SubMit( p_wk->cursor );
 
-		// óMƒƒbƒZ[ƒW
+		// å—ä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		p_str = ANKETO_MsgManGetStr( p_msg, ANKETO_MSGMAN_MSG, msg_survey_monitor_b_02_01 );
 		ANKETO_TalkWin_PrintAll( p_talkwin, p_str );
 
-		// ƒ^ƒCƒ€ƒEƒGƒCƒg•\¦
+		// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆè¡¨ç¤º
 		ANKETO_TalkWin_StartTimeWait( p_talkwin );
 
 		Snd_SePlay( ANKETO_SND_SEND_WAIT );
@@ -1578,7 +1578,7 @@ static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 		p_wk->seq = ANKETO_INPUT_SEQ_ANKETO_SENDWAIT;
 		break;
 
-	case ANKETO_INPUT_SEQ_ANKETO_SENDWAIT:	// óM’†
+	case ANKETO_INPUT_SEQ_ANKETO_SENDWAIT:	// å—ä¿¡ä¸­
 		{
 			u32 send_result;
 			send_result = DWC_LOBBY_ANKETO_WaitSubMit();
@@ -1598,7 +1598,7 @@ static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 		}
 		break;
 
-	case ANKETO_INPUT_SEQ_ANKETO_ARIGATO:	// ‚ ‚è‚ª‚Æ‚¤ƒƒbƒZ[ƒW•`‰æ
+	case ANKETO_INPUT_SEQ_ANKETO_ARIGATO:	// ã‚ã‚ŠãŒã¨ã†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 		if( p_wk->question_now.special == FALSE ){
 			msg_idx = msg_survey_monitor_b_n03;
 		}else{
@@ -1611,12 +1611,12 @@ static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 		p_wk->seq = ANKETO_INPUT_SEQ_ANKETO_MASWAIT;
 		break;
 
-	case ANKETO_INPUT_SEQ_ANKETO_END:		// I—¹
-		// ‰ï˜bƒEƒBƒ“ƒhƒE”ñ•\¦
+	case ANKETO_INPUT_SEQ_ANKETO_END:		// çµ‚äº†
+		// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦éè¡¨ç¤º
 		ANKETO_TalkWin_Off( p_talkwin );
 		return TRUE;
 
-	case ANKETO_INPUT_SEQ_ANKETO_MASWAIT:	// ƒƒbƒZ[ƒW‘Ò‚¿
+	case ANKETO_INPUT_SEQ_ANKETO_MASWAIT:	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( ANKETO_TalkWin_EndWait( p_talkwin ) == TRUE ){
 			p_wk->seq = p_wk->ret_seq;
 		}
@@ -1633,19 +1633,19 @@ static BOOL ANKETO_INPUT_Main( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ü—Í‰æ–Ê	”jŠü
+ *	@brief	å…¥åŠ›ç”»é¢	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒVƒXƒeƒ€
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_INPUT_Exit( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys )
 {
-	// ¿–âƒf[ƒ^
+	// è³ªå•ãƒ‡ãƒ¼ã‚¿
 	ANKETO_QUESTION_DATA_Exit( &p_wk->question_now );
 	
-	// ƒEƒBƒ“ƒhƒE”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	{
 		int i;
 
@@ -1655,16 +1655,16 @@ static void ANKETO_INPUT_Exit( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 	}
 
 
-	// cursor”jŠü
+	// cursorç ´æ£„
 	{
 		CLACT_Delete( p_wk->p_cursor_act );
 	}
 
-	// OAM”jŠü
+	// OAMç ´æ£„
 	{
 		int i;
 		
-		// VRAM—Ìˆæ”jŠü
+		// VRAMé ˜åŸŸç ´æ£„
 		CLACT_U_CharManagerDelete( p_wk->p_cursor_res[0] );
 		CLACT_U_PlttManagerDelete( p_wk->p_cursor_res[1] );
 
@@ -1677,11 +1677,11 @@ static void ANKETO_INPUT_Exit( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“š‚ğ•`‰æ‚·‚é
+ *	@brief	å›ç­”ã‚’æç”»ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_INPUT_DrawAnswer( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys )
@@ -1710,9 +1710,9 @@ static void ANKETO_INPUT_DrawAnswer( ANKETO_INPUT* p_wk, ANKETO_MSGMAN* p_msg, A
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	cursor•`‰æ
+ *	@brief	cursoræç”»
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_INPUT_DrawCursor( ANKETO_INPUT* p_wk )
@@ -1730,17 +1730,17 @@ static void ANKETO_INPUT_AnmCursor( ANKETO_INPUT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
- *	@param	p_save		ƒZ[ƒuƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_save		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_TalkWin_Init( ANKETO_TALKWIN* p_wk, ANKETO_DRAWSYS* p_sys, SAVEDATA* p_save, u32 heapID )
 {
-	//  ƒrƒbƒgƒ}ƒbƒvŠm•Û
+	//  ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç¢ºä¿
 	GF_BGL_BmpWinAdd(
 				p_sys->p_bgl, &p_wk->win, 
 				GF_BGL_FRAME1_M,
@@ -1749,13 +1749,13 @@ static void ANKETO_TalkWin_Init( ANKETO_TALKWIN* p_wk, ANKETO_DRAWSYS* p_sys, SA
 				ANKETO_PLTT_MAIN_TALKFONT,
 				ANKETO_TALK_TALKWIN_CGX );
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 
-	// •¶š—ñƒoƒbƒtƒ@ì¬
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	p_wk->p_str = STRBUF_Create( ANKETO_MSGMAN_STRBUFNUM, heapID );
 
-	// ƒƒbƒZ[ƒW•\¦ƒEƒGƒCƒg‚ğİ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚¦ã‚¨ã‚¤ãƒˆã‚’è¨­å®š
 	{
 		CONFIG* p_config;
 		p_config = SaveData_GetConfig( p_save );
@@ -1765,89 +1765,89 @@ static void ANKETO_TalkWin_Init( ANKETO_TALKWIN* p_wk, ANKETO_DRAWSYS* p_sys, SA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE	”jŠü
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_TalkWin_Exit( ANKETO_TALKWIN* p_wk, u32 heapID )
 {
-	//  ‚·‚×‚Ä’â~
+	//  ã™ã¹ã¦åœæ­¢
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 	ANKETO_TalkWin_StopTimeWait( p_wk );
 	
-	// •¶š—ñƒoƒbƒtƒ@”jŠü
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	STRBUF_Delete( p_wk->p_str );
 
-	// ƒrƒbƒgƒ}ƒbƒv”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç ´æ£„
 	GF_BGL_BmpWinDel( &p_wk->win );
 
-	// YESNOƒEƒBƒ“ƒhƒE”jŠü
+	// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ANKETO_TalkWin_EndYesNo( p_wk, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bŠJn
+ *	@brief	ä¼šè©±é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶š
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_TalkWin_Print( ANKETO_TALKWIN* p_wk, const STRBUF* cp_str )
 {
-	// ƒƒbƒZ[ƒW•\¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv‚ÌƒNƒŠƒA
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 	
-	// •¶š—ñƒRƒs[
+	// æ–‡å­—åˆ—ã‚³ãƒ”ãƒ¼
 	STRBUF_Copy( p_wk->p_str, cp_str );
 	p_wk->msgno = GF_STR_PrintColor( &p_wk->win, FONT_TALK, p_wk->p_str, 0, 0,
 			p_wk->msgwait, ANKETO_TALK_COL, NULL );
 
-	// ƒEƒBƒ“ƒhƒE‚ğ‘‚«‚Ş
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ›¸ãè¾¼ã‚€
 	BmpTalkWinWrite( &p_wk->win, WINDOW_TRANS_OFF, ANKETO_TALKWIN_CGX, ANKETO_TALKWIN_PAL );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bŠJn	‘S•\¦
+ *	@brief	ä¼šè©±é–‹å§‹	å…¨è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶š—ñ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_TalkWin_PrintAll( ANKETO_TALKWIN* p_wk, const STRBUF* cp_str )
 {
-	// ƒƒbƒZ[ƒW•\¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv‚ÌƒNƒŠƒA
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 	
-	// •¶š—ñƒRƒs[
+	// æ–‡å­—åˆ—ã‚³ãƒ”ãƒ¼
 	STRBUF_Copy( p_wk->p_str, cp_str );
 	GF_STR_PrintColor( &p_wk->win, FONT_TALK, p_wk->p_str, 0, 0,
 			MSG_NO_PUT, ANKETO_TALK_COL, NULL );
 
-	// ƒEƒBƒ“ƒhƒE‚ğ‘‚«‚Ş
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ›¸ãè¾¼ã‚€
 	BmpTalkWinWrite( &p_wk->win, WINDOW_TRANS_OFF, ANKETO_TALKWIN_CGX, ANKETO_TALKWIN_PAL );
 	GF_BGL_BmpWinOnVReq( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒAƒEƒgƒEƒGƒCƒg	ŠJn
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚¦ã‚¨ã‚¤ãƒˆ	é–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_TalkWin_StartTimeWait( ANKETO_TALKWIN* p_wk )
@@ -1859,9 +1859,9 @@ static void ANKETO_TalkWin_StartTimeWait( ANKETO_TALKWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒAƒEƒgƒEƒGƒCƒg	I—¹
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚¦ã‚¨ã‚¤ãƒˆ	çµ‚äº†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_TalkWin_StopTimeWait( ANKETO_TALKWIN* p_wk )
@@ -1874,12 +1874,12 @@ static void ANKETO_TalkWin_StopTimeWait( ANKETO_TALKWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒg	ƒ`ƒFƒbƒN
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆ	ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒ^ƒCƒ€ƒEƒGƒCƒg’†
- *	@retval	FALSE	ƒ^ƒCƒ€ƒEƒGƒCƒg•\¦‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆä¸­
+ *	@retval	FALSE	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆè¡¨ç¤ºã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL ANKETO_TalkWin_CheckTimeWait( const ANKETO_TALKWIN* cp_wk )
@@ -1892,12 +1892,12 @@ static BOOL ANKETO_TalkWin_CheckTimeWait( const ANKETO_TALKWIN* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•\¦I—¹
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºçµ‚äº†
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ANKETO_TalkWin_EndWait( const ANKETO_TALKWIN* cp_wk )
@@ -1910,35 +1910,35 @@ static BOOL ANKETO_TalkWin_EndWait( const ANKETO_TALKWIN* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE”ñ•\¦
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦éè¡¨ç¤º
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_TalkWin_Off( ANKETO_TALKWIN* p_wk )
 {
-	// ƒƒbƒZ[ƒW•\¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 
-	// ƒ^ƒCƒ€ƒEƒGƒCƒg‚àÁ‚·
+	// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚‚æ¶ˆã™
 	ANKETO_TalkWin_StopTimeWait( p_wk );
 
-	// ‘S‘Ì‚ğÁ‚·
+	// å…¨ä½“ã‚’æ¶ˆã™
 	BmpTalkWinClear( &p_wk->win, WINDOW_TRANS_OFF );
 
-	// VƒŠƒNƒGƒXƒg
+	// Vãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	GF_BGL_BmpWinOffVReq( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YesNoƒEƒBƒ“ƒhƒE	‰Šú‰»
+ *	@brief	YesNoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_TalkWin_StartYesNo( ANKETO_TALKWIN* p_wk, ANKETO_DRAWSYS* p_sys, u32 heapID )
@@ -1950,13 +1950,13 @@ static void ANKETO_TalkWin_StartYesNo( ANKETO_TALKWIN* p_wk, ANKETO_DRAWSYS* p_s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YesNoƒEƒBƒ“ƒhƒE	ƒƒCƒ“
+ *	@brief	YesNoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"BMPMENU_NULL	‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢"
- * @retval	"0				‚Í‚¢‚ğ‘I‘ğ"
- * @retval	"BMPMENU_CANCEL	‚¢‚¢‚¦orƒLƒƒƒ“ƒZƒ‹"
+ * @retval	"BMPMENU_NULL	é¸æŠã•ã‚Œã¦ã„ãªã„"
+ * @retval	"0				ã¯ã„ã‚’é¸æŠ"
+ * @retval	"BMPMENU_CANCEL	ã„ã„ãˆorã‚­ãƒ£ãƒ³ã‚»ãƒ«"
  */
 //-----------------------------------------------------------------------------
 static u32	ANKETO_TalkWin_MainYesNo( ANKETO_TALKWIN* p_wk, u32 heapID )
@@ -1971,10 +1971,10 @@ static u32	ANKETO_TalkWin_MainYesNo( ANKETO_TALKWIN* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YesNoƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	YesNoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_TalkWin_EndYesNo( ANKETO_TALKWIN* p_wk, u32 heapID )
@@ -1989,7 +1989,7 @@ static void ANKETO_TalkWin_EndYesNo( ANKETO_TALKWIN* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒJƒ‹ƒ[ƒN‚ğg—p‚µ‚Äo—Í‰æ–Ê‚ğ•\¦
+ *	@brief	ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã‚’ä½¿ç”¨ã—ã¦å‡ºåŠ›ç”»é¢ã‚’è¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_LOCAL_OUTPUT_Init( ANKETO_LOCAL_WK* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, ANKETO_PARAM* p_param, u32 heapID )
@@ -2009,25 +2009,25 @@ static void ANKETO_LOCAL_OUTPUT_Exit( ANKETO_LOCAL_WK* p_wk, ANKETO_MSGMAN* p_ms
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	o—Í‰æ–Ê	‰Šú‰»
+ *	@brief	å‡ºåŠ›ç”»é¢	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	p_param		ƒpƒ‰ƒ[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_OUTPUT_Init( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, ANKETO_PARAM* p_param, u32 heapID )
 {
-	// ”wŒiİ’è
+	// èƒŒæ™¯è¨­å®š
 	{
 		ArcUtil_HDL_PalSet( p_drawsys->p_handle, NARC_wifi_lobby_other_bg_NCLR, PALTYPE_MAIN_BG, ANKETO_PLTT_MAIN_BACK00, ANKETO_PLTT_MAINBACK_PLTTNUM*32, heapID );
 		ArcUtil_HDL_BgCharSet( p_drawsys->p_handle, NARC_wifi_lobby_other_bg_NCGR, p_drawsys->p_bgl, GF_BGL_FRAME0_M, 0, 0, FALSE, heapID );
 		ArcUtil_HDL_ScrnSet( p_drawsys->p_handle, NARC_wifi_lobby_other_bg01_NSCR, p_drawsys->p_bgl, GF_BGL_FRAME0_M, 0, 0, FALSE, heapID );
 	}
 
-	// ƒEƒBƒ“ƒhƒEì¬
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	{
 		int i;
 
@@ -2037,24 +2037,24 @@ static void ANKETO_OUTPUT_Init( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		}
 	}
 
-	// ƒ^ƒCƒgƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«
 	ANKETO_OUTPUT_DrawTitle( p_wk, p_msg, msg_survey_monitor_a_04_header, ANKETO_PLTT_TITLEFONT_COL_OUTPUT00 );
 
-	// bar—p‚ÌƒLƒƒƒ‰ƒNƒ^“Ç‚İ‚İ
+	// barç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿
 	{
 		p_wk->p_charres = ArcUtil_HDL_CharDataGet( p_drawsys->p_handle, NARC_wifi_lobby_other_bg_NCGR, FALSE, &p_wk->p_char, heapID );
 	}
 
-	// ƒAƒ“ƒP[ƒg“à—e‚ÆŒ‹‰Ê‚ğóM
+	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå†…å®¹ã¨çµæœã‚’å—ä¿¡
 	{
 		ANKETO_QUESTION_DATA_Init( &p_wk->now, TRUE, heapID );
 		ANKETO_QUESTION_DATA_Init( &p_wk->last, FALSE, heapID );
 
-		// Šî–{î•ñ‚©‚çƒAƒ“ƒP[ƒgŒ‹‰Ê‚ğWŒv
-		// ‚à‚¤WŒv‚µ‚Ä‚é‚È‚çA‚»‚Ìƒf[ƒ^‚ğg—p‚·‚é
+		// åŸºæœ¬æƒ…å ±ã‹ã‚‰ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæœã‚’é›†è¨ˆ
+		// ã‚‚ã†é›†è¨ˆã—ã¦ã‚‹ãªã‚‰ã€ãã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹
 		if( WFLBY_SYSTEM_GetAnketoResult( p_param->p_system, &p_wk->result_now ) == FALSE ){
 			ANKETO_QUESTION_RESULT_CalcHirobaResult( &p_wk->result_now, p_param->p_system );
-			WFLBY_SYSTEM_SetAnketoResult( p_param->p_system, &p_wk->result_now );	// WŒvƒf[ƒ^‚ğİ’è
+			WFLBY_SYSTEM_SetAnketoResult( p_param->p_system, &p_wk->result_now );	// é›†è¨ˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 		}
 
 		ANKETO_QUESTION_RESULT_Init( &p_wk->result_last );
@@ -2063,16 +2063,16 @@ static void ANKETO_OUTPUT_Init( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	o—Í‰æ–Ê	ƒƒCƒ“ˆ—
+ *	@brief	å‡ºåŠ›ç”»é¢	ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	p_talkwin	‰ï˜bƒEƒBƒ“ƒhƒE
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_talkwin	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, ANKETO_TALKWIN* p_talkwin, ANKETO_PARAM* p_param, u32 heapID )
@@ -2082,13 +2082,13 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 	
 	switch( p_wk->seq ){
 #if 0
-	case ANKETO_OUTPUT_SEQ_ANKETO_RECV:			// ƒAƒ“ƒP[ƒgóM
-		// óMŠÖ˜A‚ÌƒƒbƒZ[ƒW•\¦
+	case ANKETO_OUTPUT_SEQ_ANKETO_RECV:			// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå—ä¿¡
+		// å—ä¿¡é–¢é€£ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		p_str = ANKETO_MsgManGetStr( p_msg, ANKETO_MSGMAN_MSG, msg_survey_monitor_a_02_01 );
 		ANKETO_TalkWin_PrintAll( p_talkwin, p_str );
 
 
-		// ƒ^ƒCƒ€ƒEƒGƒCƒg•\¦
+		// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆè¡¨ç¤º
 		ANKETO_TalkWin_StartTimeWait( p_talkwin );
 
 		Snd_SePlay( ANKETO_SND_RECV_WAIT );
@@ -2096,23 +2096,23 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq ++;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_RECVWAIT:		// ƒAƒ“ƒP[ƒgóM’†
+	case ANKETO_OUTPUT_SEQ_ANKETO_RECVWAIT:		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå—ä¿¡ä¸­
 
-		// óMŠ®—¹
+		// å—ä¿¡å®Œäº†
 		if( (gf_mtRand() % 100) == 0 ){
 
 			Snd_SePlay( ANKETO_SND_RECV );
 
-			// ƒAƒ“ƒP[ƒg“à—e‚ÆŒ‹‰Ê‚ğóM
+			// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå†…å®¹ã¨çµæœã‚’å—ä¿¡
 			{
 				ANKETO_QUESTION_DATA_DebugInit( &p_wk->now );
 				ANKETO_QUESTION_DATA_DebugInit( &p_wk->last );
 
-				// Šî–{î•ñ‚©‚çƒAƒ“ƒP[ƒgŒ‹‰Ê‚ğWŒv
-				// ‚à‚¤WŒv‚µ‚Ä‚é‚È‚çA‚»‚Ìƒf[ƒ^‚ğg—p‚·‚é
+				// åŸºæœ¬æƒ…å ±ã‹ã‚‰ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæœã‚’é›†è¨ˆ
+				// ã‚‚ã†é›†è¨ˆã—ã¦ã‚‹ãªã‚‰ã€ãã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹
 				if( WFLBY_SYSTEM_GetAnketoResult( p_param->p_system, &p_wk->result_now ) == FALSE ){
 					ANKETO_QUESTION_RESULT_CalcHirobaResult( &p_wk->result_now, p_param->p_system, &p_wk->now );
-					WFLBY_SYSTEM_SetAnketoResult( p_param->p_system, &p_wk->result_now );	// WŒvƒf[ƒ^‚ğİ’è
+					WFLBY_SYSTEM_SetAnketoResult( p_param->p_system, &p_wk->result_now );	// é›†è¨ˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 				}
 		
 				ANKETO_QUESTION_RESULT_DebugInit( &p_wk->result_last );
@@ -2130,7 +2130,7 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		break;
 #endif
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE00:	// ‚±‚ñ‚©‚¢‚Í
+	case ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE00:	// ã“ã‚“ã‹ã„ã¯
 		if( p_wk->now.special == FALSE ){
 			msg_idx = msg_survey_monitor_a_n03_01;
 		}else{
@@ -2143,7 +2143,7 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE01:	// “à—e
+	case ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE01:	// å†…å®¹
 		p_str = ANKETO_QUESTION_DATA_GetQuestionStr( &p_wk->now, p_msg );
 		ANKETO_TalkWin_Print( p_talkwin, p_str );
 
@@ -2151,7 +2151,7 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE02:	// ‚Å‚µ‚½
+	case ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE02:	// ã§ã—ãŸ
 		if( sys.trg & PAD_BUTTON_DECIDE ){
 
 			p_str = ANKETO_MsgManGetStr( p_msg, ANKETO_MSGMAN_MSG, msg_survey_monitor_a_n03_02 );
@@ -2162,7 +2162,7 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		}
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE03:	// ‚±‚ñ‚©‚¢‚Í‚±‚ñ‚È‚Å‚µ‚½
+	case ANKETO_OUTPUT_SEQ_ANKETO_NQ_WRITE03:	// ã“ã‚“ã‹ã„ã¯ã“ã‚“ãªã§ã—ãŸ
 		if( p_wk->now.special == FALSE ){
 			msg_idx = msg_survey_monitor_a_n04;
 		}else{
@@ -2175,7 +2175,7 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_NRESULT:		// Œ‹‰Ê•\¦
+	case ANKETO_OUTPUT_SEQ_ANKETO_NRESULT:		// çµæœè¡¨ç¤º
 		{
 			WFLBY_ANKETO anketo_data;
 			const WFLBY_USER_PROFILE* cp_profile;
@@ -2186,11 +2186,11 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 
 			vip = WFLBY_SYSTEM_GetUserVipFlag( p_param->p_system, WFLBY_SYSTEM_GetMyIdx( p_param->p_system ) );
 		
-			// ‰ñ“š“à—e‚ğ•\¦‚·‚é
+			// å›ç­”å†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹
 			ANKETO_OUTPUT_DrawAnswer( p_wk, &p_wk->now, p_msg, p_drawsys, 
 					&anketo_data, heapID, ANKETO_PLTT_FONT_COL_OUTPUT00, ANKETO_PLTT_FONT_COL_VIP00, vip );
 
-			// ƒo[•\¦ŠJn
+			// ãƒãƒ¼è¡¨ç¤ºé–‹å§‹
 			ANKETO_OUTPUT_DrawBarStart( p_wk, &p_wk->result_now, p_drawsys, ANKETO_PLTT_MAIN_BACK01 );
 
 			Snd_SePlay( ANKETO_SND_BAR );
@@ -2199,12 +2199,12 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_NRESULT_MAIN;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_NRESULT_MAIN:	// Œ‹‰Ê•\¦
+	case ANKETO_OUTPUT_SEQ_ANKETO_NRESULT_MAIN:	// çµæœè¡¨ç¤º
 		{
 			BOOL result;
 			result = ANKETO_OUTPUT_DrawBarMain( p_wk, p_drawsys );
 			if( result == TRUE ){
-				// SE‚ğ‚Æ‚ß‚é
+				// SEã‚’ã¨ã‚ã‚‹
 				//Snd_SeStopBySeqNo( ANKETO_SND_BAR, 0 );
 				
 				p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_NA_WAIT;
@@ -2212,15 +2212,15 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		}
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_NA_WAIT:		// Aƒ{ƒ^ƒ“‘Ò‚¿
+	case ANKETO_OUTPUT_SEQ_ANKETO_NA_WAIT:		// Aãƒœã‚¿ãƒ³å¾…ã¡
 
 		if( sys.trg & PAD_BUTTON_DECIDE ){
 
-			// æT‚ÌŒ‹‰Ê‚Í‚ ‚éH
+			// å…ˆé€±ã®çµæœã¯ã‚ã‚‹ï¼Ÿ
 			if( p_wk->last.question_no != DWC_LOBBY_ANKETO_NOT_QUESTION ){
 				p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_YESNO_DRAW;
 			}else{
-				// I—¹ƒƒbƒZ[ƒWŒãI‚í‚é
+				// çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾Œçµ‚ã‚ã‚‹
 				p_str = ANKETO_MsgManGetStr( p_msg, ANKETO_MSGMAN_MSG, msg_survey_monitor_a_06_00 );
 				ANKETO_TalkWin_Print( p_talkwin, p_str );
 
@@ -2230,7 +2230,7 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		}
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_YESNO_DRAW:	// YESNO•\¦
+	case ANKETO_OUTPUT_SEQ_ANKETO_YESNO_DRAW:	// YESNOè¡¨ç¤º
 		p_str = ANKETO_MsgManGetStr( p_msg, ANKETO_MSGMAN_MSG, msg_survey_monitor_a_05 );
 		ANKETO_TalkWin_PrintAll( p_talkwin, p_str );
 		ANKETO_TalkWin_StartYesNo( p_talkwin, p_drawsys, heapID );
@@ -2238,27 +2238,27 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_YESNO_WAIT;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_YESNO_WAIT:	// YESNO‘Ò‚¿
+	case ANKETO_OUTPUT_SEQ_ANKETO_YESNO_WAIT:	// YESNOå¾…ã¡
 		{
 			u32 result;
 			result = ANKETO_TalkWin_MainYesNo( p_talkwin, heapID );
 			switch( result ){
-			// ‚Í‚¢
+			// ã¯ã„
 			case 0:
-				// æT•\¦‚Ö
+				// å…ˆé€±è¡¨ç¤ºã¸
 				p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEOUT;
 				break;
 
-			// ‚Ì[
+			// ã®ãƒ¼
 			case BMPMENU_CANCEL:
-				// I—¹‚Ö
+				// çµ‚äº†ã¸
 				p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_ENDMSG;
 				break;
 			}
 		}
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEOUT:	// ˆê‰ñƒtƒF[ƒh
+	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEOUT:	// ä¸€å›ãƒ•ã‚§ãƒ¼ãƒ‰
 		WIPE_SYS_Start(WIPE_PATTERN_WMS, 
 				WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
 				WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, heapID );
@@ -2266,16 +2266,16 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEOUTWAIT;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEOUTWAIT:// ˆê‰ñƒtƒF[ƒh
+	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEOUTWAIT:// ä¸€å›ãƒ•ã‚§ãƒ¼ãƒ‰
 		if( WIPE_SYS_EndCheck() == TRUE ){
-			// ‰æ–Ê‚ğØ‚è‘Ö‚¦‚é
+			// ç”»é¢ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 			ANKETO_OUTPUT_SetLastWeekGraphic( p_wk, p_msg, p_drawsys, heapID );
 
 			p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEIN;
 		}
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEIN:		// ˆê‰ñƒtƒF[ƒh
+	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEIN:		// ä¸€å›ãƒ•ã‚§ãƒ¼ãƒ‰
 		WIPE_SYS_Start(WIPE_PATTERN_WMS, 
 				WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 				WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, heapID );
@@ -2283,14 +2283,14 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEINWAIT;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEINWAIT:	// ˆê‰ñƒtƒF[ƒh
+	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WIPEINWAIT:	// ä¸€å›ãƒ•ã‚§ãƒ¼ãƒ‰
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE00;
 		}
 		break;
 
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE00:	// ‘O‰ñ‚Í
+	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE00:	// å‰å›ã¯
 		if( p_wk->last.special == FALSE ){
 			msg_idx = msg_survey_monitor_a_n06_01;
 		}else{
@@ -2303,7 +2303,7 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE01:	// “à—e
+	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE01:	// å†…å®¹
 		p_str = ANKETO_QUESTION_DATA_GetQuestionStr( &p_wk->last, p_msg );
 		ANKETO_TalkWin_Print( p_talkwin, p_str );
 
@@ -2311,7 +2311,7 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE02:	// ‚Å‚µ‚½
+	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE02:	// ã§ã—ãŸ
 		if( sys.trg & PAD_BUTTON_DECIDE ){
 
 			p_str = ANKETO_MsgManGetStr( p_msg, ANKETO_MSGMAN_MSG, msg_survey_monitor_a_n06_02 );
@@ -2322,7 +2322,7 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		}
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE03:	// ‘O‰ñ‚Í‚±‚ñ‚È‚Å‚µ‚½
+	case ANKETO_OUTPUT_SEQ_ANKETO_LQ_WRITE03:	// å‰å›ã¯ã“ã‚“ãªã§ã—ãŸ
 		if( p_wk->last.special == FALSE ){
 			msg_idx = msg_survey_monitor_a_n07;
 		}else{
@@ -2335,24 +2335,24 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LRESULT:		// Œ‹‰Ê•\¦
+	case ANKETO_OUTPUT_SEQ_ANKETO_LRESULT:		// çµæœè¡¨ç¤º
 		{
 			WFLBY_ANKETO anketo;
 			WFLBY_SAVEDATA* p_hirobasave;
 			BOOL vip;
 
-			// ƒZ[ƒuƒf[ƒ^‚©‚ç‚P‚Â‘O‚É“š‚¦‚½ƒAƒ“ƒP[ƒgƒf[ƒ^æ“¾
+			// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ï¼‘ã¤å‰ã«ç­”ãˆãŸã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 			p_hirobasave		= SAVEDATA_WFLBY_GetWork( p_param->p_save );
 			anketo.anketo_no	= SAVEDATA_WFLBY_GetQuestionNumber( p_hirobasave );
 			anketo.select		= SAVEDATA_WFLBY_GetMyAnswer( p_hirobasave );
 
 			vip = WFLBY_SYSTEM_GetUserVipFlag( p_param->p_system, WFLBY_SYSTEM_GetMyIdx( p_param->p_system ) );
 		
-			// ‰ñ“š“à—e‚ğ•\¦‚·‚é
+			// å›ç­”å†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹
 			ANKETO_OUTPUT_DrawAnswer( p_wk, &p_wk->last, p_msg, p_drawsys, &anketo, heapID, 
 					ANKETO_PLTT_FONT_COL_OUTPUT01, ANKETO_PLTT_FONT_COL_VIP01, vip );
 
-			// ƒo[•\¦ŠJn
+			// ãƒãƒ¼è¡¨ç¤ºé–‹å§‹
 			ANKETO_OUTPUT_DrawBarStart( p_wk, &p_wk->result_last, p_drawsys, ANKETO_PLTT_MAIN_BACK02 );
 
 			Snd_SePlay( ANKETO_SND_BAR );
@@ -2360,27 +2360,27 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_LRESULT_MAIN;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LRESULT_MAIN:	// Œ‹‰Ê•\¦
+	case ANKETO_OUTPUT_SEQ_ANKETO_LRESULT_MAIN:	// çµæœè¡¨ç¤º
 		{
 			BOOL result;
 			result = ANKETO_OUTPUT_DrawBarMain( p_wk, p_drawsys );
 			if( result == TRUE ){
 
-				// SE‚ğ‚Æ‚ß‚é
+				// SEã‚’ã¨ã‚ã‚‹
 				//Snd_SeStopBySeqNo( ANKETO_SND_BAR, 0 );
 				p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_LA_WAIT;
 			}
 		}
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_LA_WAIT:		// Aƒ{ƒ^ƒ“‘Ò‚¿
+	case ANKETO_OUTPUT_SEQ_ANKETO_LA_WAIT:		// Aãƒœã‚¿ãƒ³å¾…ã¡
 		if( sys.trg & PAD_BUTTON_DECIDE ){
-			// I—¹‚Ö
+			// çµ‚äº†ã¸
 			p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_ENDMSG;
 		}
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_ENDMSG:		// I—¹ƒƒbƒZ[ƒW
+	case ANKETO_OUTPUT_SEQ_ANKETO_ENDMSG:		// çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		p_str = ANKETO_MsgManGetStr( p_msg, ANKETO_MSGMAN_MSG, msg_survey_monitor_a_08 );
 		ANKETO_TalkWin_Print( p_talkwin, p_str );
 
@@ -2388,12 +2388,12 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 		p_wk->seq = ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT;
 		break;
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_END:			// I—¹
-		// ‰ï˜bƒEƒBƒ“ƒhƒE”ñ•\¦
+	case ANKETO_OUTPUT_SEQ_ANKETO_END:			// çµ‚äº†
+		// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦éè¡¨ç¤º
 		ANKETO_TalkWin_Off( p_talkwin );
 		return TRUE;	
 
-	case ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT:		// ƒƒbƒZ[ƒW‘Ò‚¿
+	case ANKETO_OUTPUT_SEQ_ANKETO_MSGWAIT:		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( ANKETO_TalkWin_EndWait( p_talkwin ) == TRUE ){
 			p_wk->seq = p_wk->ret_seq;
 		}
@@ -2409,26 +2409,26 @@ static BOOL ANKETO_OUTPUT_Main( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	o—Í‰æ–Ê	”jŠü
+ *	@brief	å‡ºåŠ›ç”»é¢	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_OUTPUT_Exit( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys )
 {
-	// ƒf[ƒ^”jŠü
+	// ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	{
 		ANKETO_QUESTION_DATA_Exit( &p_wk->now );
 		ANKETO_QUESTION_DATA_Exit( &p_wk->last );
 	}
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”jŠü
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	sys_FreeMemoryEz( p_wk->p_charres );
 	p_wk->p_charres = NULL;
 	
-	// ƒEƒBƒ“ƒhƒE”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	{
 		int i;
 
@@ -2441,11 +2441,11 @@ static void ANKETO_OUTPUT_Exit( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKET
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹‚Ì•`‰æ
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«ã®æç”»
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒW
- *	@param	msgidx		ƒƒbƒZ[ƒWIDX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	msgidx		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_OUTPUT_DrawTitle( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, u32 msgidx, GF_PRINTCOLOR col )
@@ -2459,7 +2459,7 @@ static void ANKETO_OUTPUT_DrawTitle( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, 
 
 	p_str = ANKETO_MsgManGetStr( p_msg, ANKETO_MSGMAN_MSG, msgidx );
 
-	// ƒZƒ“ƒ^ƒŠƒ“ƒO
+	// ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°
 	width = FontProc_GetPrintStrWidth( FONT_TALK, p_str, 0 );
 	x = ((ANKETO_OUTPUTWIN_TITLE_SIZX*8) - width) / 2;
 	GF_STR_PrintColor( &p_wk->win[ANKETO_OUTPUT_BMP_TITLE], 
@@ -2471,15 +2471,15 @@ static void ANKETO_OUTPUT_DrawTitle( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“š‚ğ•\¦‚·‚é
+ *	@brief	å›ç­”ã‚’è¡¨ç¤ºã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
- *	@param	p_msg		ƒƒbƒZ[ƒW
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	cp_answer	©•ª‚Ì“š‚¦
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_answer	è‡ªåˆ†ã®ç­”ãˆ
  *	@param	heapID
- *	@param	col			•\¦ƒJƒ‰[
+ *	@param	col			è¡¨ç¤ºã‚«ãƒ©ãƒ¼
  *	@param	vip			VIP
  */
 //-----------------------------------------------------------------------------
@@ -2506,8 +2506,8 @@ static void ANKETO_OUTPUT_DrawAnswer( ANKETO_OUTPUT* p_wk, const ANKETO_QUESTION
 			FONT_TALK, p_str, 0, ANKETO_OUTPUTWIN_ANS02_Y,
 			MSG_NO_PUT, col, NULL );
 
-	// ©•ª‚Ì“š‚¦
-	if( (cp_answer->anketo_no == cp_data->anketo_no) && (cp_answer->select < ANKETO_ANSWER_NUM) ){	// ’Ê‚µ”Ô†‚ªˆê’v‚·‚é‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ã®ç­”ãˆ
+	if( (cp_answer->anketo_no == cp_data->anketo_no) && (cp_answer->select < ANKETO_ANSWER_NUM) ){	// é€šã—ç•ªå·ãŒä¸€è‡´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		s32 str_width;
 		s32 write_x;
 		GF_PRINTCOLOR mycol;
@@ -2527,7 +2527,7 @@ static void ANKETO_OUTPUT_DrawAnswer( ANKETO_OUTPUT* p_wk, const ANKETO_QUESTION
 				FONT_TALK, p_str, write_x, 0,
 				MSG_NO_PUT, mycol, NULL );
 
-		// “š‚¦‚Ì•¶š—ñ‚ğ‘‚«‚Ş
+		// ç­”ãˆã®æ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
 		p_str = ANKETO_QUESTION_DATA_GetAnswerStr( cp_data, p_msg, cp_answer->select );
 		str_width	= FontProc_GetPrintStrWidth( FONT_TALK, p_str, 0 );
 		write_x		= ((ANKETO_OUTPUTWIN_MY_ANSWER_WRITE_SIZE_X - str_width) / 2);
@@ -2544,11 +2544,11 @@ static void ANKETO_OUTPUT_DrawAnswer( ANKETO_OUTPUT* p_wk, const ANKETO_QUESTION
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒo[•\¦ŠJn
+ *	@brief	ãƒãƒ¼è¡¨ç¤ºé–‹å§‹
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	cp_data			ƒf[ƒ^
- *	@param	p_drawsys		•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data			ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_drawsys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_OUTPUT_DrawBarStart( ANKETO_OUTPUT* p_wk, const ANKETO_QUESTION_RESULT* cp_data, ANKETO_DRAWSYS* p_drawsys, u32 palno )
@@ -2567,13 +2567,13 @@ static void ANKETO_OUTPUT_DrawBarStart( ANKETO_OUTPUT* p_wk, const ANKETO_QUESTI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒo[•\¦ƒƒCƒ“
+ *	@brief	ãƒãƒ¼è¡¨ç¤ºãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	ƒo[•\¦I—¹
- *	@retval	FLASE	ƒo[•\¦’†
+ *	@retval	TRUE	ãƒãƒ¼è¡¨ç¤ºçµ‚äº†
+ *	@retval	FLASE	ãƒãƒ¼è¡¨ç¤ºä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ANKETO_OUTPUT_DrawBarMain( ANKETO_OUTPUT* p_wk, ANKETO_DRAWSYS* p_drawsys )
@@ -2584,40 +2584,40 @@ static BOOL ANKETO_OUTPUT_DrawBarMain( ANKETO_OUTPUT* p_wk, ANKETO_DRAWSYS* p_dr
 	int i, j;
 	int skip_count;
 
-	// ÅŒã‚Ü‚Å‘‚¢‚Ä‚½‚çƒIƒƒŠ
+	// æœ€å¾Œã¾ã§æ›¸ã„ã¦ãŸã‚‰ã‚ªãƒ¯ãƒª
 	if( p_wk->count >= ANKETO_BAR_COUNTMAX ){
 		return TRUE;
 	}
 	
-	// ƒJƒEƒ“ƒg‚Ì•\¦’·‚³‚ğ‹‚ß‚é
+	// ã‚«ã‚¦ãƒ³ãƒˆã®è¡¨ç¤ºé•·ã•ã‚’æ±‚ã‚ã‚‹
 	p_wk->count ++;
 	draw_width = (p_wk->count * ANKETO_BAR_100WIDTH) / ANKETO_BAR_COUNTMAX;
 	
-	// •`‰æ‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢•‚ª‚Ü‚¾
+	// æç”»ã—ãªã„ã¨ã„ã‘ãªã„å¹…ãŒã¾ã 
 	skip_count = 0;
 	for( i=0; i<ANKETO_ANSWER_NUM; i++ ){
 
-		// I‚í‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+		// çµ‚ã‚ã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( p_wk->draw_width[i] == p_wk->drawend_width[i] ){
 			skip_count ++;
 			continue;
 		}
 
-		// ©•ª‚ª‚»‚Ì’·‚³‚æ‚è‘å‚«‚©‚Á‚½‚ç–³ğŒ‚ÉL‚Î‚·
+		// è‡ªåˆ†ãŒãã®é•·ã•ã‚ˆã‚Šå¤§ãã‹ã£ãŸã‚‰ç„¡æ¡ä»¶ã«ä¼¸ã°ã™
 		if( p_wk->drawend_width[ i ] >= draw_width ){
-			// ‚»‚Ì‚Ü‚Ü•`‰æ
+			// ãã®ã¾ã¾æç”»
 			width		= draw_width - p_wk->draw_width[ i ];
 			draw_start	= p_wk->draw_width[ i ];
 			p_wk->draw_width[ i ] = draw_width;
 
-		// ‚ ‚Æ‚ÍAc‚è•”•ª‚ğ•`‰æ‚·‚é
+		// ã‚ã¨ã¯ã€æ®‹ã‚Šéƒ¨åˆ†ã‚’æç”»ã™ã‚‹
 		}else{
 			width		= p_wk->drawend_width[ i ] - p_wk->draw_width[ i ];
 			draw_start	= p_wk->draw_width[ i ];
 			p_wk->draw_width[ i ] = p_wk->drawend_width[ i ];
 		}
 
-		// •`‰æ
+		// æç”»
 		for( j=0; j<width; j++ ){
 			GF_BGL_BmpWinPrint( &p_wk->win[ ANKETO_OUTPUT_BMP_ANS_BAR00+i ], p_wk->p_char->pRawData,
 					ANKETO_BAR_CG_X, ANKETO_BAR_CG_Y, 
@@ -2628,7 +2628,7 @@ static BOOL ANKETO_OUTPUT_DrawBarMain( ANKETO_OUTPUT* p_wk, ANKETO_DRAWSYS* p_dr
 		GF_BGL_BmpWinOnVReq( &p_wk->win[ ANKETO_OUTPUT_BMP_ANS_BAR00+i ] );
 	}
 
-	// ‘S•”I‚í‚Á‚Ä‚½‚çI‚í‚è
+	// å…¨éƒ¨çµ‚ã‚ã£ã¦ãŸã‚‰çµ‚ã‚ã‚Š
 	if( skip_count == ANKETO_ANSWER_NUM ){
 		return TRUE;
 	}
@@ -2638,22 +2638,22 @@ static BOOL ANKETO_OUTPUT_DrawBarMain( ANKETO_OUTPUT* p_wk, ANKETO_DRAWSYS* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	æT‚ÌƒAƒ“ƒP[ƒgŒ‹‰Ê•\¦ƒOƒ‰ƒtƒBƒbƒN‚Ì•\¦
+ *	@brief	å…ˆé€±ã®ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæœè¡¨ç¤ºã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒW
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_OUTPUT_SetLastWeekGraphic( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN* p_msg, ANKETO_DRAWSYS* p_drawsys, u32 heapID )
 {
-	// ”wŒiİ’è
+	// èƒŒæ™¯è¨­å®š
 	{
 		ArcUtil_HDL_ScrnSet( p_drawsys->p_handle, NARC_wifi_lobby_other_bg02_NSCR, p_drawsys->p_bgl, GF_BGL_FRAME0_M, 0, 0, FALSE, heapID );
 	}
 
-	// ƒEƒBƒ“ƒhƒEì¬
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	{
 		int i;
 
@@ -2663,7 +2663,7 @@ static void ANKETO_OUTPUT_SetLastWeekGraphic( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN
 		}
 	}
 
-	// ƒ^ƒCƒgƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«
 	ANKETO_OUTPUT_DrawTitle( p_wk, p_msg, msg_survey_monitor_a_07_header, ANKETO_PLTT_TITLEFONT_COL_OUTPUT01 );
 }
 
@@ -2672,9 +2672,9 @@ static void ANKETO_OUTPUT_SetLastWeekGraphic( ANKETO_OUTPUT* p_wk, ANKETO_MSGMAN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿–â“à—eƒ[ƒN	ƒfƒoƒbƒN‰Šú‰»
+ *	@brief	è³ªå•å†…å®¹ãƒ¯ãƒ¼ã‚¯	ãƒ‡ãƒãƒƒã‚¯åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_QUESTION_DATA_DebugInit( ANKETO_QUESTION_DATA* p_wk )
@@ -2687,11 +2687,11 @@ static void ANKETO_QUESTION_DATA_DebugInit( ANKETO_QUESTION_DATA* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿–â“à—eƒ[ƒN	‰Šú‰»
+ *	@brief	è³ªå•å†…å®¹ãƒ¯ãƒ¼ã‚¯	åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	now		¡‚Ì¿–â‚©
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	now		ä»Šã®è³ªå•ã‹
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_QUESTION_DATA_Init( ANKETO_QUESTION_DATA* p_wk, BOOL now, u32 heapID )
@@ -2701,7 +2701,7 @@ static void ANKETO_QUESTION_DATA_Init( ANKETO_QUESTION_DATA* p_wk, BOOL now, u32
 	u16* p_str;
 	int i;
 	
-	// ƒƒbƒZ[ƒWƒoƒbƒtƒ@ì¬
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	p_wk->p_question = STRBUF_Create( ANKETO_MESSAGE_BUFFNUM, heapID );
 	for( i=0; i<ANKETO_ANSWER_NUM; i++ ){
 		p_wk->p_ans[i] = STRBUF_Create( ANKETO_MESSAGE_BUFFNUM, heapID );
@@ -2721,7 +2721,7 @@ static void ANKETO_QUESTION_DATA_Init( ANKETO_QUESTION_DATA* p_wk, BOOL now, u32
 	p_wk->make_question	= DWC_LOBBY_ANKETO_GetData( data_start+DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NINI );
 
 	if( p_wk->make_question == TRUE ){
-		// ¿–â‚Æ‰ñ“šˆÄ‚ğæ“¾
+		// è³ªå•ã¨å›ç­”æ¡ˆã‚’å–å¾—
 		p_str = DWC_LOBBY_ANKETO_GetMessage( msg_start+DWC_LOBBY_ANKETO_MESSAGE_NOW_QUESTION );
 		GF_ASSERT( p_str );
 		STRBUF_SetStringCode( p_wk->p_question, p_str );
@@ -2735,16 +2735,16 @@ static void ANKETO_QUESTION_DATA_Init( ANKETO_QUESTION_DATA* p_wk, BOOL now, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgƒf[ƒ^‚Ì”jŠü
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã®ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_QUESTION_DATA_Exit( ANKETO_QUESTION_DATA* p_wk )
 {
 	int i;
 	
-	// ƒƒbƒZ[ƒWƒoƒbƒtƒ@”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	STRBUF_Delete( p_wk->p_question );
 	for( i=0; i<ANKETO_ANSWER_NUM; i++ ){
 		STRBUF_Delete( p_wk->p_ans[i] );
@@ -2753,10 +2753,10 @@ static void ANKETO_QUESTION_DATA_Exit( ANKETO_QUESTION_DATA* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿–â“à—eƒ[ƒN@¿–âƒƒbƒZ[ƒWæ“¾
+ *	@brief	è³ªå•å†…å®¹ãƒ¯ãƒ¼ã‚¯ã€€è³ªå•ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
  *
- *	@param	p_wk	¿–âƒ[ƒN
- *	@param	p_msg	ƒƒbƒZ[ƒWƒ[ƒN
+ *	@param	p_wk	è³ªå•ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static STRBUF* ANKETO_QUESTION_DATA_GetQuestionStr( const ANKETO_QUESTION_DATA* cp_wk, ANKETO_MSGMAN* p_msg )
@@ -2769,11 +2769,11 @@ static STRBUF* ANKETO_QUESTION_DATA_GetQuestionStr( const ANKETO_QUESTION_DATA* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿–â“à—eƒ[ƒN	‰ñ“šƒƒbƒZ[ƒWæ“¾
+ *	@brief	è³ªå•å†…å®¹ãƒ¯ãƒ¼ã‚¯	å›ç­”ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msg		ƒƒbƒZ[ƒWƒ[ƒN
- *	@param	answer		‰ñ“šƒ^ƒCƒviANKETO_ANSWER_A@EEEj
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
+ *	@param	answer		å›ç­”ã‚¿ã‚¤ãƒ—ï¼ˆANKETO_ANSWER_Aã€€ãƒ»ãƒ»ãƒ»ï¼‰
  */
 //-----------------------------------------------------------------------------
 static STRBUF* ANKETO_QUESTION_DATA_GetAnswerStr( const ANKETO_QUESTION_DATA* cp_wk, ANKETO_MSGMAN* p_msg, u32 answer )
@@ -2786,7 +2786,7 @@ static STRBUF* ANKETO_QUESTION_DATA_GetAnswerStr( const ANKETO_QUESTION_DATA* cp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ‹‰Êƒ[ƒN	ƒfƒoƒbƒN‰Šú‰»
+ *	@brief	çµæœãƒ¯ãƒ¼ã‚¯	ãƒ‡ãƒãƒƒã‚¯åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_QUESTION_RESULT_DebugInit( ANKETO_QUESTION_RESULT* p_wk )
@@ -2802,7 +2802,7 @@ static void ANKETO_QUESTION_RESULT_DebugInit( ANKETO_QUESTION_RESULT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘O‰ñ‚ÌŒ‹‰Ê‚ğ‹‚ß‚é
+ *	@brief	å‰å›ã®çµæœã‚’æ±‚ã‚ã‚‹
  *
  *	@param	p_wk 
  */
@@ -2820,13 +2820,13 @@ static void ANKETO_QUESTION_RESULT_Init( ANKETO_QUESTION_RESULT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒo[‚Ì’·‚³‚ğ‹‚ß‚é
+ *	@brief	ãƒãƒ¼ã®é•·ã•ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	answer		Œ‹‰Êƒiƒ“ƒo[
- *	@param	max_width	Å‘å‚Ì’·‚³
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	answer		çµæœãƒŠãƒ³ãƒãƒ¼
+ *	@param	max_width	æœ€å¤§ã®é•·ã•
  *
- *	@return	’·‚³
+ *	@return	é•·ã•
  */
 //-----------------------------------------------------------------------------
 static u32 ANKETO_QUESTION_RESULT_GetBerWidth( const ANKETO_QUESTION_RESULT* cp_wk, u32 answer, u32 max_width )
@@ -2842,10 +2842,10 @@ static u32 ANKETO_QUESTION_RESULT_GetBerWidth( const ANKETO_QUESTION_RESULT* cp_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚¢‚é‚Ğ‚ë‚Î“à‚ÌŒ‹‰Ê‚ğWŒv
+ *	@brief	ä»Šã„ã‚‹ã²ã‚ã°å†…ã®çµæœã‚’é›†è¨ˆ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_system	ƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_system	ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void ANKETO_QUESTION_RESULT_CalcHirobaResult( ANKETO_QUESTION_RESULT* p_wk, const WFLBY_SYSTEM* cp_system )

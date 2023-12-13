@@ -29,12 +29,12 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSFndArchiveFatEntry
 
-  Description:  ƒA[ƒJƒCƒu‚Ì‚e‚`‚sƒGƒ“ƒgƒŠ\‘¢‘ÌB
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ï¼¦ï¼¡ï¼´ã‚¨ãƒ³ãƒˆãƒªæ§‹é€ ä½“ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-	u32						fileTop;			// ƒtƒ@ƒCƒ‹ƒCƒ[ƒWæ“ª‚ÌƒIƒtƒZƒbƒg
-	u32						fileBottom;			// ƒtƒ@ƒCƒ‹ƒCƒ[ƒWŒã”ö‚ÌƒIƒtƒZƒbƒg
+	u32						fileTop;			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸å…ˆé ­ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32						fileBottom;			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸å¾Œå°¾ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 } NNSiFndArchiveFatEntry;
 
@@ -42,14 +42,14 @@ typedef struct
 /*---------------------------------------------------------------------------*
   Name:         NNSiFndArchiveFatData
 
-  Description:  ƒA[ƒJƒCƒu‚ÌFATƒf[ƒ^\‘¢‘ÌB
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®FATãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-	u32						blockType;			// ƒuƒƒbƒNƒ^ƒCƒv
-	u32						blockSize;			// ƒuƒƒbƒNƒTƒCƒY
-	u16						numFiles;			// ƒtƒ@ƒCƒ‹‚ÌŒÂ”B
-	u16						reserved;			// —\–ñB
+	u32						blockType;			// ãƒ–ãƒ­ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
+	u32						blockSize;			// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+	u16						numFiles;			// ãƒ•ã‚¡ã‚¤ãƒ«ã®å€‹æ•°ã€‚
+	u16						reserved;			// äºˆç´„ã€‚
 	NNSiFndArchiveFatEntry	fatEntries[1];
 
 } NNSiFndArchiveFatData;
@@ -58,16 +58,16 @@ typedef struct
 /*---------------------------------------------------------------------------*
   Name:         NNSiFndArchiveHeader
 
-  Description:  ƒA[ƒJƒCƒu‚Ìƒtƒ@ƒCƒ‹ƒwƒbƒ_\‘¢‘ÌB
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-	u32						signature;			// ƒVƒOƒlƒ`ƒƒiNARCj
-	u16						byteOrder;			// ƒoƒCƒgƒI[ƒ_[i0xfeffj
-	u16						version;			// ƒo[ƒWƒ‡ƒ“”Ô†
-	u32						fileSize;			// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ì‘å‚«‚³
-	u16						headerSize;			// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒwƒbƒ_‚Ì‘å‚«‚³
-	u16						dataBlocks;			// ƒf[ƒ^ƒuƒƒbƒN‚Ì”
+	u32						signature;			// ã‚·ã‚°ãƒãƒãƒ£ï¼ˆNARCï¼‰
+	u16						byteOrder;			// ãƒã‚¤ãƒˆã‚ªãƒ¼ãƒ€ãƒ¼ï¼ˆ0xfeffï¼‰
+	u16						version;			// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·
+	u32						fileSize;			// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®å¤§ãã•
+	u16						headerSize;			// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã®å¤§ãã•
+	u16						dataBlocks;			// ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã®æ•°
 
 } NNSiFndArchiveHeader;
 
@@ -75,22 +75,22 @@ typedef struct
 /*---------------------------------------------------------------------------*
   Name:         NNSFndArchive
 
-  Description:  NNSƒA[ƒJƒCƒu\‘¢‘ÌBƒA[ƒJƒCƒu‚ÉŠÖ‚·‚éî•ñ‚ğ•Û‚µ‚Ü‚·B
-  				NITRO-System‚ÌƒA[ƒJƒCƒuƒ}ƒl[ƒWƒƒ‚ÅAƒA[ƒJƒCƒu‚ğ“Á’è‚·‚é‚Æ
-  				‚«‚ÍA‚±‚ÌNNSƒA[ƒJƒCƒu\‘¢‘Ì‚ğw’è‚µ‚Ü‚·B
+  Description:  NNSã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã€‚ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«é–¢ã™ã‚‹æƒ…å ±ã‚’ä¿æŒã—ã¾ã™ã€‚
+  				NITRO-Systemã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒãƒ¼ã‚¸ãƒ£ã§ã€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ç‰¹å®šã™ã‚‹ã¨
+  				ãã¯ã€ã“ã®NNSã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã‚’æŒ‡å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-	FSArchive				fsArchive;			// ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€—pƒ[ƒN
-	NNSiFndArchiveHeader*	arcBinary;			// ƒA[ƒJƒCƒuƒoƒCƒiƒŠƒf[ƒ^‚Ìæ“ª
-	NNSiFndArchiveFatData*	fatData;			// ƒA[ƒJƒCƒu‚ÌFATƒf[ƒ^‚Ìæ“ª
-	u32						fileImage;			// ƒA[ƒJƒCƒu‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚Ìæ“ª
+	FSArchive				fsArchive;			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯
+	NNSiFndArchiveHeader*	arcBinary;			// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­
+	NNSiFndArchiveFatData*	fatData;			// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®FATãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­
+	u32						fileImage;			// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å…ˆé ­
 
 } NNSFndArchive;
 
 
 /*---------------------------------------------------------------------------*
-    ŠÖ”ƒvƒƒgƒ^ƒCƒvB
+    é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã€‚
 
  *---------------------------------------------------------------------------*/
 

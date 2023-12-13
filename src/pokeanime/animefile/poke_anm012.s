@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm012.s
- * @brief	�����݂悱�Ƃ�
+ * @brief	きざみよことび
  * @author	saito
  * @date	
  *
@@ -18,51 +18,51 @@
 // =============================================================================
 //
 //
-//	�����݂悱�Ƃ�
+//	きざみよことび
 //
 //
 // =============================================================================
 PAST_ANIME011:
-	//>��ђ���1���
-	//6��̏�����-8�ړ�
+	//>飛び跳ね1回目
+	//6回の処理で-8移動
 	CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_DX,-8,6
-	//6��̏�����180��(0x8000)����
+	//6回の処理で180°(0x8000)処理
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,8,0x8000,0,6
 	HOLD_CMD
 
-	//�X�v���C�g�ʒu��x=-8�ɐݒ� dx��0�ɐݒ�
+	//スプライト位置をx=-8に設定 dxを0に設定
 	SET_ADD_PARAM		PARAM_X,USE_VAL,-8,PARAM_SET
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET
 	APPLY_TRANS
 	
-	//��ђ���2���
-	//6��̏�����8�ړ�
+	//飛び跳ね2回目
+	//6回の処理で8移動
 	CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_DX,8,6
-	//6��̏�����180��(0x8000)����
+	//6回の処理で180°(0x8000)処理
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,8,0x8000,0,6
 	HOLD_CMD
 		
-	//�X�v���C�g�ʒu��x=0�ɐݒ� dx��0�ɐݒ�
+	//スプライト位置をx=0に設定 dxを0に設定
 	SET_ADD_PARAM		PARAM_X,USE_VAL,0,PARAM_SET
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET
 	APPLY_TRANS
 
-	//��ђ���3���
-	//6��̏�����8�ړ�
+	//飛び跳ね3回目
+	//6回の処理で8移動
 	CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_DX,8,6
-	//6��̏�����180��(0x8000)����
+	//6回の処理で180°(0x8000)処理
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,8,0x8000,0,6
 	HOLD_CMD
 		
-	//�X�v���C�g�ʒu��x=8�ɐݒ� dx��0�ɐݒ�
+	//スプライト位置をx=8に設定 dxを0に設定
 	SET_ADD_PARAM		PARAM_X,USE_VAL,8,PARAM_SET
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET
 	APPLY_TRANS
 
-	//��ђ���4���
-	//6��̏�����-8�ړ�
+	//飛び跳ね4回目
+	//6回の処理で-8移動
 	CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_DX,-8,6
-	//6��̏�����180��(0x8000)����
+	//6回の処理で180°(0x8000)処理
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,8,0x8000,0,6
 	HOLD_CMD
 

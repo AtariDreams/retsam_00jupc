@@ -1,9 +1,9 @@
 #ifndef _D06R0205_DEF_H_
 #define _D06R0205_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D06R0205_BOY2		(1)
 #define	SCRID_D06R0205_SIGN1		(2)
-#define	SCRID_D06R0205_DATA_MAX		(2)		//最大数
+#define	SCRID_D06R0205_DATA_MAX		(2)		//譛螟ｧ謨ｰ
 
 #endif //_D06R0205_DEF_H_

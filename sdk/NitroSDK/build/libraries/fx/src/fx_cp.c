@@ -18,7 +18,7 @@
   fix FX_InvSqrt()
 
   Revision 1.23  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.22  2005/02/28 05:26:13  yosizaki
   do-indent.

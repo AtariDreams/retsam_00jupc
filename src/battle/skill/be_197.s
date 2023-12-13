@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_197.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			197�@�ʏ�̑Ō��U���ɁA�n�`�̎�ނɂ��ǉ����ʂ������܂��B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			197　通常の打撃攻撃に、地形の種類による追加効果が加わります。
  *
  *@author	HisashiSogabe
  *@data		2006.03.02

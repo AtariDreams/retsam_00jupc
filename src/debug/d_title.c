@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	d_title.c	
- * @brief	ƒfƒoƒbƒOƒ^ƒCƒgƒ‹ƒƒjƒ…[
+ * @brief	ãƒ‡ãƒãƒƒã‚°ã‚¿ã‚¤ãƒˆãƒ«ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  * @author	Hiroyuki Nakamura
  * @date	05.07.08
  */
@@ -38,14 +38,14 @@
 #include "include/application/cb_sys.h"
 
 //============================================================================================
-//	overlay’è‹`
+//	overlayå®šç¾©
 //============================================================================================
 
 FS_EXTERN_OVERLAY( title );
 FS_EXTERN_OVERLAY( title_debug );
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 typedef void (*SELECT_FUNC)(SAVEDATA *);
 
@@ -65,7 +65,7 @@ typedef struct {
 #define	HEAPID_DEBUG_TITLE	HEAPID_DEBUG_APPLICATION
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 static void VramBankSet(void);
@@ -94,10 +94,10 @@ static void SetDebugContestProc(SAVEDATA * savedata);
 static void SetDebugExBreakSaveProc(SAVEDATA * savedata);
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 
-//gmmƒtƒ@ƒCƒ‹‚ÌID‚ğ•¶š—ñw’è‚Ég‚¤\‘¢‘ÌéŒ¾
+//gmmãƒ•ã‚¡ã‚¤ãƒ«ã®IDã‚’æ–‡å­—åˆ—æŒ‡å®šã«ä½¿ã†æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	u32	strID;
@@ -106,7 +106,7 @@ typedef struct
 
 static const LIST_DATA ListData[] =
 {
-	//ƒƒjƒ…[‚Ì•¶š—ñ‚ÍAconvert/message/src/debug_title.gmm‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æ–‡å­—åˆ—ã¯ã€convert/message/src/debug_title.gmmã«è¿½åŠ ã—ã¦ãã ã•ã„
 	{ DT_DEBUGGAME,		(u32)SetFieldDebugStartProc },
 	{ DT_CONTINUE,		(u32)SetFieldContinueProc },
 	{ DT_SELNAME,		(u32)SetDebugSeletNameProc },
@@ -119,36 +119,36 @@ static const LIST_DATA ListData[] =
 	{ DT_BREAKSAVE,		(u32)SetDebugBreakSaveProc },
 	{ DT_RTC_SETTING,	(u32)SetDebugRtcSettingProc },
 	
-	///< ƒGƒfƒBƒ^
+	///< ã‚¨ãƒ‡ã‚£ã‚¿
 	{ DT_ANM_EDIT,		(u32)SetDebugPokeAnimeEditorProc },
 	{ DT_CB_EDIT,		(u32)SetDebug_BallEditor },
 
 	{ DT_CONTEST,		(u32)SetDebugContestProc },
 	{ DT_EX_BREAK,		(u32)SetDebugExBreakSaveProc },
 
-	///< ƒ‚ƒhƒ‹
+	///< ãƒ¢ãƒ‰ãƒ«
 	{ DT_MODORU,		(u32)SetTitleProc },
 };
 
 static const BMPLIST_HEADER ListHeader = {
 	NULL,
-	NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
-	NELEMS(ListData),		// ƒŠƒXƒg€–Ú”
-	6,						// •\¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	12,						// €–Ú•\¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						// •\¦‚xÀ•W
-	FBMP_COL_WHITE,			//•¶šF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
-	0,						// •¶šŠÔŠu‚w
-	16,						// •¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,			// •¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+	NELEMS(ListData),		// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	6,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	12,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,			// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 
@@ -156,7 +156,7 @@ static const BMPLIST_HEADER ListHeader = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAM‰Šú‰»
+ * VRAMåˆæœŸåŒ–
  *
  * @param	none
  *
@@ -166,23 +166,23 @@ static const BMPLIST_HEADER ListHeader = {
 static void VramBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_16_F,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0123_E			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_16_F,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0123_E			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰Šú‰»
+ * BGåˆæœŸåŒ–
  *
  * @param	none
  *
@@ -246,7 +246,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒ‚ƒŠŠJ•ú
+ * ãƒ¡ãƒ¢ãƒªé–‹æ”¾
  *
  * @param	none
  *
@@ -255,7 +255,7 @@ static void BgInit( GF_BGL_INI * ini )
 //--------------------------------------------------------------------------------------------
 static void D_TitleMenuMemFree( GF_BGL_INI * ini )
 {
-	// BGLŠJ•ú
+	// BGLé–‹æ”¾
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME0_M );
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME1_M );
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME2_M );
@@ -267,17 +267,17 @@ static void D_TitleMenuMemFree( GF_BGL_INI * ini )
 }
 //--------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------
-//ƒfƒoƒbƒOƒQ[ƒ€ŠJn
+//ãƒ‡ãƒãƒƒã‚°ã‚²ãƒ¼ãƒ é–‹å§‹
 static void SetFieldDebugStartProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(OVERLAY_ID_GAMESTART, &DebugNewGameStartProcData);
 }
-//l–¼‘I‘ğ‚µ‚ÄƒfƒoƒbƒOƒQ[ƒ€ŠJn
+//äººåé¸æŠã—ã¦ãƒ‡ãƒãƒƒã‚°ã‚²ãƒ¼ãƒ é–‹å§‹
 static void SetDebugSeletNameProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(FS_OVERLAY_ID(title_debug), &DebugPersonMenuProcData);
 }
-//ƒRƒ“ƒeƒBƒjƒ…[‚ÅƒQ[ƒ€ŠJn
+//ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼ã§ã‚²ãƒ¼ãƒ é–‹å§‹
 static void SetFieldContinueProc(SAVEDATA * savedata)
 {
 	if (SaveData_GetExistFlag(savedata)) {
@@ -286,65 +286,65 @@ static void SetFieldContinueProc(SAVEDATA * savedata)
 		Main_SetNextProc(FS_OVERLAY_ID(title), &TitleProcData);
 	}
 }
-//ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNŠm”F
+//ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç¢ºèª
 static void SetDebugPokeGraProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(FS_OVERLAY_ID(title_debug), &PokeGraTestProcData);
 }
-//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNŠm”F
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç¢ºèª
 static void SetDebugTrGraProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(FS_OVERLAY_ID(title_debug), &TrGraTestProcData);
 }
 
-//ƒ|ƒPƒ‚ƒ“ƒAƒjƒŠm”F
+//ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ç¢ºèª
 static void SetDebugPokeAnimeEditorProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(FS_OVERLAY_ID(title_debug), &PokeAnimeEditorProcData);
 }
 
-//ƒfƒoƒbƒOƒtƒ@ƒCƒgŠJn
+//ãƒ‡ãƒãƒƒã‚°ãƒ•ã‚¡ã‚¤ãƒˆé–‹å§‹
 static void SetDebugFightProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(NO_OVERLAY_ID, &DebugFightProcData);
 }
-//ƒTƒEƒ“ƒhƒeƒXƒgŠJn
+//ã‚µã‚¦ãƒ³ãƒ‰ãƒ†ã‚¹ãƒˆé–‹å§‹
 static void SetDebugSoundTestProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(FS_OVERLAY_ID(title_debug), &SoundTestProcData);
 }
-//‚q‚s‚b’²®
+//ï¼²ï¼´ï¼£èª¿æ•´
 static void SetDebugRtcSettingProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(FS_OVERLAY_ID(title_debug), &DebugRtcMenuProcData);
 }
-//ƒ^ƒCƒgƒ‹‚É–ß‚é
+//ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
 static void SetTitleProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(FS_OVERLAY_ID(title), &TitleProcData);
 }
 
-// ƒ{[ƒ‹ƒJƒvƒZƒ‹ƒGƒfƒBƒ^
+// ãƒœãƒ¼ãƒ«ã‚«ãƒ—ã‚»ãƒ«ã‚¨ãƒ‡ã‚£ã‚¿
 #include "debug/cb_edit/cb_edit.h"
 static void SetDebug_BallEditor(SAVEDATA * savedata)
 {
 	Main_SetNextProc(FS_OVERLAY_ID(title_debug), &CBE_ProcData);
 }
 
-//l–¼‘I‘ğ‚µ‚ÄƒfƒoƒbƒOƒQ[ƒ€ŠJn
+//äººåé¸æŠã—ã¦ãƒ‡ãƒãƒƒã‚°ã‚²ãƒ¼ãƒ é–‹å§‹
 static void SetDebugContestProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(FS_OVERLAY_ID(title_debug), &DebugContestMenuProcData);
 }
 
-//l–¼‘I‘ğ‚µ‚ÄƒfƒoƒbƒOƒQ[ƒ€ŠJn
+//äººåé¸æŠã—ã¦ãƒ‡ãƒãƒƒã‚°ã‚²ãƒ¼ãƒ é–‹å§‹
 static void SetDebugExBreakSaveProc(SAVEDATA * savedata)
 {
 	Main_SetNextProc(FS_OVERLAY_ID(title_debug), &DebugExSaveMenuProcData);
 }
 
 //------------------------------------------------------------------
-///	ƒZ[ƒuƒf[ƒ^”j‰ó
+///	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ç ´å£Š
 //------------------------------------------------------------------
 static void SetDebugBreakSaveProc(SAVEDATA * savedata)
 {
@@ -354,7 +354,7 @@ static void SetDebugBreakSaveProc(SAVEDATA * savedata)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒXƒ^[ƒgƒƒjƒ…[‚©‚çŒÄ‚Ño‚³‚ê‚éWi-Fiİ’è‰æ–Ê
+ * @brief	ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹Wi-Fiè¨­å®šç”»é¢
  * @param	NONE
  * @return	NONE
  */
@@ -376,15 +376,15 @@ static const PROC_DATA StartMenuWifiProcData = {
 
 static void SetDebugWiFiProc( SAVEDATA * savedata )
 {
-    // Wi-Fi‚¹‚Á‚Ä‚¢
+    // Wi-Fiã›ã£ã¦ã„
     Main_SetNextProc(NO_OVERLAY_ID, &StartMenuWifiProcData);
 }
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXFBMPMENULISTDATA‚Ì¶¬
- * @param	bmd		BMP_MENULIST_DATA\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šBMPMENULISTDATAã®ç”Ÿæˆ
+ * @param	bmd		BMP_MENULIST_DATAæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static	void	BMP_MENULIST_Make(BMP_MENULIST_DATA *bmd)
@@ -403,16 +403,16 @@ static	void	BMP_MENULIST_Make(BMP_MENULIST_DATA *bmd)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXF‰Šú‰»
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šåˆæœŸåŒ–
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT DebugTitleMenuProc_Init(PROC * proc, int * seq)
 {
-//ƒ\[ƒX“à‚©‚ç•¶šƒŠƒ\[ƒX‚ğœŠO‚µ‚½‚à‚Ì‚É‘Î‰‚µ‚½ƒo[ƒWƒ‡ƒ“
+//ã‚½ãƒ¼ã‚¹å†…ã‹ã‚‰æ–‡å­—ãƒªã‚½ãƒ¼ã‚¹ã‚’é™¤å¤–ã—ãŸã‚‚ã®ã«å¯¾å¿œã—ãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_DEBUG_TITLE, 0x10000);
 	{
 		D_TITLE_WORK * wk;
@@ -470,18 +470,18 @@ static PROC_RESULT DebugTitleMenuProc_Init(PROC * proc, int * seq)
 
 		GF_Disp_DispOn();
 
-	Snd_BgmChannelSetAndReverbSet( 0 );	//g—p‰Â”\ƒ`ƒƒƒ“ƒlƒ‹‘€ìAƒŠƒo[ƒuİ’è(ƒNƒŠƒA)
+	Snd_BgmChannelSetAndReverbSet( 0 );	//ä½¿ç”¨å¯èƒ½ãƒãƒ£ãƒ³ãƒãƒ«æ“ä½œã€ãƒªãƒãƒ¼ãƒ–è¨­å®š(ã‚¯ãƒªã‚¢)
 
 	return PROC_RES_FINISH;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXFƒƒCƒ“
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šãƒ¡ã‚¤ãƒ³
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT DebugTitleMenuProc_Main(PROC * proc, int * seq)
@@ -513,11 +513,11 @@ static PROC_RESULT DebugTitleMenuProc_Main(PROC * proc, int * seq)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXFI—¹
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šçµ‚äº†
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT DebugTitleMenuProc_End(PROC * proc, int * seq)

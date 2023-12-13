@@ -29,11 +29,11 @@ extern  "C"
 /*---------------------------------------------------------------------------*/
 /* declarations */
 
-/* ƒƒ‚ƒŠƒAƒƒP[ƒ^ŠÖ”ƒvƒƒgƒ^ƒCƒv */
+/* ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ã‚¿é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— */
 typedef void* (*MIAllocatorAllocFunction)(void *userdata, u32 length, u32 alignment);
 typedef void  (*MIAllocatorFreeFunction)(void *userdata, void *buffer);
 
-/* ƒƒ‚ƒŠƒAƒƒP[ƒ^\‘¢‘Ì */
+/* ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ã‚¿æ§‹é€ ä½“ */
 typedef struct MIAllocator
 {
     void                       *userdata;
@@ -49,12 +49,12 @@ MIAllocator;
 /*---------------------------------------------------------------------------*
   Name:         MI_InitAllocator
 
-  Description:  ƒAƒƒP[ƒ^‚ğ‰Šú‰».
+  Description:  ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–.
 
-  Arguments:    allocator        ‰Šú‰»‚·‚éMIAllocator\‘¢‘Ì.
-                userdata         ”CˆÓ‚Ìƒ†[ƒU’è‹`ˆø”.
-                alloc            ƒƒ‚ƒŠŠm•ÛŠÖ”‚Ìƒ|ƒCƒ“ƒ^.
-                free             ƒƒ‚ƒŠ‰ğ•úŠÖ”‚Ìƒ|ƒCƒ“ƒ^.
+  Arguments:    allocator        åˆæœŸåŒ–ã™ã‚‹MIAllocatoræ§‹é€ ä½“.
+                userdata         ä»»æ„ã®ãƒ¦ãƒ¼ã‚¶å®šç¾©å¼•æ•°.
+                alloc            ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿.
+                free             ãƒ¡ãƒ¢ãƒªè§£æ”¾é–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -71,13 +71,13 @@ void MI_InitAllocator(MIAllocator *allocator, void *userdata,
 /*---------------------------------------------------------------------------*
   Name:         MI_CallAlloc
 
-  Description:  ƒAƒƒP[ƒ^‚©‚çƒƒ‚ƒŠŠm•Û.
+  Description:  ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‹ã‚‰ãƒ¡ãƒ¢ãƒªç¢ºä¿.
 
-  Arguments:    allocator        ‰Šú‰»‚³‚ê‚½MIAllocator\‘¢‘Ì.
-                length           Šm•Û‚·‚éƒTƒCƒY.
-                alignment        •K—v‚È‹«ŠE®‡ (2‚Ì‚×‚«æ‚Å‚ ‚é•K—v‚ª‚ ‚é)
+  Arguments:    allocator        åˆæœŸåŒ–ã•ã‚ŒãŸMIAllocatoræ§‹é€ ä½“.
+                length           ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º.
+                alignment        å¿…è¦ãªå¢ƒç•Œæ•´åˆ (2ã®ã¹ãä¹—ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹)
 
-  Returns:      Šm•Û‚³‚ê‚½ƒƒ‚ƒŠ‚Ü‚½‚ÍNULL.
+  Returns:      ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªã¾ãŸã¯NULL.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 void* MI_CallAlloc(MIAllocator *allocator, u32 length, u32 alignment)
@@ -88,10 +88,10 @@ void* MI_CallAlloc(MIAllocator *allocator, u32 length, u32 alignment)
 /*---------------------------------------------------------------------------*
   Name:         MI_CallFree
 
-  Description:  ƒAƒƒP[ƒ^‚Öƒƒ‚ƒŠ‰ğ•ú.
+  Description:  ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã¸ãƒ¡ãƒ¢ãƒªè§£æ”¾.
 
-  Arguments:    allocator        ‰Šú‰»‚³‚ê‚½MIAllocator\‘¢‘Ì.
-                buffer           ‰ğ•ú‚·‚éƒƒ‚ƒŠ.
+  Arguments:    allocator        åˆæœŸåŒ–ã•ã‚ŒãŸMIAllocatoræ§‹é€ ä½“.
+                buffer           è§£æ”¾ã™ã‚‹ãƒ¡ãƒ¢ãƒª.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

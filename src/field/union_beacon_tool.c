@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	union_beacon_tool.c
- * @brief	ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒr[ƒRƒ“ˆ—
+ * @brief	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ“ãƒ¼ã‚³ãƒ³å‡¦ç†
  * @author	Akito Mori
  * @date    	2006.03.16
  */
@@ -23,30 +23,30 @@
 
 #define UNION_VIEW_TYPE_NUM	( 16 )
 
-// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Å•\Ž¦‚·‚éƒgƒŒ[ƒi[‚Ìƒ^ƒCƒvŒ©‚½–Ú•–¼‘O•ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒNƒe[ƒuƒ‹
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§è¡¨ç¤ºã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ã‚¿ã‚¤ãƒ—è¦‹ãŸç›®ï¼†åå‰ï¼†ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«
 static const int UnionViewTable[][3]={
 
-	{ BOY1,			MSG_TRTYPE_SCHOOLB, 	TRTYPE_SCHOOLB    },	///< ‚¶‚ã‚­‚ª‚¦‚è
-	{ BOY3,			MSG_TRTYPE_MUSHI,   	TRTYPE_MUSHI      },	///< ‚Þ‚µ‚Æ‚è‚µ‚å‚¤‚Ë‚ñ
-	{ MAN3,			MSG_TRTYPE_ELITEM,  	TRTYPE_ELITEM     },	///< ƒGƒŠ[ƒgƒgƒŒ[ƒi[‰
-	{ BADMAN,		MSG_TRTYPE_HEADS,   	TRTYPE_HEADS      },	///< ƒXƒLƒ“ƒwƒbƒY
-	{ EXPLORE,		MSG_TRTYPE_ISEKI,   	TRTYPE_ISEKI      },	///< ‚¢‚¹‚«ƒ}ƒjƒA
-	{ FIGHTER,		MSG_TRTYPE_KARATE,  	TRTYPE_KARATE     },	///< ‚©‚ç‚Ä‚¨‚¤
-	{ GORGGEOUSM,	MSG_TRTYPE_PRINCE,  	TRTYPE_PRINCE     },	///< ‚¨‚Ú‚Á‚¿‚á‚Ü
-	{ MYSTERY,		MSG_TRTYPE_ESPM,    	TRTYPE_ESPM       },	///< ƒTƒCƒLƒbƒJ[
+	{ BOY1,			MSG_TRTYPE_SCHOOLB, 	TRTYPE_SCHOOLB    },	///< ã˜ã‚…ããŒãˆã‚Š
+	{ BOY3,			MSG_TRTYPE_MUSHI,   	TRTYPE_MUSHI      },	///< ã‚€ã—ã¨ã‚Šã—ã‚‡ã†ã­ã‚“
+	{ MAN3,			MSG_TRTYPE_ELITEM,  	TRTYPE_ELITEM     },	///< ã‚¨ãƒªãƒ¼ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼â™‚
+	{ BADMAN,		MSG_TRTYPE_HEADS,   	TRTYPE_HEADS      },	///< ã‚¹ã‚­ãƒ³ãƒ˜ãƒƒã‚º
+	{ EXPLORE,		MSG_TRTYPE_ISEKI,   	TRTYPE_ISEKI      },	///< ã„ã›ããƒžãƒ‹ã‚¢
+	{ FIGHTER,		MSG_TRTYPE_KARATE,  	TRTYPE_KARATE     },	///< ã‹ã‚‰ã¦ãŠã†
+	{ GORGGEOUSM,	MSG_TRTYPE_PRINCE,  	TRTYPE_PRINCE     },	///< ãŠã¼ã£ã¡ã‚ƒã¾
+	{ MYSTERY,		MSG_TRTYPE_ESPM,    	TRTYPE_ESPM       },	///< ã‚µã‚¤ã‚­ãƒƒã‚«ãƒ¼
 
-	{ GIRL1,		MSG_TRTYPE_MINI,  		TRTYPE_MINI       },	///< ƒ~ƒjƒXƒJ[ƒg
-	{ GIRL2,		MSG_TRTYPE_BATTLEG, 	TRTYPE_BATTLEG    },	///< ƒoƒgƒ‹ƒK[ƒ‹
-	{ WOMAN2,		MSG_TRTYPE_SISTER, 		TRTYPE_SISTER     },	///< ‚¨‚Æ‚È‚Ì‚¨‚Ë‚¦‚³‚ñ
-	{ WOMAN3,		MSG_TRTYPE_ELITEW,  	TRTYPE_ELITEW 	  },	///< ƒGƒŠ[ƒgƒgƒŒ[ƒi[Š
-	{ IDOL,			MSG_TRTYPE_IDOL,    	TRTYPE_IDOL       },	///< ƒAƒCƒhƒ‹
-	{ LADY,			MSG_TRTYPE_MADAM, 		TRTYPE_MADAM      },	///< ƒ}ƒ_ƒ€
-	{ COWGIRL,		MSG_TRTYPE_COWGIRL, 	TRTYPE_COWGIRL    },	///< ƒJƒEƒK[ƒ‹
-	{ GORGGEOUSW,	MSG_TRTYPE_PRINCESS,	TRTYPE_PRINCESS   },	///< ‚¨‚¶‚å‚¤‚³‚Ü
+	{ GIRL1,		MSG_TRTYPE_MINI,  		TRTYPE_MINI       },	///< ãƒŸãƒ‹ã‚¹ã‚«ãƒ¼ãƒˆ
+	{ GIRL2,		MSG_TRTYPE_BATTLEG, 	TRTYPE_BATTLEG    },	///< ãƒãƒˆãƒ«ã‚¬ãƒ¼ãƒ«
+	{ WOMAN2,		MSG_TRTYPE_SISTER, 		TRTYPE_SISTER     },	///< ãŠã¨ãªã®ãŠã­ãˆã•ã‚“
+	{ WOMAN3,		MSG_TRTYPE_ELITEW,  	TRTYPE_ELITEW 	  },	///< ã‚¨ãƒªãƒ¼ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼â™€
+	{ IDOL,			MSG_TRTYPE_IDOL,    	TRTYPE_IDOL       },	///< ã‚¢ã‚¤ãƒ‰ãƒ«
+	{ LADY,			MSG_TRTYPE_MADAM, 		TRTYPE_MADAM      },	///< ãƒžãƒ€ãƒ 
+	{ COWGIRL,		MSG_TRTYPE_COWGIRL, 	TRTYPE_COWGIRL    },	///< ã‚«ã‚¦ã‚¬ãƒ¼ãƒ«
+	{ GORGGEOUSW,	MSG_TRTYPE_PRINCESS,	TRTYPE_PRINCESS   },	///< ãŠã˜ã‚‡ã†ã•ã¾
 
 };
 
-// Œ©‚½–Ú•ÏX‚¨‚â‚¶—p‚Ìƒe[ƒuƒ‹iID‚ð‚W‚ÅŠ„‚Á‚½‚ ‚Ü‚è‚É‘Î‰ž‚·‚éj
+// è¦‹ãŸç›®å¤‰æ›´ãŠã‚„ã˜ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆIDã‚’ï¼˜ã§å‰²ã£ãŸã‚ã¾ã‚Šã«å¯¾å¿œã™ã‚‹ï¼‰
 static const int UnionViewNameTable[][4]={
 	{0,1,2,3,},
 	{1,6,7,0,},
@@ -66,11 +66,11 @@ static const int UnionViewNameTable[][4]={
 
 //==============================================================================
 /**
- * $brief   ID‚Æ«•Ê‚©‚ç‘I‘ð‚Å‚«‚é‚S‚Â‚ÌƒgƒŒ[ƒi[ƒ^ƒCƒv‚Ì•¶Žš—ñ‚ðŠi”[‚·‚é
+ * $brief   IDã¨æ€§åˆ¥ã‹ã‚‰é¸æŠžã§ãã‚‹ï¼”ã¤ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã®æ–‡å­—åˆ—ã‚’æ ¼ç´ã™ã‚‹
  *
- * @param   id			ƒ†[ƒU[ID
- * @param   sex			«•Ê
- * @param   wordset		•¶Žš—ñŠi”[ƒoƒbƒtƒ@
+ * @param   id			ãƒ¦ãƒ¼ã‚¶ãƒ¼ID
+ * @param   sex			æ€§åˆ¥
+ * @param   wordset		æ–‡å­—åˆ—æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
  * @retval  none		
  */
@@ -80,7 +80,7 @@ void UnionView_SetUpTrainerTypeSelect( u32 id, int sex, WORDSET *wordset )
 	int key    = id%8;
 	int i;
 
-	// ID‚ð‚W‚ÅŠ„‚Á‚½—]‚è‚ÅA‘Î‰ž‚·‚é4‚Â‚Ì‘I‘ðŽˆ‚ð«•Ê‚²‚Æ‚É—pˆÓ‚·‚é
+	// IDã‚’ï¼˜ã§å‰²ã£ãŸä½™ã‚Šã§ã€å¯¾å¿œã™ã‚‹4ã¤ã®é¸æŠžè‚¢ã‚’æ€§åˆ¥ã”ã¨ã«ç”¨æ„ã™ã‚‹
 
 	for(i=0; i<UNION_VIEW_SELECT_NUM; i++){
 		int patern = UnionViewNameTable[key][i] + UNION_VIEW_SELECT_TYPE * sex;
@@ -93,11 +93,11 @@ void UnionView_SetUpTrainerTypeSelect( u32 id, int sex, WORDSET *wordset )
 
 //==============================================================================
 /**
- * $brief   ‘I‘ðŒ‹‰Ê‚©‚çŒˆ’è‚µ‚½ƒgƒŒ[ƒi[ƒ^ƒCƒv‚Ì”Ô†‚»‚Ì‚à‚Ì‚ðŽZo‚·‚é
+ * $brief   é¸æŠžçµæžœã‹ã‚‰æ±ºå®šã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã®ç•ªå·ãã®ã‚‚ã®ã‚’ç®—å‡ºã™ã‚‹
  *
- * @param   id			ƒ†[ƒU[ID
- * @param   sex			«•Ê
- * @param   select		‘I‘ðŒ‹‰Êi0-3)
+ * @param   id			ãƒ¦ãƒ¼ã‚¶ãƒ¼ID
+ * @param   sex			æ€§åˆ¥
+ * @param   select		é¸æŠžçµæžœï¼ˆ0-3)
  *
  * @retval  int		
  */
@@ -112,12 +112,12 @@ int UnionView_GetTrainerType( u32 id, int sex, u32 select )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€—p‚ÌŒ©‚½–Ú”Ô†ƒe[ƒuƒ‹‚ðŒŸõ‚µ‚Ä“Y‚¦Žš‚ð•Ô‚·
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ã®è¦‹ãŸç›®ç•ªå·ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¤œç´¢ã—ã¦æ·»ãˆå­—ã‚’è¿”ã™
  *
- * @param   sex			«•Ê
- * @param   view_type	Œ©‚½–Ú”Ô†
+ * @param   sex			æ€§åˆ¥
+ * @param   view_type	è¦‹ãŸç›®ç•ªå·
  *
- * @retval  int			“Y‚¦Žš”Ô†
+ * @retval  int			æ·»ãˆå­—ç•ªå·
  */
 //------------------------------------------------------------------
 static int Search_ViewNo( int sex, int view_type )
@@ -132,7 +132,7 @@ static int Search_ViewNo( int sex, int view_type )
 }
 //==============================================================================
 /**
- * $brief   Œ©‚½–Ú”Ô†‚Æ«•Ê‚©‚ç2DƒLƒƒƒ‰‚ÌˆÊ’u‚ðŽæ“¾‚·‚é
+ * $brief   è¦‹ãŸç›®ç•ªå·ã¨æ€§åˆ¥ã‹ã‚‰2Dã‚­ãƒ£ãƒ©ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
  *
  * @param   sex		
  * @param   view_type		
@@ -149,16 +149,16 @@ int UnionView_GetCharaNo( int sex, int view_type )
 
 //==============================================================================
 /**
- * $brief   ƒgƒŒ[ƒi[VIEWTYPE‚Æ«•Ê‚©‚çî•ñ‚ðˆø‚«o‚·
+ * $brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼VIEWTYPEã¨æ€§åˆ¥ã‹ã‚‰æƒ…å ±ã‚’å¼•ãå‡ºã™
  *
- * @param   sex			«•Ê
- * @param   view_type	MyStatus_GetTrainerView‚ÅŽæ“¾‚Å‚«‚éƒR[ƒh
- * @param   info		—~‚µ‚¢ƒf[ƒ^‚Ìƒ^ƒCƒv
- *                      UNIONVIEW_ICONINDEX:	0‹l‚ß‚Å‰½”Ô–Ú‚©
- *						UNIONVIEW_MSGTYPE:		ƒƒbƒZ[ƒWƒf[ƒ^”Ô†iex u‚¶‚ã‚­‚ª‚¦‚èv‚ÌMSGNOj
- *						UNIONVIEW_TRTYPE:		ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒN”Ô†
+ * @param   sex			æ€§åˆ¥
+ * @param   view_type	MyStatus_GetTrainerViewã§å–å¾—ã§ãã‚‹ã‚³ãƒ¼ãƒ‰
+ * @param   info		æ¬²ã—ã„ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ—
+ *                      UNIONVIEW_ICONINDEX:	0è©°ã‚ã§ä½•ç•ªç›®ã‹
+ *						UNIONVIEW_MSGTYPE:		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç•ªå·ï¼ˆex ã€Œã˜ã‚…ããŒãˆã‚Šã€ã®MSGNOï¼‰
+ *						UNIONVIEW_TRTYPE:		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç•ªå·
  *
- * @retval  int			0‚©‚ç‹l‚ß‚½Žž‚É‰½”Ô–Ú‚ÌƒLƒƒƒ‰‚©
+ * @retval  int			0ã‹ã‚‰è©°ã‚ãŸæ™‚ã«ä½•ç•ªç›®ã®ã‚­ãƒ£ãƒ©ã‹
  */
 //==============================================================================
 int UnionView_GetTrainerInfo( int sex, int view_type, int info )
@@ -179,14 +179,14 @@ int UnionView_GetTrainerInfo( int sex, int view_type, int info )
 	    GF_ASSERT(0);
     }
 
-	// ‚±‚±‚Ü‚Å”²‚¯‚é‚Ì‚Í‚¨‚©‚µ‚¢
+	// ã“ã“ã¾ã§æŠœã‘ã‚‹ã®ã¯ãŠã‹ã—ã„
 	return 0;
 }
 
 
 //==============================================================================
 /**
- * $brief   Žw’è‚ÌOBJ‚É•K—v‚ÈƒpƒŒƒbƒg‚Ìƒ|ƒCƒ“ƒ^‚ð•Ô‚·
+ * $brief   æŒ‡å®šã®OBJã«å¿…è¦ãªãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
  * @param   sex		
  * @param   view_type		
@@ -204,11 +204,11 @@ u16 *UnionView_GetPalNo( u16 * table, int sex, int view_type )
 
 //==============================================================================
 /**
- * $brief   18‘Ì•ª‚ÌƒpƒŒƒbƒg‚Ìƒe[ƒuƒ‹‚ðAlloc•Û°ÄÞ‚µ‚Ä•Ô‚·
+ * $brief   18ä½“åˆ†ã®ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’Allocï¼†ãƒ­ãƒ¼ãƒ‰ã—ã¦è¿”ã™
  *
- * @param   heapID		ƒq[ƒvID
+ * @param   heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  u16 *		OBJ—p‚ÌƒpƒŒƒbƒgƒe[ƒuƒ‹i‰ð•ú‚ÍŠeŽ©‚Åj
+ * @retval  u16 *		OBJç”¨ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆè§£æ”¾ã¯å„è‡ªã§ï¼‰
  */
 //==============================================================================
 u16 *UnionView_PalleteTableAlloc( int heapID )

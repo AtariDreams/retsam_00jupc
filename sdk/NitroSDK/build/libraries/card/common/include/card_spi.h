@@ -30,7 +30,7 @@
   add CARDi_InitStatusRegister().
 
   Revision 1.9  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.8  2005/02/28 05:26:02  yosizaki
   do-indent.
@@ -71,13 +71,13 @@
 #define	CSPI_CONTINUOUS_ON	0x0040
 #define	CSPI_CONTINUOUS_OFF	0x0000
 
-/* ƒRƒ}ƒ“ƒh */
-#define COMM_WRITE_STATUS	0x01   /* ƒXƒe[ƒ^ƒXƒ‰ƒCƒg. */
-#define COMM_PROGRAM_PAGE	0x02   /* ƒy[ƒWƒvƒƒOƒ‰ƒ€. */
-#define COMM_READ_ARRAY		0x03   /* ƒŠ[ƒh. */
-#define COMM_WRITE_DISABLE	0x04   /* ƒ‰ƒCƒgƒfƒBƒZ[ƒuƒ‹. (–¢g—p) */
-#define COMM_READ_STATUS	0x05   /* ƒXƒe[ƒ^ƒXƒŠ[ƒh. */
-#define COMM_WRITE_ENABLE	0x06   /* ƒ‰ƒCƒgƒCƒl[ƒuƒ‹. */
+/* ã‚³ãƒãƒ³ãƒ‰ */
+#define COMM_WRITE_STATUS	0x01   /* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ©ã‚¤ãƒˆ. */
+#define COMM_PROGRAM_PAGE	0x02   /* ãƒšãƒ¼ã‚¸ãƒ—ãƒ­ã‚°ãƒ©ãƒ . */
+#define COMM_READ_ARRAY		0x03   /* ãƒªãƒ¼ãƒ‰. */
+#define COMM_WRITE_DISABLE	0x04   /* ãƒ©ã‚¤ãƒˆãƒ‡ã‚£ã‚»ãƒ¼ãƒ–ãƒ«. (æœªä½¿ç”¨) */
+#define COMM_READ_STATUS	0x05   /* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒªãƒ¼ãƒ‰. */
+#define COMM_WRITE_ENABLE	0x06   /* ãƒ©ã‚¤ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«. */
 
 /* FLASH */
 #define COMM_PAGE_WRITE		0x0A
@@ -85,11 +85,11 @@
 #define COMM_SECTOR_ERASE	0xD8
 #define COMM_SUBSECTOR_ERASE	0x20
 #define COMM_CHIP_ERASE		0xC7
-#define CARDFLASH_READ_BYTES_FAST	0x0B    /* –¢g—p */
-#define CARDFLASH_DEEP_POWDOWN		0xB9    /* –¢g—p */
-#define CARDFLASH_WAKEUP			0xAB    /* –¢g—p */
+#define CARDFLASH_READ_BYTES_FAST	0x0B    /* æœªä½¿ç”¨ */
+#define CARDFLASH_DEEP_POWDOWN		0xB9    /* æœªä½¿ç”¨ */
+#define CARDFLASH_WAKEUP			0xAB    /* æœªä½¿ç”¨ */
 
-/* ƒXƒe[ƒ^ƒXƒŒƒWƒXƒ^‚Ìƒrƒbƒg */
+/* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¬ã‚¸ã‚¹ã‚¿ã®ãƒ“ãƒƒãƒˆ */
 #define	COMM_STATUS_WIP_BIT		0x01    /* WriteInProgress (bufy) */
 #define	COMM_STATUS_WEL_BIT		0x02    /* WriteEnableLatch */
 #define	COMM_STATUS_BP0_BIT		0x04
@@ -104,9 +104,9 @@
 /*---------------------------------------------------------------------------*
   Name:         CARDi_InitStatusRegister
 
-  Description:  FRAM/EEPROM ‚Ìê‡, ‹N“®‚ÉƒXƒe[ƒ^ƒXƒŒƒWƒXƒ^‚Ì•â³ˆ—‚ğs‚¤.
-                EFRAM ‚Í“dŒ¹“Š“ü‚Éƒ‰ƒCƒgƒvƒƒeƒNƒg‚Ì•Ï‰»‚ª‹N‚±‚è‚¤‚é‚½‚ß.
-                EEEPROM ‚Í”[“ü‚É‰Šú’l•s³‚ª‚ ‚è‚¤‚é‚½‚ß.
+  Description:  FRAM/EEPROM ã®å ´åˆ, èµ·å‹•æ™‚ã«ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¬ã‚¸ã‚¹ã‚¿ã®è£œæ­£å‡¦ç†ã‚’è¡Œã†.
+                ãƒ»FRAM ã¯é›»æºæŠ•å…¥æ™‚ã«ãƒ©ã‚¤ãƒˆãƒ—ãƒ­ãƒ†ã‚¯ãƒˆã®å¤‰åŒ–ãŒèµ·ã“ã‚Šã†ã‚‹ãŸã‚.
+                ãƒ»EEPROM ã¯ç´å…¥æ™‚ã«åˆæœŸå€¤ä¸æ­£ãŒã‚ã‚Šã†ã‚‹ãŸã‚.
 
   Arguments:    None.
 
@@ -117,9 +117,9 @@ void    CARDi_InitStatusRegister(void);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_IdentifyBackupCore
 
-  Description:  ƒfƒoƒCƒXƒ^ƒCƒv“Á’è.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ—ç‰¹å®š.
 
-  Arguments:    type              “Á’è‚·‚éƒfƒoƒCƒXƒ^ƒCƒv.
+  Arguments:    type              ç‰¹å®šã™ã‚‹ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ—.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -128,22 +128,22 @@ void    CARDi_IdentifyBackupCore(CARDBackupType type);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommandReadStatus
 
-  Description:  ƒŠ[ƒhƒXƒe[ƒ^ƒX
+  Description:  ãƒªãƒ¼ãƒ‰ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 
   Arguments:    None
 
-  Returns:      ƒXƒe[ƒ^ƒX’l
+  Returns:      ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å€¤
  *---------------------------------------------------------------------------*/
 u8 CARDi_CommandReadStatus(void);
 
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadBackupCore
 
-  Description:  ƒfƒoƒCƒX‚Ö‚ÌƒŠ[ƒhƒRƒ}ƒ“ƒh‘S‘Ì.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã¸ã®ãƒªãƒ¼ãƒ‰ã‚³ãƒãƒ³ãƒ‰å…¨ä½“.
 
-  Arguments:    src               “Ç‚İo‚µŒ³‚ÌƒfƒoƒCƒXƒIƒtƒZƒbƒg.
-                dst               “Ç‚İo‚µæ‚Ìƒƒ‚ƒŠƒAƒhƒŒƒX.
-                len               “Ç‚İo‚µƒTƒCƒY.
+  Arguments:    src               èª­ã¿å‡ºã—å…ƒã®ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                dst               èª­ã¿å‡ºã—å…ˆã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹.
+                len               èª­ã¿å‡ºã—ã‚µã‚¤ã‚º.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -152,11 +152,11 @@ void    CARDi_ReadBackupCore(u32 src, void *dst, u32 len);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ProgramBackupCore
 
-  Description:  ƒfƒoƒCƒX‚Ö‚ÌƒvƒƒOƒ‰ƒ€(Á‹–³‚µ‘‚«‚İ)ƒRƒ}ƒ“ƒh‘S‘Ì.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã¸ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ (æ¶ˆå»ç„¡ã—æ›¸ãè¾¼ã¿)ã‚³ãƒãƒ³ãƒ‰å…¨ä½“.
 
-  Arguments:    dst               ‘‚«‚İæ‚ÌƒfƒoƒCƒXƒIƒtƒZƒbƒg.
-                src               ‘‚«‚İŒ³‚Ìƒƒ‚ƒŠƒAƒhƒŒƒX.
-                len               ‘‚«‚İƒTƒCƒY.
+  Arguments:    dst               æ›¸ãè¾¼ã¿å…ˆã®ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                src               æ›¸ãè¾¼ã¿å…ƒã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹.
+                len               æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -165,11 +165,11 @@ void    CARDi_ProgramBackupCore(u32 dst, const void *src, u32 len);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WriteBackupCore
 
-  Description:  ƒfƒoƒCƒX‚Ö‚Ìƒ‰ƒCƒg(Á‹ + ƒvƒƒOƒ‰ƒ€)ƒRƒ}ƒ“ƒh‘S‘Ì.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã¸ã®ãƒ©ã‚¤ãƒˆ(æ¶ˆå» + ãƒ—ãƒ­ã‚°ãƒ©ãƒ )ã‚³ãƒãƒ³ãƒ‰å…¨ä½“.
 
-  Arguments:    dst               ‘‚«‚İæ‚ÌƒfƒoƒCƒXƒIƒtƒZƒbƒg.
-                src               ‘‚«‚İŒ³‚Ìƒƒ‚ƒŠƒAƒhƒŒƒX.
-                len               ‘‚«‚İƒTƒCƒY.
+  Arguments:    dst               æ›¸ãè¾¼ã¿å…ˆã®ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                src               æ›¸ãè¾¼ã¿å…ƒã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹.
+                len               æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -178,11 +178,11 @@ void    CARDi_WriteBackupCore(u32 dst, const void *src, u32 len);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_VerifyBackupCore
 
-  Description:  ƒfƒoƒCƒX‚Ö‚ÌƒxƒŠƒtƒ@ƒC(ÀÛ‚ÍƒŠ[ƒh + ”äŠrˆ—)ƒRƒ}ƒ“ƒh‘S‘Ì.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã¸ã®ãƒ™ãƒªãƒ•ã‚¡ã‚¤(å®Ÿéš›ã¯ãƒªãƒ¼ãƒ‰ + æ¯”è¼ƒå‡¦ç†)ã‚³ãƒãƒ³ãƒ‰å…¨ä½“.
 
-  Arguments:    dst               ”äŠræ‚ÌƒfƒoƒCƒXƒIƒtƒZƒbƒg.
-                src               ”äŠrŒ³‚Ìƒƒ‚ƒŠƒAƒhƒŒƒX.
-                len               ”äŠrƒTƒCƒY.
+  Arguments:    dst               æ¯”è¼ƒå…ˆã®ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                src               æ¯”è¼ƒå…ƒã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹.
+                len               æ¯”è¼ƒã‚µã‚¤ã‚º.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -191,10 +191,10 @@ void    CARDi_VerifyBackupCore(u32 dst, const void *src, u32 len);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EraseBackupSectorCore
 
-  Description:  ƒfƒoƒCƒX‚Ö‚ÌƒZƒNƒ^Á‹ƒRƒ}ƒ“ƒh‘S‘Ì.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã¸ã®ã‚»ã‚¯ã‚¿æ¶ˆå»ã‚³ãƒãƒ³ãƒ‰å…¨ä½“.
 
-  Arguments:    dst               Á‹æ‚ÌƒfƒoƒCƒXƒIƒtƒZƒbƒg.
-                len               Á‹ƒTƒCƒY.
+  Arguments:    dst               æ¶ˆå»å…ˆã®ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                len               æ¶ˆå»ã‚µã‚¤ã‚º.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -203,10 +203,10 @@ void    CARDi_EraseBackupSectorCore(u32 dst, u32 len);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EraseBackupSubSectorCore
 
-  Description:  ƒfƒoƒCƒX‚Ö‚ÌƒTƒuƒZƒNƒ^Á‹ƒRƒ}ƒ“ƒh‘S‘Ì.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã¸ã®ã‚µãƒ–ã‚»ã‚¯ã‚¿æ¶ˆå»ã‚³ãƒãƒ³ãƒ‰å…¨ä½“.
 
-  Arguments:    dst               Á‹æ‚ÌƒfƒoƒCƒXƒIƒtƒZƒbƒg.
-                len               Á‹ƒTƒCƒY.
+  Arguments:    dst               æ¶ˆå»å…ˆã®ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                len               æ¶ˆå»ã‚µã‚¤ã‚º.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -215,7 +215,7 @@ void    CARDi_EraseBackupSubSectorCore(u32 dst, u32 len);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EraseChipCore
 
-  Description:  ƒfƒoƒCƒX‚Ö‚Ìƒ`ƒbƒvÁ‹ƒRƒ}ƒ“ƒh‘S‘Ì.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã¸ã®ãƒãƒƒãƒ—æ¶ˆå»ã‚³ãƒãƒ³ãƒ‰å…¨ä½“.
 
   Arguments:    None.
 
@@ -226,9 +226,9 @@ void    CARDi_EraseChipCore(void);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_SetWriteProtectCore
 
-  Description:  ƒfƒoƒCƒX‚Ö‚Ìƒ‰ƒCƒgƒvƒƒeƒNƒgƒRƒ}ƒ“ƒh‘S‘Ì.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã¸ã®ãƒ©ã‚¤ãƒˆãƒ—ãƒ­ãƒ†ã‚¯ãƒˆã‚³ãƒãƒ³ãƒ‰å…¨ä½“.
 
-  Arguments:    stat              İ’è‚·‚éƒvƒƒeƒNƒgƒtƒ‰ƒO.
+  Arguments:    stat              è¨­å®šã™ã‚‹ãƒ—ãƒ­ãƒ†ã‚¯ãƒˆãƒ•ãƒ©ã‚°.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

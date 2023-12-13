@@ -27,7 +27,7 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNS_GFD_DST_TYPE
 
-  Description:  “]‘—æ‚Ìí—Ş
+  Description:  è»¢é€å…ˆã®ç¨®é¡
  *---------------------------------------------------------------------------*/
 // see also DoTransfer_()
 typedef enum NNS_GFD_DST_TYPE
@@ -78,43 +78,43 @@ typedef enum NNS_GFD_DST_TYPE
 /*---------------------------------------------------------------------------*
   Name:         NNSGfdVramTransferTask
 
-  Description:  “]‘—ƒ^ƒXƒN
+  Description:  è»¢é€ã‚¿ã‚¹ã‚¯
  *---------------------------------------------------------------------------*/
 typedef struct NNSGfdVramTransferTask
 {
-    NNS_GFD_DST_TYPE        type;       // “]‘—æ‚Ìí—Ş
-    void*                   pSrc;       // “]‘—Œ³‚Ìƒf[ƒ^ƒAƒhƒŒƒX in Main memory
-    u32                     dstAddr;    // “]‘—æƒAƒhƒŒƒX
-    u32                     szByte;     // “]‘—ƒTƒCƒY
+    NNS_GFD_DST_TYPE        type;       // è»¢é€å…ˆã®ç¨®é¡
+    void*                   pSrc;       // è»¢é€å…ƒã®ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ in Main memory
+    u32                     dstAddr;    // è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
+    u32                     szByte;     // è»¢é€ã‚µã‚¤ã‚º
     
 }NNSGfdVramTransferTask;
 
 /*---------------------------------------------------------------------------*
   Name:         NNSGfdVramTransferTaskQueue
 
-  Description:  “]‘—ƒ^ƒXƒNƒLƒ…[
+  Description:  è»¢é€ã‚¿ã‚¹ã‚¯ã‚­ãƒ¥ãƒ¼
  *---------------------------------------------------------------------------*/
 typedef struct NNSGfdVramTransferTaskQueue
 {
-    NNSGfdVramTransferTask*     pTaskArray;     // ƒ^ƒXƒN”z—ñ
-    u32                         lengthOfArray;  // ƒ^ƒXƒN”z—ñ’·
+    NNSGfdVramTransferTask*     pTaskArray;     // ã‚¿ã‚¹ã‚¯é…åˆ—
+    u32                         lengthOfArray;  // ã‚¿ã‚¹ã‚¯é…åˆ—é•·
     
-    u16                         idxFront;       // æ‚èo‚µˆÊ’u
-    u16                         idxRear;        // ƒGƒ“ƒgƒŠˆÊ’u
-    u16                         numTasks;       // ƒ^ƒXƒN”
-    u16                         pad16_;         // ƒpƒfƒBƒ“ƒO
-    u32                         totalSize;      // ‘“]‘——Ê
+    u16                         idxFront;       // å–ã‚Šå‡ºã—ä½ç½®
+    u16                         idxRear;        // ã‚¨ãƒ³ãƒˆãƒªä½ç½®
+    u16                         numTasks;       // ã‚¿ã‚¹ã‚¯æ•°
+    u16                         pad16_;         // ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
+    u32                         totalSize;      // ç·è»¢é€é‡
     
 }NNSGfdVramTransferTaskQueue;
 
 /*---------------------------------------------------------------------------*
   Name:         NNSGfdVramTransferManager
 
-  Description:  “]‘—ƒ^ƒXƒNƒ}ƒl[ƒWƒƒ
+  Description:  è»¢é€ã‚¿ã‚¹ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£
  *---------------------------------------------------------------------------*/
 typedef struct NNSGfdVramTransferManager
 {
-    NNSGfdVramTransferTaskQueue         taskQueue; // “]‘—ƒ^ƒXƒNƒLƒ…[        
+    NNSGfdVramTransferTaskQueue         taskQueue; // è»¢é€ã‚¿ã‚¹ã‚¯ã‚­ãƒ¥ãƒ¼        
 
 }NNSGfdVramTransferManager;
 
@@ -126,7 +126,7 @@ typedef struct NNSGfdVramTransferManager
 // public ( internal )
 //------------------------------------------------------------------------------
 //
-// ƒ^ƒXƒNƒLƒ…[ŠÖ˜A‘€ìŠÖŒW
+// ã‚¿ã‚¹ã‚¯ã‚­ãƒ¥ãƒ¼é–¢é€£æ“ä½œé–¢ä¿‚
 //
 BOOL 
 NNSi_GfdPushVramTransferTaskQueue
@@ -159,7 +159,7 @@ NNSi_GfdPopVramTransferTaskQueue
 // public
 //------------------------------------------------------------------------------
 //
-// ‰Šú‰»
+// åˆæœŸåŒ–
 //
 void 
 NNS_GfdInitVramTransferManager
@@ -168,20 +168,20 @@ NNS_GfdInitVramTransferManager
     u32                        lengthOfArray
 );
 //
-// “o˜^ƒ^ƒXƒN‚ÌƒNƒŠƒA
+// ç™»éŒ²ã‚¿ã‚¹ã‚¯ã®ã‚¯ãƒªã‚¢
 //
 void 
 NNS_GfdClearVramTransferManagerTask( );
     
 //
-// “]‘—ŠJn
-// “o˜^ƒ^ƒXƒN‚ÌÀs
+// è»¢é€é–‹å§‹
+// ç™»éŒ²ã‚¿ã‚¹ã‚¯ã®å®Ÿè¡Œ
 //
 void 
 NNS_GfdDoVramTransfer( void );
 
 //
-// ƒ^ƒXƒN“o˜^
+// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 //
 BOOL 
 NNS_GfdRegisterNewVramTransferTask
@@ -192,7 +192,7 @@ NNS_GfdRegisterNewVramTransferTask
     u32                         szByte
 );
 //
-// ‘“]‘——Ê‚Ìæ“¾
+// ç·è»¢é€é‡ã®å–å¾—
 //
 u32 
 NNS_GfdGetVramTransferTaskTotalSize( void );

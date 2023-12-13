@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_local.h
- * @brief	�ʐM�N���X�݂̂ŎQ�Ƃ������\���̂ƃ��\�b�h��������Ă���.h
+ * @brief	通信クラスのみで参照したい構造体とメソッドが書かれている.h
  * @author	Katsumi Ohno
  * @date    2005.07.12
  */
@@ -12,28 +12,28 @@
 #include "communication/comm_ring_buff.h"
 
 //==============================================================================
-// ��`
+// 定義
 //==============================================================================
-#define _COMM_RECV_BACKUP_NUM   (2)  ///< �ʐM��1/60�Ȃ̂� 60/30����M�f�[�^��~����K�v������
+#define _COMM_RECV_BACKUP_NUM   (2)  ///< 通信は1/60なので 60/30分受信データを蓄える必要がある
 
-#define _DEFAULT_TIMEOUT_FRAME (30*10) ///< �ʐM�����̃^�C���A�E�g���Ԃ̃f�t�H���g
+#define _DEFAULT_TIMEOUT_FRAME (30*10) ///< 通信処理のタイムアウト時間のデフォルト
 
-#define _SCAN_ALL_CHANNEL  (0)  ///< �X�L��������`�����l���������_���ōs���ꍇ�O�ɐݒ肷��
+#define _SCAN_ALL_CHANNEL  (0)  ///< スキャンするチャンネルがランダムで行う場合０に設定する
 
-// �ʐM�T�[�r�X�̍ő�q�@�䐔
+// 通信サービスの最大子機台数
 extern u16 CommLocalGetServiceMaxEntry(u16 serviceNo);
-// �ʐM�T�[�r�X�̍ŏ��q�@�䐔
+// 通信サービスの最小子機台数
 extern u16 CommLocalGetServiceMinEntry(u16 serviceNo);
-// WIFI�ɐڑ�����Q�[�����ǂ����𓾂�
+// WIFIに接続するゲームかどうかを得る
 extern BOOL CommLocalIsWiFiGroup(int serviceNo);
-// WIFI4�l�ʐM����Q�[�����ǂ����𓾂�
+// WIFI4人通信するゲームかどうかを得る
 extern BOOL CommLocalIsWiFiQuartetGroup(int serviceNo);
-// �t�����h���X�g���K�v�ȃQ�[�����ǂ�������
+// フレンドリストが必要なゲームかどうか得る
 extern BOOL CommLocalIsWiFiFriendGroup(int serviceNo);
-// �_�C���N�g�R�[�i�[���ǂ���
+// ダイレクトコーナーかどうか
 extern BOOL CommLocalIsDirectCounterGroup(int serviceNo);
 
-// �f�o�b�O�p�R�}���h�v�����g
+// デバッグ用コマンドプリント
 #define _COMMAND_TEST  (0)
 
 #endif //_COMM_SHARING_LOCAL_

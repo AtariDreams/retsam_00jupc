@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_zukan_common.c
- *	@brief		}ŠÓ‹¤’Ê
+ *	@brief		å›³é‘‘å…±é€š
  *	@author		tomoya takahashi 
  *	@data		2006.01.21
  *
@@ -35,7 +35,7 @@
 #include "include/application/zukanlist/zkn_cursor.h"
 
 
-// ƒGƒtƒFƒNƒg‚ÅÀ•W‚ğLink‚³‚¹‚é‚½‚ßAd•û‚È‚­ƒCƒ“ƒNƒ‹[ƒh
+// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§åº§æ¨™ã‚’Linkã•ã›ã‚‹ãŸã‚ã€ä»•æ–¹ãªãã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include "include/application/zukanlist/zkn_pokelist.h"
 #include "include/application/zukanlist/zkn_pokelist_sub.h"
 
@@ -45,54 +45,54 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_ZUKAN_COMMON_EVENT_NUM ( 8 )	// ƒCƒxƒ“ƒg”
-#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_POKELIST	( 0x1 << 1 )	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚É•ÏX
-#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_ZUKAN	( 0x1 << 2 )		// }ŠÓ‚Ö
-#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_RANGE	( 0x1 << 3 )		// •ª•z‚Ö
-#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_SOUND	( 0x1 << 4 )		// ‹ƒ‚«º‚Ö
-#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_BIG	( 0x1 << 5 )		// ‘å‚«‚³”ä‚×‚Ö
-#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_BIG_HEIGHT	( 0x1 << 6 )		// ‘å‚«‚³”ä‚×‚Ö
-#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_BIG_WEIGHT	( 0x1 << 7 )		// ‘å‚«‚³”ä‚×‚Ö
-#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_GRAPHIC	( 0x1 << 8 )		// ‘å‚«‚³”ä‚×‚Ö
+#define ZKN_ZUKAN_COMMON_EVENT_NUM ( 8 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
+#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_POKELIST	( 0x1 << 1 )	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã«å¤‰æ›´
+#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_ZUKAN	( 0x1 << 2 )		// å›³é‘‘ã¸
+#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_RANGE	( 0x1 << 3 )		// åˆ†å¸ƒã¸
+#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_SOUND	( 0x1 << 4 )		// æ³£ãå£°ã¸
+#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_BIG	( 0x1 << 5 )		// å¤§ãã•æ¯”ã¹ã¸
+#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_BIG_HEIGHT	( 0x1 << 6 )		// å¤§ãã•æ¯”ã¹ã¸
+#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_BIG_WEIGHT	( 0x1 << 7 )		// å¤§ãã•æ¯”ã¹ã¸
+#define ZKN_ZUKAN_COMMON_EVENT_CHANGE_GRAPHIC	( 0x1 << 8 )		// å¤§ãã•æ¯”ã¹ã¸
 
-#define ZKN_ZUKAN_COMMON_RESOBJ_NUM			( 4 )		// ƒŠƒ\[ƒXƒIƒuƒWƒFŠi”[—Ìˆæ”
+#define ZKN_ZUKAN_COMMON_RESOBJ_NUM			( 4 )		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§æ ¼ç´é ˜åŸŸæ•°
 
 #define ZKN_ZUKAN_COMMON_ICON_Y			( 8 * FX32_ONE )
 #define ZKN_ZUKAN_COMMON_ICON_X			( 168 * FX32_ONE )
 #define ZKN_ZUKAN_COMMON_ICON_X_ADD		( 24 * FX32_ONE )
 
 
-#define ZKN_ZUKAN_COMMON_ICON_SEQ		( 0 )	// ICONƒAƒjƒƒV[ƒPƒ“ƒX
+#define ZKN_ZUKAN_COMMON_ICON_SEQ		( 0 )	// ICONã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 
 
-// ƒ^ƒCƒgƒ‹
+// ã‚¿ã‚¤ãƒˆãƒ«
 #define ZKN_ZUKAN_TITLE_DRAW_X		( 16 )
 #define ZKN_ZUKAN_TITLE_DRAW_Y		( 0 )
 #define ZKN_GRAPHIC_BUTTONFONT_BMP_SIZE_CX	(8)
 #define ZKN_GRAPHIC_BUTTONFONT_BMP_SIZE_CY	(2)
 
 //-------------------------------------
-//	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+//	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 //=====================================
 enum{
 	ZKN_ZUKAN_COMMON_APL_ZUKAN00,
@@ -104,7 +104,7 @@ enum{
 };
 
 //-------------------------------------
-//	}ŠÓ•`‰æ‰Šú‰»ƒV[ƒPƒ“ƒX
+//	å›³é‘‘æç”»åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_ZUKAN_COMMON_SEQINIT_ALLOC,
@@ -114,7 +114,7 @@ enum{
 };
 
 //-------------------------------------
-//	}ŠÓ•`‰æ”jŠüƒV[ƒPƒ“ƒX
+//	å›³é‘‘æç”»ç ´æ£„ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_ZUKAN_COMMON_SEQDELETE_FADEOUT_INIT,
@@ -128,65 +128,65 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	}ŠÓ‹¤’Ê‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	å›³é‘‘å…±é€šç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct _ZKN_ZUKAN_COMMON_GLB{
-	int*				p_event_key;		// ƒCƒxƒ“ƒgƒL[
-	ZKN_GLB_DATA*		p_glb;				// ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	int					now_apply;			// ¡‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“
-	ZKN_POKELIST_GLB_DATA* p_pokelist_glb;	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒOƒ[ƒoƒ‹
-	ZKN_ZUKAN_GLB*		p_zkn_data_glb;		// }ŠÓƒf[ƒ^ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	ZKN_APL_DATA* p_zkn_datagraver_glb;		// }ŠÓƒOƒ‰ƒtƒBƒbƒNver‚ÌƒOƒ[ƒoƒ‹
-	ZKN_APL_DATA* p_zkn_datatextver_glb;	// }ŠÓŒ¾Œêver‚ÌƒOƒ[ƒoƒ‹
-	ZKN_APL_DATA* p_range_glb;				// •ª•z}‚ÌƒOƒ[ƒoƒ‹
-	ZKN_APL_DATA* p_sound_glb;				// ‹ƒ‚«º‚ÌƒOƒ[ƒoƒ‹
-	ZKN_APL_DATA* p_big_sub_glb;			// d‚³”ä‚×ƒTƒu‰æ–Ê
+	int*				p_event_key;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
+	ZKN_GLB_DATA*		p_glb;				// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	int					now_apply;			// ä»Šã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
+	ZKN_POKELIST_GLB_DATA* p_pokelist_glb;	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚°ãƒ­ãƒ¼ãƒãƒ«
+	ZKN_ZUKAN_GLB*		p_zkn_data_glb;		// å›³é‘‘ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	ZKN_APL_DATA* p_zkn_datagraver_glb;		// å›³é‘‘ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯verã®ã‚°ãƒ­ãƒ¼ãƒãƒ«
+	ZKN_APL_DATA* p_zkn_datatextver_glb;	// å›³é‘‘è¨€èªverã®ã‚°ãƒ­ãƒ¼ãƒãƒ«
+	ZKN_APL_DATA* p_range_glb;				// åˆ†å¸ƒå›³ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«
+	ZKN_APL_DATA* p_sound_glb;				// æ³£ãå£°ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«
+	ZKN_APL_DATA* p_big_sub_glb;			// é‡ã•æ¯”ã¹ã‚µãƒ–ç”»é¢
 	
-	BOOL sub_apply_brightness_on;	// ƒTƒuƒAƒvƒŠ‚Éƒuƒ‰ƒCƒgƒlƒXg—p‚ğ‹–‰Â
-	BOOL fade_mode;		// TREU	‚½‚¾‚Ìƒuƒ‰ƒCƒgƒlƒX FALSE	”¼“§–¾İ’è‚ ‚è
-	BOOL pal_load_flag;	// ƒpƒŒƒbƒg“Ç‚İ‚İƒtƒ‰ƒO
+	BOOL sub_apply_brightness_on;	// ã‚µãƒ–ã‚¢ãƒ—ãƒªã«ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ä½¿ç”¨ã‚’è¨±å¯
+	BOOL fade_mode;		// TREU	ãŸã ã®ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ FALSE	åŠé€æ˜è¨­å®šã‚ã‚Š
+	BOOL pal_load_flag;	// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ãƒ•ãƒ©ã‚°
 } ZKN_ZUKAN_COMMON_GLB;
 
 //-------------------------------------
-//	}ŠÓ‹¤’Ê‰æ–Ê	•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	å›³é‘‘å…±é€šç”»é¢	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DRAWDATA*	p_drawglb;			// •`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DRAWDATA*	p_drawglb;			// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 } ZKN_ZUKAN_COMMON_DRAWGLB;
 
 
 //-------------------------------------
-//	}ŠÓ‹¤’Ê‰æ–Ê@“à•”ƒ[ƒN
+//	å›³é‘‘å…±é€šç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	int dummy;
 } ZKN_ZUKAN_COMMON_WORK;
 
 //-------------------------------------
-//	}ŠÓ‹¤’Ê‰æ–Ê@•`‰æƒ[ƒN
+//	å›³é‘‘å…±é€šç”»é¢ã€€æç”»ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct{
-//	CLACT_WORK_PTR icon;		// ƒAƒCƒRƒ“
-	int local_apl_tmp;			// ¡‚ÌƒAƒCƒRƒ“‚ª•\¦‚³‚ê‚Ä‚¢‚éƒAƒvƒŠˆÊ’u
+//	CLACT_WORK_PTR icon;		// ã‚¢ã‚¤ã‚³ãƒ³
+	int local_apl_tmp;			// ä»Šã®ã‚¢ã‚¤ã‚³ãƒ³ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ—ãƒªä½ç½®
 
-	ZKN_FONTOAM_DATA* p_title[ZKN_ZUKAN_COMMON_APL_NUM];	// ƒ^ƒCƒgƒ‹ƒtƒHƒ“ƒgOAM
+	ZKN_FONTOAM_DATA* p_title[ZKN_ZUKAN_COMMON_APL_NUM];	// ã‚¿ã‚¤ãƒˆãƒ«ãƒ•ã‚©ãƒ³ãƒˆOAM
 	
-	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_ZUKAN_COMMON_RESOBJ_NUM ];	// ResourceƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_ZUKAN_COMMON_RESOBJ_NUM ];	// Resourceã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
 
 } ZKN_ZUKAN_COMMON_DRAW;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_ZUKAN_COMMON_GLB* MakeZukanCommonGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -201,7 +201,7 @@ static int ZukanCommonEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanCommonProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -212,14 +212,14 @@ static int ZknZukanCommonProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 static int ZknZukanCommonProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
 static void ZknZukanCommonProcDoFuncMainInit( ZKN_ZUKAN_COMMON_GLB* p_glb );
-// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“•ÏX
+// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å¤‰æ›´
 static BOOL ZknZukanCommonGetFadeModeOther( int apply );
 static BOOL ZknZukanCommonChangeApply( ZKN_ZUKAN_COMMON_GLB* p_glb, int apply, int last_apply );
 static void ZknZukanCommonResetMainApply( ZKN_ZUKAN_COMMON_GLB* p_glb );
 static void ZknZukanCommonChangePokeList( ZKN_ZUKAN_COMMON_GLB* p_glb );
 static void ZknZukanCommon_MainChangePokelist( ZKN_ZUKAN_COMMON_GLB* p_glb );
 
-// ƒŠƒ\[ƒX“Ç‚İ‚İ
+// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 static void ZknZukanCommonLoadResource( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_ZUKAN_COMMON_DRAW* p_draw, const ZKN_ZUKAN_COMMON_GLB* cp_glb, int heap );
 static void ZknZukanCommonDeleteResource( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_ZUKAN_COMMON_DRAW* p_draw );
 static void ZknZukanCommonSetUpBg( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, const ZKN_ZUKAN_COMMON_GLB* cp_glb, int heap );
@@ -240,11 +240,11 @@ static void ZknZukanCommonOamFadeDelete( ZKN_ZUKAN_COMMON_DRAW* p_draw );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@ƒAƒvƒŠì¬
+ *	@brief	å›³é‘‘å…±é€šã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		g—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -277,9 +277,9 @@ void ZKN_ZukanCommonAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -295,12 +295,12 @@ void ZKN_ZukanCommonAplDelete( ZKN_APL_DATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒuƒ‰ƒCƒgƒlƒX‚µ‚æ‚¤ƒtƒ‰ƒOƒ`ƒFƒbƒN
+ *	@brief	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã—ã‚ˆã†ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  *	
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	g—p‹–‰Â
- *	@retval	FALSE	g—p•s‰Â”\
+ *	@retval	TRUE	ä½¿ç”¨è¨±å¯
+ *	@retval	FALSE	ä½¿ç”¨ä¸å¯èƒ½
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_ZukanCommonBrightnessOnFlagGet( const ZKN_APL_DATA* cp_glb )
@@ -313,18 +313,18 @@ BOOL ZKN_ZukanCommonBrightnessOnFlagGet( const ZKN_APL_DATA* cp_glb )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	å›³é‘‘å…±é€šã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -338,48 +338,48 @@ static ZKN_ZUKAN_COMMON_GLB* MakeZukanCommonGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_ZUKAN_COMMON_GLB) );
 
-	// main‰æ–Ê‚©‚ç‚ÌƒCƒxƒ“ƒgƒL[
+	// mainç”»é¢ã‹ã‚‰ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrMainCommon( zkn_sys ); 
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
-	// Å‰‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+	// æœ€åˆã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
 	p_glb->now_apply = ZKN_ZUKAN_COMMON_APL_ZUKAN00;
 
-	// }ŠÓƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// å›³é‘‘ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN );
 	p_glb->p_zkn_data_glb = p_apl->p_glb_data;
 
-	// }ŠÓƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// å›³é‘‘ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_GRA );
 	p_glb->p_zkn_datagraver_glb = p_apl;
 
-	// }ŠÓŒ¾Œêƒo[ƒWƒ‡ƒ“ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// å›³é‘‘è¨€èªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_TEXT );
 	p_glb->p_zkn_datatextver_glb = p_apl;
 
-	// •ª•zƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// åˆ†å¸ƒã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_RANGE );
 	p_glb->p_range_glb = p_apl;
 
-	// ‹ƒ‚«ºƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// æ³£ãå£°ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_SOUND );
 	p_glb->p_sound_glb = p_apl;
 
-	// d‚³”ä‚×ƒTƒu‰æ–ÊƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// é‡ã•æ¯”ã¹ã‚µãƒ–ç”»é¢ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_apl = ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_BIG );
 	p_glb->p_big_sub_glb = p_apl;
 
-	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_POKELIST );
 	p_glb->p_pokelist_glb = p_apl->p_glb_data;
 
 
-	// ƒtƒF[ƒhƒ‚[ƒhæ“¾
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰å–å¾—
 	p_glb->fade_mode = TRUE;
 	
-	// ƒpƒŒƒbƒg“Ç‚İ‚İƒtƒ‰ƒO
+	// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ãƒ•ãƒ©ã‚°
 	p_glb->pal_load_flag = TRUE;
 	
 	return p_glb;
@@ -388,12 +388,12 @@ static ZKN_ZUKAN_COMMON_GLB* MakeZukanCommonGlb( int heap, ZKN_SYS_PTR zkn_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒf[ƒ^
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static ZKN_ZUKAN_COMMON_DRAWGLB* MakeZukanCommonDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
@@ -405,7 +405,7 @@ static ZKN_ZUKAN_COMMON_DRAWGLB* MakeZukanCommonDrawGlb( int heap, ZKN_SYS_PTR z
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_ZUKAN_COMMON_DRAWGLB) );
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 	return p_glb;
@@ -414,12 +414,12 @@ static ZKN_ZUKAN_COMMON_DRAWGLB* MakeZukanCommonDrawGlb( int heap, ZKN_SYS_PTR z
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@ƒCƒxƒ“ƒgì¬
+ *	@brief	å›³é‘‘å…±é€šã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		g—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -429,7 +429,7 @@ static ZKN_EVENT_DATA* MakeZukanCommonEvent( int heap, ZKN_SYS_PTR zkn_sys )
 	ZKN_EVENT_DATA* p_event_tbl;
 	int event_num = ZukanCommonEventDataNumGet();
 
-	// ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_event_tbl = sys_AllocMemory( heap, sizeof(ZKN_EVENT_DATA) * event_num );
 	GF_ASSERT( p_event_tbl );
 	memset( p_event_tbl, 0, sizeof(ZKN_EVENT_DATA) * event_num );
@@ -450,9 +450,9 @@ static ZKN_EVENT_DATA* MakeZukanCommonEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	å›³é‘‘å…±é€šã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -468,9 +468,9 @@ static void DeleteZukanCommonGlb( ZKN_ZUKAN_COMMON_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	å›³é‘‘å…±é€šã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -486,9 +486,9 @@ static void DeleteZukanCommonDrawGlb( ZKN_ZUKAN_COMMON_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	å›³é‘‘å…±é€šã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -514,11 +514,11 @@ static void DeleteZukanCommonEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’ÊƒAƒvƒŠ@ƒCƒxƒ“ƒg”æ“¾
+ *	@brief	å›³é‘‘å…±é€šã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	}ŠÓ‹¤’ÊƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	å›³é‘‘å…±é€šã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -531,19 +531,19 @@ static int ZukanCommonEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -553,7 +553,7 @@ static int ZknZukanCommonProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 	ZKN_ZUKAN_COMMON_GLB* p_glb = p_glbdata;
 	ZKN_ZUKAN_COMMON_WORK*	p_work = p_dodata->p_work;
 
-	// ƒ|ƒPƒ‚ƒ“‚Ìº‚ğ–Â‚ç‚·
+	// ãƒã‚±ãƒ¢ãƒ³ã®å£°ã‚’é³´ã‚‰ã™
 	p_glb->p_zkn_data_glb->mons_snd_req = TRUE;
 	
 	return ZKN_PROC_TRUE;
@@ -561,14 +561,14 @@ static int ZknZukanCommonProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -578,7 +578,7 @@ static int ZknZukanCommonProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 	ZKN_ZUKAN_COMMON_GLB* p_glb = p_glbdata;
 	ZKN_ZUKAN_COMMON_WORK*	p_work = p_dodata->p_work;
 
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -588,7 +588,7 @@ static int ZknZukanCommonProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 		return ZKN_PROC_FALSE;
 	}
 
-	// seq0 == ‰Šú‰»
+	// seq0 == åˆæœŸåŒ–
 	if( p_dodata->seq == 0 ){
 		ZknZukanCommonProcDoFuncMainInit( p_glb );
 		p_dodata->seq++;
@@ -599,14 +599,14 @@ static int ZknZukanCommonProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -616,24 +616,24 @@ static int ZknZukanCommonProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_g
 	ZKN_ZUKAN_COMMON_GLB* p_glb = p_glbdata;
 	ZKN_ZUKAN_COMMON_WORK*	p_work = p_dodata->p_work;
 
-	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‰Šú‰»
+	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åˆæœŸåŒ–
 	p_glb->now_apply = ZKN_ZUKAN_COMMON_APL_ZUKAN00;
 	return ZKN_PROC_TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -651,16 +651,16 @@ static int ZknZukanCommonProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 		p_drawdata->p_work = sys_AllocMemory( p_drawdata->heap, sizeof(ZKN_ZUKAN_COMMON_DRAW) );
 		memset( p_drawdata->p_work, 0, sizeof(ZKN_ZUKAN_COMMON_DRAW) );
 		p_drawwork = p_drawdata->p_work;
-		p_drawwork->local_apl_tmp = cp_glb->now_apply;	// ¡•\¦’†‚ÌˆÊ’u
+		p_drawwork->local_apl_tmp = cp_glb->now_apply;	// ä»Šè¡¨ç¤ºä¸­ã®ä½ç½®
 		p_drawdata->seq ++;
 		break;
 		
 	case ZKN_ZUKAN_COMMON_SEQINIT_LOAD:
 		ZknZukanCommonLoadResource( p_drawglb, p_drawwork, cp_glb, p_drawdata->heap );
-		// ”¼“§–¾OAMİ’è
+		// åŠé€æ˜OAMè¨­å®š
 		ZknZukanCommonOamFadeInit( p_drawwork );
 
-		// ”¼“§–¾OAM‚É‚·‚ê‚ÎAƒtƒF[ƒhƒCƒ“ƒAƒEƒg‚·‚éİ’è‚Åƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh
+		// åŠé€æ˜OAMã«ã™ã‚Œã°ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆã™ã‚‹è¨­å®šã§ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰
 		ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_LONG_COMMON,
 				BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_BRIGHTNESS_MSK_ALL, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		p_drawdata->seq++;
@@ -673,7 +673,7 @@ static int ZknZukanCommonProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 		break;
 		
 	case ZKN_ZUKAN_COMMON_SEQINIT_END:
-		// ”¼“§–¾OAMİ’è‰ğœ
+		// åŠé€æ˜OAMè¨­å®šè§£é™¤
 		ZknZukanCommonOamFadeDelete( p_drawwork );
 		return ZKN_PROC_TRUE;
 
@@ -687,17 +687,17 @@ static int ZknZukanCommonProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -710,7 +710,7 @@ static int ZknZukanCommonProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 	ZKN_ZUKAN_COMMON_DRAW*		p_drawwork = p_drawdata->p_work;
 
 
-	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ª•Ï‚í‚Á‚½‚çƒAƒCƒRƒ“‚Ì•\¦ˆÊ’u‚ğ•ÏX
+	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãŒå¤‰ã‚ã£ãŸã‚‰ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºä½ç½®ã‚’å¤‰æ›´
 	if( p_drawwork->local_apl_tmp != cp_glb->now_apply ){
 		ZknZukanCommonIconMatSet( p_drawwork, cp_glb->now_apply );
 		ZknZukanCommonFontOamChg( p_drawwork, cp_glb->now_apply, p_drawwork->local_apl_tmp );
@@ -722,17 +722,17 @@ static int ZknZukanCommonProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -746,19 +746,19 @@ static int ZknZukanCommonProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 
 	switch( p_drawdata->seq ){
 	case ZKN_ZUKAN_COMMON_SEQDELETE_FADEOUT_INIT:
-		// ‘å‚«‚³”ä‚×d‚³”ä‚×‚Ì‚½‚ß‚½‚¾‚Ìƒuƒ‰ƒbƒNƒtƒF[ƒhƒ‚[ƒh‚àì¬
+		// å¤§ãã•æ¯”ã¹é‡ã•æ¯”ã¹ã®ãŸã‚ãŸã ã®ãƒ–ãƒ©ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚‚ä½œæˆ
 		if( cp_glb->fade_mode ){
 			
-			// ”¼“§–¾OAMİ’è
+			// åŠé€æ˜OAMè¨­å®š
 			ZknZukanCommonOamFadeInit( p_drawwork );
 			
 			
-			// ”¼“§–¾OAM‚É‚·‚ê‚ÎAƒtƒF[ƒhƒCƒ“ƒAƒEƒg‚·‚éİ’è‚Åƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh
+			// åŠé€æ˜OAMã«ã™ã‚Œã°ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆã™ã‚‹è¨­å®šã§ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_LONG_COMMON,
 
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_BRIGHTNESS_MSK_ALL, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}else{
-			// ƒtƒF[ƒhƒCƒ“ƒAƒEƒg‚·‚éİ’è‚Å‘S‚Äƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆã™ã‚‹è¨­å®šã§å…¨ã¦ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_LONG_COMMON,
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, PLANEMASK_ALL, 0, ZKN_UTIL_FADE_MAIN );
 		}
@@ -796,7 +796,7 @@ static int ZknZukanCommonProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚É–ß‚é‚Ìˆ—@•¡”‚Ìˆ—‚ğƒpƒbƒN
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã«æˆ»ã‚‹æ™‚ã®å‡¦ç†ã€€è¤‡æ•°ã®å‡¦ç†ã‚’ãƒ‘ãƒƒã‚¯
  *
  *	@param	p_glb 
  *
@@ -812,72 +812,72 @@ static void ZknZukanCommon_MainChangePokelist( ZKN_ZUKAN_COMMON_GLB* p_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒŠƒXƒg‚É–ß‚é‚Æ‚«‚Ìˆ—
+ *	@brief	ãƒã‚±ãƒªã‚¹ãƒˆã«æˆ»ã‚‹ã¨ãã®å‡¦ç†
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanCommonChangePokeList( ZKN_ZUKAN_COMMON_GLB* p_glb )
 {
-	// ƒCƒxƒ“ƒg”­s
-	// ƒ|ƒPƒŠƒXƒg‚É•ªŠò
+	// ã‚¤ãƒ™ãƒ³ãƒˆç™ºè¡Œ
+	// ãƒã‚±ãƒªã‚¹ãƒˆã«åˆ†å²
 	*p_glb->p_event_key |= ZKN_ZUKAN_COMMON_EVENT_CHANGE_POKELIST;
 	
-	// ‚±‚ÌƒVƒXƒeƒ€‚Ì‰º‚Å“®‚­‘S‚Ä‚ÌƒAƒvƒŠ‚Ìƒuƒ‰ƒCƒgƒlƒX
-	// g—p‚ğ‹–‰Â‚µ‚È‚¢
+	// ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã®ä¸‹ã§å‹•ãå…¨ã¦ã®ã‚¢ãƒ—ãƒªã®ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹
+	// ä½¿ç”¨ã‚’è¨±å¯ã—ãªã„
 	p_glb->sub_apply_brightness_on = FALSE;
 
-	// }ŠÓ‚ÌƒtƒF[ƒhí—Ş‚ğ‰Šú‰»‚·‚é
+	// å›³é‘‘ã®ãƒ•ã‚§ãƒ¼ãƒ‰ç¨®é¡ã‚’åˆæœŸåŒ–ã™ã‚‹
 	p_glb->p_zkn_data_glb->fade_mode = ZKN_ZUKAN_FADE_MODE_CHPOKELIST;	
 	ZKN_ZukanTextverFadeModeSet( p_glb->p_zkn_datatextver_glb, ZKN_ZUKANTEXTVER_FADE_MODE_CHPOKELIST );
 
 
-	// ƒƒCƒ“‚Å“®ì‚µ‚Ä‚¢‚é‚à‚Ì‚ÌƒtƒF[ƒhƒAƒEƒg€”õ
+	// ãƒ¡ã‚¤ãƒ³ã§å‹•ä½œã—ã¦ã„ã‚‹ã‚‚ã®ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæº–å‚™
 	switch( p_glb->now_apply ){
 	case ZKN_ZUKAN_COMMON_APL_ZUKAN00:
 		p_glb->p_zkn_data_glb->poke_gra_move_x = ZKN_POKELIST_POKEGRA_X;
 		p_glb->p_zkn_data_glb->poke_gra_move_y = ZKN_POKELIST_POKEGRA_Y;
 
 		ZKN_ZukanTextverPokeGraFadeOutSet( p_glb->p_zkn_datatextver_glb, ZKN_POKELIST_POKEGRA_X, ZKN_POKELIST_POKEGRA_Y );
-		p_glb->p_pokelist_glb->fade_zukan_data = TRUE;	// }ŠÓ->pokelistƒGƒtƒFƒNƒg
+		p_glb->p_pokelist_glb->fade_zukan_data = TRUE;	// å›³é‘‘->pokelistã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-		// ƒtƒF[ƒhƒ‚[ƒh
-		p_glb->fade_mode = TRUE;	// ”¼“§–¾İ’èOAMƒtƒF[ƒh
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+		p_glb->fade_mode = TRUE;	// åŠé€æ˜è¨­å®šOAMãƒ•ã‚§ãƒ¼ãƒ‰
 		break;
 		
 	case ZKN_ZUKAN_COMMON_APL_RANGE:
 		ZKN_RangeFadeModeSet( p_glb->p_range_glb, ZKN_RANGE_FADE_MODE_OTHER );
 		ZKN_RangeFadeModeSync( p_glb->p_range_glb, ZKN_FADE_SYNC_LONG_COMMON );
 		ZKN_RangePokeGraFadeOutSet( p_glb->p_range_glb, ZKN_POKELIST_POKEGRA_X, ZKN_POKELIST_POKEGRA_Y );
-		p_glb->p_pokelist_glb->fade_zukan_data = TRUE;	// }ŠÓ->pokelist
+		p_glb->p_pokelist_glb->fade_zukan_data = TRUE;	// å›³é‘‘->pokelist
 
-		// ƒtƒF[ƒhƒ‚[ƒh
-		p_glb->fade_mode = TRUE;	// ”¼“§–¾İ’èOAMƒtƒF[ƒh
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+		p_glb->fade_mode = TRUE;	// åŠé€æ˜è¨­å®šOAMãƒ•ã‚§ãƒ¼ãƒ‰
 		break;
 		
 	case ZKN_ZUKAN_COMMON_APL_SOUND:
 		ZKN_SoundFadeModeSet( p_glb->p_sound_glb, ZKN_SOUND_FADE_MODE_OTHER );
 		ZKN_SoundFadeModeSync( p_glb->p_sound_glb, ZKN_FADE_SYNC_LONG_COMMON );
 		ZKN_SoundPokeGraFadeOutSet( p_glb->p_sound_glb, ZKN_POKELIST_POKEGRA_X, ZKN_POKELIST_POKEGRA_Y );
-		p_glb->p_pokelist_glb->fade_zukan_data = TRUE;	// }ŠÓ->pokelist
+		p_glb->p_pokelist_glb->fade_zukan_data = TRUE;	// å›³é‘‘->pokelist
 
-		// ƒtƒF[ƒhƒ‚[ƒh
-		p_glb->fade_mode = TRUE;	// ”¼“§–¾İ’èOAMƒtƒF[ƒh
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+		p_glb->fade_mode = TRUE;	// åŠé€æ˜è¨­å®šOAMãƒ•ã‚§ãƒ¼ãƒ‰
 		break;
 		
 	case ZKN_ZUKAN_COMMON_APL_BIG:
-		p_glb->p_pokelist_glb->fade_zukan_data = FALSE;	// ’Êí
+		p_glb->p_pokelist_glb->fade_zukan_data = FALSE;	// é€šå¸¸
 
-		// ƒtƒF[ƒhƒ‚[ƒh
-		p_glb->fade_mode = FALSE;	// ‘S‘Ìƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+		p_glb->fade_mode = FALSE;	// å…¨ä½“ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰
 		break;
 
 	case ZKN_ZUKAN_COMMON_APL_GRAPHIC:
-		p_glb->p_pokelist_glb->fade_zukan_data = FALSE;	// ’Êí
-		// ƒtƒF[ƒhƒ‚[ƒh
-		p_glb->fade_mode = FALSE;	// ‘S‘Ìƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh
+		p_glb->p_pokelist_glb->fade_zukan_data = FALSE;	// é€šå¸¸
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+		p_glb->fade_mode = FALSE;	// å…¨ä½“ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰
 		break;
 
 	default:
@@ -885,10 +885,10 @@ static void ZknZukanCommonChangePokeList( ZKN_ZUKAN_COMMON_GLB* p_glb )
 	}
 }
 
-// ƒtƒF[ƒhƒ‚[ƒh‚ğ‚ ‚´[‚É‚·‚é‚©ƒ`ƒFƒbƒN
+// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚ã–ãƒ¼ã«ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 static BOOL ZknZukanCommonGetFadeModeOther( int apply )
 {
-// ‘S•”‚ğƒuƒ‰ƒbƒNƒtƒF[ƒh‚É‚·‚é		03/16
+// å…¨éƒ¨ã‚’ãƒ–ãƒ©ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰ã«ã™ã‚‹		03/16
 	
 /*	if( (apply != ZKN_ZUKAN_COMMON_APL_BIG) &&
 		(apply != ZKN_ZUKAN_COMMON_APL_GRAPHIC) ){
@@ -900,14 +900,14 @@ static BOOL ZknZukanCommonGetFadeModeOther( int apply )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“•ÏX
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å¤‰æ›´
  *
  *	@param	p_glb
  *	@param	apply
  *	@param	last_apply 
  *
- *	@retval	TRUE	•ÏX‚µ‚Ü‚·
- *	@retval FALSE	•ÏX‚µ‚Ü‚¹‚ñ
+ *	@retval	TRUE	å¤‰æ›´ã—ã¾ã™
+ *	@retval FALSE	å¤‰æ›´ã—ã¾ã›ã‚“
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknZukanCommonChangeApply( ZKN_ZUKAN_COMMON_GLB* p_glb, int apply, int last_apply )
@@ -956,7 +956,7 @@ static BOOL ZknZukanCommonChangeApply( ZKN_ZUKAN_COMMON_GLB* p_glb, int apply, i
 		
 	case ZKN_ZUKAN_COMMON_APL_BIG:
 
-		// •ßŠl‚µ‚½ƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+		// æ•ç²ã—ãŸãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
 		if( ZKN_GLBDATA_PokeMonsTypeGet( p_glb->p_glb ) == ZKN_POKELIST_TYPE_GET ){
 			*p_glb->p_event_key |= ZKN_ZUKAN_COMMON_EVENT_CHANGE_BIG;
 			p_glb->now_apply = ZKN_ZUKAN_COMMON_APL_BIG;
@@ -967,7 +967,7 @@ static BOOL ZknZukanCommonChangeApply( ZKN_ZUKAN_COMMON_GLB* p_glb, int apply, i
 
 	case ZKN_ZUKAN_COMMON_APL_GRAPHIC:
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒ‚[ƒh‚É‚È‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¢ãƒ¼ãƒ‰ã«ãªã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( ZKN_GLBDATA_PokeGraphicVersionFlagGet( p_glb->p_glb ) == TRUE ){
 			*p_glb->p_event_key |= ZKN_ZUKAN_COMMON_EVENT_CHANGE_GRAPHIC;
 			p_glb->now_apply = ZKN_ZUKAN_COMMON_APL_GRAPHIC;
@@ -977,7 +977,7 @@ static BOOL ZknZukanCommonChangeApply( ZKN_ZUKAN_COMMON_GLB* p_glb, int apply, i
 		break;
 		
 	default:
-		// ‚¨‚©‚µ‚¢
+		// ãŠã‹ã—ã„
 		GF_ASSERT(0);
 		break;
 	}
@@ -1023,7 +1023,7 @@ static BOOL ZknZukanCommonChangeApply( ZKN_ZUKAN_COMMON_GLB* p_glb, int apply, i
 		break;
 		
 	default:
-		// ‚¨‚©‚µ‚¢
+		// ãŠã‹ã—ã„
 		GF_ASSERT(0);
 		break;
 	}
@@ -1033,16 +1033,16 @@ static BOOL ZknZukanCommonChangeApply( ZKN_ZUKAN_COMMON_GLB* p_glb, int apply, i
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“‰æ–Ê‚Ì‚İ‚Ì•ÏX
+ *	@brief	ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã¿ã®å¤‰æ›´
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanCommonResetMainApply( ZKN_ZUKAN_COMMON_GLB* p_glb )
 {
-	// ƒuƒ‰ƒCƒgƒlƒXg—p‚ğ‹–‰Â
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ä½¿ç”¨ã‚’è¨±å¯
 	p_glb->sub_apply_brightness_on = TRUE;
 
 
@@ -1064,7 +1064,7 @@ static void ZknZukanCommonResetMainApply( ZKN_ZUKAN_COMMON_GLB* p_glb )
 		break;
 		
 	case ZKN_ZUKAN_COMMON_APL_BIG:
-		// ‚‚³d‚³”ä‚×ƒ`ƒFƒbƒN
+		// é«˜ã•é‡ã•æ¯”ã¹ãƒã‚§ãƒƒã‚¯
 		if( ZKN_BigSubNowAplTypeGet( p_glb->p_big_sub_glb ) == ZKN_BIGSUB_CONTROL_HEIGHT ){
 			*p_glb->p_event_key |= ZKN_ZUKAN_COMMON_EVENT_CHANGE_BIG_HEIGHT;
 		}else{
@@ -1078,7 +1078,7 @@ static void ZknZukanCommonResetMainApply( ZKN_ZUKAN_COMMON_GLB* p_glb )
 		break;
 		
 	default:
-		// ‚¨‚©‚µ‚¢
+		// ãŠã‹ã—ã„
 		GF_ASSERT(0);
 		break;
 	}
@@ -1087,24 +1087,24 @@ static void ZknZukanCommonResetMainApply( ZKN_ZUKAN_COMMON_GLB* p_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource“Ç‚İ‚İ
+ *	@brief	Resourceèª­ã¿è¾¼ã¿
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanCommonLoadResource( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_ZUKAN_COMMON_DRAW* p_draw, const ZKN_ZUKAN_COMMON_GLB* cp_glb, int heap )
 {
-	// BG“Ç‚İ‚İ
+	// BGèª­ã¿è¾¼ã¿
 	ZknZukanCommonSetUpBg( p_drawglb, cp_glb, heap );
 	
-	// OAM“Ç‚İ‚İ
+	// OAMèª­ã¿è¾¼ã¿
 	ZknZukanCommonLoadCell( p_drawglb, p_draw, heap );
 
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	ZknZukanCommonAddCell( p_drawglb, p_draw, heap );
 
 	// FONTOAM
@@ -1114,10 +1114,10 @@ static void ZknZukanCommonLoadResource( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource”jŠü
+ *	@brief	Resourceç ´æ£„
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	p_draw		•`‰æƒ[ƒN
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1128,15 +1128,15 @@ static void ZknZukanCommonDeleteResource( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, Z
 	ZknZukanCommonReleaseCell( p_drawglb, p_draw );
 	ZknZukanCommonDeleteFontOam( p_draw );
 
-	// ƒ†[ƒeƒBƒŠƒeƒB–ÊƒXƒNƒŠ[ƒ“ƒf[ƒ^‰Šú‰»
+	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_UTIL_M );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG–ÊƒZƒbƒgƒAƒbƒv
+ *	@brief	BGé¢ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -1146,36 +1146,36 @@ static void ZknZukanCommonSetUpBg( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, const ZK
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_PalSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_NCLR, PALTYPE_MAIN_BG, 0, 0, heap );
 
-	// ‘S‘}ŠÓ‚Ì‚ÍF‚ğ•Ï‚¦‚é
+	// å…¨å›½å›³é‘‘ã®æ™‚ã¯è‰²ã‚’å¤‰ãˆã‚‹
 	if( ZKN_GLBDATA_PokeZknModeGet( cp_glb->p_glb ) == ZKN_MODE_ZENKOKU ){
 		ZKN_GLBDATA_PalSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_zen_NCLR, PALTYPE_MAIN_BG, 0, 32, heap );
 	}
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_main_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_UTIL_M, 0, 0, TRUE, heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_bg_main2_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_UTIL_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_UTIL_M );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹Resource“Ç‚İ‚İ
+ *	@brief	ã‚»ãƒ«Resourceèª­ã¿è¾¼ã¿
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^ 
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ 
  *
  *	@return	none
  */
@@ -1185,38 +1185,38 @@ static void ZknZukanCommonLoadCell( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_ZUK
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_drawglb );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_main1_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_data_oam_main1_lzh_NCGR + ZKN_ZUKAN_COMMON_RES_ID_OFS,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			NARC_zukan_zkn_data_oam1_NCLR, FALSE, 
 			NARC_zukan_zkn_data_oam1_NCLR + ZKN_ZUKAN_COMMON_RES_ID_OFS, 
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			ZKN_ZUKAN_COMMON_PLTT_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_draw->res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_main1_lzh_NCER, TRUE,
 			NARC_zukan_zkn_data_oam_main1_lzh_NCER + ZKN_ZUKAN_COMMON_RES_ID_OFS,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_data_oam_main1_lzh_NANR, TRUE,
@@ -1226,10 +1226,10 @@ static void ZknZukanCommonLoadCell( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_ZUK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResourceƒf[ƒ^”jŠü
+ *	@brief	OAMResourceãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	p_draw		•`‰æƒf[ƒ^
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	p_draw		æç”»ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none	
  */
@@ -1242,7 +1242,7 @@ static void ZknZukanCommonReleaseCell( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -1259,10 +1259,10 @@ static void ZknZukanCommonReleaseCell( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	p_draw		•`‰æƒf[ƒ^
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	p_draw		æç”»ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -1273,7 +1273,7 @@ static void ZknZukanCommonAddCell( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_ZUKA
 	CLACT_ADD_SIMPLE	add;
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_drawglb;
 	
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_data_oam_main1_lzh_NCGR + ZKN_ZUKAN_COMMON_RES_ID_OFS,
 			NARC_zukan_zkn_data_oam1_NCLR + ZKN_ZUKAN_COMMON_RES_ID_OFS, 
@@ -1286,28 +1286,28 @@ static void ZknZukanCommonAddCell( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_ZUKA
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ğİ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= 0;
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 	add.heap		= heap;
 	
-	// ƒAƒCƒRƒ“‚ğ“o˜^
+	// ã‚¢ã‚¤ã‚³ãƒ³ã‚’ç™»éŒ²
 	add.mat.x = 0;
 	add.mat.y = 0;
 	p_draw->icon = CLACT_AddSimple( &add );
 	CLACT_AnmChg( p_draw->icon, ZKN_ZUKAN_COMMON_ICON_SEQ );
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	ZknZukanCommonIconMatSet( p_draw, p_draw->local_apl_tmp );//*/
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1319,26 +1319,26 @@ static void ZknZukanCommonDeleteCell( ZKN_ZUKAN_COMMON_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM“o˜^
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMç™»éŒ²
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanCommonAddFontOam( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_ZUKAN_COMMON_DRAW* p_draw, int heap )
 {
-	GF_BGL_BMPWIN* win;	// •¶š—ñ‘‚«‚İæ
+	GF_BGL_BMPWIN* win;	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿å…ˆ
 	ZKN_FONTOAM_INIT fontoam_init;
 	ZKN_GLB_DRAWDATA* p_glb_draw = p_drawglb->p_drawglb;
-	int pltt_ofs;	// ƒpƒŒƒbƒgƒAƒhƒŒƒX
+	int pltt_ofs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 	int	i;
 		
 
-	// ‰Šú‰»ƒf[ƒ^‚Ì‹¤’Ê•”•ª‚ğì¬
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã®å…±é€šéƒ¨åˆ†ã‚’ä½œæˆ
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_glb_draw->fontoam_sys;
 	fontoam_init.pltt		 = CLACT_U_PlttManagerGetProxy( p_draw->res_obj[ CLACT_U_PLTT_RES ], NULL );
 	fontoam_init.x			 = ZKN_ZUKAN_TITLE_DRAW_X;
@@ -1349,12 +1349,12 @@ static void ZknZukanCommonAddFontOam( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_Z
 	fontoam_init.draw_area	 = NNS_G2D_VRAM_TYPE_2DMAIN;
 	fontoam_init.heap		 = heap;
 
-	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	pltt_ofs = GetPlttProxyOffset( fontoam_init.pltt, NNS_G2D_VRAM_TYPE_2DMAIN );
 
 	for( i=0; i<ZKN_ZUKAN_COMMON_APL_NUM; i++ ){
 		
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 		win = ZKN_FONTOAM_GetBmp( p_glb_draw->fontoam_sys, 
 				ZKN_GRAPHIC_BUTTONFONT_BMP_SIZE_CX,
 				ZKN_GRAPHIC_BUTTONFONT_BMP_SIZE_CY );
@@ -1367,16 +1367,16 @@ static void ZknZukanCommonAddFontOam( ZKN_ZUKAN_COMMON_DRAWGLB* p_drawglb, ZKN_Z
 		FONTOAM_SetPaletteNo( p_draw->p_title[ i ]->p_fontoam, pltt_ofs );
 		FONTOAM_SetDrawFlag( p_draw->p_title[ i ]->p_fontoam, FALSE );
 
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		ZKN_FONTOAM_DeleteBmp( win );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1393,10 +1393,10 @@ static void ZknZukanCommonDeleteFontOam( ZKN_ZUKAN_COMMON_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒvƒŠƒiƒ“ƒo[‚ÌÀ•W‚Éİ’è
+ *	@brief	ã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼ã®åº§æ¨™ã«è¨­å®š
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	apl		ƒAƒvƒŠƒiƒ“ƒo[
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	apl		ã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  */
@@ -1414,7 +1414,7 @@ static void ZknZukanCommonIconMatSet( ZKN_ZUKAN_COMMON_DRAW* p_draw, int apl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ŠÖ”‰Šú‰»
+ *	@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°åˆæœŸåŒ–
  *
  *	@param	p_glb 
  *
@@ -1423,10 +1423,10 @@ static void ZknZukanCommonIconMatSet( ZKN_ZUKAN_COMMON_DRAW* p_draw, int apl )
 //-----------------------------------------------------------------------------
 static void ZknZukanCommonProcDoFuncMainInit( ZKN_ZUKAN_COMMON_GLB* p_glb )
 {
-	// ƒuƒ‰ƒCƒgƒlƒXg—p‚ğ‹–‰Â
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ä½¿ç”¨ã‚’è¨±å¯
 	p_glb->sub_apply_brightness_on = TRUE;
 
-	// ƒAƒvƒŠƒtƒF[ƒhƒ‚[ƒhİ’è
+	// ã‚¢ãƒ—ãƒªãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	p_glb->p_zkn_data_glb->fade_mode = ZKK_ZUKAN_FADE_MODE_NORMAL;
 }
 
@@ -1436,19 +1436,19 @@ static void ZknZukanCommonProcDoFuncMainInit( ZKN_ZUKAN_COMMON_GLB* p_glb )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒTƒu‰æ–Ê
+ *			ã‚µãƒ–ç”»é¢
  */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_ZUKAN_COMMON_SUB_EVENT_NUM ( 0 )	// ƒCƒxƒ“ƒg”
+#define ZKN_ZUKAN_COMMON_SUB_EVENT_NUM ( 0 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
 
 //-------------------------------------
-//	“®ìƒ‚[ƒh
+//	å‹•ä½œãƒ¢ãƒ¼ãƒ‰
 //=====================================
 enum{
 	ZKN_ZUKAN_COMMON_SUB_MODE_CLOSE,
@@ -1457,7 +1457,7 @@ enum{
 
 
 //-------------------------------------
-//	ƒTƒu‰æ–Ê‰Šú‰»ƒV[ƒPƒ“ƒX
+//	ã‚µãƒ–ç”»é¢åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_ZUKAN_COMMON_SUB_SEQINIT_ALLOC,
@@ -1468,7 +1468,7 @@ enum{
 };
 
 //-------------------------------------
-//	ƒTƒu‰æ–Ê”jŠüƒV[ƒPƒ“ƒX
+//	ã‚µãƒ–ç”»é¢ç ´æ£„ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_ZUKAN_COMMON_SUB_SEQDELETE_FADEOUT_INIT,
@@ -1480,7 +1480,7 @@ enum{
 
 
 //-------------------------------------
-//	ƒTƒuƒRƒ‚ƒ“ƒ{ƒ^ƒ“”	•Â‚¶ƒ‚[ƒh
+//	ã‚µãƒ–ã‚³ãƒ¢ãƒ³ãƒœã‚¿ãƒ³æ•°	é–‰ã˜ãƒ¢ãƒ¼ãƒ‰
 //=====================================
 enum{
 	ZKN_ZUKAN_COMMON_SUB_BUTTON_CLOSE,
@@ -1492,7 +1492,7 @@ enum{
 
 
 //-------------------------------------
-//	ƒTƒuƒRƒ‚ƒ“ƒ{ƒ^ƒ“”
+//	ã‚µãƒ–ã‚³ãƒ¢ãƒ³ãƒœã‚¿ãƒ³æ•°
 //=====================================
 enum{
 	ZKN_ZUKAN_COMMON_SUB_BUTTON_DATA,
@@ -1524,7 +1524,7 @@ enum{
 #define ZKN_ZUKAN_COMMON_SUB_BUTTONFONT_PUSHPLTOFS	( 1 )
 
 //-------------------------------------
-//	ƒJ[ƒ\ƒ‹ƒf[ƒ^
+//	ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
 enum{
 	ZKN_ZUKAN_COMMON_SUB_CURSOR_DATA  = ZKN_ZUKAN_COMMON_SUB_BUTTON_DATA,
@@ -1558,36 +1558,36 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	}ŠÓ‹¤’Ê‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	å›³é‘‘å…±é€šç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	int*				p_event_key;		// ƒCƒxƒ“ƒgƒL[
-	ZKN_ZUKAN_COMMON_GLB* p_main_common_glb;// ƒƒCƒ“‰æ–ÊƒRƒ‚ƒ“ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	ZKN_GLB_DATA* p_glb;					// ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	int button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_NUM ];	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
+	int*				p_event_key;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
+	ZKN_ZUKAN_COMMON_GLB* p_main_common_glb;// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚³ãƒ¢ãƒ³ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	ZKN_GLB_DATA* p_glb;					// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	int button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_NUM ];	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 
-	BOOL sub_apply_brightness_on;	// ƒTƒuƒAƒvƒŠ‚Éƒuƒ‰ƒCƒgƒlƒXg—p‚ğ‹–‰Â
+	BOOL sub_apply_brightness_on;	// ã‚µãƒ–ã‚¢ãƒ—ãƒªã«ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ä½¿ç”¨ã‚’è¨±å¯
 
-	int sub_common_sub_mode_flag;	// common‚Ì‰º‚Å“®‚­ƒAƒvƒŠ‚ª“®ì‚µ‚Ä‚æ‚¢‚©“®ìƒ‚[ƒh
+	int sub_common_sub_mode_flag;	// commonã®ä¸‹ã§å‹•ãã‚¢ãƒ—ãƒªãŒå‹•ä½œã—ã¦ã‚ˆã„ã‹å‹•ä½œãƒ¢ãƒ¼ãƒ‰
 
-	BOOL back_key_push;				// –ß‚éƒ{ƒ^ƒ“‚Ì‹@”\‚ÍAƒL[‚Å‚ào—ˆ‚é‚Ì‚ÅƒAƒjƒ‚ğ“¯Šú‚³‚¹‚é‚½‚ß
+	BOOL back_key_push;				// æˆ»ã‚‹ãƒœã‚¿ãƒ³ã®æ©Ÿèƒ½ã¯ã€ã‚­ãƒ¼ã§ã‚‚å‡ºæ¥ã‚‹ã®ã§ã‚¢ãƒ‹ãƒ¡ã‚’åŒæœŸã•ã›ã‚‹ãŸã‚
 
-	BOOL sub_cursor_flag;	// ƒJ[ƒ\ƒ‹“®ì‚ğƒTƒuƒAƒvƒŠ‚ªs‚¤‚Ì‚©‹¤’ÊƒAƒvƒŠ‚ªs‚¤‚Ì‚©
+	BOOL sub_cursor_flag;	// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œã‚’ã‚µãƒ–ã‚¢ãƒ—ãƒªãŒè¡Œã†ã®ã‹å…±é€šã‚¢ãƒ—ãƒªãŒè¡Œã†ã®ã‹
 } ZKN_ZUKAN_COMMON_SUB_GLB;
 
 //-------------------------------------
-//	}ŠÓ‹¤’Ê‰æ–Ê@•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	å›³é‘‘å…±é€šç”»é¢ã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DRAWDATA*	p_drawglb;			// •`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DRAWDATA*	p_drawglb;			// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 } ZKN_ZUKAN_COMMON_SUB_DRAWGLB;
 
 //-------------------------------------
-//	ƒ{ƒ^ƒ“—pƒ[ƒN
+//	ãƒœã‚¿ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	void* p_glb;
@@ -1596,39 +1596,39 @@ typedef struct {
 
 
 //-------------------------------------
-//	}ŠÓ‹¤’Ê‰æ–Ê@“à•”ƒ[ƒN
+//	å›³é‘‘å…±é€šç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ
+	// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£
 	BUTTON_MAN* p_button_man;
-	TP_HIT_TBL *hit_tbl;	// ƒ{ƒ^ƒ“ƒf[ƒ^
+	TP_HIT_TBL *hit_tbl;	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
 	ZKN_ZUKAN_COMMON_SUB_BUTTON_WORK button_work;
 	int button_cancel_flg;
 
 
-	// ƒJ[ƒ\ƒ‹ƒVƒXƒeƒ€
+	// ã‚«ãƒ¼ã‚½ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
 	ZKN_CURSOR* p_cursor;
 	ZKN_CURSOR_ONEDATA* p_cursor_tbl;
 } ZKN_ZUKAN_COMMON_SUB_WORK;
 
 //-------------------------------------
-//	}ŠÓ‹¤’Ê‰æ–Ê@•`‰æ“à•”ƒ[ƒN
+//	å›³é‘‘å…±é€šç”»é¢ã€€æç”»å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR clact[ ZKN_ZUKAN_COMMON_SUB_BUTTON_NUM ];
 
-	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_ZUKAN_COMMON_RESOBJ_NUM ];	// ResourceƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_ZUKAN_COMMON_RESOBJ_NUM ];	// Resourceã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
 } ZKN_ZUKAN_COMMON_SUB_DRAW;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_ZUKAN_COMMON_SUB_GLB* MakeZukanCommonSubGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -1643,7 +1643,7 @@ static int ZukanCommonSubEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanCommonSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -1654,17 +1654,17 @@ static int ZknZukanCommonSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DAT
 static int ZknZukanCommonSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
 
-// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“•ÏXˆ—
+// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å¤‰æ›´å‡¦ç†
 static BOOL ZknZukanCommonSubApplyChange( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb, int apply, int last_apply );
 
-// ƒ{ƒ^ƒ“§Œä
+// ãƒœã‚¿ãƒ³åˆ¶å¾¡
 static void ZknZukanCommonSubButtonMake( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_ZUKAN_COMMON_SUB_GLB* p_glb, int heap );
 static void ZknZukanCommonSubButtonEventBuffInit( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb );
 static void ZknZukanCommonSubButtonMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_ZUKAN_COMMON_SUB_GLB* p_glb );
 static void ZknZukanCommonSubButtonDelete( ZKN_ZUKAN_COMMON_SUB_WORK* p_work );
 static void ZknZukanCommonSubButtonCallBack( u32 button_no, u32 event, void* p_work );
 
-// ƒJ[ƒ\ƒ‹§Œä
+// ã‚«ãƒ¼ã‚½ãƒ«åˆ¶å¾¡
 static void ZknZukanCommonSubCursorMake( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_ZUKAN_COMMON_SUB_GLB* p_glb, int heap );
 static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_ZUKAN_COMMON_SUB_GLB* p_glb );
 static void ZknZukanCommonSubCursorDelete( ZKN_ZUKAN_COMMON_SUB_WORK* p_work );
@@ -1683,32 +1683,32 @@ static void ZknZukanCommonSubOtherDoMain( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb );
 static void ZknZUkanCommonSubKeyFlagReset( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb );
 
 
-// Resource“Ç‚İ‚İˆ—
+// Resourceèª­ã¿è¾¼ã¿å‡¦ç†
 static void ZknZukanCommonSubResourceLoad( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb, const ZKN_ZUKAN_COMMON_SUB_GLB* cp_glb, int heap );
 static void ZknZukanCommonSubResourceDelete( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb );
 static void ZknZukanCommonSubSetUpBG( ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb, const ZKN_ZUKAN_COMMON_SUB_GLB* cp_glb, int heap );
 static void ZknZukanCommonSubLoadOam( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb, int heap );
 static void ZknZukanCommonSubReleaseOam( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb );
 
-// ƒZƒ‹ƒAƒNƒ^[“o˜^
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 static void ZknZukanCommonSubAddClact( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb, int heap );
 static void ZknZukanCommonSubDeleteClact( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw );
 
-// ƒOƒ‰ƒtƒBƒbƒNƒpƒ^[ƒ“ƒ{ƒ^ƒ“‚Ì•`‰æONOFF
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒœã‚¿ãƒ³ã®æç”»ONOFF
 static void ZknZukanCommonSubSetGraVerButtonDrawFlag( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, const ZKN_ZUKAN_COMMON_SUB_GLB* cp_glb );
 
-// FONTOAMì¬
+// FONTOAMä½œæˆ
 static void ZknZukanCommonSubAddFontOam( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb, int heap );
 static void ZknZukanCommonSubDeleteFontOam( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw );
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@ƒAƒvƒŠì¬
+ *	@brief	å›³é‘‘å…±é€šã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		g—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -1741,9 +1741,9 @@ void ZKN_ZukanCommonSubAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int h
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -1760,12 +1760,12 @@ void ZKN_ZukanCommonSubAplDelete( ZKN_APL_DATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒuƒ‰ƒCƒgƒlƒX‚µ‚æ‚¤ƒtƒ‰ƒOƒ`ƒFƒbƒN
+ *	@brief	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã—ã‚ˆã†ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  *	
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	g—p‹–‰Â
- *	@retval	FALSE	g—p•s‰Â”\
+ *	@retval	TRUE	ä½¿ç”¨è¨±å¯
+ *	@retval	FALSE	ä½¿ç”¨ä¸å¯èƒ½
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_ZukanCommonSubBrightnessOnFlagGet( const ZKN_APL_DATA* cp_glb )
@@ -1776,12 +1776,12 @@ BOOL ZKN_ZukanCommonSubBrightnessOnFlagGet( const ZKN_APL_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‚µ‚Ä‚æ‚¢‚©ƒ`ƒFƒbƒN
+ *	@brief	å‹•ä½œã—ã¦ã‚ˆã„ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_glb	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	cp_glb	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	“®ìOK
- *	@retval	FALSE	“®ìNG
+ *	@retval	TRUE	å‹•ä½œOK
+ *	@retval	FALSE	å‹•ä½œNG
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_ZukanCommonSubMoveFlagGet( const ZKN_APL_DATA* cp_glb )
@@ -1793,10 +1793,10 @@ BOOL ZKN_ZukanCommonSubMoveFlagGet( const ZKN_APL_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹“®ì‚ªƒTƒu‰æ–Ê‚É‘JˆÚ‚µ‚Ä‚¢‚é‚©İ’è
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œãŒã‚µãƒ–ç”»é¢ã«é·ç§»ã—ã¦ã„ã‚‹ã‹è¨­å®š
  *
- *	@param	p_glb	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	flag	TRUE	“®ìOK	FALSE@“®ìNG
+ *	@param	p_glb	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	flag	TRUE	å‹•ä½œOK	FALSEã€€å‹•ä½œNG
  */
 //-----------------------------------------------------------------------------
 void ZKN_ZukanCommonSubCursorFlagSet( ZKN_APL_DATA* p_glb, BOOL flag )
@@ -1807,12 +1807,12 @@ void ZKN_ZukanCommonSubCursorFlagSet( ZKN_APL_DATA* p_glb, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹“®ì‚µ‚Ä‚æ‚¢‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œã—ã¦ã‚ˆã„ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_glb	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	cp_glb	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	“®ìOK
- *	@retval	FALSE	“®ìNG
+ *	@retval	TRUE	å‹•ä½œOK
+ *	@retval	FALSE	å‹•ä½œNG
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_ZukanCommonSubCursorFlagGet( const ZKN_APL_DATA* cp_glb )
@@ -1825,18 +1825,18 @@ BOOL ZKN_ZukanCommonSubCursorFlagGet( const ZKN_APL_DATA* cp_glb )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	å›³é‘‘å…±é€šã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1850,14 +1850,14 @@ static ZKN_ZUKAN_COMMON_SUB_GLB* MakeZukanCommonSubGlb( int heap, ZKN_SYS_PTR zk
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_ZUKAN_COMMON_SUB_GLB) );
 
-	// ƒCƒxƒ“ƒgƒL[
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrSubCommon( zkn_sys );		
 
-	// ƒƒCƒ“‰æ–ÊƒRƒ‚ƒ“ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚³ãƒ¢ãƒ³ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_COMMON );
 	p_glb->p_main_common_glb = p_apl->p_glb_data;							
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
 	
@@ -1866,12 +1866,12 @@ static ZKN_ZUKAN_COMMON_SUB_GLB* MakeZukanCommonSubGlb( int heap, ZKN_SYS_PTR zk
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static ZKN_ZUKAN_COMMON_SUB_DRAWGLB* MakeZukanCommonSubDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
@@ -1883,7 +1883,7 @@ static ZKN_ZUKAN_COMMON_SUB_DRAWGLB* MakeZukanCommonSubDrawGlb( int heap, ZKN_SY
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_ZUKAN_COMMON_SUB_DRAWGLB) );
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 	return p_glb;
@@ -1892,12 +1892,12 @@ static ZKN_ZUKAN_COMMON_SUB_DRAWGLB* MakeZukanCommonSubDrawGlb( int heap, ZKN_SY
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@ƒCƒxƒ“ƒgì¬
+ *	@brief	å›³é‘‘å…±é€šã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		g—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1910,9 +1910,9 @@ static ZKN_EVENT_DATA* MakeZukanCommonSubEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	å›³é‘‘å…±é€šã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -1928,9 +1928,9 @@ static void DeleteZukanCommonSubGlb( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	å›³é‘‘å…±é€šã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -1946,9 +1946,9 @@ static void DeleteZukanCommonSubDrawGlb( ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’Ê@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	å›³é‘‘å…±é€šã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -1962,11 +1962,11 @@ static void DeleteZukanCommonSubEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‹¤’ÊƒAƒvƒŠ@ƒCƒxƒ“ƒg”æ“¾
+ *	@brief	å›³é‘‘å…±é€šã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	}ŠÓ‹¤’ÊƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	å›³é‘‘å…±é€šã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -1979,19 +1979,19 @@ static int ZukanCommonSubEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -2001,20 +2001,20 @@ static int ZknZukanCommonSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_
 	ZKN_ZUKAN_COMMON_SUB_GLB* p_glb = p_glbdata;
 	ZKN_ZUKAN_COMMON_SUB_WORK* p_work = p_dodata->p_work;
 	int i;
-	// ƒ[ƒN‚Ìì¬
+	// ãƒ¯ãƒ¼ã‚¯ã®ä½œæˆ
 	p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_ZUKAN_COMMON_SUB_WORK) );
 	memset( p_work, 0, sizeof(ZKN_ZUKAN_COMMON_SUB_WORK) );
 
 
-	// ƒ{ƒ^ƒ“ƒJ[ƒ\ƒ‹‚ğì¬
+	// ãƒœã‚¿ãƒ³ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä½œæˆ
 	ZknZukanCommonSubButtonMake( p_work, p_glb, p_dodata->heap );
 	ZknZukanCommonSubCursorMake( p_work, p_glb, p_dodata->heap );
 	ZknZukanCommonSubCursorInit( p_work, p_glb );
 
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 	for( i=0; i<ZKN_ZUKAN_COMMON_SUB_BUTTON_NUM; i++ ){
-		p_glb->button_event[ i ] = ZKN_UTIL_BUTTON_PUSH_NONE;	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
+		p_glb->button_event[ i ] = ZKN_UTIL_BUTTON_PUSH_NONE;	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 	}
 
 
@@ -2025,14 +2025,14 @@ static int ZknZukanCommonSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -2043,9 +2043,9 @@ static int ZknZukanCommonSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_
 	ZKN_ZUKAN_COMMON_SUB_WORK* p_work = p_dodata->p_work;
 
 
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
-		// ƒTƒuƒAƒvƒŠ‚Ìƒuƒ‰ƒCƒgƒlƒXg—p‚ğ”ñ‹–‰Â
+		// ã‚µãƒ–ã‚¢ãƒ—ãƒªã®ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ä½¿ç”¨ã‚’éè¨±å¯
 		p_glb->sub_apply_brightness_on = FALSE;
 
 		return ZKN_PROC_TRUE;
@@ -2056,44 +2056,44 @@ static int ZknZukanCommonSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_
 		return ZKN_PROC_FALSE;
 	}
 
-	// seq==0‰Šú‰»
+	// seq==0åˆæœŸåŒ–
 	if( p_dodata->seq == 0 ){
-		// ƒTƒuƒAƒvƒŠ‚Ìƒuƒ‰ƒCƒgƒlƒXg—p‚ğ‹–‰Â
+		// ã‚µãƒ–ã‚¢ãƒ—ãƒªã®ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ä½¿ç”¨ã‚’è¨±å¯
 		p_glb->sub_apply_brightness_on = TRUE;
 
-		// ƒpƒŒƒbƒg“Ç‚İ‚İÏ‚İ
+		// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ¸ˆã¿
 		p_glb->p_main_common_glb->pal_load_flag = FALSE;
 
-		// “®ìƒtƒ‰ƒOİ’è
-		p_glb->sub_common_sub_mode_flag = TRUE;	// “®ì‹–‰Â
+		// å‹•ä½œãƒ•ãƒ©ã‚°è¨­å®š
+		p_glb->sub_common_sub_mode_flag = TRUE;	// å‹•ä½œè¨±å¯
 
 		
 		p_dodata->seq++;
 	}else{
 
 #if S2418_060817_FIX
-		//  ZknZukanCommonSubApplyChange‚Å
-		// —‚Æ‚µ‚½Aƒtƒ‰ƒO‚ğŒ³‚É–ß‚·
+		//  ZknZukanCommonSubApplyChangeã§
+		// è½ã¨ã—ãŸã€ãƒ•ãƒ©ã‚°ã‚’å…ƒã«æˆ»ã™
 		p_glb->sub_common_sub_mode_flag = TRUE;
 #endif	// S2418_060817_FIX
 
-		// ˆ—•ªŠò“®ì
+		// å‡¦ç†åˆ†å²å‹•ä½œ
 		ZknZukanCommonSubProcDoFuncMainMain( p_glb );
 
-		// ƒJ[ƒ\ƒ‹‚ğƒƒCƒ“ƒAƒvƒŠ@ƒTƒuƒAƒvƒŠ‚É‘€ì‚ğ‹–‚·•ªŠòˆ—
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚’ãƒ¡ã‚¤ãƒ³ã‚¢ãƒ—ãƒªã€€ã‚µãƒ–ã‚¢ãƒ—ãƒªã«æ“ä½œã‚’è¨±ã™åˆ†å²å‡¦ç†
 		ZknZukanCommonSubCursorKeyMove( p_work, p_glb );
 
-		// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒoƒbƒtƒ@‰Šú‰»
+		// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 		ZknZukanCommonSubButtonEventBuffInit( p_glb );
 
-		// ƒJ[ƒ\ƒ‹“®ì
+		// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
 		if( (ZKN_GLBDATA_TouchCursorFlagGet( p_glb->p_glb ) == ZKN_TCHCUSO_CURSOR) &&
 			(p_glb->sub_cursor_flag == FALSE) ){
 
 			ZknZukanCommonSubCursorMove( p_work, p_glb );
 		}
 
-		// ƒ{ƒ^ƒ““®ì
+		// ãƒœã‚¿ãƒ³å‹•ä½œ
 		ZknZukanCommonSubButtonMove( p_work, p_glb );
 	}
 
@@ -2103,14 +2103,14 @@ static int ZknZukanCommonSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -2120,12 +2120,12 @@ static int ZknZukanCommonSubProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* 
 	ZKN_ZUKAN_COMMON_SUB_GLB* p_glb = p_glbdata;
 	ZKN_ZUKAN_COMMON_SUB_WORK* p_work = p_dodata->p_work;
 
-	// ƒ{ƒ^ƒ“ƒJ[ƒ\ƒ‹”jŠü
+	// ãƒœã‚¿ãƒ³ã‚«ãƒ¼ã‚½ãƒ«ç ´æ£„
 	ZknZukanCommonSubButtonDelete( p_work );
 	ZknZukanCommonSubCursorDelete( p_work );
 	
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_dodata->p_work );
 	p_dodata->p_work = NULL;
 	
@@ -2134,17 +2134,17 @@ static int ZknZukanCommonSubProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* 
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanCommonSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata )
@@ -2163,7 +2163,7 @@ static int ZknZukanCommonSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DAT
 		
 	case ZKN_ZUKAN_COMMON_SUB_SEQINIT_LOAD:
 
-		//@ƒ‚[ƒhƒ`ƒFƒbƒN
+		//ã€€ãƒ¢ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 		ZknZukanCommonSubResourceLoad( p_drawwork, p_drawglb, cp_dataglb,  p_drawdata->heap );
 
 		p_drawdata->seq++;
@@ -2173,7 +2173,7 @@ static int ZknZukanCommonSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DAT
 		ChangeBrightnessRequest( ZKN_FADE_SYNC_LONG_COMMON,
 				BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, PLANEMASK_ALL, MASK_SUB_DISPLAY );
 
-		// ƒJ[ƒ\ƒ‹‰Šú‰»
+		// ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–
 		ZknZukanCommonSubCursorDrawInit( p_drawglb, cp_datawork, cp_dataglb );
 		p_drawdata->seq++;
 		break;
@@ -2196,17 +2196,17 @@ static int ZknZukanCommonSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DAT
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanCommonSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata )
@@ -2215,15 +2215,15 @@ static int ZknZukanCommonSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DAT
 	const ZKN_ZUKAN_COMMON_SUB_WORK* cp_datawork = cp_dodata->p_work;
 	ZKN_ZUKAN_COMMON_SUB_DRAWGLB*	p_drawglb = p_glbdraw;
 	ZKN_ZUKAN_COMMON_SUB_DRAW*		p_drawwork = p_drawdata->p_work;
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
-	// ƒ{ƒ^ƒ““®ì
+	// ãƒœã‚¿ãƒ³å‹•ä½œ
 	for( i=0; i<ZKN_ZUKAN_COMMON_SUB_BUTTON_NUM; i++ ){
 		ZKN_UTIL_ButtonMove( p_drawwork->clact[ i ],
 				cp_dataglb->button_event[ i ] );
 	}
 	
-	// ƒJ[ƒ\ƒ‹“®ì
+	// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
 	ZknZukanCommonSubCursorDrawPack( p_drawglb, cp_datawork, cp_dataglb );
 	
 	
@@ -2232,17 +2232,17 @@ static int ZknZukanCommonSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DAT
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanCommonSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata )
@@ -2269,7 +2269,7 @@ static int ZknZukanCommonSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_D
 	case ZKN_ZUKAN_COMMON_SUB_SEQDELETE_RELEASE:
 		ZknZukanCommonSubResourceDelete( p_drawwork, p_drawglb );
 
-		// ƒJ[ƒ\ƒ‹”ñ•\¦
+		// ã‚«ãƒ¼ã‚½ãƒ«éè¡¨ç¤º
 		ZKN_UTIL_CursorSetDrawFlag( &p_drawglb->p_drawglb->cursor, FALSE );
 		p_drawdata->seq++;
 		break;
@@ -2296,21 +2296,21 @@ static int ZknZukanCommonSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_D
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒ^ƒbƒ`ƒf[ƒ^ì¬
+ *	@brief	ãƒœã‚¿ãƒ³ã‚¿ãƒƒãƒãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap	ƒq[ƒv
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanCommonSubButtonMake( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_ZUKAN_COMMON_SUB_GLB* p_glb, int heap )
 {
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_work->hit_tbl = sys_AllocMemory( heap, sizeof(TP_HIT_TBL) * ZKN_ZUKAN_COMMON_SUB_BUTTON_NUM );
 
-	// ƒe[ƒuƒ‹ƒf[ƒ^İ’è
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl[ ZKN_ZUKAN_COMMON_SUB_BUTTON_DATA ],
 			ZKN_ZUKAN_COMMON_SUB_BUTTON_Y - (ZKN_ZUKAN_COMMON_SUB_BUTTON_SIZY/2),
 			ZKN_ZUKAN_COMMON_SUB_BUTTON_Y + (ZKN_ZUKAN_COMMON_SUB_BUTTON_SIZY/2),
@@ -2350,7 +2350,7 @@ static void ZknZukanCommonSubButtonMake( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 	p_work->button_work.p_glb = p_glb;
 	p_work->button_work.p_work = p_work;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_work->p_button_man = BMN_Create( 
 			p_work->hit_tbl,
 			ZKN_ZUKAN_COMMON_SUB_BUTTON_NUM,
@@ -2361,7 +2361,7 @@ static void ZknZukanCommonSubButtonMake( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒoƒbƒtƒ@‰Šú‰»ˆ—
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–å‡¦ç†
  *
  *	@param	p_glb 
  *
@@ -2372,7 +2372,7 @@ static void ZknZukanCommonSubButtonEventBuffInit( ZKN_ZUKAN_COMMON_SUB_GLB* p_gl
 {
 	int i;
 	
-	// •ú‚³‚ê‚½‚ç‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªŒ³‚ÌŠG‚É–ß‚é
+	// æ”¾ã•ã‚ŒãŸã‚‰å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒå…ƒã®çµµã«æˆ»ã‚‹
 	for( i = 0; i < ZKN_ZUKAN_COMMON_SUB_BUTTON_NUM; i++ ){
 		p_glb->button_event[ i ] = BMN_EVENT_SLIDEOUT;
 	}
@@ -2380,10 +2380,10 @@ static void ZknZukanCommonSubButtonEventBuffInit( ZKN_ZUKAN_COMMON_SUB_GLB* p_gl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ““®ì
+ *	@brief	ãƒœã‚¿ãƒ³å‹•ä½œ
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -2391,20 +2391,20 @@ static void ZknZukanCommonSubButtonEventBuffInit( ZKN_ZUKAN_COMMON_SUB_GLB* p_gl
 static void ZknZukanCommonSubButtonMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_ZUKAN_COMMON_SUB_GLB* p_glb )
 {
 	
-	// ‚·‚Å‚ÉI‚í‚éƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚½ê‡A
-	// ƒ{ƒ^ƒ“‚Ìƒ^ƒbƒ`‚Í”»’f‚µ‚È‚¢
+	// ã™ã§ã«çµ‚ã‚ã‚‹ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ãŸå ´åˆã€
+	// ãƒœã‚¿ãƒ³ã®ã‚¿ãƒƒãƒã¯åˆ¤æ–­ã—ãªã„
 	if( p_glb->back_key_push == FALSE ){
 		BMN_Main( p_work->p_button_man );
 	}
 
-	// ƒL[‚ÅI‚í‚é•ªŠò‚És‚Á‚½‚çI‚í‚é‚Ìƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½ó‘Ô‚É‚·‚é
+	// ã‚­ãƒ¼ã§çµ‚ã‚ã‚‹åˆ†å²ã«è¡Œã£ãŸã‚‰çµ‚ã‚ã‚‹ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸçŠ¶æ…‹ã«ã™ã‚‹
 	if( p_glb->back_key_push ){
 		if( p_glb->button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_BACK ] != BMN_EVENT_HOLD ){
 			p_glb->button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_BACK ] = BMN_EVENT_RELEASE;
 		}
 	}
 
-	// ¡‘I‘ğ’†‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ìƒ{ƒ^ƒ“‚Í‰Ÿ‚µ‚Á‚Ï‚È‚µ‚É‚·‚é
+	// ä»Šé¸æŠä¸­ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒœã‚¿ãƒ³ã¯æŠ¼ã—ã£ã±ãªã—ã«ã™ã‚‹
 	switch( p_glb->p_main_common_glb->now_apply ){
 	case ZKN_ZUKAN_COMMON_APL_ZUKAN00:
 		if( p_glb->button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_DATA ] != BMN_EVENT_HOLD ){
@@ -2437,7 +2437,7 @@ static void ZknZukanCommonSubButtonMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 		break;
 
 	default:
-		// ‚¨‚©‚µ‚¢
+		// ãŠã‹ã—ã„
 		GF_ASSERT(0);
 		break;
 	}
@@ -2445,9 +2445,9 @@ static void ZknZukanCommonSubButtonMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“”jŠü
+ *	@brief	ãƒœã‚¿ãƒ³ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2456,18 +2456,18 @@ static void ZknZukanCommonSubButtonDelete( ZKN_ZUKAN_COMMON_SUB_WORK* p_work )
 {
 	BMN_Delete( p_work->p_button_man );
 
-	// ƒe[ƒuƒ‹ƒ[ƒN”jŠü
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_work->hit_tbl );
 	p_work->hit_tbl = NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	button_no	ƒ{ƒ^ƒ“ƒiƒ“ƒo[
- *	@param	event		ƒCƒxƒ“ƒgƒ^ƒCƒv
- *	@param	p_work		ƒ[ƒN
+ *	@param	button_no	ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2479,7 +2479,7 @@ static void ZknZukanCommonSubButtonCallBack( u32 button_no, u32 event, void* p_w
 	ZKN_ZUKAN_COMMON_SUB_WORK* p_subwork = p_button_work->p_work;
 	ZKN_ZUKAN_COMMON_GLB* p_main_glb = p_glb->p_main_common_glb;
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgŠi”[
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆæ ¼ç´
 	p_glb->button_event[ button_no ] = event;
 	
 	switch( event ){
@@ -2488,15 +2488,15 @@ static void ZknZukanCommonSubButtonCallBack( u32 button_no, u32 event, void* p_w
 		break;
 		
 	case BMN_EVENT_HOLD:
-		// ƒJ[ƒ\ƒ‹‚ğ‚»‚ÌˆÊ’u‚Éİ’è
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚’ãã®ä½ç½®ã«è¨­å®š
 		ZKN_CURSOR_Cont( p_subwork->p_cursor, ZKN_CURSOR_CONT_SET_X, button_no );
 
 		switch( button_no ){
 		case ZKN_ZUKAN_COMMON_SUB_BUTTON_BACK:
-			// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚É–ß‚é
-			// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ö
+			// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã«æˆ»ã‚‹
+			// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã¸
 			ZknZukanCommon_MainChangePokelist( p_main_glb );
-			// ‘I‘ğˆÚ“®‰¹
+			// é¸æŠç§»å‹•éŸ³
 			Snd_SePlay( ZKN_SND_CANCEL );
 
 			break;
@@ -2506,7 +2506,7 @@ static void ZknZukanCommonSubButtonCallBack( u32 button_no, u32 event, void* p_w
 				ZknZukanCommonSubApplyChange( p_glb, ZKN_ZUKAN_COMMON_APL_ZUKAN00, p_main_glb->now_apply );
 				
 				ZknZukanCommonSubCursorInit( p_subwork, p_glb );
-				// ‘I‘ğˆÚ“®‰¹
+				// é¸æŠç§»å‹•éŸ³
 				Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 			}
 			break;
@@ -2515,7 +2515,7 @@ static void ZknZukanCommonSubButtonCallBack( u32 button_no, u32 event, void* p_w
 			if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_RANGE ){	
 				ZknZukanCommonSubApplyChange( p_glb, ZKN_ZUKAN_COMMON_APL_RANGE, p_main_glb->now_apply );
 				ZknZukanCommonSubCursorInit( p_subwork, p_glb );
-				// ‘I‘ğˆÚ“®‰¹
+				// é¸æŠç§»å‹•éŸ³
 				Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 			}
 			break;
@@ -2524,7 +2524,7 @@ static void ZknZukanCommonSubButtonCallBack( u32 button_no, u32 event, void* p_w
 			if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_SOUND ){	
 				ZknZukanCommonSubApplyChange( p_glb, ZKN_ZUKAN_COMMON_APL_SOUND, p_main_glb->now_apply );
 				ZknZukanCommonSubCursorInit( p_subwork, p_glb );
-				// ‘I‘ğˆÚ“®‰¹
+				// é¸æŠç§»å‹•éŸ³
 				Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 			}
 			break;
@@ -2532,16 +2532,16 @@ static void ZknZukanCommonSubButtonCallBack( u32 button_no, u32 event, void* p_w
 		case ZKN_ZUKAN_COMMON_SUB_BUTTON_BIG:
 			if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_BIG ){	
 
-				// ‚¿‚á‚ñ‚Æ•ÏX‚³‚ê‚é‚©ƒ`ƒFƒbƒN
+				// ã¡ã‚ƒã‚“ã¨å¤‰æ›´ã•ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if( ZknZukanCommonSubApplyChange( p_glb, ZKN_ZUKAN_COMMON_APL_BIG, p_main_glb->now_apply ) ){
 					ZknZukanCommonSubCursorInit( p_subwork, p_glb );
-					// ‘I‘ğˆÚ“®‰¹
+					// é¸æŠç§»å‹•éŸ³
 					Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 				}else{
 					if( p_subwork->button_cancel_flg == 0 ){
 						
-						if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_SOUND ){	// –Â‚«º‰æ–Ê‚È‚ç‚È‚ç‚³‚È‚¢
-							// ƒLƒƒƒ“ƒZƒ‹‰¹
+						if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_SOUND ){	// é³´ãå£°ç”»é¢ãªã‚‰ãªã‚‰ã•ãªã„
+							// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 							Snd_SePlay( ZKN_SND_CANCEL );
 						}
 						p_subwork->button_cancel_flg = 1;
@@ -2553,19 +2553,19 @@ static void ZknZukanCommonSubButtonCallBack( u32 button_no, u32 event, void* p_w
 		case ZKN_ZUKAN_COMMON_SUB_BUTTON_GRAPHIC:
 			if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_GRAPHIC ){
 
-				// ‚¿‚á‚ñ‚Æ•ÏX‚³‚ê‚é‚©ƒ`ƒFƒbƒN
+				// ã¡ã‚ƒã‚“ã¨å¤‰æ›´ã•ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if( ZknZukanCommonSubApplyChange( p_glb, ZKN_ZUKAN_COMMON_APL_GRAPHIC, p_main_glb->now_apply ) ){
 					ZknZukanCommonSubCursorInit( p_subwork, p_glb );
-					// ‘I‘ğˆÚ“®‰¹
+					// é¸æŠç§»å‹•éŸ³
 					Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 				}else{
 					if( p_subwork->button_cancel_flg == 0 ){
 
-						// ƒo[ƒWƒ‡ƒ“ƒAƒbƒvƒ`ƒFƒbƒN
+						// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—ãƒã‚§ãƒƒã‚¯
 						if( ZKN_GLBDATA_PokeGraphicVersionFlagGet( p_main_glb->p_glb ) == TRUE ){
 
-							if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_SOUND ){	// –Â‚«º‰æ–Ê‚È‚ç‚È‚ç‚³‚È‚¢
-								// ƒLƒƒƒ“ƒZƒ‹‰¹
+							if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_SOUND ){	// é³´ãå£°ç”»é¢ãªã‚‰ãªã‚‰ã•ãªã„
+								// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 								Snd_SePlay( ZKN_SND_CANCEL );
 							}
 						}
@@ -2589,66 +2589,66 @@ static void ZknZukanCommonSubButtonCallBack( u32 button_no, u32 event, void* p_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–ÊResource“Ç‚İ‚İ
+ *	@brief	ã‚µãƒ–ç”»é¢Resourceèª­ã¿è¾¼ã¿
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap			ƒq[ƒv
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanCommonSubResourceLoad( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb, const ZKN_ZUKAN_COMMON_SUB_GLB* cp_glb, int heap )
 {
-	// BGƒZƒbƒgƒAƒbƒv
+	// BGã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	ZknZukanCommonSubSetUpBG( p_drawglb, cp_glb, heap );
 
-	// OAMƒZƒbƒgƒAƒbƒv
+	// OAMã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	ZknZukanCommonSubLoadOam( p_draw, p_drawglb, heap );
 
 
-	// ƒZƒ‹“o˜^
+	// ã‚»ãƒ«ç™»éŒ²
 	ZknZukanCommonSubAddClact( p_draw, p_drawglb, heap );
 
-	// FONTOAM“o˜^
+	// FONTOAMç™»éŒ²
 	ZknZukanCommonSubAddFontOam( p_draw, p_drawglb, heap );
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“ƒ{ƒ^ƒ“‚Ì”ñ•\¦
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒœã‚¿ãƒ³ã®éè¡¨ç¤º
 	ZknZukanCommonSubSetGraVerButtonDrawFlag( p_draw, cp_glb );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–ÊResource”jŠü
+ *	@brief	ã‚µãƒ–ç”»é¢Resourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanCommonSubResourceDelete( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb )
 {
-	// FONTOAM”jŠü
+	// FONTOAMç ´æ£„
 	ZknZukanCommonSubDeleteFontOam( p_draw );
 	
-	// ƒZƒ‹”jŠü
+	// ã‚»ãƒ«ç ´æ£„
 	ZknZukanCommonSubDeleteClact( p_draw );
 	
-	// OAMResourcey”jŠü
+	// OAMResourceyç ´æ£„
 	ZknZukanCommonSubReleaseOam( p_draw, p_drawglb );
 
-	// ƒ†[ƒeƒBƒŠƒeƒB–ÊƒXƒNƒŠ[ƒ“ƒf[ƒ^‰Šú‰»
+	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_UTIL_S );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–Ê‹¤’Ê•”•ªBGƒZƒbƒgƒAƒbƒv
+ *	@brief	ã‚µãƒ–ç”»é¢å…±é€šéƒ¨åˆ†BGã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *	@param	cp_glb
- *	@param	heap		ƒq[ƒv 
+ *	@param	heap		ãƒ’ãƒ¼ãƒ— 
  *
  *	@return	none
  */
@@ -2659,40 +2659,40 @@ static void ZknZukanCommonSubSetUpBG( ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb, c
 	NNSG2dScreenData* p_scrn;
 
 	if( cp_glb->p_main_common_glb->pal_load_flag ){
-		// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 		ZKN_GLBDATA_PalSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_NCLR, PALTYPE_SUB_BG, 0, 0, heap );
 
-		// ‘S‘}ŠÓ‚Ì‚ÍF‚ğ•Ï‚¦‚é
+		// å…¨å›½å›³é‘‘ã®æ™‚ã¯è‰²ã‚’å¤‰ãˆã‚‹
 		if( ZKN_GLBDATA_PokeZknModeGet( cp_glb->p_glb ) == ZKN_MODE_ZENKOKU ){
 			ZKN_GLBDATA_PalSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_zen_NCLR, PALTYPE_SUB_BG, 0, 32, heap );
 		}
 	}
 	
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_sub_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_UTIL_S, 0, 0, TRUE, heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_bg_sub1_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_UTIL_S,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_UTIL_S );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–ÊOAMResource“Ç‚İ‚İ
+ *	@brief	ã‚µãƒ–ç”»é¢OAMResourceèª­ã¿è¾¼ã¿
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[‚Î‚é
- *	@param	heap			ƒq[ƒv
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ã°ã‚‹
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -2702,38 +2702,38 @@ static void ZknZukanCommonSubLoadOam( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZUK
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_drawglb );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_sub_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_data_oam_sub_lzh_NCGR + ZKN_ZUKAN_COMMON_SUB_RES_ID_OFS,
 			NNS_G2D_VRAM_TYPE_2DSUB, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_sub_NCLR, FALSE, 
 			NARC_zukan_zkn_data_oam_sub_NCLR + ZKN_ZUKAN_COMMON_SUB_RES_ID_OFS, 
 			NNS_G2D_VRAM_TYPE_2DSUB, 
 			ZKN_ZUKAN_COMMON_PLTT_SUB_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_draw->res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_sub_lzh_NCER, TRUE,
 			NARC_zukan_zkn_data_oam_sub_lzh_NCER + ZKN_ZUKAN_COMMON_SUB_RES_ID_OFS,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_data_oam_sub_lzh_NANR, TRUE,
@@ -2743,10 +2743,10 @@ static void ZknZukanCommonSubLoadOam( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZUK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–ÊOAMResource”jŠü
+ *	@brief	ã‚µãƒ–ç”»é¢OAMResourceç ´æ£„
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -2759,7 +2759,7 @@ static void ZknZukanCommonSubReleaseOam( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -2776,11 +2776,11 @@ static void ZknZukanCommonSubReleaseOam( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -2792,8 +2792,8 @@ static void ZknZukanCommonSubAddClact( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZU
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_drawglb;
 	int i;
 	
-	// Šeƒ{ƒ^ƒ“‚ğ“o˜^
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// å„ãƒœã‚¿ãƒ³ã‚’ç™»éŒ²
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_data_oam_sub_lzh_NCGR + ZKN_ZUKAN_COMMON_SUB_RES_ID_OFS,
 			NARC_zukan_zkn_data_oam_sub_NCLR + ZKN_ZUKAN_COMMON_SUB_RES_ID_OFS, 
@@ -2806,7 +2806,7 @@ static void ZknZukanCommonSubAddClact( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZU
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ğİ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= 32;
@@ -2814,9 +2814,9 @@ static void ZknZukanCommonSubAddClact( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZU
 	add.heap		= heap;
 	add.mat.y		= (ZKN_ZUKAN_COMMON_SUB_BUTTON_Y * FX32_ONE) + SUB_SURFACE_Y;
 	
-	// ƒ{ƒ^ƒ“ì¬
+	// ãƒœã‚¿ãƒ³ä½œæˆ
 	for( i=0; i<ZKN_ZUKAN_COMMON_SUB_BUTTON_NUM; i++ ){
-		// “o˜^À•Wİ’è
+		// ç™»éŒ²åº§æ¨™è¨­å®š
 		switch( i ){
 		case ZKN_ZUKAN_COMMON_SUB_BUTTON_BACK:
 			add.mat.x		= ZKN_ZUKAN_COMMON_SUB_BUTTON_BACK_X * FX32_ONE;
@@ -2843,7 +2843,7 @@ static void ZknZukanCommonSubAddClact( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZU
 			break;
 		}
 
-		// “o˜^@ƒAƒjƒ[ƒVƒ‡ƒ“İ’è
+		// ç™»éŒ²ã€€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
 		p_draw->clact[ i ] = CLACT_AddSimple( &add );
 		CLACT_AnmChg( p_draw->clact[ i ], i );
 	}
@@ -2851,9 +2851,9 @@ static void ZknZukanCommonSubAddClact( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_ZU
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2870,11 +2870,11 @@ static void ZknZukanCommonSubDeleteClact( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAMì¬
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -2885,9 +2885,9 @@ static void ZknZukanCommonSubAddFontOam( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2899,9 +2899,9 @@ static void ZknZukanCommonSubDeleteFontOam( ZKN_ZUKAN_COMMON_SUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg‚Ì‚½‚ß‚É”¼“§–¾OAM‚É‚·‚é
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆã®ãŸã‚ã«åŠé€æ˜OAMã«ã™ã‚‹
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2918,9 +2918,9 @@ static void ZknZukanCommonOamFadeInit( ZKN_ZUKAN_COMMON_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”¼“§–¾OAMİ’è‚ğ”jŠü
+ *	@brief	åŠé€æ˜OAMè¨­å®šã‚’ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2938,14 +2938,14 @@ static void ZknZukanCommonOamFadeDelete( ZKN_ZUKAN_COMMON_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–ÊƒAƒvƒŠƒP[ƒVƒ‡ƒ“•ÏXˆ—
+ *	@brief	ã‚µãƒ–ç”»é¢ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å¤‰æ›´å‡¦ç†
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹
- *	@param	apply	•ÏXƒAƒvƒŠƒP[ƒVƒ‡ƒ“
- *	@param	last_apply	‘O‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	apply	å¤‰æ›´ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
+ *	@param	last_apply	å‰ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  *
- *	@retval	TRUE	•ÏX‚µ‚Ü‚·
- *	@retval	FALSE	•ÏX‚µ‚Ü‚¹‚ñ
+ *	@retval	TRUE	å¤‰æ›´ã—ã¾ã™
+ *	@retval	FALSE	å¤‰æ›´ã—ã¾ã›ã‚“
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknZukanCommonSubApplyChange( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb, int apply, int last_apply )
@@ -2957,7 +2957,7 @@ static BOOL ZknZukanCommonSubApplyChange( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb, int a
 
 #if S2418_060817_FIX
 	if( ret == TRUE ){
-		p_glb->sub_common_sub_mode_flag = FALSE;	// “®ì‚ğ”F‚ß‚È‚¢
+		p_glb->sub_common_sub_mode_flag = FALSE;	// å‹•ä½œã‚’èªã‚ãªã„
 	}
 #endif
 	
@@ -2966,9 +2966,9 @@ static BOOL ZknZukanCommonSubApplyChange( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb, int a
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ŠÖ”@ƒƒCƒ“
+ *	@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°ã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -2982,7 +2982,7 @@ static void ZknZukanCommonSubProcDoFuncMainMain( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚Ì‘¼‹¤’ÊƒAƒvƒŠ‚ÌƒƒCƒ““®ì
+ *	@brief	ãã®ä»–å…±é€šã‚¢ãƒ—ãƒªã®ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
  *	@param	p_glb 
  *
@@ -2995,16 +2995,16 @@ static void ZknZukanCommonSubOtherDoMain( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb )
 	int last_apply;
 	int next_apply;
 
-	//@ƒL[ƒ{ƒ^ƒ“ƒtƒ‰ƒOƒŠƒZƒbƒg
+	//ã€€ã‚­ãƒ¼ãƒœã‚¿ãƒ³ãƒ•ãƒ©ã‚°ãƒªã‚»ãƒƒãƒˆ
 	ZknZUkanCommonSubKeyFlagReset( p_glb );
 
 
 	if( sys.trg & PAD_BUTTON_B ){
-		// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ö
+		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã¸
 		ZknZukanCommon_MainChangePokelist( p_main_glb );
-		// –ß‚éƒL[ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½
+		// æˆ»ã‚‹ã‚­ãƒ¼ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸ
 		p_glb->back_key_push = TRUE;
-		// ƒLƒƒƒ“ƒZƒ‹‰¹
+		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 		Snd_SePlay( ZKN_SND_CANCEL );
 		return;
 	}
@@ -3012,7 +3012,7 @@ static void ZknZukanCommonSubOtherDoMain( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒL[ƒ{ƒ^ƒ“ƒtƒ‰ƒOƒŠƒZƒbƒg
+ *	@brief	ã‚­ãƒ¼ãƒœã‚¿ãƒ³ãƒ•ãƒ©ã‚°ãƒªã‚»ãƒƒãƒˆ
  *
  *	@param	p_glb 
  *
@@ -3021,7 +3021,7 @@ static void ZknZukanCommonSubOtherDoMain( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb )
 //-----------------------------------------------------------------------------
 static void ZknZUkanCommonSubKeyFlagReset( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb )
 {
-	// –ß‚éƒL[ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚©‰Šú‰»
+	// æˆ»ã‚‹ã‚­ãƒ¼ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã‹åˆæœŸåŒ–
 	p_glb->back_key_push = FALSE;
 
 }
@@ -3029,10 +3029,10 @@ static void ZknZUkanCommonSubKeyFlagReset( ZKN_ZUKAN_COMMON_SUB_GLB* p_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ƒf[ƒ^ì¬
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *	
- *	@param	p_work	ƒ[ƒN
- *	@param	heap	ƒq[ƒv
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -3043,7 +3043,7 @@ static void ZknZukanCommonSubCursorMake( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 
 	p_work->p_cursor_tbl = sys_AllocMemory( heap, sizeof(ZKN_CURSOR_ONEDATA) * ZKN_ZUKAN_COMMON_SUB_CURSOR_NUM );
 
-	// ƒJ[ƒ\ƒ‹ˆÚ“®ƒf[ƒ^İ’è
+	// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	ZKN_CURSOR_SetOneData( 
 			&p_work->p_cursor_tbl[ ZKN_ZUKAN_COMMON_SUB_CURSOR_DATA ],
 			ZKN_ZUKAN_COMMON_SUB_CURSOR_DATA_X, 
@@ -3109,7 +3109,7 @@ static void ZknZukanCommonSubCursorMake( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 			ZKN_CURSOR_MOVE_NORMAL,
 			ZKN_ZUKAN_COMMON_SUB_CURSOR_BACK );
 
-	// ƒJ[ƒ\ƒ‹ƒf[ƒ^İ’è
+	// ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_work->p_cursor = ZKN_CURSOR_Alloc( heap );
 	ZKN_CURSOR_Init( p_work->p_cursor, p_work->p_cursor_tbl,
 			ZKN_ZUKAN_COMMMON_SUB_CURSOR_MAX_X,
@@ -3118,10 +3118,10 @@ static void ZknZukanCommonSubCursorMake( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹“®ì
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -3130,7 +3130,7 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 {
 	ZKN_ZUKAN_COMMON_GLB* p_main_glb = p_glb->p_main_common_glb;
 
-	// Bƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚½‚çÀs‚µ‚È‚¢
+	// Bãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ãŸã‚‰å®Ÿè¡Œã—ãªã„
 	if( p_glb->back_key_push ){
 		return ;
 	}
@@ -3145,7 +3145,7 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 //		Snd_SePlay( ZKN_SND_SELECT );
 	}
 
-	// ƒJ[ƒ\ƒ‹ˆÊ’u‚Ì‹@”\‚ğÀs
+	// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®æ©Ÿèƒ½ã‚’å®Ÿè¡Œ
 	if( sys.trg & PAD_BUTTON_A ){
 
 		switch( ZKN_CURSOR_GetContID( p_work->p_cursor ) ){
@@ -3159,7 +3159,7 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 
 				p_glb->button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_DATA ] = BMN_EVENT_HOLD;
 
-				// ‘I‘ğˆÚ“®‰¹
+				// é¸æŠç§»å‹•éŸ³
 				Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 			}
 			break;
@@ -3174,7 +3174,7 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 
 				p_glb->button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_RANGE ] = BMN_EVENT_HOLD;
 
-				// ‘I‘ğˆÚ“®‰¹
+				// é¸æŠç§»å‹•éŸ³
 				Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 			}
 			break;
@@ -3188,7 +3188,7 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 #endif	// S2418_060817_FIX
 				p_glb->button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_SOUND ] = BMN_EVENT_HOLD;
 
-				// ‘I‘ğˆÚ“®‰¹
+				// é¸æŠç§»å‹•éŸ³
 				Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 			}
 			break;
@@ -3196,7 +3196,7 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 		case ZKN_ZUKAN_COMMON_SUB_CURSOR_BIG:
 			if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_BIG ){
 
-				// ‚¿‚á‚ñ‚Æ•ÏX‚³‚ê‚é‚©ƒ`ƒFƒbƒN
+				// ã¡ã‚ƒã‚“ã¨å¤‰æ›´ã•ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 #if	S2418_060817_FIX
 				if( ZknZukanCommonSubApplyChange( p_glb, ZKN_ZUKAN_COMMON_APL_BIG, p_main_glb->now_apply ) ){
 #else
@@ -3204,12 +3204,12 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 #endif	// S2418_060817_FIX
 					p_glb->button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_BIG ] = BMN_EVENT_HOLD;
 	
-					// ‘I‘ğˆÚ“®‰¹
+					// é¸æŠç§»å‹•éŸ³
 					Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 				}else{
 
-					if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_SOUND ){	// –Â‚«º‰æ–Ê‚È‚ç‚È‚ç‚³‚È‚¢
-						// ƒLƒƒƒ“ƒZƒ‹‰¹
+					if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_SOUND ){	// é³´ãå£°ç”»é¢ãªã‚‰ãªã‚‰ã•ãªã„
+						// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 						Snd_SePlay( ZKN_SND_CANCEL );
 					}
 				}
@@ -3218,7 +3218,7 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 
 		case ZKN_ZUKAN_COMMON_SUB_CURSOR_GRAPHIC:
 			if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_GRAPHIC ){
-				// ‚¿‚á‚ñ‚Æ•ÏX‚³‚ê‚é‚©ƒ`ƒFƒbƒN
+				// ã¡ã‚ƒã‚“ã¨å¤‰æ›´ã•ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 #if	S2418_060817_FIX
 				if( ZknZukanCommonSubApplyChange( p_glb, ZKN_ZUKAN_COMMON_APL_GRAPHIC, p_main_glb->now_apply ) ){
 #else
@@ -3226,12 +3226,12 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 #endif	// S2418_060817_FIX
 					p_glb->button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_GRAPHIC ] = BMN_EVENT_HOLD;	
 	
-					// ‘I‘ğˆÚ“®‰¹
+					// é¸æŠç§»å‹•éŸ³
 					Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 				}else{
 
-					if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_SOUND ){	// –Â‚«º‰æ–Ê‚È‚ç‚È‚ç‚³‚È‚¢
-						// ƒLƒƒƒ“ƒZƒ‹‰¹
+					if( p_main_glb->now_apply != ZKN_ZUKAN_COMMON_APL_SOUND ){	// é³´ãå£°ç”»é¢ãªã‚‰ãªã‚‰ã•ãªã„
+						// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 						Snd_SePlay( ZKN_SND_CANCEL );
 					}
 				}
@@ -3239,12 +3239,12 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 			break;
 			
 		case ZKN_ZUKAN_COMMON_SUB_CURSOR_BACK:
-			// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ö
+			// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã¸
 			ZknZukanCommon_MainChangePokelist( p_main_glb );
-			// –ß‚éƒL[ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½
+			// æˆ»ã‚‹ã‚­ãƒ¼ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸ
 			p_glb->back_key_push = TRUE;
 			p_glb->button_event[ ZKN_ZUKAN_COMMON_SUB_BUTTON_BACK ] = BMN_EVENT_HOLD;
-			// ƒLƒƒƒ“ƒZƒ‹‰¹
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 			Snd_SePlay( ZKN_SND_CANCEL );
 			break;
 		}
@@ -3253,9 +3253,9 @@ static void ZknZukanCommonSubCursorMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -3271,7 +3271,7 @@ static void ZknZukanCommonSubCursorDelete( ZKN_ZUKAN_COMMON_SUB_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹‰Šú‰»ˆ—
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–å‡¦ç†
  *
  *	@param	p_work
  *	@param	p_glb 
@@ -3283,7 +3283,7 @@ static void ZknZukanCommonSubCursorInit( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 {
 	ZKN_ZUKAN_COMMON_GLB* p_main_glb = p_glb->p_main_common_glb;
 
-	// ƒJ[ƒ\ƒ‹‚Ì‘€ì‚Í‹¤’ÊƒAƒvƒŠi©•ªj‚ª‚Â
+	// ã‚«ãƒ¼ã‚½ãƒ«ã®æ“ä½œã¯å…±é€šã‚¢ãƒ—ãƒªï¼ˆè‡ªåˆ†ï¼‰ãŒæŒã¤
 	p_glb->sub_cursor_flag = FALSE;
 
 	switch( p_main_glb->now_apply ){
@@ -3314,10 +3314,10 @@ static void ZknZukanCommonSubCursorInit( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, ZKN_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ˆ—‚ÌƒƒCƒ“ƒTƒu‚ğØ‚è‘Ö‚¦‚é
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«å‡¦ç†ã®ãƒ¡ã‚¤ãƒ³ã‚µãƒ–ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
  *
- *	@param	p_work	@ƒ[ƒN
- *	@param	p_glb	@ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work	ã€€ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -3327,26 +3327,26 @@ static void ZknZukanCommonSubCursorKeyMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, Z
 	ZKN_ZUKAN_COMMON_GLB* p_main_glb = p_glb->p_main_common_glb;
 
 
-	// ˆÈ‰º‚ÌƒAƒvƒŠ‚Ì‚Æ‚«‚ÍƒTƒuƒAƒvƒŠ‚ªƒJ[ƒ\ƒ‹‘€ì‚µ‚È‚¢
+	// ä»¥ä¸‹ã®ã‚¢ãƒ—ãƒªã®ã¨ãã¯ã‚µãƒ–ã‚¢ãƒ—ãƒªãŒã‚«ãƒ¼ã‚½ãƒ«æ“ä½œã—ãªã„
 	if( (p_main_glb->now_apply == ZKN_ZUKAN_COMMON_APL_ZUKAN00) ){
 		return ;
 	}
 
-	// ƒJ[ƒ\ƒ‹“®ìOKí‘Ô‚©ƒ`ƒFƒbƒN
+	// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œOKå¸¸æ…‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_GLBDATA_TouchCursorFlagGet( p_glb->p_glb ) != ZKN_TCHCUSO_CURSOR ){
 		return ;
 	}
 	
-	// ¡‚Ç‚Á‚¿‘¤‚Ì‘€ì‚É‘Î‰‚µ‚Ä‚¢‚é‚Ì‚©ƒ`ƒFƒbƒN
+	// ä»Šã©ã£ã¡å´ã®æ“ä½œã«å¯¾å¿œã—ã¦ã„ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
 	if( (p_glb->sub_cursor_flag == FALSE) ){
 		
-		// ‹¤’ÊƒAƒvƒŠ‚ª‘€ì‚µ‚Ä‚¢‚é
+		// å…±é€šã‚¢ãƒ—ãƒªãŒæ“ä½œã—ã¦ã„ã‚‹
 		if( sys.trg & PAD_KEY_DOWN ){
 			p_glb->sub_cursor_flag = TRUE;
 		}
 	}else{
 
-		// ƒTƒuƒAƒvƒŠ‚ª‘€ì‚µ‚Ä‚¢‚é
+		// ã‚µãƒ–ã‚¢ãƒ—ãƒªãŒæ“ä½œã—ã¦ã„ã‚‹
 		if( sys.trg & PAD_KEY_UP ){
 			p_glb->sub_cursor_flag = FALSE;
 		}
@@ -3356,30 +3356,30 @@ static void ZknZukanCommonSubCursorKeyMove( ZKN_ZUKAN_COMMON_SUB_WORK* p_work, Z
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹‰Šú‰»
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_work		ƒf[ƒ^ƒ[ƒN
- *	@param	cp_glb		ƒf[ƒ^ƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanCommonSubCursorDrawInit( ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb, const ZKN_ZUKAN_COMMON_SUB_WORK* cp_work, const ZKN_ZUKAN_COMMON_SUB_GLB* cp_glb )
 {
-	// ƒJ[ƒ\ƒ‹‰Šú‰»À•Wİ’è
+	// ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–åº§æ¨™è¨­å®š
 	ZKN_UTIL_CursorSetMatrixCursorSysNotAnm( cp_work->p_cursor, p_drawglb->p_drawglb );
-	// ƒJ[ƒ\ƒ‹“®ì
+	// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
 	ZknZukanCommonSubCursorDrawPack( p_drawglb, cp_work, cp_glb );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹•`‰æˆ—ƒpƒbƒNŠÖ”
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«æç”»å‡¦ç†ãƒ‘ãƒƒã‚¯é–¢æ•°
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_work		ƒf[ƒ^ƒ[ƒN
- *	@param	cp_glb		ƒf[ƒ^ƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -3388,17 +3388,17 @@ static void ZknZukanCommonSubCursorDrawPack( ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_dra
 {
 	BOOL check;
 	
-	//@•\¦‚n‚m‚n‚e‚e‚ÆƒJ[ƒ\ƒ‹“®ì
+	//ã€€è¡¨ç¤ºï¼¯ï¼®ï¼¯ï¼¦ï¼¦ã¨ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
 	if( (ZKN_GLBDATA_TouchCursorFlagGet( cp_glb->p_glb ) != ZKN_TCHCUSO_TOUCHPANEL) ){
 
 		check = ZknZukanCommonSubCursorOnOff( p_drawglb, TRUE );
 
-		// ©•ª‚ªƒJ[ƒ\ƒ‹‚ğ“®‚©‚µ‚Ä—Ç‚¢‚Æ‚«‚Ì‚İ“®ì‚³‚¹‚é
+		// è‡ªåˆ†ãŒã‚«ãƒ¼ã‚½ãƒ«ã‚’å‹•ã‹ã—ã¦è‰¯ã„ã¨ãã®ã¿å‹•ä½œã•ã›ã‚‹
 		if( (cp_glb->sub_cursor_flag == FALSE) ){
 
 			if( check ){
-				// Ä•`‰æ‚³‚ê‚½‚Æ‚«‚Í,ƒJ[ƒ\ƒ‹•`‰æÀ•W‚ğ‰Šú‰»
-				// ƒJ[ƒ\ƒ‹‰Šú‰»À•Wİ’è
+				// å†æç”»ã•ã‚ŒãŸã¨ãã¯,ã‚«ãƒ¼ã‚½ãƒ«æç”»åº§æ¨™ã‚’åˆæœŸåŒ–
+				// ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸåŒ–åº§æ¨™è¨­å®š
 				ZKN_UTIL_CursorSetMatrixCursorSysNotAnm( cp_work->p_cursor, p_drawglb->p_drawglb );
 			}
 
@@ -3411,10 +3411,10 @@ static void ZknZukanCommonSubCursorDrawPack( ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_dra
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒJ[ƒ\ƒ‹•`‰æˆ—
+ *	@brief	å›³é‘‘ã‚«ãƒ¼ã‚½ãƒ«æç”»å‡¦ç†
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	p_work		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	p_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -3428,13 +3428,13 @@ static void ZknZukanCommonSubCursorDraw( ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹•`‰æONOFF
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«æç”»ONOFF
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	flag	ONOFFƒtƒ‰ƒO
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	ONOFFãƒ•ãƒ©ã‚°
  *	
- *	@retval	TRUE	’l•ÏX
- *	@retval	FALSE	•ÏX‚µ‚È‚©‚Á‚½
+ *	@retval	TRUE	å€¤å¤‰æ›´
+ *	@retval	FALSE	å¤‰æ›´ã—ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknZukanCommonSubCursorOnOff( ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawglb,  BOOL flag )
@@ -3451,11 +3451,11 @@ static BOOL ZknZukanCommonSubCursorOnOff( ZKN_ZUKAN_COMMON_SUB_DRAWGLB* p_drawgl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒtƒHƒ“ƒgOAM•ÏX
+ *	@brief	å›³é‘‘ãƒ•ã‚©ãƒ³ãƒˆOAMå¤‰æ›´
  *
  *	@param	p_draw
- *	@param	apl		ƒAƒvƒŠÅİÊŞ°
- *	@param	old_apl	1ŒÂ‘O‚ÌƒAƒvƒŠ
+ *	@param	apl		ã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼
+ *	@param	old_apl	1å€‹å‰ã®ã‚¢ãƒ—ãƒª
  * 
  *	@return	none
  */
@@ -3466,13 +3466,13 @@ static void ZknZukanCommonFontOamChg( ZKN_ZUKAN_COMMON_DRAW* p_draw, int apl, in
 	FONTOAM_SetDrawFlag( p_draw->p_title[ apl ]->p_fontoam, TRUE );
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒpƒ^[ƒ“ƒ{ƒ^ƒ“‚Ì•`‰æONOF
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒœã‚¿ãƒ³ã®æç”»ONOF
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“ƒ{ƒ^ƒ“‚Ì•\¦ONOFF
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒœã‚¿ãƒ³ã®è¡¨ç¤ºONOFF
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ÃŞ°À
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */

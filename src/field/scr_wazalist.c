@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_wazalist.c
- * @bfief	�X�N���v�g�R�}���h�F�킴�I����ʊ֘A
+ * @bfief	スクリプトコマンド：わざ選択画面関連
  * @author	Tomomichi Ohta
  * @date	06.07.08
  */
@@ -61,7 +61,7 @@ static void WazaListSetProcCommon(VM_MACHINE * core,u16 mode,POKEMON_PARAM * pp,
 
 //============================================================================================
 //
-//	�R�}���h
+//	コマンド
 //
 //============================================================================================
 
@@ -69,9 +69,9 @@ static void WazaListSetProcCommon(VM_MACHINE * core,u16 mode,POKEMON_PARAM * pp,
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	�Z�Y��֘A�F���X�g�\��
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
- * @return	1		�X�N���v�g���烁�C������ɖ߂�
+ * @brief	技忘れ関連：リスト表示
+ * @param	core		仮想マシン制御構造体へのポインタ
+ * @return	1		スクリプトからメイン制御に戻る
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdWazaListSetProc( VM_MACHINE * core )
@@ -87,9 +87,9 @@ BOOL EvCmdWazaListSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	�Z�Y��֘A�F���X�g�\��
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
- * @return	1		�X�N���v�g���烁�C������ɖ߂�
+ * @brief	技忘れ関連：リスト表示
+ * @param	core		仮想マシン制御構造体へのポインタ
+ * @return	1		スクリプトからメイン制御に戻る
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdWazaListGetResult(VM_MACHINE * core)
@@ -100,7 +100,7 @@ BOOL EvCmdWazaListGetResult(VM_MACHINE * core)
 	buf = GetEvScriptWorkMemberAdrs(core->fsys, ID_EVSCR_SUBPROC_WORK);
 	GF_ASSERT(*buf != 0);
 	*ret_wk = FieldWazaListEvent_GetSelect(*buf);
-	if (*ret_wk == 4) {			//4==�L�����Z��
+	if (*ret_wk == 4) {			//4==キャンセル
 		*ret_wk = 0xff;
 	}
 	sys_FreeMemoryEz(*buf);
@@ -111,19 +111,19 @@ BOOL EvCmdWazaListGetResult(VM_MACHINE * core)
 
 //============================================================================================
 //
-//				�킴�����^�v���o���֘A
+//				わざ教え／思い出し関連
 //
 //============================================================================================
-#define LV_WAZA_OBOE_END	( LEVELUPWAZA_OBOE_END )	// �I�[�R�[�h
+#define LV_WAZA_OBOE_END	( LEVELUPWAZA_OBOE_END )	// 終端コード
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����ɋ�������킴�����擾
+ *	ポケモンに教えられるわざ個数を取得
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdOshieWazaCount(VM_MACHINE * core)
 {
-#if 0			/*�d�l�ύX�ɂ�薢����*/
+#if 0			/*仕様変更により未完成*/
 	POKEMON_PARAM * pp;
 	u16* waza_dat;
 	u16* ret_wk	= VMGetWork( core );
@@ -131,7 +131,7 @@ BOOL EvCmdOshieWazaCount(VM_MACHINE * core)
 
 	pp = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), tno);
 
-	waza_dat = sys_AllocMemory(HEAPID_EVENT, (1+1) * 2 );		//(�P���̃��U�{�I�[�R�[�h)��16bit
+	waza_dat = sys_AllocMemory(HEAPID_EVENT, (1+1) * 2 );		//(１個分のワザ＋終端コード)＊16bit
 	*(waza_dat+0) = WAZANO_HANERU;
 	*(waza_dat+1) = LV_WAZA_OBOE_END;
 
@@ -143,7 +143,7 @@ BOOL EvCmdOshieWazaCount(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�������v���o����킴�����擾
+ *	ポケモンが思い出せるわざ個数を取得
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdRemaindWazaCount(VM_MACHINE * core)
@@ -164,7 +164,7 @@ BOOL EvCmdRemaindWazaCount(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	�킴�����I����ʁ@����/�v���o�����ʕ���
+ *	わざ教え選択画面　教え/思い出し共通部分
  */
 //-----------------------------------------------------------------------------
 static void WazaListSetProcCommon(VM_MACHINE * core,u16 mode,POKEMON_PARAM * pp,u16* waza_dat)
@@ -191,19 +191,19 @@ static void WazaListSetProcCommon(VM_MACHINE * core,u16 mode,POKEMON_PARAM * pp,
 
 //-----------------------------------------------------------------------------
 /**
- *	�킴�����I����ʌĂяo��
+ *	わざ教え選択画面呼び出し
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdOshieWazaListSetProc(VM_MACHINE * core)
 {
-#if 0			/*�d�l�ύX�ɂ�薢����*/
+#if 0			/*仕様変更により未完成*/
 	POKEMON_PARAM * pp;
 	u16		tno	= VMGetWorkValue(core);
 	u16*	waza_dat;
 
 	pp = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), tno);
 
-	waza_dat = sys_AllocMemory(HEAPID_EVENT, (1+1) * 2 );		//(�P���̃��U�{�I�[�R�[�h)��16bit
+	waza_dat = sys_AllocMemory(HEAPID_EVENT, (1+1) * 2 );		//(１個分のワザ＋終端コード)＊16bit
 	*(waza_dat+0) = WAZANO_HANERU;
 	*(waza_dat+1) = LV_WAZA_OBOE_END;
 
@@ -216,7 +216,7 @@ BOOL EvCmdOshieWazaListSetProc(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	�킴�v���o���I����ʌĂяo��
+ *	わざ思い出し選択画面呼び出し
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdRemaindWazaListSetProc(VM_MACHINE * core)
@@ -236,7 +236,7 @@ BOOL EvCmdRemaindWazaListSetProc(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	1�݂̂̂킴�����I����ʌĂяo��
+ *	1個のみのわざ教え選択画面呼び出し
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdNormalWazaListSetProc(VM_MACHINE * core)
@@ -248,7 +248,7 @@ BOOL EvCmdNormalWazaListSetProc(VM_MACHINE * core)
 
 	pp = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), tno);
 
-	waza_dat = sys_AllocMemory( HEAPID_EVENT, (1+1) * 2 );		//16bit * (�e�[�u��1���{�I�[�R�[�h�j
+	waza_dat = sys_AllocMemory( HEAPID_EVENT, (1+1) * 2 );		//16bit * (テーブル1個分＋終端コード）
 
 	*(waza_dat+0) = wazano;
 	*(waza_dat+1) = LV_WAZA_OBOE_END;
@@ -260,12 +260,12 @@ BOOL EvCmdNormalWazaListSetProc(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	�킴�����I����ʌ��ʎ��o��
+ *	わざ教え選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdOshieWazaListGetResult(VM_MACHINE * core)
 {
-#if 0			/*�d�l�ύX�ɂ�薢����*/
+#if 0			/*仕様変更により未完成*/
 	WAZAOSHIE_DATA *dat;
 	u16* ret_wk	= VMGetWork( core );
 	void** buf	= GetEvScriptWorkMemberAdrs(core->fsys, ID_EVSCR_SUBPROC_WORK);
@@ -287,7 +287,7 @@ BOOL EvCmdOshieWazaListGetResult(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	�킴�v���o���I����ʌ��ʎ��o��
+ *	わざ思い出し選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdRemaindWazaListGetResult(VM_MACHINE * core)
@@ -313,7 +313,7 @@ BOOL EvCmdRemaindWazaListGetResult(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	1�݂̂̂킴�����I����ʌ��ʎ��o��
+ *	1個のみのわざ教え選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdNormalWazaListGetResult(VM_MACHINE * core)

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	contest.c
- * @brief	�R���e�X�g
+ * @brief	コンテスト
  * @author	matsuda
- * @date	2005.11.15(��)
+ * @date	2005.11.15(火)
  *
- * �t�B�[���h�Ƃ��̐ڑ��Ȃǂ���ɂ��
+ * フィールドとかの接続などを主にやる
  */
 //==============================================================================
 #include "common.h"
@@ -50,22 +50,22 @@
 
 //==============================================================================
 //
-//	�t�B�[���h���牉�Z�͕���ւ̐ڑ�
+//	フィールドから演技力部門への接続
 //
 //==============================================================================
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
 typedef struct{
-	CONTEST_SYSTEM *consys;		///<��check�@�����ȓ�����E�o�������܂�܂ł̎b��
+	CONTEST_SYSTEM *consys;		///<※check　正式な入り口・出口が決まるまでの暫定
 	int seq;
 }EV_SIO_CONTEST_WORK;
 
 
 
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static CONTEST_SYSTEM * Contest_SystemWorkAlloc(void);
 static void Contest_SystemWorkFree(CONTEST_SYSTEM *consys);
@@ -93,12 +93,12 @@ static int Contest_PlayerPopularityGet(POKEMON_PARAM *my_pp, int con_type);
 static void Contest_CpuParamCreate(CONTEST_SYSTEM *consys, int hof_flag, int zenkoku_zukan_flag);
 
 //==============================================================================
-//	PROC�f�[�^
+//	PROCデータ
 //==============================================================================
 FS_EXTERN_OVERLAY(contest);
 FS_EXTERN_OVERLAY(ol_imageclip);
 
-/// ���Z�͕���v���Z�X��`�f�[�^
+/// 演技力部門プロセス定義データ
 const PROC_DATA ContestActinProcData = {
 	ActinProc_Init,
 	ActinProc_Main,
@@ -106,7 +106,7 @@ const PROC_DATA ContestActinProcData = {
 	FS_OVERLAY_ID(contest),
 };
 
-/// �_���X����v���Z�X��`�f�[�^
+/// ダンス部門プロセス定義データ
 const PROC_DATA ContestDanceProcData = {
 	DanceProc_Init,
 	DanceProc_Main,
@@ -114,7 +114,7 @@ const PROC_DATA ContestDanceProcData = {
 	FS_OVERLAY_ID(contest),
 };
 
-/// �r�W���A������v���Z�X��`�f�[�^
+/// ビジュアル部門プロセス定義データ
 const PROC_DATA ContestVisualProcData = {
 	VisualProc_Init,
 	VisualProc_Main,
@@ -122,7 +122,7 @@ const PROC_DATA ContestVisualProcData = {
 	FS_OVERLAY_ID(contest),
 };
 
-/// �R���e�X�g���ʔ��\��ʃv���Z�X��`�f�[�^
+/// コンテスト結果発表画面プロセス定義データ
 const PROC_DATA ContestResultProcData = {
 	ConresProc_Init,
 	ConresProc_Main,
@@ -139,24 +139,24 @@ const PROC_DATA IMC_SYS_Proc = {
 
 
 //==============================================================================
-//	�f�[�^
+//	データ
 //==============================================================================
-///�J�����̃t���b�V���E�F�C�g�e�[�u���f�[�^�F�m�[�}��
+///カメラのフラッシュウェイトテーブルデータ：ノーマル
 ALIGN4 static const u8 CameraFlashWait_Normal[][3] = {
 	{20, 20, 0xff},
 	{15, 25, 0xff},
 };
-///�J�����̃t���b�V���E�F�C�g�e�[�u���f�[�^�F�X�[�p�[
+///カメラのフラッシュウェイトテーブルデータ：スーパー
 ALIGN4 static const u8 CameraFlashWait_Super[][4] = {
 	{10, 10, 30, 0xff},
 	{15, 15, 15, 0xff},
 };
-///�J�����̃t���b�V���E�F�C�g�e�[�u���f�[�^�F�n�C�p�[
+///カメラのフラッシュウェイトテーブルデータ：ハイパー
 ALIGN4 static const u8 CameraFlashWait_Hyper[][5] = {
 	{10, 8, 20, 28, 0xff},
 	{15, 15, 8, 8, 0xff},
 };
-///�J�����̃t���b�V���E�F�C�g�e�[�u���f�[�^�F�}�X�^�[
+///カメラのフラッシュウェイトテーブルデータ：マスター
 ALIGN4 static const u8 CameraFlashWait_Master[][6] = {
 	{8, 8, 8, 8, 30, 0xff},
 	{15,15,8,8,20,0xff},
@@ -165,11 +165,11 @@ ALIGN4 static const u8 CameraFlashWait_Master[][6] = {
 
 
 //==============================================================================
-//	�X�N���v�g����� �����
+//	スクリプトからの 入り口
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g����̃R���e�X�g�Ăяo��
+ * @brief   スクリプトからのコンテスト呼び出し
  *
  * @param   event		
  * @param   consys		
@@ -194,7 +194,7 @@ void EventCmd_ContestProc(GMEVENT_CONTROL * event, CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g����̃R���e�X�g�Ăяo�����C���^�X�N
+ * @brief   スクリプトからのコンテスト呼び出しメインタスク
  *
  * @param   event		
  */
@@ -297,7 +297,7 @@ static BOOL GMEVENT_Sub_Contest(GMEVENT_CONTROL * event)
 		escw->seq ++;
 		break;
 	case SSEQ_SIO_END:
-//		CommStateExitBattle();  // �ʐM�I�������ړ����܂��� 2006.01.05 k.ohno
+//		CommStateExitBattle();  // 通信終了処理移動しました 2006.01.05 k.ohno
 		escw->seq++;
 		break;
 	case SSEQ_FIELD_START:
@@ -305,8 +305,8 @@ static BOOL GMEVENT_Sub_Contest(GMEVENT_CONTROL * event)
 		escw->seq ++;
 		break;
 	default:
-		GF_ASSERT(0);// && "�s���ȃV�[�P���X");
-		//break;	����END�ɗ��Ƃ�
+		GF_ASSERT(0);// && "不明なシーケンス");
+		//break;	下のENDに落とす
 	case SSEQ_END:
 		sys_FreeMemoryEz(escw);
 		return TRUE;
@@ -316,7 +316,7 @@ static BOOL GMEVENT_Sub_Contest(GMEVENT_CONTROL * event)
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g����̃R���e�X�g�Ăяo�����C���^�X�N(���K�E�`���[�g���A���p)
+ * @brief   スクリプトからのコンテスト呼び出しメインタスク(練習・チュートリアル用)
  *
  * @param   event		
  */
@@ -399,7 +399,7 @@ static BOOL GMEVENT_Sub_ContestOnlyGame(GMEVENT_CONTROL * event)
 	case ONLYSEQ_RESULT_CALL:
 //		EventCmd_CallSubProc(event, &ContestResultProcData, escw->consys);
 		
-		//���ʔ��\��ʂ��\������Ȃ��̂ŁA�����ōŏI���ʂ����v�Z����
+		//結果発表画面が表示されないので、ここで最終順位だけ計算する
 		{
 			s32 score[BREEDER_MAX];
 			int i, ranking;
@@ -426,7 +426,7 @@ static BOOL GMEVENT_Sub_ContestOnlyGame(GMEVENT_CONTROL * event)
 				break;
 			}
 			
-			//�v���C���[�̏��ʂ������ׂ�(���_�̏ꍇ�̓v���C���[�D��)
+			//プレイヤーの順位だけ調べる(同点の場合はプレイヤー優先)
 			ranking = 0;
 			for(i = 1; i < BREEDER_MAX; i++){
 				if(score[0] < score[i]){
@@ -443,8 +443,8 @@ static BOOL GMEVENT_Sub_ContestOnlyGame(GMEVENT_CONTROL * event)
 		escw->seq ++;
 		break;
 	default:
-		GF_ASSERT(0);// && "�s���ȃV�[�P���X");
-		//break;	����END�ɗ��Ƃ�
+		GF_ASSERT(0);// && "不明なシーケンス");
+		//break;	下のENDに落とす
 	case ONLYSEQ_END:
 		sys_FreeMemoryEz(escw);
 		return TRUE;
@@ -459,9 +459,9 @@ static BOOL GMEVENT_Sub_ContestOnlyGame(GMEVENT_CONTROL * event)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g�V�X�e�����[�N��Alloc����
+ * @brief   コンテストシステムワークをAllocする
  *
- * @retval  �R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @retval  コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 static CONTEST_SYSTEM * Contest_SystemWorkAlloc(void)
@@ -479,9 +479,9 @@ static CONTEST_SYSTEM * Contest_SystemWorkAlloc(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g�V�X�e�����[�N���
+ * @brief   コンテストシステムワーク解放
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 static void Contest_SystemWorkFree(CONTEST_SYSTEM *consys)
@@ -492,16 +492,16 @@ static void Contest_SystemWorkFree(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g�V�X�e�����[�N���쐬����
+ * @brief   コンテストシステムワークを作成する
  *
- * @param   contest_type		�R���e�X�g�^�C�v(CONTYPE_???)
- * @param   contest_rank		�R���e�X�g�����N(CONRANK_???)
- * @param   contest_mode		�R���e�X�g���[�h(CONMODE_???)
- * @param   my_pp				�o�ꂳ���鎩���̎莝���|�P�����ւ̃|�C���^
- * @param   player_name_str		�v���C���[���ւ̃|�C���^
- * @param   my_status			�}�C�X�e�[�^�X�ւ̃|�C���^
+ * @param   contest_type		コンテストタイプ(CONTYPE_???)
+ * @param   contest_rank		コンテストランク(CONRANK_???)
+ * @param   contest_mode		コンテストモード(CONMODE_???)
+ * @param   my_pp				出場させる自分の手持ちポケモンへのポインタ
+ * @param   player_name_str		プレイヤー名へのポインタ
+ * @param   my_status			マイステータスへのポインタ
  *
- * @retval  �쐬�����R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @retval  作成したコンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 CONTEST_SYSTEM * Contest_SystemCreate(const CONTEST_INIT_DATA *cid)
@@ -510,8 +510,8 @@ CONTEST_SYSTEM * Contest_SystemCreate(const CONTEST_INIT_DATA *cid)
 	int cpu_num = BREEDER_MAX - 1;
 	int i;
 	
-#if 0	//HEAPID_BASE_APP���炾�ƃ��������m�ۏo���Ȃ��Ȃ����̂�HEAPID_WORLD������悤��
-		//�ύX�B�@�ʓc����Ɋm�F�ς� 2006.04.05(��)
+#if 0	//HEAPID_BASE_APPからだとメモリが確保出来なくなったのでHEAPID_WORLDから取るように
+		//変更。　玉田さんに確認済み 2006.04.05(水)
 	sys_CreateHeap(HEAPID_BASE_APP, HEAPID_CONTEST, CONTEST_ALLOC_SIZE);
 #else
 	sys_CreateHeap(HEAPID_WORLD, HEAPID_CONTEST, CONTEST_ALLOC_SIZE);
@@ -539,48 +539,48 @@ CONTEST_SYSTEM * Contest_SystemCreate(const CONTEST_INIT_DATA *cid)
 	consys->hof_flag = cid->hof_flag;
 	consys->zenkoku_zukan_flag = cid->zenkoku_zukan_flag;
 	
-	//�C���[�W�N���b�v�̈�쐬
+	//イメージクリップ領域作成
 	for(i = 0; i < BREEDER_MAX; i++){
 		consys->c_game.imc_data[i] = ImcSaveData_ContestAllocWork(HEAPID_CONTEST);
 	}
 	
-	//�R���f�[�^�Z�b�g
+	//審判データセット
 	ConTool_JudgeEntry(consys, HEAPID_WORLD, consys->c_game.special_judge_no, 
 		consys->c_game.type, consys->c_game.rank);
 	
-	//PokeParty�쐬
+	//PokeParty作成
 	consys->poke_party = PokeParty_AllocPartyWork(HEAPID_CONTEST);
-	//PokePara�쐬
+	//PokePara作成
 	for(i = 0; i < BREEDER_MAX; i++){
 		consys->c_game.pp[i] = PokemonParam_AllocWork(HEAPID_CONTEST);
 	}
 
-	//�؃��b�v
+	//ぺラップ
 	for(i = 0; i < BREEDER_MAX; i++){
 		consys->perap_voice[i] = PERAPVOICE_AllocWork(HEAPID_CONTEST);
 	}
 	PERAPVOICE_CopyData(consys->perap_voice[0], cid->perap_voice);
 	
-	//�������g�̃p�����[�^��F�X�Z�b�g
+	//自分自身のパラメータを色々セット
 	{
-		//�����̃|�P�����Z�b�g
+		//自分のポケモンセット
 		PokeCopyPPtoPP(cid->my_pp, consys->c_game.pp[0]);
 		
-		//�u���[�_�[���Z�b�g(�e�����u���[�_�[���ł͂Ȃ��̂�)
+		//ブリーダー名セット(親名＝ブリーダー名ではないので)
 		consys->c_game.breeder_name_str[0] = STRBUF_Create(BUFLEN_PERSON_NAME, HEAPID_CONTEST);
 		STRBUF_Copy(consys->c_game.breeder_name_str[0], cid->player_name_str);
 
-		//���ʃZ�b�g
+		//性別セット
 		consys->c_game.player_sex[0] = MyStatus_GetMySex(cid->my_status);
 		
-		//���i�Z�b�g
+		//性格セット
 		consys->c_game.character[0] = BRD_CHARACTER_ELITE;
 
-		//�l�C�Z�b�g
+		//人気セット
 		consys->c_game.popularity[0] 
 			= Contest_PlayerPopularityGet(consys->c_game.pp[0], consys->c_game.type);
 		
-		//OBJ�R�[�h
+		//OBJコード
 		if(ConTool_PracticeModeCheck(consys) == FALSE){
 			if(MyStatus_GetMySex(cid->my_status) == PM_MALE){
 				consys->c_game.obj_code[0] = CONTESTHERO;
@@ -589,7 +589,7 @@ CONTEST_SYSTEM * Contest_SystemCreate(const CONTEST_INIT_DATA *cid)
 				consys->c_game.obj_code[0] = CONTESTHEROINE;
 			}
 		}
-		else{	//���K�̎��̓m�[�}����l��
+		else{	//練習の時はノーマル主人公
 			if(MyStatus_GetMySex(cid->my_status) == PM_MALE){
 				consys->c_game.obj_code[0] = HERO;
 			}
@@ -599,17 +599,17 @@ CONTEST_SYSTEM * Contest_SystemCreate(const CONTEST_INIT_DATA *cid)
 		}
 	}
 	
-	//CPU�̃G���g���[�ƃp�����[�^����
+	//CPUのエントリーとパラメータ生成
 	Contest_CpuParamCreate(consys, cid->hof_flag, cid->zenkoku_zukan_flag);
 	
-	//���Z����J�n���̕��уZ�b�g
+	//演技部門開始時の並びセット
 	if(ConTool_PracticeModeCheck(consys) == TRUE){
-		//���K
+		//練習
 		for(i = 0; i < BREEDER_MAX; i++){
 			consys->actin_sort[i] = BREEDER_MAX - i - 1;
 		}
 	}
-	else{	//�ʏ�
+	else{	//通常
 		for(i = 0; i < BREEDER_MAX; i++){
 			consys->actin_sort[i] = i;
 		}
@@ -620,13 +620,13 @@ CONTEST_SYSTEM * Contest_SystemCreate(const CONTEST_INIT_DATA *cid)
 
 //--------------------------------------------------------------
 /**
- * @brief   CPU�u���[�_�[�̃G���g���[�ƃp�����[�^����
+ * @brief   CPUブリーダーのエントリーとパラメータ生成
  *
- * @param   consys					�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   hof_flag				�a������t���O(TRUE:�a�����肵�Ă���)
- * @param   zenkoku_zukan_flag		�S���}�ӓ���t���O(TRUE:���肵�Ă���)
+ * @param   consys					コンテストシステムワークへのポインタ
+ * @param   hof_flag				殿堂入りフラグ(TRUE:殿堂入りしている)
+ * @param   zenkoku_zukan_flag		全国図鑑入手フラグ(TRUE:入手している)
  *
- * �ʐM����CPU�u���[�_�[�̍ăG���g���[�̎������ꂪ�g�p�o���܂�
+ * 通信時のCPUブリーダーの再エントリーの時もこれが使用出来ます
  */
 //--------------------------------------------------------------
 static void Contest_CpuParamCreate(CONTEST_SYSTEM *consys, int hof_flag, int zenkoku_zukan_flag)
@@ -634,17 +634,17 @@ static void Contest_CpuParamCreate(CONTEST_SYSTEM *consys, int hof_flag, int zen
 	int cpu_num = BREEDER_MAX - 1;
 	int i;
 	
-	//CPU�u���[�_�[�Z�b�g
+	//CPUブリーダーセット
 	ConTool_CpuBreederEntry(consys, HEAPID_WORLD, cpu_num, 
 		consys->c_game.type, consys->c_game.rank, consys->c_game.mode,
 		hof_flag, zenkoku_zukan_flag);
 	
-	//CPU�̃|�P�����p�����[�^�쐬
+	//CPUのポケモンパラメータ作成
 	for(i = 1; i < BREEDER_MAX; i++){
 		ConTool_BreederPokeParaCreate(&consys->c_game.bd[i], consys->c_game.pp[i], HEAPID_CONTEST);
 	}
 	
-	//�u���[�_�[���Z�b�g(�e�����u���[�_�[���ł͂Ȃ��̂�)
+	//ブリーダー名セット(親名＝ブリーダー名ではないので)
 	for(i = 1; i < BREEDER_MAX; i++){
 		if(consys->c_game.breeder_name_str[i] == NULL){
 			consys->c_game.breeder_name_str[i] = STRBUF_Create(BUFLEN_PERSON_NAME, HEAPID_CONTEST);
@@ -652,35 +652,35 @@ static void Contest_CpuParamCreate(CONTEST_SYSTEM *consys, int hof_flag, int zen
 		PokeParaGet(consys->c_game.pp[i], ID_PARA_oyaname_buf, consys->c_game.breeder_name_str[i]);
 	}
 	
-	//���ʃZ�b�g
+	//性別セット
 	for(i = 1; i < BREEDER_MAX; i++){
 		consys->c_game.player_sex[i] = consys->c_game.bd[i].sex;
 	}
 	
-	//���i�Z�b�g
+	//性格セット
 	for(i = 1; i < BREEDER_MAX; i++){
 		consys->c_game.character[i] = consys->c_game.bd[i].character;
 	}
 
-	//�l�C�Z�b�g
+	//人気セット
 	for(i = 1; i < BREEDER_MAX; i++){
 		consys->c_game.popularity[i] = consys->c_game.bd[i].popularity;
 	}
 	
-	//OBJ�R�[�h
+	//OBJコード
 	for(i = 1; i < BREEDER_MAX; i++){
 		consys->c_game.obj_code[i] = consys->c_game.bd[i].obj_code;
 	}
 
-	//CPU�u���[�_�[�̃C���[�W�N���b�v�Z�b�g
+	//CPUブリーダーのイメージクリップセット
 	ConTool_CpuBreederImcSet(consys, HEAPID_WORLD);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Contest_SystemCreate���g�p���č�����R���e�X�g�V�X�e�����[�N���������
+ * @brief   Contest_SystemCreateを使用して作ったコンテストシステムワークを解放する
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 void Contest_SystemExit(CONTEST_SYSTEM *consys)
@@ -695,7 +695,7 @@ void Contest_SystemExit(CONTEST_SYSTEM *consys)
 		sys_FreeMemoryEz(consys->perap_voice[i]);
 	}
 
-	//�����_���̎한�A
+	//ランダムの種復帰
 	gf_srand(consys->push_random_seed);
 
 	Contest_SystemWorkFree(consys);
@@ -704,12 +704,12 @@ void Contest_SystemExit(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �v���C���[�̐l�C���擾����
+ * @brief   プレイヤーの人気を取得する
  *
- * @param   my_pp			�����̃|�P�����ւ̃|�C���^
- * @param   con_type		�R���e�X�g�^�C�v
+ * @param   my_pp			自分のポケモンへのポインタ
+ * @param   con_type		コンテストタイプ
  *
- * @retval  �l�C
+ * @retval  人気
  */
 //--------------------------------------------------------------
 static int Contest_PlayerPopularityGet(POKEMON_PARAM *my_pp, int con_type)
@@ -749,8 +749,8 @@ static int Contest_PlayerPopularityGet(POKEMON_PARAM *my_pp, int con_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   �C���[�W�N���b�v��ʌĂяo���悤�̏������f�[�^�쐬
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @brief   イメージクリップ画面呼び出しようの初期化データ作成
+ * @param   consys		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 void Contest_ImageClipInitDataCreate(CONTEST_SYSTEM *consys)
@@ -782,14 +782,14 @@ void Contest_ImageClipInitDataCreate(CONTEST_SYSTEM *consys)
 	consys->icpw = icpw;
 	
 #ifdef OSP_CONTEST_ON
-	OS_TPrintf("�C���[�W�N���b�v�������e�[�}��%d, consys->theme = %d\n", icpw->theme, consys->c_game.theme);
+	OS_TPrintf("イメージクリップ初期化テーマ＝%d, consys->theme = %d\n", icpw->theme, consys->c_game.theme);
 #endif
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �C���[�W�N���b�v��ʌĂяo���悤�̏������f�[�^���
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @brief   イメージクリップ画面呼び出しようの初期化データ解放
+ * @param   consys		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 void Contest_ImageClipInitDataFree(CONTEST_SYSTEM *consys)
@@ -800,9 +800,9 @@ void Contest_ImageClipInitDataFree(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g�̍ŏ��̒ʐM����
- * @param   tcb			TCB�ւ̃|�C���^
- * @param   work		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @brief   コンテストの最初の通信交換
+ * @param   tcb			TCBへのポインタ
+ * @param   work		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
@@ -904,8 +904,8 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_POKE_SEND:
-		//�e�u���[�_�[�������̃|�P�����p�����[�^�𑗐M
-		//�����̖��O�͍��͂܂�0�ԃu���[�_�[�̈ʒu�ɂ���̂ŁA�S��0�ԃu���[�_�[�̖��O�𑗐M
+		//各ブリーダーが自分のポケモンパラメータを送信
+		//自分の名前は今はまだ0番ブリーダーの位置にあるので、全員0番ブリーダーの名前を送信
 		if(CommContestSendPokePara(consys, consys->c_game.my_breeder_no, 
 				consys->c_game.pp[0]) == TRUE){
 			consys->seq++;
@@ -929,9 +929,9 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_POKE_RESEND:
-		//�e�u���[�_�[�̃|�P�����p�����[�^���󂯎�����e���ACPU�̕����܂߂čđ��M����
+		//各ブリーダーのポケモンパラメータを受け取った親が、CPUの分も含めて再送信する
 		if(consys->c_game.my_breeder_no == consys->c_game.server_no){
-		#if 0	//�S���܂Ƃ߂đ��M����悤�ɕύX
+		#if 0	//全員まとめて送信するように変更
 			if(CommContestSendPokePara(consys, consys->work, 
 					consys->c_game.pp[consys->work]) == TRUE){
 				consys->seq++;
@@ -949,7 +949,7 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 	case FASTSEQ_POKE_RESEND_WAIT:
 		if(consys->recieve_count > 0){
 			consys->recieve_count = 0;
-		#if 0	//�S���܂Ƃ߂đ��M����悤�ɕύX
+		#if 0	//全員まとめて送信するように変更
 			consys->work++;
 			if(consys->work < BREEDER_MAX){
 				consys->seq--;
@@ -975,8 +975,8 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_BD_SEND:
-		//�e�u���[�_�[�������̃u���[�_�[�f�[�^�𑗐M
-		//�����̖��O�͍��͂܂�0�ԃu���[�_�[�̈ʒu�ɂ���̂ŁA�S��0�ԃu���[�_�[�̖��O�𑗐M
+		//各ブリーダーが自分のブリーダーデータを送信
+		//自分の名前は今はまだ0番ブリーダーの位置にあるので、全員0番ブリーダーの名前を送信
 		if(CommContestSendBreederData(consys, consys->c_game.my_breeder_no, 
 				&consys->c_game.bd[0]) == TRUE){
 			consys->seq++;
@@ -1000,7 +1000,7 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_BD_RESEND:
-		//�e�u���[�_�[�̃u���[�_�[�f�[�^���󂯎�����e���ACPU�̕����܂߂čđ��M����
+		//各ブリーダーのブリーダーデータを受け取った親が、CPUの分も含めて再送信する
 		if(consys->c_game.my_breeder_no == consys->c_game.server_no){
 			if(CommContestSendBreederData(consys, consys->work, 
 					&consys->c_game.bd[consys->work]) == TRUE){
@@ -1036,8 +1036,8 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_NAME_SEND:
-		//�e�u���[�_�[�������̖��O�𑗐M
-		//�����̖��O�͍��͂܂�0�ԃu���[�_�[�̈ʒu�ɂ���̂ŁA�S��0�ԃu���[�_�[�̖��O�𑗐M
+		//各ブリーダーが自分の名前を送信
+		//自分の名前は今はまだ0番ブリーダーの位置にあるので、全員0番ブリーダーの名前を送信
 		if(CommContestSendNameData(consys, consys->c_game.my_breeder_no,
 				consys->c_game.breeder_name_str[0]) == TRUE){
 			consys->seq++;
@@ -1046,28 +1046,28 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 	case FASTSEQ_NAME_WAIT:
 		if(consys->recieve_count >= consys->c_game.player_num){
 		#if T1669_060817_FIX
-			//���M����o�b�t�@�Ǝ�M����o�b�t�@�������ׁACONSIO_TIMING_NAME�œ������������ł��A
-			//���̌�A�e�@����s���āA������̖��O�𑗐M����O�ɐe�@�̖��O����M���Ă��܂��A
-			//���̎�M�����e�@�̖��O�������̖��O�Ƃ��đ��M���Ă��܂��\��������B
-			//(���O��16�o�C�g��1�t���[���ő��M�o���Ă��܂��̂�)
-			//�K���v���C���[����MyStatus�ŒʐM�V�X�e���������L���Ă���̂ŁA
-			//����ŏ㏑�����ĉ������悤�ɂ���B
-			//�{���Ȃ�Γ��������O�ɑ��M�o�b�t�@�p�Ɏ����̖��O��ʂɑޔ������Ă����̂������B
-			//�����������_�ł͂���ɂ���ăq�[�v�̈悪�ύX�����̂��|���̂�MyStatus������A
-			//�Ƃ�����@�ŉ�����܂��B
-			//CPU�̃u���[�_�[���𑗐M����K�v�͂���̂ŁA���̌�ɍs���e����̑S���̖��O
-			//��đ��M�͍��܂Œʂ���s����B
+			//送信するバッファと受信するバッファが同じ為、CONSIO_TIMING_NAMEで同期を取った後でも、
+			//その後、親機が先行して、こちらの名前を送信する前に親機の名前を受信してしまい、
+			//その受信した親機の名前を自分の名前として送信してしまう可能性がある。
+			//(名前は16バイトで1フレームで送信出来てしまうので)
+			//幸いプレイヤー名はMyStatusで通信システム側が所有しているので、
+			//それで上書きして回避するようにする。
+			//本来ならば同期を取る前に送信バッファ用に自分の名前を別に退避させておくのがいい。
+			//しかし現時点ではそれによってヒープ領域が変更されるのが怖いのでMyStatusから取る、
+			//という手法で回避します。
+			//CPUのブリーダー名を送信する必要はあるので、この後に行う親からの全員の名前
+			//一斉送信は今まで通り実行する。
 			//
-			//�����l�̗��R��PokemonParam�ABreederData�ł��������ۂ��N����\��������B
-			//����PokemonParam�̓f�[�^�T�C�Y��100�o�C�g�ȏ�ABreederData��48�o�C�g����A
-			//1�t���[���ő��肫��Ȃ��e�ʂׁ̈A�e���ɔ�ׂ�Δ����p�x�͂ƂĂ����Ȃ���
-			//���肦�Ȃ��Ǝv���邵�A�񍐂��Ȃ����]�v�ȑΏ��ɂ��Ȃ��Ă��܂��̂�
-			//����͉������Ȃ��B
+			//※同様の理由でPokemonParam、BreederDataでも同じ現象が起きる可能性がある。
+			//ただPokemonParamはデータサイズが100バイト以上、BreederDataも48バイトあり、
+			//1フレームで送りきれない容量の為、親名に比べれば発生頻度はとても少ないか
+			//ありえないと思われるし、報告もないし余計な対処にもなってしまうので
+			//今回は何もしない。
 			//
-			//�A�b�p�[�o�[�W�����ł���ɑΏ�����Ȃ�΁A�����O�ɑ��M�o�b�t�@�ɃR�s�[���Ă����A
-			//�Ƃ����Ώ��ɉ����A���ʃo�[�W�����Ƃ̒ʐM���l���āA������netID=0�Ȃ�΁A
-			//�����E�F�C�g�����Ă��瑗�M����A�Ƃ����������������悢�B
-			//(�������T�[�o�[���ǂ����A�ł͂Ȃ��AnetID��0���ǂ����A�Ƃ������Ȃ̂ŊԈႦ�Ȃ��悤��!)
+			//アッパーバージョンでさらに対処するならば、同期前に送信バッファにコピーしておく、
+			//という対処に加え、下位バージョンとの通信も考えて、自分がnetID=0ならば、
+			//少しウェイトを入れてから送信する、という事もした方がよい。
+			//(自分がサーバーかどうか、ではなく、netIDが0かどうか、という事なので間違えないように!)
 			{
 				int i;
 				const MYSTATUS *my_status;
@@ -1095,7 +1095,7 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_NAME_RESEND:
-		//�e�u���[�_�[�̖��O���󂯎�����e���ACPU�̕����܂߂čđ��M����
+		//各ブリーダーの名前を受け取った親が、CPUの分も含めて再送信する
 		if(consys->c_game.my_breeder_no == consys->c_game.server_no){
 			if(CommContestSendNameData(consys, consys->work,
 					consys->c_game.breeder_name_str[consys->work]) == TRUE){
@@ -1121,8 +1121,8 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		break;
 
 	case FASTSEQ_PERAP_TIMING:
-		//perap_voice[0]�ɂ��f�[�^����M�����̂ŁA���M�O�Ɏ�M���ď㏑������鎖���Ȃ��悤��
-		//huge_buf�ɐ�ɃR�s�[���Ă���
+		//perap_voice[0]にもデータが受信されるので、送信前に受信して上書きされる事がないように
+		//huge_bufに先にコピーしておく
 		MI_CpuCopy8(consys->perap_voice[0], consys->huge_buf, PERAPVOICE_GetWorkSize());
 		
 		CommTimingSyncStart(CONSIO_TIMING_PERAP);
@@ -1135,8 +1135,8 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_PERAP_SEND:
-		//�e�u���[�_�[�������̂؃��b�v�f�[�^�𑗐M
-		//�����̂؃��b�v�f�[�^�͂܂�0�ԃu���[�_�[�̈ʒu�ɂ���̂ŁA�S��0�ԃu���[�_�[�ő��M
+		//各ブリーダーが自分のぺラップデータを送信
+		//自分のぺラップデータはまだ0番ブリーダーの位置にあるので、全員0番ブリーダーで送信
 		if(CommContestSendPerap(consys, consys->c_game.my_breeder_no, NULL) == TRUE){
 			consys->seq++;
 		}
@@ -1159,7 +1159,7 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_PERAP_RESEND:
-		//�e�u���[�_�[�̃|�P�����p�����[�^���󂯎�����e���ACPU�̕����܂߂čđ��M����
+		//各ブリーダーのポケモンパラメータを受け取った親が、CPUの分も含めて再送信する
 		if(consys->c_game.my_breeder_no == consys->c_game.server_no){
 			if(CommContestSendPerap(consys, consys->work, 
 					consys->perap_voice[consys->work]) == TRUE){
@@ -1195,8 +1195,8 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_ETC_SEND:
-		//�e�u���[�_�[�������ׂ̍����f�[�^�Q�𑗐M
-		//�����̃f�[�^�͂܂�0�ԃu���[�_�[�̈ʒu�ɂ���̂ŁA�S��0�ԃu���[�_�[�ő��M
+		//各ブリーダーが自分の細かいデータ群を送信
+		//自分のデータはまだ0番ブリーダーの位置にあるので、全員0番ブリーダーで送信
 		{
 			CON_ETC_SIO_DATA etc_data;
 			
@@ -1225,7 +1225,7 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_ETC_RESEND:
-		//�e�u���[�_�[�̃p�����[�^���󂯎�����e���ACPU�̕����܂߂čđ��M����
+		//各ブリーダーのパラメータを受け取った親が、CPUの分も含めて再送信する
 		if(consys->c_game.my_breeder_no == consys->c_game.server_no){
 			CON_ETC_SIO_DATA etc_data;
 			
@@ -1263,7 +1263,7 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_JUDGE_SEND:
-		//�e�������Ă���R���f�[�^�S�Ă���đ��M
+		//親が持っている審判データ全てを一斉送信
 		if(CommContestSendJudgeData(consys, consys->c_game.my_breeder_no, 
 				consys->c_game.jd) == TRUE){
 			consys->seq++;
@@ -1277,9 +1277,9 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 		break;
 
 	default:
-		{//��check�@��ŕς���(�v���C���[�̐��ʂ͂������ǁACPU�̐��ʂ̓u���[�_�[�f�[�^��
-		 //����M���Ă��鏊���������Đ��ʂ𑗂�悤�ɂ���)
-			//���ʃZ�b�g
+		{//※check　後で変える(プレイヤーの性別はいいけど、CPUの性別はブリーダーデータを
+		 //送受信している所を改造して性別を送るようにする)
+			//性別セット
 			int i;
 			const MYSTATUS *my_status;
 			for(i = 0; i < consys->c_game.player_num; i++){
@@ -1291,7 +1291,7 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 			}
 		}
 		
-		//�C���[�W�N���b�v����M�o�b�t�@�ɕK�v�ȃV�X�e���f�[�^�Z�b�g
+		//イメージクリップ送受信バッファに必要なシステムデータセット
 		{
 			consys->imc_local.server_no = consys->c_game.server_no;
 			consys->imc_local.my_net_id = consys->c_game.my_net_id;
@@ -1308,9 +1308,9 @@ static void ContestComm_SioFastData(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   �ʐM�̏ꍇ�̃��[�N�����p�����[�^�ݒ���s���B
+ * @brief   通信の場合のワーク初期パラメータ設定を行う。
  * @param   consys		
- * @retval  TRUE:�����ݒ萬���B�@FALSE:���s
+ * @retval  TRUE:初期設定成功。　FALSE:失敗
  */
 //--------------------------------------------------------------
 BOOL Contest_SioParamInitSet(CONTEST_SYSTEM *consys)
@@ -1326,11 +1326,11 @@ BOOL Contest_SioParamInitSet(CONTEST_SYSTEM *consys)
 	connect_num = CommGetConnectNum();
 	net_id = CommGetCurrentID();
 
-	{//�S�����a������A�S���}�ӓ���ς݂��`�F�b�N
+	{//全員が殿堂入り、全国図鑑入手済みかチェック
 		int i;
 		MYSTATUS *my_status;
 		
-		//�S�����a������ς݂��`�F�b�N
+		//全員が殿堂入り済みかチェック
 		for(i = 0; i < connect_num; i++){
 			my_status = CommInfoGetMyStatus(i);
 			GF_ASSERT(my_status != NULL);
@@ -1341,17 +1341,17 @@ BOOL Contest_SioParamInitSet(CONTEST_SYSTEM *consys)
 		if(i != connect_num){
 			consys->hof_flag = FALSE;
 		#ifdef OSP_CONTEST_ON
-			OS_TPrintf("�a�����肵�Ă��Ȃ��v���C���[������\n");
+			OS_TPrintf("殿堂入りしていないプレイヤーがいる\n");
 		#endif
 		}
 		else{
 			consys->hof_flag = TRUE;
 		#ifdef OSP_CONTEST_ON
-			OS_TPrintf("�S���a������ς�\n");
+			OS_TPrintf("全員殿堂入り済み\n");
 		#endif
 		}
 
-		//�S�����S���}�ӓ���ς݂��`�F�b�N
+		//全員が全国図鑑入手済みかチェック
 		for(i = 0; i < connect_num; i++){
 			my_status = CommInfoGetMyStatus(i);
 			GF_ASSERT(my_status != NULL);
@@ -1362,21 +1362,21 @@ BOOL Contest_SioParamInitSet(CONTEST_SYSTEM *consys)
 		if(i != connect_num){
 			consys->zenkoku_zukan_flag = FALSE;
 		#ifdef OSP_CONTEST_ON
-			OS_TPrintf("�S���}�ӂ���Ȃ��v���C���[������\n");
+			OS_TPrintf("全国図鑑じゃないプレイヤーがいる\n");
 		#endif
 		}
 		else{
 			consys->zenkoku_zukan_flag = TRUE;
 		#ifdef OSP_CONTEST_ON
-			OS_TPrintf("�S���S���}��\n");
+			OS_TPrintf("全員全国図鑑\n");
 		#endif
 		}
 
-		//�S���̓a������A�S���}�ӓ���t���O���擾������ɁA���������
-		//CPU�u���[�_�[���ăG���g���[
+		//全員の殿堂入り、全国図鑑入手フラグを取得した後に、それを元に
+		//CPUブリーダーを再エントリー
 		Contest_CpuParamCreate(consys, consys->hof_flag, consys->zenkoku_zukan_flag);
 
-		//�Q�����Ă���DP�̐l���𒲂ׂ�
+		//参加しているDPの人数を調べる
 		for(i = 0; i < connect_num; i++){
 			my_status = CommInfoGetMyStatus(i);
 			if(MyStatus_GetRomCode(my_status) == POKEMON_DP_ROM_CODE){
@@ -1393,15 +1393,15 @@ BOOL Contest_SioParamInitSet(CONTEST_SYSTEM *consys)
 	consys->c_game.theme = ConTool_ThemeRandomSelect(consys->c_game.rank, TRUE);
 
 #ifdef OSP_CONTEST_ON
-	OS_TPrintf("�ڑ��l����%d\n", connect_num);
-	OS_TPrintf("������netID��%d\n", consys->c_game.my_net_id);
-	OS_TPrintf("CPU�̐l����%d\n", consys->c_game.cpu_num);
+	OS_TPrintf("接続人数＝%d\n", connect_num);
+	OS_TPrintf("自分のnetID＝%d\n", consys->c_game.my_net_id);
+	OS_TPrintf("CPUの人数＝%d\n", consys->c_game.cpu_num);
 #endif
 
-	//�ʐM���[�h���R���e�X�g��
+	//通信モードをコンテストに
 	CommCommandContestInitialize(consys);
 	
-	//�ŏ��̒ʐM���s���^�X�N�𐶐�
+	//最初の通信を行うタスクを生成
 	consys->sio_tcb = TCB_Add(ContestComm_SioFastData, consys, 10);
 	
 	return TRUE;
@@ -1409,9 +1409,9 @@ BOOL Contest_SioParamInitSet(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g�ʐM�̍ŏ��̃f�[�^�������I���������m�F
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @retval  TRUE:�I���B�@FALSE:���s��
+ * @brief   コンテスト通信の最初のデータ交換が終了したか確認
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @retval  TRUE:終了。　FALSE:続行中
  */
 //--------------------------------------------------------------
 BOOL Contest_SioFastDataEndCheck(CONTEST_SYSTEM *consys)
@@ -1421,9 +1421,9 @@ BOOL Contest_SioFastDataEndCheck(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g�ʐM�̃f�[�^�������I���������m�F
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @retval  TRUE:�I���B�@FALSE:���s��
+ * @brief   コンテスト通信のデータ交換が終了したか確認
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @retval  TRUE:終了。　FALSE:続行中
  */
 //--------------------------------------------------------------
 BOOL Contest_SioCommDataEndCheck(CONTEST_SYSTEM *consys)
@@ -1436,10 +1436,10 @@ BOOL Contest_SioCommDataEndCheck(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �C���[�W�N���b�v�����f�[�^�𑗎�M����
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @brief   イメージクリップ完成データを送受信する
+ * @param   consys		コンテストシステムワークへのポインタ
  *
- * �C���[�W�N���b�v��ʏI����ɌĂԂ��ƂŁA�����f�[�^�𑗎�M���܂��B
+ * イメージクリップ画面終了後に呼ぶことで、完成データを送受信します。
  */
 //--------------------------------------------------------------
 static void Contest_SioImcData(CONTEST_SYSTEM *consys)
@@ -1451,9 +1451,9 @@ static void Contest_SioImcData(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �C���[�W�N���b�v�����f�[�^����M
- * @param   tcb			TCB�ւ̃|�C���^
- * @param   work		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @brief   イメージクリップ完成データ送受信
+ * @param   tcb			TCBへのポインタ
+ * @param   work		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 static void ContestComm_ImcData(TCB_PTR tcb, void *work)
@@ -1483,7 +1483,7 @@ static void ContestComm_ImcData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_IMC_SEND:
-		//�e�u���[�_�[�������̃|�P�����p�����[�^�𑗐M
+		//各ブリーダーが自分のポケモンパラメータを送信
 		if(CommContestSendClipData(consys, consys->c_game.my_breeder_no, 
 				consys->c_game.imc_data[consys->c_game.my_breeder_no]) == TRUE){
 			consys->seq++;
@@ -1507,7 +1507,7 @@ static void ContestComm_ImcData(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FASTSEQ_IMC_RESEND:
-		//�e�u���[�_�[�̃|�P�����p�����[�^���󂯎�����e���ACPU�̕����܂߂čđ��M����
+		//各ブリーダーのポケモンパラメータを受け取った親が、CPUの分も含めて再送信する
 		if(consys->c_game.my_breeder_no == consys->c_game.server_no){
 			if(CommContestSendClipDataAll(consys, consys->c_game.imc_data) == TRUE){
 				consys->seq++;
@@ -1538,12 +1538,12 @@ static void ContestComm_ImcData(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g�p���߁F�R�������擾
+ * @brief   スクリプト用命令：審判名を取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   judge_no	�R���ԍ�
- * @param   wordset		���[�h�Z�b�g�I�u�W�F�N�g
- * @param   buf_id		���Ԃ̃o�b�t�@�ɓo�^���邩
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @param   judge_no	審判番号
+ * @param   wordset		ワードセットオブジェクト
+ * @param   buf_id		何番のバッファに登録するか
  */
 //--------------------------------------------------------------
 void ConScr_JudgeNameGet(CONTEST_SYSTEM *consys, int judge_no, WORDSET *wordset, u32 buf_id)
@@ -1553,12 +1553,12 @@ void ConScr_JudgeNameGet(CONTEST_SYSTEM *consys, int judge_no, WORDSET *wordset,
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g�p���߁F�u���[�_�[�����擾
+ * @brief   スクリプト用命令：ブリーダー名を取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   entry_no	�G���g���[�ԍ�
- * @param   wordset		���[�h�Z�b�g�I�u�W�F�N�g
- * @param   buf_id		���Ԃ̃o�b�t�@�ɓo�^���邩
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @param   entry_no	エントリー番号
+ * @param   wordset		ワードセットオブジェクト
+ * @param   buf_id		何番のバッファに登録するか
  */
 //--------------------------------------------------------------
 void ConScr_BreederNameGet(CONTEST_SYSTEM *consys, int entry_no, WORDSET *wordset, u32 buf_id)
@@ -1573,12 +1573,12 @@ void ConScr_BreederNameGet(CONTEST_SYSTEM *consys, int entry_no, WORDSET *wordse
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g�p���߁F�|�P�����̃j�b�N�l�[�����擾
+ * @brief   スクリプト用命令：ポケモンのニックネームを取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   entry_no	�G���g���[�ԍ�
- * @param   wordset		���[�h�Z�b�g�I�u�W�F�N�g
- * @param   buf_id		���Ԃ̃o�b�t�@�ɓo�^���邩
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @param   entry_no	エントリー番号
+ * @param   wordset		ワードセットオブジェクト
+ * @param   buf_id		何番のバッファに登録するか
  */
 //--------------------------------------------------------------
 void ConScr_NickNameGet(CONTEST_SYSTEM *consys, int entry_no, WORDSET *wordset, u32 buf_id)
@@ -1593,11 +1593,11 @@ void ConScr_NickNameGet(CONTEST_SYSTEM *consys, int entry_no, WORDSET *wordset, 
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g�p���߁F�R���e�X�g�����N�����擾
+ * @brief   スクリプト用命令：コンテストランク名を取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   wordset		���[�h�Z�b�g�I�u�W�F�N�g
- * @param   buf_id		���Ԃ̃o�b�t�@�ɓo�^���邩
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @param   wordset		ワードセットオブジェクト
+ * @param   buf_id		何番のバッファに登録するか
  */
 //--------------------------------------------------------------
 void ConScr_RankNameGet(CONTEST_SYSTEM *consys, WORDSET *wordset, u32 buf_id)
@@ -1610,11 +1610,11 @@ void ConScr_RankNameGet(CONTEST_SYSTEM *consys, WORDSET *wordset, u32 buf_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g�p���߁F�R���e�X�g�^�C�v��(�R���e�X�g����)���擾
+ * @brief   スクリプト用命令：コンテストタイプ名(コンテスト名称)を取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   wordset		���[�h�Z�b�g�I�u�W�F�N�g
- * @param   buf_id		���Ԃ̃o�b�t�@�ɓo�^���邩
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @param   wordset		ワードセットオブジェクト
+ * @param   buf_id		何番のバッファに登録するか
  */
 //--------------------------------------------------------------
 void ConScr_TypeNameGet(CONTEST_SYSTEM *consys, WORDSET *wordset, u32 buf_id)
@@ -1627,11 +1627,11 @@ void ConScr_TypeNameGet(CONTEST_SYSTEM *consys, WORDSET *wordset, u32 buf_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g�p���߁F�D�������u���[�_�[�̖��O���擾
+ * @brief   スクリプト用命令：優勝したブリーダーの名前を取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   wordset		���[�h�Z�b�g�I�u�W�F�N�g
- * @param   buf_id		���Ԃ̃o�b�t�@�ɓo�^���邩
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @param   wordset		ワードセットオブジェクト
+ * @param   buf_id		何番のバッファに登録するか
  */
 //--------------------------------------------------------------
 void ConScr_VictoryBreederNameGet(CONTEST_SYSTEM *consys, WORDSET *wordset, u32 buf_id)
@@ -1651,11 +1651,11 @@ void ConScr_VictoryBreederNameGet(CONTEST_SYSTEM *consys, WORDSET *wordset, u32 
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g�p���߁F�D�������u���[�_�[�̃|�P�����j�b�N�l�[�����擾
+ * @brief   スクリプト用命令：優勝したブリーダーのポケモンニックネームを取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   wordset		���[�h�Z�b�g�I�u�W�F�N�g
- * @param   buf_id		���Ԃ̃o�b�t�@�ɓo�^���邩
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @param   wordset		ワードセットオブジェクト
+ * @param   buf_id		何番のバッファに登録するか
  */
 //--------------------------------------------------------------
 void ConScr_VictoryNickNameGet(CONTEST_SYSTEM *consys, WORDSET *wordset, u32 buf_id)
@@ -1675,11 +1675,11 @@ void ConScr_VictoryNickNameGet(CONTEST_SYSTEM *consys, WORDSET *wordset, u32 buf
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g�p���߁F�D���������ɖႦ��A�C�e���ԍ����擾
+ * @brief   スクリプト用命令：優勝した時に貰えるアイテム番号を取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  *
- * @retval  �A�C�e���ԍ�
+ * @retval  アイテム番号
  */
 //--------------------------------------------------------------
 u32 ConScr_VictoryItemNoGet(CONTEST_SYSTEM *consys)
@@ -1689,12 +1689,12 @@ u32 ConScr_VictoryItemNoGet(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g�p���߁F�ʐM�����҂����ߑ��M
+ * @brief   スクリプト用命令：通信同期待ち命令送信
  *
- * @param   consys			�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   timing_no		�^�C�~���O�ԍ�
+ * @param   consys			コンテストシステムワークへのポインタ
+ * @param   timing_no		タイミング番号
  *
- * ��ʐM�̎��͉������܂���
+ * 非通信の時は何もしません
  */
 //--------------------------------------------------------------
 void ConScr_SioTimingSend(CONTEST_SYSTEM *consys, u8 timing_no)
@@ -1707,14 +1707,14 @@ void ConScr_SioTimingSend(CONTEST_SYSTEM *consys, u8 timing_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   �X�N���v�g�p���߁F�ʐM�����A��M�҂�
+ * @brief   スクリプト用命令：通信同期、受信待ち
  *
- * @param   consys			�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   timing_no		�^�C�~���O�ԍ�
+ * @param   consys			コンテストシステムワークへのポインタ
+ * @param   timing_no		タイミング番号
  *
- * @retval  TRUE:������ꂽ�B�@FALSE:�҂���
+ * @retval  TRUE:同期取れた。　FALSE:待ち中
  *
- * ��ʐM�̎���TRUE�݂̂��Ԃ�܂�
+ * 非通信の時はTRUEのみが返ります
  */
 //--------------------------------------------------------------
 BOOL ConScr_SioTimingCheck(CONTEST_SYSTEM *consys, u8 timing_no)
@@ -1731,11 +1731,11 @@ BOOL ConScr_SioTimingCheck(CONTEST_SYSTEM *consys, u8 timing_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���Q�����Ă����R���e�X�g�Ŏ��������ʂ����������擾
+ * @brief   今参加していたコンテストで自分が何位だったかを取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  *
- * @retval  ����(0�I���W���ł��B 0=1�ʁA1=2�ʁA2=3�ʁA3=4��)
+ * @retval  順位(0オリジンです。 0=1位、1=2位、2=3位、3=4位)
  */
 //--------------------------------------------------------------
 int ConScr_RankingCheck(CONTEST_SYSTEM *consys)
@@ -1745,11 +1745,11 @@ int ConScr_RankingCheck(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �D�������u���[�_�[�̃G���g���[�ԍ����擾����
+ * @brief   優勝したブリーダーのエントリー番号を取得する
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  *
- * @retval  �G���g���[�ԍ�
+ * @retval  エントリー番号
  */
 //--------------------------------------------------------------
 int ConScr_VictoryEntryNoGet(CONTEST_SYSTEM *consys)
@@ -1767,11 +1767,11 @@ int ConScr_VictoryEntryNoGet(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �����̃G���g���[�ԍ����擾
+ * @brief   自分のエントリー番号を取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  *
- * @retval  �G���g���[�ԍ�
+ * @retval  エントリー番号
  */
 //--------------------------------------------------------------
 int ConScr_MyEntryNoGet(CONTEST_SYSTEM *consys)
@@ -1781,12 +1781,12 @@ int ConScr_MyEntryNoGet(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   OBJ�R�[�h���擾
+ * @brief   OBJコードを取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   entry_no	�G���g���[�ԍ�
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @param   entry_no	エントリー番号
  *
- * @retval  OBJ�R�[�h
+ * @retval  OBJコード
  */
 //--------------------------------------------------------------
 int ConScr_OBJCodeGet(CONTEST_SYSTEM *consys, int entry_no)
@@ -1798,7 +1798,7 @@ int ConScr_OBJCodeGet(CONTEST_SYSTEM *consys, int entry_no)
 		int i;
 		for(i = 0; i < 4; i++){
 		#ifdef OSP_CONTEST_ON
-			OS_TPrintf("%d��code = %d\n", i, consys->c_game.obj_code[i]);
+			OS_TPrintf("%d版code = %d\n", i, consys->c_game.obj_code[i]);
 		#endif
 		}
 	}
@@ -1812,12 +1812,12 @@ int ConScr_OBJCodeGet(CONTEST_SYSTEM *consys, int entry_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   �l�C���擾����
+ * @brief   人気を取得する
  *
- * @param   consys			�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   entry_no		�G���g���[�ԍ�
+ * @param   consys			コンテストシステムワークへのポインタ
+ * @param   entry_no		エントリー番号
  *
- * @retval  �l�C
+ * @retval  人気
  */
 //--------------------------------------------------------------
 int ConScr_PopularityGet(CONTEST_SYSTEM *consys, int entry_no)
@@ -1830,19 +1830,19 @@ int ConScr_PopularityGet(CONTEST_SYSTEM *consys, int entry_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ��t�i���o�[(�V���O��DESK_SINGLE�A�}���`DESK_MULTI, ���KDESK_PRACTICE)���擾
+ * @brief   受付ナンバー(シングルDESK_SINGLE、マルチDESK_MULTI, 練習DESK_PRACTICE)を取得
  *
- * @param   consys			�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys			コンテストシステムワークへのポインタ
  *
- * @retval  ��t�i���o�[
+ * @retval  受付ナンバー
  */
 //--------------------------------------------------------------
 int ConScr_DeskModeGet(CONTEST_SYSTEM *consys)
 {
-	enum{//��con_reception.ev�ɂ��铯����define��`�Ɣԍ�������Ȃ��悤�ɒ��ӂ��鎖�I�I
-		DESK_SINGLE = 0,	//�V���O��
-		DESK_MULTI,			//�}���`
-		DESK_PRACTICE,		//���K
+	enum{//※con_reception.evにある同名のdefine定義と番号がずれないように注意する事！！
+		DESK_SINGLE = 0,	//シングル
+		DESK_MULTI,			//マルチ
+		DESK_PRACTICE,		//練習
 	};
 	
 	if(consys->sio_flag == TRUE){
@@ -1856,11 +1856,11 @@ int ConScr_DeskModeGet(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g�V�X�e�����[�N���烉���N�⃂�[�h�Ȃǂ��擾����
+ * @brief   コンテストシステムワークからランクやモードなどを取得する
  *
- * @param   consys			�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys			コンテストシステムワークへのポインタ
  *
- * @retval  ��t�i���o�[
+ * @retval  受付ナンバー
  */
 //--------------------------------------------------------------
 void ConScr_EntryParamGet(CONTEST_SYSTEM *consys, u16 *rank, u16 *type, u16 *mode, u16 *temoti_pos)
@@ -1873,9 +1873,9 @@ void ConScr_EntryParamGet(CONTEST_SYSTEM *consys, u16 *rank, u16 *type, u16 *mod
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g�p�̃��b�Z�[�W����ݒ���s��
+ * @brief   コンテスト用のメッセージ送り設定を行う
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 void ConScr_MsgPrintFlagSet(CONTEST_SYSTEM *consys)
@@ -1885,9 +1885,9 @@ void ConScr_MsgPrintFlagSet(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g�p�̃��b�Z�[�W����ݒ�����Z�b�g����
+ * @brief   コンテスト用のメッセージ送り設定をリセットする
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 void ConScr_MsgPrintFlagReset(CONTEST_SYSTEM *consys)
@@ -1897,11 +1897,11 @@ void ConScr_MsgPrintFlagReset(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Q�����Ă���R���e�X�g�ŗD���������ɖႦ�郊�{�������Ɏ����Ă��邩�`�F�b�N
+ * @brief   参加しているコンテストで優勝した時に貰えるリボンを既に持っているかチェック
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  *
- * @retval  TRUE:���Ɏ����Ă���(�D���o���ς�)�B�@FALSE:�����Ă��Ȃ�
+ * @retval  TRUE:既に持っている(優勝経験済み)。　FALSE:持っていない
  */
 //--------------------------------------------------------------
 BOOL ConScr_HaveRibbonCheck(CONTEST_SYSTEM *consys)
@@ -1911,25 +1911,25 @@ BOOL ConScr_HaveRibbonCheck(CONTEST_SYSTEM *consys)
 	ribbon = ConTool_RibbonIDGet(consys->c_game.rank, consys->c_game.type);
 	if(PokeParaGet(consys->my_pp, ribbon, NULL) == 0){
 	#ifdef OSP_CONTEST_ON
-		OS_TPrintf("�D���������ɖႦ�郊�{���͂܂������Ă��Ȃ�\n");
+		OS_TPrintf("優勝した時に貰えるリボンはまだ持っていない\n");
 	#endif
-		return FALSE;	//�܂������Ă��Ȃ�
+		return FALSE;	//まだ持っていない
 	}
 	
 #ifdef OSP_CONTEST_ON
-	OS_TPrintf("�D�����{���͊��Ɏ����Ă���\n");
+	OS_TPrintf("優勝リボンは既に持っている\n");
 #endif
-	return TRUE;	//���Ɏ����Ă���
+	return TRUE;	//既に持っている
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ���Q�����Ă���R���e�X�g�ŗD���������ɖႦ�郊�{���̖��O���擾����
+ * @brief   今参加しているコンテストで優勝した時に貰えるリボンの名前を取得する
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   wordset		���[�h�Z�b�g�I�u�W�F�N�g
- * @param   buf_id		���Ԃ̃o�b�t�@�ɓo�^���邩
- * @param   heap_id		�q�[�vID
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @param   wordset		ワードセットオブジェクト
+ * @param   buf_id		何番のバッファに登録するか
+ * @param   heap_id		ヒープID
  */
 //--------------------------------------------------------------
 void ConScr_RibbonItemNameGet(CONTEST_SYSTEM *consys, WORDSET *wordset, u32 buf_id, int heap_id)
@@ -1962,11 +1962,11 @@ void ConScr_RibbonItemNameGet(CONTEST_SYSTEM *consys, WORDSET *wordset, u32 buf_
 
 //--------------------------------------------------------------
 /**
- * @brief   �D���������ɖႦ��A�N�Z�T���ԍ����擾
+ * @brief   優勝した時に貰えるアクセサリ番号を取得
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  *
- * @retval  �A�N�Z�T���ԍ�(�D�����Ă��Ȃ� or ���Ɍ��E���������Ă���ꍇ��0xffff���Ԃ�܂�)
+ * @retval  アクセサリ番号(優勝していない or 既に限界数所持している場合は0xffffが返ります)
  */
 //--------------------------------------------------------------
 u32 ConScr_AcceNoGet(CONTEST_SYSTEM *consys)
@@ -1975,9 +1975,9 @@ u32 ConScr_AcceNoGet(CONTEST_SYSTEM *consys)
 	
 	if(consys->c_game.score[consys->c_game.my_breeder_no].final_ranking > 0){
 	#ifdef OSP_CONTEST_ON
-		OS_TPrintf("�A�N�Z�T���[�F�D�����ĂȂ��̂Ŏ擾�Ȃ�\n");
+		OS_TPrintf("アクセサリー：優勝してないので取得なし\n");
 	#endif
-		return 0xffff;	//�D���ł͂Ȃ�
+		return 0xffff;	//優勝ではない
 	}
 	
 	switch(consys->c_game.type){
@@ -2065,36 +2065,36 @@ u32 ConScr_AcceNoGet(CONTEST_SYSTEM *consys)
 
 	GF_ASSERT(acce_no != IMC_ACCE_MAX);
 #ifdef OSP_CONTEST_ON
-	OS_TPrintf("�A�N�Z�T���[�Facce_no = %d\n", acce_no);
+	OS_TPrintf("アクセサリー：acce_no = %d\n", acce_no);
 #endif
 
-	//�A�N�Z�T�����ǉ��o���邩���`�F�b�N
+	//アクセサリが追加出来るか個数チェック
 	{
 		IMC_SAVEDATA* imc;
 		IMC_ITEM_SAVEDATA* imc_item;
 
 		imc	= SaveData_GetImcSaveData(consys->sv);
-		imc_item = ImcSaveData_GetItemSaveData(imc);	//�A�C�e���Z�[�u�f�[�^�擾
+		imc_item = ImcSaveData_GetItemSaveData(imc);	//アイテムセーブデータ取得
 		if(ImcSaveData_CheckAcceAdd(imc_item, acce_no, 1) == FALSE){
 		#ifdef OSP_CONTEST_ON
-			OS_TPrintf("�A�N�Z�T���[�F����ȏ�Add�o���Ȃ��̂Ŏ擾���Ȃ�\n");
+			OS_TPrintf("アクセサリー：これ以上Add出来ないので取得しない\n");
 		#endif
-			return 0xffff;	//�ǉ��s�\ 
+			return 0xffff;	//追加不可能 
 		}
 	}
 
 #ifdef OSP_CONTEST_ON
-	OS_TPrintf("�A�N�Z�T���[�FAdd�\\n");
+	OS_TPrintf("アクセサリー：Add可能\n");
 #endif
 	return acce_no;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �J�����̃t���b�V���G�t�F�N�g����^�X�N�𐶐�����
+ * @brief   カメラのフラッシュエフェクト制御タスクを生成する
  *
- * @param   consys			�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   entry_no		�G���g���[�ԍ�
+ * @param   consys			コンテストシステムワークへのポインタ
+ * @param   entry_no		エントリー番号
  */
 //--------------------------------------------------------------
 void ConScr_FlashTaskCreate(CONTEST_SYSTEM *consys, int entry_no)
@@ -2140,11 +2140,11 @@ void ConScr_FlashTaskCreate(CONTEST_SYSTEM *consys, int entry_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   �J�����̃t���b�V���G�t�F�N�g���I�����Ă��邩�`�F�b�N����
+ * @brief   カメラのフラッシュエフェクトが終了しているかチェックする
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  *
- * @retval  TRUE:�I�����Ă���B�@FALSE:�G�t�F�N�g��
+ * @retval  TRUE:終了している。　FALSE:エフェクト中
  */
 //--------------------------------------------------------------
 BOOL ConScr_FlashTaskCheck(CONTEST_SYSTEM *consys)
@@ -2157,9 +2157,9 @@ BOOL ConScr_FlashTaskCheck(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �J�����̃t���b�V���G�t�F�N�g���C���^�X�N
- * @param   tcb			TCB�ւ̃|�C���^
- * @param   work		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @brief   カメラのフラッシュエフェクトメインタスク
+ * @param   tcb			TCBへのポインタ
+ * @param   work		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 static void ConScr_FlashMain(TCB_PTR tcb, void *work)
@@ -2195,13 +2195,13 @@ static void ConScr_FlashMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   �D�������u���[�_�[�̐F�X�ȃf�[�^���擾
+ * @brief   優勝したブリーダーの色々なデータを取得
  *
- * @param   victory_entry		�D�������u���[�_�[�̃G���g���[�ԍ�
- * @param   sio_flag			�ʐM�ΐ킩�ǂ���(TRUE:�ʐM�ΐ�)
- * @param   cpu_flag			�D�������̂�CPU���ǂ���(TRUE:CPU�AFALSE:�v���C���[)
- * @param   tutorial			TRUE:�`���[�g���A��
- * @param   practice			TRUE:���K
+ * @param   victory_entry		優勝したブリーダーのエントリー番号
+ * @param   sio_flag			通信対戦かどうか(TRUE:通信対戦)
+ * @param   cpu_flag			優勝したのはCPUかどうか(TRUE:CPU、FALSE:プレイヤー)
+ * @param   tutorial			TRUE:チュートリアル
+ * @param   practice			TRUE:練習
  */
 //--------------------------------------------------------------
 void ConScr_VictoryParamGet(CONTEST_SYSTEM *consys, 
@@ -2243,9 +2243,9 @@ void ConScr_VictoryParamGet(CONTEST_SYSTEM *consys,
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g�I����A�e��p�����[�^�̍X�V����
+ * @brief   コンテスト終了後、各種パラメータの更新処理
  *
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @param   consys		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 void ConScr_EndParamSet(CONTEST_SYSTEM *consys, SAVEDATA *sv, u32 place_id, FNOTE_DATA *f_note)
@@ -2261,13 +2261,13 @@ void ConScr_EndParamSet(CONTEST_SYSTEM *consys, SAVEDATA *sv, u32 place_id, FNOT
 	case CONMODE_DANCE_TUTORIAL:
 	case CONMODE_ACTIN_PRACTICE:
 	case CONMODE_ACTIN_TUTORIAL:
-		return;		//�{�ԂłȂ��Ȃ牽���Z�b�g���Ȃ�
+		return;		//本番でないなら何もセットしない
 	}
 	
 	if(consys->sio_flag == FALSE){
-		//-- ��ʐM�̎��݂̂̏��� --//
+		//-- 非通信の時のみの処理 --//
 		
-		//�}�X�^�[�����N�D���Ȃ�΃t���O�Z�b�g
+		//マスターランク優勝ならばフラグセット
 		{
 			EVENTWORK *ev;
 			ev = SaveData_GetEventWork(consys->sv);
@@ -2279,22 +2279,22 @@ void ConScr_EndParamSet(CONTEST_SYSTEM *consys, SAVEDATA *sv, u32 place_id, FNOT
 			}
 		}
 		
-		//���{���̃Z�b�g
+		//リボンのセット
 		if(ConScr_RankingCheck(consys) == 0){
 			int ribbon;
 			u8 flag = TRUE;
 			
 			ribbon = ConTool_RibbonIDGet(consys->c_game.rank, consys->c_game.type);
 			if(PokeParaGet(consys->my_pp, ribbon, NULL) == 0){
-				first_ribbon_get = TRUE;	//�܂���ɓ��ꂽ���̂Ȃ����{��
+				first_ribbon_get = TRUE;	//まだ手に入れた事のないリボン
 			}
 			PokeParaPut(consys->my_pp, ribbon, &flag);
 
-			//TV�g�s�b�N�쐬�F���{���R���N�^�[
+			//TVトピック作成：リボンコレクター
 			TVTOPIC_Entry_Record_Ribbon(consys->sv, consys->my_pp, ribbon );
 		}
 		
-		//�e���r�Z�b�g
+		//テレビセット
 		{
 			TV_WORK *tvwk;
 			
@@ -2304,7 +2304,7 @@ void ConScr_EndParamSet(CONTEST_SYSTEM *consys, SAVEDATA *sv, u32 place_id, FNOT
 				consys->c_game.score[consys->c_game.my_breeder_no].final_ranking + 1);
 		}
 		
-		//�J�E���^�[���X�R�A
+		//カウンター＆スコア
 		{
 			RECORD *rec;
 			
@@ -2319,7 +2319,7 @@ void ConScr_EndParamSet(CONTEST_SYSTEM *consys, SAVEDATA *sv, u32 place_id, FNOT
 			}
 		}
 		
-		//�}�ӌ����t���O�Z�b�g
+		//図鑑見たフラグセット
 		{
 			int i;
 			ZUKAN_WORK *zw;
@@ -2331,12 +2331,12 @@ void ConScr_EndParamSet(CONTEST_SYSTEM *consys, SAVEDATA *sv, u32 place_id, FNOT
 		}
 	}
 	else{
-		//-- �ʐM�ΐ�̎��݂̂̏��� --//
-		//�ʐM�ΐ퐬�ыL�^
+		//-- 通信対戦の時のみの処理 --//
+		//通信対戦成績記録
 		CONDATA_RecordAdd(consys->sv, consys->c_game.type, 
 			consys->c_game.score[consys->c_game.my_breeder_no].final_ranking);
 
-		//�J�E���^�[���X�R�A
+		//カウンター＆スコア
 		{
 			RECORD *rec;
 			
@@ -2348,7 +2348,7 @@ void ConScr_EndParamSet(CONTEST_SYSTEM *consys, SAVEDATA *sv, u32 place_id, FNOT
 			}
 		}
 		
-		//�`���m�[�g
+		//冒険ノート
 		{
 			void *buf;
 			FNOTE_DATA *fd;
@@ -2363,9 +2363,9 @@ void ConScr_EndParamSet(CONTEST_SYSTEM *consys, SAVEDATA *sv, u32 place_id, FNOT
 	}
 	
 	
-	//-- ��ʐM�E�ʐM���ʂ̏��� --//
+	//-- 非通信・通信共通の処理 --//
 	
-	//�G��̃Z�b�g
+	//絵画のセット
 	if(ConScr_RankingCheck(consys) == 0){
 		IMC_SAVEDATA *imc_sv;
 		IMC_CONTEST_SAVEDATA *con_sv;
@@ -2377,7 +2377,7 @@ void ConScr_EndParamSet(CONTEST_SYSTEM *consys, SAVEDATA *sv, u32 place_id, FNOT
 		ImcSaveData_SetComplateFlagContestData(con_sv);
 	}
 	
-	//�Ȃ��x�㏸
+	//なつき度上昇
 	if(ConScr_RankingCheck(consys) == 0){
 		FriendCalc(consys->my_pp, 
 			FRIEND_CONTEST_VICTORY, place_id);
@@ -2390,8 +2390,8 @@ void ConScr_EndParamSet(CONTEST_SYSTEM *consys, SAVEDATA *sv, u32 place_id, FNOT
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g��p�̃����_���̎평����
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+ * @brief   コンテスト専用のランダムの種初期化
+ * @param   consys		コンテストシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 static void contest_srand(CONTEST_SYSTEM *consys)
@@ -2401,9 +2401,9 @@ static void contest_srand(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g��p�̃����_���擾�֐�
- * @param   consys		�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @retval  �����_���l
+ * @brief   コンテスト専用のランダム取得関数
+ * @param   consys		コンテストシステムワークへのポインタ
+ * @retval  ランダム値
  */
 //--------------------------------------------------------------
 u16 contest_rand(CONTEST_SYSTEM *consys)
@@ -2413,13 +2413,13 @@ u16 contest_rand(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���e�X�g��p�̃����_���擾�֐�
- *          �����_�����擾���邽�тɎ��n���A�����_���l�ƐV��������󂯎��
+ * @brief   コンテスト専用のランダム取得関数
+ *          ランダムを取得するたびに種を渡し、ランダム値と新しい種を受け取る
  *
- * @param   seed			�����_���̎�
- * @param   new_seed		�����_���v�Z��̐V��������󂯎�郏�[�N�ւ̃|�C���^
+ * @param   seed			ランダムの種
+ * @param   new_seed		ランダム計算後の新しい種を受け取るワークへのポインタ
  *
- * @retval  �����_���l
+ * @retval  ランダム値
  */
 //--------------------------------------------------------------
 u16 contest_fix_rand(u32 seed, u32 *new_seed)
@@ -2433,11 +2433,11 @@ u16 contest_fix_rand(u32 seed, u32 *new_seed)
 
 //--------------------------------------------------------------
 /**
- * @brief   CON_ETC_SIO_DATA�̃p�����[�^���Z�b�g����
+ * @brief   CON_ETC_SIO_DATAのパラメータをセットする
  *
- * @param   consys			�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
- * @param   breeder_no		�Ώۃu���[�_�[
- * @param   etc_data		�p�����[�^�����
+ * @param   consys			コンテストシステムワークへのポインタ
+ * @param   breeder_no		対象ブリーダー
+ * @param   etc_data		パラメータ代入先
  */
 //--------------------------------------------------------------
 static void SioEtcDataSet(CONTEST_SYSTEM *consys, int breeder_no, CON_ETC_SIO_DATA *etc_data)

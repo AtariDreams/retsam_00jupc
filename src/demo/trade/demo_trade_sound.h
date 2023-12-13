@@ -6,28 +6,28 @@
 enum {
 	//battle,trcard
 	
-	//SE_POKE_TO_BALL = SEQ_SE_DP_000,		///< ƒ|ƒPƒ‚ƒ“‚ªƒsƒJƒb‚ÆŒõ‚Á‚Äƒ{[ƒ‹‚ÉŠi”[‚³‚ê‚é‰¹
-	SE_POKE_TO_BALL = SEQ_SE_DP_KOUKAN01,	///< ƒ|ƒPƒ‚ƒ“‚ªƒsƒJƒb‚ÆŒõ‚Á‚Äƒ{[ƒ‹‚ÉŠi”[‚³‚ê‚é‰¹
+	//SE_POKE_TO_BALL = SEQ_SE_DP_000,		///< ãƒã‚±ãƒ¢ãƒ³ãŒãƒ”ã‚«ãƒƒã¨å…‰ã£ã¦ãƒœãƒ¼ãƒ«ã«æ ¼ç´ã•ã‚Œã‚‹éŸ³
+	SE_POKE_TO_BALL = SEQ_SE_DP_KOUKAN01,	///< ãƒã‚±ãƒ¢ãƒ³ãŒãƒ”ã‚«ãƒƒã¨å…‰ã£ã¦ãƒœãƒ¼ãƒ«ã«æ ¼ç´ã•ã‚Œã‚‹éŸ³
 
-	SE_BALL_REFRECT = SEQ_SE_DP_KON,		///< ƒ{[ƒ‹‚ª°‚Å’µ‚Ë‚éƒRƒ“AƒRƒ“‚Æ‚¢‚¤‰¹
+	SE_BALL_REFRECT = SEQ_SE_DP_KON,		///< ãƒœãƒ¼ãƒ«ãŒåºŠã§è·³ã­ã‚‹ã‚³ãƒ³ã€ã‚³ãƒ³ã¨ã„ã†éŸ³
 
-	//‰½“x‚©ƒR[ƒ‹‚·‚é
-	//SE_BALL_RISE = SEQ_SE_DP_PYUU,		///< ƒ{[ƒ‹‚ªã‹ó‚ÉŒü‚©‚Á‚Äƒrƒ…[ƒ“‚Æ”ò‚ñ‚Å‚¢‚­‰¹
-	SE_BALL_RISE = SEQ_SE_DP_KOUKAN06,		///< ƒ{[ƒ‹‚ªã‹ó‚ÉŒü‚©‚Á‚Äƒrƒ…[ƒ“‚Æ”ò‚ñ‚Å‚¢‚­‰¹
+	//ä½•åº¦ã‹ã‚³ãƒ¼ãƒ«ã™ã‚‹
+	//SE_BALL_RISE = SEQ_SE_DP_PYUU,		///< ãƒœãƒ¼ãƒ«ãŒä¸Šç©ºã«å‘ã‹ã£ã¦ãƒ“ãƒ¥ãƒ¼ãƒ³ã¨é£›ã‚“ã§ã„ãéŸ³
+	SE_BALL_RISE = SEQ_SE_DP_KOUKAN06,		///< ãƒœãƒ¼ãƒ«ãŒä¸Šç©ºã«å‘ã‹ã£ã¦ãƒ“ãƒ¥ãƒ¼ãƒ³ã¨é£›ã‚“ã§ã„ãéŸ³
 
-	//SE_BALL_KIRARI = SEQ_SE_DP_KIRA,		///< ƒ{[ƒ‹‚ª‹ó‚É”ò‚ñ‚Å‚¢‚Á‚ÄƒLƒ‰[ƒ“‚Æ¯‚É‚È‚é‰¹
-	SE_BALL_KIRARI = SEQ_SE_DP_KOUKAN07,	///< ƒ{[ƒ‹‚ª‹ó‚É”ò‚ñ‚Å‚¢‚Á‚ÄƒLƒ‰[ƒ“‚Æ¯‚É‚È‚é‰¹
+	//SE_BALL_KIRARI = SEQ_SE_DP_KIRA,		///< ãƒœãƒ¼ãƒ«ãŒç©ºã«é£›ã‚“ã§ã„ã£ã¦ã‚­ãƒ©ãƒ¼ãƒ³ã¨æ˜Ÿã«ãªã‚‹éŸ³
+	SE_BALL_KIRARI = SEQ_SE_DP_KOUKAN07,	///< ãƒœãƒ¼ãƒ«ãŒç©ºã«é£›ã‚“ã§ã„ã£ã¦ã‚­ãƒ©ãƒ¼ãƒ³ã¨æ˜Ÿã«ãªã‚‹éŸ³
 
-	//‰½“x‚©ƒR[ƒ‹‚·‚é
-	//SE_BALL_FALL = SEQ_SE_DP_PYUU2,		///< ƒ{[ƒ‹‚ªã‹ó‚©‚çƒMƒ…[ƒ“‚Æ—Ž‚¿‚Ä‚­‚é‰¹
-	SE_BALL_FALL = SEQ_SE_DP_KOUKAN05,		///< ƒ{[ƒ‹‚ªã‹ó‚©‚çƒMƒ…[ƒ“‚Æ—Ž‚¿‚Ä‚­‚é‰¹
+	//ä½•åº¦ã‹ã‚³ãƒ¼ãƒ«ã™ã‚‹
+	//SE_BALL_FALL = SEQ_SE_DP_PYUU2,		///< ãƒœãƒ¼ãƒ«ãŒä¸Šç©ºã‹ã‚‰ã‚®ãƒ¥ãƒ¼ãƒ³ã¨è½ã¡ã¦ãã‚‹éŸ³
+	SE_BALL_FALL = SEQ_SE_DP_KOUKAN05,		///< ãƒœãƒ¼ãƒ«ãŒä¸Šç©ºã‹ã‚‰ã‚®ãƒ¥ãƒ¼ãƒ³ã¨è½ã¡ã¦ãã‚‹éŸ³
 
-	//SE_POKE_CROSS = SEQ_SE_DP_025,		///< ƒ|ƒPƒ‚ƒ“‚ª‚·‚êˆá‚¤Žž‚ÌƒsƒL[ƒ“‚Æ‚¢‚¤‰¹
-	//SE_POKE_CROSS = SEQ_SE_DP_KOUKAN04,	///< ƒ|ƒPƒ‚ƒ“‚ª‚·‚êˆá‚¤Žž‚ÌƒsƒL[ƒ“‚Æ‚¢‚¤‰¹
-	SE_POKE_CROSS = SEQ_SE_DP_KOUKAN03,		///< ƒ|ƒPƒ‚ƒ“‚ª‚·‚êˆá‚¤Žž‚ÌƒsƒL[ƒ“‚Æ‚¢‚¤‰¹
+	//SE_POKE_CROSS = SEQ_SE_DP_025,		///< ãƒã‚±ãƒ¢ãƒ³ãŒã™ã‚Œé•ã†æ™‚ã®ãƒ”ã‚­ãƒ¼ãƒ³ã¨ã„ã†éŸ³
+	//SE_POKE_CROSS = SEQ_SE_DP_KOUKAN04,	///< ãƒã‚±ãƒ¢ãƒ³ãŒã™ã‚Œé•ã†æ™‚ã®ãƒ”ã‚­ãƒ¼ãƒ³ã¨ã„ã†éŸ³
+	SE_POKE_CROSS = SEQ_SE_DP_KOUKAN03,		///< ãƒã‚±ãƒ¢ãƒ³ãŒã™ã‚Œé•ã†æ™‚ã®ãƒ”ã‚­ãƒ¼ãƒ³ã¨ã„ã†éŸ³
 
-	//SE_WAVE = SEQ_SE_DP_081,				///< “d”g‚ªƒsƒŠƒbAƒsƒŠƒb‚Æo‚é‰¹
-	SE_WAVE = SEQ_SE_DP_KOUKAN08,			///< “d”g‚ªƒsƒŠƒbAƒsƒŠƒb‚Æo‚é‰¹
+	//SE_WAVE = SEQ_SE_DP_081,				///< é›»æ³¢ãŒãƒ”ãƒªãƒƒã€ãƒ”ãƒªãƒƒã¨å‡ºã‚‹éŸ³
+	SE_WAVE = SEQ_SE_DP_KOUKAN08,			///< é›»æ³¢ãŒãƒ”ãƒªãƒƒã€ãƒ”ãƒªãƒƒã¨å‡ºã‚‹éŸ³
 	
 #if 0
 	SE_??? = SEQ_SE_DP_KOUKAN09,			///< 

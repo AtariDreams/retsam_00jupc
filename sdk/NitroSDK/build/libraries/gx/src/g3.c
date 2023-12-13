@@ -15,10 +15,10 @@
   do-indent
 
   Revision 1.26  2005/03/15 06:51:51  takano_makoto
-  G3_EndMakeDL�֐��ŁAcurr_cmd�|�C���^�����X�g�̍Ō���w���悤�ɏC��
+  G3_EndMakeDL関数で、curr_cmdポインタがリストの最後を指すように修正
 
   Revision 1.25  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.24  2005/02/28 05:26:13  yosizaki
   do-indent.

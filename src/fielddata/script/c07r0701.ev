@@ -9,36 +9,36 @@
 	//.include	"../eventdata/zone_c07r0701evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c07r0701_middleman1
 _EVENT_DATA		ev_c07r0701_middlewoman1
 _EVENT_DATA_END
 
 /********************************************************************/
-/*							‚¨‚¶‚³‚ñ	@							*/
+/*							ãŠã˜ã•ã‚“	ã€€							*/
 /********************************************************************/
 ev_c07r0701_middleman1:
 	_TALK_OBJ_START
 
-	/*ƒ|ƒŠƒSƒ“‚ð–á‚Á‚Ä‚¢‚½‚ç*/
+	/*ãƒãƒªã‚´ãƒ³ã‚’è²°ã£ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_C07R0701_POKEMON_GET,ev_c07r0701_middleman1_08
 
-	/*‚·‚Å‚É‰ï˜b‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«ä¼šè©±ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_C07R0701_TALK,ev_c07r0701_middleman1_02
 
-	/*ˆê“x‰ï˜b‚µ‚½ƒtƒ‰ƒO—§‚Ä‚Ä‚¨‚­*/
+	/*ä¸€åº¦ä¼šè©±ã—ãŸãƒ•ãƒ©ã‚°ç«‹ã¦ã¦ãŠã*/
 	_FLAG_SET		FE_C07R0701_TALK
 	
 	_TALKMSG		msg_c07r0701_middleman1_01
 	_JUMP			ev_c07r0701_middleman1_yesno
 	_END
 
-/*‚·‚Å‚É‰ï˜b‚µ‚Ä‚¢‚½‚ç*/
+/*ã™ã§ã«ä¼šè©±ã—ã¦ã„ãŸã‚‰*/
 ev_c07r0701_middleman1_02:
 	_TALKMSG		msg_c07r0701_middleman1_02
 	_JUMP			ev_c07r0701_middleman1_yesno
@@ -50,23 +50,23 @@ ev_c07r0701_middleman1_yesno:
 	_JUMP			ev_c07r0701_middleman1_07
 	_END
 
-//ƒ|ƒPƒ‚ƒ“’Ç‰Áƒ`ƒFƒbƒN
+//ãƒã‚±ãƒ¢ãƒ³è¿½åŠ ãƒã‚§ãƒƒã‚¯
 ev_c07r0701_pokemon_add_check:
-	//ƒ|ƒPƒ‚ƒ“”ƒJƒEƒ“ƒg
+	//ãƒã‚±ãƒ¢ãƒ³æ•°ã‚«ã‚¦ãƒ³ãƒˆ
 	_GET_POKE_COUNT	SCWK_ANSWER
 
-	//6‘Ì‚¢‚é‚È‚çŽó‚¯Žæ‚ê‚È‚¢
+	//6ä½“ã„ã‚‹ãªã‚‰å—ã‘å–ã‚Œãªã„
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,6,ev_c07r0701_middleman1_06
 
 	_TALKMSG		msg_c07r0701_middleman1_03
 
-	//ƒ|ƒPƒ‚ƒ“”Ô†[„•¶Žšƒoƒbƒtƒ@‚Ö
+	//ãƒã‚±ãƒ¢ãƒ³ç•ªå·ãƒ¼ï¼žæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã¸
 	_ME_PLAY		SEQ_FANFA4
 	_PLAYER_NAME	0
 	_TALKMSG		msg_c07r0701_middleman1_04
 	_ME_WAIT
 
-	//ƒ|ƒPƒ‚ƒ“‚Æ‚µ‚Ä’Ç‰Á
+	//ãƒã‚±ãƒ¢ãƒ³ã¨ã—ã¦è¿½åŠ 
 	_ADD_POKEMON	MONSNO_PORIGON,25,0,SCWK_ANSWER
 
 	_FLAG_SET		FE_C07R0701_POKEMON_GET
@@ -77,20 +77,20 @@ ev_c07r0701_pokemon_add_check:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,c07r0701_name_change_no
 	_END
 
-//–¼‘O•ÏX‚ ‚è
+//åå‰å¤‰æ›´ã‚ã‚Š
 c07r0701_name_change_yes:
 	_TALK_CLOSE
 
 	_GET_POKE_COUNT	LOCALWORK0
-	_SUB_WK			LOCALWORK0,1		//"Å‘å”[‚P"•ÏX‚³‚ê‚½POS
+	_SUB_WK			LOCALWORK0,1		//"æœ€å¤§æ•°ãƒ¼ï¼‘"å¤‰æ›´ã•ã‚ŒãŸPOS
 
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//–¼‘O“ü—Í
+	//åå‰å…¥åŠ›
 	_NAMEIN_POKE	LOCALWORK0,SCWK_ANSWER
 
-	//‰½‚à“ü—Í‚µ‚Ä‚¢‚È‚¢A•ÏX‚µ‚Ä‚¢‚È‚¢Žž"‚Å‚Í‚È‚¢Žž"
+	//ä½•ã‚‚å…¥åŠ›ã—ã¦ã„ãªã„ã€å¤‰æ›´ã—ã¦ã„ãªã„æ™‚"ã§ã¯ãªã„æ™‚"
 	_IFVAL_CALL		SCWK_ANSWER,NE,1,ev_c07r0701_name_change_record_inc
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -99,12 +99,12 @@ c07r0701_name_change_yes:
 	_TALK_OBJ_END
 	_END
 
-//‰½‚à“ü—Í‚µ‚Ä‚¢‚È‚¢A•ÏX‚µ‚Ä‚¢‚È‚¢Žž"‚Å‚Í‚È‚¢Žž"
+//ä½•ã‚‚å…¥åŠ›ã—ã¦ã„ãªã„ã€å¤‰æ›´ã—ã¦ã„ãªã„æ™‚"ã§ã¯ãªã„æ™‚"
 ev_c07r0701_name_change_record_inc:
 	_RECORD_INC		RECID_NICKNAME
 	_RET
 
-//–¼‘O•ÏX‚È‚µ
+//åå‰å¤‰æ›´ãªã—
 c07r0701_name_change_no:
 	_TALK_CLOSE
 	_TALK_OBJ_END
@@ -112,7 +112,7 @@ c07r0701_name_change_no:
 
 
 /********************************************************************/
-//ŽèŽ‚¿‚ª‚¢‚Á‚Ï‚¢i6‘Ìj
+//æ‰‹æŒã¡ãŒã„ã£ã±ã„ï¼ˆ6ä½“ï¼‰
 /********************************************************************/
 ev_c07r0701_middleman1_06:
 	_TALKMSG		msg_c07r0701_middleman1_06
@@ -121,7 +121,7 @@ ev_c07r0701_middleman1_06:
 
 
 /********************************************************************/
-//‚¢‚¢‚¦
+//ã„ã„ãˆ
 /********************************************************************/
 ev_c07r0701_middleman1_07:
 	_TALKMSG		msg_c07r0701_middleman1_07
@@ -130,7 +130,7 @@ ev_c07r0701_middleman1_07:
 
 
 /********************************************************************/
-//ƒ|ƒŠƒSƒ““üŽèÏ‚Ý
+//ãƒãƒªã‚´ãƒ³å…¥æ‰‹æ¸ˆã¿
 /********************************************************************/
 ev_c07r0701_middleman1_08:
 	_TALKMSG		msg_c07r0701_middleman1_08
@@ -145,7 +145,7 @@ ev_c07r0701_middleman1_end:
 
 
 /********************************************************************/
-/*							‚¨‚Î‚³‚ñ	@							*/
+/*							ãŠã°ã•ã‚“	ã€€							*/
 /********************************************************************/
 ev_c07r0701_middlewoman1:
 	_EASY_OBJ_MSG	msg_c07r0701_middlewoman1_01

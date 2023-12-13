@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	opneing_bmp.h
- * @brief	ƒI[ƒvƒjƒ“ƒO BMP
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚° BMP
  * @author	Satoshi Nohara
  * @date	2005.12.08
  */
@@ -14,23 +14,23 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
 
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -39,9 +39,9 @@ extern void OpeningAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü	
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„	
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -50,9 +50,9 @@ extern void OpeningExitBmpWin( GF_BGL_BMPWIN* win );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒIƒt
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -61,30 +61,30 @@ extern void OpeningOffBmpWin( GF_BGL_BMPWIN* win );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	wait	•¶š•\¦ƒEƒFƒCƒg
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		OPENING_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	wait	æ–‡å­—è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
- * @return	"•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
+ * @return	"æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  */
 //--------------------------------------------------------------
 extern u8 OpeningWriteMsg(OPENING_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font);
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒEƒBƒ“ƒhƒE•\¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -93,10 +93,10 @@ extern void OpeningWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒwƒbƒ_[‰Šúİ’è
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	y_max	€–ÚÅ‘å”
+ * @param	wk		OPENING_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	y_max	é …ç›®æœ€å¤§æ•°
  *
  * @retval	none
  */
@@ -105,12 +105,12 @@ extern void OpeningInitMenu( OPENING_WORK* wk, GF_BGL_BMPWIN* win, u8 y_max );
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒf[ƒ^ƒZƒbƒg
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		ƒZƒbƒg‚·‚éêŠ(–ß‚è’l)
- * @param	param	–ß‚è’l
- * @param	msg_id	ƒƒbƒZ[ƒWID
+ * @param	wk		OPENING_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		ã‚»ãƒƒãƒˆã™ã‚‹å ´æ‰€(æˆ»ã‚Šå€¤)
+ * @param	param	æˆ»ã‚Šå€¤
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
  * @retval	none
  */
@@ -119,10 +119,10 @@ extern void OpeningSetMenuData( OPENING_WORK* wk, u8 no, u8 param, int msg_id  )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒh‰ï˜bƒEƒBƒ“ƒhƒE•\¦
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	win		BMPƒf[ƒ^
- * @param	wintype	ƒEƒBƒ“ƒhƒEƒ^ƒCƒv
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿
+ * @param	wintype	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—
  *
  * @return	none
  */

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_LoadArchive</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_LoadArchive</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -26,69 +26,69 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>p_arc</STRONG></EM></TD>
-      <TD width="87%">FSArchive�\���̂̃A�h���X</TD>
+      <TD width="87%">FSArchive構造体のアドレス</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>base</STRONG></EM></TD>
-      <TD width="87%">�A�[�J�C�u�ŗL�̃A�h���X��Ԃɂ�����x�[�X�I�t�Z�b�g�l<BR>
-	����̓A�[�J�C�u�����̗��֐��̂��߂ɗp�ӂ���Ă���A<BR>
-	FS_GetArchiveBase�֐��Ŏ擾���邾���̂��̂ł��B</TD>
+      <TD width="87%">アーカイブ固有のアドレス空間におけるベースオフセット値<BR>
+	これはアーカイブ実装の利便性のために用意されており、<BR>
+	FS_GetArchiveBase関数で取得するだけのものです。</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>fat</STRONG></EM></TD>
-      <TD width="87%">�A�[�J�C�u�ŗL�̃A�h���X��Ԃɂ�����FAT�̐擪�ʒu�I�t�Z�b�g</TD>
+      <TD width="87%">アーカイブ固有のアドレス空間におけるFATの先頭位置オフセット</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>fat_size</STRONG></EM></TD>
-      <TD width="87%">�A�[�J�C�u��FAT�o�C�g�T�C�Y</TD>
+      <TD width="87%">アーカイブのFATバイトサイズ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>fnt</STRONG></EM></TD>
-      <TD width="87%">�A�[�J�C�u�ŗL�̃A�h���X��Ԃɂ�����FNT�̐擪�ʒu�I�t�Z�b�g</TD>
+      <TD width="87%">アーカイブ固有のアドレス空間におけるFNTの先頭位置オフセット</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>fnt_size</STRONG></EM></TD>
-      <TD width="87%">�A�[�J�C�u��FNT�o�C�g�T�C�Y</TD>
+      <TD width="87%">アーカイブのFNTバイトサイズ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>read_func</STRONG></EM></TD>
-      <TD width="87%">�A�[�J�C�u�ŗL�̃A�h���X��Ԃփ��[�h�A�N�Z�X���邽�߂̃R�[���o�b�N�֐�<br>
-	  ���̃R�[���o�b�N�̓A�[�J�C�u�R�}���h������Ŏg�p����FS�֐��̓�������Ăяo����܂��B</TD>
+      <TD width="87%">アーカイブ固有のアドレス空間へリードアクセスするためのコールバック関数<br>
+	  このコールバックはアーカイブコマンドを内部で使用するFS関数の内部から呼び出されます。</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>write_func</STRONG></EM></TD>
-      <TD width="87%">�A�[�J�C�u�ŗL�̃A�h���X��Ԃփ��C�g�A�N�Z�X���邽�߂̃R�[���o�b�N�֐�<br>
-	  ���̃R�[���o�b�N�̓A�[�J�C�u�R�}���h������Ŏg�p����FS�֐��̓�������Ăяo����܂��B</TD>
+      <TD width="87%">アーカイブ固有のアドレス空間へライトアクセスするためのコールバック関数<br>
+	  このコールバックはアーカイブコマンドを内部で使用するFS関数の内部から呼び出されます。</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�A�[�J�C�u���������t�@�C���V�X�e���Ƀ��[�h���ꂽ�ꍇ�� TRUE ���A�����łȂ��Ȃ� FALSE ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>アーカイブが正しくファイルシステムにロードされた場合は TRUE を、そうでないなら FALSE を返します。</p>
 
-<H2>����</H2>
-<P>�w�肳�ꂽ�����̂��ƂɁA�A�[�J�C�u���t�@�C���V�X�e���փ��[�h���܂��B<BR>
-�A�[�J�C�u�́AFS_RegisterArchiveName�֐��őO�����Ė��O��o�^���Ă���K�v������܂��B<BR>
+<H2>説明</H2>
+<P>指定された実装のもとに、アーカイブをファイルシステムへロードします。<BR>
+アーカイブは、FS_RegisterArchiveName関数で前もって名前を登録してある必要があります。<BR>
 <BR>
-�t�@�C���V�X�e���͗^����ꂽ�����̑g�ݍ��킹����A�A�[�J�C�u�Ɉȉ��̓�������肵�܂��B<BR>
+ファイルシステムは与えられた引数の組み合わせから、アーカイブに以下の動作を仮定します。<BR>
 <BR>
-�E�A�[�J�C�u�� read_func ����� write_func �ł̂݃A�N�Z�X�\�ȃ��j�A��������̌ŗL�ȃf�[�^�\��������<BR>
-�E�A�[�J�C�u��fat�̈ʒu����fat_size�o�C�g���̗̈��NitroROM�t�H�[�}�b�g������FAT���������Aread_func �ɂ���ăA�N�Z�X�ł���<BR>
-�E�A�[�J�C�u��fnt�̈ʒu����fnt_size�o�C�g���̗̈��NitroROM�t�H�[�}�b�g������FNT���������Aread_func �ɂ���ăA�N�Z�X�ł���<BR>
-�E�A�[�J�C�u��FAT���Ŏw�肳��邷�ׂĂ͈̗̔͂̈�Ƀt�@�C���f�[�^�������Aread_func�ɂ���ăA�N�Z�X�ł���<BR>
+・アーカイブは read_func および write_func でのみアクセス可能なリニアメモリ状の固有なデータ構造を持つ<BR>
+・アーカイブはfatの位置からfat_sizeバイト分の領域にNitroROMフォーマット準拠のFAT情報を持ち、read_func によってアクセスできる<BR>
+・アーカイブはfntの位置からfnt_sizeバイト分の領域にNitroROMフォーマット準拠のFNT情報を持ち、read_func によってアクセスできる<BR>
+・アーカイブはFAT情報で指定されるすべての範囲の領域にファイルデータを持ち、read_funcによってアクセスできる<BR>
 <BR>
-�֐��̐�����A�A�[�J�C�u�̓t�@�C���V�X�e������R�[���o�b�N�o�R�ŃA�N�Z�X����܂��B<BR>
-���[�h�����A�[�J�C�u��FS_UnloadArchive�֐��ŃA�����[�h���邱�Ƃ��ł��܂��B<BR>
+関数の成功後、アーカイブはファイルシステムからコールバック経由でアクセスされます。<BR>
+ロードしたアーカイブはFS_UnloadArchive関数でアンロードすることができます。<BR>
 <BR>
-���̊֐����Ăяo���O��FS_SuspendArchive�֐��Ŗ����I�ɃT�X�y���h��Ԃ֐ݒ肵�Ă��Ȃ��ꍇ�A<BR>
-�֐��̐����ƂƂ��ɃA�[�J�C�u�̓t�@�C���V�X�e�����ŗL���ȏ�ԂɂȂ�܂��B<BR>
+この関数を呼び出す前にFS_SuspendArchive関数で明示的にサスペンド状態へ設定していない場合、<BR>
+関数の成功とともにアーカイブはファイルシステム内で有効な状態になります。<BR>
 <BR>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../fs_archive_type.html">FSArchive</A>
 <A href="../fs_archive_name_len_max_const.html">FS_ARCHIVE_NAME_LEN_MAX</A>
@@ -96,11 +96,11 @@
 <A href="FS_ReleaseArchiveName.html">FS_ReleaseArchiveName</A> 
 <A href="FS_UnloadArchive.html">FS_UnloadArchive</A> 
 <BR></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/06/01 �R�[���o�b�N��FS�֐��̓�������Ăяo�����|��⑫<br>
-2004/11/02 �����N�����<br>
-2004/06/30 ����<br>
+2005/06/01 コールバックがFS関数の内部から呼び出される旨を補足<br>
+2004/11/02 リンク先訂正<br>
+2004/06/30 初版<br>
 </P>
 </body>
 </html>

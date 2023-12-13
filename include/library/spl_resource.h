@@ -2,12 +2,12 @@
   Project:  simple particle library
   File:     spl_resource.h
 
-  iƒeƒNƒXƒ`ƒƒˆÈŠO‚ÌjƒŠƒ\[ƒXŠÖŒW
+  ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ä»¥å¤–ã®ï¼‰ãƒªã‚½ãƒ¼ã‚¹é–¢ä¿‚
 
   $Id: spl_resource.h,v 1.3 2005/11/09 09:53:26 matsuda Exp $
   $Log: spl_resource.h,v $
   Revision 1.3  2005/11/09 09:53:26  matsuda
-  SPLƒ‰ƒCƒuƒ‰ƒŠ‚ªXV‚³‚ê‚½‚Ì‚ÅXV
+  SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒæ›´æ–°ã•ã‚ŒãŸã®ã§æ›´æ–°
 
   Revision 1.31  2005/06/15 23:47:39  okane_shinji
   (none)
@@ -22,79 +22,79 @@
   (none)
 
   Revision 1.28  2004/11/26 06:07:31  okane_shinji
-  ‹@”\’Ç‰Á
+  æ©Ÿèƒ½è¿½åŠ 
 
   Revision 1.27  2004/08/31 08:52:41  okane_shinji
-  ”÷C³
+  å¾®ä¿®æ­£
 
   Revision 1.26  2004/08/31 07:38:38  okane_shinji
-  ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ‚Ìƒf[ƒ^\‘¢C³
+  ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã®ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä¿®æ­£
 
   Revision 1.25  2004/08/17 08:30:00  okane_shinji
-  ƒŠƒ\[ƒX’†‚ÌƒeƒNƒXƒ`ƒƒî•ñæ“¾ŠÖ”’Ç‰Á
+  ãƒªã‚½ãƒ¼ã‚¹ä¸­ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±å–å¾—é–¢æ•°è¿½åŠ 
 
   Revision 1.24  2004/08/10 08:12:21  okane_shinji
-  \‘¢‘Ì\¬‚ğ•ÏX
+  æ§‹é€ ä½“æ§‹æˆã‚’å¤‰æ›´
 
   Revision 1.23  2004/08/10 06:06:18  okane_shinji
-  q‚Ì•úo”‚ğİ’è‚Å‚«‚é‚æ‚¤‚É•ÏXB
+  å­ã®æ”¾å‡ºæ•°ã‚’è¨­å®šã§ãã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.22  2004/08/10 05:11:47  okane_shinji
-  Šî–{ƒXƒP[ƒ‹A‰‘¬“x‚ÌŒ^‚ğfx16‚©‚çfx32‚É•ÏX
+  åŸºæœ¬ã‚¹ã‚±ãƒ¼ãƒ«ã€åˆé€Ÿåº¦ã®å‹ã‚’fx16ã‹ã‚‰fx32ã«å¤‰æ›´
 
   Revision 1.21  2004/08/04 05:55:42  okane_shinji
-  \‘¢‘Ì‚ÌƒpƒfƒBƒ“ƒO‚ğ®‚¦‚Ü‚µ‚½B
+  æ§‹é€ ä½“ã®ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°ã‚’æ•´ãˆã¾ã—ãŸã€‚
 
   Revision 1.20  2004/07/20 10:00:42  okane_shinji
   (none)
 
   Revision 1.19  2004/07/20 09:33:41  okane_shinji
-  ”CˆÓ²•ûŒü‚Ì‰~ƒGƒ~ƒbƒg‘Î‰
+  ä»»æ„è»¸æ–¹å‘ã®å††ã‚¨ãƒŸãƒƒãƒˆå¯¾å¿œ
 
   Revision 1.18  2004/07/16 01:41:17  okane_shinji
-  ƒGƒ~ƒbƒ^‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^‚ğƒGƒ~ƒbƒ^‚²‚Æ‚É•ÏX‚Å‚«‚é‚æ‚¤‚É•ÏX
+  ã‚¨ãƒŸãƒƒã‚¿ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚¨ãƒŸãƒƒã‚¿ã”ã¨ã«å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.17  2004/07/02 01:33:19  okane_shinji
-  ƒ}ƒNƒC³
+  ãƒã‚¯ãƒ­ä¿®æ­£
 
   Revision 1.16  2004/07/02 01:11:24  okane_shinji
-  ŠÖ”E•Ï”–¼‘O•ÏX
+  é–¢æ•°ãƒ»å¤‰æ•°åå‰å¤‰æ›´
 
   Revision 1.15  2004/07/02 00:07:45  okane_shinji
-  ƒVƒ“ƒvƒ‹ƒRƒŠƒWƒ‡ƒ“ƒtƒB[ƒ‹ƒh‚ÆˆÊ’u‰ÁZƒ}ƒOƒlƒbƒgƒtƒB[ƒ‹ƒh‚ğ’Ç‰Á
+  ã‚·ãƒ³ãƒ—ãƒ«ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨ä½ç½®åŠ ç®—ãƒã‚°ãƒãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’è¿½åŠ 
 
   Revision 1.14  2004/06/28 02:40:55  okane_shinji
-  q‚Ö‚ÌƒXƒP[ƒ‹Œp³AƒŠƒs[ƒg‰ñ”‚Ìw’èADƒrƒ‹ƒ{[ƒh‚Ìˆø‚«L‚Î‚µ—¦‚Ì‰ü—Ç
+  å­ã¸ã®ã‚¹ã‚±ãƒ¼ãƒ«ç¶™æ‰¿ã€ãƒªãƒ”ãƒ¼ãƒˆå›æ•°ã®æŒ‡å®šã€Dãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®å¼•ãä¼¸ã°ã—ç‡ã®æ”¹è‰¯
 
   Revision 1.13  2004/06/25 07:37:29  okane_shinji
-  ‰~ƒ{ƒŠƒ…[ƒ€A‹…ƒ{ƒŠƒ…[ƒ€’Ç‰ÁBƒ|ƒŠƒSƒ“•\¦‚ÌXYZ‰ñ“]‚Ì•s‹ï‡C³
+  å††ãƒœãƒªãƒ¥ãƒ¼ãƒ ã€çƒãƒœãƒªãƒ¥ãƒ¼ãƒ è¿½åŠ ã€‚ãƒãƒªã‚´ãƒ³è¡¨ç¤ºæ™‚ã®XYZå›è»¢ã®ä¸å…·åˆä¿®æ­£
 
   Revision 1.12  2004/06/25 06:25:42  okane_shinji
-  ƒ|ƒŠƒSƒ“•\¦‚ÉŠÖ‚·‚éC³BƒXƒP[ƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì’Ç‰Á
+  ãƒãƒªã‚´ãƒ³è¡¨ç¤ºã«é–¢ã™ã‚‹ä¿®æ­£ã€‚ã‚¹ã‚±ãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®è¿½åŠ 
 
   Revision 1.11  2004/06/24 05:37:48  okane_shinji
-  ‚SƒoƒCƒgƒAƒ‰ƒCƒƒ“ƒgƒ‹[ƒ‹ˆá”½‚ğC³
+  ï¼”ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆãƒ«ãƒ¼ãƒ«é•åã‚’ä¿®æ­£
 
   Revision 1.10  2004/06/24 05:00:12  okane_shinji
-  SPLResInOut\‘¢‘Ì‚ğC³
+  SPLResInOutæ§‹é€ ä½“ã‚’ä¿®æ­£
 
   Revision 1.9  2004/06/24 04:22:45  okane_shinji
-  ƒAƒjƒ[ƒVƒ‡ƒ“‚É‚Äpeak‚ğİ’è‚Å‚«‚é‚æ‚¤‚É•ÏXB1ƒ‹[ƒv“–‚½‚è‚ÌƒtƒŒ[ƒ€”‚ğ•Ï‚¦‚é‚±‚Æ‚ª‚Å‚«‚é‚æ‚¤‚É•ÏX
+  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«ã¦peakã‚’è¨­å®šã§ãã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚1ãƒ«ãƒ¼ãƒ—å½“ãŸã‚Šã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å¤‰ãˆã‚‹ã“ã¨ãŒã§ãã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.8  2004/06/23 07:21:21  okane_shinji
-  ƒJƒ‰[ƒAƒjƒAƒ‹[ƒvÄ¶Aƒ|ƒŠƒSƒ“AƒfƒBƒŒƒNƒVƒ‡ƒiƒ‹ƒrƒ‹ƒ{[ƒh‚Ì‰ü—Ç
+  ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ã€ãƒ«ãƒ¼ãƒ—å†ç”Ÿã€ãƒãƒªã‚´ãƒ³ã€ãƒ‡ã‚£ãƒ¬ã‚¯ã‚·ãƒ§ãƒŠãƒ«ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®æ”¹è‰¯
 
   Revision 1.7  2004/05/26 06:13:51  konoh
-  ¡ƒAƒXƒyƒNƒg”ä‹@”\’Ç‰Á
+  â– ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”æ©Ÿèƒ½è¿½åŠ 
 
   Revision 1.6  2004/05/25 08:06:36  konoh
-  ¡‰~Œn‰ŠúˆÊ’u‚É²w’è’Ç‰Á
+  â– å††ç³»åˆæœŸä½ç½®ã«è»¸æŒ‡å®šè¿½åŠ 
 
   Revision 1.5  2004/05/25 06:30:29  konoh
-  ¡ƒ‰ƒ“ƒ_ƒ€ƒJƒ‰[‹@”\’Ç‰Á
+  â– ãƒ©ãƒ³ãƒ€ãƒ ã‚«ãƒ©ãƒ¼æ©Ÿèƒ½è¿½åŠ 
 
   Revision 1.4  2004/05/25 02:04:57  konoh
-  ¡ƒ‰ƒ“ƒ_ƒ€ƒeƒNƒXƒ`ƒƒ‹@”\’Ç‰Á
+  â– ãƒ©ãƒ³ãƒ€ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£æ©Ÿèƒ½è¿½åŠ 
 
   Revision 1.3  2004/05/24 07:35:44  konoh
   (none)
@@ -103,7 +103,7 @@
   (none)
 
   Revision 1.1.2.1  2004/04/15 07:23:37  konoh
-  ¡©–Åƒtƒ‰ƒO’Ç‰Á
+  â– è‡ªæ»…ãƒ•ãƒ©ã‚°è¿½åŠ 
 
   Revision 1.1  2004/04/08 00:23:26  konoh
   (none)
@@ -115,9 +115,9 @@
 
 #include "spl_field.h"
 
-/* ’è”‚È‚Ç ---------------------------------------------------------------- */
+/* å®šæ•°ãªã© ---------------------------------------------------------------- */
 
-// ‰ŠúˆÊ’uŠÖŒW
+// åˆæœŸä½ç½®é–¢ä¿‚
 #define SPL_INIT_POS_TYPE_ZERO              0
 #define SPL_INIT_POS_TYPE_SPHERE            1
 #define SPL_INIT_POS_TYPE_CIRCLE            2
@@ -130,53 +130,53 @@
 #define SPL_INIT_POS_TYPE_SEMISPHERE_VOLUME 9
 
 
-// ‰~Œn‰ŠúˆÊ’u‚É‚¨‚¯‚é²w’è
+// å††ç³»åˆæœŸä½ç½®ã«ãŠã‘ã‚‹è»¸æŒ‡å®š
 #define SPL_CIRCLE_AXIS_X   2
 #define SPL_CIRCLE_AXIS_Y   1
 #define SPL_CIRCLE_AXIS_Z   0
 #define SPL_CIRCLE_AXIS_ARBITRARY 3
 
-// •`‰æƒ^ƒCƒv
-#define SPL_DRAW_BB    0 // ƒrƒ‹ƒ{[ƒh
-#define SPL_DRAW_DBB   1 // ƒfƒBƒŒƒNƒVƒ‡ƒiƒ‹ƒrƒ‹ƒ{[ƒh
-#define SPL_DRAW_POL   2 // ƒ|ƒŠƒSƒ“
-#define SPL_DRAW_DPL   3 // ƒfƒBƒŒƒNƒVƒ‡ƒiƒ‹ƒ|ƒŠƒSƒ“iis•ûŒü‚ğ‚Ş‚­”Åj
-#define SPL_DRAW_DPC   4 // ƒfƒBƒŒƒNƒVƒ‡ƒiƒ‹ƒ|ƒŠƒSƒ\i’†‰›‚ğ‚Ş‚­”Åj
+// æç”»ã‚¿ã‚¤ãƒ—
+#define SPL_DRAW_BB    0 // ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰
+#define SPL_DRAW_DBB   1 // ãƒ‡ã‚£ãƒ¬ã‚¯ã‚·ãƒ§ãƒŠãƒ«ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰
+#define SPL_DRAW_POL   2 // ãƒãƒªã‚´ãƒ³
+#define SPL_DRAW_DPL   3 // ãƒ‡ã‚£ãƒ¬ã‚¯ã‚·ãƒ§ãƒŠãƒ«ãƒãƒªã‚´ãƒ³ï¼ˆé€²è¡Œæ–¹å‘ã‚’ã‚€ãç‰ˆï¼‰
+#define SPL_DRAW_DPC   4 // ãƒ‡ã‚£ãƒ¬ã‚¯ã‚·ãƒ§ãƒŠãƒ«ãƒãƒªã‚´ã‚½ï¼ˆä¸­å¤®ã‚’ã‚€ãç‰ˆï¼‰
 
 
-// ƒ|ƒŠƒSƒ“•`‰æ‚ÌÛ‚ÌŠî€•½–Ê
+// ãƒãƒªã‚´ãƒ³æç”»ã®éš›ã®åŸºæº–å¹³é¢
 #define SPL_POLYGON_BASEPLANE_XY 0
 #define SPL_POLYGON_BASEPLANE_XZ 1
 
-// ƒ|ƒŠƒSƒ“•`‰æ‚ÌÛ‚Ì‰ñ“]²
+// ãƒãƒªã‚´ãƒ³æç”»ã®éš›ã®å›è»¢è»¸
 #define SPL_POLYGON_ROTAXIS_Y    0
 #define SPL_POLYGON_ROTAXIS_XYZ  1
 
-// ƒXƒP[ƒ‹ƒAƒjƒ‚ª“K—p‚³‚ê‚é•ûŒü
+// ã‚¹ã‚±ãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡ãŒé©ç”¨ã•ã‚Œã‚‹æ–¹å‘
 #define SPL_ANM_SCL_DIRECT_XY 0
 #define SPL_ANM_SCL_DIRECT_X  1
 #define SPL_ANM_SCL_DIRECT_Y  2
 
-// Å‘åƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“”
+// æœ€å¤§ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°
 #define SPL_MAX_TEX_PTN_NUM  8
 
-// ƒ`ƒƒƒCƒ‹ƒh‰ñ“]ŠÖŒW
-#define SPL_CHLD_RTT_NONE  0 // ‰ñ“]‚µ‚È‚¢
-#define SPL_CHLD_RTT_STILL 1 // ¶‚ñ‚¾uŠÔ‚Ìe‚ÌŠp“x‚ğŒp³
+// ãƒãƒ£ã‚¤ãƒ«ãƒ‰å›è»¢é–¢ä¿‚
+#define SPL_CHLD_RTT_NONE  0 // å›è»¢ã—ãªã„
+#define SPL_CHLD_RTT_STILL 1 // ç”Ÿã‚“ã ç¬é–“ã®è¦ªã®è§’åº¦ã‚’ç¶™æ‰¿
 
-// ‚Wƒrƒbƒg‚Å‚O`‚P‚ğ•\Œ»‚µ‚Ä‚é‚à‚ÌŠÖŒW
+// ï¼˜ãƒ“ãƒƒãƒˆã§ï¼ã€œï¼‘ã‚’è¡¨ç¾ã—ã¦ã‚‹ã‚‚ã®é–¢ä¿‚
 #define SPL_FX8_SHIFT    8
 #define SPL_FX8_MAX   0xff
 
-// g—p‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒh”‚ğƒtƒ‰ƒO‚©‚çæ“¾
-#define SPL_CHLD_RTT_MOVE  2 // ¶‚ñ‚¾uŠÔ‚Ìe‚ÌŠp“x‚ÆŠp‘¬“x‚ğŒp³
+// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æ•°ã‚’ãƒ•ãƒ©ã‚°ã‹ã‚‰å–å¾—
+#define SPL_CHLD_RTT_MOVE  2 // ç”Ÿã‚“ã ç¬é–“ã®è¦ªã®è§’åº¦ã¨è§’é€Ÿåº¦ã‚’ç¶™æ‰¿
 #define SPL_GET_FLD_NUM(x) ((x).use_fld_grvt +\
                                                         (x).use_fld_rndm +\
                                                         (x).use_fld_mgnt +\
                                                         (x).use_fld_spin +\
                                                         (x).use_fld_scfld +\
                                                         (x).use_fld_cngc)
-// ƒ|ƒŠƒSƒ“‚ÌƒIƒtƒZƒbƒg‹N“_
+// ãƒãƒªã‚´ãƒ³ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆèµ·ç‚¹
 #define SPL_OFFSET_CENTER 0
 #define SPL_OFFSET_TOP    1
 #define SPL_OFFSET_BUTTOM 2
@@ -186,9 +186,9 @@
 
 /* ------------------------------------------------------------------------- */
 
-/* \‘¢‘Ì ------------------------------------------------------------------ */
+/* æ§‹é€ ä½“ ------------------------------------------------------------------ */
 
-// ‚r‚o‚`ƒŠƒ\[ƒXƒwƒbƒ_
+// ï¼³ï¼°ï¼¡ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€
 typedef struct SPLArcHdr
 {
     u32 id;
@@ -204,7 +204,7 @@ typedef struct SPLArcHdr
 
 ///////////////////////////////////////////////////////////////////////////////
 
-// ƒx[ƒXƒtƒ‰ƒO
+// ãƒ™ãƒ¼ã‚¹ãƒ•ãƒ©ã‚°
 typedef union
 {
     u32 all;
@@ -224,12 +224,12 @@ typedef union
         u32 follow_emtr:1;
 
         u32 use_chld:1;
-        u32 pol_rot_axis:2;          // ƒ|ƒŠƒSƒ“•\¦‚Ì‚Æ‚«‚Ì‰ñ“]²
-        u32 pol_baseplane:1;         // ƒ|ƒŠƒSƒ“•\¦‚Ì‚Æ‚«‚ÌŠî€•½–Ê
-        u32 ptcl_random_loop_anm:1 ; // ƒ‹[ƒvƒAƒjƒ‚Ì‚Æ‚«AŠJnƒ^ƒCƒ~ƒ“ƒO‚ğƒ‰ƒ“ƒ_ƒ}ƒCƒY‚·‚é
-        u32 draw_child_first:1 ;     // e‚æ‚èq‚ğæ‚É‘‚­‚Æ‚«‚Í1
-        u32 draw_parent:1;           // e‚ğ•`‰æ‚·‚é‚©‚Ç‚¤‚©0‚Ì‚Æ‚«‚Í•`‰æ‚·‚é
-        u32 camera_offset:1;         // ƒIƒtƒZƒbƒgÀ•W‚ğƒJƒƒ‰À•WŒn‚ÅŒvZ‚·‚é‚©‚Ç‚¤‚©
+        u32 pol_rot_axis:2;          // ãƒãƒªã‚´ãƒ³è¡¨ç¤ºã®ã¨ãã®å›è»¢è»¸
+        u32 pol_baseplane:1;         // ãƒãƒªã‚´ãƒ³è¡¨ç¤ºã®ã¨ãã®åŸºæº–å¹³é¢
+        u32 ptcl_random_loop_anm:1 ; // ãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡ã®ã¨ãã€é–‹å§‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ãƒ©ãƒ³ãƒ€ãƒã‚¤ã‚ºã™ã‚‹
+        u32 draw_child_first:1 ;     // è¦ªã‚ˆã‚Šå­ã‚’å…ˆã«æ›¸ãã¨ãã¯1
+        u32 draw_parent:1;           // è¦ªã‚’æç”»ã™ã‚‹ã‹ã©ã†ã‹0ã®ã¨ãã¯æç”»ã™ã‚‹
+        u32 camera_offset:1;         // ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™ã‚’ã‚«ãƒ¡ãƒ©åº§æ¨™ç³»ã§è¨ˆç®—ã™ã‚‹ã‹ã©ã†ã‹
 
         u32 use_fld_grvt:1;
         u32 use_fld_rndm:1;
@@ -243,7 +243,7 @@ typedef union
     };
 } SPLResBaseFlag;
 
-// ƒ`ƒƒƒCƒ‹ƒhƒtƒ‰ƒO
+// ãƒãƒ£ã‚¤ãƒ«ãƒ‰ãƒ•ãƒ©ã‚°
 typedef union
 {
     u16 all;
@@ -256,13 +256,13 @@ typedef union
         u16 follow_emtr:1;
         u16 use_chld_clr:1;
         u16 draw_type:2;
-        u16 pol_rot_axis:2;  // ƒ|ƒŠƒSƒ“•\¦‚Ì‚Æ‚«‚Ì‰ñ“]²
-        u16 pol_baseplane:1; // ƒ|ƒŠƒSƒ“•\¦‚Ì‚Æ‚«‚ÌŠî€•½–Ê
+        u16 pol_rot_axis:2;  // ãƒãƒªã‚´ãƒ³è¡¨ç¤ºã®ã¨ãã®å›è»¢è»¸
+        u16 pol_baseplane:1; // ãƒãƒªã‚´ãƒ³è¡¨ç¤ºã®ã¨ãã®åŸºæº–å¹³é¢
         u16 reserved0:4;
     };
 } SPLResChldFlag;
 
-// ƒCƒ“EƒAƒEƒgƒ^ƒCƒ~ƒ“ƒO
+// ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆã‚¿ã‚¤ãƒŸãƒ³ã‚°
 typedef union
 {
     u16 all;
@@ -287,8 +287,8 @@ typedef union
 
 ///////////////////////////////////////////////////////////////////////////////
 
-// ‚r‚o‚qƒx[ƒX
-// ™ƒ}[ƒN‚ÍƒGƒ~ƒbƒ^‚ÅƒRƒs[‚³‚ê‚Äg‚í‚ê‚éB‚»‚êˆÈŠO‚Í’¼‚Ég‚í‚ê‚é
+// ï¼³ï¼°ï¼²ãƒ™ãƒ¼ã‚¹
+// â˜†ãƒãƒ¼ã‚¯ã¯ã‚¨ãƒŸãƒƒã‚¿ã§ã‚³ãƒ”ãƒ¼ã•ã‚Œã¦ä½¿ã‚ã‚Œã‚‹ã€‚ãã‚Œä»¥å¤–ã¯ç›´ã«ä½¿ã‚ã‚Œã‚‹
 typedef struct SPLResBase
 {
     SPLResBaseFlag flag;
@@ -296,18 +296,18 @@ typedef struct SPLResBase
     VecFx32 pos ;
 
     fx32 gen_num;
-    fx32 radius; // ™
-    fx32 length; // ™Œ»“_‚Å‚Í‰~’Œ‚Ì’·‚³‚É‚µ‚©g—p‚³‚ê‚È‚¢
+    fx32 radius; // â˜†
+    fx32 length; // â˜†ç¾æ™‚ç‚¹ã§ã¯å††æŸ±ã®é•·ã•ã«ã—ã‹ä½¿ç”¨ã•ã‚Œãªã„
 
     VecFx16 axis;
 
     GXRgb clr_n;
 
-    fx32 init_vel_mag_pos; // ™
-    fx32 init_vel_mag_axis;// ™
-    fx32 base_scl;         // ™
+    fx32 init_vel_mag_pos; // â˜†
+    fx32 init_vel_mag_axis;// â˜†
+    fx32 base_scl;         // â˜†
     fx16 aspect;
-    u16 start_offset ;// ƒGƒ~ƒbƒ^‚ªŠJn‚·‚é‚Ü‚Å‚Ìƒ^ƒCƒ~ƒ“ƒO
+    u16 start_offset ;// ã‚¨ãƒŸãƒƒã‚¿ãŒé–‹å§‹ã™ã‚‹ã¾ã§ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
     s16 rtt_min;
     s16 rtt_max;
@@ -316,7 +316,7 @@ typedef struct SPLResBase
     u16 reserved0 ;
 
     u16 emtr_life;
-    u16 ptcl_life; // ™
+    u16 ptcl_life; // â˜†
 
     struct
     {
@@ -328,26 +328,26 @@ typedef struct SPLResBase
 
     struct
     {
-        u32 gen_intvl:8; // ™
+        u32 gen_intvl:8; // â˜†
         u32 base_alp:8;
         u32 air_resist:8;
         u32 tex_no:8;
         
-        u32 loop_frame:8;  // ‚Pƒ‹[ƒv‚ ‚½‚è‚ÌƒtƒŒ[ƒ€”
-        u32 dbb_scale:16;  // Dƒrƒ‹ƒ{[ƒh‚Ì‚Ìˆø‚«L‚Î‚·Š„‡ifx16ˆµ‚¢j
+        u32 loop_frame:8;  // ï¼‘ãƒ«ãƒ¼ãƒ—ã‚ãŸã‚Šã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+        u32 dbb_scale:16;  // Dãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®æ™‚ã®å¼•ãä¼¸ã°ã™å‰²åˆï¼ˆfx16æ‰±ã„ï¼‰
         u32 tex_repeat_num_s:2;
         u32 tex_repeat_num_t:2;
         u32 scl_anm_direct:3 ;
         u32 dpol_center:1;
         //u32 reserved:1;
         
-        u32 reverse_tex_s:1 ; // ƒeƒNƒXƒ`ƒƒ‚ğ”½“]‚·‚é‚©‚Ç‚¤‚©BB
+        u32 reverse_tex_s:1 ; // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’åè»¢ã™ã‚‹ã‹ã©ã†ã‹ã€‚ã€‚
         u32 reverse_tex_t:1 ;
-        u32 offset_pos:3;     // ƒIƒtƒZƒbƒgêŠ(’†ã‰º¶‰E)
+        u32 offset_pos:3;     // ã‚ªãƒ•ã‚»ãƒƒãƒˆå ´æ‰€(ä¸­ä¸Šä¸‹å·¦å³)
         u32 reserved1:27 ; 
     } etc;
 
-    // ƒ|ƒŠƒSƒ“‚ÌƒIƒtƒZƒbƒgˆÊ’u
+    // ãƒãƒªã‚´ãƒ³ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
     fx16 offset_x ;
     fx16 offset_y ;
 
@@ -359,7 +359,7 @@ typedef struct SPLResBase
 
 } SPLResBase;
 
-// ‚r‚o‚qƒXƒP[ƒ‹ƒAƒjƒ
+// ï¼³ï¼°ï¼²ã‚¹ã‚±ãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡
 typedef struct SPLResSclAnm
 {
     fx16 scl_s;
@@ -374,7 +374,7 @@ typedef struct SPLResSclAnm
     u16 reserved0 ;
 } SPLResSclAnm;
 
-// ‚r‚o‚qƒJƒ‰[ƒAƒjƒ
+// ï¼³ï¼°ï¼²ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡
 typedef struct SPLResClrAnm
 {
     GXRgb clr_s;
@@ -390,7 +390,7 @@ typedef struct SPLResClrAnm
     u16 reserved0;
 } SPLResClrAnm;
 
-// ‚r‚o‚qƒAƒ‹ƒtƒ@ƒAƒjƒ
+// ï¼³ï¼°ï¼²ã‚¢ãƒ«ãƒ•ã‚¡ã‚¢ãƒ‹ãƒ¡
 typedef struct SPLResAlpAnm
 {
     union
@@ -416,7 +416,7 @@ typedef struct SPLResAlpAnm
     u16 reserved0;
 } SPLResAlpAnm;
 
-// ‚r‚o‚qƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ
+// ï¼³ï¼°ï¼²ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡
 typedef struct SPLResTexAnm
 {
     u8 tex_no[SPL_MAX_TEX_PTN_NUM] ;
@@ -431,7 +431,7 @@ typedef struct SPLResTexAnm
     } etc;
 } SPLResTexAnm;
 
-// ‚r‚o‚qƒ`ƒƒƒCƒ‹ƒh
+// ï¼³ï¼°ï¼²ãƒãƒ£ã‚¤ãƒ«ãƒ‰
 typedef struct SPLResChld
 {
     SPLResChldFlag flag;
@@ -460,14 +460,14 @@ typedef struct SPLResChld
         
         u32 reverse_tex_s:1 ;
         u32 reverse_tex_t:1 ;
-        u32 dpol_center:1 ; // Dƒ|ƒŠƒSƒ“‚Ì‚Æ‚«’†S‚ğŒü‚­‚©‚Ç‚¤‚©H
+        u32 dpol_center:1 ; // Dãƒãƒªã‚´ãƒ³ã®ã¨ãä¸­å¿ƒã‚’å‘ãã‹ã©ã†ã‹ï¼Ÿ
         u32 reserved0:25;
         //u32 reserved0:26;
     } etc;
 
 } SPLResChld;
 
-// ƒŠƒ\[ƒX\‘¢‘Ì
+// ãƒªã‚½ãƒ¼ã‚¹æ§‹é€ ä½“
 typedef struct SPLResource
 {
     SPLResBase*   p_base;
@@ -486,7 +486,7 @@ typedef struct SPLResource
 
 
 /* ------------------------------------------------------
- * ƒŠƒ\[ƒX‚É‚¨‚¯‚éƒeƒNƒXƒ`ƒƒƒIƒtƒZƒbƒg
+ * ãƒªã‚½ãƒ¼ã‚¹ã«ãŠã‘ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *------------------------------------------------------*/
 static inline u32 SPL_GetTexOffsetOnResource( const void* p_spa )
 {
@@ -496,7 +496,7 @@ static inline u32 SPL_GetTexOffsetOnResource( const void* p_spa )
 }
 
 /* ------------------------------------------------------
- * ƒŠƒ\[ƒX‚É‚¨‚¯‚éƒeƒNƒXƒ`ƒƒƒTƒCƒY
+ * ãƒªã‚½ãƒ¼ã‚¹ã«ãŠã‘ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
  *------------------------------------------------------*/
 static inline u32 SPL_GetTexSizeOnResource( const void* p_spa )
 {
@@ -506,7 +506,7 @@ static inline u32 SPL_GetTexSizeOnResource( const void* p_spa )
 }
 
 /* ------------------------------------------------------
- * ƒŠƒ\[ƒX‚É‚¨‚¯‚éƒŠƒ\[ƒXƒTƒCƒY
+ * ãƒªã‚½ãƒ¼ã‚¹ã«ãŠã‘ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚µã‚¤ã‚º
  *------------------------------------------------------*/
 static inline u32 SPL_GetResSizeOnResource( const void* p_spa )
 {

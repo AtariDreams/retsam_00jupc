@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	system.c
- * @brief	ƒVƒXƒeƒ€ƒŒƒxƒ‹‚ÌŠÖ”‚ğ‚ ‚Â‚ß‚½‚à‚Ì
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ¬ãƒ™ãƒ«ã®é–¢æ•°ã‚’ã‚ã¤ã‚ãŸã‚‚ã®
  * @author	GAME FREAK Inc.
  */
 //==============================================================================
@@ -19,13 +19,13 @@
 
 //==============================================================================
 //
-//			’è‹`AŠÖ”éŒ¾
+//			å®šç¾©ã€é–¢æ•°å®£è¨€
 //
 //==============================================================================
 //#define	FS_DMA_NUMBER	DEFAULT_DMA_NUMBER
 #define		FS_DMA_NUMBER		(1)
 
-// ƒLƒƒƒbƒVƒ…–³Œø‰»İ’è”’l
+// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç„¡åŠ¹åŒ–è¨­å®šæ•°å€¤
 #define CACHEFLASH_HOLD_IC		( 0x500 )
 #define CACHEFLASH_HOLD_DC		( 0x2400 )
 
@@ -42,24 +42,24 @@ extern u32 sys_GetMemoryBlockSize( const void* memBlock );
 
 //==============================================================================
 //
-//			•Ï”’è‹`
+//			å¤‰æ•°å®šç¾©
 //
 //==============================================================================
-SystemArea sys;						// ƒVƒXƒeƒ€ƒŠƒ\[ƒX
+SystemArea sys;						// ã‚·ã‚¹ãƒ†ãƒ ãƒªã‚½ãƒ¼ã‚¹
 
 //==============================================================================
 //
-//			ŠÖ”
+//			é–¢æ•°
 //
 //==============================================================================
 
 /*---------------------------------------------------------------------------*
   Name:         sys_VBlankIntr
 
-  Description:  Vƒuƒ‰ƒ“ƒN‚ÌƒR[ƒ‹ƒoƒbƒNƒ‹ƒ‹[ƒ`ƒ“B
+  Description:  Vãƒ–ãƒ©ãƒ³ã‚¯ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ«ãƒ«ãƒ¼ãƒãƒ³ã€‚
 
-  Arguments:    ‚È‚µB
-  Returns:      ‚È‚µB
+  Arguments:    ãªã—ã€‚
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void sys_VBlankIntr(void)
 {
@@ -73,7 +73,7 @@ void sys_VBlankIntr(void)
 
 #if	AFTERMASTER_070122_WARNING_DISP_FIX
 /*---------------------------------------------------------------------------*
- * ƒ_ƒ~[‚ÌVBlankŠÖ”‚ğƒZƒbƒg: ê—pVIntr
+ * ãƒ€ãƒŸãƒ¼ã®VBlanké–¢æ•°ã‚’ã‚»ãƒƒãƒˆ: å°‚ç”¨VIntr
  *---------------------------------------------------------------------------*/
 static void LocalVBlankIntr(void)
 {
@@ -83,7 +83,7 @@ static void LocalVBlankIntr(void)
 }
 
 /*---------------------------------------------------------------------------*
- * ƒ_ƒ~[‚ÌVBlankŠÖ”‚ğƒZƒbƒg
+ * ãƒ€ãƒŸãƒ¼ã®VBlanké–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
  *---------------------------------------------------------------------------*/
 void sys_SetDummyVBlankIntr(void)
 {
@@ -95,10 +95,10 @@ void sys_SetDummyVBlankIntr(void)
 
 //==============================================================================
 /**
- * Vƒuƒ‰ƒ“ƒN’†‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”‚Ì“o˜^
+ * Vãƒ–ãƒ©ãƒ³ã‚¯ä¸­ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°ã®ç™»éŒ²
  *
- * @param   func	ŒÄ‚Ño‚·ŠÖ”ƒ|ƒCƒ“ƒ^
- * @param	work	w’èŠÖ”‚ğŒÄ‚Ño‚·‚Æ‚«‚Ìˆø”ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   func	å‘¼ã³å‡ºã™é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	æŒ‡å®šé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã¨ãã®å¼•æ•°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -113,7 +113,7 @@ void sys_VBlankFuncChange(INTR_FUNC func, void * work)
 //==============================================================================
 //
 //
-//			Hƒuƒ‰ƒ“ƒNŠÖ˜A
+//			Hãƒ–ãƒ©ãƒ³ã‚¯é–¢é€£
 //
 //
 //==============================================================================
@@ -128,13 +128,13 @@ void sys_HBlankIntrStop( void )
 
 //----------------------------------------------------------------
 /**
- * @brief	Hƒuƒ‰ƒ“ƒNİ’è
- * @param   func	ŒÄ‚Ño‚·ŠÖ”ƒ|ƒCƒ“ƒ^
- * @param	work	Š„‚è‚İ’†‚Ég—p‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  "TRUE = İ’è‚µ‚Ü‚µ‚½"
- * @retval	"FALSE = ‚·‚Å‚Éİ’è‚³‚ê‚Ä‚¢‚Ü‚·"
+ * @brief	Hãƒ–ãƒ©ãƒ³ã‚¯è¨­å®š
+ * @param   func	å‘¼ã³å‡ºã™é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	å‰²ã‚Šè¾¼ã¿ä¸­ã«ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  "TRUE = è¨­å®šã—ã¾ã—ãŸ"
+ * @retval	"FALSE = ã™ã§ã«è¨­å®šã•ã‚Œã¦ã„ã¾ã™"
  *
- * @li	func = NULL ‚Ìê‡AHƒuƒ‰ƒ“ƒNƒNƒŠƒA
+ * @li	func = NULL ã®å ´åˆã€Hãƒ–ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢
  */
 //----------------------------------------------------------------
 BOOL  sys_HBlankIntrSet( INTR_FUNC func, void * work )
@@ -195,7 +195,7 @@ static void HBlankIntrSetMain( BOOL func_flag )
 {
 	OSIrqMask irqmask;
 
-	OS_DisableIrq( ); 	//Š„‚è‚İ‹Ö~
+	OS_DisableIrq( ); 	//å‰²ã‚Šè¾¼ã¿ç¦æ­¢
 	if(func_flag==FALSE){
 		irqmask = OS_GetIrqMask();
 		OS_DisableIrqMask(OS_IE_H_BLANK);
@@ -207,13 +207,13 @@ static void HBlankIntrSetMain( BOOL func_flag )
 		OS_EnableIrqMask(OS_IE_H_BLANK);
 	    (void)GX_HBlankIntr(TRUE);          // Rise a H-Blank interrupt
 	}
-	OS_EnableIrq( ); 	//Š„‚è‚İ‹–‰Â
+	OS_EnableIrq( ); 	//å‰²ã‚Šè¾¼ã¿è¨±å¯
 }
 
 
 //----------------------------------------------------------------
 /**
- *	Šî–{ƒq[ƒv‰Šú‰»\‘¢‘Ì
+ *	åŸºæœ¬ãƒ’ãƒ¼ãƒ—åˆæœŸåŒ–æ§‹é€ ä½“
  */
 //----------------------------------------------------------------
 #if CRC_LOADCHECK
@@ -223,10 +223,10 @@ static void HBlankIntrSetMain( BOOL func_flag )
 #define HEAPSIZE_SYSTEM		(0x00d000)
 #define HEAPSIZE_SAVE		(0x021000)
 #endif //CRC_LOADCHECK
-#define HEAPSIZE_DEBUG		(0x000010)  //•K—v‚ª–³‚¢‚Ì‚ÅÅ¬‚É•ÏX‚·‚é‚±‚Æ‚ª‰Â”\08.05.16 tomoya	
-#define HEAPSIZE_APP		(0x106800+0x7000)	//VCT—p‚É2000Šm•Û 7.27
+#define HEAPSIZE_DEBUG		(0x000010)  //å¿…è¦ãŒç„¡ã„ã®ã§æœ€å°ã«å¤‰æ›´ã™ã‚‹ã“ã¨ãŒå¯èƒ½08.05.16 tomoya	
+#define HEAPSIZE_APP		(0x106800+0x7000)	//VCTç”¨ã«2000ç¢ºä¿ 7.27
 
-// BASE_HEAPID ‚Æ‡”Ô‚ğˆê’v‚³‚¹‚é‚±‚ÆI 
+// BASE_HEAPID ã¨é †ç•ªã‚’ä¸€è‡´ã•ã›ã‚‹ã“ã¨ï¼ 
 static const HEAP_INIT_HEADER HeapInitHeader[] = {
 	{ HEAPSIZE_SYSTEM,		OS_ARENA_MAIN   },
 	{ HEAPSIZE_SAVE,		OS_ARENA_MAIN   },
@@ -237,7 +237,7 @@ static const HEAP_INIT_HEADER HeapInitHeader[] = {
 
 //----------------------------------------------------------------
 /**
- *	TCBƒVƒXƒeƒ€ì¬ƒpƒ‰ƒ[ƒ^
+ *	TCBã‚·ã‚¹ãƒ†ãƒ ä½œæˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------------
 #if 0
@@ -258,7 +258,7 @@ enum {
 
 //------------------------------------------------------------------
 /**
- * ‹N“®–ˆ‚Éƒq[ƒvì¬ˆÊ’u‚ğ‚¸‚ç‚µ‚Ä‰Šú‰»‚·‚é
+ * èµ·å‹•æ¯ã«ãƒ’ãƒ¼ãƒ—ä½œæˆä½ç½®ã‚’ãšã‚‰ã—ã¦åˆæœŸåŒ–ã™ã‚‹
  */
 //------------------------------------------------------------------
 static void InitHeapSystem( void )
@@ -295,10 +295,10 @@ static void InitHeapSystem( void )
 /*---------------------------------------------------------------------------*
   Name:         sys_InitSystem
 
-  Description:  NITRO‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·B
+  Description:  NITROã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    ‚È‚µB
-  Returns:      ‚È‚µB
+  Arguments:    ãªã—ã€‚
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void sys_InitSystem(void)
 {
@@ -314,10 +314,10 @@ void sys_InitSystem(void)
     GX_Init();
 	OS_InitTick();
 
-	// ƒq[ƒvŠÇ—ƒVƒXƒeƒ€‰Šú‰»
+	// ãƒ’ãƒ¼ãƒ—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitHeapSystem();
 
-	// ŠeíTCBƒVƒXƒeƒ€‚Ìì¬
+	// å„ç¨®TCBã‚·ã‚¹ãƒ†ãƒ ã®ä½œæˆ
 	sys.mainTCBSys = TCBSYS_Create( TCB_MAIN_MAX,  OS_AllocFromMainArenaLo(TCBSYS_CalcSystemWorkSize(TCB_MAIN_MAX),4) );
 	sys.vintrTCBSys = TCBSYS_Create( TCB_VINTR_MAX, OS_AllocFromMainArenaLo(TCBSYS_CalcSystemWorkSize(TCB_VINTR_MAX),4) );
 	sys.vwaitTCBSys = TCBSYS_Create( TCB_VWAIT_MAX, OS_AllocFromMainArenaLo(TCBSYS_CalcSystemWorkSize(TCB_VWAIT_MAX),4) );
@@ -350,19 +350,19 @@ void sys_InitSystem(void)
 		FS_LoadTable(p_table, file_table_size);
 	}
 
-	sys.pVBlank		= NULL;		// ‚uƒuƒ‰ƒ“ƒNŠ„‚İ“àŒÄ‚Ño‚µŠÖ”ƒ|ƒCƒ“ƒ^
-	sys.pHBlank		= NULL;		// ‚gƒuƒ‰ƒ“ƒNŠ„‚İ“àŒÄ‚Ño‚µŠÖ”ƒ|ƒCƒ“ƒ^
-	sys.pVCount		= NULL;		// ‚uƒJƒEƒ“ƒgŠ„‚İ“àŒÄ‚Ño‚µŠÖ”ƒ|ƒCƒ“ƒ^
-	sys.pSio		= NULL;		// ‚r‚h‚nŠ„‚İ“àŒÄ‚Ño‚µŠÖ”ƒ|ƒCƒ“ƒ^
-	sys.pDontSioError = NULL;	// ’ÊMƒGƒ‰[‹Ö~‚ğ¦‚·ƒtƒ‰ƒO‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	sys.pVBlank		= NULL;		// ï¼¶ãƒ–ãƒ©ãƒ³ã‚¯å‰²è¾¼ã¿å†…å‘¼ã³å‡ºã—é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+	sys.pHBlank		= NULL;		// ï¼¨ãƒ–ãƒ©ãƒ³ã‚¯å‰²è¾¼ã¿å†…å‘¼ã³å‡ºã—é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+	sys.pVCount		= NULL;		// ï¼¶ã‚«ã‚¦ãƒ³ãƒˆå‰²è¾¼ã¿å†…å‘¼ã³å‡ºã—é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+	sys.pSio		= NULL;		// ï¼³ï¼©ï¼¯å‰²è¾¼ã¿å†…å‘¼ã³å‡ºã—é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+	sys.pDontSioError = NULL;	// é€šä¿¡ã‚¨ãƒ©ãƒ¼ç¦æ­¢ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
 	sys.vsync_counter = 0;	
 	sys.disp3DSW = DISP_3D_TO_MAIN;	
 
-	// ƒLƒƒƒbƒVƒ…–³Œø‰»ˆ—İ’è
+	// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç„¡åŠ¹åŒ–å‡¦ç†è¨­å®š
 	CARD_SetCacheFlushThreshold(CACHEFLASH_HOLD_IC, CACHEFLASH_HOLD_DC);
 #if CRC_LOADCHECK
-    //CRCƒe[ƒuƒ‹‰Šú‰»
+    //CRCãƒ†ãƒ¼ãƒ–ãƒ«åˆæœŸåŒ–
     CalcTool_CrcInit(HEAPID_BASE_SYSTEM);
 #endif
 
@@ -371,26 +371,26 @@ void sys_InitSystem(void)
 /*---------------------------------------------------------------------------*
   Name:         sys_InitVRAM
 
-  Description:  ‚u‚q‚`‚l‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·B
+  Description:  ï¼¶ï¼²ï¼¡ï¼­ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    ‚È‚µB
-  Returns:      ‚È‚µB
+  Arguments:    ãªã—ã€‚
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void sys_InitVRAM(void)
 {
-    // ‘S‚Ä‚Ìƒoƒ“ƒN‚ğLCDC‚ÉŠ„‚è“–‚Ä‚é
+    // å…¨ã¦ã®ãƒãƒ³ã‚¯ã‚’LCDCã«å‰²ã‚Šå½“ã¦ã‚‹
     GX_SetBankForLCDC(GX_VRAM_LCDC_ALL);
 
-    // LCDC‹óŠÔ‘S‚Ä‚ğƒNƒŠƒA
+    // LCDCç©ºé–“å…¨ã¦ã‚’ã‚¯ãƒªã‚¢
     MI_CpuClearFast( (void*)HW_LCDC_VRAM, HW_LCDC_VRAM_SIZE );
     
-    // LCDC‚ÉŠ„‚è“–‚Ä‚ç‚ê‚½ƒoƒ“ƒN‚ğDisable
+    // LCDCã«å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸãƒãƒ³ã‚¯ã‚’Disable
     (void)GX_DisableBankForLCDC();
 
-    MI_CpuFillFast ((void*)HW_OAM    , 192, HW_OAM_SIZE   );  // OAM ƒNƒŠƒA
+    MI_CpuFillFast ((void*)HW_OAM    , 192, HW_OAM_SIZE   );  // OAM ã‚¯ãƒªã‚¢
     MI_CpuFillFast ((void*)HW_DB_OAM , 192, HW_DB_OAM_SIZE);  // clear OAM
 
-    MI_CpuClearFast((void*)HW_PLTT   , HW_PLTT_SIZE   );      // ƒpƒŒƒbƒg ƒNƒŠƒA
+    MI_CpuClearFast((void*)HW_PLTT   , HW_PLTT_SIZE   );      // ãƒ‘ãƒ¬ãƒƒãƒˆ ã‚¯ãƒªã‚¢
     MI_CpuClearFast((void*)HW_DB_PLTT, HW_DB_PLTT_SIZE);	  // clear the standard palette
 }
 
@@ -404,11 +404,11 @@ void sys_InitVRAM(void)
 /*---------------------------------------------------------------------------*
   Name:         sys_LoadFile
 
-  Description:  ’Êíƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+  Description:  é€šå¸¸ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
   
-  Arguments:    mode	w’èƒq[ƒv—Ìˆæ’è‹`
-				path	ƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
-  Returns:      ƒtƒ@ƒCƒ‹“Ç‚İ‚İæƒAƒhƒŒƒX
+  Arguments:    mode	æŒ‡å®šãƒ’ãƒ¼ãƒ—é ˜åŸŸå®šç¾©
+				path	ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
+  Returns:      ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 void* sys_LoadFile(int mode, const char *path)
 {
@@ -425,7 +425,7 @@ void* sys_LoadFile(int mode, const char *path)
 			OS_Printf("no enough memory.\n");
 		}else{
 			if(FS_ReadFile(&file, memory, fileSize) != fileSize){
-				// ƒtƒ@ƒCƒ‹ƒTƒCƒY•ª“Ç‚İ‚ß‚Ä‚¢‚È‚¢ê‡
+				// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºåˆ†èª­ã¿è¾¼ã‚ã¦ã„ãªã„å ´åˆ
 				sys_FreeMemory( mode, memory );
 				memory = NULL;
 				OS_Printf("file reading failed.\n");
@@ -442,12 +442,12 @@ void* sys_LoadFile(int mode, const char *path)
 /*---------------------------------------------------------------------------*
   Name:         sys_LoadFileEx
 
-  Description:  ’Êíƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ + ƒTƒCƒYæ“¾
+  Description:  é€šå¸¸ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ + ã‚µã‚¤ã‚ºå–å¾—
   
-  Arguments:    mode	w’èƒq[ƒv—Ìˆæ’è‹`
-				path	ƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
-				siz		ƒf[ƒ^ƒTƒCƒYŠi”[æ
-  Returns:      ƒtƒ@ƒCƒ‹“Ç‚İ‚İæƒAƒhƒŒƒX
+  Arguments:    mode	æŒ‡å®šãƒ’ãƒ¼ãƒ—é ˜åŸŸå®šç¾©
+				path	ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
+				siz		ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºæ ¼ç´å…ˆ
+  Returns:      ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 void * sys_LoadFileEx( int mode, const char * path, u32 * siz )
 {
@@ -464,7 +464,7 @@ void * sys_LoadFileEx( int mode, const char * path, u32 * siz )
 			OS_Printf( "no enough memory.\n" );
 		}else{
 			if( FS_ReadFile( &file, memory, *siz ) != *siz ){
-				// ƒtƒ@ƒCƒ‹ƒTƒCƒY•ª“Ç‚İ‚ß‚Ä‚¢‚È‚¢ê‡
+				// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºåˆ†èª­ã¿è¾¼ã‚ã¦ã„ãªã„å ´åˆ
 				sys_FreeMemory( mode, memory );
 				memory = NULL;
 				OS_Printf( "file reading failed.\n" );
@@ -480,11 +480,11 @@ void * sys_LoadFileEx( int mode, const char * path, u32 * siz )
 /*---------------------------------------------------------------------------*
   Name:         sys_LoadGraphFile
 
-  Description:  ƒOƒ‰ƒtƒBƒbƒN—pƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İiƒLƒƒƒbƒVƒ…‚ ‚èj
+  Description:  ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ï¼ˆã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚ã‚Šï¼‰
   
-  Arguments:    path        ƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
-				side		ƒƒCƒ“AƒTƒuw’è
-  Returns:      ƒtƒ@ƒCƒ‹“Ç‚İ‚İæƒAƒhƒŒƒX
+  Arguments:    path        ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
+				side		ãƒ¡ã‚¤ãƒ³ã€ã‚µãƒ–æŒ‡å®š
+  Returns:      ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 void sys_LoadFileNoMem(const char *path, void **mem)
 {
@@ -498,7 +498,7 @@ void sys_LoadFileNoMem(const char *path, void **mem)
 			u32 size = sys_GetMemoryBlockSize(*mem)-(0x10);
 			if (fileSize>size){
 				OS_Printf("fileSize=%x,allocSize=%x\n",fileSize,size);
-				GF_ASSERT( 0 && "sys_LoadFileNoMem ERROR:ƒƒ‚ƒŠ‚ª•s‘«‚µ‚Ä‚Ü‚·");
+				GF_ASSERT( 0 && "sys_LoadFileNoMem ERROR:ãƒ¡ãƒ¢ãƒªãŒä¸è¶³ã—ã¦ã¾ã™");
 			}
 		}
 #endif
@@ -510,7 +510,7 @@ void sys_LoadFileNoMem(const char *path, void **mem)
 #endif //DEBUG_PRINT
 		if (*mem == NULL){
 			OS_Printf("no memory.\n");
-   	    }else{	// ƒtƒ@ƒCƒ‹ƒTƒCƒY•ª“Ç‚İ‚ß‚Ä‚¢‚È‚¢ê‡
+   	    }else{	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºåˆ†èª­ã¿è¾¼ã‚ã¦ã„ãªã„å ´åˆ
 			if (FS_ReadFile(&file, *mem, fileSize) != fileSize){
 				OS_Printf("file reading failed.\n");
 			}
@@ -524,14 +524,14 @@ void sys_LoadFileNoMem(const char *path, void **mem)
 /*---------------------------------------------------------------------------*
   Name:         sys_LoadFileDiv
 
-  Description:  ’Êíƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ•ªŠ„ 
+  Description:  é€šå¸¸ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿åˆ†å‰² 
   
-  Arguments:    mode	w’èƒq[ƒv—Ìˆæ’è‹`
-				path	ƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
-				memory	ƒtƒ@ƒCƒ‹“Ç‚İ‚İæƒAƒhƒŒƒXŠi”[ƒ|ƒCƒ“ƒ^
-				offset	“Ç‚İ‚İƒIƒtƒZƒbƒgŠi”[ƒ|ƒCƒ“ƒ^
-				divsiz	“Ç‚İ‚İ•ªŠ„ƒTƒCƒY
-Returns:		0:Œp‘±A1=I—¹
+  Arguments:    mode	æŒ‡å®šãƒ’ãƒ¼ãƒ—é ˜åŸŸå®šç¾©
+				path	ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
+				memory	ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹æ ¼ç´ãƒã‚¤ãƒ³ã‚¿
+				offset	èª­ã¿è¾¼ã¿ã‚ªãƒ•ã‚»ãƒƒãƒˆæ ¼ç´ãƒã‚¤ãƒ³ã‚¿
+				divsiz	èª­ã¿è¾¼ã¿åˆ†å‰²ã‚µã‚¤ã‚º
+Returns:		0:ç¶™ç¶šã€1=çµ‚äº†
  *---------------------------------------------------------------------------*/
 int sys_LoadFileDiv( int mode, const char * path, void** memory, u32* offset, u16 divsiz )
 {
@@ -547,24 +547,24 @@ int sys_LoadFileDiv( int mode, const char * path, void** memory, u32* offset, u1
 	FS_InitFile(&file);
 	if (FS_OpenFile(&file, filename))
 	{
-		u32	fileSize = FS_GetLength(&file);	//ƒtƒ@ƒCƒ‹ƒTƒCƒYæ“¾		
+		u32	fileSize = FS_GetLength(&file);	//ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºå–å¾—		
 		u32	readSize = 0;
-		if(*memory == NULL){	//memory‚ªŠù‚Éæ“¾‚³‚ê‚Ä‚ê‚ÎŒp‘±‚Æ”»’f
-			//‰Šú‰»	
-			*memory = sys_AllocMemory( mode, fileSize );//“Ç‚İ‚İƒGƒŠƒAŠm•Û
+		if(*memory == NULL){	//memoryãŒæ—¢ã«å–å¾—ã•ã‚Œã¦ã‚Œã°ç¶™ç¶šã¨åˆ¤æ–­
+			//åˆæœŸåŒ–	
+			*memory = sys_AllocMemory( mode, fileSize );//èª­ã¿è¾¼ã¿ã‚¨ãƒªã‚¢ç¢ºä¿
 			if (*memory == NULL){
-				// ƒƒ‚ƒŠŠm•Û¸”s
+				// ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—
 				OS_Printf("no enough memory.\n");
 				return 1;
 			} else {	
-				*offset = 0;	//ƒIƒtƒZƒbƒg‰Šú‰»
+				*offset = 0;	//ã‚ªãƒ•ã‚»ãƒƒãƒˆåˆæœŸåŒ–
 			}
 #ifdef SYSTEM_DEBUG_PRINT_FILE_SIZE	
 			OS_Printf("DIV_LOAD_PATH:%s\nDivFileSizeTotal=%x\n",path,fileSize);
 #endif
 		}
 		if( FS_SeekFile( &file, *offset, FS_SEEK_SET ) == FALSE ){
-			// ƒtƒ@ƒCƒ‹ƒIƒtƒZƒbƒg•ÏX¸”s
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆå¤‰æ›´å¤±æ•—
 			sys_FreeMemory( mode, memory );
 			memory = NULL;
 			OS_Printf("file div failed.\n");
@@ -575,14 +575,14 @@ int sys_LoadFileDiv( int mode, const char * path, void** memory, u32* offset, u1
 			read_p = &((u8*)*memory)[*offset];
 			readSize = FS_ReadFile(&file, read_p, divsiz);
 			(void)FS_CloseFile(&file);
-			*offset = *offset + readSize;	//ƒIƒtƒZƒbƒg‘‰Á
+			*offset = *offset + readSize;	//ã‚ªãƒ•ã‚»ãƒƒãƒˆå¢—åŠ 
 		}
 		if( *offset >= fileSize ){
-			//“Ç‚İ‚İI—¹
+			//èª­ã¿è¾¼ã¿çµ‚äº†
 			return 1;
 		}
 	}else{
-		if(*memory != NULL){	//memory‚ªŠù‚Éæ“¾‚³‚ê‚Ä‚ê‚ÎŠJ•ú
+		if(*memory != NULL){	//memoryãŒæ—¢ã«å–å¾—ã•ã‚Œã¦ã‚Œã°é–‹æ”¾
 			sys_FreeMemory( mode, *memory );
 			*memory = NULL;
 		}
@@ -595,14 +595,14 @@ int sys_LoadFileDiv( int mode, const char * path, void** memory, u32* offset, u1
 /*---------------------------------------------------------------------------*
   Name:         sys_LoadFileDiv
 
-  Description:  ’Êíƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ•ªŠ„ 
+  Description:  é€šå¸¸ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿åˆ†å‰² 
   
-  Arguments:    mode	w’èƒq[ƒv—Ìˆæ’è‹`
-				path	ƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
-				memory	ƒtƒ@ƒCƒ‹“Ç‚İ‚İæƒAƒhƒŒƒXŠi”[ƒ|ƒCƒ“ƒ^
-				offset	“Ç‚İ‚İƒIƒtƒZƒbƒgŠi”[ƒ|ƒCƒ“ƒ^
-				divsiz	“Ç‚İ‚İ•ªŠ„ƒTƒCƒY
-Returns:		0:Œp‘±A1=I—¹
+  Arguments:    mode	æŒ‡å®šãƒ’ãƒ¼ãƒ—é ˜åŸŸå®šç¾©
+				path	ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
+				memory	ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹æ ¼ç´ãƒã‚¤ãƒ³ã‚¿
+				offset	èª­ã¿è¾¼ã¿ã‚ªãƒ•ã‚»ãƒƒãƒˆæ ¼ç´ãƒã‚¤ãƒ³ã‚¿
+				divsiz	èª­ã¿è¾¼ã¿åˆ†å‰²ã‚µã‚¤ã‚º
+Returns:		0:ç¶™ç¶šã€1=çµ‚äº†
  *---------------------------------------------------------------------------*/
 int sys_LoadFileDivNoMem( const char * path, void** memory, u32* offset, u16 divsiz )
 {
@@ -614,9 +614,9 @@ int sys_LoadFileDivNoMem( const char * path, void** memory, u32* offset, u16 div
 	FS_InitFile(&file);
 	if (FS_OpenFile(&file, filename))
 	{
-		u32	fileSize = FS_GetLength(&file);	//ƒtƒ@ƒCƒ‹ƒTƒCƒYæ“¾		
+		u32	fileSize = FS_GetLength(&file);	//ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºå–å¾—		
 		u32	readSize = 0;
-		if(*memory == NULL){	//memory‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚¢‚È‚ç‚ÎƒGƒ‰[
+		if(*memory == NULL){	//memoryãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã„ãªã‚‰ã°ã‚¨ãƒ©ãƒ¼
 			OS_Printf("NoMemory file div failed.\n");
 			return 1;
 		}
@@ -626,14 +626,14 @@ int sys_LoadFileDivNoMem( const char * path, void** memory, u32* offset, u16 div
 				u32 size = sys_GetMemoryBlockSize(*memory)-(0x10);
 				if (fileSize>size){
 					OS_Printf("fileSize=%x,allocSize=%x\n",fileSize,size);
-					GF_ASSERT( 0 && "sys_LoadFileDivNoMem ERROR:ƒƒ‚ƒŠ‚ª•s‘«‚µ‚Ä‚Ü‚·");
+					GF_ASSERT( 0 && "sys_LoadFileDivNoMem ERROR:ãƒ¡ãƒ¢ãƒªãŒä¸è¶³ã—ã¦ã¾ã™");
 				}
 			}
 		}
 #endif
 		
 		if( FS_SeekFile( &file, *offset, FS_SEEK_SET ) == FALSE ){
-			// ƒtƒ@ƒCƒ‹ƒIƒtƒZƒbƒg•ÏX¸”s
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆå¤‰æ›´å¤±æ•—
 			OS_Printf("file div failed.\n");
 			return 1;
 		}
@@ -642,13 +642,13 @@ int sys_LoadFileDivNoMem( const char * path, void** memory, u32* offset, u16 div
 			read_p = &((u8*)*memory)[*offset];
 			readSize = FS_ReadFile(&file, read_p, divsiz);
 			(void)FS_CloseFile(&file);
-			*offset = *offset + readSize;	//ƒIƒtƒZƒbƒg‘‰Á
+			*offset = *offset + readSize;	//ã‚ªãƒ•ã‚»ãƒƒãƒˆå¢—åŠ 
 		}
 		if( *offset >= fileSize ){
-			//“Ç‚İ‚İI—¹
+			//èª­ã¿è¾¼ã¿çµ‚äº†
 			return 1;
 		}
-	}else{	//ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚È‚¢
+	}else{	//ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ãªã„
 		OS_Printf("FS_OpenFile(\"%s\") ... ERROR!\n",filename);
 		return 1;
 	}
@@ -667,9 +667,9 @@ FILE_CACHE FileCache[FILE_CACHE_MAX];
 u16 debugcount=0;
 
 /**
- * ƒtƒ@ƒCƒ‹–¼‚©‚çƒtƒ@ƒCƒ‹ƒLƒƒƒbƒVƒ…—p‚ÌƒnƒbƒVƒ…’l‚ğæ“¾‚·‚é
+ * ãƒ•ã‚¡ã‚¤ãƒ«åã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨ã®ãƒãƒƒã‚·ãƒ¥å€¤ã‚’å–å¾—ã™ã‚‹
  *
- * @param   path	ƒtƒ@ƒCƒ‹–¼•¶š—ñ
+ * @param   path	ãƒ•ã‚¡ã‚¤ãƒ«åæ–‡å­—åˆ—
  *
  * @retval  u32		
  */
@@ -681,15 +681,15 @@ u32 CreateFileHash(const char *path)
 	u16 len;
 	len = strlen(path);
 	
-	if (len%4){					//•¶š—ñ‚ğ‚S‚ÅŠ„‚Á‚½Û‚ÌŒJ‚è•Ô‚µ‰ñ”‚ğæ“¾
+	if (len%4){					//æ–‡å­—åˆ—ã‚’ï¼”ã§å‰²ã£ãŸéš›ã®ç¹°ã‚Šè¿”ã—å›æ•°ã‚’å–å¾—
 		len = (len /4)+1;
 	}else{
 		len = len/4;	
 	}
 
 	result = 0;
-	for(i=0;i<len;i++){			//4•¶š‚ğˆê‚Â‚ÌlongŒ^‚Æ‚İ‚È‚µ‚Ä•¶š—ñ‚Ì’·‚³^‚S‰ñ
-		work = 0;				//XOR‚ğs‚¤
+	for(i=0;i<len;i++){			//4æ–‡å­—ã‚’ä¸€ã¤ã®longå‹ã¨ã¿ãªã—ã¦æ–‡å­—åˆ—ã®é•·ã•ï¼ï¼”å›
+		work = 0;				//XORã‚’è¡Œã†
 		for(r=0;r<4;r++){
 			if(path[i*4+r]!=0){
 				work |= (path[i*4+r]<<(r*8));
@@ -705,11 +705,11 @@ u32 CreateFileHash(const char *path)
 
 //==============================================================================
 /**
- * Šù‚ÉƒLƒƒƒbƒVƒ…‚Æ‚µ‚Ä‘¶İ‚µ‚Ä‚¢‚é‚¢‚é‚©ŒŸõ‚·‚é
+ * æ—¢ã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¨ã—ã¦å­˜åœ¨ã—ã¦ã„ã‚‹ã„ã‚‹ã‹æ¤œç´¢ã™ã‚‹
  *
- * @param   hash	ƒtƒ@ƒCƒ‹–¼‚©‚çæ“¾‚µ‚½ƒnƒbƒVƒ…’l
+ * @param   hash	ãƒ•ã‚¡ã‚¤ãƒ«åã‹ã‚‰å–å¾—ã—ãŸãƒãƒƒã‚·ãƒ¥å€¤
  *
- * @retval  int		0`:Œ©‚Â‚©‚Á‚½”z—ñ‚Ì—v‘f	-1:Œ©‚Â‚©‚ç‚È‚©‚Á‚½
+ * @retval  int		0ã€œ:è¦‹ã¤ã‹ã£ãŸé…åˆ—ã®è¦ç´ 	-1:è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
  */
 //==============================================================================
 int SearchFileCache(u32 hash)
@@ -727,12 +727,12 @@ int SearchFileCache(u32 hash)
 
 //==============================================================================
 /**
- * V‚µ‚­“Ç‚İ‚ñ‚¾ƒtƒ@ƒCƒ‹‚ğƒLƒƒƒbƒVƒ…î•ñ‚Æ‚µ‚Ä“o˜^‚·‚é
+ * æ–°ã—ãèª­ã¿è¾¼ã‚“ã ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥æƒ…å ±ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
  *
- * @param   memory		V‚µ‚­Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ÌƒAƒhƒŒƒX
- * @param   hash		ƒtƒ@ƒCƒ‹–¼‚©‚çæ“¾‚µ‚½ƒnƒbƒVƒ…’l
+ * @param   memory		æ–°ã—ãç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   hash		ãƒ•ã‚¡ã‚¤ãƒ«åã‹ã‚‰å–å¾—ã—ãŸãƒãƒƒã‚·ãƒ¥å€¤
  *
- * @retval  int			“o˜^‚µ‚½”Ô†
+ * @retval  int			ç™»éŒ²ã—ãŸç•ªå·
  */
 //==============================================================================
 int SetBlankCache(void* memory, u32 hash)
@@ -750,7 +750,7 @@ int SetBlankCache(void* memory, u32 hash)
 
 //==============================================================================
 /**
- * ƒLƒƒƒbƒVƒ…‚Ì‘S‰ğ•úEƒnƒbƒVƒ…î•ñ‚ÌƒNƒŠƒA
+ * ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®å…¨è§£æ”¾ãƒ»ãƒãƒƒã‚·ãƒ¥æƒ…å ±ã®ã‚¯ãƒªã‚¢
  *
  * @param   none		
  *
@@ -765,7 +765,7 @@ void ClearFileCache(void)
 			//NNS_FndFreeToExpHeap(sys.appHeap,FileCache[i].memory);
 			sys_FreeMemoryEz( FileCache[i].memory );
 #ifdef DEBUG_PRINT
-			PrintFreeHeapSize(GRAPHIC_HEAP, "ƒLƒƒƒbƒVƒ…ƒf[ƒ^‚ÌŠJ•ú");
+			PrintFreeHeapSize(GRAPHIC_HEAP, "ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ‡ãƒ¼ã‚¿ã®é–‹æ”¾");
 			OS_Printf(	"cache:graph3DHeap = %ld\n",
 						NNS_FndGetTotalFreeSizeForExpHeap(sys.graph3DHeap));
 #endif //DEBUG_PRINT
@@ -777,7 +777,7 @@ void ClearFileCache(void)
 
 //==============================================================================
 /**
- * @brief	ƒnƒbƒVƒ…”z—ñ‚ğNULL‰Šú‰»‚·‚é
+ * @brief	ãƒãƒƒã‚·ãƒ¥é…åˆ—ã‚’NULLåˆæœŸåŒ–ã™ã‚‹
  */
 //==============================================================================
 void InitFileCache(void)
@@ -792,11 +792,11 @@ void InitFileCache(void)
 
 //==============================================================================
 /**
- * @brief	“Á’è‚ÌƒnƒbƒVƒ…‚ğƒNƒŠƒA‚·‚é(ƒL[w’è)
+ * @brief	ç‰¹å®šã®ãƒãƒƒã‚·ãƒ¥ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹(ã‚­ãƒ¼æŒ‡å®š)
  *
- * @param   hash	ƒtƒ@ƒCƒ‹–¼‚©‚çæ“¾‚µ‚½ƒnƒbƒVƒ…’l
+ * @param   hash	ãƒ•ã‚¡ã‚¤ãƒ«åã‹ã‚‰å–å¾—ã—ãŸãƒãƒƒã‚·ãƒ¥å€¤
  *
- * @retval  int		0`:íœ‚µ‚½—v‘fIndex	-1:íœ‚µ‚È‚©‚Á‚½
+ * @retval  int		0ã€œ:å‰Šé™¤ã—ãŸè¦ç´ Index	-1:å‰Šé™¤ã—ãªã‹ã£ãŸ
  */
 //==============================================================================
 int ClearFileCacheKey(u32 hash)
@@ -804,12 +804,12 @@ int ClearFileCacheKey(u32 hash)
 	int i;
 
 	i = SearchFileCache(hash);
-	if(i == -1){	//“o˜^ƒf[ƒ^‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½
+	if(i == -1){	//ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 		return i;
 	}
 
-	//Œ©‚Â‚©‚Á‚½‚Ì‚Åíœ‚·‚é
-	NNS_G3dResDefaultRelease(FileCache[i].memory);	//ƒŠƒ\[ƒX‰ğ•úˆ—
+	//è¦‹ã¤ã‹ã£ãŸã®ã§å‰Šé™¤ã™ã‚‹
+	NNS_G3dResDefaultRelease(FileCache[i].memory);	//ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾å‡¦ç†
 	sys_FreeMemoryEz( FileCache[i].memory );
 	FileCache[i].memory = NULL;
 	FileCache[i].hash   = 0;
@@ -818,11 +818,11 @@ int ClearFileCacheKey(u32 hash)
 
 //==============================================================================
 /**
- * @brief	“Á’è‚ÌƒnƒbƒVƒ…‚ğƒNƒŠƒA‚·‚é(ƒAƒhƒŒƒXw’è)
+ * @brief	ç‰¹å®šã®ãƒãƒƒã‚·ãƒ¥ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹(ã‚¢ãƒ‰ãƒ¬ã‚¹æŒ‡å®š)
  *
- * @param   addr	ƒŠƒ\[ƒX‚ÌƒAƒhƒŒƒX
+ * @param   addr	ãƒªã‚½ãƒ¼ã‚¹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval  int		0`:íœ‚µ‚½—v‘fIndex	-1:íœ‚µ‚È‚©‚Á‚½
+ * @retval  int		0ã€œ:å‰Šé™¤ã—ãŸè¦ç´ Index	-1:å‰Šé™¤ã—ãªã‹ã£ãŸ
  */
 //==============================================================================
 int ClearFileCacheAddr(void* addr)
@@ -832,13 +832,13 @@ int ClearFileCacheAddr(void* addr)
 	if(addr == NULL){
 		return 0xFF;
 	}
-	//ƒLƒƒƒbƒVƒ…“à‚ğ‘–¸‚·‚é
+	//ã‚­ãƒ£ãƒƒã‚·ãƒ¥å†…ã‚’èµ°æŸ»ã™ã‚‹
 	for(i = 0;i < FILE_CACHE_MAX;i++){	
 		if(FileCache[i].memory != addr){
 			continue;
 		}
-		//ƒLƒƒƒbƒVƒ…‚ğ”jŠü
-		NNS_G3dResDefaultRelease(FileCache[i].memory);	//ƒŠƒ\[ƒX‰ğ•úˆ—
+		//ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç ´æ£„
+		NNS_G3dResDefaultRelease(FileCache[i].memory);	//ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾å‡¦ç†
 		sys_FreeMemoryEz(FileCache[i].memory);
 		FileCache[i].memory = NULL;
 		FileCache[i].hash   = 0;
@@ -850,11 +850,11 @@ int ClearFileCacheAddr(void* addr)
 /*---------------------------------------------------------------------------*
   Name:         sys_LoadGraphFile
 
-  Description:  ƒOƒ‰ƒtƒBƒbƒN—pƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İiƒLƒƒƒbƒVƒ…‚ ‚èj
+  Description:  ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ï¼ˆã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚ã‚Šï¼‰
   
-  Arguments:    path        ƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
-				side		ƒƒCƒ“AƒTƒuw’è
-  Returns:      ƒtƒ@ƒCƒ‹“Ç‚İ‚İæƒAƒhƒŒƒX
+  Arguments:    path        ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
+				side		ãƒ¡ã‚¤ãƒ³ã€ã‚µãƒ–æŒ‡å®š
+  Returns:      ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 void* sys_LoadGraphFile(const char *path,const u8 inMode)
 {
@@ -894,7 +894,7 @@ void* sys_LoadGraphFile(const char *path,const u8 inMode)
 				OS_Printf("no enough memory.\n");
    	    	 }
    	     	else
-			{	// ƒtƒ@ƒCƒ‹ƒTƒCƒY•ª“Ç‚İ‚ß‚Ä‚¢‚È‚¢ê‡
+			{	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºåˆ†èª­ã¿è¾¼ã‚ã¦ã„ãªã„å ´åˆ
 				if (FS_ReadFile(&file, memory, fileSize) != fileSize)  
 				{
 					//NNS_FndFreeToExpHeap(sys.graph3DHeap, memory);
@@ -919,15 +919,15 @@ void* sys_LoadGraphFile(const char *path,const u8 inMode)
 }
 #if 0
 /*---------------------------------------------------------------------------*
-  @brief	ƒOƒ‰ƒtƒBƒbƒN—pƒtƒ@ƒCƒ‹ƒŠƒ\[ƒX‚Ì‰ğ•ú
+  @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
 
-  @param	addr	(void*)‰ğ•ú‚·‚éƒŠƒ\[ƒXƒAƒhƒŒƒX
-  @param	free	TRUE‚È‚ç‚ÎAƒLƒƒƒbƒVƒ…“o˜^‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚Å‚à‰ğ•ú‚·‚é
-					FALSE‚Ìê‡AƒLƒƒƒbƒVƒ…“o˜^‚³‚ê‚Ä‚¢‚ê‚Î‰ğ•ú‚µ‚È‚¢
-  @retval	0		³í‰ğ•ú
-  @retval	1		ƒLƒƒƒbƒVƒ…‚©‚ç‰ğ•ú
-  @retval	2		ƒLƒƒƒbƒVƒ…“o˜^‚³‚ê‚Ä‚¢‚é‚Ì‚Å”ñ‰ğ•ú
-  @retval	0xFF	ƒpƒ‰ƒ[ƒ^‚ª•s³
+  @param	addr	(void*)è§£æ”¾ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+  @param	free	TRUEãªã‚‰ã°ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã§ã‚‚è§£æ”¾ã™ã‚‹
+					FALSEã®å ´åˆã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç™»éŒ²ã•ã‚Œã¦ã„ã‚Œã°è§£æ”¾ã—ãªã„
+  @retval	0		æ­£å¸¸è§£æ”¾
+  @retval	1		ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰è§£æ”¾
+  @retval	2		ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã®ã§éè§£æ”¾
+  @retval	0xFF	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒä¸æ­£
  *---------------------------------------------------------------------------*/
 s8 sys_FreeGraphFile(void* addr,u8 free)
 {
@@ -936,25 +936,25 @@ s8 sys_FreeGraphFile(void* addr,u8 free)
 	if(addr == NULL){
 		return 0xFF;
 	}
-	//ƒLƒƒƒbƒVƒ…“à‚ğ‘–¸‚·‚é
+	//ã‚­ãƒ£ãƒƒã‚·ãƒ¥å†…ã‚’èµ°æŸ»ã™ã‚‹
 	for(i = 0;i < FILE_CACHE_MAX;i++){	
 		if(FileCache[i].memory != addr){
 			continue;
 		}
-		//HIT‚µ‚½
+		//HITã—ãŸ
 		if(free){
-			//ƒLƒƒƒbƒVƒ…‚ğ”jŠü
-			NNS_G3dResDefaultRelease(FileCache[i].memory);	//ƒŠƒ\[ƒX‰ğ•úˆ—
+			//ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç ´æ£„
+			NNS_G3dResDefaultRelease(FileCache[i].memory);	//ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾å‡¦ç†
 			sys_FreeMemory(GRAPHIC3D_HEAP_AREA,FileCache[i].memory);
 			FileCache[i].memory = NULL;
 			FileCache[i].hash   = 0;
 			return 1;
 		}else{
-			return 2;	//ƒLƒƒƒbƒVƒ…‚É“o˜^‚³‚ê‚Ä‚¢‚é‚Ì‚Å”ñ‰ğ•ú
+			return 2;	//ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã®ã§éè§£æ”¾
 		}
 	}
-	//ƒLƒƒƒbƒVƒ…‚É“o˜^‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚Ì‚Å•’Ê‚É‰ğ•ú
-	NNS_G3dResDefaultRelease(FileCache[i].memory);	//ƒŠƒ\[ƒX‰ğ•úˆ—
+	//ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ç™»éŒ²ã•ã‚Œã¦ã„ãªã‹ã£ãŸã®ã§æ™®é€šã«è§£æ”¾
+	NNS_G3dResDefaultRelease(FileCache[i].memory);	//ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾å‡¦ç†
 	sys_FreeMemory(GRAPHIC3D_HEAP_AREA,FileCache[i].memory);
 	FileCache[i].memory = NULL;
 	FileCache[i].hash = 0;
@@ -967,47 +967,47 @@ s8 sys_FreeGraphFile(void* addr,u8 free)
 /*---------------------------------------------------------------------------*
   Name:         sys_KeyRead
 
-  Description:  ƒL[‚ğ“Ç‚İ‚İAƒgƒŠƒK‚ÆƒŠƒŠ[ƒXƒgƒŠƒK‚ğ‹‚ß‚Ü‚·B
+  Description:  ã‚­ãƒ¼ã‚’èª­ã¿è¾¼ã¿ã€ãƒˆãƒªã‚¬ã¨ãƒªãƒªãƒ¼ã‚¹ãƒˆãƒªã‚¬ã‚’æ±‚ã‚ã¾ã™ã€‚
 				
-  Arguments:    ‚È‚µB
-  Returns:      ‚È‚µB
+  Arguments:    ãªã—ã€‚
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 
-//‰Šú‰»
+//åˆæœŸåŒ–
 void sys_InitKeyRead(void)
 {
 	TPCalibrateParam calibrate;
 
-	sys.key_control_mode = 0;	//ƒL[æ“¾ƒ‚[ƒh
+	sys.key_control_mode = 0;	//ã‚­ãƒ¼å–å¾—ãƒ¢ãƒ¼ãƒ‰
 
-	sys.cont_org	= 0;	// ƒL[ó‘Ô
-	sys.trg_org		= 0;	// ƒL[ƒgƒŠƒK[
-	sys.repeat_org	= 0;	// ƒL[ƒŠƒs[ƒg
-	sys.cont		= 0;	// ƒL[ó‘Ô(ƒQ[ƒ€İ’è‚É‚æ‚è•ÏŠ·ˆ—‚ª“ü‚é)
-	sys.trg			= 0;	// ƒL[ƒgƒŠƒK[(ƒQ[ƒ€İ’è‚É‚æ‚è•ÏŠ·ˆ—‚ª“ü‚é)
-	sys.repeat      = 0;	// ƒL[ƒŠƒs[ƒg(ƒQ[ƒ€İ’è‚É‚æ‚è•ÏŠ·ˆ—‚ª“ü‚é)
+	sys.cont_org	= 0;	// ã‚­ãƒ¼çŠ¶æ…‹
+	sys.trg_org		= 0;	// ã‚­ãƒ¼ãƒˆãƒªã‚¬ãƒ¼
+	sys.repeat_org	= 0;	// ã‚­ãƒ¼ãƒªãƒ”ãƒ¼ãƒˆ
+	sys.cont		= 0;	// ã‚­ãƒ¼çŠ¶æ…‹(ã‚²ãƒ¼ãƒ è¨­å®šã«ã‚ˆã‚Šå¤‰æ›å‡¦ç†ãŒå…¥ã‚‹)
+	sys.trg			= 0;	// ã‚­ãƒ¼ãƒˆãƒªã‚¬ãƒ¼(ã‚²ãƒ¼ãƒ è¨­å®šã«ã‚ˆã‚Šå¤‰æ›å‡¦ç†ãŒå…¥ã‚‹)
+	sys.repeat      = 0;	// ã‚­ãƒ¼ãƒªãƒ”ãƒ¼ãƒˆ(ã‚²ãƒ¼ãƒ è¨­å®šã«ã‚ˆã‚Šå¤‰æ›å‡¦ç†ãŒå…¥ã‚‹)
 	sys.repeatWait_Count = 0;
 	sys.repeatSpeed	= SYS_KEYREPEAT_SPEED_DEF;
 	sys.repeatWait	= SYS_KEYREPEAT_WAIT_DEF;
 
 
-	sys.tp_x		 = 0;	// ƒ^ƒbƒ`ƒpƒlƒ‹XÀ•W
-	sys.tp_y		 = 0;	// ƒ^ƒbƒ`ƒpƒlƒ‹YÀ•W
-	sys.tp_trg		 = 0;	// ƒ^ƒbƒ`ƒpƒlƒ‹ÚG”»’èƒgƒŠƒK
-	sys.tp_cont		 = 0;	// ƒ^ƒbƒ`ƒpƒlƒ‹ÚG”»’èó‘Ô
-	sys.tp_auto_samp = 0;	// ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO‚ğs‚Á‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO
+	sys.tp_x		 = 0;	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«Xåº§æ¨™
+	sys.tp_y		 = 0;	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«Yåº§æ¨™
+	sys.tp_trg		 = 0;	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æ¥è§¦åˆ¤å®šãƒˆãƒªã‚¬
+	sys.tp_cont		 = 0;	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æ¥è§¦åˆ¤å®šçŠ¶æ…‹
+	sys.tp_auto_samp = 0;	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’è¡Œã£ã¦ã„ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
 									
-	// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ì‰Šú‰»‚ÆƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“‚ğƒZƒbƒg
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®åˆæœŸåŒ–ã¨ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	TP_Init();
 
-	// ƒ}ƒVƒ“‚ÌƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“’l‚ğæ“¾
+	// ãƒã‚·ãƒ³ã®ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³å€¤ã‚’å–å¾—
 	if( TP_GetUserInfo( &calibrate ) == TRUE ){
-		// ƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“’l‚Ìİ’è
+		// ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³å€¤ã®è¨­å®š
 		TP_SetCalibrateParam( &calibrate );
 		OS_Printf("Get Calibration Parameter from NVRAM\n");
 	}
 	else{
-		// æ“¾‚É¸”s‚µ‚½‚Ì‚ÅƒfƒtƒHƒ‹ƒg‚ÌƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“‚Ìİ’è
+		// å–å¾—ã«å¤±æ•—ã—ãŸã®ã§ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®š
 		calibrate.x0 = 0x02ae;
 		calibrate.y0 = 0x058c;
 		calibrate.xDotSize = 0x0e25;
@@ -1018,7 +1018,7 @@ void sys_InitKeyRead(void)
 }
 
 /*---------------------------------------------------------------------------*
-  @brief	‚`‚f‚aƒJ[ƒgƒŠƒbƒW‰Šú‰»
+  @brief	ï¼¡ï¼§ï¼¢ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸åˆæœŸåŒ–
  *---------------------------------------------------------------------------*/
 void sys_InitAgbCasetteVer(int version)
 {
@@ -1026,7 +1026,7 @@ void sys_InitAgbCasetteVer(int version)
 }
 
 /*---------------------------------------------------------------------------*
-  @brief	ƒXƒŠ[ƒvó‘Ô‚ğ‹Ö~‚·‚é
+  @brief	ã‚¹ãƒªãƒ¼ãƒ—çŠ¶æ…‹ã‚’ç¦æ­¢ã™ã‚‹
  *---------------------------------------------------------------------------*/
 void sys_SleepNG(u8 sleepTypeBit)
 {
@@ -1034,7 +1034,7 @@ void sys_SleepNG(u8 sleepTypeBit)
 }
 
 /*---------------------------------------------------------------------------*
-  @brief	ƒXƒŠ[ƒvó‘Ô‚ğ‹–‰Â‚·‚é
+  @brief	ã‚¹ãƒªãƒ¼ãƒ—çŠ¶æ…‹ã‚’è¨±å¯ã™ã‚‹
  *---------------------------------------------------------------------------*/
 void sys_SleepOK(u8 sleepTypeBit)
 {
@@ -1044,7 +1044,7 @@ void sys_SleepOK(u8 sleepTypeBit)
 //------------------------------------------------------------------
 static void KeyConvert(void);
 
-//“Ç‚İæ‚è
+//èª­ã¿å–ã‚Š
 
 void sys_MainKeyRead(void)
 {
@@ -1052,7 +1052,7 @@ void sys_MainKeyRead(void)
 	TPData	tpDisp;
 	int	keyData;
 
-	// ‚Ó‚½‚ª•Â‚Ü‚Á‚Ä‚¢‚éê‡‚Í‘S‚Ä‚Ì“ü—Í‚ğ‚È‚µ‚É‚·‚é
+	// ãµãŸãŒé–‰ã¾ã£ã¦ã„ã‚‹å ´åˆã¯å…¨ã¦ã®å…¥åŠ›ã‚’ãªã—ã«ã™ã‚‹
 	if(PAD_DetectFold()){
 	  sys.trg	= 0;
 	  sys.cont	= 0;
@@ -1064,9 +1064,9 @@ void sys_MainKeyRead(void)
 
 	keyData = PAD_Read();
 	
-	sys.trg_org		= keyData & (keyData ^ sys.cont_org);	// ƒgƒŠƒK “ü—Í
+	sys.trg_org		= keyData & (keyData ^ sys.cont_org);	// ãƒˆãƒªã‚¬ å…¥åŠ›
 
-    sys.repeat_org	=	keyData & (keyData ^ sys.cont_org);        // ƒŠƒs[ƒg “ü—Í
+    sys.repeat_org	=	keyData & (keyData ^ sys.cont_org);        // ãƒªãƒ”ãƒ¼ãƒˆ å…¥åŠ›
 
     if((keyData!=0)&&(sys.cont_org==keyData)){
 		if(--sys.repeatWait_Count==0){
@@ -1079,7 +1079,7 @@ void sys_MainKeyRead(void)
 	}
 
 
-	sys.cont_org	= keyData;							// ƒxƒ^ “ü—Í
+	sys.cont_org	= keyData;							// ãƒ™ã‚¿ å…¥åŠ›
 
 	sys.trg		= sys.trg_org;
 	sys.cont	= sys.cont_org;
@@ -1087,23 +1087,23 @@ void sys_MainKeyRead(void)
 
 	KeyConvert();
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^‚ğæ“¾
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	if(sys.tp_auto_samp == 0){
-		while( TP_RequestRawSampling( &tpTemp ) != 0 ){};	//ƒTƒ“ƒvƒŠƒ“ƒO‚É¬Œ÷‚·‚é‚Ü‚Å‘Ò‚Â
+		while( TP_RequestRawSampling( &tpTemp ) != 0 ){};	//ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã«æˆåŠŸã™ã‚‹ã¾ã§å¾…ã¤
 	}else{
-		TP_GetLatestRawPointInAuto( &tpTemp );	// ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO’†‚Ìƒf[ƒ^‚ğæ“¾
+		TP_GetLatestRawPointInAuto( &tpTemp );	// ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	}
 
-	TP_GetCalibratedPoint( &tpDisp, &tpTemp );	// À•W‚ğ‰æ–ÊÀ•Wi‚O`‚Q‚T‚Tj‚É‚·‚é
+	TP_GetCalibratedPoint( &tpDisp, &tpTemp );	// åº§æ¨™ã‚’ç”»é¢åº§æ¨™ï¼ˆï¼ã€œï¼’ï¼•ï¼•ï¼‰ã«ã™ã‚‹
 
-#if 0	// 2006.07.05	À•Wæ“¾¸”sˆ—‚ğ•ÏX
-	switch(tpDisp.validity){		// À•W‚Ì—LŒø«‚ğƒ`ƒFƒbƒN
+#if 0	// 2006.07.05	åº§æ¨™å–å¾—å¤±æ•—æ™‚å‡¦ç†ã‚’å¤‰æ›´
+	switch(tpDisp.validity){		// åº§æ¨™ã®æœ‰åŠ¹æ€§ã‚’ãƒã‚§ãƒƒã‚¯
 	case TP_VALIDITY_INVALID_X:
 		sys.tp_x = 0xffff;
 		sys.tp_y = tpDisp.y;
 		break;
 	case TP_VALIDITY_INVALID_Y:
-		sys.tp_x = tpDisp.x;			// À•W‚ğƒZƒbƒg
+		sys.tp_x = tpDisp.x;			// åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 		sys.tp_y = 0xffff;
 		break;
 	case TP_VALIDITY_INVALID_XY:
@@ -1115,18 +1115,18 @@ void sys_MainKeyRead(void)
 		sys.tp_y = tpDisp.y;
 	}
 
-	sys.tp_trg	= (u16)(tpDisp.touch & (tpDisp.touch ^ sys.tp_cont));	// ƒgƒŠƒK “ü—Í
-	sys.tp_cont	= tpDisp.touch;										// ƒxƒ^ “ü—Í
+	sys.tp_trg	= (u16)(tpDisp.touch & (tpDisp.touch ^ sys.tp_cont));	// ãƒˆãƒªã‚¬ å…¥åŠ›
+	sys.tp_cont	= tpDisp.touch;										// ãƒ™ã‚¿ å…¥åŠ›
 	
 #endif	/// 
 	
-	if( tpDisp.validity == TP_VALIDITY_VALID  ){		// À•W‚Ì—LŒø«‚ğƒ`ƒFƒbƒN
-		// ƒ^ƒbƒ`ƒpƒlƒ‹À•W—LŒø
+	if( tpDisp.validity == TP_VALIDITY_VALID  ){		// åº§æ¨™ã®æœ‰åŠ¹æ€§ã‚’ãƒã‚§ãƒƒã‚¯
+		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™æœ‰åŠ¹
 		sys.tp_x = tpDisp.x;
 		sys.tp_y = tpDisp.y;
 	}else{
-		// ƒ^ƒbƒ`ƒpƒlƒ‹À•W–³Œø
-		// 1ƒVƒ“ƒN‘O‚ÌÀ•W‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Ì‚İÀ•W‚ğ‚»‚Ì‚Ü‚Üó‚¯Œp‚®
+		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™ç„¡åŠ¹
+		// 1ã‚·ãƒ³ã‚¯å‰ã®åº§æ¨™ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã¨ãã®ã¿åº§æ¨™ã‚’ãã®ã¾ã¾å—ã‘ç¶™ã
 		if( sys.tp_cont ){
 			switch(tpDisp.validity){
 			case TP_VALIDITY_INVALID_X:
@@ -1137,23 +1137,23 @@ void sys_MainKeyRead(void)
 				break;
 			case TP_VALIDITY_INVALID_XY:
 				break;
-			default:	// ³í
+			default:	// æ­£å¸¸
 				break;
 			}
 		}else{
-			// ƒgƒŠƒK‚Ìƒ^ƒCƒ~ƒ“ƒO‚È‚çA
-			// ƒ^ƒbƒ`ƒpƒlƒ‹‚ğ‰Ÿ‚µ‚Ä‚¢‚È‚¢‚±‚Æ‚É‚·‚é
+			// ãƒˆãƒªã‚¬ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãªã‚‰ã€
+			// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ã¦ã„ãªã„ã“ã¨ã«ã™ã‚‹
 			tpDisp.touch = 0;
 		}
 	}
-	sys.tp_trg	= (u16)(tpDisp.touch & (tpDisp.touch ^ sys.tp_cont));	// ƒgƒŠƒK “ü—Í
-	sys.tp_cont	= tpDisp.touch;										// ƒxƒ^ “ü—Í
+	sys.tp_trg	= (u16)(tpDisp.touch & (tpDisp.touch ^ sys.tp_cont));	// ãƒˆãƒªã‚¬ å…¥åŠ›
+	sys.tp_cont	= tpDisp.touch;										// ãƒ™ã‚¿ å…¥åŠ›
 
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒL[î•ñ‚Ì•ÏŠ·
+ * ã‚­ãƒ¼æƒ…å ±ã®å¤‰æ›
  *
  * @param	none
  * @param	none
@@ -1220,10 +1220,10 @@ static void KeyConvert(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒL[ƒŠƒs[ƒg‚Ì‘¬“x‚ÆƒEƒFƒCƒg‚ğƒZƒbƒg
+ * ã‚­ãƒ¼ãƒªãƒ”ãƒ¼ãƒˆã®é€Ÿåº¦ã¨ã‚¦ã‚§ã‚¤ãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	speed	‘¬“x
- * @param	wait	ƒEƒFƒCƒg
+ * @param	speed	é€Ÿåº¦
+ * @param	wait	ã‚¦ã‚§ã‚¤ãƒˆ
  *
  * @return	none
  */
@@ -1236,7 +1236,7 @@ void sys_KeyRepeatSpeedSet( int speed, int wait )
 
 
 /*---------------------------------------------------------------------------*
-  @brief	ƒ\ƒtƒgƒEƒGƒAƒŠƒZƒbƒgó‘Ô‚ğ‹Ö~‚·‚é
+  @brief	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒªã‚»ãƒƒãƒˆçŠ¶æ…‹ã‚’ç¦æ­¢ã™ã‚‹
  *---------------------------------------------------------------------------*/
 void sys_SoftResetNG(u8 softResetBit)
 {
@@ -1244,7 +1244,7 @@ void sys_SoftResetNG(u8 softResetBit)
 }
 
 /*---------------------------------------------------------------------------*
-  @brief	ƒ\ƒtƒgƒEƒGƒAƒŠƒZƒbƒgó‘Ô‚ğ‹–‰Â‚·‚é
+  @brief	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒªã‚»ãƒƒãƒˆçŠ¶æ…‹ã‚’è¨±å¯ã™ã‚‹
  *---------------------------------------------------------------------------*/
 void sys_SoftResetOK(u8 softResetBit)
 {
@@ -1253,9 +1253,9 @@ void sys_SoftResetOK(u8 softResetBit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊMƒGƒ‰[‚É‚µ‚È‚¢ˆ×‚Ìƒ}ƒWƒbƒNƒL[‚ğƒZƒbƒg
+ * @brief   é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã—ãªã„ç‚ºã®ãƒã‚¸ãƒƒã‚¯ã‚­ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   heap_id		ƒ}ƒWƒbƒNƒL[‚ğƒZƒbƒg‚·‚éˆ×‚Ìƒtƒ‰ƒO‚ğŠm•Û‚·‚éƒq[ƒv
+ * @param   heap_id		ãƒã‚¸ãƒƒã‚¯ã‚­ãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ç‚ºã®ãƒ•ãƒ©ã‚°ã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  */
 //--------------------------------------------------------------
 void sys_SioErrorNG_PtrSet(int heap_id)
@@ -1269,7 +1269,7 @@ void sys_SioErrorNG_PtrSet(int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊMƒGƒ‰[‚É‚µ‚È‚¢ˆ×‚Ìƒ}ƒWƒbƒNƒL[‚ğ‰ğ•ú
+ * @brief   é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã—ãªã„ç‚ºã®ãƒã‚¸ãƒƒã‚¯ã‚­ãƒ¼ã‚’è§£æ”¾
  */
 //--------------------------------------------------------------
 void sys_SioErrorNG_PtrFree(void)
@@ -1284,10 +1284,10 @@ void sys_SioErrorNG_PtrFree(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊMƒGƒ‰[‚É‚µ‚Ä‚Í‚¢‚¯‚È‚¢ó‘Ô‚©ƒ`ƒFƒbƒN
+ * @brief   é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã—ã¦ã¯ã„ã‘ãªã„çŠ¶æ…‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @retval  TRUE:’ÊMƒGƒ‰[‚É‚µ‚Ä‚Í‚¢‚¯‚È‚¢
- * @retval  FALSE:’ÊMƒGƒ‰[‚É‚µ‚Ä—Ç‚¢
+ * @retval  TRUE:é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã—ã¦ã¯ã„ã‘ãªã„
+ * @retval  FALSE:é€šä¿¡ã‚¨ãƒ©ãƒ¼ã«ã—ã¦è‰¯ã„
  */
 //--------------------------------------------------------------
 BOOL sys_SioErrorNG_Get(void)

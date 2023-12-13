@@ -1,6 +1,6 @@
 /**
  *	@file	db_tower_scr_def.h
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[ƒXƒNƒŠƒvƒg@’è”’è‹`
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å®šæ•°å®šç¾©
  *	@author	Miyuki Iwasawa
  *	@date	06.04.18
  */
@@ -10,25 +10,25 @@
 #define BTWR_NULL_TRAINER	(0xFFFF)
 #define BTWR_NULL_PARAM	(0)
 
-///ƒoƒgƒ‹ƒ^ƒ[‰Šú‰»ƒ‚[ƒh
+///ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼åˆæœŸåŒ–ãƒ¢ãƒ¼ãƒ‰
 #define BTWR_PLAY_NEW		(0)
 #define BTWR_PLAY_CONTINUE	(1)
 
-///ƒoƒgƒ‹ƒ^ƒ[@ƒNƒŠƒAƒ‰ƒEƒ“ƒh”
+///ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ã‚¯ãƒªã‚¢ãƒ©ã‚¦ãƒ³ãƒ‰æ•°
 #define BTWR_CLEAR_WINCNT	(7)
 
-//ƒoƒgƒ‹ƒ^ƒ[@˜AŸ‹L˜^ƒ‰ƒEƒ“ƒh”
+//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€£å‹è¨˜éŒ²ãƒ©ã‚¦ãƒ³ãƒ‰æ•°
 #define BTWR_20_RENSHOU_CNT			(20)
 #define BTWR_50_RENSHOU_CNT			(50)
 #define BTWR_100_RENSHOU_CNT		(100)
 
-#define LEADER_SET_1ST	(20)	//21l–Ú‚Ì‚Æ‚«Œ»Ý‚Ì˜AŸ”‚Í20
-#define LEADER_SET_2ND	(48)	//49l–Ú‚Ì‚Æ‚«Œ»Ý‚Ì˜AŸ”‚Í48
+#define LEADER_SET_1ST	(20)	//21äººç›®ã®ã¨ãç¾åœ¨ã®é€£å‹æ•°ã¯20
+#define LEADER_SET_2ND	(48)	//49äººç›®ã®ã¨ãç¾åœ¨ã®é€£å‹æ•°ã¯48
 
-#define BTWR_FIVE_NUM		(5)	///<5lO‚Ì”
-#define TOWER_FIVE_FIRST	(300)	///<5lOƒf[ƒ^‚ÌƒXƒ^[ƒgindex
+#define BTWR_FIVE_NUM		(5)	///<5äººè¡†ã®æ•°
+#define TOWER_FIVE_FIRST	(300)	///<5äººè¡†ãƒ‡ãƒ¼ã‚¿ã®ã‚¹ã‚¿ãƒ¼ãƒˆindex
 
-///ƒoƒgƒ‹ƒ^ƒ[ƒvƒŒƒCƒ‚[ƒhƒXƒNƒŠƒvƒg—p’è‹`
+///ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆç”¨å®šç¾©
 #define BTWR_MODE_NULL		(0xFFFF)
 #define BTWR_MODE_SINGLE	(0)
 #define BTWR_MODE_DOUBLE	(1)
@@ -36,29 +36,29 @@
 #define BTWR_MODE_COMM_MULTI	(3)
 #define BTWR_MODE_WIFI			(4)
 #define BTWR_MODE_RETRY			(5)
-#define BTWR_MODE_WIFI_MULTI	(6)			//07.08.06 ƒvƒ‰ƒ`ƒi’Ç‰Á(COMM_MULTI‚ÌWIFI”Å —F’BŽè’ )
+#define BTWR_MODE_WIFI_MULTI	(6)			//07.08.06 ãƒ—ãƒ©ãƒãƒŠè¿½åŠ (COMM_MULTIã®WIFIç‰ˆ å‹é”æ‰‹å¸³)
 
-///ƒoƒgƒ‹ƒ^ƒ[@ƒp[ƒgƒi[ƒR[ƒh
+///ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã‚³ãƒ¼ãƒ‰
 #define BTWR_PTCODE_OBJ		(2)
 #define BTWR_PTCODE_MINE2	(1)
 #define BTWR_PTCODE_MINE	(0)
 
-///ƒoƒgƒ‹ƒ^ƒ[ WIFIÚ‘±ƒ‚[ƒh’è‹`
+///ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ WIFIæŽ¥ç¶šãƒ¢ãƒ¼ãƒ‰å®šç¾©
 #define BTWR_WIFI_DL_PLAY		(0)
 #define BTWR_WIFI_UP_PLAY		(1)
 #define BTWR_WIFI_DL_LEADER		(2)
 
-///’ÊMƒ}ƒ‹ƒ`‘—ŽóMƒoƒbƒtƒ@ƒTƒCƒY
+///é€šä¿¡ãƒžãƒ«ãƒé€å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define BTWR_SIO_BUF_LEN	(70)
 
-//‚à‚ç‚¦‚éƒOƒbƒY
+//ã‚‚ã‚‰ãˆã‚‹ã‚°ãƒƒã‚º
 #define BTWR_GOODS_COPPER	(GOODS_UG_TROPH_14)
 #define BTWR_GOODS_SILVER	(GOODS_UG_TROPH_15)
 #define BTWR_GOODS_GOLD		(GOODS_UG_TROPH_16)
 
-//‚à‚ç‚¦‚éƒoƒgƒ‹ƒ|ƒCƒ“ƒg
+//ã‚‚ã‚‰ãˆã‚‹ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆ
 #define BTLPOINT_VAL_TOWER_LEADER	(20)
-#define BTLPOINT_VAL_TOWER_WIFI1	(3)			//ƒ_ƒEƒ“ƒ[ƒh
+#define BTLPOINT_VAL_TOWER_WIFI1	(3)			//ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 #define BTLPOINT_VAL_TOWER_WIFI2	(4)
 #define BTLPOINT_VAL_TOWER_WIFI3	(5)
 #define BTLPOINT_VAL_TOWER_WIFI4	(6)
@@ -68,15 +68,15 @@
 #define BTLPOINT_VAL_TOWER_WIFI8	(10)
 #define BTLPOINT_VAL_TOWER_WIFI9	(10)
 #define BTLPOINT_VAL_TOWER_WIFI10	(10)
-#define BTLPOINT_VAL_TOWER_STAGE1	(3)			//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹AAIƒ}ƒ‹ƒ`
+#define BTLPOINT_VAL_TOWER_STAGE1	(3)			//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€AIãƒžãƒ«ãƒ
 #define BTLPOINT_VAL_TOWER_STAGE2	(3)
 #define BTLPOINT_VAL_TOWER_STAGE3	(4)
 #define BTLPOINT_VAL_TOWER_STAGE4	(4)
 #define BTLPOINT_VAL_TOWER_STAGE5	(5)
 #define BTLPOINT_VAL_TOWER_STAGE6	(5)
-#define BTLPOINT_VAL_TOWER_STAGE7	(7)			//‚±‚±‚ÍƒvƒƒOƒ‰ƒ€“I‚ÉDP‚©‚ç‚Ü‚¿‚ª‚Á‚Ä‚¢‚é‚½‚ßB
+#define BTLPOINT_VAL_TOWER_STAGE7	(7)			//ã“ã“ã¯ãƒ—ãƒ­ã‚°ãƒ©ãƒ çš„ã«DPã‹ã‚‰ã¾ã¡ãŒã£ã¦ã„ã‚‹ãŸã‚ã€‚
 #define BTLPOINT_VAL_TOWER_STAGE8	(7)
-#define BTLPOINT_VAL_TOWER_COMM1	(8)			//ƒ}ƒ‹ƒ`AWIFI
+#define BTLPOINT_VAL_TOWER_COMM1	(8)			//ãƒžãƒ«ãƒã€WIFI
 #define BTLPOINT_VAL_TOWER_COMM2	(9)
 #define BTLPOINT_VAL_TOWER_COMM3	(11)
 #define BTLPOINT_VAL_TOWER_COMM4	(12)
@@ -85,7 +85,7 @@
 #define BTLPOINT_VAL_TOWER_COMM7	(18)
 #define BTLPOINT_VAL_TOWER_COMM8	(18)
 
-///ƒXƒRƒAƒtƒ‰ƒOƒAƒNƒZƒXID
+///ã‚¹ã‚³ã‚¢ãƒ•ãƒ©ã‚°ã‚¢ã‚¯ã‚»ã‚¹ID
 #define BTWR_SF_SILVER	(0)
 #define BTWR_SF_GOLD	(1)
 #define BTWR_SF_S50		(2)
@@ -95,7 +95,7 @@
 #define BTWR_SF_CM50	(6)
 #define BTWR_SF_W50		(7)
 
-///ƒoƒgƒ‹ƒ^ƒ[ƒRƒ}ƒ“ƒhƒc[ƒ‹ID
+///ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚³ãƒžãƒ³ãƒ‰ãƒ„ãƒ¼ãƒ«ID
 #define BTWR_TOOL_GET_MEMBER_NUM		(0)
 #define BTWR_TOOL_CHK_ENTRY_POKE_NUM	(1)
 #define BTWR_TOOL_SYSTEM_RESET			(2)
@@ -148,7 +148,7 @@
 
 
 //========================================================
-//’ÊMƒ}ƒ‹ƒ`@“¯ŠúƒR[ƒh
+//é€šä¿¡ãƒžãƒ«ãƒã€€åŒæœŸã‚³ãƒ¼ãƒ‰
 //========================================================
 #define TOWER_COMM_MULTI_POKE_SELECT		1
 #define TOWER_COMM_MULTI_BTL_TRAINER_SET	2
@@ -160,42 +160,42 @@
 #define TOWER_COMM_MULTI_SIO_END			8
 
 //========================================================
-//ƒXƒNƒŠƒvƒg@”ò‚ÑæÀ•WŽw’èŒn
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€é£›ã³å…ˆåº§æ¨™æŒ‡å®šç³»
 //========================================================
-//Ž©‹@ ƒVƒ“ƒOƒ‹/ƒ_ƒuƒ‹ Žó•t”ò‚ÑæŽw’è
+//è‡ªæ©Ÿ ã‚·ãƒ³ã‚°ãƒ«/ãƒ€ãƒ–ãƒ« å—ä»˜é£›ã³å…ˆæŒ‡å®š
 #define SB_GATE_ZONE	ZONEID_D31R0201
 
-//Ž©‹@ ƒGƒŒƒx[ƒ^[ ”ò‚Ñæ
+//è‡ªæ©Ÿ ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒ¼ é£›ã³å…ˆ
 #define SB_EV_ZONE		ZONEID_D31R0202
 #define SB_EV_PLAYER_SX			(3)
 #define SB_EV_PLAYER_SY			(6)
 
-//Ž©‹@ ƒVƒ“ƒOƒ‹’Ê˜H ”ò‚Ñæ
+//è‡ªæ©Ÿ ã‚·ãƒ³ã‚°ãƒ«é€šè·¯ é£›ã³å…ˆ
 #define SB_WAYS_ZONE	ZONEID_D31R0203
 #define SB_WAYS_PLAYER_SX		(2)
 #define SB_WAYS_PLAYER_SY		(1)
 
-//Ž©‹@ ƒVƒ“ƒOƒ‹ƒoƒgƒ‹ƒ‹[ƒ€ ‰Šú”ò‚Ñæ
+//è‡ªæ©Ÿ ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ  åˆæœŸé£›ã³å…ˆ
 #define SB_ROOMS_ZONE	ZONEID_D31R0205
 #define SB_ROOMS_PLAYER_SX		(7)
 #define SB_ROOMS_PLAYER_SY		(6)
 
-//Ž©‹@ ƒ}ƒ‹ƒ`’Ê˜H ”ò‚Ñæ
+//è‡ªæ©Ÿ ãƒžãƒ«ãƒé€šè·¯ é£›ã³å…ˆ
 #define SB_WAYD_ZONE	ZONEID_D31R0204
 #define SB_WAYD_PLAYER_SX		(8)
 #define SB_WAYD_PLAYER_SY		(3)
 
-//Ž©‹@ ƒ}ƒ‹ƒ`ƒoƒgƒ‹ƒ‹[ƒ€ ”ò‚Ñæ
+//è‡ªæ©Ÿ ãƒžãƒ«ãƒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ  é£›ã³å…ˆ
 #define SB_ROOMD_ZONE	ZONEID_D31R0206
 #define SB_ROOMD_PLAYER_SX		(7)
 #define SB_ROOMD_PLAYER_SY		(5)
 
-//Ž©‹@ ƒTƒƒ“ ”ò‚Ñæ
+//è‡ªæ©Ÿ ã‚µãƒ­ãƒ³ é£›ã³å…ˆ
 #define SB_SALON_ZONE	ZONEID_D31R0207
 #define SB_SALON_PLAYER_SX		(8)
 #define SB_SALON_PLAYER_SY		(2)
 
-//’ÊM’è‹`(ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á)
+//é€šä¿¡å®šç¾©(ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ )
 #define TOWER_COMM_PLAYER_DATA		(0)
 #define TOWER_COMM_TR_DATA			(1)
 #define TOWER_COMM_RETIRE_SELECT	(2)

@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_manager.c
- * @brief	’n‰º‚Ì’ÊMŠÖ˜A‚ÌƒvƒƒOƒ‰ƒ€‚ğ‚Ü‚Æ‚ß‚éƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹ã®é€šä¿¡é–¢é€£ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ã¾ã¨ã‚ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2005.11.18
  */
@@ -47,22 +47,22 @@
 #include "../sysflag.h"
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 #include "../field_effect.h"	//DEBUG_BLACT_NEW_HOOK
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 
 enum _radarDispType_e {
-    _RADAR_NONE,   // •\¦‚µ‚È‚¢
-    _RADAR_NORMAL,   // ©•ª‚Ìã©‚ğ•\¦
-    _RADAR_STONE,   // ©•ª‚ÌÎ‚ğ•\¦
-    _RADAR_FOSSIL,   // ©•ª‚ÌÎ‚ğ•\¦
-    _RADAR_NATU_TRAP,   // ©‘R‚Æ©•ª‚Ìã©‚ğ•\¦
-    _RADAR_RANDOM_FOSSIL,  // ‚½‚Ü‚É‰»Î‚ğ•\¦
+    _RADAR_NONE,   // è¡¨ç¤ºã—ãªã„
+    _RADAR_NORMAL,   // è‡ªåˆ†ã®ç½ ã‚’è¡¨ç¤º
+    _RADAR_STONE,   // è‡ªåˆ†ã®çŸ³ã‚’è¡¨ç¤º
+    _RADAR_FOSSIL,   // è‡ªåˆ†ã®çŸ³ã‚’è¡¨ç¤º
+    _RADAR_NATU_TRAP,   // è‡ªç„¶ã¨è‡ªåˆ†ã®ç½ ã‚’è¡¨ç¤º
+    _RADAR_RANDOM_FOSSIL,  // ãŸã¾ã«åŒ–çŸ³ã‚’è¡¨ç¤º
 };
 
 
@@ -74,18 +74,18 @@ static void _ugMgrPlayerEndCallBack(int id);
 // ----------------------------------------------------------------------------
 
 
-#define _TOUCH_INTERVAL_DOWN_TIME (30)  // ƒ^ƒbƒ`ƒpƒlƒ‹‚ğ‰Ÿ‚¹‚éŠÔŠu
-#define _ABUTTON_INTERVAL_DOWN_TIME (8)  // ƒ^ƒbƒ`ƒpƒlƒ‹‚ğ‰Ÿ‚¹‚éŠÔŠu
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _TOUCH_INTERVAL_DOWN_TIME (30)  // ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚’æŠ¼ã›ã‚‹é–“éš”
+#define _ABUTTON_INTERVAL_DOWN_TIME (8)  // ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚’æŠ¼ã›ã‚‹é–“éš”
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define _TOUCH_OBJ_MAX (8)
 #define PRINTTASK_MAX (8)
 
 
 
 typedef struct{
-    void* pNowWork;  // ¡‹N“®’†‚Ìbag,pc‚Ìƒƒjƒ…[
-    TCB_PTR pNowTCB;  // ¡‹N“®’†‚Ìbag,pc‚Ìƒƒjƒ…[
-    ForceDeleteFunc pForceFunc;  // ¡‹N“®’†‚Ìbag,pc‚Ìƒƒjƒ…[
+    void* pNowWork;  // ä»Šèµ·å‹•ä¸­ã®bag,pcã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+    TCB_PTR pNowTCB;  // ä»Šèµ·å‹•ä¸­ã®bag,pcã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+    ForceDeleteFunc pForceFunc;  // ä»Šèµ·å‹•ä¸­ã®bag,pcã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼
     FIELDSYS_WORK* pFSys;
     UNDER_RECORD* pUnderRecord;
     TCB_PTR pPrintTCB;
@@ -139,8 +139,8 @@ static void _undergroundMsgTask( TCB_PTR tcb, void *work );
 
 //==============================================================================
 /**
- * ‰Šú‰»
- * @param   pWork COMM_UNDERƒ[ƒNƒ|ƒCƒ“ƒ^
+ * åˆæœŸåŒ–
+ * @param   pWork COMM_UNDERãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -192,7 +192,7 @@ static void _initialize(COMM_UNDER* pWork,FIELDSYS_WORK* pFSys)
 
     SysFlag_UgArriveSet(SaveData_GetEventWork(_pCommUnder->pFSys->savedata));
 
-    _pCommUnder->pPrintTCB = TCB_Add(_undergroundMsgTask,NULL, 0);  // ’YzƒŒ[ƒ_[‚æ‚è‘‚­
+    _pCommUnder->pPrintTCB = TCB_Add(_undergroundMsgTask,NULL, 0);  // ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚ˆã‚Šæ—©ã
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(JP_VER10) imatake 2006/12/01
@@ -205,17 +205,17 @@ static void _initialize(COMM_UNDER* pWork,FIELDSYS_WORK* pFSys)
 //        GX_LoadBGPltt(&pal,_NUKI_FONT_PALNO*0x20 + 2*14, 2);
 
 /*
-#define FLD_MESFRAME_PAL     ( 10 )         //  ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE
-#define FLD_MENUFRAME_PAL    ( 11 )         //  ƒƒjƒ…[ƒEƒCƒ“ƒhƒE
-#define FLD_MESFONT_PAL      ( 12 )         //  ƒƒbƒZ[ƒWƒtƒHƒ“ƒg
-#define FLD_SYSFONT_PAL	     ( 13 )         //  ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
+#define FLD_MESFRAME_PAL     ( 10 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define FLD_MENUFRAME_PAL    ( 11 )         //  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define FLD_MESFONT_PAL      ( 12 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆ
+#define FLD_SYSFONT_PAL	     ( 13 )         //  ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
 */
-    // ˆÃ‚¢ƒtƒHƒ“ƒgƒpƒŒƒbƒg
+    // æš—ã„ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
 }
 
 //==============================================================================
 /**
- * @brief ŠJ•ú
+ * @brief é–‹æ”¾
  * @param   none
  * @retval  none
  */
@@ -242,7 +242,7 @@ static void _finalize(void)
     CommMsgFinalize(_pCommUnder->pCommMsgShop);
     CommMsgFinalize(_pCommUnder->pCommMsgEdit);
     CommMsgFinalize(_pCommUnder->pCommMsgItem);
-    _pCommUnder->pFSys->startmenu_pos = 0;		// ƒƒjƒ…[ˆÊ’uƒNƒŠƒA
+    _pCommUnder->pFSys->startmenu_pos = 0;		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½ç½®ã‚¯ãƒªã‚¢
 
     sys_FreeMemoryEz(_pCommUnder);
     _pCommUnder = NULL;
@@ -250,7 +250,7 @@ static void _finalize(void)
 
 //==============================================================================
 /**
- * @brief   ’n‰º”Ä—pƒƒbƒZ[ƒWƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * @brief   åœ°ä¸‹æ±ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  * @param   none
  * @retval  none
  */
@@ -263,7 +263,7 @@ COMM_MESSAGE* CommUnderGetMsgUnderWorld(void)
 
 //==============================================================================
 /**
- * @brief   ’n‰ºƒtƒ‰ƒbƒOƒƒbƒZ[ƒWƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * @brief   åœ°ä¸‹ãƒ•ãƒ©ãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  * @param   none
  * @retval  none
  */
@@ -276,7 +276,7 @@ COMM_MESSAGE* CommUnderGetMsgUnderFlag(void)
 
 //==============================================================================
 /**
- * @brief   ’n‰ºShopƒƒbƒZ[ƒWƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * @brief   åœ°ä¸‹Shopãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  * @param   none
  * @retval  none
  */
@@ -289,7 +289,7 @@ COMM_MESSAGE* CommUnderGetMsgUnderShop(void)
 
 //==============================================================================
 /**
- * @brief   ’n‰ºEditƒƒbƒZ[ƒWƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * @brief   åœ°ä¸‹Editãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  * @param   none
  * @retval  none
  */
@@ -302,7 +302,7 @@ COMM_MESSAGE* CommUnderGetMsgUnderEdit(void)
 
 //==============================================================================
 /**
- * @brief   ’n‰ºƒAƒCƒeƒ€—pƒƒbƒZ[ƒWƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * @brief   åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  * @param   none
  * @retval  none
  */
@@ -317,9 +317,9 @@ COMM_MESSAGE* CommUnderGetMsgUnderItem(void)
 
 //==============================================================================
 /**
- *  o‚µ‚Ä‚¢‚éÅ’†‚ÌƒƒbƒZ[ƒW‚ğØ‚é
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ *  å‡ºã—ã¦ã„ã‚‹æœ€ä¸­ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’åˆ‡ã‚‹
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -334,15 +334,15 @@ void CommUnderAllMsgForceDel(void)
 
 //==============================================================================
 /**
- *  ©•ª‚Æƒ^[ƒQƒbƒg‚ªŠÖŒW‚·‚éƒƒO‚ğ¶¬
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ *  è‡ªåˆ†ã¨ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒé–¢ä¿‚ã™ã‚‹ãƒ­ã‚°ã‚’ç”Ÿæˆ
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
 BOOL UgMgrRadarLogDouble(MYSTATUS* pMy, MYSTATUS* pTarget, int msgNo, STRBUF* pStrBuf)
 {
-    WORDSET* pWordSetMain;  //ƒ[ƒhƒZƒbƒg\‘¢‘Ì
+    WORDSET* pWordSetMain;  //ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆæ§‹é€ ä½“
     STRBUF* tmp_buf1;
 
     if(pMy && pTarget){
@@ -361,15 +361,15 @@ BOOL UgMgrRadarLogDouble(MYSTATUS* pMy, MYSTATUS* pTarget, int msgNo, STRBUF* pS
 
 //==============================================================================
 /**
- *  ©•ª‚ªŠÖŒW‚·‚éƒƒO‚ğ¶¬
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ *  è‡ªåˆ†ãŒé–¢ä¿‚ã™ã‚‹ãƒ­ã‚°ã‚’ç”Ÿæˆ
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
 BOOL UgMgrRadarLogSingle(MYSTATUS* pMy, int index, int msgNo, STRBUF* pStrBuf)
 {
-    WORDSET* pWordSetMain;  //ƒ[ƒhƒZƒbƒg\‘¢‘Ì
+    WORDSET* pWordSetMain;  //ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆæ§‹é€ ä½“
     STRBUF* tmp_buf1;
 
     if(pMy){
@@ -388,16 +388,16 @@ BOOL UgMgrRadarLogSingle(MYSTATUS* pMy, int index, int msgNo, STRBUF* pStrBuf)
 
 //==============================================================================
 /**
- *  ’n‰º‚É“ü‚Á‚Ä‚«‚½ó‹µƒƒbƒZ[ƒW‚ğ•Ô‚·
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ *  åœ°ä¸‹ã«å…¥ã£ã¦ããŸçŠ¶æ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
 static BOOL _underGetEnterMessage(STRBUF* pStrBuf)
 {
     int i;
-    WORDSET* pWordSetMain;  //ƒ[ƒhƒZƒbƒg\‘¢‘Ì
+    WORDSET* pWordSetMain;  //ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆæ§‹é€ ä½“
     STRBUF* tmp_buf1;
     MYSTATUS* pMy;
     MYSTATUS* pTarget;
@@ -451,10 +451,10 @@ static BOOL _underGetEnterMessage(STRBUF* pStrBuf)
 
 //==============================================================================
 /**
- * ‚±‚±‚É‰½‚©‚ª’u‚¢‚Ä‚ ‚é‚©‚Ç‚¤‚©‚ğŒŸ¸
+ * ã“ã“ã«ä½•ã‹ãŒç½®ã„ã¦ã‚ã‚‹ã‹ã©ã†ã‹ã‚’æ¤œæŸ»
  * @param   x
  * @param   y
- * @retval  ’u‚¢‚Ä‚ ‚éê‡TRUE
+ * @retval  ç½®ã„ã¦ã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -465,20 +465,20 @@ BOOL CommUnderCheckPlace(int x,int z)
     pos.xpos = x;
     pos.zpos = z;
     
-    if(GetHitAttr(_pCommUnder->pFSys,x,z)){  // ‚ ‚½‚è‚ª‚ ‚éê‡
-       // ”z’u‚Å‚«‚È‚¢
+    if(GetHitAttr(_pCommUnder->pFSys,x,z)){  // ã‚ãŸã‚ŠãŒã‚ã‚‹å ´åˆ
+       // é…ç½®ã§ããªã„
         return TRUE;
     }
 
     if(CommTrapCheck(x,z)){
         return TRUE;
     }
-    // ƒqƒ~ƒcŠî’n“ü‚èŒû‚ª’u‚¢‚Ä‚ ‚é‚©‚Ç‚¤‚©
+    // ãƒ’ãƒŸãƒ„åŸºåœ°å…¥ã‚Šå£ãŒç½®ã„ã¦ã‚ã‚‹ã‹ã©ã†ã‹
 
-    // ‚½‚Ü‚ª‚¤‚Ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
-    // ‚©‚¹‚«‚ª‚¤‚Ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+    // ãŸã¾ãŒã†ã¾ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
+    // ã‹ã›ããŒã†ã¾ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
 
-    // ƒpƒ\ƒRƒ“‚ª‚ ‚é‚©‚Ç‚¤‚©
+    // ãƒ‘ã‚½ã‚³ãƒ³ãŒã‚ã‚‹ã‹ã©ã†ã‹
     if(CommUnderPCCheck(&pos,-1) != INVALID_NETID){
         return TRUE;
     }
@@ -488,9 +488,9 @@ BOOL CommUnderCheckPlace(int x,int z)
 
 //==============================================================================
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹‚Åƒ^ƒbƒ`‚µ‚½ˆÊ’u‚ğ‘—M
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§ã‚¿ãƒƒãƒã—ãŸä½ç½®ã‚’é€ä¿¡
  * @param   none
- * @retval  ŒŸ¸ŠJn=TRUE
+ * @retval  æ¤œæŸ»é–‹å§‹=TRUE
  */
 //==============================================================================
 
@@ -502,12 +502,12 @@ BOOL UgMgrTouchCheck(void)
     Grid pos;
 
 #if AFTER_MASTER_070410_UNDERGROUND_N15_EUR_FIX
-    if((_pCommUnder->abuttonNum != 0) || (_pCommUnder->touchIntervalDownTimer!=0)){ // ˜A‘Å‚·‚é‚ÆƒLƒ…[‚ª‚ ‚Ó‚ê‚â‚·‚¢ˆ×
+    if((_pCommUnder->abuttonNum != 0) || (_pCommUnder->touchIntervalDownTimer!=0)){ // é€£æ‰“ã™ã‚‹ã¨ã‚­ãƒ¥ãƒ¼ãŒã‚ãµã‚Œã‚„ã™ã„ç‚º
         if(_pCommUnder->touchIntervalDownTimer > 0){
             _pCommUnder->touchIntervalDownTimer--;
         }
 #else
-    if((_pCommUnder->abuttonNum != 0) && (_pCommUnder->touchIntervalDownTimer!=0)){ // ˜A‘Å‚·‚é‚ÆƒLƒ…[‚ª‚ ‚Ó‚ê‚â‚·‚¢ˆ×
+    if((_pCommUnder->abuttonNum != 0) && (_pCommUnder->touchIntervalDownTimer!=0)){ // é€£æ‰“ã™ã‚‹ã¨ã‚­ãƒ¥ãƒ¼ãŒã‚ãµã‚Œã‚„ã™ã„ç‚º
 #endif
         return FALSE;
     }
@@ -519,12 +519,12 @@ BOOL UgMgrTouchCheck(void)
 #else
             if(CommPlayerIsMyMoveControl() && !CommPlayerIsTrapBind(CommGetCurrentID())){
 #endif
-            // ƒ^ƒbƒ`ƒpƒlƒ‹‘—M
+            // ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é€ä¿¡
                 if(CommIsError()){
-                    OHNO_PRINT("ƒGƒ‰[’†‚Í‘—M‚µ‚È‚¢\n");
+                    OHNO_PRINT("ã‚¨ãƒ©ãƒ¼ä¸­ã¯é€ä¿¡ã—ãªã„\n");
                     return FALSE;
                 }
-                if(0!=CommPlayerGetWalkCount(CommGetCurrentID())){  // ˆÚ“®‚µ‚Ä‚È‚¢‚¾‚¯“®‚­
+                if(0!=CommPlayerGetWalkCount(CommGetCurrentID())){  // ç§»å‹•ã—ã¦ãªã„æ™‚ã ã‘å‹•ã
                     return FALSE;
                 }
                 vec = FTouch_CalcTpXYTo3D(sys.tp_x, sys.tp_y, _pCommUnder->pFSys->TpTo3DPtr);
@@ -553,10 +553,10 @@ BOOL UgMgrTouchCheck(void)
 
 //==============================================================================
 /**
- *  w’è”ÍˆÍ“à‚ÌêŠ‚É‰½‚©‚ ‚Á‚½‚çƒoƒbƒtƒ@‚É“ü‚ê‚é
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *  æŒ‡å®šç¯„å›²å†…ã®å ´æ‰€ã«ä½•ã‹ã‚ã£ãŸã‚‰ãƒãƒƒãƒ•ã‚¡ã«å…¥ã‚Œã‚‹
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -590,10 +590,10 @@ static int _getTouchPosBuff(u8* pResultBuff, _CheckFunc func, Grid* pTouch)
 
 //==============================================================================
 /**
- *  ƒ^ƒbƒ`‚µ‚½ƒf[ƒ^‚ªƒT[ƒo[‚É“Í‚¢‚½‚Ì‚Å@ƒ^ƒbƒ`ƒf[ƒ^‚ğ•Ô‚·
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *  ã‚¿ãƒƒãƒã—ãŸãƒ‡ãƒ¼ã‚¿ãŒã‚µãƒ¼ãƒãƒ¼ã«å±Šã„ãŸã®ã§ã€€ã‚¿ãƒƒãƒãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -606,7 +606,7 @@ static void _ugTouchCheck(int netID, Grid* pTouch)
     int j=1;
     int x,z,xp,zp;
     
-    resultBuff[0] = netID;  // ‰Ÿ‚µ‚½‘Šè‚É‘—‚è•Ô‚·
+    resultBuff[0] = netID;  // æŠ¼ã—ãŸç›¸æ‰‹ã«é€ã‚Šè¿”ã™
 
     j = _getTouchPosBuff(resultBuff, CommTrapCheck, pTouch);
     CommSendData_ServerSide(CF_TOUCH_RESULT1, resultBuff, j);
@@ -617,10 +617,10 @@ static void _ugTouchCheck(int netID, Grid* pTouch)
 
 //==============================================================================
 /**
- *  ƒ^ƒbƒ`‚µ‚½ƒf[ƒ^‚ªƒT[ƒo[‚É“Í‚¢‚½‚Ì‚Å@ã©‚ğ•Ô‚·  CF_TOUCH_GROUND
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *  ã‚¿ãƒƒãƒã—ãŸãƒ‡ãƒ¼ã‚¿ãŒã‚µãƒ¼ãƒãƒ¼ã«å±Šã„ãŸã®ã§ã€€ç½ ã‚’è¿”ã™  CF_TOUCH_GROUND
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -641,9 +641,9 @@ void CommTrapInfoRecvTouch(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- *  ƒ^ƒbƒ`ƒf[ƒ^üˆÍ•\¦ƒf[ƒ^ó‚¯æ‚è
+ *  ã‚¿ãƒƒãƒãƒ‡ãƒ¼ã‚¿å‘¨å›²è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿å—ã‘å–ã‚Š
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -654,7 +654,7 @@ void UgManagerRecvTouchResult1(int netID, int size, void* pData, void* pWork)
     Grid grid;
 
     if(CommGetCurrentID() != pBuff[0]){
-        return;   // ˆÙ‚È‚éq‹@‚Íó‚¯æ‚ç‚È‚¢
+        return;   // ç•°ãªã‚‹å­æ©Ÿã¯å—ã‘å–ã‚‰ãªã„
     }
     MI_CpuCopy8(&pBuff[1],_pCommUnder->touchBuff1,size-1);
     _pCommUnder->touchSize1 = size-1;
@@ -663,9 +663,9 @@ void UgManagerRecvTouchResult1(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- *  ƒ^ƒbƒ`ƒf[ƒ^üˆÍ•\¦ƒf[ƒ^ó‚¯æ‚è  CF_TOUCH_RESULT2
+ *  ã‚¿ãƒƒãƒãƒ‡ãƒ¼ã‚¿å‘¨å›²è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿å—ã‘å–ã‚Š  CF_TOUCH_RESULT2
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -677,7 +677,7 @@ void UgManagerRecvTouchResult2(int netID, int size, void* pData, void* pWork)
     u8 dummyBuf[9];
 
     if(CommGetCurrentID() != pBuff[0]){
-        return;   // ˆÙ‚È‚éq‹@‚Íó‚¯æ‚ç‚È‚¢
+        return;   // ç•°ãªã‚‹å­æ©Ÿã¯å—ã‘å–ã‚‰ãªã„
     }
     MI_CpuCopy8(&pBuff[1],_pCommUnder->touchBuff2,size-1);
     _pCommUnder->touchSize2 = size-1;
@@ -699,10 +699,10 @@ void UgManagerRecvTouchResult2(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * item‚Ìxz‚Ì‘å‚«‚³‚ğ•]‰¿‚·‚é
+ * itemã®xzã®å¤§ãã•ã‚’è©•ä¾¡ã™ã‚‹
  * @param   x
  * @param   y
- * @retval  ’u‚¢‚Ä‚ ‚éê‡TRUE
+ * @retval  ç½®ã„ã¦ã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -720,9 +720,9 @@ static int _itemXZ(Grid* pGrid)
 
 //==============================================================================
 /**
- * item‚ªmatch‚·‚é‚©‚Ç‚¤‚©ŒŸõ‚·‚é
- * @param   pGrid ŒŸõ‚µ‚½‚¢ˆÊ’u
- * @retval  ’u‚¢‚Ä‚ ‚éê‡index
+ * itemãŒmatchã™ã‚‹ã‹ã©ã†ã‹æ¤œç´¢ã™ã‚‹
+ * @param   pGrid æ¤œç´¢ã—ãŸã„ä½ç½®
+ * @retval  ç½®ã„ã¦ã‚ã‚‹å ´åˆindex
  */
 //==============================================================================
 
@@ -753,9 +753,9 @@ int CommUnderMatchItemTbl(Grid* pGrid)
 
 //==============================================================================
 /**
- * ŒŸõƒe[ƒuƒ‹‚©‚çw’è‚ÌƒAƒCƒeƒ€‚ğŒŸõ
+ * æ¤œç´¢ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰æŒ‡å®šã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¤œç´¢
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -768,7 +768,7 @@ int CommUnderSearchItemTbl(Grid* pGrid)
     PTRCommSearchFunc func = _pCommUnder->searchFunc;
     Grid grid;
 
-//    OHNO_PRINT("Å‰‚Ìindex %d  %d \n",xIndex,_itemXZ(NULL));
+//    OHNO_PRINT("æœ€åˆã®index %d  %d \n",xIndex,_itemXZ(NULL));
     right++;
     while(left < right){
         mid = (left + right) / 2;
@@ -784,9 +784,9 @@ int CommUnderSearchItemTbl(Grid* pGrid)
 
 //==============================================================================
 /**
- * ƒAƒCƒeƒ€ŒŸõ‚·‚éê‡‚Ì‰Šú‰»
- * @param   limit   ƒe[ƒuƒ‹‚ÌŒÀŠE
- * @param   pFunc   ƒe[ƒuƒ‹‚ÉƒAƒNƒZƒX‚·‚é‚½‚ß‚ÌŠÖ”
+ * ã‚¢ã‚¤ãƒ†ãƒ æ¤œç´¢ã™ã‚‹å ´åˆã®åˆæœŸåŒ–
+ * @param   limit   ãƒ†ãƒ¼ãƒ–ãƒ«ã®é™ç•Œ
+ * @param   pFunc   ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ãŸã‚ã®é–¢æ•°
  * @retval  none
  */
 //==============================================================================
@@ -799,7 +799,7 @@ void CommUnderItemSearchInitialize(int limit, PTRCommSearchFunc pFunc)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@‚Åƒƒjƒ…[ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Ì‚ÅƒRƒ}ƒ“ƒh‘—M
+ * @brief   å­æ©Ÿã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã®ã§ã‚³ãƒãƒ³ãƒ‰é€ä¿¡
  * @param   bTalkCheck
  * @retval  none
  */
@@ -815,7 +815,7 @@ void UgMgrMenuCheck(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Aƒ{ƒ^ƒ“‚ÌƒCƒ“ƒ^[ƒoƒ‹ƒ^ƒCƒ}[
+ * @brief   Aãƒœã‚¿ãƒ³ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã‚¿ã‚¤ãƒãƒ¼
  * @param   bTalkCheck
  * @retval  none
  */
@@ -823,14 +823,14 @@ void UgMgrMenuCheck(void)
 
 void UgMgrKeyCountDown(void)
 {
-    if(_pCommUnder->abuttonNum != 0){ // ˜A‘Å‚·‚é‚ÆƒLƒ…[‚ª‚ ‚Ó‚ê‚â‚·‚¢ˆ×
+    if(_pCommUnder->abuttonNum != 0){ // é€£æ‰“ã™ã‚‹ã¨ã‚­ãƒ¥ãƒ¼ãŒã‚ãµã‚Œã‚„ã™ã„ç‚º
         _pCommUnder->abuttonNum--;
     }
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@‚ÅAƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Ì‚ÅƒRƒ}ƒ“ƒh‘—M
+ * @brief   å­æ©Ÿã§Aãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã®ã§ã‚³ãƒãƒ³ãƒ‰é€ä¿¡
  * @param   bTalkCheck
  * @retval  none
  */
@@ -849,21 +849,21 @@ void UgMgrTalkCheck(u8 bTalkCheck)
     int x,z;
     UNDERGROUNDDATA* pUGData = SaveData_GetUnderGroundData(_pCommUnder->pFSys->savedata);
 
-    if((_pCommUnder->abuttonNum != 0) && (_pCommUnder->touchIntervalDownTimer!=0)){ // ˜A‘Å‚·‚é‚ÆƒLƒ…[‚ª‚ ‚Ó‚ê‚â‚·‚¢ˆ×
+    if((_pCommUnder->abuttonNum != 0) && (_pCommUnder->touchIntervalDownTimer!=0)){ // é€£æ‰“ã™ã‚‹ã¨ã‚­ãƒ¥ãƒ¼ãŒã‚ãµã‚Œã‚„ã™ã„ç‚º
         return;
     }
-    if(0!=CommPlayerGetWalkCount(CommGetCurrentID())){  // ˆÚ“®‚µ‚Ä‚È‚¢
+    if(0!=CommPlayerGetWalkCount(CommGetCurrentID())){  // ç§»å‹•ã—ã¦ãªã„æ™‚
         return;
     }
 
     
     if(UG_ITEM_BAG_NUM_MAX == UnderGroundGetNumTrapBagItem(pUGData)){
-        bit = bit | _NOTGET_TRAP_RESERVE;  // ã©‚ª‚¢‚Á‚Ï‚¢‚È‚Ì‚ÅE‚¦‚È‚¢
+        bit = bit | _NOTGET_TRAP_RESERVE;  // ç½ ãŒã„ã£ã±ã„ãªã®ã§æ‹¾ãˆãªã„
     }
     x = CommPlayerGetPosXDirAdd(CommGetCurrentID());
     z = CommPlayerGetPosZDirAdd(CommGetCurrentID());
     if(UgStoneCheck(x,z)){
-        bit = bit | _GET_STONE_RESERVE;  // Î‚ğE‚¤i—\’èj
+        bit = bit | _GET_STONE_RESERVE;  // çŸ³ã‚’æ‹¾ã†ï¼ˆäºˆå®šï¼‰
 //        OS_TPrintf("talkcheck %d %d\n",x,z);
     }
     aRet.bit = bit;
@@ -874,7 +874,7 @@ void UgMgrTalkCheck(u8 bTalkCheck)
 }
 
 /*
-   ƒRƒ}ƒ“ƒh‚Ì‘å‚«‚³
+   ã‚³ãƒãƒ³ãƒ‰ã®å¤§ãã•
  */
 int CommUnderRecvCheckAbuttonSize(void)
 {
@@ -883,7 +883,7 @@ int CommUnderRecvCheckAbuttonSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@‚ÅAƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚ÌƒR[ƒ‹ƒoƒbƒN  CF_CHECK_ABUTTON_ACTION
+ * @brief   å­æ©Ÿã§Aãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯  CF_CHECK_ABUTTON_ACTION
  * @param   netID
  * @param   size
  * @param   pData
@@ -910,22 +910,22 @@ void CommUnderRecvCheckAbutton(int netID, int size, void* pData, void* pWork)
 
     if( (CommPlayerGetPosSX(netID) == COMM_PLAYER_INVALID_GRID) &&
         ( CommPlayerGetPosSZ(netID) == COMM_PLAYER_INVALID_GRID)){
-        // À•W•s’è‚Ìê‡‚»‚Ì‚ÍAƒ{ƒ^ƒ“‚Ì•Ô–‚ğ•Ô‚³‚È‚¢
+        // åº§æ¨™ä¸å®šã®å ´åˆãã®æ™‚ã¯Aãƒœã‚¿ãƒ³ã®è¿”äº‹ã‚’è¿”ã•ãªã„
         return;
     }
 
     if(!CommPlayerGetMoveControl(netID)){
-        // ©•ª©g‚ª‚·‚Å‚É–Z‚µ‚¢ê‡‚ª‚ ‚éB‚»‚Ì‚ÍAƒ{ƒ^ƒ“‚Ì•Ô–‚ğ•Ô‚³‚È‚¢
+        // è‡ªåˆ†è‡ªèº«ãŒã™ã§ã«å¿™ã—ã„å ´åˆãŒã‚ã‚‹ã€‚ãã®æ™‚ã¯Aãƒœã‚¿ãƒ³ã®è¿”äº‹ã‚’è¿”ã•ãªã„
         return;
     }
     if(CommPlayerIsTrapBind(netID)){
         return;
     }
-    // –Ú‚Ì‘O‚ÉƒvƒŒ[ƒ„[‚ª‚¢‚é‚©‚Ç‚¤‚©
+    // ç›®ã®å‰ã«ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãŒã„ã‚‹ã‹ã©ã†ã‹
     targetID = CommPlayerIsAlive(pos.xpos, pos.zpos);
     if(targetID != COMM_INVALID_ID){
-        if(CommSecretBaseIsTraveling(targetID)){ // ˆÚ“®’†‚Ì‘Šè‚É‚Íèo‚µ‚Å‚«‚È‚¢
-            OHNO_PRINT("Šî’nˆÚ“®’†\n");
+        if(CommSecretBaseIsTraveling(targetID)){ // ç§»å‹•ä¸­ã®ç›¸æ‰‹ã«ã¯æ‰‹å‡ºã—ã§ããªã„
+            OHNO_PRINT("åŸºåœ°ç§»å‹•ä¸­\n");
         }
         else if(UgDigFossilIsDig(targetID)){
             menuOpen.bOpen = _RESULT_FOSSIL;
@@ -934,11 +934,11 @@ void CommUnderRecvCheckAbutton(int netID, int size, void* pData, void* pWork)
             CommSendData_ServerSide(CF_RESULT_UGMENU_OPEN, &menuOpen, sizeof(menuOpen));
             CommPlayerSetMoveControl_Server(netID,FALSE);
         }
-        else if(CommPlayerFlagTalkCheck(netID, targetID, 0)){ // ©•ª‚ªŠø‚ğ‚Á‚Ä‚¢‚½‚ç‚È‚É‚à‚µ‚È‚¢
+        else if(CommPlayerFlagTalkCheck(netID, targetID, 0)){ // è‡ªåˆ†ãŒæ——ã‚’æŒã£ã¦ã„ãŸã‚‰ãªã«ã‚‚ã—ãªã„
         }
-        else if(CommPlayerIsTrapBind(targetID)){  // ã©‚É‚©‚©‚Á‚Ä‚¢‚éê‡‰ğœ
+        else if(CommPlayerIsTrapBind(targetID)){  // ç½ ã«ã‹ã‹ã£ã¦ã„ã‚‹å ´åˆè§£é™¤
             if(!CommTrapIsGoodsTrap(targetID)){
-                CommTrapSendRelease(netID,targetID);  // ‰ğœƒRƒ}ƒ“ƒh‘—M
+                CommTrapSendRelease(netID,targetID);  // è§£é™¤ã‚³ãƒãƒ³ãƒ‰é€ä¿¡
             }
             else{
                 menuOpen.bOpen = _RESULT_NG;
@@ -949,17 +949,17 @@ void CommUnderRecvCheckAbutton(int netID, int size, void* pData, void* pWork)
             }
         }
         else if(!CommPlayerGetMoveControl(netID)){
-            // ©•ª©g‚ª‚·‚Å‚É–Z‚µ‚¢ê‡‚ª‚ ‚éB‚»‚Ì‚Í•Ô–‚ğ•Ô‚³‚È‚¢
+            // è‡ªåˆ†è‡ªèº«ãŒã™ã§ã«å¿™ã—ã„å ´åˆãŒã‚ã‚‹ã€‚ãã®æ™‚ã¯è¿”äº‹ã‚’è¿”ã•ãªã„
         }
         else if(!CommPlayerGetMoveControl(targetID) || (0!=CommPlayerGetWalkCountServer(targetID))){
-            // ‘Šè‚ª–Z‚µ‚¢ê‡‚Í˜b‚µ‚©‚¯‚ç‚ê‚È‚¢
+            // ç›¸æ‰‹ãŒå¿™ã—ã„å ´åˆã¯è©±ã—ã‹ã‘ã‚‰ã‚Œãªã„
             menuOpen.bOpen = _RESULT_NG;
             menuOpen.targetID = targetID;
             menuOpen.netID = netID;
             CommSendData_ServerSide(CF_RESULT_UGMENU_OPEN, &menuOpen, sizeof(menuOpen));
             CommPlayerSetMoveControl_Server(netID,FALSE);
         }
-        else{  // ˜b‚µ‚©‚¯ƒƒjƒ…[
+        else{  // è©±ã—ã‹ã‘ãƒ¡ãƒ‹ãƒ¥ãƒ¼
             menuOpen.bOpen = _RESULT_OK;
             menuOpen.targetID = targetID;
             menuOpen.netID = netID;
@@ -973,26 +973,26 @@ void CommUnderRecvCheckAbutton(int netID, int size, void* pData, void* pWork)
         }
         return;
     }
-    // ã©ŒŸ¸ –Ú‚Ì‘O‚Éã©‚ª‚ ‚éê‡‰ğœ‚·‚é
+    // ç½ æ¤œæŸ» ç›®ã®å‰ã«ç½ ãŒã‚ã‚‹å ´åˆè§£é™¤ã™ã‚‹
     if(CommTrapFrontTrapDefuse(netID, &pos, pRet->bit)){
         CommPlayerSetMoveControl_Server(netID,FALSE);
         return;
     }
-    if(CommFossilCheck(netID, &pos)){  // ‰»Î”­Œ©
-        OHNO_PRINT("‰»Î”­Œ©\n");
+    if(CommFossilCheck(netID, &pos)){  // åŒ–çŸ³ç™ºè¦‹
+        OHNO_PRINT("åŒ–çŸ³ç™ºè¦‹\n");
         CommPlayerSetMoveControl_Server(netID,FALSE);
         return;
     }
-    if(CommUnderPCCheckAndMessage(netID, &pos)){  // ƒpƒ\ƒRƒ“‚Ì‘O‚¾‚Á‚½
+    if(CommUnderPCCheckAndMessage(netID, &pos)){  // ãƒ‘ã‚½ã‚³ãƒ³ã®å‰ã ã£ãŸ
         CommPlayerSetMoveControl_Server(netID,FALSE);
         return;
     }
-    if(UgSecretBaseGoodsCheck(netID, &pos)){  // –Ú‚Ì‘O‚ÉƒOƒbƒY‚ª‚ ‚Á‚½
+    if(UgSecretBaseGoodsCheck(netID, &pos)){  // ç›®ã®å‰ã«ã‚°ãƒƒã‚ºãŒã‚ã£ãŸ
         CommPlayerSetMoveControl_Server(netID,FALSE);
         return;
     }
     if(CommPlayerNPCHitCheck(pos.xpos,pos.zpos)){
-        if(CommPlayerFlagTalkCheck(netID, INVALID_NETID, 0)){ // ©•ª‚ªŠø‚ğ‚Á‚Ä‚¢‚½‚ç‚È‚É‚à‚µ‚È‚¢
+        if(CommPlayerFlagTalkCheck(netID, INVALID_NETID, 0)){ // è‡ªåˆ†ãŒæ——ã‚’æŒã£ã¦ã„ãŸã‚‰ãªã«ã‚‚ã—ãªã„
             return;
         }
         CommSendFixSizeData_ServerSide(CF_NPC_TALK,&id);
@@ -1000,10 +1000,10 @@ void CommUnderRecvCheckAbutton(int netID, int size, void* pData, void* pWork)
         return;
     }
     if(pRet->bit & _GET_STONE_RESERVE ){
-        if(CommPlayerFlagDigCheck(netID)){   // ©•ª‚ÌŠøŒŸ¸
+        if(CommPlayerFlagDigCheck(netID)){   // è‡ªåˆ†ã®æ——æ¤œæŸ»
             return;
         }
-        // ŠÈˆÕˆÊ’uƒ`ƒFƒbƒN server‚ª‚¸‚ê‚Ä‚½‚ç‚È‚µ
+        // ç°¡æ˜“ä½ç½®ãƒã‚§ãƒƒã‚¯ serverãŒãšã‚Œã¦ãŸã‚‰ãªã—
         if(pRet->posXZ == (pos.xpos & 0xf) * 16 + (pos.zpos & 0x0f)){
             CommSendFixSizeData_ServerSide(CF_DIG_STONE_PICKUP,&id);
             CommPlayerSetMoveControl_Server(netID,FALSE);
@@ -1013,7 +1013,7 @@ void CommUnderRecvCheckAbutton(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ’n‰ºŠÖ˜AƒT[ƒrƒXˆ—
+ * åœ°ä¸‹é–¢é€£ã‚µãƒ¼ãƒ“ã‚¹å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -1026,7 +1026,7 @@ void CommUnderProcess(void)
     if(CommGetCurrentID() == COMM_PARENT_ID){
         for(i = 0; i < COMM_MACHINE_MAX; i++){
             if((NULL!=CommInfoGetMyStatus(i)) && !_pCommUnder->connect[i]){
-                UgSecretBaseResetPlayer(i);  // ƒtƒ‰ƒOOFF
+                UgSecretBaseResetPlayer(i);  // ãƒ•ãƒ©ã‚°OFF
             }
             if(CommInfoGetMyStatus(i)){
                 _pCommUnder->connect[i] = TRUE;
@@ -1035,23 +1035,23 @@ void CommUnderProcess(void)
                 _pCommUnder->connect[i] = FALSE;
             }
         }
-        // l”§ŒÀ
+        // äººæ•°åˆ¶é™
         CommStateSetLimitNum( CommUgGetChildStateNormalNum()+2 );
     }
     _pCommUnder->intervalTimer++;
     if(CommGetCurrentID() == COMM_PARENT_ID){
-        if(CommInfoSendArray_ServerSide()){  // q‹@‚©‚ç–â‚¢‡‚í‚¹‚ª‚ ‚Á‚½‚çinfo‚ğ‘—M
-//            UgSecretBaseResetPlayer(COMM_PARENT_ID);  // Á‚·l‚ª”é–§Šî’nˆÚ“®‚µ‚Ä‚¢‚½î•ñ‚Í—v‚ç‚È‚¢
+        if(CommInfoSendArray_ServerSide()){  // å­æ©Ÿã‹ã‚‰å•ã„åˆã‚ã›ãŒã‚ã£ãŸã‚‰infoã‚’é€ä¿¡
+//            UgSecretBaseResetPlayer(COMM_PARENT_ID);  // æ¶ˆã™äººãŒç§˜å¯†åŸºåœ°ç§»å‹•ã—ã¦ã„ãŸæƒ…å ±ã¯è¦ã‚‰ãªã„
             CommPlayerSendPos(TRUE);
         }
     }
 
     CommDigStoneStep();
-    CommTrapInfoProcess();  // ã©‚ğ1/256‚Å•\¦‚·‚éˆ×‚Ìˆ—
+    CommTrapInfoProcess();  // ç½ ã‚’1/256ã§è¡¨ç¤ºã™ã‚‹ç‚ºã®å‡¦ç†
     UgFossilProcess();
 
-    if(!_pCommUnder->bHalt){  // ‰ŒÁ‚·ˆ—‚Í HALT‚É‚Í“®ì‚µ‚È‚¢
-        UgTrapProcess(_pCommUnder->pFSys->bgl);   // ã©‚ª”­“®‚µ‚½ê‡‚ÌÀs•”•ª
+    if(!_pCommUnder->bHalt){  // ç…™æ¶ˆã™å‡¦ç†ã¯ HALTæ™‚ã«ã¯å‹•ä½œã—ãªã„
+        UgTrapProcess(_pCommUnder->pFSys->bgl);   // ç½ ãŒç™ºå‹•ã—ãŸå ´åˆã®å®Ÿè¡Œéƒ¨åˆ†
     }
 
 
@@ -1059,7 +1059,7 @@ void CommUnderProcess(void)
 
 //==============================================================================
 /**
- * ’n‰ºŠÖ˜AƒT[ƒrƒX‚Ì‰Šú‰»   í’“‚³‚¹‚é‚à‚Ì‚Í‚±‚±‚Å‰Šú‰»‚·‚é
+ * åœ°ä¸‹é–¢é€£ã‚µãƒ¼ãƒ“ã‚¹ã®åˆæœŸåŒ–   å¸¸é§ã•ã›ã‚‹ã‚‚ã®ã¯ã“ã“ã§åˆæœŸåŒ–ã™ã‚‹
  * @param   none
  * @retval  none
  */
@@ -1138,7 +1138,7 @@ void CommUnderOptionFinalize(void)
 
 //==============================================================================
 /**
- * @brief   e‹@Aq‹@Ø’f‚ÉŒÄ‚Î‚ê‚é RESETŠÖ”
+ * @brief   è¦ªæ©Ÿã€å­æ©Ÿåˆ‡æ–­æ™‚ã«å‘¼ã°ã‚Œã‚‹ RESETé–¢æ•°
  * @param   
  * @retval  
  */
@@ -1158,15 +1158,15 @@ void CommUnderOptionReInit(FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * @brief   ƒAƒNƒVƒ‡ƒ“ŠÖŒW‚ÌƒƒbƒZ[ƒW‚ğˆø‚«o‚·B ˆø‚«o‚µ‚½‚ç‚È‚­‚È‚é
- * @param   pMessage    ƒƒbƒZ[ƒW‚ğŠi”[‚·‚é—Ìˆæ‚ğ‚Á‚½ƒ|ƒCƒ“ƒ^
- * @retval  ‚à‚¤‚È‚¯‚ê‚ÎFALSE
+ * @brief   ã‚¢ã‚¯ã‚·ãƒ§ãƒ³é–¢ä¿‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¼•ãå‡ºã™ã€‚ å¼•ãå‡ºã—ãŸã‚‰ãªããªã‚‹
+ * @param   pMessage    ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ ¼ç´ã™ã‚‹é ˜åŸŸã‚’æŒã£ãŸãƒã‚¤ãƒ³ã‚¿
+ * @retval  ã‚‚ã†ãªã‘ã‚Œã°FALSE
  */
 //==============================================================================
 
 BOOL CommUnderGetActionMessage(STRBUF* pStrBuf)
 {
-    if(_pCommUnder->bMessageSend){  // ˆê‰ñ‚É‚Â‚«‚Ğ‚Æ‚Â
+    if(_pCommUnder->bMessageSend){  // ä¸€å›ã«ã¤ãã²ã¨ã¤
         _pCommUnder->bMessageSend=FALSE;
         return FALSE;
     }
@@ -1197,11 +1197,11 @@ BOOL CommUnderGetActionMessage(STRBUF* pStrBuf)
     return FALSE;
 }
 
-//  ’n‰º‚ğƒI[ƒo[ƒŒƒC‚µ‚½‚Ì‚Å@@‚»‚ÌƒAƒNƒZƒXŠÖ”‚ª‚±‚±‚É‚ ‚é
+//  åœ°ä¸‹ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã—ãŸã®ã§ã€€ã€€ãã®ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°ãŒã“ã“ã«ã‚ã‚‹
 
 //==============================================================================
 /**
- * @brief   ¡‚©‚çƒZƒbƒgƒAƒbƒv‚·‚é”é–§Šî’nƒOƒbƒYƒf[ƒ^‚ğ•Ô‚·
+ * @brief   ä»Šã‹ã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ç§˜å¯†åŸºåœ°ã‚°ãƒƒã‚ºãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
  * @param   sv  SAVEDATA*
  * @retval  SECRETBASEDATA*
  */
@@ -1217,9 +1217,9 @@ SECRETBASEDATA* UgManUgSetupSecretBaseData(SAVEDATA * sv)
 
 //==============================================================================
 /**
- * @brief   ¡‚©‚çƒZƒbƒgƒAƒbƒv‚·‚é”é–§Šî’n‚ÌXƒuƒƒbƒN‚ğ•Ô‚·
+ * @brief   ä»Šã‹ã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ç§˜å¯†åŸºåœ°ã®Xãƒ–ãƒ­ãƒƒã‚¯ã‚’è¿”ã™
  * @param   none
- * @retval  XƒOƒŠƒbƒh
+ * @retval  Xã‚°ãƒªãƒƒãƒ‰
  */
 //==============================================================================
 
@@ -1234,9 +1234,9 @@ int UgManUgSetupSecretBaseBlockX(void)
 
 //==============================================================================
 /**
- * @brief   ¡‚©‚çƒZƒbƒgƒAƒbƒv‚·‚é”é–§Šî’n‚ÌZƒuƒƒbƒN‚ğ•Ô‚·
+ * @brief   ä»Šã‹ã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ç§˜å¯†åŸºåœ°ã®Zãƒ–ãƒ­ãƒƒã‚¯ã‚’è¿”ã™
  * @param   none
- * @retval  ZƒOƒŠƒbƒh
+ * @retval  Zã‚°ãƒªãƒƒãƒ‰
  */
 //==============================================================================
 
@@ -1251,15 +1251,15 @@ int UgManUgSetupSecretBaseBlockZ(void)
 
 //==============================================================================
 /**
- * @brief   ”é–§Šî’nÀ•W‚É‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @param   x,z    ’²‚×‚½‚¢XZÀ•W
- * @retval  ”é–§Šî’n‚É‚¢‚éê‡TRUE
+ * @brief   ç§˜å¯†åŸºåœ°åº§æ¨™ã«ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @param   x,z    èª¿ã¹ãŸã„XZåº§æ¨™
+ * @retval  ç§˜å¯†åŸºåœ°ã«ã„ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
 BOOL UgSecretBaseIsSecretBasePlace(int x, int z)
 {
-    if((RADAR_SCOPE_XS < x) && (RADAR_SCOPE_ZS < z) && (RADAR_SCOPE_XE > x) && (RADAR_SCOPE_ZE > z)){ 			//À•W‚ªæ“¾‚Å‚«‚½‚È‚çÀ•W‚ÆXV
+    if((RADAR_SCOPE_XS < x) && (RADAR_SCOPE_ZS < z) && (RADAR_SCOPE_XE > x) && (RADAR_SCOPE_ZE > z)){ 			//åº§æ¨™ãŒå–å¾—ã§ããŸãªã‚‰åº§æ¨™ã¨æ›´æ–°
         return FALSE;
     }
     return TRUE;
@@ -1267,9 +1267,9 @@ BOOL UgSecretBaseIsSecretBasePlace(int x, int z)
 
 //--------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‚É•\¦‚µ‚½‚¢À•W‚ğ•Ô‚·
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ã«è¡¨ç¤ºã—ãŸã„åº§æ¨™ã‚’è¿”ã™
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -1278,7 +1278,7 @@ int UgMgrGetDispPointX(int index)
     int val,i;
     
     if(_pCommUnder){
-        if(index < 16 ){  //‚à‚ë‚à‚ë
+        if(index < 16 ){  //ã‚‚ã‚ã‚‚ã‚
             i = index;
             switch(_pCommUnder->radarDispType){
               case _RADAR_NONE:
@@ -1295,7 +1295,7 @@ int UgMgrGetDispPointX(int index)
                 return UgFossilGetRadarPointX(i);
             }
         }
-        else{  // ”é–§Šî’n
+        else{  // ç§˜å¯†åŸºåœ°
             SECRETBASEDATA* pSecret = SaveData_GetSecretBaseData(_pCommUnder->pFSys->savedata);
             return SecretBaseGetSecretBasePositionX(pSecret);
         }
@@ -1305,9 +1305,9 @@ int UgMgrGetDispPointX(int index)
 
 //--------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‚É•\¦‚µ‚½‚¢À•W‚ğ•Ô‚·
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ã«è¡¨ç¤ºã—ãŸã„åº§æ¨™ã‚’è¿”ã™
  * @param    index
- * @retval   ZÀ•W
+ * @retval   Zåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -1316,7 +1316,7 @@ int UgMgrGetDispPointZ(int index)
     int val,i, num;
     
     if(_pCommUnder){
-        if(index < 16 ){  //‚à‚ë‚à‚ë
+        if(index < 16 ){  //ã‚‚ã‚ã‚‚ã‚
             i = index;
             switch(_pCommUnder->radarDispType){
               case _RADAR_NONE:
@@ -1333,7 +1333,7 @@ int UgMgrGetDispPointZ(int index)
                 return UgFossilGetRadarPointZ(i);
             }
         }
-        else{  // ”é–§Šî’n
+        else{  // ç§˜å¯†åŸºåœ°
             SECRETBASEDATA* pSecret = SaveData_GetSecretBaseData(_pCommUnder->pFSys->savedata);
             return SecretBaseGetSecretBasePositionZ(pSecret);
         }
@@ -1343,9 +1343,9 @@ int UgMgrGetDispPointZ(int index)
 
 //--------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‚É•\¦‚µ‚½‚¢î•ñ‚ğ•Ô‚·
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ã«è¡¨ç¤ºã—ãŸã„æƒ…å ±ã‚’è¿”ã™
  * @param    index
- * @retval   RADAR_DISP_TYPE_ENUM  ug_manager.hQÆ
+ * @retval   RADAR_DISP_TYPE_ENUM  ug_manager.hå‚ç…§
  */
 //--------------------------------------------------------------
 
@@ -1366,7 +1366,7 @@ int UgMgrGetDispPointInfo(int index)
                 return RADAR_TYPE_FOSSIL;
             }
         }
-        else{  // ”é–§Šî’n
+        else{  // ç§˜å¯†åŸºåœ°
             SECRETBASEDATA* pSecret = SaveData_GetSecretBaseData(_pCommUnder->pFSys->savedata);
             if( SecretBaseIsSecretBaseMake(pSecret)){
                 return RADAR_TYPE_SECLETBASE;
@@ -1381,7 +1381,7 @@ int UgMgrGetDispPointInfo(int index)
 
 //--------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‚É‰½‚à•\¦‚³‚¹‚È‚¢
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ã«ä½•ã‚‚è¡¨ç¤ºã•ã›ãªã„
  * @param    none
  * @retval   none
  */
@@ -1394,7 +1394,7 @@ void UgMgrSetNoneRadarDisp(void)
 
 //--------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‚É©•ª‚Ìã©‚ğ•\¦‚³‚¹‚é
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ã«è‡ªåˆ†ã®ç½ ã‚’è¡¨ç¤ºã•ã›ã‚‹
  * @param    none
  * @retval   none
  */
@@ -1407,7 +1407,7 @@ void UgMgrSetMyTrapRadarDisp(void)
 
 //--------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‚ÉÎ‚ğ•\¦‚³‚¹‚é
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ã«çŸ³ã‚’è¡¨ç¤ºã•ã›ã‚‹
  * @param    none
  * @retval   none
  */
@@ -1420,7 +1420,7 @@ void UgMgrSetStoneRadarDisp(void)
 
 //--------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‚Éã©‚ğ•\¦‚³‚¹‚é
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ã«ç½ ã‚’è¡¨ç¤ºã•ã›ã‚‹
  * @param    none
  * @retval   none
  */
@@ -1433,7 +1433,7 @@ void UgMgrSetTrapRadarDisp(void)
 
 //--------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‚É‰»Î‚ğ•\¦‚³‚¹‚é
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ã«åŒ–çŸ³ã‚’è¡¨ç¤ºã•ã›ã‚‹
  * @param    none
  * @retval   none
  */
@@ -1461,7 +1461,7 @@ void UgMgrSetTalkOtherLog(int myNetID)
 
 void UgMgrSetReturnLog(int myNetID)
 {
-    WORDSET* pWordSetMain;  //ƒ[ƒhƒZƒbƒg\‘¢‘Ì
+    WORDSET* pWordSetMain;  //ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆæ§‹é€ ä½“
     STRBUF* tmp_buf1;
 
     if(_pCommUnder){
@@ -1485,7 +1485,7 @@ void UgMgrStartReturnLog(int myNetID)
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒR[ƒhƒL[‹@”\‚ğŠJn‚·‚é
+ * ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚­ãƒ¼æ©Ÿèƒ½ã‚’é–‹å§‹ã™ã‚‹
  * @param    none
  * @retval   none
  */
@@ -1498,7 +1498,7 @@ void UgMgrOpenRecordKey(u16 keyBaseName)
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒR[ƒhƒL[‚ğ‹L‰¯‚·‚é
+ * ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’è¨˜æ†¶ã™ã‚‹
  * @param    none
  * @retval   none
  */
@@ -1515,8 +1515,8 @@ void UgMgrSetRecordKey(u16 windowName, u16 cursor, u16 line)
     for(i = 0;i < _KEY_RESERVE_BUFF; i++){
         if(_pCommUnder->openKeyName == _pCommUnder->recordKey[i].keyBaseName){
             if(_pCommUnder->recordKey[i].windowName == windowName){
-                // “¯‚¶êŠ‚ª‚ ‚Á‚½‚Ì‚Å‹L‰¯
-         //       OHNO_SP_PRINT("ƒL[‹L‰¯ %d %d %d \n",i, cursor, line);
+                // åŒã˜å ´æ‰€ãŒã‚ã£ãŸã®ã§è¨˜æ†¶
+         //       OHNO_SP_PRINT("ã‚­ãƒ¼è¨˜æ†¶ %d %d %d \n",i, cursor, line);
                 _pCommUnder->recordKey[i].oldCursor = cursor;
                 _pCommUnder->recordKey[i].oldLine = line;
                 return;
@@ -1525,20 +1525,20 @@ void UgMgrSetRecordKey(u16 windowName, u16 cursor, u16 line)
     }
     for(i = 0;i < _KEY_RESERVE_BUFF; i++){
         if(_KEY_NAME_NONE == _pCommUnder->recordKey[i].keyBaseName){
-            OHNO_SP_PRINT("‹ó‚«ƒL[‹L‰¯ %d %d %d \n",i, _pCommUnder->openKeyName, windowName);
+            OHNO_SP_PRINT("ç©ºãã‚­ãƒ¼è¨˜æ†¶ %d %d %d \n",i, _pCommUnder->openKeyName, windowName);
             _pCommUnder->recordKey[i].keyBaseName = _pCommUnder->openKeyName;
-            _pCommUnder->recordKey[i].windowName = windowName;  // ‹ó‚«‚É‹L‰¯
+            _pCommUnder->recordKey[i].windowName = windowName;  // ç©ºãã«è¨˜æ†¶
             _pCommUnder->recordKey[i].oldCursor = cursor;
             _pCommUnder->recordKey[i].oldLine = line;
             return;
         }
     }
-    GF_ASSERT(0);  // _KEY_RESERVE_BUFF”‚ğ‘‚â‚·
+    GF_ASSERT(0);  // _KEY_RESERVE_BUFFæ•°ã‚’å¢—ã‚„ã™
 }
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒR[ƒhƒL[‚ğˆø‚«o‚·
+ * ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’å¼•ãå‡ºã™
  * @param    none
  * @retval   none
  */
@@ -1560,7 +1560,7 @@ u16 UgMgrGetRecordKeyLine(u16 windowName)
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒR[ƒhƒL[‚ğˆø‚«o‚·
+ * ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’å¼•ãå‡ºã™
  * @param    none
  * @retval   none
  */
@@ -1582,7 +1582,7 @@ u16 UgMgrGetRecordKeyCursor(u16 windowName)
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒR[ƒhƒL[‚ğÁ‚·
+ * ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚­ãƒ¼ã‚’æ¶ˆã™
  * @param    none
  * @retval   none
  */
@@ -1599,8 +1599,8 @@ void UgMgrEraseRecordKey(u16 windowName, u16 cursor, u16 line)
     for(i = 0;i < _KEY_RESERVE_BUFF; i++){
         if(_pCommUnder->openKeyName == _pCommUnder->recordKey[i].keyBaseName){
             if(_pCommUnder->recordKey[i].windowName == windowName){
-                // “¯‚¶êŠ‚ª‚ ‚Á‚½‚Ì‚Å‹L‰¯
-         //       OHNO_SP_PRINT("ƒL[‹L‰¯ %d %d %d \n",i, cursor, line);
+                // åŒã˜å ´æ‰€ãŒã‚ã£ãŸã®ã§è¨˜æ†¶
+         //       OHNO_SP_PRINT("ã‚­ãƒ¼è¨˜æ†¶ %d %d %d \n",i, cursor, line);
                 _pCommUnder->recordKey[i].oldCursor = cursor;
                 _pCommUnder->recordKey[i].oldLine = line;
                 return;
@@ -1609,23 +1609,23 @@ void UgMgrEraseRecordKey(u16 windowName, u16 cursor, u16 line)
     }
     for(i = 0;i < _KEY_RESERVE_BUFF; i++){
         if(_KEY_NAME_NONE == _pCommUnder->recordKey[i].keyBaseName){
-            OHNO_SP_PRINT("‹ó‚«ƒL[‹L‰¯ %d %d %d \n",i, _pCommUnder->openKeyName, windowName);
+            OHNO_SP_PRINT("ç©ºãã‚­ãƒ¼è¨˜æ†¶ %d %d %d \n",i, _pCommUnder->openKeyName, windowName);
             _pCommUnder->recordKey[i].keyBaseName = _pCommUnder->openKeyName;
-            _pCommUnder->recordKey[i].windowName = windowName;  // ‹ó‚«‚É‹L‰¯
+            _pCommUnder->recordKey[i].windowName = windowName;  // ç©ºãã«è¨˜æ†¶
             _pCommUnder->recordKey[i].oldCursor = cursor;
             _pCommUnder->recordKey[i].oldLine = line;
             return;
         }
     }
-    GF_ASSERT(0);  // _KEY_RESERVE_BUFF”‚ğ‘‚â‚·
+    GF_ASSERT(0);  // _KEY_RESERVE_BUFFæ•°ã‚’å¢—ã‚„ã™
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief   NPC‚Æ˜b‚·   CF_NPC_TALK
+ * @brief   NPCã¨è©±ã™   CF_NPC_TALK
  * @param   none
- * @retval  ƒpƒPƒbƒgƒTƒCƒY
+ * @retval  ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------
 
@@ -1644,10 +1644,10 @@ void UgMgrRecvNPCTalk(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»İ“®‚¢‚Ä‚éƒ^ƒXƒN‚ğ“o˜^
- * @param   void* work     ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   TCB_PTR pTCB   ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param   ForceDeleteFunc pFunc  ‹­§I—¹ŠÖ”
+ * @brief   ç¾åœ¨å‹•ã„ã¦ã‚‹ã‚¿ã‚¹ã‚¯ã‚’ç™»éŒ²
+ * @param   void* work     ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   TCB_PTR pTCB   ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   ForceDeleteFunc pFunc  å¼·åˆ¶çµ‚äº†é–¢æ•°
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1665,7 +1665,7 @@ void UgMgrSetNowTCB(void* work,TCB_PTR pTCB,ForceDeleteFunc pFunc)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»İ“®‚¢‚Ä‚éƒ^ƒXƒN“o˜^‚ğ–•Á
+ * @brief   ç¾åœ¨å‹•ã„ã¦ã‚‹ã‚¿ã‚¹ã‚¯ç™»éŒ²ã‚’æŠ¹æ¶ˆ
  * @param   none
  * @retval  none
  */
@@ -1681,7 +1681,7 @@ void UgMgrEndNowTCB(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒXƒN‹­§I—¹
+ * @brief   ã‚¿ã‚¹ã‚¯å¼·åˆ¶çµ‚äº†
  * @param   none
  * @retval  none
  */
@@ -1703,15 +1703,15 @@ BOOL UgMgrForceExitNowTCB(void)
     CommMsgTalkWindowEnd(_pCommUnder->pCommMsgShop);
     CommMsgTalkWindowEnd(_pCommUnder->pCommMsgEdit);
     CommMsgTalkWindowEnd(_pCommUnder->pCommMsgItem);
-    CommMsgTalkWindowEnd(_pCommUnder->pCommMsgUW); // ‚½‚Ü–„‚ßAE‚¤‚Æ‚«‚É¬’·‚µ‚Ä‚¢‚½ê‡‚É“dŒ¹Ø‚Á‚½—p
+    CommMsgTalkWindowEnd(_pCommUnder->pCommMsgUW); // ãŸã¾åŸ‹ã‚ã€æ‹¾ã†ã¨ãã«æˆé•·ã—ã¦ã„ãŸå ´åˆã«é›»æºåˆ‡ã£ãŸæ™‚ç”¨
     return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜”Õ‚ÌƒRƒ“ƒgƒ[ƒ‹‚ğ‹–‰Â‚µ‚Ä‚¢‚¢‚Ì‚©‚Ç‚¤‚©
- * @param   netID     ’ÊMID
- * @retval  ‹–‰Â‚È‚çTRUE
+ * @brief   åºç›¤ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’è¨±å¯ã—ã¦ã„ã„ã®ã‹ã©ã†ã‹
+ * @param   netID     é€šä¿¡ID
+ * @retval  è¨±å¯ãªã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -1720,16 +1720,16 @@ BOOL UgMgrIsFirstMoveControlEnable(int netID)
     int x,z;
 
 
-    if(_pCommUnder->pNowTCB){  // ‰ï˜b’†
-        OHNO_PRINT("‰ï˜b’†‚¾‚Á‚½\n");
+    if(_pCommUnder->pNowTCB){  // ä¼šè©±ä¸­
+        OHNO_PRINT("ä¼šè©±ä¸­ã ã£ãŸ\n");
         return FALSE;
     }
-    if(_pCommUnder->pFSys->event){  // ƒCƒxƒ“ƒg’†
+    if(_pCommUnder->pFSys->event){  // ã‚¤ãƒ™ãƒ³ãƒˆä¸­
         _pCommUnder->debugNum++;
         if(_pCommUnder->debugNum > 100){
             GF_ASSERT(0);
         }
-        OHNO_PRINT("ƒCƒxƒ“ƒg’†‚¾‚Á‚½\n");
+        OHNO_PRINT("ã‚¤ãƒ™ãƒ³ãƒˆä¸­ã ã£ãŸ\n");
         return FALSE;
     }
 #if PL_080528_UNDERGROUND_0286_FIX
@@ -1737,13 +1737,13 @@ BOOL UgMgrIsFirstMoveControlEnable(int netID)
 #else
     if(CommPlayerIsTrapBind(netID)){
 #endif
-        OHNO_PRINT("‚í‚È‚©‚©‚è’†‚¾‚Á‚½\n");
+        OHNO_PRINT("ã‚ãªã‹ã‹ã‚Šä¸­ã ã£ãŸ\n");
         return FALSE;
     }
     x = CommPlayerGetPosXOrg(netID);
     z = CommPlayerGetPosZOrg(netID);
     if(UgSecretBaseIsSecretBasePlace(x,z) && (netID != COMM_PARENT_ID)){
-        OHNO_PRINT("”é–§Šî’n‚Ì’†‚Å’Ç‚¢o‚³‚ê‚é‘O\n");
+        OHNO_PRINT("ç§˜å¯†åŸºåœ°ã®ä¸­ã§è¿½ã„å‡ºã•ã‚Œã‚‹å‰\n");
         return FALSE;
     }
     _pCommUnder->debugNum = 0;
@@ -1753,8 +1753,8 @@ BOOL UgMgrIsFirstMoveControlEnable(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ã‰æ–Ê‚ÌÀ‹µƒƒbƒZ[ƒW‚ÌI—¹‚Æ‚µ‚½‰æ–Ê‚ÌƒƒbƒZ[ƒWID‚ª
-            ¬İ‚µ‚Ä‚µ‚Ü‚¤‚Ì‚ÅAƒ^ƒXƒN‚Ìƒgƒbƒv‚ÅŠÇ—‚µ‚Ä‚¢‚é
+ * @brief   ä¸Šç”»é¢ã®å®Ÿæ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®çµ‚äº†ã¨ã—ãŸç”»é¢ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDãŒ
+            æ··åœ¨ã—ã¦ã—ã¾ã†ã®ã§ã€ã‚¿ã‚¹ã‚¯ã®ãƒˆãƒƒãƒ—ã§ç®¡ç†ã—ã¦ã„ã‚‹
  * @param   TCB_PTR tcb   void *work 
  * @retval  none
  */
@@ -1762,7 +1762,7 @@ BOOL UgMgrIsFirstMoveControlEnable(int netID)
 
 static void _undergroundMsgTask( TCB_PTR tcb, void *work )
 {
-    // ’n‰º‚Ìã‰æ–Ê‚É‚ ‚éÀ‹µ‚Æ“®ì‚ª¬‚´‚ç‚È‚¢‚æ‚¤‚É‚·‚éˆ—‚ğ
+    // åœ°ä¸‹ã®ä¸Šç”»é¢ã«ã‚ã‚‹å®Ÿæ³ã¨å‹•ä½œãŒæ··ã–ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹å‡¦ç†ã‚’
     
     CommMsgFunc(_pCommUnder->pCommMsgUW);
     CommMsgFunc(_pCommUnder->pCommMsgFlag);
@@ -1773,7 +1773,7 @@ static void _undergroundMsgTask( TCB_PTR tcb, void *work )
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰»Î{ƒGƒXƒP[ƒvêŠ‚ğ‘—M
+ * @brief   åŒ–çŸ³ï¼‹ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—å ´æ‰€ã‚’é€ä¿¡
  * @param   TCB_PTR tcb   void *work 
  * @retval  none
  */
@@ -1815,7 +1815,7 @@ int UgInitialDataSendSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚±‚ÌƒƒbƒZ[ƒW‚Íq‹@‚ª‰Šú‰»‚Ì‘—M‚ğI‚¦‚½‚É‘—M‚³‚ê‚Ü‚·  CF_PLAYER_INIT_END
+ * @brief   ã“ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯å­æ©ŸãŒåˆæœŸåŒ–æ™‚ã®é€ä¿¡ã‚’çµ‚ãˆãŸæ™‚ã«é€ä¿¡ã•ã‚Œã¾ã™  CF_PLAYER_INIT_END
  * @param   TCB_PTR tcb   void *work 
  * @retval  none
  */
@@ -1824,12 +1824,12 @@ int UgInitialDataSendSize(void)
 void CommUgRecvChildStateNormal(int netID, int size, void* pData, void* pWork)
 {
     _pCommUnder->initEnd[netID] = TRUE;
-    OHNO_PRINT("Œ»İ%d ó•tŠ®—¹\n",CommUgGetChildStateNormalNum());
+    OHNO_PRINT("ç¾åœ¨%d å—ä»˜å®Œäº†\n",CommUgGetChildStateNormalNum());
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@‚ª‰Šú‰»‚Ì‘—M‚ğI‚¦‚½”
+ * @brief   å­æ©ŸãŒåˆæœŸåŒ–æ™‚ã®é€ä¿¡ã‚’çµ‚ãˆãŸæ•°
  * @param   none
  * @retval  num
  */
@@ -1852,7 +1852,7 @@ int CommUgGetChildStateNormalNum(void)
 #if T1665_060816_FIX
 //--------------------------------------------------------------
 /**
- * @brief   q‹@Ø’f‚ÉŒÄ‚ÔƒR[ƒ‹ƒoƒbƒN
+ * @brief   å­æ©Ÿåˆ‡æ–­æ™‚ã«å‘¼ã¶ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  num
  */

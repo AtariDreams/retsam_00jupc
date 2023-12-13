@@ -1,17 +1,17 @@
 //============================================================================================
 /**
  * @file	fssc_tower.c
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒ^ƒ[
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šã‚¿ãƒ¯ãƒ¼
  * @author	Satoshi Nohara
  * @date	07.05.25
  *
- * scr_btower.c‚Ìˆ—‚ğˆÚ“®
+ * scr_btower.cã®å‡¦ç†ã‚’ç§»å‹•
  *
- * ŠÖ˜Aƒ\[ƒX	field/scr_btower.c		í’“
- *				field/b_tower_scr.c		ƒtƒB[ƒ‹ƒhƒTƒu¨í’“
- *				field/b_tower_ev.c		í’“
- *				field/b_tower_wifi.c	í’“
- *				field/b_tower_fld.c		ƒtƒB[ƒ‹ƒhƒTƒu¨í’“
+ * é–¢é€£ã‚½ãƒ¼ã‚¹	field/scr_btower.c		å¸¸é§
+ *				field/b_tower_scr.c		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–â†’å¸¸é§
+ *				field/b_tower_ev.c		å¸¸é§
+ *				field/b_tower_wifi.c	å¸¸é§
+ *				field/b_tower_fld.c		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–â†’å¸¸é§
  */
 //============================================================================================
 #include "common.h"
@@ -32,14 +32,14 @@
 #include "savedata/misc.h"
 #include "savedata/b_tower.h"
 #include "msgdata/msg.naix"					//NARC_msg_??_dat
-//ƒtƒB[ƒ‹ƒh								//field_encount.h	LOCATION•K—vABTLTOWER_PLAYWORK•K—v
+//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰								//field_encount.h	LOCATIONå¿…è¦ã€BTLTOWER_PLAYWORKå¿…è¦
 #include "field/location.h"
 #include "../field/field_encount.h"
 #include "../field/field_battle.h"			//BattleParam_IsWinResult
 #include "../field/field_subproc.h"			//TestBattleProcData
 #include "field/evwkdef.h"
 #include "field/eventflag.h"
-//ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€
+//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ 
 #include "frontier_types.h"
 #include "frontier_main.h"
 #include "frontier_scr.h"
@@ -47,13 +47,13 @@
 #include "frontier_scrcmd.h"
 #include "frontier_scrcmd_sub.h"
 #include "fss_task.h"
-//ƒoƒgƒ‹ƒ^ƒ[
-#include "../field/tower_scr_common.h"		//BTOWER_SCRWORK(V‹K)
-#include "../field/b_tower_scr_def.h"		//ƒoƒgƒ‹ƒ^ƒ[‚Åg—p‚·‚é’è‹`
+//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+#include "../field/tower_scr_common.h"		//BTOWER_SCRWORK(æ–°è¦)
+#include "../field/b_tower_scr_def.h"		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã§ä½¿ç”¨ã™ã‚‹å®šç¾©
 
 #include "fssc_tower_sub.h"
 #include "tower_tool.h"
-//’ÊM
+//é€šä¿¡
 #include "communication/comm_system.h"
 #include "communication/comm_tool.h"
 #include "communication/comm_def.h"
@@ -64,7 +64,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL FSSC_TowerScrWork( FSS_TASK * core );
@@ -84,33 +84,33 @@ void BtlTower_BattleRecordUpdateEx(BTOWER_SCRWORK* wk,const BATTLE_TOWER_RECORD*
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFBTOWER_SCRWORK‚ÌƒZƒbƒgAƒQƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šBTOWER_SCRWORKã®ã‚»ãƒƒãƒˆã€ã‚²ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  *
- * –ß‚è’lƒ[ƒN‚Ìˆø”‚Ì‚Æ‚±‚ë‚ğBTWR_NULL_PARAM‚É‚·‚é‚Æƒ_ƒI
+ * æˆ»ã‚Šå€¤ãƒ¯ãƒ¼ã‚¯ã®å¼•æ•°ã®ã¨ã“ã‚ã‚’BTWR_NULL_PARAMã«ã™ã‚‹ã¨ãƒ€ãƒ¡ï¼
  */
 //--------------------------------------------------------------
 BOOL FSSC_TowerScrWork( FSS_TASK * core )
 {
 	TV_WORK * tvwk;
 	POKEMON_PARAM* pp;
-	BTOWER_SCRWORK*	bt_scr_wk;		///<ƒoƒgƒ‹ƒ^ƒ[§Œä—pƒ[ƒNƒ|ƒCƒ“ƒ^
+	BTOWER_SCRWORK*	bt_scr_wk;		///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 	int i,j;
 	u16 code,param;
 	u16* ret_wk;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
 
 	code	= FSSTGetU16( core );
-	OS_Printf( "FSSC_TowerScrWork “n‚³‚ê‚½ƒR[ƒh = %d\n", code );
+	OS_Printf( "FSSC_TowerScrWork æ¸¡ã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ = %d\n", code );
 	param	= FSSTGetWorkValue( core );
 	ret_wk	= FSSTGetWork( core );
 	//retwk_id	= FSSTGetU16(core);
@@ -121,153 +121,153 @@ BOOL FSSC_TowerScrWork( FSS_TASK * core )
 	switch( code ){
 
 #if 0
-	//0:ƒvƒŒƒCƒ‚[ƒh•Ê‚Ìƒƒ“ƒo[”‚ğæ“¾‚·‚é
+	//0:ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰åˆ¥ã®ãƒ¡ãƒ³ãƒãƒ¼æ•°ã‚’å–å¾—ã™ã‚‹
 	case BTWR_TOOL_GET_MEMBER_NUM:
 		*ret_wk = TowerScrTools_GetMemberNum(param);
 		break;
 #endif
 
-	//2:ƒŠƒZƒbƒg‚µ‚Äƒ^ƒCƒgƒ‹‚É–ß‚é
+	//2:ãƒªã‚»ãƒƒãƒˆã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
 	case BTWR_TOOL_SYSTEM_RESET:
 		TowerScrTools_SystemReset();
 		break;
 
 #if 0
-	//3:new game‚ÉƒvƒŒƒCƒf[ƒ^‚ğƒNƒŠƒA‚·‚é
+	//3:new gameæ™‚ã«ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 	case BTWR_TOOL_CLEAR_PLAY_DATA:
 		TowerScrTools_ClearPlaySaveData(SaveData_GetTowerPlayData(ex_param->savedata));
 		break;
 
-	//4:ƒZ[ƒuƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©•Ô‚·
+	//4:ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹è¿”ã™
 	case BTWR_TOOL_IS_SAVE_DATA_ENABLE:
 		*ret_wk = TowerScrTools_IsSaveDataEnable(SaveData_GetTowerPlayData(ex_param->savedata));
 		break;
 
-	//8:ƒvƒŒƒCƒ‚[ƒh•ÊƒŒƒR[ƒhƒZ[ƒuƒf[ƒ^˜AŸ”‚ğ•Ô‚·
+	//8:ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰åˆ¥ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿é€£å‹æ•°ã‚’è¿”ã™
 	case BTWR_TOOL_GET_RENSHOU_RECORD:
 		*ret_wk = TowerScrTools_GetRenshouRecord(ex_param->savedata,param);
 		break;
 
-	//9:Œ»İ‚ÌWIFIƒ‰ƒ“ƒN‚ğ‘€ì‚µ‚Ä•Ô‚·
+	//9:ç¾åœ¨ã®WIFIãƒ©ãƒ³ã‚¯ã‚’æ“ä½œã—ã¦è¿”ã™
 	case BTWR_TOOL_WIFI_RANK_DOWN:
-		//"NULL"‚ğ“n‚µ‚Ä‚¢‚é‚ª‘åä•v‚È‚Ì‚©H
+		//"NULL"ã‚’æ¸¡ã—ã¦ã„ã‚‹ãŒå¤§ä¸ˆå¤«ãªã®ã‹ï¼Ÿ
 		*ret_wk = TowerScr_SetWifiRank(NULL,ex_param->savedata,2);
 		break;
 
-	//10:Œ»İ‚ÌWIFIƒ‰ƒ“ƒN‚ğ‘€ì‚µ‚Ä•Ô‚·
+	//10:ç¾åœ¨ã®WIFIãƒ©ãƒ³ã‚¯ã‚’æ“ä½œã—ã¦è¿”ã™
 	case BTWR_TOOL_GET_WIFI_RANK:
-		//"NULL"‚ğ“n‚µ‚Ä‚¢‚é‚ª‘åä•v‚È‚Ì‚©H
+		//"NULL"ã‚’æ¸¡ã—ã¦ã„ã‚‹ãŒå¤§ä¸ˆå¤«ãªã®ã‹ï¼Ÿ
 		*ret_wk = TowerScr_SetWifiRank(NULL,ex_param->savedata,0);
 		break;
 
-	//11:Wifi¬Ñ‚Ì–¢ƒAƒbƒvƒ[ƒhƒtƒ‰ƒO‚ğ§Œä‚·‚é
+	//11:Wifiæˆç¸¾ã®æœªã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’åˆ¶å¾¡ã™ã‚‹
 	case BTWR_TOOL_SET_WIFI_UPLOAD_FLAG:
 		TowerScrTools_SetWifiUploadFlag(ex_param->savedata,param);
 		break;
 
-	//12:WiFiƒvƒŒƒC¬Ñ‚Ì–¢ƒAƒbƒvƒ[ƒhƒtƒ‰ƒO‚ğæ“¾‚·‚é
+	//12:WiFiãƒ—ãƒ¬ã‚¤æˆç¸¾ã®æœªã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 	case BTWR_TOOL_GET_WIFI_UPLOAD_FLAG:
 		*ret_wk = TowerScrTools_GetWifiUploadFlag(ex_param->savedata);
 		break;
 
-	//14:ƒZ[ƒu‚¹‚¸‚É~‚ß‚½‚Æ‚«‚ÌƒGƒ‰[ˆ—
+	//14:ã‚»ãƒ¼ãƒ–ã›ãšã«æ­¢ã‚ãŸã¨ãã®ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	case BTWR_TOOL_SET_NG_SCORE:
 		*ret_wk = TowerScrTools_SetNGScore(ex_param->savedata);
 		break;
 
-	//15:WIFI‚ÌƒvƒŒƒCƒ„[DLƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//15:WIFIã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼DLãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	case BTWR_TOOL_IS_PLAYER_DATA_ENABLE:
 		*ret_wk = TowerScrTools_IsPlayerDataEnable(ex_param->savedata);
 		break;
 #endif
 
-	//46:ƒoƒgƒ‹ƒ|ƒCƒ“ƒg’Ç‰Áˆ—(ó•tŠO‚ÅŒÄ‚Î‚ê‚Ä‚¢‚½‚à‚Ì‚ğó•t“à‚ÉˆÚ“®)
+	//46:ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆè¿½åŠ å‡¦ç†(å—ä»˜å¤–ã§å‘¼ã°ã‚Œã¦ã„ãŸã‚‚ã®ã‚’å—ä»˜å†…ã«ç§»å‹•)
 	case BTWR_SUB_ADD_BATTLE_POINT:
 		*ret_wk = TowerScr_AddBtlPoint( bt_scr_wk );
 
-		//TV:ƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼l
+		//TV:ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäºº
 		tvwk = SaveData_GetTvWork( ex_param->savedata );
 		TVTOPIC_BPTemp_Set( tvwk, *ret_wk );
 		//TVTOPIC_Entry_Record_BP( ex_param->savedata );
 
-		//ƒŒƒR[ƒhXV
+		//ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°
 		RECORD_Add( SaveData_GetRecord(ex_param->savedata), RECID_WIN_BP, *ret_wk );
 
-		//šfrontier_scrcmd.c FSSC_AddBtlPoint‚àƒ`ƒFƒbƒN‚·‚é
+		//â˜…frontier_scrcmd.c FSSC_AddBtlPointã‚‚ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 
 		break;
 
-	//55:•K—v‚Èl•¨OBJƒR[ƒh‚ğ•Ô‚·
+	//55:å¿…è¦ãªäººç‰©OBJã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
 	case BTWR_SUB_GET_MINE_OBJ:
 		*ret_wk = btltower_GetMineObj(bt_scr_wk,param);
 		break;
 
-	//33:Œ»İ‚Ìƒ‰ƒEƒ“ƒh”‚ğƒXƒNƒŠƒvƒgƒ[ƒN‚Éæ“¾‚·‚é
+	//33:ç¾åœ¨ã®ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯ã«å–å¾—ã™ã‚‹
 	case BTWR_SUB_GET_NOW_ROUND:
 		*ret_wk = TowerScr_GetNowRound(bt_scr_wk);
 		break;
 
-	//4:ƒ‰ƒEƒ“ƒh”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+	//4:ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	case BTWR_SUB_INC_ROUND:
 		*ret_wk = FSTowerScr_IncRound(bt_scr_wk);
 		break;
 
-	//35:7˜AŸ‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//35:7é€£å‹ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	case BTWR_SUB_IS_CLEAR:
 		*ret_wk = TowerScr_IsClear(bt_scr_wk);
 		break;
 
-	//36:ƒvƒŒƒC’†‚Ì˜AŸ”‚ğæ“¾
+	//36:ãƒ—ãƒ¬ã‚¤ä¸­ã®é€£å‹æ•°ã‚’å–å¾—
 	case BTWR_SUB_GET_RENSHOU_CNT:
 		*ret_wk = FSTowerScr_GetRenshouCount(bt_scr_wk);
 		break;
 
-	//43:Œ»İ‚ÌƒvƒŒƒCƒ‚[ƒh‚ğæ“¾
+	//43:ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
 	case BTWR_SUB_GET_PLAY_MODE:
 		*ret_wk = (u16)TowerScr_GetPlayMode(bt_scr_wk);
 		break;
 
-	//40:‘ÎíƒgƒŒ[ƒi[’Š‘I
+	//40:å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸
 	case BTWR_SUB_CHOICE_BTL_PARTNER:
 		FSTowerScr_ChoiceBtlPartner(bt_scr_wk,ex_param->savedata);
 		break;
 
-	//41:‘ÎíƒgƒŒ[ƒi[OBJƒR[ƒhæ“¾
+	//41:å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼OBJã‚³ãƒ¼ãƒ‰å–å¾—
 	case BTWR_SUB_GET_ENEMY_OBJ:
 		*ret_wk = FSTowerScr_GetEnemyObj(bt_scr_wk,param);
 		break;
 
-	//44:ƒŠ[ƒ_[ƒNƒŠƒAƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	//44:ãƒªãƒ¼ãƒ€ãƒ¼ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	case BTWR_SUB_SET_LEADER_CLEAR_FLAG:
 		FSTowerScr_SetLeaderClearFlag(bt_scr_wk,param);
 		break;
 
-	//37:”síˆ—
+	//37:æ•—æˆ¦å‡¦ç†
 	case BTWR_SUB_SET_LOSE_SCORE:
 		TowerScr_SetLoseScore(bt_scr_wk,ex_param->savedata);
 		break;
 
-	//38:ƒNƒŠƒAˆ—
+	//38:ã‚¯ãƒªã‚¢å‡¦ç†
 	case BTWR_SUB_SET_CLEAR_SCORE:
 		TowerScr_SetClearScore(bt_scr_wk, ex_param->savedata, ex_param->fnote_data );
 		break;
 
-	//39:‹x‚Ş‚Æ‚«‚ÉŒ»İ‚ÌƒvƒŒƒCó‹µ‚ğƒZ[ƒu‚É‘‚«o‚·
+	//39:ä¼‘ã‚€ã¨ãã«ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤çŠ¶æ³ã‚’ã‚»ãƒ¼ãƒ–ã«æ›¸ãå‡ºã™
 	case BTWR_SUB_SAVE_REST_PLAY_DATA:
 		TowerScr_SaveRestPlayData(bt_scr_wk);
 		break;
 
-	//58:óMƒoƒbƒtƒ@ƒNƒŠƒA
+	//58:å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	case BTWR_SUB_RECV_BUF_CLEAR:
 		MI_CpuClear8(bt_scr_wk->recv_buf,BTWR_SIO_BUF_LEN);
 		break;
 
-	//59:‰í‚ğ‚¨‚±‚È‚Á‚½‚©ƒZƒbƒg
+	//59:åˆæˆ¦ã‚’ãŠã“ãªã£ãŸã‹ã‚»ãƒƒãƒˆ
 	case BTWR_SUB_SET_FIRST_BTL_FLAG:
 		bt_scr_wk->first_btl_flag = 1;
 		break;
 
-	//100:ƒ[ƒN‚ª•s³‚©ƒ`ƒFƒbƒN
+	//100:ãƒ¯ãƒ¼ã‚¯ãŒä¸æ­£ã‹ãƒã‚§ãƒƒã‚¯
 	case BTWR_DEB_IS_WORK_NULL:
 		if(bt_scr_wk == NULL){
 			*ret_wk = 1;
@@ -277,9 +277,9 @@ BOOL FSSC_TowerScrWork( FSS_TASK * core )
 		break;
 
 	//-----------------------------------------------------------------------------------	
-	//ƒGƒ‰[ƒ`ƒFƒbƒN
+	//ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	default:
-		OS_Printf( "–¢‘Î‰ “n‚³‚ê‚½ƒR[ƒh = %d\n", code );
+		OS_Printf( "æœªå¯¾å¿œ æ¸¡ã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ = %d\n", code );
 		GF_ASSERT(0);
 		break;
 	};
@@ -289,7 +289,7 @@ BOOL FSSC_TowerScrWork( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- *	@biref	•K—v‚Èl•¨OBJƒR[ƒh‚ğ•Ô‚·
+ *	@biref	å¿…è¦ãªäººç‰©OBJã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
  */
 //--------------------------------------------------------------
 static u16 btltower_GetMineObj(BTOWER_SCRWORK* wk,u8 mode)
@@ -320,16 +320,16 @@ static u16 btltower_GetMineObj(BTOWER_SCRWORK* wk,u8 mode)
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[‘Îí‘OƒƒbƒZ[ƒWê—p•\¦
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å¯¾æˆ¦å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å°‚ç”¨è¡¨ç¤º
  */
 //--------------------------------------------------------------
 BOOL FSSC_TowerTalkMsgAppear(FSS_TASK* core)
 {
 	u8 spd;
 	u16	*msg;
-	BTOWER_SCRWORK*	bt_scr_wk;		///<ƒoƒgƒ‹ƒ^ƒ[§Œä—pƒ[ƒNƒ|ƒCƒ“ƒ^
+	BTOWER_SCRWORK*	bt_scr_wk;		///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
-	u16	tr_idx = FSSTGetU8(core);	//ˆêl–Ú‚©“ñl–Ú‚©H
+	u16	tr_idx = FSSTGetU8(core);	//ä¸€äººç›®ã‹äºŒäººç›®ã‹ï¼Ÿ
 
 	bt_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	//wk = core->fsys->btower_wk;
@@ -345,17 +345,17 @@ BOOL FSSC_TowerTalkMsgAppear(FSS_TASK* core)
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[—pƒ[ƒN‰ğ•ú
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  *	@return 0
  */
 //--------------------------------------------------------------
 BOOL FSSC_TowerWorkRelease(FSS_TASK* core)
 {
-	BTOWER_SCRWORK*	bt_scr_wk;		///<ƒoƒgƒ‹ƒ^ƒ[§Œä—pƒ[ƒNƒ|ƒCƒ“ƒ^
+	BTOWER_SCRWORK*	bt_scr_wk;		///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 	bt_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	
-	//ƒ[ƒN—Ìˆæ‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯é ˜åŸŸè§£æ”¾
 	TowerScr_WorkRelease( bt_scr_wk );
 	//TowerScr_WorkRelease(core->fsys->btower_wk);
 	//core->fsys->btower_wk = NULL;
@@ -364,9 +364,9 @@ BOOL FSSC_TowerWorkRelease(FSS_TASK* core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFí“¬ŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šæˆ¦é—˜å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -379,22 +379,22 @@ BOOL FSSC_TowerBattleCall( FSS_TASK * core)
 
 	bt_scr_wk = Frontier_SysWorkGet( core->fss->fmain );
 
-	//ƒoƒgƒ‹ƒf[ƒ^‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	param = BtlTower_CreateBattleParam( bt_scr_wk, ex_param );
 	bt_scr_wk->p_work = param;
 
-	//í“¬Ø‚è‘Ö‚¦
-	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ƒoƒgƒ‹‹ÈÄ¶
+	//æˆ¦é—˜åˆ‡ã‚Šæ›¿ãˆ
+	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
     Frontier_SubProcSet( core->fss->fmain, &TestBattleProcData, param, FALSE, NULL );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒ^ƒ[í“¬ŒÄ‚Ño‚µ\n" );					//field_encount.c
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¿ãƒ¯ãƒ¼æˆ¦é—˜å‘¼ã³å‡ºã—\n" );					//field_encount.c
 	return 1;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒ^ƒ[í“¬Œ‹‰Êæ“¾‚µ‚ÄŠJ•ú
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šã‚¿ãƒ¯ãƒ¼æˆ¦é—˜çµæœå–å¾—ã—ã¦é–‹æ”¾
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -417,20 +417,20 @@ BOOL FSSC_TowerCallGetResult( FSS_TASK * core)
 	if( sys.cont & PAD_BUTTON_L ){
 		bt_scr_wk->winlose_flag = TRUE;
 		*ret_wk = TRUE;
-		OS_Printf( "ƒfƒoƒbƒN‘€ì‚ÅŸ—˜”»’è‚É‚È‚è‚Ü‚µ‚½I\n" );
+		OS_Printf( "ãƒ‡ãƒãƒƒã‚¯æ“ä½œã§å‹åˆ©åˆ¤å®šã«ãªã‚Šã¾ã—ãŸï¼\n" );
 	}
 #endif
 
 #if	PL_T0855_080710_FIX
-	//field_encount.c‚©‚çˆÚ“®(08.07.10)
-	//ƒ^ƒ[—p‘ÎíŒ‹‰ÊƒAƒbƒvƒf[ƒgˆ—
+	//field_encount.cã‹ã‚‰ç§»å‹•(08.07.10)
+	//ã‚¿ãƒ¯ãƒ¼ç”¨å¯¾æˆ¦çµæœã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆå‡¦ç†
 	{
 		FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
 		BtlTower_BattleRecordUpdateEx( bt_scr_wk, &(param->btr) );
 	}
 #endif
 
-	//BATTLE_PARAM‚ÌŠJ•ú
+	//BATTLE_PARAMã®é–‹æ”¾
 	BattleParam_Delete( param );
 	return 0;
 }
@@ -457,7 +457,7 @@ void BtlTower_BattleRecordUpdateEx(BTOWER_SCRWORK* wk,const BATTLE_TOWER_RECORD*
 
 //--------------------------------------------------------------
 /**
- *	@brief	’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^‘—M
+ *	@brief	é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿é€ä¿¡
  */
 //--------------------------------------------------------------
 BOOL FSSC_TowerSendBuf(FSS_TASK* core)
@@ -474,18 +474,18 @@ BOOL FSSC_TowerSendBuf(FSS_TASK* core)
 
 	switch(mode){
 #if 0
-	case 0:	//ƒ|ƒPƒ‚ƒ“‘I‘ğ
+	case 0:	//ãƒã‚±ãƒ¢ãƒ³é¸æŠ
 		BTowerComm_SendPlayerData(bt_scr_wk,ex_param->savedata);
 		break;
-	case 1:	//’Š‘IƒgƒŒ[ƒi[
+	case 1:	//æŠ½é¸ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 		BTowerComm_SendTrainerData(bt_scr_wk);
 		break;
 #endif
-	case 2:	//ƒŠƒ^ƒCƒA‚ğ‘I‚Ô‚©H
+	case 2:	//ãƒªã‚¿ã‚¤ã‚¢ã‚’é¸ã¶ã‹ï¼Ÿ
 		FSBTowerComm_SendRetireSelect(bt_scr_wk,param);
 		break;
 	default:
-		OS_Printf( "–¢‘Î‰ %d\n", mode );
+		OS_Printf( "æœªå¯¾å¿œ %d\n", mode );
 		GF_ASSERT(0);
 		break;
 	}
@@ -497,13 +497,13 @@ BOOL FSSC_TowerSendBuf(FSS_TASK* core)
 		*ret_wk = 1;
 	}else{
 		*ret_wk = 0;
-		OS_Printf( "**** tower send fail(¨retry)\n" );
-		return 1;		//’ˆÓI
+		OS_Printf( "**** tower send fail(â†’retry)\n" );
+		return 1;		//æ³¨æ„ï¼
 	}
 
-	//Ä‘—M‚µ‚Ä‚àA“¯Šú‘Ò‚¿AóMl”‘Ò‚¿‚ª‚È‚¢‚Ì‚ÅA
-	//‚±‚ÌŒã‚ª‚¸‚ê‚é‚©‚à‚µ‚ê‚È‚¢‚ªA
-	//WIFI‚Ì‚ª‚ ‚é‚Ì‚ÅAÄ‘—Mo—ˆ‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
+	//å†é€ä¿¡ã—ã¦ã‚‚ã€åŒæœŸå¾…ã¡ã€å—ä¿¡äººæ•°å¾…ã¡ãŒãªã„ã®ã§ã€
+	//ã“ã®å¾ŒãŒãšã‚Œã‚‹ã‹ã‚‚ã—ã‚Œãªã„ãŒã€
+	//WIFIã®æ™‚ãŒã‚ã‚‹ã®ã§ã€å†é€ä¿¡å‡ºæ¥ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã
 
 	return 0;
 }
@@ -511,18 +511,18 @@ BOOL FSSC_TowerSendBuf(FSS_TASK* core)
 #if 1
 //--------------------------------------------------------------
 /**
- *	@brief	’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^óM
+ *	@brief	é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿å—ä¿¡
  */
 //--------------------------------------------------------------
 BOOL FSSC_TowerRecvBuf(FSS_TASK* core)
 {
-	u16 mode		= FSSTGetU16( core );		//’ÊMtype
-	u16 ret_wk_id	= FSSTGetU16( core );		//–ß‚è’l‚ğŠi”[‚·‚éƒ[ƒNID
+	u16 mode		= FSSTGetU16( core );		//é€šä¿¡type
+	u16 ret_wk_id	= FSSTGetU16( core );		//æˆ»ã‚Šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ID
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = mode;
 	core->reg[1] = ret_wk_id;
-	OS_Printf( "================\nƒoƒgƒ‹ƒ^ƒ[’ÊMƒf[ƒ^óM\n" );
+	OS_Printf( "================\nãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒ‡ãƒ¼ã‚¿å—ä¿¡\n" );
 	OS_Printf( "mode = %d\n", mode );
 	OS_Printf( "ret_wk_id = %d\n", ret_wk_id );
 
@@ -530,7 +530,7 @@ BOOL FSSC_TowerRecvBuf(FSS_TASK* core)
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitTowerRecvBuf( FSS_TASK * core )
 {
 	BTOWER_SCRWORK* bt_scr_wk;
@@ -538,7 +538,7 @@ static BOOL WaitTowerRecvBuf( FSS_TASK * core )
 
 	bt_scr_wk = Frontier_SysWorkGet( core->fss->fmain );
 
-	//ƒf[ƒ^óM‘Ò‚¿(’ˆÓIreg[0]Areg[1])
+	//ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾…ã¡(æ³¨æ„ï¼reg[0]ã€reg[1])
 	if(BtlTowerEv_SioRecvBuf(core,bt_scr_wk,ex_param->savedata,core->reg[0],core->reg[1]) == TRUE){
 		return 1;
 	}
@@ -551,17 +551,17 @@ static BOOL BtlTowerEv_SioRecvBuf( FSS_TASK* core, BTOWER_SCRWORK* bt_scr_wk, SA
 	u16	*buf16;
 	const void* recv;
 
-	//ƒf[ƒ^óM‘Ò‚¿
+	//ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾…ã¡
 	recv = CommToolGetTempData(1-CommGetCurrentID());
 	if(recv == NULL){
 		return FALSE;
 	}
-	//–ß‚è’lw’èƒoƒbƒtƒ@ƒAƒhƒŒƒXæ“¾
+	//æˆ»ã‚Šå€¤æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	//buf16 = GetEventWorkAdrs(fsys,ret_wkno);
 	//buf16 = EventWork_GetEventWorkAdrs( SaveData_GetEventWork(sv), ret_wkno );
 	buf16 = FSS_GetEventWorkAdrs( core, ret_wkno );
 
-	//óMƒf[ƒ^ƒ‚[ƒh•Ê‰ğÍ
+	//å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãƒ¢ãƒ¼ãƒ‰åˆ¥è§£æ
 	switch(mode){
 #if 0
 	case 0:
@@ -575,7 +575,7 @@ static BOOL BtlTowerEv_SioRecvBuf( FSS_TASK* core, BTOWER_SCRWORK* bt_scr_wk, SA
 		*buf16 = FSBTowerComm_RecvRetireSelect(bt_scr_wk,recv);
 		break;
 	default:
-		OS_Printf( "–¢‘Î‰ %d\n", mode );
+		OS_Printf( "æœªå¯¾å¿œ %d\n", mode );
 		GF_ASSERT(0);
 		break;
 	}
@@ -585,19 +585,19 @@ static BOOL BtlTowerEv_SioRecvBuf( FSS_TASK* core, BTOWER_SCRWORK* bt_scr_wk, SA
 #else
 //--------------------------------------------------------------
 /**
- * óM
+ * å—ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
 //--------------------------------------------------------------
 BOOL FSSC_TowerRecvBuf( FSS_TASK * core )
 {
-	u16 wk_id		= FSSTGetU16( core );	//’ÊMtype‚ğŠi”[‚µ‚Ä‚¢‚éƒ[ƒNID
-	u16 ret_wk_id	= FSSTGetU16( core );	//–ß‚è’l‚ğŠi”[‚·‚éƒ[ƒNID
+	u16 wk_id		= FSSTGetU16( core );	//é€šä¿¡typeã‚’æ ¼ç´ã—ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ID
+	u16 ret_wk_id	= FSSTGetU16( core );	//æˆ»ã‚Šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ID
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 	core->reg[1] = ret_wk_id;
 
@@ -605,12 +605,12 @@ BOOL FSSC_TowerRecvBuf( FSS_TASK * core )
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitTowerRecvBuf( FSS_TASK * core )
 {
 	BTOWER_SCRWORK* bt_scr_wk;
-	u16 type	= FSS_GetEventWorkValue( core, core->reg[0] );		//’ˆÓI
-	u16* ret_wk = FSS_GetEventWorkAdrs( core, core->reg[1] );		//’ˆÓI
+	u16 type	= FSS_GetEventWorkValue( core, core->reg[0] );		//æ³¨æ„ï¼
+	u16* ret_wk = FSS_GetEventWorkAdrs( core, core->reg[1] );		//æ³¨æ„ï¼
 
 	bt_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 

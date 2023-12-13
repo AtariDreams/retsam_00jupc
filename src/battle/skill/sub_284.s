@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_284.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			“¦‚°‚éƒV[ƒPƒ“ƒXiƒfƒoƒbƒO—pŸ‚¿“¦‚°j
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			é€ƒã’ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆãƒ‡ãƒãƒƒã‚°ç”¨å‹ã¡é€ƒã’ï¼‰
  *@author	HisashiSogabe
  *@data		2006.07.10
  *

@@ -2,7 +2,7 @@
 /**
  *
  *@file		fog_sys.h
- *@brief	ƒtƒHƒOƒVƒXƒeƒ€
+ *@brief	ãƒ•ã‚©ã‚°ã‚·ã‚¹ãƒ†ãƒ 
  *@author	tomoya takahashi
  *@data		2005.04.27
  */
@@ -22,63 +22,63 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 #define	FOG_MDL_SET_CHECK
 
 //-------------------------------------
-//	ƒRƒ“ƒgƒ[ƒ‹’è”
+//	ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å®šæ•°
 //=====================================
-#define	FOG_SYS_FLAG	(1)		// on/offƒtƒ‰ƒO
-#define	FOG_SYS_MODE	(1<<1)	// ƒ‚[ƒh
-#define	FOG_SYS_SLOPE	(1<<2)	// ‚©‚©‚è‹ï‡
-#define	FOG_SYS_OFFSET	(1<<3)	// ƒIƒtƒZƒbƒg
-#define	FOG_SYS_RGB		(1<<4)	// F
-#define	FOG_SYS_ALPHA	(1<<5)	// ƒ¿’l
-#define	FOG_SYS_TBL		(1<<6)	// ƒtƒHƒOƒe[ƒuƒ‹
+#define	FOG_SYS_FLAG	(1)		// on/offãƒ•ãƒ©ã‚°
+#define	FOG_SYS_MODE	(1<<1)	// ãƒ¢ãƒ¼ãƒ‰
+#define	FOG_SYS_SLOPE	(1<<2)	// ã‹ã‹ã‚Šå…·åˆ
+#define	FOG_SYS_OFFSET	(1<<3)	// ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define	FOG_SYS_RGB		(1<<4)	// è‰²
+#define	FOG_SYS_ALPHA	(1<<5)	// Î±å€¤
+#define	FOG_SYS_TBL		(1<<6)	// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 
-#define	FOG_SYS_ALL		(0xffffffff)		// ‘S‚Ä
+#define	FOG_SYS_ALL		(0xffffffff)		// å…¨ã¦
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
-typedef struct _FOG_DATA* FOG_DATA_PTR;		// ƒtƒHƒOƒf[ƒ^ƒ|ƒCƒ“ƒ^
+typedef struct _FOG_DATA* FOG_DATA_PTR;		// ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒtƒHƒOƒf[ƒ^•Û‘¶—Ìˆæ‚ğì¬
+//	ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿ä¿å­˜é ˜åŸŸã‚’ä½œæˆ
 //-------------------------------------
 GLOBAL FOG_DATA_PTR	FogSys_Init(void);
 GLOBAL void	FogSys_Delete(FOG_DATA_PTR* pFogData);
 
 //-------------------------------------
-//	¡‚ÌƒtƒHƒO‚Ìó‘Ô‚ğæ“¾
+//	ä»Šã®ãƒ•ã‚©ã‚°ã®çŠ¶æ…‹ã‚’å–å¾—
 //-------------------------------------
 GLOBAL BOOL GetFogFlag(FOG_DATA_PTR FogData);			// ON/OFF
-GLOBAL int GetFogMode(FOG_DATA_PTR FogData);			// ƒtƒHƒOƒ‚[ƒh
-GLOBAL int GetFogSlope(FOG_DATA_PTR FogData);			// ‚©‚©‚è‹ï‡
-GLOBAL int GetFogOffset(FOG_DATA_PTR FogData);			// ‚©‚©‚èn‚ß‚éƒfƒvƒX’l
-GLOBAL GXRgb GetFogColor(FOG_DATA_PTR FogData);			// ƒtƒHƒOƒJƒ‰[
-GLOBAL int GetFogAlpha(FOG_DATA_PTR FogData);			// ƒtƒHƒOƒ¿’l
-GLOBAL const char* GetFogTbl(FOG_DATA_PTR FogData);		// ƒtƒHƒOƒe[ƒuƒ‹
+GLOBAL int GetFogMode(FOG_DATA_PTR FogData);			// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰
+GLOBAL int GetFogSlope(FOG_DATA_PTR FogData);			// ã‹ã‹ã‚Šå…·åˆ
+GLOBAL int GetFogOffset(FOG_DATA_PTR FogData);			// ã‹ã‹ã‚Šå§‹ã‚ã‚‹ãƒ‡ãƒ—ã‚¹å€¤
+GLOBAL GXRgb GetFogColor(FOG_DATA_PTR FogData);			// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
+GLOBAL int GetFogAlpha(FOG_DATA_PTR FogData);			// ãƒ•ã‚©ã‚°Î±å€¤
+GLOBAL const char* GetFogTbl(FOG_DATA_PTR FogData);		// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 
 //-------------------------------------
-//	ƒtƒHƒOƒf[ƒ^‚ğİ’è
+//	ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 //-------------------------------------
-GLOBAL void SetFogData(FOG_DATA_PTR FogData, int cont, BOOL flag, int fogMode, int fogSlope, int offset);	// ƒtƒHƒOƒf[ƒ^
-GLOBAL void SetFogColor(FOG_DATA_PTR FogData, int cont, GXRgb color, int alpha);	// ƒtƒHƒOƒJƒ‰[
-GLOBAL void SetFogTbl(FOG_DATA_PTR FogData, const char* fog_tbl);		// ƒtƒHƒOƒe[ƒuƒ‹
+GLOBAL void SetFogData(FOG_DATA_PTR FogData, int cont, BOOL flag, int fogMode, int fogSlope, int offset);	// ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿
+GLOBAL void SetFogColor(FOG_DATA_PTR FogData, int cont, GXRgb color, int alpha);	// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
+GLOBAL void SetFogTbl(FOG_DATA_PTR FogData, const char* fog_tbl);		// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 

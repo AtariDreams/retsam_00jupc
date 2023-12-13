@@ -9,18 +9,18 @@
 	//.include	"../eventdata/zone_r228r0201evc.h"
 
 //--------------------------------------------------------------------
-//					     ÉXÉNÉäÉvÉgñ{ëÃ
+//					     „Çπ„ÇØ„É™„Éó„ÉàÊú¨‰Ωì
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ÉXÉNÉäÉvÉgÉeÅ[ÉuÉã
+//					     „Çπ„ÇØ„É™„Éó„Éà„ÉÜ„Éº„Éñ„É´
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r228r0201_oldman1
 _EVENT_DATA		ev_r228r0201_poster
 _EVENT_DATA_END
 
 /********************************************************************/
-/*							òaïóòVêl								*/
+/*							ÂíåÈ¢®ËÄÅ‰∫∫								*/
 /********************************************************************/
 ev_r228r0201_oldman1:
 	_TALK_OBJ_START
@@ -47,74 +47,74 @@ ev_r228r0201_oldman1_03:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//É|ÉPÉÇÉìëIë
+	//„Éù„Ç±„É¢„É≥ÈÅ∏Êäû
 	_POKELIST_SET_PROC
-	//ëIëÇµÇΩÉ|ÉPÉÇÉìÇÃï¿Ç—î‘çÜéÊìæ
+	//ÈÅ∏Êäû„Åó„Åü„Éù„Ç±„É¢„É≥„ÅÆ‰∏¶„Å≥Áï™Âè∑ÂèñÂæó
 	_POKELIST_GET_RESULT	SCWK_PARAM0
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	_IFVAL_JUMP		SCWK_PARAM0,EQ,0xff,ev_r228r0201_oldman1_04	//ÉLÉÉÉìÉZÉãÇ≥ÇÍÇΩ
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0xff,ev_r228r0201_oldman1_04	//„Ç≠„É£„É≥„Çª„É´„Åï„Çå„Åü
 
-	//éËéùÇøÅ[ÅÑÉ|ÉPÉÇÉìî‘çÜïœä∑Å@ìØéûÇ…É^É}ÉSÉ`ÉFÉbÉNÇ‡çsÇ¡ÇƒÇ¢Ç‹Ç∑ÅB
+	//ÊâãÊåÅ„Å°„ÉºÔºû„Éù„Ç±„É¢„É≥Áï™Âè∑Â§âÊèõ„ÄÄÂêåÊôÇ„Å´„Çø„Éû„Ç¥„ÉÅ„Çß„ÉÉ„ÇØ„ÇÇË°å„Å£„Å¶„ÅÑ„Åæ„Åô„ÄÇ
 	_TEMOTI_MONSNO	SCWK_PARAM0,SCWK_PARAM1
 
-	_IFVAL_JUMP		SCWK_PARAM1,EQ,0,ev_r228r0201_oldman1_07	//É^É}ÉS
+	_IFVAL_JUMP		SCWK_PARAM1,EQ,0,ev_r228r0201_oldman1_07	//„Çø„Éû„Ç¥
 
-	//éÌóﬁÉ`ÉFÉbÉNÅ@SCWK_PARAM1 -> SCWK_ANSWERÇ÷åãâ 
+	//Á®ÆÈ°û„ÉÅ„Çß„ÉÉ„ÇØ„ÄÄSCWK_PARAM1 -> SCWK_ANSWER„Å∏ÁµêÊûú
 	_CALL			ev_r228r0201_oldman1_poke_chk_01
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r228r0201_oldman1_06	//äoÇ¶ÇÁÇÍÇ»Ç¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r228r0201_oldman1_06	//Ë¶ö„Åà„Çâ„Çå„Å™„ÅÑ
 
-	//éÌóﬁÇPARAM2Ç÷
+	//Á®ÆÈ°û„ÇíPARAM2„Å∏
 	_LDWK			SCWK_PARAM2,SCWK_ANSWER
 
-	//èKìæçœÇ›ÅHÅ@SCWK_PARAM0,SCWK_PARAM2 -> SCWK_ANSWERÇ÷åãâ 
+	//ÁøíÂæóÊ∏à„ÅøÔºü„ÄÄSCWK_PARAM0,SCWK_PARAM2 -> SCWK_ANSWER„Å∏ÁµêÊûú
 	_CALL			ev_r228r0201_oldman1_poke_chk_02
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r228r0201_oldman1_09	//èKìæçœÇ›
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r228r0201_oldman1_09	//ÁøíÂæóÊ∏à„Åø
 
 	_GET_NATSUKI	SCWK_ANSWER,SCWK_PARAM0
-	_IFVAL_JUMP		SCWK_ANSWER,LT,255,ev_r228r0201_oldman1_08	//Ç»Ç¬Ç´ìxÇ™ë´ÇËÇ»Ç¢
+	_IFVAL_JUMP		SCWK_ANSWER,LT,255,ev_r228r0201_oldman1_08	//„Å™„Å§„ÅçÂ∫¶„ÅåË∂≥„Çä„Å™„ÅÑ
 
-	//É|ÉPÉÇÉìñºÇÉoÉtÉ@ÇOÇ÷Åiã§í Åj
+	//„Éù„Ç±„É¢„É≥Âêç„Çí„Éê„Éï„Ç°Ôºê„Å∏ÔºàÂÖ±ÈÄöÔºâ
 	_POKEMON_NAME	0,SCWK_PARAM0
 
 	_IFVAL_JUMP		SCWK_PARAM2,EQ,1,ev_r228r0201_oldman1_10
 	_IFVAL_JUMP		SCWK_PARAM2,EQ,2,ev_r228r0201_oldman1_11
 	_JUMP							ev_r228r0201_oldman1_12
 
-//ÉuÉâÉXÉgÉoÅ[Éì
+//„Éñ„É©„Çπ„Éà„Éê„Éº„É≥
 ev_r228r0201_oldman1_10:
 	_TALKMSG		msg_r228r0201_oldman1_10
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r228r0201_oldman1_04
 
-	//ÉèÉUÉZÉbÉg
+	//„ÉØ„Ç∂„Çª„ÉÉ„Éà
 	_LDVAL			SCWK_PARAM3,WAZANO_BURASUTOBAAN
 	_JUMP			ev_r228r0201_oldman1_common_01
 
-//ÉnÉCÉhÉçÉJÉmÉì
+//„Éè„Ç§„Éâ„É≠„Ç´„Éé„É≥
 ev_r228r0201_oldman1_11:
 	_TALKMSG		msg_r228r0201_oldman1_11
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r228r0201_oldman1_04
 
-	//ÉèÉUÉZÉbÉg
+	//„ÉØ„Ç∂„Çª„ÉÉ„Éà
 	_LDVAL			SCWK_PARAM3,WAZANO_HAIDOROKANON
 	_JUMP			ev_r228r0201_oldman1_common_01
 
-//ÉnÅ[ÉhÉvÉâÉìÉg
+//„Éè„Éº„Éâ„Éó„É©„É≥„Éà
 ev_r228r0201_oldman1_12:
 	_TALKMSG		msg_r228r0201_oldman1_12
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r228r0201_oldman1_04
 
-	//ÉèÉUÉZÉbÉg
+	//„ÉØ„Ç∂„Çª„ÉÉ„Éà
 	_LDVAL			SCWK_PARAM3,WAZANO_HAADOPURANTO
 	_JUMP			ev_r228r0201_oldman1_common_01
 
-//éÊìæÉ`ÉFÉbÉNã§í ÇP
+//ÂèñÂæó„ÉÅ„Çß„ÉÉ„ÇØÂÖ±ÈÄöÔºë
 ev_r228r0201_oldman1_common_01:
 	_TALK_CLOSE
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -122,22 +122,22 @@ ev_r228r0201_oldman1_common_01:
 
 	_NORMAL_WAZALIST_SET_PROC		SCWK_PARAM0,SCWK_PARAM3
 
-	//ëIëÇµÇΩÉ|ÉPÉÇÉìÇÃï¿Ç—î‘çÜéÊìæ
+	//ÈÅ∏Êäû„Åó„Åü„Éù„Ç±„É¢„É≥„ÅÆ‰∏¶„Å≥Áï™Âè∑ÂèñÂæó
 	_NORMAL_WAZALIST_GET_RESULT		SCWK_ANSWER
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//ÉLÉÉÉìÉZÉãÇ≥ÇÍÇΩÅH
+	//„Ç≠„É£„É≥„Çª„É´„Åï„Çå„ÅüÔºü
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0xff,ev_r228r0201_oldman1_04
 
 	_TALK_OBJ_END
 	_END
 
 
-/*ëIëÇµÇΩÉ|ÉPÉÇÉìÉ`ÉFÉbÉNÅ@SCWK_PARAM1 -> SCWK_ANSWERÇ÷åãâ */
-/*0=äoÇ¶ÇÁÇÍÇ»Ç¢É|ÉPÉÇÉì 1:âäÇ™éÊìæâ¬î\ 2:êÖÇ™éÊìæâ¬î\ 3:ëêÇ™éÊìæâ¬î\ÅB*/
+/*ÈÅ∏Êäû„Åó„Åü„Éù„Ç±„É¢„É≥„ÉÅ„Çß„ÉÉ„ÇØ„ÄÄSCWK_PARAM1 -> SCWK_ANSWER„Å∏ÁµêÊûú*/
+/*0=Ë¶ö„Åà„Çâ„Çå„Å™„ÅÑ„Éù„Ç±„É¢„É≥ 1:ÁÇé„ÅåÂèñÂæóÂèØËÉΩ 2:Ê∞¥„ÅåÂèñÂæóÂèØËÉΩ 3:Ëçâ„ÅåÂèñÂæóÂèØËÉΩ„ÄÇ*/
 ev_r228r0201_oldman1_poke_chk_01:
 	_IFVAL_JUMP		SCWK_PARAM1,EQ,MONSNO_RIZAADON,ev_r228r0201_add_hi
 	_IFVAL_JUMP		SCWK_PARAM1,EQ,MONSNO_BAKUHUUN,ev_r228r0201_add_hi
@@ -168,7 +168,7 @@ ev_r228r0201_add_kusa:
 
 //---------------------------------------------------------------------
 
-//èKìæçœÇ›ÅHÅ@SCWK_PARAM0,SCWK_PARAM2 -> SCWK_ANSWERÇ÷åãâ 
+//ÁøíÂæóÊ∏à„ÅøÔºü„ÄÄSCWK_PARAM0,SCWK_PARAM2 -> SCWK_ANSWER„Å∏ÁµêÊûú
 ev_r228r0201_oldman1_poke_chk_02:
 	_IFVAL_JUMP		SCWK_PARAM2,EQ,1,ev_r228r0201_learn_chk_hi
 	_IFVAL_JUMP		SCWK_PARAM2,EQ,2,ev_r228r0201_learn_chk_mizu
@@ -189,7 +189,7 @@ ev_r228r0201_learn_chk_kusa:
 
 //---------------------------------------------------------------------
 
-//Ç¢Ç¢Ç¶
+//„ÅÑ„ÅÑ„Åà
 ev_r228r0201_oldman1_04:
 	_TALKMSG		msg_r228r0201_oldman1_04
 	_LAST_KEYWAIT
@@ -197,7 +197,7 @@ ev_r228r0201_oldman1_04:
 	_TALK_OBJ_END
 	_END
 
-//äoÇ¶ÇÁÇÍÇ»Ç¢
+//Ë¶ö„Åà„Çâ„Çå„Å™„ÅÑ
 ev_r228r0201_oldman1_06:
 	_TALKMSG		msg_r228r0201_oldman1_06
 	_LAST_KEYWAIT
@@ -205,7 +205,7 @@ ev_r228r0201_oldman1_06:
 	_TALK_OBJ_END
 	_END
 
-//É^É}ÉS
+//„Çø„Éû„Ç¥
 ev_r228r0201_oldman1_07:
 	_TALKMSG		msg_r228r0201_oldman1_07
 	_LAST_KEYWAIT
@@ -213,7 +213,7 @@ ev_r228r0201_oldman1_07:
 	_TALK_OBJ_END
 	_END
 
-//Ç»Ç¬Ç´ìxÇ™ë´ÇËÇ»Ç¢
+//„Å™„Å§„ÅçÂ∫¶„ÅåË∂≥„Çä„Å™„ÅÑ
 ev_r228r0201_oldman1_08:
 	_TALKMSG		msg_r228r0201_oldman1_08
 	_LAST_KEYWAIT
@@ -221,7 +221,7 @@ ev_r228r0201_oldman1_08:
 	_TALK_OBJ_END
 	_END
 
-//èKìæçœÇ›
+//ÁøíÂæóÊ∏à„Åø
 ev_r228r0201_oldman1_09:
 	_TALKMSG		msg_r228r0201_oldman1_09
 	_LAST_KEYWAIT
@@ -231,7 +231,7 @@ ev_r228r0201_oldman1_09:
 
 
 /********************************************************************/
-/*							É|ÉXÉ^Å[								*/
+/*							„Éù„Çπ„Çø„Éº								*/
 /********************************************************************/
 ev_r228r0201_poster:
 	_EASY_MSG	msg_r228r0201_poster_01

@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	backup_load.c
- * @brief	ƒoƒbƒNƒAƒbƒv“Ç‚Ýž‚Ý
+ * @brief	ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—èª­ã¿è¾¼ã¿
  * @author	
  * @date	
  */
@@ -41,9 +41,9 @@ extern const PROC_DATA StartMenuProcData;
 FS_EXTERN_OVERLAY( startmenu );
 
 //----------------------------------
-//’è”éŒ¾
+//å®šæ•°å®£è¨€
 //----------------------------------
-// ‚o‚q‚n‚bƒƒCƒ“ƒV[ƒPƒ“ƒX
+// ï¼°ï¼²ï¼¯ï¼£ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	BACKUP_LOAD_SEQ_INIT = 0,
 	BACKUP_LOAD_SEQ_MAIN,
@@ -51,9 +51,9 @@ enum {
 };
 
 //----------------------------------
-//Œ^éŒ¾
+//åž‹å®£è¨€
 //----------------------------------
-///	ƒ^ƒCƒgƒ‹‘S‘Ì§Œä—pƒ[ƒN\‘¢‘Ì
+///	ã‚¿ã‚¤ãƒˆãƒ«å…¨ä½“åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct BACKUP_LOAD_WORK_tag
 {
 	int					heapID; 
@@ -72,19 +72,19 @@ typedef struct BACKUP_LOAD_WORK_tag
 	u32					load_bit;
 }BACKUP_LOAD_WORK;
 
-//ƒƒbƒZ[ƒWŠÖ”“®ìŽw’è’è‹`
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢æ•°å‹•ä½œæŒ‡å®šå®šç¾©
 enum {
 	A_BUTTON_WAIT = 0,
 	A_BUTTON_NOWAIT,
 };
 
 //----------------------------------
-//ŠO•”ŠÖ”’è‹`
+//å¤–éƒ¨é–¢æ•°å®šç¾©
 //----------------------------------
 extern void	Main_SetNextProc(FSOverlayID ov_id, const PROC_DATA * proc_data);
 
 //----------------------------------
-//ŠÖ”éŒ¾
+//é–¢æ•°å®£è¨€
 //----------------------------------
 PROC_RESULT BackupLoad_Init( PROC * proc, int * seq );
 PROC_RESULT BackupLoad_Main( PROC * proc, int * seq );
@@ -100,19 +100,19 @@ static void BackupLoad_MsgDataRelease( BACKUP_LOAD_WORK* wk );
 static BOOL BackupLoad_SubSeq( BACKUP_LOAD_WORK* wk );
 static BOOL BackupLoad_MsgPrint( BACKUP_LOAD_WORK* wk, u32 msgID, int button_mode, int wait );
 //----------------------------------
-//ƒ}ƒNƒéŒ¾
+//ãƒžã‚¯ãƒ­å®£è¨€
 //----------------------------------
 #define FADE( pattern, col, heapID ) {						\
 	WIPE_SYS_Start(	WIPE_PATTERN_WMS,pattern,pattern,col,	\
 					WIPE_DEF_DIV,WIPE_DEF_SYNC,heapID);		\
 }
 
-//‚a‚fƒRƒ“ƒgƒ[ƒ‹’è”
+//ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å®šæ•°
 #define BACKUP_LOAD_TEXT_FRAME	(GF_BGL_FRAME0_M)
 
 //=================================================================================================
 //
-// ‚o‚q‚n‚b’è‹`ƒe[ƒuƒ‹
+// ï¼°ï¼²ï¼¯ï¼£å®šç¾©ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 //=================================================================================================
 const PROC_DATA BackupLoadProcData = {
@@ -124,7 +124,7 @@ const PROC_DATA BackupLoadProcData = {
 
 //================================================================
 //----------------------------------
-//‚o‚q‚n‚b‰Šú‰»
+//ï¼°ï¼²ï¼¯ï¼£åˆæœŸåŒ–
 //----------------------------------
 PROC_RESULT BackupLoad_Init(PROC * proc, int * seq)
 {
@@ -144,7 +144,7 @@ PROC_RESULT BackupLoad_Init(PROC * proc, int * seq)
 }
 
 //----------------------------------
-//‚o‚q‚n‚bƒƒCƒ“
+//ï¼°ï¼²ï¼¯ï¼£ãƒ¡ã‚¤ãƒ³
 //----------------------------------
 PROC_RESULT BackupLoad_Main(PROC * proc, int* seq)
 {
@@ -152,13 +152,13 @@ PROC_RESULT BackupLoad_Main(PROC * proc, int* seq)
 	PROC_RESULT result = PROC_RES_CONTINUE;
 
 	switch( *seq ){
-	// ‰æ–Ê‰Šú‰»
+	// ç”»é¢åˆæœŸåŒ–
 	case BACKUP_LOAD_SEQ_INIT:
 		WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_BLACK );
 		WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 
-		sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-		sys_HBlankIntrSet( NULL,NULL );		// HBlankƒZƒbƒg
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrSet( NULL,NULL );		// HBlankã‚»ãƒƒãƒˆ
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -175,14 +175,14 @@ PROC_RESULT BackupLoad_Main(PROC * proc, int* seq)
 		*seq = BACKUP_LOAD_SEQ_MAIN;
 		break;
 
-	// ƒƒCƒ“ƒ‹[ƒv
+	// ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
 	case BACKUP_LOAD_SEQ_MAIN:
 		if (BackupLoad_SubSeq( wk ) == TRUE ){
 			*seq = BACKUP_LOAD_SEQ_EXIT;
 		}
 		break;
 
-	// I—¹
+	// çµ‚äº†
 	case BACKUP_LOAD_SEQ_EXIT:
 		BackupLoad_MsgDataRelease( wk );
 		BackupLoad_VramBankRelease( wk );
@@ -195,7 +195,7 @@ PROC_RESULT BackupLoad_Main(PROC * proc, int* seq)
 }
 
 //----------------------------------
-//‚o‚q‚n‚bI—¹
+//ï¼°ï¼²ï¼¯ï¼£çµ‚äº†
 //----------------------------------
 PROC_RESULT BackupLoad_Exit(PROC * proc, int * seq)
 {
@@ -212,7 +212,7 @@ PROC_RESULT BackupLoad_Exit(PROC * proc, int * seq)
 
 
 //----------------------------------
-//‚u‚a‚k‚`‚m‚jŠÖ”
+//ï¼¶ï¼¢ï¼¬ï¼¡ï¼®ï¼«é–¢æ•°
 //----------------------------------
 #if 0
 static void BackupLoad_VBlank(void* work)
@@ -225,9 +225,9 @@ static void BackupLoad_VBlank(void* work)
 
 
 //----------------------------------
-//‚u‚q‚`‚lÝ’è
+//ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 //----------------------------------
-#define BACKUP_LOAD_NULL_PALETTE	( 0x6c21 )		//‚a‚fƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒpƒŒƒbƒg
+#define BACKUP_LOAD_NULL_PALETTE	( 0x6c21 )		//ï¼¢ï¼§ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define PALSIZE						( 2*16 )
 
 #define BACKUP_LOAD_TWIN_CGXNUM	(512 - TALK_WIN_CGX_SIZ)
@@ -239,52 +239,52 @@ static void BackupLoad_VBlank(void* work)
 
 static void BackupLoad_VramBankSet( BACKUP_LOAD_WORK* wk )
 {
-	{ //‚u‚q‚`‚lÝ’è
+	{ //ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_256_AB,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_NONE,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_256_AB,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_NONE,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 	}
 
-	{ //‚a‚fƒ‰ƒCƒuƒ‰ƒŠ—pƒƒ‚ƒŠŠm•Û
+	{ //ï¼¢ï¼§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 	}
-	{ // ‚a‚fƒVƒXƒeƒ€Ý’è
+	{ // ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS,GX_BGMODE_0,GX_BGMODE_0,GX_BG0_AS_2D
 		};	
 		GF_BGL_InitBG( &BGsys_data );
 	}
-	{ // ƒƒCƒ“‚a‚fƒVƒXƒeƒ€Ý’è
+	{ // ãƒ¡ã‚¤ãƒ³ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_BGCNT_HEADER hd0 = { 0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 									GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x18000, 
 									GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
 		GF_BGL_BGControlSet( wk->bgl, BACKUP_LOAD_TEXT_FRAME, &hd0, GF_BGL_MODE_TEXT );
 		GF_BGL_ScrClear( wk->bgl, BACKUP_LOAD_TEXT_FRAME );	
 	}
-	//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEƒLƒƒƒ‰•ƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒEƒCƒ“ƒhƒEŠO‘¤j
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¤–å´ï¼‰
 	TalkWinGraphicSet(	wk->bgl, BACKUP_LOAD_TEXT_FRAME,
 						BACKUP_LOAD_TWIN_CGXNUM, BACKUP_LOAD_TWIN_PALNUM,
 						0,wk->heapID);
-	//ƒƒjƒ…[ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰•ƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒEƒCƒ“ƒhƒEŠO‘¤j
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¤–å´ï¼‰
 	MenuWinGraphicSet(	wk->bgl, BACKUP_LOAD_TEXT_FRAME,
 						BACKUP_LOAD_NWIN_CGXNUM, BACKUP_LOAD_NWIN_PALNUM,
 						0,wk->heapID);
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒVƒXƒeƒ€j
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚·ã‚¹ãƒ†ãƒ ï¼‰
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, BACKUP_LOAD_TEXT_PALNUM * PALSIZE, wk->heapID );
 
 	GF_BGL_ClearCharSet( BACKUP_LOAD_TEXT_FRAME, 32, 0, wk->heapID );
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0 );	//”wŒiF‰Šú‰»
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0 );	//”wŒiF‰Šú‰»
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–
 }
 
 static void BackupLoad_VramBankRelease( BACKUP_LOAD_WORK* wk )
@@ -303,11 +303,11 @@ static void BackupLoad_VramBankRelease( BACKUP_LOAD_WORK* wk )
 
 
 //----------------------------------
-//ƒƒbƒZ[ƒWÝ’è
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¨­å®š
 //----------------------------------
-#define BACKUP_LOAD_STRBUF_SIZE	(0x400)	//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define BACKUP_LOAD_STRBUF_SIZE	(0x400)	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define DOTSIZE						(8)
-// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	BACKUP_LOAD_MSG_WIN_PX		(2)
 #define	BACKUP_LOAD_MSG_WIN_PY		(19)
 #define	BACKUP_LOAD_MSG_WIN_SX		(27)
@@ -316,7 +316,7 @@ static void BackupLoad_VramBankRelease( BACKUP_LOAD_WORK* wk )
 #define	BACKUP_LOAD_MSG_WIN_CGX	\
 (BACKUP_LOAD_NWIN_CGXNUM-(BACKUP_LOAD_MSG_WIN_SX*BACKUP_LOAD_MSG_WIN_SY))
 
-// ‚Í‚¢/‚¢‚¢‚¦ƒEƒBƒ“ƒhƒE
+// ã¯ã„/ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	BACKUP_LOAD_YESNO_WIN_PX		(25)
 #define	BACKUP_LOAD_YESNO_WIN_PY		(13)
 #define	BACKUP_LOAD_YESNO_WIN_SX		(6)
@@ -327,31 +327,31 @@ static void BackupLoad_VramBankRelease( BACKUP_LOAD_WORK* wk )
 
 static const BMPWIN_DAT BackupLoadMsgWinData =
 {
-	BACKUP_LOAD_TEXT_FRAME,	//ƒEƒCƒ“ƒhƒEŽg—pƒtƒŒ[ƒ€
-	BACKUP_LOAD_MSG_WIN_PX,BACKUP_LOAD_MSG_WIN_PY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•W
-	BACKUP_LOAD_MSG_WIN_SX,BACKUP_LOAD_MSG_WIN_SY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌXYƒTƒCƒY
-	BACKUP_LOAD_MSG_WIN_PAL,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[ 
-	BACKUP_LOAD_MSG_WIN_CGX,	//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJŽnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	BACKUP_LOAD_TEXT_FRAME,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	BACKUP_LOAD_MSG_WIN_PX,BACKUP_LOAD_MSG_WIN_PY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™
+	BACKUP_LOAD_MSG_WIN_SX,BACKUP_LOAD_MSG_WIN_SY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®XYã‚µã‚¤ã‚º
+	BACKUP_LOAD_MSG_WIN_PAL,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ 
+	BACKUP_LOAD_MSG_WIN_CGX,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 static const BMPWIN_DAT BackupLoadYesNoWinData =
 {
-	BACKUP_LOAD_TEXT_FRAME,	//ƒEƒCƒ“ƒhƒEŽg—pƒtƒŒ[ƒ€
-	BACKUP_LOAD_YESNO_WIN_PX,BACKUP_LOAD_YESNO_WIN_PY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•W
-	BACKUP_LOAD_YESNO_WIN_SX,BACKUP_LOAD_YESNO_WIN_SY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌXYƒTƒCƒY
-	BACKUP_LOAD_YESNO_WIN_PAL,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[ 
-	BACKUP_LOAD_YESNO_WIN_CGX,	//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJŽnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	BACKUP_LOAD_TEXT_FRAME,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	BACKUP_LOAD_YESNO_WIN_PX,BACKUP_LOAD_YESNO_WIN_PY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™
+	BACKUP_LOAD_YESNO_WIN_SX,BACKUP_LOAD_YESNO_WIN_SY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®XYã‚µã‚¤ã‚º
+	BACKUP_LOAD_YESNO_WIN_PAL,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ 
+	BACKUP_LOAD_YESNO_WIN_CGX,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 static void BackupLoad_MsgDataSet( BACKUP_LOAD_WORK* wk )
 {
-	//ƒƒbƒZ[ƒWƒf[ƒ^“Ç‚Ýž‚Ý
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	wk->msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_load_warning_dat,wk->heapID);
-	//ƒƒbƒZ[ƒW•\Ž¦ƒVƒXƒeƒ€‰Šú‰»
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	MSG_PrintInit();
 	wk->msgseq = 0; 
 
-	//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEƒrƒbƒgƒ}ƒbƒvì¬iƒEƒCƒ“ƒhƒE“à‘¤j
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…å´ï¼‰
 	GF_BGL_BmpWinAddEx(wk->bgl,&wk->msgwin,&BackupLoadMsgWinData );
 	GF_BGL_BmpWinFill(	&wk->msgwin,FBMP_COL_WHITE,0,0,//bmp,col,startX,startY,sizeX,sizeY
 						BACKUP_LOAD_MSG_WIN_SX*DOTSIZE,BACKUP_LOAD_MSG_WIN_SY*DOTSIZE);
@@ -360,12 +360,12 @@ static void BackupLoad_MsgDataSet( BACKUP_LOAD_WORK* wk )
 static void BackupLoad_MsgDataRelease( BACKUP_LOAD_WORK* wk )
 {
 	GF_BGL_BmpWinDel(&wk->msgwin);
-	//ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	MSGMAN_Delete(wk->msgman);
 }
 
 //----------------------------------
-//ƒƒCƒ“ƒV[ƒPƒ“ƒX
+//ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //----------------------------------
 enum {
 	BACKUP_LOAD_SUBSEQ_LOADMAIN = 0,
@@ -388,9 +388,9 @@ static BOOL BackupLoad_SubSeq( BACKUP_LOAD_WORK* wk )
 			//LOAD_RESULT load_result = SaveData_GetLoadResult(wk->savedata);
 			wk->load_bit = SaveData_GetLoadResult(wk->savedata);
 			
-			//ƒ[ƒh
+			//ãƒ­ãƒ¼ãƒ‰
 		#if 0
-			//load_result = ƒ[ƒhŠÖ”
+			//load_result = ãƒ­ãƒ¼ãƒ‰é–¢æ•°
 			switch (load_result) {
 			case LOAD_RESULT_OK:
 			case LOAD_RESULT_NULL:
@@ -418,7 +418,7 @@ static BOOL BackupLoad_SubSeq( BACKUP_LOAD_WORK* wk )
 	
 	case BACKUP_LOAD_SUBSEQ_LOADWARING_MSGCHECK:
 		wk->subseq = BACKUP_LOAD_SUBSEQ_LOADWARING_MSGINIT;
-		//•\Ž¦‚µ‚½‚¢ƒƒbƒZ[ƒW‡‚Éƒ`ƒFƒbƒN
+		//è¡¨ç¤ºã—ãŸã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é †ã«ãƒã‚§ãƒƒã‚¯
 		if(wk->load_bit & NORMAL_BREAK_BIT){
 			wk->load_bit &= 0xffffffff ^ (NORMAL_BREAK_BIT | NORMAL_NG_BIT);
 			wk->warningID = warning02;
@@ -484,7 +484,7 @@ static BOOL BackupLoad_SubSeq( BACKUP_LOAD_WORK* wk )
 }
 
 //----------------------------------
-//ƒƒbƒZ[ƒW•\Ž¦
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 //----------------------------------
 static BOOL BackupLoad_MsgPrint( BACKUP_LOAD_WORK* wk, u32 msgID, int button_mode, int wait )
 {
@@ -492,17 +492,17 @@ static BOOL BackupLoad_MsgPrint( BACKUP_LOAD_WORK* wk, u32 msgID, int button_mod
 
 	switch(wk->msgseq){
 	case 0:
-		//—ÌˆæƒNƒŠƒA
+		//é ˜åŸŸã‚¯ãƒªã‚¢
 		GF_BGL_BmpWinFill( &wk->msgwin, FBMP_COL_WHITE, 0, 0,
 						BACKUP_LOAD_MSG_WIN_SX * DOTSIZE, BACKUP_LOAD_MSG_WIN_SY * DOTSIZE );
 		BmpTalkWinWrite( &wk->msgwin, WINDOW_TRANS_ON,
 						BACKUP_LOAD_TWIN_CGXNUM, BACKUP_LOAD_TWIN_PALNUM );
 
-		//•¶Žš—ñƒoƒbƒtƒ@‚Ìì¬
+		//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 		wk->msgstr = STRBUF_Create( BACKUP_LOAD_STRBUF_SIZE, wk->heapID);	
-		//•¶Žš—ñ‚ÌŽæ“¾
+		//æ–‡å­—åˆ—ã®å–å¾—
 		MSGMAN_GetString(wk->msgman,msgID,wk->msgstr);
-		//•¶Žš—ñ‚Ì•\Ž¦iƒƒbƒZ[ƒWƒXƒs[ƒhˆê’èBƒRƒ“ƒtƒBƒOÝ’è‚ª³Šm‚É‚Æ‚ê‚È‚¢‚©‚à‚¾‚©‚çj
+		//æ–‡å­—åˆ—ã®è¡¨ç¤ºï¼ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰ä¸€å®šã€‚ã‚³ãƒ³ãƒ•ã‚£ã‚°è¨­å®šãŒæ­£ç¢ºã«ã¨ã‚Œãªã„ã‹ã‚‚ã ã‹ã‚‰ï¼‰
 		wk->msgID = GF_STR_PrintSimple(	&wk->msgwin,FONT_TALK,wk->msgstr,0,0,wait,NULL);
 		if( wait == 0 ){
 			STRBUF_Delete(wk->msgstr);
@@ -512,7 +512,7 @@ static BOOL BackupLoad_MsgPrint( BACKUP_LOAD_WORK* wk, u32 msgID, int button_mod
 		break;
 
 	case 1:
-		//•¶Žš—ñ•`‰æ‘Ò‚¿
+		//æ–‡å­—åˆ—æç”»å¾…ã¡
 		if(!(GF_MSG_PrintEndCheck(wk->msgID))){
 			STRBUF_Delete(wk->msgstr);
 			wk->msgseq++;
@@ -520,7 +520,7 @@ static BOOL BackupLoad_MsgPrint( BACKUP_LOAD_WORK* wk, u32 msgID, int button_mod
 		break;
 
 	case 2:
-		//I—¹‘Ò‚¿
+		//çµ‚äº†å¾…ã¡
 		if((button_mode != A_BUTTON_WAIT)||(sys.trg & PAD_BUTTON_A)){
 			wk->msgseq = 0;
 			result = TRUE;

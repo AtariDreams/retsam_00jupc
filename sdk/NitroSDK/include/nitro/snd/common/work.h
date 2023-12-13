@@ -15,31 +15,31 @@
   do-indent
 
   Revision 1.18  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL �̔��蕔���� SDK_WIN32 �ł̔�����ǉ�
+  SDK_FROM_TOOL の判定部分に SDK_WIN32 での判定も追加
 
   Revision 1.17  2005/04/12 06:15:15  ida
-  SND��NITRO-SDK�ֈڐ�
+  SNDをNITRO-SDKへ移設
 
   Revision 1.20  2005/04/12 00:54:11  ida
   for SDK_FROM_TOOL
 
   Revision 1.19  2005/02/28 04:12:11  ida
-  prgNo�����o�ǉ�
+  prgNoメンバ追加
 
   Revision 1.18  2005/02/23 06:59:15  ida
-  SNDDriverInfo�̃T�C�Y��32�̔{���ɂȂ�悤�ɕ␳
+  SNDDriverInfoのサイズが32の倍数になるように補正
 
   Revision 1.17  2005/02/17 07:51:33  ida
-  �֐���Get��Read�֕ύX
+  関数名GetをReadへ変更
 
   Revision 1.16  2005/02/16 07:48:10  ida
-  �h���C�o���擾�֐��ǉ�
+  ドライバ情報取得関数追加
 
   Revision 1.15  2005/01/06 04:07:49  ida
-  ���쌠�N���\�L���X�V
+  著作権年次表記を更新
 
   Revision 1.14  2005/01/05 07:08:44  ida
-  SNDSpReg�\���̒ǉ�
+  SNDSpReg構造体追加
 
   Revision 1.13  2004/08/02 05:37:07  ida
   add capture status

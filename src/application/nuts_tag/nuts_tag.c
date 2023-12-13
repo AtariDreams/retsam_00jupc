@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	nuts_tag.c
- * @brief	–Ø‚ÌŽÀƒ^ƒO‰æ–Êˆ—
+ * @brief	æœ¨ã®å®Ÿã‚¿ã‚°ç”»é¢å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	06.01.25
  */
@@ -29,53 +29,53 @@
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-// cm ¨ inch ‚Ì•ÏŠ·Ž®‚ðƒ}ƒNƒ‚É’u‚«Š·‚¦
+// cm â†’ inch ã®å¤‰æ›å¼ã‚’ãƒžã‚¯ãƒ­ã«ç½®ãæ›ãˆ
 #include "localize.h"
 // ----------------------------------------------------------------------------
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	NUTS_TAG_MAX		( 63 )					// ƒ^ƒO”i‚OƒIƒŠƒWƒ“j
+#define	NUTS_TAG_MAX		( 63 )					// ã‚¿ã‚°æ•°ï¼ˆï¼ã‚ªãƒªã‚¸ãƒ³ï¼‰
 
 enum {
-	WIN_NUTS_TITLE = 0,		// u‚«‚Ì‚Ýƒ^ƒOv
-	WIN_NUTS_NAME,			// –Ø‚ÌŽÀ–¼
-	WIN_KARAI,				// –¡F‚©‚ç‚¢
-	WIN_SIBUI,				// –¡F‚µ‚Ô‚¢
-	WIN_AMAI,				// –¡F‚ ‚Ü‚¢
-	WIN_NIGAI,				// –¡F‚É‚ª‚¢
-	WIN_SUPPAI,				// –¡F‚·‚Á‚Ï‚¢
-	WIN_SIZE,				// u‚¨‚¨‚«‚³v
-	WIN_SIZE_NUM,			// ‘å‚«‚³’l
-	WIN_HARD,				// u‚©‚½‚³v
-	WIN_HARD_NUM,			// d‚³’l
-	WIN_INFO,				// à–¾
+	WIN_NUTS_TITLE = 0,		// ã€Œãã®ã¿ã‚¿ã‚°ã€
+	WIN_NUTS_NAME,			// æœ¨ã®å®Ÿå
+	WIN_KARAI,				// å‘³ï¼šã‹ã‚‰ã„
+	WIN_SIBUI,				// å‘³ï¼šã—ã¶ã„
+	WIN_AMAI,				// å‘³ï¼šã‚ã¾ã„
+	WIN_NIGAI,				// å‘³ï¼šã«ãŒã„
+	WIN_SUPPAI,				// å‘³ï¼šã™ã£ã±ã„
+	WIN_SIZE,				// ã€ŒãŠãŠãã•ã€
+	WIN_SIZE_NUM,			// å¤§ãã•å€¤
+	WIN_HARD,				// ã€Œã‹ãŸã•ã€
+	WIN_HARD_NUM,			// ç¡¬ã•å€¤
+	WIN_INFO,				// èª¬æ˜Ž
 	WIN_MAX
 };
 
 typedef struct {
-	VecFx16	lt;		// ¶ã
-	VecFx16	rt;		// ‰Eã
-	VecFx16	lu;		// ¶‰º
-	VecFx16	ru;		// ‰E‰º
+	VecFx16	lt;		// å·¦ä¸Š
+	VecFx16	rt;		// å³ä¸Š
+	VecFx16	lu;		// å·¦ä¸‹
+	VecFx16	ru;		// å³ä¸‹
 }NTAG_CONDISION_VTX;
 
 typedef struct {
-	GF_BGL_INI * bgl;						// BGLƒf[ƒ^
+	GF_BGL_INI * bgl;						// BGLãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_BMPWIN	win[WIN_MAX];			// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^i’Êíj
+	GF_BGL_BMPWIN	win[WIN_MAX];			// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ï¼ˆé€šå¸¸ï¼‰
 
-	MSGDATA_MANAGER * mman;		// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
-	WORDSET * wset;				// ’PŒêƒZƒbƒg
-	NUMFONT * nfnt;				// 8x8ƒtƒHƒ“ƒg
+	MSGDATA_MANAGER * mman;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£
+	WORDSET * wset;				// å˜èªžã‚»ãƒƒãƒˆ
+	NUMFONT * nfnt;				// 8x8ãƒ•ã‚©ãƒ³ãƒˆ
 
-	GF_CAMERA_PTR	camera;		// ƒJƒƒ‰
+	GF_CAMERA_PTR	camera;		// ã‚«ãƒ¡ãƒ©
 
-	NTAG_CONDISION_VTX	cvtx[4];	// •\Ž¦À•W
-	NTAG_CONDISION_VTX	pvtx[4];	// ƒvƒ‰ƒX’l
-	NTAG_CONDISION_VTX	mvtx[4];	// Å‘å’l
+	NTAG_CONDISION_VTX	cvtx[4];	// è¡¨ç¤ºåº§æ¨™
+	NTAG_CONDISION_VTX	pvtx[4];	// ãƒ—ãƒ©ã‚¹å€¤
+	NTAG_CONDISION_VTX	mvtx[4];	// æœ€å¤§å€¤
 	u32	con_mv_cnt;
 
 	NTAG_DATA * dat;
@@ -96,23 +96,23 @@ enum {
 	SEQ_OUT
 };
 
-// ƒpƒŒƒbƒg’è‹`
-#define	NTAG_TITLE_PAL		( 2 )		// u‚«‚Ì‚Ýƒ^ƒOv•¶ŽšƒpƒŒƒbƒg
-#define	NTAG_NUTS_PAL		( 3 )		// –Ø‚ÌŽÀƒOƒ‰ƒtƒBƒbƒNƒpƒŒƒbƒg
-#define	NTAG_SYSFONT_PAL	( 15 )		// ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒg
+// ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
+#define	NTAG_TITLE_PAL		( 2 )		// ã€Œãã®ã¿ã‚¿ã‚°ã€æ–‡å­—ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define	NTAG_NUTS_PAL		( 3 )		// æœ¨ã®å®Ÿã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define	NTAG_SYSFONT_PAL	( 15 )		// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
 
-#define	TITLE_BACK_COL		( 4 )		// u‚«‚Ì‚Ýƒ^ƒOv‚Ì”wŒiƒJƒ‰[
-// ƒtƒHƒ“ƒgƒJƒ‰[
-#define	PCOL_TITLE	(GF_PRINTCOLOR_MAKE(1,2,TITLE_BACK_COL))	// ƒtƒHƒ“ƒgƒJƒ‰[Fu‚«‚Ì‚Ýƒ^ƒOv—p
-#define	PCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
-#define	PCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F”’
-#define	PCOL_N_BLUE		( GF_PRINTCOLOR_MAKE( 7, 8, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÂ
-#define	PCOL_N_RED		( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÔ
+#define	TITLE_BACK_COL		( 4 )		// ã€Œãã®ã¿ã‚¿ã‚°ã€ã®èƒŒæ™¯ã‚«ãƒ©ãƒ¼
+// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+#define	PCOL_TITLE	(GF_PRINTCOLOR_MAKE(1,2,TITLE_BACK_COL))	// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šã€Œãã®ã¿ã‚¿ã‚°ã€ç”¨
+#define	PCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+#define	PCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+#define	PCOL_N_BLUE		( GF_PRINTCOLOR_MAKE( 7, 8, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé’
+#define	PCOL_N_RED		( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šèµ¤
 
 #define	HEADER_STR_FRM		( GF_BGL_FRAME3_M )
 
-// BMPŠÖ˜A
-// –Ø‚ÌŽÀ‚ÌŠGiŽÀÛ‚ÍBMP‚Å‚Í‚È‚¢j
+// BMPé–¢é€£
+// æœ¨ã®å®Ÿã®çµµï¼ˆå®Ÿéš›ã¯BMPã§ã¯ãªã„ï¼‰
 #define	NUTS_GRA_FRM		( GF_BGL_FRAME1_M )
 #define	NUTS_GRA_PX			( 2 )
 #define	NUTS_GRA_PY			( 5 )
@@ -120,7 +120,7 @@ enum {
 #define	NUTS_GRA_SY			( 8 )
 #define	NUTS_GRA_PAL		( NTAG_NUTS_PAL )
 #define	NUTS_GRA_CGX		( 1 )
-// u‚«‚Ì‚Ýƒ^ƒOv
+// ã€Œãã®ã¿ã‚¿ã‚°ã€
 #define	BMP_NUTS_TITLE_FRM	( GF_BGL_FRAME3_M )
 #define	BMP_NUTS_TITLE_PX	( 1 )
 #define	BMP_NUTS_TITLE_PY	( 0 )
@@ -128,7 +128,7 @@ enum {
 #define	BMP_NUTS_TITLE_SY	( 2 )
 #define	BMP_NUTS_TITLE_PAL	( NTAG_TITLE_PAL )
 #define	BMP_NUTS_TITLE_CGX	( 1024 - BMP_NUTS_TITLE_SX * BMP_NUTS_TITLE_SY )
-// –Ø‚ÌŽÀ–¼
+// æœ¨ã®å®Ÿå
 #define	BMP_NUTS_NAME_FRM	( GF_BGL_FRAME1_M )
 #define	BMP_NUTS_NAME_PX	( 1 )
 #define	BMP_NUTS_NAME_PY	( 3 )
@@ -136,7 +136,7 @@ enum {
 #define	BMP_NUTS_NAME_SY	( 2 )
 #define	BMP_NUTS_NAME_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_NUTS_NAME_CGX	( NUTS_GRA_CGX + NUTS_GRA_SX * NUTS_GRA_SY )
-// ‘å‚«‚³’l
+// å¤§ãã•å€¤
 #define	BMP_SIZ_NUM_FRM	( GF_BGL_FRAME1_M )
 #define	BMP_SIZ_NUM_PX	( 8 )
 #define	BMP_SIZ_NUM_PY	( 13 )
@@ -144,7 +144,7 @@ enum {
 #define	BMP_SIZ_NUM_SY	( 2 )
 #define	BMP_SIZ_NUM_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_SIZ_NUM_CGX	( BMP_NUTS_NAME_CGX + BMP_NUTS_NAME_SX * BMP_NUTS_NAME_SY )
-// d‚³’l
+// ç¡¬ã•å€¤
 #define	BMP_HARD_NUM_FRM	( GF_BGL_FRAME1_M )
 #define	BMP_HARD_NUM_PX		( 8 )
 #define	BMP_HARD_NUM_PY		( 15 )
@@ -152,7 +152,7 @@ enum {
 #define	BMP_HARD_NUM_SY		( 2 )
 #define	BMP_HARD_NUM_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_HARD_NUM_CGX	( BMP_SIZ_NUM_CGX + BMP_SIZ_NUM_SX * BMP_SIZ_NUM_SY )
-// à–¾
+// èª¬æ˜Ž
 #define	BMP_INFO_FRM	( GF_BGL_FRAME1_M )
 #define	BMP_INFO_PX		( 2 )
 #define	BMP_INFO_PY		( 17 )
@@ -163,17 +163,17 @@ enum {
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/07
-// –¡ƒOƒ‰ƒt‚ð‘S‘Ì‚É1ƒ^ƒCƒ‹¶‚ÖˆÚ“®‚µAŠe–¡ƒ‰ƒxƒ‹‚Ì•‚ð6ƒ^ƒCƒ‹‚É“ˆê
+// å‘³ã‚°ãƒ©ãƒ•ã‚’å…¨ä½“ã«1ã‚¿ã‚¤ãƒ«å·¦ã¸ç§»å‹•ã—ã€å„å‘³ãƒ©ãƒ™ãƒ«ã®å¹…ã‚’6ã‚¿ã‚¤ãƒ«ã«çµ±ä¸€
 
-// –¡F‚©‚ç‚¢
+// å‘³ï¼šã‹ã‚‰ã„
 #define	BMP_KARAI_FRM	( HEADER_STR_FRM )
 #define	BMP_KARAI_PX	( 18 )
 #define	BMP_KARAI_PY	( 1 )
-#define	BMP_KARAI_SX	( 7 )					// Œ©‚½–Ú‚Í6ƒ^ƒCƒ‹
+#define	BMP_KARAI_SX	( 7 )					// è¦‹ãŸç›®ã¯6ã‚¿ã‚¤ãƒ«
 #define	BMP_KARAI_SY	( 2 )
 #define	BMP_KARAI_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_KARAI_CGX	( 512 )
-// –¡F‚µ‚Ô‚¢
+// å‘³ï¼šã—ã¶ã„
 #define	BMP_SIBUI_FRM	( HEADER_STR_FRM )
 #define	BMP_SIBUI_PX	( 26 )
 #define	BMP_SIBUI_PY	( 6 )
@@ -181,7 +181,7 @@ enum {
 #define	BMP_SIBUI_SY	( 2 )
 #define	BMP_SIBUI_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_SIBUI_CGX	( BMP_KARAI_CGX + BMP_KARAI_SX * BMP_KARAI_SY )
-// –¡F‚ ‚Ü‚¢
+// å‘³ï¼šã‚ã¾ã„
 #define	BMP_AMAI_FRM	( HEADER_STR_FRM )
 #define	BMP_AMAI_PX		( 23 )
 #define	BMP_AMAI_PY		( 12 )
@@ -189,7 +189,7 @@ enum {
 #define	BMP_AMAI_SY		( 2 )
 #define	BMP_AMAI_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_AMAI_CGX	( BMP_SIBUI_CGX + BMP_SIBUI_SX * BMP_SIBUI_SY )
-// –¡F‚É‚ª‚¢
+// å‘³ï¼šã«ãŒã„
 #define	BMP_NIGAI_FRM	( HEADER_STR_FRM )
 #define	BMP_NIGAI_PX	( 14 )
 #define	BMP_NIGAI_PY	( 12 )
@@ -197,7 +197,7 @@ enum {
 #define	BMP_NIGAI_SY	( 2 )
 #define	BMP_NIGAI_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_NIGAI_CGX	( BMP_AMAI_CGX + BMP_AMAI_SX * BMP_AMAI_SY )
-// –¡F‚·‚Á‚Ï‚¢
+// å‘³ï¼šã™ã£ã±ã„
 #define	BMP_SUPPAI_FRM	( HEADER_STR_FRM )
 #define	BMP_SUPPAI_PX	( 11 )
 #define	BMP_SUPPAI_PY	( 6 )
@@ -208,7 +208,7 @@ enum {
 
 // ----------------------------------------------------------------------------
 
-// u‚¨‚¨‚«‚³v
+// ã€ŒãŠãŠãã•ã€
 #define	BMP_SIZE_FRM	( HEADER_STR_FRM )
 #define	BMP_SIZE_PX		( 2 )
 #define	BMP_SIZE_PY		( 13 )
@@ -216,7 +216,7 @@ enum {
 #define	BMP_SIZE_SY		( 2 )
 #define	BMP_SIZE_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_SIZE_CGX	( BMP_SUPPAI_CGX + BMP_SUPPAI_SX * BMP_SUPPAI_SY )
-// u‚©‚½‚³v
+// ã€Œã‹ãŸã•ã€
 #define	BMP_HARD_FRM	( HEADER_STR_FRM )
 #define	BMP_HARD_PX		( 2 )
 #define	BMP_HARD_PY		( 15 )
@@ -226,30 +226,30 @@ enum {
 #define	BMP_HARD_CGX	( BMP_SIZE_CGX + BMP_SIZE_SX * BMP_SIZE_SY )
 
 
-#define	BMP_PUT_SEQ_MAX	( 8 )	// BMP•\Ž¦ƒV[ƒPƒ“ƒXÅ‘å’l
+#define	BMP_PUT_SEQ_MAX	( 8 )	// BMPè¡¨ç¤ºã‚·ãƒ¼ã‚±ãƒ³ã‚¹æœ€å¤§å€¤
 
-#define	NUTS_NAME_PX	( 40 )	// –Ø‚ÌŽÀ–¼•\Ž¦XˆÊ’u
-#define	NAME_NO_PY		( 5 )	// uNo.v•\Ž¦YˆÊ’u
-#define	HARD_PX			( 0 )	// d‚³’l•\Ž¦XˆÊ’u
-#define	SIZE_PX			( 0 )	// ‘å‚«‚³’l•\Ž¦XˆÊ’u
+#define	NUTS_NAME_PX	( 40 )	// æœ¨ã®å®Ÿåè¡¨ç¤ºXä½ç½®
+#define	NAME_NO_PY		( 5 )	// ã€ŒNo.ã€è¡¨ç¤ºYä½ç½®
+#define	HARD_PX			( 0 )	// ç¡¬ã•å€¤è¡¨ç¤ºXä½ç½®
+#define	SIZE_PX			( 0 )	// å¤§ãã•å€¤è¡¨ç¤ºXä½ç½®
 
 
 /*
-	ƒRƒ“ƒfƒBƒVƒ‡ƒ“i–¡jƒQ[ƒW‚Í‚S‚Â‚ÌŽlŠpƒ|ƒŠƒSƒ“‚Å•\Ž¦‚³‚ê‚Ä‚¢‚éB
-	ŽlŠpƒ|ƒŠƒSƒ“‚Ì•À‚Ñ‚Í
-			‚Q@‚P
-			‚R@‚S
-	‚Æ‚È‚Á‚Ä‚¢‚éB
-	’¸“_‚Ì‚h‚c‚Í¶ã‚ð‚P‚Æ‚µ‚ÄŽžŒv‰ñ‚èB
+	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ï¼ˆå‘³ï¼‰ã‚²ãƒ¼ã‚¸ã¯ï¼”ã¤ã®å››è§’ãƒãƒªã‚´ãƒ³ã§è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã€‚
+	å››è§’ãƒãƒªã‚´ãƒ³ã®ä¸¦ã³ã¯
+			ï¼’ã€€ï¼‘
+			ï¼“ã€€ï¼”
+	ã¨ãªã£ã¦ã„ã‚‹ã€‚
+	é ‚ç‚¹ã®ï¼©ï¼¤ã¯å·¦ä¸Šã‚’ï¼‘ã¨ã—ã¦æ™‚è¨ˆå›žã‚Šã€‚
 */
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/08
-// –¡ƒOƒ‰ƒt‚ð‘S‘Ì‚É1ƒ^ƒCƒ‹i8ƒhƒbƒg = 256j¶‚ÖˆÚ“®
-// ƒƒ‚: ƒQ[ƒW‚ÌÀ•WŒ`‚ÍA‰æ–Ê‚Ì’†S‚ðŒ´“_‚Æ‚µA‰Eã’[‚ª (4096, 4096)
+// å‘³ã‚°ãƒ©ãƒ•ã‚’å…¨ä½“ã«1ã‚¿ã‚¤ãƒ«ï¼ˆ8ãƒ‰ãƒƒãƒˆ = 256ï¼‰å·¦ã¸ç§»å‹•
+// ãƒ¡ãƒ¢: ã‚²ãƒ¼ã‚¸ã®åº§æ¨™å½¢ã¯ã€ç”»é¢ã®ä¸­å¿ƒã‚’åŽŸç‚¹ã¨ã—ã€å³ä¸Šç«¯ãŒ (4096, 4096)
 
-// ƒQ[ƒW‚P
-// ’¸“_‚ÌÅ‘åÀ•W
+// ã‚²ãƒ¼ã‚¸ï¼‘
+// é ‚ç‚¹ã®æœ€å¤§åº§æ¨™
 /*
 #define	COND_P1_X1_MAX	( 1664 )
 #define	COND_P1_Y1_MAX	( 2986 )
@@ -268,7 +268,7 @@ enum {
 #define	COND_P1_Y3_MAX	( 167 )
 #define	COND_P1_X4_MAX	( 1664 - 256 )
 #define	COND_P1_Y4_MAX	( 1410 )
-// ’¸“_‚ÌÅ¬À•W
+// é ‚ç‚¹ã®æœ€å°åº§æ¨™
 #define	COND_P1_X1_MIN	( COND_P1_X1_MAX )
 #define	COND_P1_Y1_MIN	( COND_P1_Y4_MAX+(COND_P1_Y1_MAX-COND_P1_Y4_MAX)/8 )
 #define	COND_P1_X2_MIN	( COND_P1_X4_MAX+(COND_P1_X2_MAX-COND_P1_X4_MAX)/8 )
@@ -278,8 +278,8 @@ enum {
 #define	COND_P1_X4_MIN	( COND_P1_X4_MAX )
 #define	COND_P1_Y4_MIN	( COND_P1_Y4_MAX )
 
-// ƒQ[ƒW‚Q
-// ’¸“_‚ÌÅ‘åÀ•W
+// ã‚²ãƒ¼ã‚¸ï¼’
+// é ‚ç‚¹ã®æœ€å¤§åº§æ¨™
 /*
 #define	COND_P2_X1_MAX	( 546 )
 #define	COND_P2_Y1_MAX	( 1876 )
@@ -298,7 +298,7 @@ enum {
 #define	COND_P2_Y3_MAX	( 1410 )
 #define	COND_P2_X4_MAX	( 960  - 256 )
 #define	COND_P2_Y4_MAX	( 167 )
-// ’¸“_‚ÌÅ¬À•W
+// é ‚ç‚¹ã®æœ€å°åº§æ¨™
 #define	COND_P2_X1_MIN	( COND_P2_X3_MAX+(COND_P2_X1_MAX-COND_P2_X3_MAX)/8 )
 #define	COND_P2_Y1_MIN	( COND_P2_Y3_MAX+(COND_P2_Y1_MAX-COND_P2_Y3_MAX)/8 )
 #define	COND_P2_X2_MIN	( COND_P2_X2_MAX )
@@ -308,8 +308,8 @@ enum {
 #define	COND_P2_X4_MIN	( COND_P2_X3_MAX+(COND_P2_X4_MAX-COND_P2_X3_MAX)/8 )
 #define	COND_P2_Y4_MIN	( COND_P2_Y3_MAX+(COND_P2_Y4_MAX-COND_P2_Y3_MAX)/8 )
 
-// ƒQ[ƒW‚R
-// ’¸“_‚ÌÅ‘åÀ•W
+// ã‚²ãƒ¼ã‚¸ï¼“
+// é ‚ç‚¹ã®æœ€å¤§åº§æ¨™
 #define	COND_P3_X1_MAX	( COND_P2_X1_MAX )
 #define	COND_P3_Y1_MAX	( COND_P2_Y1_MAX )
 #define	COND_P3_X2_MAX	( COND_P2_X3_MAX )
@@ -318,7 +318,7 @@ enum {
 #define	COND_P3_Y3_MAX	( COND_P1_Y3_MAX )
 #define	COND_P3_X4_MAX	( COND_P2_X4_MAX )
 #define	COND_P3_Y4_MAX	( COND_P2_Y4_MAX )
-// ’¸“_‚ÌÅ¬À•W
+// é ‚ç‚¹ã®æœ€å°åº§æ¨™
 #define	COND_P3_X1_MIN	( COND_P3_X2_MAX+(COND_P3_X1_MAX-COND_P3_X2_MAX)/8 )
 #define	COND_P3_Y1_MIN	( COND_P3_Y2_MAX+(COND_P3_Y1_MAX-COND_P3_Y2_MAX)/8 )
 #define	COND_P3_X2_MIN	( COND_P3_X2_MAX )
@@ -328,8 +328,8 @@ enum {
 #define	COND_P3_X4_MIN	( COND_P3_X2_MAX+(COND_P3_X4_MAX-COND_P3_X2_MAX)/8 )
 #define	COND_P3_Y4_MIN	( COND_P3_Y2_MAX+(COND_P3_Y4_MAX-COND_P3_Y2_MAX)/8 )
 
-// ƒQ[ƒW‚S
-// ’¸“_‚ÌÅ‘åÀ•W
+// ã‚²ãƒ¼ã‚¸ï¼”
+// é ‚ç‚¹ã®æœ€å¤§åº§æ¨™
 #define	COND_P4_X1_MAX	( COND_P1_X4_MAX )
 #define	COND_P4_Y1_MAX	( COND_P1_Y4_MAX )
 #define	COND_P4_X2_MAX	( COND_P1_X2_MAX )
@@ -338,7 +338,7 @@ enum {
 #define	COND_P4_Y3_MAX	( COND_P1_Y3_MAX )
 #define	COND_P4_X4_MAX	( COND_P2_X4_MAX )
 #define	COND_P4_Y4_MAX	( COND_P2_Y4_MAX )
-// ’¸“_‚ÌÅ¬À•W
+// é ‚ç‚¹ã®æœ€å°åº§æ¨™
 #define	COND_P4_X1_MIN	( COND_P4_X1_MAX )
 #define	COND_P4_Y1_MIN	( COND_P4_Y1_MAX )
 #define	COND_P4_X2_MIN	( COND_P4_X1_MAX+(COND_P4_X2_MAX-COND_P4_X1_MAX)/8 )
@@ -350,21 +350,21 @@ enum {
 
 // ----------------------------------------------------------------------------
 
-#define	COND_PRM_MAX	( 50 )	// ƒpƒ‰ƒ[ƒ^Å‘å’l
+#define	COND_PRM_MAX	( 50 )	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æœ€å¤§å€¤
 
-// ‚Pƒpƒ‰ƒ[ƒ^‚ ‚½‚è‚ÌƒTƒCƒYŒvŽZƒ}ƒNƒ
+// ï¼‘ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚ãŸã‚Šã®ã‚µã‚¤ã‚ºè¨ˆç®—ãƒžã‚¯ãƒ­
 #define	PRM_SIZ(max,min)	( FX_F32_TO_FX16( FX_FX16_TO_F32(max-min)/COND_PRM_MAX ) )
 
-// •\Ž¦À•WŒvŽZ—pƒpƒ‰ƒ[ƒ^
+// è¡¨ç¤ºåº§æ¨™è¨ˆç®—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct {
-	VecFx16	max;	// Å‘åÀ•W
-	VecFx16	min;	// Å¬À•W
-	VecFx16	siz;	// ‚P‚ ‚½‚è‚ÌƒTƒCƒY
+	VecFx16	max;	// æœ€å¤§åº§æ¨™
+	VecFx16	min;	// æœ€å°åº§æ¨™
+	VecFx16	siz;	// ï¼‘ã‚ãŸã‚Šã®ã‚µã‚¤ã‚º
 }CONDITION_VTX_CALC;
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void NutsTagVBlank( void * work );
 
@@ -403,148 +403,148 @@ static void ConditionMaxMake( const CONDITION_VTX_CALC * cnst, VecFx16 * make, u
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 
-// BMPƒf[ƒ^
+// BMPãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT NutsTagBmpData[] =
 {
-	{	// u‚«‚Ì‚Ýƒ^ƒOv
+	{	// ã€Œãã®ã¿ã‚¿ã‚°ã€
 		BMP_NUTS_TITLE_FRM, BMP_NUTS_TITLE_PX, BMP_NUTS_TITLE_PY,
 		BMP_NUTS_TITLE_SX, BMP_NUTS_TITLE_SY, BMP_NUTS_TITLE_PAL, BMP_NUTS_TITLE_CGX
 	},
-	{	// –Ø‚ÌŽÀ–¼
+	{	// æœ¨ã®å®Ÿå
 		BMP_NUTS_NAME_FRM, BMP_NUTS_NAME_PX, BMP_NUTS_NAME_PY,
 		BMP_NUTS_NAME_SX, BMP_NUTS_NAME_SY, BMP_NUTS_NAME_PAL, BMP_NUTS_NAME_CGX
 	},
-	{	// –¡F‚©‚ç‚¢
+	{	// å‘³ï¼šã‹ã‚‰ã„
 		BMP_KARAI_FRM, BMP_KARAI_PX, BMP_KARAI_PY,
 		BMP_KARAI_SX, BMP_KARAI_SY, BMP_KARAI_PAL, BMP_KARAI_CGX
 	},
-	{	// –¡F‚µ‚Ô‚¢
+	{	// å‘³ï¼šã—ã¶ã„
 		BMP_SIBUI_FRM, BMP_SIBUI_PX, BMP_SIBUI_PY,
 		BMP_SIBUI_SX, BMP_SIBUI_SY, BMP_SIBUI_PAL, BMP_SIBUI_CGX
 	},
-	{	// –¡F‚ ‚Ü‚¢
+	{	// å‘³ï¼šã‚ã¾ã„
 		BMP_AMAI_FRM, BMP_AMAI_PX, BMP_AMAI_PY,
 		BMP_AMAI_SX, BMP_AMAI_SY, BMP_AMAI_PAL, BMP_AMAI_CGX
 	},
-	{	// –¡F‚É‚ª‚¢
+	{	// å‘³ï¼šã«ãŒã„
 		BMP_NIGAI_FRM, BMP_NIGAI_PX, BMP_NIGAI_PY,
 		BMP_NIGAI_SX, BMP_NIGAI_SY, BMP_NIGAI_PAL, BMP_NIGAI_CGX
 	},
-	{	// –¡F‚·‚Á‚Ï‚¢
+	{	// å‘³ï¼šã™ã£ã±ã„
 		BMP_SUPPAI_FRM, BMP_SUPPAI_PX, BMP_SUPPAI_PY,
 		BMP_SUPPAI_SX, BMP_SUPPAI_SY, BMP_SUPPAI_PAL, BMP_SUPPAI_CGX
 	},
-	{	// u‚¨‚¨‚«‚³v
+	{	// ã€ŒãŠãŠãã•ã€
 		BMP_SIZE_FRM, BMP_SIZE_PX, BMP_SIZE_PY,
 		BMP_SIZE_SX, BMP_SIZE_SY, BMP_SIZE_PAL, BMP_SIZE_CGX
 	},
-	{	// ‘å‚«‚³’l
+	{	// å¤§ãã•å€¤
 		BMP_SIZ_NUM_FRM, BMP_SIZ_NUM_PX, BMP_SIZ_NUM_PY,
 		BMP_SIZ_NUM_SX, BMP_SIZ_NUM_SY, BMP_SIZ_NUM_PAL, BMP_SIZ_NUM_CGX
 	},
-	{	// u‚©‚½‚³v
+	{	// ã€Œã‹ãŸã•ã€
 		BMP_HARD_FRM, BMP_HARD_PX, BMP_HARD_PY,
 		BMP_HARD_SX, BMP_HARD_SY, BMP_HARD_PAL, BMP_HARD_CGX
 	},
-	{	// d‚³’l
+	{	// ç¡¬ã•å€¤
 		BMP_HARD_NUM_FRM, BMP_HARD_NUM_PX, BMP_HARD_NUM_PY,
 		BMP_HARD_NUM_SX, BMP_HARD_NUM_SY, BMP_HARD_NUM_PAL, BMP_HARD_NUM_CGX
 	},
-	{	// à–¾
+	{	// èª¬æ˜Ž
 		BMP_INFO_FRM, BMP_INFO_PX, BMP_INFO_PY,
 		BMP_INFO_SX, BMP_INFO_SY, BMP_INFO_PAL, BMP_INFO_CGX
 	}
 };
 
-// ƒRƒ“ƒfƒBƒVƒ‡ƒ“i–¡jƒQ[ƒWƒf[ƒ^
+// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ï¼ˆå‘³ï¼‰ã‚²ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
 static const CONDITION_VTX_CALC	ConPrm[][4] =
 {
-	{	// ƒQ[ƒW‚P
-		{	// ¶ã
+	{	// ã‚²ãƒ¼ã‚¸ï¼‘
+		{	// å·¦ä¸Š
 			{ COND_P1_X1_MAX, COND_P1_Y1_MAX, 0 },
 			{ COND_P1_X1_MIN, COND_P1_Y1_MIN, 0 },
 			{ PRM_SIZ(COND_P1_X1_MAX,COND_P1_X1_MIN),PRM_SIZ(COND_P1_Y1_MAX,COND_P1_Y1_MIN),0 }
 		},
-		{	// ‰Eã
+		{	// å³ä¸Š
 			{ COND_P1_X2_MAX, COND_P1_Y2_MAX, 0 },
 			{ COND_P1_X2_MIN, COND_P1_Y2_MIN, 0 },
 			{ PRM_SIZ(COND_P1_X2_MAX,COND_P1_X2_MIN),PRM_SIZ(COND_P1_Y2_MAX,COND_P1_Y2_MIN),0 }
 		},
-		{	// ‰E‰º
+		{	// å³ä¸‹
 			{ COND_P1_X3_MAX, COND_P1_Y3_MAX, 0 },
 			{ COND_P1_X3_MIN, COND_P1_Y3_MIN, 0 },
 			{ PRM_SIZ(COND_P1_X3_MAX,COND_P1_X3_MIN),PRM_SIZ(COND_P1_Y3_MAX,COND_P1_Y3_MIN),0 }
 		},
-		{	// ¶‰º
+		{	// å·¦ä¸‹
 			{ COND_P1_X4_MAX, COND_P1_Y4_MAX, 0 },
 			{ COND_P1_X4_MIN, COND_P1_Y4_MIN, 0 },
 			{ PRM_SIZ(COND_P1_X4_MAX,COND_P1_X4_MIN),PRM_SIZ(COND_P1_Y4_MAX,COND_P1_Y4_MIN),0 }
 		}
 	},
-	{	// ƒQ[ƒW‚Q
-		{	// ¶ã
+	{	// ã‚²ãƒ¼ã‚¸ï¼’
+		{	// å·¦ä¸Š
 			{ COND_P2_X1_MAX, COND_P2_Y1_MAX, 0 },
 			{ COND_P2_X1_MIN, COND_P2_Y1_MIN, 0 },
 			{ PRM_SIZ(COND_P2_X1_MAX,COND_P2_X1_MIN),PRM_SIZ(COND_P2_Y1_MAX,COND_P2_Y1_MIN),0 }
 		},
-		{	// ‰Eã
+		{	// å³ä¸Š
 			{ COND_P2_X2_MAX, COND_P2_Y2_MAX, 0 },
 			{ COND_P2_X2_MIN, COND_P2_Y2_MIN, 0 },
 			{ PRM_SIZ(COND_P2_X2_MAX,COND_P2_X2_MIN),PRM_SIZ(COND_P2_Y2_MAX,COND_P2_Y2_MIN),0 }
 		},
-		{	// ‰E‰º
+		{	// å³ä¸‹
 			{ COND_P2_X3_MAX, COND_P2_Y3_MAX, 0 },
 			{ COND_P2_X3_MIN, COND_P2_Y3_MIN, 0 },
 			{ PRM_SIZ(COND_P2_X3_MAX,COND_P2_X3_MIN),PRM_SIZ(COND_P2_Y3_MAX,COND_P2_Y3_MIN),0 }
 		},
-		{	// ¶‰º
+		{	// å·¦ä¸‹
 			{ COND_P2_X4_MAX, COND_P2_Y4_MAX, 0 },
 			{ COND_P2_X4_MIN, COND_P2_Y4_MIN, 0 },
 			{ PRM_SIZ(COND_P2_X4_MAX,COND_P2_X4_MIN),PRM_SIZ(COND_P2_Y4_MAX,COND_P2_Y4_MIN),0 }
 		}
 	},
-	{	// ƒQ[ƒW‚R
-		{	// ¶ã
+	{	// ã‚²ãƒ¼ã‚¸ï¼“
+		{	// å·¦ä¸Š
 			{ COND_P3_X1_MAX, COND_P3_Y1_MAX, 0 },
 			{ COND_P3_X1_MIN, COND_P3_Y1_MIN, 0 },
 			{ PRM_SIZ(COND_P3_X1_MAX,COND_P3_X1_MIN),PRM_SIZ(COND_P3_Y1_MAX,COND_P3_Y1_MIN),0 }
 		},
-		{	// ‰Eã
+		{	// å³ä¸Š
 			{ COND_P3_X2_MAX, COND_P3_Y2_MAX, 0 },
 			{ COND_P3_X2_MIN, COND_P3_Y2_MIN, 0 },
 			{ PRM_SIZ(COND_P3_X2_MAX,COND_P3_X2_MIN),PRM_SIZ(COND_P3_Y2_MAX,COND_P3_Y2_MIN),0 }
 		},
-		{	// ‰E‰º
+		{	// å³ä¸‹
 			{ COND_P3_X3_MAX, COND_P3_Y3_MAX, 0 },
 			{ COND_P3_X3_MIN, COND_P3_Y3_MIN, 0 },
 			{ PRM_SIZ(COND_P3_X3_MAX,COND_P3_X3_MIN),PRM_SIZ(COND_P3_Y3_MAX,COND_P3_Y3_MIN),0 }
 		},
-		{	// ¶‰º
+		{	// å·¦ä¸‹
 			{ COND_P3_X4_MAX, COND_P3_Y4_MAX, 0 },
 			{ COND_P3_X4_MIN, COND_P3_Y4_MIN, 0 },
 			{ PRM_SIZ(COND_P3_X4_MAX,COND_P3_X4_MIN),PRM_SIZ(COND_P3_Y4_MAX,COND_P3_Y4_MIN),0 }
 		}
 	},
-	{	// ƒQ[ƒW‚S
-		{	// ¶ã
+	{	// ã‚²ãƒ¼ã‚¸ï¼”
+		{	// å·¦ä¸Š
 			{ COND_P4_X1_MAX, COND_P4_Y1_MAX, 0 },
 			{ COND_P4_X1_MIN, COND_P4_Y1_MIN, 0 },
 			{ PRM_SIZ(COND_P4_X1_MAX,COND_P4_X1_MIN),PRM_SIZ(COND_P4_Y1_MAX,COND_P4_Y1_MIN),0 }
 		},
-		{	// ‰Eã
+		{	// å³ä¸Š
 			{ COND_P4_X2_MAX, COND_P4_Y2_MAX, 0 },
 			{ COND_P4_X2_MIN, COND_P4_Y2_MIN, 0 },
 			{ PRM_SIZ(COND_P4_X2_MAX,COND_P4_X2_MIN),PRM_SIZ(COND_P4_Y2_MAX,COND_P4_Y2_MIN),0 }
 		},
-		{	// ‰E‰º
+		{	// å³ä¸‹
 			{ COND_P4_X3_MAX, COND_P4_Y3_MAX, 0 },
 			{ COND_P4_X3_MIN, COND_P4_Y3_MIN, 0 },
 			{ PRM_SIZ(COND_P4_X3_MAX,COND_P4_X3_MIN),PRM_SIZ(COND_P4_Y3_MAX,COND_P4_Y3_MIN),0 }
 		},
-		{	// ¶‰º
+		{	// å·¦ä¸‹
 			{ COND_P4_X4_MAX, COND_P4_Y4_MAX, 0 },
 			{ COND_P4_X4_MIN, COND_P4_Y4_MIN, 0 },
 			{ PRM_SIZ(COND_P4_X4_MAX,COND_P4_X4_MIN),PRM_SIZ(COND_P4_Y4_MAX,COND_P4_Y4_MIN),0 }
@@ -554,17 +554,17 @@ static const CONDITION_VTX_CALC	ConPrm[][4] =
 
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT NutsTagProc_Init( PROC * proc, int * seq )
@@ -572,8 +572,8 @@ PROC_RESULT NutsTagProc_Init( PROC * proc, int * seq )
 	NTAG_WORK * wk;
 	ARCHANDLE* p_handle;
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();				// HBlank’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();				// HBlankåœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -593,31 +593,31 @@ PROC_RESULT NutsTagProc_Init( PROC * proc, int * seq )
 
 	APP_WipeStart( APP_WIPE_IN, HEAPID_NUTSTAG );
 
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ì¬
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ä½œæˆ
 	p_handle = ArchiveDataHandleOpen( ARC_NTAG_GRA, HEAPID_NUTSTAG );
 
-	NutsTagVramBankSet();				// VRAMÝ’è
-	NutsTagBgSet( wk->bgl );			// BGÝ’è
-	NutsTagBgGraphicSet( wk, p_handle );			// BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+	NutsTagVramBankSet();				// VRAMè¨­å®š
+	NutsTagBgSet( wk->bgl );			// BGè¨­å®š
+	NutsTagBgGraphicSet( wk, p_handle );			// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 	NutsTagAlphaSet();
 
 	NutsTagMsgManCreate( wk );
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-	InitTPSystem();						// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	InitTPSystem();						// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPNoBuff(4);
 
 	NutsGraphicSet( wk, p_handle );
 
-	NutsTagBmpWinSet( wk );				// BMPƒEƒBƒ“ƒhƒEÝ’è
+	NutsTagBmpWinSet( wk );				// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	NTAG_BmpPutAll( wk );
 
 	NTAG_CameraInit( wk );
 	NTAG_ConditionParamInit( wk );
 
-	sys_VBlankFuncChange( NutsTagVBlank, wk );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NutsTagVBlank, wk );	// VBlankã‚»ãƒƒãƒˆ
 
-//	Snd_DataSetByScene( SND_SCENE_SUB_BAG, 0, 0 );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒoƒbƒO)(BGMˆøŒp‚¬)
+//	Snd_DataSetByScene( SND_SCENE_SUB_BAG, 0, 0 );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ãƒãƒƒã‚°)(BGMå¼•ç¶™ãŽ)
 
 	WirelessIconEasyUnion();
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );		// MAIN DISP OBJ ON
@@ -629,12 +629,12 @@ PROC_RESULT NutsTagProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT NutsTagProc_Main( PROC * proc, int * seq )
@@ -671,21 +671,21 @@ PROC_RESULT NutsTagProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT NutsTagProc_End( PROC * proc, int * seq )
 {
 	NTAG_WORK * wk  = PROC_GetWork( proc );
 
-	NutsTagBmpWinExit( wk->win );	// BMPƒEƒBƒ“ƒhƒEŠJ•ú
-	NutsTagBgExit( wk->bgl );		// BGLíœ
-	StopTP();						// ƒ^ƒbƒ`ƒpƒlƒ‹I—¹
+	NutsTagBmpWinExit( wk->win );	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
+	NutsTagBgExit( wk->bgl );		// BGLå‰Šé™¤
+	StopTP();						// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµ‚äº†
 
 	NutsTagMsgManDelete( wk );
 
@@ -693,9 +693,9 @@ PROC_RESULT NutsTagProc_End( PROC * proc, int * seq )
 
 	sys_FreeMemoryEz( wk->nuts );
 
-	PROC_FreeWork( proc );					// ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );					// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
 	sys_DeleteHeap( HEAPID_NUTSTAG );
 
@@ -706,9 +706,9 @@ PROC_RESULT NutsTagProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankˆ—
+ * VBlankå‡¦ç†
  *
- * @param	work	ƒ[ƒN
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -725,7 +725,7 @@ static void NutsTagVBlank( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMÝ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -735,29 +735,29 @@ static void NutsTagVBlank( void * work )
 static void NutsTagVramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGÝ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -807,9 +807,9 @@ static void NutsTagBgSet( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -829,9 +829,9 @@ static void NutsTagBgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -850,7 +850,7 @@ static void NutsTagBgGraphicSet( NTAG_WORK * wk, ARCHANDLE* p_handle )
 	ArcUtil_HDL_PalSet(
 		p_handle, NARC_ntag_gra_kinomi_bg_NCLR, PALTYPE_MAIN_BG, 0, 0, HEAPID_NUTSTAG );
 
-	{	// –Ø‚ÌŽÀ‚ÌŠG‚ðƒXƒNƒŠ[ƒ“‚É“WŠJ
+	{	// æœ¨ã®å®Ÿã®çµµã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«å±•é–‹
 		u16	* buf;
 		u32	i;
 
@@ -871,9 +871,9 @@ static void NutsTagBgGraphicSet( NTAG_WORK * wk, ARCHANDLE* p_handle )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”¼“§–¾Ý’è
+ * åŠé€æ˜Žè¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -887,9 +887,9 @@ static void NutsTagAlphaSet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aì¬
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -903,9 +903,9 @@ static void NutsTagMsgManCreate( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aíœ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -919,9 +919,9 @@ static void NutsTagMsgManDelete( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPì¬
+ * BMPä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -937,9 +937,9 @@ static void NutsTagBmpWinSet( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPíœ
+ * BMPå‰Šé™¤
  *
- * @param	win		BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+ * @param	win		BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -955,12 +955,12 @@ static void NutsTagBmpWinExit( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŒÅ’è•¶Žš‚ð’†‰›‚É•\Ž¦
+ * å›ºå®šæ–‡å­—ã‚’ä¸­å¤®ã«è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	widx	ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	midx	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
- * @param	col		ƒJƒ‰[
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	widx	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	midx	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	col		ã‚«ãƒ©ãƒ¼
  *
  * @return	none
  */
@@ -983,9 +983,9 @@ static void NTAG_BmpStrPut( NTAG_WORK * wk, u32 widx, u32 midx, u32 col )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚«‚Ì‚Ýƒ^ƒOv•\Ž¦
+ * ã€Œãã®ã¿ã‚¿ã‚°ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -998,9 +998,9 @@ static void NTAG_BmpTitlePut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚©‚ç‚¢v•\Ž¦
+ * ã€Œã‹ã‚‰ã„ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1013,9 +1013,9 @@ static void NTAG_BmpKaraiPut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚µ‚Ô‚¢v•\Ž¦
+ * ã€Œã—ã¶ã„ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1028,9 +1028,9 @@ static void NTAG_BmpSibuiPut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚ ‚Ü‚¢v•\Ž¦
+ * ã€Œã‚ã¾ã„ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1043,9 +1043,9 @@ static void NTAG_BmpAmaiPut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚É‚ª‚¢v•\Ž¦
+ * ã€Œã«ãŒã„ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1058,9 +1058,9 @@ static void NTAG_BmpNigaiPut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚·‚Á‚Ï‚¢v•\Ž¦
+ * ã€Œã™ã£ã±ã„ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1073,9 +1073,9 @@ static void NTAG_BmpSuppaiPut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Ø‚ÌŽÀ–¼•\Ž¦
+ * æœ¨ã®å®Ÿåè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1093,7 +1093,7 @@ static void NTAG_BmpNutsNamePut( NTAG_WORK * wk )
 	NUMFONT_WriteMark( wk->nfnt, NUMFONT_MARK_NO, win, 0, NAME_NO_PY );
 
 	str = MSGMAN_AllocString( wk->mman, mes_kinomi_tag_03_01 );
-	exp = STRBUF_Create( (2+1)*2, HEAPID_NUTSTAG );	// (2Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰ž)
+	exp = STRBUF_Create( (2+1)*2, HEAPID_NUTSTAG );	// (2æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, wk->dat->now_tag+1, 2, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1112,9 +1112,9 @@ static void NTAG_BmpNutsNamePut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * à–¾•\Ž¦
+ * èª¬æ˜Žè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1138,9 +1138,9 @@ static void NTAG_BmpNutsInfoPut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚©‚½‚³v•\Ž¦
+ * ã€Œã‹ãŸã•ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1163,9 +1163,9 @@ static void NTAG_BmpNutsHardPut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * d‚³’l•\Ž¦
+ * ç¡¬ã•å€¤è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1191,9 +1191,9 @@ static void NTAG_BmpNutsHardNumPut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚¨‚¨‚«‚³v•\Ž¦
+ * ã€ŒãŠãŠãã•ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1216,9 +1216,9 @@ static void NTAG_BmpNutsSizePut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘å‚«‚³’l•\Ž¦
+ * å¤§ãã•å€¤è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1237,9 +1237,9 @@ static void NTAG_BmpNutsSizeNumPut( NTAG_WORK * wk )
 	size = Nuts_ParamGet( wk->nuts, NUTS_PRM_SIZE );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ENGLISH) imatake 2006/11/24
-	// ‚«‚Ì‚Ý‚Ì‘å‚«‚³‚ðƒCƒ“ƒ`Œn‚É•ÏŠ·
+	// ãã®ã¿ã®å¤§ãã•ã‚’ã‚¤ãƒ³ãƒç³»ã«å¤‰æ›
 	// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-	// cm ¨ inch ‚Ì•ÏŠ·Ž®‚ðƒ}ƒNƒ‚É’u‚«Š·‚¦
+	// cm â†’ inch ã®å¤‰æ›å¼ã‚’ãƒžã‚¯ãƒ­ã«ç½®ãæ›ãˆ
 #if (PM_LANG == LANG_ENGLISH)
 	size = PG5_CM_TO_INCH(size);
 #endif
@@ -1261,10 +1261,10 @@ static void NTAG_BmpNutsSizeNumPut( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMP•\Ž¦
+ * BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  * @return	none
  */
@@ -1305,9 +1305,9 @@ static void NTAG_BmpPut( NTAG_WORK * wk, u8 seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMP•\Ž¦i‘S‚Äj
+ * BMPè¡¨ç¤ºï¼ˆå…¨ã¦ï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1324,11 +1324,11 @@ static void NTAG_BmpPutAll( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šåˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int SeqInFunc( NTAG_WORK * wk )
@@ -1342,11 +1342,11 @@ static int SeqInFunc( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒRƒ“ƒgƒ[ƒ‹
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int SeqMainFunc( NTAG_WORK * wk )
@@ -1397,11 +1397,11 @@ static int SeqMainFunc( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFI—¹
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 SeqOutFunc( NTAG_WORK * wk )
@@ -1411,11 +1411,11 @@ static u8 SeqOutFunc( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒ^ƒOØ‚è‘Ö‚¦
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚¿ã‚°åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int SeqChangeFunc( NTAG_WORK * wk )
@@ -1445,9 +1445,9 @@ static int SeqChangeFunc( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Ø‚ÌŽÀƒOƒ‰ƒtƒBƒbƒN“]‘—
+ * æœ¨ã®å®Ÿã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1464,11 +1464,11 @@ static void NutsGraphicSet( NTAG_WORK * wk, ARCHANDLE* p_handle )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Ø‚ÌŽÀ‚ÌŠG‚ÌƒLƒƒƒ‰‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾
+ * æœ¨ã®å®Ÿã®çµµã®ã‚­ãƒ£ãƒ©ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
- * @param	id		–Ø‚ÌŽÀ”Ô†
+ * @param	id		æœ¨ã®å®Ÿç•ªå·
  *
- * @return	ƒLƒƒƒ‰‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚­ãƒ£ãƒ©ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32	NutsCgxArcGet( u32 id )
@@ -1478,11 +1478,11 @@ u32	NutsCgxArcGet( u32 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Ø‚ÌŽÀ‚ÌŠG‚ÌƒLƒƒƒ‰‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾iƒAƒCƒeƒ€”Ô†j
+ * æœ¨ã®å®Ÿã®çµµã®ã‚­ãƒ£ãƒ©ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—ï¼ˆã‚¢ã‚¤ãƒ†ãƒ ç•ªå·ï¼‰
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @return	ƒLƒƒƒ‰‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚­ãƒ£ãƒ©ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32 NutsCgxArcGet_Item( u32 item )
@@ -1493,11 +1493,11 @@ u32 NutsCgxArcGet_Item( u32 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Ø‚ÌŽÀ‚ÌŠG‚ÌƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾
+ * æœ¨ã®å®Ÿã®çµµã®ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
- * @param	id		–Ø‚ÌŽÀ”Ô†
+ * @param	id		æœ¨ã®å®Ÿç•ªå·
  *
- * @return	ƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32	NutsPalArcGet( u32 id )
@@ -1507,11 +1507,11 @@ u32	NutsPalArcGet( u32 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Ø‚ÌŽÀ‚ÌŠG‚ÌƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXŽæ“¾iƒAƒCƒeƒ€”Ô†j
+ * æœ¨ã®å®Ÿã®çµµã®ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—ï¼ˆã‚¢ã‚¤ãƒ†ãƒ ç•ªå·ï¼‰
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @return	ƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32 NutsPalArcGet_Item( u32 item )
@@ -1522,13 +1522,13 @@ u32 NutsPalArcGet_Item( u32 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŽŸ‚Ìƒ^ƒO‚ðŽæ“¾
+ * æ¬¡ã®ã‚¿ã‚°ã‚’å–å¾—
  *
- * @param	tbl		•\Ž¦ƒe[ƒuƒ‹
- * @param	now		•\Ž¦’†‚Ìƒ^ƒOID
- * @param	mv		Ø‚è‘Ö‚¦•ûŒü
+ * @param	tbl		è¡¨ç¤ºãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	now		è¡¨ç¤ºä¸­ã®ã‚¿ã‚°ID
+ * @param	mv		åˆ‡ã‚Šæ›¿ãˆæ–¹å‘
  *
- * @return	ŽŸ‚Ìƒ^ƒOID
+ * @return	æ¬¡ã®ã‚¿ã‚°ID
  */
 //--------------------------------------------------------------------------------------------
 static u32 NextTagGet( u32 * tbl, u32 now, s32 mv )
@@ -1566,9 +1566,9 @@ static u32 NextTagGet( u32 * tbl, u32 now, s32 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒOØ‚è‘Ö‚¦
+ * ã‚¿ã‚°åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1592,12 +1592,12 @@ static void TagChange( NTAG_WORK * wk )
 
 
 //============================================================================================
-//	3DŠÖ˜A
+//	3Dé–¢é€£
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * 3DŠÖ˜A‰Šú‰»
+ * 3Dé–¢é€£åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1606,7 +1606,7 @@ static void TagChange( NTAG_WORK * wk )
 //--------------------------------------------------------------------------------------------
 static void NTAG_3DInit(void)
 {
-	// ‰Šú‰»iNITRO-SDK‚ÌƒTƒ“ƒvƒ‹‚©‚çj
+	// åˆæœŸåŒ–ï¼ˆNITRO-SDKã®ã‚µãƒ³ãƒ—ãƒ«ã‹ã‚‰ï¼‰
 	G3X_Init();
 	G3X_InitMtxStack();
 	G3X_SetShading( GX_SHADING_TOON );
@@ -1625,9 +1625,9 @@ static void NTAG_3DInit(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * 3DŠÖ˜AƒƒCƒ“
+ * 3Dé–¢é€£ãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1651,23 +1651,23 @@ static void NTAG_3DMain( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * 3DŠÖ˜Aíœ
+ * 3Dé–¢é€£å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void NTAG_3DRelease( NTAG_WORK * wk )
 {
-	GFC_FreeCamera( wk->camera );	// ƒJƒƒ‰íœ
+	GFC_FreeCamera( wk->camera );	// ã‚«ãƒ¡ãƒ©å‰Šé™¤
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒJƒƒ‰Ý’è
+ * ã‚«ãƒ¡ãƒ©è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1682,16 +1682,16 @@ static void NTAG_CameraInit( NTAG_WORK * wk )
 	wk->camera = GFC_AllocCamera( HEAPID_NUTSTAG );
 
 	GFC_InitCameraCDA( &camera_pos, distance, &angle, perspway, GF_CAMERA_ORTHO, wk->camera );
-	GFC_SetCameraClip( 0, FX32_CONST(100), wk->camera );	// ƒNƒŠƒbƒvÝ’è(near-far)
+	GFC_SetCameraClip( 0, FX32_CONST(100), wk->camera );	// ã‚¯ãƒªãƒƒãƒ—è¨­å®š(near-far)
 	GFC_PurgeCameraTarget( wk->camera );
 	GFC_AttachCamera( wk->camera );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW•\Ž¦
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	vtx		ƒ|ƒŠƒSƒ“•\Ž¦À•W
+ * @param	vtx		ãƒãƒªã‚´ãƒ³è¡¨ç¤ºåº§æ¨™
  *
  * @return	none
  */
@@ -1844,10 +1844,10 @@ static void ConditionGagePut( NTAG_CONDISION_VTX * vtx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •\Ž¦À•W•ÏX
+ * è¡¨ç¤ºåº§æ¨™å¤‰æ›´
  *
- * @param	p		•\Ž¦À•W
- * @param	m		•ÏX’l
+ * @param	p		è¡¨ç¤ºåº§æ¨™
+ * @param	m		å¤‰æ›´å€¤
  *
  * @return	none
  */
@@ -1861,9 +1861,9 @@ static void ConditionParamPlus( VecFx16 * p, VecFx16 * m )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW“®ì
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸å‹•ä½œ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1892,9 +1892,9 @@ static void NTAG_ConditionPlus( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW‰Šú‰»
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1928,11 +1928,11 @@ static void NTAG_ConditionParamInit( NTAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒWÅ‘å’lƒZƒbƒg
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸æœ€å¤§å€¤ã‚»ãƒƒãƒˆ
  *
- * @param	cnst	À•Wƒf[ƒ^
- * @param	make	ì¬êŠ
- * @param	prm		ƒpƒ‰ƒ[
+ * @param	cnst	åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+ * @param	make	ä½œæˆå ´æ‰€
+ * @param	prm		ãƒ‘ãƒ©ãƒ¡ãƒ¼
  *
  * @return	none
  */
@@ -1952,11 +1952,11 @@ static void ConditionMaxMake( const CONDITION_VTX_CALC * cnst, VecFx16 * make, u
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW“®ì’lƒZƒbƒg
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸å‹•ä½œå€¤ã‚»ãƒƒãƒˆ
  *
- * @param	now		Œ»Ý‚ÌÀ•W
- * @param	max		Å‘åÀ•W
- * @param	move	‚P‚ ‚½‚è‚Ì“®ì’l
+ * @param	now		ç¾åœ¨ã®åº§æ¨™
+ * @param	max		æœ€å¤§åº§æ¨™
+ * @param	move	ï¼‘ã‚ãŸã‚Šã®å‹•ä½œå€¤
  *
  * @return	none
  */
@@ -1970,9 +1970,9 @@ static void ConditionMoveMake( VecFx16 * now, VecFx16 * max, VecFx16 * move )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒQ[ƒW“®ìƒpƒ‰ƒ[ƒ^ì¬
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚²ãƒ¼ã‚¸å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1981,7 +1981,7 @@ static void NTAG_ConditionParamMake( NTAG_WORK * wk )
 {
 	u32	i;
 
-	// Å‘å’l‚ðƒZƒbƒg
+	// æœ€å¤§å€¤ã‚’ã‚»ãƒƒãƒˆ
 	ConditionMaxMake( &ConPrm[0][0], &wk->mvtx[0].lt, Nuts_ParamGet(wk->nuts,NUTS_PRM_KARAI) );
 	ConditionMaxMake( &ConPrm[0][1], &wk->mvtx[0].rt, Nuts_ParamGet(wk->nuts,NUTS_PRM_SIBUI) );
 	ConditionMaxMake( &ConPrm[0][2], &wk->mvtx[0].ru, Nuts_ParamGet(wk->nuts,NUTS_PRM_AMAI) );
@@ -2002,7 +2002,7 @@ static void NTAG_ConditionParamMake( NTAG_WORK * wk )
 	ConditionMaxMake( &ConPrm[3][2], &wk->mvtx[3].ru, Nuts_ParamGet(wk->nuts,NUTS_PRM_AMAI) );
 	ConditionMaxMake( &ConPrm[3][3], &wk->mvtx[3].lu, Nuts_ParamGet(wk->nuts,NUTS_PRM_NIGAI) );
 
-	// ƒvƒ‰ƒX’l‚ðŒvŽZ
+	// ãƒ—ãƒ©ã‚¹å€¤ã‚’è¨ˆç®—
 	for( i=0; i<4; i++ ){
 		ConditionMoveMake( &wk->cvtx[i].lt, &wk->mvtx[i].lt, &wk->pvtx[i].lt );
 		ConditionMoveMake( &wk->cvtx[i].rt, &wk->mvtx[i].rt, &wk->pvtx[i].rt );

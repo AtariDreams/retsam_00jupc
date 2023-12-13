@@ -2,7 +2,7 @@
   Project:  PokemonDS
   File:     camera.c
 
-  Šî–{ƒJƒƒ‰ƒVƒXƒeƒ€
+  åŸºæœ¬ã‚«ãƒ¡ãƒ©ã‚·ã‚¹ãƒ†ãƒ 
 
  *---------------------------------------------------------------------------*/
 
@@ -13,50 +13,50 @@
 #include "calc3d.h"
 #include "assert.h"
 
-GXBufferMode	SwapBuffMode = GX_BUFFERMODE_W;		// ƒXƒƒbƒvƒoƒbƒtƒ@ƒ‚[ƒh
+GXBufferMode	SwapBuffMode = GX_BUFFERMODE_W;		// ã‚¹ãƒ¯ãƒƒãƒ—ãƒãƒƒãƒ•ã‚¡ãƒ¢ãƒ¼ãƒ‰
 
 /*---------------------------------------------------------------------------*
-	LookAt\‘¢‘Ì
+	LookAtæ§‹é€ ä½“
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-	VecFx32		camPos;					// ƒJƒƒ‰‚ÌˆÊ’u(‹“_)
-	VecFx32		target;					// ƒJƒƒ‰‚ÌÅ“_(’‹“_)
-	VecFx32		camUp;					// ƒJƒƒ‰‚Ìã•ûŒü
+	VecFx32		camPos;					// ã‚«ãƒ¡ãƒ©ã®ä½ç½®(ï¼è¦–ç‚¹)
+	VecFx32		target;					// ã‚«ãƒ¡ãƒ©ã®ç„¦ç‚¹(ï¼æ³¨è¦–ç‚¹)
+	VecFx32		camUp;					// ã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘
 
 } GF_CAMERA_LOOKAT;
 
 /*---------------------------------------------------------------------------*
-	Vw3Persp\‘¢‘Ì
+	Vw3Perspæ§‹é€ ä½“
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-	fx32		fovySin;			// ‹–ìŠp/2‚Ì³Œ·‚ğ‚Æ‚Á‚½’l
-    fx32		fovyCos;			// ‹–ìŠp/2‚Ì—]Œ·‚ğ‚Æ‚Á‚½’l
-    fx32		aspect;				// ƒAƒXƒyƒNƒg”ä
-    fx32		nearClip;			// ‹“_‚©‚çnearƒNƒŠƒbƒv–Ê‚Ü‚Å‚Ì‹——£
-    fx32		farClip;			// ‹“_‚©‚çfarƒNƒŠƒbƒv–Ê‚Ü‚Å‚Ì‹——£
+	fx32		fovySin;			// è¦–é‡è§’/2ã®æ­£å¼¦ã‚’ã¨ã£ãŸå€¤
+    fx32		fovyCos;			// è¦–é‡è§’/2ã®ä½™å¼¦ã‚’ã¨ã£ãŸå€¤
+    fx32		aspect;				// ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”
+    fx32		nearClip;			// è¦–ç‚¹ã‹ã‚‰nearã‚¯ãƒªãƒƒãƒ—é¢ã¾ã§ã®è·é›¢
+    fx32		farClip;			// è¦–ç‚¹ã‹ã‚‰farã‚¯ãƒªãƒƒãƒ—é¢ã¾ã§ã®è·é›¢
 
 } GF_CAMERA_PERSP;
 
 /*---------------------------------------------------------------------------*
-	ƒJƒƒ‰ƒgƒŒ[ƒX\‘¢‘Ì
+	ã‚«ãƒ¡ãƒ©ãƒˆãƒ¬ãƒ¼ã‚¹æ§‹é€ ä½“
  *---------------------------------------------------------------------------*/
 typedef struct GF_CAMERA_TRACE_tag
 {
 	int HistNum;
 	int CamPoint;
 	int TargetPoint;
-	int Delay;			//’x‰„ŠÔ
-	BOOL UpdateFlg;		//XVŠJnƒtƒ‰ƒO
-	BOOL ValidX;		//X’x‰„‚ğ—LŒø‚É‚·‚é‚©‚Ìƒtƒ‰ƒO
-	BOOL ValidY;		//Y’x‰„‚ğ—LŒø‚É‚·‚é‚©‚Ìƒtƒ‰ƒO
-	BOOL ValidZ;		//Z’x‰„‚ğ—LŒø‚É‚·‚é‚©‚Ìƒtƒ‰ƒO
+	int Delay;			//é…å»¶æ™‚é–“
+	BOOL UpdateFlg;		//æ›´æ–°é–‹å§‹ãƒ•ãƒ©ã‚°
+	BOOL ValidX;		//Xé…å»¶ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
+	BOOL ValidY;		//Yé…å»¶ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
+	BOOL ValidZ;		//Zé…å»¶ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
 	VecFx32 *HistPos;
 }GF_CAMERA_TRACE;
 
 /*---------------------------------------------------------------------------*
-	ƒJƒƒ‰\‘¢‘Ì
+	ã‚«ãƒ¡ãƒ©æ§‹é€ ä½“
  *---------------------------------------------------------------------------*/
 typedef struct GF_CAMERA_tag
 {
@@ -76,15 +76,15 @@ typedef struct GF_CAMERA_tag
 } GF_CAMERA;
 
 /*---------------------------------------------------------------------------*
-	static•Ï”
+	staticå¤‰æ•°
  *---------------------------------------------------------------------------*/
-static GF_CAMERA_PTR 	GF_Camera = NULL;        // ƒJƒƒ‰\‘¢‘Ìƒ|ƒCƒ“ƒ^
+static GF_CAMERA_PTR 	GF_Camera = NULL;        // ã‚«ãƒ¡ãƒ©æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰ˆÊ’u‚ğ’‹“_A‹——£AƒAƒ“ƒOƒ‹‚©‚çZo‚·‚é
+ * @brief	ã‚«ãƒ¡ãƒ©ä½ç½®ã‚’æ³¨è¦–ç‚¹ã€è·é›¢ã€ã‚¢ãƒ³ã‚°ãƒ«ã‹ã‚‰ç®—å‡ºã™ã‚‹
  * 
- * @param	camera_ptr	ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr	ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -92,9 +92,9 @@ static GF_CAMERA_PTR 	GF_Camera = NULL;        // ƒJƒƒ‰\‘¢‘Ìƒ|ƒCƒ“ƒ^
 static void SetCamPosByTarget_Dist_Ang(GF_CAMERA_PTR camera_ptr)
 {
 	u16 angle_x;
-	//‹ÂŠpË’n–Ê‚©‚ç‚ÌŒX‚«‚É•ÏŠ·
+	//ä»°è§’â‡’åœ°é¢ã‹ã‚‰ã®å‚¾ãã«å¤‰æ›
 	angle_x = -camera_ptr->Angle.x;
-	/*== ƒJƒƒ‰À•W‚ğ‹‚ß‚é ==*/
+	/*== ã‚«ãƒ¡ãƒ©åº§æ¨™ã‚’æ±‚ã‚ã‚‹ ==*/
 	camera_ptr->lookat.camPos.x = FX_Mul( FX_Mul( FX_SinIdx( camera_ptr->Angle.y ), camera_ptr->Distance ), FX_CosIdx( camera_ptr->Angle.x ) );
 	
 	camera_ptr->lookat.camPos.z =
@@ -106,7 +106,7 @@ static void SetCamPosByTarget_Dist_Ang(GF_CAMERA_PTR camera_ptr)
 	
 	camera_ptr->lookat.camPos.y = FX_Mul( FX_SinIdx( angle_x ), camera_ptr->Distance );
 
-	/*== ‹“_‚©‚ç‚Ì‹——£‚É‚·‚é ==*/
+	/*== è¦–ç‚¹ã‹ã‚‰ã®è·é›¢ã«ã™ã‚‹ ==*/
 	VEC_Add(&camera_ptr->lookat.camPos,&camera_ptr->lookat.target,&camera_ptr->lookat.camPos);
 	//camera_ptr->lookat.camPos.x += camera_ptr->lookat.target.x;
 	//camera_ptr->lookat.camPos.y += camera_ptr->lookat.target.y;
@@ -116,9 +116,9 @@ static void SetCamPosByTarget_Dist_Ang(GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	’‹“_‚ğƒJƒƒ‰ˆÊ’uA‹——£AƒAƒ“ƒOƒ‹‚©‚çZo‚·‚é
+ * @brief	æ³¨è¦–ç‚¹ã‚’ã‚«ãƒ¡ãƒ©ä½ç½®ã€è·é›¢ã€ã‚¢ãƒ³ã‚°ãƒ«ã‹ã‚‰ç®—å‡ºã™ã‚‹
  * 
- * @param	camera_ptr	ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr	ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -126,7 +126,7 @@ static void SetCamPosByTarget_Dist_Ang(GF_CAMERA_PTR camera_ptr)
 static void SetTargetByCamPos_Dist_Ang(GF_CAMERA_PTR camera_ptr)
 {
 	u16 angle_x;
-	//‹ÂŠpË’n–Ê‚©‚ç‚ÌŒX‚«‚É•ÏŠ·
+	//ä»°è§’â‡’åœ°é¢ã‹ã‚‰ã®å‚¾ãã«å¤‰æ›
 	angle_x = -camera_ptr->Angle.x;
 	camera_ptr->lookat.target.x = -FX_Mul( FX_Mul( FX_SinIdx( camera_ptr->Angle.y ), camera_ptr->Distance ), FX_CosIdx( camera_ptr->Angle.x ) );
 	camera_ptr->lookat.target.z = -FX_Mul( FX_Mul( FX_CosIdx( camera_ptr->Angle.y ), camera_ptr->Distance ), FX_CosIdx( camera_ptr->Angle.x ) );
@@ -136,31 +136,31 @@ static void SetTargetByCamPos_Dist_Ang(GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‰Šú‰»‹¤’Êˆ—
+ * @brief	ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–å…±é€šå‡¦ç†
  * 
- * @param	inPerspway	ƒp[ƒX
- * @param	camera_ptr	ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inPerspway	ãƒ‘ãƒ¼ã‚¹
+ * @param	camera_ptr	ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
 //---------------------------------------------------------------------------
 static void InitCameraCommon(const u16 inPerspWay,GF_CAMERA_PTR camera_ptr){
-	//‹–ìŠpƒZƒbƒg
+	//è¦–é‡è§’ã‚»ãƒƒãƒˆ
 	camera_ptr->PerspWay = inPerspWay;
 	camera_ptr->persp.fovySin  = FX_SinIdx( inPerspWay );
 	camera_ptr->persp.fovyCos  = FX_CosIdx( inPerspWay );
-	//ƒAƒXƒyƒNƒg”äƒZƒbƒg
+	//ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”ã‚»ãƒƒãƒˆ
 	camera_ptr->persp.aspect   = FX32_ONE * 4 / 3;
-	//ƒjƒAEƒtƒ@[ƒNƒŠƒbƒv‚ğƒZƒbƒg
+	//ãƒ‹ã‚¢ãƒ»ãƒ•ã‚¡ãƒ¼ã‚¯ãƒªãƒƒãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	camera_ptr->persp.nearClip = FX32_ONE * 150;
 	camera_ptr->persp.farClip  = FX32_ONE * 900;
 	
-	//ƒJƒƒ‰‚Ìã•ûŒü‚ğİ’è
+	//ã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘ã‚’è¨­å®š
 	camera_ptr->lookat.camUp.x =  0;
 	camera_ptr->lookat.camUp.y =  FX32_ONE;
 	camera_ptr->lookat.camUp.z =  0;
 	
-	//ƒJƒƒ‰‚ª•ß‚ç‚¦‚é‘ÎÛ•¨‚ÌÀ•W‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ‰Šú‰»
+	//ã‚«ãƒ¡ãƒ©ãŒæ•ã‚‰ãˆã‚‹å¯¾è±¡ç‰©ã®åº§æ¨™ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’åˆæœŸåŒ–
 	camera_ptr->BindTarget = NULL;
 	
 	camera_ptr->XBind = FALSE;
@@ -172,10 +172,10 @@ static void InitCameraCommon(const u16 inPerspWay,GF_CAMERA_PTR camera_ptr){
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒoƒCƒ“ƒh’²®
+ * @brief	ãƒã‚¤ãƒ³ãƒ‰èª¿æ•´
  * 
- * @param	inCamera	ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
- * @param	outVec		ƒoƒCƒ“ƒh·•ª
+ * @param	inCamera	ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
+ * @param	outVec		ãƒã‚¤ãƒ³ãƒ‰å·®åˆ†
  * 
  * @return	none
  */
@@ -195,11 +195,11 @@ static void FixBindValid(GF_CAMERA_CONST_PTR inCamera, VecFx32 *outVec)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒXƒf[ƒ^‚ÌXV
+ * @brief	ãƒˆãƒ¬ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã®æ›´æ–°
  * 
- * @param	camera_ptr	ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
- * @param	inVec		ƒoƒbƒtƒ@‚ÉŠi”[‚·‚éÀ•W
- * @param	outVec		“K—pÀ•W
+ * @param	camera_ptr	ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
+ * @param	inVec		ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã™ã‚‹åº§æ¨™
+ * @param	outVec		é©ç”¨åº§æ¨™
  * 
  * @return	none
  */
@@ -219,24 +219,24 @@ static void UpdateTraceData(GF_CAMERA_CONST_PTR camera_ptr, const VecFx32 *inVec
 				camera_ptr->Trace->UpdateFlg = TRUE;
 			}
 		}else{
-			//—š—ğƒf[ƒ^‚©‚çÀ•Wæ“¾
+			//å±¥æ­´ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åº§æ¨™å–å¾—
 			(*outVec) = camera_ptr->Trace->HistPos[(*cam)];
 		}
-		//QÆˆÊ’uXV
+		//å‚ç…§ä½ç½®æ›´æ–°
 		(*cam) = ((*cam)+1)%camera_ptr->Trace->HistNum;
-		//—š—ğ‚ÉÏ‚Ş
+		//å±¥æ­´ã«ç©ã‚€
 		camera_ptr->Trace->HistPos[(*target)] = (*inVec);
-		//‘‚«Š·‚¦ˆÊ’uXV
+		//æ›¸ãæ›ãˆä½ç½®æ›´æ–°
 		(*target) = ((*target)+1)%camera_ptr->Trace->HistNum;
 		
-		//ƒgƒŒ[ƒXƒf[ƒ^‚Ì–³ŒøÀ•W²‚ÍA‚»‚Ì‚Ü‚ÜŒ»İÀ•W‚ğÌ—p
-		if (!camera_ptr->Trace->ValidX){	//‚˜–³Œø”»’è
+		//ãƒˆãƒ¬ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ç„¡åŠ¹åº§æ¨™è»¸ã¯ã€ãã®ã¾ã¾ç¾åœ¨åº§æ¨™ã‚’æ¡ç”¨
+		if (!camera_ptr->Trace->ValidX){	//ï½˜ç„¡åŠ¹åˆ¤å®š
 			outVec->x = inVec->x;
 		}
-		if (!camera_ptr->Trace->ValidY){	//‚™–³Œø”»’è
+		if (!camera_ptr->Trace->ValidY){	//ï½™ç„¡åŠ¹åˆ¤å®š
 			outVec->y = inVec->y;
 		}
-		if (!camera_ptr->Trace->ValidZ){	//‚š–³Œø”»’è
+		if (!camera_ptr->Trace->ValidZ){	//ï½šç„¡åŠ¹åˆ¤å®š
 			outVec->z = inVec->z;
 		}
 	}
@@ -244,13 +244,13 @@ static void UpdateTraceData(GF_CAMERA_CONST_PTR camera_ptr, const VecFx32 *inVec
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒX\‘¢‘Ì‚ÌƒAƒƒP[ƒVƒ‡ƒ“@ƒJƒƒ‰‚ª‘ÎÛ•¨‚ÉƒoƒCƒ“ƒhÏ‚İ‚Å‚ ‚é‚±‚Æ
+ * @brief	ãƒˆãƒ¬ãƒ¼ã‚¹æ§‹é€ ä½“ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã€€ã‚«ãƒ¡ãƒ©ãŒå¯¾è±¡ç‰©ã«ãƒã‚¤ãƒ³ãƒ‰æ¸ˆã¿ã§ã‚ã‚‹ã“ã¨
  * 
- * @param	inHistNum		ƒoƒbƒtƒ@ƒTƒCƒY
- * @param	inDelay			’x‰„“x‡‚¢
- * @param	inTraceMask		ƒgƒŒ[ƒXƒ}ƒXƒN	camera.h‚É’è‹`
- * @param	inHeapID		ƒq[ƒvID
- * @param	ioCamera		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inHistNum		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ * @param	inDelay			é…å»¶åº¦åˆã„
+ * @param	inTraceMask		ãƒˆãƒ¬ãƒ¼ã‚¹ãƒã‚¹ã‚¯	camera.hã«å®šç¾©
+ * @param	inHeapID		ãƒ’ãƒ¼ãƒ—ID
+ * @param	ioCamera		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -261,17 +261,17 @@ void GFC_AllocTraceData(const int inHistNum, const int inDelay,
 {
 	int i;
 	GF_CAMERA_TRACE *trace;
-	//ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎAˆ—‚µ‚È‚¢
+	//ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€å‡¦ç†ã—ãªã„
 	if (ioCamera->BindTarget == NULL){
 		return;
 	}
-	//”z—ñƒTƒCƒY‚Ì®‡«ƒ`ƒFƒbƒN
-	GF_ASSERT((inDelay+1<=inHistNum)&&"”z—ñ”‚ª‘«‚è‚Ü‚¹‚ñ");
+	//é…åˆ—ã‚µã‚¤ã‚ºã®æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT((inDelay+1<=inHistNum)&&"é…åˆ—æ•°ãŒè¶³ã‚Šã¾ã›ã‚“");
 	
 	trace = sys_AllocMemory(inHeapID,sizeof(GF_CAMERA_TRACE));
 	trace->HistPos = sys_AllocMemory(inHeapID,sizeof(VecFx32)*inHistNum);
 	
-	//ƒgƒŒ[ƒX”z—ñƒNƒŠƒA
+	//ãƒˆãƒ¬ãƒ¼ã‚¹é…åˆ—ã‚¯ãƒªã‚¢
 	for(i=0;i<inHistNum;i++){
 		trace->HistPos[i].x = 0;
 		trace->HistPos[i].y = 0;
@@ -279,9 +279,9 @@ void GFC_AllocTraceData(const int inHistNum, const int inDelay,
 	}
 	
 	trace->HistNum = inHistNum;
-	//‚O”Ô–Ú‚ÉƒJƒƒ‰QÆˆÊ’u‚ğƒZƒbƒg
+	//ï¼ç•ªç›®ã«ã‚«ãƒ¡ãƒ©å‚ç…§ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
 	trace->CamPoint = 0;
-	//‘ÎÛ•¨QÆˆÊ’uƒZƒbƒg
+	//å¯¾è±¡ç‰©å‚ç…§ä½ç½®ã‚»ãƒƒãƒˆ
 	trace->TargetPoint = 0+inDelay;
 	
 	trace->Delay = inDelay;
@@ -305,9 +305,9 @@ void GFC_AllocTraceData(const int inHistNum, const int inDelay,
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒXƒf[ƒ^‚Ì‰ğ•ú
+ * @brief	ãƒˆãƒ¬ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -323,11 +323,11 @@ void GFC_FreeTraceData(GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰ì¬
+ * @brief	ã‚«ãƒ¡ãƒ©ä½œæˆ
  * 
- * @param	inHeapID		ƒq[ƒvID
+ * @param	inHeapID		ãƒ’ãƒ¼ãƒ—ID
  * 
- * @return	GF_CAMERA_PTR	ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @return	GF_CAMERA_PTR	ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 GF_CAMERA_PTR GFC_AllocCamera(const int inHeapID)
@@ -339,25 +339,25 @@ GF_CAMERA_PTR GFC_AllocCamera(const int inHeapID)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‰ğ•ú
+ * @brief	ã‚«ãƒ¡ãƒ©è§£æ”¾
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
 //---------------------------------------------------------------------------
 void GFC_FreeCamera(GF_CAMERA_PTR camera_ptr)
 {
-	//ƒJƒƒ‰–{‘Ì‚Ì‰ğ•ú
+	//ã‚«ãƒ¡ãƒ©æœ¬ä½“ã®è§£æ”¾
 	sys_FreeMemoryEz( camera_ptr );
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰ƒRƒs[
+ * @brief	ã‚«ãƒ¡ãƒ©ã‚³ãƒ”ãƒ¼
  * 
- * @param	inCamera		ƒRƒs[Œ³ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
- * @param	outCamera		ƒRƒs[æƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inCamera		ã‚³ãƒ”ãƒ¼å…ƒã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
+ * @param	outCamera		ã‚³ãƒ”ãƒ¼å…ˆã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -369,10 +369,10 @@ void GFC_CopyCamera(GF_CAMERA_CONST_PTR inCamera, GF_CAMERA_PTR outCamera)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰ƒgƒŒ[ƒXƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^ƒRƒs[
+ * @brief	ã‚«ãƒ¡ãƒ©ãƒˆãƒ¬ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚³ãƒ”ãƒ¼
  * 
- * @param	inCamera		ƒRƒs[Œ³ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
- * @param	outCamera		ƒRƒs[æƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inCamera		ã‚³ãƒ”ãƒ¼å…ƒã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
+ * @param	outCamera		ã‚³ãƒ”ãƒ¼å…ˆã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -384,9 +384,9 @@ void GFC_CopyCameraTracePtr(GF_CAMERA_CONST_PTR inCamera, GF_CAMERA_PTR outCamer
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‚ÌƒAƒ^ƒbƒ`(ƒJƒƒ‰‚Ì—LŒø‰»)
+ * @brief	ã‚«ãƒ¡ãƒ©ã®ã‚¢ã‚¿ãƒƒãƒ(ã‚«ãƒ¡ãƒ©ã®æœ‰åŠ¹åŒ–)
  * 
- * @param	camera_ptr	ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr	ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -398,7 +398,7 @@ void GFC_AttachCamera(GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‚ÉNULL‚ğƒZƒbƒgiƒAƒ^ƒbƒ`‰ğœj
+ * @brief	ã‚«ãƒ¡ãƒ©ã«NULLã‚’ã‚»ãƒƒãƒˆï¼ˆã‚¢ã‚¿ãƒƒãƒè§£é™¤ï¼‰
  * 
  * @param	none
  * 
@@ -412,7 +412,7 @@ void GFC_PurgeCamera(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰”½‰fŠÖ”i•`‰æ‚ÉŒÄ‚Ôj
+ * @brief	ã‚«ãƒ¡ãƒ©åæ˜ é–¢æ•°ï¼ˆæç”»æ™‚ã«å‘¼ã¶ï¼‰
  * 
  * @param	none
  * 
@@ -425,9 +425,9 @@ void GFC_CameraLookAt(void)
 		return;
 	}
 	
-	//ƒJƒƒ‰‚ª‰½‚©‚ğƒoƒCƒ“ƒh‚µ‚Ä‚¢‚é‚È‚ç—Dæ“I‚É‚»‚ÌÀ•W‚ğ•ß‚ç‚¦‚é
+	//ã‚«ãƒ¡ãƒ©ãŒä½•ã‹ã‚’ãƒã‚¤ãƒ³ãƒ‰ã—ã¦ã„ã‚‹ãªã‚‰å„ªå…ˆçš„ã«ãã®åº§æ¨™ã‚’æ•ã‚‰ãˆã‚‹
 	if (GF_Camera->BindTarget != NULL){
-		//ˆÚ“®·•ª‚ğŒvZ
+		//ç§»å‹•å·®åˆ†ã‚’è¨ˆç®—
 		VecFx32 vec;
 		VecFx32 dst_vec;
 		VEC_Subtract(GF_Camera->BindTarget,&GF_Camera->BindTargetOld,&vec);
@@ -443,7 +443,7 @@ void GFC_CameraLookAt(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰”½‰fŠÖ”i•`‰æ‚ÉŒÄ‚ÔjZ²ŒX‚«”½‰f
+ * @brief	ã‚«ãƒ¡ãƒ©åæ˜ é–¢æ•°ï¼ˆæç”»æ™‚ã«å‘¼ã¶ï¼‰Zè»¸å‚¾ãåæ˜ 
  * 
  * @param	none
  * 
@@ -456,9 +456,9 @@ void GFC_CameraLookAtZ(void)
 		return;
 	}
 	
-	//ƒJƒƒ‰‚ª‰½‚©‚ğƒoƒCƒ“ƒh‚µ‚Ä‚¢‚é‚È‚ç—Dæ“I‚É‚»‚ÌÀ•W‚ğ•ß‚ç‚¦‚é
+	//ã‚«ãƒ¡ãƒ©ãŒä½•ã‹ã‚’ãƒã‚¤ãƒ³ãƒ‰ã—ã¦ã„ã‚‹ãªã‚‰å„ªå…ˆçš„ã«ãã®åº§æ¨™ã‚’æ•ã‚‰ãˆã‚‹
 	if (GF_Camera->BindTarget != NULL){
-		//ˆÚ“®·•ª‚ğŒvZ
+		//ç§»å‹•å·®åˆ†ã‚’è¨ˆç®—
 		VecFx32 vec;
 		VecFx32 dst_vec;
 		VEC_Subtract(GF_Camera->BindTarget,&GF_Camera->BindTargetOld,&vec);
@@ -500,10 +500,10 @@ void GFC_CameraLookAtZ(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‚Ìã•ûŒü‚ğİ’è
+ * @brief	ã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘ã‚’è¨­å®š
  * 
- * @param	inCamUp		ƒJƒƒ‰ã•ûŒü’è‹`ƒxƒNƒgƒ‹
- * @param	camera_ptr	ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inCamUp		ã‚«ãƒ¡ãƒ©ä¸Šæ–¹å‘å®šç¾©ãƒ™ã‚¯ãƒˆãƒ«
+ * @param	camera_ptr	ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -515,10 +515,10 @@ void GFC_SetCamUp(const VecFx32 *inCamUp,GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‚ªƒoƒCƒ“ƒh‚·‚é‘ÎÛ•¨‚ğƒZƒbƒg
+ * @brief	ã‚«ãƒ¡ãƒ©ãŒãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹å¯¾è±¡ç‰©ã‚’ã‚»ãƒƒãƒˆ
  * 
- * @param	inTarget	ƒoƒCƒ“ƒh‘ÎÛÀ•W
- * @param	camera_ptr	ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inTarget	ãƒã‚¤ãƒ³ãƒ‰å¯¾è±¡åº§æ¨™
+ * @param	camera_ptr	ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -534,9 +534,9 @@ void GFC_BindCameraTarget(const VecFx32 *inTarget, GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‚ªƒoƒCƒ“ƒh‚µ‚Ä‚¢‚é‘ÎÛ•¨‚ğØ‚è—£‚·
+ * @brief	ã‚«ãƒ¡ãƒ©ãŒãƒã‚¤ãƒ³ãƒ‰ã—ã¦ã„ã‚‹å¯¾è±¡ç‰©ã‚’åˆ‡ã‚Šé›¢ã™
  * 
- * @param	camera_ptr	ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr	ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -551,7 +551,7 @@ void GFC_PurgeCameraTarget(GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Œ»İ‚ÌƒJƒƒ‰‚©‚çƒXƒƒbƒvƒoƒbƒtƒ@ƒ‚[ƒh‚ğæ“¾
+ * @brief	ç¾åœ¨ã®ã‚«ãƒ¡ãƒ©ã‹ã‚‰ã‚¹ãƒ¯ãƒƒãƒ—ãƒãƒƒãƒ•ã‚¡ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
  * 
  * @param	none
  * 
@@ -567,18 +567,18 @@ GXBufferMode GetBufferMode(void)
 			return GX_BUFFERMODE_Z;
 		}
 	}else{
-		OS_Printf("ERROR:ƒoƒbƒtƒ@ƒ‚[ƒhæ“¾¸”s");
+		OS_Printf("ERROR:ãƒãƒƒãƒ•ã‚¡ãƒ¢ãƒ¼ãƒ‰å–å¾—å¤±æ•—");
 		return GX_BUFFERMODE_W;
 	}
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‚ÌƒNƒŠƒbƒvƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
+ * @brief	ã‚«ãƒ¡ãƒ©ã®ã‚¯ãƒªãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  * 
- * @param	near			ƒjƒAƒNƒŠƒbƒv’l
- * @param	far				ƒtƒ@[ƒNƒŠƒbƒv’l
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	near			ãƒ‹ã‚¢ã‚¯ãƒªãƒƒãƒ—å€¤
+ * @param	far				ãƒ•ã‚¡ãƒ¼ã‚¯ãƒªãƒƒãƒ—å€¤
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -592,15 +592,15 @@ void GFC_SetCameraClip(const fx32 near,const fx32 far,GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰\‘¢‘Ì‚ğ‰Šú‰»(’‹“_A‹——£AƒAƒ“ƒOƒ‹‚ğg‚Á‚Ä‰Šú‰»)
+ * @brief	ã‚«ãƒ¡ãƒ©æ§‹é€ ä½“ã‚’åˆæœŸåŒ–(æ³¨è¦–ç‚¹ã€è·é›¢ã€ã‚¢ãƒ³ã‚°ãƒ«ã‚’ä½¿ã£ã¦åˆæœŸåŒ–)
  * 
- * @param	inTarget		‘ÎÛ’‹“_
- * @param	inDistance		’‹“_‚Ü‚Å‚Ì‹——£
- * @param	inAngle			ƒAƒ“ƒOƒ‹
- * @param	inPerspWay		ƒp[ƒX
- * @param	inView			Ë‰eƒ‚[ƒh
- * @param	inBindFlg		’‹“_‚Æ‚ÌƒoƒCƒ“ƒh—L–³
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inTarget		å¯¾è±¡æ³¨è¦–ç‚¹
+ * @param	inDistance		æ³¨è¦–ç‚¹ã¾ã§ã®è·é›¢
+ * @param	inAngle			ã‚¢ãƒ³ã‚°ãƒ«
+ * @param	inPerspWay		ãƒ‘ãƒ¼ã‚¹
+ * @param	inView			å°„å½±ãƒ¢ãƒ¼ãƒ‰
+ * @param	inBindFlg		æ³¨è¦–ç‚¹ã¨ã®ãƒã‚¤ãƒ³ãƒ‰æœ‰ç„¡
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -615,26 +615,26 @@ void GFC_InitCameraTDA
   GF_CAMERA_PTR camera_ptr
 )
 {
-	// ƒJƒƒ‰‚Ìİ’è
+	// ã‚«ãƒ¡ãƒ©ã®è¨­å®š
 	InitCameraCommon(inPerspWay,camera_ptr);
 	
-	//’‹“_‚ğƒZƒbƒg
+	//æ³¨è¦–ç‚¹ã‚’ã‚»ãƒƒãƒˆ
 	camera_ptr->lookat.target = *inTarget;
 	
-	//’‹“_‚©‚ç‚ÌƒJƒƒ‰ˆÊ’u‚Ì‹——£‚ğİ’è
+	//æ³¨è¦–ç‚¹ã‹ã‚‰ã®ã‚«ãƒ¡ãƒ©ä½ç½®ã®è·é›¢ã‚’è¨­å®š
 	camera_ptr->Distance = inDistance;
 
-	//ƒAƒ“ƒOƒ‹ƒZƒbƒg
+	//ã‚¢ãƒ³ã‚°ãƒ«ã‚»ãƒƒãƒˆ
 	camera_ptr->Angle = *inAngle;
 
-	// ƒJƒƒ‰‚ÌÀ•W‚ğƒZƒbƒg
+	// ã‚«ãƒ¡ãƒ©ã®åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	SetCamPosByTarget_Dist_Ang(camera_ptr);
 
-	//Ë‰eƒZƒbƒg
+	//å°„å½±ã‚»ãƒƒãƒˆ
 	GFC_SetCameraView(inView,camera_ptr);
 
 	if (inBindFlg){
-		//ƒJƒƒ‰‚Ì•ß‚ç‚¦‚é‘ÎÛ•¨‚ğƒoƒCƒ“ƒh
+		//ã‚«ãƒ¡ãƒ©ã®æ•ã‚‰ãˆã‚‹å¯¾è±¡ç‰©ã‚’ãƒã‚¤ãƒ³ãƒ‰
 		camera_ptr->BindTarget = inTarget;
 		camera_ptr->BindTargetOld = *inTarget;
 		camera_ptr->XBind = TRUE;
@@ -645,14 +645,14 @@ void GFC_InitCameraTDA
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰\‘¢‘Ì‚ğ‰Šú‰»(ƒJƒƒ‰ˆÊ’uA‹——£AƒAƒ“ƒOƒ‹‚ğg‚Á‚Ä‰Šú‰»)
+ * @brief	ã‚«ãƒ¡ãƒ©æ§‹é€ ä½“ã‚’åˆæœŸåŒ–(ã‚«ãƒ¡ãƒ©ä½ç½®ã€è·é›¢ã€ã‚¢ãƒ³ã‚°ãƒ«ã‚’ä½¿ã£ã¦åˆæœŸåŒ–)
  * 
- * @param	inCamPos		ƒJƒƒ‰ˆÊ’u
- * @param	inDistance		’‹“_‚Ü‚Å‚Ì‹——£
- * @param	inAngle			ƒAƒ“ƒOƒ‹
- * @param	inPerspWay		ƒp[ƒX
- * @param	inView			Ë‰eƒ‚[ƒh
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inCamPos		ã‚«ãƒ¡ãƒ©ä½ç½®
+ * @param	inDistance		æ³¨è¦–ç‚¹ã¾ã§ã®è·é›¢
+ * @param	inAngle			ã‚¢ãƒ³ã‚°ãƒ«
+ * @param	inPerspWay		ãƒ‘ãƒ¼ã‚¹
+ * @param	inView			å°„å½±ãƒ¢ãƒ¼ãƒ‰
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -666,35 +666,35 @@ void GFC_InitCameraCDA
   GF_CAMERA_PTR camera_ptr
 )
 {
-	// ƒJƒƒ‰‚Ìİ’è
+	// ã‚«ãƒ¡ãƒ©ã®è¨­å®š
 	InitCameraCommon(inPerspWay,camera_ptr);
 
-	//ƒJƒƒ‰‚ÌÀ•W‚ğƒZƒbƒg
+	//ã‚«ãƒ¡ãƒ©ã®åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	camera_ptr->lookat.camPos = *inCamPos;
 	
-	//ƒJƒƒ‰ˆÊ’u‚©‚ç’‹“_‚Ü‚Å‚Ì‹——£‚ğİ’è
+	//ã‚«ãƒ¡ãƒ©ä½ç½®ã‹ã‚‰æ³¨è¦–ç‚¹ã¾ã§ã®è·é›¢ã‚’è¨­å®š
 	camera_ptr->Distance = inDistance;
 
-	//ƒAƒ“ƒOƒ‹ƒZƒbƒg
+	//ã‚¢ãƒ³ã‚°ãƒ«ã‚»ãƒƒãƒˆ
 	camera_ptr->Angle = *inAngle;
 
-	// ’‹“_‚ÌÀ•W‚ğƒZƒbƒg
+	// æ³¨è¦–ç‚¹ã®åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	SetTargetByCamPos_Dist_Ang(camera_ptr);
 
-	//Ë‰eƒZƒbƒg
+	//å°„å½±ã‚»ãƒƒãƒˆ
 	GFC_SetCameraView(inView,camera_ptr);
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰\‘¢‘Ì‚ğ‰Šú‰»(’‹“_AƒJƒƒ‰ˆÊ’u‚ğg‚Á‚Ä‰Šú‰»@Z²‰ñ“]–¢‘Î‰)
+ * @brief	ã‚«ãƒ¡ãƒ©æ§‹é€ ä½“ã‚’åˆæœŸåŒ–(æ³¨è¦–ç‚¹ã€ã‚«ãƒ¡ãƒ©ä½ç½®ã‚’ä½¿ã£ã¦åˆæœŸåŒ–ã€€Zè»¸å›è»¢æœªå¯¾å¿œ)
  * 
- * @param	inTarget		‘ÎÛ’‹“_
- * @param	inCamPos		ƒJƒƒ‰ˆÊ’u
- * @param	inPerspWay		ƒp[ƒX
- * @param	inView			Ë‰eƒ‚[ƒh
- * @param	inBindFlg		’‹“_‚Æ‚ÌƒoƒCƒ“ƒh—L–³
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inTarget		å¯¾è±¡æ³¨è¦–ç‚¹
+ * @param	inCamPos		ã‚«ãƒ¡ãƒ©ä½ç½®
+ * @param	inPerspWay		ãƒ‘ãƒ¼ã‚¹
+ * @param	inView			å°„å½±ãƒ¢ãƒ¼ãƒ‰
+ * @param	inBindFlg		æ³¨è¦–ç‚¹ã¨ã®ãƒã‚¤ãƒ³ãƒ‰æœ‰ç„¡
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -709,20 +709,20 @@ void GFC_InitCameraTC
 )
 {
 	VecFx32 dst;
-	// ƒJƒƒ‰‚Ìİ’è
+	// ã‚«ãƒ¡ãƒ©ã®è¨­å®š
 	InitCameraCommon(inPerspWay,camera_ptr);
 	
-	//’‹“_‚ğƒZƒbƒg
+	//æ³¨è¦–ç‚¹ã‚’ã‚»ãƒƒãƒˆ
 	camera_ptr->lookat.target = *inTarget;
 
-	//ƒJƒƒ‰‚ÌÀ•W‚ğƒZƒbƒg
+	//ã‚«ãƒ¡ãƒ©ã®åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	camera_ptr->lookat.camPos = *inCamPos;
 	
-	//’‹“_‚©‚ç‚ÌƒJƒƒ‰ˆÊ’u‚Ì‹——£‚ğİ’è
+	//æ³¨è¦–ç‚¹ã‹ã‚‰ã®ã‚«ãƒ¡ãƒ©ä½ç½®ã®è·é›¢ã‚’è¨­å®š
 	VEC_Subtract(inCamPos, inTarget , &dst);
 	camera_ptr->Distance = VEC_Mag(&dst); 
 
-	//ƒAƒ“ƒOƒ‹ƒZƒbƒg
+	//ã‚¢ãƒ³ã‚°ãƒ«ã‚»ãƒƒãƒˆ
 	{
 		VecFx32 x_vec = {0,0,0};
 		VecFx32 y_vec = {0,0,0};
@@ -748,11 +748,11 @@ void GFC_InitCameraTC
 		OS_Printf("ANGGLE_%x,%x,%x\n",camera_ptr->Angle.x,camera_ptr->Angle.y,camera_ptr->Angle.z);
 	}
 	
-	//Ë‰eƒZƒbƒg
+	//å°„å½±ã‚»ãƒƒãƒˆ
 	GFC_SetCameraView(inView,camera_ptr);
 
 	if (inBindFlg){
-		//ƒJƒƒ‰‚Ì•ß‚ç‚¦‚é‘ÎÛ•¨‚ğƒoƒCƒ“ƒh
+		//ã‚«ãƒ¡ãƒ©ã®æ•ã‚‰ãˆã‚‹å¯¾è±¡ç‰©ã‚’ãƒã‚¤ãƒ³ãƒ‰
 		camera_ptr->BindTarget = inTarget;
 		camera_ptr->BindTargetOld = *inTarget;
 		camera_ptr->XBind = TRUE;
@@ -763,20 +763,20 @@ void GFC_InitCameraTC
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Ë‰eƒZƒbƒg
+ * @brief	å°„å½±ã‚»ãƒƒãƒˆ
  * 
- * @param	inView			Ë‰eƒ‚[ƒh
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inView			å°„å½±ãƒ¢ãƒ¼ãƒ‰
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
 //---------------------------------------------------------------------------
 void GFC_SetCameraView(const u8 inView,GF_CAMERA_PTR camera_ptr)
 {
-	// Ë‰eƒ`ƒFƒbƒN
+	// å°„å½±ãƒã‚§ãƒƒã‚¯
 	if( inView == GF_CAMERA_PERSPECTIV )
 	{
-		// “§‹Ë‰e
+		// é€è¦–å°„å½±
 		NNS_G3dGlbPerspective
 			(camera_ptr->persp.fovySin, camera_ptr->persp.fovyCos,
 			 camera_ptr->persp.aspect, camera_ptr->persp.nearClip,
@@ -786,13 +786,13 @@ void GFC_SetCameraView(const u8 inView,GF_CAMERA_PTR camera_ptr)
 	}
 	else	//(inVew == SIMPLE_ORTHO)
 	{
-		fx32	height, width;			// ‚‚³‚Æ•
+		fx32	height, width;			// é«˜ã•ã¨å¹…
 
-		//-------- ³Ë‰e --------
-		// “§‹Ë‰e‚Ìİ’è‚©‚ç³Ë‰e‚ğƒZƒbƒg
-		// ‚‚³‚ğ‹‚ß‚é
+		//-------- æ­£å°„å½± --------
+		// é€è¦–å°„å½±ã®è¨­å®šã‹ã‚‰æ­£å°„å½±ã‚’ã‚»ãƒƒãƒˆ
+		// é«˜ã•ã‚’æ±‚ã‚ã‚‹
 		height = FX_Mul(FX_Div(camera_ptr->persp.fovySin, camera_ptr->persp.fovyCos), camera_ptr->Distance);
-		// •‚ğ‹‚ß‚é
+		// å¹…ã‚’æ±‚ã‚ã‚‹
 		width  = FX_Mul(height, camera_ptr->persp.aspect );
 
 		NNS_G3dGlbOrtho(
@@ -810,10 +810,10 @@ void GFC_SetCameraView(const u8 inView,GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	‹–ìŠp‚ÌƒZƒbƒg
+ * @brief	è¦–é‡è§’ã®ã‚»ãƒƒãƒˆ
  * 
- * @param	inPerspWay		ƒp[ƒX
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inPerspWay		ãƒ‘ãƒ¼ã‚¹
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -822,7 +822,7 @@ void GFC_SetCameraPerspWay(const u16 inPerspWay,GF_CAMERA_PTR camera_ptr)
 {
 	camera_ptr->PerspWay = inPerspWay;
 
-	/*== Ë‰e‚ÌŠp“x‚ğƒZƒbƒg ==*/
+	/*== å°„å½±ã®è§’åº¦ã‚’ã‚»ãƒƒãƒˆ ==*/
 	camera_ptr->persp.fovySin  = FX_SinIdx( camera_ptr->PerspWay );
 	camera_ptr->persp.fovyCos  = FX_CosIdx( camera_ptr->PerspWay );
 
@@ -831,10 +831,10 @@ void GFC_SetCameraPerspWay(const u16 inPerspWay,GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	‹–ìŠp‚Ì‰ÁZ
+ * @brief	è¦–é‡è§’ã®åŠ ç®—
  * 
- * @param	inPerspWay		‰ÁZƒp[ƒX
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inPerspWay		åŠ ç®—ãƒ‘ãƒ¼ã‚¹
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -843,32 +843,32 @@ void GFC_AddCameraPerspWay(const u16 inPerspWay,GF_CAMERA_PTR camera_ptr)
 {
 	camera_ptr->PerspWay += inPerspWay;
 
-	/*== Ë‰e‚ÌŠp“x‚ğƒZƒbƒg ==*/
+	/*== å°„å½±ã®è§’åº¦ã‚’ã‚»ãƒƒãƒˆ ==*/
 	camera_ptr->persp.fovySin  = FX_SinIdx( camera_ptr->PerspWay );
 	camera_ptr->persp.fovyCos  = FX_CosIdx( camera_ptr->PerspWay );
 
 	GFC_SetCameraView(camera_ptr->View,camera_ptr);
 }
 #if 0
-//ƒJƒƒ‰ˆÊ’u‚ÌƒZƒbƒg
+//ã‚«ãƒ¡ãƒ©ä½ç½®ã®ã‚»ãƒƒãƒˆ
 void SetCameraPos(const VecFx32* inCamPos)
 {
 	camera_ptr->lookat.camPos = *inCamPos;
 }
 
-//’‹“_‚ÌƒZƒbƒg
+//æ³¨è¦–ç‚¹ã®ã‚»ãƒƒãƒˆ
 void SetCameraTarget(const VecFx32* inTarget)
 {
 	camera_ptr->lookat.target = *inTarget;
 }
 
-//’‹“_‚ğˆÚ“®
+//æ³¨è¦–ç‚¹ã‚’ç§»å‹•
 void MoveTarget(const VecFx32 *inMoveVec)
 {
 	VEC_Add(&camera_ptr->lookat.target,&inMoveVec,&Gf_Camera.lookat.target);
 }
 
-//ƒJƒƒ‰ˆÊ’u‚ğˆÚ“®
+//ã‚«ãƒ¡ãƒ©ä½ç½®ã‚’ç§»å‹•
 void MoveCameraPos(const VecFx32 *inMoveVec)
 {
 	VEC_Add(&camera_ptr->lookat.camPos,&inMoveVec,&camera_ptr->lookat.camPos);
@@ -877,27 +877,27 @@ void MoveCameraPos(const VecFx32 *inMoveVec)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‚Æ’‹“_‚ğ“¯‚É•½sˆÚ“®
+ * @brief	ã‚«ãƒ¡ãƒ©ã¨æ³¨è¦–ç‚¹ã‚’åŒæ™‚ã«å¹³è¡Œç§»å‹•
  * 
- * @param	inMoveVec		ˆÚ“®’l
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inMoveVec		ç§»å‹•å€¤
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
 //---------------------------------------------------------------------------
 void GFC_ShiftCamera(const VecFx32 *inMoveVec,GF_CAMERA_PTR camera_ptr)
 {
-	//ƒJƒƒ‰“®ìİ’è
+	//ã‚«ãƒ¡ãƒ©å‹•ä½œè¨­å®š
 	VEC_Add(&camera_ptr->lookat.camPos,inMoveVec,&camera_ptr->lookat.camPos);
 	VEC_Add(&camera_ptr->lookat.target,inMoveVec,&camera_ptr->lookat.target);
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰ƒAƒ“ƒOƒ‹ƒZƒbƒg	©“]
+ * @brief	ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã‚»ãƒƒãƒˆ	è‡ªè»¢
  * 
- * @param	inAngle			ƒAƒ“ƒOƒ‹
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inAngle			ã‚¢ãƒ³ã‚°ãƒ«
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -910,10 +910,10 @@ void GFC_SetCameraAngleRot(const CAMERA_ANGLE *inAngle,GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰ƒAƒ“ƒOƒ‹ƒZƒbƒg	Œö“]
+ * @brief	ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã‚»ãƒƒãƒˆ	å…¬è»¢
  * 
- * @param	inAngle			ƒAƒ“ƒOƒ‹
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inAngle			ã‚¢ãƒ³ã‚°ãƒ«
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -926,10 +926,10 @@ void GFC_SetCameraAngleRev(const CAMERA_ANGLE *inAngle,GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰ƒAƒ“ƒOƒ‹‰ÁZ	©“]
+ * @brief	ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«åŠ ç®—	è‡ªè»¢
  * 
- * @param	inAngle			‰ÁZƒAƒ“ƒOƒ‹
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inAngle			åŠ ç®—ã‚¢ãƒ³ã‚°ãƒ«
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -944,10 +944,10 @@ void GFC_AddCameraAngleRot(const CAMERA_ANGLE *inAngle,GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰ƒAƒ“ƒOƒ‹‰ÁZ	Œö“]
+ * @brief	ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«åŠ ç®—	å…¬è»¢
  * 
- * @param	inAngle			‰ÁZƒAƒ“ƒOƒ‹
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inAngle			åŠ ç®—ã‚¢ãƒ³ã‚°ãƒ«
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -962,10 +962,10 @@ void GFC_AddCameraAngleRev(const CAMERA_ANGLE *inAngle,GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‹——£ƒZƒbƒg
+ * @brief	ã‚«ãƒ¡ãƒ©è·é›¢ã‚»ãƒƒãƒˆ
  * 
- * @param	inDist			‹——£
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inDist			è·é›¢
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -978,10 +978,10 @@ void GFC_SetCameraDistance(const fx32 inDist,GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	’‹“_‚ÌÄİ’è(ƒJƒƒ‰‚ÌˆÊ’u‚à“®‚­)
+ * @brief	æ³¨è¦–ç‚¹ã®å†è¨­å®š(ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã‚‚å‹•ã)
  * 
- * @param	inTargetVec			’‹“_
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inTargetVec			æ³¨è¦–ç‚¹
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -994,10 +994,10 @@ void GFC_ReSetCameraTarget(const VecFx32 *inTargetVec,GF_CAMERA_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‹——£‰ÁZ
+ * @brief	ã‚«ãƒ¡ãƒ©è·é›¢åŠ ç®—
  * 
- * @param	inDist			‰ÁZ‹——£ƒ‹
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	inDist			åŠ ç®—è·é›¢ãƒ«
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -1009,16 +1009,16 @@ void GFC_AddCameraDistance(const fx32 inDist,GF_CAMERA_PTR camera_ptr)
 }
 
 //////////////////////////////////
-//æ“¾ŠÖ”(‚Ü‚¾‘S•”ì‚Á‚Ä‚Ü‚¹‚ñ)//
+//å–å¾—é–¢æ•°(ã¾ã å…¨éƒ¨ä½œã£ã¦ã¾ã›ã‚“)//
 //////////////////////////////////
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Ë‰eæ“¾
+ * @brief	å°„å½±å–å¾—
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	u8				Ë‰eƒ‚[ƒh
+ * @return	u8				å°„å½±ãƒ¢ãƒ¼ãƒ‰
  */
 //---------------------------------------------------------------------------
 u8 GFC_GetCameraView(GF_CAMERA_CONST_PTR camera_ptr)
@@ -1028,11 +1028,11 @@ u8 GFC_GetCameraView(GF_CAMERA_CONST_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	‹–ìŠp‚Ìæ“¾
+ * @brief	è¦–é‡è§’ã®å–å¾—
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	u16				ƒp[ƒX
+ * @return	u16				ãƒ‘ãƒ¼ã‚¹
  */
 //---------------------------------------------------------------------------
 u16 GFC_GetCameraPerspWay(GF_CAMERA_CONST_PTR camera_ptr)
@@ -1042,11 +1042,11 @@ u16 GFC_GetCameraPerspWay(GF_CAMERA_CONST_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	‹——£‚Ìæ“¾
+ * @brief	è·é›¢ã®å–å¾—
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	fx32			‹——£
+ * @return	fx32			è·é›¢
  */
 //---------------------------------------------------------------------------
 fx32 GFC_GetCameraDistance(GF_CAMERA_CONST_PTR camera_ptr)
@@ -1056,11 +1056,11 @@ fx32 GFC_GetCameraDistance(GF_CAMERA_CONST_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒAƒ“ƒOƒ‹æ“¾
+ * @brief	ã‚¢ãƒ³ã‚°ãƒ«å–å¾—
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	CAMERA_ANGLE	ƒAƒ“ƒOƒ‹
+ * @return	CAMERA_ANGLE	ã‚¢ãƒ³ã‚°ãƒ«
  */
 //---------------------------------------------------------------------------
 CAMERA_ANGLE GFC_GetCameraAngle(GF_CAMERA_CONST_PTR camera_ptr)
@@ -1070,11 +1070,11 @@ CAMERA_ANGLE GFC_GetCameraAngle(GF_CAMERA_CONST_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	’‹“_‚Ìæ“¾
+ * @brief	æ³¨è¦–ç‚¹ã®å–å¾—
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	VecFx32			’‹“_
+ * @return	VecFx32			æ³¨è¦–ç‚¹
  */
 //---------------------------------------------------------------------------
 VecFx32 GFC_GetLookTarget(GF_CAMERA_CONST_PTR camera_ptr)
@@ -1084,11 +1084,11 @@ VecFx32 GFC_GetLookTarget(GF_CAMERA_CONST_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰ˆÊ’u‚Ìæ“¾
+ * @brief	ã‚«ãƒ¡ãƒ©ä½ç½®ã®å–å¾—
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	VecFx32			ƒJƒƒ‰ˆÊ’u
+ * @return	VecFx32			ã‚«ãƒ¡ãƒ©ä½ç½®
  */
 //---------------------------------------------------------------------------
 VecFx32 GFC_GetCameraPos(GF_CAMERA_CONST_PTR camera_ptr)
@@ -1098,11 +1098,11 @@ VecFx32 GFC_GetCameraPos(GF_CAMERA_CONST_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒtƒ@[æ“¾
+ * @brief	ãƒ•ã‚¡ãƒ¼å–å¾—
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	VecFx32			ƒtƒ@[
+ * @return	VecFx32			ãƒ•ã‚¡ãƒ¼
  */
 //---------------------------------------------------------------------------
 fx32 GFC_GetCameraFar(GF_CAMERA_CONST_PTR camera_ptr)
@@ -1112,11 +1112,11 @@ fx32 GFC_GetCameraFar(GF_CAMERA_CONST_PTR camera_ptr)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒjƒAæ“¾
+ * @brief	ãƒ‹ã‚¢å–å¾—
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	VecFx32			ƒjƒA
+ * @return	VecFx32			ãƒ‹ã‚¢
  */
 //---------------------------------------------------------------------------
 fx32 GFC_GetCameraNear(GF_CAMERA_CONST_PTR camera_ptr)
@@ -1124,13 +1124,13 @@ fx32 GFC_GetCameraNear(GF_CAMERA_CONST_PTR camera_ptr)
 	return camera_ptr->persp.nearClip;
 }
 
-//’‹“_‚Ìİ’è
+//æ³¨è¦–ç‚¹ã®è¨­å®š
 void GFC_SetLookTarget(const VecFx32* t_pos, GF_CAMERA_PTR camera_ptr)
 {
 	camera_ptr->lookat.target = *t_pos;
 }
 
-//ƒJƒƒ‰ˆÊ’u‚Ìİ’è
+//ã‚«ãƒ¡ãƒ©ä½ç½®ã®è¨­å®š
 void GFC_SetCameraPos(const VecFx32* c_pos, GF_CAMERA_PTR camera_ptr)
 {
 	camera_ptr->lookat.camPos = *c_pos;

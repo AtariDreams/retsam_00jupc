@@ -1,11 +1,11 @@
 //=============================================================================================
 /**
  * @file	fontdata_man.c
- * @brief	�t�H���g�f�[�^�}�l�[�W��
+ * @brief	フォントデータマネージャ
  * @author	taya
  * @date	2005.09.14
  *
- * @li	ntrfont.exe �ō쐬�����t�H���g�f�[�^���Ǘ�����}�l�[�W��
+ * @li	ntrfont.exe で作成したフォントデータを管理するマネージャ
  */
 //=============================================================================================
 #ifndef __FONTDATA_MAN_H__
@@ -19,17 +19,17 @@ typedef struct _GF_FONTDATA_MAN  GF_FONTDATA_MAN;
 
 //==============================================================================================
 /**
- * �t�H���g�f�[�^�}�l�[�W���쐬
+ * フォントデータマネージャ作成
  *
- * @param   arcID			�t�H���g�f�[�^���i�[����Ă���A�[�J�C�uID
- * @param   datID			�t�H���g�f�[�^���i�[����Ă���A�[�J�C�u���t�@�C��ID
- * @param   loadType		�t�H���g�f�[�^�̓ǂݏo������
- * @param   fixedFontFlag	TRUE�Ȃ瓙���t�H���g�Ƃ��Ĉ���
- * @param   heapID			�}�l�[�W���쐬��q�[�vID
+ * @param   arcID			フォントデータが格納されているアーカイブID
+ * @param   datID			フォントデータが格納されているアーカイブ内ファイルID
+ * @param   loadType		フォントデータの読み出し方式
+ * @param   fixedFontFlag	TRUEなら等幅フォントとして扱う
+ * @param   heapID			マネージャ作成先ヒープID
  *
- * @retval  GF_FONTDATA_MAN*	�t�H���g�f�[�^�}�l�[�W���|�C���^
+ * @retval  GF_FONTDATA_MAN*	フォントデータマネージャポインタ
  *
- * @li  loadType �� FONTDATA_LOADTYPE_ON_MEMORY �̏ꍇ�A�}�l�[�W���Ɠ����q�[�v�̈�Ƀt�H���g�f�[�^��ǂݍ���
+ * @li  loadType が FONTDATA_LOADTYPE_ON_MEMORY の場合、マネージャと同じヒープ領域にフォントデータを読み込む
  */
 //==============================================================================================
 extern GF_FONTDATA_MAN* FontDataMan_Create( u32 arcID, u32 datID, FONTDATA_LOADTYPE loadType, BOOL fixedFontFlag, u32 heapID );
@@ -37,9 +37,9 @@ extern GF_FONTDATA_MAN* FontDataMan_Create( u32 arcID, u32 datID, FONTDATA_LOADT
 
 //==============================================================================================
 /**
- * �t�H���g�f�[�^�}�l�[�W���폜
+ * フォントデータマネージャ削除
  *
- * @param   wk		�t�H���g�f�[�^�}�l�[�W���̃|�C���^
+ * @param   wk		フォントデータマネージャのポインタ
  *
  */
 //==============================================================================================
@@ -48,10 +48,10 @@ extern void FontDataMan_Delete( GF_FONTDATA_MAN* wk );
 
 //==============================================================================================
 /**
- * �t�H���g�r�b�g�f�[�^�̓ǂݍ��݃^�C�v��ύX����
+ * フォントビットデータの読み込みタイプを変更する
  *
- * @param   wk			�t�H���g�f�[�^�}�l�[�W���|�C���^
- * @param   loadType	�ύX��̓ǂݍ��݃^�C�v
+ * @param   wk			フォントデータマネージャポインタ
+ * @param   loadType	変更後の読み込みタイプ
  *
  */
 //==============================================================================================
@@ -60,11 +60,11 @@ extern void FontDataMan_ChangeLoadType( GF_FONTDATA_MAN* wk, FONTDATA_LOADTYPE l
 
 //------------------------------------------------------------------
 /*
- *	�����r�b�g�}�b�v�f�[�^�擾
+ *	文字ビットマップデータ取得
  *
- * @param	wk			�t�H���g�f�[�^�}�l�[�W��
- * @param	fcode		�����R�[�h
- * @param	dst			�r�b�g�}�b�v�擾���[�N
+ * @param	wk			フォントデータマネージャ
+ * @param	fcode		文字コード
+ * @param	dst			ビットマップ取得ワーク
  *
  */
 //------------------------------------------------------------------
@@ -73,39 +73,39 @@ extern void FontDataMan_GetBitmap( const GF_FONTDATA_MAN* wk, STRCODE fcode, MSG
 
 //------------------------------------------------------------------
 /**
- * ��������r�b�g�}�b�v���������̒����i�h�b�g�j���v�Z���ĕԂ�
+ * 文字列をビットマップ化した時の長さ（ドット）を計算して返す
  *
- * @param   wk		�t�H���g�f�[�^�}�l�[�W��
- * @param   str		������
- * @param   margin	���ԁi�h�b�g�j
+ * @param   wk		フォントデータマネージャ
+ * @param   str		文字列
+ * @param   margin	字間（ドット）
  *
- * @retval  u32		����
+ * @retval  u32		長さ
  */
 //------------------------------------------------------------------
 extern u32 FontDataMan_GetStrWidth( const GF_FONTDATA_MAN* wk, const STRCODE* str, u32 margin );
 
 //--------------------------------------------------------------
 /**
- * @brief   �s�������񂪊܂܂�Ă��Ȃ����`�F�b�N
+ * @brief   不明文字列が含まれていないかチェック
  *
- * @param   wk		�t�H���g�f�[�^�}�l�[�W��
- * @param   str		������
+ * @param   wk		フォントデータマネージャ
+ * @param   str		文字列
  *
- * @retval  TRUE:�S�Đ���
- * @retval  TRUE:�s���ȕ���������
+ * @retval  TRUE:全て正常
+ * @retval  TRUE:不明な文字がある
  */
 //--------------------------------------------------------------
 extern BOOL FontDataMan_ErrorStrCheck(const GF_FONTDATA_MAN* wk, const STRCODE* str);
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/05
-// �����s�ɂ킽�镶����́A�Œ��s�̃r�b�g�}�b�v����Ԃ��֐�
+// 複数行にわたる文字列の、最長行のビットマップ幅を返す関数
 u32 FontDataMan_GetMaxLineWidth(const GF_FONTDATA_MAN* wk, const STRCODE* str, u32 margin);
 // ----------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/14
-// �X�N���v�g�E�B���h�E���J���ۂɁA�e���ڂ̒������擾���邽�߂̊֐�
+// スクリプトウィンドウを開く際に、各項目の長さを取得するための関数
 u32 FontDataMan_GetEvWinItemWidth( const GF_FONTDATA_MAN* wk, const STRCODE* str );
 // ----------------------------------------------------------------------------
 

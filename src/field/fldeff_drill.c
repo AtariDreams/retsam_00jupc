@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_drill.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@ƒhƒŠƒ‹
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ‰ãƒªãƒ«
  * @author	k.ohno
  * @data	06.05.05
  *
@@ -27,12 +27,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_DRILL_PTR’è‹`
+///	FE_DRILL_PTRå®šç¾©
 //--------------------------------------------------------------
 typedef struct _TAG_FE_DRILL * FE_DRILL_PTR;
 
 //--------------------------------------------------------------
-///	FE_DRILL\‘¢‘Ì
+///	FE_DRILLæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_DRILL
 {
@@ -41,10 +41,10 @@ typedef struct _TAG_FE_DRILL
 	FRO_ANM m_ranm;
 }FE_DRILL;
 
-#define FE_DRILL_SIZE (sizeof(FE_DRILL)) ///<FE_DRILLƒTƒCƒY
+#define FE_DRILL_SIZE (sizeof(FE_DRILL)) ///<FE_DRILLã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	DRILL_ADD_H\‘¢‘Ì
+///	DRILL_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -52,22 +52,22 @@ typedef struct
 	FE_DRILL_PTR drill;		///<FE_DRILL_PTR
 }DRILL_ADD_H;
 
-#define DRILL_ADD_H_SIZE (sizeof(DRILL_ADD_H)) ///<DRILL_ADD_HƒTƒCƒY
+#define DRILL_ADD_H_SIZE (sizeof(DRILL_ADD_H)) ///<DRILL_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	DRILL_WORK\‘¢‘Ì
+///	DRILL_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	FRO_ANM ranm;
 	FRO_OBJ robj;
-	DRILL_ADD_H head;						///<’Ç‰Á‚ÌDRILL_ADD_H
+	DRILL_ADD_H head;						///<è¿½åŠ æ™‚ã®DRILL_ADD_H
 }DRILL_WORK;
 
-#define DRILL_WORK_SIZE (sizeof(DRILL_WORK))	///<DRILL_WORKƒTƒCƒY
+#define DRILL_WORK_SIZE (sizeof(DRILL_WORK))	///<DRILL_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Drill_GraphicInit( FE_DRILL_PTR drill );
 static void Drill_GraphicDelete( FE_DRILL_PTR drill );
@@ -75,11 +75,11 @@ static void Drill_GraphicDelete( FE_DRILL_PTR drill );
 static const EOA_H_NPP DATA_EoaH_Drill;
 
 //==============================================================================
-//	ƒhƒŠƒ‹@ƒVƒXƒeƒ€
+//	ãƒ‰ãƒªãƒ«ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒhƒŠƒ‹‰Šú‰»
+ * ãƒ‰ãƒªãƒ«åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_DRILL_PTR	FE_DRILL_PTR
  */
@@ -97,7 +97,7 @@ void * FE_Drill_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ƒhƒŠƒ‹íœ
+ * ãƒ‰ãƒªãƒ«å‰Šé™¤
  * @param	drill		FE_DRILL_PTR
  * @retval	nothing
  */
@@ -110,15 +110,15 @@ void FE_Drill_Delete( void *work )
 }
 
 //==============================================================================
-//	ƒhƒŠƒ‹	ƒp[ƒc
+//	ãƒ‰ãƒªãƒ«	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	ƒhƒŠƒ‹@ƒOƒ‰ƒtƒBƒbƒN
+//	ãƒ‰ãƒªãƒ«ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒhƒŠƒ‹ ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ãƒ‰ãƒªãƒ« ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	drill	FE_DRILL_PTR
  * @retval	nothing
  */
@@ -127,14 +127,14 @@ static void Drill_GraphicInit( FE_DRILL_PTR drill )
 {
 	FE_FROMdl_ResSetArcLoadTexTrans(
 		drill->fes, &drill->m_rmdl, 0, NARC_fldeff_ug_ef_drill_nsbmd, ALLOC_FR );
-	//ƒƒCƒ“ƒŠƒ\[ƒX‚Ì‚İƒ[ƒh
+	//ãƒ¡ã‚¤ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã®ã¿ãƒ­ãƒ¼ãƒ‰
 	FE_FROAnm_AnmResSetArcLoad(
 		drill->fes, &drill->m_ranm, 0, NARC_fldeff_ug_ef_drill_nsbtp, ALLOC_FR );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒhƒŠƒ‹ ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ãƒ‰ãƒªãƒ« ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	drill	FE_DRILL_PTR
  * @retval	nothing
  */
@@ -146,15 +146,15 @@ static void Drill_GraphicDelete( FE_DRILL_PTR drill )
 }
 
 //==============================================================================
-//	ƒhƒŠƒ‹EOA
+//	ãƒ‰ãƒªãƒ«EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒhƒŠƒ‹’Ç‰Á
- * @param	fldobj	‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR
- * @param	gx		•\¦‚·‚éƒOƒŠƒbƒhXÀ•W
- * @param	gz		•\¦‚·‚éƒOƒŠƒbƒhZÀ•W
- * @retval	EOA_PTR	…”g–äEOA_PTR
+ * ãƒ‰ãƒªãƒ«è¿½åŠ 
+ * @param	fldobj	å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR
+ * @param	gx		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	gz		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @retval	EOA_PTR	æ°´æ³¢ç´‹EOA_PTR
  */
 //--------------------------------------------------------------
 void FE_FldOBJDrillSet( FIELD_OBJ_PTR fldobj, int gx, int gy, int gz )
@@ -191,10 +191,10 @@ void FE_FldOBJDrillSet( FIELD_OBJ_PTR fldobj, int gx, int gy, int gz )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒhƒŠƒ‹@‰Šú‰»
+ * EOA ãƒ‰ãƒªãƒ«ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaDrill_Init( EOA_PTR eoa, void *wk )
@@ -211,7 +211,7 @@ static int EoaDrill_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒhƒŠƒ‹@íœ
+ * EOA ãƒ‰ãƒªãƒ«ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -225,7 +225,7 @@ static void EoaDrill_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒhƒŠƒ‹@“®ì
+ * EOA ãƒ‰ãƒªãƒ«ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -245,7 +245,7 @@ static void EoaDrill_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒhƒŠƒ‹@•`‰æ
+ * EOA ãƒ‰ãƒªãƒ«ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -263,7 +263,7 @@ static void EoaDrill_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒhƒŠƒ‹EOA_H
+///	ãƒ‰ãƒªãƒ«EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Drill =
 {

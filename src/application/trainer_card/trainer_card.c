@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	trainer_card.c
- * @bfief	ƒgƒŒ[ƒi[ƒJ[ƒh
+ * @bfief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰
  * @author	Nozomu Saito
  * @date	05.11.15
  */
@@ -56,11 +56,11 @@
 #define UNION_TR_MAX	(16)
 
 
-// ålŒöƒOƒ‰ƒtƒBƒbƒN@
-// ƒpƒŒƒbƒg‚Ì‘—‚è’¼‚µ‚ª•K—v‚È‚¢‚Æ‚«
+// ä¸»äººå…¬ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã€€
+// ãƒ‘ãƒ¬ãƒƒãƒˆã®é€ã‚Šç›´ã—ãŒå¿…è¦ãªã„ã¨ã
 #define TRCLOR_PLTT_OVERWRITE_NONE	( -1 )
-#define TRCLOR_PLTT_OVERWRITE_TRANS	( UNI_TRAINER_PLTT_NO*32 )	// ã‘‚«ƒpƒŒƒbƒg“]‘—æ
-#define TRCLOR_PLTT_OVERWRITE_SIZE	( 2*32 )	// ã‘‚«ƒpƒŒƒbƒgƒTƒCƒY
+#define TRCLOR_PLTT_OVERWRITE_TRANS	( UNI_TRAINER_PLTT_NO*32 )	// ä¸Šæ›¸ããƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆ
+#define TRCLOR_PLTT_OVERWRITE_SIZE	( 2*32 )	// ä¸Šæ›¸ããƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚º
 
 
 enum {
@@ -103,18 +103,18 @@ enum {
 };
 
 typedef struct {
-	const RECT_HIT_TBL *const CoverTpRect[2];	//0:ƒJƒo[•Â‚¶‚Ä‚é‚Æ‚« 1:ƒJƒo[ŠJ‚¯‚Ä‚é‚Æ‚«
+	const RECT_HIT_TBL *const CoverTpRect[2];	//0:ã‚«ãƒãƒ¼é–‰ã˜ã¦ã‚‹ã¨ã 1:ã‚«ãƒãƒ¼é–‹ã‘ã¦ã‚‹ã¨ã
 }RECT_HIT_TBL_LIST;
 
-//‚±‚±‚Åw’è‚µ‚½‰ñ”ˆÈã‚±‚·‚é‚ÆAƒoƒbƒW‚ğ1‰ñ–‚¢‚½‚±‚Æ‚É‚È‚é(ƒŒƒxƒ‹–ˆ)
+//ã“ã“ã§æŒ‡å®šã—ãŸå›æ•°ä»¥ä¸Šã“ã™ã‚‹ã¨ã€ãƒãƒƒã‚¸ã‚’1å›ç£¨ã„ãŸã“ã¨ã«ãªã‚‹(ãƒ¬ãƒ™ãƒ«æ¯)
 static const u8 TempScruchMax[5] = {
 	1,3,4,15,15
 };
 
-// 8ƒoƒbƒW‚ÆƒP[ƒXƒ{ƒ^ƒ“‚Ìƒ^ƒbƒ`ƒpƒlƒ‹”»’èƒe[ƒuƒ‹
+// 8ãƒãƒƒã‚¸ã¨ã‚±ãƒ¼ã‚¹ãƒœã‚¿ãƒ³ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆ¤å®šãƒ†ãƒ¼ãƒ–ãƒ«
 static const RECT_HIT_TBL TpRect1[] =
 {
-	//ã	‰º		¶		‰E
+	//ä¸Š	ä¸‹		å·¦		å³
 	{ 19*8, 23*8-1,	15*8,	19*8-1, },
 	{ 5*8,  10*8-1,	3*8,	8*8-1,  },
 	{ 5*8,  10*8-1,	10*8,	15*8-1, },
@@ -127,26 +127,26 @@ static const RECT_HIT_TBL TpRect1[] =
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-//ƒJƒo[‚ª•Â‚¶‚Ä‚¢‚é‚Æ‚«‚Ìƒ^ƒbƒ`ƒpƒlƒ‹”»’èƒe[ƒuƒ‹(ƒ{ƒ^ƒ“‚Ì‚İ)
+//ã‚«ãƒãƒ¼ãŒé–‰ã˜ã¦ã„ã‚‹ã¨ãã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆ¤å®šãƒ†ãƒ¼ãƒ–ãƒ«(ãƒœã‚¿ãƒ³ã®ã¿)
 static const RECT_HIT_TBL TpRect2[] =
 {
-	//ã	‰º		¶		‰E
+	//ä¸Š	ä¸‹		å·¦		å³
 	{ 19*8, 23*8-1,	15*8,	19*8-1, },
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
 static const RECT_HIT_TBL_LIST TpHit[] =	{
-	{TpRect2,TpRect2},		// ’ÊM(TR_CARD_DATA::BrushValid == 0) ƒJƒo[‚ğŠJ‚¯‚Ä‚àAƒoƒbƒW–‚«‚Å‚«‚È‚¢
-	{TpRect2,TpRect1},		//’Êí(TR_CARD_DATA::BrushValid == 1)	ƒJƒo[ŠJ‚¯‚½‚çƒoƒbƒW–‚¯‚é
+	{TpRect2,TpRect2},		// é€šä¿¡æ™‚(TR_CARD_DATA::BrushValid == 0) ã‚«ãƒãƒ¼ã‚’é–‹ã‘ã¦ã‚‚ã€ãƒãƒƒã‚¸ç£¨ãã§ããªã„
+	{TpRect2,TpRect1},		//é€šå¸¸æ™‚(TR_CARD_DATA::BrushValid == 1)	ã‚«ãƒãƒ¼é–‹ã‘ãŸã‚‰ãƒãƒƒã‚¸ç£¨ã‘ã‚‹
 };
 
 static const u8 ButtonAnimePush[] = {
-	1,1,	//1ƒtƒŒ[ƒ€A1”Ô–Ú
-	0,2,	//I—¹A2”Ô–Ú
+	1,1,	//1ãƒ•ãƒ¬ãƒ¼ãƒ ã€1ç•ªç›®
+	0,2,	//çµ‚äº†ã€2ç•ªç›®
 };
 static const u8 ButtonAnimePull[] = {
-	1,1,	//1ƒtƒŒ[ƒ€A1”Ô–Ú
-	0,0,	//I—¹A     0”Ô–Ú
+	1,1,	//1ãƒ•ãƒ¬ãƒ¼ãƒ ã€1ç•ªç›®
+	0,0,	//çµ‚äº†ã€     0ç•ªç›®
 };
 
 static const u8 * const ButtonAnime[] = {
@@ -154,10 +154,10 @@ static const u8 * const ButtonAnime[] = {
 	ButtonAnimePull
 };
 
-//ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒgƒŒ[ƒi[•\¦ƒe[ƒuƒ‹
+//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¡¨ç¤ºãƒ†ãƒ¼ãƒ–ãƒ«
 static const int UniTrTable[UNION_TR_MAX] = 
 {
-	//’j
+	//ç”·
 	NARC_trainer_case_trdp_schoolb256_NCGR,
 	NARC_trainer_case_trdp_mushi256_NCGR,
 	NARC_trainer_case_trdp_elitem256_NCGR,
@@ -166,7 +166,7 @@ static const int UniTrTable[UNION_TR_MAX] =
 	NARC_trainer_case_trdp_karate256_NCGR,
 	NARC_trainer_case_trdp_prince256_NCGR,
 	NARC_trainer_case_trdp_espm256_NCGR,
-	//—
+	//å¥³
 	NARC_trainer_case_trdp_mini256_NCGR,
 	NARC_trainer_case_trdp_battleg256_NCGR,
 	NARC_trainer_case_trdp_sister256_NCGR,
@@ -179,7 +179,7 @@ static const int UniTrTable[UNION_TR_MAX] =
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void AllocStrBuf( TR_CARD_WORK * wk );
 static void FreeStrBuf( TR_CARD_WORK * wk );
@@ -221,18 +221,18 @@ static int CheckTpBadgeTrg(GF_BGL_INI * bgl, const RECT_HIT_TBL *hitTbl);
 static int CheckTpBadgeCont(GF_BGL_INI * bgl, const RECT_HIT_TBL *hitTbl);
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT TrCardProc_Init( PROC * proc, int * seq )
@@ -240,8 +240,8 @@ PROC_RESULT TrCardProc_Init( PROC * proc, int * seq )
 	TR_CARD_WORK * wk;
 	ARCHANDLE* p_handle;
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );		// HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );		// HBlankã‚»ãƒƒãƒˆ
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -256,7 +256,7 @@ PROC_RESULT TrCardProc_Init( PROC * proc, int * seq )
 	wk = PROC_AllocWork( proc, sizeof(TR_CARD_WORK), HEAPID_TR_CARD );
 	memset( wk, 0, sizeof(TR_CARD_WORK) );
 
-///	APP_WipeStart( APP_WIPE_IN, HEAPID_TR_CARD );	// ‹P“x•ÏXƒZƒbƒg
+///	APP_WipeStart( APP_WIPE_IN, HEAPID_TR_CARD );	// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 	
 	wk->TrCardData = PROC_GetParentWork( proc );
 	wk->bgl = GF_BGL_BglIniAlloc( HEAPID_TR_CARD );
@@ -267,13 +267,13 @@ PROC_RESULT TrCardProc_Init( PROC * proc, int * seq )
 	SetTrCardBg( wk->bgl );
 	SetTrCardBgGraphic( wk, p_handle );
 
-	InitTPSystem();						// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	InitTPSystem();						// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPNoBuff(4);
 
-	//‰¹ŠÖ˜A‰Šú‰»
-	Snd_DataSetByScene( SND_SCENE_SUB_TRCARD, 0, 0 ); //ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(BGMˆøŒp‚¬)
+	//éŸ³é–¢é€£åˆæœŸåŒ–
+	Snd_DataSetByScene( SND_SCENE_SUB_TRCARD, 0, 0 ); //ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(BGMå¼•ç¶™ã)
 	Snd_BadgeWorkInit( &wk->SndBadgeWork );
-	Snd_SePlay( SND_TRCARD_CALL );		//ŒÄ‚Ño‚µ‰¹
+	Snd_SePlay( SND_TRCARD_CALL );		//å‘¼ã³å‡ºã—éŸ³
 	
 	InitTRCardCellActor( &wk->ObjWork, p_handle );
 	
@@ -296,7 +296,7 @@ PROC_RESULT TrCardProc_Init( PROC * proc, int * seq )
 	{
 		u8 no;
 		for(no=0;no<TR_BADGE_NUM_MAX;no++){
-			//ƒ}ƒXƒN”»’è
+			//ãƒã‚¹ã‚¯åˆ¤å®š
 			if ( (wk->TrCardData->GymReaderMask>>no)&0x01 ){
 				ChangeBgGymReader(wk,no);
 			}
@@ -307,18 +307,18 @@ PROC_RESULT TrCardProc_Init( PROC * proc, int * seq )
 	TRCBmp_WriteTrWinInfo( wk->win, wk->TrCardData );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/14
-	// ’PˆÊ—Ş‚ğ gmm ‚ÌƒeƒLƒXƒg‚ÉˆÚsiƒRƒƒ“‚ğ‘‚­‚Ì‚ÍA“_–Å‚³‚¹‚é‚Æ‚«‚¾‚¯‚Å‚æ‚¢j
+	// å˜ä½é¡ã‚’ gmm ã®ãƒ†ã‚­ã‚¹ãƒˆã«ç§»è¡Œï¼ˆã‚³ãƒ­ãƒ³ã‚’æ›¸ãã®ã¯ã€ç‚¹æ»…ã•ã›ã‚‹ã¨ãã ã‘ã§ã‚ˆã„ï¼‰
 	if (wk->TrCardData->TimeUpdate) TRCBmp_WriteSec(&(wk->win[TRC_BMPWIN_PLAY_TIME]), TRUE, wk->SecBuf);
 	// ----------------------------------------------------------------------------
 	
-	wk->is_back = FALSE;		//•\–Ê‚©‚çƒXƒ^[ƒg
-	wk->IsOpen = COVER_CLOSE;			//ƒP[ƒX‚Í•Â‚¶‚½ó‘Ô‚©‚çƒXƒ^[ƒg
+	wk->is_back = FALSE;		//è¡¨é¢ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆ
+	wk->IsOpen = COVER_CLOSE;			//ã‚±ãƒ¼ã‚¹ã¯é–‰ã˜ãŸçŠ¶æ…‹ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆ
 
-	wk->touch = RECT_HIT_NONE;			//ƒ^ƒbƒ`ƒpƒlƒ‹‚Í‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢
+	wk->touch = RECT_HIT_NONE;			//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã¯æŠ¼ã•ã‚Œã¦ã„ãªã„
 
-	wk->ButtonPushFlg = FALSE;			//ƒ{ƒ^ƒ“‰Ÿ‚³‚ê‚Ä‚È‚¢
-	wk->AnimeType = ANIME_NOTHING;		//ƒ{ƒ^ƒ“ƒAƒjƒ–³‚µ
-	//ƒoƒbƒWƒŒƒxƒ‹‚É‡‚í‚¹‚ÄƒpƒŒƒbƒgƒZƒbƒg
+	wk->ButtonPushFlg = FALSE;			//ãƒœã‚¿ãƒ³æŠ¼ã•ã‚Œã¦ãªã„
+	wk->AnimeType = ANIME_NOTHING;		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ç„¡ã—
+	//ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«ã«åˆã‚ã›ã¦ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	{
 		u8 lv;
 		u8 i;
@@ -327,36 +327,36 @@ PROC_RESULT TrCardProc_Init( PROC * proc, int * seq )
 			if (wk->TrCardData->BadgeData[i].BadgeHold){
 				lv = GetBadgeLevel(wk->TrCardData->BadgeData[i].BadgeScruchCount);
 				if (lv <= TR_CARD_BADGE_LV_MAX){
-					if (lv == TR_CARD_BADGE_LV_MAX){	//ƒoƒbƒWƒŒƒxƒ‹‚ªÅ‚‚Ì‚Æ‚«‚ÍA1’iŠK‰º‚ÌƒŒƒxƒ‹‚ÌƒpƒŒƒbƒg‚ğg—p
+					if (lv == TR_CARD_BADGE_LV_MAX){	//ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«ãŒæœ€é«˜ã®ã¨ãã¯ã€1æ®µéšä¸‹ã®ãƒ¬ãƒ™ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨
 						SetBadgePalette(&wk->ObjWork, i, 0);
 					}else{
 						SetBadgePalette(&wk->ObjWork, i, BADGE_BAD_PLTT_NO-lv);
 					}
 				}
-				//¯ƒAƒNƒ^[•\¦
+				//æ˜Ÿã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤º
 				if (lv == TR_CARD_BADGE_LV_MAX-1){
-					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_STAR_ACT_START+i], 1);	//•\¦
+					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_STAR_ACT_START+i], 1);	//è¡¨ç¤º
 				}
 				else if (lv == TR_CARD_BADGE_LV_MAX){
-					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_GRATE_STAR_ACT_START+i], 1);	//•\¦
+					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_GRATE_STAR_ACT_START+i], 1);	//è¡¨ç¤º
 				}
 			}
 		}
 	}
 
-	//Šgk–Ê‚ğƒŠƒZƒbƒg
+	//æ‹¡ç¸®é¢ã‚’ãƒªã‚»ãƒƒãƒˆ
 	ResetAffinePlane();
 	
 
-	sys_VBlankFuncChange(VBlankFunc, NULL );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange(VBlankFunc, NULL );	// VBlankã‚»ãƒƒãƒˆ
 
-	//’ÊMƒAƒCƒRƒ“ƒZƒbƒg
-	// óM‹­“xƒAƒCƒRƒ“‚ğ’ÊMÚ‘±’†‚È‚ç•\¦‚·‚é‚µA
-	// ƒ†ƒjƒIƒ“‚Ì‚æ‚¤‚É’ÊM‰ñ˜H‚Í“®ì‚µ‚Ä‚¢‚é‚ªÚ‘±‚Í‚µ‚Ä‚¢‚È‚¢ó‘Ô‚È‚ço‚³‚È‚¢
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚»ãƒƒãƒˆ
+	// å—ä¿¡å¼·åº¦ã‚¢ã‚¤ã‚³ãƒ³ã‚’é€šä¿¡æ¥ç¶šä¸­ãªã‚‰è¡¨ç¤ºã™ã‚‹ã—ã€
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ã®ã‚ˆã†ã«é€šä¿¡å›è·¯ã¯å‹•ä½œã—ã¦ã„ã‚‹ãŒæ¥ç¶šã¯ã—ã¦ã„ãªã„çŠ¶æ…‹ãªã‚‰å‡ºã•ãªã„
 	// Change by Mori 2006/07/19
 	WirelessIconEasyUnion();
 
-	//BGM‚ğ‚µ‚Ú‚é
+	//BGMã‚’ã—ã¼ã‚‹
 	//Snd_BgmFadeOut( BGM_VOL_TR_CASE, BGM_FADE_TR_CASE_TIME );
 	Snd_PlayerSetPlayerVolume( PLAYER_FIELD, BGM_VOL_TR_CASE );
 
@@ -371,12 +371,12 @@ PROC_RESULT TrCardProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT TrCardProc_Main( PROC * proc, int * seq )
@@ -396,56 +396,56 @@ PROC_RESULT TrCardProc_Main( PROC * proc, int * seq )
 			req = CheckKey(wk);
 
 			if (req == TRC_KEY_REQ_TP_BEAT){
-				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒeƒ“ƒvƒŒ[ƒg‚Æƒ^ƒbƒ`À•W‚ğ”äŠr
+				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã¨ã‚¿ãƒƒãƒåº§æ¨™ã‚’æ¯”è¼ƒ
 				if (wk->touch == CASE_BUTTON){
-					wk->ButtonPushFlg = TRUE;		//ƒ{ƒ^ƒ“‰Ÿ‚µ‚½
-					wk->AnimeType = ANIME_BUTTON_PUSH;	//ƒ{ƒ^ƒ“‰Ÿ‰ºƒAƒjƒ
-					//ƒ{ƒ^ƒ“ƒGƒtƒFƒNƒgƒAƒNƒ^[•\¦
-					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_BTNEFF_ACT_START], 1);	//•\¦
+					wk->ButtonPushFlg = TRUE;		//ãƒœã‚¿ãƒ³æŠ¼ã—ãŸ
+					wk->AnimeType = ANIME_BUTTON_PUSH;	//ãƒœã‚¿ãƒ³æŠ¼ä¸‹ã‚¢ãƒ‹ãƒ¡
+					//ãƒœã‚¿ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤º
+					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_BTNEFF_ACT_START], 1);	//è¡¨ç¤º
 					CLACT_SetAnmFlag(wk->ObjWork.ClActWork[TR_CARD_BTNEFF_ACT_START],1);
 					CLACT_AnmChg( wk->ObjWork.ClActWork[TR_CARD_BTNEFF_ACT_START], 10 );
 					
-					wk->sub_seq = 0;	//ƒTƒuƒV[ƒPƒ“ƒX‰Šú‰»
-					//ƒ{ƒ^ƒ“ƒAƒjƒ‰Šú‰»
+					wk->sub_seq = 0;	//ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–
+					//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
 					wk->AnmNum = 0;
 					wk->ButtonAnmCount = 0;
-					//ƒV[ƒPƒ“ƒX‘Ò‚¿ƒtƒ‰ƒO‰Šú‰»
+					//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¾…ã¡ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 					wk->rc_cover = FALSE;
-					*seq = SEQ_COVER;	//ƒJƒo[‚ÌŠJ•Â
+					*seq = SEQ_COVER;	//ã‚«ãƒãƒ¼ã®é–‹é–‰
 				}else{
 					u8 no = wk->touch-1;
-					//ƒoƒbƒWŠ—L”»’è
+					//ãƒãƒƒã‚¸æ‰€æœ‰åˆ¤å®š
 					if (wk->TrCardData->BadgeData[no].BadgeHold){
 						u8 lv;
 						lv = GetBadgeLevel(wk->TrCardData->BadgeData[no].BadgeScruchCount);
-						//ƒoƒbƒW‰¹‚ª‚·‚é
+						//ãƒãƒƒã‚¸éŸ³ãŒã™ã‚‹
 						Snd_BadgeWorkPlay( &wk->SndBadgeWork, no, lv );
 					}
 				}
 			}else if (req == TRC_KEY_REQ_TP_BRUSH){
 				if ( (wk->ButtonPushFlg)&&(wk->touch != CASE_BUTTON) ){
 					wk->ButtonPushFlg = FALSE;
-					wk->AnimeType = ANIME_BUTTON_PULL;	//ƒ{ƒ^ƒ“–ß‚µƒAƒjƒ
+					wk->AnimeType = ANIME_BUTTON_PULL;	//ãƒœã‚¿ãƒ³æˆ»ã—ã‚¢ãƒ‹ãƒ¡
 				}
-				//ƒJƒo[‚ª‹ó‚¢‚Ä‚¢‚ê‚ÎAƒoƒbƒ`–‚«
-				BrushBadge(wk);//ƒoƒbƒ`–‚«
+				//ã‚«ãƒãƒ¼ãŒç©ºã„ã¦ã„ã‚Œã°ã€ãƒãƒƒãƒç£¨ã
+				BrushBadge(wk);//ãƒãƒƒãƒç£¨ã
 			}else{
 				if ( (wk->ButtonPushFlg)&&(wk->AnimeType == ANIME_NOTHING) ){
 					wk->ButtonPushFlg = FALSE;
-					wk->AnimeType = ANIME_BUTTON_PULL;	//ƒ{ƒ^ƒ“–ß‚µƒAƒjƒ
+					wk->AnimeType = ANIME_BUTTON_PULL;	//ãƒœã‚¿ãƒ³æˆ»ã—ã‚¢ãƒ‹ãƒ¡
 				}
 				if (wk->TrCardData->BrushValid){
 					ClearScruchSnd(&wk->ScruchSnd);
 				}
 
 				if (req == TRC_KEY_REQ_REV_BUTTON){
-					//ƒJ[ƒh‚Ğ‚Á‚­‚è•Ô‚·
-					wk->sub_seq = 0;	//ƒTƒuƒV[ƒPƒ“ƒX‰Šú‰»
-					*seq = SEQ_REV;	//ƒJ[ƒh‰ñ“]
+					//ã‚«ãƒ¼ãƒ‰ã²ã£ãã‚Šè¿”ã™
+					wk->sub_seq = 0;	//ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–
+					*seq = SEQ_REV;	//ã‚«ãƒ¼ãƒ‰å›è»¢
 				}else if (req == TRC_KEY_REQ_END_BUTTON){
-					//I—¹
-					Snd_SePlay( SND_TRCARD_END );		//I—¹‰¹
-///					APP_WipeStart( APP_WIPE_OUT, HEAPID_TR_CARD );	// ‹P“x•ÏXƒZƒbƒg
+					//çµ‚äº†
+					Snd_SePlay( SND_TRCARD_END );		//çµ‚äº†éŸ³
+///					APP_WipeStart( APP_WIPE_OUT, HEAPID_TR_CARD );	// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 					WIPE_SYS_Start(	WIPE_PATTERN_FMAS, WIPE_TYPE_SHUTTEROUT_UP,
 									WIPE_TYPE_SHUTTEROUT_UP, WIPE_FADE_BLACK,
 									WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_TR_CARD );
@@ -462,7 +462,7 @@ PROC_RESULT TrCardProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	
-	case SEQ_REV:	//ƒŠƒo[ƒXˆ—
+	case SEQ_REV:	//ãƒªãƒãƒ¼ã‚¹å‡¦ç†
 		if ( CardRev(wk) ){
 			*seq = SEQ_MAIN;
 		}
@@ -474,25 +474,25 @@ PROC_RESULT TrCardProc_Main( PROC * proc, int * seq )
 
 			if (req == TRC_KEY_REQ_TP_BEAT){
 				if (wk->touch == CASE_BUTTON){
-					wk->ButtonPushFlg = TRUE;		//ƒ{ƒ^ƒ“‰Ÿ‚µ‚½
-					wk->AnimeType = ANIME_BUTTON_PUSH;	//ƒ{ƒ^ƒ“‰Ÿ‰ºƒAƒjƒ
-					//ƒ{ƒ^ƒ“ƒAƒjƒ‰Šú‰»
+					wk->ButtonPushFlg = TRUE;		//ãƒœã‚¿ãƒ³æŠ¼ã—ãŸ
+					wk->AnimeType = ANIME_BUTTON_PUSH;	//ãƒœã‚¿ãƒ³æŠ¼ä¸‹ã‚¢ãƒ‹ãƒ¡
+					//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
 					wk->AnmNum = 0;
 					wk->ButtonAnmCount = 0;
 				}
 			}else if (req == TRC_KEY_REQ_TP_BRUSH){
 				if ( (wk->ButtonPushFlg)&&(wk->touch != CASE_BUTTON) ){
 					wk->ButtonPushFlg = FALSE;
-					wk->AnimeType = ANIME_BUTTON_PULL;	//ƒ{ƒ^ƒ“–ß‚µƒAƒjƒ
+					wk->AnimeType = ANIME_BUTTON_PULL;	//ãƒœã‚¿ãƒ³æˆ»ã—ã‚¢ãƒ‹ãƒ¡
 				}
 			}else{
 				if ( wk->ButtonPushFlg ){
 					wk->ButtonPushFlg = FALSE;
-					wk->AnimeType = ANIME_BUTTON_PULL;	//ƒ{ƒ^ƒ“–ß‚µƒAƒjƒ
+					wk->AnimeType = ANIME_BUTTON_PULL;	//ãƒœã‚¿ãƒ³æˆ»ã—ã‚¢ãƒ‹ãƒ¡
 				}
 			}
 		}
-		//ŠJ•Â
+		//é–‹é–‰
 		if (wk->rc_cover == FALSE){
 			wk->rc_cover = CoverOpenClose(wk);
 		}
@@ -504,50 +504,50 @@ PROC_RESULT TrCardProc_Main( PROC * proc, int * seq )
 		break;
 	}
 
-	//ƒ{ƒ^ƒ“ƒAƒjƒ
+	//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡
 	ButtonAnimeControl(wk);
 	
 
-	CLACT_Draw( wk->ObjWork.ClactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+	CLACT_Draw( wk->ObjWork.ClactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 
 	return PROC_RES_CONTINUE;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT TrCardProc_End( PROC * proc, int * seq )
 {
 	TR_CARD_WORK * wk  = PROC_GetWork( proc );
 
-	//g—p‚µ‚½Šgk–Ê‚ğŒ³‚É–ß‚·
+	//ä½¿ç”¨ã—ãŸæ‹¡ç¸®é¢ã‚’å…ƒã«æˆ»ã™
 	ResetAffinePlane();
 	
-	FreeStrBuf( wk );					//•¶š—ñ‰ğ•ú
+	FreeStrBuf( wk );					//æ–‡å­—åˆ—è§£æ”¾
 	
-	RereaseCellObject(&wk->ObjWork);		//2DƒIƒuƒWƒFƒNƒgŠÖ˜A—Ìˆæ‰ğ•ú
+	RereaseCellObject(&wk->ObjWork);		//2Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–¢é€£é ˜åŸŸè§£æ”¾
 
-	sys_FreeMemoryEz( wk->TrArcData );	//ƒgƒŒ[ƒi[ƒLƒƒƒ‰ƒA[ƒJƒCƒuƒf[ƒ^‰ğ•ú
+	sys_FreeMemoryEz( wk->TrArcData );	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚­ãƒ£ãƒ©ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 
-	sys_FreeMemoryEz( wk->TrScrnArcData );//ƒgƒŒ[ƒi[ƒXƒNƒŠ[ƒ“‰ğ•ú
+	sys_FreeMemoryEz( wk->TrScrnArcData );//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£æ”¾
 
-	TRCBmp_ExitTrCardBmpWin( wk->win );			// BMPƒEƒBƒ“ƒhƒEŠJ•ú
-	TrCardBgExit( wk->bgl );			// BGLíœ
-	StopTP();							// ƒ^ƒbƒ`ƒpƒlƒ‹I—¹
+	TRCBmp_ExitTrCardBmpWin( wk->win );			// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
+	TrCardBgExit( wk->bgl );			// BGLå‰Šé™¤
+	StopTP();							// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµ‚äº†
 
-	PROC_FreeWork( proc );				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 	sys_DeleteHeap( HEAPID_TR_CARD );
 
-	//BGM‚ğŒ³‚Ì‰¹—Ê‚É–ß‚·
+	//BGMã‚’å…ƒã®éŸ³é‡ã«æˆ»ã™
 	//Snd_BgmFadeIn( BGM_VOL_MAX, BGM_FADE_TR_CASE_TIME, BGM_FADEIN_START_VOL_NOW );
 	Snd_PlayerSetPlayerVolume( PLAYER_FIELD, BGM_VOL_MAX );
 
@@ -556,9 +556,9 @@ PROC_RESULT TrCardProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶š—ñƒoƒbƒtƒ@‚ÌŠm•Û
+ * æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
  *
- * @param	wk		‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -577,9 +577,9 @@ static void AllocStrBuf( TR_CARD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶š—ñƒoƒbƒtƒ@‚Ì‰ğ•ú
+ * æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
  *
- * @param	wk		‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -592,7 +592,7 @@ static void FreeStrBuf( TR_CARD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMİ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -602,32 +602,32 @@ static void FreeStrBuf( TR_CARD_WORK * wk )
 static void SetTrCardVramBank(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒJ[ƒhƒpƒŒƒbƒgİ’è
+ * ã‚«ãƒ¼ãƒ‰ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
- * @param	inCardRank		ƒJ[ƒhƒ‰ƒ“ƒN
- * @param	inPokeBookHold	}ŠÓŠƒtƒ‰ƒO
+ * @param	inCardRank		ã‚«ãƒ¼ãƒ‰ãƒ©ãƒ³ã‚¯
+ * @param	inPokeBookHold	å›³é‘‘æ‰€æŒãƒ•ãƒ©ã‚°
  * 
- * @return	‚È‚µ
+ * @return	ãªã—
  */
 //--------------------------------------------------------------------------------------------
 static void SetCardPalette(const u8 inCardRank, const u8 inPokeBookHold, ARCHANDLE* p_handle)
@@ -670,11 +670,11 @@ static void SetCardPalette(const u8 inCardRank, const u8 inPokeBookHold, ARCHAND
 
 		{
 			u16 * adr;
-			DC_FlushRange( dat->pRawData, 2*16*16 );	//16–{•ª‚ğƒtƒ‰ƒbƒVƒ…
+			DC_FlushRange( dat->pRawData, 2*16*16 );	//16æœ¬åˆ†ã‚’ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 			adr = dat->pRawData;
-			//16ƒpƒŒƒbƒg‚P”Ô–Ú‚©‚ç3–{•ªƒ[ƒh
+			//16ãƒ‘ãƒ¬ãƒƒãƒˆï¼‘ç•ªç›®ã‹ã‚‰3æœ¬åˆ†ãƒ­ãƒ¼ãƒ‰
 			GXS_LoadBGPltt( &adr[16], 2*16, 2*16*3 );
-			//f”Ô–Ú‚ÌƒpƒŒƒbƒg‚P–{‚ğƒ[ƒh
+			//fç•ªç›®ã®ãƒ‘ãƒ¬ãƒƒãƒˆï¼‘æœ¬ã‚’ãƒ­ãƒ¼ãƒ‰
 			GXS_LoadBGPltt( &adr[16*15], 2*16*15, 2*16 );
 			sys_FreeMemoryEz(buf);
 		}
@@ -683,11 +683,11 @@ static void SetCardPalette(const u8 inCardRank, const u8 inPokeBookHold, ARCHAND
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒP[ƒXƒpƒŒƒbƒgƒZƒbƒg
+ * ã‚±ãƒ¼ã‚¹ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	inVersion	ƒo[ƒWƒ‡ƒ“
+ * @param	inVersion	ãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *
- * @return	‚È‚µ
+ * @return	ãªã—
  */
 //--------------------------------------------------------------------------------------------
 static void SetCasePalette(const u8 inVersion, ARCHANDLE* p_handle)
@@ -695,28 +695,28 @@ static void SetCasePalette(const u8 inVersion, ARCHANDLE* p_handle)
 	void *buf;
 	NNSG2dPaletteData *dat;
 	switch(inVersion){
-	case VERSION_DIAMOND:		//ƒ_ƒCƒ„
+	case VERSION_DIAMOND:		//ãƒ€ã‚¤ãƒ¤
 		buf = ArcUtil_HDL_PalDataGet(
 				p_handle, NARC_trainer_case_card_case_d_NCLR, &dat, HEAPID_TR_CARD );
 		break;
-	case VERSION_PEARL:		//ƒp[ƒ‹
+	case VERSION_PEARL:		//ãƒ‘ãƒ¼ãƒ«
 		buf = ArcUtil_HDL_PalDataGet(
 				p_handle, NARC_trainer_case_card_case_p_NCLR, &dat, HEAPID_TR_CARD );
 		break;
-	case VERSION_PLATINUM:	//ƒvƒ‰ƒ`ƒi
+	case VERSION_PLATINUM:	//ãƒ—ãƒ©ãƒãƒŠ
 		buf = ArcUtil_HDL_PalDataGet(
 				p_handle, NARC_trainer_case_card_case_pl_NCLR, &dat, HEAPID_TR_CARD );
 		break;
-	case VERSION_GOLD:		//‹à
+	case VERSION_GOLD:		//é‡‘
 		buf = ArcUtil_HDL_PalDataGet(
 				p_handle, NARC_trainer_case_card_case_g_NCLR, &dat, HEAPID_TR_CARD );
 		break;
-	case VERSION_SILVER:		//‹â
+	case VERSION_SILVER:		//éŠ€
 		buf = ArcUtil_HDL_PalDataGet(
 				p_handle, NARC_trainer_case_card_case_s_NCLR, &dat, HEAPID_TR_CARD );
 		break;
 		
-	default:	//•Êƒo[ƒWƒ‡ƒ“
+	default:	//åˆ¥ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 		buf = ArcUtil_HDL_PalDataGet(
 				p_handle, NARC_trainer_case_card_case_x_NCLR, &dat, HEAPID_TR_CARD );
 		break;
@@ -730,11 +730,11 @@ static void SetCasePalette(const u8 inVersion, ARCHANDLE* p_handle)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ†ƒjƒIƒ“ƒgƒŒ[ƒi[ƒpƒŒƒbƒgƒZƒbƒg
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
  *
  * @param	inTrainerNo
  *
- * @return	‚È‚µ
+ * @return	ãªã—
  */
 //--------------------------------------------------------------------------------------------
 static void SetUniTrainerPalette(const u8 inTrainerNo, ARCHANDLE* p_handle)
@@ -754,9 +754,9 @@ static void SetUniTrainerPalette(const u8 inTrainerNo, ARCHANDLE* p_handle)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGİ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -851,9 +851,9 @@ static void SetTrCardBg( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -892,7 +892,7 @@ static void SetTrCardBgGraphic( TR_CARD_WORK * wk, ARCHANDLE* p_handle )
 		s32 ncg_data, nsc_data, ncl_data;
 
 		switch( wk->TrCardData->Version ){
-		// DP‚Ì‚Æ‚«‚ÌƒOƒ‰ƒtƒBƒbƒN
+		// DPã®ã¨ãã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 		case VERSION_DIAMOND:
 		case VERSION_PEARL:
 			ncg_data = NARC_trainer_case_card_trainer_dp_NCGR;
@@ -900,7 +900,7 @@ static void SetTrCardBgGraphic( TR_CARD_WORK * wk, ARCHANDLE* p_handle )
 			ncl_data = NARC_trainer_case_card_dptr_NCLR;
 			break;
 
-		// PLATINUM‚©‚»‚Ì‘¼
+		// PLATINUMã‹ãã®ä»–
 		default:
 			ncg_data = NARC_trainer_case_card_trainer_NCGR;
 			nsc_data = NARC_trainer_case_card_trainer01_NSCR;
@@ -908,10 +908,10 @@ static void SetTrCardBgGraphic( TR_CARD_WORK * wk, ARCHANDLE* p_handle )
 			break;
 		}
 		
-		// ƒLƒƒƒ‰ƒNƒ^“Ç‚İ‚İ
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿
 		{
 			BOOL rc;
-			//ƒA[ƒJƒCƒuƒf[ƒ^æ“¾
+			//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 			wk->TrArcData = ArcUtil_HDL_Load(	p_handle, ncg_data,
 											FALSE, HEAPID_TR_CARD, ALLOC_TOP );
 			GF_ASSERT(wk->TrArcData!=NULL);
@@ -919,26 +919,26 @@ static void SetTrCardBgGraphic( TR_CARD_WORK * wk, ARCHANDLE* p_handle )
 			GF_ASSERT(rc);
 		}
 
-		// ƒpƒŒƒbƒg“]‘—
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		if( ncl_data != TRCLOR_PLTT_OVERWRITE_NONE ){
 			ArcUtil_HDL_PalSet( p_handle, ncl_data, PALTYPE_SUB_BG, 
 					TRCLOR_PLTT_OVERWRITE_TRANS, TRCLOR_PLTT_OVERWRITE_SIZE, HEAPID_TR_CARD );
 		}
 	
 		if (wk->TrCardData->TrSex == PM_MALE){
-			//’j
+			//ç”·
 			wk->TrScrnArcData = ArcUtil_HDL_ScrnDataGet(p_handle, nsc_data,
 													0, &wk->ScrnData, HEAPID_TR_CARD);
 		}else{
-			//—
+			//å¥³
 			wk->TrScrnArcData = ArcUtil_HDL_ScrnDataGet(p_handle, nsc_data+1,
 													0, &wk->ScrnData, HEAPID_TR_CARD);
 		}
 	}else{
-		//ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Å‘¼‚Ìl‚Ìƒf[ƒ^‚ğŒ©‚é
+		//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ä»–ã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’è¦‹ã‚‹æ™‚
 		{
 			BOOL rc;
-			//ƒA[ƒJƒCƒuƒf[ƒ^æ“¾
+			//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 			wk->TrArcData = ArcUtil_HDL_Load(	p_handle, UniTrTable[wk->TrCardData->UnionTrNo],
 											FALSE, HEAPID_TR_CARD, ALLOC_TOP );
 			GF_ASSERT(wk->TrArcData!=NULL);
@@ -947,7 +947,7 @@ static void SetTrCardBgGraphic( TR_CARD_WORK * wk, ARCHANDLE* p_handle )
 
 			wk->TrScrnArcData = ArcUtil_HDL_ScrnDataGet(p_handle, NARC_trainer_case_card_test256_NSCR,
 													0, &wk->ScrnData, HEAPID_TR_CARD);
-			//ƒgƒŒ[ƒi[ƒpƒŒƒbƒg•ÏX
+			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 			SetUniTrainerPalette(wk->TrCardData->UnionTrNo, p_handle);
 		}
 	}
@@ -975,16 +975,16 @@ static void SetTrCardBgGraphic( TR_CARD_WORK * wk, ARCHANDLE* p_handle )
 	ArcUtil_HDL_ScrnSet(
 			p_handle, NARC_trainer_case_card_futa_NSCR, wk->bgl, TRC_BG_COVER, 0, 0, 0, HEAPID_TR_CARD );
 
-	//ƒTƒCƒ““WŠJ
+	//ã‚µã‚¤ãƒ³å±•é–‹
 	MakeSignData(wk->TrCardData->SignRawData, wk->TrSignData);
 
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1009,11 +1009,11 @@ static void TrCardBgExit( GF_BGL_INI * ini )
 #define FIRST_SPEED	(8)
 //--------------------------------------------------------------------------------------------
 /**
- * ƒJ[ƒh‚ğ‚Ğ‚Á‚­‚è•Ô‚·
+ * ã‚«ãƒ¼ãƒ‰ã‚’ã²ã£ãã‚Šè¿”ã™
  *
- * @param	wk		‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	BOOL	TRUE:I—¹	FALSEFˆ—’†
+ * @return	BOOL	TRUE:çµ‚äº†	FALSEï¼šå‡¦ç†ä¸­
  */
 //--------------------------------------------------------------------------------------------
 static BOOL CardRev( TR_CARD_WORK *wk )
@@ -1025,22 +1025,22 @@ static BOOL CardRev( TR_CARD_WORK *wk )
 	switch(wk->sub_seq){
 	case 0:
 		wk->RevSpeed = FIRST_SPEED;	
-		//î•ñ‚ğÁ‚·
-		//‚¿‚å‚Á‚ÆŠg‘å‚µ‚Ä
+		//æƒ…å ±ã‚’æ¶ˆã™
+		//ã¡ã‚‡ã£ã¨æ‹¡å¤§ã—ã¦
 		wk->CardScaleX = 1 << FX32_SHIFT;
 		wk->CardScaleY = 1 << FX32_SHIFT;
 		wk->CardScaleX += 2 << (FX32_SHIFT - 6);
 		wk->CardScaleY += 2 << (FX32_SHIFT - 6);
 
-		Snd_SePlay( SND_TRCARD_REV );		//‚Ğ‚Á‚­‚è•Ô‚·‰¹
+		Snd_SePlay( SND_TRCARD_REV );		//ã²ã£ãã‚Šè¿”ã™éŸ³
 
 		wk->sub_seq++;
 		break;
 	case 1:
-		//•‚ğk‚ß‚é
+		//å¹…ã‚’ç¸®ã‚ã‚‹
 		wk->CardScaleX -= 2 << (REV_SPEED);
-		if (wk->CardScaleX <= 0){//ƒJ[ƒhƒXƒNƒŠ[ƒ“•ÏX
-			wk->CardScaleX = CARD_SCALE_MIN;	//ƒoƒO•\¦–h~(’l‚ÍƒJ[ƒh‚ÌŒú‚İ‚ğˆÛ‚Å‚«‚éˆÊ‚Ì–Ú•ª—Ê)
+		if (wk->CardScaleX <= 0){//ã‚«ãƒ¼ãƒ‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å¤‰æ›´
+			wk->CardScaleX = CARD_SCALE_MIN;	//ãƒã‚°è¡¨ç¤ºé˜²æ­¢(å€¤ã¯ã‚«ãƒ¼ãƒ‰ã®åšã¿ã‚’ç¶­æŒã§ãã‚‹ä½ã®ç›®åˆ†é‡)
 			wk->sub_seq++;
 		}
 
@@ -1054,32 +1054,32 @@ static BOOL CardRev( TR_CARD_WORK *wk )
 			wk->is_back = TRUE;
 			ArcUtil_ScrnSet(
 					ARC_TR_CASE_GRA, NARC_trainer_case_card_back_NSCR, wk->bgl, TRC_BG_CARD, 0, 0, 0, HEAPID_TR_CARD );
-			//•\–Ê‚ğÁ‚·
+			//è¡¨é¢ã‚’æ¶ˆã™
 			TRCBmp_NonDispWinInfo(wk->win, TRC_BMPWIN_TR_ID, TRC_BMPWIN_START_TIME);
-			//ƒgƒŒ[ƒi[Á‚·
+			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ¶ˆã™
 			ClearTrainer(wk);
-			//ƒXƒNƒŠ[ƒ“ƒNƒŠƒA
+			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢
 			GF_BGL_ScrClear( wk->bgl, TRC_BG_SIGHN );
-			//— –Ê•\¦
+			//è£é¢è¡¨ç¤º
 			TRCBmp_WriteTrWinInfoRev( wk->win, wk->TrCardData );
 			TransSignData(wk->bgl,TRC_BG_SIGHN, wk->TrSignData);
 		}else{
 			wk->is_back = FALSE;
 			ArcUtil_ScrnSet(
 					ARC_TR_CASE_GRA, NARC_trainer_case_card_faca_NSCR, wk->bgl, TRC_BG_CARD, 0, 0, 0, HEAPID_TR_CARD );
-			//— –Ê‚ğÁ‚·
+			//è£é¢ã‚’æ¶ˆã™
 			TRCBmp_NonDispWinInfo(wk->win, TRC_BMPWIN_CLEAR_TIME, TRC_BMPWIN_TRADE_INFO);
-			//ƒXƒNƒŠ[ƒ“ƒNƒŠƒA
+			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢
 			GF_BGL_ScrClear( wk->bgl, TRC_BG_TRAINER );
-			//ƒgƒŒ[ƒi[•\¦
+			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¡¨ç¤º
 			DispTrainer(wk);
-			//•\–Ê•\¦
+			//è¡¨é¢è¡¨ç¤º
 			TRCBmp_WriteTrWinInfo( wk->win, wk->TrCardData );
 		}
 		wk->sub_seq++;
 		break;
 	case 3:
-		//•‚ğL‚°‚é
+		//å¹…ã‚’åºƒã’ã‚‹
 		wk->RevSpeed++;
 		if(wk->RevSpeed > FIRST_SPEED){
 			wk->RevSpeed = FIRST_SPEED;
@@ -1088,11 +1088,11 @@ static BOOL CardRev( TR_CARD_WORK *wk )
 		wk->CardScaleX += 2 << (REV_SPEED);
 		if (wk->CardScaleX >= (1 << FX32_SHIFT)){
 			wk->CardScaleX = 1 << FX32_SHIFT;
-			//Œ³‚ÌƒTƒCƒY‚Ö
+			//å…ƒã®ã‚µã‚¤ã‚ºã¸
 			wk->CardScaleX = 1 << FX32_SHIFT;
 			wk->CardScaleY = 1 << FX32_SHIFT;
 
-			//Snd_SePlay( SND_TRCARD_REV_AFTER );		//‚Ğ‚Á‚­‚è•Ô‚µ‚½Œã•\¦‰¹
+			//Snd_SePlay( SND_TRCARD_REV_AFTER );		//ã²ã£ãã‚Šè¿”ã—ãŸå¾Œè¡¨ç¤ºéŸ³
 			rc = TRUE;
 		}
 		break;
@@ -1165,11 +1165,11 @@ static const fx32 CoverSpeed[] =
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒP[ƒXƒJƒo[‚ÌŠJ•Â
+ * ã‚±ãƒ¼ã‚¹ã‚«ãƒãƒ¼ã®é–‹é–‰
  *
- * @param	wk		‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	BOOL	TRUE:I—¹	FALSEFˆ—’†
+ * @return	BOOL	TRUE:çµ‚äº†	FALSEï¼šå‡¦ç†ä¸­
  */
 //--------------------------------------------------------------------------------------------
 
@@ -1190,19 +1190,19 @@ static BOOL CoverOpenClose(TR_CARD_WORK *wk)
 		PlayButtonAndCoverSnd(wk->IsOpen);
 		break;
 	case 1:		
-		//ŠJ‚¯‚é
+		//é–‹ã‘ã‚‹
 		wk->CoverScaleY -= CoverSpeed[wk->Counter++];///2 << (FX32_SHIFT - 4);
-		if (wk->Counter==COVER_MOVE){//ƒJ[ƒhƒXƒNƒŠ[ƒ“•ÏX
-			wk->IsOpen = COVER_OPEN;		//ŠJ‚¢‚½ó‘Ô
+		if (wk->Counter==COVER_MOVE){//ã‚«ãƒ¼ãƒ‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å¤‰æ›´
+			wk->IsOpen = COVER_OPEN;		//é–‹ã„ãŸçŠ¶æ…‹
 			wk->sub_seq = 3;
 		}
 		break;
 	case 2:
-		//•Â‚ß‚é
+		//é–‰ã‚ã‚‹
 		wk->CoverScaleY += CoverSpeed[(COVER_MOVE-1)-(wk->Counter++)];///2 << (FX32_SHIFT - 4);
 		
-		if (wk->Counter == COVER_MOVE){//ƒJ[ƒhƒXƒNƒŠ[ƒ“•ÏX
-			wk->IsOpen = COVER_CLOSE;		//•Â‚¶‚½ó‘Ô
+		if (wk->Counter == COVER_MOVE){//ã‚«ãƒ¼ãƒ‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å¤‰æ›´
+			wk->IsOpen = COVER_CLOSE;		//é–‰ã˜ãŸçŠ¶æ…‹
 			wk->CoverScaleY = (1 << FX32_SHIFT);
 			wk->sub_seq = 3;
 		}
@@ -1228,11 +1228,11 @@ static BOOL CoverOpenClose(TR_CARD_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒL[”»’è
+ * ã‚­ãƒ¼åˆ¤å®š
  *
- * @param	wk		‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	int		ƒŠƒNƒGƒXƒg
+ * @return	int		ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  */
 //--------------------------------------------------------------------------------------------
 static int CheckKey(TR_CARD_WORK *wk)
@@ -1274,28 +1274,28 @@ static int CheckKey(TR_CARD_WORK *wk)
 #endif
 	if (sys.tp_trg){
 ///		OS_Printf("xy=%d,%d\n",sys.tp_x,sys.tp_y);
-		wk->brushOK = TRUE;	//ƒoƒbƒW–‚«‰Â”\ 
+		wk->brushOK = TRUE;	//ãƒãƒƒã‚¸ç£¨ãå¯èƒ½ 
 	}
 	
 ///	wk->touch = GF_TP_RectHitTrg( TpHit[wk->TrCardData->BrushValid].CoverTpRect[wk->IsOpen] );
 	wk->touch = CheckTpBadgeTrg( wk->bgl, TpHit[wk->TrCardData->BrushValid].CoverTpRect[wk->IsOpen] );
-	//ƒqƒbƒg”»’è
-	if (wk->touch != RECT_HIT_NONE){	//ƒ^ƒbƒ`ƒpƒlƒ‹ƒgƒŠƒK[”»’è
+	//ãƒ’ãƒƒãƒˆåˆ¤å®š
+	if (wk->touch != RECT_HIT_NONE){	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒˆãƒªã‚¬ãƒ¼åˆ¤å®š
 ///		OS_Printf("hit=%d\n",wk->touch);
-		tp_key_flg = TRUE;	//ƒ^ƒbƒ`ƒpƒlƒ‹ƒŠƒNƒGƒXƒg
+		tp_key_flg = TRUE;	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		key_req = TRC_KEY_REQ_TP_BEAT;
-	}else if (sys.tp_cont){	//ƒ^ƒbƒ`ƒpƒlƒ‹ƒxƒ^‰Ÿ‚µ”»’è
+	}else if (sys.tp_cont){	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ™ã‚¿æŠ¼ã—åˆ¤å®š
 ///		wk->touch = GF_TP_RectHitCont( TpHit[wk->TrCardData->BrushValid].CoverTpRect[wk->IsOpen] );
 		wk->touch = CheckTpBadgeCont( wk->bgl, TpHit[wk->TrCardData->BrushValid].CoverTpRect[wk->IsOpen] );
 		if (wk->brushOK){
-			tp_key_flg = TRUE;	//ƒ^ƒbƒ`ƒpƒlƒ‹ƒŠƒNƒGƒXƒg
+			tp_key_flg = TRUE;	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 			key_req = TRC_KEY_REQ_TP_BRUSH;
 		}
-	}else{	//ƒ^ƒbƒ`ƒpƒlƒ‹G‚Á‚Ä‚¢‚È‚¢
-		wk->brushOK = FALSE;	//ƒoƒbƒW–‚«•s‰Â”\ 
+	}else{	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«è§¦ã£ã¦ã„ãªã„
+		wk->brushOK = FALSE;	//ãƒãƒƒã‚¸ç£¨ãä¸å¯èƒ½ 
 	}
 
-	//ƒ^ƒbƒ`ƒpƒlƒ‹ƒL[‚ª‹N“®‚µ‚Ä‚¢‚È‚¯‚ê‚Îƒ{ƒ^ƒ“”»’è
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚­ãƒ¼ãŒèµ·å‹•ã—ã¦ã„ãªã‘ã‚Œã°ãƒœã‚¿ãƒ³åˆ¤å®š
 	if (tp_key_flg == FALSE){
 		if ( sys.trg & PAD_BUTTON_DECIDE ){
 			key_req = TRC_KEY_REQ_REV_BUTTON;
@@ -1309,9 +1309,9 @@ static int CheckKey(TR_CARD_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒW–‚«
+ * ãƒãƒƒã‚¸ç£¨ã
  *
- * @param	wk		‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1321,15 +1321,15 @@ static void BrushBadge(TR_CARD_WORK *wk)
 	BOOL scruch;
 	int sub;
 	scruch = FALSE;
-	//•ÛÀ•W‚Æƒ^ƒbƒ`À•W‚Ì·•ª‚ğæ‚é
+	//ä¿æŒåº§æ¨™ã¨ã‚¿ãƒƒãƒåº§æ¨™ã®å·®åˆ†ã‚’å–ã‚‹
 	if( (sys.tp_x!=0xffff)&&(sys.tp_y!=0xffff)&&
-			(wk->BeforeX!=0xffff)&&(wk->BeforeY!=0xffff) ){	//’l—LŒø‚©H
-		//•ÛÀ•W‚Æƒ^ƒbƒ`À•W‚ª“¯‚¶ƒoƒbƒW‰½‚É‚ ‚é‚©‚ğ’²‚×‚é
+			(wk->BeforeX!=0xffff)&&(wk->BeforeY!=0xffff) ){	//å€¤æœ‰åŠ¹ã‹ï¼Ÿ
+		//ä¿æŒåº§æ¨™ã¨ã‚¿ãƒƒãƒåº§æ¨™ãŒåŒã˜ãƒãƒƒã‚¸ä½•ã«ã‚ã‚‹ã‹ã‚’èª¿ã¹ã‚‹
 		if ( (wk->touch!=RECT_HIT_NONE)&&(wk->touch!=CASE_BUTTON) ){
-			//ƒoƒbƒWŠ—L”»’è
+			//ãƒãƒƒã‚¸æ‰€æœ‰åˆ¤å®š
 			if (wk->TrCardData->BadgeData[wk->touch-1].BadgeHold){
-				//·•ª‚ª‹K’è’lˆÈã‚Ìê‡‚Í–‚¢‚½‚±‚Æ‚É‚·‚é
-				if ( wk->BeforeX > sys.tp_x ){		//‘O‰ñ‚Ì‚Ù‚¤‚ª’l‚ª‘å‚«‚¢‚©H
+				//å·®åˆ†ãŒè¦å®šå€¤ä»¥ä¸Šã®å ´åˆã¯ç£¨ã„ãŸã“ã¨ã«ã™ã‚‹
+				if ( wk->BeforeX > sys.tp_x ){		//å‰å›ã®ã»ã†ãŒå€¤ãŒå¤§ãã„ã‹ï¼Ÿ
 					sub = wk->BeforeX - sys.tp_x;
 					wk->ScruchSnd.DirX = -1;
 				}else{
@@ -1337,7 +1337,7 @@ static void BrushBadge(TR_CARD_WORK *wk)
 					wk->ScruchSnd.DirX = 1;
 				}
 				if ( (sub>=MIN_SCRUCH)&&(sub<=MAX_SCRUCH) ){
-					if ( wk->BeforeY > sys.tp_y ){	//‘O‰ñ‚Ì‚Ù‚¤‚ª’l‚ª‘å‚«‚¢‚©H
+					if ( wk->BeforeY > sys.tp_y ){	//å‰å›ã®ã»ã†ãŒå€¤ãŒå¤§ãã„ã‹ï¼Ÿ
 						sub = wk->BeforeY - sys.tp_y;
 						wk->ScruchSnd.DirY = -1;
 					}else{
@@ -1345,13 +1345,13 @@ static void BrushBadge(TR_CARD_WORK *wk)
 						wk->ScruchSnd.DirY = 1;
 					}
 					if (sub<=MAX_SCRUCH){
-						scruch = TRUE;			//‚±‚·‚Á‚½
+						scruch = TRUE;			//ã“ã™ã£ãŸ
 						PlayScruchSnd(&wk->ScruchSnd);
 					}else{
 						ClearScruchSndNow(&wk->ScruchSnd);
 					}
 				}else if (sub<=MAX_SCRUCH){
-					if ( wk->BeforeY > sys.tp_y ){		//‘O‰ñ‚Ì‚Ù‚¤‚ª’l‚ª‘å‚«‚¢‚©H
+					if ( wk->BeforeY > sys.tp_y ){		//å‰å›ã®ã»ã†ãŒå€¤ãŒå¤§ãã„ã‹ï¼Ÿ
 						sub = wk->BeforeY - sys.tp_y;
 						wk->ScruchSnd.DirY = -1;
 					}else{
@@ -1359,7 +1359,7 @@ static void BrushBadge(TR_CARD_WORK *wk)
 						wk->ScruchSnd.DirY = 1;
 					}
 					if ((sub>=MIN_SCRUCH)&&(sub<=MAX_SCRUCH)){
-						scruch = TRUE;		//‚±‚·‚Á‚½
+						scruch = TRUE;		//ã“ã™ã£ãŸ
 						PlayScruchSnd(&wk->ScruchSnd);
 					}else{
 						ClearScruchSndNow(&wk->ScruchSnd);
@@ -1369,8 +1369,8 @@ static void BrushBadge(TR_CARD_WORK *wk)
 				if (scruch){
 ///					OS_Printf("scruch_%d\n",wk->touch);
 ///					OS_Printf("sc=%d,%d-%d,%d\n",wk->BeforeX,wk->BeforeY,sys.tp_x,sys.tp_y);
-					//–‚¢‚½ŠÔXV
-					//ƒŒƒxƒ‹XV
+					//ç£¨ã„ãŸæ™‚é–“æ›´æ–°
+					//ãƒ¬ãƒ™ãƒ«æ›´æ–°
 					BadgeLvUp(wk, wk->touch-1);
 					OS_Printf("temp_scruch:%d\n",wk->ScruchCounter[wk->touch-1]);
 					OS_Printf("brush=%d,%d\n",wk->touch,wk->TrCardData->BadgeData[wk->touch-1].BadgeScruchCount);
@@ -1378,17 +1378,17 @@ static void BrushBadge(TR_CARD_WORK *wk)
 			}
 		}
 	}
-		//•ÛÀ•WXV
+		//ä¿æŒåº§æ¨™æ›´æ–°
 	wk->BeforeX = sys.tp_x;
 	wk->BeforeY = sys.tp_y;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“•ÏX
+ * ãƒœã‚¿ãƒ³å¤‰æ›´
  *
- * @param	wk			‰æ–Ê‚Ìƒ[ƒN
- * @param	inAnmNum	ƒAƒjƒƒiƒ“ƒo[
+ * @param	wk			ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	inAnmNum	ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -1410,17 +1410,17 @@ static void ChangeBgButton(TR_CARD_WORK *wk, const u8 inAnmNum)
 	GF_BGL_LoadScreenReq( wk->bgl, TRC_BG_UNDER_CASE );
 }
 
-#define GYM_READER_ST_SCR_POS_X	(3)		//ƒXƒNƒŠ[ƒ“ŠJnÀ•WX(ƒLƒƒƒ‰’PˆÊ)
-#define GYM_READER_ST_SCR_POS_Y	(4)		//ƒXƒNƒŠ[ƒ“ŠJnÀ•WY(ƒLƒƒƒ‰’PˆÊ)
-#define GYM_READER_SCR_OFFSET	(7)		//ƒWƒ€ƒŠ[ƒ_[•\¦ŠÔŠu(ƒLƒƒƒ‰’PˆÊ)
-#define GYM_READER_SIDE_NUM		(4)		//ƒWƒ€ƒŠ[ƒ_[‰¡•\¦l”
+#define GYM_READER_ST_SCR_POS_X	(3)		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³é–‹å§‹åº§æ¨™X(ã‚­ãƒ£ãƒ©å˜ä½)
+#define GYM_READER_ST_SCR_POS_Y	(4)		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³é–‹å§‹åº§æ¨™Y(ã‚­ãƒ£ãƒ©å˜ä½)
+#define GYM_READER_SCR_OFFSET	(7)		//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼è¡¨ç¤ºé–“éš”(ã‚­ãƒ£ãƒ©å˜ä½)
+#define GYM_READER_SIDE_NUM		(4)		//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼æ¨ªè¡¨ç¤ºäººæ•°
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒWƒ€ƒŠ[ƒ_[Šç·‚µ‘Ö‚¦
+ * ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼é¡”å·®ã—æ›¿ãˆ
  *
- * @param	wk		‰æ–Ê‚Ìƒ[ƒN
- * @param	inNo	ƒŠ[ƒ_[ƒiƒ“ƒo[
+ * @param	wk		ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	inNo	ãƒªãƒ¼ãƒ€ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -1456,7 +1456,7 @@ static void ChangeBgGymReader(TR_CARD_WORK *wk, const u8 inNo)
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -1465,11 +1465,11 @@ static void ChangeBgGymReader(TR_CARD_WORK *wk, const u8 inNo)
 //--------------------------------------------------------------------------------------------
 static void VBlankFunc( void * work )
 {
-	// ƒZƒ‹ƒAƒNƒ^[
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 	
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -1477,7 +1477,7 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒWƒŒƒxƒ‹ƒAƒbƒv
+ * ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
  *
  * @param	none
  *
@@ -1501,20 +1501,20 @@ static void BadgeLvUp(TR_CARD_WORK *wk, const u8 inBadgeNo)
 		
 			lv = GetBadgeLevel(count);
 			GF_ASSERT(old_lv<=lv&&"error");
-			if (old_lv < lv){		//–‚¢‚ÄAƒŒƒxƒ‹‚ªã‚ª‚Á‚½ê‡
+			if (old_lv < lv){		//ç£¨ã„ã¦ã€ãƒ¬ãƒ™ãƒ«ãŒä¸ŠãŒã£ãŸå ´åˆ
 				if (lv <= TR_CARD_BADGE_LV_MAX){
-					if (lv == TR_CARD_BADGE_LV_MAX){	//ƒoƒbƒWƒŒƒxƒ‹‚ªÅ‚‚Ì‚Æ‚«‚ÍA1’iŠK‰º‚ÌƒŒƒxƒ‹‚ÌƒpƒŒƒbƒg‚ğg—p
+					if (lv == TR_CARD_BADGE_LV_MAX){	//ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«ãŒæœ€é«˜ã®ã¨ãã¯ã€1æ®µéšä¸‹ã®ãƒ¬ãƒ™ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨
 						SetBadgePalette(&wk->ObjWork, inBadgeNo, 0);
 					}else{
 						SetBadgePalette(&wk->ObjWork, inBadgeNo, BADGE_BAD_PLTT_NO-lv);
 					}
 				}
-				//¯ƒAƒNƒ^[•\¦
+				//æ˜Ÿã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤º
 				if (lv == TR_CARD_BADGE_LV_MAX-1){
-					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_STAR_ACT_START+inBadgeNo], 1);	//•\¦
+					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_STAR_ACT_START+inBadgeNo], 1);	//è¡¨ç¤º
 				}else if(lv == TR_CARD_BADGE_LV_MAX){
-					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_STAR_ACT_START+inBadgeNo], 0);	//”ñ•\¦
-					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_GRATE_STAR_ACT_START+inBadgeNo], 1);	//•\¦
+					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_STAR_ACT_START+inBadgeNo], 0);	//éè¡¨ç¤º
+					CLACT_SetDrawFlag(wk->ObjWork.ClActWork[TR_CARD_GRATE_STAR_ACT_START+inBadgeNo], 1);	//è¡¨ç¤º
 				}
 			}
 		}
@@ -1523,7 +1523,7 @@ static void BadgeLvUp(TR_CARD_WORK *wk, const u8 inBadgeNo)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šgk–ÊƒŠƒZƒbƒg
+ * æ‹¡ç¸®é¢ãƒªã‚»ãƒƒãƒˆ
  *
  * @param	none
  *
@@ -1560,9 +1560,9 @@ static void ResetAffinePlane(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒƒRƒ“ƒgƒ[ƒ‹
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- * @param	wk			‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk			ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1570,12 +1570,12 @@ static void ResetAffinePlane(void)
 static void ButtonAnimeControl(TR_CARD_WORK *wk)
 {
 	if (wk->AnimeType == ANIME_BUTTON_PUSH){
-		//ƒ{ƒ^ƒ“‰Ÿ‚µ‚Ş
+		//ãƒœã‚¿ãƒ³æŠ¼ã—è¾¼ã‚€
 		if( PushButton(wk, ButtonAnime[0]) ){
 			wk->AnimeType = ANIME_NOTHING;
 		}
 	}else if (wk->AnimeType == ANIME_BUTTON_PULL){
-		//ƒ{ƒ^ƒ“–ß‚é
+		//ãƒœã‚¿ãƒ³æˆ»ã‚‹
 		if( PushButton(wk, ButtonAnime[1]) ){
 			wk->AnimeType = ANIME_NOTHING;
 		}
@@ -1584,12 +1584,12 @@ static void ButtonAnimeControl(TR_CARD_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒ
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk			‰æ–Ê‚Ìƒ[ƒN
- * @param	inAnime		ƒAƒjƒƒe[ƒuƒ‹
+ * @param	wk			ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	inAnime		ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- * @return	BOOL	TRUE:I—¹	FALSEFˆ—’†
+ * @return	BOOL	TRUE:çµ‚äº†	FALSEï¼šå‡¦ç†ä¸­
  */
 //--------------------------------------------------------------------------------------------
 static BOOL PushButton(TR_CARD_WORK *wk, const u8 *inAnime)
@@ -1597,7 +1597,7 @@ static BOOL PushButton(TR_CARD_WORK *wk, const u8 *inAnime)
 	u8 frame,num;
 	frame = inAnime[wk->AnmNum*2];
 	if (frame == 0){
-		//I—¹
+		//çµ‚äº†
 		wk->ButtonAnmCount = 0;
 		wk->AnmNum = 0;
 		return TRUE;
@@ -1617,9 +1617,9 @@ static BOOL PushButton(TR_CARD_WORK *wk, const u8 *inAnime)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒXƒNƒŠ[ƒ““]‘—
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
  *
- * @param	wk			‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk			ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1642,9 +1642,9 @@ static void DispTrainer(TR_CARD_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒXƒNƒŠ[ƒ“ƒNƒŠƒA
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢
  *
- * @param	wk			‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk			ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1656,11 +1656,11 @@ static void ClearTrainer(TR_CARD_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒWƒŒƒxƒ‹æ“¾
+ * ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«å–å¾—
  *
- * @param	inCount			–‚«‰ñ”
+ * @param	inCount			ç£¨ãå›æ•°
  *
- * @return	u8				ƒŒƒxƒ‹
+ * @return	u8				ãƒ¬ãƒ™ãƒ«
  */
 //--------------------------------------------------------------------------------------------
 static const u8 GetBadgeLevel(const int inCount)
@@ -1685,9 +1685,9 @@ static const u8 GetBadgeLevel(const int inCount)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒW‚±‚·‚è‰¹§Œä‚·‚é‚½‚ß‚ÌŒ»İ•ûŒü‚ğƒNƒŠƒA
+ * ãƒãƒƒã‚¸ã“ã™ã‚ŠéŸ³åˆ¶å¾¡ã™ã‚‹ãŸã‚ã®ç¾åœ¨æ–¹å‘ã‚’ã‚¯ãƒªã‚¢
  *
- * @param	*outScruchSnd	ƒoƒbƒW‚±‚·‚è‰¹\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	*outScruchSnd	ãƒãƒƒã‚¸ã“ã™ã‚ŠéŸ³æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none	
  */
@@ -1700,9 +1700,9 @@ static void ClearScruchSndNow(TR_SCRUCH_SND *outScruchSnd)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒW‚±‚·‚è‰¹§Œä‚·‚é‚½‚ß‚Ìƒf[ƒ^‚ğƒNƒŠƒA
+ * ãƒãƒƒã‚¸ã“ã™ã‚ŠéŸ³åˆ¶å¾¡ã™ã‚‹ãŸã‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢
  *
- * @param	*outScruchSnd	ƒoƒbƒW‚±‚·‚è‰¹\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	*outScruchSnd	ãƒãƒƒã‚¸ã“ã™ã‚ŠéŸ³æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none	
  */
@@ -1718,9 +1718,9 @@ static void ClearScruchSnd(TR_SCRUCH_SND *outScruchSnd)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒW‚±‚·‚è‰¹Ä¶
+ * ãƒãƒƒã‚¸ã“ã™ã‚ŠéŸ³å†ç”Ÿ
  *
- * @param	*ioScruchSnd	ƒoƒbƒW‚±‚·‚è‰¹\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	*ioScruchSnd	ãƒãƒƒã‚¸ã“ã™ã‚ŠéŸ³æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none	
  */
@@ -1731,15 +1731,15 @@ static void PlayScruchSnd(TR_SCRUCH_SND *ioScruchSnd)
 		SND_TRCARD_SCRUCH01,
 		SND_TRCARD_SCRUCH02
 	};
-	//‰‰ñ”»’è
+	//åˆå›åˆ¤å®š
 	if ((ioScruchSnd->OldDirX == 0)&&(ioScruchSnd->OldDirY == 0)){
-///		OS_Printf("‰‰ñ\n");//‰‰ñ‰¹
+///		OS_Printf("åˆå›\n");//åˆå›éŸ³
 		Snd_SePlay( SND_TRCARD_SCRUCH01 );
 	}
-	//‘O‰ñ‚Ì•ûŒü‚Æ¡‰ñ‚Ì•ûŒü‚ğ”äŠr
+	//å‰å›ã®æ–¹å‘ã¨ä»Šå›ã®æ–¹å‘ã‚’æ¯”è¼ƒ
 	if ((ioScruchSnd->OldDirX*ioScruchSnd->DirX<0) ||
 			(ioScruchSnd->OldDirY*ioScruchSnd->DirY<0)){
-///		OS_Printf("Ø‚è‘Ö‚¦\n");//•ûŒü‚ª•Ï‚í‚Á‚½‚Ì‚Å‰¹‚ğØ‚è‘Ö‚¦‚é
+///		OS_Printf("åˆ‡ã‚Šæ›¿ãˆ\n");//æ–¹å‘ãŒå¤‰ã‚ã£ãŸã®ã§éŸ³ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 		ioScruchSnd->Snd = (ioScruchSnd->Snd+1)%2;
 		Snd_SePlay( snd_list[ioScruchSnd->Snd] );
 	}
@@ -1752,10 +1752,10 @@ static void PlayScruchSnd(TR_SCRUCH_SND *ioScruchSnd)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒTƒCƒ“ƒf[ƒ^ì¬
+ * ã‚µã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- * @param	*inRawData	ƒrƒbƒg’PˆÊ‚Å‚Á‚Ä‚¢‚éƒTƒCƒ“ƒf[ƒ^
- * @param	*outData	ƒTƒCƒ“ƒf[ƒ^Ši”[êŠ
+ * @param	*inRawData	ãƒ“ãƒƒãƒˆå˜ä½ã§æŒã£ã¦ã„ã‚‹ã‚µã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @param	*outData	ã‚µã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none	
  */
@@ -1764,8 +1764,8 @@ static void MakeSignData(const u8 *inRawData, u8 *outData)
 {
 	
 	int dot,raw_dot;
-	u8 raw_line;	//0`7
-	u8 shift;		//0`7
+	u8 raw_line;	//0ã€œ7
+	u8 shift;		//0ã€œ7
 	for(dot=0;dot<SIGN_SIZE_X*SIGN_SIZE_Y*64;dot++){
 		raw_dot = dot/64;
 		raw_line = (dot/8)%8;
@@ -1776,11 +1776,11 @@ static void MakeSignData(const u8 *inRawData, u8 *outData)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒTƒCƒ“ƒf[ƒ^“]‘—
+ * ã‚µã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
  *
  * @param	bgl				bgl
- * @param	inFrame			‘ÎÛƒtƒŒ[ƒ€
- * @param	inSignData		ƒTƒCƒ“ƒf[ƒ^
+ * @param	inFrame			å¯¾è±¡ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	inSignData		ã‚µã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1807,66 +1807,66 @@ static void TransSignData(GF_BGL_INI * bgl,const int inFrame, const u8 *inSignDa
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“‰Ÿ‰º‚ÆƒJƒo[ŠJ•Â‰¹
+ * ãƒœã‚¿ãƒ³æŠ¼ä¸‹ã¨ã‚«ãƒãƒ¼é–‹é–‰éŸ³
  *
- * @param	inIsOpen		ƒJƒo[‚Ìó‘Ô
+ * @param	inIsOpen		ã‚«ãƒãƒ¼ã®çŠ¶æ…‹
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void PlayButtonAndCoverSnd(const COVER_STATE inIsOpen)
 {
-	//Snd_SePlay(SND_TRCARD_BUTTON);	//ƒ{ƒ^ƒ“‰¹
-	if (inIsOpen == COVER_OPEN){	//ƒJƒo[ŠJ‚¢‚Ä‚¢‚é	
-		Snd_SePlay(SND_TRCARD_CASE_CL);//ƒJƒo[•Â‚ß‚é‰¹
-	}else{			//ƒJƒo[•Â‚¶‚Ä‚é
-		Snd_SePlay(SND_TRCARD_CASE_OP);	//ƒJƒo[ŠJ‚¯‚é‰¹
+	//Snd_SePlay(SND_TRCARD_BUTTON);	//ãƒœã‚¿ãƒ³éŸ³
+	if (inIsOpen == COVER_OPEN){	//ã‚«ãƒãƒ¼é–‹ã„ã¦ã„ã‚‹	
+		Snd_SePlay(SND_TRCARD_CASE_CL);//ã‚«ãƒãƒ¼é–‰ã‚ã‚‹éŸ³
+	}else{			//ã‚«ãƒãƒ¼é–‰ã˜ã¦ã‚‹
+		Snd_SePlay(SND_TRCARD_CASE_OP);	//ã‚«ãƒãƒ¼é–‹ã‘ã‚‹éŸ³
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒŒƒCŠÔXV
+ * ãƒ—ãƒ¬ã‚¤æ™‚é–“æ›´æ–°
  *
- * @param	wk				‰æ–Ê‚Ìƒ[ƒN
- * @param	inUpdateFlg		ŠÔXVƒtƒ‰ƒO
+ * @param	wk				ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	inUpdateFlg		æ™‚é–“æ›´æ–°ãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void UpdatePlayTime(TR_CARD_WORK *wk, const u8 inUpdateFlg)
 {
-	//XVƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚©‚ğƒ`ƒFƒbƒN
+	//æ›´æ–°ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	if (!inUpdateFlg){
 		return;
 	}
 	
-	if (!wk->is_back){	//•\–Ê‚Ìê‡‚Ì‚İ•`‰æ
+	if (!wk->is_back){	//è¡¨é¢ã®å ´åˆã®ã¿æç”»
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/14
-		// ƒRƒƒ“‚Ì•\¦‚ªÅ‰‚Ì1‰ñ‚¾‚¯’·‚©‚Á‚½‚Ì‚ğC³
+		// ã‚³ãƒ­ãƒ³ã®è¡¨ç¤ºãŒæœ€åˆã®1å›ã ã‘é•·ã‹ã£ãŸã®ã‚’ä¿®æ­£
 		if (wk->SecCount == 15){
 			TRCBmp_WritePlayTime(wk->win, wk->TrCardData, wk->PlayTimeBuf);
-			//ƒRƒƒ“•`‚­
+			//ã‚³ãƒ­ãƒ³æã
 			TRCBmp_WriteSec(&(wk->win[TRC_BMPWIN_PLAY_TIME]), TRUE, wk->SecBuf);
 		}else if(wk->SecCount == 0){
-			//ƒRƒƒ“Á‚·
+			//ã‚³ãƒ­ãƒ³æ¶ˆã™
 			TRCBmp_WriteSec(&(wk->win[TRC_BMPWIN_PLAY_TIME]), FALSE, wk->SecBuf);
 		}
 		// ----------------------------------------------------------------------------
 	}
-	//ƒJƒEƒ“ƒgƒAƒbƒv
-	wk->SecCount = (wk->SecCount+1)%30;		//	1/30‚È‚Ì‚Å
+	//ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
+	wk->SecCount = (wk->SecCount+1)%30;		//	1/30ãªã®ã§
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒWƒqƒbƒg”»’è(ƒgƒŠƒK[)
+ * ãƒãƒƒã‚¸ãƒ’ãƒƒãƒˆåˆ¤å®š(ãƒˆãƒªã‚¬ãƒ¼)
  *
  * @param	bgl
- * @param	hitTbl		ƒqƒbƒg‹éŒ`
+ * @param	hitTbl		ãƒ’ãƒƒãƒˆçŸ©å½¢
  *
- * @return	int			Œ‹‰Ê
+ * @return	int			çµæœ
  */
 //--------------------------------------------------------------------------------------------
 static int CheckTpBadgeTrg(GF_BGL_INI * bgl, const RECT_HIT_TBL *hitTbl)
@@ -1888,12 +1888,12 @@ static int CheckTpBadgeTrg(GF_BGL_INI * bgl, const RECT_HIT_TBL *hitTbl)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒWƒqƒbƒg”»’è(ƒxƒ^)
+ * ãƒãƒƒã‚¸ãƒ’ãƒƒãƒˆåˆ¤å®š(ãƒ™ã‚¿)
  *
  * @param	bgl
- * @param	hitTbl		ƒqƒbƒg‹éŒ`
+ * @param	hitTbl		ãƒ’ãƒƒãƒˆçŸ©å½¢
  *
- * @return	int			Œ‹‰Ê
+ * @return	int			çµæœ
  */
 //--------------------------------------------------------------------------------------------
 static int CheckTpBadgeCont(GF_BGL_INI * bgl, const RECT_HIT_TBL *hitTbl)

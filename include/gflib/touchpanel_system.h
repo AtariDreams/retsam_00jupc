@@ -1,10 +1,10 @@
 /*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
  *
  *	@file		touchpanel_system.h
- *	@brief		ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‚Ìƒwƒbƒ_
+ *	@brief		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ˜ãƒƒãƒ€
  *	@author		tomoya takahashi
  *	@data		2004.12.03
- *				2006.02.14	30ƒtƒŒ[ƒ€Žg—p‚É•ÏX
+ *				2006.02.14	30ãƒ•ãƒ¬ãƒ¼ãƒ ä½¿ç”¨ã«å¤‰æ›´
  *
  ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 
@@ -21,82 +21,82 @@
 
 
 /*-----------------------------------------------------------------------------
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  ----------------------------------------------------------------------------*/
-#define TP_REQUEST_CHECK_MAX		5		// –½—ß‚ðo‚µ‚ÄŽ¸”s‚µ‚½‚çƒGƒ‰[‚ð•Ô‚·‰ñ”
+#define TP_REQUEST_CHECK_MAX		5		// å‘½ä»¤ã‚’å‡ºã—ã¦å¤±æ•—ã—ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™å›žæ•°
 											
-#define		TP_ONE_SYNC_BUFF (9)			// ‚PƒVƒ“ƒN‚ÉƒTƒ“ƒvƒŠƒ“ƒO‚Å‚«‚éÅ‘å‚Ì”‚ð
-											// ƒTƒ“ƒvƒŠƒ“ƒO‚·‚é‚Ì‚É•K—v‚Èƒoƒbƒtƒ@ƒTƒCƒY
+#define		TP_ONE_SYNC_BUFF (9)			// ï¼‘ã‚·ãƒ³ã‚¯ã«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã§ãã‚‹æœ€å¤§ã®æ•°ã‚’
+											// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹ã®ã«å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 											
-#define		TP_ONE_SYNC_DATAMAX	(8)			// ‚PƒVƒ“ƒN‚ÉŽæ“¾‚Å‚«‚éƒf[ƒ^Å‘å”
+#define		TP_ONE_SYNC_DATAMAX	(8)			// ï¼‘ã‚·ãƒ³ã‚¯ã«å–å¾—ã§ãã‚‹ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
 
 
 
 //-------------------------------------
-/// ƒGƒ‰[‚Ì—ñ‹“
+/// ã‚¨ãƒ©ãƒ¼ã®åˆ—æŒ™
 enum
 {
-	TP_END_BUFF = 0xffffffff,	// ƒTƒ“ƒvƒŠƒ“ƒO—pƒoƒbƒtƒ@‚ªˆê”t
-	TP_ERR = 0,					// ARM7“]‘—ˆÈŠO‚ÌƒGƒ‰[
-	TP_OK,						// Touchƒpƒlƒ‹ŠÖ”‚ÌOK
-	TP_FIFO_ERR,				// ARM7‚ÌFIFO–½—ß“]‘—ƒGƒ‰[	
-	TP_SAMP_NOT_START			// ƒTƒ“ƒvƒŠƒ“ƒOŠJŽn‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ
+	TP_END_BUFF = 0xffffffff,	// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç”¨ãƒãƒƒãƒ•ã‚¡ãŒä¸€æ¯
+	TP_ERR = 0,					// ARM7è»¢é€ä»¥å¤–ã®ã‚¨ãƒ©ãƒ¼
+	TP_OK,						// Touchãƒ‘ãƒãƒ«é–¢æ•°ã®OK
+	TP_FIFO_ERR,				// ARM7ã®FIFOå‘½ä»¤è»¢é€ã‚¨ãƒ©ãƒ¼	
+	TP_SAMP_NOT_START			// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹ã•ã‚Œã¦ã„ã¾ã›ã‚“
 };
 
 //-------------------------------------
-/// ƒTƒ“ƒvƒŠƒ“ƒOŽí•Ê—ñ‹“
+/// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç¨®åˆ¥åˆ—æŒ™
 enum{
-	TP_SAMP_NONE,			// ƒTƒ“ƒvƒŠƒ“ƒO‚µ‚Ä‚¢‚È‚¢
-	TP_BUFFERING,			// ƒoƒbƒtƒ@Ši”[ƒ‚[ƒh
-	TP_NO_BUFF,				// Ši”[ˆ—‚È‚µƒ‚[ƒh
-	TP_NO_LOOP,				// ƒoƒbƒtƒ@‚ðƒ‹[ƒv‚³‚¹‚È‚¢
-	TP_BUFFERING_JUST,		// ‚»‚Ì‚Ü‚Üƒoƒbƒtƒ@ƒŠƒ“ƒO‚·‚é(—£‚µ‚Ä‚¢‚Ä‚àƒoƒbƒtƒ@ƒŠƒ“ƒO)
-	TP_NO_LOOP_JUST,		// ‚»‚Ì‚Ü‚Üƒoƒbƒtƒ@ƒŠƒ“ƒO‚·‚é(—£‚µ‚Ä‚¢‚Ä‚àƒoƒbƒtƒ@ƒŠƒ“ƒO)
-							// ƒ‹[ƒv‚³‚¹‚È‚¢
+	TP_SAMP_NONE,			// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã—ã¦ã„ãªã„
+	TP_BUFFERING,			// ãƒãƒƒãƒ•ã‚¡æ ¼ç´ãƒ¢ãƒ¼ãƒ‰
+	TP_NO_BUFF,				// æ ¼ç´å‡¦ç†ãªã—ãƒ¢ãƒ¼ãƒ‰
+	TP_NO_LOOP,				// ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ«ãƒ¼ãƒ—ã•ã›ãªã„
+	TP_BUFFERING_JUST,		// ãã®ã¾ã¾ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ã™ã‚‹(é›¢ã—ã¦ã„ã¦ã‚‚ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°)
+	TP_NO_LOOP_JUST,		// ãã®ã¾ã¾ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ã™ã‚‹(é›¢ã—ã¦ã„ã¦ã‚‚ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°)
+							// ãƒ«ãƒ¼ãƒ—ã•ã›ãªã„
 };
-// ¡‚Ìƒo[ƒWƒ‡ƒ“‚Å‚ÍTP_BUFFERING_JUST,	TP_NO_LOOP_JUST‚ðŽg—p‚µ‚½ƒf[ƒ^‚Å“àŠO”»’è‚Í‚Å‚«‚È‚¢
+// ä»Šã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã¯TP_BUFFERING_JUST,	TP_NO_LOOP_JUSTã‚’ä½¿ç”¨ã—ãŸãƒ‡ãƒ¼ã‚¿ã§å†…å¤–åˆ¤å®šã¯ã§ããªã„
 
 
 //-------------------------------------
-/// ŠG‚Ìƒf[ƒ^ì¬ƒtƒ‰ƒO
+/// çµµã®ãƒ‡ãƒ¼ã‚¿ä½œæˆãƒ•ãƒ©ã‚°
 enum{
-	TP_MAKE_PICT_NORMAL,		// ˆÍ‚Ü‚ê‚½ƒGƒŠƒA‚ª‚¢‚­‚Â‚ ‚Á‚Ä‚à‚æ‚¢
-	TP_MAKE_PICT_ONE_FAST,		// —]Œv‚È•”•ª‚ð‚È‚­‚·
-								// ˆê”ÔÅ‰‚É‚ ‚Á‚½Œð“_‚ªì‚Á‚Ä‚¢‚é
-								// }Œ`‚Ìƒf[ƒ^‚ðì¬
+	TP_MAKE_PICT_NORMAL,		// å›²ã¾ã‚ŒãŸã‚¨ãƒªã‚¢ãŒã„ãã¤ã‚ã£ã¦ã‚‚ã‚ˆã„
+	TP_MAKE_PICT_ONE_FAST,		// ä½™è¨ˆãªéƒ¨åˆ†ã‚’ãªãã™
+								// ä¸€ç•ªæœ€åˆã«ã‚ã£ãŸäº¤ç‚¹ãŒä½œã£ã¦ã„ã‚‹
+								// å›³å½¢ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 
-	TP_MAKE_PICT_ONE_END		// —¼ü•ª‚Ìæ‚©‚çŒ©‚Äˆê”ÔÅŒã‚É‚ ‚Á‚½Œð“_
-								// ‚ªì‚Á‚Ä‚¢‚é}Œ`‚Ìƒf[ƒ^‚ðì¬
-								// ‚±‚Ìƒtƒ‰ƒO‚ðƒZƒbƒg‚·‚é‚Æ•K‚¸}Œ`‚Í‚P‚Â‚É‚È‚é
+	TP_MAKE_PICT_ONE_END		// ä¸¡ç·šåˆ†ã®å…ˆã‹ã‚‰è¦‹ã¦ä¸€ç•ªæœ€å¾Œã«ã‚ã£ãŸäº¤ç‚¹
+								// ãŒä½œã£ã¦ã„ã‚‹å›³å½¢ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
+								// ã“ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã¨å¿…ãšå›³å½¢ã¯ï¼‘ã¤ã«ãªã‚‹
 };
 
 /*-----------------------------------------------------------------------------
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  ----------------------------------------------------------------------------*/
 //-------------------------------------
-/// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ì“àŠO”»’è—p}Œ`ƒf[ƒ^\‘¢‘Ì
+/// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å†…å¤–åˆ¤å®šç”¨å›³å½¢ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct
 {
-	u32	Size;					// TP_VECTOR_DATA‚Ì”z—ñ‚Ì—v‘f”
-	Vec2DS32*	pPointData;		// ’¸“_ƒf[ƒ^‚Ì”z—ñ
+	u32	Size;					// TP_VECTOR_DATAã®é…åˆ—ã®è¦ç´ æ•°
+	Vec2DS32*	pPointData;		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—
 } TP_PICTURE_DATA;
 
 //-------------------------------------
-/// ‚PƒtƒŒ[ƒ€‚Ìƒ^ƒbƒ`î•ñŠi”[\‘¢‘Ì
+/// ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¿ãƒƒãƒæƒ…å ±æ ¼ç´æ§‹é€ ä½“
 typedef struct
 {
-	u16		Size;			// ‚±‚ÌƒtƒŒ[ƒ€‚Ì—LŒøƒTƒ“ƒvƒŠƒ“ƒO”
-	TPData	TPDataTbl[ TP_ONE_SYNC_DATAMAX ];	// ‚±‚ÌƒtƒŒ[ƒ€‚ÌƒTƒ“ƒvƒŠƒ“ƒOƒf[ƒ^
+	u16		Size;			// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®æœ‰åŠ¹ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°æ•°
+	TPData	TPDataTbl[ TP_ONE_SYNC_DATAMAX ];	// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿
 } TP_ONE_DATA;
 
 
 /*-----------------------------------------------------------------------------
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  ----------------------------------------------------------------------------*/
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚ðŽg—p‚·‚é€”õ‚ðs‚¢‚Ü‚·
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚’ä½¿ç”¨ã™ã‚‹æº–å‚™ã‚’è¡Œã„ã¾ã™
  *
  *@param	none
  *
@@ -107,28 +107,28 @@ GLOBAL void InitTPSystem( void );
 
 //----------------------------------------------------------------------------
 /**
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌƒTƒ“ƒvƒŠƒ“ƒOŠJŽn
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹
  *
- *@param	p_buffFƒTƒ“ƒvƒŠƒ“ƒOƒf[ƒ^‚ð“ü‚ê‚éƒoƒbƒtƒ@
- *@param	sizeFƒoƒbƒtƒ@‚ÌƒTƒCƒY
- *@param	syncF‚PƒtƒŒ[ƒ€‚É‰½‰ñƒTƒ“ƒvƒŠƒ“ƒO‚·‚é‚Ì‚©(MAX4)
+ *@param	p_buffï¼šã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡
+ *@param	sizeï¼šãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+ *@param	syncï¼šï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä½•å›žã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹ã®ã‹(MAX4)
  *
- *@retval	TP_OKF¬Œ÷
- *@retval@	TP_FIFO_ERRF“]‘—Ž¸”s
- *@retval	TP_ERRF“]‘—ˆÈŠO‚ÌŽ¸”s
+ *@retval	TP_OKï¼šæˆåŠŸ
+ *@retvalã€€	TP_FIFO_ERRï¼šè»¢é€å¤±æ•—
+ *@retval	TP_ERRï¼šè»¢é€ä»¥å¤–ã®å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 GLOBAL u32 InitTP( TPData* p_buff, u32 size, u32 sync );
 
 //----------------------------------------------------------------------------
 /**
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌƒTƒ“ƒvƒŠƒ“ƒOŠJŽn	ƒoƒbƒtƒ@ƒŠƒ“ƒO‚È‚µ
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹	ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ãªã—
  *
- *@param	syncF‚PƒtƒŒ[ƒ€‚É‰½‰ñƒTƒ“ƒvƒŠƒ“ƒO‚·‚é‚Ì‚©(MAX4)
+ *@param	syncï¼šï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä½•å›žã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹ã®ã‹(MAX4)
  *
- *@retval	TP_OKF¬Œ÷
- *@retval@	TP_FIFO_ERRF“]‘—Ž¸”s
- *@retval	TP_ERRF“]‘—ˆÈŠO‚ÌŽ¸”s
+ *@retval	TP_OKï¼šæˆåŠŸ
+ *@retvalã€€	TP_FIFO_ERRï¼šè»¢é€å¤±æ•—
+ *@retval	TP_ERRï¼šè»¢é€ä»¥å¤–ã®å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 GLOBAL u32 InitTPNoBuff( u32 sync );
@@ -136,19 +136,19 @@ GLOBAL u32 InitTPNoBuff( u32 sync );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒTƒ“ƒvƒŠƒ“ƒOî•ñ‚ðŠÇ—‚µA¡‚Ìó‘Ô‚ð•Ô‚·	
+ *@brief	ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°æƒ…å ±ã‚’ç®¡ç†ã—ã€ä»Šã®çŠ¶æ…‹ã‚’è¿”ã™	
  *
- *@param	pDataF‚±‚ÌƒtƒŒ[ƒ€‚Ìî•ñ(init‚ÅŽw’è‚µ‚½ƒTƒ“ƒvƒŠƒ“ƒO‰ñ”•ª‚Ìî•ñ)
- *@param	typeFƒTƒ“ƒvƒŠƒ“ƒOŽí•Ê‚Ì”Ô†
- *@param	comp_numFƒoƒbƒtƒ@‚ÉŠi”[‚·‚é‚Æ‚«‚ÉAcomp_numˆÊ‚Ì‚³‚ª‚ ‚Á‚½‚çŠi”[‚·‚é(ˆ³kƒ‚[ƒhŽž‚Ì‚Ý)
+ *@param	pDataï¼šã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®æƒ…å ±(initã§æŒ‡å®šã—ãŸã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å›žæ•°åˆ†ã®æƒ…å ±)
+ *@param	typeï¼šã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç¨®åˆ¥ã®ç•ªå·
+ *@param	comp_numï¼šãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã™ã‚‹ã¨ãã«ã€comp_numä½ã®ã•ãŒã‚ã£ãŸã‚‰æ ¼ç´ã™ã‚‹(åœ§ç¸®ãƒ¢ãƒ¼ãƒ‰æ™‚ã®ã¿)
  *
- *@return	u32FƒTƒ“ƒvƒŠƒ“ƒOŽí•Ê‚É‚æ‚é•Ï‰»
-					typeFTP_BUFFERING		ƒTƒ“ƒvƒŠƒ“ƒO‚³‚ê‚½ƒoƒbƒtƒ@ƒTƒCƒY
-					typeFTP_NO_LOOP		ƒTƒ“ƒvƒŠƒ“ƒO‚³‚ê‚½ƒoƒbƒtƒ@ƒTƒCƒY
-											ƒoƒbƒtƒ@‚ªˆê”t‚É‚È‚Á‚½‚Æ‚« TP_END_BUFF
-					typeFTP_NO_BUFF		TP_OK
+ *@return	u32ï¼šã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç¨®åˆ¥ã«ã‚ˆã‚‹å¤‰åŒ–
+					typeï¼šTP_BUFFERING		ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+					typeï¼šTP_NO_LOOP		ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+											ãƒãƒƒãƒ•ã‚¡ãŒä¸€æ¯ã«ãªã£ãŸã¨ã TP_END_BUFF
+					typeï¼šTP_NO_BUFF		TP_OK
 
-					typeFTP_SAMP_NOT_START	ƒTƒ“ƒvƒŠƒ“ƒOŠJŽn‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ
+					typeï¼šTP_SAMP_NOT_START	ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹ã•ã‚Œã¦ã„ã¾ã›ã‚“
  */
 //-----------------------------------------------------------------------------
 GLOBAL u32 MainTP( TP_ONE_DATA* pData, u32 type, u32 comp_num );
@@ -156,13 +156,13 @@ GLOBAL u32 MainTP( TP_ONE_DATA* pData, u32 type, u32 comp_num );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒTƒ“ƒvƒŠƒ“ƒO‚ðI—¹‚·‚é
+ *@brief	ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’çµ‚äº†ã™ã‚‹
  *
  *@param	none
  *
- *@retval	TP_OKF¬Œ÷
- *@retval@	TP_FIFO_ERRF“]‘—Ž¸”s
- *@retval	TP_ERRF“]‘—ˆÈŠO‚ÌŽ¸”s
+ *@retval	TP_OKï¼šæˆåŠŸ
+ *@retvalã€€	TP_FIFO_ERRï¼šè»¢é€å¤±æ•—
+ *@retval	TP_ERRï¼šè»¢é€ä»¥å¤–ã®å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 GLOBAL u32 StopTP( void );
@@ -170,7 +170,7 @@ GLOBAL u32 StopTP( void );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒŠ[ƒvˆ—‘O‚Ì’âŽ~@•œ‹Aˆ—
+ *	@brief	ã‚¹ãƒªãƒ¼ãƒ—å‡¦ç†å‰ã®åœæ­¢ã€€å¾©å¸°å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 GLOBAL void ReStartTP_Sleep( void );
@@ -178,22 +178,22 @@ GLOBAL void StopTP_Sleep( void );
 
 
 
-// ¶‚ÌÀ•W‚ð‰æ–ÊÀ•W‚É•Ï‚¦‚éŠÖ”iMainTP‚ðŽg—p‚µ‚Ä‚¢‚é‚Æ‚«‚ÍŽg‚¤•K—v‚Í‚ ‚è‚Ü‚¹‚ñj
-GLOBAL TPData ChangeTPData( TPData* pData );					// ƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“’l‚ðŽg—p
-																// ‚µ‚ÄÀ•W‚ð‰æ–ÊÀ•W‚É‚µ‚½TPData‚ðŽæ“¾
-GLOBAL void ChangeTPDataBuff( TPData* pData, u32 size );		// ƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“’l‚ðŽg—p
-																// ‚µ‚ÄÀ•W‚ð‰æ–ÊÀ•W‚É‚µ‚½TPData‚ðŽæ“¾
+// ç”Ÿã®åº§æ¨™ã‚’ç”»é¢åº§æ¨™ã«å¤‰ãˆã‚‹é–¢æ•°ï¼ˆMainTPã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã¨ãã¯ä½¿ã†å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“ï¼‰
+GLOBAL TPData ChangeTPData( TPData* pData );					// ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³å€¤ã‚’ä½¿ç”¨
+																// ã—ã¦åº§æ¨™ã‚’ç”»é¢åº§æ¨™ã«ã—ãŸTPDataã‚’å–å¾—
+GLOBAL void ChangeTPDataBuff( TPData* pData, u32 size );		// ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³å€¤ã‚’ä½¿ç”¨
+																// ã—ã¦åº§æ¨™ã‚’ç”»é¢åº§æ¨™ã«ã—ãŸTPDataã‚’å–å¾—
 
-/// ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ð“n‚µ‚Ä‚»‚ÌŠG‚Ìî•ñ‚ðŽg‚¢“àŠO”»’è‚È‚Ç‚ðs‚¤ƒVƒXƒeƒ€
-// ŠG‚Ìî•ñ‚ðì¬
+/// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’æ¸¡ã—ã¦ãã®çµµã®æƒ…å ±ã‚’ä½¿ã„å†…å¤–åˆ¤å®šãªã©ã‚’è¡Œã†ã‚·ã‚¹ãƒ†ãƒ 
+// çµµã®æƒ…å ±ã‚’ä½œæˆ
 GLOBAL TP_PICTURE_DATA* MakeTPPictureData( u32 type, TPData* pBuff, u32 size, u16 check_num, u32 dist, BOOL* p_cross, int heap );
-// “àŠOƒ`ƒFƒbƒN‚ð‚·‚é
+// å†…å¤–ãƒã‚§ãƒƒã‚¯ã‚’ã™ã‚‹
 GLOBAL u32 CheckTPPictureInOut( TP_PICTURE_DATA* pData, u16 x, u16 y );
-// ŠG‚Ìî•ñ‚ð”jŠü
+// çµµã®æƒ…å ±ã‚’ç ´æ£„
 GLOBAL void DestTPPictureData( TP_PICTURE_DATA* pPictData );
 
 /*-----------------------------------------------------------------------------
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  ----------------------------------------------------------------------------*/
 #undef	GLOBAL
 #endif		//__TOUCHPANEL_SYSTEM_H__

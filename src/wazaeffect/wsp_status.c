@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wsp_status.c
- *	@brief		ÉXÉeÅ[É^ÉXàŸèÌÇÃÉGÉtÉFÉNÉg
+ *	@brief		„Çπ„ÉÜ„Éº„Çø„ÇπÁï∞Â∏∏„ÅÆ„Ç®„Éï„Çß„ÇØ„Éà
  *	@author		tomoya takahashi
  *	@data		2005.12.19
  *
@@ -14,58 +14,58 @@
 //	include
 //
 // -----------------------------------------
-#include "common.h"				///< ïKê{
-#include "system/lib_pack.h"	///< ïKê{
+#include "common.h"				///< ÂøÖÈ†à
+#include "system/lib_pack.h"	///< ÂøÖÈ†à
 #include "we_def.h"
-#include "west_sp.h"			///< ïKê{
-#include "wsp.h"			///< xxx.cÇ…ëŒÇ∑ÇÈxxx.hÇÕïKê{
+#include "west_sp.h"			///< ÂøÖÈ†à
+#include "wsp.h"			///< xxx.c„Å´ÂØæ„Åô„Çãxxx.h„ÅØÂøÖÈ†à
 
-#include "wazatool.h"			///< ãZÉGÉtÉFÉNÉgéxâáä÷êîåS
+#include "wazatool.h"			///< ÊäÄ„Ç®„Éï„Çß„ÇØ„ÉàÊîØÊè¥Èñ¢Êï∞ÈÉ°
 #include "we_tool.h"			///< 
 
-#include "system/arc_tool.h"				///< ÉAÅ[ÉJÉCÉuóp
-#include "system/arc_util.h"				///< ÉAÅ[ÉJÉCÉuóp
+#include "system/arc_tool.h"				///< „Ç¢„Éº„Ç´„Ç§„ÉñÁî®
+#include "system/arc_util.h"				///< „Ç¢„Éº„Ç´„Ç§„ÉñÁî®
 
 #define __WSP_STATUS_H_GLOBAL
 
 //-----------------------------------------------------------------------------
 /**
- *					íËêîêÈåæ
+ *					ÂÆöÊï∞ÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ç\ë¢ëÃêÈåæ
+ *					ÊßãÈÄ†‰ΩìÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ÉvÉçÉgÉ^ÉCÉvêÈåæ
+ *					„Éó„É≠„Éà„Çø„Ç§„ÉóÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
-// ñ∞ÇË
+// Áú†„Çä
 static void SMPTM_NemuriTcb( TCB_PTR tcb, void* work );
 static void NemuriObjStart( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOOL_CALCMOVE* p_scale, int vec_x );
 static BOOL NemuriObjMove( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOOL_CALCMOVE* p_scale );
 
 
-// ïX
+// Ê∞∑
 static void SMPTM_KooriTcb( TCB_PTR tcb, void* work );
 
-// Ç‚Ç≈Ç«
+// „ÇÑ„Åß„Å©
 static void SMPTM_YakedoTcb( TCB_PTR tcb, void* work );
 static BOOL SMPTM_MoveYakedoObj( CATS_ACT_PTR cap, int* count, int* wait );
 static void SMPTM_InitYakedoObj( CATS_ACT_PTR cap, int* count, int* wait, int num, int vec_x);
 
-// Ç±ÇÒÇÁÇÒ
+// „Åì„Çì„Çâ„Çì
 static void Konran_TCB( TCB_PTR tcb, void* work );
 
 //-----------------------------------------------------------------------------
 /**
  *
- *			ñ∞ÇËÉGÉtÉFÉNÉg
+ *			Áú†„Çä„Ç®„Éï„Çß„ÇØ„Éà
  * 
  */
 //-----------------------------------------------------------------------------
@@ -104,7 +104,7 @@ typedef struct{
 	CATS_RES_PTR crp;
 	int vec_x;
 
-	// ìÆçÏÉfÅ[É^
+	// Âãï‰Ωú„Éá„Éº„Çø
 	CATS_ACT_PTR		cap[ NEMURI_SET_NUM ];
 	WAZATOOL_CALCMOVE	cap_move[ NEMURI_SET_NUM ];
 	WAZATOOL_CALCMOVE	cap_scale[ NEMURI_SET_NUM ];
@@ -113,12 +113,12 @@ typedef struct{
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ÇﬂÇﬁÇËÉGÉtÉFÉNÉg
+ *	@brief	„ÇÅ„ÇÄ„Çä„Ç®„Éï„Çß„ÇØ„Éà
  *
- *	@param	we_sys	ãZÉGÉtÉFÉNÉgÉVÉXÉeÉÄÉèÅ[ÉN
- *	@param	csp		ÉZÉãÉAÉNÉ^Å[ÉcÅ[ÉãÉVÉXÉeÉÄ
- *	@param	crp		ÉZÉãÉAÉNÉ^Å[ÉäÉ\Å[ÉXÉVÉXÉeÉÄ
- *	@param	cap		ÉZÉãÉAÉNÉ^Å[ÉcÅ[ÉãÉIÉuÉWÉF
+ *	@param	we_sys	ÊäÄ„Ç®„Éï„Çß„ÇØ„Éà„Ç∑„Çπ„ÉÜ„É†„ÉØ„Éº„ÇØ
+ *	@param	csp		„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉÑ„Éº„É´„Ç∑„Çπ„ÉÜ„É†
+ *	@param	crp		„Çª„É´„Ç¢„ÇØ„Çø„Éº„É™„ÇΩ„Éº„Çπ„Ç∑„Çπ„ÉÜ„É†
+ *	@param	cap		„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉÑ„Éº„É´„Ç™„Éñ„Ç∏„Çß
  *
  *	@return	none
  *
@@ -140,7 +140,7 @@ void WestSp_CAT_ST_001(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	client_no = WeSysATNoGet(we_sys);
 	wk->vec_x = WazaTool_VecChangeX( we_sys, client_no );
 
-	// ñ∞ÇËÉZÉãÉAÉNÉ^Å[ÇÃìoò^ÇçsÇ§
+	// Áú†„Çä„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÅÆÁôªÈå≤„ÇíË°å„ÅÜ
 	coap   = WeSysCoapGet(wk->we_sys);
 	coap.x = GetWazaEffPos(we_sys, client_no, PM_X);
 	coap.y = GetWazaEffPos(we_sys, client_no, PM_Y);
@@ -157,17 +157,17 @@ void WestSp_CAT_ST_001(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 		CATS_ObjectBGPriSetCap( wk->cap[i], WAZAEFF_ACT_BGPRI );
 	}
 
-	// É^ÉXÉNìoò^
+	// „Çø„Çπ„ÇØÁôªÈå≤
 	WEEffect_TCB_AddPriSet( wk->we_sys, SMPTM_NemuriTcb, wk );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ñ∞ÇËTCB
+ *	@brief	Áú†„ÇäTCB
  *
- *	@param	tcb		É^ÉXÉNÉèÅ[ÉN
- *	@param	work	ÉèÅ[ÉN
+ *	@param	tcb		„Çø„Çπ„ÇØ„ÉØ„Éº„ÇØ
+ *	@param	work	„ÉØ„Éº„ÇØ
  *	
  *	@return	none
  *
@@ -215,24 +215,24 @@ static void SMPTM_NemuriTcb( TCB_PTR tcb, void* work )
 		for( i=0; i<NEMURI_SET_NUM; i++ ){
 			CATS_ActorPointerDelete_S(wk->cap[i]);
 		}
-		// èIóπ
+		// ÁµÇ‰∫Ü
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAMï`âÊ
+	// OAMÊèèÁîª
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ñ∞ÇËÉGÉtÉFÉNÉgäJén
+ *	@brief	Áú†„Çä„Ç®„Éï„Çß„ÇØ„ÉàÈñãÂßã
  *
- *	@param	cap			ÉAÉNÉ^Å[
- *	@param	p_move		à⁄ìÆÉfÅ[É^äiî[êÊ
- *	@param	p_scale		ägèkÉfÅ[É^äiî[êÊ
+ *	@param	cap			„Ç¢„ÇØ„Çø„Éº
+ *	@param	p_move		ÁßªÂãï„Éá„Éº„ÇøÊ†ºÁ¥çÂÖà
+ *	@param	p_scale		Êã°Á∏Æ„Éá„Éº„ÇøÊ†ºÁ¥çÂÖà
  *
  *	@return	none
  *
@@ -243,13 +243,13 @@ static void NemuriObjStart( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOO
 {
 	s16 cap_x, cap_y;
 	
-	// ï\é¶Åïî{äpÉAÉtÉBÉì
+	// Ë°®Á§∫ÔºÜÂÄçËßí„Ç¢„Éï„Ç£„É≥
 	CATS_ObjectAffineSetCap( cap, CLACT_AFFINE_DOUBLE );
 	CATS_ObjectEnableCap( cap, TRUE );
 
 	CATS_ObjectPosGetCap( cap, &cap_x, &cap_y );
 
-	// íºê¸à⁄ìÆê›íË
+	// Áõ¥Á∑öÁßªÂãïË®≠ÂÆö
 	WazaTool_InitStraightSyncFx( 
 			p_move,
 			cap_x, cap_x + (NEMURI_MOVE_W * vec_x),
@@ -257,7 +257,7 @@ static void NemuriObjStart( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOO
 			NEMURI_EFF_SYNC
 			);
 
-	// ägèk
+	// Êã°Á∏Æ
 	WazaTool_InitScaleRate(
 			p_scale,
 			NEMURI_SCALE_S,
@@ -270,11 +270,11 @@ static void NemuriObjStart( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOO
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ñ∞ÇËÉIÉuÉWÉFÉNÉgìÆçÏ
+ *	@brief	Áú†„Çä„Ç™„Éñ„Ç∏„Çß„ÇØ„ÉàÂãï‰Ωú
  *
- *	@param	cap			ÉAÉNÉ^Å[
- *	@param	p_move		à⁄ìÆìÆçÏ
- *	@param	p_scale		ägèk
+ *	@param	cap			„Ç¢„ÇØ„Çø„Éº
+ *	@param	p_move		ÁßªÂãïÂãï‰Ωú
+ *	@param	p_scale		Êã°Á∏Æ
  *
  *	@retval	TRUE	
  *
@@ -285,7 +285,7 @@ static BOOL NemuriObjMove( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOOL
 {
 	BOOL check;
 
-	// ìÆçÏîΩâfïî
+	// Âãï‰ΩúÂèçÊò†ÈÉ®
 	WazaTool_CalcAndReflectStraightFxCap( p_move, cap );
 	check = WazaTool_CalcAndReflectScaleRateCap( p_scale, cap );
 
@@ -293,7 +293,7 @@ static BOOL NemuriObjMove( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOOL
 		return FALSE;
 	}
 
-	// ï\é¶OFF
+	// Ë°®Á§∫OFF
 	CATS_ObjectEnableCap( cap, FALSE );
 	return TRUE;
 }
@@ -302,7 +302,7 @@ static BOOL NemuriObjMove( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOOL
 //-----------------------------------------------------------------------------
 /**
  *
- *				Ç±Ç®ÇË
+ *				„Åì„Åä„Çä
  * 
  */
 //-----------------------------------------------------------------------------
@@ -336,7 +336,7 @@ typedef struct{
 	int plt_no;
 	CATS_RES_PTR crp;
 
-	// ìÆçÏÉfÅ[É^
+	// Âãï‰Ωú„Éá„Éº„Çø
 	CATS_ACT_PTR		cap;
 	WAZATOOL_ALPHA_FADE	cap_alpha;
 } TWE_ST004_SYS;
@@ -344,12 +344,12 @@ typedef struct{
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ïXÉGÉtÉFÉNÉgÉ^ÉXÉNìoò^
+ *	@brief	Ê∞∑„Ç®„Éï„Çß„ÇØ„Éà„Çø„Çπ„ÇØÁôªÈå≤
  *
- *	@param	we_sys	ãZÉGÉtÉFÉNÉgÉVÉXÉeÉÄÉèÅ[ÉN
- *	@param	csp		ÉZÉãÉAÉNÉ^Å[ÉcÅ[ÉãÉVÉXÉeÉÄ
- *	@param	crp		ÉZÉãÉAÉNÉ^Å[ÉäÉ\Å[ÉXÉVÉXÉeÉÄ
- *	@param	cap		ÉZÉãÉAÉNÉ^Å[ÉcÅ[ÉãÉIÉuÉWÉF
+ *	@param	we_sys	ÊäÄ„Ç®„Éï„Çß„ÇØ„Éà„Ç∑„Çπ„ÉÜ„É†„ÉØ„Éº„ÇØ
+ *	@param	csp		„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉÑ„Éº„É´„Ç∑„Çπ„ÉÜ„É†
+ *	@param	crp		„Çª„É´„Ç¢„ÇØ„Çø„Éº„É™„ÇΩ„Éº„Çπ„Ç∑„Çπ„ÉÜ„É†
+ *	@param	cap		„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉÑ„Éº„É´„Ç™„Éñ„Ç∏„Çß
  *
  *	@return	none
  *
@@ -374,14 +374,14 @@ void WestSp_CAT_ST_004(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 	wk->plt_no = CATS_ObjectPaletteOffsetGetCap( wk->cap );
 
-	// É^ÉXÉNìoò^
+	// „Çø„Çπ„ÇØÁôªÈå≤
 	WEEffect_TCB_AddPriSet( wk->we_sys,SMPTM_KooriTcb, wk );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ïXìÆçÏÉ^ÉXÉN
+ *	@brief	Ê∞∑Âãï‰Ωú„Çø„Çπ„ÇØ
  *
  *	@param	tcb
  *	@param	work 
@@ -422,7 +422,7 @@ static void SMPTM_KooriTcb( TCB_PTR tcb, void* work )
 		break;
 		
 	case KOORI_SEQ_ANM:
-		// é©ï™Ç≈ÉpÉåÉbÉgÉiÉìÉoÅ[Çê›íËÇ∑ÇÈ
+		// Ëá™ÂàÜ„Åß„Éë„É¨„ÉÉ„Éà„Éä„É≥„Éê„Éº„ÇíË®≠ÂÆö„Åô„Çã
 		frame = CATS_ObjectAnimeFrameGetCap( wk->cap );
 		frame %= 3;
 		CATS_ObjectPaletteOffsetSetCap( wk->cap, wk->plt_no + frame );
@@ -450,27 +450,27 @@ static void SMPTM_KooriTcb( TCB_PTR tcb, void* work )
 		
 	case KOORI_SEQ_END:
 		CATS_ActorPointerDelete_S(wk->cap);
-		// èIóπ
+		// ÁµÇ‰∫Ü
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAMï`âÊ
+	// OAMÊèèÁîª
 	CATS_Draw(wk->crp);	
 }
 
 //-----------------------------------------------------------------------------
 /**
  *
- *			Ç‚ÇØÇ«
+ *			„ÇÑ„Åë„Å©
  * 
  */
 //-----------------------------------------------------------------------------
-#define YAKEDO_OBJ_NUM			( 6 )		// Ç‚Ç«ÇÃÇÃÉIÉuÉWÉFÉNÉgêî
-#define YAKEDO_OBJ_ONEGRA_NUM	( 2 )		// ìØÇ∂äGÇÃÉIÉuÉWÉFêî
-#define YAKEDO_OBJ_ADD_WAIT		( 2 )		// ÉIÉuÉWÉFìoò^ë“Çø
-#define YAKEDO_OBJ_DRAW_SYNC	( 16 )		// ï\é¶ÉVÉìÉN
+#define YAKEDO_OBJ_NUM			( 6 )		// „ÇÑ„Å©„ÅÆ„ÅÆ„Ç™„Éñ„Ç∏„Çß„ÇØ„ÉàÊï∞
+#define YAKEDO_OBJ_ONEGRA_NUM	( 2 )		// Âêå„ÅòÁµµ„ÅÆ„Ç™„Éñ„Ç∏„ÇßÊï∞
+#define YAKEDO_OBJ_ADD_WAIT		( 2 )		// „Ç™„Éñ„Ç∏„ÇßÁôªÈå≤ÂæÖ„Å°
+#define YAKEDO_OBJ_DRAW_SYNC	( 16 )		// Ë°®Á§∫„Ç∑„É≥„ÇØ
 
 #define YAKEDO_OBJ_MAT_OFS_X	( 40 )
 #define YAKEDO_OBJ_MAT_DIS_X	( -12 )
@@ -481,7 +481,7 @@ typedef struct{
 	int seq;
 	CATS_RES_PTR crp;
 
-	// ìÆçÏÉfÅ[É^
+	// Âãï‰Ωú„Éá„Éº„Çø
 	CATS_ACT_PTR		cap[YAKEDO_OBJ_NUM];
 	int					cap_count[YAKEDO_OBJ_NUM];
 	int					cap_wait[YAKEDO_OBJ_NUM];
@@ -490,12 +490,12 @@ typedef struct{
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Ç‚ÇØÇ«ÉGÉtÉFÉNÉgÉ^ÉXÉNìoò^
+ *	@brief	„ÇÑ„Åë„Å©„Ç®„Éï„Çß„ÇØ„Éà„Çø„Çπ„ÇØÁôªÈå≤
  *
- *	@param	we_sys	ãZÉGÉtÉFÉNÉgÉVÉXÉeÉÄÉèÅ[ÉN
- *	@param	csp		ÉZÉãÉAÉNÉ^Å[ÉcÅ[ÉãÉVÉXÉeÉÄ
- *	@param	crp		ÉZÉãÉAÉNÉ^Å[ÉäÉ\Å[ÉXÉVÉXÉeÉÄ
- *	@param	cap		ÉZÉãÉAÉNÉ^Å[ÉcÅ[ÉãÉIÉuÉWÉF
+ *	@param	we_sys	ÊäÄ„Ç®„Éï„Çß„ÇØ„Éà„Ç∑„Çπ„ÉÜ„É†„ÉØ„Éº„ÇØ
+ *	@param	csp		„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉÑ„Éº„É´„Ç∑„Çπ„ÉÜ„É†
+ *	@param	crp		„Çª„É´„Ç¢„ÇØ„Çø„Éº„É™„ÇΩ„Éº„Çπ„Ç∑„Çπ„ÉÜ„É†
+ *	@param	cap		„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉÑ„Éº„É´„Ç™„Éñ„Ç∏„Çß
  *
  *	@return	none
  *
@@ -522,7 +522,7 @@ void WestSp_CAT_ST_003(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	coap.x = GetWazaEffPos(we_sys, client_no, PM_X);
 	coap.y = GetWazaEffPos(we_sys, client_no, PM_Y);
 
-	// ÉAÉNÉ^Å[ÇÃï\é¶óDêÊèáà êßå‰ÇÃÇΩÇﬂÉJÉEÉìÉ^Çç≈èIÇ©ÇÁçsÇ§
+	// „Ç¢„ÇØ„Çø„Éº„ÅÆË°®Á§∫ÂÑ™ÂÖàÈ†Ü‰ΩçÂà∂Âæ°„ÅÆ„Åü„ÇÅ„Ç´„Ç¶„É≥„Çø„ÇíÊúÄÁµÇ„Åã„ÇâË°å„ÅÜ
 	for( i=YAKEDO_OBJ_NUM - 1; i>=0; i-- ){
 		if( i==YAKEDO_OBJ_NUM - 1 ){
 			wk->cap[i] = cap;
@@ -534,11 +534,11 @@ void WestSp_CAT_ST_003(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 		CATS_ObjectBGPriSetCap( wk->cap[i], WAZAEFF_ACT_BGPRI );
 		CATS_ObjectEnableCap( wk->cap[i], FALSE );
 
-		// ÉAÉjÉÅÉfÅ[É^èâä˙âª
+		// „Ç¢„Éã„É°„Éá„Éº„ÇøÂàùÊúüÂåñ
 		SMPTM_InitYakedoObj( wk->cap[i], &wk->cap_count[i], &wk->cap_wait[i], i, vec_x );
 	}
 
-	// É^ÉXÉNìoò^
+	// „Çø„Çπ„ÇØÁôªÈå≤
 	WEEffect_TCB_AddPriSet( wk->we_sys,SMPTM_YakedoTcb, wk );
 }
 
@@ -546,7 +546,7 @@ static void SMPTM_InitYakedoObj( CATS_ACT_PTR cap, int* count, int* wait, int nu
 {
 	s16 x, y;
 	
-	// äGÇê›íË
+	// Áµµ„ÇíË®≠ÂÆö
 	CATS_ObjectAnimeSeqSetCap( cap, num / YAKEDO_OBJ_ONEGRA_NUM );
 
 	// wait
@@ -555,7 +555,7 @@ static void SMPTM_InitYakedoObj( CATS_ACT_PTR cap, int* count, int* wait, int nu
 	// count
 	*count = YAKEDO_OBJ_DRAW_SYNC;
 
-	// ç¿ïW
+	// Â∫ßÊ®ô
 	CATS_ObjectPosGetCap( cap, &x, &y );
 	x += (YAKEDO_OBJ_MAT_OFS_X + (YAKEDO_OBJ_MAT_DIS_X * num)) * vec_x;
 	y += YAKEDO_OBJ_MAT_OFS_Y;
@@ -587,7 +587,7 @@ static BOOL SMPTM_MoveYakedoObj( CATS_ACT_PTR cap, int* count, int* wait )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Ç‚ÇØÇ«ìÆçÏÉ^ÉXÉN
+ *	@brief	„ÇÑ„Åë„Å©Âãï‰Ωú„Çø„Çπ„ÇØ
  *
  *	@param	tcb
  *	@param	work 
@@ -617,13 +617,13 @@ static void SMPTM_YakedoTcb( TCB_PTR tcb, void* work )
 		for( i=0; i<YAKEDO_OBJ_NUM; i++ ){
 			CATS_ActorPointerDelete_S(wk->cap[i]);
 		}
-		// èIóπ
+		// ÁµÇ‰∫Ü
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAMï`âÊ
+	// OAMÊèèÁîª
 	CATS_Draw(wk->crp);	
 }
 
@@ -631,7 +631,7 @@ static void SMPTM_YakedoTcb( TCB_PTR tcb, void* work )
 //-----------------------------------------------------------------------------
 /**
  *
- *		Ç±ÇÒÇÁÇÒ
+ *		„Åì„Çì„Çâ„Çì
  *
  */
 //-----------------------------------------------------------------------------
@@ -644,7 +644,7 @@ enum{
 };
 
 
-#define KONRAN_CAP_NUM			( 6 )	// Ç±Ç±Ç©Ç¶ÇΩÇÁ288.sÇ‡Ç©Ç¶ÇÈ
+#define KONRAN_CAP_NUM			( 6 )	// „Åì„Åì„Åã„Åà„Åü„Çâ288.s„ÇÇ„Åã„Åà„Çã
 #define KONRAN_CAP_ROTA_S		( FX_GET_ROTA_NUM( 0 ) )
 #define KONRAN_CAP_ROTA_E		( FX_GET_ROTA_NUM( 180 ) )
 #define KONRAN_CAP_ROTA_SYNC		( 48 )
@@ -664,10 +664,10 @@ typedef struct {
 
 	int vec_x;
 
-	//Ç±ÇÒÇÁÇÒ
+	//„Åì„Çì„Çâ„Çì
 	CATS_ACT_PTR cap[ KONRAN_CAP_NUM ];
-	WAZATOOL_CALCMOVE cap_move[ KONRAN_CAP_NUM ];	// â°à⁄ìÆ
-	WAZATOOL_ALPHA_FADE cap_alpha;	// ÉAÉãÉtÉ@ïœä∑
+	WAZATOOL_CALCMOVE cap_move[ KONRAN_CAP_NUM ];	// Ê®™ÁßªÂãï
+	WAZATOOL_ALPHA_FADE cap_alpha;	// „Ç¢„É´„Éï„Ç°Â§âÊèõ
 	s16 cap_cx;
 	s16 cap_cy;
 } TKONRAN_SYS;
@@ -679,7 +679,7 @@ static void Konran_CapInit( TKONRAN_SYS* wk, int vec_x )
 
 	rota_offs_one = FX_GET_ROTA_NUM( 360 ) / KONRAN_CAP_NUM;
 	
-	// åvéZÉfÅ[É^çÏê¨
+	// Ë®àÁÆó„Éá„Éº„Çø‰ΩúÊàê
 	for( i=0; i<KONRAN_CAP_NUM; i++ ){
 		WazaTool_InitRotaFx(
 				&wk->cap_move[ i ],
@@ -702,15 +702,15 @@ static void Konran_CapMove( TKONRAN_SYS* wk )
 
 	for( i=0; i<KONRAN_CAP_NUM; i++ ){
 		
-		// åvéZ
+		// Ë®àÁÆó
 		WazaTool_CalcRotaFx( &wk->cap_move[ i ] );
 		
-		// îΩâf
+		// ÂèçÊò†
 		CATS_ObjectPosSetCap( wk->cap[ i ],
 				wk->cap_cx + wk->cap_move[ i ].x,
 				wk->cap_cy );
 
-		// äpìxÇ≈BGóDêÊèáà ÇïœÇ¶ÇÈ
+		// ËßíÂ∫¶„ÅßBGÂÑ™ÂÖàÈ†Ü‰Ωç„ÇíÂ§â„Åà„Çã
 		if( (wk->cap_move[ i ].work[ 1 ] >= FX_GET_ROTA_NUM(90)) &&
 			(wk->cap_move[ i ].work[ 1 ] <= FX_GET_ROTA_NUM(269)) ){
 			
@@ -729,7 +729,7 @@ static void Konran_TCB( TCB_PTR tcb, void* work )
 
 	switch( wk->seq ){
 	case KONRAN_MOVE_START:
-		// ÉAÉãÉtÉ@ê›íË
+		// „Ç¢„É´„Éï„Ç°Ë®≠ÂÆö
 		WET_DefaultBlendSet( wk->we_sys,
 				KONRAN_CAP_ALPHA_S, 16 - KONRAN_CAP_ALPHA_S );
 		WazaTool_StartAlphaFade(
@@ -738,7 +738,7 @@ static void Konran_TCB( TCB_PTR tcb, void* work )
 				16 - KONRAN_CAP_ALPHA_S, 16 - KONRAN_CAP_ALPHA_E,
 				KONRAN_CAP_ALPHA_SYNC
 				);
-		// ÉIÉuÉWÉF
+		// „Ç™„Éñ„Ç∏„Çß
 		Konran_CapInit( wk, wk->vec_x );
 		Konran_CapMove( wk );
 		wk->seq++;
@@ -787,12 +787,12 @@ static void Konran_TCB( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- * @brief	Ç±ÇÒÇÁÇÒópÉ^ÉXÉNìoò^
+ * @brief	„Åì„Çì„Çâ„ÇìÁî®„Çø„Çπ„ÇØÁôªÈå≤
  *
- *	@param	we_sys	ãZÉGÉtÉFÉNÉgÉVÉXÉeÉÄÉèÅ[ÉN
- *	@param	csp		ÉZÉãÉAÉNÉ^Å[ÉcÅ[ÉãÉVÉXÉeÉÄ
- *	@param	crp		ÉZÉãÉAÉNÉ^Å[ÉäÉ\Å[ÉXÉVÉXÉeÉÄ
- *	@param	cap		ÉZÉãÉAÉNÉ^Å[ÉcÅ[ÉãÉIÉuÉWÉF
+ *	@param	we_sys	ÊäÄ„Ç®„Éï„Çß„ÇØ„Éà„Ç∑„Çπ„ÉÜ„É†„ÉØ„Éº„ÇØ
+ *	@param	csp		„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉÑ„Éº„É´„Ç∑„Çπ„ÉÜ„É†
+ *	@param	crp		„Çª„É´„Ç¢„ÇØ„Çø„Éº„É™„ÇΩ„Éº„Çπ„Ç∑„Çπ„ÉÜ„É†
+ *	@param	cap		„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉÑ„Éº„É´„Ç™„Éñ„Ç∏„Çß
  *
  *	@return	none
  */
@@ -809,12 +809,12 @@ void WestSp_CAT_ST_006(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->csp		= csp;
 	wk->crp		= crp;
 
-	// çUåÇë§
+	// ÊîªÊíÉÂÅ¥
 	at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	wk->cap_cx = SoftSpriteParaGet( at_ssp, SS_PARA_POS_X );
 	wk->cap_cy = SoftSpriteParaGet( at_ssp, SS_PARA_POS_Y );
 	
-	// Ç±ÇÒÇÁÇÒ
+	// „Åì„Çì„Çâ„Çì
 	coap   = WeSysCoapGet(we_sys);
 	for( i=0; i<KONRAN_CAP_NUM ; i++ ){
 		if( i == 0 ){

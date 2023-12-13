@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_243.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			ƒq[ƒ‹ƒuƒƒbƒNI‚í‚Á‚½ƒƒbƒZ[ƒWƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ãƒ’ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯çµ‚ã‚ã£ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2006.05.04
  *
@@ -19,6 +19,6 @@ SUB_243:
 	MESSAGE		HealblockEndMineMsg,TAG_NICK_WAZA,SIDE_WORK,SIDE_WORK
 	SERVER_WAIT
 	WAIT		MSG_WAIT
-	//ƒq[ƒ‹ƒuƒƒbƒNƒtƒ‰ƒO‚ð—Ž‚Æ‚·
+	//ãƒ’ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 	PSP_VALUE	VAL_NBIT,SIDE_WORK,ID_PSP_waza_kouka,WAZAKOUKA_HEALBLOCK
 	SEQ_END

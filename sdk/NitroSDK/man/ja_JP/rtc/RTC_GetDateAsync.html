@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>RTC_GetDateAsync</title>
@@ -13,7 +13,7 @@
 
 <h1 align="left">RTC_GetDateAsync</h1>
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -24,44 +24,44 @@
             void*       arg );</CODE></PRE>
   </dd>
 
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="300"><em><strong><font face="Courier New">date</font></strong></em></TD>
-      <TD width="700">���t�f�[�^���擾����o�b�t�@�ւ̃|�C���^</TD>
+      <TD width="700">日付データを取得するバッファへのポインタ</TD>
     </TR>
     <TR>
       <TD><em><strong><font face="Courier New">callback</font></strong></em></TD>
-      <TD>�R�[���o�b�N�֐��ւ̃|�C���^<br>���̃R�[���o�b�N�͊��荞�݃n���h��������Ăяo����܂��B</TD>
+      <TD>コールバック関数へのポインタ<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
     </TR>
     <TR>
       <TD><em><strong><font face="Courier New">arg</font></strong></em></TD>
-      <TD>�R�[���o�b�N�֐��֓n������</TD>
+      <TD>コールバック関数へ渡す引数</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�v�������������ꍇ�� 0 ��Ԃ��܂��B<BR>
-�v�������s�����ꍇ�ɂ� 0 �ȊO��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>要求が成功した場合に 0 を返します。<BR>
+要求が失敗した場合には 0 以外を返します。</p>
 
-<H2>����</H2>
-<P>���A���^�C���N���b�N����񓯊��I�ɓ��t�f�[�^��ǂݏo���܂��B<BR>
-���̊֐���ARM7�ɓ��t�f�[�^�ǂݏo���v���𔭍s���AARM7����̉�����҂����ɌĂяo�����ɖ߂�܂��B<BR>
-ARM7�ɂ����鏈�����ʂ̓��[�U�R�[���o�b�N�֐��ɓn�����<em><strong><font face="Courier New">result</font></strong></em>�����ɂ���Ď擾����K�v������܂��B<BR>
+<H2>説明</H2>
+<P>リアルタイムクロックから非同期的に日付データを読み出します。<BR>
+この関数はARM7に日付データ読み出し要求を発行し、ARM7からの応答を待たずに呼び出し元に戻ります。<BR>
+ARM7における処理結果はユーザコールバック関数に渡される<em><strong><font face="Courier New">result</font></strong></em>引数によって取得する必要があります。<BR>
 <BR>
-���̊֐������s�����ꍇ�͔񓯊��I�ȑ���͍s��ꂸ�A���[�U�R�[���o�b�N�֐����Ăяo����܂���B</P>
+この関数が失敗した場合は非同期的な操作は行われず、ユーザコールバック関数も呼び出されません。</P>
 
-<h2>����</h2>
-<P><FONT color=red><em><strong><font face="Courier New">date</font></strong></em>�����ɂ���Ďw�肵���o�b�t�@�ɂ͊֐��Ƃ͔񓯊��ɒl���������܂�܂��̂ŁA���[�U�R�[���o�b�N�֐��ɂ���Ĕ񓯊������̊������m�F����܂ł͕ʂ̗p�r�Ɏg�p���Ȃ��悤�ɂ��ĉ������B</FONT></P>
+<h2>注意</h2>
+<P><FONT color=red><em><strong><font face="Courier New">date</font></strong></em>引数によって指定したバッファには関数とは非同期に値が書き込まれますので、ユーザコールバック関数によって非同期処理の完了を確認するまでは別の用途に使用しないようにして下さい。</FONT></P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><CODE><A href="RTC_GetDate.html">RTC_GetDate</A>, <A href="RTC_SetDate.html">RTC_SetDate</A>, <A href="RTC_SetDateAsync.html">RTC_SetDateAsync</A>, <A href="RTCResult.html">RTCResult</A>, <A href="RTCDate.html">RTCDate</A>, <A href="RTCCallback.html">RTCCallback</A></CODE></P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-Ver. 2005/06/27 �R�[���o�b�N�����荞�݃n���h������Ăяo�����|��⑫<br>
-Ver. 2004/05/18 ����</P>
+Ver. 2005/06/27 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+Ver. 2004/05/18 初版</P>
 </body>
 </html>

@@ -1,13 +1,13 @@
 //============================================================================================
 /**
  * @file	regulation.c
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒAƒNƒZƒX—pƒ\[ƒX
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚½ãƒ¼ã‚¹
  * @author	k.ohno
  * @date	2006.1.20
  */
 //============================================================================================
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "common.h"
 
@@ -28,13 +28,13 @@
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒTƒCƒYæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int Regulation_GetWorkSize(void)
@@ -44,8 +44,8 @@ int Regulation_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒTƒCƒYæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int RegulationData_GetWorkSize(void)
@@ -55,9 +55,9 @@ int RegulationData_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒ[ƒN‚ÌŠm•Û
- * @param	heapID		ƒƒ‚ƒŠŠm•Û‚ğ‚¨‚±‚È‚¤ƒq[ƒvw’è
- * @return	REGULATION*	æ“¾‚µ‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿
+ * @param	heapID		ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚’ãŠã“ãªã†ãƒ’ãƒ¼ãƒ—æŒ‡å®š
+ * @return	REGULATION*	å–å¾—ã—ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 REGULATION* Regulation_AllocWork(u32 heapID)
@@ -70,9 +70,9 @@ REGULATION* Regulation_AllocWork(u32 heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	REGULATION‚ÌƒRƒs[
- * @param	from	ƒRƒs[Œ³REGULATION‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	to		ƒRƒs[æREGULATION‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	REGULATIONã®ã‚³ãƒ”ãƒ¼
+ * @param	from	ã‚³ãƒ”ãƒ¼å…ƒREGULATIONã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	to		ã‚³ãƒ”ãƒ¼å…ˆREGULATIONã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void Regulation_Copy(const REGULATION *pFrom, REGULATION* pTo)
@@ -82,10 +82,10 @@ void Regulation_Copy(const REGULATION *pFrom, REGULATION* pTo)
 
 //----------------------------------------------------------
 /**
- * @brief	REGULATION‚Ì”äŠr
- * @param	cmp1   ”äŠr‚·‚éREGULATION‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	cmp2   ”äŠr‚³‚ê‚éREGULATION‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return  ˆê’v‚µ‚Ä‚¢‚½‚çTRUE
+ * @brief	REGULATIONã®æ¯”è¼ƒ
+ * @param	cmp1   æ¯”è¼ƒã™ã‚‹REGULATIONã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	cmp2   æ¯”è¼ƒã•ã‚Œã‚‹REGULATIONã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return  ä¸€è‡´ã—ã¦ã„ãŸã‚‰TRUE
  */
 //----------------------------------------------------------
 int Regulation_Cmp(const REGULATION* pCmp1,const REGULATION* pCmp2)
@@ -106,13 +106,13 @@ int Regulation_Cmp(const REGULATION* pCmp1,const REGULATION* pCmp2)
 
 //============================================================================================
 //
-//	REGULATION‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	REGULATIONæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ì‰Šú‰»
- * @param	pReg		REGULATIONƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+ * @param	pReg		REGULATIONãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void Regulation_Init(REGULATION* pReg)
@@ -122,8 +122,8 @@ void Regulation_Init(REGULATION* pReg)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ì‰Šú‰»
- * @param	pReg		REGULATIONƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+ * @param	pReg		REGULATIONãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void RegulationData_Init(REGULATION_DATA* pRegData)
@@ -136,9 +136,9 @@ void RegulationData_Init(REGULATION_DATA* pRegData)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒJƒbƒv–¼ƒZƒbƒg
- * @param	pReg	REGULATIONƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	pCupBuf	ƒJƒbƒv–¼‚ª“ü‚Á‚½ƒoƒbƒtƒ@
+ * @brief	ã‚«ãƒƒãƒ—åã‚»ãƒƒãƒˆ
+ * @param	pReg	REGULATIONãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	pCupBuf	ã‚«ãƒƒãƒ—åãŒå…¥ã£ãŸãƒãƒƒãƒ•ã‚¡
  */
 //----------------------------------------------------------
 void Regulation_SetCupName(REGULATION* pReg, const STRBUF *pCupBuf)
@@ -151,9 +151,9 @@ void Regulation_SetCupName(REGULATION* pReg, const STRBUF *pCupBuf)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒJƒbƒv–¼æ“¾
- * @param	pReg		    REGULATIONƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	pReturnCupName	ƒJƒbƒv–¼‚ğ“ü‚ê‚éSTRBUFƒ|ƒCƒ“ƒ^
+ * @brief	ã‚«ãƒƒãƒ—åå–å¾—
+ * @param	pReg		    REGULATIONãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	pReturnCupName	ã‚«ãƒƒãƒ—åã‚’å…¥ã‚Œã‚‹STRBUFãƒã‚¤ãƒ³ã‚¿
  * @return	none
  */
 //----------------------------------------------------------
@@ -164,10 +164,10 @@ void Regulation_GetCupName(const REGULATION* pReg,STRBUF* pReturnCupName)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒJƒbƒv–¼‘Oæ“¾iSTRBUF‚ğ¶¬j
- * @param	pReg	ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	heapID	STRBUF‚ğ¶¬‚·‚éƒq[ƒv‚ÌID
- * @return	STRBUF	–¼‘O‚ğŠi”[‚µ‚½STRBUF‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚«ãƒƒãƒ—åå‰å–å¾—ï¼ˆSTRBUFã‚’ç”Ÿæˆï¼‰
+ * @param	pReg	ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	heapID	STRBUFã‚’ç”Ÿæˆã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
+ * @return	STRBUF	åå‰ã‚’æ ¼ç´ã—ãŸSTRBUFã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 STRBUF* Regulation_CreateCupName(const REGULATION* pReg, int heapID)
@@ -179,9 +179,9 @@ STRBUF* Regulation_CreateCupName(const REGULATION* pReg, int heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ‰ƒ[ƒ^[‚ğæ“¾‚·‚é
- * @param	pReg	REGULATIONƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	type	REGULATION_PARAM_TYPE enum ‚Ì‚Ç‚ê‚©
+ * @brief	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å–å¾—ã™ã‚‹
+ * @param	pReg	REGULATIONãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	type	REGULATION_PARAM_TYPE enum ã®ã©ã‚Œã‹
  */
 //----------------------------------------------------------
 int Regulation_GetParam(const REGULATION* pReg, REGULATION_PARAM_TYPE type)
@@ -189,50 +189,50 @@ int Regulation_GetParam(const REGULATION* pReg, REGULATION_PARAM_TYPE type)
     int ret = 0;
 
     switch(type){
-      case REGULATION_POKE_NUM:      //ƒ|ƒPƒ‚ƒ“”
+      case REGULATION_POKE_NUM:      //ãƒã‚±ãƒ¢ãƒ³æ•°
         ret = pReg->num;
         break;
-      case REGULATION_LEVEL:         //ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
+      case REGULATION_LEVEL:         //ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
         ret = pReg->level;
         break;
-      case REGULATION_TOTAL_LEVEL:   //ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‡Œv
+      case REGULATION_TOTAL_LEVEL:   //ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«åˆè¨ˆ
         ret = pReg->totalLevel;
         break;
-      case REGULATION_EVOLUTION:     //i‰»‘O’†Œã
+      case REGULATION_EVOLUTION:     //é€²åŒ–å‰ä¸­å¾Œ
         ret = pReg->evolution;
         break;
-      case REGULATION_HEIGHT:        //g’·
+      case REGULATION_HEIGHT:        //èº«é•·
         ret = pReg->height;
         break;
-      case REGULATION_HEIGHT_LIMIT:  //g’·§ŒÀ  -1,0,1
+      case REGULATION_HEIGHT_LIMIT:  //èº«é•·åˆ¶é™  -1,0,1
         if(pReg->height>0){
-            ret = 1;   // ˆÈã
+            ret = 1;   // ä»¥ä¸Š
         }
         else if(pReg->height<0){
-            ret = -1;  // ˆÈ‰º
+            ret = -1;  // ä»¥ä¸‹
         }
         break;
-      case REGULATION_WEIGHT:       //‘Ìd
+      case REGULATION_WEIGHT:       //ä½“é‡
         ret = pReg->weight;
         break;
-      case REGULATION_WEIGHT_LIMIT:   //‘Ìd§ŒÀ  -1,0,1
+      case REGULATION_WEIGHT_LIMIT:   //ä½“é‡åˆ¶é™  -1,0,1
         if(pReg->weight>0){
-            ret = 1;   // ˆÈã
+            ret = 1;   // ä»¥ä¸Š
         }
         else if(pReg->weight<0){
-            ret = -1;  // ˆÈ‰º
+            ret = -1;  // ä»¥ä¸‹
         }
         break;
-      case REGULATION_BOTH_ITEM:    //“¯‚¶“¹‹ï‚ª‚n‚j‚©H
+      case REGULATION_BOTH_ITEM:    //åŒã˜é“å…·ãŒï¼¯ï¼«ã‹ï¼Ÿ
         ret = pReg->bBothItem;
         break;
-      case REGULATION_BOTH_MONSTER: //“¯‚¶ƒ|ƒPƒ‚ƒ“‚n‚j‚©H
+      case REGULATION_BOTH_MONSTER: //åŒã˜ãƒã‚±ãƒ¢ãƒ³ï¼¯ï¼«ã‹ï¼Ÿ
         ret = pReg->bBothMonster;
         break;
-      case REGULATION_LEGEND:       // “`àŒn—L–³
+      case REGULATION_LEGEND:       // ä¼èª¬ç³»æœ‰ç„¡
         ret = pReg->bLegend;
         break;
-      case REGULATION_FIXDAMAGE:       // “Áêƒ‹[ƒ‹iŒÅ’èƒ_ƒ[ƒW–³Œøj
+      case REGULATION_FIXDAMAGE:       // ç‰¹æ®Šãƒ«ãƒ¼ãƒ«ï¼ˆå›ºå®šãƒ€ãƒ¡ãƒ¼ã‚¸ç„¡åŠ¹ï¼‰
         ret = pReg->bFixDamage;
         break;
     }
@@ -241,38 +241,38 @@ int Regulation_GetParam(const REGULATION* pReg, REGULATION_PARAM_TYPE type)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ‰ƒ[ƒ^[‚ğ‘‚«‚±‚Ş
- * @param	pReg	REGULATIONƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	type	REGULATION_PARAM_TYPE enum ‚Ì‚Ç‚ê‚©
- * @param	param	‘‚«‚±‚Ş’l
- * @return  ³‚µ‚­‘‚«‚ñ‚¾‚çTRUE  •s³‚È’l‚Ìê‡FALSE
+ * @brief	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’æ›¸ãã“ã‚€
+ * @param	pReg	REGULATIONãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	type	REGULATION_PARAM_TYPE enum ã®ã©ã‚Œã‹
+ * @param	param	æ›¸ãã“ã‚€å€¤
+ * @return  æ­£ã—ãæ›¸ãè¾¼ã‚“ã ã‚‰TRUE  ä¸æ­£ãªå€¤ã®å ´åˆFALSE
  */
 //----------------------------------------------------------
 BOOL Regulation_SetParam(REGULATION* pReg, REGULATION_PARAM_TYPE type, int param)
 {
     switch(type){
-      case REGULATION_POKE_NUM:      //ƒ|ƒPƒ‚ƒ“”
+      case REGULATION_POKE_NUM:      //ãƒã‚±ãƒ¢ãƒ³æ•°
         GF_ASSERT_RETURN(param <= _REG_NUM_MAX,FALSE);
         GF_ASSERT_RETURN(param >= _REG_NUM_MIN,FALSE);
         pReg->num = param;
         break;
-      case REGULATION_LEVEL:         //ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
+      case REGULATION_LEVEL:         //ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
         GF_ASSERT_RETURN(param <= _REG_LEVEL_MAX,FALSE);
         GF_ASSERT_RETURN(param >= _REG_LEVEL_MIN,FALSE);
         pReg->level = param;
         break;
-      case REGULATION_TOTAL_LEVEL:   //ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‡Œv
+      case REGULATION_TOTAL_LEVEL:   //ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«åˆè¨ˆ
         GF_ASSERT_RETURN(param <= _REG_TOTAL_LEVEL_MAX,FALSE);
         GF_ASSERT_RETURN(param >= _REG_TOTAL_LEVEL_MIN,FALSE);
         pReg->totalLevel = param;
         break;
-      case REGULATION_EVOLUTION:     //i‰»‘O’†Œã
+      case REGULATION_EVOLUTION:     //é€²åŒ–å‰ä¸­å¾Œ
         pReg->evolution = param;
         break;
-      case REGULATION_HEIGHT:        //g’·
+      case REGULATION_HEIGHT:        //èº«é•·
         pReg->height = param;
         break;
-      case REGULATION_HEIGHT_LIMIT:  //g’·§ŒÀ  -1,0,1
+      case REGULATION_HEIGHT_LIMIT:  //èº«é•·åˆ¶é™  -1,0,1
         if((param == 1) && (pReg->height < 0)){
             pReg->height = -pReg->height;
         }
@@ -283,12 +283,12 @@ BOOL Regulation_SetParam(REGULATION* pReg, REGULATION_PARAM_TYPE type, int param
             pReg->height = 0;
         }
         break;
-      case REGULATION_WEIGHT:       //‘Ìd
+      case REGULATION_WEIGHT:       //ä½“é‡
         GF_ASSERT_RETURN(param <= _REG_WEIGHT_MAX, FALSE);
         GF_ASSERT_RETURN(param >= _REG_WEIGHT_MIN, FALSE);
         pReg->weight;
         break;
-      case REGULATION_WEIGHT_LIMIT:   //‘Ìd§ŒÀ  -1,0,1
+      case REGULATION_WEIGHT_LIMIT:   //ä½“é‡åˆ¶é™  -1,0,1
         if((param == 1) && (pReg->weight < 0)){
             pReg->weight = -pReg->weight;
         }
@@ -299,16 +299,16 @@ BOOL Regulation_SetParam(REGULATION* pReg, REGULATION_PARAM_TYPE type, int param
             pReg->weight = 0;
         }
         break;
-      case REGULATION_BOTH_ITEM:    //“¯‚¶“¹‹ï‚ª‚n‚j‚©H
+      case REGULATION_BOTH_ITEM:    //åŒã˜é“å…·ãŒï¼¯ï¼«ã‹ï¼Ÿ
         pReg->bBothItem = param;
         break;
-      case REGULATION_BOTH_MONSTER: //“¯‚¶ƒ|ƒPƒ‚ƒ“‚n‚j‚©H
+      case REGULATION_BOTH_MONSTER: //åŒã˜ãƒã‚±ãƒ¢ãƒ³ï¼¯ï¼«ã‹ï¼Ÿ
         pReg->bBothMonster = param;
         break;
-      case REGULATION_LEGEND:       // “`àŒn—L–³
+      case REGULATION_LEGEND:       // ä¼èª¬ç³»æœ‰ç„¡
         pReg->bLegend = param;
         break;
-      case REGULATION_FIXDAMAGE:       // ŒÅ’èƒ_ƒ[ƒW‹Z‚ª•K‚¸¸”s
+      case REGULATION_FIXDAMAGE:       // å›ºå®šãƒ€ãƒ¡ãƒ¼ã‚¸æŠ€ãŒå¿…ãšå¤±æ•—
         pReg->bFixDamage = param;
         break;
     }
@@ -320,10 +320,10 @@ BOOL Regulation_SetParam(REGULATION* pReg, REGULATION_PARAM_TYPE type, int param
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
- * @param	pSave    	ƒZ[ƒuƒf[ƒ^•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	‰½–{–Ú‚ÌƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚©
- * @return	REGULATION	ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^  –³Œøƒf[ƒ^‚Ìê‡NULL
+ * @brief	ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	pSave    	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ä½•æœ¬ç›®ã®ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹
+ * @return	REGULATION	ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿  ç„¡åŠ¹ãƒ‡ãƒ¼ã‚¿ã®å ´åˆNULL
  */
 //----------------------------------------------------------
 REGULATION* SaveData_GetRegulation(SAVEDATA* pSave, int regNo)
@@ -341,9 +341,9 @@ REGULATION* SaveData_GetRegulation(SAVEDATA* pSave, int regNo)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ì•Û‘¶
- * @param	pSave    	ƒZ[ƒuƒf[ƒ^•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	const REGULATION  ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^
+ * @brief	ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
+ * @param	pSave    	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	const REGULATION  ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  * @return	none
  */
 //----------------------------------------------------------

@@ -15,10 +15,10 @@
   INDENT SOURCE
 
   Revision 1.2  2005/08/17 04:10:39  yasu
-  SOC_Poll の機能追加
+  SOC_Poll 縺ｮ讖溯�ｽ霑ｽ蜉
 
   Revision 1.1  2005/07/25 10:15:01  yasu
-  SOC ライブラリの追加
+  SOC 繝ｩ繧､繝悶Λ繝ｪ縺ｮ霑ｽ蜉
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -31,7 +31,7 @@ extern "C" {
 #endif
 
 //
-// エラー番号
+// 繧ｨ繝ｩ繝ｼ逡ｪ蜿ｷ
 //
 #define SOC_E2BIG           (-1)
 #define SOC_EACCES          (-2)
@@ -114,7 +114,7 @@ extern "C" {
 #define SOC_EXDEV           (-78)
 
 //
-//  SO_Poll() に関するパラメータ
+//  SO_Poll() 縺ｫ髢｢縺吶ｋ繝代Λ繝｡繝ｼ繧ｿ
 //
 #define SOC_POLLRDNORM  0x0001          // Normal data read
 #define SOC_POLLRDBAND  0x0002          // Priority data read

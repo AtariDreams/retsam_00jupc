@@ -12,7 +12,7 @@
 
   $Log: exception.h,v $
   Revision 1.14  2007/03/26 00:05:43  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.13  2007/02/23 01:10:06  yosizaki
   add OS_EnableUserExceptionHandlerOnDebugger.
@@ -21,7 +21,7 @@
   do-indent
 
   Revision 1.11  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.10  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -30,28 +30,28 @@
   fix header comment
 
   Revision 1.8  2004/02/19 08:44:21  yada
-  ƒ†[ƒU—áŠOƒ‹[ƒ`ƒ“‚ÌŒ^’Ç‰Á
+  ãƒ¦ãƒ¼ã‚¶ä¾‹å¤–ãƒ«ãƒ¼ãƒãƒ³ã®å‹è¿½åŠ 
 
   Revision 1.7  2004/02/05 07:27:19  yada
-  —š—ğ•¶š—ñ‚ÌIRIS‚¾‚Á‚½‚à‚Ì‚ğ NITRO ‚©‚ç IRIS‚É–ß‚µ‚½B
+  å±¥æ­´æ–‡å­—åˆ—ã®IRISã ã£ãŸã‚‚ã®ã‚’ NITRO ã‹ã‚‰ IRISã«æˆ»ã—ãŸã€‚
 
   Revision 1.6  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.5  2004/01/30 04:31:56  yada
-  —áŠO•\¦‚Ì‘g‚İ‚İ
+  ä¾‹å¤–è¡¨ç¤ºã®çµ„ã¿è¾¼ã¿
 
   Revision 1.4  2004/01/16 01:17:55  yasu
   Support SDK_BB
 
   Revision 1.3  2004/01/15 02:40:01  yada
-  IRIS_BB ¨ SDK_BB ‚Ö•ÏX
+  IRIS_BB â†’ SDK_BB ã¸å¤‰æ›´
 
   Revision 1.2  2004/01/14 12:06:08  yada
-  ¬C³
+  å°ä¿®æ­£
 
   Revision 1.1  2003/12/08 12:22:34  yada
-  ‰”Å
+  åˆç‰ˆ
 
 
   $NoKeywords: $

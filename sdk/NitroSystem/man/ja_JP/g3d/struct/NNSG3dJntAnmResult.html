@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 	<TITLE>NNSG3dJntAnmResult</TITLE>
@@ -11,7 +11,7 @@
 <BODY>
 
 <H1 align="left">NNSG3dJntAnmResult</H1>
-<H2>�\���̂̒�`</H2>
+<H2>構造体の定義</H2>
 <PRE><CODE>#include &lt;nnsys/g3d/anm.h&gt;
 
 typedef enum
@@ -35,42 +35,42 @@ typedef struct NNSG3dJntAnmResult_
     VecFx32                trans;
 }
 NNSG3dJntAnmResult;</CODE></PRE>
-<H2>�\���̂̉��</H2>
-<P><CODE>NNSG3dJntAnmResult</CODE>�\���̂́A�W���C���g�̈ʒu�������X�P�[���̏���ێ����Ă��܂��BG3D�͂��̍\���̂Ɋi�[���ꂽ�����g�p���ăW�I���g���G���W���ɃR�}���h�𑗐M�����܂��B���̍\���̂́A<CODE>NNSi_G3dFuncSbc_NODEDESC</CODE>�֐�(SBC��NODEDESC�R�}���h�������ɌĂяo�����)�̎��s���ɍ쐬����A�g�p����܂��B<BR>
+<H2>構造体の解説</H2>
+<P><CODE>NNSG3dJntAnmResult</CODE>構造体は、ジョイントの位置や向きやスケールの情報を保持しています。G3Dはこの構造体に格納された情報を使用してジオメトリエンジンにコマンドを送信をします。この構造体は、<CODE>NNSi_G3dFuncSbc_NODEDESC</CODE>関数(SBCのNODEDESCコマンド処理時に呼び出される)の実行時に作成され、使用されます。<BR>
 <BR>
-�W���C���g�A�j���[�V�����́A���̍\���̂Ɋi�[����Ă���f�[�^��<CODE>NNSi_G3dFuncSbc_NODEDESC</CODE>�֐������ɂ����ăA�j���[�V�����f�[�^�ɏ]���ݒ肷�邱�Ƃɂ���������Ă��܂��B<BR>
+ジョイントアニメーションは、この構造体に格納されているデータを<CODE>NNSi_G3dFuncSbc_NODEDESC</CODE>関数内部においてアニメーションデータに従い設定することにより実装されています。<BR>
 <BR>
-�܂��A<CODE><A href="../sbc/SBC_NODEDESC.html">NNS_G3D_SBC_NODEDESC</A></CODE>�ɃR�[���o�b�N��ݒ肷�邱�Ƃɂ���āA<A href="../sbc/NNSG3dRS.html"><CODE>NNSG3dRS</CODE></A>�\���̂�ʂ���<CODE>NNSG3dJntAnmResult</CODE>�\���̂ɃA�N�Z�X���邱�Ƃɂ��A�W���C���g�̈ʒu�������X�P�[�������[�U�[�v���O��������R���g���[�����邱�Ƃ��ł��܂��B<BR>
+また、<CODE><A href="../sbc/SBC_NODEDESC.html">NNS_G3D_SBC_NODEDESC</A></CODE>にコールバックを設定することによって、<A href="../sbc/NNSG3dRS.html"><CODE>NNSG3dRS</CODE></A>構造体を通じて<CODE>NNSG3dJntAnmResult</CODE>構造体にアクセスすることにより、ジョイントの位置や向きやスケールをユーザープログラムからコントロールすることができます。<BR>
 </P>
 <TABLE border="1">
   <TBODY>
     <TR>
-      <TH width="320">NNSG3dJntAnmResult�\���̂̃����o</TH>
-      <TH align="center" width="717">����</TH>
+      <TH width="320">NNSG3dJntAnmResult構造体のメンバ</TH>
+      <TH align="center" width="717">説明</TH>
     </TR>
     <TR>
       <TD width="320"><I><B>flag</B></I></TD>
-      <TD width="717">NNSG3dJntAnmResultFlag�^�����t���O</TD>
+      <TD width="717">NNSG3dJntAnmResultFlag型をもつフラグ</TD>
     </TR>
     <TR>
       <TD width="320"><I><B>scale</B></I></TD>
-      <TD width="717">�W���C���g�ɂ�����X�P�[��</TD>
+      <TD width="717">ジョイントにかかるスケール</TD>
     </TR>
     <TR>
       <TD width="320"><I><B>scaleEx0</B></I></TD>
-      <TD width="717">�⏕�X�P�[���l�B�g�p���Ă���CG�c�[���ɂ���Ēl�̈Ӗ��͈قȂ�܂��B�ʏ킱�̒l�����H���邱�Ƃ͂���܂���B</TD>
+      <TD width="717">補助スケール値。使用しているCGツールによって値の意味は異なります。通常この値を加工することはありません。</TD>
     </TR>
     <TR>
       <TD width="320"><I><B>scaleEx1</B></I></TD>
-      <TD width="717">�⏕�X�P�[���l�B�g�p���Ă���CG�c�[���ɂ���Ēl�̈Ӗ��͈قȂ�܂��B�ʏ킱�̒l�����H���邱�Ƃ͂���܂���B</TD>
+      <TD width="717">補助スケール値。使用しているCGツールによって値の意味は異なります。通常この値を加工することはありません。</TD>
     </TR>
     <TR>
       <TD width="320"><B><I>rot</I></B></TD>
-      <TD width="717">�W���C���g��3x3��]�s��</TD>
+      <TD width="717">ジョイントの3x3回転行列</TD>
     </TR>
     <TR>
       <TD width="320"><B><I>trans</I></B></TD>
-      <TD width="717">�W���C���g�̕��s�ړ�����</TD>
+      <TD width="717">ジョイントの平行移動成分</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -78,40 +78,40 @@ NNSG3dJntAnmResult;</CODE></PRE>
 <TABLE border="1">
   <TBODY>
     <TR>
-      <TH width="320"><CODE>NNSG3dJntAnmResultFlag</CODE>�̒l</TH>
-      <TH width="717">����</TH>
+      <TH width="320"><CODE>NNSG3dJntAnmResultFlag</CODE>の値</TH>
+      <TH width="717">説明</TH>
     </TR>
     <TR>
       <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_SCALE_ONE</CODE></TD>
-      <TD width="717">���̃t���O���Z�b�g����Ă���ꍇ�A<I><B>scale</B></I>�Ɋi�[����Ă���l�͖����ł��B�X�P�[�������͑S��FX32_ONE�Ƃ��Ĉ����܂��B</TD>
+      <TD width="717">このフラグがセットされている場合、<I><B>scale</B></I>に格納されている値は無効です。スケール成分は全てFX32_ONEとして扱われます。</TD>
     </TR>
     <TR>
       <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_ROT_ZERO</CODE></TD>
-      <TD width="717">���̃t���O���Z�b�g����Ă���ꍇ�A<I><B>rot</B></I>�Ɋi�[����Ă���l�͖����ł��B��]�s��͒P�ʍs��Ƃ��Ĉ����܂��B</TD>
+      <TD width="717">このフラグがセットされている場合、<I><B>rot</B></I>に格納されている値は無効です。回転行列は単位行列として扱われます。</TD>
     </TR>
     <TR>
       <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_TRANS_ZERO</CODE></TD>
-      <TD width="717">���̃t���O���Z�b�g����Ă���ꍇ�A<I><B>trans</B></I>�Ɋi�[����Ă���l�͖����ł��B���s�ړ������͑S��0�Ƃ��Ĉ����܂��D</TD>
+      <TD width="717">このフラグがセットされている場合、<I><B>trans</B></I>に格納されている値は無効です。平行移動成分は全て0として扱われます．</TD>
     </TR>
     <TR>
       <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_SCALEEX0_ONE</CODE></TD>
-      <TD width="717">���̃t���O���Z�b�g����Ă���ꍇ�A<I><B>scaleEx0</B></I>�Ɋi�[����Ă���l�͖����ł��B�����͑S��FX32_ONE�Ƃ��Ĉ����܂��B</TD>
+      <TD width="717">このフラグがセットされている場合、<I><B>scaleEx0</B></I>に格納されている値は無効です。成分は全てFX32_ONEとして扱われます。</TD>
     </TR>
     <TR>
       <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_SCALEEX1_ONE</CODE></TD>
-      <TD width="717">���̃t���O���Z�b�g����Ă���ꍇ�A<I><B>scaleEx1</B></I>�Ɋi�[����Ă���l�͖����ł��B�����͑S��FX32_ONE�Ƃ��Ĉ����܂��B</TD>
+      <TD width="717">このフラグがセットされている場合、<I><B>scaleEx1</B></I>に格納されている値は無効です。成分は全てFX32_ONEとして扱われます。</TD>
     </TR>
     <TR>
       <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_MAYA_SSC</CODE></TD>
-      <TD width="717">���̃t���O���Z�b�g����Ă���ꍇ�A���̃W���C���g�ɂ�Maya��Segment Scale
-      Compensate���������Ă��܂��B</TD>
+      <TD width="717">このフラグがセットされている場合、このジョイントにはMayaのSegment Scale
+      Compensateがかかっています。</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�Q��</H2>
-<P><A href="../list_g3d.html#Kernel">�J�[�l��</A> <A href="../list_g3d.html#SBC">�`��G���W��</A></P>
-<H2>����</H2>
-<P>2004/10/13 ����</P>
+<H2>参照</H2>
+<P><A href="../list_g3d.html#Kernel">カーネル</A> <A href="../list_g3d.html#SBC">描画エンジン</A></P>
+<H2>履歴</H2>
+<P>2004/10/13 初版</P>
 </BODY>
 
 </HTML>

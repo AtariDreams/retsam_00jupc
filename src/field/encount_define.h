@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	encount_define.h
- * @brief	ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜A‚Ì’è‹`‚Æ‚©
+ * @brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã®å®šç¾©ã¨ã‹
  * @author	Nozomu Saito
  * @date	2006.05.13
  */
@@ -9,10 +9,10 @@
 #ifndef __ENCOUNT_DEFINE_H__
 #define __ENCOUNT_DEFINE_H__
 
-#define SAFARI_TBL_MAX			(32)	//ƒTƒtƒ@ƒŠ—pƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹Å‘å”
-#define HILL_BACK_ENC_MONS_MAX	(16)		//— ŽRƒ|ƒPƒ‚ƒ“‘”
-#define POKESEARCHER_CHARGE_MAX	(50)	//ƒ|ƒPƒT[ƒ`ƒƒƒ`ƒƒ[ƒWŠ®—¹•à”
-//’Žœ‚¯ƒXƒvƒŒ[—LŒø•à”iŽg—pŽžj
-//ƒVƒ‹ƒo[ƒXƒvƒŒ[—LŒø•à”iŽg—pŽžj
-//ƒS[ƒ‹ƒhƒXƒvƒŒ[—LŒø•à”iŽg—pŽžj
+#define SAFARI_TBL_MAX			(32)	//ã‚µãƒ•ã‚¡ãƒªç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«æœ€å¤§æ•°
+#define HILL_BACK_ENC_MONS_MAX	(16)		//è£å±±ãƒã‚±ãƒ¢ãƒ³ç·æ•°
+#define POKESEARCHER_CHARGE_MAX	(50)	//ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒãƒ£ãƒ¼ã‚¸å®Œäº†æ­©æ•°
+//è™«é™¤ã‘ã‚¹ãƒ—ãƒ¬ãƒ¼æœ‰åŠ¹æ­©æ•°ï¼ˆä½¿ç”¨æ™‚ï¼‰
+//ã‚·ãƒ«ãƒãƒ¼ã‚¹ãƒ—ãƒ¬ãƒ¼æœ‰åŠ¹æ­©æ•°ï¼ˆä½¿ç”¨æ™‚ï¼‰
+//ã‚´ãƒ¼ãƒ«ãƒ‰ã‚¹ãƒ—ãƒ¬ãƒ¼æœ‰åŠ¹æ­©æ•°ï¼ˆä½¿ç”¨æ™‚ï¼‰
 #endif //__ENCOUNT_DEFINE_H__

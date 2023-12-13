@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_088.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			088�@�g�p�����|�P�����̃��x���~�O�D�T�`�P�D�T�܂ł̐��l�������_���Ń_���[�W�Ƃ��ēG�ɗ^����
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			088　使用したポケモンのレベル×０．５〜１．５までの数値をランダムでダメージとして敵に与える
  *
  *@author	HisashiSogabe
  *@data		2006.01.20
@@ -15,9 +15,9 @@
 	.include	"waza_seq_def.h"
 
 BE_088:
-	//�^�C�v�␳�v�Z�𖳎�����
+	//タイプ補正計算を無視する
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_TYPE_FLAT
-	//�_���[�W�������̃��x���~�O�D�T�`�P�D�T�܂łɂ���
+	//ダメージを自分のレベル×０．５〜１．５までにする
 	RANDOM_GET		10,5
 	PSP_VALUE_WORK	VAL_GET,SIDE_ATTACK,ID_PSP_level,BUF_PARA_DAMAGE
 	VALUE_WORK		VAL_MUL,BUF_PARA_DAMAGE,BUF_PARA_CALC_WORK

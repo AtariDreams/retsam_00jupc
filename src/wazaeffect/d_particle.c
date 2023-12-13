@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	d_particle.c
- * @brief	ƒp[ƒeƒBƒNƒ‹‚ÌƒfƒoƒbƒO—p“®ì‚È‚Ç
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒ‡ãƒãƒƒã‚°ç”¨å‹•ä½œãªã©
  * @author	matsuda
- * @date	2005.08.30(‰Î)
+ * @date	2005.08.30(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -26,13 +26,13 @@
 
 
 //--------------------------------------------------------------
-//	d_particle.c‚Ì‹@”\‚ğg—p‚·‚éê‡‚ÍD_PARTICLE_ON‚Ìdefine’è‹`‚ğ—LŒø‚É‚·‚é•K—v‚ª‚ ‚é
+//	d_particle.cã®æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯D_PARTICLE_ONã®defineå®šç¾©ã‚’æœ‰åŠ¹ã«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 //--------------------------------------------------------------
 #ifdef PM_DEBUG
-//	#define D_PARTICLE_ON		//d_particle.c‚Ì‹@”\‚ğg—p‚·‚éê‡‚Í‚±‚Ì’è‹`‚ğ—LŒø‚É‚·‚é
-	//ƒOƒ[ƒoƒ‹ŠÖ”‚Ì’†g‚¾‚¯D_PARTICLE_ON‚ÅˆÍ‚Á‚Ä‚¢‚Ü‚·B
-	//ƒ[ƒJƒ‹ŠÖ”‚Íƒtƒ@ƒCƒ‹“à‚Åg—p‚µ‚Ä‚¢‚éƒ\[ƒX‚ª‚È‚¯‚ê‚ÎÅ“K‰»‚Å©“®“I‚Éíœ‚³‚ê‚éˆ×
-	//staticŠÖ”‚ÍˆÍ‚Á‚Ä‚¢‚Ü‚¹‚ñB
+//	#define D_PARTICLE_ON		//d_particle.cã®æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã“ã®å®šç¾©ã‚’æœ‰åŠ¹ã«ã™ã‚‹
+	//ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ã®ä¸­èº«ã ã‘D_PARTICLE_ONã§å›²ã£ã¦ã„ã¾ã™ã€‚
+	//ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°ã¯ãƒ•ã‚¡ã‚¤ãƒ«å†…ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚½ãƒ¼ã‚¹ãŒãªã‘ã‚Œã°æœ€é©åŒ–ã§è‡ªå‹•çš„ã«å‰Šé™¤ã•ã‚Œã‚‹ç‚º
+	//staticé–¢æ•°ã¯å›²ã£ã¦ã„ã¾ã›ã‚“ã€‚
 #endif
 
 #define ANGLE_MOVE	(32)
@@ -52,7 +52,7 @@ static BOOL CameraInput(GF_CAMERA_PTR camera_ptr)
 	VecFx32 move = {0,0,0};
 
 	if (/*sys.cont & PAD_BUTTON_L*/1){
-		if (sys.cont & PAD_BUTTON_B){			//ƒJƒƒ‰‰ñ“]iŒö“]j
+		if (sys.cont & PAD_BUTTON_B){			//ã‚«ãƒ¡ãƒ©å›è»¢ï¼ˆå…¬è»¢ï¼‰
 			if (sys.cont & PAD_KEY_UP){
 				angle.x = ANGLE_MOVE;
 				GFC_AddCameraAngleRev(&angle,camera_ptr);
@@ -67,7 +67,7 @@ static BOOL CameraInput(GF_CAMERA_PTR camera_ptr)
 				GFC_AddCameraAngleRev(&angle,camera_ptr);
 			}
 		}
-		else if (sys.cont & PAD_BUTTON_Y){		//ƒJƒƒ‰‰ñ“]i©“]j
+		else if (sys.cont & PAD_BUTTON_Y){		//ã‚«ãƒ¡ãƒ©å›è»¢ï¼ˆè‡ªè»¢ï¼‰
 			if (sys.cont & PAD_KEY_UP){
 				angle.x = ANGLE_MOVE;
 				GFC_AddCameraAngleRot(&angle,camera_ptr);
@@ -83,12 +83,12 @@ static BOOL CameraInput(GF_CAMERA_PTR camera_ptr)
 			}
 		}
 		else if (sys.cont & PAD_BUTTON_A){
-			if (sys.cont & PAD_KEY_UP){			//ƒJƒƒ‰ƒY[ƒ€ƒAƒEƒg
+			if (sys.cont & PAD_KEY_UP){			//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
 				persp_way = GFC_GetCameraPerspWay(camera_ptr);
 				if (persp_way+64<0x4000){
 					GFC_AddCameraPerspWay(64,camera_ptr);
 				}
-			}else if (sys.cont & PAD_KEY_DOWN){	//ƒJƒƒ‰ƒY[ƒ€ƒCƒ“
+			}else if (sys.cont & PAD_KEY_DOWN){	//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ ã‚¤ãƒ³
 				persp_way = GFC_GetCameraPerspWay(camera_ptr);
 				if ((u16)(persp_way-64)<0x4000){
 					GFC_AddCameraPerspWay(-64,camera_ptr);
@@ -96,20 +96,20 @@ static BOOL CameraInput(GF_CAMERA_PTR camera_ptr)
 			}else if (sys.cont & PAD_KEY_LEFT){
 				GFC_AddCameraPerspWay(64,camera_ptr);
 				persp_way = GFC_GetCameraPerspWay(camera_ptr);
-				//ƒJƒƒ‰‚Ì’†S‚É‚ ‚é2D‰æ‘œ‚ªA•ö‚ê‚¸‚É•\¦‚Å‚«‚é‹——£‚ğ‹‚ß‚é
-				//‚Â‚Ô‚ê‚¸‚É•\¦‚·‚é‚½‚ß‚É‚ÍA1Dot@@1Unit‚ÅŒvZ‚·‚ê‚Î‚æ‚¢
-				//ƒJƒƒ‰‚ª‰æ–Ê’†S‚ğŒ©‚Â‚ß‚é‚Æ‚«A‰æ–Ê”¼•ª‚ÌƒTƒCƒY‚ÍA96Dot
-				//•\¦‚³‚¹‚½‚¢AƒJƒƒ‰‚Ìƒp[ƒX‚ğl‚¦A96Dot@@96Unit‚É‚È‚é‹——£‚É‚·‚ê‚Î‚æ‚¢
+				//ã‚«ãƒ¡ãƒ©ã®ä¸­å¿ƒã«ã‚ã‚‹2Dç”»åƒãŒã€å´©ã‚Œãšã«è¡¨ç¤ºã§ãã‚‹è·é›¢ã‚’æ±‚ã‚ã‚‹
+				//ã¤ã¶ã‚Œãšã«è¡¨ç¤ºã™ã‚‹ãŸã‚ã«ã¯ã€1Dotã€€ï¼ã€€1Unitã§è¨ˆç®—ã™ã‚Œã°ã‚ˆã„
+				//ã‚«ãƒ¡ãƒ©ãŒç”»é¢ä¸­å¿ƒã‚’è¦‹ã¤ã‚ã‚‹ã¨ãã€ç”»é¢åŠåˆ†ã®ã‚µã‚¤ã‚ºã¯ã€96Dot
+				//è¡¨ç¤ºã•ã›ãŸã„ã€ã‚«ãƒ¡ãƒ©ã®ãƒ‘ãƒ¼ã‚¹ã‚’è€ƒãˆã€96Dotã€€ï¼ã€€96Unitã«ãªã‚‹è·é›¢ã«ã™ã‚Œã°ã‚ˆã„
 				dist = FX_Div( FX_Mul( FX_CosIdx( persp_way ), FX_F32_TO_FX32(96) ),	
 									 FX_SinIdx( persp_way ));
 				GFC_SetCameraDistance(dist,camera_ptr);
 			}else if(sys.cont & PAD_KEY_RIGHT){
 				GFC_AddCameraPerspWay(-64,camera_ptr);
 				persp_way = GFC_GetCameraPerspWay(camera_ptr);
-				//ƒJƒƒ‰‚Ì’†S‚É‚ ‚é2D‰æ‘œ‚ªA•ö‚ê‚¸‚É•\¦‚Å‚«‚é‹——£‚ğ‹‚ß‚é
-				//‚Â‚Ô‚ê‚¸‚É•\¦‚·‚é‚½‚ß‚É‚ÍA1Dot@@1Unit‚ÅŒvZ‚·‚ê‚Î‚æ‚¢
-				//ƒJƒƒ‰‚ª‰æ–Ê’†S‚ğŒ©‚Â‚ß‚é‚Æ‚«A‰æ–Ê”¼•ª‚ÌƒTƒCƒY‚ÍA96Dot
-				//•\¦‚³‚¹‚½‚¢AƒJƒƒ‰‚Ìƒp[ƒX‚ğl‚¦A96Dot@@96Unit‚É‚È‚é‹——£‚É‚·‚ê‚Î‚æ‚¢
+				//ã‚«ãƒ¡ãƒ©ã®ä¸­å¿ƒã«ã‚ã‚‹2Dç”»åƒãŒã€å´©ã‚Œãšã«è¡¨ç¤ºã§ãã‚‹è·é›¢ã‚’æ±‚ã‚ã‚‹
+				//ã¤ã¶ã‚Œãšã«è¡¨ç¤ºã™ã‚‹ãŸã‚ã«ã¯ã€1Dotã€€ï¼ã€€1Unitã§è¨ˆç®—ã™ã‚Œã°ã‚ˆã„
+				//ã‚«ãƒ¡ãƒ©ãŒç”»é¢ä¸­å¿ƒã‚’è¦‹ã¤ã‚ã‚‹ã¨ãã€ç”»é¢åŠåˆ†ã®ã‚µã‚¤ã‚ºã¯ã€96Dot
+				//è¡¨ç¤ºã•ã›ãŸã„ã€ã‚«ãƒ¡ãƒ©ã®ãƒ‘ãƒ¼ã‚¹ã‚’è€ƒãˆã€96Dotã€€ï¼ã€€96Unitã«ãªã‚‹è·é›¢ã«ã™ã‚Œã°ã‚ˆã„
 				dist = FX_Div( FX_Mul( FX_CosIdx( persp_way ), FX_F32_TO_FX32(96) ),	
 									 FX_SinIdx( persp_way ));					
 				GFC_SetCameraDistance(dist,camera_ptr);
@@ -130,13 +130,13 @@ static BOOL CameraInput(GF_CAMERA_PTR camera_ptr)
 				GFC_ShiftCamera(&move,camera_ptr);
 			}
 		}
-		else if (sys.cont & PAD_KEY_UP){	//ƒJƒƒ‰‚ğ‰“‚´‚¯‚é
+		else if (sys.cont & PAD_KEY_UP){	//ã‚«ãƒ¡ãƒ©ã‚’é ã–ã‘ã‚‹
 			GFC_AddCameraDistance(FX32_ONE,camera_ptr);
-		}else if (sys.cont & PAD_KEY_DOWN){	//ƒJƒƒ‰‚ğ‹ß‚Ã‚¯‚é
+		}else if (sys.cont & PAD_KEY_DOWN){	//ã‚«ãƒ¡ãƒ©ã‚’è¿‘ã¥ã‘ã‚‹
 			GFC_AddCameraDistance(-FX32_ONE,camera_ptr);
 		}
 		else if (sys.trg & PAD_BUTTON_SELECT){
-			//Ë‰eæ“¾
+			//å°„å½±å–å¾—
 			view = GFC_GetCameraView(camera_ptr);
 			view = ((view+1)%2);
 			GFC_SetCameraView(view,camera_ptr);
@@ -160,27 +160,27 @@ static BOOL CameraInput(GF_CAMERA_PTR camera_ptr)
 
 //==============================================================================
 //
-//	ƒGƒ~ƒbƒ^‚ğ\šƒL[‚Å“®‚©‚·
+//	ã‚¨ãƒŸãƒƒã‚¿ã‚’åå­—ã‚­ãƒ¼ã§å‹•ã‹ã™
 //
 //==============================================================================
 typedef struct{
 	int mode;
 	int camera;
-	VecFx32 vec[5];			///<ƒGƒ~ƒbƒ^‚ÌÀ•W
-	EMIT_PTR emit;			///<ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	PTC_PTR ptc;			///<ƒGƒ~ƒbƒ^‚ª‘®‚µ‚Ä‚¢‚éƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	VecFx32 vec[5];			///<ã‚¨ãƒŸãƒƒã‚¿ã®åº§æ¨™
+	EMIT_PTR emit;			///<ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	PTC_PTR ptc;			///<ã‚¨ãƒŸãƒƒã‚¿ãŒå±ã—ã¦ã„ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	WE_SYS_PTR	we_sys;
 }DEBUG_EMIT_MOVE;
 
-///1‰ñ‚Ì\šƒL[‚Ì“ü—Í‚ÅƒGƒ~ƒbƒ^‚É‘«‚µ‚±‚Ş’l
+///1å›ã®åå­—ã‚­ãƒ¼ã®å…¥åŠ›ã§ã‚¨ãƒŸãƒƒã‚¿ã«è¶³ã—ã“ã‚€å€¤
 #define D_EMIT_POS_ADD		(0x0080)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^\šƒL[ˆÚ“®ƒƒCƒ“ˆ—
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿åå­—ã‚­ãƒ¼ç§»å‹•ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DEBUG_EMIT_MOVE\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DEBUG_EMIT_MOVEæ§‹é€ ä½“
  */
 
 static inline void SPL_SetEmitterParticleAge( SPLEmitter* p_emtr, u16 age )
@@ -319,13 +319,13 @@ static void DebugParticle_EmitMoveMain2(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ğ\šƒL[‚ÅˆÚ“®‚³‚¹‚éƒfƒoƒbƒOƒ‚[ƒh
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã‚’åå­—ã‚­ãƒ¼ã§ç§»å‹•ã•ã›ã‚‹ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰
  *
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   emit	ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vec		Œ»İ‚ÌƒGƒ~ƒbƒ^ˆÊ’u
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   emit	ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vec		ç¾åœ¨ã®ã‚¨ãƒŸãƒƒã‚¿ä½ç½®
  *
- * Šî–{“I‚ÉADD_PARTICLE‚ğ‚µ‚½Œã‚ÌƒGƒ~ƒbƒ^¶¬‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”“à‚ÅŒÄ‚Î‚ê‚é‚±‚Æ‚ğ‘z’è‚µ‚Ä‚¢‚Ü‚·
+ * åŸºæœ¬çš„ã«ADD_PARTICLEã‚’ã—ãŸå¾Œã®ã‚¨ãƒŸãƒƒã‚¿ç”Ÿæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…ã§å‘¼ã°ã‚Œã‚‹ã“ã¨ã‚’æƒ³å®šã—ã¦ã„ã¾ã™
  */
 //--------------------------------------------------------------
 void DebugParticle_EmitMove(PTC_PTR ptc, EMIT_PTR emit, const VecFx32 *vec)
@@ -368,7 +368,7 @@ void DebugParticle_EmitMove2(PTC_PTR ptc, EMIT_PTR emit, WE_SYS_PTR we_sys)
 
 //==============================================================================
 //
-//	ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ÌƒJƒƒ‰‚ğˆÚ“®
+//	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ã‚«ãƒ¡ãƒ©ã‚’ç§»å‹•
 //
 //==============================================================================
 #include "field/camera_move_test.h"
@@ -382,10 +382,10 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰‚ğ\šƒL[‚ÅˆÚ“®‚³‚¹‚éƒƒCƒ“ˆ—
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ã‚’åå­—ã‚­ãƒ¼ã§ç§»å‹•ã•ã›ã‚‹ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DEBU_CAMERA_MOVE\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DEBU_CAMERA_MOVEæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DebugParticle_CameraMoveMain(TCB_PTR tcb, void *work)
@@ -408,8 +408,8 @@ static void DebugParticle_CameraMoveMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰‚ğ\šƒL[‚ÅˆÚ“®‚³‚¹‚é
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ã‚’åå­—ã‚­ãƒ¼ã§ç§»å‹•ã•ã›ã‚‹
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void DebugParticle_CameraMove(PTC_PTR ptc)
@@ -437,11 +437,11 @@ void DebugParticle_CameraMove2(PTC_PTR ptc, EMIT_PTR emit, WE_SYS_PTR we_sys)
 	
 	camera_ptr = Particle_GetCameraPtr(ptc);
 	if(camera_ptr == NULL){
-		OS_Printf("ƒJƒƒ‰ƒ|ƒCƒ“ƒ^“h‚é\n");
+		OS_Printf("ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿å¡—ã‚‹\n");
 		return;
 	}
 	if (we_sys == NULL){
-		OS_Printf("we_sysƒ|ƒCƒ“ƒ^“h‚é\n");
+		OS_Printf("we_sysãƒã‚¤ãƒ³ã‚¿å¡—ã‚‹\n");
 		return;
 	}
 	
@@ -461,7 +461,7 @@ void DebugParticle_CameraMove2(PTC_PTR ptc, EMIT_PTR emit, WE_SYS_PTR we_sys)
 
 //==============================================================================
 //
-//	ƒGƒ~ƒbƒ^‚Ì•ûŒü‚ğƒL[‘€ì‚Å‚¢‚¶‚­‚é
+//	ã‚¨ãƒŸãƒƒã‚¿ã®æ–¹å‘ã‚’ã‚­ãƒ¼æ“ä½œã§ã„ã˜ãã‚‹
 //
 //==============================================================================
 typedef struct{
@@ -477,10 +477,10 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚Ì•ûŒü‚ğƒL[‘€ì‚Å‚¢‚¶‚­‚éˆ—ƒƒCƒ“
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®æ–¹å‘ã‚’ã‚­ãƒ¼æ“ä½œã§ã„ã˜ãã‚‹å‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DEBUG_AXIS\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DEBUG_AXISæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DebugParticle_AxisMain(TCB_PTR tcb, void *work)
@@ -511,12 +511,12 @@ static void DebugParticle_AxisMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚Ì•ûŒü‚ğƒL[‘€ì‚Å‚¢‚¶‚­‚éƒfƒoƒbƒO—pƒ^ƒXƒN‚ğ¶¬‚·‚é
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®æ–¹å‘ã‚’ã‚­ãƒ¼æ“ä½œã§ã„ã˜ãã‚‹ãƒ‡ãƒãƒƒã‚°ç”¨ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   ptc			ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   emit		‘ÎÛƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ptc			ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   emit		å¯¾è±¡ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * Šî–{“I‚ÉADD_PARTICLE‚ğ‚µ‚½Œã‚ÌƒGƒ~ƒbƒ^¶¬‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”“à‚ÅŒÄ‚Î‚ê‚é‚±‚Æ‚ğ‘z’è‚µ‚Ä‚¢‚Ü‚·
+ * åŸºæœ¬çš„ã«ADD_PARTICLEã‚’ã—ãŸå¾Œã®ã‚¨ãƒŸãƒƒã‚¿ç”Ÿæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…ã§å‘¼ã°ã‚Œã‚‹ã“ã¨ã‚’æƒ³å®šã—ã¦ã„ã¾ã™
  */
 //--------------------------------------------------------------
 void DebugParticle_Axis(PTC_PTR ptc, EMIT_PTR emit)
@@ -534,7 +534,7 @@ void DebugParticle_Axis(PTC_PTR ptc, EMIT_PTR emit)
 
 
 //==============================================================================
-//	ŒJ‚è•Ô‚µ¶¬ƒo[ƒWƒ‡ƒ“
+//	ç¹°ã‚Šè¿”ã—ç”Ÿæˆãƒãƒ¼ã‚¸ãƒ§ãƒ³
 //==============================================================================
 static void DebugParticle_AxisLoopEmitCallBack(EMIT_PTR emit)
 {
@@ -565,7 +565,7 @@ static void DebugParticle_CameraLoopEmitCallBack(EMIT_PTR emit)
 	we_sys = ta->we_sys;
 	
 	if (we_sys == NULL){
-		OS_Printf("ƒƒ‚ƒŠ‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚¢„ƒJƒƒ‰\n");
+		OS_Printf("ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã„ï¼ã‚«ãƒ¡ãƒ©\n");
 		return;
 	}
 	/*
@@ -594,7 +594,7 @@ static void DebugParticle_MoveLoopEmitCallBack(EMIT_PTR emit)
 	we_sys = ta->we_sys;
 	
 	if (we_sys == NULL){
-		OS_Printf("ƒƒ‚ƒŠ‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚¢„ƒJƒƒ‰\n");
+		OS_Printf("ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã„ï¼ã‚«ãƒ¡ãƒ©\n");
 		return;
 	}
 	/*
@@ -614,10 +614,10 @@ static void DebugParticle_MoveLoopEmitCallBack(EMIT_PTR emit)
 }
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚Ì•ûŒü‚ğƒL[‘€ì‚Å‚¢‚¶‚­‚éˆ—ƒƒCƒ“
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®æ–¹å‘ã‚’ã‚­ãƒ¼æ“ä½œã§ã„ã˜ãã‚‹å‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DEBUG_AXIS\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DEBUG_AXISæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void DebugParticle_AxisLoopMain(TCB_PTR tcb, void *work)
@@ -631,7 +631,7 @@ static void DebugParticle_AxisLoopMain(TCB_PTR tcb, void *work)
 		Particle_CreateEmitterCallback(ta->ptc, ta->index, DebugParticle_AxisLoopEmitCallBack, ta);
 	}
 	if(ta->emit == NULL){
-		OS_Printf("emit‚ª‚Ü‚¾¶¬‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n");
+		OS_Printf("emitãŒã¾ã ç”Ÿæˆã•ã‚Œã¦ã„ã¾ã›ã‚“\n");
 		return;
 	}
 	
@@ -659,14 +659,14 @@ static void DebugParticle_AxisLoopMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚Ì•ûŒü‚ğƒL[‘€ì‚Å‚¢‚¶‚­‚éƒfƒoƒbƒO—pƒ^ƒXƒN‚ğ¶¬‚·‚é
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®æ–¹å‘ã‚’ã‚­ãƒ¼æ“ä½œã§ã„ã˜ãã‚‹ãƒ‡ãƒãƒƒã‚°ç”¨ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   ptc			ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   emit		‘ÎÛƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ptc			ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   emit		å¯¾è±¡ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * DebugParticle_Axis‚Æ‚Ìˆá‚¢‚ÍA‚±‚¿‚ç‚ÍƒGƒ~ƒbƒ^“®ìI—¹ŒãAÄ“xŸè‚ÉƒGƒ~ƒbƒ^‚ğŒJ‚è•Ô‚µ¶¬‚µ‚Ü‚·
+ * DebugParticle_Axisã¨ã®é•ã„ã¯ã€ã“ã¡ã‚‰ã¯ã‚¨ãƒŸãƒƒã‚¿å‹•ä½œçµ‚äº†å¾Œã€å†åº¦å‹æ‰‹ã«ã‚¨ãƒŸãƒƒã‚¿ã‚’ç¹°ã‚Šè¿”ã—ç”Ÿæˆã—ã¾ã™
  *
- * Šî–{“I‚ÉWEST_ADD_PARTICLEŠÖ”“à‚ÅWp_EmitterCreate‚Ì‘ã‚í‚è‚ÉŒÄ‚ñ‚Å‚à‚ç‚¤g‚¢•û‚ğ‘z’è‚µ‚Ä‚¢‚Ü‚·
+ * åŸºæœ¬çš„ã«WEST_ADD_PARTICLEé–¢æ•°å†…ã§Wp_EmitterCreateã®ä»£ã‚ã‚Šã«å‘¼ã‚“ã§ã‚‚ã‚‰ã†ä½¿ã„æ–¹ã‚’æƒ³å®šã—ã¦ã„ã¾ã™
  */
 //--------------------------------------------------------------
 void DebugParticle_AxisLoop(PTC_PTR ptc, int index, int cb_no, WE_SYS_PTR we_sys)
@@ -693,7 +693,7 @@ void DebugParticle_AxisLoop(PTC_PTR ptc, int index, int cb_no, WE_SYS_PTR we_sys
 // =============================================================================
 //
 //
-//	¡
+//	â– 
 //
 //
 // =============================================================================
@@ -876,7 +876,7 @@ static int CameraInput2(GF_CAMERA_PTR camera_ptr)
 	
 	int sw = 1;
 
-	//ƒJƒƒ‰‰ñ“]iŒö“]j
+	//ã‚«ãƒ¡ãƒ©å›è»¢ï¼ˆå…¬è»¢ï¼‰
 	if (sys.cont & PAD_KEY_UP){
 		angle.x = ANGLE_MOVE;
 		GFC_AddCameraAngleRev(&angle,camera_ptr);
@@ -985,37 +985,37 @@ void DebugLoopEmitter_TCB(TCB_PTR tcb, void* work)
 			SPL_SetEmitterPositionZ(wk->emit, wk->vec[0].z);
 		}
 		else {	
-			///< ƒJƒƒ‰ƒ‚[ƒh
+			///< ã‚«ãƒ¡ãƒ©ãƒ¢ãƒ¼ãƒ‰
 			if (sys.trg & PAD_BUTTON_SELECT){
 				wk->camera_mode ^= 1;
 				Particle_CameraTypeSet(wk->ptc, wk->camera_mode);
 				{
 					char* str_mode[] = {
-						"“§‹Ë‰e", "³Ë‰e"
+						"é€è¦–å°„å½±", "æ­£å°„å½±"
 					};
-					OS_Printf("ƒJƒƒ‰ƒ‚[ƒhØ‘Ö@@>> %s\n", str_mode[wk->camera_mode]);
+					OS_Printf("ã‚«ãƒ¡ãƒ©ãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿ã€€ã€€>> %s\n", str_mode[wk->camera_mode]);
 				}
 			}
 			
-			///< ‘€ìƒ‚[ƒh
+			///< æ“ä½œãƒ¢ãƒ¼ãƒ‰
 			if (sys.trg & PAD_BUTTON_START){
 				wk->mode++;
 				wk->mode %= MENU_MAX;
 				{
 					char* str_mode[] = {
-						"À•W‘€ìƒ‚[ƒh",
-						"•ûŒü‘€ìƒ‚[ƒh",
-						"ƒJƒƒ‰Œö“]‘€ìƒ‚[ƒh",
-						"ƒJƒƒ‰©“]‘€ìƒ‚[ƒh",
-						"ƒJƒƒ‰ˆÚ“®‘€ìƒ‚[ƒh",
-						"À•WƒIƒtƒZƒbƒg‘€ìƒ‚[ƒh",
+						"åº§æ¨™æ“ä½œãƒ¢ãƒ¼ãƒ‰",
+						"æ–¹å‘æ“ä½œãƒ¢ãƒ¼ãƒ‰",
+						"ã‚«ãƒ¡ãƒ©å…¬è»¢æ“ä½œãƒ¢ãƒ¼ãƒ‰",
+						"ã‚«ãƒ¡ãƒ©è‡ªè»¢æ“ä½œãƒ¢ãƒ¼ãƒ‰",
+						"ã‚«ãƒ¡ãƒ©ç§»å‹•æ“ä½œãƒ¢ãƒ¼ãƒ‰",
+						"åº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆæ“ä½œãƒ¢ãƒ¼ãƒ‰",
 					};
-					OS_Printf("‘€ìƒ‚[ƒhØ‘Ö@@@>> %s\n", str_mode[wk->mode]);
+					OS_Printf("æ“ä½œãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿ã€€ã€€ã€€>> %s\n", str_mode[wk->mode]);
 				}
 			}
 			switch(wk->mode){
 			case 0:
-				///< À•W
+				///< åº§æ¨™
 				sw = DLM_Fx32(&wk->vec[wk->mode]);
 				x = wk->vec[wk->mode].x;
 				y = wk->vec[wk->mode].y;
@@ -1044,7 +1044,7 @@ void DebugLoopEmitter_TCB(TCB_PTR tcb, void* work)
 				SPL_SetEmitterPositionZ(wk->emit, wk->vec[0].z);
 				break;
 			case 1:
-				///< •ûŒü
+				///< æ–¹å‘
 				sw = DLM_Fx16(&wk->vel[wk->mode]);
 				x = wk->vel[wk->mode].x;
 				y = wk->vel[wk->mode].y;
@@ -1052,7 +1052,7 @@ void DebugLoopEmitter_TCB(TCB_PTR tcb, void* work)
 				SPL_SetEmitterAxis(wk->emit, &wk->vel[wk->mode]);
 				break;
 			case 2:
-				///< Œö“]
+				///< å…¬è»¢
 				{
 					CAMERA_ANGLE ang = GFC_GetCameraAngle(wk->camera);
 					sw = CameraInput2(wk->camera);
@@ -1062,7 +1062,7 @@ void DebugLoopEmitter_TCB(TCB_PTR tcb, void* work)
 				}
 				break;
 			case 3:
-				///< ©“]
+				///< è‡ªè»¢
 				{
 					CAMERA_ANGLE ang = GFC_GetCameraAngle(wk->camera);
 					sw = CameraInput3(wk->camera);
@@ -1072,7 +1072,7 @@ void DebugLoopEmitter_TCB(TCB_PTR tcb, void* work)
 				}
 				break;
 			case 4:
-				///< ˆÚ“®
+				///< ç§»å‹•
 				{
 					sw = DLM_Fx32(&wk->vec[wk->mode]);
 					x = wk->vec[wk->mode].x;
@@ -1087,7 +1087,7 @@ void DebugLoopEmitter_TCB(TCB_PTR tcb, void* work)
 		
 		if (sw != 0){
 			char* str_mode[] = {
-				"@@@À•W","@@@•ûŒü","ƒJƒƒ‰Œö“]","ƒJƒƒ‰©“]","ƒJƒƒ‰ˆÚ“®","ƒIƒtƒZƒbƒg",
+				"ã€€ã€€ã€€åº§æ¨™","ã€€ã€€ã€€æ–¹å‘","ã‚«ãƒ¡ãƒ©å…¬è»¢","ã‚«ãƒ¡ãƒ©è‡ªè»¢","ã‚«ãƒ¡ãƒ©ç§»å‹•","ã‚ªãƒ•ã‚»ãƒƒãƒˆ",
 			};
 			OS_Printf("%s = \(%d, %d, %d\)\n",str_mode[wk->mode], x,y,z);
 		}

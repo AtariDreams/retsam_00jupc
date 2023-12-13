@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	scr_stage_sub.c
- * @bfief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹ƒXƒe[ƒW(ó•t‚Ü‚í‚è)
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸(å—ä»˜ã¾ã‚ã‚Š)
  * @author	Satoshi Nohara
  * @date	06.07.19
  *
- * ƒXƒNƒŠƒvƒgŠÖ˜A‚Æ‚ÍØ‚è—£‚µ‚½‚¢ˆ—‚ğ’u‚­
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆé–¢é€£ã¨ã¯åˆ‡ã‚Šé›¢ã—ãŸã„å‡¦ç†ã‚’ç½®ã
  */
 //============================================================================================
 #include "common.h"
@@ -14,9 +14,9 @@
 #include "system/pm_str.h"
 #include "system/msgdata.h"			//MSGMAN_GetString
 #include "system/wordset.h"			//WordSet_RegistPlayerName
-#include "gflib/strbuf_family.h"	//‹–‰Â§
+#include "gflib/strbuf_family.h"	//è¨±å¯åˆ¶
 
-//’ÊM
+//é€šä¿¡
 #include "communication/comm_def.h"
 #include "communication/comm_tool.h"
 #include "communication/comm_system.h"
@@ -29,7 +29,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 void CommFldStageRecvMonsNo(int id_no,int size,void *pData,void *work);
@@ -38,20 +38,20 @@ void BattleStageSetNewChallenge( SAVEDATA* sv, STAGESCORE* wk, u8 type );
 
 //============================================================================================
 //
-//	’ÊM
+//	é€šä¿¡
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   Šî–{î•ñ ’ÊMóMˆ—
+ * @brief   åŸºæœ¬æƒ…å ± é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒoƒgƒ‹ƒXƒe[ƒWƒ[ƒN‚ğŠm•ÛŒãAÅ‰‚Éó‚¯æ‚éƒf[ƒ^
+ * ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿å¾Œã€æœ€åˆã«å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void CommFldStageRecvMonsNo(int id_no,int size,void *pData,void *work)
@@ -61,13 +61,13 @@ void CommFldStageRecvMonsNo(int id_no,int size,void *pData,void *work)
 	//const u16* recv_buf = pData;
 	const FLDSCR_STAGE_COMM* recv_buf = pData;
 
-	OS_Printf( "******ƒtƒB[ƒ‹ƒhƒXƒe[ƒW****** ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[óM\n" );
+	OS_Printf( "******ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¹ãƒ†ãƒ¼ã‚¸****** ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -75,14 +75,14 @@ void CommFldStageRecvMonsNo(int id_no,int size,void *pData,void *work)
 	OS_Printf( "size = %d\n", size );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//‘Šè‚Ìè‚¿‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğæ“¾(ƒyƒAƒ[ƒN‚É‘ã“ü)
+	//ç›¸æ‰‹ã®æ‰‹æŒã¡ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—(ãƒšã‚¢ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥)
 	wk->pair_monsno = recv_buf->mine_monsno;
 	return;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		˜AŸ’†ƒtƒ‰ƒOƒNƒŠƒAA˜AŸƒŒƒR[ƒhƒNƒŠƒAAƒ^ƒCƒvƒJƒEƒ“ƒgƒNƒŠƒA
+ * @brief		é€£å‹ä¸­ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢ã€é€£å‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚¯ãƒªã‚¢ã€ã‚¿ã‚¤ãƒ—ã‚«ã‚¦ãƒ³ãƒˆã‚¯ãƒªã‚¢
  * @param		core
  */
 //--------------------------------------------------------------------------------------------
@@ -92,24 +92,24 @@ void BattleStageSetNewChallenge( SAVEDATA* sv, STAGESCORE* wk, u8 type )
 	u8 buf8[4];
 	u16 l_num,h_num;
 
-	//"10˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‚ÌƒNƒŠƒA‚ğ‘‚«o‚µ
+	//"10é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"ã®ã‚¯ãƒªã‚¢ã‚’æ›¸ãå‡ºã—
 	buf8[0] = 0;
 	STAGESCORE_PutScoreData( wk, STAGESCORE_ID_CLEAR_FLAG, type, 0, buf8 );
 
-	//WIFI‚Ì‚İ“Áê
+	//WIFIã®ã¿ç‰¹æ®Š
 	if( type == STAGE_TYPE_WIFI_MULTI ){
 		FrontierRecord_Set(	SaveData_GetFrontier(sv), 
 							FRID_STAGE_MULTI_WIFI_CLEAR_BIT,
 							Frontier_GetFriendIndex(FRID_STAGE_MULTI_WIFI_CLEAR_BIT), 0 );
 	}
 
-	//"Œ»İ‚Ì˜AŸ”"‚ğ0‚É‚·‚é
+	//"ç¾åœ¨ã®é€£å‹æ•°"ã‚’0ã«ã™ã‚‹
 	FrontierRecord_Set(	SaveData_GetFrontier(sv), 
 						StageScr_GetWinRecordID(type),
 						Frontier_GetFriendIndex(StageScr_GetWinRecordID(type)), 0 );
 
-	//fssc_stage_sub.c‚ÉˆÚ“®
-	//Œ»İ‚Ìƒoƒgƒ‹ƒ^ƒCƒv‚Ìƒ^ƒCƒvƒŒƒxƒ‹‚ğƒNƒŠƒA‚·‚é
+	//fssc_stage_sub.cã«ç§»å‹•
+	//ç¾åœ¨ã®ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã®ã‚¿ã‚¤ãƒ—ãƒ¬ãƒ™ãƒ«ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 	//for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
 	//	StageScr_TypeLevelRecordSet( sv, type, i, 0 );
 	//}

@@ -22,17 +22,17 @@
 #include "../include/command.h"
 
 
-/* ƒA[ƒJƒCƒu‚ÍŠî–{“I‚É ARM7 ‚ÉŠÜ‚Ü‚È‚¢ */
+/* ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¯åŸºæœ¬çš„ã« ARM7 ã«å«ã¾ãªã„ */
 #if defined(FS_IMPLEMENT)
 
 
 /*****************************************************************************/
 /* variable */
 
-/* ƒA[ƒJƒCƒuƒŠƒXƒg */
+/* ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒªã‚¹ãƒˆ */
 static FSArchive *arc_list = NULL;
 
-/* ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ÌˆÊ’u */
+/* ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä½ç½® */
 FSDirPos current_dir_pos;
 
 
@@ -42,14 +42,14 @@ FSDirPos current_dir_pos;
 /*---------------------------------------------------------------------------*
   Name:         FSi_GetPackedName
 
-  Description:  “à•”ŠÖ”.
-                w’è•¶š”‚ğ¬•¶š‚É‚µ‚Ä u32 ‚ÉƒpƒbƒN‚·‚é.
-                ’·‚³‚ª FS_ARCHIVE_NAME_LEN_MAX ‚ğã‰ñ‚éê‡‚Í 0 ‚ğ•Ô‚·.
+  Description:  å†…éƒ¨é–¢æ•°.
+                æŒ‡å®šæ–‡å­—æ•°ã‚’å°æ–‡å­—ã«ã—ã¦ u32 ã«ãƒ‘ãƒƒã‚¯ã™ã‚‹.
+                é•·ã•ãŒ FS_ARCHIVE_NAME_LEN_MAX ã‚’ä¸Šå›ã‚‹å ´åˆã¯ 0 ã‚’è¿”ã™.
 
-  Arguments:    name             ƒpƒbƒN‚·‚é–¼‘O‚Ì•¶š—ñ.
-                name_len         name ‚Ì•¶š—ñ’·.
+  Arguments:    name             ãƒ‘ãƒƒã‚¯ã™ã‚‹åå‰ã®æ–‡å­—åˆ—.
+                name_len         name ã®æ–‡å­—åˆ—é•·.
 
-  Returns:      ƒpƒbƒN‚³‚ê‚½–¼‘O.
+  Returns:      ãƒ‘ãƒƒã‚¯ã•ã‚ŒãŸåå‰.
  *---------------------------------------------------------------------------*/
 static u32 FSi_GetPackedName(const char *name, int name_len)
 {
@@ -76,15 +76,15 @@ static u32 FSi_GetPackedName(const char *name, int name_len)
 /*---------------------------------------------------------------------------*
   Name:         FSi_ReadMemCallback
 
-  Description:  “à•”ŠÖ”.
-                ƒfƒtƒHƒ‹ƒg‚Ìƒƒ‚ƒŠƒŠ[ƒhƒR[ƒ‹ƒoƒbƒN.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ¡ãƒ¢ãƒªãƒªãƒ¼ãƒ‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
-  Arguments:    p_arc            ‘€ì‚·‚éƒA[ƒJƒCƒu.
-                dst              “Ç‚İ‚Şƒƒ‚ƒŠ‚ÌŠi”[æ.
-                pos              “Ç‚İ‚İˆÊ’u.
-                size             “Ç‚İ‚İƒTƒCƒY.
+  Arguments:    p_arc            æ“ä½œã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
+                dst              èª­ã¿è¾¼ã‚€ãƒ¡ãƒ¢ãƒªã®æ ¼ç´å…ˆ.
+                pos              èª­ã¿è¾¼ã¿ä½ç½®.
+                size             èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º.
 
-  Returns:      í‚É FS_RESULT_SUCCESS.
+  Returns:      å¸¸ã« FS_RESULT_SUCCESS.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_ReadMemCallback(FSArchive *p_arc, void *dst, u32 pos, u32 size)
 {
@@ -95,15 +95,15 @@ static FSResult FSi_ReadMemCallback(FSArchive *p_arc, void *dst, u32 pos, u32 si
 /*---------------------------------------------------------------------------*
   Name:         FSi_WriteMemCallback
 
-  Description:  “à•”ŠÖ”.
-                ƒfƒtƒHƒ‹ƒg‚Ìƒƒ‚ƒŠƒ‰ƒCƒgƒR[ƒ‹ƒoƒbƒN.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ¡ãƒ¢ãƒªãƒ©ã‚¤ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
-  Arguments:    p_arc            ‘€ì‚·‚éƒA[ƒJƒCƒu.
-                dst              ‘‚«‚Şƒƒ‚ƒŠ‚ÌQÆæ.
-                pos              ‘‚«‚İˆÊ’u.
-                size             ‘‚«‚İƒTƒCƒY.
+  Arguments:    p_arc            æ“ä½œã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
+                dst              æ›¸ãè¾¼ã‚€ãƒ¡ãƒ¢ãƒªã®å‚ç…§å…ˆ.
+                pos              æ›¸ãè¾¼ã¿ä½ç½®.
+                size             æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º.
 
-  Returns:      í‚É FS_RESULT_SUCCESS.
+  Returns:      å¸¸ã« FS_RESULT_SUCCESS.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_WriteMemCallback(FSArchive *p_arc, const void *src, u32 pos, u32 size)
 {
@@ -114,15 +114,15 @@ static FSResult FSi_WriteMemCallback(FSArchive *p_arc, const void *src, u32 pos,
 /*---------------------------------------------------------------------------*
   Name:         FSi_ReadMemoryCore
 
-  Description:  “à•”ŠÖ”.
-                ƒvƒŠƒ[ƒhƒe[ƒuƒ‹‚©‚ç“Ç‚İ‚İ.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿.
 
-  Arguments:    p_arc            ‘€ì‚·‚éƒA[ƒJƒCƒu.
-                dst              “Ç‚İ‚Şƒƒ‚ƒŠ‚ÌŠi”[æ.
-                pos              “Ç‚İ‚İˆÊ’u.
-                size             “Ç‚İ‚İƒTƒCƒY.
+  Arguments:    p_arc            æ“ä½œã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
+                dst              èª­ã¿è¾¼ã‚€ãƒ¡ãƒ¢ãƒªã®æ ¼ç´å…ˆ.
+                pos              èª­ã¿è¾¼ã¿ä½ç½®.
+                size             èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º.
 
-  Returns:      í‚É FS_RESULT_SUCCESS.
+  Returns:      å¸¸ã« FS_RESULT_SUCCESS.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_ReadMemoryCore(FSArchive *p_arc, void *dst, u32 pos, u32 size)
 {
@@ -134,21 +134,21 @@ static FSResult FSi_ReadMemoryCore(FSArchive *p_arc, void *dst, u32 pos, u32 siz
 /*---------------------------------------------------------------------------*
   Name:         FSi_NextCommand
 
-  Description:  “à•”ŠÖ”.
-                Ÿ‚Éˆ—‚·‚×‚«ƒRƒ}ƒ“ƒh‚ğ‘I‘ğ‚·‚é.
-                ”ñ“¯ŠúƒRƒ}ƒ“ƒh‚ª‘I‘ğ‚³‚ê‚½‚ç‚»‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·.
-                NULL ˆÈŠO‚ª•Ô‚³‚ê‚½ê‡‚Í‚»‚Ìê‚Åˆ—‚ª•K—v.
+  Description:  å†…éƒ¨é–¢æ•°.
+                æ¬¡ã«å‡¦ç†ã™ã¹ãã‚³ãƒãƒ³ãƒ‰ã‚’é¸æŠã™ã‚‹.
+                éåŒæœŸã‚³ãƒãƒ³ãƒ‰ãŒé¸æŠã•ã‚ŒãŸã‚‰ãã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™.
+                NULL ä»¥å¤–ãŒè¿”ã•ã‚ŒãŸå ´åˆã¯ãã®å ´ã§å‡¦ç†ãŒå¿…è¦.
 
-  Arguments:    p_arc            Ÿ‚ÌƒRƒ}ƒ“ƒh‚ğæ“¾‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            æ¬¡ã®ã‚³ãƒãƒ³ãƒ‰ã‚’å–å¾—ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      ‚±‚Ìê‚Åˆ—‚ğ•K—v‚Æ‚·‚éŸ‚ÌƒRƒ}ƒ“ƒh.
+  Returns:      ã“ã®å ´ã§å‡¦ç†ã‚’å¿…è¦ã¨ã™ã‚‹æ¬¡ã®ã‚³ãƒãƒ³ãƒ‰.
  *---------------------------------------------------------------------------*/
 FSFile *FSi_NextCommand(FSArchive *p_arc)
 {
-    /* ƒLƒƒƒ“ƒZƒ‹, ƒRƒ}ƒ“ƒh‘I‘ğ‚Ì‚½‚ß‚ÉŠ„‚è‚İ‚ğ‹Ö~ */
+    /* ã‚­ãƒ£ãƒ³ã‚»ãƒ«, ã‚³ãƒãƒ³ãƒ‰é¸æŠã®ãŸã‚ã«å‰²ã‚Šè¾¼ã¿ã‚’ç¦æ­¢ */
     OSIntrMode bak_psr = OS_DisableInterrupts();
 
-    /* ‚Ü‚¸, ‘S‚Ä‚ÌƒLƒƒƒ“ƒZƒ‹—v‹‚ğƒ`ƒFƒbƒN */
+    /* ã¾ãš, å…¨ã¦ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«è¦æ±‚ã‚’ãƒã‚§ãƒƒã‚¯ */
     if (FSi_IsArchiveCanceling(p_arc))
     {
         FSFile *p, *q;
@@ -167,7 +167,7 @@ FSFile *FSi_NextCommand(FSArchive *p_arc)
         }
     }
 
-    /* ƒTƒXƒyƒ“ƒh’†‚Å‚È‚¯‚ê‚ÎŸ‚ÌƒRƒ}ƒ“ƒh‚ğ‘I‘ğ */
+    /* ã‚µã‚¹ãƒšãƒ³ãƒ‰ä¸­ã§ãªã‘ã‚Œã°æ¬¡ã®ã‚³ãƒãƒ³ãƒ‰ã‚’é¸æŠ */
     if (!FSi_IsArchiveSuspending(p_arc) && !FS_IsArchiveSuspended(p_arc) && p_arc->list.next)
     {
         FSFile *p_file = p_arc->list.next;
@@ -178,22 +178,22 @@ FSFile *FSi_NextCommand(FSArchive *p_arc)
         if (is_start)
         {
             /*
-             * ACTIVATE ƒƒbƒZ[ƒW’Ê’m.
-             * (•Ô‚è’l‚ÍˆÓ–¡‚ğ‚½‚È‚¢)
+             * ACTIVATE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€šçŸ¥.
+             * (è¿”ã‚Šå€¤ã¯æ„å‘³ã‚’æŒãŸãªã„)
              */
             if ((p_arc->proc_flag & FS_ARCHIVE_PROC_ACTIVATE) != 0)
                 (void)(*p_arc->proc) (p_file, FS_COMMAND_ACTIVATE);
         }
         bak_psr = OS_DisableInterrupts();
         p_file->stat |= FS_FILE_STATUS_OPERATING;
-        /* “¯ŠúƒRƒ}ƒ“ƒh‚È‚ç‘Ò‹@ƒXƒŒƒbƒh‚ÉˆÚ÷ */
+        /* åŒæœŸã‚³ãƒãƒ³ãƒ‰ãªã‚‰å¾…æ©Ÿã‚¹ãƒ¬ãƒƒãƒ‰ã«ç§»è­² */
         if (FS_IsFileSyncMode(p_file))
         {
             OS_WakeupThread(p_file->queue);
             (void)OS_RestoreInterrupts(bak_psr);
             return NULL;
         }
-        /* ”ñ“¯ŠúƒRƒ}ƒ“ƒh‚È‚çŒÄ‚Ño‚µŒ³‚Éˆ—‚³‚¹‚é */
+        /* éåŒæœŸã‚³ãƒãƒ³ãƒ‰ãªã‚‰å‘¼ã³å‡ºã—å…ƒã«å‡¦ç†ã•ã›ã‚‹ */
         else
         {
             (void)OS_RestoreInterrupts(bak_psr);
@@ -201,7 +201,7 @@ FSFile *FSi_NextCommand(FSArchive *p_arc)
         }
     }
 
-    /* Œ‹‹ÇƒRƒ}ƒ“ƒh‚ğÀs‚µ‚È‚¢ê‡‚ÍƒAƒCƒhƒ‹ó‘Ô‚Ö */
+    /* çµå±€ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œã—ãªã„å ´åˆã¯ã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹ã¸ */
     if (FSi_IsArchiveRunning(p_arc))
     {
         p_arc->flag &= ~FS_ARCHIVE_FLAG_RUNNING;
@@ -211,14 +211,14 @@ FSFile *FSi_NextCommand(FSArchive *p_arc)
             FS_InitFile(&tmp);
             tmp.arc = p_arc;
             /*
-             * IDLE ƒƒbƒZ[ƒW’Ê’m.
-             * (•Ô‚è’l‚ÍˆÓ–¡‚ğ‚½‚È‚¢)
+             * IDLE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€šçŸ¥.
+             * (è¿”ã‚Šå€¤ã¯æ„å‘³ã‚’æŒãŸãªã„)
              */
             (void)(*p_arc->proc) (&tmp, FS_COMMAND_IDLE);
         }
     }
 
-    /* ƒTƒXƒyƒ“ƒhˆÚs‚É”º‚¤ƒAƒCƒhƒ‹ó‘Ô‚Å‚ ‚ê‚ÎÀsÒ‚ğ‹N‚±‚· */
+    /* ã‚µã‚¹ãƒšãƒ³ãƒ‰ç§»è¡Œã«ä¼´ã†ã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹ã§ã‚ã‚Œã°å®Ÿè¡Œè€…ã‚’èµ·ã“ã™ */
     if (FSi_IsArchiveSuspending(p_arc))
     {
         p_arc->flag &= ~FS_ARCHIVE_FLAG_SUSPENDING;
@@ -233,16 +233,16 @@ FSFile *FSi_NextCommand(FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FSi_ExecuteAsyncCommand
 
-  Description:  “à•”ŠÖ”.
-                ”ñ“¯ŠúŒnƒRƒ}ƒ“ƒh‚ÌÀs.
-                Å‰‚Ì 1 ‰ñ‚Íƒ†[ƒUƒXƒŒƒbƒh‚©‚çŠ„‚è‚İ‹–‰Â‚ÅŒÄ‚Î‚ê‚é.
-                ƒA[ƒJƒCƒu‚ª“¯Šú“I‚É“®ì‚·‚éŒÀ‚è‚±‚±‚ÅƒRƒ}ƒ“ƒhˆ—‚ğŒJ‚è•Ô‚µ,
-                1 ‰ñ‚Å‚à”ñ“¯Šúˆ—‚É‚È‚ê‚Î‘±‚«‚Í NotifyAsyncEnd() ‚Ås‚¤.
+  Description:  å†…éƒ¨é–¢æ•°.
+                éåŒæœŸç³»ã‚³ãƒãƒ³ãƒ‰ã®å®Ÿè¡Œ.
+                æœ€åˆã® 1 å›ã¯ãƒ¦ãƒ¼ã‚¶ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‰²ã‚Šè¾¼ã¿è¨±å¯ã§å‘¼ã°ã‚Œã‚‹.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒåŒæœŸçš„ã«å‹•ä½œã™ã‚‹é™ã‚Šã“ã“ã§ã‚³ãƒãƒ³ãƒ‰å‡¦ç†ã‚’ç¹°ã‚Šè¿”ã—,
+                1 å›ã§ã‚‚éåŒæœŸå‡¦ç†ã«ãªã‚Œã°ç¶šãã¯ NotifyAsyncEnd() ã§è¡Œã†.
 
-                ‚æ‚Á‚Ä, ƒA[ƒJƒCƒuˆ—‚ª“¯Šú / ”ñ“¯Šú‚ÅØ‚è‘Ö‚í‚éê‡‚Í
-                NotifyAsyncEnd() ‚ÌŒÄ‚Ño‚µŠÂ‹«‚É’ˆÓ‚·‚é•K—v‚ª‚ ‚é.
+                ã‚ˆã£ã¦, ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å‡¦ç†ãŒåŒæœŸ / éåŒæœŸã§åˆ‡ã‚Šæ›¿ã‚ã‚‹å ´åˆã¯
+                NotifyAsyncEnd() ã®å‘¼ã³å‡ºã—ç’°å¢ƒã«æ³¨æ„ã™ã‚‹å¿…è¦ãŒã‚ã‚‹.
 
-  Arguments:    p_file           Às‚·‚é”ñ“¯ŠúƒRƒ}ƒ“ƒh‚ğŠi”[‚µ‚½ FSFile \‘¢‘Ì.
+  Arguments:    p_file           å®Ÿè¡Œã™ã‚‹éåŒæœŸã‚³ãƒãƒ³ãƒ‰ã‚’æ ¼ç´ã—ãŸ FSFile æ§‹é€ ä½“.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -252,7 +252,7 @@ void FSi_ExecuteAsyncCommand(FSFile *p_file)
     while (p_file)
     {
         OSIntrMode bak_psr = OS_DisableInterrupts();
-        /* ŒÄ‚Ño‚µŒ³‚Å“¯Šú‘Ò‚¿’†‚È‚ç‚»‚ê‚ğ‹N‚±‚µ‚Äˆ—‚ğ“n‚· */
+        /* å‘¼ã³å‡ºã—å…ƒã§åŒæœŸå¾…ã¡ä¸­ãªã‚‰ãã‚Œã‚’èµ·ã“ã—ã¦å‡¦ç†ã‚’æ¸¡ã™ */
         p_file->stat |= FS_FILE_STATUS_OPERATING;
         if (FS_IsFileSyncMode(p_file))
         {
@@ -260,16 +260,16 @@ void FSi_ExecuteAsyncCommand(FSFile *p_file)
             (void)OS_RestoreInterrupts(bak_psr);
             break;
         }
-        /* ‚»‚¤‚Å‚È‚¯‚ê‚Î‚±‚±‚Å”ñ“¯Šúƒ‚[ƒhŠm’è */
+        /* ãã†ã§ãªã‘ã‚Œã°ã“ã“ã§éåŒæœŸãƒ¢ãƒ¼ãƒ‰ç¢ºå®š */
         else
         {
             p_file->stat |= FS_FILE_STATUS_ASYNC;
         }
         (void)OS_RestoreInterrupts(bak_psr);
-        /* ˆ—‚ª”ñ“¯Šú‚È‚çˆêI—¹ */
+        /* å‡¦ç†ãŒéåŒæœŸãªã‚‰ä¸€æ™‚çµ‚äº† */
         if (FSi_TranslateCommand(p_file, p_file->command) == FS_RESULT_PROC_ASYNC)
             break;
-        /* Œ‹‰Ê‚ª“¯ŠúŠ®—¹‚È‚ç‚±‚±‚Å‘±‚«‚ğ‘I‘ğ */
+        /* çµæœãŒåŒæœŸå®Œäº†ãªã‚‰ã“ã“ã§ç¶šãã‚’é¸æŠ */
         p_file = FSi_NextCommand(p_arc);
     }
 }
@@ -277,12 +277,12 @@ void FSi_ExecuteAsyncCommand(FSFile *p_file)
 /*---------------------------------------------------------------------------*
   Name:         FSi_ExecuteSyncCommand
 
-  Description:  “à•”ŠÖ”.
-                “¯Šúƒ‚[ƒh‚É‚¨‚¯‚éƒRƒ}ƒ“ƒhÀs.
+  Description:  å†…éƒ¨é–¢æ•°.
+                åŒæœŸãƒ¢ãƒ¼ãƒ‰ã«ãŠã‘ã‚‹ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ.
 
-  Arguments:    p_file           Às‚·‚é“¯ŠúƒRƒ}ƒ“ƒh‚ğŠi”[‚µ‚½ FSFile \‘¢‘Ì.
+  Arguments:    p_file           å®Ÿè¡Œã™ã‚‹åŒæœŸã‚³ãƒãƒ³ãƒ‰ã‚’æ ¼ç´ã—ãŸ FSFile æ§‹é€ ä½“.
 
-  Returns:      ƒRƒ}ƒ“ƒh‚ª¬Œ÷‚·‚ê‚Î TRUE.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰ãŒæˆåŠŸã™ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL FSi_ExecuteSyncCommand(FSFile *p_file)
 {
@@ -298,14 +298,14 @@ BOOL FSi_ExecuteSyncCommand(FSFile *p_file)
 /*---------------------------------------------------------------------------*
   Name:         FSi_SendCommand
 
-  Description:  “à•”ŠÖ”.
-                ƒA[ƒJƒCƒu‚ÖƒRƒ}ƒ“ƒh‚ğ”­s‚·‚é.
-                ‹N“®ƒ^ƒCƒ~ƒ“ƒO‚Ì’²®‚Æ‚Æ‚à‚É, “¯ŠúŒn‚È‚ç‚±‚±‚ÅƒuƒƒbƒLƒ“ƒO.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¸ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã™ã‚‹.
+                èµ·å‹•ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®èª¿æ•´ã¨ã¨ã‚‚ã«, åŒæœŸç³»ãªã‚‰ã“ã“ã§ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°.
 
-  Arguments:    p_file           ƒRƒ}ƒ“ƒhˆø”‚ğw’è‚³‚ê‚½ FSFile \‘¢‘Ì.
-                command          ƒRƒ}ƒ“ƒh ID.
+  Arguments:    p_file           ã‚³ãƒãƒ³ãƒ‰å¼•æ•°ã‚’æŒ‡å®šã•ã‚ŒãŸ FSFile æ§‹é€ ä½“.
+                command          ã‚³ãƒãƒ³ãƒ‰ ID.
 
-  Returns:      ƒRƒ}ƒ“ƒh‚ª¬Œ÷‚·‚ê‚Î TRUE.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰ãŒæˆåŠŸã™ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL FSi_SendCommand(FSFile *p_file, FSCommandType command)
 {
@@ -313,18 +313,18 @@ BOOL FSi_SendCommand(FSFile *p_file, FSCommandType command)
     const int bit = (1 << command);
 
     /*
-     * ƒtƒ@ƒCƒ‹‚»‚Ì‚à‚Ì‚ÌƒXƒŒƒbƒhƒZ[ƒt‚Ü‚Å‚Í SDK ‚Å•ÛØ‚µ‚È‚¢.
-     * ‚Ü‚½, ó‘Ô”»’è‚ÍŒÄ‚Ño‚µŒ³‚ÌƒCƒ“ƒ^ƒtƒF[ƒX‚ÅŠ®—¹Ï‚İ.
+     * ãƒ•ã‚¡ã‚¤ãƒ«ãã®ã‚‚ã®ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚»ãƒ¼ãƒ•ã¾ã§ã¯ SDK ã§ä¿è¨¼ã—ãªã„.
+     * ã¾ãŸ, çŠ¶æ…‹åˆ¤å®šã¯å‘¼ã³å‡ºã—å…ƒã®ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã§å®Œäº†æ¸ˆã¿.
      */
     p_file->command = command;
     p_file->error = FS_RESULT_BUSY;
     p_file->stat |= FS_FILE_STATUS_BUSY;
 
     {
-        /* ƒŠƒXƒg’Ç‰Á‚Æ‹N“®”»’è‚Ì‚½‚ß‚ÉŠ„‚è‚İ‚ğ‹Ö~ */
+        /* ãƒªã‚¹ãƒˆè¿½åŠ ã¨èµ·å‹•åˆ¤å®šã®ãŸã‚ã«å‰²ã‚Šè¾¼ã¿ã‚’ç¦æ­¢ */
         OSIntrMode bak_psr = OS_DisableInterrupts();
 
-        /* ƒA[ƒJƒCƒu‚ªƒAƒ“ƒ[ƒh’†‚È‚çƒLƒƒƒ“ƒZƒ‹ */
+        /* ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­ãªã‚‰ã‚­ãƒ£ãƒ³ã‚»ãƒ« */
         if (p_arc->flag & FS_ARCHIVE_FLAG_UNLOADING)
         {
             FSi_ReleaseCommand(p_file, FS_RESULT_CANCELED);
@@ -332,23 +332,23 @@ BOOL FSi_SendCommand(FSFile *p_file, FSCommandType command)
             return FALSE;
         }
 
-        /* ƒŠƒXƒg‚É’Ç‰Á */
+        /* ãƒªã‚¹ãƒˆã«è¿½åŠ  */
         if ((bit & FS_ARCHIVE_PROC_SYNC) != 0)
             p_file->stat |= FS_FILE_STATUS_SYNC;
         FSi_AppendToList(p_file, (FSFile *)&p_arc->list);
 
-        /* ƒAƒCƒhƒ‹’†‚È‚çƒA[ƒJƒCƒu‚ğ‹N“®‚·‚é */
+        /* ã‚¢ã‚¤ãƒ‰ãƒ«ä¸­ãªã‚‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’èµ·å‹•ã™ã‚‹ */
         if (!FS_IsArchiveSuspended(p_arc) && !FSi_IsArchiveRunning(p_arc))
         {
             p_arc->flag |= FS_ARCHIVE_FLAG_RUNNING;
             (void)OS_RestoreInterrupts(bak_psr);
             /*
-             * ACTIVATE ƒƒbƒZ[ƒW’Ê’m.
-             * (•Ô‚è’l‚ÍˆÓ–¡‚ğ‚½‚È‚¢)
+             * ACTIVATE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€šçŸ¥.
+             * (è¿”ã‚Šå€¤ã¯æ„å‘³ã‚’æŒãŸãªã„)
              */
             if ((p_arc->proc_flag & FS_ARCHIVE_PROC_ACTIVATE) != 0)
                 (void)(*p_arc->proc) (p_file, FS_COMMAND_ACTIVATE);
-            /* ”ñ“¯Šúƒ‚[ƒh‚È‚çƒRƒ}ƒ“ƒh‚ğÀs‚µ‚Ä‚·‚®–ß‚é */
+            /* éåŒæœŸãƒ¢ãƒ¼ãƒ‰ãªã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œã—ã¦ã™ãæˆ»ã‚‹ */
             bak_psr = OS_DisableInterrupts();
             p_file->stat |= FS_FILE_STATUS_OPERATING;
             if (!FS_IsFileSyncMode(p_file))
@@ -360,14 +360,14 @@ BOOL FSi_SendCommand(FSFile *p_file, FSCommandType command)
             (void)OS_RestoreInterrupts(bak_psr);
         }
 
-        /* ‹N“®’†‚©‚Â”ñ“¯Šúƒ‚[ƒh‚È‚çŒã‚ğ—¬‚ê‚É”C‚¹‚é */
+        /* èµ·å‹•ä¸­ã‹ã¤éåŒæœŸãƒ¢ãƒ¼ãƒ‰ãªã‚‰å¾Œã‚’æµã‚Œã«ä»»ã›ã‚‹ */
         else if (!FS_IsFileSyncMode(p_file))
         {
             (void)OS_RestoreInterrupts(bak_psr);
             return TRUE;
         }
 
-        /* ‹N“®’†‚©‚Â“¯Šúƒ‚[ƒh‚Å‚ ‚ê‚Î‚±‚±‚Å‡”Ô‘Ò‚¿ */
+        /* èµ·å‹•ä¸­ã‹ã¤åŒæœŸãƒ¢ãƒ¼ãƒ‰ã§ã‚ã‚Œã°ã“ã“ã§é †ç•ªå¾…ã¡ */
         else
         {
             do
@@ -381,8 +381,8 @@ BOOL FSi_SendCommand(FSFile *p_file, FSCommandType command)
     }
 
     /*
-     * “¯Šúƒ‚[ƒh‚Í‘S‚Ä‚±‚±‚É—ˆ‚Ä, ‚±‚Ìê‚ÅŠ®—¹‚·‚é.
-     * ReadFileAsync + WaitAsync ‚È‚Ç‚à‚±‚±‚Ö—ˆ‚é.
+     * åŒæœŸãƒ¢ãƒ¼ãƒ‰ã¯å…¨ã¦ã“ã“ã«æ¥ã¦, ã“ã®å ´ã§å®Œäº†ã™ã‚‹.
+     * ReadFileAsync + WaitAsync ãªã©ã‚‚ã“ã“ã¸æ¥ã‚‹.
      */
     return FSi_ExecuteSyncCommand(p_file);
 }
@@ -390,7 +390,7 @@ BOOL FSi_SendCommand(FSFile *p_file, FSCommandType command)
 /*---------------------------------------------------------------------------*
   Name:         FSi_EndArchive
 
-  Description:  ‘S‚Ä‚ÌƒA[ƒJƒCƒu‚ğI—¹‚³‚¹‚Ä‰ğ•ú‚·‚é.
+  Description:  å…¨ã¦ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’çµ‚äº†ã•ã›ã¦è§£æ”¾ã™ã‚‹.
 
   Arguments:    None.
 
@@ -415,9 +415,9 @@ void FSi_EndArchive(void)
 /*---------------------------------------------------------------------------*
   Name:         FS_InitArchive
 
-  Description:  ƒA[ƒJƒCƒu\‘¢‘Ì‚ğ‰Šú‰».
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã‚’åˆæœŸåŒ–.
 
-  Arguments:    p_arc            ‰Šú‰»‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            åˆæœŸåŒ–ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -434,13 +434,13 @@ void FS_InitArchive(FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_FindArchive
 
-  Description:  ƒA[ƒJƒCƒu–¼‚ğŒŸõ‚·‚é.
-                ˆê’v‚·‚é–¼‘O‚ª–³‚¯‚ê‚Î NULL ‚ğ•Ô‚·.
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–åã‚’æ¤œç´¢ã™ã‚‹.
+                ä¸€è‡´ã™ã‚‹åå‰ãŒç„¡ã‘ã‚Œã° NULL ã‚’è¿”ã™.
 
-  Arguments:    name             ŒŸõ‚·‚éƒA[ƒJƒCƒu–¼‚Ì•¶š—ñ.
-                name_len         name ‚Ì•¶š—ñ’·.
+  Arguments:    name             æ¤œç´¢ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–åã®æ–‡å­—åˆ—.
+                name_len         name ã®æ–‡å­—åˆ—é•·.
 
-  Returns:      ŒŸõ‚µ‚ÄŒ©‚Â‚©‚Á‚½ƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^‚© NULL.
+  Returns:      æ¤œç´¢ã—ã¦è¦‹ã¤ã‹ã£ãŸã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ã‹ NULL.
  *---------------------------------------------------------------------------*/
 FSArchive *FS_FindArchive(const char *name, int name_len)
 {
@@ -457,13 +457,13 @@ FSArchive *FS_FindArchive(const char *name, int name_len)
 /*---------------------------------------------------------------------------*
   Name:         FS_RegisterArchiveName
 
-  Description:  ƒA[ƒJƒCƒu–¼‚ğƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ö“o˜^‚µ, ŠÖ˜A•t‚¯‚é.
-                ƒA[ƒJƒCƒu©‘Ì‚Í‚Ü‚¾ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Éƒ[ƒh‚³‚ê‚È‚¢.
-                ƒA[ƒJƒCƒu–¼ "rom" ‚Íƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚É—\–ñÏ‚İ.
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–åã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã¸ç™»éŒ²ã—, é–¢é€£ä»˜ã‘ã‚‹.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–è‡ªä½“ã¯ã¾ã ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã«ãƒ­ãƒ¼ãƒ‰ã•ã‚Œãªã„.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å "rom" ã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã«äºˆç´„æ¸ˆã¿.
 
-  Arguments:    p_arc            –¼‘O‚ğŠÖ˜A•t‚¯‚éƒA[ƒJƒCƒu.
-                name             “o˜^‚·‚é–¼‘O‚Ì•¶š—ñ.
-                name_len         name ‚Ì•¶š—ñ’·.
+  Arguments:    p_arc            åå‰ã‚’é–¢é€£ä»˜ã‘ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
+                name             ç™»éŒ²ã™ã‚‹åå‰ã®æ–‡å­—åˆ—.
+                name_len         name ã®æ–‡å­—åˆ—é•·.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -506,10 +506,10 @@ BOOL FS_RegisterArchiveName(FSArchive *p_arc, const char *name, u32 name_len)
 /*---------------------------------------------------------------------------*
   Name:         FS_ReleaseArchiveName
 
-  Description:  “o˜^Ï‚İ‚ÌƒA[ƒJƒCƒu–¼‚ğ‰ğ•ú‚·‚é.
-                ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚©‚çƒAƒ“ƒ[ƒh‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚é.
+  Description:  ç™»éŒ²æ¸ˆã¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–åã‚’è§£æ”¾ã™ã‚‹.
+                ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹.
 
-  Arguments:    p_arc            –¼‘O‚ğ‰ğ•ú‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            åå‰ã‚’è§£æ”¾ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -521,7 +521,7 @@ void FS_ReleaseArchiveName(FSArchive *p_arc)
     if (p_arc->name.pack)
     {
         OSIntrMode bak_psr = OS_DisableInterrupts();
-        // ƒŠƒXƒg‚©‚çØ’f.
+        // ãƒªã‚¹ãƒˆã‹ã‚‰åˆ‡æ–­.
         if (p_arc->next)
             p_arc->next->prev = p_arc->prev;
         if (p_arc->prev)
@@ -529,8 +529,8 @@ void FS_ReleaseArchiveName(FSArchive *p_arc)
         p_arc->name.pack = 0;
         p_arc->next = p_arc->prev = NULL;
         p_arc->flag &= ~FS_ARCHIVE_FLAG_REGISTER;
-        // ‰ğ•ú‚µ‚½ƒA[ƒJƒCƒu–¼‚ªƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚È‚ç,
-        //  ©“®“I‚É "rom" ‚Ìƒ‹[ƒg‚ÖˆÚ“®‚·‚é.
+        // è§£æ”¾ã—ãŸã‚¢ãƒ¼ã‚«ã‚¤ãƒ–åãŒã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰,
+        //  è‡ªå‹•çš„ã« "rom" ã®ãƒ«ãƒ¼ãƒˆã¸ç§»å‹•ã™ã‚‹.
         if (current_dir_pos.arc == p_arc)
         {
             current_dir_pos.arc = arc_list;
@@ -545,19 +545,19 @@ void FS_ReleaseArchiveName(FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_LoadArchive
 
-  Description:  ƒA[ƒJƒCƒu‚ğƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Éƒ[ƒh‚·‚é.
-                ‚·‚Å‚ÉƒA[ƒJƒCƒuƒŠƒXƒg‚É–¼‘O‚ª“o˜^‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚é.
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã«ãƒ­ãƒ¼ãƒ‰ã™ã‚‹.
+                ã™ã§ã«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒªã‚¹ãƒˆã«åå‰ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹.
 
-  Arguments:    p_arc            ƒ[ƒh‚·‚éƒA[ƒJƒCƒu.
-                base             “Æ©‚Ég—p‰Â”\‚È”CˆÓ‚Ì u32 ’l.
-                fat              FAT ƒe[ƒuƒ‹‚Ìæ“ªƒIƒtƒZƒbƒg.
-                fat_size         FAT ƒe[ƒuƒ‹‚ÌƒTƒCƒY.
-                fnt              FNT ƒe[ƒuƒ‹‚Ìæ“ªƒIƒtƒZƒbƒg.
-                fnt_size         FNT ƒe[ƒuƒ‹‚ÌƒTƒCƒY.
-                read_func        ƒŠ[ƒhƒAƒNƒZƒXƒR[ƒ‹ƒoƒbƒN.
-                write_func       ƒ‰ƒCƒgƒAƒNƒZƒXƒR[ƒ‹ƒoƒbƒN.
+  Arguments:    p_arc            ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
+                base             ç‹¬è‡ªã«ä½¿ç”¨å¯èƒ½ãªä»»æ„ã® u32 å€¤.
+                fat              FAT ãƒ†ãƒ¼ãƒ–ãƒ«ã®å…ˆé ­ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                fat_size         FAT ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚µã‚¤ã‚º.
+                fnt              FNT ãƒ†ãƒ¼ãƒ–ãƒ«ã®å…ˆé ­ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                fnt_size         FNT ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚µã‚¤ã‚º.
+                read_func        ãƒªãƒ¼ãƒ‰ã‚¢ã‚¯ã‚»ã‚¹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
+                write_func       ãƒ©ã‚¤ãƒˆã‚¢ã‚¯ã‚»ã‚¹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
-  Returns:      ƒA[ƒJƒCƒu‚ª³‚µ‚­ƒ[ƒh‚³‚ê‚ê‚Î TRUE.
+  Returns:      ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒæ­£ã—ããƒ­ãƒ¼ãƒ‰ã•ã‚Œã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL FS_LoadArchive(FSArchive *p_arc, u32 base,
                     u32 fat, u32 fat_size,
@@ -568,16 +568,16 @@ BOOL FS_LoadArchive(FSArchive *p_arc, u32 base,
     FS_ASSERT_ARG(p_arc, FALSE);
     FS_ASSERT_ARC_UNLOADED(p_arc, FALSE);
 
-    // ƒx[ƒXƒIƒtƒZƒbƒg‚ğİ’è.
+    // ãƒ™ãƒ¼ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨­å®š.
     p_arc->base = base;
     p_arc->fat_size = fat_size;
     p_arc->fat = p_arc->fat_bak = fat;
     p_arc->fnt_size = fnt_size;
     p_arc->fnt = p_arc->fnt_bak = fnt;
-    // ƒAƒNƒZƒXƒR[ƒ‹ƒoƒbƒN. (NULL ‚È‚çƒƒ‚ƒŠˆµ‚¢)
+    // ã‚¢ã‚¯ã‚»ã‚¹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯. (NULL ãªã‚‰ãƒ¡ãƒ¢ãƒªæ‰±ã„)
     p_arc->read_func = read_func ? read_func : FSi_ReadMemCallback;
     p_arc->write_func = write_func ? write_func : FSi_WriteMemCallback;
-    // Å‰‚ÍƒvƒŠƒ[ƒh–³Œøó‘Ô.
+    // æœ€åˆã¯ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰ç„¡åŠ¹çŠ¶æ…‹.
     p_arc->table_func = p_arc->read_func;
     p_arc->load_mem = NULL;
     // 
@@ -588,12 +588,12 @@ BOOL FS_LoadArchive(FSArchive *p_arc, u32 base,
 /*---------------------------------------------------------------------------*
   Name:         FS_UnloadArchive
 
-  Description:  ƒA[ƒJƒCƒu‚ğƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚©‚çƒAƒ“ƒ[ƒh‚·‚é.
-                Œ»İˆ—’†‚Ìƒ^ƒXƒN‚ª‘S‚ÄŠ®—¹‚·‚é‚Ü‚ÅƒuƒƒbƒLƒ“ƒO‚·‚é.
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹.
+                ç¾åœ¨å‡¦ç†ä¸­ã®ã‚¿ã‚¹ã‚¯ãŒå…¨ã¦å®Œäº†ã™ã‚‹ã¾ã§ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ã™ã‚‹.
 
-  Arguments:    p_arc            ƒAƒ“ƒ[ƒh‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      ƒA[ƒJƒCƒu‚ª³‚µ‚­ƒAƒ“ƒ[ƒh‚³‚ê‚ê‚Î TRUE.
+  Returns:      ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒæ­£ã—ãã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL FS_UnloadArchive(FSArchive *p_arc)
 {
@@ -602,12 +602,12 @@ BOOL FS_UnloadArchive(FSArchive *p_arc)
 
     {
         OSIntrMode bak_psr = OS_DisableInterrupts();
-        /* ƒ[ƒh‚³‚ê‚Ä‚¢‚È‚¢‚È‚ç–³‹ */
+        /* ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ãªã„ãªã‚‰ç„¡è¦– */
         if (FS_IsArchiveLoaded(p_arc))
         {
             /*
-             * ƒe[ƒuƒ‹‚ğƒAƒ“ƒ[ƒh‚µ‚È‚¢‚Ü‚Ü‚¾‚Æ
-             * ƒƒ‚ƒŠƒŠ[ƒN‚Ì‰Â”\«‚ª‚ ‚é‚±‚Æ‚ğŒx.
+             * ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãªã„ã¾ã¾ã ã¨
+             * ãƒ¡ãƒ¢ãƒªãƒªãƒ¼ã‚¯ã®å¯èƒ½æ€§ãŒã‚ã‚‹ã“ã¨ã‚’è­¦å‘Š.
              */
             if (FS_IsArchiveTableLoaded(p_arc))
             {
@@ -616,9 +616,9 @@ BOOL FS_UnloadArchive(FSArchive *p_arc)
             }
             {
                 FSFile *p, *q;
-                /* ‚Ü‚¸ƒTƒXƒyƒ“ƒh */
+                /* ã¾ãšã‚µã‚¹ãƒšãƒ³ãƒ‰ */
                 BOOL    bak_state = FS_SuspendArchive(p_arc);
-                /* ƒAƒ“ƒ[ƒh’†ƒtƒ‰ƒO‚ğ—§‚Ä‚Ä‘SƒRƒ}ƒ“ƒh‚ğƒLƒƒƒ“ƒZƒ‹ */
+                /* ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦å…¨ã‚³ãƒãƒ³ãƒ‰ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ« */
                 p_arc->flag |= FS_ARCHIVE_FLAG_UNLOADING;
                 for (p = p_arc->list.next; p; p = q)
                 {
@@ -626,11 +626,11 @@ BOOL FS_UnloadArchive(FSArchive *p_arc)
                     FSi_ReleaseCommand(p, FS_RESULT_CANCELED);
                 }
                 p_arc->list.next = NULL;
-                /* ‘Oó‘Ô‚ğ•Û */
+                /* å‰çŠ¶æ…‹ã‚’ä¿æŒ */
                 if (bak_state)
                     (void)FS_ResumeArchive(p_arc);
             }
-            /* ÀÛ‚ÌƒAƒ“ƒ[ƒhˆ— */
+            /* å®Ÿéš›ã®ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰å‡¦ç† */
             p_arc->base = 0;
             p_arc->fat = 0;
             p_arc->fat_size = 0;
@@ -648,14 +648,14 @@ BOOL FS_UnloadArchive(FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_LoadArchiveTables
 
-  Description:  ƒA[ƒJƒCƒu‚Ì FAT + FNT ‚ğƒƒ‚ƒŠã‚ÉƒvƒŠƒ[ƒh‚·‚é.
-                w’èƒTƒCƒYˆÈ“à‚Ìê‡‚Ì‚İ“Ç‚İ‚İ‚ğÀs‚µ, •K—vƒTƒCƒY‚ğ•Ô‚·.
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã® FAT + FNT ã‚’ãƒ¡ãƒ¢ãƒªä¸Šã«ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰ã™ã‚‹.
+                æŒ‡å®šã‚µã‚¤ã‚ºä»¥å†…ã®å ´åˆã®ã¿èª­ã¿è¾¼ã¿ã‚’å®Ÿè¡Œã—, å¿…è¦ã‚µã‚¤ã‚ºã‚’è¿”ã™.
 
-  Arguments:    p_arc            ƒe[ƒuƒ‹‚ğƒvƒŠƒ[ƒh‚·‚éƒA[ƒJƒCƒu.
-                p_mem            ƒe[ƒuƒ‹ƒf[ƒ^‚ÌŠi”[æƒoƒbƒtƒ@.
-                max_size         p_mem ‚ÌƒTƒCƒY.
+  Arguments:    p_arc            ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
+                p_mem            ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡.
+                max_size         p_mem ã®ã‚µã‚¤ã‚º.
 
-  Returns:      í‚É, ‡Œv‚Ìƒe[ƒuƒ‹ƒTƒCƒY‚ğ•Ô‚·.
+  Returns:      å¸¸ã«, åˆè¨ˆã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚µã‚¤ã‚ºã‚’è¿”ã™.
  *---------------------------------------------------------------------------*/
 u32 FS_LoadArchiveTables(FSArchive *p_arc, void *p_mem, u32 max_size)
 {
@@ -663,19 +663,19 @@ u32 FS_LoadArchiveTables(FSArchive *p_arc, void *p_mem, u32 max_size)
     FS_ASSERT_ARG(p_arc, 0);
 
     {
-        // ƒvƒŠƒ[ƒhƒTƒCƒY‚Í 32 BYTE ƒAƒ‰ƒCƒ“.
+        // ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã¯ 32 BYTE ã‚¢ãƒ©ã‚¤ãƒ³.
         u32     total_size = ALIGN_BYTE(p_arc->fat_size + p_arc->fnt_size + 32, 32);
         if (total_size <= max_size)
         {
-            // ƒTƒCƒY‚ª[•ª‚È‚çƒƒ‚ƒŠ‚Öƒ[ƒh.
+            // ã‚µã‚¤ã‚ºãŒå……åˆ†ãªã‚‰ãƒ¡ãƒ¢ãƒªã¸ãƒ­ãƒ¼ãƒ‰.
             u8     *p_cache = (u8 *)ALIGN_BYTE((u32)p_mem, 32);
             FSFile  tmp;
             FS_InitFile(&tmp);
             /*
-             * ƒe[ƒuƒ‹‚ÍƒŠ[ƒh‚Å‚«‚È‚¢‚±‚Æ‚à‚ ‚é.
-             * ‚»‚Ìê‡‚Í, Œ³Xƒe[ƒuƒ‹‚ÉƒAƒNƒZƒX‚Å‚«‚È‚¢‚Ì‚Å‰½‚à‚µ‚È‚¢.
+             * ãƒ†ãƒ¼ãƒ–ãƒ«ã¯ãƒªãƒ¼ãƒ‰ã§ããªã„ã“ã¨ã‚‚ã‚ã‚‹.
+             * ãã®å ´åˆã¯, å…ƒã€…ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ããªã„ã®ã§ä½•ã‚‚ã—ãªã„.
              */
-            // FAT ƒ[ƒh.
+            // FAT ãƒ­ãƒ¼ãƒ‰.
             if (FS_OpenFileDirect(&tmp, p_arc, p_arc->fat, p_arc->fat + p_arc->fat_size, (u32)~0))
             {
                 if (FS_ReadFile(&tmp, p_cache, (s32)p_arc->fat_size) < 0)
@@ -686,7 +686,7 @@ u32 FS_LoadArchiveTables(FSArchive *p_arc, void *p_mem, u32 max_size)
             }
             p_arc->fat = (u32)p_cache;
             p_cache += p_arc->fat_size;
-            // FNT ƒ[ƒh.
+            // FNT ãƒ­ãƒ¼ãƒ‰.
             if (FS_OpenFileDirect(&tmp, p_arc, p_arc->fnt, p_arc->fnt + p_arc->fnt_size, (u32)~0))
             {
                 if (FS_ReadFile(&tmp, p_cache, (s32)p_arc->fnt_size) < 0)
@@ -696,9 +696,9 @@ u32 FS_LoadArchiveTables(FSArchive *p_arc, void *p_mem, u32 max_size)
                 (void)FS_CloseFile(&tmp);
             }
             p_arc->fnt = (u32)p_cache;
-            // Š„‚è“–‚Ä‚ç‚ê‚½ƒƒ‚ƒŠ‚ğ•Û‘¶.
+            // å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸãƒ¡ãƒ¢ãƒªã‚’ä¿å­˜.
             p_arc->load_mem = p_mem;
-            // ˆÈ~‚Íƒe[ƒuƒ‹ƒŠ[ƒhŒn‚ÅƒvƒŠƒ[ƒhƒƒ‚ƒŠ‚ª“­‚­.
+            // ä»¥é™ã¯ãƒ†ãƒ¼ãƒ–ãƒ«ãƒªãƒ¼ãƒ‰ç³»ã§ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰ãƒ¡ãƒ¢ãƒªãŒåƒã.
             p_arc->table_func = FSi_ReadMemoryCore;
             p_arc->flag |= FS_ARCHIVE_FLAG_TABLE_LOAD;
         }
@@ -709,11 +709,11 @@ u32 FS_LoadArchiveTables(FSArchive *p_arc, void *p_mem, u32 max_size)
 /*---------------------------------------------------------------------------*
   Name:         FS_UnloadArchiveTables
 
-  Description:  ƒA[ƒJƒCƒu‚ÌƒvƒŠƒ[ƒhƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é.
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹.
 
-  Arguments:    p_arc            ƒvƒŠƒ[ƒhƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      ƒvƒŠƒ[ƒhƒƒ‚ƒŠ‚Æ‚µ‚Äƒ†[ƒU‚©‚ç—^‚¦‚ç‚ê‚Ä‚¢‚½ƒoƒbƒtƒ@.
+  Returns:      ãƒ—ãƒªãƒ­ãƒ¼ãƒ‰ãƒ¡ãƒ¢ãƒªã¨ã—ã¦ãƒ¦ãƒ¼ã‚¶ã‹ã‚‰ä¸ãˆã‚‰ã‚Œã¦ã„ãŸãƒãƒƒãƒ•ã‚¡.
  *---------------------------------------------------------------------------*/
 void   *FS_UnloadArchiveTables(FSArchive *p_arc)
 {
@@ -744,12 +744,12 @@ void   *FS_UnloadArchiveTables(FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_SuspendArchive
 
-  Description:  ƒA[ƒJƒCƒu‚Ìˆ—‹@\©‘Ì‚ğ’â~‚·‚é.
-                Œ»İÀs’†‚Ìˆ—‚ª‚ ‚ê‚Î, ‚»‚ÌŠ®—¹‚ğ‘Ò‹@.
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®å‡¦ç†æ©Ÿæ§‹è‡ªä½“ã‚’åœæ­¢ã™ã‚‹.
+                ç¾åœ¨å®Ÿè¡Œä¸­ã®å‡¦ç†ãŒã‚ã‚Œã°, ãã®å®Œäº†ã‚’å¾…æ©Ÿ.
 
-  Arguments:    p_arc            ’â~‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            åœæ­¢ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      ŒÄ‚Ño‚µˆÈ‘O‚ÉƒTƒXƒyƒ“ƒhó‘Ô‚Å‚È‚¯‚ê‚Î TRUE.
+  Returns:      å‘¼ã³å‡ºã—ä»¥å‰ã«ã‚µã‚¹ãƒšãƒ³ãƒ‰çŠ¶æ…‹ã§ãªã‘ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL FS_SuspendArchive(FSArchive *p_arc)
 {
@@ -757,12 +757,12 @@ BOOL FS_SuspendArchive(FSArchive *p_arc)
     FS_ASSERT_ARG(p_arc, 0);
 
     {
-        /* ‚·‚Å‚ÉƒTƒXƒyƒ“ƒh’†‚È‚ç–³‹ */
+        /* ã™ã§ã«ã‚µã‚¹ãƒšãƒ³ãƒ‰ä¸­ãªã‚‰ç„¡è¦– */
         OSIntrMode bak_psr = OS_DisableInterrupts();
         const BOOL bak_stat = !FS_IsArchiveSuspended(p_arc);
         if (bak_stat)
         {
-            /* Às’†‚È‚çƒtƒ‰ƒO‚ğ—§‚Ä‚Ä’â~‚ğ‘Ò‚Â */
+            /* å®Ÿè¡Œä¸­ãªã‚‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦åœæ­¢ã‚’å¾…ã¤ */
             if (FSi_IsArchiveRunning(p_arc))
             {
                 p_arc->flag |= FS_ARCHIVE_FLAG_SUSPENDING;
@@ -770,7 +770,7 @@ BOOL FS_SuspendArchive(FSArchive *p_arc)
                     OS_SleepThread(&p_arc->stat_q);
                 while (FSi_IsArchiveSuspending(p_arc));
             }
-            /* ƒAƒCƒhƒ‹’†‚È‚ç’¼Ú’â~ */
+            /* ã‚¢ã‚¤ãƒ‰ãƒ«ä¸­ãªã‚‰ç›´æ¥åœæ­¢ */
             else
             {
                 p_arc->flag |= FS_ARCHIVE_FLAG_SUSPEND;
@@ -784,11 +784,11 @@ BOOL FS_SuspendArchive(FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_ResumeArchive
 
-  Description:  ’â~‚µ‚Ä‚¢‚½ƒA[ƒJƒCƒu‚Ìˆ—‚ğÄŠJ‚·‚é.
+  Description:  åœæ­¢ã—ã¦ã„ãŸã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®å‡¦ç†ã‚’å†é–‹ã™ã‚‹.
 
-  Arguments:    p_arc            ÄŠJ‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            å†é–‹ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      ŒÄ‚Ño‚µˆÈ‘O‚ÉƒTƒXƒyƒ“ƒhó‘Ô‚Å‚È‚¯‚ê‚Î TRUE.
+  Returns:      å‘¼ã³å‡ºã—ä»¥å‰ã«ã‚µã‚¹ãƒšãƒ³ãƒ‰çŠ¶æ…‹ã§ãªã‘ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL FS_ResumeArchive(FSArchive *p_arc)
 {
@@ -797,13 +797,13 @@ BOOL FS_ResumeArchive(FSArchive *p_arc)
 
     {
         FSFile *p_target = NULL;
-        /* ƒTƒXƒyƒ“ƒhƒtƒ‰ƒO‚ğ—‚Æ‚· */
+        /* ã‚µã‚¹ãƒšãƒ³ãƒ‰ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™ */
         OSIntrMode bak_irq = OS_DisableInterrupts();
         const BOOL bak_stat = !FS_IsArchiveSuspended(p_arc);
         if (!bak_stat)
         {
             p_arc->flag &= ~FS_ARCHIVE_FLAG_SUSPEND;
-            /* ‹N“®ƒ^ƒCƒ~ƒ“ƒO‚È‚çƒRƒ}ƒ“ƒhŠJn */
+            /* èµ·å‹•ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãªã‚‰ã‚³ãƒãƒ³ãƒ‰é–‹å§‹ */
             p_target = FSi_NextCommand(p_arc);
         }
         (void)OS_RestoreInterrupts(bak_irq);
@@ -816,15 +816,15 @@ BOOL FS_ResumeArchive(FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_SetArchiveProc
 
-  Description:  ƒA[ƒJƒCƒu‚Ìƒ†[ƒUƒvƒƒV[ƒWƒƒ‚ğİ’è‚·‚é.
-                proc == NULL ‚Ü‚½‚Í flags = 0 ‚È‚ç
-                ’P‚Éƒ†[ƒUƒvƒƒV[ƒWƒƒ‚ğ–³Œø‚É‚·‚é.
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã‚’è¨­å®šã™ã‚‹.
+                proc == NULL ã¾ãŸã¯ flags = 0 ãªã‚‰
+                å˜ã«ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã‚’ç„¡åŠ¹ã«ã™ã‚‹.
 
-  Arguments:    p_arc            ƒ†[ƒUƒvƒƒV[ƒWƒƒ‚ğİ’è‚·‚éƒA[ƒJƒCƒu.
-                proc             ƒ†[ƒUƒvƒƒV[ƒWƒƒ.
-                flags            ƒvƒƒV[ƒWƒƒ‚ÖƒtƒbƒN‚·‚éƒRƒ}ƒ“ƒh‚ÌƒrƒbƒgW‡.
+  Arguments:    p_arc            ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã‚’è¨­å®šã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
+                proc             ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£.
+                flags            ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã¸ãƒ•ãƒƒã‚¯ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ“ãƒƒãƒˆé›†åˆ.
 
-  Returns:      í‚É, ‡Œv‚Ìƒe[ƒuƒ‹ƒTƒCƒY‚ğ•Ô‚·.
+  Returns:      å¸¸ã«, åˆè¨ˆã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚µã‚¤ã‚ºã‚’è¿”ã™.
  *---------------------------------------------------------------------------*/
 void FS_SetArchiveProc(struct FSArchive *p_arc, FS_ARCHIVE_PROC_FUNC proc, u32 flags)
 {
@@ -839,28 +839,28 @@ void FS_SetArchiveProc(struct FSArchive *p_arc, FS_ARCHIVE_PROC_FUNC proc, u32 f
 /*---------------------------------------------------------------------------*
   Name:         FS_NotifyArchiveAsyncEnd
 
-  Description:  ”ñ“¯Šú‚ÅÀs‚µ‚Ä‚¢‚½ƒA[ƒJƒCƒuˆ—‚ÌŠ®—¹‚ğ’Ê’m‚·‚é‚½‚ß‚É
-                ƒA[ƒJƒCƒuÀ‘•‘¤‚©‚çŒÄ‚Ño‚·.
+  Description:  éåŒæœŸã§å®Ÿè¡Œã—ã¦ã„ãŸã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å‡¦ç†ã®å®Œäº†ã‚’é€šçŸ¥ã™ã‚‹ãŸã‚ã«
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®Ÿè£…å´ã‹ã‚‰å‘¼ã³å‡ºã™.
 
-  Arguments:    p_arc            Š®—¹‚ğ’Ê’m‚·‚éƒA[ƒJƒCƒu.
-                ret              ˆ—Œ‹‰Ê.
+  Arguments:    p_arc            å®Œäº†ã‚’é€šçŸ¥ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
+                ret              å‡¦ç†çµæœ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void FS_NotifyArchiveAsyncEnd(FSArchive *p_arc, FSResult ret)
 {
-    /* ”ñ“¯ŠúƒRƒ}ƒ“ƒh’†‚È‚çŠ®—¹‚ğˆÓ–¡‚·‚é */
+    /* éåŒæœŸã‚³ãƒãƒ³ãƒ‰ä¸­ãªã‚‰å®Œäº†ã‚’æ„å‘³ã™ã‚‹ */
     if (FSi_IsArchiveAsync(p_arc))
     {
         FSFile *p_file = p_arc->list.next;
         p_arc->flag &= ~FS_ARCHIVE_FLAG_IS_ASYNC;
         FSi_ReleaseCommand(p_file, ret);
-        /* Ÿ‚Ì‚ª”ñ“¯ŠúƒRƒ}ƒ“ƒh‚È‚ç‚±‚±‚ÅÀs */
+        /* æ¬¡ã®ãŒéåŒæœŸã‚³ãƒãƒ³ãƒ‰ãªã‚‰ã“ã“ã§å®Ÿè¡Œ */
         p_file = FSi_NextCommand(p_arc);
         if (p_file)
             FSi_ExecuteAsyncCommand(p_file);
     }
-    /* “¯ŠúƒRƒ}ƒ“ƒh‚È‚çƒuƒƒbƒLƒ“ƒO’†‚ÌƒXƒŒƒbƒh‚ğ•œ‹A */
+    /* åŒæœŸã‚³ãƒãƒ³ãƒ‰ãªã‚‰ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å¾©å¸° */
     else
     {
         FSFile *p_file = p_arc->list.next;
@@ -899,10 +899,10 @@ void FS_NotifyArchiveAsyncEnd(FSArchive *p_arc, FSResult ret)
   do-indent.
 
   Revision 1.28  2005/02/18 07:26:49  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.27  2005/01/26 02:58:51  yasu
-  Copyright •\‹L‚ÌC³
+  Copyright è¡¨è¨˜ã®ä¿®æ­£
 
   Revision 1.26  2005/01/25 11:22:23  yosizaki
   fix around Suspend-state.

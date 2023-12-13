@@ -1,6 +1,6 @@
 /**
  *	@file	nmix_res.c
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@ƒŠƒ\[ƒXŠÇ—
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†
  *	@author	Miyuki Iwasawa
  *	@date	06.04.08
  */
@@ -29,7 +29,7 @@
 #include "nmix_res.h"
 
 //======================================================
-//ƒQ[ƒ€ƒvƒƒZƒX@ƒRƒ}ƒ“ƒh“àƒTƒuƒV[ƒPƒ“ƒXŒQ
+//ã‚²ãƒ¼ãƒ ãƒ—ãƒ­ã‚»ã‚¹ã€€ã‚³ãƒãƒ³ãƒ‰å†…ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç¾¤
 //======================================================
 static void nmixGame_BGLInit(GF_BGL_INI** bgl,int heapID);
 static void nmixGame_BGLRelease(GF_BGL_INI** bgl);
@@ -47,19 +47,19 @@ static void nmix_CommonDataInit(NMIX_GAMEWORK* wk);
 static void nmix_CommonDataRelease(NMIX_GAMEWORK* wk);
 
 //======================================================
-//ƒQ[ƒ€ƒvƒƒZƒX@ƒRƒ}ƒ“ƒhŒQ
+//ã‚²ãƒ¼ãƒ ãƒ—ãƒ­ã‚»ã‚¹ã€€ã‚³ãƒãƒ³ãƒ‰ç¾¤
 //======================================================
 /**
- *	@brief	ƒRƒ}ƒ“ƒh@ƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰ã€€ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 void NMixGameCom_GameStartGraphicInit(NMIX_GAMEWORK* wk)
 {
 	ARCHANDLE* p_handle;
 
-	// ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	p_handle = ArchiveDataHandleOpen( ARC_NUTMIXER_GRA, wk->heapID );
 	
-	// ŠÇ—ƒVƒXƒeƒ€‰Šú‰»
+	// ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	nmixGame_3DInit( wk );
 	nmixGame_BGLInit(&(wk->bgl),wk->heapID);	
 	nmixGame_OamRegInit( wk );
@@ -67,7 +67,7 @@ void NMixGameCom_GameStartGraphicInit(NMIX_GAMEWORK* wk)
 	nmixGame_SwspInit( wk );
 
 
-	nmixGame_DefOamResLoad( wk, p_handle );	// ƒfƒtƒHƒ‹ƒgOAMƒŠƒ\[ƒX
+	nmixGame_DefOamResLoad( wk, p_handle );	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆOAMãƒªã‚½ãƒ¼ã‚¹
 	NMixGameDemo_SubWin_GraphicLoad( &wk->sub_win, wk->bgl, wk->heapID, p_handle );
 	NMixGameDemo_MainWin_GraphicLoad( &wk->main_win, wk->bgl, wk->heapID, p_handle );
 	NMixGameDemo_NabeGra_GraphicLoad( &wk->nabe_gra, wk->swsp_sys, wk->heapID, p_handle );
@@ -88,19 +88,19 @@ void NMixGameCom_GameStartGraphicInit(NMIX_GAMEWORK* wk)
 
 
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
 	nmix_CommonDataInit(wk);
 
-	// ƒnƒ“ƒhƒ‹ƒNƒ[ƒX
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚¹
 	ArchiveDataHandleClose( p_handle );
 
-	// •`‰ææ‚ğ•ÏX
+	// æç”»å…ˆã‚’å¤‰æ›´
 	sys.disp3DSW = DISP_3D_TO_SUB;
 	GF_Disp_DispSelect();
 }
 
 /**
- *	@brief	ƒRƒ}ƒ“ƒh@ƒŠƒ\[ƒX‰ğ•ú
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰ã€€ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 void NMixGameCom_GameStartGraphicRelease(NMIX_GAMEWORK* wk)
 {
@@ -108,7 +108,7 @@ void NMixGameCom_GameStartGraphicRelease(NMIX_GAMEWORK* wk)
 	NMixGameDemo_MainWin_GraphicRelease( &wk->main_win );
 	NMixGameDemo_SubWin_GraphicRelease( &wk->sub_win );
 	NMixGameDemo_NabeGra_GraphicRelease( &wk->nabe_gra );
-	nmixGame_DefOamResRelease( wk );	// ƒfƒtƒHƒ‹ƒgOAMƒŠƒ\[ƒX
+	nmixGame_DefOamResRelease( wk );	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆOAMãƒªã‚½ãƒ¼ã‚¹
 	NMixGameDemo_CountDown_GraphicRelease( &wk->countdown );
 	NMixGameDemo_CountDown_GraphicRelease( &wk->end_mark );
 	NMixGameDemo_CountDown_GraphicRelease( &wk->pen );
@@ -118,28 +118,28 @@ void NMixGameCom_GameStartGraphicRelease(NMIX_GAMEWORK* wk)
 	NMixGameDemo_HosiKiraKira_GraphicRelease( &wk->hosi_kira );
 	
 	
-	// ŠÇ—ƒVƒXƒeƒ€”jŠü
+	// ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	nmixGame_BGLRelease(&(wk->bgl));	
 	nmixGame_ClactDelete( wk );
 	nmixGame_OamRegDelete( wk );
 	nmixGame_SwspDelete( wk );
 	nmixGame_3DRelease( wk );
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
 	nmix_CommonDataRelease(wk);
 
-	// •`‰ææ‚ğ•ÏX
+	// æç”»å…ˆã‚’å¤‰æ›´
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 }
 
 
 /**
- *	@brief	ƒRƒ}ƒ“ƒh@ƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰ã€€ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 int NMixGameCom_ResInit(NMIX_GAMEWORK* wk,int* seq)
 {
-	// Šeƒ[ƒN‚Ì•`‰æ•¨“Ç‚İ‚İ
+	// å„ãƒ¯ãƒ¼ã‚¯ã®æç”»ç‰©èª­ã¿è¾¼ã¿
 	NMixGameDemo_NutsIn_GraphicLoad( &wk->nuts_in, 
 			&wk->game_comm_pack.get_ko_before_data, &wk->clact, 
 			wk->def_clact_res, wk->heapID);
@@ -148,11 +148,11 @@ int NMixGameCom_ResInit(NMIX_GAMEWORK* wk,int* seq)
 }
 
 /**
- *	@brief	ƒRƒ}ƒ“ƒh@ƒŠƒ\[ƒX‰ğ•ú
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰ã€€ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 int NMixGameCom_ResRelease(NMIX_GAMEWORK* wk,int *seq)
 {
-	// Šeƒ[ƒN‚Ì•`‰æ•¨”jŠü
+	// å„ãƒ¯ãƒ¼ã‚¯ã®æç”»ç‰©ç ´æ£„
 	NMixGameDemo_NutsIn_GraphicRelease( &wk->nuts_in, &wk->clact );
 
 	
@@ -161,32 +161,32 @@ int NMixGameCom_ResRelease(NMIX_GAMEWORK* wk,int *seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒOƒ‰ƒtƒBƒbƒN•`‰æˆ—
+ *	@brief		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æç”»å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 void NMixGame_Draw( NMIX_GAMEWORK* wk )
 {
-	//‚R‚c•`‰æŠJn
+	//ï¼“ï¼¤æç”»é–‹å§‹
 	GF_G3X_Reset();
 
 	NNS_G3dGePushMtx();
 	{
 		NNS_G3dGeFlushBuffer();
 
-		// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ì•`‰æ
-		// ƒJƒƒ‰ƒZƒbƒgƒAƒbƒv
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æç”»
+		// ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		NNS_G2dSetupSoftwareSpriteCamera();
-		// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æ
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»
 		if( wk->swsp_sys ){
 			SWSP_SysDraw( wk->swsp_sys );
 		}
 	}
 	NNS_G3dGePopMtx(1);
 
-	/* ƒWƒIƒƒgƒŠ•ƒŒƒ“ƒ_ƒŠƒ“ƒOƒGƒ“ƒWƒ“ŠÖ˜Aƒƒ‚ƒŠ‚ÌƒXƒƒbƒv */
+	/* ã‚¸ã‚ªãƒ¡ãƒˆãƒªï¼†ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ãƒ¡ãƒ¢ãƒªã®ã‚¹ãƒ¯ãƒƒãƒ— */
 	GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 
-	// ƒZƒ‹ƒAƒNƒ^[•`‰æ
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»
 	if( wk->clact_draw ){
 		if( wk->clact.cas ){
 			CLACT_Draw( wk->clact.cas );
@@ -196,12 +196,12 @@ void NMixGame_Draw( NMIX_GAMEWORK* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		•`‰æŠÖŒWVƒuƒ‰ƒ“ƒNˆ—
+ *	@brief		æç”»é–¢ä¿‚Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 void NMixGame_GraVBlank( NMIX_GAMEWORK* wk )
 {
-	// ƒŒƒ“ƒ_ƒ‰[OAM“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼OAMè»¢é€
 	REND_OAMTrans();
 	if( wk->bgl ){
 		GF_BGL_VBlankFunc( wk->bgl );
@@ -214,44 +214,44 @@ void NMixGame_GraVBlank( NMIX_GAMEWORK* wk )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //======================================================
-//ƒQ[ƒ€ƒvƒƒZƒX@ƒ[ƒJƒ‹ƒTƒuŠÖ”ŒQ
+//ã‚²ãƒ¼ãƒ ãƒ—ãƒ­ã‚»ã‚¹ã€€ãƒ­ãƒ¼ã‚«ãƒ«ã‚µãƒ–é–¢æ•°ç¾¤
 //======================================================
 /**
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[VramBankİ’è
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼VramBankè¨­å®š
  */
 static void nmixGame_VBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_48_HI,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_48_HI,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 /**
- *	@brief	BGLƒZƒbƒg
+ *	@brief	BGLã‚»ãƒƒãƒˆ
  */
 static void nmixGame_BGLInit(GF_BGL_INI** bgl,int heapID)
 {
 	int i = 0,frame;
 
-	//VramBankƒZƒbƒg
+	//VramBankã‚»ãƒƒãƒˆ
 	nmixGame_VBankSet();
 
-	//BGL‰Šú‰»
+	//BGLåˆæœŸåŒ–
 	*bgl = GF_BGL_BglIniAlloc(heapID);
 	
 	{	//BG SYSTEM
@@ -261,28 +261,28 @@ static void nmixGame_BGLInit(GF_BGL_INI** bgl,int heapID)
 		GF_BGL_InitBG(&BGsys_data);
 	}
 
-	// 3D–Ê•\¦ON
+	// 3Dé¢è¡¨ç¤ºON
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_BGL_PrioritySet( GF_BGL_FRAME0_M, 2 );
 	
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			{	//MAIN BG1	ƒeƒLƒXƒg”wŒi–Ê
+			{	//MAIN BG1	ãƒ†ã‚­ã‚¹ãƒˆèƒŒæ™¯é¢
 				0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xf000,GX_BG_CHARBASE_0x08000,GX_BG_EXTPLTT_01,
 				1,0,0,FALSE
 			},
-			{	//MAIN BG2	ƒeƒLƒXƒg–Ê
+			{	//MAIN BG2	ãƒ†ã‚­ã‚¹ãƒˆé¢
 				0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xe800,GX_BG_CHARBASE_0x00000,GX_BG_EXTPLTT_01,
 				0,0,0,FALSE
 			},
-			{	//SUB BG0	•¶š—ñ–Ê‚Ég—p
+			{	//SUB BG0	æ–‡å­—åˆ—é¢ã«ä½¿ç”¨
 				0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xb000,GX_BG_CHARBASE_0x00000,GX_BG_EXTPLTT_01,
 				0,0,0,FALSE
 			},
-			{	//SUB BG1	”wŒi‚Ég—p
+			{	//SUB BG1	èƒŒæ™¯ã«ä½¿ç”¨
 				0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xa800,GX_BG_CHARBASE_0x08000,GX_BG_EXTPLTT_01,
 				1,0,0,FALSE
@@ -300,7 +300,7 @@ static void nmixGame_BGLInit(GF_BGL_INI** bgl,int heapID)
 }
 
 /**
- *	@brief	BGL‰ğ•ú
+ *	@brief	BGLè§£æ”¾
  */
 static void nmixGame_BGLRelease(GF_BGL_INI** bgl)
 {
@@ -314,9 +314,9 @@ static void nmixGame_BGLRelease(GF_BGL_INI** bgl)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void nmixGame_ClactInit( NMIX_GAMEWORK* wk )
@@ -330,9 +330,9 @@ static void nmixGame_ClactInit( NMIX_GAMEWORK* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void nmixGame_ClactDelete( NMIX_GAMEWORK* wk )
@@ -342,9 +342,9 @@ static void nmixGame_ClactDelete( NMIX_GAMEWORK* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‰Šú‰»
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸåŒ–
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void nmixGame_SwspInit( NMIX_GAMEWORK* wk )
@@ -362,38 +362,38 @@ static void nmixGame_SwspInit( NMIX_GAMEWORK* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg”jŠü
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç ´æ£„
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void nmixGame_SwspDelete( NMIX_GAMEWORK* wk )
 {
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	SWSP_SysDelete( wk->swsp_sys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM‚ÌƒŒƒWƒXƒ^‰Šú‰»
+ *	@brief	OAMã®ãƒ¬ã‚¸ã‚¹ã‚¿åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 static void nmixGame_OamRegInit( NMIX_GAMEWORK* wk )
 {
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			NMIX_OAM_OAM_MAIN_S, NMIX_OAM_OAM_MAIN_E,	// ƒƒCƒ“‰æ–ÊNMIX_OAMŠÇ——Ìˆæ
-			NMIX_OAM_AFF_MAIN_S, NMIX_OAM_AFF_MAIN_E,			// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			NMIX_OAM_OAM_SUB_S, NMIX_OAM_OAM_SUB_E,		// ƒTƒu‰æ–ÊNMIX_OAMŠÇ——Ìˆæ
-			NMIX_OAM_AFF_SUB_S, NMIX_OAM_AFF_SUB_E,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			NMIX_OAM_OAM_MAIN_S, NMIX_OAM_OAM_MAIN_E,	// ãƒ¡ã‚¤ãƒ³ç”»é¢NMIX_OAMç®¡ç†é ˜åŸŸ
+			NMIX_OAM_AFF_MAIN_S, NMIX_OAM_AFF_MAIN_E,			// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			NMIX_OAM_OAM_SUB_S, NMIX_OAM_OAM_SUB_E,		// ã‚µãƒ–ç”»é¢NMIX_OAMç®¡ç†é ˜åŸŸ
+			NMIX_OAM_AFF_SUB_S, NMIX_OAM_AFF_SUB_E,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			wk->heapID);
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			NMIX_OAM_CHAR_ENTRY_NUM,
@@ -404,33 +404,33 @@ static void nmixGame_OamRegInit( NMIX_GAMEWORK* wk )
 		
 		InitCharManagerReg(&cm, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K );
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(NMIX_OAM_PLTT_ENTRY_NUM, wk->heapID);
 
-	// “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM‚ÌƒŒƒWƒXƒ^ŠÇ—ƒf[ƒ^”jŠü
+ *	@brief	OAMã®ãƒ¬ã‚¸ã‚¹ã‚¿ç®¡ç†ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void nmixGame_OamRegDelete( NMIX_GAMEWORK* wk )
 {
-	// ƒŒƒ“ƒ_ƒ‰[‹¤—LOAMƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	REND_OAM_Delete();
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”jŠü
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	DeleteCharManager();
-	// ƒpƒŒƒbƒgƒf[ƒ^”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	DeletePlttManager();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒtƒHƒ‹ƒgOAMƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆOAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  */
 //-----------------------------------------------------------------------------
 static void nmixGame_DefOamResLoad( NMIX_GAMEWORK* wk, ARCHANDLE* p_handle )
@@ -447,7 +447,7 @@ static void nmixGame_DefOamResLoad( NMIX_GAMEWORK* wk, ARCHANDLE* p_handle )
 
 	for( i=0; i<NMIX_GAME_DEF_OAM_RES_NUM; i++ ){
 		if( (i > 0) && (ClPlttTbl[ i ] == NARC_nutmixer_cook_s_obj0_NCLR) ){		
-			NMIXGAME_CLACT_ResLoadEasy_PlttCopy( &wk->clact,		// ƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX0‚ÌƒpƒŒƒbƒg‚ğŠF‹¤’Ê‚Åg—p‚·‚é
+			NMIXGAME_CLACT_ResLoadEasy_PlttCopy( &wk->clact,		// ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹0ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’çš†å…±é€šã§ä½¿ç”¨ã™ã‚‹
 					&wk->def_clact_res[ i ], p_handle,
 					wk->def_clact_res[ 0 ].resobj[1],
 					NARC_nutmixer_cook_s_obj0_NCGR + (3*i), 
@@ -470,7 +470,7 @@ static void nmixGame_DefOamResLoad( NMIX_GAMEWORK* wk, ARCHANDLE* p_handle )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒtƒHƒ‹ƒgOAMƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆOAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void nmixGame_DefOamResRelease( NMIX_GAMEWORK* wk )
@@ -485,27 +485,27 @@ static void nmixGame_DefOamResRelease( NMIX_GAMEWORK* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RD‰Šú‰»
+ *	@brief	ï¼“DåˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 static void nmixGame_3DInit( NMIX_GAMEWORK* wk )
 {
-	// NitroSystem:‚R‚cƒGƒ“ƒWƒ“‚Ì‰Šú‰»
+	// NitroSystem:ï¼“ï¼¤ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–
 	NNS_G3dInit();
-	// ƒ}ƒgƒŠƒNƒXƒXƒ^ƒbƒN‚Ì‰Šú‰»
+	// ãƒãƒˆãƒªã‚¯ã‚¹ã‚¹ã‚¿ãƒƒã‚¯ã®åˆæœŸåŒ–
     G3X_InitMtxStack();
 
-	// Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
     G3X_SetShading(GX_SHADING_TOON);
     G3X_AntiAlias(TRUE);
-	G3X_AlphaTest(FALSE, 0);	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend(TRUE);		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest(FALSE, 0);	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend(TRUE);		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 
-	// ƒGƒbƒWƒ}[ƒLƒ“ƒO
+	// ã‚¨ãƒƒã‚¸ãƒãƒ¼ã‚­ãƒ³ã‚°
 	G3X_EdgeMarking(FALSE);
 
 	
-	// ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(31, 31, 16),	// clear color
                       0,				// clear alpha
                       0x7fff,			// clear depth
@@ -513,24 +513,24 @@ static void nmixGame_3DInit( NMIX_GAMEWORK* wk )
                       FALSE				// fog
                       );
 
-	// ƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‹N“®Œã•K‚¸ŒÄ‚Î‚ê‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³èµ·å‹•å¾Œå¿…ãšå‘¼ã°ã‚Œãªã‘ã‚Œã°ãªã‚‰ãªã„
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 
-	// ƒ}ƒl[ƒWƒƒ‚ªƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ğw’èƒXƒƒbƒg•ªŠÇ—‚Å‚«‚é‚æ‚¤‚É‚µ‚Ä
-	// ƒfƒtƒHƒ‹ƒgƒ}ƒl[ƒWƒƒ‚É‚·‚éB
+	// ãƒãƒãƒ¼ã‚¸ãƒ£ãŒãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã‚’æŒ‡å®šã‚¹ãƒ­ãƒƒãƒˆåˆ†ç®¡ç†ã§ãã‚‹ã‚ˆã†ã«ã—ã¦
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã«ã™ã‚‹ã€‚
 	NNS_GfdInitFrmTexVramManager(2, TRUE);
 		
-	// ƒ}ƒl[ƒWƒƒ‚ªƒpƒŒƒbƒg‚ğ32KB•ªŠÇ—‚Å‚«‚é‚æ‚¤‚É‚µ‚Ä
-	// ƒfƒtƒHƒ‹ƒgƒ}ƒl[ƒWƒƒ‚É‚·‚éB
+	// ãƒãƒãƒ¼ã‚¸ãƒ£ãŒãƒ‘ãƒ¬ãƒƒãƒˆã‚’32KBåˆ†ç®¡ç†ã§ãã‚‹ã‚ˆã†ã«ã—ã¦
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã«ã™ã‚‹ã€‚
 	NNS_GfdInitFrmPlttVramManager(0x8000, TRUE);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RD”jŠü
+ *	@brief	ï¼“Dç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void nmixGame_3DRelease( NMIX_GAMEWORK* wk )
@@ -540,19 +540,19 @@ static void nmixGame_3DRelease( NMIX_GAMEWORK* wk )
 }
 
 /**
- *	@brief	•¶š—ñƒf[ƒ^ì¬	
+ *	@brief	æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿ä½œæˆ	
  */
 static void nmix_CommonDataInit(NMIX_GAMEWORK* wk)
 {
 	int i;
 	
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‰Šú‰»
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 	wk->msgDat.man = MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,
 		NARC_msg_porutogame1_dat,wk->heapID);
 	
 	wk->msgDat.wset = WORDSET_CreateEx( NMIX_GAME_WORD_SET_MAX, WORDSET_NMIXER_BUFLEN,wk->heapID);
 	
-	//ƒfƒtƒHƒ‹ƒg•¶š—ñæ“¾
+	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—åˆ—å–å¾—
 	wk->msgDat.tmp = STRBUF_Create(WORDSET_NMIXER_BUFLEN,wk->heapID);
 
 	wk->msgDat.wait = MSGMAN_AllocString(wk->msgDat.man,mes_porutogame1_00_01);
@@ -579,7 +579,7 @@ static void nmix_CommonDataInit(NMIX_GAMEWORK* wk)
 
 
 /**
- *	@brief	•¶š—ñƒf[ƒ^”jŠü
+ *	@brief	æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  */
 static void nmix_CommonDataRelease(NMIX_GAMEWORK* wk)
 {

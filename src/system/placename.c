@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	placename.c
- * @brief	�n���f�[�^��舵��
+ * @brief	地名データ取り扱い
  * @author	taya
  * @date	2006.05.20
  */
@@ -14,7 +14,7 @@
 
 //--------------------------------------------------------------
 /**
- *	�ߊl�ꏊ�^�C�v���Ƃ̊J�n�l
+ *	捕獲場所タイプごとの開始値
  */
 //--------------------------------------------------------------
 enum {
@@ -31,11 +31,11 @@ static const u16  TypeStartNumber[] = {
 
 //------------------------------------------------------------------
 /**
- * �ߊl�ꏊ�i���o�[����ߊl�ꏊ�^�C�v���擾
+ * 捕獲場所ナンバーから捕獲場所タイプを取得
  *
- * @param   number		�ߊl�ꏊ�i���o�[�i�|�P�����p�����[�^�Ƃ��ăZ�b�g����Ă���l�j
+ * @param   number		捕獲場所ナンバー（ポケモンパラメータとしてセットされている値）
  *
- * @retval  PLACENAME_TYPE		�ߊl�ꏊ�^�C�v
+ * @retval  PLACENAME_TYPE		捕獲場所タイプ
  */
 //------------------------------------------------------------------
 PLACENAME_TYPE  PlaceName_GetType( u32 number )
@@ -54,12 +54,12 @@ PLACENAME_TYPE  PlaceName_GetType( u32 number )
 
 //------------------------------------------------------------------
 /**
- * �ߊl�ꏊ�i���o�[����A�e�ߊl�ꏊ�^�C�v���Ƃ̃C���f�b�N�X�l��Ԃ�
- * ���߂�l��gmm���當����擾����ۂ̃C���f�b�N�X�Ƃ��Ďg����
+ * 捕獲場所ナンバーから、各捕獲場所タイプごとのインデックス値を返す
+ * ※戻り値はgmmから文字列取得する際のインデックスとして使える
  *
- * @param   number		�ߊl�ꏊ�i���o�[�i�|�P�����p�����[�^�Ƃ��ăZ�b�g����Ă���l�j
+ * @param   number		捕獲場所ナンバー（ポケモンパラメータとしてセットされている値）
  *
- * @retval  int		�ߊl�ꏊ�^�C�v���Ƃ̃C���f�b�N�X
+ * @retval  int		捕獲場所タイプごとのインデックス
  */
 //------------------------------------------------------------------
 int PlaceName_GetIndex( u32 number )
@@ -71,12 +71,12 @@ int PlaceName_GetIndex( u32 number )
 
 //------------------------------------------------------------------
 /**
- * �ߊl�ꏊ�^�C�v���C���f�b�N�X����A�|�P�����p�����[�^�Ƃ��ăZ�b�g���邽�߂̒l���쐬
+ * 捕獲場所タイプ＆インデックスから、ポケモンパラメータとしてセットするための値を作成
  *
- * @param   type		�ߊl�ꏊ�^�C�v
- * @param   index		�^�C�v���Ƃ̃C���f�b�N�X
+ * @param   type		捕獲場所タイプ
+ * @param   index		タイプごとのインデックス
  *
- * @retval  int			�|�P�����p�����[�^�Ƃ��ăZ�b�g���邽�߂̒l
+ * @retval  int			ポケモンパラメータとしてセットするための値
  */
 //------------------------------------------------------------------
 int PlaceName_IndexToParamNumber( PLACENAME_TYPE type, int index )
@@ -87,12 +87,12 @@ int PlaceName_IndexToParamNumber( PLACENAME_TYPE type, int index )
 
 //--------------------------------------------------------------
 /**
- * @brief   �ߊl�ꏊ��DP�̃G���A�������ׂ�
+ * @brief   捕獲場所がDPのエリア内か調べる
  *
- * @param   u32		�ߊl�ꏊ�i���o�[�i�|�P�����p�����[�^�Ƃ��ăZ�b�g����Ă���l�j
+ * @param   u32		捕獲場所ナンバー（ポケモンパラメータとしてセットされている値）
  *
- * @retval  TRUE:DP�ő��݂��Ă���ߊl�ꏊ
- * @retval  FALSE:DP�ł͑��݂��Ă��Ȃ�
+ * @retval  TRUE:DPで存在している捕獲場所
+ * @retval  FALSE:DPでは存在していない
  */
 //--------------------------------------------------------------
 BOOL PlaceName_RangeCheckDP(u16 number)

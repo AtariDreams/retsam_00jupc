@@ -56,7 +56,7 @@ CARDResult;
 	((size) << CARD_BACKUP_TYPE_SIZEBIT_SHIFT) |	\
 	((vender) << CARD_BACKUP_TYPE_VENDER_SHIFT))
 
-/* ƒoƒbƒNƒAƒbƒvƒfƒoƒCƒXƒ^ƒCƒv */
+/* ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ— */
 typedef enum
 {
     CARD_BACKUP_TYPE_EEPROM_4KBITS = CARD_BACKUP_TYPE_DEFINE(EEPROM, 9, 0),
@@ -74,11 +74,11 @@ CARDBackupType;
 
 #define CARD_BACKUP_TYPE_FLASH_64MBITS_EX (CARDBackupType)CARD_BACKUP_TYPE_DEFINE(FLASH, 23, 1)
 
-/* ƒJ[ƒhƒXƒŒƒbƒh‚ÌƒfƒtƒHƒ‹ƒg—DæƒŒƒxƒ‹ */
+/* ã‚«ãƒ¼ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå„ªå…ˆãƒ¬ãƒ™ãƒ« */
 #define	CARD_THREAD_PRIORITY_DEFAULT	4
 
 
-/* ƒRƒ“ƒ|[ƒlƒ“ƒg‚¨‚æ‚Ñ ensata ƒGƒ~ƒ…ƒŒ[ƒ^‚Ö‚Ì PXI ƒRƒ}ƒ“ƒhƒŠƒNƒGƒXƒg (“à•”Žg—p) */
+/* ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆãŠã‚ˆã³ ensata ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚¿ã¸ã® PXI ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ (å†…éƒ¨ä½¿ç”¨) */
 typedef enum
 {
     CARD_REQ_INIT = 0,                 /* initialize (setting from ARM9) */
@@ -101,17 +101,17 @@ typedef enum
 }
 CARDRequest;
 
-/* ƒRƒ}ƒ“ƒhƒŠƒNƒGƒXƒg‚Ì“®ìƒ^ƒCƒv (“à•”Žg—p) */
+/* ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å‹•ä½œã‚¿ã‚¤ãƒ— (å†…éƒ¨ä½¿ç”¨) */
 typedef enum
 {
-    CARD_REQUEST_MODE_RECV,            /* ƒf[ƒ^ŽóM */
-    CARD_REQUEST_MODE_SEND,            /* ƒf[ƒ^‘—M (’P”­‚ÌƒxƒŠƒtƒ@ƒC‚ðŠÜ‚Þ) */
-    CARD_REQUEST_MODE_SEND_VERIFY,     /* ƒf[ƒ^‘—M + ƒxƒŠƒtƒ@ƒC */
-    CARD_REQUEST_MODE_SPECIAL          /* ƒZƒNƒ^Á‹Ž‚È‚Ç‚Ì“ÁŽê‘€ì */
+    CARD_REQUEST_MODE_RECV,            /* ãƒ‡ãƒ¼ã‚¿å—ä¿¡ */
+    CARD_REQUEST_MODE_SEND,            /* ãƒ‡ãƒ¼ã‚¿é€ä¿¡ (å˜ç™ºã®ãƒ™ãƒªãƒ•ã‚¡ã‚¤ã‚’å«ã‚€) */
+    CARD_REQUEST_MODE_SEND_VERIFY,     /* ãƒ‡ãƒ¼ã‚¿é€ä¿¡ + ãƒ™ãƒªãƒ•ã‚¡ã‚¤ */
+    CARD_REQUEST_MODE_SPECIAL          /* ã‚»ã‚¯ã‚¿æ¶ˆåŽ»ãªã©ã®ç‰¹æ®Šæ“ä½œ */
 }
 CARDRequestMode;
 
-/* ƒŠƒgƒ‰ƒCÅ‘å‰ñ” */
+/* ãƒªãƒˆãƒ©ã‚¤æœ€å¤§å›žæ•° */
 #define	CARD_RETRY_COUNT_MAX	10
 
 // PXI protocol definition
@@ -253,12 +253,12 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_GetCacheFlushThreshold
 
-  Description:  ƒLƒƒƒbƒVƒ…–³Œø‰»‚ð•”•ª“I‚És‚¤‚©‘S‘Ì‚Ös‚¤‚©‚Ìè‡’l‚ðŽæ“¾.
+  Description:  ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç„¡åŠ¹åŒ–ã‚’éƒ¨åˆ†çš„ã«è¡Œã†ã‹å…¨ä½“ã¸è¡Œã†ã‹ã®é–¾å€¤ã‚’å–å¾—.
 
-  Arguments:    icache            –½—ßƒLƒƒƒbƒVƒ…‚Ì–³Œø‰»è‡’l‚ðŠi”[‚·‚éƒ|ƒCƒ“ƒ^.
-                                  NULL‚Å‚ ‚ê‚Î–³Ž‹‚³‚ê‚é.
-                dcache            ƒf[ƒ^ƒLƒƒƒbƒVƒ…‚Ì–³Œø‰»è‡’l‚ðŠi”[‚·‚éƒ|ƒCƒ“ƒ^.
-                                  NULL‚Å‚ ‚ê‚Î–³Ž‹‚³‚ê‚é.
+  Arguments:    icache            å‘½ä»¤ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ç„¡åŠ¹åŒ–é–¾å€¤ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                                  NULLã§ã‚ã‚Œã°ç„¡è¦–ã•ã‚Œã‚‹.
+                dcache            ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ç„¡åŠ¹åŒ–é–¾å€¤ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                                  NULLã§ã‚ã‚Œã°ç„¡è¦–ã•ã‚Œã‚‹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -267,10 +267,10 @@ extern  "C"
 /*---------------------------------------------------------------------------*
   Name:         CARD_SetCacheFlushThreshold
 
-  Description:  ƒLƒƒƒbƒVƒ…–³Œø‰»‚ð•”•ª“I‚És‚¤‚©‘S‘Ì‚Ös‚¤‚©‚Ìè‡’l‚ðÝ’è.
+  Description:  ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç„¡åŠ¹åŒ–ã‚’éƒ¨åˆ†çš„ã«è¡Œã†ã‹å…¨ä½“ã¸è¡Œã†ã‹ã®é–¾å€¤ã‚’è¨­å®š.
 
-  Arguments:    icache            –½—ßƒLƒƒƒbƒVƒ…‚Ì–³Œø‰»è‡’l.
-                dcache            ƒf[ƒ^ƒLƒƒƒbƒVƒ…‚Ì–³Œø‰»è‡’l.
+  Arguments:    icache            å‘½ä»¤ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ç„¡åŠ¹åŒ–é–¾å€¤.
+                dcache            ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ç„¡åŠ¹åŒ–é–¾å€¤.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -397,13 +397,13 @@ extern  "C"
   add comment about CARD_RESULT_TIMEOUT.
 
   Revision 1.14  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ðC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.13  2005/02/28 05:26:01  yosizaki
   do-indent.
 
   Revision 1.12  2004/12/15 09:52:44  yasu
-  CARD ƒAƒNƒZƒXƒCƒl[ƒuƒ‰‹@\‚Ì’Ç‰Á
+  CARD ã‚¢ã‚¯ã‚»ã‚¹ã‚¤ãƒãƒ¼ãƒ–ãƒ©æ©Ÿæ§‹ã®è¿½åŠ 
 
   Revision 1.11  2004/12/08 12:15:52  yosizaki
   remove CARD_BACKUP_TYPE_EEPROM_512KBITS.

@@ -1,7 +1,7 @@
 #ifndef _C07R0101_DEF_H_
 #define _C07R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C07R0101_SLOT01		(1)
 #define	SCRID_C07R0101_SLOT02		(2)
 #define	SCRID_C07R0101_SLOT03		(3)
@@ -24,6 +24,6 @@
 #define	SCRID_C07R0101_MIDDLEMAN1A		(20)
 #define	SCRID_C07R0101_POSTER		(21)
 #define	SCRID_C07R0101_POLICE		(22)
-#define	SCRID_C07R0101_DATA_MAX		(22)		//最大数
+#define	SCRID_C07R0101_DATA_MAX		(22)		//譛螟ｧ謨ｰ
 
 #endif //_C07R0101_DEF_H_

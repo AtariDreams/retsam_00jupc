@@ -34,18 +34,18 @@
 #define	PROPELLER2_CODE			(BMID_D2_S01A)
 #define	PROPELLER3_CODE			(BMID_D2_S01B)
 
-//ÉhÉAã§í 
+//„Éâ„Ç¢ÂÖ±ÈÄö
 #define ANIME_NO_DOOR_OPEN	(0)
 #define ANIME_NO_DOOR_CLOSE	(1)
 
-//é©ìÆÉhÉA
+//Ëá™Âãï„Éâ„Ç¢
 #define ANIME_NO_DOOR_AUTO_OPEN		(ANIME_NO_DOOR_OPEN)
 #define ANIME_NO_DOOR_AUTO_CLOSE	(ANIME_NO_DOOR_CLOSE)
-//ÉhÉA
+//„Éâ„Ç¢
 #define ANIME_NO_DOOR_OPEN_IN		(ANIME_NO_DOOR_OPEN)
 #define ANIME_NO_DOOR_CLOSE_IN		(ANIME_NO_DOOR_CLOSE)
 #define ANIME_NO_DOOR_OPEN_OUT		(2)
 #define ANIME_NO_DOOR_CLOSE_OUT		(3)
-//ÉGÉXÉJÉåÅ[É^Å[
+//„Ç®„Çπ„Ç´„É¨„Éº„Çø„Éº
 #define ANIME_NO_ESCA			(0)
 #endif	//_FIELD_3D_ANIME_DEF_H_

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	sway_grass_enc.h
- * @brief	—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg
+ * @brief	æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  * @author	saito GAME FREAK inc.
  * @date	2006.02.14
  */
@@ -17,7 +17,7 @@
 
 #include "poketool/monsno.h"
 
-#define SWAY_GRASS_CHAIN_MAX	(999)	//—h‚ê‘˜A½Å‘å”
+#define SWAY_GRASS_CHAIN_MAX	(999)	//æºã‚Œè‰é€£é–æœ€å¤§æ•°
 
 typedef struct SWAY_GRASS_tag * SWAY_GRASS_PTR;
 

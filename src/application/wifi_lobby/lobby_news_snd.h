@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		lobby_news_snd.h
- *	@brief		WiFiƒƒr[ƒjƒ…[ƒX	‰¹
+ *	@brief		WiFiãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹	éŸ³
  *	@author		tomoya takahashi
  *	@data		2007.10.23
  *
@@ -16,24 +16,24 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-//#define NEWSDRAW_NEWTOPIC	( SEQ_SE_DP_DECIDE )		// V‚µ‚¢ƒgƒsƒbƒN
-//#define NEWSDRAW_NEWTOPIC	( SEQ_SE_DP_PIRORIRO )		// V‚µ‚¢ƒgƒsƒbƒN
-#define NEWSDRAW_NEWTOPIC	( SEQ_SE_DP_PIRORIRO2 )		// V‚µ‚¢ƒgƒsƒbƒN
+//#define NEWSDRAW_NEWTOPIC	( SEQ_SE_DP_DECIDE )		// æ–°ã—ã„ãƒˆãƒ”ãƒƒã‚¯
+//#define NEWSDRAW_NEWTOPIC	( SEQ_SE_DP_PIRORIRO )		// æ–°ã—ã„ãƒˆãƒ”ãƒƒã‚¯
+#define NEWSDRAW_NEWTOPIC	( SEQ_SE_DP_PIRORIRO2 )		// æ–°ã—ã„ãƒˆãƒ”ãƒƒã‚¯
 
-#define NEWSDRAW_NEWTIME	( SEQ_SE_DP_DECIDE )		// ŽžŠÔXV
-//#define NEWSDRAW_NEWTIME	( SEQ_SE_DP_DENSI01 )		// ŽžŠÔXV
-//#define NEWSDRAW_NEWTIME	( SEQ_SE_DP_DENSI01 )		// ŽžŠÔXV
+#define NEWSDRAW_NEWTIME	( SEQ_SE_DP_DECIDE )		// æ™‚é–“æ›´æ–°
+//#define NEWSDRAW_NEWTIME	( SEQ_SE_DP_DENSI01 )		// æ™‚é–“æ›´æ–°
+//#define NEWSDRAW_NEWTIME	( SEQ_SE_DP_DENSI01 )		// æ™‚é–“æ›´æ–°
 
-//#define NEWSDRAW_NEWPLAYER	( SEQ_SE_DP_DECIDE )	// l‚ª“ü‚Á‚½A‹A‚Á‚½
-//#define NEWSDRAW_NEWPLAYER	( SEQ_SE_DP_TARARARAN )	// l‚ª“ü‚Á‚½A‹A‚Á‚½(–Â‚ç‚È‚¢)
-//#define NEWSDRAW_NEWPLAYER	( SEQ_SE_DP_DECIDE )		// l‚ª“ü‚Á‚½A‹A‚Á‚½
+//#define NEWSDRAW_NEWPLAYER	( SEQ_SE_DP_DECIDE )	// äººãŒå…¥ã£ãŸã€å¸°ã£ãŸ
+//#define NEWSDRAW_NEWPLAYER	( SEQ_SE_DP_TARARARAN )	// äººãŒå…¥ã£ãŸã€å¸°ã£ãŸ(é³´ã‚‰ãªã„)
+//#define NEWSDRAW_NEWPLAYER	( SEQ_SE_DP_DECIDE )		// äººãŒå…¥ã£ãŸã€å¸°ã£ãŸ
 //
-//‘¼‚Ì‰æ–Ê‚Æ“ˆê‚ð‚Í‚©‚é‚½‚ß‚É•ÏX‚µ‚Ü‚µ‚½(08.03..07)
-//#define NEWSDRAW_NEWPLAYER	( SEQ_SE_DP_BUTTON3 )		// l‚ª“ü‚Á‚½A‹A‚Á‚½
-#define NEWSDRAW_NEWPLAYER	( SEQ_SE_DP_BUTTON9 )		// l‚ª“ü‚Á‚½A‹A‚Á‚½
+//ä»–ã®ç”»é¢ã¨çµ±ä¸€ã‚’ã¯ã‹ã‚‹ãŸã‚ã«å¤‰æ›´ã—ã¾ã—ãŸ(08.03..07)
+//#define NEWSDRAW_NEWPLAYER	( SEQ_SE_DP_BUTTON3 )		// äººãŒå…¥ã£ãŸã€å¸°ã£ãŸ
+#define NEWSDRAW_NEWPLAYER	( SEQ_SE_DP_BUTTON9 )		// äººãŒå…¥ã£ãŸã€å¸°ã£ãŸ
 
 
 #endif		// __LOBBY_NEWS_SND_H__

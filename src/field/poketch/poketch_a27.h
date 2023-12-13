@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_a27.h
- * @bfief	ƒ|ƒPƒbƒ`iƒAƒvƒŠNo27:‚Â‚¤‚µ‚ñƒT[ƒ`ƒƒ[j@“à•”ƒwƒbƒ_
+ * @bfief	ãƒã‚±ãƒƒãƒï¼ˆã‚¢ãƒ—ãƒªNo27:ã¤ã†ã—ã‚“ã‚µãƒ¼ãƒãƒ£ãƒ¼ï¼‰ã€€å†…éƒ¨ãƒ˜ãƒƒãƒ€
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -11,7 +11,7 @@
 #include "poketch_prv.h"
 
 //====================================================
-// •`‰æƒRƒ}ƒ“ƒh
+// æç”»ã‚³ãƒžãƒ³ãƒ‰
 //====================================================
 enum {
 	CMD_INIT,
@@ -33,20 +33,20 @@ enum {
 
 
 //====================================================
-// ’ÊMl”ƒJƒEƒ“ƒgƒJƒeƒSƒŠ
+// é€šä¿¡äººæ•°ã‚«ã‚¦ãƒ³ãƒˆã‚«ãƒ†ã‚´ãƒª
 //====================================================
 enum {
-	POKETCH_COMM_CATEGORY_UNION,		///< ƒ†ƒjƒIƒ“ƒ‹[ƒ€
-	POKETCH_COMM_CATEGORY_UG,			///< ’YB
-	POKETCH_COMM_CATEGORY_COLOSSEUM,	///< ƒRƒƒVƒAƒ€
-	POKETCH_COMM_CATEGORY_OTHER,		///< ‚»‚Ì‘¼
+	POKETCH_COMM_CATEGORY_UNION,		///< ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ 
+	POKETCH_COMM_CATEGORY_UG,			///< ç‚­å‘
+	POKETCH_COMM_CATEGORY_COLOSSEUM,	///< ã‚³ãƒ­ã‚·ã‚¢ãƒ 
+	POKETCH_COMM_CATEGORY_OTHER,		///< ãã®ä»–
 
 	POKETCH_COMM_CATEGORY_MAX
 };
 
 
 //====================================================
-// •`‰æƒpƒ‰ƒ[ƒ^
+// æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //====================================================
 typedef struct {
 
@@ -55,12 +55,12 @@ typedef struct {
 }VIEWPARAM;
 
 //====================================================
-// •`‰æƒpƒ‰ƒ[ƒ^
+// æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //====================================================
 typedef	struct _POKETCH_A27_VIEWWORK  VIEWWORK;
 
 //====================================================
-// ŠÖ”ƒvƒƒgƒ^ƒCƒv
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //====================================================
 extern BOOL Poketch_A27_SetViewWork( VIEWWORK** wk_ptr, const VIEWPARAM* vpara, GF_BGL_INI* bgl );
 extern void Poketch_A27_SetViewCommand(VIEWWORK* wk, u32 cmd);

@@ -66,10 +66,10 @@ static void PlayerHeapDisposeCallback( void* mem, u32 size, u32 data1, u32 data2
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetPlayerVolume
 
-  Description:  ƒvƒŒƒCƒ„[–ˆ‚Ìƒ{ƒŠƒ…[ƒ€İ’è
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ¯ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ è¨­å®š
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                volume   - ƒ{ƒŠƒ…[ƒ€
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                volume   - ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -84,10 +84,10 @@ void NNS_SndPlayerSetPlayerVolume( int playerNo, int volume )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetPlayableSeqCount
 
-  Description:  ƒV[ƒPƒ“ƒXÅ‘å“¯Ä¶”‚Ìİ’è
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æœ€å¤§åŒæ™‚å†ç”Ÿæ•°ã®è¨­å®š
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                seqCount - ƒV[ƒPƒ“ƒXÅ‘å“¯Ä¶”
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                seqCount - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æœ€å¤§åŒæ™‚å†ç”Ÿæ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -102,11 +102,11 @@ void NNS_SndPlayerSetPlayableSeqCount( int playerNo, int seqCount )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetAllocatableChannel
 
-  Description:  Šm•Û‰Â”\‚Èƒ`ƒƒƒ“ƒlƒ‹‚Ìİ’è
+  Description:  ç¢ºä¿å¯èƒ½ãªãƒãƒ£ãƒ³ãƒãƒ«ã®è¨­å®š
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                chBitFlag - Šm•Û‰Â”\‚Èƒ`ƒƒƒ“ƒlƒ‹‚Ìƒrƒbƒgƒtƒ‰ƒO
-                            ‚O‚ğw’è‚·‚é‚ÆA‘S‚ÄŠm•Û‰Â”\.
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                chBitFlag - ç¢ºä¿å¯èƒ½ãªãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
+                            ï¼ã‚’æŒ‡å®šã™ã‚‹ã¨ã€å…¨ã¦ç¢ºä¿å¯èƒ½.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -121,13 +121,13 @@ void NNS_SndPlayerSetAllocatableChannel( int playerNo, u32 chBitFlag )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerCreateHeap
 
-  Description:  ƒvƒŒƒCƒ„[ƒq[ƒv‚ğì¬
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ã‚’ä½œæˆ
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                heap - ƒTƒEƒ“ƒhƒq[ƒv
-                size - ƒvƒŒƒCƒ„[ƒq[ƒv‚ÌƒTƒCƒY
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                heap - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
+                size - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ã®ã‚µã‚¤ã‚º
 
-  Returns:      ƒvƒŒƒCƒ„[ƒq[ƒv‚Ìì¬‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ã®ä½œæˆã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndPlayerCreateHeap( int playerNo, NNSSndHeapHandle heap, u32 size )
 {
@@ -137,20 +137,20 @@ BOOL NNS_SndPlayerCreateHeap( int playerNo, NNSSndHeapHandle heap, u32 size )
     
     NNS_MINMAX_ASSERT( playerNo, 0, NNS_SND_PLAYER_NO_MAX );
     
-    /* ƒvƒŒƒCƒ„[ƒq[ƒv—pƒoƒbƒtƒ@‚ÌŠm•Û */
+    /* ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ç”¨ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿ */
     buffer = NNS_SndHeapAlloc( heap, sizeof( NNSSndPlayerHeap ) + size, PlayerHeapDisposeCallback, 0, 0 );
     if ( buffer == NULL ) {
         return FALSE;
     }
     
-    /* ƒvƒŒƒCƒ„[ƒq[ƒv\‘¢‘Ì‰Šú‰» */
+    /* ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—æ§‹é€ ä½“åˆæœŸåŒ– */
     playerHeap = (NNSSndPlayerHeap*)buffer;
     
     playerHeap->player = NULL;
     playerHeap->playerNo = playerNo;
     playerHeap->handle = NNS_SND_HEAP_INVALID_HANDLE;
     
-    /* ƒvƒŒƒCƒ„[ƒq[ƒv\’z */
+    /* ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—æ§‹ç¯‰ */
     playerHeapHandle = NNS_SndHeapCreate(
         (u8*)buffer + sizeof( NNSSndPlayerHeap ),
         size
@@ -168,10 +168,10 @@ BOOL NNS_SndPlayerCreateHeap( int playerNo, NNSSndHeapHandle heap, u32 size )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerStopSeq
 
-  Description:  ƒV[ƒPƒ“ƒX’â~
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åœæ­¢
 
-  Arguments:    handle    - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                fadeFrame - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    handle    - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                fadeFrame - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -185,10 +185,10 @@ void NNS_SndPlayerStopSeq( NNSSndHandle* handle, int fadeFrame )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerStopSeqByPlayerNo
 
-  Description:  ƒV[ƒPƒ“ƒX’â~
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åœæ­¢
 
-  Arguments:    playerNo  - ƒvƒŒƒCƒ„[”Ô†
-                fadeFrame - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    playerNo  - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                fadeFrame - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -214,10 +214,10 @@ void NNS_SndPlayerStopSeqByPlayerNo( int playerNo, int fadeFrame )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerStopSeqBySeqNo
 
-  Description:  ƒV[ƒPƒ“ƒX’â~
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åœæ­¢
 
-  Arguments:    seqNo     - ƒV[ƒPƒ“ƒX”Ô†
-                fadeFrame - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    seqNo     - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+                fadeFrame - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -242,10 +242,10 @@ void NNS_SndPlayerStopSeqBySeqNo( int seqNo, int fadeFrame )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerStopSeqBySeqArcNo
 
-  Description:  ƒV[ƒPƒ“ƒX’â~
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åœæ­¢
 
-  Arguments:    seqArcNo  - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                fadeFrame - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    seqArcNo  - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                fadeFrame - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -270,11 +270,11 @@ void NNS_SndPlayerStopSeqBySeqArcNo( int seqArcNo, int fadeFrame )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerStopSeqBySeqArcIdx
 
-  Description:  ƒV[ƒPƒ“ƒX’â~
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åœæ­¢
 
-  Arguments:    seqArcNo  - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                index     - ƒCƒ“ƒfƒbƒNƒX”Ô†
-                fadeFrame - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    seqArcNo  - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                index     - ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+                fadeFrame - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -300,9 +300,9 @@ void NNS_SndPlayerStopSeqBySeqArcIdx( int seqArcNo, int index, int fadeFrame )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerStopSeqAll
 
-  Description:  ‘SƒV[ƒPƒ“ƒX’â~
+  Description:  å…¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åœæ­¢
 
-  Arguments:    fadeFrame - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    fadeFrame - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -325,10 +325,10 @@ void NNS_SndPlayerStopSeqAll( int fadeFrame )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerPause
 
-  Description:  ƒV[ƒPƒ“ƒX‚Ìˆê’â~‚Ü‚½‚ÍÄŠJ
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ä¸€æ™‚åœæ­¢ã¾ãŸã¯å†é–‹
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                flag   - ˆê’â~‚©ÄŠJ‚©
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                flag   - ä¸€æ™‚åœæ­¢ã‹å†é–‹ã‹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -342,10 +342,10 @@ void NNS_SndPlayerPause( NNSSndHandle* handle, BOOL flag )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerPauseByPlayerNo
 
-  Description:  ƒV[ƒPƒ“ƒX‚Ìˆê’â~‚Ü‚½‚ÍÄŠJ
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ä¸€æ™‚åœæ­¢ã¾ãŸã¯å†é–‹
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                flag     - ˆê’â~‚©ÄŠJ‚©
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                flag     - ä¸€æ™‚åœæ­¢ã‹å†é–‹ã‹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -368,9 +368,9 @@ void NNS_SndPlayerPauseByPlayerNo( int playerNo, BOOL flag )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerPauseAll
 
-  Description:  ‘SƒV[ƒPƒ“ƒX‚Ìˆê’â~‚Ü‚½‚ÍÄŠJ
+  Description:  å…¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ä¸€æ™‚åœæ­¢ã¾ãŸã¯å†é–‹
 
-  Arguments:    flag - ˆê’â~‚©ÄŠJ‚©
+  Arguments:    flag - ä¸€æ™‚åœæ­¢ã‹å†é–‹ã‹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -391,9 +391,9 @@ void NNS_SndPlayerPauseAll( BOOL flag )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHandleInit
 
-  Description:  ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -407,9 +407,9 @@ void NNS_SndHandleInit( NNSSndHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHandleReleaseSeq
 
-  Description:  ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚©‚çƒV[ƒPƒ“ƒX‚ğ‰ğ•ú
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‹ã‚‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’è§£æ”¾
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -428,11 +428,11 @@ void NNS_SndHandleReleaseSeq( NNSSndHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerCountPlayingSeqByPlayerNo
 
-  Description:  Ä¶’†‚ÌƒV[ƒPƒ“ƒX”æ“¾
+  Description:  å†ç”Ÿä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°å–å¾—
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
 
-  Returns:      Ä¶’†‚ÌƒV[ƒPƒ“ƒX”
+  Returns:      å†ç”Ÿä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
  *---------------------------------------------------------------------------*/
 int NNS_SndPlayerCountPlayingSeqByPlayerNo( int playerNo )
 {
@@ -444,11 +444,11 @@ int NNS_SndPlayerCountPlayingSeqByPlayerNo( int playerNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerCountPlayingSeqBySeqNo
 
-  Description:  Ä¶’†‚ÌƒV[ƒPƒ“ƒX”æ“¾
+  Description:  å†ç”Ÿä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°å–å¾—
 
-  Arguments:    seqNo - ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    seqNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
-  Returns:      Ä¶’†‚ÌƒV[ƒPƒ“ƒX”
+  Returns:      å†ç”Ÿä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
  *---------------------------------------------------------------------------*/
 int NNS_SndPlayerCountPlayingSeqBySeqNo( int seqNo )
 {
@@ -470,11 +470,11 @@ int NNS_SndPlayerCountPlayingSeqBySeqNo( int seqNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerCountPlayingSeqBySeqArcNo
 
-  Description:  Ä¶’†‚ÌƒV[ƒPƒ“ƒX”æ“¾
+  Description:  å†ç”Ÿä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°å–å¾—
 
-  Arguments:    seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
+  Arguments:    seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
 
-  Returns:      Ä¶’†‚ÌƒV[ƒPƒ“ƒX”
+  Returns:      å†ç”Ÿä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
  *---------------------------------------------------------------------------*/
 int NNS_SndPlayerCountPlayingSeqBySeqArcNo( int seqArcNo )
 {
@@ -496,12 +496,12 @@ int NNS_SndPlayerCountPlayingSeqBySeqArcNo( int seqArcNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerCountPlayingSeqBySeqArcIdx
 
-  Description:  Ä¶’†‚ÌƒV[ƒPƒ“ƒX”æ“¾
+  Description:  å†ç”Ÿä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°å–å¾—
 
-  Arguments:    seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                index    - ƒCƒ“ƒfƒbƒNƒX”Ô†
+  Arguments:    seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                index    - ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 
-  Returns:      Ä¶’†‚ÌƒV[ƒPƒ“ƒX”
+  Returns:      å†ç”Ÿä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
  *---------------------------------------------------------------------------*/
 int NNS_SndPlayerCountPlayingSeqBySeqArcIdx( int seqArcNo, int index )
 {
@@ -524,10 +524,10 @@ int NNS_SndPlayerCountPlayingSeqBySeqArcIdx( int seqArcNo, int index )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetVolume
 
-  Description:  ƒV[ƒPƒ“ƒXƒ{ƒŠƒ…[ƒ€‚Ì•ÏX
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®å¤‰æ›´
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                volume - ƒ{ƒŠƒ…[ƒ€
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                volume - ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -544,10 +544,10 @@ void NNS_SndPlayerSetVolume( NNSSndHandle* handle, int volume )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetInitialVolume
 
-  Description:  ƒV[ƒPƒ“ƒX‰Šúƒ{ƒŠƒ…[ƒ€‚Ìİ’è
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸãƒœãƒªãƒ¥ãƒ¼ãƒ ã®è¨­å®š
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                volume - ƒ{ƒŠƒ…[ƒ€
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                volume - ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -564,11 +564,11 @@ void NNS_SndPlayerSetInitialVolume( NNSSndHandle* handle, int volume )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerMoveVolume
 
-  Description:  ƒV[ƒPƒ“ƒXƒ{ƒŠƒ…[ƒ€‚ğŠÔ•Ï‰»
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’æ™‚é–“å¤‰åŒ–
 
-  Arguments:    handle       - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                targetVolume - ƒ^[ƒQƒbƒgƒ{ƒŠƒ…[ƒ€
-                frames       - •Ï‰»ƒtƒŒ[ƒ€”
+  Arguments:    handle       - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                targetVolume - ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒœãƒªãƒ¥ãƒ¼ãƒ 
+                frames       - å¤‰åŒ–ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -579,7 +579,7 @@ void NNS_SndPlayerMoveVolume( NNSSndHandle* handle, int targetVolume, int frames
     
     if ( ! NNS_SndHandleIsValid( handle ) ) return;
     
-    // ƒtƒF[ƒhƒAƒEƒg’†‚Í‹Ö~    
+    // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆä¸­ã¯ç¦æ­¢    
     if ( handle->player->status == NNS_SND_SEQ_PLAYER_STATUS_FADEOUT ) return;
     
     NNSi_SndFaderSet( & handle->player->fader, targetVolume << FADER_SHIFT, frames );
@@ -588,10 +588,10 @@ void NNS_SndPlayerMoveVolume( NNSSndHandle* handle, int targetVolume, int frames
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetPlayerPriority
 
-  Description:  ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ•ÏX
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’å¤‰æ›´
 
-  Arguments:    handle   - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                priority - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
+  Arguments:    handle   - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                priority - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -608,10 +608,10 @@ void NNS_SndPlayerSetPlayerPriority( NNSSndHandle* handle, int priority )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetChannelPriority
 
-  Description:  ”­‰¹ƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ•ÏX
+  Description:  ç™ºéŸ³ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’å¤‰æ›´
 
-  Arguments:    handle   - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                priority - ”­‰¹ƒvƒ‰ƒCƒIƒŠƒeƒB
+  Arguments:    handle   - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                priority - ç™ºéŸ³ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -628,11 +628,11 @@ void NNS_SndPlayerSetChannelPriority( NNSSndHandle* handle, int priority )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetTrackMute
 
-  Description:  ƒgƒ‰ƒbƒNƒ~ƒ…[ƒg
+  Description:  ãƒˆãƒ©ãƒƒã‚¯ãƒŸãƒ¥ãƒ¼ãƒˆ
 
-  Arguments:    handle       - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                trackBitMask - ƒgƒ‰ƒbƒNƒrƒbƒgƒ}ƒXƒN
-                flag         - ƒ~ƒ…[ƒgƒtƒ‰ƒO
+  Arguments:    handle       - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                trackBitMask - ãƒˆãƒ©ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                flag         - ãƒŸãƒ¥ãƒ¼ãƒˆãƒ•ãƒ©ã‚°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -652,11 +652,11 @@ void NNS_SndPlayerSetTrackMute( NNSSndHandle* handle, u16 trackBitMask, BOOL fla
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetTrackMuteEx
 
-  Description:  ƒgƒ‰ƒbƒNƒ~ƒ…[ƒg
+  Description:  ãƒˆãƒ©ãƒƒã‚¯ãƒŸãƒ¥ãƒ¼ãƒˆ
 
-  Arguments:    handle       - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                trackBitMask - ƒgƒ‰ƒbƒNƒrƒbƒgƒ}ƒXƒN
-                mute         - ƒ~ƒ…[ƒgİ’è
+  Arguments:    handle       - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                trackBitMask - ãƒˆãƒ©ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                mute         - ãƒŸãƒ¥ãƒ¼ãƒˆè¨­å®š
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -687,11 +687,11 @@ SDK_WEAK_SYMBOL void SND_SetTrackMuteEx(int playerNo, u32 trackBitMask, SNDSeqMu
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetTrackVolume
 
-  Description:  ƒgƒ‰ƒbƒNƒ{ƒŠƒ…[ƒ€‚Ì•ÏX
+  Description:  ãƒˆãƒ©ãƒƒã‚¯ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®å¤‰æ›´
 
-  Arguments:    handle       - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                trackBitMask - ƒgƒ‰ƒbƒNƒrƒbƒgƒ}ƒXƒN
-                volume       - ƒ{ƒŠƒ…[ƒ€
+  Arguments:    handle       - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                trackBitMask - ãƒˆãƒ©ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                volume       - ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -712,11 +712,11 @@ void NNS_SndPlayerSetTrackVolume( NNSSndHandle* handle, u16 trackBitMask, int vo
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetTrackPitch
 
-  Description:  ƒgƒ‰ƒbƒNƒsƒbƒ`‚Ì•ÏX
+  Description:  ãƒˆãƒ©ãƒƒã‚¯ãƒ”ãƒƒãƒã®å¤‰æ›´
 
-  Arguments:    handle       - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                trackBitMask - ƒgƒ‰ƒbƒNƒrƒbƒgƒ}ƒXƒN
-                pitch        - ‰¹’ö
+  Arguments:    handle       - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                trackBitMask - ãƒˆãƒ©ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                pitch        - éŸ³ç¨‹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -733,11 +733,11 @@ void NNS_SndPlayerSetTrackPitch( NNSSndHandle* handle, u16 trackBitMask, int pit
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetTrackPan
 
-  Description:  ƒgƒ‰ƒbƒNƒpƒ“‚Ì•ÏX
+  Description:  ãƒˆãƒ©ãƒƒã‚¯ãƒ‘ãƒ³ã®å¤‰æ›´
 
-  Arguments:    handle       - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                trackBitMask - ƒgƒ‰ƒbƒNƒrƒbƒgƒ}ƒXƒN
-                pan          - ƒpƒ“
+  Arguments:    handle       - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                trackBitMask - ãƒˆãƒ©ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                pan          - ãƒ‘ãƒ³
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -754,11 +754,11 @@ void NNS_SndPlayerSetTrackPan( NNSSndHandle* handle, u16 trackBitMask, int pan )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetTrackPanRange
 
-  Description:  ƒgƒ‰ƒbƒNƒpƒ“ƒŒƒ“ƒW‚Ì•ÏX
+  Description:  ãƒˆãƒ©ãƒƒã‚¯ãƒ‘ãƒ³ãƒ¬ãƒ³ã‚¸ã®å¤‰æ›´
 
-  Arguments:    handle       - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                trackBitMask - ƒgƒ‰ƒbƒNƒrƒbƒgƒ}ƒXƒN
-                panRange     - ƒpƒ“ƒŒƒ“ƒW
+  Arguments:    handle       - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                trackBitMask - ãƒˆãƒ©ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                panRange     - ãƒ‘ãƒ³ãƒ¬ãƒ³ã‚¸
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -775,11 +775,11 @@ void NNS_SndPlayerSetTrackPanRange( NNSSndHandle* handle, u16 trackBitMask, int 
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetTrackModDepth
 
-  Description:  ƒ‚ƒWƒ…ƒŒ[ƒVƒ‡ƒ“ƒfƒvƒX‚Ì•ÏX
+  Description:  ãƒ¢ã‚¸ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ—ã‚¹ã®å¤‰æ›´
 
-  Arguments:    handle       - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                trackBitMask - ƒgƒ‰ƒbƒNƒrƒbƒgƒ}ƒXƒN
-                depth        - ƒ‚ƒWƒ…ƒŒ[ƒVƒ‡ƒ“ƒfƒvƒX
+  Arguments:    handle       - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                trackBitMask - ãƒˆãƒ©ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                depth        - ãƒ¢ã‚¸ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ—ã‚¹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -796,11 +796,11 @@ void NNS_SndPlayerSetTrackModDepth( NNSSndHandle* handle, u16 trackBitMask, int 
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetTrackModSpeed
 
-  Description:  ƒ‚ƒWƒ…ƒŒ[ƒVƒ‡ƒ“ƒXƒs[ƒh‚Ì•ÏX
+  Description:  ãƒ¢ã‚¸ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ”ãƒ¼ãƒ‰ã®å¤‰æ›´
 
-  Arguments:    handle       - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                trackBitMask - ƒgƒ‰ƒbƒNƒrƒbƒgƒ}ƒXƒN
-                speed        - ƒ‚ƒWƒ…ƒŒ[ƒVƒ‡ƒ“ƒXƒs[ƒh
+  Arguments:    handle       - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                trackBitMask - ãƒˆãƒ©ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                speed        - ãƒ¢ã‚¸ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ”ãƒ¼ãƒ‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -817,12 +817,12 @@ void NNS_SndPlayerSetTrackModSpeed( NNSSndHandle* handle, u16 trackBitMask, int 
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetTrackAllocatableChannel
 
-  Description:  Šm•Û‚Å‚«‚éƒ`ƒƒƒ“ƒlƒ‹‚Ì•ÏX
+  Description:  ç¢ºä¿ã§ãã‚‹ãƒãƒ£ãƒ³ãƒãƒ«ã®å¤‰æ›´
 
-  Arguments:    handle       - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                trackBitMask - ƒgƒ‰ƒbƒNƒrƒbƒgƒ}ƒXƒN
-                chBitFlag    - Šm•Û‚Å‚«‚éƒ`ƒƒƒ“ƒlƒ‹‚Ìƒrƒbƒgƒtƒ‰ƒO
-                               ‚O‚ğw’è‚·‚é‚ÆA‘S‚ÄŠm•Û‰Â”\.
+  Arguments:    handle       - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                trackBitMask - ãƒˆãƒ©ãƒƒã‚¯ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                chBitFlag    - ç¢ºä¿ã§ãã‚‹ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
+                               ï¼ã‚’æŒ‡å®šã™ã‚‹ã¨ã€å…¨ã¦ç¢ºä¿å¯èƒ½.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -839,10 +839,10 @@ void NNS_SndPlayerSetTrackAllocatableChannel( NNSSndHandle* handle, u16 trackBit
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetTempoRatio
 
-  Description:  ƒeƒ“ƒ|”ä—¦‚Ì•ÏX
+  Description:  ãƒ†ãƒ³ãƒæ¯”ç‡ã®å¤‰æ›´
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                ratio  - ƒeƒ“ƒ|‚Ì”ä—¦
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                ratio  - ãƒ†ãƒ³ãƒã®æ¯”ç‡
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -859,10 +859,10 @@ void NNS_SndPlayerSetTempoRatio( NNSSndHandle* handle, int ratio )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetSeqNo
 
-  Description:  ƒV[ƒPƒ“ƒX”Ô†‚Ìİ’è
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·ã®è¨­å®š
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                seqNo  - ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                seqNo  - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -880,11 +880,11 @@ void NNS_SndPlayerSetSeqNo( NNSSndHandle* handle, int seqNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerSetSeqArcNo
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†‚Ìİ’è
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·ã®è¨­å®š
 
-  Arguments:    handle   - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                index    - ƒCƒ“ƒfƒbƒNƒX”Ô†
+  Arguments:    handle   - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                index    - ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -904,11 +904,11 @@ void NNS_SndPlayerSetSeqArcNo( NNSSndHandle* handle, int seqArcNo, int index )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerGetSeqType
 
-  Description:  ƒV[ƒPƒ“ƒXƒ^ƒCƒv‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¿ã‚¤ãƒ—ã®å–å¾—
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      ƒV[ƒPƒ“ƒXƒ^ƒCƒv
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¿ã‚¤ãƒ—
  *---------------------------------------------------------------------------*/
 NNSSndPlayerSeqType NNS_SndPlayerGetSeqType( NNSSndHandle* handle )
 {
@@ -922,11 +922,11 @@ NNSSndPlayerSeqType NNS_SndPlayerGetSeqType( NNSSndHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerGetSeqNo
 
-  Description:  ƒV[ƒPƒ“ƒX”Ô†‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·ã®å–å¾—
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      ƒV[ƒPƒ“ƒX”Ô†‚Ü‚½‚ÍA-1
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·ã¾ãŸã¯ã€-1
  *---------------------------------------------------------------------------*/
 int NNS_SndPlayerGetSeqNo( NNSSndHandle* handle )
 {
@@ -942,11 +942,11 @@ int NNS_SndPlayerGetSeqNo( NNSSndHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerGetSeqArcNo
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·ã®å–å¾—
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†‚Ü‚½‚ÍA-1
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·ã¾ãŸã¯ã€-1
  *---------------------------------------------------------------------------*/
 int NNS_SndPlayerGetSeqArcNo( NNSSndHandle* handle )
 {
@@ -962,11 +962,11 @@ int NNS_SndPlayerGetSeqArcNo( NNSSndHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerGetSeqArcIdx
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚Ü‚½‚ÍA-1
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¾ãŸã¯ã€-1
  *---------------------------------------------------------------------------*/
 int NNS_SndPlayerGetSeqArcIdx( NNSSndHandle* handle )
 {
@@ -982,13 +982,13 @@ int NNS_SndPlayerGetSeqArcIdx( NNSSndHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerReadVariable
 
-  Description:  ƒV[ƒPƒ“ƒXƒ[ƒJƒ‹•Ï”‚Ì“Ç‚İ‚Æ‚è
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°ã®èª­ã¿ã¨ã‚Š
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                varNo  - •Ï””Ô†
-                var    - “Ç‚İ‚İæƒAƒhƒŒƒX
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                varNo  - å¤‰æ•°ç•ªå·
+                var    - èª­ã¿è¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndPlayerReadVariable( NNSSndHandle* handle, int varNo, s16* var )
 {
@@ -1014,12 +1014,12 @@ BOOL NNS_SndPlayerReadVariable( NNSSndHandle* handle, int varNo, s16* var )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerReadGlobalVariable
 
-  Description:  ƒV[ƒPƒ“ƒXƒOƒ[ƒoƒ‹•Ï”‚Ì“Ç‚İ‚Æ‚è
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã®èª­ã¿ã¨ã‚Š
 
-  Arguments:    varNo - •Ï””Ô†
-                var   - “Ç‚İ‚İæƒAƒhƒŒƒX
+  Arguments:    varNo - å¤‰æ•°ç•ªå·
+                var   - èª­ã¿è¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndPlayerReadGlobalVariable( int varNo, s16* var )
 {
@@ -1033,13 +1033,13 @@ BOOL NNS_SndPlayerReadGlobalVariable( int varNo, s16* var )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerWriteVariable
 
-  Description:  ƒV[ƒPƒ“ƒXƒ[ƒJƒ‹•Ï”‚Ì‘‚«‚İ
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°ã®æ›¸ãè¾¼ã¿
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                varNo  - •Ï””Ô†
-                var    - ‘‚«‚Ş’l
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                varNo  - å¤‰æ•°ç•ªå·
+                var    - æ›¸ãè¾¼ã‚€å€¤
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndPlayerWriteVariable( NNSSndHandle* handle, int varNo, s16 var )
 {
@@ -1056,12 +1056,12 @@ BOOL NNS_SndPlayerWriteVariable( NNSSndHandle* handle, int varNo, s16 var )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerWriteGlobalVariable
 
-  Description:  ƒV[ƒPƒ“ƒXƒOƒ[ƒoƒ‹•Ï”‚Ì‘‚«‚İ
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã®æ›¸ãè¾¼ã¿
 
-  Arguments:    varNo - •Ï””Ô†
-                var   - ‘‚«‚Ş’l
+  Arguments:    varNo - å¤‰æ•°ç•ªå·
+                var   - æ›¸ãè¾¼ã‚€å€¤
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndPlayerWriteGlobalVariable( int varNo, s16 var )
 {
@@ -1075,11 +1075,11 @@ BOOL NNS_SndPlayerWriteGlobalVariable( int varNo, s16 var )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerGetTick
 
-  Description:  Ä¶ŠJn‚©‚ç‚ÌƒeƒBƒbƒN”‚Ìæ“¾
+  Description:  å†ç”Ÿé–‹å§‹ã‹ã‚‰ã®ãƒ†ã‚£ãƒƒã‚¯æ•°ã®å–å¾—
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      ƒeƒBƒbƒN”
+  Returns:      ãƒ†ã‚£ãƒƒã‚¯æ•°
  *---------------------------------------------------------------------------*/
 u32 NNS_SndPlayerGetTick( NNSSndHandle* handle )
 {
@@ -1102,12 +1102,12 @@ u32 NNS_SndPlayerGetTick( NNSSndHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerReadDriverPlayerInfo
 
-  Description:  ƒhƒ‰ƒCƒo‚ÌƒvƒŒƒCƒ„[î•ñ‚Ìæ“¾
+  Description:  ãƒ‰ãƒ©ã‚¤ãƒã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã®å–å¾—
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                info - æ“¾‚µ‚½ƒvƒŒƒCƒ„[î•ñ‚ğŠi”[‚·‚éƒvƒŒƒCƒ„[î•ñ\‘¢‘Ì
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                info - å–å¾—ã—ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±æ§‹é€ ä½“
 
-  Returns:      î•ñ‚Ìæ“¾‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æƒ…å ±ã®å–å¾—ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndPlayerReadDriverPlayerInfo( NNSSndHandle* handle, SNDPlayerInfo* info )
 {
@@ -1126,13 +1126,13 @@ BOOL NNS_SndPlayerReadDriverPlayerInfo( NNSSndHandle* handle, SNDPlayerInfo* inf
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndPlayerReadDriverTrackInfo
 
-  Description:  ƒhƒ‰ƒCƒo‚Ìƒgƒ‰ƒbƒNî•ñ‚Ìæ“¾
+  Description:  ãƒ‰ãƒ©ã‚¤ãƒã®ãƒˆãƒ©ãƒƒã‚¯æƒ…å ±ã®å–å¾—
 
-  Arguments:    handle - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                trackNo - ƒgƒ‰ƒbƒN”Ô†
-                info - æ“¾‚µ‚½ƒvƒŒƒCƒ„[î•ñ‚ğŠi”[‚·‚éƒgƒ‰ƒbƒNî•ñ\‘¢‘Ì
+  Arguments:    handle - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                trackNo - ãƒˆãƒ©ãƒƒã‚¯ç•ªå·
+                info - å–å¾—ã—ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒˆãƒ©ãƒƒã‚¯æƒ…å ±æ§‹é€ ä½“
 
-  Returns:      î•ñ‚Ìæ“¾‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æƒ…å ±ã®å–å¾—ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndPlayerReadDriverTrackInfo( NNSSndHandle* handle, int trackNo, SNDTrackInfo* info )
 {
@@ -1155,7 +1155,7 @@ BOOL NNS_SndPlayerReadDriverTrackInfo( NNSSndHandle* handle, int trackNo, SNDTra
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndPlayerInit
 
-  Description:  ƒvƒŒƒCƒ„[ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
 
   Arguments:    None.
 
@@ -1191,7 +1191,7 @@ void NNSi_SndPlayerInit( void )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndPlayerMain
 
-  Description:  ƒvƒŒƒCƒ„[ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒtƒŒ[ƒ€ƒ[ƒN
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
 
   Arguments:    None.
 
@@ -1204,7 +1204,7 @@ void NNSi_SndPlayerMain( void )
     u32 status;
     int fader;
     
-    // ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX‚Ìæ“¾
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å–å¾—
     status = SND_GetPlayerStatus();
     
     for( seqPlayer = (NNSSndSeqPlayer*)NNS_FndGetNextListObject( & sPrioList, NULL );
@@ -1212,7 +1212,7 @@ void NNSi_SndPlayerMain( void )
     {
         next = (NNSSndSeqPlayer*)NNS_FndGetNextListObject( & sPrioList, seqPlayer );
         
-        // ƒXƒ^[ƒgƒtƒ‰ƒOƒ`ƒFƒbƒN
+        // ã‚¹ã‚¿ãƒ¼ãƒˆãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
         if ( ! seqPlayer->startFlag ) {
             if ( SND_IsFinishedCommandTag( seqPlayer->commandTag ) )
             {
@@ -1220,7 +1220,7 @@ void NNSi_SndPlayerMain( void )
             }
         }
         
-        // ARM7‘¤‚©‚ç‚Ì’â~ƒ`ƒFƒbƒN
+        // ARM7å´ã‹ã‚‰ã®åœæ­¢ãƒã‚§ãƒƒã‚¯
         if ( seqPlayer->startFlag )
         {
             if ( ( status & ( 1 << seqPlayer->playerNo ) ) == 0 ) {
@@ -1229,10 +1229,10 @@ void NNSi_SndPlayerMain( void )
             }
         }
         
-        // ƒtƒF[ƒ_[XV
+        // ãƒ•ã‚§ãƒ¼ãƒ€ãƒ¼æ›´æ–°
         NNSi_SndFaderUpdate( & seqPlayer->fader );
         
-        // ƒpƒ‰ƒ[ƒ^‚ÌXV
+        // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
         fader
             = SND_CalcDecibel( seqPlayer->initVolume )
             + SND_CalcDecibel( seqPlayer->extVolume )
@@ -1248,7 +1248,7 @@ void NNSi_SndPlayerMain( void )
             seqPlayer->volume = (s16)fader;
         }
         
-        // ƒtƒF[ƒhƒAƒEƒgŠ®—¹ƒ`ƒFƒbƒN
+        // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå®Œäº†ãƒã‚§ãƒƒã‚¯
         if ( seqPlayer->status == NNS_SND_SEQ_PLAYER_STATUS_FADEOUT )
         {
             if ( NNSi_SndFaderIsFinished( & seqPlayer->fader ) )
@@ -1257,7 +1257,7 @@ void NNSi_SndPlayerMain( void )
             }
         }
         
-        // €”õŠ®—¹ƒtƒ‰ƒO
+        // æº–å‚™å®Œäº†ãƒ•ãƒ©ã‚°
         if ( seqPlayer->prepareFlag ) {
             SND_StartPreparedSeq( seqPlayer->playerNo );
             seqPlayer->prepareFlag = FALSE;
@@ -1268,14 +1268,14 @@ void NNSi_SndPlayerMain( void )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndPlayerAllocSeqPlayer
 
-  Description:  ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[‚ğŠm•Û
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ç¢ºä¿
 
-  Arguments:    handle   - ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-                playerNo - ƒvƒŒƒCƒ„[”Ô†
-                prio     - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
+  Arguments:    handle   - ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+                playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                prio     - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
-  Returns:      Šm•Û‚µ‚½ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
-                ¸”s‚ÍNULL
+  Returns:      ç¢ºä¿ã—ãŸã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                å¤±æ•—æ™‚ã¯NULL
  *---------------------------------------------------------------------------*/
 NNSSndSeqPlayer* NNSi_SndPlayerAllocSeqPlayer( NNSSndHandle* handle, int playerNo, int prio )
 {
@@ -1288,15 +1288,15 @@ NNSSndSeqPlayer* NNSi_SndPlayerAllocSeqPlayer( NNSSndHandle* handle, int playerN
     
     player = & sPlayer[ playerNo ];
     
-    // ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌØ’f
+    // ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®åˆ‡æ–­
     if ( NNS_SndHandleIsValid( handle ) ) {
         NNS_SndHandleReleaseSeq( handle );
     }
     
-    // ƒvƒŒƒCƒ„[–ˆ‚ÌÅ‘å“¯Ä¶”‚Ìƒ`ƒFƒbƒN
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ¯ã®æœ€å¤§åŒæ™‚å†ç”Ÿæ•°ã®ãƒã‚§ãƒƒã‚¯
     if ( player->playerList.numObjects >= player->playableSeqCount )
     {
-        // ˆê”Ôƒvƒ‰ƒCƒIƒŠƒeƒB‚Ì’á‚¢‚à‚Ì‚ğæ“¾
+        // ä¸€ç•ªãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã®ä½ã„ã‚‚ã®ã‚’å–å¾—
         seqPlayer = (NNSSndSeqPlayer*)NNS_FndGetNextListObject( & player->playerList, NULL );
         if ( seqPlayer == NULL ) return NULL;
         if ( prio < seqPlayer->prio ) return NULL;
@@ -1304,14 +1304,14 @@ NNSSndSeqPlayer* NNSi_SndPlayerAllocSeqPlayer( NNSSndHandle* handle, int playerN
         ForceStopSeq( seqPlayer );
     }
     
-    // Šm•Ûˆ—
+    // ç¢ºä¿å‡¦ç†
     seqPlayer = AllocSeqPlayer( prio );
     if ( seqPlayer == NULL ) return NULL;
     
-    // ‰Šú‰»
+    // åˆæœŸåŒ–
     InsertPlayerList( player, seqPlayer );
     
-    // ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Æ‚ÌÚ‘±
+    // ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã¨ã®æ¥ç¶š
     seqPlayer->handle = handle;
     handle->player = seqPlayer;
     
@@ -1321,9 +1321,9 @@ NNSSndSeqPlayer* NNSi_SndPlayerAllocSeqPlayer( NNSSndHandle* handle, int playerN
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndPlayerFreeSeqPlayer
 
-  Description:  ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[‚ğ‰ğ•ú
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’è§£æ”¾
 
-  Arguments:    seqPlayer - ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
+  Arguments:    seqPlayer - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1337,12 +1337,12 @@ void NNSi_SndPlayerFreeSeqPlayer( NNSSndSeqPlayer* seqPlayer )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndPlayerStartSeq
 
-  Description:  ƒV[ƒPƒ“ƒXŠJn
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–‹å§‹
 
-  Arguments:    seqPlayer     - ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
-                seqDataBase   - ƒV[ƒPƒ“ƒXƒf[ƒ^ƒx[ƒXƒAƒhƒŒƒX
-                seqDataOffset - ƒV[ƒPƒ“ƒXƒf[ƒ^‚ÌƒIƒtƒZƒbƒg
-                bank          - ƒoƒ“ƒNƒf[ƒ^
+  Arguments:    seqPlayer     - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                seqDataBase   - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                seqDataOffset - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                bank          - ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1376,7 +1376,7 @@ void NNSi_SndPlayerStartSeq(
         );
     }
     
-    // ‰Šú‰»ˆ—
+    // åˆæœŸåŒ–å‡¦ç†
     InitPlayer( seqPlayer );
     seqPlayer->commandTag = SND_GetCurrentCommandTag();
     seqPlayer->prepareFlag = TRUE;
@@ -1386,10 +1386,10 @@ void NNSi_SndPlayerStartSeq(
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndPlayerStopSeq
 
-  Description:  ƒV[ƒPƒ“ƒX’â~
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åœæ­¢
 
-  Arguments:    seqPlayer - ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
-                fadeFrame - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    seqPlayer - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                fadeFrame - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1414,10 +1414,10 @@ void NNSi_SndPlayerStopSeq( NNSSndSeqPlayer* seqPlayer, int fadeFrame )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndPlayerPause
 
-  Description:  ƒV[ƒPƒ“ƒX‚Ìˆê’â~‚Ü‚½‚ÍÄŠJ
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ä¸€æ™‚åœæ­¢ã¾ãŸã¯å†é–‹
 
-  Arguments:    seqPlayer - ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
-                flag      - ˆê’â~‚Ü‚½‚ÍÄŠJ
+  Arguments:    seqPlayer - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                flag      - ä¸€æ™‚åœæ­¢ã¾ãŸã¯å†é–‹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1435,12 +1435,12 @@ void NNSi_SndPlayerPause( NNSSndSeqPlayer* seqPlayer, BOOL flag )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndPlayerAllocHeap
 
-  Description:  ƒvƒŒƒCƒ„[ƒq[ƒv‚ÌŠm•Û
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ã®ç¢ºä¿
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                seqPlayer - ƒq[ƒv‚ğg—p‚·‚éƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                seqPlayer - ãƒ’ãƒ¼ãƒ—ã‚’ä½¿ç”¨ã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
-  Returns:      Šm•Û‚µ‚½ƒq[ƒv
+  Returns:      ç¢ºä¿ã—ãŸãƒ’ãƒ¼ãƒ—
  *---------------------------------------------------------------------------*/
 NNSSndHeapHandle NNSi_SndPlayerAllocHeap( int playerNo, NNSSndSeqPlayer* seqPlayer )
 {
@@ -1471,9 +1471,9 @@ NNSSndHeapHandle NNSi_SndPlayerAllocHeap( int playerNo, NNSSndSeqPlayer* seqPlay
 /*---------------------------------------------------------------------------*
   Name:         InitPlayer
 
-  Description:  ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[‚Ì‰Šú‰»
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åˆæœŸåŒ–
 
-  Arguments:    seqPlayer - ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
+  Arguments:    seqPlayer - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1499,10 +1499,10 @@ static void InitPlayer( NNSSndSeqPlayer* seqPlayer )
 /*---------------------------------------------------------------------------*
   Name:         InsertPlayerList
 
-  Description:  ƒvƒŒƒCƒ„[ƒŠƒXƒg‚Ö‚Ì’Ç‰Á
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒªã‚¹ãƒˆã¸ã®è¿½åŠ 
 
-  Arguments:    player    - ƒvƒŒƒCƒ„[
-                seqPlayer - ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
+  Arguments:    player    - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                seqPlayer - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1522,9 +1522,9 @@ static void InsertPlayerList( NNSSndPlayer* player, NNSSndSeqPlayer* seqPlayer )
 /*---------------------------------------------------------------------------*
   Name:         InsertPrioList
 
-  Description:  ƒvƒ‰ƒCƒIƒŠƒeƒBƒŠƒXƒg‚Ö‚Ì’Ç‰Á
+  Description:  ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒªã‚¹ãƒˆã¸ã®è¿½åŠ 
 
-  Arguments:    seqPlayer - ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
+  Arguments:    seqPlayer - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1542,9 +1542,9 @@ static void InsertPrioList( NNSSndSeqPlayer* seqPlayer )
 /*---------------------------------------------------------------------------*
   Name:         ForceStopSeq
 
-  Description:  ƒV[ƒPƒ“ƒX‚Ì‹­§’â~
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å¼·åˆ¶åœæ­¢
 
-  Arguments:    seqPlayer - ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
+  Arguments:    seqPlayer - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1560,12 +1560,12 @@ static void ForceStopSeq( NNSSndSeqPlayer* seqPlayer )
 /*---------------------------------------------------------------------------*
   Name:         AllocSeqPlayer
 
-  Description:  ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[‚ÌŠm•Û
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¢ºä¿
 
-  Arguments:    prio - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
+  Arguments:    prio - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
-  Returns:      Šm•Û‚µ‚½ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
-                ¸”s‚ÍNULL
+  Returns:      ç¢ºä¿ã—ãŸã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                å¤±æ•—æ™‚ã¯NULL
  *---------------------------------------------------------------------------*/
 static NNSSndSeqPlayer* AllocSeqPlayer( int prio )
 {
@@ -1596,9 +1596,9 @@ static NNSSndSeqPlayer* AllocSeqPlayer( int prio )
 /*---------------------------------------------------------------------------*
   Name:         ShutdownPlayer
 
-  Description:  ƒV[ƒPƒ“ƒX’â~‚ÌŒãn––
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åœæ­¢ã®å¾Œå§‹æœ«
 
-  Arguments:    seqPlayer - ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
+  Arguments:    seqPlayer - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1608,27 +1608,27 @@ static void ShutdownPlayer( NNSSndSeqPlayer* seqPlayer )
     
     NNS_NULL_ASSERT( seqPlayer );
     
-    // ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Æ‚ÌØ’f
+    // ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã¨ã®åˆ‡æ–­
     if ( seqPlayer->handle != NULL ) {
         NNS_ASSERT( seqPlayer == seqPlayer->handle->player );
         seqPlayer->handle->player = NULL;
         seqPlayer->handle = NULL;
     }
     
-    // ƒvƒŒƒCƒ„[‚Æ‚ÌØ’f
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã®åˆ‡æ–­
     player = seqPlayer->player;
     NNS_NULL_ASSERT( player );
     NNS_FndRemoveListObject( & player->playerList, seqPlayer );        
     seqPlayer->player = NULL;
     
-    // ƒq[ƒv‚Ì‰ğ•ú
+    // ãƒ’ãƒ¼ãƒ—ã®è§£æ”¾
     if ( seqPlayer->heap != NULL ) {
         NNS_FndAppendListObject( & player->heapList, seqPlayer->heap );
         seqPlayer->heap->player = NULL;
         seqPlayer->heap = NULL;
     }
     
-    // ƒtƒŠ[ƒŠƒXƒg‚ÖˆÚ“®
+    // ãƒ•ãƒªãƒ¼ãƒªã‚¹ãƒˆã¸ç§»å‹•
     NNS_FndRemoveListObject( &sPrioList, seqPlayer );
     NNS_FndAppendListObject( &sFreeList, seqPlayer );
     
@@ -1638,12 +1638,12 @@ static void ShutdownPlayer( NNSSndSeqPlayer* seqPlayer )
 /*---------------------------------------------------------------------------*
   Name:         PlayerHeapDisposeCallback
 
-  Description:  ƒvƒŒƒCƒ„[ƒq[ƒv”jŠü‚Ìˆ—
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ’ãƒ¼ãƒ—ç ´æ£„æ™‚ã®å‡¦ç†
 
-  Arguments:    mem   - ƒƒ‚ƒŠƒuƒƒbƒN‚Ìæ“ªƒAƒhƒŒƒX
-                size  - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY
-                data1 - ƒ†[ƒU[ƒf[ƒ^i–¢g—pj
-                data2 - ƒ†[ƒU[ƒf[ƒ^i–¢g—pj
+  Arguments:    mem   - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                size  - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
+                data1 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
+                data2 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1654,16 +1654,16 @@ static void PlayerHeapDisposeCallback( void* mem, u32 /*size*/, u32 /*data1*/, u
     
     if ( heap->handle == NNS_SND_HEAP_INVALID_HANDLE ) return;
     
-    // ƒq[ƒvƒNƒŠƒA
+    // ãƒ’ãƒ¼ãƒ—ã‚¯ãƒªã‚¢
     NNS_SndHeapDestroy( heap->handle );
     
     seqPlayer = heap->player;
     if ( seqPlayer != NULL ) {
-        // g—p’†‚ÍAƒvƒŒƒCƒ„[‚ÆØ’f
+        // ä½¿ç”¨ä¸­ã¯ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨åˆ‡æ–­
         seqPlayer->heap = NULL;
     }
     else {
-        // –¢g—p‚É‚ÍAƒq[ƒvƒŠƒXƒg‚©‚çíœ
+        // æœªä½¿ç”¨æ™‚ã«ã¯ã€ãƒ’ãƒ¼ãƒ—ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
         NNS_FndRemoveListObject( &sPlayer[ heap->playerNo ].heapList, heap );
     }
 }
@@ -1671,10 +1671,10 @@ static void PlayerHeapDisposeCallback( void* mem, u32 /*size*/, u32 /*data1*/, u
 /*---------------------------------------------------------------------------*
   Name:         SetPlayerPriority
 
-  Description:  ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ•ÏX
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’å¤‰æ›´
 
-  Arguments:    seqPlayer - ƒV[ƒPƒ“ƒXƒvƒŒƒCƒ„[
-                priority  - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
+  Arguments:    seqPlayer - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                priority  - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

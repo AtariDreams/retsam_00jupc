@@ -44,12 +44,12 @@ NNSG2dBinaryBlockHeader* NNS_G2dFindBinaryBlock
             count++;
         }
     }
-    // ”­Œ©‚É¸”s‚µ‚½
+    // ç™ºè¦‹ã«å¤±æ•—ã—ãŸ
     return NULL;
 }
 
 //------------------------------------------------------------------------------
-// NNSG2dUserExCellAttrBank ‚ğ“WŠJ‚µ‚Ü‚·
+// NNSG2dUserExCellAttrBank ã‚’å±•é–‹ã—ã¾ã™
 void NNSi_G2dUnpackUserExCellAttrBank( NNSG2dUserExCellAttrBank* pCellAttrBank )
 {
     u16 i;
@@ -66,12 +66,12 @@ void NNSi_G2dUnpackUserExCellAttrBank( NNSG2dUserExCellAttrBank* pCellAttrBank )
 }
 
 //
-// ˆÈ‰º‚Ìƒ‹[ƒ`ƒ“‚ÍFINALROMƒrƒ‹ƒh‚Å‚ÍƒR[ƒh¶¬‚³‚ê‚È‚¢
+// ä»¥ä¸‹ã®ãƒ«ãƒ¼ãƒãƒ³ã¯FINALROMãƒ“ãƒ«ãƒ‰ã§ã¯ã‚³ãƒ¼ãƒ‰ç”Ÿæˆã•ã‚Œãªã„
 //
 #ifndef SDK_FINALROM 
 
 //------------------------------------------------------------------------------
-// NNSG2dUserExCellAttrBank ‚Ì“à—e‚ğƒfƒoƒbƒN•\¦‚µ‚Ü‚·
+// NNSG2dUserExCellAttrBank ã®å†…å®¹ã‚’ãƒ‡ãƒãƒƒã‚¯è¡¨ç¤ºã—ã¾ã™
 void NNSi_G2dPrintUserExCellAttrBank( const NNSG2dUserExCellAttrBank* pCellAttrBank )
 {
     u16 i, j;

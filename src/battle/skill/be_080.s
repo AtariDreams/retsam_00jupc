@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_080.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			080@g—p‚µ‚½Ÿ‚Ìƒ^[ƒ“‚Ís“®‚ªo—ˆ‚È‚¢
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			080ã€€ä½¿ç”¨ã—ãŸæ¬¡ã®ã‚¿ãƒ¼ãƒ³ã¯è¡Œå‹•ãŒå‡ºæ¥ãªã„
  *
  *@author	HisashiSogabe
  *@data		2006.01.19

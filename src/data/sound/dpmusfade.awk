@@ -2,64 +2,64 @@
 #
 #	060124 Satoshi Nohara
 #
-#	dpmusfade.xls‚ğƒRƒ“ƒo[ƒg‚µ‚ÄA
-#	ƒgƒ‰ƒbƒNƒtƒF[ƒhƒf[ƒ^‚ğdpmusfade.dat‚É‘‚«‚Ş
+#	dpmusfade.xlsã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦ã€
+#	ãƒˆãƒ©ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’dpmusfade.datã«æ›¸ãè¾¼ã‚€
 #
 #===========================================================================================
 
 BEGIN{
 	print "//----------------------------------------------------"
-	print "//\tƒgƒ‰ƒbƒNƒtƒF[ƒhƒf[ƒ^"
+	print "//\tãƒˆãƒ©ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿"
 	print "//----------------------------------------------------"
-	print "//’ˆÓI ƒ}ƒCƒiƒX1‚ğ‚µ‚Ä0`15ƒgƒ‰ƒbƒN‚Æ‚µ‚Äˆµ‚Á‚Ä‚¢‚é"
+	print "//æ³¨æ„ï¼ ãƒã‚¤ãƒŠã‚¹1ã‚’ã—ã¦0ã€œ15ãƒˆãƒ©ãƒƒã‚¯ã¨ã—ã¦æ‰±ã£ã¦ã„ã‚‹"
 	print "static const TRACK_FADE_DATA track_fade_tbl[] = {"
 }
 
 {
-	#s”ƒ`ƒFƒbƒN
+	#è¡Œæ•°ãƒã‚§ãƒƒã‚¯
 	if( NR < 2 ){
 		next
 	}
 
-	#€–Ú”ƒ`ƒFƒbƒN
+	#é …ç›®æ•°ãƒã‚§ãƒƒã‚¯
 	if( NF < 4 ){
 		next
 	}
 
-	#•Ï”‰Šú‰»
+	#å¤‰æ•°åˆæœŸåŒ–
 	noon_start	= $4
 	noon_end	= $4
 	night_start = $5
 	night_end	= $5
 
-	#’‹start
-	sub( /\,.*$/, "", noon_start )				#","ˆÈ~‚ğíœ
-	sub( "\"", "", noon_start )					#"‚ğíœ
+	#æ˜¼start
+	sub( /\,.*$/, "", noon_start )				#","ä»¥é™ã‚’å‰Šé™¤
+	sub( "\"", "", noon_start )					#"ã‚’å‰Šé™¤
 
-	#–éstart
-	sub( /\,.*$/, "", night_start )				#","ˆÈ~‚ğíœ
-	sub( "\"", "", night_start )				#"‚ğíœ
+	#å¤œstart
+	sub( /\,.*$/, "", night_start )				#","ä»¥é™ã‚’å‰Šé™¤
+	sub( "\"", "", night_start )				#"ã‚’å‰Šé™¤
 
 	for( i=0; i < 16 ;i++ ){
 
-		#’‹end
+		#æ˜¼end
 		if( noon_end ~ "," ){
-			sub( /^[^,]*/, "", noon_end )		#","‚Æˆê’v‚·‚é‚Ü‚Åíœ
-			sub( /[,]/, "", noon_end )			#","‚Æˆê’v‚µ‚½‚çíœ
+			sub( /^[^,]*/, "", noon_end )		#","ã¨ä¸€è‡´ã™ã‚‹ã¾ã§å‰Šé™¤
+			sub( /[,]/, "", noon_end )			#","ã¨ä¸€è‡´ã—ãŸã‚‰å‰Šé™¤
 		}
 
-		#–éend
+		#å¤œend
 		if( night_end ~ "," ){
-			sub( /^[^,]*/, "", night_end )		#","‚Æˆê’v‚·‚é‚Ü‚Åíœ
-			sub( /[,]/, "", night_end )			#","‚Æˆê’v‚µ‚½‚çíœ
+			sub( /^[^,]*/, "", night_end )		#","ã¨ä¸€è‡´ã™ã‚‹ã¾ã§å‰Šé™¤
+			sub( /[,]/, "", night_end )			#","ã¨ä¸€è‡´ã—ãŸã‚‰å‰Šé™¤
 		}
 	}
 
-	sub( "\"", "", noon_end )					#"‚ğíœ
-	sub( "\"", "", night_end )					#"‚ğíœ
+	sub( "\"", "", noon_end )					#"ã‚’å‰Šé™¤
+	sub( "\"", "", night_end )					#"ã‚’å‰Šé™¤
 
-	#ƒ}ƒCƒiƒX1‚ğ‚µ‚Ä0`15ƒgƒ‰ƒbƒN‚Æ‚µ‚Äˆµ‚¤
-	if( noon_start == 0 ){						#"0"‚Íƒf[ƒ^‚È‚µ
+	#ãƒã‚¤ãƒŠã‚¹1ã‚’ã—ã¦0ã€œ15ãƒˆãƒ©ãƒƒã‚¯ã¨ã—ã¦æ‰±ã†
+	if( noon_start == 0 ){						#"0"ã¯ãƒ‡ãƒ¼ã‚¿ãªã—
 		noon_start = "TRACK_FADE_NONE"
 		noon_end = "TRACK_FADE_NONE"
 	}else{
@@ -67,7 +67,7 @@ BEGIN{
 		noon_end-=1
 	}
 
-	if( night_start == 0 ){						#"0"‚Íƒf[ƒ^‚È‚µ
+	if( night_start == 0 ){						#"0"ã¯ãƒ‡ãƒ¼ã‚¿ãªã—
 		night_start = "TRACK_FADE_NONE"
 		night_end = "TRACK_FADE_NONE"
 	}else{
@@ -75,7 +75,7 @@ BEGIN{
 		night_end-=1
 	}
 
-	#o—Í
+	#å‡ºåŠ›
 	tmp = $3
 	sub( ".mid", "", tmp )
 	name = toupper( tmp )

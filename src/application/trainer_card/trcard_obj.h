@@ -3,7 +3,7 @@
 
 #include "system/clact_tool.h"
 
-// CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚ÌŽí—Þ‚Ì”iƒ}ƒ‹ƒ`ƒZƒ‹Eƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚ÍŽg—p‚µ‚È‚¢j
+// CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ç¨®é¡žã®æ•°ï¼ˆï¼ãƒžãƒ«ãƒã‚»ãƒ«ãƒ»ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã¯ä½¿ç”¨ã—ãªã„ï¼‰
 #define RESOURCE_NUM		(4)
 #define TR_CARD_BADGE_ACT_MAX	(8)
 #define TR_CARD_STAR_ACT_MAX	(8)
@@ -22,16 +22,16 @@
 
 typedef struct TR_CARD_OBJ_WORK_tag
 {
-	CLACT_SET_PTR 			ClactSet;								// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	RendData;								// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	ResMan[RESOURCE_NUM];				// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR 	ResObjTbl[2][RESOURCE_NUM];		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹(ã‰º‰æ–Ê)
-	///CLACT_HEADER			ClActHeader_m;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[(ƒƒCƒ“)
-	///CLACT_HEADER			ClActHeader_s;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[(ƒTƒu)
-	CLACT_WORK_PTR			ClActWork[TR_CARD_ACT_MAX];				// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ
+	CLACT_SET_PTR 			ClactSet;								// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	RendData;								// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	ResMan[RESOURCE_NUM];				// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR 	ResObjTbl[2][RESOURCE_NUM];		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«(ä¸Šä¸‹ç”»é¢)
+	///CLACT_HEADER			ClActHeader_m;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼(ãƒ¡ã‚¤ãƒ³)
+	///CLACT_HEADER			ClActHeader_s;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼(ã‚µãƒ–)
+	CLACT_WORK_PTR			ClActWork[TR_CARD_ACT_MAX];				// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—
 
-	void *PalDataBuf[TR_CARD_BADGE_ACT_MAX];		//ƒpƒŒƒbƒgƒf[ƒ^TR_CARD_BADGE_ACT_MAX•ª
-	NNSG2dPaletteData *PalData[TR_CARD_BADGE_ACT_MAX];	//ƒpƒŒƒbƒgƒf[ƒ^TR_CARD_BADGE_ACT_MAX•ª
+	void *PalDataBuf[TR_CARD_BADGE_ACT_MAX];		//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿TR_CARD_BADGE_ACT_MAXåˆ†
+	NNSG2dPaletteData *PalData[TR_CARD_BADGE_ACT_MAX];	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿TR_CARD_BADGE_ACT_MAXåˆ†
 }TR_CARD_OBJ_WORK;
 
 

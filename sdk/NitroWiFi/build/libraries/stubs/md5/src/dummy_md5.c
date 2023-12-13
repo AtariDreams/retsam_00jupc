@@ -15,14 +15,14 @@
   INDENT SOURCE
 
   Revision 1.1  2005/07/29 05:10:17  terui
-  md5 �v�Z�p API ��MATH �֐��̃��b�p�[�Ƃ��ĐV�K�ǉ��B
+  md5 計算用 API をMATH 関数のラッパーとして新規追加。
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
 
 /*
- * ���L�̂R�̊֐��ɂ��āANitroParty �����̂����߂�̂ŁA
- * �d���Ȃ� inline �ł͂Ȃ����֐����쐬
+ * 下記の３つの関数について、NitroParty が実体を求めるので、
+ * 仕方なく inline ではない実関数を作成
  */
 #include <ninet/nwbase/md5.h>
 

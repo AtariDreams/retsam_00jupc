@@ -27,7 +27,7 @@
 
 
 /* ========================================================================
-    �萔
+    定数
    ======================================================================== */
 
 static const int SEND_RETRY_MAX = 10;
@@ -35,7 +35,7 @@ static const int UIC_WAIT_TIMEOUT_FRAME = 60 * 2;
 
 
 /* ========================================================================
-    �^��`
+    型定義
    ======================================================================== */
 
 typedef struct DefRecvCBInfo DefRecvCBInfo;
@@ -55,20 +55,20 @@ struct NNSiMcsEnsWork
 
 
 /* ========================================================================
-    static�ϐ�
+    static変数
    ======================================================================== */
 
-static NNSiMcsWork*     spMcsWork   = NULL;     // ����������Ă���� NULL �ȊO�ɂȂ�
+static NNSiMcsWork*     spMcsWork   = NULL;     // 初期化されていれば NULL 以外になる
 
 static NNSMcsDeviceCaps sDeviceCaps =
                         {
-                            NITRODEVID_NULL,    // �f�o�C�X����ID
-                            0x00000000,         // ���\�[�X���ʏ��̃t���O
+                            NITRODEVID_NULL,    // デバイス識別ID
+                            0x00000000,         // リソース識別情報のフラグ
                         };
 
 
 /* ========================================================================
-    static�֐�
+    static関数
    ======================================================================== */
 
 static NNS_MCS_INLINE
@@ -109,7 +109,7 @@ min_u32(
 }
 
 /*
-    �`�����l�����w�肵�āANNSMcsRecvCBInfo�ւ̃|�C���^�𓾂�
+    チャンネルを指定して、NNSMcsRecvCBInfoへのポインタを得る
 */
 static NNSMcsRecvCBInfo*
 GetRecvCBInfo(
@@ -179,7 +179,7 @@ CallbackRecvDummy(
     uint32_t    /* recvSize */
 )
 {
-    // �������Ȃ�
+    // 何もしない
 }
 
 static void
@@ -195,7 +195,7 @@ DataRecvCallback(
 
     if (NNS_McsGetRingBufferWritableBytes(cbInfo->ringBuf) < offset + dataSize)
     {
-        // �G���[ - �o�b�t�@���������
+        // エラー - バッファが底をついた
         NNS_WARNING(FALSE, "NNS mcs error : buffer is not enough. writable %d, data size %d, offset %d, total size %d\n",
             NNS_McsGetRingBufferWritableBytes(cbInfo->ringBuf),
             dataSize,
@@ -232,7 +232,7 @@ SetMaskResource(u32 maskResource)
 static void
 WaitSendData(void)
 {
-    NNS_McsPollingIdle();   // PC�����������ݑ҂��Ńu���b�N���Ă��܂�Ȃ��悤�ɂ��Ă���
+    NNS_McsPollingIdle();   // PC側が書き込み待ちでブロックしてしまわないようにしておく
 
     NNSi_McsSleep(8);
 }
@@ -306,11 +306,11 @@ OpenEmulator(NNSMcsDeviceCaps* pCaps)
 static BOOL
 OpenISDevice(NNSMcsDeviceCaps* pCaps)
 {
-    // �f�o�C�X�̗D��x PRIority
+    // デバイスの優先度 PRIority
     enum
     {
-        DEV_PRI_NONE,               // �f�o�C�X�Ȃ�
-        DEV_PRI_UNKNOWN,            // ���m�̃f�o�C�X
+        DEV_PRI_NONE,               // デバイスなし
+        DEV_PRI_UNKNOWN,            // 未知のデバイス
         DEV_PRI_NITRODBG,           // IS-NITRO-DEBUGGER
         DEV_PRI_NITROUIC,           // IS-NITRO-UIC
         DEV_PRI_NITROUSB,           // IS-NITRO-EMULATOR
@@ -336,7 +336,7 @@ OpenISDevice(NNSMcsDeviceCaps* pCaps)
             {
                 findDevPri = DEV_PRI_NITRODBG;
             }
-            else    // IS-NITRO-DEBUGGER �\�t�g�E�F�A����N�����Ă��Ȃ��Ƃ�
+            else    // IS-NITRO-DEBUGGER ソフトウェアから起動していないとき
             {
                 findDevPri = DEV_PRI_NITROUSB;
             }
@@ -357,14 +357,14 @@ OpenISDevice(NNSMcsDeviceCaps* pCaps)
 
     if (devPri == DEV_PRI_NONE || devPri == DEV_PRI_UNKNOWN)
     {
-        OS_Warning("no device.\n");     // �ڑ��\�ȃf�o�C�X��������܂���B
+        OS_Warning("no device.\n");     // 接続可能なデバイスが見つかりません。
         return FALSE;
     }
 
     pNITROCaps = NITROToolAPIGetDeviceCaps(devID);
     if (! NITROToolAPIOpen(pNITROCaps))
     {
-        return FALSE;   // �f�o�C�X�̃I�[�v��&�������Ɏ��s���܂���
+        return FALSE;   // デバイスのオープン&初期化に失敗しました
     }
 
     pCaps->deviceID     = pNITROCaps->m_nDeviceID;
@@ -372,7 +372,7 @@ OpenISDevice(NNSMcsDeviceCaps* pCaps)
     spMcsWork->bLengthEnable = FALSE;
 
     {
-        // �R�[���o�b�N�֐��̓o�^�iWidows���̃A�v���P�[�V��������f�[�^�����M�����΁A���̊֐����Ă΂��j
+        // コールバック関数の登録（Widows側のアプリケーションからデータが送信されれば、この関数が呼ばれる）
         BOOL bSuccess = NITROToolAPISetReceiveStreamCallBackFunction(CallbackRecv, (u32)&spMcsWork->recvCBInfoList);
         NNS_ASSERT(bSuccess);
     }
@@ -392,19 +392,19 @@ CloseEmulator()
 
 
 /* ========================================================================
-    �O���֐�(���J)
+    外部関数(公開)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsInit
 
-  Description:  �f�o�C�X�ƒʐM���邽�߂̏������֐��ł��B
-                NNS_Mcs�֐����g�p����Ƃ��́A
-                �g�p����O�ɕK�����̊֐����Ăяo���Ă����K�v������܂��B
+  Description:  デバイスと通信するための初期化関数です。
+                NNS_Mcs関数を使用するときは、
+                使用する前に必ずこの関数を呼び出しておく必要があります。
 
-  Arguments:    workMem:  MCS���g�p���郏�[�N�p�������B
+  Arguments:    workMem:  MCSが使用するワーク用メモリ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_McsInit(void* workMem)
@@ -418,7 +418,7 @@ NNS_McsInit(void* workMem)
 
     if (! OS_IsRunOnEmulator())
     {
-        NITROToolAPIInit();    // NITRO�Ƃ̒ʐM��������
+        NITROToolAPIInit();    // NITROとの通信を初期化
     }
 
     spMcsWork = (NNSiMcsWork*)workMem;
@@ -434,11 +434,11 @@ NNS_McsInit(void* workMem)
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsGetMaxCaps
 
-  Description:  ���݃^�[�Q�b�g�ɐڑ�����Ă���ʐM�f�o�C�X�̑������擾���܂��B
+  Description:  現在ターゲットに接続されている通信デバイスの総数を取得します。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      ���݃^�[�Q�b�g�ɐڑ�����Ă���ʐM�f�o�C�X�̑�����Ԃ��܂��B
+  Returns:      現在ターゲットに接続されている通信デバイスの総数を返します。
  *---------------------------------------------------------------------------*/
 int
 NNS_McsGetMaxCaps()
@@ -454,7 +454,7 @@ NNS_McsGetMaxCaps()
     }
     else
     {
-        num = NITROToolAPIGetMaxCaps(); // �f�o�C�X�̍ő吔
+        num = NITROToolAPIGetMaxCaps(); // デバイスの最大数
     }
 
     Unlock();
@@ -464,18 +464,18 @@ NNS_McsGetMaxCaps()
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsOpen
 
-  Description:  �f�o�C�X���I�[�v�����A�I�[�v�������f�o�C�X�̏��������Ŏw�肵��
-                �ϐ��֊i�[���܂��B
-                �ڑ�����Ă���f�o�C�X���������݂���Ƃ��́A
-                �ȉ��̏��Ō��������f�o�C�X���I�[�v�����܂��B
+  Description:  デバイスをオープンし、オープンしたデバイスの情報を引数で指定した
+                変数へ格納します。
+                接続されているデバイスが複数存在するときは、
+                以下の順で見つかったデバイスをオープンします。
                   1. IS-NITRO-UIC
                   2. IS-NITRO-EMULATOR
-                  4. ���m�̃f�o�C�X
+                  4. 未知のデバイス
 
-  Arguments:    pCaps:  �ʐM�f�o�C�X�̏����擾���邽�߂̍\���̂ւ̃|�C���^�B
+  Arguments:    pCaps:  通信デバイスの情報を取得するための構造体へのポインタ。
 
-  Returns:      �I�[�v���ɐ��������ꍇ�ATRUE��Ԃ��܂��B
-                ���s�����ꍇ�AFALSE��Ԃ��܂��B
+  Returns:      オープンに成功した場合、TRUEを返します。
+                失敗した場合、FALSEを返します。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_McsOpen(NNSMcsDeviceCaps* pCaps)
@@ -509,12 +509,12 @@ NNS_McsOpen(NNSMcsDeviceCaps* pCaps)
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsClose
 
-  Description:  �I�[�v�����Ă���f�o�C�X���N���[�Y���܂��B
+  Description:  オープンしているデバイスをクローズします。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      �N���[�Y�ɐ��������ꍇ�ATRUE��Ԃ��܂��B
-                ���s�����ꍇ�AFALSE��Ԃ��܂��B
+  Returns:      クローズに成功した場合、TRUEを返します。
+                失敗した場合、FALSEを返します。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_McsClose()
@@ -535,8 +535,8 @@ NNS_McsClose()
 
     if (bSuccess)
     {
-        sDeviceCaps.deviceID = NITRODEVID_NULL; // �f�o�C�X����ID�̏�����
-        SetMaskResource(0x00000000);            // ���\�[�X���ʏ��̃t���O������
+        sDeviceCaps.deviceID = NITRODEVID_NULL; // デバイス識別IDの初期化
+        SetMaskResource(0x00000000);            // リソース識別情報のフラグ初期化
     }
 
     Unlock();
@@ -546,18 +546,18 @@ NNS_McsClose()
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsRegisterRecvCallback
 
-  Description:  �f�[�^����M�����Ƃ��ɃR�[���o�b�N�����֐���o�^���܂��B
+  Description:  データを受信したときにコールバックされる関数を登録します。
 
-                �o�^����R�[���o�b�N�֐����ł̓f�[�^�̑���M���s��Ȃ��ł��������B
-                �܂��A���荞�݂��֎~����Ă���ꍇ�����邽�߁A
-                ���荞�ݑ҂����[�v���s��Ȃ��ł��������B
+                登録するコールバック関数内ではデータの送受信を行わないでください。
+                また、割り込みが禁止されている場合があるため、
+                割り込み待ちループも行わないでください。
 
-  Arguments:    pInfo:     �R�[���o�b�N�֐��̏���ێ�����\���̂ւ̃|�C���^�B
-                channel:   ���[�U�[�C�ӂɌ��߂�ꂽ�f�[�^���M�̎��ʗp�̒l�B
-                cbFunc:    �o�^����R�[���o�b�N�֐��B
-                userData:  ���[�U�[�C�ӂ̒l�B
+  Arguments:    pInfo:     コールバック関数の情報を保持する構造体へのポインタ。
+                channel:   ユーザー任意に決められたデータ送信の識別用の値。
+                cbFunc:    登録するコールバック関数。
+                userData:  ユーザー任意の値。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_McsRegisterRecvCallback(
@@ -570,7 +570,7 @@ NNS_McsRegisterRecvCallback(
     NNS_ASSERT(IsInitialized());
     Lock();
 
-    NNS_ASSERT(NULL == GetRecvCBInfo(&spMcsWork->recvCBInfoList, channel));   // ���ɓ����`�����l�����g�p���Ă�����̂���������
+    NNS_ASSERT(NULL == GetRecvCBInfo(&spMcsWork->recvCBInfoList, channel));   // 既に同じチャンネルを使用しているものが無いこと
 
     pInfo->channel  = channel;
     pInfo->cbFunc   = cbFunc;
@@ -584,22 +584,22 @@ NNS_McsRegisterRecvCallback(
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsRegisterStreamRecvBuffer
 
-  Description:  �f�[�^��M�p�̃o�b�t�@��o�^���܂��B
-                �����ŁA�֐�NNS_McsRegisterRecvCallback()���Ăяo�����߁A
-                �f�[�^��M�̃R�[���o�b�N�Ɠ����Ɏg�p�ł��܂���B
-                �w�肵���o�b�t�@�ɓ����Ŏg�p���邽�߂̏��G���A���m�ۂ��܂��B
-                ���̂��߁A�o�b�t�@�̃T�C�Y�͏��Ȃ��Ƃ�48�ȏ�ł���K�v������܂��B
+  Description:  データ受信用のバッファを登録します。
+                内部で、関数NNS_McsRegisterRecvCallback()を呼び出すため、
+                データ受信のコールバックと同時に使用できません。
+                指定したバッファに内部で使用するための情報エリアを確保します。
+                そのため、バッファのサイズは少なくとも48以上である必要があります。
 
-                ��M�p�o�b�t�@����M�f�[�^�ň�t�ɂȂ�A�V�K�Ɏ�M�����f�[�^���i�[����
-                �����̋󂫗e�ʂ������ꍇ�́A���̎�M�f�[�^�͎̂Ă��܂��B
-                �]���āA�ʐM�Ŏg�p����f�[�^�ʂɍ��킹�ăo�b�t�@�T�C�Y���\���ȑ傫����
-                �ݒ肷��K�v������܂��B
+                受信用バッファが受信データで一杯になり、新規に受信したデータを格納する
+                だけの空き容量が無い場合は、その受信データは捨てられます。
+                従って、通信で使用するデータ量に合わせてバッファサイズを十分な大きさに
+                設定する必要があります。
 
-  Arguments:    channel:   ���[�U�[�C�ӂɌ��߂�ꂽ�f�[�^���M�̎��ʗp�̒l�B
-                buf:       �o�^�����M�p�o�b�t�@�B
-                bufSize:   �o�^�����M�p�o�b�t�@�̃T�C�Y�B
+  Arguments:    channel:   ユーザー任意に決められたデータ送信の識別用の値。
+                buf:       登録する受信用バッファ。
+                bufSize:   登録する受信用バッファのサイズ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_McsRegisterStreamRecvBuffer(
@@ -643,13 +643,13 @@ NNS_McsRegisterStreamRecvBuffer(
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsUnregisterRecvResource
 
-  Description:  NNS_McsRegisterRecvCallback()�œo�^������M�p�R�[���o�b�N�֐��A
-                ���邢��NNS_McsRegisterStreamRecvBuffer()�œo�^������M�p�o�b�t�@��
-                �o�^���������܂��B
+  Description:  NNS_McsRegisterRecvCallback()で登録した受信用コールバック関数、
+                あるいはNNS_McsRegisterStreamRecvBuffer()で登録した受信用バッファの
+                登録を解除します。
 
-  Arguments:    channel:  �R�[���o�b�N�֐���o�b�t�@��o�^����Ƃ��Ɏw�肵���l�B
+  Arguments:    channel:  コールバック関数やバッファを登録するときに指定した値。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_McsUnregisterRecvResource(u16 channel)
@@ -670,12 +670,12 @@ NNS_McsUnregisterRecvResource(u16 channel)
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsGetStreamReadableSize
 
-  Description:  ��x�̊֐�NNS_McsReadStream()�Ăяo���œǂݍ��߂�f�[�^�̃T�C�Y��
-                �擾���܂��B
+  Description:  一度の関数NNS_McsReadStream()呼び出しで読み込めるデータのサイズを
+                取得します。
 
-  Arguments:    channel:    �f�[�^��M�̎��ʗp�̒l�B���[�U�[�C�ӂɌ��߂��܂��B
+  Arguments:    channel:    データ受信の識別用の値。ユーザー任意に決められます。
 
-  Returns:      �ǂݍ��݉\�ȃf�[�^�̃T�C�Y��Ԃ��܂��B
+  Returns:      読み込み可能なデータのサイズを返します。
  *---------------------------------------------------------------------------*/
 u32
 NNS_McsGetStreamReadableSize(u16 channel)
@@ -700,11 +700,11 @@ NNS_McsGetStreamReadableSize(u16 channel)
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsGetTotalStreamReadableSize
 
-  Description:  ��M�p�o�b�t�@�ɂ���ǂݍ��݉\�ȃf�[�^�̃T�C�Y�̍��v���擾���܂��B
+  Description:  受信用バッファにある読み込み可能なデータのサイズの合計を取得します。
 
-  Arguments:    channel:    �f�[�^��M�̎��ʗp�̒l�B���[�U�[�C�ӂɌ��߂��܂��B
+  Arguments:    channel:    データ受信の識別用の値。ユーザー任意に決められます。
 
-  Returns:      �f�[�^�̃T�C�Y�̍��v��Ԃ��܂��B
+  Returns:      データのサイズの合計を返します。
  *---------------------------------------------------------------------------*/
 u32
 NNS_McsGetTotalStreamReadableSize(u16 channel)
@@ -730,18 +730,18 @@ NNS_McsGetTotalStreamReadableSize(u16 channel)
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsReadStream
 
-  Description:  �f�[�^�̎�M���s���܂��B
+  Description:  データの受信を行います。
 
-                ��M�����f�[�^�̒�����size�Ŏw�肵���o�b�t�@�T�C�Y���傫���ꍇ�́A
-                size�Ŏw�肵�����̂݃f�[�^��ǂݍ��݂܂��B���̂Ƃ��̖߂�l�� FALSE
-                �ɂȂ�܂��B�c��̃T�C�Y�́ANNS_McsGetStreamReadableSize()�ŋ��߂��܂��B
+                受信したデータの長さがsizeで指定したバッファサイズより大きい場合は、
+                sizeで指定した分のみデータを読み込みます。このときの戻り値は FALSE
+                になります。残りのサイズは、NNS_McsGetStreamReadableSize()で求められます。
 
-  Arguments:    channel:    �f�[�^��M�̎��ʗp�̒l�B���[�U�[�C�ӂɌ��߂��܂��B
-                data:       �ǂݍ��ރf�[�^���i�[����o�b�t�@�ւ̃|�C���^�B
-                size:       �ǂݍ��ރf�[�^���i�[����o�b�t�@�̃T�C�Y�B
-                pReadSize:  ���ۂɓǂݍ��܂ꂽ�f�[�^�̃T�C�Y�B
+  Arguments:    channel:    データ受信の識別用の値。ユーザー任意に決められます。
+                data:       読み込むデータを格納するバッファへのポインタ。
+                size:       読み込むデータを格納するバッファのサイズ。
+                pReadSize:  実際に読み込まれたデータのサイズ。
 
-  Returns:      �֐������������ꍇ�� TRUE�A���s�����ꍇ�� FALSE ��Ԃ��܂��B
+  Returns:      関数が成功した場合は TRUE、失敗した場合は FALSE を返します。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_McsReadStream(
@@ -771,12 +771,12 @@ NNS_McsReadStream(
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsGetStreamWritableLength
 
-  Description:  �f�[�^���M���邽�߂̃o�b�t�@�̍ő咷���擾���܂��B
-                ���̒����ȏ�͑��M�ł��܂���B
+  Description:  データ送信するためのバッファの最大長を取得します。
+                この長さ以上は送信できません。
 
-  Arguments:    pLength:  �f�[�^���M�o�b�t�@�̒���������ϐ��ւ̃|�C���^�B
+  Arguments:    pLength:  データ送信バッファの長さを入れる変数へのポインタ。
 
-  Returns:      �֐������������ꍇ�� TRUE�A���s�����ꍇ�� FALSE ���Ԃ�܂��B
+  Returns:      関数が成功した場合は TRUE、失敗した場合は FALSE が返ります。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_McsGetStreamWritableLength(u32* pLength)
@@ -796,7 +796,7 @@ NNS_McsGetStreamWritableLength(u32* pLength)
     {
         u32 i;
 
-        // UIC�̏ꍇ�́A�f�o�C�X�I�[�v�����Ƃ̐��\�~���b�Ԃ�0��Ԃ��Ă���
+        // UICの場合は、デバイスオープンあとの数十ミリ秒間は0を返してくる
         for (i = 0; i < UIC_WAIT_TIMEOUT_FRAME; ++i)
         {
             ret = 0 != NITROToolAPIStreamGetWritableLength(&length);
@@ -841,13 +841,13 @@ NNS_McsGetStreamWritableLength(u32* pLength)
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsWriteStream
 
-  Description:  �f�[�^�̑��M���s���܂��B
+  Description:  データの送信を行います。
 
-  Arguments:    channel:  �f�[�^���M�̎��ʗp�̒l�B���[�U�[�C�ӂɌ��߂��܂��B
-                data:     ���M����f�[�^���i�[����o�b�t�@�ւ̃|�C���^�B
-                size:     ���M����f�[�^�̃T�C�Y�B
+  Arguments:    channel:  データ送信の識別用の値。ユーザー任意に決められます。
+                data:     送信するデータを格納するバッファへのポインタ。
+                size:     送信するデータのサイズ。
 
-  Returns:      �֐������������ꍇ�� TRUE�A���s�����ꍇ�� FALSE ���Ԃ�܂��B
+  Returns:      関数が成功した場合は TRUE、失敗した場合は FALSE が返ります。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_McsWriteStream(
@@ -870,7 +870,7 @@ NNS_McsWriteStream(
         const u32 restSize = size - offset;
         u32 length;
 
-        if (! NNS_McsGetStreamWritableLength(&length))  // 1�x�ɏ������݉\�ȃT�C�Y���擾
+        if (! NNS_McsGetStreamWritableLength(&length))  // 1度に書き込み可能なサイズを取得
         {
             break;
         }
@@ -882,7 +882,7 @@ NNS_McsWriteStream(
                 NNS_WARNING(FALSE, "NNS Mcs error: send time out writable bytes %d, rest bytes %d\n", length, restSize);
                 break;
             }
-            WaitSendData(); // �������݂ł���悤�ɂȂ�܂ő҂�
+            WaitSendData(); // 書き込みできるようになるまで待つ
         }
         else
         {
@@ -932,17 +932,17 @@ NNS_McsWriteStream(
     }
 
     Unlock();
-    return offset == size;  // �Ō�܂ŏ������߂���^��Ԃ�
+    return offset == size;  // 最後まで書き込めたら真を返す
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsClearBuffer
 
-  Description:  �ʐM�p�̃o�b�t�@�̓��e��j�����܂��B
+  Description:  通信用のバッファの内容を破棄します。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_McsClearBuffer()
@@ -961,13 +961,13 @@ NNS_McsClearBuffer()
         }
         else
         {
-            // �_�~�[�̃R�[���o�b�N�֐���o�^
+            // ダミーのコールバック関数を登録
             BOOL bSuccess = NITROToolAPISetReceiveStreamCallBackFunction(CallbackRecvDummy, 0);
             NNS_ASSERT(bSuccess);
 
             NITROToolAPIPollingIdle();
 
-            // �{���̃R�[���o�b�N�֐����ēo�^
+            // 本来のコールバック関数を再登録
             bSuccess = NITROToolAPISetReceiveStreamCallBackFunction(CallbackRecv, (u32)&spMcsWork->recvCBInfoList);
             NNS_ASSERT(bSuccess);
         }
@@ -975,7 +975,7 @@ NNS_McsClearBuffer()
 
     while (NULL != (pInfo = NNS_FndGetNextListObject(&spMcsWork->recvCBInfoList, pInfo)))
     {
-        if (pInfo->cbFunc == DataRecvCallback)  // �����O�o�b�t�@���g�p���Ă������
+        if (pInfo->cbFunc == DataRecvCallback)  // リングバッファを使用しているもの
         {
             DefRecvCBInfo* pDefCBInfo = (DefRecvCBInfo*)pInfo->userData;
             NNS_McsClearRingBuffer(pDefCBInfo->ringBuf);
@@ -988,13 +988,13 @@ NNS_McsClearBuffer()
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsIsServerConnect
 
-  Description:  mcs�T�[�o��NITRO�n�[�h�E�F�A�ɑ΂��Đڑ����Ă��邩
-                �ؒf���Ă��邩�̏�Ԃ�Ԃ��B
+  Description:  mcsサーバがNITROハードウェアに対して接続しているか
+                切断しているかの状態を返す。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      mcs�T�[�o��NITRO�n�[�h�E�F�A�ɐڑ����ɗ��Ă�����^�A
-                �ؒf���悤�Ƃ��Ă�����U��Ԃ��B
+  Returns:      mcsサーバがNITROハードウェアに接続しに来ていたら真、
+                切断しようとしていたら偽を返す。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_McsIsServerConnect()
@@ -1015,11 +1015,11 @@ NNS_McsIsServerConnect()
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsPollingIdle
 
-  Description:  ���C�����[�v���ł��̊֐����Ăяo���Ă��������B
+  Description:  メインループ内でこの関数を呼び出してください。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_McsPollingIdle()
@@ -1054,16 +1054,16 @@ NNS_McsPollingIdle()
 
         if (spMcsWork->bProtocolError)
         {
-            const u32 data = TRUE;  // �ڑ�
+            const u32 data = TRUE;  // 接続
             u32 length;
             if ( NNS_McsGetStreamWritableLength(&length)
               || sizeof(data) <= length
             )
             {
-                // NITRO���̃w�b�_�o�[�W������`���邽�߂Ƀ��b�Z�[�W���M
+                // NITRO側のヘッダバージョンを伝えるためにメッセージ送信
                 if (NNS_McsWriteStream(NNSi_MCS_SYSMSG_CHANNEL, &data, sizeof(data)))
                 {
-                    // �������߂���ANITRO���͒�~���Ă���
+                    // 書き込めたら、NITRO側は停止しておく
                     OS_Panic("mcs message version error.\n");
                 }
             }
@@ -1076,11 +1076,11 @@ NNS_McsPollingIdle()
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsVBlankInterrupt
 
-  Description:  VBlank���荞�݃n���h�����ł��̊֐����Ăяo���Ă��������B
+  Description:  VBlank割り込みハンドラ内でこの関数を呼び出してください。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_McsVBlankInterrupt()
@@ -1094,11 +1094,11 @@ NNS_McsVBlankInterrupt()
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsCartridgeInterrupt
 
-  Description:  �J�[�g���b�W���荞�݃n���h�����ł��̊֐����Ăяo���Ă��������B
+  Description:  カートリッジ割り込みハンドラ内でこの関数を呼び出してください。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_McsCartridgeInterrupt()

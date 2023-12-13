@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_280.s
- *@brief	戦闘シーケンス
- *			AttackClientとDefenceClientの復帰
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			AttackClient縺ｨDefenceClient縺ｮ蠕ｩ蟶ｰ
  *@author	HisashiSogabe
  *@data		2006.07.01
  *

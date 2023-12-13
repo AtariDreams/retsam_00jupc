@@ -1,7 +1,7 @@
 #ifndef _TRAINER_DEF_H_
 #define _TRAINER_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_TANPAN_01		(3000)
 #define	SCRID_TANPAN_01_2	(5000)
 #define	SCRID_TANPAN_02		(3001)
@@ -1860,6 +1860,6 @@
 #define	SCRID_TRAINER_TALK_BATTLE_2	(5927)
 #define	SCRID_TRAINER_MOVE_BATTLE		(3928)
 #define	SCRID_TRAINER_MOVE_BATTLE_2	(5928)
-#define	SCRID_TRAINER_DATA_MAX		(929)		//最大数
+#define	SCRID_TRAINER_DATA_MAX		(929)		//譛螟ｧ謨ｰ
 
 #endif //_TRAINER_DEF_H_

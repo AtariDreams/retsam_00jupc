@@ -1,6 +1,6 @@
 <HTML>
   <HEAD>
-    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <META http-equiv="Content-Style-Type" content="text/css">
     <TITLE>DWC_SetOwnStatusData</TITLE>
     <LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
   <BODY>
     <H1>DWC_SetOwnStatusData</H1>
 
-    <H2>�\��</H2>
+    <H2>構文</H2>
     <DL>
       <DD>
         <PRE><CODE>#include &lt;dwc.h&gt;
@@ -18,58 +18,58 @@ BOOL DWC_SetOwnStatusData( const char* statusData, u32 size );</CODE></PRE>
       </DD>
     </DL>
 
-    <H2>����</H2>
+    <H2>説明</H2>
 	<P>
-      �����̒ʐM��Ԃ̂����Astatus�f�[�^���Z�b�g���܂��B
+      自分の通信状態のうち、statusデータをセットします。
 	</P>
 	<P>
-	  �v���C���[�̒ʐM��Ԃ́A�v���C���[�̃I�����C���A�I�t���C�����̏�Ԃ�\��status�t���O�ƁA�A�v���P�[�V�������ݒ�ł���status�����񂩂琬���Ă���AGameSpy�T�[�o��ŊǗ�����Ă��܂��B
-	  �{�֐��ł́AstatusData�Ŏw�肳�ꂽ�o�C�i���f�[�^�istatus�f�[�^�ƌĂт܂��j��Base64�ŃG���R�[�h���Astatus������Ƃ���GameSpy�T�[�o�ɑ��M���Ă��܂��B
-	  status�t���O�̎�ʂɂ��Ă�<a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>�֐��̕Ԃ�l�̗����Q�Ƃ��Ă��������B
+	  プレイヤーの通信状態は、プレイヤーのオンライン、オフライン等の状態を表すstatusフラグと、アプリケーションが設定できるstatus文字列から成っており、GameSpyサーバ上で管理されています。
+	  本関数では、statusDataで指定されたバイナリデータ（statusデータと呼びます）をBase64でエンコードし、status文字列としてGameSpyサーバに送信しています。
+	  statusフラグの種別については<a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>関数の返り値の欄を参照してください。
 	</P>
 	<P>
-	  ���̊֐����g�����߂ɂ́A<A href="DWC_LoginAsync.html">DWC_LoginAsync</A>�֐��ɂ�郍�O�C���܂ł����������Ă����K�v������܂��B
+	  この関数を使うためには、<A href="DWC_LoginAsync.html">DWC_LoginAsync</A>関数によるログインまでを完了させておく必要があります。
 	</P>
 	<P>
-      �Z�b�g���ꂽ�f�[�^�́A���̃z�X�g����<a href="DWC_GetFriendStatusData.html">DWC_GetFriendStatusData</a>*�֐��Ŏ擾���邱�Ƃ��ł��܂��B
+      セットされたデータは、他のホストから<a href="DWC_GetFriendStatusData.html">DWC_GetFriendStatusData</a>*関数で取得することができます。
     </P>
 	<P>
-	  �o�C�i���f�[�^�ł͂Ȃ���������Z�b�g�������ꍇ�́A<a href="DWC_SetOwnStatusString.html">DWC_SetOwnStatusString</a>�֐����g�p���Ă��������B
+	  バイナリデータではなく文字列をセットしたい場合は、<a href="DWC_SetOwnStatusString.html">DWC_SetOwnStatusString</a>関数を使用してください。
 	</P>
     <P>
-      �Z�b�g���ꂽ������́A<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>�֐����Ăяo�������ɃN���A����܂��B
+      セットされた文字列は、<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>関数を呼び出した時にクリアされます。
     </P>
 
-    <H2>����</H2>
+    <H2>引数</H2>
     <TABLE border="1">
       <TBODY>
         <TR>
           <TD width="25%"><EM><STRONG><CODE>statusData</CODE></STRONG></EM></TD>
-          <TD>status�f�[�^�ɃZ�b�g����o�C�i���f�[�^�ւ̃|�C���^�B</TD>
+          <TD>statusデータにセットするバイナリデータへのポインタ。</TD>
         </TR>
         <TR>
           <TD width="25%"><EM><STRONG><CODE>size</CODE></STRONG></EM></TD>
-          <TD>�o�C�i���f�[�^�̃T�C�Y�B�ő�e�ʂ�189Byte�܂ŁB</TD>
+          <TD>バイナリデータのサイズ。最大容量は189Byteまで。</TD>
         </TR>
       </TBODY>
     </TABLE>
 
 
-    <H2>�Ԃ�l</H2>
+    <H2>返り値</H2>
     <TABLE border="1">
       <TBODY>
         <TR>
           <TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
-          <TD>�Z�b�g����</TD>
+          <TD>セット成功</TD>
         </TR>
         <TR>
           <TD width="25%"><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
-          <TD>���O�C���O�A�e�ʃI�[�o�[�ȂǂŃZ�b�g���s</TD>
+          <TD>ログイン前、容量オーバーなどでセット失敗</TD>
         </TR>
       </TBODY>
     </TABLE>
 
-    <H2>�Q��</H2>
+    <H2>参照</H2>
     <P>
       <code>
         <a href="DWC_GetFriendStatusData.html">DWC_GetFriendStatusData</a>,
@@ -79,10 +79,10 @@ BOOL DWC_SetOwnStatusData( const char* statusData, u32 size );</CODE></PRE>
       </code>
     </P>
 
-    <H2>����</H2>
+    <H2>履歴</H2>
     <P>
-	  2005/12/16 �ʐM��Ԃɂ��Ă̐����A���ގ��֐��̏Љ�Astatus�f�[�^�̃T�C�Y����̐����Ȃǂ�ǉ��B<BR>
-      2005/11/07 ����<BR>
+	  2005/12/16 通信状態についての説明、他類似関数の紹介、statusデータのサイズ上限の説明などを追加。<BR>
+      2005/11/07 初版<BR>
     </P>
 
   </BODY>

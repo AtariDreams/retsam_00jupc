@@ -12,116 +12,116 @@
 
   $Log: dwc_error.h,v $
   Revision 1.38  2007/04/06 13:02:13  takayama
-  •s³•¶Žš—ñƒ`ƒFƒbƒN‹@”\‚ÌƒGƒ‰[’è‹`‚ðŒ©’¼‚µB
+  ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯æ©Ÿèƒ½ã®ã‚¨ãƒ©ãƒ¼å®šç¾©ã‚’è¦‹ç›´ã—ã€‚
 
   Revision 1.37  2007/03/28 09:43:46  nakata
-  DWC_ECODE_TYPE_PROF‚ÉŠÖ‚·‚éC³B
+  DWC_ECODE_TYPE_PROFã«é–¢ã™ã‚‹ä¿®æ­£ã€‚
 
   Revision 1.36  2006/06/22 02:03:17  nakata
-  ƒ_ƒEƒ“ƒ[ƒhƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒoƒbƒtƒ@•s‘«ƒGƒ‰[‚ðŽæ‚èœ‚¢‚½B(DWCError‚ÌŽí—Þ‚ð‘‚â‚µ‚½‚­‚È‚¢‚½‚ß)
+  ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒãƒƒãƒ•ã‚¡ä¸è¶³ã‚¨ãƒ©ãƒ¼ã‚’å–ã‚Šé™¤ã„ãŸã€‚(DWCErrorã®ç¨®é¡žã‚’å¢—ã‚„ã—ãŸããªã„ãŸã‚)
 
   Revision 1.35  2006/06/22 00:49:17  nakata
-  ƒ_ƒEƒ“ƒ[ƒhƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒoƒbƒtƒ@•s‘«ƒGƒ‰[‚ð’Ç‰Á
+  ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒãƒƒãƒ•ã‚¡ä¸è¶³ã‚¨ãƒ©ãƒ¼ã‚’è¿½åŠ 
 
   Revision 1.34  2006/06/01 04:48:49  takayama
-  ƒRƒ“ƒpƒCƒ‹Žž‚Éƒ[ƒjƒ“ƒO‚ªo‚é–â‘è‚ðC³B
+  ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ™‚ã«ãƒ¯ãƒ¼ãƒ‹ãƒ³ã‚°ãŒå‡ºã‚‹å•é¡Œã‚’ä¿®æ­£ã€‚
 
   Revision 1.33  2006/05/29 01:00:42  nakata
-  DWC_NdŠÖ˜A‚Å•K—v‚Ì‚È‚¢ƒGƒ‰[ƒR[ƒh‚ðíœ
+  DWC_Ndé–¢é€£ã§å¿…è¦ã®ãªã„ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å‰Šé™¤
 
   Revision 1.32  2006/05/25 09:06:53  nakata
-  DWC_ERROR_SVL_HTTP‚ð’Ç‰Á
+  DWC_ERROR_SVL_HTTPã‚’è¿½åŠ 
 
   Revision 1.31  2006/05/25 09:05:36  takayama
-  GHTTPƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[‚ðFriendsMatchƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[‚Æ•ª‚¯‚ÄA“Æ—§«‚ð
-  ‚‚ß‚½B
+  GHTTPãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼ã‚’FriendsMatchãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼ã¨åˆ†ã‘ã¦ã€ç‹¬ç«‹æ€§ã‚’
+  é«˜ã‚ãŸã€‚
 
   Revision 1.30  2006/05/25 05:09:50  nakata
-  DWC_Nd/DWC_SVL‚ÉDWCƒGƒ‰[‚ð•Ô‚·‹@”\‚ð’Ç‰Á‚µ‚½‚±‚Æ‚É”º‚¤•ÏX
+  DWC_Nd/DWC_SVLã«DWCã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™æ©Ÿèƒ½ã‚’è¿½åŠ ã—ãŸã“ã¨ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.29  2006/05/17 00:50:34  nakata
-  DWC_Nd—pƒGƒ‰[’è”–¼‚Ì•ÏX
+  DWC_Ndç”¨ã‚¨ãƒ©ãƒ¼å®šæ•°åã®å¤‰æ›´
 
   Revision 1.28  2006/04/28 12:25:13  nakata
-  ’è”–¼•ÏX‚É”º‚¤C³
+  å®šæ•°åå¤‰æ›´ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.27  2006/04/28 08:16:51  nakata
-  NdƒT[ƒoƒGƒ‰[—p”Ô†‚ðíœ(•K—v‚ª‚È‚­‚È‚Á‚½)
+  Ndã‚µãƒ¼ãƒã‚¨ãƒ©ãƒ¼ç”¨ç•ªå·ã‚’å‰Šé™¤(å¿…è¦ãŒãªããªã£ãŸ)
 
   Revision 1.26  2006/04/27 07:33:04  nakata
-  Ndƒ‰ƒCƒuƒ‰ƒŠŒü‚¯UNKNOWNƒGƒ‰[ƒR[ƒh‚ð•ÏX
+  Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªå‘ã‘UNKNOWNã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å¤‰æ›´
 
   Revision 1.25  2006/04/27 05:15:25  nakata
-  Ndƒ‰ƒCƒuƒ‰ƒŠ—p‚ÌƒGƒ‰[ƒR[ƒh‚ð’Ç‰Á
+  Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 
   Revision 1.24  2006/04/26 10:52:17  nakata
-  Šg’£‹@”\—p‚ÌƒGƒ‰[ƒR[ƒh‚ð’Ç‰Á
+  æ‹¡å¼µæ©Ÿèƒ½ç”¨ã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 
   Revision 1.23  2006/01/23 04:50:43  arakit
-  “ˆê—pŒê‚É‡‚í‚¹‚ÄƒRƒƒ“ƒg‚ðC³
+  çµ±ä¸€ç”¨èªžã«åˆã‚ã›ã¦ã‚³ãƒ¡ãƒ³ãƒˆã‚’ä¿®æ­£
 
   Revision 1.22  2005/12/26 23:59:55  arakit
-  ƒRƒƒ“ƒg‚ÌŠÔˆá‚¢‚ðC³
+  ã‚³ãƒ¡ãƒ³ãƒˆã®é–“é•ã„ã‚’ä¿®æ­£
 
   Revision 1.21  2005/10/24 12:14:49  arakit
-  ƒT[ƒoƒNƒ‰ƒCƒAƒ“ƒgŒ^ƒ}ƒbƒ`ƒ“ƒO‚ÅAƒT[ƒo‚ª’èˆõƒI[ƒo[‚Å‚ ‚é‚Æ‚¢‚¤ƒGƒ‰[
-  DWC_ERROR_SERVER_FULL‚ð’Ç‰Á‚µ‚½B
+  ã‚µãƒ¼ãƒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆåž‹ãƒžãƒƒãƒãƒ³ã‚°ã§ã€ã‚µãƒ¼ãƒãŒå®šå“¡ã‚ªãƒ¼ãƒãƒ¼ã§ã‚ã‚‹ã¨ã„ã†ã‚¨ãƒ©ãƒ¼
+  DWC_ERROR_SERVER_FULLã‚’è¿½åŠ ã—ãŸã€‚
 
   Revision 1.20  2005/10/20 09:59:45  sasakit
-  GT2ŠÖŒW‚ÌƒGƒ‰[‚ð’Ç‰ÁB
+  GT2é–¢ä¿‚ã®ã‚¨ãƒ©ãƒ¼ã‚’è¿½åŠ ã€‚
 
   Revision 1.19  2005/10/14 07:43:23  onozawa
-  ghttp—p‚ÌƒGƒ‰[ƒR[ƒh‚ð’Ç‰Á
+  ghttpç”¨ã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 
   Revision 1.18  2005/10/14 06:58:31  arakit
-  ghttp—p‚ÌƒGƒ‰[ƒR[ƒh‚ð‚³‚ç‚É’Ç‰Á
+  ghttpç”¨ã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’ã•ã‚‰ã«è¿½åŠ 
 
   Revision 1.17  2005/10/14 06:41:37  arakit
-  ghttp—p‚ÌƒGƒ‰[ƒR[ƒh‚ð’Ç‰Á
+  ghttpç”¨ã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 
   Revision 1.16  2005/10/11 04:08:18  arakit
-  ƒGƒ‰[ˆ—ƒ^ƒCƒv‚àŽæ“¾‚Å‚«‚éŠÖ”DWC_GetLastErrorEx()‚ð’Ç‰Á‚µ‚½B
+  ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚¿ã‚¤ãƒ—ã‚‚å–å¾—ã§ãã‚‹é–¢æ•°DWC_GetLastErrorEx()ã‚’è¿½åŠ ã—ãŸã€‚
 
   Revision 1.15  2005/10/05 08:29:43  arakit
-  ƒT[ƒoƒNƒ‰ƒCƒAƒ“ƒgƒ}ƒbƒ`ƒ“ƒOŽž‚ÉAƒ}ƒbƒ`ƒ“ƒOŠ®—¹ŒãAƒ}ƒbƒ`ƒ“ƒO‚ðƒuƒƒbƒN‚µAƒuƒƒbƒN‚³‚ê‚½
-  ƒNƒ‰ƒCƒAƒ“ƒg‚ÉAê—p‚ÌƒGƒ‰[‚ð•Ô‚·ƒ}ƒbƒ`ƒ“ƒOƒIƒvƒVƒ‡ƒ“‚ð’Ç‰Á‚µ‚½B
+  ã‚µãƒ¼ãƒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒžãƒƒãƒãƒ³ã‚°æ™‚ã«ã€ãƒžãƒƒãƒãƒ³ã‚°å®Œäº†å¾Œã€ãƒžãƒƒãƒãƒ³ã‚°ã‚’ãƒ–ãƒ­ãƒƒã‚¯ã—ã€ãƒ–ãƒ­ãƒƒã‚¯ã•ã‚ŒãŸ
+  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«ã€å°‚ç”¨ã®ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™ãƒžãƒƒãƒãƒ³ã‚°ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ ã—ãŸã€‚
 
   Revision 1.14  2005/10/03 05:06:49  arakit
-  DWC_ECODE_SEQ_TRANSPORT‚ðDWC_ECODE_SEQ_ETC‚É•ÏX‚µ‚½B
+  DWC_ECODE_SEQ_TRANSPORTã‚’DWC_ECODE_SEQ_ETCã«å¤‰æ›´ã—ãŸã€‚
 
   Revision 1.13  2005/09/30 02:49:04  arakit
-  ƒT[ƒoƒNƒ‰ƒCƒAƒ“ƒgŒ^‚ÌÚ‘±Ž¸”sƒGƒ‰[ƒR[ƒh‚ð’Ç‰Á‚µ‚½B
+  ã‚µãƒ¼ãƒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆåž‹ã®æŽ¥ç¶šå¤±æ•—ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã—ãŸã€‚
 
   Revision 1.12  2005/09/28 12:40:54  arakit
-  NATƒlƒSƒVƒG[ƒVƒ‡ƒ“‹K’è‰ñ”Ž¸”s‚ÌƒGƒ‰[‚ð’Ç‰Á‚µ‚½B
+  NATãƒã‚´ã‚·ã‚¨ãƒ¼ã‚·ãƒ§ãƒ³è¦å®šå›žæ•°å¤±æ•—ã®ã‚¨ãƒ©ãƒ¼ã‚’è¿½åŠ ã—ãŸã€‚
 
   Revision 1.11  2005/09/24 12:57:10  arakit
-  ƒRƒlƒNƒVƒ‡ƒ“”ƒI[ƒo‚ÌƒGƒ‰[‚ð’Ç‰Á‚µ‚½B
+  ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³æ•°ã‚ªãƒ¼ãƒã®ã‚¨ãƒ©ãƒ¼ã‚’è¿½åŠ ã—ãŸã€‚
 
   Revision 1.10  2005/09/13 07:35:19  sasakit
-  ƒGƒ‰[ƒXƒe[ƒg‚ÉDWC_ERROR_DISCONNECTED‚ð’Ç‰ÁB
+  ã‚¨ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã«DWC_ERROR_DISCONNECTEDã‚’è¿½åŠ ã€‚
 
   Revision 1.9  2005/09/06 09:12:38  sasakit
-  ConnectInetŽž‚ÌƒGƒ‰[‚Ìˆ—‚ð’Ç‰ÁB
+  ConnectInetæ™‚ã®ã‚¨ãƒ©ãƒ¼ã®å‡¦ç†ã‚’è¿½åŠ ã€‚
 
   Revision 1.8  2005/09/01 12:15:16  arakit
-  ƒGƒ‰[‚ÌƒRƒƒ“ƒg‚ðC³
+  ã‚¨ãƒ©ãƒ¼ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚’ä¿®æ­£
 
   Revision 1.7  2005/08/29 06:34:51  arakit
-  gt2‚ÌsocketErrorCallbackŠÖ”‚ðì¬‚µ‚½B
+  gt2ã®socketErrorCallbacké–¢æ•°ã‚’ä½œæˆã—ãŸã€‚
 
   Revision 1.6  2005/08/26 08:15:22  arakit
-  EASSERT‚Æƒ‚ƒWƒ…[ƒ‹§Œä•Ï”‚Ìƒ`ƒFƒbƒN‚ð®—‚µ‚½B
-  EŠO•”ŠÖ”DWC_ShutdownFriendsMatch()‚Ìˆø”‚ð‚Æ‚ç‚È‚¢‚æ‚¤‚É•ÏX‚µ‚½B
-  ‚Ü‚½A“¯ŠÖ”‚©‚çŠeƒ‚ƒWƒ…[ƒ‹‚Ì§Œä•Ï”‚ðNULLƒNƒŠƒA‚·‚é‚æ‚¤‚É‚µ‚½B
-  EƒGƒ‰[ˆ—ŠÖ”‚ð•ÏX‚µAƒGƒ‰[ƒZƒbƒgAƒGƒ‰[ƒ`ƒFƒbƒN‚ð•K—v‚È‰ÓŠ‚É“ü‚ê‚½B
+  ãƒ»ASSERTã¨ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åˆ¶å¾¡å¤‰æ•°ã®ãƒã‚§ãƒƒã‚¯ã‚’æ•´ç†ã—ãŸã€‚
+  ãƒ»å¤–éƒ¨é–¢æ•°DWC_ShutdownFriendsMatch()ã®å¼•æ•°ã‚’ã¨ã‚‰ãªã„ã‚ˆã†ã«å¤‰æ›´ã—ãŸã€‚
+  ã¾ãŸã€åŒé–¢æ•°ã‹ã‚‰å„ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®åˆ¶å¾¡å¤‰æ•°ã‚’NULLã‚¯ãƒªã‚¢ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
+  ãƒ»ã‚¨ãƒ©ãƒ¼å‡¦ç†é–¢æ•°ã‚’å¤‰æ›´ã—ã€ã‚¨ãƒ©ãƒ¼ã‚»ãƒƒãƒˆã€ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã‚’å¿…è¦ãªç®‡æ‰€ã«å…¥ã‚ŒãŸã€‚
 
   Revision 1.5  2005/08/20 07:01:19  sasakit
-  ƒwƒbƒ_ƒCƒ“ƒNƒ‹[ƒhƒK[ƒh‚Ì‘Ž®‚ð“ˆê‚µ‚½B
-  bm/dwc_init.h -> bm/dwc_bm_init.h‚É•ÏX
-  ƒwƒbƒ_‚ÉCopyright‚ð‚Â‚¯‚½B
-  \‘¢‘Ì‚Ì–¼‘O‹óŠÔ‚ð‚Å‚«‚é‚¾‚¯ƒ‹[ƒ‹‚É‚¿‚©‚Ã‚¯‚½B
-  util_wifiidtool.h‚Ædwc_backup.h‚ÌŠÖŒW‚ðŽáŠ±C³B
+  ãƒ˜ãƒƒãƒ€ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚¬ãƒ¼ãƒ‰ã®æ›¸å¼ã‚’çµ±ä¸€ã—ãŸã€‚
+  bm/dwc_init.h -> bm/dwc_bm_init.hã«å¤‰æ›´
+  ãƒ˜ãƒƒãƒ€ã«Copyrightã‚’ã¤ã‘ãŸã€‚
+  æ§‹é€ ä½“ã®åå‰ç©ºé–“ã‚’ã§ãã‚‹ã ã‘ãƒ«ãƒ¼ãƒ«ã«ã¡ã‹ã¥ã‘ãŸã€‚
+  util_wifiidtool.hã¨dwc_backup.hã®é–¢ä¿‚ã‚’è‹¥å¹²ä¿®æ­£ã€‚
 
 
   $NoKeywords: $
@@ -141,37 +141,37 @@ extern "C" {
 //----------------------------------------------------------------------------
 // enum
 //----------------------------------------------------------------------------
-// ƒGƒ‰[—ñ‹“Žq
+// ã‚¨ãƒ©ãƒ¼åˆ—æŒ™å­
 typedef enum {
-    DWC_ERROR_NONE = 0,            // ƒGƒ‰[‚È‚µ
-    DWC_ERROR_DS_MEMORY_ANY,       // –{‘ÌƒZ[ƒuƒf[ƒ^‚ÉŠÖ‚·‚éƒGƒ‰[
-    DWC_ERROR_AUTH_ANY,            // ”FØ‚ÉŠÖ‚·‚éƒGƒ‰[
-    DWC_ERROR_AUTH_OUT_OF_SERVICE, // ƒT[ƒrƒXI—¹
-    DWC_ERROR_AUTH_STOP_SERVICE,   // ƒT[ƒrƒXˆêŽž’†’f
-    DWC_ERROR_AC_ANY,              // Ž©“®Ú‘±‚ÉŠÖ‚·‚éƒGƒ‰[
-    DWC_ERROR_NETWORK,             // ‚»‚Ì‘¼‚Ìƒlƒbƒgƒ[ƒNƒGƒ‰[
-    DWC_ERROR_GHTTP_ANY,           // GHTTP(HTTP’ÊM)‚ÉŠÖ‚·‚éƒGƒ‰[
-    DWC_ERROR_DISCONNECTED,        // Ø’f‚³‚ê‚½
-    DWC_ERROR_FATAL,               // ’v–½“I‚ÈƒGƒ‰[
+    DWC_ERROR_NONE = 0,            // ã‚¨ãƒ©ãƒ¼ãªã—
+    DWC_ERROR_DS_MEMORY_ANY,       // æœ¬ä½“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«é–¢ã™ã‚‹ã‚¨ãƒ©ãƒ¼
+    DWC_ERROR_AUTH_ANY,            // èªè¨¼ã«é–¢ã™ã‚‹ã‚¨ãƒ©ãƒ¼
+    DWC_ERROR_AUTH_OUT_OF_SERVICE, // ã‚µãƒ¼ãƒ“ã‚¹çµ‚äº†
+    DWC_ERROR_AUTH_STOP_SERVICE,   // ã‚µãƒ¼ãƒ“ã‚¹ä¸€æ™‚ä¸­æ–­
+    DWC_ERROR_AC_ANY,              // è‡ªå‹•æŽ¥ç¶šã«é–¢ã™ã‚‹ã‚¨ãƒ©ãƒ¼
+    DWC_ERROR_NETWORK,             // ãã®ä»–ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¨ãƒ©ãƒ¼
+    DWC_ERROR_GHTTP_ANY,           // GHTTP(HTTPé€šä¿¡)ã«é–¢ã™ã‚‹ã‚¨ãƒ©ãƒ¼
+    DWC_ERROR_DISCONNECTED,        // åˆ‡æ–­ã•ã‚ŒãŸ
+    DWC_ERROR_FATAL,               // è‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼
 
     // [arakit] main 051011
-    // ƒV[ƒPƒ“ƒXã‚ÌŒy“x‚ÌƒGƒ‰[iDWCErrorType = DWC_ETYPE_LIGHTj
-    DWC_ERROR_FRIENDS_SHORTAGE,    // Žw’è‚Ìl”‚Ì—LŒø‚È—F’B‚ª‚¢‚È‚¢‚Ì‚É—F’BŽw’èƒsƒAƒ}ƒbƒ`ƒƒCƒN‚ðŽn‚ß‚æ‚¤‚Æ‚µ‚½
-    DWC_ERROR_NOT_FRIEND_SERVER,   // ƒT[ƒoƒNƒ‰ƒCƒAƒ“ƒgƒ}ƒbƒ`ƒƒCƒN‚ÅAƒT[ƒo‚ÉŽw’è‚µ‚½—F’B‚ª‘ŠŒÝ‚É—F’B‚Å‚Í‚È‚¢A‚à‚µ‚­‚ÍƒT[ƒo‚ð—§‚Ä‚Ä‚¢‚È‚¢
-    DWC_ERROR_MO_SC_CONNECT_BLOCK, // ƒT[ƒoƒNƒ‰ƒCƒAƒ“ƒgƒ}ƒbƒ`ƒƒCƒN‚Ìƒ}ƒbƒ`ƒƒCƒNƒIƒvƒVƒ‡ƒ“‚ÅAƒT[ƒo‚©‚çÚ‘±‚ð‹‘”Û‚³‚ê‚½
+    // ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¸Šã®è»½åº¦ã®ã‚¨ãƒ©ãƒ¼ï¼ˆDWCErrorType = DWC_ETYPE_LIGHTï¼‰
+    DWC_ERROR_FRIENDS_SHORTAGE,    // æŒ‡å®šã®äººæ•°ã®æœ‰åŠ¹ãªå‹é”ãŒã„ãªã„ã®ã«å‹é”æŒ‡å®šãƒ”ã‚¢ãƒžãƒƒãƒãƒ¡ã‚¤ã‚¯ã‚’å§‹ã‚ã‚ˆã†ã¨ã—ãŸ
+    DWC_ERROR_NOT_FRIEND_SERVER,   // ã‚µãƒ¼ãƒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒžãƒƒãƒãƒ¡ã‚¤ã‚¯ã§ã€ã‚µãƒ¼ãƒã«æŒ‡å®šã—ãŸå‹é”ãŒç›¸äº’ã«å‹é”ã§ã¯ãªã„ã€ã‚‚ã—ãã¯ã‚µãƒ¼ãƒã‚’ç«‹ã¦ã¦ã„ãªã„
+    DWC_ERROR_MO_SC_CONNECT_BLOCK, // ã‚µãƒ¼ãƒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒžãƒƒãƒãƒ¡ã‚¤ã‚¯ã®ãƒžãƒƒãƒãƒ¡ã‚¤ã‚¯ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§ã€ã‚µãƒ¼ãƒã‹ã‚‰æŽ¥ç¶šã‚’æ‹’å¦ã•ã‚ŒãŸ
     // [arakit] main 051011
     // [arakit] main 051024
-    DWC_ERROR_SERVER_FULL,         // ƒT[ƒoƒNƒ‰ƒCƒAƒ“ƒgƒ}ƒbƒ`ƒƒCƒN‚ÌƒT[ƒo‚ª’èˆõƒI[ƒo[
+    DWC_ERROR_SERVER_FULL,         // ã‚µãƒ¼ãƒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒžãƒƒãƒãƒ¡ã‚¤ã‚¯ã®ã‚µãƒ¼ãƒãŒå®šå“¡ã‚ªãƒ¼ãƒãƒ¼
 	
-	// [nakata] Ndƒ‰ƒCƒuƒ‰ƒŠ—p‚ÌƒGƒ‰[Ží•Ê’Ç‰Á
+	// [nakata] Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ã®ã‚¨ãƒ©ãƒ¼ç¨®åˆ¥è¿½åŠ 
 	DWC_ERROR_ND_ANY,
 	DWC_ERROR_ND_HTTP,
 	
-	// [nakata] SVLƒ‰ƒCƒuƒ‰ƒŠ—p‚ÌƒGƒ‰[Ží•Ê’Ç‰Á
+	// [nakata] SVLãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ã®ã‚¨ãƒ©ãƒ¼ç¨®åˆ¥è¿½åŠ 
 	DWC_ERROR_SVL_ANY,
 	DWC_ERROR_SVL_HTTP,
     
-    // [nakata] •s³•¶Žš—ñƒ`ƒFƒbƒN—p‚ÌƒGƒ‰[Ží•Ê’Ç‰Á
+    // [nakata] ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯ç”¨ã®ã‚¨ãƒ©ãƒ¼ç¨®åˆ¥è¿½åŠ 
     DWC_ERROR_PROF_ANY,
     DWC_ERROR_PROF_HTTP,
         
@@ -179,103 +179,103 @@ typedef enum {
 } DWCError;
 
 // [arakit] main 051010
-// ƒGƒ‰[ŒŸoŽž‚É•K—v‚Èˆ—‚ðŽ¦‚·ƒGƒ‰[ƒ^ƒCƒv
+// ã‚¨ãƒ©ãƒ¼æ¤œå‡ºæ™‚ã«å¿…è¦ãªå‡¦ç†ã‚’ç¤ºã™ã‚¨ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
 typedef enum {
-    DWC_ETYPE_NO_ERROR = 0,   // ƒGƒ‰[‚È‚µ
-    DWC_ETYPE_LIGHT,          // ƒQ[ƒ€ŒÅ—L‚Ì•\Ž¦‚Ì‚Ý‚ÅAƒGƒ‰[ƒR[ƒh•\Ž¦‚Í•K—v‚È‚¢
-    DWC_ETYPE_SHOW_ERROR,     // ƒGƒ‰[ƒR[ƒh•\Ž¦‚Ì‚Ý‚ðs‚¤
-    DWC_ETYPE_SHUTDOWN_FM,    // DWC_ShutdownFriendsMatch()‚ðŒÄ‚Ño‚µ‚ÄAFriendsMatchƒ‰ƒCƒuƒ‰ƒŠ‚ðI—¹‚·‚é•K—v‚ª‚ ‚éB
-                              // ƒGƒ‰[ƒR[ƒh‚Ì•\Ž¦‚à•K—vB
-    DWC_ETYPE_SHUTDOWN_GHTTP, // DWC_ShutdownGHTTP()‚ðŒÄ‚Ño‚µ‚ÄAGHTTPƒ‰ƒCƒuƒ‰ƒŠ‚ðI—¹‚·‚é•K—v‚ª‚ ‚éB
-                              // ƒGƒ‰[ƒR[ƒh‚Ì•\Ž¦‚à•K—vB
-    DWC_ETYPE_SHUTDOWN_ND,    // DWC_NdCleanupAsync()‚ðŒÄ‚Ño‚µ‚ÄDWC_Ndƒ‰ƒCƒuƒ‰ƒŠ‚ðI—¹‚·‚é•K—v‚ª‚ ‚éB
-                              // ƒGƒ‰[ƒR[ƒh‚Ì•\Ž¦‚à•K—v
-    DWC_ETYPE_DISCONNECT,     // FriendsMatchˆ—’†‚È‚çDWC_ShutdownFriendsMatch()‚ðŒÄ‚Ño‚µAX‚ÉDWC_CleanupInet()‚Å’ÊM‚ÌØ’f‚às‚¤•K—v‚ª‚ ‚éB
-                              //ƒGƒ‰[ƒR[ƒh‚Ì•\Ž¦‚à•K—vB
-    DWC_ETYPE_FATAL,          // Fatal Error ‘Š“–‚È‚Ì‚ÅA“dŒ¹OFF‚ð‘£‚·•K—v‚ª‚ ‚éB
-                              // ƒGƒ‰[ƒR[ƒh‚Ì•\Ž¦‚à•K—vB
+    DWC_ETYPE_NO_ERROR = 0,   // ã‚¨ãƒ©ãƒ¼ãªã—
+    DWC_ETYPE_LIGHT,          // ã‚²ãƒ¼ãƒ å›ºæœ‰ã®è¡¨ç¤ºã®ã¿ã§ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰è¡¨ç¤ºã¯å¿…è¦ãªã„
+    DWC_ETYPE_SHOW_ERROR,     // ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰è¡¨ç¤ºã®ã¿ã‚’è¡Œã†
+    DWC_ETYPE_SHUTDOWN_FM,    // DWC_ShutdownFriendsMatch()ã‚’å‘¼ã³å‡ºã—ã¦ã€FriendsMatchãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’çµ‚äº†ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+                              // ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã®è¡¨ç¤ºã‚‚å¿…è¦ã€‚
+    DWC_ETYPE_SHUTDOWN_GHTTP, // DWC_ShutdownGHTTP()ã‚’å‘¼ã³å‡ºã—ã¦ã€GHTTPãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’çµ‚äº†ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+                              // ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã®è¡¨ç¤ºã‚‚å¿…è¦ã€‚
+    DWC_ETYPE_SHUTDOWN_ND,    // DWC_NdCleanupAsync()ã‚’å‘¼ã³å‡ºã—ã¦DWC_Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’çµ‚äº†ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+                              // ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã®è¡¨ç¤ºã‚‚å¿…è¦
+    DWC_ETYPE_DISCONNECT,     // FriendsMatchå‡¦ç†ä¸­ãªã‚‰DWC_ShutdownFriendsMatch()ã‚’å‘¼ã³å‡ºã—ã€æ›´ã«DWC_CleanupInet()ã§é€šä¿¡ã®åˆ‡æ–­ã‚‚è¡Œã†å¿…è¦ãŒã‚ã‚‹ã€‚
+                              //ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã®è¡¨ç¤ºã‚‚å¿…è¦ã€‚
+    DWC_ETYPE_FATAL,          // Fatal Error ç›¸å½“ãªã®ã§ã€é›»æºOFFã‚’ä¿ƒã™å¿…è¦ãŒã‚ã‚‹ã€‚
+                              // ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã®è¡¨ç¤ºã‚‚å¿…è¦ã€‚
     DWC_ETYPE_NUM
 } DWCErrorType;
 // [arakit] main 051010
 
-// ƒfƒoƒbƒO—pdwc_baseƒGƒ‰[ƒR[ƒhŠe—v‘f
+// ãƒ‡ãƒãƒƒã‚°ç”¨dwc_baseã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰å„è¦ç´ 
 enum {
-    // ‚Ç‚ÌƒV[ƒPƒ“ƒX’†‚É‹N‚±‚Á‚½ƒGƒ‰[‚©
-    DWC_ECODE_SEQ_LOGIN          = (-60000),  // ƒƒOƒCƒ“ˆ—‚Å‚ÌƒGƒ‰[
-    DWC_ECODE_SEQ_FRIEND         = (-70000),  // —F’BŠÇ—ˆ—‚Å‚ÌƒGƒ‰[
-    DWC_ECODE_SEQ_MATCH          = (-80000),  // ƒ}ƒbƒ`ƒƒCƒNˆ—‚Å‚ÌƒGƒ‰[
-    DWC_ECODE_SEQ_ETC            = (-90000),  // ã‹LˆÈŠO‚Ìˆ—‚Å‚ÌƒGƒ‰[
+    // ã©ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¸­ã«èµ·ã“ã£ãŸã‚¨ãƒ©ãƒ¼ã‹
+    DWC_ECODE_SEQ_LOGIN          = (-60000),  // ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†ã§ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_SEQ_FRIEND         = (-70000),  // å‹é”ç®¡ç†å‡¦ç†ã§ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_SEQ_MATCH          = (-80000),  // ãƒžãƒƒãƒãƒ¡ã‚¤ã‚¯å‡¦ç†ã§ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_SEQ_ETC            = (-90000),  // ä¸Šè¨˜ä»¥å¤–ã®å‡¦ç†ã§ã®ã‚¨ãƒ©ãƒ¼
 
-    // GameSpy‚ÌƒGƒ‰[‚Ìê‡A‚Ç‚ÌSDK‚ªo‚µ‚½ƒGƒ‰[‚©
-    DWC_ECODE_GS_GP              =  (-1000),  // GameSpy GP ‚ÌƒGƒ‰[
-    DWC_ECODE_GS_PERS            =  (-2000),  // GameSpy Persistent ‚ÌƒGƒ‰[
-    DWC_ECODE_GS_STATS           =  (-3000),  // GameSpy Stats ‚ÌƒGƒ‰[
-    DWC_ECODE_GS_QR2             =  (-4000),  // GameSpy QR2 ‚ÌƒGƒ‰[
-    DWC_ECODE_GS_SB              =  (-5000),  // GameSpy Server Browsing ‚ÌƒGƒ‰[
-    DWC_ECODE_GS_NN              =  (-6000),  // GameSpy Nat Negotiation ‚ÌƒGƒ‰[
-    DWC_ECODE_GS_GT2             =  (-7000),  // GameSpy gt2 ‚ÌƒGƒ‰[
-    DWC_ECODE_GS_HTTP            =  (-8000),  // GameSpy HTTP ‚ÌƒGƒ‰[
-    DWC_ECODE_GS_ETC             =  (-9000),  // GameSpy ‚»‚Ì‘¼‚ÌSDK‚ÌƒGƒ‰[
+    // GameSpyã®ã‚¨ãƒ©ãƒ¼ã®å ´åˆã€ã©ã®SDKãŒå‡ºã—ãŸã‚¨ãƒ©ãƒ¼ã‹
+    DWC_ECODE_GS_GP              =  (-1000),  // GameSpy GP ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_GS_PERS            =  (-2000),  // GameSpy Persistent ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_GS_STATS           =  (-3000),  // GameSpy Stats ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_GS_QR2             =  (-4000),  // GameSpy QR2 ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_GS_SB              =  (-5000),  // GameSpy Server Browsing ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_GS_NN              =  (-6000),  // GameSpy Nat Negotiation ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_GS_GT2             =  (-7000),  // GameSpy gt2 ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_GS_HTTP            =  (-8000),  // GameSpy HTTP ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_GS_ETC             =  (-9000),  // GameSpy ãã®ä»–ã®SDKã®ã‚¨ãƒ©ãƒ¼
 
-    // ’ÊíƒGƒ‰[Ží•Ê
-    DWC_ECODE_TYPE_NETWORK       =   ( -10),  // ƒlƒbƒgƒ[ƒNáŠQ
-    DWC_ECODE_TYPE_SERVER        =   ( -20),  // GameSpyƒT[ƒoáŠQ
-    DWC_ECODE_TYPE_DNS           =   ( -30),  // DNSáŠQ
-    DWC_ECODE_TYPE_DATA          =   ( -40),  // •s³‚Èƒf[ƒ^‚ðŽóM
-    DWC_ECODE_TYPE_SOCKET        =   ( -50),  // ƒ\ƒPƒbƒg’ÊMƒGƒ‰[
-    DWC_ECODE_TYPE_BIND          =   ( -60),  // ƒ\ƒPƒbƒg‚ÌƒoƒCƒ“ƒhƒGƒ‰[
-    DWC_ECODE_TYPE_TIMEOUT       =   ( -70),  // ƒ^ƒCƒ€ƒAƒEƒg”­¶
-    DWC_ECODE_TYPE_PEER          =   ( -80),  // ‚P‘Î‚P‚Ì’ÊM‚Å•s‹ï‡
-    DWC_ECODE_TYPE_CONN_OVER     =   (-100),  // ƒRƒlƒNƒVƒ‡ƒ“”ƒI[ƒo
-    DWC_ECODE_TYPE_STATS_AUTH    =   (-200),  // STATSƒT[ƒoƒƒOƒCƒ“ƒGƒ‰[
-    DWC_ECODE_TYPE_STATS_LOAD    =   (-210),  // STATSƒT[ƒoƒf[ƒ^ƒ[ƒhƒGƒ‰[
-    DWC_ECODE_TYPE_STATS_SAVE    =   (-220),  // STATSƒT[ƒoƒf[ƒ^ƒZ[ƒuƒGƒ‰[
-    DWC_ECODE_TYPE_NOT_FRIEND    =   (-400),  // Žw’è‚³‚ê‚½‘ŠŽè‚ª‘ŠŒÝ‚É“o˜^‚³‚ê‚½—F’B‚Å‚Í‚È‚¢
-    DWC_ECODE_TYPE_OTHER         =   (-410),  // ‘ŠŽè‚ª’ÊMØ’f‚µ‚½iŽå‚ÉƒT[ƒoƒNƒ‰ƒCƒAƒ“ƒgƒ}ƒbƒ`ƒƒCƒNŽžj
-    DWC_ECODE_TYPE_MUCH_FAILURE  =   (-420),  // NATƒlƒSƒVƒG[ƒVƒ‡ƒ“‚É‹K’è‰ñ”ˆÈãŽ¸”s‚µ‚½
-    DWC_ECODE_TYPE_SC_CL_FAIL    =   (-430),  // ƒT[ƒoƒNƒ‰ƒCƒAƒ“ƒgƒ}ƒbƒ`ƒƒCƒNEƒNƒ‰ƒCƒAƒ“ƒg‚ÌÚ‘±Ž¸”s
-    DWC_ECODE_TYPE_CLOSE         =   (-600),  // ƒRƒlƒNƒVƒ‡ƒ“ƒNƒ[ƒYŽž‚ÌƒGƒ‰[
-    DWC_ECODE_TYPE_TRANS_HEADER  =   (-610),  // ‚ ‚è‚¦‚È‚¢ŽóMƒXƒe[ƒg‚ÅReliableƒf[ƒ^‚ðŽóM‚µ‚½
-    DWC_ECODE_TYPE_TRANS_BODY    =   (-620),  // ŽóMƒoƒbƒtƒ@ƒI[ƒo[ƒtƒ[
-    DWC_ECODE_TYPE_AC_FATAL      =   (-700),  // ACˆ—’†‚ÌAC‚Å‚ÌƒGƒ‰[ƒOƒ‹[ƒvB‚±‚Ìê‡‰ºˆÊŒ…‚Íê—p‚Ìstate’lB
-    DWC_ECODE_TYPE_OPEN_FILE     =   (-800),  // GHTTPƒtƒ@ƒCƒ‹ƒI[ƒvƒ“Ž¸”s
-    DWC_ECODE_TYPE_INVALID_POST  =   (-810),  // GHTTP–³Œø‚È‘—M
-    DWC_ECODE_TYPE_REQ_INVALID   =   (-820),  // GHTTPƒtƒ@ƒCƒ‹–¼“™–³Œø
-    DWC_ECODE_TYPE_UNSPECIFIED   =   (-830),  // GHTTPÚ×•s–¾‚ÌƒGƒ‰[
-    DWC_ECODE_TYPE_BUFF_OVER     =   (-840),  // GHTTPƒoƒbƒtƒ@ƒI[ƒo[ƒtƒ[
-    DWC_ECODE_TYPE_PARSE_URL     =   (-850),  // GHTTP URL‚Ì‰ðÍƒGƒ‰[
-    DWC_ECODE_TYPE_BAD_RESPONSE  =   (-860),  // GHTTPƒT[ƒo‚©‚ç‚ÌƒŒƒXƒ|ƒ“ƒX‰ðÍƒGƒ‰[
-    DWC_ECODE_TYPE_REJECTED      =   (-870),  // GHTTPƒT[ƒo‚©‚ç‚ÌƒŠƒNƒGƒXƒg“™‹‘”Û
-    DWC_ECODE_TYPE_FILE_RW       =   (-880),  // GHTTPƒ[ƒJƒ‹ƒtƒ@ƒCƒ‹Read/WriteƒGƒ‰[
-    DWC_ECODE_TYPE_INCOMPLETE    =   (-890),  // GHTTPƒ_ƒEƒ“ƒ[ƒh’†’f
-    DWC_ECODE_TYPE_TO_BIG        =   (-900),  // GHTTPƒtƒ@ƒCƒ‹ƒTƒCƒY‚ª‘å‚«‚·‚¬‚Äƒ_ƒEƒ“ƒ[ƒh•s‰Â
-    DWC_ECODE_TYPE_ENCRYPTION    =   (-910),  // GHTTPƒGƒ“ƒNƒŠƒvƒVƒ‡ƒ“ƒGƒ‰[
+    // é€šå¸¸ã‚¨ãƒ©ãƒ¼ç¨®åˆ¥
+    DWC_ECODE_TYPE_NETWORK       =   ( -10),  // ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯éšœå®³
+    DWC_ECODE_TYPE_SERVER        =   ( -20),  // GameSpyã‚µãƒ¼ãƒéšœå®³
+    DWC_ECODE_TYPE_DNS           =   ( -30),  // DNSéšœå®³
+    DWC_ECODE_TYPE_DATA          =   ( -40),  // ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡
+    DWC_ECODE_TYPE_SOCKET        =   ( -50),  // ã‚½ã‚±ãƒƒãƒˆé€šä¿¡ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_BIND          =   ( -60),  // ã‚½ã‚±ãƒƒãƒˆã®ãƒã‚¤ãƒ³ãƒ‰ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_TIMEOUT       =   ( -70),  // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆç™ºç”Ÿ
+    DWC_ECODE_TYPE_PEER          =   ( -80),  // ï¼‘å¯¾ï¼‘ã®é€šä¿¡ã§ä¸å…·åˆ
+    DWC_ECODE_TYPE_CONN_OVER     =   (-100),  // ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³æ•°ã‚ªãƒ¼ãƒ
+    DWC_ECODE_TYPE_STATS_AUTH    =   (-200),  // STATSã‚µãƒ¼ãƒãƒ­ã‚°ã‚¤ãƒ³ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_STATS_LOAD    =   (-210),  // STATSã‚µãƒ¼ãƒãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_STATS_SAVE    =   (-220),  // STATSã‚µãƒ¼ãƒãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_NOT_FRIEND    =   (-400),  // æŒ‡å®šã•ã‚ŒãŸç›¸æ‰‹ãŒç›¸äº’ã«ç™»éŒ²ã•ã‚ŒãŸå‹é”ã§ã¯ãªã„
+    DWC_ECODE_TYPE_OTHER         =   (-410),  // ç›¸æ‰‹ãŒé€šä¿¡åˆ‡æ–­ã—ãŸï¼ˆä¸»ã«ã‚µãƒ¼ãƒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒžãƒƒãƒãƒ¡ã‚¤ã‚¯æ™‚ï¼‰
+    DWC_ECODE_TYPE_MUCH_FAILURE  =   (-420),  // NATãƒã‚´ã‚·ã‚¨ãƒ¼ã‚·ãƒ§ãƒ³ã«è¦å®šå›žæ•°ä»¥ä¸Šå¤±æ•—ã—ãŸ
+    DWC_ECODE_TYPE_SC_CL_FAIL    =   (-430),  // ã‚µãƒ¼ãƒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒžãƒƒãƒãƒ¡ã‚¤ã‚¯ãƒ»ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®æŽ¥ç¶šå¤±æ•—
+    DWC_ECODE_TYPE_CLOSE         =   (-600),  // ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚¯ãƒ­ãƒ¼ã‚ºæ™‚ã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_TRANS_HEADER  =   (-610),  // ã‚ã‚Šãˆãªã„å—ä¿¡ã‚¹ãƒ†ãƒ¼ãƒˆã§Reliableãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸ
+    DWC_ECODE_TYPE_TRANS_BODY    =   (-620),  // å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼
+    DWC_ECODE_TYPE_AC_FATAL      =   (-700),  // ACå‡¦ç†ä¸­ã®ACã§ã®ã‚¨ãƒ©ãƒ¼ã‚°ãƒ«ãƒ¼ãƒ—ã€‚ã“ã®å ´åˆä¸‹ä½æ¡ã¯å°‚ç”¨ã®stateå€¤ã€‚
+    DWC_ECODE_TYPE_OPEN_FILE     =   (-800),  // GHTTPãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³å¤±æ•—
+    DWC_ECODE_TYPE_INVALID_POST  =   (-810),  // GHTTPç„¡åŠ¹ãªé€ä¿¡
+    DWC_ECODE_TYPE_REQ_INVALID   =   (-820),  // GHTTPãƒ•ã‚¡ã‚¤ãƒ«åç­‰ç„¡åŠ¹
+    DWC_ECODE_TYPE_UNSPECIFIED   =   (-830),  // GHTTPè©³ç´°ä¸æ˜Žã®ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_BUFF_OVER     =   (-840),  // GHTTPãƒãƒƒãƒ•ã‚¡ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼
+    DWC_ECODE_TYPE_PARSE_URL     =   (-850),  // GHTTP URLã®è§£æžã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_BAD_RESPONSE  =   (-860),  // GHTTPã‚µãƒ¼ãƒã‹ã‚‰ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹è§£æžã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_REJECTED      =   (-870),  // GHTTPã‚µãƒ¼ãƒã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆç­‰æ‹’å¦
+    DWC_ECODE_TYPE_FILE_RW       =   (-880),  // GHTTPãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«Read/Writeã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_INCOMPLETE    =   (-890),  // GHTTPãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­æ–­
+    DWC_ECODE_TYPE_TO_BIG        =   (-900),  // GHTTPãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºãŒå¤§ãã™ãŽã¦ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸å¯
+    DWC_ECODE_TYPE_ENCRYPTION    =   (-910),  // GHTTPã‚¨ãƒ³ã‚¯ãƒªãƒ—ã‚·ãƒ§ãƒ³ã‚¨ãƒ©ãƒ¼
 	
-    // Fatal Errorê—pŽí•Ê
-    DWC_ECODE_TYPE_ALLOC         =     (-1),  // ƒƒ‚ƒŠŠm•ÛŽ¸”s
-    DWC_ECODE_TYPE_PARAM         =     (-2),  // ƒpƒ‰ƒ[ƒ^ƒGƒ‰[
-    DWC_ECODE_TYPE_SO_SOCKET     =     (-3),  // SO‚ÌƒGƒ‰[‚ªŒ´ˆö‚ÌGameSpy gt2‚Ìƒ\ƒPƒbƒgƒGƒ‰[
-    DWC_ECODE_TYPE_NOT_INIT      =     (-4),  // ƒ‰ƒCƒuƒ‰ƒŠ‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢B
-    DWC_ECODE_TYPE_DUP_INIT      =     (-5),  // ƒ‰ƒCƒuƒ‰ƒŠ‚ª“ñ“x‰Šú‰»‚³‚ê‚½B
-    DWC_ECODE_TYPE_WM_INIT       =     (-6),  // WM‚Ì‰Šú‰»‚ÉŽ¸”s‚µ‚½B
-    DWC_ECODE_TYPE_UNEXPECTED    =     (-9),  // —\Šú‚µ‚È‚¢ó‘ÔA‚à‚µ‚­‚ÍUnkwon‚ÈGameSpyƒGƒ‰[”­¶
+    // Fatal Errorå°‚ç”¨ç¨®åˆ¥
+    DWC_ECODE_TYPE_ALLOC         =     (-1),  // ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—
+    DWC_ECODE_TYPE_PARAM         =     (-2),  // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_SO_SOCKET     =     (-3),  // SOã®ã‚¨ãƒ©ãƒ¼ãŒåŽŸå› ã®GameSpy gt2ã®ã‚½ã‚±ãƒƒãƒˆã‚¨ãƒ©ãƒ¼
+    DWC_ECODE_TYPE_NOT_INIT      =     (-4),  // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã€‚
+    DWC_ECODE_TYPE_DUP_INIT      =     (-5),  // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒäºŒåº¦åˆæœŸåŒ–ã•ã‚ŒãŸã€‚
+    DWC_ECODE_TYPE_WM_INIT       =     (-6),  // WMã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸã€‚
+    DWC_ECODE_TYPE_UNEXPECTED    =     (-9),  // äºˆæœŸã—ãªã„çŠ¶æ…‹ã€ã‚‚ã—ãã¯UnkwonãªGameSpyã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
 
-	// 30000‘äƒGƒ‰[”Ô†‚Ì’è‹`(Šg’£‹@”\—p)
-	DWC_ECODE_SEQ_ADDINS        =   (-30000), // Šg’£‹@”\ƒGƒ‰[
+	// 30000å°ã‚¨ãƒ©ãƒ¼ç•ªå·ã®å®šç¾©(æ‹¡å¼µæ©Ÿèƒ½ç”¨)
+	DWC_ECODE_SEQ_ADDINS        =   (-30000), // æ‹¡å¼µæ©Ÿèƒ½ã‚¨ãƒ©ãƒ¼
 	
-	DWC_ECODE_FUNC_ND            =   (-1000), // DWC_Nd—p—Ìˆæ
-    DWC_ECODE_FUNC_PROF          =   (-3000), // •s³•¶Žš—ñƒ`ƒFƒbƒN—p—Ìˆæ
+	DWC_ECODE_FUNC_ND            =   (-1000), // DWC_Ndç”¨é ˜åŸŸ
+    DWC_ECODE_FUNC_PROF          =   (-3000), // ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯ç”¨é ˜åŸŸ
 	
-	DWC_ECODE_TYPE_ND_ALLOC      =   ( -1), // ƒƒ‚ƒŠŠm•ÛŽ¸”s
-	DWC_ECODE_TYPE_ND_FATAL      =   ( -9), // ’v–½“IƒGƒ‰[
-	DWC_ECODE_TYPE_ND_BUSY       =   (-10), // ƒ_ƒEƒ“ƒ[ƒh’†‚ÉV‹KƒŠƒNƒGƒXƒg‚ð—v‹‚µ‚½
-	DWC_ECODE_TYPE_ND_HTTP       =   (-20), // HTTP’ÊM‚ÉŽ¸”s
-	DWC_ECODE_TYPE_ND_BUFFULL    =   (-30), // HTTP’ÊMƒoƒbƒtƒ@‚ª•s\•ª
-	DWC_ECODE_TYPE_ND_SERVER     =   (  0), // ƒT[ƒo‚ªƒGƒ‰[ƒR[ƒh‚ð•Ô‚µ‚Ä‚«‚½
+	DWC_ECODE_TYPE_ND_ALLOC      =   ( -1), // ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—
+	DWC_ECODE_TYPE_ND_FATAL      =   ( -9), // è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼
+	DWC_ECODE_TYPE_ND_BUSY       =   (-10), // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­ã«æ–°è¦ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¦æ±‚ã—ãŸ
+	DWC_ECODE_TYPE_ND_HTTP       =   (-20), // HTTPé€šä¿¡ã«å¤±æ•—
+	DWC_ECODE_TYPE_ND_BUFFULL    =   (-30), // HTTPé€šä¿¡ãƒãƒƒãƒ•ã‚¡ãŒä¸ååˆ†
+	DWC_ECODE_TYPE_ND_SERVER     =   (  0), // ã‚µãƒ¼ãƒãŒã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã—ã¦ããŸ
 
-	DWC_ECODE_TYPE_PROF_CONN     =   ( -10),// •s³•¶Žš—ñƒ`ƒFƒbƒN‚ÅƒT[ƒo‚Æ‚ÌÚ‘±‚É–â‘è‚ª‚ ‚Á‚½
-	DWC_ECODE_TYPE_PROF_PARSE    =   ( -20),// •s³•¶Žš—ñƒ`ƒFƒbƒN‚ÅƒT[ƒo‚Ì‰ž“š‚ª³‚µ‚­‚È‚©‚Á‚½
-	DWC_ECODE_TYPE_PROF_OTHER    =   ( -30) // •s³•¶Žš—ñƒ`ƒFƒbƒN‚Å‚»‚Ì‘¼‚ÌƒGƒ‰[‚ª”­¶‚µ‚½
+	DWC_ECODE_TYPE_PROF_CONN     =   ( -10),// ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯ã§ã‚µãƒ¼ãƒã¨ã®æŽ¥ç¶šã«å•é¡ŒãŒã‚ã£ãŸ
+	DWC_ECODE_TYPE_PROF_PARSE    =   ( -20),// ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯ã§ã‚µãƒ¼ãƒã®å¿œç­”ãŒæ­£ã—ããªã‹ã£ãŸ
+	DWC_ECODE_TYPE_PROF_OTHER    =   ( -30) // ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯ã§ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸ
 };
 
 
@@ -283,31 +283,31 @@ enum {
 // function - external
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  ƒGƒ‰[Žæ“¾ŠÖ”
-  ˆø”@FerrorCode ƒGƒ‰[ƒR[ƒhŠi”[æƒ|ƒCƒ“ƒ^B•K—v‚È‚¯‚ê‚ÎNULL‚ð“n‚¹‚Î—Ç‚¢B
-  –ß‚è’lFƒGƒ‰[Ží•Ê
-  —p“r@FÅŒã‚Ì’ÊMƒGƒ‰[Ží•ÊAƒGƒ‰[ƒR[ƒh‚ðŽæ“¾‚·‚é
+  ã‚¨ãƒ©ãƒ¼å–å¾—é–¢æ•°
+  å¼•æ•°ã€€ï¼šerrorCode ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰æ ¼ç´å…ˆãƒã‚¤ãƒ³ã‚¿ã€‚å¿…è¦ãªã‘ã‚Œã°NULLã‚’æ¸¡ã›ã°è‰¯ã„ã€‚
+  æˆ»ã‚Šå€¤ï¼šã‚¨ãƒ©ãƒ¼ç¨®åˆ¥
+  ç”¨é€”ã€€ï¼šæœ€å¾Œã®é€šä¿¡ã‚¨ãƒ©ãƒ¼ç¨®åˆ¥ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *---------------------------------------------------------------------------*/
 extern DWCError DWC_GetLastError(int* errorCode);
 
 
 // [arakit] main 051011
 /*---------------------------------------------------------------------------*
-  Šg’£”ÅƒGƒ‰[Žæ“¾ŠÖ”
-  ˆø”@FerrorCode ƒGƒ‰[ƒR[ƒhŠi”[æƒ|ƒCƒ“ƒ^B•K—v‚È‚¯‚ê‚ÎNULL‚ð“n‚¹‚Î—Ç‚¢B
-          errorType ƒGƒ‰[ˆ—ƒ^ƒCƒvŠi”[æƒ|ƒCƒ“ƒ^B•K—v‚È‚¯‚ê‚ÎNULL‚ð“n‚¹‚Î—Ç‚¢B
-  –ß‚è’lFƒGƒ‰[Ží•Ê
-  —p“r@FÅŒã‚Ì’ÊMƒGƒ‰[Ží•ÊAƒGƒ‰[ƒR[ƒhAƒGƒ‰[ˆ—ƒ^ƒCƒv‚ðŽæ“¾‚·‚é
+  æ‹¡å¼µç‰ˆã‚¨ãƒ©ãƒ¼å–å¾—é–¢æ•°
+  å¼•æ•°ã€€ï¼šerrorCode ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰æ ¼ç´å…ˆãƒã‚¤ãƒ³ã‚¿ã€‚å¿…è¦ãªã‘ã‚Œã°NULLã‚’æ¸¡ã›ã°è‰¯ã„ã€‚
+          errorType ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚¿ã‚¤ãƒ—æ ¼ç´å…ˆãƒã‚¤ãƒ³ã‚¿ã€‚å¿…è¦ãªã‘ã‚Œã°NULLã‚’æ¸¡ã›ã°è‰¯ã„ã€‚
+  æˆ»ã‚Šå€¤ï¼šã‚¨ãƒ©ãƒ¼ç¨®åˆ¥
+  ç”¨é€”ã€€ï¼šæœ€å¾Œã®é€šä¿¡ã‚¨ãƒ©ãƒ¼ç¨®åˆ¥ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã€ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *---------------------------------------------------------------------------*/
 extern DWCError DWC_GetLastErrorEx(int* errorCode, DWCErrorType* errorType);
 // [arakit] main 051011
 
 
 /*---------------------------------------------------------------------------*
-  ƒGƒ‰[ƒNƒŠƒAŠÖ”
-  ˆø”@F‚È‚µ
-  –ß‚è’lF‚È‚µ
-  —p“r@F’ÊMƒGƒ‰[‚Ì‹L˜^‚ðƒNƒŠƒA‚·‚éBFatal Error‚ÍƒNƒŠƒA‚Å‚«‚È‚¢B
+  ã‚¨ãƒ©ãƒ¼ã‚¯ãƒªã‚¢é–¢æ•°
+  å¼•æ•°ã€€ï¼šãªã—
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šé€šä¿¡ã‚¨ãƒ©ãƒ¼ã®è¨˜éŒ²ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚Fatal Errorã¯ã‚¯ãƒªã‚¢ã§ããªã„ã€‚
  *---------------------------------------------------------------------------*/
 extern void DWC_ClearError(void);
 
@@ -316,20 +316,20 @@ extern void DWC_ClearError(void);
 // function - internal
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  ƒGƒ‰[ƒ`ƒFƒbƒNŠÖ”
-  ˆø”@F‚È‚µ
-  –ß‚è’lFTRUE:ƒGƒ‰[‚ ‚èAFALSE:ƒGƒ‰[‚È‚µ
-  —p“r@F’ÊMƒGƒ‰[‚ª”­¶‚µ‚½‚©‚Ç‚¤‚©‚ðƒ`ƒFƒbƒN‚·‚é
+  ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯é–¢æ•°
+  å¼•æ•°ã€€ï¼šãªã—
+  æˆ»ã‚Šå€¤ï¼šTRUE:ã‚¨ãƒ©ãƒ¼ã‚ã‚Šã€FALSE:ã‚¨ãƒ©ãƒ¼ãªã—
+  ç”¨é€”ã€€ï¼šé€šä¿¡ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *---------------------------------------------------------------------------*/
 extern BOOL DWCi_IsError(void);
 
 
 /*---------------------------------------------------------------------------*
-  ƒGƒ‰[ƒZƒbƒgŠÖ”
-  ˆø”@Ferror     ƒGƒ‰[Ží•Ê
-          errorCode ƒGƒ‰[‚ÌÚ×‚ðŽ¦‚·ƒGƒ‰[ƒR[ƒh
-  –ß‚è’lF‚È‚µ
-  —p“r@F’ÊMƒGƒ‰[‚Ì”­¶‚ð‹L˜^‚·‚éBFatal Error‚Íã‘‚«‚Å‚«‚È‚¢B
+  ã‚¨ãƒ©ãƒ¼ã‚»ãƒƒãƒˆé–¢æ•°
+  å¼•æ•°ã€€ï¼šerror     ã‚¨ãƒ©ãƒ¼ç¨®åˆ¥
+          errorCode ã‚¨ãƒ©ãƒ¼ã®è©³ç´°ã‚’ç¤ºã™ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šé€šä¿¡ã‚¨ãƒ©ãƒ¼ã®ç™ºç”Ÿã‚’è¨˜éŒ²ã™ã‚‹ã€‚Fatal Errorã¯ä¸Šæ›¸ãã§ããªã„ã€‚
  *---------------------------------------------------------------------------*/
 extern void DWCi_SetError(DWCError error, int errorCode);
 

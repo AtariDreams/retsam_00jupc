@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_drawdata_define.h
- *	@brief		ƒCƒ[ƒWƒNƒŠƒbƒv•`‰æƒf[ƒ^’è”ŒS
+ *	@brief		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—æç”»ãƒ‡ãƒ¼ã‚¿å®šæ•°éƒ¡
  *	@author		tomoya takahashi
  *	@data		2005.09.21
  *
@@ -29,18 +29,18 @@
 
 //-----------------------------------------------------------------------------
 /**
-*	ƒIƒuƒWƒFƒŠƒXƒg—pƒIƒuƒWƒFƒNƒgƒf[ƒ^’è”
+*	ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚¹ãƒˆç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿å®šæ•°
 */
 //-----------------------------------------------------------------------------
 enum{
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠƒIƒuƒWƒFƒNƒg
-	IMC_OBJLIST_BG,			// BGƒTƒ€ƒlƒCƒ‹ƒIƒuƒWƒFƒNƒg
-	IMC_OBJLIST_SND,		// SNDƒTƒ€ƒlƒCƒ‹ƒIƒuƒWƒFƒNƒg
-	IMC_OBJLIST_POKE,		// ƒ|ƒPƒ‚ƒ“ƒIƒuƒWƒFƒNƒg
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	IMC_OBJLIST_BG,			// BGã‚µãƒ ãƒã‚¤ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	IMC_OBJLIST_SND,		// SNDã‚µãƒ ãƒã‚¤ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	IMC_OBJLIST_POKE,		// ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
-	// ƒAƒNƒZƒTƒŠ@BGƒTƒ€ƒlƒCƒ‹@‰¹ƒTƒ€ƒlƒCƒ‹
-	// ‚Í“¯‚¶‚æ‚¤‚ÉŠÇ—‚·‚é‚½‚ß
-	// ƒ|ƒPƒ‚ƒ“ˆÈŠO‚Å‚ÌÅ‘å”‚àì¬
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªã€€BGã‚µãƒ ãƒã‚¤ãƒ«ã€€éŸ³ã‚µãƒ ãƒã‚¤ãƒ«
+	// ã¯åŒã˜ã‚ˆã†ã«ç®¡ç†ã™ã‚‹ãŸã‚
+	// ãƒã‚±ãƒ¢ãƒ³ä»¥å¤–ã§ã®æœ€å¤§æ•°ã‚‚ä½œæˆ
 	IMC_OBJLIST_ACCE_MAX = IMC_OBJLIST_POKE,
 };
 
@@ -49,52 +49,52 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒAƒNƒZƒTƒŠ—p’è”éŒ¾
+ *				ã‚¢ã‚¯ã‚»ã‚µãƒªç”¨å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒAƒNƒZƒTƒŠ“üŽè‰Â”\”
-#define IMC_ACCE_GET_9_NUM	( 61 )	// 9ŒÂ‚à‚Ä‚éƒAƒNƒZƒTƒŠ‚Ì”
-#define IMC_ACCE_GET_1_NUM	( 39 )// 1ŒÂ‚µ‚©‚à‚Ä‚È‚¢ƒAƒNƒZƒTƒŠ‚Ì”
+// ã‚¢ã‚¯ã‚»ã‚µãƒªå…¥æ‰‹å¯èƒ½æ•°
+#define IMC_ACCE_GET_9_NUM	( 61 )	// 9å€‹ã‚‚ã¦ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªã®æ•°
+#define IMC_ACCE_GET_1_NUM	( 39 )// 1å€‹ã—ã‹ã‚‚ã¦ãªã„ã‚¢ã‚¯ã‚»ã‚µãƒªã®æ•°
 #define IMC_ACCE_GET_1_START	( IMC_ACCE_GET_9_NUM )
 
 
 //-------------------------------------
 //	
-//	ƒAƒNƒZƒTƒŠ“o˜^Å‘å”
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªç™»éŒ²æœ€å¤§æ•°
 //	
 //=====================================
-#define IMC_SYS_ACCESSORIE_MAX				(700)					// ƒAƒNƒZƒTƒŠ“o˜^Å‘å”
+#define IMC_SYS_ACCESSORIE_MAX				(700)					// ã‚¢ã‚¯ã‚»ã‚µãƒªç™»éŒ²æœ€å¤§æ•°
 
 //-------------------------------------
 //	
-//	ƒAƒNƒZƒTƒŠLinkƒf[ƒ^ƒA[ƒJƒCƒuƒf[ƒ^idx
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªLinkãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿idx
 //	
 //=====================================
 #define IMC_ACCESSORIE_PLTT_LINK	(NARC_imageclip_imc_ac_data_dat)
 
 //-------------------------------------
 //	
-//	ƒpƒŒƒbƒgƒtƒ@ƒCƒ‹’è”
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚¡ã‚¤ãƒ«å®šæ•°
 //	
 //=====================================
-#define	IMC_DRAW_ACCESSORIE_PLTT_FILENUM	(1)						// ƒpƒŒƒbƒgƒtƒ@ƒCƒ‹”
-#define	IMC_DRAW_ACCESSORIE_PLTT_NUM		(3)						// ƒpƒŒƒbƒgŽg—p”
-#define IMC_DRAW_ACCESSORIE_PLTT_ID			(0)						// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒpƒŒƒbƒgID
+#define	IMC_DRAW_ACCESSORIE_PLTT_FILENUM	(1)						// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚¡ã‚¤ãƒ«æ•°
+#define	IMC_DRAW_ACCESSORIE_PLTT_NUM		(3)						// ãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨æ•°
+#define IMC_DRAW_ACCESSORIE_PLTT_ID			(0)						// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆID
 
 //-------------------------------------
 //	
-//	ƒA[ƒJƒCƒuƒf[ƒ^ŽQÆ—pƒ}ƒNƒ
+//	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿å‚ç…§ç”¨ãƒžã‚¯ãƒ­
 //	
 //=====================================
-#define IMC_DRAW_ACCESSORIE_PLTT_ARC	( NARC_imageclip_imgclip_access_NCLR )				// ƒpƒŒƒbƒgƒA[ƒJƒCƒuæ“ª
-#define IMC_DRAW_ACCESSORIE_CHAR_ARC	( NARC_imageclip_imgclip_access_001_0_NCBR )			// ƒLƒƒƒ‰ƒNƒ^ƒA[ƒJƒCƒuæ“ª
+#define IMC_DRAW_ACCESSORIE_PLTT_ARC	( NARC_imageclip_imgclip_access_NCLR )				// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å…ˆé ­
+#define IMC_DRAW_ACCESSORIE_CHAR_ARC	( NARC_imageclip_imgclip_access_001_0_NCBR )			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å…ˆé ­
 
-// ƒLƒƒƒ‰ƒNƒ^ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒiƒ“ƒo[Žæ“¾
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒŠãƒ³ãƒãƒ¼å–å¾—
 #define IMC_ACCE_ARC_NO_GET(x)		( (x) + IMC_DRAW_ACCESSORIE_CHAR_ARC )
 
 //-------------------------------------
 //	
-//	ƒtƒHƒ“ƒgƒf[ƒ^—p
+//	ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç”¨
 //	
 //=====================================
 #define IMC_ACCE_FONT_START		(imgclipacc_001)
@@ -107,21 +107,21 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
-*		BGƒf[ƒ^
+*		BGãƒ‡ãƒ¼ã‚¿
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-// BGƒf[ƒ^—ñ‹“
+// BGãƒ‡ãƒ¼ã‚¿åˆ—æŒ™
 //	
 //=====================================
-// ¶‰æ–Ê—p
+// å·¦ç”»é¢ç”¨
 enum{
 	IMC_BG_LEFT_00,
 	IMC_BG_LEFT_01,
 	IMC_BG_LEFT_MAX
 };
-// ƒtƒŒ[ƒ€—p
+// ãƒ•ãƒ¬ãƒ¼ãƒ ç”¨
 enum{
 	IMC_BG_FRAME_00,
 	IMC_BG_FRAME_01,
@@ -130,18 +130,18 @@ enum{
 
 //-------------------------------------
 //	
-//	ƒpƒŒƒbƒgŠÇ——p
+//	ãƒ‘ãƒ¬ãƒƒãƒˆç®¡ç†ç”¨
 //	
 //=====================================
-#define IMC_BG_COLOR_NUM		(1)	// Žg—p‚·‚éƒpƒŒƒbƒg‚Í1ƒ|ƒ“
+#define IMC_BG_COLOR_NUM		(1)	// ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã¯1ãƒãƒ³
 
 
 //-------------------------------------
 //	
-// ƒA[ƒJƒCƒuƒf[ƒ^ŠÇ——p
+// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ç®¡ç†ç”¨
 //	
 //=====================================
-// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ŠJŽnˆÊ’u
+// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«é–‹å§‹ä½ç½®
 #define IMC_BG_RIGHT_ARC_S		(NARC_imageclip_imgclip_rback_00_NCGR)
 #define IMC_BG_LEFT_ARC_S		(NARC_imageclip_imgclip_lback_00_NCGR)
 #define IMC_BG_FRAME_ARC_S		(NARC_imageclip_imgclip_frame_00_NCGR)
@@ -149,33 +149,33 @@ enum{
 
 //-------------------------------------
 //	
-//	ƒA[ƒJƒCƒuƒf[ƒ^Žæ“¾ƒ}ƒNƒ
+//	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒžã‚¯ãƒ­
 //	
-// Šeƒf[ƒ^Žæ“¾ƒ}ƒNƒ
-// ƒtƒ@ƒCƒ‹–¼‚©‚ç‚±‚Ì‡”Ô‚ÅƒA[ƒJƒCƒu‚³‚ê‚é‚½‚ßA‚±‚Ì‚æ‚¤‚ÉŠÇ—‚µ‚Ä‚¢‚Ü‚·B
-// ƒA[ƒJƒCƒu‡”Ô‚ªƒtƒ@ƒCƒ‹–¼‚Å‚Í‚È‚­”CˆÓ‚É•Ï‚¦‚é‚æ‚¤‚ÈŽ–‚ª‚ ‚ê‚ÎA‚±‚Ì•ûŽ®‚ð
-// •Ï‚¦‚é•K—v‚ª‚ ‚è‚Ü‚·
+// å„ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒžã‚¯ãƒ­
+// ãƒ•ã‚¡ã‚¤ãƒ«åã‹ã‚‰ã“ã®é †ç•ªã§ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚Œã‚‹ãŸã‚ã€ã“ã®ã‚ˆã†ã«ç®¡ç†ã—ã¦ã„ã¾ã™ã€‚
+// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–é †ç•ªãŒãƒ•ã‚¡ã‚¤ãƒ«åã§ã¯ãªãä»»æ„ã«å¤‰ãˆã‚‹ã‚ˆã†ãªäº‹ãŒã‚ã‚Œã°ã€ã“ã®æ–¹å¼ã‚’
+// å¤‰ãˆã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
 //	
 //=====================================
-// ‰E‰æ–Ê
+// å³ç”»é¢
 #define IMC_BG_RIGHT_CG_ARC_GET(x)	( ((x)*4)+IMC_BG_RIGHT_ARC_S )
 #define IMC_BG_RIGHT_CL_ARC_GET(x)	( ((x)*4)+IMC_BG_RIGHT_ARC_S+1 )
 #define IMC_BG_RIGHT_SC_ARC_GET(x)	( ((x)*4)+IMC_BG_RIGHT_ARC_S+2 )
 #define IMC_BG_RIGHT_SC_ANM_ARC_GET(x)	( ((x)*4)+IMC_BG_RIGHT_ARC_S+3 )
-// ¶‰æ–Ê
+// å·¦ç”»é¢
 #define IMC_BG_LEFT_CG_ARC_GET(x)	( ((x)*2)+IMC_BG_LEFT_ARC_S )
 #define IMC_BG_LEFT_SC_ARC_GET(x)	( ((x)*2)+IMC_BG_LEFT_ARC_S+1 )
-// ƒtƒŒ[ƒ€‰æ–Ê
+// ãƒ•ãƒ¬ãƒ¼ãƒ ç”»é¢
 //#define IMC_BG_FRAME_CG_ARC_GET(x)	( IMC_BG_FRAME_ARC_S )
 #define IMC_BG_FRAME_CG_ARC_GET(x)	( ((x)*2)+IMC_BG_FRAME_ARC_S )
 //#define IMC_BG_FRAME_SC_ARC_GET(x)	( ((x))+IMC_BG_FRAME_ARC_S+1 )
 #define IMC_BG_FRAME_SC_ARC_GET(x)	( ((x)*2)+IMC_BG_FRAME_ARC_S+1 )
-// ƒTƒ€ƒlƒCƒ‹—pƒf[ƒ^
-//	ƒpƒŒƒbƒg‚ÍBG‚Æˆê‚Ì•¨‚ðŽg—p‚·‚é
+// ã‚µãƒ ãƒã‚¤ãƒ«ç”¨ãƒ‡ãƒ¼ã‚¿
+//	ãƒ‘ãƒ¬ãƒƒãƒˆã¯BGã¨ä¸€ç·’ã®ç‰©ã‚’ä½¿ç”¨ã™ã‚‹
 //
 //
-#define IMC_BG_THUMB_CG_ARC_S		(NARC_imageclip_imgclip_rback_thumb_00_NCBR)	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹æ“ª”Ô†
-#define IMC_BG_THUMB_CG_ARC_GET(x)	( (x) + IMC_BG_THUMB_CG_ARC_S )					// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹”Ô†‚ðŽæ“¾
+#define IMC_BG_THUMB_CG_ARC_S		(NARC_imageclip_imgclip_rback_thumb_00_NCBR)	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ç•ªå·
+#define IMC_BG_THUMB_CG_ARC_GET(x)	( (x) + IMC_BG_THUMB_CG_ARC_S )					// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·ã‚’å–å¾—
 
 
 
@@ -184,15 +184,15 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒ{ƒbƒNƒXƒf[ƒ^
+*		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-// ƒ{ƒbƒNƒX‚ÌƒtƒŒ[ƒ€‚Ì•
+// ãƒœãƒƒã‚¯ã‚¹ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®å¹…
 //
-//	ƒtƒŒ[ƒ€•”•ª‚Ì@ŠG‚Å‘‚¢‚Ä‚ ‚éƒtƒŒ[ƒ€
-//	‚Ì•
+//	ãƒ•ãƒ¬ãƒ¼ãƒ éƒ¨åˆ†ã®ã€€çµµã§æ›¸ã„ã¦ã‚ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+//	ã®å¹…
 //	
 //=====================================
 #define IMC_BOX_AREA_FRAME_WIDHT	(2)
@@ -200,7 +200,7 @@ enum{
 
 //-------------------------------------
 //	
-//	‰Eƒ{ƒbƒNƒXƒGƒŠƒA
+//	å³ãƒœãƒƒã‚¯ã‚¹ã‚¨ãƒªã‚¢
 //	
 //=====================================
 #define IMC_RBOX_AREA_X			( 136 )	
@@ -208,7 +208,7 @@ enum{
 #define IMC_RBOX_AREA_WIDTH		( 112 )
 #define IMC_RBOX_AREA_HEIGHT	( 129 )
 
-// “®ì‰Â”\ƒGƒŠƒA
+// å‹•ä½œå¯èƒ½ã‚¨ãƒªã‚¢
 #define IMC_RBOX_AREA_X_MOVEOK		( IMC_RBOX_AREA_X + IMC_BOX_AREA_FRAME_WIDHT )	
 #define IMC_RBOX_AREA_Y_MOVEOK		( IMC_RBOX_AREA_Y + IMC_BOX_AREA_FRAME_HEIGHT )
 #define IMC_RBOX_AREA_WIDTH_MOVEOK	( IMC_RBOX_AREA_WIDTH - (IMC_BOX_AREA_FRAME_WIDHT*2) )
@@ -217,7 +217,7 @@ enum{
 
 //-------------------------------------
 //	
-//	¶ƒ{ƒbƒNƒXƒGƒŠƒA
+//	å·¦ãƒœãƒƒã‚¯ã‚¹ã‚¨ãƒªã‚¢
 //	
 //=====================================
 #define IMC_LBOX_AREA_X	( 8 )	
@@ -225,111 +225,111 @@ enum{
 #define IMC_LBOX_AREA_WIDTH		( 112 )
 #define IMC_LBOX_AREA_HEIGHT	( 129 )
 
-// “®ì‰Â”\ƒGƒŠƒA
+// å‹•ä½œå¯èƒ½ã‚¨ãƒªã‚¢
 #define IMC_LBOX_AREA_X_MOVEOK		( IMC_LBOX_AREA_X + IMC_BOX_AREA_FRAME_WIDHT )	
 #define IMC_LBOX_AREA_Y_MOVEOK		( IMC_LBOX_AREA_Y + IMC_BOX_AREA_FRAME_HEIGHT )
 #define IMC_LBOX_AREA_WIDTH_MOVEOK	( IMC_LBOX_AREA_WIDTH - (IMC_BOX_AREA_FRAME_WIDHT*2) )
 #define IMC_LBOX_AREA_HEIGHT_MOVEOK	( IMC_LBOX_AREA_HEIGHT - (IMC_BOX_AREA_FRAME_HEIGHT*2) )
 
 
-// ‚OˆÈŠO‚È‚ç‚P‚ð•Ô‚·
+// ï¼ä»¥å¤–ãªã‚‰ï¼‘ã‚’è¿”ã™
 #define IMC_NUM_0_CHECK(x)	( (x) ? 1 : 0 )
 
 //-------------------------------------
 //	
-//	¶ƒ{ƒbƒNƒX
-//	ƒŠƒXƒgŠi”[§ŒÀ”
+//	å·¦ãƒœãƒƒã‚¯ã‚¹
+//	ãƒªã‚¹ãƒˆæ ¼ç´åˆ¶é™æ•°
 //	
 //=====================================
-// ƒAƒNƒZƒTƒŠƒŠƒXƒg
-// •K—v‚ÈƒŠƒXƒg”
+// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆ
+// å¿…è¦ãªãƒªã‚¹ãƒˆæ•°
 #define IMC_LBOX_ACCE_NEAD_LIST_NUM	( 14 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg0
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ0
 #define IMC_LBOX_ACCE_LIST00_END	( 5 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg1
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ1
 #define IMC_LBOX_ACCE_LIST01_END	( 11 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg2
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ2
 #define IMC_LBOX_ACCE_LIST02_END	( 17 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg3
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ3
 #define IMC_LBOX_ACCE_LIST03_END	( 21 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg4
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ4
 #define IMC_LBOX_ACCE_LIST04_END	( 28 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg5
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ5
 #define IMC_LBOX_ACCE_LIST05_END	( 33 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg6
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ6
 #define IMC_LBOX_ACCE_LIST06_END	( 38 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg7
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ7
 #define IMC_LBOX_ACCE_LIST07_END	( 42 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg8
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ8
 #define IMC_LBOX_ACCE_LIST08_END	( 49 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg9
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ9
 #define IMC_LBOX_ACCE_LIST09_END	( 55 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg10
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ10
 #define IMC_LBOX_ACCE_LIST10_END	( 60 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg11
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ11
 #define IMC_LBOX_ACCE_LIST11_END	( 71 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg12
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ12
 #define IMC_LBOX_ACCE_LIST12_END	( 91 )
-// ‚±‚Ì’l‚Ü‚Å‚ªƒŠƒXƒg13
+// ã“ã®å€¤ã¾ã§ãŒãƒªã‚¹ãƒˆ13
 #define IMC_LBOX_ACCE_LIST13_END	( 99 )
 
-// BGƒTƒ€ƒlƒCƒ‹ƒŠƒXƒg
-// ‰½Ží—Þ‚¸‚ÂƒŠƒXƒg‚É•ª‚¯‚é‚©
+// BGã‚µãƒ ãƒã‚¤ãƒ«ãƒªã‚¹ãƒˆ
+// ä½•ç¨®é¡žãšã¤ãƒªã‚¹ãƒˆã«åˆ†ã‘ã‚‹ã‹
 #define IMC_LBOX_BG_ONE_LIST_NUM	(9)
-// ‚ ‚Ü‚è‚Ì”
+// ã‚ã¾ã‚Šã®æ•°
 #define IMC_LBOX_BG_REST_LIST_NUM	( (IMC_BG_RIGHT_MAX % IMC_LBOX_BG_ONE_LIST_NUM) )
-// •K—v‚ÈƒŠƒXƒg”
+// å¿…è¦ãªãƒªã‚¹ãƒˆæ•°
 #define IMC_LBOX_BG_NEAD_LIST_NUM	( (IMC_BG_RIGHT_MAX / IMC_LBOX_BG_ONE_LIST_NUM) + IMC_NUM_0_CHECK(IMC_LBOX_BG_REST_LIST_NUM) )
 
-// ‰¹ƒTƒ€ƒlƒCƒ‹ƒŠƒXƒg
-// ‰½Ží—Þ‚¸‚ÂƒŠƒXƒg‚É•ª‚¯‚é‚©
+// éŸ³ã‚µãƒ ãƒã‚¤ãƒ«ãƒªã‚¹ãƒˆ
+// ä½•ç¨®é¡žãšã¤ãƒªã‚¹ãƒˆã«åˆ†ã‘ã‚‹ã‹
 #define IMC_LBOX_SND_ONE_LIST_NUM	(9)
 #define IMC_LBOX_SND_NEAD_LIST_NUM	(1)
 
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒ{ƒ^ƒ“•`‰æƒf[ƒ^—p
+*		ãƒœã‚¿ãƒ³æç”»ãƒ‡ãƒ¼ã‚¿ç”¨
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒ{ƒ^ƒ“—ñ‹“
+//	ãƒœã‚¿ãƒ³åˆ—æŒ™
 //	
 //=====================================
 enum{
-	IMC_BTTN_RET,		// ¶ƒpƒŒƒbƒg‚ð‚ß‚­‚é
-	IMC_BTTN_RETB,		// ¶ƒpƒŒƒbƒg‚ð‚ß‚­‚Á‚Ä–ß‚·
-	IMC_BTTN_ACE,		// ƒAƒNƒZƒTƒŠ•ÏX‚ÉˆÚ‚é
-	IMC_BTTN_BG,		// BG•ÏX‚ÉˆÚ‚é
-//	IMC_BTTN_SND,		// ‰¹•ÏX‚ÉˆÚ‚é
-	IMC_BTTN_END,		// I‚í‚é
-	IMC_BTTN_MAX		// <-•¶ŽšƒLƒƒƒ‰ƒNƒ^‚ÌID
+	IMC_BTTN_RET,		// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚ãã‚‹
+	IMC_BTTN_RETB,		// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚ãã£ã¦æˆ»ã™
+	IMC_BTTN_ACE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªå¤‰æ›´ã«ç§»ã‚‹
+	IMC_BTTN_BG,		// BGå¤‰æ›´ã«ç§»ã‚‹
+//	IMC_BTTN_SND,		// éŸ³å¤‰æ›´ã«ç§»ã‚‹
+	IMC_BTTN_END,		// çµ‚ã‚ã‚‹
+	IMC_BTTN_MAX		// <-æ–‡å­—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
 };
 #define IMC_BTTN_NORM_MAX (IMC_BTTN_END)
 
 //-------------------------------------
 //	
-//	ƒpƒŒƒbƒg’è‹`
+//	ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
 //	
 //=====================================
 #define IMC_BTTN_ARC_FILE_PLTT	(NARC_imageclip_imgclip_button_NCLR)
 #define IMC_BTTN_PLTT_LOAD_NUM	(3)
-#define	IMC_BTTN_RES_MAN_PLTT	(0)	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚É“o˜^‚·‚éID
+#define	IMC_BTTN_RES_MAN_PLTT	(0)	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²ã™ã‚‹ID
 
-// OK•¶ŽšƒtƒHƒ“ƒg—p
+// OKæ–‡å­—ãƒ•ã‚©ãƒ³ãƒˆç”¨
 #define IMC_BTTN_ARC_FILE_PLTT_FONT		(NARC_imageclip_imgclip_button_font00_NCLR)
 #define IMC_BTTN_PLTT_LOAD_NUM_FONT		(2)
-#define IMC_BTTN_RES_MAN_PLTT_FONT	(1)	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚É“o˜^‚·‚éID
+#define IMC_BTTN_RES_MAN_PLTT_FONT	(1)	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²ã™ã‚‹ID
 
 //-------------------------------------
 //	
-//	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹Žæ“¾—pƒ}ƒNƒ
+//	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å–å¾—ç”¨ãƒžã‚¯ãƒ­
 //	
 //=====================================
-// ƒLƒƒƒ‰ƒNƒ^.ƒZƒ‹ƒtƒ@ƒCƒ‹IDXŠJŽnˆÊ’u
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿.ã‚»ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«IDXé–‹å§‹ä½ç½®
 #define IMC_BTTN_ARC_FILE_CELL	(NARC_imageclip_imgclip_button_00_NANR)
-// ƒLƒƒƒ‰ƒNƒ^BƒZƒ‹BƒZƒ‹ƒAƒjƒŽæ“¾ƒ}ƒNƒ
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€‚ã‚»ãƒ«ã€‚ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡å–å¾—ãƒžã‚¯ãƒ­
 #define IMC_BTTN_ARC_CANM_GET(x)	( ((x)*3) + IMC_BTTN_ARC_FILE_CELL + 0 )
 #define IMC_BTTN_ARC_CELL_GET(x)	( ((x)*3) + IMC_BTTN_ARC_FILE_CELL + 1 )
 #define IMC_BTTN_ARC_CHAR_GET(x)	( ((x)*3) + IMC_BTTN_ARC_FILE_CELL + 2 )
@@ -337,11 +337,11 @@ enum{
 
 //-------------------------------------
 //	
-// ŠeŽíƒ{ƒ^ƒ“À•W
-// ŠeŽíƒ{ƒ^ƒ“ƒTƒCƒY
+// å„ç¨®ãƒœã‚¿ãƒ³åº§æ¨™
+// å„ç¨®ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 //	
 //=====================================
-// ŠeŽíƒ{ƒ^ƒ“À•W
+// å„ç¨®ãƒœã‚¿ãƒ³åº§æ¨™
 #define IMC_BTTN_Y		(144)
 #define IMC_BTTN_RET_Y	(144)
 #define IMC_BTTN_RET_X	(48)
@@ -350,7 +350,7 @@ enum{
 #define IMC_BTTN_BG_X	(136)
 #define IMC_BTTN_END_X	(184)
 
-// ŠeŽíƒ{ƒ^ƒ“ƒTƒCƒY
+// å„ç¨®ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define IMC_BTTN_RET_SIZE_X		(40)
 #define IMC_BTTN_RET_SIZE_Y		(32)
 #define IMC_BTTN_NOR_SIZE_X		(40)
@@ -363,45 +363,45 @@ enum{
 
 //-------------------------------------
 //	
-//	I—¹ƒ{ƒ^ƒ“—ñ‹“
+//	çµ‚äº†ãƒœã‚¿ãƒ³åˆ—æŒ™
 //	
 //=====================================
 enum{
-	IMC_BTTN_ENDCK_CANCEL,	// ƒLƒƒƒ“ƒZƒ‹
-	IMC_BTTN_ENDCK_END,		// I‚í‚é
-	IMC_BTTN_ENDCK_MAX		// <-•¶ŽšƒLƒƒƒ‰ƒNƒ^‚ÌID
+	IMC_BTTN_ENDCK_CANCEL,	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	IMC_BTTN_ENDCK_END,		// çµ‚ã‚ã‚‹
+	IMC_BTTN_ENDCK_MAX		// <-æ–‡å­—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ID
 };
 
 //-------------------------------------
 //	
-//	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹Žæ“¾—pƒ}ƒNƒ
+//	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å–å¾—ç”¨ãƒžã‚¯ãƒ­
 //	
 //=====================================
-// ƒLƒƒƒ‰ƒNƒ^.ƒZƒ‹ƒtƒ@ƒCƒ‹IDXŠJŽnˆÊ’u
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿.ã‚»ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«IDXé–‹å§‹ä½ç½®
 #define IMC_BTTN_ENDCK_ARC_FILE_CELL	(NARC_imageclip_imgclip_button_04_NANR)
-// ƒLƒƒƒ‰ƒNƒ^BƒZƒ‹BƒZƒ‹ƒAƒjƒŽæ“¾ƒ}ƒNƒ
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€‚ã‚»ãƒ«ã€‚ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡å–å¾—ãƒžã‚¯ãƒ­
 #define IMC_BTTN_ENDCK_ARC_CANM	( IMC_BTTN_ENDCK_ARC_FILE_CELL + 0 )
 #define IMC_BTTN_ENDCK_ARC_CELL	( IMC_BTTN_ENDCK_ARC_FILE_CELL + 1 )
 #define IMC_BTTN_ENDCK_ARC_CHAR	( IMC_BTTN_ENDCK_ARC_FILE_CELL + 2 )
 
-// ŠeŽíƒ{ƒ^ƒ“À•W
+// å„ç¨®ãƒœã‚¿ãƒ³åº§æ¨™
 #define IMC_BTTN_ENDCK_Y				(144)
 #define	IMC_BTTN_ENDCK_CHANCEL_X	(32)
 #define IMC_BTTN_ENDCK_END_X		(168)
 
-// ŠeŽíƒ{ƒ^ƒ“ƒTƒCƒY
+// å„ç¨®ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define IMC_BTTN_ENDCK_SIZE_X		(56)
 #define IMC_BTTN_ENDCK_SIZE_Y		(32)
 
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒTƒuƒEƒBƒ“ƒhƒE•`‰æƒf[ƒ^’è”
+*		ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ‡ãƒ¼ã‚¿å®šæ•°
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	”wŒiƒA[ƒJƒCƒuƒf[ƒ^
+//	èƒŒæ™¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 #define IMC_SUBWIN_CG_ARC	(NARC_imageclip_imgclip_top_00_NCGR)
@@ -412,27 +412,27 @@ enum{
 
 //-------------------------------------
 //	
-//	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE•`‰æÀ•W
+//	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»åº§æ¨™
 //	
 //=====================================
-#define IMC_SUBWIN_BMP_X		(2)		// ƒLƒƒƒ‰’PˆÊ
+#define IMC_SUBWIN_BMP_X		(2)		// ã‚­ãƒ£ãƒ©å˜ä½
 #define IMC_SUBWIN_BMP_Y		(19)
 #define IMC_SUBWIN_BMP_SIZE_X	(27)
 #define	IMC_SUBWIN_BMP_SIZE_Y	(4)		
-#define IMC_SUBWIN_BMP_WAKU_PLTT_NO	(1)				// ƒtƒHƒ“ƒg˜gŽg—pƒpƒŒƒbƒg”Ô†
-#define IMC_SUBWIN_BMP_PLTT_NO	(2)				// ƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒg”Ô†
+#define IMC_SUBWIN_BMP_WAKU_PLTT_NO	(1)				// ãƒ•ã‚©ãƒ³ãƒˆæž ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+#define IMC_SUBWIN_BMP_PLTT_NO	(2)				// ãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 
 #define IMC_SUBWIN_BMP_FRAME_CHAR_OFS	(1)
 
-// ƒ‰ƒ“ƒN•`‰æ—p
-#define IMC_SUBWIN_RANKBMP_X		(2)		// ƒLƒƒƒ‰’PˆÊ
+// ãƒ©ãƒ³ã‚¯æç”»ç”¨
+#define IMC_SUBWIN_RANKBMP_X		(2)		// ã‚­ãƒ£ãƒ©å˜ä½
 #define IMC_SUBWIN_RANKBMP_Y		(1)
 #define IMC_SUBWIN_RANKBMP_SIZE_X	(27)
 #define	IMC_SUBWIN_RANKBMP_SIZE_Y	(2)		
 #define IMC_SUBWIN_RANKBMP_FRAME_CHAR_OFS	(IMC_SUBWIN_BMP_FRAME_CHAR_OFS +(IMC_SUBWIN_BMP_SIZE_X * IMC_SUBWIN_BMP_SIZE_Y) )
 
-// ¶³ÝÀ•`‰æ—p
-#define IMC_SUBWIN_COUNTBMP_X		(10)		// ƒLƒƒƒ‰’PˆÊ
+// ã‚«ã‚¦ãƒ³ã‚¿æç”»ç”¨
+#define IMC_SUBWIN_COUNTBMP_X		(10)		// ã‚­ãƒ£ãƒ©å˜ä½
 #define IMC_SUBWIN_COUNTBMP_Y		(8)
 #define IMC_SUBWIN_COUNTBMP_SIZE_X	(14)
 #define	IMC_SUBWIN_COUNTBMP_SIZE_Y	(4)		
@@ -442,38 +442,38 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
-*	‰Eƒ{ƒbƒNƒXƒvƒŒƒCƒ„[
+*	å³ãƒœãƒƒã‚¯ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 */
 //-----------------------------------------------------------------------------
-// BGƒAƒjƒƒ^ƒCƒ~ƒ“ƒO
+// BGã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 #define IMC_RBOX_PLAYER_BG_ANM_TIMING		(16)
 #define IMC_RBOX_PLAYER_BG_ANM_FRAME		(1)
 
 
 //-----------------------------------------------------------------------------
 /**
-*	ƒIƒuƒWƒFƒNƒgƒŠƒXƒgÅ‘å”
+*	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆæœ€å¤§æ•°
 */
 //-----------------------------------------------------------------------------
 #define	IMC_OBJLIST_MAX	(IMC_SYS_ACCESSORIE_MAX + 1 + IMC_BG_RIGHT_MAX)
-// “à–ó
-//	ƒAƒNƒZƒTƒŠ	ƒ|ƒPƒ‚ƒ“‚P‘Ì	BGƒTƒ€ƒlƒCƒ‹
-//	IMC_OBJLIST_TBL	ì¬‚È‚Ç‚ÉŽg—p
+// å†…è¨³
+//	ã‚¢ã‚¯ã‚»ã‚µãƒª	ãƒã‚±ãƒ¢ãƒ³ï¼‘ä½“	BGã‚µãƒ ãƒã‚¤ãƒ«
+//	IMC_OBJLIST_TBL	ä½œæˆãªã©ã«ä½¿ç”¨
 //
-//	ƒ^ƒbƒ`‚Ø‚ñ‚Å‘I‘ð‚µ‚½‚è‚·‚éƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF‚Ì”
+//	ã‚¿ãƒƒãƒãºã‚“ã§é¸æŠžã—ãŸã‚Šã™ã‚‹ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§ã®æ•°
 
 
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒXƒvƒ‰ƒCƒgƒtƒ@ƒCƒ‹ƒf[ƒ^”
+*		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿æ•°
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€
-//	ì¬Žž‚È‚Ç‚ÉŽg—p‚·‚é
-//	ƒf[ƒ^“o˜^Å‘å”
+//	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+//	ä½œæˆæ™‚ãªã©ã«ä½¿ç”¨ã™ã‚‹
+//	ãƒ‡ãƒ¼ã‚¿ç™»éŒ²æœ€å¤§æ•°
 //	
 //=====================================
 #define IMC_SPRITE_OBJ_NUM		(IMC_SYS_ACCESSORIE_MAX + IMC_BG_RIGHT_MAX)
@@ -482,24 +482,24 @@ enum{
 
 //-------------------------------------
 //	
-//	ƒ|ƒPƒ‚ƒ“ƒIƒuƒWƒF‚Í•ÊƒVƒXƒeƒ€
-//	‚µ‚©‚µAƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Í
-//	ƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€‚Ì•¨‚Æˆê‚É
-//	ŠÇ—‚·‚é‚½‚ß’è”‚ðì¬
-//	Œ»ÝƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ð•Û‘¶‚µ‚Ä‚¢‚é‚à‚Ì
-//	ƒAƒNƒZƒTƒŠ@ƒ|ƒPƒ‚ƒ“@BGƒTƒ€ƒlƒCƒ‹
+//	ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã¯åˆ¥ã‚·ã‚¹ãƒ†ãƒ 
+//	ã—ã‹ã—ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã¯
+//	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ã®ç‰©ã¨ä¸€ç·’ã«
+//	ç®¡ç†ã™ã‚‹ãŸã‚å®šæ•°ã‚’ä½œæˆ
+//	ç¾åœ¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã—ã¦ã„ã‚‹ã‚‚ã®
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªã€€ãƒã‚±ãƒ¢ãƒ³ã€€BGã‚µãƒ ãƒã‚¤ãƒ«
 //	
 //=====================================
-// ƒ|ƒPƒ‚ƒ“—pƒLƒƒƒ‰ƒNƒ^“o˜^ID
+// ãƒã‚±ãƒ¢ãƒ³ç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç™»éŒ²ID
 #define IMC_DRAW_POKE_CHAR_ID		(IMC_SPRITE_CHAR_NUM)	
-// ƒ|ƒPƒ‚ƒ“‚à“ü‚ê‚½ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”
+// ãƒã‚±ãƒ¢ãƒ³ã‚‚å…¥ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿æ•°
 #define IMC_SPRITE_OBJ_CHAR_NUM	(IMC_DRAW_POKE_CHAR_ID + 1)				
 
 //-------------------------------------
 //	
-//	ƒAƒNƒZƒTƒŠ‚Ì
-//	ƒLƒƒƒ‰ƒNƒ^EƒpƒŒƒbƒgƒf[ƒ^‚ðŽæ“¾
-//	‚·‚é‚Æ‚«‚ÌIDi—v‘f”j‚ðŽæ“¾
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªã®
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+//	ã™ã‚‹ã¨ãã®IDï¼ˆè¦ç´ æ•°ï¼‰ã‚’å–å¾—
 //	
 //=====================================
 #define IMC_ACCE_CHAR_CONT_ID(x)	( (x) )
@@ -507,53 +507,53 @@ enum{
 
 //-------------------------------------
 //	
-//	BGƒTƒ€ƒlƒCƒ‹‚Ì
-//	ƒLƒƒƒ‰ƒNƒ^EƒpƒŒƒbƒgƒf[ƒ^‚ðŽæ“¾
-//	‚·‚é‚Æ‚«‚ÌIDi—v‘f”j‚ðŽæ“¾
+//	BGã‚µãƒ ãƒã‚¤ãƒ«ã®
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+//	ã™ã‚‹ã¨ãã®IDï¼ˆè¦ç´ æ•°ï¼‰ã‚’å–å¾—
 //	
 //=====================================
 #define IMC_BG_THUMB_CHAR_CONT_ID(x)	( (x) + IMC_ACCE_MAX )
-#define IMC_BG_THUMB_PLTT_CONT_ID(x)	( (x) + IMC_DRAW_ACCESSORIE_PLTT_FILENUM )	//ƒAƒNƒZƒTƒŠƒpƒŒƒbƒg‚P–{•ª‚¸‚ç‚·
+#define IMC_BG_THUMB_PLTT_CONT_ID(x)	( (x) + IMC_DRAW_ACCESSORIE_PLTT_FILENUM )	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‘ãƒ¬ãƒƒãƒˆï¼‘æœ¬åˆ†ãšã‚‰ã™
 
 //-------------------------------------
 //	
-//	SNDƒTƒ€ƒlƒCƒ‹‚Ì
-//	ƒLƒƒƒ‰ƒNƒ^EƒpƒŒƒbƒgƒf[ƒ^‚ðŽæ“¾
-//	‚·‚é‚Æ‚«‚ÌIDi—v‘f”j‚ðŽæ“¾
+//	SNDã‚µãƒ ãƒã‚¤ãƒ«ã®
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+//	ã™ã‚‹ã¨ãã®IDï¼ˆè¦ç´ æ•°ï¼‰ã‚’å–å¾—
 //	
 //=====================================
 #define IMC_SND_THUMB_CHAR_CONT_ID(x)	( (x) + IMC_ACCE_MAX )
-#define IMC_SND_THUMB_PLTT_CONT_ID(x)	( (x) + IMC_DRAW_ACCESSORIE_PLTT_FILENUM )	//ƒAƒNƒZƒTƒŠƒpƒŒƒbƒg‚P–{•ª‚¸‚ç‚·
+#define IMC_SND_THUMB_PLTT_CONT_ID(x)	( (x) + IMC_DRAW_ACCESSORIE_PLTT_FILENUM )	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‘ãƒ¬ãƒƒãƒˆï¼‘æœ¬åˆ†ãšã‚‰ã™
 
 
 
 //-------------------------------------
 //	
-//	I—¹ƒ`ƒFƒbƒN‰æ–ÊƒEƒBƒ“ƒhƒEƒƒjƒ…[—p	
+//	çµ‚äº†ãƒã‚§ãƒƒã‚¯ç”»é¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨	
 //	
 //=====================================
-#define IMC_ENDCHECK_YESNO_CHAR_OFFS	( 0 )	// YESNOƒ{ƒ^ƒ“‚ÌƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
-#define IMC_ENDCHECK_YESNO_PLTT_OFFS	( 5 )	// Žg—pƒpƒŒƒbƒg
-#define IMC_ENDCHECK_YESNO_X			( 25 )	// XƒLƒƒƒ‰ˆÊ’u
-#define IMC_ENDCHECK_YESNO_Y			( 4 )	// YƒLƒƒƒ‰ˆÊ’u
-#define IMC_ENDCHECK_WND_X				( 2 )	// XƒLƒƒƒ‰ˆÊ’u
-#define IMC_ENDCHECK_WND_Y				( 1 )	// YƒLƒƒƒ‰ˆÊ’u
-#define IMC_ENDCHECK_WND_SIZX			( 27 )	// XƒLƒƒƒ‰ƒTƒCƒY
-#define IMC_ENDCHECK_WND_SIZY			( 2 )	// YƒLƒƒƒ‰ƒTƒCƒY
-#define IMC_ENDCHECK_WND_PAL			( 7 )	// Žg—pƒpƒŒƒbƒg”Ô†
-#define IMC_ENDCHECK_WND_CHROFS			( 0+TOUCH_SW_USE_CHAR_NUM+TALK_WIN_CGX_SIZ )	// Žg—pƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg@ƒLƒƒƒ‰ƒNƒ^’PˆÊ
-#define IMC_ENDCHECK_WND_PRICOLOR	( GF_PRINTCOLOR_MAKE(1,2,15) )	// ƒJƒ‰[ƒ}ƒXƒN
-#define IMC_ENDCHECK_WNDWAKU_PAL		( 8 )	// ˜gƒpƒŒƒbƒg
-#define IMC_ENDCHECK_WNDWAKU_CHROFS		(0+TOUCH_SW_USE_CHAR_NUM)	// ˜gƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
+#define IMC_ENDCHECK_YESNO_CHAR_OFFS	( 0 )	// YESNOãƒœã‚¿ãƒ³ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define IMC_ENDCHECK_YESNO_PLTT_OFFS	( 5 )	// ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define IMC_ENDCHECK_YESNO_X			( 25 )	// Xã‚­ãƒ£ãƒ©ä½ç½®
+#define IMC_ENDCHECK_YESNO_Y			( 4 )	// Yã‚­ãƒ£ãƒ©ä½ç½®
+#define IMC_ENDCHECK_WND_X				( 2 )	// Xã‚­ãƒ£ãƒ©ä½ç½®
+#define IMC_ENDCHECK_WND_Y				( 1 )	// Yã‚­ãƒ£ãƒ©ä½ç½®
+#define IMC_ENDCHECK_WND_SIZX			( 27 )	// Xã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+#define IMC_ENDCHECK_WND_SIZY			( 2 )	// Yã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+#define IMC_ENDCHECK_WND_PAL			( 7 )	// ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+#define IMC_ENDCHECK_WND_CHROFS			( 0+TOUCH_SW_USE_CHAR_NUM+TALK_WIN_CGX_SIZ )	// ä½¿ç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆã€€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½
+#define IMC_ENDCHECK_WND_PRICOLOR	( GF_PRINTCOLOR_MAKE(1,2,15) )	// ã‚«ãƒ©ãƒ¼ãƒžã‚¹ã‚¯
+#define IMC_ENDCHECK_WNDWAKU_PAL		( 8 )	// æž ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define IMC_ENDCHECK_WNDWAKU_CHROFS		(0+TOUCH_SW_USE_CHAR_NUM)	// æž ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-// ƒRƒ“ƒeƒXƒgà–¾—p
-#define IMC_CONTESTTEXT_WND_X				( 2 )	// XƒLƒƒƒ‰ˆÊ’u
-#define IMC_CONTESTTEXT_WND_Y				( 19 )	// YƒLƒƒƒ‰ˆÊ’u
-#define IMC_CONTESTTEXT_WND_SIZX			( 27 )	// XƒLƒƒƒ‰ƒTƒCƒY
-#define IMC_CONTESTTEXT_WND_SIZY			( 4 )	// YƒLƒƒƒ‰ƒTƒCƒY
+// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆèª¬æ˜Žç”¨
+#define IMC_CONTESTTEXT_WND_X				( 2 )	// Xã‚­ãƒ£ãƒ©ä½ç½®
+#define IMC_CONTESTTEXT_WND_Y				( 19 )	// Yã‚­ãƒ£ãƒ©ä½ç½®
+#define IMC_CONTESTTEXT_WND_SIZX			( 27 )	// Xã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+#define IMC_CONTESTTEXT_WND_SIZY			( 4 )	// Yã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
 
 //-------------------------------------
-//	´Ìª¸Ä“®ì’è”
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œå®šæ•°
 //=====================================
 #define IMC_SEENFADE_BRIGHTNESS_FADE_SYNC	(8)
 #define IMC_SEENFADE_MOVE_ADD_X				(8)
@@ -564,23 +564,23 @@ enum{
 #define IMC_SEENFADE_BTTNMOVE_ADD_Y			(8)
 #define IMC_SEENFADE_BTTNMOVE_COUNT			(8)
 
-// I—¹ƒ`ƒFƒbƒN‰æ–Ê‚Å‚Ì‰Eƒ{ƒbƒNƒXƒOƒ‰ƒtƒBƒbƒN‚Ì•`‰æˆÊ’u
+// çµ‚äº†ãƒã‚§ãƒƒã‚¯ç”»é¢ã§ã®å³ãƒœãƒƒã‚¯ã‚¹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æç”»ä½ç½®
 #define IMC_RBOX_END_SX						(IMC_RBOX_AREA_X - (IMC_SEENFADE_MOVE_ADD_X*IMC_SEENFADE_MOVE_COUNT))
 #define IMC_RBOX_END_SY						(IMC_RBOX_AREA_Y + (IMC_SEENFADE_MOVE_ADD_Y*IMC_SEENFADE_MOVE_COUNT))
 
 
-// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgƒTƒu–ÊƒT[ƒtƒF[ƒXˆÊ’u
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã‚µãƒ–é¢ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ä½ç½®
 #define IMC_CLACT_SUB_SURFACE_Y	( 512*FX32_ONE )
 
 //-------------------------------------
-//	ƒRƒ“ƒeƒXƒgƒf[ƒ^
+//	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 #define IMC_POKE_MAT_CONTEST_Y_OFS	( -4 )
 
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒvƒƒgƒ^ƒCƒvéŒ¾
+*		ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 

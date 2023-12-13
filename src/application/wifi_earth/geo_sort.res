@@ -1,4 +1,4 @@
-// –{ƒtƒ@ƒCƒ‹‚ÍƒRƒ“ƒo[ƒ^‚Åo—Í‚µ‚Ä‚¢‚Ü‚·B
+// æœ¬ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚³ãƒ³ãƒãƒ¼ã‚¿ã§å‡ºåŠ›ã—ã¦ã„ã¾ã™ã€‚
 
 #ifndef	__COUNTRY_PLACE_SORT_H__
 #define	__COUNTRY_PLACE_SORT_H__
@@ -23,7 +23,7 @@
 #include "msgdata/msg_wifi_place_msg_USA.h"
 #include "msgdata/msg_wifi_place_msg_world.h"
 
-#define	PLACE_NAME_SORT_NUM_0	(24)		// ARG‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_0	(24)		// ARGã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // ARG
 static const u8 PlaceNameSort0[] = {
@@ -53,7 +53,7 @@ static const u8 PlaceNameSort0[] = {
 	ARG24,
 };
 
-#define	PLACE_NAME_SORT_NUM_1	(7)		// AUS‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_1	(7)		// AUSã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // AUS
 static const u8 PlaceNameSort1[] = {
@@ -66,7 +66,7 @@ static const u8 PlaceNameSort1[] = {
 	AUS07,
 };
 
-#define	PLACE_NAME_SORT_NUM_2	(27)		// BRA‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_2	(27)		// BRAã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // BRA
 static const u8 PlaceNameSort2[] = {
@@ -99,7 +99,7 @@ static const u8 PlaceNameSort2[] = {
 	BRA27,
 };
 
-#define	PLACE_NAME_SORT_NUM_3	(13)		// CAN‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_3	(13)		// CANã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // CAN
 static const u8 PlaceNameSort3[] = {
@@ -118,7 +118,7 @@ static const u8 PlaceNameSort3[] = {
 	CAN13,
 };
 
-#define	PLACE_NAME_SORT_NUM_4	(31)		// CHN‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_4	(31)		// CHNã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // CHN
 static const u8 PlaceNameSort4[] = {
@@ -155,7 +155,7 @@ static const u8 PlaceNameSort4[] = {
 	CHN31,
 };
 
-#define	PLACE_NAME_SORT_NUM_5	(16)		// DEU‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_5	(16)		// DEUã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // DEU
 static const u8 PlaceNameSort5[] = {
@@ -177,7 +177,7 @@ static const u8 PlaceNameSort5[] = {
 	DEU15,
 };
 
-#define	PLACE_NAME_SORT_NUM_6	(17)		// ESP‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_6	(17)		// ESPã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // ESP
 static const u8 PlaceNameSort6[] = {
@@ -200,7 +200,7 @@ static const u8 PlaceNameSort6[] = {
 	ESP05,
 };
 
-#define	PLACE_NAME_SORT_NUM_7	(6)		// FIN‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_7	(6)		// FINã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // FIN
 static const u8 PlaceNameSort7[] = {
@@ -212,7 +212,7 @@ static const u8 PlaceNameSort7[] = {
 	FIN06,
 };
 
-#define	PLACE_NAME_SORT_NUM_8	(22)		// FRA‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_8	(22)		// FRAã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // FRA
 static const u8 PlaceNameSort8[] = {
@@ -240,7 +240,7 @@ static const u8 PlaceNameSort8[] = {
 	FRA20,
 };
 
-#define	PLACE_NAME_SORT_NUM_9	(12)		// GBR‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_9	(12)		// GBRã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // GBR
 static const u8 PlaceNameSort9[] = {
@@ -258,7 +258,7 @@ static const u8 PlaceNameSort9[] = {
 	GBR12,
 };
 
-#define	PLACE_NAME_SORT_NUM_10	(35)		// IND‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_10	(35)		// INDã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // IND
 static const u8 PlaceNameSort10[] = {
@@ -299,7 +299,7 @@ static const u8 PlaceNameSort10[] = {
 	IND35,
 };
 
-#define	PLACE_NAME_SORT_NUM_11	(20)		// ITA‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_11	(20)		// ITAã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // ITA
 static const u8 PlaceNameSort11[] = {
@@ -325,7 +325,7 @@ static const u8 PlaceNameSort11[] = {
 	ITA20,
 };
 
-#define	PLACE_NAME_SORT_NUM_12	(50)		// JPN‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_12	(50)		// JPNã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // JPN
 static const u8 PlaceNameSort12[] = {
@@ -381,7 +381,7 @@ static const u8 PlaceNameSort12[] = {
 	JPN22,
 };
 
-#define	PLACE_NAME_SORT_NUM_13	(20)		// NOR‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_13	(20)		// NORã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // NOR
 static const u8 PlaceNameSort13[] = {
@@ -407,7 +407,7 @@ static const u8 PlaceNameSort13[] = {
 	NOR19,
 };
 
-#define	PLACE_NAME_SORT_NUM_14	(16)		// POL‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_14	(16)		// POLã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // POL
 static const u8 PlaceNameSort14[] = {
@@ -429,7 +429,7 @@ static const u8 PlaceNameSort14[] = {
 	POL16,
 };
 
-#define	PLACE_NAME_SORT_NUM_15	(7)		// RUS‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_15	(7)		// RUSã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // RUS
 static const u8 PlaceNameSort15[] = {
@@ -442,7 +442,7 @@ static const u8 PlaceNameSort15[] = {
 	RUS04,
 };
 
-#define	PLACE_NAME_SORT_NUM_16	(24)		// SWE‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_16	(24)		// SWEã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // SWE
 static const u8 PlaceNameSort16[] = {
@@ -472,7 +472,7 @@ static const u8 PlaceNameSort16[] = {
 	SWE24,
 };
 
-#define	PLACE_NAME_SORT_NUM_17	(51)		// USA‚ÌÀÛ‚ÌŒÂ”B
+#define	PLACE_NAME_SORT_NUM_17	(51)		// USAã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 // USA
 static const u8 PlaceNameSort17[] = {
@@ -529,7 +529,7 @@ static const u8 PlaceNameSort17[] = {
 	USA51,
 };
 
-#define	COUNTRY_NAME_SORT_NUM	(130)		// ‘–¼‚ÌÀÛ‚ÌŒÂ”B
+#define	COUNTRY_NAME_SORT_NUM	(130)		// å›½åã®å®Ÿéš›ã®å€‹æ•°ã€‚
 
 static const u8 CountryNameSort[] = {
 	country001,

@@ -28,13 +28,13 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSFndLink
 
-  Description:  �o���������N���X�g�̃m�[�h�\���̂ł��B���̍\���̂����X�g�\��
-                �Ōq�������\���̂̃����o�Ƃ��Ċi�[���܂��B
+  Description:  双方向リンクリストのノード構造体です。この構造体をリスト構造
+                で繋ぎたい構造体のメンバとして格納します。
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-    void*       prevObject;     // �O�Ɍq����Ă���I�u�W�F�N�g�ւ̃|�C���^�B
-    void*       nextObject;     // ���Ɍq����Ă���I�u�W�F�N�g�ւ̃|�C���^�B
+    void*       prevObject;     // 前に繋がれているオブジェクトへのポインタ。
+    void*       nextObject;     // 次に繋がれているオブジェクトへのポインタ。
 
 } NNSFndLink;
 
@@ -42,14 +42,14 @@ typedef struct
 /*---------------------------------------------------------------------------*
   Name:         NNSFndList
 
-  Description:  �o���������N���X�g�\���̂ł��B
+  Description:  双方向リンクリスト構造体です。
  *---------------------------------------------------------------------------*/
 typedef struct 
 {
-    void*       headObject;     // �擪�Ɍq����Ă���I�u�W�F�N�g�ւ̃|�C���^�B
-    void*       tailObject;     // ����Ɍq����Ă���I�u�W�F�N�g�ւ̃|�C���^�B
-    u16         numObjects;     // ���X�g�Ɍq����Ă���I�u�W�F�N�g�̌��B
-    u16         offset;         // NNSFndLink�^�̍\���̃����o�̃I�t�Z�b�g�B
+    void*       headObject;     // 先頭に繋がれているオブジェクトへのポインタ。
+    void*       tailObject;     // 後尾に繋がれているオブジェクトへのポインタ。
+    u16         numObjects;     // リストに繋がれているオブジェクトの個数。
+    u16         offset;         // NNSFndLink型の構造体メンバのオフセット。
 
 } NNSFndList;
 
@@ -57,19 +57,19 @@ typedef struct
 /*---------------------------------------------------------------------------*
   Name:         NNS_FND_INIT_LIST
 
-  Description:  ���X�g�\���̂����������邽�߂̃}�N���ł��B���ۂ̏������ɂ́A
-                NNSFndInitList()�֐��ɂ��s���܂��B
+  Description:  リスト構造体を初期化するためのマクロです。実際の初期化には、
+                NNSFndInitList()関数により行われます。
 
-                ���̃}�N���ł́A�w�肳�ꂽ�\���̖���NNSFndLink�^�����o�ϐ���
-                ����Aoffsetof�}�N�����g���ăI�t�Z�b�g�����߁ANNSFndInitList
-                �֐��ɓn���Ă��܂��B
+                このマクロでは、指定された構造体名とNNSFndLink型メンバ変数名
+                から、offsetofマクロを使ってオフセットを求め、NNSFndInitList
+                関数に渡しています。
 
-  Arguments:    list:       �����N�\���̂ւ̃|�C���^�B
-                structName: ���X�g�Ɍq�������I�u�W�F�N�g�̍\���̖��B
-                linkName:   ���̃I�u�W�F�N�g�̃����N�Ɏg�p�����NNSFndLink�^
-                            �̃����o�ϐ����B
+  Arguments:    list:       リンク構造体へのポインタ。
+                structName: リストに繋げたいオブジェクトの構造体名。
+                linkName:   このオブジェクトのリンクに使用されるNNSFndLink型
+                            のメンバ変数名。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 
 #define NNS_FND_INIT_LIST(list, structName, linkName) \
@@ -77,7 +77,7 @@ typedef struct
 
 
 /*---------------------------------------------------------------------------*
-    �֐��v���g�^�C�v�B
+    関数プロトタイプ。
 
  *---------------------------------------------------------------------------*/
 

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	waza_oshie.c
- * @brief	‹Z‹³‚¦/v‚¢o‚µˆ—
+ * @brief	æŠ€æ•™ãˆ/æ€ã„å‡ºã—å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	06.05.09
  */
@@ -16,20 +16,20 @@
 #include "application/waza_oshie.h"
 
 
-#define LV_WAZA_OBOE_MAX	( LEVELUPWAZA_OBOE_MAX/2 )	// ƒŒƒxƒ‹ƒAƒbƒv‚ÅŠo‚¦‚é‹Z” + I’[ƒR[ƒh
-#define LV_WAZA_OBOE_END	( LEVELUPWAZA_OBOE_END )	// I’[ƒR[ƒh
-#define LV_WAZA_LV_MASK		( LEVELUPWAZA_LEVEL_MASK )	// Šo‚¦‚éƒŒƒxƒ‹•”•ª
-#define LV_WAZA_WAZA_MASK   ( LEVELUPWAZA_WAZA_MASK )	// Šo‚¦‚é‹Z•”•ª
-#define LV_WAZA_LV_SHIFT	( LEVELUPWAZA_LEVEL_SHIFT )	// ƒŒƒxƒ‹æ“¾ƒVƒtƒg
+#define LV_WAZA_OBOE_MAX	( LEVELUPWAZA_OBOE_MAX/2 )	// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã§è¦šãˆã‚‹æŠ€æ•° + çµ‚ç«¯ã‚³ãƒ¼ãƒ‰
+#define LV_WAZA_OBOE_END	( LEVELUPWAZA_OBOE_END )	// çµ‚ç«¯ã‚³ãƒ¼ãƒ‰
+#define LV_WAZA_LV_MASK		( LEVELUPWAZA_LEVEL_MASK )	// è¦šãˆã‚‹ãƒ¬ãƒ™ãƒ«éƒ¨åˆ†
+#define LV_WAZA_WAZA_MASK   ( LEVELUPWAZA_WAZA_MASK )	// è¦šãˆã‚‹æŠ€éƒ¨åˆ†
+#define LV_WAZA_LV_SHIFT	( LEVELUPWAZA_LEVEL_SHIFT )	// ãƒ¬ãƒ™ãƒ«å–å¾—ã‚·ãƒ•ãƒˆ
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‹³‚¦ƒf[ƒ^—Ìˆææ“¾
+ * æŠ€æ•™ãˆãƒ‡ãƒ¼ã‚¿é ˜åŸŸå–å¾—
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	‹Z‹³‚¦ƒf[ƒ^—Ìˆæ
+ * @return	æŠ€æ•™ãˆãƒ‡ãƒ¼ã‚¿é ˜åŸŸ
  */
 //--------------------------------------------------------------------------------------------
 WAZAOSHIE_DATA * WazaOshie_DataAlloc( u32 heap )
@@ -41,9 +41,9 @@ WAZAOSHIE_DATA * WazaOshie_DataAlloc( u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‹³‚¦ƒf[ƒ^—Ìˆæ‰ğ•ú
+ * æŠ€æ•™ãˆãƒ‡ãƒ¼ã‚¿é ˜åŸŸè§£æ”¾
  *
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -55,14 +55,14 @@ void WazaOshie_DataFree( WAZAOSHIE_DATA * dat )
 
 //--------------------------------------------------------------------------------------------
 /**
- * v‚¢o‚µ‰Â”\‚È‹Z‚ğæ“¾
+ * æ€ã„å‡ºã—å¯èƒ½ãªæŠ€ã‚’å–å¾—
  *
- * @param	pp		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- * @param	heap	ƒq[ƒvID
+ * @param	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	æ“¾‚µ‚½‹Zƒf[ƒ^
+ * @return	å–å¾—ã—ãŸæŠ€ãƒ‡ãƒ¼ã‚¿
  *
- *	‰ğ•ú‚ÍŠe©‚Å
+ *	è§£æ”¾ã¯å„è‡ªã§
  */
 //--------------------------------------------------------------------------------------------
 u16 * RemaindWazaGet( POKEMON_PARAM * pp, u32 heap )
@@ -90,23 +90,23 @@ u16 * RemaindWazaGet( POKEMON_PARAM * pp, u32 heap )
 
 	j = 0;
 	for( i=0; i<LV_WAZA_OBOE_MAX; i++ ){
-		// I’[ƒR[ƒhƒ`ƒFƒbƒN
+		// çµ‚ç«¯ã‚³ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 		if( get[i] == LV_WAZA_OBOE_END ){
 			ret[j] = WAZAOSHIE_TBL_MAX;
 			break;
-		// Œ»İ‚ÌƒŒƒxƒ‹‚ÅŠo‚¦‚ç‚ê‚é‹Z‚©
+		// ç¾åœ¨ã®ãƒ¬ãƒ™ãƒ«ã§è¦šãˆã‚‰ã‚Œã‚‹æŠ€ã‹
 		}else if( ((get[i]&LV_WAZA_LV_MASK)>>LV_WAZA_LV_SHIFT) > lv ){
 //			ret[j] = WAZAOSHIE_TBL_MAX;
 //			break;
 			continue;
 		}else{
 			get[i] &= LV_WAZA_WAZA_MASK;
-			// ‚·‚Å‚ÉŠo‚¦‚Ä‚¢‚é‚©
+			// ã™ã§ã«è¦šãˆã¦ã„ã‚‹ã‹
 			for( h=0; h<4; h++ ){
 				if( get[i] == waza[h] ){ break; }
 			}
 			if( h == 4 ){
-				// ƒe[ƒuƒ‹‚É“¯‚¶‹Z‚ª‚È‚¢‚©
+				// ãƒ†ãƒ¼ãƒ–ãƒ«ã«åŒã˜æŠ€ãŒãªã„ã‹
 				for( h=0; h<j; h++ ){
 					if( ret[h] == get[i] ){ break; }
 				}
@@ -125,12 +125,12 @@ u16 * RemaindWazaGet( POKEMON_PARAM * pp, u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹³‚¦‚ç‚ê‚é/v‚¢o‚¹‚é‹Z‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ * æ•™ãˆã‚‰ã‚Œã‚‹/æ€ã„å‡ºã›ã‚‹æŠ€ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	tbl		‹Zƒe[ƒuƒ‹
+ * @param	tbl		æŠ€ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- * @retval	"TRUE = ‚ ‚è"
- * @retval	"FALSE = ‚È‚µ"
+ * @retval	"TRUE = ã‚ã‚Š"
+ * @retval	"FALSE = ãªã—"
  */
 //--------------------------------------------------------------------------------------------
 BOOL WazaOshie_WazaTableChack( u16 * tbl )

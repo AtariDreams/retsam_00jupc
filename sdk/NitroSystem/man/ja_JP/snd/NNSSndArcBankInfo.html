@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNSSndArcBankInfo</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNSSndArcBankInfo</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcsynopsisinfo"><code>typedef struct NNSSndArcBankInfo
@@ -23,7 +23,7 @@
 <dd><pre class="funcprototype"></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAYLWT"></a>
-      <h2>�v�f</h2>
+      <h2>要素</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -31,35 +31,35 @@
 <tbody>
 <tr>
 <td><em><strong><code>fileId</code></strong></em></td>
-<td>�T�E���h�A�[�J�C�u���̃t�@�C��ID�ł��B</td>
+<td>サウンドアーカイブ中のファイルIDです。</td>
 </tr>
 <tr>
 <td><em><strong><code>waveArcNo</code></strong></em></td>
-<td>�o���N�Ɋ֘A�Â���ꂽ�g�`�A�[�J�C�u�̔ԍ��̔z��ł��B</td>
+<td>バンクに関連づけられた波形アーカイブの番号の配列です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAOMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�T�E���h�A�[�J�C�u���̃o���N���\���̂ł��B 
+サウンドアーカイブ中のバンク情報構造体です。 
 </p>
       <p>
-<tt class="function"><a href="NNS_SndArcGetBankInfo.html">NNS_SndArcGetBankInfo</a></tt>�֐����g���āA
-�T�E���h�A�[�J�C�u���炱�̍\���̂��擾���邱�Ƃ��ł��܂��B
+<tt class="function"><a href="NNS_SndArcGetBankInfo.html">NNS_SndArcGetBankInfo</a></tt>関数を使って、
+サウンドアーカイブからこの構造体を取得することができます。
 </p>
       <p>
-�g�`�A�[�J�C�u�ԍ��̔z��<em><strong><code>waveArcNo</code></strong></em>���ŁA
-�g�`�A�[�J�C�u�ԍ����w�肳��Ă��Ȃ��ꍇ�́A
-<span class="symbol">NNS_SND_ARC_INVALID_WAVEARC_NO</span>�������Ă��܂��B
+波形アーカイブ番号の配列<em><strong><code>waveArcNo</code></strong></em>中で、
+波形アーカイブ番号が指定されていない場合は、
+<span class="symbol">NNS_SND_ARC_INVALID_WAVEARC_NO</span>が入っています。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcGetBankInfo.html">NNS_SndArcGetBankInfo</a></p>
-<h2>����</h2>
-<p>2004/07/20 �g�`�A�[�J�C�u�ԍ���z��ɕύX<br>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/07/20 波形アーカイブ番号を配列に変更<br>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

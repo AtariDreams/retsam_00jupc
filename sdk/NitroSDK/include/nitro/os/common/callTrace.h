@@ -42,7 +42,7 @@
   fix spell mistake
 
   Revision 1.5  2004/04/23 00:30:02  yada
-  logƒ‚[ƒh‚É‘Î‰
+  logãƒ¢ãƒ¼ãƒ‰ã«å¯¾å¿œ
 
   Revision 1.4  2004/04/15 02:28:14  yada
   consider for FINALROM
@@ -51,7 +51,7 @@
   CALLSTACK->CALLTRACE
 
   Revision 1.2  2004/04/13 06:21:58  yada
-  OS_DumpThreadCallTrace() ’Ç‰Á(à–¾‚Ì‚İ)
+  OS_DumpThreadCallTrace() è¿½åŠ (èª¬æ˜ã®ã¿)
 
   Revision 1.1  2004/04/12 12:11:14  yada
   first release

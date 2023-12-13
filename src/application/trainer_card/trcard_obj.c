@@ -7,13 +7,13 @@
 #define MAIN_LCD	( GF_BGL_MAIN_DISP )	// 0
 #define SUB_LCD		( GF_BGL_SUB_DISP )		// 1
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define TR_CARD_CHAR_CONT_NUM				(1)
 #define TR_CARD_CHAR_VRAMTRANS_MAIN_SIZE	(2048)
 #define TR_CARD_CHAR_VRAMTRANS_SUB_SIZE		(0)
 #define TR_CARD_PLTT_CONT_NUM				(2)
-#define TR_CARD_PALETTE_NUM					(9)	//ƒpƒŒƒbƒg9–{
-#define TR_CARD_BADGE_PALETTE_NUM			(4)	//ƒpƒŒƒbƒg4–{
+#define TR_CARD_PALETTE_NUM					(9)	//ãƒ‘ãƒ¬ãƒƒãƒˆ9æœ¬
+#define TR_CARD_BADGE_PALETTE_NUM			(4)	//ãƒ‘ãƒ¬ãƒƒãƒˆ4æœ¬
 
 #define BTN_EFF_POS_X	(12*8)
 #define BTN_EFF_POS_Y	(17*8)
@@ -24,12 +24,12 @@ typedef struct BADGE_POS_tag{
 	int y;
 }BADGE_POS;
 
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[“o˜^”ƒe[ƒuƒ‹
+//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç™»éŒ²æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 ResEntryNumTbl[RESOURCE_NUM] = {
-	1,			//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	2,			//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	1,			//ƒZƒ‹ƒŠƒ\[ƒX
-	1,			//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	1,			//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	2,			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	1,			//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	1,			//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 };
 
 static const BADGE_POS BadgePos[] = {
@@ -58,9 +58,9 @@ static void InitCharPlttManager(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk	ƒgƒŒ[ƒi[ƒJ[ƒhOBJƒ[ƒN
+ * @param	wk	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰OBJãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -71,67 +71,67 @@ void InitTRCardCellActor( TR_CARD_OBJ_WORK *wk, ARCHANDLE* p_handle )
 //	initVramTransferManagerHeap( 32, HEAPID_TR_CARD );
 		
 	InitCharPlttManager();
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			0, 128,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 128,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 128,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 128,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_TR_CARD);
 	
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->ClactSet = CLACT_U_SetEasyInit( TR_CARD_ACT_MAX, &wk->RendData, HEAPID_TR_CARD );
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->ResMan[i] = CLACT_U_ResManagerInit(ResEntryNumTbl[i], i, HEAPID_TR_CARD);
 	}
 
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(
 										wk->ResMan[CLACT_U_CHAR_RES],
 										p_handle, NARC_trainer_case_card_badge_NCGR,
 										FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_TR_CARD);
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										p_handle, NARC_trainer_case_card_badge_NCLR,
 										FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, TR_CARD_PALETTE_NUM, HEAPID_TR_CARD);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[MAIN_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 										wk->ResMan[CLACT_U_CELL_RES],
 										p_handle, NARC_trainer_case_card_badge_NCER,
 										FALSE, 1, CLACT_U_CELL_RES, HEAPID_TR_CARD);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[MAIN_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										p_handle, NARC_trainer_case_card_badge_NANR,
 										FALSE, 1, CLACT_U_CELLANM_RES, HEAPID_TR_CARD);
 							
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSet( wk->ResObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSet( wk->ResObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] );
 #if 0
 	{
 		CLACT_U_RES_OBJ_PTR res_obj_badge_plt;
-		//pal“Ç‚İ‚İ(ƒoƒbƒWƒpƒŒƒbƒg)
+		//palèª­ã¿è¾¼ã¿(ãƒãƒƒã‚¸ãƒ‘ãƒ¬ãƒƒãƒˆ)
 		res_obj_badge_plt = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										p_handle, NARC_trainer_case_card_badge2_NCLR,
 										FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, TR_CARD_BADGE_PALETTE_NUM, HEAPID_TR_CARD);
-		// ƒpƒŒƒbƒg“]‘—
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		CLACT_U_PlttManagerSet( res_obj_badge_plt );
 	}
 #endif
@@ -167,10 +167,10 @@ void InitTRCardCellActor( TR_CARD_OBJ_WORK *wk, ARCHANDLE* p_handle )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ğƒZƒbƒg
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk				ƒgƒŒ[ƒi[ƒJ[ƒhOBJƒ[ƒN
- * @param	inBadgeDisp		ƒoƒbƒW•\¦ƒtƒ‰ƒOƒŠƒXƒg	
+ * @param	wk				ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰OBJãƒ¯ãƒ¼ã‚¯
+ * @param	inBadgeDisp		ãƒãƒƒã‚¸è¡¨ç¤ºãƒ•ãƒ©ã‚°ãƒªã‚¹ãƒˆ	
  *
  * @return	none
  */
@@ -180,7 +180,7 @@ void SetTrCardActor( TR_CARD_OBJ_WORK *wk, const u8 *inBadgeDisp )
 	int i;
 	CLACT_HEADER			cl_act_header;
 	
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬	
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ	
 	CLACT_U_MakeHeader(	&cl_act_header,
 						1, 1, 1, 1,
 						CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
@@ -192,7 +192,7 @@ void SetTrCardActor( TR_CARD_OBJ_WORK *wk, const u8 *inBadgeDisp )
 						NULL,NULL);
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		u8 ofs;
 		CLACT_ADD add;
 
@@ -200,7 +200,7 @@ void SetTrCardActor( TR_CARD_OBJ_WORK *wk, const u8 *inBadgeDisp )
 		add.ClActHeader	= &cl_act_header;
 
 		add.mat.x		= 0;//FX32_CONST(32) ;
-		add.mat.y		= 0;//FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚é
+		add.mat.y		= 0;//FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹
 		add.mat.z		= 0;
 		add.sca.x		= FX32_ONE;
 		add.sca.y		= FX32_ONE;
@@ -210,10 +210,10 @@ void SetTrCardActor( TR_CARD_OBJ_WORK *wk, const u8 *inBadgeDisp )
 		add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 		add.heap		= HEAPID_TR_CARD;
 
-		//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-		// ‰º‰æ–Ê(ƒƒCƒ“‰æ–Ê)
-		//ƒoƒbƒW
+		// ä¸‹ç”»é¢(ãƒ¡ã‚¤ãƒ³ç”»é¢)
+		//ãƒãƒƒã‚¸
 		for(i=0;i<TR_CARD_BADGE_ACT_MAX;i++){
 			add.mat.x = FX32_ONE * BadgePos[i].x;
 			add.mat.y = FX32_ONE * BadgePos[i].y;
@@ -221,10 +221,10 @@ void SetTrCardActor( TR_CARD_OBJ_WORK *wk, const u8 *inBadgeDisp )
 			CLACT_SetAnmFlag(wk->ClActWork[i],0);
 			CLACT_AnmChg( wk->ClActWork[i], i );
 			if (!inBadgeDisp[i]){
-				CLACT_SetDrawFlag(wk->ClActWork[i], 0);	//”ñ•\¦
+				CLACT_SetDrawFlag(wk->ClActWork[i], 0);	//éè¡¨ç¤º
 			}
 		}
-		//ƒLƒ‰ƒLƒ‰
+		//ã‚­ãƒ©ã‚­ãƒ©
 		{
 			ofs = TR_CARD_BADGE_ACT_MAX;
 			for (i=0;i<TR_CARD_STAR_ACT_MAX;i++){
@@ -234,7 +234,7 @@ void SetTrCardActor( TR_CARD_OBJ_WORK *wk, const u8 *inBadgeDisp )
 				wk->ClActWork[ofs+i] = CLACT_Add(&add);
 				CLACT_SetAnmFlag(wk->ClActWork[ofs+i],1);
 				CLACT_AnmChg( wk->ClActWork[ofs+i], 8 );
-				CLACT_SetDrawFlag(wk->ClActWork[ofs+i], 0);	//”ñ•\¦
+				CLACT_SetDrawFlag(wk->ClActWork[ofs+i], 0);	//éè¡¨ç¤º
 			}
 			ofs += TR_CARD_STAR_ACT_MAX;
 			for (i=0;i<TR_CARD_GRATE_STAR_ACT_MAX;i++){
@@ -244,11 +244,11 @@ void SetTrCardActor( TR_CARD_OBJ_WORK *wk, const u8 *inBadgeDisp )
 				wk->ClActWork[ofs+i] = CLACT_Add(&add);
 				CLACT_SetAnmFlag(wk->ClActWork[ofs+i],1);
 				CLACT_AnmChg( wk->ClActWork[ofs+i], 9 );
-				CLACT_SetDrawFlag(wk->ClActWork[ofs+i], 0);	//”ñ•\¦
+				CLACT_SetDrawFlag(wk->ClActWork[ofs+i], 0);	//éè¡¨ç¤º
 			}
 		}
 		ofs += TR_CARD_GRATE_STAR_ACT_MAX;
-		//ƒ{ƒ^ƒ“ƒGƒtƒFƒNƒg
+		//ãƒœã‚¿ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		{
 			cl_act_header.priority = 0;
 			add.mat.x = FX32_ONE * BTN_EFF_POS_X;
@@ -257,16 +257,16 @@ void SetTrCardActor( TR_CARD_OBJ_WORK *wk, const u8 *inBadgeDisp )
 			wk->ClActWork[ofs] = CLACT_Add(&add);
 			CLACT_SetAnmFlag(wk->ClActWork[ofs],0);
 			CLACT_AnmChg( wk->ClActWork[ofs], 10 );
-			CLACT_SetDrawFlag(wk->ClActWork[ofs], 0);	//”ñ•\¦;
+			CLACT_SetDrawFlag(wk->ClActWork[ofs], 0);	//éè¡¨ç¤º;
 		}
 	}	
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * 2DƒZƒ‹ƒIƒuƒWƒFƒNƒg‰ğ•ú
+ * 2Dã‚»ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè§£æ”¾
  *
- * @param	wk	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ * @param	wk	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -274,27 +274,27 @@ void SetTrCardActor( TR_CARD_OBJ_WORK *wk, const u8 *inBadgeDisp )
 void RereaseCellObject(TR_CARD_OBJ_WORK *wk)
 {
 	u8 i;
-	//ƒpƒŒƒbƒg‰ğ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè§£æ”¾
 	for(i=0;i<TR_CARD_BADGE_ACT_MAX;i++){
 		sys_FreeMemoryEz(wk->PalDataBuf[i]);
 	}
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ğ•ú
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 
-	// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_CharManagerDelete(wk->ResObjTbl[MAIN_LCD][CLACT_U_CHAR_RES]);
 
-	// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_PlttManagerDelete(wk->ResObjTbl[MAIN_LCD][CLACT_U_PLTT_RES]);
 		
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for(i=0;i<RESOURCE_NUM;i++){
 		CLACT_U_ResManagerDelete(wk->ResMan[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->ClactSet);
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
 	DeleteCharManager();
@@ -304,11 +304,11 @@ void RereaseCellObject(TR_CARD_OBJ_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒWƒpƒŒƒbƒg•ÏX
+ * ãƒãƒƒã‚¸ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
  *
- * @param	wk			OBJƒ[ƒN
- * @param	inBadgeNo	ƒoƒbƒWƒiƒ“ƒo[
- * @param	inOalNo		ƒpƒŒƒbƒg”Ô†
+ * @param	wk			OBJãƒ¯ãƒ¼ã‚¯
+ * @param	inBadgeNo	ãƒãƒƒã‚¸ãƒŠãƒ³ãƒãƒ¼
+ * @param	inOalNo		ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  *
  * @return	none
  */
@@ -335,15 +335,15 @@ void SetBadgePalette( TR_CARD_OBJ_WORK *wk, const u8 inBadgeNo, const u8 inPalNo
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
- *ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void InitCharPlttManager(void)
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			TR_CARD_CHAR_CONT_NUM,
@@ -353,10 +353,10 @@ static void InitCharPlttManager(void)
 		};
 		InitCharManager(&cm);
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(TR_CARD_PLTT_CONT_NUM, HEAPID_TR_CARD);
 
-	// “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 

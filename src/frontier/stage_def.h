@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	stage_def.h
- * @bfief	�u�o�g���X�e�[�W�v��`
+ * @bfief	「バトルステージ」定義
  * @author	Satoshi Nohara
  * @date	07.03.29
  */
@@ -12,38 +12,38 @@
 
 //============================================================================================
 //
-//	��`(enum�֎~)
+//	定義(enum禁止)
 //
 //============================================================================================
-#define STAGE_LAP_ENEMY_MAX			(10)						//1�T���̓G�g���[�i�[�̍ő吔
-//#define STAGE_LAP_MAX				(10)						///�X�e�[�W�̍ő����
-#define STAGE_LAP_MAX				(18)						///�X�e�[�W�̍ő����
-#define STAGE_LAP_MULTI_ENEMY_MAX	(STAGE_LAP_ENEMY_MAX*2)		//1�T����2�l�̓G�g���[�i�[�̍ő吔
-#define STAGE_TR_TYPE_MAX			(18)						//????���܂�
-#define STAGE_TYPE_LEVEL_MAX		(10)						//�^�C�v���x���̍ő�
+#define STAGE_LAP_ENEMY_MAX			(10)						//1週毎の敵トレーナーの最大数
+//#define STAGE_LAP_MAX				(10)						///ステージの最大周回数
+#define STAGE_LAP_MAX				(18)						///ステージの最大周回数
+#define STAGE_LAP_MULTI_ENEMY_MAX	(STAGE_LAP_ENEMY_MAX*2)		//1週毎の2人の敵トレーナーの最大数
+#define STAGE_TR_TYPE_MAX			(18)						//????も含む
+#define STAGE_TYPE_LEVEL_MAX		(10)						//タイプレベルの最大
 
-#define STAGE_ENTRY_POKE_MAX		(2)							//�Q���|�P�������V���O��=1 �_�u��=2
+#define STAGE_ENTRY_POKE_MAX		(2)							//参加ポケモン数シングル=1 ダブル=2
 
-//�^�C�v�̕���
-#define TYPE_X_MAX					(4)							//���ɕ��Ԑ�
-#define TYPE_Y_MAX					(5)							//�c�ɕ��Ԑ�
-#define DUMMY_TYPE					(0xfe)						//��������|�P�����^�C�v
+//タイプの並び
+#define TYPE_X_MAX					(4)							//横に並ぶ数
+#define TYPE_Y_MAX					(5)							//縦に並ぶ数
+#define DUMMY_TYPE					(0xfe)						//無視するポケモンタイプ
 #define TYPE_XY_MAX					(TYPE_X_MAX * TYPE_Y_MAX)
 
-//�^�C�v
+//タイプ
 #define STAGE_TYPE_SINGLE		(0)
 #define STAGE_TYPE_DOUBLE		(1)
 #define STAGE_TYPE_MULTI		(2)
 #define STAGE_TYPE_WIFI_MULTI	(3)
-#define STAGE_TYPE_MAX			(4)								//�ő吔
+#define STAGE_TYPE_MAX			(4)								//最大数
 
-//�g���[�i�[�^�C�v�̃f�[�^�e�[�u����`
+//トレーナータイプのデータテーブル定義
 #define STAGE_RANK_TR1_NUM		(8)								//
-#define STAGE_RANK_TR2_NUM		(4)								//��p
+#define STAGE_RANK_TR2_NUM		(4)								//専用
 #define STAGE_RANK_TR_MAX		(STAGE_RANK_TR1_NUM+STAGE_RANK_TR2_NUM)
 
 /////////////////////////////////////////////////////////////////////////////////////////
-//STAGE_SCRWORK�̎擾�R�[�h(stage.s�Ŏg�p)
+//STAGE_SCRWORKの取得コード(stage.sで使用)
 #define FS_ID_SET_MODE				(0)
 #define FS_ID_SET_LEVEL				(1)
 #define FS_ID_SET_TYPE				(2)
@@ -84,19 +84,19 @@
 #define FS_ID_CHECK_BRAIN			(37)
 #define FS_ID_WND_SET				(38)
 
-//d32r0401.ev�Ŏg�p
+//d32r0401.evで使用
 #define STAGE_TOOL_CHK_ENTRY_POKE_NUM	(0)
 #define STAGE_TOOL_GET_CLEAR_FLAG		(1)
 #define STAGE_TOOL_GET_CLEAR_MONSNO		(2)
 #define STAGE_TOOL_SET_NEW_CHALLENGE	(3)
 #define STAGE_TOOL_SELECT_POKE			(4)
 
-//�ʐM�o�b�t�@�̃T�C�Y(send_buf,recv_buf)
+//通信バッファのサイズ(send_buf,recv_buf)
 //#define STAGE_COMM_BUF_LEN			(40)
 #define STAGE_COMM_BUF_LEN			(44)
 #define STAGE_HUGE_BUF_LEN			(512)//(1024)
 
-//�ʐM�^�C�v
+//通信タイプ
 //fssc_stage_sub.c
 #define STAGE_COMM_BASIC				(0)
 #define STAGE_COMM_TR					(1)
@@ -108,23 +108,23 @@
 #define STAGE_COMM_PAIR_POKETYPE		(5)
 #define STAGE_COMM_PAIR_FINAL_ANSWER	(6)
 
-//�ʐM�̎���1�l�̃|�P������
+//通信の時の1人のポケモン数
 #define	STAGE_COMM_POKE_NUM			(2)
 
-//����(�}���`�Ȃ�G�̐���4�ȂǁA1�l�������2�ɂȂ�)
+//総数(マルチなら敵の数が4など、1人あたりは2になる)
 #define STAGE_FLAG_SOLO				(0)					//2
 #define STAGE_FLAG_TOTAL			(1)					//2+2=4
 
-//�ʐM�l��
+//通信人数
 #define STAGE_COMM_PLAYER_NUM		(2)
 
-//�|�P�����A�N�^�[�\���ʒu
+//ポケモンアクター表示位置
 #define STAGE_POKE_ACT_X			(128)
 #define STAGE_POKE_ACT_Y			(56)
 
-//���R�[�h�Z�b�g�ɓn���O�ɐ��������Ȃ��ƃ_���I
-//�d�l���́u�Z�[�u�f�[�^�ɂ��āv�̗��ɍő吔�������Ă���
-#define STAGE_RENSYOU_MAX			(9999)				//�A����
+//レコードセットに渡す前に制限かけないとダメ！
+//仕様書の「セーブデータについて」の欄に最大数が書いてある
+#define STAGE_RENSYOU_MAX			(9999)				//連勝数
 
 
 #endif	//__STAGE_DEF_H__

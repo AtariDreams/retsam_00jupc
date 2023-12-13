@@ -12,25 +12,25 @@
 
   $Log: container.c,v $
   Revision 1.21  2007/07/09 12:17:54  yasu
-  TARGET_NAME ‚ÌƒTƒ|[ƒg
+  TARGET_NAME ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.20  2007/04/12 03:29:45  yasu
-  IF FIRST/LAST ‚ð FOREACH OBJECT/LIBRARY ‚Å‚à‘Î‰ž‚Å‚«‚é‚æ‚¤‚É‚µ‚½
+  IF FIRST/LAST ã‚’ FOREACH OBJECT/LIBRARY ã§ã‚‚å¯¾å¿œã§ãã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.19  2007/04/10 14:13:20  yasu
-  •¡”‚Ì SEARCH_SYMBOL ‘Î‰ž
+  è¤‡æ•°ã® SEARCH_SYMBOL å¯¾å¿œ
 
   Revision 1.18  2006/05/10 02:06:00  yasu
-  CodeWarrior 2.x ‚Ö‚Ì‘Î‰ž
+  CodeWarrior 2.x ã¸ã®å¯¾å¿œ
 
   Revision 1.17  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.16  2005/09/01 04:30:52  yasu
-  Overlay Group ‚ÌƒTƒ|[ƒg
+  Overlay Group ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.15  2005/06/20 12:21:48  yasu
-  Surffix -> Suffix C³
+  Surffix -> Suffix ä¿®æ­£
 
   Revision 1.14  2005/02/28 05:26:03  yosizaki
   do-indent.
@@ -65,7 +65,7 @@
   change SDK prefix iris -> nitro
 
   Revision 1.4  2004/01/15 10:51:45  yasu
-  Static StackSize ‚ÌŽÀ‘•
+  Static StackSize ã®å®Ÿè£…
 
   Revision 1.3  2004/01/14 12:38:08  yasu
   Change OverlayName->OverlayDefs

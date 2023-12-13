@@ -1,10 +1,10 @@
 //============================================================================================
 /**
  * @file	saveload_system.c
- * @brief	ƒZ[ƒuƒ[ƒhƒVƒXƒeƒ€
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
  * @author	tamada	GAME FREAK Inc.
  * @date	2005.10.12
- * @li		2006.04.17	savedata.c‚©‚ç•ª—£
+ * @li		2006.04.17	savedata.cã‹ã‚‰åˆ†é›¢
  */
 //============================================================================================
 
@@ -46,55 +46,55 @@
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 typedef struct {
-	u32 g_count;		///<ƒOƒ[ƒoƒ‹ƒJƒEƒ“ƒ^iMYƒf[ƒ^ABOXƒf[ƒ^‹¤—Lj
-	u32 b_count;		///<ƒuƒƒbƒN“àƒJƒEƒ“ƒ^iMYƒf[ƒ^‚ÆBOXƒf[ƒ^‚Æ‚Å“Æ—§j
-	u32 size;			///<ƒf[ƒ^ƒTƒCƒYiƒtƒbƒ^ƒTƒCƒYŠÜ‚Şj
-	u32 magic_number;	///<ƒ}ƒWƒbƒNƒiƒ“ƒo[
-	u8 blk_id;			///<‘ÎÛ‚ÌƒuƒƒbƒNw’èID
-	u16 crc;			///<ƒf[ƒ^‘S‘Ì‚ÌCRC’l
+	u32 g_count;		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚«ã‚¦ãƒ³ã‚¿ï¼ˆMYãƒ‡ãƒ¼ã‚¿ã€BOXãƒ‡ãƒ¼ã‚¿å…±æœ‰ï¼‰
+	u32 b_count;		///<ãƒ–ãƒ­ãƒƒã‚¯å†…ã‚«ã‚¦ãƒ³ã‚¿ï¼ˆMYãƒ‡ãƒ¼ã‚¿ã¨BOXãƒ‡ãƒ¼ã‚¿ã¨ã§ç‹¬ç«‹ï¼‰
+	u32 size;			///<ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆãƒ•ãƒƒã‚¿ã‚µã‚¤ã‚ºå«ã‚€ï¼‰
+	u32 magic_number;	///<ãƒã‚¸ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼
+	u8 blk_id;			///<å¯¾è±¡ã®ãƒ–ãƒ­ãƒƒã‚¯æŒ‡å®šID
+	u16 crc;			///<ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã®CRCå€¤
 }SAVE_FOOTER;
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒuƒƒbƒNƒf[ƒ^î•ñ
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æƒ…å ±
  */
 //---------------------------------------------------------------------------
 typedef struct {
-	u8 id;				///<ƒuƒƒbƒN’è‹`ID
-	u8 start_sec;		///<ŠJnƒZƒNƒ^ˆÊ’u
-	u8 use_sec;			///<è—LƒZƒNƒ^”
-	u32 start_ofs;		///<ƒZ[ƒuƒf[ƒ^‚Å‚ÌŠJnƒIƒtƒZƒbƒg
-	u32 size;			///<ƒZ[ƒuƒf[ƒ^‚Ìè—LƒTƒCƒY
+	u8 id;				///<ãƒ–ãƒ­ãƒƒã‚¯å®šç¾©ID
+	u8 start_sec;		///<é–‹å§‹ã‚»ã‚¯ã‚¿ä½ç½®
+	u8 use_sec;			///<å æœ‰ã‚»ã‚¯ã‚¿æ•°
+	u32 start_ofs;		///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã§ã®é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32 size;			///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å æœ‰ã‚µã‚¤ã‚º
 }SVBLK_INFO;
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^€–Ú‚²‚Æ‚Ìî•ñ’è‹`
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿é …ç›®ã”ã¨ã®æƒ…å ±å®šç¾©
  */
 //---------------------------------------------------------------------------
 typedef struct {
-	GMDATA_ID gmdataID;	///<ƒZ[ƒuƒf[ƒ^¯•ÊID
-	u32 size;			///<ƒf[ƒ^ƒTƒCƒYŠi”[
-	u32 address;		///<ƒf[ƒ^ŠJnˆÊ’u
-	u16 crc;			///<ƒGƒ‰[ŒŸo—pCRCƒR[ƒhŠi”[
-	u16 blockID;		///<Š‘®ƒuƒƒbƒN‚ÌID
+	GMDATA_ID gmdataID;	///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿è­˜åˆ¥ID
+	u32 size;			///<ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºæ ¼ç´
+	u32 address;		///<ãƒ‡ãƒ¼ã‚¿é–‹å§‹ä½ç½®
+	u16 crc;			///<ã‚¨ãƒ©ãƒ¼æ¤œå‡ºç”¨CRCã‚³ãƒ¼ãƒ‰æ ¼ç´
+	u16 blockID;		///<æ‰€å±ãƒ–ãƒ­ãƒƒã‚¯ã®ID
 }SVPAGE_INFO;
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒ[ƒN\‘¢‘Ì
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * ÀÛ‚ÌƒZ[ƒu‚³‚ê‚é•”•ª‚Ì\‘¢
+ * å®Ÿéš›ã®ã‚»ãƒ¼ãƒ–ã•ã‚Œã‚‹éƒ¨åˆ†ã®æ§‹é€ 
  */
 //---------------------------------------------------------------------------
 typedef struct {
-	u8 data[SECTOR_SIZE * SECTOR_MAX];	///<ÀÛ‚Ìƒf[ƒ^•Û—Ìˆæ
+	u8 data[SECTOR_SIZE * SECTOR_MAX];	///<å®Ÿéš›ã®ãƒ‡ãƒ¼ã‚¿ä¿æŒé ˜åŸŸ
 }SAVEWORK;
 
 
 //---------------------------------------------------------------------------
 /**
- * @brief	•ªŠ„“]‘—§Œä—pƒ[ƒN
+ * @brief	åˆ†å‰²è»¢é€åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯
  */
 //---------------------------------------------------------------------------
 typedef struct {
@@ -111,34 +111,34 @@ typedef struct {
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^\‘¢‘Ì
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  *
- * ƒZ[ƒuƒf[ƒ^©‘Ì‚ÆA§Œä—pƒ[ƒN‚ğ‚Ü‚Æ‚ß‚½‚à‚Ì
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿è‡ªä½“ã¨ã€åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’ã¾ã¨ã‚ãŸã‚‚ã®
  */
 //---------------------------------------------------------------------------
 struct _SAVEDATA {
-	BOOL flash_exists;			///<ƒoƒbƒNƒAƒbƒvFLASH‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©
-	BOOL data_exists;			///<ƒf[ƒ^‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©
-	BOOL new_data_flag;			///<u‚³‚¢‚µ‚å‚©‚çv‚Ìƒf[ƒ^‚©‚Ç‚¤‚©
-	BOOL total_save_flag;		///<‘S‘ÌƒZ[ƒu‚ª•K—v‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-//	LOAD_RESULT first_status;	///<ˆê”ÔÅ‰‚ÌƒZ[ƒuƒf[ƒ^ƒ`ƒFƒbƒNŒ‹‰Ê
-	u32 first_status;			///<ˆê”ÔÅ‰‚ÌƒZ[ƒuƒf[ƒ^ƒ`ƒFƒbƒNŒ‹‰Ê(bitw’è)
+	BOOL flash_exists;			///<ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—FLASHãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹
+	BOOL data_exists;			///<ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹
+	BOOL new_data_flag;			///<ã€Œã•ã„ã—ã‚‡ã‹ã‚‰ã€ã®ãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹
+	BOOL total_save_flag;		///<å…¨ä½“ã‚»ãƒ¼ãƒ–ãŒå¿…è¦ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+//	LOAD_RESULT first_status;	///<ä¸€ç•ªæœ€åˆã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯çµæœ
+	u32 first_status;			///<ä¸€ç•ªæœ€åˆã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯çµæœ(bitæŒ‡å®š)
 #if !(CRC_LOADCHECK)
-	MATHCRC16Table crc_table;	///<CRCZo—pƒe[ƒuƒ‹
+	MATHCRC16Table crc_table;	///<CRCç®—å‡ºç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
 #endif //CRC_LOADCHECK
-	SAVEWORK svwk;				///<ƒZ[ƒuƒf[ƒ^–{‘Ì
+	SAVEWORK svwk;				///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æœ¬ä½“
 
 	u32 global_counter;
 	u32 current_counters[SVBLK_ID_MAX];
 	u8 current_side[SVBLK_ID_MAX];
 
-	///ƒZ[ƒu€–Úƒf[ƒ^î•ñ
+	///ã‚»ãƒ¼ãƒ–é …ç›®ãƒ‡ãƒ¼ã‚¿æƒ…å ±
 	SVPAGE_INFO pageinfo[GMDATA_ID_MAX];
 
-	///ƒZ[ƒuƒuƒƒbƒNƒf[ƒ^î•ñ
+	///ã‚»ãƒ¼ãƒ–ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æƒ…å ±
 	SVBLK_INFO blkinfo[SVBLK_ID_MAX];
 
-	///•ªŠ„“]‘—§Œä—pƒ[ƒN
+	///åˆ†å‰²è»¢é€åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯
 	NEWDIVSV_WORK ndsw;
 
 	int dendou_sector_switch;
@@ -149,16 +149,16 @@ struct _SAVEDATA {
 //============================================================================================
 //
 //
-//			•Ï”
+//			å¤‰æ•°
 //
 //
 //============================================================================================
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ‚±‚Ìƒtƒ@ƒCƒ‹‚Å—BˆêÃ“IŠm•Û‚³‚ê‚é•Ï”B
- * ƒQ[ƒ€ŠJn‚É‰Šú‰»‚³‚ê‚éB
+ * ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã§å”¯ä¸€é™çš„ç¢ºä¿ã•ã‚Œã‚‹å¤‰æ•°ã€‚
+ * ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã«åˆæœŸåŒ–ã•ã‚Œã‚‹ã€‚
  */
 //---------------------------------------------------------------------------
 static SAVEDATA * SvPointer = NULL;
@@ -167,7 +167,7 @@ static SAVEDATA * SvPointer = NULL;
 //============================================================================================
 //
 //
-//			ŒöŠJŠÖ”
+//			å…¬é–‹é–¢æ•°
 //
 //
 //============================================================================================
@@ -204,7 +204,7 @@ int DEBUG_SaveCurrentSideGet(void);
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^\‘¢‚Ì‰Šú‰»
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã®åˆæœŸåŒ–
  */
 //---------------------------------------------------------------------------
 SAVEDATA * SaveData_System_Init(void)
@@ -216,9 +216,9 @@ SAVEDATA * SaveData_System_Init(void)
 	MI_CpuClearFast(sv, sizeof(SAVEDATA));
 	SvPointer = sv;
 	sv->flash_exists = PMSVLD_Init();
-	sv->data_exists = FALSE;			//ƒf[ƒ^‚Í‘¶İ‚µ‚È‚¢
-	sv->new_data_flag = TRUE;			//V‹Kƒf[ƒ^‚É‚È‚é
-	sv->total_save_flag = TRUE;			//‘S‘ÌƒZ[ƒu‚Ì•K—v‚ª‚ ‚é
+	sv->data_exists = FALSE;			//ãƒ‡ãƒ¼ã‚¿ã¯å­˜åœ¨ã—ãªã„
+	sv->new_data_flag = TRUE;			//æ–°è¦ãƒ‡ãƒ¼ã‚¿ã«ãªã‚‹
+	sv->total_save_flag = TRUE;			//å…¨ä½“ã‚»ãƒ¼ãƒ–ã®å¿…è¦ãŒã‚ã‚‹
 	
 #if !(CRC_LOADCHECK)
 	MATH_CRC16CCITTInitTable(&sv->crc_table);
@@ -228,24 +228,24 @@ SAVEDATA * SaveData_System_Init(void)
 	MI_CpuClearFast(sv->current_counters, sizeof(sv->current_counters));
 
 
-	//ƒf[ƒ^‘¶İƒ`ƒFƒbƒN‚ğs‚Á‚Ä‚¢‚é
+	//ãƒ‡ãƒ¼ã‚¿å­˜åœ¨ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã£ã¦ã„ã‚‹
 	sv_result = NewCheckLoadData(sv);
 	sv->first_status = 0;
 	switch (sv_result) {
 	case LOAD_RESULT_OK:
-		sv->total_save_flag = FALSE;	//‘S‘ÌƒZ[ƒu‚Ì•K—v‚Í‚È‚¢
-										//NG‚Ìê‡‚ÍTRUE‚Ì‚Ü‚Ü‚È‚Ì‚Å‘S‘ÌƒZ[ƒu‚É‚È‚é
+		sv->total_save_flag = FALSE;	//å…¨ä½“ã‚»ãƒ¼ãƒ–ã®å¿…è¦ã¯ãªã„
+										//NGã®å ´åˆã¯TRUEã®ã¾ã¾ãªã®ã§å…¨ä½“ã‚»ãƒ¼ãƒ–ã«ãªã‚‹
 		/* FALL THROUGH */
 	case LOAD_RESULT_NG:
-		//‚Ü‚Æ‚à‚Èƒf[ƒ^‚ª‚ ‚é‚æ‚¤‚È‚Ì‚Å“Ç‚İ‚Ş
+		//ã¾ã¨ã‚‚ãªãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‚ˆã†ãªã®ã§èª­ã¿è¾¼ã‚€
 		NewSVLD_Load(sv);
-		sv->data_exists = TRUE;			//ƒf[ƒ^‚Í‘¶İ‚·‚é
-		sv->new_data_flag = FALSE;		//V‹Kƒf[ƒ^‚Å‚Í‚È‚¢
-		if(sv_result == LOAD_RESULT_NG){	//OK‚àNG‚à—¼•û‚±‚±‚ğ’Ê‚é‚Ì‚Å‰ü‚ß‚Äƒ`ƒFƒbƒN
+		sv->data_exists = TRUE;			//ãƒ‡ãƒ¼ã‚¿ã¯å­˜åœ¨ã™ã‚‹
+		sv->new_data_flag = FALSE;		//æ–°è¦ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã„
+		if(sv_result == LOAD_RESULT_NG){	//OKã‚‚NGã‚‚ä¸¡æ–¹ã“ã“ã‚’é€šã‚‹ã®ã§æ”¹ã‚ã¦ãƒã‚§ãƒƒã‚¯
 			sv->first_status |= NORMAL_NG_BIT;
 		}
 		
-		//ŠO•”ƒZ[ƒu‚Ì‘¶İƒ`ƒFƒbƒN
+		//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 		{
 			LOAD_RESULT frontier_result, video_result;
 			
@@ -267,7 +267,7 @@ SAVEDATA * SaveData_System_Init(void)
 	case LOAD_RESULT_BREAK:
 		sv->first_status |= NORMAL_BREAK_BIT;
 	case LOAD_RESULT_NULL:
-		//V‹K or ƒf[ƒ^”j‰ó‚È‚Ì‚ÅƒNƒŠƒA‚·‚é
+		//æ–°è¦ or ãƒ‡ãƒ¼ã‚¿ç ´å£Šãªã®ã§ã‚¯ãƒªã‚¢ã™ã‚‹
 		SaveData_ClearData(sv);
 		break;
 	}
@@ -295,13 +295,13 @@ SAVEDATA * SaveData_System_Init(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
- * @return	SAVEDATA	ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @return	SAVEDATA	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * Šî–{“I‚É‚ÍƒZ[ƒuƒf[ƒ^‚Ö‚ÌƒOƒ[ƒoƒ‹QÆ‚Í”ğ‚¯‚½‚¢B‚»‚Ì‚½‚ßA‚±‚ÌŠÖ”‚ğ
- * g—p‚·‚é‰ÓŠ‚ÍŒµd‚É§ŒÀ‚³‚ê‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B‚Å‚«‚ê‚ÎƒvƒƒOƒ‰ƒ}ƒŠ[ƒ_[‚Ì
- * ‹–‰Â‚ª‚È‚¯‚ê‚Îg—p‚Å‚«‚È‚¢‚æ‚¤‚É‚µ‚½‚¢B
- * •Ï‚ÈƒAƒNƒZƒX‚ğ‚µ‚½‚çC³‚ª‚©‚©‚è‚Ü‚·Bg—p•û–@‚É‚Í’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
+ * åŸºæœ¬çš„ã«ã¯ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å‚ç…§ã¯é¿ã‘ãŸã„ã€‚ãã®ãŸã‚ã€ã“ã®é–¢æ•°ã‚’
+ * ä½¿ç”¨ã™ã‚‹ç®‡æ‰€ã¯å³é‡ã«åˆ¶é™ã•ã‚Œãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚ã§ãã‚Œã°ãƒ—ãƒ­ã‚°ãƒ©ãƒãƒªãƒ¼ãƒ€ãƒ¼ã®
+ * è¨±å¯ãŒãªã‘ã‚Œã°ä½¿ç”¨ã§ããªã„ã‚ˆã†ã«ã—ãŸã„ã€‚
+ * å¤‰ãªã‚¢ã‚¯ã‚»ã‚¹ã‚’ã—ãŸã‚‰ä¿®æ­£ãŒã‹ã‹ã‚Šã¾ã™ã€‚ä½¿ç”¨æ–¹æ³•ã«ã¯æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
  */
 //---------------------------------------------------------------------------
 SAVEDATA * SaveData_GetPointer(void)
@@ -312,10 +312,10 @@ SAVEDATA * SaveData_GetPointer(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^i•”•ªj‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	gmdataID	æ“¾‚µ‚½‚¢ƒZ[ƒuƒf[ƒ^‚ÌID
- * @return	•K—v‚ÈƒZ[ƒu—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼ˆéƒ¨åˆ†ï¼‰ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	gmdataID	å–å¾—ã—ãŸã„ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ID
+ * @return	å¿…è¦ãªã‚»ãƒ¼ãƒ–é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 void * SaveData_Get(SAVEDATA * sv, GMDATA_ID gmdataID)
@@ -333,12 +333,12 @@ const void * SaveData_GetReadOnlyData(const SAVEDATA * sv, GMDATA_ID gmdataID)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚ÌÁ‹ˆ—
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		‘‚«‚İ¬Œ÷
- * @retval	FALSE		‘‚«‚İ¸”s
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®æ¶ˆå»å‡¦ç†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		æ›¸ãè¾¼ã¿æˆåŠŸ
+ * @retval	FALSE		æ›¸ãè¾¼ã¿å¤±æ•—
  *
- * ƒZ[ƒuƒf[ƒ^‚ğƒNƒŠƒA‚µ‚½ã‚Åƒtƒ‰ƒbƒVƒ…‚É‘‚«‚ŞB
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢ã—ãŸä¸Šã§ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã«æ›¸ãè¾¼ã‚€ã€‚
  */
 //---------------------------------------------------------------------------
 BOOL SaveData_Erase(SAVEDATA * sv)
@@ -347,7 +347,7 @@ BOOL SaveData_Erase(SAVEDATA * sv)
 	u8 * buf = sys_AllocMemoryLo(HEAPID_SAVE_TEMP, SECTOR_SIZE);
 	sys_SleepNG(SLEEPTYPE_SAVELOAD);
 
-	//ŠeƒuƒƒbƒN‚Ìƒtƒbƒ^•”•ª‚¾‚¯‚ğæs‚µ‚Äíœ‚·‚é
+	//å„ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ•ãƒƒã‚¿éƒ¨åˆ†ã ã‘ã‚’å…ˆè¡Œã—ã¦å‰Šé™¤ã™ã‚‹
 	EraseFlashFooter(sv, SVBLK_ID_NORMAL, !sv->current_side[SVBLK_ID_NORMAL]);
 	EraseFlashFooter(sv, SVBLK_ID_BOX, !sv->current_side[SVBLK_ID_BOX]);
 	EraseFlashFooter(sv, SVBLK_ID_NORMAL, sv->current_side[SVBLK_ID_NORMAL]);
@@ -368,10 +368,10 @@ BOOL SaveData_Erase(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒ[ƒhˆ—
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		“Ç‚İ‚İ¬Œ÷
- * @retval	FALSE		“Ç‚İ‚İ¸”s
+ * @brief	ãƒ­ãƒ¼ãƒ‰å‡¦ç†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		èª­ã¿è¾¼ã¿æˆåŠŸ
+ * @retval	FALSE		èª­ã¿è¾¼ã¿å¤±æ•—
  */
 //---------------------------------------------------------------------------
 BOOL SaveData_Load(SAVEDATA * sv)
@@ -384,9 +384,9 @@ BOOL SaveData_Load(SAVEDATA * sv)
 	result = NewSVLD_Load(sv);
 
 	if (result) {
-		sv->data_exists = TRUE;			//ƒf[ƒ^‚Í‘¶İ‚·‚é
-		sv->new_data_flag = FALSE;		//V‹Kƒf[ƒ^‚Å‚Í‚È‚¢
-		{	//ŠO•”ƒZ[ƒu‚ÌƒL[î•ñ‚ğXV‚·‚éˆ×(oldˆê’v‚ÌƒPƒA)Aˆê“xŠO•”‚ğ“Ç‚İ‚Ş
+		sv->data_exists = TRUE;			//ãƒ‡ãƒ¼ã‚¿ã¯å­˜åœ¨ã™ã‚‹
+		sv->new_data_flag = FALSE;		//æ–°è¦ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã„
+		{	//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã®ã‚­ãƒ¼æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹ç‚º(oldä¸€è‡´ã®ã‚±ã‚¢)ã€ä¸€åº¦å¤–éƒ¨ã‚’èª­ã¿è¾¼ã‚€
 			LOAD_RESULT frontier_result, video_result;
 			ExtraNewCheckLoadData(sv, &frontier_result, &video_result);
 		}
@@ -398,10 +398,10 @@ BOOL SaveData_Load(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuˆ—
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		‘‚«‚İ¬Œ÷
- * @retval	FALSE		‘‚«‚İ¸”s
+ * @brief	ã‚»ãƒ¼ãƒ–å‡¦ç†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		æ›¸ãè¾¼ã¿æˆåŠŸ
+ * @retval	FALSE		æ›¸ãè¾¼ã¿å¤±æ•—
  */
 //---------------------------------------------------------------------------
 SAVE_RESULT SaveData_Save(SAVEDATA * sv)
@@ -409,7 +409,7 @@ SAVE_RESULT SaveData_Save(SAVEDATA * sv)
 	SAVE_RESULT result;
 
 	if (!sv->flash_exists) {
-#ifdef	DISABLE_FLASH_CHECK		//ƒoƒbƒNƒAƒbƒvƒtƒ‰ƒbƒVƒ…‚È‚µ‚Å‚à“®ì
+#ifdef	DISABLE_FLASH_CHECK		//ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãªã—ã§ã‚‚å‹•ä½œ
 		return SAVE_RESULT_OK;
 #else
 		return SAVE_RESULT_NG;
@@ -419,7 +419,7 @@ SAVE_RESULT SaveData_Save(SAVEDATA * sv)
 	if (sv->new_data_flag) {
 		sys_SleepNG(SLEEPTYPE_SAVELOAD);
 
-		//ŠeƒuƒƒbƒN‚Ìƒtƒbƒ^•”•ª‚¾‚¯‚ğæs‚µ‚Äíœ‚·‚é
+		//å„ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ•ãƒƒã‚¿éƒ¨åˆ†ã ã‘ã‚’å…ˆè¡Œã—ã¦å‰Šé™¤ã™ã‚‹
 		EraseFlashFooter(sv, SVBLK_ID_NORMAL, !sv->current_side[SVBLK_ID_NORMAL]);
 		EraseFlashFooter(sv, SVBLK_ID_BOX, !sv->current_side[SVBLK_ID_BOX]);
 		EraseFlashFooter(sv, SVBLK_ID_NORMAL, sv->current_side[SVBLK_ID_NORMAL]);
@@ -432,21 +432,21 @@ SAVE_RESULT SaveData_Save(SAVEDATA * sv)
 	result = NewSVLD_Save(sv);
 
 	if (result == SAVE_RESULT_OK) {
-		sv->data_exists = TRUE;			//ƒf[ƒ^‚Í‘¶İ‚·‚é
-		sv->new_data_flag = FALSE;		//V‹Kƒf[ƒ^‚Å‚Í‚È‚¢
+		sv->data_exists = TRUE;			//ãƒ‡ãƒ¼ã‚¿ã¯å­˜åœ¨ã™ã‚‹
+		sv->new_data_flag = FALSE;		//æ–°è¦ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã„
 	}
 	return result;
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuˆ—i•”•ªj
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			ƒZ[ƒu‘ÎÛ‚ÌƒuƒƒbƒNID
- * @retval	TRUE		‘‚«‚İ¬Œ÷
- * @retval	FALSE		‘‚«‚İ¸”s
+ * @brief	ã‚»ãƒ¼ãƒ–å‡¦ç†ï¼ˆéƒ¨åˆ†ï¼‰
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ã‚»ãƒ¼ãƒ–å¯¾è±¡ã®ãƒ–ãƒ­ãƒƒã‚¯ID
+ * @retval	TRUE		æ›¸ãè¾¼ã¿æˆåŠŸ
+ * @retval	FALSE		æ›¸ãè¾¼ã¿å¤±æ•—
  *
- * id@‚ÉSVBLK_ID_MAX‚ğw’è‚·‚é‚Æ‘S‘ÌƒZ[ƒu‚Æ‚È‚é
+ * idã€€ã«SVBLK_ID_MAXã‚’æŒ‡å®šã™ã‚‹ã¨å…¨ä½“ã‚»ãƒ¼ãƒ–ã¨ãªã‚‹
  */
 //---------------------------------------------------------------------------
 SAVE_RESULT SaveData_SaveParts(SAVEDATA * sv, SVBLK_ID id)
@@ -465,25 +465,25 @@ SAVE_RESULT SaveData_SaveParts(SAVEDATA * sv, SVBLK_ID id)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚Ì‰Šú‰»
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * SaveData_Erase‚Æˆá‚¢Aƒtƒ‰ƒbƒVƒ…‚É‘‚«‚Ü‚È‚¢B
- * ƒZ[ƒuƒf[ƒ^‚ª‚ ‚éó‘Ô‚Åu‚³‚¢‚µ‚å‚©‚çv—V‚Ôê‡‚È‚Ç‚Ì‰Šú‰»ˆ—
+ * SaveData_Eraseã¨é•ã„ã€ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã«æ›¸ãè¾¼ã¾ãªã„ã€‚
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹çŠ¶æ…‹ã§ã€Œã•ã„ã—ã‚‡ã‹ã‚‰ã€éŠã¶å ´åˆãªã©ã®åˆæœŸåŒ–å‡¦ç†
  */
 //---------------------------------------------------------------------------
 void SaveData_ClearData(SAVEDATA * sv)
 {
-	sv->new_data_flag = TRUE;				//V‹Kƒf[ƒ^‚Å‚ ‚é
-	sv->total_save_flag = TRUE;				//‘S‘ÌƒZ[ƒu‚·‚é•K—v‚ª‚ ‚é
+	sv->new_data_flag = TRUE;				//æ–°è¦ãƒ‡ãƒ¼ã‚¿ã§ã‚ã‚‹
+	sv->total_save_flag = TRUE;				//å…¨ä½“ã‚»ãƒ¼ãƒ–ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 	SVDT_Init(&sv->svwk, sv->pageinfo);
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒbƒVƒ…‘¶İƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL		TRUE‚Ì‚Æ‚«Aƒtƒ‰ƒbƒVƒ…‚ª‘¶İ‚·‚é
+ * @brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å­˜åœ¨ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL		TRUEã®ã¨ãã€ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãŒå­˜åœ¨ã™ã‚‹
  */
 //---------------------------------------------------------------------------
 BOOL SaveData_GetFlashExistsFlag(const SAVEDATA * sv)
@@ -493,9 +493,9 @@ BOOL SaveData_GetFlashExistsFlag(const SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Å‰‚Ì“Ç‚İ‚İŒ‹‰Ê‚ğ•Ô‚·
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	LOAD_RESULT	“Ç‚İ‚İŒ‹‰Êisavedata_def.hQÆj
+ * @brief	æœ€åˆã®èª­ã¿è¾¼ã¿çµæœã‚’è¿”ã™
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	LOAD_RESULT	èª­ã¿è¾¼ã¿çµæœï¼ˆsavedata_def.hå‚ç…§ï¼‰
  */
 //---------------------------------------------------------------------------
 u32 SaveData_GetLoadResult(const SAVEDATA * sv)
@@ -505,9 +505,9 @@ u32 SaveData_GetLoadResult(const SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‘¶İƒtƒ‰ƒO‚ğæ“¾
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL		TRUE‚Ì‚Æ‚«AƒZ[ƒuƒf[ƒ^‚ª‘¶İ‚·‚é
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å­˜åœ¨ãƒ•ãƒ©ã‚°ã‚’å–å¾—
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL		TRUEã®ã¨ãã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹
  */
 //---------------------------------------------------------------------------
 BOOL SaveData_GetExistFlag(const SAVEDATA * sv)
@@ -517,9 +517,9 @@ BOOL SaveData_GetExistFlag(const SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	V‹KƒQ[ƒ€ó‘Ô‚ğæ“¾
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	BOOL		TRUE‚Ì‚Æ‚«AV‹KƒQ[ƒ€i‚Å‚Ü‚¾ƒZ[ƒu‚µ‚Ä‚¢‚È‚¢j
+ * @brief	æ–°è¦ã‚²ãƒ¼ãƒ çŠ¶æ…‹ã‚’å–å¾—
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	BOOL		TRUEã®ã¨ãã€æ–°è¦ã‚²ãƒ¼ãƒ ï¼ˆã§ã¾ã ã‚»ãƒ¼ãƒ–ã—ã¦ã„ãªã„ï¼‰
  */
 //---------------------------------------------------------------------------
 BOOL SaveData_GetNewDataFlag(const SAVEDATA * sv)
@@ -529,9 +529,9 @@ BOOL SaveData_GetNewDataFlag(const SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ŠO•”ƒZ[ƒu‰Šú‰»ó‘Ô‚ğæ“¾
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	BOOL		TRUEF‰Šú‰»Ï‚İB@FALSE:‰Šú‰»‚µ‚Ä‚¢‚È‚¢
+ * @brief	å¤–éƒ¨ã‚»ãƒ¼ãƒ–åˆæœŸåŒ–çŠ¶æ…‹ã‚’å–å¾—
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	BOOL		TRUEï¼šåˆæœŸåŒ–æ¸ˆã¿ã€‚ã€€FALSE:åˆæœŸåŒ–ã—ã¦ã„ãªã„
  */
 //---------------------------------------------------------------------------
 BOOL SaveData_GetExtraInitFlag(SAVEDATA * sv)
@@ -543,8 +543,8 @@ BOOL SaveData_GetExtraInitFlag(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ŠO•”ƒZ[ƒu‰Šú‰»ó‘Ôƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å¤–éƒ¨ã‚»ãƒ¼ãƒ–åˆæœŸåŒ–çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 static void SaveData_SetExtraInitFlag(SAVEDATA * sv)
@@ -556,10 +556,10 @@ static void SaveData_SetExtraInitFlag(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒf[ƒ^ã‘‚«ƒ`ƒFƒbƒN
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		Šù‚É‚ ‚éƒf[ƒ^‚É•Ê‚Ìƒf[ƒ^‚ğã‘‚«‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é
- * @retval	FALSE		ƒf[ƒ^‚ª‚È‚¢‚©AŠù‘¶ƒf[ƒ^‚Å‚ ‚é
+ * @brief	ãƒ‡ãƒ¼ã‚¿ä¸Šæ›¸ããƒã‚§ãƒƒã‚¯
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		æ—¢ã«ã‚ã‚‹ãƒ‡ãƒ¼ã‚¿ã«åˆ¥ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¸Šæ›¸ãã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹
+ * @retval	FALSE		ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã‹ã€æ—¢å­˜ãƒ‡ãƒ¼ã‚¿ã§ã‚ã‚‹
  */
 //---------------------------------------------------------------------------
 BOOL SaveData_IsOverwritingOtherData(const SAVEDATA * sv)
@@ -573,9 +573,9 @@ BOOL SaveData_IsOverwritingOtherData(const SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	‘S‘ÌƒZ[ƒu‚ª•K—v‚Èó‘Ô‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL		TRUE‚Ì‚Æ‚«A‘S‘ÌƒZ[ƒu‚ª•K—viƒ{ƒbƒNƒX‚ªXV‚³‚ê‚Ä‚¢‚éj
+ * @brief	å…¨ä½“ã‚»ãƒ¼ãƒ–ãŒå¿…è¦ãªçŠ¶æ…‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL		TRUEã®ã¨ãã€å…¨ä½“ã‚»ãƒ¼ãƒ–ãŒå¿…è¦ï¼ˆãƒœãƒƒã‚¯ã‚¹ãŒæ›´æ–°ã•ã‚Œã¦ã„ã‚‹ï¼‰
  */
 //---------------------------------------------------------------------------
 BOOL SaveData_GetTotalSaveFlag(const SAVEDATA * sv)
@@ -585,7 +585,7 @@ BOOL SaveData_GetTotalSaveFlag(const SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	‘S‘ÌƒZ[ƒu‚ğ—v‹‚·‚é
+ * @brief	å…¨ä½“ã‚»ãƒ¼ãƒ–ã‚’è¦æ±‚ã™ã‚‹
  */
 //---------------------------------------------------------------------------
 void SaveData_RequestTotalSave(void)
@@ -610,15 +610,15 @@ static int GetTotalSector(const SAVEDATA * sv)
 //============================================================================================
 //
 //
-//		ƒƒCƒ“ƒf[ƒ^ƒZ[ƒuˆ—
+//		ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–å‡¦ç†
 //
 //
 //============================================================================================
 
 //---------------------------------------------------------------------------
 /**
- * @brief	•ªŠ„ƒZ[ƒu‰Šú‰»
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åˆ†å‰²ã‚»ãƒ¼ãƒ–åˆæœŸåŒ–
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 void SaveData_DivSave_Init(SAVEDATA * sv, int BlockID)
@@ -628,8 +628,8 @@ void SaveData_DivSave_Init(SAVEDATA * sv, int BlockID)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	•ªŠ„ƒZ[ƒuƒƒCƒ“ˆ—
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åˆ†å‰²ã‚»ãƒ¼ãƒ–ãƒ¡ã‚¤ãƒ³å‡¦ç†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	SAVE_RESULT
  */
 //---------------------------------------------------------------------------
@@ -645,8 +645,8 @@ SAVE_RESULT SaveData_DivSave_Main(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	•ªŠ„ƒZ[ƒuƒLƒƒƒ“ƒZƒ‹ˆ—
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åˆ†å‰²ã‚»ãƒ¼ãƒ–ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 void SaveData_DivSave_Cancel(SAVEDATA * sv)
@@ -657,7 +657,7 @@ void SaveData_DivSave_Cancel(SAVEDATA * sv)
 //============================================================================================
 //
 //
-//			ƒZ[ƒuƒf[ƒ^®‡«ƒ`ƒFƒbƒN
+//			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
 //
 //
 //============================================================================================
@@ -670,27 +670,27 @@ typedef struct {
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚Ìæ‚è‚¦‚éó‘Ô‚É‚Â‚¢‚Ä
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å–ã‚Šãˆã‚‹çŠ¶æ…‹ã«ã¤ã„ã¦
  *
- * ‚ ‚è‚¦‚éƒpƒ^[ƒ“‚É‚Â‚¢‚ÄI
- * ã‰º‚Íisƒf[ƒ^‚Æƒ{ƒbƒNƒXƒf[ƒ^A¶‰E‚Íƒ~ƒ‰[‚Ì‘gB³í‰»‚Ç‚¤‚©‚ª4ƒrƒbƒg‚ ‚é‚Ì‚Å
- * 16’Ê‚è‚Ìƒpƒ^[ƒ“‚Æ‚È‚é
+ * ã‚ã‚Šãˆã‚‹ãƒ‘ã‚¿ãƒ¼ãƒ³ã«ã¤ã„ã¦ï¼
+ * ä¸Šä¸‹ã¯é€²è¡Œãƒ‡ãƒ¼ã‚¿ã¨ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã€å·¦å³ã¯ãƒŸãƒ©ãƒ¼ã®çµ„ã€‚æ­£å¸¸åŒ–ã©ã†ã‹ãŒ4ãƒ“ãƒƒãƒˆã‚ã‚‹ã®ã§
+ * 16é€šã‚Šã®ãƒ‘ã‚¿ãƒ¼ãƒ³ã¨ãªã‚‹
  *
- *	‚O		‚P		‚Q		‚R
- *	››	››	››	››
- *	››	›~	~›	~~
+ *	ï¼		ï¼‘		ï¼’		ï¼“
+ *	â—‹â—‹	â—‹â—‹	â—‹â—‹	â—‹â—‹
+ *	â—‹â—‹	â—‹Ã—	Ã—â—‹	Ã—Ã—
  *
- *	‚S		‚T		‚U		‚V
- *	›~	›~	›~	›~
- *	››	›~	~›	~~
+ *	ï¼”		ï¼•		ï¼–		ï¼—
+ *	â—‹Ã—	â—‹Ã—	â—‹Ã—	â—‹Ã—
+ *	â—‹â—‹	â—‹Ã—	Ã—â—‹	Ã—Ã—
  *
- *	‚W		‚X		‚P‚O	‚P‚P
- *	~›	~›	~›	~›
- *	››	›~	~›	~~
+ *	ï¼˜		ï¼™		ï¼‘ï¼	ï¼‘ï¼‘
+ *	Ã—â—‹	Ã—â—‹	Ã—â—‹	Ã—â—‹
+ *	â—‹â—‹	â—‹Ã—	Ã—â—‹	Ã—Ã—
  *
- *	‚P‚Q	‚P‚R	‚P‚S	‚P‚T
- *	~~	~~	~~	~~
- *	››	›~	~›	~~
+ *	ï¼‘ï¼’	ï¼‘ï¼“	ï¼‘ï¼”	ï¼‘ï¼•
+ *	Ã—Ã—	Ã—Ã—	Ã—Ã—	Ã—Ã—
+ *	â—‹â—‹	â—‹Ã—	Ã—â—‹	Ã—Ã—
  */
 
 #ifdef	DEBUG_ONLY_FOR_tamada
@@ -734,13 +734,13 @@ static void _setDummyInfo(CHK_INFO * chkinfo)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒZ[ƒuƒf[ƒ^‚ª‚Á‚Ä‚¢‚éCRCƒe[ƒuƒ‹‚ÅƒnƒbƒVƒ…’l‚ğ‹‚ß‚é
+ * @brief   ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæŒã£ã¦ã„ã‚‹CRCãƒ†ãƒ¼ãƒ–ãƒ«ã§ãƒãƒƒã‚·ãƒ¥å€¤ã‚’æ±‚ã‚ã‚‹
  *
- * @param   sv			ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   start		ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   size		ƒf[ƒ^ƒTƒCƒY
+ * @param   sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   start		ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   size		ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *
- * @retval  ƒnƒbƒVƒ…’l
+ * @retval  ãƒãƒƒã‚·ãƒ¥å€¤
  */
 //--------------------------------------------------------------
 u16 SaveData_CalcCRC(const SAVEDATA * sv, const void *start, u32 size)
@@ -755,10 +755,10 @@ u16 SaveData_CalcCRC(const SAVEDATA * sv, const void *start, u32 size)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	CRC‚ÌŒvZ
+ * @brief	CRCã®è¨ˆç®—
  * @param	sv		
- * @param	start	ƒZ[ƒuƒf[ƒ^‚ÌŠJnƒAƒhƒŒƒX
- * @param	size	ƒZ[ƒuƒf[ƒ^‚ÌƒTƒCƒYiƒtƒbƒ^•”•ªŠÜ‚Şj
+ * @param	start	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	size	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºï¼ˆãƒ•ãƒƒã‚¿éƒ¨åˆ†å«ã‚€ï¼‰
  */
 //---------------------------------------------------------------------------
 static u16 _calcFooterCrc(const SAVEDATA * sv, void * start, u32 size)
@@ -771,9 +771,9 @@ static u16 _calcFooterCrc(const SAVEDATA * sv, void * start, u32 size)
 }
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒtƒ‰ƒbƒVƒ…‚Ö‚ÌƒAƒhƒŒƒXƒIƒtƒZƒbƒgæ“¾
- * @param	mirror_id	‘ÎÛ‚Æ‚·‚éƒ~ƒ‰[‚Ìw’èi0 or 1)
- * @param	blkinfo		ƒuƒƒbƒNî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
+ * @param	mirror_id	å¯¾è±¡ã¨ã™ã‚‹ãƒŸãƒ©ãƒ¼ã®æŒ‡å®šï¼ˆ0 or 1)
+ * @param	blkinfo		ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 static u32 _getFlashOffset(int mirror_id, const SVBLK_INFO * blkinfo)
@@ -875,12 +875,12 @@ static int _diffCounter(u32 counter1, u32 counter2)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒf[ƒ^‚ÌƒJƒEƒ“ƒ^‚ğ’²‚×‚é
- * @param	chk1	’²‚×‚éƒf[ƒ^‚»‚Ì‚P
- * @param	chk2	’²‚×‚éƒf[ƒ^‚»‚Ì‚Q
- * @param	res1	ÅVƒf[ƒ^‚Ö‚ÌƒIƒtƒZƒbƒg
- * @param	res2	ŒÃ‚¢ƒf[ƒ^‚Ö‚ÌƒIƒtƒZƒbƒg
- * @return	int		³í‚Èƒf[ƒ^‚Ì”
+ * @brief	ãƒ‡ãƒ¼ã‚¿ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’èª¿ã¹ã‚‹
+ * @param	chk1	èª¿ã¹ã‚‹ãƒ‡ãƒ¼ã‚¿ãã®ï¼‘
+ * @param	chk2	èª¿ã¹ã‚‹ãƒ‡ãƒ¼ã‚¿ãã®ï¼’
+ * @param	res1	æœ€æ–°ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	res2	å¤ã„ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @return	int		æ­£å¸¸ãªãƒ‡ãƒ¼ã‚¿ã®æ•°
  */
 //---------------------------------------------------------------------------
 static int _getNewerData(const CHK_INFO * chk1, const CHK_INFO * chk2, int *res1, int *res2)
@@ -890,29 +890,29 @@ static int _getNewerData(const CHK_INFO * chk1, const CHK_INFO * chk2, int *res1
 	block = _diffCounter(chk1->b_count, chk2->b_count);
 
 	if (chk1->IsCorrect && chk2->IsCorrect) {
-		//—¼•û‚Æ‚à³í‚Ìê‡
+		//ä¸¡æ–¹ã¨ã‚‚æ­£å¸¸ã®å ´åˆ
 		if (global > 0) {
-			//GLOBAL‚ªˆá‚¤ê‡‘S‘ÌƒZ[ƒu’¼Œã
+			//GLOBALãŒé•ã†å ´åˆï¼å…¨ä½“ã‚»ãƒ¼ãƒ–ç›´å¾Œ
 			GF_ASSERT(block > 0);
 			*res1 = MIRROR1ST;
 			*res2 = MIRROR2ND;
 		}
 		else if (global < 0) {
-			//GLOBAL‚ªˆá‚¤ê‡‘S‘ÌƒZ[ƒu’¼Œã
+			//GLOBALãŒé•ã†å ´åˆï¼å…¨ä½“ã‚»ãƒ¼ãƒ–ç›´å¾Œ
 			GF_ASSERT(block < 0);
 			*res1 = MIRROR2ND;
 			*res2 = MIRROR1ST;
 		}
 		else if (block > 0) {
-			//GLOBAL‚ª“¯‚¶ê‡•”•ªƒZ[ƒuŒã
+			//GLOBALãŒåŒã˜å ´åˆï¼éƒ¨åˆ†ã‚»ãƒ¼ãƒ–å¾Œ
 			*res1 = MIRROR1ST;
 			*res2 = MIRROR2ND;
 		} else if (block < 0) {
 			*res1 = MIRROR2ND;
 			*res2 = MIRROR1ST;
 		} else {
-			//GLOBAL‚ª“¯‚¶‚ÅƒuƒƒbƒNƒJƒEƒ“ƒ^‚à“¯‚¶
-			//¨‚ ‚è‚¦‚È‚¢‚Í‚¸‚¾‚ª,‚QMƒtƒ‰ƒbƒVƒ…‚Ì‚½‚ß‚É‚Æ‚è‚ ‚¦‚¸‹@”\‚³‚¹‚é
+			//GLOBALãŒåŒã˜ã§ãƒ–ãƒ­ãƒƒã‚¯ã‚«ã‚¦ãƒ³ã‚¿ã‚‚åŒã˜
+			//â†’ã‚ã‚Šãˆãªã„ã¯ãšã ãŒ,ï¼’Mãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®ãŸã‚ã«ã¨ã‚Šã‚ãˆãšæ©Ÿèƒ½ã•ã›ã‚‹
 			//GF_ASSERT(0);
 			*res1 = MIRROR1ST;
 			*res2 = MIRROR2ND;
@@ -920,7 +920,7 @@ static int _getNewerData(const CHK_INFO * chk1, const CHK_INFO * chk2, int *res1
 		return 2;
 	}
 	else if (chk1->IsCorrect && !chk2->IsCorrect) {
-		//•Ğ•û‚Ì‚İ³í‚Ìê‡
+		//ç‰‡æ–¹ã®ã¿æ­£å¸¸ã®å ´åˆ
 		*res1 = MIRROR1ST;
 		*res2 = MIRRORERROR;
 		return 1;
@@ -955,9 +955,9 @@ static void _setCurrentInfo(SAVEDATA * sv, const CHK_INFO * ndata, const CHK_INF
 }
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚Ìƒ`ƒFƒbƒN
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	LOAD_RESULT		ƒ`ƒFƒbƒNŒ‹‰Ê
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚§ãƒƒã‚¯
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	LOAD_RESULT		ãƒã‚§ãƒƒã‚¯çµæœ
  */
 //---------------------------------------------------------------------------
 static LOAD_RESULT NewCheckLoadData(SAVEDATA * sv)
@@ -1003,69 +1003,69 @@ static LOAD_RESULT NewCheckLoadData(SAVEDATA * sv)
 		OS_TPrintf("...OK=%d\n",bres);
 	}
 	if (nres == 0 && bres == 0) {
-		//’Êíƒf[ƒ^‚àƒ{ƒbƒNƒXƒf[ƒ^‚à‰ó‚ê‚Ä‚¢‚é¨’P‚Éƒf[ƒ^‚ª‚È‚¢‚Æ‚İ‚È‚·
-		return LOAD_RESULT_NULL;		//ƒpƒ^[ƒ“‚P‚T
+		//é€šå¸¸ãƒ‡ãƒ¼ã‚¿ã‚‚ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚‚å£Šã‚Œã¦ã„ã‚‹â†’å˜ã«ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã¨ã¿ãªã™
+		return LOAD_RESULT_NULL;		//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‘ï¼•
 	}
 	if (nres == 0 || bres == 0) {
-		//’Êíƒf[ƒ^‚©ƒ{ƒbƒNƒXƒf[ƒ^‚©‚Ì‚Ç‚¿‚ç‚©‚ª‰ó‚ê‚Ä‚¢‚é¨”j‰ó
-		return LOAD_RESULT_BREAK;	//ƒpƒ^[ƒ“‚RC‚VC‚P‚PA‚P‚QC‚P‚RC‚P‚S
+		//é€šå¸¸ãƒ‡ãƒ¼ã‚¿ã‹ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‹ã®ã©ã¡ã‚‰ã‹ãŒå£Šã‚Œã¦ã„ã‚‹â†’ç ´å£Š
+		return LOAD_RESULT_BREAK;	//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼“ï¼Œï¼—ï¼Œï¼‘ï¼‘ã€ï¼‘ï¼’ï¼Œï¼‘ï¼“ï¼Œï¼‘ï¼”
 	}
 
 	if (nres == 2 && bres == 2){
-		// ³íƒf[ƒ^‚ª2‘g	
+		// æ­£å¸¸ãƒ‡ãƒ¼ã‚¿ãŒ2çµ„	
 		if (ndata[n_main].g_count == bdata[b_main].g_count) {
 			_setCurrentInfo(sv, ndata, bdata, n_main, b_main);
-			return LOAD_RESULT_OK;	//ƒpƒ^[ƒ“‚O
+			return LOAD_RESULT_OK;	//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼
 		} else {
-			//isƒf[ƒ^‚Æƒ{ƒbƒNƒXƒf[ƒ^‚ÌƒZ[ƒu‚Ì‚¿‚å‚¤‚ÇŠÔ‚Å
-			//“dŒ¹Ø’f‚µ‚½ê‡
+			//é€²è¡Œãƒ‡ãƒ¼ã‚¿ã¨ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ¼ãƒ–ã®ã¡ã‚‡ã†ã©é–“ã§
+			//é›»æºåˆ‡æ–­ã—ãŸå ´åˆ
 			_setCurrentInfo(sv, ndata, bdata, n_sub, b_main);
-			return LOAD_RESULT_NG;	//ƒpƒ^[ƒ“‚O
+			return LOAD_RESULT_NG;	//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼
 		}
 	}
 	if (nres == 1 && bres == 2) {
-		//•”•ªA‚ ‚é‚¢‚Í‘S‘Ì‘‚«‚İ’†’f‚É‚æ‚éisƒf[ƒ^”j‰ó
+		//éƒ¨åˆ†ã€ã‚ã‚‹ã„ã¯å…¨ä½“æ›¸ãè¾¼ã¿ä¸­æ–­ã«ã‚ˆã‚‹é€²è¡Œãƒ‡ãƒ¼ã‚¿ç ´å£Š
 		if (ndata[n_main].g_count == bdata[b_main].g_count) {
 			_setCurrentInfo(sv, ndata, bdata, n_main, b_main);
-			return LOAD_RESULT_NG;	//ƒpƒ^[ƒ“‚SA‚W
+			return LOAD_RESULT_NG;	//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼”ã€ï¼˜
 		} else if (ndata[n_main].g_count == bdata[b_sub].g_count) {
 			_setCurrentInfo(sv, ndata, bdata, n_main, b_sub);
-			return LOAD_RESULT_NG;	//ƒpƒ^[ƒ“‚SA‚W
+			return LOAD_RESULT_NG;	//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼”ã€ï¼˜
 		}
 		//GF_ASSERT(ndata[n_main].g_count == bdata[b_main].g_count);
 		//_setCurrentInfo(sv, ndata, bdata, n_main, b_main);
-		return LOAD_RESULT_BREAK;	//ƒpƒ^[ƒ“‚SA‚W
+		return LOAD_RESULT_BREAK;	//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼”ã€ï¼˜
 	}
 	if (nres == 2 && bres == 1) {
 		if (ndata[n_main].g_count == bdata[b_main].g_count) {
-			//‰‰ñƒZ[ƒuŒãˆê“x‚à‘S‘ÌƒZ[ƒu‚ğs‚Á‚Ä‚¢‚È‚¢ê‡
+			//åˆå›ã‚»ãƒ¼ãƒ–å¾Œä¸€åº¦ã‚‚å…¨ä½“ã‚»ãƒ¼ãƒ–ã‚’è¡Œã£ã¦ã„ãªã„å ´åˆ
 			_setCurrentInfo(sv, ndata, bdata, n_main, b_main);
-			return LOAD_RESULT_OK;	//ƒpƒ^[ƒ“‚PC‚Q
+			return LOAD_RESULT_OK;	//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‘ï¼Œï¼’
 		} else {
-			//‘S‘Ì‘‚«‚İ’†’f‚É‚æ‚éƒ{ƒbƒNƒXƒf[ƒ^”j‰ó
-			//ƒf[ƒ^‚ÌŠª‚«–ß‚µ‚ª”­¶‚·‚é
+			//å…¨ä½“æ›¸ãè¾¼ã¿ä¸­æ–­ã«ã‚ˆã‚‹ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ç ´å£Š
+			//ãƒ‡ãƒ¼ã‚¿ã®å·»ãæˆ»ã—ãŒç™ºç”Ÿã™ã‚‹
 			_setCurrentInfo(sv, ndata, bdata, n_sub, b_main);
-			return LOAD_RESULT_NG;	//ƒpƒ^[ƒ“‚PC‚Q
+			return LOAD_RESULT_NG;	//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‘ï¼Œï¼’
 		}
 	}
 	if (nres == 1 && bres == 1 && n_main == b_main) {
-		// ³íƒf[ƒ^‚ªˆê‘g ¨‰‰ñ
+		// æ­£å¸¸ãƒ‡ãƒ¼ã‚¿ãŒä¸€çµ„ â†’åˆå›
 		GF_ASSERT(ndata[n_main].g_count == bdata[b_main].g_count);
 		_setCurrentInfo(sv, ndata, bdata, n_main, b_main);
-		return LOAD_RESULT_OK;	//ƒpƒ^[ƒ“‚TA‚ ‚é‚¢‚Í‚P‚O‚à
+		return LOAD_RESULT_OK;	//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼•ã€ã‚ã‚‹ã„ã¯ï¼‘ï¼ã‚‚
 	} else {
-		//‰‰ñƒZ[ƒuA2,3‰ñ–Ú‚ğisƒf[ƒ^‚Ì‚İ‚É‚µ‚Ä3‰ñ–Ú‚ğ’†’f‚Å¸”s‚µ‚½ê‡
+		//åˆå›ã‚»ãƒ¼ãƒ–ã€2,3å›ç›®ã‚’é€²è¡Œãƒ‡ãƒ¼ã‚¿ã®ã¿ã«ã—ã¦3å›ç›®ã‚’ä¸­æ–­ã§å¤±æ•—ã—ãŸå ´åˆ
 		GF_ASSERT(ndata[n_main].g_count == bdata[b_main].g_count);
 		_setCurrentInfo(sv, ndata, bdata, n_main, b_main);
-		return LOAD_RESULT_NG;	//ƒpƒ^[ƒ“‚UA‚X
+		return LOAD_RESULT_NG;	//ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼–ã€ï¼™
 	}
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ŠO•”ƒZ[ƒuƒf[ƒ^‚Ìƒ`ƒFƒbƒN
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	LOAD_RESULT		ƒ`ƒFƒbƒNŒ‹‰Ê
+ * @brief	å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚§ãƒƒã‚¯
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	LOAD_RESULT		ãƒã‚§ãƒƒã‚¯çµæœ
  */
 //---------------------------------------------------------------------------
 static void ExtraNewCheckLoadData(SAVEDATA * sv, LOAD_RESULT *frontier_result, LOAD_RESULT *video_result)
@@ -1082,40 +1082,40 @@ static void ExtraNewCheckLoadData(SAVEDATA * sv, LOAD_RESULT *frontier_result, L
 	*video_result = LOAD_RESULT_OK;
 
 	if(SaveData_GetExtraInitFlag(sv) == FALSE){
-		return;	//ŠO•”ƒZ[ƒu‚ª‚Ü‚¾ì‚ç‚ê‚Ä‚¢‚È‚¢
+		return;	//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãŒã¾ã ä½œã‚‰ã‚Œã¦ã„ãªã„
 	}
 	
-	//ƒtƒƒ“ƒeƒBƒAŠO•”ƒf[ƒ^ƒ`ƒFƒbƒN
+	//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 	MISC_ExtraSaveKeyGet(misc, EXDATA_ID_FRONTIER, &ex_key, &old_key, &ex_load_flag);
 	if(ex_key != EX_CERTIFY_SAVE_KEY_NO_DATA || old_key != EX_CERTIFY_SAVE_KEY_NO_DATA){
 		buf = SaveData_Extra_Mirror_LoadAlloc(
 			sv, HEAPID_BASE_APP, EXDATA_ID_FRONTIER, &result, &old);
 		sys_FreeMemoryEz(buf);
 		if(result == LOAD_RESULT_NG){
-			//ƒtƒƒ“ƒeƒBƒAƒf[ƒ^‚ª‰ó‚ê‚Ä‚¢‚é
+			//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ‡ãƒ¼ã‚¿ãŒå£Šã‚Œã¦ã„ã‚‹
 			*frontier_result = LOAD_RESULT_BREAK;
 		}
 		else if(result == LOAD_RESULT_OK && old == TRUE){
-			//1‚Â‘O‚Ìƒf[ƒ^‚ÆƒL[ˆê’v
+			//1ã¤å‰ã®ãƒ‡ãƒ¼ã‚¿ã¨ã‚­ãƒ¼ä¸€è‡´
 			*frontier_result = LOAD_RESULT_NG;
 		}
 	}
 	
-	//ƒoƒgƒ‹ƒrƒfƒIŠO•”ƒf[ƒ^ƒ`ƒFƒbƒN
-	//¦old‚Æˆê’v‚µ‚½Asv‚ÉXV‚µ‚½ƒtƒ‰ƒOî•ñ‚ğ‚½‚¹‚éˆ×A
-	//@BREAKî•ñ‚ª“ü‚Á‚Ä‚à•K‚¸‘S‚Ä‚Ì˜^‰æƒf[ƒ^‚ğˆê“xƒ[ƒh‚·‚é
+	//ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
+	//â€»oldã¨ä¸€è‡´ã—ãŸæ™‚ã€svã«æ›´æ–°ã—ãŸãƒ•ãƒ©ã‚°æƒ…å ±ã‚’æŒãŸã›ã‚‹ç‚ºã€
+	//ã€€BREAKæƒ…å ±ãŒå…¥ã£ã¦ã‚‚å¿…ãšå…¨ã¦ã®éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€åº¦ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 	for(ex_id = EXDATA_ID_BATTLE_REC_MINE; ex_id <= EXDATA_ID_BATTLE_REC_DL_2; ex_id++){
 		MISC_ExtraSaveKeyGet(misc, ex_id, &ex_key, &old_key, &ex_load_flag);
 		if(ex_key != EX_CERTIFY_SAVE_KEY_NO_DATA || old_key != EX_CERTIFY_SAVE_KEY_NO_DATA){
 			buf = SaveData_Extra_Mirror_LoadAlloc(sv, HEAPID_BASE_APP, ex_id, &result, &old);
 			sys_FreeMemoryEz(buf);
 			if(result == LOAD_RESULT_NG){
-				//ƒoƒgƒ‹ƒrƒfƒI‚ª‰ó‚ê‚Ä‚¢‚é
+				//ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãŒå£Šã‚Œã¦ã„ã‚‹
 				*video_result = LOAD_RESULT_BREAK;
 			}
 			else if(result == LOAD_RESULT_OK && old == TRUE){
-				//1‚Â‘O‚Ìƒf[ƒ^‚ÆƒL[ˆê’v
-				if((*video_result) != LOAD_RESULT_BREAK){//”j‰óî•ñ‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚È‚çã‘‚«‚µ‚È‚¢
+				//1ã¤å‰ã®ãƒ‡ãƒ¼ã‚¿ã¨ã‚­ãƒ¼ä¸€è‡´
+				if((*video_result) != LOAD_RESULT_BREAK){//ç ´å£Šæƒ…å ±ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ãªã‚‰ä¸Šæ›¸ãã—ãªã„
 					*video_result = LOAD_RESULT_NG;
 				}
 			}
@@ -1164,7 +1164,7 @@ static BOOL NewSVLD_Load(SAVEDATA * sv)
 //============================================================================================
 //
 //
-//			•ªŠ„ƒZ[ƒu
+//			åˆ†å‰²ã‚»ãƒ¼ãƒ–
 //
 //
 //============================================================================================
@@ -1174,10 +1174,10 @@ static BOOL NewSVLD_Load(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”ñ“¯ŠúƒZ[ƒuƒZƒbƒgFƒf[ƒ^ƒƒCƒ“•”•ª
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	block_id	ƒZ[ƒu‚·‚éƒuƒƒbƒNw’èID
- * @param	mirror_side	ƒZ[ƒu‚·‚éƒ~ƒ‰[‚Ìw’èi0 or 1)
+ * @brief	éåŒæœŸã‚»ãƒ¼ãƒ–ã‚»ãƒƒãƒˆï¼šãƒ‡ãƒ¼ã‚¿ãƒ¡ã‚¤ãƒ³éƒ¨åˆ†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	block_id	ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯æŒ‡å®šID
+ * @param	mirror_side	ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒŸãƒ©ãƒ¼ã®æŒ‡å®šï¼ˆ0 or 1)
  */
 //---------------------------------------------------------------------------
 static s32 _saveDivStartMain(SAVEDATA *sv, int block_id, u8 mirror_side)
@@ -1196,10 +1196,10 @@ static s32 _saveDivStartMain(SAVEDATA *sv, int block_id, u8 mirror_side)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”ñ“¯ŠúƒZ[ƒuƒZƒbƒgFƒtƒbƒ^•”•ª
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	block_id	ƒZ[ƒu‚·‚éƒuƒƒbƒNw’èID
- * @param	mirror_side	ƒZ[ƒu‚·‚éƒ~ƒ‰[‚Ìw’èi0 or 1)
+ * @brief	éåŒæœŸã‚»ãƒ¼ãƒ–ã‚»ãƒƒãƒˆï¼šãƒ•ãƒƒã‚¿éƒ¨åˆ†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	block_id	ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯æŒ‡å®šID
+ * @param	mirror_side	ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒŸãƒ©ãƒ¼ã®æŒ‡å®šï¼ˆ0 or 1)
  */
 //---------------------------------------------------------------------------
 static s32 _saveDivStartFooter(SAVEDATA *sv, int block_id, u8 mirror_side)
@@ -1218,10 +1218,10 @@ static s32 _saveDivStartFooter(SAVEDATA *sv, int block_id, u8 mirror_side)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”ñ“¯ŠúƒZ[ƒuƒZƒbƒgFƒtƒbƒ^•”•ª
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	block_id	ƒZ[ƒu‚·‚éƒuƒƒbƒNw’èID
- * @param	mirror_side	ƒZ[ƒu‚·‚éƒ~ƒ‰[‚Ìw’èi0 or 1)
+ * @brief	éåŒæœŸã‚»ãƒ¼ãƒ–ã‚»ãƒƒãƒˆï¼šãƒ•ãƒƒã‚¿éƒ¨åˆ†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	block_id	ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯æŒ‡å®šID
+ * @param	mirror_side	ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒŸãƒ©ãƒ¼ã®æŒ‡å®šï¼ˆ0 or 1)
  */
 //---------------------------------------------------------------------------
 static s32 _saveDivStartFooter2(SAVEDATA *sv, int block_id, u8 mirror_side)
@@ -1242,10 +1242,10 @@ static s32 _saveDivStartFooter2(SAVEDATA *sv, int block_id, u8 mirror_side)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”ñ“¯ŠúƒZ[ƒuˆ—F‰Šú‰»
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ndsw		”ñ“¯ŠúƒZ[ƒu§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	block_id	ƒZ[ƒu‚·‚éƒuƒƒbƒNw’èID
+ * @brief	éåŒæœŸã‚»ãƒ¼ãƒ–å‡¦ç†ï¼šåˆæœŸåŒ–
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ndsw		éåŒæœŸã‚»ãƒ¼ãƒ–åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	block_id	ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯æŒ‡å®šID
  */
 //---------------------------------------------------------------------------
 static void NEWSVLD_DivSaveInit(SAVEDATA * sv, NEWDIVSV_WORK * ndsw, int block_id)
@@ -1285,13 +1285,13 @@ static void NEWSVLD_DivSaveInit(SAVEDATA * sv, NEWDIVSV_WORK * ndsw, int block_i
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”ñ“¯ŠúƒZ[ƒuˆ—FƒƒCƒ“
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ndsw		”ñ“¯ŠúƒZ[ƒu§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	SAVE_RESULT_CONTINUE	ƒZ[ƒuŒp‘±’†
- * @retval	SAVE_RESULT_LAST		ƒZ[ƒuŒp‘±’†AÅŒã‚Ì•”•ª
- * @retval	SAVE_RESULT_OK			ƒZ[ƒuI—¹A¬Œ÷
- * @retval	SAVE_RESULT_NG			ƒZ[ƒuI—¹A¸”s
+ * @brief	éåŒæœŸã‚»ãƒ¼ãƒ–å‡¦ç†ï¼šãƒ¡ã‚¤ãƒ³
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ndsw		éåŒæœŸã‚»ãƒ¼ãƒ–åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	SAVE_RESULT_CONTINUE	ã‚»ãƒ¼ãƒ–ç¶™ç¶šä¸­
+ * @retval	SAVE_RESULT_LAST		ã‚»ãƒ¼ãƒ–ç¶™ç¶šä¸­ã€æœ€å¾Œã®éƒ¨åˆ†
+ * @retval	SAVE_RESULT_OK			ã‚»ãƒ¼ãƒ–çµ‚äº†ã€æˆåŠŸ
+ * @retval	SAVE_RESULT_NG			ã‚»ãƒ¼ãƒ–çµ‚äº†ã€å¤±æ•—
  */
 //---------------------------------------------------------------------------
 static SAVE_RESULT NEWSVLD_DivSaveMain(SAVEDATA * sv, NEWDIVSV_WORK * ndsw)
@@ -1307,12 +1307,12 @@ static SAVE_RESULT NEWSVLD_DivSaveMain(SAVEDATA * sv, NEWDIVSV_WORK * ndsw)
 		ndsw->div_seq ++;
 		/* FALL THROUGH */
 	case 1:
-		//ƒƒCƒ“ƒf[ƒ^•”•ªƒZ[ƒu
+		//ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿éƒ¨åˆ†ã‚»ãƒ¼ãƒ–
 		if (PMSVLD_DivSave_Main(ndsw->lock_id, ndsw->lock_flg, &result) == FALSE) {
 			break;
 		}
         ndsw->lock_flg = FALSE;
-#ifndef	DISABLE_FLASH_CHECK		//ƒoƒbƒNƒAƒbƒvƒtƒ‰ƒbƒVƒ…‚È‚µ‚Å‚à“®ì
+#ifndef	DISABLE_FLASH_CHECK		//ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãªã—ã§ã‚‚å‹•ä½œ
 		if (!result) {
 			OS_TPrintf("DIV SAVE ERROR!!!!\n");
 			return SAVE_RESULT_NG;
@@ -1328,12 +1328,12 @@ static SAVE_RESULT NEWSVLD_DivSaveMain(SAVEDATA * sv, NEWDIVSV_WORK * ndsw)
 		/* FALL THROUGH */
 
 	case 3:
-		//ƒtƒbƒ^•”•ªƒZ[ƒu
+		//ãƒ•ãƒƒã‚¿éƒ¨åˆ†ã‚»ãƒ¼ãƒ–
 		if (PMSVLD_DivSave_Main(ndsw->lock_id, ndsw->lock_flg, &result) == FALSE) {
 			break;
 		}
         ndsw->lock_flg = FALSE;
-#ifndef	DISABLE_FLASH_CHECK		//ƒoƒbƒNƒAƒbƒvƒtƒ‰ƒbƒVƒ…‚È‚µ‚Å‚à“®ì
+#ifndef	DISABLE_FLASH_CHECK		//ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãªã—ã§ã‚‚å‹•ä½œ
 		if (!result) {
 			OS_TPrintf("DIV SAVE ERROR!!!!\n");
 			return SAVE_RESULT_NG;
@@ -1341,8 +1341,8 @@ static SAVE_RESULT NEWSVLD_DivSaveMain(SAVEDATA * sv, NEWDIVSV_WORK * ndsw)
 #endif
 		ndsw->div_seq ++;
 		if (ndsw->block_current + 1 == ndsw->block_end) {
-			//ÅŒã‚ÌƒuƒƒbƒN‚ÌƒZ[ƒu‚Ìê‡A‚»‚ê‚ğŠO•”‚É’m‚ç‚¹‚é‚½‚ß‚É
-			//SAVE_RESULT_CONTINUE‚Å‚È‚­SAVE_RESULT_LAST‚ğ•Ô‚·
+			//æœ€å¾Œã®ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚»ãƒ¼ãƒ–ã®å ´åˆã€ãã‚Œã‚’å¤–éƒ¨ã«çŸ¥ã‚‰ã›ã‚‹ãŸã‚ã«
+			//SAVE_RESULT_CONTINUEã§ãªãSAVE_RESULT_LASTã‚’è¿”ã™
 			return SAVE_RESULT_LAST;
 		}
 		/* FALL THROUGH */
@@ -1354,12 +1354,12 @@ static SAVE_RESULT NEWSVLD_DivSaveMain(SAVEDATA * sv, NEWDIVSV_WORK * ndsw)
 		/* FALL THROUGH */
 
 	case 5:
-		//ƒtƒbƒ^•”•ªƒZ[ƒu
+		//ãƒ•ãƒƒã‚¿éƒ¨åˆ†ã‚»ãƒ¼ãƒ–
 		if (PMSVLD_DivSave_Main(ndsw->lock_id, ndsw->lock_flg, &result) == FALSE) {
 			break;
 		}
         ndsw->lock_flg = FALSE;
-#ifndef	DISABLE_FLASH_CHECK		//ƒoƒbƒNƒAƒbƒvƒtƒ‰ƒbƒVƒ…‚È‚µ‚Å‚à“®ì
+#ifndef	DISABLE_FLASH_CHECK		//ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãªã—ã§ã‚‚å‹•ä½œ
 		if (!result) {
 			OS_TPrintf("DIV SAVE ERROR!!!!\n");
 			return SAVE_RESULT_NG;
@@ -1378,17 +1378,17 @@ static SAVE_RESULT NEWSVLD_DivSaveMain(SAVEDATA * sv, NEWDIVSV_WORK * ndsw)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”ñ“¯ŠúƒZ[ƒuˆ—FI—¹ˆ—
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ndsw		”ñ“¯ŠúƒZ[ƒu§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	result		ƒZ[ƒuŒ‹‰Ê
+ * @brief	éåŒæœŸã‚»ãƒ¼ãƒ–å‡¦ç†ï¼šçµ‚äº†å‡¦ç†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ndsw		éåŒæœŸã‚»ãƒ¼ãƒ–åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	result		ã‚»ãƒ¼ãƒ–çµæœ
  */
 //---------------------------------------------------------------------------
 static void NEWSVLD_DivSaveEnd(SAVEDATA * sv, NEWDIVSV_WORK * ndsw, SAVE_RESULT result)
 {
 	int i;
 	if (result == SAVE_RESULT_NG) {
-		//ƒZ[ƒu¸”s‚Ìê‡
+		//ã‚»ãƒ¼ãƒ–å¤±æ•—ã®å ´åˆ
 		if (ndsw->total_save_mode) {
 			sv->global_counter = ndsw->g_backup;
 		}
@@ -1396,22 +1396,22 @@ static void NEWSVLD_DivSaveEnd(SAVEDATA * sv, NEWDIVSV_WORK * ndsw, SAVE_RESULT 
 			sv->current_counters[i] = ndsw->b_backup[i];
 		}
 	} else {
-		//¡‰ñƒZ[ƒu‚µ‚½ƒuƒƒbƒN‚ÌQÆƒ~ƒ‰[‚ğ‹t“]‚µ‚Ä‚¨‚­
+		//ä»Šå›ã‚»ãƒ¼ãƒ–ã—ãŸãƒ–ãƒ­ãƒƒã‚¯ã®å‚ç…§ãƒŸãƒ©ãƒ¼ã‚’é€†è»¢ã—ã¦ãŠã
 		for (i = ndsw->block_start; i < ndsw->block_end; i++) {
 			sv->current_side[i] = !sv->current_side[i];
 		}
-		sv->data_exists = TRUE;			//ƒf[ƒ^‚Í‘¶İ‚·‚é
-		sv->new_data_flag = FALSE;		//V‹Kƒf[ƒ^‚Å‚Í‚È‚¢
-		sv->total_save_flag = FALSE;	//‘S‘ÌƒZ[ƒu‚Í•K—v‚È‚¢
+		sv->data_exists = TRUE;			//ãƒ‡ãƒ¼ã‚¿ã¯å­˜åœ¨ã™ã‚‹
+		sv->new_data_flag = FALSE;		//æ–°è¦ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã„
+		sv->total_save_flag = FALSE;	//å…¨ä½“ã‚»ãƒ¼ãƒ–ã¯å¿…è¦ãªã„
 	}
 	sys_SleepOK(SLEEPTYPE_SAVELOAD);
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”ñ“¯ŠúƒZ[ƒuˆ—FƒLƒƒƒ“ƒZƒ‹ˆ—
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ndsw		”ñ“¯ŠúƒZ[ƒu§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	éåŒæœŸã‚»ãƒ¼ãƒ–å‡¦ç†ï¼šã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ndsw		éåŒæœŸã‚»ãƒ¼ãƒ–åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 static void NEWSVLD_DivSaveCancel(SAVEDATA * sv, NEWDIVSV_WORK * ndsw)
@@ -1424,7 +1424,7 @@ static void NEWSVLD_DivSaveCancel(SAVEDATA * sv, NEWDIVSV_WORK * ndsw)
 		sv->current_counters[i] = ndsw->b_backup[i];
 	}
     if(!CARD_TryWaitBackupAsync()){
-        CARD_CancelBackupAsync();		//”ñ“¯Šúˆ—ƒLƒƒƒ“ƒZƒ‹‚ÌƒŠƒNƒGƒXƒg
+        CARD_CancelBackupAsync();		//éåŒæœŸå‡¦ç†ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
     }
     if(ndsw->lock_flg){
         OS_TPrintf("NEWSVLD_DivSaveCancel\n");
@@ -1453,10 +1453,10 @@ BOOL NewSVLD_Save(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	w’èƒuƒƒbƒN‚Ìƒtƒbƒ^•”•ª‚ğÁ‹‚·‚é
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	block_id	Á‹‚·‚éƒuƒƒbƒNw’èID
- * @param	mirror_side	Á‹‚·‚éƒ~ƒ‰[‚Ìw’èi0 or 1)
+ * @brief	æŒ‡å®šãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ•ãƒƒã‚¿éƒ¨åˆ†ã‚’æ¶ˆå»ã™ã‚‹
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	block_id	æ¶ˆå»ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯æŒ‡å®šID
+ * @param	mirror_side	æ¶ˆå»ã™ã‚‹ãƒŸãƒ©ãƒ¼ã®æŒ‡å®šï¼ˆ0 or 1)
  */
 //---------------------------------------------------------------------------
 static BOOL EraseFlashFooter(const SAVEDATA * sv, int block_id, int mirror_side)
@@ -1498,8 +1498,8 @@ static int GetWorkSize(int id)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒu€–Ú‚ÉŠÖ‚·‚é«‘‚ğì¬‚·‚é
- * @param	pageinfo	ƒZ[ƒu€–Ú•Ûƒ[ƒN
+ * @brief	ã‚»ãƒ¼ãƒ–é …ç›®ã«é–¢ã™ã‚‹è¾æ›¸ã‚’ä½œæˆã™ã‚‹
+ * @param	pageinfo	ã‚»ãƒ¼ãƒ–é …ç›®ä¿æŒãƒ¯ãƒ¼ã‚¯
  */
 //---------------------------------------------------------------------------
 static void SVDT_MakeIndex(SVPAGE_INFO * pageinfo)
@@ -1524,8 +1524,8 @@ static void SVDT_MakeIndex(SVPAGE_INFO * pageinfo)
 		pageinfo[i].blockID = table[i].blockID;
 		savedata_total_size += pageinfo[i].size;
 		if (i == SaveDataTableMax - 1 || table[i].blockID != table[i+1].blockID) {
-			//ˆê”ÔÅŒãA‚ ‚é‚¢‚ÍƒuƒƒbƒN‚ªØ‚è‘Ö‚í‚é‚Æ‚±‚ë‚Å‚Í
-			//ƒtƒbƒ^—p—Ìˆæ‚Ì•ªƒAƒhƒŒƒX‚ğŠ©‚ß‚Ä‚¨‚­
+			//ä¸€ç•ªæœ€å¾Œã€ã‚ã‚‹ã„ã¯ãƒ–ãƒ­ãƒƒã‚¯ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹ã¨ã“ã‚ã§ã¯
+			//ãƒ•ãƒƒã‚¿ç”¨é ˜åŸŸã®åˆ†ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å‹§ã‚ã¦ãŠã
 			savedata_total_size += sizeof(SAVE_FOOTER);
 		}
 //#ifdef	DEBUG_ONLY_FOR_tamada
@@ -1550,9 +1550,9 @@ static void SVDT_MakeIndex(SVPAGE_INFO * pageinfo)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒuƒƒbƒN‚ÉŠÖ‚·‚é«‘‚ğì¬‚·‚é
- * @param	blkinfo		ƒuƒƒbƒN€–Ú•Ûƒ[ƒN
- * @param	pageinfo	ƒZ[ƒu€–Ú•Ûƒ[ƒN
+ * @brief	ãƒ–ãƒ­ãƒƒã‚¯ã«é–¢ã™ã‚‹è¾æ›¸ã‚’ä½œæˆã™ã‚‹
+ * @param	blkinfo		ãƒ–ãƒ­ãƒƒã‚¯é …ç›®ä¿æŒãƒ¯ãƒ¼ã‚¯
+ * @param	pageinfo	ã‚»ãƒ¼ãƒ–é …ç›®ä¿æŒãƒ¯ãƒ¼ã‚¯
  */
 //---------------------------------------------------------------------------
 static void SVDT_MakeBlockIndex(SVBLK_INFO * blkinfo, const SVPAGE_INFO * pageinfo)
@@ -1566,17 +1566,17 @@ static void SVDT_MakeBlockIndex(SVBLK_INFO * blkinfo, const SVPAGE_INFO * pagein
 	page = 0;
 	for (i = 0; i < SVBLK_ID_MAX; i ++) {
 		blkinfo[i].id = i;
-		//ƒf[ƒ^ƒTƒCƒY‚ğŒvZ
+		//ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¨ˆç®—
 		blkinfo[i].size = 0;
 		for (; pageinfo[page].blockID == i && page < SaveDataTableMax; page++) {
 			blkinfo[i].size += pageinfo[page].size;
 		}
 		blkinfo[i].size += sizeof(SAVE_FOOTER);
-		//ƒZƒNƒ^ŠJnƒiƒ“ƒo[‚ğ‘ã“ü
+		//ã‚»ã‚¯ã‚¿é–‹å§‹ãƒŠãƒ³ãƒãƒ¼ã‚’ä»£å…¥
 		blkinfo[i].start_sec = total_sec;
-		//ƒZ[ƒuƒ[ƒN‚Å‚ÌŠJnƒAƒhƒŒƒX‚ğ‘ã“ü
+		//ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã§ã®é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä»£å…¥
 		blkinfo[i].start_ofs = address;
-		//g—pƒZƒNƒ^”iØ‚èã‚°j‚ğ‘ã“ü
+		//ä½¿ç”¨ã‚»ã‚¯ã‚¿æ•°ï¼ˆåˆ‡ã‚Šä¸Šã’ï¼‰ã‚’ä»£å…¥
 		blkinfo[i].use_sec = (blkinfo[i].size + SEC_DATA_SIZE - 1) / SEC_DATA_SIZE;
 
 		total_sec += blkinfo[i].use_sec;
@@ -1596,9 +1596,9 @@ static void SVDT_MakeBlockIndex(SVBLK_INFO * blkinfo, const SVPAGE_INFO * pagein
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚ÌƒNƒŠƒA
- * @param	svwk	ƒZ[ƒuƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pageinfo	ƒZ[ƒu€–Ú•Ûƒ[ƒN
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ã‚¯ãƒªã‚¢
+ * @param	svwk	ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pageinfo	ã‚»ãƒ¼ãƒ–é …ç›®ä¿æŒãƒ¯ãƒ¼ã‚¯
  */
 //---------------------------------------------------------------------------
 static void SVDT_Init(SAVEWORK * svwk, const SVPAGE_INFO * pageinfo)
@@ -1624,9 +1624,9 @@ static void SVDT_Init(SAVEWORK * svwk, const SVPAGE_INFO * pageinfo)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ŠO•”ƒZ[ƒuƒf[ƒ^‚ÌƒNƒŠƒA
- * @param	svwk	ƒZ[ƒuƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pageinfo	ƒZ[ƒu€–Ú•Ûƒ[ƒN
+ * @brief	å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ã‚¯ãƒªã‚¢
+ * @param	svwk	ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pageinfo	ã‚»ãƒ¼ãƒ–é …ç›®ä¿æŒãƒ¯ãƒ¼ã‚¯
  */
 //---------------------------------------------------------------------------
 void SVDT_ExtraInit(SAVEDATA * sv)
@@ -1642,10 +1642,10 @@ void SVDT_ExtraInit(SAVEDATA * sv)
 	
 	for (i = 0; i < ExtraSaveDataTableMax; i++) {
 		if(extra_table[i].id == EXDATA_ID_DENDOU){
-			continue;	//“a“°“ü‚è‚ÍDP‚©‚çŠù‚É•ÊŒÂ‚Éˆ—‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚Å”ò‚Î‚·
+			continue;	//æ®¿å ‚å…¥ã‚Šã¯DPã‹ã‚‰æ—¢ã«åˆ¥å€‹ã«å‡¦ç†ãŒå…¥ã£ã¦ã„ã‚‹ã®ã§é£›ã°ã™
 		}
 		
-		OS_TPrintf("%d”Ô‚ÌŠO•”ƒZ[ƒu‰Šú‰»ŠJn...\n", i);
+		OS_TPrintf("%dç•ªã®å¤–éƒ¨ã‚»ãƒ¼ãƒ–åˆæœŸåŒ–é–‹å§‹...\n", i);
 		
 		ex_work = SaveData_Extra_LoadAlloc(sv, HEAPID_SAVE_TEMP, extra_table[i].id, &result);
 		GF_ASSERT(ex_work != NULL);
@@ -1654,7 +1654,7 @@ void SVDT_ExtraInit(SAVEDATA * sv)
 		SaveData_Extra_Save(sv, extra_table[i].id, ex_work);
 		sys_FreeMemoryEz(ex_work);
 		
-		OS_TPrintf("%d”Ô‚ÌŠO•”ƒZ[ƒu‰Šú‰»Š®—¹IIII\n", i);
+		OS_TPrintf("%dç•ªã®å¤–éƒ¨ã‚»ãƒ¼ãƒ–åˆæœŸåŒ–å®Œäº†ï¼ï¼ï¼ï¼\n", i);
 	}
 	
 	SaveData_SetExtraInitFlag(sv);
@@ -1665,11 +1665,11 @@ void SVDT_ExtraInit(SAVEDATA * sv)
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 typedef struct {
-	u32 magic_number;			///<ƒZ[ƒuƒf[ƒ^”»•Ê—pID
-	u32 counter;				///<ƒZ[ƒu‰ñ”ƒJƒEƒ“ƒ^
-	u32 size;					///<g—pƒTƒCƒY
-	u16 id;						///<“ÁêƒZ[ƒuƒf[ƒ^ID
-	u16 crc;					///<®‡Åƒ`ƒFƒbƒN‚Ì‚½‚ß‚ÌCRC’l
+	u32 magic_number;			///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åˆ¤åˆ¥ç”¨ID
+	u32 counter;				///<ã‚»ãƒ¼ãƒ–å›æ•°ã‚«ã‚¦ãƒ³ã‚¿
+	u32 size;					///<ä½¿ç”¨ã‚µã‚¤ã‚º
+	u16 id;						///<ç‰¹æ®Šã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ID
+	u16 crc;					///<æ•´åˆç¨ãƒã‚§ãƒƒã‚¯ã®ãŸã‚ã®CRCå€¤
 }CHECK_TAIL_DATA;
 
 //---------------------------------------------------------------------------
@@ -1692,9 +1692,9 @@ static void MakeExtraCheckData(const SAVEDATA * sv, void * buf, EXDATA_ID id, u3
 //---------------------------------------------------------------------------
 /**
  * @brief
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	buf
- * @param	id			“ÁêƒZ[ƒuƒf[ƒ^w’èID
+ * @param	id			ç‰¹æ®Šã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æŒ‡å®šID
  */
 //---------------------------------------------------------------------------
 static BOOL IsCorrectExtraCheckData(const SAVEDATA * sv, void * buf, EXDATA_ID id, u32 size)
@@ -1731,15 +1731,15 @@ static u32 GetCounterFromExtraData(void * buf, u32 size)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“ÁêƒZ[ƒuƒf[ƒ^‚ÌƒZ[ƒu
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			“ÁêƒZ[ƒuƒf[ƒ^w’èID
- * @param	data		æ“¾‚µ‚½ƒZ[ƒuƒf[ƒ^‚ğÚ‚¹‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ç‰¹æ®Šã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ¼ãƒ–
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ç‰¹æ®Šã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æŒ‡å®šID
+ * @param	data		å–å¾—ã—ãŸã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’è¼‰ã›ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval	SAVE_RESULT_OK
  * @retval	SAVE_RESULT_NG
  *
- * ‚±‚±‚ÅƒZ[ƒu‚·‚éƒf[ƒ^‚Í•K‚¸SaveData_Extra_LoadAllocŒo—R‚Åæ“¾‚µ‚½ƒf[ƒ^‚Å‚ ‚é‚±‚ÆB
- * –{—ˆ‚Ìƒf[ƒ^‚É‰Á‚¦‚Ä®‡«ƒ`ƒFƒbƒN—p‚ÌƒGƒŠƒA‚ª’Ç‰Á‚³‚ê‚Ä‚¢‚é‚½‚ßB
+ * ã“ã“ã§ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¯å¿…ãšSaveData_Extra_LoadAllocçµŒç”±ã§å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã§ã‚ã‚‹ã“ã¨ã€‚
+ * æœ¬æ¥ã®ãƒ‡ãƒ¼ã‚¿ã«åŠ ãˆã¦æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯ç”¨ã®ã‚¨ãƒªã‚¢ãŒè¿½åŠ ã•ã‚Œã¦ã„ã‚‹ãŸã‚ã€‚
  */
 //---------------------------------------------------------------------------
 SAVE_RESULT SaveData_Extra_Save(const SAVEDATA * sv, EXDATA_ID id, void * data)
@@ -1781,17 +1781,17 @@ SAVE_RESULT SaveData_Extra_Save(const SAVEDATA * sv, EXDATA_ID id, void * data)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒvƒ‰ƒ`ƒi—p‚É’Ç‰Á‚³‚ê‚½ŠO•”ƒf[ƒ^‚ÌƒZ[ƒu
- * 			“à•”ƒZ[ƒu‚Æ“¯‚¶‚æ‚¤‚ÉŒğŒİƒ~ƒ‰[ƒŠƒ“ƒOˆ—‚ğs‚¤B
+ * @brief	ãƒ—ãƒ©ãƒãƒŠç”¨ã«è¿½åŠ ã•ã‚ŒãŸå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ¼ãƒ–
+ * 			å†…éƒ¨ã‚»ãƒ¼ãƒ–ã¨åŒã˜ã‚ˆã†ã«äº¤äº’ãƒŸãƒ©ãƒ¼ãƒªãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†ã€‚
  *
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			“ÁêƒZ[ƒuƒf[ƒ^w’èID
- * @param	data		æ“¾‚µ‚½ƒZ[ƒuƒf[ƒ^‚ğÚ‚¹‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ç‰¹æ®Šã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æŒ‡å®šID
+ * @param	data		å–å¾—ã—ãŸã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’è¼‰ã›ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval	SAVE_RESULT_OK
  * @retval	SAVE_RESULT_NG
  *
- * ‚±‚±‚ÅƒZ[ƒu‚·‚éƒf[ƒ^‚Í•K‚¸SaveData_Extra_Mirror_LoadAllocŒo—R‚Åæ“¾‚µ‚½ƒf[ƒ^‚Å‚ ‚é‚±‚ÆB
- * –{—ˆ‚Ìƒf[ƒ^‚É‰Á‚¦‚Ä®‡«ƒ`ƒFƒbƒN—p‚ÌƒGƒŠƒA‚ª’Ç‰Á‚³‚ê‚Ä‚¢‚é‚½‚ßB
+ * ã“ã“ã§ã‚»ãƒ¼ãƒ–ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¯å¿…ãšSaveData_Extra_Mirror_LoadAllocçµŒç”±ã§å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã§ã‚ã‚‹ã“ã¨ã€‚
+ * æœ¬æ¥ã®ãƒ‡ãƒ¼ã‚¿ã«åŠ ãˆã¦æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯ç”¨ã®ã‚¨ãƒªã‚¢ãŒè¿½åŠ ã•ã‚Œã¦ã„ã‚‹ãŸã‚ã€‚
  */
 //---------------------------------------------------------------------------
 SAVE_RESULT SaveData_Extra_Mirror_Save(SAVEDATA * sv, EXDATA_ID id, void * data)
@@ -1837,10 +1837,10 @@ SAVE_RESULT SaveData_Extra_Mirror_Save(SAVEDATA * sv, EXDATA_ID id, void * data)
 //---------------------------------------------------------------------------
 /**
  * @brief
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	heap_id		ƒ[ƒN‚ğæ“¾‚·‚éƒq[ƒv‚ÌID
- * @param	id			“ÁêƒZ[ƒuƒf[ƒ^w’èID
- * @return	void *	æ“¾‚µ‚½ƒZ[ƒuƒf[ƒ^‚ğÚ‚¹‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	heap_id		ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
+ * @param	id			ç‰¹æ®Šã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æŒ‡å®šID
+ * @return	void *	å–å¾—ã—ãŸã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’è¼‰ã›ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 void SaveData_Extra_GetSize(void)
@@ -1861,10 +1861,10 @@ void SaveData_Extra_GetSize(void)
 //---------------------------------------------------------------------------
 /**
  * @brief
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	heap_id		ƒ[ƒN‚ğæ“¾‚·‚éƒq[ƒv‚ÌID
- * @param	id			“ÁêƒZ[ƒuƒf[ƒ^w’èID
- * @return	void *	æ“¾‚µ‚½ƒZ[ƒuƒf[ƒ^‚ğÚ‚¹‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	heap_id		ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
+ * @param	id			ç‰¹æ®Šã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æŒ‡å®šID
+ * @return	void *	å–å¾—ã—ãŸã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’è¼‰ã›ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 void * SaveData_Extra_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, LOAD_RESULT * result)
@@ -1892,21 +1892,21 @@ void * SaveData_Extra_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, LOAD_RE
 
 	*result = LOAD_RESULT_OK;
 
-	//‚P‚ª³í‚Ìê‡
+	//ï¼‘ãŒæ­£å¸¸ã®å ´åˆ
 	if (res1 == TRUE && res2 == FALSE) {
 		sv->dendou_sector_switch = 0;
 		sv->dendou_counter = counter1;
 		PMSVLD_Load((FIRST_MIRROR_START + extbl->sector) * SECTOR_SIZE, buf, data_size);
 		return buf;
 	}
-	//‚Q‚ª³í‚Ìê‡
+	//ï¼’ãŒæ­£å¸¸ã®å ´åˆ
 	if (res1 == FALSE && res2 == TRUE) {
 		sv->dendou_sector_switch = 1;
 		sv->dendou_counter = counter2;
 		PMSVLD_Load((SECOND_MIRROR_START + extbl->sector) * SECTOR_SIZE, buf, data_size);
 		return buf;
 	}
-	//—¼•û‚ª³í‚Ìê‡
+	//ä¸¡æ–¹ãŒæ­£å¸¸ã®å ´åˆ
 	if (res1 == TRUE && res2 == TRUE) {
 		if (_diffCounter(counter1, counter2) != -1) {
 			sv->dendou_sector_switch = 0;
@@ -1920,7 +1920,7 @@ void * SaveData_Extra_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, LOAD_RE
 			return buf;
 		}
 	}
-	//—¼•û‚Æ‚àˆÙí‚Ìê‡
+	//ä¸¡æ–¹ã¨ã‚‚ç•°å¸¸ã®å ´åˆ
 	*result = LOAD_RESULT_NG;
 	sv->dendou_sector_switch = 0;
 	sv->dendou_counter = 0;
@@ -1929,15 +1929,15 @@ void * SaveData_Extra_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, LOAD_RE
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒvƒ‰ƒ`ƒi—p‚É’Ç‰Á‚³‚ê‚½ŠO•”ƒf[ƒ^‚Ìƒ[ƒh
- * 			“à•”ƒZ[ƒu‚Æ“¯‚¶‚æ‚¤‚ÉŒğŒİƒ~ƒ‰[ƒŠƒ“ƒOˆ—‚ğs‚¤B
+ * @brief	ãƒ—ãƒ©ãƒãƒŠç”¨ã«è¿½åŠ ã•ã‚ŒãŸå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
+ * 			å†…éƒ¨ã‚»ãƒ¼ãƒ–ã¨åŒã˜ã‚ˆã†ã«äº¤äº’ãƒŸãƒ©ãƒ¼ãƒªãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†ã€‚
  * 
- * @param	sv			ƒZ[ƒuƒf[ƒ^\‘¢‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	heap_id		ƒ[ƒN‚ğæ“¾‚·‚éƒq[ƒv‚ÌID
- * @param	id			“ÁêƒZ[ƒuƒf[ƒ^w’èID
- * @param   result		1‚Â‚Å‚à“Ç‚İ‚ß‚½ê‡:LOAD_RESULT_OKB@“Ç‚ß‚È‚©‚Á‚½ê‡:LOAD_RESULT_NG
- * @param   old			TRUE:old_key‚Æ‚Ì‚İˆê’v
- * @return	void *	æ“¾‚µ‚½ƒZ[ƒuƒf[ƒ^‚ğÚ‚¹‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	heap_id		ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
+ * @param	id			ç‰¹æ®Šã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æŒ‡å®šID
+ * @param   result		1ã¤ã§ã‚‚èª­ã¿è¾¼ã‚ãŸå ´åˆ:LOAD_RESULT_OKã€‚ã€€èª­ã‚ãªã‹ã£ãŸå ´åˆ:LOAD_RESULT_NG
+ * @param   old			TRUE:old_keyã¨ã®ã¿ä¸€è‡´
+ * @return	void *	å–å¾—ã—ãŸã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’è¼‰ã›ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 void * SaveData_Extra_Mirror_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, LOAD_RESULT * result, BOOL *old)
@@ -1975,7 +1975,7 @@ void * SaveData_Extra_Mirror_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, 
 	*result = LOAD_RESULT_OK;
 	*old = FALSE;
 	
-	//‚P‚ª³í‚Ìê‡
+	//ï¼‘ãŒæ­£å¸¸ã®å ´åˆ
 	if (res1 == TRUE && res2 == FALSE) {
 		if(key == esk1){
 			if(flag == 1){
@@ -1986,7 +1986,7 @@ void * SaveData_Extra_Mirror_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, 
 			return buf;
 		}
 	}
-	//‚Q‚ª³í‚Ìê‡
+	//ï¼’ãŒæ­£å¸¸ã®å ´åˆ
 	if (res1 == FALSE && res2 == TRUE) {
 		if(key == esk2){
 			if(flag == 0){
@@ -1997,18 +1997,18 @@ void * SaveData_Extra_Mirror_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, 
 			return buf;
 		}
 	}
-	//—¼•û‚ª³í‚Ìê‡
+	//ä¸¡æ–¹ãŒæ­£å¸¸ã®å ´åˆ
 	if (res1 == TRUE && res2 == TRUE) {
 		if(flag == 0){
 			if(key == esk1){
-				//³íˆê’v
-				//OS_TPrintf("flag0‚Å³íˆê’v\n");
+				//æ­£å¸¸ä¸€è‡´
+				//OS_TPrintf("flag0ã§æ­£å¸¸ä¸€è‡´\n");
 				PMSVLD_Load((FIRST_MIRROR_START + extbl->sector) * SECTOR_SIZE, buf, data_size);
 				return buf;
 			}
 			else if(old_key == esk2){
-				//1‚Â‘O‚Ìƒf[ƒ^‚Æˆê’v
-				//OS_TPrintf("flag0‚Åerrorˆê’v\n");
+				//1ã¤å‰ã®ãƒ‡ãƒ¼ã‚¿ã¨ä¸€è‡´
+				//OS_TPrintf("flag0ã§errorä¸€è‡´\n");
 				Extra_SaveKeySet(sv, id, old_key, old_key, flag ^ 1);
 				*old = TRUE;
 				PMSVLD_Load((SECOND_MIRROR_START + extbl->sector) * SECTOR_SIZE, buf, data_size);
@@ -2017,14 +2017,14 @@ void * SaveData_Extra_Mirror_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, 
 		}
 		else{
 			if(key == esk2){
-				//³íˆê’v
-				//OS_TPrintf("flag1‚Å³íˆê’v\n");
+				//æ­£å¸¸ä¸€è‡´
+				//OS_TPrintf("flag1ã§æ­£å¸¸ä¸€è‡´\n");
 				PMSVLD_Load((SECOND_MIRROR_START + extbl->sector) * SECTOR_SIZE, buf, data_size);
 				return buf;
 			}
 			else if(old_key == esk1){
-				//1‚Â‘O‚Ìƒf[ƒ^‚Æˆê’v
-				//OS_TPrintf("flag1‚Åerrorˆê’v\n");
+				//1ã¤å‰ã®ãƒ‡ãƒ¼ã‚¿ã¨ä¸€è‡´
+				//OS_TPrintf("flag1ã§errorä¸€è‡´\n");
 				Extra_SaveKeySet(sv, id, old_key, old_key, flag ^ 1);
 				*old = TRUE;
 				PMSVLD_Load((FIRST_MIRROR_START + extbl->sector) * SECTOR_SIZE, buf, data_size);
@@ -2032,7 +2032,7 @@ void * SaveData_Extra_Mirror_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, 
 			}
 		}
 	}
-	//—¼•û‚Æ‚àˆÙí‚Ìê‡
+	//ä¸¡æ–¹ã¨ã‚‚ç•°å¸¸ã®å ´åˆ
 	*result = LOAD_RESULT_NG;
 	MISC_ExtraSaveKeySet(misc, extbl->id, EX_CERTIFY_SAVE_KEY_NO_DATA, EX_CERTIFY_SAVE_KEY_NO_DATA,  0);
 	return buf;
@@ -2040,13 +2040,13 @@ void * SaveData_Extra_Mirror_LoadAlloc(SAVEDATA *sv, int heap_id, EXDATA_ID id, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒZ[ƒuƒf[ƒ^‚©‚çŠO•”ƒf[ƒ^‚Ì”FØƒL[Aƒtƒ‰ƒO‚ğæ“¾‚·‚é
+ * @brief   ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã®èªè¨¼ã‚­ãƒ¼ã€ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  *
- * @param   sv				ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   exdata_id		ŠO•”ƒf[ƒ^”Ô†(EXDATA_ID_???)
- * @param   key				”FØƒL[‘ã“üæ
- * @param   old_key			1‚Â‘O‚Ì”FØƒL[‘ã“üæ
- * @param   flag			ƒtƒ‰ƒO‘ã“üæ
+ * @param   sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   exdata_id		å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ç•ªå·(EXDATA_ID_???)
+ * @param   key				èªè¨¼ã‚­ãƒ¼ä»£å…¥å…ˆ
+ * @param   old_key			1ã¤å‰ã®èªè¨¼ã‚­ãƒ¼ä»£å…¥å…ˆ
+ * @param   flag			ãƒ•ãƒ©ã‚°ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void Extra_SaveKeyGet(SAVEDATA *sv, EXDATA_ID exdata_id, EX_CERTIFY_SAVE_KEY *key, EX_CERTIFY_SAVE_KEY *old_key, u8 *flag)
@@ -2056,14 +2056,14 @@ static void Extra_SaveKeyGet(SAVEDATA *sv, EXDATA_ID exdata_id, EX_CERTIFY_SAVE_
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒZ[ƒuƒf[ƒ^‚©‚çŠO•”ƒf[ƒ^‚Ì”FØƒL[Aƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+ * @brief   ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã®èªè¨¼ã‚­ãƒ¼ã€ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param   sv		
  * @param   exdata_id	
- * @param   key			”FØƒL[
- * @param   key			1‚Â‘O‚Ì”FØƒL[
- * @param   flag		ƒtƒ‰ƒO
- * @param   flag		1‚Â‘O‚Ìƒtƒ‰ƒO
+ * @param   key			èªè¨¼ã‚­ãƒ¼
+ * @param   key			1ã¤å‰ã®èªè¨¼ã‚­ãƒ¼
+ * @param   flag		ãƒ•ãƒ©ã‚°
+ * @param   flag		1ã¤å‰ã®ãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static void Extra_SaveKeySet(SAVEDATA *sv, EXDATA_ID exdata_id, EX_CERTIFY_SAVE_KEY key, EX_CERTIFY_SAVE_KEY old_key, u8 flag)
@@ -2076,15 +2076,15 @@ static void Extra_SaveKeySet(SAVEDATA *sv, EXDATA_ID exdata_id, EX_CERTIFY_SAVE_
 //============================================================================================
 //
 //
-//			ƒ‰ƒCƒuƒ‰ƒŠI/O•”•ª
+//			ãƒ©ã‚¤ãƒ–ãƒ©ãƒªI/Oéƒ¨åˆ†
 //
 //
 //============================================================================================
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒoƒbƒNƒAƒbƒvƒtƒ‰ƒbƒVƒ…‚Ì“®ìŠm”F
- * @retval	TRUE	ƒoƒbƒNƒAƒbƒvƒtƒ‰ƒbƒVƒ…‚ª³í‚É“®ì‚·‚é
- * @retval	FALSE	³í“®ì‚µ‚È‚¢i‘¶İ‚µ‚È‚¢Aˆá‚¤í—Ş‚ÌƒoƒbƒNƒAƒbƒvƒfƒoƒCƒX“™j
+ * @brief	ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®å‹•ä½œç¢ºèª
+ * @retval	TRUE	ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãŒæ­£å¸¸ã«å‹•ä½œã™ã‚‹
+ * @retval	FALSE	æ­£å¸¸å‹•ä½œã—ãªã„ï¼ˆå­˜åœ¨ã—ãªã„ã€é•ã†ç¨®é¡ã®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ‡ãƒã‚¤ã‚¹ç­‰ï¼‰
  */
 //---------------------------------------------------------------------------
 BOOL PMSVLD_Init(void)
@@ -2128,11 +2128,11 @@ BOOL PMSVLD_Init(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒu
- * @param	src		ƒtƒ‰ƒbƒVƒ…‚ÌƒAƒhƒŒƒXi‚O`j¦ƒZƒNƒ^w’è‚Å‚Í‚È‚¢
- * @param	dst		‘‚«‚Şƒf[ƒ^‚ÌƒAƒhƒŒƒX
- * @param	len		‘‚«‚Şƒf[ƒ^‚Ì’·‚³
- * @return	BOOL	TRUE‚Å¬Œ÷AFALSE‚Å¸”s
+ * @brief	ã‚»ãƒ¼ãƒ–
+ * @param	src		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆï¼ã€œï¼‰â€»ã‚»ã‚¯ã‚¿æŒ‡å®šã§ã¯ãªã„
+ * @param	dst		æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	len		æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+ * @return	BOOL	TRUEã§æˆåŠŸã€FALSEã§å¤±æ•—
  */
 //---------------------------------------------------------------------------
 BOOL PMSVLD_Save(u32 src, void * dst, u32 len)
@@ -2164,11 +2164,11 @@ BOOL PMSVLD_Save(u32 src, void * dst, u32 len)
 }
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒ[ƒh
- * @param	src		ƒtƒ‰ƒbƒVƒ…‚ÌƒAƒhƒŒƒXi‚O`j¦ƒZƒNƒ^w’è‚Å‚Í‚È‚¢
- * @param	dst		“Ç‚İ‚İæƒAƒhƒŒƒX
- * @param	len		“Ç‚İ‚Şƒf[ƒ^‚Ì’·‚³
- * @return	BOOL	TRUE‚Å¬Œ÷AFALSE‚Å¸”s
+ * @brief	ãƒ­ãƒ¼ãƒ‰
+ * @param	src		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆï¼ã€œï¼‰â€»ã‚»ã‚¯ã‚¿æŒ‡å®šã§ã¯ãªã„
+ * @param	dst		èª­ã¿è¾¼ã¿å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	len		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+ * @return	BOOL	TRUEã§æˆåŠŸã€FALSEã§å¤±æ•—
  */
 //---------------------------------------------------------------------------
 BOOL PMSVLD_Load(u32 src, void * dst, u32 len)
@@ -2187,7 +2187,7 @@ BOOL PMSVLD_Load(u32 src, void * dst, u32 len)
 	CARD_UnlockBackup(lock_id);
 	OS_ReleaseLockID(lock_id);
 
-#ifndef	DISABLE_FLASH_CHECK		//ƒoƒbƒNƒAƒbƒvƒtƒ‰ƒbƒVƒ…‚È‚µ‚Å‚à“®ì
+#ifndef	DISABLE_FLASH_CHECK		//ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãªã—ã§ã‚‚å‹•ä½œ
 	if (!result) {
 		sys_FreeMemoryEz(SvPointer);
 		BackupErrorWarningCall(HEAPID_BASE_SAVE);
@@ -2223,7 +2223,7 @@ static s32 PMSVLD_DivSave_Init(u32 src, void * dst, u32 len)
 #ifndef	DISABLE_FLASH_CHECK
 	result = CARD_ReadFlash(0, &buf, sizeof(buf));
 	if (!result) {
-		/* ƒZ[ƒuƒf[ƒ^‚ª“Ç‚ß‚È‚¢ÚG•s—Ç */
+		/* ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒèª­ã‚ãªã„ï¼æ¥è§¦ä¸è‰¯ */
 		PMSVLD_SaveError(lock_id, SAVEERROR_MSG_DISABLE_READ);
 	}
 #endif
@@ -2239,7 +2239,7 @@ static BOOL PMSVLD_DivSave_Main(s32 lock_id, BOOL lock_flg, BOOL * result)
 	if (SaveEndFlag == TRUE) {
         OS_TPrintf("PMSVLD_DivSave_MainEND %d\n",lock_flg);
         if(lock_flg==FALSE){
-            return TRUE; // ‚·‚Å‚ÉƒLƒƒƒ“ƒZƒ‹Ï‚İ ‚È‚Ì‚ÅTRUE‚É•ÏX 08/06/25 k.ohno PL:0646
+            return TRUE; // ã™ã§ã«ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ¸ˆã¿ ãªã®ã§TRUEã«å¤‰æ›´ 08/06/25 k.ohno PL:0646
         }
         CARD_UnlockBackup(lock_id);
         OS_ReleaseLockID(lock_id);
@@ -2254,11 +2254,11 @@ static BOOL PMSVLD_DivSave_Main(s32 lock_id, BOOL lock_flg, BOOL * result)
 			GF_ASSERT(0);
 		case CARD_RESULT_TIMEOUT:
 			*result = FALSE;
-			/* ƒZ[ƒuƒf[ƒ^‚ª‘‚«‚ß‚È‚¢ƒtƒ‰ƒbƒVƒ…õ–½‚©ŒÌá */
+			/* ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæ›¸ãè¾¼ã‚ãªã„ï¼ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å¯¿å‘½ã‹æ•…éšœ */
 			PMSVLD_SaveError(lock_id, SAVEERROR_MSG_DISABLE_WRITE);
 		case CARD_RESULT_NO_RESPONSE:
 			*result = FALSE;
-			/* CARD_RESULT_NO_RESPONSEÚG•s—Ç */
+			/* CARD_RESULT_NO_RESPONSEï¼ï¼æ¥è§¦ä¸è‰¯ */
 			PMSVLD_SaveError(lock_id, SAVEERROR_MSG_DISABLE_READ);
 			break;
 		}
@@ -2270,20 +2270,20 @@ static BOOL PMSVLD_DivSave_Main(s32 lock_id, BOOL lock_flg, BOOL * result)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒu¸”s‚É‚æ‚éƒJ[ƒhˆÙí
- * @param	lock_id		ƒoƒXƒƒbƒN‚ÅƒVƒXƒeƒ€‚ª•Ô‚µ‚½ID
+ * @brief	ã‚»ãƒ¼ãƒ–å¤±æ•—ã«ã‚ˆã‚‹ã‚«ãƒ¼ãƒ‰ç•°å¸¸
+ * @param	lock_id		ãƒã‚¹ãƒ­ãƒƒã‚¯ã§ã‚·ã‚¹ãƒ†ãƒ ãŒè¿”ã—ãŸID
  */
 //---------------------------------------------------------------------------
 static void PMSVLD_SaveError(s32 lock_id, int error_msg_id)
 {
-	//ƒƒbƒN‚µ‚Ä‚¢‚éƒoƒX‚ğŠJ•ú‚·‚éiƒƒ€‚ª“Ç‚ß‚È‚­‚È‚é‚Ì‚Åj
+	//ãƒ­ãƒƒã‚¯ã—ã¦ã„ã‚‹ãƒã‚¹ã‚’é–‹æ”¾ã™ã‚‹ï¼ˆãƒ­ãƒ ãŒèª­ã‚ãªããªã‚‹ã®ã§ï¼‰
 	CARD_UnlockBackup(lock_id);
 	OS_ReleaseLockID(lock_id);
 
-	//ƒZ[ƒu¸”s‰æ–Ê‚ÅƒZ[ƒuƒq[ƒv‚ğg—p‚Å‚«‚é‚æ‚¤‚ÉŠJ•ú‚·‚é
+	//ã‚»ãƒ¼ãƒ–å¤±æ•—ç”»é¢ã§ã‚»ãƒ¼ãƒ–ãƒ’ãƒ¼ãƒ—ã‚’ä½¿ç”¨ã§ãã‚‹ã‚ˆã†ã«é–‹æ”¾ã™ã‚‹
 	sys_FreeMemoryEz(SvPointer);
 
-	//ƒZ[ƒu¸”s‰æ–ÊŒÄ‚Ño‚µ
+	//ã‚»ãƒ¼ãƒ–å¤±æ•—ç”»é¢å‘¼ã³å‡ºã—
 	SaveErrorWarningCall(HEAPID_BASE_SAVE, error_msg_id);
 }
 
@@ -2291,10 +2291,10 @@ static void PMSVLD_SaveError(s32 lock_id, int error_msg_id)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚ÌCRCŒŸ¸
- * @param	SAVEDATA *sv		    ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	GMDATA_ID gmdataID		ƒZ[ƒu‚ÌtypeID
- * @return  CRC‡Ši‚É‚ÍTRUE
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®CRCæ¤œæŸ»
+ * @param	SAVEDATA *sv		    ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	GMDATA_ID gmdataID		ã‚»ãƒ¼ãƒ–ã®typeID
+ * @return  CRCåˆæ ¼æ™‚ã«ã¯TRUE
  */
 //---------------------------------------------------------------------------
 
@@ -2320,9 +2320,9 @@ BOOL SVLD_CheckCrc(GMDATA_ID gmdataID)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	crc‚ğÄŒvZ‚µ‚Ä–„‚ß‚Ş
- * @param	const void* pData	    ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	GMDATA_ID gmdataID		ƒZ[ƒu‚ÌtypeID
+ * @brief	crcã‚’å†è¨ˆç®—ã—ã¦åŸ‹ã‚è¾¼ã‚€
+ * @param	const void* pData	    ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	GMDATA_ID gmdataID		ã‚»ãƒ¼ãƒ–ã®typeID
  */
 //---------------------------------------------------------------------------
 

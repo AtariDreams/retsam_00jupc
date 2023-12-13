@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	aci_tool.c
- * @brief	actin_input.c‚Åg—p‚·‚éƒc[ƒ‹(actin_input.c‚ÌƒVƒXƒeƒ€‚ÉˆË‘¶‚µ‚È‚¢‚à‚ÌŒÀ’è)
+ * @brief	actin_input.cã§ä½¿ç”¨ã™ã‚‹ãƒ„ãƒ¼ãƒ«(actin_input.cã®ã‚·ã‚¹ãƒ†ãƒ ã«ä¾å­˜ã—ãªã„ã‚‚ã®é™å®š)
  * @author	matsuda
- * @date	2005.12.02(‹à)
+ * @date	2005.12.02(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -40,57 +40,57 @@
 
 
 //==============================================================================
-//	ƒAƒNƒ^[ƒwƒbƒ_
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 //==============================================================================
-///R”»ƒn[ƒgƒAƒNƒ^[ƒwƒbƒ_
+///å¯©åˆ¤ãƒãƒ¼ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S SubHeartJudgeObjParam = {
 	SUB_HEART_JUDGE_POS_X, SUB_HEART_JUDGE_POS_Y, 0,		//x, y, z
-	0, ACTINSUB_SOFTPRI_HEART_JUDGE, PALOFS_SUB_HEART_32,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_HEART_32,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON_SUB,	//ƒpƒŒƒbƒg
-		CELLID_SUB_HEART_32,	//ƒZƒ‹
-		CELLANMID_SUB_HEART_32,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTINSUB_SOFTPRI_HEART_JUDGE, PALOFS_SUB_HEART_32,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_HEART_32,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON_SUB,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_HEART_32,	//ã‚»ãƒ«
+		CELLANMID_SUB_HEART_32,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTINSUB_BGPRI_HEART_JUDGE,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTINSUB_BGPRI_HEART_JUDGE,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///AP’lƒn[ƒgƒAƒNƒ^[ƒwƒbƒ_
+///APå€¤ãƒãƒ¼ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S AppHeartObjParam = {
 	0, 0, 0,		//x, y, z
-	0, ACTINSUB_SOFTPRI_APP_HEART, PALOFS_SUB_HEART_8,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_HEART_8,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON_SUB,	//ƒpƒŒƒbƒg
-		CELLID_SUB_HEART_8,	//ƒZƒ‹
-		CELLANMID_SUB_HEART_8,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTINSUB_SOFTPRI_APP_HEART, PALOFS_SUB_HEART_8,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_HEART_8,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON_SUB,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_HEART_8,	//ã‚»ãƒ«
+		CELLANMID_SUB_HEART_8,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTINSUB_BGPRI_APP_HEART,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTINSUB_BGPRI_APP_HEART,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///–WŠQ’lƒn[ƒgƒAƒNƒ^[ƒwƒbƒ_
+///å¦¨å®³å€¤ãƒãƒ¼ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S ObstructHeartObjParam = {
 	0, 0, 0,		//x, y, z
-	0, ACTINSUB_SOFTPRI_APP_HEART, PALOFS_SUB_HEART_BLACK_8,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_HEART_8,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON_SUB,	//ƒpƒŒƒbƒg
-		CELLID_SUB_HEART_8,	//ƒZƒ‹
-		CELLANMID_SUB_HEART_8,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, ACTINSUB_SOFTPRI_APP_HEART, PALOFS_SUB_HEART_BLACK_8,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_HEART_8,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON_SUB,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_HEART_8,	//ã‚»ãƒ«
+		CELLANMID_SUB_HEART_8,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTINSUB_BGPRI_APP_HEART,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTINSUB_BGPRI_APP_HEART,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 
@@ -98,18 +98,18 @@ static const TCATS_OBJECT_ADD_PARAM_S ObstructHeartObjParam = {
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒn[ƒg‚ÌƒŠƒ\[ƒX“o˜^
+ * @brief   å¯©åˆ¤ãƒãƒ¼ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  *
  * @param   csp			
  * @param   crp			
- * @param   judge_no	R”»NO
+ * @param   judge_no	å¯©åˆ¤NO
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ACIT_SubHeartJudgeResourceSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *hdl_obj)
 {
-	//ƒŠƒ\[ƒXƒ[ƒh
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourceCharArcH(csp, crp, hdl_obj, SUB_HEART32_NCGR_BIN, 1, 
 		NNS_G2D_VRAM_TYPE_2DSUB, CHARID_SUB_HEART_32);
 	CATS_LoadResourceCellArcH(csp, crp, hdl_obj, SUB_HEART32_NCER_BIN, 1, 
@@ -120,20 +120,20 @@ void ACIT_SubHeartJudgeResourceSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒn[ƒg‚ÌƒAƒNƒ^[“o˜^
+ * @brief   å¯©åˆ¤ãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   csp			
  * @param   crp			
- * @param   judge_no	R”»NO
+ * @param   judge_no	å¯©åˆ¤NO
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR ACIT_SubHeartJudgeActorAdd(CATS_SYS_PTR csp, CATS_RES_PTR crp, int judge_no)
 {
 	CATS_ACT_PTR sub_heart_judge_cap;
 	
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	sub_heart_judge_cap = CATS_ObjectAdd_S(csp, crp, &SubHeartJudgeObjParam);
 	CATS_ObjectPosSetCap_SubSurface(sub_heart_judge_cap, 
 		SUB_HEART_JUDGE_POS_X + SUB_HEART_JUDGE_POS_X_SPACE * judge_no, 
@@ -145,7 +145,7 @@ CATS_ACT_PTR ACIT_SubHeartJudgeActorAdd(CATS_SYS_PTR csp, CATS_RES_PTR crp, int 
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒn[ƒg‚ÌƒŠƒ\[ƒX‚ğíœ‚·‚é
+ * @brief   å¯©åˆ¤ãƒãƒ¼ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   crp		
  */
@@ -159,9 +159,9 @@ void ACIT_SubHeartJudgeResourceFree(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒn[ƒg‚ÌƒAƒNƒ^[‚ğíœ‚·‚é(ƒŠƒ\[ƒX•ƒAƒNƒ^[)
+ * @brief   å¯©åˆ¤ãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹(ãƒªã‚½ãƒ¼ã‚¹ï¼†ã‚¢ã‚¯ã‚¿ãƒ¼)
  *
- * @param   sub_heart_judge_cap		R”»ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sub_heart_judge_cap		å¯©åˆ¤ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ACIT_SubHeartJudgeActorDel(CATS_ACT_PTR sub_heart_judge_cap)
@@ -171,7 +171,7 @@ void ACIT_SubHeartJudgeActorDel(CATS_ACT_PTR sub_heart_judge_cap)
 
 //--------------------------------------------------------------
 /**
- * @brief   AP’lƒn[ƒg‚ÌƒŠƒ\[ƒX‚ğƒ[ƒh‚·‚é
+ * @brief   APå€¤ãƒãƒ¼ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param   csp			
  * @param   crp			
@@ -179,7 +179,7 @@ void ACIT_SubHeartJudgeActorDel(CATS_ACT_PTR sub_heart_judge_cap)
 //--------------------------------------------------------------
 void ACIT_AppHeartResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *hdl_obj)
 {
-	//ƒŠƒ\[ƒXƒ[ƒh
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourceCharArcH(csp, crp, hdl_obj, SUB_HEART8_NCGR_BIN, 1, 
 		NNS_G2D_VRAM_TYPE_2DSUB, CHARID_SUB_HEART_8);
 	CATS_LoadResourceCellArcH(csp, crp, hdl_obj, SUB_HEART8_NCER_BIN, 1, 
@@ -190,15 +190,15 @@ void ACIT_AppHeartResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *hd
 
 //--------------------------------------------------------------
 /**
- * @brief   AP’lƒn[ƒgƒAƒNƒ^[‚ğ¶¬‚·‚é
+ * @brief   APå€¤ãƒãƒ¼ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   csp		
  * @param   crp		
- * @param   x			À•WX
- * @param   y			À•WY
- * @param   ap_point	AP’l
+ * @param   x			åº§æ¨™X
+ * @param   y			åº§æ¨™Y
+ * @param   ap_point	APå€¤
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR ACIT_AppHeartActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, 
@@ -206,7 +206,7 @@ CATS_ACT_PTR ACIT_AppHeartActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 {
 	CATS_ACT_PTR heart_cap;
 
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	if(ap_point >= 0){
 		heart_cap = CATS_ObjectAdd_S(csp, crp, &AppHeartObjParam);
 	}
@@ -220,8 +220,8 @@ CATS_ACT_PTR ACIT_AppHeartActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief   AP’lƒn[ƒgƒAƒNƒ^[‚ğíœ‚·‚é
- * @param   heart_cap		AP’lƒn[ƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   APå€¤ãƒãƒ¼ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   heart_cap		APå€¤ãƒãƒ¼ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ACIT_AppHeartActorDel(CATS_ACT_PTR heart_cap)
@@ -231,7 +231,7 @@ void ACIT_AppHeartActorDel(CATS_ACT_PTR heart_cap)
 
 //--------------------------------------------------------------
 /**
- * @brief   AP’lƒn[ƒg‚ÌƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
+ * @brief   APå€¤ãƒãƒ¼ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
  * @param   crp		
  */
 //--------------------------------------------------------------

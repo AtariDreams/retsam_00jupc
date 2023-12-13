@@ -9,95 +9,95 @@
 ==============================================================================
 
 ==============================================================================
-1. ‚Í‚¶‚ß‚É
+1. ã¯ã˜ã‚ã«
 ==============================================================================
  
-  VoiceChat ƒ‰ƒCƒuƒ‰ƒŠ‚ÍATCP/IP ƒlƒbƒgƒ[ƒN‚ð—p‚¢‚Ä‰¹º’Ê˜b‚ð‚·‚é‚½‚ß‚É•K—v
-  ‚Èƒ‰ƒCƒuƒ‰ƒŠˆêŽ®‚Å‚ ‚èA‰¹º’Ê˜b‚Ì‚½‚ß‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ÆA’…MEŽóM‚ð§Œä‚·‚éƒ‰
-  ƒCƒuƒ‰ƒŠ‚ðŠÜ‚ñ‚Å‚¢‚Ü‚·B
+  VoiceChat ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¯ã€TCP/IP ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚’ç”¨ã„ã¦éŸ³å£°é€šè©±ã‚’ã™ã‚‹ãŸã‚ã«å¿…è¦
+  ãªãƒ©ã‚¤ãƒ–ãƒ©ãƒªä¸€å¼ã§ã‚ã‚Šã€éŸ³å£°é€šè©±ã®ãŸã‚ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¨ã€ç€ä¿¡ãƒ»å—ä¿¡ã‚’åˆ¶å¾¡ã™ã‚‹ãƒ©
+  ã‚¤ãƒ–ãƒ©ãƒªã‚’å«ã‚“ã§ã„ã¾ã™ã€‚
   
-  –{ƒ‰ƒCƒuƒ‰ƒŠ‚ð—p‚¢‚Ä‰¹º’Ê˜b‚ðŽÀŒ»‚·‚éã‚ÅA“Á•Ê‚ÈƒT[ƒoƒn[ƒhƒEƒFƒAEƒ\ƒtƒg
-  ƒEƒFƒA‚Í•K—v‚ ‚è‚Ü‚¹‚ñB‚½‚¾‚µA’ÊM‚É‚Í NitroWiFi ‚Æ NitroDWC ‚ð—˜—p‚·‚é•K
-  —v‚ª‚ ‚è‚Ü‚·B
+  æœ¬ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ç”¨ã„ã¦éŸ³å£°é€šè©±ã‚’å®Ÿç¾ã™ã‚‹ä¸Šã§ã€ç‰¹åˆ¥ãªã‚µãƒ¼ãƒãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ãƒ»ã‚½ãƒ•ãƒˆ
+  ã‚¦ã‚§ã‚¢ã¯å¿…è¦ã‚ã‚Šã¾ã›ã‚“ã€‚ãŸã ã—ã€é€šä¿¡ã«ã¯ NitroWiFi ã¨ NitroDWC ã‚’åˆ©ç”¨ã™ã‚‹å¿…
+  è¦ãŒã‚ã‚Šã¾ã™ã€‚
   
-  –{ƒ‰ƒCƒuƒ‰ƒŠ‚É‚æ‚Á‚Ä‰Â”\‚Æ‚È‚é‰ï˜b‚ÍA1‘Î1i“d˜bƒ‚[ƒhjA1‘Î‘½iƒgƒ‰ƒ“ƒV[
-  ƒo[ƒ‚[ƒhjA‚¨‚æ‚Ñ‘½l”“¯ŽžiƒJƒ“ƒtƒ@ƒŒƒ“ƒXƒ‚[ƒhj‚Ì‰ï˜b‚Å‚·B
+  æœ¬ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ã‚ˆã£ã¦å¯èƒ½ã¨ãªã‚‹ä¼šè©±ã¯ã€1å¯¾1ï¼ˆé›»è©±ãƒ¢ãƒ¼ãƒ‰ï¼‰ã€1å¯¾å¤šï¼ˆãƒˆãƒ©ãƒ³ã‚·ãƒ¼
+  ãƒãƒ¼ãƒ¢ãƒ¼ãƒ‰ï¼‰ã€ãŠã‚ˆã³å¤šäººæ•°åŒæ™‚ï¼ˆã‚«ãƒ³ãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼‰ã®ä¼šè©±ã§ã™ã€‚
   
-  ‚»‚Ì‘¼Ú×‚É‚Â‚«‚Ü‚µ‚Ä‚ÍAdocs/TechnicalNotes/AboutVoiceChat.pdf ‹y‚Ñ 
-  man/ja_JP ˆÈ‰º‚ÌŠÖ”ƒ}ƒjƒ…ƒAƒ‹‚ð‚²——‰º‚³‚¢B
+  ãã®ä»–è©³ç´°ã«ã¤ãã¾ã—ã¦ã¯ã€docs/TechnicalNotes/AboutVoiceChat.pdf åŠã³ 
+  man/ja_JP ä»¥ä¸‹ã®é–¢æ•°ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã‚’ã”è¦§ä¸‹ã•ã„ã€‚
 
 
 ==============================================================================
-2. ƒfƒBƒŒƒNƒgƒŠ\¬
+2. ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ§‹æˆ
 ==============================================================================
 
-  ElibVCT/
+  ãƒ»libVCT/
         build/
-            demos/       ƒfƒ‚ƒAƒvƒŠƒP[ƒVƒ‡ƒ“
-        docs/            ŠeŽíƒhƒLƒ…ƒƒ“ƒg
-        include/         ƒCƒ“ƒNƒ‹[ƒhƒwƒbƒ_
-        lib/             ƒ‰ƒCƒuƒ‰ƒŠ–{‘Ì
-        man/             HTMLƒŠƒtƒ@ƒŒƒ“ƒXƒ}ƒjƒ…ƒAƒ‹
-        Readme.txt       ‚±‚ÌƒhƒLƒ…ƒƒ“ƒg
+            demos/       ãƒ‡ãƒ¢ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
+        docs/            å„ç¨®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+        include/         ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ˜ãƒƒãƒ€
+        lib/             ãƒ©ã‚¤ãƒ–ãƒ©ãƒªæœ¬ä½“
+        man/             HTMLãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«
+        Readme.txt       ã“ã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
 
 
 ==============================================================================
-3. ƒfƒ‚ƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+3. ãƒ‡ãƒ¢ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
 ==============================================================================
 
-  –{ƒpƒbƒP[ƒW‚É‚ÍAVoiceChat ƒ‰ƒCƒuƒ‰ƒŠ‚ð—˜—p‚µ‚½AˆÈ‰º‚Ìƒfƒ‚ƒAƒvƒŠƒP[ƒVƒ‡ƒ“
-  ‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚·B
+  æœ¬ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«ã¯ã€VoiceChat ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’åˆ©ç”¨ã—ãŸã€ä»¥ä¸‹ã®ãƒ‡ãƒ¢ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
+  ãŒå«ã¾ã‚Œã¦ã„ã¾ã™ã€‚
     
-  EVoiceChatDemo
-    NitroDWC ã‚Å“®ì‚·‚é VoiceChat ‚ÌƒTƒ“ƒvƒ‹ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å‚·B
-    “d˜bAƒgƒ‰ƒ“ƒV[ƒo[AƒJƒ“ƒtƒ@ƒŒƒ“ƒXƒ‚[ƒh‚·‚×‚Ä‚ÌƒTƒ“ƒvƒ‹‚É‚È‚è‚Ü‚·B
+  ãƒ»VoiceChatDemo
+    NitroDWC ä¸Šã§å‹•ä½œã™ã‚‹ VoiceChat ã®ã‚µãƒ³ãƒ—ãƒ«ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ã™ã€‚
+    é›»è©±ã€ãƒˆãƒ©ãƒ³ã‚·ãƒ¼ãƒãƒ¼ã€ã‚«ãƒ³ãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰ã™ã¹ã¦ã®ã‚µãƒ³ãƒ—ãƒ«ã«ãªã‚Šã¾ã™ã€‚
 
 
 ==============================================================================
-4. XV—š—ð
+4. æ›´æ–°å±¥æ­´
 ==============================================================================
 
   Version 1.3.1 (April 1, 2008)
-  E“à•”ƒLƒ…[ˆ—‚É‚¨‚¯‚éƒAƒT[ƒVƒ‡ƒ“”­¶‚Ì•s‹ï‡‚ðC³‚µ‚Ü‚µ‚½
+  ãƒ»å†…éƒ¨ã‚­ãƒ¥ãƒ¼å‡¦ç†ã«ãŠã‘ã‚‹ã‚¢ã‚µãƒ¼ã‚·ãƒ§ãƒ³ç™ºç”Ÿã®ä¸å…·åˆã‚’ä¿®æ­£ã—ã¾ã—ãŸ
 
   Version 1.3.0 (February 4, 2008)
-  ENitroŠÂ‹«ƒAƒbƒvƒOƒŒ[ƒh‚É‚Æ‚à‚È‚¢AÅVŠÂ‹«‚Å‚ÌƒŠƒrƒ‹ƒh”Å‚ðƒŠƒŠ[ƒX‚µ‚Ü‚µ‚½
-  ENitroDWCƒAƒbƒvƒOƒŒ[ƒh‚É‚Æ‚à‚È‚¢AVoiceChatƒTƒ“ƒvƒ‹ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ðC³‚µ‚Ü‚µ‚½
+  ãƒ»Nitroç’°å¢ƒã‚¢ãƒƒãƒ—ã‚°ãƒ¬ãƒ¼ãƒ‰ã«ã¨ã‚‚ãªã„ã€æœ€æ–°ç’°å¢ƒã§ã®ãƒªãƒ“ãƒ«ãƒ‰ç‰ˆã‚’ãƒªãƒªãƒ¼ã‚¹ã—ã¾ã—ãŸ
+  ãƒ»NitroDWCã‚¢ãƒƒãƒ—ã‚°ãƒ¬ãƒ¼ãƒ‰ã«ã¨ã‚‚ãªã„ã€VoiceChatã‚µãƒ³ãƒ—ãƒ«ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä¿®æ­£ã—ã¾ã—ãŸ
 
   Version 1.2.0a (October 5, 2007)
-  EƒTƒ“ƒvƒ‹ƒR[ƒh“à‚Ì•s—v‚È‹@”\‚ðíœ‚µ‚Ü‚µ‚½
+  ãƒ»ã‚µãƒ³ãƒ—ãƒ«ã‚³ãƒ¼ãƒ‰å†…ã®ä¸è¦ãªæ©Ÿèƒ½ã‚’å‰Šé™¤ã—ã¾ã—ãŸ
 
   Version 1.2.0 (April 13, 2007)
-  ENitroŠÂ‹«ƒAƒbƒvƒOƒŒ[ƒh‚É‚Æ‚à‚È‚¢AÅVŠÂ‹«‚Å‚ÌƒŠƒrƒ‹ƒh”Å‚ðƒŠƒŠ[ƒX‚µ‚Ü‚µ‚½
-  ENitroDWCƒAƒbƒvƒOƒŒ[ƒh‚É‚Æ‚à‚È‚¢AVoiceChatƒTƒ“ƒvƒ‹ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ðC³‚µ‚Ü‚µ‚½
-  Eƒ‰ƒCƒuƒ‰ƒŠ‰ðàƒhƒLƒ…ƒƒ“ƒg‚ÆAPIƒŠƒtƒ@ƒŒƒ“ƒXƒ}ƒjƒ…ƒAƒ‹‚ðC³‚µ‚Ü‚µ‚½
+  ãƒ»Nitroç’°å¢ƒã‚¢ãƒƒãƒ—ã‚°ãƒ¬ãƒ¼ãƒ‰ã«ã¨ã‚‚ãªã„ã€æœ€æ–°ç’°å¢ƒã§ã®ãƒªãƒ“ãƒ«ãƒ‰ç‰ˆã‚’ãƒªãƒªãƒ¼ã‚¹ã—ã¾ã—ãŸ
+  ãƒ»NitroDWCã‚¢ãƒƒãƒ—ã‚°ãƒ¬ãƒ¼ãƒ‰ã«ã¨ã‚‚ãªã„ã€VoiceChatã‚µãƒ³ãƒ—ãƒ«ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä¿®æ­£ã—ã¾ã—ãŸ
+  ãƒ»ãƒ©ã‚¤ãƒ–ãƒ©ãƒªè§£èª¬ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã¨APIãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã‚’ä¿®æ­£ã—ã¾ã—ãŸ
 
   Version 1.1.1 (November 15, 2006)
-  EƒJƒ“ƒtƒ@ƒŒƒ“ƒXƒ‚[ƒh‚Å“Á’è‚ÌƒNƒ‰ƒCƒAƒ“ƒg‚ª—£’E‚·‚é‚Æ‰¹º‚ª“Í‚©‚È‚­‚È‚é•s‹ï‡‚ðC³‚µ‚Ü‚µ‚½
-  ENitroDWC 1.2‘Î‰ž‚É‚Æ‚à‚È‚¢AGAME_NAME‚ÆGAME_SECRET_KEY‚ðC³‚µ‚Ü‚µ‚½
-  Eƒ‰ƒCƒuƒ‰ƒŠ‰ðàƒhƒLƒ…ƒƒ“ƒg‚ÆAPIƒŠƒtƒ@ƒŒƒ“ƒXƒ}ƒjƒ…ƒAƒ‹‚ðC³‚µ‚Ü‚µ‚½
+  ãƒ»ã‚«ãƒ³ãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰ã§ç‰¹å®šã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒé›¢è„±ã™ã‚‹ã¨éŸ³å£°ãŒå±Šã‹ãªããªã‚‹ä¸å…·åˆã‚’ä¿®æ­£ã—ã¾ã—ãŸ
+  ãƒ»NitroDWC 1.2å¯¾å¿œã«ã¨ã‚‚ãªã„ã€GAME_NAMEã¨GAME_SECRET_KEYã‚’ä¿®æ­£ã—ã¾ã—ãŸ
+  ãƒ»ãƒ©ã‚¤ãƒ–ãƒ©ãƒªè§£èª¬ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã¨APIãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã‚’ä¿®æ­£ã—ã¾ã—ãŸ
 
   Version 1.1.0 (October 2, 2006)
-  EAPIƒ}ƒjƒ…ƒAƒ‹‚ÌƒŠƒ“ƒNØ‚ê‚Æchangelog‚Ì‹Lqƒ~ƒX‚ðC³‚µ‚Ü‚µ‚½
-  EVoiceChatDemoƒvƒƒOƒ‰ƒ€‚ðˆê•”C³A•ÏX‚µ‚Ü‚µ‚½
-  EVCT_SetReportLevel‚ÌAPIƒ}ƒjƒ…ƒAƒ‹‚ð’Ç‰Á‚µ‚Ü‚µ‚½
+  ãƒ»APIãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã®ãƒªãƒ³ã‚¯åˆ‡ã‚Œã¨changelogã®è¨˜è¿°ãƒŸã‚¹ã‚’ä¿®æ­£ã—ã¾ã—ãŸ
+  ãƒ»VoiceChatDemoãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ä¸€éƒ¨ä¿®æ­£ã€å¤‰æ›´ã—ã¾ã—ãŸ
+  ãƒ»VCT_SetReportLevelã®APIãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã‚’è¿½åŠ ã—ã¾ã—ãŸ
 
   Version 1.1.0 RC1 (August 31, 2006)
-  EƒGƒR[ƒLƒƒƒ“ƒZƒ‹‹@”\‚ðŽÀ‘•‚µ‚Ü‚µ‚½
-  EVCT_SendAudio / VCT_ReceiveAudio‚ÌŠÖ”Žd—l‚ð•ÏX‚µ‚Ü‚µ‚½
-  EVCT_SetReportLevelŠÖ”‚ðŽÀ‘•‚µ‚Ü‚µ‚½
-  Eˆ«ŠÂ‹«‰º‚Å–³ŒÀƒ‹[ƒv‚ª”­¶‚·‚é•s‹ï‡‚ðC³‚µ‚Ü‚µ‚½
-  EVADƒfƒ‚ƒvƒƒOƒ‰ƒ€‚ðíœ‚µ‚Ü‚µ‚½
-  EVCT_SetTransceiverClientsŠÖ”‚Ì‹““®‚ðC³‚µ‚Ü‚µ‚½
+  ãƒ»ã‚¨ã‚³ãƒ¼ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ©Ÿèƒ½ã‚’å®Ÿè£…ã—ã¾ã—ãŸ
+  ãƒ»VCT_SendAudio / VCT_ReceiveAudioã®é–¢æ•°ä»•æ§˜ã‚’å¤‰æ›´ã—ã¾ã—ãŸ
+  ãƒ»VCT_SetReportLevelé–¢æ•°ã‚’å®Ÿè£…ã—ã¾ã—ãŸ
+  ãƒ»æ‚ªç’°å¢ƒä¸‹ã§ç„¡é™ãƒ«ãƒ¼ãƒ—ãŒç™ºç”Ÿã™ã‚‹ä¸å…·åˆã‚’ä¿®æ­£ã—ã¾ã—ãŸ
+  ãƒ»VADãƒ‡ãƒ¢ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’å‰Šé™¤ã—ã¾ã—ãŸ
+  ãƒ»VCT_SetTransceiverClientsé–¢æ•°ã®æŒ™å‹•ã‚’ä¿®æ­£ã—ã¾ã—ãŸ
 
   Version 1.0.1 (July 10, 2006)
   
-  EŽg—p‚³‚ê‚Ä‚¢‚È‚¢ƒR[ƒh‚ðíœ‚µ‚Ü‚µ‚½
-  ECodeWarriorƒvƒƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚Ì•s‹ï‡‚ðC³‚µ‚Ü‚µ‚½
-  EVADDemo‚©‚ç•s—v‚ÈƒR[ƒh‚ðíœ‚µ‚Ü‚µ‚½
-  Edbs‚ÌƒR[ƒh‚ðíœ‚µ‚Ü‚µ‚½
+  ãƒ»ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„ã‚³ãƒ¼ãƒ‰ã‚’å‰Šé™¤ã—ã¾ã—ãŸ
+  ãƒ»CodeWarriorãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸å…·åˆã‚’ä¿®æ­£ã—ã¾ã—ãŸ
+  ãƒ»VADDemoã‹ã‚‰ä¸è¦ãªã‚³ãƒ¼ãƒ‰ã‚’å‰Šé™¤ã—ã¾ã—ãŸ
+  ãƒ»dbsã®ã‚³ãƒ¼ãƒ‰ã‚’å‰Šé™¤ã—ã¾ã—ãŸ
 
   Version 1.0.0 (June 1, 2006)
   
-  E‰”Å‚ðƒŠƒŠ[ƒX‚µ‚Ü‚µ‚½B
+  ãƒ»åˆç‰ˆã‚’ãƒªãƒªãƒ¼ã‚¹ã—ã¾ã—ãŸã€‚
 

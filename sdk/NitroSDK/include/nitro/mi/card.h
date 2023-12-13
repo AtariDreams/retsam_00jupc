@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.9  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.8  2005/02/28 05:26:02  yosizaki
   do-indent.
@@ -59,19 +59,19 @@ extern "C" {
 
 
 /******************************************************************************
- * �b�`�q�c�A�N�Z�X
+ * ＣＡＲＤアクセス
  *
- *	������ Lock / Unlock ������ōs�������̒P���� CARD API ���b�p�[�ł�.
- *	CARD API �ւ̈ڍs�ɔ���, �����͔p�~�����\��ł�.
+ *	これらは Lock / Unlock を内部で行うだけの単純な CARD API ラッパーです.
+ *	CARD API への移行に伴い, これらは廃止される予定です.
  *
  ******************************************************************************/
 
 
-// MI-CARD �֐��p�� LockID ���g�p���� CARD �m�� / ���.
+// MI-CARD 関数用の LockID を使用して CARD 確保 / 解放.
 void    MIi_LockCard(void);
 void    MIi_UnlockCard(void);
 
-// �J�[�h ID �̓ǂݏo��. (����)
+// カード ID の読み出し. (同期)
 static inline u32 MI_ReadCardID(void)
 {
     u32     ret;
@@ -81,33 +81,33 @@ static inline u32 MI_ReadCardID(void)
     return ret;
 }
 
-// �J�[�h�ǂݍ���. (����)
+// カード読み込み. (同期)
 static inline void MIi_ReadCard(u32 dmaNo, const void *src, void *dst, u32 size)
 {
     MIi_LockCard();
     /*
-     * �ᐅ���� CARD_ReadRom �ŉ\�Ȍ���p�t�H�[�}���X��ۏ؂��邽��,
-     * ���� / �񓯊��ɂ�����炸���荞�݂��g�p����悤�ɕύX.
-     * ���������̊֐������荞�݋֎~�̂܂܎g�p����Ă����������̂�,
-     * MI �ɂ��Ă͓����łŖ������� CPU �]�����g�p����悤�ύX.
-     * (�}���`�X���b�h�łȂ���Ό����͈ꏏ)
+     * 低水準の CARD_ReadRom で可能な限りパフォーマンスを保証するため,
+     * 同期 / 非同期にかかわらず割り込みを使用するように変更.
+     * ただしこの関数が割り込み禁止のまま使用されている個所があるので,
+     * MI については同期版で無条件に CPU 転送を使用するよう変更.
+     * (マルチスレッドでなければ効率は一緒)
      */
     (void)dmaNo;
     CARD_ReadRom((MI_DMA_MAX_NUM + 1), src, dst, size);
     MIi_UnlockCard();
 }
 
-// �J�[�h�f�[�^�ǂݍ���. (�񓯊�)
+// カードデータ読み込み. (非同期)
 void    MIi_ReadCardAsync(u32 dmaNo, const void *srcp, void *dstp, u32 size,
                           MIDmaCallback callback, void *arg);
 
-// �J�[�h�f�[�^�񓯊��ǂݍ��݊����̊m�F.
+// カードデータ非同期読み込み完了の確認.
 static inline BOOL MIi_TryWaitCard(void)
 {
     return CARD_TryWaitRomAsync();
 }
 
-// �J�[�h�f�[�^�񓯊��ǂݍ��ݏI���҂�.
+// カードデータ非同期読み込み終了待ち.
 static inline void MIi_WaitCard(void)
 {
     CARD_WaitRomAsync();

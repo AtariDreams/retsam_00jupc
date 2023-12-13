@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_105.s
- *@brief	�퓬�V�[�P���X
- *			���΂�ǉ����ʃV�[�P���X
+ *@brief	戦闘シーケンス
+ *			いばる追加効果シーケンス
  *@author	HisashiSogabe
  *@data		2006.01.31
  *
@@ -15,19 +15,19 @@
 	.include	"waza_seq_def.h"
 
 SUB_105:
-	//�݂������o����Ă��鎞�́A���܂����܂��
+	//みがわりを出されている時は、うまくきまらん
 	MIGAWARI_CHECK	SIDE_DEFENCE,Umakukimaran
-	//�U���͂�MAX�܂ŏオ���Ă��Ȃ����́A���ʃX�^�[�g
+	//攻撃力がMAXまで上がっていない時は、効果スタート
 	IF_PSP			IF_FLAG_NE,SIDE_DEFENCE,ID_PSP_abiritycnt_pow,12,SUB_105_ABICNT_START
-	//���łɂ����񂵂Ă��Ȃ����́A�����X�^�[�g
+	//すでにこんらんしていない時は、混乱スタート
 	IF_PSP			IF_FLAG_NBIT,SIDE_DEFENCE,ID_PSP_condition2,CONDITION2_KONRAN,SUB_105_KONRAN_START
-	//MAX�ō����̎��́A���܂����܂��
+	//MAXで混乱の時は、うまくきまらん
 	BRANCH			Umakukimaran
 SUB_105_ABICNT_START:
-	//�U����2�i�K�グ����Z�b�g
+	//攻撃を2段階上げるをセット
 	VALUE			VAL_SET,BUF_PARA_TSUIKA_PARA,ADD_COND2_POWUP2
 	GOSUB			SUB_SEQ_ABICNT_CALC
-	//���łɂ����񂵂Ă��鎞�́A���ʏI��
+	//すでにこんらんしている時は、効果終了
 	IF_PSP			IF_FLAG_BIT,SIDE_DEFENCE,ID_PSP_condition2,CONDITION2_KONRAN,SUB_105_END
 SUB_105_KONRAN_START:
 	GOSUB			SUB_SEQ_KONRAN

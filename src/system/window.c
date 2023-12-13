@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	window.c
- * @brief	ƒEƒBƒ“ƒhƒE•\¦
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  * @author	Hiroyuki Nakamura
  * @date	2005.10.13
  */
@@ -26,50 +26,50 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	MAKE_CURSOR_CGX_SIZ		( 0x20*4*3 )	// ‘—‚èƒJ[ƒ\ƒ‹ƒTƒCƒY
+#define	MAKE_CURSOR_CGX_SIZ		( 0x20*4*3 )	// é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«ã‚µã‚¤ã‚º
 
-// ŠÅ”ÂƒEƒBƒ“ƒhƒEƒ}ƒbƒvŠJnƒA[ƒJƒCƒuID
-#define	BOARD_TOWNMAP_START		( NARC_field_board_board_town_dmy_NCGR )	// ŠX
-#define	BOARD_ROADMAP_START		( NARC_field_board_board_road000_NCGR )		// “¹
+// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒƒãƒ—é–‹å§‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+#define	BOARD_TOWNMAP_START		( NARC_field_board_board_town_dmy_NCGR )	// è¡—
+#define	BOARD_ROADMAP_START		( NARC_field_board_board_road000_NCGR )		// é“
 
-#define	TIMEWAIT_ICON_SIZE	( 0x20 * 4 * 8 )	// ‘Ò‹@ƒAƒCƒRƒ“‚ÌƒTƒCƒY
-#define	TIMEWAIT_WAIT		( 16 )				// ‘Ò‹@ƒAƒCƒRƒ“‚ÌƒAƒjƒƒEƒFƒCƒg
+#define	TIMEWAIT_ICON_SIZE	( 0x20 * 4 * 8 )	// å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ã®ã‚µã‚¤ã‚º
+#define	TIMEWAIT_WAIT		( 16 )				// å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 
-// ‘Ò‹@ƒAƒCƒRƒ“ƒ[ƒN
+// å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	GF_BGL_BMPWIN * win;			// •\¦‚·‚éBMP
-	u8	cgx[TIMEWAIT_ICON_SIZE];	// ƒJ[ƒ\ƒ‹ƒLƒƒƒ‰ì¬—Ìˆæ
-	u8	backup[0x20*4];				// ƒLƒƒƒ‰ƒoƒbƒNƒAƒbƒv—Ìˆæ
-	u16	cgxpos;						// ‰ï˜bƒEƒBƒ“ƒhƒE‚Ì“]‘—ˆÊ’u
-	u8	cnt;						// ƒJƒEƒ“ƒ^
-	u8	pat:7;						// ƒAƒjƒ”Ô†
-	u8	seq:2;						// ƒV[ƒPƒ“ƒX
+	GF_BGL_BMPWIN * win;			// è¡¨ç¤ºã™ã‚‹BMP
+	u8	cgx[TIMEWAIT_ICON_SIZE];	// ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ£ãƒ©ä½œæˆé ˜åŸŸ
+	u8	backup[0x20*4];				// ã‚­ãƒ£ãƒ©ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—é ˜åŸŸ
+	u16	cgxpos;						// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è»¢é€ä½ç½®
+	u8	cnt;						// ã‚«ã‚¦ãƒ³ã‚¿
+	u8	pat:7;						// ã‚¢ãƒ‹ãƒ¡ç•ªå·
+	u8	seq:2;						// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 }TIMEWAIT_ICON;
 
-// ƒ|ƒPƒ‚ƒ“•\¦ƒEƒBƒ“ƒhƒEƒ[ƒN
+// ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	FIELD_CLACT fcat;		// ƒtƒB[ƒ‹ƒhƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
-	CATS_ACT_PTR	cap;	// ƒZƒ‹ƒAƒNƒ^[
+	FIELD_CLACT fcat;		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	CATS_ACT_PTR	cap;	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 	GF_BGL_INI * bgl;		// BGL
-	u8	frm;				// •`‰æƒtƒŒ[ƒ€
-	u8	px;					// •\¦XÀ•W
-	u8	py;					// •\¦YÀ•W
-	u8	cmd;				// ŠO•”ƒRƒ}ƒ“ƒh
+	u8	frm;				// æç”»ãƒ•ãƒ¬ãƒ¼ãƒ 
+	u8	px;					// è¡¨ç¤ºXåº§æ¨™
+	u8	py;					// è¡¨ç¤ºYåº§æ¨™
+	u8	cmd;				// å¤–éƒ¨ã‚³ãƒãƒ³ãƒ‰
 }POKEWIN_WORK;
 
-#define	POKEWIN_CLA_CHR_ID	( 89301 )	// ƒ|ƒPƒ‚ƒ“ƒZƒ‹ƒAƒNƒ^[‚ÌƒLƒƒƒ‰ƒŠƒ\[ƒXID
-#define	POKEWIN_CLA_PAL_ID	( 89301 )	// ƒ|ƒPƒ‚ƒ“ƒZƒ‹ƒAƒNƒ^[‚ÌƒpƒŒƒbƒgƒŠƒ\[ƒXID
-#define	POKEWIN_CLA_CEL_ID	( 89301 )	// ƒ|ƒPƒ‚ƒ“ƒZƒ‹ƒAƒNƒ^[‚ÌƒZƒ‹ƒŠƒ\[ƒXID
-#define	POKEWIN_CLA_ANM_ID	( 89301 )	// ƒ|ƒPƒ‚ƒ“ƒZƒ‹ƒAƒNƒ^[‚ÌƒZƒ‹ƒAƒjƒƒŠƒ\[ƒXID
+#define	POKEWIN_CLA_CHR_ID	( 89301 )	// ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ID
+#define	POKEWIN_CLA_PAL_ID	( 89301 )	// ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ID
+#define	POKEWIN_CLA_CEL_ID	( 89301 )	// ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ID
+#define	POKEWIN_CLA_ANM_ID	( 89301 )	// ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ID
 
-#define	POKEWIN_OBJCGX_SIZ		( 32*10*10 )				// ƒ|ƒPƒ‚ƒ“OBJ‚ÌCGXƒTƒCƒYi‚Pƒpƒ^[ƒ“j
-#define	POKEWIN_OBJCGX_SIZ_ALL	( POKEWIN_OBJCGX_SIZ*2 )	// ƒ|ƒPƒ‚ƒ“OBJ‚ÌCGXƒTƒCƒYi‘S‘Ìj
+#define	POKEWIN_OBJCGX_SIZ		( 32*10*10 )				// ãƒã‚±ãƒ¢ãƒ³OBJã®CGXã‚µã‚¤ã‚ºï¼ˆï¼‘ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‰
+#define	POKEWIN_OBJCGX_SIZ_ALL	( POKEWIN_OBJCGX_SIZ*2 )	// ãƒã‚±ãƒ¢ãƒ³OBJã®CGXã‚µã‚¤ã‚ºï¼ˆå…¨ä½“ï¼‰
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void CursorCgxMake( GF_BGL_BMPWIN * win, u16 cgxnum );
 
@@ -92,9 +92,9 @@ static void PokeWinFrameClear( POKEWIN_WORK * wk );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ƒ|ƒPƒ‚ƒ“ƒZƒ‹ƒAƒNƒ^[‚Ì“o˜^ƒf[ƒ^
+// ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
 static const TCATS_OBJECT_ADD_PARAM_S PokeWinAct_S =
 {
 	0, 0, 0,
@@ -109,19 +109,19 @@ static const TCATS_OBJECT_ADD_PARAM_S PokeWinAct_S =
 
 //============================================================================================
 //============================================================================================
-//	ƒƒjƒ…[ƒEƒBƒ“ƒhƒE
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //============================================================================================
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒLƒƒƒ‰‚ğƒZƒbƒg
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚­ãƒ£ãƒ©ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€
- * @param	cgx			ƒLƒƒƒ‰“]‘—ˆÊ’u
- * @param	win_num		ƒEƒBƒ“ƒhƒE”Ô†
- * @param	heap		ƒq[ƒvID
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	cgx			ã‚­ãƒ£ãƒ©è»¢é€ä½ç½®
+ * @param	win_num		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -139,11 +139,11 @@ void MenuWinCgxSet( GF_BGL_INI * ini, u8 frmnum, u16 cgx, u8 win_num, u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXæ“¾
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32 MenuWinPalArcGet(void)
@@ -153,14 +153,14 @@ u32 MenuWinPalArcGet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€
- * @param	cgx			ƒLƒƒƒ‰“]‘—ˆÊ’u
- * @param	pal			ƒpƒŒƒbƒg”Ô†
- * @param	win_num		ƒEƒBƒ“ƒhƒE”Ô†
- * @param	heap		ƒq[ƒvID
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	cgx			ã‚­ãƒ£ãƒ©è»¢é€ä½ç½®
+ * @param	pal			ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+ * @param	win_num		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -169,7 +169,7 @@ void MenuWinGraphicSet( GF_BGL_INI * ini, u8 frmnum, u16 cgx, u8 pal, u8 win_num
 {
 	u32	arc;
 
-	// ƒLƒƒƒ‰
+	// ã‚­ãƒ£ãƒ©
 	if( win_num == MENU_TYPE_SYSTEM ){
 		arc = NARC_winframe_system_ncgr;
 	}else{
@@ -177,7 +177,7 @@ void MenuWinGraphicSet( GF_BGL_INI * ini, u8 frmnum, u16 cgx, u8 pal, u8 win_num
 	}
 	ArcUtil_BgCharSet( ARC_WINFRAME, arc, ini, frmnum, cgx, 0, 0, heap );
 
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	if( win_num == MENU_TYPE_UG ){
 		arc = NARC_winframe_ugmenu_win_nclr;
 	}else{
@@ -192,14 +192,14 @@ void MenuWinGraphicSet( GF_BGL_INI * ini, u8 frmnum, u16 cgx, u8 pal, u8 win_num
 
 //--------------------------------------------------------------------------------------------
 /**
- *	ƒƒjƒ…[ƒEƒCƒ“ƒhƒE•`‰æƒƒCƒ“
+ *	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æç”»ãƒ¡ã‚¤ãƒ³
  *
- * @param	frm			BGƒtƒŒ[ƒ€ƒiƒ“ƒo[(bg_sys)
- * @param	px			‚wÀ•W
- * @param	py			‚xÀ•W
- * @param	sx			‚wƒTƒCƒY
- * @param	sy			ƒTƒCƒY
- * @param	pal			g—pƒpƒŒƒbƒg
+ * @param	frm			BGãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼(bg_sys)
+ * @param	px			ï¼¸åº§æ¨™
+ * @param	py			ï¼¹åº§æ¨™
+ * @param	sx			ï¼¸ã‚µã‚¤ã‚º
+ * @param	sy			ã‚µã‚¤ã‚º
+ * @param	pal			ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -221,12 +221,12 @@ static void BmpMenuWinWriteMain(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
  *
- * @param	win			BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	trans_sw	“]‘—ƒXƒCƒbƒ`
- * @param	win_cgx		ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ˆÊ’u
- * @param	pal			ƒpƒŒƒbƒg
+ * @param	win			BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	trans_sw	è»¢é€ã‚¹ã‚¤ãƒƒãƒ
+ * @param	win_cgx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ä½ç½®
+ * @param	pal			ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -251,10 +251,10 @@ void BmpMenuWinWrite( GF_BGL_BMPWIN * win, u8 trans_sw, u16 win_cgx, u8 pal )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğƒNƒŠƒA
+ *	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¯ãƒªã‚¢
  *
- * @param	win			BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	trans_sw	“]‘—ƒXƒCƒbƒ`
+ * @param	win			BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	trans_sw	è»¢é€ã‚¹ã‚¤ãƒƒãƒ
  *
  * @return	none
  */
@@ -280,17 +280,17 @@ void BmpMenuWinClear( GF_BGL_BMPWIN * win, u8 trans_sw )
 
 //============================================================================================
 //============================================================================================
-//	‰ï˜bƒEƒBƒ“ƒhƒE
+//	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //============================================================================================
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- *	‰ï˜bƒEƒCƒ“ƒhƒEƒLƒƒƒ‰‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXæ“¾
+ *	ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
- * @param	id		ƒEƒBƒ“ƒhƒEID
+ * @param	id		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ID
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32 TalkWinCgxArcGet( u32 id )
@@ -300,11 +300,11 @@ u32 TalkWinCgxArcGet( u32 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	‰ï˜bƒEƒCƒ“ƒhƒEƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXæ“¾
+ *	ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
- * @param	id		ƒEƒBƒ“ƒhƒEID
+ * @param	id		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ID
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32 TalkWinPalArcGet( u32 id )
@@ -314,14 +314,14 @@ u32 TalkWinPalArcGet( u32 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	‰ï˜bƒEƒCƒ“ƒhƒEƒZƒbƒg
+ *	ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frm			BGƒtƒŒ[ƒ€ƒiƒ“ƒo[(bg_sys)
- * @param	cgx			ƒLƒƒƒ‰ƒZƒbƒgˆÊ’u
- * @param	pal			g—pƒpƒŒƒbƒg
- * @param	win_num		ƒEƒBƒ“ƒhƒE”Ô†
- * @param	heap		ƒq[ƒvID
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frm			BGãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼(bg_sys)
+ * @param	cgx			ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆä½ç½®
+ * @param	pal			ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	win_num		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -340,15 +340,15 @@ void TalkWinGraphicSet( GF_BGL_INI * ini, u8 frmnum, u16 cgx, u8 pal, u8 win_num
 
 //--------------------------------------------------------------------------------------------
 /**
- *	‰ï˜bƒEƒCƒ“ƒhƒE•`‰æƒƒCƒ“
+ *	ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æç”»ãƒ¡ã‚¤ãƒ³
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frm			BGƒtƒŒ[ƒ€ƒiƒ“ƒo[(bg_sys)
- * @param	px			‚wÀ•W
- * @param	py			‚xÀ•W
- * @param	sx			‚wƒTƒCƒY
- * @param	sy			ƒTƒCƒY
- * @param	pal			g—pƒpƒŒƒbƒg
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frm			BGãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼(bg_sys)
+ * @param	px			ï¼¸åº§æ¨™
+ * @param	py			ï¼¹åº§æ¨™
+ * @param	sx			ï¼¸ã‚µã‚¤ã‚º
+ * @param	sy			ã‚µã‚¤ã‚º
+ * @param	pal			ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -379,8 +379,8 @@ static void BmpTalkWinWriteMain(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒEƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ğABitmapWindow‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½
- * BGƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ÉƒZƒbƒg‚·‚é
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã€BitmapWindowã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸ
+ * BGãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param   win		
  * @param   charno		
@@ -402,12 +402,12 @@ void BmpTalkWinScreenSet( GF_BGL_BMPWIN * win, u32 charno, u32 palno )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
  *
- * @param	win			BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	trans_sw	“]‘—ƒXƒCƒbƒ`
- * @param	win_cgx		ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ˆÊ’u
- * @param	pal			ƒpƒŒƒbƒg
+ * @param	win			BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	trans_sw	è»¢é€ã‚¹ã‚¤ãƒƒãƒ
+ * @param	win_cgx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ä½ç½®
+ * @param	pal			ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -427,10 +427,10 @@ void BmpTalkWinWrite( GF_BGL_BMPWIN * win, u8 trans_sw, u16 win_cgx, u8 pal )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	‰ï˜bƒEƒBƒ“ƒhƒE‚ğƒNƒŠƒA
+ *	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¯ãƒªã‚¢
  *
- * @param	win			BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	trans_sw	“]‘—ƒXƒCƒbƒ`
+ * @param	win			BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	trans_sw	è»¢é€ã‚¹ã‚¤ãƒƒãƒ
  *
  * @return	none
  */
@@ -455,20 +455,20 @@ void BmpTalkWinClear( GF_BGL_BMPWIN * win, u8 trans_sw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ì¬
+ * ã‚­ãƒ£ãƒ©ä½œæˆ
  *
- * @param	src			“]‘—‚·‚éƒLƒƒƒ‰ƒf[ƒ^
- * @param	src_x		“Ç‚İ‚İŒ³“Ç‚İ‚İŠJnXÀ•W
- * @param	src_y		“Ç‚İ‚İŒ³“Ç‚İ‚İŠJnYÀ•W
- * @param	src_dx		“]‘—‚·‚éƒLƒƒƒ‰‚ÌXƒTƒCƒY
- * @param	src_dy		“]‘—‚·‚éƒLƒƒƒ‰‚ÌYƒTƒCƒY
- * @param	buf			“]‘—æ‚ÌƒLƒƒƒ‰ƒf[ƒ^
- * @param	buf_sx		“]‘—æ‚ÌƒLƒƒƒ‰‚ÌXƒTƒCƒY
- * @param	buf_sy		“]‘—æ‚ÌƒLƒƒƒ‰‚ÌYƒTƒCƒY
- * @param	win_x		‘‚«‚İæ‘‚«‚İŠJnXÀ•W
- * @param	win_y		‘‚«‚İæ‘‚«‚İŠJnYÀ•W
- * @param	win_dx		•`‰æ”ÍˆÍXƒTƒCƒY
- * @param	win_dy		•`‰æ”ÍˆÍYƒTƒCƒY
+ * @param	src			è»¢é€ã™ã‚‹ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
+ * @param	src_x		èª­ã¿è¾¼ã¿å…ƒèª­ã¿è¾¼ã¿é–‹å§‹Xåº§æ¨™
+ * @param	src_y		èª­ã¿è¾¼ã¿å…ƒèª­ã¿è¾¼ã¿é–‹å§‹Yåº§æ¨™
+ * @param	src_dx		è»¢é€ã™ã‚‹ã‚­ãƒ£ãƒ©ã®Xã‚µã‚¤ã‚º
+ * @param	src_dy		è»¢é€ã™ã‚‹ã‚­ãƒ£ãƒ©ã®Yã‚µã‚¤ã‚º
+ * @param	buf			è»¢é€å…ˆã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
+ * @param	buf_sx		è»¢é€å…ˆã®ã‚­ãƒ£ãƒ©ã®Xã‚µã‚¤ã‚º
+ * @param	buf_sy		è»¢é€å…ˆã®ã‚­ãƒ£ãƒ©ã®Yã‚µã‚¤ã‚º
+ * @param	win_x		æ›¸ãè¾¼ã¿å…ˆæ›¸ãè¾¼ã¿é–‹å§‹Xåº§æ¨™
+ * @param	win_y		æ›¸ãè¾¼ã¿å…ˆæ›¸ãè¾¼ã¿é–‹å§‹Yåº§æ¨™
+ * @param	win_dx		æç”»ç¯„å›²Xã‚µã‚¤ã‚º
+ * @param	win_dy		æç”»ç¯„å›²Yã‚µã‚¤ã‚º
  *
  * @return	none
  */
@@ -493,10 +493,10 @@ static void BmpPrintCharMake(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘—‚èƒJ[ƒ\ƒ‹ƒZƒbƒg
+ * é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«ã‚»ãƒƒãƒˆ
  *
- * @param	win			BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	cgxnum		ƒEƒBƒ“ƒhƒEˆÊ’u
+ * @param	win			BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	cgxnum		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®
  *
  * @return	none
  */
@@ -541,13 +541,13 @@ static void CursorCgxMake( GF_BGL_BMPWIN * win, u16 cgxnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE‚ÌƒJƒ‰[‚O‚Ìƒhƒbƒg‚ğw’èƒJƒ‰[‚É•ÏX‚·‚é
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚«ãƒ©ãƒ¼ï¼ã®ãƒ‰ãƒƒãƒˆã‚’æŒ‡å®šã‚«ãƒ©ãƒ¼ã«å¤‰æ›´ã™ã‚‹
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€ƒiƒ“ƒo[(bg_sys)
- * @param	cgx			ƒLƒƒƒ‰ƒZƒbƒgˆÊ’u
- * @param	cal			•ÏXƒJƒ‰[
- * @param	heap		ƒq[ƒvID
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼(bg_sys)
+ * @param	cgx			ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆä½ç½®
+ * @param	cal			å¤‰æ›´ã‚«ãƒ©ãƒ¼
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -581,36 +581,36 @@ void TalkWinGraphicNullSet( GF_BGL_INI * ini, u8 frmnum, u16 cgx, u8 col, u8 win
 
 //============================================================================================
 //============================================================================================
-//	ŠÅ”ÂƒEƒBƒ“ƒhƒE
+//	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //============================================================================================
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”ÂƒEƒCƒ“ƒhƒEƒZƒbƒg
+ * çœ‹æ¿ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€ƒiƒ“ƒo[(bg_sys)
- * @param	cgx			ƒLƒƒƒ‰ƒZƒbƒgˆÊ’u
- * @param	pal			g—pƒpƒŒƒbƒg
- * @param	type		ŠÅ”Âƒ^ƒCƒv
- * @param	map			ƒ}ƒbƒv”Ô†iƒ^ƒEƒ“ƒ}ƒbƒvA•W¯j
- * @param	heap		ƒq[ƒvID
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼(bg_sys)
+ * @param	cgx			ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆä½ç½®
+ * @param	pal			ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	type		çœ‹æ¿ã‚¿ã‚¤ãƒ—
+ * @param	map			ãƒãƒƒãƒ—ç•ªå·ï¼ˆã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ã€æ¨™è­˜ï¼‰
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  *
- *	type = *_POST, *_INFO ‚Ìê‡‚ÍAmap = 0 ‚Å—Ç‚¢
+ *	type = *_POST, *_INFO ã®å ´åˆã¯ã€map = 0 ã§è‰¯ã„
  */
 //--------------------------------------------------------------------------------------------
 void BoardWinGraphicSet(
 		GF_BGL_INI * ini, u8 frmnum, u16 cgx, u8 pal, u8 type, u16 map, u32 heap )
 {
-	// ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰“]‘—
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_BgCharSet(
 		ARC_FIELD_BOARD, NARC_field_board_kanb_win00_NCGR,
 		ini, frmnum, cgx, BOARD_WIN_CGX_SIZ*0x20, 0, heap );
 
-	// ƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg“]‘—
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	{
 		NNSG2dPaletteData * nns;
 		void * buf;
@@ -623,7 +623,7 @@ void BoardWinGraphicSet(
 		sys_FreeMemory( heap, buf );
 	}
 
-	// ’n}ƒZƒbƒg
+	// åœ°å›³ã‚»ãƒƒãƒˆ
 	if( type == BOARD_TYPE_TOWN || type == BOARD_TYPE_ROAD ){
 //		BoardMapSet( ini, frmnum, cgx+BOARD_WIN_CGX_SIZ, pal, type, map, heap );
 		BoardMapCgxSet( ini, frmnum, cgx+BOARD_WIN_CGX_SIZ, type, map, heap );
@@ -632,14 +632,14 @@ void BoardWinGraphicSet(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”ÂƒEƒCƒ“ƒhƒEƒ}ƒbƒvƒf[ƒ^ƒZƒbƒg
+ * çœ‹æ¿ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€ƒiƒ“ƒo[
- * @param	cgx			ƒLƒƒƒ‰ƒZƒbƒgˆÊ’u
- * @param	type		ŠÅ”Âƒ^ƒCƒv
- * @param	map			ƒ}ƒbƒv”Ô†iƒ^ƒEƒ“ƒ}ƒbƒvA•W¯j
- * @param	heap		ƒq[ƒvID
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param	cgx			ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆä½ç½®
+ * @param	type		çœ‹æ¿ã‚¿ã‚¤ãƒ—
+ * @param	map			ãƒãƒƒãƒ—ç•ªå·ï¼ˆã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ã€æ¨™è­˜ï¼‰
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -659,15 +659,15 @@ static void BoardMapCgxSet(
 
 //--------------------------------------------------------------------------------------------
 /**
- *	ŠÅ”ÂƒEƒCƒ“ƒhƒE•`‰æƒƒCƒ“i’¬A“¹ŠÅ”Âj
+ *	çœ‹æ¿ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æç”»ãƒ¡ã‚¤ãƒ³ï¼ˆç”ºã€é“çœ‹æ¿ï¼‰
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frm			BGƒtƒŒ[ƒ€ƒiƒ“ƒo[(bg_sys)
- * @param	px			‚wÀ•W
- * @param	py			‚xÀ•W
- * @param	sx			‚wƒTƒCƒY
- * @param	sy			ƒTƒCƒY
- * @param	pal			g—pƒpƒŒƒbƒg
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frm			BGãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼(bg_sys)
+ * @param	px			ï¼¸åº§æ¨™
+ * @param	py			ï¼¹åº§æ¨™
+ * @param	sx			ï¼¸ã‚µã‚¤ã‚º
+ * @param	sy			ã‚µã‚¤ã‚º
+ * @param	pal			ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -699,11 +699,11 @@ static void BmpBoardWinWriteMain(
 
 //--------------------------------------------------------------------------------------------
 /**
- *	ŠÅ”ÂƒEƒCƒ“ƒhƒEƒ}ƒbƒv•`‰æ
+ *	çœ‹æ¿ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒƒãƒ—æç”»
  *
- * @param	win		BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	cgx		ƒ}ƒbƒvƒLƒƒƒ‰ˆÊ’u
- * @param	pal		ƒpƒŒƒbƒg
+ * @param	win		BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	cgx		ãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ä½ç½®
+ * @param	pal		ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -727,13 +727,13 @@ static void BmpBoardMapWrite( GF_BGL_BMPWIN * win, u16 cgx, u8 pal )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠÅ”ÂƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+ * çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
  *
- * @param	win			BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	trans_sw	“]‘—ƒXƒCƒbƒ`
- * @param	win_cgx		ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ˆÊ’u
- * @param	type		ŠÅ”Âƒ^ƒCƒv
- * @param	pal			ƒpƒŒƒbƒg
+ * @param	win			BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	trans_sw	è»¢é€ã‚¹ã‚¤ãƒƒãƒ
+ * @param	win_cgx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ä½ç½®
+ * @param	type		çœ‹æ¿ã‚¿ã‚¤ãƒ—
+ * @param	pal			ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -742,7 +742,7 @@ void BmpBoardWinWrite( GF_BGL_BMPWIN * win, u8 trans_sw, u16 win_cgx, u8 pal, u8
 {
 	u8	frm = GF_BGL_BmpWinGet_Frame( win );
 
-	// ’¬A“¹
+	// ç”ºã€é“
 	if( type == BOARD_TYPE_TOWN || type == BOARD_TYPE_ROAD ){
 		BmpBoardWinWriteMain(
 			win->ini, frm,
@@ -753,9 +753,9 @@ void BmpBoardWinWrite( GF_BGL_BMPWIN * win, u8 trans_sw, u16 win_cgx, u8 pal, u8
 			pal, win_cgx );
 
 		BmpBoardMapWrite( win, win_cgx+BOARD_WIN_CGX_SIZ, pal );
-	// ’¬A“¹ˆÈŠO
+	// ç”ºã€é“ä»¥å¤–
 	}else{
-		// ƒf[ƒ^\¬‚ª‰ï˜bƒEƒBƒ“ƒhƒE‚Æ“¯‚¶‚È‚Ì‚ÅA‰ï˜bƒEƒBƒ“ƒhƒE•`‰æ
+		// ãƒ‡ãƒ¼ã‚¿æ§‹æˆãŒä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¨åŒã˜ãªã®ã§ã€ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 		BmpTalkWinWriteMain(
 			win->ini, frm,
 			GF_BGL_BmpWinGet_PosX( win ),
@@ -774,11 +774,11 @@ void BmpBoardWinWrite( GF_BGL_BMPWIN * win, u8 trans_sw, u16 win_cgx, u8 pal, u8
 
 //--------------------------------------------------------------------------------------------
 /**
- *	ŠÅ”ÂƒEƒBƒ“ƒhƒE‚ğƒNƒŠƒA
+ *	çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¯ãƒªã‚¢
  *
- * @param	win			BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	type		ŠÅ”Âƒ^ƒCƒv
- * @param	trans_sw	“]‘—ƒXƒCƒbƒ`
+ * @param	win			BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	type		çœ‹æ¿ã‚¿ã‚¤ãƒ—
+ * @param	trans_sw	è»¢é€ã‚¹ã‚¤ãƒƒãƒ
  *
  * @return	none
  */
@@ -787,7 +787,7 @@ void BmpBoardWinClear( GF_BGL_BMPWIN * win, u8 type, u8 trans_sw )
 {
 	u8	frm = GF_BGL_BmpWinGet_Frame( win );
 
-	// ’¬A“¹
+	// ç”ºã€é“
 	if( type == BOARD_TYPE_TOWN || type == BOARD_TYPE_ROAD ){
 		GF_BGL_ScrFill(
 			win->ini, frm, 0,
@@ -814,18 +814,18 @@ void BmpBoardWinClear( GF_BGL_BMPWIN * win, u8 type, u8 trans_sw )
 
 //============================================================================================
 //============================================================================================
-//	‘Ò‹@ƒAƒCƒRƒ“
+//	å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³
 //============================================================================================
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘Ò‹@ƒAƒCƒRƒ“•\¦ƒ^ƒXƒN’Ç‰Á
+ * å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºã‚¿ã‚¹ã‚¯è¿½åŠ 
  *
- * @param	win		‰ï˜bƒEƒBƒ“ƒhƒE‚ÌBMP
- * @param	cgxpos	‰ï˜bƒEƒBƒ“ƒhƒE˜gƒLƒƒƒ‰iTalkWinGraphicSet‚È‚Çj‚Ì“]‘—ˆÊ’u
+ * @param	win		ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®BMP
+ * @param	cgxpos	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ ã‚­ãƒ£ãƒ©ï¼ˆTalkWinGraphicSetãªã©ï¼‰ã®è»¢é€ä½ç½®
  *
- * @return	‘Ò‹@ƒAƒCƒRƒ“‚Ìƒ[ƒN
+ * @return	å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 void * TimeWaitIconAdd( GF_BGL_BMPWIN * win, u32 cgxpos )
@@ -846,9 +846,9 @@ void * TimeWaitIconAdd( GF_BGL_BMPWIN * win, u32 cgxpos )
 //	wk = TCB_GetWork( PMDS_taskAdd(TimeWaitIconMain,sizeof(TIMEWAIT_ICON),0,heap) );
 	wk = sys_AllocMemory( heap, sizeof(TIMEWAIT_ICON) );
 
-	// “]‘——ÌˆæƒoƒbƒNƒAƒbƒv
+	// è»¢é€é ˜åŸŸãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
 	memcpy( wk->backup, &scrcgx[(cgxpos+18)*0x20], 0x20*4 );
-	// ì¬—Ìˆæ‰Šú‰»
+	// ä½œæˆé ˜åŸŸåˆæœŸåŒ–
 	back_win = (u8 *)sys_AllocMemory( heap, 0x20*4 );
 	memcpy( &back_win[0x20*0], &scrcgx[(cgxpos+10)*0x20], 0x20 );
 	memcpy( &back_win[0x20*1], &scrcgx[(cgxpos+11)*0x20], 0x20 );
@@ -883,16 +883,16 @@ void * TimeWaitIconAdd( GF_BGL_BMPWIN * win, u32 cgxpos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘Ò‹@ƒAƒCƒRƒ“•\¦
+ * å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
  *
- * @param	wk		‘Ò‹@ƒAƒCƒRƒ“‚Ìƒ[ƒN
- * @param	cgxpos	‰ï˜bƒEƒBƒ“ƒhƒE‚Ì“]‘—ˆÊ’u
+ * @param	wk		å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	cgxpos	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è»¢é€ä½ç½®
  *
  * @return	none
  *
- * @li	flg = 0 : ’Êí
- * @li	flg = 1 : ƒXƒNƒŠ[ƒ“‚à“]‘—
- * @li	flg = 2 : I—¹
+ * @li	flg = 0 : é€šå¸¸
+ * @li	flg = 1 : ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚‚è»¢é€
+ * @li	flg = 2 : çµ‚äº†æ™‚
  */
 //--------------------------------------------------------------------------------------------
 static void TimeWaitIconPut( TIMEWAIT_ICON * wk, u32 flg )
@@ -937,7 +937,7 @@ static void TimeWaitIconPut( TIMEWAIT_ICON * wk, u32 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘Ò‹@ƒAƒCƒRƒ“ƒƒCƒ“ƒ^ƒXƒN
+ * å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  *
  * @param	tcb
  * @param	work
@@ -967,8 +967,8 @@ static void TimeWaitIconMain( TCB_PTR tcb, void * work )
 
 //------------------------------------------------------------------
 /**
- * ‘Ò‹@ƒAƒCƒRƒ“ƒ^ƒXƒN‚Ìƒ[ƒN‚ğ‰ğ•ú‚·‚é‚½‚ß‚¾‚¯‚Ìƒ^ƒXƒN
- *iŠ„‚è‚İ’†‚Éƒƒ‚ƒŠ‰ğ•ú‚ğ‚³‚¹‚È‚¢‚½‚ßj
+ * å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ã‚¿ã‚¹ã‚¯ã®ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ã™ã‚‹ãŸã‚ã ã‘ã®ã‚¿ã‚¹ã‚¯
+ *ï¼ˆå‰²ã‚Šè¾¼ã¿ä¸­ã«ãƒ¡ãƒ¢ãƒªè§£æ”¾ã‚’ã•ã›ãªã„ãŸã‚ï¼‰
  *
  * @param   tcb		
  * @param   wk		
@@ -983,13 +983,13 @@ static void TimeWaitIconWorkFreeTask( TCB_PTR tcb, void* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘Ò‹@ƒAƒCƒRƒ“•\¦ƒ^ƒXƒNíœƒŠƒNƒGƒXƒg
+ * å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºã‚¿ã‚¹ã‚¯å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	work	‘Ò‹@ƒAƒCƒRƒ“‚Ìƒ[ƒN
+ * @param	work	å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  *
- *	work‚àíœ‚³‚ê‚Ü‚·
+ *	workã‚‚å‰Šé™¤ã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------------------------------------
 void TimeWaitIconDel( void * work )
@@ -1003,13 +1003,13 @@ void TimeWaitIconDel( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘Ò‹@ƒAƒCƒRƒ“•\¦ƒ^ƒXƒNíœƒŠƒNƒGƒXƒg
+ * å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºã‚¿ã‚¹ã‚¯å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	work	‘Ò‹@ƒAƒCƒRƒ“‚Ìƒ[ƒN
+ * @param	work	å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  *
- *	work‚àíœ‚³‚ê‚Ü‚·  SCR‚Í‘‚«Š·‚¦‚Ü‚¹‚ñ
+ *	workã‚‚å‰Šé™¤ã•ã‚Œã¾ã™  SCRã¯æ›¸ãæ›ãˆã¾ã›ã‚“
  */
 //--------------------------------------------------------------------------------------------
 void TimeWaitIconTaskDel( void * work )
@@ -1024,27 +1024,27 @@ void TimeWaitIconTaskDel( void * work )
 
 //============================================================================================
 //============================================================================================
-//	ƒ|ƒPƒ‚ƒ“•\¦ƒEƒBƒ“ƒhƒE
+//	ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //============================================================================================
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒE•\¦i”Ô†A«•Êw’èj
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºï¼ˆç•ªå·ã€æ€§åˆ¥æŒ‡å®šï¼‰
  *
- * @param	bgl		BGLƒf[ƒ^
- * @param	frm		•\¦BGƒtƒŒ[ƒ€
- * @param	px		•\¦XÀ•W
- * @param	py		•\¦YÀ•W
- * @param	pal		ƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg
- * @param	cgx		ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
- * @param	mons	ƒ|ƒPƒ‚ƒ“”Ô†
- * @param	sex		ƒ|ƒPƒ‚ƒ“‚Ì«•Ê
- * @param	heap	ƒq[ƒvID
+ * @param	bgl		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frm		è¡¨ç¤ºBGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	px		è¡¨ç¤ºXåº§æ¨™
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
+ * @param	pal		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	cgx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
+ * @param	mons	ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+ * @param	sex		ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ƒRƒ}ƒ“ƒh‚Ìƒ|ƒCƒ“ƒ^
+ * @return	ã‚³ãƒãƒ³ãƒ‰ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	•\¦À•W‚ÍA˜g‚ğŠÜ‚ß‚È‚¢’l‚ğw’è‚·‚é‚±‚Æ
+ *	è¡¨ç¤ºåº§æ¨™ã¯ã€æ ã‚’å«ã‚ãªã„å€¤ã‚’æŒ‡å®šã™ã‚‹ã“ã¨
  */
 //--------------------------------------------------------------------------------------------
 u8 * PokeWindowPut(
@@ -1065,20 +1065,20 @@ u8 * PokeWindowPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒE•\¦iPOKEMON_PARAMw’èj
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºï¼ˆPOKEMON_PARAMæŒ‡å®šï¼‰
  *
- * @param	bgl		BGLƒf[ƒ^
- * @param	frm		•\¦BGƒtƒŒ[ƒ€
- * @param	px		•\¦XÀ•W
- * @param	py		•\¦YÀ•W
- * @param	pal		ƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg
- * @param	cgx		ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+ * @param	bgl		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frm		è¡¨ç¤ºBGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	px		è¡¨ç¤ºXåº§æ¨™
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
+ * @param	pal		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	cgx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
  * @param	pp		POKEMON_PARAM
- * @param	heap	ƒq[ƒvID
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ƒRƒ}ƒ“ƒh‚Ìƒ|ƒCƒ“ƒ^
+ * @return	ã‚³ãƒãƒ³ãƒ‰ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	•\¦À•W‚ÍA˜g‚ğŠÜ‚ß‚È‚¢’l‚ğw’è‚·‚é‚±‚Æ
+ *	è¡¨ç¤ºåº§æ¨™ã¯ã€æ ã‚’å«ã‚ãªã„å€¤ã‚’æŒ‡å®šã™ã‚‹ã“ã¨
  */
 //--------------------------------------------------------------------------------------------
 u8 * PokeWindowPutPP(
@@ -1099,14 +1099,14 @@ u8 * PokeWindowPutPP(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒEŠÄ‹ƒ^ƒXƒN
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç›£è¦–ã‚¿ã‚¹ã‚¯
  *
  * @param	tcb
  * @param	work
  *
  * @return	none
  *
- *	I—¹‚·‚éê‡‚ÍAŠO•”‚©‚çƒtƒ‰ƒO‚ğ‘€ì
+ *	çµ‚äº†ã™ã‚‹å ´åˆã¯ã€å¤–éƒ¨ã‹ã‚‰ãƒ•ãƒ©ã‚°ã‚’æ“ä½œ
  */
 //--------------------------------------------------------------------------------------------
 static void PokeWin_Main( TCB_PTR tcb, void * work )
@@ -1138,15 +1138,15 @@ static void PokeWin_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒE TCB’Ç‰Á & ƒ[ƒNì¬
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ TCBè¿½åŠ  & ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- * @param	bgl		BGLƒf[ƒ^
- * @param	frm		•\¦BGƒtƒŒ[ƒ€
- * @param	px		•\¦XÀ•W
- * @param	py		•\¦YÀ•W
- * @param	heap	ƒq[ƒvID
+ * @param	bgl		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frm		è¡¨ç¤ºBGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	px		è¡¨ç¤ºXåº§æ¨™
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒE‚Ìƒ[ƒN
+ * @return	ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 static POKEWIN_WORK * PokeWin_TcbAdd( GF_BGL_INI * bgl, u8 frm, u8 px, u8 py, u32 heap )
@@ -1162,12 +1162,12 @@ static POKEWIN_WORK * PokeWin_TcbAdd( GF_BGL_INI * bgl, u8 frm, u8 px, u8 py, u3
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒE ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	heap	ƒq[ƒvID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒE‚Ìƒ[ƒN
+ * @return	ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 static void PokeWin_ClactSet( POKEWIN_WORK * wk, u32 heap )
@@ -1178,26 +1178,26 @@ static void PokeWin_ClactSet( POKEWIN_WORK * wk, u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒE ƒŠƒ\[ƒX“Ç‚İ‚İ
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void PokeWin_LoadRes( POKEWIN_WORK * wk )
 {
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	FldClact_LoadResPlttArc(
 		&wk->fcat, ARC_WINFRAME,
 		NARC_winframe_poke_win_nclr, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, POKEWIN_CLA_PAL_ID );
-	// ƒZƒ‹
+	// ã‚»ãƒ«
 	FldClact_LoadResCellArc(
 		&wk->fcat, ARC_WINFRAME, NARC_winframe_poke_win_ncer, 0, POKEWIN_CLA_CEL_ID );
-	// ƒZƒ‹ƒAƒjƒ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	FldClact_LoadResCellAnmArc(
 		&wk->fcat, ARC_WINFRAME, NARC_winframe_poke_win_nanr, 0, POKEWIN_CLA_ANM_ID );
-	// ƒLƒƒƒ‰
+	// ã‚­ãƒ£ãƒ©
 	FldClact_LoadResourceCharArc(
 		&wk->fcat, ARC_WINFRAME,
 		NARC_winframe_poke_win_ncgr, 0, NNS_G2D_VRAM_TYPE_2DMAIN, POKEWIN_CLA_CHR_ID );
@@ -1205,9 +1205,9 @@ static void PokeWin_LoadRes( POKEWIN_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒE ƒZƒ‹ƒAƒNƒ^[’Ç‰Á
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1226,11 +1226,11 @@ static void PokeWin_ClactAdd( POKEWIN_WORK * wk, u8 px, u8 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒZƒbƒgi”Ô†A«•Êw’èj
+ * ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆï¼ˆç•ªå·ã€æ€§åˆ¥æŒ‡å®šï¼‰
  *
- * @param	wk		ƒtƒB[ƒ‹ƒhƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
- * @param	mons	ƒ|ƒPƒ‚ƒ“”Ô†
- * @param	sex		ƒ|ƒPƒ‚ƒ“‚Ì«•Ê
+ * @param	wk		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	mons	ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+ * @param	sex		ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥
  *
  * @return	none
  */
@@ -1241,16 +1241,16 @@ static void PokeWin_PokeGraSetEz( FIELD_CLACT * wk, u16 mons, u8 sex )
 	SOFT_SPRITE_ARC	ssa;
 
 	ssm = SoftSpriteInit( wk->heap );
-	PokeGraArcDataGet( &ssa, mons, sex, PARA_FRONT, PARA_NORMAL, NULL, NULL );	//ÅŒã‚Ìˆø”‚ÍFormNo‚ÆŒÂ«—”‚Å‚· by soga
+	PokeGraArcDataGet( &ssa, mons, sex, PARA_FRONT, PARA_NORMAL, NULL, NULL );	//æœ€å¾Œã®å¼•æ•°ã¯FormNoã¨å€‹æ€§ä¹±æ•°ã§ã™ by soga
 	PokeWin_PokeGraSetCore( wk, &ssa );
 	SoftSpriteEnd( ssm );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒZƒbƒgiPOKEMON_PARAMw’èj
+ * ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆï¼ˆPOKEMON_PARAMæŒ‡å®šï¼‰
  *
- * @param	wk		ƒtƒB[ƒ‹ƒhƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
+ * @param	wk		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  * @param	pp		POKEMON_PARAM
  *
  * @return	none
@@ -1269,9 +1269,9 @@ static void PokeWin_PokeGraSetPP( FIELD_CLACT * wk, POKEMON_PARAM * pp )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg ƒRƒA
+ * ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ ã‚³ã‚¢
  *
- * @param	wk		ƒtƒB[ƒ‹ƒhƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
+ * @param	wk		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  * @param	ssa
  *
  * @return	none
@@ -1286,7 +1286,7 @@ static void PokeWin_PokeGraSetCore( FIELD_CLACT * wk, SOFT_SPRITE_ARC * ssa )
 	CLACT_U_RES_OBJ_PTR p_res;
 	const NNSG2dImagePaletteProxy * p_pxy;
 
-	// ƒLƒƒƒ‰
+	// ã‚­ãƒ£ãƒ©
 	buf = sys_AllocMemory( wk->heap, POKEWIN_OBJCGX_SIZ_ALL );
 	{
 		CHANGES_INTO_DATA_RECT rc = { 0, 0, 10, 10 };
@@ -1305,7 +1305,7 @@ static void PokeWin_PokeGraSetCore( FIELD_CLACT * wk, SOFT_SPRITE_ARC * ssa )
 	GX_LoadOBJ( buf, vram, POKEWIN_OBJCGX_SIZ_ALL );
 	sys_FreeMemoryEz( buf );
 
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	buf    = ChangesInto_BattlePokePalData_Alloc( ssa->arc_no, ssa->index_pal, wk->heap );
 	p_res  = CLACT_U_ResManagerGetIDResObjPtr( wk->resMan[1], POKEWIN_CLA_PAL_ID );
 	p_pxy  = CLACT_U_PlttManagerGetProxy( p_res, c_pxy );
@@ -1317,11 +1317,11 @@ static void PokeWin_PokeGraSetCore( FIELD_CLACT * wk, SOFT_SPRITE_ARC * ssa )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒE•`‰æ
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
  *
- * @param	wk		ƒ[ƒN
- * @param	pal		g—pƒpƒŒƒbƒg
- * @param	cgx		g—pƒLƒƒƒ‰
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pal		ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	cgx		ä½¿ç”¨ã‚­ãƒ£ãƒ©
  *
  * @return	none
  */
@@ -1345,9 +1345,9 @@ static void PokeWinFrameWrite( POKEWIN_WORK * wk, u8 pal, u16 cgx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒEƒNƒŠƒA
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */

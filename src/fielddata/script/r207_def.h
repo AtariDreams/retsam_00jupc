@@ -1,7 +1,7 @@
 #ifndef _R207_DEF_H_
 #define _R207_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R207_FLAG_CHANGE		(1)
 #define	SCRID_POS_R207_SUPPORT		(2)
 #define	SCRID_R207_GIRL1A		(3)
@@ -9,6 +9,6 @@
 #define	SCRID_R207_SIGN1		(5)
 #define	SCRID_R207_SIGN2		(6)
 #define	SCRID_R207_SIGN3		(7)
-#define	SCRID_R207_DATA_MAX		(7)		//最大数
+#define	SCRID_R207_DATA_MAX		(7)		//譛螟ｧ謨ｰ
 
 #endif //_R207_DEF_H_

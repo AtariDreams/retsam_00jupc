@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SND_GetFirstInstDataPos</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>SND_GetFirstInstDataPos</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">SNDInstPos SND_GetFirstInstDataPos( const SNDBankData* <var>bank</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAWLWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,7 +25,7 @@
 <tbody>
 <tr>
 <td><em><strong><code>bank</code></strong></em></td>
-<td>�o���N�f�[�^�̃|�C���^�ł��B</td>
+<td>バンクデータのポインタです。</td>
 </tr>
 </tbody>
 </table>
@@ -33,19 +33,19 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAFMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�C���X�g�f�[�^�����̂��߂̈ʒu����Ԃ��܂��B</p>
+      <p>インストデータ走査のための位置情報を返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAMMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�o���N�f�[�^���̃C���X�g�f�[�^�����̂��߂̈ʒu�����擾���܂��B
+バンクデータ中のインストデータ走査のための位置情報を取得します。
 </p>
       <p>
-�擾�����ʒu����
-<tt class="function"><a href="SND_GetNextInstData.html">SND_GetNextInstData</a></tt>�֐��ɓn�����ƂŁA
-<a href="SNDInstData.html">SNDInstData</a>�^�̃C���X�g�f�[�^���A���ԂɎ擾���邱�Ƃ��ł��܂��B
+取得した位置情報を
+<tt class="function"><a href="SND_GetNextInstData.html">SND_GetNextInstData</a></tt>関数に渡すことで、
+<a href="SNDInstData.html">SNDInstData</a>型のインストデータを、順番に取得することができます。
 </p>
 
       
@@ -54,14 +54,14 @@
     SNDInstData inst;
     
     while( SND_GetNextInstData( bank, &amp;inst, &amp;pos ) ) {
-        // inst �ɑ΂��鏈�����s��
+        // inst に対する処理を行う
     }
 </pre>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="SND_GetNextInstData.html">SND_GetNextInstData</a>, <a href="SNDInstData.html">SNDInstData</a></p>
-<h2>����</h2>
-<p>2005/01/20 ����<br></p>
+<h2>履歴</h2>
+<p>2005/01/20 初版<br></p>
 </div>
 </body>
 </html>

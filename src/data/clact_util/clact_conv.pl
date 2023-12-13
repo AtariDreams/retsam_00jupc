@@ -1,21 +1,21 @@
-#ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ƒoƒCƒiƒŠƒRƒ“ƒo[ƒ^
+#ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚³ãƒ³ãƒãƒ¼ã‚¿
 #
-#ˆø”‚P
-#	ƒRƒ“ƒo[ƒg‘ÎÛƒtƒ@ƒCƒ‹ƒpƒX
-#		iƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[j
-#ˆø”‚Q
-#	‘‚«o‚µƒtƒ@ƒCƒ‹ƒpƒX
+#å¼•æ•°ï¼‘
+#	ã‚³ãƒ³ãƒãƒ¼ãƒˆå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+#		ï¼ˆã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ï¼‰
+#å¼•æ•°ï¼’
+#	æ›¸ãå‡ºã—ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 #
-#ˆø”‚RA‚SAAAAA
-#	‘Î‰ž‚³‚¹‚éenum‚ª‹Lq‚³‚ê‚Ä‚¢‚éƒwƒbƒ_[‚Ö‚ÌƒpƒX
+#å¼•æ•°ï¼“ã€ï¼”ã€ã€ã€ã€ã€
+#	å¯¾å¿œã•ã›ã‚‹enumãŒè¨˜è¿°ã•ã‚Œã¦ã„ã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼ã¸ã®ãƒ‘ã‚¹
 #
-#ˆø”‚ª‚Q‚Â•K—v
+#å¼•æ•°ãŒï¼’ã¤å¿…è¦
 if( 2 > @ARGV ){
 
-	print( "err---ˆø”‚ª‘«‚è‚Ü‚¹‚ñ •K—v‚QŒÂ  Œ»Ý".@ARGV."ŒÂ\n" );
-	print( "ˆø”‚P@ƒRƒ“ƒo[ƒg‘ÎÛƒtƒ@ƒCƒ‹ƒpƒX\n" );
-	print( "ˆø”‚Q@‘‚«o‚µƒtƒ@ƒCƒ‹ƒpƒX\n" );
-	print( "ˆø”‚RA‚SAAAA@‘Î‰ž‚³‚¹‚éƒwƒbƒ_[ƒtƒ@ƒCƒ‹ƒpƒX\n" );
+	print( "err---å¼•æ•°ãŒè¶³ã‚Šã¾ã›ã‚“ å¿…è¦ï¼’å€‹  ç¾åœ¨".@ARGV."å€‹\n" );
+	print( "å¼•æ•°ï¼‘ã€€ã‚³ãƒ³ãƒãƒ¼ãƒˆå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹\n" );
+	print( "å¼•æ•°ï¼’ã€€æ›¸ãå‡ºã—ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹\n" );
+	print( "å¼•æ•°ï¼“ã€ï¼”ã€ã€ã€ã€ã€€å¯¾å¿œã•ã›ã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹\n" );
 	exit(1);
 }
 
@@ -24,18 +24,18 @@ open( FILEIN, $ARGV[0] );
 @in_file = <FILEIN>;
 close( FILEIN );
 
-#ÅIs‚Ée‚ª6‚Â‚ ‚é‚©ƒ`ƒFƒbƒN
+#æœ€çµ‚è¡Œã«eãŒ6ã¤ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 $check_listnum = @in_file;
 $check_laststr = $in_file[ $check_listnum-1 ];
-$check_laststr =~ s/[\t\s]//g;		#—]•ª‚ÈƒXƒy[ƒX‚ð‚Í‚«
+$check_laststr =~ s/[\t\s]//g;		#ä½™åˆ†ãªã‚¹ãƒšãƒ¼ã‚¹ã‚’ã¯ã
 if( !($check_laststr =~ s/e,e,e,e,e,e,e,e,/e,e,e,e,e,e,e,e,/) ){
-	printf( "ÅIs‚Ée,e,e,e,e,e,e,e,‚ª‚ ‚è‚Ü‚¹‚ñB" );
+	printf( "æœ€çµ‚è¡Œã«e,e,e,e,e,e,e,e,ãŒã‚ã‚Šã¾ã›ã‚“ã€‚" );
 	exit(1);
 }
 
 
 
-#ˆø”‚RˆÈ~•ª‚Ìƒwƒbƒ_[ƒf[ƒ^‚Æƒtƒ@ƒCƒ‹‚ð‘Î‰ž‚³‚¹‚é
+#å¼•æ•°ï¼“ä»¥é™åˆ†ã®ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¯¾å¿œã•ã›ã‚‹
 for( $i = 2; $i < @ARGV; $i++ ){
 	if( $i == 2 ){
 		$check = system( "c:\/cygwin\/bin\/perl enum_to_num.pl $ARGV[0] $ARGV[1] $ARGV[$i]" );
@@ -49,7 +49,7 @@ for( $i = 2; $i < @ARGV; $i++ ){
 	}
 }
 
-#ƒoƒCƒiƒŠ‰»
+#ãƒã‚¤ãƒŠãƒªåŒ–
 $check = system( "c:\/cygwin\/bin\/perl binary_conv.pl I $ARGV[1] $ARGV[1]" );
 if( $check ){
 	print( "binary_conv.pl err\n" );

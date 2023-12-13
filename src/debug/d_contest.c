@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	d_contest.c
- * @brief	ƒRƒ“ƒeƒXƒgƒfƒoƒbƒOŒÄ‚Ño‚µ
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ‡ãƒãƒƒã‚°å‘¼ã³å‡ºã—
  * @author	matsuda
- * @date	2008.01.31(–Ø)
+ * @date	2008.01.31(æœ¨)
  */
 //==============================================================================
 #ifdef	PM_DEBUG
@@ -67,19 +67,19 @@
 
 
 //============================================================================================
-//	overlay’è‹`
+//	overlayå®šç¾©
 //============================================================================================
 
 FS_EXTERN_OVERLAY( title );
 
 //==============================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
 //==============================================================================
-///1:ƒ[ƒe[ƒVƒ‡ƒ“‚È‚µB@0:ƒ[ƒe[ƒVƒ‡ƒ“‚ ‚è@2:ƒ_ƒ“ƒX‰ñ”§ŒÀ‚È‚µ
+///1:ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ãªã—ã€‚ã€€0:ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‚ã‚Šã€€2:ãƒ€ãƒ³ã‚¹å›æ•°åˆ¶é™ãªã—
 extern u8 DmatsuWork_DanceRotationOff;
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 #define FCOLS_BLACK	(GF_PRINTCOLOR_MAKE(FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL))
 #define FCOLS_GREEN	(GF_PRINTCOLOR_MAKE(FBMP_COL_GREEN,FBMP_COL_GRN_SDW,FBMP_COL_WHITE))
@@ -99,7 +99,7 @@ enum{
 };
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 typedef struct {
 	SAVEDATA *savedata;
@@ -118,14 +118,14 @@ typedef struct {
 	
 	u8 sub_seq;
 	
-	//-- ƒRƒ“ƒeƒXƒg --//
+	//-- ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ --//
 	int debug_mode;
 	int rank;
 	int type;
 	CONTEST_SYSTEM *consys;
 }D_CONTEST_WORK;
 
-///ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒNAƒ^ƒCƒv‘I‘ğ‰æ–Ê—pƒ[ƒN
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯ã€ã‚¿ã‚¤ãƒ—é¸æŠç”»é¢ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	D_CONTEST_WORK *wk;
 
@@ -147,12 +147,12 @@ typedef struct{
 
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
 typedef void (*pDMFunc)(D_CONTEST_WORK *);
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 static void VramBankSet(void);
@@ -184,10 +184,10 @@ static void ContestDebug_ImageClipDebugAccessorySet(CONTEST_SYSTEM *consys);
 static void ContestDebug_ImageClipDebugAccessoryFree(CONTEST_SYSTEM *consys);
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 
-//gmmƒtƒ@ƒCƒ‹‚ÌID‚ğ•¶š—ñw’è‚Ég‚¤\‘¢‘ÌéŒ¾
+//gmmãƒ•ã‚¡ã‚¤ãƒ«ã®IDã‚’æ–‡å­—åˆ—æŒ‡å®šã«ä½¿ã†æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	u32	strID;
@@ -208,28 +208,28 @@ static const LIST_DATA ListData[] =
 
 static const BMPLIST_HEADER ListHeader = {
 	NULL,
-	NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
-	NELEMS(ListData),		// ƒŠƒXƒg€–Ú”
-	6,						// •\¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	12,						// €–Ú•\¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						// •\¦‚xÀ•W
-	FBMP_COL_WHITE,			//•¶šF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶š‰eF
-	0,						// •¶šŠÔŠu‚w
-	16,						// •¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,			// •¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+	NELEMS(ListData),		// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	6,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	12,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,			// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 
 //==============================================================================
-//	ŠO•”ƒf[ƒ^
+//	å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 extern const PROC_DATA ContestActinProcData;
 extern const PROC_DATA ContestDanceProcData;
@@ -238,7 +238,7 @@ extern const PROC_DATA ContestResultProcData;
 extern const PROC_DATA IMC_SYS_Proc;
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void Contest_ImageClipInitDataCreate(CONTEST_SYSTEM *consys);
 extern void Contest_ImageClipInitDataFree(CONTEST_SYSTEM *consys);
@@ -247,7 +247,7 @@ extern void Contest_ImageClipInitDataFree(CONTEST_SYSTEM *consys);
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAM‰Šú‰»
+ * VRAMåˆæœŸåŒ–
  *
  * @param	none
  *
@@ -257,23 +257,23 @@ extern void Contest_ImageClipInitDataFree(CONTEST_SYSTEM *consys);
 static void VramBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_16_F,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0123_E			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_16_F,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0123_E			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰Šú‰»
+ * BGåˆæœŸåŒ–
  *
  * @param	none
  *
@@ -337,7 +337,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒ‚ƒŠŠJ•ú
+ * ãƒ¡ãƒ¢ãƒªé–‹æ”¾
  *
  * @param	none
  *
@@ -346,7 +346,7 @@ static void BgInit( GF_BGL_INI * ini )
 //--------------------------------------------------------------------------------------------
 static void D_TitleMenuMemFree( GF_BGL_INI * ini )
 {
-	// BGLŠJ•ú
+	// BGLé–‹æ”¾
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME0_M );
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME1_M );
 	GF_BGL_BGControlExit( ini, GF_BGL_FRAME2_M );
@@ -360,8 +360,8 @@ static void D_TitleMenuMemFree( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	l–¼‘I‘ğƒvƒƒZƒXFBMPMENULISTDATA‚Ì¶¬
- * @param	bmd		BMP_MENULIST_DATA\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	äººåé¸æŠãƒ—ãƒ­ã‚»ã‚¹ï¼šBMPMENULISTDATAã®ç”Ÿæˆ
+ * @param	bmd		BMP_MENULIST_DATAæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static	void	BMP_MENULIST_Make(BMP_MENULIST_DATA *bmd)
@@ -380,11 +380,11 @@ static	void	BMP_MENULIST_Make(BMP_MENULIST_DATA *bmd)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	l–¼‘I‘ğƒvƒƒZƒXF‰Šú‰»
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	äººåé¸æŠãƒ—ãƒ­ã‚»ã‚¹ï¼šåˆæœŸåŒ–
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT DebugContestMenuProc_Init(PROC * proc, int * seq)
@@ -430,18 +430,18 @@ static PROC_RESULT DebugContestMenuProc_Init(PROC * proc, int * seq)
 
 		GF_Disp_DispOn();
 
-	Snd_BgmChannelSetAndReverbSet( 0 );	//g—p‰Â”\ƒ`ƒƒƒ“ƒlƒ‹‘€ìAƒŠƒo[ƒuİ’è(ƒNƒŠƒA)
+	Snd_BgmChannelSetAndReverbSet( 0 );	//ä½¿ç”¨å¯èƒ½ãƒãƒ£ãƒ³ãƒãƒ«æ“ä½œã€ãƒªãƒãƒ¼ãƒ–è¨­å®š(ã‚¯ãƒªã‚¢)
 
 	return PROC_RES_FINISH;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	l–¼‘I‘ğƒvƒƒZƒXFƒƒCƒ“
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	äººåé¸æŠãƒ—ãƒ­ã‚»ã‚¹ï¼šãƒ¡ã‚¤ãƒ³
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT DebugContestMenuProc_Main(PROC * proc, int * seq)
@@ -449,7 +449,7 @@ static PROC_RESULT DebugContestMenuProc_Main(PROC * proc, int * seq)
 	D_CONTEST_WORK * wk = PROC_GetWork(proc);
 	u32	ret;
 
-	//ƒTƒuPROC‚ª—L‚éê‡‚ÍŒÄ‚Ño‚µ
+	//ã‚µãƒ–PROCãŒæœ‰ã‚‹å ´åˆã¯å‘¼ã³å‡ºã—
 	if(wk->local_proc != NULL){
 		if(ProcMain(wk->local_proc) == TRUE){
 			PROC_Delete(wk->local_proc);
@@ -490,11 +490,11 @@ static PROC_RESULT DebugContestMenuProc_Main(PROC * proc, int * seq)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	l–¼‘I‘ğƒvƒƒZƒXFI—¹
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	äººåé¸æŠãƒ—ãƒ­ã‚»ã‚¹ï¼šçµ‚äº†
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT DebugContestMenuProc_End(PROC * proc, int * seq)
@@ -505,10 +505,10 @@ static PROC_RESULT DebugContestMenuProc_End(PROC * proc, int * seq)
 
 	((MAINWORK*)PROC_GetParentWork(proc))->select_id = wk->select_id;
 	if (wk->select_id != -1) {
-		//ƒfƒoƒbƒOƒQ[ƒ€ŠJn
+		//ãƒ‡ãƒãƒƒã‚°ã‚²ãƒ¼ãƒ é–‹å§‹
 		Main_SetNextProc(OVERLAY_ID_GAMESTART, &DebugNewGameStartProcData);
 	} else {
-		//ƒ^ƒCƒgƒ‹‚É–ß‚é
+		//ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
 		Main_SetNextProc(FS_OVERLAY_ID(title), &TitleProcData);
 	}
 	PROC_FreeWork(proc);
@@ -539,7 +539,7 @@ static void DebugMenuSystemFree(D_CONTEST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒNAƒ^ƒCƒv‘I‘ğ‰æ–Ê‰Šú‰»
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯ã€ã‚¿ã‚¤ãƒ—é¸æŠç”»é¢åˆæœŸåŒ–
  *
  * @param   wk		
  * @param   debug_mode		
@@ -558,13 +558,13 @@ static void DM_ConModeSelectInit(D_CONTEST_WORK *wk, int debug_mode)
 	dcw->debug_mode = debug_mode;
 	dcw->wk = wk;
 	
-	//BMPƒEƒBƒ“ƒhƒE‚ğ’Ç‰Á
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¿½åŠ 
 	GF_BGL_BmpWinAdd(wk->bgl, &dcw->win, GF_BGL_FRAME0_M, 2, 2, 12, 4,
 			FONT_PAL_NO, 0x4000/0x20);
 	GF_BGL_BmpWinDataFill(&dcw->win,APP_WINCLR_COL(FBMP_COL_WHITE));
 	GF_BGL_BmpWinOn(&dcw->win);
 
-	//•¶šƒZƒbƒg’Ç‰Á
+	//æ–‡å­—ã‚»ãƒƒãƒˆè¿½åŠ 
 	dcw->msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG,
 			NARC_msg_debug_matsu_dat, HEAPID_DEBUG_TITLE);
 	dcw->rank_str = STRBUF_Create(30, HEAPID_DEBUG_TITLE);
@@ -575,7 +575,7 @@ static void DM_ConModeSelectInit(D_CONTEST_WORK *wk, int debug_mode)
 	dcw->tcb = TCB_Add(DM_ConModeSelectMain, dcw, 100);
 }
 
-///ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒNAƒ^ƒCƒv‘I‘ğI—¹ˆ—
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯ã€ã‚¿ã‚¤ãƒ—é¸æŠçµ‚äº†å‡¦ç†
 static void DM_ConModeSelectEnd(DEBUG_CONMODE_WORK *dcw)
 {
 	GF_BGL_BmpWinOff(&dcw->win);
@@ -589,7 +589,7 @@ static void DM_ConModeSelectEnd(DEBUG_CONMODE_WORK *dcw)
 	sys_FreeMemoryEz(dcw);
 }
 
-///ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒNAƒ^ƒCƒv‘I‘ğƒƒCƒ“
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯ã€ã‚¿ã‚¤ãƒ—é¸æŠãƒ¡ã‚¤ãƒ³
 static void DM_ConModeSelectMain(TCB_PTR tcb, void *work)
 {
 	DEBUG_CONMODE_WORK *dcw = work;
@@ -597,7 +597,7 @@ static void DM_ConModeSelectMain(TCB_PTR tcb, void *work)
 	int add_num;
 	int jyoudan_max, gedan_max;
 	
-	if(dcw->first_wait == 0){	//ƒgƒŠƒK[‚ªƒ^ƒXƒN¶¬“¯ˆêƒtƒŒ[ƒ€‚Åæ‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ÅƒEƒFƒCƒg“ü‚ê‚é
+	if(dcw->first_wait == 0){	//ãƒˆãƒªã‚¬ãƒ¼ãŒã‚¿ã‚¹ã‚¯ç”ŸæˆåŒä¸€ãƒ•ãƒ¬ãƒ¼ãƒ ã§å–ã‚Œã¦ã—ã¾ã†ã®ã§ã‚¦ã‚§ã‚¤ãƒˆå…¥ã‚Œã‚‹
 		dcw->first_wait++;
 		return;
 	}
@@ -653,14 +653,14 @@ static void DM_ConModeSelectMain(TCB_PTR tcb, void *work)
 	//		DMRes_BalloonStart(dcw->fsys, 
 	//			DMATSU_PROC_FLAG_GDS_RECORDER, dcw->rank + BR_MODE_GDS_BV);
 		}
-		else{	//ƒRƒ“ƒeƒXƒg
+		else{	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 			DebugContest_FieldConnectStart(wk, debug_mode, rank, type);
 		}
 		return;
 	}
 }
 
-///ƒ‰ƒ“ƒNAƒ‚[ƒh‚ÌƒƒbƒZ[ƒWÄ•`‰æ
+///ãƒ©ãƒ³ã‚¯ã€ãƒ¢ãƒ¼ãƒ‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å†æç”»
 static void DM_ConModeSelectMsgWrite(DEBUG_CONMODE_WORK *dcw)
 {
 	GF_PRINTCOLOR rank_col, type_col;
@@ -694,7 +694,7 @@ static void DM_ConModeSelectMsgWrite(DEBUG_CONMODE_WORK *dcw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgF‰‰‹Z—Í•”–åŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šæ¼”æŠ€åŠ›éƒ¨é–€é–‹å§‹
  *
  * @param   wk		
  *
@@ -712,7 +712,7 @@ static void DM_ActingStart(D_CONTEST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒrƒWƒ…ƒAƒ‹•”–åŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€é–‹å§‹
  *
  * @param   wk		
  *
@@ -730,7 +730,7 @@ static void DM_VisualStart(D_CONTEST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒCƒ[ƒWƒNƒŠƒbƒv„ƒrƒWƒ…ƒAƒ‹•”–åŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ï¼ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€é–‹å§‹
  *
  * @param   wk		
  *
@@ -748,7 +748,7 @@ static void DM_ClipVisualStart(D_CONTEST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–åŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€é–‹å§‹
  *
  * @param   wk		
  *
@@ -770,7 +770,7 @@ static void DM_DanceStart(D_CONTEST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–åŠJn(‘S‚Ä‚Ìl•ª‰¹•„‚Åƒ_ƒ“ƒX)
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€é–‹å§‹(å…¨ã¦ã®å››åˆ†éŸ³ç¬¦ã§ãƒ€ãƒ³ã‚¹)
  *
  * @param   wk		
  *
@@ -788,7 +788,7 @@ static void DM_DanceNoneLimitStart(D_CONTEST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–åŠJn(ƒ[ƒe[ƒVƒ‡ƒ“‚ ‚è)
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€é–‹å§‹(ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‚ã‚Š)
  *
  * @param   wk		
  *
@@ -805,7 +805,7 @@ static void DM_DanceRotatinOn(D_CONTEST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–åŠJn(ƒ[ƒe[ƒVƒ‡ƒ“‚È‚µ)
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€é–‹å§‹(ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ãªã—)
  *
  * @param   wk		
  *
@@ -823,7 +823,7 @@ static void DM_DanceRotationOff(D_CONTEST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFŒ‹‰Ê”­•\ŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šçµæœç™ºè¡¨é–‹å§‹
  *
  * @param   wk		
  *
@@ -840,7 +840,7 @@ static void DM_ResultStart(D_CONTEST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒOƒRƒ“ƒeƒXƒgŒÄ‚Ño‚µ
+ * @brief   ãƒ‡ãƒãƒƒã‚°ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‘¼ã³å‡ºã—
  *
  * @param   fsys		
  * @param   debug_mode		DEBUG_CON_???
@@ -859,13 +859,13 @@ static void DebugContest_FieldConnectStart(D_CONTEST_WORK *wk, int debug_mode, i
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒRƒ“ƒeƒXƒgF‰‰‹Z—Í•”–åƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  *
- * ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg¨¨ƒtƒB[ƒ‹ƒh•œ‹A‚ğs‚¤B
- * ƒQ[ƒ€ƒI[ƒo[ˆ—‚Ö‚Ì•ªŠò‚à“ü‚éi—\’èj
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆâ†’â†’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°ã‚’è¡Œã†ã€‚
+ * ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼å‡¦ç†ã¸ã®åˆ†å²ã‚‚å…¥ã‚‹ï¼ˆäºˆå®šï¼‰
  */
 //-----------------------------------------------------------------------------
 static void GMEVENT_DebugConStart(TCB_PTR tcb, void *work)
@@ -878,7 +878,7 @@ static void GMEVENT_DebugConStart(TCB_PTR tcb, void *work)
 
 	switch (wk->local_seq) {
 	case 0:
-		//¦check	“ü‚èŒû‚ª‚±‚±‚µ‚©‚È‚¢‚Ì‚ÅA‚Æ‚è‚ ‚¦‚¸‚±‚±‚ÅƒRƒ“ƒeƒXƒg‘S‘Ìƒq[ƒvì¬
+		//â€»check	å…¥ã‚Šå£ãŒã“ã“ã—ã‹ãªã„ã®ã§ã€ã¨ã‚Šã‚ãˆãšã“ã“ã§ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¨ä½“ãƒ’ãƒ¼ãƒ—ä½œæˆ
 		{
 			POKEMON_PARAM * poke;
 			STRBUF *myname;
@@ -905,14 +905,14 @@ static void GMEVENT_DebugConStart(TCB_PTR tcb, void *work)
 		
 		wk->local_seq ++;
 		break;
-	case 1:		//‚»‚ê‚¼‚ê‚Ì•”–å‚ğŒÄ‚Ño‚µ
+	case 1:		//ãã‚Œãã‚Œã®éƒ¨é–€ã‚’å‘¼ã³å‡ºã—
 		switch(wk->debug_mode){
 		case DEBUG_CON_ACTIN:
 			wk->local_proc = PROC_Create(&ContestActinProcData, wk->consys, HEAPID_DEBUG_TITLE);
 			wk->local_seq++;
 			break;
 		case DEBUG_CON_VISUAL:
-			//ƒfƒoƒbƒOƒ‚[ƒh‚Å‚Í©•ª‚ÌƒNƒŠƒbƒvƒf[ƒ^‚¾‚¯‚È‚¢‚Ì‚ÅA‚±‚±‚ÅƒZƒbƒg
+			//ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã§ã¯è‡ªåˆ†ã®ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã ã‘ãªã„ã®ã§ã€ã“ã“ã§ã‚»ãƒƒãƒˆ
 			ImcSaveData_SetContestPokeData_Easy(wk->consys->c_game.imc_data[0], 
 				wk->consys->c_game.pp[0], -1);
 			ImcSaveData_SetContestBgId(wk->consys->c_game.imc_data[0], 0);
@@ -926,12 +926,12 @@ static void GMEVENT_DebugConStart(TCB_PTR tcb, void *work)
 			switch(wk->sub_seq){
 			case 0:
 				Contest_ImageClipInitDataCreate(wk->consys);
-				ContestDebug_ImageClipDebugAccessorySet(wk->consys);	//ƒfƒoƒbƒOƒf[ƒ^ƒZƒbƒg
+				ContestDebug_ImageClipDebugAccessorySet(wk->consys);	//ãƒ‡ãƒãƒƒã‚°ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 				wk->local_proc = PROC_Create(&IMC_SYS_Proc, wk->consys->icpw, HEAPID_DEBUG_TITLE);
 				wk->sub_seq++;
 				break;
 			case 1:
-				ContestDebug_ImageClipDebugAccessoryFree(wk->consys);	//ƒfƒoƒbƒOƒf[ƒ^ŠJ•ú
+				ContestDebug_ImageClipDebugAccessoryFree(wk->consys);	//ãƒ‡ãƒãƒƒã‚°ãƒ‡ãƒ¼ã‚¿é–‹æ”¾
 				Contest_ImageClipInitDataFree(wk->consys);
 				wk->sub_seq++;
 				break;
@@ -944,7 +944,7 @@ static void GMEVENT_DebugConStart(TCB_PTR tcb, void *work)
 			}
 			break;
 		case DEBUG_CON_DANCE:
-			//ƒfƒoƒbƒOƒ‚[ƒh‚Å‚Í©•ª‚ÌƒNƒŠƒbƒvƒf[ƒ^‚¾‚¯‚È‚¢‚Ì‚ÅA‚±‚±‚ÅƒZƒbƒg
+			//ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã§ã¯è‡ªåˆ†ã®ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã ã‘ãªã„ã®ã§ã€ã“ã“ã§ã‚»ãƒƒãƒˆ
 			ImcSaveData_SetContestPokeData_Easy(wk->consys->c_game.imc_data[0], 
 				wk->consys->c_game.pp[0], -1);
 			ImcSaveData_SetContestBgId(wk->consys->c_game.imc_data[0], 0);
@@ -961,7 +961,7 @@ static void GMEVENT_DebugConStart(TCB_PTR tcb, void *work)
 		}
 		break;
 	case 2:
-		//¦check@oŒû‚ª‚±‚±‚µ‚©‚È‚¢‚Ì‚ÅA‚Æ‚è‚ ‚¦‚¸‚±‚±‚ÅƒRƒ“ƒeƒXƒg‘S‘Ìƒq[ƒv‰ğ•ú
+		//â€»checkã€€å‡ºå£ãŒã“ã“ã—ã‹ãªã„ã®ã§ã€ã¨ã‚Šã‚ãˆãšã“ã“ã§ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¨ä½“ãƒ’ãƒ¼ãƒ—è§£æ”¾
 		Contest_SystemExit(wk->consys);
 		
 		wk->local_seq ++;
@@ -976,11 +976,11 @@ static void GMEVENT_DebugConStart(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒ[ƒWƒNƒŠƒbƒvƒfƒoƒbƒO—p‚ÉƒAƒNƒZƒTƒŠ[‚ğ‘S‚ÄƒZƒbƒg
+ * @brief   ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒãƒƒã‚°ç”¨ã«ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚’å…¨ã¦ã‚»ãƒƒãƒˆ
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * Contest_ImageClipInitDataCreate‚ÌŠÖ”Œã‚ÉŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢
+ * Contest_ImageClipInitDataCreateã®é–¢æ•°å¾Œã«å‘¼ã³å‡ºã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------
 static void ContestDebug_ImageClipDebugAccessorySet(CONTEST_SYSTEM *consys)
@@ -999,11 +999,11 @@ static void ContestDebug_ImageClipDebugAccessorySet(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—p‚ÉƒZƒbƒg‚µ‚½ƒAƒNƒZƒTƒŠ—Ìˆæ‚ğŠJ•ú
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ã«ã‚»ãƒƒãƒˆã—ãŸã‚¢ã‚¯ã‚»ã‚µãƒªé ˜åŸŸã‚’é–‹æ”¾
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * Contest_ImageClipInitDataFreeŠÖ”‚ğŒÄ‚Ô‚æ‚è‚àæ‚É‚±‚ê‚ÅƒfƒoƒbƒO—Ìˆæ‚Ì‰ğ•ú‚ğ‚µ‚Ä‚­‚¾‚³‚¢
+ * Contest_ImageClipInitDataFreeé–¢æ•°ã‚’å‘¼ã¶ã‚ˆã‚Šã‚‚å…ˆã«ã“ã‚Œã§ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã®è§£æ”¾ã‚’ã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------
 static void ContestDebug_ImageClipDebugAccessoryFree(CONTEST_SYSTEM *consys)

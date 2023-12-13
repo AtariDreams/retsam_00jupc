@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxv_tray.c
- * @brief	ƒ{ƒbƒNƒX‘€ì‰æ–Ê@•`‰æ‰º¿‚¯iƒgƒŒƒCŠÖ˜Aj
+ * @brief	ãƒœãƒƒã‚¯ã‚¹æ“ä½œç”»é¢ã€€æç”»ä¸‹è«‹ã‘ï¼ˆãƒˆãƒ¬ã‚¤é–¢é€£ï¼‰
  * @author	taya
  * @date	2005.09.09
  */
@@ -16,39 +16,39 @@
 #include  "box_view.h"
 #include  "box_common.h"
 
-#define TRAY_CHAR_WIDTH		(21)		///< ƒgƒŒƒC‚P–‡‚Ì‰¡ƒLƒƒƒ‰”
-#define TRAY_CHAR_HEIGHT	(20)		///< ƒgƒŒƒC‚P–‡‚ÌcƒLƒƒƒ‰”
-#define TRAY_WRITE_XPOS		(11)		///< ƒgƒŒƒC•`‰æŠJŽn‚wÀ•Wi‰ŠúˆÊ’uj
-#define TRAY_WRITE_YPOS		(0)			///< ƒgƒŒƒC•`‰æŠJŽn‚xÀ•Wi‰ŠúˆÊ’uj
-#define TRAY_WRITE_X_SPACE	(2)			///< ƒgƒŒƒC•`‰æ‚wŠÔŠuiƒLƒƒƒ‰’PˆÊj
+#define TRAY_CHAR_WIDTH		(21)		///< ãƒˆãƒ¬ã‚¤ï¼‘æžšã®æ¨ªã‚­ãƒ£ãƒ©æ•°
+#define TRAY_CHAR_HEIGHT	(20)		///< ãƒˆãƒ¬ã‚¤ï¼‘æžšã®ç¸¦ã‚­ãƒ£ãƒ©æ•°
+#define TRAY_WRITE_XPOS		(11)		///< ãƒˆãƒ¬ã‚¤æç”»é–‹å§‹ï¼¸åº§æ¨™ï¼ˆåˆæœŸä½ç½®ï¼‰
+#define TRAY_WRITE_YPOS		(0)			///< ãƒˆãƒ¬ã‚¤æç”»é–‹å§‹ï¼¹åº§æ¨™ï¼ˆåˆæœŸä½ç½®ï¼‰
+#define TRAY_WRITE_X_SPACE	(2)			///< ãƒˆãƒ¬ã‚¤æç”»ï¼¸é–“éš”ï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
 #define TRAY_WRITE_Y_SPACE	(4)
 
 #define TRAY_CHAR_SIZE		(TRAY_CHAR_WIDTH*TRAY_CHAR_HEIGHT)
 #define TRAY_WRITE_DIFF		(TRAY_CHAR_WIDTH + TRAY_WRITE_X_SPACE)
 
-#define TRAY_SCROLL_LEN		(TRAY_WRITE_DIFF*8)			///< ƒXƒNƒ[ƒ‹—Êiƒhƒbƒgj
-#define TRAY_SCROLL_WAIT	BOX_TIMER(15)				///< ƒXƒNƒ[ƒ‹ŽžŠÔiƒtƒŒ[ƒ€j
+#define TRAY_SCROLL_LEN		(TRAY_WRITE_DIFF*8)			///< ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é‡ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define TRAY_SCROLL_WAIT	BOX_TIMER(15)				///< ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ™‚é–“ï¼ˆãƒ•ãƒ¬ãƒ¼ãƒ ï¼‰
 #define TRAY_FX_SHIFT		(8)
 #define TRAY_FX_MASK		(0x1ff)
 
 #define TRAY_NCG_WIDTH		(21)
 #define TRAY_NCG_TAB_HEIGHT	(4)
-#define TRAYNAME_WRITE_CENTER_X		(84)	// ƒ{ƒbƒNƒX–¼‚ÍNCGƒf[ƒ^‚É’¼Ú•`‚­
-#define TRAYNAME_WRITE_YPOS			(13)	/// [[[ŠCŠO”Å‚Í’²®‚Ì•K—v‚ ‚é‚©‚à]]]
+#define TRAYNAME_WRITE_CENTER_X		(84)	// ãƒœãƒƒã‚¯ã‚¹åã¯NCGãƒ‡ãƒ¼ã‚¿ã«ç›´æŽ¥æã
+#define TRAYNAME_WRITE_YPOS			(13)	/// [[[æµ·å¤–ç‰ˆã¯èª¿æ•´ã®å¿…è¦ã‚ã‚‹ã‹ã‚‚]]]
 #define TRAYNAME_FONTTYPE	(FONT_SYSTEM)
 
 #define ICON_VISIBLE_MIN	(72)
 #define ICON_VISIBLE_MAX	(256+16)
 
-#define TRAY_BG_HOFS_MASK	(REG_G2_BG3HOFS_OFFSET_MASK)	// 0x1ff ‚Å‚·
+#define TRAY_BG_HOFS_MASK	(REG_G2_BG3HOFS_OFFSET_MASK)	// 0x1ff ã§ã™
 
-#define WPCHANGE_FADE_TIME	(15)	// ‹P“x•ÏX‚Í30fpsŒÅ’è‚É‚µ‚Ä‚¢‚é‚Ì‚ÅBOX_TIMERƒ}ƒNƒ‚ðŽg‚í‚È‚¢
+#define WPCHANGE_FADE_TIME	(15)	// è¼åº¦å¤‰æ›´ã¯30fpså›ºå®šã«ã—ã¦ã„ã‚‹ã®ã§BOX_TIMERãƒžã‚¯ãƒ­ã‚’ä½¿ã‚ãªã„
 
 #define TRAY_SPACE_CHARNO	(0)
 
 //--------------------------------------------------------------
 /**
- * •ÇŽ†‰æ‘œ‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹
+ * å£ç´™ç”»åƒã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //--------------------------------------------------------------
 static const struct {
@@ -83,7 +83,7 @@ static const struct {
 	{ NARC_box_wpex07_lz_nscr, NARC_box_wpex07_lz_ncgr, NARC_box_wpex07_nclr },
 	{ NARC_box_wpex08_lz_nscr, NARC_box_wpex08_lz_ncgr, NARC_box_wpex08_nclr },
 
-	//ƒvƒ‰ƒ`ƒi—p‚Ì”é–§•ÇŽ†
+	//ãƒ—ãƒ©ãƒãƒŠç”¨ã®ç§˜å¯†å£ç´™
 	{ NARC_box_pl_wpex01_lz_nscr, NARC_box_pl_wpex01_lz_ncgr, NARC_box_pl_wpex01_nclr },
 	{ NARC_box_pl_wpex02_lz_nscr, NARC_box_pl_wpex02_lz_ncgr, NARC_box_pl_wpex02_nclr },
 	{ NARC_box_pl_wpex03_lz_nscr, NARC_box_pl_wpex03_lz_ncgr, NARC_box_pl_wpex03_nclr },
@@ -97,7 +97,7 @@ static const struct {
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg“]‘—ƒIƒtƒZƒbƒg
+ * ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static const u16 PalettePosTbl[] = {
@@ -134,19 +134,19 @@ static void TrayScrnWrite( u16* dst, const u16* src, u32 xpos, u32 charOfs, u32 
 
 
 //==============================================================================================================
-// ƒƒCƒ“ƒ‚ƒWƒ…[ƒ‹‚©‚çŒÄ‚Î‚ê‚é‰Šú‰»EI—¹ŠÖ˜A
+// ãƒ¡ã‚¤ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å‘¼ã°ã‚Œã‚‹åˆæœŸåŒ–ãƒ»çµ‚äº†é–¢é€£
 //==============================================================================================================
 
 //------------------------------------------------------------------
 /**
- * ‰Šú‰»
+ * åˆæœŸåŒ–
  *
  * @param   wk			
  * @param   vpara		
  * @param   bgl			
  * @param   actsys		
  *
- * @retval  BOOL		TRUE‚Å¬Œ÷
+ * @retval  BOOL		TRUEã§æˆåŠŸ
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_TrayInit( TRAY_VIEW_WORK* wk, BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpara, GF_BGL_INI* bgl, CLACT_SET_PTR actsys )
@@ -174,7 +174,7 @@ BOOL BoxAppView_TrayInit( TRAY_VIEW_WORK* wk, BOXAPP_VIEW_WORK* vwk, const BOXAP
 
 //------------------------------------------------------------------
 /**
- * I—¹
+ * çµ‚äº†
  *
  * @param   wk		
  *
@@ -188,7 +188,7 @@ void BoxAppView_TrayQuit( TRAY_VIEW_WORK* wk )
 
 
 //==============================================================================================================
-// ƒƒCƒ“ƒ‚ƒWƒ…[ƒ‹‚©‚çŒÄ‚Î‚ê‚éƒRƒ}ƒ“ƒhˆ—ŠÖ”ŒQ
+// ãƒ¡ã‚¤ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã‚³ãƒžãƒ³ãƒ‰å‡¦ç†é–¢æ•°ç¾¤
 //==============================================================================================================
 
 //------------------------------------------------------------------
@@ -212,13 +212,13 @@ void BoxAppView_TraySetup( TRAY_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * •ÇŽ†ƒOƒ‰ƒtƒBƒbƒN“]‘—ˆÊ’u‚ðŽæ“¾
+ * å£ç´™ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€ä½ç½®ã‚’å–å¾—
  *
- * @param   wk			[in]  ƒgƒŒƒC•`‰æƒ[ƒN
- * @param   vector		[in]  “]‘—•ûŒüi0:Œ»Ý•\Ž¦ 1:‰E—× -1:¶—×j
- * @param   charPos		[out] ƒLƒƒƒ‰“]‘—ˆÊ’uiƒoƒ“ƒNæ“ª‚©‚çƒLƒƒƒ‰’PˆÊƒIƒtƒZƒbƒgj
- * @param   scrnPos		[out] ƒXƒNƒŠ[ƒ“‘‚«o‚µŠJŽn‚wÀ•W
- * @param   palPos		[out] ƒpƒŒƒbƒg“]‘—æi0`Fj
+ * @param   wk			[in]  ãƒˆãƒ¬ã‚¤æç”»ãƒ¯ãƒ¼ã‚¯
+ * @param   vector		[in]  è»¢é€æ–¹å‘ï¼ˆ0:ç¾åœ¨è¡¨ç¤º 1:å³éš£ -1:å·¦éš£ï¼‰
+ * @param   charPos		[out] ã‚­ãƒ£ãƒ©è»¢é€ä½ç½®ï¼ˆãƒãƒ³ã‚¯å…ˆé ­ã‹ã‚‰ã‚­ãƒ£ãƒ©å˜ä½ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‰
+ * @param   scrnPos		[out] ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãå‡ºã—é–‹å§‹ï¼¸åº§æ¨™
+ * @param   palPos		[out] ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆï¼ˆ0ã€œFï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -240,12 +240,12 @@ static void GetTrayGraphicTransPos( const TRAY_VIEW_WORK* wk, int vector, u32* c
 
 //------------------------------------------------------------------------------
 /**
- * ƒgƒŒƒC•ÇŽ†ƒOƒ‰ƒtƒBƒbƒN‚ÌVRAM“]‘—
+ * ãƒˆãƒ¬ã‚¤å£ç´™ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®VRAMè»¢é€
  *
- * @param   wk				ƒgƒŒƒC•`‰æƒ[ƒN
- * @param   trayParam		•ÇŽ†ƒiƒ“ƒo[
- * @param   pos				“]‘—ˆÊ’ui0:Œ»Ý•\Ž¦ 1:‰E—× -1:¶—×j
- * @param   completeFlag	TRUE‚¾‚ÆÊßÚ¯ÄÃÞ°À‚ÌVRAM“]‘—CƒAƒCƒRƒ“ì¬‚Ü‚Ås‚¤BFALSE‚¾‚Æ—¼•û‚â‚ç‚È‚¢
+ * @param   wk				ãƒˆãƒ¬ã‚¤æç”»ãƒ¯ãƒ¼ã‚¯
+ * @param   trayParam		å£ç´™ãƒŠãƒ³ãƒãƒ¼
+ * @param   pos				è»¢é€ä½ç½®ï¼ˆ0:ç¾åœ¨è¡¨ç¤º 1:å³éš£ -1:å·¦éš£ï¼‰
+ * @param   completeFlag	TRUEã ã¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®VRAMè»¢é€ï¼Œã‚¢ã‚¤ã‚³ãƒ³ä½œæˆã¾ã§è¡Œã†ã€‚FALSEã ã¨ä¸¡æ–¹ã‚„ã‚‰ãªã„
  *
  */
 //------------------------------------------------------------------------------
@@ -261,7 +261,7 @@ void BoxAppView_TrayWrite( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayParam, int
 
 	if( completeFlag )
 	{
-		// •\Ž¦’†ƒgƒŒƒC‚É‚Í•’Ê‚É‘S•`‰æ‚·‚é
+		// è¡¨ç¤ºä¸­ãƒˆãƒ¬ã‚¤ã«ã¯æ™®é€šã«å…¨æç”»ã™ã‚‹
 		if( pos == 0 )
 		{
 			AddTrayIcon( wk, wk->iconSys, trayParam->number, wk->imgPos, pos*TRAY_SCROLL_LEN, wk->icon[wk->imgPos] );
@@ -271,12 +271,12 @@ void BoxAppView_TrayWrite( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayParam, int
 
 //------------------------------------------------------------------
 /**
- * •ÇŽ†ÊßÚ¯ÄÃÞ°À‚ð“Ç‚Ýž‚ÝAƒtƒF[ƒh—p‚Ì‰ÁH‚ð‚µ‚Äƒ[ƒN‚É•Û‘¶B•K—v‚ ‚ê‚ÎVram“]‘—‚às‚¤
+ * å£ç´™ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿ã€ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ã®åŠ å·¥ã‚’ã—ã¦ãƒ¯ãƒ¼ã‚¯ã«ä¿å­˜ã€‚å¿…è¦ã‚ã‚Œã°Vramè»¢é€ã‚‚è¡Œã†
  *
- * @param   wk				ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   trayParam		ƒgƒŒƒCƒpƒ‰ƒ[ƒ^
- * @param   pos				“]‘—æƒpƒŒƒbƒgƒiƒ“ƒo
- * @param   transFlag		“]‘—ƒtƒ‰ƒO
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayParam		ãƒˆãƒ¬ã‚¤ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param   pos				è»¢é€å…ˆãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒ
+ * @param   transFlag		è»¢é€ãƒ•ãƒ©ã‚°
  */
 //------------------------------------------------------------------
 static void LoadWallPaperPalette( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayParam, int pos, BOOL transFlag )
@@ -284,7 +284,7 @@ static void LoadWallPaperPalette( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayPar
 	NNSG2dPaletteData* palData;
 	void* loadPtr;
 
-	// ƒpƒŒƒbƒgƒf[ƒ^‚Í“]‘—ŒãAƒtƒF[ƒh‚É•K—v‚Èƒf[ƒ^‚ðì¬‚µ‚Ä•Û‘¶‚µ‚Ä‚¨‚­
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã¯è»¢é€å¾Œã€ãƒ•ã‚§ãƒ¼ãƒ‰ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦ä¿å­˜ã—ã¦ãŠã
 	loadPtr = ArcUtil_PalDataGet(ARC_BOX_GRA, WallPaperArcID[trayParam->wallPaper].nclr, &palData, HEAPID_BOX_VIEW);
 	if(loadPtr)
 	{
@@ -310,7 +310,7 @@ static void LoadWallPaperPalette( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayPar
 }
 //------------------------------------------------------------------
 /**
- * •ÇŽ†cgxƒf[ƒ^‚ð“Ç‚Ýž‚ÝA“]‘—
+ * å£ç´™cgxãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿ã€è»¢é€
  *
  * @param   wk		
  * @param   trayParam		
@@ -321,7 +321,7 @@ static void LoadWallPaperPalette( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayPar
 static void LoadWallPaperCgx( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayParam, int ofs )
 {
 	void* loadPtr;
-	// ƒLƒƒƒ‰ƒf[ƒ^‚Í“Ç‚Ýž‚ñ‚¾‚ ‚ÆBitmapWin‹@”\‚ðŽg‚Á‚ÄƒgƒŒƒC–¼‚ð•`‚«‚±‚ÝA‚»‚ê‚ð“]‘—‚·‚é
+	// ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã¯èª­ã¿è¾¼ã‚“ã ã‚ã¨BitmapWinæ©Ÿèƒ½ã‚’ä½¿ã£ã¦ãƒˆãƒ¬ã‚¤åã‚’æãã“ã¿ã€ãã‚Œã‚’è»¢é€ã™ã‚‹
 	loadPtr = ArcUtil_Load(ARC_BOX_GRA, WallPaperArcID[trayParam->wallPaper].ncgr, TRUE, HEAPID_BOX_VIEW, ALLOC_BOTTOM);
 	if( loadPtr != NULL ){
 		NNSG2dCharacterData* charData;
@@ -369,7 +369,7 @@ static void LoadWallPaperScreen( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayPara
 {
 	void* scrnSrc;
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚Í“Ç‚Ýž‚ñ‚¾ŒãAƒLƒƒƒ‰•ƒpƒŒƒbƒgˆÊ’u‚É‰ž‚¶‚Ä‘‚«Š·‚¦‚Ä“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã¯èª­ã¿è¾¼ã‚“ã å¾Œã€ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆä½ç½®ã«å¿œã˜ã¦æ›¸ãæ›ãˆã¦è»¢é€
 	scrnSrc = ArcUtil_Load(ARC_BOX_GRA, WallPaperArcID[trayParam->wallPaper].nscr, TRUE, HEAPID_BOX_VIEW, ALLOC_BOTTOM);
 	if( scrnSrc )
 	{
@@ -392,10 +392,10 @@ static void LoadWallPaperScreen( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayPara
 
 //------------------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒXƒNƒ[ƒ‹ŠJŽn
+ * ãƒˆãƒ¬ã‚¤ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é–‹å§‹
  *
- * @param   wk			ƒgƒŒƒC•`‰æƒ[ƒN
- * @param   direction	•ûŒüi1:‰E‚Ö -1:¶‚Öj
+ * @param   wk			ãƒˆãƒ¬ã‚¤æç”»ãƒ¯ãƒ¼ã‚¯
+ * @param   direction	æ–¹å‘ï¼ˆ1:å³ã¸ -1:å·¦ã¸ï¼‰
  *
  */
 //------------------------------------------------------------------------------
@@ -410,7 +410,7 @@ void BoxAppView_TrayScrollSet( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayParam,
 	wk->scrollOutIcon = wk->imgPos;
 
 
-	// ƒXƒNƒ[ƒ‹‚µ‚½Œã‚Í‰æ‘œ“]‘—ˆÊ’u‚ª•Ï‚í‚é
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã—ãŸå¾Œã¯ç”»åƒè»¢é€ä½ç½®ãŒå¤‰ã‚ã‚‹
 	wk->scrnPos += (TRAY_WRITE_DIFF * direction);
 	wk->scrnPos &= 63;
 	wk->imgPos ^= 1;
@@ -431,11 +431,11 @@ void BoxAppView_TrayScrollSet( TRAY_VIEW_WORK* wk, const BOXAPP_TRAY* trayParam,
 }
 //------------------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒXƒNƒ[ƒ‹I—¹‘Ò‚¿
+ * ãƒˆãƒ¬ã‚¤ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†å¾…ã¡
  *
- * @param   wk			ƒgƒŒƒC•`‰æƒ[ƒN
+ * @param   wk			ãƒˆãƒ¬ã‚¤æç”»ãƒ¯ãƒ¼ã‚¯
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------------------
 BOOL BoxAppView_TrayScrollWait( TRAY_VIEW_WORK* wk )
@@ -445,7 +445,7 @@ BOOL BoxAppView_TrayScrollWait( TRAY_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒXƒNƒ[ƒ‹ƒƒCƒ“ƒ^ƒXƒN
+ * ãƒˆãƒ¬ã‚¤ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -474,7 +474,7 @@ static void TrayScrollTask( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒXƒNƒ[ƒ‹VBlankƒ^ƒXƒN
+ * ãƒˆãƒ¬ã‚¤ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«VBlankã‚¿ã‚¹ã‚¯
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -515,10 +515,10 @@ static void TrayScrollVintrTask( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * ƒXƒNƒ[ƒ‹‚·‚éƒAƒCƒRƒ“‚ÌˆÊ’u‚Ì‚ÝŒvŽZ‚µ‚Äƒ[ƒN‚É•Û‘¶
+ * ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ä½ç½®ã®ã¿è¨ˆç®—ã—ã¦ãƒ¯ãƒ¼ã‚¯ã«ä¿å­˜
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   xofs		•`‰æ‚wÀ•WƒIƒtƒZƒbƒg
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   xofs		æç”»ï¼¸åº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  */
 //------------------------------------------------------------------
@@ -552,7 +552,7 @@ static void AddScrollIconPos( TRAY_VIEW_WORK* wk, fx32 scrollValue )
 
 	for( x = 0; x < BOX_MAX_COLUMN; x++ )
 	{
-		// ‘OƒtƒŒ[ƒ€‚Å•\Ž¦”ÍˆÍŠO‚ÉÁ‚¦‚Ä‚¢‚éƒAƒCƒRƒ“‚Ííœ
+		// å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã§è¡¨ç¤ºç¯„å›²å¤–ã«æ¶ˆãˆã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã¯å‰Šé™¤
 		intX = wk->scrollOutIconXpos[1][x] >> FX32_SHIFT;
 		if(intX <= wk->iconVisibleXmin || intX >= wk->iconVisibleXmax)
 		{
@@ -650,7 +650,7 @@ static void ReadIconCharData( TRAY_VIEW_WORK* wk, u32 trayno )
 
 //--------------------------------------
 /**
- * •ÇŽ†‹P“x•ÏXƒ^ƒXƒN—pƒ[ƒN
+ * å£ç´™è¼åº¦å¤‰æ›´ã‚¿ã‚¹ã‚¯ç”¨ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------
 typedef struct {
@@ -663,7 +663,7 @@ typedef struct {
 }WALLPAPER_BRIGHTCHANGE_WORK;
 
 enum {
-	WALLPAPER_BRIGHTCHANGE_STEP_WAIT = 2,	// ‚PƒXƒeƒbƒv‚²‚Æ‚É‚±‚ê‚¾‚¯ƒEƒFƒCƒg“ü‚ê‚é
+	WALLPAPER_BRIGHTCHANGE_STEP_WAIT = 2,	// ï¼‘ã‚¹ãƒ†ãƒƒãƒ—ã”ã¨ã«ã“ã‚Œã ã‘ã‚¦ã‚§ã‚¤ãƒˆå…¥ã‚Œã‚‹
 };
 
 
@@ -770,9 +770,9 @@ static void SetupWallPaperGraphicTransTask( TRAY_VIEW_WORK* wk )
 
 //------------------------------------------------------------------------------
 /**
- * •ÇŽ†•ÏXŠJŽn
+ * å£ç´™å¤‰æ›´é–‹å§‹
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------------------
@@ -783,11 +783,11 @@ void BoxAppView_TrayChangeWallPaperStart( TRAY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------------------
 /**
- * •ÇŽ†•ÏXI—¹‘Ò‚¿
+ * å£ç´™å¤‰æ›´çµ‚äº†å¾…ã¡
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------------------
 BOOL BoxAppView_TrayChangeWallPaperWait( TRAY_VIEW_WORK* wk )
@@ -801,8 +801,8 @@ BOOL BoxAppView_TrayChangeWallPaperWait( TRAY_VIEW_WORK* wk )
 		break;
 
 	case 1:
-		// «•ÇŽ†‘‚«ž‚Ý‚ð‚¢‚Á‚Ø‚ñ‚É‚â‚é‚ÆAƒpƒV‚é‚±‚Æ‚ª‚ ‚éB
-		//   Pal,Cgx,Scrn ‚Ì‚R—v‘f‚É•ªŠ„‚µ‚Äˆ—‚ðs‚Á‚½•û‚ª—Ç‚¢‚©‚àHH
+		// â†“å£ç´™æ›¸ãè¾¼ã¿ã‚’ã„ã£ãºã‚“ã«ã‚„ã‚‹ã¨ã€ãƒ‘ã‚·ã‚‹ã“ã¨ãŒã‚ã‚‹ã€‚
+		//   Pal,Cgx,Scrn ã®ï¼“è¦ç´ ã«åˆ†å‰²ã—ã¦å‡¦ç†ã‚’è¡Œã£ãŸæ–¹ãŒè‰¯ã„ã‹ã‚‚ï¼Ÿï¼Ÿ
 		SetupWallPaperGraphicTransTask( wk );
 //		BoxAppView_TrayWrite( wk, BoxAppVpara_GetTrayData( wk->vpara ), 0, FALSE );
 		wk->wpseq++;
@@ -832,12 +832,12 @@ BOOL BoxAppView_TrayChangeWallPaperWait( TRAY_VIEW_WORK* wk )
 
 //------------------------------------------------------------------------------
 /**
- * ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ÌŽw’èˆÊ’uƒAƒCƒRƒ“ƒf[ƒ^‚ðƒoƒbƒtƒ@‚ÉˆÚ“®‚³‚¹‚é
+ * ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®æŒ‡å®šä½ç½®ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«ç§»å‹•ã•ã›ã‚‹
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   pos		ƒ{ƒbƒNƒX“à‚ÌˆÊ’u
- * @param   charpos	V‚µ‚¢ƒLƒƒƒ‰ƒf[ƒ^“]‘—æi—Ìˆææ“ª‚©‚ç‚ÌƒLƒƒƒ‰’PˆÊƒIƒtƒZƒbƒgj^ƒ}ƒCƒiƒX‚È‚ç‚»‚Ì‚Ü‚Ü‚É‚·‚é
- * @param   dst		ƒAƒCƒRƒ“ƒf[ƒ^ˆÚ“®æ
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos		ãƒœãƒƒã‚¯ã‚¹å†…ã®ä½ç½®
+ * @param   charpos	æ–°ã—ã„ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿è»¢é€å…ˆï¼ˆé ˜åŸŸå…ˆé ­ã‹ã‚‰ã®ã‚­ãƒ£ãƒ©å˜ä½ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‰ï¼ãƒžã‚¤ãƒŠã‚¹ãªã‚‰ãã®ã¾ã¾ã«ã™ã‚‹
+ * @param   dst		ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ç§»å‹•å…ˆ
  *
  */
 //------------------------------------------------------------------------------
@@ -850,7 +850,7 @@ void BoxAppView_TrayMoveIconData( TRAY_VIEW_WORK* wk, u32 pos, s32 charpos, BOX_
 
 //------------------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒf[ƒ^‚ðƒJƒŒƒ“ƒg‚ÌŽw’èˆÊ’uƒoƒbƒtƒ@‚ÉˆÚ“®‚³‚¹‚é
+ * ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚«ãƒ¬ãƒ³ãƒˆã®æŒ‡å®šä½ç½®ãƒãƒƒãƒ•ã‚¡ã«ç§»å‹•ã•ã›ã‚‹
  *
  * @param   wk		
  * @param   pos		
@@ -875,7 +875,7 @@ void BoxAppView_TrayPutIconData( TRAY_VIEW_WORK* wk, u32 pos, const BOX_ICON_WOR
 }
 //------------------------------------------------------------------------------
 /**
- * ƒJƒŒƒ“ƒgŽw’èˆÊ’u‚ÌƒAƒCƒRƒ“ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚ð•Ô‚·
+ * ã‚«ãƒ¬ãƒ³ãƒˆæŒ‡å®šä½ç½®ã®ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
  * @param   wk		
  * @param   pos		
@@ -890,9 +890,9 @@ BOX_ICON_WORK* BoxAppView_TrayGetIconData( TRAY_VIEW_WORK* wk, u32 pos )
 
 //------------------------------------------------------------------------------
 /**
- * Œ»Ý‚ÌƒJƒŒƒ“ƒgƒ{ƒbƒNƒXƒf[ƒ^‚ðŒ©‚ÄV‚µ‚­’Ç‰Á‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒRƒ“‚ðì‚é
+ * ç¾åœ¨ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è¦‹ã¦æ–°ã—ãè¿½åŠ ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä½œã‚‹
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------------------
@@ -930,11 +930,11 @@ void BoxAppView_TrayUpdateIcon( TRAY_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒC“à‚ÌˆÊ’u‚©‚çƒAƒCƒRƒ“ƒAƒNƒ^[‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ð•Ô‚·
+ * ãƒˆãƒ¬ã‚¤å†…ã®ä½ç½®ã‹ã‚‰ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’è¿”ã™
  *
- * @param   pos		ƒgƒŒƒC“àˆÊ’u
+ * @param   pos		ãƒˆãƒ¬ã‚¤å†…ä½ç½®
  *
- * @retval  u32		ƒAƒNƒ^[ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @retval  u32		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //------------------------------------------------------------------
 static u32 GetIconActorPri( u32 pos )
@@ -951,14 +951,14 @@ static u32 GetIconActorPri( u32 pos )
 }
 //------------------------------------------------------------------------------
 /**
- * Žw’èƒ{ƒbƒNƒXƒAƒCƒRƒ“‘S•`‰æ
+ * æŒ‡å®šãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¤ã‚³ãƒ³å…¨æç”»
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   iconSys		ƒAƒCƒRƒ“ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param   box			ƒ{ƒbƒNƒXƒiƒ“ƒo[
- * @param   vramPos		ncgƒf[ƒ^‚Ì“]‘—æVRAMi0 or 1j
- * @param   xofs		•`‰æ‚wÀ•WƒIƒtƒZƒbƒg
- * @param   icon		ƒAƒCƒRƒ“ì¬æƒ[ƒNƒ|ƒCƒ“ƒ^i‚Pƒ{ƒbƒNƒX•ªˆÈã‚Ì”z—ñIj
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   iconSys		ã‚¢ã‚¤ã‚³ãƒ³ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param   box			ãƒœãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param   vramPos		ncgãƒ‡ãƒ¼ã‚¿ã®è»¢é€å…ˆVRAMï¼ˆ0 or 1ï¼‰
+ * @param   xofs		æç”»ï¼¸åº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   icon		ã‚¢ã‚¤ã‚³ãƒ³ä½œæˆå…ˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ï¼ˆï¼‘ãƒœãƒƒã‚¯ã‚¹åˆ†ä»¥ä¸Šã®é…åˆ—ï¼ï¼‰
  *
  */
 //------------------------------------------------------------------------------
@@ -996,10 +996,10 @@ static void AddTrayIcon( TRAY_VIEW_WORK* wk, BOX_ICON_SYS* iconSys, u32 box, u32
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒXƒNƒ[ƒ‹ˆ—i‰æ–Ê‚©‚ço‚Äs‚­j
+ * ã‚¢ã‚¤ã‚³ãƒ³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†ï¼ˆç”»é¢ã‹ã‚‰å‡ºã¦è¡Œãï¼‰
  *
- * @param   val			ƒXƒNƒ[ƒ‹ˆÚ“®—Ê
- * @param   icon		ƒAƒCƒRƒ“ƒ[ƒN
+ * @param   val			ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç§»å‹•é‡
+ * @param   icon		ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -1024,10 +1024,10 @@ static void IconScrollOut( TRAY_VIEW_WORK* wk, BOX_ICON_WORK* icon, u32 vcnt )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒXƒNƒ[ƒ‹ˆ—i‰æ–Ê‚É“ü‚Á‚Ä‚­‚éj
+ * ã‚¢ã‚¤ã‚³ãƒ³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†ï¼ˆç”»é¢ã«å…¥ã£ã¦ãã‚‹ï¼‰
  *
- * @param   val			ƒXƒNƒ[ƒ‹ˆÚ“®—Ê
- * @param   icon		ƒAƒCƒRƒ“ƒ[ƒN
+ * @param   val			ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç§»å‹•é‡
+ * @param   icon		ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -1052,9 +1052,9 @@ static void IconScrollIn( TRAY_VIEW_WORK* wk, BOX_ICON_WORK* icon, u32 vcnt )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒXƒNƒ[ƒ‹Œã‚ÌˆÊ’u‚É®—ñ
+ * ã‚¢ã‚¤ã‚³ãƒ³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¾Œã®ä½ç½®ã«æ•´åˆ—
  *
- * @param   icon		ƒAƒCƒRƒ“ƒ[ƒN
+ * @param   icon		ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -1082,20 +1082,20 @@ static void IconScrollEnd( TRAY_VIEW_WORK* wk, BOX_ICON_WORK* icon )
 }
 //------------------------------------------------------------------
 /**
- * Žw’è•ÇŽ†ƒXƒNƒŠ[ƒ“•`‰æ
+ * æŒ‡å®šå£ç´™ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»
  *
- * @param   dst			•`‰ææƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@
- * @param   src			•`‰æŒ³ƒXƒNƒŠ[ƒ“ƒf[ƒ^
- * @param   xpos		‘‚«o‚µŠJŽn‚w
- * @param   charOfs		ƒLƒƒƒ‰ƒiƒ“ƒo[æ“ª
- * @param   palPos		ƒpƒŒƒbƒgƒiƒ“ƒo[
+ * @param   dst			æç”»å…ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡
+ * @param   src			æç”»å…ƒã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @param   xpos		æ›¸ãå‡ºã—é–‹å§‹ï¼¸
+ * @param   charOfs		ã‚­ãƒ£ãƒ©ãƒŠãƒ³ãƒãƒ¼å…ˆé ­
+ * @param   palPos		ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
 static void TrayScrnWrite( u16* dst, const u16* src, u32 xpos, u32 charOfs, u32 palPos )
 {
 	enum {
-		SCRN_BANK_ELEMS = 1024,	// ‚Pƒoƒ“ƒN1024ƒLƒƒƒ‰•ª‚È‚Ì‚Å
+		SCRN_BANK_ELEMS = 1024,	// ï¼‘ãƒãƒ³ã‚¯1024ã‚­ãƒ£ãƒ©åˆ†ãªã®ã§
 		SCRN_LINE_ELEMS = 32,
 	};
 	u32 x, y;
@@ -1147,10 +1147,10 @@ static void TrayScrnWrite( u16* dst, const u16* src, u32 xpos, u32 charOfs, u32 
 
 //------------------------------------------------------------------------------
 /**
- * Žw’èˆÊ’u‚ÌƒAƒCƒRƒ““¦‚ª‚·ˆ—ŠJŽn
+ * æŒ‡å®šä½ç½®ã®ã‚¢ã‚¤ã‚³ãƒ³é€ƒãŒã™å‡¦ç†é–‹å§‹
  *
- * @param   wk			ƒgƒŒƒC•`‰æƒ[ƒN
- * @param   pos			ƒAƒCƒRƒ“ˆÊ’u
+ * @param   wk			ãƒˆãƒ¬ã‚¤æç”»ãƒ¯ãƒ¼ã‚¯
+ * @param   pos			ã‚¢ã‚¤ã‚³ãƒ³ä½ç½®
  *
  */
 //------------------------------------------------------------------------------
@@ -1163,11 +1163,11 @@ void BoxAppView_TrayIconReleaseStart( TRAY_VIEW_WORK* wk, u32 pos )
 }
 //------------------------------------------------------------------------------
 /**
- * Žw’èˆÊ’u‚ÌƒAƒCƒRƒ““¦‚ª‚·ˆ—I—¹‘Ò‚¿
+ * æŒ‡å®šä½ç½®ã®ã‚¢ã‚¤ã‚³ãƒ³é€ƒãŒã™å‡¦ç†çµ‚äº†å¾…ã¡
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------------------
 BOOL BoxAppView_TrayIconReleaseWait( TRAY_VIEW_WORK* wk )
@@ -1209,9 +1209,9 @@ BOOL BoxAppView_TrayIconReleaseWait( TRAY_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“‚ði‚èž‚Ýƒ‚[ƒh•\Ž¦‚É‘Î‰ž
+ * ã‚¢ã‚¤ã‚³ãƒ³ã‚’çµžã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰è¡¨ç¤ºã«å¯¾å¿œ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1232,11 +1232,11 @@ void BoxAppView_TrayIconLimitModeSet( TRAY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“‚ÌƒAƒCƒeƒ€î•ñ‚ðXV
+ * ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã‚’æ›´æ–°
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   pos			ƒAƒCƒRƒ“ˆÊ’u
- * @param   itemNumber	ƒAƒCƒeƒ€ƒiƒ“ƒo[
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos			ã‚¢ã‚¤ã‚³ãƒ³ä½ç½®
+ * @param   itemNumber	ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
@@ -1252,10 +1252,10 @@ void BoxAppView_TrayIconUpdateItem( TRAY_VIEW_WORK* wk, u32 pos, u32 itemNumber 
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ì‚Ý‚ðXV
+ * ã‚¢ã‚¤ã‚³ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã¿ã‚’æ›´æ–°
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   pos			ƒAƒCƒRƒ“ˆÊ’u
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos			ã‚¢ã‚¤ã‚³ãƒ³ä½ç½®
  *
  */
 //------------------------------------------------------------------
@@ -1270,9 +1270,9 @@ void BoxAppView_TrayIconUpdateGraphic( TRAY_VIEW_WORK* wk, u32 pos )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒCƒ“ƒg‚µ‚Ä‚¢‚éƒAƒCƒRƒ“ƒ}[ƒLƒ“ƒOƒrƒbƒgƒtƒ‰ƒOi“à•”ƒXƒe[ƒ^ƒXj‚ð‘‚«Š·‚¦
+ * ãƒã‚¤ãƒ³ãƒˆã—ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ãƒžãƒ¼ã‚­ãƒ³ã‚°ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°ï¼ˆå†…éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼‰ã‚’æ›¸ãæ›ãˆ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1293,9 +1293,9 @@ void BoxAppView_TrayIconMarkUpdate( TRAY_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ”ÍˆÍ‘I‘ð‚Ì‘ÎÛ‚É‚È‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚ðƒJƒ‰[•ÏX
+ * ç¯„å›²é¸æŠžã®å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã‚’ã‚«ãƒ©ãƒ¼å¤‰æ›´
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------

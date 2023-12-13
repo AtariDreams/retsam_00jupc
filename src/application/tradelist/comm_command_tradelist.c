@@ -1,9 +1,9 @@
 //=============================================================================
 /**
  * @file	comm_tradelist.c
- * @brief	ƒf[ƒ^‚ğ‘—‚é‚½‚ß‚ÌƒRƒ}ƒ“ƒh‚ğƒe[ƒuƒ‹‰»‚µ‚Ä‚¢‚Ü‚·
- *          ƒtƒB[ƒ‹ƒh—p‚Å‚·
- *          comm_command_field.h ‚Ì enum ‚Æ“¯‚¶•À‚Ñ‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+ * @brief	ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹ãŸã‚ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«åŒ–ã—ã¦ã„ã¾ã™
+ *          ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ã§ã™
+ *          comm_command_field.h ã® enum ã¨åŒã˜ä¸¦ã³ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
  * @author	Akito Mori
  * @date    2005.12.21
  */
@@ -48,16 +48,16 @@ static int _getSpRibbonSize(void);
 static const CommPacketTbl _CommPacketTbl[] = {
 	
 {CommTradeListPokemonData,_getPokePartySplitSize, _getPokePartyRecvBuff}, // CT_POKEDATA
-{CommTradeListCusorPos,   _getOne},               // CT_CURSOR_POS,		///< ƒJ[ƒ\ƒ‹ˆÊ’uî•ñ
-{CommTradeListDecide,     _getOne},               // CT_TRADE_DECIDE,		///< Œˆ’è
-{CommTradeListResultYes,  _getOne},               // CT_TRADE_YES,		///< ‚Í‚¢
-{CommTradeListResultNo,	  _getOne},               // CT_TRADE_NO,			///< ‚¢‚¢‚¦
-{CommTradeListTradeStart, _getOne},               // CT_TRADE_START,		///< ŒğŠ·ƒfƒ‚‚Ö
-{CommTradeListFriendList, _getFriendListSize,     _getPokePartyRecvBuff },	// CT_FRIENDLIST,	///< ‚µ‚è‚ ‚¢ƒOƒ‹[ƒvƒf[ƒ^
-{CommTradeListPerapVoice, _getPerapVoiceSize,     _getPokePartyRecvBuff },	// CT_FRIENDLIST,	///< ƒyƒ‰ƒbƒvƒ{ƒCƒXƒf[ƒ^
-{CommTradeListEnd,		  _getZero},              // CT_TRADE_END,		///< I—¹
-{CommTradeListSaveWait,	  _getOne},               // CT_SAVE_WAIT_TIME,	///< ƒZ[ƒu‚Ü‚Å‚ÌƒEƒFƒCƒg
-{CommTradeListRibbonInfo, _getSpRibbonSize},      // CT_SP_RIBBON,		///< Šg’£ƒŠƒ{ƒ“î•ñ
+{CommTradeListCusorPos,   _getOne},               // CT_CURSOR_POS,		///< ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®æƒ…å ±
+{CommTradeListDecide,     _getOne},               // CT_TRADE_DECIDE,		///< æ±ºå®š
+{CommTradeListResultYes,  _getOne},               // CT_TRADE_YES,		///< ã¯ã„
+{CommTradeListResultNo,	  _getOne},               // CT_TRADE_NO,			///< ã„ã„ãˆ
+{CommTradeListTradeStart, _getOne},               // CT_TRADE_START,		///< äº¤æ›ãƒ‡ãƒ¢ã¸
+{CommTradeListFriendList, _getFriendListSize,     _getPokePartyRecvBuff },	// CT_FRIENDLIST,	///< ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿
+{CommTradeListPerapVoice, _getPerapVoiceSize,     _getPokePartyRecvBuff },	// CT_FRIENDLIST,	///< ãƒšãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿
+{CommTradeListEnd,		  _getZero},              // CT_TRADE_END,		///< çµ‚äº†
+{CommTradeListSaveWait,	  _getOne},               // CT_SAVE_WAIT_TIME,	///< ã‚»ãƒ¼ãƒ–ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+{CommTradeListRibbonInfo, _getSpRibbonSize},      // CT_SP_RIBBON,		///< æ‹¡å¼µãƒªãƒœãƒ³æƒ…å ±
 
 };
 
@@ -79,7 +79,7 @@ void CommCommandTradeListInitialize(void* pWork)
 
 //------------------------------------------------------------------
 /**
- * ’ÊM‚Åæ“¾‚µ‚½ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ¶‰E”½“]‚³‚¹‚éiu‚¨‚í‚èv‚Í‚»‚Ì‚Ü‚Üj
+ * é€šä¿¡ã§å–å¾—ã—ãŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å·¦å³åè»¢ã•ã›ã‚‹ï¼ˆã€ŒãŠã‚ã‚Šã€ã¯ãã®ã¾ã¾ï¼‰
  *
  * @param   pos		
  *
@@ -88,21 +88,21 @@ void CommCommandTradeListInitialize(void* pWork)
 //------------------------------------------------------------------
 static int PositionChangeLR(u8 pos)
 {
-	// ‚¨‚í‚è
+	// ãŠã‚ã‚Š
 	if(pos==12){
 		return 12;
 	}
-	// ¶‘¤‚Í‰E‘¤‚É
+	// å·¦å´ã¯å³å´ã«
 	if(pos<6){
 		return pos+6;
 	}
-	//c‚è‰E‘¤‚È‚Ì‚Å¶‘¤‚É
+	//æ®‹ã‚Šå³å´ãªã®ã§å·¦å´ã«
 	return pos-6;
 }
 
 //------------------------------------------------------------------
 /**
- * •ªŠ„‚µ‚Ä‘—‚ç‚ê‚Ä‚­‚éPOKEPARTY‚ğƒRƒs[‚·‚éŠÖ”
+ * åˆ†å‰²ã—ã¦é€ã‚‰ã‚Œã¦ãã‚‹POKEPARTYã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹é–¢æ•°
  *
  * @param   party		
  * @param   buf		
@@ -130,8 +130,8 @@ static void CopyPokePartySplitData(POKEPARTY *party, void *buf, int no)
 
 //==============================================================================
 /**
- * ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğóM‚µŠi”[BŸ‚Ìƒf[ƒ^‘—M‚ğŒÄ‚Ño‚·(eqŒğŒİ‚Ì‘—M‚É‚È‚èj
- * ”ìŒq‚¬‚É‚P‚Q‘Ì•ª‚ğ‘—M‚·‚é‚±‚Æ‚É‚È‚é‚Í‚¸
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—æ ¼ç´ã€‚æ¬¡ã®ãƒ‡ãƒ¼ã‚¿é€ä¿¡ã‚’å‘¼ã³å‡ºã™(è¦ªå­äº¤äº’ã®é€ä¿¡ã«ãªã‚Šï¼‰
+ * æ•°ç ç¹‹ãã«ï¼‘ï¼’ä½“åˆ†ã‚’é€ä¿¡ã™ã‚‹ã“ã¨ã«ãªã‚‹ã¯ãš
  * 
  * @param   netID		
  * @param   size		
@@ -148,18 +148,18 @@ void CommTradeListPokemonData(int netID, int size, void* pBuff, void* pWork)
 
 
 
-	// óM‚µ‚½ƒf[ƒ^‚ª©•ª‚Ì‚h‚c‚Æˆá‚¤‚Ì‚Å‚ ‚ê‚Îæ‚è‚Ş
+	// å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ãŒè‡ªåˆ†ã®ï¼©ï¼¤ã¨é•ã†ã®ã§ã‚ã‚Œã°å–ã‚Šè¾¼ã‚€
 	if(netID!=CommGetCurrentID()){
 
-		OS_Printf("ƒ|ƒPƒ‚ƒ“ netID = %d  no=%d, %d/%d  pokesize=%d\n",netID,tlw->exchange_friend_count,(tlw->exchange_friend_count+1)*POKEPARTY_SEND_ONCE_SIZE,PokeParty_GetWorkSize(),PokemonParam_GetWorkSize());
+		OS_Printf("ãƒã‚±ãƒ¢ãƒ³ netID = %d  no=%d, %d/%d  pokesize=%d\n",netID,tlw->exchange_friend_count,(tlw->exchange_friend_count+1)*POKEPARTY_SEND_ONCE_SIZE,PokeParty_GetWorkSize(),PokemonParam_GetWorkSize());
 
-		// ƒ[ƒN‚ÌPokeParty‚ÉƒRƒs[
+		// ãƒ¯ãƒ¼ã‚¯ã®PokePartyã«ã‚³ãƒ”ãƒ¼
 //		PokeParty_Add(tlw->FriendPokeParty, (POKEMON_PARAM *)pBuff);
 //		CopyPokePartySplitData(tlw->FriendPokeParty,pBuff,tlw->exchange_friend_count++);
 		memcpy((void*)tlw->FriendPokeParty,pBuff,POKEPARTY_SEND_ONCE_SIZE);
 		tlw->exchange_friend_count++;
 
-		// ©•ª‚Ìƒf[ƒ^‚ğ‘—M‚·‚é
+		// è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹
 		if((tlw->exchange_friend_count)*POKEPARTY_SEND_ONCE_SIZE >= PokeParty_GetWorkSize()){
 //			tlw->exchange_finish = 1;
 			if(CommGetCurrentID()==1){
@@ -178,7 +178,7 @@ void CommTradeListPokemonData(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * ŒğŠ·ƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ğóM‚µ‚½‚Æ‚«‚ÌƒR[ƒ‹ƒoƒbƒN
+ * äº¤æ›ãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å—ä¿¡ã—ãŸã¨ãã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param   netID		
  * @param   size		
@@ -193,7 +193,7 @@ void CommTradeListCusorPos(int netID, int size, void* pBuff, void* pWork)
 	TRADELIST_WORK *tlw  = ((FIELDSYS_WORK*)pWork)->tradelist_work;
 	u8 *pos = (u8*)pBuff;
 
-	// ©•ª‚Å‘—‚Á‚½ƒf[ƒ^‚¶‚á‚È‚¢‚h‚c‚Ì‚ğÌ—p‚·‚é
+	// è‡ªåˆ†ã§é€ã£ãŸãƒ‡ãƒ¼ã‚¿ã˜ã‚ƒãªã„ï¼©ï¼¤ã®ã‚’æ¡ç”¨ã™ã‚‹
 	if(netID!=CommGetCurrentID()){
 		tlw->cursor_pos[1] =  PositionChangeLR( *pos );
 	}
@@ -203,7 +203,7 @@ void CommTradeListDecide(int netID, int size, void* pBuff, void* pWork)
 	TRADELIST_WORK *tlw  = ((FIELDSYS_WORK*)pWork)->tradelist_work;
 	u8 *data = (u8*)pBuff;
 
-	OS_Printf("ID%d :I—¹ƒRƒ}ƒ“ƒh“’…\n",netID);
+	OS_Printf("ID%d :çµ‚äº†ã‚³ãƒãƒ³ãƒ‰åˆ°ç€\n",netID);
 	
 	tlw->end_flag[netID] = *data;
 }
@@ -217,7 +217,7 @@ void CommTradeListResultNo(int netID, int size, void* pBuff, void* pWork)
 }
 //==============================================================================
 /**
- * ’ÊM‰æ–Ê‚ğŠJn‚·‚é
+ * é€šä¿¡ç”»é¢ã‚’é–‹å§‹ã™ã‚‹
  *
  * @param   netID		
  * @param   size		
@@ -231,7 +231,7 @@ void CommTradeListTradeStart(int netID, int size, void* pBuff, void* pWork)
 {
 	TRADELIST_WORK *tlw  = ((FIELDSYS_WORK*)pWork)->tradelist_work;
 	
-	OS_Printf("ŠJnƒf[ƒ^\n");
+	OS_Printf("é–‹å§‹ãƒ‡ãƒ¼ã‚¿\n");
 
 	tlw->exchange_finish=2;
 
@@ -245,7 +245,7 @@ void CommTradeListEnd(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * @brief   e‹@‚ªƒZ[ƒu‚Ü‚Å‚ÌƒEƒFƒCƒg‚ğ—”‚Å¶¬‚µ‚Ä“n‚µ‚Ä‚­‚ê‚é
+ * @brief   è¦ªæ©ŸãŒã‚»ãƒ¼ãƒ–ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆã‚’ä¹±æ•°ã§ç”Ÿæˆã—ã¦æ¸¡ã—ã¦ãã‚Œã‚‹
  *
  * @param   netID		
  * @param   size		
@@ -262,12 +262,12 @@ void CommTradeListSaveWait(int netID, int size, void* pBuff, void* pWork)
 
 	tlw->savePreWait = *wait;
 	
-	OS_TPrintf("e‹@‚©‚çƒZ[ƒu‚Ü‚Å‚ÌŠÔ‚ğ%dsync‘Ò‚Ä‚Æ’Ê’m‚ª—ˆ‚½\n", *wait*2);
+	OS_TPrintf("è¦ªæ©Ÿã‹ã‚‰ã‚»ãƒ¼ãƒ–ã¾ã§ã®æ™‚é–“ã‚’%dsyncå¾…ã¦ã¨é€šçŸ¥ãŒæ¥ãŸ\n", *wait*2);
 }
 
 //==============================================================================
 /**
- * @brief   Šg’£ƒŠƒ{ƒ“î•ñ‚ğ‚â‚è‚Æ‚è
+ * @brief   æ‹¡å¼µãƒªãƒœãƒ³æƒ…å ±ã‚’ã‚„ã‚Šã¨ã‚Š
  *
  * @param   netID		
  * @param   size		
@@ -284,19 +284,19 @@ void CommTradeListRibbonInfo(int netID, int size, void* pBuff, void* pWork)
 	u8 *mySpRibbon   = SaveData_GetSpRibbon( fsys->savedata );
 	u8 *recvSpRibbon = (u8*)pBuff;
 
-	OS_Printf("ID %d‚ÌƒŠƒ{ƒ“î•ñ‚ğóM\n", netID);
+	OS_Printf("ID %dã®ãƒªãƒœãƒ³æƒ…å ±ã‚’å—ä¿¡\n", netID);
 	
 	if(CommGetCurrentID()==netID){
-		// ©•ª‚Ìî•ñ‚Í‚¢‚ç‚È‚¢
+		// è‡ªåˆ†ã®æƒ…å ±ã¯ã„ã‚‰ãªã„
 		return;
 	}
 
 	for(i=0;i<HAIFU_RIBBON_MAX;i++){
-		// óM‚µ‚½î•ñ‚ª0‚¶‚á‚È‚­‚Ä
+		// å—ä¿¡ã—ãŸæƒ…å ±ãŒ0ã˜ã‚ƒãªãã¦
 		if(recvSpRibbon[i]!=0){
-			// ©•ª‚ÌƒŠƒ{ƒ“‚Æ‘Šè‚Ìî•ñ‚ªˆá‚¤‚Ì‚Å‚ ‚ê‚Î
+			// è‡ªåˆ†ã®ãƒªãƒœãƒ³ã¨ç›¸æ‰‹ã®æƒ…å ±ãŒé•ã†ã®ã§ã‚ã‚Œã°
 			if(mySpRibbon[i]!=recvSpRibbon[i]){
-				// ƒŠƒ{ƒ“î•ñ‚ğ‘‚«Š·‚¦‚é
+				// ãƒªãƒœãƒ³æƒ…å ±ã‚’æ›¸ãæ›ãˆã‚‹
 				mySpRibbon[i]=recvSpRibbon[i];
 			}
 		}
@@ -309,7 +309,7 @@ void CommTradeListRibbonInfo(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * $brief   ‚Æ‚à‚¾‚¿ƒOƒ‹[ƒv‚É“o˜^‚·‚é‚½‚ß‚Ìƒf[ƒ^‚ğóM‚µ‚½
+ * $brief   ã¨ã‚‚ã ã¡ã‚°ãƒ«ãƒ¼ãƒ—ã«ç™»éŒ²ã™ã‚‹ãŸã‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸ
  *
  * @param   netID		
  * @param   size		
@@ -323,7 +323,7 @@ void CommTradeListFriendList(int netID, int size, void* pBuff, void* pWork)
 {
 	TRADELIST_WORK *tlw  = ((FIELDSYS_WORK*)pWork)->tradelist_work;
 	
-	OS_Printf("‚µ‚è‚ ‚¢ƒOƒ‹[ƒvƒf[ƒ^“’…\n");
+	OS_Printf("ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿åˆ°ç€\n");
 	
 	if(CommGetCurrentID()!=netID){
 		FriendList_Update( tlw->friendlist, (FRIEND_LIST*)pBuff, 1, HEAPID_TRADELIST );
@@ -334,7 +334,7 @@ void CommTradeListFriendList(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * @brief   ƒyƒ‰ƒbƒvƒ{ƒCƒXƒf[ƒ^‚ÌóM
+ * @brief   ãƒšãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡
  *
  * @param   netID		
  * @param   size		
@@ -348,18 +348,18 @@ void CommTradeListPerapVoice(int netID, int size, void* pBuff, void* pWork)
 {
 	TRADELIST_WORK *tlw  = ((FIELDSYS_WORK*)pWork)->tradelist_work;
 	
-	OS_Printf("ƒyƒ‰ƒbƒvƒ{ƒCƒX“’…\n");
+	OS_Printf("ãƒšãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹åˆ°ç€\n");
 	
 	if(CommGetCurrentID()!=netID){
 		MI_CpuCopyFast( pBuff, tlw->perap_buf[netID], PERAPVOICE_LENGTH );
 		tlw->exchange_finish = 4;
-        CommSetWifiBothNet(FALSE); // wifi‚Ì’ÊM‚ğ“¯Šú‚©‚ç”ñ“¯Šú‚É•Ï‚¦‚é
+        CommSetWifiBothNet(FALSE); // wifiã®é€šä¿¡ã‚’åŒæœŸã‹ã‚‰éåŒæœŸã«å¤‰ãˆã‚‹
 	}
 	
 }
 
 //==============================================================================
-/// FIELDSYS_WORK‚ÉŠm•ÛÏ‚İƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^‚ğ“n‚· 
+/// FIELDSYS_WORKã«ç¢ºä¿æ¸ˆã¿ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æ¸¡ã™ 
 //==============================================================================
 void SetFieldSys_in_TradeWorkPtr(FIELDSYS_WORK* fsys, TRADELIST_WORK *tradelist_work)
 {
@@ -367,7 +367,7 @@ void SetFieldSys_in_TradeWorkPtr(FIELDSYS_WORK* fsys, TRADELIST_WORK *tradelist_
 }
 
 //==============================================================================
-/// PERAP_VOICE‚ÌƒTƒCƒY‚ğ•Ô‚·
+/// PERAP_VOICEã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 //==============================================================================
 static int _getPerapVoiceSize(void)
 {
@@ -375,7 +375,7 @@ static int _getPerapVoiceSize(void)
 }
 
 //==============================================================================
-/// Šg’£ƒŠƒ{ƒ“î•ñ‚ÌƒTƒCƒY‚ğ•Ô‚·
+/// æ‹¡å¼µãƒªãƒœãƒ³æƒ…å ±ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 //==============================================================================
 static int _getSpRibbonSize(void)
 {
@@ -384,7 +384,7 @@ static int _getSpRibbonSize(void)
 }
 
 //==============================================================================
-/// FRIEND_LIST‚ÌƒTƒCƒY‚ğ•Ô‚·
+/// FRIEND_LISTã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 //==============================================================================
 static int _getFriendListSize(void)
 {
@@ -392,7 +392,7 @@ static int _getFriendListSize(void)
 }
 
 //==============================================================================
-/// è‚¿ƒ|ƒPƒ‚ƒ“‚ÌƒTƒCƒY‚ğ•Ô‚·
+/// æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 //==============================================================================
 static int _getPokePartySplitSize(void)
 {
@@ -401,7 +401,7 @@ static int _getPokePartySplitSize(void)
 
 
 //==============================================================================
-/// óMƒoƒbƒtƒ@‚ğ“n‚·
+/// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’æ¸¡ã™
 //==============================================================================
 static u8* _getPokePartyRecvBuff( int netID, void* pWork, int size)
 {

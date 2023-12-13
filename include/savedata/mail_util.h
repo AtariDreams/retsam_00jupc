@@ -1,6 +1,6 @@
 /**
  *	@file	mail_util.h
- *	@brief	���[���f�[�^�Q�Ɨp�s���S�^��`�����[�e�B���e�B�֐���`
+ *	@brief	メールデータ参照用不完全型定義＆ユーティリティ関数定義
  *	@author	MiyukiIwasawa
  *	@date	06.02.09
  */
@@ -8,7 +8,7 @@
 #ifndef __H_MAIL_UTIL_H__
 #define __H_MAIL_UTIL_H__
 
-///�萔��`
+///定数定義
 #include "savedata/mail_def.h"
 
 #include "savedata/savedata_def.h"
@@ -17,45 +17,45 @@
 
 //------------------------------------------------------------
 /**
- * @brief	���[���Z�[�u�f�[�^�u���b�N�Ǘ��\���ւ̕s���S�^�|�C���^
+ * @brief	メールセーブデータブロック管理構造への不完全型ポインタ
  *
- * ���g�͌����Ȃ����ǃ|�C���^�o�R�ŎQ�Ƃ͂ł���
+ * 中身は見えないけどポインタ経由で参照はできる
  */
 //------------------------------------------------------------
 typedef struct _MAIL_BLOCK MAIL_BLOCK;
 
 //------------------------------------------------------------
 /**
- * @brief	���[���f�[�^�Ǘ��\���ւ̕s���S�^�|�C���^
+ * @brief	メールデータ管理構造への不完全型ポインタ
  *
- * ���g�͌����Ȃ����ǃ|�C���^�o�R�ŎQ�Ƃ͂ł���
+ * 中身は見えないけどポインタ経由で参照はできる
  */
 //------------------------------------------------------------
 typedef struct _MAIL_DATA MAIL_DATA;
 
 /**
- *	@brief	�󂢂Ă��郁�[���f�[�^ID���擾
+ *	@brief	空いているメールデータIDを取得
  *
- *	@param	id �ǉ����������[���u���b�NID
+ *	@param	id 追加したいメールブロックID
  *
- *	@return	int	�f�[�^��ǉ��ł���ꍇ�͎Q��ID
- *				�ǉ��ł��Ȃ��ꍇ�̓}�C�i�X�l���Ԃ�
+ *	@return	int	データを追加できる場合は参照ID
+ *				追加できない場合はマイナス値が返る
  */
 extern int MAIL_SearchNullID(MAIL_BLOCK* block,MAILBLOCK_ID id);
 
 /**
- *	@brief	���[���f�[�^���폜
+ *	@brief	メールデータを削除
  *
- *	@param	blockID	�u���b�N��ID
- *	@param	dataID	�f�[�^ID
+ *	@param	blockID	ブロックのID
+ *	@param	dataID	データID
  */
 extern void MAIL_DelMailData(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID);
 
 /**
- *	@brief	���[���f�[�^���Z�[�u�u���b�N�ɒǉ�
+ *	@brief	メールデータをセーブブロックに追加
  *
- *	�������n����MAIL_DATA�\���̌^�f�[�^�̒��g���Z�[�u�f�[�^�ɔ��f�����̂�
- *	�@�������ȃf�[�^�����Ȃ��悤�ɒ��ӁI
+ *	＊引き渡したMAIL_DATA構造体型データの中身がセーブデータに反映されるので
+ *	　おかしなデータを入れないように注意！
  */
 extern void MAIL_AddMailFormWork(MAIL_BLOCK* block,
 		MAILBLOCK_ID blockID,int dataID,MAIL_DATA* src);
@@ -63,189 +63,189 @@ extern void MAIL_AddMailFormWork(MAIL_BLOCK* block,
 
 //=============================================================
 /**
- *	���[���Z�[�u�f�[�^�u���b�N�A�N�Z�X�n�֐�
+ *	メールセーブデータブロックアクセス系関数
  */
 //=============================================================
 //
 /**
- *	@brief	�Z�[�u�f�[�^�u���b�N�ւ̃|�C���^���擾
+ *	@brief	セーブデータブロックへのポインタを取得
  */
 extern MAIL_BLOCK* SaveData_GetMailBlock(SAVEDATA* sv);
 
 /**
- *	@brief	���[���Z�[�u�f�[�^�u���b�N�T�C�Y�擾
+ *	@brief	メールセーブデータブロックサイズ取得
  *
- *	�����[���f�[�^��ʂ̃T�C�Y�ł͂Ȃ��̂Œ��ӁI
+ *	＊メールデータ一通のサイズではないので注意！
  */
 extern int MAIL_GetBlockWorkSize(void);
 
 /**
- *	@brief	���[���Z�[�u�f�[�^�u���b�N������
+ *	@brief	メールセーブデータブロック初期化
  */
 extern void MAIL_Init(MAIL_BLOCK* dat);
 
 /**
- *	@brief	�󂢂Ă��郁�[���f�[�^ID���擾
+ *	@brief	空いているメールデータIDを取得
  *
- *	@param	id �ǉ����������[���u���b�NID
+ *	@param	id 追加したいメールブロックID
  *
- *	@return	int	�f�[�^��ǉ��ł���ꍇ�͎Q��ID
- *				�ǉ��ł��Ȃ��ꍇ�̓}�C�i�X�l���Ԃ�
+ *	@return	int	データを追加できる場合は参照ID
+ *				追加できない場合はマイナス値が返る
  */
 extern int MAIL_SearchNullID(MAIL_BLOCK* block,MAILBLOCK_ID id);
 
 /**
- *	@brief	���[���f�[�^���폜
+ *	@brief	メールデータを削除
  *
- *	@param	blockID	�u���b�N��ID
- *	@param	dataID	�f�[�^ID
+ *	@param	blockID	ブロックのID
+ *	@param	dataID	データID
  */
 extern void MAIL_DelMailData(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID);
 
 /**
- *	@brief	���[���f�[�^���Z�[�u�u���b�N�ɒǉ�
+ *	@brief	メールデータをセーブブロックに追加
  *
- *	�������n����MAIL_DATA�\���̌^�f�[�^�̒��g���Z�[�u�f�[�^�ɔ��f�����̂�
- *	�@�������ȃf�[�^�����Ȃ��悤�ɒ��ӁI
+ *	＊引き渡したMAIL_DATA構造体型データの中身がセーブデータに反映されるので
+ *	　おかしなデータを入れないように注意！
  */
 extern void MAIL_AddMailFormWork(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID,MAIL_DATA* src);
 
 /**
- *	@brief	�w��u���b�N�ɗL���f�[�^���������邩�Ԃ�
+ *	@brief	指定ブロックに有効データがいくつあるか返す
  */
 extern int MAIL_GetEnableDataNum(MAIL_BLOCK* block,MAILBLOCK_ID blockID);
 
 /**
- *	@brief	���[���f�[�^�̃R�s�[���擾
+ *	@brief	メールデータのコピーを取得
  *
- *	�������Ń��������m�ۂ���̂ŁA�Ăяo�������ӔC�����ė̈���J�����邱��
+ *	＊内部でメモリを確保するので、呼び出し側が責任持って領域を開放すること
  */
 extern MAIL_DATA* MAIL_AllocMailData(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID,int heapID);
 
 /**
- *	@brief	���[���f�[�^�̃R�s�[���擾
+ *	@brief	メールデータのコピーを取得
  *
- *	�����炩���ߊm�ۂ���MAIL_DATA�^�������ɃZ�[�u�f�[�^���R�s�[���Ď擾
+ *	＊あらかじめ確保したMAIL_DATA型メモリにセーブデータをコピーして取得
  */
 extern void MAIL_GetMailData(MAIL_BLOCK* block,MAILBLOCK_ID blockID,int dataID,MAIL_DATA* dest);
 
 
 //=============================================================
 /**
- *	���[���f�[�^�A�N�Z�X�n�֐�
+ *	メールデータアクセス系関数
  */
 //=============================================================
 /**
- *	@brief	���[���f�[�^�T�C�Y�擾
+ *	@brief	メールデータサイズ取得
  *
- *	�����[���f�[�^��ʂ̃T�C�Y
+ *	＊メールデータ一通のサイズ
  */
 extern int MailData_GetDataWorkSize(void);
 
 /**
- *	@brief	���[���f�[�^�N���A(�����f�[�^�Z�b�g)
+ *	@brief	メールデータクリア(初期データセット)
  */
 extern void MailData_Clear(MAIL_DATA* dat);
 
 /**
- *	@brief	���[���f�[�^���L�����ǂ����Ԃ�
- *	@retval	FALSE	����
- *	@retval	TRUE	�L��
+ *	@brief	メールデータが有効かどうか返す
+ *	@retval	FALSE	無効
+ *	@retval	TRUE	有効
  */
 extern BOOL MailData_IsEnable(MAIL_DATA* dat);
 
 /**
- *	@brief	���[���f�[�^�̃��[�N���擾���ĕԂ�
+ *	@brief	メールデータのワークを取得して返す
  *
- *	���Ăяo�������ӔC�����ĉ�����邱��
+ *	＊呼び出し側が責任もって解放すること
  *	
  */
 extern MAIL_DATA* MailData_CreateWork(int heapID);
 
 /**
- *	@brief	���[���f�[�^�̍\���̃R�s�[
+ *	@brief	メールデータの構造体コピー
  */
 extern void MailData_Copy(MAIL_DATA* src,MAIL_DATA* dest);
 
 /**
- *	@brief	�f�U�C��No,��������|�P�����̃|�W�V�����A�Z�[�u�f�[�^���w�肵��
- *			���[���f�[�^��V�K�쐬��Ԃɏ�����
- *	@param	dat	�f�[�^���쐬����MAIL_DATA�\���̌^�ւ̃|�C���^
- *	@param	design_no	���[���̃C���[�WNo
- *	@param	pos		���[������������|�P�����̎莝�����̃|�W�V����
- *	@param	save	�Z�[�u�f�[�^�ւ̃|�C���^
+ *	@brief	デザインNo,持たせるポケモンのポジション、セーブデータを指定して
+ *			メールデータを新規作成状態に初期化
+ *	@param	dat	データを作成するMAIL_DATA構造体型へのポインタ
+ *	@param	design_no	メールのイメージNo
+ *	@param	pos		メールを持たせるポケモンの手持ち内のポジション
+ *	@param	save	セーブデータへのポインタ
  */
 extern void MailData_CreateFromSaveData(MAIL_DATA* dat,u8 design_no,u8 pos,SAVEDATA* save);
 
 /**
- *	@brief	���[���f�[�^�@�g���[�i�[ID�A�N�Z�X
+ *	@brief	メールデータ　トレーナーIDアクセス
  */
 extern u32	MailData_GetWriterID(const MAIL_DATA* dat);
 extern void MailData_SetWriterID(MAIL_DATA* dat,u32 id);
 
 /**
- *	@brief	���[���f�[�^�@���C�^�[���A�N�Z�X
+ *	@brief	メールデータ　ライター名アクセス
  */
 extern STRCODE* MailData_GetWriterName(MAIL_DATA* dat);
 extern void MailData_SetWriterName(MAIL_DATA* dat,STRCODE* name);
 
 /**
- *	@brief	���[���f�[�^�@���C�^�[�̐��ʃA�N�Z�X
+ *	@brief	メールデータ　ライターの性別アクセス
  */
 extern u8	MailData_GetWriterSex(const MAIL_DATA* dat);
 extern void MailData_SetWriterSex(MAIL_DATA* dat,const u8 sex);
 
 /**
- *	@brief	���[���f�[�^�@�f�U�C��No�A�N�Z�X
+ *	@brief	メールデータ　デザインNoアクセス
  */
 extern u8	MailData_GetDesignNo(const MAIL_DATA* dat);
 extern void MailData_SetDesignNo(MAIL_DATA* dat,const u8 design);
 
 /**
- *	@brief	���[���f�[�^�@���R�[�h�A�N�Z�X
+ *	@brief	メールデータ　国コードアクセス
  */
 extern u8	MailData_GetCountryCode(const MAIL_DATA* dat);
 extern void MailData_SetCountryCode(MAIL_DATA* dat,const u8 code);
 
 /**
- *	@brief	���[���f�[�^�@�J�Z�b�g�o�[�W�����A�N�Z�X
+ *	@brief	メールデータ　カセットバージョンアクセス
  */
 extern u8	MailData_GetCasetteVersion(const MAIL_DATA* dat);
 extern void MailData_SetCasetteVersion(MAIL_DATA* dat,const u8 version);
 
 /**
- *	@brief	���[���f�[�^�@���[���A�C�R���p�����[�^�̎擾(�C���f�b�N�X�w���)
+ *	@brief	メールデータ　メールアイコンパラメータの取得(インデックス指定版)
  *
- *	@param	mode	MAIL_ICONPRM_CGX:cgxNo�̎擾
- *					MAIL_ICONPRM_PLT:pltNo�̎擾
- *					MAIL_ICONPRM_ALL:u16�^(MAIL_ICON�^�փL���X�g��)�őo���̒l��Ԃ�
+ *	@param	mode	MAIL_ICONPRM_CGX:cgxNoの取得
+ *					MAIL_ICONPRM_PLT:pltNoの取得
+ *					MAIL_ICONPRM_ALL:u16型(MAIL_ICON型へキャスト可)で双方の値を返す
  *
- *	���A�C�R��CgxID�ƃ����X�^�[No�͓���ł͂���܂���B���ӁI
+ *	＊アイコンCgxIDとモンスターNoは同一ではありません。注意！
  */
 extern u16	MailData_GetIconParamByIndex(const MAIL_DATA* dat,u8 index,u8 mode, u16 form_bit);
 
 /**
- *	@brief	���[���f�[�^�@form_bit�擾
+ *	@brief	メールデータ　form_bit取得
  */
 extern u16	MailData_GetFormBit(const MAIL_DATA* dat);
 
 /**
- *	@brief	���[���f�[�^�@�ȈՕ��擾(�C���f�b�N�X�w���)
+ *	@brief	メールデータ　簡易文取得(インデックス指定版)
  */
 extern PMS_DATA*	MailData_GetMsgByIndex(MAIL_DATA* dat,u8 index);
 extern void MailData_SetMsgByIndex(MAIL_DATA* dat,PMS_DATA* pms,u8 index);
 
 /**
- *	@brief	���[���f�[�^�@�ȈՕ�������擾(�C���f�b�N�X�w��)
+ *	@brief	メールデータ　簡易文文字列取得(インデックス指定)
  *
  *	@param	dat	MAIL_DATA*
- *	@param	index	�ȈՕ��C���f�b�N�X
- *	@param	buf		�擾����������|�C���^�̊i�[�ꏊ
+ *	@param	index	簡易文インデックス
+ *	@param	buf		取得した文字列ポインタの格納場所
  *
- *	@retval	FALSE	������̎擾�Ɏ��s(�܂��͊ȈՕ����L���ȃf�[�^�ł͂Ȃ�)
+ *	@retval	FALSE	文字列の取得に失敗(または簡易文が有効なデータではない)
  *	
- *	@li	buf�ɑ΂��ē����Ń��������m�ۂ��Ă���̂ŁA�Ăяo�����������I�ɉ�����邱��
- *	@li	FALSE���Ԃ����ꍇ�Abuf��NULL�N���A�����
+ *	@li	bufに対して内部でメモリを確保しているので、呼び出し側が明示的に解放すること
+ *	@li	FALSEが返った場合、bufはNULLクリアされる
  */
 extern BOOL MailData_GetMsgStrByIndex(const MAIL_DATA* dat,u8 index,STRBUF* buf,int heapID);
 

@@ -1,7 +1,7 @@
 #ifndef _R210A_DEF_H_
 #define _R210A_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R210A_STOPPER		(1)
 #define	SCRID_R210A_COWGIRL1		(2)
 #define	SCRID_R210A_WOMAN3		(3)
@@ -9,6 +9,6 @@
 #define	SCRID_R210A_SIGN2		(5)
 #define	SCRID_R210A_JOGGER4		(6)
 #define	SCRID_R210A_FLAG_CHANGE		(7)
-#define	SCRID_R210A_DATA_MAX		(7)		//最大数
+#define	SCRID_R210A_DATA_MAX		(7)		//譛螟ｧ謨ｰ
 
 #endif //_R210A_DEF_H_

@@ -30,22 +30,22 @@
   only fix comment
 
   Revision 1.6  2004/03/12 08:41:14  yada
-  OS_PeepMessage()¨OS_ReadMessage() ‚É‰ü–¼
+  OS_PeepMessage()â†’OS_ReadMessage() ã«æ”¹å
 
   Revision 1.5  2004/03/12 02:39:12  yada
-  OS_PeepMessage() ’Ç‰Á
+  OS_PeepMessage() è¿½åŠ 
 
   Revision 1.4  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.3  2004/01/18 04:47:31  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.2  2003/12/25 07:29:33  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  åž‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.1  2003/11/26 01:51:38  yada
-  ‰”Å
+  åˆç‰ˆ
 
 
   $NoKeywords: $

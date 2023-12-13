@@ -1,11 +1,11 @@
 //=============================================================================
 /**
  * @file	profileboy.c
- * @brief	ÉvÉçÉtÉBÅ[Éãìoò^è≠îNÉCÉxÉìÉgèàóù
+ * @brief	„Éó„É≠„Éï„Ç£„Éº„É´ÁôªÈå≤Â∞ëÂπ¥„Ç§„Éô„É≥„ÉàÂá¶ÁêÜ
  * @author	nohara
  * @date	08.02.28
  *
- * ÇŸÇ∆ÇÒÇ«msgboy.cÇ∆ìØÇ∂Ç≈Ç∑
+ * „Åª„Å®„Çì„Å©msgboy.c„Å®Âêå„Åò„Åß„Åô
  */
 //=============================================================================
 #include "common.h"
@@ -33,7 +33,7 @@
 
 //----------------------------------------------
 /**
- *	ÉCÉxÉìÉgÉèÅ[ÉN
+ *	„Ç§„Éô„É≥„Éà„ÉØ„Éº„ÇØ
  */
 //----------------------------------------------
 typedef struct {
@@ -57,9 +57,9 @@ static BOOL GMEVENT_ProfileBoy( GMEVENT_CONTROL* event );
 
 //------------------------------------------------------------------
 /**
- * ÉCÉxÉìÉgäJén
+ * „Ç§„Éô„É≥„ÉàÈñãÂßã
  *
- * @param   fsys		ÉtÉBÅ[ÉãÉhÉVÉXÉeÉÄÉèÅ[ÉNÉ|ÉCÉìÉ^
+ * @param   fsys		„Éï„Ç£„Éº„É´„Éâ„Ç∑„Çπ„ÉÜ„É†„ÉØ„Éº„ÇØ„Éù„Ç§„É≥„Çø
  *
  */
 //------------------------------------------------------------------
@@ -76,7 +76,7 @@ void PROFILEBOY_EventStart( GMEVENT_CONTROL* event, u16* ret_wk )
 	wk->ret_wk		= ret_wk;
 
 #if 1
-	//Åö
+	//‚òÖ
 	PMSDAT_Init( &wk->pms, PMS_TYPE_UNION );
 	//PMSDAT_Init( &misc->gds_self_introduction, PMS_TYPE_UNION );
 
@@ -90,7 +90,7 @@ void PROFILEBOY_EventStart( GMEVENT_CONTROL* event, u16* ret_wk )
 	//misc->gds_self_introduction.word[1] = PMS_WORD_NULL;
 #endif
 
-	//ï“èWÇµÇ»Ç≠ÇƒÇ‡ïÅí Ç…èIÇÌÇÈÉtÉâÉOÇÇΩÇƒÇÈ
+	//Á∑®ÈõÜ„Åó„Å™„Åè„Å¶„ÇÇÊôÆÈÄö„Å´ÁµÇ„Çè„Çã„Éï„É©„Ç∞„Çí„Åü„Å¶„Çã
 	PMSI_PARAM_SetNotEditEgnore( wk->pmsiParam );
 
 	wk->seq = 0;
@@ -100,7 +100,7 @@ void PROFILEBOY_EventStart( GMEVENT_CONTROL* event, u16* ret_wk )
 
 //------------------------------------------------------------------
 /**
- * ÉèÅ[ÉNîjä¸
+ * „ÉØ„Éº„ÇØÁ†¥Ê£Ñ
  *
  * @param   wk		
  *
@@ -115,7 +115,7 @@ static void delete_work( PROFILEBOY_EVENT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ÉCÉxÉìÉgä÷êîñ{ëÃ
+ * „Ç§„Éô„É≥„ÉàÈñ¢Êï∞Êú¨‰Ωì
  *
  * @param   event		
  *
@@ -136,10 +136,10 @@ static BOOL GMEVENT_ProfileBoy( GMEVENT_CONTROL* event )
 
 	switch( wk->seq ){
 	case SEQ_SETUP_FIRST_MSG:
-		//ä»à’âÔòbì¸óÕâÊñ ÇÃèâä˙èÛë‘Ç…égópÇ∑ÇÈÉpÉâÉÅÅ[É^ÉZÉbÉgÅiï∂èÕÉÇÅ[ÉhópÅj
+		//Á∞°Êòì‰ºöË©±ÂÖ•ÂäõÁîªÈù¢„ÅÆÂàùÊúüÁä∂ÊÖã„Å´‰ΩøÁî®„Åô„Çã„Éë„É©„É°„Éº„Çø„Çª„ÉÉ„ÉàÔºàÊñáÁ´†„É¢„Éº„ÉâÁî®Ôºâ
 		PMSI_PARAM_SetInitializeDataSentence( wk->pmsiParam, &(wk->pms) );
 
-		//àÍìxåãâ ÇéÛÇØéÊÇ¡ÇΩå„ÅAÇ‡Ç§ÇPìxÅAì¸óÕâÊñ ópÉpÉâÉÅÅ[É^Ç∆ÇµÇƒégÇ¶ÇÈÇÊÇ§Ç…Ç∑ÇÈ
+		//‰∏ÄÂ∫¶ÁµêÊûú„ÇíÂèó„ÅëÂèñ„Å£„ÅüÂæå„ÄÅ„ÇÇ„ÅÜÔºëÂ∫¶„ÄÅÂÖ•ÂäõÁîªÈù¢Áî®„Éë„É©„É°„Éº„Çø„Å®„Åó„Å¶‰Ωø„Åà„Çã„Çà„ÅÜ„Å´„Åô„Çã
 		PMSI_PARAM_SetReuseState( wk->pmsiParam );
 
 		FieldProc_SetPmsInput( wk->fsys, wk->pmsiParam );
@@ -162,24 +162,24 @@ static BOOL GMEVENT_ProfileBoy( GMEVENT_CONTROL* event )
 		}
 		break;
 
-	//ÉtÉBÅ[ÉãÉhÇ…ÉtÉFÅ[ÉhÉCÉì
+	//„Éï„Ç£„Éº„É´„Éâ„Å´„Éï„Çß„Éº„Éâ„Ç§„É≥
 	case SEQ_WAIT_FADEIN_FIELD:
 		if( WIPE_SYS_EndCheck() )
 		{
 			if( PMSI_PARAM_CheckCanceled(wk->pmsiParam) )
 			{
 				*wk->ret_wk = 0;
-				OS_TPrintf("ÉLÉÉÉìÉZÉãÇ≥ÇÍÇΩ = %d\n", *wk->ret_wk );
+				OS_TPrintf("„Ç≠„É£„É≥„Çª„É´„Åï„Çå„Åü = %d\n", *wk->ret_wk );
 				wk->seq = SEQ_QUIT;
 			}
 			else
 			{
 				*wk->ret_wk = 1;
-				OS_TPrintf("ÉLÉÉÉìÉZÉãÇ≥ÇÍÇ»Ç©Ç¡ÇΩ = %d\n", *wk->ret_wk );
+				OS_TPrintf("„Ç≠„É£„É≥„Çª„É´„Åï„Çå„Å™„Åã„Å£„Åü = %d\n", *wk->ret_wk );
 				PMSI_PARAM_GetInputDataSentence( wk->pmsiParam, &(wk->pms) );
 
 				//{
-					//ä»à’âÔòbÉZÉbÉg
+					//Á∞°Êòì‰ºöË©±„Çª„ÉÉ„Éà
 					//PMS_WORD word = PMSDAT_GetWordNumber( &wk->pms, 0 );
 					//if( word != PMS_WORD_NULL )
 					//{
@@ -193,7 +193,7 @@ static BOOL GMEVENT_ProfileBoy( GMEVENT_CONTROL* event )
 		}
 		break;
 
-	//èIóπ
+	//ÁµÇ‰∫Ü
 	case SEQ_QUIT:
 		delete_work( wk );
 		return TRUE;

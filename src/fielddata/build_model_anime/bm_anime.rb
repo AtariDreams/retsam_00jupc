@@ -1,26 +1,26 @@
-#ƒAƒjƒƒe[ƒuƒ‹ì¬
+#ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 
-#ƒAƒjƒ–³‚µƒf[ƒ^‚Ì‘‚«‚İ
+#ã‚¢ãƒ‹ãƒ¡ç„¡ã—ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿
 def set_none_anime_data(inAry, inStrID)
-	inAry = Array(0xff)			#ƒAƒjƒ‚µ‚È‚¢
+	inAry = Array(0xff)			#ã‚¢ãƒ‹ãƒ¡ã—ãªã„
 	str = inAry.pack("C*")
 	inStrID.write(str)
 	
-	inAry = Array(0xff)			#ƒAƒjƒƒ^ƒCƒv•s–¾
+	inAry = Array(0xff)			#ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—ä¸æ˜
 	str = inAry.pack("C*")
 	inStrID.write(str)
 
-	inAry = Array(0)			#©E‚µ‚È‚¢
+	inAry = Array(0)			#è‡ªæ®ºã—ãªã„
 	str = inAry.pack("C*")
 	inStrID.write(str)
 
-	inAry = Array(0)			#4ƒoƒCƒg‹«ŠEƒ_ƒ~[ƒZƒbƒg
+	inAry = Array(0)			#4ãƒã‚¤ãƒˆå¢ƒç•Œãƒ€ãƒŸãƒ¼ã‚»ãƒƒãƒˆ
 	str = inAry.pack("C*")
 	inStrID.write(str)
 
-	#ƒAƒjƒƒiƒ“ƒo[‚ğ‘‚«‚Ş4‚Â‚Ü‚Å
+	#ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ã‚’æ›¸ãè¾¼ã‚€4ã¤ã¾ã§
 	for i in [0,1,2,3]
-		inAry = Array(0xffffffff)		#ƒR[ƒh–³‚µ
+		inAry = Array(0xffffffff)		#ã‚³ãƒ¼ãƒ‰ç„¡ã—
 		str = inAry.pack("i*")
 		inStrID.write(str)
 	end
@@ -32,7 +32,7 @@ debug_txt = open("debug.txt","w")
 
 anm_csv_file = open("bm_anm_tbl.csv","r")
 
-line = anm_csv_file.gets    ## 1s“Ç‚İ”ò‚Î‚µ
+line = anm_csv_file.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
 
 anime_name_ary = Array.new(0)
 anime_list_ary = Array.new(0)
@@ -43,9 +43,9 @@ while line = anm_csv_file.gets
 
 	column = line.split ","
 
-	#ƒAƒjƒƒR[ƒhAƒAƒjƒƒ^ƒCƒvA©Eƒtƒ‰ƒOAƒAƒjƒƒtƒ@ƒCƒ‹–¼‚˜4‚ğ”z—ñ‚ÉŠi”[
+	#ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰ã€ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—ã€è‡ªæ®ºãƒ•ãƒ©ã‚°ã€ã‚¢ãƒ‹ãƒ¡ãƒ•ã‚¡ã‚¤ãƒ«åï½˜4ã‚’é…åˆ—ã«æ ¼ç´
 	anime_ary = [ column[1],column[2],column[3],column[4],column[5],column[6],column[7] ]
-	anime_list_ary << anime_ary		#”z—ñ‚ÉŠi”[
+	anime_list_ary << anime_ary		#é…åˆ—ã«æ ¼ç´
 	for i in [0,1,2,3]
 		if column[4+i] != "" then
 			anime_name_ary << column[4+i]
@@ -53,9 +53,9 @@ while line = anm_csv_file.gets
 	end	#for
 end	#while
 
-#d•¡íœ
+#é‡è¤‡å‰Šé™¤
 anime_name_ary.uniq!
-#g3dƒRƒ“ƒo[ƒ^[—p‚ÌƒŠƒXƒg‚ğì¬
+#g3dã‚³ãƒ³ãƒãƒ¼ã‚¿ãƒ¼ç”¨ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆ
 g3d_ary = anime_name_ary
 ica_ary = Array.new(0)
 ita_ary = Array.new(0)
@@ -89,7 +89,7 @@ itp_ary.each{|index|
 	g3d_list.printf("\t$(DATASRC)/#{index} \\\n")
 }
 
-#ƒAƒjƒƒA[ƒJƒCƒuƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹‚Ìì¬
+#ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ
 arc_ary = anime_name_ary
 arc_ary.each{|index|
 	index.sub!(".ica", ".nsbca")
@@ -103,7 +103,7 @@ anm_csv_file.close
 
 model_entry_ary = Array.new(0)
 bm_anm_csv_file = open("bm_anime.csv","r")
-line = bm_anm_csv_file.gets    ## 1s“Ç‚İ”ò‚Î‚µ
+line = bm_anm_csv_file.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
 while line = bm_anm_csv_file.gets
 	if line =~/^#END/ then
 		break
@@ -117,14 +117,14 @@ end
 bm_anm_csv_file.close
 
 
-#ƒAƒjƒ‚·‚éƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^ˆê——‚ğƒŠ[ƒh
-#ƒ‚ƒfƒŠƒ“ƒOƒŠƒXƒgˆê——‚ğƒŠ[ƒh
+#ã‚¢ãƒ‹ãƒ¡ã™ã‚‹ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ä¸€è¦§ã‚’ãƒªãƒ¼ãƒ‰
+#ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒªã‚¹ãƒˆä¸€è¦§ã‚’ãƒªãƒ¼ãƒ‰
 model_csv_file = open("build_model.csv","r")
 
-#ƒAƒjƒƒŠƒXƒgƒA[ƒJƒCƒuƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹ì¬
+#ã‚¢ãƒ‹ãƒ¡ãƒªã‚¹ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 anmlst_arc_list = open("anmlst_arc_list","w")
 
-line = model_csv_file.gets    ## 1s“Ç‚İ”ò‚Î‚µ
+line = model_csv_file.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
 while line = model_csv_file.gets
 	if line =~/^#END/ then
 		break
@@ -133,27 +133,27 @@ while line = model_csv_file.gets
 	
 	strID = open("bin/#{column[2]}.bin","w")
 
-	#ƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹‚É’Ç‹L
+	#ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã«è¿½è¨˜
 	anmlst_arc_list.printf("\"bin/#{column[2]}.bin\"\n")
 
 	ary = Array.new(0)
 
 	if column[3] == "1" then
-		#ƒAƒjƒƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é
+		#ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹
 
-		#ƒXƒgƒŠƒ“ƒO‚h‚c‚ªƒAƒjƒƒŠƒXƒg‚É‚ ‚é‚©‚ğ‚µ‚ç‚×‚é
+		#ã‚¹ãƒˆãƒªãƒ³ã‚°ï¼©ï¼¤ãŒã‚¢ãƒ‹ãƒ¡ãƒªã‚¹ãƒˆã«ã‚ã‚‹ã‹ã‚’ã—ã‚‰ã¹ã‚‹
 		anm_itm = model_entry_ary.assoc(column[2])
 #		p anm_itm
 		if anm_itm != nil then
-			#ƒGƒ“ƒgƒŠƒŠƒXƒg‚ª‚³‚·AƒAƒjƒƒR[ƒh‚ğŒŸõ
+			#ã‚¨ãƒ³ãƒˆãƒªãƒªã‚¹ãƒˆãŒã•ã™ã€ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰ã‚’æ¤œç´¢
 			anime = anime_list_ary.assoc(anm_itm[1])
 			if anime != nil then
-				#ƒAƒjƒƒtƒ‰ƒO‚ğ—§‚Ä‚é
+				#ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				ary = Array(1)
 				pack_str = ary.pack("C*")
 				strID.write(pack_str)
 			
-				#ƒAƒjƒƒ^ƒCƒv‚ğ‘‚«‚Ş
+				#ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—ã‚’æ›¸ãè¾¼ã‚€
 				if anime[1] == "STATION" then
 					ary = Array(0)
 				elsif anime[1] == "SET_CON" then
@@ -161,53 +161,53 @@ while line = model_csv_file.gets
 				elsif anime[1] == "ALL_CON" then
 					ary = Array(3)
 				else
-					#ƒfƒoƒbƒOƒeƒLƒXƒg‚É‹L“ü
+					#ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚­ã‚¹ãƒˆã«è¨˜å…¥
 					ary = Array(0xff)
-					debug_txt.printf("#{anime[1]}:#{column[2]}‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒvw’è‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ\n")
+					debug_txt.printf("#{anime[1]}:#{column[2]}ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—æŒ‡å®šãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“\n")
 				end
 				pack_str = ary.pack("C*")
 				strID.write(pack_str)
 			
-				#©Eƒtƒ‰ƒO‚ğ‘‚«‚Ş
+				#è‡ªæ®ºãƒ•ãƒ©ã‚°ã‚’æ›¸ãè¾¼ã‚€
 				ary = Array(anime[2].to_i)
 				pack_str = ary.pack("C*")
 				strID.write(pack_str)
-				#4ƒoƒCƒg‹«ŠE‚Ì‚½‚ß‚Ìƒ_ƒ~[ƒf[ƒ^‚ğ‘‚«‚Ş
+				#4ãƒã‚¤ãƒˆå¢ƒç•Œã®ãŸã‚ã®ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 				ary = Array(0)
 				pack_str = ary.pack("C*")
 				strID.write(pack_str)
 
-				#ƒAƒjƒƒiƒ“ƒo[‚ğ‘‚«‚Ş4‚Â‚Ü‚Å
+				#ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ã‚’æ›¸ãè¾¼ã‚€4ã¤ã¾ã§
 				for i in [0,1,2,3]
 					anime_no = anime_name_ary.index(anime[3+i])
 					if anime_no != nil then
 						ary = Array(anime_no)
 					else	
-						ary = Array(0xffffffff)	#ƒR[ƒh–³‚µ
+						ary = Array(0xffffffff)	#ã‚³ãƒ¼ãƒ‰ç„¡ã—
 					end
 					pack_str = ary.pack("i*")
 					strID.write(pack_str)
 				end
 			else
 				if anm_itm[1] == "ANIME_NONE" then
-					#ƒAƒjƒ–³‚µ‚Æ‚·‚é
+					#ã‚¢ãƒ‹ãƒ¡ç„¡ã—ã¨ã™ã‚‹
 					set_none_anime_data(ary, strID)
-					debug_txt.printf("#{column[2]}:ƒAƒjƒƒR[ƒhw’è‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ\n")
+					debug_txt.printf("#{column[2]}:ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰æŒ‡å®šãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“\n")
 				else
-					#”»•Ê‚Å‚«‚È‚¢ƒAƒjƒƒR[ƒh‚ªw’è‚³‚ê‚Ä‚¢‚é‚Ì‚ÅAƒfƒoƒbƒOƒeƒLƒXƒg‚É‹L“ü
-					#ƒAƒjƒ–³‚µ‚Æ‚·‚é
+					#åˆ¤åˆ¥ã§ããªã„ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã®ã§ã€ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚­ã‚¹ãƒˆã«è¨˜å…¥
+					#ã‚¢ãƒ‹ãƒ¡ç„¡ã—ã¨ã™ã‚‹
 					set_none_anime_data(ary, strID)
-					debug_txt.printf("#{anm_itm[1]}:#{column[2]}‚ÌƒAƒjƒƒR[ƒhw’è‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ\n")
+					debug_txt.printf("#{anm_itm[1]}:#{column[2]}ã®ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰æŒ‡å®šãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“\n")
 				
 				end
 			end
 		else 
-			#ƒAƒjƒƒŠƒXƒg‚É–³‚¢‚Ì‚ÅAƒAƒjƒ‚È‚µ‚Æ‚İ‚È‚·
+			#ã‚¢ãƒ‹ãƒ¡ãƒªã‚¹ãƒˆã«ç„¡ã„ã®ã§ã€ã‚¢ãƒ‹ãƒ¡ãªã—ã¨ã¿ãªã™
 			set_none_anime_data(ary, strID)
-			debug_txt.printf("#{column[2]}:ƒAƒjƒƒŠƒXƒg‚É“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n")
+			debug_txt.printf("#{column[2]}:ã‚¢ãƒ‹ãƒ¡ãƒªã‚¹ãƒˆã«ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“\n")
 		end
 	else
-		#ƒAƒjƒƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚È‚¢
+		#ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãªã„
 		set_none_anime_data(ary, strID)
 	end
 	strID.close

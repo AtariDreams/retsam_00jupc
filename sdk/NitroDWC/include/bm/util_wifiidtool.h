@@ -15,17 +15,17 @@
   Add util_wifiidtoos.h to $NITRODWC_ROOT/include/bm.
 
   Revision 1.9  2005/08/22 12:07:13  sasakit
-  WiFiID�����ׂ����ǂ����𔻒肷��֐��̒ǉ��B
+  WiFiIDを作るべきかどうかを判定する関数の追加。
 
   Revision 1.8  2005/08/20 09:34:04  akimaru
-  ����J�̕�����util_wifiidtool.h�ɕ���
+  非公開の部分をutil_wifiidtool.hに分離
 
   Revision 1.7  2005/08/20 07:01:19  sasakit
-  �w�b�_�C���N���[�h�K�[�h�̏����𓝈ꂵ���B
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
-  �w�b�_��Copyright�������B
-  �\���̖̂��O��Ԃ��ł��邾�����[���ɂ����Â����B
-  util_wifiidtool.h��dwc_backup.h�̊֌W���኱�C���B
+  ヘッダインクルードガードの書式を統一した。
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
+  ヘッダにCopyrightをつけた。
+  構造体の名前空間をできるだけルールにちかづけた。
+  util_wifiidtool.hとdwc_backup.hの関係を若干修正。
 
 
   $NoKeywords: $
@@ -43,11 +43,11 @@ extern "C" {
 	/*---------------------------------------------------------------------------*
   	Name:        DWC_Auth_Id
 
-	Description:  UserID���i�[����\����
-	u64     	   uId:  �F�؂��ꂽ���[�UID
-	u64unAttestationID:  �F�؂���Ă��Ȃ����[�UID    			  
-	u8		       flg:  �F�؂��ꂽ���ǂ����������t���O 0:�F�؂���Ă��Ȃ��@1:�F�؂���Ă���
-   	Returns:	  �Ȃ�
+	Description:  UserIDを格納する構造体
+	u64     	   uId:  認証されたユーザID
+	u64unAttestationID:  認証されていないユーザID    			  
+	u8		       flg:  認証されたかどうかを示すフラグ 0:認証されていない　1:認証されている
+   	Returns:	  なし
  	*---------------------------------------------------------------------------*/
 	typedef struct{
 		u64 uId;
@@ -58,23 +58,23 @@ extern "C" {
 	/*---------------------------------------------------------------------------*
   	Name:         DWC_Auth_GetId
 
-	Description:  DWC_Auth_Id ���擾����
+	Description:  DWC_Auth_Id を取得する
   	Arguments:    id			
 	  
 
-   	Returns:	  �Ȃ�
+   	Returns:	  なし
  	*---------------------------------------------------------------------------*/
 	void DWC_Auth_GetId( DWCAuthWiFiId* id );
 
 	/*---------------------------------------------------------------------------*
 	  Name:         DWC_Auth_CheckPseudoWiFiID
 	
-	  Description:  �I�t���C���Ő������鉼��WiFiID����������Ă��邩�ǂ������m�F����
+	  Description:  オフラインで生成する仮のWiFiIDが生成されているかどうかを確認する
 	
-	  Arguments:    �Ȃ�
+	  Arguments:    なし
 	
-	  Returns:      TRUE  : ��������Ă�B
-	                FALSE : ��������Ă��Ȃ��B
+	  Returns:      TRUE  : 生成されてる。
+	                FALSE : 生成されていない。
 	 *---------------------------------------------------------------------------*/
 	BOOL DWC_Auth_CheckPseudoWiFiID( void );
 

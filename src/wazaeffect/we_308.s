@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_308.s
- * @brief	ƒnƒCƒhƒƒJƒmƒ“			308
+ * @brief	ãƒã‚¤ãƒ‰ãƒ­ã‚«ãƒŽãƒ³			308
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡ƒnƒCƒhƒƒJƒmƒ“			308
+//	â– ãƒã‚¤ãƒ‰ãƒ­ã‚«ãƒŽãƒ³			308
 //
 //
 // =============================================================================
@@ -30,7 +30,7 @@ WEST_HAIDOROKANON:
 	
 	LOAD_PARTICLE_DROP	0,W_308_SPA	
 	
-	///< ƒ`ƒƒ[ƒW
+	///< ãƒãƒ£ãƒ¼ã‚¸
 	ADD_PARTICLE 	0,W_308_308_WATER_BIG,	EMTFUNC_ATTACK_POS
 	
 	SE_REPEAT_L		SEQ_SE_DP_W056B,8,2
@@ -46,7 +46,7 @@ WEST_HAIDOROKANON:
 
 	SE_FLOW_LR			SEQ_SE_DP_W056
 	
-	///< •úo
+	///< æ”¾å‡º
 	ADD_PARTICLE 	0,W_308_308_WATER_BURN,	 EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_L308SP, OPERATOR_AXIS_AT_308, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 
@@ -56,7 +56,7 @@ WEST_HAIDOROKANON:
 	ADD_PARTICLE 	0,W_308_308_WATER_BEAM2, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_L308SP, OPERATOR_AXIS_AT_308, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 
-	///< ƒqƒbƒgU“®
+	///< ãƒ’ãƒƒãƒˆæŒ¯å‹•
 	WAIT			5
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, 5, 0, 1, 15,  WE_TOOL_E1 | WE_TOOL_SSP,
 

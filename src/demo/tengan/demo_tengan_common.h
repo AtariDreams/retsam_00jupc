@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	demo_tengan_common.h
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2007.11.05(Œ)
+ * @date	2007.11.05(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -60,9 +60,9 @@ typedef struct {
 	s16			 tx;
 	s16			 ty;
 	
-	int			 rad;		///< Œö“]—p
+	int			 rad;		///< å…¬è»¢ç”¨
 	
-	int			 rad2;		///< ©“]—p
+	int			 rad2;		///< è‡ªè»¢ç”¨
 	int			 count;
 	int			 para[ 4 ];
 
@@ -86,7 +86,7 @@ typedef struct {
 		
     D3DOBJ				obj;
     D3DOBJ_MDL			mdl;
-    D3DOBJ_ANM			anm[ 10 ];			///< ‚Æ‚è‚ ‚¦‚¸10ŒÂ
+    D3DOBJ_ANM			anm[ 10 ];			///< ã¨ã‚Šã‚ãˆãš10å€‹
     
     fx32				obj_scale;
     fx32				anm_speed;
@@ -97,7 +97,7 @@ typedef struct {
     BOOL				bAnimeLoop;
     BOOL				bTexAnime;    
     BOOL				bColorAnime;
-    BOOL				bFullAnime;			///< ‚·‚×‚Ä‚ÌƒAƒjƒ‚ğg‚¤    
+    BOOL				bFullAnime;			///< ã™ã¹ã¦ã®ã‚¢ãƒ‹ãƒ¡ã‚’ä½¿ã†    
     BOOL				bInit;
     
     int					cmd_count;
@@ -122,11 +122,11 @@ typedef struct {
 	VecFx32*		camera_target;
 	
 	int set_frame;
-	s32	x;			///< ƒAƒ“ƒOƒ‹
+	s32	x;			///< ã‚¢ãƒ³ã‚°ãƒ«
 	s32	y;
 	s32	z;
 	
-	fx32 mx;		///< ˆÚ“®—Ê
+	fx32 mx;		///< ç§»å‹•é‡
 	fx32 my;
 	fx32 mz;
 	
@@ -138,7 +138,7 @@ typedef struct {
 
 typedef struct {
 	
-	int		main_seq;	///< main ‚Ì ƒV[ƒPƒ“ƒX
+	int		main_seq;	///< main ã® ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	
 	int		seq;
 	int		cnt;
@@ -163,14 +163,14 @@ typedef struct _DEMO_TENGAN_SYSTEM {
 	
 	ARCHANDLE*			p_handle;
 	
-	CATS_SYS_PTR		csp;				///< OAMƒVƒXƒeƒ€
-	CATS_RES_PTR		crp;				///< ƒŠƒ\[ƒXˆêŠ‡ŠÇ—
+	CATS_SYS_PTR		csp;				///< OAMã‚·ã‚¹ãƒ†ãƒ 
+	CATS_RES_PTR		crp;				///< ãƒªã‚½ãƒ¼ã‚¹ä¸€æ‹¬ç®¡ç†
 
 	GF_BGL_INI*			bgl;				///< BGL
-	PALETTE_FADE_PTR	pfd;				///< ƒpƒŒƒbƒgƒtƒF[ƒh
+	PALETTE_FADE_PTR	pfd;				///< ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 	
 	GF_G3DMAN*			g3Dman;				///< 3D
-	GF_CAMERA_PTR		camera_p;			///< ƒJƒƒ‰
+	GF_CAMERA_PTR		camera_p;			///< ã‚«ãƒ¡ãƒ©
 
 	NNSFndAllocator		allocator;
 	
@@ -187,8 +187,8 @@ typedef struct _DEMO_TENGAN_SYSTEM {
 	CAMERA_WORK			cw;
 	SHAKE				shake;
 	
-	u8	evy_pat;		///< BG ƒtƒF[ƒh
-	u8	evy;			///< BG ƒtƒF[ƒh
+	u8	evy_pat;		///< BG ãƒ•ã‚§ãƒ¼ãƒ‰
+	u8	evy;			///< BG ãƒ•ã‚§ãƒ¼ãƒ‰
 	u8	evy_wait;
 	
 } DEMO_SYSTEM;
@@ -260,7 +260,7 @@ enum {
 	eCMD_LW,
 	eCMD_RW,
 	
-	eCMD_UWB,	///< ãŒü‚«Ã~Œã‚¸‚³‚è
+	eCMD_UWB,	///< ä¸Šå‘ãé™æ­¢å¾Œãšã•ã‚Š
 	
 	eCMD_D1,
 	eCMD_D2,
@@ -307,7 +307,7 @@ typedef struct {
 	T3D_MODEL gira[ 5 ];
 	T3D_MODEL kage[ 2 ];
 	T3D_MODEL hobj[ 2 ];
-	T3D_MODEL okage[ 4 ]; ///< poke hobj ‚Ì‰e
+	T3D_MODEL okage[ 4 ]; ///< poke hobj ã®å½±
 	
 } DEMO_MD_S1;
 
@@ -319,7 +319,7 @@ typedef struct {
 } DEMO_MD_S0;
 
 
-///< ƒV[ƒ“‚O‚Ìƒ[ƒN	R’¸‚É‹…‚ªW‚Ü‚éƒV[ƒ“
+///< ã‚·ãƒ¼ãƒ³ï¼ã®ãƒ¯ãƒ¼ã‚¯	å±±é ‚ã«çƒãŒé›†ã¾ã‚‹ã‚·ãƒ¼ãƒ³
 typedef struct {
 	
 	int		cut;
@@ -335,7 +335,7 @@ typedef struct {
 } DEMO_SCENE_00_WORK;
 
 
-///< ƒV[ƒ“‚P‚Ìƒ[ƒN	ƒAƒJƒM‚ª”j‚ê‚½¢ŠE‚Éˆø‚«‚Ü‚ê‚éƒV[ƒ“
+///< ã‚·ãƒ¼ãƒ³ï¼‘ã®ãƒ¯ãƒ¼ã‚¯	ã‚¢ã‚«ã‚®ãŒç ´ã‚ŒãŸä¸–ç•Œã«å¼•ãè¾¼ã¾ã‚Œã‚‹ã‚·ãƒ¼ãƒ³
 typedef struct {
 
 	int		cut;
@@ -350,7 +350,7 @@ typedef struct {
 } DEMO_SCENE_01_WORK;
 
 
-///< ƒV[ƒ“‚Q‚Ìƒ[ƒN	ƒfƒBƒAƒ‹ƒKƒpƒ‹ƒLƒA‚ª“¯‚É“oê‚·‚éƒV[ƒ“
+///< ã‚·ãƒ¼ãƒ³ï¼’ã®ãƒ¯ãƒ¼ã‚¯	ãƒ‡ã‚£ã‚¢ãƒ«ã‚¬ãƒ‘ãƒ«ã‚­ã‚¢ãŒåŒæ™‚ã«ç™»å ´ã™ã‚‹ã‚·ãƒ¼ãƒ³
 typedef struct {
 	
 	int cut;

@@ -1,19 +1,19 @@
 //===================================================================
 /**
  * @file	agbdownload.c
- * @bfief	AGBƒJƒZƒbƒg‚©‚ç‚Ì‚Ó‚µ‚¬ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒh
+ * @bfief	AGBã‚«ã‚»ãƒƒãƒˆã‹ã‚‰ã®ãµã—ãŽãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
  * @author	Satoshi Mitsuhara
  * @date	06.06.09
  *
  * <pre>
- * ‚`‚f‚aƒJƒZƒbƒg‘¤‚Ìƒƒ‚ƒŠƒ}ƒbƒv
- *	0x08000000	ƒvƒƒOƒ‰ƒ€{ƒf[ƒ^
+ * ï¼¡ï¼§ï¼¢ã‚«ã‚»ãƒƒãƒˆå´ã®ãƒ¡ãƒ¢ãƒªãƒžãƒƒãƒ—
+ *	0x08000000	ãƒ—ãƒ­ã‚°ãƒ©ãƒ ï¼‹ãƒ‡ãƒ¼ã‚¿
  *	     |
- *	0x08100000	“]‘—ƒf[ƒ^‚ÌƒTƒCƒY(‚SƒoƒCƒg)
- *	0x08100010	ƒr[ƒRƒ“î•ñ
- *	0x08100100	‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ìƒf[ƒ^ŠJŽn
+ *	0x08100000	è»¢é€ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º(ï¼”ãƒã‚¤ãƒˆ)
+ *	0x08100010	ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±
+ *	0x08100100	ãµã—ãŽãªãŠãã‚Šã‚‚ã®ãƒ‡ãƒ¼ã‚¿é–‹å§‹
  *	     |
- *	0x081xxxxx	I—¹
+ *	0x081xxxxx	çµ‚äº†
  * </pre>
  *
  * $Id: agbdownload.c,v 1.3 2006/07/15 08:47:20 mitsuhara Exp $
@@ -23,21 +23,21 @@
 #include "agbdownload.h"
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/15
-// “dŽq–¼”FØ‚É‘Î‰ž
+// é›»å­ç½²åèªè¨¼ã«å¯¾å¿œ
 #include "common.h"
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/18
-// NitroCrypto ƒ‰ƒCƒuƒ‰ƒŠ‚ðƒ[ƒJƒ‹‚É’u‚¢‚½‚à‚Ì‚É’u‚«Š·‚¦
+// NitroCrypto ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ãƒ­ãƒ¼ã‚«ãƒ«ã«ç½®ã„ãŸã‚‚ã®ã«ç½®ãæ›ãˆ
 #include "nitrocrypto/crypto.h"
 #include "nitrocrypto/crypto/sign.h"
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
-// ƒAƒNƒZƒX‰Â”\ƒJ[ƒgƒŠƒbƒW‚ÌƒQ[ƒ€ƒR[ƒh
+// ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®ã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒ‰
 static u32 AgbCartridgeTable[] = {
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-// ‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚ÌAGBƒJ[ƒgƒŠƒbƒW‚ÌƒCƒjƒVƒƒƒ‹ƒR[ƒh‚ðŠe‘Œê‘Î‰ž‚É
+// ãµã—ãŽãªãŠãã‚Šã‚‚ã®AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ã‚’å„å›½èªžå¯¾å¿œã«
 #if (PM_LANG == LANG_JAPAN)
   'B5BJ', 'B5CJ', 'B5DJ', 'B5EJ', 'B5FJ',
   'B5GJ', 'B5HJ', 'B5IJ', 'B5JJ', 'B5KJ',
@@ -75,7 +75,7 @@ static u32 AgbCartridgeTable[] = {
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/15
-// “dŽq–¼”FØ‚É‘Î‰ž
+// é›»å­ç½²åèªè¨¼ã«å¯¾å¿œ
 
 static const u8 PublicKey[] = {
 	0xc8,0x7e,0x66,0x71,0x46,0x0b,0xe6,0x6f,0x17,0x8a,0x5c,0x7d,0xea,0xe1,0x93,0xfd,
@@ -105,17 +105,17 @@ void *alloc(u32 size) {
 
 //------------------------------------------------------------------
 /**
- * @brief	‚Ó‚µ‚¬ƒf[ƒ^‚ðŠÜ‚ÞƒJƒZƒbƒg‚©’²¸‚·‚é
+ * @brief	ãµã—ãŽãƒ‡ãƒ¼ã‚¿ã‚’å«ã‚€ã‚«ã‚»ãƒƒãƒˆã‹èª¿æŸ»ã™ã‚‹
  * @param	NONE
- * @return	TRUE: ‚Ó‚µ‚¬ƒJƒZƒbƒg   FALSE: ‚È‚µ
+ * @return	TRUE: ãµã—ãŽã‚«ã‚»ãƒƒãƒˆ   FALSE: ãªã—
  */
 //------------------------------------------------------------------
 static BOOL CheckAgbCartridgeInitialCode(void)
 {
   int i;
   u32 init_code = CTRDG_GetAgbGameCode();
-  // AgbCartridgeTable‚Íu32‚Æ‚µ‚Äˆµ‚Á‚Ä‚¢‚ÄƒŠƒgƒ‹ƒGƒ“ƒfƒBƒAƒ“‚É‚È‚Á‚Ä‚µ‚Ü‚¤‚©‚ç
-  // ‚»‚Ì‚Â‚¶‚Â‚Ü‚ ‚í‚¹‚Åinit_code‚ð‚Ð‚Á‚­‚è•Ô‚·
+  // AgbCartridgeTableã¯u32ã¨ã—ã¦æ‰±ã£ã¦ã„ã¦ãƒªãƒˆãƒ«ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ã«ãªã£ã¦ã—ã¾ã†ã‹ã‚‰
+  // ãã®ã¤ã˜ã¤ã¾ã‚ã‚ã›ã§init_codeã‚’ã²ã£ãã‚Šè¿”ã™
   init_code = (((init_code >>  0) & 255) << 24 |
 	       ((init_code >>  8) & 255) << 16 |
 	       ((init_code >> 16) & 255) <<  8 |
@@ -126,7 +126,7 @@ static BOOL CheckAgbCartridgeInitialCode(void)
       // MatchComment: ignore this localization change
 	  // ----------------------------------------------------------------------------
 	  // localize_spec_mark(LANG_ALL) imatake 2007/01/15
-	  // “dŽq–¼”FØ‚É‘Î‰ž
+	  // é›»å­ç½²åèªè¨¼ã«å¯¾å¿œ
       
 	  u8 signed_data[AGB_SIGNEDDATA_SIZE];
 	  u8 signature[AGB_SIGNATURE_SIZE];
@@ -138,10 +138,10 @@ static BOOL CheckAgbCartridgeInitialCode(void)
       
 	  CRYPTO_SetAllocator(alloc, sys_FreeMemoryEz);
 	  if (CRYPTO_VerifySignature(signed_data, AGB_SIGNEDDATA_SIZE, signature, PublicKey)) {
-	    OS_TPrintf("‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ì‚Ì–¼”FØ‚É¬Œ÷‚µ‚Ü‚µ‚½B\n");
+	    OS_TPrintf("ãµã—ãŽãªãŠãã‚Šã‚‚ã®ã®ç½²åèªè¨¼ã«æˆåŠŸã—ã¾ã—ãŸã€‚\n");
 	    return TRUE;
 	  } else {
-	    OS_TPrintf("‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ì‚Ì–¼”FØ‚ÉŽ¸”s‚µ‚Ü‚µ‚½B\n");
+	    OS_TPrintf("ãµã—ãŽãªãŠãã‚Šã‚‚ã®ã®ç½²åèªè¨¼ã«å¤±æ•—ã—ã¾ã—ãŸã€‚\n");
 	  }
       
 	  // ----------------------------------------------------------------------------
@@ -153,22 +153,22 @@ static BOOL CheckAgbCartridgeInitialCode(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚`‚f‚aƒJƒZƒbƒg‚ÌƒAƒNƒZƒXðŒ‚ª®‚Á‚Ä‚¢‚é‚©’²¸
+ * @brief	ï¼¡ï¼§ï¼¢ã‚«ã‚»ãƒƒãƒˆã®ã‚¢ã‚¯ã‚»ã‚¹æ¡ä»¶ãŒæ•´ã£ã¦ã„ã‚‹ã‹èª¿æŸ»
  * @param	NONE
- * @return	TRUE: ƒAƒNƒZƒX‰Â”\   FALSE: ‚È‚µ
+ * @return	TRUE: ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½   FALSE: ãªã—
  */
 //------------------------------------------------------------------
 static BOOL IsExistAgbCartridge(void)
 {
-  // ‚`‚f‚aƒJ[ƒgƒŠƒbƒW‰Šú‰»(OS_Init‚Åˆ—‚³‚ê‚Ä‚¢‚é‚Í‚¸H)
+  // ï¼¡ï¼§ï¼¢ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸åˆæœŸåŒ–(OS_Initã§å‡¦ç†ã•ã‚Œã¦ã„ã‚‹ã¯ãšï¼Ÿ)
   CTRDG_Init();
-  // ‚`‚f‚aƒJ[ƒgƒŠƒbƒW‚ª‘¶Ý‚µ‚È‚¯‚ê‚ÎFALSE
+  // ï¼¡ï¼§ï¼¢ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒå­˜åœ¨ã—ãªã‘ã‚Œã°FALSE
   if(CTRDG_IsAgbCartridge() == FALSE)
     return FALSE;
-  // ”C“V“°ˆÈŠO‚ÌƒJƒZƒbƒg‚È‚ç‚ÎFALSE
+  // ä»»å¤©å ‚ä»¥å¤–ã®ã‚«ã‚»ãƒƒãƒˆãªã‚‰ã°FALSE
   if(CTRDG_GetAgbMakerCode() != AGB_MAKER_CODE)
     return FALSE;
-  // Žw’è‚³‚ê‚½ƒCƒjƒVƒƒƒ‹ƒR[ƒhˆÈŠO‚ÍFALSE
+  // æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ä»¥å¤–ã¯FALSE
   if(CheckAgbCartridgeInitialCode() == FALSE)
     return FALSE;
   return TRUE;
@@ -177,16 +177,16 @@ static BOOL IsExistAgbCartridge(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚`‚f‚aƒJ[ƒgƒŠƒbƒW“à‚É‚ ‚éƒf[ƒ^‚ÌƒTƒCƒY‚ð•Ô‚·
+ * @brief	ï¼¡ï¼§ï¼¢ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸å†…ã«ã‚ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param	NONE
- * @return	ƒTƒCƒY(0‚È‚ç‚ÎƒJ[ƒgƒŠƒbƒW‚ªŽh‚³‚Á‚Ä‚¢‚È‚¢
+ * @return	ã‚µã‚¤ã‚º(0ãªã‚‰ã°ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒåˆºã•ã£ã¦ã„ãªã„
  */
 //------------------------------------------------------------------
 int GetAgbCartridgeDataSize(void)
 {
   u32 size;
 
-  // ƒJƒZƒbƒg‚ÌðŒ‚ðƒ`ƒFƒbƒN
+  // ã‚«ã‚»ãƒƒãƒˆã®æ¡ä»¶ã‚’ãƒã‚§ãƒƒã‚¯
   if(IsExistAgbCartridge() == FALSE)
     return 0;
 
@@ -200,20 +200,20 @@ int GetAgbCartridgeDataSize(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚`‚f‚aƒJ[ƒgƒŠƒbƒW“à‚É‚ ‚éƒr[ƒRƒ“ƒf[ƒ^‚ðƒRƒs[
+ * @brief	ï¼¡ï¼§ï¼¢ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸å†…ã«ã‚ã‚‹ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
  * @param	NONE
- * @return	TRUE: ƒRƒs[¬Œ÷  : FALSE: Ž¸”s
+ * @return	TRUE: ã‚³ãƒ”ãƒ¼æˆåŠŸ  : FALSE: å¤±æ•—
  */
 //------------------------------------------------------------------
 BOOL GetAgbCartridgeBeaconData(void *dist, int size)
 {
   BOOL flag;
 
-  // ƒJƒZƒbƒg‚ÌðŒ‚ðƒ`ƒFƒbƒN
+  // ã‚«ã‚»ãƒƒãƒˆã®æ¡ä»¶ã‚’ãƒã‚§ãƒƒã‚¯
   if(IsExistAgbCartridge() == FALSE)
     return FALSE;
 
-  // ƒQ[ƒ€ƒf[ƒ^‚ðŽw’è—Ìˆæ‚ÉƒRƒs[‚·‚é
+  // ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’æŒ‡å®šé ˜åŸŸã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
   if(size == 0)
     return FALSE;
 
@@ -221,7 +221,7 @@ BOOL GetAgbCartridgeBeaconData(void *dist, int size)
   flag = (BOOL)CTRDG_CpuCopy16((const void *)AGBBEACONDATAPTR, dist, size);
   CTRDG_Enable(FALSE);
 
-  // ÅŒã‚ÉƒJ[ƒgƒŠƒbƒW”²‚«”»’è‚ðs‚¤
+  // æœ€å¾Œã«ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸æŠœãåˆ¤å®šã‚’è¡Œã†
   if(CTRDG_IsExisting() == FALSE)
     return FALSE;
 
@@ -231,30 +231,30 @@ BOOL GetAgbCartridgeBeaconData(void *dist, int size)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚`‚f‚aƒJ[ƒgƒŠƒbƒW‚©‚çƒf[ƒ^‚ð“Ç‚Ýo‚·
+ * @brief	ï¼¡ï¼§ï¼¢ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™
  * @param	NONE
- * @return	TRUE: ¬Œ÷   FALSE: Ž¸”s
+ * @return	TRUE: æˆåŠŸ   FALSE: å¤±æ•—
  */
 //------------------------------------------------------------------
 BOOL ReadAgbCartridgeData(void *dist, int size)
 {
   BOOL flag;
 
-  // ƒJƒZƒbƒg‚ÌðŒ‚ðƒ`ƒFƒbƒN
+  // ã‚«ã‚»ãƒƒãƒˆã®æ¡ä»¶ã‚’ãƒã‚§ãƒƒã‚¯
   if(IsExistAgbCartridge() == FALSE)
     return FALSE;
 
-  // ƒQ[ƒ€ƒf[ƒ^‚ðŽw’è—Ìˆæ‚ÉƒRƒs[‚·‚é
+  // ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’æŒ‡å®šé ˜åŸŸã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
   if(size == 0)
     size = GetAgbCartridgeDataSize();
   CTRDG_Enable(TRUE);
   flag = (BOOL)CTRDG_CpuCopy16((const void *)AGBMISSIONDATAPTR, dist, size);
   CTRDG_Enable(FALSE);
 
-  OS_TPrintf("AGBƒJƒZƒbƒg‚É“ü‚Á‚Ä‚éƒf[ƒ^‚ÌƒTƒCƒY‚Í%d [%08X\n", size, dist);
+  OS_TPrintf("AGBã‚«ã‚»ãƒƒãƒˆã«å…¥ã£ã¦ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã¯%d [%08X\n", size, dist);
 
   
-  // ÅŒã‚ÉƒJ[ƒgƒŠƒbƒW”²‚«”»’è‚ðs‚¤
+  // æœ€å¾Œã«ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸æŠœãåˆ¤å®šã‚’è¡Œã†
   if(CTRDG_IsExisting() == FALSE)
     return FALSE;
 

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_034.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			034�@�퓬�I����Ɏg�p�����|�P�����̃��x���~�U���񐔁~5�̂�������ɓ���
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			034　戦闘終了後に使用したポケモンのレベル×攻撃回数×5のお金が手に入る
  *
  *@author	HisashiSogabe
  *@data		2006.01.17

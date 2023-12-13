@@ -12,7 +12,7 @@
 
   $Log: gx_capture.h,v $
   Revision 1.24  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL ‚Ì”»’è•”•ª‚É SDK_WIN32 ‚Å‚Ì”»’è‚à’Ç‰Á
+  SDK_FROM_TOOL ã®åˆ¤å®šéƒ¨åˆ†ã« SDK_WIN32 ã§ã®åˆ¤å®šã‚‚è¿½åŠ 
 
   Revision 1.23  2005/02/28 05:26:13  yosizaki
   do-indent.
@@ -21,7 +21,7 @@
   fix copyright header.
 
   Revision 1.21  2005/01/05 06:30:15  takano_makoto
-  GX_ResetCaptureŠÖ”‚ğ’Ç‰Á
+  GX_ResetCaptureé–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.20  2004/05/14 11:52:57  takano_makoto
   Add #ifndef SDK_FROM_TOOL for VC or BCB.

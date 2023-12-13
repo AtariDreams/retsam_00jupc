@@ -12,7 +12,7 @@
 
   $Log: pxi_fifo.c,v $
   Revision 1.26  2006/05/22 07:00:50  okubata_ryoma
-  Š„‚è‚İ‹Ö~’†‚Å‚àPM‚Ì“¯ŠúŠÖ”‚ª“®ì‚·‚é‚æ‚¤‚ÉC³
+  å‰²ã‚Šè¾¼ã¿ç¦æ­¢ä¸­ã§ã‚‚PMã®åŒæœŸé–¢æ•°ãŒå‹•ä½œã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.25  2006/01/18 02:12:28  kitase_hirotake
   do-indent
@@ -21,10 +21,10 @@
   do-indent.
 
   Revision 1.23  2005/02/18 07:09:31  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.22  2005/02/17 00:04:08  yasu
-  PXI_SetFifoRecvCallback ‚Ì WARNING o—ÍğŒ‚ğŠÉ˜a
+  PXI_SetFifoRecvCallback ã® WARNING å‡ºåŠ›æ¡ä»¶ã‚’ç·©å’Œ
 
   Revision 1.21  2005/01/13 00:18:59  yada
   fix copyright header
@@ -36,7 +36,7 @@
   exchange irq setting and PXI clear
 
   Revision 1.18  2004/09/15 09:11:55  terui
-  PXI_SetFifoRecvCallback‚ÉNULL‚ğw’è‚·‚é‚±‚Æ‚Åw’èTAG‚Ì‰Šú‰»‘O‚Ìó‘Ô‚É‚È‚é‚æ‚¤‚É‰ü‘¢B
+  PXI_SetFifoRecvCallbackã«NULLã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã§æŒ‡å®šTAGã®åˆæœŸåŒ–å‰ã®çŠ¶æ…‹ã«ãªã‚‹ã‚ˆã†ã«æ”¹é€ ã€‚
 
   Revision 1.17  2004/07/13 08:27:23  yada
   move PXI_IsArm7CallbackReady() and PXI_IsArm9CallbackReady() to pxi_fifo.h as inline.
@@ -72,7 +72,7 @@
   send signal to let ensata know PXI initialized
 
   Revision 1.6  2004/03/09 07:25:41  yada
-  PXI_InitFIFO() ‚Ì sync“®ì•”•ª‚ğƒRƒƒ“ƒgƒAƒEƒg
+  PXI_InitFIFO() ã® syncå‹•ä½œéƒ¨åˆ†ã‚’ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 
   Revision 1.5  2004/03/08 12:41:37  yasu
   workaround for ensata

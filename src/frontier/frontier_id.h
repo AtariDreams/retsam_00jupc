@@ -1,20 +1,20 @@
 //==============================================================================
 /**
  * @file	frontier_id.h
- * @brief	ƒtƒƒ“ƒeƒBƒAƒ}ƒbƒv‚ÅŽg—p‚·‚éƒZƒ‹ID‚È‚Ç‚Ì’è‹`êŠ
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒžãƒƒãƒ—ã§ä½¿ç”¨ã™ã‚‹ã‚»ãƒ«IDãªã©ã®å®šç¾©å ´æ‰€
  * @author	matsuda
- * @date	2007.09.18(‰Î)
+ * @date	2007.09.18(ç«)
  */
 //==============================================================================
 #ifndef __FRONTIER_ID_H__
 #define __FRONTIER_ID_H__
 
 //==============================================================================
-//	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+//	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 //==============================================================================
-//ƒLƒƒƒ‰ƒNƒ^ID
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
 enum{
-	//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 	FR_CHARID_POKEICON_0 = 2000,
 	FR_CHARID_POKEICON_1,
 	FR_CHARID_POKEICON_2,
@@ -25,52 +25,52 @@ enum{
 	FR_CHARID_POKEICON_7,
 	FR_CHARID_POKEICON_MAX,
 	
-	//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 	FR_CHARID_ITEMICON,
 	
-	//ƒJƒbƒgƒCƒ“ƒGƒtƒFƒNƒg
-	FR_CHARID_CUTIN_FACE,		//Šç
-	FR_CHARID_CUTIN_VS,			//VSƒ}[ƒN
+	//ã‚«ãƒƒãƒˆã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	FR_CHARID_CUTIN_FACE,		//é¡”
+	FR_CHARID_CUTIN_VS,			//VSãƒžãƒ¼ã‚¯
 };
 
-//ƒpƒŒƒbƒgID
+//ãƒ‘ãƒ¬ãƒƒãƒˆID
 enum{
-	//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 	FR_PLTTID_POKEICON = 2000,
 
-	//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 	FR_PLTTID_ITEMICON,
 
-	//ƒJƒbƒgƒCƒ“ƒGƒtƒFƒNƒg
-	FR_PLTTID_CUTIN_FACE,		//Šç
-	FR_PLTTID_CUTIN_VS,			//VSƒ}[ƒN
-	FR_PLTTID_CUTIN_NAME,		//ƒgƒŒ[ƒi[–¼
+	//ã‚«ãƒƒãƒˆã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	FR_PLTTID_CUTIN_FACE,		//é¡”
+	FR_PLTTID_CUTIN_VS,			//VSãƒžãƒ¼ã‚¯
+	FR_PLTTID_CUTIN_NAME,		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 };
 
-//ƒZƒ‹ID
+//ã‚»ãƒ«ID
 enum{
-	//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 	FR_CELLID_POKEICON = 2000,
 
-	//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 	FR_CELLID_ITEMICON,
 
-	//ƒJƒbƒgƒCƒ“ƒGƒtƒFƒNƒg
-	FR_CELLID_CUTIN_FACE,		//Šç
-	FR_CELLID_CUTIN_VS,			//VSƒ}[ƒN
+	//ã‚«ãƒƒãƒˆã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	FR_CELLID_CUTIN_FACE,		//é¡”
+	FR_CELLID_CUTIN_VS,			//VSãƒžãƒ¼ã‚¯
 };
 
-//ƒZƒ‹ƒAƒjƒID
+//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
 enum{
-	//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 	FR_CELLANMID_POKEICON = 2000,
 
-	//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 	FR_CELLANMID_ITEMICON,
 
-	//ƒJƒbƒgƒCƒ“ƒGƒtƒFƒNƒg
-	FR_CELLANMID_CUTIN_FACE,		//Šç
-	FR_CELLANMID_CUTIN_VS,			//VSƒ}[ƒN
+	//ã‚«ãƒƒãƒˆã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	FR_CELLANMID_CUTIN_FACE,		//é¡”
+	FR_CELLANMID_CUTIN_VS,			//VSãƒžãƒ¼ã‚¯
 };
 
 

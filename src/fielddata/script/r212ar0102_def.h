@@ -1,10 +1,10 @@
 #ifndef _R212AR0102_DEF_H_
 #define _R212AR0102_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R212AR0102_MAID1		(1)
 #define	SCRID_R212AR0102_MAID2		(2)
 #define	SCRID_R212AR0102_BED		(3)
-#define	SCRID_R212AR0102_DATA_MAX		(3)		//最大数
+#define	SCRID_R212AR0102_DATA_MAX		(3)		//譛螟ｧ謨ｰ
 
 #endif //_R212AR0102_DEF_H_

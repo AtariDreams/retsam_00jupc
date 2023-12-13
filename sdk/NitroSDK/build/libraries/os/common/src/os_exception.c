@@ -12,7 +12,7 @@
 
   $Log: os_exception.c,v $
   Revision 1.41  2007/03/26 00:06:13  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.40  2007/02/23 02:29:07  yosizaki
   small fix about OSi_DisplayExContext.
@@ -21,13 +21,13 @@
   add OS_EnableUserExceptionHandlerOnDebugger.
 
   Revision 1.38  2006/05/24 07:54:06  kitase_hirotake
-  —áŠOƒnƒ“ƒhƒ‰‚Ìİ’èğŒ‚Ì•ÏX
+  ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒ©ã®è¨­å®šæ¡ä»¶ã®å¤‰æ›´
 
   Revision 1.37  2006/05/08 09:26:16  okubata_ryoma
-  FINALROM‚Ìê‡‚ÍƒfƒoƒbƒKã‚Å‚àOS_CONSOLE_NITRO‚ğ•Ô‚·‚±‚Æ‚ÉŠÖ‚·‚éC³
+  FINALROMã®å ´åˆã¯ãƒ‡ãƒãƒƒã‚¬ä¸Šã§ã‚‚OS_CONSOLE_NITROã‚’è¿”ã™ã“ã¨ã«é–¢ã™ã‚‹ä¿®æ­£
 
   Revision 1.36  2006/04/04 06:05:53  yosizaki
-  ƒR[ƒ‹ƒXƒ^ƒbƒN‚Ì8ƒoƒCƒg®‡‚ÉŠÖ‚·‚éC³.
+  ã‚³ãƒ¼ãƒ«ã‚¹ã‚¿ãƒƒã‚¯ã®8ãƒã‚¤ãƒˆæ•´åˆã«é–¢ã™ã‚‹ä¿®æ­£.
 
   Revision 1.35  2006/01/18 02:11:30  kitase_hirotake
   do-indent
@@ -73,68 +73,68 @@
   0x27fffd9c->0x027ffd9c
 
   Revision 1.21  2004/04/14 12:48:20  yada
-  IS-NITRO-DEBUGGER‚Ö‚Ìb’è‘Î‰
+  IS-NITRO-DEBUGGERã¸ã®æš«å®šå¯¾å¿œ
 
   Revision 1.20  2004/03/30 06:09:29  yada
-  ldconst ‚â lda ‚ğ ldr = ‚ğg—p‚·‚é‹Lq‚É‚µ‚½B
+  ldconst ã‚„ lda ã‚’ ldr = ã‚’ä½¿ç”¨ã™ã‚‹è¨˜è¿°ã«ã—ãŸã€‚
 
   Revision 1.19  2004/03/18 12:56:43  yada
-  —áŠOƒxƒNƒ^İ’è‚Ìƒ~ƒXC³
+  ä¾‹å¤–ãƒ™ã‚¯ã‚¿è¨­å®šã®ãƒŸã‚¹ä¿®æ­£
 
   Revision 1.18  2004/03/11 09:47:14  yada
-  —áŠO‚ÉFIQ,IRQŠ„‚è‚İ‹Ö~‚µ‚Ä‚¢‚½‚Ì‚ğIRQŠ„‚è‚İ‹Ö~‚Ì‚İ‚É‚µ‚½B
+  ä¾‹å¤–æ™‚ã«FIQ,IRQå‰²ã‚Šè¾¼ã¿ç¦æ­¢ã—ã¦ã„ãŸã®ã‚’IRQå‰²ã‚Šè¾¼ã¿ç¦æ­¢ã®ã¿ã«ã—ãŸã€‚
 
   Revision 1.17  2004/03/09 02:37:59  yada
-  debuggerƒ‚ƒjƒ^ƒnƒ“ƒhƒ‰ŒÄ‚Ño‚µ”»’è•”•ªC³
+  debuggerãƒ¢ãƒ‹ã‚¿ãƒãƒ³ãƒ‰ãƒ©å‘¼ã³å‡ºã—åˆ¤å®šéƒ¨åˆ†ä¿®æ­£
 
   Revision 1.16  2004/03/08 02:54:13  yada
-  ƒfƒoƒbƒKƒ‚ƒjƒ^‚Ì—áŠOƒnƒ“ƒhƒ‰‚ğl—¶
+  ãƒ‡ãƒãƒƒã‚¬ãƒ¢ãƒ‹ã‚¿ã®ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒ©ã‚’è€ƒæ…®
 
   Revision 1.15  2004/03/01 11:54:24  yada
-  ‰pŒê‚ÌŠÖ”commentì¬
+  è‹±èªã®é–¢æ•°commentä½œæˆ
 
   Revision 1.14  2004/02/19 08:43:05  yada
-  ƒ†[ƒU—áŠOƒ‹[ƒ`ƒ“‚ÌŒ^’Ç‰Á
+  ãƒ¦ãƒ¼ã‚¶ä¾‹å¤–ãƒ«ãƒ¼ãƒãƒ³ã®å‹è¿½åŠ 
 
   Revision 1.13  2004/02/17 06:04:38  yada
-  ARM7‚Ö‚Ì‘Î‰
+  ARM7ã¸ã®å¯¾å¿œ
 
   Revision 1.12  2004/02/16 09:40:12  yada
-  ARM7‘¤‚ÌŠ„‚è‚İ‚àƒtƒbƒN‚·‚é‚æ‚¤‚É‚µ‚½B
+  ARM7å´ã®å‰²ã‚Šè¾¼ã¿ã‚‚ãƒ•ãƒƒã‚¯ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.11  2004/02/16 00:49:30  yasu
   Don't switch ISD/noISD by SDK_LINK_ISD.
   Please use stubs library to resolve it at link time.
 
   Revision 1.10  2004/02/13 04:05:28  yada
-  ARM9‚ÆAMR7 ‚Ìê‡‚í‚¯l—¶
+  ARM9ã¨AMR7 ã®å ´åˆã‚ã‘è€ƒæ…®
 
   Revision 1.9  2004/02/12 11:08:30  yada
-  ARM9/ARM7 U‚è•ª‚¯ì‹Æ
+  ARM9/ARM7 æŒ¯ã‚Šåˆ†ã‘ä½œæ¥­
 
   Revision 1.8  2004/02/09 11:17:22  yasu
   include code32.h
 
   Revision 1.7  2004/02/05 10:50:59  yada
-  –¢’è‹`–½—ß‚Å’â~‚·‚é‚æ‚¤‚É‚µ‚½
+  æœªå®šç¾©å‘½ä»¤ã§åœæ­¢ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.6  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.5  2004/02/02 05:34:54  yada
-  OS_SetIrqMask()¨OS_EnableIrqMask() ‚Ö
+  OS_SetIrqMask()â†’OS_EnableIrqMask() ã¸
 
   Revision 1.4  2004/01/30 08:05:36  yada
-  FINALROM‚Å‚Í—áŠO•\¦‚ğ‚µ‚È‚¢‚æ‚¤‚ÉC³
+  FINALROMã§ã¯ä¾‹å¤–è¡¨ç¤ºã‚’ã—ãªã„ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.3  2004/01/30 04:31:47  yada
-  —áŠO•\¦‚Ì‘g‚İ‚İ
+  ä¾‹å¤–è¡¨ç¤ºã®çµ„ã¿è¾¼ã¿
 
   Revision 1.2  2004/01/16 01:18:05  yasu
   Support SDK_BB
 
   Revision 1.1  2004/01/14 12:03:05  yada
-  ‰”Å
+  åˆç‰ˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -231,7 +231,7 @@ asm void OS_SetExceptionVectorLower( void )
   Returns:      None
  *---------------------------------------------------------------------------*/
 
-// «—ˆ“I‚É‚Í HW_EXCP_VECTOR_BUF ‚ğ‚±‚Ì’l‚ÉB
+// å°†æ¥çš„ã«ã¯ HW_EXCP_VECTOR_BUF ã‚’ã“ã®å€¤ã«ã€‚
 #define HW_EXCP_VECTOR_BUF_FOR_DEBUGGER  0x027ffd9c
 
 void OS_InitException(void)
@@ -262,8 +262,8 @@ void OS_InitException(void)
 
 #if defined(SDK_ARM9)
 /*
- * ƒfƒoƒbƒK‚Ö§Œä‚ğ“n‚·‘O‚É©•ª‚Å”»’è‚µ‚Äƒ†[ƒUƒnƒ“ƒhƒ‰‚ğŒÄ‚Ño‚·.
- * ‚½‚¾‚µˆÈ‰º‚Ì–¢’è‹`–½—ß‚ÍƒuƒŒ[ƒNƒ|ƒCƒ“ƒg‚È‚Ì‚Å–³‹‚·‚é.
+ * ãƒ‡ãƒãƒƒã‚¬ã¸åˆ¶å¾¡ã‚’æ¸¡ã™å‰ã«è‡ªåˆ†ã§åˆ¤å®šã—ã¦ãƒ¦ãƒ¼ã‚¶ãƒãƒ³ãƒ‰ãƒ©ã‚’å‘¼ã³å‡ºã™.
+ * ãŸã ã—ä»¥ä¸‹ã®æœªå®šç¾©å‘½ä»¤ã¯ãƒ–ãƒ¬ãƒ¼ã‚¯ãƒã‚¤ãƒ³ãƒˆãªã®ã§ç„¡è¦–ã™ã‚‹.
  * +-------------------+------------+--------+
  * |     debugger      |    ARM     | THUMB  |
  * +-------------------+------------+--------+
@@ -285,15 +285,15 @@ void OS_InitException(void)
 static u32 OSi_ExceptionHookStack[8];
 asm static void OSi_DebuggerExceptionHook(void)
 {
-    /* sp‚ğ•ÏX‚µ‚È‚¢‚æ‚¤’ˆÓ[‚­ƒ[ƒNƒŒƒWƒXƒ^‘Ş”ğ */
+    /* spã‚’å¤‰æ›´ã—ãªã„ã‚ˆã†æ³¨æ„æ·±ããƒ¯ãƒ¼ã‚¯ãƒ¬ã‚¸ã‚¹ã‚¿é€€é¿ */
     ldr       r12, =OSi_ExceptionHookStack
     stmia     r12, {r0-r4,sp,lr}
     mrs       r4, CPSR
     /*
-     * ƒ†[ƒU‚Ö’Ê’m‚·‚×‚«—áŠO‚©‚Ç‚¤‚©”»’è.
-     * - ƒ†[ƒU‚Ö’Ê’m‚·‚×‚«—áŠO‚ÍABT(ƒAƒ{[ƒg)‚Ü‚½‚ÍUND(–¢’è‹`–½—ß).
-     * - UND‚ÍƒuƒŒ[ƒNƒ|ƒCƒ“ƒg‚É‚æ‚Á‚Ä”­¶‚·‚é‰Â”\«‚ª‚ ‚é.
-     * - UND‚©‚ÂƒuƒŒ[ƒNƒ|ƒCƒ“ƒg–½—ß‚Å‚ ‚ê‚Îƒ†[ƒU‚Ö’Ê’m‚µ‚È‚¢.
+     * ãƒ¦ãƒ¼ã‚¶ã¸é€šçŸ¥ã™ã¹ãä¾‹å¤–ã‹ã©ã†ã‹åˆ¤å®š.
+     * - ãƒ¦ãƒ¼ã‚¶ã¸é€šçŸ¥ã™ã¹ãä¾‹å¤–ã¯ABT(ã‚¢ãƒœãƒ¼ãƒˆ)ã¾ãŸã¯UND(æœªå®šç¾©å‘½ä»¤).
+     * - UNDã¯ãƒ–ãƒ¬ãƒ¼ã‚¯ãƒã‚¤ãƒ³ãƒˆã«ã‚ˆã£ã¦ç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹.
+     * - UNDã‹ã¤ãƒ–ãƒ¬ãƒ¼ã‚¯ãƒã‚¤ãƒ³ãƒˆå‘½ä»¤ã§ã‚ã‚Œã°ãƒ¦ãƒ¼ã‚¶ã¸é€šçŸ¥ã—ãªã„.
      */
     mrs       r0, CPSR
     and       r0, r0, #0x1f
@@ -302,7 +302,7 @@ asm static void OSi_DebuggerExceptionHook(void)
     teq       r0, #0x1b
     bne       user_exception_end
 is_und:
-    /* ARM/THUMB‚¨‚æ‚ÑIS-NITRO-DEBUGGER/CodeWarrior‚²‚Æ‚Ì”»’è */
+    /* ARM/THUMBãŠã‚ˆã³IS-NITRO-DEBUGGER/CodeWarriorã”ã¨ã®åˆ¤å®š */
     bic       r0, sp, #1
     ldr       r1, [r0, #4]
     ldr       r0, [r0, #12]
@@ -335,7 +335,7 @@ is_und_arm:
     beq       user_exception_end
     b         user_exception
 user_exception:
-    /* ƒ†[ƒU‚Ì—áŠOƒnƒ“ƒhƒ‰‚Ö’Ê’m */
+    /* ãƒ¦ãƒ¼ã‚¶ã®ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒ©ã¸é€šçŸ¥ */
     ldmia     r12, {r0-r1}
     ldr       r12, =HW_ITCM_END
     stmfd     r12!, {r0-r3,sp,lr}
@@ -345,7 +345,7 @@ user_exception:
     ldmfd     sp!, {r0-r3,r12,lr}
     mov       sp, r12
 user_exception_end:
-    /* ‘Ş”ğ‚µ‚½ƒ[ƒNƒŒƒWƒXƒ^‚ğ•œŒ³‚µ‚ÄƒfƒoƒbƒK‚Ö–{—ˆ‚Ì§Œä‚ğ“n‚· */
+    /* é€€é¿ã—ãŸãƒ¯ãƒ¼ã‚¯ãƒ¬ã‚¸ã‚¹ã‚¿ã‚’å¾©å…ƒã—ã¦ãƒ‡ãƒãƒƒã‚¬ã¸æœ¬æ¥ã®åˆ¶å¾¡ã‚’æ¸¡ã™ */
     msr       CPSR_cxsf, r4
     ldr       r12, =OSi_ExceptionHookStack
     ldmia     r12, {r0-r4,sp,lr}
@@ -409,7 +409,7 @@ void OS_SetUserExceptionHandler(OSExceptionHandler handler, void *arg)
 asm void OSi_ExceptionHandler( void )
 {
     //---- call debugger monitor handler (if exists)
-    ldr       r12, =OSi_DebuggerHandler // r12‚Ì‚İ”j‰ó‰Â
+    ldr       r12, =OSi_DebuggerHandler // r12ã®ã¿ç ´å£Šå¯
     ldr       r12, [r12]
     cmp       r12, #0
     bne @movne1
@@ -478,14 +478,14 @@ usr_return:
  *---------------------------------------------------------------------------*/
 static asm void OSi_GetAndDisplayContext( void )
 {
-    stmfd     sp!, {r0, lr} /* ƒR[ƒ‹ƒXƒ^ƒbƒN‚ğ 8 ƒoƒCƒg®‡ */
+    stmfd     sp!, {r0, lr} /* ã‚³ãƒ¼ãƒ«ã‚¹ã‚¿ãƒƒã‚¯ã‚’ 8 ãƒã‚¤ãƒˆæ•´åˆ */
 
     //---- set exception context 
     bl        OSi_SetExContext
     //---- display exception context (and call user callback)
     bl        OSi_DisplayExContext
 
-    ldmfd     sp!, {r0, lr} /* ƒR[ƒ‹ƒXƒ^ƒbƒN‚ğ 8 ƒoƒCƒg®‡ */
+    ldmfd     sp!, {r0, lr} /* ã‚³ãƒ¼ãƒ«ã‚¹ã‚¿ãƒƒã‚¯ã‚’ 8 ãƒã‚¤ãƒˆæ•´åˆ */
     bx        lr
 }
 
@@ -629,7 +629,7 @@ static void OSi_DisplayExContext()
         asm
         {
           /* *INDENT-OFF* */
-          /* sp,cpsr‚ğ•œ‹A‚³‚¹‚Ä‚¢‚È‚©‚Á‚½“_‚È‚Ç‚ğ‘S‘ÌC³ */
+          /* sp,cpsrã‚’å¾©å¸°ã•ã›ã¦ã„ãªã‹ã£ãŸç‚¹ãªã©ã‚’å…¨ä½“ä¿®æ­£ */
           mrs      r2, CPSR
           mov      r0, sp
           ldr      r1, =0x9f

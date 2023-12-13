@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_big_weight.c
- *	@brief		}ŠÓ‘å‚«‚³”ä‚×@d‚³”ä‚×
+ *	@brief		å›³é‘‘å¤§ãã•æ¯”ã¹ã€€é‡ã•æ¯”ã¹
  *	@author		tomoya takahashi 
  *	@data		2006.02.16
  *
@@ -39,43 +39,43 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_BIG_WE_EVENT_NUM ( 0 )	// ƒCƒxƒ“ƒg”
-//#define ZKN_BIG_WE_EVENT_CHANGE_ZUKAN	(0x1 << 1)	// }ŠÓ‚Ö
+#define ZKN_BIG_WE_EVENT_NUM ( 0 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
+//#define ZKN_BIG_WE_EVENT_CHANGE_ZUKAN	(0x1 << 1)	// å›³é‘‘ã¸
 
 #define ZKN_BIG_WE_OAM_BG_PRI	( 3 )
 #define ZKN_BIG_WE_OAMDAI_BG_PRI	( 1 )
 #define ZKN_BIG_WE_OAM_PRI	( 31 )
 
-// ƒtƒF[ƒh—p
+// ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 #define ZKN_BIG_WE_FADE_PLANEMSK	( GX_BLEND_PLANEMASK_BG0|GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD )
 
 //-------------------------------------
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_BIG_WE_SEQINIT_ALLOC,
@@ -91,52 +91,52 @@ enum{
 	ZKN_BIG_WE_SEQDELETE_END,
 };
 
-// Šm•Û•¶š—ñƒoƒbƒtƒ@ƒTƒCƒY
+// ç¢ºä¿æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define ZKN_BIG_WE_WEIGHT_NUM_STR	( 32 )
 
-// •¶š—ñ•`‰æˆÊ’u
+// æ–‡å­—åˆ—æç”»ä½ç½®
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/05
-// ƒ^ƒCƒgƒ‹‚Ì•\¦ˆÊ’u‚ğA‰æ–Ê’†‰›‚É©“®’²®
-#define ZKN_BIG_WE_WEIGHT_TITLE_WIDTH	( 256 )		// ƒ^ƒCƒgƒ‹
+// ã‚¿ã‚¤ãƒˆãƒ«ã®è¡¨ç¤ºä½ç½®ã‚’ã€ç”»é¢ä¸­å¤®ã«è‡ªå‹•èª¿æ•´
+#define ZKN_BIG_WE_WEIGHT_TITLE_WIDTH	( 256 )		// ã‚¿ã‚¤ãƒˆãƒ«
 // ----------------------------------------------------------------------------
 #define ZKN_BIG_WE_WEIGHT_TITLE_Y	( 24 )
-#define ZKN_BIG_WE_WEIGHT_TAKASA_Y	( 168 )		// "‚‚³"
+#define ZKN_BIG_WE_WEIGHT_TAKASA_Y	( 168 )		// "é«˜ã•"
 #define ZKN_BIG_WE_WEIGHT_TAKASA1_X	( 32 )
 #define ZKN_BIG_WE_WEIGHT_TAKASA2_X	( 152 )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/05
-// ‚‚³‚Ì’l‚Ì•\¦ˆÊ’u‚ğA‰E’[w’è‚É•ÏX
-#define ZKN_BIG_WE_WEIGHT_NUM_OFS_X	( 78 )	// ÀÛ‚Ì’l‚ğ•\¦‚·‚éu‚¨‚à‚³v‚©‚ç‚ÌˆÊ’u
+// é«˜ã•ã®å€¤ã®è¡¨ç¤ºä½ç½®ã‚’ã€å³ç«¯æŒ‡å®šã«å¤‰æ›´
+#define ZKN_BIG_WE_WEIGHT_NUM_OFS_X	( 78 )	// å®Ÿéš›ã®å€¤ã‚’è¡¨ç¤ºã™ã‚‹ã€ŒãŠã‚‚ã•ã€ã‹ã‚‰ã®ä½ç½®
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/05
-// ålŒö‚Ì‘Ìd‚Ì’PˆÊ‚ğA’l‚ğŠi”[‚µ‚½ƒƒbƒZ[ƒW‚É“‡
+// ä¸»äººå…¬ã®ä½“é‡ã®å˜ä½ã‚’ã€å€¤ã‚’æ ¼ç´ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«çµ±åˆ
 // MatchComment: show removed define
-//#define ZKN_BIG_WE_WEIGHT__M__OFS_X	( 30 )	// M‚ğ•\¦‚·‚é’l‚©‚ç‚ÌˆÊ’u
+//#define ZKN_BIG_WE_WEIGHT__M__OFS_X	( 30 )	// Mã‚’è¡¨ç¤ºã™ã‚‹å€¤ã‹ã‚‰ã®ä½ç½®
 // ----------------------------------------------------------------------------
 #define ZKN_BIG_WE_WEIGHT_NAME_Y		( 152 )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/05
-// ƒ|ƒPƒ‚ƒ“–¼‚ğ‘‚«o‚·ˆÊ’u‚ğAålŒö–¼‚Æ“ˆê
+// ãƒã‚±ãƒ¢ãƒ³åã‚’æ›¸ãå‡ºã™ä½ç½®ã‚’ã€ä¸»äººå…¬åã¨çµ±ä¸€
 #define ZKN_BIG_WE_WEIGHT_MONSNAME_X	( 26 )
 // ----------------------------------------------------------------------------
 #define ZKN_BIG_WE_WEIGHT_HERO_X		( 146 )
 
-// ålŒöŠî–{•\¦ˆÊ’u
+// ä¸»äººå…¬åŸºæœ¬è¡¨ç¤ºä½ç½®
 #define ZKN_BIG_WE_WEIGHT_HERO_DEF_X	( 184 )
 #define ZKN_BIG_WE_WEIGHT_HERO_DEF_Y	( 64 )
 #define ZKN_BIG_WE_WEIGHT_HERO_ANM_SEQ_MAN		( 3 )
 #define ZKN_BIG_WE_WEIGHT_HERO_ANM_SEQ_GIRL	( 4 )
 
 
-// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN
+// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 #define ZKN_BIG_WE_WEIGHT_POKEGRA_DEF_X	( 72 )
 #define ZKN_BIG_WE_WEIGHT_POKEGRA_DEF_Y	( ZKN_BIG_WE_WEIGHT_HERO_DEF_Y )
 
-//@“V”‰ƒf[ƒ^
-#define ZKN_BIG_WE_TENBIN_MAT_X		( 128 )	// ’†S
-#define ZKN_BIG_WE_TENBIN_MAT_Y		( 96 )	// ’†S
+//ã€€å¤©ç§¤ãƒ‡ãƒ¼ã‚¿
+#define ZKN_BIG_WE_TENBIN_MAT_X		( 128 )	// ä¸­å¿ƒ
+#define ZKN_BIG_WE_TENBIN_MAT_Y		( 96 )	// ä¸­å¿ƒ
 #define ZKN_BIG_WE_TENBIN_SIZ_X		( 128 )	
 #define ZKN_BIG_WE_TENBIN_SIZ_Y		( 16 )
 #define ZKN_BIG_WE_TENBIN_SWSP_PLTT	( 0 )
@@ -145,10 +145,10 @@ enum{
 #define ZKN_BIG_WE_TENBIN_SARA_MAT_OFS_Y	( 24 )
 #define ZKN_BIG_WE_TENBIN_SARA_MAT_ANM_SEQ	( 0 )
 
-#define ZKN_BIG_WE_TENBIN_OBJ_DIS_X	( 56 )	// “V”‰‚Ì’†S‚©‚çålŒö‚Ü‚Å‚Ì‹——£
+#define ZKN_BIG_WE_TENBIN_OBJ_DIS_X	( 56 )	// å¤©ç§¤ã®ä¸­å¿ƒã‹ã‚‰ä¸»äººå…¬ã¾ã§ã®è·é›¢
 
 
-// ‚®‚ç‚®‚çƒAƒjƒ
+// ãã‚‰ãã‚‰ã‚¢ãƒ‹ãƒ¡
 #define ZKN_BIG_WE_TENBIN_GURAGURA_ANM_COUNT		( 2 )
 #define ZKN_BIG_WE_TENBIN_GURAGURA_ANM_ST_ROTA		( FX_GET_ROTA_NUM(0) )
 #define ZKN_BIG_WE_TENBIN_GURAGURA_ANM_AD_ROTA		( FX_GET_ROTA_NUM(1) )
@@ -156,33 +156,33 @@ enum{
 #define ZKN_BIG_WE_TENBIN_GURAGURA_ANM_01_TARGET	( FX_GET_ROTA_NUM(3) )
 #define ZKN_BIG_WE_TENBIN_GURAGURA_ANM_02_TARGET	( FX_GET_ROTA_NUM(0) )
 
-// ƒWƒƒƒ“ƒvƒAƒjƒ
+// ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒ‹ãƒ¡
 #define ZKN_BIG_WE_JUMP_ANIME_G	( 1 )
 #define ZKN_BIG_WE_JUMP_SHAKE_X		( 2*FX32_ONE )
 #define ZKN_BIG_WE_JUMP_SHAKE_WAIT	( 1 )
 #define ZKN_BIG_WE_JUMP_SHAKE_GET_NUM_DIV	( 2 )
 
 
-// ålŒö‚Ìd‚³
+// ä¸»äººå…¬ã®é‡ã•
 #define ZKN_BIG_WE_MAN_GRAM	( 380 )
 #define ZKN_BIG_WE_GIRL_GRAM	( 340 )
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-//	ƒAƒjƒƒf[ƒ^
+//	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	int		dis;				// d‚³‚Ì·I—¹
-	BOOL	guragura_flag;		// ƒOƒ‰ƒOƒ‰ƒAƒjƒƒtƒ‰ƒO
-	u16		rota_add;			// ‰ñ“]‘¬“x
-	u16		rota_end;			// ‰ñ“]I—¹
-	BOOL	jump_flag;			// ƒWƒƒƒ“ƒvƒAƒjƒƒtƒ‰ƒO
-	int		jump_num;			// ƒWƒƒƒ“ƒv‰‘¬“x
+	int		dis;				// é‡ã•ã®å·®çµ‚äº†
+	BOOL	guragura_flag;		// ã‚°ãƒ©ã‚°ãƒ©ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
+	u16		rota_add;			// å›è»¢é€Ÿåº¦
+	u16		rota_end;			// å›è»¢çµ‚äº†
+	BOOL	jump_flag;			// ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
+	int		jump_num;			// ã‚¸ãƒ£ãƒ³ãƒ—åˆé€Ÿåº¦
 } ZKN_BIG_WE_ANIME_DATA;
 #define ZKN_BIG_WE_ANIME_NUM	( 17 )
 #define ZKN_BIG_WE_ANIME_ROTA_ADD_ONE(x)	( (x) * 128 )
@@ -283,20 +283,20 @@ const static ZKN_BIG_WE_ANIME_DATA ZknBigWeAnime[ ZKN_BIG_WE_ANIME_NUM ] = {
 
 
 //-------------------------------------
-//	‘å‚«‚³”ä‚×‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	å¤§ãã•æ¯”ã¹ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DATA*		p_glb;				// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DATA*		p_glb;				// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
-	// ƒƒCƒ“ƒRƒ‚ƒ“ƒOƒ[ƒoƒ‹
-	ZKN_APL_DATA*	p_main_common;	// ƒAƒvƒŠƒf[ƒ^
+	// ãƒ¡ã‚¤ãƒ³ã‚³ãƒ¢ãƒ³ã‚°ãƒ­ãƒ¼ãƒãƒ«
+	ZKN_APL_DATA*	p_main_common;	// ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 } ZKN_BIG_WE_GLB;
 
 //-------------------------------------
-//	‘å‚«‚³”ä‚×‰æ–Ê	•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	å¤§ãã•æ¯”ã¹ç”»é¢	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DRAWDATA*	p_drawglb;			// •`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DRAWDATA*	p_drawglb;			// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
 	SWSP_CHAR_PTR swsp_char;
 	SWSP_PLTT_PTR swsp_pltt;
@@ -309,17 +309,17 @@ typedef struct {
 } ZKN_BIG_WE_DRAWGLB;
 
 //-------------------------------------
-//	‘å‚«‚³”ä‚×‰æ–Ê@“à•”ƒ[ƒN
+//	å¤§ãã•æ¯”ã¹ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	int gram_dis;
-	int omoi_flag;	// 0ålŒö 1ƒ|ƒPƒ‚ƒ“
+	int omoi_flag;	// 0ä¸»äººå…¬ 1ãƒã‚±ãƒ¢ãƒ³
 } ZKN_BIG_WE_WORK;
 
 
 
 //-------------------------------------
-//	‚®‚ç‚®‚çƒAƒjƒƒ^ƒXƒN\‘¢‘Ì
+//	ãã‚‰ãã‚‰ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯æ§‹é€ ä½“
 //=====================================
 typedef struct {
 	SWSP_OBJ_PTR	ten_bou_obj;
@@ -339,7 +339,7 @@ typedef struct {
 } ZKN_BIG_WE_GURAGURA;
 
 //-------------------------------------
-//	“V”‰ƒAƒjƒƒ^ƒXƒN\‘¢‘Ì
+//	å¤©ç§¤ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯æ§‹é€ ä½“
 //=====================================
 typedef struct {
 	SWSP_OBJ_PTR	ten_bou_obj;
@@ -355,14 +355,14 @@ typedef struct {
 } ZKN_BIG_WE_TENBIN;
 
 //-------------------------------------
-//	ƒIƒuƒWƒFƒNƒgƒWƒƒƒ“ƒv\‘¢‘Ì
+//	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¸ãƒ£ãƒ³ãƒ—æ§‹é€ ä½“
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR obj;
 
 	fx32 now_x;
 	fx32 now_y;
-	s16 vo;		// ‰‘¬“x
+	s16 vo;		// åˆé€Ÿåº¦
 	int count_max;
 	int count;
 
@@ -373,7 +373,7 @@ typedef struct {
 
 
 //-------------------------------------
-//	‘å‚«‚³”ä‚×‰æ–Ê@“à•”ƒ[ƒN
+//	å¤§ãã•æ¯”ã¹ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR hero;
@@ -381,15 +381,15 @@ typedef struct {
 	CLACT_WORK_PTR tenbin_dai;
 	CLACT_WORK_PTR tenbin_sara[2];
 
-	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ResourceƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
-	CLACT_U_RES_OBJ_PTR res_obj_main[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ResourceƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// Resourceã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
+	CLACT_U_RES_OBJ_PTR res_obj_main[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// Resourceã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
 
 
 
-	const ZKN_BIG_WE_ANIME_DATA* p_anime;	// ”½‰fƒAƒjƒ
-	int way;		// ƒ|ƒPƒ‚ƒ“‚©ålŒö‚©
+	const ZKN_BIG_WE_ANIME_DATA* p_anime;	// åæ˜ ã‚¢ãƒ‹ãƒ¡
+	int way;		// ãƒã‚±ãƒ¢ãƒ³ã‹ä¸»äººå…¬ã‹
 	
-	// ƒAƒjƒTCBƒf[ƒ^
+	// ã‚¢ãƒ‹ãƒ¡TCBãƒ‡ãƒ¼ã‚¿
 	TCB_PTR tcb;
 	ZKN_BIG_WE_GURAGURA gragra_anm;
 	ZKN_BIG_WE_TENBIN tenbin_anm;
@@ -397,7 +397,7 @@ typedef struct {
 	BOOL anm_end;
 
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒh—pƒoƒbƒtƒ@
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ãƒãƒƒãƒ•ã‚¡
 	u16* pal_fade_buff;
 	u16* pal_fade_buff_main;
 } ZKN_BIG_WE_DRAW;
@@ -406,12 +406,12 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_BIG_WE_GLB* MakeBigWeGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -426,7 +426,7 @@ static int BigWeEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknBigWeProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -436,13 +436,13 @@ static int ZknBigWeProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 static int ZknBigWeProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 static int ZknBigWeProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
-// ƒtƒF[ƒhˆ—
+// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknBigWeOamFadeInit( ZKN_BIG_WE_DRAW* p_draw );
 static void ZknBigWeOamFadeDelete( ZKN_BIG_WE_DRAW* p_draw );
 static void ZknBigWeFadeInit( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_drawglb, const ZKN_BIG_WE_GLB* cp_glb, BOOL fadein_out );
 static BOOL ZknBigWeFadeMain( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_drawglb, const ZKN_BIG_WE_GLB* cp_glb, BOOL fadein_out );
 
-// “Ç‚İ‚İˆ—
+// èª­ã¿è¾¼ã¿å‡¦ç†
 static void ZknBigWeLoadRes( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_drawglb, const ZKN_BIG_WE_GLB* cp_glb, const ZKN_BIG_WE_WORK* cp_datawork, int heap );
 static void ZknBigWeDeleteRes( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_drawglb );
 static void ZknBigWeSetUpBg( ZKN_BIG_WE_DRAWGLB* p_drawglb, const ZKN_BIG_WE_GLB* cp_glb, int heap );
@@ -460,14 +460,14 @@ static void ZknBigWeSWSPResDelete( ZKN_BIG_WE_DRAWGLB* p_drawglb );
 static void ZknBigWeSWSPAdd( ZKN_BIG_WE_DRAWGLB* p_drawglb, int heap );
 static void ZknBigWeSWSPDelete( ZKN_BIG_WE_DRAWGLB* p_drawglb );
 
-// ƒAƒjƒƒe[ƒuƒ‹‘I‘ğ
+// ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«é¸æŠ
 static const ZKN_BIG_WE_ANIME_DATA* ZknBigWeAnimeTblGet( const ZKN_BIG_WE_ANIME_DATA* p_arry, int num,  int dis );
 
-// “®ì•”•ª
-// ‰ñ“]Šp‚©‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^XV
+// å‹•ä½œéƒ¨åˆ†
+// å›è»¢è§’ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æ›´æ–°
 static void ZknBinWeTenbinAnmObjDataSet( SWSP_OBJ_PTR ten_bou, CLACT_WORK_PTR tenbin_sara_hero, CLACT_WORK_PTR tenbin_sara_poke, CLACT_WORK_PTR hero, CLACT_WORK_PTR poke, u16 rota );
 
-// ƒAƒjƒƒ^ƒXƒN
+// ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯
 static void ZknBigWeGuraGuraAnimeReq( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_drawglb, int way );
 static void ZknBigWeGuraGuraTcb( TCB_PTR tcb, void* work );
 static void ZknBigWeGuraGuraAnimeCalc( ZKN_BIG_WE_GURAGURA* p_ggw );
@@ -478,17 +478,17 @@ static void ZknBigWeTenbinAnimeTcb( TCB_PTR tcb, void* work );
 static void ZknBigWeJumpAnimeReq( ZKN_BIG_WE_DRAW* p_draw, s16 jump_num, int way );
 static void ZknBigWeJumpAnimeTcb( TCB_PTR tcb, void* work );
 
-//@ƒpƒŒƒbƒgƒtƒF[ƒh
+//ã€€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 static void ZknBigWePalFadeSet( ZKN_BIG_WE_DRAW* p_draw, u8 evy, u16 next_rgb );
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒAƒvƒŠì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		g—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -522,9 +522,9 @@ void ZKN_BigWeAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	ƒTƒu‰æ–Ê@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã‚µãƒ–ç”»é¢ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -542,18 +542,18 @@ void ZKN_BigWeAplDelete( ZKN_APL_DATA* p_data )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -567,10 +567,10 @@ static ZKN_BIG_WE_GLB* MakeBigWeGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	memset( p_glb, 0, sizeof(ZKN_BIG_WE_GLB) );
 
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
-	// ‚ß‚¢‚ñƒOƒ[ƒoƒ‹ƒAƒvƒŠƒf[ƒ^æ“¾
+	// ã‚ã„ã‚“ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_glb->p_main_common = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_COMMON );
 	
 	return p_glb;
@@ -578,12 +578,12 @@ static ZKN_BIG_WE_GLB* MakeBigWeGlb( int heap, ZKN_SYS_PTR zkn_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒOƒ[ƒoƒ‹ì¬
+ *	@brief	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ä½œæˆ
  *
- *	@param	heap	ƒq[ƒv
- *	@param	zkn_sys	}ŠÓƒVƒXƒeƒ€
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys	å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ì¬ƒf[ƒ^
+ *	@return	ä½œæˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 ZKN_BIG_WE_DRAWGLB* MakeBigWeDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
@@ -595,14 +595,14 @@ ZKN_BIG_WE_DRAWGLB* MakeBigWeDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_BIG_WE_DRAWGLB) );
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 	// SWSP
 	ZknBigWeSWSPResLoad( p_glb, heap );
 	ZknBigWeSWSPAdd( p_glb, heap );
 
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æOFF
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»OFF
 	SWSP_SetSpriteDraw( p_glb->swsp_obj, FALSE );
 
 
@@ -613,12 +613,12 @@ ZKN_BIG_WE_DRAWGLB* MakeBigWeDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒCƒxƒ“ƒgì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		g—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -628,7 +628,7 @@ static ZKN_EVENT_DATA* MakeBigWeEvent( int heap, ZKN_SYS_PTR zkn_sys )
 	ZKN_EVENT_DATA* p_event_tbl;
 	int event_num = BigWeEventDataNumGet();
 
-	// ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_event_tbl = sys_AllocMemory( heap, sizeof(ZKN_EVENT_DATA) * event_num );
 	GF_ASSERT( p_event_tbl );
 	memset( p_event_tbl, 0, sizeof(ZKN_EVENT_DATA) * event_num );
@@ -641,9 +641,9 @@ static ZKN_EVENT_DATA* MakeBigWeEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -659,9 +659,9 @@ static void DeleteBigWeGlb( ZKN_BIG_WE_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -684,9 +684,9 @@ static void DeleteBigWeDrawGlb( ZKN_BIG_WE_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -707,11 +707,11 @@ static void DeleteBigWeEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒgƒAƒvƒŠ@ƒCƒxƒ“ƒg”æ“¾
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	ŒŸõƒ\[ƒgƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -724,19 +724,19 @@ static int BigWeEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -749,7 +749,7 @@ static int ZknBigWeProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 	int hero_gram;
 	int monsno;
 	
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_BIG_WE_WORK) );
 	GF_ASSERT( p_work );
 	memset( p_work, 0, sizeof(ZKN_BIG_WE_WORK) );
@@ -757,7 +757,7 @@ static int ZknBigWeProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 
 	monsno = ZKN_GLBDATA_PokeMonsNoGet( p_glb->p_glb );
 	
-	// d‚³‚Ì·‚ğŒvZ
+	// é‡ã•ã®å·®ã‚’è¨ˆç®—
 	poke_gram = ZKN_HEIGHTGRAM_GetGram( p_glb->p_glb->height_gram, monsno );
 	if( ZKN_GLBDATA_HeroSexGet( p_glb->p_glb ) == 0 ){
 		hero_gram = ZKN_BIG_WE_MAN_GRAM;
@@ -778,14 +778,14 @@ static int ZknBigWeProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -795,7 +795,7 @@ static int ZknBigWeProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 	ZKN_BIG_WE_GLB* p_glb = p_glbdata;
 	ZKN_BIG_WE_WORK*	p_work = p_dodata->p_work;
 	
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -810,14 +810,14 @@ static int ZknBigWeProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -835,17 +835,17 @@ static int ZknBigWeProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -870,7 +870,7 @@ static int ZknBigWeProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 	case ZKN_BIG_WE_SEQINIT_LOAD:
 		ZknBigWeLoadRes( p_drawwork, p_drawglb, cp_dataglb, cp_datawork, p_drawdata->heap );
 
-		// ƒtƒF[ƒh‰Šú‰»
+		// ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
 		ZknBigWeFadeInit( p_drawwork, p_drawglb, cp_dataglb, TRUE );
 		p_drawdata->seq++;
 		break;
@@ -883,7 +883,7 @@ static int ZknBigWeProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 		
 	case ZKN_BIG_WE_SEQINIT_END:
 
-		// “K‰‚·‚éƒAƒjƒİ’è
+		// é©å¿œã™ã‚‹ã‚¢ãƒ‹ãƒ¡è¨­å®š
 		p_drawwork->p_anime = ZknBigWeAnimeTblGet( ZknBigWeAnime, ZKN_BIG_WE_ANIME_NUM, cp_datawork->gram_dis );
 		p_drawwork->way		= cp_datawork->omoi_flag;	
 		return ZKN_PROC_TRUE;
@@ -894,17 +894,17 @@ static int ZknBigWeProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -918,38 +918,38 @@ static int ZknBigWeProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 
 
 	switch( p_drawdata->seq ){
-	case 0:		// ‚®‚ç‚®‚çƒAƒjƒ“ü‚ê‚é‚©ƒ`ƒFƒbƒN
+	case 0:		// ãã‚‰ãã‚‰ã‚¢ãƒ‹ãƒ¡å…¥ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		p_drawwork->anm_end = TRUE;
 		if( p_drawwork->p_anime->guragura_flag ){
-			p_drawdata->seq  = 1;	// ƒOƒ‰ƒOƒ‰ƒAƒjƒ‚Ö
+			p_drawdata->seq  = 1;	// ã‚°ãƒ©ã‚°ãƒ©ã‚¢ãƒ‹ãƒ¡ã¸
 		}else{
-			p_drawdata->seq  = 3;	// “V”‰ƒAƒjƒ‚Ö
+			p_drawdata->seq  = 3;	// å¤©ç§¤ã‚¢ãƒ‹ãƒ¡ã¸
 		}
 		break;
 
-	case 1:		// ‚®‚ç‚®‚çƒAƒjƒ
+	case 1:		// ãã‚‰ãã‚‰ã‚¢ãƒ‹ãƒ¡
 		ZknBigWeGuraGuraAnimeReq( p_drawwork, p_drawglb, p_drawwork->way );
 		p_drawdata->seq ++;
 		break;
 
-	case 2:		// ‚®‚ç‚®‚çƒAƒjƒI—¹ƒ`ƒFƒbƒN
+	case 2:		// ãã‚‰ãã‚‰ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( p_drawwork->anm_end == TRUE ){
 			p_drawdata->seq ++;
 		}
 		break;
 
-	case 3:		// “V”‰ƒAƒjƒ
+	case 3:		// å¤©ç§¤ã‚¢ãƒ‹ãƒ¡
 		ZknBigWeTenbinAnimeReq( p_drawwork, p_drawglb, p_drawwork->p_anime->rota_add, p_drawwork->p_anime->rota_end, p_drawwork->way );
 		p_drawdata->seq ++;
 		break;
 
-	case 4:		// “V”‰ƒAƒjƒI—¹ƒtƒ‰ƒO
+	case 4:		// å¤©ç§¤ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒ•ãƒ©ã‚°
 		if( p_drawwork->anm_end == TRUE ){
 			p_drawdata->seq ++;
 		}
 		break;
 
-	case 5:		// ƒWƒƒƒ“ƒvƒAƒjƒŠJnƒ`ƒFƒbƒN
+	case 5:		// ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒ‹ãƒ¡é–‹å§‹ãƒã‚§ãƒƒã‚¯
 		if( p_drawwork->p_anime->jump_flag ){
 			ZknBigWeJumpAnimeReq( p_drawwork, p_drawwork->p_anime->jump_num, p_drawwork->way );
 			p_drawdata->seq ++;
@@ -958,13 +958,13 @@ static int ZknBigWeProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 		}
 		break;
 
-	case 6:		// ƒWƒƒƒ“ƒvƒAƒjƒI—¹ƒ`ƒFƒbƒN
+	case 6:		// ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( p_drawwork->anm_end == TRUE ){
 			p_drawdata->seq ++;
 		}
 		break;
 
-	case 7:		// I—¹‘Ò‚¿
+	case 7:		// çµ‚äº†å¾…ã¡
 		break;
 	}
 	
@@ -973,17 +973,17 @@ static int ZknBigWeProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -1016,7 +1016,7 @@ static int ZknBigWeProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dr
 		
 	case ZKN_BIG_WE_SEQDELETE_FREE:
 
-		// TCB‚ª‚ ‚Á‚½‚ç”jŠü
+		// TCBãŒã‚ã£ãŸã‚‰ç ´æ£„
 		if( p_drawwork->anm_end == FALSE ){
 			TCB_Delete( p_drawwork->tcb );
 		}
@@ -1036,9 +1036,9 @@ static int ZknBigWeProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒh‰Šú‰»
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1054,9 +1054,9 @@ static void ZknBigWeOamFadeInit( ZKN_BIG_WE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒhƒŠƒZƒbƒg
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1072,32 +1072,32 @@ static void ZknBigWeOamFadeDelete( ZKN_BIG_WE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—‰Šú‰»
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†åˆæœŸåŒ–
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigWeFadeInit( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_drawglb, const ZKN_BIG_WE_GLB* cp_glb, BOOL fadein_out )
 {
-	// ”¼“§–¾OAMİ’è
+	// åŠé€æ˜OAMè¨­å®š
 	ZknBigWeOamFadeInit( p_draw );
 
-	// ƒuƒ‰ƒCƒgƒlƒXˆ—‚ğs‚Á‚Ä‚æ‚¢‚©
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å‡¦ç†ã‚’è¡Œã£ã¦ã‚ˆã„ã‹
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_BIG_WE_FADE_PLANEMSK, 0, ZKN_UTIL_FADE_MAIN );
 
-			// ƒtƒF[ƒhİ’è
+			// ãƒ•ã‚§ãƒ¼ãƒ‰è¨­å®š
 			ZknBigWePalFadeSet( p_draw, -ZKN_GLB_GetFadeBrightness( &p_drawglb->p_drawglb->fade ), 0 );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_BIG_WE_FADE_PLANEMSK, 0, ZKN_UTIL_FADE_MAIN );
 		}
@@ -1106,39 +1106,39 @@ static void ZknBigWeFadeInit( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_dra
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—ƒƒCƒ“
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
- *	@retval	TRUE	ƒtƒF[ƒhI—¹
- *	@retval	FALSE	ƒtƒF[ƒh“r’†
+ *	@retval	TRUE	ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
+ *	@retval	FALSE	ãƒ•ã‚§ãƒ¼ãƒ‰é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknBigWeFadeMain( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_drawglb, const ZKN_BIG_WE_GLB* cp_glb, BOOL fadein_out )
 {
 	BOOL check;
 
-	// ƒuƒ‰ƒCƒgƒlƒX‚µ‚æ‚¤‹–‰Â‚Å‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã—ã‚ˆã†è¨±å¯ã§ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		check = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade );
 	}else{
 		check = ZKN_GLB_ChangeFadeEndCheck( &p_drawglb->p_drawglb->fade );
 	}
 
-	// I‚í‚Á‚½‚çI—¹ˆ—
+	// çµ‚ã‚ã£ãŸã‚‰çµ‚äº†å‡¦ç†
 	if( check ){
 		if( fadein_out ){
-			// ”¼“§–¾OAM”jŠü
+			// åŠé€æ˜OAMç ´æ£„
 			ZknBigWeOamFadeDelete( p_draw );
 		}
 
 		return TRUE;
 	}else{
 
-		// ƒtƒF[ƒh
+		// ãƒ•ã‚§ãƒ¼ãƒ‰
 		ZknBigWePalFadeSet( p_draw, -ZKN_GLB_GetFadeBrightness( &p_drawglb->p_drawglb->fade ), 0 );
 	}
 
@@ -1148,47 +1148,47 @@ static BOOL ZknBigWeFadeMain( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_dra
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource“Ç‚İ‚İ•‰æ–Ê\’z
+ *	@brief	Resourceèª­ã¿è¾¼ã¿ï¼†ç”»é¢æ§‹ç¯‰
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_datawork	ƒf[ƒ^ƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_datawork	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigWeLoadRes( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_drawglb, const ZKN_BIG_WE_GLB* cp_glb, const ZKN_BIG_WE_WORK* cp_datawork, int heap )
 {
-	// BGİ’è
+	// BGè¨­å®š
 	ZknBigWeSetUpBg( p_drawglb, cp_glb, heap );
 
-	// ƒtƒHƒ“ƒgBGİ’è
-	ZknBigWeSetUpFontBgNormal( p_drawglb, heap );	// ‹¤’Ê‚Ì•¶š—ñ
-	ZknBigWeSetUpFontBgHeroPokeData( p_drawglb, cp_glb, heap );	// ƒf[ƒ^
+	// ãƒ•ã‚©ãƒ³ãƒˆBGè¨­å®š
+	ZknBigWeSetUpFontBgNormal( p_drawglb, heap );	// å…±é€šã®æ–‡å­—åˆ—
+	ZknBigWeSetUpFontBgHeroPokeData( p_drawglb, cp_glb, heap );	// ãƒ‡ãƒ¼ã‚¿
 
-	// OAMƒŠƒ\[ƒX“Ç‚İ‚İ
+	// OAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	ZknBigWeOamResLoad( p_draw, p_drawglb, cp_glb, heap );
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	ZknBigWeOamInit( p_draw, p_drawglb, cp_glb, heap );
 
 	// FONTOAM
 	ZknBigWeFontOamInit( p_draw, p_drawglb, cp_glb, heap );
 
 
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æON
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ON
 	SWSP_SetSpriteRotZ( p_drawglb->swsp_obj, 0 );
 	SWSP_SetSpriteDraw( p_drawglb->swsp_obj, TRUE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource”jŠü
+ *	@brief	Resourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1198,32 +1198,32 @@ static void ZknBigWeDeleteRes( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_dr
 	// FONTOAM
 	ZknBigWeFontOamDelete( p_draw );
 	
-	// ƒAƒNƒ^[”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	ZknBigWeOamDelete( p_draw );
 
-	// OAMƒŠƒ\[ƒX”jŠü
+	// OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	ZknBigWeOamResDelete( p_draw, p_drawglb );
 
-	// bmp”jŠü
+	// bmpç ´æ£„
 	GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
 	GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M );
 
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æOFF
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»OFF
 	SWSP_SetSpriteDraw( p_drawglb->swsp_obj, FALSE );
 	SWSP_SetSpriteRotZ( p_drawglb->swsp_obj, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒi–ÊƒZƒbƒg	
+ *	@brief	èƒŒæ™¯é¢ã‚»ãƒƒãƒˆ	
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
- * [ƒCƒxƒ“ƒg‚Åo‚Ä‚­‚é“‡‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«Š·‚¦‚à‚±‚Ì’†]
+ * [ã‚¤ãƒ™ãƒ³ãƒˆã§å‡ºã¦ãã‚‹å³¶ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãæ›ãˆã‚‚ã“ã®ä¸­]
  */
 //-----------------------------------------------------------------------------
 static void ZknBigWeSetUpBg( ZKN_BIG_WE_DRAWGLB* p_drawglb, const ZKN_BIG_WE_GLB* cp_glb, int heap )
@@ -1231,30 +1231,30 @@ static void ZknBigWeSetUpBg( ZKN_BIG_WE_DRAWGLB* p_drawglb, const ZKN_BIG_WE_GLB
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_main_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M, 0, 0, TRUE, heap );
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_weight_bg_main1_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResource“Ç‚İ‚İ
+ *	@brief	OAMResourceèª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1267,9 +1267,9 @@ static void ZknBigWeOamResLoad(  ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_
 	BOOL check;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_drawglb );
 	int form_type;
-	ARCHANDLE* p_ic_handle;// ƒ|ƒPƒ‚ƒ“ICON—pƒnƒ“ƒhƒ‹
+	ARCHANDLE* p_ic_handle;// ãƒã‚±ãƒ¢ãƒ³ICONç”¨ãƒãƒ³ãƒ‰ãƒ«
 
-	// ƒ|ƒPƒ‚ƒ“ƒnƒ“ƒhƒ‹—pƒAƒCƒRƒ“Šm•Û
+	// ãƒã‚±ãƒ¢ãƒ³ãƒãƒ³ãƒ‰ãƒ«ç”¨ã‚¢ã‚¤ã‚³ãƒ³ç¢ºä¿
 	p_ic_handle = ArchiveDataHandleOpen( ARC_POKEICON, heap );
 
 	form_type = ZKN_GLBDATA_SaveData_FirstFormGet( cp_glb->p_glb, monsno );
@@ -1279,41 +1279,41 @@ static void ZknBigWeOamResLoad(  ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_
 	cell_id = PokeIconCellArcIndexGet();
 	cellanm_id = PokeIconCellAnmArcIndexGet();
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_ic_handle,
 			char_id, FALSE,
 			ZKN_BIG_WEIGHT_ICON_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetCharModeAdjustAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_ic_handle,
 			pltt_id, FALSE,
 			ZKN_BIG_WEIGHT_ICON_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			ZKN_BIG_WEIGHT_PLTT_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	check = CLACT_U_PlttManagerSetCleanArea( p_draw->res_obj[ CLACT_U_PLTT_RES ] );	
 	GF_ASSERT( check );
 
-	// ƒpƒŒƒbƒgƒTƒCƒY•ª‚Ìƒoƒbƒtƒ@‚ğì¬
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚ºåˆ†ã®ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 	{
 		p_draw->pal_fade_buff = sys_AllocMemory( heap, 32 * ZKN_BIG_WEIGHT_PLTT_LOAD );
 	}
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_ic_handle,
 			cell_id, FALSE,
 			ZKN_BIG_WEIGHT_ICON_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_ic_handle, 
 			cellanm_id, FALSE,
@@ -1321,59 +1321,59 @@ static void ZknBigWeOamResLoad(  ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_
 			CLACT_U_CELLANM_RES, heap );
 
 
-	// ‚»‚Ì‘¼
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ãã®ä»–
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_main[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCGR + ZKN_BIG_WEIGHT_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj_main[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj_main[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_main[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			NARC_zukan_zkn_data_oam3_NCLR, FALSE, 
 			NARC_zukan_zkn_data_oam3_NCLR + ZKN_BIG_WEIGHT_RES_ID, 
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			ZKN_BIG_PLTT_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_draw->res_obj_main[ CLACT_U_PLTT_RES ] );	
 
-	// ƒpƒŒƒbƒgƒTƒCƒY•ª‚Ìƒoƒbƒtƒ@‚ğì¬
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚ºåˆ†ã®ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 	{
 		p_draw->pal_fade_buff_main = sys_AllocMemory( heap, 32*ZKN_BIG_PLTT_LOAD );
 	}
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_main[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCER, TRUE,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCER + ZKN_BIG_WEIGHT_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_main[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_data_oam_main3_lzh_NANR, TRUE,
 			NARC_zukan_zkn_data_oam_main3_lzh_NANR + ZKN_BIG_WEIGHT_RES_ID,
 			CLACT_U_CELLANM_RES, heap );
 	
-	// ƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 	ArchiveDataHandleClose( p_ic_handle );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResource”jŠü
+ *	@brief	OAMResourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1386,7 +1386,7 @@ static void ZknBigWeOamResDelete( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -1404,7 +1404,7 @@ static void ZknBigWeOamResDelete( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p
 	CLACT_U_CharManagerDelete( p_draw->res_obj_main[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_draw->res_obj_main[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj_main[ CLACT_U_CHAR_RES ] );
@@ -1419,18 +1419,18 @@ static void ZknBigWeOamResDelete( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p
 			p_draw->res_obj_main[ CLACT_U_CELLANM_RES ] );
 
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒh—pƒ[ƒN”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_draw->pal_fade_buff );
 	sys_FreeMemoryEz( p_draw->pal_fade_buff_main );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒAƒNƒ^[ƒoƒbƒtƒ@ì¬
+ *	@brief	OAMã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -1446,7 +1446,7 @@ static void ZknBigWeOamInit( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_draw
 	int monsno = ZKN_GLBDATA_PokeMonsNoGet( cp_glb->p_glb );
 	int form_type = ZKN_GLBDATA_SaveData_FirstFormGet( cp_glb->p_glb, monsno );
 
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCGR + ZKN_BIG_WEIGHT_RES_ID,
 			NARC_zukan_zkn_data_oam3_NCLR + ZKN_BIG_WEIGHT_RES_ID, 
@@ -1465,7 +1465,7 @@ static void ZknBigWeOamInit( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_draw
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 	add.heap		= heap;
 
-	// ålŒö
+	// ä¸»äººå…¬
 	add.mat.x = ZKN_BIG_WE_WEIGHT_HERO_DEF_X << FX32_SHIFT;
 	add.mat.y = (ZKN_BIG_WE_WEIGHT_HERO_DEF_Y) << FX32_SHIFT;
 	p_draw->hero = CLACT_AddSimple( &add );
@@ -1476,14 +1476,14 @@ static void ZknBigWeOamInit( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_draw
 		CLACT_AnmChg( p_draw->hero, ZKN_BIG_WE_WEIGHT_HERO_ANM_SEQ_GIRL );
 	}
 
-	// “V”‰‚Ì‘ä
+	// å¤©ç§¤ã®å°
 	add.mat.x = ZKN_BIG_WE_TENBIN_MAT_X << FX32_SHIFT;
 	add.mat.y = (ZKN_BIG_WE_TENBIN_MAT_Y + ZKN_BIG_WE_TENBIN_DAI_MAT_OFS_Y) << FX32_SHIFT;
 	p_draw->tenbin_dai = CLACT_AddSimple( &add );
 	CLACT_AnmChg( p_draw->tenbin_dai, ZKN_BIG_WE_TENBIN_DAI_MAT_ANM_SEQ );
 	CLACT_BGPriorityChg( p_draw->tenbin_dai, ZKN_BIG_WE_OAMDAI_BG_PRI);
 
-	// “V”‰‚ÌM
+	// å¤©ç§¤ã®çš¿
 	add.mat.x = ZKN_BIG_WE_WEIGHT_HERO_DEF_X << FX32_SHIFT;
 	add.mat.y = (ZKN_BIG_WE_WEIGHT_HERO_DEF_Y + ZKN_BIG_WE_TENBIN_SARA_MAT_OFS_Y) << FX32_SHIFT;
 	p_draw->tenbin_sara[0] = CLACT_AddSimple( &add );
@@ -1495,8 +1495,8 @@ static void ZknBigWeOamInit( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_draw
 
 
 
-	// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			CLACT_U_ResManagerGetResObjID( p_draw->res_obj[ CLACT_U_CHAR_RES ] ),
 			CLACT_U_ResManagerGetResObjID( p_draw->res_obj[ CLACT_U_PLTT_RES ] ),
@@ -1522,9 +1522,9 @@ static void ZknBigWeOamInit( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_draw
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒAƒNƒ^[ƒoƒbƒtƒ@”jŠü
+ *	@brief	OAMã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1541,12 +1541,12 @@ static void ZknBigWeOamDelete( ZKN_BIG_WE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAMì¬
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1557,9 +1557,9 @@ static void ZknBigWeFontOamInit( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
  *
- *	@param	p_draw •`‰æƒ[ƒN
+ *	@param	p_draw æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1570,10 +1570,10 @@ static void ZknBigWeFontOamDelete( ZKN_BIG_WE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	FONTBG‚ÌƒZƒbƒgƒAƒbƒv
+ *	@brief	FONTBGã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1583,22 +1583,22 @@ static void ZknBigWeSetUpFontBgNormal( ZKN_BIG_WE_DRAWGLB* p_drawglb, int heap )
 	STRBUF* str = STRBUF_Create(ZKN_BIG_WE_WEIGHT_NUM_STR, heap);
 	MSGDATA_MANAGER* man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_zkn_dat, heap);
 
-	// d‚³”ä‚×
+	// é‡ã•æ¯”ã¹
 	MSGMAN_GetString( man, ZNK_BIG_01, str );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
-	// ƒ^ƒCƒgƒ‹‚Ì•\¦ˆÊ’u‚ğA‰æ–Ê’†‰›‚É©“®’²®
+	// ã‚¿ã‚¤ãƒˆãƒ«ã®è¡¨ç¤ºä½ç½®ã‚’ã€ç”»é¢ä¸­å¤®ã«è‡ªå‹•èª¿æ•´
 	{
 		u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, str, 0, ZKN_BIG_WE_WEIGHT_TITLE_WIDTH);
 		GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, xofs, ZKN_BIG_WE_WEIGHT_TITLE_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	}
 	// ----------------------------------------------------------------------------
 	
-	// d‚³
+	// é‡ã•
 	MSGMAN_GetString( man, ZNK_ZUKAN_02, str );
 	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_BIG_WE_WEIGHT_TAKASA1_X, ZKN_BIG_WE_WEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 
-	// d‚³
+	// é‡ã•
 	MSGMAN_GetString( man, ZNK_ZUKAN_02, str );
 	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_BIG_WE_WEIGHT_TAKASA2_X, ZKN_BIG_WE_WEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 
@@ -1610,11 +1610,11 @@ static void ZknBigWeSetUpFontBgNormal( ZKN_BIG_WE_DRAWGLB* p_drawglb, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“–¼@ålŒö–¼@‚‚³ƒf[ƒ^@•\¦
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åã€€ä¸»äººå…¬åã€€é«˜ã•ãƒ‡ãƒ¼ã‚¿ã€€è¡¨ç¤º
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1630,14 +1630,14 @@ static void ZknBigWeSetUpFontBgHeroPokeData( ZKN_BIG_WE_DRAWGLB* p_drawglb, cons
 	gram_idx = ZKN_GIRA_GetGramGmm();
 	man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, gram_idx, heap);
 	
-	// ƒ|ƒPƒ‚ƒ“–¼
+	// ãƒã‚±ãƒ¢ãƒ³å
 	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, monsname_str, ZKN_BIG_WE_WEIGHT_MONSNAME_X, ZKN_BIG_WE_WEIGHT_NAME_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	
-	//	ƒ|ƒPƒ‚ƒ“‚Ìd‚³
+	//	ãƒã‚±ãƒ¢ãƒ³ã®é‡ã•
 	MSGMAN_GetString( man, mons_no, str );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
-	// d‚³‚Ì’l‚Ì•\¦ˆÊ’u‚ğA‰E’[w’è‚É•ÏX
+	// é‡ã•ã®å€¤ã®è¡¨ç¤ºä½ç½®ã‚’ã€å³ç«¯æŒ‡å®šã«å¤‰æ›´
 	{
 		u32 xofs = ZKN_BIG_WE_WEIGHT_TAKASA1_X + ZKN_BIG_WE_WEIGHT_NUM_OFS_X - FontProc_GetPrintStrWidth(FONT_SYSTEM, str, 0);
 		GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, xofs, ZKN_BIG_WE_WEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
@@ -1648,16 +1648,16 @@ static void ZknBigWeSetUpFontBgHeroPokeData( ZKN_BIG_WE_DRAWGLB* p_drawglb, cons
 
 	MSGMAN_Delete(man);
 
-	// ˆá‚¤ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒƒI[ƒvƒ“
+	// é•ã†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã‚ªãƒ¼ãƒ—ãƒ³
 	man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_zkn_dat, heap);
 
-	// ålŒö–¼
+	// ä¸»äººå…¬å
 	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, 
 			ZKN_GLBDATA_HeroNameGet( cp_glb->p_glb ),
 			ZKN_BIG_WE_WEIGHT_HERO_X, ZKN_BIG_WE_WEIGHT_NAME_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	
 	
-	// ålŒö‚Ìd‚³
+	// ä¸»äººå…¬ã®é‡ã•
 	if( ZKN_GLBDATA_HeroSexGet( cp_glb->p_glb ) == 0 ){
 		MSGMAN_GetString( man, ZNK_WEIGHT_00, str );
 	}else{
@@ -1665,7 +1665,7 @@ static void ZknBigWeSetUpFontBgHeroPokeData( ZKN_BIG_WE_DRAWGLB* p_drawglb, cons
 	}
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
-	// d‚³‚Ì’l‚Ì•\¦ˆÊ’u‚ğA‰E’[w’è‚É•ÏX
+	// é‡ã•ã®å€¤ã®è¡¨ç¤ºä½ç½®ã‚’ã€å³ç«¯æŒ‡å®šã«å¤‰æ›´
 	{
 		u32 xofs = ZKN_BIG_WE_WEIGHT_TAKASA2_X + ZKN_BIG_WE_WEIGHT_NUM_OFS_X - FontProc_GetPrintStrWidth(FONT_SYSTEM, str, 0);
 		GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, xofs, ZKN_BIG_WE_WEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
@@ -1674,7 +1674,7 @@ static void ZknBigWeSetUpFontBgHeroPokeData( ZKN_BIG_WE_DRAWGLB* p_drawglb, cons
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
-	// ’PˆÊ‚ğAålŒö‚Ì‘Ìd‚Ì’l‚ğŠi”[‚µ‚½ƒƒbƒZ[ƒW‚É“‡
+	// å˜ä½ã‚’ã€ä¸»äººå…¬ã®ä½“é‡ã®å€¤ã‚’æ ¼ç´ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«çµ±åˆ
 	// MatchComment: show removed code
     //// KG
 	//MSGMAN_GetString( man, ZNK_ZUKAN_04, str );
@@ -1688,10 +1688,10 @@ static void ZknBigWeSetUpFontBgHeroPokeData( ZKN_BIG_WE_DRAWGLB* p_drawglb, cons
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚ÌƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN	
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯	
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1701,22 +1701,22 @@ static void ZknBigWeSWSPResLoad(  ZKN_BIG_WE_DRAWGLB* p_drawglb, int heap )
 	SWSP_CHARDATA char_ent;
 	SWSP_PLTTDATA pltt_ent;
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
 	p_drawglb->swsp_char_buff = ZKN_GLBDATA_CharDataGet( 
 			p_drawglb->p_drawglb, NARC_zukan_zkn_weight_ude_lzh_NCBR, TRUE,
 			&p_drawglb->p_chardata, heap );
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_drawglb->swsp_pltt_buff = ZKN_GLBDATA_PalDataGet( 
 			p_drawglb->p_drawglb, NARC_zukan_zkn_data_NCLR,
 			&p_drawglb->p_plttdata, heap );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	char_ent.s_sys		= p_drawglb->p_drawglb->swsp_sys;
 	char_ent.res_file	= p_drawglb->p_chardata;
 	p_drawglb->swsp_char = SWSP_CharLoad( &char_ent );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 	pltt_ent.s_sys		= p_drawglb->p_drawglb->swsp_sys;
 	pltt_ent.res_file	= p_drawglb->p_plttdata;
 	pltt_ent.load_num	= 16;
@@ -1725,32 +1725,32 @@ static void ZknBigWeSWSPResLoad(  ZKN_BIG_WE_DRAWGLB* p_drawglb, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒf[ƒ^”jŠü
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigWeSWSPResDelete( ZKN_BIG_WE_DRAWGLB* p_drawglb )
 {
-	// Vram‚©‚ç”jŠü
+	// Vramã‹ã‚‰ç ´æ£„
 	SWSP_CharDelete( p_drawglb->swsp_char );
 	SWSP_PlttDelete( p_drawglb->swsp_pltt );
 
 
-	// ƒƒ‚ƒŠ‚©‚ç”jŠü
+	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ç ´æ£„
 	sys_FreeMemoryEz( p_drawglb->swsp_char_buff );
 	sys_FreeMemoryEz( p_drawglb->swsp_pltt_buff );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg“o˜^
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç™»éŒ²
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1764,7 +1764,7 @@ static void ZknBigWeSWSPAdd( ZKN_BIG_WE_DRAWGLB* p_drawglb, int heap )
 	add.p_pltt	= p_drawglb->swsp_pltt;
 
 
-	// “o˜^ƒf[ƒ^Ši”[
+	// ç™»éŒ²ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	add.m_x = ZKN_BIG_WE_TENBIN_MAT_X - (ZKN_BIG_WE_TENBIN_SIZ_X / 2);
 	add.m_y = ZKN_BIG_WE_TENBIN_MAT_Y - (ZKN_BIG_WE_TENBIN_SIZ_Y / 2);
 	add.rota = 0;
@@ -1772,33 +1772,33 @@ static void ZknBigWeSWSPAdd( ZKN_BIG_WE_DRAWGLB* p_drawglb, int heap )
 	add.pri = 0;
 	add.pltt_offs = ZKN_BIG_WE_TENBIN_SWSP_PLTT;
 
-	// “o˜^
+	// ç™»éŒ²
 	p_drawglb->swsp_obj = SWSP_Add( &add );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg”jŠü
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigWeSWSPDelete( ZKN_BIG_WE_DRAWGLB* p_drawglb )
 {
-	// ”jŠü
+	// ç ´æ£„
 	SWSP_Delete( p_drawglb->swsp_obj );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚®‚ç‚®‚çƒAƒjƒ	ƒŠƒNƒGƒXƒg
+ *	@brief	ãã‚‰ãã‚‰ã‚¢ãƒ‹ãƒ¡	ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	way		‚Ç‚Á‚¿‚©‚çŠ|‚¯‚é‚©	ålŒö0 ƒ|ƒPƒ‚ƒ“1
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	way		ã©ã£ã¡ã‹ã‚‰æ›ã‘ã‚‹ã‹	ä¸»äººå…¬0 ãƒã‚±ãƒ¢ãƒ³1
  *	
  *	@return	none
  */
@@ -1814,7 +1814,7 @@ static void ZknBigWeGuraGuraAnimeReq( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGL
 	p_draw->gragra_anm.anm_end = &p_draw->anm_end;
 	p_draw->anm_end = FALSE;
 
-	// ålŒö‚©‚çŒX‚©‚¹‚é‚©ƒ|ƒPƒ‚ƒ“‚©‚çŒX‚©‚¹‚é‚©
+	// ä¸»äººå…¬ã‹ã‚‰å‚¾ã‹ã›ã‚‹ã‹ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰å‚¾ã‹ã›ã‚‹ã‹
 	if( way == 0 ){
 		p_draw->gragra_anm.way	= -1;
 	}else{
@@ -1826,7 +1826,7 @@ static void ZknBigWeGuraGuraAnimeReq( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚®‚ç‚®‚çƒAƒjƒƒ^ƒXƒN
+ *	@brief	ãã‚‰ãã‚‰ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯
  *
  *	@param	tcb
  *	@param	work 
@@ -1839,37 +1839,37 @@ static void ZknBigWeGuraGuraTcb( TCB_PTR tcb, void* work )
 	ZKN_BIG_WE_GURAGURA* p_ggw = (ZKN_BIG_WE_GURAGURA*)work;
 	
 	switch( p_ggw->seq ){
-	case 0:		//@‰Šú‰»
+	case 0:		//ã€€åˆæœŸåŒ–
 		p_ggw->count = ZKN_BIG_WE_TENBIN_GURAGURA_ANM_COUNT;
-		p_ggw->seq = 2;	// ÌÚ°Ñ0‚Ö
+		p_ggw->seq = 2;	// ãƒ•ãƒ¬ãƒ¼ãƒ 0ã¸
 		break;
 
-	case 1:		// ŒvZƒV[ƒPƒ“ƒX
+	case 1:		// è¨ˆç®—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		ZknBigWeGuraGuraAnimeCalc( p_ggw );
 		break;
 
-	case 2:		// ƒAƒjƒƒtƒŒ[ƒ€0	ƒf[ƒ^İ’è
+	case 2:		// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ 0	ãƒ‡ãƒ¼ã‚¿è¨­å®š
 		p_ggw->target_rota = ZKN_BIG_WE_TENBIN_GURAGURA_ANM_00_TARGET * p_ggw->way;
 		p_ggw->add_rota = -ZKN_BIG_WE_TENBIN_GURAGURA_ANM_AD_ROTA * p_ggw->way;
 		p_ggw->set_seq = 3;
-		p_ggw->seq = 1;		// ŒvZ
+		p_ggw->seq = 1;		// è¨ˆç®—
 		ZknBigWeGuraGuraAnimeCalc( p_ggw );
 		break;
 
-	case 3:		// ƒAƒjƒƒtƒŒ[ƒ€1	ƒf[ƒ^İ’è
+	case 3:		// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ 1	ãƒ‡ãƒ¼ã‚¿è¨­å®š
 		p_ggw->target_rota = ZKN_BIG_WE_TENBIN_GURAGURA_ANM_01_TARGET * p_ggw->way;
 		p_ggw->add_rota = ZKN_BIG_WE_TENBIN_GURAGURA_ANM_AD_ROTA * p_ggw->way;
 		p_ggw->set_seq = 4;
-		p_ggw->seq = 1;		// ŒvZ
+		p_ggw->seq = 1;		// è¨ˆç®—
 		ZknBigWeGuraGuraAnimeCalc( p_ggw );
 		break;
 
-	case 4:		// ƒAƒjƒƒtƒŒ[ƒ€2	ƒf[ƒ^İ’è
+	case 4:		// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ 2	ãƒ‡ãƒ¼ã‚¿è¨­å®š
 		p_ggw->target_rota = ZKN_BIG_WE_TENBIN_GURAGURA_ANM_02_TARGET * p_ggw->way;
 		p_ggw->add_rota = -ZKN_BIG_WE_TENBIN_GURAGURA_ANM_AD_ROTA * p_ggw->way;
-		p_ggw->seq = 1;		// ŒvZ
+		p_ggw->seq = 1;		// è¨ˆç®—
 
-		// ƒJƒEƒ“ƒg‚ª0‚É‚È‚Á‚½‚çƒV[ƒPƒ“ƒX5‚É‚»‚êˆÈŠO‚Í2‚É–ß‚é
+		// ã‚«ã‚¦ãƒ³ãƒˆãŒ0ã«ãªã£ãŸã‚‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹5ã«ãã‚Œä»¥å¤–ã¯2ã«æˆ»ã‚‹
 		p_ggw->count--;
 		if( p_ggw->count > 0 ){
 			p_ggw->set_seq = 2;
@@ -1879,7 +1879,7 @@ static void ZknBigWeGuraGuraTcb( TCB_PTR tcb, void* work )
 		ZknBigWeGuraGuraAnimeCalc( p_ggw );
 		break;
 
-	case 5:		// ƒAƒjƒI—¹
+	case 5:		// ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 		TCB_Delete( tcb );
 		*p_ggw->anm_end = TRUE;
 		break;
@@ -1888,33 +1888,33 @@ static void ZknBigWeGuraGuraTcb( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚®‚ç‚®‚çƒAƒjƒŒvZ
+ *	@brief	ãã‚‰ãã‚‰ã‚¢ãƒ‹ãƒ¡è¨ˆç®—
  *
- *	@param	p_ggw	ƒ[ƒN 
+ *	@param	p_ggw	ãƒ¯ãƒ¼ã‚¯ 
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigWeGuraGuraAnimeCalc( ZKN_BIG_WE_GURAGURA* p_ggw )
 {
-	// ‰ñ“]ŠpŒvZ
+	// å›è»¢è§’è¨ˆç®—
 	if( p_ggw->add_rota < 0 ){
 		if( (p_ggw->now_rota + p_ggw->add_rota) >= p_ggw->target_rota ){
 			p_ggw->now_rota += p_ggw->add_rota;
 		}else{
 			p_ggw->now_rota = p_ggw->target_rota;
-			p_ggw->seq = p_ggw->set_seq;		// ŒvZI—¹
+			p_ggw->seq = p_ggw->set_seq;		// è¨ˆç®—çµ‚äº†
 		}
 	}else{
 		if( (p_ggw->now_rota + p_ggw->add_rota) <= p_ggw->target_rota ){
 			p_ggw->now_rota += p_ggw->add_rota;
 		}else{
 			p_ggw->now_rota = p_ggw->target_rota;
-			p_ggw->seq = p_ggw->set_seq;		// ŒvZI—¹
+			p_ggw->seq = p_ggw->set_seq;		// è¨ˆç®—çµ‚äº†
 		}
 	}
 
-	// ’lİ’è
+	// å€¤è¨­å®š
 	ZknBinWeTenbinAnmObjDataSet( p_ggw->ten_bou_obj,
 			p_ggw->ten_sara_hero, p_ggw->ten_sara_poke,
 			p_ggw->hero, p_ggw->poke, p_ggw->now_rota );
@@ -1923,14 +1923,14 @@ static void ZknBigWeGuraGuraAnimeCalc( ZKN_BIG_WE_GURAGURA* p_ggw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]Šp‚©‚ç•`‰æƒf[ƒ^İ’è
+ *	@brief	å›è»¢è§’ã‹ã‚‰æç”»ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	ten_bou				•`‰æ‚·‚éƒIƒuƒWƒF
+ *	@param	ten_bou				æç”»ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§
  *	@param	tenbin_sara_hero
  *	@param	tenbin_sara_poke
  *	@param	hero
  *	@param	poke
- *	@param	rota		‰ñ“]Šp
+ *	@param	rota		å›è»¢è§’
  *
  *	@return	none
  */
@@ -1940,13 +1940,13 @@ static void ZknBinWeTenbinAnmObjDataSet( SWSP_OBJ_PTR ten_bou, CLACT_WORK_PTR te
 	fx32 move_x, move_y;
 	VecFx32 mat;
 
-	SWSP_SetSpriteRotZ( ten_bou, rota );	//Z²‰ñ“]
+	SWSP_SetSpriteRotZ( ten_bou, rota );	//Zè»¸å›è»¢
 
-	// XYˆÚ“®’l‚ğæ“¾
+	// XYç§»å‹•å€¤ã‚’å–å¾—
 	move_x = FX_Mul( FX_CosIdx( rota ), ZKN_BIG_WE_TENBIN_OBJ_DIS_X << FX32_SHIFT );
 	move_y = FX_Mul( FX_SinIdx( rota ), ZKN_BIG_WE_TENBIN_OBJ_DIS_X << FX32_SHIFT );
 
-	// ålŒö‚Æƒ|ƒPƒOƒ‰‚ÌÀ•W‚ğİ’è
+	// ä¸»äººå…¬ã¨ãƒã‚±ã‚°ãƒ©ã®åº§æ¨™ã‚’è¨­å®š
 	mat.x = (ZKN_BIG_WE_TENBIN_MAT_X << FX32_SHIFT) + move_x;
 	mat.y = (ZKN_BIG_WE_WEIGHT_HERO_DEF_Y << FX32_SHIFT) + move_y;
 	CLACT_SetMatrix( hero, &mat );
@@ -1962,12 +1962,12 @@ static void ZknBinWeTenbinAnmObjDataSet( SWSP_OBJ_PTR ten_bou, CLACT_WORK_PTR te
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“V”‰ƒAƒjƒƒŠƒNƒGƒXƒg
+ *	@brief	å¤©ç§¤ã‚¢ãƒ‹ãƒ¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	add_num		ƒXƒs[ƒh
- *	@param	end_num		I—¹Šp“x
- *	@param	way			ƒAƒjƒ•ûŒü		ålŒö‚É”½‰f0@ƒ|ƒPƒ‚ƒ“‚É”½‰f1
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	add_num		ã‚¹ãƒ”ãƒ¼ãƒ‰
+ *	@param	end_num		çµ‚äº†è§’åº¦
+ *	@param	way			ã‚¢ãƒ‹ãƒ¡æ–¹å‘		ä¸»äººå…¬ã«åæ˜ 0ã€€ãƒã‚±ãƒ¢ãƒ³ã«åæ˜ 1
  *
  *	@return	none
  */
@@ -1983,7 +1983,7 @@ static void ZknBigWeTenbinAnimeReq( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB*
 	p_draw->tenbin_anm.anm_end = &p_draw->anm_end;
 	p_draw->anm_end = FALSE;
 
-	// ålŒö‚©‚çŒX‚©‚¹‚é‚©ƒ|ƒPƒ‚ƒ“‚©‚çŒX‚©‚¹‚é‚©
+	// ä¸»äººå…¬ã‹ã‚‰å‚¾ã‹ã›ã‚‹ã‹ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰å‚¾ã‹ã›ã‚‹ã‹
 	if( way == 0 ){
 		p_draw->tenbin_anm.add_rota = add_num;
 		p_draw->tenbin_anm.target_rota = end_num;
@@ -1997,7 +1997,7 @@ static void ZknBigWeTenbinAnimeReq( ZKN_BIG_WE_DRAW* p_draw, ZKN_BIG_WE_DRAWGLB*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“V”‰ƒAƒjƒƒ^ƒXƒN
+ *	@brief	å¤©ç§¤ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯
  *
  *	@param	tcb
  *	@param	work 
@@ -2010,24 +2010,24 @@ static void ZknBigWeTenbinAnimeTcb( TCB_PTR tcb, void* work )
 	ZKN_BIG_WE_TENBIN* p_tenw = (ZKN_BIG_WE_TENBIN*)work;
 	BOOL end_flag = FALSE;
 	
-	// ‰ñ“]ŠpŒvZ
+	// å›è»¢è§’è¨ˆç®—
 	if( p_tenw->add_rota < 0 ){
 		if( (p_tenw->now_rota + p_tenw->add_rota) >= p_tenw->target_rota ){
 			p_tenw->now_rota += p_tenw->add_rota;
 		}else{
 			p_tenw->now_rota = p_tenw->target_rota;
-			end_flag = TRUE;		// ŒvZI—¹
+			end_flag = TRUE;		// è¨ˆç®—çµ‚äº†
 		}
 	}else{
 		if( (p_tenw->now_rota + p_tenw->add_rota) <= p_tenw->target_rota ){
 			p_tenw->now_rota += p_tenw->add_rota;
 		}else{
 			p_tenw->now_rota = p_tenw->target_rota;
-			end_flag = TRUE;		// ŒvZI—¹
+			end_flag = TRUE;		// è¨ˆç®—çµ‚äº†
 		}
 	}
 
-	// ’lİ’è
+	// å€¤è¨­å®š
 	ZknBinWeTenbinAnmObjDataSet( p_tenw->ten_bou_obj,
 			p_tenw->ten_sara_hero, p_tenw->ten_sara_poke,
 			p_tenw->hero, p_tenw->poke, p_tenw->now_rota );
@@ -2041,11 +2041,11 @@ static void ZknBigWeTenbinAnimeTcb( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒWƒƒƒ“ƒvƒ^ƒXƒNƒŠƒNƒGƒXƒg
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¹ã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	jump_num	ƒWƒƒƒ“ƒv’li‰‘¬“xj
- *	@param	way			ålŒö0@ƒ|ƒPƒ‚ƒ“1
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	jump_num	ã‚¸ãƒ£ãƒ³ãƒ—å€¤ï¼ˆåˆé€Ÿåº¦ï¼‰
+ *	@param	way			ä¸»äººå…¬0ã€€ãƒã‚±ãƒ¢ãƒ³1
  *
  *	@return	none
  */
@@ -2060,10 +2060,10 @@ static void ZknBigWeJumpAnimeReq( ZKN_BIG_WE_DRAW* p_draw, s16 jump_num, int way
 		p_draw->jump_anm.obj = p_draw->hero;
 	}
 
-	// ‰‘¬“x‚©‚çƒJƒEƒ“ƒg’l‚ğ‹‚ß‚é
+	// åˆé€Ÿåº¦ã‹ã‚‰ã‚«ã‚¦ãƒ³ãƒˆå€¤ã‚’æ±‚ã‚ã‚‹
 	p_draw->jump_anm.count_max = (-jump_num / ZKN_BIG_WE_JUMP_ANIME_G) * 2;
 
-	// ¡‚ÌYÀ•Wæ“¾
+	// ä»Šã®Yåº§æ¨™å–å¾—
 	p_mat = CLACT_GetMatrix( p_draw->jump_anm.obj );
 	p_draw->jump_anm.now_x = p_mat->x;
 	p_draw->jump_anm.now_y = p_mat->y;
@@ -2079,7 +2079,7 @@ static void ZknBigWeJumpAnimeReq( ZKN_BIG_WE_DRAW* p_draw, s16 jump_num, int way
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒƒƒ“ƒvƒAƒjƒ
+ *	@brief	ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒ‹ãƒ¡
  *
  *	@param	tcb
  *	@param	work 
@@ -2095,26 +2095,26 @@ static void ZknBigWeJumpAnimeTcb( TCB_PTR tcb, void* work )
 
 
 	switch( p_jmpw->seq ){
-	case 0:		// ƒWƒƒƒ“ƒvŒvZ
+	case 0:		// ã‚¸ãƒ£ãƒ³ãƒ—è¨ˆç®—
 		p_jmpw->count ++;
-		dis = (p_jmpw->vo * p_jmpw->count) + ((ZKN_BIG_WE_JUMP_ANIME_G * (p_jmpw->count * p_jmpw->count)) / 2);	// dis = vo*t + 1/2*a*(t*t)	‹——£
+		dis = (p_jmpw->vo * p_jmpw->count) + ((ZKN_BIG_WE_JUMP_ANIME_G * (p_jmpw->count * p_jmpw->count)) / 2);	// dis = vo*t + 1/2*a*(t*t)	è·é›¢
 
-		// À•Wİ’è
+		// åº§æ¨™è¨­å®š
 		mat.x = p_jmpw->now_x;
 		mat.y = p_jmpw->now_y + (dis<<FX32_SHIFT);
 		CLACT_SetMatrix( p_jmpw->obj, &mat );	
 
 		if( p_jmpw->count >= p_jmpw->count_max ){
 
-			p_jmpw->count = 0;		// U‚é‚¦ƒJƒEƒ“ƒg‚É‚àg—p‚·‚é
-			p_jmpw->count_max = 1 + (p_jmpw->vo / ZKN_BIG_WE_JUMP_SHAKE_GET_NUM_DIV);	// U‚é‚¦”
+			p_jmpw->count = 0;		// æŒ¯ã‚‹ãˆã‚«ã‚¦ãƒ³ãƒˆã«ã‚‚ä½¿ç”¨ã™ã‚‹
+			p_jmpw->count_max = 1 + (p_jmpw->vo / ZKN_BIG_WE_JUMP_SHAKE_GET_NUM_DIV);	// æŒ¯ã‚‹ãˆæ•°
 			p_jmpw->seq++;
 		}
 		break;
 
-	case 1:		// k‚¦‚é
+	case 1:		// éœ‡ãˆã‚‹
 		if( p_jmpw->count == 0 ){
-			// À•Wİ’è
+			// åº§æ¨™è¨­å®š
 			mat.x = p_jmpw->now_x + ZKN_BIG_WE_JUMP_SHAKE_X;
 			mat.y = p_jmpw->now_y;
 			CLACT_SetMatrix( p_jmpw->obj, &mat );
@@ -2130,7 +2130,7 @@ static void ZknBigWeJumpAnimeTcb( TCB_PTR tcb, void* work )
 
 	case 2:
 		if( p_jmpw->count == 0 ){
-			// À•Wİ’è
+			// åº§æ¨™è¨­å®š
 			mat.x = p_jmpw->now_x - ZKN_BIG_WE_JUMP_SHAKE_X;
 			mat.y = p_jmpw->now_y;
 			CLACT_SetMatrix( p_jmpw->obj, &mat );
@@ -2149,8 +2149,8 @@ static void ZknBigWeJumpAnimeTcb( TCB_PTR tcb, void* work )
 		}
 		break;
 
-	case 3:		// I—¹
-		// À•Wİ’è
+	case 3:		// çµ‚äº†
+		// åº§æ¨™è¨­å®š
 		mat.x = p_jmpw->now_x;
 		mat.y = p_jmpw->now_y;
 		CLACT_SetMatrix( p_jmpw->obj, &mat );
@@ -2164,13 +2164,13 @@ static void ZknBigWeJumpAnimeTcb( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒf[ƒ^‚ğ‘I‚Ô
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚’é¸ã¶
  *
- *	@param	p_arry	”z—ñ
- *	@param	num		”z—ñ”
- *	@param	dis		‹——£
+ *	@param	p_arry	é…åˆ—
+ *	@param	num		é…åˆ—æ•°
+ *	@param	dis		è·é›¢
  *
- *	@return	ƒAƒjƒƒf[ƒ^
+ *	@return	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const ZKN_BIG_WE_ANIME_DATA* ZknBigWeAnimeTblGet( const ZKN_BIG_WE_ANIME_DATA* p_arry, int num,  int dis )
@@ -2189,11 +2189,11 @@ static const ZKN_BIG_WE_ANIME_DATA* ZknBigWeAnimeTblGet( const ZKN_BIG_WE_ANIME_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒtƒF[ƒh‚³‚¹‚é
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹
  *
- *	@param	p_draw		•`‰æ
- *	@param	evy				ŒW”
- *	@param	next_rgb		F
+ *	@param	p_draw		æç”»
+ *	@param	evy				ä¿‚æ•°
+ *	@param	next_rgb		è‰²
  *
  *	@return	none
  */
@@ -2215,7 +2215,7 @@ static void ZknBigWePalFadeSet( ZKN_BIG_WE_DRAW* p_draw, u8 evy, u16 next_rgb )
 			ZKN_BIG_WEIGHT_PLTT_LOAD * 32 );
 
 
-	// ‚»‚Ì‘¼
+	// ãã®ä»–
 	plttdata = CLACT_U_ResManagerGetResObjResPltt( p_draw->res_obj_main[ CLACT_U_PLTT_RES ] );
 	pltt_prox = CLACT_U_PlttManagerGetProxy( p_draw->res_obj_main[ CLACT_U_PLTT_RES ], NULL );
 	

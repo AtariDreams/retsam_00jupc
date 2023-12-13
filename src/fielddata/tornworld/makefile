@@ -5,7 +5,7 @@
 #include MAPTABLE_LIST
 include tw_maptable_list
 
-#ÉpÉX
+#„Éë„Çπ
 SRCDIR		:= .
 EVJUMPDIR	:= ./tw_evjump
 CMACTDIR	:= ./tw_cmact
@@ -13,13 +13,13 @@ ATTRDIR		:= ./tw_attr
 GNDDIR		:= ./tw_ground
 FSTONEDIR	:= ./tw_fstone
 
-#ÉAÉvÉä
+#„Ç¢„Éó„É™
 EXCELCSV	= ../../../convert/exceltool/excelcommaconv
 
-#É]Å[ÉìIDÉwÉbÉ_Å[ zone_id.h
+#„Çæ„Éº„É≥ID„Éò„ÉÉ„ÉÄ„Éº zone_id.h
 ZONE_ID_H         = ../maptable/zone_id.h
 
-#ÉRÉìÉoÅ[É^
+#„Ç≥„É≥„Éê„Éº„Çø
 EVCONV_JUMP		= ruby evcvjmpall.rb
 EVCONV_CMACT	= ruby evcvcmactall.rb
 GNDCONV_GND		= ruby gndcvall.rb
@@ -27,19 +27,19 @@ MAPCONV_MTBL	= ruby mtblcv.rb
 CONV_FSTONE		= ruby fstonecvall.rb
 
 #--------------------------------
-#	ÉAÅ[ÉJÉCÉuåãâ èoóÕêÊ
+#	„Ç¢„Éº„Ç´„Ç§„ÉñÁµêÊûúÂá∫ÂäõÂÖà
 #--------------------------------
 ARC_RESULT      = arc_result.txt
 ARC_ATTR_RESULT = arc_result_attr.txt
 
 #--------------------------------
-#	É^Å[ÉQÉbÉg
+#	„Çø„Éº„Ç≤„ÉÉ„Éà
 #--------------------------------
 TARGET = tw_arc.narc
 HEADER = $(TARGET:.narc=.naix)
 
 #--------------------------------
-#	ÉAÉgÉäÉrÉÖÅ[ÉgÉtÉ@ÉCÉãàÍóó
+#	„Ç¢„Éà„É™„Éì„É•„Éº„Éà„Éï„Ç°„Ç§„É´‰∏ÄË¶ß
 #--------------------------------
 ATTR_TARGET  = tw_arc_attr.narc
 ATTR_HEADER  = $(ATTRTRGET:.narc=.naix)
@@ -49,11 +49,11 @@ ATTR_CLEANLIST = $(ATTR_TARGET) $(ATTR_HEADER)
 #--------------------------------
 #	tw_maptable.xls
 #--------------------------------
-#çXêVÉfÅ[É^
+#Êõ¥Êñ∞„Éá„Éº„Çø
 MAPTABLE_LISTFILE = tw_maptable_list
 #xls
 MAPTABLE_XLS      = tw_maptable.xls
-#ê∂ê¨Ç≥ÇÍÇÈtxt,index
+#ÁîüÊàê„Åï„Çå„Çãtxt,index
 MAPTABLE_TXT      = $(MAPTABLE_XLS:.xls=.txt)
 MAPTABLE_IDX      = $(MAPTABLE_XLS:.xls=_idx)
 #clean cls
@@ -62,9 +62,9 @@ MAPTABLE_CLEANLIST  = $(MAPTABLE_LIST) $(MAPTABLE_TXT)
 #--------------------------------
 #	"tw_ground"
 #--------------------------------
-#ê∂ê¨ÉfÅ[É^
+#ÁîüÊàê„Éá„Éº„Çø
 GNDDATA_GNDLIST  = gnddata_gndlist
-#xlsÉtÉ@ÉCÉãåQ
+#xls„Éï„Ç°„Ç§„É´Áæ§
 GNDDATA_XLSLIST  = $(GNDDIR)/*.xls
 GNDDATA_HEADLIST = $(GNDDATA_XLSLIST:.xls=.h)
 GNDDATA_BINLIST  = $(GNDDATA_XLSLIST:.xls=.bin)
@@ -76,9 +76,9 @@ GNDDATA_CLEANLIST  = $(GNDDATA_GNDLIST) $(GNDDATA_HEADLIST) \
 #--------------------------------
 #	"tw_evjump"
 #--------------------------------
-#ê∂ê¨ÉfÅ[É^
+#ÁîüÊàê„Éá„Éº„Çø
 EVJUMP_JUMPLIST = evdata_jumplist
-#xlsÉtÉ@ÉCÉãåS
+#xls„Éï„Ç°„Ç§„É´ÈÉ°
 EVJUMP_XLSLIST  = $(EVJUMPDIR)/*.xls
 EVJUMP_BINLIST  = $(EVJUMP_XLSLIST:.xls=.bin)
 EVJUMP_TXTLIST  = $(EVJUMP_XLSLIST:.xls=.txt)
@@ -88,9 +88,9 @@ EVJUMP_CLEANLIST  = $(EVJUMP_JUMPLIST) $(EVJUMP_BINLIST) $(EVJUMP_TXTLIST)
 #--------------------------------
 #	"tw_cmact"
 #--------------------------------
-#ê∂ê¨ÉfÅ[É^
+#ÁîüÊàê„Éá„Éº„Çø
 CMACT_LIST      = cmact_list
-#xlsÉtÉ@ÉCÉãåQ
+#xls„Éï„Ç°„Ç§„É´Áæ§
 CMACT_XLSLIST   = $(CMACTDIR)/*.xls
 CMACT_BINLIST   = $(CMACT_XLSLIST:.xls=.bin)
 CMACT_TXTLIST   = $(CMACT_XLSLIST:.xls=.txt)
@@ -100,9 +100,9 @@ CMACT_CLEANLIST   = $(CMACT_LIST) $(CMACT_BINLIST) $(CMACT_TXTLIST)
 #--------------------------------
 #	"tw_fstone"
 #--------------------------------
-#ê∂ê¨ÉfÅ[É^
+#ÁîüÊàê„Éá„Éº„Çø
 FSTONE_LIST      = fstone_list
-#xlsÉtÉ@ÉCÉãåQ
+#xls„Éï„Ç°„Ç§„É´Áæ§
 FSTONE_XLSLIST   = $(FSTONEDIR)/*.xls
 FSTONE_BINLIST   = $(FSTONE_XLSLIST:.xls=.bin)
 FSTONE_TXTLIST   = $(FSTONE_XLSLIST:.xls=.txt)
@@ -110,7 +110,7 @@ FSTONE_TXTLIST   = $(FSTONE_XLSLIST:.xls=.txt)
 FSTONE_CLEANLIST   = $(FSTONE_LIST) $(FSTONE_BINLIST) $(FSTONE_TXTLIST)
 
 #--------------------------------
-#	tw_maptable_listçXêVëŒè€
+#	tw_maptable_listÊõ¥Êñ∞ÂØæË±°
 #--------------------------------
 MAPTABLE_UPDATELIST = $(GNDDATA_GNDLIST) $(EVJUMP_JUMPLIST) $(CMACT_LIST) $(FSTONE_LIST)
 
@@ -119,50 +119,50 @@ MAPTABLE_UPDATELIST = $(GNDDATA_GNDLIST) $(EVJUMP_JUMPLIST) $(CMACT_LIST) $(FSTO
 #--------------------------------
 
 #--------------------------------
-#	cleanëŒè€
+#	cleanÂØæË±°
 #--------------------------------
 TW_CLEAN_LIST = $(MAPTABLE_CLEANLIST) $(GNDDATA_CLEANLIST) $(EVJUMP_CLEANLIST) $(CMACT_CLEANLIST) $(FSTONE_CLEANLIST) $(ARC_RESULT) $(ARC_ATTR_RESULT)
 
 #--------------------------------
-#	ÉrÉãÉhëŒè€
+#	„Éì„É´„ÉâÂØæË±°
 #--------------------------------
 do-build: $(ATTR_TARGET) $(TARGET)
 
 #--------------------------------
-#	ÉAÉgÉäÉrÉÖÅ[ÉgÉAÅ[ÉJÉCÉuê∂ê¨
+#	„Ç¢„Éà„É™„Éì„É•„Éº„Éà„Ç¢„Éº„Ç´„Ç§„ÉñÁîüÊàê
 #--------------------------------
 $(ATTR_TARGET): $(ATTRDIR) $(ATTR_LIST)
 	nnsarc -i -c -l -n $(ATTR_TARGET) $(ATTR_LIST) > $(ARC_ATTR_RESULT)
 
 #--------------------------------
-#	TARGETê∂ê¨
+#	TARGETÁîüÊàê
 #--------------------------------
 $(TARGET): $(MAPTABLE_IDX)
 	nnsarc -i -c -l -n $(TARGET) $(MAPTABLE_LIST) > $(ARC_RESULT)
 
 #--------------------------------
-#	gnddata_gndlistê∂ê¨
+#	gnddata_gndlistÁîüÊàê
 #--------------------------------
 $(GNDDATA_BINLIST): $(GNDDATA_XLSLIST) $(ATTR_TARGET)
 $(GNDDATA_GNDLIST): $(GNDDIR) $(GNDDATA_BINLIST)
 	$(GNDCONV_GND) $(GNDDATA_GNDLIST)
 
 #--------------------------------
-#	evjump_jumplistê∂ê¨
+#	evjump_jumplistÁîüÊàê
 #--------------------------------
 $(EVJUMP_BINLIST): $(EVJUMP_XLSLIST)
 $(EVJUMP_JUMPLIST): $(EVJUMPDIR) $(EVJUMP_BINLIST) $(GNDDATA_GNDLIST)
 	$(EVCONV_JUMP) $(EVJUMP_JUMPLIST)
 
 #--------------------------------
-#	cmact_listê∂ê¨
+#	cmact_listÁîüÊàê
 #--------------------------------
 $(CMACT_BINLIST): $(CMACT_XLSLIST)
 $(CMACT_LIST): $(CMACTDIR) $(CMACT_BINLIST)
 	$(EVCONV_CMACT) $(CMACT_LIST)
 
 #--------------------------------
-#	fstone_listê∂ê¨
+#	fstone_listÁîüÊàê
 #--------------------------------
 $(FSTONE_BINLIST): $(FSTONE_XLSLIST)
 $(FSTONE_LIST): $(FSTONEDIR) $(FSTONE_BINLIST)

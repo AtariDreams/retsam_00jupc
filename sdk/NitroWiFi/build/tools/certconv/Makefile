@@ -13,10 +13,10 @@
 #
 #  $Log: Makefile,v $
 #  Revision 1.1  2006/01/30 02:37:12  seiki_masashi
-#  makecert ‚ğ certconv ‚É–¼‘O•ÏX
+#  makecert ã‚’ certconv ã«åå‰å¤‰æ›´
 #
 #  Revision 1.1  2006/01/23 07:59:29  seiki_masashi
-#  makecert ƒc[ƒ‹‚ğ’Ç‰Á
+#  makecert ãƒ„ãƒ¼ãƒ«ã‚’è¿½åŠ 
 #
 #  $NoKeywords: $
 #---------------------------------------------------------------------------

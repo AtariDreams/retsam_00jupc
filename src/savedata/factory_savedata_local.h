@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	factory_savedata_local.h
- * @brief	uƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[vƒwƒbƒ_[
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.03.28
  */
@@ -13,40 +13,40 @@
 
 //============================================================================================
 //
-//	ƒvƒŒƒCƒf[ƒ^
+//	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿
 //
 //============================================================================================
 struct _FACTORYDATA{
-	u8	level		:1;										//LV50AƒI[ƒvƒ“
-	u8	type		:3;										//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
-	u8	save_flag	:1;										//ƒZ[ƒuÏ‚Ý‚©‚Ç‚¤‚©ƒtƒ‰ƒO
+	u8	level		:1;										//LV50ã€ã‚ªãƒ¼ãƒ—ãƒ³
+	u8	type		:3;										//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ
+	u8	save_flag	:1;										//ã‚»ãƒ¼ãƒ–æ¸ˆã¿ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
 	u8	dmy99		:3;
-	u8	round;												//¡‰½l–ÚH
+	u8	round;												//ä»Šä½•äººç›®ï¼Ÿ
 	u16	dummy;
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
-	u16 tr_index[FACTORY_LAP_MULTI_ENEMY_MAX];				//ƒgƒŒ[ƒi[indexƒe[ƒuƒ‹
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	u16 tr_index[FACTORY_LAP_MULTI_ENEMY_MAX];				//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼indexãƒ†ãƒ¼ãƒ–ãƒ«
 
-	//ŽèŽ‚¿‚Ìƒf[ƒ^
-	u16 temoti_poke_index[FACTORY_MINE_POKE_MAX];			//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
-	u8	temoti_pow_rnd[FACTORY_MINE_POKE_MAX];				//ƒ|ƒPƒ‚ƒ“‚Ìpow—”
-	u32 temoti_personal_rnd[FACTORY_MINE_POKE_MAX];			//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
+	//æ‰‹æŒã¡ã®ãƒ‡ãƒ¼ã‚¿
+	u16 temoti_poke_index[FACTORY_MINE_POKE_MAX];			//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
+	u8	temoti_pow_rnd[FACTORY_MINE_POKE_MAX];				//ãƒã‚±ãƒ¢ãƒ³ã®powä¹±æ•°
+	u32 temoti_personal_rnd[FACTORY_MINE_POKE_MAX];			//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
 
-	//“G‚Ìƒf[ƒ^
-	u16 enemy_poke_index[FACTORY_ENEMY_POKE_MAX];			//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
-	u8	enemy_pow_rnd[FACTORY_ENEMY_POKE_MAX];				//ƒ|ƒPƒ‚ƒ“‚Ìpow—”
-	u32 enemy_personal_rnd[FACTORY_ENEMY_POKE_MAX];			//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
+	//æ•µã®ãƒ‡ãƒ¼ã‚¿
+	u16 enemy_poke_index[FACTORY_ENEMY_POKE_MAX];			//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
+	u8	enemy_pow_rnd[FACTORY_ENEMY_POKE_MAX];				//ãƒã‚±ãƒ¢ãƒ³ã®powä¹±æ•°
+	u32 enemy_personal_rnd[FACTORY_ENEMY_POKE_MAX];			//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
 };
 
 
 //============================================================================================
 //
-//	¬Ñƒf[ƒ^
+//	æˆç¸¾ãƒ‡ãƒ¼ã‚¿
 //
 //============================================================================================
 struct _FACTORYSCORE{
-	//«WIFIˆÈŠO‚Ìƒoƒgƒ‹ƒ^ƒCƒv‚ÅŽg—p‚µ‚Ä‚¢‚é
-	u8	clear_flag;											//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO(ƒrƒbƒg)
+	//â†“WIFIä»¥å¤–ã®ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã§ä½¿ç”¨ã—ã¦ã„ã‚‹
+	u8	clear_flag;											//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°(ãƒ“ãƒƒãƒˆ)
 	u8	dmy[3];
 };
 

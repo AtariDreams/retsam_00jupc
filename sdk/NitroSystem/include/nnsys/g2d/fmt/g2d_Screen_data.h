@@ -39,10 +39,10 @@ extern "C" {
 
 
 //
-// バージョン情報
-// Ver         変更点
+// 繝舌�ｼ繧ｸ繝ｧ繝ｳ諠�蝣ｱ
+// Ver         螟画峩轤ｹ
 // -------------------------------------
-// 1.0         初版
+// 1.0         蛻晉沿
 //
 #define NNS_G2D_NSCR_MAJOR_VER             (u8)1
 #define NNS_G2D_NSCR_MINOR_VER             (u8)0

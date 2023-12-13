@@ -12,40 +12,40 @@
 
   $Log: dwc_nasfunc.h,v $
   Revision 1.12  2006/11/17 06:57:56  nakata
-  •s³•¶š—ñƒ`ƒFƒbƒN‚Ìƒwƒbƒ_‚ğ’Ç‰Á
+  ä¸æ­£æ–‡å­—åˆ—ãƒã‚§ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã‚’è¿½åŠ 
 
   Revision 1.11  2006/05/25 09:07:18  nakata
-  DWC_NASLOGIN_STATE_CANCELED‚ğ’Ç‰Á
+  DWC_NASLOGIN_STATE_CANCELEDã‚’è¿½åŠ 
 
   Revision 1.10  2006/04/27 12:46:24  takayama
   svc(SVC) -> svl(SVL)
 
   Revision 1.9  2006/04/05 02:15:22  nakata
-  ‘å–Ø‚³‚ñ‚Éw“E‚³‚ê‚½–â‘è“_‚ğC³B
+  å¤§æœ¨ã•ã‚“ã«æŒ‡æ‘˜ã•ã‚ŒãŸå•é¡Œç‚¹ã‚’ä¿®æ­£ã€‚
 
   Revision 1.8  2006/03/27 05:49:47  nakata
-  ƒvƒŒƒtƒBƒbƒNƒXNAL‚ğNasLogin‚É•ÏXB
+  ãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹NALã‚’NasLoginã«å¤‰æ›´ã€‚
 
   Revision 1.7  2006/03/23 05:16:01  nakata
-  DWC_NALŠÖŒW‚ÌƒR[ƒh‚ğ’Ç‰ÁB
+  DWC_NALé–¢ä¿‚ã®ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ ã€‚
 
   Revision 1.6  2006/03/20 07:47:24  nakata
-  SVL‚Ìd—lC³‚É‘Î‰‚µ‚½•ÏXB
+  SVLã®ä»•æ§˜ä¿®æ­£ã«å¯¾å¿œã—ãŸå¤‰æ›´ã€‚
 
   Revision 1.5  2006/03/20 05:02:33  nakata
   *** empty log message ***
 
   Revision 1.4  2006/03/17 07:58:39  nakata
-  ƒRƒƒ“ƒgŒ`®‚ğ•ÏXB
+  ã‚³ãƒ¡ãƒ³ãƒˆå½¢å¼ã‚’å¤‰æ›´ã€‚
 
   Revision 1.3  2006/03/09 04:11:44  nakata
-  DWC_GetDateTimeŠÖ”‚ğ’Ç‰Á
+  DWC_GetDateTimeé–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.2  2006/03/07 01:57:40  nakata
-  DWC_GetNasTimeŠÖ”‚ÌƒŠƒtƒ@ƒŒƒ“ƒX‚ğƒ}ƒjƒ…ƒAƒ‹‚É’Ç‰ÁB
+  DWC_GetNasTimeé–¢æ•°ã®ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚’ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ã«è¿½åŠ ã€‚
 
   Revision 1.1  2006/03/07 01:18:16  nakata
-  NAS‚ÉŠÖ˜A‚·‚é‹@”\’Ç‰Á‚ğdwc_nasfunc.c/dwc_nasfunc.h‚ÉW–ñ‚·‚éÛ‚É•K—v‚È•ÏX‚ğs‚Á‚½B
+  NASã«é–¢é€£ã™ã‚‹æ©Ÿèƒ½è¿½åŠ ã‚’dwc_nasfunc.c/dwc_nasfunc.hã«é›†ç´„ã™ã‚‹éš›ã«å¿…è¦ãªå¤‰æ›´ã‚’è¡Œã£ãŸã€‚
 
 
   $NoKeywords: $
@@ -65,81 +65,81 @@ extern "C" {
         enum
    ======================================================================== */
 
-/* [nakata] ingamesnƒ`ƒFƒbƒNŒ‹‰Ê—ñ‹“q */
+/* [nakata] ingamesnãƒã‚§ãƒƒã‚¯çµæœåˆ—æŒ™å­ */
 typedef enum {
 	DWC_INGAMESN_NOT_CHECKED	= DWC_AUTH_INGAMESN_NOT_CHECKED,
 	DWC_INGAMESN_VALID			= DWC_AUTH_INGAMESN_VALID,
 	DWC_INGAMESN_INVALID		= DWC_AUTH_INGAMESN_INVALID
 } DWCIngamesnCheckResult;
 
-// [nakata] DWC_Nal‚ÌƒXƒe[ƒg‚ğ¦‚·—ñ‹“Œ^
+// [nakata] DWC_Nalã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ç¤ºã™åˆ—æŒ™å‹
 typedef enum {
-	DWC_NASLOGIN_STATE_DIRTY	= 0,	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
-	DWC_NASLOGIN_STATE_IDLE,			// ˆ—Às’†‚Å‚Í‚È‚¢
-	DWC_NASLOGIN_STATE_HTTP,			// HTTP’ÊM’†
-	DWC_NASLOGIN_STATE_SUCCESS,		// ƒƒOƒCƒ“¬Œ÷
-	DWC_NASLOGIN_STATE_ERROR,		// ƒƒOƒCƒ“¸”s
-	DWC_NASLOGIN_STATE_CANCELED,	// ƒƒOƒCƒ“ƒLƒƒƒ“ƒZƒ‹
+	DWC_NASLOGIN_STATE_DIRTY	= 0,	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
+	DWC_NASLOGIN_STATE_IDLE,			// å‡¦ç†å®Ÿè¡Œä¸­ã§ã¯ãªã„
+	DWC_NASLOGIN_STATE_HTTP,			// HTTPé€šä¿¡ä¸­
+	DWC_NASLOGIN_STATE_SUCCESS,		// ãƒ­ã‚°ã‚¤ãƒ³æˆåŠŸ
+	DWC_NASLOGIN_STATE_ERROR,		// ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—
+	DWC_NASLOGIN_STATE_CANCELED,	// ãƒ­ã‚°ã‚¤ãƒ³ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	DWC_NASLOGIN_STATE_MAX
 } DWCNasLoginState;
 
 /* =======================================================================
-        external function(ingamesnŠÖ˜A)
+        external function(ingamesné–¢é€£)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_GetIngamesnCheckResult
 
-  Description:	NAS‚É‚æ‚éingamesn”»’è‚ÌŒ‹‰Ê‚ğæ“¾‚·‚é
+  Description:	NASã«ã‚ˆã‚‹ingamesnåˆ¤å®šã®çµæœã‚’å–å¾—ã™ã‚‹
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		DWC_INGAMESN_NOTCHECKED	Œ»İƒ`ƒFƒbƒN’†(ƒƒOƒCƒ“ˆ—’†)
-                DWC_INGAMESN_VALID		’¼‘O‚ÌƒƒOƒCƒ“‚Ìingamesn‚ÍNAS‚Éó‚¯“ü‚ê‚ç‚ê‚½
-				DWC_INGAMESN_INVALID	’¼‘O‚ÌƒƒOƒCƒ“‚Ìingamesn‚ÍNAS‚É‹‘”Û‚³‚ê‚½
+  Returns:		DWC_INGAMESN_NOTCHECKED	ç¾åœ¨ãƒã‚§ãƒƒã‚¯ä¸­(ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†ä¸­)
+                DWC_INGAMESN_VALID		ç›´å‰ã®ãƒ­ã‚°ã‚¤ãƒ³ã®ingamesnã¯NASã«å—ã‘å…¥ã‚Œã‚‰ã‚ŒãŸ
+				DWC_INGAMESN_INVALID	ç›´å‰ã®ãƒ­ã‚°ã‚¤ãƒ³ã®ingamesnã¯NASã«æ‹’å¦ã•ã‚ŒãŸ
  *---------------------------------------------------------------------------*/
 DWCIngamesnCheckResult DWC_GetIngamesnCheckResult(void);
 
 /* =======================================================================
-        external function(NASŠÔŠÖ˜A)
+        external function(NASæ™‚é–“é–¢é€£)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_GetIngamesnCheckResult
 
-  Description:	NAS‚ÌŠÔ‚ğRTCŒ`®‚Åæ“¾‚·‚é
+  Description:	NASã®æ™‚é–“ã‚’RTCå½¢å¼ã§å–å¾—ã™ã‚‹
 
-  Arguments:	date	æ“¾Œ‹‰Ê‚ÌRTCDate‚ğ‘‚«‚Ş—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-				time	æ“¾Œ‹‰Ê‚ÌRTCTime‚ğ‘‚«‚Ş—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:	date	å–å¾—çµæœã®RTCDateã‚’æ›¸ãè¾¼ã‚€é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+				time	å–å¾—çµæœã®RTCTimeã‚’æ›¸ãè¾¼ã‚€é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:		TRUE	æ“¾¬Œ÷
-				FALSE - æ“¾¸”s
+  Returns:		TRUE	å–å¾—æˆåŠŸ
+				FALSE - å–å¾—å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL DWC_GetDateTime(RTCDate *date, RTCTime *time);
 
 /* =======================================================================
-        external function(SVLŠÖ˜A)
+        external function(SVLé–¢é€£)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_SVLGetToken
 
-  Description:	ƒg[ƒNƒ“æ“¾ŠÖ”
+  Description:	ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—é–¢æ•°
 
-  Arguments:	svl		ƒT[ƒrƒXí•Ê‚ğw’è‚·‚é4•¶š‚ÌASCII•¶š—ñ
-				result	æ“¾‚µ‚½Œ‹‰Ê‚ğŠi”[‚·‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:	svl		ã‚µãƒ¼ãƒ“ã‚¹ç¨®åˆ¥ã‚’æŒ‡å®šã™ã‚‹4æ–‡å­—ã®ASCIIæ–‡å­—åˆ—
+				result	å–å¾—ã—ãŸçµæœã‚’æ ¼ç´ã™ã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:		TRUE	æ“¾ŠJn
-				FALSE	æ“¾ŠJn‚Å‚«‚È‚¢
+  Returns:		TRUE	å–å¾—é–‹å§‹
+				FALSE	å–å¾—é–‹å§‹ã§ããªã„
  *---------------------------------------------------------------------------*/
 BOOL DWC_SVLGetTokenAsync(char *svl, DWCSvlResult *result);
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_SVLProcess
 
-  Description:	SVLƒg[ƒNƒ“æ“¾ˆ—isŠÖ”
+  Description:	SVLãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å‡¦ç†é€²è¡Œé–¢æ•°
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
   Returns:		DWCSvlState
  *---------------------------------------------------------------------------*/
@@ -148,36 +148,36 @@ DWCSvlState DWC_SVLProcess(void);
 /*---------------------------------------------------------------------------*
   Name:			DWC_SVLAbort
 
-  Description:	SVLƒg[ƒNƒ“æ“¾ˆ—isŠÖ”
+  Description:	SVLãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å‡¦ç†é€²è¡Œé–¢æ•°
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		‚È‚µ
+  Returns:		ãªã—
  *---------------------------------------------------------------------------*/
 void DWC_SVLAbort(void);
 
 /* =======================================================================
-        external function(NAS”FØŠÖ˜A)
+        external function(NASèªè¨¼é–¢é€£)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_NASLoginAsync
 
-  Description:	NASƒƒOƒCƒ“ŠJn
+  Description:	NASãƒ­ã‚°ã‚¤ãƒ³é–‹å§‹
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		TRUE  - ƒƒOƒCƒ“ˆ—ŠJn¬Œ÷
-				FALSE - ƒƒOƒCƒ“ˆ—ŠJn¸”s
+  Returns:		TRUE  - ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†é–‹å§‹æˆåŠŸ
+				FALSE - ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†é–‹å§‹å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL DWC_NASLoginAsync(void);
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_NASLoginProcess
 
-  Description:	NASƒƒOƒCƒ“ˆ—is
+  Description:	NASãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†é€²è¡Œ
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
   Returns:		DWCNasLoginState
  *---------------------------------------------------------------------------*/
@@ -186,11 +186,11 @@ DWCNasLoginState DWC_NASLoginProcess(void);
 /*---------------------------------------------------------------------------*
   Name:			DWC_NASLoginAbort
 
-  Description:	”C“V“°”FØƒT[ƒoƒƒOƒCƒ“ˆ—’†’fŠÖ”
+  Description:	ä»»å¤©å ‚èªè¨¼ã‚µãƒ¼ãƒãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†ä¸­æ–­é–¢æ•°
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		‚È‚µ
+  Returns:		ãªã—
  *---------------------------------------------------------------------------*/
 void DWC_NASLoginAbort(void);
 

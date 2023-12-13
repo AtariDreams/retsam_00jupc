@@ -1,15 +1,15 @@
-REM ƒOƒ‰ƒtƒBƒbƒJ[‚ªŠÖ˜A‚Ã‚¯Ý’è‚ð‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚àƒRƒ“ƒo[ƒg‚³‚ê‚é
-REM cell‚ðŽg—p‚µ‚È‚¢BG‚ÍƒIƒvƒVƒ‡ƒ“Žw’è‚ð‚Â‚¯‚é
-REM nce‚ðŽw’è‚·‚é‚ÆAncg,ncl‚à‡‚í‚¹‚ÄƒRƒ“ƒo[ƒg‚³‚ê‚é
-REM nsc‚ðŽw’è‚·‚é‚ÆAncg‚à‡‚í‚¹‚ÄƒRƒ“ƒo[ƒg‚³‚ê‚é
+REM ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚«ãƒ¼ãŒé–¢é€£ã¥ã‘è¨­å®šã‚’ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚‚ã‚³ãƒ³ãƒãƒ¼ãƒˆã•ã‚Œã‚‹
+REM cellã‚’ä½¿ç”¨ã—ãªã„BGã¯ã‚ªãƒ—ã‚·ãƒ§ãƒ³æŒ‡å®šã‚’ã¤ã‘ã‚‹
+REM nceã‚’æŒ‡å®šã™ã‚‹ã¨ã€ncg,nclã‚‚åˆã‚ã›ã¦ã‚³ãƒ³ãƒãƒ¼ãƒˆã•ã‚Œã‚‹
+REM nscã‚’æŒ‡å®šã™ã‚‹ã¨ã€ncgã‚‚åˆã‚ã›ã¦ã‚³ãƒ³ãƒãƒ¼ãƒˆã•ã‚Œã‚‹
 REM
-REM ‹¤’Ê
+REM å…±é€š
 g2dcvtr poke.nce
-REM ã‰æ–Ê
+REM ä¸Šç”»é¢
 g2dcvtr u_bg00.nsc
 g2dcvtr u_bg01.nsc
 g2dcvtr u_bg.ncl
-REM ‰º‰æ–Ê
+REM ä¸‹ç”»é¢
 g2dcvtr l_bg00.nsc
 g2dcvtr l_bg01.nsc
 g2dcvtr l_bg.ncl

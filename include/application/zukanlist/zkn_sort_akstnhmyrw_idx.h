@@ -1,5 +1,5 @@
-/*---- アカサタナハマヤラワ
-     ポケモン名インデックス ----*/
+/*---- 繧｢繧ｫ繧ｵ繧ｿ繝翫ワ繝槭Ζ繝ｩ繝ｯ
+     繝昴こ繝｢繝ｳ蜷阪う繝ｳ繝�繝�繧ｯ繧ｹ ----*/
 
 #ifndef __ZKN_AKSTNHMYRW_HEADER__
 #define __ZKN_AKSTNHMYRW_HEADER__

@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	stage_savedata.c
- * @brief	uƒoƒgƒ‹ƒXƒe[ƒWvƒZ[ƒuƒf[ƒ^
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  * @author	Satoshi Nohara
  * @date	2007.06.07
  */
@@ -20,7 +20,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 int STAGEDATA_GetWorkSize( void );
@@ -36,7 +36,7 @@ u8 Stage_GetTypeLevel( u8 csr_pos, u8* p_rank );
 void Stage_SetTypeLevel( u8 csr_pos, u8* p_rank, u8 num );
 void Stage_ClearTypeLevel( u8* p_rank );
 
-//¬Ñ
+//æˆç¸¾
 int STAGESCORE_GetWorkSize( void );
 void STAGESCORE_Init( STAGESCORE* wk );
 STAGESCORE * SaveData_GetStageScore( SAVEDATA * sv );
@@ -46,17 +46,17 @@ u32 STAGESCORE_GetScoreData( STAGESCORE* wk, u8 id, u8 param, u8 param2, void* b
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	(’†’fƒf[ƒ^)ƒXƒe[ƒWƒZ[ƒuƒ[ƒN‚ÌƒTƒCƒYæ“¾
+ * @brief	(ä¸­æ–­ãƒ‡ãƒ¼ã‚¿)ã‚¹ãƒ†ãƒ¼ã‚¸ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
  *
  * @param	none
  *
- * @return	int		ƒTƒCƒY(ƒoƒCƒg’PˆÊ)
+ * @return	int		ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆå˜ä½)
  */
 //----------------------------------------------------------
 int STAGEDATA_GetWorkSize( void )
@@ -66,9 +66,9 @@ int STAGEDATA_GetWorkSize( void )
 
 //----------------------------------------------------------
 /**
- * @brief	(’†’fƒf[ƒ^)ƒXƒe[ƒWƒ[ƒN‚Ì‰Šú‰»
+ * @brief	(ä¸­æ–­ãƒ‡ãƒ¼ã‚¿)ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- * @param	wk		STAGEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -85,11 +85,11 @@ void STAGEDATA_Init( STAGEDATA* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒWƒZ[ƒuƒf[ƒ^‚Ìæ“¾(ƒvƒŒƒCƒf[ƒ^)
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¸ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å–å¾—(ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿)
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	STAGEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	STAGEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 STAGEDATA * SaveData_GetStageData( SAVEDATA * sv )
@@ -105,18 +105,18 @@ STAGEDATA * SaveData_GetStageData( SAVEDATA * sv )
 
 //============================================================================================
 //
-//	ƒƒ“ƒoƒAƒNƒZƒX
+//	ãƒ¡ãƒ³ãƒã‚¢ã‚¯ã‚»ã‚¹
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@³‚µ‚­ƒZ[ƒuÏ‚İ‚©‚Ç‚¤‚©H
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€æ­£ã—ãã‚»ãƒ¼ãƒ–æ¸ˆã¿ã‹ã©ã†ã‹ï¼Ÿ
  *
- * @param	wk		STAGEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGEDATAå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	TRUE	³‚µ‚­ƒZ[ƒu‚³‚ê‚Ä‚¢‚é
- * @retval	FALSE	ƒZ[ƒu‚³‚ê‚Ä‚¢‚È‚¢
+ * @retval	TRUE	æ­£ã—ãã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ã‚‹
+ * @retval	FALSE	ã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ãªã„
  */
 //----------------------------------------------------------
 BOOL STAGEDATA_GetSaveFlag( STAGEDATA* wk )
@@ -126,10 +126,10 @@ BOOL STAGEDATA_GetSaveFlag( STAGEDATA* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@ƒZ[ƒuó‘Ôƒtƒ‰ƒO‚ğƒZƒbƒg
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒ¼ãƒ–çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	TRUEAFALSE
+ * @param	wk		STAGEDATAå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	TRUEã€FALSE
  *
  * @retval	none
  */
@@ -145,11 +145,11 @@ void STAGEDATA_SetSaveFlag( STAGEDATA* wk, BOOL flag )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@ƒZƒbƒg
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		æ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^‚ğŠi”[‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGEDATAå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -162,31 +162,31 @@ void STAGEDATA_PutPlayData( STAGEDATA* wk, u8 id, u8 param, u8 param2, const voi
 
 	switch( id ){
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã€wifiãƒãƒ«ãƒ
 	case STAGEDATA_ID_TYPE:
 		wk->type = buf8[0];
 		OS_Printf( "wk->type = %d\n", wk->type );
 		break;
 
-	//¡‰½l–ÚH
+	//ä»Šä½•äººç›®ï¼Ÿ
 	case STAGEDATA_ID_ROUND:
 		wk->round = buf8[0];
 		OS_Printf( "wk->round = %d\n", wk->round );
 		break;
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	case STAGEDATA_ID_TR_INDEX:
 		wk->tr_index[param] = buf16[0];
 		OS_Printf( "wk->tr_index[%d] = %d\n", param, wk->tr_index[param] );
 		break;
 
-	//Q‰Á‚µ‚Ä‚¢‚éè‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	case STAGEDATA_ID_MINE_POKE_POS:
 		wk->mine_poke_pos[param] = buf8[0];
 		OS_Printf( "wk->mine_poke_pos[%d] = %d\n", param, wk->mine_poke_pos[param] );
 		break;
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚É•Û‘¶
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«ä¿å­˜
 	case STAGEDATA_ID_ENEMY_POKE_INDEX:
 		wk->enemy_poke_index[param] = buf16[0];
 		OS_Printf("wk->enemy_poke_index[%d] = %d\n", param, wk->enemy_poke_index[param] );
@@ -205,38 +205,38 @@ void STAGEDATA_PutPlayData( STAGEDATA* wk, u8 id, u8 param, u8 param2, const voi
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@æ“¾
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€å–å¾—
  *
- * @param	wk		STAGEDATAŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		æ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^æ“¾ƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGEDATAå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * –ß‚è’l‚ğæ“¾‚·‚é‚ÉŒ^ƒLƒƒƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒRƒsƒy’ˆÓI
+ * æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹æ™‚ã«å‹ã‚­ãƒ£ã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚³ãƒ”ãƒšæ³¨æ„ï¼
  */
 //----------------------------------------------------------
 u32 STAGEDATA_GetPlayData( STAGEDATA* wk, u8 id, u8 param, u8 param2, void* buf )
 {
 	switch( id ){
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã€wifiãƒãƒ«ãƒ
 	case STAGEDATA_ID_TYPE:
 		return (u32)wk->type;
 
-	//¡‰½l–ÚH
+	//ä»Šä½•äººç›®ï¼Ÿ
 	case STAGEDATA_ID_ROUND:
 		return (u32)wk->round;
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	case STAGEDATA_ID_TR_INDEX:
 		return (u32)wk->tr_index[param];
 
-	//Q‰Á‚µ‚Ä‚¢‚éè‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	case STAGEDATA_ID_MINE_POKE_POS:
 		return wk->mine_poke_pos[param];
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚É•Û‘¶
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«ä¿å­˜
 	case STAGEDATA_ID_ENEMY_POKE_INDEX:
 		return wk->enemy_poke_index[param];
 
@@ -251,24 +251,24 @@ u32 STAGEDATA_GetPlayData( STAGEDATA* wk, u8 id, u8 param, u8 param2, void* buf 
 
 //============================================================================================
 //
-//	ƒ^ƒCƒv‚²‚Æ‚ÌƒŒƒxƒ‹‚ª4bit‚Å‚Â‚±‚Æ‚É‚È‚Á‚½‚Ì‚ÅƒAƒNƒZƒXŠÖ”
+//	ã‚¿ã‚¤ãƒ—ã”ã¨ã®ãƒ¬ãƒ™ãƒ«ãŒ4bitã§æŒã¤ã“ã¨ã«ãªã£ãŸã®ã§ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 //
-//	ƒ^ƒCƒvƒŒƒxƒ‹‚ªƒŒƒR[ƒh‚É‚È‚Á‚½‚Ì‚ÅA
-//	‚±‚ÌŠÖ”‚ğg‚Á‚ÄƒZ[ƒuƒf[ƒ^‚Ö‚ÍƒAƒNƒZƒX‚µ‚Ä‚¢‚È‚¢B
-//	STAGE_SCRWORK‚Ìtype_level‚Ì‘€ì‚Ì‚İ‚Ég—p‚µ‚Ä‚¢‚é(‚Í‚¸)B
+//	ã‚¿ã‚¤ãƒ—ãƒ¬ãƒ™ãƒ«ãŒãƒ¬ã‚³ãƒ¼ãƒ‰ã«ãªã£ãŸã®ã§ã€
+//	ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã¯ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã„ãªã„ã€‚
+//	STAGE_SCRWORKã®type_levelã®æ“ä½œã®ã¿ã«ä½¿ç”¨ã—ã¦ã„ã‚‹(ã¯ãš)ã€‚
 //
-//	ƒ^ƒCƒvƒŒƒxƒ‹‚ÌƒŒƒR[ƒh‚Ö‚Ífssc_stage_sub.c‚É‚ ‚éStageScr_TypeLevelRecordGet,Set‚ğg—pB
+//	ã‚¿ã‚¤ãƒ—ãƒ¬ãƒ™ãƒ«ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ã¸ã¯fssc_stage_sub.cã«ã‚ã‚‹StageScr_TypeLevelRecordGet,Setã‚’ä½¿ç”¨ã€‚
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒCƒv‚²‚Æ‚ÌƒŒƒxƒ‹‚ğæ“¾
+ * @brief   ã‚¿ã‚¤ãƒ—ã”ã¨ã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
  *
- * @param   csr_pos		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param   p_rank		ƒ‰ƒ“ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   csr_pos		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param   p_rank		ãƒ©ãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  "ƒŒƒxƒ‹"
+ * @retval  "ãƒ¬ãƒ™ãƒ«"
  */
 //--------------------------------------------------------------
 u8 Stage_GetTypeLevel( u8 csr_pos, u8* p_rank )
@@ -277,8 +277,8 @@ u8 Stage_GetTypeLevel( u8 csr_pos, u8* p_rank )
 	u8 param;
 	u8 ret;
 
-	offset	= ( csr_pos / 2 );			//ƒtƒ‰ƒO‚ÌƒIƒtƒZƒbƒg[0,1][2,3],,,
-	param	= ( csr_pos % 2 );			//ƒtƒ‰ƒO‚Ì‚Ç‚¿‚ç‚Ì4bit‚©æ“¾
+	offset	= ( csr_pos / 2 );			//ãƒ•ãƒ©ã‚°ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ[0,1][2,3],,,
+	param	= ( csr_pos % 2 );			//ãƒ•ãƒ©ã‚°ã®ã©ã¡ã‚‰ã®4bitã‹å–å¾—
 
 	ret = (p_rank[offset] >> (4 * param)) & 0x0f;
 
@@ -289,11 +289,11 @@ u8 Stage_GetTypeLevel( u8 csr_pos, u8* p_rank )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒCƒv‚²‚Æ‚ÌƒŒƒxƒ‹‚ğƒZƒbƒg
+ * @brief   ã‚¿ã‚¤ãƒ—ã”ã¨ã®ãƒ¬ãƒ™ãƒ«ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   csr_pos		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param   p_rank		ƒ‰ƒ“ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param   num			ƒZƒbƒg‚·‚é’l
+ * @param   csr_pos		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param   p_rank		ãƒ©ãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   num			ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  *
  * @retval  none
  */
@@ -304,8 +304,8 @@ void Stage_SetTypeLevel( u8 csr_pos, u8* p_rank, u8 num )
 	u8 param;
 	u8 set_num;
 
-	offset	= ( csr_pos / 2 );			//ƒtƒ‰ƒO‚ÌƒIƒtƒZƒbƒg[0,1][2,3],,,
-	param	= ( csr_pos % 2 );			//ƒtƒ‰ƒO‚Ì‚Ç‚¿‚ç‚Ì4bit‚©æ“¾
+	offset	= ( csr_pos / 2 );			//ãƒ•ãƒ©ã‚°ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ[0,1][2,3],,,
+	param	= ( csr_pos % 2 );			//ãƒ•ãƒ©ã‚°ã®ã©ã¡ã‚‰ã®4bitã‹å–å¾—
 
 	//OS_Printf( "************************\n" );
 	//OS_Printf( "before p_rank[%d] = %d\n", offset, p_rank[offset] );
@@ -329,9 +329,9 @@ void Stage_SetTypeLevel( u8 csr_pos, u8* p_rank, u8 num )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒf[ƒ^@w’è‚µ‚½ƒoƒgƒ‹ƒ^ƒCƒv‚ÌƒŒƒxƒ‹‚ğƒNƒŠƒA
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€æŒ‡å®šã—ãŸãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã®ãƒ¬ãƒ™ãƒ«ã‚’ã‚¯ãƒªã‚¢
  *
- * @param   p_rank		ƒ‰ƒ“ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   p_rank		ãƒ©ãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -341,7 +341,7 @@ void Stage_ClearTypeLevel( u8* p_rank )
 	int i;
 
 	for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
-		Stage_SetTypeLevel( i, p_rank, 0 );		//0ƒIƒŠƒWƒ“
+		Stage_SetTypeLevel( i, p_rank, 0 );		//0ã‚ªãƒªã‚¸ãƒ³
 	}
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_FRONTIER)
 	SVLD_SetCrc(GMDATA_ID_FRONTIER);
@@ -352,17 +352,17 @@ void Stage_ClearTypeLevel( u8* p_rank )
 
 //============================================================================================
 //
-//	¬ÑŠÖ˜A
+//	æˆç¸¾é–¢é€£
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	(¬Ñƒf[ƒ^)ƒXƒe[ƒWƒZ[ƒuƒ[ƒN‚ÌƒTƒCƒYæ“¾
+ * @brief	(æˆç¸¾ãƒ‡ãƒ¼ã‚¿)ã‚¹ãƒ†ãƒ¼ã‚¸ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
  *
  * @param	none
  *
- * @return	int		ƒTƒCƒY(ƒoƒCƒg’PˆÊ)
+ * @return	int		ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆå˜ä½)
  */
 //----------------------------------------------------------
 int STAGESCORE_GetWorkSize( void )
@@ -372,9 +372,9 @@ int STAGESCORE_GetWorkSize( void )
 
 //----------------------------------------------------------
 /**
- * @brief	(¬Ñƒf[ƒ^)ƒXƒe[ƒWƒ[ƒN‚Ì‰Šú‰»
+ * @brief	(æˆç¸¾ãƒ‡ãƒ¼ã‚¿)ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- * @param	wk		STAGESCOREŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGESCOREå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -392,11 +392,11 @@ void STAGESCORE_Init( STAGESCORE* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒWƒZ[ƒuƒf[ƒ^‚Ìæ“¾(¬Ñƒf[ƒ^)
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¸ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å–å¾—(æˆç¸¾ãƒ‡ãƒ¼ã‚¿)
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	STAGEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	STAGEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 STAGESCORE * SaveData_GetStageScore( SAVEDATA * sv )
@@ -411,11 +411,11 @@ STAGESCORE * SaveData_GetStageScore( SAVEDATA * sv )
 
 //----------------------------------------------------------
 /**
- * @brief	¬Ñƒf[ƒ^@ƒZƒbƒg
+ * @brief	æˆç¸¾ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒƒãƒˆ
  *
- * @param	wk		STAGESCOREŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		æ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^‚ğŠi”[‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGESCOREå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -428,13 +428,13 @@ void STAGESCORE_PutScoreData( STAGESCORE* wk, u8 id, u8 param, u8 param2, const 
 
 	switch( id ){
 
-	//10˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO
+	//10é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°
 	case STAGESCORE_ID_CLEAR_FLAG:
 		OS_Printf( "before clear_flag = %d\n", wk->clear_flag );
 		if( buf8[0] >= 1 ){
-			wk->clear_flag |= (1 << param);					//ƒZƒbƒg
+			wk->clear_flag |= (1 << param);					//ã‚»ãƒƒãƒˆ
 		}else{
-			wk->clear_flag &= (0xff ^ (1 << param));		//ƒŠƒZƒbƒg
+			wk->clear_flag &= (0xff ^ (1 << param));		//ãƒªã‚»ãƒƒãƒˆ
 		}
 		OS_Printf( "after clear_flag = %d\n", wk->clear_flag );
 		break;
@@ -452,15 +452,15 @@ void STAGESCORE_PutScoreData( STAGESCORE* wk, u8 id, u8 param, u8 param2, const 
 
 //----------------------------------------------------------
 /**
- * @brief	¬Ñƒf[ƒ^@æ“¾
+ * @brief	æˆç¸¾ãƒ‡ãƒ¼ã‚¿ã€€å–å¾—
  *
- * @param	wk		STAGESCOREŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		æ“¾‚·‚éƒf[ƒ^ID
- * @param	buf		void*:ƒf[ƒ^æ“¾ƒ|ƒCƒ“ƒ^
+ * @param	wk		STAGESCOREå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID
+ * @param	buf		void*:ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * –ß‚è’l‚ğæ“¾‚·‚é‚ÉŒ^ƒLƒƒƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒRƒsƒy’ˆÓI
+ * æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹æ™‚ã«å‹ã‚­ãƒ£ã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚³ãƒ”ãƒšæ³¨æ„ï¼
  */
 //----------------------------------------------------------
 u32 STAGESCORE_GetScoreData( STAGESCORE* wk, u8 id, u8 param, u8 param2, void* buf )
@@ -470,7 +470,7 @@ u32 STAGESCORE_GetScoreData( STAGESCORE* wk, u8 id, u8 param, u8 param2, void* b
 
 	switch( id ){
 
-	//10˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO
+	//10é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°
 	case STAGESCORE_ID_CLEAR_FLAG:
 		OS_Printf( "get clear_flag = %d\n", wk->clear_flag );
 		return (u32)((wk->clear_flag >> param) & 0x01);

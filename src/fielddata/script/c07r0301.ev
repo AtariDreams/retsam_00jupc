@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_c07r0301evc.h"
 
 //--------------------------------------------------------------------
-//					     ÉXÉNÉäÉvÉgñ{ëÃ
+//					     „Çπ„ÇØ„É™„Éó„ÉàÊú¨‰Ωì
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ÉXÉNÉäÉvÉgÉeÅ[ÉuÉã
+//					     „Çπ„ÇØ„É™„Éó„Éà„ÉÜ„Éº„Éñ„É´
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c07r0301_bar
 _EVENT_DATA		ev_c07r0301_police_auto
@@ -38,12 +38,12 @@ ev_c07r0301_flag_change_sub:
 
 
 /********************************************************************/
-/*								î‡									*/
+/*								Êââ									*/
 /********************************************************************/
 ev_c07r0301_bar:
 	_TALK_OBJ_START
 
-	/*ÅuÇªÇ§Ç±ÇÃÉJÉMÅvÇÇ‡Ç¡ÇƒÇ¢ÇÈÅH*/
+	/*„Äå„Åù„ÅÜ„Åì„ÅÆ„Ç´„ÇÆ„Äç„Çí„ÇÇ„Å£„Å¶„ÅÑ„ÇãÔºü*/
 	_ITEM_CHK	ITEM_SOUKONOKAGI,1,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,TRUE,ev_c07r0301_bar_02
 	
@@ -53,7 +53,7 @@ ev_c07r0301_bar:
 	_TALK_OBJ_END
 	_END
 
-/*ÅuÇªÇ§Ç±ÇÃÉJÉMÅvÇÇ‡Ç¡ÇƒÇ¢ÇÈÅH*/
+/*„Äå„Åù„ÅÜ„Åì„ÅÆ„Ç´„ÇÆ„Äç„Çí„ÇÇ„Å£„Å¶„ÅÑ„ÇãÔºü*/
 ev_c07r0301_bar_02:
 	_TALKMSG		msg_c07r0301_bar_02
 	_YES_NO_WIN		SCWK_ANSWER
@@ -61,7 +61,7 @@ ev_c07r0301_bar_02:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c07r0301_bar
 	_END
 
-/*ÅuÇÕÇ¢Åv*/
+/*„Äå„ÅØ„ÅÑ„Äç*/
 yes_c07r0301_bar:
 	_FLAG_SET		FE_C07R0301_OPEN
 
@@ -70,7 +70,7 @@ yes_c07r0301_bar:
 	_TALKMSG		msg_c07r0301_bar_03
 	_LAST_KEYWAIT
 
-	//î‡äJÇ≠Ç”ÇË
+	//ÊââÈñã„Åè„Åµ„Çä
 	_SE_WAIT		SEQ_SE_DP_SELECT
 	_SE_PLAY		SE_AZITO_DOOR_OPEN
 	_OBJ_ANIME		C07R0301_BAR_01,anm_c07r0301_bar_01
@@ -84,14 +84,14 @@ yes_c07r0301_bar:
 	_TALK_OBJ_END
 	_END
 
-/*ÅuÇ¢Ç¢Ç¶ÅvèIóπ*/
+/*„Äå„ÅÑ„ÅÑ„Åà„ÄçÁµÇ‰∫Ü*/
 no_c07r0301_bar:
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 	
 //--------------------------------------------------------------------
-//î‡	äJÇ≠Ç”ÇË
+//Êââ	Èñã„Åè„Åµ„Çä
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_bar_01
 	_ANIME_DATA	AC_WALK_L_4F,1
@@ -103,19 +103,19 @@ _ANIME_LABEL	anm_c07r0301_bar_02
 
 
 /********************************************************************/
-/*							çëç€åxé@								*/
+/*							ÂõΩÈöõË≠¶ÂØü								*/
 /********************************************************************/
 ev_c07r0301_police_auto:
 	_EVENT_START
 
-	/*à⁄ìÆ*/
+	/*ÁßªÂãï*/
 	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_01
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_c07r0301_detective_01
 	_TALK_CLOSE
 
-	/*à⁄ìÆ*/
+	/*ÁßªÂãï*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c07r0301_player_02
 	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_02
 	_OBJ_ANIME_WAIT
@@ -124,7 +124,7 @@ ev_c07r0301_police_auto:
 	_TALK_KEYWAIT	msg_c07r0301_detective_02
 	_TALK_CLOSE
 
-	/*à⁄ìÆ*/
+	/*ÁßªÂãï*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c07r0301_player_03
 	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_03
 	_OBJ_ANIME_WAIT
@@ -139,14 +139,14 @@ ev_c07r0301_police_auto:
 	_END
 
 //--------------------------------------------------------------------
-//çëç€åxé@	à⁄ìÆ1
+//ÂõΩÈöõË≠¶ÂØü	ÁßªÂãï1
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_police_01
 	_ANIME_DATA	AC_WALK_U_8F,2
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//çëç€åxé@	à⁄ìÆ2
+//ÂõΩÈöõË≠¶ÂØü	ÁßªÂãï2
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_police_02
 	_ANIME_DATA	AC_WALK_D_8F,2
@@ -161,7 +161,7 @@ _ANIME_LABEL	anm_c07r0301_police_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//çëç€åxé@	à⁄ìÆ3
+//ÂõΩÈöõË≠¶ÂØü	ÁßªÂãï3
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_police_03
 	_ANIME_DATA	AC_WALK_L_8F,5
@@ -169,7 +169,7 @@ _ANIME_LABEL	anm_c07r0301_police_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//éÂêlåˆ	çëç€åxé@Çå©ÇÈ
+//‰∏ª‰∫∫ÂÖ¨	ÂõΩÈöõË≠¶ÂØü„ÇíË¶ã„Çã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_player_02
 	_ANIME_DATA	AC_WAIT_8F,9
@@ -177,7 +177,7 @@ _ANIME_LABEL	anm_c07r0301_player_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//éÂêlåˆ	çëç€åxé@Çå©ÇÈ
+//‰∏ª‰∫∫ÂÖ¨	ÂõΩÈöõË≠¶ÂØü„ÇíË¶ã„Çã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_player_03
 	_ANIME_DATA	AC_WAIT_8F,4
@@ -187,7 +187,7 @@ _ANIME_LABEL	anm_c07r0301_player_03
 
 
 /********************************************************************/
-/*						çëç€åxé@(òbÇµÇ©ÇØ)							*/
+/*						ÂõΩÈöõË≠¶ÂØü(Ë©±„Åó„Åã„Åë)							*/
 /********************************************************************/
 ev_c07r0301_police:
 	_EASY_OBJ_MSG	msg_c07r0301_detective_04
@@ -195,7 +195,7 @@ ev_c07r0301_police:
 
 
 /********************************************************************/
-/*							çëç€åxé@(ÉAÉWÉg)						*/
+/*							ÂõΩÈöõË≠¶ÂØü(„Ç¢„Ç∏„Éà)						*/
 /********************************************************************/
 #define C07R0301_POLICE_X1	(8)
 #define C07R0301_POLICE_X2	(9)
@@ -203,14 +203,14 @@ ev_c07r0301_police:
 pos_c07r0301_police:
 	_EVENT_START
 
-	/*ìoèÍ*/
+	/*ÁôªÂ†¥*/
 	_SXY_POS_CHANGE	C07R0301_POLICE,8,11
 	_SXY_MV_CHANGE	C07R0301_POLICE,MV_UP
 	_SXY_DIR_CHANGE	C07R0301_POLICE,DIR_UP
 	_FLAG_RESET		FV_C07R0301_POLICE
 	_OBJ_ADD		C07R0301_POLICE
 
-	/*ãﬂÇ√Ç¢ÇƒÇ≠ÇÈ*/
+	/*Ëøë„Å•„ÅÑ„Å¶„Åè„Çã*/
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X1,ev_c07r0301_police_azito_01
 	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X2,ev_c07r0301_police_azito_02
@@ -218,7 +218,7 @@ pos_c07r0301_police:
 	_TALK_KEYWAIT	msg_c07r0301_detective_05
 	_TALK_CLOSE
 
-	/*î‡Çå©Ç»Ç™ÇÁ*/
+	/*Êââ„ÇíË¶ã„Å™„Åå„Çâ*/
 	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_110
 	_OBJ_ANIME_WAIT
 
@@ -226,14 +226,14 @@ pos_c07r0301_police:
 	_TALK_CLOSE
 
 	///////////////////////////////////////////////////////////////////
-	/*ÉhÉAäJÇØÇÈ*/
+	/*„Éâ„Ç¢Èñã„Åë„Çã*/
 	_FLAG_SET		FE_C07R0301_OPEN
 	//_SUB_ITEM		ITEM_SOUKONOKAGI,1,SCWK_ANSWER
 	//_PLAYER_NAME	0
 	//_TALKMSG		msg_c07r0301_bar_03
 	//_LAST_KEYWAIT
 
-	//î‡äJÇ≠Ç”ÇË
+	//ÊââÈñã„Åè„Åµ„Çä
 	_SE_WAIT		SEQ_SE_DP_SELECT
 	_SE_PLAY		SE_AZITO_DOOR_OPEN
 	_OBJ_ANIME		C07R0301_BAR_01,anm_c07r0301_bar_01
@@ -244,25 +244,25 @@ pos_c07r0301_police:
 	_OBJ_DEL		C07R0301_BAR_02
 	///////////////////////////////////////////////////////////////////
 
-	/*éÂêlåˆÇå©ÇÈ*/
+	/*‰∏ª‰∫∫ÂÖ¨„ÇíË¶ã„Çã*/
 	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X1,ev_c07r0301_police_azito_11
 	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X2,ev_c07r0301_police_azito_12
 
 	_TALK_KEYWAIT	msg_c07r0301_detective_07
 	_TALK_CLOSE
 
-	/*ÉAÉWÉgÇ…è¡Ç¶ÇƒÇ¢Ç≠*/
+	/*„Ç¢„Ç∏„Éà„Å´Ê∂à„Åà„Å¶„ÅÑ„Åè*/
 	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X1,ev_c07r0301_police_azito_21
 	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X2,ev_c07r0301_police_azito_22
 
 	_OBJ_DEL		C07R0301_POLICE
-	_FLAG_SET		FV_C07_POLICE			/*äOÇÃçëç€åxé@çÌèú*/
+	_FLAG_SET		FV_C07_POLICE			/*Â§ñ„ÅÆÂõΩÈöõË≠¶ÂØüÂâäÈô§*/
 	_LDVAL			WK_SCENE_C07R0301,4
 
 	_EVENT_END
 	_END
 
-/*ãﬂÇ√Ç¢ÇƒÇ≠ÇÈ*/
+/*Ëøë„Å•„ÅÑ„Å¶„Åè„Çã*/
 ev_c07r0301_police_azito_01:
 	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_100
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c07r0301_player_100
@@ -275,7 +275,7 @@ ev_c07r0301_police_azito_02:
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*éÂêlåˆÇ∆å¸Ç´çáÇ§*/
+/*‰∏ª‰∫∫ÂÖ¨„Å®Âêë„ÅçÂêà„ÅÜ*/
 ev_c07r0301_police_azito_11:
 	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_116
 	_OBJ_ANIME_WAIT
@@ -286,7 +286,7 @@ ev_c07r0301_police_azito_12:
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*ëﬁèÍ*/
+/*ÈÄÄÂ†¥*/
 ev_c07r0301_police_azito_21:
 	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_120
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c07r0301_player_120
@@ -300,7 +300,7 @@ ev_c07r0301_police_azito_22:
 	_RET
 
 //--------------------------------------------------------------------
-//éÂêlåˆ	ìoèÍ1
+//‰∏ª‰∫∫ÂÖ¨	ÁôªÂ†¥1
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_player_100
 	_ANIME_DATA	AC_WAIT_8F,4
@@ -313,7 +313,7 @@ _ANIME_LABEL	anm_c07r0301_player_101
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//éÂêlåˆ	ÉAÉWÉgçëç€åxé@å©ëóÇÈ
+//‰∏ª‰∫∫ÂÖ¨	„Ç¢„Ç∏„ÉàÂõΩÈöõË≠¶ÂØüË¶ãÈÄÅ„Çã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_player_120
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -321,7 +321,7 @@ _ANIME_LABEL	anm_c07r0301_player_120
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ÉAÉWÉgçëç€åxé@	ìoèÍ1
+//„Ç¢„Ç∏„ÉàÂõΩÈöõË≠¶ÂØü	ÁôªÂ†¥1
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_police_100
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -336,14 +336,14 @@ _ANIME_LABEL	anm_c07r0301_police_101
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ÉAÉWÉgçëç€åxé@	ÉhÉAÇå©ÇÈ
+//„Ç¢„Ç∏„ÉàÂõΩÈöõË≠¶ÂØü	„Éâ„Ç¢„ÇíË¶ã„Çã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_police_110
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ÉAÉWÉgçëç€åxé@	éÂêlåˆÇå©ÇÈ
+//„Ç¢„Ç∏„ÉàÂõΩÈöõË≠¶ÂØü	‰∏ª‰∫∫ÂÖ¨„ÇíË¶ã„Çã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_police_115
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
@@ -354,7 +354,7 @@ _ANIME_LABEL	anm_c07r0301_police_116
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ÉAÉWÉgçëç€åxé@	ëﬁèÍ
+//„Ç¢„Ç∏„ÉàÂõΩÈöõË≠¶ÂØü	ÈÄÄÂ†¥
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c07r0301_police_120
 	_ANIME_DATA	AC_WALK_U_8F,5

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndArcPlayerStartSeqArc*</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndArcPlayerStartSeqArc*</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndArcPlayerStartSeqArc(
@@ -26,7 +26,7 @@
         int <var>index</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAYNWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -34,89 +34,89 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�T�E���h�n���h���̃|�C���^�ł��B</td>
+<td>サウンドハンドルのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>seqArcNo</code></strong></em></td>
-<td>�V�[�P���X�A�[�J�C�u�ԍ��ł��B</td>
+<td>シーケンスアーカイブ番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>index</code></strong></em></td>
-<td>�V�[�P���X�A�[�J�C�u�̃C���f�b�N�X�ԍ��ł��B</td>
+<td>シーケンスアーカイブのインデックス番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>playerNo</code></strong></em></td>
-<td>�v���C���[�ԍ��ł��B</td>
+<td>プレイヤー番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>bankNo</code></strong></em></td>
-<td>�o���N�ԍ��ł��B</td>
+<td>バンク番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>playerPrio</code></strong></em></td>
-<td>�v���C���[�v���C�I���e�B�ł��B�l�͈̔͂�0�`127�ŁA�傫���قǗD��x�������Ȃ�܂��B</td>
+<td>プレイヤープライオリティです。値の範囲は0〜127で、大きいほど優先度が高くなります。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAKPWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Đ��ɐ��������ꍇ�́ATRUE��Ԃ��܂��B���s����ƁAFALSE���Ԃ�܂��B </p>
+      <p>再生に成功した場合は、TRUEを返します。失敗すると、FALSEが返ります。 </p>
     </div>
 <div class="refsection" lang="ja"><a name="IDARPWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�V�[�P���X�A�[�J�C�u���Đ����܂��B 
+シーケンスアーカイブを再生します。 
 </p>
       <p>
-<tt class="function">NNS_SndArcPlayerStartSeqArc</tt>�֐��ł́A�v���C���[�ԍ��Ȃǂ̃p�����[�^�́A�T�E���h�f�[�^�ł̎w��Ɋ�Â��Đݒ肳��܂��B <tt class="function">NNS_SndArcPlayerStartSeqArcEx</tt>�֐����g���ƁA�v���C���[�ԍ���o���N�ԍ��A�v���C���[�v���C�I���e�B���v���O�������Ŏw��ł��܂��B�������A <em><strong><code>playerNo</code></strong></em>�A<em><strong><code>bankNo</code></strong></em>�A<em><strong><code>playerPrio</code></strong></em>�̈����̂����A-1���w�肵�����̂́A�T�E���h�f�[�^�Őݒ肵���p�����[�^���g�p����܂��B 
+<tt class="function">NNS_SndArcPlayerStartSeqArc</tt>関数では、プレイヤー番号などのパラメータは、サウンドデータでの指定に基づいて設定されます。 <tt class="function">NNS_SndArcPlayerStartSeqArcEx</tt>関数を使うと、プレイヤー番号やバンク番号、プレイヤープライオリティをプログラム側で指定できます。ただし、 <em><strong><code>playerNo</code></strong></em>、<em><strong><code>bankNo</code></strong></em>、<em><strong><code>playerPrio</code></strong></em>の引数のうち、-1を指定したものは、サウンドデータで設定したパラメータが使用されます。 
 </p>
       <p>
-���炩���߁A
-<tt class="function"><a href="NNS_SndArcInit.html">NNS_SndArcInit</a></tt>�֐��܂��́A
-<tt class="function"><a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></tt>�֐���
-�T�E���h�A�[�J�C�u������������Ă���K�v������܂��B
+あらかじめ、
+<tt class="function"><a href="NNS_SndArcInit.html">NNS_SndArcInit</a></tt>関数または、
+<tt class="function"><a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></tt>関数で
+サウンドアーカイブが初期化されている必要があります。
 </p>
       <p>
-�T�E���h�n���h��<em><strong><code>handle</code></strong></em>�́A���炩���߁A<tt class="function"><a href="NNS_SndHandleInit.html">NNS_SndHandleInit</a></tt>�֐��ŁA�P�x�������������Ă����Ȃ���΂Ȃ�܂���B
-���̊֐����Ăт����ƁA�T�E���h�n���h���Ɋ��Ɍ��т����Ă����V�[�P���X�͐؂藣����܂��i��~����킯�ł͂���܂���j�B
-�Đ��ɐ�������ƁA�T�E���h�n���h���ɃV�[�P���X�����т����܂��B 
+サウンドハンドル<em><strong><code>handle</code></strong></em>は、あらかじめ、<tt class="function"><a href="NNS_SndHandleInit.html">NNS_SndHandleInit</a></tt>関数で、１度だけ初期化しておかなければなりません。
+この関数を呼びだすと、サウンドハンドルに既に結びつけられていたシーケンスは切り離されます（停止するわけではありません）。
+再生に成功すると、サウンドハンドルにシーケンスが結びつけられます。 
 </p>
       <p>
-�֐����ł́A�K�v�ȃT�E���h�f�[�^����������ɂ��邩�ǂ������m�F���邽�߂ɁA
-<tt class="function"><a href="NNS_SndArcGetFileAddress.html">NNS_SndArcGetFileAddress</a></tt>�֐����Ăт����܂��B
-�K�v�ȃf�[�^����������ɂȂ��ꍇ�A�֐��͎��s���܂��B
+関数内では、必要なサウンドデータがメモリ上にあるかどうかを確認するために、
+<tt class="function"><a href="NNS_SndArcGetFileAddress.html">NNS_SndArcGetFileAddress</a></tt>関数を呼びだします。
+必要なデータがメモリ上にない場合、関数は失敗します。
 </p>
       <p>
-���<tt class="function"><a href="NNS_SndPlayerStopSeq.html">NNS_SndPlayerStopSeqBySeqArcNo</a></tt>�֐����g���āA
-�V�[�P���X�A�[�J�C�u�ԍ����w�肵�ăV�[�P���X���~�ł���悤�ɁA
-�֐�����<tt class="function"><a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a></tt>�֐����Ăт����Ă��܂��B 
+後で<tt class="function"><a href="NNS_SndPlayerStopSeq.html">NNS_SndPlayerStopSeqBySeqArcNo</a></tt>関数を使って、
+シーケンスアーカイブ番号を指定してシーケンスを停止できるように、
+関数内で<tt class="function"><a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a></tt>関数を呼びだしています。 
 </p>
       <p>
-�T�E���h�f�[�^�Őݒ肳��Ă���A�����v���C�I���e�B�≹�ʂ̒l���Đݒ肵�����ꍇ�́A�V�[�P���X�J�n����ɁA
-<tt class="function"><a href="NNS_SndPlayerSetChannelPriority.html">NNS_SndPlayerSetChannelPriority</a></tt>�֐���A
-<tt class="function"><a href="NNS_SndPlayerSetInitialVolume.html">NNS_SndPlayerSetInitialVolume</a></tt>�֐����Ăт����܂��B 
+サウンドデータで設定されている、発音プライオリティや音量の値を再設定したい場合は、シーケンス開始直後に、
+<tt class="function"><a href="NNS_SndPlayerSetChannelPriority.html">NNS_SndPlayerSetChannelPriority</a></tt>関数や、
+<tt class="function"><a href="NNS_SndPlayerSetInitialVolume.html">NNS_SndPlayerSetInitialVolume</a></tt>関数を呼びだします。 
 </p>
       <p>
-�Đ��̎��s�ɂ́A�ȉ��̌������l�����܂��B 
+再生の失敗には、以下の原因が考えられます。 
 </p>
 <div class="itemizedlist">
 <ul type="disc">
-<li>�V�[�P���X�A�[�J�C�u�ԍ�������</li>
-<li>�C���f�b�N�X�ԍ�������</li>
-<li>���ɍĐ����̃V�[�P���X�����D��x���Ⴂ</li>
-<li>�f�[�^����������ɖ���</li>
+<li>シーケンスアーカイブ番号が無効</li>
+<li>インデックス番号が無効</li>
+<li>既に再生中のシーケンスよりも優先度が低い</li>
+<li>データがメモリ上に無い</li>
 </ul>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcInit.html">NNS_SndArcInit</a>, <a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a>, <a href="NNS_SndHandleInit.html">NNS_SndHandleInit</a>, <a href="NNS_SndArcGetFileAddress.html">NNS_SndArcGetFileAddress</a>, <a href="NNS_SndPlayerStopSeq.html">NNS_SndPlayerStopSeqBySeqArcNo</a>, <a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a>, <a href="NNS_SndPlayerSetChannelPriority.html">NNS_SndPlayerSetChannelPriority</a>, <a href="NNS_SndPlayerSetInitialVolume.html">NNS_SndPlayerSetInitialVolume</a></p>
-<h2>����</h2>
-<p>2004/11/30 �Ԃ�l�̌^���Ԉ���Ă����̂��C��<br>2004/06/01 NNS_SndArcPlayerStartSeqArcWithPlayerNo���g�����āA
-            NNS_SndArcPlayerStartSeqArcEx�ɕύX�B
-          <br>2004/04/19 NNS_SndArcPlayerStartSeqArc, NNS_SndArcPlayerStartSeqArcWithPlayerNo�̃}�j���A���𓝍�<br>2004/04/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/11/30 返り値の型が間違っていたのを修正<br>2004/06/01 NNS_SndArcPlayerStartSeqArcWithPlayerNoを拡張して、
+            NNS_SndArcPlayerStartSeqArcExに変更。
+          <br>2004/04/19 NNS_SndArcPlayerStartSeqArc, NNS_SndArcPlayerStartSeqArcWithPlayerNoのマニュアルを統合<br>2004/04/01 初版<br></p>
 </div>
 </body>
 </html>

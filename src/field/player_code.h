@@ -2,7 +2,7 @@
 /**
  *
  * @file	player_code.h
- * @brief	©‹@ƒVƒ“ƒ{ƒ‹QÆ@¦ƒXƒNƒŠƒvƒgQÆƒAƒŠ@ŒÌ‚Éenum‹Ö~
+ * @brief	è‡ªæ©Ÿã‚·ãƒ³ãƒœãƒ«å‚ç…§ã€€â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‚ç…§ã‚¢ãƒªã€€æ•…ã«enumç¦æ­¢
  * @author	kagaya
  * @data	05.08.03
  *
@@ -20,48 +20,48 @@
 #define DEBUG_PLAYER_B_BTN_FLIP
 
 //--------------------------------------------------------------
-///	©‹@Œ`‘Ô
+///	è‡ªæ©Ÿå½¢æ…‹
 //--------------------------------------------------------------
-#define HERO_FORM_NORMAL 		(0x00)		///<2‘«
-#define HERO_FORM_CYCLE			(0x01)		///<©“]Ô
-#define HERO_FORM_SWIM			(0x02)		///<”gæ‚è
-#define HERO_FORM_MAX			(0x06)		///<Œ`‘ÔÅ‘å
+#define HERO_FORM_NORMAL 		(0x00)		///<2è¶³
+#define HERO_FORM_CYCLE			(0x01)		///<è‡ªè»¢è»Š
+#define HERO_FORM_SWIM			(0x02)		///<æ³¢ä¹—ã‚Š
+#define HERO_FORM_MAX			(0x06)		///<å½¢æ…‹æœ€å¤§
 
-//ˆÈ‰º•`‰æ¯•Ê ÀÛ‚É‚Íİ’è‚³‚ê‚È‚¢
-#define HERO_DRAWFORM_SP		(0x10)		///<”é“`‹Z
-#define HERO_DRAWFORM_WATER		(0x11)		///<…Œ­‚è
-#define HERO_DRAWFORM_CONTEST	(0x12)		///<ƒRƒ“ƒeƒXƒg
-#define HERO_DRAWFORM_FISHING	(0x13)		///<’Ş‚è
-#define HERO_DRAWFORM_POKETCH	(0x14)		///<ƒ|ƒPƒbƒ`
-#define HERO_DRAWFORM_SAVE		(0x15)		///<ƒZ[ƒu
-#define HERO_DRAWFORM_BANZAI	(0x16)		///<–œÎ
-#define HERO_DRAWFORM_BS		(0x17)		///<ƒoƒgƒ‹ƒT[ƒ`ƒƒ[
-#define HERO_DRAWFORM_TW		(0x18)		///<”j‚ê‚½¢ŠE
-#define HERO_DRAWFORM_TWSWIM	(0x19)		///<”j‚ê‚½¢ŠE”gæ‚è
-#define HERO_DRAWFORM_TWSAVE	(0x1a)		///<”j‚ê‚½¢ŠEƒZ[ƒu
-#define HERO_DRAWFORM_TWPOKETCH	(0x1b)		///<”j‚ê‚½¢ŠEƒ|ƒPƒbƒ`
-#define HERO_DRAWFORM_GSTGYM			(0x1c)	///<ƒS[ƒXƒgƒWƒ€
-#define HERO_DRAWFORM_GSTGYM_SAVE		(0x1d)	///<ƒS[ƒXƒgƒWƒ€ƒZ[ƒu
-#define HERO_DRAWFORM_GSTGYM_POKETCH	(0x1e)	///<ƒS[ƒXƒgƒWƒ€ƒ|ƒPƒbƒ`
+//ä»¥ä¸‹æç”»è­˜åˆ¥ å®Ÿéš›ã«ã¯è¨­å®šã•ã‚Œãªã„
+#define HERO_DRAWFORM_SP		(0x10)		///<ç§˜ä¼æŠ€
+#define HERO_DRAWFORM_WATER		(0x11)		///<æ°´é£ã‚Š
+#define HERO_DRAWFORM_CONTEST	(0x12)		///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+#define HERO_DRAWFORM_FISHING	(0x13)		///<é‡£ã‚Š
+#define HERO_DRAWFORM_POKETCH	(0x14)		///<ãƒã‚±ãƒƒãƒ
+#define HERO_DRAWFORM_SAVE		(0x15)		///<ã‚»ãƒ¼ãƒ–
+#define HERO_DRAWFORM_BANZAI	(0x16)		///<ä¸‡æ­³
+#define HERO_DRAWFORM_BS		(0x17)		///<ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼
+#define HERO_DRAWFORM_TW		(0x18)		///<ç ´ã‚ŒãŸä¸–ç•Œ
+#define HERO_DRAWFORM_TWSWIM	(0x19)		///<ç ´ã‚ŒãŸä¸–ç•Œæ³¢ä¹—ã‚Š
+#define HERO_DRAWFORM_TWSAVE	(0x1a)		///<ç ´ã‚ŒãŸä¸–ç•Œã‚»ãƒ¼ãƒ–
+#define HERO_DRAWFORM_TWPOKETCH	(0x1b)		///<ç ´ã‚ŒãŸä¸–ç•Œãƒã‚±ãƒƒãƒ
+#define HERO_DRAWFORM_GSTGYM			(0x1c)	///<ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
+#define HERO_DRAWFORM_GSTGYM_SAVE		(0x1d)	///<ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã‚»ãƒ¼ãƒ–
+#define HERO_DRAWFORM_GSTGYM_POKETCH	(0x1e)	///<ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ãƒã‚±ãƒƒãƒ
 
-//©“]Ô‚Íˆêí—Ş‚É‚È‚è‚Ü‚µ‚½
+//è‡ªè»¢è»Šã¯ä¸€ç¨®é¡ã«ãªã‚Šã¾ã—ãŸ
 #define HERO_FORM_CYCLE_R (HERO_FORM_CYCLE)
 #define HERO_FORM_CYCLE_D (HERO_FORM_CYCLE)
 
 //--------------------------------------------------------------
-///	ƒŠƒNƒGƒXƒg
+///	ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 //--------------------------------------------------------------
-#define HERO_REQBIT_NON			(0)							///<ƒŠƒNƒGƒXƒg‚È‚µ
-#define HERO_REQBIT_NORMAL		(1<<0)						///<‚Q‘«ˆÚ“®‚É•ÏX
-#define HERO_REQBIT_CYCLE		(1<<1)						///<©“]ÔˆÚ“®‚É•ÏX
-#define HERO_REQBIT_SWIM		(1<<2)						///<”gæ‚èˆÚ“®‚É•ÏX
-#define HERO_REQBIT_UNDER_OFF	(1<<3)						///<‘«Œ³”»’è‚ğ–³Œø‚É‚·‚é
-#define HERO_REQBIT_WATER		(1<<4)						///<…Œ­‚è©‹@‚É•ÏX‚·‚é
-#define HERO_REQBIT_FISHING		(1<<5)						///<’Ş‚è©‹@‚Ö•\¦•ÏX
-#define HERO_REQBIT_POKETCH		(1<<6)						///<ƒ|ƒPƒbƒ`©‹@‚Ö•\¦•ÏX
-#define HERO_REQBIT_SAVE		(1<<7)						///<ƒZ[ƒu©‹@‚Ö•\¦•ÏX
-#define HERO_REQBIT_BANZAI		(1<<8)						///<–œÎ©‹@‚Ö•\¦•ÏX
-#define HERO_REQBIT_BS			(1<<9)						///<BS©‹@‚Ö•\¦•ÏX
-#define HERO_REQBIT_MAX			(10)						///<ƒŠƒNƒGƒXƒg‘”
+#define HERO_REQBIT_NON			(0)							///<ãƒªã‚¯ã‚¨ã‚¹ãƒˆãªã—
+#define HERO_REQBIT_NORMAL		(1<<0)						///<ï¼’è¶³ç§»å‹•ã«å¤‰æ›´
+#define HERO_REQBIT_CYCLE		(1<<1)						///<è‡ªè»¢è»Šç§»å‹•ã«å¤‰æ›´
+#define HERO_REQBIT_SWIM		(1<<2)						///<æ³¢ä¹—ã‚Šç§»å‹•ã«å¤‰æ›´
+#define HERO_REQBIT_UNDER_OFF	(1<<3)						///<è¶³å…ƒåˆ¤å®šã‚’ç„¡åŠ¹ã«ã™ã‚‹
+#define HERO_REQBIT_WATER		(1<<4)						///<æ°´é£ã‚Šè‡ªæ©Ÿã«å¤‰æ›´ã™ã‚‹
+#define HERO_REQBIT_FISHING		(1<<5)						///<é‡£ã‚Šè‡ªæ©Ÿã¸è¡¨ç¤ºå¤‰æ›´
+#define HERO_REQBIT_POKETCH		(1<<6)						///<ãƒã‚±ãƒƒãƒè‡ªæ©Ÿã¸è¡¨ç¤ºå¤‰æ›´
+#define HERO_REQBIT_SAVE		(1<<7)						///<ã‚»ãƒ¼ãƒ–è‡ªæ©Ÿã¸è¡¨ç¤ºå¤‰æ›´
+#define HERO_REQBIT_BANZAI		(1<<8)						///<ä¸‡æ­³è‡ªæ©Ÿã¸è¡¨ç¤ºå¤‰æ›´
+#define HERO_REQBIT_BS			(1<<9)						///<BSè‡ªæ©Ÿã¸è¡¨ç¤ºå¤‰æ›´
+#define HERO_REQBIT_MAX			(10)						///<ãƒªã‚¯ã‚¨ã‚¹ãƒˆç·æ•°
 
 #endif //PLAYER_CODE_H_FILE

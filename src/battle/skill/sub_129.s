@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_129.s
- *@brief	�퓬�V�[�P���X
- *			�����݂₰�ǉ����ʃV�[�P���X
+ *@brief	戦闘シーケンス
+ *			おきみやげ追加効果シーケンス
  *@author	HisashiSogabe
  *@data		2006.02.06
  *
@@ -18,33 +18,33 @@ SUB_129:
 	ATTACK_MESSAGE
 	SERVER_WAIT
 
-	//�U���͂�MIN�܂ŉ������Ă��鎞�́A���܂����܂��
+	//攻撃力がMINまで下がっている時は、うまくきまらん
 	IF_PSP			IF_FLAG_NE,SIDE_DEFENCE,ID_PSP_abiritycnt_pow,0,SUB_129_NEXT
-	//���U��MIN�܂ŉ������Ă��鎞�́A���܂����܂��
+	//特攻がMINまで下がっている時は、うまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_abiritycnt_spepow,0,Umakukimaran
 
 SUB_129_NEXT:
 	WAZA_EFFECT		SIDE_ATTACK
 	SERVER_WAIT
 
-	//�݂������o����Ă��鎞�́A���܂����܂��
+	//みがわりを出されている時は、うまくきまらん
 	MIGAWARI_CHECK	SIDE_DEFENCE,MigawariUmakukimaran
 
-	//����ȍ~�́AATTACK_MESSAGE��WAZA_EFFECT�͏o�Ȃ��悤�ɂ���
+	//これ以降は、ATTACK_MESSAGEとWAZA_EFFECTは出ないようにする
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_ATTACK_MSG|SERVER_STATUS_FLAG_NO_WAZA_EFFECT
 
-	//DefenceClient��ǉ��Ώۂ�
+	//DefenceClientを追加対象に
 	VALUE_WORK		VAL_SET,BUF_PARA_TSUIKA_CLIENT,BUF_PARA_DEFENCE_CLIENT
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG2,SERVER_STATUS_FLAG2_ABICNT_EFF_CHECK
-	//�U���͂�MIN�܂ŉ������Ă��鎞�́A���U��
+	//攻撃力がMINまで下がっている時は、特攻へ
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_abiritycnt_pow,0,SUB_129_SPEPOW
-	//�U����2�i�K��������Z�b�g
+	//攻撃を2段階下げるをセット
 	VALUE			VAL_SET,BUF_PARA_TSUIKA_PARA,ADD_COND2_POWDOWN2
 	GOSUB			SUB_SEQ_ABICNT_CALC
 SUB_129_SPEPOW:
-	//�A�T�[�g���b�Z�[�W��\���t���O��ON
+	//アサートメッセージ非表示フラグをON
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_DIRECT_MSG
-	//���U��2�i�K��������Z�b�g
+	//特攻を2段階下げるをセット
 	VALUE			VAL_SET,BUF_PARA_TSUIKA_PARA,ADD_COND2_SPEPOWDOWN2
 	GOSUB			SUB_SEQ_ABICNT_CALC
 SUB_129_END:

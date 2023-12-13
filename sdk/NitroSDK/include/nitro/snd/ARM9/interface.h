@@ -12,31 +12,31 @@
 
   $Log: interface.h,v $
   Revision 1.11  2006/03/20 01:58:27  ida
-  SND_SetMuteTrackEx関数追加
+  SND_SetMuteTrackEx髢｢謨ｰ霑ｽ蜉
 
   Revision 1.10  2006/01/18 02:11:21  kitase_hirotake
   do-indent
 
   Revision 1.9  2005/04/14 06:51:49  ida
-  SND_PrepareSeq関数の追加
+  SND_PrepareSeq髢｢謨ｰ縺ｮ霑ｽ蜉
 
   Revision 1.8  2005/03/24 04:35:33  ida
   sound patch for NITRO-System 2005/03/28
 
   Revision 1.16  2005/03/17 02:11:24  ida
-  SNDi_SkipSeq関数の追加
+  SNDi_SkipSeq髢｢謨ｰ縺ｮ霑ｽ蜉
 
   Revision 1.15  2005/03/01 02:20:53  ida
-  SND_SetTrackPanRange関数追加
+  SND_SetTrackPanRange髢｢謨ｰ霑ｽ蜉
 
   Revision 1.14  2005/02/16 07:47:40  ida
-  ドライバ情報取得関数追加
+  繝峨Λ繧､繝先ュ蝣ｱ蜿門ｾ鈴未謨ｰ霑ｽ蜉
 
   Revision 1.13  2005/01/06 04:07:49  ida
-  著作権年次表記を更新
+  闡嶺ｽ懈ｨｩ蟷ｴ谺｡陦ｨ險倥ｒ譖ｴ譁ｰ
 
   Revision 1.12  2005/01/05 06:48:57  ida
-  SND_SetTrackAllocatableChannel関数追加
+  SND_SetTrackAllocatableChannel髢｢謨ｰ霑ｽ蜉
 
   Revision 1.11  2004/10/21 02:14:29  ida
   fix argument name

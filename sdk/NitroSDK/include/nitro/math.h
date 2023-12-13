@@ -12,28 +12,28 @@
 
   $Log: math.h,v $
   Revision 1.8  2005/05/13 09:23:51  seiki_masashi
-  FFT ŠÖ”‚Ì’Ç‰Á
+  FFT é–¢æ•°ã®è¿½åŠ 
 
   Revision 1.7  2005/04/12 11:11:51  seiki_masashi
-  checksum.h ‚Ì’Ç‰Á
+  checksum.h ã®è¿½åŠ 
 
   Revision 1.6  2005/04/12 10:16:42  takano_makoto
   Add qsort.h
 
   Revision 1.5  2005/04/11 01:49:51  seiki_masashi
-  crc.h ‚Ì’Ç‰Á
+  crc.h ã®è¿½åŠ 
 
   Revision 1.4  2005/03/28 03:44:43  seiki_masashi
-  math/dgt.h ‚ğ’Ç‰Á
+  math/dgt.h ã‚’è¿½åŠ 
 
   Revision 1.3  2005/02/28 05:26:02  yosizaki
   do-indent.
 
   Revision 1.2  2004/12/14 13:12:18  takano_makoto
-  rand.h‚ğ’Ç‰Á
+  rand.hã‚’è¿½åŠ 
 
   Revision 1.1  2004/12/14 10:52:20  seiki_masashi
-  MATH ƒWƒƒƒ“ƒ‹‚ğ’Ç‰Á
+  MATH ã‚¸ãƒ£ãƒ³ãƒ«ã‚’è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

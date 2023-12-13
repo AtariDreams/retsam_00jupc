@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	dance.c
- * @brief	ƒ_ƒ“ƒX•”–å
+ * @brief	ãƒ€ãƒ³ã‚¹éƒ¨é–€
  * @author	matsuda
- * @date	2005.12.12(Œ)
+ * @date	2005.12.12(æœˆ)
  */
 //==============================================================================
 #include "common.h"
@@ -49,7 +49,7 @@
 #include "savedata/config.h"
 #include "communication/wm_icon.h"
 
-//RT_CalcRevicePointŠÖ”g—p‚Ì‚½‚ß
+//RT_CalcRevicePointé–¢æ•°ä½¿ç”¨ã®ãŸã‚
 #include "con_result.h"
 #include "res_tool.h"
 
@@ -68,88 +68,88 @@ extern u8 DmatsuWork_DanceRotationOff;
 #endif
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///Œ»İ‚Ì“®ìó‘Ô
+///ç¾åœ¨ã®å‹•ä½œçŠ¶æ…‹
 enum{
-	DPW_PROC_MODE_INIT,		///<‰Šú‰»’†
-	DPW_PROC_MODE_MAIN,		///<ƒƒCƒ“
-	DPW_PROC_MODE_ETC,		///<‚»‚êˆÈŠO
+	DPW_PROC_MODE_INIT,		///<åˆæœŸåŒ–ä¸­
+	DPW_PROC_MODE_MAIN,		///<ãƒ¡ã‚¤ãƒ³
+	DPW_PROC_MODE_ETC,		///<ãã‚Œä»¥å¤–
 };
 
-///Vram“]‘—ƒ}ƒl[ƒWƒƒ[ƒ^ƒXƒN”
+///Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¿ã‚¹ã‚¯æ•°
 #define DANCE_VRAM_TRANSFER_TASK_NUM	(BATTLE_VRAM_TRANSFER_TASK_NUM)
 
-///ÀÛ‚Ì‹È‚Æƒeƒ“ƒ|‚Ìƒ^ƒCƒ~ƒ“ƒO‚ªŠ´Šo“I‚É”÷–­‚É‚¸‚ê‚Ä‚¢‚é‹C‚ª‚·‚é‚Ì‚Å•â³‚ğ“ü‚ê‚é
+///å®Ÿéš›ã®æ›²ã¨ãƒ†ãƒ³ãƒã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæ„Ÿè¦šçš„ã«å¾®å¦™ã«ãšã‚Œã¦ã„ã‚‹æ°—ãŒã™ã‚‹ã®ã§è£œæ­£ã‚’å…¥ã‚Œã‚‹
 #define TICK_VCOUNT_HOSEI		(1)
 
 //--------------------------------------------------------------
-//	BMPƒEƒBƒ“ƒhƒE
+//	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
-///BMPƒEƒBƒ“ƒhƒECGXƒGƒŠƒAŠJnˆÊ’u(ƒIƒtƒZƒbƒg)
+///BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦CGXã‚¨ãƒªã‚¢é–‹å§‹ä½ç½®(ã‚ªãƒ•ã‚»ãƒƒãƒˆ)
 #define BMPWIN_CGX_START			(TALK_WIN_CGX_SIZ + DANCE_TALKWIN_CGX_OFFSET)
 
 #define BMPWIN_TALK_COLOR			(13)
 #define BMPWIN_TALK_CGX_OFFSET		(BMPWIN_CGX_START)
 
 //--------------------------------------------------------------
-//	CL_ACT—p‚Ì’è”’è‹`
+//	CL_ACTç”¨ã®å®šæ•°å®šç¾©
 //--------------------------------------------------------------
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJn
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define DANCE_OAM_START_MAIN			(BATTLE_OAM_START_MAIN)
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define DANCE_OAM_END_MAIN				(BATTLE_OAM_END_MAIN)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define DANCE_OAM_AFFINE_START_MAIN		(BATTLE_OAM_AFFINE_START_MAIN)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define DANCE_OAM_AFFINE_END_MAIN		(BATTLE_OAM_AFFINE_END_MAIN)
-///ƒTƒu	OAMŠÇ——ÌˆæEŠJn
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define DANCE_OAM_START_SUB				(BATTLE_OAM_START_SUB)
-///ƒTƒu	OAMŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define DANCE_OAM_END_SUB				(BATTLE_OAM_END_SUB)
-///ƒTƒu ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn
+///ã‚µãƒ– ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define DANCE_OAM_AFFINE_START_SUB		(BATTLE_OAM_AFFINE_START_SUB)
-///ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define DANCE_OAM_AFFINE_END_SUB		(BATTLE_OAM_AFFINE_END_SUB)
 
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒLƒƒƒ‰ƒNƒ^IDŠÇ—”(ã‰æ–Ê{‰º‰æ–Ê)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDç®¡ç†æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define DANCE_CHAR_MAX					(BATTLE_CHAR_MAX)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define DANCE_CHAR_VRAMSIZE_MAIN		(BATTLE_CHAR_VRAMSIZE_MAIN)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define DANCE_CHAR_VRAMSIZE_SUB			(BATTLE_CHAR_VRAMSIZE_SUB)
 
-///ƒƒCƒ“‰æ–Ê{ƒTƒu‰æ–Ê‚Åg—p‚·‚éƒAƒNƒ^[‘”
+///ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‹ã‚µãƒ–ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç·æ•°
 #define DANCE_ACTOR_MAX					(BATTLE_ACTOR_MAX)
 
-///OBJ‚Åg—p‚·‚éƒpƒŒƒbƒg–{”(ã‰æ–Ê{‰º‰æ–Ê)
+///OBJã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define DANCE_OAM_PLTT_MAX				(BATTLE_OAM_PLTT_MAX)
 
-///“]‘—ƒ‚[ƒh 3D = 0 main = 1 sub = 2 main/sub = 3
+///è»¢é€ãƒ¢ãƒ¼ãƒ‰ 3D = 0 main = 1 sub = 2 main/sub = 3
 #define DANCE_OAM_VRAM_TRANS			(BATTLE_OAM_VRAM_TRANS)
 
-///OAMƒŠƒ\[ƒXFƒLƒƒƒ‰“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define DANCE_OAMRESOURCE_CHAR_MAX		(BATTLE_OAMRESOURCE_CHAR_MAX)
-///OAMƒŠƒ\[ƒXFƒpƒŒƒbƒg“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define DANCE_OAMRESOURCE_PLTT_MAX		(BATTLE_OAMRESOURCE_PLTT_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define DANCE_OAMRESOURCE_CELL_MAX		(BATTLE_OAMRESOURCE_CELL_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define DANCE_OAMRESOURCE_CELLANM_MAX	(BATTLE_OAMRESOURCE_CELLANM_MAX)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒãƒ«ãƒã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define DANCE_OAMRESOURCE_MCELL_MAX		(BATTLE_OAMRESOURCE_MCELL_MAX)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define DANCE_OAMRESOURCE_MCELLANM_MAX	(BATTLE_OAMRESOURCE_MCELLANM_MAX)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒTƒu‰æ–ÊBG‚ÌƒXƒNƒŠ[ƒ“ƒNƒŠƒAƒR[ƒh
+///ã‚µãƒ–ç”»é¢BGã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 #define SUB_BG_CLEAR_CODE		(0)
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void DanceVBlank(void *work);
 static void DanceUpdate(TCB_PTR tcb, void *work);
@@ -189,26 +189,26 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt);
 
 
 //==============================================================================
-//	ŠO•”ƒf[ƒ^
+//	å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "dance.dat"
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 
 //==============================================================================
-//	ƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
-///DanceMainSeqTbl‚Ì–ß‚è’l‚Æ‚µ‚Äg—p
+///DanceMainSeqTblã®æˆ»ã‚Šå€¤ã¨ã—ã¦ä½¿ç”¨
 enum{
-	DSRET_CONTINUE,		///<Œ»óˆÛ
-	DSRET_NEXT,			///<Ÿ‚ÌƒV[ƒPƒ“ƒX‚Ö
-	DSRET_SELECT_SEQ,	///<select_seqƒ[ƒN‚É“ü‚Á‚Ä‚¢‚éƒV[ƒPƒ“ƒX‚Öi‚Ş
-	DSRET_END,			///<I—¹
+	DSRET_CONTINUE,		///<ç¾çŠ¶ç¶­æŒ
+	DSRET_NEXT,			///<æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
+	DSRET_SELECT_SEQ,	///<select_seqãƒ¯ãƒ¼ã‚¯ã«å…¥ã£ã¦ã„ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸é€²ã‚€
+	DSRET_END,			///<çµ‚äº†
 };
 
-///ƒ_ƒ“ƒX•”–åƒƒCƒ“ŠÖ”‚ÌƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+///ãƒ€ãƒ³ã‚¹éƒ¨é–€ãƒ¡ã‚¤ãƒ³é–¢æ•°ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 static int (* const DanceMainSeqTbl[])(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local) = {
 	DanceSeq_Init,
 //	DanceSeq_Practice_FastTalk,
@@ -220,7 +220,7 @@ static int (* const DanceMainSeqTbl[])(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *l
 	DanceSeq_DancingBefore,
 	DanceSeq_Dancing,
 	DanceSeq_DancingAfter,
-#if 1	//ƒƒCƒ“ƒ_ƒ“ƒT[‚©‚çì‚éˆ×Aƒ[ƒe[ƒVƒ‡ƒ“‚³‚¹‚È‚¢
+#if 1	//ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã‹ã‚‰ä½œã‚‹ç‚ºã€ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ãªã„
 	DanceSeq_Rotation,
 	DanceSeq_NextPoke,
 #else
@@ -242,7 +242,7 @@ static int (* const DanceMainSeqTbl[])(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *l
 	DanceSeq_EndTalk,
 	DanceSeq_End,
 };
-///DanceMainSeqTbl‚ÌƒV[ƒPƒ“ƒX”Ô†	¦DanceMainSeqTbl‚Æ•À‚Ñ‚ğ“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆII
+///DanceMainSeqTblã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·	â€»DanceMainSeqTblã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼ï¼
 enum{
 	DSEQ_INIT,
 //	DSEQ_PRACTICE_FAST_TALK,
@@ -263,7 +263,7 @@ enum{
 };
 
 //==============================================================================
-//	CLACT—pƒf[ƒ^
+//	CLACTç”¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static	const TCATS_OAM_INIT DanceTcats = {
 	DANCE_OAM_START_MAIN, DANCE_OAM_END_MAIN,
@@ -293,20 +293,20 @@ static const TCATS_RESOURCE_NUM_LIST DanceResourceList = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT DanceProc_Init( PROC * proc, int * seq )
 {
 	DANCE_PROC_WORK *dpw;
 
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -333,7 +333,7 @@ PROC_RESULT DanceProc_Init( PROC * proc, int * seq )
 	dpw->sys.c_game = &dpw->consys->c_game;
 	DanceSystemWorkInit(dpw);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	dpw->sys.pfd = PaletteFadeInit(HEAPID_DANCE);
 	PaletteTrans_AutoSet(dpw->sys.pfd, TRUE);
 	PaletteFadeWorkAllocSet(dpw->sys.pfd, FADE_MAIN_BG, 0x200, HEAPID_DANCE);
@@ -351,23 +351,23 @@ PROC_RESULT DanceProc_Init( PROC * proc, int * seq )
 
 	dpw->dip = DINPUT_SystemInit(dpw->consys, &dpw->sys);
 
-	//VRAMŠ„‚è“–‚Äİ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	DanceSys_VramBankSet(dpw->sys.bgl);
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
-	// ƒ{ƒ^ƒ“—pƒtƒHƒ“ƒg‚ğ“Ç‚İ‚İ
+	// ãƒœã‚¿ãƒ³ç”¨ãƒ•ã‚©ãƒ³ãƒˆã‚’èª­ã¿è¾¼ã¿
 	FontProc_LoadFont(FONT_BUTTON, HEAPID_DANCE);
 
-	// ˆø”‚ğ•Û‘¶
+	// å¼•æ•°ã‚’ä¿å­˜
 //	SetDanceWorkParameter(dpw, (NAMEIN_PARAM*)PROC_GetParentWork(proc));
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€ì¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	dpw->sys.csp=CATS_AllocMemory(HEAPID_DANCE);
 	CATS_SystemInit(dpw->sys.csp,&DanceTcats,&DanceCcmm,DANCE_OAM_PLTT_MAX);
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 	dpw->sys.crp=CATS_ResourceCreate(dpw->sys.csp);
@@ -376,58 +376,58 @@ PROC_RESULT DanceProc_Init( PROC * proc, int * seq )
 	CLACT_U_SetSubSurfaceMatrix(CATS_EasyRenderGet(dpw->sys.csp), 0, DANCE_SUB_ACTOR_DISTANCE);
 
 	dpw->sys.soft_sprite = SoftSpriteInit(HEAPID_DANCE);
-	DanceParticleInit();	//ƒp[ƒeƒBƒNƒ‹‰Šú‰»
+	DanceParticleInit();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	dpw->sys.dance_msg = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_cmsg_dance_dat, 
 		HEAPID_DANCE);
 	dpw->sys.wordset = WORDSET_Create(HEAPID_DANCE);
-	dpw->sys.msg_buf = STRBUF_Create(DANCE_MESSAGE_BUF_SIZE, HEAPID_DANCE);	//•¶š—ñƒoƒbƒtƒ@ì¬
+	dpw->sys.msg_buf = STRBUF_Create(DANCE_MESSAGE_BUF_SIZE, HEAPID_DANCE);	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€ì¬
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	dpw->sys.fontoam_sys = FONTOAM_SysInit(DANCE_FONTOAM_MAX_MAIN, HEAPID_DANCE);
 
 	{
 		ARCHANDLE* hdl_bg;
 		ARCHANDLE* hdl_obj;
 
-		//ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+		//ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 		hdl_bg  = ArchiveDataHandleOpen(ARC_CONTEST_BG,  HEAPID_DANCE); 
 		hdl_obj = ArchiveDataHandleOpen(ARC_CONTEST_OBJ, HEAPID_DANCE);
 
-		//í’“BGƒZƒbƒg
+		//å¸¸é§BGã‚»ãƒƒãƒˆ
 		DanceDefaultBGSet(dpw, hdl_bg);
 		DanceDefaultBGSet_Sub(dpw, hdl_bg);
 
-		//BMPƒEƒBƒ“ƒhƒE’Ç‰Á
+		//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
 		DanceSys_DefaultBmpWinAdd(dpw);
 
-		//í’“OBJƒZƒbƒg
+		//å¸¸é§OBJã‚»ãƒƒãƒˆ
 		DanceDefaultOBJSet(dpw, hdl_obj);
 		DanceDefaultOBJSet_Sub(dpw, hdl_obj);
 
 		DINPUT_CreateBG(dpw->dip, DINPUT_TYPE_WALL, TRUE, NULL);
 
-		//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+		//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 		ArchiveDataHandleClose( hdl_bg );
 		ArchiveDataHandleClose( hdl_obj );
 	}
 
-	//ƒ|ƒPƒ‚ƒ“(ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg)¶¬
+	//ãƒã‚±ãƒ¢ãƒ³(ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ)ç”Ÿæˆ
 	DT_SoftSpriteAddAll(dpw);
 	DT_PokeAffineUpdateZAll(&dpw->sys);
 	
-	//ƒp[ƒeƒBƒNƒ‹ƒŠƒ\[ƒX“Ç‚İ‚İ
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	DanceDefaultParticleSet(dpw);
 	
-	//©•ªƒJ[ƒ\ƒ‹’Ç”öƒ^ƒXƒNƒZƒbƒg
+	//è‡ªåˆ†ã‚«ãƒ¼ã‚½ãƒ«è¿½å°¾ã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
 	DT_MyCursorTaskSet(dpw);
-	//ƒ|ƒPƒ‚ƒ“ƒ_ƒ“ƒXƒGƒtƒFƒNƒgÀsƒ^ƒXƒNƒZƒbƒg
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ€ãƒ³ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
 	DT_DanceMoveTaskSet(dpw);
 
-	WirelessIconEasy();	//’ÊMƒAƒCƒRƒ“
+	WirelessIconEasy();	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
 
-	// ‹P“x•ÏXƒZƒbƒg
+	// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 //	ChangeBrightnessRequest(
 //		8, 0, -16, PLANEMASK_ALL, MASK_DOUBLE_DISPLAY );
 	WIPE_SYS_Start(WIPE_PATTERN_FMAS, WIPE_TYPE_HOLEIN, WIPE_TYPE_TUNNELIN_TOP, WIPE_FADE_BLACK, 
@@ -440,7 +440,7 @@ PROC_RESULT DanceProc_Init( PROC * proc, int * seq )
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 
-	//ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒRƒ“ƒeƒXƒg)
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
 	Snd_DataSetByScene( SND_SCENE_CONTEST, SEQ_CON_TEST, 1 );
 	//if(Snd_NowBgmNoGet() != SEQ_CON_TEST){
 	//	Snd_Stop();
@@ -449,7 +449,7 @@ PROC_RESULT DanceProc_Init( PROC * proc, int * seq )
 
 	ConTool_MsgPrintFlagSet(dpw->consys->sio_flag);
 
-	//‰ŠúƒpƒŒƒbƒgƒtƒF[ƒhƒZƒbƒg
+	//åˆæœŸãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 	G2_SetBlendBrightness(DANCE_OPENING_BRIGHTNESS_PALNE, DANCE_OPENING_BRIGHTNESS_EVY);
 
 	Snd_SePlay(DSE_START_SHOUT);
@@ -460,12 +460,12 @@ PROC_RESULT DanceProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT DanceProc_Main( PROC * proc, int * seq )
@@ -535,12 +535,12 @@ PROC_RESULT DanceProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT DanceProc_End( PROC * proc, int * seq )
@@ -548,7 +548,7 @@ PROC_RESULT DanceProc_End( PROC * proc, int * seq )
 	DANCE_PROC_WORK * dpw = PROC_GetWork( proc );
 	int i;
 
-	//í’“ƒp[ƒeƒBƒNƒ‹íœ
+	//å¸¸é§ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å‰Šé™¤
 	GF_ASSERT(Particle_GetEmitterNum(dpw->ptc) == 0);
 	DanceDefaultParticleDel(dpw);
 	Particle_SystemExitAll();
@@ -558,46 +558,46 @@ PROC_RESULT DanceProc_End( PROC * proc, int * seq )
 	DT_DanceMoveTaskDel(dpw);
 	DT_PokemonDefaultAnimeTaskDelAll(dpw);
 	
-	//í’“OBJíœ
+	//å¸¸é§OBJå‰Šé™¤
 	DanceDefaultOBJDel(dpw);
 	DanceDefaultOBJDel_Sub(dpw);
-	//í’“BGíœ
+	//å¸¸é§BGå‰Šé™¤
 	DanceDefaultBGDel(dpw);
 	DanceDefaultBGDel_Sub(dpw);
 
-	//BMPŠJ•ú
+	//BMPé–‹æ”¾
 	for(i = 0; i < DANCE_BMPWIN_MAX; i++){
 		GF_BGL_BmpWinDel(&dpw->sys.win[i]);
 	}
 
-	//ƒƒCƒ“‰æ–ÊBGíœ
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢BGå‰Šé™¤
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_BGL_BGControlExit(dpw->sys.bgl, DANCE_FRAME_WIN );
 	GF_BGL_BGControlExit(dpw->sys.bgl, DANCE_FRAME_EFF );
 	GF_BGL_BGControlExit(dpw->sys.bgl, DANCE_FRAME_BACKGROUND );
-	//ƒTƒu‰æ–ÊBGíœ
+	//ã‚µãƒ–ç”»é¢BGå‰Šé™¤
 	DINPUT_FrameExit(dpw->sys.bgl);
 	DINPUT_SystemFree(dpw->dip);
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	CATS_ResourceDestructor_S(dpw->sys.csp,dpw->sys.crp);
 	CATS_FreeMemory(dpw->sys.csp);
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	//ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgíœ
+	//ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå‰Šé™¤
 	DT_SoftSpriteDelAll(&dpw->sys);
 	SoftSpriteEnd(dpw->sys.soft_sprite);
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€íœ
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	FONTOAM_SysDelete(dpw->sys.fontoam_sys);
 	
-	//ƒtƒHƒ“ƒgíœ
+	//ãƒ•ã‚©ãƒ³ãƒˆå‰Šé™¤
 	FontProc_UnloadFont(FONT_BUTTON);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	sys_FreeMemoryEz(dpw->middle_fade.buf);
 	PaletteFadeWorkAllocFree(dpw->sys.pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(dpw->sys.pfd, FADE_SUB_BG);
@@ -605,12 +605,12 @@ PROC_RESULT DanceProc_End( PROC * proc, int * seq )
 	PaletteFadeWorkAllocFree(dpw->sys.pfd, FADE_SUB_OBJ);
 	PaletteFadeFree(dpw->sys.pfd);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã®å‰Šé™¤
 	STRBUF_Delete(dpw->sys.msg_buf);
 	WORDSET_Delete(dpw->sys.wordset);
 	MSGMAN_Delete(dpw->sys.dance_msg);
 
-	//BGLŠJ•ú
+	//BGLé–‹æ”¾
 	sys_FreeMemoryEz(dpw->sys.bgl);
 
 	TCB_Delete(dpw->update_tcb);
@@ -618,12 +618,12 @@ PROC_RESULT DanceProc_End( PROC * proc, int * seq )
 //	simple_3DBGExit();
 	ADV_Contest_3D_Exit(dpw->g3Dman);
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
-	PROC_FreeWork(proc);				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork(proc);				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	sys_DeleteHeap(HEAPID_DANCE);
 
@@ -643,7 +643,7 @@ PROC_RESULT DanceProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
  * @param	work	
  *
@@ -665,36 +665,36 @@ static void DanceVBlank(void *work)
 		
 		dpw->music_vcount++;
 		
-		//tick‚©‚çŒ»İ‚ÌVƒJƒEƒ“ƒg‚ğ“Ç‚İæ‚è•â³‚·‚é
+		//tickã‹ã‚‰ç¾åœ¨ã®Vã‚«ã‚¦ãƒ³ãƒˆã‚’èª­ã¿å–ã‚Šè£œæ­£ã™ã‚‹
 		tick = Snd_PlayerGetTick( SND_HANDLE_BGM );
 		
 		tick_vcount = dpw->d_game.tick_frame * tick;
-		tick_vcount += ONE_TEMPO_CALC_DECIMAL / 2;	//¬”lÌŒÜ“ü
+		tick_vcount += ONE_TEMPO_CALC_DECIMAL / 2;	//å°æ•°å››æ¨äº”å…¥
 		tick_vcount /= ONE_TEMPO_CALC_DECIMAL;
 		
-		//tick‚Ì’l‚Í‹È‚Ìƒ‹[ƒv‚âŒJ‚è•Ô‚µ‚É‚æ‚Á‚ÄA0‚É–ß‚Á‚½‚èŒJ‚è•Ô‚µ‚ğ‚µ‚½‰ÓŠ‚É–ß‚é‚Ì‚©
-		//‚ğŒŸØ‚·‚é‚½‚ßAASSERT‚ğ“ü‚ê‚Ä‚¨‚­B
-		//–ß‚é‚È‚ç‚ÎAmusic_vcount‚Ö‚Ì•â³‚Ìd•û‚à•ÏX‚·‚é•K—v‚ª‚ ‚éB
-//		GF_ASSERT(dpw->tick_temp <= tick_vcount);	ŒŸØI—¹‚µ‚½‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg
+		//tickã®å€¤ã¯æ›²ã®ãƒ«ãƒ¼ãƒ—ã‚„ç¹°ã‚Šè¿”ã—ã«ã‚ˆã£ã¦ã€0ã«æˆ»ã£ãŸã‚Šç¹°ã‚Šè¿”ã—ã‚’ã—ãŸç®‡æ‰€ã«æˆ»ã‚‹ã®ã‹
+		//ã‚’æ¤œè¨¼ã™ã‚‹ãŸã‚ã€ASSERTã‚’å…¥ã‚Œã¦ãŠãã€‚
+		//æˆ»ã‚‹ãªã‚‰ã°ã€music_vcountã¸ã®è£œæ­£ã®ä»•æ–¹ã‚‚å¤‰æ›´ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+//		GF_ASSERT(dpw->tick_temp <= tick_vcount);	æ¤œè¨¼çµ‚äº†ã—ãŸã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 		dpw->tick_temp = tick_vcount;
 		
-		//ƒJƒEƒ“ƒ^‚ª1ˆÈã‚¸‚ê‚Ä‚¢‚é‚©Aˆê’èƒtƒŒ[ƒ€ˆÈã‘±‚¯‚Ä‚¸‚ê‚Ä‚¢‚é‚È‚ç•â³
+		//ã‚«ã‚¦ãƒ³ã‚¿ãŒ1ä»¥ä¸Šãšã‚Œã¦ã„ã‚‹ã‹ã€ä¸€å®šãƒ•ãƒ¬ãƒ¼ãƒ ä»¥ä¸Šç¶šã‘ã¦ãšã‚Œã¦ã„ã‚‹ãªã‚‰è£œæ­£
 	//	OS_TPrintf("vcount = %d\n", dpw->music_vcount);
 	//	OS_TPrintf("tick_vcount = %d\n", tick_vcount);
 		tick_vcount += TICK_VCOUNT_HOSEI;
 		if(tick_vcount != dpw->music_vcount){
 			if(dpw->music_vcount_hosei_count > MUSIC_VCOUNT_HOSEI_COUNT
 					|| (tick_vcount - dpw->music_vcount) > 1){
-				OS_TPrintf("music_vcount‚Ì•â³‚ªs‚í‚ê‚Ü‚µ‚½\n");
-				OS_TPrintf("•â³vcount_hosei_count = %d\n", dpw->music_vcount_hosei_count);
-				OS_TPrintf("•â³vcount = %d\n", dpw->music_vcount);
-				OS_TPrintf("•â³tick_vcount = %d\n", tick_vcount);
+				OS_TPrintf("music_vcountã®è£œæ­£ãŒè¡Œã‚ã‚Œã¾ã—ãŸ\n");
+				OS_TPrintf("è£œæ­£vcount_hosei_count = %d\n", dpw->music_vcount_hosei_count);
+				OS_TPrintf("è£œæ­£vcount = %d\n", dpw->music_vcount);
+				OS_TPrintf("è£œæ­£tick_vcount = %d\n", tick_vcount);
 				dpw->music_vcount = tick_vcount;
 				dpw->music_vcount_hosei_count = 0;
 			}
 			else{
 				dpw->music_vcount_hosei_count++;
-			//	OS_TPrintf("‚¸‚ê‚Ä‚Ü‚·EEE%d\n", dpw->music_vcount_hosei_count);
+			//	OS_TPrintf("ãšã‚Œã¦ã¾ã™ãƒ»ãƒ»ãƒ»%d\n", dpw->music_vcount_hosei_count);
 			}
 		}
 		else{
@@ -713,7 +713,7 @@ static void DanceVBlank(void *work)
 		}
 	}
 
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	DoVramTransferManager();	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(dpw->sys.pfd);
 	
@@ -724,8 +724,8 @@ static void DanceVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’†ŠÔƒpƒŒƒbƒgƒoƒbƒtƒ@ˆ—
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ä¸­é–“ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡å‡¦ç†
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceMiddlePalette(DANCE_PROC_WORK *dpw)
@@ -762,9 +762,9 @@ static void DanceMiddlePalette(DANCE_PROC_WORK *dpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚És‚¤ƒVƒXƒeƒ€ŠÖ˜A‚ÌXVˆ—
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã«è¡Œã†ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ã®æ›´æ–°å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		dpw
  */
 //--------------------------------------------------------------
@@ -795,32 +795,32 @@ static void DanceUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNİ’è‚ğs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceSys_VramBankSet(GF_BGL_INI *bgl)
 {
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -835,23 +835,23 @@ static void DanceSys_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME1_M	ƒEƒBƒ“ƒhƒE
+			///<FRAME1_M	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 //				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
 				DANCE_BGPRI_WIN, 0, 0, FALSE
 			},
-			///<FRAME2_M	ƒGƒtƒFƒNƒg
+			///<FRAME2_M	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
 				DANCE_BGPRI_EFF, 0, 0, FALSE
 			},
-			///<FRAME3_M	”wŒi
+			///<FRAME3_M	èƒŒæ™¯
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -874,7 +874,7 @@ static void DanceSys_VramBankSet(GF_BGL_INI *bgl)
 		G2_SetBG0Priority(DANCE_3DBG_PRIORITY);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		DINPUT_DefaultFrameSet(bgl);
 	}
@@ -882,9 +882,9 @@ static void DanceSys_VramBankSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ŠúBMPƒEƒBƒ“ƒhƒE‚ğİ’è‚·‚é
+ * @brief   åˆæœŸBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¨­å®šã™ã‚‹
  *
- * @param   dpw		ƒ_ƒ“ƒXŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw		ãƒ€ãƒ³ã‚¹ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceSys_DefaultBmpWinAdd(DANCE_PROC_WORK *dpw)
@@ -897,14 +897,14 @@ static void DanceSys_DefaultBmpWinAdd(DANCE_PROC_WORK *dpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒf[ƒ^‚©‚çƒf[ƒ^”Ô†‚ÆƒŠƒYƒ€”Ô†‚ğæ“¾
+ * @brief   ãƒ€ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ç•ªå·ã¨ãƒªã‚ºãƒ ç•ªå·ã‚’å–å¾—
  *
  * @param   dpw		
- * @param   data_no			ƒf[ƒ^”Ô†‘ã“üæ
- * @param   rhythm_no		ƒŠƒYƒ€”Ô†‘ã“üæ
+ * @param   data_no			ãƒ‡ãƒ¼ã‚¿ç•ªå·ä»£å…¥å…ˆ
+ * @param   rhythm_no		ãƒªã‚ºãƒ ç•ªå·ä»£å…¥å…ˆ
  *
- * @retval  TRUE:DP‚ª¬‚´‚Á‚Ä‚¢‚é
- * @retval  FALSE:DP‚Í¬‚´‚Á‚Ä‚¢‚È‚¢
+ * @retval  TRUE:DPãŒæ··ã–ã£ã¦ã„ã‚‹
+ * @retval  FALSE:DPã¯æ··ã–ã£ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 static BOOL DanceData_DataRhythmGet(DANCE_PROC_WORK *dpw, int *data_no, int *rhythm_no)
@@ -916,23 +916,23 @@ static BOOL DanceData_DataRhythmGet(DANCE_PROC_WORK *dpw, int *data_no, int *rhy
 		dpw->dp_sio = 0;
 	}
 	
-	if(dpw->dp_sio == TRUE){	//DP‚ª¬‚´‚Á‚½’ÊM‘Îí
+	if(dpw->dp_sio == TRUE){	//DPãŒæ··ã–ã£ãŸé€šä¿¡å¯¾æˆ¦
 		*data_no = DANCE_DATA_NO_DP_SIO;
 		*rhythm_no = RHYTHM_NO_4;
-		OS_TPrintf("Ú‘±ƒ†[ƒU[FDP‚ª¬‚´‚Á‚Ä‚¢‚é\n");
+		OS_TPrintf("æ¥ç¶šãƒ¦ãƒ¼ã‚¶ãƒ¼ï¼šDPãŒæ··ã–ã£ã¦ã„ã‚‹\n");
 		return TRUE;
 	}
 	else{
 		*data_no = DanceDataNo[dpw->consys->c_game.rank][dpw->consys->c_game.type].musdata_no;
 		*rhythm_no = DanceDataNo[dpw->consys->c_game.rank][dpw->consys->c_game.type].rhythm_no;
-		OS_TPrintf("Ú‘±ƒ†[ƒU[Fƒvƒ‰ƒ`ƒi‚Ì‚İ\n");
+		OS_TPrintf("æ¥ç¶šãƒ¦ãƒ¼ã‚¶ãƒ¼ï¼šãƒ—ãƒ©ãƒãƒŠã®ã¿\n");
 		return FALSE;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX•”–å—pƒp[ƒeƒBƒNƒ‹‰Šú‰»
+ * @brief   ãƒ€ãƒ³ã‚¹éƒ¨é–€ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
  */
 //--------------------------------------------------------------
 static void DanceParticleInit(void)
@@ -942,7 +942,7 @@ static void DanceParticleInit(void)
 	NNSGfdPlttKey pltt_key;
 	u32 tex_addrs, pltt_addrs;
 	
-	//ƒ|ƒPƒ‚ƒ“‚Åg—p‚·‚é•ª‚ğŠm•Û
+	//ãƒã‚±ãƒ¢ãƒ³ã§ä½¿ç”¨ã™ã‚‹åˆ†ã‚’ç¢ºä¿
 	tex_key = NNS_GfdAllocTexVram(0x2000 * CLIENT_MAX, 0, 0);
 	pltt_key = NNS_GfdAllocPlttVram(0x20 * CLIENT_MAX, 0, 0);
 	
@@ -950,18 +950,18 @@ static void DanceParticleInit(void)
 	GF_ASSERT(pltt_key != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 	tex_addrs = NNS_GfdGetTexKeyAddr(tex_key);
 	pltt_addrs = NNS_GfdGetPlttKeyAddr(pltt_key);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒeƒNƒXƒ`ƒƒVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", tex_addrs);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒpƒŒƒbƒgVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", pltt_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", tex_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆVramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", pltt_addrs);
 #endif
 
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‰Šú‰»
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	Particle_SystemWorkInit();
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ì‰Šúƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceSystemWorkInit(DANCE_PROC_WORK *dpw)
@@ -977,7 +977,7 @@ static void DanceSystemWorkInit(DANCE_PROC_WORK *dpw)
 	
 	DanceOrder_WorkInit(dpw);
 	
-	//ƒWƒƒƒ“ƒv‹Ö~ƒ`ƒFƒbƒN
+	//ã‚¸ãƒ£ãƒ³ãƒ—ç¦æ­¢ãƒã‚§ãƒƒã‚¯
 	for(i = 0; i < BREEDER_MAX; i++){
 		dpw->sys.jump_up[i] = 
 			DanceJump_PokeCheck(PokeParaGet(dpw->consys->c_game.pp[i], ID_PARA_monsno, NULL));
@@ -986,13 +986,13 @@ static void DanceSystemWorkInit(DANCE_PROC_WORK *dpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ì“o˜^‚ğs‚¤
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ€ãƒ³ã‚¹éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceDefaultOBJSet(DANCE_PROC_WORK *dpw, ARCHANDLE *hdl_obj)
 {
-	//í’“OBJƒpƒŒƒbƒgƒ[ƒh
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArcH(dpw->sys.pfd, FADE_MAIN_OBJ, dpw->sys.csp, dpw->sys.crp, 
 		hdl_obj, CONTEST_DANCE_OBJ_NCLR, 0, 
 		DANCE_COMMON_PAL_NUM, NNS_G2D_VRAM_TYPE_2DMAIN, D_PLTTID_OBJ_COMMON);
@@ -1025,8 +1025,8 @@ static void DanceDefaultOBJSet(DANCE_PROC_WORK *dpw, ARCHANDLE *hdl_obj)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒX•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ìíœ‚ğs‚¤
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ€ãƒ³ã‚¹éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceDefaultOBJDel(DANCE_PROC_WORK *dpw)
@@ -1057,23 +1057,23 @@ static void DanceDefaultOBJDel(DANCE_PROC_WORK *dpw)
 
 	DT_MusicLineActorDelete(dpw);
 	
-	//í’“OBJƒpƒŒƒbƒg‰ğ•ú‚·‚é
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆè§£æ”¾ã™ã‚‹
 	CATS_FreeResourcePltt(dpw->sys.crp, D_PLTTID_OBJ_COMMON);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊOBJFƒ_ƒ“ƒX•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ì“o˜^‚ğs‚¤
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢OBJï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceDefaultOBJSet_Sub(DANCE_PROC_WORK *dpw, ARCHANDLE *hdl_obj)
 {
-	//í’“OBJƒpƒŒƒbƒgƒ[ƒh
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArc(dpw->sys.pfd, FADE_SUB_OBJ, dpw->sys.csp, dpw->sys.crp, 
 		ARC_CONTEST_OBJ, CONTEST_DANCE_OBJ_NCLR, 0, 
 		DANCE_SUB_COMMON_PAL_NUM, NNS_G2D_VRAM_TYPE_2DSUB, D_PLTTID_OBJ_COMMON_SUB);
-	//ƒtƒHƒ“ƒgOAMƒpƒŒƒbƒgƒ[ƒh
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArc(dpw->sys.pfd, FADE_SUB_OBJ, dpw->sys.csp, dpw->sys.crp, 
 		ARC_CONTEST_OBJ, CONTEST_FONTOBJ_NCLR, 0, 
 		1, NNS_G2D_VRAM_TYPE_2DSUB, D_PLTTID_SUB_FONTACT);
@@ -1083,8 +1083,8 @@ static void DanceDefaultOBJSet_Sub(DANCE_PROC_WORK *dpw, ARCHANDLE *hdl_obj)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊOBJFƒ_ƒ“ƒX•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ìíœ‚ğs‚¤
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢OBJï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceDefaultOBJDel_Sub(DANCE_PROC_WORK *dpw)
@@ -1093,19 +1093,19 @@ static void DanceDefaultOBJDel_Sub(DANCE_PROC_WORK *dpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–ÊBGFƒ_ƒ“ƒX•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚ÌƒZƒbƒg‚ğs‚¤
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢BGï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’è¡Œã†
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceDefaultBGSet(DANCE_PROC_WORK *dpw, ARCHANDLE *hdl_bg)
 {
 	WINTYPE win_type;
 	
-	//ƒLƒƒƒ‰
+	//ã‚­ãƒ£ãƒ©
 	ArcUtil_HDL_BgCharSet(hdl_bg, CON_DANCE_BG_NCGR_BIN, dpw->sys.bgl, 
 		DANCE_FRAME_BACKGROUND, 0, 0, 1, HEAPID_DANCE);
 	
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	{
 		int data_no, rhythm_no;
 		int scrn_index;
@@ -1117,22 +1117,22 @@ static void DanceDefaultBGSet(DANCE_PROC_WORK *dpw, ARCHANDLE *hdl_bg)
 			DANCE_FRAME_BACKGROUND, 0, 0, 1, HEAPID_DANCE);
 	}
 	
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(dpw->sys.pfd, ARC_CONTEST_BG, CONTEST_DANCE_BG_NCLR, 
 		HEAPID_DANCE, FADE_MAIN_BG, 0, 0);
-	//ƒtƒHƒ“ƒg—pƒpƒŒƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(dpw->sys.pfd, ARC_CONTEST_BG, CON_BG_FONT_NCLR, 
 		HEAPID_DANCE, FADE_MAIN_BG, 0x20, BMPWIN_TALK_COLOR * 16);
 
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	win_type = CONFIG_GetWindowType(dpw->consys->config);
 	TalkWinGraphicSet(dpw->sys.bgl, DANCE_FRAME_WIN, DANCE_TALKWIN_CGX_OFFSET, 
 		DANCE_TALKWIN_BACK_COLOR, win_type, HEAPID_DANCE);
 	PaletteWorkSet_Arc(dpw->sys.pfd, ARC_WINFRAME, TalkWinPalArcGet(win_type), 
 		HEAPID_DANCE, FADE_MAIN_BG, 0x20, DANCE_TALKWIN_PALNO * 16);
 	
-	//‚Ç‚ñ‚¿‚å‚¤
+	//ã©ã‚“ã¡ã‚‡ã†
 //	ArcUtil_BgCharSet(ARC_CONTEST_BG, DONTYOU_ANIM_NCGR_BIN, dpw->sys.bgl, 
 //		DANCE_FRAME_EFF, 0, 0, 1, HEAPID_DANCE);
 //	ArcUtil_ScrnSet(ARC_CONTEST_BG, CON_DANCE_DONCHOU_NSCR_BIN, dpw->sys.bgl, 
@@ -1140,10 +1140,10 @@ static void DanceDefaultBGSet(DANCE_PROC_WORK *dpw, ARCHANDLE *hdl_bg)
 //	PaletteWorkSet_Arc(dpw->sys.pfd, ARC_CONTEST_BG, DONTYOU_ANIM_NCLR, 
 //		HEAPID_DANCE, FADE_MAIN_BG, 0x20, DONTYOU_PALNO * 16);
 	
-	//ƒ_ƒ“ƒX‚µ‚½‚É”í‚¹‚é”¼“§–¾BG
+	//ãƒ€ãƒ³ã‚¹ã—ãŸæ™‚ã«è¢«ã›ã‚‹åŠé€æ˜BG
 	DT_BGAlphaDefaultDataSet(dpw);
 	
-	//’†ŠÔƒoƒbƒtƒ@‚ÉƒpƒŒƒbƒgƒRƒs[
+	//ä¸­é–“ãƒãƒƒãƒ•ã‚¡ã«ãƒ‘ãƒ¬ãƒƒãƒˆã‚³ãƒ”ãƒ¼
 	{
 		u16 *def_wk;
 		def_wk = PaletteWorkDefaultWorkGet(dpw->sys.pfd, FADE_MAIN_BG);
@@ -1153,8 +1153,8 @@ static void DanceDefaultBGSet(DANCE_PROC_WORK *dpw, ARCHANDLE *hdl_bg)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–ÊBGFƒ_ƒ“ƒX•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚Ìíœˆ—‚ğs‚¤
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢BGï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceDefaultBGDel(DANCE_PROC_WORK *dpw)
@@ -1164,8 +1164,8 @@ static void DanceDefaultBGDel(DANCE_PROC_WORK *dpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊBGFƒ_ƒ“ƒX•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚ÌƒZƒbƒg‚ğs‚¤
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢BGï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’è¡Œã†
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceDefaultBGSet_Sub(DANCE_PROC_WORK *dpw, ARCHANDLE *hdl_bg)
@@ -1174,8 +1174,8 @@ static void DanceDefaultBGSet_Sub(DANCE_PROC_WORK *dpw, ARCHANDLE *hdl_bg)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊBGFƒ_ƒ“ƒX•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚Ìíœˆ—‚ğs‚¤
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢BGï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceDefaultBGDel_Sub(DANCE_PROC_WORK *dpw)
@@ -1184,13 +1184,13 @@ static void DanceDefaultBGDel_Sub(DANCE_PROC_WORK *dpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   í’“ƒp[ƒeƒBƒNƒ‹ƒf[ƒ^“Ç‚İ‚İ
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å¸¸é§ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
-///ƒ_ƒ“ƒXƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰ƒjƒAİ’è
+///ãƒ€ãƒ³ã‚¹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ãƒ‹ã‚¢è¨­å®š
 #define DANCE_CAMERA_NEAR			(FX32_ONE)
-///ƒ_ƒ“ƒXƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰ƒtƒ@[İ’è
+///ãƒ€ãƒ³ã‚¹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ãƒ•ã‚¡ãƒ¼è¨­å®š
 #define DANCE_CAMERA_FAR			(FX32_ONE * 900)
 static void DanceDefaultParticleSet(DANCE_PROC_WORK *dpw)
 {
@@ -1206,7 +1206,7 @@ static void DanceDefaultParticleSet(DANCE_PROC_WORK *dpw)
 	camera_ptr = Particle_GetCameraPtr(dpw->ptc);
 	GFC_SetCameraClip(DANCE_CAMERA_NEAR, DANCE_CAMERA_FAR, camera_ptr);
 
-	//ƒŠƒ\[ƒX“Ç‚İ‚İ
+	//ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	resource = Particle_ArcResourceLoad(
 		ARC_PARTICLE_DATA, NARC_particledata_con_dance_spa, HEAPID_DANCE);
 	Particle_ResourceSet(dpw->ptc, resource, PTC_AUTOTEX_LNK | PTC_AUTOPLTT_LNK, TRUE);
@@ -1214,8 +1214,8 @@ static void DanceDefaultParticleSet(DANCE_PROC_WORK *dpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   í’“ƒp[ƒeƒBƒNƒ‹ƒf[ƒ^”jŠü
- * @param   dpw		ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å¸¸é§ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
+ * @param   dpw		ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceDefaultParticleDel(DANCE_PROC_WORK *dpw)
@@ -1231,12 +1231,12 @@ static void DanceDefaultParticleDel(DANCE_PROC_WORK *dpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param   is4x4comp	4x4ˆ³kƒeƒNƒXƒ`ƒƒ‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(TRUE=ˆ³kƒeƒNƒXƒ`ƒƒ)
+ * @param   size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param   is4x4comp	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(TRUE=åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£)
  *
- * @retval  “Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval  èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 static u32 sAllocTex(u32 size, BOOL is4x4comp)
@@ -1245,24 +1245,24 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	u32 address;
 	
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
-	Particle_LnkTexKeySet(key);		//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_LnkTexKeySet(key);		//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	address = NNS_GfdGetTexKeyAddr(key);
-	OS_Printf("ƒeƒNƒXƒ`ƒƒVramƒAƒhƒŒƒX%#x\n", address);
+	OS_Printf("ãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 	return address;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆVRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param	size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param	is4pltt		4FƒpƒŒƒbƒg‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @param	size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param	is4pltt		4è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- * @retval	“Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval	èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * directŒ`®‚ÌƒeƒNƒXƒ`ƒƒ‚Ìê‡ASPL_LoadTexPlttByCallbackFunction‚Í
- * ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ño‚µ‚Ü‚¹‚ñB
+ * directå½¢å¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã€SPL_LoadTexPlttByCallbackFunctionã¯
+ * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
@@ -1271,10 +1271,10 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 	u32 address;
 	
 	key = NNS_GfdAllocPlttVram(size, is4pltt, 0);
-	Particle_PlttLnkTexKeySet(key);	//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_PlttLnkTexKeySet(key);	//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	address = NNS_GfdGetPlttKeyAddr(key);
-	OS_Printf("ƒpƒŒƒbƒgVramƒAƒhƒŒƒX%#x\n", address);
+	OS_Printf("ãƒ‘ãƒ¬ãƒƒãƒˆVramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 	return address;
 }
 
@@ -1282,17 +1282,17 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 
 //==============================================================================
 //
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXF‰Šú‰»ˆ—
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šåˆæœŸåŒ–å‡¦ç†
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_Init(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1326,12 +1326,12 @@ static int DanceSeq_Init(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXF—ûKAÅ‰‚ÌƒƒbƒZ[ƒW•\¦
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šç·´ç¿’ã€æœ€åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_Practice_FastTalk(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1364,12 +1364,12 @@ static int DanceSeq_Practice_FastTalk(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *lo
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXFÅ‰‚ÌƒƒbƒZ[ƒW•\¦
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæœ€åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_FastTalk(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1406,12 +1406,12 @@ static int DanceSeq_FastTalk(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXF‚Ç‚ñ‚¿‚å‚¤‚ğã‚°‚é
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã©ã‚“ã¡ã‚‡ã†ã‚’ä¸Šã’ã‚‹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_DonchouUp(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1435,12 +1435,12 @@ static int DanceSeq_DonchouUp(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXFƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒg
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_OpeningEffect(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1464,12 +1464,12 @@ static int DanceSeq_OpeningEffect(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXF‹È‘I‘ğ
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæ›²é¸æŠ
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_MusicSelect(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1485,7 +1485,7 @@ static int DanceSeq_MusicSelect(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 		dpw->d_game.one_tempo_frame = 
 			ONE_MIN_FRAME * ONE_TEMPO_CALC_DECIMAL / DanceMusicData[data_no].tempo;
 		all_frame = dpw->d_game.one_tempo_frame * RhythmDataGet(rhythm_no, RHYTHM_IDX_TEMPO_BASE_ONPU);
-		//lÌŒÜ“ü‚µ‚Ä®”‰»
+		//å››æ¨äº”å…¥ã—ã¦æ•´æ•°åŒ–
 		all_frame = (all_frame + ONE_TEMPO_CALC_DECIMAL / 2) / ONE_TEMPO_CALC_DECIMAL;
 		dpw->d_game.all_tempo_frame = all_frame;
 		dpw->d_game.tempo = DanceMusicData[data_no].tempo;
@@ -1538,12 +1538,12 @@ static int DanceSeq_MusicSelect(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“‘I‘ğ
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠ
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_PokeSelect(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1572,12 +1572,12 @@ static int DanceSeq_PokeSelect(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXFƒƒCƒ“ƒ_ƒ“ƒX‘O‚Ì€”õ
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹å‰ã®æº–å‚™
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_DancingBefore(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1601,12 +1601,12 @@ static int DanceSeq_DancingBefore(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXFƒƒCƒ“ƒ_ƒ“ƒX
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_Dancing(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1630,12 +1630,12 @@ static int DanceSeq_Dancing(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXFƒƒCƒ“ƒ_ƒ“ƒXI—¹Œã‚ÌŒãˆ—
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œã®å¾Œå‡¦ç†
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_DancingAfter(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1659,12 +1659,12 @@ static int DanceSeq_DancingAfter(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXFƒ[ƒe[ƒVƒ‡ƒ“
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_Rotation(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1713,12 +1713,12 @@ static int DanceSeq_Rotation(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXFŸ‚Ìƒ|ƒPƒ‚ƒ“‚Ö
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ã¸
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_NextPoke(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1727,7 +1727,7 @@ static int DanceSeq_NextPoke(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 	
 	switch(local->seq){
 	case 0:
-		//ƒ[ƒe[ƒVƒ‡ƒ“XV
+		//ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³æ›´æ–°
 		{
 			int temp;
 			
@@ -1738,7 +1738,7 @@ static int DanceSeq_NextPoke(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 			dpw->d_game.breeder_rotation[BREEDER_MAX - 1] = temp;
 		}
 		
-		//Šeíƒpƒ‰ƒ[ƒ^XV
+		//å„ç¨®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
 		dpw->d_game.breeder_end_count++;
 
 		local->seq++;
@@ -1768,12 +1768,12 @@ static int DanceSeq_NextPoke(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXF‚Ç‚ñ‚¿‚å‚¤‚ğ‰º‚°‚é
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã©ã‚“ã¡ã‚‡ã†ã‚’ä¸‹ã’ã‚‹
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_DonchouDown(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1797,12 +1797,12 @@ static int DanceSeq_DonchouDown(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXF‘Sˆõ‚Ìƒ_ƒ“ƒXI—¹Œã‚ÌƒGƒtƒFƒNƒgˆ—‚È‚Ç
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šå…¨å“¡ã®ãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‡¦ç†ãªã©
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_DanceEndEffect(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1828,12 +1828,12 @@ static int DanceSeq_DanceEndEffect(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXFÅŒã‚ÌƒƒbƒZ[ƒW•\¦
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_EndTalk(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1842,33 +1842,33 @@ static int DanceSeq_EndTalk(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 	
 	switch(local->seq){
 	case 0:
-		{//“¾“_ƒZƒbƒg
+		{//å¾—ç‚¹ã‚»ãƒƒãƒˆ
 			int i, j, t;
 			s16 visual_revise[BREEDER_MAX], dance_revise[BREEDER_MAX];
 			s16 total_revise[BREEDER_MAX];
 			u8 breeder_sort[BREEDER_MAX];
 			
-			//-- score‚Éƒ_ƒ“ƒX“¾“_ƒZƒbƒg --//
+			//-- scoreã«ãƒ€ãƒ³ã‚¹å¾—ç‚¹ã‚»ãƒƒãƒˆ --//
 			for(i = 0; i < BREEDER_MAX; i++){
 				dpw->consys->c_game.score[i].dance = dpw->d_game.dance_point[i];
 			}
 
-			//-- ƒrƒWƒ…ƒAƒ‹‚Æƒ_ƒ“ƒX‚Ì‡Œv“¾“_‚©‚ç‰‰‹Z—Í•”–å‚ÌŠJn•À‚Ñ‚ğŒˆ‚ß‚é --//
+			//-- ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã¨ãƒ€ãƒ³ã‚¹ã®åˆè¨ˆå¾—ç‚¹ã‹ã‚‰æ¼”æŠ€åŠ›éƒ¨é–€ã®é–‹å§‹ä¸¦ã³ã‚’æ±ºã‚ã‚‹ --//
 			RT_CalcRevicePoint(dpw->consys, CONGAME_VISUAL, visual_revise);
 			RT_CalcRevicePoint(dpw->consys, CONGAME_DANCE, dance_revise);
 			for(i = 0; i < BREEDER_MAX; i++){
 				total_revise[i] = visual_revise[i] + dance_revise[i];
 				breeder_sort[i] = i;
 			}
-			//‚±‚±‚Ü‚Å‚Ì‡Œv“¾“_‚ª¬‚³‚¢‡‚Éƒ\[ƒg‚·‚é
+			//ã“ã“ã¾ã§ã®åˆè¨ˆå¾—ç‚¹ãŒå°ã•ã„é †ã«ã‚½ãƒ¼ãƒˆã™ã‚‹
 			for(i = 0; i < BREEDER_MAX - 1; i++){
 				for(j = BREEDER_MAX - 1; j > i; j--){
 					if(total_revise[j-1] < total_revise[j]){
-						//‡Œv“¾“_“ü‚ê‘Ö‚¦
+						//åˆè¨ˆå¾—ç‚¹å…¥ã‚Œæ›¿ãˆ
 						t = total_revise[j];
 						total_revise[j] = total_revise[j-1];
 						total_revise[j-1] = t;
-						//ƒuƒŠ[ƒ_[”Ô†“ü‚ê‘Ö‚¦
+						//ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·å…¥ã‚Œæ›¿ãˆ
 						t = breeder_sort[j];
 						breeder_sort[j] = breeder_sort[j-1];
 						breeder_sort[j-1] = t;
@@ -1876,7 +1876,7 @@ static int DanceSeq_EndTalk(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 				}
 			}
 			
-			//-- consys‚Ìactin_sort‚ÉŒ‹‰Ê‚Ì•À‚Ñ‚ğƒZƒbƒg --//
+			//-- consysã®actin_sortã«çµæœã®ä¸¦ã³ã‚’ã‚»ãƒƒãƒˆ --//
 			for(i = 0; i < BREEDER_MAX; i++){
 				dpw->consys->actin_sort[i] = breeder_sort[i];
 			}
@@ -1918,12 +1918,12 @@ static int DanceSeq_EndTalk(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒV[ƒPƒ“ƒXFI—¹ˆ—
+ * @brief   ãƒ€ãƒ³ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   dpw			ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw			ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int DanceSeq_End(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
@@ -1948,7 +1948,7 @@ static int DanceSeq_End(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 		//if(CO_RequestBitNumCheck(&dpw->cow) == 0){
 //		if(CO_AnswerCountCheck(&dpw->cow, dpw->consys->c_game.player_num, 
 //				dpw->consys->c_game.my_breeder_no, dpw->consys->c_game.server_no) == TRUE){
-		//’ÊMBTS#0467‘Îˆ‚Ìˆ×Aƒvƒ‰ƒ`ƒiq‹@‚Ì‚İI—¹“¯Šú‚ğæ‚é
+		//é€šä¿¡BTS#0467å¯¾å‡¦ã®ç‚ºã€ãƒ—ãƒ©ãƒãƒŠå­æ©Ÿã®ã¿çµ‚äº†åŒæœŸã‚’å–ã‚‹
 		if(CO_AnswerCountCheck(&dpw->cow, 
 				dpw->consys->c_game.player_num - dpw->consys->sio_dp_num - 1, 
 				dpw->consys->c_game.my_breeder_no, dpw->consys->c_game.server_no) == TRUE){
@@ -1965,12 +1965,12 @@ static int DanceSeq_End(DANCE_PROC_WORK *dpw, DANCE_LOCAL_WORK *local)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒŠƒYƒ€ƒf[ƒ^æ“¾
+ * @brief   ãƒªã‚ºãƒ ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param   rhythm_no		‰½”q‚©
- * @param   index			ƒf[ƒ^æ“¾index
+ * @param   rhythm_no		ä½•æ‹å­ã‹
+ * @param   index			ãƒ‡ãƒ¼ã‚¿å–å¾—index
  *
- * @retval  ’l
+ * @retval  å€¤
  */
 //--------------------------------------------------------------
 int RhythmDataGet(int rhythm_no, int index)

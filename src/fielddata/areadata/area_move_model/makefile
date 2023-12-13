@@ -1,7 +1,7 @@
 #! make -f
 #----------------------------------------------------------------------------
 #	@file	makefile
-#	@brief	ƒGƒŠƒA–ˆ‚Ì“®ìƒ‚ƒfƒ‹ƒŠƒXƒgƒA[ƒJƒCƒu¶¬—pmakefile
+#	@brief	ã‚¨ãƒªã‚¢æ¯Žã®å‹•ä½œãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”Ÿæˆç”¨makefile
 #	@date	2005.11.24
 #	@author	tamada GAME FREAK inc.
 #
@@ -11,7 +11,7 @@ DP_ROOT	=	../../../..
 
 
 #----------------------------------------------------------------------------
-#	ƒAƒZƒ“ƒuƒ‰¨ƒoƒCƒiƒŠ¶¬‚É•K—v‚È’è‹`ƒtƒ@ƒCƒ‹‚ðƒCƒ“ƒNƒ‹[ƒh
+#	ã‚¢ã‚»ãƒ³ãƒ–ãƒ©â†’ãƒã‚¤ãƒŠãƒªç”Ÿæˆã«å¿…è¦ãªå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #----------------------------------------------------------------------------
 #include $(DP_ROOT)/commondefs.GF
 include $(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
@@ -33,13 +33,13 @@ ARCLIST	=	arclist.txt
 
 -include	$(SRCLIST)
 
-#Make‚Å¶¬‚³‚ê‚é*.bin/*.narc‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.bin/*.narcã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(SRCFILES:.s=.bin) $(RSCTXT) $(ARCNAME)
 
-#ƒAƒZƒ“ƒuƒ‰ƒtƒ@ƒCƒ‹‚ÅƒCƒ“ƒNƒ‹[ƒh‚·‚éƒwƒbƒ_‚ð’T‚·ƒpƒXŽw’è
+#ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ˜ãƒƒãƒ€ã‚’æŽ¢ã™ãƒ‘ã‚¹æŒ‡å®š
 IPATH	=	-I$(DP_ROOT)/src/field/
 
-#ƒc[ƒ‹’è‹`
+#ãƒ„ãƒ¼ãƒ«å®šç¾©
 ELF2BIN	=	$(DP_ROOT)/convert/eventdata/elf2bin.exe
 XLS2TXT	=	$(DP_ROOT)/convert/exceltool/exceltabconv
 TXT2ASM	=	ruby area_move_model.rb
@@ -49,7 +49,7 @@ TXT2ASM	=	ruby area_move_model.rb
 do-build:  $(ARCNAME)
 
 #----------------------------------------------------------------------------
-#	*.s --> *.bin‚Ö‚Ìƒ‹[ƒ‹’è‹`
+#	*.s --> *.binã¸ã®ãƒ«ãƒ¼ãƒ«å®šç¾©
 #----------------------------------------------------------------------------
 %.bin: %.s
 	@cp $< temp.s
@@ -61,29 +61,29 @@ do-build:  $(ARCNAME)
 
 
 #----------------------------------------------------------------------------
-#	ƒA[ƒJƒCƒu¶¬
+#	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”Ÿæˆ
 #----------------------------------------------------------------------------
 $(ARCNAME): $(SRCFILES:.s=.bin)
 	@nnsarc -i -c -l -n $(ARCNAME) -S $(ARCLIST) > arc_result.txt
-	@echo ƒGƒŠƒA–ˆ“®ìƒ‚ƒfƒ‹ƒŠƒXƒg‚ÌƒA[ƒJƒCƒu‚ð¶¬‚µ‚Ü‚µ‚½B
+	@echo ã‚¨ãƒªã‚¢æ¯Žå‹•ä½œãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚
 
 #----------------------------------------------------------------------------
-#	ƒGƒŠƒA–ˆ‚ÌƒAƒZƒ“ƒuƒ‰ƒtƒ@ƒCƒ‹¶¬
+#	ã‚¨ãƒªã‚¢æ¯Žã®ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ç”Ÿæˆ
 #----------------------------------------------------------------------------
 $(SRCFILES): $(SRCLIST)
 
 
 $(AREATXT):	$(AREAFILE)
-	@echo ƒGƒŠƒAŠÇ—•\•ÏŠ·ˆ—¥¥¥
+	@echo ã‚¨ãƒªã‚¢ç®¡ç†è¡¨å¤‰æ›å‡¦ç†ãƒ»ãƒ»ãƒ»
 	@$(XLS2TXT) $(AREAFILE)
 
 $(RSCTXT):	$(RSCFILE)
-	@echo “®ìƒ‚ƒfƒ‹ŠÇ—•\•ÏŠ·ˆ—¥¥¥
-	@$(XLS2TXT) $(RSCFILE)				#ƒ^ƒu‹æØ‚èƒeƒLƒXƒg‚É•ÏŠ·
+	@echo å‹•ä½œãƒ¢ãƒ‡ãƒ«ç®¡ç†è¡¨å¤‰æ›å‡¦ç†ãƒ»ãƒ»ãƒ»
+	@$(XLS2TXT) $(RSCFILE)				#ã‚¿ãƒ–åŒºåˆ‡ã‚Šãƒ†ã‚­ã‚¹ãƒˆã«å¤‰æ›
 
 
 $(SRCLIST):	$(AREATXT) $(RSCTXT)
-	@echo ƒGƒŠƒA•Êƒf[ƒ^¶¬ˆ—¥¥¥
+	@echo ã‚¨ãƒªã‚¢åˆ¥ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆå‡¦ç†ãƒ»ãƒ»ãƒ»
 	@$(TXT2ASM) $(SRCLIST) $(ARCLIST) $(AREATXT) $(RSCTXT)
 
 

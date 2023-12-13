@@ -2,7 +2,7 @@
 /**
  *
  *@file		effect_uground.c
- *@brief	’n‰ºƒ}ƒbƒvƒtƒF[ƒhƒGƒ“ƒJƒEƒ“ƒg
+ *@brief	åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  *@author	tomoya takahashi 
  *@data		2005.08.03
  *
@@ -33,7 +33,7 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define UNDER_TCB_PRI	(5)
@@ -43,28 +43,28 @@
 
 ////////////////////////////////////////////////////////////
 //
-//	•`‰æƒVƒXƒeƒ€—p
+//	æç”»ã‚·ã‚¹ãƒ†ãƒ ç”¨
 //
 ///////////////////////////////////////////////////////////
-#define DRAW_2D_RES_NUM		(4)		// ŠÇ—‚·‚éƒŠƒ\[ƒX‚Ìí—Ş
-#define DRAW_2D_OBJ_TBL_NUM	(2)		// ŠÇ—‚·‚éƒIƒuƒWƒFƒe[ƒuƒ‹”
+#define DRAW_2D_RES_NUM		(4)		// ç®¡ç†ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®ç¨®é¡
+#define DRAW_2D_OBJ_TBL_NUM	(2)		// ç®¡ç†ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 
 
 //-------------------------------------
 //	
-//	“®ìŠÖ”–ß‚è’l
+//	å‹•ä½œé–¢æ•°æˆ»ã‚Šå€¤
 //	
 //=====================================
 enum{
-	EFCT_SYSRET_END,		// ƒGƒ‰[ƒR[ƒh
-	EFCT_SYSRET_OK,			// ³í
-	EFCT_SYSRET_FADE,		// ƒtƒF[ƒhŠJn
+	EFCT_SYSRET_END,		// ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+	EFCT_SYSRET_OK,			// æ­£å¸¸
+	EFCT_SYSRET_FADE,		// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 } EFCT_UG_SYSRET;
 
 
 //-------------------------------------
 //	
-//	‘S‘Ì‚É‹¤’Ê
+//	å…¨ä½“ã«å…±é€š
 //	
 //=====================================
 #define EFECT_UGCOMMON_OBJ_MAT_X	(112*FX32_ONE)
@@ -73,23 +73,23 @@ enum{
 
 //-------------------------------------
 //	
-//	ƒ^ƒXƒN‚O‚O
-//	’n‰ºƒ}ƒbƒv‚Ö‚ÌƒtƒF[ƒh‚P
+//	ã‚¿ã‚¹ã‚¯ï¼ï¼
+//	åœ°ä¸‹ãƒãƒƒãƒ—ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰ï¼‘
 //	
 //=====================================
 enum{
-	EFCT_UG00_PLAYER_OFF,	// ƒvƒŒƒCƒ„[‚ğÁ‚·
-	EFCT_UG00_SHADOW,		// ‰eì¬
-	EFCT_UG00_OBJ_MOVE,		// ƒIƒuƒWƒFƒNƒgˆÚ“®
-	EFCT_UG00_FADE_WAIT,	// ƒuƒ‰ƒbƒNƒtƒF[ƒh‘Ò‚¿
+	EFCT_UG00_PLAYER_OFF,	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æ¶ˆã™
+	EFCT_UG00_SHADOW,		// å½±ä½œæˆ
+	EFCT_UG00_OBJ_MOVE,		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç§»å‹•
+	EFCT_UG00_FADE_WAIT,	// ãƒ–ãƒ©ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 	EFCT_UG00_OAMCLEAN,		// OAMCLEAN
-	EFCT_UG00_DELETE,		// ”jŠü
+	EFCT_UG00_DELETE,		// ç ´æ£„
 };
-#define EFCT_UG00_SHADOW_COUNT	(7)		// ‚±‚ê‚É‚È‚Á‚½‚çI—¹
-#define EFCT_UG00_OBJ_JUMP_DIS	(16*FX32_ONE)	// ƒWƒƒƒ“ƒv—Í
-#define	EFCT_UG00_OBJ_CNNUM		(0x8000/16)	// ƒJƒEƒ“ƒ^‘«‚·’l
-#define EFCT_UG00_OBJ_END		(0x8000)	// ƒJƒEƒ“ƒ^I—¹
-#define EFCT_UG00_FADE_START	(EFCT_UG00_OBJ_CNNUM*16)	// ƒtƒF[ƒhŠJn
+#define EFCT_UG00_SHADOW_COUNT	(7)		// ã“ã‚Œã«ãªã£ãŸã‚‰çµ‚äº†
+#define EFCT_UG00_OBJ_JUMP_DIS	(16*FX32_ONE)	// ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
+#define	EFCT_UG00_OBJ_CNNUM		(0x8000/16)	// ã‚«ã‚¦ãƒ³ã‚¿è¶³ã™å€¤
+#define EFCT_UG00_OBJ_END		(0x8000)	// ã‚«ã‚¦ãƒ³ã‚¿çµ‚äº†
+#define EFCT_UG00_FADE_START	(EFCT_UG00_OBJ_CNNUM*16)	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 
 #define EFCT_UG00_BR_MSK		( PLANEMASK_BG0| PLANEMASK_BG2| PLANEMASK_BG3| PLANEMASK_BD )
 #define EFCT_UG00_BR_SYNC		( 2 )
@@ -101,74 +101,74 @@ enum{
 
 //-------------------------------------
 //	
-//	ƒ^ƒXƒN‚O‚P
-//	’n‰ºƒ}ƒbƒv‚Ö‚ÌƒtƒF[ƒh‚Q
+//	ã‚¿ã‚¹ã‚¯ï¼ï¼‘
+//	åœ°ä¸‹ãƒãƒƒãƒ—ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰ï¼’
 //	
 //=====================================
 enum{
 	EFCT_UG01_OBJ_OFF,
-	EFCT_UG01_START,		// ŠJn
-	EFCT_UG01_OBJ_MOVE,		// ƒIƒuƒWƒFƒNƒgˆÚ“®
-	EFCT_UG01_BG_FADE,		// BG‚ğƒtƒF[ƒhƒCƒ“‚³‚¹‚é
+	EFCT_UG01_START,		// é–‹å§‹
+	EFCT_UG01_OBJ_MOVE,		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç§»å‹•
+	EFCT_UG01_BG_FADE,		// BGã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã•ã›ã‚‹
 	EFCT_UG01_OAMCLEAN,		// OAMCLEAN
-	EFCT_UG01_DELETE,		// ”jŠü
+	EFCT_UG01_DELETE,		// ç ´æ£„
 };
-#define EFCT_UG01_END	(EFECT_UGCOMMON_OBJ_MAT_Y)			// ƒIƒuƒWƒF‚Ì‚‚³‚ª‚±‚ê‚É‚È‚Á‚½‚çƒIƒuƒWƒF‚ÌˆÚ“®I—¹
-#define EFCT_UG01_REST	(384*FX32_ONE)			// ƒIƒuƒWƒF‚Ì‚‚³‚ª‚±‚ê‚É‚È‚Á‚½‚çƒIƒuƒWƒF‚ÌˆÚ“®I—¹
-#define EFCT_UG01_MOVE	(FX32_ONE*8)			// ˆÚ“®ƒXƒs[ƒh
-#define EFCT_UG01_BG	(16)						// BG–Ê‚ğ“®‚©‚·ƒXƒs[ƒh
-#define EFCT_UG01_OBJ_MAT_Y	(192*FX32_ONE)		// ƒIƒuƒWƒFƒNƒgŠJnˆÊ’u
-#define EFCT_UG01_OBJ_MAT_REST_Y	(-32*FX32_ONE)	// ƒIƒuƒWƒFƒNƒgŠJnˆÊ’u
+#define EFCT_UG01_END	(EFECT_UGCOMMON_OBJ_MAT_Y)			// ã‚ªãƒ–ã‚¸ã‚§ã®é«˜ã•ãŒã“ã‚Œã«ãªã£ãŸã‚‰ã‚ªãƒ–ã‚¸ã‚§ã®ç§»å‹•çµ‚äº†
+#define EFCT_UG01_REST	(384*FX32_ONE)			// ã‚ªãƒ–ã‚¸ã‚§ã®é«˜ã•ãŒã“ã‚Œã«ãªã£ãŸã‚‰ã‚ªãƒ–ã‚¸ã‚§ã®ç§»å‹•çµ‚äº†
+#define EFCT_UG01_MOVE	(FX32_ONE*8)			// ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define EFCT_UG01_BG	(16)						// BGé¢ã‚’å‹•ã‹ã™ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define EFCT_UG01_OBJ_MAT_Y	(192*FX32_ONE)		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–‹å§‹ä½ç½®
+#define EFCT_UG01_OBJ_MAT_REST_Y	(-32*FX32_ONE)	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–‹å§‹ä½ç½®
 
 //-------------------------------------
 //	
-//	ƒ^ƒXƒN‚O‚Q
-//	’n‰ºƒ}ƒbƒv‚Ö‚ÌƒtƒF[ƒh‚R
+//	ã‚¿ã‚¹ã‚¯ï¼ï¼’
+//	åœ°ä¸‹ãƒãƒƒãƒ—ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰ï¼“
 //	
 //=====================================
 enum{
-	EFCT_UG02_PLAYER_OFF,	// ƒvƒŒƒCƒ„[‚ğÁ‚·
-	EFCT_UG02_START,		// ŠJn
-	EFCT_UG02_BG_FADE,		// BG‚ğƒtƒF[ƒhƒCƒ“‚³‚¹‚é
-	EFCT_UG02_OBJ_MOVE,		// ƒIƒuƒWƒFƒNƒgˆÚ“®
-	EFCT_UG02_FADE_WAIT,	// ƒtƒF[ƒhƒAƒEƒg
-	EFCT_UG02_OAMCLEAN,		// OAM‰Šú‰»
-	EFCT_UG02_DELETE,		// ”jŠü
+	EFCT_UG02_PLAYER_OFF,	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æ¶ˆã™
+	EFCT_UG02_START,		// é–‹å§‹
+	EFCT_UG02_BG_FADE,		// BGã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã•ã›ã‚‹
+	EFCT_UG02_OBJ_MOVE,		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç§»å‹•
+	EFCT_UG02_FADE_WAIT,	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+	EFCT_UG02_OAMCLEAN,		// OAMåˆæœŸåŒ–
+	EFCT_UG02_DELETE,		// ç ´æ£„
 };
-#define EFCT_UG02_REST	(-32*FX32_ONE)			// ƒIƒuƒWƒF‚Ì‚‚³‚ª‚±‚ê‚É‚È‚Á‚½‚çƒIƒuƒWƒF‚ÌˆÚ“®I—¹
-#define EFCT_UG02_END	(192*FX32_ONE)			// ƒIƒuƒWƒF‚Ì‚‚³‚ª‚±‚ê‚É‚È‚Á‚½‚çƒIƒuƒWƒF‚ÌˆÚ“®I—¹
-#define EFCT_UG02_MOVE	(FX32_ONE*8)			// ˆÚ“®ƒXƒs[ƒh
-#define EFCT_UG02_BG	(32)					// BG–Ê‚ğ“®‚©‚·ƒXƒs[ƒh
-#define EFCT_UG02_FADE_S	(300*FX32_ONE)		// ƒzƒƒCƒgƒAƒEƒg‚Í‚¶‚ß‚éƒ^ƒCƒ~ƒ“ƒO
-#define EFCT_UG02_ROTA_SA	(FX32_CONST(0.20f))	// ‰ñ“]‰Á‘¬“x
-#define EFCT_UG02_ROTA_SE	(2*FX32_ONE)		// ‰ñ“]‰Á‘¬Å‘¬
+#define EFCT_UG02_REST	(-32*FX32_ONE)			// ã‚ªãƒ–ã‚¸ã‚§ã®é«˜ã•ãŒã“ã‚Œã«ãªã£ãŸã‚‰ã‚ªãƒ–ã‚¸ã‚§ã®ç§»å‹•çµ‚äº†
+#define EFCT_UG02_END	(192*FX32_ONE)			// ã‚ªãƒ–ã‚¸ã‚§ã®é«˜ã•ãŒã“ã‚Œã«ãªã£ãŸã‚‰ã‚ªãƒ–ã‚¸ã‚§ã®ç§»å‹•çµ‚äº†
+#define EFCT_UG02_MOVE	(FX32_ONE*8)			// ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define EFCT_UG02_BG	(32)					// BGé¢ã‚’å‹•ã‹ã™ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define EFCT_UG02_FADE_S	(300*FX32_ONE)		// ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆã¯ã˜ã‚ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define EFCT_UG02_ROTA_SA	(FX32_CONST(0.20f))	// å›è»¢åŠ é€Ÿåº¦
+#define EFCT_UG02_ROTA_SE	(2*FX32_ONE)		// å›è»¢åŠ é€Ÿæœ€é€Ÿ
 
-#define EFCT_UG02_OBJ_MAT_REST_Y (384*FX32_ONE)		// ƒIƒuƒWƒFƒNƒgŠJnˆÊ’u
+#define EFCT_UG02_OBJ_MAT_REST_Y (384*FX32_ONE)		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–‹å§‹ä½ç½®
 
 //-------------------------------------
 //	
-//	ƒ^ƒXƒN‚O‚R
-//	’n‰ºƒ}ƒbƒv‚Ö‚ÌƒtƒF[ƒh‚S
+//	ã‚¿ã‚¹ã‚¯ï¼ï¼“
+//	åœ°ä¸‹ãƒãƒƒãƒ—ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰ï¼”
 //	
 //=====================================
 enum{
-	EFCT_UG03_START,		// ŠJn
-	EFCT_UG03_FADEIN_M,		// ƒƒCƒ“‰æ–ÊƒtƒF[ƒhƒCƒ“
-	EFCT_UG03_FADEIN_MW,	// ƒtƒF[ƒhƒCƒ“‘Ò‚¿
-	EFCT_UG03_OBJ_MOVE,		// ƒIƒuƒWƒFƒNƒg“®ì
-	EFCT_UG03_OBJ_SHADOW,	// ƒIƒuƒWƒFƒNƒg“®ì
+	EFCT_UG03_START,		// é–‹å§‹
+	EFCT_UG03_FADEIN_M,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+	EFCT_UG03_FADEIN_MW,	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
+	EFCT_UG03_OBJ_MOVE,		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
+	EFCT_UG03_OBJ_SHADOW,	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
 	EFCT_UG03_OAMCLEAN,		// OAMCLEAN
-	EFCT_UG03_DELETE,		// ”jŠü
+	EFCT_UG03_DELETE,		// ç ´æ£„
 };
 
-#define EFCT_UG03_ROTA_S	(2*FX32_ONE)		// ‰ñ“]‰‘¬
-#define EFCT_UG03_ROTA_SA	(FX32_CONST(0.40f))	// ‰ñ“]‰Á‘¬“x
-#define EFCT_UG03_ROTA_SE	(0)					// ‰ñ“]‰Á‘¬Å‘¬
-#define EFCT_UG03_SHADOW_COUNT	(8)		// ‚±‚ê‚É‚È‚Á‚½‚çI—¹
-#define EFCT_UG03_OBJ_JUMP_DIS	(32*FX32_ONE)	// ƒWƒƒƒ“ƒv—Í
-#define	EFCT_UG03_OBJ_CNNUM		(0x8000/8)	// ƒJƒEƒ“ƒ^‘«‚·’l
-#define EFCT_UG03_OBJ_END		(0x8000)	// ƒJƒEƒ“ƒ^I—¹
-#define EFCT_UG03_FADE_START	(EFCT_UG00_OBJ_CNNUM*10)	// ƒtƒF[ƒhŠJn
+#define EFCT_UG03_ROTA_S	(2*FX32_ONE)		// å›è»¢åˆé€Ÿ
+#define EFCT_UG03_ROTA_SA	(FX32_CONST(0.40f))	// å›è»¢åŠ é€Ÿåº¦
+#define EFCT_UG03_ROTA_SE	(0)					// å›è»¢åŠ é€Ÿæœ€é€Ÿ
+#define EFCT_UG03_SHADOW_COUNT	(8)		// ã“ã‚Œã«ãªã£ãŸã‚‰çµ‚äº†
+#define EFCT_UG03_OBJ_JUMP_DIS	(32*FX32_ONE)	// ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
+#define	EFCT_UG03_OBJ_CNNUM		(0x8000/8)	// ã‚«ã‚¦ãƒ³ã‚¿è¶³ã™å€¤
+#define EFCT_UG03_OBJ_END		(0x8000)	// ã‚«ã‚¦ãƒ³ã‚¿çµ‚äº†
+#define EFCT_UG03_FADE_START	(EFCT_UG00_OBJ_CNNUM*10)	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 #define EFCT_UG03_OBJ_DEL_WAIT	( 6 )
 
 #define EFCT_UG03_BR_MSK		( PLANEMASK_BG0| PLANEMASK_BG2| PLANEMASK_BG3| PLANEMASK_BD )
@@ -178,68 +178,68 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
+//	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
-	/* ‚Q‚„ƒVƒXƒeƒ€ƒf[ƒ^  */
-	CLACT_SET_PTR			clactSet;						// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_HEADER_TBL_PTR	clactHeader;					// ƒwƒbƒ_[
-	CLACT_U_RES_MANAGER_PTR	resMan[DRAW_2D_RES_NUM];		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_TBL*	resObjTbl[DRAW_2D_OBJ_TBL_NUM];	// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-	int						resObjNum[DRAW_2D_RES_NUM];		// ‚»‚ê‚¼‚ê‚ÌƒŠƒ\[ƒXƒIƒuƒWƒF”
-	CLACT_U_EASYRENDER_DATA	renddata;						// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
+	/* ï¼’ï½„ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿  */
+	CLACT_SET_PTR			clactSet;						// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_HEADER_TBL_PTR	clactHeader;					// ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_U_RES_MANAGER_PTR	resMan[DRAW_2D_RES_NUM];		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_TBL*	resObjTbl[DRAW_2D_OBJ_TBL_NUM];	// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+	int						resObjNum[DRAW_2D_RES_NUM];		// ãã‚Œãã‚Œã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§æ•°
+	CLACT_U_EASYRENDER_DATA	renddata;						// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	
 
-	/* 3dƒVƒXƒeƒ€ƒf[ƒ^i¡‚Í‚È‚µj */
+	/* 3dã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ï¼ˆä»Šã¯ãªã—ï¼‰ */
 
 } EFCT_UG_DRAWSYS;
 
 //-------------------------------------
 //	
-//	’n‰ºƒ}ƒbƒvƒtƒF[ƒhƒGƒtƒFƒNƒg
-//	ƒIƒuƒWƒFƒNƒg\‘¢‘Ì
+//	åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+//	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“
 //	
 //=====================================
 typedef struct _EFCT_UG_OBJ{
-	void*		data;		// ‚±‚ÌƒTƒCƒY“à‚ÉŠeƒf[ƒ^‚ğ“ü‚ê‚é
+	void*		data;		// ã“ã®ã‚µã‚¤ã‚ºå†…ã«å„ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹
 	
-	/* ƒf[ƒ^ì¬ŠÖ” */
+	/* ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢æ•° */
 	void (*init)(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data);
 
-	/* ƒf[ƒ^”jŠüŠÖ” */
+	/* ãƒ‡ãƒ¼ã‚¿ç ´æ£„é–¢æ•° */
 	void (*delete)(struct _EFCT_UG_OBJ* data);
 	
-	/* “®ìŠÖ” */
+	/* å‹•ä½œé–¢æ•° */
 	int (*move)(struct _EFCT_UG_OBJ* data);
 } EFCT_UG_OBJ;
 
 
 //-------------------------------------
 //	
-//	’n‰ºƒ}ƒbƒvƒtƒF[ƒhƒGƒtƒFƒNƒg\‘¢‘Ì
+//	åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ§‹é€ ä½“
 //	
 //=====================================
 typedef struct _EFCT_UG_DATA{
-	/* ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN */
+	/* ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ */
 	FIELDSYS_WORK* fsys;
 
-	/* •`‰æƒVƒXƒeƒ€ƒf[ƒ^ */
+	/* æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ */
 	EFCT_UG_DRAWSYS	drawsys;
 	
-	/* ƒIƒuƒWƒFƒNƒgƒf[ƒ^ */
+	/* ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ */
 	EFCT_UG_OBJ	objdata[2];
-	int			obj_num;	// ƒIƒuƒWƒFƒNƒg”
+	int			obj_num;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
 	
-	/* ƒV[ƒPƒ“ƒXƒf[ƒ^ */
+	/* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ */
 	int			seq;
 
-	/* ƒtƒF[ƒh‚È‚Ç‚ÌI—¹Š´’m—Ìˆæ */
+	/* ãƒ•ã‚§ãƒ¼ãƒ‰ãªã©ã®çµ‚äº†æ„ŸçŸ¥é ˜åŸŸ */
 	int			wait;
 
 	BOOL*	end;
@@ -248,57 +248,57 @@ typedef struct _EFCT_UG_DATA{
 
 //-----------------------------------------------------------------------------
 //
-//		ŒÂX‚ÌƒIƒuƒWƒFƒNƒg—p
+//		å€‹ã€…ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨
 //
 //=============================================================================
 //-------------------------------------
 //	
-//	ålŒöƒIƒuƒWƒFƒNƒg
+//	ä¸»äººå…¬ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //	
 //=====================================
 typedef struct {
-	VecFx32			matrix;		// À•W
-	CLACT_WORK_PTR	cl;			// ƒZƒ‹ƒAƒNƒ^[
-	int				count;		// “®ìƒJƒEƒ“ƒ^
+	VecFx32			matrix;		// åº§æ¨™
+	CLACT_WORK_PTR	cl;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	int				count;		// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
 } EFCT_UG_HERO;
 
 typedef struct {
-	VecFx32			matrix;		// À•W
-	CLACT_WORK_PTR	cl;			// ƒZƒ‹ƒAƒNƒ^[
-	int				seq;		// ƒV[ƒPƒ“ƒX
-	int				count;		// “®ìƒJƒEƒ“ƒ^
+	VecFx32			matrix;		// åº§æ¨™
+	CLACT_WORK_PTR	cl;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	int				seq;		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	int				count;		// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
 } EFCT_UG_HERO_EX;
 
 //-------------------------------------
 //	
-//	‰eƒIƒuƒWƒFƒNƒg
+//	å½±ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //	
 //=====================================
 typedef struct {
-	VecFx32			matrix;		// À•W
-	CLACT_WORK_PTR	cl;			// ƒZƒ‹ƒAƒNƒ^[
-	int				count;		// “®ìƒJƒEƒ“ƒ^
+	VecFx32			matrix;		// åº§æ¨™
+	CLACT_WORK_PTR	cl;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	int				count;		// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
 } EFCT_UG_SHADOW;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-static void UGround00(TCB_PTR tcb, void* work);		// ’n‰ºƒ}ƒbƒvƒtƒF[ƒh00	’n–Ê‚É‚à‚®‚Á‚Ä‚­
-static void UGround01(TCB_PTR tcb, void* work);		// ’n‰ºƒ}ƒbƒvƒtƒF[ƒh01	’n‰º‚É~‚è‚é
-static void UGround02(TCB_PTR tcb, void* work);		// ’n‰ºƒ}ƒbƒvƒtƒF[ƒh02	’n‰º‚©‚çã‚é
-static void UGround03(TCB_PTR tcb, void* work);		// ’n‰ºƒ}ƒbƒvƒtƒF[ƒh03	’nã‚Éo‚é
+static void UGround00(TCB_PTR tcb, void* work);		// åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰00	åœ°é¢ã«ã‚‚ãã£ã¦ã
+static void UGround01(TCB_PTR tcb, void* work);		// åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰01	åœ°ä¸‹ã«é™ã‚Šã‚‹
+static void UGround02(TCB_PTR tcb, void* work);		// åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰02	åœ°ä¸‹ã‹ã‚‰ä¸Šã‚‹
+static void UGround03(TCB_PTR tcb, void* work);		// åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰03	åœ°ä¸Šã«å‡ºã‚‹
 
 static EFCT_UG_DATA* UGroundAdd(TCB_FUNC func, FIELDSYS_WORK* fsys, u32 resload_vram);
 static void UGroundDelete(TCB_PTR tcb, EFCT_UG_DATA* data);
 void initDrawSys(EFCT_UG_DRAWSYS* data, int boy_girl, u32 resload_vram);
-static void deleteDrawSys(EFCT_UG_DRAWSYS* data);		// •`‰æƒVƒXƒeƒ€‚Ì”jŠü
-static void makeObj(EFCT_UG_DATA* data, EFCT_UG_OBJ* obj, int num);	// ƒIƒuƒWƒFƒNƒgƒf[ƒ^‚Ìì¬
+static void deleteDrawSys(EFCT_UG_DRAWSYS* data);		// æç”»ã‚·ã‚¹ãƒ†ãƒ ã®ç ´æ£„
+static void makeObj(EFCT_UG_DATA* data, EFCT_UG_OBJ* obj, int num);	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 static CLACT_WORK_PTR addCellAct(EFCT_UG_DRAWSYS* drawsys, int act_no, VecFx32* mat,int pri, int drawarea);
-static void deleteObj(EFCT_UG_OBJ* obj);// ƒIƒuƒWƒFƒNƒgƒf[ƒ^‚Ì”jŠü
-static void initBG(GF_BGL_INI* bgl);	// BG–Ê‚Ì‰Šú‰»
-static void destBG(GF_BGL_INI* bgl);		// BG–Ê‚Ì‰Šú‰»
+static void deleteObj(EFCT_UG_OBJ* obj);// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ã®ç ´æ£„
+static void initBG(GF_BGL_INI* bgl);	// BGé¢ã®åˆæœŸåŒ–
+static void destBG(GF_BGL_INI* bgl);		// BGé¢ã®åˆæœŸåŒ–
 static void loadBG(GF_BGL_INI* bgl, const char* p_char, const char* p_pltt,const char* p_screen, int pltt_no, int frame, int charoffs);
 
 //static void maskBGScrollInit(int sc_mask, int other_mask);
@@ -307,46 +307,46 @@ static void loadBG(GF_BGL_INI* bgl, const char* p_char, const char* p_pltt,const
 
 /////////////////////////////////////////////////////////////////////
 //
-//		‚Q‚„•\¦ƒVƒXƒeƒ€—pŠÖ”ŒS
+//		ï¼’ï½„è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ç”¨é–¢æ•°éƒ¡
 //
 ////////////////////////////////////////////////////////////////////
-static void init2DDrawSys(EFCT_UG_DRAWSYS* data);	// ‚Q‚„‚Ì•`‰æƒVƒXƒeƒ€‰Šú‰»
+static void init2DDrawSys(EFCT_UG_DRAWSYS* data);	// ï¼’ï½„ã®æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 static void load2DResFile(EFCT_UG_DRAWSYS* data, int boy_girl, u32 resload_vram);
 static int loadOneData(CLACT_U_RES_MANAGER_PTR resMan, CLACT_U_RES_OBJ_TBL** resObjTbl, u32 idx );
 
-static void delete2DDrawSys(EFCT_UG_DRAWSYS* data);	// ‚Q‚„‚Ì•`‰æƒVƒXƒeƒ€‰Šú‰»
+static void delete2DDrawSys(EFCT_UG_DRAWSYS* data);	// ï¼’ï½„ã®æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 //---------------------------------------------------------
 //
-//	ŒÂX‚ÌƒIƒuƒWƒFƒNƒg—p
+//	å€‹ã€…ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨
 //
 //=========================================================
-//---------’n‰ºƒtƒF[ƒhƒWƒƒƒ“ƒvålŒö
+//---------åœ°ä¸‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¸ãƒ£ãƒ³ãƒ—ä¸»äººå…¬
 static void initObj00(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data);
 static void deleteObj00(struct _EFCT_UG_OBJ* data);
 static int  moveObj00(struct _EFCT_UG_OBJ* data);
-//---------’n‰ºƒtƒF[ƒhL‚ª‚é‰e
+//---------åœ°ä¸‹ãƒ•ã‚§ãƒ¼ãƒ‰åºƒãŒã‚‹å½±
 static void initObj01(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data);
 static void deleteObj01(struct _EFCT_UG_OBJ* data);
 static int  moveObj01(struct _EFCT_UG_OBJ* data);
-//---------’n‰ºƒtƒF[ƒh—‚¿‚éålŒö
+//---------åœ°ä¸‹ãƒ•ã‚§ãƒ¼ãƒ‰è½ã¡ã‚‹ä¸»äººå…¬
 static void initObj02(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data);
 static void deleteObj02(struct _EFCT_UG_OBJ* data);
 static int  moveObj02(struct _EFCT_UG_OBJ* data);
-//---------’n‰ºƒtƒF[ƒhã‚éålŒö
+//---------åœ°ä¸‹ãƒ•ã‚§ãƒ¼ãƒ‰ä¸Šã‚‹ä¸»äººå…¬
 static void initObj03(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data);
 static void deleteObj03(struct _EFCT_UG_OBJ* data);
 static int  moveObj03(struct _EFCT_UG_OBJ* data);
-//---------’n‰ºƒtƒF[ƒh’nã‚Éo‚Ä‚­‚éålŒö
+//---------åœ°ä¸‹ãƒ•ã‚§ãƒ¼ãƒ‰åœ°ä¸Šã«å‡ºã¦ãã‚‹ä¸»äººå…¬
 static void initObj04(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data);
 static void deleteObj04(struct _EFCT_UG_OBJ* data);
 static int  moveObj04(struct _EFCT_UG_OBJ* data);
-//---------’n‰ºƒtƒF[ƒhk‚Ş‰e
+//---------åœ°ä¸‹ãƒ•ã‚§ãƒ¼ãƒ‰ç¸®ã‚€å½±
 static void initObj05(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data);
 static void deleteObj05(struct _EFCT_UG_OBJ* data);
 static int  moveObj05(struct _EFCT_UG_OBJ* data);
 
 
-// ’j—ƒLƒƒƒ‰ƒNƒ^@CLACT@ƒf[ƒ^ƒpƒX
+// ç”·å¥³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€€CLACTã€€ãƒ‡ãƒ¼ã‚¿ãƒ‘ã‚¹
 const static u8 BoyGirlCharPlttPathTbl[ 2 ][ 2 ] = {
 	{ NARC_ugroundeffect_uground_char_resdat, NARC_ugroundeffect_uground_char2_resdat },
 	{ NARC_ugroundeffect_uground_pltt_resdat, NARC_ugroundeffect_uground_pltt2_resdat },
@@ -363,10 +363,10 @@ const static u8 UnderGroundEff_VramTbl[ 4 ] = {
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	’n‰ºƒ}ƒbƒvƒtƒF[ƒh00
+ *@brief	åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰00
  *
- *@param	tcb		ƒ^ƒXƒNƒf[ƒ^
- *@param	work	ƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿
+ *@param	work	ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -376,54 +376,54 @@ const static u8 UnderGroundEff_VramTbl[ 4 ] = {
 void UGround00(TCB_PTR tcb, void* work)
 {
 	EFCT_UG_DATA* data = (EFCT_UG_DATA*)work;
-	int ret[2];		// ‚QƒIƒuƒWƒF—p–ß‚è’l
-	int i;			// ƒ‹[ƒv—p
+	int ret[2];		// ï¼’ã‚ªãƒ–ã‚¸ã‚§ç”¨æˆ»ã‚Šå€¤
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 	int last_seq;
 
 	last_seq = data->seq; 
 
 	if(data->drawsys.clactSet){
-		// ƒZƒ‹ƒAƒNƒ^[ƒƒCƒ“ŠÖ”
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¡ã‚¤ãƒ³é–¢æ•°
 		CLACT_Draw(data->drawsys.clactSet);
 	}
 
 	switch(data->seq){
 	case EFCT_UG00_PLAYER_OFF:
-		// ƒCƒxƒ“ƒglockƒNƒŠƒA
+		// ã‚¤ãƒ™ãƒ³ãƒˆlockã‚¯ãƒªã‚¢
 		FieldOBJ_MovePauseClear( Player_FieldOBJGet( data->fsys->player ) );
-		// ƒvƒŒƒCƒ„[‚ğÁ‚·
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æ¶ˆã™
 		Player_DispON_OFF_Set( data->fsys->player, FALSE );
 		data->seq++;
 		break;
 
-	case EFCT_UG00_SHADOW:		// ‰eì¬
-		makeObj(data, &data->objdata[0], 0);		// ålŒöì¬
-		makeObj(data, &data->objdata[1], 1);		// ‰eì¬
+	case EFCT_UG00_SHADOW:		// å½±ä½œæˆ
+		makeObj(data, &data->objdata[0], 0);		// ä¸»äººå…¬ä½œæˆ
+		makeObj(data, &data->objdata[1], 1);		// å½±ä½œæˆ
 		data->obj_num = 2;
 		data->seq ++;
 		break;
 
-	case EFCT_UG00_OBJ_MOVE:		// ƒIƒuƒWƒFƒNƒg‚ğ“®ì‚³‚¹‚é
+	case EFCT_UG00_OBJ_MOVE:		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‹•ä½œã•ã›ã‚‹
 		for(i=0;i<data->obj_num;i++){
 			ret[i] = data->objdata[i].move(&data->objdata[i]);
 		}
-		// ƒuƒ‰ƒbƒNƒtƒF[ƒhŠJn‚ğŒŸ’m
+		// ãƒ–ãƒ©ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹ã‚’æ¤œçŸ¥
 		if(ret[0] == EFCT_SYSRET_FADE){
 			WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_FIELD );
 		}
 
-		// I—¹ŒŸ’m
+		// çµ‚äº†æ¤œçŸ¥
 		for(i=0;i<data->obj_num;i++){
 			if(ret[i] != EFCT_SYSRET_END ){
 				break;
 			}
 		}
 		if(i == data->obj_num){
-			data->seq++;		// Ÿ‚Ö
+			data->seq++;		// æ¬¡ã¸
 		}
 		break;
 
-	case EFCT_UG00_FADE_WAIT:	// ƒtƒF[ƒh‘Ò‚¿
+	case EFCT_UG00_FADE_WAIT:	// ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		if( WIPE_SYS_EndCheck() ){
 			data->seq++;
 		}
@@ -439,7 +439,7 @@ void UGround00(TCB_PTR tcb, void* work)
 	case EFCT_UG00_DELETE:
 		*(data->end) = TRUE;
 
-		// ‘å–{ƒVƒXƒeƒ€‚à”jŠü
+		// å¤§æœ¬ã‚·ã‚¹ãƒ†ãƒ ã‚‚ç ´æ£„
 		UGroundDelete(tcb, data);
 		break;
 	}
@@ -449,10 +449,10 @@ void UGround00(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	’n‰ºƒ}ƒbƒvƒtƒF[ƒh01
+ *@brief	åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰01
  *
- *@param	tcb		ƒ^ƒXƒNƒf[ƒ^
- *@param	work	ƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿
+ *@param	work	ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -469,13 +469,13 @@ void UGround01(TCB_PTR tcb, void* work)
 	last_seq = data->seq; 
 
 	if(last_seq != EFCT_UG01_DELETE){
-		// ƒZƒ‹ƒAƒNƒ^[ƒƒCƒ“ŠÖ”
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¡ã‚¤ãƒ³é–¢æ•°
 		CLACT_Draw(data->drawsys.clactSet);
 	}
 
 	switch(data->seq){
 	case EFCT_UG01_OBJ_OFF:
-		// ƒvƒŒƒCƒ„[‚ğÁ‚·
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æ¶ˆã™
 		Player_DispON_OFF_Set( data->fsys->player, FALSE );
 		data->seq++;
 		break;
@@ -485,18 +485,18 @@ void UGround01(TCB_PTR tcb, void* work)
 //		maskBGScrollInit(GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_OBJ, GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_OBJ);
 //		maskBGScroll(data->fsys->bgl, GF_BGL_FRAME0_S, -255, 0);
 		
-		GF_BGL_PaletteSet( GF_BGL_FRAME0_S, &clearPal, 2, 0 );	// ƒpƒŒƒbƒgƒNƒŠƒA
+		GF_BGL_PaletteSet( GF_BGL_FRAME0_S, &clearPal, 2, 0 );	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¯ãƒªã‚¢
 		
-		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_BG0, VISIBLE_OFF);		// BG0–ÊƒIƒt
-		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_BG1, VISIBLE_OFF);		// BG1–ÊƒIƒt
+		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_BG0, VISIBLE_OFF);		// BG0é¢ã‚ªãƒ•
+		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_BG1, VISIBLE_OFF);		// BG1é¢ã‚ªãƒ•
 	
 		
-		// OBJ‚Ì‚İƒuƒ‰ƒCƒgƒlƒX‰ğœ	
-		makeObj(data, &data->objdata[0], 2);		// ålŒöì¬
+		// OBJã®ã¿ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è§£é™¤	
+		makeObj(data, &data->objdata[0], 2);		// ä¸»äººå…¬ä½œæˆ
 	
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_FIELD );
 		
-		// —‰º‰¹
+		// è½ä¸‹éŸ³
 		Snd_SePlay( SE_UG_CHG_DOWN );
 
 		data->obj_num = 1;
@@ -504,14 +504,14 @@ void UGround01(TCB_PTR tcb, void* work)
 		break;
 	
 
-	case EFCT_UG01_OBJ_MOVE:		// ƒIƒuƒWƒFƒNƒg‚ğ“®ì‚³‚¹‚é
+	case EFCT_UG01_OBJ_MOVE:		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‹•ä½œã•ã›ã‚‹
 		ret = data->objdata[0].move(&data->objdata[0]);
 
-		// I—¹ŒŸ’m
+		// çµ‚äº†æ¤œçŸ¥
 		if((ret == EFCT_SYSRET_END) && (WIPE_SYS_EndCheck())){
-			// ’…’n‰¹
+			// ç€åœ°éŸ³
 			Snd_SePlay( SE_LANDING );
-			data->seq++;		// Ÿ‚Ö
+			data->seq++;		// æ¬¡ã¸
 			data->wait = -255;
 		}
 		break;
@@ -522,7 +522,7 @@ void UGround01(TCB_PTR tcb, void* work)
 		if(data->wait > 0){
 //			maskBGScroll(data->fsys->bgl, GF_BGL_FRAME0_S, 0, 0);
 			data->seq++;
-			// ƒvƒŒƒCƒ„[‚ğ•\¦
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’è¡¨ç¤º
 			Player_DispON_OFF_Set( data->fsys->player, TRUE );
 		
 		}
@@ -533,9 +533,9 @@ void UGround01(TCB_PTR tcb, void* work)
 		data->seq++;
 		break;
 
-	case EFCT_UG01_DELETE:		// I—¹‚È‚Ì‚Åƒf[ƒ^”jŠü
+	case EFCT_UG01_DELETE:		// çµ‚äº†ãªã®ã§ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		*(data->end) = TRUE;
-		// ‘å–{ƒVƒXƒeƒ€‚à”jŠü
+		// å¤§æœ¬ã‚·ã‚¹ãƒ†ãƒ ã‚‚ç ´æ£„
 		UGroundDelete(tcb, data);
 //		maskBGScrollDelete();
 		break;
@@ -546,10 +546,10 @@ void UGround01(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	’n‰ºƒ}ƒbƒvƒtƒF[ƒh02	’nã‚Ö‚ÌƒtƒF[ƒh
+ *@brief	åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰02	åœ°ä¸Šã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰
  *
- *@param	tcb		ƒ^ƒXƒNƒf[ƒ^
- *@param	work	ƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿
+ *@param	work	ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -565,13 +565,13 @@ void UGround02(TCB_PTR tcb, void* work)
 	last_seq = data->seq;
 
 	if(last_seq != EFCT_UG02_DELETE){
-		// ƒZƒ‹ƒAƒNƒ^[ƒƒCƒ“ŠÖ”
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¡ã‚¤ãƒ³é–¢æ•°
 		CLACT_Draw(data->drawsys.clactSet);
 	}
 
 	switch(data->seq){
 	case EFCT_UG02_PLAYER_OFF:
-		// ƒvƒŒƒCƒ„[‚ğÁ‚·
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æ¶ˆã™
 		Player_DispON_OFF_Set( data->fsys->player, FALSE );
 		data->seq++;
 		break;
@@ -580,16 +580,16 @@ void UGround02(TCB_PTR tcb, void* work)
 //		maskBGScrollInit(GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_OBJ, GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_OBJ);
 //		maskBGScroll(data->fsys->bgl, GF_BGL_FRAME0_S, 0, 0);
 		
-		makeObj(data, &data->objdata[0], 3);		// ålŒöì¬
+		makeObj(data, &data->objdata[0], 3);		// ä¸»äººå…¬ä½œæˆ
 
-		// •‚ã‰¹
+		// æµ®ä¸ŠéŸ³
 		Snd_SePlay( SE_UG_CHG_UP );
 
 		data->obj_num = 1;
 		data->seq++;
 		break;
 
-	case EFCT_UG02_BG_FADE:		// BG–ÊƒtƒF[ƒh
+	case EFCT_UG02_BG_FADE:		// BGé¢ãƒ•ã‚§ãƒ¼ãƒ‰
 //		maskBGScroll(data->fsys->bgl, GF_BGL_FRAME0_S, data->wait, 0);
 		data->wait -= EFCT_UG02_BG;
 		if(data->wait < -255){
@@ -604,19 +604,19 @@ void UGround02(TCB_PTR tcb, void* work)
 	case EFCT_UG02_OBJ_MOVE:
 		ret = data->objdata[0].move(&data->objdata[0]);
 
-		// ƒzƒƒCƒgƒtƒF[ƒhŠJn‚ğŒŸ’m
+		// ãƒ›ãƒ¯ã‚¤ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹ã‚’æ¤œçŸ¥
 		if(ret == EFCT_SYSRET_FADE){
 			data->wait = 0;
 			WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_WHITE, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_FIELD );
 		}
 		
-		// I—¹ŒŸ’m
+		// çµ‚äº†æ¤œçŸ¥
 		if(ret == EFCT_SYSRET_END){
-			data->seq++;		// Ÿ‚Ö
+			data->seq++;		// æ¬¡ã¸
 		}
 		break;
 
-	case EFCT_UG02_FADE_WAIT:		// ƒtƒF[ƒh‘Ò‚¿
+	case EFCT_UG02_FADE_WAIT:		// ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		if( WIPE_SYS_EndCheck() ){
 			data->wait = 0;
 			data->seq++;
@@ -628,12 +628,12 @@ void UGround02(TCB_PTR tcb, void* work)
 		data->seq++;
 		break;
 	
-	case EFCT_UG02_DELETE:		// I—¹‚È‚Ì‚Åƒf[ƒ^”jŠü
+	case EFCT_UG02_DELETE:		// çµ‚äº†ãªã®ã§ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_BG1, VISIBLE_OFF);
 
 		*(data->end) = TRUE;
 		
-		// ‘å–{ƒVƒXƒeƒ€‚à”jŠü
+		// å¤§æœ¬ã‚·ã‚¹ãƒ†ãƒ ã‚‚ç ´æ£„
 		UGroundDelete(tcb, data);
 		break;
 	}
@@ -642,10 +642,10 @@ void UGround02(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	’n‰ºƒ}ƒbƒvƒtƒF[ƒh03
+ *@brief	åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰03
  *
- *@param	tcb		ƒ^ƒXƒNƒf[ƒ^
- *@param	work	ƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿
+ *@param	work	ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -655,24 +655,24 @@ void UGround02(TCB_PTR tcb, void* work)
 void UGround03(TCB_PTR tcb, void* work)
 {
 	EFCT_UG_DATA* data = (EFCT_UG_DATA*)work;
-	int ret[2];		// ‚QƒIƒuƒWƒF—p–ß‚è’l
-	int i;			// ƒ‹[ƒv—p
+	int ret[2];		// ï¼’ã‚ªãƒ–ã‚¸ã‚§ç”¨æˆ»ã‚Šå€¤
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 	int last_seq;
 
 	last_seq = data->seq;
 
 	if(last_seq != EFCT_UG03_DELETE){
-		// ƒZƒ‹ƒAƒNƒ^[ƒƒCƒ“ŠÖ”
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¡ã‚¤ãƒ³é–¢æ•°
 		CLACT_Draw(data->drawsys.clactSet);
 	}
 	
 	switch(data->seq){
 	case EFCT_UG03_START:
-		// ƒvƒŒƒCƒ„[‚ğÁ‚·
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æ¶ˆã™
 		Player_DispON_OFF_Set( data->fsys->player, FALSE );
 
-		makeObj(data, &data->objdata[0], 4);		// ålŒöì¬
-		makeObj(data, &data->objdata[1], 5);		// ‰eì¬
+		makeObj(data, &data->objdata[0], 4);		// ä¸»äººå…¬ä½œæˆ
+		makeObj(data, &data->objdata[1], 5);		// å½±ä½œæˆ
 		data->obj_num = 2;
 		data->seq++;
 		break;
@@ -682,24 +682,24 @@ void UGround03(TCB_PTR tcb, void* work)
 		data->seq++;
 		break;
 		
-	case EFCT_UG03_FADEIN_MW:	// ƒTƒuƒtƒF[ƒhƒCƒ“‘Ò‚¿
+	case EFCT_UG03_FADEIN_MW:	// ã‚µãƒ–ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 		if( WIPE_SYS_EndCheck() ){
-			// ålŒö‰ñ“]‰¹
+			// ä¸»äººå…¬å›è»¢éŸ³
 			Snd_SePlay( SE_UG_CHG_TURN );
 			data->seq++;
 		}
 		break;
 
 
-	case EFCT_UG03_OBJ_MOVE:		// ƒIƒuƒWƒFƒNƒg‚ğ“®ì‚³‚¹‚é
+	case EFCT_UG03_OBJ_MOVE:		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‹•ä½œã•ã›ã‚‹
 		ret[0] = data->objdata[0].move(&data->objdata[0]);
 
 		if( ret[0] == EFCT_SYSRET_END ){
-			// ƒvƒŒƒCƒ„[‚ğ•\¦
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’è¡¨ç¤º
 			Player_DispON_OFF_Set( data->fsys->player, TRUE );
 
 			data->wait = EFCT_UG03_OBJ_DEL_WAIT;
-			data->seq++;		// Ÿ‚Ö
+			data->seq++;		// æ¬¡ã¸
 		}
 		break;
 
@@ -716,7 +716,7 @@ void UGround03(TCB_PTR tcb, void* work)
 		}
 
 		if( ret[1] == EFCT_SYSRET_END ){
-			data->seq++;		// Ÿ‚Ö
+			data->seq++;		// æ¬¡ã¸
 		}
 		break;
 
@@ -725,10 +725,10 @@ void UGround03(TCB_PTR tcb, void* work)
 		data->seq++;
 		break;
 
-	case EFCT_UG03_DELETE:		// I—¹‚È‚Ì‚Åƒf[ƒ^”jŠü
+	case EFCT_UG03_DELETE:		// çµ‚äº†ãªã®ã§ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 
 		*(data->end) = TRUE;
-		// ‘å–{ƒVƒXƒeƒ€‚à”jŠü
+		// å¤§æœ¬ã‚·ã‚¹ãƒ†ãƒ ã‚‚ç ´æ£„
 		UGroundDelete(tcb, data);
 		break;
 	}
@@ -738,11 +738,11 @@ void UGround03(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	’n‰ºƒ}ƒbƒvƒtƒF[ƒhƒGƒtƒFƒNƒg
+ *@brief	åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *@param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN
- *@param	no		ƒGƒtƒFƒNƒgƒiƒ“ƒo[
- *@param	end		I—¹ƒ`ƒFƒbƒNƒtƒ‰ƒO
+ *@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *@param	no		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
+ *@param	end		çµ‚äº†ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°
  *
  *@return	none
  *
@@ -753,7 +753,7 @@ void StartUnderGroundEffect(FIELDSYS_WORK* fsys, int no, BOOL* end)
 {
 	EFCT_UG_DATA* data;
 		
-	/* ƒIƒuƒWƒFƒNƒgì¬ */
+	/* ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä½œæˆ */
 	switch(no){
 	case EFCT_UG_DOWN00:
 		data = UGroundAdd(UGround00, fsys, UnderGroundEff_VramTbl[ no ]);
@@ -775,13 +775,13 @@ void StartUnderGroundEffect(FIELDSYS_WORK* fsys, int no, BOOL* end)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	’n‰ºƒGƒtƒFƒNƒgƒf[ƒ^ì¬
+ *@brief	åœ°ä¸‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *@param	func	“®ìƒ^ƒXƒN
- *@param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
- *@param	resload_vram	ƒŠƒ\[ƒX“Ç‚İ‚İVRAM
+ *@param	func	å‹•ä½œã‚¿ã‚¹ã‚¯
+ *@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
+ *@param	resload_vram	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿VRAM
  *
- *@return	EFCT_UG_DATA*	ƒf[ƒ^
+ *@return	EFCT_UG_DATA*	ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -794,15 +794,15 @@ EFCT_UG_DATA* UGroundAdd(TCB_FUNC func, FIELDSYS_WORK* fsys, u32 resload_vram )
 	MYSTATUS* status;
 
 		
-	/* ƒIƒuƒWƒFƒNƒgì¬ */
+	/* ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä½œæˆ */
 	tcb = PMDS_taskAdd(func, sizeof(EFCT_UG_DATA), UNDER_TCB_PRI, HEAPID_FIELD);
 	data = TCB_GetWork(tcb);
 
-	/* ålŒö‚ª’j‚©—‚©æ“¾ */
+	/* ä¸»äººå…¬ãŒç”·ã‹å¥³ã‹å–å¾— */
 	status = SaveData_GetMyStatus( fsys->savedata );
 	boy_girl = MyStatus_GetMySex( status );
 	
-	/* •`‰æƒVƒXƒeƒ€ì¬ */
+	/* æç”»ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ */
 	initDrawSys(&data->drawsys, boy_girl, resload_vram );
 
 	return data;
@@ -810,10 +810,10 @@ EFCT_UG_DATA* UGroundAdd(TCB_FUNC func, FIELDSYS_WORK* fsys, u32 resload_vram )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	’n‰ºƒ}ƒbƒvƒtƒF[ƒhƒf[ƒ^”jŠü
+ *@brief	åœ°ä¸‹ãƒãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *@param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- *@param	data	”jŠüƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ *@param	data	ç ´æ£„ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -822,20 +822,20 @@ EFCT_UG_DATA* UGroundAdd(TCB_FUNC func, FIELDSYS_WORK* fsys, u32 resload_vram )
 //-----------------------------------------------------------------------------
 void UGroundDelete(TCB_PTR tcb, EFCT_UG_DATA* data)
 {
-	// •`‰æƒVƒXƒeƒ€”jŠü
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	deleteDrawSys(&data->drawsys);
 
-	PMDS_taskDel(tcb);	//ƒ^ƒXƒNI—¹	
+	PMDS_taskDel(tcb);	//ã‚¿ã‚¹ã‚¯çµ‚äº†	
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•`‰æƒVƒXƒeƒ€‚ğ‰Šú‰»•ƒf[ƒ^‚Ì“Ç‚İ‚İ
+ *@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ï¼†ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
  *
- *@param	data		•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *@param	boy_girl	’j‚©—‚©
- *@param	resload_vram	“Ç‚İ‚ŞVRAM
+ *@param	data		æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *@param	boy_girl	ç”·ã‹å¥³ã‹
+ *@param	resload_vram	èª­ã¿è¾¼ã‚€VRAM
  *
  *@return	none
  *
@@ -844,10 +844,10 @@ void UGroundDelete(TCB_PTR tcb, EFCT_UG_DATA* data)
 //-----------------------------------------------------------------------------
 void initDrawSys(EFCT_UG_DRAWSYS* data, int boy_girl, u32 resload_vram)
 {
-	// •`‰æƒVƒXƒeƒ€‰Šú‰»
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	init2DDrawSys(data);
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	load2DResFile(data, boy_girl, resload_vram);
 }
 
@@ -855,9 +855,9 @@ void initDrawSys(EFCT_UG_DRAWSYS* data, int boy_girl, u32 resload_vram)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•`‰æƒf[ƒ^‚Ì”jŠü
+ *@brief	æç”»ãƒ‡ãƒ¼ã‚¿ã®ç ´æ£„
  *
- *@param	data		•`‰æƒVƒXƒeƒ€ƒf[ƒ^
+ *@param	data		æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none 
  *
@@ -874,9 +874,9 @@ void deleteDrawSys(EFCT_UG_DRAWSYS* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚Q‚„•`‰æƒVƒXƒeƒ€ì¬
+ *@brief	ï¼’ï½„æç”»ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- *@param	data		•`‰æƒVƒXƒeƒ€ƒf[ƒ^
+ *@param	data		æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -885,9 +885,9 @@ void deleteDrawSys(EFCT_UG_DRAWSYS* data)
 //-----------------------------------------------------------------------------
 static void init2DDrawSys(EFCT_UG_DRAWSYS* data)
 {
-	// ŠÈˆÕƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
-	// ã‚Åì¬‚µ‚½‹¤—LOAMƒ}ƒl[ƒWƒƒ‚ğg—p‚µ‚ÄƒŒƒ“ƒ_ƒ‰[‚ğì¬‚µA
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚Ìì¬‚ğs‚¤
+	// ç°¡æ˜“ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
+	// ä¸Šã§ä½œæˆã—ãŸå…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ä½¿ç”¨ã—ã¦ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’ä½œæˆã—ã€
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ä½œæˆã‚’è¡Œã†
 	data->clactSet = CLACT_U_SetEasyInit( 2, &data->renddata, HEAPID_FIELD );
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
@@ -896,11 +896,11 @@ static void init2DDrawSys(EFCT_UG_DRAWSYS* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚Q‚„ƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş
+ *@brief	ï¼’ï½„ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
  *
  *@param	data
- *@param	boy_girl	’j‚©—‚©
- *@param	resload_vram	“Ç‚İ‚ŞVRAM
+ *@param	boy_girl	ç”·ã‹å¥³ã‹
+ *@param	resload_vram	èª­ã¿è¾¼ã‚€VRAM
  *
  *@return	none
  *
@@ -912,56 +912,56 @@ static void load2DResFile(EFCT_UG_DRAWSYS* data, int boy_girl, u32 resload_vram)
 	int i;
 	void* buff;
 	
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	for(i=0;i<DRAW_2D_RES_NUM;i++){
 		data->resMan[i] = CLACT_U_ResManagerInit(2, i, HEAPID_FIELD);
 	}
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
-	// ƒLƒƒƒ‰ƒNƒ^
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 	data->resObjNum[ CLACT_U_CHAR_RES ] = loadOneData(
 			data->resMan[ CLACT_U_CHAR_RES ], 
 			&data->resObjTbl[ CLACT_U_CHAR_RES ],
 			BoyGirlCharPlttPathTbl[ 0 ][ boy_girl ] );
 
-	// “Ç‚İ‚ŞVRAMİ’è
+	// èª­ã¿è¾¼ã‚€VRAMè¨­å®š
 	for( i=0; i<data->resObjTbl[ CLACT_U_CHAR_RES ]->tbl_now; i++ ){
 		CLACT_U_ResManagerSetResObjVramType( data->resObjTbl[ CLACT_U_CHAR_RES ]->tbl[ i ], resload_vram );
 	}
 	
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	data->resObjNum[ CLACT_U_PLTT_RES ] = loadOneData(
 			data->resMan[ CLACT_U_PLTT_RES ], 
 			&data->resObjTbl[ CLACT_U_PLTT_RES ],
 			BoyGirlCharPlttPathTbl[ 1 ][ boy_girl ] );
 
-	// “Ç‚İ‚ŞVRAMİ’è
+	// èª­ã¿è¾¼ã‚€VRAMè¨­å®š
 	for( i=0; i<data->resObjTbl[ CLACT_U_PLTT_RES ]->tbl_now; i++ ){
 		CLACT_U_ResManagerSetResObjVramType( data->resObjTbl[ CLACT_U_PLTT_RES ]->tbl[ i ], resload_vram );
 	}
 
 
-	// ƒZƒ‹
+	// ã‚»ãƒ«
 	data->resObjNum[ CLACT_U_CELL_RES ] = loadOneData(
 			data->resMan[ CLACT_U_CELL_RES ], 
 			NULL,
 			NARC_ugroundeffect_uground_cell_resdat);
-	// ƒZƒ‹ƒAƒjƒ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	data->resObjNum[ CLACT_U_CELLANM_RES ] = loadOneData(
 			data->resMan[ CLACT_U_CELLANM_RES ], 
 			NULL,
 			NARC_ugroundeffect_uground_cellanm_resdat);
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ‚É“o˜^
-	// Vram‚É”z’u‚µ‚Ü‚·B
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
+	// Vramã«é…ç½®ã—ã¾ã™ã€‚
 	CLACT_U_CharManagerSetsAreaCont(data->resObjTbl[0]);
 
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ‚É“o˜^
-	// Vram‚É”z’u‚µ‚Ü‚·B
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
+	// Vramã«é…ç½®ã—ã¾ã™ã€‚
 	CLACT_U_PlttManagerSetsCleanArea(data->resObjTbl[1]);
 
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 	buff = ArcUtil_Load( ARC_UGROUNDEFF_DATA, NARC_ugroundeffect_uground_clact_cldat,
 			FALSE, HEAPID_FIELD, ALLOC_TOP );
 	data->clactHeader = CLACT_U_MakeHeaderBinary(
@@ -979,34 +979,34 @@ static void load2DResFile(EFCT_UG_DRAWSYS* data, int boy_girl, u32 resload_vram)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒ^ƒCƒv‚ÌƒŠƒ\[ƒX‚ğƒwƒbƒ_[ƒf[ƒ^‚©‚ç“Ç‚İƒ€
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰èª­ã¿è¾¼ãƒ 
  *
- *@param	resMan		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ(ì¬Ï‚İ)
- *@param	resObjTbl	ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹ó‚¯æ‚èæ
- *@param	path		ƒƒ€ƒwƒbƒ_ƒpƒX
+ *@param	resMan		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£(ä½œæˆæ¸ˆã¿)
+ *@param	resObjTbl	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«å—ã‘å–ã‚Šå…ˆ
+ *@param	path		ãƒ­ãƒ ãƒ˜ãƒƒãƒ€ãƒ‘ã‚¹
  *
- *@return	int		ƒe[ƒuƒ‹”
+ *@return	int		ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
  *
  */
 //-----------------------------------------------------------------------------
 static int loadOneData(CLACT_U_RES_MANAGER_PTR resMan, CLACT_U_RES_OBJ_TBL** resObjTbl, u32 idx )
 {
-	CLACT_U_RES_HEADER_PTR res_head;		// ƒŠƒ\[ƒXƒwƒbƒ_
+	CLACT_U_RES_HEADER_PTR res_head;		// ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€
 	CLACT_U_RES_OBJ_TBL* work;
-	int	tbl_num;							// ƒwƒbƒ_“àƒe[ƒuƒ‹”
+	int	tbl_num;							// ãƒ˜ãƒƒãƒ€å†…ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 	void* buff;
 	
 
 	res_head = sys_AllocMemoryLo( HEAPID_FIELD, CLACT_U_ResManagerGetHeaderSize() );
 
-	// ƒwƒbƒ_“Ç‚İ‚İ
+	// ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 	buff = ArcUtil_Load( ARC_UGROUNDEFF_DATA, idx,
 			FALSE, HEAPID_FIELD, ALLOC_TOP );
 	CLACT_U_ResManagerHeaderLoadBinary(buff, res_head, HEAPID_FIELD);
 	sys_FreeMemoryEz( buff );
 
-	// ƒwƒbƒ_”•ª‚ÌƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹ì¬
+	// ãƒ˜ãƒƒãƒ€æ•°åˆ†ã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	if(resObjTbl != NULL){
 		tbl_num		= CLACT_U_ResManagerHeaderSetDataNum(res_head);
 		*resObjTbl	= CLACT_U_ResManagerResObjTblMake(tbl_num, HEAPID_FIELD);
@@ -1015,18 +1015,18 @@ static int loadOneData(CLACT_U_RES_MANAGER_PTR resMan, CLACT_U_RES_OBJ_TBL** res
 		work = NULL;
 	}
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	tbl_num = CLACT_U_ResManagerResAddsHd(
 				resMan,
 				res_head,
 				work,
 				HEAPID_FIELD);
 
-	// ƒwƒbƒ_”jŠü
+	// ãƒ˜ãƒƒãƒ€ç ´æ£„
 	CLACT_U_ResManagerHeaderFree(res_head);
 
-	// ƒwƒbƒ_‚ÅŠm•Û‚µ‚½ƒ[ƒN”jŠü
+	// ãƒ˜ãƒƒãƒ€ã§ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz(res_head);
 
 	return tbl_num;
@@ -1035,9 +1035,9 @@ static int loadOneData(CLACT_U_RES_MANAGER_PTR resMan, CLACT_U_RES_OBJ_TBL** res
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚QD•`‰æƒVƒXƒeƒ€ƒf[ƒ^”jŠü
+ *@brief	ï¼’Dæç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *@param	data		•`‰æƒVƒXƒeƒ€ƒf[ƒ^
+ *@param	data		æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1048,26 +1048,26 @@ static void delete2DDrawSys(EFCT_UG_DRAWSYS* data)
 {
 	int i;
 	
-	// ƒZƒbƒg‚Ì”jŠü
+	// ã‚»ãƒƒãƒˆã®ç ´æ£„
 	CLACT_DestSet(data->clactSet);
 	data->clactSet = NULL;
 	
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç ´æ£„
 	CLACT_U_CLACT_HeaderTblDelete(data->clactHeader);
 	data->clactHeader = NULL;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”jŠü
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CLACT_U_CharManagerDeletes( data->resObjTbl[ CLACT_U_CHAR_RES ] );
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CLACT_U_PlttManagerDeletes( data->resObjTbl[ CLACT_U_PLTT_RES ] );
 
-	// ƒLƒƒƒ‰ƒNƒ^‚ÆƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹‚ğ”jŠü
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç ´æ£„
 	for(i=0;i<2;i++){
 		CLACT_U_ResManagerResObjTblDelete(data->resObjTbl[i]);
 	}
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	for(i=0;i< DRAW_2D_RES_NUM;i++){
 		CLACT_U_ResManagerDelete(data->resMan[i]);
 	}
@@ -1081,11 +1081,11 @@ static void delete2DDrawSys(EFCT_UG_DRAWSYS* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒuƒWƒFƒNƒg‚Ìì¬
+ *@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
  *
- *@param	data	ƒGƒtƒFƒNƒgƒf[ƒ^
- *@param	obj		ƒf[ƒ^“ü—Í‚·‚éƒIƒuƒWƒF
- *@param	num		”
+ *@param	data	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ *@param	obj		ãƒ‡ãƒ¼ã‚¿å…¥åŠ›ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	num		æ•°
  *
  *@return	none
  *
@@ -1136,13 +1136,13 @@ void makeObj(EFCT_UG_DATA* data, EFCT_UG_OBJ* obj, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒAƒNƒ^[‚É“o˜^
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã«ç™»éŒ²
  *
- *@param	drawsys		•`‰æƒVƒXƒeƒ€
- *@param	act_no		ƒAƒNƒ^[ƒiƒ“ƒo[
- *@param	mat			À•W
- *@param	pri			•\¦—Dæ‡ˆÊ
- *@param	drawarea	•`‰æƒGƒŠƒA(Å‰‚Ìj
+ *@param	drawsys		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *@param	act_no		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *@param	mat			åº§æ¨™
+ *@param	pri			è¡¨ç¤ºå„ªå…ˆé †ä½
+ *@param	drawarea	æç”»ã‚¨ãƒªã‚¢(æœ€åˆã®ï¼‰
  *
  *@return	none
  *
@@ -1165,7 +1165,7 @@ static CLACT_WORK_PTR addCellAct(EFCT_UG_DRAWSYS* drawsys, int act_no, VecFx32* 
 	ca.heap			= HEAPID_FIELD;
 	
 	obj = CLACT_Add(&ca);
-	GF_ASSERT(obj&&("ƒZƒ‹ƒAƒNƒ^[“o˜^¸”s\n"));
+	GF_ASSERT(obj&&("ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²å¤±æ•—\n"));
 
 	return obj;
 }
@@ -1173,7 +1173,7 @@ static CLACT_WORK_PTR addCellAct(EFCT_UG_DRAWSYS* drawsys, int act_no, VecFx32* 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒuƒWƒFƒNƒg
+ *@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
  *@param	data
  *@param	obj
@@ -1191,16 +1191,16 @@ void deleteObj(EFCT_UG_OBJ* obj)
 
 //---------------------------------------------------------
 //
-//	ŒÂX‚ÌƒIƒuƒWƒFƒNƒg—p
+//	å€‹ã€…ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨
 //
 //=========================================================
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ålŒöƒIƒuƒWƒFƒNƒg‚Ì“o˜^
+ *@brief	ä¸»äººå…¬ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç™»éŒ²
  *
- *@param	drawsys		•`‰æƒf[ƒ^
- *@param	data		ƒIƒuƒWƒFƒNƒgƒf[ƒ^“o˜^ƒe[ƒuƒ‹
+ *@param	drawsys		æç”»ãƒ‡ãƒ¼ã‚¿
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *@return	none
  *
@@ -1211,7 +1211,7 @@ void initObj00(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 {
 	EFCT_UG_HERO* obj_w;
 	
-	// ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	data->data = sys_AllocMemory(HEAPID_FIELD, sizeof(EFCT_UG_HERO));
 	SDK_ASSERT(data->data);
 	memset(data->data, 0, sizeof(EFCT_UG_HERO));
@@ -1220,15 +1220,15 @@ void initObj00(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 	obj_w->matrix.x = EFECT_UGCOMMON_OBJ_MAT_X;
 	obj_w->matrix.y = EFECT_UGCOMMON_OBJ_MAT_Y;
 	
-	// ƒZƒ‹‚Ì“o˜^
+	// ã‚»ãƒ«ã®ç™»éŒ²
 	obj_w->cl = addCellAct(drawsys, 0, &obj_w->matrix, 0, 1);
 }
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ålŒöƒIƒuƒWƒF‚ğ”jŠü
+ *@brief	ä¸»äººå…¬ã‚ªãƒ–ã‚¸ã‚§ã‚’ç ´æ£„
  *
- *@param	data		ƒIƒuƒWƒFƒf[ƒ^
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
  *
  *@return
  *
@@ -1240,10 +1240,10 @@ void deleteObj00(struct _EFCT_UG_OBJ* data)
 	EFCT_UG_HERO* obj_w = (EFCT_UG_HERO*)data->data;
 	
 	if(data->data != NULL){
-		// ƒZƒ‹ƒAƒNƒ^[íœ
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 		CLACT_Delete(obj_w->cl);
 
-		// ƒIƒuƒWƒFƒNƒg”jŠü
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 		sys_FreeMemory(HEAPID_FIELD, data->data);
 		data->data = NULL;
 	}
@@ -1251,33 +1251,33 @@ void deleteObj00(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ålŒöƒIƒuƒWƒFƒNƒg‚Ì“®ìŠÖ”
+ *@brief	ä¸»äººå…¬ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‹•ä½œé–¢æ•°
  *
- *@param	data	ålŒöƒIƒuƒWƒFƒNƒg
+ *@param	data	ä¸»äººå…¬ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
- *@retval	EFCT_SYSRET_OK		³í
- *@retval	EFCT_SYSRET_FADE	ƒtƒF[ƒhŠJn
- *@retval	EFCT_SYSRET_END		I—¹
+ *@retval	EFCT_SYSRET_OK		æ­£å¸¸
+ *@retval	EFCT_SYSRET_FADE	ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
+ *@retval	EFCT_SYSRET_END		çµ‚äº†
  *
  *
  */
 //-----------------------------------------------------------------------------
 int moveObj00(struct _EFCT_UG_OBJ* data)
 {
-	VecFx32	mat;	// ƒZƒ‹•`‰æÀ•W
+	VecFx32	mat;	// ã‚»ãƒ«æç”»åº§æ¨™
 	EFCT_UG_HERO* obj_w = (EFCT_UG_HERO*)data->data;
 	
-	// ƒWƒƒƒ“ƒv‚³‚¹‚é
-	// ’¸ã•t‹ß‚ÅƒtƒF[ƒhŠJn
-	// ’n–Ê‚É“’B‚µ‚½‚çI—¹
+	// ã‚¸ãƒ£ãƒ³ãƒ—ã•ã›ã‚‹
+	// é ‚ä¸Šä»˜è¿‘ã§ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
+	// åœ°é¢ã«åˆ°é”ã—ãŸã‚‰çµ‚äº†
 	if(obj_w->count <= EFCT_UG00_OBJ_END){
 		mat = obj_w->matrix;
 		mat.y -= FX_Mul(FX_SinIdx(obj_w->count), EFCT_UG00_OBJ_JUMP_DIS);
-		CLACT_SetMatrix(obj_w->cl, &mat);		// À•W‚ğİ’è
+		CLACT_SetMatrix(obj_w->cl, &mat);		// åº§æ¨™ã‚’è¨­å®š
 		obj_w->count += EFCT_UG00_OBJ_CNNUM;
 		CLACT_AnmFrameChg(obj_w->cl, FX32_ONE);
 	
-		if(obj_w->count == EFCT_UG00_FADE_START){	//’¸ã‚ÅƒtƒF[ƒhŠJn
+		if(obj_w->count == EFCT_UG00_FADE_START){	//é ‚ä¸Šã§ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 			return EFCT_SYSRET_FADE;
 		}else{
 			return EFCT_SYSRET_OK;
@@ -1290,10 +1290,10 @@ int moveObj00(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰eì¬
+ *@brief	å½±ä½œæˆ
  *
- *@param	drawsys		•`‰æƒf[ƒ^
- *@param	data		ƒIƒuƒWƒFƒf[ƒ^
+ *@param	drawsys		æç”»ãƒ‡ãƒ¼ã‚¿
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1304,7 +1304,7 @@ void initObj01(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 {
 	EFCT_UG_SHADOW* obj_w;
 	
-	// ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	data->data = sys_AllocMemory(HEAPID_FIELD, sizeof(EFCT_UG_SHADOW));
 	SDK_ASSERT(data->data);
 	memset(data->data, 0, sizeof(EFCT_UG_SHADOW));
@@ -1313,7 +1313,7 @@ void initObj01(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 	obj_w->matrix.x = EFECT_UGCOMMON_OBJ_MAT_X;
 	obj_w->matrix.y = 96*FX32_ONE;
 	
-	// ƒZƒ‹‚Ì“o˜^
+	// ã‚»ãƒ«ã®ç™»éŒ²
 	obj_w->cl = addCellAct(drawsys, 1, &obj_w->matrix,1, 1);
 }
 void deleteObj01(struct _EFCT_UG_OBJ* data)
@@ -1321,10 +1321,10 @@ void deleteObj01(struct _EFCT_UG_OBJ* data)
 	EFCT_UG_SHADOW* obj_w = (EFCT_UG_SHADOW*)data->data;
 	
 	if(data->data != NULL){
-		// ƒZƒ‹ƒAƒNƒ^[íœ
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 		CLACT_Delete(obj_w->cl);
 
-		// ƒIƒuƒWƒFƒNƒg”jŠü
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 		sys_FreeMemory(HEAPID_FIELD, data->data);
 		data->data = NULL;
 	}
@@ -1332,13 +1332,13 @@ void deleteObj01(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰e‚ğ“®‚©‚·
+ *@brief	å½±ã‚’å‹•ã‹ã™
  *
  *@param	data
  *
- *@retval	EFCT_SYSRET_OK		³í
- *@retval	EFCT_SYSRET_FADE	ƒtƒF[ƒhŠJn
- *@retval	EFCT_SYSRET_END		I—¹
+ *@retval	EFCT_SYSRET_OK		æ­£å¸¸
+ *@retval	EFCT_SYSRET_FADE	ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
+ *@retval	EFCT_SYSRET_END		çµ‚äº†
  *
  *
  */
@@ -1347,7 +1347,7 @@ int moveObj01(struct _EFCT_UG_OBJ* data)
 {
 	EFCT_UG_SHADOW* obj_w = (EFCT_UG_SHADOW*)data->data;
 	
-	// ‰e‚ğ‘å‚«‚­‚µ‚ÄAÅŒã‚Ü‚Å‘å‚«‚­‚È‚Á‚½‚çI—¹
+	// å½±ã‚’å¤§ããã—ã¦ã€æœ€å¾Œã¾ã§å¤§ãããªã£ãŸã‚‰çµ‚äº†
 	if(obj_w->count < EFCT_UG00_SHADOW_COUNT){
 		CLACT_AnmFrameChg(obj_w->cl, FX32_ONE);
 		obj_w->count++;
@@ -1360,10 +1360,10 @@ int moveObj01(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	—‚¿‚Ä‚¢‚­ƒIƒuƒWƒFƒNƒg
+ *@brief	è½ã¡ã¦ã„ãã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
- *@param	drawsys		•`‰æƒf[ƒ^
- *@param	data		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+ *@param	drawsys		æç”»ãƒ‡ãƒ¼ã‚¿
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1374,7 +1374,7 @@ void initObj02(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 {
 	EFCT_UG_HERO* obj_w;
 	
-	// ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	data->data = sys_AllocMemory(HEAPID_FIELD, sizeof(EFCT_UG_HERO));
 	SDK_ASSERT(data->data);
 	memset(data->data, 0, sizeof(EFCT_UG_HERO));
@@ -1383,13 +1383,13 @@ void initObj02(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 	obj_w->matrix.x = EFECT_UGCOMMON_OBJ_MAT_X;
 	obj_w->matrix.y = EFCT_UG01_OBJ_MAT_Y;
 	
-	// ƒZƒ‹‚Ì“o˜^
+	// ã‚»ãƒ«ã®ç™»éŒ²
 	obj_w->cl = addCellAct(drawsys, 0, &obj_w->matrix, 0, 1);
 }
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	—‚¿‚éƒIƒuƒWƒF”jŠüŠÖ”
+ *@brief	è½ã¡ã‚‹ã‚ªãƒ–ã‚¸ã‚§ç ´æ£„é–¢æ•°
  *
  *@param	data
  *
@@ -1403,10 +1403,10 @@ void deleteObj02(struct _EFCT_UG_OBJ* data)
 	EFCT_UG_HERO* obj_w = (EFCT_UG_HERO*)data->data;
 	
 	if(data->data != NULL){
-		// ƒZƒ‹ƒAƒNƒ^[íœ
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 		CLACT_Delete(obj_w->cl);
 
-		// ƒIƒuƒWƒFƒNƒg”jŠü
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 		sys_FreeMemory(HEAPID_FIELD, data->data);
 		data->data = NULL;
 	}
@@ -1414,13 +1414,13 @@ void deleteObj02(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	—‚¿‚éƒIƒuƒWƒFƒNƒg
+ *@brief	è½ã¡ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
  *@param	data
  *
- *@retval	EFCT_SYSRET_OK		³í
- *@retval	EFCT_SYSRET_FADE	ƒtƒF[ƒhŠJn
- *@retval	EFCT_SYSRET_END		I—¹
+ *@retval	EFCT_SYSRET_OK		æ­£å¸¸
+ *@retval	EFCT_SYSRET_FADE	ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
+ *@retval	EFCT_SYSRET_END		çµ‚äº†
  *
  *
  */
@@ -1431,7 +1431,7 @@ int  moveObj02(struct _EFCT_UG_OBJ* data)
 	
 
 	obj_w->matrix.y += EFCT_UG01_MOVE;
-	CLACT_SetMatrix(obj_w->cl, &obj_w->matrix);		// À•W‚ğİ’è
+	CLACT_SetMatrix(obj_w->cl, &obj_w->matrix);		// åº§æ¨™ã‚’è¨­å®š
 	CLACT_AnmFrameChg(obj_w->cl, FX32_ONE);
 
 	if(obj_w->count == 0){
@@ -1442,7 +1442,7 @@ int  moveObj02(struct _EFCT_UG_OBJ* data)
 	}else{
 		if(obj_w->matrix.y >= EFCT_UG01_END){
 			obj_w->matrix.y = EFCT_UG01_END;
-			CLACT_SetMatrix(obj_w->cl, &obj_w->matrix);		// À•W‚ğİ’è
+			CLACT_SetMatrix(obj_w->cl, &obj_w->matrix);		// åº§æ¨™ã‚’è¨­å®š
 			return EFCT_SYSRET_END;
 		}
 	}
@@ -1454,10 +1454,10 @@ int  moveObj02(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒuƒWƒFƒNƒg‰Šú‰»
+ *@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
  *
- *@param	drawsys		•`‰æƒf[ƒ^
- *@param	data		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+ *@param	drawsys		æç”»ãƒ‡ãƒ¼ã‚¿
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1468,7 +1468,7 @@ void initObj03(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 {
 	EFCT_UG_HERO_EX* obj_w;
 	
-	// ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	data->data = sys_AllocMemory(HEAPID_FIELD, sizeof(EFCT_UG_HERO_EX));
 	SDK_ASSERT(data->data);
 	memset(data->data, 0, sizeof(EFCT_UG_HERO_EX));
@@ -1477,16 +1477,16 @@ void initObj03(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 	obj_w->matrix.x = EFECT_UGCOMMON_OBJ_MAT_X;
 	obj_w->matrix.y = EFECT_UGCOMMON_OBJ_MAT_Y;
 	
-	// ƒZƒ‹‚Ì“o˜^
+	// ã‚»ãƒ«ã®ç™»éŒ²
 	obj_w->cl = addCellAct(drawsys, 0, &obj_w->matrix, 0, 1);
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“Sequence•ÏX
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³Sequenceå¤‰æ›´
 	CLACT_AnmChg(obj_w->cl, 1);
 }
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	”jŠüŠÖ”
+ *@brief	ç ´æ£„é–¢æ•°
  *
  *@param	data
  *
@@ -1500,10 +1500,10 @@ void deleteObj03(struct _EFCT_UG_OBJ* data)
 	EFCT_UG_HERO_EX* obj_w = (EFCT_UG_HERO_EX*)data->data;
 	
 	if(data->data != NULL){
-		// ƒZƒ‹ƒAƒNƒ^[íœ
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 		CLACT_Delete(obj_w->cl);
 
-		// ƒIƒuƒWƒFƒNƒg”jŠü
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 		sys_FreeMemory(HEAPID_FIELD, data->data);
 		data->data = NULL;
 	}
@@ -1511,13 +1511,13 @@ void deleteObj03(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“®ìŠÖ”
+ *@brief	å‹•ä½œé–¢æ•°
  *
  *@param	data
  *
- *@retval	EFCT_SYSRET_OK		³í
- *@retval	EFCT_SYSRET_FADE	ƒtƒF[ƒhŠJn
- *@retval	EFCT_SYSRET_END		I—¹
+ *@retval	EFCT_SYSRET_OK		æ­£å¸¸
+ *@retval	EFCT_SYSRET_FADE	ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
+ *@retval	EFCT_SYSRET_END		çµ‚äº†
  *
  *
  */
@@ -1525,10 +1525,10 @@ void deleteObj03(struct _EFCT_UG_OBJ* data)
 int  moveObj03(struct _EFCT_UG_OBJ* data)
 {
 	EFCT_UG_HERO_EX* obj_w = (EFCT_UG_HERO_EX*)data->data;
-	int	ret	= EFCT_SYSRET_OK;	// –ß‚è’l
+	int	ret	= EFCT_SYSRET_OK;	// æˆ»ã‚Šå€¤
 
 	switch(obj_w->seq){
-	case 0:		// ‰ñ“]‚ğ‘‚­‚·‚é
+	case 0:		// å›è»¢ã‚’æ—©ãã™ã‚‹
 		obj_w->count += EFCT_UG02_ROTA_SA;
 		CLACT_AnmFrameChg(obj_w->cl, obj_w->count);
 		
@@ -1540,7 +1540,7 @@ int  moveObj03(struct _EFCT_UG_OBJ* data)
 	case 1:
 		if(obj_w->matrix.y > EFCT_UG02_REST){
 			obj_w->matrix.y -= EFCT_UG02_MOVE;
-			CLACT_SetMatrix(obj_w->cl, &obj_w->matrix);		// À•W‚ğİ’è
+			CLACT_SetMatrix(obj_w->cl, &obj_w->matrix);		// åº§æ¨™ã‚’è¨­å®š
 			CLACT_AnmFrameChg(obj_w->cl, obj_w->count);
 		}else{
 			obj_w->matrix.y = EFCT_UG02_OBJ_MAT_REST_Y;
@@ -1550,7 +1550,7 @@ int  moveObj03(struct _EFCT_UG_OBJ* data)
 	
 	case 2:
 		obj_w->matrix.y -= EFCT_UG02_MOVE;
-		CLACT_SetMatrix(obj_w->cl, &obj_w->matrix);		// À•W‚ğİ’è
+		CLACT_SetMatrix(obj_w->cl, &obj_w->matrix);		// åº§æ¨™ã‚’è¨­å®š
 		CLACT_AnmFrameChg(obj_w->cl, obj_w->count);
 		if((obj_w->matrix.y < EFCT_UG02_FADE_S)){
 			ret = EFCT_SYSRET_FADE;
@@ -1561,7 +1561,7 @@ int  moveObj03(struct _EFCT_UG_OBJ* data)
 	case 3:
 		if(obj_w->matrix.y > EFCT_UG02_END){
 			obj_w->matrix.y -= EFCT_UG02_MOVE;
-			CLACT_SetMatrix(obj_w->cl, &obj_w->matrix);		// À•W‚ğİ’è
+			CLACT_SetMatrix(obj_w->cl, &obj_w->matrix);		// åº§æ¨™ã‚’è¨­å®š
 			CLACT_AnmFrameChg(obj_w->cl, obj_w->count);
 		}else{
 			obj_w->seq++;
@@ -1579,10 +1579,10 @@ int  moveObj03(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ålŒöƒIƒuƒWƒFƒNƒg‚Ì“o˜^
+ *@brief	ä¸»äººå…¬ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç™»éŒ²
  *
- *@param	drawsys		•`‰æƒf[ƒ^
- *@param	data		ƒIƒuƒWƒFƒNƒgƒf[ƒ^“o˜^ƒe[ƒuƒ‹
+ *@param	drawsys		æç”»ãƒ‡ãƒ¼ã‚¿
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *@return	none
  *
@@ -1593,7 +1593,7 @@ void initObj04(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 {
 	EFCT_UG_HERO_EX* obj_w;
 	
-	// ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	data->data = sys_AllocMemory(HEAPID_FIELD, sizeof(EFCT_UG_HERO_EX));
 	SDK_ASSERT(data->data);
 	memset(data->data, 0, sizeof(EFCT_UG_HERO_EX));
@@ -1602,22 +1602,22 @@ void initObj04(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 	obj_w->matrix.x = EFECT_UGCOMMON_OBJ_MAT_X;
 	obj_w->matrix.y = EFECT_UGCOMMON_OBJ_MAT_Y;
 	
-	// ƒZƒ‹‚Ì“o˜^
+	// ã‚»ãƒ«ã®ç™»éŒ²
 	obj_w->cl = addCellAct(drawsys, 0, &obj_w->matrix, 0, 1);
 	
-	//ƒAƒjƒ[ƒVƒ‡ƒ“Sequence•ÏX
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³Sequenceå¤‰æ›´
 	CLACT_AnmChg(obj_w->cl, 1);
 	obj_w->count = EFCT_UG03_ROTA_S;
 
-	// •`‰æƒtƒ‰ƒOƒIƒt
+	// æç”»ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 	CLACT_SetDrawFlag(obj_w->cl, 0);
 }
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ålŒöƒIƒuƒWƒF‚ğ”jŠü
+ *@brief	ä¸»äººå…¬ã‚ªãƒ–ã‚¸ã‚§ã‚’ç ´æ£„
  *
- *@param	data		ƒIƒuƒWƒFƒf[ƒ^
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
  *
  *@return
  *
@@ -1629,10 +1629,10 @@ void deleteObj04(struct _EFCT_UG_OBJ* data)
 	EFCT_UG_HERO_EX* obj_w = (EFCT_UG_HERO_EX*)data->data;
 	
 	if(data->data != NULL){
-		// ƒZƒ‹ƒAƒNƒ^[íœ
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 		CLACT_Delete(obj_w->cl);
 
-		// ƒIƒuƒWƒFƒNƒg”jŠü
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 		sys_FreeMemory(HEAPID_FIELD, data->data);
 		data->data = NULL;
 	}
@@ -1640,26 +1640,26 @@ void deleteObj04(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ålŒöƒIƒuƒWƒFƒNƒg‚Ì“®ìŠÖ”
+ *@brief	ä¸»äººå…¬ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‹•ä½œé–¢æ•°
  *
- *@param	data	ålŒöƒIƒuƒWƒFƒNƒg
+ *@param	data	ä¸»äººå…¬ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
- *@retval	EFCT_SYSRET_OK		³í
- *@retval	EFCT_SYSRET_FADE	ƒtƒF[ƒhŠJn
- *@retval	EFCT_SYSRET_END		I—¹
+ *@retval	EFCT_SYSRET_OK		æ­£å¸¸
+ *@retval	EFCT_SYSRET_FADE	ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
+ *@retval	EFCT_SYSRET_END		çµ‚äº†
  *
  *
  */
 //-----------------------------------------------------------------------------
 int moveObj04(struct _EFCT_UG_OBJ* data)
 {
-	VecFx32	mat;	// ƒZƒ‹•`‰æÀ•W
+	VecFx32	mat;	// ã‚»ãƒ«æç”»åº§æ¨™
 	EFCT_UG_HERO_EX* obj_w = (EFCT_UG_HERO_EX*)data->data;
-	int	ret	= EFCT_SYSRET_OK;	// –ß‚è’l
+	int	ret	= EFCT_SYSRET_OK;	// æˆ»ã‚Šå€¤
 	
 	switch(obj_w->seq){
 	case 0:
-		// •`‰æƒtƒ‰ƒOƒIƒ“
+		// æç”»ãƒ•ãƒ©ã‚°ã‚ªãƒ³
 		CLACT_SetDrawFlag(obj_w->cl, 1);
 		obj_w->seq++;
 		break;
@@ -1667,7 +1667,7 @@ int moveObj04(struct _EFCT_UG_OBJ* data)
 		if(obj_w->count <= EFCT_UG03_OBJ_END){
 			mat = obj_w->matrix;
 			mat.y -= FX_Mul(FX_SinIdx(obj_w->count), EFCT_UG03_OBJ_JUMP_DIS);
-			CLACT_SetMatrix(obj_w->cl, &mat);		// À•W‚ğİ’è
+			CLACT_SetMatrix(obj_w->cl, &mat);		// åº§æ¨™ã‚’è¨­å®š
 			obj_w->count += EFCT_UG03_OBJ_CNNUM;
 			CLACT_AnmFrameChg(obj_w->cl, FX32_ONE);
 	
@@ -1675,7 +1675,7 @@ int moveObj04(struct _EFCT_UG_OBJ* data)
 			obj_w->seq++;
 		}
 		break;
-	case 2:		// ‰ñ“]‚ğ’x‚­‚·‚é
+	case 2:		// å›è»¢ã‚’é…ãã™ã‚‹
 		obj_w->count -= EFCT_UG03_ROTA_SA;
 		CLACT_AnmFrameChg(obj_w->cl, obj_w->count);
 		
@@ -1694,10 +1694,10 @@ int moveObj04(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰eì¬
+ *@brief	å½±ä½œæˆ
  *
- *@param	drawsys		•`‰æƒf[ƒ^
- *@param	data		ƒIƒuƒWƒFƒf[ƒ^
+ *@param	drawsys		æç”»ãƒ‡ãƒ¼ã‚¿
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1708,7 +1708,7 @@ void initObj05(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 {
 	EFCT_UG_SHADOW* obj_w;
 	
-	// ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	data->data = sys_AllocMemory(HEAPID_FIELD, sizeof(EFCT_UG_SHADOW));
 	SDK_ASSERT(data->data);
 	memset(data->data, 0, sizeof(EFCT_UG_SHADOW));
@@ -1717,10 +1717,10 @@ void initObj05(EFCT_UG_DRAWSYS* drawsys, struct _EFCT_UG_OBJ* data)
 	obj_w->matrix.x = EFECT_UGCOMMON_OBJ_MAT_X;
 	obj_w->matrix.y = 96*FX32_ONE;
 	
-	// ƒZƒ‹‚Ì“o˜^
+	// ã‚»ãƒ«ã®ç™»éŒ²
 	obj_w->cl = addCellAct(drawsys, 1, &obj_w->matrix, 1, 1);
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“Sequence•ÏX
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³Sequenceå¤‰æ›´
 	CLACT_AnmChg(obj_w->cl, 1);
 }
 void deleteObj05(struct _EFCT_UG_OBJ* data)
@@ -1728,10 +1728,10 @@ void deleteObj05(struct _EFCT_UG_OBJ* data)
 	EFCT_UG_SHADOW* obj_w = (EFCT_UG_SHADOW*)data->data;
 	
 	if(data->data != NULL){
-		// ƒZƒ‹ƒAƒNƒ^[íœ
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 		CLACT_Delete(obj_w->cl);
 
-		// ƒIƒuƒWƒFƒNƒg”jŠü
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 		sys_FreeMemory(HEAPID_FIELD, data->data);
 		data->data = NULL;
 	}
@@ -1739,13 +1739,13 @@ void deleteObj05(struct _EFCT_UG_OBJ* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰e‚ğ“®‚©‚·
+ *@brief	å½±ã‚’å‹•ã‹ã™
  *
  *@param	data
  *
- *@retval	EFCT_SYSRET_OK		³í
- *@retval	EFCT_SYSRET_FADE	ƒtƒF[ƒhŠJn
- *@retval	EFCT_SYSRET_END		I—¹
+ *@retval	EFCT_SYSRET_OK		æ­£å¸¸
+ *@retval	EFCT_SYSRET_FADE	ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
+ *@retval	EFCT_SYSRET_END		çµ‚äº†
  *
  *
  */
@@ -1754,7 +1754,7 @@ int moveObj05(struct _EFCT_UG_OBJ* data)
 {
 	EFCT_UG_SHADOW* obj_w = (EFCT_UG_SHADOW*)data->data;
 	
-	// ‰e‚ğ‘å‚«‚­‚µ‚ÄAÅŒã‚Ü‚Å‘å‚«‚­‚È‚Á‚½‚çI—¹
+	// å½±ã‚’å¤§ããã—ã¦ã€æœ€å¾Œã¾ã§å¤§ãããªã£ãŸã‚‰çµ‚äº†
 	if(obj_w->count < EFCT_UG03_SHADOW_COUNT){
 		CLACT_AnmFrameChg(obj_w->cl, FX32_ONE);
 		obj_w->count++;

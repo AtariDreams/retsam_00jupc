@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_light.c
- *	@brief		ÉâÉCÉgÉRÉìÉgÉçÅ[Éã
+ *	@brief		„É©„Ç§„Éà„Ç≥„É≥„Éà„É≠„Éº„É´
  *	@author		tomoya takahashi
  *	@data		2008.01.25
  *
@@ -15,19 +15,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ÉRÅ[ÉfÉBÉìÉOãKñÒ
- *		Åúä÷êîñº
- *				ÇPï∂éöñ⁄ÇÕëÂï∂éöÇªÇÍà»ç~ÇÕè¨ï∂éöÇ…Ç∑ÇÈ
- *		Åúïœêîñº
- *				ÅEïœêîã§í 
- *						constÇ…ÇÕ c_ ÇïtÇØÇÈ
- *						staticÇ…ÇÕ s_ ÇïtÇØÇÈ
- *						É|ÉCÉìÉ^Ç…ÇÕ p_ ÇïtÇØÇÈ
- *						ëSÇƒçáÇÌÇ≥ÇÈÇ∆ csp_ Ç∆Ç»ÇÈ
- *				ÅEÉOÉçÅ[ÉoÉãïœêî
- *						ÇPï∂éöñ⁄ÇÕëÂï∂éö
- *				ÅEä÷êîì‡ïœêî
- *						è¨ï∂éöÇ∆ÅhÅQÅhÇ∆êîéöÇégópÇ∑ÇÈ ä÷êîÇÃà¯êîÇ‡Ç±ÇÍÇ∆ìØÇ∂
+ *					„Ç≥„Éº„Éá„Ç£„É≥„Ç∞Ë¶èÁ¥Ñ
+ *		‚óèÈñ¢Êï∞Âêç
+ *				ÔºëÊñáÂ≠óÁõÆ„ÅØÂ§ßÊñáÂ≠ó„Åù„Çå‰ª•Èôç„ÅØÂ∞èÊñáÂ≠ó„Å´„Åô„Çã
+ *		‚óèÂ§âÊï∞Âêç
+ *				„ÉªÂ§âÊï∞ÂÖ±ÈÄö
+ *						const„Å´„ÅØ c_ „Çí‰ªò„Åë„Çã
+ *						static„Å´„ÅØ s_ „Çí‰ªò„Åë„Çã
+ *						„Éù„Ç§„É≥„Çø„Å´„ÅØ p_ „Çí‰ªò„Åë„Çã
+ *						ÂÖ®„Å¶Âêà„Çè„Åï„Çã„Å® csp_ „Å®„Å™„Çã
+ *				„Éª„Ç∞„É≠„Éº„Éê„É´Â§âÊï∞
+ *						ÔºëÊñáÂ≠óÁõÆ„ÅØÂ§ßÊñáÂ≠ó
+ *				„ÉªÈñ¢Êï∞ÂÜÖÂ§âÊï∞
+ *						Â∞èÊñáÂ≠ó„Å®‚ÄùÔºø‚Äù„Å®Êï∞Â≠ó„Çí‰ΩøÁî®„Åô„Çã Èñ¢Êï∞„ÅÆÂºïÊï∞„ÇÇ„Åì„Çå„Å®Âêå„Åò
 */
 //-----------------------------------------------------------------------------
 #ifdef PM_DEBUG
@@ -43,30 +43,30 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					íËêîêÈåæ
+ *					ÂÆöÊï∞ÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
-#define WFLBY_LIGHT_LIGHT_NUM	(2)		// ÉâÉCÉgêî
-#define WFLBY_LIGHT_MAT_NUM		(4)		// É}ÉeÉäÉAÉã
+#define WFLBY_LIGHT_LIGHT_NUM	(2)		// „É©„Ç§„ÉàÊï∞
+#define WFLBY_LIGHT_MAT_NUM		(4)		// „Éû„ÉÜ„É™„Ç¢„É´
 //  RGB
 enum{
 	WFLBY_LIGHT_COL_R,
 	WFLBY_LIGHT_COL_G,
 	WFLBY_LIGHT_COL_B,
-	WFLBY_LIGHT_COL_PAD,	// ÉpÉfÉBÉìÉO
+	WFLBY_LIGHT_COL_PAD,	// „Éë„Éá„Ç£„É≥„Ç∞
 	WFLBY_LIGHT_COL_NUM,
 };
 
-// ÉâÉCÉgÉfÅ[É^îΩâfÉtÉåÅ[ÉÄêî
+// „É©„Ç§„Éà„Éá„Éº„ÇøÂèçÊò†„Éï„É¨„Éº„É†Êï∞
 #define WFLBY_LIGHT_FADE_COUNT	( 60 )
 
 //-----------------------------------------------------------------------------
 /**
- *					ç\ë¢ëÃêÈåæ
+ *					ÊßãÈÄ†‰ΩìÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ÉâÉCÉgÉfÅ[É^
+///	„É©„Ç§„Éà„Éá„Éº„Çø
 //=====================================
 typedef struct{
 	GXRgb lightcolor;
@@ -77,7 +77,7 @@ typedef struct{
 } WFLBY_LIGHTDATA_FLOOR;
 
 //-------------------------------------
-///	ÉJÉâÅ[ÉfÅ[É^
+///	„Ç´„É©„Éº„Éá„Éº„Çø
 //=====================================
 typedef struct {
 	s8	color[ WFLBY_LIGHT_COL_NUM ];
@@ -85,7 +85,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	ÉâÉCÉgè⁄ç◊ÉfÅ[É^
+///	„É©„Ç§„ÉàË©≥Á¥∞„Éá„Éº„Çø
 //=====================================
 typedef struct {
 	WFLBY_LIGHT_COL lightcolor_ful[WFLBY_LIGHT_LIGHT_NUM];
@@ -94,24 +94,24 @@ typedef struct {
 
 
 //-------------------------------------
-///	ÉâÉCÉgÉVÉXÉeÉÄ
+///	„É©„Ç§„Éà„Ç∑„Çπ„ÉÜ„É†
 //=====================================
 typedef struct _WFLBY_LIGHTWK {
-	WFLBY_LIGHT_FULL	now;		// ê›íËíl
-	WFLBY_LIGHT_FULL	last;		// ïœçXëO
-	WFLBY_LIGHT_FULL	next;		// ïœçXå„
-	s32					lightcount[WFLBY_LIGHT_LIGHT_NUM];	// ïœçXÉJÉEÉìÉ^
-	s32					matcount[WFLBY_LIGHT_MAT_NUM];	// ïœçXÉJÉEÉìÉ^
+	WFLBY_LIGHT_FULL	now;		// Ë®≠ÂÆöÂÄ§
+	WFLBY_LIGHT_FULL	last;		// Â§âÊõ¥Ââç
+	WFLBY_LIGHT_FULL	next;		// Â§âÊõ¥Âæå
+	s32					lightcount[WFLBY_LIGHT_LIGHT_NUM];	// Â§âÊõ¥„Ç´„Ç¶„É≥„Çø
+	s32					matcount[WFLBY_LIGHT_MAT_NUM];	// Â§âÊõ¥„Ç´„Ç¶„É≥„Çø
 }WFLBY_LIGHTWK;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ÉâÉCÉgÉfÅ[É^
+ *					„É©„Ç§„Éà„Éá„Éº„Çø
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	é∫ì‡ÉâÉCÉgÉfÅ[É^
+///	ÂÆ§ÂÜÖ„É©„Ç§„Éà„Éá„Éº„Çø
 //=====================================
 static const WFLBY_LIGHTDATA_ROOM sc_WFLBY_LIGHTDATA_ROOM[ WFLBY_LIGHT_NEON_ROOMNUM ] = {
 	// WFLBY_LIGHT_NEON_ROOM0
@@ -182,7 +182,7 @@ static const WFLBY_LIGHTDATA_ROOM sc_WFLBY_LIGHTDATA_ROOM[ WFLBY_LIGHT_NEON_ROOM
 };
 
 //-------------------------------------
-///	è∞Å@ÉÇÉjÉÖÉÅÉìÉgÉâÉCÉgÉfÅ[É^
+///	Â∫ä„ÄÄ„É¢„Éã„É•„É°„É≥„Éà„É©„Ç§„Éà„Éá„Éº„Çø
 //=====================================
 static const WFLBY_LIGHTDATA_FLOOR sc_WFLBY_LIGHTDATA_FLOOR[ WFLBY_LIGHT_NEON_FLOORNUM ] = {
 	// WFLBY_LIGHT_NEON_FLOOR0
@@ -211,7 +211,7 @@ static const WFLBY_LIGHTDATA_FLOOR sc_WFLBY_LIGHTDATA_FLOOR[ WFLBY_LIGHT_NEON_FL
 
 //-----------------------------------------------------------------------------
 /**
- *					ÉvÉçÉgÉ^ÉCÉvêÈåæ
+ *					„Éó„É≠„Éà„Çø„Ç§„ÉóÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 static void WFLBY_LIGHT_ConvetLightColToNitro( const WFLBY_LIGHT_COL* cp_data, GXRgb* p_col );
@@ -225,14 +225,14 @@ static void WFLBY_LIGHT_Ful_SetLight( const WFLBY_LIGHT_FULL* cp_data0 );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÉâÉCÉgèâä˙âª
+ *	@brief	„É©„Ç§„ÉàÂàùÊúüÂåñ
  *
- *	@param	heapID		ÉqÅ[ÉvID
- *	@param	roomtype	ïîâÆÉ^ÉCÉv
- *	@param	floor		è∞É^ÉCÉv
- *	@param	monu		ÉÇÉjÉÖÉÅÉìÉgÉ^ÉCÉv
+ *	@param	heapID		„Éí„Éº„ÉóID
+ *	@param	roomtype	ÈÉ®Â±ã„Çø„Ç§„Éó
+ *	@param	floor		Â∫ä„Çø„Ç§„Éó
+ *	@param	monu		„É¢„Éã„É•„É°„É≥„Éà„Çø„Ç§„Éó
  *
- *	@return	èoóàÇΩÉèÅ[ÉN
+ *	@return	Âá∫Êù•„Åü„ÉØ„Éº„ÇØ
  */
 //-----------------------------------------------------------------------------
 WFLBY_LIGHTWK* WFLBY_LIGHT_Init( u32 heapID, WFLBY_LIGHT_NEON_ROOMTYPE roomtype, WFLBY_LIGHT_NEON_FLOORTYPE floor, WFLBY_LIGHT_NEON_MONUTYPE monu )
@@ -260,9 +260,9 @@ WFLBY_LIGHTWK* WFLBY_LIGHT_Init( u32 heapID, WFLBY_LIGHT_NEON_ROOMTYPE roomtype,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÉâÉCÉgîjä¸
+ *	@brief	„É©„Ç§„ÉàÁ†¥Ê£Ñ
  *
- *	@param	p_wk	ÉèÅ[ÉN
+ *	@param	p_wk	„ÉØ„Éº„ÇØ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_LIGHT_Exit( WFLBY_LIGHTWK* p_wk )
@@ -272,9 +272,9 @@ void WFLBY_LIGHT_Exit( WFLBY_LIGHTWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÉâÉCÉgÉÅÉCÉì
+ *	@brief	„É©„Ç§„Éà„É°„Ç§„É≥
  *
- *	@param	p_wk	ÉèÅ[ÉN
+ *	@param	p_wk	„ÉØ„Éº„ÇØ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_LIGHT_Main( WFLBY_LIGHTWK* p_wk )
@@ -307,18 +307,18 @@ void WFLBY_LIGHT_Main( WFLBY_LIGHTWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ïîâÆÉlÉIÉìê›íË
+ *	@brief	ÈÉ®Â±ã„Éç„Ç™„É≥Ë®≠ÂÆö
  *
- *	@param	p_wk		ÉèÅ[ÉN
- *	@param	roomtype	ïîâÆÉ^ÉCÉv
+ *	@param	p_wk		„ÉØ„Éº„ÇØ
+ *	@param	roomtype	ÈÉ®Â±ã„Çø„Ç§„Éó
  */
 //-----------------------------------------------------------------------------
 void WFLBY_LIGHT_SetRoom( WFLBY_LIGHTWK* p_wk, WFLBY_LIGHT_NEON_ROOMTYPE roomtype )
 {
 	int i;
 	
-	// ÉâÉXÉgÇ…ç°Ç‹Ç≈ÇÃï®Çê›íË
-	// ÉJÉEÉìÉgê›íË
+	// „É©„Çπ„Éà„Å´‰ªä„Åæ„Åß„ÅÆÁâ©„ÇíË®≠ÂÆö
+	// „Ç´„Ç¶„É≥„ÉàË®≠ÂÆö
 	p_wk->last.lightcolor_ful[0]	= p_wk->now.lightcolor_ful[0];
 	p_wk->lightcount[0]				= 0;
 	WFLBY_LIGHT_ConvetNitroToLightCol( &p_wk->next.lightcolor_ful[0], 
@@ -334,10 +334,10 @@ void WFLBY_LIGHT_SetRoom( WFLBY_LIGHTWK* p_wk, WFLBY_LIGHT_NEON_ROOMTYPE roomtyp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	è∞ÉlÉIÉìê›íË
+ *	@brief	Â∫ä„Éç„Ç™„É≥Ë®≠ÂÆö
  *
- *	@param	p_wk		ÉèÅ[ÉN
- *	@param	floor		è∞ÉlÉIÉìê›íË
+ *	@param	p_wk		„ÉØ„Éº„ÇØ
+ *	@param	floor		Â∫ä„Éç„Ç™„É≥Ë®≠ÂÆö
  */
 //-----------------------------------------------------------------------------
 void WFLBY_LIGHT_SetFloor( WFLBY_LIGHTWK* p_wk, WFLBY_LIGHT_NEON_FLOORTYPE floor )
@@ -350,10 +350,10 @@ void WFLBY_LIGHT_SetFloor( WFLBY_LIGHTWK* p_wk, WFLBY_LIGHT_NEON_FLOORTYPE floor
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÉÇÉjÉÖÉÅÉìÉgÉlÉIÉìê›íË
+ *	@brief	„É¢„Éã„É•„É°„É≥„Éà„Éç„Ç™„É≥Ë®≠ÂÆö
  *
- *	@param	p_wk		ÉèÅ[ÉN
- *	@param	monu		ÉÇÉjÉÖÉÅÉìÉgÉlÉIÉìê›íË
+ *	@param	p_wk		„ÉØ„Éº„ÇØ
+ *	@param	monu		„É¢„Éã„É•„É°„É≥„Éà„Éç„Ç™„É≥Ë®≠ÂÆö
  */
 //-----------------------------------------------------------------------------
 void WFLBY_LIGHT_SetMonu( WFLBY_LIGHTWK* p_wk, WFLBY_LIGHT_NEON_MONUTYPE monu )
@@ -367,14 +367,14 @@ void WFLBY_LIGHT_SetMonu( WFLBY_LIGHTWK* p_wk, WFLBY_LIGHT_NEON_MONUTYPE monu )
 
 //-----------------------------------------------------------------------------
 /**
- *		ÉvÉâÉCÉxÅ[Égä÷êî
+ *		„Éó„É©„Ç§„Éô„Éº„ÉàÈñ¢Êï∞
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÉJÉâÅ[ÉRÉìÉoÅ[Ég
+ *	@brief	„Ç´„É©„Éº„Ç≥„É≥„Éê„Éº„Éà
  *
- *	@param	cp_data		ÉJÉâÅ[ÉfÅ[É^
+ *	@param	cp_data		„Ç´„É©„Éº„Éá„Éº„Çø
  *	@param	p_col		NitroRGB
  */
 //-----------------------------------------------------------------------------
@@ -395,13 +395,13 @@ static void WFLBY_LIGHT_ConvetNitroToLightCol( WFLBY_LIGHT_COL* p_data, const GX
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÉJÉâÅ[Merge	ÉfÅ[É^ÇPÇ©ÇÁÉfÅ[É^ÇQÇ…Ç∑ÇÈ
+ *	@brief	„Ç´„É©„ÉºMerge	„Éá„Éº„ÇøÔºë„Åã„Çâ„Éá„Éº„ÇøÔºí„Å´„Åô„Çã
  *
- *	@param	cp_data0		ÉfÅ[É^ÇP
- *	@param	cp_data1		ÉfÅ[É^ÇQ
- *	@param	p_datain		äiî[êÊ
- *	@param	count			ÉJÉEÉìÉ^
- *	@param	countmax		ÉJÉEÉìÉ^MAX
+ *	@param	cp_data0		„Éá„Éº„ÇøÔºë
+ *	@param	cp_data1		„Éá„Éº„ÇøÔºí
+ *	@param	p_datain		Ê†ºÁ¥çÂÖà
+ *	@param	count			„Ç´„Ç¶„É≥„Çø
+ *	@param	countmax		„Ç´„Ç¶„É≥„ÇøMAX
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_LIGHT_Col_Marge( const WFLBY_LIGHT_COL* cp_data0, const WFLBY_LIGHT_COL* cp_data1, WFLBY_LIGHT_COL* p_datain, s32 count, s32 countmax )
@@ -423,10 +423,10 @@ static void WFLBY_LIGHT_Col_Marge( const WFLBY_LIGHT_COL* cp_data0, const WFLBY_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÉâÉCÉgÉfÅ[É^ÇÃê›íË
+ *	@brief	„É©„Ç§„Éà„Éá„Éº„Çø„ÅÆË®≠ÂÆö
  *
- *	@param	p_data			ÉèÅ[ÉN
- *	@param	cp_lightdata	ÉâÉCÉgÉfÅ[É^
+ *	@param	p_data			„ÉØ„Éº„ÇØ
+ *	@param	cp_lightdata	„É©„Ç§„Éà„Éá„Éº„Çø
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_LIGHT_Ful_SetLIGHTDATA_ROOM( WFLBY_LIGHT_FULL* p_data, const WFLBY_LIGHTDATA_ROOM* cp_lightdata )
@@ -439,7 +439,7 @@ static void WFLBY_LIGHT_Ful_SetLIGHTDATA_ROOM( WFLBY_LIGHT_FULL* p_data, const W
 		WFLBY_LIGHT_ConvetNitroToLightCol( &p_data->matcolor_ful[i], &cp_lightdata->matcolor[i] );
 	}
 }
-// è∞ÉâÉCÉgóp
+// Â∫ä„É©„Ç§„ÉàÁî®
 static void WFLBY_LIGHT_Ful_SetLIGHTDATA_FLOOR( WFLBY_LIGHT_FULL* p_data, const WFLBY_LIGHTDATA_FLOOR* cp_lightdata )
 {
 	WFLBY_LIGHT_ConvetNitroToLightCol( &p_data->lightcolor_ful[1], &cp_lightdata->lightcolor );
@@ -447,9 +447,9 @@ static void WFLBY_LIGHT_Ful_SetLIGHTDATA_FLOOR( WFLBY_LIGHT_FULL* p_data, const 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÉâÉCÉgÉfÅ[É^ê›íË
+ *	@brief	„É©„Ç§„Éà„Éá„Éº„ÇøË®≠ÂÆö
  *
- *	@param cp_data0			ÉfÅ[É^
+ *	@param cp_data0			„Éá„Éº„Çø
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_LIGHT_Ful_SetLight( const WFLBY_LIGHT_FULL* cp_data0 )

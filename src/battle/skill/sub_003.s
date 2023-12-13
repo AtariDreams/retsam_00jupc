@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_003.s
- *@brief	�퓬�V�[�P���X
- *			������V�[�P���X
+ *@brief	戦闘シーケンス
+ *			逃げるシーケンス
  *@author	HisashiSogabe
  *@data		2005.07.29
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_003:
-	//���������񂩂��ӂ��������Ă�����A��Ԉُ�𒼂�
+	//特性しぜんかいふくをもっていたら、状態異常を直す
 	SIZENKAIHUKU_CHECK	SIDE_MINE_1,SUB_003_MINE2
 	PSP_VALUE			VAL_SET,SIDE_MINE_1,ID_PSP_condition,0
 SUB_003_MINE2:
@@ -25,11 +25,11 @@ SUB_003_START:
 
 	SE_PLAY			SIDE_ATTACK,BSE_ESCAPE
 	IF				IF_FLAG_BIT,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_TOWER,TowerEscape
-	//�ʐM�ΐ�́A�����A�������ʂ��݂Ȃ�
+	//通信対戦は、特性、装備効果をみない
 	IF				IF_FLAG_BIT,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_SIO,SioEscape
-	//�����ɂ��������`�F�b�N
+	//特性にげあしかチェック
 	TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_ATTACK,TOKUSYU_NIGEASI,Nigeashi
-	//�������ʂł��Ȃ炸������邩�`�F�b�N
+	//装備効果でかならず逃げれるかチェック
 	SOUBI_CHECK		SOUBI_HAVE,SIDE_ATTACK,SOUBI_KANARAZUNIGERARERU,Kemuridama
 Command:
 	MESSAGE			EscapeMsg,TAG_NONE

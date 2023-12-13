@@ -1,6 +1,6 @@
 //=============================================================================
 /**
- *	@brief	ƒ}ƒbƒvƒŠƒ\[ƒX§Œäƒwƒbƒ_ƒtƒ@ƒCƒ‹
+ *	@brief	ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹åˆ¶å¾¡ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
  *
  *	@param	none
  *	@retval	none
@@ -11,7 +11,7 @@
 #include "mapresource_def.h"
 #include "field_3d_anime.h"
 #include "mat_shp.h"
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 extern MAP_RESOURCE_PTR AllocMapResource(int area_id,FLD_3D_ANM_MNG_PTR field_3d_anime);
 extern void SetupMapResource(MAP_RESOURCE_PTR outMapResource);
 extern void ReleaseMapResource(MAP_RESOURCE_PTR *mapresource);
@@ -20,7 +20,7 @@ extern NNSG3dResFileHeader** GetMapResourceModelRes(const int index, const MAP_R
 extern NNSG3dResTex *GetMapResourceTexturePTR(const MAP_RESOURCE_PTR mapresource);
 extern NNSG3dResTex *GetMapResourceBmTexturePTR(const MAP_RESOURCE_PTR mapresource);
 
-//ƒ}ƒeƒŠƒAƒ‹AƒVƒFƒCƒv‘Î‰ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾ŠÖ”
+//ãƒãƒ†ãƒªã‚¢ãƒ«ã€ã‚·ã‚§ã‚¤ãƒ—å¯¾å¿œãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—é–¢æ•°
 extern MSD_CONST_PTR GetMatShpDataPtr(const MAP_RESOURCE_PTR mapresource);
 extern BOOL MAPRES_IsValidLight(const MAP_RESOURCE_PTR mapresource);
 extern u8 MAPRES_GetLightIndex(const MAP_RESOURCE_PTR mapresource);

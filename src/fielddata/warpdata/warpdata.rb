@@ -1,6 +1,6 @@
 ###############################################################
 #
-#	ƒ[ƒvƒf[ƒ^—pƒRƒ“ƒo[ƒ^
+#	ãƒ¯ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ç”¨ã‚³ãƒ³ãƒãƒ¼ã‚¿
 #
 #
 #	date	2006.04.01
@@ -59,15 +59,15 @@ class OutputFile
 	def diff_overwrite diff_file
 		if FileTest.exist? diff_file then
 			if filediff(diff_file) == true then
-				#·•ª‚ª‚ ‚Á‚½ê‡‚ÍXV
+				#å·®åˆ†ãŒã‚ã£ãŸå ´åˆã¯æ›´æ–°
 				File.delete diff_file
 				File.rename @name, diff_file
 			else
-				#·•ª‚ª‚È‚©‚Á‚½ê‡‚Í©•ª‚Ìƒtƒ@ƒCƒ‹‚ğíœ
+				#å·®åˆ†ãŒãªã‹ã£ãŸå ´åˆã¯è‡ªåˆ†ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
 				File.delete @name
 			end
 		else
-			#diff_file‚ª‘¶İ‚µ‚È‚¢ê‡‚Í©•ª‚Ìƒtƒ@ƒCƒ‹‚ğdiff_file‚ÉƒŠƒl[ƒ€
+			#diff_fileãŒå­˜åœ¨ã—ãªã„å ´åˆã¯è‡ªåˆ†ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’diff_fileã«ãƒªãƒãƒ¼ãƒ 
 			File.rename @name, diff_file
 		end
 	end
@@ -133,18 +133,18 @@ end
 ###############################################################
 
 def convert	infile
-	#ƒf[ƒ^ƒtƒ@ƒCƒ‹i•Ê–¼‚Åì¬j
+	#ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆåˆ¥åã§ä½œæˆï¼‰
 	datafile = WarpDataFile.new("temp_data.c")
-	#ƒwƒbƒ_ƒtƒ@ƒCƒ‹i•Ê–¼‚Åì¬j
+	#ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆåˆ¥åã§ä½œæˆï¼‰
 	headerfile = WarpHeaderFile.new("temp_data.h")
 
-	line = infile.gets	#2s“Ç‚İ”ò‚Î‚µ
+	line = infile.gets	#2è¡Œèª­ã¿é£›ã°ã—
 	line = infile.gets
 
 	while line = infile.gets
 		if line =~/^[1-9]/ then
 			cl = line.split
-			datafile.putLine	cl[1],cl[2],cl[3],cl[4] == "›", cl[5],cl[6],cl[7],cl[8] == "›", cl[9]
+			datafile.putLine	cl[1],cl[2],cl[3],cl[4] == "â—‹", cl[5],cl[6],cl[7],cl[8] == "â—‹", cl[9]
 			headerfile.putLine	cl[9],cl[0]
 		else
 			break
@@ -154,9 +154,9 @@ def convert	infile
 	datafile.close
 	headerfile.close
 
-	#‚à‚Æ‚à‚Æ‚Ìƒf[ƒ^ƒtƒ@ƒCƒ‹‚Æ”äŠrA•Ï‰»‚ª‚ ‚ê‚Îã‘‚«‚·‚é
+	#ã‚‚ã¨ã‚‚ã¨ã®ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã¨æ¯”è¼ƒã€å¤‰åŒ–ãŒã‚ã‚Œã°ä¸Šæ›¸ãã™ã‚‹
 	datafile.diff_overwrite "warpdata.c"
-	#‚à‚Æ‚à‚Æ‚Ìƒwƒbƒ_ƒtƒ@ƒCƒ‹‚Æ”äŠrA•Ï‰»‚ª‚ ‚ê‚Îã‘‚«‚·‚é
+	#ã‚‚ã¨ã‚‚ã¨ã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã¨æ¯”è¼ƒã€å¤‰åŒ–ãŒã‚ã‚Œã°ä¸Šæ›¸ãã™ã‚‹
 	headerfile.diff_overwrite "warpdata.h"
 end
 

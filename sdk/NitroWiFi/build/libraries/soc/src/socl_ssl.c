@@ -15,13 +15,13 @@
   INDENT SOURCE
 
   Revision 1.3  2005/08/24 09:25:13  yasu
-  SOCL_SocketIsInvalid ’Ç‰Á
+  SOCL_SocketIsInvalid è¿½åŠ 
 
   Revision 1.2  2005/08/10 09:32:00  seiki_masashi
-  SSL ‚ÌƒTƒ|[ƒg‚ğ’Ç‰Á
+  SSL ã®ã‚µãƒãƒ¼ãƒˆã‚’è¿½åŠ 
 
   Revision 1.1  2005/08/06 11:55:46  seiki_masashi
-  SOCL_EnableSsl ‚ğ’Ç‰Á
+  SOCL_EnableSsl ã‚’è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -33,19 +33,19 @@ static int  SOCLi_ExecEnableSslCommand(SOCLSocket* socket, SOCLSslConnection* co
 /*---------------------------------------------------------------------------*
   Name:         SOCL_EnableSsl
 
-  Description:  ƒ\ƒPƒbƒg‚ğ SSL ƒ‚[ƒh‚É‚·‚éB
-                bind ‘O‚ÉŒÄ‚Ño‚³‚Ë‚Î‚È‚ç‚È‚¢B
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‚’ SSL ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã€‚
+                bind å‰ã«å‘¼ã³å‡ºã•ã­ã°ãªã‚‰ãªã„ã€‚
   
-  Arguments:    s    ƒ\ƒPƒbƒg
-                con  SOCLSslConnection \‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                     NULL ‚Å SSL ƒ‚[ƒh‚©‚ç’Êí‚É–ß‚·
+  Arguments:    s    ã‚½ã‚±ãƒƒãƒˆ
+                con  SOCLSslConnection æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                     NULL ã§ SSL ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰é€šå¸¸ã«æˆ»ã™
   
-  Returns:      ³ or 0: ¬Œ÷
-                •‰     : ƒGƒ‰[
-                  Œ»óƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒGƒ‰[’l‚ÍˆÈ‰º
+  Returns:      æ­£ or 0: æˆåŠŸ
+                è²      : ã‚¨ãƒ©ãƒ¼
+                  ç¾çŠ¶ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼å€¤ã¯ä»¥ä¸‹
                     - :  
-                  ƒGƒ‰[’l‚Í’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ßA‘¼‚Ì•‰‚Ì’l‚à‘S‚Ä”Ä—p
-                  ƒGƒ‰[‚Æ‚µ‚Äˆµ‚¤‚±‚ÆD
+                  ã‚¨ãƒ©ãƒ¼å€¤ã¯è¿½åŠ ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€ä»–ã®è² ã®å€¤ã‚‚å…¨ã¦æ±ç”¨
+                  ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦æ‰±ã†ã“ã¨ï¼
  *---------------------------------------------------------------------------*/
 int SOCL_EnableSsl(int s, SOCLSslConnection* con)
 {
@@ -53,22 +53,22 @@ int SOCL_EnableSsl(int s, SOCLSslConnection* con)
 
     if (SOCL_SocketIsInvalid(socket))
     {
-        return SOCL_EINVAL;     // ‹K’èŠO‚Ì’l
+        return SOCL_EINVAL;     // è¦å®šå¤–ã®å€¤
     }
 
     if (!SOCL_SocketIsTCP(socket))
     {
-        return SOCL_EINVAL;     // SSL ‚Í TCP ‚Å‚µ‚©g‚¦‚È‚¢
+        return SOCL_EINVAL;     // SSL ã¯ TCP ã§ã—ã‹ä½¿ãˆãªã„
     }
 
     if (!SOCL_SocketIsCreated(socket))
     {
-        return SOCL_ENETRESET;  // ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_ENETRESET;  // åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
     }
 
     if (SOCL_SocketIsConnecting(socket))
     {
-        return SOCL_EINVAL;     // Ú‘±ˆ—‚ğŠJn‚µ‚Ä‚¢‚é
+        return SOCL_EINVAL;     // æ¥ç¶šå‡¦ç†ã‚’é–‹å§‹ã—ã¦ã„ã‚‹
     }
 
     return SOCLi_ExecEnableSslCommand(socket, con);
@@ -77,36 +77,36 @@ int SOCL_EnableSsl(int s, SOCLSslConnection* con)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ExecEnableSslCommand
 
-  Description:  ƒ\ƒPƒbƒg‚ğ SSL ƒ‚[ƒh‚É‚·‚é
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‚’ SSL ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹
   
-  Arguments:    s    ƒ\ƒPƒbƒg
-                con  SOCLSslConnection \‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                     NULL ‚Å SSL ƒ‚[ƒh‚©‚ç’Êí‚É–ß‚·
+  Arguments:    s    ã‚½ã‚±ãƒƒãƒˆ
+                con  SOCLSslConnection æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                     NULL ã§ SSL ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰é€šå¸¸ã«æˆ»ã™
   
-  Returns:      ³or 0: ¬Œ÷
-                •‰    : ƒGƒ‰[
-                Œ»óƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒGƒ‰[’l‚ÍˆÈ‰º
+  Returns:      æ­£or 0: æˆåŠŸ
+                è²     : ã‚¨ãƒ©ãƒ¼
+                ç¾çŠ¶ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼å€¤ã¯ä»¥ä¸‹
                     - :  
-                ƒGƒ‰[’l‚Í’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ßA‘¼‚Ì•‰‚Ì’l‚à‘S‚Ä”Ä—p
-                ƒGƒ‰[‚Æ‚µ‚Äˆµ‚¤‚±‚ÆD
+                ã‚¨ãƒ©ãƒ¼å€¤ã¯è¿½åŠ ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€ä»–ã®è² ã®å€¤ã‚‚å…¨ã¦æ±ç”¨
+                ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦æ‰±ã†ã“ã¨ï¼
  *---------------------------------------------------------------------------*/
 static int SOCLi_ExecEnableSslCommand(SOCLSocket* socket, SOCLSslConnection* con)
 {
     SOCLiCommandPacket*     command;
     s32 result;
 
-    // recv_pipe ‚ÉƒRƒ}ƒ“ƒh‚ğ“Š‚°AƒR[ƒ‹ƒoƒbƒNŠÖ”“à•”‚Å CPS_SetSsl ‚ğ
-    // Às‚·‚éDƒRƒ}ƒ“ƒh‚ğŠm•Û‚Å‚«‚È‚¢ê‡‚ÉƒGƒ‰[‚Æ‚È‚é
+    // recv_pipe ã«ã‚³ãƒãƒ³ãƒ‰ã‚’æŠ•ã’ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…éƒ¨ã§ CPS_SetSsl ã‚’
+    // å®Ÿè¡Œã™ã‚‹ï¼ã‚³ãƒãƒ³ãƒ‰ã‚’ç¢ºä¿ã§ããªã„å ´åˆã«ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹
     command = SOCLi_CreateCommandPacket(SOCLi_EnableSslCallBack, socket, OS_MESSAGE_BLOCK);
     if (NULL == command)
     {
         return SOCL_EMFILE;
     }
 
-    // enable ssl —p‚Ìƒpƒ‰ƒ[ƒ^İ’è
+    // enable ssl ç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
     command->enable_ssl.connection = con;
 
-    // ƒRƒ}ƒ“ƒhÀs
+    // ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
     result = SOCLi_ExecCommandPacketInRecvPipe(socket, command);
 
     return result;
@@ -115,11 +115,11 @@ static int SOCLi_ExecEnableSslCommand(SOCLSocket* socket, SOCLSslConnection* con
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_EnableSslCallBack
 
-  Description:  EnableSsl ‚ÌƒR[ƒ‹ƒoƒbƒN
+  Description:  EnableSsl ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
   
-  Arguments:    arg  ƒRƒ}ƒ“ƒhƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    arg  ã‚³ãƒãƒ³ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
   
-  Returns:      SOCLi_ExecCommand* ‚É“n‚³‚ê‚é’l(BLOCKƒ‚[ƒh‚Ì‚Æ‚«)
+  Returns:      SOCLi_ExecCommand* ã«æ¸¡ã•ã‚Œã‚‹å€¤(BLOCKãƒ¢ãƒ¼ãƒ‰ã®ã¨ã)
  *---------------------------------------------------------------------------*/
 static int SOCLi_EnableSslCallBack(void* arg)
 {
@@ -156,5 +156,5 @@ static int SOCLi_EnableSslCallBack(void* arg)
 
     OS_UnlockMutex(&recv_pipe->h.in_use);
 
-    return SOCL_ESUCCESS;               // ¬Œ÷
+    return SOCL_ESUCCESS;               // æˆåŠŸ
 }

@@ -29,25 +29,25 @@
 //****************************************************************************
 
 //----------------------------------------------------------------------------
-// •`‰æ
+// æç”»
 //----------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dTextCanvasDrawString
 
-  Description:  Å‰‚Ì‰üs•¶š‚à‚µ‚­‚ÍI’[•¶š‚Ü‚Å‚ğ•`‰æ‚µ‚Ü‚·B
+  Description:  æœ€åˆã®æ”¹è¡Œæ–‡å­—ã‚‚ã—ãã¯çµ‚ç«¯æ–‡å­—ã¾ã§ã‚’æç”»ã—ã¾ã™ã€‚
 
-  Arguments:    pTxn:   •`‰æ‘ÎÛ‚Ì TextCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                x:      •`‰æŠJnˆÊ’u‚Ì x À•WB
-                y:      •`‰æŠJnˆÊ’u‚Ì y À•WB
-                cl:     •¶šF‚ÌF”Ô†B
-                str:    •`‰æ‚·‚é•¶š—ñB
-                pPos:   ‰üs•¶š‚Ü‚Å•`‰æ‚µ‚½ê‡‚Í‰üs•¶š‚ÌŸ‚Ì•¶š‚Ö‚Ì
-                        ƒ|ƒCƒ“ƒ^‚ğAI’[•¶š‚Ü‚Å•`‰æ‚µ‚½ê‡‚ÍNULL‚ğŠi”[‚·‚é
-                        ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                        •s—v‚Èê‡‚ÍNULL‚ğw’è‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+  Arguments:    pTxn:   æç”»å¯¾è±¡ã® TextCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                x:      æç”»é–‹å§‹ä½ç½®ã® x åº§æ¨™ã€‚
+                y:      æç”»é–‹å§‹ä½ç½®ã® y åº§æ¨™ã€‚
+                cl:     æ–‡å­—è‰²ã®è‰²ç•ªå·ã€‚
+                str:    æç”»ã™ã‚‹æ–‡å­—åˆ—ã€‚
+                pPos:   æ”¹è¡Œæ–‡å­—ã¾ã§æç”»ã—ãŸå ´åˆã¯æ”¹è¡Œæ–‡å­—ã®æ¬¡ã®æ–‡å­—ã¸ã®
+                        ãƒã‚¤ãƒ³ã‚¿ã‚’ã€çµ‚ç«¯æ–‡å­—ã¾ã§æç”»ã—ãŸå ´åˆã¯NULLã‚’æ ¼ç´ã™ã‚‹
+                        ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                        ä¸è¦ãªå ´åˆã¯NULLã‚’æŒ‡å®šã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNSi_G2dTextCanvasDrawString(
     const NNSG2dTextCanvas* pTxn,
@@ -61,8 +61,8 @@ void NNSi_G2dTextCanvasDrawString(
 #endif
 )
 {
-    const void* pos;        // •`‰æ‘ÎÛ‚Ì•¶š‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    int charSpace;          // •¶šŠÔŠu (1•¶š–Ú‚Ì•¶š‚Ì‰E’[‚Æ2•¶š–Ú‚Ì•¶š‚Ì¶’[‚ÌŠÔŠu)
+    const void* pos;        // æç”»å¯¾è±¡ã®æ–‡å­—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    int charSpace;          // æ–‡å­—é–“éš” (1æ–‡å­—ç›®ã®æ–‡å­—ã®å³ç«¯ã¨2æ–‡å­—ç›®ã®æ–‡å­—ã®å·¦ç«¯ã®é–“éš”)
     const NNSG2dFont* pFont;
     u16 c;
     NNSiG2dSplitCharCallback getNextChar;
@@ -88,7 +88,7 @@ void NNSi_G2dTextCanvasDrawString(
             break;
         }
 
-        // 1•¶š•`‰æ
+        // 1æ–‡å­—æç”»
         {
             const int w = NNS_G2dCharCanvasDrawChar(pTxn->pCanvas, pFont, x, y, cl, c) + charSpace;
 #ifdef NNS_G2D_FONT_ENABLE_DIRECTION_SUPPORT
@@ -111,17 +111,17 @@ void NNSi_G2dTextCanvasDrawString(
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dTextCanvasDrawTextAlign
 
-  Description:  areaWidth ‚Ì•“à‚Å¶‰E’†Šñ‚¹‚ğ‚µ‚Ä•`‰æ‚µ‚Ü‚·B
+  Description:  areaWidth ã®å¹…å†…ã§å·¦å³ä¸­å¯„ã›ã‚’ã—ã¦æç”»ã—ã¾ã™ã€‚
 
-  Arguments:    pTxn:       •`‰æ‘ÎÛ‚Ì TextCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                x:          •`‰æŠJnˆÊ’u‚Ì x À•WB
-                y:          •`‰æŠJnˆÊ’u‚Ì y À•WB
-                cl:         •¶šF‚ÌF”Ô†B
-                flags:      •`‰æˆÊ’u‚ğw’è‚·‚éƒtƒ‰ƒOB
-                txt:        •`‰æ‚·‚é•¶š—ñB
-                areaWidth:  ‰EŠñ‚¹A’†Šñ‚¹‚ÌÛ‚ÉQÆ‚³‚ê‚é•`‰æ—Ìˆæ•B
+  Arguments:    pTxn:       æç”»å¯¾è±¡ã® TextCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                x:          æç”»é–‹å§‹ä½ç½®ã® x åº§æ¨™ã€‚
+                y:          æç”»é–‹å§‹ä½ç½®ã® y åº§æ¨™ã€‚
+                cl:         æ–‡å­—è‰²ã®è‰²ç•ªå·ã€‚
+                flags:      æç”»ä½ç½®ã‚’æŒ‡å®šã™ã‚‹ãƒ•ãƒ©ã‚°ã€‚
+                txt:        æç”»ã™ã‚‹æ–‡å­—åˆ—ã€‚
+                areaWidth:  å³å¯„ã›ã€ä¸­å¯„ã›ã®éš›ã«å‚ç…§ã•ã‚Œã‚‹æç”»é ˜åŸŸå¹…ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNSi_G2dTextCanvasDrawTextAlign(
     const NNSG2dTextCanvas* pTxn,
@@ -136,14 +136,14 @@ void NNSi_G2dTextCanvasDrawTextAlign(
 #endif
 )
 {
-    const void* str;    // •`‰æ‘ÎÛ‚Ì•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    int linefeed;       // s‘—‚èi1s–Ú‚Ìs‚Ìã’[‚Æ2s–Ú‚Ìs‚Ìã’[‚ÌŠÔŠuj
+    const void* str;    // æç”»å¯¾è±¡ã®æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    int linefeed;       // è¡Œé€ã‚Šï¼ˆ1è¡Œç›®ã®è¡Œã®ä¸Šç«¯ã¨2è¡Œç›®ã®è¡Œã®ä¸Šç«¯ã®é–“éš”ï¼‰
 #ifdef NNS_G2D_FONT_ENABLE_DIRECTION_SUPPORT
     int linefeedx;
     int linefeedy;
     int line;
 #endif
-    int charSpace;      // •¶šŠÔŠu (1•¶š–Ú‚Ì•¶š‚Ì‰E’[‚Æ2•¶š–Ú‚Ì•¶š‚Ì¶’[‚ÌŠÔŠu)
+    int charSpace;      // æ–‡å­—é–“éš” (1æ–‡å­—ç›®ã®æ–‡å­—ã®å³ç«¯ã¨2æ–‡å­—ç›®ã®æ–‡å­—ã®å·¦ç«¯ã®é–“éš”)
     const NNSG2dFont* pFont;
     int px, py;
 
@@ -213,16 +213,16 @@ void NNSi_G2dTextCanvasDrawTextAlign(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dTextCanvasDrawText
 
-  Description:  (x,y) ‚É‘Î‚µ‚Ä flags ‚Åw’è‚³‚ê‚é”z’u‚Å•¶š—ñ‚ğ•`‰æ‚µ‚Ü‚·B
+  Description:  (x,y) ã«å¯¾ã—ã¦ flags ã§æŒ‡å®šã•ã‚Œã‚‹é…ç½®ã§æ–‡å­—åˆ—ã‚’æç”»ã—ã¾ã™ã€‚
 
-  Arguments:    pTxn:   TextCanvas‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                x:      •`‰æŠî€À•WB
-                y:      •`‰æŠî€À•WB
-                cl:     •¶š‚Ì•`‰æF”Ô†B
-                flags:  ”z’uw’èƒtƒ‰ƒOB
-                txt:    •`‰æ‚·‚é•¶š—ñB
+  Arguments:    pTxn:   TextCanvasã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                x:      æç”»åŸºæº–åº§æ¨™ã€‚
+                y:      æç”»åŸºæº–åº§æ¨™ã€‚
+                cl:     æ–‡å­—ã®æç”»è‰²ç•ªå·ã€‚
+                flags:  é…ç½®æŒ‡å®šãƒ•ãƒ©ã‚°ã€‚
+                txt:    æç”»ã™ã‚‹æ–‡å­—åˆ—ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNSi_G2dTextCanvasDrawText(
     const NNSG2dTextCanvas* pTxn,
@@ -246,7 +246,7 @@ void NNSi_G2dTextCanvasDrawText(
         (1 << NNS_G2dTextCanvasGetCharCanvas(pTxn)->dstBpp)
         - (1 << NNS_G2dFontGetBpp(NNS_G2dTextCanvasGetFont(pTxn))) + 1 );
 
-    // ¶ãÀ•W‚ğ‹‚ß‚é
+    // å·¦ä¸Šåº§æ¨™ã‚’æ±‚ã‚ã‚‹
     {
         area = NNS_G2dTextCanvasGetTextRect(pTxn, txt);
 
@@ -305,19 +305,19 @@ void NNSi_G2dTextCanvasDrawText(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dTextCanvasDrawTextRect
 
-  Description:  ‹éŒ`‚ğŠî€‚É•¶š—ñ‚ğ”z’u‚µ‚Ä•`‰æ‚µ‚Ü‚·B
-                ‹éŒ`“à‚Éû‚Ü‚é‚æ‚¤‚É•`‰æ‚·‚é‚í‚¯‚Å‚Í‚ ‚è‚Ü‚¹‚ñB
+  Description:  çŸ©å½¢ã‚’åŸºæº–ã«æ–‡å­—åˆ—ã‚’é…ç½®ã—ã¦æç”»ã—ã¾ã™ã€‚
+                çŸ©å½¢å†…ã«åã¾ã‚‹ã‚ˆã†ã«æç”»ã™ã‚‹ã‚ã‘ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
 
-  Arguments:    pTxn:   TextCanvas‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                x:      ‹éŒ`¶ãÀ•WB
-                y:      ‹éŒ`¶ãÀ•WB
-                cl:     •¶š‚Ì•`‰æF”Ô†B
-                flags:  ”z’uw’èƒtƒ‰ƒOB
-                txt:    •`‰æ‚·‚é•¶š—ñB
-                w:      ‹éŒ`•B
-                h:      ‹éŒ`‚‚³B
+  Arguments:    pTxn:   TextCanvasã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                x:      çŸ©å½¢å·¦ä¸Šåº§æ¨™ã€‚
+                y:      çŸ©å½¢å·¦ä¸Šåº§æ¨™ã€‚
+                cl:     æ–‡å­—ã®æç”»è‰²ç•ªå·ã€‚
+                flags:  é…ç½®æŒ‡å®šãƒ•ãƒ©ã‚°ã€‚
+                txt:    æç”»ã™ã‚‹æ–‡å­—åˆ—ã€‚
+                w:      çŸ©å½¢å¹…ã€‚
+                h:      çŸ©å½¢é«˜ã•ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNSi_G2dTextCanvasDrawTextRect(
     const NNSG2dTextCanvas* pTxn,
@@ -341,7 +341,7 @@ void NNSi_G2dTextCanvasDrawTextRect(
         (1 << NNS_G2dTextCanvasGetCharCanvas(pTxn)->dstBpp)
         - (1 << NNS_G2dFontGetBpp(NNS_G2dTextCanvasGetFont(pTxn))) + 1 );
 
-    // y À•W‚ğƒtƒ‰ƒO‚É‰‚¶‚Ä•â³
+    // y åº§æ¨™ã‚’ãƒ•ãƒ©ã‚°ã«å¿œã˜ã¦è£œæ­£
     {
         if( flags & NNS_G2D_VERTICALALIGN_BOTTOM )
         {
@@ -379,20 +379,20 @@ void NNSi_G2dTextCanvasDrawTextRect(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dTextCanvasDrawTaggedText
 
-  Description:  ƒ^ƒO‚ª–„‚ß‚Ü‚ê‚½•¡”s‚Ì•¶š—ñ‚ğ•`‰æ‚µ‚Ü‚·B
-                §Œä•¶š(0x00-0x09,0x0B-0x1F) ‚ğ•¶š—ñ’†‚Å
-                ”­Œ©‚·‚é‚ÆƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ño‚µ‚Ü‚·B
-                ƒ^ƒO‚Ìˆ—‚Í‘S‚ÄƒR[ƒ‹ƒoƒbƒN‚É”C‚³‚ê‚Ä‚¢‚Ü‚·B
+  Description:  ã‚¿ã‚°ãŒåŸ‹ã‚è¾¼ã¾ã‚ŒãŸè¤‡æ•°è¡Œã®æ–‡å­—åˆ—ã‚’æç”»ã—ã¾ã™ã€‚
+                åˆ¶å¾¡æ–‡å­—(0x00-0x09,0x0B-0x1F) ã‚’æ–‡å­—åˆ—ä¸­ã§
+                ç™ºè¦‹ã™ã‚‹ã¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
+                ã‚¿ã‚°ã®å‡¦ç†ã¯å…¨ã¦ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«ä»»ã•ã‚Œã¦ã„ã¾ã™ã€‚
 
-  Arguments:    pTxn:       •`‰æ‘ÎÛ‚Ì TextCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                x:          •`‰æŠî€ˆÊ’u‚Ì x À•WB
-                y:          •`‰æŠî€ˆÊ’u‚Ì y À•WB
-                cl:         •¶šF‚ÌF”Ô†B
-                str:        •`‰æ‚·‚é•¶š—ñB
-                cbFunc:     ƒ^ƒO‚É‚æ‚Á‚ÄŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                cbParam:    ƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚³‚ê‚éƒ†[ƒUƒf[ƒ^B
+  Arguments:    pTxn:       æç”»å¯¾è±¡ã® TextCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                x:          æç”»åŸºæº–ä½ç½®ã® x åº§æ¨™ã€‚
+                y:          æç”»åŸºæº–ä½ç½®ã® y åº§æ¨™ã€‚
+                cl:         æ–‡å­—è‰²ã®è‰²ç•ªå·ã€‚
+                str:        æç”»ã™ã‚‹æ–‡å­—åˆ—ã€‚
+                cbFunc:     ã‚¿ã‚°ã«ã‚ˆã£ã¦å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                cbParam:    ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã•ã‚Œã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNSi_G2dTextCanvasDrawTaggedText(
     const NNSG2dTextCanvas* pTxn,
@@ -407,9 +407,9 @@ void NNSi_G2dTextCanvasDrawTaggedText(
 #endif
 )
 {
-    const void* pos;    // •`‰æ‘ÎÛ‚Ì•¶š‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    int linefeed;       // s‘—‚èi1s–Ú‚Ìs‚Ìã’[‚Æ2s–Ú‚Ìs‚Ìã’[‚ÌŠÔŠuj
-    int charSpace;      // •¶šŠÔŠu (1•¶š–Ú‚Ì•¶š‚Ì‰E’[‚Æ2•¶š–Ú‚Ì•¶š‚Ì¶’[‚ÌŠÔŠu)
+    const void* pos;    // æç”»å¯¾è±¡ã®æ–‡å­—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    int linefeed;       // è¡Œé€ã‚Šï¼ˆ1è¡Œç›®ã®è¡Œã®ä¸Šç«¯ã¨2è¡Œç›®ã®è¡Œã®ä¸Šç«¯ã®é–“éš”ï¼‰
+    int charSpace;      // æ–‡å­—é–“éš” (1æ–‡å­—ç›®ã®æ–‡å­—ã®å³ç«¯ã¨2æ–‡å­—ç›®ã®æ–‡å­—ã®å·¦ç«¯ã®é–“éš”)
     const NNSG2dFont* pFont;
     NNSG2dTagCallbackInfo cbInfo;
     u16 c;
@@ -446,7 +446,7 @@ void NNSi_G2dTextCanvasDrawTaggedText(
         if( c < ' ' )
         {
             if( c == '\n' )
-                // ‰üs‚Ìˆ—
+                // æ”¹è¡Œã®å‡¦ç†
             {
 #ifdef NNS_G2D_FONT_ENABLE_DIRECTION_SUPPORT
                 if( d.x == 0 )
@@ -462,7 +462,7 @@ void NNSi_G2dTextCanvasDrawTaggedText(
                 }
             }
             else
-                // ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ
+                // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—
             {
                 cbInfo.str = (const NNSG2dChar*)pos;
                 cbInfo.x = px;
@@ -491,7 +491,7 @@ void NNSi_G2dTextCanvasDrawTaggedText(
             continue;
         }
         else
-            // 1•¶š•`‰æ
+            // 1æ–‡å­—æç”»
         {
             const int w = NNS_G2dCharCanvasDrawChar(cbInfo.txn.pCanvas, cbInfo.txn.pFont, px, py, cl, c) + charSpace;
 #ifdef NNS_G2D_FONT_ENABLE_DIRECTION_SUPPORT

@@ -1,18 +1,18 @@
 /**
 	@file	town.dat
-	@brief	ƒ^ƒEƒ“ƒ}ƒbƒv@ƒ^ƒEƒ“View—pƒf[ƒ^’è‹`
+	@brief	ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ã€€ã‚¿ã‚¦ãƒ³Viewç”¨ãƒ‡ãƒ¼ã‚¿å®šç¾©
 	@author	MiyukiIwasawa
 */
 #include "fielddata/maptable/zone_id.h"
 #include "field/sysflag.h"
 
-#define TOWNV_TYPE_TOWN	(0)	//1x1³•ûŒ`
-#define TOWNV_TYPE_CC1	(1)	//’·•ûŒ`c
-#define TOWNV_TYPE_CS	(2)	//2x2³•ûŒ`
-#define TOWNV_TYPE_CLR	(3)	//Lš‰E‰ºŠJ‚«
-#define TOWNV_TYPE_CLL	(4)	//Lš¶‰ºŠJ‚«
-#define TOWNV_TYPE_CC2	(5)	//’·•ûŒ`‰¡
-#define TOWNV_TYPE_PARK	(6)	//ƒ|ƒPƒp[ƒN
+#define TOWNV_TYPE_TOWN	(0)	//1x1æ­£æ–¹å½¢
+#define TOWNV_TYPE_CC1	(1)	//é•·æ–¹å½¢ç¸¦
+#define TOWNV_TYPE_CS	(2)	//2x2æ­£æ–¹å½¢
+#define TOWNV_TYPE_CLR	(3)	//Lå­—å³ä¸‹é–‹ã
+#define TOWNV_TYPE_CLL	(4)	//Lå­—å·¦ä¸‹é–‹ã
+#define TOWNV_TYPE_CC2	(5)	//é•·æ–¹å½¢æ¨ª
+#define TOWNV_TYPE_PARK	(6)	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯
 
 #define TV_UN (7)
 #define TV_HU (-4)

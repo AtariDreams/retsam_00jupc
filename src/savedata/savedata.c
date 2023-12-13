@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	savedata.c
- * @brief	�Z�[�u�f�[�^�Ǘ�
+ * @brief	セーブデータ管理
  * @author	tamada	GAME FREAK Inc.
  * @date	2005.10.12
  *
- * @li		2006.04.17	�Z�[�u���[�h�V�X�e����saveload_system.c�ɕ���
+ * @li		2006.04.17	セーブロードシステムをsaveload_system.cに分離
  */
 //============================================================================================
 
@@ -20,7 +20,7 @@
 #include "savedata/savedata.h"
 
 
-//�Z�[�u�f�[�^���e�������̂ɕK�v�Ȋ֐��Q�Ƃ̂��߂̃w�b�_
+//セーブデータ内容を扱うのに必要な関数参照のためのヘッダ
 
 #include "poketool/poke_tool.h"
 #include "../poketool/poke_tool_def.h"
@@ -86,243 +86,243 @@
 //============================================================================================
 //
 //
-//		�����f�[�^
+//		ロムデータ
 //
 //
 //============================================================================================
 //---------------------------------------------------------------------------
 /**
- * @brief	�Z�[�u�f�[�^���e��`
+ * @brief	セーブデータ内容定義
  */
 //---------------------------------------------------------------------------
 const SAVEDATA_TABLE SaveDataTable[] = {
-//�m�[�}���f�[�^�O���[�v
-	{	//�V�X�e���f�[�^
+//ノーマルデータグループ
+	{	//システムデータ
 		GMDATA_ID_SYSTEM_DATA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)SYSTEMDATA_GetWorkSize,
 		(FUNC_INIT_WORK)SYSTEMDATA_Init,
 	},
-	{	//�v���C���[�f�[�^
+	{	//プレイヤーデータ
 		GMDATA_ID_PLAYER_DATA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)PLAYERDATA_GetWorkSize,
 		(FUNC_INIT_WORK)PLAYERDATA_Init,
 	},
-	{	//�莝���|�P����
+	{	//手持ちポケモン
 		GMDATA_ID_TEMOTI_POKE,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)PokeParty_GetWorkSize,
 		(FUNC_INIT_WORK)PokeParty_InitWork,
 	},
-	{	//�莝���ǂ���
+	{	//手持ちどうぐ
 		GMDATA_ID_TEMOTI_ITEM,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)MyItem_GetWorkSize,
 		(FUNC_INIT_WORK)MyItem_Init,
 	},
-	{	//�C�x���g���[�N
+	{	//イベントワーク
 		GMDATA_ID_EVENT_WORK,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)EventWork_GetWorkSize,
 		(FUNC_INIT_WORK)EventWork_Init,
 	},
-	{	//�|�P�b�`�f�[�^
+	{	//ポケッチデータ
 		GMDATA_ID_POKETCH_DATA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)PoketchData_GetWorkSize,
 		(FUNC_INIT_WORK)PoketchData_Init,
 	},
-	{	//�󋵃f�[�^
+	{	//状況データ
 		GMDATA_ID_SITUATION,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)Situation_GetWorkSize,
 		(FUNC_INIT_WORK)Situation_Init,
 	},
-	{	//������f�[�^
+	{	//ずかんデータ
 		GMDATA_ID_ZUKANWORK,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)ZukanWork_GetWorkSize,
 		(FUNC_INIT_WORK)ZukanWork_Init,
 	},
-	{	//��ĉ��f�[�^
+	{	//育て屋データ
 		GMDATA_ID_SODATEYA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)SodateyaWork_GetWorkSize,
 		(FUNC_INIT_WORK)SodateyaWork_Init,
 	},
-	{	//���肠���O���[�v
+	{	//しりあいグループ
 		GMDATA_ID_FRIEND,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)FriendList_GetWorkSize,
 		(FUNC_INIT_WORK)FriendList_Init,
 	},
-	{	//���̑��f�[�^
+	{	//その他データ
 		GMDATA_ID_MISC,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)MISC_GetWorkSize,
 		(FUNC_INIT_WORK)MISC_Init,
 	},
-	{	//�t�B�[���hOBJ�Z�[�u
+	{	//フィールドOBJセーブ
 		GMDATA_ID_FIELDOBJSV,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)FieldObjSv_GetWorkSize,
 		(FUNC_INIT_WORK)FieldObjSv_Init,
 	},
-	{	//�n���A�C�e���f�[�^+�閧��n�f�[�^
+	{	//地下アイテムデータ+秘密基地データ
 		GMDATA_ID_UNDERGROUNDDATA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)UnderGroundData_GetWorkSize,
 		(FUNC_INIT_WORK)UnderGroundData_Init,
 	},
-    {  // ���M�����[�V�����f�[�^
+    {  // レギュレーションデータ
         GMDATA_ID_REGULATION,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)RegulationData_GetWorkSize,
 		(FUNC_INIT_WORK)RegulationData_Init,
     },
-	{	//�C���[�W�N���b�v�̃f�[�^
+	{	//イメージクリップのデータ
 		GMDATA_ID_IMAGECLIPDATA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)ImcSaveData_GetWorkSize,
 		(FUNC_INIT_WORK)ImcSaveData_Init,
 	},
-	{	//���[���̃f�[�^
+	{	//メールのデータ
 		GMDATA_ID_MAILDATA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)MAIL_GetBlockWorkSize,
 		(FUNC_INIT_WORK)MAIL_Init,
 	},
-	{	//�|���g�̃f�[�^
+	{	//ポルトのデータ
 		GMDATA_ID_PORUTODATA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)PORUTO_GetSaveWorkSize,
 		(FUNC_INIT_WORK)PORUTO_Init,
 	},
-	{	// �����̎�O���[�v
+	{	// 乱数の種グループ
 		GMDATA_ID_RANDOMGROUP,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)RandomGroup_GetWorkSize,
 		(FUNC_INIT_WORK)RandomGroup_Init,
 	},
-	{	//�`���m�[�g�̃f�[�^
+	{	//冒険ノートのデータ
 		GMDATA_ID_FNOTE,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)FNOTE_GetWorkSize,
 		(FUNC_INIT_WORK)FNOTE_InitAll,
 	},
-	{	//�g���[�i�[�J�[�h
+	{	//トレーナーカード
 		GMDATA_ID_TRCARD,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)TRCSave_GetSaveDataSize,
 		(FUNC_INIT_WORK)TRCSave_InitSaveData,
 	},
-	{	//���R�[�h�p�J�E���g�A�b�v�f�[�^
+	{	//レコード用カウントアップデータ
 		GMDATA_ID_RECORD,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)RECORD_GetWorkSize,
 		(FUNC_INIT_WORK)RECORD_Init,
 	},
-	{	//�J�X�^���{�[��
+	{	//カスタムボール
 		GMDATA_ID_CUSTOM_BALL,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)CustomBall_GetWorkSize,
 		(FUNC_INIT_WORK)CustomBall_Init,
 	},
-	{	//�؃��b�v�����f�[�^
+	{	//ぺラップ音声データ
 		GMDATA_ID_PERAPVOICE,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)PERAPVOICE_GetWorkSize,
 		(FUNC_INIT_WORK)PERAPVOICE_Init,
 	},
-	{	//�t�����e�B�A�f�[�^
+	{	//フロンティアデータ
 		GMDATA_ID_FRONTIER,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)FrontierData_GetWorkSize,
 		(FUNC_INIT_WORK)FrontierData_Init,
 	},
-	{	//�z�z���{���f�[�^
+	{	//配布リボンデータ
 		GMDATA_ID_SP_RIBBON,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)SP_RIBBON_GetWorkSize,
 		(FUNC_INIT_WORK)SP_RIBBON_Init,
 	},
 	{
-		// �G���J�E���g�֘A�f�[�^
+		// エンカウント関連データ
 		GMDATA_ID_ENCOUNT,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)EncDataSave_GetWorkSize,
 		(FUNC_INIT_WORK)EncDataSave_InitSaveData,
 	},
-	{	//���E�����f�[�^
+	{	//世界交換データ
 		GMDATA_ID_WORLDTRADEDATA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)WorldTradeData_GetWorkSize,
 		(FUNC_INIT_WORK)WorldTradeData_Init,
 	},
-	{	//TV�f�[�^
+	{	//TVデータ
 		GMDATA_ID_TVWORK,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)TVWORK_GetWorkSize,
 		(FUNC_INIT_WORK)TVWORK_Init,
 	},
-	{	//�M�l�X�z�[���f�[�^
+	{	//ギネスホールデータ
 		GMDATA_ID_GUINNESS,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)GuinnessData_GetWorkSize,
 		(FUNC_INIT_WORK)GuinnessData_Init,
 	},
-	{	// Wifi�p�A�������E�F�B���
+	{	// Wifi用、自分情報・友達情報
 		GMDATA_ID_WIFILIST,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)WifiList_GetWorkSize,
 		(FUNC_INIT_WORK)WifiList_Init,
 	},
 
-	{	//WiFi�ʐM�����f�[�^
+	{	//WiFi通信履歴データ
 		GMDATA_ID_WIFIHISTORY,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)WIFIHISTORY_GetWorkSize,
 		(FUNC_INIT_WORK)WIFIHISTORY_Init,
 	},
-	{	//�ӂ����ȑ��蕨�f�[�^
+	{	//ふしぎな贈り物データ
 		GMDATA_ID_FUSHIGIDATA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)FUSHIGIDATA_GetWorkSize,
 		(FUNC_INIT_WORK)FUSHIGIDATA_Init,
 	},
-	{	//�|�P�p�[�N�p�|�P�����f�[�^
+	{	//ポケパーク用ポケモンデータ
 		GMDATA_ID_POKEPARKDATA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)POKEPARKDATA_GetWorkSize,
 		(FUNC_INIT_WORK)POKEPARKDATA_Init,
 	},
-	{	//�R���e�X�g
+	{	//コンテスト
 		GMDATA_ID_CONTEST,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)CONDATA_GetWorkSize,
 		(FUNC_INIT_WORK)CONDATA_Init,
 	},
-	{	// �ȈՉ�b�P��
+	{	// 簡易会話単語
 		GMDATA_ID_PMS,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)PMSW_GetSaveDataSize,
 		(FUNC_INIT_WORK)PMSW_InitSaveData,
 	},
-	{	// E���[��
+	{	// Eメール
 		GMDATA_ID_EMAIL,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)EMAILSAVE_GetWorkSize,
 		(FUNC_INIT_WORK)EMAILSAVE_Init,
 	},
-	{	//Wi�|Fi�Ђ��
+	{	//Wi−Fiひろば
 		GMDATA_ID_WFHIROBA,
 		SVBLK_ID_NORMAL,
 		(FUNC_GET_SIZE)SAVEDATA_WFLBY_GetWorkSize,
 		(FUNC_INIT_WORK)SAVEDATA_WFLBY_InitWork,
 	},
-//�{�b�N�X�f�[�^�O���[�v
-	{	//�|�P�����{�b�N�X�̃f�[�^
+//ボックスデータグループ
+	{	//ポケモンボックスのデータ
 		GMDATA_ID_BOXDATA,
 		SVBLK_ID_BOX,
 		(FUNC_GET_SIZE)BOXDAT_GetTotalSize,
@@ -343,9 +343,9 @@ const int SaveDataTableMax = NELEMS(SaveDataTable);
 //============================================================================================
 //---------------------------------------------------------------------------
 /**
- * @brief	�e���r�f�[�^�̃|�C���^�擾
- * @param	sv			�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @return	BOX_DATA	�e���r�f�[�^�ւ̃|�C���^
+ * @brief	テレビデータのポインタ取得
+ * @param	sv			セーブデータ構造へのポインタ
+ * @return	BOX_DATA	テレビデータへのポインタ
  */
 //---------------------------------------------------------------------------
 TV_WORK * SaveData_GetTvWork(SAVEDATA * sv)
@@ -358,9 +358,9 @@ TV_WORK * SaveData_GetTvWork(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�{�b�N�X�f�[�^�̃|�C���^�擾
- * @param	sv			�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @return	BOX_DATA	�{�b�N�X�f�[�^�ւ̃|�C���^
+ * @brief	ボックスデータのポインタ取得
+ * @param	sv			セーブデータ構造へのポインタ
+ * @return	BOX_DATA	ボックスデータへのポインタ
  */
 //---------------------------------------------------------------------------
 BOX_DATA * SaveData_GetBoxData(SAVEDATA * sv)
@@ -370,9 +370,9 @@ BOX_DATA * SaveData_GetBoxData(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�ӂ����ȑ��蕨�p�Z�[�u�f�[�^�ւ̃|�C���^�擾
- * @param	sv				�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @return	FUSHIGI_DATA	�ӂ����ȑ��蕨�f�[�^�ւ̃|�C���^
+ * @brief	ふしぎな贈り物用セーブデータへのポインタ取得
+ * @param	sv				セーブデータ構造へのポインタ
+ * @return	FUSHIGI_DATA	ふしぎな贈り物データへのポインタ
  */
 //---------------------------------------------------------------------------
 FUSHIGI_DATA * SaveData_GetFushigiData(SAVEDATA * sv)
@@ -385,9 +385,9 @@ FUSHIGI_DATA * SaveData_GetFushigiData(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�|�P�p�[�N�p�Z�[�u�f�[�^�ւ̃|�C���^�擾
- * @param	sv				�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @return	POKEPARK_DATA	�|�P�p�[�N�p�Z�[�u�f�[�^�ւ̃|�C���^
+ * @brief	ポケパーク用セーブデータへのポインタ取得
+ * @param	sv				セーブデータ構造へのポインタ
+ * @return	POKEPARK_DATA	ポケパーク用セーブデータへのポインタ
  */
 //---------------------------------------------------------------------------
 POKEPARK_DATA * SaveData_GetPokeParkData(SAVEDATA * sv)
@@ -398,50 +398,50 @@ POKEPARK_DATA * SaveData_GetPokeParkData(SAVEDATA * sv)
 //============================================================================================
 //
 //
-//			����Z�[�u�f�[�^
+//			特殊セーブデータ
 //
 //
 //============================================================================================
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^�̒�`�e�[�u��
+ * @brief	特殊セーブデータの定義テーブル
  */
 //---------------------------------------------------------------------------
 const EXSAVEDATA_TABLE ExtraSaveDataTable[] = {
 	{
-		// �a������f�[�^
+		// 殿堂入りデータ
 		EXDATA_ID_DENDOU,
 		SAVE_PAGE_MAX + 0,
 		(FUNC_GET_SIZE)DendouData_GetWorkSize,
 		(FUNC_INIT_WORK)DendouData_Init,
 	},
 
-	{	//�o�g���t�����e�B�A�O���f�[�^(�i�s�Ɋ֌W�Ȃ��L�^�̂�)
+	{	//バトルフロンティア外部データ(進行に関係ない記録のみ)
 		EXDATA_ID_FRONTIER,
 		SAVE_PAGE_MAX + 3,
 		(FUNC_GET_SIZE)FrontierEx_GetWorkSize,
 		(FUNC_INIT_WORK)FrontierEx_Init,
 	},
 	
-	{	//�퓬�^��F����
+	{	//戦闘録画：自分
 		EXDATA_ID_BATTLE_REC_MINE,
 		SAVE_PAGE_MAX + 4,
 		(FUNC_GET_SIZE)BattleRec_GetWorkSize,
 		(FUNC_INIT_WORK)BattleRec_WorkInit,
 	},
-	{	//�퓬�^��F�_�E�����[�h0��
+	{	//戦闘録画：ダウンロード0番
 		EXDATA_ID_BATTLE_REC_DL_0,
 		SAVE_PAGE_MAX + 6,
 		(FUNC_GET_SIZE)BattleRec_GetWorkSize,
 		(FUNC_INIT_WORK)BattleRec_WorkInit,
 	},
-	{	//�퓬�^��F�_�E�����[�h1��
+	{	//戦闘録画：ダウンロード1番
 		EXDATA_ID_BATTLE_REC_DL_1,
 		SAVE_PAGE_MAX + 8,
 		(FUNC_GET_SIZE)BattleRec_GetWorkSize,
 		(FUNC_INIT_WORK)BattleRec_WorkInit,
 	},
-	{	//�퓬�^��F�_�E�����[�h2��
+	{	//戦闘録画：ダウンロード2番
 		EXDATA_ID_BATTLE_REC_DL_2,
 		SAVE_PAGE_MAX + 10,
 		(FUNC_GET_SIZE)BattleRec_GetWorkSize,
@@ -450,7 +450,7 @@ const EXSAVEDATA_TABLE ExtraSaveDataTable[] = {
 };
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^�̃e�[�u����
+ * @brief	特殊セーブデータのテーブル数
  */
 //---------------------------------------------------------------------------
 const int ExtraSaveDataTableMax = NELEMS(ExtraSaveDataTable);
@@ -460,17 +460,17 @@ const int ExtraSaveDataTableMax = NELEMS(ExtraSaveDataTable);
 //============================================================================================
 //
 //
-//			�ʂ̓���Z�[�u�f�[�^�A�N�Z�X�֐�
+//			個別の特殊セーブデータアクセス関数
 //
 //
 //============================================================================================
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^���[�h�F�a������f�[�^
- * @param	sv			�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @param	heap_id		���[�N���擾����q�[�v��ID
+ * @brief	特殊セーブデータロード：殿堂入りデータ
+ * @param	sv			セーブデータ構造へのポインタ
+ * @param	heap_id		ワークを取得するヒープのID
  * @param	result
- * @return	void *	�擾�����Z�[�u�f�[�^���ڂ������[�N�ւ̃|�C���^
+ * @return	void *	取得したセーブデータを載せたワークへのポインタ
  */
 //---------------------------------------------------------------------------
 DENDOU_SAVEDATA * SaveData_Extra_LoadDendouData(SAVEDATA * sv, int heap_id, LOAD_RESULT * result)
@@ -480,11 +480,11 @@ DENDOU_SAVEDATA * SaveData_Extra_LoadDendouData(SAVEDATA * sv, int heap_id, LOAD
 
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^�Z�[�u�F�a������f�[�^
- * @param	sv			�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @param	data		�a������f�[�^�ւ̃|�C���^
- * @retval	SAVE_RESULT_OK		�Z�[�u����
- * @retval	SAVE_RESULT_NG		�Z�[�u���s
+ * @brief	特殊セーブデータセーブ：殿堂入りデータ
+ * @param	sv			セーブデータ構造へのポインタ
+ * @param	data		殿堂入りデータへのポインタ
+ * @retval	SAVE_RESULT_OK		セーブ成功
+ * @retval	SAVE_RESULT_NG		セーブ失敗
  */
 //---------------------------------------------------------------------------
 SAVE_RESULT SaveData_Extra_SaveDendouData(SAVEDATA * sv, DENDOU_SAVEDATA * data)
@@ -495,12 +495,12 @@ SAVE_RESULT SaveData_Extra_SaveDendouData(SAVEDATA * sv, DENDOU_SAVEDATA * data)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^���[�h�F�퓬�^��
- * @param	sv			�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @param	heap_id		���[�N���擾����q�[�v��ID
+ * @brief	特殊セーブデータロード：戦闘録画
+ * @param	sv			セーブデータ構造へのポインタ
+ * @param	heap_id		ワークを取得するヒープのID
  * @param	result
  * @param   num			LOADDATA_MYREC, LOADDATA_DOWNLOAD0, ...
- * @return	void *	�擾�����Z�[�u�f�[�^���ڂ������[�N�ւ̃|�C���^
+ * @return	void *	取得したセーブデータを載せたワークへのポインタ
  */
 //---------------------------------------------------------------------------
 BATTLE_REC_SAVEDATA * SaveData_Extra_LoadBattleRecData(SAVEDATA * sv, int heap_id, LOAD_RESULT * result, int num)
@@ -511,15 +511,15 @@ BATTLE_REC_SAVEDATA * SaveData_Extra_LoadBattleRecData(SAVEDATA * sv, int heap_i
 
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^�Z�[�u�F�퓬�^��
- * @param	sv			�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @param	data		�퓬�^��f�[�^�ւ̃|�C���^(CHECK_TAIL_DATA�\���̕����܂߂����̂ł���
- * 						�K�v������̂�SaveData_Extra_LoadBattleRecData�֐��̖߂�l�Ŏ�ɓ��ꂽ
- *						�o�b�t�@�|�C���^��n���K�v������B
+ * @brief	特殊セーブデータセーブ：戦闘録画
+ * @param	sv			セーブデータ構造へのポインタ
+ * @param	data		戦闘録画データへのポインタ(CHECK_TAIL_DATA構造体分を含めたものである
+ * 						必要があるのでSaveData_Extra_LoadBattleRecData関数の戻り値で手に入れた
+ *						バッファポインタを渡す必要がある。
  * @param   num			LOADDATA_MYREC, LOADDATA_DOWNLOAD0, ...
  *
- * @retval	SAVE_RESULT_OK		�Z�[�u����
- * @retval	SAVE_RESULT_NG		�Z�[�u���s
+ * @retval	SAVE_RESULT_OK		セーブ成功
+ * @retval	SAVE_RESULT_NG		セーブ失敗
  */
 //---------------------------------------------------------------------------
 SAVE_RESULT SaveData_Extra_SaveBattleRecData(SAVEDATA * sv, BATTLE_REC_SAVEDATA * data, int num)
@@ -529,11 +529,11 @@ SAVE_RESULT SaveData_Extra_SaveBattleRecData(SAVEDATA * sv, BATTLE_REC_SAVEDATA 
 
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^���[�h�F�t�����e�B�A�O���f�[�^
- * @param	sv			�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @param	heap_id		���[�N���擾����q�[�v��ID
+ * @brief	特殊セーブデータロード：フロンティア外部データ
+ * @param	sv			セーブデータ構造へのポインタ
+ * @param	heap_id		ワークを取得するヒープのID
  * @param	result
- * @return	void *	�擾�����Z�[�u�f�[�^���ڂ������[�N�ւ̃|�C���^
+ * @return	void *	取得したセーブデータを載せたワークへのポインタ
  */
 //---------------------------------------------------------------------------
 FRONTIER_EX_SAVEDATA * SaveData_Extra_LoadFrontierEx(SAVEDATA * sv, int heap_id, LOAD_RESULT * result)
@@ -544,14 +544,14 @@ FRONTIER_EX_SAVEDATA * SaveData_Extra_LoadFrontierEx(SAVEDATA * sv, int heap_id,
 
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^�Z�[�u�F�t�����e�B�A�O���f�[�^
- * @param	sv			�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @param	data		�퓬�^��f�[�^�ւ̃|�C���^(CHECK_TAIL_DATA�\���̕����܂߂����̂ł���
- * 						�K�v������̂�SaveData_Extra_LoadFrontierEx�֐��̖߂�l�Ŏ�ɓ��ꂽ
- *						�o�b�t�@�|�C���^��n���K�v������B
+ * @brief	特殊セーブデータセーブ：フロンティア外部データ
+ * @param	sv			セーブデータ構造へのポインタ
+ * @param	data		戦闘録画データへのポインタ(CHECK_TAIL_DATA構造体分を含めたものである
+ * 						必要があるのでSaveData_Extra_LoadFrontierEx関数の戻り値で手に入れた
+ *						バッファポインタを渡す必要がある。
  *
- * @retval	SAVE_RESULT_OK		�Z�[�u����
- * @retval	SAVE_RESULT_NG		�Z�[�u���s
+ * @retval	SAVE_RESULT_OK		セーブ成功
+ * @retval	SAVE_RESULT_NG		セーブ失敗
  */
 //---------------------------------------------------------------------------
 SAVE_RESULT SaveData_Extra_SaveFrontierEx(SAVEDATA * sv, FRONTIER_EX_SAVEDATA * data)
@@ -562,15 +562,15 @@ SAVE_RESULT SaveData_Extra_SaveFrontierEx(SAVEDATA * sv, FRONTIER_EX_SAVEDATA * 
 
 #if 0
 
-�ʏ�Z�[�u�f�[�^�Ɋ܂܂��悤�ɂȂ������߂ɍ폜
+通常セーブデータに含まれるようになったために削除
 
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^���[�h�F�ӂ����Ȃ��������
- * @param	sv			�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @param	heap_id		���[�N���擾����q�[�v��ID
- * @param	result		���[�h���ʎ擾�p�̃��[�N
- * @return	void *	�擾�����Z�[�u�f�[�^���ڂ������[�N�ւ̃|�C���^
+ * @brief	特殊セーブデータロード：ふしぎなおくりもの
+ * @param	sv			セーブデータ構造へのポインタ
+ * @param	heap_id		ワークを取得するヒープのID
+ * @param	result		ロード結果取得用のワーク
+ * @return	void *	取得したセーブデータを載せたワークへのポインタ
  */
 //---------------------------------------------------------------------------
 FUSHIGI_DATA * SaveData_Extra_LoadFushigiData(SAVEDATA * sv, int heap_id, LOAD_RESULT * result)
@@ -580,11 +580,11 @@ FUSHIGI_DATA * SaveData_Extra_LoadFushigiData(SAVEDATA * sv, int heap_id, LOAD_R
 
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^�Z�[�u�F�ӂ����Ȃ��������
- * @param	sv			�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @param	data		�a������f�[�^�ւ̃|�C���^
- * @retval	SAVE_RESULT_OK		�Z�[�u����
- * @retval	SAVE_RESULT_NG		�Z�[�u���s
+ * @brief	特殊セーブデータセーブ：ふしぎなおくりもの
+ * @param	sv			セーブデータ構造へのポインタ
+ * @param	data		殿堂入りデータへのポインタ
+ * @retval	SAVE_RESULT_OK		セーブ成功
+ * @retval	SAVE_RESULT_NG		セーブ失敗
  */
 //---------------------------------------------------------------------------
 SAVE_RESULT SaveData_Extra_SaveFushigiData(SAVEDATA * sv, FUSHIGI_DATA * data)

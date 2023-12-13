@@ -1,12 +1,12 @@
-//-- ContestConv.exeƒRƒ“ƒo[ƒ^Version 119 --//
-//ƒRƒ“ƒo[ƒgƒtƒ@ƒCƒ‹FƒRƒ“ƒeƒXƒg‹ZŒø‰Ê060712rev.xls
+//-- ContestConv.exeã‚³ãƒ³ãƒãƒ¼ã‚¿Version 119 --//
+//ã‚³ãƒ³ãƒãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€åŠ¹æžœ060712rev.xls
 
 //==============================================================================
-//		ƒAƒs[ƒ‹‹ZŒø‰Êƒf[ƒ^
+//		ã‚¢ãƒ”ãƒ¼ãƒ«æŠ€åŠ¹æžœãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 
 const APWAZA_DATA AppealWazaData[] = {
-	{	//0 1ƒIƒŠƒWƒ“—p‚Ìƒ_ƒ~[ƒf[ƒ^
+	{	//0 1ã‚ªãƒªã‚¸ãƒ³ç”¨ã®ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 		0,
 		0,
 		0,
@@ -19,11 +19,11 @@ const APWAZA_DATA AppealWazaData[] = {
 		ATAG_MINE,
 		CMSG_KOUKA_1_B,
 		ATAG_MINE_ENEMY,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//2
@@ -34,11 +34,11 @@ const APWAZA_DATA AppealWazaData[] = {
 		ATAG_MINE,
 		CMSG_KOUKA_2_B,
 		ATAG_MINE_ENEMY,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//3
@@ -53,7 +53,7 @@ const APWAZA_DATA AppealWazaData[] = {
 		ATAG_MINE,
 		CMSG_KOUKA_3_D,
 		ATAG_MINE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//4
@@ -62,28 +62,28 @@ const APWAZA_DATA AppealWazaData[] = {
 		20,
 		CMSG_KOUKA_4_A,
 		ATAG_MINE_WAZA,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//5
 		CMSG_EXPLAIN_UP_5,
 		CMSG_EXPLAIN_DOWN_5,
 		30,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//6
@@ -94,9 +94,9 @@ const APWAZA_DATA AppealWazaData[] = {
 		ATAG_MINE,
 		CMSG_KOUKA_6_B,
 		ATAG_MINE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 		CMSG_KOUKA_SP_6,
 		ATAG_MINE,
@@ -107,13 +107,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		20,
 		CMSG_KOUKA_7_A,
 		ATAG_MINE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//8
@@ -122,13 +122,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		0,
 		CMSG_KOUKA_8_A,
 		ATAG_NUM,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//9
@@ -139,9 +139,9 @@ const APWAZA_DATA AppealWazaData[] = {
 		ATAG_MINE,
 		CMSG_KOUKA_9_B,
 		ATAG_MINE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 		CMSG_KOUKA_SP_9,
 		ATAG_MINE,
@@ -152,13 +152,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		20,
 		CMSG_KOUKA_10_A,
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//11
@@ -167,13 +167,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		0,
 		CMSG_KOUKA_11_A,
 		ATAG_MINE_NUM,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//12
@@ -182,13 +182,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		0,
 		CMSG_KOUKA_12_A,
 		ATAG_MINE_ENEMY,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//13
@@ -197,13 +197,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		20,
 		CMSG_KOUKA_13_A,
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//14
@@ -212,13 +212,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		20,
 		CMSG_KOUKA_14_A,
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//15
@@ -227,13 +227,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		20,
 		CMSG_KOUKA_15_A,
 		ATAG_MINE_NUM,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//16
@@ -242,13 +242,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		0,
 		CMSG_KOUKA_16_A,
 		ATAG_NUM,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//17
@@ -257,13 +257,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		20,
 		CMSG_KOUKA_17_A,
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//18
@@ -272,13 +272,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		20,
 		CMSG_KOUKA_18_A,
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//19
@@ -287,13 +287,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		20,
 		CMSG_KOUKA_19_A,
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//20
@@ -302,13 +302,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		10,
 		CMSG_KOUKA_20_A,
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//21
@@ -323,7 +323,7 @@ const APWAZA_DATA AppealWazaData[] = {
 		ATAG_MINE,
 		CMSG_KOUKA_21_D,
 		ATAG_MINE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//22
@@ -332,13 +332,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		20,
 		CMSG_KOUKA_22_A,
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 	{	//23
@@ -347,13 +347,13 @@ const APWAZA_DATA AppealWazaData[] = {
 		10,
 		CMSG_KOUKA_23_A,
 		ATAG_MINE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
-		AMSG_ID_NONE,//ƒƒbƒZ[ƒW‚È‚µ
+		AMSG_ID_NONE,//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 		ATAG_NONE,
 	},
 };

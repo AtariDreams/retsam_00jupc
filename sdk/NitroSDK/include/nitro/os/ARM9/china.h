@@ -18,10 +18,10 @@
   add OS_ShowAttentionChina.
 
   Revision 1.2  2005/05/14 01:11:28  terui
-  OS_InitChina�֐���ISBN��������w�肷��p�����[�^��ǉ�
+  OS_InitChina関数にISBN文字列を指定するパラメータを追加
 
   Revision 1.1  2005/04/25 08:23:53  terui
-  ������ł̐����Ή��̂��߁A�w�b�_��ǉ�
+  中国語版の正式対応のため、ヘッダを追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -42,16 +42,16 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         OS_InitChina
 
-  Description:  SDK �� OS ���C�u����������������B
-                �w���n�������ł���A�v���P�[�V������p�B
-                OS_Init �֐��̑���ɓ��֐����g�p����B
+  Description:  SDK の OS ライブラリを初期化する。
+                指向地が中国であるアプリケーション専用。
+                OS_Init 関数の代わりに当関数を使用する。
 
-  Arguments:    isbn    -   ISBN �ԍ����Ɋւ��镶����z����w�肷��B
+  Arguments:    isbn    -   ISBN 番号等に関する文字列配列を指定する。
                             {
                                 char    ISBN[ 13 ] ,
-                                char    �����o�L��[ 12 ] ,
-                                char    �V�o����(��)[ 4 ] ,
-                                char    �V�o����(�E)[ 4 ]
+                                char    合同登記号[ 12 ] ,
+                                char    新出音管(左)[ 4 ] ,
+                                char    新出音管(右)[ 4 ]
                             }
 
   Returns:      None
@@ -61,10 +61,10 @@ void    OS_InitChina(const char **isbn);
 /*---------------------------------------------------------------------------*
   Name:         OS_ShowAttentionChina
 
-  Description:  �����Ή����S�A�y�ђ��Ӊ�ʂ����莞�ԕ\������B
-                ���̊֐��̓��[�U�A�v���P�[�V�������ōĒ�`���邱�Ƃ��ł���B
+  Description:  中国対応ロゴ、及び注意画面を所定時間表示する。
+                この関数はユーザアプリケーション側で再定義することができる。
 
-  Arguments:    isbn    -   ISBN �ԍ����Ɋւ��镶����z��B
+  Arguments:    isbn    -   ISBN 番号等に関する文字列配列。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

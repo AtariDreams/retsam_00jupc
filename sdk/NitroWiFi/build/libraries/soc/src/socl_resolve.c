@@ -15,28 +15,28 @@
   INDENT SOURCE
 
   Revision 1.8  2005/09/19 14:08:29  yasu
-  Closing ��Ԃ�ǉ�����
+  Closing 状態を追加した
 
   Revision 1.7  2005/09/15 12:51:01  yasu
-  DHCP Requested IP �T�|�[�g
+  DHCP Requested IP サポート
 
   Revision 1.6  2005/08/24 09:25:13  yasu
-  SOCL_SocketIsInvalid �ǉ�
+  SOCL_SocketIsInvalid 追加
 
   Revision 1.5  2005/08/17 11:48:13  yasu
-  SOC_InetAtoN �C��
+  SOC_InetAtoN 修正
 
   Revision 1.4  2005/08/02 06:19:03  yasu
-  SOCL_GetHostID �̊֐���
+  SOCL_GetHostID の関数化
 
   Revision 1.3  2005/07/30 22:30:14  yasu
-  �f���������悤�ɏC��
+  デモが動くように修正
 
   Revision 1.2  2005/07/30 15:31:36  yasu
-  �R�}���h�p�C�v�����ɂƂ��Ȃ��C��
+  コマンドパイプ分離にともなう修正
 
   Revision 1.1  2005/07/25 10:15:01  yasu
-  SOC ���C�u�����̒ǉ�
+  SOC ライブラリの追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -50,11 +50,11 @@
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Resolve
 
-  Description:  DNS �T�[�o�� IP �A�h���X��₢���킹��D
+  Description:  DNS サーバに IP アドレスを問い合わせる．
   
-  Arguments:    hostname        �z�X�g��
+  Arguments:    hostname        ホスト名
   
-  Returns:      IP �A�h���X  0 �Ȃ�G���[
+  Returns:      IP アドレス  0 ならエラー
  *---------------------------------------------------------------------------*/
 SOCLInAddr SOCL_Resolve(const char* hostname)
 {
@@ -74,7 +74,7 @@ SOCLInAddr SOCL_Resolve(const char* hostname)
         return 0;
     }
 
-    MI_CpuClear8(&soc, sizeof(CPSSoc)); // ��U 0 �N���A����
+    MI_CpuClear8(&soc, sizeof(CPSSoc)); // 一旦 0 クリアする
     soc.rcvbuf.data = buffers;
     soc.rcvbuf.size = CPS_RCVBUF;
     soc.sndbuf.data = buffers + CPS_RCVBUF_ALIGNED;
@@ -92,11 +92,11 @@ SOCLInAddr SOCL_Resolve(const char* hostname)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_InetAtoH
 
-  Description:  �����\�L���ꂽ IP �A�h���X�𐔎��ɕϊ�����
+  Description:  文字表記された IP アドレスを数字に変換する
   
-  Arguments:    hostname        �����\�L���ꂽ IP �A�h���X
+  Arguments:    hostname        文字表記された IP アドレス
   
-  Returns:      IP �A�h���X  0 �Ȃ�G���[
+  Returns:      IP アドレス  0 ならエラー
  *---------------------------------------------------------------------------*/
 SOCLInAddr SOCL_InetAtoH(const char* hostname)
 {
@@ -104,9 +104,9 @@ SOCLInAddr SOCL_InetAtoH(const char* hostname)
     OSIntrMode  enable;
     CPSInAddr   dns0, dns1;
 
-    // DNS �T�[�o�������ꎞ�I�ɒ�~�����A�������琔�l�ւ̕ϊ����s�Ȃ��D
-    // �R�[�h�T�C�Y�̍팸�̂��߁ACPS ���̃��[�`�����g�p����D
-    // �{���� CPS �����̕ϊ����[�`���𒼐ڌĂт����悤�ɂ���ׂ�
+    // DNS サーバ引きを一時的に停止させ、文字から数値への変換を行なう．
+    // コードサイズの削減のため、CPS 内のルーチンを使用する．
+    // 本来は CPS 内部の変換ルーチンを直接呼びだすようにするべき
     enable = OS_DisableInterrupts();
     dns0 = CPSDnsIp[0];
     dns1 = CPSDnsIp[1];
@@ -123,9 +123,9 @@ SOCLInAddr SOCL_InetAtoH(const char* hostname)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_GetResolver/SOCL_SetResolver
 
-  Description:  ���݂� DNS �T�[�o�� host ip �A�h���X���擾������ݒ肵���肷��
-                �܂��l�b�g���[�N�ڑ����ł��Ă��ȂȂ畉�̒l�� SOCL_ENETRESET
-                ��Ԃ��D
+  Description:  現在の DNS サーバの host ip アドレスを取得したり設定したりする
+                まだネットワーク接続ができていななら負の値の SOCL_ENETRESET
+                を返す．
  *---------------------------------------------------------------------------*/
 int SOCL_GetResolver(SOCLInAddr* dns1, SOCLInAddr* dns2)
 {
@@ -157,18 +157,18 @@ int SOCL_SetResolver(const SOCLInAddr dns1, const SOCLInAddr dns2)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_GetRemote
 
-  Description:  �\�P�b�g�̐ڑ���𒲂ׂ�
+  Description:  ソケットの接続先を調べる
   
-  Arguments:    s		�\�P�b�g
-                port		�����[�g�z�X�g�̃|�[�g�ԍ�
-                ip		�����[�g�z�X�g�� IP �A�h���X
+  Arguments:    s		ソケット
+                port		リモートホストのポート番号
+                ip		リモートホストの IP アドレス
   
-  Returns:      ��or 0: ����
-                ��    : �G���[
-                  ����T�|�[�g���Ă���G���[�l�͈ȉ�
+  Returns:      正or 0: 成功
+                負    : エラー
+                  現状サポートしているエラー値は以下
                     - :  
-                  �G���[�l�͒ǉ������ꍇ�����邽�߁A���̕��̒l���S�Ĕėp
-                  �G���[�Ƃ��Ĉ������ƁD
+                  エラー値は追加される場合があるため、他の負の値も全て汎用
+                  エラーとして扱うこと．
  *---------------------------------------------------------------------------*/
 int SOCL_GetRemote(int s, u16* port, SOCLInAddr* ip)
 {
@@ -176,12 +176,12 @@ int SOCL_GetRemote(int s, u16* port, SOCLInAddr* ip)
 
     if (!SOCL_SocketIsCreated(socket))
     {
-        return SOCL_ENETRESET;  // ����������Ă��Ȃ�
+        return SOCL_ENETRESET;  // 初期化されていない
     }
 
     if (SOCL_SocketIsTCP(socket) && (!SOCL_SocketIsConnected(socket) || SOCL_SocketIsClosing(socket)))
     {
-        return SOCL_ENOTCONN;   // �ڑ����Ă��Ȃ�
+        return SOCL_ENOTCONN;   // 接続していない
     }
 
     *port = socket->cps_socket.remote_port;
@@ -193,30 +193,30 @@ int SOCL_GetRemote(int s, u16* port, SOCLInAddr* ip)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_GetHostID
 
-  Description:	���z�X�g�� host ip �A�h���X���擾����
-                �܂��擾�ł��Ă��ȂȂ� 0 �ƂȂ�D
+  Description:	自ホストの host ip アドレスを取得する
+                まだ取得できていななら 0 となる．
   
-  Arguments:    �Ȃ�
+  Arguments:    なし
   
-  Returns:      �z�X�g�� IPv4 �� IP �A�h���X(HostByteOrder)
+  Returns:      ホストの IPv4 の IP アドレス(HostByteOrder)
  *---------------------------------------------------------------------------*/
 SOCLInAddr SOCL_GetHostID(void)
 {
-    // �����N���m�����Ă��Ȃ��Ă��A
-    // ���荞�ݒ��łȂ��ADHCP ���N�G�X�g�Œ��Ȃ�X���[�v����
+    // リンクが確立していなくてかつ、
+    // 割り込み中でなく、DHCP リクエスト最中ならスリープする
     if (CPSMyIp == 0)
     {
         if ((SOCLiDhcpState & (SOCL_DHCP_REQUEST | SOCL_DHCP_CALLBACK)) == SOCL_DHCP_REQUEST)
         {
             if (OS_GetProcMode() != OS_PROCMODE_IRQ)
             {
-                OS_Sleep(10);   // 10ms �����𖾂��n��
+                OS_Sleep(10);   // 10ms 処理を明け渡す
             }
         }
     }
     else if (SOCLiRequestedIP == 0)
     {
-        // IP �A�h���X���ۑ�����Ă��Ȃ��Ȃ�ۑ����Ă���
+        // IP アドレスが保存されていないなら保存しておく
         SOCLiRequestedIP = CPSMyIp;
     }
 

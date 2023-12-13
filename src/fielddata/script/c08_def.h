@@ -1,7 +1,7 @@
 #ifndef _C08_DEF_H_
 #define _C08_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C08_LEADER		(1)
 #define	SCRID_C08_BOY1		(2)
 #define	SCRID_C08_SEAMAN1A		(3)
@@ -21,6 +21,6 @@
 #define	SCRID_C08_FIX_SHOP_01		(17)
 #define	SCRID_C08_BIGFOUR3		(18)
 #define	SCRID_C08_FLAG_CHANGE		(19)
-#define	SCRID_C08_DATA_MAX		(19)		//最大数
+#define	SCRID_C08_DATA_MAX		(19)		//譛螟ｧ謨ｰ
 
 #endif //_C08_DEF_H_

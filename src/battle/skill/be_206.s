@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_206.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			206@–hŒäA“Á–h‚ªã‚ª‚éB
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			206ã€€é˜²å¾¡ã€ç‰¹é˜²ãŒä¸ŠãŒã‚‹ã€‚
  *
  *@author	HisashiSogabe
  *@data		2006.02.09

@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_message.h
- * @brief	’ÊM—p ƒƒbƒZ[ƒW‚ğŠÈ’P‚Éˆµ‚¤‚½‚ß‚ÌƒNƒ‰ƒX
+ * @brief	é€šä¿¡ç”¨ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ç°¡å˜ã«æ‰±ã†ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  * @author	k.ohno
  * @date    2006.02.05
  */
@@ -11,7 +11,7 @@
 #define __UG_MESSAGE_H__
 
 #include "savedata/mystatus.h"
-#include "gflib/msg_print.h"	// STRCODE ’è‹`‚Ì‚½‚ß
+#include "gflib/msg_print.h"	// STRCODE å®šç¾©ã®ãŸã‚
 #include "system/msgdata.h" //MSGDATA_MANAGER
 #include "gflib/bg_system.h" //GF_BGL_INI
 #include "gflib/strbuf.h" //STRBUF
@@ -26,12 +26,12 @@ typedef struct _COMM_MESSAGE COMM_MESSAGE;
 typedef void (*PTRCommMsgCallback)(int num);
 
 
-#define COMM_MESFRAME_PAL     ( 10 )         //  ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE
-#define COMM_MENUFRAME_PAL    ( 11 )         //  ƒƒjƒ…[ƒEƒCƒ“ƒhƒE
-#define COMM_MESFONT_PAL      ( 12 )         //  ƒƒbƒZ[ƒWƒtƒHƒ“ƒg
-#define COMM_SYSFONT_PAL	  ( 13 )         //  ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
+#define COMM_MESFRAME_PAL     ( 10 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define COMM_MENUFRAME_PAL    ( 11 )         //  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define COMM_MESFONT_PAL      ( 12 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆ
+#define COMM_SYSFONT_PAL	  ( 13 )         //  ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
 
-// ‰ï˜bƒEƒBƒ“ƒhƒE
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	COMM_TALK_WIN_CGX_SIZE	( 18+12 )
 #define	COMM_TALK_WIN_CGX_NUM	( 1024 - COMM_TALK_WIN_CGX_SIZE)
 #define	COMM_MSG_WIN_PX		( 2 )
@@ -43,15 +43,15 @@ typedef void (*PTRCommMsgCallback)(int num);
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/29
-// WORDSET ‚Ì‘ã“üæƒCƒ“ƒfƒbƒNƒX‚Ì’è‹`‚ğ ug_message.c ‚©‚çˆÚ“®
-// # ƒAƒ“ƒ_[ƒo[‚Ån‚Ü‚é’è”‚ğƒwƒbƒ_‚É’u‚­‚Ì‚Í‚¿‚å‚Á‚Æ‹C•ª‚ªˆ«‚¢‚¯‚Çcc
-#define _TALK_TARGET_INDEX_WORK (0)  ///< ‰ï˜bƒf[ƒ^@˜b‘Šè‚ÌID‚ÌˆÊ’u
-#define _TALK_MY_INDEX_WORK     (1)  ///< ‰ï˜bƒf[ƒ^@˜b‚µ‚Ä‚¢‚éID‚ÌˆÊ’u
-#define _UGITEM_INDEX_WORK      (2)   ///< ƒAƒCƒeƒ€
+// WORDSET ã®ä»£å…¥å…ˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å®šç¾©ã‚’ ug_message.c ã‹ã‚‰ç§»å‹•
+// # ã‚¢ãƒ³ãƒ€ãƒ¼ãƒãƒ¼ã§å§‹ã¾ã‚‹å®šæ•°ã‚’ãƒ˜ãƒƒãƒ€ã«ç½®ãã®ã¯ã¡ã‚‡ã£ã¨æ°—åˆ†ãŒæ‚ªã„ã‘ã©â€¦â€¦
+#define _TALK_TARGET_INDEX_WORK (0)  ///< ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã€€è©±ç›¸æ‰‹ã®IDã®ä½ç½®
+#define _TALK_MY_INDEX_WORK     (1)  ///< ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã€€è©±ã—ã¦ã„ã‚‹IDã®ä½ç½®
+#define _UGITEM_INDEX_WORK      (2)   ///< ã‚¢ã‚¤ãƒ†ãƒ 
 #define _UGTRAP_INDEX_WORK      (3)   ///< trap
-#define _SECRET_QUESTION_WORK   (5)  ///< ”é–§‚Ì¿–â
-#define _SECRET_ANSWER_WORK   (5)  ///< ”é–§‚Ì“š‚¦
-#define _UNDER_GOODS_WORK   (2)    /// ƒOƒbƒY
+#define _SECRET_QUESTION_WORK   (5)  ///< ç§˜å¯†ã®è³ªå•
+#define _SECRET_ANSWER_WORK   (5)  ///< ç§˜å¯†ã®ç­”ãˆ
+#define _UNDER_GOODS_WORK   (2)    /// ã‚°ãƒƒã‚º
 // ----------------------------------------------------------------------------
 
 
@@ -75,19 +75,19 @@ extern void CommMsgTalkWindowMeWait(COMM_MESSAGE* pComm);
 
 extern STRBUF* CommMsgGetExpandStrBuf(COMM_MESSAGE* pComm, int msgNo);
 
-// ƒŒƒWƒXƒ^[‚É’PŒê“o˜^‚·‚é‚½‚ß‚ÌŠÖ”ŒQ
+// ãƒ¬ã‚¸ã‚¹ã‚¿ãƒ¼ã«å˜èªç™»éŒ²ã™ã‚‹ãŸã‚ã®é–¢æ•°ç¾¤
 extern void CommMsgRegisterMyName(COMM_MESSAGE* pComm, MYSTATUS* pMy);
 extern void CommMsgRegisterTargetName(COMM_MESSAGE* pComm, MYSTATUS* pTarget);
 extern void CommMsgRegisterUGItemName(COMM_MESSAGE* pComm,int type);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒAƒCƒeƒ€–¼‚ğ‘ã“ü‚·‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ åã‚’ä»£å…¥ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 extern void CommMsgRegisterUGItemNameIndefinate(COMM_MESSAGE* pComm,int type);
 // ----------------------------------------------------------------------------
 extern void CommMsgRegisterUGTrapName(COMM_MESSAGE* pComm,int type);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒƒi–¼‚ğ‘ã“ü‚·‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ãƒ¯ãƒŠåã‚’ä»£å…¥ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 extern void CommMsgRegisterUGTrapNameIndefinate(COMM_MESSAGE* pComm,int type);
 // ----------------------------------------------------------------------------
 extern void CommMsgRegisterSecretQuestionName(COMM_MESSAGE* pComm,int type);
@@ -96,7 +96,7 @@ extern void CommMsgRegisterSecretAnswerName(COMM_MESSAGE* pComm,int type);
 extern void CommMsgRegisterUGGoodsName(COMM_MESSAGE* pComm,int type);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒOƒbƒY–¼‚ğ‘ã“ü‚·‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ã‚°ãƒƒã‚ºåã‚’ä»£å…¥ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 extern void CommMsgRegisterUGGoodsNameIndefinate(COMM_MESSAGE* pComm,int type);
 // ----------------------------------------------------------------------------
 extern void CommMsgRegisterNumber1Index(COMM_MESSAGE* pComm,int index,int num);
@@ -109,14 +109,14 @@ extern void CommMsgRegisterUGTrapNameIndex(COMM_MESSAGE* pComm,int index,int typ
 extern void CommMsgRegisterUGGoodsNameIndex(COMM_MESSAGE* pComm,int index,int type);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒAƒCƒeƒ€EƒƒiEƒOƒbƒY–¼‚ğ‘ã“ü‚·‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ»ãƒ¯ãƒŠãƒ»ã‚°ãƒƒã‚ºåã‚’ä»£å…¥ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 extern void CommMsgRegisterUGItemNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int type);
 extern void CommMsgRegisterUGTrapNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int type);
 extern void CommMsgRegisterUGGoodsNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int type);
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/29
-// w’èƒCƒ“ƒfƒbƒNƒX‚É“o˜^‚³‚ê‚½’PŒê‚ğƒLƒƒƒsƒ^ƒ‰ƒCƒY
+// æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ã‚­ãƒ£ãƒ”ã‚¿ãƒ©ã‚¤ã‚º
 extern void CommMsgCapitalizeIndex(COMM_MESSAGE* pComm,int index);
 // ----------------------------------------------------------------------------
 extern void CommMsgPrintStop(COMM_MESSAGE* pComm);

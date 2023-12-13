@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_defain.h
- *	@brief		}ŠÓ’è”’è‹`
+ *	@brief		å›³é‘‘å®šæ•°å®šç¾©
  *	@author		tomoya takahashi
  *	@data		2006.01.18
  *
@@ -15,61 +15,61 @@
 
 //-----------------------------------------------------------------------------
 /**
- *			BG ’è‹`
+ *			BG å®šç¾©
  */
 //-----------------------------------------------------------------------------
-#define ZKN_BG_FRM_FONT_M		( GF_BGL_FRAME1_M )	// •¶Žš—ñ
-#define ZKN_BG_FRM_UTIL_M		( GF_BGL_FRAME2_M )	// ƒ†[ƒeƒBƒŠƒeƒB
-#define ZKN_BG_FRM_BACK_M		( GF_BGL_FRAME3_M )	// ”wŒi
-#define ZKN_BG_FRM_UTIL_S		( GF_BGL_FRAME1_S )	// ƒ†[ƒeƒBƒŠƒeƒB
-#define ZKN_BG_FRM_AFFINE_S		( GF_BGL_FRAME3_S )	// ƒAƒtƒBƒ“–Ê
-#define ZKN_BG_FRM_BACK_S		( GF_BGL_FRAME2_S )	// ”wŒi
+#define ZKN_BG_FRM_FONT_M		( GF_BGL_FRAME1_M )	// æ–‡å­—åˆ—
+#define ZKN_BG_FRM_UTIL_M		( GF_BGL_FRAME2_M )	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£
+#define ZKN_BG_FRM_BACK_M		( GF_BGL_FRAME3_M )	// èƒŒæ™¯
+#define ZKN_BG_FRM_UTIL_S		( GF_BGL_FRAME1_S )	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£
+#define ZKN_BG_FRM_AFFINE_S		( GF_BGL_FRAME3_S )	// ã‚¢ãƒ•ã‚£ãƒ³é¢
+#define ZKN_BG_FRM_BACK_S		( GF_BGL_FRAME2_S )	// èƒŒæ™¯
 
-#define ZKN_BG_FONT_COLOR		( 0 )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
-#define ZKN_BG_FONT_COLOR_MSK	( GF_PRINTCOLOR_MAKE(2,1,0) )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
-#define ZKN_BG_FONT_COLOR2_MSK	( GF_PRINTCOLOR_MAKE(4,3,0) )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
+#define ZKN_BG_FONT_COLOR		( 0 )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define ZKN_BG_FONT_COLOR_MSK	( GF_PRINTCOLOR_MAKE(2,1,0) )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define ZKN_BG_FONT_COLOR2_MSK	( GF_PRINTCOLOR_MAKE(4,3,0) )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 
-#define ZKN_BG_FIGHT_FONT_COLOR		( 0xc )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
-#define ZKN_BG_FIGHT_FONT_COLOR_MSK	( GF_PRINTCOLOR_MAKE(2,1,0) )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
-#define ZKN_BG_FIGHT_FONT_COLOR2_MSK	( GF_PRINTCOLOR_MAKE(3,4,0) )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
+#define ZKN_BG_FIGHT_FONT_COLOR		( 0xc )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define ZKN_BG_FIGHT_FONT_COLOR_MSK	( GF_PRINTCOLOR_MAKE(2,1,0) )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define ZKN_BG_FIGHT_FONT_COLOR2_MSK	( GF_PRINTCOLOR_MAKE(3,4,0) )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 
 
-// •¶Žš—ñ–Êƒrƒbƒgƒ}ƒbƒv
+// æ–‡å­—åˆ—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
 #define ZKN_BG_FONTBMP_CX	( 32 )
 #define ZKN_BG_FONTBMP_CY	( 32 )
 
 //-----------------------------------------------------------------------------
 /**
- *			OAM ’è‹`
+ *			OAM å®šç¾©
  */
 //-----------------------------------------------------------------------------
-#define OAM_OAM_MAIN_S					(0)				// ƒƒCƒ“‰æ–Ê OAMŽg—p—ÌˆæŠJŽn
-#define OAM_OAM_MAIN_E					(128)			// ƒƒCƒ“‰æ–Ê OAMŽg—p—ÌˆæI—¹
-#define OAM_AFF_MAIN_S					(0)				// ƒƒCƒ“‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæŠJŽn
-#define OAM_AFF_MAIN_E					(32)			// ƒƒCƒ“‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæI—¹
-#define OAM_OAM_SUB_S					(0)				// ƒTƒu‰æ–Ê OAMŽg—p—ÌˆæŠJŽn
-#define OAM_OAM_SUB_E					(128)			// ƒTƒu‰æ–Ê OAMŽg—p—ÌˆæI—¹
-#define OAM_AFF_SUB_S					(0)				// ƒTƒu‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæŠJŽn
-#define OAM_AFF_SUB_E					(32)			// ƒTƒu‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæI—¹
-#define OAM_CHAR_ENTRY_NUM				(32)			// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒƒGƒ“ƒgƒŠ[”
-#define OAM_CHAR_VRAMTRANS_MAIN_SIZE	(0x14000)		// ƒƒCƒ“‰æ–Ê ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒVramŠÇ——Ìˆæ
-#define OAM_CHAR_VRAMTRANS_SUB_SIZE		(0x4000)		// ƒTƒu‰æ–Ê ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒVramŠÇ——Ìˆæ
-#define OAM_PLTT_ENTRY_NUM				(32)			// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒƒGƒ“ƒgƒŠ[”
+#define OAM_OAM_MAIN_S					(0)				// ãƒ¡ã‚¤ãƒ³ç”»é¢ OAMä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define OAM_OAM_MAIN_E					(128)			// ãƒ¡ã‚¤ãƒ³ç”»é¢ OAMä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define OAM_AFF_MAIN_S					(0)				// ãƒ¡ã‚¤ãƒ³ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define OAM_AFF_MAIN_E					(32)			// ãƒ¡ã‚¤ãƒ³ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define OAM_OAM_SUB_S					(0)				// ã‚µãƒ–ç”»é¢ OAMä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define OAM_OAM_SUB_E					(128)			// ã‚µãƒ–ç”»é¢ OAMä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define OAM_AFF_SUB_S					(0)				// ã‚µãƒ–ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define OAM_AFF_SUB_E					(32)			// ã‚µãƒ–ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define OAM_CHAR_ENTRY_NUM				(32)			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°
+#define OAM_CHAR_VRAMTRANS_MAIN_SIZE	(0x14000)		// ãƒ¡ã‚¤ãƒ³ç”»é¢ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£Vramç®¡ç†é ˜åŸŸ
+#define OAM_CHAR_VRAMTRANS_SUB_SIZE		(0x4000)		// ã‚µãƒ–ç”»é¢ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£Vramç®¡ç†é ˜åŸŸ
+#define OAM_PLTT_ENTRY_NUM				(32)			// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°
 
-// ƒZƒ‹ƒAƒNƒ^[—p
-#define ZKN_CLACT_SET_WORK_NUM		( 128 )	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgƒ[ƒN”
-#define ZKN_CLACT_RES_MANAGER_NUM	( 4 )	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ì”
-#define ZKN_CLACT_RES_DATA_TBL_NUM	( 32 )	// ŠeƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚É“o˜^‚Å‚«‚éƒf[ƒ^”
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç”¨
+#define ZKN_CLACT_SET_WORK_NUM		( 128 )	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯æ•°
+#define ZKN_CLACT_RES_MANAGER_NUM	( 4 )	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã®æ•°
+#define ZKN_CLACT_RES_DATA_TBL_NUM	( 32 )	// å„ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²ã§ãã‚‹ãƒ‡ãƒ¼ã‚¿æ•°
 
-#define ZKN_CLACT_RES_OBJ_NUM_DEF	( 4 )	// ƒŠƒ\[ƒX‚ÌŽí—Þ‚Í‚Ù‚Æ‚ñ‚Ç‚ª‚S‚Å‚µ‚å‚¤
+#define ZKN_CLACT_RES_OBJ_NUM_DEF	( 4 )	// ãƒªã‚½ãƒ¼ã‚¹ã®ç¨®é¡žã¯ã»ã¨ã‚“ã©ãŒï¼”ã§ã—ã‚‡ã†
 
 // FONTOAM
-#define ZKN_FONTOAM_WORK_NUM	( 16 )	// FONTOAMƒ[ƒN”
+#define ZKN_FONTOAM_WORK_NUM	( 16 )	// FONTOAMãƒ¯ãƒ¼ã‚¯æ•°
 
 #define ZKN_FOTNOAM_COLOR	( GF_PRINTCOLOR_MAKE(3,2,1) )
 
 
-// Še‰æ–Ê‚ÌƒŠƒ\[ƒXŠÇ—ID’è”
+// å„ç”»é¢ã®ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†IDå®šæ•°
 #define ZKN_POKELIST_SUB_RES_ID_OFS		( 1000 )
 #define ZKN_ZUKAN_COMMON_RES_ID_OFS		( 2000 )
 #define ZKN_ZUKAN_COMMON_SUB_RES_ID_OFS	( 2100 )
@@ -90,7 +90,7 @@
 #define ZKN_ZUKAN_POKETYPE_RES_ID	( 17000 )
 
 
-// Še‰æ–Ê‚ÌŽg—pƒpƒŒƒbƒgó‹µ
+// å„ç”»é¢ã®ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆçŠ¶æ³
 #define ZKN_DRAWGLB_POKENAME_TBL_PLTT_LOAD	(1)
 #define ZKN_POKELIST_TBL_PLTT_LOAD	(12)
 #define ZKN_POKELIST_SUB_TBL_PLTT_LOAD	(12)
@@ -107,16 +107,16 @@
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN
+ *			ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
-#define ZKN_POKEGRA_TEX_SIZE	(0x8000)	// ƒ|ƒPƒ‚ƒ“4‘Ì•ª
+#define ZKN_POKEGRA_TEX_SIZE	(0x8000)	// ãƒã‚±ãƒ¢ãƒ³4ä½“åˆ†
 #define ZKN_POKEGRA_PLTT_SIZE	(0x80)
 
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+ *			ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  */
 //-----------------------------------------------------------------------------
 #define ZKN_SWSP_OBJNUM		(8)
@@ -126,7 +126,7 @@
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒuƒ‰ƒCƒgƒlƒX
+ *			ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹
  */
 //-----------------------------------------------------------------------------
 #define ZKN_BRIGHTNESS_MSK_ALL	(GX_BLEND_PLANEMASK_BG0|GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG2|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD) 
@@ -138,9 +138,9 @@
 
 
 
-// ƒfƒoƒbƒN’è‹`
+// ãƒ‡ãƒãƒƒã‚¯å®šç¾©
 #ifdef PM_DEBUG
-#define ZKN_DEBUG_WORLDTEXT_TORIAEZU	// ¢ŠEƒeƒLƒXƒg‚Æ‚è‚ ‚¦‚¸‚Èˆ—
+#define ZKN_DEBUG_WORLDTEXT_TORIAEZU	// ä¸–ç•Œãƒ†ã‚­ã‚¹ãƒˆã¨ã‚Šã‚ãˆãšãªå‡¦ç†
 #endif
 
 #endif		// __ZKN_DEFAIN_H__

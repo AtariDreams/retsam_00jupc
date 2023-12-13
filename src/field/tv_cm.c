@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	tv_cm.c
- * @brief	•ú‰f‚·‚éCM‚ÌŒˆ’è
+ * @brief	æ”¾æ˜ ã™ã‚‹CMã®æ±ºå®š
  * @author	tamada GAME FREAK inc.
  * @date	2006.05.17
  */
@@ -28,7 +28,7 @@
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	CMƒ`ƒFƒbƒN—pŠÖ”Œ^’è‹`
+ * @brief	CMãƒã‚§ãƒƒã‚¯ç”¨é–¢æ•°å‹å®šç¾©
  */
 //--------------------------------------------------------------------
 typedef BOOL (*CHECK_CM_FUNC)(FIELDSYS_WORK *);
@@ -55,45 +55,45 @@ static BOOL GameClearCheck(FIELDSYS_WORK * fsys);
 
 //--------------------------------------------------------------------
 /**
- * @brief	•ú‘—‹–‰Âƒ`ƒFƒbƒNID
+ * @brief	æ”¾é€è¨±å¯ãƒã‚§ãƒƒã‚¯ID
  *
- * AllConditionFuncTable‚Æ•À‚Ñ‚ğˆê’v‚³‚¹‚Ä‚¨‚­•K—v‚ª‚ ‚é
+ * AllConditionFuncTableã¨ä¸¦ã³ã‚’ä¸€è‡´ã•ã›ã¦ãŠãå¿…è¦ãŒã‚ã‚‹
  */
 //--------------------------------------------------------------------
 enum {
-	FLAG_AnytimeEnable,				///<Å‰‚©‚ç
-	FLAG_T03Check,					///<ƒ\ƒmƒI“’…
-	FLAG_C01Check,					///<ƒRƒgƒuƒL“’…
-	FLAG_C03Check,					///<ƒNƒƒKƒl“’…
-	FLAG_C04Check,					///<ƒnƒNƒ^ƒC“’…
-	FLAG_C05Check,					///<ƒˆƒXƒK“’…
-	FLAG_C11Check,					///<C11“’…
-	FLAG_Get5BadgeCheck,			///<ƒWƒ€ƒoƒbƒW‚TŒÂ
-	FLAG_SinouZukanCompleteCheck,	///<ƒVƒ“ƒIƒE}ŠÓƒRƒ“ƒv
-	FLAG_ZukanGetCheck,				///<}ŠÓæ“¾Œã
-	FLAG_GameClearCheck,			///<“a“°“ü‚èŒã
-	FLAG_AnytimeDisable,			///<•ú‘—•s‰Âš
+	FLAG_AnytimeEnable,				///<æœ€åˆã‹ã‚‰
+	FLAG_T03Check,					///<ã‚½ãƒã‚ªåˆ°ç€
+	FLAG_C01Check,					///<ã‚³ãƒˆãƒ–ã‚­åˆ°ç€
+	FLAG_C03Check,					///<ã‚¯ãƒ­ã‚¬ãƒåˆ°ç€
+	FLAG_C04Check,					///<ãƒã‚¯ã‚¿ã‚¤åˆ°ç€
+	FLAG_C05Check,					///<ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	FLAG_C11Check,					///<C11åˆ°ç€
+	FLAG_Get5BadgeCheck,			///<ã‚¸ãƒ ãƒãƒƒã‚¸ï¼•å€‹
+	FLAG_SinouZukanCompleteCheck,	///<ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚³ãƒ³ãƒ—
+	FLAG_ZukanGetCheck,				///<å›³é‘‘å–å¾—å¾Œ
+	FLAG_GameClearCheck,			///<æ®¿å ‚å…¥ã‚Šå¾Œ
+	FLAG_AnytimeDisable,			///<æ”¾é€ä¸å¯â˜…
 
 	FLAG_CMCHECK_MAX,
 };
 //--------------------------------------------------------------------
 /**
- * @brief	•ú‘—‹–‰Âƒ`ƒFƒbƒNŠÖ”‚Ìƒe[ƒuƒ‹
+ * @brief	æ”¾é€è¨±å¯ãƒã‚§ãƒƒã‚¯é–¢æ•°ã®ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //--------------------------------------------------------------------
 static const CHECK_CM_FUNC AllConditionFuncTable[] = {
-	AnytimeEnable,				///<Å‰‚©‚ç
-	T03Check,					///<ƒ\ƒmƒI“’…
-	C01Check,					///<ƒRƒgƒuƒL“’…
-	C03Check,					///<ƒNƒƒKƒl“’…
-	C04Check,					///<ƒnƒNƒ^ƒC“’…
-	C05Check,					///<ƒˆƒXƒK“’…
-	C11Check,					///<C11“’…
-	Get5BadgeCheck,				///<ƒWƒ€ƒoƒbƒW‚TŒÂ
-	SinouZukanCompleteCheck,	///<ƒVƒ“ƒIƒE}ŠÓƒRƒ“ƒv
-	ZukanGetCheck,				///<}ŠÓæ“¾Œã
-	GameClearCheck,				///<“a“°“ü‚èŒã
-	AnytimeDisable,				///<•ú‘—•s‰Âš
+	AnytimeEnable,				///<æœ€åˆã‹ã‚‰
+	T03Check,					///<ã‚½ãƒã‚ªåˆ°ç€
+	C01Check,					///<ã‚³ãƒˆãƒ–ã‚­åˆ°ç€
+	C03Check,					///<ã‚¯ãƒ­ã‚¬ãƒåˆ°ç€
+	C04Check,					///<ãƒã‚¯ã‚¿ã‚¤åˆ°ç€
+	C05Check,					///<ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	C11Check,					///<C11åˆ°ç€
+	Get5BadgeCheck,				///<ã‚¸ãƒ ãƒãƒƒã‚¸ï¼•å€‹
+	SinouZukanCompleteCheck,	///<ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚³ãƒ³ãƒ—
+	ZukanGetCheck,				///<å›³é‘‘å–å¾—å¾Œ
+	GameClearCheck,				///<æ®¿å ‚å…¥ã‚Šå¾Œ
+	AnytimeDisable,				///<æ”¾é€ä¸å¯â˜…
 };
 
 //============================================================================================
@@ -101,45 +101,45 @@ static const CHECK_CM_FUNC AllConditionFuncTable[] = {
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ŠeCM‚²‚Æ‚Ì•ú‘—‹–‰ÂğŒƒe[ƒuƒ‹
+ * @brief	å„CMã”ã¨ã®æ”¾é€è¨±å¯æ¡ä»¶ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //--------------------------------------------------------------------
 static u8 CheckCMTable[] = {
-	FLAG_AnytimeEnable,				///<ƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[	Å‰‚©‚ç
-	FLAG_AnytimeEnable,				///<ƒtƒŒƒ“ƒhƒŠƒBƒVƒ‡ƒbƒv	Å‰‚©‚ç
-	FLAG_AnytimeEnable,				///<‚s‚u‹Ç	Å‰‚©‚ç
-	FLAG_AnytimeEnable,				///<ƒgƒŒ[ƒi[ƒXƒN[ƒ‹	Å‰‚©‚ç
-	FLAG_AnytimeEnable,				///<ƒ|ƒPƒbƒ`	Å‰‚©‚ç
-	FLAG_C01Check,					///<ƒ|ƒPƒbƒ`ƒ\ƒtƒg	
-	FLAG_T03Check,					///<‰Ô‰®	ƒ\ƒmƒI“’…
-	FLAG_C04Check,					///<©“]Ô‰®	ƒnƒNƒ^ƒC“’…
-	FLAG_C04Check,					///<ƒRƒ“ƒeƒXƒg‚b‚l	ƒnƒNƒ^ƒC“’…
-	FLAG_C05Check,					///<ƒQ[ƒ€ƒR[ƒi[	ƒˆƒXƒK“’…
-	FLAG_C05Check,					///<©‘RŒö‰€	ƒˆƒXƒK“’…
-	FLAG_C05Check,					///<ƒgƒoƒŠƒfƒp[ƒg	ƒˆƒXƒK“’…
-	FLAG_C05Check,					///<ˆç‚Ä‰®	ƒˆƒXƒK“’…
-	FLAG_C05Check,					///<ƒzƒeƒ‹	ƒˆƒXƒK“’…
-	FLAG_C05Check,					///<‘å¼Œ´	ƒˆƒXƒK“’…
-	FLAG_Get5BadgeCheck,			///<ƒLƒbƒTƒLƒVƒeƒB	ƒWƒ€ƒoƒbƒW‚TŒÂ
-	FLAG_Get5BadgeCheck,			///<ƒiƒMƒTsê	ƒWƒ€ƒoƒbƒW‚TŒÂ
-	FLAG_C03Check,					///<‚f‚s‚b	ƒNƒƒKƒl“’…
-	FLAG_SinouZukanCompleteCheck,	///<ƒ|ƒPƒ‚ƒ“ƒp[ƒN	ƒVƒ“ƒIƒE}ŠÓƒRƒ“ƒv
-	FLAG_GameClearCheck,			///<ƒLƒbƒTƒLƒVƒeƒB‚Ì‘D	ƒVƒ“ƒIƒE}ŠÓƒRƒ“ƒv
-	FLAG_GameClearCheck,			///<ƒoƒgƒ‹ƒ][ƒ“	ƒVƒ“ƒIƒE}ŠÓƒRƒ“ƒv
-	FLAG_SinouZukanCompleteCheck,	///<‰ïˆõ§‚ÌŒš•¨	ƒVƒ“ƒIƒE}ŠÓƒRƒ“ƒv
-	FLAG_C05Check,					///<ƒMƒ“ƒK’c‚P	ƒˆƒXƒK“’…
-	FLAG_C05Check,					///<ƒMƒ“ƒK’c‚Q	ƒˆƒXƒK“’…
-	FLAG_ZukanGetCheck,				///<ƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[’ÊM•Ò	}ŠÓæ“¾Œã
-	FLAG_ZukanGetCheck,				///<ƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[Wi-Fi•Ò	}ŠÓæ“¾Œã
-	FLAG_AnytimeDisable,			///<ƒoƒgƒ‹ƒ^ƒ[	C11“’…¡
-	FLAG_AnytimeDisable,			///< Wi-Fiƒoƒgƒ‹ƒ^ƒ[	C11“’…¡
-	FLAG_GameClearCheck,			///<æ‚è•¨‚b‚li‘Dj	“a“°“ü‚èŒã
-	FLAG_C11Check,					///<ƒoƒgƒ‹ƒXƒe[ƒW	C11“’…š
-	FLAG_C11Check,					///<ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹	C11“’…š
-	FLAG_C11Check,					///<ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg	C11“’…š
-	FLAG_C11Check,					///<ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[	C11“’…š
-	FLAG_C03Check,					///<ƒOƒ[ƒoƒ‹ƒ^ƒ[	ƒNƒƒKƒl“’…š
-	FLAG_C03Check,					///<WIFI‚Ğ‚ë‚Î	ƒNƒƒKƒl“’…š
+	FLAG_AnytimeEnable,				///<ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼	æœ€åˆã‹ã‚‰
+	FLAG_AnytimeEnable,				///<ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚£ã‚·ãƒ§ãƒƒãƒ—	æœ€åˆã‹ã‚‰
+	FLAG_AnytimeEnable,				///<ï¼´ï¼¶å±€	æœ€åˆã‹ã‚‰
+	FLAG_AnytimeEnable,				///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¹ã‚¯ãƒ¼ãƒ«	æœ€åˆã‹ã‚‰
+	FLAG_AnytimeEnable,				///<ãƒã‚±ãƒƒãƒ	æœ€åˆã‹ã‚‰
+	FLAG_C01Check,					///<ãƒã‚±ãƒƒãƒã‚½ãƒ•ãƒˆ	
+	FLAG_T03Check,					///<èŠ±å±‹	ã‚½ãƒã‚ªåˆ°ç€
+	FLAG_C04Check,					///<è‡ªè»¢è»Šå±‹	ãƒã‚¯ã‚¿ã‚¤åˆ°ç€
+	FLAG_C04Check,					///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼£ï¼­	ãƒã‚¯ã‚¿ã‚¤åˆ°ç€
+	FLAG_C05Check,					///<ã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒŠãƒ¼	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	FLAG_C05Check,					///<è‡ªç„¶å…¬åœ’	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	FLAG_C05Check,					///<ãƒˆãƒãƒªãƒ‡ãƒ‘ãƒ¼ãƒˆ	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	FLAG_C05Check,					///<è‚²ã¦å±‹	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	FLAG_C05Check,					///<ãƒ›ãƒ†ãƒ«	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	FLAG_C05Check,					///<å¤§æ¹¿åŸ	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	FLAG_Get5BadgeCheck,			///<ã‚­ãƒƒã‚µã‚­ã‚·ãƒ†ã‚£	ã‚¸ãƒ ãƒãƒƒã‚¸ï¼•å€‹
+	FLAG_Get5BadgeCheck,			///<ãƒŠã‚®ã‚µå¸‚å ´	ã‚¸ãƒ ãƒãƒƒã‚¸ï¼•å€‹
+	FLAG_C03Check,					///<ï¼§ï¼´ï¼£	ã‚¯ãƒ­ã‚¬ãƒåˆ°ç€
+	FLAG_SinouZukanCompleteCheck,	///<ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚¯	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚³ãƒ³ãƒ—
+	FLAG_GameClearCheck,			///<ã‚­ãƒƒã‚µã‚­ã‚·ãƒ†ã‚£ã®èˆ¹	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚³ãƒ³ãƒ—
+	FLAG_GameClearCheck,			///<ãƒãƒˆãƒ«ã‚¾ãƒ¼ãƒ³	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚³ãƒ³ãƒ—
+	FLAG_SinouZukanCompleteCheck,	///<ä¼šå“¡åˆ¶ã®å»ºç‰©	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚³ãƒ³ãƒ—
+	FLAG_C05Check,					///<ã‚®ãƒ³ã‚¬å›£ï¼‘	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	FLAG_C05Check,					///<ã‚®ãƒ³ã‚¬å›£ï¼’	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	FLAG_ZukanGetCheck,				///<ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼é€šä¿¡ç·¨	å›³é‘‘å–å¾—å¾Œ
+	FLAG_ZukanGetCheck,				///<ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼Wi-Fiç·¨	å›³é‘‘å–å¾—å¾Œ
+	FLAG_AnytimeDisable,			///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	C11åˆ°ç€â– 
+	FLAG_AnytimeDisable,			///< Wi-Fiãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	C11åˆ°ç€â– 
+	FLAG_GameClearCheck,			///<ä¹—ã‚Šç‰©ï¼£ï¼­ï¼ˆèˆ¹ï¼‰	æ®¿å ‚å…¥ã‚Šå¾Œ
+	FLAG_C11Check,					///<ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸	C11åˆ°ç€â˜…
+	FLAG_C11Check,					///<ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«	C11åˆ°ç€â˜…
+	FLAG_C11Check,					///<ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ	C11åˆ°ç€â˜…
+	FLAG_C11Check,					///<ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼	C11åˆ°ç€â˜…
+	FLAG_C03Check,					///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¿ãƒ¯ãƒ¼	ã‚¯ãƒ­ã‚¬ãƒåˆ°ç€â˜…
+	FLAG_C03Check,					///<WIFIã²ã‚ã°	ã‚¯ãƒ­ã‚¬ãƒåˆ°ç€â˜…
 };
 
 //============================================================================================
@@ -274,7 +274,7 @@ static BOOL GameClearCheck(FIELDSYS_WORK * fsys)
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	•ú‰f‰Â”\‚ÈCM‚Ì’Šoˆ—
+ * @brief	æ”¾æ˜ å¯èƒ½ãªCMã®æŠ½å‡ºå‡¦ç†
  */
 //--------------------------------------------------------------------
 static int ChooseEnableCMID(FIELDSYS_WORK * fsys, u8 * cm_array)
@@ -283,11 +283,11 @@ static int ChooseEnableCMID(FIELDSYS_WORK * fsys, u8 * cm_array)
 	BOOL check_list[NELEMS(AllConditionFuncTable)];
 
 	GF_ASSERT(NELEMS(AllConditionFuncTable) == FLAG_CMCHECK_MAX);
-	//ğŒ‚ğ‘Sƒ`ƒFƒbƒN
+	//æ¡ä»¶ã‚’å…¨ãƒã‚§ãƒƒã‚¯
 	for (i = 0; i < NELEMS(AllConditionFuncTable); i++) {
 		check_list[i] = AllConditionFuncTable[i](fsys);
 	}
-	//CM‚²‚Æ‚ÉğŒ‚ª¬—§‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	//CMã”ã¨ã«æ¡ä»¶ãŒæˆç«‹ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	for (i = 0, n = 0; i < NELEMS(CheckCMTable); i++) {
 		if (check_list[CheckCMTable[i]]) {
 			cm_array[n] = i;
@@ -299,19 +299,19 @@ static int ChooseEnableCMID(FIELDSYS_WORK * fsys, u8 * cm_array)
 
 //--------------------------------------------------------------------
 /**
- * @brief	CM‚ğ’ŠoA‚»‚Ì’†‚©‚çƒ‰ƒ“ƒ_ƒ€‚ÅID‚ğæ“¾‚·‚é
+ * @brief	CMã‚’æŠ½å‡ºã€ãã®ä¸­ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã§IDã‚’å–å¾—ã™ã‚‹
  *
- * tvcm.gmm‚ÌmsgID‚Æ‚µ‚Äg—p‚µ‚Ä‚¢‚é([32]‚ğCM‚Ì”‚ª‘‚¦‚½‚ç‘Î‰‚µ‚È‚¢‚Æƒ_ƒI)š
- * tvcm.gmm‚ÌmsgID‚Æ‚µ‚Äg—p‚µ‚Ä‚¢‚é([36]‚ğCM‚Ì”‚ª‘‚¦‚½‚ç‘Î‰‚µ‚È‚¢‚Æƒ_ƒI)š
+ * tvcm.gmmã®msgIDã¨ã—ã¦ä½¿ç”¨ã—ã¦ã„ã‚‹([32]ã‚’CMã®æ•°ãŒå¢—ãˆãŸã‚‰å¯¾å¿œã—ãªã„ã¨ãƒ€ãƒ¡ï¼)â˜…
+ * tvcm.gmmã®msgIDã¨ã—ã¦ä½¿ç”¨ã—ã¦ã„ã‚‹([36]ã‚’CMã®æ•°ãŒå¢—ãˆãŸã‚‰å¯¾å¿œã—ãªã„ã¨ãƒ€ãƒ¡ï¼)â˜…
  */
 //--------------------------------------------------------------------
 int TVCM_ChooseID(FIELDSYS_WORK * fsys)
 {
 	//u8 cm_id[32];
-	u8 cm_id[36];								//š
+	u8 cm_id[36];								//â˜…
 	int max;
 	//MI_CpuClear8(cm_id, 32);
-	MI_CpuClear8(cm_id, 36);					//š
+	MI_CpuClear8(cm_id, 36);					//â˜…
 	max = ChooseEnableCMID(fsys, cm_id);
 	if (max == 0) {
 		return 0;

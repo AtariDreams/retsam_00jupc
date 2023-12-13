@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_snd_def.h
- * @brief	ƒ_ƒCƒŒƒNƒgƒJƒEƒ“ƒ^ƒTƒEƒ“ƒh’è‹`’u‚«Š·‚¦ƒtƒ@ƒCƒ‹
+ * @brief	ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚«ã‚¦ãƒ³ã‚¿ã‚µã‚¦ãƒ³ãƒ‰å®šç¾©ç½®ãæ›ãˆãƒ•ã‚¡ã‚¤ãƒ«
  * @author	Katsumi Ohno
  * @date    2006.6.26
  */
@@ -16,8 +16,8 @@
 //-----------------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------------
-//#define DIRECT_BATTLE_SE_ERROR		(SEQ_SE_DP_CUSTOM06)		// ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É‡‚Á‚Ä‚¢‚È‚¢
-#define DIRECT_BATTLE_SE_ERROR			(SEQ_SE_DP_BOX03)		// ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É‡‚Á‚Ä‚¢‚È‚¢
+//#define DIRECT_BATTLE_SE_ERROR		(SEQ_SE_DP_CUSTOM06)		// ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«åˆã£ã¦ã„ãªã„
+#define DIRECT_BATTLE_SE_ERROR			(SEQ_SE_DP_BOX03)		// ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«åˆã£ã¦ã„ãªã„
 
 
 #endif  //__COMM_DIRECT_COUNTER_SE_H__

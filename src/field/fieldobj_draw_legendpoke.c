@@ -2,7 +2,7 @@
 /**
  *
  *	@file		fieldobj_draw_legendpoke.c
- *	@brief		“`àƒ|ƒPƒ‚ƒ“•`‰æŠÖŒW
+ *	@brief		ä¼èª¬ãƒã‚±ãƒ¢ãƒ³æç”»é–¢ä¿‚
  *	@author		tomoya takahashi
  *	@data		2006.04.18	
  *
@@ -16,34 +16,34 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	LEGENDPOKE_WORK\‘¢‘Ì
+//	LEGENDPOKE_WORKæ§‹é€ ä½“
 //=====================================
 typedef struct _LEGENDPOKE_WORK{
 	BLACT_WORK_PTR act;
@@ -53,15 +53,15 @@ typedef struct _LEGENDPOKE_WORK{
 #define LEGENDPOKE_WORK_SIZE (sizeof(LEGENDPOKE_WORK))
 
 
-// “`àƒ|ƒPƒ‚ƒ“ƒCƒAƒGƒAYƒIƒtƒZƒbƒg
+// ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã‚¤ã‚¢ã‚¨ã‚¢Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define LEGENDPOKE_Y_OFS	( FX32_CONST( 0 ) )
 
-// “`àƒ|ƒPƒ‚ƒ“@ƒŒƒCƒAƒCƒnƒC@YƒIƒtƒZƒbƒg
+// ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã€€ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤ã€€Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define LEGENDPOKE_RE_A_HA_I_Y_OFS	( FX32_CONST( 24 ) )
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void FldObj_LegendInit( FIELD_OBJ_PTR fldobj );
@@ -71,8 +71,8 @@ static void FldObj_LegendDelete( FIELD_OBJ_PTR fldobj );
 
 //--------------------------------------------------------------
 /**
- * LEGENDPOKE@‰Šú‰»B
- * •`‰æ‚Ìˆ×‚Ì‰Šú‰»‚ðs‚¤B
+ * LEGENDPOKEã€€åˆæœŸåŒ–ã€‚
+ * æç”»ã®ç‚ºã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -81,10 +81,10 @@ void FieldOBJ_DrawLegend_Init( FIELD_OBJ_PTR fldobj )
 {
 	VecFx32 ofs;
 	
-	// ‰Šú‰»ˆ—
+	// åˆæœŸåŒ–å‡¦ç†
 	FldObj_LegendInit( fldobj );
 
-	// YƒIƒtƒZƒbƒgÝ’è
+	// Yã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
 	ofs.x = 0;
 	ofs.y = LEGENDPOKE_Y_OFS;
 	ofs.z = 0;
@@ -93,8 +93,8 @@ void FieldOBJ_DrawLegend_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * LEGENDPOKE •`‰æB
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚ç•`‰æ‚É•K—v‚Èî•ñ‚ðŽæ“¾‚µA•`‰æ‚·‚éB
+ * LEGENDPOKE æç”»ã€‚
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’å–å¾—ã—ã€æç”»ã™ã‚‹ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -104,7 +104,7 @@ void FieldOBJ_DrawLegend_Draw( FIELD_OBJ_PTR fldobj )
 	LEGENDPOKE_WORK *work = FieldOBJ_DrawProcWorkGet( fldobj );
 	BLACT_WORK_PTR act = work->act;
 
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -114,28 +114,28 @@ void FieldOBJ_DrawLegend_Draw( FIELD_OBJ_PTR fldobj )
 
 	FldObj_LegendDraw( fldobj );
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 	BLACT_AnmFrameChg( act, FX32_ONE );		
 }
 
 //--------------------------------------------------------------
 /**
- * LEGENDPOKE íœŠÖ”B
- * •`‰æ‚ÅŽg—p‚µ‚½ƒ‚ƒm‚ðíœ
+ * LEGENDPOKE å‰Šé™¤é–¢æ•°ã€‚
+ * æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒŽã‚’å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawLegend_Delete( FIELD_OBJ_PTR fldobj )
 {
-	// ”jŠüˆ—
+	// ç ´æ£„å‡¦ç†
 	FldObj_LegendDelete( fldobj );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	LEGENDPOKE ‘Þ”ð
- *	@param	fldobj ƒ[ƒN
+ *	@brief	LEGENDPOKE é€€é¿
+ *	@param	fldobj ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void FieldOBJ_DrawLegend_Push( FIELD_OBJ_PTR fldobj )
@@ -154,8 +154,8 @@ void FieldOBJ_DrawLegend_Push( FIELD_OBJ_PTR fldobj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	LEGENDPOKE •œ‹A
- *	@param	fldobj	ƒ[ƒN
+ *	@brief	LEGENDPOKE å¾©å¸°
+ *	@param	fldobj	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void FieldOBJ_DrawLegend_Pop( FIELD_OBJ_PTR fldobj )
@@ -181,8 +181,8 @@ void FieldOBJ_DrawLegend_Pop( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * LEGENDPOKE@‰Šú‰»B		ƒŒƒC@ƒAƒC@ƒnƒC
- * •`‰æ‚Ìˆ×‚Ì‰Šú‰»‚ðs‚¤B
+ * LEGENDPOKEã€€åˆæœŸåŒ–ã€‚		ãƒ¬ã‚¤ã€€ã‚¢ã‚¤ã€€ãƒã‚¤
+ * æç”»ã®ç‚ºã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -191,10 +191,10 @@ void FieldOBJ_DrawReiAiHai_Init( FIELD_OBJ_PTR fldobj )
 {
 	VecFx32 ofs;
 	
-	// ‰Šú‰»ˆ—
+	// åˆæœŸåŒ–å‡¦ç†
 	FldObj_LegendInit( fldobj );
 
-	// YƒIƒtƒZƒbƒgÝ’è
+	// Yã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
 	ofs.x = 0;
 	ofs.y = LEGENDPOKE_RE_A_HA_I_Y_OFS;
 	ofs.z = 0;
@@ -203,8 +203,8 @@ void FieldOBJ_DrawReiAiHai_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * LEGENDPOKE •`‰æB		ƒŒƒC@ƒAƒC@ƒnƒC
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚ç•`‰æ‚É•K—v‚Èî•ñ‚ðŽæ“¾‚µA•`‰æ‚·‚éB
+ * LEGENDPOKE æç”»ã€‚		ãƒ¬ã‚¤ã€€ã‚¢ã‚¤ã€€ãƒã‚¤
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’å–å¾—ã—ã€æç”»ã™ã‚‹ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -214,7 +214,7 @@ void FieldOBJ_DrawReiAiHai_Draw( FIELD_OBJ_PTR fldobj )
 	LEGENDPOKE_WORK *work = FieldOBJ_DrawProcWorkGet( fldobj );
 	BLACT_WORK_PTR act = work->act;
 
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -227,8 +227,8 @@ void FieldOBJ_DrawReiAiHai_Draw( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * LEGENDPOKE íœŠÖ”B
- * •`‰æ‚ÅŽg—p‚µ‚½ƒ‚ƒm‚ðíœ
+ * LEGENDPOKE å‰Šé™¤é–¢æ•°ã€‚
+ * æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒŽã‚’å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -242,11 +242,11 @@ void FieldOBJ_DrawReiAiHai_Delete( FIELD_OBJ_PTR fldobj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“`àƒ|ƒPƒ‚ƒ“ƒ[ƒN‚ÌŽæ“¾
+ *	@brief	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ãƒ¯ãƒ¼ã‚¯ã®å–å¾—
  *
- *	@param	fldobj	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒFƒ[ƒN
+ *	@param	fldobj	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	“`àƒ|ƒPƒ‚ƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
+ *	@return	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 LEGENDPOKE_WORK* FieldOBJ_DrawLegend_GetWrokPtr( FIELD_OBJ_PTR fldobj )
@@ -256,9 +256,9 @@ LEGENDPOKE_WORK* FieldOBJ_DrawLegend_GetWrokPtr( FIELD_OBJ_PTR fldobj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“`àƒ|ƒPƒ‚ƒ“‚Ìƒrƒ‹ƒ{[ƒhŽæ“¾
+ *	@brief	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã®ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰å–å¾—
  *
- *	@param	fldobj	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒFƒ[ƒN
+ *	@param	fldobj	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	BLACT_WORK_PTR
  */
@@ -271,11 +271,11 @@ BLACT_WORK_PTR FieldOBJ_DrawLegend_GetBlActWorkPtr( FIELD_OBJ_PTR fldobj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ[ƒNŽæ“¾ŠÖ”
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯å–å¾—é–¢æ•°
  *
- *	@param	“`àƒ|ƒPƒ‚ƒ“ƒ[ƒN
+ *	@param	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ[ƒNƒ|ƒCƒ“ƒ^
+ *	@return	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 BLACT_WORK_PTR FieldOBJ_DrawLegend_GetBlactPtr( LEGENDPOKE_WORK* p_obj )
@@ -286,12 +286,12 @@ BLACT_WORK_PTR FieldOBJ_DrawLegend_GetBlactPtr( LEGENDPOKE_WORK* p_obj )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒ[ƒJƒ‹ŠÖ”
+ *		ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	“`àƒ|ƒPƒ‚ƒ“@‰Šú‰»ˆ—
+ *	@brief	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã€€åˆæœŸåŒ–å‡¦ç†
  *
  *	@param	fldobj 
  *
@@ -301,18 +301,18 @@ BLACT_WORK_PTR FieldOBJ_DrawLegend_GetBlactPtr( LEGENDPOKE_WORK* p_obj )
 static void FldObj_LegendInit( FIELD_OBJ_PTR fldobj )
 {
 	LEGENDPOKE_WORK *work;
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	work = FieldOBJ_DrawProcWorkInit( fldobj, LEGENDPOKE_WORK_SIZE );
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	FieldOBJ_BlActAddRegularGuest( fldobj, &work->act );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“`àƒ|ƒPƒ‚ƒ“•`‰æˆ—
+ *	@brief	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³æç”»å‡¦ç†
  *
- *	@param	fldobj	ƒ[ƒN
+ *	@param	fldobj	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -329,10 +329,10 @@ static void FldObj_LegendDraw( FIELD_OBJ_PTR fldobj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“`àƒ|ƒPƒ‚ƒ“•\Ž¦E”ñ•\Ž¦Ý’è
+ *	@brief	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºãƒ»éžè¡¨ç¤ºè¨­å®š
  *
- *	@param	fldobj	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒF
- *	@param	act		ƒAƒNƒ^[
+ *	@param	fldobj	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	act		ã‚¢ã‚¯ã‚¿ãƒ¼
  *
  *	@return	none
  */
@@ -355,9 +355,9 @@ static void FldObj_LegendDrawVanish( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR act )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“`àƒ|ƒPƒ‚ƒ“”jŠüˆ—
+ *	@brief	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ç ´æ£„å‡¦ç†
  *
- *	@param	fldobj	ƒ[ƒN
+ *	@param	fldobj	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -366,7 +366,7 @@ static void FldObj_LegendDelete( FIELD_OBJ_PTR fldobj )
 {
 	LEGENDPOKE_WORK *work;
 	
-	//ƒAƒNƒ^[”jŠüˆ—
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„å‡¦ç†
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	FieldOBJ_BlActDelete( fldobj, &work->act );
 }

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	email_enter.c
- * @brief	E���[���o�^���������
+ * @brief	Eメール登録入り口処理
  * @author	matsuda
- * @date	2007.10.17(��)
+ * @date	2007.10.17(水)
  */
 //==============================================================================
 #include "common.h"
@@ -40,8 +40,8 @@
 
 
 
-//#include "worldtrade.naix"			// �O���t�B�b�N�A�[�J�C�u��`
-#include "../wifi_p2pmatch/wifip2pmatch.naix"			// �O���t�B�b�N�A�[�J�C�u��`
+//#include "worldtrade.naix"			// グラフィックアーカイブ定義
+#include "../wifi_p2pmatch/wifip2pmatch.naix"			// グラフィックアーカイブ定義
 
 #include "application/email_main.h"
 #include "msgdata/msg_email.h"
@@ -58,11 +58,11 @@
 #include "email_gra.naix"
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///���E�����Ɠ����ɂ��Ă���(WORLDTRADE_WORDSET_BUFLEN)
+///世界交換と同じにしておく(WORLDTRADE_WORDSET_BUFLEN)
 #define EMAIL_WORDSET_BUFLEN	( 64 )
-// ��b�E�C���h�E������o�b�t�@��
+// 会話ウインドウ文字列バッファ長
 #define TALK_MESSAGE_BUF_NUM	( 90*2 )
 #define DWC_ERROR_BUF_NUM		(16*8*2)
 
@@ -73,16 +73,16 @@
 #define EMAIL_MENUFRAME_CHR ( EMAIL_MESFRAME_CHR + TALK_WIN_CGX_SIZ )
 #define EMAIL_TALKFONT_PAL	 ( 13 )
 
-// �P�b�҂p�̒�`
+// １秒待つ用の定義
 #define WAIT_ONE_SECONDE_NUM	( 30 )
 
-//���b�Z�[�W�ꊇ�`��̏ꍇ�ɃZ�b�g���郁�b�Z�[�Windex
+//メッセージ一括描画の場合にセットするメッセージindex
 #define EMAIL_MSG_NO_WAIT		(0xff)
 
 
-///E���[���F�؃G���[�����������ۂ̃G���[���b�Z�[�W�R�[�h
+///Eメール認証エラーが発生した際のエラーメッセージコード
 enum{
-	//�l���o�^���̃G���[
+	//個人情報登録時のエラー
 	EMAIL_ENTRY_ERROR_SEND = -5000,
 	EMAIL_ENTRY_ERROR_SENDFAILURE = -5001,
 	EMAIL_ENTRY_ERROR_SUCCESS = -5002,
@@ -90,7 +90,7 @@ enum{
 	EMAIL_ENTRY_ERROR_INVALIDPARAM = -5004,
 	EMAIL_ENTRY_ERROR_SERVERSTATE = -5005,
 	
-	//�o�^�R�[�h�F�؎��̃G���[
+	//登録コード認証時のエラー
 	EMAIL_PASS_ERROR_SEND = -5006,
 	EMAIL_PASS_ERROR_SENDFAILURE = -5007,
 	EMAIL_PASS_ERROR_SUCCESS = -5008,
@@ -99,47 +99,47 @@ enum{
 	EMAIL_PASS_ERROR_SERVERSTATE = -5011,
 };
 
-///�����^�C���A�E�g�܂ł̎���
-#define TIMEOUT_TIME			(30*60*2)	//2��
+///強制タイムアウトまでの時間
+#define TIMEOUT_TIME			(30*60*2)	//2分
 
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
 typedef struct{
 	EMAIL_SYSWORK *esys;
 
 	GF_BGL_INI		*bgl;								// GF_BGL_INI
 	
-	int				subprocess_seq;						// �T�u�v���O�����V�[�P���XNO
-	int				subprocess_nextseq;					// �T�u�v���O����NEXT�V�[�P���XNO
+	int				subprocess_seq;						// サブプログラムシーケンスNO
+	int				subprocess_nextseq;					// サブプログラムNEXTシーケンスNO
 
-	int				ConnectErrorNo;						// DWC�E�܂��̓T�[�o�[����̃G���[
+	int				ConnectErrorNo;						// DWC・またはサーバーからのエラー
 	int				ErrorRet;
 	int				ErrorCode;
 	int				ErrorType;
 
-	// �`��܂��̃��[�N�i���BMP�p�̕��������j
-	WORDSET			*WordSet;							// ���b�Z�[�W�W�J�p���[�N�}�l�[�W���[
-	MSGDATA_MANAGER *MsgManager;						// ���O���̓��b�Z�[�W�f�[�^�}�l�[�W���[
-	MSGDATA_MANAGER *MonsNameManager;					// �|�P���������b�Z�[�W�f�[�^�}�l�[�W���[
-	MSGDATA_MANAGER *LobbyMsgManager;					// ���O���̓��b�Z�[�W�f�[�^�}�l�[�W���[
-	MSGDATA_MANAGER *SystemMsgManager;					// Wifi�V�X�e�����b�Z�[�W�f�[�^
-	MSGDATA_MANAGER *EmailMsgManager;					// E���[�����b�Z�[�W�f�[�^�}�l�[�W���[
-	STRBUF			*TalkString;						// ��b���b�Z�[�W�p
-	STRBUF			*TitleString;						// �^�C�g�����b�Z�[�W�p
+	// 描画まわりのワーク（主にBMP用の文字列周り）
+	WORDSET			*WordSet;							// メッセージ展開用ワークマネージャー
+	MSGDATA_MANAGER *MsgManager;						// 名前入力メッセージデータマネージャー
+	MSGDATA_MANAGER *MonsNameManager;					// ポケモン名メッセージデータマネージャー
+	MSGDATA_MANAGER *LobbyMsgManager;					// 名前入力メッセージデータマネージャー
+	MSGDATA_MANAGER *SystemMsgManager;					// Wifiシステムメッセージデータ
+	MSGDATA_MANAGER *EmailMsgManager;					// Eメールメッセージデータマネージャー
+	STRBUF			*TalkString;						// 会話メッセージ用
+	STRBUF			*TitleString;						// タイトルメッセージ用
 	STRBUF			*ErrorString;
-	int				MsgIndex;							// �I�����o�p���[�N
+	int				MsgIndex;							// 終了検出用ワーク
 
 
-	// BMPWIN�`�����
-	GF_BGL_BMPWIN			MsgWin;					// ��b�E�C���h�E
-	GF_BGL_BMPWIN			TitleWin;				// �u���R�[�h�R�[�i�[�@�ڂ��イ���イ�I�v�Ȃ�
-	GF_BGL_BMPWIN			SubWin;					// �u���R�[�h�R�[�i�[�@�ڂ��イ���イ�I�v�Ȃ�
-	GF_BGL_BMPWIN			list_bmpwin;			///<���j���[���X�g�쐬�pBMPWIN
+	// BMPWIN描画周り
+	GF_BGL_BMPWIN			MsgWin;					// 会話ウインドウ
+	GF_BGL_BMPWIN			TitleWin;				// 「レコードコーナー　ぼしゅうちゅう！」など
+	GF_BGL_BMPWIN			SubWin;					// 「レコードコーナー　ぼしゅうちゅう！」など
+	GF_BGL_BMPWIN			list_bmpwin;			///<メニューリスト作成用BMPWIN
 
 	BMPMENU_WORK			*YesNoMenuWork;
-	void*					timeWaitWork;			// ��b�E�C���h�E���A�C�R�����[�N
+	void*					timeWaitWork;			// 会話ウインドウ横アイコンワーク
 
 	int						wait;
 
@@ -147,10 +147,10 @@ typedef struct{
 	int local_seq;
 	int local_wait;
 	int local_work;
-	BMP_MENULIST_DATA *listmenu;					///<E���[�����j���[
+	BMP_MENULIST_DATA *listmenu;					///<Eメールメニュー
 	BMPLIST_WORK *lw;
 	
-	// ���p�K��p
+	// 利用規約用
 	int 				sub_seq;
 	int					info_pos;
 	int					info_cur_pos;
@@ -162,15 +162,15 @@ typedef struct{
 	GF_BGL_BMPWIN		info_win2;
 	BMPCURSOR*			info_cur;
 	
-	s32 timeout_count;				///<�^�C���A�E�g�J�E���^
+	s32 timeout_count;				///<タイムアウトカウンタ
 	
-	//WIFI�ڑ�BG�p���b�g�A�j������\���̂ւ̃|�C���^
+	//WIFI接続BGパレットアニメ制御構造体へのポインタ
 	CONNECT_BG_PALANM cbp;
 }EMAIL_MENU_WORK;
 
 
 //============================================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //============================================================================================
 PROC_RESULT EmailMenu_Enter_Init( PROC * proc, int * seq );
 PROC_RESULT EmailMenu_Enter_Main( PROC * proc, int * seq );
@@ -265,7 +265,7 @@ enum{
 	ENTER_DWC_ERROR_PRINT,
 	ENTER_ERROR_PAD_WAIT,
 	ENTER_END,
-	ENTER_CONNECT_END,		//�ʐM�����܂܏I��
+	ENTER_CONNECT_END,		//通信したまま終了
 	ENTER_YESNO,
 	ENTER_SERVER_SERVICE_ERROR,
 	ENTER_SERVER_SERVICE_END,
@@ -320,44 +320,44 @@ static int (*Functable[])( EMAIL_MENU_WORK *wk ) = {
 
 
 //--------------------------------------------------------------
-//	���j���[���X�g�F�S�I�[�v��
+//	メニューリスト：全オープン
 //--------------------------------------------------------------
 typedef struct{
 	u32 str_id;
 	u32 param;
 }EMAIL_BMPMENULIST;
 
-///E���[���̃g�b�v���j���[�̍���
+///Eメールのトップメニューの項目
 static const EMAIL_BMPMENULIST EmailMenuList_All[] = {
-	{ msg_email_list_001, ENTER_ADDRESS_CHECK_PROC_CHANGE },		//�m�F
-//	{ msg_email_list_002, ENTER_ADDRESS_ENTRY_START },		//�A�h���X�ݒ�
-	{ msg_email_list_003, ENTER_RECV_SELECT_YESNO },		//��M�ݒ�
-	{ msg_email_list_004, ENTER_EMAIL_DATA_INITIALIZE_YESNO },		//����
-	{ msg_email_list_005, ENTER_END },			//���ǂ�
+	{ msg_email_list_001, ENTER_ADDRESS_CHECK_PROC_CHANGE },		//確認
+//	{ msg_email_list_002, ENTER_ADDRESS_ENTRY_START },		//アドレス設定
+	{ msg_email_list_003, ENTER_RECV_SELECT_YESNO },		//受信設定
+	{ msg_email_list_004, ENTER_EMAIL_DATA_INITIALIZE_YESNO },		//消す
+	{ msg_email_list_005, ENTER_END },			//もどる
 };
 
 #define LIST_MENU_ALL_MAX		(NELEMS(EmailMenuList_All))
 
-///E���[����ʁF�g�b�v���j���[�̃��X�g
+///Eメール画面：トップメニューのリスト
 static const BMPLIST_HEADER EmailMenuListAllHeader = {
-	NULL,			// �\�������f�[�^�|�C���^
-	EmailMenuListAllHeader_CursorCallback,		// �J�[�\���ړ����Ƃ̃R�[���o�b�N�֐�
-	NULL,					// ���\�����Ƃ̃R�[���o�b�N�֐�
+	NULL,			// 表示文字データポインタ
+	EmailMenuListAllHeader_CursorCallback,		// カーソル移動ごとのコールバック関数
+	NULL,					// 一列表示ごとのコールバック関数
 	NULL,
-	LIST_MENU_ALL_MAX,	// ���X�g���ڐ�
-	LIST_MENU_ALL_MAX,						// �\���ő區�ڐ�
-	0,						// ���x���\���w���W
-	8,						// ���ڕ\���w���W
-	0,						// �J�[�\���\���w���W
-	0,						// �\���x���W
-	FBMP_COL_BLACK,			// �����F
-	FBMP_COL_WHITE,			// �w�i�F
-	FBMP_COL_BLK_SDW,		// �����e�F
-	0,						// �����Ԋu�w
-	16,						// �����Ԋu�x
-	BMPLIST_NO_SKIP,		// �y�[�W�X�L�b�v�^�C�v
-	FONT_SYSTEM,				// �����w��
-	0,						// �a�f�J�[�\��(allow)�\���t���O(0:ON,1:OFF)
+	LIST_MENU_ALL_MAX,	// リスト項目数
+	LIST_MENU_ALL_MAX,						// 表示最大項目数
+	0,						// ラベル表示Ｘ座標
+	8,						// 項目表示Ｘ座標
+	0,						// カーソル表示Ｘ座標
+	0,						// 表示Ｙ座標
+	FBMP_COL_BLACK,			// 文字色
+	FBMP_COL_WHITE,			// 背景色
+	FBMP_COL_BLK_SDW,		// 文字影色
+	0,						// 文字間隔Ｘ
+	16,						// 文字間隔Ｙ
+	BMPLIST_NO_SKIP,		// ページスキップタイプ
+	FONT_SYSTEM,				// 文字指定
+	0,						// ＢＧカーソル(allow)表示フラグ(0:ON,1:OFF)
 };
 
 static const u8 EmailMenuBmpSize[4] = {
@@ -365,36 +365,36 @@ static const u8 EmailMenuBmpSize[4] = {
 };
 
 //--------------------------------------------------------------
-//	���j���[���X�g�F�A�h���X�o�^���Ă��Ȃ��ꍇ
+//	メニューリスト：アドレス登録していない場合
 //--------------------------------------------------------------
-///E���[���̃g�b�v���j���[�̍���
+///Eメールのトップメニューの項目
 static const EMAIL_BMPMENULIST EmailMenuList_NoData[] = {
-	{ msg_email_list_002, ENTER_ADDRESS_ENTRY_START },		//�A�h���X�ݒ�
-	{ msg_email_list_005, ENTER_END },			//���ǂ�
+	{ msg_email_list_002, ENTER_ADDRESS_ENTRY_START },		//アドレス設定
+	{ msg_email_list_005, ENTER_END },			//もどる
 };
 
 #define LIST_MENU_NODATA_MAX		(NELEMS(EmailMenuList_NoData))
 
-///E���[����ʁF�g�b�v���j���[�̃��X�g
+///Eメール画面：トップメニューのリスト
 static const BMPLIST_HEADER EmailMenuListNoDataHeader = {
-	NULL,			// �\�������f�[�^�|�C���^
-	EmailMenuListNoDataHeader_CursorCallback,	// �J�[�\���ړ����Ƃ̃R�[���o�b�N�֐�
-	NULL,					// ���\�����Ƃ̃R�[���o�b�N�֐�
+	NULL,			// 表示文字データポインタ
+	EmailMenuListNoDataHeader_CursorCallback,	// カーソル移動ごとのコールバック関数
+	NULL,					// 一列表示ごとのコールバック関数
 	NULL,
-	LIST_MENU_NODATA_MAX,	// ���X�g���ڐ�
-	LIST_MENU_NODATA_MAX,						// �\���ő區�ڐ�
-	0,						// ���x���\���w���W
-	8,						// ���ڕ\���w���W
-	0,						// �J�[�\���\���w���W
-	0,						// �\���x���W
-	FBMP_COL_BLACK,			// �����F
-	FBMP_COL_WHITE,			// �w�i�F
-	FBMP_COL_BLK_SDW,		// �����e�F
-	0,						// �����Ԋu�w
-	16,						// �����Ԋu�x
-	BMPLIST_NO_SKIP,		// �y�[�W�X�L�b�v�^�C�v
-	FONT_SYSTEM,				// �����w��
-	0,						// �a�f�J�[�\��(allow)�\���t���O(0:ON,1:OFF)
+	LIST_MENU_NODATA_MAX,	// リスト項目数
+	LIST_MENU_NODATA_MAX,						// 表示最大項目数
+	0,						// ラベル表示Ｘ座標
+	8,						// 項目表示Ｘ座標
+	0,						// カーソル表示Ｘ座標
+	0,						// 表示Ｙ座標
+	FBMP_COL_BLACK,			// 文字色
+	FBMP_COL_WHITE,			// 背景色
+	FBMP_COL_BLK_SDW,		// 文字影色
+	0,						// 文字間隔Ｘ
+	16,						// 文字間隔Ｙ
+	BMPLIST_NO_SKIP,		// ページスキップタイプ
+	FONT_SYSTEM,				// 文字指定
+	0,						// ＢＧカーソル(allow)表示フラグ(0:ON,1:OFF)
 };
 
 static const u8 EmailMenuNoDataBmpSize[4] = {
@@ -406,43 +406,43 @@ static const u8 EmailMenuNoDataBmpSize[4] = {
 //	
 //==============================================================================
 //--------------------------------------------------------------
-//	�͂��E�������@�E�B���h�E
+//	はい・いいえ　ウィンドウ
 //--------------------------------------------------------------
-// �͂��E������
+// はい・いいえ
 #define	BMP_YESNO_PX	( 23 )
 #define	BMP_YESNO_PY	( 13 )
 #define	BMP_YESNO_SX	( 7 )
 #define	BMP_YESNO_SY	( 4 )
 #define	BMP_YESNO_PAL	( 13 )
 
-// �͂��E������(�E�C���h�E�p�j
+// はい・いいえ(ウインドウ用）
 static const BMPWIN_DAT YesNoBmpWin = {
 	GF_BGL_FRAME0_M, BMP_YESNO_PX, BMP_YESNO_PY,
 	BMP_YESNO_SX, BMP_YESNO_SY, BMP_YESNO_PAL, 
-	0, //��Ŏw�肷��
+	0, //後で指定する
 };
 
-// �͂��E�������E�C���h�E��Y���W
-#define	EMAIL_YESNO_PY2	( 13 )		// ��b�E�C���h�E���Q�s�̎�
-#define	EMAIL_YESNO_PY1	( 15 )		// ��b�E�C���h�E���P�s�̎�
+// はい・いいえウインドウのY座標
+#define	EMAIL_YESNO_PY2	( 13 )		// 会話ウインドウが２行の時
+#define	EMAIL_YESNO_PY1	( 15 )		// 会話ウインドウが１行の時
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�T�u�V�[�P���X�̖߂�l
+///サブシーケンスの戻り値
 enum{
-	SUBSEQ_CONTINUE,	///<�p��
-	SUBSEQ_END,			///<�I��
+	SUBSEQ_CONTINUE,	///<継続
+	SUBSEQ_END,			///<終了
 };
 
 
 //============================================================================================
-//	�v���Z�X�֐�
+//	プロセス関数
 //============================================================================================
 //==============================================================================
 /**
- * $brief   ���E�����������ʏ�����
+ * $brief   世界交換入り口画面初期化
  *
  * @param   wk		
  * @param   seq		
@@ -454,8 +454,8 @@ PROC_RESULT EmailMenu_Enter_Init( PROC * proc, int * seq )
 {
 	EMAIL_MENU_WORK *wk;
 
-	sys_VBlankFuncChange(NULL, NULL);	// VBlank�Z�b�g
-	sys_HBlankIntrStop();	//HBlank���荞�ݒ�~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankセット
+	sys_HBlankIntrStop();	//HBlank割り込み停止
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -466,7 +466,7 @@ PROC_RESULT EmailMenu_Enter_Init( PROC * proc, int * seq )
 	G2_BlendNone();
 	G2S_BlendNone();
 
-	//E���[����ʗp�q�[�v�쐬
+	//Eメール画面用ヒープ作成
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_EMAIL, 0x70000 );
 	
 	wk = PROC_AllocWork(proc, sizeof(EMAIL_MENU_WORK), HEAPID_EMAIL );
@@ -480,14 +480,14 @@ PROC_RESULT EmailMenu_Enter_Init( PROC * proc, int * seq )
 
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-	//VRAM���蓖�Đݒ�
+	//VRAM割り当て設定
 	EmailMenu_VramBankSet(wk->bgl);
 
-	// �^�b�`�p�l���V�X�e��������
+	// タッチパネルシステム初期化
 	InitTPSystem();
 	InitTPNoBuff(4);
 	
-	//���b�Z�[�W�}�l�[�W���쐬
+	//メッセージマネージャ作成
 	wk->WordSet    		 = WORDSET_CreateEx( 11, EMAIL_WORDSET_BUFLEN, HEAPID_EMAIL );
 	wk->MsgManager       = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_gtc_dat, HEAPID_EMAIL );
 	wk->LobbyMsgManager  = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_lobby_dat, HEAPID_EMAIL );
@@ -495,38 +495,38 @@ PROC_RESULT EmailMenu_Enter_Init( PROC * proc, int * seq )
 	wk->MonsNameManager  = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_monsname_dat, HEAPID_EMAIL );
 	wk->EmailMsgManager  = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_email_dat, HEAPID_EMAIL );
 
-	// ������o�b�t�@�쐬
+	// 文字列バッファ作成
 	wk->TalkString  = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_EMAIL );
 	wk->ErrorString = STRBUF_Create( DWC_ERROR_BUF_NUM,    HEAPID_EMAIL );
 	wk->TitleString = MSGMAN_AllocString( wk->MsgManager, msg_gtc_01_032 );
 
-	// BG�O���t�B�b�N�]��
+	// BGグラフィック転送
 	BgGraphicSet( wk );
 
-	// BMPWIN�m��
+	// BMPWIN確保
 	BmpWinInit( wk );
 
 	switch(Email_RecoveryMenuModeGet(wk->esys)){
-	case ENTER_INTERNET_CONNECT:	//GSID���擾���Ă���
+	case ENTER_INTERNET_CONNECT:	//GSIDを取得してきた
 		if(!DWC_CheckInet() && mydwc_checkMyGSID(wk->esys->savedata) == TRUE){
-			// ����wifi�ڑ��̍ۂ͖������Őڑ���
+			// 初回wifi接続の際は無条件で接続に
 			//if(mydwc_checkMyGSID(wk->esys->savedata) == FALSE){
-			// WIFI���������J�n
+			// WIFIせつぞくを開始
 			//Enter_MessagePrint( wk, wk->LobbyMsgManager, msg_wifilobby_002, 1, 0x0f0f );
 			//Email_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_INTERNET_CONNECT );
 			//Email_TimeIconAdd(wk);
 			wk->subprocess_seq = ENTER_INTERNET_CONNECT;
-			// �ʐM�G���[�Ǘ��̂��߂ɒʐM���[�`����ON
-			CommStateWifiEMailStart( wk->esys->savedata );	// �G���[��^�C�g���ɖ߂�悤�ɐ�p�̊֐����쐬 080603tomoya 
+			// 通信エラー管理のために通信ルーチンをON
+			CommStateWifiEMailStart( wk->esys->savedata );	// エラー後タイトルに戻るように専用の関数を作成 080603tomoya 
 //			CommStateWifiDPWStart( wk->esys->savedata );
-			// Wifi�ʐM�A�C�R��
+			// Wifi通信アイコン
 		    WirelessIconEasy();
 		}else{
 			wk->subprocess_seq = ENTER_MENU_LIST;
 		}
 		break;
 	case ENTER_AUTHENTICATE_RETURN:
-		// Wifi�ʐM�A�C�R��
+		// Wifi通信アイコン
 		wk->timeout_count = 0;
 	    WirelessIconEasy();
 	    wk->subprocess_seq = Email_RecoveryMenuModeGet(wk->esys);
@@ -535,13 +535,13 @@ PROC_RESULT EmailMenu_Enter_Init( PROC * proc, int * seq )
 		wk->subprocess_seq = Email_RecoveryMenuModeGet(wk->esys);
 		break;
 	}
-	Email_RecoveryMenuModeSet(wk->esys, 0);	//�l�N���A
+	Email_RecoveryMenuModeSet(wk->esys, 0);	//値クリア
 
-	// ���C�v�t�F�[�h�J�n
+	// ワイプフェード開始
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 
 		WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_EMAIL );
 
-	// BG�ʕ\��ON
+	// BG面表示ON
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG1, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
@@ -549,7 +549,7 @@ PROC_RESULT EmailMenu_Enter_Init( PROC * proc, int * seq )
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-	//���C����ʐݒ�
+	//メイン画面設定
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 
@@ -565,7 +565,7 @@ PROC_RESULT EmailMenu_Enter_Init( PROC * proc, int * seq )
 
 //==============================================================================
 /**
- * $brief   ���E�����������ʃ��C��
+ * $brief   世界交換入り口画面メイン
  *
  * @param   wk		
  * @param   seq		
@@ -590,7 +590,7 @@ PROC_RESULT EmailMenu_Enter_Main( PROC * proc, int * seq )
 		}
 		break;
 	case SEQ_MAIN:
-		// �V�[�P���X�J�ڂŎ��s
+		// シーケンス遷移で実行
 		temp_subprocess_seq = wk->subprocess_seq;
 		ret = (*Functable[wk->subprocess_seq])( wk );
 		if(temp_subprocess_seq != wk->subprocess_seq){
@@ -617,7 +617,7 @@ PROC_RESULT EmailMenu_Enter_Main( PROC * proc, int * seq )
 
 //==============================================================================
 /**
- * $brief   ���E�����������ʏI��
+ * $brief   世界交換入り口画面終了
  *
  * @param   wk		
  * @param   seq		
@@ -631,7 +631,7 @@ PROC_RESULT EmailMenu_Enter_End(PROC *proc, int *seq)
 
 	ConnectBGPalAnm_End(&wk->cbp);
 	
-	// ���b�Z�[�W�}�l�[�W���[�E���[�h�Z�b�g�}�l�[�W���[���
+	// メッセージマネージャー・ワードセットマネージャー解放
 	MSGMAN_Delete( wk->EmailMsgManager );
 	MSGMAN_Delete( wk->MonsNameManager );
 	MSGMAN_Delete( wk->SystemMsgManager );
@@ -645,17 +645,17 @@ PROC_RESULT EmailMenu_Enter_End(PROC *proc, int *seq)
 	
 	BmpWinDelete( wk );
 	
-	// BG_SYSTEM���
+	// BG_SYSTEM解放
 	sys_FreeMemoryEz( wk->bgl );
 	BgExit( wk->bgl );
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlank�Z�b�g
-	sys_HBlankIntrStop();	//HBlank���荞�ݒ�~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankセット
+	sys_HBlankIntrStop();	//HBlank割り込み停止
 
-	//Vram�]���}�l�[�W���[�폜
+	//Vram転送マネージャー削除
 	DellVramTransferManager();
 
-	StopTP();		//�^�b�`�p�l���̏I��
+	StopTP();		//タッチパネルの終了
 
 	MsgPrintSkipFlagSet(MSG_SKIP_OFF);
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
@@ -663,7 +663,7 @@ PROC_RESULT EmailMenu_Enter_End(PROC *proc, int *seq)
 
 	WirelessIconEasyEnd();
 
-	PROC_FreeWork( proc );				// PROC���[�N�J��
+	PROC_FreeWork( proc );				// PROCワーク開放
 	sys_DeleteHeap( HEAPID_EMAIL );
 
 	return PROC_RES_FINISH;
@@ -671,7 +671,7 @@ PROC_RESULT EmailMenu_Enter_End(PROC *proc, int *seq)
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlank�֐�
+ * VBlank関数
  *
  * @param	none
  *
@@ -682,10 +682,10 @@ static void VBlankFunc( void * work )
 {
 	EMAIL_MENU_WORK *wk = work;
 
-	// �Z���A�N�^�[Vram�]���}�l�[�W���[���s
+	// セルアクターVram転送マネージャー実行
 	DoVramTransferManager();
 
-	// �����_�����LOAM�}�l�[�W��Vram�]��
+	// レンダラ共有OAMマネージャVram転送
 	REND_OAMTrans();
 	
 	GF_BGL_VBlankFunc(wk->bgl);
@@ -697,9 +697,9 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief   Vram�o���N�ݒ���s��
+ * @brief   Vramバンク設定を行う
  *
- * @param   bgl		BGL�f�[�^�ւ̃|�C���^
+ * @param   bgl		BGLデータへのポインタ
  */
 //--------------------------------------------------------------
 static void EmailMenu_VramBankSet(GF_BGL_INI *bgl)
@@ -707,27 +707,27 @@ static void EmailMenu_VramBankSet(GF_BGL_INI *bgl)
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	
-	//VRAM�ݒ�
+	//VRAM設定
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ���C��2D�G���W����BG
-			GX_VRAM_BGEXTPLTT_NONE,			// ���C��2D�G���W����BG�g���p���b�g
+			GX_VRAM_BG_128_A,				// メイン2DエンジンのBG
+			GX_VRAM_BGEXTPLTT_NONE,			// メイン2DエンジンのBG拡張パレット
 
-			GX_VRAM_SUB_BG_128_C,			// �T�u2D�G���W����BG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// �T�u2D�G���W����BG�g���p���b�g
+			GX_VRAM_SUB_BG_128_C,			// サブ2DエンジンのBG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// サブ2DエンジンのBG拡張パレット
 
-			GX_VRAM_OBJ_64_E,				// ���C��2D�G���W����OBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ���C��2D�G���W����OBJ�g���p���b�g
+			GX_VRAM_OBJ_64_E,				// メイン2DエンジンのOBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// メイン2DエンジンのOBJ拡張パレット
 
-			GX_VRAM_SUB_OBJ_16_I,			// �T�u2D�G���W����OBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// �T�u2D�G���W����OBJ�g���p���b�g
+			GX_VRAM_SUB_OBJ_16_I,			// サブ2DエンジンのOBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// サブ2DエンジンのOBJ拡張パレット
 
-			GX_VRAM_TEX_0_B,				// �e�N�X�`���C���[�W�X���b�g
-			GX_VRAM_TEXPLTT_01_FG			// �e�N�X�`���p���b�g�X���b�g
+			GX_VRAM_TEX_0_B,				// テクスチャイメージスロット
+			GX_VRAM_TEXPLTT_01_FG			// テクスチャパレットスロット
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAM�N���A
+		//VRAMクリア
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -742,28 +742,28 @@ static void EmailMenu_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//���C����ʃt���[���ݒ�
+	//メイン画面フレーム設定
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME0_M	�e�L�X�g��
+			///<FRAME0_M	テキスト面
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xf800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
 				2, 0, 0, FALSE
 			},
-			///<FRAME1_M	�w�i
+			///<FRAME1_M	背景
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xf000, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01,
 				3, 0, 0, FALSE
 			},
-			///<FRAME2_M	���ӕ���
+			///<FRAME2_M	同意文面
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xe800, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
 				1, 0, 0, FALSE
 			},
-			///<FRAME3_M	�J�[�\��
+			///<FRAME3_M	カーソル
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xe000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01,
@@ -790,16 +790,16 @@ static void EmailMenu_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_ScrollSet(bgl, GF_BGL_FRAME3_M, GF_BGL_SCROLL_X_SET, 0);
 		GF_BGL_ScrollSet(bgl, GF_BGL_FRAME3_M, GF_BGL_SCROLL_Y_SET, 0);
 	}
-	//�T�u��ʃt���[���ݒ�
+	//サブ画面フレーム設定
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME0_S	�e�L�X�g��
+			///<FRAME0_S	テキスト面
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xf000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
 				0, 0, 0, FALSE
 			},
-			///<FRAME1_S	�w�i
+			///<FRAME1_S	背景
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xd800, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01,
@@ -823,9 +823,9 @@ static void EmailMenu_VramBankSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG���
+ * BG解放
  *
- * @param	ini		BGL�f�[�^
+ * @param	ini		BGLデータ
  *
  * @return	none
  */
@@ -844,9 +844,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �O���t�B�b�N�f�[�^�Z�b�g
+ * グラフィックデータセット
  *
- * @param	wk		�|�P�������X�g��ʂ̃��[�N
+ * @param	wk		ポケモンリスト画面のワーク
  *
  * @return	none
  */
@@ -858,15 +858,15 @@ static void BgGraphicSet( EMAIL_MENU_WORK * wk )
 
 	p_handle = ArchiveDataHandleOpen( ARC_WIFIP2PMATCH_GRA, HEAPID_EMAIL );
 
-	// �㉺��ʂa�f�p���b�g�]��
+	// 上下画面ＢＧパレット転送
 	ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_MAIN_BG, 0, 0,  HEAPID_EMAIL);
 	ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_SUB_BG,  0, 0,  HEAPID_EMAIL);
 	
-	// ��b�t�H���g�p���b�g�]��
+	// 会話フォントパレット転送
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, EMAIL_TALKFONT_PAL*0x20, HEAPID_EMAIL );
 	TalkFontPaletteLoad( PALTYPE_SUB_BG,  EMAIL_TALKFONT_PAL*0x20, HEAPID_EMAIL );
 
-	// ��b�E�C���h�E�O���t�B�b�N�]��
+	// 会話ウインドウグラフィック転送
 	TalkWinGraphicSet(	bgl, GF_BGL_FRAME0_M, EMAIL_MESFRAME_CHR, 
 						EMAIL_MESFRAME_PAL,  CONFIG_GetWindowType(wk->esys->config), HEAPID_EMAIL );
 
@@ -879,29 +879,29 @@ static void BgGraphicSet( EMAIL_MENU_WORK * wk )
 
 
 
-	// ���C�����BG1�L�����]��
+	// メイン画面BG1キャラ転送
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_conect_NCGR, bgl, GF_BGL_FRAME1_M, 0, 0, 0, HEAPID_EMAIL);
 
-	// ���C�����BG1�X�N���[���]��
+	// メイン画面BG1スクリーン転送
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_conect_01_NSCR, bgl, GF_BGL_FRAME1_M, 0, 32*24*2, 0, HEAPID_EMAIL);
 
 
 
-	// �T�u���BG1�L�����]��
+	// サブ画面BG1キャラ転送
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_conect_sub_NCGR, bgl, GF_BGL_FRAME1_S, 0, 0, 0, HEAPID_EMAIL);
 
-	// �T�u���BG1�X�N���[���]��
+	// サブ画面BG1スクリーン転送
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_conect_sub_NSCR, bgl, GF_BGL_FRAME1_S, 0, 32*24*2, 0, HEAPID_EMAIL);
 
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0 );
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0 );
 	
-	//Wifi�ڑ�BG�p���b�g�A�j���V�X�e��������
+	//Wifi接続BGパレットアニメシステム初期化
 	ConnectBGPalAnm_Init(&wk->cbp, p_handle, NARC_wifip2pmatch_conect_anm_NCLR, HEAPID_EMAIL);
 	
 	ArchiveDataHandleClose( p_handle );
 		
-	// �J�[�\���pBG
+	// カーソル用BG
 	{
 		p_handle = ArchiveDataHandleOpen( ARC_EMAIL_GRA, HEAPID_EMAIL );		
 
@@ -925,7 +925,7 @@ static void BgGraphicSet( EMAIL_MENU_WORK * wk )
 #define CONNECT_TEXT_SX	( 24 )
 #define CONNECT_TEXT_SY	(  2 )
 
-// ��b�E�C���h�E�\���ʒu��`
+// 会話ウインドウ表示位置定義
 #define TALK_WIN_X		(  2 )
 #define TALK_WIN_Y		( 19 )
 #define	TALK_WIN_SX		( 27 )
@@ -935,11 +935,11 @@ static void BgGraphicSet( EMAIL_MENU_WORK * wk )
 #define ERROR_MESSAGE_OFFSET ( TALK_MESSAGE_OFFSET   + TALK_WIN_SX*TALK_WIN_SY )
 #define TITLE_MESSAGE_OFFSET ( ERROR_MESSAGE_OFFSET  + SUB_TEXT_SX*SUB_TEXT_SY )
 #define YESNO_OFFSET 		 ( TITLE_MESSAGE_OFFSET  + CONNECT_TEXT_SX*CONNECT_TEXT_SY )
-#define MENULIST_MESSAGE_OFFSET	(ERROR_MESSAGE_OFFSET)	//�G���[���b�Z�[�W�ƈꏏ�ɂ͏o�Ȃ��̂� ��check YESNO_OFFSET�̒l�𒲂ׂāA�[���ȋ󂫂�����Ȃ�A���̌��ɂ���
+#define MENULIST_MESSAGE_OFFSET	(ERROR_MESSAGE_OFFSET)	//エラーメッセージと一緒には出ないので ※check YESNO_OFFSETの値を調べて、充分な空きがあるなら、その後ろにする
 
 //------------------------------------------------------------------
 /**
- * BMPWIN�����i�����p�l���Ƀt�H���g�`��j
+ * BMPWIN処理（文字パネルにフォント描画）
  *
  * @param   wk		
  *
@@ -948,22 +948,22 @@ static void BgGraphicSet( EMAIL_MENU_WORK * wk )
 //------------------------------------------------------------------
 static void BmpWinInit( EMAIL_MENU_WORK *wk )
 {
-	// ---------- ���C����� ------------------
+	// ---------- メイン画面 ------------------
 
-	// BG0��BMPWIN(�G���[����)�E�C���h�E�m�ہE�`��
+	// BG0面BMPWIN(エラー説明)ウインドウ確保・描画
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->SubWin, GF_BGL_FRAME0_M,
 	SUB_TEXT_X, SUB_TEXT_Y, SUB_TEXT_SX, SUB_TEXT_SY, EMAIL_TALKFONT_PAL,  ERROR_MESSAGE_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->SubWin, 0x0000 );
 
-	// BG0��BMPWIN(�^�C�g��)�E�C���h�E�m�ہE�`��
+	// BG0面BMPWIN(タイトル)ウインドウ確保・描画
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->TitleWin, GF_BGL_FRAME0_M,
 	CONNECT_TEXT_X, CONNECT_TEXT_Y, CONNECT_TEXT_SX, CONNECT_TEXT_SY, EMAIL_TALKFONT_PAL, TITLE_MESSAGE_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->TitleWin, 0x0000 );
 	Email_TalkPrint( &wk->TitleWin, wk->TitleString, 0, 1, 1, GF_PRINTCOLOR_MAKE(15,14,0) );
 
-	// BG0��BMP�i��b�E�C���h�E�j�m��
+	// BG0面BMP（会話ウインドウ）確保
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		TALK_WIN_X, 
 		TALK_WIN_Y, 
@@ -974,7 +974,7 @@ static void BmpWinInit( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �m�ۂ���BMPWIN�����
+ * $brief   確保したBMPWINを解放
  *
  * @param   wk		
  *
@@ -1008,7 +1008,7 @@ static void Email_SetNextSeq( EMAIL_MENU_WORK *wk, int to_seq, int next_seq )
 
 //------------------------------------------------------------------
 /**
- * @brief   ���ԃA�C�R���ǉ�
+ * @brief   時間アイコン追加
  *
  * @param   wk		
  *
@@ -1024,7 +1024,7 @@ static void Email_TimeIconAdd( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ���ԃA�C�R�������iNULL�`�F�b�N����j
+ * @brief   時間アイコン消去（NULLチェックする）
  *
  * @param   wk		
  *
@@ -1042,7 +1042,7 @@ static void Email_TimeIconDel( EMAIL_MENU_WORK *wk )
 
 //==============================================================================
 /**
- * $brief   �͂��E�������E�C���h�E�o�^
+ * $brief   はい・いいえウインドウ登録
  *
  * @param   bgl		
  * @param   menuframe		
@@ -1107,7 +1107,7 @@ static int Enter_MenuList( EMAIL_MENU_WORK *wk )
 				list_h = EmailMenuListNoDataHeader;
 			}
 
-			//���j���[���X�g�p��BMP�E�B���h�E����
+			//メニューリスト用のBMPウィンドウ生成
 			GF_BGL_BmpWinAdd(wk->bgl, &wk->list_bmpwin, 
 				GF_BGL_FRAME0_M, bmp_size[0], bmp_size[1], bmp_size[2], bmp_size[3], 
 				EMAIL_TALKFONT_PAL, MENULIST_MESSAGE_OFFSET );
@@ -1166,7 +1166,7 @@ static int Enter_MenuList( EMAIL_MENU_WORK *wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   E���[���m�F�T�uPROC�Ăяo��
+ * @brief   Eメール確認サブPROC呼び出し
  *
  * @param   wk		
  *
@@ -1175,7 +1175,7 @@ static int Enter_MenuList( EMAIL_MENU_WORK *wk )
 //--------------------------------------------------------------
 static int Enter_AddressCheckProcChange(EMAIL_MENU_WORK *wk)
 {
-	//�o�^�R�[�h���͉�ʂֈڍs
+	//登録コード入力画面へ移行
 	Email_SubProcessChange( wk->esys, 
 			EMAIL_SUBPROC_ADDRESS_CHECK, EMAIL_MODE_INPUT_EMAIL_CHECK);
     // MatchComment: ENTER_MENU_LIST -> ENTER_UNK_0x26
@@ -1186,7 +1186,7 @@ static int Enter_AddressCheckProcChange(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   E���[�����󂯎�邩���߂�
+ * @brief   Eメールを受け取るか決める
  *
  * @param   wk		
  *
@@ -1204,7 +1204,7 @@ static int Enter_RecvSelectYesNo(EMAIL_MENU_WORK *wk)
 		Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_111, 1, 0x0f0f );
 		wk->local_seq++;
 		break;
-	case 1:	//�͂��E�������E�B���h�E�\��
+	case 1:	//はい・いいえウィンドウ表示
 		wk->YesNoMenuWork = Email_BmpWinYesNoMake(wk->bgl, EMAIL_YESNO_PY2, YESNO_OFFSET );
 		wk->local_seq++;
 		break;
@@ -1213,11 +1213,11 @@ static int Enter_RecvSelectYesNo(EMAIL_MENU_WORK *wk)
 			int ret = BmpYesNoSelectMain( wk->YesNoMenuWork, HEAPID_EMAIL );
 
 			if(ret!=BMPMENU_NULL){
-				if(ret==BMPMENU_CANCEL){	//�󂯎��Ȃ�
+				if(ret==BMPMENU_CANCEL){	//受け取らない
 					Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_113, 1, 0x0f0f );
 					EMAILSAVE_ParamSet(wk->esys->savedata, EMAIL_PARAM_RECV_FLAG, 0);
 				}
-				else{	//�󂯎��
+				else{	//受け取る
 					Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_112, 1, 0x0f0f );
 					EMAILSAVE_ParamSet(wk->esys->savedata, EMAIL_PARAM_RECV_FLAG, 
 						DPW_PROFILE_MAILRECVFLAG_EXCHANGE);
@@ -1235,7 +1235,7 @@ static int Enter_RecvSelectYesNo(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   E���[�������������܂����H
+ * @brief   Eメールを初期化しますか？
  *
  * @param   wk		
  *
@@ -1253,7 +1253,7 @@ static int Enter_EmailDataInitializeYesNo(EMAIL_MENU_WORK *wk)
 		Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_114, 1, 0x0f0f );
 		wk->local_seq++;
 		break;
-	case 1:	//�͂��E�������E�B���h�E�\��
+	case 1:	//はい・いいえウィンドウ表示
 		wk->YesNoMenuWork = Email_BmpWinYesNoMakeEx(wk->bgl, EMAIL_YESNO_PY2, YESNO_OFFSET, 1 );
 		wk->local_seq++;
 		break;
@@ -1282,7 +1282,7 @@ static int Enter_EmailDataInitializeYesNo(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   E���[���ݒ�F�J�n�m�F
+ * @brief   Eメール設定：開始確認
  *
  * @param   wk		
  *
@@ -1343,7 +1343,7 @@ static void AgreeListCurMove( EMAIL_MENU_WORK* wk )
 	if ( (++wk->info_wait) == 8 ){
 		wk->info_count ^= 1;
 		wk->info_wait = 0;		
-		///< ��
+		///< 下
 		if ( wk->info_pos + INFO_MESSAGE_LINE != wk->info_end ){
 			GF_BGL_ScrFill( wk->bgl, GF_BGL_FRAME3_M, 1 + ( wk->info_count * 20 ), 14, 17, 1, 1, 9 );
 			GF_BGL_ScrFill( wk->bgl, GF_BGL_FRAME3_M, 2 + ( wk->info_count * 20 ), 15, 17, 1, 1, 9 );
@@ -1358,7 +1358,7 @@ static void AgreeListCurMove( EMAIL_MENU_WORK* wk )
 			GF_BGL_ScrFill( wk->bgl, GF_BGL_FRAME3_M, 0, 14, 17, 4, 2, 9 );
 		}
 
-		///< ��
+		///< 上
 		if ( wk->info_pos != 0 ){
 			GF_BGL_ScrFill( wk->bgl, GF_BGL_FRAME3_M, 5 + ( wk->info_count * 20 ), 14,  3, 1, 1, 9 );
 			GF_BGL_ScrFill( wk->bgl, GF_BGL_FRAME3_M, 6 + ( wk->info_count * 20 ), 15,  3, 1, 1, 9 );
@@ -1472,7 +1472,7 @@ static int Enter_Agreement( EMAIL_MENU_WORK *wk )
 					wk->info_pos++;
 					Snd_SePlay( SEQ_SE_DP_SELECT );
 				}	
-				if ( wk->info_pos + INFO_MESSAGE_LINE == wk->info_end ){	///< �Ō�܂ōs�����̂œ��Ӄ`�F�b�N
+				if ( wk->info_pos + INFO_MESSAGE_LINE == wk->info_end ){	///< 最後まで行ったので同意チェック
 					AgreeCurPut( wk );
 					wk->sub_seq++;
 					Snd_SePlay( SEQ_SE_DP_SELECT );
@@ -1547,11 +1547,11 @@ static int Enter_AddressEntryStart(EMAIL_MENU_WORK *wk)
 	}
 
 	switch(wk->local_seq){
-	case 0: //20�Έȏ�H
+	case 0: //20歳以上？
 	//	Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_101, 1, 0x0f0f );
 		wk->local_seq = 3;
 		break;
-	case 1:	//�͂��E�������E�B���h�E�\��
+	case 1:	//はい・いいえウィンドウ表示
 	//	wk->YesNoMenuWork = Email_BmpWinYesNoMakeEx(wk->bgl, EMAIL_YESNO_PY2, YESNO_OFFSET, 1 );
 		wk->local_seq++;
 		break;
@@ -1564,7 +1564,7 @@ static int Enter_AddressEntryStart(EMAIL_MENU_WORK *wk)
 					wk->local_seq++;
 				}
 				else{
-					///< wi-fi�Ȃ���[�H
+					///< wi-fiつながるー？
 					Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_101_01, 1, 0x0f0f );
 					wk->local_seq = 4;
 				}
@@ -1586,7 +1586,7 @@ static int Enter_AddressEntryStart(EMAIL_MENU_WORK *wk)
 		}
 		break;
 	
-	case 4:	///< �Ȃ����[
+	case 4:	///< つながるよー
 		wk->YesNoMenuWork = Email_BmpWinYesNoMake(wk->bgl, EMAIL_YESNO_PY2, YESNO_OFFSET );
 		wk->local_seq++;
 		break;
@@ -1615,7 +1615,7 @@ static int Enter_AddressEntryStart(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�^�R�[�h���͉�ʌĂяo��
+ * @brief   登録コード入力画面呼び出し
  *
  * @param   wk		
  *
@@ -1624,7 +1624,7 @@ static int Enter_AddressEntryStart(EMAIL_MENU_WORK *wk)
 //--------------------------------------------------------------
 static int Enter_AddressInputProcChange(EMAIL_MENU_WORK *wk)
 {
-	//�o�^�R�[�h���͉�ʂֈڍs
+	//登録コード入力画面へ移行
 	Email_SubProcessChange( wk->esys, 
 			EMAIL_SUBPROC_ADDRESS_INPUT, EMAIL_MODE_INPUT_EMAIL );
 	Email_RecoveryMenuModeSet( wk->esys, ENTER_ADDRESS_RETURN);
@@ -1634,7 +1634,7 @@ static int Enter_AddressInputProcChange(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   �A�h���X���͉�ʂ���߂��Ă����Ƃ��ɋN������V�[�P���X
+ * @brief   アドレス入力画面から戻ってきたときに起動するシーケンス
  *
  * @param   wk		
  *
@@ -1665,7 +1665,7 @@ static int Enter_AddressReturn(EMAIL_MENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   �T�u�v���Z�X�V�[�P���X�X�^�[�g����
+ * $brief   サブプロセスシーケンススタート処理
  *
  * @param   wk		
  *
@@ -1680,17 +1680,17 @@ static int Enter_Start( EMAIL_MENU_WORK *wk)
 
 	switch(wk->local_seq){
 	case 0:
-		OS_TPrintf("Enter �J�n\n");
+		OS_TPrintf("Enter 開始\n");
 
 		wk->local_seq++;
 		break;
 	case 1:
-		//�ʐM���܂��B�����͂����ł����H
+		//通信します。準備はいいですか？
 		Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_103, 1, 0x0f0f );
 		wk->local_seq++;
 		break;
 
-	case 2:	//�͂��E�������E�B���h�E�\��
+	case 2:	//はい・いいえウィンドウ表示
 		wk->YesNoMenuWork = Email_BmpWinYesNoMake(wk->bgl, EMAIL_YESNO_PY2, YESNO_OFFSET );
 		wk->local_seq++;
 		break;
@@ -1709,9 +1709,9 @@ static int Enter_Start( EMAIL_MENU_WORK *wk)
 		}
 		break;
 	
-	case 4:	//WiFi�ڑ��J�n
+	case 4:	//WiFi接続開始
 		if(mydwc_checkMyGSID(wk->esys->savedata) == FALSE){
-			//������GS�v���t�@�C��ID���擾���Ă��Ȃ��̂ŁA�擾�v���Z�X�Ɉڍs
+			//自分のGSプロファイルIDを取得していないので、取得プロセスに移行
 			Email_SubProcessChange( wk->esys, EMAIL_SUBPROC_GSPROFILE_GET, 0 );
 			Email_RecoveryMenuModeSet(wk->esys, ENTER_INTERNET_CONNECT);
 			wk->subprocess_seq = ENTER_END;
@@ -1729,7 +1729,7 @@ static int Enter_Start( EMAIL_MENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   �ڑ����J�n���܂����H
+ * $brief   接続を開始しますか？
  *
  * @param   wk		
  *
@@ -1742,19 +1742,19 @@ static int Enter_ConnectYesNoSelect( EMAIL_MENU_WORK *wk )
 
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
-			// �ڑ����I�����܂����H
+			// 接続を終了しますか？
 //			Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_01_008, 1, 0, 0x0f0f );
 //			Email_SetNextSeq( wk, ENTER_MES_WAIT_YESNO_START, ENTER_END_YESNO_SELECT );
 //			wk->subprocess_seq = ENTER_END_START;
 
-			// �I��
-			CommStateWifiEMailEnd();	// �ʐM�G���[��^�C�g���ɖ߂�悤�ɐ�p�̊֐����쐬 080603 tomoya
+			// 終了
+			CommStateWifiEMailEnd();	// 通信エラー後タイトルに戻るように専用の関数を作成 080603 tomoya
 //			CommStateWifiDPWEnd();
 			Email_SubProcessChange( wk->esys, EMAIL_SUBPROC_END, 0 );
 			wk->subprocess_seq  = ENTER_END;
 
 		}else{
-			// WIFI���������J�n
+			// WIFIせつぞくを開始
 			Enter_MessagePrint( wk, wk->LobbyMsgManager, msg_wifilobby_002, 1, 0x0f0f );
 			Email_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_INTERNET_CONNECT );
 			Email_TimeIconAdd(wk);
@@ -1769,7 +1769,7 @@ static int Enter_ConnectYesNoSelect( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ���ɑI���͏I����Ă���̂�WIFI����ڑ�����
+ * $brief   既に選択は終わっているのでWIFIから接続する
  *
  * @param   wk		
  *
@@ -1778,7 +1778,7 @@ static int Enter_ConnectYesNoSelect( EMAIL_MENU_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_ForceEndStart( EMAIL_MENU_WORK *wk ) 
 {
-	// �ڑ����I�����܂�
+	// 接続を終了します
 	Enter_MessagePrint( wk, wk->SystemMsgManager, dwc_message_0011, 1, 0x0f0f );
 	Email_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_FORCE_END );
 
@@ -1787,7 +1787,7 @@ static int Enter_ForceEndStart( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �ڑ��I��
+ * $brief   接続終了
  *
  * @param   wk		
  *
@@ -1796,17 +1796,17 @@ static int Enter_ForceEndStart( EMAIL_MENU_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_ForceEnd( EMAIL_MENU_WORK *wk )
 {
-    // �ʐM�G���[�Ǘ��̂��߂ɒʐM���[�`����OFF
-	CommStateWifiEMailEnd();	// �ʐM�G���[��^�C�g���ɖ߂�悤�ɐ�p�̊֐����쐬 080603 tomoya
+    // 通信エラー管理のために通信ルーチンをOFF
+	CommStateWifiEMailEnd();	// 通信エラー後タイトルに戻るように専用の関数を作成 080603 tomoya
 //    CommStateWifiDPWEnd();
-	// WIFI���������I��
+	// WIFIせつぞくを終了
     DWC_CleanupInet();
     WirelessIconEasyEnd();
 	sys_SleepOK(SLEEPTYPE_COMM);
 
-    //��ʂ𔲂�����2�x�A���ŁuE���[���ݒ�v������Wifi�Ɍq���悤�Ƃ����
+    //画面を抜けずに2度連続で「Eメール設定」をしてWifiに繋げようとすると
     //"dpw_tr.c:150 Panic:dpw tr is already initialized."
-    //�̃G���[���o��̂ł�����Ƃ��̏I���֐����ĂԂ悤�ɂ��� 2007.10.26(��) matsuda
+    //のエラーが出るのできちんとこの終了関数を呼ぶようにする 2007.10.26(金) matsuda
 	if(wk->esys->dpw_tr_init == TRUE){
 	    Dpw_Tr_End();
 	    wk->esys->dpw_tr_init = 0;
@@ -1821,7 +1821,7 @@ static int Enter_ForceEnd( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �ڑ��I�����b�Z�[�W
+ * @brief   接続終了メッセージ
  *
  * @param   wk		
  *
@@ -1839,7 +1839,7 @@ static int Enter_ForceEndMessage( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �C���^�[�l�b�g�ڑ��J�n
+ * $brief   インターネット接続開始
  *
  * @param   wk		
  *
@@ -1850,12 +1850,12 @@ static int Enter_InternetConnect( EMAIL_MENU_WORK *wk )
 {
 	switch(wk->local_seq){
 	case 0:
-		// �ʐM�G���[�Ǘ��̂��߂ɒʐM���[�`����ON
-		CommStateWifiEMailStart( wk->esys->savedata );	// �G���[��^�C�g���ɖ߂�悤�ɐ�p�̊֐����쐬 080603tomoya 
+		// 通信エラー管理のために通信ルーチンをON
+		CommStateWifiEMailStart( wk->esys->savedata );	// エラー後タイトルに戻るように専用の関数を作成 080603tomoya 
 //		CommStateWifiDPWStart( wk->esys->savedata );
-		// Wifi�ʐM�A�C�R��
+		// Wifi通信アイコン
 	    WirelessIconEasy();
-		// WIFI���������J�n
+		// WIFIせつぞくを開始
 		Enter_MessagePrint( wk, wk->LobbyMsgManager, msg_wifilobby_002, 1, 0x0f0f );
 		Email_TimeIconAdd(wk);
 		wk->local_seq++;
@@ -1880,7 +1880,7 @@ static int Enter_InternetConnect( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �l�b�g�ڑ��҂�
+ * $brief   ネット接続待ち
  *
  * @param   wk		
  *
@@ -1897,7 +1897,7 @@ static int Enter_InternetConnectWait( EMAIL_MENU_WORK *wk )
 		{
 		case DWC_CONNECTINET_STATE_ERROR:
 			{
-				// �G���[�\��
+				// エラー表示
 				DWCError err;
 				int errcode;
                 DWCErrorType errtype;
@@ -1914,9 +1914,9 @@ static int Enter_InternetConnectWait( EMAIL_MENU_WORK *wk )
 		    CommStateWifiEMailEnd();
 			sys_SleepOK(SLEEPTYPE_COMM);
 
-		    //��ʂ𔲂�����2�x�A���ŁuE���[���ݒ�v������Wifi�Ɍq���悤�Ƃ����
+		    //画面を抜けずに2度連続で「Eメール設定」をしてWifiに繋げようとすると
 		    //"dpw_tr.c:150 Panic:dpw tr is already initialized."
-		    //�̃G���[���o��̂ł�����Ƃ��̏I���֐����ĂԂ悤�ɂ��� 2007.10.26(��) matsuda
+		    //のエラーが出るのできちんとこの終了関数を呼ぶようにする 2007.10.26(金) matsuda
 			if(wk->esys->dpw_tr_init == TRUE){
 			    Dpw_Tr_End();
 			    wk->esys->dpw_tr_init = 0;
@@ -1937,7 +1937,7 @@ static int Enter_InternetConnectWait( EMAIL_MENU_WORK *wk )
 			//break;
 		case DWC_CONNECTINET_STATE_FATAL_ERROR:
 			{
-				// �G���[�\��
+				// エラー表示
 				DWCError err;
 				int errcode;
 				err = DWC_GetLastError(&errcode);
@@ -1950,7 +1950,7 @@ static int Enter_InternetConnectWait( EMAIL_MENU_WORK *wk )
 			break;
 
 		case DWC_CONNECTINET_STATE_CONNECTED:
-	        {	// �ڑ����\������B�X�܂̏ꍇ�͓X�܏����\������B
+	        {	// 接続先を表示する。店舗の場合は店舗情報も表示する。
 				DWCApInfo apinfo;
 	
 				DWC_GetApInfo(&apinfo);
@@ -1964,12 +1964,12 @@ static int Enter_InternetConnectWait( EMAIL_MENU_WORK *wk )
 	                OS_TPrintf("spotinfo : %s.\n", apinfo.spotinfo);
 	            }
 	        }
-	        // �R�l�N�g�����H
+	        // コネクト成功？
 			wk->subprocess_seq = ENTER_WIFI_CONNECTION_LOGIN;
 			break;
 		}
 		
-		// ���ԃA�C�R������
+		// 時間アイコン消去
 
 	}
 	
@@ -1978,7 +1978,7 @@ static int Enter_InternetConnectWait( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   GameSpy�T�[�o�[���O�C���J�n
+ * @brief   GameSpyサーバーログイン開始
  *
  * @param   wk		
  *
@@ -1989,13 +1989,13 @@ static int Enter_WifiConnectionLogin( EMAIL_MENU_WORK *wk )
 {
 	DWC_NASLoginAsync();
 	wk->subprocess_seq = ENTER_WIFI_CONNECTION_LOGIN_WAIT;
-	OS_Printf("GameSpy�T�[�o�[���O�C���J�n\n");
+	OS_Printf("GameSpyサーバーログイン開始\n");
 
 	return SUBSEQ_CONTINUE;
 }
 //------------------------------------------------------------------
 /**
- * @brief   GameSpy�T�[�o�[���O�C�������҂�
+ * @brief   GameSpyサーバーログイン処理待ち
  *
  * @param   wk
  *
@@ -2006,14 +2006,14 @@ static int Enter_WifiConnectionLoginWait( EMAIL_MENU_WORK *wk )
 {
 	switch(DWC_NASLoginProcess()){
 	case DWC_NASLOGIN_STATE_SUCCESS:
-		OS_Printf("GameSpy�T�[�o�[���O�C������\n");
+		OS_Printf("GameSpyサーバーログイン成功\n");
 		wk->subprocess_seq = ENTER_DPWTR_INIT;
 		break;
 	case DWC_NASLOGIN_STATE_ERROR:
 	case DWC_NASLOGIN_STATE_CANCELED:
 	case DWC_NASLOGIN_STATE_DIRTY:
 		Email_TimeIconDel(wk);
-		OS_Printf("GameSpy�T�[�o�[���O�C�����s\n");
+		OS_Printf("GameSpyサーバーログイン失敗\n");
 		{
 			int errCode;
 			DWCErrorType errType;
@@ -2028,15 +2028,15 @@ static int Enter_WifiConnectionLoginWait( EMAIL_MENU_WORK *wk )
 		    CommStateWifiEMailEnd();
 			sys_SleepOK(SLEEPTYPE_COMM);
 
-		    //��ʂ𔲂�����2�x�A���ŁuE���[���ݒ�v������Wifi�Ɍq���悤�Ƃ����
+		    //画面を抜けずに2度連続で「Eメール設定」をしてWifiに繋げようとすると
 		    //"dpw_tr.c:150 Panic:dpw tr is already initialized."
-		    //�̃G���[���o��̂ł�����Ƃ��̏I���֐����ĂԂ悤�ɂ��� 2007.10.26(��) matsuda
+		    //のエラーが出るのできちんとこの終了関数を呼ぶようにする 2007.10.26(金) matsuda
 			if(wk->esys->dpw_tr_init == TRUE){
 			    Dpw_Tr_End();
 			    wk->esys->dpw_tr_init = 0;
 			}
 
-			//���肦�Ȃ��͂������A�ǂ̃G���[�ɂ�����������Ȃ��\�����l�����A�����l�Ƃ��Ď��̃V�[�P���X���ɐݒ肵�Ă���
+			//ありえないはずだが、どのエラーにも引っかからない可能性を考慮し、初期値として次のシーケンスを先に設定しておく
 			wk->subprocess_seq = ENTER_DWC_ERROR_PRINT;
 
 			switch(errType){
@@ -2056,16 +2056,16 @@ static int Enter_WifiConnectionLoginWait( EMAIL_MENU_WORK *wk )
 				DWC_ShutdownFriendsMatch();
 				wk->subprocess_seq = ENTER_DWC_ERROR_PRINT;
 				break;
-			case DWC_ETYPE_SHUTDOWN_ND:	//���̃V�[�P���X�ł͂��肦�Ȃ��̂ňꉞ�����ӂ��Ƃ΂��ɂ���
+			case DWC_ETYPE_SHUTDOWN_ND:	//このシーケンスではありえないので一応強制ふっとばしにする
 				OS_TPrintf("DWC_ETYPE_SHUTDOWN_ND!\n");
 				//break;
 			case DWC_ETYPE_FATAL:
-				// �����ӂ��Ƃ΂�
+				// 強制ふっとばし
 				CommFatalErrorFunc_NoNumber();
 				break;
 			}
 
-			// 20000�ԑ���L���b�`������errType�����ł��낤�ƃ��Z�b�g�G���[��
+			// 20000番台をキャッチしたらerrTypeが何であろうとリセットエラーへ
 			if(errCode<-20000 && errCode >=-29999){
 //				CommSetErrorReset(COMM_ERROR_RESET_TITLE);
 				OS_Printf("dwcError = %d  errCode = %d, errType = %d\n", dwcError, errCode, errType);
@@ -2083,7 +2083,7 @@ static int Enter_WifiConnectionLoginWait( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ���E�����T�[�o�[�ڑ����C�u����������
+ * $brief   世界交換サーバー接続ライブラリ初期化
  *
  * @param   wk		
  *
@@ -2092,8 +2092,8 @@ static int Enter_WifiConnectionLoginWait( EMAIL_MENU_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_DpwTrInit( EMAIL_MENU_WORK *wk )
 {
-	// ���E�����ڑ�������
-	DWCUserData		*MyUserData;		// �F�؍ς݂�DWCUSER�f�[�^�������Ȃ��͂�
+	// 世界交換接続初期化
+	DWCUserData		*MyUserData;		// 認証済みのDWCUSERデータしかこないはず
 	s32 profileId;
 	SYSTEMDATA *systemdata;
 	WIFI_LIST *wifilist;
@@ -2101,28 +2101,28 @@ static int Enter_DpwTrInit( EMAIL_MENU_WORK *wk )
 	wifilist = SaveData_GetWifiListData(wk->esys->savedata);
 	systemdata = SaveData_GetSystemData(wk->esys->savedata);
 
-	// DWCUser�\���̎擾
+	// DWCUser構造体取得
 	MyUserData = WifiList_GetMyUserInfo(wifilist);
 
-	// ����FriendKey�̓v���C���[���n�߂Ď擾�������̂��H
+	// このFriendKeyはプレイヤーが始めて取得したものか？
 	profileId = SYSTEMDATA_GetDpwInfo( systemdata );
 	if( profileId==0 ){
-		OS_TPrintf("����擾profileId�Ȃ̂�DpwInfo�Ƃ��ēo�^���� %08x \n", mydwc_getMyGSID(SaveData_GetWifiListData(wk->esys->savedata)));
+		OS_TPrintf("初回取得profileIdなのでDpwInfoとして登録した %08x \n", mydwc_getMyGSID(SaveData_GetWifiListData(wk->esys->savedata)));
 
-		// ����擾FriendKey�Ȃ̂ŁADpwId�Ƃ��ĕۑ�����
+		// 初回取得FriendKeyなので、DpwIdとして保存する
 		SYSTEMDATA_SetDpwInfo( systemdata, mydwc_getMyGSID(wifilist) );
 	}
 
 	
-	// �����ȃf�[�^���擾
+	// 正式なデータを取得
 	profileId = SYSTEMDATA_GetDpwInfo( systemdata );
-	OS_Printf("Dpw�T�[�o�[���O�C����� profileId=%08x\n", profileId);
+	OS_Printf("Dpwサーバーログイン情報 profileId=%08x\n", profileId);
 
-	// DPW_TR������
+	// DPW_TR初期化
 	Dpw_Tr_Init( profileId, DWC_CreateFriendKey( MyUserData ) );
 	wk->esys->dpw_tr_init = TRUE;
 
-	OS_TPrintf("Dpw Trade ������\n");
+	OS_TPrintf("Dpw Trade 初期化\n");
 
 	wk->subprocess_seq = ENTER_SERVER_START;
 	
@@ -2131,7 +2131,7 @@ static int Enter_DpwTrInit( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   E���[���F�؂̃T�[�o�[�Ƃ̂����J�n
+ * $brief   Eメール認証のサーバーとのやり取り開始
  *
  * @param   wk		
  *
@@ -2145,9 +2145,9 @@ static int Enter_ServerStart( EMAIL_MENU_WORK *wk )
 	Dpw_Tr_SetProfileAsync(&wk->esys->dc_profile, &wk->esys->dc_profile_result);
 //	Dpw_Tr_GetServerStateAsync();
 
-	OS_TPrintf("�v���t�B�[�����M\n");
+	OS_TPrintf("プロフィール送信\n");
 
-	// �T�[�o�[��Ԋm�F�҂���
+	// サーバー状態確認待ちへ
 	wk->subprocess_seq = ENTER_SERVER_RESULT;
 	wk->timeout_count = 0;
 
@@ -2156,7 +2156,7 @@ static int Enter_ServerStart( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �T�[�o�[��Ԋm�F�҂�
+ * $brief   サーバー状態確認待ち
  *
  * @param   wk		
  *
@@ -2169,69 +2169,69 @@ static int Enter_ServerResult( EMAIL_MENU_WORK *wk )
 		s32 result = Dpw_Tr_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		case DPW_TR_STATUS_SERVER_OK:		// ����ɓ��삵�Ă���
+		case DPW_TR_STATUS_SERVER_OK:		// 正常に動作している
 			OS_TPrintf(" profile is up!\n");
 
-			//�v���t�B�[���̌��ʃ��[�N���m�F
+			//プロフィールの結果ワークを確認
 			switch(wk->esys->dc_profile_result.code){
-			case DPW_PROFILE_RESULTCODE_SUCCESS:	//���̓o�^�ɐ���
+			case DPW_PROFILE_RESULTCODE_SUCCESS:	//情報の登録に成功
 				switch(wk->esys->dc_profile_result.mailAddrAuthResult){
-				case DPW_PROFILE_AUTHRESULT_SEND:	//�F�؃��[�����M����
+				case DPW_PROFILE_AUTHRESULT_SEND:	//認証メール送信した
 					wk->subprocess_seq = ENTER_AUTH_MAIL_WAIT;
 					break;
-				case DPW_PROFILE_AUTHRESULT_SENDFAILURE:	//�F�؃��[���̑��M�Ɏ��s
-					OS_TPrintf(" �F�؃��[�����M���s\n");
+				case DPW_PROFILE_AUTHRESULT_SENDFAILURE:	//認証メールの送信に失敗
+					OS_TPrintf(" 認証メール送信失敗\n");
 					Email_TimeIconDel(wk);
 					wk->ConnectErrorNo = EMAIL_ENTRY_ERROR_SENDFAILURE;
 					wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 					break;
-				//�ȉ��̃G���[�����͂��̃V�[���ł͑z�肵�Ă��Ȃ����[���F�؂̌��ʂ��Ԃ����ꍇ
-				// (�����̗F�B�R�[�h���ω������Ƃ��ɈȑO�Ɠ������[���A�h���X�ƃp�X���[�h��
-				// �M�����Ƃ��ɂ��̂悤�ɂȂ�\��������܂��B�ʏ�͂��蓾�܂���B)�}�j���A�����p
-				case DPW_PROFILE_AUTHRESULT_SUCCESS:	//�F�ؐ���
+				//以下のエラー処理はこのシーンでは想定していないメール認証の結果が返った場合
+				// (自分の友達コードが変化したときに以前と同じメールアドレスとパスワードを送
+				// 信したときにこのようになる可能性があります。通常はあり得ません。)マニュアル引用
+				case DPW_PROFILE_AUTHRESULT_SUCCESS:	//認証成功
 					OS_TPrintf(" mail service error\n");
 					Email_TimeIconDel(wk);
 					wk->ConnectErrorNo = EMAIL_ENTRY_ERROR_SUCCESS;
 					wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 					break;
-				case DPW_PROFILE_AUTHRESULT_FAILURE:	//�F�؂Ɏ��s
+				case DPW_PROFILE_AUTHRESULT_FAILURE:	//認証に失敗
 					OS_TPrintf(" mail service error\n");
 					Email_TimeIconDel(wk);
 					wk->ConnectErrorNo = EMAIL_ENTRY_ERROR_FAILURE;
 					wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 					break;
-				default:	//���肦�Ȃ����ǈꉞ�B�����ӂ��Ƃ΂�
+				default:	//ありえないけど一応。強制ふっとばし
 					CommFatalErrorFunc_NoNumber();
 					break;
 				}
 				break;
-			case DPW_PROFILE_RESULTCODE_ERROR_INVALIDPARAM:	//�v���t�B�[���̑��M�p�����[�^�s��
+			case DPW_PROFILE_RESULTCODE_ERROR_INVALIDPARAM:	//プロフィールの送信パラメータ不正
 				OS_TPrintf(" server stop service.\n");
 				Email_TimeIconDel(wk);
 				wk->ConnectErrorNo = EMAIL_ENTRY_ERROR_INVALIDPARAM;
 				wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 				break;
-			case DPW_PROFILE_RESULTCODE_ERROR_SERVERSTATE:	//�T�[�o�����e�i���Xor�ꎞ��~��
+			case DPW_PROFILE_RESULTCODE_ERROR_SERVERSTATE:	//サーバメンテナンスor一時停止中
 				OS_TPrintf(" server stop service.\n");
 				Email_TimeIconDel(wk);
 				wk->ConnectErrorNo = EMAIL_ENTRY_ERROR_SERVERSTATE;
 				wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 				break;
 			default:
-				// ���ӂ��Ƃ΂�
+				// 即ふっとばし
 				OS_TPrintf("default error!\n");
 				Email_TimeIconDel(wk);
 				CommFatalErrorFunc_NoNumber();
 				break;
 			}
 			break;
-		case DPW_TR_STATUS_SERVER_STOP_SERVICE:	// �T�[�r�X��~��
+		case DPW_TR_STATUS_SERVER_STOP_SERVICE:	// サービス停止中
 			OS_TPrintf(" server stop service.\n");
 			Email_TimeIconDel(wk);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			break;
-		case DPW_TR_STATUS_SERVER_FULL:			// �T�[�o�[�����t
+		case DPW_TR_STATUS_SERVER_FULL:			// サーバーが満杯
 		case DPW_TR_ERROR_SERVER_FULL:
 			OS_TPrintf(" server full.\n");
 			Email_TimeIconDel(wk);
@@ -2241,7 +2241,7 @@ static int Enter_ServerResult( EMAIL_MENU_WORK *wk )
 
 		case DPW_TR_ERROR_CANCEL :
 		case DPW_TR_ERROR_FAILURE :
-			// �uGTS�̂����ɂ�ɂ����ς����܂����v���^�C�g����
+			// 「GTSのかくにんにしっぱいしました」→タイトルへ
 			Email_TimeIconDel(wk);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -2249,15 +2249,15 @@ static int Enter_ServerResult( EMAIL_MENU_WORK *wk )
 
 		case DPW_TR_ERROR_SERVER_TIMEOUT :
 		case DPW_TR_ERROR_DISCONNECTED:	
-			// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+			// サーバーと通信できません→終了
 			OS_TPrintf(" upload error. %d \n", result);
 			Email_TimeIconDel(wk);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			break;
-		case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
+		case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
 		default:
-			// ���ӂ��Ƃ΂�
+			// 即ふっとばし
 			Email_TimeIconDel(wk);
 			CommFatalErrorFunc_NoNumber();
 			break;
@@ -2268,7 +2268,7 @@ static int Enter_ServerResult( EMAIL_MENU_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+			CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 		}
 	}
 //	Email_TimeIconDel(wk);
@@ -2278,7 +2278,7 @@ static int Enter_ServerResult( EMAIL_MENU_WORK *wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   �v���C���[���g�̔F�؃��[����M�҂�
+ * @brief   プレイヤー自身の認証メール受信待ち
  *
  * @param   wk		
  *
@@ -2299,7 +2299,7 @@ static int Enter_AuthMailWait(EMAIL_MENU_WORK *wk)
 		Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_105, 1, 0x0f0f );
 		wk->local_seq++;
 		break;
-	case 1:	//�͂��E�������E�B���h�E�\��
+	case 1:	//はい・いいえウィンドウ表示
 		wk->YesNoMenuWork = Email_BmpWinYesNoMake(wk->bgl, EMAIL_YESNO_PY2, YESNO_OFFSET );
 		wk->local_seq++;
 		break;
@@ -2309,7 +2309,7 @@ static int Enter_AuthMailWait(EMAIL_MENU_WORK *wk)
 
 			if(ret!=BMPMENU_NULL){
 				if(ret==BMPMENU_CANCEL){
-					//E���[���o�^�𒆒f���܂����H
+					//Eメール登録を中断しますか？
 					wk->subprocess_seq = ENTER_AUTH_MAIL_END_YESNO;
 				}
 				else{
@@ -2319,7 +2319,7 @@ static int Enter_AuthMailWait(EMAIL_MENU_WORK *wk)
 		}
 		break;
 	case 3:
-		//����4���̓o�^�R�[�h����͂��Ă�������
+		//しも4桁の登録コードを入力してください
 		Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_105_04, 1, 0x0f0f );
 		Email_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_AUTH_INPUT_PROC_CHANGE );
 		break;
@@ -2329,7 +2329,7 @@ static int Enter_AuthMailWait(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�^�R�[�h���͉�ʌĂяo��
+ * @brief   登録コード入力画面呼び出し
  *
  * @param   wk		
  *
@@ -2338,7 +2338,7 @@ static int Enter_AuthMailWait(EMAIL_MENU_WORK *wk)
 //--------------------------------------------------------------
 static int Enter_AuthInputProcChange(EMAIL_MENU_WORK *wk)
 {
-	//�o�^�R�[�h���͉�ʂֈڍs
+	//登録コード入力画面へ移行
 	Email_SubProcessChange( wk->esys, 
 			EMAIL_SUBPROC_AUTHENTICATE_INPUT, EMAIL_MODE_INPUT_AUTHENTICATE );
 	Email_RecoveryMenuModeSet( wk->esys, ENTER_AUTHENTICATE_RETURN);
@@ -2348,7 +2348,7 @@ static int Enter_AuthInputProcChange(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   �F�؃��[����M��́A�uE���[���o�^�𒆒f���܂����H�v�I��
+ * @brief   認証メール受信後の、「Eメール登録を中断しますか？」選択
  *
  * @param   wk		
  *
@@ -2363,7 +2363,7 @@ static int Enter_AuthMailEndYesNo(EMAIL_MENU_WORK *wk)
 	
 	switch(wk->local_seq){
 	case 0:
-		//E���[���o�^�𒆒f���܂����H
+		//Eメール登録を中断しますか？
 		Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_105_01, 1, 0x0f0f );
 		wk->local_seq++;
 		break;
@@ -2391,7 +2391,7 @@ static int Enter_AuthMailEndYesNo(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�^�R�[�h���͉�ʂ���߂��Ă����Ƃ��ɋN������V�[�P���X
+ * @brief   登録コード入力画面から戻ってきたときに起動するシーケンス
  *
  * @param   wk		
  *
@@ -2407,15 +2407,15 @@ static int Enter_AuthenticateReturn(EMAIL_MENU_WORK *wk)
 	
 	switch(wk->local_seq){
 	case 0:
-		//�o�^�R�[�h�̊m�F���ł�
+		//登録コードの確認中です
 		Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_105_05, MSG_ALLPUT, 0x0f0f );
 		Email_TimeIconAdd(wk);
 		
 		//Email_DCProfileCreate(wk->esys, &wk->dc_profile, wk->esys->savedata);
 		Email_DCProfileSet_Authenticate(wk->esys);
-		//�o�^�R�[�h���Z�b�g�����v���t�B�[���𑗐M
+		//登録コードをセットしたプロフィールを送信
 		Dpw_Tr_SetProfileAsync(&wk->esys->dc_profile, &wk->esys->dc_profile_result);
-		OS_TPrintf("���M�����F�؃R�[�h = %d\n", wk->esys->dc_profile.mailAddrAuthPass);
+		OS_TPrintf("送信した認証コード = %d\n", wk->esys->dc_profile.mailAddrAuthPass);
 		wk->local_seq++;
 		break;
 	case 1:
@@ -2425,50 +2425,50 @@ static int Enter_AuthenticateReturn(EMAIL_MENU_WORK *wk)
 			wk->timeout_count = 0;
 			Email_TimeIconDel(wk);
 			switch (result){
-			case DPW_TR_STATUS_SERVER_OK:		// ����ɓ��삵�Ă���
+			case DPW_TR_STATUS_SERVER_OK:		// 正常に動作している
 				OS_TPrintf(" profile is up!\n");
-				//�v���t�B�[���̌��ʃ��[�N���m�F
+				//プロフィールの結果ワークを確認
 				switch(wk->esys->dc_profile_result.code){
-				case DPW_PROFILE_RESULTCODE_SUCCESS:	//���̓o�^�ɐ���
+				case DPW_PROFILE_RESULTCODE_SUCCESS:	//情報の登録に成功
 					OS_TPrintf("mailAddrAuthResult = %d\n", wk->esys->dc_profile_result.mailAddrAuthResult);
 					
 					switch(wk->esys->dc_profile_result.mailAddrAuthResult){
-					case DPW_PROFILE_AUTHRESULT_SUCCESS:	//�F�ؐ���
-						OS_TPrintf("�F�ؐ���\n");
+					case DPW_PROFILE_AUTHRESULT_SUCCESS:	//認証成功
+						OS_TPrintf("認証成功\n");
 						wk->local_seq++;
 						break;
-					case DPW_PROFILE_AUTHRESULT_FAILURE:	//�F�؂Ɏ��s
-						OS_TPrintf(" �F�؎��s\n");
-						//�ē��͂�
+					case DPW_PROFILE_AUTHRESULT_FAILURE:	//認証に失敗
+						OS_TPrintf(" 認証失敗\n");
+						//再入力へ
 						Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_105_06, 1, 0x0f0f );
                         // MatchComment: ENTER_AUTH_INPUT_PROC_CHANGE -> ENTER_AUTH_MAIL_END_YESNO
 						Email_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_AUTH_MAIL_END_YESNO );
 						break;
-					//�ȉ��̃G���[�����͂��̃V�[���ł͑z�肵�Ă��Ȃ����[���F�؂̌��ʂ��Ԃ����ꍇ
-					// (�����̗F�B�R�[�h���ω������Ƃ��ɈȑO�Ɠ������[���A�h���X�ƃp�X���[�h��
-					// �M�����Ƃ��ɂ��̂悤�ɂȂ�\��������܂��B�ʏ�͂��蓾�܂���B)
-					// �}�j���A�����p
-					case DPW_PROFILE_AUTHRESULT_SEND:	//�F�؃��[�����M����
+					//以下のエラー処理はこのシーンでは想定していないメール認証の結果が返った場合
+					// (自分の友達コードが変化したときに以前と同じメールアドレスとパスワードを送
+					// 信したときにこのようになる可能性があります。通常はあり得ません。)
+					// マニュアル引用
+					case DPW_PROFILE_AUTHRESULT_SEND:	//認証メール送信した
 						OS_TPrintf(" mail service error\n");
 						wk->ConnectErrorNo = EMAIL_PASS_ERROR_SEND;
 						wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 						break;
-					case DPW_PROFILE_AUTHRESULT_SENDFAILURE:	//�F�؃��[���̑��M�Ɏ��s
+					case DPW_PROFILE_AUTHRESULT_SENDFAILURE:	//認証メールの送信に失敗
 						OS_TPrintf(" mail service error\n");
 						wk->ConnectErrorNo = EMAIL_PASS_ERROR_SENDFAILURE;
 						wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 						break;
-					default:	//���肦�Ȃ����ǈꉞ�B�����ӂ��Ƃ΂�
+					default:	//ありえないけど一応。強制ふっとばし
 						CommFatalErrorFunc_NoNumber();
 						break;
 					}
 					break;
-				case DPW_PROFILE_RESULTCODE_ERROR_INVALIDPARAM:	//�v���t�B�[���̑��M�p�����[�^�s��
+				case DPW_PROFILE_RESULTCODE_ERROR_INVALIDPARAM:	//プロフィールの送信パラメータ不正
 					OS_TPrintf(" server stop service.\n");
 					wk->ConnectErrorNo = EMAIL_PASS_ERROR_INVALIDPARAM;
 					wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 					break;
-				case DPW_PROFILE_RESULTCODE_ERROR_SERVERSTATE:	//�T�[�o�����e�i���Xor�ꎞ��~��
+				case DPW_PROFILE_RESULTCODE_ERROR_SERVERSTATE:	//サーバメンテナンスor一時停止中
 					OS_TPrintf(" server stop service.\n");
 					wk->ConnectErrorNo = EMAIL_PASS_ERROR_SERVERSTATE;
 					wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -2479,12 +2479,12 @@ static int Enter_AuthenticateReturn(EMAIL_MENU_WORK *wk)
 					break;
 				}
 				break;
-			case DPW_TR_STATUS_SERVER_STOP_SERVICE:	// �T�[�r�X��~��
+			case DPW_TR_STATUS_SERVER_STOP_SERVICE:	// サービス停止中
 				OS_TPrintf(" server stop service.\n");
 				wk->ConnectErrorNo = result;
 				wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 				break;
-			case DPW_TR_STATUS_SERVER_FULL:			// �T�[�o�[�����t
+			case DPW_TR_STATUS_SERVER_FULL:			// サーバーが満杯
 			case DPW_TR_ERROR_SERVER_FULL:
 				OS_TPrintf(" server full.\n");
 				wk->ConnectErrorNo = result;
@@ -2493,21 +2493,21 @@ static int Enter_AuthenticateReturn(EMAIL_MENU_WORK *wk)
 
 			case DPW_TR_ERROR_CANCEL :
 			case DPW_TR_ERROR_FAILURE :
-				// �uGTS�̂����ɂ�ɂ����ς����܂����v���^�C�g����
+				// 「GTSのかくにんにしっぱいしました」→タイトルへ
 				wk->ConnectErrorNo = result;
 				wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 				break;
 
 			case DPW_TR_ERROR_SERVER_TIMEOUT :
 			case DPW_TR_ERROR_DISCONNECTED:	
-				// �T�[�o�[�ƒʐM�ł��܂��񁨏I��
+				// サーバーと通信できません→終了
 				OS_TPrintf(" upload error. %d \n", result);
 				wk->ConnectErrorNo = result;
 				wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 				break;
-			case DPW_TR_ERROR_FATAL:			//!< �ʐM�v���I�G���[�B�d���̍ē������K�v�ł�
+			case DPW_TR_ERROR_FATAL:			//!< 通信致命的エラー。電源の再投入が必要です
 			default:
-				// ���ӂ��Ƃ΂�
+				// 即ふっとばし
 				CommFatalErrorFunc_NoNumber();
 				break;
 
@@ -2516,11 +2516,11 @@ static int Enter_AuthenticateReturn(EMAIL_MENU_WORK *wk)
 		else{
 			wk->timeout_count++;
 			if(wk->timeout_count == TIMEOUT_TIME){
-				CommFatalErrorFunc_NoNumber();	//�����ӂ��Ƃ΂�
+				CommFatalErrorFunc_NoNumber();	//強制ふっとばし
 			}
 		}
 		break;
-	case 2:	//�F�ؐ�����̏���
+	case 2:	//認証成功後の処理
 		Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_106, 1, 0x0f0f );
 		wk->local_seq++;
 		break;
@@ -2535,7 +2535,7 @@ static int Enter_AuthenticateReturn(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   �p�X���[�h�o�^��ʌĂяo��
+ * @brief   パスワード登録画面呼び出し
  *
  * @param   wk		
  *
@@ -2564,7 +2564,7 @@ static int Enter_PasswordSetup(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   �p�X���[�h�o�^��ʌĂяo��
+ * @brief   パスワード登録画面呼び出し
  *
  * @param   wk		
  *
@@ -2594,20 +2594,20 @@ static int Enter_PasswordSetupCheck(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�[�u���s
+ * @brief   セーブ実行
  *
  * @param   wk		
  *
  * @retval  
  *
- * �E�Z�[�u��̔�ѐ��Email_SetNextSeq�Őݒ肵�Ă����Ă�������
+ * ・セーブ後の飛び先はEmail_SetNextSeqで設定しておいてください
  */
 //--------------------------------------------------------------
 static int Enter_Save(EMAIL_MENU_WORK *wk)
 {
 	switch(wk->local_seq){
 	case 0:
-		//�Z�[�u���Ă��܂��B�d���؂�Ȃ��ł�������
+		//セーブしています。電源切らないでください
 		Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_300, MSG_ALLPUT, 0x0f0f );
 		Email_TimeIconAdd(wk);
 		wk->local_seq++;
@@ -2647,14 +2647,14 @@ static int Enter_Save(EMAIL_MENU_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   Wi-Fi�R�l�N�V��������ؒf
+ * @brief   Wi-Fiコネクションから切断
  *
  * @param   wk		
  *
  * @retval  
  *
- * �E�ؒf���b�Z�[�W��\�����܂��B
- * �E�ؒf��̔�ѐ��Email_SetNextSeq�Őݒ肵�Ă����Ă�������
+ * ・切断メッセージを表示します。
+ * ・切断後の飛び先はEmail_SetNextSeqで設定しておいてください
  */
 //--------------------------------------------------------------
 static int Enter_CleanupInet( EMAIL_MENU_WORK *wk )
@@ -2669,19 +2669,19 @@ static int Enter_CleanupInet( EMAIL_MENU_WORK *wk )
 		wk->local_seq++;
 		break;
 	case 1:
-		// WIFI���������I��
+		// WIFIせつぞくを終了
 //		if(DWC_CheckInet()){
 		    DWC_CleanupInet();
 		    WirelessIconEasyEnd();
 //		}
-	    // �ʐM�G���[�Ǘ��̂��߂ɒʐM���[�`����OFF
-	    CommStateWifiEMailEnd();	// �ʐM�G���[��^�C�g���ɖ߂�悤�ɐ�p�̊֐����쐬 080603 tomoya
+	    // 通信エラー管理のために通信ルーチンをOFF
+	    CommStateWifiEMailEnd();	// 通信エラー後タイトルに戻るように専用の関数を作成 080603 tomoya
 //	    CommStateWifiDPWEnd();
 		sys_SleepOK(SLEEPTYPE_COMM);
 	    
-	    //��ʂ𔲂�����2�x�A���ŁuE���[���ݒ�v������Wifi�Ɍq���悤�Ƃ����
+	    //画面を抜けずに2度連続で「Eメール設定」をしてWifiに繋げようとすると
 	    //"dpw_tr.c:150 Panic:dpw tr is already initialized."
-	    //�̃G���[���o��̂ł�����Ƃ��̏I���֐����ĂԂ悤�ɂ��� 2007.10.26(��) matsuda
+	    //のエラーが出るのできちんとこの終了関数を呼ぶようにする 2007.10.26(金) matsuda
 		if(wk->esys->dpw_tr_init == TRUE){
 		    Dpw_Tr_End();
 		    wk->esys->dpw_tr_init = 0;
@@ -2711,7 +2711,7 @@ static int Enter_CleanupInet( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   Wifi�ڑ��G���[��\��
+ * @brief   Wifi接続エラーを表示
  *
  * @param   wk		
  *
@@ -2737,7 +2737,7 @@ static int Enter_DwcErrorPrint( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   �v�����g��L�[�҂�
+ * @brief   プリント後キー待ち
  *
  * @param   wk		
  *
@@ -2756,7 +2756,7 @@ static int Enter_ErrorPadWait( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   �T�u�v���Z�X�V�[�P���X�I������
+ * $brief   サブプロセスシーケンス終了処理
  *
  * @param   wk		
  *
@@ -2766,13 +2766,13 @@ static int Enter_ErrorPadWait( EMAIL_MENU_WORK *wk )
 static int Enter_End( EMAIL_MENU_WORK *wk)
 {
 	if(wk->subprocess_seq != ENTER_CONNECT_END){
-	    CommStateWifiEMailEnd();	// �ʐM�G���[��^�C�g���ɖ߂�悤�ɐ�p�̊֐����쐬 080603 tomoya
+	    CommStateWifiEMailEnd();	// 通信エラー後タイトルに戻るように専用の関数を作成 080603 tomoya
 //		CommStateWifiDPWEnd();
 	}
 
     WirelessIconEasyEnd();
 
-	// ���ԃA�C�R�������Q�d����ɂȂ�Ȃ��悤��NULL�`�F�b�N����
+	// 時間アイコン消去２重解放にならないようにNULLチェックしつつ
 	Email_TimeIconDel( wk );
 
 	
@@ -2787,7 +2787,7 @@ static int Enter_End( EMAIL_MENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   �͂��E������
+ * $brief   はい・いいえ
  *
  * @param   wk		
  *
@@ -2806,7 +2806,7 @@ static int Enter_YesNo( EMAIL_MENU_WORK *wk)
 
 //==============================================================================
 /**
- * $brief   �l�b�g�ɂ͌q���������ǃT�[�o�[�G���[�������\��
+ * $brief   ネットには繋がったけどサーバーエラーだった表示
  *
  * @param   wk		
  *
@@ -2828,7 +2828,7 @@ static int Enter_ServerServiceError( EMAIL_MENU_WORK *wk )
 		break;
 	case DPW_TR_ERROR_SERVER_TIMEOUT:
 	case DPW_TR_ERROR_DISCONNECTED:
-		// �f�s�r�Ƃ̂�����������܂����B
+		// ＧＴＳとのせつぞくがきれました。
 		msgno = msg_email_error_006;
 		break;
 	case DPW_TR_ERROR_CANCEL  :
@@ -2836,7 +2836,7 @@ static int Enter_ServerServiceError( EMAIL_MENU_WORK *wk )
 	case DPW_TR_ERROR_NO_DATA:
 	case DPW_TR_ERROR_ILLIGAL_REQUEST :
 	default:
-		//�@������G���[���������܂����B
+		//　つうしんエラーが発生しました。
 		msgno = msg_email_error_005;
 		break;
 	case EMAIL_ENTRY_ERROR_SENDFAILURE:
@@ -2876,7 +2876,7 @@ static int Enter_ServerServiceError( EMAIL_MENU_WORK *wk )
 		msgman_select++;
 		break;
 	}
-	// �G���[�\��
+	// エラー表示
 	if(msgman_select == 0){
 		Enter_MessagePrint( wk, wk->EmailMsgManager, msgno, 1, 0x0f0f );
 	}
@@ -2885,14 +2885,14 @@ static int Enter_ServerServiceError( EMAIL_MENU_WORK *wk )
 	}
 	Email_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_SERVER_SERVICE_END );
 
-	OS_TPrintf("Error����\n");
+	OS_TPrintf("Error発生\n");
 
 	return SUBSEQ_CONTINUE;
 }
 
 //==============================================================================
 /**
- * $brief   �T�[�o�[�T�[�r�X�̖��ŏI��
+ * $brief   サーバーサービスの問題で終了
  *
  * @param   wk		
  *
@@ -2908,16 +2908,16 @@ static int Enter_ServerServiceEnd( EMAIL_MENU_WORK *wk )
 		break;
 	case 1:
 		if(Enter_MessagePrintEndCheck(wk->MsgIndex) == FALSE){
-		    // �ʐM�G���[�Ǘ��̂��߂ɒʐM���[�`����OFF
-			CommStateWifiEMailEnd();	// �ʐM�G���[��^�C�g���ɖ߂�悤�ɐ�p�̊֐����쐬 080603 tomoya
+		    // 通信エラー管理のために通信ルーチンをOFF
+			CommStateWifiEMailEnd();	// 通信エラー後タイトルに戻るように専用の関数を作成 080603 tomoya
 		//    CommStateWifiDPWEnd();
 		    DWC_CleanupInet();
 		    WirelessIconEasyEnd();
 			sys_SleepOK(SLEEPTYPE_COMM);
 
-		    //��ʂ𔲂�����2�x�A���ŁuE���[���ݒ�v������Wifi�Ɍq���悤�Ƃ����
+		    //画面を抜けずに2度連続で「Eメール設定」をしてWifiに繋げようとすると
 		    //"dpw_tr.c:150 Panic:dpw tr is already initialized."
-		    //�̃G���[���o��̂ł�����Ƃ��̏I���֐����ĂԂ悤�ɂ��� 2007.10.26(��) matsuda
+		    //のエラーが出るのできちんとこの終了関数を呼ぶようにする 2007.10.26(金) matsuda
 			if(wk->esys->dpw_tr_init == TRUE){
 			    Dpw_Tr_End();
 			    wk->esys->dpw_tr_init = 0;
@@ -2948,7 +2948,7 @@ static int Enter_ServerServiceEnd( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ��b�I����҂��Ď��̃V�[�P���X��
+ * $brief   会話終了を待って次のシーケンスへ
  *
  * @param   wk		
  *
@@ -2966,7 +2966,7 @@ static int Enter_MessageWait( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ��b�\����1�b�҂�
+ * @brief   会話表示後1秒待つ
  *
  * @param   wk		
  *
@@ -2987,7 +2987,7 @@ static int Enter_MessageWait1Second( EMAIL_MENU_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ��b�\����҂�����Łu�͂��E�������v���J�n����
+ * $brief   会話表示を待った上で「はい・いいえ」を開始する
  *
  * @param   wk		
  *
@@ -3006,7 +3006,7 @@ static int Enter_MessageWaitYesNoStart(EMAIL_MENU_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ��b�E�C���h�E�\��
+ * $brief   会話ウインドウ表示
  *
  * @param   wk		
  *
@@ -3015,22 +3015,22 @@ static int Enter_MessageWaitYesNoStart(EMAIL_MENU_WORK *wk)
 //------------------------------------------------------------------
 static void Enter_MessagePrint( EMAIL_MENU_WORK *wk, MSGDATA_MANAGER *msgman, int msgno, int wait, u16 dat )
 {
-	// ������擾
+	// 文字列取得
 	STRBUF *tempbuf;
 
-	// ������擾
+	// 文字列取得
 	tempbuf = MSGMAN_AllocString(  msgman, msgno );
 
-	// WORDSET�W�J
+	// WORDSET展開
 	WORDSET_ExpandStr( wk->WordSet, wk->TalkString, tempbuf );
 
 	STRBUF_Delete(tempbuf);
 
-	// ��b�E�C���h�E�g�`��
+	// 会話ウインドウ枠描画
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, EMAIL_MESFRAME_CHR, EMAIL_MESFRAME_PAL );
 
-	// ������`��J�n
+	// 文字列描画開始
 	wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, wait, NULL);
 
 	wk->wait = 0;
@@ -3042,19 +3042,19 @@ static void Enter_MessagePrint( EMAIL_MENU_WORK *wk, MSGDATA_MANAGER *msgman, in
 
 //--------------------------------------------------------------
 /**
- * @brief   ���b�Z�[�W�̏I�������`�F�b�N
+ * @brief   メッセージの終了処理チェック
  *
- * @param   msg_index		���b�Z�[�WIndex
+ * @param   msg_index		メッセージIndex
  *
- * @retval  TRUE:�������B�@�@FALSE:�I�����Ă���
+ * @retval  TRUE:処理中。　　FALSE:終了している
  */
 //--------------------------------------------------------------
 static int Enter_MessagePrintEndCheck(int msg_index)
 {
 	if(msg_index == EMAIL_MSG_NO_WAIT || GF_MSG_PrintEndCheck( msg_index )==0){
-		return FALSE;	//�`��I�����Ă���
+		return FALSE;	//描画終了している
 	}
-	return TRUE;	//���b�Z�[�W�������s��
+	return TRUE;	//メッセージ処理続行中
 }
 
 static int ov98_2249798(EMAIL_MENU_WORK *wk)
@@ -3115,9 +3115,9 @@ static int ov98_22497F8(EMAIL_MENU_WORK *wk)
  *
  * @param   win		
  * @param   strbuf		
- * @param   flag		1���ƃZ���^�����O�A�Q���ƉE�悹
+ * @param   flag		1だとセンタリング、２だと右よせ
  * @param   color		
- * @param   font		�t�H���g�w��iFONT_TALK��FONT_SYSTEM
+ * @param   font		フォント指定（FONT_TALKかFONT_SYSTEM
  *
  * @retval  int		
  */
@@ -3126,13 +3126,13 @@ static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag,
 {
 	int length=0,ground;
 	switch(flag){
-	// �Z���^�����O
+	// センタリング
 	case 1:
 		length = FontProc_GetPrintStrWidth( font, strbuf, 0 );
 		x          = ((win->sizx*8)-length)/2;
 		break;
 
-	// �E��
+	// 右寄せ
 	case 2:
 		length = FontProc_GetPrintStrWidth( font, strbuf, 0 );
 		x          = (win->sizx*8)-length;
@@ -3143,14 +3143,14 @@ static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag,
 
 //------------------------------------------------------------------
 /**
- * $brief   BMPWIN���̕\���ʒu���w�肵��FONT_TALK�Ńv�����g(�`��̂݁j
+ * $brief   BMPWIN内の表示位置を指定してFONT_TALKでプリント(描画のみ）
  *
  * @param   win		GF_BGL_BMPWIN
  * @param   strbuf	
- * @param   x		X���W���炷�l
- * @param   y		Y���W���炷�l
- * @param   flag	0���ƍ��񂹁A1���ƃZ���^�����O�A2���ƉE��
- * @param   color	�����F�w��i�w�i�F��BMP��h��Ԃ��܂��j
+ * @param   x		X座標ずらす値
+ * @param   y		Y座標ずらす値
+ * @param   flag	0だと左寄せ、1だとセンタリング、2だと右寄せ
+ * @param   color	文字色指定（背景色でBMPを塗りつぶします）
  *
  * @retval  none
  */
@@ -3165,7 +3165,7 @@ void Email_TalkPrint( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int y, int flag
 
 //------------------------------------------------------------------
 /**
- * @brief   ���������G���[�\��
+ * @brief   ｗｉｆｉエラー表示
  *
  * @param   wk		
  * @param   msgno		
@@ -3179,20 +3179,20 @@ static void _systemMessagePrint( EMAIL_MENU_WORK *wk, int msgno )
     MSGMAN_GetString(  wk->SystemMsgManager, msgno, tmpString );
     WORDSET_ExpandStr( wk->WordSet, wk->ErrorString, tmpString );
 
-    // ��b�E�C���h�E�g�`��
+    // 会話ウインドウ枠描画
     GF_BGL_BmpWinDataFill(&wk->SubWin, 15 );
     BmpMenuWinWrite(&wk->SubWin, WINDOW_TRANS_OFF, EMAIL_MENUFRAME_CHR, EMAIL_MENUFRAME_PAL );
-    // ������`��J�n
+    // 文字列描画開始
     wk->MsgIndex = GF_STR_PrintSimple( &wk->SubWin, FONT_TALK,
                                        wk->ErrorString, 0, 0, MSG_ALLPUT, NULL);
-	wk->MsgIndex = EMAIL_MSG_NO_WAIT;	//�ꊇ�`��Ȃ̂�
+	wk->MsgIndex = EMAIL_MSG_NO_WAIT;	//一括描画なので
 	
 	STRBUF_Delete(tmpString);
 }
 
 //------------------------------------------------------------------
 /**
- * @brief   Wifi�R�l�N�V�����G���[�̕\��
+ * @brief   Wifiコネクションエラーの表示
  *
  * @param   wk		
  * @param   type	
@@ -3222,23 +3222,23 @@ static void errorDisp(EMAIL_MENU_WORK* wk, int type, int code)
       case 1:
       case 4:
       case 5:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // �Đڑ����t�B�[���h��
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // 再接続かフィールドか
         break;
       case 6:
       case 7:
       case 8:
       case 9:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;//WIFIP2PMATCH_POWEROFF_INIT;  // �d����؂邩�t�B�[���h
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;//WIFIP2PMATCH_POWEROFF_INIT;  // 電源を切るかフィールド
         break;
       case 10:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // ���j���[�ꗗ��
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // メニュー一覧へ
         break;
       case 0:
       case 2:
       case 3:
       case 11:
       default:
-        wk->seq = WIFIP2PMATCH_MODE_CHECK_AND_END;  // �t�B�[���h
+        wk->seq = WIFIP2PMATCH_MODE_CHECK_AND_END;  // フィールド
         break;
     }
 #endif
@@ -3249,7 +3249,7 @@ static void errorDisp(EMAIL_MENU_WORK* wk, int type, int code)
 
 //--------------------------------------------------------------
 /**
- * @brief   E���[����ʁF�g�b�v���j���[�̃��X�g�̃J�[�\���ړ����Ƃ̃R�[���o�b�N�֐�
+ * @brief   Eメール画面：トップメニューのリストのカーソル移動ごとのコールバック関数
  *
  * @param   wk		
  * @param   param		
@@ -3258,14 +3258,14 @@ static void errorDisp(EMAIL_MENU_WORK* wk, int type, int code)
 //--------------------------------------------------------------
 static void EmailMenuListAllHeader_CursorCallback(BMPLIST_WORK * wk, u32 param, u8 mode)
 {
-	if(mode == 0){	//����������SE��炳�Ȃ�
+	if(mode == 0){	//初期化時はSEを鳴らさない
 		Snd_SePlay(EMAIL_SE_MOVE);
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   E���[����ʁF�g�b�v���j���[�̃��X�g�̃J�[�\���ړ����Ƃ̃R�[���o�b�N�֐�
+ * @brief   Eメール画面：トップメニューのリストのカーソル移動ごとのコールバック関数
  *
  * @param   wk		
  * @param   param		
@@ -3274,7 +3274,7 @@ static void EmailMenuListAllHeader_CursorCallback(BMPLIST_WORK * wk, u32 param, 
 //--------------------------------------------------------------
 static void EmailMenuListNoDataHeader_CursorCallback(BMPLIST_WORK * wk, u32 param, u8 mode)
 {
-	if(mode == 0){	//����������SE��炳�Ȃ�
+	if(mode == 0){	//初期化時はSEを鳴らさない
 		Snd_SePlay(EMAIL_SE_MOVE);
 	}
 }

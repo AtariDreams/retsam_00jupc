@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	field_encount.c
- * @brief	ƒtƒB[ƒ‹ƒhƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN•‹N“®
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ï¼†èµ·å‹•
  * @date	2005.07.28
- * @author	tamada		ˆø‚«Œp‚¢‚¾l‚ª’¼‚µ‚Ä‚Ë
+ * @author	tamada		å¼•ãç¶™ã„ã äººãŒç›´ã—ã¦ã­
  *
- * 2005.12.18	ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN•”•ª‚ðíœAencount_set.c‚ÉˆÚ“®‚µ‚½
+ * 2005.12.18	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯éƒ¨åˆ†ã‚’å‰Šé™¤ã€encount_set.cã«ç§»å‹•ã—ãŸ
  */
 //============================================================================================
 
@@ -30,14 +30,14 @@
 #include "poketool/tr_tool.h"
 
 #include "mapdata_warp.h"			//WARPDATA_GetRevivalLocation
-#include "situation_local.h"		//Situation_Get`
+#include "situation_local.h"		//Situation_Getã€œ
 #include "system/brightness.h"
 #include "script.h"
 #include "scr_tool.h"
 #include "mapdefine.h"
 #include "../fielddata/script/common_scr_def.h"		//SCRID_GAME_OVER_RECOVER_PC
 #include "sysflag.h"
-#include "communication/communication.h"   // ‚Æ‚à‚¾‚¿Žè’ ‚Ö‚Ì‹L˜^‚Ì‚½‚ß
+#include "communication/communication.h"   // ã¨ã‚‚ã ã¡æ‰‹å¸³ã¸ã®è¨˜éŒ²ã®ãŸã‚
 //#include "comm_direct_counter.h"
 #include "comm_field_state.h"
 #include "b_tower_fld.h"
@@ -77,7 +77,7 @@ static inline int DmyEffNo(void)
 //============================================================================================
 //
 //
-//	ƒCƒxƒ“ƒg‹[Ž—ƒRƒ}ƒ“ƒhFí“¬
+//	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜
 //
 //
 //============================================================================================
@@ -90,12 +90,12 @@ static BOOL GMEVENT_Sub_BattleProc(GMEVENT_CONTROL * event)
 	int *seq = FieldEvent_GetSeqWork(event);
 	switch (*seq) {
 	case 0:
-		//í“¬ƒvƒƒZƒX“o˜^
+		//æˆ¦é—˜ãƒ—ãƒ­ã‚»ã‚¹ç™»éŒ²
 		FieldBattle_SetProc(fsys, battle_param);
 		(*seq) ++;
 		break;
 	case 1:
-		//ƒTƒuƒvƒƒZƒXií“¬jI—¹‘Ò‚¿
+		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ï¼ˆæˆ¦é—˜ï¼‰çµ‚äº†å¾…ã¡
 		if (FieldEvent_Cmd_WaitSubProcEnd(fsys)) {
 			break;
 		}
@@ -106,12 +106,12 @@ static BOOL GMEVENT_Sub_BattleProc(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[Ž—ƒRƒ}ƒ“ƒhFí“¬ŒÄ‚Ño‚µ
- * @param	event			ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	battle_param	í“¬—pƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜å‘¼ã³å‡ºã—
+ * @param	event			ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	battle_param	æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
- * ˆø”‚Æ‚µ‚ÄŽó‚¯Žæ‚Á‚½BATTLE_PARAM‚Í‰ð•ú‚µ‚Ü‚¹‚ñB
- * ŒÄ‚Ño‚µ‘¤‚ÅŠÇ—‚µ‚Ä‚­‚¾‚³‚¢B
+ * å¼•æ•°ã¨ã—ã¦å—ã‘å–ã£ãŸBATTLE_PARAMã¯è§£æ”¾ã—ã¾ã›ã‚“ã€‚
+ * å‘¼ã³å‡ºã—å´ã§ç®¡ç†ã—ã¦ãã ã•ã„ã€‚
  */
 //-----------------------------------------------------------------------------
 void EventCmd_BattleProc(GMEVENT_CONTROL * event, BATTLE_PARAM * battle_param)
@@ -123,7 +123,7 @@ void EventCmd_BattleProc(GMEVENT_CONTROL * event, BATTLE_PARAM * battle_param)
 //============================================================================================
 //
 //
-//	ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒgŒÄ‚Ño‚µ
+//	ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå‘¼ã³å‡ºã—
 //
 //
 //============================================================================================
@@ -164,7 +164,7 @@ static EV_BATTLE_WORK * EBW_Create(BATTLE_PARAM * btlprm, int effect_no, int bgm
 //-----------------------------------------------------------------------------
 static void EBW_Delete(EV_BATTLE_WORK * ebw)
 {
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^”jŠü
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
 	BattleParam_Delete(ebw->battle_param);
 
 	sys_FreeMemoryEz(ebw);
@@ -172,7 +172,7 @@ static void EBW_Delete(EV_BATTLE_WORK * ebw)
 #if 0	//<<20060609 del
 //-----------------------------------------------------------------------------
 /**
- * @brief	FIGHT_TYPE‚ÆƒgƒŒ[ƒi[ID‚©‚çBGM‚ðŒˆ’è‚·‚é
+ * @brief	FIGHT_TYPEã¨ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‹ã‚‰BGMã‚’æ±ºå®šã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 static u16 GetBGMID(const BATTLE_PARAM * bp)
@@ -183,7 +183,7 @@ static u16 GetBGMID(const BATTLE_PARAM * bp)
 //-----------------------------------------------------------------------------
 /**
  * @brief
- * @param	ebw			í“¬ƒV[ƒPƒ“ƒXƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ebw			æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static BOOL EBW_CheckResult(EV_BATTLE_WORK * ebw)
@@ -200,24 +200,24 @@ static BOOL EBW_CheckResult(EV_BATTLE_WORK * ebw)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹Œã‚Ìƒpƒ‰ƒ[ƒ^”½‰f
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ebw			í“¬ƒV[ƒPƒ“ƒXƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒãƒˆãƒ«å¾Œã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åæ˜ 
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ebw			æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BattleParam_RefrectResult(const BATTLE_PARAM * btlprm, FIELDSYS_WORK * fsys)
 {
 	if (btlprm->fight_type & FIGHT_TYPE_DEBUG) {
-		//ƒfƒoƒbƒO‘Îí‚Å‚ÍŽèŽ‚¿‚Ìî•ñ‚ð‘‚«Š·‚¦‚È‚¢
+		//ãƒ‡ãƒãƒƒã‚°å¯¾æˆ¦ã§ã¯æ‰‹æŒã¡ã®æƒ…å ±ã‚’æ›¸ãæ›ãˆãªã„
 		return;
 	}
 	BattleParam_UpdateGameData(btlprm, fsys);
 #if 0
 	if (BattleParam_IsWinResult(btlprm->win_lose_flag)) {
-		//Ÿ—˜‚µ‚½ê‡
+		//å‹åˆ©ã—ãŸå ´åˆ
 		BattleParam_UpdateGameData(btlprm, fsys);
 	} else {
-		//”s–k‚µ‚½ê‡
+		//æ•—åŒ—ã—ãŸå ´åˆ
 	}
 #endif
 
@@ -225,13 +225,13 @@ static void BattleParam_RefrectResult(const BATTLE_PARAM * btlprm, FIELDSYS_WORK
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	’Êíí“¬ƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	é€šå¸¸æˆ¦é—˜ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  *
- * ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg¨í“¬¨ƒtƒB[ƒ‹ƒh•œ‹A‚ðs‚¤B
- * ƒQ[ƒ€ƒI[ƒo[ˆ—‚Ö‚Ì•ªŠò‚à“ü‚éi—\’èj
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆâ†’æˆ¦é—˜â†’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°ã‚’è¡Œã†ã€‚
+ * ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼å‡¦ç†ã¸ã®åˆ†å²ã‚‚å…¥ã‚‹ï¼ˆäºˆå®šï¼‰
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_NormalBattle(GMEVENT_CONTROL * event)
@@ -245,62 +245,62 @@ static BOOL GMEVENT_NormalBattle(GMEVENT_CONTROL * event)
 
     switch (*seq) {
 	case 0:
-		//‚n‚a‚iƒ|[ƒY
+		//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚º
 		FieldOBJSys_MovePauseAll( fsys->fldobjsys );
-		// ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŒÄ‚Ño‚µ
+		// ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‘¼ã³å‡ºã—
 		EventCmd_EncountEffect(event, ebw->effect_no, ebw->bgm_no);
 		(*seq) ++;
 		break;
 	case 1:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXI—¹
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		(*seq) ++;
 		break;
 	case 2:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFí“¬ƒvƒƒZƒX
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜ãƒ—ãƒ­ã‚»ã‚¹
 		EventCmd_BattleProc(event, ebw->battle_param);
 		(*seq) ++;
 		break;
 
 	case 3:
-		//í“¬Œ‹‰Ê”½‰fi‚¸‚©‚ñAŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ó‘ÔAetc...)
+		//æˆ¦é—˜çµæžœåæ˜ ï¼ˆãšã‹ã‚“ã€æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³çŠ¶æ…‹ã€etc...)
 		BattleParam_RefrectResult(ebw->battle_param, fsys);
 		if ( (ebw->battle_param->fight_type == FIGHT_TYPE_1vs1_YASEI)||
 			 (ebw->battle_param->fight_type == FIGHT_TYPE_MOVE)||
-			 (ebw->battle_param->fight_type == FIGHT_TYPE_2vs2_YASEI) ){			//–ì¶í
+			 (ebw->battle_param->fight_type == FIGHT_TYPE_2vs2_YASEI) ){			//é‡Žç”Ÿæˆ¦
 			TVTOPIC_Entry_Watch_Capture(fsys,ebw->battle_param->TVWatchBattleWork,
 					ebw->battle_param->win_lose_flag);
 		}
-		//í“¬I—¹Œã‚Ìˆ—
+		//æˆ¦é—˜çµ‚äº†å¾Œã®å‡¦ç†
 		if (EBW_CheckResult(ebw) == FALSE) {
-			//‘S–Å‚Ìê‡‚Í‚±‚±‚ÅI—¹‚³‚¹‚é
+			//å…¨æ»…ã®å ´åˆã¯ã“ã“ã§çµ‚äº†ã•ã›ã‚‹
 			EBW_Delete(ebw);
 			return TRUE;
 		}
 
-		//˜A‚ê•à‚«í“¬Œã‚ÍŽèŽ‚¿‚ð‰ñ•œ
+		//é€£ã‚Œæ­©ãæˆ¦é—˜å¾Œã¯æ‰‹æŒã¡ã‚’å›žå¾©
 		if (SysFlag_PairCheck(SaveData_GetEventWork(fsys->savedata))){
-			//˜A‚ê•à‚«‚È‚Ì‚ÅŽèŽ‚¿‰ñ•œ
+			//é€£ã‚Œæ­©ããªã®ã§æ‰‹æŒã¡å›žå¾©
 			PokeParty_RecoverAll(SaveData_GetTemotiPokemon(fsys->savedata));
 		}
 
-		//ƒXƒRƒA‰ÁŽZ
+		//ã‚¹ã‚³ã‚¢åŠ ç®—
 		AddScoreByBattle(fsys, ebw->battle_param);
-		//–`Œ¯ƒm[ƒg‹L“ü
+		//å†’é™ºãƒŽãƒ¼ãƒˆè¨˜å…¥
 		WriteFNoteByBattle(fsys, ebw->battle_param);
 		
-		//ƒƒCƒhŸ‚¿”²‚«—pƒ^[ƒ“”ƒZƒbƒg
+		//ãƒ¡ã‚¤ãƒ‰å‹ã¡æŠœãç”¨ã‚¿ãƒ¼ãƒ³æ•°ã‚»ãƒƒãƒˆ
 		SysWork_MaidWinTurnSet( SaveData_GetEventWork(fsys->savedata), 
 								ebw->battle_param->total_turn );
 		
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		EventCmd_StartFieldMap(event);
 		(*seq) ++;
 		break;
 	case 4:
-		//‚n‚a‚iƒ|[ƒYƒNƒŠƒA
+		//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚ºã‚¯ãƒªã‚¢
 		FieldOBJSys_MovePauseAllClear( fsys->fldobjsys );
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒCƒ“
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		EventCmd_FieldFadeIn(event);
 		(*seq) ++;
 		break;
@@ -325,21 +325,21 @@ static void EventCmd_NormalBattle(GMEVENT_CONTROL * event,
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í‚¢Œ‹‰Ê‚ð“o˜^
+ * @brief	æˆ¦ã„çµæžœã‚’ç™»éŒ²
  * @param	status  win_lose_flag
- * @retval	‚È‚µ
+ * @retval	ãªã—
  */
 //-----------------------------------------------------------------------------
 
 static void wifiFriendWriteBattleResult(int status,FIELDSYS_WORK* fsys)
 {
     switch(status & 0x0f){
-      case FIGHT_WIN:		///í“¬Ÿ—˜
-      case FIGHT_ENEMY_ESCAPE:		///‘ŠŽè‚ª“¦‚°‚½
+      case FIGHT_WIN:		///æˆ¦é—˜å‹åˆ©
+      case FIGHT_ENEMY_ESCAPE:		///ç›¸æ‰‹ãŒé€ƒã’ãŸ
         CommInfoSetBattleResult(fsys->savedata,1);
         break;
-      case FIGHT_LOSE:		///í“¬•‰‚¯
-      case FIGHT_ESCAPE:		///“¦‚°‚½
+      case FIGHT_LOSE:		///æˆ¦é—˜è² ã‘
+      case FIGHT_ESCAPE:		///é€ƒã’ãŸ
         CommInfoSetBattleResult(fsys->savedata,-1);
         break;
     }
@@ -347,10 +347,10 @@ static void wifiFriendWriteBattleResult(int status,FIELDSYS_WORK* fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	’ÊMí“¬ƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	é€šä¿¡æˆ¦é—˜ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_CommBattle(GMEVENT_CONTROL * event)
@@ -364,27 +364,27 @@ static BOOL GMEVENT_CommBattle(GMEVENT_CONTROL * event)
 
     switch (*seq) {
 	case 0:
-		// ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŒÄ‚Ño‚µ
+		// ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‘¼ã³å‡ºã—
 		EventCmd_EncountEffect(event, ebw->effect_no, ebw->bgm_no);
 		(*seq) ++;
 		break;
 	case 1:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXI—¹
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		(*seq) ++;
 		break;
 	case 2:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFí“¬ƒvƒƒZƒX
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜ãƒ—ãƒ­ã‚»ã‚¹
 		EventCmd_BattleProc(event, ebw->battle_param);
 		(*seq) ++;
 		break;
 
 	case 3:
-		//í“¬I—¹Œã‚Ìˆ—
-        // ‚Æ‚à‚¾‚¿Žè’ ‚ÉŸ”s‚ð‘‚«ž‚Ý
+		//æˆ¦é—˜çµ‚äº†å¾Œã®å‡¦ç†
+        // ã¨ã‚‚ã ã¡æ‰‹å¸³ã«å‹æ•—ã‚’æ›¸ãè¾¼ã¿
         wifiFriendWriteBattleResult(ebw->battle_param->win_lose_flag,fsys);
 
-		//‰¼‘z‘Îí—p‚ÌƒQ[ƒ€ƒf[ƒ^ƒAƒbƒvƒf[ƒgˆ—i‚¸‚©‚ñ‚Æ‚©j
+		//ä»®æƒ³å¯¾æˆ¦ç”¨ã®ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆå‡¦ç†ï¼ˆãšã‹ã‚“ã¨ã‹ï¼‰
 		BattleParam_UpdateGameDataOfVirtualBattle(ebw->battle_param, fsys);
         {
             RECORD* pRecord = SaveData_GetRecord(fsys->savedata);
@@ -392,16 +392,16 @@ static BOOL GMEVENT_CommBattle(GMEVENT_CONTROL * event)
         }
 #if 0
 		if (EBW_CheckResult(ebw) == FALSE) {
-			/* •‰‚¯‚½‚Æ‚«‚Ìˆ— */
+			/* è² ã‘ãŸã¨ãã®å‡¦ç† */
 		}
 #endif
 
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		EventCmd_StartFieldMap(event);
 		(*seq) ++;
 		break;
 	case 4:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒCƒ“
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 //		EventCmd_FieldFadeIn(event);
 //		(*seq) ++;
 //		break;
@@ -415,10 +415,10 @@ static BOOL GMEVENT_CommBattle(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	WIFIí“¬ƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX    k.ohnoì¬
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	WIFIæˆ¦é—˜ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹    k.ohnoä½œæˆ
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_WiFiBattle(GMEVENT_CONTROL * event)
@@ -432,21 +432,21 @@ static BOOL GMEVENT_WiFiBattle(GMEVENT_CONTROL * event)
 
     switch (*seq) {
 	case 0:
-		//Äí‚ðs‚¤Žž‚Éƒ[ƒh‚ª“ü‚é‚æ‚¤‚É‚·‚é(08.04.18)
+		//å†æˆ¦ã‚’è¡Œã†æ™‚ã«ãƒ­ãƒ¼ãƒ‰ãŒå…¥ã‚‹ã‚ˆã†ã«ã™ã‚‹(08.04.18)
 		Snd_SceneSet( SND_SCENE_DUMMY );
 
-		Snd_DataSetByScene( SND_SCENE_BATTLE, ebw->bgm_no, 1 );	//ƒoƒgƒ‹‹ÈÄ¶
+		Snd_DataSetByScene( SND_SCENE_BATTLE, ebw->bgm_no, 1 );	//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
         
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFí“¬ƒvƒƒZƒX
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜ãƒ—ãƒ­ã‚»ã‚¹
 		EventCmd_BattleProc(event, ebw->battle_param);
 		(*seq) ++;
 		break;
 	case 1:
         {
-            // ‚Æ‚à‚¾‚¿Žè’ ‚ÉŸ”s‚ð‘‚«ž‚Ý
+            // ã¨ã‚‚ã ã¡æ‰‹å¸³ã«å‹æ•—ã‚’æ›¸ãè¾¼ã¿
             wifiFriendWriteBattleResult(ebw->battle_param->win_lose_flag, fsys);
 
-            //‰¼‘z‘Îí—p‚ÌƒQ[ƒ€ƒf[ƒ^ƒAƒbƒvƒf[ƒgˆ—i‚¸‚©‚ñ‚Æ‚©j
+            //ä»®æƒ³å¯¾æˆ¦ç”¨ã®ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆå‡¦ç†ï¼ˆãšã‹ã‚“ã¨ã‹ï¼‰
 			BattleParam_UpdateGameDataOfVirtualBattle(ebw->battle_param, fsys);
 
         }
@@ -455,11 +455,11 @@ static BOOL GMEVENT_WiFiBattle(GMEVENT_CONTROL * event)
             RECORD_Score_Add(pRecord, SCORE_ID_COMM_BATTLE_COUNT);
         }
         
-#if 0	//’ÊM‘Îí‚È‚Ì‚Å”s–kŽž‚Ì•ªŠò‚Í‚¢‚ç‚È‚¢‚Í‚¸	2006.04.24 tamada
-		//í“¬I—¹Œã‚Ìˆ—
+#if 0	//é€šä¿¡å¯¾æˆ¦ãªã®ã§æ•—åŒ—æ™‚ã®åˆ†å²ã¯ã„ã‚‰ãªã„ã¯ãš	2006.04.24 tamada
+		//æˆ¦é—˜çµ‚äº†å¾Œã®å‡¦ç†
 		if (EBW_CheckResult(ebw) == FALSE) {
 
-			//‘S–Å‚Ìê‡‚Í‚±‚±‚ÅI—¹‚³‚¹‚é
+			//å…¨æ»…ã®å ´åˆã¯ã“ã“ã§çµ‚äº†ã•ã›ã‚‹
 			EBW_Delete(ebw);
 			return TRUE;
 		}
@@ -471,7 +471,7 @@ static BOOL GMEVENT_WiFiBattle(GMEVENT_CONTROL * event)
 	case 2:
 		EBW_Delete(ebw);
 
-		// ˜^‰æƒ[ƒN”jŠü
+		// éŒ²ç”»ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		BattleRec_Exit();
 		return TRUE;
 		break;
@@ -481,12 +481,12 @@ static BOOL GMEVENT_WiFiBattle(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒ^ƒ[ƒ[ƒJƒ‹í“¬ƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX by iwasawa
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ­ãƒ¼ã‚«ãƒ«æˆ¦é—˜ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ by iwasawa
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  *
- * ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg¨ƒoƒgƒ‹ƒ^ƒ[í“¬¨ƒtƒB[ƒ‹ƒh•œ‹A‚ðs‚¤B
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆâ†’ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æˆ¦é—˜â†’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°ã‚’è¡Œã†ã€‚
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_TowerLocalBattle(GMEVENT_CONTROL * event)
@@ -500,41 +500,41 @@ static BOOL GMEVENT_TowerLocalBattle(GMEVENT_CONTROL * event)
 
     switch (*seq) {
 	case 0:
-		// ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŒÄ‚Ño‚µ
+		// ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‘¼ã³å‡ºã—
 		EventCmd_EncountEffect(event, ebw->effect_no, ebw->bgm_no);
 		(*seq) ++;
 		break;
 	case 1:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXI—¹
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		(*seq) ++;
 		break;
 	case 2:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFí“¬ƒvƒƒZƒX
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜ãƒ—ãƒ­ã‚»ã‚¹
 		EventCmd_BattleProc(event, ebw->battle_param);
 		(*seq) ++;
 		break;
 
 	case 3:
-		//‰¼‘z‘Îí—p‚ÌƒQ[ƒ€ƒf[ƒ^ƒAƒbƒvƒf[ƒgˆ—i‚¸‚©‚ñ‚Æ‚©j
+		//ä»®æƒ³å¯¾æˆ¦ç”¨ã®ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆå‡¦ç†ï¼ˆãšã‹ã‚“ã¨ã‹ï¼‰
 		BattleParam_UpdateGameDataOfVirtualBattle(ebw->battle_param, fsys);
-		//ƒ^ƒ[—p‘ÎíŒ‹‰ÊƒAƒbƒvƒf[ƒgˆ—
+		//ã‚¿ãƒ¯ãƒ¼ç”¨å¯¾æˆ¦çµæžœã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆå‡¦ç†
 		BtlTower_BattleRecordUpdate(fsys,&(ebw->battle_param->btr));
 
-		//í“¬I—¹Œã‚Ìˆ—
+		//æˆ¦é—˜çµ‚äº†å¾Œã®å‡¦ç†
 		if (EBW_CheckResult(ebw) == FALSE) {
-			//”síˆ—
+			//æ•—æˆ¦å‡¦ç†
 		}else{
 			
 //			UpdateBattleResult(event, ebw);		
 		}
 
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		EventCmd_StartFieldMap(event);
 		(*seq) ++;
 		break;
 	case 4:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒCƒ“
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		EventCmd_FieldFadeIn(event);
 		(*seq) ++;
 		break;
@@ -546,7 +546,7 @@ static BOOL GMEVENT_TowerLocalBattle(GMEVENT_CONTROL * event)
 }
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒ[ƒJƒ‹ƒoƒgƒ‹ƒCƒxƒ“ƒg“o˜^
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒ­ãƒ¼ã‚«ãƒ«ãƒãƒˆãƒ«ã‚¤ãƒ™ãƒ³ãƒˆç™»éŒ²
  */
 static void EventCmd_TowerLocalBattleCall(GMEVENT_CONTROL * event,
 		BATTLE_PARAM * param, int effect_no, int bgm_no, int * winlose_flag)
@@ -558,12 +558,12 @@ static void EventCmd_TowerLocalBattleCall(GMEVENT_CONTROL * event,
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[Ž—ƒRƒ}ƒ“ƒhFƒoƒgƒ‹ƒ^ƒ[ƒ[ƒJƒ‹‘Îí
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	trainer_id	ƒgƒŒ[ƒi[Žw’èƒf[ƒ^
- * @param	fight_type	í“¬Ží•Ê
- * @param	heapID		ƒq[ƒvID
- * @param	winlose_flag	í“¬Œ‹‰Ê‚ðŽó‚¯Žæ‚éƒtƒ‰ƒO
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ­ãƒ¼ã‚«ãƒ«å¯¾æˆ¦
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	trainer_id	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒ‡å®šãƒ‡ãƒ¼ã‚¿
+ * @param	fight_type	æˆ¦é—˜ç¨®åˆ¥
+ * @param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ * @param	winlose_flag	æˆ¦é—˜çµæžœã‚’å—ã‘å–ã‚‹ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void EventCmd_TowerLocalBattle(GMEVENT_CONTROL * event,BTOWER_SCRWORK* wk, int * winlose_flag)
@@ -574,10 +574,10 @@ void EventCmd_TowerLocalBattle(GMEVENT_CONTROL * event,BTOWER_SCRWORK* wk, int *
 
 	fsys = FieldEvent_GetFieldSysWork(event);
 
-	//ƒoƒgƒ‹ƒf[ƒ^‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	param = BtlTower_CreateBattleParam(wk,fsys);
 	
-	//ŒÄ‚Ño‚µ•ƒCƒxƒ“ƒg“o˜^
+	//å‘¼ã³å‡ºã—ï¼†ã‚¤ãƒ™ãƒ³ãƒˆç™»éŒ²
 	EventCmd_TowerLocalBattleCall( event,param,
 								   FLD_EncEffSpDataEffectNoPackGet( param ),
 								   FLD_EncEffSpDataBgmNoPackGet( param ),
@@ -587,7 +587,7 @@ void EventCmd_TowerLocalBattle(GMEVENT_CONTROL * event,BTOWER_SCRWORK* wk, int *
 //============================================================================================
 //
 //
-//				–ì¶ƒGƒ“ƒJƒEƒ“ƒg
+//				é‡Žç”Ÿã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 //
 //
 //============================================================================================
@@ -631,7 +631,7 @@ static EV_WILD_BATTLE_WORK* EWBW_Create( BATTLE_PARAM * btlprm, int effect_no, i
 //-----------------------------------------------------------------------------
 static void EWBW_Delete(EV_WILD_BATTLE_WORK * ewbw)
 {
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^”jŠü
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
 	BattleParam_Delete(ewbw->battle_param);
 
 	sys_FreeMemoryEz(ewbw);
@@ -639,10 +639,10 @@ static void EWBW_Delete(EV_WILD_BATTLE_WORK * ewbw)
 
 //-----------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒ“ƒJƒEƒ“ƒgƒCƒxƒ“ƒgƒZƒbƒg
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	ioBattleParam	ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	ioBattleParam	ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -670,10 +670,10 @@ void FieldEncount_Set(FIELDSYS_WORK * fsys, BATTLE_PARAM *ioBattleParam)
 
 //-----------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒ“ƒJƒEƒ“ƒgƒCƒxƒ“ƒgƒ`ƒFƒ“ƒW
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒ³ã‚¸
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	ioBattleParam	ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	ioBattleParam	ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -700,12 +700,12 @@ void FieldEncount_Change(FIELDSYS_WORK * fsys, GMEVENT_CONTROL * event, BATTLE_P
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	’Êí–ì¶íƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	é€šå¸¸é‡Žç”Ÿæˆ¦ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  *
- * ƒTƒuƒCƒxƒ“ƒg‚Æ‚µ‚ÄA’Êíí“¬ƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX‚ðƒR[ƒ‹‚·‚é
+ * ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆã¨ã—ã¦ã€é€šå¸¸æˆ¦é—˜ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹
  * 
  */
 //-----------------------------------------------------------------------------
@@ -718,87 +718,87 @@ static BOOL GMEVENT_NormalWildBattle(GMEVENT_CONTROL * event)
 
 	switch (ewbw->seq) {
 	case 0:
-		//‚n‚a‚iƒ|[ƒY
+		//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚º
 		FieldOBJSys_MovePauseAll( fsys->fldobjsys );
-		//–ì¶ííƒJƒEƒ“ƒgƒAƒbƒv
+		//é‡Žç”Ÿæˆ¦æˆ¦ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 		RECORD_Inc(SaveData_GetRecord(fsys->savedata), RECID_BTL_ENCOUNT);
 		
-		// ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŒÄ‚Ño‚µ
+		// ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‘¼ã³å‡ºã—
 		EventCmd_EncountEffect(event,ewbw->effect_no, ewbw->bgm_no);
 		ewbw->seq++;
 		break;
 	case 1:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXI—¹
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		ewbw->seq++;
 		break;
 	case 2:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFí“¬ƒvƒƒZƒX
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜ãƒ—ãƒ­ã‚»ã‚¹
 		EventCmd_BattleProc(event, ewbw->battle_param);
 		ewbw->seq++;
 		break;
 
 	case 3:
-		//í“¬Œ‹‰Ê”½‰fi‚¸‚©‚ñAŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ó‘ÔAetc...)
+		//æˆ¦é—˜çµæžœåæ˜ ï¼ˆãšã‹ã‚“ã€æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³çŠ¶æ…‹ã€etc...)
 		BattleParam_RefrectResult(ewbw->battle_param, fsys);
 		TVTOPIC_Entry_Watch_Capture(fsys,ewbw->battle_param->TVWatchBattleWork,
 				ewbw->battle_param->win_lose_flag);
-		//í“¬I—¹Œã‚Ìˆ—
+		//æˆ¦é—˜çµ‚äº†å¾Œã®å‡¦ç†
 		if (BattleParam_IsWinResult(ewbw->battle_param->win_lose_flag) == FALSE) {
-			//‘S–Å‚Ìê‡‚Í‚±‚±‚ÅI—¹‚³‚¹‚é
+			//å…¨æ»…ã®å ´åˆã¯ã“ã“ã§çµ‚äº†ã•ã›ã‚‹
 			EWBW_Delete(ewbw);
-			//—h‚ê‘ƒŠƒZƒbƒg
+			//æºã‚Œè‰ãƒªã‚»ãƒƒãƒˆ
 			SwayGrass_InitSwayGrass(fsys->SwayGrass);
 			FieldEvent_Change(event, GMEVENT_NormalGameOver, NULL);
 			return FALSE;
 		}
 
-		//˜A‚ê•à‚«í“¬Œã‚ÍŽèŽ‚¿‚ð‰ñ•œ
+		//é€£ã‚Œæ­©ãæˆ¦é—˜å¾Œã¯æ‰‹æŒã¡ã‚’å›žå¾©
 		if (SysFlag_PairCheck(SaveData_GetEventWork(fsys->savedata))){
-			//˜A‚ê•à‚«‚È‚Ì‚ÅŽèŽ‚¿‰ñ•œ
+			//é€£ã‚Œæ­©ããªã®ã§æ‰‹æŒã¡å›žå¾©
 			PokeParty_RecoverAll(SaveData_GetTemotiPokemon(fsys->savedata));
 		}
 
-		//ƒXƒRƒA‰ÁŽZ
+		//ã‚¹ã‚³ã‚¢åŠ ç®—
 		AddScoreByBattle(fsys, ewbw->battle_param);
-		//–`Œ¯ƒm[ƒg‹L“ü
+		//å†’é™ºãƒŽãƒ¼ãƒˆè¨˜å…¥
 		WriteFNoteByBattle(fsys, ewbw->battle_param);
 		
-		//í“¬I—¹Œã—h‚ê‘Œp‘±ƒ`ƒFƒbƒN
+		//æˆ¦é—˜çµ‚äº†å¾Œæºã‚Œè‰ç¶™ç¶šãƒã‚§ãƒƒã‚¯
 		if (SwayGrass_CheckValid( fsys->SwayGrass )){
-			if (SwayGrass_IsSwayEncRetern(fsys->SwayGrass)){	//—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg•œ‹A
+			if (SwayGrass_IsSwayEncRetern(fsys->SwayGrass)){	//æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå¾©å¸°
 				if ( ( !(ewbw->battle_param->win_lose_flag==FIGHT_WIN) ) &&
-						( !(ewbw->battle_param->win_lose_flag==FIGHT_POKE_GET) ) ){		//“¦‚°‚½
-					//—h‚ê‘ƒŠƒZƒbƒg
+						( !(ewbw->battle_param->win_lose_flag==FIGHT_POKE_GET) ) ){		//é€ƒã’ãŸ
+					//æºã‚Œè‰ãƒªã‚»ãƒƒãƒˆ
 					SwayGrass_InitSwayGrass(fsys->SwayGrass);
 				}
-			}else{//’Êíæ“ª•œ‹A‚à‚µ‚­‚ÍA—h‚ê‘‘Å‚¿Ž~‚ß•œ‹A‚Ì‚Æ‚«
-				//—h‚ê‘ƒŠƒZƒbƒg
+			}else{//é€šå¸¸å…ˆé ­å¾©å¸°ã‚‚ã—ãã¯ã€æºã‚Œè‰æ‰“ã¡æ­¢ã‚å¾©å¸°ã®ã¨ã
+				//æºã‚Œè‰ãƒªã‚»ãƒƒãƒˆ
 				SwayGrass_InitSwayGrass(fsys->SwayGrass);
 			}
 		}
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		EventCmd_StartFieldMap(event);
 		ewbw->seq++;
 		break;
 	case 4:
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“ˆ—
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å‡¦ç†
 		FLD_MP_SetAfferBattle(fsys, ewbw->battle_param);
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒCƒ“
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		EventCmd_FieldFadeIn(event);
 		ewbw->seq++;
 		break;
 	case 5:
-		if (SwayGrass_CheckValid( fsys->SwayGrass )){	//—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg•œ‹A
+		if (SwayGrass_CheckValid( fsys->SwayGrass )){	//æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå¾©å¸°
 			SwayGrass_SetChain(	fsys, ewbw->battle_param->win_lose_flag, fsys->SwayGrass);
-			//‘ƒZƒbƒg
+			//è‰ã‚»ãƒƒãƒˆ
 			SwayGrass_SetSwayGrassAnime(fsys, fsys->SwayGrass);
 		}
 		ewbw->seq++;
 		break;
 	case 6:
 		if (SwayGrass_CheckSwayGrassAnimeEnd(fsys->SwayGrass)){
-			//‚n‚a‚iƒ|[ƒYƒNƒŠƒA
+			//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚ºã‚¯ãƒªã‚¢
 			FieldOBJSys_MovePauseAllClear( fsys->fldobjsys );
 			EWBW_Delete(ewbw);
 			return TRUE;
@@ -811,12 +811,12 @@ static BOOL GMEVENT_NormalWildBattle(GMEVENT_CONTROL * event)
 #include "../fielddata/script/safari_def.h"
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒTƒtƒ@ƒŠƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	ã‚µãƒ•ã‚¡ãƒªã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  *
- * ƒTƒuƒCƒxƒ“ƒg‚Æ‚µ‚ÄAƒTƒtƒ@ƒŠƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX‚ðƒR[ƒ‹‚·‚é
+ * ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆã¨ã—ã¦ã€ã‚µãƒ•ã‚¡ãƒªã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹
  * 
  */
 //-----------------------------------------------------------------------------
@@ -834,27 +834,27 @@ static BOOL GMEVENT_SafariBattle(GMEVENT_CONTROL * event)
 
     switch (*seq) {
 	case 0:
-		//‚n‚a‚iƒ|[ƒY
+		//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚º
 		FieldOBJSys_MovePauseAll( fsys->fldobjsys );
-		//–ì¶ííƒJƒEƒ“ƒgƒAƒbƒv
+		//é‡Žç”Ÿæˆ¦æˆ¦ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 		RECORD_Inc(SaveData_GetRecord(fsys->savedata), RECID_BTL_ENCOUNT);
-		// ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŒÄ‚Ño‚µ
+		// ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‘¼ã³å‡ºã—
 		EventCmd_EncountEffect(event, ebw->effect_no, ebw->bgm_no);
 		(*seq) ++;
 		break;
 	case 1:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXI—¹
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		(*seq) ++;
 		break;
 	case 2:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFí“¬ƒvƒƒZƒX
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜ãƒ—ãƒ­ã‚»ã‚¹
 		EventCmd_BattleProc(event, ebw->battle_param);
 		(*seq) ++;
 		break;
 
 	case 3:
-		//í“¬Œ‹‰Ê”½‰fi‚¸‚©‚ñAŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ó‘ÔAetc...)
+		//æˆ¦é—˜çµæžœåæ˜ ï¼ˆãšã‹ã‚“ã€æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³çŠ¶æ…‹ã€etc...)
 		BattleParam_RefrectResult(ebw->battle_param, fsys);
 		if (ebw->battle_param->win_lose_flag == FIGHT_POKE_GET) {
 			TV_WORK * tvwk = SaveData_GetTvWork(fsys->savedata);
@@ -863,45 +863,45 @@ static BOOL GMEVENT_SafariBattle(GMEVENT_CONTROL * event)
 			TVTOPIC_SafariTemp_Set(tvwk, pp);
 		}
 
-		//˜A‚ê•à‚«‚Í‚È‚¢
+		//é€£ã‚Œæ­©ãã¯ãªã„
 		
-		//ƒXƒRƒA‰ÁŽZ
+		//ã‚¹ã‚³ã‚¢åŠ ç®—
 		AddScoreByBattle(fsys, ebw->battle_param);
 		
-		//í“¬I—¹Œã‚Ìˆ—
+		//æˆ¦é—˜çµ‚äº†å¾Œã®å‡¦ç†
 		if ((*safari_ball) == 0 && ebw->battle_param->win_lose_flag != FIGHT_POKE_GET){
-			//ƒTƒtƒ@ƒŠƒ{[ƒ‹‚ª‚È‚­‚È‚Á‚½‚çƒTƒtƒ@ƒŠƒQ[ƒg‚Ö–ß‚·
+			//ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ãŒãªããªã£ãŸã‚‰ã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒˆã¸æˆ»ã™
 			LOCATION_WORK *next;
 			next = Situation_GetSpecialLocation(SaveData_GetSituation(fsys->savedata));
 			EventCmd_MapChangeByLocation(event, next);
-			//ƒTƒtƒ@ƒŠƒ{[ƒ‹–³‚­‚È‚Á‚½
-///			OS_Printf("ƒTƒtƒ@ƒŠƒ{[ƒ‹‚ª‚È‚­‚È‚è‚Ü‚µ‚½\n");
+			//ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ç„¡ããªã£ãŸ
+///			OS_Printf("ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ãŒãªããªã‚Šã¾ã—ãŸ\n");
 		}
-		//–`Œ¯ƒm[ƒg‹Lq
+		//å†’é™ºãƒŽãƒ¼ãƒˆè¨˜è¿°
 		WriteFNoteByBattle( fsys, ebw->battle_param );
 
 		(*seq) ++;
 		break;
 
 	case 4:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		EventCmd_StartFieldMap(event);
 		(*seq) ++;
 		break;
 	case 5:
-		//‚n‚a‚iƒ|[ƒYƒNƒŠƒA
+		//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚ºã‚¯ãƒªã‚¢
 		FieldOBJSys_MovePauseAllClear( fsys->fldobjsys );
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒCƒ“
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		EventCmd_FieldFadeIn(event);
 		(*seq) ++;
 		break;
 	case 6:
 		if ((*safari_ball) == 0){
 			if (ebw->battle_param->win_lose_flag == FIGHT_POKE_GET) {
-				//ƒtƒB[ƒ‹ƒh‚ÅƒAƒiƒEƒ“ƒX‚µ‚Ä‚©‚çƒQ[ƒg‚ÖˆÚ“®AI—¹
+				//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ã‚¢ãƒŠã‚¦ãƒ³ã‚¹ã—ã¦ã‹ã‚‰ã‚²ãƒ¼ãƒˆã¸ç§»å‹•ã€çµ‚äº†
 				EventCall_Script(event, SCRID_SAFARI_ANNOUNCE_BALL, NULL, NULL);
 			} else {
-				//í“¬‰æ–Ê“à‚ÅƒAƒiƒEƒ“ƒXÏ‚Ý‚È‚Ì‚Å’¼ÚƒQ[ƒg‚ÖˆÚ“®AI—¹
+				//æˆ¦é—˜ç”»é¢å†…ã§ã‚¢ãƒŠã‚¦ãƒ³ã‚¹æ¸ˆã¿ãªã®ã§ç›´æŽ¥ã‚²ãƒ¼ãƒˆã¸ç§»å‹•ã€çµ‚äº†
 				EventCall_Script(event, SCRID_SAFARI_END_GATE, NULL, NULL);
 			}
 		} else {
@@ -925,15 +925,15 @@ static BOOL GMEVENT_SafariBattle(GMEVENT_CONTROL * event)
 //============================================================================================
 //
 //
-//				–¨“h‚èƒGƒ“ƒJƒEƒ“ƒg
+//				èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[Ž—ƒRƒ}ƒ“ƒhF–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgí
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	winlose_flag	í“¬Œ‹‰Ê‚ðŽó‚¯Žæ‚éƒtƒ‰ƒO
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒžãƒ³ãƒ‰ï¼šèœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæˆ¦
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	winlose_flag	æˆ¦é—˜çµæžœã‚’å—ã‘å–ã‚‹ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void EventCmd_HoneyTreeBattle(GMEVENT_CONTROL * event, int * winlose_flag)
@@ -944,20 +944,20 @@ void EventCmd_HoneyTreeBattle(GMEVENT_CONTROL * event, int * winlose_flag)
 
 	fsys = FieldEvent_GetFieldSysWork(event);
 
-	//—h‚ê‘ƒŠƒZƒbƒg
+	//æºã‚Œè‰ãƒªã‚»ãƒƒãƒˆ
 	SwayGrass_InitSwayGrass(fsys->SwayGrass);
 	
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 	btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_1vs1_YASEI);
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(btlprm, fsys);
 
-	btlprm->bg_id = BG_ID_BASIC;		//Šî–{”wŒiŽw’è
-	btlprm->ground_id = GROUND_ID_GRAVEL;	//Šî–{’n–ÊŽw’è
-	//–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚ðƒZƒbƒg
+	btlprm->bg_id = BG_ID_BASIC;		//åŸºæœ¬èƒŒæ™¯æŒ‡å®š
+	btlprm->ground_id = GROUND_ID_GRAVEL;	//åŸºæœ¬åœ°é¢æŒ‡å®š
+	//èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	SetHoneyTreeEncountData(fsys, btlprm);
 	
-	//–ì¶ííƒJƒEƒ“ƒgƒAƒbƒv
+	//é‡Žç”Ÿæˆ¦æˆ¦ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 	RECORD_Inc(SaveData_GetRecord(fsys->savedata), RECID_BTL_ENCOUNT);
 
 	EventCmd_NormalBattle( event, btlprm,
@@ -970,21 +970,21 @@ void EventCmd_HoneyTreeBattle(GMEVENT_CONTROL * event, int * winlose_flag)
 //============================================================================================
 //
 //
-//				ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ÆƒŒƒxƒ‹‚ðŽw’è‚µ‚Ä–ì¶í(ƒXƒNƒŠƒvƒg‚ÅŽg—p)
+//				ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã¨ãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®šã—ã¦é‡Žç”Ÿæˆ¦(ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ä½¿ç”¨)
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[Ž—ƒRƒ}ƒ“ƒhFƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ÆƒŒƒxƒ‹‚ðŽw’è‚µ‚Ä–ì¶í
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	monsno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param	level		ƒŒƒxƒ‹
- * @param	winlose_flag	í“¬Œ‹‰Ê‚ðŽó‚¯Žæ‚éƒtƒ‰ƒO
- * @param	densetsu		“`àƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒg‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã¨ãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®šã—ã¦é‡Žç”Ÿæˆ¦
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	monsno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param	level		ãƒ¬ãƒ™ãƒ«
+ * @param	winlose_flag	æˆ¦é—˜çµæžœã‚’å—ã‘å–ã‚‹ãƒ•ãƒ©ã‚°
+ * @param	densetsu		ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- * –densetsuƒtƒ‰ƒO‚ÉTRUE‚ð“n‚·‚ÆƒGƒ“ƒJƒEƒ“ƒgƒƒbƒZ[ƒW‚ª
- * uœœ‚ª”ò‚Ño‚µ‚½v‚Å‚Í‚È‚­uœœ‚ªŒ»‚ê‚½v‚É‚È‚è‚Ü‚·
+ * ï¼Šdensetsuãƒ•ãƒ©ã‚°ã«TRUEã‚’æ¸¡ã™ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒ
+ * ã€Œâ—â—ãŒé£›ã³å‡ºã—ãŸã€ã§ã¯ãªãã€Œâ—â—ãŒç¾ã‚ŒãŸã€ã«ãªã‚Šã¾ã™
  */
 //-----------------------------------------------------------------------------
 void EventCmd_WildBattle(GMEVENT_CONTROL * event, u16 monsno, u8 level, int * winlose_flag,BOOL densetsu)
@@ -995,31 +995,31 @@ void EventCmd_WildBattle(GMEVENT_CONTROL * event, u16 monsno, u8 level, int * wi
 
 	fsys = FieldEvent_GetFieldSysWork(event);
 
-	//—h‚ê‘ƒŠƒZƒbƒg
+	//æºã‚Œè‰ãƒªã‚»ãƒƒãƒˆ
 	SwayGrass_InitSwayGrass(fsys->SwayGrass);
 
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 	btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_1vs1_YASEI);
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(btlprm, fsys);
 
-	//ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚ðƒZƒbƒg
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	SetWildEncountData(fsys, monsno, level, btlprm);
 
 	/*
-	//@battle_status_flag
-	//	‚ÉƒZƒbƒg‚·‚é‚æ‚¤‚É‚·‚éI
+	//ã€€battle_status_flag
+	//	ã«ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
 	*/
 	if(densetsu){
-		//“`àƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒg‚È‚çƒtƒ‰ƒO‚ð—§‚Ä‚ÄƒGƒ“ƒJƒEƒ“ƒgƒƒbƒZ[ƒW‚ð•Ï‚¦‚é
+		//ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒˆãªã‚‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰ãˆã‚‹
 		btlprm->battle_status_flag |= BATTLE_STATUS_FLAG_DENSETSU_BATTLE;
 	}
 	/*
-		Ž‚½‚¹‚éƒAƒCƒeƒ€‚ÌŽw’è‚ª•K—v‚©‚àH
+		æŒãŸã›ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®æŒ‡å®šãŒå¿…è¦ã‹ã‚‚ï¼Ÿ
 	*/
 
-	//–ì¶ííƒJƒEƒ“ƒgƒAƒbƒv
+	//é‡Žç”Ÿæˆ¦æˆ¦ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 	RECORD_Inc(SaveData_GetRecord(fsys->savedata), RECID_BTL_ENCOUNT);
 	
 	EventCmd_NormalBattle(event, btlprm, FLD_EncEffSpDataEffectNoPackGet( btlprm ), FLD_EncEffSpDataBgmNoPackGet( btlprm ), winlose_flag);
@@ -1028,22 +1028,22 @@ void EventCmd_WildBattle(GMEVENT_CONTROL * event, u16 monsno, u8 level, int * wi
 //============================================================================================
 //
 //
-//				ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ÆƒŒƒxƒ‹‚ðŽw’è‚µ‚Ä–ì¶í(ƒXƒNƒŠƒvƒg‚ÅŽg—p)
+//				ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã¨ãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®šã—ã¦é‡Žç”Ÿæˆ¦(ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ä½¿ç”¨)
 //
-//	šID_PARA_event_get_flag‚ðƒZƒbƒg‚µ‚Ü‚·(ƒVƒFƒCƒ~—p‚ÉŽg—p‚µ‚Ä‚¢‚Ü‚· 08.04.05)
+//	â˜…ID_PARA_event_get_flagã‚’ã‚»ãƒƒãƒˆã—ã¾ã™(ã‚·ã‚§ã‚¤ãƒŸç”¨ã«ä½¿ç”¨ã—ã¦ã„ã¾ã™ 08.04.05)
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[Ž—ƒRƒ}ƒ“ƒhFƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ÆƒŒƒxƒ‹‚ðŽw’è‚µ‚Ä–ì¶í
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	monsno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param	level		ƒŒƒxƒ‹
- * @param	winlose_flag	í“¬Œ‹‰Ê‚ðŽó‚¯Žæ‚éƒtƒ‰ƒO
- * @param	densetsu		“`àƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒg‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã¨ãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®šã—ã¦é‡Žç”Ÿæˆ¦
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	monsno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param	level		ãƒ¬ãƒ™ãƒ«
+ * @param	winlose_flag	æˆ¦é—˜çµæžœã‚’å—ã‘å–ã‚‹ãƒ•ãƒ©ã‚°
+ * @param	densetsu		ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- * –densetsuƒtƒ‰ƒO‚ÉTRUE‚ð“n‚·‚ÆƒGƒ“ƒJƒEƒ“ƒgƒƒbƒZ[ƒW‚ª
- * uœœ‚ª”ò‚Ño‚µ‚½v‚Å‚Í‚È‚­uœœ‚ªŒ»‚ê‚½v‚É‚È‚è‚Ü‚·
+ * ï¼Šdensetsuãƒ•ãƒ©ã‚°ã«TRUEã‚’æ¸¡ã™ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒ
+ * ã€Œâ—â—ãŒé£›ã³å‡ºã—ãŸã€ã§ã¯ãªãã€Œâ—â—ãŒç¾ã‚ŒãŸã€ã«ãªã‚Šã¾ã™
  */
 //-----------------------------------------------------------------------------
 void EventCmd_WildBattleEventGet(GMEVENT_CONTROL * event, u16 monsno, u8 level, int * winlose_flag,BOOL densetsu)
@@ -1056,16 +1056,16 @@ void EventCmd_WildBattleEventGet(GMEVENT_CONTROL * event, u16 monsno, u8 level, 
 
 	fsys = FieldEvent_GetFieldSysWork(event);
 
-	//—h‚ê‘ƒŠƒZƒbƒg
+	//æºã‚Œè‰ãƒªã‚»ãƒƒãƒˆ
 	SwayGrass_InitSwayGrass(fsys->SwayGrass);
 
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 	btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_1vs1_YASEI);
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(btlprm, fsys);
 
-	//ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚ðƒZƒbƒg
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	SetWildEncountData(fsys, monsno, level, btlprm);
 
 #if 1
@@ -1075,18 +1075,18 @@ void EventCmd_WildBattleEventGet(GMEVENT_CONTROL * event, u16 monsno, u8 level, 
 #endif
 
 	/*
-	//@battle_status_flag
-	//	‚ÉƒZƒbƒg‚·‚é‚æ‚¤‚É‚·‚éI
+	//ã€€battle_status_flag
+	//	ã«ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
 	*/
 	if(densetsu){
-		//“`àƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒg‚È‚çƒtƒ‰ƒO‚ð—§‚Ä‚ÄƒGƒ“ƒJƒEƒ“ƒgƒƒbƒZ[ƒW‚ð•Ï‚¦‚é
+		//ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒˆãªã‚‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰ãˆã‚‹
 		btlprm->battle_status_flag |= BATTLE_STATUS_FLAG_DENSETSU_BATTLE;
 	}
 	/*
-		Ž‚½‚¹‚éƒAƒCƒeƒ€‚ÌŽw’è‚ª•K—v‚©‚àH
+		æŒãŸã›ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®æŒ‡å®šãŒå¿…è¦ã‹ã‚‚ï¼Ÿ
 	*/
 
-	//–ì¶ííƒJƒEƒ“ƒgƒAƒbƒv
+	//é‡Žç”Ÿæˆ¦æˆ¦ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 	RECORD_Inc(SaveData_GetRecord(fsys->savedata), RECID_BTL_ENCOUNT);
 	
 	EventCmd_NormalBattle(event, btlprm, FLD_EncEffSpDataEffectNoPackGet( btlprm ), FLD_EncEffSpDataBgmNoPackGet( btlprm ), winlose_flag);
@@ -1097,7 +1097,7 @@ void EventCmd_WildBattleEventGet(GMEVENT_CONTROL * event, u16 monsno, u8 level, 
 #include "../fielddata/script/d10r0101_def.h"		//SCRID_D10R0101_FINISH
 //-----------------------------------------------------------------------------
 /**
- * @brief		ƒCƒxƒ“ƒgFƒ|ƒPƒp[ƒNí“¬
+ * @brief		ã‚¤ãƒ™ãƒ³ãƒˆï¼šãƒã‚±ãƒ‘ãƒ¼ã‚¯æˆ¦é—˜
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_PokeParkBattle(GMEVENT_CONTROL * event)
@@ -1112,48 +1112,48 @@ static BOOL GMEVENT_PokeParkBattle(GMEVENT_CONTROL * event)
 
     switch (*seq) {
 	case 0:
-		//‚n‚a‚iƒ|[ƒY
+		//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚º
 		FieldOBJSys_MovePauseAll( fsys->fldobjsys );
-		//–ì¶ííƒJƒEƒ“ƒgƒAƒbƒv
+		//é‡Žç”Ÿæˆ¦æˆ¦ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 		RECORD_Inc(SaveData_GetRecord(fsys->savedata), RECID_BTL_ENCOUNT);
-		// ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŒÄ‚Ño‚µ
+		// ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‘¼ã³å‡ºã—
 		EventCmd_EncountEffect(event, ebw->effect_no, ebw->bgm_no);
 		(*seq) ++;
 		break;
 	case 1:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXI—¹
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		(*seq) ++;
 		break;
 	case 2:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFí“¬ƒvƒƒZƒX
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜ãƒ—ãƒ­ã‚»ã‚¹
 		EventCmd_BattleProc(event, ebw->battle_param);
 		(*seq) ++;
 		break;
 
 	case 3:
-		//í“¬Œ‹‰Ê”½‰fi‚¸‚©‚ñAŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ó‘ÔAetc...)
+		//æˆ¦é—˜çµæžœåæ˜ ï¼ˆãšã‹ã‚“ã€æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³çŠ¶æ…‹ã€etc...)
 		BattleParam_RefrectResult(ebw->battle_param, fsys);
-		//ƒ|ƒPƒp[ƒN—p‚Ìí“¬Œ‹‰Ê”½‰f
+		//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã®æˆ¦é—˜çµæžœåæ˜ 
 		PokeParkSys_ReflectBattleResult(fsys, ebw->battle_param);
 		
-		//˜A‚ê•à‚«‚Í‚È‚¢
+		//é€£ã‚Œæ­©ãã¯ãªã„
 		
-		//ƒXƒRƒA‰ÁŽZ
+		//ã‚¹ã‚³ã‚¢åŠ ç®—
 		AddScoreByBattle(fsys, ebw->battle_param);
-		//í“¬I—¹Œã‚Ìˆ—
+		//æˆ¦é—˜çµ‚äº†å¾Œã®å‡¦ç†
 		(*seq) ++;
 		break;
 
 	case 4:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		EventCmd_StartFieldMap(event);
 		(*seq) ++;
 		break;
 	case 5:
-		//‚n‚a‚iƒ|[ƒYƒNƒŠƒA
+		//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚ºã‚¯ãƒªã‚¢
 		FieldOBJSys_MovePauseAllClear( fsys->fldobjsys );
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒCƒ“
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		EventCmd_FieldFadeIn(event);
 		(*seq) ++;
 		break;
@@ -1187,18 +1187,18 @@ void EventSet_PokeParkBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM * btlprm)
 //============================================================================================
 //
 //
-//						Å‰‚ÌƒCƒxƒ“ƒgí(ƒXƒNƒŠƒvƒg‚ÅŽg—p)
+//						æœ€åˆã®ã‚¤ãƒ™ãƒ³ãƒˆæˆ¦(ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ä½¿ç”¨)
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[Ž—ƒRƒ}ƒ“ƒhFÅ‰‚ÌƒgƒŒ[ƒi[‘Îí
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒžãƒ³ãƒ‰ï¼šæœ€åˆã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å¯¾æˆ¦
  *
- * @param	event			ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	trainer_id		ƒgƒŒ[ƒi[Žw’èƒf[ƒ^
- * @param	heapID			ƒq[ƒvID
- * @param	winlose_flag	í“¬Œ‹‰Ê‚ðŽó‚¯Žæ‚éƒtƒ‰ƒO
+ * @param	event			ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	trainer_id		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒ‡å®šãƒ‡ãƒ¼ã‚¿
+ * @param	heapID			ãƒ’ãƒ¼ãƒ—ID
+ * @param	winlose_flag	æˆ¦é—˜çµæžœã‚’å—ã‘å–ã‚‹ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void EventCmd_FirstBattle(GMEVENT_CONTROL * event, int tr_id_0, int heapID, int * winlose_flag)
@@ -1209,14 +1209,14 @@ void EventCmd_FirstBattle(GMEVENT_CONTROL * event, int tr_id_0, int heapID, int 
 
 	fsys = FieldEvent_GetFieldSysWork(event);
 
-	/* ƒgƒŒ[ƒi[í‚È‚Ì‚Å–ì¶í‚Ìƒpƒ‰ƒ[ƒ^‚ÅFXã‘‚« */
+	/* ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ãªã®ã§é‡Žç”Ÿæˆ¦ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§è‰²ã€…ä¸Šæ›¸ã */
 
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 	btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_TRAINER);
 
 #if 0
 	{
-		//HP‚ðŒ¸‚ç‚·ƒfƒoƒbƒN
+		//HPã‚’æ¸›ã‚‰ã™ãƒ‡ãƒãƒƒã‚¯
 		int value;
 		POKEMON_PARAM* poke;
 
@@ -1229,20 +1229,20 @@ void EventCmd_FirstBattle(GMEVENT_CONTROL * event, int tr_id_0, int heapID, int 
 	}
 #endif
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(btlprm, fsys);
 
-	//í“¬“à•ªŠò—pƒtƒ‰ƒO
+	//æˆ¦é—˜å†…åˆ†å²ç”¨ãƒ•ãƒ©ã‚°
 	btlprm->battle_status_flag = BATTLE_STATUS_FLAG_FIRST_BATTLE;
 
 	btlprm->trainer_id[CLIENT_NO_ENEMY]	= tr_id_0;
 	btlprm->trainer_id[CLIENT_NO_ENEMY2]= 0;
 	btlprm->trainer_id[CLIENT_NO_MINE2] = 0;
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	TT_EncountTrainerDataMake( btlprm, fsys->savedata, heapID );
 
-	//ƒgƒŒ[ƒi[íƒJƒEƒ“ƒgƒAƒbƒv
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 	RECORD_Inc(SaveData_GetRecord(fsys->savedata), RECID_BTL_TRAINER);
 
 	EventCmd_NormalBattle(event, btlprm, FLD_EncEffSpDataEffectNoPackGet( btlprm ), FLD_EncEffSpDataBgmNoPackGet( btlprm ), winlose_flag);
@@ -1252,13 +1252,13 @@ void EventCmd_FirstBattle(GMEVENT_CONTROL * event, int tr_id_0, int heapID, int 
 //============================================================================================
 //
 //
-//			•ßŠlƒfƒ‚
+//			æ•ç²ãƒ‡ãƒ¢
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF•ßŠlƒfƒ‚
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ•ç²ãƒ‡ãƒ¢
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_CaptureDemo(GMEVENT_CONTROL * event)
@@ -1268,38 +1268,38 @@ static BOOL GMEVENT_CaptureDemo(GMEVENT_CONTROL * event)
 	int * seq = FieldEvent_GetSeqWork(event);
 	switch (*seq) {
 	case 0:
-		//‚n‚a‚iƒ|[ƒY
+		//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚º
 		FieldOBJSys_MovePauseAll( fsys->fldobjsys );
-		// ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŒÄ‚Ño‚µ
+		// ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‘¼ã³å‡ºã—
 		EventCmd_EncountEffect(event, ebw->effect_no, ebw->bgm_no);
 		(*seq) ++;
 		break;
 	case 1:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXI—¹
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		(*seq) ++;
 		break;
 	case 2:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFí“¬ƒvƒƒZƒX
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜ãƒ—ãƒ­ã‚»ã‚¹
 		EventCmd_BattleProc(event, ebw->battle_param);
 		(*seq) ++;
 		break;
 
 	case 3:
-		//í“¬Œ‹‰Ê”½‰fi‚¸‚©‚ñAŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ó‘ÔAetc...)
-		//‚È‚É‚à”½‰f‚µ‚È‚¢B
+		//æˆ¦é—˜çµæžœåæ˜ ï¼ˆãšã‹ã‚“ã€æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³çŠ¶æ…‹ã€etc...)
+		//ãªã«ã‚‚åæ˜ ã—ãªã„ã€‚
 		(*seq) ++;
 		break;
 
 	case 4:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		EventCmd_StartFieldMap(event);
 		(*seq) ++;
 		break;
 	case 5:
-		//‚n‚a‚iƒ|[ƒYƒNƒŠƒA
+		//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚ºã‚¯ãƒªã‚¢
 		FieldOBJSys_MovePauseAllClear( fsys->fldobjsys );
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒCƒ“
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		EventCmd_FieldFadeIn(event);
 		(*seq) ++;
 		break;
@@ -1313,8 +1313,8 @@ static BOOL GMEVENT_CaptureDemo(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µF•ßŠlƒfƒ‚
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ï¼šæ•ç²ãƒ‡ãƒ¢
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_CaptureDemo(GMEVENT_CONTROL * event)
@@ -1334,18 +1334,18 @@ void EventCmd_CaptureDemo(GMEVENT_CONTROL * event)
 //============================================================================================
 //
 //
-//				ƒgƒŒ[ƒi[‘Îí
+//				ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å¯¾æˆ¦
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[Ž—ƒRƒ}ƒ“ƒhFƒgƒŒ[ƒi[‘Îí
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	trainer_id	ƒgƒŒ[ƒi[Žw’èƒf[ƒ^
- * @param	fight_type	í“¬Ží•Ê
- * @param	heapID		ƒq[ƒvID
- * @param	winlose_flag	í“¬Œ‹‰Ê‚ðŽó‚¯Žæ‚éƒtƒ‰ƒO
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å¯¾æˆ¦
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	trainer_id	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒ‡å®šãƒ‡ãƒ¼ã‚¿
+ * @param	fight_type	æˆ¦é—˜ç¨®åˆ¥
+ * @param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ * @param	winlose_flag	æˆ¦é—˜çµæžœã‚’å—ã‘å–ã‚‹ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void EventCmd_TrainerBattle(GMEVENT_CONTROL * event, int tr_id_0, int tr_id_1, int partner_id,
@@ -1362,30 +1362,30 @@ void EventCmd_TrainerBattle(GMEVENT_CONTROL * event, int tr_id_0, int tr_id_1, i
 		if (partner_id == 0) {
 			fight_type = FIGHT_TYPE_TAG_BATTLE;
 		} else {
-		//˜A‚ê•à‚«’†‚È‚çA•K‚¸AIƒ}ƒ‹ƒ`
+		//é€£ã‚Œæ­©ãä¸­ãªã‚‰ã€å¿…ãšAIãƒžãƒ«ãƒ
 			fight_type = FIGHT_TYPE_AI_MULTI;
 		}
 
-	//ƒ_ƒuƒ‹
+	//ãƒ€ãƒ–ãƒ«
 	}else if( tr_id_0 == tr_id_1 ){
 		fight_type = FIGHT_TYPE_2vs2_TRAINER;
 
 	}else{
 		fight_type = FIGHT_TYPE_TRAINER;
 	}
-	//—h‚ê‘ƒŠƒZƒbƒg
+	//æºã‚Œè‰ãƒªã‚»ãƒƒãƒˆ
 	SwayGrass_InitSwayGrass(fsys->SwayGrass);
 
-	/* ƒgƒŒ[ƒi[í‚È‚Ì‚Å–ì¶í‚Ìƒpƒ‰ƒ[ƒ^‚ÅFXã‘‚« */
+	/* ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ãªã®ã§é‡Žç”Ÿæˆ¦ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§è‰²ã€…ä¸Šæ›¸ã */
 
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 	btlprm = BattleParam_Create(HEAPID_WORLD, fight_type);
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(btlprm, fsys);
 
 	if(fsys->location->zone_id >= ZONE_ID_D34R0101 && fsys->location->zone_id <= ZONE_ID_D34R0111){
-		//”j‚ê‚½¢ŠE‚Ìê‡‚Íê—pƒtƒ‰ƒO‚ð—§‚Ä‚é
+		//ç ´ã‚ŒãŸä¸–ç•Œã®å ´åˆã¯å°‚ç”¨ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		btlprm->battle_status_flag |= BATTLE_STATUS_FLAG_YABURETA_SEKAI;
 	}
 
@@ -1393,10 +1393,10 @@ void EventCmd_TrainerBattle(GMEVENT_CONTROL * event, int tr_id_0, int tr_id_1, i
 	btlprm->trainer_id[CLIENT_NO_ENEMY2] = tr_id_1;
 	btlprm->trainer_id[CLIENT_NO_MINE2] = partner_id;
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	TT_EncountTrainerDataMake( btlprm, fsys->savedata, heapID );
 
-	//ƒgƒŒ[ƒi[íƒJƒEƒ“ƒgƒAƒbƒv
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 	RECORD_Inc(SaveData_GetRecord(fsys->savedata), RECID_BTL_TRAINER);
 
 	EventCmd_NormalBattle(event, btlprm, FLD_EncEffSpDataEffectNoPackGet( btlprm ), FLD_EncEffSpDataBgmNoPackGet( btlprm ), winlose_flag);
@@ -1405,13 +1405,13 @@ void EventCmd_TrainerBattle(GMEVENT_CONTROL * event, int tr_id_0, int tr_id_1, i
 //============================================================================================
 //
 //
-//				’ÊM‘Îí
+//				é€šä¿¡å¯¾æˆ¦
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	’ÊM‘ÎíƒCƒxƒ“ƒgƒZƒbƒg
+ * @brief	é€šä¿¡å¯¾æˆ¦ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param	event
  */
 //-----------------------------------------------------------------------------
@@ -1420,10 +1420,10 @@ void EventCmd_CommBattle(GMEVENT_CONTROL * event)
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	EV_BATTLE_WORK * ebw;
 	BATTLE_PARAM *btlprm;
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 
     btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_1vs1_SIO);
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(btlprm, fsys);
 
 	ebw = EBW_Create( btlprm,
@@ -1435,7 +1435,7 @@ void EventCmd_CommBattle(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í‚¤ŽèŽ‚¿‚Ì”z—ñ‚ðŽ‚Á‚½‘ÎíƒCƒxƒ“ƒgƒZƒbƒg
+ * @brief	æˆ¦ã†æ‰‹æŒã¡ã®é…åˆ—ã‚’æŒã£ãŸå¯¾æˆ¦ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param	event
  */
 //-----------------------------------------------------------------------------
@@ -1444,10 +1444,10 @@ void EventCmd_TemotiListBattle(GMEVENT_CONTROL * event,const u8* temotiList, int
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	EV_BATTLE_WORK * ebw;
 	BATTLE_PARAM *btlprm;
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 
     btlprm = BattleParam_Create(HEAPID_WORLD, fightType);
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetTemotiListParamGameData(btlprm, fsys, temotiList);
 
 	ebw = EBW_Create( btlprm,
@@ -1459,12 +1459,12 @@ void EventCmd_TemotiListBattle(GMEVENT_CONTROL * event,const u8* temotiList, int
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚Æƒtƒ@ƒCƒgƒ^ƒCƒv‚©‚ç˜^‰æƒ‚[ƒh‚ðŽæ“¾‚·‚é
+ * @brief   ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—ã‹ã‚‰éŒ²ç”»ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *
- * @param   reg				ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   fight_type		ƒtƒ@ƒCƒgƒ^ƒCƒv
+ * @param   reg				ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   fight_type		ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—
  *
- * @retval  ˜^‰æƒ‚[ƒh
+ * @retval  éŒ²ç”»ãƒ¢ãƒ¼ãƒ‰
  *
  *
  */
@@ -1487,16 +1487,16 @@ static int Regulation_RecMode_Get(const REGULATION *reg, int fight_type)
 	
 	if(reg_no != REGULATION_NO_NULL){
 		rec_mode += 1 + reg_no;
-//		OS_TPrintf("˜^‰æƒ‚[ƒh = %d\n", rec_mode);
+//		OS_TPrintf("éŒ²ç”»ãƒ¢ãƒ¼ãƒ‰ = %d\n", rec_mode);
 	}
 	return rec_mode;
 }
 
-//WifiAIƒ}ƒ‹ƒ`ŽÀŒ±‚Ì‚½‚ßAƒRƒƒ“ƒgƒAƒEƒg
+//WifiAIãƒžãƒ«ãƒå®Ÿé¨“ã®ãŸã‚ã€ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 #if 0
 //-----------------------------------------------------------------------------
 /**
- * @brief	WIFI’ÊM‘ÎíƒCƒxƒ“ƒgƒZƒbƒg
+ * @brief	WIFIé€šä¿¡å¯¾æˆ¦ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param	event
  */
 //-----------------------------------------------------------------------------
@@ -1505,14 +1505,14 @@ void EventCmd_WifiBattle(GMEVENT_CONTROL * event,int targetID, int lvLimit,BOOL 
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	EV_BATTLE_WORK * ebw;
 	BATTLE_PARAM *btlprm;
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
     if(bSingle){
         btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_1vs1_SIO);
     }
     else{
         btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_2vs2_SIO);
     }
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByWiFiGameData(btlprm, fsys, lvLimit);
 
 	ebw = EBW_Create( btlprm,
@@ -1525,7 +1525,7 @@ void EventCmd_WifiBattle(GMEVENT_CONTROL * event,int targetID, int lvLimit,BOOL 
 #else
 //-----------------------------------------------------------------------------
 /**
- * @brief	WIFI’ÊM‘ÎíƒCƒxƒ“ƒgƒZƒbƒgiWifiAIƒ}ƒ‹ƒ`ŽÀŒ±j
+ * @brief	WIFIé€šä¿¡å¯¾æˆ¦ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆï¼ˆWifiAIãƒžãƒ«ãƒå®Ÿé¨“ï¼‰
  * @param	event
  */
 //-----------------------------------------------------------------------------
@@ -1537,7 +1537,7 @@ void EventCmd_WifiBattle(GMEVENT_CONTROL * event,int targetID, int lvLimit,WIFI_
 	LOAD_RESULT br_result;
 	int fight_type, rec_mode;
 	
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
     if(bflag==WIFI_BATTLEFLAG_SINGLE){
 		fight_type = FIGHT_TYPE_1vs1_SIO;
         btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_1vs1_SIO);
@@ -1549,22 +1549,22 @@ void EventCmd_WifiBattle(GMEVENT_CONTROL * event,int targetID, int lvLimit,WIFI_
         rec_mode = RECMODE_COLOSSEUM_DOUBLE;
     }
 	else{
-		//ƒoƒgƒ‹ƒ^ƒ[’ÊMAIƒ}ƒ‹ƒ`‚Æ“¯‚¶‚É‚·‚é
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€šä¿¡AIãƒžãƒ«ãƒã¨åŒã˜ã«ã™ã‚‹
 		fight_type = FIGHT_TYPE_BATTLE_TOWER_SIO_MULTI;
         btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_BATTLE_TOWER_SIO_MULTI);
-		//‘Îí‘ŠŽèƒf[ƒ^‚ðŽŽ‚µ‚ÅATrainerID1‚Æ2‚ÅŽÀŒ±
+		//å¯¾æˆ¦ç›¸æ‰‹ãƒ‡ãƒ¼ã‚¿ã‚’è©¦ã—ã§ã€TrainerID1ã¨2ã§å®Ÿé¨“
 		btlprm->trainer_id[1]=1;
 		btlprm->trainer_id[3]=2;
 		TT_EncountTrainerDataMake(btlprm,fsys->savedata,HEAPID_WORLD);
 		rec_mode = RECMODE_COLOSSEUM_MULTI;
 	}
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByWiFiGameData(btlprm, fsys, lvLimit);
 
-	// ˜^‰æÝ’è
+	// éŒ²ç”»è¨­å®š
 	BattleRec_Init(fsys->savedata,HEAPID_WORLD,&br_result);
-	//˜^‰æ‹L˜^ƒ‚[ƒh
+	//éŒ²ç”»è¨˜éŒ²ãƒ¢ãƒ¼ãƒ‰
 	btlprm->rec_mode = rec_mode;
 
 	ebw = EBW_Create( btlprm,
@@ -1578,7 +1578,7 @@ void EventCmd_WifiBattle(GMEVENT_CONTROL * event,int targetID, int lvLimit,WIFI_
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	’ÊM‘Îí•”‰®‚Å‚Ì‘ÎíƒCƒxƒ“ƒg
+ * @brief	é€šä¿¡å¯¾æˆ¦éƒ¨å±‹ã§ã®å¯¾æˆ¦ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_CommDirectBattle(GMEVENT_CONTROL * event)
@@ -1593,7 +1593,7 @@ static BOOL GMEVENT_CommDirectBattle(GMEVENT_CONTROL * event)
 		(*seq) ++;
 		break;
 	case 1:
-		//˜^‰æƒ[ƒN‰ð•ú
+		//éŒ²ç”»ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 		if(BattleRec_DataExistCheck() == TRUE){
 			BattleRec_Exit();
 		}
@@ -1605,7 +1605,7 @@ static BOOL GMEVENT_CommDirectBattle(GMEVENT_CONTROL * event)
 }
 //-----------------------------------------------------------------------------
 /**
- * @brief	’ÊM‘Îí•”‰®‚Å‚Ì‘ÎíƒCƒxƒ“ƒg‹N“®
+ * @brief	é€šä¿¡å¯¾æˆ¦éƒ¨å±‹ã§ã®å¯¾æˆ¦ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•
  * @param	fsys
  * @param	temotilist
  * @param	fightType
@@ -1617,15 +1617,15 @@ void EventSet_CommDirectBattle(FIELDSYS_WORK * fsys, const u8 * temotiList, int 
 	BATTLE_PARAM *btlprm;
 	LOAD_RESULT result;
 	
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 
     btlprm = BattleParam_Create(HEAPID_WORLD, fightType);
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetTemotiListParamGameData(btlprm, fsys, temotiList);
 	
-	//‘Îí˜^‰æ‰Šú‰»
+	//å¯¾æˆ¦éŒ²ç”»åˆæœŸåŒ–
 	BattleRec_Init(fsys->savedata, HEAPID_WORLD, &result);
-	//˜^‰æ‹L˜^ƒ‚[ƒh
+	//éŒ²ç”»è¨˜éŒ²ãƒ¢ãƒ¼ãƒ‰
 	btlprm->rec_mode = Regulation_RecMode_Get(fsys->regulation, fightType);
 	
 	ebw = EBW_Create( btlprm,
@@ -1637,7 +1637,7 @@ void EventSet_CommDirectBattle(FIELDSYS_WORK * fsys, const u8 * temotiList, int 
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	’ÊM‘Îí•”‰®‚Å‚Ì‘ÎíƒCƒxƒ“ƒg‹N“®i”CˆÓ‚ÌPOKEPARTY‚ðƒZƒbƒg‚Å‚«‚éj
+ * @brief	é€šä¿¡å¯¾æˆ¦éƒ¨å±‹ã§ã®å¯¾æˆ¦ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ï¼ˆä»»æ„ã®POKEPARTYã‚’ã‚»ãƒƒãƒˆã§ãã‚‹ï¼‰
  *
  * @param	fsys
  * @param	temotilist
@@ -1649,16 +1649,16 @@ void EventSet_CommDirectMixBattle(FIELDSYS_WORK * fsys, const POKEPARTY* party, 
 	EV_BATTLE_WORK * ebw;
 	BATTLE_PARAM *btlprm;
 	LOAD_RESULT result;
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 
     btlprm = BattleParam_Create(HEAPID_WORLD, fightType);
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetCommBattle( btlprm, fsys, party, NULL );
 
-	//‘Îí˜^‰æ‰Šú‰»
+	//å¯¾æˆ¦éŒ²ç”»åˆæœŸåŒ–
 	BattleRec_Init(fsys->savedata, HEAPID_WORLD, &result);
-	//˜^‰æ‹L˜^ƒ‚[ƒh
+	//éŒ²ç”»è¨˜éŒ²ãƒ¢ãƒ¼ãƒ‰
 	btlprm->rec_mode = Regulation_RecMode_Get(fsys->regulation, fightType);
 
 	ebw = EBW_Create( btlprm,
@@ -1670,10 +1670,10 @@ void EventSet_CommDirectMixBattle(FIELDSYS_WORK * fsys, const POKEPARTY* party, 
 
 //-----------------------------------------------------------------------------
 /**
- * í“¬ƒXƒRƒA‰ÁŽZ(ƒ^ƒ[E’ÊM–¢‘Î‰ž)
+ * æˆ¦é—˜ã‚¹ã‚³ã‚¢åŠ ç®—(ã‚¿ãƒ¯ãƒ¼ãƒ»é€šä¿¡æœªå¯¾å¿œ)
  * 
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inBattleParam	ƒoƒgƒ‹ƒpƒ‰ƒ€
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inBattleParam	ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ 
  * 
  * @return	none
  * 
@@ -1695,42 +1695,42 @@ static void AddScoreByBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM *inBattleParam )
 
 	if ( (fight_type == FIGHT_TYPE_1vs1_YASEI)||
 		 (fight_type == FIGHT_TYPE_MOVE)||
-		 (fight_type == FIGHT_TYPE_2vs2_YASEI) ){			//–ì¶í
-		if (win_lose_flg == FIGHT_WIN){	//Ÿ‚Á‚½‚Æ‚«
-			//ƒXƒRƒA‰ÁŽZF–ì¶íŸ—˜
+		 (fight_type == FIGHT_TYPE_2vs2_YASEI) ){			//é‡Žç”Ÿæˆ¦
+		if (win_lose_flg == FIGHT_WIN){	//å‹ã£ãŸã¨ã
+			//ã‚¹ã‚³ã‚¢åŠ ç®—ï¼šé‡Žç”Ÿæˆ¦å‹åˆ©
 			RECORD_Score_Add( SaveData_GetRecord(fsys->savedata), SCORE_ID_WILD_BATTLE_WIN );
-		}else if(win_lose_flg == FIGHT_POKE_GET){		//•ß‚Ü‚¦‚½‚Æ‚«
+		}else if(win_lose_flg == FIGHT_POKE_GET){		//æ•ã¾ãˆãŸã¨ã
 			pp = PokeParty_GetMemberPointer(
 					inBattleParam->poke_party[CLIENT_NO_ENEMY], 0);
 			
-			//ƒVƒ“ƒIƒE}ŠÓƒ|ƒPƒ‚ƒ“‚©H
+			//ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒã‚±ãƒ¢ãƒ³ã‹ï¼Ÿ
 			if ( PMNumber_GetPokeNumber( PM_NUMBER_SHINOU, PokeParaGet(pp,ID_PARA_monsno,0) ) ){
-				//ƒXƒRƒA‰ÁŽZFƒVƒ“ƒIƒE}ŠÓƒ|ƒPƒ‚ƒ“ƒQƒbƒg
+				//ã‚¹ã‚³ã‚¢åŠ ç®—ï¼šã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆ
 				RECORD_Score_Add( SaveData_GetRecord(fsys->savedata), SCORE_ID_POKE_GET_SINOU );
 			}else{
-				//ƒXƒRƒA‰ÁŽZFƒVƒ“ƒIƒE}ŠÓŠOƒ|ƒPƒ‚ƒ“ƒQƒbƒg
+				//ã‚¹ã‚³ã‚¢åŠ ç®—ï¼šã‚·ãƒ³ã‚ªã‚¦å›³é‘‘å¤–ãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆ
 				RECORD_Score_Add( SaveData_GetRecord(fsys->savedata), SCORE_ID_POKE_GET_WORLD );
 			}
 		}
 	}else if ( (fight_type&FIGHT_TYPE_TRAINER)||
-			   (fight_type&FIGHT_TYPE_TAG) ){			//ƒgƒŒ[ƒi[í
-		//Ÿ‚Á‚½‚ç‰ÁŽZ
+			   (fight_type&FIGHT_TYPE_TAG) ){			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦
+		//å‹ã£ãŸã‚‰åŠ ç®—
 		if (win_lose_flg == FIGHT_WIN){
-			//ƒXƒRƒA‰ÁŽZFƒgƒŒ[ƒi[íŸ—˜
+			//ã‚¹ã‚³ã‚¢åŠ ç®—ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦å‹åˆ©
 			RECORD_Score_Add( SaveData_GetRecord(fsys->savedata), SCORE_ID_TRAINER_BATTLE_WIN );
 		}
 	}else if ( (fight_type&FIGHT_TYPE_SAFARI)||
-			   (fight_type&FIGHT_TYPE_POKE_PARK) ){	//ƒTƒtƒ@ƒŠEƒ|ƒPƒp[ƒN
-		//•ß‚Ü‚¦‚½‚ç‰ÁŽZ
+			   (fight_type&FIGHT_TYPE_POKE_PARK) ){	//ã‚µãƒ•ã‚¡ãƒªãƒ»ãƒã‚±ãƒ‘ãƒ¼ã‚¯
+		//æ•ã¾ãˆãŸã‚‰åŠ ç®—
 		if (win_lose_flg == FIGHT_POKE_GET){
 			pp = PokeParty_GetMemberPointer(
 					inBattleParam->poke_party[CLIENT_NO_ENEMY], 0);
-			//ƒVƒ“ƒIƒE}ŠÓƒ|ƒPƒ‚ƒ“‚©H
+			//ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒã‚±ãƒ¢ãƒ³ã‹ï¼Ÿ
 			if ( PMNumber_GetPokeNumber( PM_NUMBER_SHINOU, PokeParaGet(pp,ID_PARA_monsno,0) ) ){
-				//ƒXƒRƒA‰ÁŽZFƒVƒ“ƒIƒE}ŠÓƒ|ƒPƒ‚ƒ“ƒQƒbƒg
+				//ã‚¹ã‚³ã‚¢åŠ ç®—ï¼šã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆ
 				RECORD_Score_Add( SaveData_GetRecord(fsys->savedata), SCORE_ID_POKE_GET_SINOU );
 			}else{
-				//ƒXƒRƒA‰ÁŽZFƒVƒ“ƒIƒE}ŠÓŠOƒ|ƒPƒ‚ƒ“ƒQƒbƒg
+				//ã‚¹ã‚³ã‚¢åŠ ç®—ï¼šã‚·ãƒ³ã‚ªã‚¦å›³é‘‘å¤–ãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆ
 				RECORD_Score_Add( SaveData_GetRecord(fsys->savedata), SCORE_ID_POKE_GET_WORLD );
 			}
 		}
@@ -1739,10 +1739,10 @@ static void AddScoreByBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM *inBattleParam )
 
 //-----------------------------------------------------------------------------
 /**
- * í“¬Œã–`Œ¯ƒm[ƒg‹L“ü(ƒ^ƒ[E’ÊMEƒ|ƒPƒp[ƒN–¢‘Î‰ž)
+ * æˆ¦é—˜å¾Œå†’é™ºãƒŽãƒ¼ãƒˆè¨˜å…¥(ã‚¿ãƒ¯ãƒ¼ãƒ»é€šä¿¡ãƒ»ãƒã‚±ãƒ‘ãƒ¼ã‚¯æœªå¯¾å¿œ)
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inBattleParam	ƒoƒgƒ‹ƒpƒ‰ƒ€
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inBattleParam	ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ 
  * 
  * @return	none
  * 
@@ -1769,12 +1769,12 @@ static void WriteFNoteByBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM *inBattleParam
 	if ( (fight_type == FIGHT_TYPE_1vs1_YASEI)||
 		 (fight_type == FIGHT_TYPE_MOVE)||
 		 (fight_type == FIGHT_TYPE_2vs2_YASEI)||
-		 (fight_type == FIGHT_TYPE_SAFARI)){			//–ì¶í
+		 (fight_type == FIGHT_TYPE_SAFARI)){			//é‡Žç”Ÿæˆ¦
 		FNOTE_WK_POKE *wk;
-		if (win_lose_flg == FIGHT_WIN){	//Ÿ‚Á‚½‚Æ‚«
-			//ƒJƒEƒ“ƒgƒAƒbƒv
-			fsys->encount.WinPokeCount++;//’l‚ÌU‚èØ‚ê‚Í‰Á–¡‚µ‚Ä‚È‚¢‚Å‚·
-			//5•CˆÈã‚Åƒm[ƒg‹L“ü
+		if (win_lose_flg == FIGHT_WIN){	//å‹ã£ãŸã¨ã
+			//ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
+			fsys->encount.WinPokeCount++;//å€¤ã®æŒ¯ã‚Šåˆ‡ã‚Œã¯åŠ å‘³ã—ã¦ãªã„ã§ã™
+			//5åŒ¹ä»¥ä¸Šã§ãƒŽãƒ¼ãƒˆè¨˜å…¥
 			if (fsys->encount.WinPokeCount >= 5){
 				pp = PokeParty_GetMemberPointer(
 					inBattleParam->poke_party[CLIENT_NO_ENEMY], 0);
@@ -1790,13 +1790,13 @@ static void WriteFNoteByBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM *inBattleParam
 */
 				FNOTE_DataSave( fsys->fnote, wk, FNOTE_TYPE_POKEMON );
 			}
-		}else if(win_lose_flg == FIGHT_POKE_GET){		//•ß‚Ü‚¦‚½‚Æ‚«
+		}else if(win_lose_flg == FIGHT_POKE_GET){		//æ•ã¾ãˆãŸã¨ã
 			int client;
-			//•ß‚Ü‚¦‚½ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u‚ðŽæ“¾
+			//æ•ã¾ãˆãŸãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ã‚’å–å¾—
 			client = inBattleParam->get_pokemon_client;
 			pp = PokeParty_GetMemberPointer(
 					inBattleParam->poke_party[client], 0);
-			//ƒm[ƒg‹L“ü
+			//ãƒŽãƒ¼ãƒˆè¨˜å…¥
 			wk = FNOTE_PokemonGetDataMake(
 					SaveData_GetPlayTime(fsys->savedata),
 					PokeParaGet(pp,ID_PARA_monsno,0),
@@ -1811,9 +1811,9 @@ static void WriteFNoteByBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM *inBattleParam
 			FNOTE_DataSave( fsys->fnote, wk, FNOTE_TYPE_POKEMON );
 		}
 	}else if ( (fight_type&FIGHT_TYPE_TRAINER)||
-			   (fight_type&FIGHT_TYPE_TAG) ){			//ƒgƒŒ[ƒi[í
+			   (fight_type&FIGHT_TYPE_TAG) ){			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦
 		if (win_lose_flg == FIGHT_WIN){
-			//ƒm[ƒg‹L“ü
+			//ãƒŽãƒ¼ãƒˆè¨˜å…¥
 			FNOTE_DataMakeSaveTrainer(
 				fsys->fnote,
 				fsys->location->zone_id,
@@ -1833,20 +1833,20 @@ static void WriteFNoteByBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM *inBattleParam
 
 //============================================================================================
 //	
-//		”j‚ê‚½¢ŠE@ƒMƒ‰ƒeƒBƒiê—p
+//		ç ´ã‚ŒãŸä¸–ç•Œã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠå°‚ç”¨
 //	
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[Ž—ƒRƒ}ƒ“ƒhFƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ÆƒŒƒxƒ‹‚ðŽw’è‚µ‚Ä–ì¶í
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	monsno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param	level		ƒŒƒxƒ‹
- * @param	winlose_flag	í“¬Œ‹‰Ê‚ðŽó‚¯Žæ‚éƒtƒ‰ƒO
- * @param	densetsu		“`àƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒg‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã¨ãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®šã—ã¦é‡Žç”Ÿæˆ¦
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	monsno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param	level		ãƒ¬ãƒ™ãƒ«
+ * @param	winlose_flag	æˆ¦é—˜çµæžœã‚’å—ã‘å–ã‚‹ãƒ•ãƒ©ã‚°
+ * @param	densetsu		ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- * –densetsuƒtƒ‰ƒO‚ÉTRUE‚ð“n‚·‚ÆƒGƒ“ƒJƒEƒ“ƒgƒƒbƒZ[ƒW‚ª
- * uœœ‚ª”ò‚Ño‚µ‚½v‚Å‚Í‚È‚­uœœ‚ªŒ»‚ê‚½v‚É‚È‚è‚Ü‚·
+ * ï¼Šdensetsuãƒ•ãƒ©ã‚°ã«TRUEã‚’æ¸¡ã™ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒ
+ * ã€Œâ—â—ãŒé£›ã³å‡ºã—ãŸã€ã§ã¯ãªãã€Œâ—â—ãŒç¾ã‚ŒãŸã€ã«ãªã‚Šã¾ã™
  */
 //-----------------------------------------------------------------------------
 void EventCmd_GirathinaWildBattle( GMEVENT_CONTROL * event,
@@ -1858,19 +1858,19 @@ void EventCmd_GirathinaWildBattle( GMEVENT_CONTROL * event,
 
 	fsys = FieldEvent_GetFieldSysWork(event);
 
-	//—h‚ê‘ƒŠƒZƒbƒg
+	//æºã‚Œè‰ãƒªã‚»ãƒƒãƒˆ
 	SwayGrass_InitSwayGrass(fsys->SwayGrass);
 
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 	btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_1vs1_YASEI);
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(btlprm, fsys);
 
-	//ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚ðƒZƒbƒg
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	SetWildEncountData(fsys, monsno, level, btlprm);
 	
-	//ƒMƒ‰ƒeƒBƒi@ƒIƒŠƒWƒ“ƒtƒH[ƒ€ƒZƒbƒg
+	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€ã‚ªãƒªã‚¸ãƒ³ãƒ•ã‚©ãƒ¼ãƒ ã‚»ãƒƒãƒˆ
 	{
 		POKEMON_PARAM *pp;
 		pp = PokeParty_GetMemberPointer(
@@ -1879,21 +1879,21 @@ void EventCmd_GirathinaWildBattle( GMEVENT_CONTROL * event,
 	}
 	
 	/*
-	//@battle_status_flag
-	//	‚ÉƒZƒbƒg‚·‚é‚æ‚¤‚É‚·‚éI
+	//ã€€battle_status_flag
+	//	ã«ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
 	*/
 	if(densetsu){
-		//“`àƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒg‚È‚çƒtƒ‰ƒO‚ð—§‚Ä‚ÄƒGƒ“ƒJƒEƒ“ƒgƒƒbƒZ[ƒW‚ð•Ï‚¦‚é
+		//ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒˆãªã‚‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰ãˆã‚‹
 		btlprm->battle_status_flag |= BATTLE_STATUS_FLAG_DENSETSU_BATTLE;
 	}
-	//”j‚ê‚½¢ŠE‚ÌƒMƒ‰ƒeƒBƒiê—p‚Ì“oêƒGƒtƒFƒNƒg‚ð‹N“®‚·‚é
+	//ç ´ã‚ŒãŸä¸–ç•Œã®ã‚®ãƒ©ãƒ†ã‚£ãƒŠå°‚ç”¨ã®ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èµ·å‹•ã™ã‚‹
 	btlprm->battle_status_flag |= BATTLE_STATUS_FLAG_HAKAI_GIRA_BATTLE | BATTLE_STATUS_FLAG_YABURETA_SEKAI;
 	btlprm->ground_id = GROUND_ID_HAKAI_GIRA;
 	/*
-		Ž‚½‚¹‚éƒAƒCƒeƒ€‚ÌŽw’è‚ª•K—v‚©‚àH
+		æŒãŸã›ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®æŒ‡å®šãŒå¿…è¦ã‹ã‚‚ï¼Ÿ
 	*/
 
-	//–ì¶ííƒJƒEƒ“ƒgƒAƒbƒv
+	//é‡Žç”Ÿæˆ¦æˆ¦ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 	RECORD_Inc(SaveData_GetRecord(fsys->savedata), RECID_BTL_ENCOUNT);
 	
 	EventCmd_NormalBattle(event, btlprm, FLD_EncEffSpDataEffectNoPackGet( btlprm ), FLD_EncEffSpDataBgmNoPackGet( btlprm ), winlose_flag);
@@ -1904,24 +1904,24 @@ void EventCmd_GirathinaWildBattle( GMEVENT_CONTROL * event,
 //============================================================================================
 //
 //
-//			ƒfƒoƒbƒO—p
+//			ãƒ‡ãƒãƒƒã‚°ç”¨
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒfƒoƒbƒO—p
+ *	ãƒ‡ãƒãƒƒã‚°ç”¨
  */
 //-----------------------------------------------------------------------------
 BOOL DebugFieldEncount(FIELDSYS_WORK * fsys)
 {
 	BATTLE_PARAM *btlprm;
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 	btlprm = BattleParam_Create(HEAPID_EVENT, FIGHT_TYPE_DEBUG|FIGHT_TYPE_1vs1);
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(btlprm, fsys);
 	
-	//‚±‚±‚É’nãƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚ðƒZƒbƒg
+	//ã“ã“ã«åœ°ä¸Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	DebugSetEncountData( NULL, GROUND_ENCOUNT, btlprm );
 	
 	FieldEncount_Set(fsys, btlprm);
@@ -1930,19 +1930,19 @@ BOOL DebugFieldEncount(FIELDSYS_WORK * fsys)
 }
 //-----------------------------------------------------------------------------
 /**
- *	ƒfƒoƒbƒO—p
+ *	ãƒ‡ãƒãƒƒã‚°ç”¨
  */
 //-----------------------------------------------------------------------------
 BOOL DebugFieldEncount2vs2(FIELDSYS_WORK * fsys)
 {
 	BATTLE_PARAM *btlprm;
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 	btlprm = BattleParam_Create(HEAPID_EVENT, FIGHT_TYPE_2vs2_TRAINER|FIGHT_TYPE_DEBUG);
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(btlprm, fsys);
 
 	btlprm->trainer_id[CLIENT_NO_ENEMY]=gf_rand()%16+1;
-	//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	TT_EncountTrainerDataMake(btlprm,fsys->savedata,HEAPID_WORLD);
 
 	FieldEncount_Set(fsys, btlprm);
@@ -1951,19 +1951,19 @@ BOOL DebugFieldEncount2vs2(FIELDSYS_WORK * fsys)
 }
 //-----------------------------------------------------------------------------
 /**
- *	ƒfƒoƒbƒO—p
+ *	ãƒ‡ãƒãƒƒã‚°ç”¨
  */
 //-----------------------------------------------------------------------------
 BOOL DebugFieldTrainerEncount(FIELDSYS_WORK * fsys)
 {
 	BATTLE_PARAM *btlprm;
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 	btlprm = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_TRAINER|FIGHT_TYPE_DEBUG);
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(btlprm, fsys);
 	
 	btlprm->trainer_id[CLIENT_NO_ENEMY]=gf_rand()%247+1;
-	//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	TT_EncountTrainerDataMake(btlprm,fsys->savedata,HEAPID_WORLD);
 	
 	FieldEncount_Set(fsys, btlprm);

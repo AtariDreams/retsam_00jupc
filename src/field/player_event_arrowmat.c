@@ -2,7 +2,7 @@
 /**
  *
  * @file	player_event_arrowmat.c
- * @brief	©‹@ƒCƒxƒ“ƒg ˆÚ“®°
+ * @brief	è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆ ç§»å‹•åºŠ
  * @author	k.ohno
  * @data	06.06.20
  *
@@ -25,7 +25,7 @@
 //#define DEBUG_KABE_COUNT
 
 //--------------------------------------------------------------
-//	Ä‹A—v‹
+//	å†å¸°è¦æ±‚
 //--------------------------------------------------------------
 #define RET_FALSE	(FALSE)
 #define RET_TRUE	(TRUE)
@@ -35,7 +35,7 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	ˆÚ“®°\‘¢‘Ì
+///	ç§»å‹•åºŠæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -62,15 +62,15 @@ static void Jiki_EventWorkFree( void *work );
 
 
 //==============================================================================
-//	•ûŒüƒ}ƒbƒg
+//	æ–¹å‘ãƒãƒƒãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •ûŒüƒ}ƒbƒgƒ`ƒFƒbƒN
+ * æ–¹å‘ãƒãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		is•ûŒü DIR_UP“™
- * @retval	int		TRUE=•ûŒüƒ}ƒbƒgƒCƒxƒ“ƒg”­“®
+ * @param	dir		é€²è¡Œæ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=æ–¹å‘ãƒãƒƒãƒˆã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  */
 //--------------------------------------------------------------
 int JikiEventCheck_ArrowMat(
@@ -102,7 +102,7 @@ int JikiEventCheck_ArrowMat(
 
 //--------------------------------------------------------------
 /**
- * •ûŒü°ƒCƒxƒ“ƒg”­“®
+ * æ–¹å‘åºŠã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
@@ -121,7 +121,7 @@ static void JikiEvent_ArrowMatSet( FIELDSYS_WORK *fsys, PLAYER_STATE_PTR jiki,in
 
 //--------------------------------------------------------------
 /**
- * Ÿ‚Ì‰ñ“]•ûŒü‚ğ“¾‚é
+ * æ¬¡ã®å›è»¢æ–¹å‘ã‚’å¾—ã‚‹
  * @param	dir
  * @retval	dir
  */
@@ -145,9 +145,9 @@ static int _nextDir(int dir)
 
 //--------------------------------------------------------------
 /**
- * •ûŒü°ƒCƒxƒ“ƒg
+ * æ–¹å‘åºŠã‚¤ãƒ™ãƒ³ãƒˆ
  * @param ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL JikiEvent_ArrowMat( GMEVENT_CONTROL *ev )
@@ -230,15 +230,15 @@ static BOOL JikiEvent_ArrowMat( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg—pƒ[ƒNƒƒ‚ƒŠŠm•Û
- * @param	size	ƒ[ƒNƒTƒCƒY
- * @retval	void*	Šm•Û‚µ‚½ƒ[ƒN
+ * ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç¢ºä¿
+ * @param	size	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+ * @retval	void*	ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 static void * Jiki_EventWorkAlloc( int size )
 {
 	void *work = sys_AllocMemoryLo( HEAPID_FIELD, size );
-	GF_ASSERT( work != NULL && "Jiki_EventWorkAlloc()ƒ[ƒNŠm•Û¸”s" );
+	GF_ASSERT( work != NULL && "Jiki_EventWorkAlloc()ãƒ¯ãƒ¼ã‚¯ç¢ºä¿å¤±æ•—" );
 	memset( work, 0, size );
 	
 	return( work );
@@ -246,8 +246,8 @@ static void * Jiki_EventWorkAlloc( int size )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg—pƒ[ƒNƒƒ‚ƒŠŠJ•ú
- * @param	work	ŠJ•ú‚·‚éƒ[ƒN
+ * ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
+ * @param	work	é–‹æ”¾ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  * @retval	nothing
  */
 //--------------------------------------------------------------

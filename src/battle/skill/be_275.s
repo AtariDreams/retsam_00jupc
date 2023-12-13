@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_275.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			275�@�܂Ђ̒ǉ����ʁ{���܂���B�Ԑڒǉ����ʊm�����݂āA���ꂼ��`�F�b�N����B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			275　まひの追加効果＋怯ませる。間接追加効果確率をみて、それぞれチェックする。
  *
  *@author	HisashiSogabe
  *@data		2006.05.05

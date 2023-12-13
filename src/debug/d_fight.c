@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	d_fight.c
- * @brief	ƒfƒoƒbƒOƒtƒ@ƒCƒg
+ * @brief	ãƒ‡ãƒãƒƒã‚°ãƒ•ã‚¡ã‚¤ãƒˆ
  * @author	sogabe
  * @date	2006.01.06
  */
@@ -46,7 +46,7 @@
 #include "savedata/savedata.h"
 #include "d_fight.h"
 
-u32	ee_loop_count=0;		//ƒtƒƒ“ƒeƒBƒAƒ‹[ƒvƒ`ƒFƒbƒN—pƒJƒEƒ“ƒ^
+u32	ee_loop_count=0;		//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ«ãƒ¼ãƒ—ãƒã‚§ãƒƒã‚¯ç”¨ã‚«ã‚¦ãƒ³ã‚¿
 
 //#include <nitro/sinit.h>
 #include "system/pm_overlay.h"
@@ -54,7 +54,7 @@ FS_EXTERN_OVERLAY(debug_fight);
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 
@@ -76,7 +76,7 @@ DEBUG_SAVE_PARAM	*dsp_p=NULL;
 
 //==================================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==================================================================================================
 
@@ -110,7 +110,7 @@ static	void	InitDebugFight(DEBUG_FIGHT_PARAM *dfp)
 
 //============================================================================================
 /**
- *	ƒ[ƒN‰Šú‰»
+ *	ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  */
 //============================================================================================
 static	void	DebugFightWorkInit(DEBUG_FIGHT_PARAM *dfp)
@@ -143,7 +143,7 @@ static	void	DebugFightWorkInit(DEBUG_FIGHT_PARAM *dfp)
 
 //============================================================================================
 /**
- *	ƒƒCƒ“ƒ‹[ƒvƒ^ƒXƒN
+ *	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¹ã‚¯
  */
 //============================================================================================
 static	void	MainDebugFight(DEBUG_FIGHT_PARAM *dfp)
@@ -255,7 +255,7 @@ static	void	MainDebugFight(DEBUG_FIGHT_PARAM *dfp)
 				Overlay_UnloadID(FS_OVERLAY_ID(debug_fight));
 				DebugFightSioConnect(dfp);
 				Snd_SceneSet(SND_SCENE_DUMMY);
-				Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_FIGHT0101, 1 );	//ƒoƒgƒ‹‹ÈÄ¶
+				Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_FIGHT0101, 1 );	//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
 				WIPE_SYS_Start(WIPE_PATTERN_WMS,
 						   WIPE_TYPE_FADEOUT,
 						   WIPE_TYPE_FADEOUT,
@@ -787,7 +787,7 @@ static	void	DebugFightSioConnect(DEBUG_FIGHT_PARAM *dfp)
 
 //==============================================================================================
 //
-//	DEBUG_POKEMON_PARAM‚ğæ“¾
+//	DEBUG_POKEMON_PARAMã‚’å–å¾—
 //
 //==============================================================================================
 DEBUG_POKEMON_PARAM	*DebugFightDPPGet(DEBUG_FIGHT_PARAM *dfp,int mine,int enemy,int pos)
@@ -808,7 +808,7 @@ DEBUG_POKEMON_PARAM	*DebugFightDPPGet(DEBUG_FIGHT_PARAM *dfp,int mine,int enemy,
 
 //==============================================================================================
 //
-//	ƒ^ƒCƒgƒ‹ƒfƒoƒbƒNƒƒjƒ…[‚©‚çŒÄ‚Î‚ê‚é‚æ‚¤‚É’Ç‰Á
+//	ã‚¿ã‚¤ãƒˆãƒ«ãƒ‡ãƒãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã‚ˆã†ã«è¿½åŠ 
 //
 //==============================================================================================
 //--------------------------------------------------------------
@@ -855,7 +855,7 @@ static	PROC_RESULT DebugFightProc_End(PROC * proc, int * seq)
 	sys_DeleteHeap( HEAPID_COMMICON );
 	sys_DeleteHeap(HEAPID_DEBUG_APPLICATION);
 	Main_SetNextProc(NO_OVERLAY_ID, &TitleProcData);
-	OS_ResetSystem(0);									//ƒ\ƒtƒgƒŠƒZƒbƒg
+	OS_ResetSystem(0);									//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆ
 	return PROC_RES_FINISH;
 }
 
@@ -871,7 +871,7 @@ const PROC_DATA DebugFightProcData = {
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”F‰Šú‰»Fí“¬iƒeƒXƒgj
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–ï¼šæˆ¦é—˜ï¼ˆãƒ†ã‚¹ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 static PROC_RESULT TestBattleProc_Init(PROC * proc, int * seq)
@@ -880,7 +880,7 @@ static PROC_RESULT TestBattleProc_Init(PROC * proc, int * seq)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FƒƒCƒ“Fí“¬iƒeƒXƒgj
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³ï¼šæˆ¦é—˜ï¼ˆãƒ†ã‚¹ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 static PROC_RESULT TestBattleProc_Main(PROC * proc, int * seq)
@@ -893,7 +893,7 @@ static PROC_RESULT TestBattleProc_Main(PROC * proc, int * seq)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FI—¹Fí“¬iƒeƒXƒgj
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†ï¼šæˆ¦é—˜ï¼ˆãƒ†ã‚¹ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 static PROC_RESULT TestBattleProc_End(PROC * proc, int * seq)
@@ -932,7 +932,7 @@ int		DebugFightCommandBufferGet(void)
 /**
  * @brief   
  *
- * ProcData‚Åw’è‚µ‚½ˆÈŠO‚ÌƒI[ƒo[ƒŒƒC‚Ìƒ[ƒh‚ğs‚¤
+ * ProcDataã§æŒ‡å®šã—ãŸä»¥å¤–ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã®ãƒ­ãƒ¼ãƒ‰ã‚’è¡Œã†
  *
  */
 //--------------------------------------------------------------

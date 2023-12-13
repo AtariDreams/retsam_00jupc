@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_camera.c
- *	@brief		WiFiLêƒJƒƒ‰	
+ *	@brief		WiFiåºƒå ´ã‚«ãƒ¡ãƒ©	
  *	@author		tomoya takahashi
  *	@data		2007.11.14
  *
@@ -17,44 +17,44 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define WFLBY_CAMERA_DIST		( 0x29aec1 )			// ‹——£
-static const CAMERA_ANGLE sc_WFLBY_CAMERA_ANGLE = {		// ƒAƒ“ƒOƒ‹
+#define WFLBY_CAMERA_DIST		( 0x29aec1 )			// è·é›¢
+static const CAMERA_ANGLE sc_WFLBY_CAMERA_ANGLE = {		// ã‚¢ãƒ³ã‚°ãƒ«
 	-0x29fe,0,0
 };
-#define WFLBY_CAMERA_TYPE		( GF_CAMERA_PERSPECTIV )// ƒJƒƒ‰‚Ìƒ^ƒCƒv
-#define WFLBY_CAMERA_PARS		( 0x05c1 )				// ƒp[ƒX
-#define WFLBY_CAMERA_NEAR		( FX32_CONST( 150 ) )	// ƒNƒŠƒbƒsƒ“ƒO@ƒjƒA
-#define WFLBY_CAMERA_FAR		( FX32_CONST( 900 ) )	// ƒNƒŠƒbƒsƒ“ƒO@ƒtƒ@[
-#define WFLBY_CAMERA_X_OFS		( FX32_CONST( 8 ) )		// ƒJƒƒ‰ƒ^[ƒQƒbƒg‚ÌXƒIƒtƒZƒbƒg
-#define WFLBY_CAMERA_Z_OFS		( -FX32_CONST( 32 ) )		// ƒJƒƒ‰ƒ^[ƒQƒbƒg‚ÌZƒIƒtƒZƒbƒg
+#define WFLBY_CAMERA_TYPE		( GF_CAMERA_PERSPECTIV )// ã‚«ãƒ¡ãƒ©ã®ã‚¿ã‚¤ãƒ—
+#define WFLBY_CAMERA_PARS		( 0x05c1 )				// ãƒ‘ãƒ¼ã‚¹
+#define WFLBY_CAMERA_NEAR		( FX32_CONST( 150 ) )	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã€€ãƒ‹ã‚¢
+#define WFLBY_CAMERA_FAR		( FX32_CONST( 900 ) )	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã€€ãƒ•ã‚¡ãƒ¼
+#define WFLBY_CAMERA_X_OFS		( FX32_CONST( 8 ) )		// ã‚«ãƒ¡ãƒ©ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define WFLBY_CAMERA_Z_OFS		( -FX32_CONST( 32 ) )		// ã‚«ãƒ¡ãƒ©ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®Zã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒJƒƒ‰ƒVƒXƒeƒ€
+///	ã‚«ãƒ¡ãƒ©ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _WFLBY_CAMERA {
 	GF_CAMERA_PTR			p_camera;
@@ -64,18 +64,18 @@ typedef struct _WFLBY_CAMERA {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰‰Šú‰»
+ *	@brief	ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
  *
- *	@param	heapID	ƒq[ƒvID
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_CAMERA* WFLBY_CAMERA_Init( u32 heapID )
@@ -86,34 +86,34 @@ WFLBY_CAMERA* WFLBY_CAMERA_Init( u32 heapID )
 	p_wk = sys_AllocMemory( heapID, sizeof(WFLBY_CAMERA) );
 	memset( p_wk, 0, sizeof(WFLBY_CAMERA) );
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_wk->p_camera = GFC_AllocCamera( heapID );
 
-	//ƒJƒƒ‰ƒZƒbƒg
+	//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 	GFC_InitCameraTDA( &p_wk->target,
-				WFLBY_CAMERA_DIST,	// ‹——£
+				WFLBY_CAMERA_DIST,	// è·é›¢
 				&sc_WFLBY_CAMERA_ANGLE,	//
-				WFLBY_CAMERA_PARS,	// “ŠË‰e‚ÌŠp“x
+				WFLBY_CAMERA_PARS,	// æŠ•å°„å½±ã®è§’åº¦
 				WFLBY_CAMERA_TYPE,
 				TRUE,
 				p_wk->p_camera );
 
-	//ƒJƒƒ‰‚Ì—LŒø‰»
+	//ã‚«ãƒ¡ãƒ©ã®æœ‰åŠ¹åŒ–
 	GFC_AttachCamera( p_wk->p_camera );
 	
-	//ƒjƒAEƒtƒ@[İ’è
+	//ãƒ‹ã‚¢ãƒ»ãƒ•ã‚¡ãƒ¼è¨­å®š
 	GFC_SetCameraClip( WFLBY_CAMERA_NEAR, WFLBY_CAMERA_FAR, p_wk->p_camera );
 
-	OS_TPrintf( "“§‹Ë‰e\n" );
+	OS_TPrintf( "é€è¦–å°„å½±\n" );
 
 	return p_wk;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰”jŠü
+ *	@brief	ã‚«ãƒ¡ãƒ©ç ´æ£„
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_CAMERA_Exit( WFLBY_CAMERA* p_sys )
@@ -128,31 +128,31 @@ void WFLBY_CAMERA_Exit( WFLBY_CAMERA* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰•`‰æ
+ *	@brief	ã‚«ãƒ¡ãƒ©æç”»
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_CAMERA_Draw( WFLBY_CAMERA* p_sys )
 {
-	// ƒ^[ƒQƒbƒgÀ•WŒvZ
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆåº§æ¨™è¨ˆç®—
 	if( p_sys->cp_person ){
 		WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_sys->cp_person, &p_sys->target );
 		p_sys->target.x += WFLBY_CAMERA_X_OFS;
 		p_sys->target.z += WFLBY_CAMERA_Z_OFS;
 	}
 	
-	// ƒJƒƒ‰”½‰f
+	// ã‚«ãƒ¡ãƒ©åæ˜ 
 	GFC_CameraLookAt();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰ƒ^[ƒQƒbƒgİ’è
+ *	@brief	ã‚«ãƒ¡ãƒ©ã‚¿ãƒ¼ã‚²ãƒƒãƒˆè¨­å®š
  *
- *	@param	p_sys	ƒ[ƒN
- *	@param	posx	‚˜À•W
- *	@param	posy	‚™À•W
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
+ *	@param	posx	ï½˜åº§æ¨™
+ *	@param	posy	ï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_CAMERA_SetTarget( WFLBY_CAMERA* p_sys, s32 posx, s32 posy )
@@ -165,12 +165,12 @@ void WFLBY_CAMERA_SetTarget( WFLBY_CAMERA* p_sys, s32 posx, s32 posy )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^[ƒQƒbƒgÀ•W‚ğİ’è	‚RD
+ *	@brief	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆåº§æ¨™ã‚’è¨­å®š	ï¼“D
  *	
- *	@param	p_sys	ƒVƒXƒeƒ€
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
- *	@param	z		‚šÀ•W
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
+ *	@param	z		ï½šåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_CAMERA_SetTarget3D( WFLBY_CAMERA* p_sys, fx32 x, fx32 y, fx32 z )
@@ -182,12 +182,12 @@ void WFLBY_CAMERA_SetTarget3D( WFLBY_CAMERA* p_sys, fx32 x, fx32 y, fx32 z )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[ê—pÀ•Wİ’è
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å°‚ç”¨åº§æ¨™è¨­å®š
  *
- *	@param	p_sys	ƒVƒXƒeƒ€
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
- *	@param	z		‚šÀ•W
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
+ *	@param	z		ï½šåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_CAMERA_SetTargetPerson3D( WFLBY_CAMERA* p_sys, fx32 x, fx32 y, fx32 z )
@@ -199,10 +199,10 @@ void WFLBY_CAMERA_SetTargetPerson3D( WFLBY_CAMERA* p_sys, fx32 x, fx32 y, fx32 z
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^[ƒQƒbƒgƒvƒŒƒCƒ„[‚ğİ’è
+ *	@brief	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’è¨­å®š
  *
- *	@param	p_sys		ƒ[ƒN
- *	@param	cp_person	l•¨
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_person	äººç‰©
  */
 //-----------------------------------------------------------------------------
 void WFLBY_CAMERA_SetTargetPerson( WFLBY_CAMERA* p_sys, const WFLBY_3DPERSON* cp_person )
@@ -212,11 +212,11 @@ void WFLBY_CAMERA_SetTargetPerson( WFLBY_CAMERA* p_sys, const WFLBY_3DPERSON* cp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^[ƒQƒbƒgl•¨‚ğæ“¾
+ *	@brief	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆäººç‰©ã‚’å–å¾—
  *
- *	@param	cp_sys	ƒ[ƒN
+ *	@param	cp_sys	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ^[ƒQƒbƒgl•¨	NULL:‚¢‚È‚¢
+ *	@return	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆäººç‰©	NULL:ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 const WFLBY_3DPERSON* WFLBY_CAMERA_GetTargetPerson( const WFLBY_CAMERA* cp_sys )
@@ -226,9 +226,9 @@ const WFLBY_3DPERSON* WFLBY_CAMERA_GetTargetPerson( const WFLBY_CAMERA* cp_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^[ƒQƒbƒgl•¨‚ğƒŠƒZƒbƒgi‚È‚­‚·j
+ *	@brief	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆäººç‰©ã‚’ãƒªã‚»ãƒƒãƒˆï¼ˆãªãã™ï¼‰
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_CAMERA_ResetTargetPerson( WFLBY_CAMERA* p_sys )
@@ -238,14 +238,14 @@ void WFLBY_CAMERA_ResetTargetPerson( WFLBY_CAMERA* p_sys )
 
 #ifdef WFLBY_CAMERA_DEBUG
 
-#define WFLBY_CAMERA_DEBUG_DIST		( 0x61b89b )			// ‹——£
-static const CAMERA_ANGLE sc_WFLBY_CAMERA_DEBUG_ANGLE = {		// ƒAƒ“ƒOƒ‹
+#define WFLBY_CAMERA_DEBUG_DIST		( 0x61b89b )			// è·é›¢
+static const CAMERA_ANGLE sc_WFLBY_CAMERA_DEBUG_ANGLE = {		// ã‚¢ãƒ³ã‚°ãƒ«
 	-0x239e,0,0
 };
-#define WFLBY_CAMERA_DEBUG_TYPE		( GF_CAMERA_ORTHO )// ƒJƒƒ‰‚Ìƒ^ƒCƒv
-#define WFLBY_CAMERA_DEBUG_PARS		( 0x0281 )				// ƒp[ƒX
-#define WFLBY_CAMERA_DEBUG_NEAR		( FX32_CONST( 150 ) )	// ƒNƒŠƒbƒsƒ“ƒO@ƒjƒA
-#define WFLBY_CAMERA_DEBUG_FAR		( FX32_CONST( 1735 ) )	// ƒNƒŠƒbƒsƒ“ƒO@ƒtƒ@[
+#define WFLBY_CAMERA_DEBUG_TYPE		( GF_CAMERA_ORTHO )// ã‚«ãƒ¡ãƒ©ã®ã‚¿ã‚¤ãƒ—
+#define WFLBY_CAMERA_DEBUG_PARS		( 0x0281 )				// ãƒ‘ãƒ¼ã‚¹
+#define WFLBY_CAMERA_DEBUG_NEAR		( FX32_CONST( 150 ) )	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã€€ãƒ‹ã‚¢
+#define WFLBY_CAMERA_DEBUG_FAR		( FX32_CONST( 1735 ) )	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã€€ãƒ•ã‚¡ãƒ¼
 
 WFLBY_CAMERA* WFLBY_CAMERA_DEBUG_CameraInit( u32 heapID )
 {
@@ -255,26 +255,26 @@ WFLBY_CAMERA* WFLBY_CAMERA_DEBUG_CameraInit( u32 heapID )
 	p_wk = sys_AllocMemory( heapID, sizeof(WFLBY_CAMERA) );
 	memset( p_wk, 0, sizeof(WFLBY_CAMERA) );
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_wk->p_camera = GFC_AllocCamera( heapID );
 
-	//ƒJƒƒ‰ƒZƒbƒg
+	//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 	GFC_InitCameraTDA( &p_wk->target,
-				WFLBY_CAMERA_DEBUG_DIST,	// ‹——£
+				WFLBY_CAMERA_DEBUG_DIST,	// è·é›¢
 				&sc_WFLBY_CAMERA_DEBUG_ANGLE,	//
-				WFLBY_CAMERA_DEBUG_PARS,	// “ŠË‰e‚ÌŠp“x
+				WFLBY_CAMERA_DEBUG_PARS,	// æŠ•å°„å½±ã®è§’åº¦
 				WFLBY_CAMERA_DEBUG_TYPE,
 				TRUE,
 				p_wk->p_camera );
 
-	//ƒJƒƒ‰‚Ì—LŒø‰»
+	//ã‚«ãƒ¡ãƒ©ã®æœ‰åŠ¹åŒ–
 	GFC_AttachCamera( p_wk->p_camera );
 	
-	//ƒjƒAEƒtƒ@[İ’è
+	//ãƒ‹ã‚¢ãƒ»ãƒ•ã‚¡ãƒ¼è¨­å®š
 	GFC_SetCameraClip( WFLBY_CAMERA_DEBUG_NEAR, WFLBY_CAMERA_DEBUG_FAR, p_wk->p_camera );
 
 
-	OS_TPrintf( "³Ë‰e\n" );
+	OS_TPrintf( "æ­£å°„å½±\n" );
 
 	return p_wk;
 }

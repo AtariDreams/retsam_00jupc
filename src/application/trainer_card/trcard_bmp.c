@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	trcard_bmp.c
- * @bfief	ƒgƒŒ[ƒi[ƒJ[ƒh‰æ–ÊBMPŠÖ˜A
+ * @bfief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ç”»é¢BMPé–¢é€£
  * @author	Nozomu Saito
  * @date	05.11.15
  */
@@ -13,7 +13,7 @@
 #include "system/buflen.h"
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/13
-// ’PˆÊ—Ş‚ğ gmm ‚ÌƒeƒLƒXƒg‚ÉˆÚs
+// å˜ä½é¡ã‚’ gmm ã®ãƒ†ã‚­ã‚¹ãƒˆã«ç§»è¡Œ
 #include "system/wordset.h"
 // ----------------------------------------------------------------------------
 #include "strbuf_family.h"
@@ -30,113 +30,113 @@
 
 
 ////////////////////////////////////////////////////////////////
-//•\–Ê
+//è¡¨é¢
 ////////////////////////////////////////////////////////////////
-//ƒgƒŒ[ƒi[NO					:34
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼NO					:34
 #define WIN_TR_NO_PX	(2)
 #define WIN_TR_NO_PY	(4)
 #define WIN_TR_NO_SX	(17)
 #define WIN_TR_NO_SY	(2)
 #define WIN_TR_NO_CGX	(TR_BG_BASE+TR_BG_SIZE)
 
-//–¼‘O							:34
+//åå‰							:34
 #define WIN_NAME_PX	(2)
 #define WIN_NAME_PY	(6)
 #define WIN_NAME_SX	(17)
 #define WIN_NAME_SY	(2)
 #define WIN_NAME_CGX	(WIN_TR_NO_CGX+WIN_TR_NO_SX*WIN_TR_NO_SY)
 
-//‚¨‚±‚Ã‚©‚¢					:34
+//ãŠã“ã¥ã‹ã„					:34
 #define WIN_MONEY_PX	(2)
 #define WIN_MONEY_PY	(9)
 #define WIN_MONEY_SX	(17)
 #define WIN_MONEY_SY	(2)
 #define WIN_MONEY_CGX	(WIN_NAME_CGX+WIN_NAME_SX*WIN_NAME_SY)
 
-//‚¸‚©‚ñ						:34
+//ãšã‹ã‚“						:34
 #define WIN_BOOK_PX	(2)
 #define WIN_BOOK_PY	(12)
 #define WIN_BOOK_SX	(17)
 #define WIN_BOOK_SY	(2)
 #define WIN_BOOK_CGX	(WIN_MONEY_CGX+WIN_MONEY_SX*WIN_MONEY_SY)
 
-//ƒXƒRƒA						:34
+//ã‚¹ã‚³ã‚¢						:34
 #define WIN_SCORE_PX	(2)
 #define WIN_SCORE_PY	(15)
 #define WIN_SCORE_SX	(17)
 #define WIN_SCORE_SY	(2)
 #define WIN_SCORE_CGX	(WIN_BOOK_CGX+WIN_BOOK_SX*WIN_BOOK_SY)
 
-//ƒvƒŒƒCŠÔ					:56
+//ãƒ—ãƒ¬ã‚¤æ™‚é–“					:56
 #define WIN_TIME_PX	(2)
 #define WIN_TIME_PY	(18)
 #define WIN_TIME_SX	(28)
 #define WIN_TIME_SY	(2)
 #define WIN_TIME_CGX	(WIN_SCORE_CGX+WIN_SCORE_SX*WIN_SCORE_SY)
 
-//ƒXƒ^[ƒgŠÔ					:56
+//ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚é–“					:56
 #define WIN_S_TIME_PX	(2)
 #define WIN_S_TIME_PY	(20)
 #define WIN_S_TIME_SX	(28)
 #define WIN_S_TIME_SY	(2)
 #define WIN_S_TIME_CGX	(WIN_TIME_CGX+WIN_TIME_SX*WIN_TIME_SY)
 //////////////////////////////////////////////////////////////
-//— –Ê
+//è£é¢
 //////////////////////////////////////////////////////////////
-//‚Å‚ñ‚Ç‚¤‚¢‚è					:112
+//ã§ã‚“ã©ã†ã„ã‚Š					:112
 #define WIN_CLEAR_PX	(2)
 #define WIN_CLEAR_PY	(2)
 #define WIN_CLEAR_SX	(28)
 #define WIN_CLEAR_SY	(4)
 #define WIN_CLEAR_CGX	(SIGN_CGX+TR_SIGN_SIZE)
-//‚Â‚¤‚µ‚ñ‰ñ”					:56
+//ã¤ã†ã—ã‚“å›æ•°					:56
 #define WIN_COMM_PX	(2)
 #define WIN_COMM_PY	(7)
 #define WIN_COMM_SX	(28)
 #define WIN_COMM_SY	(2)
 #define WIN_COMM_CGX	(WIN_CLEAR_CGX+WIN_CLEAR_SX*WIN_CLEAR_SY)
 
-//’ÊM‘Îí						:56
+//é€šä¿¡å¯¾æˆ¦						:56
 #define WIN_BATTLE_PX	(2)
 #define WIN_BATTLE_PY	(9)
 #define WIN_BATTLE_SX	(28)
 #define WIN_BATTLE_SY	(2)
 #define WIN_BATTLE_CGX	(WIN_COMM_CGX+WIN_COMM_SX*WIN_COMM_SY)
 
-//’ÊMŒğŠ·						:56
+//é€šä¿¡äº¤æ›						:56
 #define WIN_TRADE_PX	(2)
 #define WIN_TRADE_PY	(11)
 #define WIN_TRADE_SX	(28)
 #define WIN_TRADE_SY	(2)
 #define WIN_TRADE_CGX	(WIN_BATTLE_CGX+WIN_BATTLE_SX*WIN_BATTLE_SY)
 
-#define TR_STRING_LEN	(32)		//ƒ[ƒJƒ‰ƒCƒY‚ğl‚¦‘½‚ß‚ÉB
+#define TR_STRING_LEN	(32)		//ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºã‚’è€ƒãˆå¤šã‚ã«ã€‚
 
 #define TR_MSGCOLOR			(GF_PRINTCOLOR_MAKE( 1, 2, FBMP_COL_NULL ))
 #define BMP_WIDTH_TYPE1	(8*17)
 #define BMP_WIDTH_TYPE2	(8*28)
 
-#define SEC_DISP_OFS	(2)		//“K“–B‚¢‚¢Š´‚¶‚ÉŒ©‚¦‚é’l‚ÅB
+#define SEC_DISP_OFS	(2)		//é©å½“ã€‚ã„ã„æ„Ÿã˜ã«è¦‹ãˆã‚‹å€¤ã§ã€‚
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/13
-// ŠCŠO”Å‚Å‚Í‰~E‚Ğ‚«‚ğíœ
-#define YEN_OFS			(0)		//u‰~v•\¦•ª‰EƒXƒy[ƒX
-#define HIKI_OFS		(0)		//u‚Ğ‚«v•\¦•ª‰EƒXƒy[ƒX
+// æµ·å¤–ç‰ˆã§ã¯å††ãƒ»ã²ãã‚’å‰Šé™¤
+#define YEN_OFS			(0)		//ã€Œå††ã€è¡¨ç¤ºåˆ†å³ã‚¹ãƒšãƒ¼ã‚¹
+#define HIKI_OFS		(0)		//ã€Œã²ãã€è¡¨ç¤ºåˆ†å³ã‚¹ãƒšãƒ¼ã‚¹
 // ----------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/13
-// ’PˆÊ—Ş‚ğ gmm ‚ÌƒeƒLƒXƒg‚ÉˆÚs
+// å˜ä½é¡ã‚’ gmm ã®ãƒ†ã‚­ã‚¹ãƒˆã«ç§»è¡Œ
 
 #define TIME_OFS		(184)
 #define TIME_WIDTH		(40)
-#define COLON_OFS		(207 - 2)	// •5‚ÌƒXƒy[ƒX‚ª—pˆÓ‚Å‚«‚½‚çƒIƒtƒZƒbƒg‚Íæ‚é
+#define COLON_OFS		(207 - 2)	// å¹…5ã®ã‚¹ãƒšãƒ¼ã‚¹ãŒç”¨æ„ã§ããŸã‚‰ã‚ªãƒ•ã‚»ãƒƒãƒˆã¯å–ã‚‹
 #define COLON_WIDTH		(5)
 
 #define WIN_OFS		(104 + 8)
 #define LOSE_OFS	(168 + 8)
 
-// ”’l“™‚ğ“ü‚ê‚é WORDSET ‚Ìƒoƒbƒtƒ@ID
+// æ•°å€¤ç­‰ã‚’å…¥ã‚Œã‚‹ WORDSET ã®ãƒãƒƒãƒ•ã‚¡ID
 enum {
 	BUFID_HOUR,
 	BUFID_MINUTE,
@@ -161,49 +161,49 @@ enum {
 static const BMPWIN_DAT TrCardBmpData[] =
 {
 	
-	{	// 0:ƒgƒŒ[ƒi[NO
+	{	// 0:ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼NO
 		FONT_BG, WIN_TR_NO_PX, WIN_TR_NO_PY,
 		WIN_TR_NO_SX, WIN_TR_NO_SY, TR_FONT_PAL, WIN_TR_NO_CGX
 	},	
-	{	// 1:–¼‘O
+	{	// 1:åå‰
 		FONT_BG, WIN_NAME_PX, WIN_NAME_PY,
 		WIN_NAME_SX, WIN_NAME_SY, TR_FONT_PAL, WIN_NAME_CGX
 	},
-	{	// 2:‚¨‚±‚Ã‚©‚¢
+	{	// 2:ãŠã“ã¥ã‹ã„
 		FONT_BG, WIN_MONEY_PX, WIN_MONEY_PY,
 		WIN_MONEY_SX, WIN_MONEY_SY, TR_FONT_PAL, WIN_MONEY_CGX
 	},	
-	{	// 3:‚¸‚©‚ñ
+	{	// 3:ãšã‹ã‚“
 		FONT_BG, WIN_BOOK_PX, WIN_BOOK_PY,
 		WIN_BOOK_SX, WIN_BOOK_SY, TR_FONT_PAL, WIN_BOOK_CGX
 	},
-	{	// 4:ƒXƒRƒA
+	{	// 4:ã‚¹ã‚³ã‚¢
 		FONT_BG, WIN_SCORE_PX, WIN_SCORE_PY,
 		WIN_SCORE_SX, WIN_SCORE_SY, TR_FONT_PAL, WIN_SCORE_CGX
 	},
-	{	//@5:ƒvƒŒƒCŠÔ
+	{	//ã€€5:ãƒ—ãƒ¬ã‚¤æ™‚é–“
 		FONT_BG, WIN_TIME_PX, WIN_TIME_PY,
 		WIN_TIME_SX, WIN_TIME_SY, TR_FONT_PAL, WIN_TIME_CGX
 	},
-	{	//@6:ŠJnŠÔ
+	{	//ã€€6:é–‹å§‹æ™‚é–“
 		FONT_BG, WIN_S_TIME_PX, WIN_S_TIME_PY,
 		WIN_S_TIME_SX, WIN_S_TIME_SY, TR_FONT_PAL, WIN_S_TIME_CGX
 	},
 	
-	{	//@7:‚Å‚ñ‚Ç‚¤‚¢‚è
+	{	//ã€€7:ã§ã‚“ã©ã†ã„ã‚Š
 		FONT_BG, WIN_CLEAR_PX, WIN_CLEAR_PY,
 		WIN_CLEAR_SX, WIN_CLEAR_SY, TR_FONT_PAL, WIN_CLEAR_CGX
 	},
 
-	{	//@8:’ÊM‰ñ”
+	{	//ã€€8:é€šä¿¡å›æ•°
 		FONT_BG, WIN_COMM_PX, WIN_COMM_PY,
 		WIN_COMM_SX, WIN_COMM_SY, TR_FONT_PAL, WIN_COMM_CGX
 	},
-	{	//@9:’ÊM‘Îí
+	{	//ã€€9:é€šä¿¡å¯¾æˆ¦
 		FONT_BG, WIN_BATTLE_PX, WIN_BATTLE_PY,
 		WIN_BATTLE_SX, WIN_BATTLE_SY, TR_FONT_PAL, WIN_BATTLE_CGX
 	},
-	{	//@10:’ÊMŒğŠ·
+	{	//ã€€10:é€šä¿¡äº¤æ›
 		FONT_BG, WIN_TRADE_PX, WIN_TRADE_PY,
 		WIN_TRADE_SX, WIN_TRADE_SY, TR_FONT_PAL, WIN_TRADE_CGX
 	},
@@ -235,7 +235,7 @@ static void WriteStrData(	GF_BGL_BMPWIN *inWin,
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒE’Ç‰Á
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
  *
  * @param	bgl		bgl
  * @param	win		BmpWin
@@ -251,7 +251,7 @@ void TRCBmp_AddTrCardBmp( GF_BGL_INI * bgl, GF_BGL_BMPWIN	*win )
 	for(i=0;i<TR_CARD_WIN_MAX;i++){
 		GF_BGL_BmpWinAddEx( bgl, &win[i], &dat[i] );
 	}
-	//æ“ªƒLƒƒƒ‰‚ğƒNƒŠƒAiƒXƒNƒŠ[ƒ“ƒNƒŠƒA‚³‚ê‚Ä‚é‚Æ‚±‚ë‚ÍA‚±‚ÌƒLƒƒƒ‰‚Å–„‚Ü‚éj
+	//å…ˆé ­ã‚­ãƒ£ãƒ©ã‚’ã‚¯ãƒªã‚¢ï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ã•ã‚Œã¦ã‚‹ã¨ã“ã‚ã¯ã€ã“ã®ã‚­ãƒ£ãƒ©ã§åŸ‹ã¾ã‚‹ï¼‰
 	GF_BGL_CharFill( bgl, FONT_BG, 0, 1, 0 );
 #endif
 }
@@ -259,7 +259,7 @@ void TRCBmp_AddTrCardBmp( GF_BGL_INI * bgl, GF_BGL_BMPWIN	*win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒE”jŠü
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
  * @param	win		BmpWin
  *
@@ -291,10 +291,10 @@ static const int MsgList[] = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * î•ñ•\¦i•\–Êj
+ * æƒ…å ±è¡¨ç¤ºï¼ˆè¡¨é¢ï¼‰
  *
  * @param	win				BmpWin
- * @param	inTrCardData	ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^
+ * @param	inTrCardData	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -324,7 +324,7 @@ void TRCBmp_WriteTrWinInfo( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData
 	msg_buf = STRBUF_Create(TR_STRING_LEN, HEAPID_TR_CARD);
 	for(i=0;i<7;i++){
 		if ( (i!=3) ||
-				(i==3)&&(inTrCardData->PokeBookFlg) ){	//‚¸‚©‚ñ‚Ì‚İ‚Á‚Ä‚¢‚é‚Æ‚«‚¾‚¯•\¦
+				(i==3)&&(inTrCardData->PokeBookFlg) ){	//ãšã‹ã‚“ã®ã¿æŒã£ã¦ã„ã‚‹ã¨ãã ã‘è¡¨ç¤º
 			MSGMAN_GetString(man, MsgList[i] ,msg_buf);
 			GF_STR_PrintColor(&win[i], FONT_SYSTEM, msg_buf, 0, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		}
@@ -333,7 +333,7 @@ void TRCBmp_WriteTrWinInfo( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData
 	{
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/14
-		// ’PˆÊ—Ş‚ğ gmm ‚ÌƒeƒLƒXƒg‚ÉˆÚs
+		// å˜ä½é¡ã‚’ gmm ã®ãƒ†ã‚­ã‚¹ãƒˆã«ç§»è¡Œ
 
 		STRBUF *tmp_buf = STRBUF_Create(TR_STRING_LEN, HEAPID_TR_CARD);
 		WORDSET *wordset = WORDSET_CreateEx(WORDMAX_ALL, WORDSET_DEFAULT_BUFLEN, HEAPID_TR_CARD);
@@ -343,11 +343,11 @@ void TRCBmp_WriteTrWinInfo( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData
 						BMP_WIDTH_TYPE1, 0, 0, msg_buf, inTrCardData->TrainerID, TR_ID_DIGIT,
 						NUMBER_DISPTYPE_ZERO);
 		
-		//‚È‚Ü‚¦
+		//ãªã¾ãˆ
 		STRBUF_SetStringCode( msg_buf, inTrCardData->TrainerName );
 		WriteStrData(&win[TRC_BMPWIN_TR_NAME], BMP_WIDTH_TYPE1, 0, 0, msg_buf);
 
-		//‚¨‚±‚Ã‚©‚¢
+		//ãŠã“ã¥ã‹ã„
 		{
 			u32 xofs;
 			WORDSET_RegisterNumber(wordset, BUFID_MONEY, inTrCardData->Money, MONEY_DIGIT, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
@@ -357,8 +357,8 @@ void TRCBmp_WriteTrWinInfo( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData
 			GF_STR_PrintColor(&win[TRC_BMPWIN_MONEY], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		}
 
-		//‚¸‚©‚ñ
-		if (inTrCardData->PokeBookFlg){	//•\¦ƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚Æ‚«‚Ì‚İ•\¦	
+		//ãšã‹ã‚“
+		if (inTrCardData->PokeBookFlg){	//è¡¨ç¤ºãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹ã¨ãã®ã¿è¡¨ç¤º	
 			// MatchComment: new change in plat US
             u32 xofs;
             WORDSET_RegisterNumber(wordset, BUFID_MONEY, inTrCardData->PokeBook, MONS_NUM_DIGIT, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
@@ -368,19 +368,19 @@ void TRCBmp_WriteTrWinInfo( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData
 			GF_STR_PrintColor(&win[TRC_BMPWIN_BOOK], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		}
 		
-		//ƒXƒRƒA
+		//ã‚¹ã‚³ã‚¢
 		WriteNumData(	&win[TRC_BMPWIN_SCORE],
 						BMP_WIDTH_TYPE1, 0, 0, msg_buf, inTrCardData->Score, SCORE_DIGIT,
 						NUMBER_DISPTYPE_SPACE);
 		
-		//ƒvƒŒƒCŠÔ
+		//ãƒ—ãƒ¬ã‚¤æ™‚é–“
 		{
 			u32 xofs;
-			if ( inTrCardData->TimeUpdate) {	//’Êí
+			if ( inTrCardData->TimeUpdate) {	//é€šå¸¸
 				WORDSET_RegisterNumber(wordset, BUFID_HOUR,   PLAYTIME_GetHour(inTrCardData->PlayTime),   TIME_H_DIGIT, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
 				WORDSET_RegisterNumber(wordset, BUFID_MINUTE, PLAYTIME_GetMinute(inTrCardData->PlayTime), TIME_M_DIGIT, NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
 				MSGMAN_GetString(man, MSG_TCARD_17, tmp_buf);
-			} else {							//ŠÔXV‚µ‚È‚¢ê‡‚Ì‚İAŒÅ’è‚ÅuFv•\¦
+			} else {							//æ™‚é–“æ›´æ–°ã—ãªã„å ´åˆã®ã¿ã€å›ºå®šã§ã€Œï¼šã€è¡¨ç¤º
 				WORDSET_RegisterNumber(wordset, BUFID_HOUR,   inTrCardData->PlayTime_h, TIME_H_DIGIT, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
 				WORDSET_RegisterNumber(wordset, BUFID_MINUTE, inTrCardData->PlayTime_m, TIME_M_DIGIT, NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
 				MSGMAN_GetString(man, MSG_TCARD_16, tmp_buf);
@@ -390,13 +390,13 @@ void TRCBmp_WriteTrWinInfo( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData
 			GF_STR_PrintColor(&win[TRC_BMPWIN_PLAY_TIME], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		}
 		
-		//ƒXƒ^[ƒgŠÔ
+		//ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚é–“
 		{
 			u32 xofs;
 			WORDSET_RegisterNumber(wordset, BUFID_YEAR,  inTrCardData->Start_y, DAY_DIGIT, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-			// Œ‚Ì•\¦‚ğ’PŒê•\‹L‚É•ÏX
+			// æœˆã®è¡¨ç¤ºã‚’å˜èªè¡¨è¨˜ã«å¤‰æ›´
 			WORDSET_RegisterMonthName( wordset, BUFID_MONTH, inTrCardData->Start_m );
 			// ----------------------------------------------------------------------------
 			WORDSET_RegisterNumber(wordset, BUFID_DAY,   inTrCardData->Start_d, DAY_DIGIT, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
@@ -418,10 +418,10 @@ void TRCBmp_WriteTrWinInfo( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData
 
 //--------------------------------------------------------------------------------------------
 /**
- * î•ñ•\¦i— –Êj
+ * æƒ…å ±è¡¨ç¤ºï¼ˆè£é¢ï¼‰
  *
  * @param	win				BmpWin
- * @param	inTrCardData	ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^
+ * @param	inTrCardData	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -451,25 +451,25 @@ void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardD
 	{
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/14
-		// ’PˆÊ—Ş‚ğ gmm ‚ÌƒeƒLƒXƒg‚ÉˆÚs
+		// å˜ä½é¡ã‚’ gmm ã®ãƒ†ã‚­ã‚¹ãƒˆã«ç§»è¡Œ
 
 		STRBUF *tmp_buf = STRBUF_Create(TR_STRING_LEN, HEAPID_TR_CARD);
 		WORDSET *wordset = WORDSET_CreateEx(WORDMAX_ALL, WORDSET_DEFAULT_BUFLEN, HEAPID_TR_CARD);
 
-		//“a“°“ü‚è
+		//æ®¿å ‚å…¥ã‚Š
         {
             u32 xofs;
 
             // ----------------------------------------------------------------------------
             // localize_spec_mark(LANG_ALL) imatake 2007/02/13
-            // ‚Å‚ñ‚Ç‚¤‚¢‚è‘O‚Ì‚Å‚ñ‚Ç‚¤‚¢‚è‚Ì“ú•t•\¦‚ğƒxƒ^ƒeƒLƒXƒg‚É’u‚«Š·‚¦
+            // ã§ã‚“ã©ã†ã„ã‚Šå‰ã®ã§ã‚“ã©ã†ã„ã‚Šã®æ—¥ä»˜è¡¨ç¤ºã‚’ãƒ™ã‚¿ãƒ†ã‚­ã‚¹ãƒˆã«ç½®ãæ›ãˆ
 
-            if (inTrCardData->Clear_m != 0) {    //Œ‚ª0Œ‚Å‚È‚¯‚ê‚ÎAƒNƒŠƒA‚µ‚½‚Æ‚İ‚È‚·
+            if (inTrCardData->Clear_m != 0) {    //æœˆãŒ0æœˆã§ãªã‘ã‚Œã°ã€ã‚¯ãƒªã‚¢ã—ãŸã¨ã¿ãªã™
                 WORDSET_RegisterNumber(wordset, BUFID_YEAR, inTrCardData->Clear_y, YEAR_DIGIT, NUMBER_DISPTYPE_ZERO,
                                        NUMBER_CODETYPE_DEFAULT);
                 // ----------------------------------------------------------------------------
                 // localize_spec_mark(LANG_ALL) imatake 2007/01/26
-                // Œ‚Ì•\¦‚ğ’PŒê•\‹L‚É•ÏX
+                // æœˆã®è¡¨ç¤ºã‚’å˜èªè¡¨è¨˜ã«å¤‰æ›´
                 WORDSET_RegisterMonthName(wordset, BUFID_MONTH, inTrCardData->Clear_m);
                 // ----------------------------------------------------------------------------
                 WORDSET_RegisterNumber(wordset, BUFID_DAY, inTrCardData->Clear_d, DAY_DIGIT, NUMBER_DISPTYPE_ZERO,
@@ -487,14 +487,14 @@ void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardD
                 WORDSET_RegisterWord(wordset, BUFID_MINUTE, tmp_buf, 0, FALSE, PM_LANG);
                 MSGMAN_GetString(man, MSG_TCARD_18_2, msg_buf);
             }
-            // “a“°“ü‚è‚Ì“ú•t
+            // æ®¿å ‚å…¥ã‚Šã®æ—¥ä»˜
             xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
             GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR,
                               NULL);
 
             // ----------------------------------------------------------------------------
 
-            // “a“°“ü‚è‚Ü‚Å‚ÌƒvƒŒƒCŠÔ
+            // æ®¿å ‚å…¥ã‚Šã¾ã§ã®ãƒ—ãƒ¬ã‚¤æ™‚é–“
             MSGMAN_GetString(man, MSG_TCARD_16, tmp_buf);
             WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
             xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
@@ -502,7 +502,7 @@ void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardD
                               NULL);
         }
 
-        //’ÊM‰ñ”
+        //é€šä¿¡å›æ•°
         {
             u32 xofs;
 
@@ -517,7 +517,7 @@ void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardD
 //						BMP_WIDTH_TYPE2, 0, 0, msg_buf, inTrCardData->CommNum, COMM_DIGIT,
 //						NUMBER_DISPTYPE_SPACE);
 		
-		//’ÊM‘Îí
+		//é€šä¿¡å¯¾æˆ¦
 		MSGMAN_GetString(man, MSG_TCARD_19, msg_buf);
 		GF_STR_PrintColor(&win[TRC_BMPWIN_BATTLE_INFO], FONT_SYSTEM, msg_buf, WIN_OFS,  0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		WriteNumData(	&win[TRC_BMPWIN_BATTLE_INFO],
@@ -529,7 +529,7 @@ void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardD
 						BMP_WIDTH_TYPE2, 8*8, 0, msg_buf, inTrCardData->CommBattleWin, BATTLE_DIGIT,
 						NUMBER_DISPTYPE_SPACE);
 		
-		//’ÊMŒğŠ·
+		//é€šä¿¡äº¤æ›
         {
             u32 xofs;
 
@@ -554,11 +554,11 @@ void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardD
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒE”ñ•\¦
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦éè¡¨ç¤º
  *
  * @param	win				BmpWin
- * @param	start			‘ÎÛƒEƒBƒ“ƒhƒEŠJnƒCƒ“ƒfƒbƒNƒX
- * @param	end				‘ÎÛƒEƒBƒ“ƒhƒEÅIƒCƒ“ƒfƒbƒNƒX
+ * @param	start			å¯¾è±¡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	end				å¯¾è±¡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æœ€çµ‚ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  */
@@ -573,16 +573,16 @@ void TRCBmp_NonDispWinInfo(GF_BGL_BMPWIN	*win, const u8 start, const u8 end)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”š•\¦
+ * æ•°å­—è¡¨ç¤º
  *
  * @param	win				BmpWin
- * @param	inBmpWidth		•
- * @param	inRightSpace	‰E‹ó”’
- * @param	inStartY		•\¦ŠJnYˆÊ’u
- * @param	buff			ƒoƒbƒtƒ@
- * @param	inNum			”š
- * @param	inDigit			Œ…”
- * @param	inDispType		•\¦ƒ^ƒCƒv
+ * @param	inBmpWidth		å¹…
+ * @param	inRightSpace	å³ç©ºç™½
+ * @param	inStartY		è¡¨ç¤ºé–‹å§‹Yä½ç½®
+ * @param	buff			ãƒãƒƒãƒ•ã‚¡
+ * @param	inNum			æ•°å­—
+ * @param	inDigit			æ¡æ•°
+ * @param	inDispType		è¡¨ç¤ºã‚¿ã‚¤ãƒ—
  *
  * @return	none
  */
@@ -609,16 +609,16 @@ WriteNumData(	GF_BGL_BMPWIN *inWin,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”š•\¦(ã‘‚«—p)
+ * æ•°å­—è¡¨ç¤º(ä¸Šæ›¸ãç”¨)
  *
  * @param	win				BmpWin
- * @param	inBmpWidth		•
- * @param	inRightSpace	‰E‹ó”’
- * @param	inStartY		•\¦ŠJnYˆÊ’u
- * @param	buff			ƒoƒbƒtƒ@
- * @param	inNum			”š
- * @param	inDigit			Œ…”
- * @param	inDispType		•\¦ƒ^ƒCƒv
+ * @param	inBmpWidth		å¹…
+ * @param	inRightSpace	å³ç©ºç™½
+ * @param	inStartY		è¡¨ç¤ºé–‹å§‹Yä½ç½®
+ * @param	buff			ãƒãƒƒãƒ•ã‚¡
+ * @param	inNum			æ•°å­—
+ * @param	inDigit			æ¡æ•°
+ * @param	inDispType		è¡¨ç¤ºã‚¿ã‚¤ãƒ—
  *
  * @return	none
  */
@@ -649,13 +649,13 @@ WriteNumDataFill(	GF_BGL_BMPWIN *inWin,
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶š—ñ•\¦
+ * æ–‡å­—åˆ—è¡¨ç¤º
  *
  * @param	win				BmpWin
- * @param	inBmpWidth		•
- * @param	inRightSpace	‰E‹ó”’
- * @param	inStartY		•\¦ŠJnYˆÊ’u
- * @param	buff			ƒoƒbƒtƒ@
+ * @param	inBmpWidth		å¹…
+ * @param	inRightSpace	å³ç©ºç™½
+ * @param	inStartY		è¡¨ç¤ºé–‹å§‹Yä½ç½®
+ * @param	buff			ãƒãƒƒãƒ•ã‚¡
  *
  * @return	none
  */
@@ -675,10 +675,10 @@ static void WriteStrData(	GF_BGL_BMPWIN *inWin,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒŒƒCŠÔ•`‰æ
+ * ãƒ—ãƒ¬ã‚¤æ™‚é–“æç”»
  *
  * @param	win				BmpWin
- * @param	inTrCardData	ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^
+ * @param	inTrCardData	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -697,7 +697,7 @@ void TRCBmp_WritePlayTime(GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData, 
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/14
-	// ’PˆÊ—Ş‚ğ gmm ‚ÌƒeƒLƒXƒg‚ÉˆÚs
+	// å˜ä½é¡ã‚’ gmm ã®ãƒ†ã‚­ã‚¹ãƒˆã«ç§»è¡Œ
 
 	GF_BGL_BmpWinFill( &win[TRC_BMPWIN_PLAY_TIME], 0, TIME_OFS, 0, TIME_WIDTH, 2*8 );
 
@@ -726,11 +726,11 @@ void TRCBmp_WritePlayTime(GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData, 
 
 //--------------------------------------------------------------------------------------------
 /**
- * •b•\¦
+ * ç§’è¡¨ç¤º
  *
  * @param	win				BmpWin
- * @param	inDisp			•\¦ƒtƒ‰ƒO
- * @param	inSecBuf		•¶š—ñiƒRƒƒ“j
+ * @param	inDisp			è¡¨ç¤ºãƒ•ãƒ©ã‚°
+ * @param	inSecBuf		æ–‡å­—åˆ—ï¼ˆã‚³ãƒ­ãƒ³ï¼‰
  *
  * @return	none
  */
@@ -739,7 +739,7 @@ void TRCBmp_WriteSec(GF_BGL_BMPWIN	*win, const BOOL inDisp, STRBUF *inSecBuf)
 {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/14
-	// ’PˆÊ—Ş‚ğ gmm ‚ÌƒeƒLƒXƒg‚ÉˆÚs
+	// å˜ä½é¡ã‚’ gmm ã®ãƒ†ã‚­ã‚¹ãƒˆã«ç§»è¡Œ
 	if (inDisp){
 		GF_STR_PrintColor(win, FONT_SYSTEM, inSecBuf, COLON_OFS, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 	}else{

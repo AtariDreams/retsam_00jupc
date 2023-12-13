@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_090.s
- * @brief	Ç∂ÇÌÇÍ			90
+ * @brief	„Åò„Çè„Çå			90
  * @author	goto
- * @date	2005.07.13(êÖ)
+ * @date	2005.07.13(Ê∞¥)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	Å°Ç∂ÇÌÇÍ			90
+//	‚ñ†„Åò„Çè„Çå			90
 //
 //
 // =============================================================================
@@ -38,18 +38,18 @@ WEST_ZIWARE:
 	CATS_CELL_RES_LOAD		W090_RES_NO, EFFECT_090_NCER_BIN
 	CATS_CELL_ANM_RES_LOAD	W090_RES_NO, EFFECT_090_NANR_BIN
 	
-	///< ÉpÅ[ÉeÉBÉNÉã
+	///< „Éë„Éº„ÉÜ„Ç£„ÇØ„É´
 	ADD_PARTICLE 	0,W_090_090_JIWARE_SOTNE01, EMTFUNC_DEFENCE_POS
 	ADD_PARTICLE 	0,W_090_090_JIWARE_SOTNE02, EMTFUNC_DEFENCE_POS
 	ADD_PARTICLE 	0,W_090_090_JIWARE_SOTNE03, EMTFUNC_DEFENCE_POS
 	ADD_PARTICLE 	0,W_090_090_JIWARE_SOTNE04, EMTFUNC_DEFENCE_POS
 
-	///< îwåiêÿÇËë÷Ç¶
+	///< ËÉåÊôØÂàá„ÇäÊõø„Åà
 	WORK_SET		WEDEF_GP_INDEX_FADE_TYPE,  0
 	HAIKEI_CHG		BG_ID_090, WEDEF_HAIKEI_MODE_FADE | WEDEF_HAIKEI_SBIT_NONE
 	HAIKEI_CHG_WAIT
 		
-	///< Ç‰ÇÍ
+	///< „ÇÜ„Çå
 	SE_C			SEQ_SE_DP_W090
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, SHAKE_B_X, 0, SHAKE_M_WAIT, 30,  WE_TOOL_E1 | WE_TOOL_SSP,
 	FUNC_CALL		WEST_SP_BG_SHAKE, 5, 8, 0, 0, 31, 0

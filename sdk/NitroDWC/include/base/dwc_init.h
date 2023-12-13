@@ -12,27 +12,27 @@
 
   $Log: dwc_init.h,v $
   Revision 1.7  2007/02/16 08:24:00  takayama
-  DWC_GetAuthenticatedUserId()��ǉ��B
+  DWC_GetAuthenticatedUserId()を追加。
 
   Revision 1.6  2005/12/15 05:35:29  arakit
-  �f�o�b�O�p��NVRAM�N���A�֐�DWC_Debug_ClearConsoleWiFiInfo()���폜���A
-  DWC_Init()�̑S�Ă̖߂�l��������悤��NVRAM��j�󂷂�f�o�b�O�֐�
-  DWC_Debug_DWCInitError()��ǉ������B
+  デバッグ用のNVRAMクリア関数DWC_Debug_ClearConsoleWiFiInfo()を削除し、
+  DWC_Init()の全ての戻り値を試せるようにNVRAMを破壊するデバッグ関数
+  DWC_Debug_DWCInitError()を追加した。
 
   Revision 1.5  2005/11/01 10:37:57  arakit
-  enum�̒Ԃ���C�������B
+  enumの綴りを修正した。
 
   Revision 1.4  2005/09/21 06:54:59  sasakit
-  �f�o�b�O�p�̖{��Wi-Fi���[�U�����폜����֐���ǉ��B
+  デバッグ用の本体Wi-Fiユーザ情報を削除する関数を追加。
 
   Revision 1.3  2005/09/03 00:49:19  sasakit
   Fix typo cplusplu -> cplusplus
 
   Revision 1.2  2005/08/31 02:35:41  sasakit
-  DWC_Init()���ĂԂƂ��́A�������֘A�֐����Z�b�g���Ȃ��Ă��ǂ��悤�ɂ����B
+  DWC_Init()を呼ぶときは、メモリ関連関数をセットしなくても良いようにした。
 
   Revision 1.1  2005/08/19 12:14:44  sasakit
-  �����[�X�Ɍ����ďC��
+  リリースに向けて修正
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_lgrass.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ’·‚¢‘
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé•·ã„è‰
  * @author	kagaya
  * @data	05.07.13
  *
@@ -21,70 +21,70 @@
 //==============================================================================
 #define YURE_KUSA_SET
 
-///’·‚¢‘•\Ž¦ˆÊ’u@ƒOƒŠƒbƒh‚©‚ç‚ÌƒIƒtƒZƒbƒgX
+///é•·ã„è‰è¡¨ç¤ºä½ç½®ã€€ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆX
 #define LGRASS_GIRD_VEC_OFFS_X (FLDOBJ_VEC_X_GRID_OFFS_FX32)
-///’·‚¢‘•\Ž¦ˆÊ’u@ƒOƒŠƒbƒh‚©‚ç‚ÌƒIƒtƒZƒbƒgZ
+///é•·ã„è‰è¡¨ç¤ºä½ç½®ã€€ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆZ
 #define LGRASS_GIRD_VEC_OFFS_Z \
 	(FLDOBJ_VEC_Z_GRID_OFFS_FX32+FLDOBJ_BLACT_Z_GROUND_OFFS_FX32+(FX32_ONE*4))
-///’·‚¢‘•\Ž¦ˆÊ’u@’n–Ê‚©‚ç‚ÌƒIƒtƒZƒbƒgY
+///é•·ã„è‰è¡¨ç¤ºä½ç½®ã€€åœ°é¢ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define LGRASS_GROUND_OFFS_Y (FX32_ONE)
 
-///’·‚¢‘—h‚êƒAƒjƒƒtƒŒ[ƒ€”
+///é•·ã„è‰æºã‚Œã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define LGRASS_SHAKE_FRAME (12)
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_LGRASS_PTRŒ^
+///	FE_LGRASS_PTRåž‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_LGRASS * FE_LGRASS_PTR;
 
 //--------------------------------------------------------------
-///	FE_LGRASS\‘¢‘Ì
+///	FE_LGRASSæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_LGRASS
 {
 	FE_SYS *fes;
 }FE_LGRASS;
 
-#define FE_LGRASS_SIZE (sizeof(FE_LGRASS))	///<FE_GRASSƒTƒCƒY
+#define FE_LGRASS_SIZE (sizeof(FE_LGRASS))	///<FE_GRASSã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	LGRASS_ADD_H\‘¢‘Ì
+///	LGRASS_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int init_gx;								///<‰ŠúX ƒOƒŠƒbƒh
-	int init_gy;								///<‰ŠúY
-	int init_gz;								///<‰ŠúZ
+	int init_gx;								///<åˆæœŸX ã‚°ãƒªãƒƒãƒ‰
+	int init_gy;								///<åˆæœŸY
+	int init_gz;								///<åˆæœŸZ
 	FIELDSYS_WORK *fsys;						///<FIELDSYS_WORK *
 	FE_SYS *fes;								///<FE_SYS_PTR
 	FE_LGRASS_PTR kusa;							///<FE_GRASS_PTR
-	FIELD_OBJ_PTR fldobj;						///<‘ÎÛ‚ÌFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<å¯¾è±¡ã®FIELD_OBJ_PTR
 }LGRASS_ADD_H;
 
-#define LGRASS_ADD_H_SIZE (sizeof(LGRASS_ADD_H))	///<LGRASS_ADD_HƒTƒCƒY
+#define LGRASS_ADD_H_SIZE (sizeof(LGRASS_ADD_H))	///<LGRASS_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	LGRASS_WORK\‘¢‘Ì
+///	LGRASS_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int seq_no;									///<“®ì”Ô†
-	int obj_code;								///<‘ÎÛƒtƒB[ƒ‹ƒhOBJ OBJ CODE
-	int obj_id;									///<‘ÎÛƒtƒB[ƒ‹ƒhOBJ OBJ ID
-	int zone_id;								///<‘ÎÛƒtƒB[ƒ‹ƒhOBJ ZONE ID
-	int frame;									///<ƒtƒŒ[ƒ€
-	int height_get;								///<‚‚³Žæ“¾Ï‚Ý
-	LGRASS_ADD_H head;							///<’Ç‰ÁŽž‚ÌLGRASS_ADD_H
-	BLACT_WORK_PTR act;							///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
+	int seq_no;									///<å‹•ä½œç•ªå·
+	int obj_code;								///<å¯¾è±¡ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ OBJ CODE
+	int obj_id;									///<å¯¾è±¡ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ OBJ ID
+	int zone_id;								///<å¯¾è±¡ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ZONE ID
+	int frame;									///<ãƒ•ãƒ¬ãƒ¼ãƒ 
+	int height_get;								///<é«˜ã•å–å¾—æ¸ˆã¿
+	LGRASS_ADD_H head;							///<è¿½åŠ æ™‚ã®LGRASS_ADD_H
+	BLACT_WORK_PTR act;							///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
 }LGRASS_WORK;
 
-#define LGRASS_WORK_SIZE (sizeof(LGRASS_WORK))	///<LGRASS_WORKƒTƒCƒY
+#define LGRASS_WORK_SIZE (sizeof(LGRASS_WORK))	///<LGRASS_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void LGrass_GraphicInit( FE_LGRASS_PTR lgrass );
 static void LGrass_GraphicDelete( FE_LGRASS_PTR lgrass );
@@ -98,11 +98,11 @@ const BLACT_ANIME_TBL DATA_BlActAnmTbl_LGrassBig[];
 const BLACT_ANIME_TBL DATA_BlActAnmTbl_LGrassKiraKira[];
 
 //==============================================================================
-//	’·‚¢‘	ƒVƒXƒeƒ€
+//	é•·ã„è‰	ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’·‚¢‘‰Šú‰»
+ * é•·ã„è‰åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_LGRASS_PTR	FE_GRASS_PTR
  */
@@ -120,7 +120,7 @@ void * FE_LGrass_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ’·‚¢‘íœ
+ * é•·ã„è‰å‰Šé™¤
  * @param	kusa		FE_LGRASS_PTR
  * @retval	nothing
  */
@@ -133,11 +133,11 @@ void FE_LGrass_Delete( void *work )
 }
 
 //==============================================================================
-//	’·‚¢‘@ƒOƒ‰ƒtƒBƒbƒN
+//	é•·ã„è‰ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’·‚¢‘@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * é•·ã„è‰ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	kusa	FE_LGRASS_PTR
  * @retval	nothing
  */
@@ -157,7 +157,7 @@ static void LGrass_GraphicInit( FE_LGRASS_PTR kusa )
 
 //--------------------------------------------------------------
 /**
- * ’·‚¢‘@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * é•·ã„è‰ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	kusa	FE_LGRASS_PTR
  * @retval	nothing
  */
@@ -171,17 +171,17 @@ static void LGrass_GraphicDelete( FE_LGRASS_PTR kusa )
 }
 
 //==============================================================================
-//	’·‚¢‘ƒp[ƒc
+//	é•·ã„è‰ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	’·‚¢‘@EOA
+//	é•·ã„è‰ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ—p’·‚¢‘’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨é•·ã„è‰è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
- * @param	shake		TRUE=’·‚¢‘‚ä‚ê‚©‚çŠJŽnBFALSE=—h‚ê‚È‚µ‚©‚çŠJŽn
+ * @param	shake		TRUE=é•·ã„è‰ã‚†ã‚Œã‹ã‚‰é–‹å§‹ã€‚FALSE=æºã‚Œãªã—ã‹ã‚‰é–‹å§‹
  * @retval	nothing		
  */
 //--------------------------------------------------------------
@@ -210,10 +210,10 @@ void FE_FldOBJLGrass_Add( FIELD_OBJ_PTR fldobj, int shake )
 
 //--------------------------------------------------------------
 /**
- * EOA ’·‚¢‘@‰Šú‰»
+ * EOA é•·ã„è‰ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaLGrass_Init( EOA_PTR eoa, void *wk )
@@ -242,7 +242,7 @@ static int EoaLGrass_Init( EOA_PTR eoa, void *wk )
 	
 	work->act = FE_BlActAddID( work->head.fes, FE_BLACT_H_ID_LGRASS, &vec );
 	
-	if( EOA_AddParamGet(eoa) == FALSE ){						//’·‚¢‘—h‚ê‚È‚µ
+	if( EOA_AddParamGet(eoa) == FALSE ){						//é•·ã„è‰æºã‚Œãªã—
 		work->seq_no = 1;
 	}
 	
@@ -251,7 +251,7 @@ static int EoaLGrass_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’·‚¢‘@íœ
+ * EOA é•·ã„è‰ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -267,7 +267,7 @@ static void EoaLGrass_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’·‚¢‘@“®ì
+ * EOA é•·ã„è‰ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -305,7 +305,7 @@ static void EoaLGrass_Move( EOA_PTR eoa, void *wk )
 	}
 	
 	switch( work->seq_no ){
-	case 0:													//—h‚ê
+	case 0:													//æºã‚Œ
 		BLACT_AnmFrameChg( work->act, FX32_ONE );
 		frame = FX32_NUM( BLACT_AnmFrameGetOffs(work->act) );
 		
@@ -335,7 +335,7 @@ static void EoaLGrass_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’·‚¢‘@•`‰æ
+ * EOA é•·ã„è‰ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -361,7 +361,7 @@ static void EoaLGrass_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	’·‚¢‘EOA_H
+///	é•·ã„è‰EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_LGrass =
 {
@@ -373,7 +373,7 @@ static const EOA_H_NPP DATA_EoaH_LGrass =
 };
 
 //--------------------------------------------------------------
-///	’·‚¢‘ƒAƒjƒ
+///	é•·ã„è‰ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_BlActAnmTbl_LGrass[] =
 {

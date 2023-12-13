@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>OS_GetProcMode</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">OS_GetProcMode</h1>
-<h2>\•¶</h2>
+<h2>æ§‹æ–‡</h2>
 
 <dl>
   <dd>
@@ -21,60 +21,60 @@
   <CODE>OSProcMode OS_GetProcMode( void );</CODE></dd>
 </dl>
 
-<h2>ˆø”</h2>
-<P>‚È‚µB</P>
+<h2>å¼•æ•°</h2>
+<P>ãªã—ã€‚</P>
 
-<h2>•Ô‚è’l</h2>
-<p>Œ»Ý‚ÌARMƒvƒƒZƒbƒT“®ìƒ‚[ƒh‚ð•Ô‚µ‚Ü‚·B</p>
-<H2>à–¾</H2>
-<P>Œ»Ý‚ÌARMƒvƒƒZƒbƒT“®ìƒ‚[ƒh‚ð•Ô‚µ‚Ü‚·BOSProcMode —ñ‹“Œ^‚ÅA</P>
+<h2>è¿”ã‚Šå€¤</h2>
+<p>ç¾åœ¨ã®ARMãƒ—ãƒ­ã‚»ãƒƒã‚µå‹•ä½œãƒ¢ãƒ¼ãƒ‰ã‚’è¿”ã—ã¾ã™ã€‚</p>
+<H2>èª¬æ˜Ž</H2>
+<P>ç¾åœ¨ã®ARMãƒ—ãƒ­ã‚»ãƒƒã‚µå‹•ä½œãƒ¢ãƒ¼ãƒ‰ã‚’è¿”ã—ã¾ã™ã€‚OSProcMode åˆ—æŒ™åž‹ã§ã€</P>
 <TABLE>
   <TBODY>
     <TR>
       <TD bgcolor="#eeeeee">OS_PROCMODE_USER</TD>
-      <TD bgcolor="#eeeeee">ƒ†[ƒUƒ‚[ƒh</TD>
+      <TD bgcolor="#eeeeee">ãƒ¦ãƒ¼ã‚¶ãƒ¢ãƒ¼ãƒ‰</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">OS_PROCMODE_FIQ</TD>
-      <TD bgcolor="#eeeeee">FIQƒ‚[ƒh</TD>
+      <TD bgcolor="#eeeeee">FIQãƒ¢ãƒ¼ãƒ‰</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">OS_PROCMODE_IRQ</TD>
-      <TD bgcolor="#eeeeee">IRQƒ‚[ƒh</TD>
+      <TD bgcolor="#eeeeee">IRQãƒ¢ãƒ¼ãƒ‰</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">OS_PROCMODE_SVC</TD>
-      <TD bgcolor="#eeeeee">ƒX[ƒpƒoƒCƒUƒ‚[ƒh</TD>
+      <TD bgcolor="#eeeeee">ã‚¹ãƒ¼ãƒ‘ãƒã‚¤ã‚¶ãƒ¢ãƒ¼ãƒ‰</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">OS_PROCMODE_ABORT</TD>
-      <TD bgcolor="#eeeeee">ƒAƒ{[ƒgƒ‚[ƒh</TD>
+      <TD bgcolor="#eeeeee">ã‚¢ãƒœãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">OS_PROCMODE_UNDEF</TD>
-      <TD bgcolor="#eeeeee">–¢’è‹`ƒ‚[ƒh</TD>
+      <TD bgcolor="#eeeeee">æœªå®šç¾©ãƒ¢ãƒ¼ãƒ‰</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">OS_PROCMODE_SYS</TD>
-      <TD bgcolor="#eeeeee">ƒVƒXƒeƒ€ƒ‚[ƒh</TD>
+      <TD bgcolor="#eeeeee">ã‚·ã‚¹ãƒ†ãƒ ãƒ¢ãƒ¼ãƒ‰</TD>
     </TR>
   </TBODY>
 </TABLE>
-<P>‚Æ‚È‚è‚Ü‚·B</P>
-<BLOCKQUOTE>(—á)<BR>
+<P>ã¨ãªã‚Šã¾ã™ã€‚</P>
+<BLOCKQUOTE>(ä¾‹)<BR>
 OSProcMode mode = OS_GetProcMode();<BR>
 if ( mode == OS_PROCMODE_USER )<BR>
 {<BR>
-@@@OS_Printf( &quot;current processor mode is USERMODE.\n&quot;);<BR>
+ã€€ã€€ã€€OS_Printf( &quot;current processor mode is USERMODE.\n&quot;);<BR>
 }</BLOCKQUOTE>
 
-<h2>“à•”“®ì</h2>
-<p>CPSRƒŒƒWƒXƒ^(current program status register)‚©‚çŒ»Ý‚ÌƒvƒƒZƒbƒTƒ‚[ƒh‚ðŽæ“¾‚µ‚Ü‚·B</p>
+<h2>å†…éƒ¨å‹•ä½œ</h2>
+<p>CPSRãƒ¬ã‚¸ã‚¹ã‚¿(current program status register)ã‹ã‚‰ç¾åœ¨ã®ãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã—ã¾ã™ã€‚</p>
 
-<h2>ŽQÆ</h2>
-<p><CODE>‚È‚µB<br></CODE></p>
+<h2>å‚ç…§</h2>
+<p><CODE>ãªã—ã€‚<br></CODE></p>
 
-<H2>—š—ð</H2>
-<P>2003/12/01 ‰”Å</P>
+<H2>å±¥æ­´</H2>
+<P>2003/12/01 åˆç‰ˆ</P>
 </body>
 </html>

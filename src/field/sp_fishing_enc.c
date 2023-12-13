@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	sp_fishing_enc.c
- * @bfief	“Áê’Ş‚èƒGƒ“ƒJƒEƒ“ƒgŠÖ˜A
+ * @bfief	ç‰¹æ®Šé‡£ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£
  * @author	Nozomu Saito
  *
  *
@@ -24,11 +24,11 @@
 
 //------------------------------------------------------------------
 /**
- * @brief	“Áê’Ş‚è‚Ìƒ|ƒCƒ“ƒgƒ`ƒFƒbƒN
+ * @brief	ç‰¹æ®Šé‡£ã‚Šã®ãƒã‚¤ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚Ì‚Æ‚«A“Áê’Ş‚èƒ|ƒCƒ“ƒg
+ * @retval  BOOL		TRUEã®ã¨ãã€ç‰¹æ®Šé‡£ã‚Šãƒã‚¤ãƒ³ãƒˆ
  */
 //------------------------------------------------------------------
 BOOL SpFishing_CheckPoint(FIELDSYS_WORK *fsys)
@@ -52,28 +52,28 @@ BOOL SpFishing_CheckPoint(FIELDSYS_WORK *fsys)
 	int map_w;
 	int x,z;
 
-	//‚TŠ„‚Å’ÊíƒGƒ“ƒJƒEƒ“ƒg
+	//ï¼•å‰²ã§é€šå¸¸ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 	if (gf_p_rand(2) == 0){
 		return FALSE;
 	}
-	//ƒ‰ƒ“ƒ_ƒ€‚Ìíæ“¾
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®å–å¾—
 	rand_seed = RandomGroup_GetDefaultRandom( SaveData_GetRandomGroup(fsys->savedata) );
-	//’Ş‚èƒ|ƒCƒ“ƒgæ“¾
+	//é‡£ã‚Šãƒã‚¤ãƒ³ãƒˆå–å¾—
 	Player_DirFrontGridPosGet( fsys->player, &x, &z );
-	//ƒ}ƒbƒvƒ}ƒgƒŠƒbƒNƒX‰¡•æ“¾
+	//ãƒãƒƒãƒ—ãƒãƒˆãƒªãƒƒã‚¯ã‚¹æ¨ªå¹…å–å¾—
 	map_w = GetWorldMapMatrixW(fsys->World);
 	
 	hit = FALSE;
-	//ƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğ‚S•ªŠ„
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’ï¼”åˆ†å‰²
 	val[0] = (rand_seed >> 24) & 0xff;
 	val[1] = (rand_seed >> 16) & 0xff;
 	val[2] = (rand_seed >> 8) & 0xff;
 	val[3] = rand_seed & 0xff;
 	
-	//“Áê’Ş‚èƒA[ƒJƒCƒuƒf[ƒ^‰ğÍ
+	//ç‰¹æ®Šé‡£ã‚Šã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿è§£æ
 	data = ArchiveDataLoadMallocLo(ARC_ENCDATA_EX,
 			NARC_encdata_ex_fishing_point_bin, HEAPID_FIELD);
-	//ƒuƒƒbƒN”‚ğæ“¾
+	//ãƒ–ãƒ­ãƒƒã‚¯æ•°ã‚’å–å¾—
 	block_num = ((int*)data)[0];
 OS_Printf("b_num = %d\n",block_num);
 	
@@ -88,7 +88,7 @@ OS_Printf("total = %d\n",total);
 OS_Printf("d = %d\n",ary[0]);
 
 	sep = total/FISH_POINT_MAX;
-	GF_ASSERT((sep<256)&&"‹æ•ª”‚ğƒI[ƒo[@‚±‚Ì•û–@‚Å‚ÍŒvZ‚Å‚«‚Ü‚¹‚ñ");
+	GF_ASSERT((sep<256)&&"åŒºåˆ†æ•°ã‚’ã‚ªãƒ¼ãƒãƒ¼ã€€ã“ã®æ–¹æ³•ã§ã¯è¨ˆç®—ã§ãã¾ã›ã‚“");
 	
 	rest = total%FISH_POINT_MAX;
 	ofs = 0;
@@ -104,9 +104,9 @@ OS_Printf("world= %d\n",world_idx[i]);
 		}
 	}
 
-	//’Ş‚è…‚ğ‚½‚ç‚µ‚½À•W‚ğƒ[ƒ‹ƒhƒOƒŠƒbƒhƒCƒ“ƒfƒbƒNƒX‚É•ÏŠ·
+	//é‡£ã‚Šç³¸ã‚’ãŸã‚‰ã—ãŸåº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰ã‚°ãƒªãƒƒãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«å¤‰æ›
 	fp_wld_idx = (map_w*BLOCK_GRID_W*z)+x;
-	//4‚Â‚Ìƒ|ƒCƒ“ƒg‚Æ”äŠr
+	//4ã¤ã®ãƒã‚¤ãƒ³ãƒˆã¨æ¯”è¼ƒ
 	for(i=0;i<FISH_POINT_MAX;i++){
 		if (world_idx[i] == fp_wld_idx){
 			hit = TRUE;
@@ -121,10 +121,10 @@ OS_Printf("world= %d\n",world_idx[i]);
 
 //------------------------------------------------------------------
 /**
- * @brief	“Áê’Ş‚èƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹•æ“¾
+ * @brief	ç‰¹æ®Šé‡£ã‚Šãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«å¹…å–å¾—
  *
- * @param   outMaxLv	Å‘åƒŒƒxƒ‹
- * @param	outMinLv	Å¬ƒŒƒxƒ‹		
+ * @param   outMaxLv	æœ€å¤§ãƒ¬ãƒ™ãƒ«
+ * @param	outMinLv	æœ€å°ãƒ¬ãƒ™ãƒ«		
  *
  * @retval  none
  */
@@ -137,9 +137,9 @@ void SpFishing_GetMaxMinLv(u8 *outMaxLv, u8 *outMinLv)
 
 //------------------------------------------------------------------
 /**
- * @brief	“Áê’Ş‚èƒ|ƒPƒ‚ƒ“‚Ìƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ğ•Ô‚·
+ * @brief	ç‰¹æ®Šé‡£ã‚Šãƒã‚±ãƒ¢ãƒ³ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   outMonsNo	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[Ši”[êŠ
+ * @param   outMonsNo	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼æ ¼ç´å ´æ‰€
  *
  * @retval	none
  */
@@ -147,7 +147,7 @@ void SpFishing_GetMaxMinLv(u8 *outMaxLv, u8 *outMinLv)
 void SpFishing_GetMonsNo(int *outMonsNo)
 {
 	int *data;
-	//“Áê’Ş‚èƒA[ƒJƒCƒuƒf[ƒ^‰ğÍ
+	//ç‰¹æ®Šé‡£ã‚Šã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿è§£æ
 	data = ArchiveDataLoadMallocLo(ARC_ENCDATA_EX,
 			NARC_encdata_ex_fish_bin, HEAPID_FIELD);
 	(*outMonsNo) = (*data);
@@ -175,22 +175,22 @@ void  DEBUGSpFishing_GetPoint(FIELDSYS_WORK *fsys, int *outPos, u32 *outRand)
 	u32 rand_seed;
 	int map_w;
 
-	//ƒ‰ƒ“ƒ_ƒ€‚Ìíæ“¾
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®å–å¾—
 	rand_seed = RandomGroup_GetDefaultRandom( SaveData_GetRandomGroup(fsys->savedata) );
 	*outRand = rand_seed;
-	//ƒ}ƒbƒvƒ}ƒgƒŠƒbƒNƒX‰¡•æ“¾
+	//ãƒãƒƒãƒ—ãƒãƒˆãƒªãƒƒã‚¯ã‚¹æ¨ªå¹…å–å¾—
 	map_w = GetWorldMapMatrixW(fsys->World);
 	
-	//ƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğ‚S•ªŠ„
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’ï¼”åˆ†å‰²
 	val[0] = (rand_seed >> 24) & 0xff;
 	val[1] = (rand_seed >> 16) & 0xff;
 	val[2] = (rand_seed >> 8) & 0xff;
 	val[3] = rand_seed & 0xff;
 	
-	//“Áê’Ş‚èƒA[ƒJƒCƒuƒf[ƒ^‰ğÍ
+	//ç‰¹æ®Šé‡£ã‚Šã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿è§£æ
 	data = ArchiveDataLoadMallocLo(ARC_ENCDATA_EX,
 			NARC_encdata_ex_fishing_point_bin, HEAPID_FIELD);
-	//ƒuƒƒbƒN”‚ğæ“¾
+	//ãƒ–ãƒ­ãƒƒã‚¯æ•°ã‚’å–å¾—
 	block_num = ((int*)data)[0];
 	
 	total = 0;
@@ -200,7 +200,7 @@ void  DEBUGSpFishing_GetPoint(FIELDSYS_WORK *fsys, int *outPos, u32 *outRand)
 	ary = &((u16*)data)[2+block_num*2];
 	
 	sep = total/FISH_POINT_MAX;
-	GF_ASSERT((sep<256)&&"‹æ•ª”‚ğƒI[ƒo[@‚±‚Ì•û–@‚Å‚ÍŒvZ‚Å‚«‚Ü‚¹‚ñ");
+	GF_ASSERT((sep<256)&&"åŒºåˆ†æ•°ã‚’ã‚ªãƒ¼ãƒãƒ¼ã€€ã“ã®æ–¹æ³•ã§ã¯è¨ˆç®—ã§ãã¾ã›ã‚“");
 	
 	rest = total%FISH_POINT_MAX;
 	ofs = 0;

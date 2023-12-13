@@ -18,7 +18,7 @@
   applied for SDK_THREAD_INFINITY
 
   Revision 1.9  2005/03/01 01:57:00  yosizaki
-  copyright の年を修正.
+  copyright 縺ｮ蟷ｴ繧剃ｿｮ豁｣.
 
   Revision 1.8  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -33,16 +33,16 @@
   fix header comment
 
   Revision 1.4  2004/04/02 12:49:11  yada
-  mutexにリストを追加
+  mutex縺ｫ繝ｪ繧ｹ繝医ｒ霑ｽ蜉
 
   Revision 1.3  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.2  2003/12/25 07:29:51  yada
-  型ルール統一による変更
+  蝙九Ν繝ｼ繝ｫ邨ｱ荳縺ｫ繧医ｋ螟画峩
 
   Revision 1.1  2003/11/29 10:12:08  yada
-  初版
+  蛻晉沿
 
 
   $NoKeywords: $

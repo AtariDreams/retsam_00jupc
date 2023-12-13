@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	client_def.h
- * @bfief	í“¬ƒNƒ‰ƒCƒAƒ“ƒgƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.05.24
  */
@@ -15,18 +15,18 @@
 #include	"gauge.h"
 #include 	"client_types.h"
 
-///<ƒNƒ‰ƒCƒAƒ“ƒg—pƒ†[ƒUƒCƒ“ƒ^[ƒtƒF[ƒX\‘¢‘ÌéŒ¾
+///<ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç”¨ãƒ¦ãƒ¼ã‚¶ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
-	TCB_FUNC	UI_CommandSelect;		///<ƒRƒ}ƒ“ƒh‘I‘ğ
-	TCB_FUNC	UI_WazaSelect;			///<‹Z‘I‘ğ
-	TCB_FUNC	UI_DirSelect;			///<UŒ‚‘ÎÛ‘I‘ğ
-	TCB_FUNC	UI_ItemSelect;			///<ƒAƒCƒeƒ€‘I‘ğ
-	TCB_FUNC	UI_PokemonSelect;		///<ƒ|ƒPƒ‚ƒ“‘I‘ğ
-	TCB_FUNC	UI_YesNoSelect;			///<Yes/No‘I‘ğ
+	TCB_FUNC	UI_CommandSelect;		///<ã‚³ãƒãƒ³ãƒ‰é¸æŠ
+	TCB_FUNC	UI_WazaSelect;			///<æŠ€é¸æŠ
+	TCB_FUNC	UI_DirSelect;			///<æ”»æ’ƒå¯¾è±¡é¸æŠ
+	TCB_FUNC	UI_ItemSelect;			///<ã‚¢ã‚¤ãƒ†ãƒ é¸æŠ
+	TCB_FUNC	UI_PokemonSelect;		///<ãƒã‚±ãƒ¢ãƒ³é¸æŠ
+	TCB_FUNC	UI_YesNoSelect;			///<Yes/Noé¸æŠ
 }USER_INTERFACE;
 
-///<ƒNƒ‰ƒCƒAƒ“ƒg—pƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 struct client_param
 {
 	USER_INTERFACE	ui;
@@ -34,30 +34,30 @@ struct client_param
 	SOFT_SPRITE		*tr_ss;
 	SOFT_SPRITE		*poke_ss;
 	GF_BGL_BMPWIN	*win;
-	GAUGE_WORK		gauge;		///<HPƒQ[ƒW
+	GAUGE_WORK		gauge;		///<HPã‚²ãƒ¼ã‚¸
 	CURSOR_SAVE		cursor_save;
 	BMS_PTR			bms;
-	OAM_DROP_SYS*	ods;		///< OAM •ÏŠ·
-	void			*time_icon;					//’ÊM‘Ò‹@ƒƒbƒZ[ƒWƒ^ƒCƒ}[ƒAƒCƒRƒ“—pƒ^ƒXƒN
+	OAM_DROP_SYS*	ods;		///< OAM å¤‰æ›
+	void			*time_icon;					//é€šä¿¡å¾…æ©Ÿãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒãƒ¼ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã‚¿ã‚¹ã‚¯
 	u8				client_buffer[BUF_SIZE];
 	u8				client_no;
 	u8				client_type;
 	u8				client_boot;
 	u8				bip_flag;
 	
-	TCB_PTR			sin_tcb;	///<‘I‘ğ’†‚Ìƒ|ƒPƒ‚ƒ“‚Ì—h‚ê§Œäƒ^ƒXƒN
-	u16				sin_sec;	///<‘I‘ğ’†‚Ìƒ|ƒPƒ‚ƒ“‚Ì—h‚êF•b
+	TCB_PTR			sin_tcb;	///<é¸æŠä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã®æºã‚Œåˆ¶å¾¡ã‚¿ã‚¹ã‚¯
+	u16				sin_sec;	///<é¸æŠä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã®æºã‚Œï¼šç§’
 
 	int				migawari_flag;
 
 
-	ARCHANDLE*		handle;		///< ƒA[ƒNƒnƒ“ƒhƒ‹
+	ARCHANDLE*		handle;		///< ã‚¢ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«
 
-	u8				client_buffer_flag;			//client_buffer‚Ö‚Ì‘‚«‚İ‹–‰Âƒtƒ‰ƒO
-	u8				dummy[3];					//ƒpƒfƒBƒ“ƒO
+	u8				client_buffer_flag;			//client_bufferã¸ã®æ›¸ãè¾¼ã¿è¨±å¯ãƒ•ãƒ©ã‚°
+	u8				dummy[3];					//ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
 };
 
-//ƒgƒŒ[ƒi[ƒGƒ“ƒJƒEƒ“ƒgƒAƒjƒƒGƒtƒFƒNƒgƒ[ƒN\‘¢‘Ì
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct
 {
 	int	seq_no;

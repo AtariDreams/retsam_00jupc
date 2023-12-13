@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	box_sound_def.h
- * @bfief	ƒ{ƒbƒNƒX‰æ–ÊƒTƒEƒ“ƒhƒiƒ“ƒo[’è‹`
+ * @bfief	ãƒœãƒƒã‚¯ã‚¹ç”»é¢ã‚µã‚¦ãƒ³ãƒ‰ãƒŠãƒ³ãƒãƒ¼å®šç¾©
  * @author	taya
  * @date	06.02.15
  */
@@ -13,47 +13,47 @@
 #include "system/snd_tool.h"
 
 
-#define  SOUND_LOG_IN			(SEQ_SE_DP_PC_LOGIN)	// ƒ{ƒbƒNƒX‰æ–ÊŠJŽn
-#define  SOUND_LOG_OFF			(SEQ_SE_DP_PC_LOGOFF)	// ƒ{ƒbƒNƒX‰æ–ÊI—¹
-#define  SOUND_MOVE_CURSOR		(SEQ_SE_DP_SELECT)		// ƒJ[ƒ\ƒ‹ˆÚ“®
-#define  SOUND_DECIDE			(SEQ_SE_DP_DECIDE)		// Œˆ’è‰¹
-//#define  SOUND_DECIDE			(SEQ_SE_DP_BUTTON3)		// Œˆ’è‰¹
-#define  SOUND_CANCEL			(SEQ_SE_DP_DECIDE)		// ƒLƒƒƒ“ƒZƒ‹‰¹
-#define  SOUND_CHANGE_TRAY		(SEQ_SE_DP_SELECT)		// ƒgƒŒƒCØ‚è‘Ö‚¦
-//#define  SOUND_CHANGE_TRAY		(SEQ_SE_DP_CLOSE2)		// ƒgƒŒƒCØ‚è‘Ö‚¦
-//#define  SOUND_OPEN_PARTY_TRAY	(SEQ_SE_DP_DECIDE)		// ŽèŽ‚¿ƒEƒBƒ“ƒhƒE‚ðŠJ‚­
-//#define  SOUND_OPEN_PARTY_TRAY	(SEQ_SE_DP_OPEN2)		// ŽèŽ‚¿ƒEƒBƒ“ƒhƒE‚ðŠJ‚­
-#define  SOUND_OPEN_PARTY_TRAY	(SEQ_SE_DP_OPEN7)		// ŽèŽ‚¿ƒEƒBƒ“ƒhƒE‚ðŠJ‚­
-//#define  SOUND_CLOSE_PARTY_TRAY	(SEQ_SE_DP_DECIDE)		// ŽèŽ‚¿ƒEƒBƒ“ƒhƒE‚ð•Â‚¶‚é
-//#define  SOUND_CLOSE_PARTY_TRAY	(SEQ_SE_DP_CLOSE2)		// ŽèŽ‚¿ƒEƒBƒ“ƒhƒE‚ð•Â‚¶‚é
-#define  SOUND_CLOSE_PARTY_TRAY	(SEQ_SE_DP_CLOSE7)		// ŽèŽ‚¿ƒEƒBƒ“ƒhƒE‚ð•Â‚¶‚é
+#define  SOUND_LOG_IN			(SEQ_SE_DP_PC_LOGIN)	// ãƒœãƒƒã‚¯ã‚¹ç”»é¢é–‹å§‹
+#define  SOUND_LOG_OFF			(SEQ_SE_DP_PC_LOGOFF)	// ãƒœãƒƒã‚¯ã‚¹ç”»é¢çµ‚äº†
+#define  SOUND_MOVE_CURSOR		(SEQ_SE_DP_SELECT)		// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+#define  SOUND_DECIDE			(SEQ_SE_DP_DECIDE)		// æ±ºå®šéŸ³
+//#define  SOUND_DECIDE			(SEQ_SE_DP_BUTTON3)		// æ±ºå®šéŸ³
+#define  SOUND_CANCEL			(SEQ_SE_DP_DECIDE)		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
+#define  SOUND_CHANGE_TRAY		(SEQ_SE_DP_SELECT)		// ãƒˆãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆ
+//#define  SOUND_CHANGE_TRAY		(SEQ_SE_DP_CLOSE2)		// ãƒˆãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆ
+//#define  SOUND_OPEN_PARTY_TRAY	(SEQ_SE_DP_DECIDE)		// æ‰‹æŒã¡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
+//#define  SOUND_OPEN_PARTY_TRAY	(SEQ_SE_DP_OPEN2)		// æ‰‹æŒã¡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
+#define  SOUND_OPEN_PARTY_TRAY	(SEQ_SE_DP_OPEN7)		// æ‰‹æŒã¡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
+//#define  SOUND_CLOSE_PARTY_TRAY	(SEQ_SE_DP_DECIDE)		// æ‰‹æŒã¡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
+//#define  SOUND_CLOSE_PARTY_TRAY	(SEQ_SE_DP_CLOSE2)		// æ‰‹æŒã¡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
+#define  SOUND_CLOSE_PARTY_TRAY	(SEQ_SE_DP_CLOSE7)		// æ‰‹æŒã¡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
 
 
-#define  SOUND_DISP_MENU		(SOUND_DECIDE)			// ƒƒjƒ…[€–Ú•\Ž¦
-#define  SOUND_SELECT_MENU		(SOUND_MOVE_CURSOR)		// ƒƒjƒ…[‘I‘ð€–Ú•ÏX
+#define  SOUND_DISP_MENU		(SOUND_DECIDE)			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®è¡¨ç¤º
+#define  SOUND_SELECT_MENU		(SOUND_MOVE_CURSOR)		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠžé …ç›®å¤‰æ›´
 
-//#define  SOUND_SUB_BUTTON		(SOUND_DECIDE)			// ƒTƒu‰æ–Êƒ{ƒ^ƒ“‰Ÿ‚µ‚½
-#define  SOUND_SUB_BUTTON		(SEQ_SE_DP_BUTTON9)		// ƒTƒu‰æ–Êƒ{ƒ^ƒ“‰Ÿ‚µ‚½
+//#define  SOUND_SUB_BUTTON		(SOUND_DECIDE)			// ã‚µãƒ–ç”»é¢ãƒœã‚¿ãƒ³æŠ¼ã—ãŸ
+#define  SOUND_SUB_BUTTON		(SEQ_SE_DP_BUTTON9)		// ã‚µãƒ–ç”»é¢ãƒœã‚¿ãƒ³æŠ¼ã—ãŸ
 
-#define  SOUND_SUB_MOVE_ICON	(SOUND_MOVE_CURSOR)		// ƒTƒu‰æ–ÊƒAƒCƒRƒ“ˆÚ“®‰¹
+#define  SOUND_SUB_MOVE_ICON	(SOUND_MOVE_CURSOR)		// ã‚µãƒ–ç”»é¢ã‚¢ã‚¤ã‚³ãƒ³ç§»å‹•éŸ³
 
-//#define  SOUND_POKE_CATCH		(SEQ_SE_DP_SELECT)	// ƒ|ƒPƒ‚ƒ“‚Â‚©‚Þ
-#define  SOUND_POKE_CATCH		(SEQ_SE_DP_BOX02)	// ƒ|ƒPƒ‚ƒ“‚Â‚©‚Þ
+//#define  SOUND_POKE_CATCH		(SEQ_SE_DP_SELECT)	// ãƒã‚±ãƒ¢ãƒ³ã¤ã‹ã‚€
+#define  SOUND_POKE_CATCH		(SEQ_SE_DP_BOX02)	// ãƒã‚±ãƒ¢ãƒ³ã¤ã‹ã‚€
 
-//#define  SOUND_POKE_PUT		(SEQ_SE_DP_SELECT)	// ƒ|ƒPƒ‚ƒ“‚¨‚­
-#define  SOUND_POKE_PUT			(SEQ_SE_DP_BOX01)	// ƒ|ƒPƒ‚ƒ“‚¨‚­
+//#define  SOUND_POKE_PUT		(SEQ_SE_DP_SELECT)	// ãƒã‚±ãƒ¢ãƒ³ãŠã
+#define  SOUND_POKE_PUT			(SEQ_SE_DP_BOX01)	// ãƒã‚±ãƒ¢ãƒ³ãŠã
 
-#define  SOUND_POKE_SWAP		(SEQ_SE_DP_SELECT)	// ƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦‚é
+#define  SOUND_POKE_SWAP		(SEQ_SE_DP_SELECT)	// ãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆã‚‹
 
 
-#define  SOUND_ITEM_WITHDRAW	(SOUND_DECIDE)		// ƒAƒCƒeƒ€‚ ‚¸‚©‚é
-#define  SOUND_ITEM_SET			(SOUND_DECIDE)		// ƒAƒCƒeƒ€‚à‚½‚¹‚é
-#define  SOUND_ITEM_SWAP		(SOUND_DECIDE)		// ƒAƒCƒeƒ€‚Æ‚è‚©‚¦‚é
+#define  SOUND_ITEM_WITHDRAW	(SOUND_DECIDE)		// ã‚¢ã‚¤ãƒ†ãƒ ã‚ãšã‹ã‚‹
+#define  SOUND_ITEM_SET			(SOUND_DECIDE)		// ã‚¢ã‚¤ãƒ†ãƒ ã‚‚ãŸã›ã‚‹
+#define  SOUND_ITEM_SWAP		(SOUND_DECIDE)		// ã‚¢ã‚¤ãƒ†ãƒ ã¨ã‚Šã‹ãˆã‚‹
 
-//#define  SOUND_DISABLE_BUTTON	(SOUND_DECIDE)		// ‰Ÿ‚¹‚È‚¢ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«
-#define  SOUND_DISABLE_BUTTON	(SEQ_SE_DP_BOX03)	// ‰Ÿ‚¹‚È‚¢ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«
+//#define  SOUND_DISABLE_BUTTON	(SOUND_DECIDE)		// æŠ¼ã›ãªã„ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ã
+#define  SOUND_DISABLE_BUTTON	(SEQ_SE_DP_BOX03)	// æŠ¼ã›ãªã„ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ã
 
-#define  SOUND_WARNING			(SEQ_SE_DP_BOX03)	// ÅŒã‚Ì‚P‘Ì‚ð“¦‚ª‚»‚¤‚Æ‚µ‚½Žž‚È‚Ç‚ÌŒx‰¹
+#define  SOUND_WARNING			(SEQ_SE_DP_BOX03)	// æœ€å¾Œã®ï¼‘ä½“ã‚’é€ƒãŒãã†ã¨ã—ãŸæ™‚ãªã©ã®è­¦å‘ŠéŸ³
 
 
 

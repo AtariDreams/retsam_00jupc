@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_rockride.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@©‹@•Çã‚èƒ|ƒPƒ‚ƒ“
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€è‡ªæ©Ÿå£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³
  * @author	kagaya
  * @data	05.07.13
  *
@@ -17,16 +17,16 @@
 //==============================================================================
 //	define
 //==============================================================================
-//#define DEBUG_ROCKRIDE_WRITE_OFF	//’è‹`‚Å•Çã‚èƒ|ƒPƒ‚ƒ“•`‰æOFF
+//#define DEBUG_ROCKRIDE_WRITE_OFF	//å®šç¾©ã§å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³æç”»OFF
 
 //#define ROCKRIDE_DRAW_Z_OFFSET (FX32_ONE*(3))
-//#define ROCKRIDE_DRAW_Z_OFFSET (FX32_ONE*(5))			///<•Çã‚èƒ|ƒPƒ‚ƒ“•`‰æƒIƒtƒZƒbƒgZ²
+//#define ROCKRIDE_DRAW_Z_OFFSET (FX32_ONE*(5))			///<å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆZè»¸
 //#define ROCKRIDE_DRAW_Z_OFFSET (FX32_ONE*(3))				
 
-#define ROCKRIDE_RIDE_Y_OFFSET (FX32_ONE*8)				///<”gƒ|ƒPæ‚è‚Ö‚Ì•\¦ƒIƒtƒZƒbƒgY
-#define ROCKRIDE_RIDE_Z_OFFSET (FX32_ONE*4)				///<”gƒ|ƒPæ‚è‚Ö‚Ì•\¦ƒIƒtƒZƒbƒgZ
+#define ROCKRIDE_RIDE_Y_OFFSET (FX32_ONE*8)				///<æ³¢ãƒã‚±ä¹—ã‚Šã¸ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
+#define ROCKRIDE_RIDE_Z_OFFSET (FX32_ONE*4)				///<æ³¢ãƒã‚±ä¹—ã‚Šã¸ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆZ
 
-#define ROCKRIDE_SHAKE_VALUE (0x0400)					///<‰Šú—h‚ê•
+#define ROCKRIDE_SHAKE_VALUE (0x0400)					///<åˆæœŸæºã‚Œå¹…
 #define ROCKRIDE_SHAKE_MAX (FX32_ONE*4)
 
 #define ROCKRIDE_ON_FRAME (30)
@@ -36,12 +36,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_ROCKRIDEŒ^
+///	FE_ROCKRIDEå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_ROCKRIDE * FE_ROCKRIDE_PTR;
 
 //--------------------------------------------------------------
-///	FE_ROCKRIDE\‘¢‘Ì
+///	FE_ROCKRIDEæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_ROCKRIDE
 {
@@ -54,38 +54,38 @@ typedef struct _TAG_FE_ROCKRIDE
 	FRO_OBJ robj;
 }FE_ROCKRIDE;
 
-#define FE_ROCKRIDE_SIZE (sizeof(FE_ROCKRIDE)) ///<FE_ROCKRIDEƒTƒCƒY
+#define FE_ROCKRIDE_SIZE (sizeof(FE_ROCKRIDE)) ///<FE_ROCKRIDEã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	ROCKRIDE_ADD_H\‘¢‘Ì
+///	ROCKRIDE_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int init_dir;					///<•\¦•ûŒü
+	int init_dir;					///<è¡¨ç¤ºæ–¹å‘
 	FE_SYS *fes;					///<FE_SYS_PTR
 	FIELDSYS_WORK *fsys;			///<FIELDSYS_WORK
 	FE_ROCKRIDE_PTR rockride;		///<FE_ROCKRIDE_PTR
 	FIELD_OBJ_PTR fldobj;			///<FIELD_OBJ_PTR
 }ROCKRIDE_ADD_H;
 
-#define ROCKRIDE_ADD_H_SIZE (sizeof(ROCKRIDE_ADD_H)) ///<ROCKRIDE_ADD_HƒTƒCƒY
+#define ROCKRIDE_ADD_H_SIZE (sizeof(ROCKRIDE_ADD_H)) ///<ROCKRIDE_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	ROCKRIDE_WORK\‘¢‘Ì
+///	ROCKRIDE_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int vanish_sw;								///<”ñ•\¦SW
-	int dir;									///<•ûŒü
-	int frame;									///<•\¦ƒtƒŒ[ƒ€
-	int joint;									///<Ú‘±ƒtƒ‰ƒO
-	ROCKRIDE_ADD_H head;						///<’Ç‰Á‚ÌROCKRIDE_ADD_H
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	int dir;									///<æ–¹å‘
+	int frame;									///<è¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ 
+	int joint;									///<æ¥ç¶šãƒ•ãƒ©ã‚°
+	ROCKRIDE_ADD_H head;						///<è¿½åŠ æ™‚ã®ROCKRIDE_ADD_H
 }ROCKRIDE_WORK;
 
-#define ROCKRIDE_WORK_SIZE (sizeof(ROCKRIDE_WORK))	///<ROCKRIDE_WORKƒTƒCƒY
+#define ROCKRIDE_WORK_SIZE (sizeof(ROCKRIDE_WORK))	///<ROCKRIDE_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void RockRide_AddCountUp( FE_ROCKRIDE_PTR rockride );
 static void RockRide_AddCountDown( FE_ROCKRIDE_PTR rockride );
@@ -99,11 +99,11 @@ static void RockRide_GraphicCheckDelete( FE_ROCKRIDE_PTR rockride );
 static const EOA_H_NPP DATA_EoaH_RockRide;
 
 //==============================================================================
-//	•Çã‚èƒ|ƒPƒ‚ƒ“@ƒVƒXƒeƒ€
+//	å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒ|ƒPƒ‚ƒ“‰Šú‰»
+ * å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_ROCKRIDE_PTR	FE_ROCKRIDE_PTR
  */
@@ -120,7 +120,7 @@ void * FE_RockRide_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒ|ƒPƒ‚ƒ“íœ
+ * å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³å‰Šé™¤
  * @param	rockride		FE_ROCKRIDE_PTR
  * @retval	nothing
  */
@@ -133,11 +133,11 @@ void FE_RockRide_Delete( void *work )
 }
 
 //==============================================================================
-//	•Çã‚èƒ|ƒPƒ‚ƒ“	ƒp[ƒc
+//	å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •Çã‚è”ƒJƒEƒ“ƒg
+ * å£ä¸Šã‚Šæ•°ã‚«ã‚¦ãƒ³ãƒˆ
  * @param	rockride	FE_ROCKRIDE_PTR
  * @retval	nothing
  */
@@ -149,7 +149,7 @@ static void RockRide_AddCountUp( FE_ROCKRIDE_PTR rockride )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚è”ƒfƒNƒŠƒƒ“ƒg
+ * å£ä¸Šã‚Šæ•°ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  * @param	rockride	FE_ROCKRIDE_PTR
  * @retval	nothing
  */
@@ -159,15 +159,15 @@ static void RockRide_AddCountDown( FE_ROCKRIDE_PTR rockride )
 	rockride->add_count--;
 	
 	GF_ASSERT( rockride->add_count >= 0 &&
-		"RockRide_AddCountDown()@•Çã‚è‚Ì’Ç‰Á‚Æíœ‚Ì‰ñ”‚ª‡‚í‚È‚¢" );
+		"RockRide_AddCountDown()ã€€å£ä¸Šã‚Šã®è¿½åŠ ã¨å‰Šé™¤ã®å›æ•°ãŒåˆã‚ãªã„" );
 }
 
 //==============================================================================
-//	•Çã‚èƒ|ƒPƒ‚ƒ“@ƒOƒ‰ƒtƒBƒbƒN
+//	å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒ|ƒPƒ‚ƒ“ ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	rockride	FE_ROCKRIDE_PTR
  * @retval	nothing
  */
@@ -184,7 +184,7 @@ static void RockRide_GraphicInit( FE_ROCKRIDE_PTR rockride )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒ|ƒPƒ‚ƒ“ ƒOƒ‰ƒtƒBƒbƒNíœ
+ * å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	rockride	FE_ROCKRIDE_PTR
  * @retval	nothing
  */
@@ -199,7 +199,7 @@ static void RockRide_GraphicDelete( FE_ROCKRIDE_PTR rockride )
 
 //--------------------------------------------------------------
 /**
- * ”»’è‚Â‚«ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * åˆ¤å®šã¤ãã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	rockride	FE_ROCKRIDE_PTR
  * @retval	nothing
  */
@@ -213,7 +213,7 @@ static void RockRide_GraphicCheckInit( FE_ROCKRIDE_PTR rockride )
 
 //--------------------------------------------------------------
 /**
- * ”»’è‚Â‚«ƒOƒ‰ƒtƒBƒbƒNíœ
+ * åˆ¤å®šã¤ãã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	rockride	FE_ROCKRIDE_PTR
  * @retval	nothing
  */
@@ -228,7 +228,7 @@ static void RockRide_GraphicCheckDelete( FE_ROCKRIDE_PTR rockride )
 #if 0
 //--------------------------------------------------------------
 /**
- * VIntrTcb ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * VIntrTcb ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work *
  * @retval	nothing
@@ -248,17 +248,17 @@ static void RockRide_VIntrTCBTrans( TCB_PTR tcb, void *wk )
 #endif
 
 //==============================================================================
-//	•Çã‚èƒ|ƒPƒ‚ƒ“@EOA
+//	å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA •Çã‚èƒ|ƒPƒ‚ƒ“’Ç‰Á
+ * EOA å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³è¿½åŠ 
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	gx		•\¦ƒOƒŠƒbƒhX
- * @param	gz		•\¦ƒOƒŠƒbƒhZ
- * @param	dir		•\¦•ûŒü
- * @param	joint	TRUE=fldobj‚ÌÀ•W‚ÉÚ‘± FALSE=‚µ‚È‚¢
- * @retval	EOA_PTR	’Ç‰Á‚³‚ê‚½ƒ|ƒPƒ‚ƒ“EOA_PTR
+ * @param	gx		è¡¨ç¤ºã‚°ãƒªãƒƒãƒ‰X
+ * @param	gz		è¡¨ç¤ºã‚°ãƒªãƒƒãƒ‰Z
+ * @param	dir		è¡¨ç¤ºæ–¹å‘
+ * @param	joint	TRUE=fldobjã®åº§æ¨™ã«æ¥ç¶š FALSE=ã—ãªã„
+ * @retval	EOA_PTR	è¿½åŠ ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³EOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_FldOBJRockRidePoke_Add( FIELD_OBJ_PTR fldobj, int gx, int gz, int dir, int joint )
@@ -291,9 +291,9 @@ EOA_PTR FE_FldOBJRockRidePoke_Add( FIELD_OBJ_PTR fldobj, int gx, int gz, int dir
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒ|ƒPƒ‚ƒ“‚ÌÚ‘±ƒtƒ‰ƒOƒZƒbƒg
+ * å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³ã®æ¥ç¶šãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
- * @param	joint	TRUE=Ú‘± FALSE=”ñÚ‘±
+ * @param	joint	TRUE=æ¥ç¶š FALSE=éæ¥ç¶š
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -305,10 +305,10 @@ void FE_FldOBJRockRidePokeJointFlagSet( EOA_PTR eoa, int joint )
 
 //--------------------------------------------------------------
 /**
- * EOA •Çã‚èƒ|ƒPƒ‚ƒ“@‰Šú‰»
+ * EOA å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaRockRide_Init( EOA_PTR eoa, void *wk )
@@ -328,7 +328,7 @@ static int EoaRockRide_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA •Çã‚èƒ|ƒPƒ‚ƒ“@íœ
+ * EOA å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -343,7 +343,7 @@ static void EoaRockRide_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA •Çã‚èƒ|ƒPƒ‚ƒ“@“®ì
+ * EOA å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -355,7 +355,7 @@ static void EoaRockRide_Move( EOA_PTR eoa, void *wk )
 	FIELD_OBJ_PTR fldobj = work->head.fldobj;
 	
 	if( work->joint == FALSE ){
-		OS_Printf( "•Ç‚Ì‚Ú‚èƒ|ƒPƒ‚ƒ“@ŠO‚ê‚Ä‚¢‚Ü‚·\n" );
+		OS_Printf( "å£ã®ã¼ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å¤–ã‚Œã¦ã„ã¾ã™\n" );
 		return;
 	}
 	
@@ -374,7 +374,7 @@ static void EoaRockRide_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA •Çã‚èƒ|ƒPƒ‚ƒ“@•`‰æ
+ * EOA å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -385,7 +385,7 @@ static void EoaRockRide_Draw( EOA_PTR eoa, void *wk )
 	ROCKRIDE_WORK *work;
 	
 	work = wk;
-#if 0	//fe‚Å—pˆÓ‚µ‚Ä‚¢‚é“]‘—ˆ—‚ğg—p
+#if 0	//feã§ç”¨æ„ã—ã¦ã„ã‚‹è»¢é€å‡¦ç†ã‚’ä½¿ç”¨
 	if( work->vanish_sw == TRUE || rockride->trans_set == FALSE ){
 		return;
 	}
@@ -422,7 +422,7 @@ static void EoaRockRide_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	•Çã‚èƒ|ƒPƒ‚ƒ“EOA_H
+///	å£ä¸Šã‚Šãƒã‚±ãƒ¢ãƒ³EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_RockRide =
 {

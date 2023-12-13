@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_scr.h
- * @brief	ƒtƒƒ“ƒeƒBƒA—pƒXƒNƒŠƒvƒg§Œä‚Ìƒwƒbƒ_
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2007.03.30(‹à)
+ * @date	2007.03.30(é‡‘)
  */
 //==============================================================================
 #ifndef __FRONTIER_SCR_H__
@@ -26,74 +26,74 @@
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///‰¼‘zƒ}ƒVƒ“ŠÔ‚Å‹¤—L‚·‚éƒ[ƒN‚Ì\‘¢‘Ì
+///ä»®æƒ³ãƒžã‚·ãƒ³é–“ã§å…±æœ‰ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®æ§‹é€ ä½“
 typedef struct{
-	u16 work[FSW_WORK_MAX - FSW_PARAM_START];	///<Še‰¼‘zƒ}ƒVƒ“‚ª‹¤—L‚µ‚ÄŽg—p‚·‚éƒ[ƒN
+	u16 work[FSW_WORK_MAX - FSW_PARAM_START];	///<å„ä»®æƒ³ãƒžã‚·ãƒ³ãŒå…±æœ‰ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 }FS_PARAM_WORK;
 
-//ƒXƒNƒŠƒvƒg§Œäƒ[ƒN\‘¢‘Ì
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 struct _FS_SYSTEM{
 	FMAIN_PTR fmain;
 
-	FSS_TASK *fss_task[FSS_TASK_MAX];	///<ƒXƒNƒŠƒvƒg§Œäƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	FS_PARAM_WORK param_work;			///<Še‰¼‘zƒ}ƒVƒ“‚ª‹¤—L‚µ‚ÄŽg—p‚·‚éƒ[ƒN
+	FSS_TASK *fss_task[FSS_TASK_MAX];	///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	FS_PARAM_WORK param_work;			///<å„ä»®æƒ³ãƒžã‚·ãƒ³ãŒå…±æœ‰ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 	
-	int heap_id;						///ƒXƒNƒŠƒvƒg‚ÅŽg—p‚·‚éƒq[ƒvID
+	int heap_id;						///ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
 	u8 seq;								//
 
-	MSGDATA_MANAGER* def_msgman;	// •W€ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	FSS_CODE * def_script;			// ƒ[ƒh‚µ‚½•W€ƒXƒNƒŠƒvƒg
+	MSGDATA_MANAGER* def_msgman;	// æ¨™æº–ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	FSS_CODE * def_script;			// ãƒ­ãƒ¼ãƒ‰ã—ãŸæ¨™æº–ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 
-	WORDSET* wordset;				//’PŒêƒZƒbƒg
-	STRBUF* msg_buf;				//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	STRBUF* tmp_buf;				//ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	u8 msg_talk_index;				///<‰ï˜bƒƒbƒZ[ƒW‚Ì•¶Žš•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX
+	WORDSET* wordset;				//å˜èªžã‚»ãƒƒãƒˆ
+	STRBUF* msg_buf;				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	STRBUF* tmp_buf;				//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	u8 msg_talk_index;				///<ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	s8 fss_task_count;			//’Ç‰Á‚µ‚½‰¼‘zƒ}ƒVƒ“‚Ì”
+	s8 fss_task_count;			//è¿½åŠ ã—ãŸä»®æƒ³ãƒžã‚·ãƒ³ã®æ•°
 
-	u16 def_scene_id;				//ƒƒCƒ“ƒV[ƒ“ID
+	u16 def_scene_id;				//ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ãƒ³ID
 
-	int player_dir;					//ƒCƒxƒ“ƒg‹N“®Žž‚ÌŽålŒö‚ÌŒü‚«
+	int player_dir;					//ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ™‚ã®ä¸»äººå…¬ã®å‘ã
 
-//	u32 magic_no;					//ƒCƒxƒ“ƒg‚Ìƒ[ƒN‚ªƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚©‚ð”»•Ê
-	u8 MsgIndex;					//ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
-	u8 anm_count;					//ƒAƒjƒ[ƒVƒ‡ƒ“‚µ‚Ä‚¢‚é”
-//	u8 common_scr_flag;				//ƒ[ƒJƒ‹E‹¤’ÊƒXƒNƒŠƒvƒgØ‚è‘Ö‚¦ƒtƒ‰ƒO(0=ƒ[ƒJƒ‹A1=‹¤’Ê)
-	u8 win_open_flag;				//‰ï˜bƒEƒBƒ“ƒhƒE‚ðŠJ‚¢‚½‚©ƒtƒ‰ƒO(0=ŠJ‚¢‚Ä‚¢‚È‚¢A1=ŠJ‚¢‚½)
-	BOOL win_flag;					///<í“¬Œ‹‰Ê•ÛŽ—pƒ[ƒN
+//	u32 magic_no;					//ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ¯ãƒ¼ã‚¯ãŒã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã‹ã‚’åˆ¤åˆ¥
+	u8 MsgIndex;					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8 anm_count;					//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã—ã¦ã„ã‚‹æ•°
+//	u8 common_scr_flag;				//ãƒ­ãƒ¼ã‚«ãƒ«ãƒ»å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ©ã‚°(0=ãƒ­ãƒ¼ã‚«ãƒ«ã€1=å…±é€š)
+	u8 win_open_flag;				//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã„ãŸã‹ãƒ•ãƒ©ã‚°(0=é–‹ã„ã¦ã„ãªã„ã€1=é–‹ã„ãŸ)
+	BOOL win_flag;					///<æˆ¦é—˜çµæžœä¿æŒç”¨ãƒ¯ãƒ¼ã‚¯
 
-	//ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE
-	FSEVWIN_PTR ev_win;				//ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒEƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	//ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	FSEVWIN_PTR ev_win;				//ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE
-	GF_BGL_BMPWIN bmpwin_talk;		//ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE(‰ï˜bƒƒbƒZ[ƒW—p)
-	BMPMENU_WORK* mw;				//ƒrƒbƒgƒ}ƒbƒvƒƒjƒ…[ƒ[ƒN
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN bmpwin_talk;		//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦(ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨)
+	BMPMENU_WORK* mw;				//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
 
-//	TARGET_OBJ_PTR target_obj;		//˜b‚µ‚©‚¯‘ÎÛ‚ÌOBJ‚Ìƒ|ƒCƒ“ƒ^
-//	TARGET_OBJ_PTR dummy_obj;		//“§–¾ƒ_ƒ~[OBJ‚Ìƒ|ƒCƒ“ƒ^
+//	TARGET_OBJ_PTR target_obj;		//è©±ã—ã‹ã‘å¯¾è±¡ã®OBJã®ãƒã‚¤ãƒ³ã‚¿
+//	TARGET_OBJ_PTR dummy_obj;		//é€æ˜Žãƒ€ãƒŸãƒ¼OBJã®ãƒã‚¤ãƒ³ã‚¿
 
-	u16* ret_script_wk;				//ƒXƒNƒŠƒvƒgŒ‹‰Ê‚ð‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+	u16* ret_script_wk;				//ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµæžœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
 
-	void * waiticon;				///<‘Ò‹@ƒAƒCƒRƒ“‚Ìƒ|ƒCƒ“ƒ^
+	void * waiticon;				///<å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿
 	
-//	u16 work[EVSCR_WORK_MAX];		//ƒ[ƒN(ANSWORK,TMPWORK‚È‚Ç‚Ì‘ã‚í‚è)
+//	u16 work[EVSCR_WORK_MAX];		//ãƒ¯ãƒ¼ã‚¯(ANSWORK,TMPWORKãªã©ã®ä»£ã‚ã‚Š)
 
-//	fsysFunc next_func;				//ƒXƒNƒŠƒvƒgI—¹Žž‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+//	fsysFunc next_func;				//ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµ‚äº†æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 
-	void * subproc_work;			//ƒTƒuƒvƒƒZƒX‚Æ‚Ì‚â‚è‚Æ‚è‚ÉŽg—p‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	void* pWork;					//ƒ[ƒN‚Ö‚Ì”Ä—pƒ|ƒCƒ“ƒ^
+	void * subproc_work;			//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã¨ã®ã‚„ã‚Šã¨ã‚Šã«ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	void* pWork;					//ãƒ¯ãƒ¼ã‚¯ã¸ã®æ±Žç”¨ãƒã‚¤ãƒ³ã‚¿
 
-//	TCB_PTR player_tcb;				//Ž©‹@Œ`‘ÔƒŒƒ|[ƒgTCB
+//	TCB_PTR player_tcb;				//è‡ªæ©Ÿå½¢æ…‹ãƒ¬ãƒãƒ¼ãƒˆTCB
 
-	GF_BGL_BMPWIN CoinWinDat;		//ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒf[ƒ^
-	GF_BGL_BMPWIN GoldWinDat;		//ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_BMPWIN CoinWinDat;		//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+	GF_BGL_BMPWIN GoldWinDat;		//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_BMPWIN* pParentNameCPWin;//ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒf[ƒ^
-	GF_BGL_BMPWIN* pChildNameCPWin;	//ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_BMPWIN* pParentNameCPWin;//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+	GF_BGL_BMPWIN* pChildNameCPWin;	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-//	REPORT_INFO * riw;				///<ƒŒƒ|[ƒgî•ñ—pƒEƒBƒ“ƒhƒE§Œäƒ[ƒN
+//	REPORT_INFO * riw;				///<ãƒ¬ãƒãƒ¼ãƒˆæƒ…å ±ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 
 	u16 save_seq0;
 	u16 save_seq1;
@@ -103,7 +103,7 @@ struct _FS_SYSTEM{
 };
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern FSS_PTR FSS_SystemCreate(FMAIN_PTR fmain, int heap_id, int scene_id);
 extern BOOL FSS_ScriptMain(FSS_PTR fss);
@@ -114,7 +114,7 @@ extern FS_PARAM_WORK *FSS_ParamWorkBackup(FSS_PTR fss, int heap_id);
 extern void FSS_ParamWorkRecover(FSS_PTR fss, FS_PARAM_WORK *pw);
 
 //--------------------------------------------------------------
-//	ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€Œn‚ªŽg—p‚·‚é‚æ‚¤‚Èƒc[ƒ‹
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ç³»ãŒä½¿ç”¨ã™ã‚‹ã‚ˆã†ãªãƒ„ãƒ¼ãƒ«
 //--------------------------------------------------------------
 extern u16 * FSS_ParamWorkAdrsGet(FSS_PTR fss, int work_no);
 extern FMAP_PTR FSS_GetFMapAdrs(FSS_PTR fss);

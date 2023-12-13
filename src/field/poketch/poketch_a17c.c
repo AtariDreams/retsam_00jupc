@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_a17c.c
- * @bfief	ƒ|ƒPƒbƒ`iƒAƒvƒŠNoa17FƒRƒCƒ“ƒgƒXj@ƒRƒ“ƒgƒ[ƒ‹
+ * @bfief	ãƒã‚±ãƒƒãƒï¼ˆã‚¢ãƒ—ãƒªNoa17ï¼šã‚³ã‚¤ãƒ³ãƒˆã‚¹ï¼‰ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -31,7 +31,7 @@ typedef struct {
 }APPWORK;
 
 //==============================================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //==============================================================
 enum {
 	SEQ_INIT,
@@ -58,7 +58,7 @@ static BOOL check_touch_coin( void );
 
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠ‚Ì§ŒäŠÖ”ƒAƒhƒŒƒX‚ðƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‹‚É“n‚·
+ * ã‚¢ãƒ—ãƒªã®åˆ¶å¾¡é–¢æ•°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«æ¸¡ã™
  */
 //------------------------------------------------------------------
 static void NitroStaticInit(void)
@@ -68,12 +68,12 @@ static void NitroStaticInit(void)
 
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠ‰Šú‰»ŠÖ”
+ * ã‚¢ãƒ—ãƒªåˆæœŸåŒ–é–¢æ•°
  *
- * @param   wk_ptr		ƒ[ƒNƒAƒhƒŒƒX‚ð•Û‘¶‚·‚éƒ|ƒCƒ“ƒ^‚ÌƒAƒhƒŒƒX
- * @param   conwk		ƒAƒvƒŠ‚ª–{‘Ì‚©‚çî•ñ‚ðŽæ“¾‚·‚éÛ‚É•K—v‚Æ‚È‚éƒ[ƒNiƒAƒvƒŠ‚Ö‚Í”ñŒöŠJj
- * @param   bgl			BGLƒ‚ƒWƒ…[ƒ‹ƒwƒbƒ_
- * @param   appNumber	ƒAƒvƒŠƒiƒ“ƒo[
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   conwk		ã‚¢ãƒ—ãƒªãŒæœ¬ä½“ã‹ã‚‰æƒ…å ±ã‚’å–å¾—ã™ã‚‹éš›ã«å¿…è¦ã¨ãªã‚‹ãƒ¯ãƒ¼ã‚¯ï¼ˆã‚¢ãƒ—ãƒªã¸ã¯éžå…¬é–‹ï¼‰
+ * @param   bgl			BGLãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ˜ãƒƒãƒ€
+ * @param   appNumber	ã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 static BOOL Poketch_A17_Init(void **wk_ptr, CONTACT_WORK* conwk, GF_BGL_INI* bgl, u32 appNumber)
@@ -97,9 +97,9 @@ static BOOL Poketch_A17_Init(void **wk_ptr, CONTACT_WORK* conwk, GF_BGL_INI* bgl
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‚ÌƒZƒbƒgƒAƒbƒv
+ * ãƒ¯ãƒ¼ã‚¯ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -125,9 +125,9 @@ static BOOL SetupWork( APPWORK *wk, CONTACT_WORK* conwk, GF_BGL_INI* bgl, u32 ap
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‚ÌƒNƒŠ[ƒ“ƒAƒbƒv
+ * ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒƒãƒ—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -140,9 +140,9 @@ static void CleanupWork( APPWORK *wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠƒƒCƒ“ŠÖ”
+ * ã‚¢ãƒ—ãƒªãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- * @param   wk_adrs		ƒ[ƒNƒAƒhƒŒƒX
+ * @param   wk_adrs		ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -172,9 +172,9 @@ static void Poketch_A17_Main(TCB_PTR tcb, void *wk_adrs)
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠI—¹ŠÖ”
+ * ã‚¢ãƒ—ãƒªçµ‚äº†é–¢æ•°
  *
- * @param   wk_adrs		ƒ[ƒNƒAƒhƒŒƒX
+ * @param   wk_adrs		ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -185,10 +185,10 @@ static void Poketch_A17_Quit(void *wk_adrs)
 
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒX•ÏX
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		•ÏXŒã‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		å¤‰æ›´å¾Œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
@@ -208,11 +208,11 @@ static void ChangeSeq(APPWORK *wk, u32 seq)
 
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF‰æ–Ê\’z
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šç”»é¢æ§‹ç¯‰
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅƒAƒvƒŠI—¹
+ * @retval  BOOL		TRUEã§ã‚¢ãƒ—ãƒªçµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL SeqInit(APPWORK *wk)
@@ -235,11 +235,11 @@ static BOOL SeqInit(APPWORK *wk)
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF“ü—Í‘Ò‚¿
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šå…¥åŠ›å¾…ã¡
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅƒAƒvƒŠI—¹
+ * @retval  BOOL		TRUEã§ã‚¢ãƒ—ãƒªçµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL SeqIdle(APPWORK *wk)
@@ -251,7 +251,7 @@ static BOOL SeqIdle(APPWORK *wk)
 
 	switch( wk->seq ){
 	case 0:
-		// ƒRƒCƒ“‘¬“x’²®—p
+		// ã‚³ã‚¤ãƒ³é€Ÿåº¦èª¿æ•´ç”¨
 		#if 0
 
 		if(sys.cont & PAD_BUTTON_X)
@@ -302,11 +302,11 @@ static BOOL SeqIdle(APPWORK *wk)
 
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFI—¹ˆ—
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅƒAƒvƒŠI—¹
+ * @retval  BOOL		TRUEã§ã‚¢ãƒ—ãƒªçµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL SeqQuit(APPWORK *wk)
@@ -338,7 +338,7 @@ static BOOL check_touch_coin( void )
 		x = (COIN_DEFAULT_X - x) * (COIN_DEFAULT_X - x);
 		y = (COIN_DEFAULT_Y - y) * (COIN_DEFAULT_Y - y);
 
-		if( (x+y) < (24*24) )	// ‚Æ‚è‚ ‚¦‚¸”¼Œa24dot‚Æ‚µ‚Ä”»’è
+		if( (x+y) < (24*24) )	// ã¨ã‚Šã‚ãˆãšåŠå¾„24dotã¨ã—ã¦åˆ¤å®š
 		{
 			return TRUE;
 		}

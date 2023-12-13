@@ -18,7 +18,7 @@
   add OS_GetTotalOccupiedSize()
 
   Revision 1.15  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.14  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -47,22 +47,22 @@
   fix header comment
 
   Revision 1.6  2004/02/13 10:38:26  yada
-  ARENA‚ğ‚UŒÂ‚©‚ç‚XŒÂ‚É
+  ARENAã‚’ï¼–å€‹ã‹ã‚‰ï¼™å€‹ã«
 
   Revision 1.5  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.4  2004/01/17 06:21:15  yada
-  OSFree ‚Ì define ŠÔˆá‚¦‚Ä‚¢‚½
+  OSFree ã® define é–“é•ãˆã¦ã„ãŸ
 
   Revision 1.3  2004/01/17 04:35:33  yada
-  ƒAƒŠ[ƒiw’è‚Ìinline’è‹`‚ÌC³
+  ã‚¢ãƒªãƒ¼ãƒŠæŒ‡å®šã®inlineå®šç¾©ã®ä¿®æ­£
 
   Revision 1.2  2004/01/17 02:28:38  nishida_kenji
   convert 'inline' to 'static inline' in header files
 
   Revision 1.1  2004/01/07 00:22:19  yada
-  ‰”Å
+  åˆç‰ˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

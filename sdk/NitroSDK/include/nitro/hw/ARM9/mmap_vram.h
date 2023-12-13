@@ -12,7 +12,7 @@
 
   $Log: mmap_vram.h,v $
   Revision 1.9  2005/03/01 01:57:00  yosizaki
-  copyright の年を修正.
+  copyright 縺ｮ蟷ｴ繧剃ｿｮ豁｣.
 
   Revision 1.8  2005/02/28 05:26:27  yosizaki
   do-indent.
@@ -24,7 +24,7 @@
   fix header comment
 
   Revision 1.5  2004/02/17 08:21:29  yada
-  tab整形
+  tab謨ｴ蠖｢
 
   Revision 1.4  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
@@ -33,10 +33,10 @@
   for the 2nd display
 
   Revision 1.2  2003/12/09 08:35:26  yasu
-  メモリマップ周りを刷新
+  繝｡繝｢繝ｪ繝槭ャ繝怜捉繧翫ｒ蛻ｷ譁ｰ
 
   Revision 1.1  2003/12/08 12:26:27  yada
-  初版
+  蛻晉沿
 
 
   $NoKeywords: $

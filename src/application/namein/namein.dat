@@ -1,10 +1,10 @@
-// ã‰æ–Êƒp[ƒcˆÊ’u’è‹`
+// ä¸Šç”»é¢ãƒ‘ãƒ¼ãƒ„ä½ç½®å®šç¾©
 #define MAIN_FRAME_POSX		( 22 )
 #define MAIN_FRAME_POSY		( 56 )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/03
-// •¶ŽšŽíƒ{ƒ^ƒ“‚ð3Ží—Þ‚É•ÏX
+// æ–‡å­—ç¨®ãƒœã‚¿ãƒ³ã‚’3ç¨®é¡žã«å¤‰æ›´
 
 #define FONT_BUTTON_NUM		(3)
 
@@ -22,34 +22,34 @@
 
 #define FUNCBUTTON_FRAME_ACTNO	( 7 )
 
-// ƒJ[ƒ\ƒ‹ˆÊ’u
+// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 #define MAIN_CURSOR_POSX	(  26 )
 #define MAIN_CURSOR_POSY	( 111-20 )
 
-// ƒJ[ƒ\ƒ‹ƒAƒjƒ’è‹`
+// ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡å®šç¾©
 #define NAMEIN_CURSOR_ANM_START	( 39 )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/03
-// •¶ŽšŽíƒ{ƒ^ƒ“‚ð3Ží—Þ‚É•ÏX
-// ƒƒ‚: 3”Ô–Ú‚Ì’l‚ÍA”ñ‘I‘ðŽž‚Ìƒ{ƒ^ƒ“ƒOƒ‰ƒtƒBƒbƒN‚ÌƒZƒ‹”Ô†
+// æ–‡å­—ç¨®ãƒœã‚¿ãƒ³ã‚’3ç¨®é¡žã«å¤‰æ›´
+// ãƒ¡ãƒ¢: 3ç•ªç›®ã®å€¤ã¯ã€éžé¸æŠžæ™‚ã®ãƒœã‚¿ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚»ãƒ«ç•ªå·
 
 static const main_button_info[][4]={
 	{MAIN_BUTTON1_POSX,MAIN_BUTTON_POSY, 3,  1,},// ABC
 	{MAIN_BUTTON2_POSX,MAIN_BUTTON_POSY, 8,  1,},// abc
-	{MAIN_BUTTON3_POSX,MAIN_BUTTON_POSY,13,  1,},// !?ô
-	{0,                200,             18,  1,},// ‹L†
-	{MAIN_BUTTON5_POSX,MAIN_BUTTON_POSY,20,  1,},// ‚ ¨‚Ÿ
-	{MAIN_BUTTON6_POSX,MAIN_BUTTON_POSY,23,  1,},// ‚à‚Ç‚é
-	{MAIN_BUTTON7_POSX,MAIN_BUTTON_POSY,25,  1,},// ‚¨‚í‚é
-	{MAIN_FRAME_POSX,MAIN_FRAME_POSY,   37,  2,},// ƒtƒŒ[ƒ€
-	{MAIN_CURSOR_POSX,MAIN_CURSOR_POSY, NAMEIN_CURSOR_ANM_START,  0,},// ƒJ[ƒ\ƒ‹
+	{MAIN_BUTTON3_POSX,MAIN_BUTTON_POSY,13,  1,},// !?â™ª
+	{0,                200,             18,  1,},// è¨˜å·
+	{MAIN_BUTTON5_POSX,MAIN_BUTTON_POSY,20,  1,},// ã‚â†’ã
+	{MAIN_BUTTON6_POSX,MAIN_BUTTON_POSY,23,  1,},// ã‚‚ã©ã‚‹
+	{MAIN_BUTTON7_POSX,MAIN_BUTTON_POSY,25,  1,},// ãŠã‚ã‚‹
+	{MAIN_FRAME_POSX,MAIN_FRAME_POSY,   37,  2,},// ãƒ•ãƒ¬ãƒ¼ãƒ 
+	{MAIN_CURSOR_POSX,MAIN_CURSOR_POSY, NAMEIN_CURSOR_ANM_START,  0,},// ã‚«ãƒ¼ã‚½ãƒ«
 
 };
 
 // ---------------------------------------------------------------------------
 
-// ‰º‰æ–Ê—pƒ{ƒ^ƒ“ˆÊ’u’è‹`
+// ä¸‹ç”»é¢ç”¨ãƒœã‚¿ãƒ³ä½ç½®å®šç¾©
 #define SUB_BUTTON_POSX			(   3 )
 #define SUB_BUTTON_POSY			( 104 )
 
@@ -66,10 +66,10 @@ static const sub_button_info[][3]={
 };
 
 
-// ‰º‰æ–Êƒ{ƒ^ƒ“‚É‘‚¯‚é•¶Žš—ñ‚ÌÅ‘å”’è‹`
+// ä¸‹ç”»é¢ãƒœã‚¿ãƒ³ã«æ›¸ã‘ã‚‹æ–‡å­—åˆ—ã®æœ€å¤§æ•°å®šç¾©
 #define SUB_BUTTON_STRING_MAX	( 20 )
 
-// •¶Žšƒpƒlƒ‹BMPWIN’è‹`
+// æ–‡å­—ãƒ‘ãƒãƒ«BMPWINå®šç¾©
 
 #define WORDPANEL_WIN_POSX		(  2 )
 #define WORDPANEL_WIN_POSY		(  1 )
@@ -91,20 +91,20 @@ static const sub_button_info[][3]={
 
 //static const u16 ChangeWordStr[] = {ka_,ta_,ti_,wo_, spc_, ka_,e_,ru_,EOM_};
 
-// ‰º‰æ–ÊOBJ•¶ŽšVRAMˆÊ’uOFFSET
+// ä¸‹ç”»é¢OBJæ–‡å­—VRAMä½ç½®OFFSET
 #define SUB_WORD_BUTTON1_OFFSET	( 112 )
 #define SUB_WORD_BUTTON2_OFFSET	(  76 )
 #define SUB_WORD_BUTTON3_OFFSET	(  72 )
 
 
-//‘÷“_E”¼‘÷“_EƒXƒy[ƒX‹L†‚Ì•¶ŽšƒR[ƒhi‚±‚Ìƒ\[ƒX“à‚Ì‚Ý‚ÌƒR[ƒhB0xd001‚Í•¶ŽšƒR[ƒh‚ÆÕ“Ë‚µ‚È‚¢’lj
+//æ¿ç‚¹ãƒ»åŠæ¿ç‚¹ãƒ»ã‚¹ãƒšãƒ¼ã‚¹è¨˜å·ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ï¼ˆã“ã®ã‚½ãƒ¼ã‚¹å†…ã®ã¿ã®ã‚³ãƒ¼ãƒ‰ã€‚0xd001ã¯æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¨è¡çªã—ãªã„å€¤ï¼‰
 #define NAMEIN_CODE				( 0xd001 )
-#define DAKU_					( NAMEIN_CODE   )		///< uhv
-#define HANDAKU_				( NAMEIN_CODE+1 )		///< uKv
-#define SPACE_					( NAMEIN_CODE+2 )		///< u[s]v
-#define SKIP_					( NAMEIN_CODE+3 )		///< •¶Žš–³‚µ
+#define DAKU_					( NAMEIN_CODE   )		///< ã€Œâ€ã€
+#define HANDAKU_				( NAMEIN_CODE+1 )		///< ã€Œã‚œã€
+#define SPACE_					( NAMEIN_CODE+2 )		///< ã€Œ[s]ã€
+#define SKIP_					( NAMEIN_CODE+3 )		///< æ–‡å­—ç„¡ã—
 
-//‹@”\ƒ{ƒ^ƒ“‚ÌƒR[ƒhi‚±‚Ìƒ\[ƒX“à‚Ì‚Ý‚ÌƒR[ƒhB0xe001‚Í•¶ŽšƒR[ƒh‚ÆÕ“Ë‚µ‚È‚¢’lj
+//æ©Ÿèƒ½ãƒœã‚¿ãƒ³ã®ã‚³ãƒ¼ãƒ‰ï¼ˆã“ã®ã‚½ãƒ¼ã‚¹å†…ã®ã¿ã®ã‚³ãƒ¼ãƒ‰ã€‚0xe001ã¯æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¨è¡çªã—ãªã„å€¤ï¼‰
 #define NAMEIN_BUTTON			( 0xe001 )
 #define NAMEIN_HIRA				( NAMEIN_BUTTON+1 )
 #define NAMEIN_KANA				( NAMEIN_BUTTON+2 )
@@ -117,10 +117,10 @@ static const sub_button_info[][3]={
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/03
-// •¶ŽšŽíƒ{ƒ^ƒ“‚ð3Ží—Þ‚É•ÏX
+// æ–‡å­—ç¨®ãƒœã‚¿ãƒ³ã‚’3ç¨®é¡žã«å¤‰æ›´
 
-// •¶Žšƒpƒlƒ‹Åã’i—ñ‚Ìƒ{ƒ^ƒ“”z’uƒe[ƒuƒ‹
-// ‚Ð‚ç‚ª‚ÈEƒJƒ^ƒJƒiEABC‚ÌŽž
+// æ–‡å­—ãƒ‘ãƒãƒ«æœ€ä¸Šæ®µåˆ—ã®ãƒœã‚¿ãƒ³é…ç½®ãƒ†ãƒ¼ãƒ–ãƒ«
+// ã²ã‚‰ãŒãªãƒ»ã‚«ã‚¿ã‚«ãƒŠãƒ»ABCã®æ™‚
 static const u16 str_func_b1[]={ 
 	NAMEIN_HIRA,
 	NAMEIN_HIRA, 
@@ -145,13 +145,13 @@ static const u16 str_func_b1[]={
 
 // ----------------------------------------------------------------------------
 
-// ƒtƒŒƒ“ƒhƒR[ƒh‚ÌŽž
+// ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã®æ™‚
 static const u16 str_func_b3[]={ 
 	SKIP_,SKIP_, SKIP_,SKIP_, SKIP_,SKIP_, SKIP_,SKIP_,
 	NAMEIN_MODORU,NAMEIN_MODORU,NAMEIN_MODORU,NAMEIN_OWARI,NAMEIN_OWARI,};
 
 
-// •¶Žšƒpƒlƒ‹Åã’i—ñ‚Ìƒ{ƒ^ƒ“”z’uƒAƒNƒZƒX—pƒe[ƒuƒ‹
+// æ–‡å­—ãƒ‘ãƒãƒ«æœ€ä¸Šæ®µåˆ—ã®ãƒœã‚¿ãƒ³é…ç½®ã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u16 *str_func_b[]={
 	str_func_b1,
 	str_func_b1,
@@ -163,7 +163,7 @@ static const u16 *str_func_b[]={
 #define FUNC_BUTTON_POS_Y	( 88 - 20 )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/03
-// •¶ŽšŽíƒ{ƒ^ƒ“‚ð3Ží—Þ‚É•ÏX
+// æ–‡å­—ç¨®ãƒœã‚¿ãƒ³ã‚’3ç¨®é¡žã«å¤‰æ›´
 static const u16 func_button_pos_tbl[]={
 	33-8,65-8,97-8,105-8,130-8,166-8,202-4,0,
 };
@@ -171,38 +171,38 @@ static const u16 func_button_pos_tbl[]={
 
 
 static const u8 func_button_appear[]={
-	NAMEIN_CURSOR_ANM_START+1,	// ‚Ð‚ç
-	NAMEIN_CURSOR_ANM_START+1,	// ƒ•ƒi
-	NAMEIN_CURSOR_ANM_START+1,	// ‚`‚a‚b
-	NAMEIN_CURSOR_ANM_START+1,	// ‚«‚²‚¤
-	NAMEIN_CURSOR_ANM_START+2,	// i‚±‚à‚¶j
-	NAMEIN_CURSOR_ANM_START+2,	// ‚à‚Ç‚é
-	NAMEIN_CURSOR_ANM_START+2,	// ‚¨‚í‚é
+	NAMEIN_CURSOR_ANM_START+1,	// ã²ã‚‰
+	NAMEIN_CURSOR_ANM_START+1,	// ãƒµãƒŠ
+	NAMEIN_CURSOR_ANM_START+1,	// ï¼¡ï¼¢ï¼£
+	NAMEIN_CURSOR_ANM_START+1,	// ãã”ã†
+	NAMEIN_CURSOR_ANM_START+2,	// ï¼ˆã“ã‚‚ã˜ï¼‰
+	NAMEIN_CURSOR_ANM_START+2,	// ã‚‚ã©ã‚‹
+	NAMEIN_CURSOR_ANM_START+2,	// ãŠã‚ã‚‹
 };
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/03
-// •¶Žš“ü—Íƒpƒlƒ‹‚ð”¼Šp•¶Žš—p‚ÉØ‚èŠ·‚¦
+// æ–‡å­—å…¥åŠ›ãƒ‘ãƒãƒ«ã‚’åŠè§’æ–‡å­—ç”¨ã«åˆ‡ã‚Šæ›ãˆ
 
 #if (PM_LANG == LANG_JAPAN)
 
-// “ú–{Œê”Å—pƒL[ƒ{[ƒh
+// æ—¥æœ¬èªžç‰ˆç”¨ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰
 
-// ‚Ð‚ç‚ª‚È—ñ
+// ã²ã‚‰ãŒãªåˆ—
 static const u16 str_namein_b01[] = { a_, ka_, sa_, ta_, na_, ha_, ma_, ya_,  ra_, wa_,  aa_, yya_, DAKU_,EOM_,};
 static const u16 str_namein_b02[] = { i_, ki_, si_, ti_, ni_, hi_, mi_, yu_,  ri_, wo_,  ii_, yyu_, HANDAKU_,EOM_,};
 static const u16 str_namein_b03[] = { u_, ku_, su_, tu_, nu_, hu_, mu_, yo_,  ru_, n_,   uu_, yyo_, bou_,EOM_,};
 static const u16 str_namein_b04[] = { e_, ke_, se_, te_, ne_, he_, me_, spc_, re_, spc_, ee_, ttu_, spc_,EOM_,};
 static const u16 str_namein_b05[] = { o_, ko_, so_, to_, no_, ho_, mo_, spc_, ro_, spc_, oo_, spc_, kten_,EOM_,};
 
-// ƒJƒ^ƒJƒi—ñ
+// ã‚«ã‚¿ã‚«ãƒŠåˆ—
 static const u16 str_namein_b11[] = { A_, KA_, SA_, TA_, NA_, HA_, MA_, YA_,  RA_,  WA_, AA_, YYA_,DAKU_,    EOM_};
 static const u16 str_namein_b12[] = { I_, KI_, SI_, TI_, NI_, HI_, MI_, YU_,  RI_,  WO_, II_, YYU_,HANDAKU_, EOM_};
 static const u16 str_namein_b13[] = { U_, KU_, SU_, TU_, NU_, HU_, MU_, YO_,  RU_,  N_,  UU_, YYO_,bou_,     EOM_}; 
 static const u16 str_namein_b14[] = { E_, KE_, SE_, TE_, NE_, HE_, ME_, spc_, RE_, spc_, EE_, TTU_,spc_,     EOM_}; 
 static const u16 str_namein_b15[] = { O_, KO_, SO_, TO_, NO_, HO_, MO_, spc_, RO_, spc_, OO_, spc_,kten_,    EOM_,};
 
-// ƒAƒ‹ƒtƒ@ƒxƒbƒg—ñ
+// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆåˆ—
 static const u16 str_namein_b21[] = {A__,B__,C__,D__,E__,F__,G__,H__,I__,J__,K__,L__,M__,   EOM_};
 static const u16 str_namein_b22[] = {N__,O__,P__,Q__,R__,S__,T__,U__,V__,W__,X__,Y__,Z__,   EOM_};
 static const u16 str_namein_b23[] = {a__,b__,c__,d__,e__,f__,g__,h__,i__,j__,k__,l__,m__,   EOM_};
@@ -211,23 +211,23 @@ static const u16 str_namein_b25[] = {n0_,n1_,n2_,n3_,n4_,n5_,n6_,n7_,n8_,n9_,per
 
 #elif (PM_LANG == LANG_ENGLISH)
 
-// ‰pŒê”Å—pƒL[ƒ{[ƒh
+// è‹±èªžç‰ˆç”¨ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰
 
-// ”¼Šp‘å•¶Žš—ñ
+// åŠè§’å¤§æ–‡å­—åˆ—
 static const u16 str_namein_b01[] = {h_A__, h_B__, h_C__, h_D__, h_E__, h_F__, h_G__, h_H__, h_I__, h_J__, h_spc_, h_comma_, h_period_, EOM_};
 static const u16 str_namein_b02[] = {h_K__, h_L__, h_M__, h_N__, h_O__, h_P__, h_Q__, h_R__, h_S__, h_T__, h_spc_, us_h_quote1_, h_bou_, EOM_};
 static const u16 str_namein_b03[] = {h_U__, h_V__, h_W__, h_X__, h_Y__, h_Z__, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_osu_, h_mesu_, EOM_};
 static const u16 str_namein_b04[] = {h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, EOM_};
 static const u16 str_namein_b05[] = {h_n0_, h_n1_, h_n2_, h_n3_, h_n4_, h_n5_, h_n6_, h_n7_, h_n8_, h_n9_, h_spc_, h_spc_, h_spc_, EOM_};
 
-// ”¼Šp¬•¶Žš—ñ
+// åŠè§’å°æ–‡å­—åˆ—
 static const u16 str_namein_b11[] = {h_a__, h_b__, h_c__, h_d__, h_e__, h_f__, h_g__, h_h__, h_i__, h_j__, h_spc_, h_comma_, h_period_, EOM_};
 static const u16 str_namein_b12[] = {h_k__, h_l__, h_m__, h_n__, h_o__, h_p__, h_q__, h_r__, h_s__, h_t__, h_spc_, us_h_quote1_, h_bou_, EOM_};
 static const u16 str_namein_b13[] = {h_u__, h_v__, h_w__, h_x__, h_y__, h_z__, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_osu_, h_mesu_, EOM_}; 
 static const u16 str_namein_b14[] = {h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, EOM_}; 
 static const u16 str_namein_b15[] = {h_n0_, h_n1_, h_n2_, h_n3_, h_n4_, h_n5_, h_n6_, h_n7_, h_n8_, h_n9_, h_spc_, h_spc_, h_spc_, EOM_};
 
-// ‹L†—ñ
+// è¨˜å·åˆ—
 static const u16 str_namein_b21[] = {h_comma_, h_period_, h_colon_, h_semicolon_, h_gyoe_, h_hate_, h_spc_, h_spc_, h_spc_, h_osu_, h_mesu_, h_spc_, h_spc_, EOM_};
 static const u16 str_namein_b22[] = {us_quote2_, us_quote2d_, us_quote1_, us_h_quote1_, h_MaruKako__, h_MaruKakot__, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, EOM_};
 static const u16 str_namein_b23[] = {h_tenten_, h_nakag_, h_tilda_, h_atmark_, h_sharp_, h_percent_, h_plus_, h_bou_, h_asterisk_, h_sura_, h_equal_, h_spc_, h_spc_, EOM_};
@@ -238,7 +238,7 @@ static const u16 str_namein_b25[] = {h_sun_, h_cloud_, h_rain_, h_snow_, h_org_f
 
 // ----------------------------------------------------------------------------
 
-// ‹L†—ñ
+// è¨˜å·åˆ—
 static const u16 str_namein_b31[] = 
 {   n0_,   n1_,   n2_,     n3_,     n4_, n5_,   n6_,   n7_,     n8_,     n9_, spc_,   gyoe_,    hate_, EOM_, };
 static const u16 str_namein_b32[] = 
@@ -253,10 +253,10 @@ static const u16 str_namein_b35[] =
   
 
 
-// ”Žš‚Ì‚Ý—ñ
+// æ•°å­—ã®ã¿åˆ—
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/03
-// ”Žš‚ð”¼Šp‚É·‚µ‘Ö‚¦
+// æ•°å­—ã‚’åŠè§’ã«å·®ã—æ›¿ãˆ
 static const u16 str_namein_b41[] = {h_n0_,h_n1_,h_n2_, h_n3_,h_n4_,spc_, spc_,spc_,spc_,spc_,spc_, spc_, spc_,spc_,spc_,spc_,spc_,EOM_};
 static const u16 str_namein_b42[] = {h_n5_,h_n6_,h_n7_, h_n8_,h_n9_,spc_, spc_,spc_,spc_,spc_,spc_, spc_, spc_,spc_,spc_,spc_,spc_,EOM_};
 static const u16 str_namein_b43[] = {spc_,spc_,spc_,spc_,spc_, spc_, spc_,spc_,spc_,spc_,spc_, spc_, spc_,spc_,spc_,spc_,spc_,EOM_};
@@ -302,34 +302,34 @@ const u16 *str_nametbl[][5]={
 
 };
 
-#define BIGSMALL_WORD_START	(  0    )	// ¬•¶Žš”äŠr‚ÌŠJŽnˆÊ’u
-#define BIGSMALL_WORD_NUM	( 46    )	// ¬•¶Žš‚Ì”
-#define DAKU_WORD_START		( 42    )	// ‘÷‰¹”äŠr‚ÌŠJŽnˆÊ’u
-#define DAKU_WORD_NUM		( 42+40 )	// ‘÷‰¹‚Ì”
-#define HANDAKU_WORD_START	( 72    )	// ”¼‘÷‰¹”äŠr‚ÌŠJŽnˆÊ’u
-#define HANDAKU_WORD_NUM	( 72+10 )	// ”¼‘÷‰¹‚Ì”
+#define BIGSMALL_WORD_START	(  0    )	// å°æ–‡å­—æ¯”è¼ƒã®é–‹å§‹ä½ç½®
+#define BIGSMALL_WORD_NUM	( 46    )	// å°æ–‡å­—ã®æ•°
+#define DAKU_WORD_START		( 42    )	// æ¿éŸ³æ¯”è¼ƒã®é–‹å§‹ä½ç½®
+#define DAKU_WORD_NUM		( 42+40 )	// æ¿éŸ³ã®æ•°
+#define HANDAKU_WORD_START	( 72    )	// åŠæ¿éŸ³æ¯”è¼ƒã®é–‹å§‹ä½ç½®
+#define HANDAKU_WORD_NUM	( 72+10 )	// åŠæ¿éŸ³ã®æ•°
 
 
-// ‰º‰æ–Êƒ{ƒ^ƒ“—pƒe[ƒuƒ‹i•ÏŠ·•¶ŽšŒó•âƒe[ƒu‚Æ‚à‚¢‚¦‚éj
+// ä¸‹ç”»é¢ãƒœã‚¿ãƒ³ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆå¤‰æ›æ–‡å­—å€™è£œãƒ†ãƒ¼ãƒ–ã¨ã‚‚ã„ãˆã‚‹ï¼‰
 static const u16 convert_tbl[][3]={
 
-	// ¬•¶Žš—ñ
-	{a_,spc_,aa_,},		// ‚ @‚Ÿ
-	{i_,spc_,ii_,},		// ‚¢@‚¡
-	{u_,spc_,uu_,},		// ‚¤@‚£
-	{e_,spc_,ee_,},		// ‚¦@‚¥
-	{o_,spc_,oo_,},		// ‚¨@‚§
-	{A_,spc_,AA_,},		 // ‚ @‚Ÿ
-	{I_,spc_,II_,},      // ‚¢@‚¡
-	{U_,spc_,UU_,},      // ‚¤@‚£
-	{E_,spc_,EE_,},      // ‚¦@‚¥
-	{O_,spc_,OO_,},      // ‚¨@‚§
-	{ya_,spc_,yya_,},	// ‚â@‚á
-	{yu_,spc_,yyu_,},	// ‚ä@‚ã
-	{yo_,spc_,yyo_,},	// ‚æ@‚å
-	{YA_,spc_,YYA_,},    // ‚â@‚á
-	{YU_,spc_,YYU_,},    // ‚ä@‚ã
-	{YO_,spc_,YYO_,},    // ‚æ@‚å
+	// å°æ–‡å­—åˆ—
+	{a_,spc_,aa_,},		// ã‚ã€€ã
+	{i_,spc_,ii_,},		// ã„ã€€ãƒ
+	{u_,spc_,uu_,},		// ã†ã€€ã…
+	{e_,spc_,ee_,},		// ãˆã€€ã‡
+	{o_,spc_,oo_,},		// ãŠã€€ã‰
+	{A_,spc_,AA_,},		 // ã‚ã€€ã
+	{I_,spc_,II_,},      // ã„ã€€ãƒ
+	{U_,spc_,UU_,},      // ã†ã€€ã…
+	{E_,spc_,EE_,},      // ãˆã€€ã‡
+	{O_,spc_,OO_,},      // ãŠã€€ã‰
+	{ya_,spc_,yya_,},	// ã‚„ã€€ã‚ƒ
+	{yu_,spc_,yyu_,},	// ã‚†ã€€ã‚…
+	{yo_,spc_,yyo_,},	// ã‚ˆã€€ã‚‡
+	{YA_,spc_,YYA_,},    // ã‚„ã€€ã‚ƒ
+	{YU_,spc_,YYU_,},    // ã‚†ã€€ã‚…
+	{YO_,spc_,YYO_,},    // ã‚ˆã€€ã‚‡
 	{A__,spc_,a__,},
 	{B__,spc_,b__,},
 	{C__,spc_,c__,},
@@ -357,56 +357,56 @@ static const u16 convert_tbl[][3]={
 	{Y__,spc_,y__,},
 	{Z__,spc_,z__,},
 
-	//‘÷‰¹E¬•¶Žš—ñ
-	{tu_,du_, ttu_,},	// ‚Â‚Ã‚Á		// 44
-	{TU_,DU_, TTU_,},     // ‚Â‚Ã‚Á		// 45
+	//æ¿éŸ³ãƒ»å°æ–‡å­—åˆ—
+	{tu_,du_, ttu_,},	// ã¤ã¥ã£		// 44
+	{TU_,DU_, TTU_,},     // ã¤ã¥ã£		// 45
 
-	// ‘÷‰¹—ñ
-	{ka_,ga_,spc_,},	// ‚©‚ª@
-	{ki_,gi_,spc_,},	// ‚«‚¬@
-	{ku_,gu_,spc_,},	// ‚­‚®@
-	{ke_,ge_,spc_,},	// ‚¯‚°@
-	{ko_,go_,spc_,},	// ‚±‚²@
-	{sa_,za_,spc_,},	// ‚³‚´
-	{si_,zi_,spc_,},	// ‚µ‚¶
-	{su_,zu_,spc_,},	// ‚·‚¸
-	{se_,ze_,spc_,},	// ‚¹‚º
-	{so_,zo_,spc_,},	// ‚»‚¼
-	{ta_,da_,spc_,},	// ‚½‚¾
-	{ti_,di_,spc_,},	// ‚¿‚À
-	{te_,de_,spc_,},	// ‚Ä‚Å
-	{to_,do_,spc_,},	// ‚Æ‚Ç
-	{KA_,GA_,spc_,},     // ‚©‚ª@
-	{KI_,GI_,spc_,},     // ‚«‚¬@
-	{KU_,GU_,spc_,},     // ‚­‚®@
-	{KE_,GE_,spc_,},     // ‚¯‚°@
-	{KO_,GO_,spc_,},     // ‚±‚²@
-	{SA_,ZA_,spc_,},     // ‚³‚´
-	{SI_,ZI_,spc_,},     // ‚µ‚¶
-	{SU_,ZU_,spc_,},     // ‚·‚¸
-	{SE_,ZE_,spc_,},     // ‚¹‚º
-	{SO_,ZO_,spc_,},     // ‚»‚¼
-	{TA_,DA_,spc_,},     // ‚½‚¾
-	{TI_,DI_,spc_,},     // ‚¿‚À
-	{TE_,DE_,spc_,},     // ‚Ä‚Å
-	{TO_,DO_,spc_,},     // ‚Æ‚Ç	
+	// æ¿éŸ³åˆ—
+	{ka_,ga_,spc_,},	// ã‹ãŒã€€
+	{ki_,gi_,spc_,},	// ããŽã€€
+	{ku_,gu_,spc_,},	// ããã€€
+	{ke_,ge_,spc_,},	// ã‘ã’ã€€
+	{ko_,go_,spc_,},	// ã“ã”ã€€
+	{sa_,za_,spc_,},	// ã•ã–
+	{si_,zi_,spc_,},	// ã—ã˜
+	{su_,zu_,spc_,},	// ã™ãš
+	{se_,ze_,spc_,},	// ã›ãœ
+	{so_,zo_,spc_,},	// ããž
+	{ta_,da_,spc_,},	// ãŸã 
+	{ti_,di_,spc_,},	// ã¡ã¢
+	{te_,de_,spc_,},	// ã¦ã§
+	{to_,do_,spc_,},	// ã¨ã©
+	{KA_,GA_,spc_,},     // ã‹ãŒã€€
+	{KI_,GI_,spc_,},     // ããŽã€€
+	{KU_,GU_,spc_,},     // ããã€€
+	{KE_,GE_,spc_,},     // ã‘ã’ã€€
+	{KO_,GO_,spc_,},     // ã“ã”ã€€
+	{SA_,ZA_,spc_,},     // ã•ã–
+	{SI_,ZI_,spc_,},     // ã—ã˜
+	{SU_,ZU_,spc_,},     // ã™ãš
+	{SE_,ZE_,spc_,},     // ã›ãœ
+	{SO_,ZO_,spc_,},     // ããž
+	{TA_,DA_,spc_,},     // ãŸã 
+	{TI_,DI_,spc_,},     // ã¡ã¢
+	{TE_,DE_,spc_,},     // ã¦ã§
+	{TO_,DO_,spc_,},     // ã¨ã©	
 
-	// ‘÷‰¹E”¼‘÷‰¹—ñ
-	{ha_,ba_,pa_,},		// ‚Í‚Î‚Ï	// 74
-	{hi_,bi_,pi_,},		// ‚Ð‚Ñ‚Ò
-	{hu_,bu_,pu_,},		// ‚Ó‚Ô‚Õ
-	{he_,be_,pe_,},		// ‚Ö‚×‚Ø
-	{ho_,bo_,po_,},		// ‚Ù‚Ú‚Û
-	{HA_,BA_,PA_,},      // ‚Í‚Î‚Ï
-	{HI_,BI_,PI_,},      // ‚Ð‚Ñ‚Ò
-	{HU_,BU_,PU_,},      // ‚Ó‚Ô‚Õ
-	{HE_,BE_,PE_,},      // ‚Ö‚×‚Ø
-	{HO_,BO_,PO_,},      // ‚Ù‚Ú‚Û	// 82
+	// æ¿éŸ³ãƒ»åŠæ¿éŸ³åˆ—
+	{ha_,ba_,pa_,},		// ã¯ã°ã±	// 74
+	{hi_,bi_,pi_,},		// ã²ã³ã´
+	{hu_,bu_,pu_,},		// ãµã¶ã·
+	{he_,be_,pe_,},		// ã¸ã¹ãº
+	{ho_,bo_,po_,},		// ã»ã¼ã½
+	{HA_,BA_,PA_,},      // ã¯ã°ã±
+	{HI_,BI_,PI_,},      // ã²ã³ã´
+	{HU_,BU_,PU_,},      // ãµã¶ã·
+	{HE_,BE_,PE_,},      // ã¸ã¹ãº
+	{HO_,BO_,PO_,},      // ã»ã¼ã½	// 82
 
 };
 
 static const u16 extra_daku_tbl[][2]={
-	// ‘÷‰¹
+	// æ¿éŸ³
 	{ttu_,du_},
 	{TTU_,DU_},
 	{pa_,ba_,},
@@ -422,7 +422,7 @@ static const u16 extra_daku_tbl[][2]={
 };
 
 static const u16 extra_handaku_tbl[][2]={
-	// ”¼‘÷‰¹
+	// åŠæ¿éŸ³
 	{ba_,pa_},
 	{bi_,pi_},
 	{bu_,pu_},
@@ -436,15 +436,15 @@ static const u16 extra_handaku_tbl[][2]={
 };
 
 
-// ‰º‰æ–ÊOAMƒLƒƒƒ‰ƒNƒ^[‚ÌVRAM‚Ì‚Ç‚ÌˆÊ’u‚É•¶Žš‚ª“ü‚Á‚Ä‚¢‚é‚©‚ÌƒIƒtƒZƒbƒg
+// ä¸‹ç”»é¢OAMã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®VRAMã®ã©ã®ä½ç½®ã«æ–‡å­—ãŒå…¥ã£ã¦ã„ã‚‹ã‹ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 static const int obj_word_offset[]={
 	SUB_WORD_BUTTON1_OFFSET,
 	SUB_WORD_BUTTON2_OFFSET,
 	SUB_WORD_BUTTON3_OFFSET,
 };
 
-// ‚à‚¤ƒzƒ“ƒg‚ÉŸº–ìŒN‚ª‚»‚¤‚¢‚¤ƒpƒŒƒbƒg”z’u‚É‚µ‚Ä‚¢‚é‚©‚ç‚Ìƒf[ƒ^
-// •¶Žšƒpƒlƒ‹‚Ì”wŒiƒpƒŒƒbƒgŽw’èi‚S–‡•ªj
+// ã‚‚ã†ãƒ›ãƒ³ãƒˆã«æ¸•é‡Žå›ãŒãã†ã„ã†ãƒ‘ãƒ¬ãƒƒãƒˆé…ç½®ã«ã—ã¦ã„ã‚‹ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿
+// æ–‡å­—ãƒ‘ãƒãƒ«ã®èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆæŒ‡å®šï¼ˆï¼”æžšåˆ†ï¼‰
 static const u8 wordpanel_bg_col[4]={
 	4,7,0xd,0xa,
 };
@@ -463,18 +463,18 @@ static const RECT_HIT_TBL sub_button_hittbl[]={
 	{SUB_BUTTON_POSY,SUB_BUTTON_POSY+88,SUB_BUTTON_POSX,SUB_BUTTON_POSX+230},
 //	{SUB_BUTTON2_POSY-8,SUB_BUTTON2_POSY+40+8,SUB_BUTTON2_POSX-32,SUB_BUTTON2_POSX+40+24},
 //	{SUB_BUTTON3_POSY-8,SUB_BUTTON3_POSY+40+8,SUB_BUTTON3_POSX-32,SUB_BUTTON3_POSX+40+32},
-	{RECT_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+	{RECT_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 
-// –¼‘O“ü—Í‚Ìƒ^ƒCƒgƒ‹‚Ì•¶Žš—ñ‚ð’è‹`‚µ‚½ƒe[ƒuƒ‹
+// åå‰å…¥åŠ›ã®ã‚¿ã‚¤ãƒˆãƒ«ã®æ–‡å­—åˆ—ã‚’å®šç¾©ã—ãŸãƒ†ãƒ¼ãƒ–ãƒ«
 static const int NameinTitleStrTable[]={
-	NAMEIN_MSG_TITLEINFO0,		// NAMEIN_MYNAME = 0,	// Ž©•ª‚Ì–¼‘O
-	NAMEIN_MSG_TITLEINFO1,      // NAMEIN_POKEMON,		// ƒ|ƒPƒ‚ƒ“‚Ì–¼‘O
-	NAMEIN_MSG_TITLEINFO2,      // NAMEIN_BOX,			// ƒ{ƒbƒNƒX‚Ì–¼‘O
-	NAMEIN_MSG_TITLEINFO3,      // NAMEIN_RIVALNAME,	// ƒ‰ƒCƒoƒ‹ƒl[ƒ€
-	NAMEIN_MSG_TITLEINFO4,      // NAMEIN_FRIENDCODE,	// ‚Æ‚à‚¾‚¿ƒR[ƒh
-	NAMEIN_MSG_TITLEINFO5,      // NAMEIN_RANDOMGROUP, // —”‚ÌŽíƒOƒ‹[ƒv‚Ì–¼‘O
-	NAMEIN_MSG_TITLEINFO6,      // NAMEIN_STONE,		// Î”è(”z•zj
-	NAMEIN_MSG_TITLEINFO3,      // NAMEIN_FRIENDNAME,  // WIFI‚Æ‚à‚¾‚¿Žè’ ‚É‘‚«ž‚Þ‚Æ‚à‚¾‚¿‚Ì–¼‘O
+	NAMEIN_MSG_TITLEINFO0,		// NAMEIN_MYNAME = 0,	// è‡ªåˆ†ã®åå‰
+	NAMEIN_MSG_TITLEINFO1,      // NAMEIN_POKEMON,		// ãƒã‚±ãƒ¢ãƒ³ã®åå‰
+	NAMEIN_MSG_TITLEINFO2,      // NAMEIN_BOX,			// ãƒœãƒƒã‚¯ã‚¹ã®åå‰
+	NAMEIN_MSG_TITLEINFO3,      // NAMEIN_RIVALNAME,	// ãƒ©ã‚¤ãƒãƒ«ãƒãƒ¼ãƒ 
+	NAMEIN_MSG_TITLEINFO4,      // NAMEIN_FRIENDCODE,	// ã¨ã‚‚ã ã¡ã‚³ãƒ¼ãƒ‰
+	NAMEIN_MSG_TITLEINFO5,      // NAMEIN_RANDOMGROUP, // ä¹±æ•°ã®ç¨®ã‚°ãƒ«ãƒ¼ãƒ—ã®åå‰
+	NAMEIN_MSG_TITLEINFO6,      // NAMEIN_STONE,		// çŸ³ç¢‘(é…å¸ƒï¼‰
+	NAMEIN_MSG_TITLEINFO3,      // NAMEIN_FRIENDNAME,  // WIFIã¨ã‚‚ã ã¡æ‰‹å¸³ã«æ›¸ãè¾¼ã‚€ã¨ã‚‚ã ã¡ã®åå‰
 };

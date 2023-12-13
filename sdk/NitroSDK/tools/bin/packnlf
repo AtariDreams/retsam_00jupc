@@ -61,7 +61,7 @@ function get_new_entry(t)
 {
 	entry = t;
 	
-	# * ‚Ån‚Ü‚éƒGƒ“ƒgƒŠ‚Í‹[—ƒtƒ@ƒCƒ‹‚È‚Ì‚Å•ÏŠ·‚µ‚È‚¢
+	# * ã§å§‹ã¾ã‚‹ã‚¨ãƒ³ãƒˆãƒªã¯æ“¬ä¼¼ãƒ•ã‚¡ã‚¤ãƒ«ãªã®ã§å¤‰æ›ã—ãªã„
 	if (entry ~/^[*]/){
 		return entry;
 	}
@@ -70,14 +70,14 @@ function get_new_entry(t)
 	gsub(/:/,"_",   new_entry);
 	gsub(/\/\//,"/",new_entry);
 	
-	# : ‚ªƒpƒX‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éê‡‚Íâ‘ÎƒpƒX‚Å‚ ‚éD
-	# ‚±‚ê‚Í ":" ¨ "_" ‚Æ‚µ‚Ä‘Š‘ÎƒpƒX‰»‚·‚é
+	# : ãŒãƒ‘ã‚¹ã«å«ã¾ã‚Œã¦ã„ã‚‹å ´åˆã¯çµ¶å¯¾ãƒ‘ã‚¹ã§ã‚ã‚‹ï¼
+	# ã“ã‚Œã¯ ":" â†’ "_" ã¨ã—ã¦ç›¸å¯¾ãƒ‘ã‚¹åŒ–ã™ã‚‹
 	if (entry !~/:/){
 		entry = root"/"entry;
 		gsub(/\/\//,"/",entry);
 	}
 	
-	# ƒtƒ@ƒCƒ‹‚ğƒRƒs[‚·‚é
+	# ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	cmd = "install -D "enquote(entry)" "enquote(arcdir"/"new_entry);
 	system(cmd);
 	
@@ -86,7 +86,7 @@ function get_new_entry(t)
 
 function dequote(t)
 {
-	# "" ‚ğŠO‚·
+	# "" ã‚’å¤–ã™
 	entry = t;
 	sub(/^\"/, "", entry);
 	sub(/\"$/, "", entry);
@@ -95,7 +95,7 @@ function dequote(t)
 
 function enquote(t)
 {
-	# "" ‚ÅˆÍ‚Ş
+	# "" ã§å›²ã‚€
 	entry = "\""t"\"";
 	return entry;
 }

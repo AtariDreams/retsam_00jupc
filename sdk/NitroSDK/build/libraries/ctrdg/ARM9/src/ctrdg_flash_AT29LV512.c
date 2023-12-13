@@ -18,7 +18,7 @@
   small fix
 
   Revision 1.1  2006/04/05 10:48:30  okubata_ryoma
-  AGB�o�b�N�A�b�v���C�u������SDK���^�̂��߂̕ύX
+  AGBバックアップライブラリのSDK収録のための変更
 
 
   $NoKeywords: $
@@ -27,7 +27,7 @@
 #include <nitro.h>
 
 // definition data------------------------------
-/* �f�o�b�O�p */
+/* デバッグ用 */
 //#ifndef   __FLASH_DEBUG
 #define CTRDG_BACKUP_COM_ADR1   (CTRDG_AGB_FLASH_ADR+0x00005555)
 #define CTRDG_BACKUP_COM_ADR2   (CTRDG_AGB_FLASH_ADR+0x00002aaa)
@@ -42,7 +42,7 @@
 
 // extern data----------------------------------
 extern u16 CTRDGi_PollingSR512kCOMMON(u16 phase, u8 *adr, u16 lastData);
-/*�r������*/
+/*排他制御*/
 extern u16 ctrdgi_flash_lock_id;
 extern BOOL ctrdgi_backup_irq;
 
@@ -83,7 +83,7 @@ const CTRDGiFlashTypePlus AT29LV512_lib = {
     CTRDGi_PollingSR512kCOMMON,
     atMaxTime,
     {
-/* �f�o�b�O�p */
+/* デバッグ用 */
 //#ifndef   __FLASH_DEBUG
         0x00010000,                       // ROM size
         {0x00001000, 12, 16, 0},          // sector
@@ -98,16 +98,16 @@ const CTRDGiFlashTypePlus AT29LV512_lib = {
 };
 
 const CTRDGiFlashTypePlus AT29LV512_org = {
-    CTRDGi_WriteFlashSectorAT,         // DataPolling���[�`�����]���̂��ߎg�p�s��
+    CTRDGi_WriteFlashSectorAT,         // DataPollingルーチン未転送のため使用不可
     CTRDGi_EraseFlashChipAT,
-    CTRDGi_EraseFlashSectorAT,         // DataPolling���[�`�����]���̂��ߎg�p�s��
+    CTRDGi_EraseFlashSectorAT,         // DataPollingルーチン未転送のため使用不可
     CTRDGi_WriteFlashSectorAsyncAT,
     CTRDGi_EraseFlashChipAsyncAT,
     CTRDGi_EraseFlashSectorAsyncAT,
     CTRDGi_PollingSR512kCOMMON,
     atMaxTime,
     {
-/* �f�o�b�O�p */
+/* デバッグ用 */
 //#ifndef   __FLASH_DEBUG
         0x00010000,                       // ROM size
         {0x00000080, 7, 512, 0},          // sector
@@ -129,9 +129,9 @@ u32 CTRDGi_EraseFlashChipCoreAT(CTRDGTaskInfo * arg)
     u32     result;
     (void)arg;
 
-    /*�r������i���b�N�j */
+    /*排他制御（ロック） */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*�A�N�Z�X�T�C�N���ݒ� */
+    /*アクセスサイクル設定 */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
 //    *(vu16 *)REG_EXMEMCNT_ADDR=(*(vu16 *)REG_EXMEMCNT_ADDR & 0xfffc)|AT29LV512_org.type.agbWait[0];
@@ -144,7 +144,7 @@ u32 CTRDGi_EraseFlashChipCoreAT(CTRDGTaskInfo * arg)
     *(vu8 *)CTRDG_BACKUP_COM_ADR1 = 0xaa;
     *(vu8 *)CTRDG_BACKUP_COM_ADR2 = 0x55;
     *(vu8 *)CTRDG_BACKUP_COM_ADR1 = 0x10;
-/* �f�o�b�O�p */
+/* デバッグ用 */
 //#ifdef    __FLASH_DEBUG
 //  adr=(u8 *)CTRDG_AGB_FLASH_ADR;
 //  for(i=0;i<AT29LV512_org.type.romSize;i++)
@@ -155,9 +155,9 @@ u32 CTRDGi_EraseFlashChipCoreAT(CTRDGTaskInfo * arg)
     result = CTRDGi_PollingSR(CTRDG_BACKUP_PHASE_CHIP_ERASE, (u8 *)CTRDG_AGB_FLASH_ADR, 0xff);
 //  *(vu16 *)REG_EXMEMCNT_ADDR=(*(vu16 *)REG_EXMEMCNT_ADDR & 0xfffc)| 3;
 
-    /*�A�N�Z�X�T�C�N���ݒ� */
+    /*アクセスサイクル設定 */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*�r������i�A�����b�N�j */
+    /*排他制御（アンロック） */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return result;
@@ -173,19 +173,19 @@ u32 CTRDGi_EraseFlashSectorCoreAT(CTRDGTaskInfo * arg)
     CTRDGTaskInfo p = *arg;
     u16     p_secNo = p.sec_num;
 
-    // ���� DataPolling���[�`���̓]�����s��Ȃ��ƁA�{���[�`���͒P�̂ł�
-    //      �g�p�ł��܂���B
+    // ※※ DataPollingルーチンの転送を行わないと、本ルーチンは単体では
+    //      使用できません。
 
     // calclates target address
     dst = (u8 *)(CTRDG_AGB_FLASH_ADR + (p_secNo << AT29LV512_org.type.sector.shift));
 
-    /*�r������i���b�N�j */
+    /*排他制御（ロック） */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*�A�N�Z�X�T�C�N���ݒ� */
+    /*アクセスサイクル設定 */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
 
-    // ���荞�݂̋֎~
+    // 割り込みの禁止
     shlet_ime = OS_DisableIrq();
 
     // data program
@@ -196,7 +196,7 @@ u32 CTRDGi_EraseFlashSectorCoreAT(CTRDGTaskInfo * arg)
         *dst++ = 0xff;
     dst--;
 
-    // ���荞�݂̍ĊJ
+    // 割り込みの再開
     (void)OS_RestoreIrq(shlet_ime);
 
     // Status check
@@ -204,9 +204,9 @@ u32 CTRDGi_EraseFlashSectorCoreAT(CTRDGTaskInfo * arg)
     if (result)
         result = (u16)((result & 0xff00) | CTRDG_BACKUP_PHASE_SECTOR_ERASE);
 
-    /*�A�N�Z�X�T�C�N���ݒ� */
+    /*アクセスサイクル設定 */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*�r������i�A�����b�N�j */
+    /*排他制御（アンロック） */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return result;
@@ -219,7 +219,7 @@ u32 CTRDGi_EraseFlash4KBCoreAT(CTRDGTaskInfo * arg)
     CTRDGTaskInfo p = *arg;
     u16     l_secNo = p.sec_num;
 
-    /*�p�����[�^�`�F�b�N */
+    /*パラメータチェック */
     if (l_secNo >= FLASH_LOG_SECTOR_COUNT)
         return CTRDG_BACKUP_RESULT_ERROR | CTRDG_BACKUP_PHASE_PARAMETER_CHECK;
 
@@ -255,18 +255,18 @@ u32 CTRDGi_WriteFlashSectorCoreAT(CTRDGTaskInfo * arg)
     u16     p_secNo = p.sec_num;
     u8     *src = p.data;
 
-    // ���� DataPolling���[�`���̓]�����s��Ȃ��ƁA�{���[�`���͒P�̂ł�
-    //      �g�p�ł��܂���B
+    // ※※ DataPollingルーチンの転送を行わないと、本ルーチンは単体では
+    //      使用できません。
 
-    /*�r������i���b�N�j */
+    /*排他制御（ロック） */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*�A�N�Z�X�T�C�N���ݒ� */
+    /*アクセスサイクル設定 */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
 
     // calclates target address
     dst = (u8 *)(CTRDG_AGB_FLASH_ADR + (p_secNo << AT29LV512_org.type.sector.shift));
-    // ���荞�݂̋֎~
+    // 割り込みの禁止
     shlet_ime = OS_DisableIrq();
 
     // data program
@@ -278,7 +278,7 @@ u32 CTRDGi_WriteFlashSectorCoreAT(CTRDGTaskInfo * arg)
         *dst++ = *src++;
     dst--;
     src--;
-    // ���荞�݂̍ĊJ
+    // 割り込みの再開
     (void)OS_RestoreIrq(shlet_ime);
 
     //*(vu16 *)REG_WAITCNT=(*(vu16 *)REG_WAITCNT & 0xfffc)|AT29LV512_org.type.agbWait[0];
@@ -286,9 +286,9 @@ u32 CTRDGi_WriteFlashSectorCoreAT(CTRDGTaskInfo * arg)
     // Status check
     result = CTRDGi_PollingSR(CTRDG_BACKUP_PHASE_PROGRAM, dst, *src);
 
-    /*�A�N�Z�X�T�C�N���ݒ� */
+    /*アクセスサイクル設定 */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*�r������i�A�����b�N�j */
+    /*排他制御（アンロック） */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return result;
@@ -302,7 +302,7 @@ u32 CTRDGi_WriteFlash4KBCoreAT(CTRDGTaskInfo * arg)
     u16     l_secNo = p.sec_num;
     u8     *src = p.data;
 
-    /*�p�����[�^�`�F�b�N */
+    /*パラメータチェック */
     if (l_secNo >= FLASH_LOG_SECTOR_COUNT)
         return CTRDG_BACKUP_RESULT_ERROR | CTRDG_BACKUP_PHASE_PARAMETER_CHECK;
 

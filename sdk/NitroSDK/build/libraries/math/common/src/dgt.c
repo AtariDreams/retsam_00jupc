@@ -18,7 +18,7 @@
   GetDigest -> GetHash
 
   Revision 1.1  2005/04/11 10:35:18  seiki_masashi
-  MATH_CalcMD5, MATH_CalcSHA1 関数の追加
+  MATH_CalcMD5, MATH_CalcSHA1 髢｢謨ｰ縺ｮ霑ｽ蜉
 
 
   $NoKeywords: $
@@ -29,11 +29,11 @@
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcMD5
 
-  Description:  MD5 を計算する。
+  Description:  MD5 繧定ｨ育ｮ励☆繧九�
   
-  Arguments:    digest  MD5 値を格納する場所へのポインタ
-                data    入力データのポインタ
-                dataLength  入力データ長
+  Arguments:    digest  MD5 蛟､繧呈ｼ邏阪☆繧句ｴ謇縺ｸ縺ｮ繝昴う繝ｳ繧ｿ
+                data    蜈･蜉帙ョ繝ｼ繧ｿ縺ｮ繝昴う繝ｳ繧ｿ
+                dataLength  蜈･蜉帙ョ繝ｼ繧ｿ髟ｷ
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -48,11 +48,11 @@ void MATH_CalcMD5(void *digest, const void *data, u32 dataLength)
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcSHA1
 
-  Description:  SHA-1 を計算する。
+  Description:  SHA-1 繧定ｨ育ｮ励☆繧九�
   
-  Arguments:    digest  SHA-1 値を格納する場所へのポインタ
-                data    入力データのポインタ
-                dataLength  入力データ長
+  Arguments:    digest  SHA-1 蛟､繧呈ｼ邏阪☆繧句ｴ謇縺ｸ縺ｮ繝昴う繝ｳ繧ｿ
+                data    蜈･蜉帙ョ繝ｼ繧ｿ縺ｮ繝昴う繝ｳ繧ｿ
+                dataLength  蜈･蜉帙ョ繝ｼ繧ｿ髟ｷ
   
   Returns:      None.
  *---------------------------------------------------------------------------*/

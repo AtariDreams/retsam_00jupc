@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fss_wifi_counter_sub.c
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhƒTƒuFWiFiŽó•t
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚µãƒ–ï¼šWiFiå—ä»˜
  * @author	Satoshi Nohara
  * @date	07.07.31
  */
@@ -50,7 +50,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 FRWIFI_SCRWORK* FrWiFiCounterScr_WorkAlloc( SAVEDATA* savedata );
@@ -67,24 +67,24 @@ static void FrWiFiCounter_PokeStatusWait( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, F
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒGƒŠƒAŠm•Û
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ç¢ºä¿
  *
  * @param	none
  *	
- * –‚©‚È‚ç‚¸ FrWiFiCounterScr_WorkRelease()‚Å—Ìˆæ‚ðŠJ•ú‚·‚é‚±‚Æ
+ * ï¼Šã‹ãªã‚‰ãš FrWiFiCounterScr_WorkRelease()ã§é ˜åŸŸã‚’é–‹æ”¾ã™ã‚‹ã“ã¨
  */
 //--------------------------------------------------------------
 FRWIFI_SCRWORK* FrWiFiCounterScr_WorkAlloc( SAVEDATA* savedata )
 {
-	static FRWIFI_SCRWORK* wk;					//‚ ‚Æ‚ÅŠm”F]]]]]]]]]]]]]]]]]]]]]]]]]
+	static FRWIFI_SCRWORK* wk;					//ã‚ã¨ã§ç¢ºèª]]]]]]]]]]]]]]]]]]]]]]]]]
 
-	sys_PrintHeapFreeSize( HEAPID_WORLD );		//“Á’èƒq[ƒv‚Ìƒƒ‚ƒŠ‹ó‚«—e—Ê‡Œv‚ð•\Ž¦
-	sys_PrintHeapFreeSize( HEAPID_WORLD );		//–¢ŠJ•úƒƒ‚ƒŠ‚Ìî•ñ‚ðƒvƒŠƒ“ƒg
+	sys_PrintHeapFreeSize( HEAPID_WORLD );		//ç‰¹å®šãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªç©ºãå®¹é‡åˆè¨ˆã‚’è¡¨ç¤º
+	sys_PrintHeapFreeSize( HEAPID_WORLD );		//æœªé–‹æ”¾ãƒ¡ãƒ¢ãƒªã®æƒ…å ±ã‚’ãƒ—ãƒªãƒ³ãƒˆ
 
 	wk = sys_AllocMemory( HEAPID_WORLD, sizeof(FRWIFI_SCRWORK) );
 	MI_CpuClear8( wk, sizeof(FRWIFI_SCRWORK) );
 
-	//ƒZ[ƒuƒf[ƒ^Žæ“¾
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	wk->sv = savedata;
 	OS_Printf( "savedata = %d\n", savedata );
 	OS_Printf( "wk->sv = %d\n", wk->sv );
@@ -94,7 +94,7 @@ FRWIFI_SCRWORK* FrWiFiCounterScr_WorkAlloc( SAVEDATA* savedata )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒGƒŠƒAŠJ•ú
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢é–‹æ”¾
  *
  * @param	none
  */
@@ -108,24 +108,24 @@ void FrWiFiCounterScr_WorkFree( FRWIFI_SCRWORK* wk )
 	sys_FreeMemoryEz( wk );
 	wk = NULL;
 
-	sys_PrintHeapFreeSize( HEAPID_WORLD );		//“Á’èƒq[ƒv‚Ìƒƒ‚ƒŠ‹ó‚«—e—Ê‡Œv‚ð•\Ž¦
-	sys_PrintHeapFreeSize( HEAPID_WORLD );		//–¢ŠJ•úƒƒ‚ƒŠ‚Ìî•ñ‚ðƒvƒŠƒ“ƒg
+	sys_PrintHeapFreeSize( HEAPID_WORLD );		//ç‰¹å®šãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªç©ºãå®¹é‡åˆè¨ˆã‚’è¡¨ç¤º
+	sys_PrintHeapFreeSize( HEAPID_WORLD );		//æœªé–‹æ”¾ãƒ¡ãƒ¢ãƒªã®æƒ…å ±ã‚’ãƒ—ãƒªãƒ³ãƒˆ
 	return;
 }
 
 
 //==============================================================================================
 //
-//	’ÊM(CommStart)
+//	é€šä¿¡(CommStart)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—MƒEƒFƒCƒg@
+ * @brief	é€ä¿¡ã‚¦ã‚§ã‚¤ãƒˆã€€
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	type		‘—Mƒ^ƒCƒv
+ * @param	wk			CASTLE_SCRWORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type		é€ä¿¡ã‚¿ã‚¤ãƒ—
  *
  * @retval	none
  */
@@ -136,29 +136,29 @@ BOOL FrWiFiScr_CommSetSendBuf( FRWIFI_SCRWORK* wk, u16 type, u16 param, u16 para
 
 	switch( type ){
 
-	//Ž{Ýƒiƒ“ƒo[
+	//æ–½è¨­ãƒŠãƒ³ãƒãƒ¼
 	case FRONTIER_COMM_SEL:
 		ret = CommFrWiFiCounterSendBufBFNo( wk );
 		break;
 
-	//‚â‚ß‚é
+	//ã‚„ã‚ã‚‹
 	case FRONTIER_COMM_YAMERU:
 		ret = CommFrWiFiCounterSendBufRetireFlag( wk, param );
 		break;
 
-	//‘I‚ñ‚¾ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ð‘—M
+	//é¸ã‚“ã ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’é€ä¿¡
 	case FRONTIER_COMM_MONSNO_ITEMNO:
-		//pos‚Ìtemoti_party‚©‚çpoke‚ðŽæ“¾‚Å‚æ‚¢‚©‚à
+		//posã®temoti_partyã‹ã‚‰pokeã‚’å–å¾—ã§ã‚ˆã„ã‹ã‚‚
 		//monsno1,monsno2,itemno1,itemno2
 		ret = CommFrWiFiCounterSendBufMonsNoItemNo( wk, param, param2 );
 		break;
 
-	//ƒXƒe[ƒW‚Ì‹L˜^‚ðÁ‚µ‚Ä‚æ‚¢‚©
+	//ã‚¹ãƒ†ãƒ¼ã‚¸ã®è¨˜éŒ²ã‚’æ¶ˆã—ã¦ã‚ˆã„ã‹
 	case FRONTIER_COMM_STAGE_RECORD_DEL:
 		ret = CommFrWiFiCounterSendBufStageRecordDel( wk, param );
 		break;
 
-	//ˆø‚«‘±‚«—V‚Ô‚©
+	//å¼•ãç¶šãéŠã¶ã‹
 	case FRONTIER_COMM_GAME_CONTINUE:
 		ret = CommFrWiFiCounterSendBufGameContinue( wk, param );
 		break;
@@ -170,13 +170,13 @@ BOOL FrWiFiScr_CommSetSendBuf( FRWIFI_SCRWORK* wk, u16 type, u16 param, u16 para
 
 //============================================================================================
 //
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆï¼†ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•ƒXƒe[ƒ^ƒX
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆï¼†ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  *
  * @param	tcb
  *
@@ -189,27 +189,27 @@ void FrWiFiCounter_PokeSelect( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, u16 seq )
 
 	switch( seq ){
 
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
 	case FR_WIFI_POKESEL_PLIST_CALL:
 		FrWiFiCounter_PokeListCall( fmain, wk, fsys, HEAPID_WORLD );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹ƒ`ƒFƒbƒN
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†ãƒã‚§ãƒƒã‚¯
 	case FR_WIFI_POKESEL_PLIST_WAIT:
 		FrWiFiCounter_PokeListWait( fmain, wk, fsys, HEAPID_WORLD );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
 	case FR_WIFI_POKESEL_PST_CALL:
 		FrWiFiCounter_PokeStatusCall( fmain, wk, fsys, HEAPID_WORLD );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹ƒ`ƒFƒbƒN
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	case FR_WIFI_POKESEL_PST_WAIT:
 		FrWiFiCounter_PokeStatusWait( fmain, wk, fsys, HEAPID_WORLD );
 		break;
 
-	//I—¹
+	//çµ‚äº†
 	case FR_WIFI_POKESEL_EXIT:
 		return;
 	}
@@ -219,7 +219,7 @@ void FrWiFiCounter_PokeSelect( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, u16 seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒXƒe[ƒW@ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€€ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
  */
 //--------------------------------------------------------------------------------------------
 static void FrWiFiCounter_PokeListCall( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, FIELDSYS_WORK* fsys,int heapID)
@@ -229,7 +229,7 @@ static void FrWiFiCounter_PokeListCall( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, FIE
 	wk->pld = sys_AllocMemory( HEAPID_WORLD, sizeof(PLIST_DATA) );
 	MI_CpuClearFast( wk->pld, sizeof(PLIST_DATA) );
 
-	//PLISTDATA_Create‚Ì’†g‚Æ“¯‚¶
+	//PLISTDATA_Createã®ä¸­èº«ã¨åŒã˜
 	wk->pld->pp			= SaveData_GetTemotiPokemon( wk->sv );
 	wk->pld->myitem		= SaveData_GetMyItem( wk->sv );
 	wk->pld->mailblock	= SaveData_GetMailBlock( wk->sv );
@@ -238,27 +238,27 @@ static void FrWiFiCounter_PokeListCall( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, FIE
 	wk->pld->cfg		= SaveData_GetConfig( wk->sv );
 	OS_Printf( "wk->pld->cfg = %d\n", wk->pld->cfg );
 
-	//ƒ^ƒCƒv‚ÍƒVƒ“ƒOƒ‹ŒÅ’è‚Å‚æ‚³‚»‚¤(Šm”F‚·‚é)
+	//ã‚¿ã‚¤ãƒ—ã¯ã‚·ãƒ³ã‚°ãƒ«å›ºå®šã§ã‚ˆã•ãã†(ç¢ºèªã™ã‚‹)
 	wk->pld->type		= PL_TYPE_SINGLE;
 
 	OS_Printf( "wk->bf_no = %d\n", wk->bf_no );
 
-	//ƒ^ƒ[
+	//ã‚¿ãƒ¯ãƒ¼
 	if( wk->bf_no == FRONTIER_NO_TOWER ){
 		wk->pld->mode = PL_MODE_BATTLE_TOWER;
 		OS_Printf( "wk->pld->mode = PL_MODE_BATTLE_TOWER\n" );
 
-	//ƒXƒe[ƒW
+	//ã‚¹ãƒ†ãƒ¼ã‚¸
 	}else if( wk->bf_no == FRONTIER_NO_STAGE ){
 		wk->pld->mode = PL_MODE_BATTLE_STAGE;
 		OS_Printf( "wk->pld->mode = PL_MODE_BATTLE_STAGE\n" );
 
-	//ƒLƒƒƒbƒXƒ‹
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 	}else if( wk->bf_no == FRONTIER_NO_CASTLE ){
 		wk->pld->mode = PL_MODE_BATTLE_CASTLE;
 		OS_Printf( "wk->pld->mode = PL_MODE_BATTLE_CASTLE\n" );
 
-	//ƒ‹[ƒŒƒbƒg
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 	}else if( wk->bf_no == FRONTIER_NO_ROULETTE ){
 		wk->pld->mode = PL_MODE_BATTLE_ROULETTE;
 		OS_Printf( "wk->pld->mode = PL_MODE_BATTLE_ROULETTE\n" );
@@ -270,30 +270,30 @@ static void FrWiFiCounter_PokeListCall( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, FIE
 	//wk->pld->mode		= wk->mode;
 	wk->pld->fsys		= fsys;
 
-	//ƒJ[ƒ\ƒ‹ˆÊ’u
+	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	wk->pld->ret_sel	= wk->pos;
 
-	//‘I‘ð‚µ‚Ä‚¢‚éˆÊ’u(ƒŠƒXƒg¨ƒXƒe[ƒ^ƒX¨ƒŠƒXƒg‚Åó‘Ô‚ð•œ‹A‚³‚¹‚é)
+	//é¸æŠžã—ã¦ã„ã‚‹ä½ç½®(ãƒªã‚¹ãƒˆâ†’ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹â†’ãƒªã‚¹ãƒˆã§çŠ¶æ…‹ã‚’å¾©å¸°ã•ã›ã‚‹)
 	for( i=0; i < WIFI_COUNTER_ENTRY_POKE_MAX ;i++ ){
 		wk->pld->in_num[i] = wk->sel[i];
 	}
 
 	if( wk->bf_no == FRONTIER_NO_TOWER ){
-		wk->pld->in_min = 2;					//ŽQ‰ÁÅ¬”
-		wk->pld->in_max = 2;					//ŽQ‰ÁÅ‘å”
-		wk->pld->in_lv	= 100;					//(‚ ‚Æ‚ÅLV50‚É§ŒÀ‚³‚ê‚é)
+		wk->pld->in_min = 2;					//å‚åŠ æœ€å°æ•°
+		wk->pld->in_max = 2;					//å‚åŠ æœ€å¤§æ•°
+		wk->pld->in_lv	= 100;					//(ã‚ã¨ã§LV50ã«åˆ¶é™ã•ã‚Œã‚‹)
 	}else if( wk->bf_no == FRONTIER_NO_STAGE ){
-		wk->pld->in_min = 1;					//ŽQ‰ÁÅ¬”
-		wk->pld->in_max = 1;					//ŽQ‰ÁÅ‘å”
-		wk->pld->in_lv	= 30;					//ŽQ‰ÁƒŒƒxƒ‹30-100
+		wk->pld->in_min = 1;					//å‚åŠ æœ€å°æ•°
+		wk->pld->in_max = 1;					//å‚åŠ æœ€å¤§æ•°
+		wk->pld->in_lv	= 30;					//å‚åŠ ãƒ¬ãƒ™ãƒ«30-100
 	}else if( wk->bf_no == FRONTIER_NO_CASTLE ){
-		wk->pld->in_min = 2;					//ŽQ‰ÁÅ¬”
-		wk->pld->in_max = 2;					//ŽQ‰ÁÅ‘å”
-		wk->pld->in_lv	= 100;					//‚ ‚Æ‚ÅLV50‚É§ŒÀ‚³‚ê‚é)
+		wk->pld->in_min = 2;					//å‚åŠ æœ€å°æ•°
+		wk->pld->in_max = 2;					//å‚åŠ æœ€å¤§æ•°
+		wk->pld->in_lv	= 100;					//ã‚ã¨ã§LV50ã«åˆ¶é™ã•ã‚Œã‚‹)
 	}else if( wk->bf_no == FRONTIER_NO_ROULETTE ){
-		wk->pld->in_min = 2;					//ŽQ‰ÁÅ¬”
-		wk->pld->in_max = 2;					//ŽQ‰ÁÅ‘å”
-		wk->pld->in_lv	= 100;					//‚ ‚Æ‚ÅLV50‚É§ŒÀ‚³‚ê‚é)
+		wk->pld->in_min = 2;					//å‚åŠ æœ€å°æ•°
+		wk->pld->in_max = 2;					//å‚åŠ æœ€å¤§æ•°
+		wk->pld->in_lv	= 100;					//ã‚ã¨ã§LV50ã«åˆ¶é™ã•ã‚Œã‚‹)
 	}else{
 		GF_ASSERT(0);
 	}
@@ -307,7 +307,7 @@ static void FrWiFiCounter_PokeListCall( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, FIE
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
  */
 //--------------------------------------------------------------------------------------------
 //static void FrWiFiCounter_PokeListWait( void* parent_work )
@@ -317,27 +317,27 @@ static void FrWiFiCounter_PokeListWait( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, FIE
 	//FRWIFI_SCRWORK* wk = parent_work;
 	//PLIST_DATA* wk = parent_work;
 
-	//ƒf[ƒ^Žæ“¾
+	//ãƒ‡ãƒ¼ã‚¿å–å¾—
 	switch( wk->pld->ret_sel ){
 
-	case PL_SEL_POS_EXIT:					//‚â‚ß‚é(pld‚ÍŠJ•ú‚µ‚Ä‚¢‚È‚¢)
+	case PL_SEL_POS_EXIT:					//ã‚„ã‚ã‚‹(pldã¯é–‹æ”¾ã—ã¦ã„ãªã„)
 		*wk->ret_wk = FR_WIFI_POKESEL_EXIT;
 		wk->next_seq = FR_WIFI_POKESEL_EXIT;
 		return;
 
-	case PL_SEL_POS_ENTER:					//Œˆ’è(pld‚ÍŠJ•ú‚µ‚Ä‚¢‚È‚¢)
+	case PL_SEL_POS_ENTER:					//æ±ºå®š(pldã¯é–‹æ”¾ã—ã¦ã„ãªã„)
 		*wk->ret_wk = FR_WIFI_POKESEL_EXIT;
 		wk->next_seq = FR_WIFI_POKESEL_EXIT;
 		return;
 
-	default:								//‚Â‚æ‚³‚ð‚Ý‚é
+	default:								//ã¤ã‚ˆã•ã‚’ã¿ã‚‹
 		break;
 	}
 
-	//‘I‘ð‚µ‚Ä‚¢‚éó‘Ô‚ðAƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ðŒÄ‚ñ‚¾‚ ‚Æ‚É•œ‹A‚³‚¹‚é‚½‚ß‚É•K—v
-	MI_CpuCopy8( wk->pld->in_num, wk->sel, WIFI_COUNTER_ENTRY_POKE_MAX );//Œ»Ý‘I‚Î‚ê‚Ä‚¢‚époke•Û‘¶
+	//é¸æŠžã—ã¦ã„ã‚‹çŠ¶æ…‹ã‚’ã€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã‚“ã ã‚ã¨ã«å¾©å¸°ã•ã›ã‚‹ãŸã‚ã«å¿…è¦
+	MI_CpuCopy8( wk->pld->in_num, wk->sel, WIFI_COUNTER_ENTRY_POKE_MAX );//ç¾åœ¨é¸ã°ã‚Œã¦ã„ã‚‹pokeä¿å­˜
 
-	//ƒ|ƒWƒVƒ‡ƒ“‚ð•Û‘¶
+	//ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’ä¿å­˜
 	wk->pos = wk->pld->ret_sel;
 
 	sys_FreeMemoryEz(wk->pld);
@@ -349,24 +349,24 @@ static void FrWiFiCounter_PokeListWait( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, FIE
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒXƒe[ƒW@ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
  */
 //--------------------------------------------------------------------------------------------
 static void FrWiFiCounter_PokeStatusCall( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, FIELDSYS_WORK* fsys, int heapID )
 {
 	static const u8 PST_PageTbl[] = {
-		PST_PAGE_INFO,			//uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-		PST_PAGE_MEMO,			//uƒgƒŒ[ƒi[ƒƒ‚v
-		PST_PAGE_PARAM,			//uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-		PST_PAGE_CONDITION,		//uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-		PST_PAGE_B_SKILL,		//u‚½‚½‚©‚¤‚í‚´v
-		PST_PAGE_C_SKILL,		//uƒRƒ“ƒeƒXƒg‚í‚´v
-		PST_PAGE_RIBBON,		//u‚«‚Ë‚ñƒŠƒ{ƒ“v
-		PST_PAGE_RET,			//u‚à‚Ç‚év
+		PST_PAGE_INFO,			//ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+		PST_PAGE_MEMO,			//ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
+		PST_PAGE_PARAM,			//ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+		PST_PAGE_CONDITION,		//ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+		PST_PAGE_B_SKILL,		//ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+		PST_PAGE_C_SKILL,		//ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+		PST_PAGE_RIBBON,		//ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+		PST_PAGE_RET,			//ã€Œã‚‚ã©ã‚‹ã€
 		PST_PAGE_MAX
 	};
 	
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ðŒÄ‚Ño‚·
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã³å‡ºã™
 	wk->psd = sys_AllocMemoryLo( heapID, sizeof(PSTATUS_DATA) );
 	MI_CpuClear8( wk->psd,sizeof(PSTATUS_DATA) );
 
@@ -393,7 +393,7 @@ static void FrWiFiCounter_PokeStatusCall( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, F
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒXƒe[ƒW@ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
+ *	@brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
  */
 //--------------------------------------------------------------------------------------------
 //static void FrWiFiCounter_PokeStatusWait( void* parent_work )
@@ -401,7 +401,7 @@ static void FrWiFiCounter_PokeStatusWait( FMAIN_PTR fmain, FRWIFI_SCRWORK* wk, F
 {
 	//FRWIFI_SCRWORK* wk = parent_work;
 
-	//Ø‚è‘Ö‚¦‚ç‚ê‚½ƒJƒŒƒ“ƒg‚ð•Û‘¶‚·‚é
+	//åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚ŒãŸã‚«ãƒ¬ãƒ³ãƒˆã‚’ä¿å­˜ã™ã‚‹
 	wk->pos = wk->psd->pos;
 
 	sys_FreeMemoryEz( wk->psd );

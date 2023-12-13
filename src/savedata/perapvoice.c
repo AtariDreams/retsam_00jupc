@@ -18,7 +18,7 @@
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	�I�E���|�P�����̐��f�[�^�Z�[�u���[�N�̒�`
+ * @brief	オウムポケモンの声データセーブワークの定義
  */
 //----------------------------------------------------------
 struct PERAPVOICE {
@@ -28,13 +28,13 @@ struct PERAPVOICE {
 
 //============================================================================================
 //
-//	�Z�[�u�f�[�^�V�X�e�����ˑ�����֐�
+//	セーブデータシステムが依存する関数
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	�؃��b�v�̐����[�N�̃T�C�Y�擾
- * @return	int		�T�C�Y�i�o�C�g�P�ʁj
+ * @brief	ぺラップの声ワークのサイズ取得
+ * @return	int		サイズ（バイト単位）
  */
 //----------------------------------------------------------
 int PERAPVOICE_GetWorkSize(void)
@@ -44,8 +44,8 @@ int PERAPVOICE_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	�؃��b�v�̐����[�N�̏�����
- * @param	pv		PERAPVOICE�f�[�^�ւ̃|�C���^
+ * @brief	ぺラップの声ワークの初期化
+ * @param	pv		PERAPVOICEデータへのポインタ
  */
 //----------------------------------------------------------
 void PERAPVOICE_Init(PERAPVOICE * pv)
@@ -59,9 +59,9 @@ void PERAPVOICE_Init(PERAPVOICE * pv)
 
 //----------------------------------------------------------
 /**
- * @brief	�؃��b�v�̐����[�N�̏�����
- * @param	heapID		�������m�ۂ������Ȃ��q�[�v�w��
- * @return	PERAPVOICE	�擾�������[�N�ւ̃|�C���^
+ * @brief	ぺラップの声ワークの初期化
+ * @param	heapID		メモリ確保をおこなうヒープ指定
+ * @return	PERAPVOICE	取得したワークへのポインタ
  */
 //----------------------------------------------------------
 PERAPVOICE * PERAPVOICE_AllocWork(int heapID)
@@ -75,9 +75,9 @@ PERAPVOICE * PERAPVOICE_AllocWork(int heapID)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	�؃��b�v�̐��Z�[�u�f�[�^�̎擾
- * @param	sv		�Z�[�u�f�[�^�ւ̃|�C���^
- * @return	PERAPVOICE�f�[�^�ւ̃|�C���^
+ * @brief	ぺラップの声セーブデータの取得
+ * @param	sv		セーブデータへのポインタ
+ * @return	PERAPVOICEデータへのポインタ
  */
 //----------------------------------------------------------
 PERAPVOICE * SaveData_GetPerapVoice(SAVEDATA * sv)
@@ -92,9 +92,9 @@ PERAPVOICE * SaveData_GetPerapVoice(SAVEDATA * sv)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	���f�[�^�����݂��邩�ǂ����̃`�F�b�N
- * @param	pv		���f�[�^�ւ̃|�C���^
- * @return	BOOL	TRUE�F���݂���AFALSE�F���݂��Ȃ�
+ * @brief	声データが存在するかどうかのチェック
+ * @param	pv		声データへのポインタ
+ * @return	BOOL	TRUE：存在する、FALSE：存在しない
  */
 //----------------------------------------------------------
 BOOL PERAPVOICE_GetExistFlag(const PERAPVOICE * pv)
@@ -104,9 +104,9 @@ BOOL PERAPVOICE_GetExistFlag(const PERAPVOICE * pv)
 
 //==============================================================================
 /**
- * @brief   ���f�[�^�̑��݃t���O�𗎂Ƃ�
+ * @brief   声データの存在フラグを落とす
  *
- * @param   pv		���f�[�^�ւ̃|�C���^
+ * @param   pv		声データへのポインタ
  *
  * @retval  none		
  */
@@ -121,9 +121,9 @@ void PERAPVOICE_ClearExistFlag( PERAPVOICE * pv )
 
 //----------------------------------------------------------
 /**
- * @brief	���f�[�^�̎擾
- * @param	pv		���f�[�^�ւ̃|�C���^
- * @return	���f�[�^�ւ̃|�C���^
+ * @brief	声データの取得
+ * @param	pv		声データへのポインタ
+ * @return	声データへのポインタ
  */
 //----------------------------------------------------------
 const void * PERAPVOICE_GetVoiceData(const PERAPVOICE * pv)
@@ -133,15 +133,15 @@ const void * PERAPVOICE_GetVoiceData(const PERAPVOICE * pv)
 
 //==============================================================================
 /**
- * $brief   ���f�[�^�̓W�J
+ * $brief   声データの展開
  *
- * @param   des		�W�J��
- * @param   src		�y���b�v�{�C�X�̃|�C���^
+ * @param   des		展開先
+ * @param   src		ペラップボイスのポインタ
  *
  * @retval  none		
  *
- * 06/04/15���_�ł̓y���b�v�{�C�X��4bit,2khz,1�b�T���v�����O=1k
- * ���̃f�[�^��8bit�ɐL�΂���2k�ɂ��Ċi�[����
+ * 06/04/15時点ではペラップボイスは4bit,2khz,1秒サンプリング=1k
+ * このデータを8bitに伸ばして2kにして格納する
  */
 //==============================================================================
 void PERAPVOICE_ExpandVoiceData( s8 *des, const s8 *src )
@@ -150,7 +150,7 @@ void PERAPVOICE_ExpandVoiceData( s8 *des, const s8 *src )
 	s8 tmp;
 	u8 dat;
 
-	// 4bit1kbyte��8bit2kbyte�ɐL�΂�
+	// 4bit1kbyteを8bit2kbyteに伸ばす
 	for(i=0;i<PERAPVOICE_LENGTH;i++){
 		dat = src[i]&0x0f;
 		tmp = dat-8;
@@ -170,12 +170,12 @@ void PERAPVOICE_ExpandVoiceData( s8 *des, const s8 *src )
 
 //----------------------------------------------------------
 /**
- * @brief	���f�[�^�̃Z�b�g
- * @param	pv		���f�[�^�ւ̃|�C���^
- * @param	src		�Z�b�g����f�[�^�ւ̃|�C���^
+ * @brief	声データのセット
+ * @param	pv		声データへのポインタ
+ * @param	src		セットするデータへのポインタ
  *
- * 06/04/15���_�ł̓y���b�v�{�C�X��8bit,2khz,1�b�T���v�����O=2k
- * ���̃f�[�^��4bit�ɏk�߂�1k�ɂ��Ċi�[����
+ * 06/04/15時点ではペラップボイスは8bit,2khz,1秒サンプリング=2k
+ * このデータを4bitに縮めて1kにして格納する
  *
  */
 //----------------------------------------------------------
@@ -185,10 +185,10 @@ void PERAPVOICE_SetVoiceData(PERAPVOICE * pv, const s8 * src)
 	s8 tmp;
 	u8 dat;
 
-	// �i�[�t���O�𗧂Ă�
+	// 格納フラグを立てる
 	pv->exist_flag = TRUE;
 
-	// 2khz8bit��4bit�ɂ��Ċi�[
+	// 2khz8bitを4bitにして格納
 	count = 0;
 	for(i=0;i<PERAPVOICE_LENGTH*2;i+=2){
 		tmp = (src[i]/16);
@@ -212,10 +212,10 @@ void PERAPVOICE_SetVoiceData(PERAPVOICE * pv, const s8 * src)
 
 //==============================================================================
 /**
- * $brief   ���f�[�^�̃R�s�[
+ * $brief   声データのコピー
  *
- * @param   des		�R�s�[�携�f�[�^�̃|�C���^
- * @param   src		�R�s�[�����f�[�^�̃|�C���^
+ * @param   des		コピー先声データのポインタ
+ * @param   src		コピー元声データのポインタ
  *
  * @retval  none	
  */

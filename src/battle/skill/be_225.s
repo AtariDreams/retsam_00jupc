@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_225.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			225�@�R�^�[���̊ԁA�����̏�ɂ���|�P�����̑f�������Q�{�ɂ���B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			225　３ターンの間、自分の場にいるポケモンの素早さを２倍にする。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14

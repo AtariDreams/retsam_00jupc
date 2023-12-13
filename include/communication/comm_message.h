@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_message.h
- * @brief	’ÊM—p ƒƒbƒZ[ƒW‚ğŠÈ’P‚Éˆµ‚¤‚½‚ß‚ÌƒNƒ‰ƒX
+ * @brief	é€šä¿¡ç”¨ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ç°¡å˜ã«æ‰±ã†ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  * @author	k.ohno
  * @date    2006.02.05
  */
@@ -13,13 +13,13 @@
 #include "gflib/bg_system.h" //GF_BGL_INI
 
 
-/// ’ÊMƒGƒ‰[—pƒEƒCƒ“ƒhƒE‚ğo‚·
+/// é€šä¿¡ã‚¨ãƒ©ãƒ¼ç”¨ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
 extern void CommErrorMessageStart(int heapID, GF_BGL_INI* bgl);
 
-/// ’ÊMƒGƒ‰[‚ğŒŸ¸‚µ‚Ä‚¢‚ÄƒGƒ‰[‚É‚È‚é‚Æ~‚Ü‚é
+/// é€šä¿¡ã‚¨ãƒ©ãƒ¼ã‚’æ¤œæŸ»ã—ã¦ã„ã¦ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã¨æ­¢ã¾ã‚‹
 extern void CommErrorCheck(int heapID, GF_BGL_INI* bgl);
 
-/// ’ÊMƒGƒ‰[‚ğŒŸ¸‚µ‚Ä‚¢‚ÄƒGƒ‰[‚É‚È‚é‚Æ~‚Ü‚é
+/// é€šä¿¡ã‚¨ãƒ©ãƒ¼ã‚’æ¤œæŸ»ã—ã¦ã„ã¦ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã¨æ­¢ã¾ã‚‹
 extern void CommErrorDispCheck(int heapID);
 
 

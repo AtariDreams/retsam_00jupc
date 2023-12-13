@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	eoa.h
- * @brief	ÉGÉtÉFÉNÉgÉIÉuÉWÉFÉNÉgÉAÉNÉ^Å[
+ * @brief	„Ç®„Éï„Çß„ÇØ„Éà„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„Ç¢„ÇØ„Çø„Éº
  * @author	kagaya
  * @data	05.07.13
  */
@@ -12,8 +12,8 @@
 //==============================================================================
 //	define
 //==============================================================================
-//#define EOA_LOCAL_WORK_SIZE (128)						///<EOAÉçÅ[ÉJÉãÉèÅ[ÉNÉTÉCÉY(byte
-#define EOA_LOCAL_WORK_SIZE (160)						///<EOAÉçÅ[ÉJÉãÉèÅ[ÉNÉTÉCÉY(byte
+//#define EOA_LOCAL_WORK_SIZE (128)						///<EOA„É≠„Éº„Ç´„É´„ÉØ„Éº„ÇØ„Çµ„Ç§„Ç∫(byte
+#define EOA_LOCAL_WORK_SIZE (160)						///<EOA„É≠„Éº„Ç´„É´„ÉØ„Éº„ÇØ„Çµ„Ç§„Ç∫(byte
 
 //==============================================================================
 //	typedef struct
@@ -39,48 +39,48 @@ typedef struct _TAG_EOA * EOA_PTR;
 typedef struct _TAG_EOA const * CONST_EOA_PTR;
 
 //--------------------------------------------------------------
-//	EOAêÍópä÷êîå^
+//	EOAÂ∞ÇÁî®Èñ¢Êï∞Âûã
 //--------------------------------------------------------------
-typedef int (*EOA_PROC_INIT)( EOA_PTR, void * );			///<èâä˙âªä÷êî
-typedef void (*EOA_PROC_DEL)( EOA_PTR, void * );			///<çÌèúä÷êî
-typedef void (*EOA_PROC_MOVE)( EOA_PTR, void * );			///<ìÆçÏä÷êî
-typedef void (*EOA_PROC_DRAW)( EOA_PTR, void * );			///<ï`âÊä÷êî
-typedef void (*EOA_PROC_PUSH)( EOA_PTR, void * );			///<ëﬁîä÷êî
-typedef void (*EOA_PROC_POP)( EOA_PTR, void * );			///<ïúãAä÷êî
+typedef int (*EOA_PROC_INIT)( EOA_PTR, void * );			///<ÂàùÊúüÂåñÈñ¢Êï∞
+typedef void (*EOA_PROC_DEL)( EOA_PTR, void * );			///<ÂâäÈô§Èñ¢Êï∞
+typedef void (*EOA_PROC_MOVE)( EOA_PTR, void * );			///<Âãï‰ΩúÈñ¢Êï∞
+typedef void (*EOA_PROC_DRAW)( EOA_PTR, void * );			///<ÊèèÁîªÈñ¢Êï∞
+typedef void (*EOA_PROC_PUSH)( EOA_PTR, void * );			///<ÈÄÄÈÅøÈñ¢Êï∞
+typedef void (*EOA_PROC_POP)( EOA_PTR, void * );			///<Âæ©Â∏∞Èñ¢Êï∞
 
 //--------------------------------------------------------------
-///	EOA_Hç\ë¢ëÃ
+///	EOA_HÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
-	int work_size;	///<ìÆçÏÇ≈ïKóvÇ∆Ç∑ÇÈÉèÅ[ÉNÉTÉCÉY EOA_LOCAL_WORK_SIZEÇí¥Ç¶ÇÈÇ∆ã≠êßèIóπ
-	EOA_PROC_INIT proc_init;	///<èâä˙âªä÷êîÅ@ñﬂÇËílint TRUE=ê≥èÌÇ…èâä˙âª FALSE=èâä˙âªé∏îs
-	EOA_PROC_DEL  proc_del;		///<çÌèúä÷êî
-	EOA_PROC_MOVE proc_move;	///<ìÆçÏä÷êî
-	EOA_PROC_DRAW proc_draw;	///<ï`âÊä÷êî
-	EOA_PROC_PUSH proc_push;	///<ëﬁîä÷êî
-	EOA_PROC_POP  proc_pop;		///<ïúãAä÷êî
+	int work_size;	///<Âãï‰Ωú„ÅßÂøÖË¶Å„Å®„Åô„Çã„ÉØ„Éº„ÇØ„Çµ„Ç§„Ç∫ EOA_LOCAL_WORK_SIZE„ÇíË∂Ö„Åà„Çã„Å®Âº∑Âà∂ÁµÇ‰∫Ü
+	EOA_PROC_INIT proc_init;	///<ÂàùÊúüÂåñÈñ¢Êï∞„ÄÄÊàª„ÇäÂÄ§int TRUE=Ê≠£Â∏∏„Å´ÂàùÊúüÂåñ FALSE=ÂàùÊúüÂåñÂ§±Êïó
+	EOA_PROC_DEL  proc_del;		///<ÂâäÈô§Èñ¢Êï∞
+	EOA_PROC_MOVE proc_move;	///<Âãï‰ΩúÈñ¢Êï∞
+	EOA_PROC_DRAW proc_draw;	///<ÊèèÁîªÈñ¢Êï∞
+	EOA_PROC_PUSH proc_push;	///<ÈÄÄÈÅøÈñ¢Êï∞
+	EOA_PROC_POP  proc_pop;		///<Âæ©Â∏∞Èñ¢Êï∞
 }EOA_H;
 
-#define EOA_H_SIZE (sizeof(EOA_H))	///<EOA_HÉTÉCÉY
+#define EOA_H_SIZE (sizeof(EOA_H))	///<EOA_H„Çµ„Ç§„Ç∫
 
 //--------------------------------------------------------------
-///	EOA_H_NPPç\ë¢ëÃ
-///	EOA_HÇ©ÇÁëﬁîÅAïúãAä÷êîÇÃéwíËÇñ≥Ç≠ÇµÇΩç\ë¢ëÃ
+///	EOA_H_NPPÊßãÈÄ†‰Ωì
+///	EOA_H„Åã„ÇâÈÄÄÈÅø„ÄÅÂæ©Â∏∞Èñ¢Êï∞„ÅÆÊåáÂÆö„ÇíÁÑ°„Åè„Åó„ÅüÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
-	int work_size;	///<ìÆçÏÇ≈ïKóvÇ∆Ç∑ÇÈÉèÅ[ÉNÉTÉCÉY EOA_LOCAL_WORK_SIZEÇí¥Ç¶ÇÈÇ∆ã≠êßèIóπ
-	EOA_PROC_INIT proc_init;	///<èâä˙âªä÷êîÅ@ñﬂÇËílint TRUE=ê≥èÌÇ…èâä˙âª FALSE=èâä˙âªé∏îs
-	EOA_PROC_DEL  proc_del;		///<çÌèúä÷êî
-	EOA_PROC_MOVE proc_move;	///<ìÆçÏä÷êî
-	EOA_PROC_DRAW proc_draw;	///<ï`âÊä÷êî
+	int work_size;	///<Âãï‰Ωú„ÅßÂøÖË¶Å„Å®„Åô„Çã„ÉØ„Éº„ÇØ„Çµ„Ç§„Ç∫ EOA_LOCAL_WORK_SIZE„ÇíË∂Ö„Åà„Çã„Å®Âº∑Âà∂ÁµÇ‰∫Ü
+	EOA_PROC_INIT proc_init;	///<ÂàùÊúüÂåñÈñ¢Êï∞„ÄÄÊàª„ÇäÂÄ§int TRUE=Ê≠£Â∏∏„Å´ÂàùÊúüÂåñ FALSE=ÂàùÊúüÂåñÂ§±Êïó
+	EOA_PROC_DEL  proc_del;		///<ÂâäÈô§Èñ¢Êï∞
+	EOA_PROC_MOVE proc_move;	///<Âãï‰ΩúÈñ¢Êï∞
+	EOA_PROC_DRAW proc_draw;	///<ÊèèÁîªÈñ¢Êï∞
 }EOA_H_NPP;
 
 #define EOA_H_NPP_SIZE (sizeof(EOA_H_NPP))
 
 //==============================================================================
-//	äOïîéQè∆
+//	Â§ñÈÉ®ÂèÇÁÖß
 //==============================================================================
 extern EOA_SYS_PTR EOA_SysInit( int heap_id, int max );
 extern void EOA_SysDelete( EOA_SYS_PTR es );

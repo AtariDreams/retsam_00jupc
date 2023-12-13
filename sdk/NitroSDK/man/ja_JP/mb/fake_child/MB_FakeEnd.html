@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>MB_FakeEnd</TITLE>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MB_FakeEnd</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,24 +22,24 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
-<P>�Ȃ��B</P>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
+<h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>なし。</p>
 
-<H2>����</H2>
-<P><A href="MB_FakeInit.html">MB_FakeInit</A>�֐��ŊJ�n���ꂽ�t�F�C�N�}���`�u�[�g�q�@�Ƃ��Ă̏������I�����܂��B<BR>
+<H2>説明</H2>
+<P><A href="MB_FakeInit.html">MB_FakeInit</A>関数で開始されたフェイクマルチブート子機としての処理を終了します。<BR>
 <BR>
-MB_COMM_CSTATE_BOOTREQ_ACCEPTED�����O�̏�ԂŊ֐����R�[������ƁAMB�e�@�ւ̃G���g���[���L�����Z������܂��B���̎�<A href="MB_FakeSetCStateCallback.html">MB_FakeSetCStateCallback</A>�Őݒ肵���֐���MB_COMM_CSTATE_CANCELED�R�[���o�b�N���ʒm���ꂽ��ɁAMB_COMM_CSTATE_FAKE_END�R�[���o�b�N���ʒm����܂��BMB_COMM_CSTATE_FAKE_END���ʒm���ꂽ���_��<A href="MB_FakeInit.html">MB_FakeInit</A>�֐��Őݒ肵�����[�N�̈���J�����č\���܂���B<BR>
+MB_COMM_CSTATE_BOOTREQ_ACCEPTEDよりも前の状態で関数をコールすると、MB親機へのエントリーがキャンセルされます。この時<A href="MB_FakeSetCStateCallback.html">MB_FakeSetCStateCallback</A>で設定した関数にMB_COMM_CSTATE_CANCELEDコールバックが通知された後に、MB_COMM_CSTATE_FAKE_ENDコールバックが通知されます。MB_COMM_CSTATE_FAKE_ENDが通知された時点で<A href="MB_FakeInit.html">MB_FakeInit</A>関数で設定したワーク領域を開放して構いません。<BR>
 <BR>
-MB_COMM_CSTATE_BOOTREQ_ACCEPTED���ʒm��̏�Ԃł���΁A�e�@�ɑ΂��Đ���Ƀ_�E�����[�h��������������ʒm���܂��B���̎�MB_COMM_CSTATE_BOOT_READY�R�[���o�b�N���ʒm���ꂽ���MB_COMM_CSTATE_FAKE_END���ʒm����܂��BMB_COMM_CSTATE_FAKE_END�R�[���o�b�N���ʒm���ꂽ���_��<A href="MB_FakeInit.html">MB_FakeInit</A>�֐��Őݒ肵�����[�N�̈���J�����č\���܂���B<BR>
+MB_COMM_CSTATE_BOOTREQ_ACCEPTEDが通知後の状態であれば、親機に対して正常にダウンロードが完了した事を通知します。この時MB_COMM_CSTATE_BOOT_READYコールバックが通知された後にMB_COMM_CSTATE_FAKE_ENDが通知されます。MB_COMM_CSTATE_FAKE_ENDコールバックが通知された時点で<A href="MB_FakeInit.html">MB_FakeInit</A>関数で設定したワーク領域を開放して構いません。<BR>
 </p>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="MB_FakeInit.html">MB_FakeInit</A><BR>
 </CODE></P>
-<H2>����</H2>
-<P>2005/03/15 �L�����Z�������ɂ��ċL�q��ǉ�<BR>
-2004/11/25 ����<BR>
+<H2>履歴</H2>
+<P>2005/03/15 キャンセル処理について記述を追加<BR>
+2004/11/25 初版<BR>
 </P>
 </body>
 </html>

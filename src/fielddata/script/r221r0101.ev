@@ -10,12 +10,12 @@
 	.include	"../../field/scr_pokepark.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //#define	POKEPARK_EASY_CLEAR
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r221r0101_flag_change
 _EVENT_DATA		ev_r221r0101_admin
@@ -38,9 +38,9 @@ _EVENT_DATA_END
 /********************************************************************/
 ev_r221r0101_flag_change:
 
-	_FLAG_RESET		SYS_FLAG_BGM_D10	/*ƒ][ƒ“BGM‚ðŽæ“¾‚·‚é‚ÆSEQ_SILENCE_DUNGEON‚É‚È‚é*/
+	_FLAG_RESET		SYS_FLAG_BGM_D10	/*ã‚¾ãƒ¼ãƒ³BGMã‚’å–å¾—ã™ã‚‹ã¨SEQ_SILENCE_DUNGEONã«ãªã‚‹*/
 
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_R221R0101	//“ž’…
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_R221R0101	//åˆ°ç€
 	_IFVAL_JUMP				WK_SCENE_D10R0101,NE,0, ev_r221r0101_flag_change_01
 	_END
 
@@ -52,7 +52,7 @@ ev_r221r0101_flag_change_01:
 
 
 //-----------------------------------------------------------------------------
-//	ƒTƒuƒ‹[ƒ`ƒ“FƒnƒCƒXƒRƒAî•ñƒZƒbƒg
+//	ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ï¼šãƒã‚¤ã‚¹ã‚³ã‚¢æƒ…å ±ã‚»ãƒƒãƒˆ
 //-----------------------------------------------------------------------------
 sub_r221r0101_set_record:
 	_IFVAL_JUMP		WK_SCENE_POKE_PARK,EQ,2000, sub_r221r0101_set_rival_record
@@ -66,21 +66,21 @@ sub_r221r0101_set_rival_record:
 	_RET
 
 /********************************************************************/
-/*							ŠÇ—ŽÒ									*/
+/*							ç®¡ç†è€…									*/
 /********************************************************************/
 ev_r221r0101_admin:
 	_TALK_OBJ_START
 
 	_GET_MY_SEX		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,	ev_r221r0101_admin_01	//’j—pƒƒbƒZ[ƒW
-	_JUMP								ev_r221r0101_admin_02	//——pƒƒbƒZ[ƒW
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,	ev_r221r0101_admin_01	//ç”·ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	_JUMP								ev_r221r0101_admin_02	//å¥³ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
-//’j‚ÌŽq—p
+//ç”·ã®å­ç”¨
 ev_r221r0101_admin_01:
-	//Šù‚É‰ï˜b‚ð‚µ‚Ä‚¢‚é
+	//æ—¢ã«ä¼šè©±ã‚’ã—ã¦ã„ã‚‹
 	_IF_FLAGON_JUMP		FE_P_PARK_ADMIN,ev_r221r0101_admin_10
 
-	//‚P‰ñ‰ï˜b‚µ‚½ó‘Ô
+	//ï¼‘å›žä¼šè©±ã—ãŸçŠ¶æ…‹
 	_FLAG_SET		FE_P_PARK_ADMIN
 
 	_PLAYER_NAME	0
@@ -90,12 +90,12 @@ ev_r221r0101_admin_01:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r221r0101_admin_cancel
 	_END
 
-//—‚ÌŽq—p
+//å¥³ã®å­ç”¨
 ev_r221r0101_admin_02:
-	//Šù‚É‰ï˜b‚ð‚µ‚Ä‚¢‚é
+	//æ—¢ã«ä¼šè©±ã‚’ã—ã¦ã„ã‚‹
 	_IF_FLAGON_JUMP		FE_P_PARK_ADMIN,ev_r221r0101_admin_11
 
-	//‚P‰ñ‰ï˜b‚µ‚½ó‘Ô
+	//ï¼‘å›žä¼šè©±ã—ãŸçŠ¶æ…‹
 	_FLAG_SET		FE_P_PARK_ADMIN
 
 	_PLAYER_NAME	0
@@ -122,13 +122,13 @@ ev_r221r0101_admin_06:
 	_JUMP			ev_r221r0101_admin_explain_menu
 
 
-//à–¾‘I‘ð
+//èª¬æ˜Žé¸æŠž
 ev_r221r0101_admin_explain_menu:
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_p_park_01,0					//‚«‚Ù‚ñƒ‹[ƒ‹
-	_BMPMENU_MAKE_LIST	msg_p_park_02,1					//‚Ù‚©‚­ƒVƒ‡[
-	_BMPMENU_MAKE_LIST	msg_p_park_03,2					//‚ ‚¸‚¯‚©‚½‚P
-	_BMPMENU_MAKE_LIST	msg_p_park_05,4					//‚à‚¤‚í‚©‚Á‚½I
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_p_park_01,0					//ãã»ã‚“ãƒ«ãƒ¼ãƒ«
+	_BMPMENU_MAKE_LIST	msg_p_park_02,1					//ã»ã‹ãã‚·ãƒ§ãƒ¼
+	_BMPMENU_MAKE_LIST	msg_p_park_03,2					//ã‚ãšã‘ã‹ãŸï¼‘
+	_BMPMENU_MAKE_LIST	msg_p_park_05,4					//ã‚‚ã†ã‚ã‹ã£ãŸï¼
 	_BMPMENU_START
 
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,0,ev_r221r0101_admin_04
@@ -136,29 +136,29 @@ ev_r221r0101_admin_explain_menu:
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,2,ev_r221r0101_admin_06
 	_JUMP				ev_r221r0101_admin_ask_entry
 
-//ƒVƒ‡[‚É‚³‚ñ‚©‚·‚éH
+//ã‚·ãƒ§ãƒ¼ã«ã•ã‚“ã‹ã™ã‚‹ï¼Ÿ
 ev_r221r0101_admin_ask_entry:
 	_TALKMSG		msg_r221r0101_admin_08
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r221r0101_admin_cancel		//‚¢‚¢‚¦
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r221r0101_admin_cancel		//ã„ã„ãˆ
 
 
 ev_r221r0101_admin_check_entry:
-	_LDVAL	SCWK_ANSWER,0 //ŠÖ”‘Ò‚¿‚È‚Ì‚ÅƒNƒŠƒA‚µ‚Ä‚¨‚­
+	_LDVAL	SCWK_ANSWER,0 //é–¢æ•°å¾…ã¡ãªã®ã§ã‚¯ãƒªã‚¢ã—ã¦ãŠã
 	_COUNT_MONSBOX_SPACE		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,LT,6, ev_r221r0101_admin_box_full		//ƒ{ƒbƒNƒX‚ª‚¢‚Á‚Ï‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,LT,6, ev_r221r0101_admin_box_full		//ãƒœãƒƒã‚¯ã‚¹ãŒã„ã£ã±ã„
 
-	_LDVAL	SCWK_ANSWER,0 //ŠÖ”‘Ò‚¿‚È‚Ì‚ÅƒNƒŠƒA‚µ‚Ä‚¨‚­
-	//—a‚¯‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”ƒ`ƒFƒbƒN
+	_LDVAL	SCWK_ANSWER,0 //é–¢æ•°å¾…ã¡ãªã®ã§ã‚¯ãƒªã‚¢ã—ã¦ãŠã
+	//é ã‘ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°ãƒã‚§ãƒƒã‚¯
 	_POKEPARK_DEPOSIT_COUNT		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r221r0101_admin_not_enougth		//•K—v‚È”
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r221r0101_admin_not_enougth		//å¿…è¦ãªæ•°
 
 	_GET_MY_SEX		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,	ev_r221r0101_admin_12	//’j—pƒƒbƒZ[ƒW
-	_JUMP								ev_r221r0101_admin_13	//——pƒƒbƒZ[ƒW
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,	ev_r221r0101_admin_12	//ç”·ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	_JUMP								ev_r221r0101_admin_13	//å¥³ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
-//I—¹
-//u‚»‚¤‚©‚ @‚´‚ñ‚Ë‚ñ‚¾‚È‚ 
+//çµ‚äº†
+//ã€Œãã†ã‹ã‚ã€€ã–ã‚“ã­ã‚“ã ãªã‚
 ev_r221r0101_admin_cancel:
 	_TALKMSG		msg_r221r0101_admin_09
 	_LAST_KEYWAIT
@@ -166,24 +166,24 @@ ev_r221r0101_admin_cancel:
 	_TALK_OBJ_END
 	_END
 
-//Šù‚É‰ï˜b‚ð‚µ‚Ä‚¢‚é
+//æ—¢ã«ä¼šè©±ã‚’ã—ã¦ã„ã‚‹
 ev_r221r0101_admin_10:
 	_PLAYER_NAME	0
 	_TALKMSG		msg_r221r0101_admin_10
 	_JUMP			ev_r221r0101_admin_command_menu
 
-//Šù‚É‰ï˜b‚ð‚µ‚Ä‚¢‚é
+//æ—¢ã«ä¼šè©±ã‚’ã—ã¦ã„ã‚‹
 ev_r221r0101_admin_11:
 	_PLAYER_NAME	0
 	_TALKMSG		msg_r221r0101_admin_11
 	_JUMP			ev_r221r0101_admin_command_menu
 
-//‚R‘ðiŽQ‰ÁAà–¾A‚â‚ß‚éj
+//ï¼“æŠžï¼ˆå‚åŠ ã€èª¬æ˜Žã€ã‚„ã‚ã‚‹ï¼‰
 ev_r221r0101_admin_command_menu:
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_p_park_06,0					//‚³‚ñ‚©@‚·‚é
-	_BMPMENU_MAKE_LIST	msg_p_park_07,1					//‚¹‚Â‚ß‚¢‚ð@‚«‚­
-	_BMPMENU_MAKE_LIST	msg_p_park_08,2					//‚â‚ß‚é
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_p_park_06,0					//ã•ã‚“ã‹ã€€ã™ã‚‹
+	_BMPMENU_MAKE_LIST	msg_p_park_07,1					//ã›ã¤ã‚ã„ã‚’ã€€ãã
+	_BMPMENU_MAKE_LIST	msg_p_park_08,2					//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,0,ev_r221r0101_admin_check_entry
@@ -191,7 +191,7 @@ ev_r221r0101_admin_command_menu:
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,2,ev_r221r0101_admin_cancel
 	_JUMP				ev_r221r0101_admin_cancel
 
-//ƒ|ƒPƒp[ƒN‚Ö
+//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã¸
 ev_r221r0101_admin_12:
 	_CALL				sub_r221r0101_set_record
 	_PLAYER_NAME	0
@@ -210,19 +210,19 @@ ev_r221r0101_admin_13:
 //
 ev_r221r0101_go_poke_park:
 
-//ƒQ[ƒg‚ªŠJ‚­@ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhŒÄ‚Ño‚µ
+//ã‚²ãƒ¼ãƒˆãŒé–‹ãã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰å‘¼ã³å‡ºã—
 
-	//ƒQ[ƒg‚Ö
+	//ã‚²ãƒ¼ãƒˆã¸
 	_OBJ_ANIME		R221R0101_ADMIN, anm_r221r0101_admin_01
 	_OBJ_ANIME_WAIT
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r221r0101_player_01
 	_OBJ_ANIME_WAIT
 
-	//ƒ|ƒPƒp[ƒN’†‚Ö
+	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ä¸­ã¸
 
-//ƒ|ƒPƒp[ƒN—pÝ’è
+//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨è¨­å®š
 
-//”ò‚Ñæ‚Í‚ ‚Æ‚ÅŒˆ’è‚³‚ê‚Ü‚·@ˆÈ‰º‚Í“K“–‚Íƒ}ƒbƒv•’l‚Å‚·
+//é£›ã³å…ˆã¯ã‚ã¨ã§æ±ºå®šã•ã‚Œã¾ã™ã€€ä»¥ä¸‹ã¯é©å½“ã¯ãƒžãƒƒãƒ—ï¼†å€¤ã§ã™
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
 	_MAP_CHANGE		ZONE_ID_D10R0101,0,24,47,DIR_UP
 
@@ -235,7 +235,7 @@ ev_r221r0101_go_poke_park:
 	_TALK_OBJ_END
 	_END
 
-//AGB‚©‚ç•K—v‚Èƒ|ƒPƒ‚ƒ“‚ðŽ‚Á‚Ä‚«‚Ä‚¢‚È‚¢
+//AGBã‹ã‚‰å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ã‚’æŒã£ã¦ãã¦ã„ãªã„
 ev_r221r0101_admin_not_enougth:
 	_TALKMSG		msg_r221r0101_admin_14
 	_LAST_KEYWAIT
@@ -243,12 +243,12 @@ ev_r221r0101_admin_not_enougth:
 	_TALK_OBJ_END
 	_END
 
-//à–¾
+//èª¬æ˜Ž
 ev_r221r0101_admin_explain:
 	_TALKMSG		msg_r221r0101_admin_15
 	_JUMP			ev_r221r0101_admin_explain_menu
 
-//ƒ{ƒbƒNƒX‚Ì‹ó‚«‚ª‘«‚è‚È‚¢
+//ãƒœãƒƒã‚¯ã‚¹ã®ç©ºããŒè¶³ã‚Šãªã„
 ev_r221r0101_admin_box_full:
 	_TALKMSG		msg_r221r0101_admin_17
 	_LAST_KEYWAIT
@@ -267,7 +267,7 @@ _ANIME_LABEL	anm_r221r0101_admin_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö@ƒAƒjƒ
+//ä¸»äººå…¬ã€€ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r221r0101_player_01
 	_ANIME_DATA	AC_WALK_U_8F,5
@@ -276,11 +276,11 @@ _ANIME_LABEL	anm_r221r0101_player_01
 
 
 /********************************************************************/
-/*					ŽålŒö‚ªƒp[ƒN‚©‚ç–ß‚Á‚Ä‚­‚éˆ—				*/
+/*					ä¸»äººå…¬ãŒãƒ‘ãƒ¼ã‚¯ã‹ã‚‰æˆ»ã£ã¦ãã‚‹å‡¦ç†				*/
 /********************************************************************/
 ev_r221r0101_retire:
 	_EVENT_START
-	_LDVAL			WK_SCENE_D10R0101, 0		//ƒ|ƒPƒp[ƒNƒQ[ƒ€ó‘ÔƒNƒŠƒA
+	_LDVAL			WK_SCENE_D10R0101, 0		//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã‚²ãƒ¼ãƒ çŠ¶æ…‹ã‚¯ãƒªã‚¢
 
 	//_TIME_WAIT	15,SCWK_ANSWER	/**/
 
@@ -295,7 +295,7 @@ ev_r221r0101_retire:
 
 ev_r221r0101_comeback:
 	_EVENT_START
-	_LDVAL			WK_SCENE_D10R0101, 0		//ƒ|ƒPƒp[ƒNƒQ[ƒ€ó‘ÔƒNƒŠƒA
+	_LDVAL			WK_SCENE_D10R0101, 0		//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã‚²ãƒ¼ãƒ çŠ¶æ…‹ã‚¯ãƒªã‚¢
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r221r0101_player_03
 	_OBJ_ANIME_WAIT
 
@@ -314,7 +314,7 @@ ev_r221r0101_comeback:
 
 	_TALKMSG		msg_r221r0101_admin_20
 
-	/*Ž‚¿•¨‚¢‚Á‚Ï‚¢‚¶‚á‚È‚©‚Á‚½‚çƒAƒCƒeƒ€‚à‚ç‚¤*/
+	/*æŒã¡ç‰©ã„ã£ã±ã„ã˜ã‚ƒãªã‹ã£ãŸã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚‚ã‚‰ã†*/
 	_CALL	ev_r221r0101_get_item
 
 	_JUMP			ev_r221r0101_ask_takemons
@@ -323,15 +323,15 @@ ev_r221r0101_comeback:
 ev_r221r0101_check_rival_record:
 	_TALKMSG		msg_r221r0101_admin_19
 
-	/*Ž‚¿•¨‚¢‚Á‚Ï‚¢‚¶‚á‚È‚©‚Á‚½‚çƒAƒCƒeƒ€‚à‚ç‚¤*/
+	/*æŒã¡ç‰©ã„ã£ã±ã„ã˜ã‚ƒãªã‹ã£ãŸã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚‚ã‚‰ã†*/
 	_CALL	ev_r221r0101_get_item
 
-	/*‹L˜^XV*/
+	/*è¨˜éŒ²æ›´æ–°*/
 	_POKEPARK_GET_SCORE		POKEPARK_SCORE_TOTAL, WK_SCENE_POKE_PARK
 	_JUMP			ev_r221r0101_ask_takemons
 
 
-//ƒ|ƒPƒ‚ƒ“‚ð‚à‚ç‚¤‚©H‚½‚¸‚Ë‚é
+//ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚‚ã‚‰ã†ã‹ï¼ŸãŸãšã­ã‚‹
 ev_r221r0101_ask_takemons:
 	_TALKMSG		msg_r221r0101_admin_21
 	_YES_NO_WIN		SCWK_ANSWER
@@ -349,7 +349,7 @@ ev_r221r0101_not_takemons:
 	_TALK_CLOSE
 	_JUMP			ev_r221r0101_success_exit
 
-//ƒ|ƒPƒ‚ƒ“‚ð‚à‚ç‚¤
+//ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚‚ã‚‰ã†
 ev_r221r0101_takemons:
 	_POKEPARK_TRANS_MONS
 	_TALKMSG		msg_r221r0101_admin_22
@@ -375,7 +375,7 @@ _ANIME_LABEL	anm_r221r0101_admin_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö–ß‚Á‚Ä‚­‚é@ƒAƒjƒ
+//ä¸»äººå…¬æˆ»ã£ã¦ãã‚‹ã€€ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r221r0101_player_02
 	_ANIME_DATA	AC_WALK_D_8F,5
@@ -392,14 +392,14 @@ _ANIME_LABEL	anm_r221r0101_player_04
 		
 
 /********************************************************************/
-/*							—a‚©‚èŒWˆõ								*/
+/*							é ã‹ã‚Šä¿‚å“¡								*/
 /********************************************************************/
 ev_r221r0101_recieve:
 	_EASY_OBJ_MSG	msg_r221r0101_man1_01
 	_END
 
 /********************************************************************/
-/*							­—									*/
+/*							å°‘å¥³									*/
 /********************************************************************/
 ev_r221r0101_girl1:
 	_TALK_OBJ_START
@@ -431,7 +431,7 @@ ev_r221r0101_girl1_03:
 	_END
 
 /********************************************************************/
-/*							’†”N									*/
+/*							ä¸­å¹´									*/
 /********************************************************************/
 ev_r221r0101_middleman1:
 	_PLAYER_NAME	0
@@ -439,21 +439,21 @@ ev_r221r0101_middleman1:
 	_END
 
 /********************************************************************/
-/*							ƒ}ƒjƒA									*/
+/*							ãƒžãƒ‹ã‚¢									*/
 /********************************************************************/
 ev_r221r0101_boy2:
 	_EASY_OBJ_MSG	msg_r221r0101_boy2_01
 	_END
 
 /********************************************************************/
-/*							‚¨Žo‚³‚ñ								*/
+/*							ãŠå§‰ã•ã‚“								*/
 /********************************************************************/
 ev_r221r0101_woman2:
 	_EASY_OBJ_MSG	msg_r221r0101_woman2_01
 	_END
 
 /********************************************************************/
-/*							Â”N									*/
+/*							é’å¹´									*/
 /********************************************************************/
 ev_r221r0101_man1:
 	_CALL				sub_r221r0101_set_record
@@ -461,28 +461,28 @@ ev_r221r0101_man1:
 	_END
 
 /********************************************************************/
-/*						POS(ƒI[ƒLƒh”ŽŽm)							*/
+/*						POS(ã‚ªãƒ¼ã‚­ãƒ‰åšå£«)							*/
 /********************************************************************/
 ev_r221r0101_ookido:
 	_EVENT_START
 
-	//‚±‚ÌƒCƒxƒ“ƒgŒãAƒnƒNƒ^ƒCƒVƒeƒB‚ÉƒI[ƒLƒhoŒ»
+	//ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆå¾Œã€ãƒã‚¯ã‚¿ã‚¤ã‚·ãƒ†ã‚£ã«ã‚ªãƒ¼ã‚­ãƒ‰å‡ºç¾
 	_FLAG_RESET		FV_C04R0601_OOKIDO
-	_LDVAL			WK_SCENE_POKE_PARK,2000		//ƒnƒCƒXƒRƒAÝ’è
+	_LDVAL			WK_SCENE_POKE_PARK,2000		//ãƒã‚¤ã‚¹ã‚³ã‚¢è¨­å®š
 
 	_OBJ_ANIME		R221R0101_OOKIDO,anm_r221r0101_ookido_01
 	_OBJ_ANIME_WAIT
 
 	_GET_MY_SEX		LOCALWORK0
 	_PLAYER_NAME	0
-	_IFVAL_JUMP		LOCALWORK0,EQ,0,	ev_r221r0101_ookido_01_male	//’j—pƒƒbƒZ[ƒW
-	_JUMP								ev_r221r0101_ookido_01_famale	//——pƒƒbƒZ[ƒW
+	_IFVAL_JUMP		LOCALWORK0,EQ,0,	ev_r221r0101_ookido_01_male	//ç”·ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	_JUMP								ev_r221r0101_ookido_01_famale	//å¥³ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
-ev_r221r0101_ookido_01_male:	//’j—pƒƒbƒZ[ƒW
+ev_r221r0101_ookido_01_male:	//ç”·ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	_TALK_KEYWAIT		msg_r221r0101_ookido_01
 	_JUMP			ev_r221r0101_ookido_01_03
 
-ev_r221r0101_ookido_01_famale: //——pƒƒbƒZ[ƒW
+ev_r221r0101_ookido_01_famale: //å¥³ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	_TALK_KEYWAIT		msg_r221r0101_ookido_02
 	_JUMP			ev_r221r0101_ookido_01_03
 
@@ -504,7 +504,7 @@ ev_r221r0101_ookido_01_03:
 
 	_TIME_WAIT		15,SCWK_ANSWER
 
-	//ƒI[ƒLƒh‘Þê
+	//ã‚ªãƒ¼ã‚­ãƒ‰é€€å ´
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r221r0101_player_back
 	_OBJ_ANIME_WAIT
 
@@ -515,35 +515,35 @@ ev_r221r0101_ookido_01_03:
 	_OBJ_DEL		R221R0101_OOKIDO
 	_SE_WAIT		SEQ_SE_DP_KAIDAN2
 
-	//POS–³Œø‰»
+	//POSç„¡åŠ¹åŒ–
 	_LDVAL			WK_SCENE_R221R0101,1
 
 	_EVENT_END
 	_END
 
 //--------------------------------------------------------------------
-//ƒI[ƒLƒh@ƒAƒjƒ
+//ã‚ªãƒ¼ã‚­ãƒ‰ã€€ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------------
-//ƒI[ƒLƒh‹ßŠñ‚é
+//ã‚ªãƒ¼ã‚­ãƒ‰è¿‘å¯„ã‚‹
 _ANIME_LABEL	anm_r221r0101_ookido_01
 	_ANIME_DATA	AC_MARK_GYOE,1
 	_ANIME_DATA	AC_WAIT_8F,1
 	_ANIME_DATA	AC_WALK_D_8F,3
 	_ANIME_DATA	ACMD_END,0
 
-//ƒI[ƒLƒh‚Ñ‚Á‚­‚è
+//ã‚ªãƒ¼ã‚­ãƒ‰ã³ã£ãã‚Š
 _ANIME_LABEL	anm_r221r0101_ookido_gyoe
 	_ANIME_DATA	AC_MARK_GYOE,1
 	_ANIME_DATA	AC_WAIT_8F,1
 	_ANIME_DATA	ACMD_END,0
 
-//ƒI[ƒLƒh‘Þê
+//ã‚ªãƒ¼ã‚­ãƒ‰é€€å ´
 _ANIME_LABEL	anm_r221r0101_ookido_out
 	_ANIME_DATA	AC_WALK_D_8F,1
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
-//ŽålŒö‚ª‘Þ‚­
+//ä¸»äººå…¬ãŒé€€ã
 _ANIME_LABEL	anm_r221r0101_player_back
 	_ANIME_DATA	AC_WALK_R_8F,1
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -551,17 +551,17 @@ _ANIME_LABEL	anm_r221r0101_player_back
 
 
 /********************************************************************/
-/*							ƒ|ƒPƒbƒ`‚ð‚­‚ê‚él						*/
-/*					¦LOCALWORK10Žg—p	‚±‚Ìƒtƒ@ƒCƒ‹“à‚ÅŽg—p‹ÖŽ~	*/
+/*							ãƒã‚±ãƒƒãƒã‚’ãã‚Œã‚‹äºº						*/
+/*					â€»LOCALWORK10ä½¿ç”¨	ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«å†…ã§ä½¿ç”¨ç¦æ­¢	*/
 /********************************************************************/
 ev_r221r0101_poketch:
 	_TALK_OBJ_START
 
-	//ŠeƒAƒvƒŠ‚ð–á‚Á‚½’¼Œã—pƒƒbƒZ[ƒW‚Ö
+	//å„ã‚¢ãƒ—ãƒªã‚’è²°ã£ãŸç›´å¾Œç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¸
 	_IFVAL_JUMP		LOCALWORK10,EQ,1,ev_r221r0101_poketch_08
 	_IFVAL_JUMP		LOCALWORK10,EQ,2,ev_r221r0101_poketch_11
 
-	//‚±‚±‚Å‘SƒAƒvƒŠŽæ“¾Œã‚©ƒ`ƒFƒbƒN
+	//ã“ã“ã§å…¨ã‚¢ãƒ—ãƒªå–å¾—å¾Œã‹ãƒã‚§ãƒƒã‚¯
 	_POKETCH_CHECK	POKETCH_APPID_COLOR_CHANGER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r221r0101_poketch_16
 
@@ -569,13 +569,13 @@ ev_r221r0101_poketch:
 
 	_TALK_KEYWAIT		msg_r221r0101_poketch_02
 
-	//ƒLƒbƒ`ƒ“ƒ^ƒCƒ}[‚ª‚ ‚é‚È‚çAƒJƒ‰[ƒ`ƒFƒ“ƒWƒƒ[’Ç‰Áƒ`ƒFƒbƒN‚Ö
+	//ã‚­ãƒƒãƒãƒ³ã‚¿ã‚¤ãƒžãƒ¼ãŒã‚ã‚‹ãªã‚‰ã€ã‚«ãƒ©ãƒ¼ãƒã‚§ãƒ³ã‚¸ãƒ£ãƒ¼è¿½åŠ ãƒã‚§ãƒƒã‚¯ã¸
 	_POKETCH_CHECK	POKETCH_APPID_KITCHEN_TIMER,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r221r0101_poketch_09
 
 	_TALK_KEYWAIT		msg_r221r0101_poketch_06
 
-	//ƒJƒrƒSƒ“‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ“ã‚´ãƒ³ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_TEMOTI_POKE_CHK	SCWK_ANSWER,MONSNO_KABIGON
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_r221r0101_poketch_15
 
@@ -591,11 +591,11 @@ ev_r221r0101_poketch:
 	_TALK_OBJ_END
 	_END
 
-//ƒJƒ‰[ƒ`ƒFƒ“ƒWƒƒ[’Ç‰Áƒ`ƒFƒbƒN‚Ö
+//ã‚«ãƒ©ãƒ¼ãƒã‚§ãƒ³ã‚¸ãƒ£ãƒ¼è¿½åŠ ãƒã‚§ãƒƒã‚¯ã¸
 ev_r221r0101_poketch_09:
 	_TALK_KEYWAIT		msg_r221r0101_poketch_09
 
-	//ƒJƒNƒŒƒIƒ“‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+	//ã‚«ã‚¯ãƒ¬ã‚ªãƒ³ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_TEMOTI_POKE_CHK	SCWK_ANSWER,MONSNO_KAKUREON
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_r221r0101_poketch_15
 
@@ -611,7 +611,7 @@ ev_r221r0101_poketch_09:
 	_TALK_OBJ_END
 	_END
 
-//ƒAƒvƒŠ‚ð–á‚Á‚½’¼Œã
+//ã‚¢ãƒ—ãƒªã‚’è²°ã£ãŸç›´å¾Œ
 ev_r221r0101_poketch_08:
 	_POKETCH_NAME	0,POKETCH_APPID_KITCHEN_TIMER
 	_TALKMSG		msg_r221r0101_poketch_08
@@ -620,7 +620,7 @@ ev_r221r0101_poketch_08:
 	_TALK_OBJ_END
 	_END
 
-//ƒAƒvƒŠ‚ð–á‚Á‚½’¼Œã
+//ã‚¢ãƒ—ãƒªã‚’è²°ã£ãŸç›´å¾Œ
 ev_r221r0101_poketch_11:
 	_POKETCH_NAME	0,POKETCH_APPID_COLOR_CHANGER
 	_TALKMSG		msg_r221r0101_poketch_11
@@ -629,7 +629,7 @@ ev_r221r0101_poketch_11:
 	_TALK_OBJ_END
 	_END
 
-//ðŒ‚ð–ž‚½‚µ‚Ä‚¢‚È‚¢
+//æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ãªã„
 ev_r221r0101_poketch_15:
 	_TALKMSG		msg_r221r0101_poketch_15
 	_LAST_KEYWAIT
@@ -637,7 +637,7 @@ ev_r221r0101_poketch_15:
 	_TALK_OBJ_END
 	_END
 
-//‚±‚±‚Å‘SƒAƒvƒŠŽæ“¾Œã
+//ã“ã“ã§å…¨ã‚¢ãƒ—ãƒªå–å¾—å¾Œ
 ev_r221r0101_poketch_16:
 	_TALKMSG		msg_r221r0101_poketch_16
 	_LAST_KEYWAIT
@@ -647,31 +647,31 @@ ev_r221r0101_poketch_16:
 
 
 /********************************************************************/
-/*						ƒS[ƒWƒƒƒX‚¨Žo‚³‚ñ							*/
-/*	**** LOCALWORK9‚ðŽg—p‚µ‚Ü‚·@‘¼‚Ì‚Æ‚±‚ë‚Å‚ÌŽg—p‹ÖŽ~ ****		*/
+/*						ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãŠå§‰ã•ã‚“							*/
+/*	**** LOCALWORK9ã‚’ä½¿ç”¨ã—ã¾ã™ã€€ä»–ã®ã¨ã“ã‚ã§ã®ä½¿ç”¨ç¦æ­¢ ****		*/
 /********************************************************************/
 ev_r221r0101_gorggeousw:
 	_TALK_OBJ_START
 
-	// ƒtƒƒA‚ð1“xo‚½‚©ƒ`ƒFƒbƒN
+	// ãƒ•ãƒ­ã‚¢ã‚’1åº¦å‡ºãŸã‹ãƒã‚§ãƒƒã‚¯
 	_IFVAL_JUMP	LOCALWORK9,EQ,1,ev_r221r0101_gorggeousw_end_text
 
-	// ‚³‚³‚Á‚Ä‚¢‚éAGBƒJ[ƒgƒŠƒbƒWƒo[ƒWƒ‡ƒ“Žæ“¾
+	// ã•ã•ã£ã¦ã„ã‚‹AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãƒãƒ¼ã‚¸ãƒ§ãƒ³å–å¾—
 	_AGB_CARTRIDGE_VER_GET SCWK_ANSWER
 
-	// ƒo[ƒWƒ‡ƒ“‚É‚æ‚é•ªŠò
+	// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã‚‹åˆ†å²
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,VERSION_RED,		ev_r221r0101_gorggeousw_abg_red
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,VERSION_GREEN,	ev_r221r0101_gorggeousw_abg_green
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,VERSION_SAPPHIRE,ev_r221r0101_gorggeousw_abg_sapphire
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,VERSION_RUBY,	ev_r221r0101_gorggeousw_abg_ruby
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,VERSION_EMERALD,	ev_r221r0101_gorggeousw_abg_emerald
 
-	// •s–¾‚ÈƒJ[ƒgƒŠƒbƒW”‚ª‹A‚Á‚Ä‚«‚½‚ç
-	// ‰½‚à‚à‚ç‚¦‚È‚¢ƒeƒLƒXƒg
+	// ä¸æ˜Žãªã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸æ•°ãŒå¸°ã£ã¦ããŸã‚‰
+	// ä½•ã‚‚ã‚‚ã‚‰ãˆãªã„ãƒ†ã‚­ã‚¹ãƒˆ
 	_JUMP	ev_r221r0101_gorggeousw_no_item_get
 	_END
 
-/* ‰½‚à‚à‚ç‚¦‚È‚¢ƒeƒLƒXƒg */
+/* ä½•ã‚‚ã‚‚ã‚‰ãˆãªã„ãƒ†ã‚­ã‚¹ãƒˆ */
 ev_r221r0101_gorggeousw_no_item_get:
 	_TALKMSG		msg_r221r0101_gorggeousw_01
 	_LAST_KEYWAIT
@@ -680,7 +680,7 @@ ev_r221r0101_gorggeousw_no_item_get:
 	_TALK_OBJ_END
 	_END
 
-/* ‚»‚Ìƒtƒƒ“à‚Å“üŽèÏ‚Ý */
+/* ãã®ãƒ•ãƒ­ãƒ¯å†…ã§å…¥æ‰‹æ¸ˆã¿ */
 ev_r221r0101_gorggeousw_end_text:
 	_TALKMSG		msg_r221r0101_gorggeousw_07
 	_LAST_KEYWAIT
@@ -688,13 +688,13 @@ ev_r221r0101_gorggeousw_end_text:
 	_TALK_OBJ_END
 	_END
 
-/* ƒtƒ@ƒCƒ„[ƒŒƒbƒh */
+/* ãƒ•ã‚¡ã‚¤ãƒ¤ãƒ¼ãƒ¬ãƒƒãƒ‰ */
 ev_r221r0101_gorggeousw_abg_red:
 
 	_LDVAL	SCWK_TEMP0,IMC_ACCE_CROWN00
 	_LDVAL	SCWK_TEMP1,1
 
-	// ‚·‚Å‚ÉŽæ“¾‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«å–å¾—ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_IMC_ACCE_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,0,ev_r221r0101_gorggeousw_no_item_get
 
@@ -702,13 +702,13 @@ ev_r221r0101_gorggeousw_abg_red:
 	_JUMP	ev_r221r0101_gorggeousw_item_get
 	_END
 
-/* ƒŠ[ƒtƒOƒŠ[ƒ“ */
+/* ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³ */
 ev_r221r0101_gorggeousw_abg_green:
 
 	_LDVAL	SCWK_TEMP0,IMC_ACCE_TIARA00
 	_LDVAL	SCWK_TEMP1,1
 
-	// ‚·‚Å‚ÉŽæ“¾‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«å–å¾—ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_IMC_ACCE_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,0,ev_r221r0101_gorggeousw_no_item_get
 
@@ -716,12 +716,12 @@ ev_r221r0101_gorggeousw_abg_green:
 	_JUMP	ev_r221r0101_gorggeousw_item_get
 	_END
 
-/* ƒTƒtƒ@ƒCƒ„ */
+/* ã‚µãƒ•ã‚¡ã‚¤ãƒ¤ */
 ev_r221r0101_gorggeousw_abg_sapphire:
 
 	_LDVAL	SCWK_TEMP0,IMC_BG_RIGHT_14
 
-	// ‚·‚Å‚ÉŽæ“¾‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«å–å¾—ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_IMC_BG_ITEM_CHK	SCWK_TEMP0,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,1,ev_r221r0101_gorggeousw_no_item_get
 
@@ -729,12 +729,12 @@ ev_r221r0101_gorggeousw_abg_sapphire:
 	_JUMP	ev_r221r0101_gorggeousw_bg_get
 	_END
 
-/* ƒ‹ƒr[ */
+/* ãƒ«ãƒ“ãƒ¼ */
 ev_r221r0101_gorggeousw_abg_ruby:
 
 	_LDVAL	SCWK_TEMP0,IMC_BG_RIGHT_15
 
-	// ‚·‚Å‚ÉŽæ“¾‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«å–å¾—ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_IMC_BG_ITEM_CHK	SCWK_TEMP0,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,1,ev_r221r0101_gorggeousw_no_item_get
 
@@ -742,12 +742,12 @@ ev_r221r0101_gorggeousw_abg_ruby:
 	_JUMP	ev_r221r0101_gorggeousw_bg_get
 	_END
 
-/* ƒGƒƒ‰ƒ‹ƒh */
+/* ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ */
 ev_r221r0101_gorggeousw_abg_emerald:
 
 	_LDVAL	SCWK_TEMP0,IMC_BG_RIGHT_16
 
-	// ‚·‚Å‚ÉŽæ“¾‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«å–å¾—ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_IMC_BG_ITEM_CHK	SCWK_TEMP0,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,1,ev_r221r0101_gorggeousw_no_item_get
 
@@ -755,27 +755,27 @@ ev_r221r0101_gorggeousw_abg_emerald:
 	_JUMP	ev_r221r0101_gorggeousw_bg_get
 	_END
 
-/* ƒAƒNƒZƒTƒŠ“üŽèˆ— */
+/* ã‚¢ã‚¯ã‚»ã‚µãƒªå…¥æ‰‹å‡¦ç† */
 ev_r221r0101_gorggeousw_item_get:
 
-	// ƒAƒNƒZƒTƒŠÝ’èƒCƒxƒ“ƒg
-	// TEMP0FƒAƒNƒZƒTƒŠƒiƒ“ƒo[	TEMP1FŒÂ”
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªè¨­å®šã‚¤ãƒ™ãƒ³ãƒˆ
+	// TEMP0ï¼šã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼	TEMP1ï¼šå€‹æ•°
 	_CHG_COMMON_SCR	SCRID_ACCE_EVENT
 
-	_LDVAL	LOCALWORK9,1	// ƒAƒCƒeƒ€1“x“üŽè
+	_LDVAL	LOCALWORK9,1	// ã‚¢ã‚¤ãƒ†ãƒ 1åº¦å…¥æ‰‹
 
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-/* ”wŒi“üŽèˆ— */
+/* èƒŒæ™¯å…¥æ‰‹å‡¦ç† */
 ev_r221r0101_gorggeousw_bg_get:
 
-	// ”wŒiÝ’èƒCƒxƒ“ƒg
-	// TEMP0FƒAƒNƒZƒTƒŠƒiƒ“ƒo[	TEMP1FŒÂ”
+	// èƒŒæ™¯è¨­å®šã‚¤ãƒ™ãƒ³ãƒˆ
+	// TEMP0ï¼šã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼	TEMP1ï¼šå€‹æ•°
 	_CHG_COMMON_SCR	SCRID_IMC_BG_GETEVENT
 
-	_LDVAL	LOCALWORK9,1	// ”wŒi1“x“üŽè
+	_LDVAL	LOCALWORK9,1	// èƒŒæ™¯1åº¦å…¥æ‰‹
 
 	_TALK_CLOSE
 	_TALK_OBJ_END
@@ -785,9 +785,9 @@ ev_r221r0101_gorggeousw_bg_get:
 
 /********************************************************************/
 /********************************************************************/
-/*ƒ|ƒCƒ“ƒg‚É‚æ‚éƒAƒCƒeƒ€Žæ“¾ŠÖ˜A*/
-/*--ƒeƒ“ƒ|ƒ‰ƒŠ‚ÌŽg—p--*/
-/*--SCWK_TEMP2=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP3=ƒ`ƒFƒbƒNŒ‹‰Ê--*/
+/*ãƒã‚¤ãƒ³ãƒˆã«ã‚ˆã‚‹ã‚¢ã‚¤ãƒ†ãƒ å–å¾—é–¢é€£*/
+/*--ãƒ†ãƒ³ãƒãƒ©ãƒªã®ä½¿ç”¨--*/
+/*--SCWK_TEMP2=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP3=ãƒã‚§ãƒƒã‚¯çµæžœ--*/
 
 #define POKE_PARK_POINT_TYPE1	(3000)
 #define POKE_PARK_POINT_TYPE2	(3300)
@@ -800,21 +800,21 @@ ev_r221r0101_gorggeousw_bg_get:
 #define PARK_ITEM_TYPE4_NUM	(6)
 
 ev_r221r0101_get_item:
-	/*ƒ|ƒCƒ“ƒg‚É‚æ‚Á‚ÄƒAƒCƒeƒ€Žæ“¾*/
+	/*ãƒã‚¤ãƒ³ãƒˆã«ã‚ˆã£ã¦ã‚¢ã‚¤ãƒ†ãƒ å–å¾—*/
 	_POKEPARK_GET_SCORE		POKEPARK_SCORE_TOTAL,	SCWK_ANSWER
-	/*0`2999*/
+	/*0ã€œ2999*/
 	_IFVAL_CALL		SCWK_ANSWER,LT,POKE_PARK_POINT_TYPE1, ev_r221r0101_item_type1
-	/*3000`3299*/
+	/*3000ã€œ3299*/
 	_IFVAL_CALL		SCWK_ANSWER,LT,POKE_PARK_POINT_TYPE2, ev_r221r0101_item_type2
-	/*3300`3499*/
+	/*3300ã€œ3499*/
 	_IFVAL_CALL		SCWK_ANSWER,LT,POKE_PARK_POINT_TYPE3, ev_r221r0101_item_type3
-	/*3500`9999*/
+	/*3500ã€œ9999*/
 	_IFVAL_CALL		SCWK_ANSWER,LT,POKE_PARK_POINT_TYPE4, ev_r221r0101_item_type4
 	_RET
 
 ev_r221r0101_item_type1:
-	/*ƒAƒCƒeƒ€ƒ‰ƒ“ƒ_ƒ€‘Io(TEMP2‚É—”Œ‹‰Ê‚ð“ü‚ê‚½ŒãAƒAƒCƒeƒ€ƒiƒ“ƒo[‚ð“ü‚ê‚é)*/
-	_GET_RND SCWK_TEMP2,PARK_ITEM_TYPE1_NUM	/*0`7*/
+	/*ã‚¢ã‚¤ãƒ†ãƒ ãƒ©ãƒ³ãƒ€ãƒ é¸å‡º(TEMP2ã«ä¹±æ•°çµæžœã‚’å…¥ã‚ŒãŸå¾Œã€ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’å…¥ã‚Œã‚‹)*/
+	_GET_RND SCWK_TEMP2,PARK_ITEM_TYPE1_NUM	/*0ã€œ7*/
 	_IFVAL_CALL	SCWK_TEMP2,EQ,0,item_kurabo
 	_IFVAL_CALL	SCWK_TEMP2,EQ,1,item_kago
 	_IFVAL_CALL	SCWK_TEMP2,EQ,2,item_momon
@@ -828,7 +828,7 @@ ev_r221r0101_item_type1:
 	_RET
 	
 ev_r221r0101_item_type2:
-	_GET_RND SCWK_TEMP2,PARK_ITEM_TYPE2_NUM	/*0`4*/
+	_GET_RND SCWK_TEMP2,PARK_ITEM_TYPE2_NUM	/*0ã€œ4*/
 	_IFVAL_CALL	SCWK_TEMP2,EQ,0,item_fira
 	_IFVAL_CALL	SCWK_TEMP2,EQ,1,item_ui
 	_IFVAL_CALL	SCWK_TEMP2,EQ,2,item_mago
@@ -839,7 +839,7 @@ ev_r221r0101_item_type2:
 	_RET
 	
 ev_r221r0101_item_type3:
-	_GET_RND SCWK_TEMP2,PARK_ITEM_TYPE3_NUM	/*0`6*/
+	_GET_RND SCWK_TEMP2,PARK_ITEM_TYPE3_NUM	/*0ã€œ6*/
 	_IFVAL_CALL	SCWK_TEMP2,EQ,0,item_zuri
 	_IFVAL_CALL	SCWK_TEMP2,EQ,1,item_burii
 	_IFVAL_CALL	SCWK_TEMP2,EQ,2,item_nana
@@ -852,7 +852,7 @@ ev_r221r0101_item_type3:
 	_RET
 	
 ev_r221r0101_item_type4:
-	_GET_RND SCWK_TEMP2,PARK_ITEM_TYPE4_NUM	/*0`5*/
+	_GET_RND SCWK_TEMP2,PARK_ITEM_TYPE4_NUM	/*0ã€œ5*/
 	_IFVAL_CALL	SCWK_TEMP2,EQ,0,item_zaroku
 	_IFVAL_CALL	SCWK_TEMP2,EQ,1,item_nekobu
 	_IFVAL_CALL	SCWK_TEMP2,EQ,2,item_taporu
@@ -864,23 +864,23 @@ ev_r221r0101_item_type4:
 	_RET
 	
 ev_r221r0101_item_check:
-	/*Ž‚¿•¨‚ª‚¢‚Á‚Ï‚¢‚©‚ðƒ`ƒFƒbƒN(SCWK_TEMP2=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP3=ƒ`ƒFƒbƒNŒ‹‰Ê)*/
+	/*æŒã¡ç‰©ãŒã„ã£ã±ã„ã‹ã‚’ãƒã‚§ãƒƒã‚¯(SCWK_TEMP2=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP3=ãƒã‚§ãƒƒã‚¯çµæžœ)*/
 	_ADD_ITEM_CHK	SCWK_TEMP2,1,SCWK_TEMP3
 	_IFVAL_CALL		SCWK_TEMP3,NE,0,ev_r221r0101_item_add
-	/*SCWK_ANSWER‚ÉPOKE_PARK_POINT_TYPE4‚ð‚¢‚ê‚ÄA‘¼‚ÌƒAƒCƒeƒ€ŽZoƒR[ƒ‹‚ðŒÄ‚Î‚È‚¢‚æ‚¤‚É‚·‚é*/
+	/*SCWK_ANSWERã«POKE_PARK_POINT_TYPE4ã‚’ã„ã‚Œã¦ã€ä»–ã®ã‚¢ã‚¤ãƒ†ãƒ ç®—å‡ºã‚³ãƒ¼ãƒ«ã‚’å‘¼ã°ãªã„ã‚ˆã†ã«ã™ã‚‹*/
 	_LDVAL			SCWK_ANSWER,POKE_PARK_POINT_TYPE4
 	_RET
 	
 ev_r221r0101_item_add:
-	/*ƒƒbƒZ[ƒWFŒi•i‚Æ‚µ‚Ä`*/
+	/*ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šæ™¯å“ã¨ã—ã¦ã€œ*/
 	_TALKMSG		msg_r221r0101_admin_25
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
 	_LDWK			SCWK_TEMP0, SCWK_TEMP2
 	_LDVAL			SCWK_TEMP1, 1
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*‘—‚èƒJ[ƒ\ƒ‹‘Ò‚¿‚ ‚è*/
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«å¾…ã¡ã‚ã‚Š*/
 	_RET
 
-/*ƒAƒCƒeƒ€‚ðƒ[ƒN(TEMP2)‚ÉƒZƒbƒg*/	
+/*ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒ¯ãƒ¼ã‚¯(TEMP2)ã«ã‚»ãƒƒãƒˆ*/	
 item_kurabo:
 	_LDVAL			SCWK_TEMP2, ITEM_KURABONOMI
 	_RET

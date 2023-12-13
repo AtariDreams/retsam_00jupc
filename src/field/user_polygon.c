@@ -7,7 +7,7 @@ USER_POLYGON_DATA *UserPolyList;
 static void QuadPolyDraw(USER_POLYGON_DATA	*inData);
 static void TriPolyDraw(USER_POLYGON_DATA	*inData);
 
-//ƒŠƒXƒg‰Šú‰»
+//ãƒªã‚¹ãƒˆåˆæœŸåŒ–
 void InitUserPolygon(void)
 {
 	UserPolyList = NULL;
@@ -15,20 +15,20 @@ void InitUserPolygon(void)
 
 static void DefaultCallBack(USER_POLYGON_DATA *inData)
 {
-	// ƒ|ƒŠƒSƒ“ƒAƒgƒŠƒrƒ…[ƒgİ’è
+	// ãƒãƒªã‚´ãƒ³ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆè¨­å®š
 	NNS_G3dGePolygonAttr(
-			GX_LIGHTMASK_0,			  // ƒ‰ƒCƒg‚ğ”½‰f‚µ‚È‚¢
-			GX_POLYGONMODE_MODULATE,	  // ƒ‚ƒWƒ…ƒŒ[ƒVƒ‡ƒ“ƒ|ƒŠƒSƒ“ƒ‚[ƒh
-			GX_CULL_BACK,             // ƒJƒŠƒ“ƒO
-			//GX_CULL_NONE,             // ƒJƒŠƒ“ƒO
-			0,                         // ƒ|ƒŠƒSƒ“‚h‚c ‚O
-			31,					  // ƒAƒ‹ƒtƒ@’l
+			GX_LIGHTMASK_0,			  // ãƒ©ã‚¤ãƒˆã‚’åæ˜ ã—ãªã„
+			GX_POLYGONMODE_MODULATE,	  // ãƒ¢ã‚¸ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒªã‚´ãƒ³ãƒ¢ãƒ¼ãƒ‰
+			GX_CULL_BACK,             // ã‚«ãƒªãƒ³ã‚°
+			//GX_CULL_NONE,             // ã‚«ãƒªãƒ³ã‚°
+			0,                         // ãƒãƒªã‚´ãƒ³ï¼©ï¼¤ ï¼
+			31,					  // ã‚¢ãƒ«ãƒ•ã‚¡å€¤
 			GX_POLYGON_ATTR_MISC_NONE );	
 
 	NNS_G3dGeColor( inData->Color );
 }
 
-//ƒ|ƒŠƒSƒ“ì¬
+//ãƒãƒªã‚´ãƒ³ä½œæˆ
 USER_POLYGON_DATA *AddUserPolygon(
 		const VecFx32 *inPos,
 		const VecFx32 *inScale,
@@ -39,16 +39,16 @@ USER_POLYGON_DATA *AddUserPolygon(
 {
 	USER_POLYGON_DATA *temp;
 	USER_POLYGON_DATA *data;
-	//ƒƒ‚ƒŠŠm•Û
+	//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	//data = NNS_FndAllocFromExpHeapEx(sys.appHeap, sizeof(USER_POLYGON_DATA), 16);
 	data = sys_AllocMemory(HEAPID_FIELD, sizeof(USER_POLYGON_DATA));
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	data->Next = NULL;
 	data->Prev = NULL;
 	data->Move = inMove;
 	data->Draw = inDraw;
 	data->Work = inWork;
-	//«‚m‚t‚k‚kƒAƒT[ƒg‚Â‚¯‚éH
+	//â†“ï¼®ï¼µï¼¬ï¼¬ã‚¢ã‚µãƒ¼ãƒˆã¤ã‘ã‚‹ï¼Ÿ
 	data->Pos = *inPos;
 	data->Scale = *inScale;
 	data->Rot = *inRot;
@@ -56,7 +56,7 @@ USER_POLYGON_DATA *AddUserPolygon(
 
 	data->BeforeCB = DefaultCallBack;
 	
-	//ƒŠƒXƒg‚É’Ç‰Á
+	//ãƒªã‚¹ãƒˆã«è¿½åŠ 
 	temp = UserPolyList;
 	if (temp == NULL){
 		UserPolyList = data;
@@ -75,8 +75,8 @@ BOOL DelUserPolygonFromAdr(USER_POLYGON_DATA *inData)
 	USER_POLYGON_DATA *data;
 	USER_POLYGON_DATA *next;
 	USER_POLYGON_DATA *prev;
-	//ƒGƒ“ƒgƒŠ[•ª“®ìŠÖ”‚ğŒÄ‚Ô
-	//ƒŠƒXƒg‚©‚çíœ
+	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼åˆ†å‹•ä½œé–¢æ•°ã‚’å‘¼ã¶
+	//ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 	data = UserPolyList;
 	while(data != NULL){
 		if (data == inData){
@@ -90,15 +90,15 @@ BOOL DelUserPolygonFromAdr(USER_POLYGON_DATA *inData)
 			}
 		}
 	}
-	//ƒƒ‚ƒŠŠJ•ú(ƒ|ƒŠƒSƒ“ƒf[ƒ^‚Æƒ[ƒN)
+	//ãƒ¡ãƒ¢ãƒªé–‹æ”¾(ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã¨ãƒ¯ãƒ¼ã‚¯)
 	return TRUE;
 }
 */
 void UserPolygonMoveMain()
 {
 	USER_POLYGON_DATA *data;
-	//ƒGƒ“ƒgƒŠ[•ª“®ìŠÖ”‚ğŒÄ‚Ô
-	//Še“®ìŠÖ”‚ğÀs
+	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼åˆ†å‹•ä½œé–¢æ•°ã‚’å‘¼ã¶
+	//å„å‹•ä½œé–¢æ•°ã‚’å®Ÿè¡Œ
 	data = UserPolyList;
 	while(data != NULL){
 		if (data->Move != NULL){
@@ -110,10 +110,10 @@ void UserPolygonMoveMain()
 
 void UserPolygonDraw()
 {
-	//ƒGƒ“ƒgƒŠ[•ªƒ‹[ƒv
+	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼åˆ†ãƒ«ãƒ¼ãƒ—
 	USER_POLYGON_DATA *data;
-	//ƒGƒ“ƒgƒŠ[•ª•`‰æŠÖ”‚ğŒÄ‚Ô
-	//Še“®ìŠÖ”‚ğÀs
+	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼åˆ†æç”»é–¢æ•°ã‚’å‘¼ã¶
+	//å„å‹•ä½œé–¢æ•°ã‚’å®Ÿè¡Œ
 	data = UserPolyList;
 	if (data == NULL){
 		return;
@@ -132,57 +132,57 @@ void UserPolygonDraw()
 		data = data->Next;
 	}
 	
-	// “¯Šú‚ğæ‚é
+	// åŒæœŸã‚’å–ã‚‹
 	//
 	NNS_G3dGeFlushBuffer();
 }
 
 void TestDraw(USER_POLYGON_DATA	*inData)
 {
-// •`‰æŠJn
+// æç”»é–‹å§‹
 	
 
 	//
-	// •`‰æİ’è
+	// æç”»è¨­å®š
 	// 
 	NNS_G3dGePushMtx();
 	{
 		VecFx32		scal = { FX32_ONE>>2, FX32_ONE>>2,FX32_ONE>>2 };
 		
-		// À•W•ÏŠ·
-		NNS_G3dGeTranslateVec( &inData->Pos );			// •½sˆÚ“®
-		NNS_G3dGeScaleVec(&scal);								// Šgk
+		// åº§æ¨™å¤‰æ›
+		NNS_G3dGeTranslateVec( &inData->Pos );			// å¹³è¡Œç§»å‹•
+		NNS_G3dGeScaleVec(&scal);								// æ‹¡ç¸®
 
 		
-		// ƒ|ƒŠƒSƒ“ƒAƒgƒŠƒrƒ…[ƒgİ’è
+		// ãƒãƒªã‚´ãƒ³ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆè¨­å®š
 		NNS_G3dGePolygonAttr(
-				   GX_LIGHTMASK_0,			  // ƒ‰ƒCƒg‚ğ”½‰f‚µ‚È‚¢
-				   GX_POLYGONMODE_MODULATE,	  // ƒ‚ƒWƒ…ƒŒ[ƒVƒ‡ƒ“ƒ|ƒŠƒSƒ“ƒ‚[ƒh
-				   GX_CULL_BACK,             // ƒJƒŠƒ“ƒO
-				   //GX_CULL_NONE,             // ƒJƒŠƒ“ƒO
-				   0,                         // ƒ|ƒŠƒSƒ“‚h‚c ‚O
-				   0x31,					  // ƒAƒ‹ƒtƒ@’l
+				   GX_LIGHTMASK_0,			  // ãƒ©ã‚¤ãƒˆã‚’åæ˜ ã—ãªã„
+				   GX_POLYGONMODE_MODULATE,	  // ãƒ¢ã‚¸ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒªã‚´ãƒ³ãƒ¢ãƒ¼ãƒ‰
+				   GX_CULL_BACK,             // ã‚«ãƒªãƒ³ã‚°
+				   //GX_CULL_NONE,             // ã‚«ãƒªãƒ³ã‚°
+				   0,                         // ãƒãƒªã‚´ãƒ³ï¼©ï¼¤ ï¼
+				   0x31,					  // ã‚¢ãƒ«ãƒ•ã‚¡å€¤
 				   GX_POLYGON_ATTR_MISC_NONE );	
 
 		NNS_G3dGeColor( GX_RGB( 31, 5, 0 ) );	
-		// lŠpŒ`‚ğ•`‰æŠJn
+		// å››è§’å½¢ã‚’æç”»é–‹å§‹
 		NNS_G3dGeBegin( GX_BEGIN_QUADS );
 		{
-			// F‚ğ•Ï‚¦‚é‚æ‚¤
+			// è‰²ã‚’å¤‰ãˆã‚‹ã‚ˆã†
 			static int count1 = 0;
 			static int count2 = 100000;
 			static int count3 = 200000;
 			
-			// F
+			// è‰²
 			//NNS_G3dGeColor( GX_RGB( count1 / 10000, count2 / 10000, count3 / 10000 ) );
 			
 
-			// ŠeF‚Ì—v‘f‚ğ•Ï“®‚³‚¹‚é
+			// å„è‰²ã®è¦ç´ ã‚’å¤‰å‹•ã•ã›ã‚‹
 			count1 = (count1 + 5) % 160000;
 			count2 = (count2 + 3) % 160000;
 			count3 = (count3 + 1) % 160000;
 			
-			// ’¸“_
+			// é ‚ç‚¹
 			NNS_G3dGeVtx( -FX32_ONE,  FX32_ONE, FX32_ONE );
 			NNS_G3dGeVtx(  FX32_ONE,  FX32_ONE, FX32_ONE );
 			NNS_G3dGeVtx(  FX32_ONE, -FX32_ONE, FX32_ONE );
@@ -216,13 +216,13 @@ void TestDraw(USER_POLYGON_DATA	*inData)
 
 #endif
 		}
-		// •`‰æI—¹
+		// æç”»çµ‚äº†
 		NNS_G3dGeEnd();
 	}
 	NNS_G3dGePopMtx(1);
 }
 
-//lŠpŒ`ƒ|ƒŠƒSƒ“‚Ì“o˜^
+//å››è§’å½¢ãƒãƒªã‚´ãƒ³ã®ç™»éŒ²
 USER_POLYGON_DATA *AddUserQuadPolygon(
 		const VecFx32 *inTrans,
 		const VecFx32 *inScale,
@@ -246,7 +246,7 @@ USER_POLYGON_DATA *AddUserQuadPolygon(
 	return data;
 }
 
-//OŠpŒ`ƒ|ƒŠƒSƒ“‚Ì“o˜^
+//ä¸‰è§’å½¢ãƒãƒªã‚´ãƒ³ã®ç™»éŒ²
 USER_POLYGON_DATA *AddUserTriPolygon(
 		const VecFx32 *inTrans,
 		const VecFx32 *inScale,
@@ -271,32 +271,32 @@ USER_POLYGON_DATA *AddUserTriPolygon(
 
 static void QuadPolyDraw(USER_POLYGON_DATA	*inData)
 {
-// •`‰æŠJn
+// æç”»é–‹å§‹
 	//
-	// •`‰æİ’è
+	// æç”»è¨­å®š
 	// 
 	NNS_G3dGePushMtx();
 	{
-		// À•W•ÏŠ·
-		NNS_G3dGeTranslateVec( &inData->Pos );			// •½sˆÚ“®
-		NNS_G3dGeScaleVec(&inData->Scale);				// Šgk
+		// åº§æ¨™å¤‰æ›
+		NNS_G3dGeTranslateVec( &inData->Pos );			// å¹³è¡Œç§»å‹•
+		NNS_G3dGeScaleVec(&inData->Scale);				// æ‹¡ç¸®
 		{
 			MtxFx33 rot;
-			VecFx32_to_MtxFx33( &rot, &inData->Rot);	//‰ñ“]
+			VecFx32_to_MtxFx33( &rot, &inData->Rot);	//å›è»¢
 			NNS_G3dGeMultMtx33(&rot);
 		}
 		inData->BeforeCB(inData);
 
-		// lŠpŒ`‚ğ•`‰æŠJn
+		// å››è§’å½¢ã‚’æç”»é–‹å§‹
 		NNS_G3dGeBegin( GX_BEGIN_QUADS );
 		{
-			// ’¸“_
+			// é ‚ç‚¹
 			NNS_G3dGeVtx( inData->Vtx[0].x, inData->Vtx[0].y, inData->Vtx[0].z );
 			NNS_G3dGeVtx( inData->Vtx[1].x, inData->Vtx[1].y, inData->Vtx[1].z );
 			NNS_G3dGeVtx( inData->Vtx[2].x, inData->Vtx[2].y, inData->Vtx[2].z );
 			NNS_G3dGeVtx( inData->Vtx[3].x, inData->Vtx[3].y, inData->Vtx[3].z );
 		}
-		// •`‰æI—¹
+		// æç”»çµ‚äº†
 		NNS_G3dGeEnd();
 	}
 	NNS_G3dGePopMtx(1);
@@ -304,32 +304,32 @@ static void QuadPolyDraw(USER_POLYGON_DATA	*inData)
 
 static void TriPolyDraw(USER_POLYGON_DATA	*inData)
 {
-// •`‰æŠJn
+// æç”»é–‹å§‹
 	//
-	// •`‰æİ’è
+	// æç”»è¨­å®š
 	// 
 	NNS_G3dGePushMtx();
 	{
-		// À•W•ÏŠ·
-		NNS_G3dGeTranslateVec( &inData->Pos );			// •½sˆÚ“®
-		NNS_G3dGeScaleVec(&inData->Scale);				// Šgk
+		// åº§æ¨™å¤‰æ›
+		NNS_G3dGeTranslateVec( &inData->Pos );			// å¹³è¡Œç§»å‹•
+		NNS_G3dGeScaleVec(&inData->Scale);				// æ‹¡ç¸®
 		{
 			MtxFx33 rot;
-			VecFx32_to_MtxFx33( &rot, &inData->Rot);	//‰ñ“]
+			VecFx32_to_MtxFx33( &rot, &inData->Rot);	//å›è»¢
 			NNS_G3dGeMultMtx33(&rot);
 		}
 
 		inData->BeforeCB(inData);	
-		// OŠpŒ`‚ğ•`‰æŠJn
+		// ä¸‰è§’å½¢ã‚’æç”»é–‹å§‹
 		NNS_G3dGeBegin( GX_BEGIN_TRIANGLES );
 		{
-			// ’¸“_
+			// é ‚ç‚¹
 			NNS_G3dGeVtx( inData->Vtx[0].x, inData->Vtx[0].y, inData->Vtx[0].z );
 			NNS_G3dGeVtx( inData->Vtx[1].x, inData->Vtx[1].y, inData->Vtx[1].z );
 			NNS_G3dGeVtx( inData->Vtx[2].x, inData->Vtx[2].y, inData->Vtx[2].z );
 
 		}
-		// •`‰æI—¹
+		// æç”»çµ‚äº†
 		NNS_G3dGeEnd();
 	}
 	NNS_G3dGePopMtx(1);
@@ -342,20 +342,20 @@ void SetCallBack(USER_POLYGON_DATA *inData, void (*inCallBack)(USER_POLYGON_DATA
 
 #ifdef DEBUG_USER_POLYGON
 //----------------------------------------------------------------
-//	ƒfƒoƒbƒOEƒeƒXƒg
+//	ãƒ‡ãƒãƒƒã‚°ãƒ»ãƒ†ã‚¹ãƒˆ
 //----------------------------------------------------------------
 u8 PosTable[9];
 
 static void CBDrawWireFrame(USER_POLYGON_DATA *inData)
 {
-	// ƒ|ƒŠƒSƒ“ƒAƒgƒŠƒrƒ…[ƒgİ’è
+	// ãƒãƒªã‚´ãƒ³ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆè¨­å®š
 	NNS_G3dGePolygonAttr(
-			GX_LIGHTMASK_0,			  // ƒ‰ƒCƒg‚ğ”½‰f‚µ‚È‚¢
-			GX_POLYGONMODE_MODULATE,	  // ƒ‚ƒWƒ…ƒŒ[ƒVƒ‡ƒ“ƒ|ƒŠƒSƒ“ƒ‚[ƒh
-			GX_CULL_BACK,             // ƒJƒŠƒ“ƒO
-			//GX_CULL_NONE,             // ƒJƒŠƒ“ƒO
-			0,                         // ƒ|ƒŠƒSƒ“‚h‚c ‚O
-			0,					  // ƒAƒ‹ƒtƒ@’l
+			GX_LIGHTMASK_0,			  // ãƒ©ã‚¤ãƒˆã‚’åæ˜ ã—ãªã„
+			GX_POLYGONMODE_MODULATE,	  // ãƒ¢ã‚¸ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒªã‚´ãƒ³ãƒ¢ãƒ¼ãƒ‰
+			GX_CULL_BACK,             // ã‚«ãƒªãƒ³ã‚°
+			//GX_CULL_NONE,             // ã‚«ãƒªãƒ³ã‚°
+			0,                         // ãƒãƒªã‚´ãƒ³ï¼©ï¼¤ ï¼
+			0,					  // ã‚¢ãƒ«ãƒ•ã‚¡å€¤
 			GX_POLYGON_ATTR_MISC_NONE );	
 
 	NNS_G3dGeColor( inData->Color );
@@ -440,8 +440,8 @@ void DelUserPolygonAll(void)
 	USER_POLYGON_DATA *data;
 	USER_POLYGON_DATA *next;
 	USER_POLYGON_DATA *prev;
-	//ƒGƒ“ƒgƒŠ[•ª“®ìŠÖ”‚ğŒÄ‚Ô
-	//ƒŠƒXƒg‚©‚çíœ
+	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼åˆ†å‹•ä½œé–¢æ•°ã‚’å‘¼ã¶
+	//ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 	data = UserPolyList;
 	while(data != NULL){
 		next = data->Next;
@@ -449,7 +449,7 @@ void DelUserPolygonAll(void)
 		data = next;
 	}
 	UserPolyList = NULL;
-	//ƒƒ‚ƒŠŠJ•ú(ƒ|ƒŠƒSƒ“ƒf[ƒ^‚Æƒ[ƒN)
+	//ãƒ¡ãƒ¢ãƒªé–‹æ”¾(ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã¨ãƒ¯ãƒ¼ã‚¯)
 	return;
 }
 #endif //DEBUG_USER_POLYGON

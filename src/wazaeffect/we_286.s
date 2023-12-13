@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_286.s
- * @brief	‚Ó‚¤‚¢‚ñ			286
+ * @brief	ãµã†ã„ã‚“			286
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚Ó‚¤‚¢‚ñ			286
+//	â– ãµã†ã„ã‚“			286
 //
 //
 // =============================================================================
@@ -28,14 +28,14 @@
 #define HUUIN_ACT_NUM		(3)
 WEST_HUUIN:
 #if 0
-	///<‰Šú‰»ˆ—@“Ç‚Ýž‚Ýˆ—
+	///<åˆæœŸåŒ–å‡¦ç†ã€€èª­ã¿è¾¼ã¿å‡¦ç†
 	CATS_RES_INIT		HUUIN_RES_NO, HUUIN_ACT_NUM, HUUIN_RES_NUM, HUUIN_RES_NUM, HUUIN_RES_NUM, HUUIN_RES_NUM, 0, 0
 	CATS_CAHR_RES_LOAD	HUUIN_RES_NO, EFFECT_286_NCGR_BIN
 	CATS_PLTT_RES_LOAD	HUUIN_RES_NO, EFFECT_286_NCLR, 1
 	CATS_CELL_RES_LOAD	HUUIN_RES_NO, EFFECT_286_NCER_BIN
 	CATS_CELL_ANM_RES_LOAD	HUUIN_RES_NO, EFFECT_286_NANR_BIN
 
-	///<“®ì
+	///<å‹•ä½œ
 	CATS_ACT_ADD		HUUIN_RES_NO, WEST_CSP_WE_286, EFFECT_286_NCGR_BIN, EFFECT_286_NCLR, EFFECT_286_NCER_BIN, EFFECT_286_NANR_BIN, 0, 0, 0,0,
 #endif
 
@@ -56,7 +56,7 @@ WEST_HUUIN:
 	WAIT_PARTICLE
 	EXIT_PARTICLE	0,
 
-	///<”jŠüˆ—
+	///<ç ´æ£„å‡¦ç†
 //	CATS_RES_FREE		HUUIN_RES_NO
 	
 	SEQEND

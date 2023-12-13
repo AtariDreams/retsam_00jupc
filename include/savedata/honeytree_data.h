@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	honeytree_data.h
- * @bfief	–¨“h‚èƒGƒ“ƒJƒEƒ“ƒg—pƒZ[ƒuƒf[ƒ^ƒAƒNƒZƒXŠÖ˜A
+ * @bfief	èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹é–¢é€£
  * @author	Nozomu Saito
  *
  *
@@ -17,12 +17,12 @@ typedef struct HONEY_TREE_tag * HT_PTR;
 
 typedef struct HONEY_DATA_tag
 {
-	int Time;			//–¨‚ð“h‚Á‚½ŽžŠÔ
-///	u16 State;			//–Ø‚Ìó‹µ
-	u8 TblMonsNo;		//ƒe[ƒuƒ‹“àƒ‚ƒ“ƒXƒ^[”Ô†
-	u8 TblNo;			//ƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹”Ô†
-	u8 RareLv;			//ƒŒƒA“x	ƒnƒYƒŒA’ÊíAƒŒƒAA’´ƒŒƒA
-	u8 SwayLv;			//—h‚êƒ‚[ƒVƒ‡ƒ“‚Ì“x‡‚¢
+	int Time;			//èœœã‚’å¡—ã£ãŸæ™‚é–“
+///	u16 State;			//æœ¨ã®çŠ¶æ³
+	u8 TblMonsNo;		//ãƒ†ãƒ¼ãƒ–ãƒ«å†…ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç•ªå·
+	u8 TblNo;			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·
+	u8 RareLv;			//ãƒ¬ã‚¢åº¦	ãƒã‚ºãƒ¬ã€é€šå¸¸ã€ãƒ¬ã‚¢ã€è¶…ãƒ¬ã‚¢
+	u8 SwayLv;			//æºã‚Œãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®åº¦åˆã„
 ///	u8 AnimeNo;
 ///	BOOL AnimeFlg;
 }HONEY_DATA;

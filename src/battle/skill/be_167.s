@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_167.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			167@‘Šè‚ğ‚â‚¯‚Çó‘Ô‚É‚·‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			167ã€€ç›¸æ‰‹ã‚’ã‚„ã‘ã©çŠ¶æ…‹ã«ã™ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2005.12.05

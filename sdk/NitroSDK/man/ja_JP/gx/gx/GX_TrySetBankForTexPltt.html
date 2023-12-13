@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>GX_TrySetBankForTexPltt</title>
@@ -12,64 +12,64 @@
 <body>
 
 <h1 align="left">GX_TrySetBankForTexPltt</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
 <CODE>#include &lt;nitro/gx/gx_vramcnt.h&gt;</CODE><BR>
   <BR>
   <CODE>BOOL GX_TrySetBankForTexPltt(GXVRamTexPltt texPltt);</CODE></dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">texPltt</font></strong></em></td>
-    <td width="87%">�e�N�X�`���p���b�g�Ɋ��蓖�Ă�VRAM�o���N���w��</td>
+    <td width="87%">テクスチャパレットに割り当てるVRAMバンクを指定</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 <p>
-�����VRAM�o���N�����蓖�Ă�ꂽ�ꍇ��TRUE��Ԃ��܂��B<BR>
-���蓖�Ă悤�Ƃ���VRAM�o���N���ʃ��C�u�����ɂ���ă��b�N����Ă���ꍇ�ɂ�FALSE��Ԃ��܂��B
+正常にVRAMバンクが割り当てられた場合にTRUEを返します。<BR>
+割り当てようとするVRAMバンクが別ライブラリによってロックされている場合にはFALSEを返します。
 </p>
-<H2>����</H2>
-<P>�e�N�X�`���p���b�g�֎w�肳�ꂽVRAM�o���N�̊��蓖�Ă����݂܂��B�w�肳�ꂽVRAM�o���N��Disable�ɂȂ��Ă��邩�ALCDC�Ɋ��蓖�Ă��Ă���ꍇ�ɁA����VRAM�o���N���e�N�X�`���p���b�g�Ɋ��蓖�Ă܂��B<BR>
-�܂��A�w�肵��VRAM�o���N�����̃��C�u�����ɂ���Ĕr�����b�N����Ă���ꍇ�͊��蓖�ĂɎ��s���܂��B
+<H2>説明</H2>
+<P>テクスチャパレットへ指定されたVRAMバンクの割り当てを試みます。指定されたVRAMバンクがDisableになっているか、LCDCに割り当てられている場合に、そのVRAMバンクをテクスチャパレットに割り当てます。<BR>
+また、指定したVRAMバンクが他のライブラリによって排他ロックされている場合は割り当てに失敗します。
 </P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD><CODE>GX_VRAM_TEXPLTT_NONE</CODE></TD>
-      <TD>�e�N�X�`���p���b�g��VRAM�����蓖�Ă܂���B</TD>
+      <TD>テクスチャパレットにVRAMを割り当てません。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEXPLTT_0_F</CODE></TD>
-      <TD>�e�N�X�`���p���b�g�̃X���b�g0���m�ۂ��܂��BVRAM-F�����蓖�Ă܂��B</TD>
+      <TD>テクスチャパレットのスロット0を確保します。VRAM-Fを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEXPLTT_0_G</CODE></TD>
-      <TD>�e�N�X�`���p���b�g�̃X���b�g0���m�ۂ��܂��BVRAM-G�����蓖�Ă܂��B</TD>
+      <TD>テクスチャパレットのスロット0を確保します。VRAM-Gを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEXPLTT_01_FG</CODE></TD>
-      <TD>�e�N�X�`���p���b�g�̃X���b�g0,1���m�ۂ��܂��BVRAM-F,G�����蓖�Ă܂��B</TD>
+      <TD>テクスチャパレットのスロット0,1を確保します。VRAM-F,Gを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEXPLTT_0123_E</CODE></TD>
-      <TD>�e�N�X�`���p���b�g�̃X���b�g0,1,2,3���m�ۂ��܂��BVRAM-E�����蓖�Ă܂��B</TD>
+      <TD>テクスチャパレットのスロット0,1,2,3を確保します。VRAM-Eを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEXPLTT_01234_EF</CODE></TD>
-      <TD>�e�N�X�`���p���b�g�̃X���b�g0,1,2,3,4���m�ۂ��܂��BVRAM-E,F�����蓖�Ă܂��B</TD>
+      <TD>テクスチャパレットのスロット0,1,2,3,4を確保します。VRAM-E,Fを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_TEXPLTT_012345_EFG</CODE></TD>
-      <TD>�e�N�X�`���p���b�g�̃X���b�g0,1,2,3,4,5���m�ۂ��܂��BVRAM-E,F,G�����蓖�Ă܂��B</TD>
+      <TD>テクスチャパレットのスロット0,1,2,3,4,5を確保します。VRAM-E,F,Gを割り当てます。</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-�ȉ���<CODE>GXVRamTexPltt</CODE>�^�̌^��`�������Ă����܂��B</P>
+以下に<CODE>GXVRamTexPltt</CODE>型の型定義を示しておきます。</P>
 <PRE><CODE>typedef enum
 {
     GX_VRAM_TEXPLTT_NONE     = 0x0000,
@@ -81,9 +81,9 @@
     GX_VRAM_TEXPLTT_012345_EFG = GX_VRAM_E | GX_VRAM_F | GX_VRAM_G  // TexturePltt 0-3,45
 }
 GXVRamTexPltt;</CODE></PRE>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><A href="GX_SetBankForTexPltt.html">GX_SetBankForTexPltt</A>, <A href="GX_GetBankForTexPltt.html">GX_GetBankForTexPltt</A>, <A href="GX_ResetBankForTexPltt.html">GX_ResetBankForTexPltt</A>, <A href="GX_DisableBankForTexPltt.html">GX_DisableBankForTexPltt</A>, <A href="GX_GetSizeOfTexPltt.html">GX_GetSizeOfTexPltt</A></P>
-<H2>����</H2>
-<P>Ver. 2005/02/15 ����</P>
+<H2>履歴</H2>
+<P>Ver. 2005/02/15 初版</P>
 </body>
 </html>

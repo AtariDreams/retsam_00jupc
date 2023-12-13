@@ -1,7 +1,7 @@
 #ifndef _T01R0201_DEF_H_
 #define _T01R0201_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T01R0201_FLAG_CHANGE		(1)
 #define	SCRID_T01R0201_MAMA_FIRST		(2)
 #define	SCRID_T01R0201_MAMA_BAG		(3)
@@ -13,6 +13,6 @@
 #define	SCRID_T01R0201_SINK		(9)
 #define	SCRID_T01R0201_COUNTER		(10)
 #define	SCRID_T01R0201_MAMA_GAME_CLEAR		(11)
-#define	SCRID_T01R0201_DATA_MAX		(11)		//最大数
+#define	SCRID_T01R0201_DATA_MAX		(11)		//譛螟ｧ謨ｰ
 
 #endif //_T01R0201_DEF_H_

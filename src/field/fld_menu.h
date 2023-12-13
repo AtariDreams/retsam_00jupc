@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fld_menu.h
- * @brief	ƒtƒB[ƒ‹ƒhƒƒjƒ…[ˆ——pƒwƒbƒ_
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†ç”¨ãƒ˜ãƒƒãƒ€
  * @author	Hiroyuki Nakamura
  */
 //============================================================================================
@@ -21,64 +21,64 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	FIELD_MENU_MAX		( 7 )					// €–ÚÅ‘å”
-#define	FLDMENU_CLACT_MAX	( FIELD_MENU_MAX + 1 )	// ƒZƒ‹ƒAƒNƒ^[Å‘å”i€–Ú{ƒJ[ƒ\ƒ‹j
+#define	FIELD_MENU_MAX		( 7 )					// é …ç›®æœ€å¤§æ•°
+#define	FLDMENU_CLACT_MAX	( FIELD_MENU_MAX + 1 )	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°ï¼ˆé …ç›®ï¼‹ã‚«ãƒ¼ã‚½ãƒ«ï¼‰
 
-#define FLD_MENU_VANISH_ZUKAN	( 0x00000001 )		// }ŠÓ‚ð‰B‚·
-#define FLD_MENU_VANISH_PLIST	( 0x00000002 )		// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ð‰B‚·
-#define FLD_MENU_VANISH_BAG		( 0x00000004 )		// ƒoƒbƒO‚ð‰B‚·
-#define FLD_MENU_VANISH_TRCARD	( 0x00000008 )		// ƒgƒŒ[ƒi[ƒJ[ƒh‚ð‰B‚·
-#define FLD_MENU_VANISH_REPORT	( 0x00000010 )		// ƒŒƒ|[ƒg‚ð‰B‚·
-#define FLD_MENU_VANISH_CONFIG	( 0x00000020 )		// Ý’è‚ð‰B‚·
-#define FLD_MENU_VANISH_CLOSE	( 0x00000040 )		// u•Â‚¶‚év‚ð‰B‚·
-#define FLD_MENU_VANISH_CHAT	( 0x00000080 )		// ƒ`ƒƒƒbƒg‚ð‰B‚·
-#define FLD_MENU_VANISH_RETIRE	( 0x00000100 )		// ƒŠƒ^ƒCƒA‚ð‰B‚·
+#define FLD_MENU_VANISH_ZUKAN	( 0x00000001 )		// å›³é‘‘ã‚’éš ã™
+#define FLD_MENU_VANISH_PLIST	( 0x00000002 )		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚’éš ã™
+#define FLD_MENU_VANISH_BAG		( 0x00000004 )		// ãƒãƒƒã‚°ã‚’éš ã™
+#define FLD_MENU_VANISH_TRCARD	( 0x00000008 )		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã‚’éš ã™
+#define FLD_MENU_VANISH_REPORT	( 0x00000010 )		// ãƒ¬ãƒãƒ¼ãƒˆã‚’éš ã™
+#define FLD_MENU_VANISH_CONFIG	( 0x00000020 )		// è¨­å®šã‚’éš ã™
+#define FLD_MENU_VANISH_CLOSE	( 0x00000040 )		// ã€Œé–‰ã˜ã‚‹ã€ã‚’éš ã™
+#define FLD_MENU_VANISH_CHAT	( 0x00000080 )		// ãƒãƒ£ãƒƒãƒˆã‚’éš ã™
+#define FLD_MENU_VANISH_RETIRE	( 0x00000100 )		// ãƒªã‚¿ã‚¤ã‚¢ã‚’éš ã™
 
 
-// ƒtƒB[ƒ‹ƒhƒƒjƒ…[ƒ[ƒN
+// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	GF_BGL_BMPWIN	win;		// BMPƒEƒBƒ“ƒhƒEiƒƒjƒ…[j
-	GF_BGL_BMPWIN	ball_win;	// BMPƒEƒBƒ“ƒhƒEiƒ{[ƒ‹”j
+	GF_BGL_BMPWIN	win;		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼‰
+	GF_BGL_BMPWIN	ball_win;	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆãƒœãƒ¼ãƒ«æ•°ï¼‰
 
 	BMPMENU_WORK * mw;
-	BMP_MENULIST_DATA * ld;	// BMPƒŠƒXƒgƒf[ƒ^
-	u16	pos;				// ƒƒjƒ…[ˆÊ’u
-	u16	seq;				// ƒV[ƒPƒ“ƒX
-	u32	ret;				// –ß‚è’l
+	BMP_MENULIST_DATA * ld;	// BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	u16	pos;				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½ç½®
+	u16	seq;				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u32	ret;				// æˆ»ã‚Šå€¤
 
-	u8	list[ FIELD_MENU_MAX ];		// ƒƒjƒ…[ƒŠƒXƒg
+	u8	list[ FIELD_MENU_MAX ];		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆ
 
-	FIELD_CLACT	fcat;		// ƒZƒ‹ƒAƒNƒ^[Ý’èƒf[ƒ^
+	FIELD_CLACT	fcat;		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®šãƒ‡ãƒ¼ã‚¿
 	CATS_ACT_PTR	cap[FLDMENU_CLACT_MAX];
-	u32	clact_max;			// ƒZƒ‹ƒAƒNƒ^[“o˜^”
+	u32	clact_max;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°
 
-	u32	ev_flg;				// ƒƒjƒ…[§Œäƒtƒ‰ƒO
-	u32	union_flg;			// ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒtƒ‰ƒO
+	u32	ev_flg;				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆ¶å¾¡ãƒ•ãƒ©ã‚°
+	u32	union_flg;			// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ•ãƒ©ã‚°
 
 	GMEVENT_FUNC	app_func;
 
-	ITEMCHECK_WORK	item_check;		// ƒAƒCƒeƒ€Žg—pƒ`ƒFƒbƒNƒ[ƒN
-	SKILLCHECK_WORK	skill_check;	// ‹ZŽg—pƒ`ƒFƒbƒNƒ[ƒN
+	ITEMCHECK_WORK	item_check;		// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+	SKILLCHECK_WORK	skill_check;	// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
 
-	void * app_wk;			// ”Ä—pƒ[ƒNƒ|ƒCƒ“ƒ^
-	void * tmp_wk;			// ”Ä—pƒ[ƒNƒ|ƒCƒ“ƒ^‚QiŠe‰æ–Ê‚ðs‚«—ˆ‚·‚éê‡‚ÉŽg—pj
+	void * app_wk;			// æ±Žç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+	void * tmp_wk;			// æ±Žç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ï¼’ï¼ˆå„ç”»é¢ã‚’è¡Œãæ¥ã™ã‚‹å ´åˆã«ä½¿ç”¨ï¼‰
 }FLD_MENU;
 
-// ƒtƒB[ƒ‹ƒhƒƒjƒ…[ƒV[ƒPƒ“ƒX
+// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
-	FLD_MENU_SEQ_INIT = 0,		// ‰Šú‰»
-	FLD_MENU_SEQ_SELECT,		// ƒƒjƒ…[‘I‘ð
+	FLD_MENU_SEQ_INIT = 0,		// åˆæœŸåŒ–
+	FLD_MENU_SEQ_SELECT,		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠž
 
-	FLD_MENU_SEQ_APP_CALL,		// ƒAƒvƒŠŒÄ‚Ño‚µ
-	FLD_MENU_SEQ_APP_WAIT,		// ƒAƒvƒŠI—¹‘Ò‚¿
+	FLD_MENU_SEQ_APP_CALL,		// ã‚¢ãƒ—ãƒªå‘¼ã³å‡ºã—
+	FLD_MENU_SEQ_APP_WAIT,		// ã‚¢ãƒ—ãƒªçµ‚äº†å¾…ã¡
 
 	FLD_MENU_SEQ_REPORT_CALL,
 	FLD_MENU_SEQ_REPORT_WAIT,
 
-	FLD_MENU_SEQ_SHINKA_INIT,	// i‰»‰æ–ÊŒÄ‚Ño‚µ
-	FLD_MENU_SEQ_SHINKA_MAIN,	// i‰»‰æ–Ê‘Ò‚¿
+	FLD_MENU_SEQ_SHINKA_INIT,	// é€²åŒ–ç”»é¢å‘¼ã³å‡ºã—
+	FLD_MENU_SEQ_SHINKA_MAIN,	// é€²åŒ–ç”»é¢å¾…ã¡
 
 	FLD_MENU_SEQ_BLACK_IN_END,
 	FLD_MENU_SEQ_BLACK_IN_END_WAIT,
@@ -93,27 +93,27 @@ enum {
 };
 
 
-// ƒ[ƒ‹‰æ–Ê‚Ìƒ‚[ƒh
-#define	FM_MAIL_MODE_VIEW		( 3 )		// ƒ[ƒ‹‚ðŒ©‚é
-#define	FM_MAIL_MODE_READ		( 2 )		// ƒ[ƒ‹‚ð“Ç‚Þ
-#define	FM_MAIL_MODE_MAKE_LIST	( 0 )		// ƒ[ƒ‹‚ðŽ‚½‚¹‚éiƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚©‚çj
-#define	FM_MAIL_MODE_MAKE_BAG	( 1 )		// ƒ[ƒ‹‚ðŽ‚½‚¹‚éiƒoƒbƒO‚©‚çj
+// ãƒ¡ãƒ¼ãƒ«ç”»é¢ã®ãƒ¢ãƒ¼ãƒ‰
+#define	FM_MAIL_MODE_VIEW		( 3 )		// ãƒ¡ãƒ¼ãƒ«ã‚’è¦‹ã‚‹
+#define	FM_MAIL_MODE_READ		( 2 )		// ãƒ¡ãƒ¼ãƒ«ã‚’èª­ã‚€
+#define	FM_MAIL_MODE_MAKE_LIST	( 0 )		// ãƒ¡ãƒ¼ãƒ«ã‚’æŒãŸã›ã‚‹ï¼ˆãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‹ã‚‰ï¼‰
+#define	FM_MAIL_MODE_MAKE_BAG	( 1 )		// ãƒ¡ãƒ¼ãƒ«ã‚’æŒãŸã›ã‚‹ï¼ˆãƒãƒƒã‚°ã‹ã‚‰ï¼‰
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒƒjƒ…[‹N“®ƒ`ƒFƒbƒN
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼èµ·å‹•ãƒã‚§ãƒƒã‚¯
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ‹N“®‰Â"
- * @retval	"FALSE = ‹N“®•s‰Â"
+ * @retval	"TRUE = èµ·å‹•å¯"
+ * @retval	"FALSE = èµ·å‹•ä¸å¯"
  *
- * @li	u‚È‚¼‚Ì‚Î‚µ‚åv‚Åƒƒjƒ…[‚ðŠJ‚¯‚È‚¢‚æ‚¤‚É‚·‚éƒ`ƒFƒbƒN
+ * @li	ã€Œãªãžã®ã°ã—ã‚‡ã€ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã‘ãªã„ã‚ˆã†ã«ã™ã‚‹ãƒã‚§ãƒƒã‚¯
  *
  *	2006/10/24 by nakahiro
  */
@@ -122,9 +122,9 @@ GLOBAL BOOL FieldMenuCallCheck( FIELDSYS_WORK * repw );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒƒjƒ…[‹N“®ˆ—i’Êíj
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼èµ·å‹•å‡¦ç†ï¼ˆé€šå¸¸ï¼‰
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -133,9 +133,9 @@ GLOBAL void FieldMenuInit( struct _FIELDSYS_WORK * repw );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒƒjƒ…[‹N“®ˆ—iƒ†ƒjƒIƒ“ƒ‹[ƒ€—pj
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼èµ·å‹•å‡¦ç†ï¼ˆãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ï¼‰
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -144,9 +144,9 @@ GLOBAL void FieldMenuInitUnion( struct _FIELDSYS_WORK * repw );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒƒjƒ…[‹N“®ˆ—i‘Îí•”‰®—pj
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼èµ·å‹•å‡¦ç†ï¼ˆå¯¾æˆ¦éƒ¨å±‹ç”¨ï¼‰
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -155,36 +155,36 @@ GLOBAL void FieldMenuInitVS( FIELDSYS_WORK * repw );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒƒjƒ…[‹N“®Š„‚èž‚Ýˆ—i’Êíj
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼èµ·å‹•å‰²ã‚Šè¾¼ã¿å‡¦ç†ï¼ˆé€šå¸¸ï¼‰
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  *
- *	ŠÅ”Â‚È‚Ç‚Ìˆ—‚ð’†’f‚µ‚ÄŒÄ‚Ño‚·ˆ—
+ *	çœ‹æ¿ãªã©ã®å‡¦ç†ã‚’ä¸­æ–­ã—ã¦å‘¼ã³å‡ºã™å‡¦ç†
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void FieldMenuEvChg( FIELDSYS_WORK * repw );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒƒjƒ…[‹N“®Š„‚èž‚Ýˆ—iƒ†ƒjƒIƒ“ƒ‹[ƒ€—pj
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼èµ·å‹•å‰²ã‚Šè¾¼ã¿å‡¦ç†ï¼ˆãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ï¼‰
  *
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  *
- *	ŠÅ”Â‚È‚Ç‚Ìˆ—‚ð’†’f‚µ‚ÄŒÄ‚Ño‚·ˆ—
+ *	çœ‹æ¿ãªã©ã®å‡¦ç†ã‚’ä¸­æ–­ã—ã¦å‘¼ã³å‡ºã™å‡¦ç†
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void FieldMenuEvChgUnion( FIELDSYS_WORK * repw );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒvƒŠI—¹‘Ò‚¿ˆ—ƒZƒbƒg
+ * ã‚¢ãƒ—ãƒªçµ‚äº†å¾…ã¡å‡¦ç†ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	func	I—¹‘Ò‚¿ˆ—
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	func	çµ‚äº†å¾…ã¡å‡¦ç†
  *
  * @return	none
  */
@@ -193,9 +193,9 @@ GLOBAL void FldMenu_AppWaitFuncSet( FLD_MENU * wk, void * func );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹ˆ—
+ * ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å‡¦ç†
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	0
  */
@@ -204,22 +204,22 @@ GLOBAL BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒ‹ƒ[ƒNì¬
+ * ãƒ¡ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- * @param	item		ƒAƒCƒeƒ€”Ô†
- * @param	mode		ˆ—ƒ‚[ƒh
- * @param	poke_pos	ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚Ì‰½•C–Ú‚ÉŽ‚½‚¹‚é‚©
+ * @param	item		ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	mode		å‡¦ç†ãƒ¢ãƒ¼ãƒ‰
+ * @param	poke_pos	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½•åŒ¹ç›®ã«æŒãŸã›ã‚‹ã‹
  *
- * @return	Žæ“¾‚µ‚½ƒ[ƒ‹ƒ[ƒN
+ * @return	å–å¾—ã—ãŸãƒ¡ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * FieldMenu_MailWorkMake( u16 item, u8 mode, u8 poke_pos );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒ‹‰æ–ÊI—¹ˆ—
+ * ãƒ¡ãƒ¼ãƒ«ç”»é¢çµ‚äº†å‡¦ç†
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	0
  */
@@ -228,9 +228,9 @@ GLOBAL BOOL FldMenu_MailEnd( GMEVENT_CONTROL * event );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒEƒ“ƒ}ƒbƒvI—¹ˆ—i’Êíj
+ * ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—çµ‚äº†å‡¦ç†ï¼ˆé€šå¸¸ï¼‰
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	0
  */
@@ -239,9 +239,9 @@ GLOBAL BOOL FldMenu_TownMapEnd( GMEVENT_CONTROL * event );
 
 //--------------------------------------------------------------------------------------------
 /**
- * –`Œ¯ƒm[ƒgI—¹ˆ—
+ * å†’é™ºãƒŽãƒ¼ãƒˆçµ‚äº†å‡¦ç†
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	0
  */
@@ -250,9 +250,9 @@ GLOBAL BOOL FldMenu_FantasyNoteEnd( GMEVENT_CONTROL * event );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒ‹ƒgƒP[ƒXI—¹ˆ—
+ * ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹çµ‚äº†å‡¦ç†
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	0
  */
@@ -261,9 +261,9 @@ GLOBAL BOOL FldMenu_PorutoCaseEnd( GMEVENT_CONTROL * event );
 
 //--------------------------------------------------------------------------------------------
 /**
- * —F’BŽè’ I—¹ˆ—
+ * å‹é”æ‰‹å¸³çµ‚äº†å‡¦ç†
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	0
  */
@@ -273,9 +273,9 @@ GLOBAL BOOL FldMenu_FriendBookEnd( GMEVENT_CONTROL * event );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒŒƒR[ƒ_[I—¹ˆ—
+ * ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼çµ‚äº†å‡¦ç†
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	0
  */
@@ -284,9 +284,9 @@ GLOBAL BOOL FldMenu_BattleRecoderEnd( GMEVENT_CONTROL * event );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒEƒ“ƒ}ƒbƒvI—¹ˆ—i‹ó‚ð”ò‚Ôj
+ * ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—çµ‚äº†å‡¦ç†ï¼ˆç©ºã‚’é£›ã¶ï¼‰
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	0
  */
@@ -295,7 +295,7 @@ GLOBAL BOOL FldMenu_SorawotobuEnd( GMEVENT_CONTROL * event );
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 GLOBAL const u8 PST_PageTbl_Normal[];
 

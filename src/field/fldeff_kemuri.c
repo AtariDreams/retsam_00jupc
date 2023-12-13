@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_kemuri.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ“y‰Œ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJåœŸç…™
  * @author	kagaya
  * @data	05.07.13
  *
@@ -21,20 +21,20 @@
 //==============================================================================
 //	define
 //==============================================================================
-#define KEMURI_ANIME_FRAME (9)				///<“y‰ŒƒAƒjƒƒtƒŒ[ƒ€
+#define KEMURI_ANIME_FRAME (9)				///<åœŸç…™ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-#define KEMURI_DRAW_Z_OFFS (NUM_FX32(8))	///<•\¦À•WZƒIƒtƒZƒbƒg
+#define KEMURI_DRAW_Z_OFFS (NUM_FX32(8))	///<è¡¨ç¤ºåº§æ¨™Zã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_KEMURI_PTRŒ^
+///	FE_KEMURI_PTRå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_KEMURI * FE_KEMURI_PTR;
 
 //--------------------------------------------------------------
-///	FE_KEMURI\‘¢‘Ì
+///	FE_KEMURIæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_KEMURI
 {
@@ -42,10 +42,10 @@ typedef struct _TAG_FE_KEMURI
 	FE_SYS *fes;
 }FE_KEMURI;
 
-#define FE_KEMURI_SIZE (sizeof(FE_KEMURI))	///<FE_KEMURIƒTƒCƒY
+#define FE_KEMURI_SIZE (sizeof(FE_KEMURI))	///<FE_KEMURIã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	KEMURI_ADD_H\‘¢‘Ì
+///	KEMURI_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -56,7 +56,7 @@ typedef struct
 }KEMURI_ADD_H;
 
 //--------------------------------------------------------------
-///	KEMURI_WORK\‘¢‘Ì
+///	KEMURI_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -71,7 +71,7 @@ typedef struct
 #define KEMURI_WORK_SIZE (sizeof(KEMURI_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Kemuri_GraphicInit( FE_KEMURI_PTR kemu );
 static void Kemuri_TwGraphicAdd( FE_KEMURI_PTR kemu );
@@ -81,11 +81,11 @@ static const EOA_H_NPP DATA_EoaH_Kemuri;
 const BLACT_ANIME_TBL DATA_BlActAnmTbl_Kemuri[];
 
 //==============================================================================
-//	“y‰Œ	ƒVƒXƒeƒ€
+//	åœŸç…™	ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * “y‰Œ‰Šú‰»
+ * åœŸç…™åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_KEMURI_PTR FE_KEMURI_PTR
  */
@@ -103,7 +103,7 @@ void * FE_Kemuri_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * “y‰Œíœ
+ * åœŸç…™å‰Šé™¤
  * @param	kusa		FE_KEMURI_PTR
  * @retval	nothing
  */
@@ -118,7 +118,7 @@ void FE_Kemuri_Delete( void *work )
 
 //--------------------------------------------------------------
 /**
- * “y‰Œ ”j‚ê‚½¢ŠE‘Î‰
+ * åœŸç…™ ç ´ã‚ŒãŸä¸–ç•Œå¯¾å¿œ
  * @param	fes	FE_SYS_PTR
  * @retval	nothing
  */
@@ -136,11 +136,11 @@ void FE_Kemuri_TornWorldON( FE_SYS *fes )
 }
 
 //==============================================================================
-//	“y‰Œ@ƒOƒ‰ƒtƒBƒbƒN
+//	åœŸç…™ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * è‰ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	kemu	FE_GRASS_PTR
  * @retval	nothing
  */
@@ -160,7 +160,7 @@ static void Kemuri_GraphicInit( FE_KEMURI_PTR kemu )
 
 //--------------------------------------------------------------
 /**
- * ‘@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»@”j‚ê‚½¢ŠE—pã¶‰E’Ç‰Á
+ * è‰ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–ã€€ç ´ã‚ŒãŸä¸–ç•Œç”¨ä¸Šå·¦å³è¿½åŠ 
  * @param	kemu	FE_GRASS_PTR
  * @retval	nothing
  */
@@ -193,7 +193,7 @@ static void Kemuri_TwGraphicAdd( FE_KEMURI_PTR kemu )
 
 //--------------------------------------------------------------
 /**
- * “y‰Œ@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * åœŸç…™ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	kemu	FE_KEMURI_PTR
  * @retval	nothing
  */
@@ -216,16 +216,16 @@ static void Kemuri_GraphicDelete( FE_KEMURI_PTR kemu )
 }
 
 //==============================================================================
-//	EOA “y‰Œ
+//	EOA åœŸç…™
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ—p“y‰Œ’Ç‰Á ƒwƒbƒ_[ì¬
- * @param	fes			‰Šú‰»Ï‚İFE_SYS*
- * @param	fldobj		’Ç‰Á‚·‚éFIELD_OBJ_PTR
- * @param	head		‰Šú‰»‚·‚éKEMURI_ADD_H
- * @param	pos			À•WŠi”[æ
- * @param	pri			‰Šú‰»‚·‚éTCBƒvƒ‰ƒCƒIƒŠƒeƒB
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨åœŸç…™è¿½åŠ  ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
+ * @param	fes			åˆæœŸåŒ–æ¸ˆã¿FE_SYS*
+ * @param	fldobj		è¿½åŠ ã™ã‚‹FIELD_OBJ_PTR
+ * @param	head		åˆæœŸåŒ–ã™ã‚‹KEMURI_ADD_H
+ * @param	pos			åº§æ¨™æ ¼ç´å…ˆ
+ * @param	pri			åˆæœŸåŒ–ã™ã‚‹TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -246,7 +246,7 @@ static void Kemuri_HeaderMake( FE_SYS *fes,
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ—p“y‰Œ’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨åœŸç…™è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -293,7 +293,7 @@ void FE_FldOBJKemuri_Add( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ—p“y‰Œ’Ç‰Á ”j‚ê‚½¢ŠE—p•ûŒüw’è”Å
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨åœŸç…™è¿½åŠ  ç ´ã‚ŒãŸä¸–ç•Œç”¨æ–¹å‘æŒ‡å®šç‰ˆ
  * @param	fldobj		FIELD_OBJ_PTR
  @ @param	type		FE_KEMURI_TYPE
  * @retval	nothing
@@ -324,10 +324,10 @@ void FE_FldOBJKemuriTornWorld_Add( FIELD_OBJ_PTR fldobj, FE_KEMURI_TYPE type )
 
 //--------------------------------------------------------------
 /**
- * EOA “y‰Œ@‰Šú‰»
+ * EOA åœŸç…™ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaKemuri_Init( EOA_PTR eoa, void *wk )
@@ -358,7 +358,7 @@ static int EoaKemuri_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA “y‰Œ@íœ
+ * EOA åœŸç…™ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -375,7 +375,7 @@ static void EoaKemuri_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA “y‰Œ@“®ì
+ * EOA åœŸç…™ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -391,7 +391,7 @@ static void EoaKemuri_Move( EOA_PTR eoa, void *wk )
 	fldobj = work->head.fldobj;
 	
 	switch( work->seq_no ){
-	case 0:													//—h‚ê
+	case 0:													//æºã‚Œ
 		BLACT_AnmFrameChg( work->act, FX32_ONE );
 		frame = BLACT_AnmFrameGetOffs( work->act ) / FX32_ONE;
 		
@@ -406,7 +406,7 @@ static void EoaKemuri_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA “y‰Œ@•`‰æ
+ * EOA åœŸç…™ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -429,7 +429,7 @@ static void EoaKemuri_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	“y‰ŒEOA_H
+///	åœŸç…™EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Kemuri =
 {
@@ -441,7 +441,7 @@ static const EOA_H_NPP DATA_EoaH_Kemuri =
 };
 
 //--------------------------------------------------------------
-///	“y‰ŒƒAƒjƒ
+///	åœŸç…™ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_BlActAnmTbl_Kemuri[] =
 {

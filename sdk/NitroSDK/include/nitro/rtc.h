@@ -12,7 +12,7 @@
 
   $Log: rtc.h,v $
   Revision 1.3  2005/05/17 13:01:56  seiki_masashi
-  •ÏŠ·ŠÖ”‚Ì’Ç‰Á
+  å¤‰æ›é–¢æ•°ã®è¿½åŠ 
 
   Revision 1.2  2005/02/28 05:26:02  yosizaki
   do-indent.

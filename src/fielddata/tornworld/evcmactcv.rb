@@ -1,10 +1,10 @@
 ##################################################################
 #	evjmpcv.rb
-#	‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒCƒxƒ“ƒgƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^ƒRƒ“ƒo[ƒg
+#	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¤ãƒ™ãƒ³ãƒˆã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 ##################################################################
 	
 #=================================================================
-#	ƒGƒ‰[I—¹
+#	ã‚¨ãƒ©ãƒ¼çµ‚äº†
 #=================================================================
 def	evcmactcv_error_end( file0, file1, file )
 	file0.close
@@ -13,89 +13,89 @@ def	evcmactcv_error_end( file0, file1, file )
 end
 
 #=================================================================
-#	ˆêsƒRƒ“ƒo[ƒg
-#	line	ˆês•¶š
-#	wfile	‘‚«‚İæƒtƒ@ƒCƒ‹p
-#	no		‰½”Ô–Ú‚Ìƒf[ƒ^‚©
-#	return	0=³íI—¹ 1=ˆÙíI—¹ 2=I’[ 3=ƒf[ƒ^–³‚µs‚Å‚ ‚é
+#	ä¸€è¡Œã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	line	ä¸€è¡Œæ–‡å­—
+#	wfile	æ›¸ãè¾¼ã¿å…ˆãƒ•ã‚¡ã‚¤ãƒ«p
+#	no		ä½•ç•ªç›®ã®ãƒ‡ãƒ¼ã‚¿ã‹
+#	return	0=æ­£å¸¸çµ‚äº† 1=ç•°å¸¸çµ‚äº† 2=çµ‚ç«¯ 3=ãƒ‡ãƒ¼ã‚¿ç„¡ã—è¡Œã§ã‚ã‚‹
 #=================================================================
 def evcmactcv_conv_line( line, wfile, no )
 	num = 0
 	ary = Array.new
-	str = line.split( "," )					#","‹æØ‚è”z—ñ
+	str = line.split( "," )					#","åŒºåˆ‡ã‚Šé…åˆ—
 	
-	if( str == @nil || str[0] =~ /#end/ )	#I’[ƒ`ƒFƒbƒN
+	if( str == @nil || str[0] =~ /#end/ )	#çµ‚ç«¯ãƒã‚§ãƒƒã‚¯
 		return 2
 	end
 	
-	#if( str[1] == @nil )					# ‹ósƒ`ƒFƒbƒN
+	#if( str[1] == @nil )					# ç©ºè¡Œãƒã‚§ãƒƒã‚¯
 	#return 3
 	#end
 	
-	if( str[2] == @nil )					# XÀ•W@s16
-		printf( "XÀ•WˆÙí No=%d\n", no )
+	if( str[2] == @nil )					# Xåº§æ¨™ã€€s16
+		printf( "Xåº§æ¨™ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[2].to_i )
 	wfile.write( ary.pack("s*") )
 	
-	if( str[3] == @nil )					# YÀ•W@s16
-		printf( "YÀ•WˆÙí No=%d\n", no )
+	if( str[3] == @nil )					# Yåº§æ¨™ã€€s16
+		printf( "Yåº§æ¨™ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[3].to_i )
 	wfile.write( ary.pack("s*") )
 	
-	if( str[4] == @nil )					# ZÀ•W@s16
-		printf( "ZÀ•WˆÙí No=%d\n", no )
+	if( str[4] == @nil )					# Zåº§æ¨™ã€€s16
+		printf( "Zåº§æ¨™ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[4].to_i )
 	wfile.write( ary.pack("s*") )
 	
-	if( str[5] == @nil )					# X”ÍˆÍ@s16
-		printf( "X”ÍˆÍˆÙí No=%d\n", no )
+	if( str[5] == @nil )					# Xç¯„å›²ã€€s16
+		printf( "Xç¯„å›²ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[5].to_i )
 	wfile.write( ary.pack("s*") )
 	
-	if( str[6] == @nil )					# Y”ÍˆÍ@s16
-		printf( "Y”ÍˆÍˆÙí No=%d\n", no )
+	if( str[6] == @nil )					# Yç¯„å›²ã€€s16
+		printf( "Yç¯„å›²ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[6].to_i )
 	wfile.write( ary.pack("s*") )
 	
-	if( str[7] == @nil )					# Z”ÍˆÍ@s16
-		printf( "Z”ÍˆÍˆÙí No=%d\n", no )
+	if( str[7] == @nil )					# Zç¯„å›²ã€€s16
+		printf( "Zç¯„å›²ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[7].to_i )
 	wfile.write( ary.pack("s*") )
 	
-	if( str[8] == @nil )					# ƒJƒƒ‰X@u16
-		printf( "ƒJƒƒ‰XˆÙí No=%d\n", no )
+	if( str[8] == @nil )					# ã‚«ãƒ¡ãƒ©Xã€€u16
+		printf( "ã‚«ãƒ¡ãƒ©Xç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[8].to_i )
 	wfile.write( ary.pack("S*") )
 	
-	if( str[9] == @nil )					# ƒJƒƒ‰Y@u16
-		printf( "ƒJƒƒ‰YˆÙí No=%d\n", no )
+	if( str[9] == @nil )					# ã‚«ãƒ¡ãƒ©Yã€€u16
+		printf( "ã‚«ãƒ¡ãƒ©Yç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[9].to_i )
 	wfile.write( ary.pack("S*") )
 	
-	if( str[10] == @nil )					# ƒJƒƒ‰Z@u16
-		printf( "ƒJƒƒ‰ZˆÙí No=%d\n", no )
+	if( str[10] == @nil )					# ã‚«ãƒ¡ãƒ©Zã€€u16
+		printf( "ã‚«ãƒ¡ãƒ©Zç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[10].to_i )
 	wfile.write( ary.pack("S*") )
 	
-	case str[1]								# •ûŒü s16
+	case str[1]								# æ–¹å‘ s16
 	when "UP"
 		num = 0
 	when "DOWN"
@@ -105,27 +105,27 @@ def evcmactcv_conv_line( line, wfile, no )
 	when "RIGHT"
 		num = 3
 	else
-		printf( "“ü—ÍƒL[ˆÙí No=%d\n", no )
+		printf( "å…¥åŠ›ã‚­ãƒ¼ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	
 	ary = Array( num.to_i )
 	wfile.write( ary.pack("S*") )
 	
-	if( str[11] == @nil )					# ƒtƒŒ[ƒ€ s32
-		printf( "ƒtƒŒ[ƒ€”ˆÙí No=%d\n", no )
+	if( str[11] == @nil )					# ãƒ•ãƒ¬ãƒ¼ãƒ  s32
+		printf( "ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[11].to_i )
 	wfile.write( ary.pack("i*") )
 	
-	return 0								# ³íI—¹
+	return 0								# æ­£å¸¸çµ‚äº†
 end
 
 #=================================================================
-#	cmactƒtƒ@ƒCƒ‹ƒRƒ“ƒo[ƒg
-#	txtname ƒRƒ“ƒo[ƒg‚·‚éƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^ƒeƒLƒXƒgƒtƒ@ƒCƒ‹
-#	–ß‚è’l@0=³íI—¹ 1=ˆÙíI—¹
+#	cmactãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	txtname ã‚³ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«
+#	æˆ»ã‚Šå€¤ã€€0=æ­£å¸¸çµ‚äº† 1=ç•°å¸¸çµ‚äº†
 #=================================================================
 def evcmactcv_txtfileconv( txtname )
 	if( txtname == @nil )
@@ -133,7 +133,7 @@ def evcmactcv_txtfileconv( txtname )
 		return 1
 	end
 	
-	#filepath = Dir.pwd							#Œ»İ‚ÌƒfƒBƒŒƒNƒgƒŠ
+	#filepath = Dir.pwd							#ç¾åœ¨ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 	
 	binname = txtname
 	binname = txtname.sub( /\.txt/, "\.bin" )	#output name.txt -> name.bin
@@ -144,31 +144,31 @@ def evcmactcv_txtfileconv( txtname )
 	printf( "Tw EventCameraActionFile Convert %s -> %s\n",
 		File.basename(txtname), File.basename(binname) )
 	
-	data_no = 0									#ƒf[ƒ^”Ô†
-	tfile.gets 									#ˆês–Ú‚ğ”ò‚Î‚·
-	ary = Array( data_no.to_i )					#ƒf[ƒ^‘”‚ğ—\‚ß‘‚«‚İ
+	data_no = 0									#ãƒ‡ãƒ¼ã‚¿ç•ªå·
+	tfile.gets 									#ä¸€è¡Œç›®ã‚’é£›ã°ã™
+	ary = Array( data_no.to_i )					#ãƒ‡ãƒ¼ã‚¿ç·æ•°ã‚’äºˆã‚æ›¸ãè¾¼ã¿
 	wfile.write( ary.pack("i*") )
 	
-	loop{										#ƒRƒ“ƒo[ƒg
+	loop{										#ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 		line = tfile.gets
 		ret = evcmactcv_conv_line( line, wfile, data_no+1 )
 		
 		case ret
-		when 1		#ƒGƒ‰[
+		when 1		#ã‚¨ãƒ©ãƒ¼
 			evcmactcv_error_end( tfile, wfile, binname )
 			return 1
-		when 2		#I’[
+		when 2		#çµ‚ç«¯
 			break
-		when 3		#‹ós
+		when 3		#ç©ºè¡Œ
 			next
 		end
 	
 		data_no = data_no + 1
 	}
 	
-	wfile.pos = 0								#æ“ª‚É–ß‚·
+	wfile.pos = 0								#å…ˆé ­ã«æˆ»ã™
 	ary = Array( data_no.to_i )
-	wfile.write( ary.pack("i*") )				#ƒf[ƒ^‘”‚ğ‘‚«‚İ
+	wfile.write( ary.pack("i*") )				#ãƒ‡ãƒ¼ã‚¿ç·æ•°ã‚’æ›¸ãè¾¼ã¿
 	
 	tfile.close
 	wfile.close

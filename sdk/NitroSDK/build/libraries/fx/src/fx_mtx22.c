@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.8  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.7  2005/02/28 05:26:13  yosizaki
   do-indent.
@@ -24,7 +24,7 @@
   fix comments.
 
   Revision 1.5  2004/05/27 09:40:26  takano_makoto
-  ARM, THUMB‚Ìw’è•ÏX
+  ARM, THUMBã®æŒ‡å®šå¤‰æ›´
 
   Revision 1.4  2004/05/26 01:55:29  takano_makoto
   Fix bug in MTX_Identity22 and MTX_Transpose22

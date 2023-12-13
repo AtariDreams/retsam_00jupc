@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poke_regulation.c
- * @bfief	ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É“K‡‚·‚é‚©‚Ìƒc[ƒ‹
+ * @bfief	ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«é©åˆã™ã‚‹ã‹ã®ãƒ„ãƒ¼ãƒ«
  * @author	k.ohno
  * @date	06.05.25
  */
@@ -15,7 +15,7 @@
 #include "poketool/monsno.h"
 #include "savedata/regulation_data.h"
 
-#define _POKENO_NONE  (0)          // ƒ|ƒPƒ‚ƒ“”Ô†‚Å‚È‚¢”Ô†
+#define _POKENO_NONE  (0)          // ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã§ãªã„ç•ªå·
 
 #ifdef DEBUG_ONLY_FOR_ohno
 static void _testRegulation(ZKN_HEIGHT_GRAM_PTR pZKN);
@@ -23,8 +23,8 @@ static void _testRegulation(ZKN_HEIGHT_GRAM_PTR pZKN);
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‚ªƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É“K‡‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é‘O‚É}ŠÓƒf[ƒ^‚ª•K—v
- * ‚È‚Ì‚Å}ŠÓƒf[ƒ^‚ğƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“—p‚ÉŠm•Û‚µ‚Ü‚·  ‚ ‚ç‚©‚¶‚ß‚ ‚éê‡‚É‚Í‚¢‚è‚Ü‚¹‚ñ
+ * ãƒã‚±ãƒ¢ãƒ³ãŒãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«é©åˆã—ã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹å‰ã«å›³é‘‘ãƒ‡ãƒ¼ã‚¿ãŒå¿…è¦
+ * ãªã®ã§å›³é‘‘ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ã«ç¢ºä¿ã—ã¾ã™  ã‚ã‚‰ã‹ã˜ã‚ã‚ã‚‹å ´åˆã«ã¯ã„ã‚Šã¾ã›ã‚“
  * @param   heap_id
  * @return  ZKN_HEIGHT_GRAM_PTR*
  */
@@ -42,7 +42,7 @@ ZKN_HEIGHT_GRAM_PTR PokeRegulationInit(int heap_id )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‚ªƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É“K‡‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚½‚çA}ŠÓ‚ğ”jŠü
+ * ãƒã‚±ãƒ¢ãƒ³ãŒãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«é©åˆã—ã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿ã¹ãŸã‚‰ã€å›³é‘‘ã‚’ç ´æ£„
  * @param   ZKN_HEIGHT_GRAM_PTR*
  * @return  none
  */
@@ -56,10 +56,10 @@ void PokeRegulationEnd(ZKN_HEIGHT_GRAM_PTR pZKN)
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‚ªƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É“K‡‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
+ * ãƒã‚±ãƒ¢ãƒ³ãŒãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«é©åˆã—ã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
  * @param   POKEMON_PARAM
  * @param   REGULATION
- * @return  ‡’v‚µ‚½‚çTRUE
+ * @return  åˆè‡´ã—ãŸã‚‰TRUE
  */
 //------------------------------------------------------------------
 
@@ -76,18 +76,18 @@ BOOL PokeRegulationCheckPokePara(const REGULATION* pReg, POKEMON_PARAM* pp, cons
     if(PokeParaGet(pp, ID_PARA_level, NULL) > ans){
         return FALSE;
     }
-    //‚½‚Ü‚²Qí•s‰Â
+    //ãŸã¾ã”å‚æˆ¦ä¸å¯
     if( PokeParaGet(pp, ID_PARA_tamago_flag, NULL ) != 0 ){
         return FALSE;
     }
-    // i‰»ƒ|ƒPƒ‚ƒ“‚©‚Ç‚¤‚©
+    // é€²åŒ–ãƒã‚±ãƒ¢ãƒ³ã‹ã©ã†ã‹
     ans = Regulation_GetParam(pReg, REGULATION_EVOLUTION);
-    if(ans==0){  // i‰»ƒ|ƒPƒ‚ƒ“‚©‚Ç‚¤‚©ŒŸ¸‚ğ‚·‚é‚Î‚ ‚¢
-        if(mons != PokeChildCheck(mons)){  // ©•ªˆÈŠO‚ª‹A‚Á‚Ä‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢‚Ì‚Å‚Í‚¶‚­
+    if(ans==0){  // é€²åŒ–ãƒã‚±ãƒ¢ãƒ³ã‹ã©ã†ã‹æ¤œæŸ»ã‚’ã™ã‚‹ã°ã‚ã„
+        if(mons != PokeChildCheck(mons)){  // è‡ªåˆ†ä»¥å¤–ãŒå¸°ã£ã¦ãã‚‹ã®ã¯ãŠã‹ã—ã„ã®ã§ã¯ã˜ã
             return FALSE;
         }
     }
-    // ‚‚³
+    // é«˜ã•
     ans = Regulation_GetParam(pReg, REGULATION_HEIGHT);
     if(ans != 0){
         height = ZKN_HEIGHTGRAM_GetHeight(pZKN, mons);
@@ -102,7 +102,7 @@ BOOL PokeRegulationCheckPokePara(const REGULATION* pReg, POKEMON_PARAM* pp, cons
             }
         }
     }
-    // d‚³
+    // é‡ã•
     ans = Regulation_GetParam(pReg, REGULATION_WEIGHT) * 10;
     if(ans != 0){
         weight = ZKN_HEIGHTGRAM_GetGram(pZKN, mons);
@@ -117,7 +117,7 @@ BOOL PokeRegulationCheckPokePara(const REGULATION* pReg, POKEMON_PARAM* pp, cons
             }
         }
     }
-    // “`àƒ|ƒPƒ‚ƒ“‚©
+    // ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã‹
     ans = Regulation_GetParam(pReg, REGULATION_LEGEND);
     if(ans == 0){
         if(BattleTowerExPokeCheck_PokePara(pp)){
@@ -129,11 +129,11 @@ BOOL PokeRegulationCheckPokePara(const REGULATION* pReg, POKEMON_PARAM* pp, cons
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒp[ƒeƒB‚ªƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É“K‡‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
+ * ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ãŒãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«é©åˆã—ã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
  * @param   POKEMON_PARAM
  * @param   REGULATION
  * @param   ZKN_HEIGHT_GRAM_PTR
- * @param   party‚ğ‘I‘ğ‚µ‚½”z—ñ  0ˆÈŠO‚ª‘I‘ğ‚µ‚Ä‚¢‚é
+ * @param   partyã‚’é¸æŠã—ãŸé…åˆ—  0ä»¥å¤–ãŒé¸æŠã—ã¦ã„ã‚‹
  * @return  
  */
 //------------------------------------------------------------------
@@ -157,31 +157,31 @@ int PokeRegulationMatchFullPokeParty(const REGULATION* pReg, POKEPARTY * party,
     }
     OS_TPrintf("sel %d %d %d %d %d %d\n",sel[0],sel[1],sel[2],sel[3],sel[4],sel[5]);
 
-    //‘S‘Ì”
+    //å…¨ä½“æ•°
     ans = Regulation_GetParam(pReg, REGULATION_POKE_NUM);
     if(cnt != ans){
-        return POKE_REG_NUM_FAILED;  // ”‚Íˆê’v‚ªŒ´‘¥
+        return POKE_REG_NUM_FAILED;  // æ•°ã¯ä¸€è‡´ãŒåŸå‰‡
     }
     for(i = 0; i < 6 ;i++){
         if(sel[i]){
             int pid = sel[i]-1;
             pp = PokeParty_GetMemberPointer(party, pid);
             if(PokeRegulationCheckPokePara(pReg, pp, pZKN) == FALSE){
-                return POKE_REG_ILLEGAL_POKE; // ŒÂ‘Ì‚ªˆø‚Á‚©‚©‚Á‚½
+                return POKE_REG_ILLEGAL_POKE; // å€‹ä½“ãŒå¼•ã£ã‹ã‹ã£ãŸ
             }
             monsTbl[i] = (u16)PokeParaGet( pp, ID_PARA_monsno, NULL );
             itemTbl[i] = (u16)PokeParaGet( pp, ID_PARA_item, NULL );
             level += PokeParaGet(pp,ID_PARA_level,NULL);
         }
     }
-    //‡ŒvLV
+    //åˆè¨ˆLV
     ans = Regulation_GetParam(pReg, REGULATION_TOTAL_LEVEL);
     if((level > ans) && (ans != 0)){
         return POKE_REG_TOTAL_LV_FAILED;
     }
-    // “¯‚¶ƒ|ƒPƒ‚ƒ“
+    // åŒã˜ãƒã‚±ãƒ¢ãƒ³
     ans = Regulation_GetParam(pReg, REGULATION_BOTH_MONSTER);
-    if((ans == 0) && (cnt > 1)){  // “¯‚¶ƒ|ƒPƒ‚ƒ“‚Í‚¾‚ß‚Å ˆê‘ÌˆÈã‚Ìê‡
+    if((ans == 0) && (cnt > 1)){  // åŒã˜ãƒã‚±ãƒ¢ãƒ³ã¯ã ã‚ã§ ä¸€ä½“ä»¥ä¸Šã®å ´åˆ
         for(i = 0; i < (6-1); i++){
             for(j = i + 1;j < 6; j++){
                 if((monsTbl[i] == monsTbl[j]) && (monsTbl[i] != _POKENO_NONE)){
@@ -191,9 +191,9 @@ int PokeRegulationMatchFullPokeParty(const REGULATION* pReg, POKEPARTY * party,
         }
     }
 
-    // “¯‚¶ƒAƒCƒeƒ€
+    // åŒã˜ã‚¢ã‚¤ãƒ†ãƒ 
     ans = Regulation_GetParam(pReg, REGULATION_BOTH_ITEM);
-    if((ans == 0) && (cnt > 1)){  // “¯‚¶ƒAƒCƒeƒ€‚Í‚¾‚ß‚Å ˆê‘ÌˆÈã‚Ìê‡
+    if((ans == 0) && (cnt > 1)){  // åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ã¯ã ã‚ã§ ä¸€ä½“ä»¥ä¸Šã®å ´åˆ
         for(i = 0; i < (6-1); i++){
             for(j = i + 1;j < 6; j++){
                 if((itemTbl[i] == itemTbl[j]) && (monsTbl[i] != _POKENO_NONE) && (ITEM_DUMMY_DATA != itemTbl[i])){
@@ -207,15 +207,15 @@ int PokeRegulationMatchFullPokeParty(const REGULATION* pReg, POKEPARTY * party,
 
 //------------------------------------------------------------------
 /**
- * Ä‹A“I‚ÉLV‚ğˆø‚«Z‚µ‚Ä–Ú“I‚É’B‚µ‚½‚çTRUE
- * @param   ƒ‚ƒ“ƒXƒ^[”Ô†‚Ìƒe[ƒuƒ‹
- * @param   ƒŒƒxƒ‹‚ª“ü‚Á‚Ä‚é‚Ìƒe[ƒuƒ‹
- * @param   ‚±‚Ìƒ|ƒPƒ‚ƒ“ŒŸ¸‚µ‚½ê‡‚ÌMARK
- * @param   totalPokeLv   c‚è‚ÌLV
- * @param   nowPokeIndex  ¡‚©‚çŒvZ‚·‚éƒ|ƒPƒ‚ƒ“
- * @param   partyNum     CUPQ‰Á‚Ìc‚èƒ|ƒPƒ‚ƒ“”
- * @param   ƒ|ƒPƒp[ƒeƒB[”
- * @return  ‡’v‚µ‚½‚çTRUE
+ * å†å¸°çš„ã«LVã‚’å¼•ãç®—ã—ã¦ç›®çš„ã«é”ã—ãŸã‚‰TRUE
+ * @param   ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç•ªå·ã®ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param   ãƒ¬ãƒ™ãƒ«ãŒå…¥ã£ã¦ã‚‹ã®ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param   ã“ã®ãƒã‚±ãƒ¢ãƒ³æ¤œæŸ»ã—ãŸå ´åˆã®MARK
+ * @param   totalPokeLv   æ®‹ã‚Šã®LV
+ * @param   nowPokeIndex  ä»Šã‹ã‚‰è¨ˆç®—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³
+ * @param   partyNum     CUPå‚åŠ ã®æ®‹ã‚Šãƒã‚±ãƒ¢ãƒ³æ•°
+ * @param   ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼æ•°
+ * @return  åˆè‡´ã—ãŸã‚‰TRUE
  */
 //------------------------------------------------------------------
 
@@ -235,26 +235,26 @@ static BOOL _totalLevelCheck(u16* pMonsTbl,u16* pLevelTbl,u16* pMarkTbl,
         if(party == 0){
             return TRUE;
         }
-        pMarkTbl[nowPokeIndex] = 1;  // ƒ}[ƒN‚Â‚¯‚é
+        pMarkTbl[nowPokeIndex] = 1;  // ãƒãƒ¼ã‚¯ã¤ã‘ã‚‹
     }
-    for(i = nowPokeIndex+1;i < cnt;i++){  // Ä‹AŒŸ¸’†
+    for(i = nowPokeIndex+1;i < cnt;i++){  // å†å¸°æ¤œæŸ»ä¸­
         if(_totalLevelCheck(pMonsTbl,pLevelTbl,pMarkTbl, total, i, party, cnt)){
             return TRUE;
         }
     }
-    pMarkTbl[nowPokeIndex] = 0;  // ƒ}[ƒN‚Í‚¸‚·
+    pMarkTbl[nowPokeIndex] = 0;  // ãƒãƒ¼ã‚¯ã¯ãšã™
     return FALSE;
 }
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒp[ƒeƒB’†‚ÉƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É“K‡‚µ‚Ä‚¢‚é
- *   ƒp[ƒeƒB[‚ª‘g‚ß‚é‚©‚Ç‚¤‚©’²‚×‚é “K‰ŠO‚Ìƒ|ƒPƒ‚ƒ“‚ª‚¢‚Ä‚à‘åä•v
- *   è‚¿ƒAƒCƒeƒ€‚ÍŒŸ¸‚µ‚Ä‚¢‚È‚¢
+ * ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ä¸­ã«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«é©åˆã—ã¦ã„ã‚‹
+ *   ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ãŒçµ„ã‚ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹ é©å¿œå¤–ã®ãƒã‚±ãƒ¢ãƒ³ãŒã„ã¦ã‚‚å¤§ä¸ˆå¤«
+ *   æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ã¯æ¤œæŸ»ã—ã¦ã„ãªã„
  * @param   POKEMON_PARAM
  * @param   REGULATION
  * @param   ZKN_HEIGHT_GRAM_PTR
- * @return  _POKE_REG_NUM_FAILED ‚© _POKE_REG_TOTAL_FAILED ‚© _POKE_REG_OK
+ * @return  _POKE_REG_NUM_FAILED ã‹ _POKE_REG_TOTAL_FAILED ã‹ _POKE_REG_OK
  */
 //------------------------------------------------------------------
 
@@ -275,38 +275,38 @@ int PokeRegulationMatchPartialPokeParty(const REGULATION* pReg, POKEPARTY * part
         monsTbl[i] = (u16)PokeParaGet( pp, ID_PARA_monsno, NULL );
         levelTbl[i] = PokeParaGet(pp,ID_PARA_level,NULL);
         if(PokeRegulationCheckPokePara(pReg, pp, pZKN) == FALSE){
-            monsTbl[i] = _POKENO_NONE; // ŒÅ‘Ì‚ªˆø‚Á‚©‚©‚Á‚½‚Ì‚ÅÁ‚·
+            monsTbl[i] = _POKENO_NONE; // å›ºä½“ãŒå¼•ã£ã‹ã‹ã£ãŸã®ã§æ¶ˆã™
             partyNum--;
         }
     }
-    // “¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‚¾‚ß‚Èê‡
+    // åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒã ã‚ãªå ´åˆ
     ans = Regulation_GetParam(pReg, REGULATION_BOTH_MONSTER);
-    if((ans == 0) && (cnt > 1)){  // “¯‚¶ƒ|ƒPƒ‚ƒ“‚ÍLV‚Ì’á‚¢•û‚ğc‚·
+    if((ans == 0) && (cnt > 1)){  // åŒã˜ãƒã‚±ãƒ¢ãƒ³ã¯LVã®ä½ã„æ–¹ã‚’æ®‹ã™
         for(i = 0; i < (cnt-1); i++){
             for(j = i + 1;j < cnt; j++){
                 if((monsTbl[i] == monsTbl[j]) && (monsTbl[i] != _POKENO_NONE)){
                     if(levelTbl[i] > levelTbl[j]){
-                        monsTbl[i] = _POKENO_NONE; // “¯‚¶‚à‚Ì‚ğÁ‹
+                        monsTbl[i] = _POKENO_NONE; // åŒã˜ã‚‚ã®ã‚’æ¶ˆå»
                     }
                     else{
-                        monsTbl[j] = _POKENO_NONE; // “¯‚¶‚à‚Ì‚ğÁ‹
+                        monsTbl[j] = _POKENO_NONE; // åŒã˜ã‚‚ã®ã‚’æ¶ˆå»
                     }
                     partyNum--;
                 }
             }
         }
     }
-    //‘S‘Ì”
+    //å…¨ä½“æ•°
     ans = Regulation_GetParam(pReg, REGULATION_POKE_NUM);
     if(partyNum < ans){
-        return POKE_REG_NUM_FAILED;  // ‘S‘Ì”‚ª‘«‚è‚È‚¢
+        return POKE_REG_NUM_FAILED;  // å…¨ä½“æ•°ãŒè¶³ã‚Šãªã„
     }
     partyNum = ans;
 
-    //c‚Á‚½ƒ|ƒPƒ‚ƒ“‚Ì‡ŒvLV‘g‚İ‡‚í‚¹ŒŸ¸
+    //æ®‹ã£ãŸãƒã‚±ãƒ¢ãƒ³ã®åˆè¨ˆLVçµ„ã¿åˆã‚ã›æ¤œæŸ»
     ans = Regulation_GetParam(pReg, REGULATION_TOTAL_LEVEL);
     if(ans == 0){
-        return POKE_REG_OK;  // LV§ŒÀ‚È‚µ
+        return POKE_REG_OK;  // LVåˆ¶é™ãªã—
     }
     for(i = 0;i < cnt;i++){
         if(_totalLevelCheck(monsTbl,levelTbl,markTbl, ans, i, partyNum, cnt)){
@@ -361,92 +361,92 @@ static void _testRegulation(ZKN_HEIGHT_GRAM_PTR pZKN)
 
     
     {
-        // ƒCƒGƒ[ƒJƒbƒv           // ‡ŒvLV50             // 3•C            // LV20
-        u8 selPoke[6]={1,2,0,0,3,0};  // ‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”Ô†‚ğU‚éƒoƒbƒtƒ@
+        // ã‚¤ã‚¨ãƒ­ãƒ¼ã‚«ãƒƒãƒ—           // åˆè¨ˆLV50             // 3åŒ¹            // LV20
+        u8 selPoke[6]={1,2,0,0,3,0};  // é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ç•ªå·ã‚’æŒ¯ã‚‹ãƒãƒƒãƒ•ã‚¡
         ans = PokeRegulationMatchFullPokeParty(Data_GetRegulation(NULL,_YELLOW),  party, pZKN, selPoke);
         if(ans != POKE_REG_OK){
-            OS_TPrintf("1 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("1 ã¾ã¡ãŒã„ %d \n",ans);
         }
         ans = PokeRegulationMatchPartialPokeParty(Data_GetRegulation(NULL,_YELLOW),  party, pZKN);
         if(ans != POKE_REG_OK){
-            OS_TPrintf("-1 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("-1 ã¾ã¡ãŒã„ %d \n",ans);
         }
     }
     {
-        u8 selPoke[6]={1,2,3,0,0,0};  // ‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”Ô†‚ğU‚éƒoƒbƒtƒ@
-        // ƒCƒGƒ[ƒJƒbƒv           // ‡ŒvLV50             // 3•C            // LV20
+        u8 selPoke[6]={1,2,3,0,0,0};  // é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ç•ªå·ã‚’æŒ¯ã‚‹ãƒãƒƒãƒ•ã‚¡
+        // ã‚¤ã‚¨ãƒ­ãƒ¼ã‚«ãƒƒãƒ—           // åˆè¨ˆLV50             // 3åŒ¹            // LV20
         ans = PokeRegulationMatchFullPokeParty(Data_GetRegulation(NULL,_YELLOW),  party, pZKN, selPoke);
         if(ans != POKE_REG_TOTAL_LV_FAILED){
-            OS_TPrintf("2 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("2 ã¾ã¡ãŒã„ %d \n",ans);
         }
         ans = PokeRegulationMatchPartialPokeParty(Data_GetRegulation(NULL,_YELLOW),  party, pZKN);
         if(ans != POKE_REG_OK){
-            OS_TPrintf("-2 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("-2 ã¾ã¡ãŒã„ %d \n",ans);
         }
     }
     {
-        // ƒCƒGƒ[ƒJƒbƒv           // ‡ŒvLV50             // 3•C            // LV20
-        u8 selPoke[6]={1,2,0,3,0,0};  // ‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”Ô†‚ğU‚éƒoƒbƒtƒ@
+        // ã‚¤ã‚¨ãƒ­ãƒ¼ã‚«ãƒƒãƒ—           // åˆè¨ˆLV50             // 3åŒ¹            // LV20
+        u8 selPoke[6]={1,2,0,3,0,0};  // é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ç•ªå·ã‚’æŒ¯ã‚‹ãƒãƒƒãƒ•ã‚¡
         ans = PokeRegulationMatchFullPokeParty(Data_GetRegulation(NULL,_YELLOW),  party, pZKN, selPoke);
         if(ans != POKE_REG_BOTH_POKE){
-            OS_TPrintf("3 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("3 ã¾ã¡ãŒã„ %d \n",ans);
         }
         ans = PokeRegulationMatchPartialPokeParty(Data_GetRegulation(NULL,_YELLOW),  party, pZKN);
         if(ans != POKE_REG_OK){
-            OS_TPrintf("-3 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("-3 ã¾ã¡ãŒã„ %d \n",ans);
         }
     }
     {
-        // ƒCƒGƒ[ƒJƒbƒv           // ‡ŒvLV50             // 3•C            // LV20
-        u8 selPoke[6]={1,2,0,0,0,3};  // ‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”Ô†‚ğU‚éƒoƒbƒtƒ@
+        // ã‚¤ã‚¨ãƒ­ãƒ¼ã‚«ãƒƒãƒ—           // åˆè¨ˆLV50             // 3åŒ¹            // LV20
+        u8 selPoke[6]={1,2,0,0,0,3};  // é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ç•ªå·ã‚’æŒ¯ã‚‹ãƒãƒƒãƒ•ã‚¡
         ans = PokeRegulationMatchFullPokeParty(Data_GetRegulation(NULL,_YELLOW),  party, pZKN, selPoke);
         if(ans != POKE_REG_ILLEGAL_POKE){
-            OS_TPrintf("4 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("4 ã¾ã¡ãŒã„ %d \n",ans);
         }
         ans = PokeRegulationMatchPartialPokeParty(Data_GetRegulation(NULL,_YELLOW),  party, pZKN);
         if(ans != POKE_REG_OK){
-            OS_TPrintf("-4 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("-4 ã¾ã¡ãŒã„ %d \n",ans);
         }
     }
     {
-        // ƒCƒGƒ[ƒJƒbƒv           // ‡ŒvLV50             // 3•C            // LV20
-        u8 selPoke[6]={1,2,4,0,0,3};  // ‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”Ô†‚ğU‚éƒoƒbƒtƒ@
+        // ã‚¤ã‚¨ãƒ­ãƒ¼ã‚«ãƒƒãƒ—           // åˆè¨ˆLV50             // 3åŒ¹            // LV20
+        u8 selPoke[6]={1,2,4,0,0,3};  // é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ç•ªå·ã‚’æŒ¯ã‚‹ãƒãƒƒãƒ•ã‚¡
         ans = PokeRegulationMatchFullPokeParty(Data_GetRegulation(NULL,_YELLOW),  party, pZKN, selPoke);
-        if(ans != POKE_REG_NUM_FAILED){  // ‚¨‚¨‚·‚¬
-            OS_TPrintf("5 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+        if(ans != POKE_REG_NUM_FAILED){  // ãŠãŠã™ã
+            OS_TPrintf("5 ã¾ã¡ãŒã„ %d \n",ans);
         }
         ans = PokeRegulationMatchPartialPokeParty(Data_GetRegulation(NULL,_YELLOW),  party, pZKN);
         if(ans != POKE_REG_OK){
-            OS_TPrintf("-5 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("-5 ã¾ã¡ãŒã„ %d \n",ans);
         }
     }
 
     {
-        // ƒtƒ@ƒ“ƒV[ƒJƒbƒv           // ‡ŒvLV80             // 3•C            // LV30
-        u8 selPoke[6]={1,0,2,0,3,0};  // ‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”Ô†‚ğU‚éƒoƒbƒtƒ@
+        // ãƒ•ã‚¡ãƒ³ã‚·ãƒ¼ã‚«ãƒƒãƒ—           // åˆè¨ˆLV80             // 3åŒ¹            // LV30
+        u8 selPoke[6]={1,0,2,0,3,0};  // é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ç•ªå·ã‚’æŒ¯ã‚‹ãƒãƒƒãƒ•ã‚¡
         ans = PokeRegulationMatchFullPokeParty(Data_GetRegulation(NULL,_FAN),  party, pZKN, selPoke);
-        if(ans != POKE_REG_ILLEGAL_POKE){  // ‚¨‚¨‚·‚¬
-            OS_TPrintf("11 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+        if(ans != POKE_REG_ILLEGAL_POKE){  // ãŠãŠã™ã
+            OS_TPrintf("11 ã¾ã¡ãŒã„ %d \n",ans);
         }
         ans = PokeRegulationMatchPartialPokeParty(Data_GetRegulation(NULL,_FAN),  party, pZKN);
         if(ans != POKE_REG_NUM_FAILED){
-            OS_TPrintf("-11 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("-11 ã¾ã¡ãŒã„ %d \n",ans);
         }
     }
     {
-        // ƒtƒ@ƒ“ƒV[ƒJƒbƒv           // ‡ŒvLV80             // 3•C            // LV30
-        u8 selPoke[6]={1,2,3,0,0,0};  // ‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”Ô†‚ğU‚éƒoƒbƒtƒ@
+        // ãƒ•ã‚¡ãƒ³ã‚·ãƒ¼ã‚«ãƒƒãƒ—           // åˆè¨ˆLV80             // 3åŒ¹            // LV30
+        u8 selPoke[6]={1,2,3,0,0,0};  // é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ç•ªå·ã‚’æŒ¯ã‚‹ãƒãƒƒãƒ•ã‚¡
         ans = PokeRegulationMatchFullPokeParty(Data_GetRegulation(NULL,_FAN),  fanparty, pZKN, selPoke);
-        if(ans != POKE_REG_OK){  // ‚¨‚¨‚·‚¬
-            OS_TPrintf("12 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+        if(ans != POKE_REG_OK){  // ãŠãŠã™ã
+            OS_TPrintf("12 ã¾ã¡ãŒã„ %d \n",ans);
         }
         ans = PokeRegulationMatchPartialPokeParty(Data_GetRegulation(NULL,_FAN),  fanparty, pZKN);
         if(ans != POKE_REG_OK){
-            OS_TPrintf("-12 ‚Ü‚¿‚ª‚¢ %d \n",ans);
+            OS_TPrintf("-12 ã¾ã¡ãŒã„ %d \n",ans);
         }
     }
 
-    OS_TPrintf(" ƒeƒXƒgŠ®—¹\n");
+    OS_TPrintf(" ãƒ†ã‚¹ãƒˆå®Œäº†\n");
 
     sys_FreeMemoryEz(pp1);
     sys_FreeMemoryEz(pp2);

@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_talk.c
- * @brief	’n‰º‰ï˜b‚ðŠÇ—‚·‚éƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹ä¼šè©±ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2005.12.19
  */
@@ -38,16 +38,16 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
-#define _MENU_UG_PRI  (10000)   // ƒƒjƒ…[‚Ìƒ^ƒXƒNpriorty
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+#define _MENU_UG_PRI  (10000)   // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¿ã‚¹ã‚¯priorty
 
-#define _QUESTION_LIST_NUM   (4)   // •\Ž¦‚·‚éŽ¿–â”
-#define _QUESTION_LIST_MAX   (12)   // Ž¿–âÅ‘å
-//#define _QUESTION_LIST_BOTH  (50)    // “¯‚¶“š‚¦‚ð‘I‚ñ‚¾ê‡
-#define _QUESTION_LIST_CANCEL  (51)  // Ž¿–â‚É“š‚¦‚½‚­‚È‚©‚Á‚½ê‡
+#define _QUESTION_LIST_NUM   (4)   // è¡¨ç¤ºã™ã‚‹è³ªå•æ•°
+#define _QUESTION_LIST_MAX   (12)   // è³ªå•æœ€å¤§
+//#define _QUESTION_LIST_BOTH  (50)    // åŒã˜ç­”ãˆã‚’é¸ã‚“ã å ´åˆ
+#define _QUESTION_LIST_CANCEL  (51)  // è³ªå•ã«ç­”ãˆãŸããªã‹ã£ãŸå ´åˆ
 
 #define _QUESTION_END_TIMING  (100)
 #define _QUESTION_END_TIMING2  (101)
@@ -55,14 +55,14 @@
 
 typedef enum{
     _TALK_SEQ_NONE,
-    _TALK_INIT,            // ˜b‚µ‚©‚¯‚½
-    _TALK_MENU,            // ƒƒjƒ…[‚ªo‚Ä‚¢‚é
-    _MSG_PLUS_TALK_END,    // ƒƒbƒZ[ƒW‚ðo‚µ‚ÄA‰ï˜b‚ð‚â‚ß‚é
-    _TALK_END,             // ‰ï˜b‚ð‚â‚ß‚é
-    _TALK_CARD_WAIT,       // ƒJ[ƒh‚ðŒ©‚¹‚Ä‚à‚ç‚¨‚¤‚Æ‘Ò‹@’†
-    _TALK_REJECT_CARD,     // ƒJ[ƒh‚ðŒ©‚¹‚é‚Ì‚ð‹‘”Û
-    _TALK_TALKCHEKCEND,    // ‰ï˜b‚ÌI—¹‚ð‘Ò‚Á‚ÄI‚í‚é
-    _TALK_CANCELASKER_END,  // —pŽ–‚ª‚ ‚é‚Ì‚ÅI—¹‚·‚éê‡
+    _TALK_INIT,            // è©±ã—ã‹ã‘ãŸ
+    _TALK_MENU,            // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒå‡ºã¦ã„ã‚‹
+    _MSG_PLUS_TALK_END,    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã—ã¦ã€ä¼šè©±ã‚’ã‚„ã‚ã‚‹
+    _TALK_END,             // ä¼šè©±ã‚’ã‚„ã‚ã‚‹
+    _TALK_CARD_WAIT,       // ã‚«ãƒ¼ãƒ‰ã‚’è¦‹ã›ã¦ã‚‚ã‚‰ãŠã†ã¨å¾…æ©Ÿä¸­
+    _TALK_REJECT_CARD,     // ã‚«ãƒ¼ãƒ‰ã‚’è¦‹ã›ã‚‹ã®ã‚’æ‹’å¦
+    _TALK_TALKCHEKCEND,    // ä¼šè©±ã®çµ‚äº†ã‚’å¾…ã£ã¦çµ‚ã‚ã‚‹
+    _TALK_CANCELASKER_END,  // ç”¨äº‹ãŒã‚ã‚‹ã®ã§çµ‚äº†ã™ã‚‹å ´åˆ
     _TALK_CARD_DISP,
     _TALK_CARD_DISP_WAIT,
     _TALK_CARD_DISP_FIN,
@@ -81,9 +81,9 @@ typedef enum{
     _TALK_ITEM_SEND_NO,
     _TALK_ITEM_SEND_OK_ZINGLE,
     _TALK_ITEMEND_TIMING,
-    _TALK_QES_CATEGORY,  // ƒJƒeƒSƒŠ[‘I‘ð
-    _TALK_QES_CATEGORY_LIST,    // ƒƒjƒ…[
-    _TALK_QES_CATEGORY_LIST_WAIT,  // ‘I‘ð
+    _TALK_QES_CATEGORY,  // ã‚«ãƒ†ã‚´ãƒªãƒ¼é¸æŠž
+    _TALK_QES_CATEGORY_LIST,    // ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+    _TALK_QES_CATEGORY_LIST_WAIT,  // é¸æŠž
     _TALK_QES_CATEGORY_WAIT,
     _TALK_QES_CATEGORY_RECV,
     _TALK_CATCH_ANSWER,
@@ -101,15 +101,15 @@ typedef enum{
 
 typedef enum{
     _ASK_SEQ_NONE,
-    _ASK_INIT,             // ˜b‚µ‚©‚¯‚ç‚ê‚½
-    _ASK_WAIT,             // ˜b‚µ‚©‚¯‚ç‚ê’†
+    _ASK_INIT,             // è©±ã—ã‹ã‘ã‚‰ã‚ŒãŸ
+    _ASK_WAIT,             // è©±ã—ã‹ã‘ã‚‰ã‚Œä¸­
     _MSG_PLUS_ASK_END,    
     _ASK_END,
     _ASK_CARD,
-    _ASK_CARD_WAIT,        // ƒJ[ƒh‚ðŒ©‚¹‚é‚æ‚¤—v‹‚ª—ˆ‚½
+    _ASK_CARD_WAIT,        // ã‚«ãƒ¼ãƒ‰ã‚’è¦‹ã›ã‚‹ã‚ˆã†è¦æ±‚ãŒæ¥ãŸ
     _ASK_CARD_YESNO_WAIT,
     _ASK_CANCELTALK_END,
-    _ASK_TALKCHEKCEND,   // ‰ï˜b‚ÌI—¹‚ð‘Ò‚Á‚ÄI‚í‚é
+    _ASK_TALKCHEKCEND,   // ä¼šè©±ã®çµ‚äº†ã‚’å¾…ã£ã¦çµ‚ã‚ã‚‹
     _ASK_CARD_DISP,
     _ASK_CARD_DISP_WAIT,
     _ASK_CARD_DISP_FIN,
@@ -144,7 +144,7 @@ typedef enum{
 } QuestionType_e;
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 
 typedef struct{
@@ -167,50 +167,50 @@ typedef struct{
 } _ITEMSEND_COMMAND;
 
 
-// ˜b‚µ‚©‚¯ó‹µ\‘¢‘Ì
+// è©±ã—ã‹ã‘çŠ¶æ³æ§‹é€ ä½“
 typedef struct{
     TCB_PTR pMyTCB;
     _START_WORK* pStartWin;
     FIELDSYS_WORK* pFSys;
-    GF_BGL_BMPWIN  win;		// BMPƒEƒBƒ“ƒhƒEƒ[ƒN
+    GF_BGL_BMPWIN  win;		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
 	BMPLIST_DATA*  menulist;
-    BMPLIST_WORK*  lw;		// BMPƒƒjƒ…[ƒ[ƒN
+    BMPLIST_WORK*  lw;		// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
     BMPMENU_WORK*  pYesNoWork;
-    _ITEMSEND_COMMAND sendItem;  // Žó‚¯Žæ‚é—\’è‚ÌƒAƒCƒeƒ€
+    _ITEMSEND_COMMAND sendItem;  // å—ã‘å–ã‚‹äºˆå®šã®ã‚¢ã‚¤ãƒ†ãƒ 
     pEndFunc endfunc;
-    u16 connectIndex;  // ‚Â‚È‚®e‹@‚ÌINDEX
+    u16 connectIndex;  // ã¤ãªãè¦ªæ©Ÿã®INDEX
     u8 list_id;
     u8 list_ans;
     u8 waitMode;
     u8 endState;
     u8 work;
-    u8 seq;        // Ž©•ª‚ÌƒV[ƒPƒ“ƒX
-    u8 reqSeq;     // ‘ŠŽè‚©‚ç—ˆ‚½ƒV[ƒPƒ“ƒX
+    u8 seq;        // è‡ªåˆ†ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+    u8 reqSeq;     // ç›¸æ‰‹ã‹ã‚‰æ¥ãŸã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	u16 pos_bak;
 } _TALK_WORK;
 
 
 static _TALK_WORK* _pTalkWork = NULL;
 
-// ˜b‚µ‚©‚¯‚ç‚êó‹µ\‘¢‘Ì
+// è©±ã—ã‹ã‘ã‚‰ã‚ŒçŠ¶æ³æ§‹é€ ä½“
 typedef struct{
     TCB_PTR pMyTCB;
     FIELDSYS_WORK* pFSys;
-    GF_BGL_BMPWIN  win;		// BMPƒEƒBƒ“ƒhƒEƒ[ƒN
+    GF_BGL_BMPWIN  win;		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
 	BMPLIST_DATA*  menulist;
-    BMPLIST_WORK*  lw;		// BMPƒƒjƒ…[ƒ[ƒN
+    BMPLIST_WORK*  lw;		// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
     BMPMENU_WORK*  pYesNoWork;
-    _ITEMSEND_COMMAND recvItem;  // Žó‚¯Žæ‚é—\’è‚ÌƒAƒCƒeƒ€
+    _ITEMSEND_COMMAND recvItem;  // å—ã‘å–ã‚‹äºˆå®šã®ã‚¢ã‚¤ãƒ†ãƒ 
     pEndFunc endfunc;
-    u16 connectIndex;  // ‚Â‚È‚®e‹@‚ÌINDEX
+    u16 connectIndex;  // ã¤ãªãè¦ªæ©Ÿã®INDEX
     u8 list_id;
     u8 list_ans;
     u8 list_ans2;
     u8 waitMode;
     u8 endState;
     u8 work;
-    u8 seq;        // Ž©•ª‚ÌƒV[ƒPƒ“ƒX
-    u8 reqSeq;     // ‘ŠŽè‚©‚ç—ˆ‚½ƒV[ƒPƒ“ƒX
+    u8 seq;        // è‡ªåˆ†ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+    u8 reqSeq;     // ç›¸æ‰‹ã‹ã‚‰æ¥ãŸã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	u16 pos_bak;
 } _ASK_WORK;
 
@@ -219,12 +219,12 @@ static _ASK_WORK* _pAskWork = NULL;
 
 
 //==============================================================================
-//	Œ^éŒ¾
+//	åž‹å®£è¨€
 //==============================================================================
 typedef void (*pTalkFunc)(_TALK_WORK *);
 
 //==============================================================================
-//	static’è‹`
+//	staticå®šç¾©
 //==============================================================================
 
 static void _mainFunc(TCB_PTR tcb, void* work);
@@ -240,7 +240,7 @@ static void _askMenuEnd(TCB_PTR tcb, _ASK_WORK* pAsk);
 static void UgTalkListMoveSe( _TALK_WORK* pTalk );
 
 //==============================================================================
-//	˜b‚µ‚©‚¯ƒƒjƒ…[ƒŠƒXƒg—pƒf[ƒ^“™
+//	è©±ã—ã‹ã‘ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ç­‰
 //==============================================================================
 
 static const struct {
@@ -253,31 +253,31 @@ static const struct {
     { msg_underworld_07, (u32)_talkExit },
 };
 
-///‚Í‚È‚µ‚©‚¯‘I‘ðƒƒjƒ…[‚ÌƒŠƒXƒg
+///ã¯ãªã—ã‹ã‘é¸æŠžãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER TalkMenuListHeader = {
-    NULL,			// •\Ž¦•¶Žšƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\Ž¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,					// 
-    NELEMS(MenuParamList),	// ƒŠƒXƒg€–Ú”
-    NELEMS(MenuParamList),	// •\Ž¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-    8,						// €–Ú•\Ž¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-    0,						// •\Ž¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶ŽšF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶Žš‰eF
-    0,						// •¶ŽšŠÔŠu‚w
-    16,						// •¶ŽšŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶ŽšŽw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
-    NULL,                   // ƒ[ƒN
+    NELEMS(MenuParamList),	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    NELEMS(MenuParamList),	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+    NULL,                   // ãƒ¯ãƒ¼ã‚¯
 };
 
 //==============================================================================
-//	YesNoƒƒjƒ…[ƒŠƒXƒg—pƒf[ƒ^
+//	YesNoãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static const BMPWIN_DAT _yesNoBmpDat = {
     GF_BGL_FRAME3_M, FLD_YESNO_WIN_PX, FLD_YESNO_WIN_PY,
@@ -286,14 +286,14 @@ static const BMPWIN_DAT _yesNoBmpDat = {
 
 
 //==============================================================================
-// ŠÖ”
+// é–¢æ•°
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‘¤‚ÉƒRƒ}ƒ“ƒh‚ð‘—M
- * @param   netID  ˜b‚µ‚©‚¯‘¤ID
- * @param   seq    –½—ß
+ * @brief   è©±ã—ã‹ã‘å´ã«ã‚³ãƒžãƒ³ãƒ‰ã‚’é€ä¿¡
+ * @param   netID  è©±ã—ã‹ã‘å´ID
+ * @param   seq    å‘½ä»¤
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -309,9 +309,9 @@ static void _seqTalkCommandSend(_ASK_WORK* pWork, int seq)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚ç‚ê‘¤‚ÉƒRƒ}ƒ“ƒh‚ð‘—M
- * @param   netID  ˜b‚µ‚©‚¯‚ç‚ê‘¤ID
- * @param   seq    –½—ß
+ * @brief   è©±ã—ã‹ã‘ã‚‰ã‚Œå´ã«ã‚³ãƒžãƒ³ãƒ‰ã‚’é€ä¿¡
+ * @param   netID  è©±ã—ã‹ã‘ã‚‰ã‚Œå´ID
+ * @param   seq    å‘½ä»¤
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -327,9 +327,9 @@ static void _seqAskCommandSend(_TALK_WORK* pWork, int seq)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜b‚ð‚·‚é
- * @param   pWork  ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   no     ‰ï˜b”Ô†
+ * @brief   ä¼šè©±ã‚’ã™ã‚‹
+ * @param   pWork  ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   no     ä¼šè©±ç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -349,9 +349,9 @@ static void _talkTalk(_TALK_WORK* pWork,int no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜b‚ð‚·‚é
- * @param   pWork  ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   no     ‰ï˜b”Ô†
+ * @brief   ä¼šè©±ã‚’ã™ã‚‹
+ * @param   pWork  ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   no     ä¼šè©±ç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -372,10 +372,10 @@ static void _askTalk(_ASK_WORK* pWork,int no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‘¤‰ï˜bŠJŽn
- * @param   targetID  ˜b‚µ‚©‚¯‚ç‚ê‘¤ID
- * @param   func      I‚í‚è‚ÉŒÄ‚Ño‚µ‚½‚¢–½—ß
- * @param   pFSys     ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @brief   è©±ã—ã‹ã‘å´ä¼šè©±é–‹å§‹
+ * @param   targetID  è©±ã—ã‹ã‘ã‚‰ã‚Œå´ID
+ * @param   func      çµ‚ã‚ã‚Šã«å‘¼ã³å‡ºã—ãŸã„å‘½ä»¤
+ * @param   pFSys     ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -390,7 +390,7 @@ void CommUnderTalkInit(int targetID, pEndFunc func, FIELDSYS_WORK* pFSys)
     _pTalkWork = pTalk;
     pTalk->pFSys = pFSys;
     pTalk->endfunc = func;
-    pTalk->connectIndex = targetID;   // ˜b‚µ‘ŠŽè‚ÌID‚ð•Û‘¶
+    pTalk->connectIndex = targetID;   // è©±ã—ç›¸æ‰‹ã®IDã‚’ä¿å­˜
     pTalk->seq = _TALK_INIT;
     pTalk->reqSeq = _TALK_SEQ_NONE;
     pTalk->sendItem.itemType = 0;
@@ -404,8 +404,8 @@ void CommUnderTalkInit(int targetID, pEndFunc func, FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * ˜b‚µ‚©‚¯‚Ìƒƒjƒ…[‚ðo‚·
- * @param   pTalk   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * è©±ã—ã‹ã‘ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‡ºã™
+ * @param   pTalk   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -414,7 +414,7 @@ static void _talkMenuInit(_TALK_WORK* pTalk)
 {
     BMPLIST_HEADER list_h;
 
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pTalk->menulist = BMP_MENULIST_Create( NELEMS(MenuParamList), HEAPID_FIELD );
     GF_BGL_BmpWinAdd(pTalk->pFSys->bgl,&pTalk->win,
                      GF_BGL_FRAME3_M, 1, 1, 10, NELEMS(MenuParamList)*2, FLD_SYSFONT_PAL,
@@ -447,9 +447,9 @@ static void _talkMenuInit(_TALK_WORK* pTalk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯ó‘ÔI—¹ˆ—
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pTalk		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è©±ã—ã‹ã‘çŠ¶æ…‹çµ‚äº†å‡¦ç†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -479,8 +479,8 @@ static void _talkEnd(TCB_PTR tcb, _TALK_WORK* pTalk)
 
 //==============================================================================
 /**
- * Ž¿–âƒR[ƒi[ ƒWƒƒƒ“ƒ‹‘I‘ð
- * @param   pTalk   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * è³ªå•ã‚³ãƒ¼ãƒŠãƒ¼ ã‚¸ãƒ£ãƒ³ãƒ«é¸æŠž
+ * @param   pTalk   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -489,7 +489,7 @@ static void _categoryMenuInit(_TALK_WORK* pTalk)
 {
     BMPLIST_HEADER list_h;
 
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pTalk->menulist = BMP_MENULIST_Create( _QUESTION_LIST_NUM, HEAPID_FIELD );
     GF_BGL_BmpWinAdd(pTalk->pFSys->bgl,&pTalk->win,
                      GF_BGL_FRAME3_M, 1, 1, 16, _QUESTION_LIST_NUM*2, FLD_SYSFONT_PAL,
@@ -530,9 +530,9 @@ static void _categoryMenuInit(_TALK_WORK* pTalk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒeƒSƒŠ[‚ðŒˆ‚ß‚éƒƒjƒ…[ŽÀs•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚«ãƒ†ã‚´ãƒªãƒ¼ã‚’æ±ºã‚ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -546,7 +546,7 @@ static BOOL _categoryMenuFunc(TCB_PTR tcb, void* work)
     ret = BmpListMain(pTalk->lw);
 	UgTalkListMoveSe( pTalk );
 
-    if(CommIsError()){  // ƒGƒ‰[Žž‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         pTalk->seq = _MSG_PLUS_TALK_END;
         _talkMenuEnd(tcb, pTalk);
         return TRUE;
@@ -564,7 +564,7 @@ static BOOL _categoryMenuFunc(TCB_PTR tcb, void* work)
             comm.targetID = pTalk->connectIndex;
             comm.questionType = _QUESTION_TALK;
             CommSendFixSizeData(CF_SECRET_QUESTION, &comm);
-            pTalk->list_id = ret; // ƒƒjƒ…[€–Ú
+            pTalk->list_id = ret; // ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®
             pTalk->seq = _TALK_QES_CATEGORY_WAIT;
             _talkMenuEnd(tcb, pTalk);
         }
@@ -575,8 +575,8 @@ static BOOL _categoryMenuFunc(TCB_PTR tcb, void* work)
 
 //==============================================================================
 /**
- * Ž¿–âƒR[ƒi[ ƒWƒƒƒ“ƒ‹‘I‘ð
- * @param   pAsk   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * è³ªå•ã‚³ãƒ¼ãƒŠãƒ¼ ã‚¸ãƒ£ãƒ³ãƒ«é¸æŠž
+ * @param   pAsk   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -585,7 +585,7 @@ static void _talkReturnAnswerListInit(_TALK_WORK* pTalk)
 {
     BMPLIST_HEADER list_h;
 
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pTalk->menulist = BMP_MENULIST_Create( _QUESTION_LIST_NUM, HEAPID_FIELD );
     GF_BGL_BmpWinAdd(pTalk->pFSys->bgl,&pTalk->win,
                      GF_BGL_FRAME3_M, 1, 1, 16, _QUESTION_LIST_NUM*2, FLD_SYSFONT_PAL,
@@ -615,9 +615,9 @@ static void _talkReturnAnswerListInit(_TALK_WORK* pTalk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒeƒSƒŠ[‚ðŒˆ‚ß‚éƒƒjƒ…[ŽÀs•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚«ãƒ†ã‚´ãƒªãƒ¼ã‚’æ±ºã‚ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -631,14 +631,14 @@ static BOOL _talkReturnAnswerListFunc(TCB_PTR tcb, void* work)
     ret = BmpListMain(pTalk->lw);
 	UgTalkListMoveSe( pTalk );
 
-    if(CommIsError()){  // ƒGƒ‰[Žž‚ÍŸŽè‚ÉI—¹
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯å‹æ‰‹ã«çµ‚äº†
         _talkMenuEnd(tcb, pTalk);
         pTalk->seq = _MSG_PLUS_TALK_END;
         return TRUE;
     }
     switch(ret){
     case BMPLIST_NULL:
-    case BMPLIST_CANCEL:   //ƒLƒƒƒ“ƒZƒ‹‚ª–³‚¢
+    case BMPLIST_CANCEL:   //ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãŒç„¡ã„
         return FALSE;
     default:
 		Snd_SePlay( SEQ_SE_DP_SELECT );
@@ -650,7 +650,7 @@ static BOOL _talkReturnAnswerListFunc(TCB_PTR tcb, void* work)
         CommMsgRegisterSecretAnswerName(CommUnderGetMsgUnderWorld(), comm.no);
         CommMsgRegisterSecretAnswerNameIndex(CommUnderGetMsgUnderWorld(), 6, pTalk->list_ans);
         if(pTalk->list_ans == comm.no){
-            // “¯‚¶“š‚¦
+            // åŒã˜ç­”ãˆ
             _talkTalk(pTalk, msg_uw_ask_06);
         }
         else{
@@ -665,7 +665,7 @@ static BOOL _talkReturnAnswerListFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€‚ð‚à‚ç‚Á‚½ƒƒbƒZ[ƒW‚ð•\Ž¦
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚‚ã‚‰ã£ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  * @param   none
  * @retval  none
  */
@@ -677,15 +677,15 @@ static void _talkItemSendedTalk(_TALK_WORK* pTalk)
     CommMsgRegisterUGGoodsName(CommUnderGetMsgUnderWorld(), pTalk->sendItem.itemNo);
     CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(),
                                              msg_underworld_15 ,FALSE, NULL);
-    SecretBaseRecordSetSendItemNum(SaveData_GetSecretBaseRecord(GameSystem_GetSaveData(pTalk->pFSys))); //= ƒAƒCƒeƒ€‚ð‚ ‚°‚½
+    SecretBaseRecordSetSendItemNum(SaveData_GetSecretBaseRecord(GameSystem_GetSaveData(pTalk->pFSys))); //= ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚ã’ãŸ
     UgBagDeleteGoods(pTalk->sendItem.itemNo);
     Snd_SePlay(UG_SE_SEND_GOODS);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   “n‚·ƒAƒCƒeƒ€‚ð‘I‘ð‚µ‚½Žž‚Ì
- * @param   pTalk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   æ¸¡ã™ã‚¢ã‚¤ãƒ†ãƒ ã‚’é¸æŠžã—ãŸæ™‚ã®
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -699,8 +699,8 @@ static void _sendItemTalk(_TALK_WORK* pTalk, int itemNo)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€‚ð‚ ‚°‚é‚©‚Ç‚¤‚©ÅIŠm”F
- * @param   pTalk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚ã’ã‚‹ã‹ã©ã†ã‹æœ€çµ‚ç¢ºèª
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -713,16 +713,16 @@ static void _sendItemYesNoCheck(TCB_PTR tcb, _TALK_WORK* pTalk)
     if(ret == BMPMENU_NULL){
         return;
     }
-    if(ret == 0){ // ‚Í‚¢‚ð‘I‘ð‚µ‚½ê‡
-        //‘ŠŽè‚Ì•ÔŽ–‘Ò‚¿
+    if(ret == 0){ // ã¯ã„ã‚’é¸æŠžã—ãŸå ´åˆ
+        //ç›¸æ‰‹ã®è¿”äº‹å¾…ã¡
         pTalk->sendItem.netID = pTalk->connectIndex;
         CommSendFixSizeData(CF_SEND_ITEM, &pTalk->sendItem);
         pTalk->seq = _TALK_ITEM_SEND_ASK_WAIT;
     }
-    else{ // ‚¢‚¢‚¦‚ð‘I‘ð‚µ‚½ê‡
-        // ‚ A‚Ü‚½‚±‚ñ‚Ç‚Å‚à‚¢‚¢‚æ[
+    else{ // ã„ã„ãˆã‚’é¸æŠžã—ãŸå ´åˆ
+        // ã‚ã€ã¾ãŸã“ã‚“ã©ã§ã‚‚ã„ã„ã‚ˆãƒ¼
         _talkTalk(pTalk, msg_underworld_12);
-        // ‘ŠŽè‚Í“Á‚É•Ï‰»‚È‚µ
+        // ç›¸æ‰‹ã¯ç‰¹ã«å¤‰åŒ–ãªã—
         pTalk->seq = _TALK_WAIT_NEXT;
     }
     pTalk->pYesNoWork=NULL;
@@ -730,9 +730,9 @@ static void _sendItemYesNoCheck(TCB_PTR tcb, _TALK_WORK* pTalk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚ðŒˆ‚ß‚éƒƒjƒ…[ŽÀs•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è©±ã—ã‹ã‘ã‚’æ±ºã‚ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -745,7 +745,7 @@ static BOOL _talkMenuFunc(TCB_PTR tcb, void* work)
     ret = BmpListMain(pTalk->lw);
 	UgTalkListMoveSe( pTalk );
 
-    if(CommIsError()){  // ƒGƒ‰[Žž‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         ret = BMPLIST_CANCEL;
     }
     switch(ret){
@@ -760,7 +760,7 @@ static BOOL _talkMenuFunc(TCB_PTR tcb, void* work)
 		Snd_SePlay( SEQ_SE_DP_SELECT );
         {
             pTalkFunc func = (pTalkFunc)ret;
-            func(pTalk);  // ŠÖ”ƒWƒƒƒ“ƒv
+            func(pTalk);  // é–¢æ•°ã‚¸ãƒ£ãƒ³ãƒ—
             _talkMenuEnd(tcb, pTalk);
         }
         break;
@@ -770,9 +770,9 @@ static BOOL _talkMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‘I‘ðƒƒjƒ…[ƒŠƒXƒg‚ð•Â‚¶‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pTalk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   è©±ã—ã‹ã‘é¸æŠžãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã‚’é–‰ã˜ã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -791,8 +791,8 @@ static void _talkMenuEnd(TCB_PTR tcb, _TALK_WORK* pTalk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜b•\Ž¦ƒXƒ^[ƒg
- * @param   pTalk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ä¼šè©±è¡¨ç¤ºã‚¹ã‚¿ãƒ¼ãƒˆ
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -806,8 +806,8 @@ static void _cardStart(_TALK_WORK* pTalk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ã©Ý’u
- * @param   pTalk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ç½ è¨­ç½®
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -820,8 +820,8 @@ static void _questionStart( _TALK_WORK* pTalk )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€‚ ‚°‚é
- * @param   pTalk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚ã’ã‚‹
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -833,8 +833,8 @@ static void _sendItem( _TALK_WORK* pTalk )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒOƒbƒYƒƒjƒ…[I—¹ˆ—
- * @param   selectNo  ‘I‘ð‚µ‚½ƒOƒbƒY‚Ì”Ô†
+ * @brief   ã‚°ãƒƒã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼çµ‚äº†å‡¦ç†
+ * @param   selectNo  é¸æŠžã—ãŸã‚°ãƒƒã‚ºã®ç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -846,7 +846,7 @@ static void _goodsMenuEndFunc(int selectNo)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒh‚ðŒ©I‚í‚Á‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+ * @brief   ã‚«ãƒ¼ãƒ‰ã‚’è¦‹çµ‚ã‚ã£ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -859,9 +859,9 @@ static void _talkCardDispCallback(void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯ƒV[ƒPƒ“ƒXƒƒCƒ“
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è©±ã—ã‹ã‘ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¡ã‚¤ãƒ³
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -873,7 +873,7 @@ static void _mainFunc(TCB_PTR tcb, void* work)
 
     if (pTalk->seq != _TALK_ITEMMENU_WAIT){
         if(!CommIsConnect(pTalk->connectIndex)){
-            pTalk->pStartWin=NULL;  // ‚·‚Å‚ÉíœÏ‚Ý
+            pTalk->pStartWin=NULL;  // ã™ã§ã«å‰Šé™¤æ¸ˆã¿
             UnderRecordReset();
             pTalk->seq = _TALK_END;
         }
@@ -895,7 +895,7 @@ static void _mainFunc(TCB_PTR tcb, void* work)
         _talkEnd(tcb, pTalk);
         break;
       case _TALK_CARD_WAIT:
-        // ‘ŠŽè‚Ì•ÔŽ–‘Ò‚¿
+        // ç›¸æ‰‹ã®è¿”äº‹å¾…ã¡
         if( CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0 ){
             if(pTalk->reqSeq  == _TALK_CARD_DISP){
                 pTalk->seq = _TALK_CARD_DISP;
@@ -934,25 +934,25 @@ static void _mainFunc(TCB_PTR tcb, void* work)
       case _TALK_CARD_DISP_WAIT:
         break;
       case _TALK_CARD_DISP_FIN:
-        // ƒgƒŒ[ƒi[ƒJ[ƒh‰{——I‚í‚è
+        // ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰é–²è¦§çµ‚ã‚ã‚Š
         RECORD_Score_Add(SaveData_GetRecord(pTalk->pFSys->savedata), SCORE_ID_HELLO);
         UgRecordResetTargetRecord();
         _talkTalk(pTalk, msg_underworld_10);
         pTalk->seq = _TALK_CARD_FIN_WAIT;
         break;
-      case _TALK_CARD_FIN_WAIT:  // MSGEND‘Ò‚¿
+      case _TALK_CARD_FIN_WAIT:  // MSGENDå¾…ã¡
         if( CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0 ){
-            _seqAskCommandSend(pTalk, _ASK_CARD_CALLBACK_WAIT);  // ‘ŠŽè‚ÉI—¹‚ð‘—M
+            _seqAskCommandSend(pTalk, _ASK_CARD_CALLBACK_WAIT);  // ç›¸æ‰‹ã«çµ‚äº†ã‚’é€ä¿¡
             pTalk->seq = _TALK_CARD_CALLBACK_WAIT;
         }
         break;
-      case _TALK_CARD_CALLBACK_WAIT:  // ‘ŠŽè‚©‚ç‚Ì—v‹‘Ò‚¿
+      case _TALK_CARD_CALLBACK_WAIT:  // ç›¸æ‰‹ã‹ã‚‰ã®è¦æ±‚å¾…ã¡
         if( pTalk->reqSeq ==  _TALK_CARD_CALLBACK_WAIT){
             pTalk->seq = _TALK_NEXT;
         }
         break;
       case _TALK_NEXT:
-        _talkTalk(pTalk, msg_underworld_11);  // ‚Ù‚©‚É‚à‚È‚É‚©‚·‚éH
+        _talkTalk(pTalk, msg_underworld_11);  // ã»ã‹ã«ã‚‚ãªã«ã‹ã™ã‚‹ï¼Ÿ
         pTalk->seq = _TALK_INIT;
         break;
       case _TALK_WAIT_NEXT:
@@ -967,11 +967,11 @@ static void _mainFunc(TCB_PTR tcb, void* work)
         pTalk->seq = _TALK_ITEMMENU_WAIT;
         break;
       case _TALK_ITEMMENU_WAIT:
-        ///--------------------------------ƒƒjƒ…[‘I‘ð’† ’ÊMƒGƒ‰[‚Å‚à‚Ð‚ç‚«‚Á‚Ï‚È‚µ‚Å
+        ///--------------------------------ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠžä¸­ é€šä¿¡ã‚¨ãƒ©ãƒ¼ã§ã‚‚ã²ã‚‰ãã£ã±ãªã—ã§
         break;
       case _TALK_ITEMMENU_END:
         pTalk->pStartWin = NULL;
-        ///-------------------------------ƒAƒCƒeƒ€ƒƒjƒ…[‚ªI‚í‚Á‚½‚ ‚Æ
+        ///-------------------------------ã‚¢ã‚¤ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒçµ‚ã‚ã£ãŸã‚ã¨
         if(_pTalkWork->sendItem.itemNo == UG_GOODS_NONE){
             _talkTalk(pTalk, msg_underworld_12);
             pTalk->seq = _TALK_WAIT_NEXT;
@@ -984,12 +984,12 @@ static void _mainFunc(TCB_PTR tcb, void* work)
             _talkTalk(pTalk, msg_underworld_87);
             pTalk->seq = _TALK_WAIT_NEXT;
         }
-        else if(GOODS_GetLear(_pTalkWork->sendItem.itemNo)){ // ƒŒƒA‚¾‚Á‚½ê‡
+        else if(GOODS_GetLear(_pTalkWork->sendItem.itemNo)){ // ãƒ¬ã‚¢ã ã£ãŸå ´åˆ
             _talkTalk(pTalk, msg_underworld_86);
             pTalk->seq = _TALK_WAIT_NEXT;
         }
         else{
-            _sendItemTalk(pTalk, _pTalkWork->sendItem.itemNo);  // ƒAƒCƒeƒ€‚ð‚ ‚°‚éŽ–‚É‚µ‚½
+            _sendItemTalk(pTalk, _pTalkWork->sendItem.itemNo);  // ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚ã’ã‚‹äº‹ã«ã—ãŸ
             pTalk->seq = _TALK_ITEM_SEND_CHECK;
         }
         break;
@@ -999,15 +999,15 @@ static void _mainFunc(TCB_PTR tcb, void* work)
                                                    &_yesNoBmpDat, MENU_WIN_CGX_NUM,
                                                    MENU_WIN_PAL, HEAPID_FIELD );
             pTalk->seq = _TALK_ITEM_SEND_CHECK_WAIT;
-            if(pTalk->reqSeq != _TALK_CANCELASKER_END){  // ‹Ù‹}’âŽ~–½—ß‚Í‘¦ŽÀs
-                pTalk->reqSeq = _TALK_INIT;// ‰Šú
+            if(pTalk->reqSeq != _TALK_CANCELASKER_END){  // ç·Šæ€¥åœæ­¢å‘½ä»¤ã¯å³å®Ÿè¡Œ
+                pTalk->reqSeq = _TALK_INIT;// åˆæœŸ
             }
         }
         break;
       case _TALK_ITEM_SEND_CHECK_WAIT:
         _sendItemYesNoCheck(tcb, pTalk);
         break;
-      case _TALK_ITEM_SEND_ASK_WAIT:   // ƒAƒCƒeƒ€‚ð‘ŠŽè‚É‘—MA•ÔŽ–‘Ò‚¿
+      case _TALK_ITEM_SEND_ASK_WAIT:   // ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç›¸æ‰‹ã«é€ä¿¡ã€è¿”äº‹å¾…ã¡
         if( CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0 ){
             if(pTalk->reqSeq  == _TALK_ITEM_SEND_OK){
                 pTalk->seq = _TALK_ITEM_SEND_OK;
@@ -1020,15 +1020,15 @@ static void _mainFunc(TCB_PTR tcb, void* work)
             }
         }
         break;
-      case _TALK_ITEM_SEND_FULL:  // ‚Ç‚¤‚®‚ª‚¢‚Á‚Ï‚¢
+      case _TALK_ITEM_SEND_FULL:  // ã©ã†ããŒã„ã£ã±ã„
         _talkTalk(pTalk, msg_underworld_33);
         pTalk->seq = _TALK_ITEMEND_TIMING;
         break;
-      case _TALK_ITEM_SEND_NO:  // Žó‚¯Žæ‚ç‚È‚©‚Á‚½
+      case _TALK_ITEM_SEND_NO:  // å—ã‘å–ã‚‰ãªã‹ã£ãŸ
         _talkTalk(pTalk, msg_underworld_14);
         pTalk->seq = _TALK_ITEMEND_TIMING;
         break;
-      case _TALK_ITEM_SEND_OK:  // ƒAƒCƒeƒ€‚ð‘ŠŽè‚ª’Ç‰Á‚µ‚½
+      case _TALK_ITEM_SEND_OK:  // ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç›¸æ‰‹ãŒè¿½åŠ ã—ãŸ
         _talkItemSendedTalk(pTalk);
         {
             EVENTWORK* pEV = SaveData_GetEventWork( pTalk->pFSys->savedata );
@@ -1050,7 +1050,7 @@ static void _mainFunc(TCB_PTR tcb, void* work)
         }
         break;
       case _TALK_QES_CATEGORY:
-        _talkTalk(pTalk, msg_uw_ask_01);   // ‚È‚É‚ð‚«‚«‚½‚¢‚ÌH
+        _talkTalk(pTalk, msg_uw_ask_01);   // ãªã«ã‚’ãããŸã„ã®ï¼Ÿ
         pTalk->seq = _TALK_QES_CATEGORY_LIST;
         break;
       case _TALK_QES_CATEGORY_LIST:
@@ -1067,7 +1067,7 @@ static void _mainFunc(TCB_PTR tcb, void* work)
         _talkTalk(pTalk, msg_uw_ask_02);
         pTalk->seq = _TALK_QES_CATEGORY_RECV;
         break;
-      case _TALK_QES_CATEGORY_RECV:  //‘ŠŽè‘Ò‚¿
+      case _TALK_QES_CATEGORY_RECV:  //ç›¸æ‰‹å¾…ã¡
         if( CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0 ){
             if( pTalk->reqSeq ==  _TALK_CATCH_ANSWER){
                 pTalk->seq = _TALK_CATCH_ANSWER;
@@ -1119,31 +1119,31 @@ static void _mainFunc(TCB_PTR tcb, void* work)
         break;
       case _TALK_QES_END_WAIT25:
         if(pTalk->reqSeq == _TALK_QES_END_WAIT2){
-            _seqAskCommandSend(pTalk, _QUESTION_END_TIMING);  // ‘ŠŽè‚ÉI—¹‚ð‘—M
+            _seqAskCommandSend(pTalk, _QUESTION_END_TIMING);  // ç›¸æ‰‹ã«çµ‚äº†ã‚’é€ä¿¡
             pTalk->seq = _TALK_QES_END_WAIT3;
         }
         break;
       case _TALK_QES_END_WAIT3:
-        if(pTalk->reqSeq == _QUESTION_END_TIMING){   // ‘ŠŽè‚©‚ç‚ÌI—¹‘Ò‚¿
+        if(pTalk->reqSeq == _QUESTION_END_TIMING){   // ç›¸æ‰‹ã‹ã‚‰ã®çµ‚äº†å¾…ã¡
             _talkTalk(pTalk, msg_uw_ask_15);
             pTalk->seq = _TALK_QES_END_WAIT4;
         }
         break;
       case _TALK_QES_END_WAIT4:
         if( CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0 ){
-            _seqAskCommandSend(pTalk, _QUESTION_END_TIMING2);  // ‘ŠŽè‚ÉI—¹‚ð‘—M
+            _seqAskCommandSend(pTalk, _QUESTION_END_TIMING2);  // ç›¸æ‰‹ã«çµ‚äº†ã‚’é€ä¿¡
             pTalk->seq = _TALK_QES_END_WAIT5;
         }
         break;
       case _TALK_QES_END_WAIT5:
-        if(pTalk->reqSeq == _QUESTION_END_TIMING2){   // ‘ŠŽè‚©‚ç‚ÌI—¹‘Ò‚¿
+        if(pTalk->reqSeq == _QUESTION_END_TIMING2){   // ç›¸æ‰‹ã‹ã‚‰ã®çµ‚äº†å¾…ã¡
             pTalk->seq = _TALK_NEXT;
         }
         break;
     }
-    if(pTalk->reqSeq == _TALK_CANCELASKER_END){  // ‹Ù‹}’âŽ~–½—ß‚Í‘¦ŽÀs
+    if(pTalk->reqSeq == _TALK_CANCELASKER_END){  // ç·Šæ€¥åœæ­¢å‘½ä»¤ã¯å³å®Ÿè¡Œ
         if((pTalk->seq == _TALK_END) || (pTalk->seq == _TALK_TALKCHEKCEND)){
-            // ‚µ‚©‚µI—¹‚µ‚Ä‚¢‚éÅ’†‚È‚ç‚ÎŽÀs•K—v‚È‚¢
+            // ã—ã‹ã—çµ‚äº†ã—ã¦ã„ã‚‹æœ€ä¸­ãªã‚‰ã°å®Ÿè¡Œå¿…è¦ãªã„
             return;
         }
         if(pTalk->pYesNoWork){
@@ -1164,8 +1164,8 @@ static void _mainFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜b‚ð‚â‚ß‚é
- * @param   pTalk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ä¼šè©±ã‚’ã‚„ã‚ã‚‹
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1179,8 +1179,8 @@ static void _talkExit( _TALK_WORK* pTalk )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒh‚ðŒ©‚¹‚é‚©‚Ç‚¤‚©
- * @param   pTalk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚«ãƒ¼ãƒ‰ã‚’è¦‹ã›ã‚‹ã‹ã©ã†ã‹
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1193,14 +1193,14 @@ static void _selectCardInfoYesNoCheck(TCB_PTR tcb, _ASK_WORK* pAsk)
     if(ret == BMPMENU_NULL){
         return;
     }
-    if(ret == 0){ // ‚Í‚¢‚ð‘I‘ð‚µ‚½ê‡
-        //’n‰º—pƒgƒŒ[ƒi[ƒP[ƒX‚Ì‰æ–Ê‚É‚¢‚­
+    if(ret == 0){ // ã¯ã„ã‚’é¸æŠžã—ãŸå ´åˆ
+        //åœ°ä¸‹ç”¨ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚±ãƒ¼ã‚¹ã®ç”»é¢ã«ã„ã
         _seqTalkCommandSend(pAsk, _TALK_CARD_DISP);
-        UgRecordSendMyData(pAsk->connectIndex);// ‘ŠŽè‚ÉƒŒƒR[ƒh‚ð‘—‚é
+        UgRecordSendMyData(pAsk->connectIndex);// ç›¸æ‰‹ã«ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’é€ã‚‹
         pAsk->seq = _ASK_CARD_DISP;
     }
-    else{ // ‚¢‚¢‚¦‚ð‘I‘ð‚µ‚½ê‡
-        // Ž©“®I—¹
+    else{ // ã„ã„ãˆã‚’é¸æŠžã—ãŸå ´åˆ
+        // è‡ªå‹•çµ‚äº†
         _seqTalkCommandSend(pAsk, _TALK_REJECT_CARD);
         pAsk->seq = _ASK_CANCELTALK_END;
     }
@@ -1210,8 +1210,8 @@ static void _selectCardInfoYesNoCheck(TCB_PTR tcb, _ASK_WORK* pAsk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€‚ð‚à‚ç‚¤‚©‚Ç‚¤‚©
- * @param   pTalk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚‚ã‚‰ã†ã‹ã©ã†ã‹
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1224,21 +1224,21 @@ static void _recvItemYesNoCheck(TCB_PTR tcb, _ASK_WORK* pAsk)
     if(ret == BMPMENU_NULL){
         return;
     }
-    if(ret == 0){ // ‚Í‚¢‚ð‘I‘ð‚µ‚½ê‡      // ƒAƒCƒeƒ€’Ç‰Á
+    if(ret == 0){ // ã¯ã„ã‚’é¸æŠžã—ãŸå ´åˆ      // ã‚¢ã‚¤ãƒ†ãƒ è¿½åŠ 
         if(CommUnderBagAddGoods(pAsk->recvItem.itemNo)){
-            SecretBaseRecordSetItemRecvNum(SaveData_GetSecretBaseRecord(GameSystem_GetSaveData(pAsk->pFSys)));  // ƒAƒCƒeƒ€‚ð‚à‚ç‚Á‚½‰ñ”
+            SecretBaseRecordSetItemRecvNum(SaveData_GetSecretBaseRecord(GameSystem_GetSaveData(pAsk->pFSys)));  // ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚‚ã‚‰ã£ãŸå›žæ•°
             Snd_SePlay(UG_SE_SEND_GOODS);
             _seqTalkCommandSend(pAsk, _TALK_ITEM_SEND_OK);
             pAsk->seq = _ASK_ITEM_RECVED;
         }
-        else{  // ƒAƒCƒeƒ€‚ª“ü‚ç‚È‚©‚Á‚½
+        else{  // ã‚¢ã‚¤ãƒ†ãƒ ãŒå…¥ã‚‰ãªã‹ã£ãŸ
             _seqTalkCommandSend(pAsk, _TALK_ITEM_SEND_FULL);
             _askTalk(pAsk, msg_underworld_24);
             pAsk->seq = _ASK_ITEM_RECVED_WAIT_END;
         }
     }
-    else{ // ‚¢‚¢‚¦‚ð‘I‘ð‚µ‚½ê‡
-        // Ž©“®I—¹
+    else{ // ã„ã„ãˆã‚’é¸æŠžã—ãŸå ´åˆ
+        // è‡ªå‹•çµ‚äº†
         _seqTalkCommandSend(pAsk, _TALK_ITEM_SEND_NO);
         _askTalk(pAsk, msg_underworld_32);
         pAsk->seq = _ASK_ITEM_RECVED_WAIT_END;
@@ -1248,7 +1248,7 @@ static void _recvItemYesNoCheck(TCB_PTR tcb, _ASK_WORK* pAsk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚ç‚êó‘ÔI—¹ˆ—
+ * @brief   è©±ã—ã‹ã‘ã‚‰ã‚ŒçŠ¶æ…‹çµ‚äº†å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -1273,9 +1273,9 @@ static void _askEnd(TCB_PTR tcb, _ASK_WORK* pAsk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‘I‘ðƒƒjƒ…[ƒŠƒXƒg‚ð•Â‚¶‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pTalk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   è©±ã—ã‹ã‘é¸æŠžãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã‚’é–‰ã˜ã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pTalk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1294,7 +1294,7 @@ static void _askMenuEnd(TCB_PTR tcb, _ASK_WORK* pAsk)
 
 //--------------------------------------------------------------
 /**
- * @brief   l•¨–¼‚ðexpand‚µ‚ÄƒƒbƒZ[ƒW•\Ž¦
+ * @brief   äººç‰©åã‚’expandã—ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  * @param   none
  * @retval  none
  */
@@ -1309,7 +1309,7 @@ static void _askNamePlusTalk(_ASK_WORK* pAsk, int targetID, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€‚ð‚à‚ç‚Á‚½ƒƒbƒZ[ƒW‚ð•\Ž¦
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚‚ã‚‰ã£ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  * @param   none
  * @retval  none
  */
@@ -1326,8 +1326,8 @@ static void _askItemRecvedTalk(_ASK_WORK* pAsk)
 
 //==============================================================================
 /**
- * Ž¿–âƒR[ƒi[ ƒWƒƒƒ“ƒ‹‘I‘ð
- * @param   pAsk   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * è³ªå•ã‚³ãƒ¼ãƒŠãƒ¼ ã‚¸ãƒ£ãƒ³ãƒ«é¸æŠž
+ * @param   pAsk   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1338,7 +1338,7 @@ static void _askQuestionListInit(_ASK_WORK* pAsk)
 
     const int menuNum = _QUESTION_LIST_NUM + 1;
     
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pAsk->menulist = BMP_MENULIST_Create( menuNum, HEAPID_FIELD );
     GF_BGL_BmpWinAdd(pAsk->pFSys->bgl,&pAsk->win,
                      GF_BGL_FRAME3_M, 1, 1, 16, menuNum*2, FLD_SYSFONT_PAL,
@@ -1361,8 +1361,8 @@ static void _askQuestionListInit(_ASK_WORK* pAsk)
     list_h = TalkMenuListHeader;
     list_h.list = pAsk->menulist;
     list_h.win = &pAsk->win;
-	list_h.count = menuNum;		//ƒŠƒXƒg€–Ú”
-	list_h.line = menuNum;		//•\Ž¦Å‘å€–Ú”
+	list_h.count = menuNum;		//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	list_h.line = menuNum;		//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 	pAsk->pos_bak = 0;
     pAsk->lw = BmpListSet(&list_h, 0, 0, HEAPID_FIELD);
     GF_BGL_BmpWinOn(&pAsk->win);
@@ -1371,9 +1371,9 @@ static void _askQuestionListInit(_ASK_WORK* pAsk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒeƒSƒŠ[‚ðŒˆ‚ß‚éƒƒjƒ…[ŽÀs•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚«ãƒ†ã‚´ãƒªãƒ¼ã‚’æ±ºã‚ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1388,17 +1388,17 @@ static BOOL _askQuestionListFunc(TCB_PTR tcb, void* work)
     ret = BmpListMain(pAsk->lw);
 
 #if 1
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ðŽæ“¾
-	tmp_pos_bak = pAsk->pos_bak;		//‘Þ”ð
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = pAsk->pos_bak;		//é€€é¿
 	BmpListDirectPosGet( pAsk->lw, &pAsk->pos_bak );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != pAsk->pos_bak ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
 #endif
 
-    if(CommIsError()){  // ƒGƒ‰[Žž‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         ret = BMPLIST_CANCEL;
     }
     switch(ret){
@@ -1410,7 +1410,7 @@ static BOOL _askQuestionListFunc(TCB_PTR tcb, void* work)
 		Snd_SePlay( SEQ_SE_DP_SELECT );
         _askMenuEnd(tcb, pAsk);
         if(ret != _QUESTION_LIST_CANCEL){
-            pAsk->list_ans = (ret + pAsk->list_id * _QUESTION_LIST_NUM); // “š‚¦€–Ú
+            pAsk->list_ans = (ret + pAsk->list_id * _QUESTION_LIST_NUM); // ç­”ãˆé …ç›®
             pAsk->seq = _ASK_ANSWERED_WAIT;
             CommMsgRegisterSecretAnswerName(CommUnderGetMsgUnderWorld(), pAsk->list_ans);
             _askTalk(pAsk, msg_uw_ask_11);
@@ -1434,7 +1434,7 @@ static BOOL _askQuestionListFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒh‚ðŒ©I‚í‚Á‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+ * @brief   ã‚«ãƒ¼ãƒ‰ã‚’è¦‹çµ‚ã‚ã£ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -1447,7 +1447,7 @@ static void _askCardDispCallback(void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚ç‚êó‘ÔŠÇ—
+ * @brief   è©±ã—ã‹ã‘ã‚‰ã‚ŒçŠ¶æ…‹ç®¡ç†
  * @param   none
  * @retval  none
  */
@@ -1518,24 +1518,24 @@ static void _askTask(TCB_PTR tcb, void* pWork)
       case _ASK_CARD_DISP_WAIT:
         break;
       case _ASK_CARD_DISP_FIN:
-        // ƒgƒŒ[ƒi[ƒJ[ƒh‰{——I‚í‚è
+        // ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰é–²è¦§çµ‚ã‚ã‚Š
         UgRecordResetTargetRecord();
         _askNamePlusTalk(pAsk, pAsk->connectIndex, msg_underworld_29);
         pAsk->seq = _ASK_CARD_FIN_WAIT;
         break;
-      case _ASK_CARD_FIN_WAIT:  // MSGEND‘Ò‚¿
+      case _ASK_CARD_FIN_WAIT:  // MSGENDå¾…ã¡
         if( CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0 ){
-            _seqTalkCommandSend(pAsk, _TALK_CARD_CALLBACK_WAIT);  // ‘ŠŽè‚ÉI—¹‚ð‘—M
+            _seqTalkCommandSend(pAsk, _TALK_CARD_CALLBACK_WAIT);  // ç›¸æ‰‹ã«çµ‚äº†ã‚’é€ä¿¡
             pAsk->seq = _ASK_CARD_CALLBACK_WAIT;
         }
         break;
-      case _ASK_CARD_CALLBACK_WAIT:  // ‘ŠŽè‚©‚ç‚Ì—v‹‘Ò‚¿
+      case _ASK_CARD_CALLBACK_WAIT:  // ç›¸æ‰‹ã‹ã‚‰ã®è¦æ±‚å¾…ã¡
         if( pAsk->reqSeq ==  _ASK_CARD_CALLBACK_WAIT ){
             pAsk->seq = _ASK_NEXT;
         }
         break;
       case _ASK_NEXT:
-        _askTalk(pAsk, msg_underworld_30);  // Œã‚Íc
+        _askTalk(pAsk, msg_underworld_30);  // å¾Œã¯â€¦
         pAsk->seq = _ASK_WAIT;
         break;
       case _ASK_WAIT_NEXT:
@@ -1573,12 +1573,12 @@ static void _askTask(TCB_PTR tcb, void* pWork)
         }
         break;
       case _ASK_QES_START:
-        _askTalk(pAsk, msg_uw_ask_08);  // ‚Ë‚¦‚·‚±‚µ
+        _askTalk(pAsk, msg_uw_ask_08);  // ã­ãˆã™ã“ã—
         pAsk->seq++;
         break;
       case _ASK_QES_RECV_WAIT:
         if( CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0 ){
-            if(pAsk->list_id != _QUESTION_LIST_MAX){   // ˜b‚µ‚©‚¯‘¤‚ÌƒWƒƒƒ“ƒ‹‚ðŽóM‚µ‚Ä‚¢‚½
+            if(pAsk->list_id != _QUESTION_LIST_MAX){   // è©±ã—ã‹ã‘å´ã®ã‚¸ãƒ£ãƒ³ãƒ«ã‚’å—ä¿¡ã—ã¦ã„ãŸ
                 CommMsgRegisterSecretQuestionName(CommUnderGetMsgUnderWorld(), pAsk->list_id);
                 _askTalk(pAsk, msg_uw_ask_09); 
                 pAsk->seq = _ASK_QES_CATEGORY_MSG;
@@ -1592,7 +1592,7 @@ static void _askTask(TCB_PTR tcb, void* pWork)
         }
         break;
       case _ASK_QES_ANSWER_LIST:
-        _askQuestionListFunc(tcb, pAsk);   // ˜b‚µ‚©‚¯‘¤‚É‘I‘ðŒ‹‰Ê‘—M
+        _askQuestionListFunc(tcb, pAsk);   // è©±ã—ã‹ã‘å´ã«é¸æŠžçµæžœé€ä¿¡
         break;
       case _ASK_ANSWERED_WAIT:
         if( CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0 ){
@@ -1621,33 +1621,33 @@ static void _askTask(TCB_PTR tcb, void* pWork)
         break;
       case _ASK_SECRET_TALK_END:
         if( CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0 ){
-          //  _seqTalkCommandSend(pAsk, _QUESTION_END_TIMING);  // ‘ŠŽè‚ÉI—¹‚ð‘—M
+          //  _seqTalkCommandSend(pAsk, _QUESTION_END_TIMING);  // ç›¸æ‰‹ã«çµ‚äº†ã‚’é€ä¿¡
             pAsk->seq = _ASK_SECRET_TALK_END2;
         }
         break;
       case _ASK_SECRET_TALK_END2:
-        if(pAsk->reqSeq == _QUESTION_END_TIMING){   // ‘ŠŽè‚©‚ç‚ÌI—¹‘Ò‚¿
-            _seqTalkCommandSend(pAsk, _QUESTION_END_TIMING);  // ‘ŠŽè‚ÉI—¹‚ð‘—M
+        if(pAsk->reqSeq == _QUESTION_END_TIMING){   // ç›¸æ‰‹ã‹ã‚‰ã®çµ‚äº†å¾…ã¡
+            _seqTalkCommandSend(pAsk, _QUESTION_END_TIMING);  // ç›¸æ‰‹ã«çµ‚äº†ã‚’é€ä¿¡
             _askTalk(pAsk, msg_uw_ask_15);
             pAsk->seq = _ASK_SECRET_TALK_END3;
         }
         break;
       case _ASK_SECRET_TALK_END3:
         if( CommMsgIsOutputing(CommUnderGetMsgUnderWorld()) == 0 ){
-    //        _seqTalkCommandSend(pAsk, _QUESTION_END_TIMING2);  // ‘ŠŽè‚ÉI—¹‚ð‘—M
+    //        _seqTalkCommandSend(pAsk, _QUESTION_END_TIMING2);  // ç›¸æ‰‹ã«çµ‚äº†ã‚’é€ä¿¡
             pAsk->seq = _ASK_SECRET_TALK_END4;
         }
         break;
       case _ASK_SECRET_TALK_END4:
-        if(pAsk->reqSeq == _QUESTION_END_TIMING2){   // ‘ŠŽè‚©‚ç‚ÌI—¹‘Ò‚¿
-            _seqTalkCommandSend(pAsk, _QUESTION_END_TIMING2);  // ‘ŠŽè‚ÉI—¹‚ð‘—M
+        if(pAsk->reqSeq == _QUESTION_END_TIMING2){   // ç›¸æ‰‹ã‹ã‚‰ã®çµ‚äº†å¾…ã¡
+            _seqTalkCommandSend(pAsk, _QUESTION_END_TIMING2);  // ç›¸æ‰‹ã«çµ‚äº†ã‚’é€ä¿¡
             pAsk->seq = _ASK_NEXT;
         }
         break;
     }
-    if(pAsk->reqSeq == _ASK_CANCELTALK_END){  // ‹Ù‹}’âŽ~–½—ß‚Í‘¦ŽÀs
+    if(pAsk->reqSeq == _ASK_CANCELTALK_END){  // ç·Šæ€¥åœæ­¢å‘½ä»¤ã¯å³å®Ÿè¡Œ
         if((pAsk->seq == _ASK_END) || (pAsk->seq == _ASK_TALKCHEKCEND)){
-            // ‚µ‚©‚µI—¹‚µ‚Ä‚¢‚éÅ’†‚È‚ç‚ÎŽÀs•K—v‚È‚¢
+            // ã—ã‹ã—çµ‚äº†ã—ã¦ã„ã‚‹æœ€ä¸­ãªã‚‰ã°å®Ÿè¡Œå¿…è¦ãªã„
             return;
         }
         if(pAsk->pYesNoWork){
@@ -1663,7 +1663,7 @@ static void _askTask(TCB_PTR tcb, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚ç‚êó‘ÔƒRƒ}ƒ“ƒh‚ª—ˆ‚½
+ * @brief   è©±ã—ã‹ã‘ã‚‰ã‚ŒçŠ¶æ…‹ã‚³ãƒžãƒ³ãƒ‰ãŒæ¥ãŸ
  * @param   none
  * @retval  none
  */
@@ -1681,7 +1681,7 @@ void CommUnderTalkBind(int askID, int talkID, FIELDSYS_WORK* pFSys)
     MI_CpuFill8(pAsk, 0, sizeof(_ASK_WORK));
     _pAskWork = pAsk;
     pAsk->pFSys = pFSys;
-    pAsk->connectIndex = talkID;   // ˜b‚µ‘ŠŽè‚ÌID‚ð•Û‘¶
+    pAsk->connectIndex = talkID;   // è©±ã—ç›¸æ‰‹ã®IDã‚’ä¿å­˜
     pAsk->seq = _ASK_WAIT;
     pAsk->reqSeq = _ASK_SEQ_NONE;
     pAsk->list_id = _QUESTION_LIST_MAX;
@@ -1689,13 +1689,13 @@ void CommUnderTalkBind(int askID, int talkID, FIELDSYS_WORK* pFSys)
                            msg_underworld_25 ,FALSE,NULL);
     CommSetForceDir();
 //    CommPlayerHold();
-    // ˜b‚µ‚©‚¯‚ç‚êó‘Ô‚É‚È‚é
+    // è©±ã—ã‹ã‘ã‚‰ã‚ŒçŠ¶æ…‹ã«ãªã‚‹
     pAsk->pMyTCB = TCB_Add(_askTask, pAsk, _MENU_UG_PRI);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚ç‚ê‚ÌƒV[ƒPƒ“ƒX‚ð•ÏX‚·‚é–½—ß‚ª—ˆ‚½
+ * @brief   è©±ã—ã‹ã‘ã‚‰ã‚Œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹å‘½ä»¤ãŒæ¥ãŸ
  * @command CF_ASKSEQ_SET
  * @param   none
  * @retval  none
@@ -1704,12 +1704,12 @@ void CommUnderTalkBind(int askID, int talkID, FIELDSYS_WORK* pFSys)
 
 void CommUnderTalkRecvAskSeq(int netID, int size, void* pData, void* pWork)
 {
-    CommSendFixSizeData_ServerSide(CF_ASKSEQ_SET_CALL,pData); // ƒŠƒ_ƒCƒŒƒNƒg•ÔM
+    CommSendFixSizeData_ServerSide(CF_ASKSEQ_SET_CALL,pData); // ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆè¿”ä¿¡
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚ÌƒV[ƒPƒ“ƒX‚ð•ÏX‚·‚é–½—ß‚ª—ˆ‚½
+ * @brief   è©±ã—ã‹ã‘ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹å‘½ä»¤ãŒæ¥ãŸ
  * @command CF_TALKSEQ_SET
  * @param   none
  * @retval  none
@@ -1718,12 +1718,12 @@ void CommUnderTalkRecvAskSeq(int netID, int size, void* pData, void* pWork)
 
 void CommUnderTalkRecvTalkSeq(int netID, int size, void* pData, void* pWork)
 {
-    CommSendFixSizeData_ServerSide(CF_TALKSEQ_SET_CALL,pData); // ƒŠƒ_ƒCƒŒƒNƒg•ÔM
+    CommSendFixSizeData_ServerSide(CF_TALKSEQ_SET_CALL,pData); // ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆè¿”ä¿¡
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚ç‚ê‚ÌƒV[ƒPƒ“ƒX‚ð•ÏX‚·‚é–½—ß‚ª—ˆ‚½
+ * @brief   è©±ã—ã‹ã‘ã‚‰ã‚Œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹å‘½ä»¤ãŒæ¥ãŸ
  * @command CF_ASKSEQ_SET_CALL
  * @param   none
  * @retval  none
@@ -1742,7 +1742,7 @@ void CommUnderTalkRecvAskSeqCall(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚ÌƒV[ƒPƒ“ƒX‚ð•ÏX‚·‚é–½—ß‚ª—ˆ‚½
+ * @brief   è©±ã—ã‹ã‘ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹å‘½ä»¤ãŒæ¥ãŸ
  * @command CF_TALKSEQ_SET_CALL
  * @param   none
  * @retval  none
@@ -1762,7 +1762,7 @@ void CommUnderTalkRecvTalkSeqCall(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒPƒ“ƒX‚ð•ÏX‚·‚é–½—ß‚ÌƒTƒCƒY
+ * @brief   ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¤‰æ›´ã™ã‚‹å‘½ä»¤ã®ã‚µã‚¤ã‚º
  * @param   none
  * @retval  none
  */
@@ -1776,7 +1776,7 @@ int CommUnderTalkGetSeqCommandSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€‚ð‚ ‚°‚é–½—ß‚ª—ˆ‚½
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚ã’ã‚‹å‘½ä»¤ãŒæ¥ãŸ
  * @command CF_SEND_ITEM
  * @param   none
  * @retval  none
@@ -1790,7 +1790,7 @@ void CommUnderTalkRecvSendItem(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€‚ð‚ ‚°‚é–½—ß‚ª—ˆ‚½
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚ã’ã‚‹å‘½ä»¤ãŒæ¥ãŸ
  * @command CF_SEND_ITEM_CALL
  * @param   none
  * @retval  none
@@ -1806,8 +1806,8 @@ void CommUnderTalkRecvSendItemCall(int netID, int size, void* pData, void* pWork
         return;
     }
     GF_ASSERT(_pAskWork!=NULL);
-    if(pAsk->seq != _ASK_WAIT){   // ‘Ò‹@ó‘Ô‚Å‚È‚¯‚ê‚Î‚¨‚©‚µ‚¢ “¯Žž‚ÉB‚ð‰Ÿ‚µ‚½Ž–‚ªl‚¦‚ç‚ê‚é
-        _seqTalkCommandSend(pAsk, _TALK_CANCELASKER_END);  // ‘ŠŽè‚ÉI—¹‚ð‘—M
+    if(pAsk->seq != _ASK_WAIT){   // å¾…æ©ŸçŠ¶æ…‹ã§ãªã‘ã‚Œã°ãŠã‹ã—ã„ åŒæ™‚ã«Bã‚’æŠ¼ã—ãŸäº‹ãŒè€ƒãˆã‚‰ã‚Œã‚‹
+        _seqTalkCommandSend(pAsk, _TALK_CANCELASKER_END);  // ç›¸æ‰‹ã«çµ‚äº†ã‚’é€ä¿¡
         pAsk->seq = _ASK_CANCELTALK_END;
         return;
     }
@@ -1824,9 +1824,9 @@ void CommUnderTalkRecvSendItemCall(int netID, int size, void* pData, void* pWork
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€‚ð‚ ‚°‚é–½—ß‚ÌƒTƒCƒY
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚ã’ã‚‹å‘½ä»¤ã®ã‚µã‚¤ã‚º
  * @param   none
- * @retval  ƒpƒPƒbƒgƒTƒCƒY
+ * @retval  ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------
 
@@ -1837,9 +1837,9 @@ int CommUnderTalkGetSendItemSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”é–§‚ÌŽ¿–â‚ÉŠÖ‚·‚é–½—ß‚ª—ˆ‚½
+ * @brief   ç§˜å¯†ã®è³ªå•ã«é–¢ã™ã‚‹å‘½ä»¤ãŒæ¥ãŸ
  * @command CF_SECRET_QUESTION
- * @param   ƒR[ƒ‹ƒoƒbƒNƒpƒ‰ƒ[ƒ^
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1851,7 +1851,7 @@ void UgTalkRecvSecretQ(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”é–§‚ÌŽ¿–â‚ÉŠÖ‚·‚é–½—ß‚ª—ˆ‚½
+ * @brief   ç§˜å¯†ã®è³ªå•ã«é–¢ã™ã‚‹å‘½ä»¤ãŒæ¥ãŸ
  * @command CF_SECRET_QUESTION_CALL
  * @param   none
  * @retval  none
@@ -1867,14 +1867,14 @@ void UgTalkRecvSecretQCall(int netID, int size, void* pData, void* pWork)
     if(pSQC->targetID == CommGetCurrentID()){
         switch(pSQC->questionType){
           case _QUESTION_TALK:
-            pAsk->list_id = pSQC->no;  // Ž¿–â€–Ú
+            pAsk->list_id = pSQC->no;  // è³ªå•é …ç›®
             break;
           case _ANSWER_ASK:
-            pTalk->list_ans = pSQC->no;  // Ž¿–â€–Ú
+            pTalk->list_ans = pSQC->no;  // è³ªå•é …ç›®
             break;
           case _ANSWER_TALK:
 //            if(pAsk->list_ans == pSQC->no){
-  //              pAsk->list_ans = _QUESTION_LIST_BOTH;  // Ž¿–â€–Ú
+  //              pAsk->list_ans = _QUESTION_LIST_BOTH;  // è³ªå•é …ç›®
    //         }
      //       else{
                 pAsk->list_ans2 = pSQC->no;
@@ -1886,9 +1886,9 @@ void UgTalkRecvSecretQCall(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”é–§‚ÌŽ¿–â’ÊMƒTƒCƒY
+ * @brief   ç§˜å¯†ã®è³ªå•é€šä¿¡ã‚µã‚¤ã‚º
  * @param   none
- * @retval  ƒpƒPƒbƒgƒTƒCƒY
+ * @retval  ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------
 
@@ -1899,9 +1899,9 @@ int UgTalkGetSecretQSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜b‚ð‹­§“I‚ÉI‚í‚ç‚¹‚é
+ * @brief   ä¼šè©±ã‚’å¼·åˆ¶çš„ã«çµ‚ã‚ã‚‰ã›ã‚‹
  * @param   none
- * @retval  ƒpƒPƒbƒgƒTƒCƒY
+ * @retval  ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------
 
@@ -1920,11 +1920,11 @@ static void UgTalkListMoveSe( _TALK_WORK* pTalk )
 {
 	u16 tmp_pos_bak;
 
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ðŽæ“¾
-	tmp_pos_bak = pTalk->pos_bak;		//‘Þ”ð
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = pTalk->pos_bak;		//é€€é¿
 	BmpListDirectPosGet( pTalk->lw, &pTalk->pos_bak );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != pTalk->pos_bak ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}

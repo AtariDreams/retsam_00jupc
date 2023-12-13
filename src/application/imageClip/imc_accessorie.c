@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_accessorie.c
- *	@brief		�A�N�Z�T���Ǘ��V�X�e��
+ *	@brief		アクセサリ管理システム
  *	@author		tomoya takahashi
  *	@data		2005.09.20
  *
@@ -20,10 +20,10 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
-// �e�O���t�B�b�N�T�C�Y�̉�ʊO�ɂ߂荞��ł悢�T�C�Y
+// 各グラフィックサイズの画面外にめり込んでよいサイズ
 #define IMC_ACCE_HIT_16_SIZE_X	(0)
 #define IMC_ACCE_HIT_16_SIZE_Y	(0)
 #define IMC_ACCE_HIT_32_SIZE_X	(10)
@@ -36,19 +36,19 @@
 #define IMC_ACCE_SIZE_64	(64)
 
 
-// �����蔻���`�̔��T�C�Y
+// 当たり判定矩形の半サイズ
 #define IMC_ACCE_HIT_AREA_HALF	(4)
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 static IMC_ACCESSORIE_OBJ* cleanObjDataGet( IMC_ACCESSORIE_OBJ_TBL* objTbl );
@@ -59,12 +59,12 @@ static void setHitTbl( IMC_ACCESSORIE_OBJ* obj, TP_HIT_TBL* tp_hit );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�N�Z�T���I�u�W�F�N�g�e�[�u�����쐬
+ *	@brief	アクセサリオブジェクトテーブルを作成
  *
- *	@param	obj_num		�A�N�Z�T����
- *	@param	heap		�q�[�v��
+ *	@param	obj_num		アクセサリ数
+ *	@param	heap		ヒープ数
  *
- *	@return	IMC_ACCESSORIE_OBJ_TBL*	�I�u�W�F�N�g�e�[�u��
+ *	@return	IMC_ACCESSORIE_OBJ_TBL*	オブジェクトテーブル
  *
  *
  */
@@ -73,10 +73,10 @@ IMC_ACCESSORIE_OBJ_TBL* IMC_ACCE_ObjTblInit( int obj_num, int heap )
 {
 	IMC_ACCESSORIE_OBJ_TBL* objTbl;
 	
-	// �������m��
+	// メモリ確保
 	objTbl = sys_AllocMemory( heap, sizeof(IMC_ACCESSORIE_OBJ_TBL) );
 
-	// �A�N�Z�T���e�[�u���쐬
+	// アクセサリテーブル作成
 	objTbl->obj_tbl = sys_AllocMemory( heap, sizeof(IMC_ACCESSORIE_OBJ)*obj_num );
 	memset( objTbl->obj_tbl, 0, sizeof(IMC_ACCESSORIE_OBJ)*obj_num );
 	objTbl->obj_num = obj_num;
@@ -87,12 +87,12 @@ IMC_ACCESSORIE_OBJ_TBL* IMC_ACCE_ObjTblInit( int obj_num, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�N�Z�T���I�u�W�F�N�g�e�[�u�����쐬
+ *	@brief	アクセサリオブジェクトテーブルを作成
  *
- *	@param	obj_num		�A�N�Z�T����
- *	@param	heap		�q�[�v��
+ *	@param	obj_num		アクセサリ数
+ *	@param	heap		ヒープ数
  *
- *	@return	IMC_ACCESSORIE_OBJ_TBL*	�I�u�W�F�N�g�e�[�u��
+ *	@return	IMC_ACCESSORIE_OBJ_TBL*	オブジェクトテーブル
  *
  *
  */
@@ -108,11 +108,11 @@ void IMC_ACCE_ObjTblDelete( IMC_ACCESSORIE_OBJ_TBL* obj_tbl )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�N�Z�T���쐬
+ *	@brief	アクセサリ作成
  *
- *	@param	data	�I�u�W�F�N�g�o�^�f�[�^
+ *	@param	data	オブジェクト登録データ
  *
- *	@return	IMC_ACCESSORIE_OBJ*	�A�N�Z�T���I�u�W�F
+ *	@return	IMC_ACCESSORIE_OBJ*	アクセサリオブジェ
  *
  *
  */
@@ -121,14 +121,14 @@ IMC_ACCESSORIE_OBJ* IMC_ACCE_ObjAdd( IMC_ACCE_ADD* data )
 {
 	IMC_ACCESSORIE_OBJ* obj_data;
 	
-	// �󂢂Ă���e�[�u���擾
+	// 空いているテーブル取得
 	obj_data = cleanObjDataGet( data->objTbl );
 	GF_ASSERT( obj_data );
 	
-	// �A�N�Z�T���f�[�^�ݒ�
+	// アクセサリデータ設定
 	obj_data->accessorie_no = data->accessorie_no;
 	
-	// �`��f�[�^�쐬
+	// 描画データ作成
 	obj_data->drawObj = SWSP_add( data );
 
 	return obj_data;
@@ -137,9 +137,9 @@ IMC_ACCESSORIE_OBJ* IMC_ACCE_ObjAdd( IMC_ACCE_ADD* data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�I�u�W�F�N�g�f�[�^�j��
+ *	@brief	オブジェクトデータ破棄
  *
- *	@param	obj		�j������I�u�W�F�N�g
+ *	@param	obj		破棄するオブジェクト
  *
  *	@return	none
  *
@@ -148,19 +148,19 @@ IMC_ACCESSORIE_OBJ* IMC_ACCE_ObjAdd( IMC_ACCE_ADD* data )
 //-----------------------------------------------------------------------------
 void IMC_ACCE_ObjDelete( IMC_ACCESSORIE_OBJ* obj )
 {
-	// �`��f�[�^�̔j��
+	// 描画データの破棄
 	SWSP_Delete( obj->drawObj );
 
-	// �f�[�^clean
+	// データclean
 	memset( obj, 0, sizeof( IMC_ACCESSORIE_OBJ ) );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�N�Z�T���I�u�W�F�N�g�e�[�u�����̃A�N�Z�T���j��
+ *	@brief	アクセサリオブジェクトテーブル内のアクセサリ破棄
  *
- *	@param	obj_tbl		�I�u�W�F�N�g�e�[�u��
+ *	@param	obj_tbl		オブジェクトテーブル
  *
  *	@return	none
  *
@@ -181,12 +181,12 @@ void IMC_ACCE_ObjDeleteAll( IMC_ACCESSORIE_OBJ_TBL* obj_tbl )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�^�b�`�p�l���Ƃ̓����蔻����s��
+ *	@brief	タッチパネルとの当たり判定を行う
  *
- *	@param	obj		�I�u�W�F�N�g�f�[�^
+ *	@param	obj		オブジェクトデータ
  *
- *	@retval	TRUE	��������
- *	@retval	FALSE	������Ȃ�����
+ *	@retval	TRUE	あたった
+ *	@retval	FALSE	あたらなかった
  *
  *
  */
@@ -195,7 +195,7 @@ BOOL IMC_ACCE_ObjTpHit( IMC_ACCESSORIE_OBJ* obj )
 {
 	TP_HIT_TBL	tp_hit;
 	
-	// �����蔻��f�[�^�쐬
+	// 当たり判定データ作成
 	setHitTbl( obj, &tp_hit );	
 	
 	return GF_TP_SingleHitCont( &tp_hit );
@@ -204,41 +204,41 @@ BOOL IMC_ACCE_ObjTpHit( IMC_ACCESSORIE_OBJ* obj )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�^�b�`�p�l���Ƃ̓����蔻����ׂ����s��
+ *	@brief	タッチパネルとの当たり判定を細かく行う
  *
- *	@param	obj			�I�u�W�F�N�g�f�[�^
- *	@param	offs_x		���ォ��̃I�t�Z�b�g�����W
- *	@param	offs_y		���ォ��̃I�t�Z�b�g�����W
- *	@param	drawData	�L�����N�^�f�[�^
+ *	@param	obj			オブジェクトデータ
+ *	@param	offs_x		左上からのオフセットｘ座標
+ *	@param	offs_y		左上からのオフセットｙ座標
+ *	@param	drawData	キャラクタデータ
  *
- *	@retval	TRUE	��������
- *	@retval	FALSE	������Ȃ�����	�i�I�t�Z�b�g���W�s��j
+ *	@retval	TRUE	あたった
+ *	@retval	FALSE	あたらなかった	（オフセット座標不定）
  *
  *
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_ACCE_ObjTpHitEx( IMC_ACCESSORIE_OBJ* obj, int* offs_x, int* offs_y, NNSG2dCharacterData* drawData )
 {
-	BOOL check;		// �`�F�b�N�p
-	int x, y;		// ���݂̍�����W
-	int i, j;		// ���[�v�p
+	BOOL check;		// チェック用
+	int x, y;		// 現在の左上座標
+	int i, j;		// ループ用
 
-	// �܂������蔻��𕁒ʂɍs��
+	// まず当たり判定を普通に行う
 	check = IMC_ACCE_ObjTpHit( obj );
 	if( check == FALSE ){
 		return FALSE;
 	}
 
-	// ���W�擾
+	// 座標取得
 	IMC_ACCE_ObjGetMat( obj, &x, &y );
 
-	// �I�t�Z�b�g�l���擾
+	// オフセット値を取得
 	*offs_x = sys.tp_x - x;
 	*offs_y = sys.tp_y - y;
 
-	// ���̈ʒu�̃L�����N�^�f�[�^���`�F�b�N
-	// �����F�łȂ������`�F�b�N
-/*	// �J���[�i���o�[���O�o�Ȃ����TRUE��Ԃ�
+	// その位置のキャラクタデータをチェック
+	// 抜け色でないかをチェック
+/*	// カラーナンバーが０出なければTRUEを返す
 	check = IMC_DRAW_CharCheck( drawData, *offs_x, *offs_y, 0 );
 	if(check == IMC_DRAW_CHAR_CHECK_FALSE){
 		return TRUE;
@@ -251,7 +251,7 @@ BOOL IMC_ACCE_ObjTpHitEx( IMC_ACCESSORIE_OBJ* obj, int* offs_x, int* offs_y, NNS
 			for( j = (*offs_x - IMC_ACCE_HIT_AREA_HALF); j < (*offs_x + IMC_ACCE_HIT_AREA_HALF); j++ ){
 				
 				if( j >= 0 ){
-					// �J���[�i���o�[���O�o�Ȃ����TRUE��Ԃ�
+					// カラーナンバーが０出なければTRUEを返す
 					check = IMC_DRAW_CharCheck( drawData, j, i, 0 );
 					if(check == IMC_DRAW_CHAR_CHECK_FALSE){
 						return TRUE;
@@ -267,14 +267,14 @@ BOOL IMC_ACCE_ObjTpHitEx( IMC_ACCESSORIE_OBJ* obj, int* offs_x, int* offs_y, NNS
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�^�b�`�p�l���Ƃ̓����蔻����s��
+ *	@brief	タッチパネルとの当たり判定を行う
  *
- *	@param	obj		�I�u�W�F�N�g�f�[�^
- *	@param	x		���肘���W
- *	@param	y		���肙���W
+ *	@param	obj		オブジェクトデータ
+ *	@param	x		判定ｘ座標
+ *	@param	y		判定ｙ座標
  *
- *	@retval	TRUE	��������
- *	@retval	FALSE	������Ȃ�����
+ *	@retval	TRUE	あたった
+ *	@retval	FALSE	あたらなかった
  *
  *
  */
@@ -283,7 +283,7 @@ BOOL IMC_ACCE_ObjTpHitSelf( IMC_ACCESSORIE_OBJ* obj, int x, int y )
 {
 	TP_HIT_TBL	tp_hit;
 	
-	// �����蔻��f�[�^�쐬
+	// 当たり判定データ作成
 	setHitTbl( obj, &tp_hit );	
 
 	return GF_TP_SingleHitSelf( &tp_hit, x, y );
@@ -292,11 +292,11 @@ BOOL IMC_ACCE_ObjTpHitSelf( IMC_ACCESSORIE_OBJ* obj, int x, int y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���W��ݒ�	�i�����ɃX�v���C�g���ړ��j
+ *	@brief	座標を設定	（同時にスプライトも移動）
  *
- *	@param	obj	�A�N�Z�T���I�u�W�F
- *	@param	x	x���W
- *	@param	y	y���W
+ *	@param	obj	アクセサリオブジェ
+ *	@param	x	x座標
+ *	@param	y	y座標
  *
  *	@return	none
  *
@@ -305,18 +305,18 @@ BOOL IMC_ACCE_ObjTpHitSelf( IMC_ACCESSORIE_OBJ* obj, int x, int y )
 //-----------------------------------------------------------------------------
 void IMC_ACCE_ObjSetMat( IMC_ACCESSORIE_OBJ* obj, s16 x, s16 y )
 {
-	// �X�v���C�g�ɐݒ�
+	// スプライトに設定
 	SWSP_SetSpritePos( obj->drawObj, x, y );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���W���擾
+ *	@brief	座標を取得
  *
- *	@param	obj		�A�N�Z�T���I�u�W�F�N�g
- *	@param	x		�����W�擾��
- *	@param	y		�����W�擾��
+ *	@param	obj		アクセサリオブジェクト
+ *	@param	x		ｘ座標取得先
+ *	@param	y		ｙ座標取得先
  *
  *	@return	none
  *
@@ -334,11 +334,11 @@ void IMC_ACCE_ObjGetMat( IMC_ACCESSORIE_OBJ* obj, int* x, int* y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�X�v���C�g�T�C�Y���擾
+ *	@brief	スプライトサイズを取得
  *
- *	@param	obj		�A�N�Z�T���I�u�W�F�N�g
- *	@param	x		���T�C�Y�擾��
- *	@param	y		���T�C�Y�擾��
+ *	@param	obj		アクセサリオブジェクト
+ *	@param	x		ｘサイズ取得先
+ *	@param	y		ｙサイズ取得先
  *
  *	@return	none
  *
@@ -356,10 +356,10 @@ void IMC_ACCE_ObjGetSize( IMC_ACCESSORIE_OBJ* obj, int* x, int* y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�N�Z�T�����X�g�̃A�N�Z�T���̕`��ON�@OFF�@�ݒ�
+ *	@brief	アクセサリリストのアクセサリの描画ON　OFF　設定
  *
- *	@param	obj		�A�N�Z�T���I�u�W�F�N�g�f�[�^
- *	@param	flag	ON�@OFF�@�t���O
+ *	@param	obj		アクセサリオブジェクトデータ
+ *	@param	flag	ON　OFF　フラグ
  *			
  *	@return	none
  *
@@ -374,10 +374,10 @@ void IMC_ACCE_ObjListDrawSet( IMC_ACCESSORIE_OBJ* obj, BOOL flag )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�N�Z�T�����X�g�̕\���D�揇�ʂ�ݒ�
+ *	@brief	アクセサリリストの表示優先順位を設定
  *
- *	@param	obj			�A�N�Z�T���I�u�W�F
- *	@param	priority	�\���D�揇��
+ *	@param	obj			アクセサリオブジェ
+ *	@param	priority	表示優先順位
  *
  *	@return	none
  *
@@ -392,9 +392,9 @@ void IMC_ACCE_ObjDrawPrioritySet( IMC_ACCESSORIE_OBJ* obj, int priority )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�N�Z�T�����X�g�̕\���D�揇�ʂ��擾
+ *	@brief	アクセサリリストの表示優先順位を取得
  *
- *	@param	obj			�A�N�Z�T���I�u�W�F
+ *	@param	obj			アクセサリオブジェ
  *
  *	@return	priority
  *
@@ -409,11 +409,11 @@ int IMC_ACCE_ObjDrawPriorityGet( IMC_ACCESSORIE_OBJ* obj )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�H������ŗǂ��T�C�Y���擾
+ *	@brief	食い込んで良いサイズを取得
  *
- *	@param	obj		�I�u�W�F�N�g�f�[�^
- *	@param	ins_x	�H������ŗǂ��T�C�YX
- *	@param	ins_y	�H������ŗǂ��T�C�YY
+ *	@param	obj		オブジェクトデータ
+ *	@param	ins_x	食い込んで良いサイズX
+ *	@param	ins_y	食い込んで良いサイズY
  *
  *	@return	none
  *
@@ -422,12 +422,12 @@ int IMC_ACCE_ObjDrawPriorityGet( IMC_ACCESSORIE_OBJ* obj )
 //-----------------------------------------------------------------------------
 void IMC_ACCE_ObjInSizeGet( IMC_ACCESSORIE_OBJ* obj, int* ins_x, int* ins_y )
 {
-	int size_x, size_y;		// �T�C�Y�擾�p
+	int size_x, size_y;		// サイズ取得用
 
-	// �A�N�Z�T���I�u�W�F�N�g�̂Ƃ�
+	// アクセサリオブジェクトのとき
 	IMC_ACCE_ObjGetSize( obj, &size_x, &size_y );
 	
-	// �O���t�B�b�N�T�C�Y����擾
+	// グラフィックサイズから取得
 	switch(size_x){
 	case IMC_ACCE_SIZE_16:
 		*ins_x = IMC_ACCE_HIT_16_SIZE_X;
@@ -457,11 +457,11 @@ void IMC_ACCE_ObjInSizeGet( IMC_ACCESSORIE_OBJ* obj, int* ins_x, int* ins_y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�g�k�l��ݒ肷��
+ *	@brief	拡縮値を設定する
  *
- *	@param	obj			�A�N�Z�T���I�u�W�F
- *	@param	scale_x		���g�k�l
- *	@param	scale_y		���g�k�l
+ *	@param	obj			アクセサリオブジェ
+ *	@param	scale_x		ｘ拡縮値
+ *	@param	scale_y		ｙ拡縮値
  *
  *	@return	none
  *
@@ -478,25 +478,25 @@ void IMC_ACCE_ObjScaleSet( IMC_ACCESSORIE_OBJ* obj, int scale_x, int scale_y )
 
 //-----------------------------------------------------------------------------
 /**
-*		�v���C�x�[�g�֐��S
+*		プライベート関数郡
 */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	��̃e�[�u�����擾
+ *	@brief	空のテーブルを取得
  *
- *	@param	objTbl	�I�u�W�F�N�g�e�[�u��
+ *	@param	objTbl	オブジェクトテーブル
  *
- *	@return	IMC_ACCESSORIE_OBJ*	��̃e�[�u��
+ *	@return	IMC_ACCESSORIE_OBJ*	空のテーブル
  *
  *
  */
 //-----------------------------------------------------------------------------
 static IMC_ACCESSORIE_OBJ* cleanObjDataGet( IMC_ACCESSORIE_OBJ_TBL* objTbl )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	for(i=0; i<objTbl->obj_num; i++){
 		if( objTbl->obj_tbl[ i ].drawObj == NULL ){
@@ -510,11 +510,11 @@ static IMC_ACCESSORIE_OBJ* cleanObjDataGet( IMC_ACCESSORIE_OBJ_TBL* objTbl )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�\�t�g�E�F�A�X�v���C�g�̓o�^
+ *	@brief	ソフトウェアスプライトの登録
  *
- *	@param	data	�o�^�f�[�^	
+ *	@param	data	登録データ	
  *
- *	@return	SWSP_OBJ_PTR	�쐬�����X�v���C�g�f�[�^
+ *	@return	SWSP_OBJ_PTR	作成したスプライトデータ
  *
  *
  */
@@ -540,14 +540,14 @@ static SWSP_OBJ_PTR SWSP_add( IMC_ACCE_ADD* data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�N�Z�T���I�u�W�F�̓����蔻��f�[�^�쐬
+ *	@brief	アクセサリオブジェの当たり判定データ作成
  *
- *	@param	obj		���I�u�W�F�N�g
- *	@param	tp_hit	�^�b�`�p�l�������蔻��f�[�^
+ *	@param	obj		作るオブジェクト
+ *	@param	tp_hit	タッチパネルあたり判定データ
  *
  *	@return
  *
- *	���O�ɃX�v���C�g�쐬���s���Ă���K�v������܂��B
+ *	事前にスプライト作成を行っている必要があります。
  *
  */
 //-----------------------------------------------------------------------------
@@ -556,7 +556,7 @@ static void setHitTbl( IMC_ACCESSORIE_OBJ* obj, TP_HIT_TBL* tp_hit )
 	NNSG2dSVec2	pos	= SWSP_GetSpritePos( obj->drawObj );
 	NNSG2dSVec2 size = SWSP_GetSpriteSize( obj->drawObj );
 	
-	// �X�v���C�g�T�C�Y���瓖���蔻��G���A�쐬
+	// スプライトサイズから当たり判定エリア作成
 	tp_hit->rect.top		= pos.y;
 	tp_hit->rect.bottom		= pos.y + size.y;
 	tp_hit->rect.left		= pos.x;

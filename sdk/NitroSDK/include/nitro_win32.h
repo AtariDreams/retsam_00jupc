@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.13  2005/09/08 11:32:44  yasu
-  VC.net ‚É‚¨‚¯‚éƒƒ“ƒo[–¼‚Ì‚È‚¢\‘¢‘Ì‚Ö‚Ì‘Î‰
+  VC.net ã«ãŠã‘ã‚‹ãƒ¡ãƒ³ãƒãƒ¼åã®ãªã„æ§‹é€ ä½“ã¸ã®å¯¾å¿œ
 
   Revision 1.12  2005/09/08 11:19:20  yasu
-  SDK_WIN32 ‚©‚ç SDK_FROM_TOOL ‚Ö‚ÌØ‚è‘Ö‚¦
+  SDK_WIN32 ã‹ã‚‰ SDK_FROM_TOOL ã¸ã®åˆ‡ã‚Šæ›¿ãˆ
 
   Revision 1.11  2005/09/08 00:56:29  yasu
-  SDK_WIN32 ‚Ì’è‹`‚Ì’Ç‰Á
+  SDK_WIN32 ã®å®šç¾©ã®è¿½åŠ 
 
   Revision 1.10  2005/08/10 08:58:03  yasu
-  g3b.c g3c.c ‚ğ PC ã‚ÅƒRƒ“ƒpƒCƒ‹‚Å‚«‚é‚æ‚¤‚ÉC³
+  g3b.c g3c.c ã‚’ PC ä¸Šã§ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã§ãã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.9  2005/07/21 07:06:28  yada
   add argument.h
@@ -36,10 +36,10 @@
   Change default included type to SDK_ARM9.
 
   Revision 1.6  2004/06/14 04:46:34  takano_makoto
-  SDK_ARM9‚ğ’è‹`.
+  SDK_ARM9ã‚’å®šç¾©.
 
   Revision 1.5  2004/06/14 04:16:11  takano_makoto
-  fx.h, fx_const.h‚Ì’Ç‰Á
+  fx.h, fx_const.hã®è¿½åŠ 
 
   Revision 1.4  2004/05/24 05:47:30  kitani_toshikazu
   fix header file's path.

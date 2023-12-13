@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.17  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.16  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -36,13 +36,13 @@
   fix header comment
 
   Revision 1.10  2004/02/19 08:44:06  yada
-  workaround íœ
+  workaround å‰Šé™¤
 
   Revision 1.9  2004/02/14 06:32:14  yasu
   workaround to keep compatibility
 
   Revision 1.8  2004/02/13 10:38:26  yada
-  ARENA‚ğ‚UŒÂ‚©‚ç‚XŒÂ‚É
+  ARENAã‚’ï¼–å€‹ã‹ã‚‰ï¼™å€‹ã«
 
   Revision 1.7  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
@@ -51,19 +51,19 @@
   convert 'inline' to 'static inline' in header files
 
   Revision 1.5  2004/01/16 04:05:36  yada
-  Extended MainMemory •”•ª‚ÌƒAƒŠ[ƒi’Ç‰Á
+  Extended MainMemory éƒ¨åˆ†ã®ã‚¢ãƒªãƒ¼ãƒŠè¿½åŠ 
 
   Revision 1.4  2004/01/15 12:13:27  yada
-  ƒAƒŠ[ƒi\‘¢‘Ì’è‹`’Ç‰Á
+  ã‚¢ãƒªãƒ¼ãƒŠæ§‹é€ ä½“å®šç¾©è¿½åŠ 
 
   Revision 1.3  2003/12/26 08:21:33  yada
-  OS_InitArena() ’è‹`
+  OS_InitArena() å®šç¾©
 
   Revision 1.2  2003/12/26 07:17:42  yada
-  ArenaType¨ArenaId‚Ö•ÏXB
+  ArenaTypeâ†’ArenaIdã¸å¤‰æ›´ã€‚
 
   Revision 1.1  2003/12/26 06:43:49  yada
-  ‰”Å
+  åˆç‰ˆ
 
 
   $NoKeywords: $

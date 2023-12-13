@@ -2,7 +2,7 @@
 /**
  *
  *@file		touchpanel.h
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^ˆ—
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿å‡¦ç†
  *@author	tomoya takahashi
  *@data		2005.03.16
  */
@@ -20,34 +20,34 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
-#define		RECT_HIT_END	(0xff)			// I—¹ƒR[ƒh
-#define		RECT_HIT_NONE	(0xffffffff)	// ‚ ‚½‚Á‚½ƒe[ƒuƒ‹‚È‚µ
+#define		RECT_HIT_END	(0xff)			// çµ‚äº†ã‚³ãƒ¼ãƒ‰
+#define		RECT_HIT_NONE	(0xffffffff)	// ã‚ãŸã£ãŸãƒ†ãƒ¼ãƒ–ãƒ«ãªã—
 
-#define		TP_HIT_END		(0xff)			// ‚ ‚½‚Á‚½ƒe[ƒuƒ‹‚È‚µ
-#define		TP_USE_CIRCLE	(0xfe)			// ‰~Œ`‚Æ‚µ‚ÄŽg‚¤
-#define		TP_HIT_NONE		(0xffffffff)	// ‚ ‚½‚Á‚½ƒe[ƒuƒ‹‚È‚µiRECT_HIT_NONE‚Í‚¢‚¸‚êÁ‚·j
+#define		TP_HIT_END		(0xff)			// ã‚ãŸã£ãŸãƒ†ãƒ¼ãƒ–ãƒ«ãªã—
+#define		TP_USE_CIRCLE	(0xfe)			// å††å½¢ã¨ã—ã¦ä½¿ã†
+#define		TP_HIT_NONE		(0xffffffff)	// ã‚ãŸã£ãŸãƒ†ãƒ¼ãƒ–ãƒ«ãªã—ï¼ˆRECT_HIT_NONEã¯ã„ãšã‚Œæ¶ˆã™ï¼‰
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	‹éŒ`ƒf[ƒ^\‘¢‘Ì
+//	çŸ©å½¢ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //=====================================
 typedef union{
 	struct {
-		u8	top;	// ãi‚à‚µ‚­‚Í“ÁŽêƒR[ƒhj
-		u8	bottom;	// ‰º
-		u8	left;	// ¶
-		u8	right;	// ‰E
+		u8	top;	// ä¸Šï¼ˆã‚‚ã—ãã¯ç‰¹æ®Šã‚³ãƒ¼ãƒ‰ï¼‰
+		u8	bottom;	// ä¸‹
+		u8	left;	// å·¦
+		u8	right;	// å³
 	}rect;
 
 	struct {
-		u8	code;	// TP_USE_CIRCLE ‚ðŽw’è
+		u8	code;	// TP_USE_CIRCLE ã‚’æŒ‡å®š
 		u8	x;
 		u8	y;
 		u8	r;
@@ -56,15 +56,15 @@ typedef union{
 }RECT_HIT_TBL, TP_HIT_TBL;
 
 /*
- * Žg—p—á
+ * ä½¿ç”¨ä¾‹
  *
  * RECT_HIT_TBL rect_data[] ={
- *		{0,64,0,128},				// ”z—ñ—v‘f—Dæ‡ˆÊ:0>1>2>3>4>.....‚Å‚·
+ *		{0,64,0,128},				// é…åˆ—è¦ç´ å„ªå…ˆé †ä½:0>1>2>3>4>.....ã§ã™
  *		{128,191,0,64},
  *		{32,94,129,200},
  *		{0,191,0,255},
- *      {TP_USE_CIRCLE, 100, 80, 16 },	// ‰~Œ`‚Æ‚µ‚ÄŽg‚¤B
- *		{TP_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+ *      {TP_USE_CIRCLE, 100, 80, 16 },	// å††å½¢ã¨ã—ã¦ä½¿ã†ã€‚
+ *		{TP_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
  * };
  * 
  */
@@ -72,7 +72,7 @@ typedef union{
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //----------------------------------------------------------------------------
 GLOBAL int GF_TP_RectHitCont( const RECT_HIT_TBL* pRectTbl );

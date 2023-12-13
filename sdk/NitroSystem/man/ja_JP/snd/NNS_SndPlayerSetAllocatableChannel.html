@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerSetAllocatableChannel</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerSetAllocatableChannel</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetAllocatableChannel(
@@ -19,7 +19,7 @@
         u32 <var>chBitFlag</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAUNWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -27,11 +27,11 @@
 <tbody>
 <tr>
 <td><em><strong><code>playerNo</code></strong></em></td>
-<td>�v���C���[�ԍ��ł��B</td>
+<td>プレイヤー番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>chBitFlag</code></strong></em></td>
-<td>�m�ۉ\�ȃ`�����l���̃r�b�g�t���O�ł��B</td>
+<td>確保可能なチャンネルのビットフラグです。</td>
 </tr>
 </tbody>
 </table>
@@ -39,57 +39,57 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAKOWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAROWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�w��v���C���[�ōĐ�����V�[�P���X���A�m�ۂł���`�����l����ݒ肵�܂��B
-�f�t�H���g��0�ŁA�������Ɋm�ۂł��邱�Ƃ��Ӗ����܂��B
+指定プレイヤーで再生するシーケンスが、確保できるチャンネルを設定します。
+デフォルトは0で、無制限に確保できることを意味します。
 </p>
       <p>
-<em><strong><code>chBitFlag</code></strong></em>�ŁA�m�ۂł���`�����l�����r�b�g�t���O�Őݒ肵�܂��B
-���ʃr�b�g���珇�ɁA�`�����l��0�A�`�����l��1�A�`�����l��2�A�A�A��\���A
-�r�b�g�������Ă���`�����l������̂݊m�ۂ��邱�Ƃ��ł��܂��B
-�l��0�̏ꍇ�͖������ƂȂ�A�S�Ẵ`�����l������m�ۂ��邱�Ƃ��ł��܂��B
+<em><strong><code>chBitFlag</code></strong></em>で、確保できるチャンネルをビットフラグで設定します。
+下位ビットから順に、チャンネル0、チャンネル1、チャンネル2、、、を表し、
+ビットが立っているチャンネルからのみ確保することができます。
+値が0の場合は無制限となり、全てのチャンネルから確保することができます。
 </p>
        <p>
-�Ȃ��A�`�����l����16����܂����A
-���L�̂悤�ɁA�`�����l���ԍ��ɉ����ă`�����l���̋@�\���قȂ��Ă��܂��B
+なお、チャンネルは16個ありますが、
+下記のように、チャンネル番号に応じてチャンネルの機能が異なっています。
 </p>
       
       
-      <div class="table"><a name="IDAAPWT"></a><p class="title"><b>�\ . �`�����l���̔ԍ��ʋ@�\</b></p>
-<table summary="�`�����l���̔ԍ��ʋ@�\" border="1">
+      <div class="table"><a name="IDAAPWT"></a><p class="title"><b>表 . チャンネルの番号別機能</b></p>
+<table summary="チャンネルの番号別機能" border="1">
 <colgroup><col><col></colgroup>
 <thead>
 <tr>
-<th>�`�����l���ԍ�</th>
-<th>�@�\</th>
+<th>チャンネル番号</th>
+<th>機能</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0, 2</td>
-<td>PCM/ADPCM���Đ��ł��܂��B���̃`�����l���̏o�͂��T�E���h�L���v�`���̓��͂Ƃ��邱�Ƃ��ł��܂��B</td>
+<td>PCM/ADPCMを再生できます。このチャンネルの出力をサウンドキャプチャの入力とすることもできます。</td>
 </tr>
 <tr>
 <td>1, 3</td>
-<td>PCM/ADPCM���Đ��ł��܂��B�T�E���h�L���v�`���ƃ^�C�}�[�����p���Ă��邽�߁A�T�E���h�L���v�`�����g���Ƃ��́A�T�E���h�L���v�`���̏o�̓`�����l���Ƃ��Ă����g���܂���B</td>
+<td>PCM/ADPCMを再生できます。サウンドキャプチャとタイマーを共用しているため、サウンドキャプチャを使うときは、サウンドキャプチャの出力チャンネルとしてしか使えません。</td>
 </tr>
 <tr>
-<td>4 �` 7</td>
-<td>PCM/ADPCM���Đ��ł��܂��B�V�[�P���X�Đ��Ŕg�`�f�[�^���Đ�����Ƃ��ɂ͗D��I�Ɏg���Ă��܂��B</td>
+<td>4 〜 7</td>
+<td>PCM/ADPCMを再生できます。シーケンス再生で波形データを再生するときには優先的に使っています。</td>
 </tr>
 <tr>
-<td>8 �` 13</td>
-<td>PCM/ADPCM�܂��́APSG��`�g���Đ��ł��܂��B</td>
+<td>8 〜 13</td>
+<td>PCM/ADPCMまたは、PSG矩形波を再生できます。</td>
 </tr>
 <tr>
 <td>14, 15</td>
-<td>PCM/ADPCM�܂��́A�z���C�g�m�C�Y���Đ��ł��܂��B</td>
+<td>PCM/ADPCMまたは、ホワイトノイズを再生できます。</td>
 </tr>
 </tbody>
 </table>
@@ -97,23 +97,23 @@
 
       
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-���̊֐��́A<tt class="function"><a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></tt>�֐����ŁA
-�Ăт�����Ă��܂��B�ēx�A���̊֐����Ăт����ƁA�ݒ肵���l���㏑������܂��B 
+この関数は、<tt class="function"><a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></tt>関数内で、
+呼びだされています。再度、この関数を呼びだすと、設定した値が上書きされます。 
 </p>
 <p>
-�Đ������V�[�P���X�ɑ΂��āA
-<tt class="function"><a href="NNS_SndPlayerSetTrackAllocatableChannel.html">NNS_SndPlayerSetTrackAllocatableChannel</a></tt>�֐���
-�Ăт����ƁA�����Őݒ肵���l�͏㏑������܂��B
+再生したシーケンスに対して、
+<tt class="function"><a href="NNS_SndPlayerSetTrackAllocatableChannel.html">NNS_SndPlayerSetTrackAllocatableChannel</a></tt>関数を
+呼びだすと、ここで設定した値は上書きされます。
 </p>
 </div>
       
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a>, <a href="NNS_SndPlayerSetTrackAllocatableChannel.html">NNS_SndPlayerSetTrackAllocatableChannel</a></p>
-<h2>����</h2>
-<p>2005/01/05 ����<br></p>
+<h2>履歴</h2>
+<p>2005/01/05 初版<br></p>
 </div>
 </body>
 </html>

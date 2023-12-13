@@ -1,5 +1,5 @@
 /* MSL
- * Copyright © 1995-2006 Freescale Corporation.  All rights reserved.
+ * Copyright 1995-2006 Freescale Corporation.  All rights reserved.
  *
  * $Date: 2006/02/09 16:58:10 $
  * $Revision: 1.19.2.2 $
@@ -138,7 +138,7 @@ codecvt_byname<internT, externT, stateT>::codecvt_byname(const char* std_name, s
 					__codecvt_ = new __jis<internT>;
 					break;
 				case 3:  // Shift-JIS
-					__codecvt_ = new __shift_jis<internT>;
+					__codecvt_ = new __UTF-8<internT>;
 					break;
 				case 4:  // EUC
 					__codecvt_ = new __euc<internT>;

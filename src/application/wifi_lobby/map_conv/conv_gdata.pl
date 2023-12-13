@@ -1,48 +1,48 @@
 ##################################################
 #		
-#	wflby_gdata.txt‚©‚çƒOƒŠƒbƒhƒf[ƒ^‚ÌƒŠƒXƒg‚ğì¬‚·‚é
+#	wflby_gdata.txtã‹ã‚‰ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆã™ã‚‹
 #
 ##################################################
-@GDATA_FILE = undef;	#ƒtƒ@ƒCƒ‹ƒf[ƒ^
-@MAPDATA_FILE = undef;	#ƒtƒ@ƒCƒ‹ƒf[ƒ^
-@MAPOBJID	= undef;	#ƒ}ƒbƒvƒIƒuƒWƒFID
-@EVID		= undef;	#ƒCƒxƒ“ƒgID
-%GDATANO	= undef;	#ƒOƒŠƒbƒhƒf[ƒ^NO‚ÌƒnƒbƒVƒ…
-$MAPGRID_X	= undef;	#ƒ}ƒbƒv‚Ì‘å‚«‚³
-$MAPGRID_Y	= undef;	#ƒ}ƒbƒv‚Ì‘å‚«‚³
-@MAPGRID_DT = undef;	#ƒ}ƒbƒvƒOƒŠƒbƒhƒf[ƒ^
+@GDATA_FILE = undef;	#ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
+@MAPDATA_FILE = undef;	#ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
+@MAPOBJID	= undef;	#ãƒãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ID
+@EVID		= undef;	#ã‚¤ãƒ™ãƒ³ãƒˆID
+%GDATANO	= undef;	#ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿NOã®ãƒãƒƒã‚·ãƒ¥
+$MAPGRID_X	= undef;	#ãƒãƒƒãƒ—ã®å¤§ãã•
+$MAPGRID_Y	= undef;	#ãƒãƒƒãƒ—ã®å¤§ãã•
+@MAPGRID_DT = undef;	#ãƒãƒƒãƒ—ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿
 
-######“Ç‚İ‚Şƒtƒ@ƒCƒ‹
+######èª­ã¿è¾¼ã‚€ãƒ•ã‚¡ã‚¤ãƒ«
 $INPUT_MAPDATA		= "wflby_map.txt";
 $INPUT_GDATA		= "wflby_gdata.txt";
 $OUTPUT_MAPH		= "wflby_mapdata.h";
 $OUTPUT_GDATANO		= "wflby_map.dat";
 
-######—\–ñ’è‹`
+######äºˆç´„å®šç¾©
 $OBJID_YOYAKU		= "NONE";
 $EVID_YOYAKU		= "NONE";
 $OBJID_DEF			= "WFLBY_MAPOBJID_";
 $EVID_DEF			= "WFLBY_MAPEVID_";
 
-#ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+#ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 &file_open();
 
-#ƒf[ƒ^ì¬
+#ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 $return = &dataid_make();
 if( $return == -1 ){
 	exit(1);	#err
 }
 
-#ƒ}ƒbƒvƒf[ƒ^‚ğì¬‚·‚é
+#ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 $return = &map_data_make();
 if( $return == -1 ){
 	exit(1);	#err
 }
 
-#‘Sƒf[ƒ^‚ğ‘‚«o‚·
-#ƒwƒbƒ_[
+#å…¨ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™
+#ãƒ˜ãƒƒãƒ€ãƒ¼
 &write_header();
-#ƒ}ƒbƒvƒf[ƒ^
+#ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
 &write_map();
 
 exit(0);
@@ -53,11 +53,11 @@ exit(0);
 
 ##################################################
 #		
-#	ŠÖ”
+#	é–¢æ•°
 #
 ##################################################
 
-#ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+#ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 sub file_open{
 	open( FILEIN, $INPUT_MAPDATA );
 	@MAPDATA_FILE = <FILEIN>;
@@ -68,7 +68,7 @@ sub file_open{
 }
 
 
-#GDATA‚ğã‚©‚çŒŸõ‚µ‚ÄAMAPOBJID,EVID,GDATANO‚ğ¶¬
+#GDATAã‚’ä¸Šã‹ã‚‰æ¤œç´¢ã—ã¦ã€MAPOBJID,EVID,GDATANOã‚’ç”Ÿæˆ
 sub dataid_make{
 	my( $obj_num, $ev_num, $gdatano, $gdata_obj, $gdata_ev, $zyufuku, $hit );
 
@@ -81,7 +81,7 @@ sub dataid_make{
 
 		$one =~ s/\r\n//g;
 			
-		if( $one =~ /([A-Z][^,]*),[^,]*,([0-9]),([^,]*)/ ){	#ƒAƒ‹ƒtƒ@ƒxƒbƒg‚Ì‚ ‚é‚¬‚å‚¤‚È‚çƒf[ƒ^
+		if( $one =~ /([A-Z][^,]*),[^,]*,([0-9]),([^,]*)/ ){	#ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆã®ã‚ã‚‹ãã‚‡ã†ãªã‚‰ãƒ‡ãƒ¼ã‚¿
 
 			#OBJID
 			$zyufuku = &double_check( \@MAPOBJID, $1 );
@@ -91,7 +91,7 @@ sub dataid_make{
 				$obj_num++;
 			}else{
 				print( "mapobjid  zyuufuku $1\n" );
-				return -1;	#ƒGƒ‰[
+				return -1;	#ã‚¨ãƒ©ãƒ¼
 			}
 
 			#EVID
@@ -105,7 +105,7 @@ sub dataid_make{
 					$gdata_ev = $zyufuku;
 				}
 			}else{
-				$gdata_ev = 0;	#‚È‚ñ‚à‚È‚¢‚Æ‚«
+				$gdata_ev = 0;	#ãªã‚“ã‚‚ãªã„ã¨ã
 			}
 
 			#HIT BIT
@@ -122,7 +122,7 @@ sub dataid_make{
 	}
 }
 
-#d•¡ƒ`ƒFƒbƒN
+#é‡è¤‡ãƒã‚§ãƒƒã‚¯
 sub double_check{
 	my( $arry, $check ) = @_;
 	my( $count );
@@ -131,15 +131,15 @@ sub double_check{
 
 	for( $count = 0; $count <(@$arry+0); $count++ ){
 		if( $$arry[$count] eq $check ){
-			return $count;	#d•¡
+			return $count;	#é‡è¤‡
 		}
 	}
-	return -1;			#d•¡‚È‚µ
+	return -1;			#é‡è¤‡ãªã—
 }
 
 
 
-#ƒ}ƒbƒvƒf[ƒ^‚ğì¬‚·‚é
+#ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 sub map_data_make{
 	
 	my( @d_line, $line_c, $gdata );
@@ -150,18 +150,18 @@ sub map_data_make{
 
 	foreach $one (@MAPDATA_FILE){
 		
-		if( $one =~ /[A-Z].*/ ){	#ƒAƒ‹ƒtƒ@ƒxƒbƒg‚ª“ü‚Á‚Ä‚ê‚ÎOK
+		if( $one =~ /[A-Z].*/ ){	#ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆãŒå…¥ã£ã¦ã‚Œã°OK
 			
-			#”š‚Ì•”•ª‚ğ”²‚­
+			#æ•°å­—ã®éƒ¨åˆ†ã‚’æŠœã
 			$one =~ s/^[0-9]+,//g;
 		
-			#ÅŒã‚É‚Â‚¢‚Ä‚é\n‚ğ”²‚­
+			#æœ€å¾Œã«ã¤ã„ã¦ã‚‹\nã‚’æŠœã
 			$one =~ s/\r\n//g;
 			
 			@d_line = split( /,/, $one );
 			
 			if( $MAPGRID_X == 0 ){
-				$MAPGRID_X = @d_line;		#•‚ğŠi”[
+				$MAPGRID_X = @d_line;		#å¹…ã‚’æ ¼ç´
 			}else{
 				if( $MAPGRID_X != @d_line ){
 					print( "mapgrid_siz x diff  line".$MAPGRID_Y."\n" );
@@ -186,7 +186,7 @@ sub map_data_make{
 	return 0;
 }
 
-#GDATANO‚©‚çw’è‚ÌGDATA‚ğæ“¾‚·‚é
+#GDATANOã‹ã‚‰æŒ‡å®šã®GDATAã‚’å–å¾—ã™ã‚‹
 sub get_gdata{
 
 	my( $sarch ) = @_;
@@ -204,7 +204,7 @@ sub get_gdata{
 }
 
 
-#ƒwƒbƒ_[‚ğ‘‚«o‚·
+#ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’æ›¸ãå‡ºã™
 sub write_header{
 
 	my( $i );
@@ -214,22 +214,22 @@ sub write_header{
 	print( FILEOUT "#ifndef __WFLBY_MAP_H__\r\n" );
 	print( FILEOUT "#define __WFLBY_MAP_H__\r\n" );
 
-	#ƒ}ƒbƒvƒf[ƒ^‚Ì‘å‚«‚³
+	#ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®å¤§ãã•
 	print( FILEOUT "\r\n\r\n\r\n" );
-	print( FILEOUT "// ƒ}ƒbƒv‚Ì‘å‚«‚³\r\n" );
+	print( FILEOUT "// ãƒãƒƒãƒ—ã®å¤§ãã•\r\n" );
 	print( FILEOUT "#define WFLBY_MAPSIZE_X		($MAPGRID_X)\r\n" );
 	print( FILEOUT "#define WFLBY_MAPSIZE_Y		($MAPGRID_Y)\r\n" );
 	
-	#ƒIƒuƒWƒFƒNƒgID
+	#ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
 	print( FILEOUT "\r\n\r\n\r\n" );
-	print( FILEOUT "// ƒ}ƒbƒvƒIƒuƒWƒFƒNƒgID\r\n" );
+	print( FILEOUT "// ãƒãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID\r\n" );
 	for( $i=0; $i<@MAPOBJID; $i++ ){
 		print( FILEOUT "#define $OBJID_DEF".$MAPOBJID[$i]."		($i)\r\n" );
 	}
 
-	#ƒCƒxƒ“ƒgID
+	#ã‚¤ãƒ™ãƒ³ãƒˆID
 	print( FILEOUT "\r\n\r\n\r\n" );
-	print( FILEOUT "// ƒCƒxƒ“ƒgID\r\n" );
+	print( FILEOUT "// ã‚¤ãƒ™ãƒ³ãƒˆID\r\n" );
 	for( $i=0; $i<@EVID; $i++ ){
 		print( FILEOUT "#define $EVID_DEF".$EVID[$i]."		($i)\r\n" );
 	}
@@ -240,7 +240,7 @@ sub write_header{
 	close( FILEOUT );
 }
 
-#ƒ}ƒbƒvƒf[ƒ^‚ğ‘‚«o‚µ‚Ü‚·
+#ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã—ã¾ã™
 sub write_map{
 
 	my( $i );

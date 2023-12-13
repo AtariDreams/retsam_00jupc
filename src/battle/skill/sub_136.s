@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_136.s
- *@brief	�퓬�V�[�P���X
- *			�˂������Ƃ����Ȃ����V�[�P���X
+ *@brief	戦闘シーケンス
+ *			ねがいごとがかなったシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.07
  *
@@ -18,17 +18,17 @@ SUB_136:
 	MESSAGE_WORK
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//�q�[���u���b�N���󂯂Ă��鎞�͉񕜓���Ȃ�
+	//ヒールブロックを受けている時は回復動作なし
 	IF_PSP			IF_FLAG_NE,SIDE_WORK,ID_PSP_wkw_healblock_count,0,Healblock
-	//HPMAX��ǂݍ���
+	//HPMAXを読み込み
 	PSP_VALUE_WORK	VAL_GET,SIDE_WORK,ID_PSP_hpmax,BUF_PARA_CALC_WORK
-	//HP���܂񂽂�̎��́A���̎|�̃��b�Z�[�W��\��
+	//HPがまんたんの時は、その旨のメッセージを表示
 	IF_PSP_WORK		IF_FLAG_EQ,SIDE_WORK,ID_PSP_hp,BUF_PARA_CALC_WORK,HP_MANTAN
-	//�_���[�W�G�t�F�N�g�œ_�ł��Ȃ��t���O�𗧂Ă�
+	//ダメージエフェクトで点滅しないフラグを立てる
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK
 	STATUS_EFFECT	SIDE_WORK,STATUS_EFF_RECOVER
 	SERVER_WAIT
-	//HP�v�Z�T�u���[�`����
+	//HP計算サブルーチンへ
 	GOSUB			SUB_SEQ_HP_CALC
 	MESSAGE			JikosaiseiMineMsg,TAG_NICK,SIDE_WORK
 	SERVER_WAIT

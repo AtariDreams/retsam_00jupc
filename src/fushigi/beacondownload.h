@@ -4,7 +4,7 @@
  * @version "$Id: beacondownload.h,v 1.3 2006/07/05 13:50:25 mitsuhara Exp $"
  *
  * @file beacondownload.h
- * @brief �r�[�R�����g�p�����f�[�^�_�E�����[�h����
+ * @brief ビーコンを使用したデータダウンロード処理
  * 
  */
  
@@ -12,87 +12,87 @@
 #define DEBUG_BEACONDOWNLOAD	1
 #endif
 
-// �R�[���o�b�N�^
+// コールバック型
 typedef void (*BSDOWN_CALLBACK)( int code );
 
-// �ȉ��̏����������Ȃ�ꂽ�Ƃ��ɃR�[���o�b�N���Ԃ�܂��B
+// 以下の処理がおこなわれたときにコールバックが返ります。
 enum
 {
-	BSDOWNCALLBACK_STARTSCAN,	// �X�L�����J�n��
-	BSDOWNCALLBACK_START,		// �e�@���݂����Ƃ�
-	BSDOWNCALLBACK_SUCCESS,		// �f�[�^�����S�Ɏ󂯎�����Ƃ�
-	BSDOWNCALLBACK_FINISH,		// �����̏I�������i�L�����Z�����A�f�[�^�����S�Ɏ󂯎�����Ƃ����ʁj
-	BSDOWNCALLBACK_ERROR,		// �G���[������
-	BSDOWNCALLBACK_RESTART,		// ��M���ɐe�@������ύX�����ꍇ�ȂǁA�f�[�^�ɐH���Ⴂ���������ꍇ�B
-								//�@���̏ꍇ�A�����I�ɍă_�E�����[�h���J�n����܂��B
-	BSDOWNCALLBACK_FILEINFO		// �t�@�C���̃^�C�g�������擾�ł����Ƃ��ɃR�[���o�b�N�Ƃ��Ă�����܂��B
+	BSDOWNCALLBACK_STARTSCAN,	// スキャン開始時
+	BSDOWNCALLBACK_START,		// 親機をみつけたとき
+	BSDOWNCALLBACK_SUCCESS,		// データを完全に受け取ったとき
+	BSDOWNCALLBACK_FINISH,		// 無線の終了処理（キャンセル時、データを完全に受け取ったとき共通）
+	BSDOWNCALLBACK_ERROR,		// エラー発生時
+	BSDOWNCALLBACK_RESTART,		// 受信中に親機が情報を変更した場合など、データに食い違いが生じた場合。
+								//　この場合、自動的に再ダウンロードが開始されます。
+	BSDOWNCALLBACK_FILEINFO		// ファイルのタイトル等が取得できたときにコールバックとしてかえります。
 };
 
 /* ======================================================================
-   �֐��Q
+   関数群
    ====================================================================== */
 
-// ��ƂɕK�v�ȃo�b�t�@�̃T�C�Y��Ԃ��܂��B
+// 作業に必要なバッファのサイズを返します。
 extern int bsdown_c_worksize();
 
 /*---------------------------------------------------------------------------*
   Name:         bsdown_c_init
   Description:  
-	  �q�@�p�������B
-	  ������WM_INIT���Ăяo���A�X�L�����J�n�܂ň�C�ɐi�߂܂��B
+	  子機用初期化。
+	  内部でWM_INITを呼び出し、スキャン開始まで一気に進めます。
   Arguments:    
-  				target �@�c �f�[�^���i�[�����̃|�C���^�B
-  						�@�@�S�o�C�g�̈�ɂ��킹�ĉ������B
-  				callback �c �R�[���o�b�N�֐�]
-  				buffer   �c ��Ɨ̈�B
+  				target 　… データを格納する先のポインタ。
+  						　　４バイト領域にあわせて下さい。
+  				callback … コールバック関数]
+  				buffer   … 作業領域。
 
-  Returns:      ��������ΐ^�B
+  Returns:      成功すれば真。
  *---------------------------------------------------------------------------*/
 extern BOOL bsdown_c_init( void *target, BSDOWN_CALLBACK callback, void *buffer );
 
-// ���݂܂łɎ�M�����p�P�b�g�ʂ��擾
+// 現在までに受信したパケット量を取得
 extern int bsdown_c_received(void);
 
-// ��M���ׂ��p�P�b�g�̗�
+// 受信すべきパケットの量
 extern int bsdown_c_total(void);
 
-// ��M���Ă���f�[�^�̃T�C�Y�B�܂���M���J�n����Ă��Ȃ���΂O��Ԃ��B
+// 受信しているデータのサイズ。まだ受信が開始されていなければ０を返す。
 extern int bsdown_c_size(void);
 
-// �I������B����������R�[���o�b�N��BSDOWNCALLBACK_ERROR2���Ԃ��Ă���B
+// 終了する。完了したらコールバックでBSDOWNCALLBACK_ERROR2が返ってくる。
 extern BOOL bsdown_end( void );
 
-// �Ō�Ɏ�M�����p�P�b�g�̃C���f�b�N�X
+// 最後に受信したパケットのインデックス
 extern int bsdown_c_lastreceive(void);
-// ���݂܂Ŏ󂯎�����p�P�b�g�̕\ 
+// 現在まで受け取ったパケットの表 
 extern u8 *bsdown_c_downloadpacket(void);
 
-// ��M�ς݂̂b�q�b�����������`�F�b�N�B
-// ���̊֐����Ăяo���Ȃ�����A�b�q�b�̃`�F�b�N�͍s���܂���B
-// BSDOWNCALLBACK_SUCCESS �̃R�[���o�b�N����������ɁA�Ăяo���Ă��������B
+// 受信済みのＣＲＣが正しいかチェック。
+// この関数を呼び出さない限り、ＣＲＣのチェックは行いません。
+// BSDOWNCALLBACK_SUCCESS のコールバックがあった後に、呼び出してください。
 extern int bsdown_c_checkcrc(void);
 
-// �Ō�ɂ����Ƃ����r�[�R���̋��x���擾�B�i�A���e�i�A�C�R���̕\�����ɂ����p���������j
+// 最後にうけとったビーコンの強度を取得。（アンテナアイコンの表示等にご利用ください）
 extern int bsdown_c_linklevel(void);
 
-// �^�C�g���ȂǁA�_�E�����[�h���Ă���t�@�C���̏����擾���܂��B
-// �܂���M�ł��Ă��Ȃ��Ƃ��́ANULL��Ԃ��܂��B
+// タイトルなど、ダウンロードしているファイルの情報を取得します。
+// まだ受信できていないときは、NULLを返します。
 extern void* bsdown_c_fileheader(void);
 
-// ����A���ňႤ��ނ̃p�P�b�g���󂯎�����ꍇ�A�^�C���A�E�g�Ɣ��肷�邩�H
+// 何回連続で違う種類のパケットを受け取った場合、タイムアウトと判定するか？
 #define BSDOWN_TIMEOUT 16
 
 /* ======================================================================
-   �ȉ��͎q�@�e�@���ʂ̐ݒ�ɂ���K�v������B
+   以下は子機親機共通の設定にする必要がある。
    ====================================================================== */
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-// GGID �̒�`�� include/communication/ggid.h �Ɉړ�
+// GGID の定義を include/communication/ggid.h に移動
 #include "communication/ggid.h"
 // ----------------------------------------------------------------------------
 
-// ��M/���M����\���̂���t�@�C���̍ő�l
+// 受信/送信する可能性のあるファイルの最大値
 #define BSOWN_MAXSIZE (128*1024)
 
 #define BSDOWN_SCANTIME 220

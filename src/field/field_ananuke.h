@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	field_ananuke.h
- * @brief	ƒtƒB[ƒ‹ƒh@‚ ‚È‚Ê‚¯‚Ì‚Ğ‚à@‚ ‚È‚Ù‚è@ƒeƒŒƒ|[ƒg
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ã‚ãªã¬ã‘ã®ã²ã‚‚ã€€ã‚ãªã»ã‚Šã€€ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ
  * @author	kagaya
  * @data	05.07.13
  */
@@ -17,17 +17,17 @@
 //	typedef
 //==============================================================================
 //--------------------------------------------------------------
-///	ŒŠŒ@‚èƒ^ƒCƒv
+///	ç©´æ˜ã‚Šã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 typedef enum
 {
-	ANATYPE_ANA,		///<ŒŠ”²‚¯
-	ANATYPE_ANAHORI,	///<ŒŠ‚ğŒ@‚é
-	ANATYPE_TEL,		///<ƒeƒŒƒ|[ƒg
+	ANATYPE_ANA,		///<ç©´æŠœã‘
+	ANATYPE_ANAHORI,	///<ç©´ã‚’æ˜ã‚‹
+	ANATYPE_TEL,		///<ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ
 }ANATYPE;
 
 //==============================================================================
-//	ŠO•”QÆ
+//	å¤–éƒ¨å‚ç…§
 //==============================================================================
 extern void * EventWorkSet_AnanukeMapChange( FIELDSYS_WORK *fsys, u32 heap_id );
 extern BOOL GMEVENT_AnanukeMapChange( GMEVENT_CONTROL *event );
@@ -41,7 +41,7 @@ extern BOOL GMEVENT_AnawohoruMapChange( GMEVENT_CONTROL *event );
 extern void * EventWorkSet_TeleportMapChange(FIELDSYS_WORK *, POKEMON_PARAM *, u32 );
 extern BOOL GMEVENT_TeleportMapChange( GMEVENT_CONTROL *event );
 
-//«ƒI[ƒo[ƒŒƒC‚ÅƒAƒNƒZƒX•s‰Â‚É‚È‚é‚Ì‚ÅAíœ	20060712 saito
+//â†“ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã§ã‚¢ã‚¯ã‚»ã‚¹ä¸å¯ã«ãªã‚‹ã®ã§ã€å‰Šé™¤	20060712 saito
 ///extern BOOL EventCheck_Ananuke( int zone_id );
 
 #endif //FIELD_ANANUKE_H_FILE

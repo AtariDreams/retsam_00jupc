@@ -13,34 +13,34 @@
 #
 # $Log: Makefile.CORE,v $
 # Revision 1.10  2006/09/06 11:54:41  yasu
-# NITROSDK_ROOT ‚Å‚Í‚È‚­ ROOT ‚ğg‚¤‚æ‚¤‚É•ÏX
+# NITROSDK_ROOT ã§ã¯ãªã ROOT ã‚’ä½¿ã†ã‚ˆã†ã«å¤‰æ›´
 #
 # Revision 1.9  2006/06/12 00:54:06  okubata_ryoma
-# TCM_APPLY‚ğmodulerules‚Ì‘O‚ÉˆÚ“®
+# TCM_APPLYã‚’modulerulesã®å‰ã«ç§»å‹•
 #
 # Revision 1.8  2006/01/10 06:00:34  okubata_ryoma
-# os_terminate_proc.c‚Ì’Ç‰Á
+# os_terminate_proc.cã®è¿½åŠ 
 #
 # Revision 1.7  2005/07/27 07:37:01  seiki_masashi
-# os_entropy.c ‚Ì’Ç‰Á
+# os_entropy.c ã®è¿½åŠ 
 #
 # Revision 1.6  2005/07/21 02:31:31  yada
 # add os_argument.c
 #
 # Revision 1.5  2005/06/14 04:52:55  yasu
-# bin2obj ‚ğg—p‚·‚é‚æ‚¤‚ÉC³
+# bin2obj ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 #
 # Revision 1.4  2005/06/14 04:45:01  yasu
-# OBJDIR ‚ğg—p‚·‚é
+# OBJDIR ã‚’ä½¿ç”¨ã™ã‚‹
 #
 # Revision 1.3  2005/06/06 05:36:34  terui
-# BinToElf.exe ‚Ìo—ÍƒŠƒ_ƒCƒŒƒNƒgİ’è‚ğs‚í‚È‚¢‚æ‚¤‚É•ÏX
+# BinToElf.exe ã®å‡ºåŠ›ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆè¨­å®šã‚’è¡Œã‚ãªã„ã‚ˆã†ã«å¤‰æ›´
 #
 # Revision 1.2  2005/06/02 07:54:07  yosizaki
 # link sound data.
 #
 # Revision 1.1  2005/05/25 11:43:42  terui
-# ƒ‰ƒCƒuƒ‰ƒŠ‚ğì¬‚·‚éƒRƒA•”•ª‚ğMakefile‚©‚çØ‚èo‚µ‚ÄV‹K’Ç‰Á
+# ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä½œæˆã™ã‚‹ã‚³ã‚¢éƒ¨åˆ†ã‚’Makefileã‹ã‚‰åˆ‡ã‚Šå‡ºã—ã¦æ–°è¦è¿½åŠ 
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------
@@ -117,7 +117,7 @@ include	$(NITROSDK_ROOT)/build/buildtools/modulerules
 
 OBJS			+= $(DATA_OBJS)
 
-# ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ğ’¼ÚƒIƒuƒWƒFƒNƒg‚É•ÏŠ·‚·‚é
+# ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ç›´æ¥ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›ã™ã‚‹
 $(OBJDIR)/%.o: $(DATA_DIR)/%.bin
 			$(BIN2OBJ) --compatible $< $@
 

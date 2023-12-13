@@ -1,6 +1,6 @@
 /**
  *	@file	porudemo.h
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚ƒwƒbƒ_
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ãƒ˜ãƒƒãƒ€
  *	@author	Miyuki Iwasawa
  *	@date	06.03.28
  */
@@ -12,18 +12,18 @@
 #include "savedata/poruto_util.h"
 
 //======================================================
-//ƒf[ƒ^Œp³\‘¢‘Ì’è‹`
+//ãƒ‡ãƒ¼ã‚¿ç¶™æ‰¿æ§‹é€ ä½“å®šç¾©
 //======================================================
 typedef struct _PORUDEMO_PARAM{
-	POKEMON_PARAM*	pp;	///<ƒ|ƒPƒ‚ƒ“
-	PORUTO_DATA*	poruto;	///<ƒ|ƒ‹ƒgƒf[ƒ^
-	u16	flavor;		///<ƒ|ƒ‹ƒg‚Ìí—Ş
-	u8	msg_spd;	///<ƒƒbƒZ[ƒWƒXƒs[ƒh
-	u8	win_type;	///<ƒEƒBƒ“ƒhƒEƒ^ƒCƒv
+	POKEMON_PARAM*	pp;	///<ãƒã‚±ãƒ¢ãƒ³
+	PORUTO_DATA*	poruto;	///<ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿
+	u16	flavor;		///<ãƒãƒ«ãƒˆã®ç¨®é¡
+	u8	msg_spd;	///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰
+	u8	win_type;	///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—
 }PORUDEMO_PARAM;
 
 //======================================================
-//ƒI[ƒo[ƒŒƒCƒvƒƒZƒX’è‹`
+//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©
 //======================================================
 extern PROC_RESULT PoruDemo_Init(PROC* proc,int *seq);
 extern PROC_RESULT PoruDemo_Main(PROC* proc,int *seq);

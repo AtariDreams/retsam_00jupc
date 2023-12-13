@@ -1,146 +1,146 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>SDK �̃R���p�C�����̊��ϐ�</TITLE>
+<TITLE>SDK のコンパイル時の環境変数</TITLE>
 <LINK rel="stylesheet" href="NitroSDKStandard.css" type="text/css">
 </HEAD>
 <BODY>
-<H1>�r���h�X�C�b�`�@(Build Switch)</H1>
-<H2><A name="SetenvForBuild">SDK �̃r���h���̊��ϐ�</A></H2>
-<P>�ȉ��̕\�� NitroSDK �c���[�̃r���h������ύX���邽�߂̊��ϐ��̈ꗗ�ł��B�����̒l�͒ʏ�̊��ϐ��Őݒ肷��ق���
-make �R�}���h�̈����Ƃ��� make NITRO_DEBUG=True �ȂǂƎ󂯓n�����Ƃ� Makefile
-�Ȃǂ� NITRO_DEBUG=True �ȂǂƋL�q���邱�ƂŐݒ�\�ł��B���ݒ莞�͏����l���g�p����܂��B</P>
+<H1>ビルドスイッチ　(Build Switch)</H1>
+<H2><A name="SetenvForBuild">SDK のビルド時の環境変数</A></H2>
+<P>以下の表は NitroSDK ツリーのビルド条件を変更するための環境変数の一覧です。これらの値は通常の環境変数で設定するほかに
+make コマンドの引数として make NITRO_DEBUG=True などと受け渡すことや Makefile
+などで NITRO_DEBUG=True などと記述することで設定可能です。無設定時は初期値が使用されます。</P>
 <TABLE border="1" width="100%" cellspacing="0" cellpadding="2">
   <COL span="1" width="160">
   <TBODY>
     <TR>
       <TH valign="top" align="left">CWFolder_NITRO<BR>
-      �܂���<BR>
+      または<BR>
       CWFOLDER_NITRO<BR>
       </TH>
-      <TD valign="top" align="left">CodeWarrior �̃C���X�g�[������Ă���f�B���N�g���ł��B<BR>
-      CodeWarrior for NITRO ���C���X�g�[������Ǝ����I�ɐݒ肳��܂��B<BR>
-      cygwin �� bash �Őݒ肷��Ƃ���<BR>
+      <TD valign="top" align="left">CodeWarrior のインストールされているディレクトリです。<BR>
+      CodeWarrior for NITRO をインストールすると自動的に設定されます。<BR>
+      cygwin の bash で設定するときは<BR>
       <PRE><CODE>% export CWFolder_NITRO='D:/Program Files/Metrowerks/CodeWarrior' </CODE></PRE>
-      �ƃV���O���N�E�H�[�g�ň͂ޕK�v������܂��B<BR>
-      Windows �̊��ϐ��Őݒ肷��Ƃ���<BR>
+      とシングルクウォートで囲む必要があります。<BR>
+      Windows の環境変数で設定するときは<BR>
       <PRE><CODE>D:/Program Files/Metrowerks/CodeWarrior</CODE></PRE>
-      �ƂȂ�܂��B�p�X�̋�؂蕶���Ƃ��� / �� \ �̗������g�p�ł��܂��B<BR>
-      �����l: C:/Program Files/Metrowerks/CW for NINTENDO DS V1.0.2</TD>
+      となります。パスの区切り文字として / と \ の両方が使用できます。<BR>
+      初期値: C:/Program Files/Metrowerks/CW for NINTENDO DS V1.0.2</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">LM_LICENSE_FILE</TH>
-      <TD valign="top" align="left">CodeWarrior �̃��C�Z���X�t�@�C���̃p�X�ł��B<BR>
-      �����l�F�Ȃ��B�ʏ�� CodeWarrior �C���X�g�[�����ɐݒ肳��܂��B</TD>
+      <TD valign="top" align="left">CodeWarrior のライセンスファイルのパスです。<BR>
+      初期値：なし。通常は CodeWarrior インストール時に設定されます。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITROSDK_ROOT<BR>
-      <FONT color="#ff0000">���d�v</FONT></TH>
-      <TD valign="top" align="left">NITRO-SDK ���C���X�g�[������Ă���f�B���N�g���ł���A<BR>
-      $NitroSDK ���W�J����Ă���f�B���N�g���ł��B<BR>
-      �p�X�̋�؂蕶���Ƃ��� / �� \ �̗������g�p�ł��܂����ACodeWarrior �� IDE
-      �ł� \ �ł��邱�Ƃ��]�܂��ꍇ���������� \ �����g�p����邱�Ƃ������߂��܂��B<BR>
+      <FONT color="#ff0000">★重要</FONT></TH>
+      <TD valign="top" align="left">NITRO-SDK がインストールされているディレクトリであり、<BR>
+      $NitroSDK が展開されているディレクトリです。<BR>
+      パスの区切り文字として / と \ の両方が使用できますが、CodeWarrior の IDE
+      では \ であることが望まれる場合が多いため \ をご使用されることをお勧めします。<BR>
       <BR>
-      �����l�FC:\NitroSDK �������ASDK ���C���X�g�[���ɂ���Ē񋟂���Ă���ꍇ�́A�C���X�g�[���ɂ���đI�����ꂽ�p�X���ݒ肳��܂��B</TD>
+      初期値：C:\NitroSDK ただし、SDK がインストーラによって提供されている場合は、インストーラによって選択されたパスが設定されます。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_STD_PCHDR<BR>NITRO_NO_STD_PCHDR</TH>
-      <TD valign="top" align="left">NITRO_STD_PCHDR �ɉ����̒l���ݒ肳��Ă���ꍇ�A�r���h�V�X�e���̓r���h�ɐ旧�� $NitroSDK/include/nitro.h ���v���R���p�C�����A���̌��ʂ��t�@�C���̃r���h���ɓǂݍ��݂܂��B����ɂ��r���h�̍����������҂ł��܂��B�����A���̃R���p�C�����ꎞ�I�ɗ}���������ꍇ�́ANITRO_NO_STD_PCHDR �ɒl��ݒ肵�Ă��������B<BR>
-      <FONT color="#ff0000">���̋@�\�� SDK3.0 �ȍ~�ɂ����ăT�|�[�g����܂��B</FONT></TD>
+      <TD valign="top" align="left">NITRO_STD_PCHDR に何かの値が設定されている場合、ビルドシステムはビルドに先立ち $NitroSDK/include/nitro.h をプリコンパイルし、その結果をファイルのビルド時に読み込みます。これによりビルドの高速化が期待できます。もし、このコンパイルを一時的に抑制したい場合は、NITRO_NO_STD_PCHDR に値を設定してください。<BR>
+      <FONT color="#ff0000">この機能は SDK3.0 以降においてサポートされます。</FONT></TD>
     </TR>
     <TR>
       <TH align="left" valign="top">NITROSDK_LANG</TH>
-      <TD valign="top" align="left">NitroSDK �̃R���p�C���I�v�V�������p��p�E���{��p�ɐ؂�ւ��܂��B<BR>
+      <TD valign="top" align="left">NitroSDK のコンパイルオプションを英語用・日本語用に切り替えます。<BR>
       <BR>
-      �p��p�̏ꍇ <CODE>&quot;-enc ascii&quot;</CODE> ���{��̏ꍇ <CODE>&quot;-enc SJIS&quot;</CODE> �Ƃ����I�v�V�������ݒ肳��܂��B
+      英語用の場合 <CODE>&quot;-enc ascii&quot;</CODE> 日本語の場合 <CODE>&quot;-enc SJIS&quot;</CODE> というオプションが設定されます。
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>en</TD>
-            <TD>�p��@�@�@</TD>
+            <TD>英語　　　</TD>
           </TR>
           <TR>
             <TD>jp</TD>
-            <TD>���{��</TD>
+            <TD>日本語</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�F���{��</TD>
+      初期値：日本語</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_PROC<BR>
-      <FONT color="#a0a0a0">���ύX�s�v</FONT></TH>
-      <TD align="left">���C���v���Z�b�T�ƃT�u�v���Z�b�T�̂ǂ���̃R�[�h�𐶐�����̂���؂�ւ���X�C�b�`�ł��B<FONT color="#ff0000">�����l�̂܂܂ł��g�p���������B</FONT><BR>
+      <FONT color="#a0a0a0">※変更不要</FONT></TH>
+      <TD align="left">メインプロセッサとサブプロセッサのどちらのコードを生成するのかを切り替えるスイッチです。<FONT color="#ff0000">初期値のままでご使用ください。</FONT><BR>
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>ARM9</TD>
-            <TD>���C���v���Z�b�T�p�R�[�h</TD>
+            <TD>メインプロセッサ用コード</TD>
           </TR>
           <TR>
             <TD>ARM7</TD>
-            <TD>�T�u�v���Z�b�T�p�R�[�h</TD>
+            <TD>サブプロセッサ用コード</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FARM9 (���C���v���Z�b�T�p�R�[�h)</TD>
+      初期値：ARM9 (メインプロセッサ用コード)</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_MAKEROM<BR>
-      <FONT color="#a0a0a0">���ύX�s�v</FONT></TH>
-      <TD align="left">�����l���ݒ肳��Ă����ꍇ�ɂ́Amakerom.exe�c�[���ɂ���ăv���O������ROM�C���[�W�𐶐����܂��B��Ɏw�肳��邽�߁A�����I�ɐݒ肷��K�v�͂���܂���B</TD>
+      <FONT color="#a0a0a0">※変更不要</FONT></TH>
+      <TD align="left">何か値が設定されていた場合には、makerom.exeツールによってプログラムのROMイメージを生成します。常に指定されるため、明示的に設定する必要はありません。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_CODEGEN</TH>
-      <TD align="left">�R���p�C������уA�Z���u���� ARM �R�[�h�� Thumb �R�[�h�̂ǂ���𐶐����邩�̃f�t�H���g�l��^���܂��B�\�[�X���Ŗ����I�Ɏw�肪�Ȃ���΂��̐ݒ�ɓY���ăR�[�h����������܂��B<BR>
+      <TD align="left">コンパイラおよびアセンブラに ARM コードか Thumb コードのどちらを生成するかのデフォルト値を与えます。ソース内で明示的に指定がなければこの設定に添ってコードが生成されます。<BR>
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>ARM</TD>
-            <TD>32bit ARM �R�[�h</TD>
+            <TD>32bit ARM コード</TD>
           </TR>
           <TR>
             <TD>THUMB</TD>
-            <TD>16bit THUMB �R�[�h</TD>
+            <TD>16bit THUMB コード</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FARM</TD>
+      初期値：ARM</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_PLATFORM<BR>
-      �����<BR>
+      および<BR>
       NITRO_TS_VERSION<BR>
-      <FONT color="#999999">���ύX�s�v</FONT></TH>
-      <TD valign="top" align="left">NITRO �̃R���p�C���^�[�Q�b�g���ȉ��̂悤�Ɏw�肵�܂��B<BR>
-      <FONT color="#ff0000">�����l�̂܂܂ł��g�p���������B</FONT><BR>
+      <FONT color="#999999">※変更不要</FONT></TH>
+      <TD valign="top" align="left">NITRO のコンパイルターゲットを以下のように指定します。<BR>
+      <FONT color="#ff0000">初期値のままでご使用ください。</FONT><BR>
       <BR>
-      <B>NITRO_PLATFORM</B> �̒l�ŃA�[�L�e�N�`�����w�肵�ATS �Ɋւ��ẮA<BR>
-      ����ɍׂ��ȃo�[�W������ <B>NITRO_TS_VERSION</B> �Ŏw�肵�܂��B<BR>
+      <B>NITRO_PLATFORM</B> の値でアーキテクチャを指定し、TS に関しては、<BR>
+      さらに細かなバージョンを <B>NITRO_TS_VERSION</B> で指定します。<BR>
       <TABLE border="1" width="500">
         <COL span="1" width="120">
         <TBODY>
           <TR>
-            <TH colspan="2">NITRO_PLATFORM �ɂ��؂�ւ�</TH>
+            <TH colspan="2">NITRO_PLATFORM による切り替え</TH>
           </TR>
           <TR>
             <TD>TS</TD>
-            <TD>IS-NITRO-EMULATOR�n�[�h�E�F�A ����� NINTENDO-DS �������@<BR>
-            (�ׂ��ȃo�[�W�����̈Ⴂ��NITRO_TS_VERSION �őI��)</TD>
+            <TD>IS-NITRO-EMULATORハードウェア および NINTENDO-DS 発売実機<BR>
+            (細かなバージョンの違いはNITRO_TS_VERSION で選択)</TD>
           </TR>
           <TR>
             <TD>TEG</TD>
-            <TD>TEG �{�[�h</TD>
+            <TD>TEG ボード</TD>
           </TR>
           <TR>
             <TD>BB</TD>
-            <TD>�u���b�h�{�[�h</TD>
+            <TD>ブレッドボード</TD>
           </TR>
         </TBODY>
       </TABLE>
@@ -148,58 +148,58 @@ make �R�}���h�̈����Ƃ��� make NITRO_DEBUG=True �ȂǂƎ󂯓n�����Ƃ� Makefile
         <COL span="1" width="120">
         <TBODY>
           <TR>
-            <TH colspan="2">NITRO_TS_VERSION �ɂ��؂�ւ�</TH>
+            <TH colspan="2">NITRO_TS_VERSION による切り替え</TH>
           </TR>
           <TR>
             <TD>0</TD>
-            <TD>TS �u���b�h�{�[�h���� IS-NITRO-EMULATOR�n�[�h�E�F�A Ver.C</TD>
+            <TD>TS ブレッドボードから IS-NITRO-EMULATORハードウェア Ver.C</TD>
           </TR>
           <TR>
             <TD>100</TD>
-            <TD>IS-NITRO-EMULATOR�n�[�h�E�F�A Ver.D</TD>
+            <TD>IS-NITRO-EMULATORハードウェア Ver.D</TD>
           </TR>
           <TR>
             <TD>200</TD>
-            <TD>IS-NITRO-EMULATOR�n�[�h�E�F�A Ver.E ����� NINTENDO-DS �������@(04/09/10����)</TD>
+            <TD>IS-NITRO-EMULATORハードウェア Ver.E および NINTENDO-DS 発売実機(04/09/10現在)</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FNITRO_PLATFORM=TS ����� NITRO_TS_VERSION=200<BR>
+      初期値：NITRO_PLATFORM=TS および NITRO_TS_VERSION=200<BR>
       <BR>
-      �����ӁFNITRO-SDK �ł� TS_VERSION ���� os �y�� spi ���C�u�������p�ӂ���Ă��܂��B
-      ����� TS �u���b�h�{�[�h�Ȃǂ�p�����J�����ɂ����ăI�[�i�[���̃Z�[�u�t�H�[�}�b�g���Â�
-      �ꍇ�ɈӖ��������܂����A�Z�[�u�t�H�[�}�b�g���������@�Ɠ����̏ꍇ�ɂ͑S���������C�u�����ƂȂ�܂��B
-      make �V�X�e�����g�p�����ꍇ�ɂ͊��ϐ��ɂ�莩���I�Ƀ����N���郉�C�u�������I������܂����A
-      IDE ���g�p����J�����ł͎蓮�Ń����N���郉�C�u������I�����Ē����K�v������܂��B
-      �A�� TS �u���b�h�{�[�h�Ȃǂ�p�����J�������g�p����ꍇ�������Ă̓��C�u������I������
-      �Ӗ�������܂���̂ŁA�f�t�H���g�Ń����N����郉�C�u������p���邱�Ƃɖ��͂���܂���B<BR>
+      ★注意：NITRO-SDK では TS_VERSION 毎に os 及び spi ライブラリが用意されています。
+      これは TS ブレッドボードなどを用いた開発環境においてオーナー情報のセーブフォーマットが古い
+      場合に意味を持ちますが、セーブフォーマットが発売実機と同等の場合には全く同じライブラリとなります。
+      make システムを使用した場合には環境変数により自動的にリンクするライブラリが選択されますが、
+      IDE を使用する開発環境では手動でリンクするライブラリを選択して頂く必要があります。
+      但し TS ブレッドボードなどを用いた開発環境を使用する場合を除いてはライブラリを選択する
+      意味がありませんので、デフォルトでリンクされるライブラリを用いることに問題はありません。<BR>
       </TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_MEMSIZE<BR>
-      <FONT color="#999999">���ύX�s�v</FONT></TH>
-      <TD valign="top" align="left">NITRO �̃R���p�C���^�[�Q�b�g�̃��C���������T�C�Y���w�肵�܂��B<BR>
-      ���̃r���h�X�C�b�`�ɂ��w����@�͋��݊��Ƃ��Ďc����Ă��܂��B<BR>
-      ���݂͂��֗��� OS_EnableMainExArena �֐��ł̎w����@���񋟂���Ă���ASDK
-      ���̂̍ăr���h���s�v�Ȃ��߂�����𐄏����܂��B<BR>
+      <FONT color="#999999">※変更不要</FONT></TH>
+      <TD valign="top" align="left">NITRO のコンパイルターゲットのメインメモリサイズを指定します。<BR>
+      このビルドスイッチによる指定方法は旧互換として残されています。<BR>
+      現在はより便利な OS_EnableMainExArena 関数での指定方法が提供されており、SDK
+      自体の再ビルドが不要なためそちらを推奨します。<BR>
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>4M</TD>
-            <TD>4M�o�C�g</TD>
+            <TD>4Mバイト</TD>
           </TR>
           <TR>
             <TD>8M</TD>
-            <TD>8M�o�C�g</TD>
+            <TD>8Mバイト</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�F4M</TD>
+      初期値：4M</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_CCTYPE</TH>
-      <TD valign="top" align="left">�R���p�C���̎w��B���ݎw��\�Ȃ̂� CW �ł��B<BR>
+      <TD valign="top" align="left">コンパイラの指定。現在指定可能なのは CW です。<BR>
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
@@ -209,85 +209,85 @@ make �R�}���h�̈����Ƃ��� make NITRO_DEBUG=True �ȂǂƎ󂯓n�����Ƃ� Makefile
           </TR>
           <TR>
             <TD>SNC</TD>
-            <TD>ProDG (�\��)</TD>
+            <TD>ProDG (予定)</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FCW</TD>
+      初期値：CW</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_DEBUG<BR>
       NITRO_RELEASE<BR>
       NITRO_FINALROM<BR>
-      <FONT color="#ff0000">���d�v</FONT></TH>
-      <TD valign="top" align="left">�^�[�Q�b�g�̃R���p�C���^�[�Q�b�g�� DEBUG �ł� RELEASE �ł� FINALROM �ł���I�ׂ܂��B���̐ݒ�ɂ����
-      make �R�}���h���s���ɃR���p�C���I�v�V�����⃊���N����郉�C�u�������ς��܂��B���̕ϐ��͑��̕ϐ��ƈقȂ�R�̂����̂ǂꂩ�ЂƂɓK���Ȓl��ݒ肷�邱�ƂŗL���ɂȂ�܂��B<BR>
-      �R�̃I�v�V�����̏ڍׂɂ��Ă�$NitroSDK/man/jp_JP/information/compiletarget.html(�R���p�C���^�[�Q�b�g���)���Q�Ƃ��Ă��������B<BR>
-      �����l�FNITRO_RELEASE</TD>
+      <FONT color="#ff0000">★重要</FONT></TH>
+      <TD valign="top" align="left">ターゲットのコンパイルターゲットを DEBUG 版か RELEASE 版か FINALROM 版から選べます。この設定によって
+      make コマンド実行時にコンパイルオプションやリンクされるライブラリが変わります。この変数は他の変数と異なり３つのうちのどれかひとつに適当な値を設定することで有効になります。<BR>
+      ３つのオプションの詳細については$NitroSDK/man/jp_JP/information/compiletarget.html(コンパイルターゲット解説)を参照してください。<BR>
+      初期値：NITRO_RELEASE</TD>
     </TR>
     <TR>
       <TH align="left">NITRO_COMPRESS<BR>
-      <FONT color="#ff0000">���d�v</FONT></TH>
-      <TD>�����l���ݒ肳��Ă����ꍇ�ɂ̓����N�I����� STATIC/OVERLAY �Z�O�����g�����k���܂��B<BR>
-      �����l�F�l�Ȃ� (���k���Ȃ�)</TD>
+      <FONT color="#ff0000">★重要</FONT></TH>
+      <TD>何か値が設定されていた場合にはリンク終了後に STATIC/OVERLAY セグメントを圧縮します。<BR>
+      初期値：値なし (圧縮しない)</TD>
     </TR>
     <TR>
       <TH align="left">NITRO_DIGEST</TH>
-      <TD>���̃r���h�X�C�b�`�̓A�v���P�[�V�����ɂ̂ݗL���ŁASDK�̃r���h���ɂ͖�������܂��B<BR>
-      �����l���ݒ肳��Ă����ꍇ�ɂ́A�I�[�o�[���C���g�p����DS�_�E�����[�h�v���C�q�@�v���O�����Ƃ��ăr���h���܂��B</TD>
+      <TD>このビルドスイッチはアプリケーションにのみ有効で、SDKのビルド時には無視されます。<BR>
+      何か値が設定されていた場合には、オーバーレイを使用するDSダウンロードプレイ子機プログラムとしてビルドします。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_PROFILE</TH>
-      <TD valign="top" align="left">�����l���ݒ肳��Ă����ꍇ�́A�R���p�C������ -profile �I�v�V�������ǉ�����܂��B���DEBUG
-      ���Ɏg�p����A����ɂ��A�v���P�[�V�������s���ɂ�����e�֐��ւ̏o����̒ǐՂ��\�ɂȂ�܂��B�ڂ����g�p�@�ɂ��Ă�
-      OS_DumpCallTrace() ���Q�l�ɂ��Ă��������B<BR>
-      �����l�F�l�Ȃ� (-profile �I�v�V�������� )</TD>
+      <TD valign="top" align="left">何か値が設定されていた場合は、コンパイル時に -profile オプションが追加されます。主にDEBUG
+      時に使用され、これによりアプリケーション実行時における各関数への出入りの追跡が可能になります。詳しい使用法については
+      OS_DumpCallTrace() を参考にしてください。<BR>
+      初期値：値なし (-profile オプション無効 )</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_NO_OPT_G</TH>
-      <TD valign="top" align="left">�����l���ݒ肳��Ă����ꍇ�́A�ʏ�̃R���p�C������у����N���Ɏw�肳��Ă���
-      -g �I�v�V�������O���܂��B����ɂ���K�͂ȃv���W�F�N�g�ɂ����Ė��ƂȂ郊���N�������Ԃ̒Z�k�����҂ł��܂��B
+      <TD valign="top" align="left">何か値が設定されていた場合は、通常のコンパイルおよびリンク時に指定されている
+      -g オプションを外します。これにより大規模なプロジェクトにおいて問題となるリンク処理時間の短縮が期待できます。
       <BR>
-      �����l�F�Ȃ� (-g �I�v�V�����L��)</TD>
+      初期値：なし (-g オプション有効)</TD>
     </TR>
     <TR>
       <TH align="left" valign="top">IS_NITRO_DIR</TH>
-      <TD>IS NITRO EMULATOR �֘A�t�@�C���̃C���X�g�[������Ă���f�B���N�g���ł��B<BR>
-      IS NITRO EMULATOR ���C���X�g�[������Ǝ����I�ɐݒ肳��܂��B<BR>
-      ���̊��ϐ�������Ǝ����I�� IS NITRO EMULATOR �֘A�̃��C�u�����������N����܂��B<BR>
-      �����l: C:/Program Files/INTELLIGENT SYSTEMS/IS-NITRO-EMULATOR</TD>
+      <TD>IS NITRO EMULATOR 関連ファイルのインストールされているディレクトリです。<BR>
+      IS NITRO EMULATOR をインストールすると自動的に設定されます。<BR>
+      この環境変数があると自動的に IS NITRO EMULATOR 関連のライブラリがリンクされます。<BR>
+      初期値: C:/Program Files/INTELLIGENT SYSTEMS/IS-NITRO-EMULATOR</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_ROMSPEED<BR>
-      <FONT color="#ff0000">���d�v</FONT></TH>
-      <TD align="left">�f�t�H���g��RSF�t�@�C�����g�p����ꍇ�AProperty�Z�N�V������RomSpeedType�p�����[�^�֎w�肷��ݒ�l��^���܂��B<BR>
-      ��̓I�ɂ́Amakerom.exe �c�[���֗^����MAKEROM_ROMSPEED�V���{���ɐݒ肳���l�ƂȂ�܂��B<BR>
-      RSF�t�@�C�����f�t�H���g�̂��̂łȂ��Ǝ��ɗp�ӂ��Ă���ꍇ�ɂ́A�P�ɖ�������܂��B<BR>
-      RomSpeedType�p�����[�^�̏ڍׂ� makerom.exe �c�[���̃��t�@�����X���Q�Ƃ��������B
+      <FONT color="#ff0000">★重要</FONT></TH>
+      <TD align="left">デフォルトのRSFファイルを使用する場合、PropertyセクションのRomSpeedTypeパラメータへ指定する設定値を与えます。<BR>
+      具体的には、makerom.exe ツールへ与えるMAKEROM_ROMSPEEDシンボルに設定される値となります。<BR>
+      RSFファイルをデフォルトのものでなく独自に用意している場合には、単に無視されます。<BR>
+      RomSpeedTypeパラメータの詳細は makerom.exe ツールのリファレンスを参照ください。
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>1TROM</TD>
-            <TD>�����^�C��PROM</TD>
+            <TD>ワンタイムPROM</TD>
           </TR>
           <TR>
             <TD>MROM</TD>
-            <TD>�}�X�NROM</TD>
+            <TD>マスクROM</TD>
           </TR>
           <TR>
             <TD>UNDEFINED</TD>
-            <TD>���Ɏw��Ȃ�</TD>
+            <TD>特に指定なし</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FUNDEFINED</TD>
+      初期値：UNDEFINED</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">CW_LIBFP</TH>
-      <TD align="left">CodeWarrior�R���p�C���֎w�肷�镂�������_���C�u���������ȉ��̂����ꂩ�����ݒ肷�邱�Ƃ��ł��܂��B<BR>
-      �w�肪������Ώ����l�����̂܂܎g�p����܂��B<BR>
-      �e���C�u�����̐��\�ʂł̋�̓I�ȑ���ɂ��ẮACodeWarrior�̃��t�@�����X���Q�Ƃ��������B
+      <TD align="left">CodeWarriorコンパイラへ指定する浮動小数点ライブラリ名を以下のいずれかから一つ設定することができます。<BR>
+      指定が無ければ初期値がそのまま使用されます。<BR>
+      各ライブラリの性能面での具体的な相違については、CodeWarriorのリファレンスを参照ください。
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
@@ -305,28 +305,28 @@ make �R�}���h�̈����Ƃ��� make NITRO_DEBUG=True �ȂǂƎ󂯓n�����Ƃ� Makefile
           </TR>
           <TR>
             <TD>FP_flush0_v5t_LE.a</TD>
-            <TD>flush to zero (IEEE ��݊�)</TD>
+            <TD>flush to zero (IEEE 非互換)</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FFP_fastI_v5t_LE.a</TD>
+      初期値：FP_fastI_v5t_LE.a</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_SVC_WAITVBLANK_COMPATIBLE<BR>
       </TH>
-      <TD valign="top" align="left">SVC_WaitVBlankIntr �֐��Ăяo���������I�� OS_WaitVBlankIntr �֐��Ăяo���ɒu���������Ȃ��ꍇ�ɒ�`���܂��B<BR>
-�������ASVC_WaitVBlankIntr �֐��͒�D��x�̃X���b�h�Ƀ��\�[�X���J�����Ȃ��d�l�ł���A�g�����ɂ���Ă͖�肪�������邽�߁A�ǂ����Ă��]���ʂ�̃V�X�e���R�[����p���Ȃ���΂Ȃ�Ȃ��ꍇ�ɂ̂݁A�\���Ȍ��؂��s���Ďg�p���Ă��������B<BR><BR>
-���̒u���̓w�b�_�t�@�C������ define �ɂ��u���ł��̂ŁANITRO-SDK ���ăr���h�����ۂɏ��߂ėL���ɂȂ�_�ɂ����Ӊ������B<BR>
-�Ȃ� make ���ɂ��̊��ϐ�����`����Ă���� SDK_SVC_WAITVBLANK_COMPATIBLE ����`����A#ifdef �` #endif �\���Ȃǂɂ���ă\�[�X������m�邱�Ƃ��ł��܂��B<BR><BR>
+      <TD valign="top" align="left">SVC_WaitVBlankIntr 関数呼び出しを自動的に OS_WaitVBlankIntr 関数呼び出しに置換したくない場合に定義します。<BR>
+ただし、SVC_WaitVBlankIntr 関数は低優先度のスレッドにリソースを開放しない仕様であり、使い方によっては問題が発生するため、どうしても従来通りのシステムコールを用いなければならない場合にのみ、十分な検証を行って使用してください。<BR><BR>
+この置換はヘッダファイル内の define による置換ですので、NITRO-SDK を再ビルドした際に初めて有効になる点にご注意下さい。<BR>
+なお make 時にこの環境変数が定義されていると SDK_SVC_WAITVBLANK_COMPATIBLE が定義され、#ifdef 〜 #endif 構文などによってソース側から知ることもできます。<BR><BR>
 
-�����l�ł͒�`����Ă��Ȃ��̂ŁASVC_WaitVBlankIntr �֐��Ăяo���͎����I�� OS_WaitVBlankIntr �֐��Ăяo���ɒu������܂��B
+初期値では定義されていないので、SVC_WaitVBlankIntr 関数呼び出しは自動的に OS_WaitVBlankIntr 関数呼び出しに置換されます。
 </TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2><A name="MacroInSource">�\�[�X�ŗ��p�ł���}�N���X�C�b�`</A></H2>
-<P>�ȉ��̕\�� NitroSDK �c���[�̃r���h������ #ifdef �` #endif �\���Ȃǂɂ���ă\�[�X������m�邽�߂̃}�N���ϐ��̈ꗗ�ł��B��{�I�ɂ͑O���ł̊��ϐ��ɂ��ݒ�ɂ���ăR���g���[������܂��B<BR>
-<FONT color="#ff0000">���ׂĂ̖��̂� SDK_ �Ŏn�܂�܂��B</FONT></P>
+<H2><A name="MacroInSource">ソースで利用できるマクロスイッチ</A></H2>
+<P>以下の表は NitroSDK ツリーのビルド条件を #ifdef 〜 #endif 構文などによってソース側から知るためのマクロ変数の一覧です。基本的には前項での環境変数による設定によってコントロールされます。<BR>
+<FONT color="#ff0000">すべての名称が SDK_ で始まります。</FONT></P>
 <TABLE border="1" width="100%" cellspacing="0" cellpadding="2">
   <COL span="1" width="160">
   <TBODY>
@@ -335,93 +335,93 @@ make �R�}���h�̈����Ƃ��� make NITRO_DEBUG=True �ȂǂƎ󂯓n�����Ƃ� Makefile
       <S><FONT color="#999999">SDK_TEG<BR>
       SDK_BB</FONT></S><BR>
       </TH>
-      <TD align="left" valign="top">NITRO �̃R���p�C���^�[�Q�b�g�̎w��(���ϐ� NITRO_PLATFORM) �ɉ����Ăǂꂩ�����`����܂��B���݂�
-      SDK_TS �����T�|�[�g����Ă��Ȃ����߁A�ӎ�����K�v�͂���܂���B<BR>
+      <TD align="left" valign="top">NITRO のコンパイルターゲットの指定(環境変数 NITRO_PLATFORM) に応じてどれか一つが定義されます。現在は
+      SDK_TS しかサポートされていないため、意識する必要はありません。<BR>
       <TABLE border="1" width="381">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>SDK_TS</TD>
-            <TD>NINTENDO-DS �������@</TD>
+            <TD>NINTENDO-DS 発売実機</TD>
           </TR>
           <TR>
             <TD><S>SDK_TEG</S></TD>
-            <TD><S>�T�|�[�g�I���FTEG �{�[�h</S></TD>
+            <TD><S>サポート終了：TEG ボード</S></TD>
           </TR>
           <TR>
             <TD><S>SDK_BB</S></TD>
-            <TD><S>�T�|�[�g�I���F�u���b�h�{�[�h</S></TD>
+            <TD><S>サポート終了：ブレッドボード</S></TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FSDK_TS</TD>
+      初期値：SDK_TS</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SDK_4M<BR>
       <S><FONT color="#999999">SDK_8M</FONT></S></TH>
-      <TD valign="top" align="left">NITRO �̃R���p�C���^�[�Q�b�g�̃��C���������T�C�Y�̎w��(���ϐ� NITRO_MEMSIZE)�ɉ����Ăǂ��炩����`����܂��B����g���A���[�i���g�p�ł��邽��
-      8M �̐ݒ���g���K�v�͂���܂���B<BR>
+      <TD valign="top" align="left">NITRO のコンパイルターゲットのメインメモリサイズの指定(環境変数 NITRO_MEMSIZE)に応じてどちらかが定義されます。現状拡張アリーナが使用できるため
+      8M の設定を使う必要はありません。<BR>
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>SDK_4M</TD>
-            <TD>4M�o�C�g</TD>
+            <TD>4Mバイト</TD>
           </TR>
           <TR>
             <TD><S>SDK_8M</S></TD>
-            <TD><S>8M�o�C�g</S></TD>
+            <TD><S>8Mバイト</S></TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FSDK_4M</TD>
+      初期値：SDK_4M</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SDK_ARM9<BR>
       <S><FONT color="#999999">SDK_ARM7</FONT></S></TH>
-      <TD valign="top" align="left">�ǂ���̃v���Z�b�T�����̃R���p�C���E�A�Z���u�����s���Ă��邩�ɂ���Ăǂ��炩����`����܂��B�A�v���P�[�V�������쐬��������
-      SDK_ARM7 �̃R�[�h�ɂ��čl������K�v�͂���܂���B<BR>
+      <TD valign="top" align="left">どちらのプロセッサ向けのコンパイル・アセンブルが行われているかによってどちらかが定義されます。アプリケーションを作成される方は
+      SDK_ARM7 のコードについて考慮する必要はありません。<BR>
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>SDK_ARM9</TD>
-            <TD>���C���v���Z�b�T�p�r���h</TD>
+            <TD>メインプロセッサ用ビルド</TD>
           </TR>
           <TR>
             <TD><S>SDK_ARM7</S></TD>
-            <TD><S>�T�u�v���Z�b�T�p�r���h</S></TD>
+            <TD><S>サブプロセッサ用ビルド</S></TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FSDK_ARM9</TD>
+      初期値：SDK_ARM9</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SDK_CODE_ARM<BR>
       SDK_CODE_THUMB</TH>
-      <TD valign="top" align="left">�R���p�C���I�v�V������ ARM �R�[�h�� Thumb �R�[�h�̂ǂ���𐶐�����悤�ɐݒ肳��Ă��邩�������܂��B<BR>
-      ����͂����܂Łu�����ݒ�v���������̂ł��B���ۂɂǂ���̃R�[�h�̐������s���Ă��邩�̓R���p�C���ɑg�ݍ��܂�Ă����`�}�N�����Q�Ƃ���K�v������܂��B(CW
-      �̏ꍇ __thumb__) pragma ���g���\�[�X�̈ꕔ�͈̔͂Ŗ����I�ɂŃR�[�h�̐�����؂芷�����ꍇ�A���͈̔͂̏I�����ɂ̓R�[�h���������̒l�Ŏ������ݒ�ɖ߂��Ă������Ƃ𐄏����܂��B
+      <TD valign="top" align="left">コンパイラオプションで ARM コードか Thumb コードのどちらを生成するように設定されているかを示します。<BR>
+      これはあくまで「初期設定」を示すものです。実際にどちらのコードの生成が行われているかはコンパイラに組み込まれている定義マクロを参照する必要があります。(CW
+      の場合 __thumb__) pragma を使いソースの一部の範囲で明示的にでコードの生成を切り換えた場合、その範囲の終了時にはコード生成をこの値で示される設定に戻しておくことを推奨します。
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>SDK_CODE_ARM</TD>
-            <TD>ARM �p���߃Z�b�g</TD>
+            <TD>ARM 用命令セット</TD>
           </TR>
           <TR>
             <TD>SDK_CODE_THUMB</TD>
-            <TD>THUMB �p���߃Z�b�g</TD>
+            <TD>THUMB 用命令セット</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FCODEGEN_CC/CODEGEN_AS �̐ݒ�ɏ]���܂��B</TD>
+      初期値：CODEGEN_CC/CODEGEN_AS の設定に従います。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SDK_CW<BR>
       SDK_SNC<BR>
       </TH>
-      <TD valign="top" align="left">�g�p����Ă���R���p�C���ɉ����Ăǂꂩ�����`����܂��B<BR>
+      <TD valign="top" align="left">使用されているコンパイラに応じてどれか一つが定義されます。<BR>
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
@@ -431,41 +431,41 @@ make �R�}���h�̈����Ƃ��� make NITRO_DEBUG=True �ȂǂƎ󂯓n�����Ƃ� Makefile
           </TR>
           <TR>
             <TD>SDK_SNC</TD>
-            <TD>ProDG �R���p�C�� (�\��)</TD>
+            <TD>ProDG コンパイラ (予定)</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FSDK_CW</TD>
+      初期値：SDK_CW</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SDK_ASM</TH>
-      <TD valign="top" align="left">�A�Z���u���ɂ���ăA�Z���u������Ă���ꍇ�ɒ�`����܂��B<BR>
-      C�̃w�b�_�t�@�C�������p����ꍇ�ɃA�Z���u���ł̓G���[�ɂȂ�L�q�����������Ƃ��ɗ��p�ł��܂��B</TD>
+      <TD valign="top" align="left">アセンブラによってアセンブルされている場合に定義されます。<BR>
+      Cのヘッダファイルを共用する場合にアセンブラではエラーになる記述を書きたいときに利用できます。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SDK_DEBUG<BR>
       SDK_RELEASE<BR>
       SDK_FINALROM<BR>
-      <FONT color="#ff0000">���d�v</FONT></TH>
-      <TD valign="top" align="left">�^�[�Q�b�g�̃R���p�C���^�[�Q�b�g�� DEBUG �ł� RELEASE �ł� FINALROM �ł������ꂩ�̎w��ɉ����Ăǂꂩ�����`����܂��B<BR>
+      <FONT color="#ff0000">★重要</FONT></TH>
+      <TD valign="top" align="left">ターゲットのコンパイルターゲットが DEBUG 版か RELEASE 版か FINALROM 版かいずれかの指定に応じてどれか一つが定義されます。<BR>
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>SDK_DEBUG</TD>
-            <TD>DEBUG��</TD>
+            <TD>DEBUG版</TD>
           </TR>
           <TR>
             <TD>SDK_RELEASE</TD>
-            <TD>RELEASE��</TD>
+            <TD>RELEASE版</TD>
           </TR>
           <TR>
             <TD>SDK_FINALROM</TD>
-            <TD>FINALROM��</TD>
+            <TD>FINALROM版</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FSDK_RELEASE</TD>
+      初期値：SDK_RELEASE</TD>
     </TR>
     <TR>
       <TH align="left" valign="top">SDK_PACKING_DATE<BR>
@@ -473,46 +473,46 @@ make �R�}���h�̈����Ƃ��� make NITRO_DEBUG=True �ȂǂƎ󂯓n�����Ƃ� Makefile
       SDK_VERSION_MAJOR<BR>
       SDK_VERSION_MINOR<BR>
       SDK_VERSION_RELSTEP</TH>
-      <TD valign="top">SDK_PACKING_DATE �� SDK_VERSION_DATE �́ASDK �p�b�P�[�W�̍쐬���������܂��BYYYYMMDD
-      �̌`���ŔN������\�킷8���̐����ł��B���݂̎d�l�ɂ����Ă���2�̓��t�l�͓����l���ݒ肳��܂��B<BR>
+      <TD valign="top">SDK_PACKING_DATE と SDK_VERSION_DATE は、SDK パッケージの作成日を示します。YYYYMMDD
+      の形式で年月日を表わす8桁の数字です。現在の仕様においてこの2つの日付値は同じ値が設定されます。<BR>
       <BR>
-      SDK_VERSION_MAJOR, SDK_VERSION_MINOR �� SDK �̃o�[�W�����ԍ���\���܂��B��Ƃ��āASDK
-      �̃o�[�W������ 2.1 �ł���ꍇ�́ASDK_VERSION_MAJOR �� 2 ���ASDK_VERSION_MINOR
-      �ɂ� 1 ���ݒ肳��܂��B<BR>
+      SDK_VERSION_MAJOR, SDK_VERSION_MINOR で SDK のバージョン番号を表します。例として、SDK
+      のバージョンが 2.1 である場合は、SDK_VERSION_MAJOR に 2 が、SDK_VERSION_MINOR
+      には 1 が設定されます。<BR>
       <BR>
-      SDK_VERSION_RELSTEP �� SDK �̐����o�[�W�����̑O�� PR �ŁARC �łƏo�ׂ����Ƃ��ɐ����łƋ�ʂ����邽�߂̂��̂ł��B���������[�X�łł��̒l��
-      30000 �ƂȂ�܂��B<BR>
+      SDK_VERSION_RELSTEP は SDK の正式バージョンの前に PR 版、RC 版と出荷されるときに正式版と区別をするためのものです。正式リリース版でこの値は
+      30000 となります。<BR>
       <BR>
-      �����l�� $NitroSDK/include/nitro/version.h �t�@�C���ɒ�`����Ă��܂��B<FONT color="#ff0000">SDK 2.2 �ȍ~�ɂ����āA����ȑO�̃o�[�W������ SDK �Ƃ͈قȂ�Aversion.h
-      �� nitro.h ����C���N���[�h�����悤�ɂȂ�܂����B</FONT></TD>
+      これら値は $NitroSDK/include/nitro/version.h ファイルに定義されています。<FONT color="#ff0000">SDK 2.2 以降において、それ以前のバージョンの SDK とは異なり、version.h
+      は nitro.h からインクルードされるようになりました。</FONT></TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SDK_SVC_WAITVBLANK_COMPATIBLE</TH>
-      <TD valign="top" align="left">make ���� NITRO_SVC_WAITVBLANK_COMPATIBLE ����`����Ă���ꍇ�ɒ�`����܂��B<BR>
-      �Ȃ��ڍׂ� NITRO_SVC_WAITVBLANK_COMPATIBLE ���Q�Ƃ��Ă��������B</TD>
+      <TD valign="top" align="left">make 時に NITRO_SVC_WAITVBLANK_COMPATIBLE が定義されている場合に定義されます。<BR>
+      なお詳細は NITRO_SVC_WAITVBLANK_COMPATIBLE を参照してください。</TD>
     </TR>
     <TR>
-      <TH align="left" valign="top">���̑�</TH>
-      <TD>���̑��ȉ��̂悤�Ȉꎞ�I�ȃR���p�C���X�C�b�`����������Ă��܂��B�����̃��[�U�ɂ��R���p�C���̐؂�ւ��ɂ��Ă̔ėp�I�ȕ��@�͌���ł͗p�ӂ���Ă��܂���B�������̃L�[���[�h�Ƃ��Ă��g�p���������B
+      <TH align="left" valign="top">その他</TH>
+      <TD>その他以下のような一時的なコンパイルスイッチが準備されています。これらのユーザによるコンパイルの切り替えについての汎用的な方法は現状では用意されていません。検索時のキーワードとしてご使用ください。
       <TABLE border="1">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>SDK_NO_THREAD</TD>
-            <TD>THREAD �@�\���g�p���Ȃ����C�u�������쐬���܂�</TD>
+            <TD>THREAD 機能を使用しないライブラリを作成します</TD>
           </TR>
           <TR>
             <TD>SDK_*BUG_*</TD>
-            <TD>�o�O�΍�̂��߂̃X�C�b�`�ł��B</TD>
+            <TD>バグ対策のためのスイッチです。</TD>
           </TR>
           <TR>
             <TD>SDK_NO_INTERWORKING</TD>
-            <TD>Thumb/ARM �؂�ւ����l�����Ȃ����C�u�������쐬���܂�</TD>
+            <TD>Thumb/ARM 切り替えを考慮しないライブラリを作成します</TD>
           </TR>
           <TR>
             <TD>SDK_SMALL_BUILD</TD>
-            <TD>����̋@�\�𐧌����A�R�[�h�T�C�Y���������������C�u�������쐬���܂��B<BR>
-            (���̃I�v�V�����t���ō쐬���ꂽ�̃��C�u�����̓���͖��ۏ؂ƂȂ��Ă��܂��B�j</TD>
+            <TD>幾つかの機能を制限し、コードサイズを小さくしたライブラリを作成します。<BR>
+            (このオプション付きで作成されたのライブラリの動作は無保証となっています。）</TD>
           </TR>
         </TBODY>
       </TABLE>
@@ -520,119 +520,119 @@ make �R�}���h�̈����Ƃ��� make NITRO_DEBUG=True �ȂǂƎ󂯓n�����Ƃ� Makefile
     </TR>
   </TBODY>
 </TABLE>
-<H2><A name="MacroMisc">�\�[�X�ŗ��p�ł��邻�̑��̃}�N��</A></H2>
-<P>�ȉ��̕\�̓\�[�X�t�@�C�����Ŏg�p�ł��邻�̑��̃}�N���ł��B<BR>
+<H2><A name="MacroMisc">ソースで利用できるその他のマクロ</A></H2>
+<P>以下の表はソースファイル内で使用できるその他のマクロです。<BR>
 <BR>
-<FONT color="#ff0000">���ׂĂ̖��̂� SDK_ �Ŏn�܂�܂��B</FONT></P>
+<FONT color="#ff0000">すべての名称が SDK_ で始まります。</FONT></P>
 <TABLE border="1" width="100%" cellspacing="0" cellpadding="2">
   <COL span="1" width="160">
   <TBODY>
     <TR>
       <TH valign="top" align="left">SDK_WEAK_SYMBOL</TH>
-      <TD valign="top" align="left">�֐���`���Ɍ^�����C�����A���̊֐����ア�V���{���ł��邱�Ƃ������܂��B<BR>
-      �R���p�C���Ƃ��� CodeWarrior ���g�p�����ꍇ�́A���̃}�N���͈ȉ��̂悤�ɒ�`����܂��B<BR>
+      <TD valign="top" align="left">関数定義時に型名を修飾し、その関数が弱いシンボルであることを示します。<BR>
+      コンパイラとして CodeWarrior を使用した場合は、このマクロは以下のように定義されます。<BR>
       <BR>
       <CODE>#define SDK_WEAK_SYMBOL __declspec(weak)</CODE><BR>
       <BR>
-      ���̃}�N�����S�ẴR���p�C���ŃT�|�[�g����Ă��邱�Ƃ͕ۏ؂���Ă��܂���B�ア�V���{�����T�|�[�g���Ă��Ȃ��R���p�C���̏ꍇ�A���̃}�N���͋��`�ƂȂ�܂��B</TD>
+      このマクロが全てのコンパイラでサポートされていることは保証されていません。弱いシンボルをサポートしていないコンパイラの場合、このマクロは空定義となります。</TD>
     </TR>
     <TR>
       <TH align="left" valign="top">SDK_INLINE<BR>
       SDK_DECL_INLINE</TH>
-      <TD valign="top">�֐��� static inline �֐��� inline �֐��A�ǂ���ɂ���悤�ɐݒ肳��Ă���̂��������܂��B<BR>
-      �����̃}�N���̒l��ύX�����ꍇ�� NITRO-SDK �S�̂��ăr���h����K�v������܂��B<BR>
-      �����l�� $NitroSDK/include/nitro/types.h �t�@�C���ɒ�`����Ă��܂��B<BR>
+      <TD valign="top">関数を static inline 関数か inline 関数、どちらにするように設定されているのかを示します。<BR>
+      これらのマクロの値を変更した場合は NITRO-SDK 全体を再ビルドする必要があります。<BR>
+      これら値は $NitroSDK/include/nitro/types.h ファイルに定義されています。<BR>
       <BR>
-      �������A�C�����C���֐��̎��̉��Ɋւ���s����C�����ꂽ�o�[�W�����̃R���p�C�����g�p���Ă�����ł���A����ɂ��̕s���������邽�߂� inline �� static inline �ɂ��Ă����֐��̏ꍇ�Ɍ���A�����̃}�N���� static inline ���� inline �ɕύX���邱�Ƃɂ���ăR�[�h�T�C�Y���팸���邱�Ƃ��ł��܂��B <BR>
-      <FONT color="#ff0000">�����̃}�N����ύX���邱�Ƃ͊�{�I�ɖ��ۏ؂ƂȂ�܂��̂ŃA�v���P�[�V�������ł̔��f�ɂ����čs���Ă��������B </FONT>      <BR><BR>
-      �����l: SDK_INLINE static inline, SDK_DECL_INLINE static
+      ただし、インライン関数の実体化に関する不具合が修正されたバージョンのコンパイラを使用している環境であり、さらにこの不具合を回避するために inline を static inline にしていた関数の場合に限り、これらのマクロを static inline から inline に変更することによってコードサイズを削減することができます。 <BR>
+      <FONT color="#ff0000">これらのマクロを変更することは基本的に無保証となりますのでアプリケーション側での判断において行ってください。 </FONT>      <BR><BR>
+      初期値: SDK_INLINE static inline, SDK_DECL_INLINE static
     </TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2><A name="MacroInSource">�\�[�X�ŗ��p�ł��郊���J�V���{��</A></H2>
-<P>�ȉ��̕\��LCFile (�����J�X�N���v�g�t�@�C��) �Œ�`����l�ł��B<BR>
-�����̒l�̓����N���Ɍ��肳��܂��B<BR>
+<H2><A name="MacroInSource">ソースで利用できるリンカシンボル</A></H2>
+<P>以下の表はLCFile (リンカスクリプトファイル) で定義する値です。<BR>
+これらの値はリンク時に決定されます。<BR>
 <BR>
-<FONT color="#ff0000">���ׂĂ̖��̂� SDK_ �Ŏn�܂�܂��B</FONT></P>
+<FONT color="#ff0000">すべての名称が SDK_ で始まります。</FONT></P>
 <TABLE border="1" width="100%" cellspacing="0" cellpadding="2">
   <COL span="1" width="160">
   <TBODY>
     <TR>
       <TH valign="top" align="left">SDK_SYS_STACKSIZE</TH>
-      <TD valign="top" align="left">�A�v���P�[�V�����N�����Ɏg�p���Ă��� DTCM �̃X�^�b�N�̑傫�����R���g���[�����邽�߂̃V���{���ł��BLCF
-      �t�@�C���� LCF �X�y�b�N�t�@�C�����C�����邱�ƂŃQ�[�����ɃJ�X�^�}�C�Y���邱�Ƃ��ł��܂��B<BR>
+      <TD valign="top" align="left">アプリケーション起動時に使用している DTCM のスタックの大きさをコントロールするためのシンボルです。LCF
+      ファイルや LCF スペックファイルを修正することでゲーム毎にカスタマイズすることができます。<BR>
       <BR>
-      OS_Init() �֐��́A���̒l�ɂ���Č��肳�ꂽ�X�^�b�N�T�C�Y�Ɋ�Â��A�V�X�e���\��⊄�荞�ݏ����ɕK�v�ȗ̈�����������p�\��
-      DTCM �̈���X�^�b�N�� DTCM �A���[�i�Ɋ��蓖�Ă܂��B���̂Ƃ��� SDK_SYS_STACKSIZE
-      �̒l���v���X���}�C�i�X�� 0 ���ɂ����OS_Init() �ɂ�����T�C�Y�̐ݒ���@���ω����܂��B<BR>
+      OS_Init() 関数は、この値によって決定されたスタックサイズに基づき、システム予約や割り込み処理に必要な領域を除いた利用可能な
+      DTCM 領域をスタックと DTCM アリーナに割り当てます。このときの SDK_SYS_STACKSIZE
+      の値がプラスかマイナスか 0 かによってOS_Init() におけるサイズの設定方法が変化します。<BR>
       <TABLE border="1">
         <COL span="1" width="120">
         <TBODY>
           <TR>
-            <TD>�v���X�̏ꍇ</TD>
-            <TD>SDK_SYS_STACKSIZE �l���X�^�b�N�T�C�Y�Ƃ��c�����̈�� DTCM �A���[�i�Ƃ��Ċ��蓖�Ă܂��B</TD>
+            <TD>プラスの場合</TD>
+            <TD>SDK_SYS_STACKSIZE 値をスタックサイズとし残った領域を DTCM アリーナとして割り当てます。</TD>
           </TR>
           <TR>
-            <TD>0 �̏ꍇ</TD>
-            <TD>���p�\�� DTCM �̑S�Ă��X�^�b�N�ɐݒ肵�܂��B<BR>
-            ���̏ꍇ DTCM �A���[�i�͎g�p�ł��܂���B</TD>
+            <TD>0 の場合</TD>
+            <TD>利用可能な DTCM の全てをスタックに設定します。<BR>
+            この場合 DTCM アリーナは使用できません。</TD>
           </TR>
           <TR>
-            <TD>�}�C�i�X�̏ꍇ</TD>
-            <TD>SDK_SYS_STACKSIZE �̐�Βl�� DTCM �A���[�i�̈�̃T�C�Y�Ƃ��A�c�����̈���X�^�b�N�Ƃ��Ďg�p���܂��B</TD>
+            <TD>マイナスの場合</TD>
+            <TD>SDK_SYS_STACKSIZE の絶対値を DTCM アリーナ領域のサイズとし、残った領域をスタックとして使用します。</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�F 0 ���p�\�� DTCM ��S�ăX�^�b�N�Ƃ��Ďg�p�B</TD>
+      初期値： 0 利用可能な DTCM を全てスタックとして使用。</TD>
     </TR>
     <TR>
       <TH align="left" valign="top">SDK_IRQ_STACKSIZE</TH>
-      <TD>���荞�݃��[�`���Ŏg�p����X�^�b�N�̃T�C�Y�ł��B<BR>
-      �V�X�e���̈�Ƃ��� DTCM �Ɋm�ۂ���܂��B<BR>
+      <TD>割り込みルーチンで使用するスタックのサイズです。<BR>
+      システム領域として DTCM に確保されます。<BR>
       <BR>
-      ���荞�݃��[�`�����ɂ����� OS_Printf �Ȃǂ̃X�^�b�N����ʂ̑����֐����Ăяo�����Ƃ��l�����A�����l�Ƃ��ď����傫�Ȓl��ݒ肵�Ă��܂��B���̂���
-      OS_Printf ���g�p���Ȃ��o�� ROM �łł͂��̒l�����������邱�Ƃ��\�ł��B<BR>
+      割り込みルーチン内において OS_Printf などのスタック消費量の多い関数を呼び出すことを考慮し、初期値として少し大きな値を設定しています。このため
+      OS_Printf を使用しない出荷 ROM 版ではこの値を小さくすることも可能です。<BR>
       <BR>
-      �f�o�b�O���ɂ���ẮA���荞�݃n���h������f�o�b�K�̃��[�`�����Ăяo���K�v������A�ꍇ�ɂ���Ă��̒l�𑝂₷�K�v������܂��B����ɂ��Ă͊e�f�o�b�N���̃h�L�������g���Q�Ƃ��Ă��������B<BR>
+      デバッグ環境によっては、割り込みハンドラからデバッガのルーチンを呼び出す必要があり、場合によってこの値を増やす必要があります。これについては各デバック環境のドキュメントを参照してください。<BR>
       <BR>
-      �����l�F 0x400 �o�C�g</TD>
+      初期値： 0x400 バイト</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SDK_MAIN_ARENA_LO</TH>
-      <TD valign="top">���C���A���[�i��Low �A�h���X�̏����l�B<BR>
-      ���̒l�̓����J���Ɏ����I�ɐݒ肳��܂��B</TD>
+      <TD valign="top">メインアリーナのLow アドレスの初期値。<BR>
+      この値はリンカ時に自動的に設定されます。</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2><A name="MacroInMakefile">SDK �� Makefile ���Őݒ肷��}�N���X�C�b�`</A></H2>
-<P>�ȉ��̕\�� NitroSDK �� Makefile �ɂ����Ċe�f�B���N�g�����Ƃ̃r���h������ݒ肷�邽�߂̂��̂ł��B�\�[�X�̏ꏊ��A������
-Makefile �̎w����s�Ȃ��܂��B</P>
+<H2><A name="MacroInMakefile">SDK の Makefile 内で設定するマクロスイッチ</A></H2>
+<P>以下の表は NitroSDK の Makefile において各ディレクトリごとのビルド条件を設定するためのものです。ソースの場所や連鎖する
+Makefile の指定を行ないます。</P>
 <TABLE border="1" width="100%" cellspacing="0" cellpadding="2">
   <COL span="1" width="160">
   <TBODY>
     <TR>
       <TH valign="top" align="left">SUBDIRS<BR>
-      <FONT color="#ff0000">���d�v</FONT></TH>
-      <TD align="left" valign="top">make ������A�����������f�B���N�g����񋓂��܂��B<BR>
-      �����l�F�Ȃ�</TD>
+      <FONT color="#ff0000">★重要</FONT></TH>
+      <TD align="left" valign="top">make 処理を連鎖させたいディレクトリを列挙します。<BR>
+      初期値：なし</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SUBMAKES</TH>
-      <TD align="left" valign="top">make ������A���������� Makefile ��񋓂��܂��B<BR>
-      �����l�F�Ȃ�</TD>
+      <TD align="left" valign="top">make 処理を連鎖させたい Makefile を列挙します。<BR>
+      初期値：なし</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SRCS<BR>
-      <FONT color="#ff0000">���d�v</FONT></TH>
-      <TD valign="top" align="left">�R���p�C���^�A�Z���u���������\�[�X�t�@�C����񋓂��܂��B<BR>
-      make �͂��ꂼ��̃t�@�C���̊g���q�ɉ����Ĉȉ��̕\�Ŏ������v���O���~���O����̃R���p�C���^�A�Z���u���ŃI�u�W�F�N�g�t�@�C���𐶐����悤�Ǝ��݂܂��B<BR>
+      <FONT color="#ff0000">★重要</FONT></TH>
+      <TD valign="top" align="left">コンパイル／アセンブルしたいソースファイルを列挙します。<BR>
+      make はそれぞれのファイルの拡張子に応じて以下の表で示したプログラミング言語のコンパイラ／アセンブラでオブジェクトファイルを生成しようと試みます。<BR>
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
-            <TD>�g���q</TD>
-            <TD>�v���O���~���O����</TD>
+            <TD>拡張子</TD>
+            <TD>プログラミング言語</TD>
           </TR>
           <TR>
             <TD>.c</TD>
@@ -644,7 +644,7 @@ Makefile �̎w����s�Ȃ��܂��B</P>
           </TR>
           <TR>
             <TD>.s</TD>
-            <TD>�A�Z���u��</TD>
+            <TD>アセンブラ</TD>
           </TR>
         </TBODY>
       </TABLE>
@@ -652,131 +652,131 @@ Makefile �̎w����s�Ȃ��܂��B</P>
     </TR>
     <TR>
       <TH align="left" valign="top">SRCS_OVERLAY<BR>
-      <FONT color="#0000ff">�I�[�o�[���C�p</FONT></TH>
-      <TD>�R���p�C���^�A�Z���u���������\�[�X�t�@�C����񋓂��܂��B�����Ŏw�肵���t�@�C�����琶�������I�u�W�F�N�g�t�@�C����
-      OVERLAY �O���[�v�ɑ�������̂Ƃ��ēo�^����܂��B</TD>
+      <FONT color="#0000ff">オーバーレイ用</FONT></TH>
+      <TD>コンパイル／アセンブルしたいソースファイルを列挙します。ここで指定したファイルから生成したオブジェクトファイルは
+      OVERLAY グループに属するものとして登録されます。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">SRCDIR</TH>
-      <TD valign="top" align="left">�\�[�X�t�@�C���̃f�B���N�g�����w�肵�܂��B<BR>
-      �����l�F./src<BR>
-      ���̏����l�� make ���s�����f�B���N�g�����瑊�΃p�X src �Ŏw�肳�ꂽ�f�B���N�g�����Ӗ����܂��B</TD>
+      <TD valign="top" align="left">ソースファイルのディレクトリを指定します。<BR>
+      初期値：./src<BR>
+      この初期値は make を行ったディレクトリから相対パス src で指定されたディレクトリを意味します。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">INCDIR<BR>
       </TH>
-      <TD valign="top" align="left">�v���C�x�[�g�C���N���[�h�t�@�C��(���W���[���ŗL�̃C���N���[�h�t�@�C��)������ꍇ�͂��̃f�B���N�g�����w�肵�܂��B�K�v���Ȃ���Ύg�p����K�v�͂���܂���B<BR>
-      �����l�F./include</TD>
+      <TD valign="top" align="left">プライベートインクルードファイル(モジュール固有のインクルードファイル)がある場合はそのディレクトリを指定します。必要がなければ使用する必要はありません。<BR>
+      初期値：./include</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">OBJDIR<BR>
       BINDIR<BR>
       LIBDIR<BR>
-      <FONT color="#0000ff">���������֎~</FONT></TH>
-      <TD valign="top" align="left">make �ɂ���Ċe�ꎞ�t�@�C�����o�͂����f�B���N�g���ł��B<BR>
-      �\�[�X�c���[�̓s���ŕύX���邱�Ƃ�����̂Ōʂ̃f�B���N�g����Makefile
-      ���ŏ㏑�����邱�Ƃ͔����Ă��������B</TD>
+      <FONT color="#0000ff">書き換え禁止</FONT></TH>
+      <TD valign="top" align="left">make によって各一時ファイルが出力されるディレクトリです。<BR>
+      ソースツリーの都合で変更することがあるので個別のディレクトリのMakefile
+      内で上書きすることは避けてください。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">LCFILE</TH>
-      <TD valign="top" align="left">�Ǝ��̃����N�R�}���h�t�@�C��(.lcf)���g�������ꍇ�͎w�肵�܂��B<BR>
-      �����l�F$NitroSDK/include/nitro/arm9.$(NITRO_PLATFORM).lcf</TD>
+      <TD valign="top" align="left">独自のリンクコマンドファイル(.lcf)を使いたい場合は指定します。<BR>
+      初期値：$NitroSDK/include/nitro/arm9.$(NITRO_PLATFORM).lcf</TD>
     </TR>
     <TR>
       <TH align="left" valign="top">LCFILE_SPEC</TH>
-      <TD>�����N�R�}���h�t�@�C���� makelcf �R�}���h�Ŏ��������������ꍇ�A���̌��ƂȂ�ݒ�t�@�C�����w�肵�܂��B<BR>
-      �����l�F��`�Ȃ�</TD>
+      <TD>リンクコマンドファイルを makelcf コマンドで自動生成したい場合、その元となる設定ファイルを指定します。<BR>
+      初期値：定義なし</TD>
     </TR>
     <TR>
       <TH align="left" valign="top">ROM_SPEC</TH>
-      <TD>ROM �t�@�C���̓��e���L�q�����t�@�C�����w�肵�܂��B���̃t�@�C���� makerom
-      �R�}���h�֓n���� ROM �����̃q���g�ƂȂ�܂��B</TD>
+      <TD>ROM ファイルの内容を記述したファイルを指定します。このファイルは makerom
+      コマンドへ渡され ROM 生成のヒントとなります。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">TARGET_BIN<BR>
-      <FONT color="#ff0000">���d�v</FONT></TH>
-      <TD align="left">.srl �`���܂��� .nef �`���̃^�[�Q�b�g�t�@�C�����w�肵�܂��B<BR>
-      SRCS �Ŏw�肳�ꂽ�\�[�X�t�@�C�����R���p�C���^�A�Z���u�����Ăł����I�u�W�F�N�g�t�@�C���������N���^�[�Q�b�g�t�@�C���Ƃ��܂��B<BR>
-      .srl �t�@�C�����^�[�Q�b�g�Ɏw�肵���ꍇ�� .nef �t�@�C���������I�ɍ쐬����܂��B</TD>
+      <FONT color="#ff0000">★重要</FONT></TH>
+      <TD align="left">.srl 形式または .nef 形式のターゲットファイルを指定します。<BR>
+      SRCS で指定されたソースファイルをコンパイル／アセンブルしてできたオブジェクトファイルをリンクしターゲットファイルとします。<BR>
+      .srl ファイルをターゲットに指定した場合は .nef ファイルも自動的に作成されます。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">TARGET_LIB</TH>
-      <TD align="left">���C�u�����t�@�C�����쐬�������Ƃ��Ɏw�肵�܂��B<BR>
-      SRCS �Ŏw�肳�ꂽ�\�[�X�t�@�C�����R���p�C���^�A�Z���u�����Ăł����I�u�W�F�N�g�t�@�C����A�������C�u�����Ƃ��܂��B<BR>
-      �ʏ� TARGET_BIN �� TARGET_LIB �͓����ɐݒ肵�܂���B</TD>
+      <TD align="left">ライブラリファイルを作成したいときに指定します。<BR>
+      SRCS で指定されたソースファイルをコンパイル／アセンブルしてできたオブジェクトファイルを連結しライブラリとします。<BR>
+      通常 TARGET_BIN と TARGET_LIB は同時に設定しません。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">TARGET_OBJ</TH>
-      <TD align="left">�I�u�W�F�N�g�t�@�C�����^�[�Q�b�g�Ƃ��č쐬�������Ƃ��Ɏw�肵�܂��B<BR>
-      �ʏ�͂��܂�g�����Ƃ͂���܂���B���C�u�����ł� crt0.c ���R���p�C�����A���C�u�����Ƃ��ăC���X�g�[������Ƃ��Ɏg�p���Ă��܂��B</TD>
+      <TD align="left">オブジェクトファイルをターゲットとして作成したいときに指定します。<BR>
+      通常はあまり使うことはありません。ライブラリでは crt0.c をコンパイルし、ライブラリとしてインストールするときに使用しています。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">NITRO_PROC<BR>
-      <FONT color="#ff0000">��ARM7 �ŏd�v</FONT></TH>
-      <TD align="left">���C���v���Z�b�T�ƃT�u�v���Z�b�T�̂ǂ���̃R�[�h�𐶐�����̂���؂�ւ���X�C�b�`�ł��BMakefile
-      ���Ŏw�肳��邱�Ƃ������ł��B<BR>
+      <FONT color="#ff0000">★ARM7 で重要</FONT></TH>
+      <TD align="left">メインプロセッサとサブプロセッサのどちらのコードを生成するのかを切り替えるスイッチです。Makefile
+      内で指定されることが多いです。<BR>
       <TABLE border="1" width="350">
         <COL span="1" width="120">
         <TBODY>
           <TR>
             <TD>ARM9</TD>
-            <TD>���C���v���Z�b�T�p�R�[�h</TD>
+            <TD>メインプロセッサ用コード</TD>
           </TR>
           <TR>
             <TD>ARM7</TD>
-            <TD>�T�u�v���Z�b�T�p�R�[�h</TD>
+            <TD>サブプロセッサ用コード</TD>
           </TR>
         </TBODY>
       </TABLE>
-      �����l�FARM9 (���C���v���Z�b�T�p�R�[�h)</TD>
+      初期値：ARM9 (メインプロセッサ用コード)</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">TARGETS<BR>
-      <FONT color="#0000ff">���������֎~</FONT></TH>
-      <TD valign="top" align="left">TARGET_BIN �� TARGET_LIB �ɑ��΃p�X���t�������̂������I�ɐݒ肳��܂��B.srl/.a
-      �t�@�C���� NITRO_PLATFORM �����NITRO_DEBUG/ NITRO_RELEASE/ NITRO_FINALROM
-      �̐ݒ�ɂ��i�[�����f�B���N�g�����ω����܂��B���̕ω����z�����邽�߂ɂ��̃}�N�����p�ӂ���Ă��܂��B</TD>
+      <FONT color="#0000ff">書き換え禁止</FONT></TH>
+      <TD valign="top" align="left">TARGET_BIN と TARGET_LIB に相対パスが付いたものが自動的に設定されます。.srl/.a
+      ファイルは NITRO_PLATFORM およびNITRO_DEBUG/ NITRO_RELEASE/ NITRO_FINALROM
+      の設定により格納されるディレクトリが変化します。この変化を吸収するためにこのマクロが用意されています。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">INSTALL_TARGETS</TH>
-      <TD valign="top" align="left">�C���X�g�[���������t�@�C����񋓂��܂��B���̐ݒ�ɏ�L�� TARGETS ���L���ɋ@�\���܂��B<BR>
-      �����l�F�Ȃ�</TD>
+      <TD valign="top" align="left">インストールしたいファイルを列挙します。この設定に上記の TARGETS が有効に機能します。<BR>
+      初期値：なし</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">INSTALL_DIR</TH>
-      <TD align="left">�t�@�C���̃C���X�g�[�����ݒ肵�܂��B<BR>
-      �����l�F�Ȃ�</TD>
+      <TD align="left">ファイルのインストール先を設定します。<BR>
+      初期値：なし</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">LINCLUDES</TH>
-      <TD valign="top" align="left">���̃C���N���[�h�t�@�C��������ꍇ�͂��̃f�B���N�g�����w�肵�܂��B</TD>
+      <TD valign="top" align="left">他のインクルードファイルがある場合はそのディレクトリを指定します。</TD>
     </TR>
     <TR>
       <TH valign="top" align="left">LLIBRARY_DIRS<BR>
       LLIBRARIES</TH>
-      <TD align="left">���̃��C�u�����t�@�C��������ꍇ�͂��̃f�B���N�g���� LLIBRARY_DIRS�A���C�u�����t�@�C����
-      LLIBRARIES �ł��ꂼ��񋓂��܂��B</TD>
+      <TD align="left">他のライブラリファイルがある場合はそのディレクトリを LLIBRARY_DIRS、ライブラリファイルを
+      LLIBRARIES でそれぞれ列挙します。</TD>
     </TR>
     <TR>
       <TH align="left" valign="top">LDIRT_CLEAN<BR>
       LDIRT_CLOBBER</TH>
-      <TD>make clean �܂��� make clobber �R�}���h���s���ɃI�u�W�F�N�g�t�@�C���Ȃǂƈꏏ�ɍ폜���ė~�����t�@�C�����w�肵�܂��Bmake
-      clean ���ɂ� LDIRT_CLEAN�@�Ŏw�肳�ꂽ�t�@�C�����Amake clobber ���ɂ� LDIRT_CLEAN
-      �Ŏw�肳�ꂽ�t�@�C���� LDIRT_CLOBBER �Ŏw�肳�ꂽ�t�@�C���Ƃ��S�č폜����܂��B</TD>
+      <TD>make clean または make clobber コマンド実行時にオブジェクトファイルなどと一緒に削除して欲しいファイルを指定します。make
+      clean 時には LDIRT_CLEAN　で指定されたファイルが、make clobber 時には LDIRT_CLEAN
+      で指定されたファイルと LDIRT_CLOBBER で指定されたファイルとが全て削除されます。</TD>
     </TR>
     <TR>
       <TH align="left" valign="top">MAKELCF_FORMAT</TH>
-      <TD>CodeWarrior �̃����J�o�[�W�����𔻕ʂ��A-V1 �� -V2 �̒l���Ƃ�܂��B�Â� LCF �Ƃ̌݊������Ƃ肽���ꍇ�Ȃǂ������A�ʏ�͂��̕ϐ��ɒl��ݒ肷��K�v�͂���܂���B</TD>
+      <TD>CodeWarrior のリンカバージョンを判別し、-V1 か -V2 の値をとります。古い LCF との互換性をとりたい場合などを除き、通常はこの変数に値を設定する必要はありません。</TD>
     </TR>
     <TR>
       <TH align="left" valign="top">MAKELCF_FLAGS</TH>
-      <TD>makelcf �ɓƎ��̒ǉ��N���I�v�V������^�������Ƃ��ɂ́A���̃r���h�ϐ��ɒ�`���Ă��������B<BR>
-      �����l�F�Ȃ�</TD>
+      <TD>makelcf に独自の追加起動オプションを与えたいときには、このビルド変数に定義してください。<BR>
+      初期値：なし</TD>
     </TR>
     <TR>
       <TH align="left" valign="top">MAKEROM_FLAGS</TH>
-      <TD>makerom �ɓƎ��̒ǉ��N���I�v�V������^�������Ƃ��ɂ́A���̃r���h�ϐ��ɒ�`���Ă��������B<BR>
-      �����l�F�Ȃ�</TD>
+      <TD>makerom に独自の追加起動オプションを与えたいときには、このビルド変数に定義してください。<BR>
+      初期値：なし</TD>
     </TR>
   </TBODY>
 </TABLE>

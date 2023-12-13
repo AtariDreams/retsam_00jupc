@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWCConnectionClosedCallback</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWCConnectionClosedCallback</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>#include &lt;dwc.h&gt;
@@ -23,55 +23,55 @@ typedef void (*DWCConnectionClosedCallback)( DWCError error,
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-          ��DS�Ƃ̐ڑ����ؒf���ꂽ�Ƃ��ɌĂяo����܂��B
+          他DSとの接続が切断されたときに呼び出されます。
 		</P>
 		<P>
-		  �{�R�[���o�b�N�֐���<a href="DWC_SetConnectionClosedCallback.html">DWC_SetConnectionClosedCallback</a>�֐��ɂ���Đݒ肷�邱�Ƃ��ł��܂��B
+		  本コールバック関数は<a href="DWC_SetConnectionClosedCallback.html">DWC_SetConnectionClosedCallback</a>関数によって設定することができます。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
                   <TD width="25%"><EM><STRONG><CODE>error</CODE></STRONG></EM></TD>
-                  <TD>DWC�G���[��ʁB���e�̏ڍׂ́A<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>���Q�Ƃ��Ă��������B</TD>
+                  <TD>DWCエラー種別。内容の詳細は、<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>を参照してください。</TD>
                 </TR>
                 <TR>
                   <TD width="25%"><EM><STRONG><CODE>isLocal</CODE></STRONG></EM></TD>
-                  <TD>TRUE:�������N���[�Y�����B<br>
-                    FALSE:���̒N�����N���[�Y�����B<br>
-                    �}�b�`���C�N���ɉ����̂Ȃ��z�X�g��ؒf���鎞��TRUE�ɂȂ�B</TD>
+                  <TD>TRUE:自分がクローズした。<br>
+                    FALSE:他の誰かがクローズした。<br>
+                    マッチメイク中に応答のないホストを切断する時もTRUEになる。</TD>
                 </TR>
                 <TR>
                   <TD width="25%"><EM><STRONG><CODE>isServer</CODE></STRONG></EM></TD>
-                  <TD>TRUE: �T�[�o�N���C�A���g�}�b�`���C�N�̃T�[�oDS���N���[�Y�����B�������T�[�oDS��isLocal = TRUE �̎���TRUE�ɂȂ�B<br>
-                      FALSE:����ȊO�B�T�[�o�N���C�A���g�}�b�`���C�N�ȊO�ł͕K��FALSE�ƂȂ�B
+                  <TD>TRUE: サーバクライアントマッチメイクのサーバDSがクローズした。自分がサーバDSでisLocal = TRUE の時もTRUEになる。<br>
+                      FALSE:それ以外。サーバクライアントマッチメイク以外では必ずFALSEとなる。
                   </TD>
                 </TR>
                 <TR>
                   <TD width="25%"><EM><STRONG><CODE>aid</CODE></STRONG></EM></TD>
-                  <tD>�N���[�Y�����v���C���[��AID</tD>
+                  <tD>クローズしたプレイヤーのAID</tD>
                 </TR>
                 <TR>
                   <TD width="25%"><EM><STRONG><CODE>index</CODE></STRONG></EM></TD>
-                  <TD>�N���[�Y�����v���C���[�̗F�B���X�g�C���f�b�N�X�B�N���[�Y�����v���C���[���F�B�łȂ����-1�ƂȂ�B</TD>
+                  <TD>クローズしたプレイヤーの友達リストインデックス。クローズしたプレイヤーが友達でなければ-1となる。</TD>
                 </TR>
                 <TR>
                   <TD width="25%"><EM><STRONG><CODE>param</CODE></STRONG></EM></TD>
-                  <TD><a href="DWC_SetConnectionClosedCallback.html">DWC_SetConnectionClosedCallback</a>�֐��Ŏw�肵���R�[���o�b�N�p�p�����[�^</TD>
+                  <TD><a href="DWC_SetConnectionClosedCallback.html">DWC_SetConnectionClosedCallback</a>関数で指定したコールバック用パラメータ</TD>
                 </TR>
               </TBODY>
           </TABLE>
 
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<P>
-          �Ȃ�
+          なし
 		</P>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
           <code>
             <a href="DWC_SetConnectionClosedCallback.html">DWC_SetConnectionClosedCallback</a>,
@@ -79,10 +79,10 @@ typedef void (*DWCConnectionClosedCallback)( DWCError error,
           </code>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2005/12/16 �R�[���o�b�N�ݒ�֐��ɂ��ĒǋL<BR>
-			2005/11/01 ����<BR>
+			2005/12/16 コールバック設定関数について追記<BR>
+			2005/11/01 初版<BR>
 		</P>
 
 	</BODY>

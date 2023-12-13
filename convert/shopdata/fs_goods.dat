@@ -1,15 +1,15 @@
 //====================================================================
-//						ŒÅ’èƒOƒbƒYƒAƒCƒeƒ€ƒf[ƒ^
+//						å›ºå®šã‚°ãƒƒã‚ºã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 //
 // 06.05.13 Satoshi Nohara
 //
-// œfs_goods.xls‚ðƒRƒ“ƒo[ƒg‚µ‚Äo—Í‚µ‚Ä‚¢‚Ü‚·
+// â—fs_goods.xlsã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦å‡ºåŠ›ã—ã¦ã„ã¾ã™
 //
 //====================================================================
 
 typedef u16 FS_GOODS_DATA;
 
-//ƒgƒoƒŠƒVƒeƒBiƒfƒp[ƒg‚SŠK¶‘¤j
+//ãƒˆãƒãƒªã‚·ãƒ†ã‚£ï¼ˆãƒ‡ãƒ‘ãƒ¼ãƒˆï¼”éšŽå·¦å´ï¼‰
 const FS_GOODS_DATA fs_goods_c07_dept_04_01[] = {
 	GOODS_CHAIR_PC01,
 	GOODS_SHELF05,
@@ -20,7 +20,7 @@ const FS_GOODS_DATA fs_goods_c07_dept_04_01[] = {
 };
 #define FS_GOODS_C07_DEPT_04_01_MAX	( NELEMS(fs_goods_c07_dept_04_01) )
 
-//ƒgƒoƒŠƒVƒeƒBiƒfƒp[ƒg‚SŠK‰E‘¤j
+//ãƒˆãƒãƒªã‚·ãƒ†ã‚£ï¼ˆãƒ‡ãƒ‘ãƒ¼ãƒˆï¼”éšŽå³å´ï¼‰
 const FS_GOODS_DATA fs_goods_c07_dept_04_02[] = {
 	GOODS_UG_POKE_24,
 	GOODS_UG_POKE_25,
@@ -32,7 +32,7 @@ const FS_GOODS_DATA fs_goods_c07_dept_04_02[] = {
 };
 #define FS_GOODS_C07_DEPT_04_02_MAX	( NELEMS(fs_goods_c07_dept_04_02) )
 
-//ƒf[ƒ^ƒe[ƒuƒ‹
+//ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 const FS_GOODS_DATA* fs_goods_data[] = {
 	fs_goods_c07_dept_04_01,
 	fs_goods_c07_dept_04_02,

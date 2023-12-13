@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_matrix.h
- * @brief	ƒ}ƒgƒŠƒNƒXæ“¾
+ * @brief	ãƒãƒˆãƒªã‚¯ã‚¹å–å¾—
  * @author	Saito
  * @date	05.12.01
  */
@@ -12,7 +12,7 @@
 typedef struct FIELD_MAT_ZONE_ID_tag * FMZ_PTR;
 typedef struct FIELD_MAT_ZONE_ID_tag  const * FMZ_CONST_PTR;
 
-//À‘Ì‚ÍAworldmap.c
+//å®Ÿä½“ã¯ã€worldmap.c
 extern FMZ_PTR InitFMZ(const u32 inHeapID);
 extern void FreeFMZ(FMZ_PTR fmzp);
 extern int GetFieldMatrixZoneID(FMZ_CONST_PTR fmdp,
@@ -21,11 +21,11 @@ extern int GetFieldMatrixZoneID(FMZ_CONST_PTR fmdp,
 #ifdef PM_DEBUG 
 //==============================================================================
 /**
- * @brief	w’è‚µ‚½ƒ][ƒ“‚Ì¶ãƒuƒƒbƒNÀ•W‚ğæ“¾‚·‚é
+ * @brief	æŒ‡å®šã—ãŸã‚¾ãƒ¼ãƒ³ã®å·¦ä¸Šãƒ–ãƒ­ãƒƒã‚¯åº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- * @param	zoneID		ƒ][ƒ“ID
- * @param   px			æ“¾‚µ‚½ƒuƒƒbƒNXÀ•W‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^
- * @param   pz			æ“¾‚µ‚½ƒuƒƒbƒNZÀ•W‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^
+ * @param	zoneID		ã‚¾ãƒ¼ãƒ³ID
+ * @param   px			å–å¾—ã—ãŸãƒ–ãƒ­ãƒƒã‚¯Xåº§æ¨™ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
+ * @param   pz			å–å¾—ã—ãŸãƒ–ãƒ­ãƒƒã‚¯Zåº§æ¨™ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */

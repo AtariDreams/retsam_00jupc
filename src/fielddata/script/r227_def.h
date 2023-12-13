@@ -1,11 +1,11 @@
 #ifndef _R227_DEF_H_
 #define _R227_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_POS_R227_GYMLEADER		(1)
 #define	SCRID_R227_SIGN1		(2)
 #define	SCRID_POS_R227_SEVEN2		(3)
 #define	SCRID_R227_SEVEN2		(4)
-#define	SCRID_R227_DATA_MAX		(4)		//最大数
+#define	SCRID_R227_DATA_MAX		(4)		//譛螟ｧ謨ｰ
 
 #endif //_R227_DEF_H_

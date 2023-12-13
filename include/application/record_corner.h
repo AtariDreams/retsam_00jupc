@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	record_corner.h
- * @bfief	ƒŒƒR[ƒhƒR[ƒi[ˆ—
+ * @bfief	ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼å‡¦ç†
  * @author	Akito Mori
  * @date	06.03.26
  */
@@ -15,18 +15,18 @@
 #include "savedata/record.h"
 #include "savedata/fnote_mem.h"
 //============================================================================================
-//	’è‹`
+//	å®šç¾©
 //============================================================================================
 
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT RecordCornerProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT RecordCornerProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT RecordCornerProc_End( PROC * proc, int * seq );
 
-// ƒ|ƒCƒ“ƒ^QÆ‚¾‚¯‚Å‚«‚éƒŒƒR[ƒhƒR[ƒi[ƒ[ƒN\‘¢‘Ì
+// ãƒã‚¤ãƒ³ã‚¿å‚ç…§ã ã‘ã§ãã‚‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct RECORD_WORK RECORD_WORK;	
 
-///	ŠO•”‚©‚çó‚¯æ‚éƒŒƒR[ƒhƒR[ƒi[ˆ—‚É•K—v‚Èƒ[ƒN
+///	å¤–éƒ¨ã‹ã‚‰å—ã‘å–ã‚‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼å‡¦ç†ã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯
 typedef struct {
 	SAVEDATA 			*sv;
 	COMM_UNIONROOM_VIEW *union_view;

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		blact.h
- *	@brief		�r���{�[�h�A�N�^�[
+ *	@brief		ビルボードアクター
  *	@author		tomoya takahashi
  *	@data		2005.10.05
  *
@@ -26,110 +26,110 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	�A�N�^�[�w�b�_�[�f�[�^�p
+//	アクターヘッダーデータ用
 //=====================================
-#define		BLACT_ANIME_TABLE_MAX (10)		// �A�j���[�V�����I�t�Z�b�g���ő�
+#define		BLACT_ANIME_TABLE_MAX (10)		// アニメーションオフセット数最大
 
 
 //-------------------------------------
-//	�r���{�[�h�A�N�^�[����\���̂̏��
+//	ビルボードアクター動作構造体の状態
 //
-//	���̃r���{�[�h�A�N�^�[��
-//	�ǂ�ȓ�������Ă��邩
+//	そのビルボードアクターが
+//	どんな動作をしているか
 //
-//	BLACT_GetState()�֐��Ŏ擾�ł��܂�
+//	BLACT_GetState()関数で取得できます
 //=====================================
 enum
 {
-	BLACT_MOVE_NONE,			// �f�[�^�Ȃ�
-	BLACT_MOVE_INIT,			// ��������
-	BLACT_MOVE_VRAM,			// Vram�]���ғ���
-	BLACT_MOVE_NORM,			// �풓�A�j���ғ���
+	BLACT_MOVE_NONE,			// データなし
+	BLACT_MOVE_INIT,			// 初期化中
+	BLACT_MOVE_VRAM,			// Vram転送稼動中
+	BLACT_MOVE_NORM,			// 常駐アニメ稼動中
 };
 
 //-------------------------------------
 //	
-//	�A�j���[�V�����R�}���h
+//	アニメーションコマンド
 //
-//	BLACT_ANIME_TBL�\����
-//	�A�j���[�V�����e�[�u���̃A�j���[�V�����^�C�v�ł�
+//	BLACT_ANIME_TBL構造体
+//	アニメーションテーブルのアニメーションタイプです
 //	
 //=====================================
 enum{
-	BLACT_ANIM_LOOP,		// ���[�v�Đ�	
-	BLACT_ANIM_END,			// �P��Đ�
+	BLACT_ANIM_LOOP,		// ループ再生	
+	BLACT_ANIM_END,			// １回再生
 	BLACT_ANIM_CMD_MAX
 };
 
 //-------------------------------------
 //	
-//	�A�j���[�V������Ԗ߂�l
+//	アニメーション状態戻り値
 //	
-//	BLACT_AnmFrameChg�֐��̖߂�l
+//	BLACT_AnmFrameChg関数の戻り値
 //=====================================
 enum{
-	BLACT_ANISTA_LOOP,	// �Đ���
-	BLACT_ANISTA_END,	// �Đ��I��
+	BLACT_ANISTA_LOOP,	// 再生中
+	BLACT_ANISTA_END,	// 再生終了
 };
 
 //-------------------------------------
 //	
-//	Vram�]���A�j���w�莚��Vramkey�ɓ����l
+//	Vram転送アニメ指定字のVramkeyに入れる値
 //	
 //
-//	BLACT_HEADER�\���̂�texKey tex4x4Key plttkey
-//	�Ɏw�肷��萔
+//	BLACT_HEADER構造体のtexKey tex4x4Key plttkey
+//	に指定する定数
 //=====================================
 #define BLACT_TEXKEY_VRAMANM	(NNS_GFD_ALLOC_ERROR_TEXKEY)
 #define BLACT_PLTTKEY_VRAMANM	(NNS_GFD_ALLOC_ERROR_PLTTKEY)
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	�A�j���[�V�����e�[�u���\����
+//	アニメーションテーブル構造体
 //	
 //=====================================
 typedef struct {
-	int start;		// �J�n�t���[��
-	int end;		// �I���t���[��
-	int cmd;		// ����R�}���h
+	int start;		// 開始フレーム
+	int end;		// 終了フレーム
+	int cmd;		// 動作コマンド
 } BLACT_ANIME_TBL;
 
 
 //-------------------------------------
 //
-//	�r���{�[�h�w�b�_�[�f�[�^
+//	ビルボードヘッダーデータ
 //	
 //=====================================	
 typedef struct{
-	void*  ImdRes;						//�r���{�[�h���f�����\�[�X
-	const NNSG3dResTex*  ItxRes;		//�A�j���[�V�����p�^�[���e�N�X�`���[���\�[�X
-//	int  flag;							//�\���̃t���O
-	const BLACT_ANIME_TBL* anm;			// �A�j���[�V�����e�[�u��
-	TEXANM_DATATBL texanm;				// �e�N�X�`���A�j���[�V�����f�[�^�e�[�u��
+	void*  ImdRes;						//ビルボードモデルリソース
+	const NNSG3dResTex*  ItxRes;		//アニメーションパターンテクスチャーリソース
+//	int  flag;							//予備のフラグ
+	const BLACT_ANIME_TBL* anm;			// アニメーションテーブル
+	TEXANM_DATATBL texanm;				// テクスチャアニメーションデータテーブル
 
-	// �풓�A�j���̂Ƃ��͉��Ƀ|�C���^����
-	// Vram�]���̎���
-	//		BLACT_TEXKEY_VRAMANM	�i�e�N�X�`���L�[�p�j
-	//		BLACT_PLTTKEY_VRAMANM	�i�p���b�g�L�[�p�j
-	//	���w�肷��
-	NNSGfdTexKey	texKey;		// �g�p����e�N�X�`���L�[
-	NNSGfdTexKey	tex4x4Key;	// �g�p����e�N�X�`���L�[
-	NNSGfdPlttKey	plttKey;	// �g�p����p���b�g�L�[
+	// 常駐アニメのときは下にポインタを代入
+	// Vram転送の時は
+	//		BLACT_TEXKEY_VRAMANM	（テクスチャキー用）
+	//		BLACT_PLTTKEY_VRAMANM	（パレットキー用）
+	//	を指定する
+	NNSGfdTexKey	texKey;		// 使用するテクスチャキー
+	NNSGfdTexKey	tex4x4Key;	// 使用するテクスチャキー
+	NNSGfdPlttKey	plttKey;	// 使用するパレットキー
 }BLACT_HEADER;
 
 //-------------------------------------
 //
-//	�r���{�[�h�A�N�^�[���[�N�|�C���^
-//	�B��
+//	ビルボードアクターワークポインタ
+//	隠蔽
 //
 //=====================================
 typedef struct BLACT_WORK_tag* BLACT_WORK_PTR;
@@ -137,36 +137,36 @@ typedef const struct BLACT_WORK_tag* CONST_BLACT_WORK_PTR;
 
 //-------------------------------------
 //
-//	�r���{�[�h�A�N�^�[�Z�b�g�|�C���^
-//	�B��
+//	ビルボードアクターセットポインタ
+//	隠蔽
 //
 //=====================================
 typedef struct _BLACT_SET* BLACT_SET_PTR;
 typedef const struct _BLACT_SET* CONST_BLACT_SET_PTR;
 
 //-------------------------------------
-//	�r���{�[�h�A�N�^�[
-//		�������\����
+//	ビルボードアクター
+//		初期化構造体
 //=====================================
 typedef struct{
-	int	WorkNum;				// ����\���̐�
-	int heap;					// �g�p�q�[�v
+	int	WorkNum;				// 動作構造体数
+	int heap;					// 使用ヒープ
 }BLACT_SETDATA;
 
 //-------------------------------------
-//	�r���{�[�h�A�N�^�[
-//		�A�b�h�f�[�^�\����
+//	ビルボードアクター
+//		アッドデータ構造体
 //=====================================
 typedef struct{
-	BLACT_SET_PTR	blact_s;		// �r���{�[�h�A�N�^�[�Z�b�g
-	const BLACT_HEADER* pHeader;	// �r���{�[�h�A�N�^�[�w�b�_�[
-	VecFx32		matrix;				// ���W
-	VecFx32		scale;				// �g��l
+	BLACT_SET_PTR	blact_s;		// ビルボードアクターセット
+	const BLACT_HEADER* pHeader;	// ビルボードアクターヘッダー
+	VecFx32		matrix;				// 座標
+	VecFx32		scale;				// 拡大値
 }BLACT_ADD;
 
 //-------------------------------------
 //
-//	�r���{�[�h�A�N�^�[�`��o�^�֐��^
+//	ビルボードアクター描画登録関数型
 //
 //=====================================
 typedef void (*BLACT_DRAW_BEFORE_PROC)(BLACT_WORK_PTR,void*);
@@ -174,26 +174,26 @@ typedef void (*BLACT_DRAW_BEFORE_PROC)(BLACT_WORK_PTR,void*);
 
 //----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
  */
 //-----------------------------------------------------------------------------
 //=============================================================================
 //
-//		�r���{�[�h�A�N�^�[�V�X�e������֐��S
+//		ビルボードアクターシステム操作関数郡
 //		
-//		�r���{�[�h�A�N�^�[�̃V�X�e���𑀍삷��֐�
+//		ビルボードアクターのシステムを操作する関数
 //=============================================================================
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r���{�[�h�A�N�^�[�V�X�e���̏�����
+ *	@brief	ビルボードアクターシステムの初期化
  *
- *	@param	ContNum			�Ǘ��r���{�[�h�A�N�^�[�Z�b�g��
- *	@param	heap			�g�p�q�[�v
+ *	@param	ContNum			管理ビルボードアクターセット数
+ *	@param	heap			使用ヒープ
  *
  *	@return none
  *
- * �r���{�[�h�A�N�^�[�g�p�O�ɂP�x���s
+ * ビルボードアクター使用前に１度実行
  * 
  */
 //-----------------------------------------------------------------------------
@@ -202,13 +202,13 @@ GLOBAL void BLACT_InitSys( int ContNum, int heap );
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r���{�[�h�A�N�^�[�V�X�e���̔j��
+ *	@brief	ビルボードアクターシステムの破棄
  *
  *	@param	none
  *
  *	@return none
  *
- * �r���{�[�h�A�N�^�[�g�p��ɂP�x�K�v
+ * ビルボードアクター使用後に１度必要
  * 
  */
 //-----------------------------------------------------------------------------
@@ -217,35 +217,35 @@ GLOBAL void BLACT_DestSys( void );
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r���{�[�h�A�N�^�[�V�X�e���̕`��
+ *	@brief	ビルボードアクターシステムの描画
  *
  *	@param	none
  *
  *	@return none
  *
- * �o�^����Ă���r���{�[�h�A�N�^�[�Z�b�g��`�悵�܂��B
+ * 登録されているビルボードアクターセットを描画します。
  *
- * �`�悵�����Ȃ��Ƃ���
- *		BLACT_SET�\���̂�DrawFlag ��0�ɂ���
+ * 描画したくないときは
+ *		BLACT_SET構造体のDrawFlag を0にする
  * 
  */
 //-----------------------------------------------------------------------------
 GLOBAL void BLACT_DrawSys( void );
 
-#if 0	//BLACT_DelObjRefCheck ���f����Ă��邩�`�F�b�N������ȂǍs�����߂ɔp�~
+#if 0	//BLACT_DelObjRefCheck 反映されているかチェックをするなど行うために廃止
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r���{�[�h�A�N�^�[�P�̂̕`��
+ *	@brief	ビルボードアクター単体の描画
  *
  *	@param	act	BLACT_WORK_PTR
  *
  *	@return none
  *
- * �w�肵���r���{�[�h�A�N�^�[�Z�b�g��`�悵�܂��B
+ * 指定したビルボードアクターセットを描画します。
  *
- * �`�悵�����Ȃ��Ƃ���
- *		BLACT_SET�\���̂�DrawFlag ��0�ɂ���
+ * 描画したくないときは
+ *		BLACT_SET構造体のDrawFlag を0にする
  * 
  */
 //-----------------------------------------------------------------------------
@@ -254,18 +254,18 @@ GLOBAL void BLACT_Draw(BLACT_WORK_PTR act);
 
 //=============================================================================
 //
-//		�r���{�[�h�A�N�^�[�Z�b�g����֐��S
+//		ビルボードアクターセット操作関数郡
 //		
 //=============================================================================
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r���{�[�h�A�N�^�[�Z�b�g�ݒ�
+ *	@brief	ビルボードアクターセット設定
  *
- *	@param	pSetData		�A�N�^�[�Z�b�g���	
+ *	@param	pSetData		アクターセット情報	
  *
- *	@retval	BLACT_SET_PTR	�A�N�^�[�Z�b�g�|�C���^
- *	@retval	NULL			�o�^���s
+ *	@retval	BLACT_SET_PTR	アクターセットポインタ
+ *	@retval	NULL			登録失敗
  *
  * 
  */
@@ -275,12 +275,12 @@ GLOBAL BLACT_SET_PTR BLACT_InitSet( const BLACT_SETDATA* pSetData );
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r���{�[�h�A�N�^�[�Z�b�g�j��
+ *	@brief	ビルボードアクターセット破棄
  *
- *	@param	bl_set			�A�N�^�[�Z�b�g�|�C���^
+ *	@param	bl_set			アクターセットポインタ
  *
- *	@retval	TRUE			����
- *	@retval	FALSE			���s
+ *	@retval	TRUE			成功
+ *	@retval	FALSE			失敗
  *
  * 
  */
@@ -290,13 +290,13 @@ GLOBAL BOOL BLACT_DestSet( BLACT_SET_PTR bl_set );
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r���{�[�h�A�N�^�[�Z�b�g�`��t���O��ݒ�
+ *	@brief	ビルボードアクターセット描画フラグを設定
  *
- *	@param	bl_set			�A�N�^�[�Z�b�g�|�C���^
- *	@param	flag			�ݒ肷��t���O�l	0:��`�� 1:�`��
+ *	@param	bl_set			アクターセットポインタ
+ *	@param	flag			設定するフラグ値	0:非描画 1:描画
  *
- *	@retval	TRUE			����
- *	@retval	FALSE			���s
+ *	@retval	TRUE			成功
+ *	@retval	FALSE			失敗
  *
  * 
  */
@@ -306,11 +306,11 @@ GLOBAL BOOL BLACT_DrawFlagSet( BLACT_SET_PTR bl_set, u8 flag );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�r���{�[�h�A�N�^�[�Z�b�g�̕`��t���O���擾
+ *@brief	ビルボードアクターセットの描画フラグを取得
  *
- *@param	bl_set		�A�N�^�[�Z�b�g�|�C���^	
+ *@param	bl_set		アクターセットポインタ	
  *
- *@return	u8			1:�`��		0:��`��
+ *@return	u8			1:描画		0:非描画
  *
  *
  */
@@ -320,12 +320,12 @@ GLOBAL u8 BLACT_DrawFlagGet( CONST_BLACT_SET_PTR bl_set );
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r���{�[�h�A�N�^�[�Z�b�g�̑S�r���{�[�h�j��
+ *	@brief	ビルボードアクターセットの全ビルボード破棄
  *
- *	@param	bl_set			�A�N�^�[�Z�b�g�|�C���^
+ *	@param	bl_set			アクターセットポインタ
  *
- *	@retval	TRUE			����
- *	@retval	FALSE			���s
+ *	@retval	TRUE			成功
+ *	@retval	FALSE			失敗
  *
  * 
  */
@@ -334,21 +334,21 @@ GLOBAL BOOL BLACT_DeleteWorkAllSet( BLACT_SET_PTR bl_set );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�j�������I�u�W�F�N�g���܂���ʂɔ��f����Ă��邩�`�F�b�N
+ *	@brief	破棄したオブジェクトがまだ画面に反映されているかチェック
  *	
- *	@param	bl_set	�A�N�^�[�Z�b�g
+ *	@param	bl_set	アクターセット
  *
- *	@retval	TRUE	���f����Ă���
- *	@retval	FALSE	���f����Ă��Ȃ�
+ *	@retval	TRUE	反映されている
+ *	@retval	FALSE	反映されていない
  */
 //-----------------------------------------------------------------------------
 GLOBAL BOOL BLACT_DelObjRefCheck( BLACT_SET_PTR bl_set );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�r���{�[�h�A�N�^�[V�u�����N����
+ *	@brief	ビルボードアクターVブランク処理
  *
- *	@param	act		���[�N
+ *	@param	act		ワーク
  */
 //-----------------------------------------------------------------------------
 GLOBAL void BLACT_VBlankFunc( BLACT_SET_PTR bl_set );
@@ -356,27 +356,27 @@ GLOBAL void BLACT_VBlankFunc( BLACT_SET_PTR bl_set );
 
 //=============================================================================
 //
-//		�r���{�[�h�A�N�^�[���[�N����֐�
+//		ビルボードアクターワーク操作関数
 //		
-//		�r���{�[�h�A�N�^�[�̌X�𑀍삷��֐�
+//		ビルボードアクターの個々を操作する関数
 //=============================================================================
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r���{�[�h�A�N�^�[�̒ǉ�
+ *	@brief	ビルボードアクターの追加
  *
- *	@param	add		�r���{�[�h�A�N�^�[�o�^�f�[�^
+ *	@param	add		ビルボードアクター登録データ
  *
- *	@retval BLACT_WORK_PTR	�o�^�������[�N�̃|�C���^
- *	@retval	NULL			���s
+ *	@retval BLACT_WORK_PTR	登録したワークのポインタ
+ *	@retval	NULL			失敗
  *	
- *	���풓�A�j���̂Ƃ�
- *		��������A�`�悪�J�n���܂��B
+ *	＊常駐アニメのとき
+ *		すぐ動作、描画が開始します。
  *		
- *	��Vram�]���A�j���̂Ƃ�
- *		�����ł�BLACT_DATACHG�z��Ƀf�[�^��ݒ肷�邾���ŁA
- *		���ۂɓ���A�`�悪�J�n����̂�BLACT_AfterDrawSys()�֐�
- *		���Ă񂾌�ɂȂ�܂��B
+ *	＊Vram転送アニメのとき
+ *		ここではBLACT_DATACHG配列にデータを設定するだけで、
+ *		実際に動作、描画が開始するのはBLACT_AfterDrawSys()関数
+ *		を呼んだ後になります。
  */
 //-----------------------------------------------------------------------------
 GLOBAL BLACT_WORK_PTR BLACT_Add( const BLACT_ADD* add );
@@ -384,21 +384,21 @@ GLOBAL BLACT_WORK_PTR BLACT_Add( const BLACT_ADD* add );
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�j���[�V�����Z�b�g��ς���
+ *	@brief	アニメーションセットを変える
  *
  *							
- *	@param	act			�`�F���W���铮��z��
- *	@param	header		�`�F���W����A�j���[�V�����w�b�_�[
+ *	@param	act			チェンジする動作配列
+ *	@param	header		チェンジするアニメーションヘッダー
  *
  *	@return none
  *
- *	���풓�A�j���̂Ƃ�
- *		��������A�`�悪�J�n���܂��B
+ *	＊常駐アニメのとき
+ *		すぐ動作、描画が開始します。
  *		
- *	��Vram�]���A�j���̂Ƃ�
- *		�����ł�BLACT_DATACHG�z��Ƀf�[�^��ݒ肷�邾���ŁA
- *		���ۂɓ���A�`�悪�J�n����̂�BLACT_AfterDrawSys()�֐�
- *		���Ă񂾌�ɂȂ�܂��B
+ *	＊Vram転送アニメのとき
+ *		ここではBLACT_DATACHG配列にデータを設定するだけで、
+ *		実際に動作、描画が開始するのはBLACT_AfterDrawSys()関数
+ *		を呼んだ後になります。
  */
 //-----------------------------------------------------------------------------
 GLOBAL void BLACT_AnmSetChg( BLACT_WORK_PTR act, const BLACT_HEADER* header );
@@ -407,16 +407,16 @@ GLOBAL void BLACT_AnmSetChg( BLACT_WORK_PTR act, const BLACT_HEADER* header );
 /**
  *
  * 
- *	@brief	�풓�A�j���p�@�r���{�[�h�A�N�^�[�w�b�_�[�f�[�^�쐬�x���֐�
+ *	@brief	常駐アニメ用　ビルボードアクターヘッダーデータ作成支援関数
  *
- *	@param	p_header		�r���{�[�h�A�N�^�[�w�b�_�[�f�[�^�i�[��
- *	@param	p_imd			�r���{�[�h���f�����\�[�X
- *	@param	cp_itx			�A�j���[�V�����e�N�X�`�����\�[�X
- *	@param	cp_anm			�A�j���[�V�����e�[�u��
- *	@param	cp_texanm		�e�N�X�`���A�j���[�V�����f�[�^�e�[�u��
- *	@param	texkey			�e�N�X�`���L�[
- *	@param	tex4x4key		4x4���k�e�N�X�`���L�[
- *	@param	plttkey			�p���b�g�L�[
+ *	@param	p_header		ビルボードアクターヘッダーデータ格納先
+ *	@param	p_imd			ビルボードモデルリソース
+ *	@param	cp_itx			アニメーションテクスチャリソース
+ *	@param	cp_anm			アニメーションテーブル
+ *	@param	cp_texanm		テクスチャアニメーションデータテーブル
+ *	@param	texkey			テクスチャキー
+ *	@param	tex4x4key		4x4圧縮テクスチャキー
+ *	@param	plttkey			パレットキー
  *
  *	@return	none
  *
@@ -428,13 +428,13 @@ GLOBAL void BLACT_MakeHeaderNormalAnm( BLACT_HEADER* p_header, void* p_imd, cons
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Vram�]���A�j���p�@�r���{�[�h�A�N�^�[�w�b�_�[�f�[�^�쐬�x���֐�
+ *	@brief	Vram転送アニメ用　ビルボードアクターヘッダーデータ作成支援関数
  *
- *	@param	p_header		�r���{�[�h�A�N�^�[�w�b�_�[�f�[�^�i�[��
- *	@param	p_imd			�r���{�[�h���f�����\�[�X
- *	@param	cp_itx			�A�j���[�V�����e�N�X�`�����\�[�X
- *	@param	cp_anm			�A�j���[�V�����e�[�u��
- *	@param	cp_texanm		�e�N�X�`���A�j���[�V�����f�[�^�e�[�u��
+ *	@param	p_header		ビルボードアクターヘッダーデータ格納先
+ *	@param	p_imd			ビルボードモデルリソース
+ *	@param	cp_itx			アニメーションテクスチャリソース
+ *	@param	cp_anm			アニメーションテーブル
+ *	@param	cp_texanm		テクスチャアニメーションデータテーブル
  *
  *	@return	none
  *
@@ -446,23 +446,23 @@ GLOBAL void BLACT_MakeHeaderVramAnm( BLACT_HEADER* p_header, void* p_imd, const 
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r���{�[�h�A�N�^�[�̍폜
+ *	@brief	ビルボードアクターの削除
  *
- *	@param	del		�j������r���{�[�h�A�N�^�[����\����
+ *	@param	del		破棄するビルボードアクター動作構造体
  *
- *	@retval	TRUE	����(BOOL�^�F�폜�ɐ���������)
- *	@retval	FALSE	���s
+ *	@retval	TRUE	成功(BOOL型：削除に成功したか)
+ *	@retval	FALSE	失敗
  *
- *	�r���{�[�h�A�N�^�[�̃X�e�[�^�X��
+ *	ビルボードアクターのステータスが
  *		BLACT_MOVE_INIT
- *	�̎��͏������������̂��ߔj���o���܂���B
+ *	の時は初期化処理中のため破棄出来ません。
  *
- *	���̃X�e�[�^�X�ɂ�Vram�]���A�j�����[�h�œo�^��Ȃ�A
- *	BLACT_AfterDrawSys()�֐������s�����ƃX�e�[�^�X��
+ *	このステータスにはVram転送アニメモードで登録後なり、
+ *	BLACT_AfterDrawSys()関数が実行されるとステータスが
  *		BLACT_MOVE_VRAM
- *	�ɂȂ�܂��B���̃X�e�[�^�X�ɂȂ�����j���ł��܂��B
+ *	になります。このステータスになったら破棄できます。
  *
- * BLACT_GetState()�֐��ŃX�e�[�^�X�͎擾�ł��܂��B
+ * BLACT_GetState()関数でステータスは取得できます。
  *
  */
 //-----------------------------------------------------------------------------
@@ -470,13 +470,13 @@ GLOBAL BOOL BLACT_Delete( BLACT_WORK_PTR del );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�r���{�[�h�A�N�^�[���[�N�̃|�C���^���擾
+ *	@brief	ビルボードアクターワークのポインタを取得
  *
- *	@param	set			�r���{�[�h�A�N�^�[�Z�b�g
- *	@param	num			�r���{�[�h�A�N�^�[���[�N�C���f�b�N�X
+ *	@param	set			ビルボードアクターセット
+ *	@param	num			ビルボードアクターワークインデックス
  *
- *	@retval BLACT_WORK_PTR	�r���{�[�h�A�N�^�[���[�N
- *	@retval	NULL		���̃C���f�b�N�X�̃��[�N�͖���
+ *	@retval BLACT_WORK_PTR	ビルボードアクターワーク
+ *	@retval	NULL		そのインデックスのワークは無い
  *
  */
 //-----------------------------------------------------------------------------
@@ -484,9 +484,9 @@ GLOBAL	BLACT_WORK_PTR BLACT_WorkGet( CONST_BLACT_SET_PTR set, int num );
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	BLACT_WORK�\���̌^�f�[�^�@�N���A
+ *	@brief	BLACT_WORK構造体型データ　クリア
  *
- *	@param	pDat	BLACT_WORK�\���̌^�f�[�^�ւ̃|�C���^
+ *	@param	pDat	BLACT_WORK構造体型データへのポインタ
  *	@return none
  */
 //-----------------------------------------------------------------------------
@@ -495,10 +495,10 @@ GLOBAL void BLACT_WorkClear( BLACT_WORK_PTR pDat );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���W��ݒ�
+ *	@brief	座標を設定
  *
- *	@param	act		�ݒ肷��A�N�^�[
- *	@param	mat		�ݒ肷����W
+ *	@param	act		設定するアクター
+ *	@param	mat		設定する座標
  *
  *	@return	none
  *
@@ -510,11 +510,11 @@ GLOBAL void BLACT_MatrixSet( BLACT_WORK_PTR act, const VecFx32* mat );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���W���擾
+ *	@brief	座標を取得
  *
- *	@param	act		�擾����A�N�^�[
+ *	@param	act		取得するアクター
  * 
- *	@return	const VecFx32*	���W
+ *	@return	const VecFx32*	座標
  *
  */
 //-----------------------------------------------------------------------------
@@ -523,10 +523,10 @@ GLOBAL const VecFx32* BLACT_MatrixGet( CONST_BLACT_WORK_PTR act );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�g��l��ݒ肷��
+ *	@brief	拡大値を設定する
  *
- *	@param	act		�ݒ肷��A�N�^�[
- *	@param	sca		�ݒ肷��g��l
+ *	@param	act		設定するアクター
+ *	@param	sca		設定する拡大値
  *
  *	@return	none
  *
@@ -538,11 +538,11 @@ GLOBAL void BLACT_ScaleSet( BLACT_WORK_PTR act, const VecFx32* sca );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�g��l���擾����
+ *	@brief	拡大値を取得する
  *
- *	@param	act		�擾����A�N�^�[
+ *	@param	act		取得するアクター
  *
- *	@return	const VecFx32*	�g��l
+ *	@return	const VecFx32*	拡大値
  *
  *
  */
@@ -552,10 +552,10 @@ GLOBAL const VecFx32* BLACT_ScaleGet( CONST_BLACT_WORK_PTR act );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�Q�Ɖ�]�s���ݒ�
+ *@brief	参照回転行列を設定
  *
- *@param	act		�ݒ肷��A�N�^�[
- *@param	rot		�Q�Ƃ����]�s�� NULL=��Q��
+ *@param	act		設定するアクター
+ *@param	rot		参照する回転行列 NULL=非参照
  *
  *@return	none
  *
@@ -567,11 +567,11 @@ GLOBAL void BLACT_pRotateSet(BLACT_WORK_PTR act, const MtxFx33 *rot );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�Q�Ɖ�]�s����擾
+ *@brief	参照回転行列を取得
  *
- *@param	act		�擾����A�N�^�[
+ *@param	act		取得するアクター
  *
- *@return	const MtxFx33*	�Q�Ƃ��Ă����]�s�� NULL=��Q��
+ *@return	const MtxFx33*	参照している回転行列 NULL=非参照
  *
  *
  */
@@ -581,10 +581,10 @@ GLOBAL const MtxFx33* BLACT_pRotateGet(CONST_BLACT_WORK_PTR act);
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�`��t���O��ݒ肷��
+ *	@brief	描画フラグを設定する
  *
- *	@param	act		�ݒ肷��A�N�^�[
- *	@param	flag	�`��t���O	1:�`��	0:��`��
+ *	@param	act		設定するアクター
+ *	@param	flag	描画フラグ	1:描画	0:非描画
  *
  *	@return	none
  *
@@ -596,11 +596,11 @@ GLOBAL void BLACT_ObjDrawFlagSet( BLACT_WORK_PTR act, u8 flag );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�`��t���O���擾����
+ *	@brief	描画フラグを取得する
  *
- *	@param	act		�擾����A�N�^�[
+ *	@param	act		取得するアクター
  *
- *	@return	u8		1:�`��	0:��`��
+ *	@return	u8		1:描画	0:非描画
  *
  *
  */
@@ -611,16 +611,16 @@ GLOBAL u8 BLACT_ObjDrawFlagGet( CONST_BLACT_WORK_PTR act );
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�j���[�V�����I�t�Z�b�g��ύX
+ *	@brief	アニメーションオフセットを変更
  *
- *	@param	act		�`�F���W���铮��z��
- *	@param	num		�Z�b�g����A�j���[�V�����I�t�Z�b�g�i���o�[
+ *	@param	act		チェンジする動作配列
+ *	@param	num		セットするアニメーションオフセットナンバー
  *
  *	@return	none
  *
- * ���ۂɊG���ς��̂̓A�j���[�V�����t���[����ύX�����Ƃ��ł��B
+ * 実際に絵が変わるのはアニメーションフレームを変更したときです。
  * 
- * �A�j���[�V�����I�t�Z�b�g��ύX�������̏u�ԂɊG���ς��֐�
+ * アニメーションオフセットを変更したその瞬間に絵が変わる関数
  *						BLACT_AnmOffsChgRef() 
  */
 //-----------------------------------------------------------------------------
@@ -629,10 +629,10 @@ GLOBAL void BLACT_AnmOffsChg( BLACT_WORK_PTR act, int num );
 //-----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�j���[�V�����I�t�Z�b�g��ύX�Ɠ����ɕύX����ʂɔ��f
+ *	@brief	アニメーションオフセットを変更と同時に変更を画面に反映
  *
- *	@param	act		�`�F���W���铮��z��
- *	@param	num		�Z�b�g����A�j���[�V�����I�t�Z�b�g�i���o�[
+ *	@param	act		チェンジする動作配列
+ *	@param	num		セットするアニメーションオフセットナンバー
  *
  *	@return	none
  *
@@ -643,11 +643,11 @@ GLOBAL void BLACT_AnmOffsChgRef( BLACT_WORK_PTR act, int num );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�A�j���[�V�����I�t�Z�b�g���擾
+ *	@brief	アニメーションオフセットを取得
  *
- *	@param	act		�擾����A�N�^�[
+ *	@param	act		取得するアクター
  *
- *	@return	int		�A�j���[�V�����I�t�Z�b�g
+ *	@return	int		アニメーションオフセット
  *
  *
  */
@@ -656,24 +656,24 @@ GLOBAL int BLACT_AnmOffsGet( CONST_BLACT_WORK_PTR act );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�A�j���[�V�����t���[���𓮂���
- *						���ۂɃA�j���[�V���������[�v�Đ�����Ƃ��Ɏg�p����
+ *	@brief	アニメーションフレームを動かす
+ *						実際にアニメーションをループ再生するときに使用する
  *
- *	@param	act		�A�j���[�V���������铮��z��
- *	@param	num		�A�j���[�V�����X�s�[�h
+ *	@param	act		アニメーションさせる動作配列
+ *	@param	num		アニメーションスピード
  *
- *	@retval	BLACT_ANISTA_LOOP	�Đ���
- *	@retval	BLACT_ANISTA_END	�Đ��I��
+ *	@retval	BLACT_ANISTA_LOOP	再生中
+ *	@retval	BLACT_ANISTA_END	再生終了
  */
 //-----------------------------------------------------------------------------
 GLOBAL int BLACT_AnmFrameChg( BLACT_WORK_PTR act, fx32 num );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�A�j���[�V�����t���[������ݒ�
+ *	@brief	アニメーションフレーム数を設定
  *
- *	@param	act		�A�j���[�V���������铮��z��
- *	@param	num		�ݒ肷��t���[����
+ *	@param	act		アニメーションさせる動作配列
+ *	@param	num		設定するフレーム数
  *
  *	@return	none
  */
@@ -682,39 +682,39 @@ GLOBAL void BLACT_AnmFrameSet( BLACT_WORK_PTR act, fx32 num );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�A�j���[�V�����t���[�������擾
+ *	@brief	アニメーションフレーム数を取得
  *
- *	@param	act		�A�j���[�V���������铮��z��
+ *	@param	act		アニメーションさせる動作配列
  *
- *	@return	fx32	�A�j���[�V�����t���[����
+ *	@return	fx32	アニメーションフレーム数
  */
 //-----------------------------------------------------------------------------
 GLOBAL fx32 BLACT_AnmFrameGet( CONST_BLACT_WORK_PTR act );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�t�Z�b�g�J�n�t���[������̃A�j���[�V�����t���[�������Z�b�g
+ *	@brief	オフセット開始フレームからのアニメーションフレーム数をセット
  *
- *	@param	act		�A�j���[�V���������铮��z��
- *	@param	num		�A�j���[�V�����X�s�[�h
+ *	@param	act		アニメーションさせる動作配列
+ *	@param	num		アニメーションスピード
  *
  *	@return	none
  *
- *	�A�j���[�V�����I�t�Z�b�g�̊J�n�t���[��+num�̃t���[�����Z�b�g���܂��B
- *	���A�j���Ȃ獶�A�j���̊J�n�t���[��+num�̃t���[�����Z�b�g����܂��B 
+ *	アニメーションオフセットの開始フレーム+numのフレームをセットします。
+ *	左アニメなら左アニメの開始フレーム+numのフレームがセットされます。 
  */
 //-----------------------------------------------------------------------------
 GLOBAL void BLACT_AnmFrameSetOffs( BLACT_WORK_PTR act, fx32 num );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�t�Z�b�g�J�n�t���[������̃A�j���[�V�����t���[�������擾
+ *	@brief	オフセット開始フレームからのアニメーションフレーム数を取得
  *
- *	@param	act		�A�j���[�V���������铮��z��
+ *	@param	act		アニメーションさせる動作配列
  *
- *	@return	fx32	�A�j���[�V�����t���[����
+ *	@return	fx32	アニメーションフレーム数
  *
- *	���t���[���� - ���݂̃A�j���[�V�����I�t�Z�b�g�J�n�t���[���̒l��Ԃ��܂�
+ *	実フレーム数 - 現在のアニメーションオフセット開始フレームの値を返します
  * 
  */
 //-----------------------------------------------------------------------------
@@ -722,14 +722,14 @@ GLOBAL fx32 BLACT_AnmFrameGetOffs( CONST_BLACT_WORK_PTR act );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ID�̃r���{�[�h���f�����\�[�X���擾
+ *	@brief	IDのビルボードモデルリソースを取得
  *
- *	@param	pDat		���f�����\�[�X���擾�������r���{�[�h�A�N�^�[���[�N
+ *	@param	pDat		モデルリソースを取得したいビルボードアクターワーク
  *
- *	@return NNSG3dResMdl* ���f�����\�[�X
+ *	@return NNSG3dResMdl* モデルリソース
  *
- *	�ŐV�̃��f�����\�[�X���擾���܂��B
- *		�E�A�j���[�V�����Z�b�g�̕ύX���s�����Ƃ��͕ύX��̃��f�����\�[�X���擾���܂��B
+ *	最新のモデルリソースを取得します。
+ *		・アニメーションセットの変更を行ったときは変更先のモデルリソースを取得します。
  *	
  */
 //-----------------------------------------------------------------------------
@@ -738,14 +738,14 @@ GLOBAL NNSG3dResMdl* BLACT_MdlResGet( CONST_BLACT_WORK_PTR pDat );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���݃r���{�[�h�A�N�^�[���[�N�͂ǂ�ȓ�����s���Ă��邩���擾
+ *	@brief	現在ビルボードアクターワークはどんな動作を行っているかを取得
  *
- *	@param	act		�r���{�[�h�A�N�^�[���[�N
+ *	@param	act		ビルボードアクターワーク
  *
- *	@retval	BLACT_MOVE_NONE			���삵�Ă��Ȃ�
- *	@retval BLACT_MOVE_INIT			��������
- *	@retval	BLACT_MOVE_VRAM			Vram�]���ғ���
- *	@retval	BLACT_MOVE_NORM			�풓�A�j���ғ���
+ *	@retval	BLACT_MOVE_NONE			動作していない
+ *	@retval BLACT_MOVE_INIT			初期化中
+ *	@retval	BLACT_MOVE_VRAM			Vram転送稼動中
+ *	@retval	BLACT_MOVE_NORM			常駐アニメ稼動中
  *
  */
 //-----------------------------------------------------------------------------
@@ -754,50 +754,50 @@ GLOBAL int BLACT_GetState( CONST_BLACT_WORK_PTR act );
 
 //-----------------------------------------------------------------------------
 /**
-*	�eVramKey�A�N�Z�X�֐��ł��B
-*		VramKey�𑀍삷��΁A�F��ς�����A�e�N�X�`����ς�����o���܂��B
+*	各VramKeyアクセス関数です。
+*		VramKeyを操作すれば、色を変えたり、テクスチャを変えたり出来ます。
 *
-*		VramKey�̎擾�͏풓�A�j���AVram�]���A�j�������g�p���邱�Ƃ��o���܂��B
+*		VramKeyの取得は常駐アニメ、Vram転送アニメ両方使用することが出来ます。
 *
-*		VramKey�̐ݒ�͏풓�A�j���ł����g�p�ł��܂���B
-*		�܂��ݒ肵��VramKey�̉�������Ȃǂ͊O���ŊǗ����Ă��������B
+*		VramKeyの設定は常駐アニメでしか使用できません。
+*		また設定したVramKeyの解放処理などは外側で管理してください。
 *
-*		�풓�A�j���ŐF��ς��鎞�Ɉ�Ԃ悢�Ǝv�����@��
-*			1:NNS_GfdAllocPlttVram()�֐���NNSGfdPlttKey���擾
-*			2:NNSGfdPlttKey�̃A�h���X�Ƀp���b�g�f�[�^��]��
-*				�p���b�g�f�[�^�͎����ŗp�ӂ��Ă��������B
-*				�]����gflib/vram_transfer_manager.h �̃V�X�e�����g���Ă��������B
-*			3:�P��V�u�����N��ʂ�K�v������i�p���b�g���]�������j
-*			4:BLACT_SetPlttKey()�֐��Ńp���b�g�L�[��ݒ�
-*			*:�F��ς���̂���߂�Ƃ���NNS_GfdFreePlttVram()�֐���
-*			  NNSGfdPlttKey�̗̈��j�����Ă��������B
+*		常駐アニメで色を変える時に一番よいと思う方法は
+*			1:NNS_GfdAllocPlttVram()関数でNNSGfdPlttKeyを取得
+*			2:NNSGfdPlttKeyのアドレスにパレットデータを転送
+*				パレットデータは自分で用意してください。
+*				転送はgflib/vram_transfer_manager.h のシステムを使ってください。
+*			3:１回Vブランクを通る必要がある（パレットが転送される）
+*			4:BLACT_SetPlttKey()関数でパレットキーを設定
+*			*:色を変えるのをやめるときはNNS_GfdFreePlttVram()関数で
+*			  NNSGfdPlttKeyの領域を破棄してください。
 *
-*		Vram�]���A�j���ŐF��ς��鎞�Ɉ�Ԃ悢�Ǝv�����@��
-*			BLACT_GetPlttKey�Ŏ擾����VramKey��
-*			�A�h���X�ɃO���t�B�b�N�f�[�^��]��������@�ł��B
-*			�������A�t���[���𓮂����āA�O���t�B�b�N�f�[�^�̕ύX���N�����
-*			�O���t�B�b�N�f�[�^���r���{�[�h�A�N�^�[���㏑�����Ă��܂��܂��B
+*		Vram転送アニメで色を変える時に一番よいと思う方法は
+*			BLACT_GetPlttKeyで取得したVramKeyの
+*			アドレスにグラフィックデータを転送する方法です。
+*			しかし、フレームを動かして、グラフィックデータの変更が起こると
+*			グラフィックデータをビルボードアクターが上書きしてしまいます。
 *
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�e�N�X�`���L�[�̎擾
+ *	@brief	テクスチャキーの取得
  *
- *	@param	act �r���{�[�h�A�N�^�[���[�N
+ *	@param	act ビルボードアクターワーク
  *
- *	@retval	�e�N�X�`���L�[
- *	@retval	BLACT_TEXKEY_VRAMANM	�r���{�[�h�A�N�^�[��������
+ *	@retval	テクスチャキー
+ *	@retval	BLACT_TEXKEY_VRAMANM	ビルボードアクター初期化中
  *
- *	���풓�A�j���̂Ƃ��̒��ӓ_
- *		����Vram�A�h���X�Ƀe�N�X�`���f�[�^��]������΁A�G���ς��܂����A
- *		����Vram�A�h���X�����Ă���I�u�W�F�N�g�̊G���S�ĕς���Ă��܂��܂��B
+ *	＊常駐アニメのときの注意点
+ *		このVramアドレスにテクスチャデータを転送すれば、絵が変わりますが、
+ *		同じVramアドレスを見ているオブジェクトの絵が全て変わってしまいます。
  *
- *	��Vram�]���A�j���̎��̒��ӓ_
- *		����Vram�A�h���X�Ƀe�N�X�`���f�[�^��]������΁A�G���ς��܂��A
- *		�������A�j���[�V�����̍X�V���N����ƃr���{�[�h�A�N�^�[���e�N�X�`����
- *		�X�V���Ă��܂��̂ŁA���̊G�ɖ߂��Ă��܂��܂��B
+ *	＊Vram転送アニメの時の注意点
+ *		このVramアドレスにテクスチャデータを転送すれば、絵が変わります、
+ *		しかしアニメーションの更新が起こるとビルボードアクターがテクスチャを
+ *		更新してしまうので、元の絵に戻ってしまいます。
  *
  */
 //-----------------------------------------------------------------------------
@@ -806,22 +806,22 @@ GLOBAL NNSGfdTexKey BLACT_GetTexKey( CONST_BLACT_WORK_PTR act );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�p���b�g�L�[�̎擾
+ *	@brief	パレットキーの取得
  *
- *	@param	act �r���{�[�h�A�N�^�[���[�N
+ *	@param	act ビルボードアクターワーク
  *
- *	@retval	�p���b�g�L�[
- *	@retval	BLACT_PLTTKEY_VRAMANM	�r���{�[�h�A�N�^�[��������
+ *	@retval	パレットキー
+ *	@retval	BLACT_PLTTKEY_VRAMANM	ビルボードアクター初期化中
  *
- *	���풓�A�j���̂Ƃ��̒��ӓ_
- *		����Vram�A�h���X�Ƀp���b�g�f�[�^��]������΁A�F���ς��܂����A
- *		����Vram�A�h���X�����Ă���I�u�W�F�N�g�̐F���S�ĕς���Ă��܂��܂��B
+ *	＊常駐アニメのときの注意点
+ *		このVramアドレスにパレットデータを転送すれば、色が変わりますが、
+ *		同じVramアドレスを見ているオブジェクトの色が全て変わってしまいます。
  *
- *	��Vram�]���A�j���̎��̒��ӓ_
- *		����Vram�A�h���X�Ƀp���b�g�f�[�^��]������΁A�F���ς��܂��A
- *		�������p���b�g�A�j������t���[�����A�j���[�V�����ɂ���Ƃ��́A
- *		�r���{�[�h�A�N�^�[���p���b�g��ύX���܂��B
- *		�X�V���Ă��܂��ƁA���̐F�ɖ߂��Ă��܂��܂��B
+ *	＊Vram転送アニメの時の注意点
+ *		このVramアドレスにパレットデータを転送すれば、色が変わります、
+ *		しかしパレットアニメするフレームがアニメーションにあるときは、
+ *		ビルボードアクターがパレットを変更します。
+ *		更新してしまうと、元の色に戻ってしまいます。
  *
  */
 //-----------------------------------------------------------------------------
@@ -829,21 +829,21 @@ GLOBAL NNSGfdPlttKey BLACT_GetPlttKey( CONST_BLACT_WORK_PTR act );
 
 //----------------------------------------------------------------------------
 /**
- * ���풓�A�j���[�V�����p
+ * ●常駐アニメーション用
  *
- *	@brief	�e�N�X�`���L�[��ݒ肷��
+ *	@brief	テクスチャキーを設定する
  *
- *	@param	act		�r���{�[�h�A�N�^�[���[�N
- *	@param	texkey	�ݒ肷��e�N�X�`���L�[
+ *	@param	act		ビルボードアクターワーク
+ *	@param	texkey	設定するテクスチャキー
  *
- *	@retval	TRUE	�ݒ萬��
- *	@retval	FALSE	�ݒ莸�s	�iVram�]���A�j���ł͎g�p���邱�Ƃ��o���Ȃ��ł��j
+ *	@retval	TRUE	設定成功
+ *	@retval	FALSE	設定失敗	（Vram転送アニメでは使用することが出来ないです）
  *
- *	����ɂ��O���t�B�b�N�f�[�^��ύX���邱�Ƃ��o���܂��B
- *	�������A���̃O���t�B�b�N�f�[�^�ƃe�N�X�`���̍\���i�T�C�Y�j��
- *	�����łȂ��Ƃ����Ƃ����G���ł܂���B
+ *	これによりグラフィックデータを変更することが出来ます。
+ *	ただし、元のグラフィックデータとテクスチャの構成（サイズ）が
+ *	同じでないとちゃんとした絵がでません。
  *
- *	�ݒ肵��texKey�̉���͊O���ŊǗ����Ă��������B
+ *	設定したtexKeyの解放は外側で管理してください。
  *
  */
 //-----------------------------------------------------------------------------
@@ -851,21 +851,21 @@ GLOBAL BOOL BLACT_SetTexKey( BLACT_WORK_PTR act, const NNSGfdTexKey* texKey );
 
 //----------------------------------------------------------------------------
 /**
- * ���풓�A�j���[�V�����p
+ * ●常駐アニメーション用
  *
- *	@brief	�p���b�g�L�[��ݒ肷��
+ *	@brief	パレットキーを設定する
  *
- *	@param	act		�r���{�[�h�A�N�^�[���[�N
- *	@param	plttkey	�ݒ肷��p���b�g�L�[
+ *	@param	act		ビルボードアクターワーク
+ *	@param	plttkey	設定するパレットキー
  *
- *	@retval	TRUE	�ݒ萬��
- *	@retval	FALSE	�ݒ莸�s	�iVram�]���ł͎g�p���邱�Ƃ��o���Ȃ��ł��j
+ *	@retval	TRUE	設定成功
+ *	@retval	FALSE	設定失敗	（Vram転送では使用することが出来ないです）
  *
- *	����ɂ��p���b�g��ύX���邱�Ƃ��o���܂��B
- *	�������A���̃p���b�g�f�[�^�ƃp���b�g�̍\���i�T�C�Y�j��
- *	�����łȂ��Ƃ����Ƃ����G���ł܂���B
+ *	これによりパレットを変更することが出来ます。
+ *	ただし、元のパレットデータとパレットの構成（サイズ）が
+ *	同じでないとちゃんとした絵がでません。
  *
- *	�ݒ肵��plttKey�̉���͊O���ŊǗ����Ă��������B
+ *	設定したplttKeyの解放は外側で管理してください。
  *
  */
 //-----------------------------------------------------------------------------
@@ -873,9 +873,9 @@ GLOBAL BOOL BLACT_SetPlttKey( BLACT_WORK_PTR act, const NNSGfdPlttKey* plttKey )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�r���{�[�h�A�N�^�[�̃J�����O�`�F�b�N
+ *	@brief	ビルボードアクターのカリングチェック
  *
- *	@param	act		�A�N�^�[
+ *	@param	act		アクター
  *
  *	@return	u32
  */
@@ -884,20 +884,20 @@ GLOBAL u32 BLACT_CullingCheck( BLACT_WORK_PTR act );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Vram�]���������A�]�����N�G�X�g
- *	@param	act		�A�N�^�[
+ *	@brief	Vram転送処理時、転送リクエスト
+ *	@param	act		アクター
  *
- *	// BLACT_Draw�̒��ł��]�����܂����A
- *	// �ǂ����Ă��g�p���Ă��鑤�œ]������t���[����
- *	// �w�肵�����Ƃ������邽�ߍ쐬
- *	// ���������Ȃ�
+ *	// BLACT_Drawの中でも転送しますが、
+ *	// どうしても使用している側で転送するフレームを
+ *	// 指定したいときもあるため作成
+ *	// 初期かじなど
  */
 //-----------------------------------------------------------------------------
 GLOBAL void BLACT_VramAnmTransUserReq( BLACT_WORK_PTR act );
 
 //--------------------------------------------------------------
 /**
- * @brief	���f�����\�[�X�̎擾
+ * @brief	モデルリソースの取得
  * @param	act	BLACT_WORK_PTR
  * @retval	NNSG3dResMdl NNSG3dResMdl
  */
@@ -906,7 +906,7 @@ GLOBAL NNSG3dResMdl * BLACT_ResMdlGet( BLACT_WORK_PTR act );
 
 //--------------------------------------------------------------
 /**
- * @brief	�e�N�X�`�����\�[�X�̎擾
+ * @brief	テクスチャリソースの取得
  * @param	act	BLACT_WORK_PTR
  * @retval	NNSG3dResTex NNSG3dResTex
  */
@@ -915,7 +915,7 @@ GLOBAL NNSG3dResTex * BLACT_ResTexGet( BLACT_WORK_PTR act );
 
 //--------------------------------------------------------------
 /**
- * @brief	�����_�[OBJ�̎擾
+ * @brief	レンダーOBJの取得
  * @param	act	BLACT_WORK_PTR
  * @retval	NNSG3dRenderObj	NNSG3dRenderObj
  */
@@ -924,10 +924,10 @@ GLOBAL NNSG3dRenderObj * BLACT_RenderObjGet( BLACT_WORK_PTR act );
 
 //--------------------------------------------------------------
 /**
- * @brief	�`��O�ɌĂԊ֐���o�^
+ * @brief	描画前に呼ぶ関数を登録
  * @param	act		BLACT_WORK_PTR
- * @param	proc	�o�^����BLACT_DRAW_BEFORE_PROC�BNULL=�o�^����
- * @param	work	proc�̈����Ɏw�肷��C�ӂ̃��[�N�|�C���^
+ * @param	proc	登録するBLACT_DRAW_BEFORE_PROC。NULL=登録無し
+ * @param	work	procの引数に指定する任意のワークポインタ
  * @retval	nothing
  */
 //--------------------------------------------------------------

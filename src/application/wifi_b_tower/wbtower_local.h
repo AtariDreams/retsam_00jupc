@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	wbtower_local.h
- * @brief	WIFIƒoƒgƒ‹ƒ^ƒ[ˆ—ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+ * @brief	WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‡¦ç†ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
  *          
  * @author	Akito Mori
  * @date    	2006.05.16
@@ -17,7 +17,7 @@
 #include "application/connect_anm_types.h"
 
 
-// Proc_MainƒV[ƒPƒ“ƒX’è‹`
+// Proc_Mainã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
 enum {
 	SEQ_INIT_DPW=0,
 	SEQ_INIT,
@@ -27,21 +27,21 @@ enum {
 	SEQ_OUT,
 };
 
-// ƒTƒuƒvƒƒZƒX§Œä”Ô†
+// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹åˆ¶å¾¡ç•ªå·
 enum{
-	WBTOWER_ENTER=0,		// Ú‘±‰æ–Ê
+	WBTOWER_ENTER=0,		// æŽ¥ç¶šç”»é¢
 };
 
-// ƒTƒuƒvƒƒZƒX‚É“n‚·ƒ‚[ƒhi“¯‚¶ƒTƒuƒvƒƒZƒX‚Å‚àŽg‚¢•û‚ªˆá‚¤Žž‚ª‚ ‚é‚½‚ßj
+// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã«æ¸¡ã™ãƒ¢ãƒ¼ãƒ‰ï¼ˆåŒã˜ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã§ã‚‚ä½¿ã„æ–¹ãŒé•ã†æ™‚ãŒã‚ã‚‹ãŸã‚ï¼‰
 enum{
 	MODE_DOWNLOAD=0,
 	MODE_UPLOAD,
 };
 
-// CLACT‚Å’è‹`‚µ‚Ä‚¢‚éƒZƒ‹‚ª‘å‚«‚·‚¬‚ÄƒTƒu‰æ–Ê‚É‰e‹¿‚ª‚Å‚Ä‚µ‚Ü‚¤‚Ì‚Å—£‚µ‚Ä‚Ý‚é
+// CLACTã§å®šç¾©ã—ã¦ã„ã‚‹ã‚»ãƒ«ãŒå¤§ãã™ãŽã¦ã‚µãƒ–ç”»é¢ã«å½±éŸ¿ãŒã§ã¦ã—ã¾ã†ã®ã§é›¢ã—ã¦ã¿ã‚‹
 #define WBTOWER_SUB_ACTOR_DISTANCE 	(256*FX32_ONE)
 
-// CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚ÌŽí—Þ‚Ì”iƒ}ƒ‹ƒ`ƒZƒ‹Eƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚ÍŽg—p‚µ‚È‚¢j
+// CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ç¨®é¡žã®æ•°ï¼ˆï¼ãƒžãƒ«ãƒã‚»ãƒ«ãƒ»ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã¯ä½¿ç”¨ã—ãªã„ï¼‰
 #define CLACT_RESOURCE_NUM		(  4 )
 #define NAMEIN_OAM_NUM			( 14 )
 
@@ -51,128 +51,128 @@ enum{
 #define WBTOWER_MENUFRAME_CHR 	 ( WBTOWER_MESFRAME_CHR + TALK_WIN_CGX_SIZ )
 #define WBTOWER_TALKFONT_PAL	 ( 13 )
 
-// ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦ˆÊ’u’è‹`
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä½ç½®å®šç¾©
 #define TALK_WIN_X		(  2 )
 #define TALK_WIN_Y		( 19 )
 #define	TALK_WIN_SX		( 27 )
 #define	TALK_WIN_SY		(  4 )
 
 
-// ‰æ–Êã•”ƒ^ƒCƒgƒ‹ƒEƒCƒ“ƒhƒE•\Ž¦ˆÊ’u’è‹`
+// ç”»é¢ä¸Šéƒ¨ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä½ç½®å®šç¾©
 #define TITLE_TEXT_X	(  4 )
 #define TITLE_TEXT_Y	(  1 )
 #define TITLE_TEXT_SX	( 24 )
 #define TITLE_TEXT_SY	(  2 )
 
 
-// ‚Í‚¢E‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ÌYÀ•W
-#define	WBTOWER_YESNO_PY2	( 13 )		// ‰ï˜bƒEƒCƒ“ƒhƒE‚ª‚Qs‚ÌŽž
+// ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®Yåº§æ¨™
+#define	WBTOWER_YESNO_PY2	( 13 )		// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒï¼’è¡Œã®æ™‚
 
-// ƒ^ƒCƒgƒ‹•¶Žš—ñƒoƒbƒtƒ@’·
+// ã‚¿ã‚¤ãƒˆãƒ«æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡é•·
 #define TITLE_MESSAGE_BUF_NUM	( 20 * 2 )
 
-// ‰ï˜bƒEƒCƒ“ƒhƒE•¶Žš—ñƒoƒbƒtƒ@’·
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡é•·
 #define TALK_MESSAGE_BUF_NUM	( 90*2 )
 
-// ƒ‰ƒ“ƒNEƒ‹[ƒ€”Ô†‚Ì•¶Žš—ñãŒÀ
+// ãƒ©ãƒ³ã‚¯ãƒ»ãƒ«ãƒ¼ãƒ ç•ªå·ã®æ–‡å­—åˆ—ä¸Šé™
 #define NUMBER_BUF_NUM			( 4 )
 #define RANK_BUF_NUM			( 3 )
 
-// ƒ‰ƒ“ƒN”’l‚ÌãŒÀ
+// ãƒ©ãƒ³ã‚¯æ•°å€¤ã®ä¸Šé™
 #define WIFITOWER_RANK_MAX		( 10 )
 
-// ‚P•b‘Ò‚Â—p‚Ì’è‹`
+// ï¼‘ç§’å¾…ã¤ç”¨ã®å®šç¾©
 #define WAIT_ONE_SECONDE_NUM	( 30 )
 
-// ã‰º‰æ–ÊŽw’è’è‹`
+// ä¸Šä¸‹ç”»é¢æŒ‡å®šå®šç¾©
 #define RES_NUM		( 3 )
-#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// —v‚Í‚O‚Æ
-#define SUB_LCD		( GF_BGL_SUB_DISP )		// ‚P‚È‚ñ‚Å‚·‚ªB
+#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// è¦ã¯ï¼ã¨
+#define SUB_LCD		( GF_BGL_SUB_DISP )		// ï¼‘ãªã‚“ã§ã™ãŒã€‚
 #define CHARA_RES	( 2 )
 
 #define DWC_ERROR_BUF_NUM		(16*8*2)
 
 //============================================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //============================================================================================
 
 
 
 struct WBTOWER_WORK{
-	// ‹N“®Žž‚É–á‚Á‚Ä‚é‚à‚Ì
-	WBTOWER_PARAM *param;								// ŒÄ‚Ño‚µŽžƒpƒ‰ƒ[ƒ^
+	// èµ·å‹•æ™‚ã«è²°ã£ã¦ã‚‹ã‚‚ã®
+	WBTOWER_PARAM *param;								// å‘¼ã³å‡ºã—æ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	GF_BGL_INI		*bgl;								// GF_BGL_INI
 	
 	
-	// WIFIƒoƒgƒ‹ƒ^ƒ[ƒVƒXƒeƒ€‚ÉŠÖ‚í‚é‚à‚Ì
-	int				seq;								// Œ»Ý‚Ì¢ŠEŒðŠ·‰æ–Ê‚Ìó‘Ô
-	int				nextseq;							// Œ»Ý‚ÌƒV[ƒPƒ“ƒX‚ªI—¹‚µ‚½Û‚Ì‘JˆÚæ
+	// WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã«é–¢ã‚ã‚‹ã‚‚ã®
+	int				seq;								// ç¾åœ¨ã®ä¸–ç•Œäº¤æ›ç”»é¢ã®çŠ¶æ…‹
+	int				nextseq;							// ç¾åœ¨ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãŒçµ‚äº†ã—ãŸéš›ã®é·ç§»å…ˆ
 
-	int				sub_process;						// ¢ŠEŒðŠ·ƒTƒuƒvƒƒOƒ‰ƒ€§Œäƒiƒ“ƒo[
-	int				sub_nextprocess;					// ¢ŠEŒðŠ·ƒTƒuNEXT§Œäƒiƒ“ƒo[
-	int				sub_process_mode;					// ‚»‚Ì‰æ–Ê‚É‚«‚½ƒ‚[ƒh‚Í‰½‚©H
+	int				sub_process;						// ä¸–ç•Œäº¤æ›ã‚µãƒ–ãƒ—ãƒ­ã‚°ãƒ©ãƒ åˆ¶å¾¡ãƒŠãƒ³ãƒãƒ¼
+	int				sub_nextprocess;					// ä¸–ç•Œäº¤æ›ã‚µãƒ–NEXTåˆ¶å¾¡ãƒŠãƒ³ãƒãƒ¼
+	int				sub_process_mode;					// ãã®ç”»é¢ã«ããŸãƒ¢ãƒ¼ãƒ‰ã¯ä½•ã‹ï¼Ÿ
 
-	int				subprocess_seq;						// ƒTƒuƒvƒƒOƒ‰ƒ€ƒV[ƒPƒ“ƒXNO
-	int				subprocess_nextseq;					// ƒTƒuƒvƒƒOƒ‰ƒ€NEXTƒV[ƒPƒ“ƒXNO
-
-
-	void 			*heapPtr;							// NitroDWC‚É“n‚·ƒq[ƒvƒ[ƒN‚Ì‰ð•ú—pƒ|ƒCƒ“ƒ^
-	NNSFndHeapHandle heapHandle;						// heapPtr‚ð32ƒoƒCƒgƒAƒ‰ƒCƒƒ“ƒg‚É‡‚í‚¹‚½ƒ|ƒCƒ“ƒ^
-	DWCInetControl  stConnCtrl;							// DWCÚ‘±ƒ[ƒN
+	int				subprocess_seq;						// ã‚µãƒ–ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚·ãƒ¼ã‚±ãƒ³ã‚¹NO
+	int				subprocess_nextseq;					// ã‚µãƒ–ãƒ—ãƒ­ã‚°ãƒ©ãƒ NEXTã‚·ãƒ¼ã‚±ãƒ³ã‚¹NO
 
 
-	// Še‰æ–Ê‚ð‚Ê‚¯‚Ä‚à•Û‘¶‚³‚ê‚Ä‚é‚à‚Ì
+	void 			*heapPtr;							// NitroDWCã«æ¸¡ã™ãƒ’ãƒ¼ãƒ—ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾ç”¨ãƒã‚¤ãƒ³ã‚¿
+	NNSFndHeapHandle heapHandle;						// heapPtrã‚’32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã«åˆã‚ã›ãŸãƒã‚¤ãƒ³ã‚¿
+	DWCInetControl  stConnCtrl;							// DWCæŽ¥ç¶šãƒ¯ãƒ¼ã‚¯
+
+
+	// å„ç”»é¢ã‚’ã¬ã‘ã¦ã‚‚ä¿å­˜ã•ã‚Œã¦ã‚‹ã‚‚ã®
 	int				Rank;
 	int				NowRank;
 	int				RoomNum;
 	int				NowRoom;
-	Dpw_Bt_Room 	roomBtData;							// ƒ_ƒEƒ“ƒ[ƒh‚µ‚½ƒf[ƒ^‚ðŠi”[‚·‚é
-	Dpw_Bt_Player	BtPlayer;							// Ÿ‚¿”²‚¢‚½Ž©•ª‚Ìƒf[ƒ^
+	Dpw_Bt_Room 	roomBtData;							// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
+	Dpw_Bt_Player	BtPlayer;							// å‹ã¡æŠœã„ãŸè‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿
 
-	u16				TitleCursorPos;						// ƒ^ƒCƒgƒ‹ƒƒjƒ…[‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
-	u16				PartnerPageInfo;					// ¶E‰Eƒy[ƒW‚Ì‚Ç‚¿‚ç‚ð‚Ý‚Ä‚¢‚é‚©H
-	u16				BoxTrayNo;							// ‰½”Ôƒ{ƒbƒNƒX‚ðŒ©‚Ä‚¢‚é‚©H
-	u16				BoxCursorPos;						// ƒ{ƒbƒNƒXã‚Å‚ÌƒJ[ƒ\ƒ‹‚ÌˆÊ’u
-	POKEMON_PASO_PARAM	*deposit_ppp;					// ˆê’U—a‚¯‚éŽw’è‚É‚È‚Á‚½ƒ|ƒPƒ‚ƒ“‚Ìƒ|ƒCƒ“ƒ^
-	int				SearchResult;						// ŒŸõ‚ÌŒ‹‰Ê•Ô‚Á‚Ä‚«‚½”
-	int				TouchTrainerPos;					// ŒŸõŒ‹‰Ê‚Ì’N‚ðƒ^ƒbƒ`‚µ‚½‚©
-
-
-	// •`‰æ‚Ü‚í‚è‚Ìƒ[ƒNiŽå‚ÉBMP—p‚Ì•¶Žš—ñŽü‚èj
-	WORDSET			*WordSet;								// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *MsgManager;							// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *LobbyMsgManager;						// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *SystemMsgManager;						// WifiƒVƒXƒeƒ€ƒƒbƒZ[ƒWƒf[ƒ^
-	STRBUF			*TalkString;							// ‰ï˜bƒƒbƒZ[ƒW—p
-	STRBUF			*TitleString;							// ƒ^ƒCƒgƒ‹ƒƒbƒZ[ƒW—p
-	STRBUF			*RoomString;							// •”‰®”Ô†‘I‘ð—p
-	STRBUF			*RankString;							// ƒ‰ƒ“ƒN‘I‘ð—p
-	STRBUF			*ErrorString;							// ƒ‰ƒ“ƒN‘I‘ð—p
-	int				MsgIndex;								// I—¹ŒŸo—pƒ[ƒN
+	u16				TitleCursorPos;						// ã‚¿ã‚¤ãƒˆãƒ«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u16				PartnerPageInfo;					// å·¦ãƒ»å³ãƒšãƒ¼ã‚¸ã®ã©ã¡ã‚‰ã‚’ã¿ã¦ã„ã‚‹ã‹ï¼Ÿ
+	u16				BoxTrayNo;							// ä½•ç•ªãƒœãƒƒã‚¯ã‚¹ã‚’è¦‹ã¦ã„ã‚‹ã‹ï¼Ÿ
+	u16				BoxCursorPos;						// ãƒœãƒƒã‚¯ã‚¹ä¸Šã§ã®ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®
+	POKEMON_PASO_PARAM	*deposit_ppp;					// ä¸€æ—¦é ã‘ã‚‹æŒ‡å®šã«ãªã£ãŸãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿
+	int				SearchResult;						// æ¤œç´¢ã®çµæžœè¿”ã£ã¦ããŸæ•°
+	int				TouchTrainerPos;					// æ¤œç´¢çµæžœã®èª°ã‚’ã‚¿ãƒƒãƒã—ãŸã‹
 
 
-	// •`‰æŽü‚è‚Ìƒ[ƒNiŽå‚ÉOAM)
-	CLACT_SET_PTR 			clactSet;								// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	renddata;								// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR 	resObjTbl[RES_NUM][CLACT_RESOURCE_NUM]; // ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-	CLACT_HEADER			clActHeader_main;						// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-	CLACT_HEADER			clActHeader_sub;						// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-	CLACT_HEADER			clActHeader_friend;						// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-	CLACT_WORK_PTR			ArrowActWork[2];						// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ
+	// æç”»ã¾ã‚ã‚Šã®ãƒ¯ãƒ¼ã‚¯ï¼ˆä¸»ã«BMPç”¨ã®æ–‡å­—åˆ—å‘¨ã‚Šï¼‰
+	WORDSET			*WordSet;								// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *MsgManager;							// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *LobbyMsgManager;						// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *SystemMsgManager;						// Wifiã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+	STRBUF			*TalkString;							// ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
+	STRBUF			*TitleString;							// ã‚¿ã‚¤ãƒˆãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
+	STRBUF			*RoomString;							// éƒ¨å±‹ç•ªå·é¸æŠžç”¨
+	STRBUF			*RankString;							// ãƒ©ãƒ³ã‚¯é¸æŠžç”¨
+	STRBUF			*ErrorString;							// ãƒ©ãƒ³ã‚¯é¸æŠžç”¨
+	int				MsgIndex;								// çµ‚äº†æ¤œå‡ºç”¨ãƒ¯ãƒ¼ã‚¯
 
-	// BMPWIN•`‰æŽü‚è
-	GF_BGL_BMPWIN			MsgWin;									// ‰ï˜bƒEƒCƒ“ƒhƒE
-	GF_BGL_BMPWIN			RankWin;								// ƒ‰ƒ“ƒNŽw’è—pƒEƒCƒ“ƒhƒE
-	GF_BGL_BMPWIN			NumberWin;								// •”‰®ƒiƒ“ƒo[Žw’è—pƒEƒCƒ“ƒhƒE
-	GF_BGL_BMPWIN			TitleWin;								// uƒŒƒR[ƒhƒR[ƒi[@‚Ú‚µ‚ã‚¤‚¿‚ã‚¤Iv‚È‚Ç
-	GF_BGL_BMPWIN			SubWin;									// uƒŒƒR[ƒhƒR[ƒi[@‚Ú‚µ‚ã‚¤‚¿‚ã‚¤Iv‚È‚Ç
-	GF_BGL_BMPWIN			MenuWin[3];								// ƒƒjƒ…[—pBMPWIN
+
+	// æç”»å‘¨ã‚Šã®ãƒ¯ãƒ¼ã‚¯ï¼ˆä¸»ã«OAM)
+	CLACT_SET_PTR 			clactSet;								// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	renddata;								// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR 	resObjTbl[RES_NUM][CLACT_RESOURCE_NUM]; // ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+	CLACT_HEADER			clActHeader_main;						// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_HEADER			clActHeader_sub;						// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_HEADER			clActHeader_friend;						// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_WORK_PTR			ArrowActWork[2];						// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—
+
+	// BMPWINæç”»å‘¨ã‚Š
+	GF_BGL_BMPWIN			MsgWin;									// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN			RankWin;								// ãƒ©ãƒ³ã‚¯æŒ‡å®šç”¨ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN			NumberWin;								// éƒ¨å±‹ãƒŠãƒ³ãƒãƒ¼æŒ‡å®šç”¨ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN			TitleWin;								// ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã€€ã¼ã—ã‚…ã†ã¡ã‚…ã†ï¼ã€ãªã©
+	GF_BGL_BMPWIN			SubWin;									// ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã€€ã¼ã—ã‚…ã†ã¡ã‚…ã†ï¼ã€ãªã©
+	GF_BGL_BMPWIN			MenuWin[3];								// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨BMPWIN
 	GF_BGL_BMPWIN			InfoWin[11];	
 
 
 	BMPMENU_WORK			*YesNoMenuWork;
-	void*					timeWaitWork;							// ‰ï˜bƒEƒCƒ“ƒhƒE‰¡ƒAƒCƒRƒ“ƒ[ƒN
+	void*					timeWaitWork;							// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ¨ªã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯
 
 	int						ErrorRet;
 	int						ErrorCode;
@@ -181,27 +181,27 @@ struct WBTOWER_WORK{
 
 	int						wait;
 
-	// ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á
-	Dpw_Common_Profile			dc_profile;					// Ž©•ª‚Ìî•ñ“o˜^—p\‘¢‘Ì
-	Dpw_Common_ProfileResult	dc_profile_result;			// Ž©•ª‚Ìî•ñ“o˜^ƒŒƒXƒ|ƒ“ƒX—p\‘¢‘Ì
+	// ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ 
+	Dpw_Common_Profile			dc_profile;					// è‡ªåˆ†ã®æƒ…å ±ç™»éŒ²ç”¨æ§‹é€ ä½“
+	Dpw_Common_ProfileResult	dc_profile_result;			// è‡ªåˆ†ã®æƒ…å ±ç™»éŒ²ãƒ¬ã‚¹ãƒãƒ³ã‚¹ç”¨æ§‹é€ ä½“
 	
 	s16 					local_seq;
 	s16						local_wait;
 	int						timeout_count;
 	
-	CONNECT_BG_PALANM cbp;								// WifiÚ‘±BG‚ÌƒpƒŒƒbƒgƒAƒjƒ§Œä
+	CONNECT_BG_PALANM cbp;								// WifiæŽ¥ç¶šBGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡
 };
 
 
 //============================================================================================
-// SE—p’è‹`
+// SEç”¨å®šç¾©
 //============================================================================================
 #define WBTOWER_MOVE_SE		(SEQ_SE_DP_SELECT)
 #define WBTOWER_DECIDE_SE	(SEQ_SE_DP_SELECT)
 
 
 //============================================================================================
-// externéŒ¾
+// externå®£è¨€
 //============================================================================================
 // worldtrade.c
 extern void WBTower_MakeCLACT(CLACT_ADD *add, WBTOWER_WORK *wk, CLACT_HEADER *header, int param);

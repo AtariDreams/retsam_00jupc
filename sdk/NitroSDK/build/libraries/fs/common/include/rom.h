@@ -25,15 +25,15 @@
 /*****************************************************************************/
 /* variable */
 
-/* ƒJ[ƒh / ƒJ[ƒgƒŠƒbƒW‚ÌƒƒbƒN ID */
+/* ã‚«ãƒ¼ãƒ‰ / ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®ãƒ­ãƒƒã‚¯ ID */
 extern s32 fsi_card_lock_id;
 
-/* ƒAƒ^ƒbƒ`‚³‚ê‚½ƒI[ƒo[ƒŒƒC‚Ìî•ñ */
+/* ã‚¢ã‚¿ãƒƒãƒã•ã‚ŒãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã®æƒ…å ± */
 extern CARDRomRegion fsi_ovt9;
 extern CARDRomRegion fsi_ovt7;
 
 #if     defined(FS_IMPLEMENT)
-/* ROM ƒA[ƒJƒCƒu */
+/* ROM ã‚¢ãƒ¼ã‚«ã‚¤ãƒ– */
 extern FSArchive fsi_arc_rom;
 #endif /* FS_IMPLEMENT */
 
@@ -61,20 +61,20 @@ void    FSi_InitRom(u32 default_dma_no);
 /*---------------------------------------------------------------------------*
   Name:         FSi_LoadOverlayInfoCore
 
-  Description:  “à•”ŠÖ”.
-                w’è‚Ì rom-duplicated ƒA[ƒJƒCƒu‚©‚çƒI[ƒo[ƒŒƒCî•ñ‚ğ“Ç‚İo‚·.
-                IPL À‘•‚Ì—˜•Ö«‚Ì‚½‚ß‚ÉˆÃ–ÙŒöŠJ.
+  Description:  å†…éƒ¨é–¢æ•°.
+                æŒ‡å®šã® rom-duplicated ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æƒ…å ±ã‚’èª­ã¿å‡ºã™.
+                IPL å®Ÿè£…ã®åˆ©ä¾¿æ€§ã®ãŸã‚ã«æš—é»™å…¬é–‹.
 
-  Arguments:    p_ovi            “Ç‚İo‚µ‚½î•ñ‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^.
-                target           ƒI[ƒo[ƒŒƒCƒ^[ƒQƒbƒg. (ARM9/ARM7)
-                id               “Ç‚İo‚·ƒI[ƒo[ƒŒƒC ID.
-                p_arc            “Ç‚İo‚µæ‚ÌƒA[ƒJƒCƒu.
-                offset_arm9      ƒA[ƒJƒCƒu“à‚ÌƒI[ƒo[ƒŒƒCî•ñŠi”[ˆÊ’uæ“ª.
-                len_arm9         ƒA[ƒJƒCƒu“à‚ÌƒI[ƒo[ƒŒƒCî•ñƒTƒCƒY.
-                offset_arm7      ƒA[ƒJƒCƒu“à‚ÌƒI[ƒo[ƒŒƒCî•ñŠi”[ˆÊ’uæ“ª.
-                len_arm7         ƒA[ƒJƒCƒu“à‚ÌƒI[ƒo[ƒŒƒCî•ñƒTƒCƒY.
+  Arguments:    p_ovi            èª­ã¿å‡ºã—ãŸæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                target           ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ. (ARM9/ARM7)
+                id               èª­ã¿å‡ºã™ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ ID.
+                p_arc            èª­ã¿å‡ºã—å…ˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
+                offset_arm9      ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æƒ…å ±æ ¼ç´ä½ç½®å…ˆé ­.
+                len_arm9         ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æƒ…å ±ã‚µã‚¤ã‚º.
+                offset_arm7      ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æƒ…å ±æ ¼ç´ä½ç½®å…ˆé ­.
+                len_arm7         ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æƒ…å ±ã‚µã‚¤ã‚º.
 
-  Returns:      ƒI[ƒo[ƒŒƒC‚ª³í‚É“Ç‚İo‚¹‚ê‚Î TRUE.
+  Returns:      ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãŒæ­£å¸¸ã«èª­ã¿å‡ºã›ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    FSi_LoadOverlayInfoCore(FSOverlayInfo *p_ovi, MIProcessor target, FSOverlayID id,
                                 FSArchive *p_arc,
@@ -103,7 +103,7 @@ BOOL    FSi_LoadOverlayInfoCore(FSOverlayInfo *p_ovi, MIProcessor target, FSOver
   do-indent.
 
   Revision 1.5  2005/02/18 07:45:31  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.4  2004/09/04 13:21:04  yosizaki
   add prototype of FSi_LoadOverlayInfoCore.

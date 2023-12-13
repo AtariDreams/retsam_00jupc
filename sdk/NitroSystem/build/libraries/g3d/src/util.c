@@ -27,18 +27,18 @@
 /*---------------------------------------------------------------------------*
     NNS_G3dGetCurrentMtx
 
-    �J�����g�ʒu���W�s��ƃJ�����g�����x�N�g���s����擾���܂��B
-    ������NULL�̏ꍇ�͂��̍s��̎擾���ȗ����܂��B
-    ���s���Ɏˉe�s��̍s��X�^�b�N��j�󂵂܂��B
+    カレント位置座標行列とカレント方向ベクトル行列を取得します。
+    引数がNULLの場合はその行列の取得を省略します。
+    実行時に射影行列の行列スタックを破壊します。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGetCurrentMtx(MtxFx43* m, MtxFx33* n)
 {
     NNS_G3dGeFlushBuffer();
 
-    // Projection�s���Identity�ɂ���
-    // �N���b�v�s��ƃx�N�^�s������o���ƁA
-    // �J�����g�ʒu���W�s��ƃJ�����g�����x�N�g���s������o����B
+    // Projection行列をIdentityにして
+    // クリップ行列とベクタ行列を取り出すと、
+    // カレント位置座標行列とカレント方向ベクトル行列を取り出せる。
     G3_MtxMode(GX_MTXMODE_PROJECTION);
     G3_PushMtx();
     G3_Identity();
@@ -57,7 +57,7 @@ NNS_G3dGetCurrentMtx(MtxFx43* m, MtxFx33* n)
             ;
     }
 
-    // ����Projection�s��𕜋A���APosition/Vector�s�񃂁[�h�ɂ���
+    // 元のProjection行列を復帰し、Position/Vector行列モードにする
     G3_PopMtx(1);
     G3_MtxMode(GX_MTXMODE_POSITION_VECTOR);
 }
@@ -66,28 +66,28 @@ NNS_G3dGetCurrentMtx(MtxFx43* m, MtxFx33* n)
 /*---------------------------------------------------------------------------*
     NNS_G3dGetResultMtx
 
-    NNS_G3dDraw�̎��s���nodeID�ɑΉ�����s�񂪍s��X�^�b�N�Ɏc���Ă���ꍇ�́A
-    ���̍s����s��X�^�b�N������o���܂��B
-    �s�񂪎��o�����ꍇ�ɂ�TRUE, ���o���Ȃ������ꍇ�ɂ�FALSE���Ԃ�܂��B
-    TRUE�̏ꍇ�A�s�񃂁[�h��Position/Vector�s�񃂁[�h�ɕύX����Ă��܂��B
-    pos, nrm��NULL�łȂ��ꍇ�ɃZ�b�g����܂��B
-    �Ȃ��A������s��ɂ�pos_scale�͂������Ă��Ȃ����Ƃɂ����ӂ��������B
-    (.imd���ԃt�@�C����<model_info>�Ŏw�肳��鑮���ŁA���_���W���X�P�[�����O
-     ���Ă���BNNSG3dResMdlInfo::posScale��fx32�^�Ŋi�[����Ă���B)
+    NNS_G3dDrawの実行後にnodeIDに対応する行列が行列スタックに残っている場合は、
+    その行列を行列スタックから取り出します。
+    行列が取り出せた場合にはTRUE, 取り出せなかった場合にはFALSEが返ります。
+    TRUEの場合、行列モードはPosition/Vector行列モードに変更されています。
+    pos, nrmはNULLでない場合にセットされます。
+    なお、得られる行列にはpos_scaleはかかっていないことにご注意ください。
+    (.imd中間ファイルの<model_info>で指定される属性で、頂点座標をスケーリング
+     している。NNSG3dResMdlInfo::posScaleにfx32型で格納されている。)
 
-    �g�p�@�ƒ���:
-    g3cvtr��-s�I�v�V���������ăR���o�[�g�����ꍇ�A�W���C���g�s��͑S��
-    �s��X�^�b�N�ɃX�g�A����Ă��܂��B
-    �܂��ANNSG3dRenderObj::flag��NNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_DRAW��ݒ肵��
-    NNS_G3dDraw���R�[�������ꍇ�A�`����X�L�b�v���邱�Ƃ��ł��A
-    NNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_MTXCALC��ݒ肵��NNS_G3dDraw���R�[������
-    �ꍇ�A�s��v�Z���X�L�b�v���邱�Ƃ��ł��܂��B
+    使用法と注意:
+    g3cvtrで-sオプションをつけてコンバートした場合、ジョイント行列は全て
+    行列スタックにストアされています。
+    また、NNSG3dRenderObj::flagのNNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_DRAWを設定して
+    NNS_G3dDrawをコールした場合、描画をスキップすることができ、
+    NNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_MTXCALCを設定してNNS_G3dDrawをコールした
+    場合、行列計算をスキップすることができます。
 
-    ���̋@�\�𗘗p����ƁA
-    �E�ŏ��ɍs����s��X�^�b�N�ɃZ�b�g���Ă���
-    �E�s��X�^�b�N�ɃZ�b�g���ꂽ�s������H
-    �E���H���ꂽ�s���p���ĕ`��
-    �Ƃ������v���O���~���O���\�ɂȂ�܂��B
+    この機能を利用すると、
+    ・最初に行列を行列スタックにセットしておく
+    ・行列スタックにセットされた行列を加工
+    ・加工された行列を用いて描画
+    といったプログラミングが可能になります。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dGetResultMtx(const NNSG3dRenderObj* pRenderObj,
@@ -98,7 +98,7 @@ NNS_G3dGetResultMtx(const NNSG3dRenderObj* pRenderObj,
     const NNSG3dResNodeData* nd;
     u32 stackID;
 
-    // pos, nrm��NULL�ł�OK
+    // pos, nrmはNULLでもOK
     NNS_G3D_NULL_ASSERT(pRenderObj);
 
     nd = NNS_G3dGetNodeDataByIdx(&pRenderObj->resMdl->nodeInfo, nodeID);
@@ -124,11 +124,11 @@ NNS_G3dGetResultMtx(const NNSG3dRenderObj* pRenderObj,
 /*---------------------------------------------------------------------------*
     NNS_G3dSetResultMtx
 
-    NNS_G3dDraw�̎��s���nodeID�ɑΉ�����s�񂪍s��X�^�b�N�Ɏc��悤�Ȑݒ��
-    �Ȃ��Ă���ꍇ�́A�s��*pos, *nrm���X�^�b�N�̊Y���ʒu�ɑ�����܂��B
-    ����ł����ꍇ��TRUE,�ł��Ȃ������ꍇ��FALSE���Ԃ�܂��B
-    TRUE�̏ꍇ�A�s�񃂁[�h��Position/Vector�s�񃂁[�h�ɕύX����Ă��܂��B
-    nrm��NULL�ł����܂��܂��񂪁Apos��NULL�ł����Ă͂����܂���B
+    NNS_G3dDrawの実行後にnodeIDに対応する行列が行列スタックに残るような設定に
+    なっている場合は、行列*pos, *nrmをスタックの該当位置に代入します。
+    代入できた場合はTRUE,できなかった場合はFALSEが返ります。
+    TRUEの場合、行列モードはPosition/Vector行列モードに変更されています。
+    nrmはNULLでもかまいませんが、posはNULLであってはいけません。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dSetResultMtx(const NNSG3dRenderObj* pRenderObj,
@@ -140,7 +140,7 @@ NNS_G3dSetResultMtx(const NNSG3dRenderObj* pRenderObj,
     u32 stackID;
 
     NNS_G3D_NULL_ASSERT(pRenderObj);
-    NNS_G3D_NULL_ASSERT(pos); // nrm��NULL�ł��悢
+    NNS_G3D_NULL_ASSERT(pos); // nrmはNULLでもよい
 
     nd = NNS_G3dGetNodeDataByIdx(&pRenderObj->resMdl->nodeInfo, nodeID);
     stackID = (nd->flag & (u32)NNS_G3D_SRTFLAG_IDXMTXSTACK_MASK)
@@ -148,15 +148,15 @@ NNS_G3dSetResultMtx(const NNSG3dRenderObj* pRenderObj,
 
     if (stackID != 31)
     {
-        // �o�b�t�@���t���b�V��
+        // バッファをフラッシュ
         NNS_G3dGeFlushBuffer();
 
-        // �ȍ~�̓C�~�f�B�G�C�g�ő��M�\.
+        // 以降はイミディエイトで送信可能.
         G3_MtxMode(GX_MTXMODE_POSITION_VECTOR);
 
         if (nrm)
         {
-            // ���[�h��4x3�s�񂵂��ł��Ȃ�
+            // ロードは4x3行列しかできない
             reg_G3X_GXFIFO = G3OP_MTX_LOAD_4x3;
             MI_CpuSend32(&nrm->_00, &reg_G3X_GXFIFO, sizeof(*nrm));
             reg_G3X_GXFIFO = 0;
@@ -186,7 +186,7 @@ NNS_G3dSetResultMtx(const NNSG3dRenderObj* pRenderObj,
 /*---------------------------------------------------------------------------*
     NNS_G3dInit
 
-    �f�t�H���g�̃C�j�V�����C�Y���s���܂��B
+    デフォルトのイニシャライズを行います。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dInit(void)
@@ -194,13 +194,13 @@ NNS_G3dInit(void)
     G3X_Init();
 
     //
-    // G3D�����ŕێ����Ă���O���[�o�����(�J�����s��E�ˉe�s��)�̃C�j�V�����C�Y
+    // G3D内部で保持しているグローバル状態(カメラ行列・射影行列等)のイニシャライズ
     //
     NNS_G3dGlbInit();
 
     //
-    // GX_FIFOINTR_COND_DISABLE�łȂ���΂悢���A
-    // GX_FIFOINTR_COND_UNDERHALF���GX_FIFOINTR_COND_EMPTY�̂ق����悢�悤��
+    // GX_FIFOINTR_COND_DISABLEでなければよいが、
+    // GX_FIFOINTR_COND_UNDERHALFよりGX_FIFOINTR_COND_EMPTYのほうがよいようだ
     //
     G3X_SetFifoIntrCond(GX_FIFOINTR_COND_EMPTY);
 }
@@ -209,13 +209,13 @@ NNS_G3dInit(void)
 /*---------------------------------------------------------------------------*
     NNS_G3dSbcCmdLen
 
-    SBC�R�}���h�̒���(�o�C�g��)��\���e�[�u���ł��B
-    -1�̏ꍇ�͑Ή�����SBC�R�}���h�͑��݂����A0�̏ꍇ�̓R�}���h�͉ϒ��ł��B
+    SBCコマンドの長さ(バイト数)を表すテーブルです。
+    -1の場合は対応するSBCコマンドは存在せず、0の場合はコマンドは可変長です。
  *---------------------------------------------------------------------------*/
 const s8 NNS_G3dSbcCmdLen[256] = 
 {
-    // -1�̏ꍇ�͑��݂���
-    // 0�̏ꍇ�͕s�蒷
+    // -1の場合は存在せず
+    // 0の場合は不定長
      1,  1,  3,  2,  2,  2,  4,  2,  2,  0,  9,  1,  3,  3, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 
@@ -245,8 +245,8 @@ const s8 NNS_G3dSbcCmdLen[256] =
 /*---------------------------------------------------------------------------*
     NNS_G3dGetSbcCmdLen
 
-    SBC�R�}���h*c�̒�����Ԃ��܂��B
-    *c��SBC�R�}���h�łȂ��ꍇ��-1��Ԃ��܂��B
+    SBCコマンド*cの長さを返します。
+    *cがSBCコマンドでない場合は-1を返します。
  *---------------------------------------------------------------------------*/
 int
 NNS_G3dGetSbcCmdLen(const u8* c)
@@ -281,10 +281,10 @@ NNS_G3dGetSbcCmdLen(const u8* c)
 /*---------------------------------------------------------------------------*
     NNS_G3dSearchSbcCmd
 
-    SBC�R�}���h(cmd)��SBC�R�[�h��(c)�̒����猩���܂��B
-    ���������ꍇ��SBC�R�}���h���̃|�C���^��Ԃ��܂��B
-    ������Ȃ������ꍇ��NULL��Ԃ��܂��B
-    SBC�R�}���h���̃t���O���͖�������܂��B
+    SBCコマンド(cmd)をSBCコード列(c)の中から見つけます。
+    見つかった場合はSBCコマンド内のポインタを返します。
+    見つからなかった場合はNULLを返します。
+    SBCコマンド内のフラグ部は無視されます。
  *---------------------------------------------------------------------------*/
 const u8*
 NNS_G3dSearchSbcCmd(const u8* c, u8 cmd)
@@ -314,9 +314,9 @@ NNS_G3dSearchSbcCmd(const u8* c, u8 cmd)
 /*---------------------------------------------------------------------------*
     NNS_G3dGetParentNodeID
 
-    nodeID�̐e�ɂȂ�m�[�h��ID��*parentID�Ɋi�[���܂��B
-    �Ԃ�l�́AnodeID��ݒ肵�Ă���NODEDESC���߂ւ̃|�C���^�ł��B
-    ������Ȃ������ꍇ��NULL��Ԃ��A*parentID���ύX����܂���B
+    nodeIDの親になるノードのIDを*parentIDに格納します。
+    返り値は、nodeIDを設定しているNODEDESC命令へのポインタです。
+    見つからなかった場合はNULLを返し、*parentIDも変更されません。
  *---------------------------------------------------------------------------*/
 const u8*
 NNS_G3dGetParentNodeID(int* parentID, const u8* sbc, u32 nodeID)
@@ -330,11 +330,11 @@ NNS_G3dGetParentNodeID(int* parentID, const u8* sbc, u32 nodeID)
 
     while((tmp = NNS_G3dSearchSbcCmd(tmp, NNS_G3D_SBC_NODEDESC)) != 0)
     {
-        // ���g�̃m�[�hID�Ƃ̈�v����
+        // 自身のノードIDとの一致検査
         if (*(tmp + 1) == nodeID)
         {
-            // �e���擾
-            // �q�ɑ΂��Đe����������悤�ȕs����SBC�ɂ͑Ή����Ă��Ȃ�
+            // 親を取得
+            // 子に対して親が複数あるような不正なSBCには対応していない
             *parentID = *(tmp + 2);
             return tmp;
         }
@@ -352,10 +352,10 @@ NNS_G3dGetParentNodeID(int* parentID, const u8* sbc, u32 nodeID)
 /*---------------------------------------------------------------------------*
     NNS_G3dGetChildNodeIDList
 
-    nodeID�̎q�ɂȂ�m�[�hID�̃��X�g��idList�ɍ쐬���܂��B
-    idList�͏\���ȗ̈悪�m�ۂ���Ă���K�v������܂��B
-    �Ԃ�l�͎q�m�[�h�̐��ł��B
-    �݂���Ȃ������ꍇ��0��Ԃ��AidList�ɂ͉����������܂�܂���B
+    nodeIDの子になるノードIDのリストをidListに作成します。
+    idListは十分な領域が確保されている必要があります。
+    返り値は子ノードの数です。
+    みつからなかった場合は0を返し、idListには何も書き込まれません。
  *---------------------------------------------------------------------------*/
 int
 NNS_G3dGetChildNodeIDList(u8* idList, const u8* sbc, u32 nodeID)
@@ -369,10 +369,10 @@ NNS_G3dGetChildNodeIDList(u8* idList, const u8* sbc, u32 nodeID)
 
     while((tmp = NNS_G3dSearchSbcCmd(tmp, NNS_G3D_SBC_NODEDESC)) != 0)
     {
-        // �e�m�[�hID�̈�v����
+        // 親ノードIDの一致検査
         if (*(tmp + 2) == nodeID && *(tmp + 2) != *(tmp + 1))
         {
-            // �ǉ�
+            // 追加
             *(idList + num++) = *(tmp + 1);
         }
 
@@ -390,24 +390,24 @@ NNS_G3dGetChildNodeIDList(u8* idList, const u8* sbc, u32 nodeID)
 /*---------------------------------------------------------------------------*
     NNS_G3dResDefaultSetup
 
-    G3D�̃��\�[�X*pData���Z�b�g�A�b�v���܂��B�f�[�^�t�H�[�}�b�g�ɂ��
-    ���삪���ƂȂ�܂��B
+    G3Dのリソース*pDataをセットアップします。データフォーマットにより
+    動作がことなります。
 
-    .nsbmd�t�@�C���̏ꍇ
-        �E�e�N�X�`���ƃp���b�g�p�̗̈���m��
-        �E�e�N�X�`���ƃp���b�g��VRAM�Ƀ��[�h
-        �E�t�@�C�����̊e���f���Ƀe�N�X�`�����o�C���h
+    .nsbmdファイルの場合
+        ・テクスチャとパレット用の領域を確保
+        ・テクスチャとパレットをVRAMにロード
+        ・ファイル内の各モデルにテクスチャをバインド
 
-    .nsbtx�t�@�C���̏ꍇ
-        �E�e�N�X�`���ƃp���b�g�p�̗̈���m��
-        �E�e�N�X�`���ƃp���b�g��VRAM�Ƀ��[�h
+    .nsbtxファイルの場合
+        ・テクスチャとパレット用の領域を確保
+        ・テクスチャとパレットをVRAMにロード
 
-    ���̑�
-        �Ȃɂ����܂���B
+    その他
+        なにもしません。
 
-    �e�N�X�`���ƃp���b�g��VRAM�Ƀ��[�h����ۂ�DMA�]�����g�p���邽�߁A
-    ���̊֐����ĂԑO�Ƀe�N�X�`���ƃp���b�g�̃f�[�^�L���b�V����
-    ���C���������Ƀ��C�g�o�b�N���Ă����K�v������܂��B
+    テクスチャとパレットをVRAMにロードする際にDMA転送を使用するため、
+    この関数を呼ぶ前にテクスチャとパレットのデータキャッシュを
+    メインメモリにライトバックしておく必要があります。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dResDefaultSetup(void* pResData)
@@ -434,14 +434,14 @@ NNS_G3dResDefaultSetup(void* pResData)
             tex = NNS_G3dGetTex((NNSG3dResFileHeader*) pResData);
             if (tex)
             {
-                // �K�v�ȃT�C�Y���擾
+                // 必要なサイズを取得
                 szTex    = NNS_G3dTexGetRequiredSize(tex);
                 szTex4x4 = NNS_G3dTex4x4GetRequiredSize(tex);
                 szPltt   = NNS_G3dPlttGetRequiredSize(tex);
 
                 if (szTex > 0)
                 {
-                    // ���݂���΃e�N�X�`���C���[�W�X���b�g�Ɋm��
+                    // 存在すればテクスチャイメージスロットに確保
                     keyTex = NNS_GfdAllocTexVram(szTex, FALSE, 0);
                     if (keyTex == NNS_GFD_ALLOC_ERROR_TEXKEY)
                     {
@@ -455,7 +455,7 @@ NNS_G3dResDefaultSetup(void* pResData)
 
                 if (szTex4x4 > 0)
                 {
-                    // ���݂���΃e�N�X�`���C���[�W�X���b�g�Ɋm��
+                    // 存在すればテクスチャイメージスロットに確保
                     keyTex4x4 = NNS_GfdAllocTexVram(szTex4x4, TRUE, 0);
                     if (keyTex4x4 == NNS_GFD_ALLOC_ERROR_TEXKEY)
                     {
@@ -469,7 +469,7 @@ NNS_G3dResDefaultSetup(void* pResData)
 
                 if (szPltt > 0)
                 {
-                    // ���݂���΃e�N�X�`���p���b�g�X���b�g�Ɋm��
+                    // 存在すればテクスチャパレットスロットに確保
                     keyPltt = 
                         NNS_GfdAllocPlttVram(szPltt,
                                             tex->tex4x4Info.flag & NNS_G3D_RESPLTT_USEPLTT4,
@@ -486,7 +486,7 @@ NNS_G3dResDefaultSetup(void* pResData)
 
                 if (!sucTex || !sucTex4x4 || !sucPltt)
                 {
-                    // ���s���̃��[���o�b�N����
+                    // 失敗時のロールバック処理
                     int status;
 
                     if (sucPltt)
@@ -510,24 +510,24 @@ NNS_G3dResDefaultSetup(void* pResData)
                     return FALSE;
                 }
 
-                // �L�[�̃A�T�C��
+                // キーのアサイン
                 NNS_G3dTexSetTexKey(tex, keyTex, keyTex4x4);
                 NNS_G3dPlttSetPlttKey(tex, keyPltt);
 
-                // VRAM�ւ̃��[�h
+                // VRAMへのロード
                 NNS_G3dTexLoad(tex, TRUE);
                 NNS_G3dPlttLoad(tex, TRUE);
             }
 
             if (*(u32*)&binFile[0] == NNS_G3D_SIGNATURE_NSBMD)
             {
-                // NSBMD�̏ꍇ�͑S�Ẵ��f�����o�C���h����
+                // NSBMDの場合は全てのモデルをバインドする
                 NNSG3dResMdlSet* mdlSet = NNS_G3dGetMdlSet((NNSG3dResFileHeader*) pResData);
                 NNS_G3D_NULL_ASSERT(mdlSet);
 
                 if (tex)
                 {
-                    // ���f���Z�b�g�̃o�C���h
+                    // モデルセットのバインド
                     (void)NNS_G3dBindMdlSet(mdlSet, tex);
                 }
             }
@@ -553,20 +553,20 @@ NNS_G3dResDefaultSetup(void* pResData)
 /*---------------------------------------------------------------------------*
     NNS_G3dResDefaultRelease
 
-    G3D�̃��\�[�X*pData�̗̈���J������O�ɒʏ�s����������s���܂��B
-    �f�[�^�t�H�[�}�b�g�ɂ�蓮�삪���ƂȂ�܂��B
+    G3Dのリソース*pDataの領域を開放する前に通常行う操作を実行します。
+    データフォーマットにより動作がことなります。
 
-    .nsbmd�t�@�C���̏ꍇ
-        �E�e�N�X�`���ƃp���b�g�p�̗̈���J��
+    .nsbmdファイルの場合
+        ・テクスチャとパレット用の領域を開放
 
-    .nsbtx�t�@�C���̏ꍇ
-        �E�e�N�X�`���ƃp���b�g�p�̗̈���J��
+    .nsbtxファイルの場合
+        ・テクスチャとパレット用の領域を開放
 
-    ���̑�
-        �Ȃɂ����܂���B
+    その他
+        なにもしません。
 
     NOTICE:
-    pResData�̃������̈悻�̂��̂̉���̓��[�U�[���s���K�v������܂��B
+    pResDataのメモリ領域そのものの解放はユーザーが行う必要があります。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dResDefaultRelease(void* pResData)
@@ -587,7 +587,7 @@ NNS_G3dResDefaultRelease(void* pResData)
 
             if (tex)
             {
-                // �S�Ẵ��f���������[�X
+                // 全てのモデルをリリース
                 NNS_G3dReleaseMdlSet(mdlSet);
             }
         }
@@ -602,27 +602,27 @@ NNS_G3dResDefaultRelease(void* pResData)
 
             if (tex)
             {
-                // �L�[���e�N�X�`���u���b�N����؂藣��
+                // キーをテクスチャブロックから切り離す
                 plttKey   = NNS_G3dPlttReleasePlttKey(tex);
                 NNS_G3dTexReleaseTexKey(tex, &texKey, &tex4x4Key);
 
                 if (plttKey > 0)
                 {
-                    // �e�N�X�`���p���b�g�X���b�g���Ɋm�ۂ���Ă���Ή��
+                    // テクスチャパレットスロット内に確保されていれば解放
                     status = NNS_GfdFreePlttVram(plttKey);
                     NNS_G3D_ASSERTMSG(!status, "NNS_GfdFreePlttVram failed");
                 }
 
                 if (tex4x4Key > 0)
                 {
-                    // �e�N�X�`���C���[�W�X���b�g���Ɋm�ۂ���Ă���Ή��
+                    // テクスチャイメージスロット内に確保されていれば解放
                     status = NNS_GfdFreeTexVram(tex4x4Key);
                     NNS_G3D_ASSERTMSG(!status, "NNS_GfdFreeTexVram failed");
                 }
 
                 if (texKey > 0)
                 {
-                    // �e�N�X�`���C���[�W�X���b�g���Ɋm�ۂ���Ă���Ή��
+                    // テクスチャイメージスロット内に確保されていれば解放
                     status = NNS_GfdFreeTexVram(texKey);
                     NNS_G3D_ASSERTMSG(!status, "NNS_GfdFreeTexVram failed");
                 }
@@ -646,18 +646,18 @@ NNS_G3dResDefaultRelease(void* pResData)
 /*---------------------------------------------------------------------------*
     NNS_G3dLocalOriginToScrPos
 
-    ���[�J�����W�n�̌��_�̃X�N���[����̈ʒu�����߂�B
-    �J�����g�ʒu���W�s��ƃJ�����g�ˉe�s�񂪓K�؂ɐݒ肳��Ă���K�v������܂��B
+    ローカル座標系の原点のスクリーン上の位置を求める。
+    カレント位置座標行列とカレント射影行列が適切に設定されている必要があります。
 
-    �Ԃ�l��0�Ȃ��*px, *py�ɃX�N���[����̍��W���i�[����Ă��܂��B
-    �Ԃ�l��-1�Ȃ�Ή�ʊO�ł����A*px, *py�ɕ����̖ڈ��ƂȂ���W���i�[����Ă��܂��B
+    返り値が0ならば*px, *pyにスクリーン上の座標が格納されています。
+    返り値が-1ならば画面外ですが、*px, *pyに方向の目安となる座標が格納されています。
  *---------------------------------------------------------------------------*/
 int
 NNS_G3dLocalOriginToScrPos(int* px, int* py)
 {
-    // �J�����g�ʒu���W�s��ƃJ�����g�ˉe�ϊ��s��ŁA
-    // ���[�J�����W�n����N���b�v���W�n�ւ̕ϊ����ł���悤��
-    // �ݒ肵�Ă���Ăяo���B
+    // カレント位置座標行列とカレント射影変換行列で、
+    // ローカル座標系からクリップ座標系への変換ができるように
+    // 設定してから呼び出す。
     
     VecFx32 vec;
     fx32 w;
@@ -669,7 +669,7 @@ NNS_G3dLocalOriginToScrPos(int* px, int* py)
     NNS_G3D_NULL_ASSERT(px);
     NNS_G3D_NULL_ASSERT(py);
 
-    // ���[�J�����W(0, 0, 0)�ɑ΂���N���b�v���W�����߂�B
+    // ローカル座標(0, 0, 0)に対するクリップ座標を求める。
     NNS_G3dGePositionTest(0, 0, 0);
     NNS_G3dGeFlushBuffer();
     while(G3X_GetPositionTestResult(&vec, &w))
@@ -677,14 +677,14 @@ NNS_G3dLocalOriginToScrPos(int* px, int* py)
 
     invW = FX_InvFx64c(w);
 
-    // ���K���X�N���[�����W�n�ɕϊ�
+    // 正規化スクリーン座標系に変換
     vec.x = (FX_Mul32x64c(vec.x, invW) + FX32_ONE) / 2;
     vec.y = (FX_Mul32x64c(vec.y, invW) + FX32_ONE) / 2;
 
-    // ���[�J�����W�̌��_�����K���X�N���[�����W�n�ɕϊ�����Ă���
+    // ローカル座標の原点が正規化スクリーン座標系に変換されている
     if (vec.x < 0 || vec.y < 0 || vec.x > FX32_ONE || vec.y > FX32_ONE)
     {
-        // ��ʊO�̏ꍇ
+        // 画面外の場合
         rval = -1;
     }
     else
@@ -696,8 +696,8 @@ NNS_G3dLocalOriginToScrPos(int* px, int* py)
     dx = x2 - x1;
     dy = y2 - y1;
 
-    // �X��BG�X�N���[�����W�n�ɕϊ�
-    // BG�̐����ړ����������Ă���ꍇ�́A�X�Ɍ��ʂ�␳����K�v������B
+    // 更にBGスクリーン座標系に変換
+    // BGの水平移動等をさせている場合は、更に結果を補正する必要がある。
     *px = x1 + ((vec.x * dx + FX32_HALF) >> FX32_SHIFT);
     *py = 191 - y1 - ((vec.y * dy + FX32_HALF) >> FX32_SHIFT);
 
@@ -709,17 +709,17 @@ NNS_G3dLocalOriginToScrPos(int* px, int* py)
 /*---------------------------------------------------------------------------*
     NNS_G3dWorldPosToScrPos
 
-    ���[���h���W����X�N���[����̈ʒu�����߂�B
-    NNS_G3dGlb�\���̂ɃJ�����s��Ǝˉe�s�񂪐ݒ肳��Ă���K�v������܂��B
+    ワールド座標からスクリーン上の位置を求める。
+    NNS_G3dGlb構造体にカメラ行列と射影行列が設定されている必要があります。
 
-    �Ԃ�l��0�Ȃ��*px, *py�ɃX�N���[����̍��W���i�[����Ă��܂��B
-    �Ԃ�l��-1�Ȃ�Ή�ʊO�ł����A*px, *py�ɕ����̖ڈ��ƂȂ���W���i�[����Ă��܂��B
+    返り値が0ならば*px, *pyにスクリーン上の座標が格納されています。
+    返り値が-1ならば画面外ですが、*px, *pyに方向の目安となる座標が格納されています。
  *---------------------------------------------------------------------------*/
 int
 NNS_G3dWorldPosToScrPos(const VecFx32* pWorld, int* px, int* py)
 {
-    // ���͂̃��[���h���W�Ƀr���[�C���O�ϊ���
-    // �ˉe�ϊ���������
+    // 入力のワールド座標にビューイング変換と
+    // 射影変換をかける
 
     const MtxFx44* proj;
     const MtxFx43* camera;
@@ -759,14 +759,14 @@ NNS_G3dWorldPosToScrPos(const VecFx32* pWorld, int* px, int* py)
 
     invW = FX_GetInvResultFx64c();
 
-    // ���K���X�N���[�����W�n�ɕϊ�
+    // 正規化スクリーン座標系に変換
     vec.x = (FX_Mul32x64c(vec.x, invW) + FX32_ONE) / 2;
     vec.y = (FX_Mul32x64c(vec.y, invW) + FX32_ONE) / 2;
 
-    // ���[�J�����W�̌��_�����K���X�N���[�����W�n�ɕϊ�����Ă���
+    // ローカル座標の原点が正規化スクリーン座標系に変換されている
     if (vec.x < 0 || vec.y < 0 || vec.x > FX32_ONE || vec.y > FX32_ONE)
     {
-        // ��ʊO�̏ꍇ
+        // 画面外の場合
         rval = -1;
     }
     else
@@ -778,8 +778,8 @@ NNS_G3dWorldPosToScrPos(const VecFx32* pWorld, int* px, int* py)
     dx = x2 - x1;
     dy = y2 - y1;
 
-    // �X��BG�X�N���[�����W�n�ɕϊ�
-    // BG�̐����ړ����������Ă���ꍇ�́A�X�Ɍ��ʂ�␳����K�v������B
+    // 更にBGスクリーン座標系に変換
+    // BGの水平移動等をさせている場合は、更に結果を補正する必要がある。
     *px = x1 + ((vec.x * dx + FX32_HALF) >> FX32_SHIFT);
     *py = 191 - y1 - ((vec.y * dy + FX32_HALF) >> FX32_SHIFT);
     
@@ -790,12 +790,12 @@ NNS_G3dWorldPosToScrPos(const VecFx32* pWorld, int* px, int* py)
 /*---------------------------------------------------------------------------*
     NNS_G3dScrPosToWorldLine
 
-    �X�N���[����̈ʒu�ɑΉ�����Near�N���b�v�ʂ�Far�N���b�v�ʏ�̓_��
-    ���[���h���W�n�ŕԂ��܂��B
-    pFar��NULL�̏ꍇ�́AFar�N���b�v�ʏ�̓_�̌v�Z�͏ȗ�����܂��B
+    スクリーン上の位置に対応するNearクリップ面とFarクリップ面上の点を
+    ワールド座標系で返します。
+    pFarがNULLの場合は、Farクリップ面上の点の計算は省略されます。
 
-    �Ԃ�l��0�Ȃ�΁A�X�N���[����̓_�̓r���[�|�[�g���ł��B
-    �Ԃ�l��-1�Ȃ�΁A�X�N���[����̓_�̓r���[�|�[�g�O�ł��B
+    返り値が0ならば、スクリーン上の点はビューポート内です。
+    返り値が-1ならば、スクリーン上の点はビューポート外です。
  *---------------------------------------------------------------------------*/
 int
 NNS_G3dScrPosToWorldLine(int px, int py, VecFx32* pNear, VecFx32* pFar)
@@ -811,7 +811,7 @@ NNS_G3dScrPosToWorldLine(int px, int py, VecFx32* pNear, VecFx32* pFar)
 
     NNS_G3D_NULL_ASSERT(pNear);
 
-    // �a�f�X�N���[�����W�n���琳�K���X�N���[�����W�n�ɕϊ�
+    // ＢＧスクリーン座標系から正規化スクリーン座標系に変換
     NNS_G3dGlbGetViewPort(&x1, &y1, &x2, &y2);
     dx = x2 - x1;
     dy = y2 - y1;
@@ -828,16 +828,16 @@ NNS_G3dScrPosToWorldLine(int px, int py, VecFx32* pNear, VecFx32* pFar)
         rval = 0;
     }
 
-    // +-1�̗����̂ɂȂ�B
+    // +-1の立方体になる。
     x = (x - FX32_HALF) * 2;
     y = (y - FX32_HALF) * 2;
 
-    // �ˉe�s��ƃJ�����s����������s��̋t�s����擾����B
+    // 射影行列とカメラ行列をかけた行列の逆行列を取得する。
     m = NNS_G3dGlbGetInvVP();
 
-    // NEAR�ʏ�̓_��(x, y, -FX32_ONE, FX32_ONE)
-    // FAR�ʏ�̓_�� (x, y,  FX32_ONE, FX32_ONE)
-    // �t�s��������ă��[���h���W�n�ł̓_�����߂�B
+    // NEAR面上の点は(x, y, -FX32_ONE, FX32_ONE)
+    // FAR面上の点は (x, y,  FX32_ONE, FX32_ONE)
+    // 逆行列をかけてワールド座標系での点を求める。
     wNear   = m->_33 + (fx32)(((fx64)x * m->_03 + (fx64)y * m->_13) >> FX32_SHIFT);
     FX_InvAsync(wNear - m->_23);
 

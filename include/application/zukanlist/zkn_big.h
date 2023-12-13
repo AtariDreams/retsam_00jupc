@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_big.h
- *	@brief		‘å‚«‚³‚­‚ç‚×‰æ–Ê
+ *	@brief		å¤§ãã•ãã‚‰ã¹ç”»é¢
  *	@author		tomoya takahashi	
  *	@data		2006.01.21
  *
@@ -22,19 +22,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_BigAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap );
@@ -43,7 +43,7 @@ GLOBAL void ZKN_BigAplDelete( ZKN_APL_DATA* p_data );
 
 
 #ifdef PM_DEBUG
-// }ŠÓ‘å‚«‚³‚­‚ç‚×ƒfƒoƒbƒN—p
+// å›³é‘‘å¤§ãã•ãã‚‰ã¹ãƒ‡ãƒãƒƒã‚¯ç”¨
 GLOBAL void ZKN_BigAplPokeGraScaleSet( ZKN_APL_DATA* p_data, short scale );
 GLOBAL void ZKN_BigAplHeroGraScaleSet( ZKN_APL_DATA* p_data, short scale );
 GLOBAL void ZKN_BigAplPokeGraYofsSet( ZKN_APL_DATA* p_data, short yofs );

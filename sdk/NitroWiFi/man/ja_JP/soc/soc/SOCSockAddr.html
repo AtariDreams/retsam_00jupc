@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SOCSockAddr</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">SOCSockAddr</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
@@ -27,14 +27,14 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p><code>SOCSockAddr</code> �̓\�P�b�g�A�h���X��\�����邽�߂̔ėp�f�[�^�^�ł��B�\�P�b�g�A�h���X�\���̂������Ƃ��Ċ֐��ɓn���Ƃ��ɂ́A<code>len</code> 
-�v�f��<code>sizeof(SOCSockAddr)</code> �ɐݒ肵�Ă��������B</p>
+<p><code>SOCSockAddr</code> はソケットアドレスを表現するための汎用データ型です。ソケットアドレス構造体を引数として関数に渡すときには、<code>len</code> 
+要素は<code>sizeof(SOCSockAddr)</code> に設定してください。</p>
 
-<p><strong><em>����</em></strong>�FDS�\�P�b�g���C�u�����ł̓\�P�b�g�A�h���X�\���̂̑傫�����֐��̈����ɂƂ�܂���B</p>
+<p><strong><em>注意</em></strong>：DSソケットライブラリではソケットアドレス構造体の大きさを関数の引数にとりません。</p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 
 <p>
 <code><a href="SOC_Bind.html">SOC_Bind</a></code>,
@@ -44,8 +44,8 @@
 <code><a href="SOCInAddr.html">SOCInAddr</a></code>,
 <code><a href="SOCSockAddrIn.html">SOCSockAddrIn</a></code>
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/09/13 ����</P>
+2005/09/13 初版</P>
 </body>
 </html>

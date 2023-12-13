@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SOC_Read, SOC_Recv, SOC_RecvFrom</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">SOC_Read<br>SOC_Recv<br>SOC_RecvFrom</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
@@ -22,88 +22,88 @@ int SOC_RecvFrom ( int <em><strong>s</strong></em>, void* <em><strong>buf</stron
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table width="100%">
   <tr>
     <td valign="top"><code><em><strong>s</strong></em></code></td>
-    <td>�\�P�b�g�L�q�q�B</td>
+    <td>ソケット記述子。</td>
   </tr>
   <tr>
     <td valign="top"><code><em><strong>buf</strong></em></code></td>
-    <td>��M�o�b�t�@�ւ̃|�C���^�B</td>
+    <td>受信バッファへのポインタ。</td>
   </tr>
   <tr>
     <td valign="top"><code><em><strong>len</strong></em></code></td>
-    <td>��M�o�b�t�@�̒���(�o�C�g)�B</td>
+    <td>受信バッファの長さ(バイト)。</td>
   </tr>
   <tr>
     <td valign="top"><code><em><strong>flags</strong></em></code></td>
-    <td>���b�Z�[�W�̎�M��Ԃ��w�肵�܂��B<code><em><strong>flags</strong></em></code>�́A0���ȉ��̒l�̘_��OR���Ƃ������̂ł��B<table width="100%">
+    <td>メッセージの受信状態を指定します。<code><em><strong>flags</strong></em></code>は、0か以下の値の論理ORをとったものです。<table width="100%">
       <tr>
         <td><code>SOC_MSG_PEEK</code> </td>
-        <td>���B���b�Z�[�W���s�[�N���܂��B�f�[�^�͖��Ǎ��Ƃ��Ĉ����A����<code>SOC_Recv()</code>�܂��͓��l�̊֐��́A���̃f�[�^��Ԃ��܂��B </td>
+        <td>到達メッセージをピークします。データは未読込として扱われ、次の<code>SOC_Recv()</code>または同様の関数は、このデータを返します。 </td>
       </tr>
       <tr>
         <td><code>SOC_MSG_DONTWAIT</code></td>
-        <td>�񕕍��������s�Ȃ��܂��B�f�[�^���Ȃ����<code>SOC_EWOULDBLOCK</code>��Ԃ��܂��B</td>
+        <td>非封鎖処理を行ないます。データがなければ<code>SOC_EWOULDBLOCK</code>を返します。</td>
       </tr>
     </table>
     </td>
   </tr>
   <tr>
     <td valign="top"><code><em><strong>sockFrom</strong></em></code></td>
-    <td>�ʐM����̖��O(�A�h���X)���擾���邽�߂̃\�P�b�g�A�h���X�\����(<code><a href="SOCSockAddr.html">SOCSockAddr</a>,<a href="SOCSockAddrIn.html">SOCSockAddrIn</a></code>)�ւ̃|�C���^�B<br>
-�\�P�b�g�A�h���X��<code>len</code>�t�B�[���h�͓K�؂ɏ��������Ă��������B(�� <code>sizeof(SOCSockAddrIn)</code>)</td>
+    <td>通信相手の名前(アドレス)を取得するためのソケットアドレス構造体(<code><a href="SOCSockAddr.html">SOCSockAddr</a>,<a href="SOCSockAddrIn.html">SOCSockAddrIn</a></code>)へのポインタ。<br>
+ソケットアドレスの<code>len</code>フィールドは適切に初期化してください。(例 <code>sizeof(SOCSockAddrIn)</code>)</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 
 <table width="100%">
   <tr>
-    <td>0�ȏ�</td>
-    <td>��M�������b�Z�[�W�̃o�C�g���B</td>
+    <td>0以上</td>
+    <td>受信したメッセージのバイト数。</td>
   </tr>
   <tr>
     <td><code>SOC_EINVAL</code></td>
-    <td>�����ȏ����B(SSL�̓u���b�L���O�Ăяo�������T�|�[�g���܂���A�u���b�L���O�Ăяo���͊��荞�݃n���h�����ł͌Ăяo���܂���A�Ȃ�)</td>
+    <td>無効な処理。(SSLはブロッキング呼び出ししかサポートしません、ブロッキング呼び出しは割り込みハンドラ内では呼び出せません、など)</td>
   </tr>
   <tr>
     <td><code>SOC_ENETRESET</code></td>
-    <td>�\�P�b�g���C�u����������������Ă��܂���B</td>
+    <td>ソケットライブラリが初期化されていません。</td>
   </tr>
   <tr>
     <td><code>SOC_ENOTCONN</code></td>
-    <td>�ڑ�����Ă��܂���B</td>
+    <td>接続されていません。</td>
   </tr>
   <tr>
     <td> <code>SOC_EWOULDBLOCK</code></td>
-    <td>�v����������͕������Ȃ��Ǝ��s�ł��܂���B(<code>SOC_O_NONBLOCK</code> ���\�P�b�g�L�q�q�ɐݒ肳��Ă���(��������<code>SOC_MSG_DONTWAIT</code>�t���O���w�肳��Ă���)�A��M��҂f�[�^�������͑ш�O�f�[�^������܂���B)</td>
+    <td>要求した操作は封鎖しないと実行できません。(<code>SOC_O_NONBLOCK</code> がソケット記述子に設定されていて(もしくは<code>SOC_MSG_DONTWAIT</code>フラグが指定されていて)、受信を待つデータもしくは帯域外データがありません。)</td>
   </tr>
 </table>
 
-<p><strong><em>����</em></strong>�F�ǉ��̃G���[������̃��C�u���������[�X�Ő�������Ԃ���邱�Ƃ�����܂��B���ׂĂ̕��̕Ԃ�l�͔ėp�̃G���[�Ƃ��Ĉ����Ă��������B</p>
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p><code>SOC_Read(), SOC_Recv(), SOC_RecvFrom() </code>�́A�\�P�b�g�̑��肩��<code><em><strong>len</strong></em></code>�o�C�g�̓ǂݍ��݂����݂܂��B </p>
+<p><code>SOC_Read(), SOC_Recv(), SOC_RecvFrom() </code>は、ソケットの相手から<code><em><strong>len</strong></em></code>バイトの読み込みを試みます。 </p>
 
-<p><code>SOC_Read()</code> �� <code><em><strong>flags</strong></em></code> ��ݒ肵�Ȃ��ȊO�� <code>SOC_Recv()</code> 
-�Ɠ����ł��B </p>
+<p><code>SOC_Read()</code> は <code><em><strong>flags</strong></em></code> を設定しない以外は <code>SOC_Recv()</code> 
+と同等です。 </p>
 <p><code>SOC_Read(), SOC_Recv(), SOC_RecvFrom() </code>
-�́A<code><a href="SOC_Fcntl.html">SOC_Fcntl()</a></code>�֐��Ń\�P�b�g�L�q�q��񕕍����[�h�ɐݒ肵�Ă��Ȃ�����(��������<code>SOC_MSG_DONTWAIT</code>�t���O���w�肳��Ȃ�����)�A�\�P�b�g�̎�M�o�b�t�@�Ƀ��b�Z�[�W���Ȃ���΃��b�Z�[�W���͂��܂Ńu���b�N���܂��B</p>
-<p> <code>SOC_SOCK_DGRAM</code>�̃\�P�b�g�ł́A���b�Z�[�W�S�̂��P�ꏈ���œǂ܂�܂��B���b�Z�[�W���^����ꂽ�o�b�t�@�Ɏ��܂�Ȃ���΁A���߂����o�C�g�͎̂ċ����܂��B<code>SOC_SOCK_STREAM</code>�̃\�P�b�g�ł́A���b�Z�[�W���E�͖�������܂��B���̏ꍇ�A�f�[�^�͗��p�\�ɂȂ莟�惆�[�U�[�֕Ԃ�܂��B</p>
+は、<code><a href="SOC_Fcntl.html">SOC_Fcntl()</a></code>関数でソケット記述子を非封鎖モードに設定していない限り(もしくは<code>SOC_MSG_DONTWAIT</code>フラグが指定されない限り)、ソケットの受信バッファにメッセージがなければメッセージが届くまでブロックします。</p>
+<p> <code>SOC_SOCK_DGRAM</code>のソケットでは、メッセージ全体が単一処理で読まれます。メッセージが与えられたバッファに収まらなければ、超過したバイトは捨て去られます。<code>SOC_SOCK_STREAM</code>のソケットでは、メッセージ境界は無視されます。この場合、データは利用可能になり次第ユーザーへ返ります。</p>
 
-<p><strong><em>����</em></strong>�FTCP�R�l�N�V�������N���[�Y���ꂽ��ł��Ԃ�l��0�ƂȂ�܂��B�����POSIX�ɋK�肳���d�l�ɏ����Ă��܂��B</p>
+<p><strong><em>注意</em></strong>：TCPコネクションがクローズされた後でも返り値は0となります。これはPOSIXに規定される仕様に準じています。</p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 
 <p>
 <code><a href="SOCSockAddr.html">SOCSockAddr</a></code>,
 <code><a href="SOC_Fcntl.html">SOC_Fcntl</a></code>
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/12/12 �����̋L�q�ύX<BR>
-2005/09/13 ����</P>
+2005/12/12 説明の記述変更<BR>
+2005/09/13 初版</P>
 </body>
 </html>

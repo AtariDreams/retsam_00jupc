@@ -1,6 +1,6 @@
 /**
  *	@file	porucase.c
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@ƒvƒƒZƒXƒƒCƒ“
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€ãƒ—ãƒ­ã‚»ã‚¹ãƒ¡ã‚¤ãƒ³
  *	@author	Miyuki Iwasawa
  *	@date	06.03.11
  */
@@ -35,7 +35,7 @@
 #include "poru_gra.naix"
 
 //===========================================
-//ƒvƒƒgƒ^ƒCƒv
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //===========================================
 PROC_RESULT PoruCase_Init(PROC* proc,int* seq);
 PROC_RESULT PoruCase_Main(PROC* proc,int* seq);
@@ -77,10 +77,10 @@ static const PCaseSubFunc caseMainFunc[] = {
 };
 
 //=========================================================
-//ƒvƒƒZƒX’è‹`
+//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©
 //=========================================================
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹å‘¼ã³å‡ºã—
  */
 PROC_RESULT PoruCase_Init(PROC* proc,int* seq)
 {
@@ -89,7 +89,7 @@ PROC_RESULT PoruCase_Init(PROC* proc,int* seq)
 
 	HeapStatePush();
 
-	//ƒq[ƒvì¬
+	//ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_PORUTO_CASE,0x20000);
 	
 	wk = PROC_AllocWork(proc,sizeof(PORU_CASE_WORK),HEAPID_PORUTO_CASE);
@@ -97,14 +97,14 @@ PROC_RESULT PoruCase_Init(PROC* proc,int* seq)
 
 	wk->heapID = HEAPID_PORUTO_CASE;
 	wk->param = pp;
-	wk->viewMode = pp->ret_view;	//PVIEW_SPICY;//PVIEW_ALL;	///‰‚ß‚Í‘S•”
-	wk->tp_f = BACT_ST_INI;		///‰Šúó‘Ô
+	wk->viewMode = pp->ret_view;	//PVIEW_SPICY;//PVIEW_ALL;	///åˆã‚ã¯å…¨éƒ¨
+	wk->tp_f = BACT_ST_INI;		///åˆæœŸçŠ¶æ…‹
 
 	return PROC_RES_FINISH;
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXƒƒCƒ“
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ãƒ¡ã‚¤ãƒ³
  */
 PROC_RESULT PoruCase_Main(PROC* proc,int* seq)
 {
@@ -117,20 +117,20 @@ PROC_RESULT PoruCase_Main(PROC* proc,int* seq)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXI—¹
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹çµ‚äº†
  */
 PROC_RESULT PoruCase_End(PROC* proc,int* seq)
 {
 	PORU_CASE_WORK* wk = (PORU_CASE_WORK*)PROC_GetWork(proc);
 
-	//ãˆÊƒ[ƒN‚Ö–ß‚è’l‚ðŠi”[
+	//ä¸Šä½ãƒ¯ãƒ¼ã‚¯ã¸æˆ»ã‚Šå€¤ã‚’æ ¼ç´
 	wk->param->selID = wk->selectID;
 	wk->param->ret_mode = wk->ret_mode;
 	wk->param->ret_view = wk->viewMode;
 	wk->param->listPos = wk->listPos;
 	wk->param->curPos = wk->curPos;
 	
-	//ƒ[ƒN‰ð•ú
+	//ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	PROC_FreeWork(proc);
 	
 	HeapStatePop();
@@ -142,15 +142,15 @@ PROC_RESULT PoruCase_End(PROC* proc,int* seq)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXƒƒCƒ“
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ãƒ¡ã‚¤ãƒ³
  */
 static int PoruCaseMain(PORU_CASE_WORK* wk)
 {
 	switch(wk->seq){
 	case 0:
-		//BlankŠÖ”ƒŠƒZƒbƒg
+		//Blanké–¢æ•°ãƒªã‚»ãƒƒãƒˆ
 		sys_VBlankFuncChange(NULL, NULL);
-		sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -161,7 +161,7 @@ static int PoruCaseMain(PORU_CASE_WORK* wk)
 		WIPE_ResetWndMask(WIPE_DISP_MAIN);
 		WIPE_ResetWndMask(WIPE_DISP_SUB);
 
-		//ƒ^ƒbƒ`ƒpƒlƒ‹‰Šú‰»
+		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆæœŸåŒ–
 		InitTPSystem();
 		InitTPNoBuff(4);
 		break;
@@ -205,7 +205,7 @@ static int PoruCaseMain(PORU_CASE_WORK* wk)
 		}
 		break;
 	case 6:
-		//ƒ^ƒbƒ`ƒpƒlƒ‹I—¹
+		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµ‚äº†
 		StopTP();
 
 		WIPE_SetBrightness(WIPE_DISP_MAIN,WIPE_FADE_BLACK);
@@ -224,28 +224,28 @@ static int PoruCaseMain(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXVBlankŠÖ”
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹VBlanké–¢æ•°
  */
 static void PoruCaseVBlank(void* work)
 {
 	PORU_CASE_WORK* wk = (PORU_CASE_WORK*)work;
 
-	//ƒAƒNƒ^[“]‘—
+	//ã‚¢ã‚¯ã‚¿ãƒ¼è»¢é€
 	if(wk->pActSys != NULL){
 		CATS_RenderOamTrans();
 	}
 
 	DoVramTransferManager();
-//	NNS_GfdDoVramTransfer();	//VRam“]‘—ƒ}ƒl[ƒWƒƒŽÀs
+//	NNS_GfdDoVramTransfer();	//VRamè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£å®Ÿè¡Œ
 	GF_BGL_VBlankFunc( wk->bgl );
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK);
 }
 
 //======================================================
-//ƒL[Žæ“¾ƒTƒuƒvƒƒZƒX
+//ã‚­ãƒ¼å–å¾—ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹
 
 /**
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹ƒ`ƒFƒbƒN
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒã‚§ãƒƒã‚¯
  */
 static int PoruCase_TPCheck(PORU_CASE_WORK* wk)
 {
@@ -276,7 +276,7 @@ static int PoruCase_TPCheck(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒg‘I‘ðƒ‚[ƒhƒƒCƒ“
+ *	@brief	ãƒãƒ«ãƒˆé¸æŠžãƒ¢ãƒ¼ãƒ‰ãƒ¡ã‚¤ãƒ³
  */
 static int PoruCaseMode_SelectPoruto(PORU_CASE_WORK* wk)
 {
@@ -285,12 +285,12 @@ static int PoruCaseMode_SelectPoruto(PORU_CASE_WORK* wk)
 	if(wk->plist_wk == NULL){
 		return 0;
 	}
-		//ƒ^ƒbƒ`ƒpƒlƒ‹ƒ`ƒFƒbƒN
+		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒã‚§ãƒƒã‚¯
 	tp_ret = PoruCase_TPCheck(wk);
 	
 	if(sys.cont != 0){
 		if(wk->tp_f == BACT_ST_NULL){
-			//ƒ^ƒbƒ`ƒpƒlƒ‹ƒAƒjƒ’†‚Å‚È‚¯‚ê‚Î’ÊíƒL[ƒ`ƒFƒbƒN
+			//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚¢ãƒ‹ãƒ¡ä¸­ã§ãªã‘ã‚Œã°é€šå¸¸ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
 			ret_code = BmpListMain(wk->plist_wk);
 		}
 	}else{
@@ -333,16 +333,16 @@ static int PoruCaseMode_SelectPoruto(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	“®ìƒ‚[ƒh‰Šú‰»ƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¢ãƒ¼ãƒ‰åˆæœŸåŒ–ãƒ¡ã‚¤ãƒ³
  */
 static int PoruCaseMode_MenuInit(PORU_CASE_WORK* wk)
 {
 	u32	ret_code;
 
-	//ƒJ[ƒ\ƒ‹‚ÌF‚ðŠDF‚É•Ï‚¦‚é
+	//ã‚«ãƒ¼ã‚½ãƒ«ã®è‰²ã‚’ç°è‰²ã«å¤‰ãˆã‚‹
 	NAct_CursorChg(wk,TRUE);
 	
-	//ƒƒjƒ…[ƒŠƒXƒgì¬&•\Ž¦
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆä½œæˆ&è¡¨ç¤º
 	MenuList_Create(wk);
 	wk->selMode = PCASE_MODE_MSELWAIT; 
 
@@ -350,7 +350,7 @@ static int PoruCaseMode_MenuInit(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	“®ìƒ‚[ƒh‘I‘ðƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¢ãƒ¼ãƒ‰é¸æŠžãƒ¡ã‚¤ãƒ³
  */
 static int PoruCaseMode_MenuWait(PORU_CASE_WORK* wk)
 {
@@ -394,7 +394,7 @@ static int PoruCaseMode_MenuWait(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒg‚ðŽÌ‚Ä‚Ü‚·‚©ƒƒbƒZ[ƒW•`‰æ‘Ò‚¿
+ *	@brief	ãƒãƒ«ãƒˆã‚’æ¨ã¦ã¾ã™ã‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»å¾…ã¡
  */
 static int PoruCaseMode_YNSet(PORU_CASE_WORK* wk)
 {
@@ -407,18 +407,18 @@ static int PoruCaseMode_YNSet(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒg‚ðŽÌ‚Ä‚é‘I‘ð‘Ò‚¿
+ *	@brief	ãƒãƒ«ãƒˆã‚’æ¨ã¦ã‚‹é¸æŠžå¾…ã¡
  */
 static int PoruCaseMode_YNWait(PORU_CASE_WORK* wk)
 {
-	//ƒ|ƒ‹ƒg‚ðŽÌ‚Ä‚Ü‚·‚©H
+	//ãƒãƒ«ãƒˆã‚’æ¨ã¦ã¾ã™ã‹ï¼Ÿ
 	switch( BmpYesNoSelectMain( wk->ynmenu_wk, wk->heapID) ){
-	case 0:	//ŽÌ‚Ä‚é
+	case 0:	//æ¨ã¦ã‚‹
 		Snd_SePlay(PORUC_SE_DECIDE);
 		YesNoList_DelMsgSet(wk);
 		wk->selMode = PCASE_MODE_DEL; 
 		return FALSE;
-	case BMPMENU_CANCEL: //ŽÌ‚Ä‚È‚¢
+	case BMPMENU_CANCEL: //æ¨ã¦ãªã„
 		Snd_SePlay(PORUC_SE_DECIDE);
 		BmpTalkWinClear( &wk->win[WIN_MSG], WINDOW_TRANS_ON);		
 		wk->selMode = PCASE_MODE_MSEL; 
@@ -428,7 +428,7 @@ static int PoruCaseMode_YNWait(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒg‚ðŽÌ‚Ä‚éƒƒbƒZ[ƒW‘Ò‚¿
+ *	@brief	ãƒãƒ«ãƒˆã‚’æ¨ã¦ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
  */
 static int PoruCaseMode_Del(PORU_CASE_WORK* wk)
 {
@@ -441,14 +441,14 @@ static int PoruCaseMode_Del(PORU_CASE_WORK* wk)
 	BmpTalkWinClear( &wk->win[WIN_MSG], WINDOW_TRANS_OFF);		
 	GF_BGL_BmpWinOff(&wk->win[WIN_MSG]);
 
-	//‘I‘ð‚µ‚½ƒ|ƒ‹ƒg‚Ìíœƒtƒ‰ƒO‚ðOn
+	//é¸æŠžã—ãŸãƒãƒ«ãƒˆã®å‰Šé™¤ãƒ•ãƒ©ã‚°ã‚’On
 	wk->param->list[wk->selectID].del = 1;
-	wk->param->ret_mode = 1;	//ƒŠƒXƒg‚ð‚Ð‚Æ‚Â‹l‚ß‚éƒtƒ‰ƒOon
-	//ƒŠƒXƒgÄ¶¬
+	wk->param->ret_mode = 1;	//ãƒªã‚¹ãƒˆã‚’ã²ã¨ã¤è©°ã‚ã‚‹ãƒ•ãƒ©ã‚°on
+	//ãƒªã‚¹ãƒˆå†ç”Ÿæˆ
 	PoruList_DeletePMenu(wk,FALSE);
 	PoruList_CreatePMenu(wk);
 
-	//ƒJ[ƒ\ƒ‹‚ÌF‚ð–ß‚·
+	//ã‚«ãƒ¼ã‚½ãƒ«ã®è‰²ã‚’æˆ»ã™
 	NAct_CursorChg(wk,FALSE);
 	wk->selMode = PCASE_MODE_PSEL;
 	return FALSE;
@@ -457,7 +457,7 @@ static int PoruCaseMode_Del(PORU_CASE_WORK* wk)
 //=========================================================
 //
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@ƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static int PoruCaseResInit(PORU_CASE_WORK* wk)
 {
@@ -490,7 +490,7 @@ static int PoruCaseResInit(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@ƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static int PoruCaseResRelease(PORU_CASE_WORK* wk)
 {
@@ -523,36 +523,36 @@ static int PoruCaseResRelease(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXVramBankÝ’è
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹VramBankè¨­å®š
  */
 static void PoruCase_VBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@BGL‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€BGLåˆæœŸåŒ–
  */
 static void PoruCase_BGLInit(PORU_CASE_WORK* wk)
 {
 	int i,frame;
 	
-	//VramBankƒZƒbƒg
+	//VramBankã‚»ãƒƒãƒˆ
 	PoruCase_VBankSet();
 
-	//BGL‰Šú‰»
+	//BGLåˆæœŸåŒ–
 	wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 	
 	{	//BG SYSTEM
@@ -574,7 +574,7 @@ static void PoruCase_BGLInit(PORU_CASE_WORK* wk)
 			1,0,0,FALSE},
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/15
-		// ƒJ[ƒ\ƒ‹‚ª•¶Žš‚Ì‰º‚É‚È‚ç‚È‚¢‚æ‚¤‚ÉA—Dæ“x‚ð•ÏX
+		// ã‚«ãƒ¼ã‚½ãƒ«ãŒæ–‡å­—ã®ä¸‹ã«ãªã‚‰ãªã„ã‚ˆã†ã«ã€å„ªå…ˆåº¦ã‚’å¤‰æ›´
 		{	//MAIN BG2
 			0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xe800,GX_BG_CHARBASE_0x10000,GX_BG_EXTPLTT_01,
@@ -604,7 +604,7 @@ static void PoruCase_BGLInit(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@BGL‰ð•ú
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€BGLè§£æ”¾
  */
 static void PoruCase_BGLRelease(PORU_CASE_WORK* wk)
 {
@@ -617,16 +617,16 @@ static void PoruCase_BGLRelease(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@BGƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€BGãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static void PoruCase_2DGraInit(PORU_CASE_WORK* wk)
 {
 	ARCHANDLE* handle;
 
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹Žæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«å–å¾—
 	handle = ArchiveDataHandleOpen(ARC_PORUTO_GRA,wk->heapID);
 
-	//ƒLƒƒƒ‰ƒNƒ^“]‘—
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,
 		handle,ARC_PORUTO_GRA,NARC_poru_gra_poru_bg_main_ncgr,
 		GF_BGL_FRAME0_M,0,0,0);
@@ -635,7 +635,7 @@ static void PoruCase_2DGraInit(PORU_CASE_WORK* wk)
 		handle,ARC_PORUTO_GRA,NARC_poru_gra_poru_bg_sub_ncgr,
 		GF_BGL_FRAME1_S,0,0,0);
 
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,
 		handle,ARC_PORUTO_GRA,NARC_poru_gra_poru_bg_nclr,
 		GF_BGL_FRAME0_M,2,0x20*0x0C,0);
@@ -643,7 +643,7 @@ static void PoruCase_2DGraInit(PORU_CASE_WORK* wk)
 		handle,ARC_PORUTO_GRA,NARC_poru_gra_poru_bg_nclr,
 		GF_BGL_FRAME0_S,2,0x20*0x0C,0);
 
-	//ƒXƒNƒŠ[ƒ““]‘—
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,
 		handle,ARC_PORUTO_GRA,NARC_poru_gra_poru_bg_main_nscr,
 		GF_BGL_FRAME3_M,1,0,0);
@@ -651,16 +651,16 @@ static void PoruCase_2DGraInit(PORU_CASE_WORK* wk)
 		handle,ARC_PORUTO_GRA,NARC_poru_gra_poru_bg_sub_nscr,
 		GF_BGL_FRAME1_S,1,0,0);
 
-	//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+	//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 	ArchiveDataHandleClose( handle );
 	
-	//ƒXƒNƒŠ[ƒ““]‘—
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	GF_BGL_LoadScreenV_Req(wk->bgl,GF_BGL_FRAME3_M);
 	GF_BGL_LoadScreenV_Req(wk->bgl,GF_BGL_FRAME1_S);
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@BGƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€BGãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static void PoruCase_2DGraRelease(PORU_CASE_WORK* wk)
 {
@@ -669,7 +669,7 @@ static void PoruCase_2DGraRelease(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX BMPWIN‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ BMPWINåˆæœŸåŒ–
  */
 static void PoruCase_BmpWinAdd(PORU_CASE_WORK* wk)
 {
@@ -714,14 +714,14 @@ static void PoruCase_BmpWinAdd(PORU_CASE_WORK* wk)
 	   BMPL_SW06_PAL,BMPL_SW06_CGX},
 	};
 	
-	//ƒEƒBƒ“ƒhƒE—pƒLƒƒƒ‰ƒNƒ^“]‘—
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	MenuWinGraphicSet(wk->bgl, BMPL_MENU_WIN_FRM,
 		BMPL_MENU_WIN_CGX, BMPL_MENU_WIN_PAL, MENU_TYPE_SYSTEM, wk->heapID);
 	TalkWinGraphicSet(wk->bgl,BMPL_TALK_WIN_FRM,
 		BMPL_TALK_WIN_CGX,BMPL_TALK_WIN_PAL,
 		CONFIG_GetWindowType(wk->param->configSave),wk->heapID);
 	
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE—pƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”¨ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	SystemFontPaletteLoad(PALTYPE_MAIN_BG,SYSFONT_PAL*32,wk->heapID);
 	TalkFontPaletteLoad(PALTYPE_MAIN_BG,MSGFONT_PAL*32,wk->heapID);
 	SystemFontPaletteLoad(PALTYPE_SUB_BG,BTNFONT_PAL*32,wk->heapID);
@@ -736,7 +736,7 @@ static void PoruCase_BmpWinAdd(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@BMPWIN‰ð•ú
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€BMPWINè§£æ”¾
  */
 static void PoruCase_BmpWinDel(PORU_CASE_WORK* wk)
 {
@@ -749,24 +749,24 @@ static void PoruCase_BmpWinDel(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŽæ“¾
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£å–å¾—
  */
 static void PoruCase_MsgManagerGet(PORU_CASE_WORK* wk)
 {
 	int i = 0;
 
-	//‚±‚±‚Åƒ{ƒ^ƒ“ƒtƒHƒ“ƒg‚à’Ç‰Á‚µ‚Ä‚¨‚­
+	//ã“ã“ã§ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã‚‚è¿½åŠ ã—ã¦ãŠã
 	FontProc_LoadFont( FONT_BUTTON, wk->heapID );	
 	
 	wk->msgMan = MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,
 			NARC_msg_poruto_select_dat,wk->heapID);
 	
-	//ƒ|ƒ‹ƒg–¼ƒ}ƒl[ƒWƒƒŽæ“¾
+	//ãƒãƒ«ãƒˆåãƒžãƒãƒ¼ã‚¸ãƒ£å–å¾—
 	wk->nameMan = PorutoName_CreateManager(wk->heapID);
 
 	wk->msgDat.wset = WORDSET_CreateEx(2,WORDSET_PORU_BUFLEN,wk->heapID);
 	
-	//ƒfƒtƒHƒ‹ƒg•¶Žš—ñŽæ“¾
+	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—åˆ—å–å¾—
 	wk->msgDat.tmp = STRBUF_Create(WORDSET_PORU_BUFLEN,wk->heapID);
 	wk->msgDat.endbuf = MSGMAN_AllocString(wk->msgMan,mes_p_select_04_02);
 	wk->msgDat.listbuf = MSGMAN_AllocString(wk->msgMan,msg_p_select_04_03);
@@ -783,12 +783,12 @@ static void PoruCase_MsgManagerGet(PORU_CASE_WORK* wk)
 		wk->msgDat.exbuf[i] = MSGMAN_AllocString(wk->msgMan,mes_p_select_08_01+i);
 	}
 
-	//ƒƒbƒZ[ƒWƒXƒs[ƒhŽæ“¾
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰å–å¾—
 	wk->msgDat.msg_spd = CONFIG_GetMsgPrintSpeed(wk->param->configSave);
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‰ð•ú
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£è§£æ”¾
  */
 static void PoruCase_MsgManagerRelease(PORU_CASE_WORK* wk)
 {
@@ -818,7 +818,7 @@ static void PoruCase_MsgManagerRelease(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@biref	ƒ|ƒ‹ƒgƒP[ƒX@ƒAƒNƒ^[‰Šú‰»
+ *	@biref	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  */
 static void PoruCase_MakeActor(PORU_CASE_WORK* wk)
 {
@@ -826,31 +826,31 @@ static void PoruCase_MakeActor(PORU_CASE_WORK* wk)
 	
 	static const TCATS_OBJECT_ADD_PARAM	ActAddParam[] =
 	{
-		{	// ƒJ[ƒ\ƒ‹
+		{	// ã‚«ãƒ¼ã‚½ãƒ«
 			0,	//ID
 			NACT_CUR_PX, NACT_CUR_PY, 0,	//x,y,z
 			NACT_CURSOR, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN,	//anmNO,pri,pal,d_area
 			0, 0, 0, 0	//prm1,prm2,prm3,prm4
 		},
-		{	// ã–îˆó 
+		{	// ä¸ŠçŸ¢å° 
 			0,	//ID
 			NACT_UP_PX, NACT_UP_PY, 0,	//x,y,z
 			NACT_UP, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN,	//anmNO,pri,pal,d_area
 			0, 0, 0, 0	//prm1,prm2,prm3,prm4
 		},
-		{	// ã–îˆó 
+		{	// ä¸ŠçŸ¢å° 
 			0,	//ID
 			NACT_DOWN_PX, NACT_DOWN_PY, 0,	//x,y,z
 			NACT_DOWN, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN,	//anmNO,pri,pal,d_area
 			0, 0, 0, 0	//prm1,prm2,prm3,prm4
 		},
-		{	// –¡ƒ}[ƒN 
+		{	// å‘³ãƒžãƒ¼ã‚¯ 
 			0,	//ID
 			10, 100, 0,	//x,y,z
 			3, 3, 1, NNS_G2D_VRAM_TYPE_2DMAIN,	//anmNO,pri,pal,d_area
 			0, 0, 0, 0	//prm1,prm2,prm3,prm4
 		},
-		{	// ƒ{ƒ^ƒ“ 
+		{	// ãƒœã‚¿ãƒ³ 
 			1,	//ID
 			10, 100, 0,	//x,y,z
 			0, 1, 2, NNS_G2D_VRAM_TYPE_2DSUB,	//anmNO,pri,pal,d_area
@@ -903,16 +903,16 @@ static void PoruCase_MakeActor(PORU_CASE_WORK* wk)
 		CATS_ObjectPosSet(wk->pActBtn[i],bmark[i].x,bmark[i].y);
 	}
 
-	//ƒ|ƒ‹ƒgOAM’Ç‰Á
+	//ãƒãƒ«ãƒˆOAMè¿½åŠ 
 	wk->pOam = PoruOam_Add(wk->poruMan,0,
 		231,76,0,1,0,PORUOAM_VT_MAIN);
 
-	//ˆê’U”ñ•\Ž¦
+	//ä¸€æ—¦éžè¡¨ç¤º
 	CATS_ObjectEnableCap(wk->pOam->act,FALSE);	
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX@ƒAƒNƒ^[íœ
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã€€ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  */
 static void PoruCase_DelActor(PORU_CASE_WORK* wk)
 {

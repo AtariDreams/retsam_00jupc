@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_map.c
- * @brief	ƒtƒƒ“ƒeƒBƒAƒ}ƒbƒv
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒžãƒƒãƒ—
  * @author	matsuda
- * @date	2007.04.05(–Ø)
+ * @date	2007.04.05(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -40,32 +40,32 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒ}ƒbƒv–ÊƒXƒNƒŠ[ƒ“ƒx[ƒX
+///ãƒžãƒƒãƒ—é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ™ãƒ¼ã‚¹
 #define MAPBG_SCRBASE		(GX_BG_SCRBASE_0x2800)
-///ƒ}ƒbƒv–ÊƒLƒƒƒ‰ƒNƒ^ƒx[ƒX
+///ãƒžãƒƒãƒ—é¢ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹
 #define MAPBG_CHARBASE		(GX_BG_CHARBASE_0x30000)
 
-///ƒGƒtƒFƒNƒg–Ê(‘½d–Ê)ƒXƒNƒŠ[ƒ“ƒx[ƒX
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢(å¤šé‡é¢)ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ™ãƒ¼ã‚¹
 #define EFFBG_SCRBASE		(GX_BG_SCRBASE_0x0800)
-///ƒGƒtƒFƒNƒg–Ê(‘½d–Ê)ƒLƒƒƒ‰ƒNƒ^ƒx[ƒX
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢(å¤šé‡é¢)ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹
 #define EFFBG_CHARBASE		(GX_BG_CHARBASE_0x20000)
 
-///ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[”
+///ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼æ•°
 #define FMAP_REQCMDQ_NUM		(128)
-///ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[”
+///ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼æ•°
 #define FMAP_ACTCMDQ_NUM		(128)
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€‰æ–Ê‚ð\¬‚·‚é‚½‚ß‚É•K—v‚ÈƒVƒXƒeƒ€ƒf[ƒ^—Þ‚ðŽ‚Â\‘¢‘Ì
+ * @brief   ã‚²ãƒ¼ãƒ ç”»é¢ã‚’æ§‹æˆã™ã‚‹ãŸã‚ã«å¿…è¦ãªã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿é¡žã‚’æŒã¤æ§‹é€ ä½“
  *
- * ’ÊMŽž‚Å‚à‘S‚Ä‚Ìƒ}ƒVƒ“‚ÅŒÂ•Ê‚Éì¬‚³‚ê‚Ü‚·
- * ŠeƒXƒ^ƒbƒt‚ª–½—ßŽóMŽžA‚»‚Ìƒ}ƒVƒ“ŒÂX‚Å¶¬‚µ‚½‚±‚Ìƒ[ƒNƒoƒbƒtƒ@‚ð“n‚·Ž–‚É‚È‚è‚Ü‚·
+ * é€šä¿¡æ™‚ã§ã‚‚å…¨ã¦ã®ãƒžã‚·ãƒ³ã§å€‹åˆ¥ã«ä½œæˆã•ã‚Œã¾ã™
+ * å„ã‚¹ã‚¿ãƒƒãƒ•ãŒå‘½ä»¤å—ä¿¡æ™‚ã€ãã®ãƒžã‚·ãƒ³å€‹ã€…ã§ç”Ÿæˆã—ãŸã“ã®ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’æ¸¡ã™äº‹ã«ãªã‚Šã¾ã™
  */
 //--------------------------------------------------------------
 #if 0
@@ -75,23 +75,23 @@ typedef struct{
 	GF_BGL_INI *bgl;
 //	GF_BGL_BMPWIN win[CONRES_BMPWIN_MAX];
 
-//	MSGDATA_MANAGER *conres_msg;	///<ƒ_ƒ“ƒX•”–åƒƒbƒZ[ƒW—pƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìƒ|ƒCƒ“ƒ^
+//	MSGDATA_MANAGER *conres_msg;	///<ãƒ€ãƒ³ã‚¹éƒ¨é–€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ãƒã‚¤ãƒ³ã‚¿
 //	WORDSET *wordset;
-//	STRBUF *msg_buf;				///<Alloc‚µ‚½•¶Žš—ñƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+//	STRBUF *msg_buf;				///<Allocã—ãŸæ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	PALETTE_FADE_PTR pfd;			///<ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	PALETTE_FADE_PTR pfd;			///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
 	FMAIN_PTR fmain;
 	
-	//2Dƒ}ƒbƒvƒVƒXƒeƒ€ƒ‚ƒWƒ…[ƒ‹
-	WF2DMAP_OBJSYS *objsys;		///<ƒIƒuƒWƒFƒNƒgŠÇ—ƒ‚ƒWƒ…[ƒ‹
+	//2Dãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+	WF2DMAP_OBJSYS *objsys;		///<ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	
 }FRMAP_SYSTEM_PARAM;
 #endif
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void FrontierMapVBlank(void *work);
 static void FrontierMapHBlank(void *work);
@@ -121,10 +121,10 @@ static void FrontierMapScroll_Easy(FMAP_PTR fmap);
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //==============================================================================
-//	CLACT—pƒf[ƒ^
+//	CLACTç”¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static	const TCATS_OAM_INIT MapTcats = {
 	FMAP_OAM_START_MAIN, FMAP_OAM_END_MAIN,
@@ -137,7 +137,7 @@ static	const TCATS_CHAR_MANAGER_MAKE MapCcmm = {
 	FMAP_CHAR_MAX,
 	FMAP_CHAR_VRAMSIZE_MAIN,
 	FMAP_CHAR_VRAMSIZE_SUB,
-	GX_OBJVRAMMODE_CHAR_1D_128K,	//l•¨OBJ‚ÌƒAƒjƒ‚ª128k‚È‚Ì‚ÅBVRAM‚Í64k‚µ‚©“–‚Ä‚Ä‚¢‚È‚¢‚Ì‚Ål•¨ƒAƒjƒ‚Ì64k”Å‚ª—pˆÓo—ˆ‚é‚Ì‚È‚ç‚ÎAƒ}ƒbƒsƒ“ƒO‚à64k‚É‚µ‚½•û‚ªŒ„ŠÔ–³‚­VRAM‚ðŽg‚¦‚é
+	GX_OBJVRAMMODE_CHAR_1D_128K,	//äººç‰©OBJã®ã‚¢ãƒ‹ãƒ¡ãŒ128kãªã®ã§ã€‚VRAMã¯64kã—ã‹å½“ã¦ã¦ã„ãªã„ã®ã§äººç‰©ã‚¢ãƒ‹ãƒ¡ã®64kç‰ˆãŒç”¨æ„å‡ºæ¥ã‚‹ã®ãªã‚‰ã°ã€ãƒžãƒƒãƒ”ãƒ³ã‚°ã‚‚64kã«ã—ãŸæ–¹ãŒéš™é–“ç„¡ãVRAMã‚’ä½¿ãˆã‚‹
 	GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
@@ -151,7 +151,7 @@ static const TCATS_RESOURCE_NUM_LIST MapResourceList = {
 };
 
 //--------------------------------------------------------------
-//	ƒ_ƒ~[ƒ}ƒbƒvƒf[ƒ^
+//	ãƒ€ãƒŸãƒ¼ãƒžãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 static const WF2DMAP_MAP DumyMap[MAP_GRID_MAX_X * MAP_GRID_MAX_Y] = {
 	0,
@@ -165,12 +165,12 @@ static const WF2DMAP_MAP DumyMap[MAP_GRID_MAX_X * MAP_GRID_MAX_Y] = {
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒ}ƒbƒvƒVƒXƒeƒ€‰Šú‰»
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 FMAP_PTR FrontierMap_Init(FMAIN_PTR fmain)
@@ -185,8 +185,8 @@ FMAP_PTR FrontierMap_Init(FMAIN_PTR fmain)
 	
 //	Overlay_Load(FS_OVERLAY_ID(frontier_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -203,8 +203,8 @@ FMAP_PTR FrontierMap_Init(FMAIN_PTR fmain)
 	MI_CpuClear8(fmap, sizeof(FRONTIERMAP_WORK));
 	fmap->fmain = fmain;
 	
-	//I—¹“®ìŠÖ”EndFunc‚ªŒÄ‚Î‚ê‚é‘O‚Éscene_id‚ª•Ï‚í‚éê‡‚ª‚ ‚é‚Ì‚Å‚±‚±‚Å‰Šú“®ìA
-	//I—¹“®ìŠÖ”ŒÄ‚Ño‚µ‚æ‚¤‚ÌƒV[ƒ“ID‚ð‹L‰¯
+	//çµ‚äº†å‹•ä½œé–¢æ•°EndFuncãŒå‘¼ã°ã‚Œã‚‹å‰ã«scene_idãŒå¤‰ã‚ã‚‹å ´åˆãŒã‚ã‚‹ã®ã§ã“ã“ã§åˆæœŸå‹•ä½œã€
+	//çµ‚äº†å‹•ä½œé–¢æ•°å‘¼ã³å‡ºã—ã‚ˆã†ã®ã‚·ãƒ¼ãƒ³IDã‚’è¨˜æ†¶
 	fmap->func_scene_id = scene_id;
 	
 	for(i = 0; i < ACTWORK_RESOURCE_MAX; i++){
@@ -213,14 +213,14 @@ FMAP_PTR FrontierMap_Init(FMAIN_PTR fmain)
 
 	fmap->g3Dman = Frontier_3D_Init(HEAPID_FRONTIERMAP);
 	
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	fmap->pfd = PaletteFadeInit(HEAPID_FRONTIERMAP);
 	PaletteTrans_AutoSet(fmap->pfd, TRUE);
 	PaletteFadeWorkAllocSet(fmap->pfd, FADE_MAIN_BG, 0x200, HEAPID_FRONTIERMAP);
 	PaletteFadeWorkAllocSet(fmap->pfd, FADE_SUB_BG, 0x200, HEAPID_FRONTIERMAP);
 	PaletteFadeWorkAllocSet(fmap->pfd, FADE_MAIN_OBJ, 0x200 - 0x40, HEAPID_FRONTIERMAP);
 	PaletteFadeWorkAllocSet(fmap->pfd, FADE_SUB_OBJ, 0x200, HEAPID_FRONTIERMAP);
-	//ƒtƒ@ƒNƒgƒŠ[‘Îí•”‰®‚Ì‰Šú“®ìŠÖ”‚ÅAFADE_MAIN_BG_EX3‚Ì’Ç‰Á‚ð‚µ‚Ä‚¢‚Ü‚·(07.11.27)(–¢Žg—p)
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å¯¾æˆ¦éƒ¨å±‹ã®åˆæœŸå‹•ä½œé–¢æ•°ã§ã€FADE_MAIN_BG_EX3ã®è¿½åŠ ã‚’ã—ã¦ã„ã¾ã™(07.11.27)(æœªä½¿ç”¨)
 
 	fmap->bgl = GF_BGL_BglIniAlloc(HEAPID_FRONTIERMAP);
 
@@ -228,24 +228,24 @@ FMAP_PTR FrontierMap_Init(FMAIN_PTR fmain)
 
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-	//VRAMŠ„‚è“–‚ÄÝ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	FrontierMap_VramBankSet(fmap->bgl, scene_id);
 
-	//BG“Ç‚Ýž‚Ý
+	//BGèª­ã¿è¾¼ã¿
 	SystemPaletteLoad(fmap);
 	SubDisp_BGSet(fmap);
 	
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€ì¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	ActorSysInit(fmap);
 
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	fmap->frp = FRParticle_Init(HEAPID_FRONTIERMAP);
 
-	//2Dƒ}ƒbƒvƒVƒXƒeƒ€ƒ‚ƒWƒ…[ƒ‹Ý’è
+	//2Dãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®š
 	MapSystem2D_ModuleSet(fmap, scene_id, my_status);
 
 //	WIPE_SYS_Start(WIPE_PATTERN_FMAS, WIPE_TYPE_SCREWIN, WIPE_TYPE_SCREWIN, WIPE_FADE_BLACK, 
@@ -259,7 +259,7 @@ FMAP_PTR FrontierMap_Init(FMAIN_PTR fmain)
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 
-	//ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒRƒ“ƒeƒXƒg)
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
 	Snd_DataSetByScene( SND_SCENE_FIELD, 
 						FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_BGMID), 1 );
 
@@ -268,76 +268,76 @@ FMAP_PTR FrontierMap_Init(FMAIN_PTR fmain)
 	MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
 	
 	sys_VBlankFuncChange(FrontierMapVBlank, fmap);
-	//«Wipe‚ÅHƒuƒ‰ƒ“ƒN‚ðŽg—p‚·‚é‚Ì‚ÅAWipe‚ªI—¹‚µ‚½‚çƒZƒbƒg‚·‚é‚æ‚¤‚É•ÏX
+	//â†“Wipeã§Hãƒ–ãƒ©ãƒ³ã‚¯ã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ã€WipeãŒçµ‚äº†ã—ãŸã‚‰ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 //	sys_HBlankIntrSet(FrontierMapHBlank, fmap);
 	fmap->vintr_tcb = VIntrTCB_Add(VBlankTCB_IntrTask, fmap, 10);
 	
-	//ƒV[ƒ“ƒf[ƒ^‚ÉÝ’è‚³‚ê‚Ä‚¢‚é‰Šú“®ìŠÖ”ŒÄ‚Ño‚µ
+	//ã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹åˆæœŸå‹•ä½œé–¢æ•°å‘¼ã³å‡ºã—
 	
 	FSS_SceneInitFuncCall(fmap, &fmap->scene_func_work_ptr, fmap->func_scene_id);
 	
-	WirelessIconEasy();	//’ÊMƒAƒCƒRƒ“
+	WirelessIconEasy();	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
 
 	return fmap;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒ}ƒbƒvƒVƒXƒeƒ€I—¹
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 void FrontierMap_End(FMAP_PTR fmap)
 {
 	int i;
 
-	//ƒV[ƒ“ƒf[ƒ^‚ÉÝ’è‚³‚ê‚Ä‚¢‚éI—¹“®ìŠÖ”ŒÄ‚Ño‚µ
+	//ã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹çµ‚äº†å‹•ä½œé–¢æ•°å‘¼ã³å‡ºã—
 	{
 		FRONTIER_EX_PARAM *ex_param = Frontier_ExParamGet(fmap->fmain);
 		FSS_SceneEndFuncCall(fmap, &fmap->scene_func_work_ptr, fmap->func_scene_id);
 	}
 
-	//2Dƒ}ƒbƒvƒVƒXƒeƒ€ƒ‚ƒWƒ…[ƒ‹‰ð•ú
+	//2Dãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«è§£æ”¾
 	MapSystem2D_ModuleFree(fmap);
 
-	//BMPŠJ•ú
+	//BMPé–‹æ”¾
 //	for(i = 0; i < CONRES_BMPWIN_MAX; i++){
 //		GF_BGL_BmpWinDel(&fmap->win[i]);
 //	}
 
-	//ƒƒCƒ“‰æ–ÊBGíœ
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢BGå‰Šé™¤
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_BGL_BGControlExit(fmap->bgl, FRMAP_FRAME_WIN );
 	GF_BGL_BGControlExit(fmap->bgl, FRMAP_FRAME_EFF );
 	GF_BGL_BGControlExit(fmap->bgl, FRMAP_FRAME_MAP );
-	//ƒTƒu‰æ–ÊBGíœ
+	//ã‚µãƒ–ç”»é¢BGå‰Šé™¤
 	GF_BGL_VisibleSet(FRMAP_FRAME_SUB_AUDIENCE, VISIBLE_OFF);
 	GF_BGL_BGControlExit(fmap->bgl, FRMAP_FRAME_SUB_AUDIENCE);
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	ActorSysFree(fmap);
 
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€I—¹
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
 	FRParticle_Exit(fmap->frp);
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(fmap->pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(fmap->pfd, FADE_SUB_BG);
 	PaletteFadeWorkAllocFree(fmap->pfd, FADE_MAIN_OBJ);
 	PaletteFadeWorkAllocFree(fmap->pfd, FADE_SUB_OBJ);
-	//ƒtƒ@ƒNƒgƒŠ[‘Îí•”‰®‚ÌI—¹“®ìŠÖ”‚ÅAFADE_MAIN_BG_EX3‚Ìíœ‚ð‚µ‚Ä‚¢‚Ü‚·(07.11.27)(–¢Žg—p)
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å¯¾æˆ¦éƒ¨å±‹ã®çµ‚äº†å‹•ä½œé–¢æ•°ã§ã€FADE_MAIN_BG_EX3ã®å‰Šé™¤ã‚’ã—ã¦ã„ã¾ã™(07.11.27)(æœªä½¿ç”¨)
 
 	PaletteFadeFree(fmap->pfd);
 
-	//BGLŠJ•ú
+	//BGLé–‹æ”¾
 	sys_FreeMemoryEz(fmap->bgl);
 
 	TCB_Delete(fmap->objupdate_tcb);
@@ -347,15 +347,15 @@ void FrontierMap_End(FMAP_PTR fmap)
 	
 	Frontier_3D_Exit(fmap->g3Dman);
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
 	sys_FreeMemoryEz(fmap);
 	
 	GX_SetVisibleWnd(GX_WNDMASK_NONE);
 	GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 	
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	sys_DeleteHeap(HEAPID_FRONTIERMAP);
 
@@ -363,7 +363,7 @@ void FrontierMap_End(FMAP_PTR fmap)
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
 	MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
 
-	WirelessIconEasyEnd();	//’ÊMƒAƒCƒRƒ“íœ
+	WirelessIconEasyEnd();	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
 	
 	MI_CpuFill16((void*)HW_BG_PLTT, 0x7fff, 0x200);
 	MI_CpuFill16((void*)HW_OBJ_PLTT, 0x7fff, 0x200);
@@ -378,7 +378,7 @@ void FrontierMap_End(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   •Ê‰æ–ÊˆÚsŽžA•œ‹A—p‚É‰æ–Êî•ñ‘Þ”ðˆ—
+ * @brief   åˆ¥ç”»é¢ç§»è¡Œæ™‚ã€å¾©å¸°ç”¨ã«ç”»é¢æƒ…å ±é€€é¿å‡¦ç†
  *
  * @param   fmap		
  */
@@ -387,19 +387,19 @@ void FrontierMap_Push(FMAP_PTR fmap)
 {
 	int i;
 
-	//ƒŠƒ\[ƒX‘Þ”ð
+	//ãƒªã‚½ãƒ¼ã‚¹é€€é¿
 	{
-		//ƒZƒbƒgŽž‚©‚ç‘Þ”ð—pƒ[ƒN‚Ì’l‚ª•Ï‚í‚éŽ–‚Í‚È‚¢‚Ì‚Å“Á‚É‚·‚éŽ–‚Í‚È‚µ
+		//ã‚»ãƒƒãƒˆæ™‚ã‹ã‚‰é€€é¿ç”¨ãƒ¯ãƒ¼ã‚¯ã®å€¤ãŒå¤‰ã‚ã‚‹äº‹ã¯ãªã„ã®ã§ç‰¹ã«ã™ã‚‹äº‹ã¯ãªã—
 	}
 	
-	//ƒAƒNƒ^[‘Þ”ð
+	//ã‚¢ã‚¯ã‚¿ãƒ¼é€€é¿
 	{
 		FSS_ACTOR_WORK *fss_actor;
 		
 		for(i = 0; i < FIELD_OBJ_MAX; i++){
 			fss_actor = Frontier_ActorWorkPtrGet(fmap->fmain, i);
 			if(fss_actor->objwk != NULL){
-				//•ÏX‚Ì‰Â”\«‚Ì‚ ‚é‚à‚Ì‚¾‚¯Ä‘Þ”ð
+				//å¤‰æ›´ã®å¯èƒ½æ€§ã®ã‚ã‚‹ã‚‚ã®ã ã‘å†é€€é¿
 				fss_actor->param.way = WF2DMAP_OBJWkDataGet(fss_actor->objwk, WF2DMAP_OBJPM_WAY);
 				fss_actor->param.status = WF2DMAP_OBJWkDataGet(fss_actor->objwk, WF2DMAP_OBJPM_ST);
 				fss_actor->param.x = WF2DMAP_OBJWkDataGet(fss_actor->objwk, WF2DMAP_OBJPM_X);
@@ -410,13 +410,13 @@ void FrontierMap_Push(FMAP_PTR fmap)
 		}
 	}
 
-	//”z’u•¨ƒAƒNƒ^[‘Þ”ð
+	//é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼é€€é¿
 	FMap_ArticleActPush(fmap);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   •Ê‰æ–Ê‚©‚ç–ß‚Á‚Ä‚«‚½Žž‚Ì‰æ–Êî•ñ•œ‹Aˆ—
+ * @brief   åˆ¥ç”»é¢ã‹ã‚‰æˆ»ã£ã¦ããŸæ™‚ã®ç”»é¢æƒ…å ±å¾©å¸°å‡¦ç†
  *
  * @param   fmap		
  */
@@ -425,7 +425,7 @@ void FrontierMap_Pop(FMAP_PTR fmap)
 {
 	int i;
 	
-	//ƒŠƒ\[ƒXÄ“o˜^
+	//ãƒªã‚½ãƒ¼ã‚¹å†ç™»éŒ²
 	{
 		FSS_CHAR_RESOURCE_DATA *res_manage;
 		
@@ -435,12 +435,12 @@ void FrontierMap_Pop(FMAP_PTR fmap)
 				//FMap_CharResourceSet(fmap, &res_manage[i]);
 				WF2DMAP_OBJDrawSysResSet(fmap->drawsys, res_manage[i].charid,
 					res_manage[i].movetype, HEAPID_FRONTIERMAP);
-//					NNS_G2D_VRAM_TYPE_2DMAIN, res_manage[i].movetype, HEAPID_FRONTIERMAP);[tomoya•ÏX]	
+//					NNS_G2D_VRAM_TYPE_2DMAIN, res_manage[i].movetype, HEAPID_FRONTIERMAP);[tomoyaå¤‰æ›´]	
 			}
 		}
 	}
 	
-	//ƒAƒNƒ^[Ä“o˜^
+	//ã‚¢ã‚¯ã‚¿ãƒ¼å†ç™»éŒ²
 	{
 		FSS_ACTOR_WORK *fss_actor;
 		FSS_CHAR_ACTOR_DATA act_data;
@@ -456,13 +456,13 @@ void FrontierMap_Pop(FMAP_PTR fmap)
 		}
 	}
 
-	//”z’u•¨ƒAƒNƒ^[Ä“o˜^
+	//é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼å†ç™»éŒ²
 	FMap_ArticleActPop(fmap);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
  * @param	work	
  *
@@ -474,7 +474,7 @@ static void FrontierMapVBlank(void *work)
 {
 	FMAP_PTR fmap = work;
 
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	DoVramTransferManager();	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(fmap->pfd);
 	
@@ -485,7 +485,7 @@ static void FrontierMapVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	HBLANKŠÖ”
+ * @brief	HBLANKé–¢æ•°
  *
  * @param	work	
  *
@@ -501,10 +501,10 @@ static void FrontierMapHBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   VBlankƒ^ƒXƒNŠÖ”(1/60‚Å‰ñ‚è‚Ü‚·)
+ * @brief   VBlankã‚¿ã‚¹ã‚¯é–¢æ•°(1/60ã§å›žã‚Šã¾ã™)
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VBlankTCB_IntrTask(TCB_PTR tcb, void *work)
@@ -515,47 +515,47 @@ static void VBlankTCB_IntrTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   2Dƒ‚ƒWƒ…[ƒ‹FƒIƒuƒWƒFƒNƒg“®ìTCB
+ * @brief   2Dãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œTCB
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		fmap
  *
- * ŠeƒIƒuƒWƒFƒNƒg‚Ì“®ìŠÖ”‚ÌŽÀs‡˜‚ðWF2DMAP_OBJSysMain‚ÆƒRƒ}ƒ“ƒh”»’f‚ÌŠÔ‚É
- * TCB‚ÅŽÀso—ˆ‚é‚æ‚¤‚É‚·‚é‚½‚ßA“Æ—§‚µ‚½TCB‚É‚µ‚Ä‚¢‚Ü‚·
+ * å„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‹•ä½œé–¢æ•°ã®å®Ÿè¡Œé †åºã‚’WF2DMAP_OBJSysMainã¨ã‚³ãƒžãƒ³ãƒ‰åˆ¤æ–­ã®é–“ã«
+ * TCBã§å®Ÿè¡Œå‡ºæ¥ã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã€ç‹¬ç«‹ã—ãŸTCBã«ã—ã¦ã„ã¾ã™
  */
 //--------------------------------------------------------------
 static void FrontierMapOBJSysUpdate(TCB_PTR tcb, void *work)
 {
 	FMAP_PTR fmap = work;
 	
-	//ƒIƒuƒWƒFƒNƒg“®ìƒƒCƒ“
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œãƒ¡ã‚¤ãƒ³
 	WF2DMAP_OBJSysMain(fmap->objsys);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   2Dƒ‚ƒWƒ…[ƒ‹FƒRƒ}ƒ“ƒh”»’f•ŽÀsTCB
+ * @brief   2Dãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼šã‚³ãƒžãƒ³ãƒ‰åˆ¤æ–­ï¼†å®Ÿè¡ŒTCB
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		fmap
  *
- * ŠeƒIƒuƒWƒFƒNƒg‚Ì“®ìŠÖ”‚ÌŽÀs‡˜‚ðWF2DMAP_OBJSysMain‚ÆƒRƒ}ƒ“ƒh”»’f‚ÌŠÔ‚É
- * TCB‚ÅŽÀso—ˆ‚é‚æ‚¤‚É‚·‚é‚½‚ßA“Æ—§‚µ‚½TCB‚É‚µ‚Ä‚¢‚Ü‚·
+ * å„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‹•ä½œé–¢æ•°ã®å®Ÿè¡Œé †åºã‚’WF2DMAP_OBJSysMainã¨ã‚³ãƒžãƒ³ãƒ‰åˆ¤æ–­ã®é–“ã«
+ * TCBã§å®Ÿè¡Œå‡ºæ¥ã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã€ç‹¬ç«‹ã—ãŸTCBã«ã—ã¦ã„ã¾ã™
  */
 //--------------------------------------------------------------
 static void FrontierMapOBJCmdJudgeUpdate(TCB_PTR tcb, void *work)
 {
 	FMAP_PTR fmap = work;
 	
-	//ƒRƒ}ƒ“ƒh”»’f•ŽÀs
+	//ã‚³ãƒžãƒ³ãƒ‰åˆ¤æ–­ï¼†å®Ÿè¡Œ
 	ObjCmdJudgeMove(fmap);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚És‚¤ƒVƒXƒeƒ€ŠÖ˜A‚ÌXVˆ—
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã«è¡Œã†ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ã®æ›´æ–°å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		fmap
  */
 //--------------------------------------------------------------
@@ -563,7 +563,7 @@ static void FrontierMapUpdate(TCB_PTR tcb, void *work)
 {
 	FMAP_PTR fmap = work;
 	
-	{//2Dƒ‚ƒWƒ…[ƒ‹FBGƒXƒNƒ[ƒ‹
+	{//2Dãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼šBGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 		FSS_ACTOR_WORK *player_actor;
 		
 		player_actor = Frontier_ActorWorkPtrGet(fmap->fmain, FIELD_OBJ_PLAYER);
@@ -573,11 +573,11 @@ static void FrontierMapUpdate(TCB_PTR tcb, void *work)
 		FrontierMapScroll(fmap);
 	}
 	
-	{//2Dƒ‚ƒWƒ…[ƒ‹FƒIƒuƒWƒFƒNƒg•`‰æ
+	{//2Dãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»
 		WF2DMAP_OBJDrawSysUpdata(fmap->drawsys);
 	}
 
-	//”z’u•¨ƒAƒNƒ^[ƒAƒjƒ
+	//é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡
 	{
 		u32 anmbit = fmap->article.anmbit;
 		int i;
@@ -590,18 +590,18 @@ static void FrontierMapUpdate(TCB_PTR tcb, void *work)
 		}
 	}
 
-	//ƒAƒNƒ^[
+	//ã‚¢ã‚¯ã‚¿ãƒ¼
 	CATS_Draw(fmap->clactsys.crp);
 	CATS_UpdateTransfer();
 
-	//ƒp[ƒeƒBƒNƒ‹
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 	FRParticle_Main();
 	GF_G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ}ƒbƒvƒXƒNƒ[ƒ‹ˆ—
+ * @brief   ãƒžãƒƒãƒ—ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†
  *
  * @param   fmap		
  */
@@ -615,7 +615,7 @@ static void FrontierMapScroll(FMAP_PTR fmap)
 	switch(scroll_mode){
 	case SCROLL_MODE_NORMAL:
 	default:
-		//ƒXƒNƒ[ƒ‹•\Ž¦ˆ—
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¡¨ç¤ºå‡¦ç†
 		if(fmap->scrdrawsys != NULL){
 			WF2DMAP_SCRDrawSysMain(fmap->scrdrawsys, &fmap->scrollsys);
 		}
@@ -632,7 +632,7 @@ static void FrontierMapScroll(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ}ƒbƒvŠÈˆÕƒXƒNƒ[ƒ‹ˆ—
+ * @brief   ãƒžãƒƒãƒ—ç°¡æ˜“ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†
  *
  * @param   fmap		
  */
@@ -643,15 +643,15 @@ static void FrontierMapScroll_Easy(FMAP_PTR fmap)
 	s16 scr_y;
 	FRONTIER_EX_PARAM *ex_param = Frontier_ExParamGet(fmap->fmain);
 	
-	// ƒXƒNƒ[ƒ‹À•W‚©‚çƒXƒNƒ[ƒ‹À•W‚ðŠe•\Ž¦ƒVƒXƒeƒ€‚ÉÝ’è
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‹ã‚‰ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‚’å„è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ã«è¨­å®š
 	scr_y = WF2DMAP_SCROLLSysTopGet(&fmap->scrollsys) + fmap->shake_work.shake_y;
 	scr_x = WF2DMAP_SCROLLSysLeftGet(&fmap->scrollsys) + fmap->shake_work.shake_x;
 
-	// ƒT[ƒtƒF[ƒX
+	// ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 	CLACT_U_SetMainSurfaceMatrix(CATS_EasyRenderGet(fmap->clactsys.csp), 
 		FX32_CONST(scr_x), FX32_CONST(scr_y));
 
-	//BGLƒXƒNƒ[ƒ‹À•WÝ’è
+	//BGLã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™è¨­å®š
 	GF_BGL_ScrollReq(fmap->bgl, FRMAP_FRAME_MAP, GF_BGL_SCROLL_X_SET, scr_x);
 	GF_BGL_ScrollReq(fmap->bgl, FRMAP_FRAME_MAP, GF_BGL_SCROLL_Y_SET, scr_y);
 	if(FSS_SceneParamGet(ex_param->scene_id, FSS_SCENE_DATA_MULTI_MAP_SCREENID) != MULTI_BG_NULL
@@ -663,7 +663,7 @@ static void FrontierMapScroll_Easy(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ}ƒ“ƒhƒ‚ƒWƒ…[ƒ‹”»’f•ƒRƒ}ƒ“ƒhŽÀsˆ—
+ * @brief   ã‚³ãƒžãƒ³ãƒ‰ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åˆ¤æ–­ï¼†ã‚³ãƒžãƒ³ãƒ‰å®Ÿè¡Œå‡¦ç†
  *
  * @param   fmap
  */
@@ -674,17 +674,17 @@ static void ObjCmdJudgeMove(FMAP_PTR fmap)
 	WF2DMAP_ACTCMD act;
 	BOOL result;
 
-	//ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[
+	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
 	while(WF2DMAP_ACTCMDQSysCmdPop(fmap->actcmd_q, &act) == TRUE){
-		//ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhÝ’è
+		//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰è¨­å®š
 		WF2DMAP_OBJSysCmdSet(fmap->objsys, &act);
 	}
 
-	//ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[
+	//ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
 	while(WF2DMAP_REQCMDQSysCmdPop(fmap->reqcmd_q, &req) == TRUE){
 		result = WF2DMAP_JUDGESysCmdJudge(fmap->mapsys, fmap->objsys, &req, &act);
 		if(result == TRUE){
-			//ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhÝ’è
+			//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰è¨­å®š
 			WF2DMAP_OBJSysCmdSet(fmap->objsys, &act);
 		}
 	}
@@ -692,9 +692,9 @@ static void ObjCmdJudgeMove(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNÝ’è‚ðs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void FrontierMap_VramBankSet(GF_BGL_INI *bgl, int scene_id)
@@ -705,23 +705,23 @@ static void FrontierMap_VramBankSet(GF_BGL_INI *bgl, int scene_id)
 	
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_256_BC,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_23_G,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_0_F				// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_256_BC,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_23_G,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_0_F				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -737,22 +737,22 @@ static void FrontierMap_VramBankSet(GF_BGL_INI *bgl, int scene_id)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME1_M	ƒEƒBƒ“ƒhƒE
+			///<FRAME1_M	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01,
 				FRMAP_BGPRI_WIN, 0, 0, FALSE
 			},
-			///<FRAME2_M	ƒGƒtƒFƒNƒg
+			///<FRAME2_M	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_256,
 				EFFBG_SCRBASE, EFFBG_CHARBASE, GX_BG_EXTPLTT_23,
 				FRMAP_BGPRI_EFF, 0, 0, FALSE
 			},
-			///<FRAME3_M	ƒ}ƒbƒv
+			///<FRAME3_M	ãƒžãƒƒãƒ—
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_256,
 				MAPBG_SCRBASE, MAPBG_CHARBASE, GX_BG_EXTPLTT_23,
@@ -770,7 +770,7 @@ static void FrontierMap_VramBankSet(GF_BGL_INI *bgl, int scene_id)
 		screen_size = FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_SCREEN_SIZE);
 		TextBgCntDat[2].screenSize = screen_size;
 		if(FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_MULTI_MAP_SCREENID) != MULTI_BG_NULL){
-			//‘½d–ÊŽg—p‚Ìê‡‚Íƒ}ƒbƒv‚ÆƒXƒNƒŠ[ƒ“ƒTƒCƒY‚ð‡‚í‚¹‚é
+			//å¤šé‡é¢ä½¿ç”¨ã®å ´åˆã¯ãƒžãƒƒãƒ—ã¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚ºã‚’åˆã‚ã›ã‚‹
 			TextBgCntDat[1].screenSize = screen_size;
 		}
 		
@@ -806,10 +806,10 @@ static void FrontierMap_VramBankSet(GF_BGL_INI *bgl, int scene_id)
 		G2_SetBG0Priority(FRMAP_3DBG_PRIORITY);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER SubBgCntDat[] = {
-			///<FRAME0_S	ŠÏ‹q
+			///<FRAME0_S	è¦³å®¢
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -825,21 +825,21 @@ static void FrontierMap_VramBankSet(GF_BGL_INI *bgl, int scene_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒVƒXƒeƒ€ŒnƒpƒŒƒbƒg‚Ì“Ç‚Ýž‚Ý
+ * @brief   ã‚·ã‚¹ãƒ†ãƒ ç³»ãƒ‘ãƒ¬ãƒƒãƒˆã®èª­ã¿è¾¼ã¿
  *
  * @param   fmap		
  */
 //--------------------------------------------------------------
 static void SystemPaletteLoad(FMAP_PTR fmap)
 {
-	//ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
+	//ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
 	PaletteWorkSet_Arc(fmap->pfd, ARC_FONT, NARC_font_system_ncrl, 
 		HEAPID_FRONTIERMAP, FADE_MAIN_BG, 0x20, FFD_MENU_WIN_PAL * 16);
-	//ƒƒbƒZ[ƒWƒtƒHƒ“ƒg
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆ
 	PaletteWorkSet_Arc(fmap->pfd, ARC_FONT, NARC_font_talk_ncrl, 
 		HEAPID_FRONTIERMAP, FADE_MAIN_BG, 0x20, FFD_MSG_WIN_PAL * 16);
 	
-	//‰ï˜bƒEƒBƒ“ƒhƒE@ƒLƒƒƒ‰•ƒpƒŒƒbƒg
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆ
 	{
 		FRONTIER_EX_PARAM *ex_param;
 		
@@ -849,7 +849,7 @@ static void SystemPaletteLoad(FMAP_PTR fmap)
 		PaletteWorkSet_VramCopy(fmap->pfd, FADE_MAIN_BG, FR_TALK_WIN_PAL * 16, 0x20);
 	}
 	
-	//ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE@ƒLƒƒƒ‰•ƒpƒŒƒbƒg
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆ
 	MenuWinGraphicSet(fmap->bgl, FRMAP_FRAME_WIN, FR_MENU_WIN_CGX_NUM, FR_MENU_WIN_PAL,
 		MENU_TYPE_SYSTEM, HEAPID_FRONTIERMAP);
 	PaletteWorkSet_VramCopy(fmap->pfd, FADE_MAIN_BG, FR_MENU_WIN_PAL * 16, 0x20);
@@ -857,7 +857,7 @@ static void SystemPaletteLoad(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚ÌBGƒZƒbƒg
+ * @brief   ã‚µãƒ–ç”»é¢ã®BGã‚»ãƒƒãƒˆ
  *
  * @param   fmap		
  */
@@ -866,7 +866,7 @@ static void SubDisp_BGSet(FMAP_PTR fmap)
 {
 	ARCHANDLE* hdl;
 		
-	//‚Æ‚è‚ ‚¦‚¸ƒ|ƒPƒbƒ`‚É‚ ‚é‰º‰æ–Ê‚ðŽg‚¢‚Ü‚í‚·
+	//ã¨ã‚Šã‚ãˆãšãƒã‚±ãƒƒãƒã«ã‚ã‚‹ä¸‹ç”»é¢ã‚’ä½¿ã„ã¾ã‚ã™
 	hdl = ArchiveDataHandleOpen( ARC_FRONTIER_BG, HEAPID_FRONTIERMAP );
 
 	ArcUtil_HDL_BgCharSet(	hdl, BATT_FRONTIER_NCGR_BIN, fmap->bgl, GF_BGL_FRAME0_S,
@@ -885,7 +885,7 @@ static void SubDisp_BGSet(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   2Dƒ}ƒbƒvƒVƒXƒeƒ€ƒ‚ƒWƒ…[ƒ‹Ý’è
+ * @brief   2Dãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®š
  *
  * @param   fmap		
  * @param   scene_id	
@@ -894,22 +894,22 @@ static void SubDisp_BGSet(FMAP_PTR fmap)
 //--------------------------------------------------------------
 static void MapSystem2D_ModuleSet(FMAP_PTR fmap, int scene_id, const MYSTATUS *my_status)
 {
-	//ƒIƒuƒWƒFƒNƒgŠÇ—ƒ‚ƒWƒ…[ƒ‹
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	fmap->objsys = WF2DMAP_OBJSysInit(FIELD_OBJ_MAX, HEAPID_FRONTIERMAP);
 	
-	//ƒ}ƒbƒvƒf[ƒ^ŠÇ—ƒ‚ƒWƒ…[ƒ‹
+	//ãƒžãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	fmap->mapsys = WF2DMAP_MAPSysInit(MAP_GRID_MAX_X, MAP_GRID_MAX_Y, HEAPID_FRONTIERMAP);
 	
-	//ƒXƒNƒ[ƒ‹ƒf[ƒ^ŠÇ—ƒ‚ƒWƒ…[ƒ‹
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	WF2DMAP_SCROLLSysDataInit(&fmap->scrollsys);
 	
-	//ƒIƒuƒWƒFƒNƒgƒf[ƒ^•`‰æƒ‚ƒWƒ…[ƒ‹
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿æç”»ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	fmap->drawsys = WF2DMAP_OBJDrawSysInit_Shadow(CATS_GetClactSetPtr(fmap->clactsys.crp) ,
 		fmap->pfd, FIELD_OBJ_MAX, FrontierTool_MyObjCodeGet(my_status), WF2DC_C_MOVERUN, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_FRONTIERMAP);
-//		fmap->pfd, FIELD_OBJ_MAX, HEAPID_FRONTIERMAP);	[tomoya•ÏX]
+//		fmap->pfd, FIELD_OBJ_MAX, HEAPID_FRONTIERMAP);	[tomoyaå¤‰æ›´]
 
-	//ƒXƒNƒ[ƒ‹ƒf[ƒ^•`‰æƒ‚ƒWƒ…[ƒ‹
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿æç”»ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	{
 		WF2DMAP_SCRDRAWINIT init = {
 			CLACT_U_EASYRENDER_SURFACE_MAIN,
@@ -934,7 +934,7 @@ static void MapSystem2D_ModuleSet(FMAP_PTR fmap, int scene_id, const MYSTATUS *m
 				fmap->bgl, &init, HEAPID_FRONTIERMAP);
 		}
 
-		//‘½d–ÊƒXƒNƒ[ƒ‹ƒf[ƒ^•`‰æƒ‚ƒWƒ…[ƒ‹
+		//å¤šé‡é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿æç”»ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 		if(FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_MULTI_MAP_SCREENID) != MULTI_BG_NULL){
 			init.dataid_scrn = FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_MULTI_MAP_SCREENID);
 			init.bg_frame = FRMAP_FRAME_EFF;
@@ -948,18 +948,18 @@ static void MapSystem2D_ModuleSet(FMAP_PTR fmap, int scene_id, const MYSTATUS *m
 		}
 	}
 	
-	//ƒLƒ…[ƒ‚ƒWƒ…[ƒ‹
+	//ã‚­ãƒ¥ãƒ¼ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	fmap->reqcmd_q = WF2DMAP_REQCMDQSysInit(FMAP_REQCMDQ_NUM, HEAPID_FRONTIERMAP);
 	fmap->actcmd_q = WF2DMAP_ACTCMDQSysInit(FMAP_ACTCMDQ_NUM, HEAPID_FRONTIERMAP);
 
 
-	//-- ƒf[ƒ^ƒZƒbƒg --//
+	//-- ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ --//
 	
-	//ƒ}ƒbƒvƒf[ƒ^Ý’è
+	//ãƒžãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	WF2DMAP_MAPSysDataSet(fmap->mapsys, DumyMap);
 	
-	//ƒ}ƒbƒvƒOƒ‰ƒtƒBƒbƒN“Ç‚Ýž‚Ý(ƒLƒƒƒ‰•ƒpƒŒƒbƒg)
-	//ƒLƒƒƒ‰
+	//ãƒžãƒƒãƒ—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿(ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆ)
+	//ã‚­ãƒ£ãƒ©
 	{
 		u32 arc_id;
 		ARCHANDLE *hdl_bg;
@@ -976,7 +976,7 @@ static void MapSystem2D_ModuleSet(FMAP_PTR fmap, int scene_id, const MYSTATUS *m
 				FADE_MAIN_BG, FFD_FIELD_PAL_SIZE, FFD_FIELD_PAL_START * 16);
 		}
 		else{
-			// ƒpƒŒƒbƒgƒf[ƒ^‚ðŠg’£ƒpƒŒƒbƒgVRAM‚É“]‘—
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆVRAMã«è»¢é€
 			NNSG2dPaletteData *palData;
 			void *p_work;
 			
@@ -984,19 +984,19 @@ static void MapSystem2D_ModuleSet(FMAP_PTR fmap, int scene_id, const MYSTATUS *m
 				FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_MAP_PLTTID), 
 				&palData, HEAPID_FRONTIERMAP);
 			DC_FlushRange(palData->pRawData, palData->szByte);
-			GX_BeginLoadBGExtPltt();	   // ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—€”õ
+			GX_BeginLoadBGExtPltt();	   // ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€æº–å‚™
 			GX_LoadBGExtPltt(palData->pRawData, 0x6000, 0x2000);
-		    GX_EndLoadBGExtPltt();         // ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—Š®—¹
+		    GX_EndLoadBGExtPltt();         // ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€å®Œäº†
 		    sys_FreeMemoryEz(p_work);
 		}
 		
-		//‰æ–ÊŠO‚ð^‚Á•‚É‚·‚éˆ×Aæ“ª‚ÌƒpƒŒƒbƒg‚É‹­§‚Å•‚ðƒZƒbƒg
+		//ç”»é¢å¤–ã‚’çœŸã£é»’ã«ã™ã‚‹ç‚ºã€å…ˆé ­ã®ãƒ‘ãƒ¬ãƒƒãƒˆã«å¼·åˆ¶ã§é»’ã‚’ã‚»ãƒƒãƒˆ
 		PaletteWork_Clear(fmap->pfd, FADE_MAIN_BG, FADEBUF_ALL, 0x0000, 0, 1);
 
 		ArcUtil_HDL_ScrnSet(hdl_bg, FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_MAP_SCREENID),
 			fmap->bgl, FRMAP_FRAME_MAP, 0, 0, 1, HEAPID_FRONTIERMAP);
 
-		//‘½d–Ê
+		//å¤šé‡é¢
 		if(FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_MULTI_MAP_SCREENID) != MULTI_BG_NULL){
 			ArcUtil_HDL_BgCharSet(hdl_bg, 
 				FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_MULTI_MAP_CHARID), 
@@ -1008,7 +1008,7 @@ static void MapSystem2D_ModuleSet(FMAP_PTR fmap, int scene_id, const MYSTATUS *m
 				;
 			}
 			else{
-				// ƒpƒŒƒbƒgƒf[ƒ^‚ðŠg’£ƒpƒŒƒbƒgVRAM‚É“]‘—
+				// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆVRAMã«è»¢é€
 				NNSG2dPaletteData *palData;
 				void *p_work;
 				
@@ -1016,9 +1016,9 @@ static void MapSystem2D_ModuleSet(FMAP_PTR fmap, int scene_id, const MYSTATUS *m
 					FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_MULTI_MAP_PLTTID), 
 					&palData, HEAPID_FRONTIERMAP);
 				DC_FlushRange(palData->pRawData, palData->szByte);
-				GX_BeginLoadBGExtPltt();	   // ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—€”õ
+				GX_BeginLoadBGExtPltt();	   // ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€æº–å‚™
 				GX_LoadBGExtPltt(palData->pRawData, 0x4000, 0x2000);
-			    GX_EndLoadBGExtPltt();         // ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—Š®—¹
+			    GX_EndLoadBGExtPltt();         // ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€å®Œäº†
 			    sys_FreeMemoryEz(p_work);
 			}
 		}
@@ -1031,7 +1031,7 @@ static void MapSystem2D_ModuleSet(FMAP_PTR fmap, int scene_id, const MYSTATUS *m
 
 //--------------------------------------------------------------
 /**
- * @brief   2Dƒ}ƒbƒvƒVƒXƒeƒ€ƒ‚ƒWƒ…[ƒ‹‰ð•ú
+ * @brief   2Dãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«è§£æ”¾
  *
  * @param   fmap		
  */
@@ -1040,7 +1040,7 @@ static void MapSystem2D_ModuleFree(FMAP_PTR fmap)
 {
 	int i;
 	
-	//ƒIƒuƒWƒFƒNƒgŠÇ—ƒ‚ƒWƒ…[ƒ‹
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	{
 		FSS_ACTOR_WORK *fss_actor;
 		
@@ -1054,22 +1054,22 @@ static void MapSystem2D_ModuleFree(FMAP_PTR fmap)
 	}
 	WF2DMAP_OBJSysExit(fmap->objsys);
 	
-	//ƒ}ƒbƒvƒf[ƒ^ŠÇ—ƒ‚ƒWƒ…[ƒ‹
+	//ãƒžãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	WF2DMAP_MAPSysExit(fmap->mapsys);
 	
-	//ƒXƒNƒ[ƒ‹ƒf[ƒ^ŠÇ—ƒ‚ƒWƒ…[ƒ‹
-	//‚±‚ê‚¾‚¯ŽÀ‘Ì‚È‚Ì‚Å‰ð•ú‚Ì•K—v‚È‚µ
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+	//ã“ã‚Œã ã‘å®Ÿä½“ãªã®ã§è§£æ”¾ã®å¿…è¦ãªã—
 	
-	//ƒIƒuƒWƒFƒNƒgƒf[ƒ^•`‰æƒ‚ƒWƒ…[ƒ‹
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿æç”»ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 //	for(i = 0; i < FIELD_OBJ_MAX; i++){
 //		if(fmap->drawwk[i] != NULL){
 //			WF2DMAP_OBJDrawWkDel(fmap->drawwk[i]);
 //		}
 //	}
 //	WF2DMAP_OBJDrawSysResDel
-	WF2DMAP_OBJDrawSysExit(fmap->drawsys);	//‘S•”’†‚ÅŽ©“®”jŠü
+	WF2DMAP_OBJDrawSysExit(fmap->drawsys);	//å…¨éƒ¨ä¸­ã§è‡ªå‹•ç ´æ£„
 	
-	//ƒXƒNƒ[ƒ‹ƒf[ƒ^•`‰æƒ‚ƒWƒ…[ƒ‹
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿æç”»ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	if(fmap->scrdrawsys != NULL){
 		WF2DMAP_SCRDrawSysExit(fmap->scrdrawsys);
 	}
@@ -1077,7 +1077,7 @@ static void MapSystem2D_ModuleFree(FMAP_PTR fmap)
 		WF2DMAP_SCRDrawSysExit(fmap->multi_scrdrawsys);
 	}
 
-	//ƒLƒ…[ƒ‚ƒWƒ…[ƒ‹
+	//ã‚­ãƒ¥ãƒ¼ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 	WF2DMAP_REQCMDQSysExit(fmap->reqcmd_q);
 	WF2DMAP_ACTCMDQSysExit(fmap->actcmd_q);
 }
@@ -1085,9 +1085,9 @@ static void MapSystem2D_ModuleFree(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒA—p3DBG‰Šú‰»ŠÖ”
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨3DBGåˆæœŸåŒ–é–¢æ•°
  * 
- * @param   ƒq[ƒvID
+ * @param   ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 static GF_G3DMAN * Frontier_3D_Init(int heap_id)
@@ -1096,7 +1096,7 @@ static GF_G3DMAN * Frontier_3D_Init(int heap_id)
 	
 	//simple_3DBGInit(HEAPID_FRONTIERMAP);
 	
-	//Šg’£BG‚ÆƒpƒŒƒbƒgVRAM‚ð‹¤—p‚·‚é‚½‚ßAƒpƒŒƒbƒg16KŽw’è
+	//æ‹¡å¼µBGã¨ãƒ‘ãƒ¬ãƒƒãƒˆVRAMã‚’å…±ç”¨ã™ã‚‹ãŸã‚ã€ãƒ‘ãƒ¬ãƒƒãƒˆ16KæŒ‡å®š
 	g3Dman = GF_G3DMAN_Init(heap_id, GF_G3DMAN_LNK, GF_G3DTEX_128K, 
 		GF_G3DMAN_LNK, GF_G3DPLT_16K, Frontier_3D_SimpleSetUp);
 	return g3Dman;
@@ -1104,28 +1104,28 @@ static GF_G3DMAN * Frontier_3D_Init(int heap_id)
 
 static void Frontier_3D_SimpleSetUp(void)
 {
-	// ‚R‚cŽg—p–Ê‚ÌÝ’è(•\Ž¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// ŠeŽí•`‰æƒ‚[ƒh‚ÌÝ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜Ž)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚ÌÝ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚ÌÝ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒA—p3DBGI—¹ˆ—
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨3DBGçµ‚äº†å‡¦ç†
  *
  * @param   g3Dman		
  */
@@ -1139,11 +1139,11 @@ static void Frontier_3D_Exit(GF_G3DMAN *g3Dman)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
- *	@param	heapID		ƒq[ƒv
- *	@param	p_handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void ActorSysInit(FMAP_PTR fmap)
@@ -1151,7 +1151,7 @@ static void ActorSysInit(FMAP_PTR fmap)
 	fmap->clactsys.csp=CATS_AllocMemory(HEAPID_FRONTIERMAP);
 	CATS_SystemInit(fmap->clactsys.csp, &MapTcats,&MapCcmm, FMAP_OAM_PLTT_MAX);
 	
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(
 		NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -1165,24 +1165,24 @@ static void ActorSysInit(FMAP_PTR fmap)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *	
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ActorSysFree(FMAP_PTR fmap)
 {
-	//”z’u•¨ƒAƒNƒ^[•ƒŠƒ\[ƒXíœ
+	//é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ï¼†ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
 	{
 		int i;
 		
-		//ƒAƒNƒ^[
+		//ã‚¢ã‚¯ã‚¿ãƒ¼
 		for(i = 0; i < ACTWORK_MAX; i++){
 			if(fmap->article.act[i] != NULL){
 				FAct_ActorDel(fmap->article.act[i]);
 			}
 		}
-		//ƒŠƒ\[ƒX
+		//ãƒªã‚½ãƒ¼ã‚¹
 		for(i = 0; i < ACTWORK_RESOURCE_MAX; i++){
 			if(fmap->article.resource_id[i] != SCR_ACTWORK_RESOURCE_ID_NULL){
 				FAct_ResourceFree(fmap->clactsys.crp, fmap->article.resource_id[i]);
@@ -1190,15 +1190,15 @@ static void ActorSysFree(FMAP_PTR fmap)
 		}
 	}
 	
-	//ƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[•ƒŠƒ\[ƒXíœ
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ï¼†ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
 	{
 		int i;
 		
 		for(i = 0; i < POKE_DISP_MANAGER_ID_NUM; i++){
 			if(fmap->poke_cap[i] != NULL){
-				//ƒAƒNƒ^[íœ
+				//ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 				CATS_ActorPointerDelete_S(fmap->poke_cap[i]);
-				//ƒŠƒ\[ƒXíœ
+				//ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
 				CATS_FreeResourceChar(fmap->clactsys.crp, POKE_DISP_MANAGER_ID_START + i);
 				CATS_FreeResourcePltt(fmap->clactsys.crp, POKE_DISP_MANAGER_ID_START + i);
 				CATS_FreeResourceCell(fmap->clactsys.crp, POKE_DISP_MANAGER_ID_START + i);
@@ -1213,10 +1213,10 @@ static void ActorSysFree(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^
+ * @brief   ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  *
  * @param   fmap		
- * @param   res			“o˜^ƒŠƒ\[ƒXƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   res			ç™»éŒ²ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void FMap_CharResourceSet(FMAP_PTR fmap, const FSS_CHAR_RESOURCE_DATA *res)
@@ -1226,34 +1226,34 @@ void FMap_CharResourceSet(FMAP_PTR fmap, const FSS_CHAR_RESOURCE_DATA *res)
 	
 	manage = Frontier_CharResourceBufferGet(fmap->fmain);
 	
-	//2d“o˜^ƒ`ƒFƒbƒN
+	//2é‡ç™»éŒ²ãƒã‚§ãƒƒã‚¯
 	for(i = 0; i < FIELD_OBJ_RESOURCE_MAX; i++){
 		if(manage[i].charid == res->charid){
-			OS_TPrintf("ƒŠƒ\[ƒX“o˜^Ï‚Ý\n");
-			return;		//Šù‚É“o˜^Ï‚Ý
+			OS_TPrintf("ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²æ¸ˆã¿\n");
+			return;		//æ—¢ã«ç™»éŒ²æ¸ˆã¿
 		}
 	}
-	//‹ó‚«ƒ`ƒFƒbƒN
+	//ç©ºããƒã‚§ãƒƒã‚¯
 	for(i = 0; i < FIELD_OBJ_RESOURCE_MAX; i++){
 		if(manage[i].charid == OBJCODEMAX){
 			break;
 		}
 	}
-	GF_ASSERT(i != FIELD_OBJ_RESOURCE_MAX);	//‹ó‚«‚È‚µ
+	GF_ASSERT(i != FIELD_OBJ_RESOURCE_MAX);	//ç©ºããªã—
 
 	setno = i;
 	manage[setno] = *res;
 	WF2DMAP_OBJDrawSysResSet(fmap->drawsys, res->charid, 
 		res->movetype, HEAPID_FRONTIERMAP);
-//		NNS_G2D_VRAM_TYPE_2DMAIN, res->movetype, HEAPID_FRONTIERMAP);	[tomoya•ÏX]
+//		NNS_G2D_VRAM_TYPE_2DMAIN, res->movetype, HEAPID_FRONTIERMAP);	[tomoyaå¤‰æ›´]
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‰ð•ú
+ * @brief   ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  *
  * @param   fmap		
- * @param   charid		ƒLƒƒƒ‰ƒNƒ^ID
+ * @param   charid		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
  */
 //--------------------------------------------------------------
 void FMap_CharResourceFree(FMAP_PTR fmap, int charid)
@@ -1273,14 +1273,14 @@ void FMap_CharResourceFree(FMAP_PTR fmap, int charid)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒNƒ^[“o˜^
+ * @brief   ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   fmap		
- * @param   res		 “o˜^ƒAƒNƒ^[ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pos_auto FMAP_ACT_POS_AUTO:‹ó‚«—Ìˆæ‚ðŒŸõ‚µ‚Ä“o˜^B
- * 					 FMAP_ACT_POS_AUTOˆÈŠO:pos_auto‚Å“n‚³‚ê‚Ä‚¢‚é”z—ñ”Ô†‚É“o˜^(Ž©‹@“o˜^Žž‚ÆPOP—p)
+ * @param   res		 ç™»éŒ²ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos_auto FMAP_ACT_POS_AUTO:ç©ºãé ˜åŸŸã‚’æ¤œç´¢ã—ã¦ç™»éŒ²ã€‚
+ * 					 FMAP_ACT_POS_AUTOä»¥å¤–:pos_autoã§æ¸¡ã•ã‚Œã¦ã„ã‚‹é…åˆ—ç•ªå·ã«ç™»éŒ²(è‡ªæ©Ÿç™»éŒ²æ™‚ã¨POPç”¨)
  *
- * @retval  ¶¬‚³‚ê‚½ƒIƒuƒWƒFƒNƒgƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 WF2DMAP_OBJWK * FMap_ActorSet(FMAP_PTR fmap, const FSS_CHAR_ACTOR_DATA *res, int pos_auto)
@@ -1294,13 +1294,13 @@ WF2DMAP_OBJWK * FMap_ActorSet(FMAP_PTR fmap, const FSS_CHAR_ACTOR_DATA *res, int
 	fss_actor = Frontier_ActorBufferGet(fmap->fmain);
 	
 	if(pos_auto == FMAP_ACT_POS_AUTO){
-		//‹ó‚«ƒ`ƒFƒbƒN
+		//ç©ºããƒã‚§ãƒƒã‚¯
 		for(i = 0; i < FIELD_OBJ_MAX; i++){
 			if(fss_actor[i].objwk == NULL){
 				break;
 			}
 		}
-		GF_ASSERT(i != FIELD_OBJ_MAX);	//‹ó‚«‚È‚µ
+		GF_ASSERT(i != FIELD_OBJ_MAX);	//ç©ºããªã—
 		setno = i;
 	}
 	else{
@@ -1325,10 +1325,10 @@ WF2DMAP_OBJWK * FMap_ActorSet(FMAP_PTR fmap, const FSS_CHAR_ACTOR_DATA *res, int
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒNƒ^[íœ
+ * @brief   ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  *
  * @param   fmap		
- * @param   objwk		ƒIƒuƒWƒFƒNƒgƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param   objwk		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void FMap_ActorFree(FMAP_PTR fmap, WF2DMAP_OBJWK *objwk)
@@ -1352,12 +1352,12 @@ void FMap_ActorFree(FMAP_PTR fmap, WF2DMAP_OBJWK *objwk)
 
 //--------------------------------------------------------------
 /**
- * @brief   playid‚©‚çOBJWKADRAWWK‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾‚·‚é
+ * @brief   playidã‹ã‚‰OBJWKã€DRAWWKã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  * @param   fmap		
- * @param   playid		ƒvƒŒƒCƒ„[Ž¯•ÊID
- * @param   objwk		OBJWK‘ã“üæ(•s—v‚Èê‡‚ÍNULL)
- * @param   drawwk		DRAWWK‘ã“üæ(•s—v‚Èê‡‚ÍNULL)
+ * @param   playid		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è­˜åˆ¥ID
+ * @param   objwk		OBJWKä»£å…¥å…ˆ(ä¸è¦ãªå ´åˆã¯NULL)
+ * @param   drawwk		DRAWWKä»£å…¥å…ˆ(ä¸è¦ãªå ´åˆã¯NULL)
  */
 //--------------------------------------------------------------
 void FMap_OBJWkGet(FMAP_PTR fmap, u16 playid, WF2DMAP_OBJWK **objwk, WF2DMAP_OBJDRAWWK **drawwk)
@@ -1378,21 +1378,21 @@ void FMap_OBJWkGet(FMAP_PTR fmap, u16 playid, WF2DMAP_OBJWK **objwk, WF2DMAP_OBJ
 		}
 	}
 	
-	OS_TPrintf("Œ©‚Â‚©‚ç‚È‚¢playid = %d\n", playid);
+	OS_TPrintf("è¦‹ã¤ã‹ã‚‰ãªã„playid = %d\n", playid);
 	GF_ASSERT(0);
 }
 
 //==============================================================================
-//	”z’u•¨ƒAƒNƒ^[
+//	é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒg‚Å¶¬‚µ‚½ƒAƒNƒ^[‚ÌƒŠƒ\[ƒXID‚ðŠÇ——Ìˆæ‚É‹L‰¯‚·‚é
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒªã‚½ãƒ¼ã‚¹IDã‚’ç®¡ç†é ˜åŸŸã«è¨˜æ†¶ã™ã‚‹
  *
  * @param   fmap			
- * @param   act_id		ƒAƒNƒ^[ID
+ * @param   act_id		ã‚¢ã‚¯ã‚¿ãƒ¼ID
  *
- * ID‚ÌŠÇ—‚¾‚¯‚ÅƒŠƒ\[ƒX‚ÌƒZƒbƒg‚Ís‚í‚È‚¢‚±‚Æ‚É’ˆÓ
+ * IDã®ç®¡ç†ã ã‘ã§ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆã¯è¡Œã‚ãªã„ã“ã¨ã«æ³¨æ„
  */
 //--------------------------------------------------------------
 void FMap_ArticleActResourceIDSet(FMAP_PTR fmap, u16 act_id)
@@ -1406,17 +1406,17 @@ void FMap_ArticleActResourceIDSet(FMAP_PTR fmap, u16 act_id)
 		}
 	}
 	
-	GF_ASSERT(0);	//IDŠÇ——Ìˆæ‚Ì‹ó‚«‚ª‚È‚¢
+	GF_ASSERT(0);	//IDç®¡ç†é ˜åŸŸã®ç©ºããŒãªã„
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒg‚Å¶¬‚µ‚½ƒAƒNƒ^[‚ÌƒŠƒ\[ƒXID‚ðŠÇ——Ìˆæ‚©‚çíœ‚·‚é
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒªã‚½ãƒ¼ã‚¹IDã‚’ç®¡ç†é ˜åŸŸã‹ã‚‰å‰Šé™¤ã™ã‚‹
  *
  * @param   fmap		
- * @param   act_id		ƒAƒNƒ^[ID
+ * @param   act_id		ã‚¢ã‚¯ã‚¿ãƒ¼ID
  *
- * ID‚Ìíœ‚¾‚¯‚ÅƒŠƒ\[ƒXŽ©‘Ì‚Ííœ‚µ‚È‚¢‚±‚Æ‚É’ˆÓ
+ * IDã®å‰Šé™¤ã ã‘ã§ãƒªã‚½ãƒ¼ã‚¹è‡ªä½“ã¯å‰Šé™¤ã—ãªã„ã“ã¨ã«æ³¨æ„
  */
 //--------------------------------------------------------------
 void FMap_ArticleActResourceIDDel(FMAP_PTR fmap, u16 act_id)
@@ -1433,11 +1433,11 @@ void FMap_ArticleActResourceIDDel(FMAP_PTR fmap, u16 act_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‚ÅŠÇ—‚·‚éƒAƒNƒ^[‚ð¶¬‚·‚é
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ã§ç®¡ç†ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   fmap			
- * @param   work_no		ƒ[ƒN”Ô†(ACTWORK_?)
- * @param   cap			ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
+ * @param   work_no		ãƒ¯ãƒ¼ã‚¯ç•ªå·(ACTWORK_?)
+ * @param   cap			ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR FMap_ArticleActCreate(FMAP_PTR fmap, u16 work_no, u16 act_id)
@@ -1457,10 +1457,10 @@ CATS_ACT_PTR FMap_ArticleActCreate(FMAP_PTR fmap, u16 work_no, u16 act_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‚ÅŠÇ—‚·‚éƒAƒNƒ^[‚ðíœ‚·‚é
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ã§ç®¡ç†ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   fmap		
- * @param   work_no		ƒ[ƒN”Ô†(ACTWORK_?)
+ * @param   work_no		ãƒ¯ãƒ¼ã‚¯ç•ªå·(ACTWORK_?)
  */
 //--------------------------------------------------------------
 void FMap_ArticleActDel(FMAP_PTR fmap, u16 work_no)
@@ -1474,12 +1474,12 @@ void FMap_ArticleActDel(FMAP_PTR fmap, u16 work_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‚ÅŠÇ—‚µ‚Ä‚¢‚éƒAƒNƒ^[ƒ|ƒCƒ“ƒ^‚ðŽæ“¾‚·‚é
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ã§ç®¡ç†ã—ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  * @param   fmap		
- * @param   work_no		ƒ[ƒN”Ô†(ACTWORK_?)
+ * @param   work_no		ãƒ¯ãƒ¼ã‚¯ç•ªå·(ACTWORK_?)
  *
- * @retval  ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
+ * @retval  ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR FMap_ArticleActGet(FMAP_PTR fmap, u16 work_no)
@@ -1489,10 +1489,10 @@ CATS_ACT_PTR FMap_ArticleActGet(FMAP_PTR fmap, u16 work_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‚ÅŠÇ—‚·‚éƒAƒNƒ^[‚ÌƒAƒjƒ“®ìÝ’è
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ã§ç®¡ç†ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚¢ãƒ‹ãƒ¡å‹•ä½œè¨­å®š
  *
- * @param   work_no			ƒ[ƒN”Ô†(ACTWORK_?)
- * @param   anm_start		ON:ƒAƒjƒ‚³‚¹‚éB@OFFF‚³‚¹‚È‚¢
+ * @param   work_no			ãƒ¯ãƒ¼ã‚¯ç•ªå·(ACTWORK_?)
+ * @param   anm_start		ON:ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹ã€‚ã€€OFFï¼šã•ã›ãªã„
  */
 //--------------------------------------------------------------
 void FMap_ArticleActAnmBitSet(FMAP_PTR fmap, u16 work_no, int anm_start)
@@ -1507,11 +1507,11 @@ void FMap_ArticleActAnmBitSet(FMAP_PTR fmap, u16 work_no, int anm_start)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‚ÅŠÇ—‚·‚éƒAƒNƒ^[‚ÌƒAƒjƒ“®ìÝ’è‚ðŽæ“¾‚·‚é
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ã§ç®¡ç†ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚¢ãƒ‹ãƒ¡å‹•ä½œè¨­å®šã‚’å–å¾—ã™ã‚‹
  *
- * @param   work_no			ƒ[ƒN”Ô†(ACTWORK_?)
+ * @param   work_no			ãƒ¯ãƒ¼ã‚¯ç•ªå·(ACTWORK_?)
  * 
- * @retval  1=ƒAƒjƒ“®ì—LŒøB@0=ƒAƒjƒ“®ìÝ’è‚ª‚³‚ê‚Ä‚¢‚È‚¢
+ * @retval  1=ã‚¢ãƒ‹ãƒ¡å‹•ä½œæœ‰åŠ¹ã€‚ã€€0=ã‚¢ãƒ‹ãƒ¡å‹•ä½œè¨­å®šãŒã•ã‚Œã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 u32 FMap_ArticleActAnmBitGet(FMAP_PTR fmap, u16 work_no)
@@ -1521,7 +1521,7 @@ u32 FMap_ArticleActAnmBitGet(FMAP_PTR fmap, u16 work_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒg‚Å¶¬‚µ‚½ƒAƒNƒ^[‚ð‘Þ”ð
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã‚’é€€é¿
  *
  * @param   fmap		
  */
@@ -1535,7 +1535,7 @@ static void FMap_ArticleActPush(FMAP_PTR fmap)
 	push_buf = Frontier_ArticlePushBufferGet(fmap->fmain);
 	article = &fmap->article;
 	
-	//ƒŠƒ\[ƒXID‘Þ”ð
+	//ãƒªã‚½ãƒ¼ã‚¹IDé€€é¿
 	for(i = 0; i < ACTWORK_RESOURCE_MAX; i++){
 		if(article->resource_id[i] != SCR_ACTWORK_RESOURCE_ID_NULL){
 			push_buf->resource_id[i] = article->resource_id[i];
@@ -1543,7 +1543,7 @@ static void FMap_ArticleActPush(FMAP_PTR fmap)
 		}
 	}
 	
-	//ƒAƒNƒ^[ƒpƒ‰ƒ[ƒ^‘Þ”ð
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€€é¿
 	i = 0;
 	for(i = 0; i < ACTWORK_MAX; i++){
 		if(article->act[i] != NULL){
@@ -1562,7 +1562,7 @@ static void FMap_ArticleActPush(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒg‚Å¶¬‚µ‚½ƒAƒNƒ^[‚ð•œ‹A
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å¾©å¸°
  *
  * @param   fmap		
  */
@@ -1578,7 +1578,7 @@ static void FMap_ArticleActPop(FMAP_PTR fmap)
 
 	hdl_obj = ArchiveDataHandleOpen(ARC_FRONTIER_OBJ, HEAPID_FRONTIERMAP);
 	
-	//ƒŠƒ\[ƒX•œ‹A
+	//ãƒªã‚½ãƒ¼ã‚¹å¾©å¸°
 	for(i = 0; i < ACTWORK_RESOURCE_MAX; i++){
 		if(push_buf->resource_id[i] != SCR_ACTWORK_RESOURCE_ID_NULL){
 			FAct_ResourceLoad(fmap->clactsys.csp, fmap->clactsys.crp, 
@@ -1587,7 +1587,7 @@ static void FMap_ArticleActPop(FMAP_PTR fmap)
 		}
 	}
 	
-	//ƒAƒNƒ^[•œ‹A
+	//ã‚¢ã‚¯ã‚¿ãƒ¼å¾©å¸°
 	for(i = 0; i < ACTWORK_MAX; i++){
 		if(push_buf->act_param[i].occ == TRUE){
 			cap = FMap_ArticleActCreate(fmap, i, push_buf->act_param[i].act_id);
@@ -1602,22 +1602,22 @@ static void FMap_ArticleActPop(FMAP_PTR fmap)
 	
 	ArchiveDataHandleClose(hdl_obj);
 
-	//•œ‹A‚ªŠ®—¹‚µ‚½‚Ì‚Å‘Þ”ðƒoƒbƒtƒ@‚ð‰Šú‰»
+	//å¾©å¸°ãŒå®Œäº†ã—ãŸã®ã§é€€é¿ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–
 	Frontier_ArticlePushBufferInit(fmap->fmain);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒ[ƒ‹À•WŽæ“¾
+ * @brief   ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™å–å¾—
  *
  * @param   fmap		
- * @param   ret_x		XÀ•W‘ã“üæ
- * @param   ret_y		YÀ•W‘ã“üæ
+ * @param   ret_x		Xåº§æ¨™ä»£å…¥å…ˆ
+ * @param   ret_y		Yåº§æ¨™ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void FMap_ScrollPosGet(FMAP_PTR fmap, s16 *ret_x, s16 *ret_y)
 {
-	// ƒXƒNƒ[ƒ‹À•W‚©‚çƒXƒNƒ[ƒ‹À•W‚ðŠe•\Ž¦ƒVƒXƒeƒ€‚ÉÝ’è
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‹ã‚‰ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‚’å„è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ã«è¨­å®š
 	*ret_y = WF2DMAP_SCROLLSysTopGet(&fmap->scrollsys);
 	*ret_x = WF2DMAP_SCROLLSysLeftGet(&fmap->scrollsys);
 	OS_TPrintf("surface scroll x = %d, y = %d\n", *ret_x, *ret_y);
@@ -1625,10 +1625,10 @@ void FMap_ScrollPosGet(FMAP_PTR fmap, s16 *ret_x, s16 *ret_y)
 
 //--------------------------------------------------------------
 /**
- * @brief   FSS_ACTOR_WORK‚Ìƒf[ƒ^‚ðŒ³‚É‚µ‚ÄFSS_CHAR_ACTOR_DATA‚ðì‚èo‚·
+ * @brief   FSS_ACTOR_WORKã®ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«ã—ã¦FSS_CHAR_ACTOR_DATAã‚’ä½œã‚Šå‡ºã™
  *
- * @param   fss_actor		ì¬Œ³ƒf[ƒ^‚É‚È‚éFSS_ACTOR_WORK
- * @param   act_data		ƒf[ƒ^o—Íæ
+ * @param   fss_actor		ä½œæˆå…ƒãƒ‡ãƒ¼ã‚¿ã«ãªã‚‹FSS_ACTOR_WORK
+ * @param   act_data		ãƒ‡ãƒ¼ã‚¿å‡ºåŠ›å…ˆ
  */
 //--------------------------------------------------------------
 static void Frontier_ActWork_to_ActData(FSS_ACTOR_WORK *fss_actor, FSS_CHAR_ACTOR_DATA *act_data)
@@ -1638,9 +1638,9 @@ static void Frontier_ActWork_to_ActData(FSS_ACTOR_WORK *fss_actor, FSS_CHAR_ACTO
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒAƒNƒ^[ƒ[ƒN‚Éƒf[ƒ^‚ðƒZƒbƒg‚·‚é
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   act_no		ƒAƒNƒ^[”Ô†
+ * @param   act_no		ã‚¢ã‚¯ã‚¿ãƒ¼ç•ªå·
  * @param   objwk		OBJWK
  * @param   drawwk		DRAWWK
  * @param   res			
@@ -1652,8 +1652,8 @@ static void Frontier_ActWorkDataSet(FMAIN_PTR fmain, int act_no, WF2DMAP_OBJWK *
 	
 	fss_actor = Frontier_ActorWorkPtrGet(fmain, act_no);
 
-//POPŽž‚Ìmove‚ðÁ‚³‚È‚¢‚æ‚¤‚É‚·‚éˆ×A‘S‘ÌƒNƒŠƒA‚µ‚È‚¢B
-//ActorFreeŽž‚ÍClear‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚±‚ÅƒNƒŠƒA‚µ‚È‚¢Ž–‚Í–â‘è‚È‚¢B
+//POPæ™‚ã®moveã‚’æ¶ˆã•ãªã„ã‚ˆã†ã«ã™ã‚‹ç‚ºã€å…¨ä½“ã‚¯ãƒªã‚¢ã—ãªã„ã€‚
+//ActorFreeæ™‚ã¯Clearã—ã¦ã„ã‚‹ã®ã§ã€ã“ã“ã§ã‚¯ãƒªã‚¢ã—ãªã„äº‹ã¯å•é¡Œãªã„ã€‚
 //	MI_CpuClear8(fss_actor, sizeof(FSS_ACTOR_WORK));
 	
 	fss_actor->objwk = objwk;
@@ -1663,12 +1663,12 @@ static void Frontier_ActWorkDataSet(FMAIN_PTR fmain, int act_no, WF2DMAP_OBJWK *
 
 //--------------------------------------------------------------
 /**
- * @brief   playid‚©‚çƒtƒƒ“ƒeƒBƒAƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^‚ðŽæ“¾‚·‚é
+ * @brief   playidã‹ã‚‰ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  * @param   fmain		
  * @param   playid		
  *
- * @retval  ƒtƒƒ“ƒeƒBƒAƒAƒNƒ^[ƒ[ƒN
+ * @retval  ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 FSS_ACTOR_WORK * Frontier_ActorWorkSearch(FMAIN_PTR fmain, int playid)

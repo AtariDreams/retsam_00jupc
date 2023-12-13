@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d25r0108evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d25r0108_flag_change
 _EVENT_DATA		ev_d25r0108_ghost_event_01
@@ -24,13 +24,13 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d25r0108_flag_change:
-	//25%‚ÌŠm—§‚Å”­¶
+	//25%ã®ç¢ºç«‹ã§ç™ºç”Ÿ
 	_GET_RANDOM_HIT	25,LOCALWORK0
 	_IFVAL_JUMP		LOCALWORK0,EQ,1,ev_d25r0108_flag_change_event_on
 	_FLAG_SET		FV_D25R0108_BABYGIRL1
 	_END
 
-//ƒS[ƒXƒgƒCƒxƒ“ƒg”­¶
+//ã‚´ãƒ¼ã‚¹ãƒˆã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿ
 ev_d25r0108_flag_change_event_on:
 	_FLAG_RESET		FV_D25R0108_BABYGIRL1
 	_LDVAL			WK_SCENE_D25R0108,1
@@ -42,7 +42,7 @@ ev_d25r0108_flag_change_event_on:
 /********************************************************************/
 ev_d25r0108_ghost_event_01:
 	_EVENT_START
-	//‚·[‚Á‚ÆA•”‰®‚ÌŠO‚ÖˆÚ“®
+	//ã™ãƒ¼ã£ã¨ã€éƒ¨å±‹ã®å¤–ã¸ç§»å‹•
 	_OBJ_ANIME		D25R0108_BABYGIRL_01,anm_d25r0108_ghost_move
 	_OBJ_ANIME_WAIT
 	_FLAG_SET		FV_D25R0108_BABYGIRL1
@@ -51,7 +51,7 @@ ev_d25r0108_ghost_event_01:
 	_EVENT_END
 	_END
 
-//‚·[‚Á‚ÆA•”‰®‚ÌŠO‚ÖˆÚ“®
+//ã™ãƒ¼ã£ã¨ã€éƒ¨å±‹ã®å¤–ã¸ç§»å‹•
 _ANIME_LABEL	anm_d25r0108_ghost_move
 	_ANIME_DATA	AC_WAIT_16F,1
 	_ANIME_DATA	AC_DIR_D,1

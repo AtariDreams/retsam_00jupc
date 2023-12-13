@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	place_name.c	
- * @bfief	’n–¼•\¦
+ * @bfief	åœ°åè¡¨ç¤º
  * @author	Nozomu Saito
  * @date	01.03.29
  *
@@ -24,14 +24,14 @@
 
 #include "area_win_id.h"
 
-///< ‚±‚Ì’è‹`‚ğ—LŒø‚É‚·‚é‚ÆAPLACE_WIN_NOTHING ‚Å‚à‰½‚©‚µ‚ç‚ÌƒEƒBƒ“ƒhƒE‚ª•\¦‚³‚ê‚éB
+///< ã“ã®å®šç¾©ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã¨ã€PLACE_WIN_NOTHING ã§ã‚‚ä½•ã‹ã—ã‚‰ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã€‚
 //#define PLACE_WIN_NOTHING_SW
 //#define PLACE_WIN_RONDOM
 
 #define AREA_WIN_CHAR_NUM	( 85 )
 #define AREA_WIN_CHAR_WIFTH	( 17 )
 
-#define PAL_ONE_SIZE	( 32 )		// ’ÊíƒpƒŒƒbƒg 16x2
+#define PAL_ONE_SIZE	( 32 )		// é€šå¸¸ãƒ‘ãƒ¬ãƒƒãƒˆ 16x2
 #define ONE_CHAR_SIZE	(8)
 #define PLACE_NAME_FRAME	(GF_BGL_FRAME3_M)
 
@@ -40,7 +40,7 @@
 #define PLANE_NAME_SCROLL_SPEED	(4)
 #define PLACE_NAME_HOLD_TIME	(60)
 
-//«‚±‚ê‚æ‚è‰º‚Ì’è‹`‚ÍƒpƒŒƒbƒgAƒLƒƒƒ‰ƒf[ƒ^‚ÉˆË‘¶‚µ‚Ü‚·
+//â†“ã“ã‚Œã‚ˆã‚Šä¸‹ã®å®šç¾©ã¯ãƒ‘ãƒ¬ãƒƒãƒˆã€ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã«ä¾å­˜ã—ã¾ã™
 #define PLACE_NAME_PAL_WHITE	(0x0f)
 
 #define PLACE_NAME_CHAR_LU		(1)
@@ -53,14 +53,14 @@
 #define PLACE_NAME_CHAR_RIGHT	(8)
 #define PLACE_NAME_CHAR_CENTER	(9)
 
-//Šé‰æˆÓ}“I‚È‹ó”’
+//ä¼ç”»æ„å›³çš„ãªç©ºç™½
 #define WIN_WHITE_SPACE			(8)
 
-//«ƒfƒUƒCƒ“ãAƒtƒŒ[ƒ€‚Ì‘‚¢‚Ä‚ ‚éƒLƒƒƒ‰‚Å•¶š‚Ì‚©‚¯‚éƒXƒy[ƒXiƒhƒbƒgj
+//â†“ãƒ‡ã‚¶ã‚¤ãƒ³ä¸Šã€ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ›¸ã„ã¦ã‚ã‚‹ã‚­ãƒ£ãƒ©ã§æ–‡å­—ã®ã‹ã‘ã‚‹ã‚¹ãƒšãƒ¼ã‚¹ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
 #define WIN_CAN_USE_SPACE				(4)
-//«ƒfƒUƒCƒ“ãAƒtƒŒ[ƒ€‚Ì‘‚¢‚Ä‚ ‚éƒLƒƒƒ‰‚Ì•¶š‚Ì‚©‚¯‚È‚¢ƒXƒy[ƒXiƒhƒbƒgj
+//â†“ãƒ‡ã‚¶ã‚¤ãƒ³ä¸Šã€ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ›¸ã„ã¦ã‚ã‚‹ã‚­ãƒ£ãƒ©ã®æ–‡å­—ã®ã‹ã‘ãªã„ã‚¹ãƒšãƒ¼ã‚¹ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
 #define WIN_DEAD_SPACE			(ONE_CHAR_SIZE-WIN_CAN_USE_SPACE)	
-//#define WIN_DEAD_SPACE			(ONE_CHAR_SIZE*2-WIN_CAN_USE_SPACE)	///< ƒfƒUƒCƒ“‚ÌŠÖŒWã2ƒLƒƒƒ‰‚¸‚ê‚Ä‚¢‚é
+//#define WIN_DEAD_SPACE			(ONE_CHAR_SIZE*2-WIN_CAN_USE_SPACE)	///< ãƒ‡ã‚¶ã‚¤ãƒ³ã®é–¢ä¿‚ä¸Š2ã‚­ãƒ£ãƒ©ãšã‚Œã¦ã„ã‚‹
 //#define WRITE_NAME_POS_Y	(4)
 #define WRITE_NAME_POS_Y	(ONE_CHAR_SIZE * 2)
 
@@ -73,10 +73,10 @@ typedef enum {
 
 typedef struct PLACE_NAME_CONT_tag
 {
-	BOOL			Moving;				//ƒ^ƒXƒN‚Í‰Ò“®’†‚©H
-	u8				State;				//•\¦ó‘Ô
-	TCB_PTR			Task;				//ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
-	int				Offset;				//ƒXƒNƒ[ƒ‹’l
+	BOOL			Moving;				//ã‚¿ã‚¹ã‚¯ã¯ç¨¼å‹•ä¸­ã‹ï¼Ÿ
+	u8				State;				//è¡¨ç¤ºçŠ¶æ…‹
+	TCB_PTR			Task;				//ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+	int				Offset;				//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
 	u16				WaitCount;
 	BOOL			IsNext;
 	int				NameID;
@@ -107,10 +107,10 @@ static u32 GetPlaceName(MSGDATA_MANAGER* manager, const int inNameID, STRBUF *ou
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒgƒZƒbƒg
- * @param	buf		ƒoƒbƒtƒ@		
- * @param	siz		ƒTƒCƒY
- * @param	ofs		ƒIƒtƒZƒbƒg
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
+ * @param	buf		ãƒãƒƒãƒ•ã‚¡		
+ * @param	siz		ã‚µã‚¤ã‚º
+ * @param	ofs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  * @return	none
  */
 //------------------------------------------------------------------
@@ -122,8 +122,8 @@ static void SetPlaceNameWinPalette( void * buf, u16 siz, u16 ofs )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
- * @param	outPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^		
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
+ * @param	outPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿		
  * @return	none
  */
 //------------------------------------------------------------------
@@ -144,12 +144,12 @@ static void SetPlaceNameGraphic(PNC_PTR outPlaceNameCont)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
- * @param	ioPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	frmnum			ƒtƒŒ[ƒ€ƒiƒ“ƒo[
- * @param	cgx				ƒLƒƒƒ‰
- * @param	pal				ƒpƒŒƒbƒg
- * @param	win_num			ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
+ * @param	ioPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frmnum			ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param	cgx				ã‚­ãƒ£ãƒ©
+ * @param	pal				ãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	win_num			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
  * @return	none
  */
 //------------------------------------------------------------------
@@ -190,23 +190,23 @@ static void SetPlaceNameWinGraphic( PNC_PTR ioPlaceNameCont,
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒEƒBƒ“ƒhƒEƒZƒbƒgƒAƒbƒv
- * @param	ioPlaceNameCont		’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inLen				•¶š—ñ’·‚³
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
+ * @param	ioPlaceNameCont		åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inLen				æ–‡å­—åˆ—é•·ã•
  * @return	none
  */
 //------------------------------------------------------------------
 static void SetupPlaceNameWin(PNC_PTR ioPlaceNameCont, const int inLen)
 {
-	int bmp_len;	//ƒtƒŒ[ƒ€—¼’[•”•ª‚ğŠÜ‚Ü‚È‚¢A•K—v‚ÈBMPƒhƒbƒgƒTƒCƒY
-	int char_w;		//ƒLƒƒƒ‰ƒTƒCƒY
-	int plus_ofs;	//ƒtƒŒ[ƒ€—¼’[‚Ì•¶š‚ª‘‚¯‚È‚¢ƒIƒtƒZƒbƒg’l‚©‚ç‚ÌƒIƒtƒZƒbƒg
+	int bmp_len;	//ãƒ•ãƒ¬ãƒ¼ãƒ ä¸¡ç«¯éƒ¨åˆ†ã‚’å«ã¾ãªã„ã€å¿…è¦ãªBMPãƒ‰ãƒƒãƒˆã‚µã‚¤ã‚º
+	int char_w;		//ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+	int plus_ofs;	//ãƒ•ãƒ¬ãƒ¼ãƒ ä¸¡ç«¯ã®æ–‡å­—ãŒæ›¸ã‘ãªã„ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 	int total_dot;
 	int rest_dot;
 	int plus;
 	u8 plus_char;
-	u8 i;			//”Ä—pƒJƒEƒ“ƒ^
+	u8 i;			//æ±ç”¨ã‚«ã‚¦ãƒ³ã‚¿
 
 	total_dot = (inLen+ONE_CHAR_SIZE)/ONE_CHAR_SIZE*ONE_CHAR_SIZE;
 	rest_dot = total_dot-inLen;
@@ -216,9 +216,9 @@ static void SetupPlaceNameWin(PNC_PTR ioPlaceNameCont, const int inLen)
 		plus_char = 0;
 	}else{
 		int temp;
-		temp = WIN_WHITE_SPACE - (WIN_CAN_USE_SPACE+plus);	//‹ó”’‚ğì‚é‚Ì‚É‘«‚è‚È‚¢•Ğ‘¤‚Ìƒhƒbƒg”
-		temp*=2;											//‹ó”’‚ğì‚é‚Ì‚É‘«‚è‚È‚¢ƒhƒbƒg”‡Œv
-		plus_char = (temp+(ONE_CHAR_SIZE-1))/ONE_CHAR_SIZE;	//•K—vƒLƒƒƒ‰
+		temp = WIN_WHITE_SPACE - (WIN_CAN_USE_SPACE+plus);	//ç©ºç™½ã‚’ä½œã‚‹ã®ã«è¶³ã‚Šãªã„ç‰‡å´ã®ãƒ‰ãƒƒãƒˆæ•°
+		temp*=2;											//ç©ºç™½ã‚’ä½œã‚‹ã®ã«è¶³ã‚Šãªã„ãƒ‰ãƒƒãƒˆæ•°åˆè¨ˆ
+		plus_char = (temp+(ONE_CHAR_SIZE-1))/ONE_CHAR_SIZE;	//å¿…è¦ã‚­ãƒ£ãƒ©
 	}
 
 	bmp_len = inLen;
@@ -226,22 +226,22 @@ static void SetupPlaceNameWin(PNC_PTR ioPlaceNameCont, const int inLen)
 		char_w = 0;
 		plus_ofs = 0;
 	}else{
-		char_w = (bmp_len+ONE_CHAR_SIZE)/ONE_CHAR_SIZE;	//ƒtƒŒ[ƒ€•”•ª‚ğœ‚¢‚½•K—vƒLƒƒƒ‰”
+		char_w = (bmp_len+ONE_CHAR_SIZE)/ONE_CHAR_SIZE;	//ãƒ•ãƒ¬ãƒ¼ãƒ éƒ¨åˆ†ã‚’é™¤ã„ãŸå¿…è¦ã‚­ãƒ£ãƒ©æ•°
 		char_w += plus_char;
-		//«‰ÁZƒIƒtƒZƒbƒgi•¶š‚ğ‘‚­‚±‚Æ‚ª‚Å‚«‚éƒhƒbƒg”-’n–¼•¶šƒhƒbƒg”j/2
+		//â†“åŠ ç®—ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ï¼ˆæ–‡å­—ã‚’æ›¸ãã“ã¨ãŒã§ãã‚‹ãƒ‰ãƒƒãƒˆæ•°-åœ°åæ–‡å­—ãƒ‰ãƒƒãƒˆæ•°ï¼‰/2
 		plus_ofs = ( ((char_w*ONE_CHAR_SIZE)+(WIN_CAN_USE_SPACE*2) ) - inLen ) / 2;
 	}
 	
 	ioPlaceNameCont->WriteOffs = WIN_DEAD_SPACE+plus_ofs;
 	///OS_Printf("name =%d,%d,%d,%d\n",total_dot,inLen,char_w,plus_ofs);
 
-	//ƒNƒŠ[ƒ“ˆ—
+	//ã‚¯ãƒªãƒ¼ãƒ³å‡¦ç†
 	{
 		int i, j;
 		
 		SetPlaceNameWinGraphic( ioPlaceNameCont, FLD_MBGFRM_FONT, PLACE_WIN_CGX_NUM, PLACE_WIN_PAL,	0 );
 		
-		GF_BGL_BmpWinDataFill( &ioPlaceNameCont->Win, 0 );	//‚a‚l‚oƒEƒBƒ“ƒhƒE‚ğƒNƒŠƒA
+		GF_BGL_BmpWinDataFill( &ioPlaceNameCont->Win, 0 );	//ï¼¢ï¼­ï¼°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¯ãƒªã‚¢
 #if 1	
 		for ( i = 0; i < AREA_WIN_CHAR_NUM; i++ ){
 			GF_BGL_BmpWinPrint(
@@ -250,50 +250,50 @@ static void SetupPlaceNameWin(PNC_PTR ioPlaceNameCont, const int inLen)
 					( i % AREA_WIN_CHAR_WIFTH ) * ONE_CHAR_SIZE, ( i  / AREA_WIN_CHAR_WIFTH ) * ONE_CHAR_SIZE, ONE_CHAR_SIZE, ONE_CHAR_SIZE );
 		}
 #else
-		//‚a‚l‚oƒEƒBƒ“ƒhƒE‚ğì¬
+		//ï¼¢ï¼­ï¼°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆ
 		{
-			//¶ãƒtƒŒ[ƒ€
+			//å·¦ä¸Šãƒ•ãƒ¬ãƒ¼ãƒ 
 			GF_BGL_BmpWinPrint(
 					&ioPlaceNameCont->Win, ioPlaceNameCont->CharDat->pRawData,
 					PLACE_NAME_CHAR_LU*ONE_CHAR_SIZE, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE,
 					0, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE );
-			//‰EãƒtƒŒ[ƒ€
+			//å³ä¸Šãƒ•ãƒ¬ãƒ¼ãƒ 
 			GF_BGL_BmpWinPrint(
 					&ioPlaceNameCont->Win, ioPlaceNameCont->CharDat->pRawData,
 					PLACE_NAME_CHAR_RU*ONE_CHAR_SIZE, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE,
 					(char_w+1)*ONE_CHAR_SIZE, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE );
-			//¶ƒtƒŒ[ƒ€
+			//å·¦ãƒ•ãƒ¬ãƒ¼ãƒ 
 			GF_BGL_BmpWinPrint(
 					&ioPlaceNameCont->Win, ioPlaceNameCont->CharDat->pRawData,
 					PLACE_NAME_CHAR_LEFT*ONE_CHAR_SIZE, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE,
 					0, ONE_CHAR_SIZE, ONE_CHAR_SIZE, ONE_CHAR_SIZE );
-			//‰EƒtƒŒ[ƒ€
+			//å³ãƒ•ãƒ¬ãƒ¼ãƒ 
 			GF_BGL_BmpWinPrint(
 					&ioPlaceNameCont->Win, ioPlaceNameCont->CharDat->pRawData,
 					PLACE_NAME_CHAR_RIGHT*ONE_CHAR_SIZE, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE,
 					(char_w+1)*ONE_CHAR_SIZE, ONE_CHAR_SIZE, ONE_CHAR_SIZE, ONE_CHAR_SIZE );
-			//¶‰ºƒtƒŒ[ƒ€
+			//å·¦ä¸‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 			GF_BGL_BmpWinPrint(
 					&ioPlaceNameCont->Win, ioPlaceNameCont->CharDat->pRawData,
 					PLACE_NAME_CHAR_LD*ONE_CHAR_SIZE, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE,
 					0, ONE_CHAR_SIZE*2, ONE_CHAR_SIZE, ONE_CHAR_SIZE );
-			//‰E‰ºƒtƒŒ[ƒ€
+			//å³ä¸‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 			GF_BGL_BmpWinPrint(
 					&ioPlaceNameCont->Win, ioPlaceNameCont->CharDat->pRawData,
 					PLACE_NAME_CHAR_RD*ONE_CHAR_SIZE, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE,
 					(char_w+1)*ONE_CHAR_SIZE, ONE_CHAR_SIZE*2, ONE_CHAR_SIZE, ONE_CHAR_SIZE );
 			for(i=0;i<char_w;i++){
-				//ãƒtƒŒ[ƒ€
+				//ä¸Šãƒ•ãƒ¬ãƒ¼ãƒ 
 				GF_BGL_BmpWinPrint(
 					&ioPlaceNameCont->Win, ioPlaceNameCont->CharDat->pRawData,
 					PLACE_NAME_CHAR_UP*ONE_CHAR_SIZE, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE,
 					ONE_CHAR_SIZE*(1+i), 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE );
-				//ƒEƒBƒ“ƒhƒE’†
+				//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä¸­
 				GF_BGL_BmpWinPrint(
 					&ioPlaceNameCont->Win, ioPlaceNameCont->CharDat->pRawData,
 					PLACE_NAME_CHAR_CENTER*ONE_CHAR_SIZE, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE,
 					ONE_CHAR_SIZE*(1+i), ONE_CHAR_SIZE, ONE_CHAR_SIZE, ONE_CHAR_SIZE );
-				//‰ºƒtƒŒ[ƒ€
+				//ä¸‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 				GF_BGL_BmpWinPrint(
 					&ioPlaceNameCont->Win, ioPlaceNameCont->CharDat->pRawData,
 					PLACE_NAME_CHAR_DOWN*ONE_CHAR_SIZE, 0, ONE_CHAR_SIZE, ONE_CHAR_SIZE,
@@ -308,15 +308,15 @@ static void SetupPlaceNameWin(PNC_PTR ioPlaceNameCont, const int inLen)
 
 static void SetupPlaceNameWinEx(PNC_PTR ioPlaceNameCont, const int inLen)
 {
-	int bmp_len;	//ƒtƒŒ[ƒ€—¼’[•”•ª‚ğŠÜ‚Ü‚È‚¢A•K—v‚ÈBMPƒhƒbƒgƒTƒCƒY
-	int char_w;		//ƒLƒƒƒ‰ƒTƒCƒY
-	int plus_ofs;	//ƒtƒŒ[ƒ€—¼’[‚Ì•¶š‚ª‘‚¯‚È‚¢ƒIƒtƒZƒbƒg’l‚©‚ç‚ÌƒIƒtƒZƒbƒg
+	int bmp_len;	//ãƒ•ãƒ¬ãƒ¼ãƒ ä¸¡ç«¯éƒ¨åˆ†ã‚’å«ã¾ãªã„ã€å¿…è¦ãªBMPãƒ‰ãƒƒãƒˆã‚µã‚¤ã‚º
+	int char_w;		//ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+	int plus_ofs;	//ãƒ•ãƒ¬ãƒ¼ãƒ ä¸¡ç«¯ã®æ–‡å­—ãŒæ›¸ã‘ãªã„ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 	int total_dot;
 	int rest_dot;
 	int plus;
 	u8 plus_char;
-	u8 i;			//”Ä—pƒJƒEƒ“ƒ^
+	u8 i;			//æ±ç”¨ã‚«ã‚¦ãƒ³ã‚¿
 
 	total_dot = (inLen+ONE_CHAR_SIZE)/ONE_CHAR_SIZE*ONE_CHAR_SIZE;
 	rest_dot = total_dot-inLen;
@@ -326,9 +326,9 @@ static void SetupPlaceNameWinEx(PNC_PTR ioPlaceNameCont, const int inLen)
 		plus_char = 0;
 	}else{
 		int temp;
-		temp = WIN_WHITE_SPACE - (WIN_CAN_USE_SPACE+plus);	//‹ó”’‚ğì‚é‚Ì‚É‘«‚è‚È‚¢•Ğ‘¤‚Ìƒhƒbƒg”
-		temp*=2;											//‹ó”’‚ğì‚é‚Ì‚É‘«‚è‚È‚¢ƒhƒbƒg”‡Œv
-		plus_char = (temp+(ONE_CHAR_SIZE-1))/ONE_CHAR_SIZE;	//•K—vƒLƒƒƒ‰
+		temp = WIN_WHITE_SPACE - (WIN_CAN_USE_SPACE+plus);	//ç©ºç™½ã‚’ä½œã‚‹ã®ã«è¶³ã‚Šãªã„ç‰‡å´ã®ãƒ‰ãƒƒãƒˆæ•°
+		temp*=2;											//ç©ºç™½ã‚’ä½œã‚‹ã®ã«è¶³ã‚Šãªã„ãƒ‰ãƒƒãƒˆæ•°åˆè¨ˆ
+		plus_char = (temp+(ONE_CHAR_SIZE-1))/ONE_CHAR_SIZE;	//å¿…è¦ã‚­ãƒ£ãƒ©
 	}
 
 	bmp_len = inLen;
@@ -336,17 +336,17 @@ static void SetupPlaceNameWinEx(PNC_PTR ioPlaceNameCont, const int inLen)
 		char_w = 0;
 		plus_ofs = 0;
 	}else{
-		char_w = (bmp_len+ONE_CHAR_SIZE)/ONE_CHAR_SIZE;	//ƒtƒŒ[ƒ€•”•ª‚ğœ‚¢‚½•K—vƒLƒƒƒ‰”
+		char_w = (bmp_len+ONE_CHAR_SIZE)/ONE_CHAR_SIZE;	//ãƒ•ãƒ¬ãƒ¼ãƒ éƒ¨åˆ†ã‚’é™¤ã„ãŸå¿…è¦ã‚­ãƒ£ãƒ©æ•°
 		char_w += plus_char;
-		//«‰ÁZƒIƒtƒZƒbƒgi•¶š‚ğ‘‚­‚±‚Æ‚ª‚Å‚«‚éƒhƒbƒg”-’n–¼•¶šƒhƒbƒg”j/2
+		//â†“åŠ ç®—ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ï¼ˆæ–‡å­—ã‚’æ›¸ãã“ã¨ãŒã§ãã‚‹ãƒ‰ãƒƒãƒˆæ•°-åœ°åæ–‡å­—ãƒ‰ãƒƒãƒˆæ•°ï¼‰/2
 		plus_ofs = ( ((char_w*ONE_CHAR_SIZE)+(WIN_CAN_USE_SPACE*2) ) - inLen ) / 2;
 	}
 	
 	ioPlaceNameCont->WriteOffs = WIN_DEAD_SPACE+plus_ofs;
 	///OS_Printf("name =%d,%d,%d,%d\n",total_dot,inLen,char_w,plus_ofs);
 	
-	///< ƒEƒBƒ“ƒhƒE	
-	GF_BGL_BmpWinDataFill( &ioPlaceNameCont->Win, 0 );	//‚a‚l‚oƒEƒBƒ“ƒhƒE‚ğƒNƒŠƒA
+	///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	
+	GF_BGL_BmpWinDataFill( &ioPlaceNameCont->Win, 0 );	//ï¼¢ï¼­ï¼°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¯ãƒªã‚¢
 	{
 		ArcUtil_BgCharSet( ARC_AREA_WIN_GRA, 0+0,
 						   ioPlaceNameCont->WinIni, PLACE_NAME_FRAME, 0, 0, 0, HEAPID_FIELD);
@@ -362,8 +362,8 @@ static void SetupPlaceNameWinEx(PNC_PTR ioPlaceNameCont, const int inLen)
 
 //------------------------------------------------------------------
 /**
- * @brief	\‘¢‘ÌƒNƒŠ[ƒ“
- * @param	outPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ§‹é€ ä½“ã‚¯ãƒªãƒ¼ãƒ³
+ * @param	outPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	none
  */
 //------------------------------------------------------------------
@@ -381,8 +381,8 @@ static void CleanPlaceNameCont(PNC_PTR outPlaceNameCont)
 
 //------------------------------------------------------------------
 /**
- * @brief	\‘¢‘ÌƒZƒbƒgƒAƒbƒv
- * @param	outPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ§‹é€ ä½“ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
+ * @param	outPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	bgl	BGL
  * @return	none
  */
@@ -395,9 +395,9 @@ static void SetUpPlaceNameCont(PNC_PTR outPlaceNameCont, GF_BGL_INI *bgl)
 
 //------------------------------------------------------------------
 /**
- * @brief	’n–¼•\¦ƒ^ƒXƒN
- * @param	tcb			ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param	work		ƒ[ƒN
+ * @brief	åœ°åè¡¨ç¤ºã‚¿ã‚¹ã‚¯
+ * @param	tcb			ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	work		ãƒ¯ãƒ¼ã‚¯
  * @return	none
  */
 //------------------------------------------------------------------
@@ -407,7 +407,7 @@ static void PlaceNameTask(TCB_PTR tcb,void *work)
 	u32 len;
 	PLACE_NAME_CONT *place_name = (PLACE_NAME_CONT *)(work);
 	switch(place_name->State){
-	case NAME_STATE_DOWN:			//~‰º’†
+	case NAME_STATE_DOWN:			//é™ä¸‹ä¸­
 		place_name->Offset-=PLANE_NAME_SCROLL_SPEED;
 
 		if (place_name->Offset < PLACE_NAME_OFS_MIN){
@@ -421,14 +421,14 @@ static void PlaceNameTask(TCB_PTR tcb,void *work)
 			place_name->State = NAME_STATE_DOWN_HOLD;
 		}
 		break;
-	case NAME_STATE_DOWN_HOLD:		//~‰ºŒãã¸‘Ò‚¿
+	case NAME_STATE_DOWN_HOLD:		//é™ä¸‹å¾Œä¸Šæ˜‡å¾…ã¡
 		place_name->WaitCount++;
 		if (place_name->WaitCount>=PLACE_NAME_HOLD_TIME){
 			place_name->WaitCount = 0;
 			place_name->State = NAME_STATE_UP;
 		}
 		break;
-	case NAME_STATE_UP:				//ã¸’†
+	case NAME_STATE_UP:				//ä¸Šæ˜‡ä¸­
 		place_name->Offset+=PLANE_NAME_SCROLL_SPEED;
 		if (place_name->Offset > PLACE_NAME_OFS_MAX){
 			place_name->Offset = PLACE_NAME_OFS_MAX;
@@ -438,7 +438,7 @@ static void PlaceNameTask(TCB_PTR tcb,void *work)
 			if (place_name->IsNext){
 				place_name->IsNext = FALSE;
 
-				//–¼‘OƒZƒbƒg
+				//åå‰ã‚»ãƒƒãƒˆ
 				len = PNC_GetPlaceName(place_name->MsgDataManager, place_name->NameID, place_name->NameBuff);
 				
 				SetupPlaceNameWin(place_name,len);
@@ -446,23 +446,23 @@ static void PlaceNameTask(TCB_PTR tcb,void *work)
 				WritePlaceName(place_name,place_name->NameBuff);
 				place_name->State = NAME_STATE_DOWN;
 			}else{
-				StopPlaceName(place_name);	//<<“à•”‚Åƒ^ƒXƒN‰ğ•ú‚µ‚Ä‚é
+				StopPlaceName(place_name);	//<<å†…éƒ¨ã§ã‚¿ã‚¹ã‚¯è§£æ”¾ã—ã¦ã‚‹
 				return;
 			}
 		}
 		break;
 	case NAME_STATE_NONE:
 	default:
-		//ƒAƒT[ƒVƒ‡ƒ“
+		//ã‚¢ã‚µãƒ¼ã‚·ãƒ§ãƒ³
 		break;
 	}
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	’n–¼‚Ìƒ‰ƒCƒg
- * @param	ioPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inName			’n–¼
+ * @brief	åœ°åã®ãƒ©ã‚¤ãƒˆ
+ * @param	ioPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inName			åœ°å
  * @return	none
  */
 //------------------------------------------------------------------
@@ -482,8 +482,8 @@ static void WritePlaceName(PNC_PTR ioPlaceNameCont, const STRBUF *inName)
 
 //------------------------------------------------------------------
 /**
- * @brief	’n–¼•\¦ó‹µ‚ÌƒZƒbƒg
- * @param	outPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åœ°åè¡¨ç¤ºçŠ¶æ³ã®ã‚»ãƒƒãƒˆ
+ * @param	outPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	none
  */
 //------------------------------------------------------------------
@@ -495,7 +495,7 @@ static void SetUPState(PNC_PTR outPlaceNameCont)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒƒ‚ƒŠƒAƒƒP[ƒVƒ‡ƒ“
+ * @brief	ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  * @param	bgl	BGL
  * @return	none
  */
@@ -516,8 +516,8 @@ PNC_PTR	AllocPlaceNameCont(GF_BGL_INI *bgl)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒƒ‚ƒŠƒtƒŠ[
- * @param	outPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ¡ãƒ¢ãƒªãƒ•ãƒªãƒ¼
+ * @param	outPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	none
  */
 //------------------------------------------------------------------
@@ -533,9 +533,9 @@ void FreePlaceNameCont(PNC_PTR outPlaceNameCont)
 
 //------------------------------------------------------------------
 /**
- * @brief	’n–¼•\¦ƒŠƒNƒGƒXƒg
- * @param	ioPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inZoneID	’n–¼ID
+ * @brief	åœ°åè¡¨ç¤ºãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+ * @param	ioPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inZoneID	åœ°åID
  * @return	none
  */
 //------------------------------------------------------------------
@@ -544,36 +544,36 @@ void PlaceNameRequest(PNC_PTR ioPlaceNameCont,const int inPlaceID)
 	STRCODE name[BUFLEN_PLACE_NAME];
 	u32 len;	
 	ioPlaceNameCont->NameID = inPlaceID;//ZoneData_GetPlaceNameID(inZoneID);
-	if (ioPlaceNameCont->Moving == FALSE){	//‰Ò“®‚µ‚Ä‚¢‚È‚¢
-		ioPlaceNameCont->Moving = TRUE;	//‰Ò“®’†‚É‚·‚é
-		//‚a‚fƒIƒtƒZƒbƒg‚ğ‚Â‚¯‚é
+	if (ioPlaceNameCont->Moving == FALSE){	//ç¨¼å‹•ã—ã¦ã„ãªã„
+		ioPlaceNameCont->Moving = TRUE;	//ç¨¼å‹•ä¸­ã«ã™ã‚‹
+		//ï¼¢ï¼§ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã¤ã‘ã‚‹
 		GF_BGL_ScrollSet( ioPlaceNameCont->WinIni, PLACE_NAME_FRAME, GF_BGL_SCROLL_Y_SET, PLACE_NAME_OFS_MAX );
-		//ƒJƒEƒ“ƒ^0ƒZƒbƒg
+		//ã‚«ã‚¦ãƒ³ã‚¿0ã‚»ãƒƒãƒˆ
 		ioPlaceNameCont->Offset = PLACE_NAME_OFS_MAX;
-		//ƒ^ƒXƒNì¬
+		//ã‚¿ã‚¹ã‚¯ä½œæˆ
 		ioPlaceNameCont->Task = TCB_Add(PlaceNameTask, ioPlaceNameCont, 0);
-		//ƒXƒe[ƒgƒZƒbƒg
+		//ã‚¹ãƒ†ãƒ¼ãƒˆã‚»ãƒƒãƒˆ
 		ioPlaceNameCont->State = NAME_STATE_DOWN;
-		//–¼‘OƒZƒbƒg
+		//åå‰ã‚»ãƒƒãƒˆ
 		len = PNC_GetPlaceName(ioPlaceNameCont->MsgDataManager, ioPlaceNameCont->NameID, ioPlaceNameCont->NameBuff);
 		SetupPlaceNameWin(ioPlaceNameCont,len);
 		WritePlaceName(ioPlaceNameCont,ioPlaceNameCont->NameBuff);
-	}else{									//‚·‚Å‚É‰Ò“®‚µ‚Ä‚¢‚é
-		//‰Ò“®ó‹µ‚ğŒ©‚é
+	}else{									//ã™ã§ã«ç¨¼å‹•ã—ã¦ã„ã‚‹
+		//ç¨¼å‹•çŠ¶æ³ã‚’è¦‹ã‚‹
 		switch(ioPlaceNameCont->State){
-		case NAME_STATE_DOWN:			//~‰º’†
-		case NAME_STATE_DOWN_HOLD:		//~‰ºŒãã¸‘Ò‚¿
-			//ƒXƒe[ƒg‚ğã¸‚É•ÏX‚µAŸ‚Ì’n–¼‚ğƒZƒbƒg‚·‚é
+		case NAME_STATE_DOWN:			//é™ä¸‹ä¸­
+		case NAME_STATE_DOWN_HOLD:		//é™ä¸‹å¾Œä¸Šæ˜‡å¾…ã¡
+			//ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä¸Šæ˜‡ã«å¤‰æ›´ã—ã€æ¬¡ã®åœ°åã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			SetUPState(ioPlaceNameCont);
 			ioPlaceNameCont->IsNext = TRUE;
 			break;
-		case NAME_STATE_UP:				//ã¸’†
-			//ƒXƒe[ƒg‚Í‚»‚Ì‚Ü‚ÜAŸ‚Ì’n–¼‚ğƒZƒbƒg‚·‚é
+		case NAME_STATE_UP:				//ä¸Šæ˜‡ä¸­
+			//ã‚¹ãƒ†ãƒ¼ãƒˆã¯ãã®ã¾ã¾ã€æ¬¡ã®åœ°åã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			ioPlaceNameCont->IsNext = TRUE;
 			break;
 		case NAME_STATE_NONE:
 		default:
-			//ƒAƒT[ƒVƒ‡ƒ“
+			//ã‚¢ã‚µãƒ¼ã‚·ãƒ§ãƒ³
 			GF_ASSERT(0);
 			break;
 		}
@@ -585,40 +585,40 @@ void PlaceNameRequestEx(PNC_PTR ioPlaceNameCont,const int inPlaceID, const int i
 	STRCODE name[BUFLEN_PLACE_NAME];
 	u32 len;	
 	ioPlaceNameCont->NameID = inPlaceID;//ZoneData_GetPlaceNameID(inZoneID);
-	if (ioPlaceNameCont->Moving == FALSE){	//‰Ò“®‚µ‚Ä‚¢‚È‚¢
-		ioPlaceNameCont->Moving = TRUE;	//‰Ò“®’†‚É‚·‚é
-		//‚a‚fƒIƒtƒZƒbƒg‚ğ‚Â‚¯‚é
+	if (ioPlaceNameCont->Moving == FALSE){	//ç¨¼å‹•ã—ã¦ã„ãªã„
+		ioPlaceNameCont->Moving = TRUE;	//ç¨¼å‹•ä¸­ã«ã™ã‚‹
+		//ï¼¢ï¼§ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã¤ã‘ã‚‹
 		GF_BGL_ScrollSet( ioPlaceNameCont->WinIni, PLACE_NAME_FRAME, GF_BGL_SCROLL_Y_SET, PLACE_NAME_OFS_MAX );
-		//ƒJƒEƒ“ƒ^0ƒZƒbƒg
+		//ã‚«ã‚¦ãƒ³ã‚¿0ã‚»ãƒƒãƒˆ
 		ioPlaceNameCont->Offset = PLACE_NAME_OFS_MAX;
-		//ƒ^ƒXƒNì¬
+		//ã‚¿ã‚¹ã‚¯ä½œæˆ
 		ioPlaceNameCont->Task = TCB_Add(PlaceNameTask, ioPlaceNameCont, 0);
-		//ƒXƒe[ƒgƒZƒbƒg
+		//ã‚¹ãƒ†ãƒ¼ãƒˆã‚»ãƒƒãƒˆ
 		ioPlaceNameCont->State = NAME_STATE_DOWN;
-		//–¼‘OƒZƒbƒg
+		//åå‰ã‚»ãƒƒãƒˆ
 		len = PNC_GetPlaceName(ioPlaceNameCont->MsgDataManager, ioPlaceNameCont->NameID, ioPlaceNameCont->NameBuff);
-		//ƒEƒCƒ“ƒhƒEİ’è
+		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¨­å®š
 		ioPlaceNameCont->area_win_id = inAreaWinID;
 		SetupPlaceNameWin(ioPlaceNameCont,len);
 		WritePlaceName(ioPlaceNameCont,ioPlaceNameCont->NameBuff);
-	}else{									//‚·‚Å‚É‰Ò“®‚µ‚Ä‚¢‚é
-		//‰Ò“®ó‹µ‚ğŒ©‚é
+	}else{									//ã™ã§ã«ç¨¼å‹•ã—ã¦ã„ã‚‹
+		//ç¨¼å‹•çŠ¶æ³ã‚’è¦‹ã‚‹
 		switch(ioPlaceNameCont->State){
-		case NAME_STATE_DOWN:			//~‰º’†
-		case NAME_STATE_DOWN_HOLD:		//~‰ºŒãã¸‘Ò‚¿
-			//ƒXƒe[ƒg‚ğã¸‚É•ÏX‚µAŸ‚Ì’n–¼‚ğƒZƒbƒg‚·‚é
+		case NAME_STATE_DOWN:			//é™ä¸‹ä¸­
+		case NAME_STATE_DOWN_HOLD:		//é™ä¸‹å¾Œä¸Šæ˜‡å¾…ã¡
+			//ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä¸Šæ˜‡ã«å¤‰æ›´ã—ã€æ¬¡ã®åœ°åã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			SetUPState(ioPlaceNameCont);
 			ioPlaceNameCont->IsNext = TRUE;
 			ioPlaceNameCont->area_win_id = inAreaWinID;
 			break;
-		case NAME_STATE_UP:				//ã¸’†
-			//ƒXƒe[ƒg‚Í‚»‚Ì‚Ü‚ÜAŸ‚Ì’n–¼‚ğƒZƒbƒg‚·‚é
+		case NAME_STATE_UP:				//ä¸Šæ˜‡ä¸­
+			//ã‚¹ãƒ†ãƒ¼ãƒˆã¯ãã®ã¾ã¾ã€æ¬¡ã®åœ°åã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			ioPlaceNameCont->IsNext = TRUE;
 			ioPlaceNameCont->area_win_id = inAreaWinID;
 			break;
 		case NAME_STATE_NONE:
 		default:
-			//ƒAƒT[ƒVƒ‡ƒ“
+			//ã‚¢ã‚µãƒ¼ã‚·ãƒ§ãƒ³
 			GF_ASSERT(0);
 			break;
 		}
@@ -627,34 +627,34 @@ void PlaceNameRequestEx(PNC_PTR ioPlaceNameCont,const int inPlaceID, const int i
 
 //------------------------------------------------------------------
 /**
- * @brief	’n–¼•\¦’†~
- * @param	ioPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åœ°åè¡¨ç¤ºä¸­æ­¢
+ * @param	ioPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	none
  */
 //------------------------------------------------------------------
 void StopPlaceName(PNC_PTR ioPlaceNameCont)
 {
 	if (ioPlaceNameCont->Task!=NULL){
-		//ƒ^ƒXƒNíœ
+		//ã‚¿ã‚¹ã‚¯å‰Šé™¤
 		TCB_Delete(ioPlaceNameCont->Task);
 	}
 	GF_BGL_BmpWinOff( &ioPlaceNameCont->Win );
 	//GF_BGL_BmpWinDel( &ioPlaceNameCont->Win );
 
-	//‚a‚fƒIƒtƒZƒbƒg•œ‹A
+	//ï¼¢ï¼§ã‚ªãƒ•ã‚»ãƒƒãƒˆå¾©å¸°
 	GF_BGL_ScrollSet( ioPlaceNameCont->WinIni, PLACE_NAME_FRAME, GF_BGL_SCROLL_Y_SET, 0 );
 
 	{
-		GF_BGL_INI *bgl = ioPlaceNameCont->WinIni;	//‘Ş”ğ
-		//\‘¢‘ÌÄƒZƒbƒgƒAƒbƒv
+		GF_BGL_INI *bgl = ioPlaceNameCont->WinIni;	//é€€é¿
+		//æ§‹é€ ä½“å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		SetUpPlaceNameCont(ioPlaceNameCont,bgl);
 	}
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^‚É‚æ‚é’n–¼•\¦ƒŠƒNƒGƒXƒg(•”‰®‚Ì’†‚ÍAƒŠƒNƒGƒXƒg‹‘”Û)
- * @param	ioPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿ã«ã‚ˆã‚‹åœ°åè¡¨ç¤ºãƒªã‚¯ã‚¨ã‚¹ãƒˆ(éƒ¨å±‹ã®ä¸­ã¯ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ‹’å¦)
+ * @param	ioPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	none
  */
 //------------------------------------------------------------------
@@ -663,7 +663,7 @@ void PlaceNameRequestByFsys(FIELDSYS_WORK * fsys)
 	int place_id;
 	int area_win_id;
 	
-	///< ’n–¼•\¦‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚È‚çA•\¦‚µ‚È‚¢
+	///< åœ°åè¡¨ç¤ºãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ãªã‚‰ã€è¡¨ç¤ºã—ãªã„
 	if ( ZoneData_GetAreaWindowID(fsys->location->zone_id) == PLACE_WIN_NOTHING ){ return; }
 	
 	if ( !ZoneData_IsRoom(fsys->location->zone_id) ){
@@ -673,6 +673,6 @@ void PlaceNameRequestByFsys(FIELDSYS_WORK * fsys)
 		if ( area_win_id != 0 ){
 			 area_win_id--;
 		}
-		PlaceNameRequestEx(fsys->fldmap->place_name_cont, place_id, area_win_id); //’n–¼•\¦
+		PlaceNameRequestEx(fsys->fldmap->place_name_cont, place_id, area_win_id); //åœ°åè¡¨ç¤º
 	}
 }

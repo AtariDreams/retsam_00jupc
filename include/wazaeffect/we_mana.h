@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_mana.h
- * @brief	‹ZƒGƒtƒFƒNƒg—pƒVƒXƒeƒ€
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚·ã‚¹ãƒ†ãƒ 
  * @author	goto
- * @date	2005.06.22(…)
+ * @date	2005.06.22(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -24,7 +24,7 @@
 // =============================================================================
 //
 //
-//	¡ŒŸõ—p
+//	â– æ¤œç´¢ç”¨
 //	
 //		[ _WE-SYS_ ]		WE-SYS
 //
@@ -33,7 +33,7 @@
 
 // -----------------------------------------
 //
-//	WE_SYS‚Ì\‘¢‘Ì*
+//	WE_SYSã®æ§‹é€ ä½“*
 //
 // -----------------------------------------
 typedef struct _TWE_SYS  *	WE_SYS_PTR;
@@ -41,7 +41,7 @@ typedef struct _TWE_SYS  *	WE_SYS_PTR;
 
 // -----------------------------------------
 //
-//	BTL_SYS‚Ì\‘¢‘Ì*
+//	BTL_SYSã®æ§‹é€ ä½“*
 //
 // -----------------------------------------
 typedef struct _TBTL_SYS *	BTL_SYS_PTR;
@@ -49,7 +49,7 @@ typedef struct _TBTL_SYS *	BTL_SYS_PTR;
 
 // -----------------------------------------
 //
-//	SE_SYS‚Ì\‘¢‘Ì*
+//	SE_SYSã®æ§‹é€ ä½“*
 //
 // -----------------------------------------
 typedef struct _TSE_SYS  *	SE_SYS_PTR;
@@ -57,7 +57,7 @@ typedef struct _TSE_SYS  *	SE_SYS_PTR;
 
 // -----------------------------------------
 //
-//	HC_SYS‚Ì\‘¢‘Ì*
+//	HC_SYSã®æ§‹é€ ä½“*
 //
 // -----------------------------------------
 typedef struct _THC_SYS  *	HC_SYS_PTR;
@@ -65,7 +65,7 @@ typedef struct _THC_SYS  *	HC_SYS_PTR;
 
 // -----------------------------------------
 //
-//	HC_SCROLL_SYS‚Ì\‘¢‘Ì*
+//	HC_SCROLL_SYSã®æ§‹é€ ä½“*
 //
 // -----------------------------------------
 typedef struct _HC_SUB_SYS * HC_SUB_PTR;
@@ -73,24 +73,24 @@ typedef struct _HC_SUB_SYS * HC_SUB_PTR;
 
 // -----------------------------------------
 //
-//	‹ZƒGƒtƒFƒNƒg‚Ì”wŒiƒA[ƒNƒf[ƒ^
+//	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®èƒŒæ™¯ã‚¢ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
 //
 // -----------------------------------------
 typedef struct {
 
-	int arc_index;		///< ƒA[ƒNID
-	int	chr_id;			///< ƒLƒƒƒ‰ID
-	int pal_id;			///< ƒpƒŒƒbƒgID
-	int scr_id;			///< ƒXƒNƒŠ[ƒ“ID
+	int arc_index;		///< ã‚¢ãƒ¼ã‚¯ID
+	int	chr_id;			///< ã‚­ãƒ£ãƒ©ID
+	int pal_id;			///< ãƒ‘ãƒ¬ãƒƒãƒˆID
+	int scr_id;			///< ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ID
 	
-	int pal_start;		///< ”wŒi‚Ég—p‚·‚éƒpƒŒƒbƒgŠJnˆÊ’u
-	int pal_num;		///< ”wŒi‚Ég—p‚·‚éƒpƒŒƒbƒg–{”
+	int pal_start;		///< èƒŒæ™¯ã«ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆé–‹å§‹ä½ç½®
+	int pal_num;		///< èƒŒæ™¯ã«ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°
 
 } TWES_HAIKEI_ARC;
 
 // -----------------------------------------
 //
-//	‹ZƒGƒtƒFƒNƒgƒR[ƒ‹‚Éƒoƒgƒ‹‚©‚çó‚¯“n‚³‚ê‚éƒƒ“ƒo
+//	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚³ãƒ¼ãƒ«æ™‚ã«ãƒãƒˆãƒ«ã‹ã‚‰å—ã‘æ¸¡ã•ã‚Œã‚‹ãƒ¡ãƒ³ãƒ
 //
 // -----------------------------------------
 typedef struct {
@@ -98,59 +98,59 @@ typedef struct {
 	CATS_SYS_PTR		csp;						///< CSP
 	GF_BGL_INI*			bgl;						///< BGL*
 	PALETTE_FADE_PTR	pfd;						///< PFD*
-	EXCHR_PARAM*		excp[CLIENT_MAX];			///< ƒLƒƒƒ‰ƒoƒbƒtƒ@
-	u8 			 		client_type[ CLIENT_MAX ];	///< ƒNƒ‰ƒCƒAƒ“ƒgType
-	SOFT_SPRITE*		ss[ CLIENT_MAX ];			///< ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg
-	u32					fight_type;					///< ƒtƒ@ƒCƒgƒ^ƒCƒv
-	u16					mons_no[CLIENT_MAX];		///< ƒ|ƒPƒ‚ƒ“NO
-	u8 			 		sex[ CLIENT_MAX ];			///< «•Ê
-	u8					rare[ CLIENT_MAX ];			///< ƒŒƒAƒtƒ‰ƒO
-	u8					form_no[CLIENT_MAX];		///< ƒ|ƒPƒ‚ƒ“ƒtƒHƒ‹ƒ€NO
-	u32					personal_rnd[CLIENT_MAX];	///< ƒ|ƒPƒ‚ƒ“ŒÂ«—”
-	u32					waza_kouka[CLIENT_MAX];		///< ‹ZŒø‰Êƒtƒ‰ƒO
+	EXCHR_PARAM*		excp[CLIENT_MAX];			///< ã‚­ãƒ£ãƒ©ãƒãƒƒãƒ•ã‚¡
+	u8 			 		client_type[ CLIENT_MAX ];	///< ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆType
+	SOFT_SPRITE*		ss[ CLIENT_MAX ];			///< ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+	u32					fight_type;					///< ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—
+	u16					mons_no[CLIENT_MAX];		///< ãƒã‚±ãƒ¢ãƒ³NO
+	u8 			 		sex[ CLIENT_MAX ];			///< æ€§åˆ¥
+	u8					rare[ CLIENT_MAX ];			///< ãƒ¬ã‚¢ãƒ•ãƒ©ã‚°
+	u8					form_no[CLIENT_MAX];		///< ãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚©ãƒ«ãƒ NO
+	u32					personal_rnd[CLIENT_MAX];	///< ãƒã‚±ãƒ¢ãƒ³å€‹æ€§ä¹±æ•°
+	u32					waza_kouka[CLIENT_MAX];		///< æŠ€åŠ¹æœãƒ•ãƒ©ã‚°
 	
-	int					eff_arc_id;					///< ƒGƒtƒFƒNƒg‚Ìí—Ş(ƒA[ƒJƒCƒuID)
-	TWES_HAIKEI_ARC		haikei_data;				///< ”wŒiƒf[ƒ^
+	int					eff_arc_id;					///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç¨®é¡(ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID)
+	TWES_HAIKEI_ARC		haikei_data;				///< èƒŒæ™¯ãƒ‡ãƒ¼ã‚¿
 	
-	PERAPVOICE*			perap_voice;				///< ƒyƒ‰ƒbƒv
-	u8*					bg_area;					///< ƒoƒgƒ‹‚Ì”wŒi
-	u16*				pal_area;					///< ƒoƒgƒ‹‚ÌƒpƒŒƒbƒg
+	PERAPVOICE*			perap_voice;				///< ãƒšãƒ©ãƒƒãƒ—
+	u8*					bg_area;					///< ãƒãƒˆãƒ«ã®èƒŒæ™¯
+	u16*				pal_area;					///< ãƒãƒˆãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
 	
 } WES_CALL_BTL_EX_PARAM;
 
 
 // ---------------------------
 //
-//	•Ïg‚Æ‚©‚æ‚¤
+//	å¤‰èº«ã¨ã‹ã‚ˆã†
 //
 // ---------------------------
 typedef struct {
 	
-	int					at_client_no;				///< •Ïg‚·‚é‘¤
-	int					df_client_no;				///< •Ïg‚³‚ê‚é‘¤ at == df ‚È‚çŒü‚«”½“]	
+	int					at_client_no;				///< å¤‰èº«ã™ã‚‹å´
+	int					df_client_no;				///< å¤‰èº«ã•ã‚Œã‚‹å´ at == df ãªã‚‰å‘ãåè»¢	
 	
-	EXCHR_PARAM*		excp[CLIENT_MAX];			///< ƒLƒƒƒ‰ƒoƒbƒtƒ@
-	SOFT_SPRITE*		ss[ CLIENT_MAX ];			///< ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg
-	u16					mons_no[CLIENT_MAX];		///< ƒ|ƒPƒ‚ƒ“NO
-	u8					sex[CLIENT_MAX];			///< ƒ|ƒPƒ‚ƒ“«•Ê
-	u8					rare[CLIENT_MAX];			///< ƒ|ƒPƒ‚ƒ“ƒŒƒAƒtƒ‰ƒO
-	u8					form_no[CLIENT_MAX];		///< ƒ|ƒPƒ‚ƒ“ƒtƒHƒ‹ƒ€No
-	u32					personal_rnd[CLIENT_MAX];	///< ƒ|ƒPƒ‚ƒ“ŒÂ«—”
-	u8 			 		client_type[ CLIENT_MAX ];	///< ƒNƒ‰ƒCƒAƒ“ƒgType
+	EXCHR_PARAM*		excp[CLIENT_MAX];			///< ã‚­ãƒ£ãƒ©ãƒãƒƒãƒ•ã‚¡
+	SOFT_SPRITE*		ss[ CLIENT_MAX ];			///< ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+	u16					mons_no[CLIENT_MAX];		///< ãƒã‚±ãƒ¢ãƒ³NO
+	u8					sex[CLIENT_MAX];			///< ãƒã‚±ãƒ¢ãƒ³æ€§åˆ¥
+	u8					rare[CLIENT_MAX];			///< ãƒã‚±ãƒ¢ãƒ³ãƒ¬ã‚¢ãƒ•ãƒ©ã‚°
+	u8					form_no[CLIENT_MAX];		///< ãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚©ãƒ«ãƒ No
+	u32					personal_rnd[CLIENT_MAX];	///< ãƒã‚±ãƒ¢ãƒ³å€‹æ€§ä¹±æ•°
+	u8 			 		client_type[ CLIENT_MAX ];	///< ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆType
 	
 } WAZA_POKE_CHANGE_PARAM;
 
 // =========================================
 //
 //
-//	¡ŠO•”QÆFWE-SYS–{‘Ì	[ _WE-SYS_ ]
+//	â– å¤–éƒ¨å‚ç…§ï¼šWE-SYSæœ¬ä½“	[ _WE-SYS_ ]
 //
 //
 // =========================================
 
 // -----------------------------------------
 //
-//	WE-SYS ì¬
+//	WE-SYS ä½œæˆ
 //
 // -----------------------------------------
 extern WE_SYS_PTR WES_Create(int heap_area);
@@ -158,7 +158,7 @@ extern WE_SYS_PTR WES_Create(int heap_area);
 
 // -----------------------------------------
 //
-//	WE-SYS ƒRƒ“ƒeƒXƒg—pƒtƒ‰ƒO‘€ìŠÖ”
+//	WE-SYS ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ•ãƒ©ã‚°æ“ä½œé–¢æ•°
 //
 // -----------------------------------------
 extern void WES_ContestFlag_Set(WE_SYS_PTR we_sys, BOOL flag);
@@ -167,7 +167,7 @@ extern BOOL WES_ContestFlag_Get(WE_SYS_PTR we_sys);
 
 // -----------------------------------------
 //
-//	WE-SYS ”jŠü
+//	WE-SYS ç ´æ£„
 //
 // -----------------------------------------
 extern BOOL	WES_Delete(WE_SYS_PTR we_sys);
@@ -175,7 +175,7 @@ extern BOOL	WES_Delete(WE_SYS_PTR we_sys);
 
 // -----------------------------------------
 //
-//	‹ZŒÄ‚Ño‚µ
+//	æŠ€å‘¼ã³å‡ºã—
 //
 // -----------------------------------------
 extern BOOL WES_Call(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_no);
@@ -185,7 +185,7 @@ extern BOOL WES_Call_Ex(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_
 
 // -----------------------------------------
 //
-//	Às
+//	å®Ÿè¡Œ
 //	
 // -----------------------------------------
 extern BOOL	WES_Executed(WE_SYS_PTR we_sys);
@@ -193,7 +193,7 @@ extern BOOL	WES_Executed(WE_SYS_PTR we_sys);
 
 // -----------------------------------------
 //
-//	ƒGƒtƒFƒNƒgI—¹ƒ`ƒFƒbƒN
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†ãƒã‚§ãƒƒã‚¯
 //
 // -----------------------------------------
 extern BOOL IsWES_Executed(WE_SYS_PTR we_sys);
@@ -201,7 +201,7 @@ extern BOOL IsWES_Executed(WE_SYS_PTR we_sys);
 
 // -----------------------------------------
 //
-//	ƒGƒtƒFƒNƒg‚Ì‰Šú‰»
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–
 //
 // -----------------------------------------
 extern BOOL WES_Reset(WE_SYS_PTR we_sys);
@@ -209,7 +209,7 @@ extern BOOL WES_Reset(WE_SYS_PTR we_sys);
 
 // -----------------------------------------
 //
-//	WE-SYS “®ìƒ`ƒFƒbƒN
+//	WE-SYS å‹•ä½œãƒã‚§ãƒƒã‚¯
 //
 // -----------------------------------------
 extern BOOL IsWES(WE_SYS_PTR we_sys);

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ribbon.c
- * @brief	ƒŠƒ{ƒ“ƒf[ƒ^ŠÖ˜A
+ * @brief	ãƒªãƒœãƒ³ãƒ‡ãƒ¼ã‚¿é–¢é€£
  * @author	Hiroyuki Nakamura
  * @date	2006.04.18
  */
@@ -17,149 +17,149 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 typedef struct {
-	u32	pp_id;		// PokeParaGet‚Ìæ“¾ID
-	u16	graphic;	// ƒOƒ‰ƒtƒBƒbƒNID
-	u16	pal_num;	// ƒpƒŒƒbƒg”Ô†
-	u16 name;		// ƒŠƒ{ƒ“–¼
-	u16	info;		// ƒŠƒ{ƒ“à–¾
+	u32	pp_id;		// PokeParaGetã®å–å¾—ID
+	u16	graphic;	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ID
+	u16	pal_num;	// ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	u16 name;		// ãƒªãƒœãƒ³å
+	u16	info;		// ãƒªãƒœãƒ³èª¬æ˜
 }RIBBON_TABLE;
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ƒŠƒ{ƒ“ƒf[ƒ^
+// ãƒªãƒœãƒ³ãƒ‡ãƒ¼ã‚¿
 static const RIBBON_TABLE RibbonTable[] =
 {
-	{ ID_PARA_champ_ribbon,					NARC_pst_gra_ribbon00_NCGR, 0,	mes_ribbon_name_000,	mes_ribbon_text_000 },	//ƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
+	{ ID_PARA_champ_ribbon,					NARC_pst_gra_ribbon00_NCGR, 0,	mes_ribbon_name_000,	mes_ribbon_text_000 },	//ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
 
-	{ ID_PARA_stylemedal_normal,			NARC_pst_gra_ribbon01_NCGR, 0,	mes_ribbon_name_001,	mes_ribbon_text_001 },	//‚©‚Á‚±‚æ‚³ŒMÍ(ƒm[ƒ}ƒ‹)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_stylemedal_super,				NARC_pst_gra_ribbon02_NCGR, 0,	mes_ribbon_name_002,	mes_ribbon_text_002 },	//‚©‚Á‚±‚æ‚³ŒMÍ(ƒX[ƒp[)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_stylemedal_hyper,				NARC_pst_gra_ribbon03_NCGR, 0,	mes_ribbon_name_003,	mes_ribbon_text_003 },	//‚©‚Á‚±‚æ‚³ŒMÍ(ƒnƒCƒp[)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_stylemedal_master,			NARC_pst_gra_ribbon04_NCGR, 0,	mes_ribbon_name_004,	mes_ribbon_text_004 },	//‚©‚Á‚±‚æ‚³ŒMÍ(ƒ}ƒXƒ^[)AGBƒRƒ“ƒeƒXƒg
+	{ ID_PARA_stylemedal_normal,			NARC_pst_gra_ribbon01_NCGR, 0,	mes_ribbon_name_001,	mes_ribbon_text_001 },	//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_stylemedal_super,				NARC_pst_gra_ribbon02_NCGR, 0,	mes_ribbon_name_002,	mes_ribbon_text_002 },	//ã‹ã£ã“ã‚ˆã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_stylemedal_hyper,				NARC_pst_gra_ribbon03_NCGR, 0,	mes_ribbon_name_003,	mes_ribbon_text_003 },	//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_stylemedal_master,			NARC_pst_gra_ribbon04_NCGR, 0,	mes_ribbon_name_004,	mes_ribbon_text_004 },	//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 
-	{ ID_PARA_beautifulmedal_normal,		NARC_pst_gra_ribbon01_NCGR, 1,	mes_ribbon_name_005,	mes_ribbon_text_005 },	//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_beautifulmedal_super,			NARC_pst_gra_ribbon02_NCGR, 1,	mes_ribbon_name_006,	mes_ribbon_text_006 },	//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒX[ƒp[)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_beautifulmedal_hyper,			NARC_pst_gra_ribbon03_NCGR, 1,	mes_ribbon_name_007,	mes_ribbon_text_007 },	//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒnƒCƒp[)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_beautifulmedal_master,		NARC_pst_gra_ribbon04_NCGR, 1,	mes_ribbon_name_008,	mes_ribbon_text_008 },	//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)AGBƒRƒ“ƒeƒXƒg
+	{ ID_PARA_beautifulmedal_normal,		NARC_pst_gra_ribbon01_NCGR, 1,	mes_ribbon_name_005,	mes_ribbon_text_005 },	//ã†ã¤ãã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_beautifulmedal_super,			NARC_pst_gra_ribbon02_NCGR, 1,	mes_ribbon_name_006,	mes_ribbon_text_006 },	//ã†ã¤ãã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_beautifulmedal_hyper,			NARC_pst_gra_ribbon03_NCGR, 1,	mes_ribbon_name_007,	mes_ribbon_text_007 },	//ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_beautifulmedal_master,		NARC_pst_gra_ribbon04_NCGR, 1,	mes_ribbon_name_008,	mes_ribbon_text_008 },	//ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 
-	{ ID_PARA_cutemedal_normal,				NARC_pst_gra_ribbon01_NCGR, 2,	mes_ribbon_name_009,	mes_ribbon_text_009 },	//‚©‚í‚¢‚³ŒMÍ(ƒm[ƒ}ƒ‹)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_cutemedal_super,				NARC_pst_gra_ribbon02_NCGR, 2,	mes_ribbon_name_010,	mes_ribbon_text_010 },	//‚©‚í‚¢‚³ŒMÍ(ƒX[ƒp[)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_cutemedal_hyper,				NARC_pst_gra_ribbon03_NCGR, 2,	mes_ribbon_name_011,	mes_ribbon_text_011 },	//‚©‚í‚¢‚³ŒMÍ(ƒnƒCƒp[)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_cutemedal_master,				NARC_pst_gra_ribbon04_NCGR, 2,	mes_ribbon_name_012,	mes_ribbon_text_012 },	//‚©‚í‚¢‚³ŒMÍ(ƒ}ƒXƒ^[)AGBƒRƒ“ƒeƒXƒg
+	{ ID_PARA_cutemedal_normal,				NARC_pst_gra_ribbon01_NCGR, 2,	mes_ribbon_name_009,	mes_ribbon_text_009 },	//ã‹ã‚ã„ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_cutemedal_super,				NARC_pst_gra_ribbon02_NCGR, 2,	mes_ribbon_name_010,	mes_ribbon_text_010 },	//ã‹ã‚ã„ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_cutemedal_hyper,				NARC_pst_gra_ribbon03_NCGR, 2,	mes_ribbon_name_011,	mes_ribbon_text_011 },	//ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_cutemedal_master,				NARC_pst_gra_ribbon04_NCGR, 2,	mes_ribbon_name_012,	mes_ribbon_text_012 },	//ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 
-	{ ID_PARA_clevermedal_normal,			NARC_pst_gra_ribbon01_NCGR, 3,	mes_ribbon_name_013,	mes_ribbon_text_013 },	//‚©‚µ‚±‚³ŒMÍ(ƒm[ƒ}ƒ‹)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_clevermedal_super,			NARC_pst_gra_ribbon02_NCGR, 3,	mes_ribbon_name_014,	mes_ribbon_text_014 },	//‚©‚µ‚±‚³ŒMÍ(ƒX[ƒp[)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_clevermedal_hyper,			NARC_pst_gra_ribbon03_NCGR, 3,	mes_ribbon_name_015,	mes_ribbon_text_015 },	//‚©‚µ‚±‚³ŒMÍ(ƒnƒCƒp[)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_clevermedal_master,			NARC_pst_gra_ribbon04_NCGR, 3,	mes_ribbon_name_016,	mes_ribbon_text_016 },	//‚©‚µ‚±‚³ŒMÍ(ƒ}ƒXƒ^[)AGBƒRƒ“ƒeƒXƒg
+	{ ID_PARA_clevermedal_normal,			NARC_pst_gra_ribbon01_NCGR, 3,	mes_ribbon_name_013,	mes_ribbon_text_013 },	//ã‹ã—ã“ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_clevermedal_super,			NARC_pst_gra_ribbon02_NCGR, 3,	mes_ribbon_name_014,	mes_ribbon_text_014 },	//ã‹ã—ã“ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_clevermedal_hyper,			NARC_pst_gra_ribbon03_NCGR, 3,	mes_ribbon_name_015,	mes_ribbon_text_015 },	//ã‹ã—ã“ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_clevermedal_master,			NARC_pst_gra_ribbon04_NCGR, 3,	mes_ribbon_name_016,	mes_ribbon_text_016 },	//ã‹ã—ã“ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 
-	{ ID_PARA_strongmedal_normal,			NARC_pst_gra_ribbon01_NCGR, 4,	mes_ribbon_name_017,	mes_ribbon_text_017 },	//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_strongmedal_super,			NARC_pst_gra_ribbon02_NCGR, 4,	mes_ribbon_name_018,	mes_ribbon_text_018 },	//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒX[ƒp[)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_strongmedal_hyper,			NARC_pst_gra_ribbon03_NCGR, 4,	mes_ribbon_name_019,	mes_ribbon_text_019 },	//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒnƒCƒp[)AGBƒRƒ“ƒeƒXƒg
-	{ ID_PARA_strongmedal_master,			NARC_pst_gra_ribbon04_NCGR, 4,	mes_ribbon_name_020,	mes_ribbon_text_020 },	//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)AGBƒRƒ“ƒeƒXƒg
+	{ ID_PARA_strongmedal_normal,			NARC_pst_gra_ribbon01_NCGR, 4,	mes_ribbon_name_017,	mes_ribbon_text_017 },	//ãŸãã¾ã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_strongmedal_super,			NARC_pst_gra_ribbon02_NCGR, 4,	mes_ribbon_name_018,	mes_ribbon_text_018 },	//ãŸãã¾ã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_strongmedal_hyper,			NARC_pst_gra_ribbon03_NCGR, 4,	mes_ribbon_name_019,	mes_ribbon_text_019 },	//ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+	{ ID_PARA_strongmedal_master,			NARC_pst_gra_ribbon04_NCGR, 4,	mes_ribbon_name_020,	mes_ribbon_text_020 },	//ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 
-	{ ID_PARA_winning_ribbon,				NARC_pst_gra_ribbon06_NCGR, 0,	mes_ribbon_name_021,	mes_ribbon_text_021 },	//ƒEƒBƒjƒ“ƒOƒŠƒ{ƒ“
-	{ ID_PARA_victory_ribbon,				NARC_pst_gra_ribbon05_NCGR, 0,	mes_ribbon_name_022,	mes_ribbon_text_022 },	//ƒrƒNƒgƒŠ[ƒŠƒ{ƒ“
-	{ ID_PARA_bromide_ribbon,				NARC_pst_gra_ribbon07_NCGR, 1,	mes_ribbon_name_023,	mes_ribbon_text_023 },	//ƒuƒƒ}ƒCƒhƒŠƒ{ƒ“
+	{ ID_PARA_winning_ribbon,				NARC_pst_gra_ribbon06_NCGR, 0,	mes_ribbon_name_021,	mes_ribbon_text_021 },	//ã‚¦ã‚£ãƒ‹ãƒ³ã‚°ãƒªãƒœãƒ³
+	{ ID_PARA_victory_ribbon,				NARC_pst_gra_ribbon05_NCGR, 0,	mes_ribbon_name_022,	mes_ribbon_text_022 },	//ãƒ“ã‚¯ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+	{ ID_PARA_bromide_ribbon,				NARC_pst_gra_ribbon07_NCGR, 1,	mes_ribbon_name_023,	mes_ribbon_text_023 },	//ãƒ–ãƒ­ãƒã‚¤ãƒ‰ãƒªãƒœãƒ³
 
-	{ ID_PARA_ganba_ribbon,					NARC_pst_gra_ribbon08_NCGR, 2,	mes_ribbon_name_024,	mes_ribbon_text_024 },	//‚ª‚ñ‚ÎƒŠƒ{ƒ“
-	{ ID_PARA_marine_ribbon,				NARC_pst_gra_ribbon09_NCGR, 1,	mes_ribbon_name_025,	MSG_SP_RIBBON+0 },		//ƒ}ƒŠƒ“ƒŠƒ{ƒ“
-	{ ID_PARA_land_ribbon,					NARC_pst_gra_ribbon09_NCGR, 3,	mes_ribbon_name_026,	MSG_SP_RIBBON+1 },		//ƒ‰ƒ“ƒhƒŠƒ{ƒ“
-	{ ID_PARA_sky_ribbon,					NARC_pst_gra_ribbon09_NCGR, 4,	mes_ribbon_name_027,	MSG_SP_RIBBON+2 },		//ƒXƒJƒCƒŠƒ{ƒ“
+	{ ID_PARA_ganba_ribbon,					NARC_pst_gra_ribbon08_NCGR, 2,	mes_ribbon_name_024,	mes_ribbon_text_024 },	//ãŒã‚“ã°ãƒªãƒœãƒ³
+	{ ID_PARA_marine_ribbon,				NARC_pst_gra_ribbon09_NCGR, 1,	mes_ribbon_name_025,	MSG_SP_RIBBON+0 },		//ãƒãƒªãƒ³ãƒªãƒœãƒ³
+	{ ID_PARA_land_ribbon,					NARC_pst_gra_ribbon09_NCGR, 3,	mes_ribbon_name_026,	MSG_SP_RIBBON+1 },		//ãƒ©ãƒ³ãƒ‰ãƒªãƒœãƒ³
+	{ ID_PARA_sky_ribbon,					NARC_pst_gra_ribbon09_NCGR, 4,	mes_ribbon_name_027,	MSG_SP_RIBBON+2 },		//ã‚¹ã‚«ã‚¤ãƒªãƒœãƒ³
 
-	{ ID_PARA_country_ribbon,				NARC_pst_gra_ribbon10_NCGR, 3,	mes_ribbon_name_028,	mes_ribbon_haihu_text_032 },	//MSG_SP_RIBBON+3 },	//ƒJƒ“ƒgƒŠ[ƒŠƒ{ƒ“
-	{ ID_PARA_national_ribbon,				NARC_pst_gra_ribbon10_NCGR, 4,	mes_ribbon_name_029,	mes_ribbon_haihu_text_044 },	//MSG_SP_RIBBON+4 },	//ƒiƒVƒ‡ƒiƒ‹ƒŠƒ{ƒ“
-	{ ID_PARA_earth_ribbon,					NARC_pst_gra_ribbon11_NCGR, 0,	mes_ribbon_name_030,	mes_ribbon_haihu_text_045 },	//MSG_SP_RIBBON+5 },	//ƒA[ƒXƒŠƒ{ƒ“
-	{ ID_PARA_world_ribbon,					NARC_pst_gra_ribbon11_NCGR, 1,	mes_ribbon_name_031,	mes_ribbon_haihu_text_032 },	//MSG_SP_RIBBON+6 },	//ƒ[ƒ‹ƒhƒŠƒ{ƒ“
+	{ ID_PARA_country_ribbon,				NARC_pst_gra_ribbon10_NCGR, 3,	mes_ribbon_name_028,	mes_ribbon_haihu_text_032 },	//MSG_SP_RIBBON+3 },	//ã‚«ãƒ³ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+	{ ID_PARA_national_ribbon,				NARC_pst_gra_ribbon10_NCGR, 4,	mes_ribbon_name_029,	mes_ribbon_haihu_text_044 },	//MSG_SP_RIBBON+4 },	//ãƒŠã‚·ãƒ§ãƒŠãƒ«ãƒªãƒœãƒ³
+	{ ID_PARA_earth_ribbon,					NARC_pst_gra_ribbon11_NCGR, 0,	mes_ribbon_name_030,	mes_ribbon_haihu_text_045 },	//MSG_SP_RIBBON+5 },	//ã‚¢ãƒ¼ã‚¹ãƒªãƒœãƒ³
+	{ ID_PARA_world_ribbon,					NARC_pst_gra_ribbon11_NCGR, 1,	mes_ribbon_name_031,	mes_ribbon_haihu_text_032 },	//MSG_SP_RIBBON+6 },	//ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒªãƒœãƒ³
 
-	{ ID_PARA_sinou_champ_ribbon,			NARC_pst_gra_ribon_32_NCGR, 0,	mes_ribbon_name_032,	mes_ribbon_text_032 },	//ƒVƒ“ƒIƒEƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
+	{ ID_PARA_sinou_champ_ribbon,			NARC_pst_gra_ribon_32_NCGR, 0,	mes_ribbon_name_032,	mes_ribbon_text_032 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
 
-	{ ID_PARA_trial_stylemedal_normal,		NARC_pst_gra_ribon_33_NCGR, 0,	mes_ribbon_name_033,	mes_ribbon_text_033 },	//‚©‚Á‚±‚æ‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_stylemedal_super,		NARC_pst_gra_ribon_34_NCGR, 0,	mes_ribbon_name_034,	mes_ribbon_text_034 },	//‚©‚Á‚±‚æ‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_stylemedal_hyper,		NARC_pst_gra_ribon_35_NCGR, 0,	mes_ribbon_name_035,	mes_ribbon_text_035 },	//‚©‚Á‚±‚æ‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_stylemedal_master,		NARC_pst_gra_ribon_36_NCGR, 0,	mes_ribbon_name_036,	mes_ribbon_text_036 },	//‚©‚Á‚±‚æ‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
+	{ ID_PARA_trial_stylemedal_normal,		NARC_pst_gra_ribon_33_NCGR, 0,	mes_ribbon_name_033,	mes_ribbon_text_033 },	//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_stylemedal_super,		NARC_pst_gra_ribon_34_NCGR, 0,	mes_ribbon_name_034,	mes_ribbon_text_034 },	//ã‹ã£ã“ã‚ˆã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_stylemedal_hyper,		NARC_pst_gra_ribon_35_NCGR, 0,	mes_ribbon_name_035,	mes_ribbon_text_035 },	//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_stylemedal_master,		NARC_pst_gra_ribon_36_NCGR, 0,	mes_ribbon_name_036,	mes_ribbon_text_036 },	//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
 
-	{ ID_PARA_trial_beautifulmedal_normal,	NARC_pst_gra_ribon_33_NCGR, 1,	mes_ribbon_name_037,	mes_ribbon_text_037 },	//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_beautifulmedal_super,	NARC_pst_gra_ribon_34_NCGR, 1,	mes_ribbon_name_038,	mes_ribbon_text_038 },	//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_beautifulmedal_hyper,	NARC_pst_gra_ribon_35_NCGR, 1,	mes_ribbon_name_039,	mes_ribbon_text_039 },	//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_beautifulmedal_master,	NARC_pst_gra_ribon_36_NCGR, 1,	mes_ribbon_name_040,	mes_ribbon_text_040 },	//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
+	{ ID_PARA_trial_beautifulmedal_normal,	NARC_pst_gra_ribon_33_NCGR, 1,	mes_ribbon_name_037,	mes_ribbon_text_037 },	//ã†ã¤ãã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_beautifulmedal_super,	NARC_pst_gra_ribon_34_NCGR, 1,	mes_ribbon_name_038,	mes_ribbon_text_038 },	//ã†ã¤ãã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_beautifulmedal_hyper,	NARC_pst_gra_ribon_35_NCGR, 1,	mes_ribbon_name_039,	mes_ribbon_text_039 },	//ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_beautifulmedal_master,	NARC_pst_gra_ribon_36_NCGR, 1,	mes_ribbon_name_040,	mes_ribbon_text_040 },	//ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
 
-	{ ID_PARA_trial_cutemedal_normal,		NARC_pst_gra_ribon_33_NCGR, 2,	mes_ribbon_name_041,	mes_ribbon_text_041 },	//‚©‚í‚¢‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_cutemedal_super,		NARC_pst_gra_ribon_34_NCGR, 2,	mes_ribbon_name_042,	mes_ribbon_text_042 },	//‚©‚í‚¢‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_cutemedal_hyper,		NARC_pst_gra_ribon_35_NCGR, 2,	mes_ribbon_name_043,	mes_ribbon_text_043 },	//‚©‚í‚¢‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_cutemedal_master,		NARC_pst_gra_ribon_36_NCGR, 2,	mes_ribbon_name_044,	mes_ribbon_text_044 },	//‚©‚í‚¢‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
+	{ ID_PARA_trial_cutemedal_normal,		NARC_pst_gra_ribon_33_NCGR, 2,	mes_ribbon_name_041,	mes_ribbon_text_041 },	//ã‹ã‚ã„ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_cutemedal_super,		NARC_pst_gra_ribon_34_NCGR, 2,	mes_ribbon_name_042,	mes_ribbon_text_042 },	//ã‹ã‚ã„ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_cutemedal_hyper,		NARC_pst_gra_ribon_35_NCGR, 2,	mes_ribbon_name_043,	mes_ribbon_text_043 },	//ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_cutemedal_master,		NARC_pst_gra_ribon_36_NCGR, 2,	mes_ribbon_name_044,	mes_ribbon_text_044 },	//ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
 
-	{ ID_PARA_trial_clevermedal_normal,		NARC_pst_gra_ribon_33_NCGR, 3,	mes_ribbon_name_045,	mes_ribbon_text_045 },	//‚©‚µ‚±‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_clevermedal_super,		NARC_pst_gra_ribon_34_NCGR, 3,	mes_ribbon_name_046,	mes_ribbon_text_046 },	//‚©‚µ‚±‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_clevermedal_hyper,		NARC_pst_gra_ribon_35_NCGR, 3,	mes_ribbon_name_047,	mes_ribbon_text_047 },	//‚©‚µ‚±‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_clevermedal_master,		NARC_pst_gra_ribon_36_NCGR, 3,	mes_ribbon_name_048,	mes_ribbon_text_048 },	//‚©‚µ‚±‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
+	{ ID_PARA_trial_clevermedal_normal,		NARC_pst_gra_ribon_33_NCGR, 3,	mes_ribbon_name_045,	mes_ribbon_text_045 },	//ã‹ã—ã“ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_clevermedal_super,		NARC_pst_gra_ribon_34_NCGR, 3,	mes_ribbon_name_046,	mes_ribbon_text_046 },	//ã‹ã—ã“ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_clevermedal_hyper,		NARC_pst_gra_ribon_35_NCGR, 3,	mes_ribbon_name_047,	mes_ribbon_text_047 },	//ã‹ã—ã“ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_clevermedal_master,		NARC_pst_gra_ribon_36_NCGR, 3,	mes_ribbon_name_048,	mes_ribbon_text_048 },	//ã‹ã—ã“ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
 
-	{ ID_PARA_trial_strongmedal_normal,		NARC_pst_gra_ribon_33_NCGR, 4,	mes_ribbon_name_049,	mes_ribbon_text_049 },	//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_strongmedal_super,		NARC_pst_gra_ribon_34_NCGR, 4,	mes_ribbon_name_050,	mes_ribbon_text_050 },	//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_strongmedal_hyper,		NARC_pst_gra_ribon_35_NCGR, 4,	mes_ribbon_name_051,	mes_ribbon_text_051 },	//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	{ ID_PARA_trial_strongmedal_master,		NARC_pst_gra_ribon_36_NCGR, 4,	mes_ribbon_name_052,	mes_ribbon_text_052 },	//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
+	{ ID_PARA_trial_strongmedal_normal,		NARC_pst_gra_ribon_33_NCGR, 4,	mes_ribbon_name_049,	mes_ribbon_text_049 },	//ãŸãã¾ã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_strongmedal_super,		NARC_pst_gra_ribon_34_NCGR, 4,	mes_ribbon_name_050,	mes_ribbon_text_050 },	//ãŸãã¾ã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_strongmedal_hyper,		NARC_pst_gra_ribon_35_NCGR, 4,	mes_ribbon_name_051,	mes_ribbon_text_051 },	//ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	{ ID_PARA_trial_strongmedal_master,		NARC_pst_gra_ribon_36_NCGR, 4,	mes_ribbon_name_052,	mes_ribbon_text_052 },	//ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
 
-	{ ID_PARA_sinou_battle_tower_ttwin_first,		NARC_pst_gra_ribon_53_NCGR, 0,	mes_ribbon_name_053,	mes_ribbon_text_053 },	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜1‰ñ–Ú
-	{ ID_PARA_sinou_battle_tower_ttwin_second,		NARC_pst_gra_ribon_54_NCGR, 0,	mes_ribbon_name_054,	mes_ribbon_text_054 },	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜2‰ñ–Ú
-	{ ID_PARA_sinou_battle_tower_2vs2_win50,		NARC_pst_gra_ribon_55_NCGR, 0,	mes_ribbon_name_055,	mes_ribbon_text_055 },	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ_ƒuƒ‹50˜AŸ
-	{ ID_PARA_sinou_battle_tower_aimulti_win50,		NARC_pst_gra_ribon_56_NCGR, 0,	mes_ribbon_name_056,	mes_ribbon_text_056 },	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[AIƒ}ƒ‹ƒ`50˜AŸ
-	{ ID_PARA_sinou_battle_tower_siomulti_win50,	NARC_pst_gra_ribon_57_NCGR, 0,	mes_ribbon_name_057,	mes_ribbon_text_057 },	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[’ÊMƒ}ƒ‹ƒ`50˜AŸ
-	{ ID_PARA_sinou_battle_tower_wifi_rank5,		NARC_pst_gra_ribon_58_NCGR, 0,	mes_ribbon_name_058,	mes_ribbon_text_058 },	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[Wifiƒ‰ƒ“ƒN‚T“ü‚è
+	{ ID_PARA_sinou_battle_tower_ttwin_first,		NARC_pst_gra_ribon_53_NCGR, 0,	mes_ribbon_name_053,	mes_ribbon_text_053 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©1å›ç›®
+	{ ID_PARA_sinou_battle_tower_ttwin_second,		NARC_pst_gra_ribon_54_NCGR, 0,	mes_ribbon_name_054,	mes_ribbon_text_054 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©2å›ç›®
+	{ ID_PARA_sinou_battle_tower_2vs2_win50,		NARC_pst_gra_ribon_55_NCGR, 0,	mes_ribbon_name_055,	mes_ribbon_text_055 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ãƒ€ãƒ–ãƒ«50é€£å‹
+	{ ID_PARA_sinou_battle_tower_aimulti_win50,		NARC_pst_gra_ribon_56_NCGR, 0,	mes_ribbon_name_056,	mes_ribbon_text_056 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼AIãƒãƒ«ãƒ50é€£å‹
+	{ ID_PARA_sinou_battle_tower_siomulti_win50,	NARC_pst_gra_ribon_57_NCGR, 0,	mes_ribbon_name_057,	mes_ribbon_text_057 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒãƒ«ãƒ50é€£å‹
+	{ ID_PARA_sinou_battle_tower_wifi_rank5,		NARC_pst_gra_ribon_58_NCGR, 0,	mes_ribbon_name_058,	mes_ribbon_text_058 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼Wifiãƒ©ãƒ³ã‚¯ï¼•å…¥ã‚Š
 
-	{ ID_PARA_sinou_syakki_ribbon,			NARC_pst_gra_ribon_59_NCGR, 2,	mes_ribbon_name_059,	mes_ribbon_text_059 },	//ƒVƒ“ƒIƒE‚µ‚á‚Á‚«ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_dokki_ribbon,			NARC_pst_gra_ribon_60_NCGR, 0,	mes_ribbon_name_060,	mes_ribbon_text_060 },	//ƒVƒ“ƒIƒE‚Ç‚Á‚«ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_syonbo_ribbon,			NARC_pst_gra_ribon_61_NCGR, 1,	mes_ribbon_name_061,	mes_ribbon_text_061 },	//ƒVƒ“ƒIƒE‚µ‚å‚ñ‚ÚƒŠƒ{ƒ“
-	{ ID_PARA_sinou_ukka_ribbon,			NARC_pst_gra_ribon_62_NCGR, 2,	mes_ribbon_name_062,	mes_ribbon_text_062 },	//ƒVƒ“ƒIƒE‚¤‚Á‚©ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_sukki_ribbon,			NARC_pst_gra_ribon_63_NCGR, 3,	mes_ribbon_name_063,	mes_ribbon_text_063 },	//ƒVƒ“ƒIƒE‚·‚Á‚«ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_gussu_ribbon,			NARC_pst_gra_ribon_64_NCGR, 0,	mes_ribbon_name_064,	mes_ribbon_text_064 },	//ƒVƒ“ƒIƒE‚®‚Á‚·ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_nikko_ribbon,			NARC_pst_gra_ribon_65_NCGR, 2,	mes_ribbon_name_065,	mes_ribbon_text_065 },	//ƒVƒ“ƒIƒE‚É‚Á‚±ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_gorgeous_ribbon,		NARC_pst_gra_ribon_66_NCGR, 1,	mes_ribbon_name_066,	mes_ribbon_text_066 },	//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒŠƒ{ƒ“
-	{ ID_PARA_sinou_royal_ribbon,			NARC_pst_gra_ribon_67_NCGR, 3,	mes_ribbon_name_067,	mes_ribbon_text_067 },	//ƒVƒ“ƒIƒEƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_gorgeousroyal_ribbon,	NARC_pst_gra_ribon_68_NCGR, 0,	mes_ribbon_name_068,	mes_ribbon_text_068 },	//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_ashiato_ribbon,			NARC_pst_gra_ribon_69_NCGR, 0,	mes_ribbon_name_069,	mes_ribbon_text_069 },	//ƒVƒ“ƒIƒE‚ ‚µ‚ ‚ÆƒŠƒ{ƒ“
-	{ ID_PARA_sinou_record_ribbon,			NARC_pst_gra_ribon_70_NCGR, 1,	mes_ribbon_name_070,	mes_ribbon_text_070 },	//ƒVƒ“ƒIƒEƒŒƒR[ƒhƒŠƒ{ƒ“
-	{ ID_PARA_sinou_history_ribbon,			NARC_pst_gra_ribon_71_NCGR, 3,	mes_ribbon_name_071,	mes_ribbon_text_071 },	//ƒVƒ“ƒIƒEƒqƒXƒgƒŠ[ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_legend_ribbon,			NARC_pst_gra_ribon_72_NCGR, 0,	mes_ribbon_name_072,	mes_ribbon_text_072 },	//ƒVƒ“ƒIƒEƒŒƒWƒFƒ“ƒhƒŠƒ{ƒ“
-	{ ID_PARA_sinou_red_ribbon,				NARC_pst_gra_ribon_73_NCGR, 0,	mes_ribbon_name_073,	MSG_SP_RIBBON+7 },		//ƒVƒ“ƒIƒEƒŒƒbƒhƒŠƒ{ƒ“
-	{ ID_PARA_sinou_green_ribbon,			NARC_pst_gra_ribon_74_NCGR, 3,	mes_ribbon_name_074,	MSG_SP_RIBBON+8 },		//ƒVƒ“ƒIƒEƒOƒŠ[ƒ“ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_blue_ribbon,			NARC_pst_gra_ribon_75_NCGR, 1,	mes_ribbon_name_075,	MSG_SP_RIBBON+9 },		//ƒVƒ“ƒIƒEƒuƒ‹[ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_festival_ribbon,		NARC_pst_gra_ribon_76_NCGR, 1,	mes_ribbon_name_076,	MSG_SP_RIBBON+10 },		//ƒVƒ“ƒIƒEƒtƒFƒXƒeƒBƒoƒ‹ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_carnival_ribbon,		NARC_pst_gra_ribon_77_NCGR, 0,	mes_ribbon_name_077,	MSG_SP_RIBBON+11 },		//ƒVƒ“ƒIƒEƒJ[ƒjƒoƒ‹ƒŠƒ{ƒ“
-	{ ID_PARA_sinou_classic_ribbon,			NARC_pst_gra_ribon_78_NCGR, 1,	mes_ribbon_name_078,	MSG_SP_RIBBON+12 },		//ƒVƒ“ƒIƒEƒNƒ‰ƒVƒbƒNƒŠƒ{ƒ“
-	{ ID_PARA_sinou_premiere_ribbon,		NARC_pst_gra_ribon_79_NCGR, 0,	mes_ribbon_name_079,	MSG_SP_RIBBON+13 },		//ƒVƒ“ƒIƒEƒvƒŒƒ~ƒAƒŠƒ{ƒ“
+	{ ID_PARA_sinou_syakki_ribbon,			NARC_pst_gra_ribon_59_NCGR, 2,	mes_ribbon_name_059,	mes_ribbon_text_059 },	//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚ƒã£ããƒªãƒœãƒ³
+	{ ID_PARA_sinou_dokki_ribbon,			NARC_pst_gra_ribon_60_NCGR, 0,	mes_ribbon_name_060,	mes_ribbon_text_060 },	//ã‚·ãƒ³ã‚ªã‚¦ã©ã£ããƒªãƒœãƒ³
+	{ ID_PARA_sinou_syonbo_ribbon,			NARC_pst_gra_ribon_61_NCGR, 1,	mes_ribbon_name_061,	mes_ribbon_text_061 },	//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚‡ã‚“ã¼ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_ukka_ribbon,			NARC_pst_gra_ribon_62_NCGR, 2,	mes_ribbon_name_062,	mes_ribbon_text_062 },	//ã‚·ãƒ³ã‚ªã‚¦ã†ã£ã‹ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_sukki_ribbon,			NARC_pst_gra_ribon_63_NCGR, 3,	mes_ribbon_name_063,	mes_ribbon_text_063 },	//ã‚·ãƒ³ã‚ªã‚¦ã™ã£ããƒªãƒœãƒ³
+	{ ID_PARA_sinou_gussu_ribbon,			NARC_pst_gra_ribon_64_NCGR, 0,	mes_ribbon_name_064,	mes_ribbon_text_064 },	//ã‚·ãƒ³ã‚ªã‚¦ãã£ã™ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_nikko_ribbon,			NARC_pst_gra_ribon_65_NCGR, 2,	mes_ribbon_name_065,	mes_ribbon_text_065 },	//ã‚·ãƒ³ã‚ªã‚¦ã«ã£ã“ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_gorgeous_ribbon,		NARC_pst_gra_ribon_66_NCGR, 1,	mes_ribbon_name_066,	mes_ribbon_text_066 },	//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_royal_ribbon,			NARC_pst_gra_ribon_67_NCGR, 3,	mes_ribbon_name_067,	mes_ribbon_text_067 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_gorgeousroyal_ribbon,	NARC_pst_gra_ribon_68_NCGR, 0,	mes_ribbon_name_068,	mes_ribbon_text_068 },	//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_ashiato_ribbon,			NARC_pst_gra_ribon_69_NCGR, 0,	mes_ribbon_name_069,	mes_ribbon_text_069 },	//ã‚·ãƒ³ã‚ªã‚¦ã‚ã—ã‚ã¨ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_record_ribbon,			NARC_pst_gra_ribon_70_NCGR, 1,	mes_ribbon_name_070,	mes_ribbon_text_070 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_history_ribbon,			NARC_pst_gra_ribon_71_NCGR, 3,	mes_ribbon_name_071,	mes_ribbon_text_071 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒ’ã‚¹ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_legend_ribbon,			NARC_pst_gra_ribon_72_NCGR, 0,	mes_ribbon_name_072,	mes_ribbon_text_072 },	//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚¸ã‚§ãƒ³ãƒ‰ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_red_ribbon,				NARC_pst_gra_ribon_73_NCGR, 0,	mes_ribbon_name_073,	MSG_SP_RIBBON+7 },		//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ãƒƒãƒ‰ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_green_ribbon,			NARC_pst_gra_ribon_74_NCGR, 3,	mes_ribbon_name_074,	MSG_SP_RIBBON+8 },		//ã‚·ãƒ³ã‚ªã‚¦ã‚°ãƒªãƒ¼ãƒ³ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_blue_ribbon,			NARC_pst_gra_ribon_75_NCGR, 1,	mes_ribbon_name_075,	MSG_SP_RIBBON+9 },		//ã‚·ãƒ³ã‚ªã‚¦ãƒ–ãƒ«ãƒ¼ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_festival_ribbon,		NARC_pst_gra_ribon_76_NCGR, 1,	mes_ribbon_name_076,	MSG_SP_RIBBON+10 },		//ã‚·ãƒ³ã‚ªã‚¦ãƒ•ã‚§ã‚¹ãƒ†ã‚£ãƒãƒ«ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_carnival_ribbon,		NARC_pst_gra_ribon_77_NCGR, 0,	mes_ribbon_name_077,	MSG_SP_RIBBON+11 },		//ã‚·ãƒ³ã‚ªã‚¦ã‚«ãƒ¼ãƒ‹ãƒãƒ«ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_classic_ribbon,			NARC_pst_gra_ribon_78_NCGR, 1,	mes_ribbon_name_078,	MSG_SP_RIBBON+12 },		//ã‚·ãƒ³ã‚ªã‚¦ã‚¯ãƒ©ã‚·ãƒƒã‚¯ãƒªãƒœãƒ³
+	{ ID_PARA_sinou_premiere_ribbon,		NARC_pst_gra_ribon_79_NCGR, 0,	mes_ribbon_name_079,	MSG_SP_RIBBON+13 },		//ã‚·ãƒ³ã‚ªã‚¦ãƒ—ãƒ¬ãƒŸã‚¢ãƒªãƒœãƒ³
 };
 
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“ƒf[ƒ^æ“¾
+ * ãƒªãƒœãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param	dat_id		ƒf[ƒ^”Ô†
- * @param	prm_id		æ“¾ƒpƒ‰ƒ[ƒ^ID
+ * @param	dat_id		ãƒ‡ãƒ¼ã‚¿ç•ªå·
+ * @param	prm_id		å–å¾—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID
  *
- * @return	w’èƒpƒ‰ƒ[ƒ^
+ * @return	æŒ‡å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 u32 RIBBON_DataGet( u8 dat_id, u8 prm_id )
 {
 	switch( prm_id ){
-	case RIBBON_PARA_POKEPARA:	// PokeParaGet‚Ìæ“¾ID
+	case RIBBON_PARA_POKEPARA:	// PokeParaGetã®å–å¾—ID
 		return RibbonTable[dat_id].pp_id;
 
-	case RIBBON_PARA_GRAPHIC:	// ƒOƒ‰ƒtƒBƒbƒNID
+	case RIBBON_PARA_GRAPHIC:	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ID
 		return RibbonTable[dat_id].graphic;
 
-	case RIBBON_PARA_PALNUM:	// ƒpƒŒƒbƒg”Ô†
+	case RIBBON_PARA_PALNUM:	// ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 		return RibbonTable[dat_id].pal_num;
 
-	case RIBBON_PARA_NAME:		// ƒŠƒ{ƒ“–¼
+	case RIBBON_PARA_NAME:		// ãƒªãƒœãƒ³å
 		return RibbonTable[dat_id].name;
 
-	case RIBBON_PARA_INFO:		// ƒŠƒ{ƒ“à–¾
+	case RIBBON_PARA_INFO:		// ãƒªãƒœãƒ³èª¬æ˜
 		return RibbonTable[dat_id].info;
 	}
 
@@ -168,12 +168,12 @@ u32 RIBBON_DataGet( u8 dat_id, u8 prm_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“à–¾æ“¾
+ * ãƒªãƒœãƒ³èª¬æ˜å–å¾—
  *
- * @param	sv			ƒZ[ƒuƒf[ƒ^
- * @param	dat_id		ƒf[ƒ^”Ô†
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	dat_id		ãƒ‡ãƒ¼ã‚¿ç•ªå·
  *
- * @return	ƒŠƒ{ƒ“à–¾ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @return	ãƒªãƒœãƒ³èª¬æ˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32	RIBBON_InfoGet( u8 * sv, u8 dat_id )
@@ -186,12 +186,12 @@ u32	RIBBON_InfoGet( u8 * sv, u8 dat_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“ID‚©‚çà–¾‚ªŠi”[‚³‚ê‚Ä‚¢‚éˆÊ’u‚ğæ“¾
+ * ãƒªãƒœãƒ³IDã‹ã‚‰èª¬æ˜ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ä½ç½®ã‚’å–å¾—
  *
- * @param	dat_id		ƒf[ƒ^”Ô†
+ * @param	dat_id		ãƒ‡ãƒ¼ã‚¿ç•ªå·
  *
- * @retval	"0xff = ”z•zƒŠƒ{ƒ“ˆÈŠO"
- * @retval	"0xff != Ši”[ˆÊ’u"
+ * @retval	"0xff = é…å¸ƒãƒªãƒœãƒ³ä»¥å¤–"
+ * @retval	"0xff != æ ¼ç´ä½ç½®"
  */
 //--------------------------------------------------------------------------------------------
 u8 RIBBON_SaveIndexGet( u8 dat_id )
@@ -204,11 +204,11 @@ u8 RIBBON_SaveIndexGet( u8 dat_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ID_PARA_ƒŠƒ{ƒ“‚©‚çmsgID‚ğæ“¾(08.06.03)
+ * ID_PARA_ãƒªãƒœãƒ³ã‹ã‚‰msgIDã‚’å–å¾—(08.06.03)
  *
- * @param	para_id		ID_PARA_ƒŠƒ{ƒ“
+ * @param	para_id		ID_PARA_ãƒªãƒœãƒ³
  *
- * @retval	"msgIDA0xffff = Œ©‚Â‚©‚ç‚È‚©‚Á‚½"
+ * @retval	"msgIDã€0xffff = è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ"
  */
 //--------------------------------------------------------------------------------------------
 u16 RIBBON_NameGet( u32 pp_id )

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_046.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			046�@�\�͂���������ʂ̋Z��ǉ����ʂ��󂯂Ȃ��Ȃ�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			046　能力を下げる効果の技や追加効果を受けなくなる。
  *
  *@author	HisashiSogabe
  *@data		2006.01.17

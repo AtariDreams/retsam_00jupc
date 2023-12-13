@@ -1,51 +1,51 @@
 #----------------------------------------------------------------------------
 #
-#	‚±‚Ìƒp[ƒ‹‚Ípokemon_dpƒtƒHƒ‹ƒ_‚©‚çŒÄ‚Î‚ê‚Ü‚·B
+#	ã“ã®ãƒ‘ãƒ¼ãƒ«ã¯pokemon_dpãƒ•ã‚©ãƒ«ãƒ€ã‹ã‚‰å‘¼ã°ã‚Œã¾ã™ã€‚
 #
-#	arc_tool.dat‚È‚¢‚Ìenum‚Ì’l‚ª¡‚Ìarc_tool.dat‚Ìnum‚Ì’l‚Æˆê‚©ƒ`ƒFƒbƒN
+#	arc_tool.datãªã„ã®enumã®å€¤ãŒä»Šã®arc_tool.datã®numã®å€¤ã¨ä¸€ç·’ã‹ãƒã‚§ãƒƒã‚¯
 #	
 #----------------------------------------------------------------------------
 #####################################################################
-#	ƒƒCƒ“ƒ‹[ƒ`ƒ“
+#	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
 #####################################################################
-%h_LabelTbl_TMP;		#tmp_arc_tool.dat LABELƒf[ƒ^ƒnƒbƒVƒ…ƒe[ƒuƒ‹
-%h_LabelTbl_NOW;		#arc_tool.dat LABELƒf[ƒ^ƒnƒbƒVƒ…ƒe[ƒuƒ‹
+%h_LabelTbl_TMP;		#tmp_arc_tool.dat LABELãƒ‡ãƒ¼ã‚¿ãƒãƒƒã‚·ãƒ¥ãƒ†ãƒ¼ãƒ–ãƒ«
+%h_LabelTbl_NOW;		#arc_tool.dat LABELãƒ‡ãƒ¼ã‚¿ãƒãƒƒã‚·ãƒ¥ãƒ†ãƒ¼ãƒ–ãƒ«
 
-#¡‚Ìarc_tool.dat“Ç‚İ‚İ
+#ä»Šã®arc_tool.datèª­ã¿è¾¼ã¿
 open( IN, "../../../../include/system/arc_tool.dat" );
 @now_arc = <IN>;
 close( IN );
 if( @now_arc == 0 ){
-	print( "arc_tool.dat‚ªŠJ‚¯‚Ü‚¹‚ñ\n" );
+	print( "arc_tool.datãŒé–‹ã‘ã¾ã›ã‚“\n" );
 	exit(1);
 }
 
-#•Û‘¶‚µ‚Ä‚¨‚¢‚½arc_tool.dat“Ç‚İ‚±‚İ
+#ä¿å­˜ã—ã¦ãŠã„ãŸarc_tool.datèª­ã¿ã“ã¿
 open( IN, "tmp_arc_tool.dat" );
 @tmp_arc = <IN>;
 close( IN );
 if( @tmp_arc == 0 ){
-	print( "tmp_arc_tool.dat‚ªŠJ‚¯‚Ü‚¹‚ñ\n" );
+	print( "tmp_arc_tool.datãŒé–‹ã‘ã¾ã›ã‚“\n" );
 	exit(0);
 }
 
-#comment‚ğ”jŠü
+#commentã‚’ç ´æ£„
 @now_arc = &comment_cut( @now_arc );
 @tmp_arc = &comment_cut( @tmp_arc );
 
-#ƒnƒbƒVƒ…ƒe[ƒuƒ‹‚ÉLABELƒf[ƒ^‚ğ’Ç‰Á
+#ãƒãƒƒã‚·ãƒ¥ãƒ†ãƒ¼ãƒ–ãƒ«ã«LABELãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 &add_hash( \@tmp_arc, \%h_LabelTbl_TMP );
 &add_hash( \@now_arc, \%h_LabelTbl_NOW );
 
 
-#h_LabelTbl_TMP‚È‚¢‚Ìƒf[ƒ^‚ª‘S‚Äh_LabelTbl_NOW‚É‚ ‚é‚©ƒ`ƒFƒbƒN
-#ƒnƒbƒVƒ…‚Ì’†‚Æ“¯‚¶•¶š‚ª‚ ‚Á‚½‚ç”š‚É•Ï‚¦‚é
-$key_tnow = 0;	#“™‚µ‚¢keyŠi”[—p
-$num_tnow = 0;	#“™‚µ‚¢numŠi”[—p
+#h_LabelTbl_TMPãªã„ã®ãƒ‡ãƒ¼ã‚¿ãŒå…¨ã¦h_LabelTbl_NOWã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+#ãƒãƒƒã‚·ãƒ¥ã®ä¸­ã¨åŒã˜æ–‡å­—ãŒã‚ã£ãŸã‚‰æ•°å­—ã«å¤‰ãˆã‚‹
+$key_tnow = 0;	#ç­‰ã—ã„keyæ ¼ç´ç”¨
+$num_tnow = 0;	#ç­‰ã—ã„numæ ¼ç´ç”¨
 while( ($key_tmp, $num_tmp) = each(%h_LabelTbl_TMP) ){
 
 	$eq_flg = 0;
-	#‚±‚ÌƒL[‚Æ“¯‚¶ƒL[‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	#ã“ã®ã‚­ãƒ¼ã¨åŒã˜ã‚­ãƒ¼ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	while( ($key_now, $num_now) = each(%h_LabelTbl_NOW) ){
 		
 		if( $key_tmp eq $key_now ){
@@ -55,19 +55,19 @@ while( ($key_tmp, $num_tmp) = each(%h_LabelTbl_TMP) ){
 		}
 	}
 
-	#$eq_flg‚ª‚O‚ÌƒGƒ‰[
+	#$eq_flgãŒï¼ã®æ™‚ã‚¨ãƒ©ãƒ¼
 	if( $eq_flg == 0 ){
-		print("$key_tmp ‚Æ‚¢‚¤LABEL‚ª‚ ‚è‚Ü‚¹‚ñB\n");
-		print("arc_tool.dat‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID‚ª•ÏX‚³‚ê‚½‚½‚ßAƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[“à‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID‚Æˆê’v‚µ‚È‚¢ê‡‚ª‚ ‚è‚Ü‚·B tomoya takahashi \n" );
+		print("$key_tmp ã¨ã„ã†LABELãŒã‚ã‚Šã¾ã›ã‚“ã€‚\n");
+		print("arc_tool.datã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«IDãŒå¤‰æ›´ã•ã‚ŒãŸãŸã‚ã€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«IDã¨ä¸€è‡´ã—ãªã„å ´åˆãŒã‚ã‚Šã¾ã™ã€‚ tomoya takahashi \n" );
 		system( "rm ../*.resdat" );
 		system( "rm ../*.cldat" );
 		exit(1);
 	}
 
-	#’l‚ª“™‚µ‚¢‚©ƒ`ƒFƒbƒN
+	#å€¤ãŒç­‰ã—ã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( $h_LabelTbl_TMP{ $key_tmp } != $h_LabelTbl_NOW{ $key_tmp } ){
-		print("$key_tmp=$num_tmp ‚ª $key_tnow=$num_tnow ‚É‚È‚è‚Ü‚µ‚½B\n");
-		print( "ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[“à‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID‚Æˆê’v‚µ‚È‚¢ê‡‚ª‚ ‚è‚Ü‚·BV‹KƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ì’Ç‰Á‚Íenum‚Ìˆê”Ô‰º‚É‚¨Šè‚¢‚¢‚½‚µ‚Ü‚·B‚²‹¦—Í‚¨Šè‚¢‚µ‚Ü‚·B tomoya takahashi \n" );
+		print("$key_tmp=$num_tmp ãŒ $key_tnow=$num_tnow ã«ãªã‚Šã¾ã—ãŸã€‚\n");
+		print( "ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«IDã¨ä¸€è‡´ã—ãªã„å ´åˆãŒã‚ã‚Šã¾ã™ã€‚æ–°è¦ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®è¿½åŠ ã¯enumã®ä¸€ç•ªä¸‹ã«ãŠé¡˜ã„ã„ãŸã—ã¾ã™ã€‚ã”å”åŠ›ãŠé¡˜ã„ã—ã¾ã™ã€‚ tomoya takahashi \n" );
 		system( "rm ../*.resdat" );
 		system( "rm ../*.cldat" );
 		exit(1);
@@ -77,23 +77,23 @@ while( ($key_tmp, $num_tmp) = each(%h_LabelTbl_TMP) ){
 exit(0);
 
 #####################################################################
-#	ƒTƒuƒ‹[ƒ`ƒ“
+#	ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
 #####################################################################
-#LABEL’è‹`•”•ª‚ğ”²‚«o‚·
-#param		ŒŸõ•¶š—ñƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
-#param		Œ»İ‚ÌƒnƒbƒVƒ…ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+#LABELå®šç¾©éƒ¨åˆ†ã‚’æŠœãå‡ºã™
+#param		æ¤œç´¢æ–‡å­—åˆ—ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+#param		ç¾åœ¨ã®ãƒãƒƒã‚·ãƒ¥ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
 #
-#enum{				<=‚±‚±‚ğ’T‚·
+#enum{				<=ã“ã“ã‚’æ¢ã™
 #	LABEL1,			
 #	LABEL2 = 5,
-#};					<=‚±‚±‚ÅI‚í‚è‚¾‚Æƒ`ƒFƒbƒN‚·‚é
+#};					<=ã“ã“ã§çµ‚ã‚ã‚Šã ã¨ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 sub add_hash {
 
 	my($label_tbl, $label_hash) = @_;
 	my($one, $enum_flag, $label_num, $label_check, $label_num_check);
 	my($label_tmp, $label_num_tmp);
 
-#	print( "ŠJn\n" );
+#	print( "é–‹å§‹\n" );
 	
 	$enum_flag = 0;
 	$label_num = 0;
@@ -101,57 +101,57 @@ sub add_hash {
 
 	foreach $one( @$label_tbl ){
 
-		#enum‚Ì’è‹`‚É“ü‚é‚©ƒ`ƒFƒbƒN
+		#enumã®å®šç¾©ã«å…¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( $enum_flag == 0 ){
 			
-			#enum’è‹`‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+			#enumå®šç¾©ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( $one =~ /^[\s\t]*enum/ ){
 				$enum_flag = 1;
 
-#				print( "enum”­Œ©\n" );
+#				print( "enumç™ºè¦‹\n" );
 			}
 		}
 		
 		if( $enum_flag == 1 ){
-			#{‚ğ’T‚·
+			#{ã‚’æ¢ã™
 			if( $one =~ /{/ ){
 
 				$enum_flag = 2;
-#				print( "{”­Œ©\n" );
+#				print( "{ç™ºè¦‹\n" );
 			}
 		}
 		
 		if( $enum_flag == 2 ){
 
-			#LABEL’è‹`æ“¾
+			#LABELå®šç¾©å–å¾—
 			$label_check = &get_label( $one );
 			if( $label_check ne "def_to_num_err" ){
 
-#				print( "LABELæ“¾=$label_check\n" );
+#				print( "LABELå–å¾—=$label_check\n" );
 
-				#‚±‚Ìif‚Ìelse‚Åİ’è‚µ‚½$label_tmp‚Ì’†g‚ğ”jŠü
-				#‚±‚±‚É“ü‚Á‚Ä‚«‚½‚Æ‚¢‚¤‚±‚Æ‚ÍAˆê”Ô‚µ‚½‚Å‚Í‚È‚¢B
+				#ã“ã®ifã®elseã§è¨­å®šã—ãŸ$label_tmpã®ä¸­èº«ã‚’ç ´æ£„
+				#ã“ã“ã«å…¥ã£ã¦ããŸã¨ã„ã†ã“ã¨ã¯ã€ä¸€ç•ªã—ãŸã§ã¯ãªã„ã€‚
 				$label_tmp = undef;
 
-				#‚k‚`‚a‚d‚k”‚Ì’è‹`‚à“ü‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+				#ï¼¬ï¼¡ï¼¢ï¼¥ï¼¬æ•°ã®å®šç¾©ã‚‚å…¥ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 				$label_num_check = &get_labelnum( $one );
 				if($label_num_check ne "def_to_num_err"){
 					$label_num = $label_num_check;
 				}
-#				print( "LABEL”=$label_num\n" );
+#				print( "LABELæ•°=$label_num\n" );
 			
-				#ƒnƒbƒVƒ…‚ÉŠi”[
+				#ãƒãƒƒã‚·ãƒ¥ã«æ ¼ç´
 				$$label_hash{ $label_check } = $label_num;
-				$label_num ++;	#‚k‚`‚a‚d‚k‚É‘Î‰‚·‚é’l‰ÁZ
+				$label_num ++;	#ï¼¬ï¼¡ï¼¢ï¼¥ï¼¬ã«å¯¾å¿œã™ã‚‹å€¤åŠ ç®—
 				
 			}else{
 				
-				#,‚ª‚È‚¢‚¾‚¯‚ÅALABEL’è‹`‚Á‚Û‚¢s‚¾‚Á‚½‚çæ‚Á‚Ä‚¨‚­
-				#Ÿ‚Ì—LŒø‚Ès‚ªA}‚È‚çLABEL‚Æ‚µ‚Ä“o˜^‚·‚é
+				#,ãŒãªã„ã ã‘ã§ã€LABELå®šç¾©ã£ã½ã„è¡Œã ã£ãŸã‚‰å–ã£ã¦ãŠã
+				#æ¬¡ã®æœ‰åŠ¹ãªè¡ŒãŒã€}ãªã‚‰LABELã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 				if( $one =~ /^[\s\t]*([^\s\t\}\;]+)/ ){
 					$label_tmp = $1;			
 
-					#”š’è‹`‚à‚ ‚é‚©ƒ`ƒFƒbƒN
+					#æ•°å­—å®šç¾©ã‚‚ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 					$label_num_check = &get_labelnum( $one );
 					if($label_num_check ne "def_to_num_err"){
 						$label_num_tmp = $label_num_check;
@@ -161,34 +161,34 @@ sub add_hash {
 				}
 			}
 
-			#enumI—¹ƒ`ƒFƒbƒN
-			#};‚ª‚ ‚ê‚ÎI—¹
+			#enumçµ‚äº†ãƒã‚§ãƒƒã‚¯
+			#};ãŒã‚ã‚Œã°çµ‚äº†
 			if( $one =~ /}/ ){
 				
-				#label_tmp‚ª‚ ‚é‚Æ‚«‚Í‚»‚ÌLABEL‚ğƒnƒbƒVƒ…‚É‘ã“ü
+				#label_tmpãŒã‚ã‚‹ã¨ãã¯ãã®LABELã‚’ãƒãƒƒã‚·ãƒ¥ã«ä»£å…¥
 				if($label_tmp){
 					$$label_hash{ $label_tmp } = $label_num_tmp;
 				}
 				
-				#ƒ[ƒN‰Šú‰»
+				#ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 				$enum_flag = 0;
 				$label_num = 0;
-#				print( "}”­Œ©\n" );
+#				print( "}ç™ºè¦‹\n" );
 			}
 		}
 	}
-#	print( "I—¹\n" );
+#	print( "çµ‚äº†\n" );
 }
 
-#LABEL’è‹`‚Ìæ“¾
-#param		LABEL‚ª’è‹`‚³‚ê‚Ä‚¢‚é‚©‚à‚µ‚ê‚È‚¢•¶š—ñ
-#retval		LABEL‚Ì–¼‘O
-#retval		err = LABEL‚ª‚È‚¢
+#LABELå®šç¾©ã®å–å¾—
+#param		LABELãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„æ–‡å­—åˆ—
+#retval		LABELã®åå‰
+#retval		err = LABELãŒãªã„
 sub get_label{
 
 	my($str) = @_;
 
-	#^	TEST_LABEL	,‚ÌTEST_LABEL‚ğæ“¾
+	#^	TEST_LABEL	,ã®TEST_LABELã‚’å–å¾—
 	#^TEST_LABEL,
 	#^ TEST_LABEL = 0,
 	if( $str =~ /^[\s\t]*([^\s\t]+)[\s\t]*(\,|\=[\s\t]*\d+[\s\t]*\,)/ ){
@@ -198,16 +198,16 @@ sub get_label{
 	return "def_to_num_err";
 }
 
-#LABEL”’è‹`‚Ìæ“¾
-#param		LABEL”‚ª’è‹`‚³‚ê‚Ä‚¢‚é‚©‚à‚µ‚ê‚È‚¢•¶š—ñ
-#retval		LABEL‚É‘Î‰‚·‚é’l
-#retval		err = LABEL”‚È‚µ
+#LABELæ•°å®šç¾©ã®å–å¾—
+#param		LABELæ•°ãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„æ–‡å­—åˆ—
+#retval		LABELã«å¯¾å¿œã™ã‚‹å€¤
+#retval		err = LABELæ•°ãªã—
 sub get_labelnum{
 
 	my($str) = @_;
 
 	#^ TEST_LABEL = 0
-	#,‚ÍÅIs‚Ìƒ‰ƒxƒ‹‚É‚Í–³‚¢‚Ì‚ÅAƒ`ƒFƒbƒN‚µ‚È‚¢
+	#,ã¯æœ€çµ‚è¡Œã®ãƒ©ãƒ™ãƒ«ã«ã¯ç„¡ã„ã®ã§ã€ãƒã‚§ãƒƒã‚¯ã—ãªã„
 	if( $str =~ /\=[\s\t]*(\d+)/ ){
 		return $1;
 	}
@@ -215,7 +215,7 @@ sub get_labelnum{
 	return "def_to_num_err";
 }
 
-#comment•”•ª‚ğ”rœ‚µ‚Ü‚·B
+#commentéƒ¨åˆ†ã‚’æ’é™¤ã—ã¾ã™ã€‚
 sub comment_cut {
 
 	my( @str ) = @_;
@@ -226,7 +226,7 @@ sub comment_cut {
 	foreach $one( @str ){
 
 		if( $com_flag == 1 ){
-			#•Â‚¶‚ª‚­‚é‚Ü‚Å‚Ì‘S‚Ä‚ğ”jŠü
+			#é–‰ã˜ãŒãã‚‹ã¾ã§ã®å…¨ã¦ã‚’ç ´æ£„
 			if( $one =~ /\*\// ){
 				$one =~ s/.*\*\///;
 				$com_flag = 0;
@@ -236,16 +236,16 @@ sub comment_cut {
 		}
 
 		if( $com_flag == 0 ){
-			#/**/‚ğ”jŠü
+			#/**/ã‚’ç ´æ£„
 			$one =~ s/\/\*.*?\*\///g;
 
-			#//‚ğÁ‚·  ‘O‚É/*‚ª‚È‚¢
+			#//ã‚’æ¶ˆã™  å‰ã«/*ãŒãªã„
 			$one =~ s/(.*)\/\/.*(\r*\n)/$1$2/;
 
-			#/*‚ğ”jŠü
+			#/*ã‚’ç ´æ£„
 			if( $one =~ s/\/\*.*(\r*\n)/$1/ ){
 
-				$com_flag = 1;		#•Â‚¶‚ª‚È‚¢‚Ì‚Å’T‚·
+				$com_flag = 1;		#é–‰ã˜ãŒãªã„ã®ã§æ¢ã™
 			}
 		}			
 	}

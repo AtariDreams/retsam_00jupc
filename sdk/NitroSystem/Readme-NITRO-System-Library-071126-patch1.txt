@@ -1,212 +1,212 @@
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
-¡@Readme-NITRO-System-Library-071126-patch1.txt @@@@@@@@@@@@@¡
-¡@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@¡
-¡@NITRO-System-Library 071126 patch1@@@@@@@@@@@@@@@@@@@¡
-¡@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@¡
-¡@Jan. 23, 2008 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@¡
-¡@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@¡
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
+â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– 
+â– ã€€Readme-NITRO-System-Library-071126-patch1.txt ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â– 
+â– ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â– 
+â– ã€€NITRO-System-Library 071126 patch1ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â– 
+â– ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â– 
+â– ã€€Jan. 23, 2008 ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â– 
+â– ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â– 
+â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– 
 
 
-–ÚŸ
+ç›®æ¬¡
 ==============================================================================
-@@1. ‚Í‚¶‚ß‚É
-@@2. C³“à—e
-@@3. ƒtƒ@ƒCƒ‹ƒŠƒXƒg
+ã€€ã€€1. ã¯ã˜ã‚ã«
+ã€€ã€€2. ä¿®æ­£å†…å®¹
+ã€€ã€€3. ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆ
 
 
-1. ‚Í‚¶‚ß‚É
+1. ã¯ã˜ã‚ã«
 ==============================================================================
-@@‚±‚Ìƒpƒbƒ`‚ÍANITRO-System Library 2007/11/26 ”Å‚ÌƒŠƒŠ[ƒXˆÈ~‚É”­Œ©‚³‚ê‚½
-@@•s‹ï‡‚ÌC³‚ÆANITRO-SDK4.2‚Ö‚Ì‘Î‰‚ğs‚¤‚½‚ß‚Ì‚à‚Ì‚Å‚·B
-@@ipatch-NitroSDK4_2‚Å‚ÌC³“_‚ğŠÜ‚İ‚Ü‚·Bj
+ã€€ã€€ã“ã®ãƒ‘ãƒƒãƒã¯ã€NITRO-System Library 2007/11/26 ç‰ˆã®ãƒªãƒªãƒ¼ã‚¹ä»¥é™ã«ç™ºè¦‹ã•ã‚ŒãŸ
+ã€€ã€€ä¸å…·åˆã®ä¿®æ­£ã¨ã€NITRO-SDK4.2ã¸ã®å¯¾å¿œã‚’è¡Œã†ãŸã‚ã®ã‚‚ã®ã§ã™ã€‚
+ã€€ã€€ï¼ˆpatch-NitroSDK4_2ã§ã®ä¿®æ­£ç‚¹ã‚’å«ã¿ã¾ã™ã€‚ï¼‰
 
-@@‚±‚Ìƒpƒbƒ`‚ğƒCƒ“ƒXƒg[ƒ‹‚·‚é‚½‚ß‚É‚ÍA“¯«‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ğNITRO-System
-@@ Library 2007/11/26 ”Å‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚éƒfƒBƒŒƒNƒgƒŠ‚Éã‘‚«ƒRƒs[‚µ
-@@‚Ä‚­‚¾‚³‚¢B
+ã€€ã€€ã“ã®ãƒ‘ãƒƒãƒã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ãŸã‚ã«ã¯ã€åŒæ¢±ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’NITRO-System
+ã€€ã€€ Library 2007/11/26 ç‰ˆãŒã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ä¸Šæ›¸ãã‚³ãƒ”ãƒ¼ã—
+ã€€ã€€ã¦ãã ã•ã„ã€‚
 
 
-2. C³“à—e
+2. ä¿®æ­£å†…å®¹
 ===============================================================================
 
-@@NITRO-System-Library 071126 patch1 ‚ÅC³‚³‚ê‚½“à—e
-@@---------------------------------------------------------------------------
+ã€€ã€€NITRO-System-Library 071126 patch1 ã§ä¿®æ­£ã•ã‚ŒãŸå†…å®¹
+ã€€ã€€---------------------------------------------------------------------------
 
-@@(1) g3d: ƒAƒjƒ[ƒVƒ‡ƒ“‚ª–³Œø‰»‚³‚ê‚È‚¢•s‹ï‡‚ğC³
+ã€€ã€€(1) g3d: ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒç„¡åŠ¹åŒ–ã•ã‚Œãªã„ä¸å…·åˆã‚’ä¿®æ­£
 
-@@@@ENNS_G3dAnmObjDisableID()ŠÖ”‚Åƒ}ƒeƒŠƒAƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“A‚Ü‚½‚ÍƒrƒWƒr
-@@@@@ƒŠƒeƒBƒAƒjƒ[ƒVƒ‡ƒ“‚ğw’è‚µ‚Ä‚àƒAƒjƒ[ƒVƒ‡ƒ“‚ª–³Œø‚É‚È‚ç‚È‚¢•s‹ï‡
-@@@@@‚ğC³‚µ‚Ü‚µ‚½B
-
-
-@@(2) g3d: DMA “]‘—‚ğg—p‚·‚éŠÖ”‚É‚Â‚¢‚ÄŠeŠC³
-
-@@@@ENNS_G3dTexLoad(), NNS_G3dPlttLoad(), NNS_G3dDraw(), 
-@@@@@NNS_G3dDraw1Mat1Shp(), NNS_G3dResDefaultSetup() ŠÖ”‚É‚Â‚¢‚ÄAŠÖ”“à
-@@@@@•”‚ÅDMA “]‘—‚ğ—p‚¢‚Ä‚¢‚é‚½‚ßAŒÄ‚Ño‚µ‘O‚É“]‘—ƒf[ƒ^‚ğƒLƒƒƒbƒVƒ…‚©‚ç
-@@@@@ƒƒ‚ƒŠ‚Éƒ‰ƒCƒgƒoƒbƒN‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚é|‚ğŠÖ”ƒŠƒtƒ@ƒŒƒ“ƒXƒ}ƒjƒ…ƒAƒ‹
-@@@@@‚É’Ç‹L‚µ‚Ü‚µ‚½B
-
-@@@@Eã‹L‚ÉŠÖ˜A‚µAŠeíƒTƒ“ƒvƒ‹ƒfƒ‚‚ğC³‚µ‚Ü‚µ‚½B
+ã€€ã€€ã€€ã€€ãƒ»NNS_G3dAnmObjDisableID()é–¢æ•°ã§ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã€ã¾ãŸã¯ãƒ“ã‚¸ãƒ“
+ã€€ã€€ã€€ã€€ã€€ãƒªãƒ†ã‚£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã—ã¦ã‚‚ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒç„¡åŠ¹ã«ãªã‚‰ãªã„ä¸å…·åˆ
+ã€€ã€€ã€€ã€€ã€€ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
 
-@@(3) g3d: demolib ‚É‚¨‚¯‚éƒJƒƒ‰ŒvZ‚Ì•s‹ï‡‚ğC³
+ã€€ã€€(2) g3d: DMA è»¢é€ã‚’ä½¿ç”¨ã™ã‚‹é–¢æ•°ã«ã¤ã„ã¦å„æ‰€ä¿®æ­£
 
-@@@@Edemolib ‚Ì G3DDemo_CalcCamera() ŠÖ”‚É‚Â‚¢‚ÄAƒJƒƒ‰ˆÊ’u‚ÌŒvZ•û–@‚É
-@@@@@Œë‚è‚ª‚ ‚Á‚½‚Ì‚ÅC³‚µ‚Ü‚µ‚½B
+ã€€ã€€ã€€ã€€ãƒ»NNS_G3dTexLoad(), NNS_G3dPlttLoad(), NNS_G3dDraw(), 
+ã€€ã€€ã€€ã€€ã€€NNS_G3dDraw1Mat1Shp(), NNS_G3dResDefaultSetup() é–¢æ•°ã«ã¤ã„ã¦ã€é–¢æ•°å†…
+ã€€ã€€ã€€ã€€ã€€éƒ¨ã§DMA è»¢é€ã‚’ç”¨ã„ã¦ã„ã‚‹ãŸã‚ã€å‘¼ã³å‡ºã—å‰ã«è»¢é€ãƒ‡ãƒ¼ã‚¿ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰
+ã€€ã€€ã€€ã€€ã€€ãƒ¡ãƒ¢ãƒªã«ãƒ©ã‚¤ãƒˆãƒãƒƒã‚¯ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚‹æ—¨ã‚’é–¢æ•°ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«
+ã€€ã€€ã€€ã€€ã€€ã«è¿½è¨˜ã—ã¾ã—ãŸã€‚
+
+ã€€ã€€ã€€ã€€ãƒ»ä¸Šè¨˜ã«é–¢é€£ã—ã€å„ç¨®ã‚µãƒ³ãƒ—ãƒ«ãƒ‡ãƒ¢ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
 
-@@(4) g3dcvtr: SBC ƒRƒ}ƒ“ƒh‚Ìˆê•”‚ğŒë‚Á‚Äíœ‚µ‚Ä‚µ‚Ü‚¤•s‹ï‡‚ğC³
+ã€€ã€€(3) g3d: demolib ã«ãŠã‘ã‚‹ã‚«ãƒ¡ãƒ©è¨ˆç®—ã®ä¸å…·åˆã‚’ä¿®æ­£
 
-@@(5) g3d: ƒŠƒtƒ@ƒŒƒ“ƒXƒ}ƒjƒ…ƒAƒ‹‚ğC³
+ã€€ã€€ã€€ã€€ãƒ»demolib ã® G3DDemo_CalcCamera() é–¢æ•°ã«ã¤ã„ã¦ã€ã‚«ãƒ¡ãƒ©ä½ç½®ã®è¨ˆç®—æ–¹æ³•ã«
+ã€€ã€€ã€€ã€€ã€€èª¤ã‚ŠãŒã‚ã£ãŸã®ã§ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
 
-3. ƒtƒ@ƒCƒ‹ƒŠƒXƒg
+ã€€ã€€(4) g3dcvtr: SBC ã‚³ãƒãƒ³ãƒ‰ã®ä¸€éƒ¨ã‚’èª¤ã£ã¦å‰Šé™¤ã—ã¦ã—ã¾ã†ä¸å…·åˆã‚’ä¿®æ­£
+
+ã€€ã€€(5) g3d: ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ã‚’ä¿®æ­£
+
+
+3. ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆ
 ===============================================================================
 
-@@¡ƒ\[ƒXƒtƒ@ƒCƒ‹
-@@@NitroSystem/build/libraries/g3d/src/anm.c
-@@@NitroSystem/build/libraries/g3d/src/util.c
-@@@NitroSystem/include/nnsys/version.h
+ã€€ã€€â– ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
+ã€€ã€€ã€€NitroSystem/build/libraries/g3d/src/anm.c
+ã€€ã€€ã€€NitroSystem/build/libraries/g3d/src/util.c
+ã€€ã€€ã€€NitroSystem/include/nnsys/version.h
 
 
-@@¡ƒ‰ƒCƒuƒ‰ƒŠƒtƒ@ƒCƒ‹
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnsfnd.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnsfnd.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnsg2d.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnsg2d.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnsg3d.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnsg3d.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnsgfd.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnsgfd.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnsmcs.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnsmcs.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnssnd.a
-@@@NitroSystem/lib/ARM9-TS/Debug/libnnssnd.thumb.a
+ã€€ã€€â– ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnsfnd.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnsfnd.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnsg2d.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnsg2d.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnsg3d.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnsg3d.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnsgfd.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnsgfd.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnsmcs.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnsmcs.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnssnd.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Debug/libnnssnd.thumb.a
 
-@@@NitroSystem/lib/ARM9-TS/Release/libnnsfnd.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnsfnd.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnsg2d.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnsg2d.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnsg3d.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnsg3d.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnsgfd.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnsgfd.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnsmcs.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnsmcs.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnssnd.a
-@@@NitroSystem/lib/ARM9-TS/Release/libnnssnd.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnsfnd.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnsfnd.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnsg2d.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnsg2d.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnsg3d.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnsg3d.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnsgfd.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnsgfd.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnsmcs.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnsmcs.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnssnd.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Release/libnnssnd.thumb.a
 
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnsfnd.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnsfnd.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnsg2d.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnsg2d.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnsg3d.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnsg3d.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnsgfd.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnsgfd.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnsmcs.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnsmcs.thumb.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnssnd.a
-@@@NitroSystem/lib/ARM9-TS/Rom/libnnssnd.thumb.a
-
-
-
-@@¡ƒTƒ“ƒvƒ‹
-@@@NitroSystem/build/demos/g3d/demolib/src/camera.c
-@@@NitroSystem/build/demos/g3d/samples/1mat1shp/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/callback1/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/callback2/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/callback3/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/callback4/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/callback5/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/CameraMtx/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/CustomizeSbcOp/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/DisposeTex/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/Envelope/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/EnvMap/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/GeComBuffering/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/JointAnm/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/ManualSetup/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/MatColAnm/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/ModifyNsbmd/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/MotionLOD/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/MultiModel/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/PartialAnm1/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/PartialAnm2/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/ProjMap/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/RecordJoint/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/RecordMaterial/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/RecordMtx/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/ScreenUtil/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/SeparateTex/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/ShadowVolume/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/SharedMotion/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/simple/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/SlowMotion/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/TexPatternAnm/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/TexSRTAnm/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/Translucent/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/UnbindTex/src/main.c
-@@@NitroSystem/build/demos/g3d/samples/VisibilityAnm/src/main.c
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnsfnd.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnsfnd.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnsg2d.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnsg2d.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnsg3d.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnsg3d.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnsgfd.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnsgfd.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnsmcs.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnsmcs.thumb.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnssnd.a
+ã€€ã€€ã€€NitroSystem/lib/ARM9-TS/Rom/libnnssnd.thumb.a
 
 
-@@¡ƒŠƒtƒ@ƒŒƒ“ƒX
-@@@NitroSystem/man/ja_JP/main.html
-@@@NitroSystem/man/ja_JP/g3d/list_g3d.html
-@@@NitroSystem/man/ja_JP/g3d/kernel/NNS_G3dPlttLoad.html
-@@@NitroSystem/man/ja_JP/g3d/kernel/NNS_G3dTexLoad.html
-@@@NitroSystem/man/ja_JP/g3d/sbc/NNS_G3dDraw.html
-@@@NitroSystem/man/ja_JP/g3d/sbc/NNS_G3dDraw1Mat1Shp.html
-@@@NitroSystem/man/ja_JP/g3d/util/NNS_G3dResDefaultSetup.html
+
+ã€€ã€€â– ã‚µãƒ³ãƒ—ãƒ«
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/demolib/src/camera.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/1mat1shp/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/callback1/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/callback2/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/callback3/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/callback4/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/callback5/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/CameraMtx/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/CustomizeSbcOp/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/DisposeTex/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/Envelope/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/EnvMap/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/GeComBuffering/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/JointAnm/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/ManualSetup/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/MatColAnm/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/ModifyNsbmd/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/MotionLOD/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/MultiModel/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/PartialAnm1/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/PartialAnm2/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/ProjMap/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/RecordJoint/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/RecordMaterial/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/RecordMtx/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/ScreenUtil/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/SeparateTex/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/ShadowVolume/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/SharedMotion/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/simple/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/SlowMotion/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/TexPatternAnm/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/TexSRTAnm/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/Translucent/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/UnbindTex/src/main.c
+ã€€ã€€ã€€NitroSystem/build/demos/g3d/samples/VisibilityAnm/src/main.c
 
 
-@@¡ƒTƒEƒ“ƒhƒvƒŒƒCƒ„—pƒtƒ@ƒCƒ‹
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Debug/sub.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Debug/sub.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Debug/sub_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Release/sub.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Release/sub.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Release/sub_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Rom/sub.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Rom/sub.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Rom/sub_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Debug/sub.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Debug/sub.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Debug/sub_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Release/sub.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Release/sub.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Release/sub_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Rom/sub.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Rom/sub.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Rom/sub_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Debug/main.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Debug/main.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Debug/main_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Release/main.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Release/main.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Release/main_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Rom/main.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Rom/main.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Rom/main_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Debug/main.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Debug/main.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Debug/main_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Release/main.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Release/main.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Release/main_defs.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Rom/main.nef
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Rom/main.sbin
-@@@NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Rom/main_defs.sbin
+ã€€ã€€â– ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹
+ã€€ã€€ã€€NitroSystem/man/ja_JP/main.html
+ã€€ã€€ã€€NitroSystem/man/ja_JP/g3d/list_g3d.html
+ã€€ã€€ã€€NitroSystem/man/ja_JP/g3d/kernel/NNS_G3dPlttLoad.html
+ã€€ã€€ã€€NitroSystem/man/ja_JP/g3d/kernel/NNS_G3dTexLoad.html
+ã€€ã€€ã€€NitroSystem/man/ja_JP/g3d/sbc/NNS_G3dDraw.html
+ã€€ã€€ã€€NitroSystem/man/ja_JP/g3d/sbc/NNS_G3dDraw1Mat1Shp.html
+ã€€ã€€ã€€NitroSystem/man/ja_JP/g3d/util/NNS_G3dResDefaultSetup.html
 
 
-@@¡NITROƒvƒŒƒCƒ„—pƒtƒ@ƒCƒ‹
-@@@NitroSystem/tools/win/NitroPlayer/nitro/ARM9-TS/Debug/NitroPlayer.srl
-@@@NitroSystem/tools/win/NitroPlayer/nitro/ARM9-TS/Release/NitroPlayer.srl
-@@@NitroSystem/tools/win/NitroPlayer/nitro/ARM9-TS.thumb/Debug/NitroPlayer.srl
-@@@NitroSystem/tools/win/NitroPlayer/nitro/ARM9-TS.thumb/Release/NitroPlayer.srl
+ã€€ã€€â– ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ã‚¤ãƒ¤ç”¨ãƒ•ã‚¡ã‚¤ãƒ«
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Debug/sub.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Debug/sub.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Debug/sub_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Release/sub.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Release/sub.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Release/sub_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Rom/sub.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Rom/sub.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS/Rom/sub_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Debug/sub.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Debug/sub.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Debug/sub_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Release/sub.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Release/sub.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Release/sub_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Rom/sub.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Rom/sub.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM7-TS.thumb/Rom/sub_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Debug/main.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Debug/main.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Debug/main_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Release/main.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Release/main.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Release/main_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Rom/main.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Rom/main.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS/Rom/main_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Debug/main.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Debug/main.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Debug/main_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Release/main.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Release/main.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Release/main_defs.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Rom/main.nef
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Rom/main.sbin
+ã€€ã€€ã€€NitroSystem/tools/nitro/SoundPlayer/components/ARM9-TS.thumb/Rom/main_defs.sbin
 
 
-@@¡ƒRƒ“ƒo[ƒ^
-@@@NitroSystem/tools/win/bin/g3dcvtr.exe
+ã€€ã€€â– NITROãƒ—ãƒ¬ã‚¤ãƒ¤ç”¨ãƒ•ã‚¡ã‚¤ãƒ«
+ã€€ã€€ã€€NitroSystem/tools/win/NitroPlayer/nitro/ARM9-TS/Debug/NitroPlayer.srl
+ã€€ã€€ã€€NitroSystem/tools/win/NitroPlayer/nitro/ARM9-TS/Release/NitroPlayer.srl
+ã€€ã€€ã€€NitroSystem/tools/win/NitroPlayer/nitro/ARM9-TS.thumb/Debug/NitroPlayer.srl
+ã€€ã€€ã€€NitroSystem/tools/win/NitroPlayer/nitro/ARM9-TS.thumb/Release/NitroPlayer.srl
+
+
+ã€€ã€€â– ã‚³ãƒ³ãƒãƒ¼ã‚¿
+ã€€ã€€ã€€NitroSystem/tools/win/bin/g3dcvtr.exe
 

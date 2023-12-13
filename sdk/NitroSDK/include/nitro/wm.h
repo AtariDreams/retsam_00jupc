@@ -15,22 +15,22 @@
   do-indent.
 
   Revision 1.6  2004/08/10 09:11:27  terui
-  ARM9ê—pƒwƒbƒ_wm_api.h‚ðinclude
+  ARM9å°‚ç”¨ãƒ˜ãƒƒãƒ€wm_api.hã‚’include
 
   Revision 1.5  2004/07/20 10:50:36  terui
-  wm_lib‚Æwm‚Ì•Êƒ‰ƒCƒuƒ‰ƒŠ‰»‚É”º‚¤•ÏX
+  wm_libã¨wmã®åˆ¥ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåŒ–ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.4  2004/07/20 07:51:40  terui
-  wm_lib.h‚ðŽb’è‚ÅƒCƒ“ƒNƒ‹[ƒh
+  wm_lib.hã‚’æš«å®šã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 
   Revision 1.3  2004/07/20 01:17:57  terui
-  ARM9‘¤ãˆÊƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒCƒ“ƒNƒ‹[ƒh‚ðˆê’Uíœ
+  ARM9å´ä¸Šä½ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚’ä¸€æ—¦å‰Šé™¤
 
   Revision 1.2  2004/07/08 10:03:47  terui
-  WM7‰ü‘¢ŠJŽn‚É”º‚¤•ÏX
+  WM7æ”¹é€ é–‹å§‹ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.1  2004/05/26 08:46:55  terui
-  –³ü‘g‚Ýž‚Ý‚É”º‚¤’Ç‰Á
+  ç„¡ç·šçµ„ã¿è¾¼ã¿ã«ä¼´ã†è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

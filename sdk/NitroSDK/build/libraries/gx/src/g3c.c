@@ -15,13 +15,13 @@
   do-indent
 
   Revision 1.44  2005/08/10 08:57:17  yasu
-  g3b.c g3c.c ‚ğ PC ã‚ÅƒRƒ“ƒpƒCƒ‹‚Å‚«‚é‚æ‚¤‚ÉC³
+  g3b.c g3c.c ã‚’ PC ä¸Šã§ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã§ãã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.43  2005/05/31 11:01:32  takano_makoto
-  G3C_UpdateGXDLInfo‚ÌASSERTğŒ‚ğ•ÏX
+  G3C_UpdateGXDLInfoã®ASSERTæ¡ä»¶ã‚’å¤‰æ›´
 
   Revision 1.42  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.41  2005/02/28 05:26:13  yosizaki
   do-indent.

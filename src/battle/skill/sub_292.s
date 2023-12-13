@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_292.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			2ƒ^[ƒ“‹Z‚ð1ƒ^[ƒ“‚Å‚¾‚·‘•”õƒAƒCƒeƒ€Œø‰ÊƒV[ƒPƒ“ƒXiƒƒPƒbƒg‚¸‚Â‚«ê—pj
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			2ã‚¿ãƒ¼ãƒ³æŠ€ã‚’1ã‚¿ãƒ¼ãƒ³ã§ã ã™è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ åŠ¹æžœã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆãƒ­ã‚±ãƒƒãƒˆãšã¤ãå°‚ç”¨ï¼‰
  *@author	HisashiSogabe
  *@data		2006.08.03
  *
@@ -17,14 +17,14 @@
 SUB_292:
 	WAZA_EFFECT		SIDE_ATTACK
 	SERVER_WAIT
-	//‹ZƒGƒtƒFƒNƒgƒIƒtŽž‚Ì‚½‚ß‚ÉÁ‚¦‚éŒn‚Ìƒ`ƒFƒbƒN‚ð‚µ‚ÄŽp‚ðÁ‚·
+	//æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ•æ™‚ã®ãŸã‚ã«æ¶ˆãˆã‚‹ç³»ã®ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¦å§¿ã‚’æ¶ˆã™
 	IF_PSP			IF_FLAG_NBIT,SIDE_ATTACK,ID_PSP_waza_kouka,WAZAKOUKA_KIE,NoVanish
 	VANISH_ON_OFF	SIDE_ATTACK,SW_VANISH_ON
 NoVanish:
 	MESSAGE_WORK
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//–hŒä‚ð‚P’iŠKã‚°‚é‚ðƒZƒbƒg
+	//é˜²å¾¡ã‚’ï¼‘æ®µéšŽä¸Šã’ã‚‹ã‚’ã‚»ãƒƒãƒˆ
 	VALUE_WORK		VAL_SET,BUF_PARA_TSUIKA_CLIENT,BUF_PARA_ATTACK_CLIENT
 	VALUE			VAL_SET,BUF_PARA_TSUIKA_PARA,ADD_COND2_DEFUP
 	VALUE			VAL_SET,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT

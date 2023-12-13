@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_237.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			237�@����̂g�o���܂񂽂�ȂقǈЗ͂������B�З͌v�Z���F�P+150�~�i�G�̌��݂̂g�o���G�̍ő�g�o�j
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			237　相手のＨＰがまんたんなほど威力が高い。威力計算式：１+150×（敵の現在のＨＰ÷敵の最大ＨＰ）
  *
  *@author	HisashiSogabe
  *@data		2006.02.14

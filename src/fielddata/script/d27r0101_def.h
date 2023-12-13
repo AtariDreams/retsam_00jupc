@@ -1,7 +1,7 @@
 #ifndef _D27R0101_DEF_H_
 #define _D27R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D27R0101_FLAG_CHANGE		(1)
 #define	SCRID_D27R0101_INIT_CHANGE		(2)
 #define	SCRID_D27R0101_RIVAL		(3)
@@ -9,6 +9,6 @@
 #define	SCRID_D27R0101_SUPPORT		(5)
 #define	SCRID_D27R0101_L02_AFTER		(6)
 #define	SCRID_D27R0101_GKANBU		(7)
-#define	SCRID_D27R0101_DATA_MAX		(7)		//最大数
+#define	SCRID_D27R0101_DATA_MAX		(7)		//譛螟ｧ謨ｰ
 
 #endif //_D27R0101_DEF_H_

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	goods_data.c
- * @brief	ƒOƒbƒYƒTƒCƒYA“–‚½‚è”»’èî•ñ‚Ìæ“¾
+ * @brief	ã‚°ãƒƒã‚ºã‚µã‚¤ã‚ºã€å½“ãŸã‚Šåˆ¤å®šæƒ…å ±ã®å–å¾—
  * @author	saito
  * @date	2006.02.27
  */
@@ -26,9 +26,9 @@ typedef struct GOOD_SIZZE_INFO_tag
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒOƒbƒY‰¡•æ“¾
- * @param	inGoodsIndex		ƒOƒbƒYƒiƒ“ƒo[
- * @return	u8					ƒOƒbƒY‚Ì‰¡•
+ * @brief	ã‚°ãƒƒã‚ºæ¨ªå¹…å–å¾—
+ * @param	inGoodsIndex		ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
+ * @return	u8					ã‚°ãƒƒã‚ºã®æ¨ªå¹…
  */
 //------------------------------------------------------------------
 const u8 GOODS_GetGoodsSizeX(const int inGoodsIndex)
@@ -38,9 +38,9 @@ const u8 GOODS_GetGoodsSizeX(const int inGoodsIndex)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒOƒbƒYc•æ“¾
- * @param	inGoodsIndex		ƒOƒbƒYƒiƒ“ƒo[
- * @return	u8					ƒOƒbƒY‚Ìc•
+ * @brief	ã‚°ãƒƒã‚ºç¸¦å¹…å–å¾—
+ * @param	inGoodsIndex		ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
+ * @return	u8					ã‚°ãƒƒã‚ºã®ç¸¦å¹…
  */
 //------------------------------------------------------------------
 const u8 GOODS_GetGoodsSizeZ(const int inGoodsIndex)
@@ -50,9 +50,9 @@ const u8 GOODS_GetGoodsSizeZ(const int inGoodsIndex)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒOƒbƒY“–‚½‚èƒf[ƒ^æ“¾
- * @param	inGoodsIndex		ƒOƒbƒYƒiƒ“ƒo[
- * @return	u8*					ƒOƒbƒY‚Ì“–‚½‚èƒf[ƒ^‚Ì”z—ñæ“ªƒAƒhƒŒƒX
+ * @brief	ã‚°ãƒƒã‚ºå½“ãŸã‚Šãƒ‡ãƒ¼ã‚¿å–å¾—
+ * @param	inGoodsIndex		ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
+ * @return	u8*					ã‚°ãƒƒã‚ºã®å½“ãŸã‚Šãƒ‡ãƒ¼ã‚¿ã®é…åˆ—å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //------------------------------------------------------------------
 const u8 *GOODS_GetGoodsHitData(const int inGoodsIndex)
@@ -62,8 +62,8 @@ const u8 *GOODS_GetGoodsHitData(const int inGoodsIndex)
 
 //------------------------------------------------------------------
 /**
- * @brief	SHOP‚Å‚ÌƒOƒbƒYŒğŠ·í—Şæ“¾
- * @param	inGoodsIndex		ƒOƒbƒYƒiƒ“ƒo[
+ * @brief	SHOPã§ã®ã‚°ãƒƒã‚ºäº¤æ›ç¨®é¡å–å¾—
+ * @param	inGoodsIndex		ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
  * @return	StoneType_e
  */
 //------------------------------------------------------------------
@@ -73,8 +73,8 @@ const u8 GOODS_GetGoodsChangeStoneType(const int inGoodsIndex)
 }
 //------------------------------------------------------------------
 /**
- * @brief	SHOP‚Å‚ÌƒOƒbƒYŒğŠ·Å¬ƒŒ[ƒgæ“¾
- * @param	inGoodsIndex		ƒOƒbƒYƒiƒ“ƒo[
+ * @brief	SHOPã§ã®ã‚°ãƒƒã‚ºäº¤æ›æœ€å°ãƒ¬ãƒ¼ãƒˆå–å¾—
+ * @param	inGoodsIndex		ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
  * @return	carat 1-99
  */
 //------------------------------------------------------------------
@@ -84,8 +84,8 @@ const u8 GOODS_GetGoodsChangeStoneCaratMin(const int inGoodsIndex)
 }
 //------------------------------------------------------------------
 /**
- * @brief	SHOP‚Å‚ÌƒOƒbƒYŒğŠ·Å‘åƒŒ[ƒgæ“¾
- * @param	inGoodsIndex		ƒOƒbƒYƒiƒ“ƒo[
+ * @brief	SHOPã§ã®ã‚°ãƒƒã‚ºäº¤æ›æœ€å¤§ãƒ¬ãƒ¼ãƒˆå–å¾—
+ * @param	inGoodsIndex		ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
  * @return	carat 1-99
  */
 //------------------------------------------------------------------
@@ -95,8 +95,8 @@ const u8 GOODS_GetGoodsChangeStoneCaratMax(const int inGoodsIndex)
 }
 //------------------------------------------------------------------
 /**
- * @brief	’nãSHOP‚Å‚Ì”„‚éê‡‚Ì‰¿Ši
- * @param	inGoodsIndex		ƒOƒbƒYƒiƒ“ƒo[
+ * @brief	åœ°ä¸ŠSHOPã§ã®å£²ã‚‹å ´åˆã®ä¾¡æ ¼
+ * @param	inGoodsIndex		ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
  * @return	money
  */
 //------------------------------------------------------------------
@@ -107,8 +107,8 @@ const int GOODS_GetGoodsMoney(const int inGoodsIndex)
 
 //------------------------------------------------------------------
 /**
- * @brief	˜b‚µ‚©‚¯‚½‚Æ‚«‚ÌgmmMsgNo
- * @param	inGoodsIndex		ƒOƒbƒYƒiƒ“ƒo[
+ * @brief	è©±ã—ã‹ã‘ãŸã¨ãã®gmmMsgNo
+ * @param	inGoodsIndex		ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
  * @return	rank
  */
 //------------------------------------------------------------------
@@ -119,9 +119,9 @@ const int GOODS_GetMessageNo(const int inGoodsIndex)
 
 //------------------------------------------------------------------
 /**
- * @brief	‘S‘ƒ‚[ƒh‚É‚È‚é‚Ü‚Å”„‚Á‚Ä‚Í‚¢‚¯‚È‚¢ƒOƒbƒY‚©‚Ç‚¤‚©
- * @param	inGoodsIndex		ƒOƒbƒYƒiƒ“ƒo[
- * @return	TRUE‚Í”„‚ê‚È‚¢
+ * @brief	å…¨å›½ãƒ¢ãƒ¼ãƒ‰ã«ãªã‚‹ã¾ã§å£²ã£ã¦ã¯ã„ã‘ãªã„ã‚°ãƒƒã‚ºã‹ã©ã†ã‹
+ * @param	inGoodsIndex		ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
+ * @return	TRUEã¯å£²ã‚Œãªã„
  */
 //------------------------------------------------------------------
 const int GOODS_GetZenkokuMode(const int inGoodsIndex)
@@ -131,9 +131,9 @@ const int GOODS_GetZenkokuMode(const int inGoodsIndex)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒŒƒA‚È‚Ì‚ÅŒğŠ·‚µ‚Ä‚Í‚¢‚¯‚È‚¢ƒOƒbƒY‚©‚Ç‚¤‚©
- * @param	inGoodsIndex		ƒOƒbƒYƒiƒ“ƒo[
- * @return	TRUE‚ÍŒğŠ·‚Å‚«‚È‚¢
+ * @brief	ãƒ¬ã‚¢ãªã®ã§äº¤æ›ã—ã¦ã¯ã„ã‘ãªã„ã‚°ãƒƒã‚ºã‹ã©ã†ã‹
+ * @param	inGoodsIndex		ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
+ * @return	TRUEã¯äº¤æ›ã§ããªã„
  */
 //------------------------------------------------------------------
 const int GOODS_GetLear(const int inGoodsIndex)

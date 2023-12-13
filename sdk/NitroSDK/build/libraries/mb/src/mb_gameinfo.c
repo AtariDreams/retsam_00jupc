@@ -12,7 +12,7 @@
 
     $Log: mb_gameinfo.c,v $
     Revision 1.47  2007/08/09 08:27:44  takano_makoto
-    MB_BC_MSG_GINFO_LOSTÇÃÉCÉxÉìÉgÉRÅ[ÉãÉoÉbÉNÇ≈Ç‡ÅAbssDescÇ∆gameInfoÇÃèÓïÒÇóLå¯Ç∆Ç∑ÇÈ
+    MB_BC_MSG_GINFO_LOST„ÅÆ„Ç§„Éô„É≥„Éà„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ„Åß„ÇÇ„ÄÅbssDesc„Å®gameInfo„ÅÆÊÉÖÂ†±„ÇíÊúâÂäπ„Å®„Åô„Çã
 
     Revision 1.46  2007/02/20 00:28:10  kitase_hirotake
     indent source
@@ -21,9 +21,9 @@
     add MB_FAKESCAN_PARENT_BEACON.
 
     Revision 1.44  2006/02/20 02:34:17  seiki_masashi
-    WMGameInfo.version Çîpé~ÇµÅAmagicNumber Ç∆ ver Çí«â¡
-    WMGameInfo.gameNameCount_attribute Ç attribute Ç…ñºëOïœçX
-    WM_GAMEINFO_TYPE_OLD ÇÃÉTÉ|Å[ÉgÇîpé~
+    WMGameInfo.version „ÇíÂªÉÊ≠¢„Åó„ÄÅmagicNumber „Å® ver „ÇíËøΩÂä†
+    WMGameInfo.gameNameCount_attribute „Çí attribute „Å´ÂêçÂâçÂ§âÊõ¥
+    WM_GAMEINFO_TYPE_OLD „ÅÆ„Çµ„Éù„Éº„Éà„ÇíÂªÉÊ≠¢
 
     Revision 1.43  2006/01/18 02:11:30  kitase_hirotake
     do-indent
@@ -35,8 +35,8 @@
     fix about WM_ATTR_FLAG_ENTRY flag.
 
     Revision 1.40  2005/03/04 12:35:05  yosiokat
-    MB_DeleteGameInfoÇ≈ÅAåªç›ÉrÅ[ÉRÉìÇ≈ÉQÅ[ÉÄèÓïÒîzêMíÜÇÃÉQÅ[ÉÄÇ™çÌèúÇ≥ÇÍÇΩèÍçáÅA
-    ÇªÇÃå„ÇÃÉQÅ[ÉÄîzêMÇ™ê≥èÌÇ…ìÆçÏÇµÇ»Ç≠Ç»ÇÈïsãÔçáÇèCê≥ÅB
+    MB_DeleteGameInfo„Åß„ÄÅÁèæÂú®„Éì„Éº„Ç≥„É≥„Åß„Ç≤„Éº„É†ÊÉÖÂ†±ÈÖç‰ø°‰∏≠„ÅÆ„Ç≤„Éº„É†„ÅåÂâäÈô§„Åï„Çå„ÅüÂ†¥Âêà„ÄÅ
+    „Åù„ÅÆÂæå„ÅÆ„Ç≤„Éº„É†ÈÖç‰ø°„ÅåÊ≠£Â∏∏„Å´Âãï‰Ωú„Åó„Å™„Åè„Å™„Çã‰∏çÂÖ∑Âêà„Çí‰øÆÊ≠£„ÄÇ
 
     Revision 1.39  2005/02/28 05:26:24  yosizaki
     do-indent.
@@ -48,31 +48,31 @@
     fix around hidden warnings.
 
     Revision 1.36  2005/01/24 23:48:25  takano_makoto
-    ASSERTÇÃèCê≥
+    ASSERT„ÅÆ‰øÆÊ≠£
 
     Revision 1.35  2005/01/18 05:31:03  takano_makoto
-    gameIntroductionÇÃNULï∂éöà»ç~ÇÃÉfÅ[É^Ç‡ëóêMÇ∑ÇÈÇÊÇ§Ç…èCê≥
+    gameIntroduction„ÅÆNULÊñáÂ≠ó‰ª•Èôç„ÅÆ„Éá„Éº„Çø„ÇÇÈÄÅ‰ø°„Åô„Çã„Çà„ÅÜ„Å´‰øÆÊ≠£
 
     Revision 1.33  2005/01/17 09:29:06  takano_makoto
-    MB_XXXUserBeaconData Ç MB_XXXUserVolatDataÇ÷ïœçXÅBMB_SetSendVolatCallbackä÷êîÇí«â¡ÅB
+    MB_XXXUserBeaconData „Çí MB_XXXUserVolatData„Å∏Â§âÊõ¥„ÄÇMB_SetSendVolatCallbackÈñ¢Êï∞„ÇíËøΩÂä†„ÄÇ
 
     Revision 1.32  2005/01/17 06:26:34  takano_makoto
-    MB_SetUserBeaconDataÇ…Ç®Ç¢ÇƒÅAÉfÅ[É^ÉZÉbÉgéûÇÃäÑÇËçûÇ›Çã÷é~
+    MB_SetUserBeaconData„Å´„Åä„ÅÑ„Å¶„ÄÅ„Éá„Éº„Çø„Çª„ÉÉ„ÉàÊôÇ„ÅÆÂâ≤„ÇäËæº„Åø„ÇíÁ¶ÅÊ≠¢
 
     Revision 1.31  2005/01/17 05:54:29  takano_makoto
-    MB_SetUserBeaconData, MB_GetUserBeaconDataÇí«â¡
+    MB_SetUserBeaconData, MB_GetUserBeaconData„ÇíËøΩÂä†
 
     Revision 1.30  2005/01/11 07:41:13  takano_makoto
     fix copyright header.
 
     Revision 1.29  2004/11/22 12:43:44  takano_makoto
-    MBwä÷êîÇégópÇµÇ»Ç¢ÇÊÇ§Ç…ïœçXÅBMB_GetGameInfoRecvListÇí«â¡ÅB
+    MBwÈñ¢Êï∞„Çí‰ΩøÁî®„Åó„Å™„ÅÑ„Çà„ÅÜ„Å´Â§âÊõ¥„ÄÇMB_GetGameInfoRecvList„ÇíËøΩÂä†„ÄÇ
 
     Revision 1.28  2004/11/10 07:40:03  takano_makoto
-    mb_gameinfo.cÇÃíÜÇ©ÇÁMBwä÷êîÇîrèúÇµÅAÉXÉLÉÉÉìÉpÉâÉÅÅ[É^ÇÃê›íËÇêÿÇËèoÇ∑
+    mb_gameinfo.c„ÅÆ‰∏≠„Åã„ÇâMBwÈñ¢Êï∞„ÇíÊéíÈô§„Åó„ÄÅ„Çπ„Ç≠„É£„É≥„Éë„É©„É°„Éº„Çø„ÅÆË®≠ÂÆö„ÇíÂàá„ÇäÂá∫„Åô
 
     Revision 1.27  2004/11/10 03:17:52  takano_makoto
-    mbrsÇ≈ämï€ÇµÇƒÇ¢ÇΩÉoÉbÉtÉ@ÇäOÇ©ÇÁìnÇµÇƒÇ‡ÇÁÇ¶ÇÈÇÊÇ§Ç…èCê≥
+    mbrs„ÅßÁ¢∫‰øù„Åó„Å¶„ÅÑ„Åü„Éê„ÉÉ„Éï„Ç°„ÇíÂ§ñ„Åã„ÇâÊ∏°„Åó„Å¶„ÇÇ„Çâ„Åà„Çã„Çà„ÅÜ„Å´‰øÆÊ≠£
 
     Revision 1.26  2004/11/02 18:17:58  takano_makoto
     fix DEBUG Print.
@@ -81,129 +81,129 @@
     just fix comment
 
     Revision 1.23  2004/10/05 09:45:29  terui
-    MACÉAÉhÉåÉXÇu8å^ÇÃîzóÒÇ…ìùàÍÅB
+    MAC„Ç¢„Éâ„É¨„Çπ„Çíu8Âûã„ÅÆÈÖçÂàó„Å´Áµ±‰∏Ä„ÄÇ
 
     Revision 1.22  2004/10/04 13:40:25  terui
-    ÉQÅ[ÉÄÉOÉãÅ[ÉvIDÇu32å^Ç…ìùàÍÅB
+    „Ç≤„Éº„É†„Ç∞„É´„Éº„ÉóID„Çíu32Âûã„Å´Áµ±‰∏Ä„ÄÇ
 
     Revision 1.21  2004/09/29 05:12:28  sato_masaki
-    BssDescÇ…ÅAäeÉQÅ[ÉÄÇÃGGIDÇìnÇπÇƒÇ¢Ç»Ç©Ç¡ÇΩïsãÔçáèCê≥ÅB
+    BssDesc„Å´„ÄÅÂêÑ„Ç≤„Éº„É†„ÅÆGGID„ÇíÊ∏°„Åõ„Å¶„ÅÑ„Å™„Åã„Å£„Åü‰∏çÂÖ∑Âêà‰øÆÊ≠£„ÄÇ
     
     Revision 1.20  2004/09/28 12:49:48  yosiokat
-    IPLÉuÉâÉìÉ`1.14.2.7Ç∆É}Å[ÉWÅB
+    IPL„Éñ„É©„É≥„ÉÅ1.14.2.7„Å®„Éû„Éº„Ç∏„ÄÇ
     
     Revision 1.14.2.7  2004/09/28 10:53:13  yosiokat
-    ÅEMBi_SendVolatBeaconì‡Ç≈beaconNoÇÃÉCÉìÉNÉäÉÅÉìÉgÇçsÇ¡ÇƒÇ¢Ç»Ç©Ç¡ÇΩïsãÔçáÇèCê≥ÅB
-    ÅEMB_SAME_BEACON_RECV_MAX_COUNTÇ"3"Ç…ïœçXÅB
+    „ÉªMBi_SendVolatBeaconÂÜÖ„ÅßbeaconNo„ÅÆ„Ç§„É≥„ÇØ„É™„É°„É≥„Éà„ÇíË°å„Å£„Å¶„ÅÑ„Å™„Åã„Å£„Åü‰∏çÂÖ∑Âêà„Çí‰øÆÊ≠£„ÄÇ
+    „ÉªMB_SAME_BEACON_RECV_MAX_COUNT„Çí"3"„Å´Â§âÊõ¥„ÄÇ
     
     Revision 1.14.2.6  2004/09/28 02:42:11  yosiokat
-    MBi_UnlockScanTargetÇ≈ÅAÉAÉìÉçÉbÉNé¿çséûÇ…éüÇÃÉçÉbÉNÉ^Å[ÉQÉbÉgÇí≤Ç◊ÇƒÉçÉbÉNÇ∑ÇÈèàóùÇçÌèúÅB
+    MBi_UnlockScanTarget„Åß„ÄÅ„Ç¢„É≥„É≠„ÉÉ„ÇØÂÆüË°åÊôÇ„Å´Ê¨°„ÅÆ„É≠„ÉÉ„ÇØ„Çø„Éº„Ç≤„ÉÉ„Éà„ÇíË™ø„Åπ„Å¶„É≠„ÉÉ„ÇØ„Åô„ÇãÂá¶ÁêÜ„ÇíÂâäÈô§„ÄÇ
     
     Revision 1.14.2.5  2004/09/28 02:40:25  yosiokat
-    ÅEêeã@ÇÃÉrÅ[ÉRÉìÇ…ëóêMÇ≤Ç∆Ç…ÉCÉìÉNÉäÉÅÉìÉgÇ∑ÇÈbeaconNoÇí«â¡Ç∑ÇÈÅB
-    ÅEéqã@Ç≈beaconNoÇ™ìÆÇ¢ÇƒÇ¢Ç»Ç¢êeã@ÇÃÉrÅ[ÉRÉìÇòAë±Ç≈éÛêMÇµÇΩèÍçáÅAÇªÇÃêeã@èÓïÒÇÕñ≥å¯Ç∆Ç∑ÇÈèàóùÇí«â¡ÅB
+    „ÉªË¶™Ê©ü„ÅÆ„Éì„Éº„Ç≥„É≥„Å´ÈÄÅ‰ø°„Åî„Å®„Å´„Ç§„É≥„ÇØ„É™„É°„É≥„Éà„Åô„ÇãbeaconNo„ÇíËøΩÂä†„Åô„Çã„ÄÇ
+    „ÉªÂ≠êÊ©ü„ÅßbeaconNo„ÅåÂãï„ÅÑ„Å¶„ÅÑ„Å™„ÅÑË¶™Ê©ü„ÅÆ„Éì„Éº„Ç≥„É≥„ÇíÈÄ£Á∂ö„ÅßÂèó‰ø°„Åó„ÅüÂ†¥Âêà„ÄÅ„Åù„ÅÆË¶™Ê©üÊÉÖÂ†±„ÅØÁÑ°Âäπ„Å®„Åô„ÇãÂá¶ÁêÜ„ÇíËøΩÂä†„ÄÇ
     
     Revision 1.14.2.4  2004/09/21 08:31:05  yosiokat
-    êeã@Ç≈ÅAÉQÅ[ÉÄèÓïÒÇí«â¡Å®çÌèúÅ®í«â¡ÇµÇΩéûÇ…Ç®Ç©ÇµÇ≠Ç»ÇÈïsãÔçáÇèCê≥ÅB
+    Ë¶™Ê©ü„Åß„ÄÅ„Ç≤„Éº„É†ÊÉÖÂ†±„ÇíËøΩÂä†‚ÜíÂâäÈô§‚ÜíËøΩÂä†„Åó„ÅüÊôÇ„Å´„Åä„Åã„Åó„Åè„Å™„Çã‰∏çÂÖ∑Âêà„Çí‰øÆÊ≠£„ÄÇ
     
     Revision 1.19  2004/09/22 09:41:42  sato_masaki
-    IPL_branch 1.14.2.4Ç∆É}Å[ÉW
-    (êeã@Ç≈ÅAÉQÅ[ÉÄèÓïÒÇí«â¡Å®çÌèúÅ®í«â¡ÇµÇΩéûÇ…Ç®Ç©ÇµÇ≠Ç»ÇÈïsãÔçáÇèCê≥ÅB)
+    IPL_branch 1.14.2.4„Å®„Éû„Éº„Ç∏
+    (Ë¶™Ê©ü„Åß„ÄÅ„Ç≤„Éº„É†ÊÉÖÂ†±„ÇíËøΩÂä†‚ÜíÂâäÈô§‚ÜíËøΩÂä†„Åó„ÅüÊôÇ„Å´„Åä„Åã„Åó„Åè„Å™„Çã‰∏çÂÖ∑Âêà„Çí‰øÆÊ≠£„ÄÇ)
     
     Revision 1.18  2004/09/20 10:45:41  yosiokat
-    IPLÉuÉâÉìÉ`Rev.1.14.2.3Ç∆ÇÃÉ}Å[ÉWÅB
+    IPL„Éñ„É©„É≥„ÉÅRev.1.14.2.3„Å®„ÅÆ„Éû„Éº„Ç∏„ÄÇ
     
     Revision 1.14.2.3  2004/09/20 10:15:49  yosiokat
-    ÅE__UGI_IN_GGIDÇçÌèúÅBÉrÅ[ÉRÉìì‡Ç…ÇÕÅAèÌÇ…ggidÇ™ì¸Ç¡ÇƒÇ¢ÇÈå`éÆÇ…Ç∑ÇÈÅB
-    ÅEMBi_ClearFixedInfoÇçÌèúÅB
-    ÅEMB_RecvGameInfoBeaconì‡Ç≈ÇÃSSIDÇÃê›íËÇMBi_SetSSIDToBssDescä÷êîÇ…ï™ó£ÅB
-    ÅEMBi_GetStoreElementì‡Ç≈çsÇ¡ÇƒÇ¢ÇΩTGIDÉ`ÉFÉbÉNÇMBi_CheckTGIDÇ∆ÇµÇƒÅAMBi_AnalyzeBeaconì‡Ç≈çsÇ§ÇÊÇ§Ç…Ç∑ÇÈÅB
-    ÅEMBi_CheckSeqNoFixedì‡ÇÃÉVÅ[ÉPÉìÉXî‘çÜÉ`ÉFÉbÉNÇèCê≥ÅBÅiàÍïîÇMBi_RecvFixedBeaconÇ…à⁄ìÆÅj
-    ÅEMBi_CheckSeqNoFixedÅAMBi_CheckSeqNoVolatÇÃï‘ÇËílÇvoidÇ…ÅB
-    ÅEMBGameInfoRecvListÇ©ÇÁseqNoFixed, seqNoVolatÇçÌèúÇµÇƒÅAìØgameInfoì‡Ç…Ç†ÇÈseqNoFixed, seqNoVolatÇégópÇ∑ÇÈÇÊÇ§èCê≥ÅB
+    „Éª__UGI_IN_GGID„ÇíÂâäÈô§„ÄÇ„Éì„Éº„Ç≥„É≥ÂÜÖ„Å´„ÅØ„ÄÅÂ∏∏„Å´ggid„ÅåÂÖ•„Å£„Å¶„ÅÑ„ÇãÂΩ¢Âºè„Å´„Åô„Çã„ÄÇ
+    „ÉªMBi_ClearFixedInfo„ÇíÂâäÈô§„ÄÇ
+    „ÉªMB_RecvGameInfoBeaconÂÜÖ„Åß„ÅÆSSID„ÅÆË®≠ÂÆö„ÇíMBi_SetSSIDToBssDescÈñ¢Êï∞„Å´ÂàÜÈõ¢„ÄÇ
+    „ÉªMBi_GetStoreElementÂÜÖ„ÅßË°å„Å£„Å¶„ÅÑ„ÅüTGID„ÉÅ„Çß„ÉÉ„ÇØ„ÇíMBi_CheckTGID„Å®„Åó„Å¶„ÄÅMBi_AnalyzeBeaconÂÜÖ„ÅßË°å„ÅÜ„Çà„ÅÜ„Å´„Åô„Çã„ÄÇ
+    „ÉªMBi_CheckSeqNoFixedÂÜÖ„ÅÆ„Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑„ÉÅ„Çß„ÉÉ„ÇØ„Çí‰øÆÊ≠£„ÄÇÔºà‰∏ÄÈÉ®„ÇíMBi_RecvFixedBeacon„Å´ÁßªÂãïÔºâ
+    „ÉªMBi_CheckSeqNoFixed„ÄÅMBi_CheckSeqNoVolat„ÅÆËøî„ÇäÂÄ§„Çívoid„Å´„ÄÇ
+    „ÉªMBGameInfoRecvList„Åã„ÇâseqNoFixed, seqNoVolat„ÇíÂâäÈô§„Åó„Å¶„ÄÅÂêågameInfoÂÜÖ„Å´„ÅÇ„ÇãseqNoFixed, seqNoVolat„Çí‰ΩøÁî®„Åô„Çã„Çà„ÅÜ‰øÆÊ≠£„ÄÇ
     
     Revision 1.14.2.2  2004/09/18 08:41:04  miya
-    HEADÇ∆É}Å[ÉW
+    HEAD„Å®„Éû„Éº„Ç∏
     
     Revision 1.17  2004/09/17 04:00:38  miya
-    ÇQÇ¬ñ⁄à»ç~ÇÃÉQÅ[ÉÄîzêMèÓïÒÇ™éÛÇØéÊÇÍÇ»Ç¢ÉoÉOÇèCê≥
+    Ôºí„Å§ÁõÆ‰ª•Èôç„ÅÆ„Ç≤„Éº„É†ÈÖç‰ø°ÊÉÖÂ†±„ÅåÂèó„ÅëÂèñ„Çå„Å™„ÅÑ„Éê„Ç∞„Çí‰øÆÊ≠£
     
     Revision 1.16  2004/09/16 12:20:42  miya
-    ÉtÉ@ÉCÉãçXêVópÇÃâ¸ë¢
+    „Éï„Ç°„Ç§„É´Êõ¥Êñ∞Áî®„ÅÆÊîπÈÄ†
     
     Revision 1.15  2004/09/16 11:22:22  miya
-    ÉtÉ@ÉCÉãçXêVópÉÅÉìÉoí«â¡
+    „Éï„Ç°„Ç§„É´Êõ¥Êñ∞Áî®„É°„É≥„ÉêËøΩÂä†
     
     Revision 1.14  2004/09/15 12:42:42  yosiokat
-    ÉvÉåÉCÉÅÉìÉoÅ[Ç™çÌèúÇ≥ÇÍÇΩç€ÇÃÉrÅ[ÉRÉìéÛêMÇ™Ç§Ç‹Ç≠Ç¢Ç¡ÇƒÇ¢Ç»Ç©Ç¡ÇΩÇÃÇèCê≥ÅB
+    „Éó„É¨„Ç§„É°„É≥„Éê„Éº„ÅåÂâäÈô§„Åï„Çå„ÅüÈöõ„ÅÆ„Éì„Éº„Ç≥„É≥Âèó‰ø°„Åå„ÅÜ„Åæ„Åè„ÅÑ„Å£„Å¶„ÅÑ„Å™„Åã„Å£„Åü„ÅÆ„Çí‰øÆÊ≠£„ÄÇ
     
     Revision 1.13  2004/09/15 09:22:27  yosiokat
-    mbss.seqNoVolatÇ™ÅAMBi_ReadyBeaconSendStatusì‡Ç≈ÉQÅ[ÉÄÇêÿÇËë÷Ç¶ÇÈéûÇ…ÉZÉbÉgÇ≥ÇÍÇƒÇ¢Ç»Ç©Ç¡ÇΩïsãÔçáÇèCê≥ÅB
+    mbss.seqNoVolat„Åå„ÄÅMBi_ReadyBeaconSendStatusÂÜÖ„Åß„Ç≤„Éº„É†„ÇíÂàá„ÇäÊõø„Åà„ÇãÊôÇ„Å´„Çª„ÉÉ„Éà„Åï„Çå„Å¶„ÅÑ„Å™„Åã„Å£„Åü‰∏çÂÖ∑Âêà„Çí‰øÆÊ≠£„ÄÇ
     
     Revision 1.12  2004/09/15 07:03:10  yosiokat
-    ÅEusefulGameInfoFlagÇê›ÇØÇƒÅAàÍíUêeã@ÉfÅ[É^àÍéÆÇéÛêMÇµÇΩÇÁÅAêeã@ÉfÅ[É^ÇÃéıñΩÇ™óàÇÈÇ‹Ç≈óßÇøÇ¬Ç√ÇØÇÈÇÊÇ§Ç…Ç∑ÇÈÅB
-    ÅEñàÉrÅ[ÉRÉìÇ…seqNoFixedÇ∆seqNoVolatÇÃóºï˚Çì¸ÇÍÇƒÅAÉXÉLÉÉÉìÉçÉbÉNÇÃîªíËÇçsÇ§ÇÊÇ§ïœçXÅB
+    „ÉªusefulGameInfoFlag„ÇíË®≠„Åë„Å¶„ÄÅ‰∏ÄÊó¶Ë¶™Ê©ü„Éá„Éº„Çø‰∏ÄÂºè„ÇíÂèó‰ø°„Åó„Åü„Çâ„ÄÅË¶™Ê©ü„Éá„Éº„Çø„ÅÆÂØøÂëΩ„ÅåÊù•„Çã„Åæ„ÅßÁ´ã„Å°„Å§„Å•„Åë„Çã„Çà„ÅÜ„Å´„Åô„Çã„ÄÇ
+    „ÉªÊØé„Éì„Éº„Ç≥„É≥„Å´seqNoFixed„Å®seqNoVolat„ÅÆ‰∏°Êñπ„ÇíÂÖ•„Çå„Å¶„ÄÅ„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØ„ÅÆÂà§ÂÆö„ÇíË°å„ÅÜ„Çà„ÅÜÂ§âÊõ¥„ÄÇ
     
     Revision 1.11  2004/09/14 14:40:14  yosiokat
     small fix.
     
     Revision 1.10  2004/09/14 14:22:19  yosiokat
-    ÅEMbBeaconì‡Ç…É`ÉFÉbÉNÉTÉÄÇë}ì¸ÇµÅAÉrÅ[ÉRÉìéÛêMéûÇ…É`ÉFÉbÉNÉTÉÄämîFÇ…í ÇÁÇ»Ç¢ÉrÅ[ÉRÉìÇÕéÃÇƒÇÈÇÊÇ§ïœçXÅB
-    ÅEmb_gameinfo.cì‡Ç≈ÇµÇ©égÇÌÇ»Ç¢íËêîÇmb.hÇ©ÇÁà⁄ìÆÅB
-    ÅEMB_SEND_MEMBER_MAX_NUMÇÃíËã`ÇèCê≥ÅB
+    „ÉªMbBeaconÂÜÖ„Å´„ÉÅ„Çß„ÉÉ„ÇØ„Çµ„É†„ÇíÊåøÂÖ•„Åó„ÄÅ„Éì„Éº„Ç≥„É≥Âèó‰ø°ÊôÇ„Å´„ÉÅ„Çß„ÉÉ„ÇØ„Çµ„É†Á¢∫Ë™ç„Å´ÈÄö„Çâ„Å™„ÅÑ„Éì„Éº„Ç≥„É≥„ÅØÊç®„Å¶„Çã„Çà„ÅÜÂ§âÊõ¥„ÄÇ
+    „Éªmb_gameinfo.cÂÜÖ„Åß„Åó„Åã‰Ωø„Çè„Å™„ÅÑÂÆöÊï∞„Çímb.h„Åã„ÇâÁßªÂãï„ÄÇ
+    „ÉªMB_SEND_MEMBER_MAX_NUM„ÅÆÂÆöÁæ©„Çí‰øÆÊ≠£„ÄÇ
     
     Revision 1.9  2004/09/13 09:28:16  yosiokat
-    ÅEÉXÉLÉÉÉìÉçÉbÉNéûÇ…ÉçÉbÉNëŒè€Ç™ëSÇ≠å©Ç¬Ç©ÇÁÇ»Ç¢èÛë‘ÇÃëŒçÙÇÃÇΩÇﬂÅAMB_CountGameInfoLifetimeÇÃà¯êîÇ…wmTypeEventÇí«â¡ÅB
-    Å@ÉXÉLÉÉÉìÉçÉbÉNìÆçÏéûÇ…ÉçÉbÉNëŒè€Ç™òAë±Ç≈ÇSâÒå©Ç¬Ç©ÇÁÇ»Ç©Ç¡ÇΩÇÁÅAÉçÉbÉNâèúÇ∑ÇÈÇÊÇ§Ç…Ç∑ÇÈÅB
+    „Éª„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÊôÇ„Å´„É≠„ÉÉ„ÇØÂØæË±°„ÅåÂÖ®„ÅèË¶ã„Å§„Åã„Çâ„Å™„ÅÑÁä∂ÊÖã„ÅÆÂØæÁ≠ñ„ÅÆ„Åü„ÇÅ„ÄÅMB_CountGameInfoLifetime„ÅÆÂºïÊï∞„Å´wmTypeEvent„ÇíËøΩÂä†„ÄÇ
+    „ÄÄ„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÂãï‰ΩúÊôÇ„Å´„É≠„ÉÉ„ÇØÂØæË±°„ÅåÈÄ£Á∂ö„ÅßÔºîÂõûË¶ã„Å§„Åã„Çâ„Å™„Åã„Å£„Åü„Çâ„ÄÅ„É≠„ÉÉ„ÇØËß£Èô§„Åô„Çã„Çà„ÅÜ„Å´„Åô„Çã„ÄÇ
     
     Revision 1.8  2004/09/11 12:47:47  yosiokat
-    ÅEÉXÉLÉÉÉìÉçÉbÉNéûÇ…ÉXÉLÉÉÉìéûä‘ÇïœçXÇ∑ÇÈèàóùÇ…ÅAÉçÉbÉNéûä‘ÅAêeã@èÓïÒéıñΩÉJÉEÉìÉgèàóùÇ™ëŒâûÇ≈Ç´ÇƒÇ¢Ç»Ç©Ç¡ÇΩÇÃÇèCê≥ÅB
+    „Éª„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÊôÇ„Å´„Çπ„Ç≠„É£„É≥ÊôÇÈñì„ÇíÂ§âÊõ¥„Åô„ÇãÂá¶ÁêÜ„Å´„ÄÅ„É≠„ÉÉ„ÇØÊôÇÈñì„ÄÅË¶™Ê©üÊÉÖÂ†±ÂØøÂëΩ„Ç´„Ç¶„É≥„ÉàÂá¶ÁêÜ„ÅåÂØæÂøú„Åß„Åç„Å¶„ÅÑ„Å™„Åã„Å£„Åü„ÅÆ„Çí‰øÆÊ≠£„ÄÇ
     
     Revision 1.7  2004/09/10 01:31:06  sato_masaki
-    PlayerFlagÇÃÉtÉHÅ[É}ÉbÉgïœçXÅBÅiçÏã∆äÆóπÅj
+    PlayerFlag„ÅÆ„Éï„Ç©„Éº„Éû„ÉÉ„ÉàÂ§âÊõ¥„ÄÇÔºà‰ΩúÊ•≠ÂÆå‰∫ÜÔºâ
     
     Revision 1.6  2004/09/09 14:01:47  sato_masaki
-    mb_gameinfo.cÇ…Ç®ÇØÇÈÅAPlayerFlagÇÃÉtÉHÅ[É}ÉbÉgïœçXÅBÅiçÏã∆íÜÅj
+    mb_gameinfo.c„Å´„Åä„Åë„Çã„ÄÅPlayerFlag„ÅÆ„Éï„Ç©„Éº„Éû„ÉÉ„ÉàÂ§âÊõ¥„ÄÇÔºà‰ΩúÊ•≠‰∏≠Ôºâ
     
     Revision 1.5  2004/09/09 10:04:17  sato_masaki
     small fix
     
     Revision 1.4  2004/09/09 09:22:40  sato_masaki
-    GGIDÇ∆TGIDÇÃSSIDÇ…ÉZÉbÉgÇ∑ÇÈï˚ñ@ÇïœçXÅB
+    GGID„Å®TGID„ÅÆSSID„Å´„Çª„ÉÉ„Éà„Åô„ÇãÊñπÊ≥ï„ÇíÂ§âÊõ¥„ÄÇ
     
     Revision 1.3  2004/09/08 13:01:30  sato_masaki
-    ÉXÉLÉÉÉìëŒè€ÇÃÉçÉbÉNéûÅAÉçÉbÉNâèúéûÇ…ÅAMBi_SetMaxScanTime()ä÷êîÇ…ÇƒÅA
-    Scanéûä‘ÇéwíËÇ∑ÇÈèàóùÇí«â¡ÅB
+    „Çπ„Ç≠„É£„É≥ÂØæË±°„ÅÆ„É≠„ÉÉ„ÇØÊôÇ„ÄÅ„É≠„ÉÉ„ÇØËß£Èô§ÊôÇ„Å´„ÄÅMBi_SetMaxScanTime()Èñ¢Êï∞„Å´„Å¶„ÄÅ
+    ScanÊôÇÈñì„ÇíÊåáÂÆö„Åô„ÇãÂá¶ÁêÜ„ÇíËøΩÂä†„ÄÇ
     
     Revision 1.2  2004/09/06 12:00:38  sato_masaki
-    -GameInfoÇ÷ÇÃfileNoÇÃê›íËÇÅAMB_RegisterFile()(mb_fileinfo.c)ì‡Ç≈çsÇ§ÇÊÇ§Ç…ïœçXÇµÇΩÇΩÇﬂÅA
-     MB_AddGameInfo()Ç©ÇÁçÌèúÅB
-    -êeã@ÉvÉçÉOÉâÉÄÇÃGGIDÇÕÉAÉvÉäÉPÅ[ÉVÉáÉìÇ…ÇÊÇ¡ÇƒàŸÇ»ÇÈ(èâä˙âªéûÇ…ê›íËÇ≥ÇÍÇÈ)ÇΩÇﬂÅA
-     éqã@ÇÃï˚Ç≈ÇÕÅAêeã@GGIDèÓïÒÇÇ‡Ç¬Ç±Ç∆Ç™Ç≈Ç´Ç»Ç≠Ç»ÇÈÇÃÇ≈ÅA
-     MBi_CheckMBParent()ì‡ÇÃêeã@GGIDÉ`ÉFÉbÉNÇçÌèúÅB
-    -SetGameInfoÇçsÇ§Ç∆Ç´ÇÃGGIDÇWMèâä˙âªéûÇ…ê›íËÇµÇΩêeã@å≈óLÇÃGGIDÇ…ïœçXÅB
-    -MB_RecvGameInfoBeacon()Ç…ÇƒÅAÉ_ÉEÉìÉçÅ[ÉhÇ≥ÇπÇÈÉQÅ[ÉÄÇÃGGIDÇ∆ÅAêeã@ÇÃTGIDÇópÇ¢Çƒ
-     éqã@Ç…ìnÇ∑SSIDÇê∂ê¨Ç∑ÇÈÇÊÇ§Ç…ÇµÇΩÅB
+    -GameInfo„Å∏„ÅÆfileNo„ÅÆË®≠ÂÆö„Çí„ÄÅMB_RegisterFile()(mb_fileinfo.c)ÂÜÖ„ÅßË°å„ÅÜ„Çà„ÅÜ„Å´Â§âÊõ¥„Åó„Åü„Åü„ÇÅ„ÄÅ
+     MB_AddGameInfo()„Åã„ÇâÂâäÈô§„ÄÇ
+    -Ë¶™Ê©ü„Éó„É≠„Ç∞„É©„É†„ÅÆGGID„ÅØ„Ç¢„Éó„É™„Ç±„Éº„Ç∑„Éß„É≥„Å´„Çà„Å£„Å¶Áï∞„Å™„Çã(ÂàùÊúüÂåñÊôÇ„Å´Ë®≠ÂÆö„Åï„Çå„Çã)„Åü„ÇÅ„ÄÅ
+     Â≠êÊ©ü„ÅÆÊñπ„Åß„ÅØ„ÄÅË¶™Ê©üGGIDÊÉÖÂ†±„Çí„ÇÇ„Å§„Åì„Å®„Åå„Åß„Åç„Å™„Åè„Å™„Çã„ÅÆ„Åß„ÄÅ
+     MBi_CheckMBParent()ÂÜÖ„ÅÆË¶™Ê©üGGID„ÉÅ„Çß„ÉÉ„ÇØ„ÇíÂâäÈô§„ÄÇ
+    -SetGameInfo„ÇíË°å„ÅÜ„Å®„Åç„ÅÆGGID„ÇíWMÂàùÊúüÂåñÊôÇ„Å´Ë®≠ÂÆö„Åó„ÅüË¶™Ê©üÂõ∫Êúâ„ÅÆGGID„Å´Â§âÊõ¥„ÄÇ
+    -MB_RecvGameInfoBeacon()„Å´„Å¶„ÄÅ„ÉÄ„Ç¶„É≥„É≠„Éº„Éâ„Åï„Åõ„Çã„Ç≤„Éº„É†„ÅÆGGID„Å®„ÄÅË¶™Ê©ü„ÅÆTGID„ÇíÁî®„ÅÑ„Å¶
+     Â≠êÊ©ü„Å´Ê∏°„ÅôSSID„ÇíÁîüÊàê„Åô„Çã„Çà„ÅÜ„Å´„Åó„Åü„ÄÇ
     
     Revision 1.1  2004/09/03 07:04:36  sato_masaki
-    ÉtÉ@ÉCÉãÇã@î\ï Ç…ï™äÑÅB
+    „Éï„Ç°„Ç§„É´„ÇíÊ©üËÉΩÂà•„Å´ÂàÜÂâ≤„ÄÇ
     
     Revision 1.15  2004/08/26 09:53:00  sato_masaki
-    tgidÇ1Ç…å≈íËÅiSSIDÉ`ÉFÉbÉNÇÃëŒçÙÅj
+    tgid„Çí1„Å´Âõ∫ÂÆöÔºàSSID„ÉÅ„Çß„ÉÉ„ÇØ„ÅÆÂØæÁ≠ñÔºâ
     
     Revision 1.14  2004/08/26 04:54:08  sato_masaki
     OS_Printf is changed into MB_DEBUG_OUTPUT
     
     Revision 1.13  2004/08/19 22:55:25  yosiokat
-    MB_InitÇ≈ÇÃÉ}ÉãÉ`ÉuÅ[ÉgÉtÉâÉOÅAGGIDÇÃÉZÉbÉgÇé~ÇﬂÇƒÅAÉrÅ[ÉRÉìëóêMéûÇÃWM_SetGameInfoÇ≈ÉZÉbÉgÇ∑ÇÈÇÊÇ§Ç…Ç∑ÇÈÅB
+    MB_Init„Åß„ÅÆ„Éû„É´„ÉÅ„Éñ„Éº„Éà„Éï„É©„Ç∞„ÄÅGGID„ÅÆ„Çª„ÉÉ„Éà„ÇíÊ≠¢„ÇÅ„Å¶„ÄÅ„Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°ÊôÇ„ÅÆWM_SetGameInfo„Åß„Çª„ÉÉ„Éà„Åô„Çã„Çà„ÅÜ„Å´„Åô„Çã„ÄÇ
     
     Revision 1.12  2004/08/19 16:00:53  miya
     modified WM_SetGameInfo function
     
     Revision 1.11  2004/08/19 14:32:12  yosiokat
-    ÅE__UGI_IN_GGIDÇÉIÉtÇ…ÅB
-    ÅEMbBeaconç\ë¢ëÃÇÃfixedóvëfÇÃflagmentNo, flagmentMaxNum, sizeÇu8éwíËÇ…ïœçXÅB
-    ÅEMBi_ExUTF16_LEtoSJIS_BEÇ…â¸çsÉRÅ[Éh0x0d,0x0aÇÃïœä∑Çí«â¡ÅB
+    „Éª__UGI_IN_GGID„Çí„Ç™„Éï„Å´„ÄÇ
+    „ÉªMbBeaconÊßãÈÄ†‰Ωì„ÅÆfixedË¶ÅÁ¥†„ÅÆflagmentNo, flagmentMaxNum, size„Çíu8ÊåáÂÆö„Å´Â§âÊõ¥„ÄÇ
+    „ÉªMBi_ExUTF16_LEtoSJIS_BE„Å´ÊîπË°å„Ç≥„Éº„Éâ0x0d,0x0a„ÅÆÂ§âÊèõ„ÇíËøΩÂä†„ÄÇ
     
     Revision 1.10  2004/08/18 23:57:14  yosizaki
     fix warning (p_game on SDK_FINALROM)
@@ -215,17 +215,17 @@
 
     
     Revision 1.7  2004/08/18 09:30:47  yosiokat
-    ÅEbsendBuffÇÃÉAÉâÉCÉìÉÅÉìÉgÇ32byteÇ…ÅB
+    „ÉªbsendBuff„ÅÆ„Ç¢„É©„Ç§„É≥„É°„É≥„Éà„Çí32byte„Å´„ÄÇ
     
     Revision 1.6  2004/08/18 09:08:32  miya
     modified WMGameInfo format
     
     Revision 1.5  2004/08/12 09:54:50  yosiokat
-    MBi_MakeGameInfoÇÃÉAÉCÉRÉìÉfÅ[É^éÊìæÇÉtÉ@ÉCÉãÇ©ÇÁì«Ç›èoÇ∑ÇÊÇ§ïœçXÅB
+    MBi_MakeGameInfo„ÅÆ„Ç¢„Ç§„Ç≥„É≥„Éá„Éº„ÇøÂèñÂæó„Çí„Éï„Ç°„Ç§„É´„Åã„ÇâË™≠„ÅøÂá∫„Åô„Çà„ÅÜÂ§âÊõ¥„ÄÇ
     
     Revision 1.4  2004/08/12 09:17:53  yosiokat
-    ÅEÉXÉLÉÉÉìÉçÉbÉNÇ…ä˙å¿Çê›ÇØÇÈÇÊÇ§ïœçXÅB
-    ÅEMB_DeleteRecvGameInfoÇÃí«â¡ÅB
+    „Éª„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØ„Å´ÊúüÈôê„ÇíË®≠„Åë„Çã„Çà„ÅÜÂ§âÊõ¥„ÄÇ
+    „ÉªMB_DeleteRecvGameInfo„ÅÆËøΩÂä†„ÄÇ
     
     Revision 1.3  2004/08/09 14:56:43  yosizaki
     format all the symbol for API
@@ -248,20 +248,20 @@
 
 /*
 
-Å@ÅñÅñÅñÅñÅñÅñíçà”éñçÄÅñÅñÅñÅñÅñÅñÅñ
-Å@ÅEÉXÉLÉÉÉìÉçÉbÉNíÜÇÕÅAÉXÉLÉÉÉìéûä‘Çêeã@ÇÃÉrÅ[ÉRÉìä‘äuà»è„Ç…ÇµÇΩï˚Ç™Ç¢Ç¢Ç∆ÇÃÇ±Ç∆ÅBÅi200msà»è„Åj
-Å@Å@íAÇµÅAÇ±ÇÍÇÇ∑ÇÈèÍçáÅAìÆìIÇ…ÉXÉLÉÉÉìéûä‘ÇïœÇ¶ÇÈÇ±Ç∆Ç…Ç»ÇÈÇÃÇ≈ÅALifetimeCountÇ‚LockTimeCountÇÃç≈ëÂíl
-    Ç‚ä˘Ç…ÉJÉEÉìÉgÇ≥ÇÍÇƒÇ¢ÇÈílÇÇ«Ç§Ç∑ÇÈÇ©ÅH
+„ÄÄÔºäÔºäÔºäÔºäÔºäÔºäÊ≥®ÊÑè‰∫ãÈ†ÖÔºäÔºäÔºäÔºäÔºäÔºäÔºä
+„ÄÄ„Éª„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØ‰∏≠„ÅØ„ÄÅ„Çπ„Ç≠„É£„É≥ÊôÇÈñì„ÇíË¶™Ê©ü„ÅÆ„Éì„Éº„Ç≥„É≥ÈñìÈöî‰ª•‰∏ä„Å´„Åó„ÅüÊñπ„Åå„ÅÑ„ÅÑ„Å®„ÅÆ„Åì„Å®„ÄÇÔºà200ms‰ª•‰∏äÔºâ
+„ÄÄ„ÄÄ‰ΩÜ„Åó„ÄÅ„Åì„Çå„Çí„Åô„ÇãÂ†¥Âêà„ÄÅÂãïÁöÑ„Å´„Çπ„Ç≠„É£„É≥ÊôÇÈñì„ÇíÂ§â„Åà„Çã„Åì„Å®„Å´„Å™„Çã„ÅÆ„Åß„ÄÅLifetimeCount„ÇÑLockTimeCount„ÅÆÊúÄÂ§ßÂÄ§
+    „ÇÑÊó¢„Å´„Ç´„Ç¶„É≥„Éà„Åï„Çå„Å¶„ÅÑ„ÇãÂÄ§„Çí„Å©„ÅÜ„Åô„Çã„ÅãÔºü
 
 */
 
 
 /*
- * égópÇµÇƒÇ¢ÇÈ wmDEMOlib ä÷êî:
- *  ÅEñ≥Çµ
+ * ‰ΩøÁî®„Åó„Å¶„ÅÑ„Çã wmDEMOlib Èñ¢Êï∞:
+ *  „ÉªÁÑ°„Åó
  *
- * égópÇµÇƒÇ¢ÇÈ WM API:
- *  ÅEWM_SetGameInfo (MBi_SendFixedBeacon, MBi_SendVolatBeacon)
+ * ‰ΩøÁî®„Åó„Å¶„ÅÑ„Çã WM API:
+ *  „ÉªWM_SetGameInfo (MBi_SendFixedBeacon, MBi_SendVolatBeacon)
  *
  *
  *
@@ -270,24 +270,24 @@
 
 // define data---------------------------------------------
 
-#define MB_GAME_INFO_LIFETIME_SEC       60      // éÛêMÇµÇΩÉQÅ[ÉÄèÓïÒÇÃéıñΩÅiÇ±ÇÃsecílÇÃä‘ÉrÅ[ÉRÉìéÛêMÇ™Ç»ÇØÇÍÇŒçÌèúÇ≥ÇÍÇÈÅj
-#define MB_SCAN_LOCK_SEC                8       // ì¡íËêeã@ÇÉçÉbÉNÇµÇƒÉXÉLÉÉÉìÇ∑ÇÈç≈ëÂéûä‘
-#define MB_SAME_BEACON_RECV_MAX_COUNT   3       // êeã@Ç™ìØÇ∂ÉrÅ[ÉRÉìÇèoÇµë±ÇØÇƒÇ¢ÇΩèÍçáÅAÇªÇÃêeã@ÇÃÉrÅ[ÉRÉìÇéÛêMÇµë±ÇØÇÈç≈ëÂÉJÉEÉìÉgêîÅB
+#define MB_GAME_INFO_LIFETIME_SEC       60      // Âèó‰ø°„Åó„Åü„Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÂØøÂëΩÔºà„Åì„ÅÆsecÂÄ§„ÅÆÈñì„Éì„Éº„Ç≥„É≥Âèó‰ø°„Åå„Å™„Åë„Çå„Å∞ÂâäÈô§„Åï„Çå„ÇãÔºâ
+#define MB_SCAN_LOCK_SEC                8       // ÁâπÂÆöË¶™Ê©ü„Çí„É≠„ÉÉ„ÇØ„Åó„Å¶„Çπ„Ç≠„É£„É≥„Åô„ÇãÊúÄÂ§ßÊôÇÈñì
+#define MB_SAME_BEACON_RECV_MAX_COUNT   3       // Ë¶™Ê©ü„ÅåÂêå„Åò„Éì„Éº„Ç≥„É≥„ÇíÂá∫„ÅóÁ∂ö„Åë„Å¶„ÅÑ„ÅüÂ†¥Âêà„ÄÅ„Åù„ÅÆË¶™Ê©ü„ÅÆ„Éì„Éº„Ç≥„É≥„ÇíÂèó‰ø°„ÅóÁ∂ö„Åë„ÇãÊúÄÂ§ß„Ç´„Ç¶„É≥„ÉàÊï∞„ÄÇ
 
 #define MB_BEACON_DATA_SIZE         (WM_SIZE_USER_GAMEINFO - 8)
-#define MB_BEACON_FIXED_DATA_SIZE   (MB_BEACON_DATA_SIZE   - 6) // ÉrÅ[ÉRÉìì‡ÇÃêeã@ÉQÅ[ÉÄèÓïÒå≈íËóÃàÊÇÃÉfÅ[É^ÉTÉCÉY
-#define MB_BEACON_VOLAT_DATA_SIZE   (MB_BEACON_DATA_SIZE   - 8) // ÉrÅ[ÉRÉìì‡ÇÃêeã@ÉQÅ[ÉÄèÓïÒó¨ìÆóÃàÊÇÃÉfÅ[É^ÉTÉCÉY
-#define MB_SEND_MEMBER_MAX_NUM      (MB_BEACON_VOLAT_DATA_SIZE / sizeof(MBUserInfo))    // ÇPâÒÇÃÉrÅ[ÉRÉìÇ≈ëóêMÇ≈Ç´ÇÈÉÅÉìÉoÅ[èÓïÒÇÃç≈ëÂêî
+#define MB_BEACON_FIXED_DATA_SIZE   (MB_BEACON_DATA_SIZE   - 6) // „Éì„Éº„Ç≥„É≥ÂÜÖ„ÅÆË¶™Ê©ü„Ç≤„Éº„É†ÊÉÖÂ†±Âõ∫ÂÆöÈ†òÂüü„ÅÆ„Éá„Éº„Çø„Çµ„Ç§„Ç∫
+#define MB_BEACON_VOLAT_DATA_SIZE   (MB_BEACON_DATA_SIZE   - 8) // „Éì„Éº„Ç≥„É≥ÂÜÖ„ÅÆË¶™Ê©ü„Ç≤„Éº„É†ÊÉÖÂ†±ÊµÅÂãïÈ†òÂüü„ÅÆ„Éá„Éº„Çø„Çµ„Ç§„Ç∫
+#define MB_SEND_MEMBER_MAX_NUM      (MB_BEACON_VOLAT_DATA_SIZE / sizeof(MBUserInfo))    // ÔºëÂõû„ÅÆ„Éì„Éº„Ç≥„É≥„ÅßÈÄÅ‰ø°„Åß„Åç„Çã„É°„É≥„Éê„ÉºÊÉÖÂ†±„ÅÆÊúÄÂ§ßÊï∞
 
-#define FIXED_NORMAL_SIZE            sizeof(MBGameInfoFixed)    // ÉQÅ[ÉÄèÓïÒå≈íËóÃàÊÇÃÉmÅ[É}ÉãÉTÉCÉY
-#define FIXED_NO_ICON_SIZE          (sizeof(MBGameInfoFixed) - sizeof(MBIconInfo))      // ÉQÅ[ÉÄèÓïÒå≈íËóÃàÊÇÃÉAÉCÉRÉìÇ»ÇµÉTÉCÉY
+#define FIXED_NORMAL_SIZE            sizeof(MBGameInfoFixed)    // „Ç≤„Éº„É†ÊÉÖÂ†±Âõ∫ÂÆöÈ†òÂüü„ÅÆ„Éé„Éº„Éû„É´„Çµ„Ç§„Ç∫
+#define FIXED_NO_ICON_SIZE          (sizeof(MBGameInfoFixed) - sizeof(MBIconInfo))      // „Ç≤„Éº„É†ÊÉÖÂ†±Âõ∫ÂÆöÈ†òÂüü„ÅÆ„Ç¢„Ç§„Ç≥„É≥„Å™„Åó„Çµ„Ç§„Ç∫
 #define FIXED_FLAGMENT_MAX(size)    ( ( size / MB_BEACON_FIXED_DATA_SIZE) + ( size % MB_BEACON_FIXED_DATA_SIZE ? 1 : 0 ) )
-                                                                                    // ÉQÅ[ÉÄèÓïÒå≈íËóÃàÊÇÉrÅ[ÉRÉìï™äÑêî
+                                                                                    // „Ç≤„Éº„É†ÊÉÖÂ†±Âõ∫ÂÆöÈ†òÂüü„Çí„Éì„Éº„Ç≥„É≥ÂàÜÂâ≤Êï∞
 
 #define MB_LIFETIME_MAX_COUNT       ( MB_GAME_INFO_LIFETIME_SEC * 1000 / MB_SCAN_TIME_NORMAL + 1 )
 #define MB_LOCKTIME_MAX_COUNT       ( MB_SCAN_LOCK_SEC          * 1000 / MB_SCAN_TIME_NORMAL + 1 )
-                                                                                    // êeã@ÉQÅ[ÉÄèÓïÒê∂ë∂ä˙ä‘ÇScanTimeíPà Ç…ä∑éZÇµÇΩÇ‡ÇÃ
-                                                                                    // ÉXÉLÉÉÉìÉçÉbÉNéûä‘Å@Å@ÇScanTimeíPà Ç…ä∑éZÇµÇΩÇ‡ÇÃ
+                                                                                    // Ë¶™Ê©ü„Ç≤„Éº„É†ÊÉÖÂ†±ÁîüÂ≠òÊúüÈñì„ÇíScanTimeÂçò‰Ωç„Å´ÊèõÁÆó„Åó„Åü„ÇÇ„ÅÆ
+                                                                                    // „Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÊôÇÈñì„ÄÄ„ÄÄ„ÇíScanTimeÂçò‰Ωç„Å´ÊèõÁÆó„Åó„Åü„ÇÇ„ÅÆ
 #define MB_SCAN_COUNT_UNIT_NORMAL   ( 1 )
 #define MB_SCAN_COUNT_UNIT_LOCKING  ( MB_SCAN_TIME_LOCKING / MB_SCAN_TIME_NORMAL )
 
@@ -306,37 +306,37 @@ typedef enum MbBeaconState
 MbBeaconState;
 
 
-/* ÉrÅ[ÉRÉìÉtÉHÅ[É}ÉbÉgç\ë¢ëÃ */
+/* „Éì„Éº„Ç≥„É≥„Éï„Ç©„Éº„Éû„ÉÉ„ÉàÊßãÈÄ†‰Ωì */
 typedef struct MbBeacon
 {
     u32     ggid;                      // GGID
-    u8      dataAttr:2;                // ÉfÅ[É^ëÆê´ÅiMbBeaconDataAttrÇ≈éwíËÅj
-    u8      fileNo:6;                  // ÉtÉ@ÉCÉãNo.
-    u8      seqNoFixed;                // FixedÉfÅ[É^ÉVÅ[ÉPÉìÉXî‘çÜÅiÉfÅ[É^ì‡óeÇ…çXêVÇ™Ç†Ç¡ÇΩèÍçáÇ…â¡éZÇ≥ÇÍÇÈÅBÅj
-    u8      seqNoVolat;                // VolatÉfÅ[É^ÉVÅ[ÉPÉìÉXî‘çÜÅiÅ@ÅVÅ@Åj
-    u8      beaconNo;                  // ÉrÅ[ÉRÉìÉiÉìÉoÅ[ÅiÉrÅ[ÉRÉìëóêMÇ≤Ç∆Ç…ÉCÉìÉNÉäÉÅÉìÉgÅj
-    /* å≥ MbBeaconData */
+    u8      dataAttr:2;                // „Éá„Éº„ÇøÂ±ûÊÄßÔºàMbBeaconDataAttr„ÅßÊåáÂÆöÔºâ
+    u8      fileNo:6;                  // „Éï„Ç°„Ç§„É´No.
+    u8      seqNoFixed;                // Fixed„Éá„Éº„Çø„Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑Ôºà„Éá„Éº„ÇøÂÜÖÂÆπ„Å´Êõ¥Êñ∞„Åå„ÅÇ„Å£„ÅüÂ†¥Âêà„Å´Âä†ÁÆó„Åï„Çå„Çã„ÄÇÔºâ
+    u8      seqNoVolat;                // Volat„Éá„Éº„Çø„Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑Ôºà„ÄÄ„ÄÉ„ÄÄÔºâ
+    u8      beaconNo;                  // „Éì„Éº„Ç≥„É≥„Éä„É≥„Éê„ÉºÔºà„Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°„Åî„Å®„Å´„Ç§„É≥„ÇØ„É™„É°„É≥„ÉàÔºâ
+    /* ÂÖÉ MbBeaconData */
     union
     {
         struct
-        {                              // MBGameInfoFixedëóêMéû
+        {                              // MBGameInfoFixedÈÄÅ‰ø°ÊôÇ
             u16     sum;               // 16bit checksum
-            u8      flagmentNo;        // ífï–âªÉfÅ[É^ÇÃåªç›î‘çÜ
-            u8      flagmentMaxNum;    // ífï–âªÉfÅ[É^ÇÃç≈ëÂêî
-            u8      size;              // ÉfÅ[É^ÉTÉCÉY
+            u8      flagmentNo;        // Êñ≠ÁâáÂåñ„Éá„Éº„Çø„ÅÆÁèæÂú®Áï™Âè∑
+            u8      flagmentMaxNum;    // Êñ≠ÁâáÂåñ„Éá„Éº„Çø„ÅÆÊúÄÂ§ßÊï∞
+            u8      size;              // „Éá„Éº„Çø„Çµ„Ç§„Ç∫
             u8      rsv;
-            u8      data[MB_BEACON_FIXED_DATA_SIZE];    // ÉfÅ[É^é¿ëÃ
+            u8      data[MB_BEACON_FIXED_DATA_SIZE];    // „Éá„Éº„ÇøÂÆü‰Ωì
         }
         fixed;
         struct
-        {                              // MBGameInfoVolatileëóêMéû
+        {                              // MBGameInfoVolatileÈÄÅ‰ø°ÊôÇ
             u16     sum;               // 16bit checksum
-            u8      nowPlayerNum;      // åªç›ÇÃÉvÉåÉCÉÑÅ[êî
+            u8      nowPlayerNum;      // ÁèæÂú®„ÅÆ„Éó„É¨„Ç§„É§„ÉºÊï∞
             u8      pad[1];
-            u16     nowPlayerFlag;     // åªç›ÇÃëSÉvÉåÉCÉÑÅ[ÇÃÉvÉåÉCÉÑÅ[î‘çÜÇÉrÉbÉgÇ≈é¶Ç∑ÅB
-            u16     changePlayerFlag;  // ç°âÒÇÃçXêVÇ≈ïœçXÇ≥ÇÍÇΩÉvÉåÉCÉÑÅ[èÓïÒÇÃî‘çÜÇÉrÉbÉgÇ≈é¶Ç∑ÅBÅiÉVÅ[ÉPÉìÉXî‘çÜÇ™ïœÇÌÇ¡ÇΩèuä‘Ç…ÇÃÇ›îªíËÇ…égópÅj
-            MBUserInfo member[MB_SEND_MEMBER_MAX_NUM];  // äeéqã@ÇÃÉÜÅ[ÉUÅ[èÓïÒÇMB_SEND_MEMBER_MAX_NUMÇ¬Ç∏Ç¬ëóêMÅiPlayerNo == 15Åiêeã@Åj Ç»ÇÁèIí[ÅBÅj
-            u8      userVolatData[MB_USER_VOLAT_DATA_SIZE];     // ÉÜÅ[ÉUÇ™ÉZÉbÉgÇ≈Ç´ÇÈÉfÅ[É^
+            u16     nowPlayerFlag;     // ÁèæÂú®„ÅÆÂÖ®„Éó„É¨„Ç§„É§„Éº„ÅÆ„Éó„É¨„Ç§„É§„ÉºÁï™Âè∑„Çí„Éì„ÉÉ„Éà„ÅßÁ§∫„Åô„ÄÇ
+            u16     changePlayerFlag;  // ‰ªäÂõû„ÅÆÊõ¥Êñ∞„ÅßÂ§âÊõ¥„Åï„Çå„Åü„Éó„É¨„Ç§„É§„ÉºÊÉÖÂ†±„ÅÆÁï™Âè∑„Çí„Éì„ÉÉ„Éà„ÅßÁ§∫„Åô„ÄÇÔºà„Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑„ÅåÂ§â„Çè„Å£„ÅüÁû¨Èñì„Å´„ÅÆ„ÅøÂà§ÂÆö„Å´‰ΩøÁî®Ôºâ
+            MBUserInfo member[MB_SEND_MEMBER_MAX_NUM];  // ÂêÑÂ≠êÊ©ü„ÅÆ„É¶„Éº„Ç∂„ÉºÊÉÖÂ†±„ÇíMB_SEND_MEMBER_MAX_NUM„Å§„Åö„Å§ÈÄÅ‰ø°ÔºàPlayerNo == 15ÔºàË¶™Ê©üÔºâ „Å™„ÇâÁµÇÁ´Ø„ÄÇÔºâ
+            u8      userVolatData[MB_USER_VOLAT_DATA_SIZE];     // „É¶„Éº„Ç∂„Åå„Çª„ÉÉ„Éà„Åß„Åç„Çã„Éá„Éº„Çø
         }
         volat;
     }
@@ -345,17 +345,17 @@ typedef struct MbBeacon
 }
 MbBeacon;
 
-/* êeã@ë§ÉrÅ[ÉRÉìëóêMÉXÉeÅ[É^ÉXç\ë¢ëÃ */
+/* Ë¶™Ê©üÂÅ¥„Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°„Çπ„ÉÜ„Éº„Çø„ÇπÊßãÈÄ†‰Ωì */
 typedef struct MbBeaconSendStatus
 {
-    MBGameInfo *gameInfoListTop;       // ÉQÅ[ÉÄèÓïÒÉäÉXÉgêÊì™Ç÷ÇÃÉ|ÉCÉìÉ^Åiï–ï˚å¸ÉäÉXÉgÅj
-    MBGameInfo *nowGameInfop;          // åªç›ëóêMíÜÇÃÉQÅ[ÉÄèÓïÒÇ÷ÇÃÉ|ÉCÉìÉ^
-    u8     *srcp;                      // åªç›ÇÃëóêMíÜÇÃÉQÅ[ÉÄèÓïÒÉ\Å[ÉXÇ÷ÇÃÉ|ÉCÉìÉ^
-    u8      state;                     // ÉrÅ[ÉRÉìëóêMÉXÉeÅ[ÉgÅiå≈íËÉfÅ[É^ïîÅAó¨ìÆÉfÅ[É^ïîëóêMÅBäeÉfÅ[É^ÇëSëóêMÇµÇΩÇÁÉXÉeÅ[ÉgïœçXÅBÅj
-    u8      seqNoFixed;                // å≈íËóÃàÊÇÃÉVÅ[ÉPÉìÉXî‘çÜ
-    u8      seqNoVolat;                // ó¨ìÆóÃàÊÇÃÉVÅ[ÉPÉìÉXî‘çÜ
-    u8      flagmentNo;                // Å@Å@ÅVÅ@Å@Å@Å@Å@Å@ÇÃÉtÉâÉOÉÅÉìÉgî‘çÜÅiå≈íËóÃàÊÇÃèÍçáÅj
-    u8      flagmentMaxNum;            // Å@Å@ÅVÅ@Å@Å@Å@Å@Å@ÇÃÉtÉâÉOÉÅÉìÉgêîÅ@ÅiÅVÅj
+    MBGameInfo *gameInfoListTop;       // „Ç≤„Éº„É†ÊÉÖÂ†±„É™„Çπ„ÉàÂÖàÈ†≠„Å∏„ÅÆ„Éù„Ç§„É≥„ÇøÔºàÁâáÊñπÂêë„É™„Çπ„ÉàÔºâ
+    MBGameInfo *nowGameInfop;          // ÁèæÂú®ÈÄÅ‰ø°‰∏≠„ÅÆ„Ç≤„Éº„É†ÊÉÖÂ†±„Å∏„ÅÆ„Éù„Ç§„É≥„Çø
+    u8     *srcp;                      // ÁèæÂú®„ÅÆÈÄÅ‰ø°‰∏≠„ÅÆ„Ç≤„Éº„É†ÊÉÖÂ†±„ÇΩ„Éº„Çπ„Å∏„ÅÆ„Éù„Ç§„É≥„Çø
+    u8      state;                     // „Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°„Çπ„ÉÜ„Éº„ÉàÔºàÂõ∫ÂÆö„Éá„Éº„ÇøÈÉ®„ÄÅÊµÅÂãï„Éá„Éº„ÇøÈÉ®ÈÄÅ‰ø°„ÄÇÂêÑ„Éá„Éº„Çø„ÇíÂÖ®ÈÄÅ‰ø°„Åó„Åü„Çâ„Çπ„ÉÜ„Éº„ÉàÂ§âÊõ¥„ÄÇÔºâ
+    u8      seqNoFixed;                // Âõ∫ÂÆöÈ†òÂüü„ÅÆ„Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑
+    u8      seqNoVolat;                // ÊµÅÂãïÈ†òÂüü„ÅÆ„Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑
+    u8      flagmentNo;                // „ÄÄ„ÄÄ„ÄÉ„ÄÄ„ÄÄ„ÄÄ„ÄÄ„ÄÄ„ÄÄ„ÅÆ„Éï„É©„Ç∞„É°„É≥„ÉàÁï™Âè∑ÔºàÂõ∫ÂÆöÈ†òÂüü„ÅÆÂ†¥ÂêàÔºâ
+    u8      flagmentMaxNum;            // „ÄÄ„ÄÄ„ÄÉ„ÄÄ„ÄÄ„ÄÄ„ÄÄ„ÄÄ„ÄÄ„ÅÆ„Éï„É©„Ç∞„É°„É≥„ÉàÊï∞„ÄÄÔºà„ÄÉÔºâ
     u8      beaconNo;
     u8      pad[2];
 }
@@ -393,48 +393,48 @@ static int mystrlen(u16 *str);
 
 // global variables----------------------------------------
 
-static MbBeaconSendStatus mbss;        // ÉrÅ[ÉRÉìëóêMÉXÉeÅ[É^ÉX
+static MbBeaconSendStatus mbss;        // „Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°„Çπ„ÉÜ„Éº„Çø„Çπ
 
-static MbBeaconRecvStatus mbrs;        // ÉrÅ[ÉRÉìéÛêMÉXÉeÅ[É^ÉX
-static MbBeaconRecvStatus *mbrsp = NULL;        // ÉrÅ[ÉRÉìéÛêMÉXÉeÅ[É^ÉX
+static MbBeaconRecvStatus mbrs;        // „Éì„Éº„Ç≥„É≥Âèó‰ø°„Çπ„ÉÜ„Éº„Çø„Çπ
+static MbBeaconRecvStatus *mbrsp = NULL;        // „Éì„Éº„Ç≥„É≥Âèó‰ø°„Çπ„ÉÜ„Éº„Çø„Çπ
 
 // static variables----------------------------------------
-static MbScanLockFunc sLockFunc = NULL; // ÉXÉLÉÉÉìÉçÉbÉNê›íËä÷êîÉ|ÉCÉìÉ^
-static MbScanUnlockFunc sUnlockFunc = NULL;     // ÉXÉLÉÉÉìÉçÉbÉNâèúópä÷êîÉ|ÉCÉìÉ^
+static MbScanLockFunc sLockFunc = NULL; // „Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØË®≠ÂÆöÈñ¢Êï∞„Éù„Ç§„É≥„Çø
+static MbScanUnlockFunc sUnlockFunc = NULL;     // „Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØËß£Èô§Áî®Èñ¢Êï∞„Éù„Ç§„É≥„Çø
 
-static MbBeacon bsendBuff ATTRIBUTE_ALIGN(32);  // ÉrÅ[ÉRÉìëóêMÉoÉbÉtÉ@
-static MbBeacon *brecvBuffp;           // ÉrÅ[ÉRÉìéÛêMÉoÉbÉtÉ@
-static WMBssDesc bssDescbuf ATTRIBUTE_ALIGN(32);        // BssDescÇÃÉeÉìÉ|ÉâÉäÉoÉbÉtÉ@
+static MbBeacon bsendBuff ATTRIBUTE_ALIGN(32);  // „Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°„Éê„ÉÉ„Éï„Ç°
+static MbBeacon *brecvBuffp;           // „Éì„Éº„Ç≥„É≥Âèó‰ø°„Éê„ÉÉ„Éï„Ç°
+static WMBssDesc bssDescbuf ATTRIBUTE_ALIGN(32);        // BssDesc„ÅÆ„ÉÜ„É≥„Éù„É©„É™„Éê„ÉÉ„Éï„Ç°
 
-static MBSendVolatCallbackFunc sSendVolatCallback = NULL;       // ÉÜÅ[ÉUÉfÅ[É^ëóêMÉRÅ[ÉãÉoÉbÉN
-static u32 sSendVolatCallbackTimming;  // ëóêMÉRÅ[ÉãÉoÉbÉNî≠ê∂É^ÉCÉ~ÉìÉO
+static MBSendVolatCallbackFunc sSendVolatCallback = NULL;       // „É¶„Éº„Ç∂„Éá„Éº„ÇøÈÄÅ‰ø°„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ
+static u32 sSendVolatCallbackTimming;  // ÈÄÅ‰ø°„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÁô∫Áîü„Çø„Ç§„Éü„É≥„Ç∞
 
 // function's description-----------------------------------------------
 
 
 //=========================================================
-// ÉrÅ[ÉRÉìéÛêMÉèÅ[ÉNÉoÉbÉtÉ@ëÄçÏ
+// „Éì„Éº„Ç≥„É≥Âèó‰ø°„ÉØ„Éº„ÇØ„Éê„ÉÉ„Éï„Ç°Êìç‰Ωú
 //=========================================================
-// ê›íËÇ≥ÇÍÇƒÇ¢ÇÈÉèÅ[ÉNÉoÉbÉtÉ@ÇéÊìæ
+// Ë®≠ÂÆö„Åï„Çå„Å¶„ÅÑ„Çã„ÉØ„Éº„ÇØ„Éê„ÉÉ„Éï„Ç°„ÇíÂèñÂæó
 const MbBeaconRecvStatus *MB_GetBeaconRecvStatus(void)
 {
     return mbrsp;
 }
 
-// staticïœêîÇ©ÇÁÉèÅ[ÉNÉoÉbÉtÉ@Çê›íË(ãåå›ä∑óp)
+// staticÂ§âÊï∞„Åã„Çâ„ÉØ„Éº„ÇØ„Éê„ÉÉ„Éï„Ç°„ÇíË®≠ÂÆö(Êóß‰∫íÊèõÁî®)
 void MBi_SetBeaconRecvStatusBufferDefault(void)
 {
     mbrsp = &mbrs;
 }
 
-// ÉrÅ[ÉRÉìéÛêMÉèÅ[ÉNÉoÉbÉtÉ@ÇÃê›íË
+// „Éì„Éº„Ç≥„É≥Âèó‰ø°„ÉØ„Éº„ÇØ„Éê„ÉÉ„Éï„Ç°„ÅÆË®≠ÂÆö
 void MBi_SetBeaconRecvStatusBuffer(MbBeaconRecvStatus * buf)
 {
     mbrsp = buf;
 }
 
 
-// ÉXÉLÉÉÉìÉçÉbÉNópä÷êîÇê›íË
+// „Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÁî®Èñ¢Êï∞„ÇíË®≠ÂÆö
 void MBi_SetScanLockFunc(MbScanLockFunc lock, MbScanUnlockFunc unlock)
 {
     sLockFunc = lock;
@@ -444,19 +444,19 @@ void MBi_SetScanLockFunc(MbScanLockFunc lock, MbScanUnlockFunc unlock)
 
 
 //=========================================================
-// êeã@Ç…ÇÊÇÈÉQÅ[ÉÄèÓïÒÇÃÉrÅ[ÉRÉìëóêM
+// Ë¶™Ê©ü„Å´„Çà„Çã„Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆ„Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°
 //=========================================================
 
-// ÉrÅ[ÉRÉìÇ≈ëóêMÇ∑ÇÈêeã@ÉQÅ[ÉÄèÓïÒÇÃê∂ê¨
+// „Éì„Éº„Ç≥„É≥„ÅßÈÄÅ‰ø°„Åô„ÇãË¶™Ê©ü„Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÁîüÊàê
 void MBi_MakeGameInfo(MBGameInfo *gameInfop,
                       const MBGameRegistry *mbGameRegp, const MBUserInfo *parent)
 {
     BOOL    icon_disable;
 
-    // Ç∆ÇËÇ†Ç¶Ç∏ëSÉNÉäÉA
+    // „Å®„Çä„ÅÇ„Åà„ÅöÂÖ®„ÇØ„É™„Ç¢
     MI_CpuClear16(gameInfop, sizeof(MBGameInfo));
 
-    // ÉAÉCÉRÉìÉfÅ[É^ÇÃìoò^
+    // „Ç¢„Ç§„Ç≥„É≥„Éá„Éº„Çø„ÅÆÁôªÈå≤
     gameInfop->dataAttr = MB_BEACON_DATA_ATTR_FIXED_NORMAL;
     icon_disable = !MBi_ReadIconInfo(mbGameRegp->iconCharPathp, &gameInfop->fixed.icon, TRUE);
     icon_disable |= !MBi_ReadIconInfo(mbGameRegp->iconPalettePathp, &gameInfop->fixed.icon, FALSE);
@@ -470,16 +470,16 @@ void MBi_MakeGameInfo(MBGameInfo *gameInfop,
     // GGID
     gameInfop->ggid = mbGameRegp->ggid;
 
-    // êeÇÃÉÜÅ[ÉUÅ[èÓïÒìoò^
+    // Ë¶™„ÅÆ„É¶„Éº„Ç∂„ÉºÊÉÖÂ†±ÁôªÈå≤
     if (parent != NULL)
     {
         MI_CpuCopy16(parent, &gameInfop->fixed.parent, sizeof(MBUserInfo));
     }
 
-    // ç≈ëÂÉvÉåÉCêlêîìoò^
+    // ÊúÄÂ§ß„Éó„É¨„Ç§‰∫∫Êï∞ÁôªÈå≤
     gameInfop->fixed.maxPlayerNum = mbGameRegp->maxPlayerNum;
 
-    // ÉQÅ[ÉÄñºÅïÉQÅ[ÉÄì‡óeê‡ñæìoò^
+    // „Ç≤„Éº„É†ÂêçÔºÜ„Ç≤„Éº„É†ÂÜÖÂÆπË™¨ÊòéÁôªÈå≤
     {
         int     len;
 
@@ -491,22 +491,22 @@ void MBi_MakeGameInfo(MBGameInfo *gameInfop,
 
         len = mystrlen(mbGameRegp->gameNamep) << 1;
         COPY_GAME_INFO_STRING((u8 *)mbGameRegp->gameNamep, gameInfop->fixed.gameName, (u16)len);
-        // ÉQÅ[ÉÄì‡óeê‡ñæÇÃå„Ç…ÉfÅ[É^ÇñÑÇﬂçûÇﬂÇÈÇÊÇ§Ç…ÅANULï∂éöà»ç~ÇÃÉfÅ[É^Ç‡ëóêMÇ∑ÇÈÅB
+        // „Ç≤„Éº„É†ÂÜÖÂÆπË™¨Êòé„ÅÆÂæå„Å´„Éá„Éº„Çø„ÇíÂüã„ÇÅËæº„ÇÅ„Çã„Çà„ÅÜ„Å´„ÄÅNULÊñáÂ≠ó‰ª•Èôç„ÅÆ„Éá„Éº„Çø„ÇÇÈÄÅ‰ø°„Åô„Çã„ÄÇ
         len = MB_GAME_INTRO_LENGTH * 2;
         COPY_GAME_INFO_STRING((u8 *)mbGameRegp->gameIntroductionp,
                               gameInfop->fixed.gameIntroduction, (u16)len);
     }
 
-    // êeã@ï™ÇÃÉvÉåÉCÉÑÅ[èÓïÒÇìoò^
+    // Ë¶™Ê©üÂàÜ„ÅÆ„Éó„É¨„Ç§„É§„ÉºÊÉÖÂ†±„ÇíÁôªÈå≤
     gameInfop->volat.nowPlayerNum = 1;
-    gameInfop->volat.nowPlayerFlag = 0x0001;    // êeã@ÇÃÉvÉåÉCÉÑÅ[î‘çÜÇÕ0
+    gameInfop->volat.nowPlayerFlag = 0x0001;    // Ë¶™Ê©ü„ÅÆ„Éó„É¨„Ç§„É§„ÉºÁï™Âè∑„ÅØ0
     gameInfop->broadcastedPlayerFlag = 0x0001;
 
-    // Å¶É}ÉãÉ`ÉuÅ[ÉgäJénéûÇ…ÇÕÉvÉåÉCÉÅÉìÉoÅ[ÇÕÇ¢Ç»Ç¢ÇÃÇ≈ÅAìoò^ÇÕÇ»ÇµÅB
+    // ‚Äª„Éû„É´„ÉÅ„Éñ„Éº„ÉàÈñãÂßãÊôÇ„Å´„ÅØ„Éó„É¨„Ç§„É°„É≥„Éê„Éº„ÅØ„ÅÑ„Å™„ÅÑ„ÅÆ„Åß„ÄÅÁôªÈå≤„ÅØ„Å™„Åó„ÄÇ
 }
 
 
-// ÉAÉCÉRÉìÉfÅ[É^ÇÃÉäÅ[Éh
+// „Ç¢„Ç§„Ç≥„É≥„Éá„Éº„Çø„ÅÆ„É™„Éº„Éâ
 static BOOL MBi_ReadIconInfo(const char *filePathp, MBIconInfo *iconp, BOOL char_flag)
 {
     FSFile  file;
@@ -514,14 +514,14 @@ static BOOL MBi_ReadIconInfo(const char *filePathp, MBIconInfo *iconp, BOOL char
     u16    *dstp = char_flag ? iconp->data : iconp->palette;
 
     if (filePathp == NULL)
-    {                                  // ÉtÉ@ÉCÉãéwíËÇ™Ç»ÇØÇÍÇŒFALSEÉäÉ^Å[Éì
+    {                                  // „Éï„Ç°„Ç§„É´ÊåáÂÆö„Åå„Å™„Åë„Çå„Å∞FALSE„É™„Çø„Éº„É≥
         return FALSE;
     }
 
     FS_InitFile(&file);
 
     if (FS_OpenFile(&file, filePathp) == FALSE)
-    {                                  // ÉtÉ@ÉCÉãÇ™äJÇØÇ»Ç©Ç¡ÇΩÇÁFALSEÉäÉ^Å[Éì
+    {                                  // „Éï„Ç°„Ç§„É´„ÅåÈñã„Åë„Å™„Åã„Å£„Åü„ÇâFALSE„É™„Çø„Éº„É≥
         MB_DEBUG_OUTPUT("\t%s : file open error.\n", filePathp);
         return FALSE;
     }
@@ -538,7 +538,7 @@ static BOOL MBi_ReadIconInfo(const char *filePathp, MBIconInfo *iconp, BOOL char
 }
 
 
-// ÉQÅ[ÉÄèÓïÒÇÃó¨ìÆïîï™ÇçXêVÇ∑ÇÈÅB
+// „Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÊµÅÂãïÈÉ®ÂàÜ„ÇíÊõ¥Êñ∞„Åô„Çã„ÄÇ
 void MB_UpdateGameInfoMember(MBGameInfo *gameInfop,
                              const MBUserInfo *member, u16 nowPlayerFlag, u16 changePlayerFlag)
 {
@@ -546,7 +546,7 @@ void MB_UpdateGameInfoMember(MBGameInfo *gameInfop,
     u8      playerNum = 1;
 
     MI_CpuCopy16(member, &gameInfop->volat.member[0], sizeof(MBUserInfo) * MB_MEMBER_MAX_NUM);
-    /* éqã@êîÇÉJÉEÉìÉg */
+    /* Â≠êÊ©üÊï∞„Çí„Ç´„Ç¶„É≥„Éà */
     for (i = 0; i < MB_MEMBER_MAX_NUM; i++)
     {
         if (nowPlayerFlag & (0x0002 << i))
@@ -561,7 +561,7 @@ void MB_UpdateGameInfoMember(MBGameInfo *gameInfop,
 }
 
 
-// ï∂éöóÒí∑ÇÃéZèo
+// ÊñáÂ≠óÂàóÈï∑„ÅÆÁÆóÂá∫
 static int mystrlen(u16 *str)
 {
     int     len = 0;
@@ -571,28 +571,28 @@ static int mystrlen(u16 *str)
 }
 
 
-// ÉQÅ[ÉÄèÓïÒÇëóêMÉäÉXÉgÇ…í«â¡
+// „Ç≤„Éº„É†ÊÉÖÂ†±„ÇíÈÄÅ‰ø°„É™„Çπ„Éà„Å´ËøΩÂä†
 void MB_AddGameInfo(MBGameInfo *newGameInfop)
 {
     MBGameInfo *gInfop = mbss.gameInfoListTop;
 
     if (!gInfop)
-    {                                  // mbssÇÃêÊì™Ç™NULLÇ»ÇÁêÊì™Ç…ìoò^ÅB
+    {                                  // mbss„ÅÆÂÖàÈ†≠„ÅåNULL„Å™„ÇâÂÖàÈ†≠„Å´ÁôªÈå≤„ÄÇ
         mbss.gameInfoListTop = newGameInfop;
     }
     else
-    {                                  // Ç≥Ç‡Ç»Ç≠ÇŒÅAÉäÉXÉgÇíHÇ¡ÇƒçsÇ´ÅAç≈å„Ç…í«â¡ÅB
+    {                                  // „Åï„ÇÇ„Å™„Åè„Å∞„ÄÅ„É™„Çπ„Éà„ÇíËæø„Å£„Å¶Ë°å„Åç„ÄÅÊúÄÂæå„Å´ËøΩÂä†„ÄÇ
         while (gInfop->nextp != NULL)
         {
             gInfop = gInfop->nextp;
         }
         gInfop->nextp = newGameInfop;
     }
-    newGameInfop->nextp = NULL;        // í«â¡ÇµÇΩÉQÅ[ÉÄèÓïÒÇÃnextÇèIí[Ç∆Ç∑ÇÈÅB
+    newGameInfop->nextp = NULL;        // ËøΩÂä†„Åó„Åü„Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆnext„ÇíÁµÇÁ´Ø„Å®„Åô„Çã„ÄÇ
 }
 
 
-// ÉQÅ[ÉÄèÓïÒÇëóêMÉäÉXÉgÇ©ÇÁçÌèú
+// „Ç≤„Éº„É†ÊÉÖÂ†±„ÇíÈÄÅ‰ø°„É™„Çπ„Éà„Åã„ÇâÂâäÈô§
 BOOL MB_DeleteGameInfo(MBGameInfo *gameInfop)
 {
     MBGameInfo *gInfop = mbss.gameInfoListTop;
@@ -607,9 +607,9 @@ BOOL MB_DeleteGameInfo(MBGameInfo *gameInfop)
             continue;
         }
 
-        // àÍívÇµÇΩÇÃÇ≈ÉäÉXÉgÇ©ÇÁçÌèú
+        // ‰∏ÄËá¥„Åó„Åü„ÅÆ„Åß„É™„Çπ„Éà„Åã„ÇâÂâäÈô§
         if ((u32)gInfop == (u32)mbss.gameInfoListTop)
-        {                              // ÉäÉXÉgêÊì™ÇçÌèúÇ∑ÇÈèÍçá
+        {                              // „É™„Çπ„ÉàÂÖàÈ†≠„ÇíÂâäÈô§„Åô„ÇãÂ†¥Âêà
             mbss.gameInfoListTop = mbss.gameInfoListTop->nextp;
         }
         else
@@ -617,34 +617,34 @@ BOOL MB_DeleteGameInfo(MBGameInfo *gameInfop)
             before->nextp = gInfop->nextp;
         }
 
-        if ((u32)gameInfop == (u32)mbss.nowGameInfop)   // çÌèúÇ∑ÇÈÉQÅ[ÉÄèÓïÒÇ™åªç›ëóêMíÜÇÃèÍçáÅAåªç›ëóêMíÜÇÃ
-        {                              // ÉQÅ[ÉÄèÓïÒÇçƒç\ízÇ≥ÇÍÇΩÉäÉXÉgÇ©ÇÁçƒê›íËÇ∑ÇÈÅB
+        if ((u32)gameInfop == (u32)mbss.nowGameInfop)   // ÂâäÈô§„Åô„Çã„Ç≤„Éº„É†ÊÉÖÂ†±„ÅåÁèæÂú®ÈÄÅ‰ø°‰∏≠„ÅÆÂ†¥Âêà„ÄÅÁèæÂú®ÈÄÅ‰ø°‰∏≠„ÅÆ
+        {                              // „Ç≤„Éº„É†ÊÉÖÂ†±„ÇíÂÜçÊßãÁØâ„Åï„Çå„Åü„É™„Çπ„Éà„Åã„ÇâÂÜçË®≠ÂÆö„Åô„Çã„ÄÇ
             mbss.nowGameInfop = NULL;
             if (!MBi_ReadyBeaconSendStatus())
             {
-                mbss.state = MB_BEACON_STATE_READY;     // ÉQÅ[ÉÄèÓïÒÇ™ëSÇƒçÌèúÇ≥ÇÍÇƒÇ¢ÇΩÇ»ÇÁÇŒÅAÉXÉeÅ[É^ÉXÇREADYÇ…ÅB
+                mbss.state = MB_BEACON_STATE_READY;     // „Ç≤„Éº„É†ÊÉÖÂ†±„ÅåÂÖ®„Å¶ÂâäÈô§„Åï„Çå„Å¶„ÅÑ„Åü„Å™„Çâ„Å∞„ÄÅ„Çπ„ÉÜ„Éº„Çø„Çπ„ÇíREADY„Å´„ÄÇ
             }
         }
         return TRUE;
     }
 
-    // ÉQÅ[ÉÄèÓïÒÇ™Ç»Ç¢èÍçá
+    // „Ç≤„Éº„É†ÊÉÖÂ†±„Åå„Å™„ÅÑÂ†¥Âêà
     return FALSE;
 }
 
 
-// ÉQÅ[ÉÄèÓïÒëóêMê›íËÇÃèâä˙âª
+// „Ç≤„Éº„É†ÊÉÖÂ†±ÈÄÅ‰ø°Ë®≠ÂÆö„ÅÆÂàùÊúüÂåñ
 void MB_InitSendGameInfoStatus(void)
 {
-    mbss.gameInfoListTop = NULL;       // ÉQÅ[ÉÄèÓïÒÉäÉXÉgÇëSçÌèúÅB
-    mbss.nowGameInfop = NULL;          // åªëóêMÉQÅ[ÉÄÇ‡çÌèúÅB
+    mbss.gameInfoListTop = NULL;       // „Ç≤„Éº„É†ÊÉÖÂ†±„É™„Çπ„Éà„ÇíÂÖ®ÂâäÈô§„ÄÇ
+    mbss.nowGameInfop = NULL;          // ÁèæÈÄÅ‰ø°„Ç≤„Éº„É†„ÇÇÂâäÈô§„ÄÇ
     mbss.state = MB_BEACON_STATE_READY;
     sSendVolatCallback = NULL;
-    MBi_ClearSendStatus();             // ëóêMÉXÉeÅ[É^ÉXÇ‡ÉNÉäÉAÅB
+    MBi_ClearSendStatus();             // ÈÄÅ‰ø°„Çπ„ÉÜ„Éº„Çø„Çπ„ÇÇ„ÇØ„É™„Ç¢„ÄÇ
 }
 
 
-// ëóêMÉXÉeÅ[É^ÉXÇÃÉNÉäÉA
+// ÈÄÅ‰ø°„Çπ„ÉÜ„Éº„Çø„Çπ„ÅÆ„ÇØ„É™„Ç¢
 static void MBi_ClearSendStatus(void)
 {
     mbss.seqNoFixed = 0;
@@ -655,7 +655,7 @@ static void MBi_ClearSendStatus(void)
 }
 
 
-// ÉrÅ[ÉRÉìëóêM
+// „Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°
 void MB_SendGameInfoBeacon(u32 ggid, u16 tgid, u8 attribute)
 {
     while (1)
@@ -665,7 +665,7 @@ void MB_SendGameInfoBeacon(u32 ggid, u16 tgid, u8 attribute)
         case MB_BEACON_STATE_STOP:
         case MB_BEACON_STATE_READY:
             if (!MBi_ReadyBeaconSendStatus())
-            {                          // ÉQÅ[ÉÄèÓïÒÇÃëóêMèÄîı
+            {                          // „Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÈÄÅ‰ø°Ê∫ñÂÇô
                 return;
             }
             break;
@@ -688,29 +688,29 @@ void MB_SendGameInfoBeacon(u32 ggid, u16 tgid, u8 attribute)
 }
 
 
-// ÉrÅ[ÉRÉìëóêMÉXÉeÅ[É^ÉXÇëóêMâ¬î\Ç…èÄîıÇ∑ÇÈÅB
+// „Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°„Çπ„ÉÜ„Éº„Çø„Çπ„ÇíÈÄÅ‰ø°ÂèØËÉΩ„Å´Ê∫ñÂÇô„Åô„Çã„ÄÇ
 static BOOL MBi_ReadyBeaconSendStatus(void)
 {
     MBGameInfo *nextGameInfop;
 
-    // ÉQÅ[ÉÄèÓïÒÇ™ìoò^Ç≥ÇÍÇƒÇ¢Ç»Ç¢Ç»ÇÁÅAÉGÉâÅ[ÉäÉ^Å[ÉìÅB
+    // „Ç≤„Éº„É†ÊÉÖÂ†±„ÅåÁôªÈå≤„Åï„Çå„Å¶„ÅÑ„Å™„ÅÑ„Å™„Çâ„ÄÅ„Ç®„É©„Éº„É™„Çø„Éº„É≥„ÄÇ
     if (!mbss.gameInfoListTop)
     {
-        /* MB ÉtÉâÉOÇ∆ ENTRY ÉtÉâÉOÇÕÇ±Ç±Ç≈óéÇ∆Ç∑ */
+        /* MB „Éï„É©„Ç∞„Å® ENTRY „Éï„É©„Ç∞„ÅØ„Åì„Åì„ÅßËêΩ„Å®„Åô */
         (void)WM_SetGameInfo(NULL, (u16 *)&bsendBuff, WM_SIZE_USER_GAMEINFO, MBi_GetGgid(),
                              MBi_GetTgid(), WM_ATTR_FLAG_CS);
         return FALSE;
     }
 
-    // éüÇ…ëóêMÇ∑ÇÈGameInfoÇÃëIë
+    // Ê¨°„Å´ÈÄÅ‰ø°„Åô„ÇãGameInfo„ÅÆÈÅ∏Êäû
     if (!mbss.nowGameInfop || !mbss.nowGameInfop->nextp)
     {
-        // Ç‹ÇæëóêMíÜÇÃÉQÅ[ÉÄèÓïÒÇ™Ç»Ç¢Ç©ÅAÉäÉXÉgÇÃç≈å„ÇÃèÍçáÇÕÅAÉäÉXÉgÇÃêÊì™ÇëóêMÇ∑ÇÈÇÊÇ§èÄîıÅB
+        // „Åæ„Å†ÈÄÅ‰ø°‰∏≠„ÅÆ„Ç≤„Éº„É†ÊÉÖÂ†±„Åå„Å™„ÅÑ„Åã„ÄÅ„É™„Çπ„Éà„ÅÆÊúÄÂæå„ÅÆÂ†¥Âêà„ÅØ„ÄÅ„É™„Çπ„Éà„ÅÆÂÖàÈ†≠„ÇíÈÄÅ‰ø°„Åô„Çã„Çà„ÅÜÊ∫ñÂÇô„ÄÇ
         nextGameInfop = mbss.gameInfoListTop;
     }
     else
     {
-        // Ç≥Ç‡Ç»Ç≠ÇŒÅAÉäÉXÉgÇÃéüÇÃÉQÅ[ÉÄÇëóêMÇ∑ÇÈÇÊÇ§èÄîıÅB
+        // „Åï„ÇÇ„Å™„Åè„Å∞„ÄÅ„É™„Çπ„Éà„ÅÆÊ¨°„ÅÆ„Ç≤„Éº„É†„ÇíÈÄÅ‰ø°„Åô„Çã„Çà„ÅÜÊ∫ñÂÇô„ÄÇ
         nextGameInfop = mbss.nowGameInfop->nextp;
     }
 
@@ -725,7 +725,7 @@ static BOOL MBi_ReadyBeaconSendStatus(void)
 }
 
 
-// ÉQÅ[ÉÄèÓïÒÇÃå≈íËÉfÅ[É^ïîÇÃëóêMèâä˙âª
+// „Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÂõ∫ÂÆö„Éá„Éº„ÇøÈÉ®„ÅÆÈÄÅ‰ø°ÂàùÊúüÂåñ
 static void MBi_InitSendFixedBeacon(void)
 {
     if (mbss.state != MB_BEACON_STATE_FIXED_START)
@@ -747,7 +747,7 @@ static void MBi_InitSendFixedBeacon(void)
 }
 
 
-// ÉQÅ[ÉÄèÓïÒÇÃå≈íËÉfÅ[É^ïîÇï™äÑÇµÇƒÉrÅ[ÉRÉìëóêM
+// „Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÂõ∫ÂÆö„Éá„Éº„ÇøÈÉ®„ÇíÂàÜÂâ≤„Åó„Å¶„Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°
 static void MBi_SendFixedBeacon(u32 ggid, u16 tgid, u8 attribute)
 {
     u32     lastAddr = (u32)mbss.nowGameInfop + sizeof(MBGameInfoFixed);
@@ -763,7 +763,7 @@ static void MBi_SendFixedBeacon(u32 ggid, u16 tgid, u8 attribute)
                       (u32)(MB_BEACON_FIXED_DATA_SIZE - bsendBuff.data.fixed.size));
     }
 
-    // ÉrÅ[ÉRÉìëóêMÉoÉbÉtÉ@Ç…ÉZÉbÉg
+    // „Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°„Éê„ÉÉ„Éï„Ç°„Å´„Çª„ÉÉ„Éà
     MB_DEBUG_OUTPUT("send flagment= %2d  adr = 0x%x\n", mbss.flagmentNo, mbss.srcp);
     MI_CpuCopy16(mbss.srcp, bsendBuff.data.fixed.data, bsendBuff.data.fixed.size);
     bsendBuff.data.fixed.flagmentNo = mbss.flagmentNo;
@@ -777,7 +777,7 @@ static void MBi_SendFixedBeacon(u32 ggid, u16 tgid, u8 attribute)
     bsendBuff.data.fixed.sum = 0;
     bsendBuff.data.fixed.sum = MBi_calc_cksum((u16 *)&bsendBuff.data, MB_BEACON_DATA_SIZE);
 
-    // ëóêMÉXÉeÅ[É^ÉXÇÃçXêV
+    // ÈÄÅ‰ø°„Çπ„ÉÜ„Éº„Çø„Çπ„ÅÆÊõ¥Êñ∞
     mbss.flagmentNo++;
     if (mbss.flagmentNo < mbss.flagmentMaxNum)
     {
@@ -788,14 +788,14 @@ static void MBi_SendFixedBeacon(u32 ggid, u16 tgid, u8 attribute)
         mbss.state = MB_BEACON_STATE_VOLAT_START;
     }
 
-    /* êeã@ÉvÉçÉOÉâÉÄé©êgÇÃÇÃGGIDÇìoò^Ç∑ÇÈ */
+    /* Ë¶™Ê©ü„Éó„É≠„Ç∞„É©„É†Ëá™Ë∫´„ÅÆ„ÅÆGGID„ÇíÁôªÈå≤„Åô„Çã */
     (void)WM_SetGameInfo(NULL, (u16 *)&bsendBuff, WM_SIZE_USER_GAMEINFO, ggid, tgid,
                          (u8)(attribute | WM_ATTR_FLAG_MB | WM_ATTR_FLAG_ENTRY));
-    // É}ÉãÉ`ÉuÅ[ÉgÉtÉâÉOÇÕÇ±Ç±Ç≈óßÇƒÇÈÅB
+    // „Éû„É´„ÉÅ„Éñ„Éº„Éà„Éï„É©„Ç∞„ÅØ„Åì„Åì„ÅßÁ´ã„Å¶„Çã„ÄÇ
 }
 
 
-// ÉQÅ[ÉÄèÓïÒÇÃó¨ìÆÉfÅ[É^ïîÇÃëóêMèâä˙âª
+// „Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÊµÅÂãï„Éá„Éº„ÇøÈÉ®„ÅÆÈÄÅ‰ø°ÂàùÊúüÂåñ
 static void MBi_InitSendVolatBeacon(void)
 {
     mbss.nowGameInfop->broadcastedPlayerFlag = 0x0001;
@@ -804,7 +804,7 @@ static void MBi_InitSendVolatBeacon(void)
 }
 
 
-// ÉQÅ[ÉÄèÓïÒÇÃó¨ìÆÉfÅ[É^ïîÇï™äÑÇµÇƒÉrÅ[ÉRÉìëóêM
+// „Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÊµÅÂãï„Éá„Éº„ÇøÈÉ®„ÇíÂàÜÂâ≤„Åó„Å¶„Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°
 static void MBi_SendVolatBeacon(u32 ggid, u16 tgid, u8 attribute)
 {
     int     i;
@@ -812,11 +812,11 @@ static void MBi_SendVolatBeacon(u32 ggid, u16 tgid, u8 attribute)
     u16     remainPlayerFlag;
 
     if (mbss.seqNoVolat != mbss.nowGameInfop->seqNoVolat)
-    {                                  // ëóêMíÜÇ…ÉfÅ[É^çXêVÇ™Ç†Ç¡ÇΩÇÁëóÇËíºÇµÅB
+    {                                  // ÈÄÅ‰ø°‰∏≠„Å´„Éá„Éº„ÇøÊõ¥Êñ∞„Åå„ÅÇ„Å£„Åü„ÇâÈÄÅ„ÇäÁõ¥„Åó„ÄÇ
         MBi_InitSendVolatBeacon();
     }
 
-    // ÉrÅ[ÉRÉìèÓïÒÇÉZÉbÉg
+    // „Éì„Éº„Ç≥„É≥ÊÉÖÂ†±„Çí„Çª„ÉÉ„Éà
     bsendBuff.dataAttr = MB_BEACON_DATA_ATTR_VOLAT;
     bsendBuff.seqNoFixed = mbss.nowGameInfop->seqNoFixed;
     bsendBuff.seqNoVolat = mbss.seqNoVolat;
@@ -824,12 +824,12 @@ static void MBi_SendVolatBeacon(u32 ggid, u16 tgid, u8 attribute)
     bsendBuff.fileNo = mbss.nowGameInfop->fileNo;
     bsendBuff.beaconNo = mbss.beaconNo++;
 
-    // åªç›ÇÃÉvÉåÉCÉÑÅ[èÓïÒÇÃèÛë‘ÇÉZÉbÉg
+    // ÁèæÂú®„ÅÆ„Éó„É¨„Ç§„É§„ÉºÊÉÖÂ†±„ÅÆÁä∂ÊÖã„Çí„Çª„ÉÉ„Éà
     bsendBuff.data.volat.nowPlayerNum = mbss.nowGameInfop->volat.nowPlayerNum;
     bsendBuff.data.volat.nowPlayerFlag = mbss.nowGameInfop->volat.nowPlayerFlag;
     bsendBuff.data.volat.changePlayerFlag = mbss.nowGameInfop->volat.changePlayerFlag;
 
-    // ÉAÉvÉäê›íËÉfÅ[É^ÇÉZÉbÉg
+    // „Ç¢„Éó„É™Ë®≠ÂÆö„Éá„Éº„Çø„Çí„Çª„ÉÉ„Éà
     if (sSendVolatCallbackTimming == MB_SEND_VOLAT_CALLBACK_TIMMING_BEFORE
         && sSendVolatCallback != NULL)
     {
@@ -843,7 +843,7 @@ static void MBi_SendVolatBeacon(u32 ggid, u16 tgid, u8 attribute)
 
     MB_DEBUG_OUTPUT("send PlayerFlag = %x\n", mbss.nowGameInfop->volat.nowPlayerFlag);
 
-    // ç°âÒëóêMÇ∑ÇÈÉvÉåÉCÉÑÅ[èÓïÒÇÃÉZÉbÉg
+    // ‰ªäÂõûÈÄÅ‰ø°„Åô„Çã„Éó„É¨„Ç§„É§„ÉºÊÉÖÂ†±„ÅÆ„Çª„ÉÉ„Éà
     MI_CpuClear16(&bsendBuff.data.volat.member[0], sizeof(MBUserInfo) * MB_SEND_MEMBER_MAX_NUM);
     setPlayerNum = 0;
     remainPlayerFlag =
@@ -866,26 +866,26 @@ static void MBi_SendVolatBeacon(u32 ggid, u16 tgid, u8 attribute)
         }
     }
     if (setPlayerNum < MB_SEND_MEMBER_MAX_NUM)
-    {                                  // ç≈ëÂëóêMêîÇ…íBÇµÇ»Ç©Ç¡ÇΩéûÇ…ÇÕèIí[Ç∑ÇÈÅB
+    {                                  // ÊúÄÂ§ßÈÄÅ‰ø°Êï∞„Å´ÈÅî„Åó„Å™„Åã„Å£„ÅüÊôÇ„Å´„ÅØÁµÇÁ´Ø„Åô„Çã„ÄÇ
         bsendBuff.data.volat.member[setPlayerNum].playerNo = 0;
     }
 
-    // É`ÉFÉbÉNÉTÉÄÇÃÉZÉbÉg
+    // „ÉÅ„Çß„ÉÉ„ÇØ„Çµ„É†„ÅÆ„Çª„ÉÉ„Éà
     bsendBuff.data.volat.sum = 0;
     bsendBuff.data.volat.sum = MBi_calc_cksum((u16 *)&bsendBuff.data, MB_BEACON_DATA_SIZE);
 
 
-    // ëóêMèIóπÉ`ÉFÉbÉN
+    // ÈÄÅ‰ø°ÁµÇ‰∫Ü„ÉÅ„Çß„ÉÉ„ÇØ
     if (mbss.nowGameInfop->broadcastedPlayerFlag == mbss.nowGameInfop->volat.nowPlayerFlag)
     {
-        mbss.state = MB_BEACON_STATE_READY;     // ëSèÓïÒÇëóêMÇµèIÇÌÇ¡ÇΩÇÁÅAéüÇÃÉQÅ[ÉÄèÓïÒÇëóêMÇ∑ÇÈÇΩÇﬂÇÃèÄîıÉXÉeÅ[ÉgÇ÷ÅB
+        mbss.state = MB_BEACON_STATE_READY;     // ÂÖ®ÊÉÖÂ†±„ÇíÈÄÅ‰ø°„ÅóÁµÇ„Çè„Å£„Åü„Çâ„ÄÅÊ¨°„ÅÆ„Ç≤„Éº„É†ÊÉÖÂ†±„ÇíÈÄÅ‰ø°„Åô„Çã„Åü„ÇÅ„ÅÆÊ∫ñÂÇô„Çπ„ÉÜ„Éº„Éà„Å∏„ÄÇ
     }
 
-    /* êeã@ÉvÉçÉOÉâÉÄé©êgÇÃÇÃGGIDÇìoò^Ç∑ÇÈ */
+    /* Ë¶™Ê©ü„Éó„É≠„Ç∞„É©„É†Ëá™Ë∫´„ÅÆ„ÅÆGGID„ÇíÁôªÈå≤„Åô„Çã */
 
     (void)WM_SetGameInfo(NULL, (u16 *)&bsendBuff, WM_SIZE_USER_GAMEINFO, ggid, tgid,
                          (u8)(attribute | WM_ATTR_FLAG_MB | WM_ATTR_FLAG_ENTRY));
-    // É}ÉãÉ`ÉuÅ[ÉgÉtÉâÉOÇÕÇ±Ç±Ç≈óßÇƒÇÈÅB
+    // „Éû„É´„ÉÅ„Éñ„Éº„Éà„Éï„É©„Ç∞„ÅØ„Åì„Åì„ÅßÁ´ã„Å¶„Çã„ÄÇ
 
     if (sSendVolatCallbackTimming == MB_SEND_VOLAT_CALLBACK_TIMMING_AFTER
         && sSendVolatCallback != NULL)
@@ -897,10 +897,10 @@ static void MBi_SendVolatBeacon(u32 ggid, u16 tgid, u8 attribute)
 
 
 //=========================================================
-// éqã@Ç…ÇÊÇÈÉQÅ[ÉÄèÓïÒÇÃÉrÅ[ÉRÉìéÛêM
+// Â≠êÊ©ü„Å´„Çà„Çã„Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆ„Éì„Éº„Ç≥„É≥Âèó‰ø°
 //=========================================================
 
-// ÉQÅ[ÉÄèÓïÒéÛêMÉXÉeÅ[É^ÉXÇÃèâä˙âª
+// „Ç≤„Éº„É†ÊÉÖÂ†±Âèó‰ø°„Çπ„ÉÜ„Éº„Çø„Çπ„ÅÆÂàùÊúüÂåñ
 void MB_InitRecvGameInfoStatus(void)
 {
     MI_CpuClearFast(mbrsp, sizeof(MbBeaconRecvStatus));
@@ -909,54 +909,54 @@ void MB_InitRecvGameInfoStatus(void)
 }
 
 
-// ÉrÅ[ÉRÉìéÛêM
+// „Éì„Éº„Ç≥„É≥Âèó‰ø°
 BOOL MB_RecvGameInfoBeacon(MBBeaconMsgCallback Callbackp, u16 linkLevel, WMBssDesc *bssDescp)
 {
     int     index;
 
-    // ç°âÒéÊìæÇµÇΩÉrÅ[ÉRÉìÇ™ÅAÉ}ÉãÉ`ÉuÅ[Égêeã@Ç©Ç«Ç§Ç©ÇîªíËÅB
+    // ‰ªäÂõûÂèñÂæó„Åó„Åü„Éì„Éº„Ç≥„É≥„Åå„ÄÅ„Éû„É´„ÉÅ„Éñ„Éº„ÉàË¶™Ê©ü„Åã„Å©„ÅÜ„Åã„ÇíÂà§ÂÆö„ÄÇ
     if (!MBi_CheckMBParent(bssDescp))
     {
         return FALSE;
     }
 
-    /* éÊìæÇµÇΩbssDescÇÉeÉìÉ|ÉâÉäÉoÉbÉtÉ@Ç÷ÉRÉsÅ[ */
+    /* ÂèñÂæó„Åó„ÅübssDesc„Çí„ÉÜ„É≥„Éù„É©„É™„Éê„ÉÉ„Éï„Ç°„Å∏„Ç≥„Éî„Éº */
     MI_CpuCopy16(bssDescp, &bssDescbuf, sizeof(WMBssDesc));
 
-    /* bssDescpÇÉçÅ[ÉJÉãÉoÉbÉtÉ@Ç…êÿÇËë÷Ç¶ÇÈÅB */
+    /* bssDescp„Çí„É≠„Éº„Ç´„É´„Éê„ÉÉ„Éï„Ç°„Å´Âàá„ÇäÊõø„Åà„Çã„ÄÇ */
     bssDescp = &bssDescbuf;
 
     brecvBuffp = (MbBeacon *) bssDescp->gameInfo.userGameInfo;
 
-    // É`ÉFÉbÉNÉTÉÄämîFÅB
+    // „ÉÅ„Çß„ÉÉ„ÇØ„Çµ„É†Á¢∫Ë™ç„ÄÇ
     if (MBi_calc_cksum((u16 *)&brecvBuffp->data, MB_BEACON_DATA_SIZE))
     {
         MB_DEBUG_OUTPUT("Beacon checksum error!\n");
         return FALSE;
     }
 
-    // êeã@ÉQÅ[ÉÄèÓïÒÇÃäiî[èÍèäÇîªíËÅiä˘Ç…ìØàÍêeã@ÇÃÉfÅ[É^ÇéÛêMÇµÇƒÇ¢ÇÈÇ»ÇÁÅAÇªÇ±Ç…ë±ÇØÇƒäiî[Ç∑ÇÈÅj
+    // Ë¶™Ê©ü„Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÊ†ºÁ¥çÂ†¥ÊâÄ„ÇíÂà§ÂÆöÔºàÊó¢„Å´Âêå‰∏ÄË¶™Ê©ü„ÅÆ„Éá„Éº„Çø„ÇíÂèó‰ø°„Åó„Å¶„ÅÑ„Çã„Å™„Çâ„ÄÅ„Åù„Åì„Å´Á∂ö„Åë„Å¶Ê†ºÁ¥ç„Åô„ÇãÔºâ
     index = MBi_GetStoreElement(bssDescp, Callbackp);
     if (index < 0)
     {
-        return FALSE;                  // äiî[èÍèäÇ™Ç»Ç¢ÇÃÇ≈ÉGÉâÅ[ÉäÉ^Å[Éì
+        return FALSE;                  // Ê†ºÁ¥çÂ†¥ÊâÄ„Åå„Å™„ÅÑ„ÅÆ„Åß„Ç®„É©„Éº„É™„Çø„Éº„É≥
     }
     MB_DEBUG_OUTPUT("GameInfo Index:%6d\n", index);
 
-    // ÉrÅ[ÉRÉìâêÕ
+    // „Éì„Éº„Ç≥„É≥Ëß£Êûê
     MBi_AnalyzeBeacon(bssDescp, index, linkLevel);
 
-    // êeã@ÉQÅ[ÉÄèÓïÒÇÃëSÇƒÇÃífï–Ç™ëµÇ¡ÇΩÇ©îªíËÇµÅAÉRÅ[ÉãÉoÉbÉNÇ≈í ím
+    // Ë¶™Ê©ü„Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÂÖ®„Å¶„ÅÆÊñ≠Áâá„ÅåÊèÉ„Å£„Åü„ÅãÂà§ÂÆö„Åó„ÄÅ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ„ÅßÈÄöÁü•
     MBi_CheckCompleteGameInfoFlagments(index, Callbackp);
 
     return TRUE;
 }
 
 
-// ç°âÒéÊìæÇµÇΩÉrÅ[ÉRÉìÇ™É}ÉãÉ`ÉuÅ[Égêeã@Ç©Ç«Ç§Ç©ÇîªíËÇ∑ÇÈÅB
+// ‰ªäÂõûÂèñÂæó„Åó„Åü„Éì„Éº„Ç≥„É≥„Åå„Éû„É´„ÉÅ„Éñ„Éº„ÉàË¶™Ê©ü„Åã„Å©„ÅÜ„Åã„ÇíÂà§ÂÆö„Åô„Çã„ÄÇ
 static BOOL MBi_CheckMBParent(WMBssDesc *bssDescp)
 {
-    // É}ÉãÉ`ÉuÅ[Égêeã@Ç©Ç«Ç§Ç©ÇîªíËÇ∑ÇÈÅB
+    // „Éû„É´„ÉÅ„Éñ„Éº„ÉàË¶™Ê©ü„Åã„Å©„ÅÜ„Åã„ÇíÂà§ÂÆö„Åô„Çã„ÄÇ
     if ((bssDescp->gameInfo.magicNumber != WM_GAMEINFO_MAGIC_NUMBER)
         || !(bssDescp->gameInfo.attribute & WM_ATTR_FLAG_MB))
     {
@@ -974,15 +974,15 @@ static BOOL MBi_CheckMBParent(WMBssDesc *bssDescp)
 }
 
 
-// bssDescÇ…SSIDÇÉZÉbÉgÇ∑ÇÈÅB
+// bssDesc„Å´SSID„Çí„Çª„ÉÉ„Éà„Åô„Çã„ÄÇ
 static void MBi_SetSSIDToBssDesc(WMBssDesc *bssDescp, u32 ggid)
 {
     /* 
-       SSIDÇÃê›íË 
+       SSID„ÅÆË®≠ÂÆö 
 
-       É_ÉEÉìÉçÅ[ÉhÉAÉvÉäå≈óLÇÃGGIDÇ∆ÅAÉ}ÉãÉ`ÉuÅ[Égêeã@ÇÃTGIDÇ©ÇÁ
-       SSIDÇê∂ê¨Ç∑ÇÈÅB
-       éqã@ÇÕÅAÇ±ÇÃSSIDÇópÇ¢Çƒêeã@ÉAÉvÉäÉPÅ[ÉVÉáÉìÇ∆çƒê⁄ë±ÇçsÇ§ÅB
+       „ÉÄ„Ç¶„É≥„É≠„Éº„Éâ„Ç¢„Éó„É™Âõ∫Êúâ„ÅÆGGID„Å®„ÄÅ„Éû„É´„ÉÅ„Éñ„Éº„ÉàË¶™Ê©ü„ÅÆTGID„Åã„Çâ
+       SSID„ÇíÁîüÊàê„Åô„Çã„ÄÇ
+       Â≠êÊ©ü„ÅØ„ÄÅ„Åì„ÅÆSSID„ÇíÁî®„ÅÑ„Å¶Ë¶™Ê©ü„Ç¢„Éó„É™„Ç±„Éº„Ç∑„Éß„É≥„Å®ÂÜçÊé•Á∂ö„ÇíË°å„ÅÜ„ÄÇ
      */
     bssDescp->ssidLength = 32;
     ((u16 *)bssDescp->ssid)[0] = (u16)(ggid & 0x0000ffff);
@@ -991,12 +991,12 @@ static void MBi_SetSSIDToBssDesc(WMBssDesc *bssDescp, u32 ggid)
 }
 
 
-// bssDescÇÇ‡Ç∆Ç…éÛêMÉäÉXÉgóvëfÇÃÇ«Ç±Ç…äiî[Ç∑ÇÈÇ©ÇéÊìæÇ∑ÇÈÅB
+// bssDesc„Çí„ÇÇ„Å®„Å´Âèó‰ø°„É™„Çπ„ÉàË¶ÅÁ¥†„ÅÆ„Å©„Åì„Å´Ê†ºÁ¥ç„Åô„Çã„Åã„ÇíÂèñÂæó„Åô„Çã„ÄÇ
 static int MBi_GetStoreElement(WMBssDesc *bssDescp, MBBeaconMsgCallback Callbackp)
 {
     int     i;
 
-    // ä˘Ç…Ç±ÇÃêeã@ÇÃìØàÍÉQÅ[ÉÄèÓïÒÇéÛêMÇµÇƒÇ¢ÇÈÇ©Ç«Ç§Ç©ÇîªíËÅi "GGID", "BSSID", "fileNo"ÇÃÇRÇ¬Ç™àÍívÇ∑ÇÈÇ»ÇÁÅAìØàÍÉQÅ[ÉÄèÓïÒÇ∆îªífÇ∑ÇÈÅj
+    // Êó¢„Å´„Åì„ÅÆË¶™Ê©ü„ÅÆÂêå‰∏Ä„Ç≤„Éº„É†ÊÉÖÂ†±„ÇíÂèó‰ø°„Åó„Å¶„ÅÑ„Çã„Åã„Å©„ÅÜ„Åã„ÇíÂà§ÂÆöÔºà "GGID", "BSSID", "fileNo"„ÅÆÔºì„Å§„Åå‰∏ÄËá¥„Åô„Çã„Å™„Çâ„ÄÅÂêå‰∏Ä„Ç≤„Éº„É†ÊÉÖÂ†±„Å®Âà§Êñ≠„Åô„ÇãÔºâ
     for (i = 0; i < MB_GAME_INFO_RECV_LIST_NUM; i++)
     {
         MBGameInfoRecvList *info = &mbrsp->list[i];
@@ -1005,33 +1005,33 @@ static int MBi_GetStoreElement(WMBssDesc *bssDescp, MBBeaconMsgCallback Callback
         {
             continue;
         }
-        // GGIDÇ™àÍívÇ∑ÇÈÇ©ÅH
+        // GGID„Åå‰∏ÄËá¥„Åô„Çã„ÅãÔºü
         if (info->gameInfo.ggid != brecvBuffp->ggid)
         {
             continue;
         }
-        // MACÉAÉhÉåÉXÇ™àÍívÇ∑ÇÈÇ©ÅH
+        // MAC„Ç¢„Éâ„É¨„Çπ„Åå‰∏ÄËá¥„Åô„Çã„ÅãÔºü
         if (!WM_IsBssidEqual(info->bssDesc.bssid, bssDescp->bssid))
         {
             continue;
         }
-        // ÉtÉ@ÉCÉãNo.Ç™àÍívÇ∑ÇÈÇ©ÅH
+        // „Éï„Ç°„Ç§„É´No.„Åå‰∏ÄËá¥„Åô„Çã„ÅãÔºü
         if (mbrsp->list[i].gameInfo.fileNo != brecvBuffp->fileNo)
         {
             continue;
         }
 
         // =========================================
-        // Ç±ÇÃêeã@èÓïÒÇ…ëŒÇµÇƒÅAä˘Ç…éÛêMèÍèäÇ™ämï€Ç≥ÇÍÇƒÇ¢ÇÈÇ∆îªífÅB
+        // „Åì„ÅÆË¶™Ê©üÊÉÖÂ†±„Å´ÂØæ„Åó„Å¶„ÄÅÊó¢„Å´Âèó‰ø°Â†¥ÊâÄ„ÅåÁ¢∫‰øù„Åï„Çå„Å¶„ÅÑ„Çã„Å®Âà§Êñ≠„ÄÇ
         // =========================================
         if (!(mbrsp->validGameInfoFlag & (0x01 << i)))
         {
-            MBi_LockScanTarget(i);     // Ç‹ÇæäYìñêeã@ÇÃèÓïÒÇ™ëµÇ¡ÇƒÇ¢Ç»ÇØÇÍÇŒÅAÉXÉLÉÉÉìÉçÉbÉNÇ∑ÇÈÅB
+            MBi_LockScanTarget(i);     // „Åæ„Å†Ë©≤ÂΩìË¶™Ê©ü„ÅÆÊÉÖÂ†±„ÅåÊèÉ„Å£„Å¶„ÅÑ„Å™„Åë„Çå„Å∞„ÄÅ„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØ„Åô„Çã„ÄÇ
         }
         return i;
     }
 
-    // Ç‹ÇæéÛêMÇµÇƒÇ¢Ç»Ç¢ÇÃÇ≈ÅAÉäÉXÉgÇÃNULLà íuÇíTÇµÇƒÅAÇªÇ±Çäiî[èÍèäÇ…Ç∑ÇÈÅB
+    // „Åæ„Å†Âèó‰ø°„Åó„Å¶„ÅÑ„Å™„ÅÑ„ÅÆ„Åß„ÄÅ„É™„Çπ„Éà„ÅÆNULL‰ΩçÁΩÆ„ÇíÊé¢„Åó„Å¶„ÄÅ„Åù„Åì„ÇíÊ†ºÁ¥çÂ†¥ÊâÄ„Å´„Åô„Çã„ÄÇ
     for (i = 0; i < MB_GAME_INFO_RECV_LIST_NUM; i++)
     {
         if (mbrsp->usingGameInfoFlag & (0x01 << i))
@@ -1040,17 +1040,17 @@ static int MBi_GetStoreElement(WMBssDesc *bssDescp, MBBeaconMsgCallback Callback
         }
 
         MI_CpuCopy16(bssDescp, &mbrsp->list[i].bssDesc, sizeof(WMBssDesc));
-        // BssDescÇÉRÉsÅ[
+        // BssDesc„Çí„Ç≥„Éî„Éº
         mbrsp->list[i].gameInfo.seqNoFixed = brecvBuffp->seqNoFixed;
         mbrsp->usingGameInfoFlag |= (u16)(0x01 << i);
 
         MB_DEBUG_OUTPUT("\n");
-        // Ç±ÇÃêeã@ÇÃÇ›ÇScanëŒè€Ç…ÉçÉbÉNÇ∑ÇÈÅB
+        // „Åì„ÅÆË¶™Ê©ü„ÅÆ„Åø„ÇíScanÂØæË±°„Å´„É≠„ÉÉ„ÇØ„Åô„Çã„ÄÇ
         MBi_LockScanTarget(i);
         return i;
     }
 
-    // äiî[èÍèäÇ™ëSÇƒñÑÇ‹Ç¡ÇƒÇ¢ÇΩèÍçáÇÕÉRÅ[ÉãÉoÉbÉNÇ≈í ímÇµÇƒÉGÉâÅ[ÉäÉ^Å[Éì
+    // Ê†ºÁ¥çÂ†¥ÊâÄ„ÅåÂÖ®„Å¶Âüã„Åæ„Å£„Å¶„ÅÑ„ÅüÂ†¥Âêà„ÅØ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ„ÅßÈÄöÁü•„Åó„Å¶„Ç®„É©„Éº„É™„Çø„Éº„É≥
     if (Callbackp != NULL)
     {
         Callbackp(MB_BC_MSG_GINFO_LIST_FULL, NULL, 0);
@@ -1059,17 +1059,17 @@ static int MBi_GetStoreElement(WMBssDesc *bssDescp, MBBeaconMsgCallback Callback
 }
 
 
-// êeã@ÉQÅ[ÉÄèÓïÒÇÃëSÇƒÇÃífï–Ç™ëµÇ¡ÇΩÇ©îªíËÇµÅAÉRÅ[ÉãÉoÉbÉNÇ≈í ím
+// Ë¶™Ê©ü„Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÂÖ®„Å¶„ÅÆÊñ≠Áâá„ÅåÊèÉ„Å£„Åü„ÅãÂà§ÂÆö„Åó„ÄÅ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ„ÅßÈÄöÁü•
 static void MBi_CheckCompleteGameInfoFlagments(int index, MBBeaconMsgCallback Callbackp)
 {
     MBGameInfoRecvList *info = &mbrsp->list[index];
 
-    /* Ç¢Ç∏ÇÍÇ…ÇπÇÊÉAÉvÉäÉPÅ[ÉVÉáÉìÇ÷êeã@î≠å©Çí ímÇ∑ÇÈ */
+    /* „ÅÑ„Åö„Çå„Å´„Åõ„Çà„Ç¢„Éó„É™„Ç±„Éº„Ç∑„Éß„É≥„Å∏Ë¶™Ê©üÁô∫Ë¶ã„ÇíÈÄöÁü•„Åô„Çã */
     if (Callbackp != NULL)
     {
         Callbackp(MB_BC_MSG_GINFO_BEACON, info, index);
     }
-    if ((info->getFlagmentFlag == info->allFlagmentFlag) && (info->getFlagmentFlag)     // êVÇµÇ≠êeã@ÉQÅ[ÉÄèÓïÒÇ™ëµÇ¡ÇΩèÍçá
+    if ((info->getFlagmentFlag == info->allFlagmentFlag) && (info->getFlagmentFlag)     // Êñ∞„Åó„ÅèË¶™Ê©ü„Ç≤„Éº„É†ÊÉÖÂ†±„ÅåÊèÉ„Å£„ÅüÂ†¥Âêà
         && (info->gameInfo.volat.nowPlayerFlag)
         && (info->getPlayerFlag == info->gameInfo.volat.nowPlayerFlag))
     {
@@ -1079,7 +1079,7 @@ static void MBi_CheckCompleteGameInfoFlagments(int index, MBBeaconMsgCallback Ca
         }
         mbrsp->validGameInfoFlag |= 0x01 << index;
         mbrsp->usefulGameInfoFlag |= 0x01 << index;
-        MBi_UnlockScanTarget();        // ScanëŒè€ÇÃÉçÉbÉNÇâèúÇ∑ÇÈÅB
+        MBi_UnlockScanTarget();        // ScanÂØæË±°„ÅÆ„É≠„ÉÉ„ÇØ„ÇíËß£Èô§„Åô„Çã„ÄÇ
         MB_DEBUG_OUTPUT("validated ParentInfo = %d\n", index);
         if (Callbackp != NULL)
         {
@@ -1087,7 +1087,7 @@ static void MBi_CheckCompleteGameInfoFlagments(int index, MBBeaconMsgCallback Ca
         }
     }
     else
-    {                                  // ä˘Ç…éÊìæÇµÇƒÇ¢ÇΩêeã@ÉQÅ[ÉÄèÓïÒÇ™çXêVÇ≥ÇÍÇƒÅAïsäÆëSÇ»èÛë‘Ç…Ç»Ç¡ÇΩèÍçá
+    {                                  // Êó¢„Å´ÂèñÂæó„Åó„Å¶„ÅÑ„ÅüË¶™Ê©ü„Ç≤„Éº„É†ÊÉÖÂ†±„ÅåÊõ¥Êñ∞„Åï„Çå„Å¶„ÄÅ‰∏çÂÆåÂÖ®„Å™Áä∂ÊÖã„Å´„Å™„Å£„ÅüÂ†¥Âêà
         if ((mbrsp->validGameInfoFlag & (0x01 << index)) == 0)
         {
             return;
@@ -1102,13 +1102,13 @@ static void MBi_CheckCompleteGameInfoFlagments(int index, MBBeaconMsgCallback Ca
 }
 
 
-// êeã@ÇÃÉQÅ[ÉÄèÓïÒÇÃéıñΩÉJÉEÉìÉgÅiÇ¬Ç¢Ç≈Ç…ÉXÉLÉÉÉìÉçÉbÉNéûä‘ÇÃÉJÉEÉìÉgÇ‡çsÇ§Åj
+// Ë¶™Ê©ü„ÅÆ„Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÂØøÂëΩ„Ç´„Ç¶„É≥„ÉàÔºà„Å§„ÅÑ„Åß„Å´„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÊôÇÈñì„ÅÆ„Ç´„Ç¶„É≥„Éà„ÇÇË°å„ÅÜÔºâ
 void MB_CountGameInfoLifetime(MBBeaconMsgCallback Callbackp, BOOL found_parent)
 {
     int     i;
     BOOL    unlock = FALSE;
 
-    // ÉQÅ[ÉÄèÓïÒéÛêMÉäÉXÉgÇÃéıñΩîªíËÅ@ÅïÅ@êVãKÉçÉbÉNëŒè€É^Å[ÉQÉbÉgÇÃóLñ≥ÇämîF
+    // „Ç≤„Éº„É†ÊÉÖÂ†±Âèó‰ø°„É™„Çπ„Éà„ÅÆÂØøÂëΩÂà§ÂÆö„ÄÄÔºÜ„ÄÄÊñ∞Ë¶è„É≠„ÉÉ„ÇØÂØæË±°„Çø„Éº„Ç≤„ÉÉ„Éà„ÅÆÊúâÁÑ°„ÇíÁ¢∫Ë™ç
     for (i = 0; i < MB_GAME_INFO_RECV_LIST_NUM; i++)
     {
         MBGameInfoRecvList *info = &mbrsp->list[i];
@@ -1117,7 +1117,7 @@ void MB_CountGameInfoLifetime(MBBeaconMsgCallback Callbackp, BOOL found_parent)
         {
             continue;
         }
-        // éıñΩîªíË
+        // ÂØøÂëΩÂà§ÂÆö
         info->lifetimeCount -= mbrsp->scanCountUnit;
         if (info->lifetimeCount >= 0)
         {
@@ -1136,14 +1136,14 @@ void MB_CountGameInfoLifetime(MBBeaconMsgCallback Callbackp, BOOL found_parent)
             unlock = TRUE;
         }
         mbrsp->usingGameInfoFlag &= ~mask;
-        MB_DeleteRecvGameInfo(i);      // ÉRÅ[ÉãÉoÉbÉNí ímå„Ç…ÉQÅ[ÉÄèÓïÒÇçÌèúÇ∑ÇÈÅB
+        MB_DeleteRecvGameInfo(i);      // „Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈÄöÁü•Âæå„Å´„Ç≤„Éº„É†ÊÉÖÂ†±„ÇíÂâäÈô§„Åô„Çã„ÄÇ
         MB_DEBUG_OUTPUT("gameInfo %2d : lifetime end.\n", i);
     }
 
-    // ÉXÉLÉÉÉìÉçÉbÉNéûä‘ÇÃÉJÉEÉìÉg
+    // „Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÊôÇÈñì„ÅÆ„Ç´„Ç¶„É≥„Éà
     if (mbrsp->nowScanTargetFlag && mbrsp->nowLockTimeCount > 0)
     {
-        mbrsp->nowLockTimeCount -= mbrsp->scanCountUnit;        // ÉXÉLÉÉÉìÉçÉbÉNéûä‘Ç™É^ÉCÉÄÉAÉEÉgÇµÇΩÇÁÅAÉçÉbÉNÇâèúÇµÇƒéüÇÃÉçÉbÉNëŒè€ÇíTÇ∑ÅB
+        mbrsp->nowLockTimeCount -= mbrsp->scanCountUnit;        // „Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÊôÇÈñì„Åå„Çø„Ç§„É†„Ç¢„Ç¶„Éà„Åó„Åü„Çâ„ÄÅ„É≠„ÉÉ„ÇØ„ÇíËß£Èô§„Åó„Å¶Ê¨°„ÅÆ„É≠„ÉÉ„ÇØÂØæË±°„ÇíÊé¢„Åô„ÄÇ
         if (mbrsp->nowLockTimeCount < 0)
         {
             MB_DEBUG_OUTPUT("scan lock time up!\n");
@@ -1163,7 +1163,7 @@ void MB_CountGameInfoLifetime(MBBeaconMsgCallback Callbackp, BOOL found_parent)
         }
     }
 
-    // ÉXÉLÉÉÉìÉAÉìÉçÉbÉNèàóùÅB
+    // „Çπ„Ç≠„É£„É≥„Ç¢„É≥„É≠„ÉÉ„ÇØÂá¶ÁêÜ„ÄÇ
     if (unlock)
     {
         mbrsp->nowLockTimeCount = 0;
@@ -1172,43 +1172,43 @@ void MB_CountGameInfoLifetime(MBBeaconMsgCallback Callbackp, BOOL found_parent)
 }
 
 
-// ÉrÅ[ÉRÉìâêÕ
+// „Éì„Éº„Ç≥„É≥Ëß£Êûê
 static void MBi_AnalyzeBeacon(WMBssDesc *bssDescp, int index, u16 linkLevel)
 {
-    MBi_CheckTGID(bssDescp, index);    // TGIDÇÃÉ`ÉFÉbÉN
-    MBi_CheckSeqNoFixed(index);        // seqNoFixedÇÃÉ`ÉFÉbÉN
-    MBi_CheckSeqNoVolat(index);        // seqNoVolatÇÃÉ`ÉFÉbÉN
+    MBi_CheckTGID(bssDescp, index);    // TGID„ÅÆ„ÉÅ„Çß„ÉÉ„ÇØ
+    MBi_CheckSeqNoFixed(index);        // seqNoFixed„ÅÆ„ÉÅ„Çß„ÉÉ„ÇØ
+    MBi_CheckSeqNoVolat(index);        // seqNoVolat„ÅÆ„ÉÅ„Çß„ÉÉ„ÇØ
 
-    // éÛêMÉrÅ[ÉRÉìÇÃã§í ïîï™ÇÃÉfÅ[É^éÊìæ
+    // Âèó‰ø°„Éì„Éº„Ç≥„É≥„ÅÆÂÖ±ÈÄöÈÉ®ÂàÜ„ÅÆ„Éá„Éº„ÇøÂèñÂæó
     {
         MBGameInfoRecvList *info = &mbrsp->list[index];
 
-        // ìØÇ∂ÉrÅ[ÉRÉìÇèoÇµë±ÇØÇÈàŸèÌÇ»èÛë‘ÇÃêeã@ÇèúäOÇ∑ÇÈÅB
+        // Âêå„Åò„Éì„Éº„Ç≥„É≥„ÇíÂá∫„ÅóÁ∂ö„Åë„ÇãÁï∞Â∏∏„Å™Áä∂ÊÖã„ÅÆË¶™Ê©ü„ÇíÈô§Â§ñ„Åô„Çã„ÄÇ
         if (info->beaconNo == brecvBuffp->beaconNo)
         {
             if (++info->sameBeaconRecvCount > MB_SAME_BEACON_RECV_MAX_COUNT)
             {
-                info->lifetimeCount = 0;        // êeã@èÓïÒÇÃéıñΩÇÉ[ÉçÇ…ÇµÇƒÅAçÌèúÇ≥ÇπÇÈÅB
+                info->lifetimeCount = 0;        // Ë¶™Ê©üÊÉÖÂ†±„ÅÆÂØøÂëΩ„Çí„Çº„É≠„Å´„Åó„Å¶„ÄÅÂâäÈô§„Åï„Åõ„Çã„ÄÇ
                 MB_OUTPUT("The parent broadcast same beacon.: %d\n", index);
                 MBi_InvalidateGameInfoBssID(&info->bssDesc.bssid[0]);
-                return;                // Ç±ÇÃêeã@Ç™ëºÇ…Ç‡ÉQÅ[ÉÄèÓïÒÇîzêMÇµÇƒÇ¢ÇΩÇÁÅAÇªÇÍÇ‡çÌèúÇ≥ÇπÇÈÅB
+                return;                // „Åì„ÅÆË¶™Ê©ü„Åå‰ªñ„Å´„ÇÇ„Ç≤„Éº„É†ÊÉÖÂ†±„ÇíÈÖç‰ø°„Åó„Å¶„ÅÑ„Åü„Çâ„ÄÅ„Åù„Çå„ÇÇÂâäÈô§„Åï„Åõ„Çã„ÄÇ
             }
         }
         else
         {
             info->sameBeaconRecvCount = 0;
         }
-        // ê≥èÌÇ»èÛë‘ÇÃêeã@ÇÃÉfÅ[É^éÛêM
+        // Ê≠£Â∏∏„Å™Áä∂ÊÖã„ÅÆË¶™Ê©ü„ÅÆ„Éá„Éº„ÇøÂèó‰ø°
         info->beaconNo = brecvBuffp->beaconNo;
-        info->lifetimeCount = MB_LIFETIME_MAX_COUNT;    // êeã@èÓïÒÇÃâÑñΩÅB
-        info->gameInfo.ggid = brecvBuffp->ggid; // ggid    ÇÃéÊìæÅB
-        info->gameInfo.fileNo = brecvBuffp->fileNo;     // fileNo  ÇÃéÊìæÅB
-        info->linkLevel = linkLevel;   // ìdîgã≠ìxÇÃéÊìæÅB
-        // bssDescÇ…SSIDÇÉZÉbÉgÇ∑ÇÈÅB
+        info->lifetimeCount = MB_LIFETIME_MAX_COUNT;    // Ë¶™Ê©üÊÉÖÂ†±„ÅÆÂª∂ÂëΩ„ÄÇ
+        info->gameInfo.ggid = brecvBuffp->ggid; // ggid    „ÅÆÂèñÂæó„ÄÇ
+        info->gameInfo.fileNo = brecvBuffp->fileNo;     // fileNo  „ÅÆÂèñÂæó„ÄÇ
+        info->linkLevel = linkLevel;   // ÈõªÊ≥¢Âº∑Â∫¶„ÅÆÂèñÂæó„ÄÇ
+        // bssDesc„Å´SSID„Çí„Çª„ÉÉ„Éà„Åô„Çã„ÄÇ
         MBi_SetSSIDToBssDesc(&info->bssDesc, info->gameInfo.ggid);
     }
 
-    // éÛêMÉrÅ[ÉRÉìÇÃÉfÅ[É^éÌóﬁñàÇÃÉfÅ[É^éÊìæ
+    // Âèó‰ø°„Éì„Éº„Ç≥„É≥„ÅÆ„Éá„Éº„ÇøÁ®ÆÈ°ûÊØé„ÅÆ„Éá„Éº„ÇøÂèñÂæó
     if (brecvBuffp->dataAttr == MB_BEACON_DATA_ATTR_VOLAT)
     {
         MBi_RecvVolatBeacon(index);
@@ -1220,7 +1220,7 @@ static void MBi_AnalyzeBeacon(WMBssDesc *bssDescp, int index, u16 linkLevel)
 }
 
 
-// tgidÇÃÉ`ÉFÉbÉN
+// tgid„ÅÆ„ÉÅ„Çß„ÉÉ„ÇØ
 static void MBi_CheckTGID(WMBssDesc *bssDescp, int index)
 {
     if (mbrsp->list[index].bssDesc.gameInfo.tgid == bssDescp->gameInfo.tgid)
@@ -1228,47 +1228,47 @@ static void MBi_CheckTGID(WMBssDesc *bssDescp, int index)
         return;
     }
 
-    // tgidÇ™ÉAÉbÉvÇµÇƒÇ¢ÇΩÇÁÅAÇªÇÃêeã@ÇÕóßÇøè„Ç∞íºÇ≥ÇÍÇƒÇ¢ÇÈÇ∆Ç›Ç»ÇµÇƒÅAëSÉfÅ[É^ÇÉNÉäÉAÇµÇƒéÊÇËíºÇ∑ÅB
+    // tgid„Åå„Ç¢„ÉÉ„Éó„Åó„Å¶„ÅÑ„Åü„Çâ„ÄÅ„Åù„ÅÆË¶™Ê©ü„ÅØÁ´ã„Å°‰∏ä„ÅíÁõ¥„Åï„Çå„Å¶„ÅÑ„Çã„Å®„Åø„Å™„Åó„Å¶„ÄÅÂÖ®„Éá„Éº„Çø„Çí„ÇØ„É™„Ç¢„Åó„Å¶Âèñ„ÇäÁõ¥„Åô„ÄÇ
     MB_DEBUG_OUTPUT("\ntgid updated! : %x%x", *(u16 *)(&bssDescp->bssid[4]),
                     *(u32 *)bssDescp->bssid);
     MB_DeleteRecvGameInfoWithoutBssdesc(index);
     MI_CpuCopy16(bssDescp, &mbrsp->list[index].bssDesc, sizeof(WMBssDesc));
-    // tgidçXêVÇÃèÍçáÇÕÅAêVÇµÇ¢bssDescÇÉRÉsÅ[Ç∑ÇÈÅB
-    MBi_LockScanTarget(index);         // äYìñêeã@ÇÉXÉLÉÉÉìÉçÉbÉNÇ∑ÇÈÅB
+    // tgidÊõ¥Êñ∞„ÅÆÂ†¥Âêà„ÅØ„ÄÅÊñ∞„Åó„ÅÑbssDesc„Çí„Ç≥„Éî„Éº„Åô„Çã„ÄÇ
+    MBi_LockScanTarget(index);         // Ë©≤ÂΩìË¶™Ê©ü„Çí„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØ„Åô„Çã„ÄÇ
 }
 
 
-// FixedÉfÅ[É^ÇÃSeqNoÉ`ÉFÉbÉN
+// Fixed„Éá„Éº„Çø„ÅÆSeqNo„ÉÅ„Çß„ÉÉ„ÇØ
 static void MBi_CheckSeqNoFixed(int index)
 {
-    // ÉVÅ[ÉPÉìÉXî‘çÜÇ™çXêVÇ≥ÇÍÇƒÇ¢ÇΩèÍçáÇÃëŒâû
+    // „Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑„ÅåÊõ¥Êñ∞„Åï„Çå„Å¶„ÅÑ„ÅüÂ†¥Âêà„ÅÆÂØæÂøú
     if (mbrsp->list[index].gameInfo.seqNoFixed == brecvBuffp->seqNoFixed)
     {
         return;
     }
-    // ÉVÅ[ÉPÉìÉXî‘çÜÇ™çXêVÇ≥ÇÍÇƒÇ¢ÇΩÇÁÅAÇ±ÇÍÇ‹Ç≈Ç…éÛêMÇµÇΩÉfÅ[É^ÇÉNÉäÉAÇ∑ÇÈÅB
+    // „Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑„ÅåÊõ¥Êñ∞„Åï„Çå„Å¶„ÅÑ„Åü„Çâ„ÄÅ„Åì„Çå„Åæ„Åß„Å´Âèó‰ø°„Åó„Åü„Éá„Éº„Çø„Çí„ÇØ„É™„Ç¢„Åô„Çã„ÄÇ
     MB_DEBUG_OUTPUT("\n seqNoFixed updated!");
     MB_DeleteRecvGameInfoWithoutBssdesc(index);
-    MBi_LockScanTarget(index);         // äYìñêeã@ÇÉXÉLÉÉÉìÉçÉbÉNÇ∑ÇÈÅB
+    MBi_LockScanTarget(index);         // Ë©≤ÂΩìË¶™Ê©ü„Çí„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØ„Åô„Çã„ÄÇ
     mbrsp->list[index].gameInfo.seqNoFixed = brecvBuffp->seqNoFixed;
 }
 
 
-// VolatÉfÅ[É^ÇÃSeqNoÉ`ÉFÉbÉN
+// Volat„Éá„Éº„Çø„ÅÆSeqNo„ÉÅ„Çß„ÉÉ„ÇØ
 static void MBi_CheckSeqNoVolat(int index)
 {
     MBGameInfoRecvList *grecvp = &mbrsp->list[index];
 
-    // ÉVÅ[ÉPÉìÉXî‘çÜÇ™çXêVÇ≥ÇÍÇƒÇ¢ÇΩèÍçáÇÃëŒâû
+    // „Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑„ÅåÊõ¥Êñ∞„Åï„Çå„Å¶„ÅÑ„ÅüÂ†¥Âêà„ÅÆÂØæÂøú
     if (mbrsp->list[index].gameInfo.seqNoVolat != brecvBuffp->seqNoVolat)
     {
         MB_DEBUG_OUTPUT("\n seqNoVolat updated!");
-        MBi_LockScanTarget(index);     // ÉXÉLÉÉÉìÉçÉbÉNâ¬î\Ç©í≤Ç◊ÇƒÉçÉbÉNÇ∑ÇÈÅB
+        MBi_LockScanTarget(index);     // „Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÂèØËÉΩ„ÅãË™ø„Åπ„Å¶„É≠„ÉÉ„ÇØ„Åô„Çã„ÄÇ
     }
 }
 
 
-// ëŒè€BSSIDÇÃêeã@ÉQÅ[ÉÄèÓïÒÇëSÇƒñ≥å¯Ç…Ç∑ÇÈÅB
+// ÂØæË±°BSSID„ÅÆË¶™Ê©ü„Ç≤„Éº„É†ÊÉÖÂ†±„ÇíÂÖ®„Å¶ÁÑ°Âäπ„Å´„Åô„Çã„ÄÇ
 static void MBi_InvalidateGameInfoBssID(u8 *bssidp)
 {
     int     i;
@@ -1284,21 +1284,21 @@ static void MBi_InvalidateGameInfoBssID(u8 *bssidp)
             continue;
         }
 
-        // çÌèúëŒè€ÇÃÉfÅ[É^Ç∆îªíËÅB
-        mbrsp->list[i].lifetimeCount = 0;       // êeã@èÓïÒÇÃéıñΩÇÉ[ÉçÇ…ÇµÇƒÅAçÌèúÇ≥ÇπÇÈÅB
+        // ÂâäÈô§ÂØæË±°„ÅÆ„Éá„Éº„Çø„Å®Âà§ÂÆö„ÄÇ
+        mbrsp->list[i].lifetimeCount = 0;       // Ë¶™Ê©üÊÉÖÂ†±„ÅÆÂØøÂëΩ„Çí„Çº„É≠„Å´„Åó„Å¶„ÄÅÂâäÈô§„Åï„Åõ„Çã„ÄÇ
         MB_OUTPUT("The parent broadcast same beacon.: %d\n", i);
     }
 }
 
 
-// ÉQÅ[ÉÄèÓïÒÇÃå≈íËÉfÅ[É^ïîÇï™äÑÇµÇƒÉrÅ[ÉRÉìéÛêM
+// „Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÂõ∫ÂÆö„Éá„Éº„ÇøÈÉ®„ÇíÂàÜÂâ≤„Åó„Å¶„Éì„Éº„Ç≥„É≥Âèó‰ø°
 static void MBi_RecvFixedBeacon(int index)
 {
     MBGameInfoRecvList *grecvp = &mbrsp->list[index];
     u32     lastAddr = (u32)&grecvp->gameInfo + sizeof(MBGameInfoFixed);
     u8     *dstp;
 
-    // ÉVÅ[ÉPÉìÉXî‘çÜÇ™çXêVÇ≥ÇÍÇƒÇ®ÇÁÇ∏ÅAÇ©Ç¬ä˘Ç…éÊìæçœÇ›ÇÃÉrÅ[ÉRÉìÇ»ÇÁéÛêMÇµÇ»Ç¢ÅB
+    // „Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑„ÅåÊõ¥Êñ∞„Åï„Çå„Å¶„Åä„Çâ„Åö„ÄÅ„Åã„Å§Êó¢„Å´ÂèñÂæóÊ∏à„Åø„ÅÆ„Éì„Éº„Ç≥„É≥„Å™„ÇâÂèó‰ø°„Åó„Å™„ÅÑ„ÄÇ
     if (grecvp->gameInfo.seqNoFixed == brecvBuffp->seqNoFixed)
     {
         if (grecvp->getFlagmentFlag & (0x01 << brecvBuffp->data.fixed.flagmentNo))
@@ -1307,7 +1307,7 @@ static void MBi_RecvFixedBeacon(int index)
         }
     }
 
-    // éÛêMÉrÅ[ÉRÉìÇ™éÛêMÉoÉbÉtÉ@ÇÉIÅ[ÉoÅ[ÇµÇ»Ç¢Ç©É`ÉFÉbÉNÅB
+    // Âèó‰ø°„Éì„Éº„Ç≥„É≥„ÅåÂèó‰ø°„Éê„ÉÉ„Éï„Ç°„Çí„Ç™„Éº„Éê„Éº„Åó„Å™„ÅÑ„Åã„ÉÅ„Çß„ÉÉ„ÇØ„ÄÇ
     if (brecvBuffp->dataAttr == MB_BEACON_DATA_ATTR_FIXED_NORMAL)
     {
         dstp = (u8 *)&grecvp->gameInfo.fixed;
@@ -1317,16 +1317,16 @@ static void MBi_RecvFixedBeacon(int index)
         dstp = (u8 *)&grecvp->gameInfo.fixed.parent;
     }
     dstp += MB_BEACON_FIXED_DATA_SIZE * brecvBuffp->data.fixed.flagmentNo;
-    // ÉQÅ[ÉÄèÓïÒÉoÉbÉtÉ@ÇÃéÛêMÉAÉhÉåÉXÇéZèoÅB
+    // „Ç≤„Éº„É†ÊÉÖÂ†±„Éê„ÉÉ„Éï„Ç°„ÅÆÂèó‰ø°„Ç¢„Éâ„É¨„Çπ„ÇíÁÆóÂá∫„ÄÇ
 
     if ((u32)dstp + brecvBuffp->data.fixed.size > lastAddr)
     {
         MB_DEBUG_OUTPUT("recv beacon gInfoFixed Buffer over!\n");
-        // ÉoÉbÉtÉ@ÇÉIÅ[ÉoÅ[Ç∑ÇÈÉrÅ[ÉRÉìÉfÅ[É^ÇÕñ≥éãÇ∑ÇÈÅB
+        // „Éê„ÉÉ„Éï„Ç°„Çí„Ç™„Éº„Éê„Éº„Åô„Çã„Éì„Éº„Ç≥„É≥„Éá„Éº„Çø„ÅØÁÑ°Ë¶ñ„Åô„Çã„ÄÇ
         return;
     }
 
-    // éÛêMÉrÅ[ÉRÉìÇëŒè€ÉQÅ[ÉÄèÓïÒÉoÉbÉtÉ@Ç…ÉZÉbÉg
+    // Âèó‰ø°„Éì„Éº„Ç≥„É≥„ÇíÂØæË±°„Ç≤„Éº„É†ÊÉÖÂ†±„Éê„ÉÉ„Éï„Ç°„Å´„Çª„ÉÉ„Éà
     MB_DEBUG_OUTPUT("recv flagment= %2d  adr = 0x%x", brecvBuffp->data.fixed.flagmentNo, dstp);
     MI_CpuCopy16(brecvBuffp->data.fixed.data, dstp, brecvBuffp->data.fixed.size);
     grecvp->gameInfo.dataAttr = brecvBuffp->dataAttr;
@@ -1337,24 +1337,24 @@ static void MBi_RecvFixedBeacon(int index)
 }
 
 
-// ÉQÅ[ÉÄèÓïÒÇÃó¨ìÆÉfÅ[É^ïîÇï™äÑÇµÇƒÉrÅ[ÉRÉìéÛêM
+// „Ç≤„Éº„É†ÊÉÖÂ†±„ÅÆÊµÅÂãï„Éá„Éº„ÇøÈÉ®„ÇíÂàÜÂâ≤„Åó„Å¶„Éì„Éº„Ç≥„É≥Âèó‰ø°
 static void MBi_RecvVolatBeacon(int index)
 {
     int     i;
     MBGameInfoRecvList *grecvp = &mbrsp->list[index];
 
-    /* ÉÜÅ[ÉUíËã`ÉfÅ[É^ÇÕèÌÇ…éÛêMÇ∑ÇÈ */
+    /* „É¶„Éº„Ç∂ÂÆöÁæ©„Éá„Éº„Çø„ÅØÂ∏∏„Å´Âèó‰ø°„Åô„Çã */
     for (i = 0; i < MB_USER_VOLAT_DATA_SIZE; i++)
     {
         grecvp->gameInfo.volat.userVolatData[i] = brecvBuffp->data.volat.userVolatData[i];
     }
     MI_CpuCopy16(brecvBuffp, &grecvp->bssDesc.gameInfo.userGameInfo, WM_SIZE_USER_GAMEINFO);
 
-    // ÉÅÉìÉoÅ[èÓïÒçXêVÇåüèoÇµÇΩç€ÇÃèàóù
+    // „É°„É≥„Éê„ÉºÊÉÖÂ†±Êõ¥Êñ∞„ÇíÊ§úÂá∫„Åó„ÅüÈöõ„ÅÆÂá¶ÁêÜ
     if (grecvp->gameInfo.seqNoVolat != brecvBuffp->seqNoVolat)
     {
         if ((u8)(grecvp->gameInfo.seqNoVolat + 1) == brecvBuffp->seqNoVolat)
-        {                              // seqNoVolatÇ™ÇPÇ¬Ç∏ÇÍÇ»ÇÁÅAïœçXÇ≥ÇÍÇƒÇ¢Ç»Ç¢ÉÅÉìÉoÅ[èÓïÒÇÃà¯åpÇ¨
+        {                              // seqNoVolat„ÅåÔºë„Å§„Åö„Çå„Å™„Çâ„ÄÅÂ§âÊõ¥„Åï„Çå„Å¶„ÅÑ„Å™„ÅÑ„É°„É≥„Éê„ÉºÊÉÖÂ†±„ÅÆÂºïÁ∂ô„Åé
             for (i = 0; i < MB_MEMBER_MAX_NUM; i++)
             {
                 if (brecvBuffp->data.volat.changePlayerFlag & (0x02 << i))
@@ -1366,7 +1366,7 @@ static void MBi_RecvVolatBeacon(int index)
             mbrsp->validGameInfoFlag &= ~(0x0001 << index);
         }
         else
-        {                              // seqNoVolatÇ™Ç‡Ç¡Ç∆Ç∏ÇÍÇƒÇ¢ÇΩÇÁÅAÇ±ÇÍÇ‹Ç≈éÛêMÇµÇΩëSÉÅÉìÉoÅ[èÓïÒÇÉNÉäÉA
+        {                              // seqNoVolat„Åå„ÇÇ„Å£„Å®„Åö„Çå„Å¶„ÅÑ„Åü„Çâ„ÄÅ„Åì„Çå„Åæ„ÅßÂèó‰ø°„Åó„ÅüÂÖ®„É°„É≥„Éê„ÉºÊÉÖÂ†±„Çí„ÇØ„É™„Ç¢
             MI_CpuClear16(&grecvp->gameInfo.volat.member[0],
                           sizeof(MBUserInfo) * MB_MEMBER_MAX_NUM);
             grecvp->getPlayerFlag = 0;
@@ -1376,16 +1376,16 @@ static void MBi_RecvVolatBeacon(int index)
     }
     else if (grecvp->getPlayerFlag == brecvBuffp->data.volat.nowPlayerFlag)
     {
-        return;                        // ÉVÅ[ÉPÉìÉXî‘çÜÇ™çXêVÇ≥ÇÍÇƒÇ®ÇÁÇ∏ÅAÇ©Ç¬ä˘Ç…éÊìæçœÇ›ÇÃÉrÅ[ÉRÉìÇ»ÇÁéÛêMÇµÇ»Ç¢ÅB
+        return;                        // „Ç∑„Éº„Ç±„É≥„ÇπÁï™Âè∑„ÅåÊõ¥Êñ∞„Åï„Çå„Å¶„Åä„Çâ„Åö„ÄÅ„Åã„Å§Êó¢„Å´ÂèñÂæóÊ∏à„Åø„ÅÆ„Éì„Éº„Ç≥„É≥„Å™„ÇâÂèó‰ø°„Åó„Å™„ÅÑ„ÄÇ
     }
 
-    // ÉvÉåÉCÉÑÅ[èÓïÒÇÃì«Ç›èoÇµ
+    // „Éó„É¨„Ç§„É§„ÉºÊÉÖÂ†±„ÅÆË™≠„ÅøÂá∫„Åó
     grecvp->gameInfo.volat.nowPlayerNum = brecvBuffp->data.volat.nowPlayerNum;
     grecvp->gameInfo.volat.nowPlayerFlag = brecvBuffp->data.volat.nowPlayerFlag;
     grecvp->gameInfo.volat.changePlayerFlag = brecvBuffp->data.volat.changePlayerFlag;
     grecvp->getPlayerFlag |= 0x0001;
 
-    // äeÉÅÉìÉoÅ[ÇÃÉÜÅ[ÉUÅ[èÓïÒÇÃì«Ç›èoÇµ
+    // ÂêÑ„É°„É≥„Éê„Éº„ÅÆ„É¶„Éº„Ç∂„ÉºÊÉÖÂ†±„ÅÆË™≠„ÅøÂá∫„Åó
     for (i = 0; i < MB_SEND_MEMBER_MAX_NUM; i++)
     {
         int     playerNo = (int)brecvBuffp->data.volat.member[i].playerNo;
@@ -1401,10 +1401,10 @@ static void MBi_RecvVolatBeacon(int index)
 }
 
 
-// ÉXÉLÉÉÉìëŒè€ÇíPàÍêeã@Ç…ÉçÉbÉNÇ∑ÇÈ
+// „Çπ„Ç≠„É£„É≥ÂØæË±°„ÇíÂçò‰∏ÄË¶™Ê©ü„Å´„É≠„ÉÉ„ÇØ„Åô„Çã
 static void MBi_LockScanTarget(int index)
 {
-    /* ä˘Ç…ÉçÉbÉNíÜÇÃÉ^Å[ÉQÉbÉgÇ™Ç¢ÇÈÇ»ÇÁñ≥éã */
+    /* Êó¢„Å´„É≠„ÉÉ„ÇØ‰∏≠„ÅÆ„Çø„Éº„Ç≤„ÉÉ„Éà„Åå„ÅÑ„Çã„Å™„ÇâÁÑ°Ë¶ñ */
     if (mbrsp->nowScanTargetFlag)
     {
         return;
@@ -1416,8 +1416,8 @@ static void MBi_LockScanTarget(int index)
     }
     mbrsp->scanCountUnit = MB_SCAN_COUNT_UNIT_LOCKING;
 
-    mbrsp->nowScanTargetFlag = (u16)(0x01 << index);    // êVÇµÇ¢ÉXÉLÉÉÉìÉçÉbÉNëŒè€ÇÉrÉbÉgÇ≈é¶Ç∑ÅB
-    mbrsp->nowLockTimeCount = MB_LOCKTIME_MAX_COUNT;    // ÉXÉLÉÉÉìÉçÉbÉNéûä‘Çèâä˙âª
+    mbrsp->nowScanTargetFlag = (u16)(0x01 << index);    // Êñ∞„Åó„ÅÑ„Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÂØæË±°„Çí„Éì„ÉÉ„Éà„ÅßÁ§∫„Åô„ÄÇ
+    mbrsp->nowLockTimeCount = MB_LOCKTIME_MAX_COUNT;    // „Çπ„Ç≠„É£„É≥„É≠„ÉÉ„ÇØÊôÇÈñì„ÇíÂàùÊúüÂåñ
     MB_DEBUG_OUTPUT("scan target locked. : %x %x %x %x %x %x\n",
                     mbrsp->list[index].bssDesc.bssid[0],
                     mbrsp->list[index].bssDesc.bssid[1],
@@ -1427,7 +1427,7 @@ static void MBi_LockScanTarget(int index)
 }
 
 
-// ÉXÉLÉÉÉìëŒè€ÇÃÉçÉbÉNÇâèúÇ∑ÇÈÅB
+// „Çπ„Ç≠„É£„É≥ÂØæË±°„ÅÆ„É≠„ÉÉ„ÇØ„ÇíËß£Èô§„Åô„Çã„ÄÇ
 static void MBi_UnlockScanTarget(void)
 {
     if (mbrsp->nowScanTargetFlag == 0)
@@ -1447,7 +1447,7 @@ static void MBi_UnlockScanTarget(void)
 }
 
 
-// éÛêMÇµÇΩÉQÅ[ÉÄèÓïÒÇäÆëSÇ…çÌèúÅiÉQÅ[ÉÄèÓïÒóLå¯ÉtÉâÉOÇ‡çÌèúÅj
+// Âèó‰ø°„Åó„Åü„Ç≤„Éº„É†ÊÉÖÂ†±„ÇíÂÆåÂÖ®„Å´ÂâäÈô§Ôºà„Ç≤„Éº„É†ÊÉÖÂ†±ÊúâÂäπ„Éï„É©„Ç∞„ÇÇÂâäÈô§Ôºâ
 void MB_DeleteRecvGameInfo(int index)
 {
     mbrsp->usefulGameInfoFlag &= ~(0x0001 << index);
@@ -1456,7 +1456,7 @@ void MB_DeleteRecvGameInfo(int index)
 }
 
 
-// éÛêMÇµÇΩÉQÅ[ÉÄèÓïÒÇbssDescÇèúÇ¢ÇƒçÌèúÇ∑ÇÈÅB
+// Âèó‰ø°„Åó„Åü„Ç≤„Éº„É†ÊÉÖÂ†±„ÇíbssDesc„ÇíÈô§„ÅÑ„Å¶ÂâäÈô§„Åô„Çã„ÄÇ
 void MB_DeleteRecvGameInfoWithoutBssdesc(int index)
 {
     mbrsp->usefulGameInfoFlag &= ~(0x0001 << index);
@@ -1468,10 +1468,10 @@ void MB_DeleteRecvGameInfoWithoutBssdesc(int index)
     MI_CpuClear16(&(mbrsp->list[index].gameInfo), sizeof(MBGameInfo));
 }
 
-// éÛêMÇµÇΩêeã@èÓïÒç\ë¢ëÃÇ÷ÇÃÉ|ÉCÉìÉ^ÇéÊìæÇ∑ÇÈ
+// Âèó‰ø°„Åó„ÅüË¶™Ê©üÊÉÖÂ†±ÊßãÈÄ†‰Ωì„Å∏„ÅÆ„Éù„Ç§„É≥„Çø„ÇíÂèñÂæó„Åô„Çã
 MBGameInfoRecvList *MB_GetGameInfoRecvList(int index)
 {
-    // óLå¯Ç»ÉfÅ[É^Ç™Ç»ÇØÇÍÇŒNULLÇï‘Ç∑
+    // ÊúâÂäπ„Å™„Éá„Éº„Çø„Åå„Å™„Åë„Çå„Å∞NULL„ÇíËøî„Åô
     if ((mbrsp->usefulGameInfoFlag & (0x01 << index)) == 0)
     {
         return NULL;
@@ -1482,17 +1482,17 @@ MBGameInfoRecvList *MB_GetGameInfoRecvList(int index)
 
 
 //=========================================================
-// ÉÜÅ[ÉUVolatileÉfÅ[É^ÇÃê›íË
+// „É¶„Éº„Ç∂Volatile„Éá„Éº„Çø„ÅÆË®≠ÂÆö
 //=========================================================
 
 /*---------------------------------------------------------------------------*
   Name:         MB_SetSendVolatileCallback
 
-  Description:  É}ÉãÉ`ÉuÅ[ÉgÇÃÉrÅ[ÉRÉìëóêMÉRÅ[ÉãÉoÉbÉNÇê›íËÇµÇ‹Ç∑ÅB
+  Description:  „Éû„É´„ÉÅ„Éñ„Éº„Éà„ÅÆ„Éì„Éº„Ç≥„É≥ÈÄÅ‰ø°„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ„ÇíË®≠ÂÆö„Åó„Åæ„Åô„ÄÇ
   
-  Arguments:    callback    ëóêMäÆóπÇÃÉRÅ[ÉãÉoÉbÉNä÷êîÇ≈Ç∑ÅB
-                            ÉfÅ[É^Ç™ëóêMÇ≥ÇÍÇÈìxÇ…ÉRÅ[ÉãÉoÉbÉNÇ™åƒÇ—èoÇ≥ÇÍÇ‹Ç∑ÅB
-                timming     ÉRÅ[ÉãÉoÉbÉNî≠ê∂É^ÉCÉ~ÉìÉOÅB
+  Arguments:    callback    ÈÄÅ‰ø°ÂÆå‰∫Ü„ÅÆ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞„Åß„Åô„ÄÇ
+                            „Éá„Éº„Çø„ÅåÈÄÅ‰ø°„Åï„Çå„ÇãÂ∫¶„Å´„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ„ÅåÂëº„Å≥Âá∫„Åï„Çå„Åæ„Åô„ÄÇ
+                timming     „Ç≥„Éº„É´„Éê„ÉÉ„ÇØÁô∫Áîü„Çø„Ç§„Éü„É≥„Ç∞„ÄÇ
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1511,12 +1511,12 @@ void MB_SetSendVolatCallback(MBSendVolatCallbackFunc callback, u32 timming)
 /*---------------------------------------------------------------------------*
   Name:         MB_SetUserVolatData
 
-  Description:  É}ÉãÉ`ÉuÅ[ÉgÇÃÉrÅ[ÉRÉìíÜÇÃãÛÇ´óÃàÊÇ…ÉÜÅ[ÉUÉfÅ[É^Çê›íËÇµÇ‹Ç∑ÅB
+  Description:  „Éû„É´„ÉÅ„Éñ„Éº„Éà„ÅÆ„Éì„Éº„Ç≥„É≥‰∏≠„ÅÆÁ©∫„ÅçÈ†òÂüü„Å´„É¶„Éº„Ç∂„Éá„Éº„Çø„ÇíË®≠ÂÆö„Åó„Åæ„Åô„ÄÇ
   
-  Arguments:    ggid        MB_RegisterFileÇ≈ê›íËÇµÇΩÉvÉçÉOÉâÉÄÇÃggidÇéwíËÇµÇƒÅA
-                            Ç±ÇÃÉtÉ@ÉCÉãÇÃÉrÅ[ÉRÉìÇ…ÉÜÅ[ÉUÉfÅ[É^Çïtâ¡ÇµÇ‹Ç∑ÅB
-                userData    ê›íËÇ∑ÇÈÉÜÅ[ÉUÉfÅ[É^Ç÷ÇÃÉ|ÉCÉìÉ^ÅB
-                size        ê›íËÇ∑ÇÈÉÜÅ[ÉUÉfÅ[É^ÇÃÉTÉCÉY (ç≈ëÂ8ÉoÉCÉgÇ‹Ç≈)
+  Arguments:    ggid        MB_RegisterFile„ÅßË®≠ÂÆö„Åó„Åü„Éó„É≠„Ç∞„É©„É†„ÅÆggid„ÇíÊåáÂÆö„Åó„Å¶„ÄÅ
+                            „Åì„ÅÆ„Éï„Ç°„Ç§„É´„ÅÆ„Éì„Éº„Ç≥„É≥„Å´„É¶„Éº„Ç∂„Éá„Éº„Çø„Çí‰ªòÂä†„Åó„Åæ„Åô„ÄÇ
+                userData    Ë®≠ÂÆö„Åô„Çã„É¶„Éº„Ç∂„Éá„Éº„Çø„Å∏„ÅÆ„Éù„Ç§„É≥„Çø„ÄÇ
+                size        Ë®≠ÂÆö„Åô„Çã„É¶„Éº„Ç∂„Éá„Éº„Çø„ÅÆ„Çµ„Ç§„Ç∫ (ÊúÄÂ§ß8„Éê„Ç§„Éà„Åæ„Åß)
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1559,11 +1559,11 @@ void MB_SetUserVolatData(u32 ggid, const u8 *userData, u32 size)
 /*---------------------------------------------------------------------------*
   Name:         MB_GetUserVolatData
 
-  Description:  ÉrÅ[ÉRÉìíÜÇÃãÛÇ´óÃàÊÇ…Ç†ÇÈÉÜÅ[ÉUÉfÅ[É^ÇéÊìæÇµÇ‹Ç∑ÅB
+  Description:  „Éì„Éº„Ç≥„É≥‰∏≠„ÅÆÁ©∫„ÅçÈ†òÂüü„Å´„ÅÇ„Çã„É¶„Éº„Ç∂„Éá„Éº„Çø„ÇíÂèñÂæó„Åó„Åæ„Åô„ÄÇ
   
-  Arguments:    gameInfo    ScanéûÇ…éÊìæÇ∑ÇÈgameInfoÉpÉâÉÅÅ[É^Ç÷ÇÃÉ|ÉCÉìÉ^ÅB
+  Arguments:    gameInfo    ScanÊôÇ„Å´ÂèñÂæó„Åô„ÇãgameInfo„Éë„É©„É°„Éº„Çø„Å∏„ÅÆ„Éù„Ç§„É≥„Çø„ÄÇ
   
-  Returns:      ÉÜÅ[ÉUÉfÅ[É^Ç÷ÇÃÉ|ÉCÉìÉ^.
+  Returns:      „É¶„Éº„Ç∂„Éá„Éº„Çø„Å∏„ÅÆ„Éù„Ç§„É≥„Çø.
  *---------------------------------------------------------------------------*/
 void   *MB_GetUserVolatData(const WMGameInfo *gameInfo)
 {
@@ -1598,15 +1598,15 @@ void   *MB_GetUserVolatData(const WMGameInfo *gameInfo)
 /******************************************************************************/
 /* Unicode - SJIS */
 
-/* íËã`Ç™ñ≥Ç©Ç¡ÇΩÇÃÇ≈âûã}Ç≈ópà” */
+/* ÂÆöÁæ©„ÅåÁÑ°„Åã„Å£„Åü„ÅÆ„ÅßÂøúÊÄ•„ÅßÁî®ÊÑè */
 #define SJIS_HIGHER_CODE1_MIN   0x81
 #define SJIS_HIGHER_CODE1_MAX   0x9F
 #define SJIS_HIGHER_CODE2_MIN   0xE0
 #define SJIS_HIGHER_CODE2_MAX   0xFC
 
 // define data------------------------------------------
-#define TBL8140_ELEM_NUM                0xbd    // 8140tblÇÃóvëfêî
-#define TBL849f_ELEM_NUM                0x20    // 849ftblÇÃóvëfêî
+#define TBL8140_ELEM_NUM                0xbd    // 8140tbl„ÅÆË¶ÅÁ¥†Êï∞
+#define TBL849f_ELEM_NUM                0x20    // 849ftbl„ÅÆË¶ÅÁ¥†Êï∞
 
 typedef struct SjisUtf16Pare
 {
@@ -1630,7 +1630,7 @@ static const SjisUtf16Pare tblSJIS_UTF16_849f[TBL849f_ELEM_NUM];
 
 
 //======================================================
-// SJIS-BEÇ©ÇÁUTF16-LEÇ÷ÇÃïœä∑
+// SJIS-BE„Åã„ÇâUTF16-LE„Å∏„ÅÆÂ§âÊèõ
 //======================================================
 void MBi_ExSJIS_BEtoUTF16_LE(u8 *sjisp, u16 *unip, u16 length)
 {
@@ -1640,7 +1640,7 @@ void MBi_ExSJIS_BEtoUTF16_LE(u8 *sjisp, u16 *unip, u16 length)
     {
         if (((*sjisp >= SJIS_HIGHER_CODE1_MIN) && (*sjisp <= SJIS_HIGHER_CODE1_MAX))
             || ((*sjisp >= SJIS_HIGHER_CODE2_MIN) && (*sjisp <= SJIS_HIGHER_CODE2_MAX)))
-        {                              // SJISÇ©ÅH
+        {                              // SJIS„ÅãÔºü
             code = (u16)((u16)*sjisp++ << 8);
             code |= (u16)*sjisp++;
         }
@@ -1661,46 +1661,46 @@ void MBi_ExSJIS_BEtoUTF16_LE(u8 *sjisp, u16 *unip, u16 length)
         }
         else if ((code == 0x000d) || (code == 0x000a))
         {
-            *unip = code;              // â¸çsÉRÅ[Éh
+            *unip = code;              // ÊîπË°å„Ç≥„Éº„Éâ
 
         }
-        else if ((code >= 0x0020) && (code < 0x007e))   // ' ' Å` }
+        else if ((code >= 0x0020) && (code < 0x007e))   // ' ' „Äú }
         {
             *unip = code;
 
         }
-        else if ((code >= 0x00a1) && (code <= 0x00df))  // ° Å` ﬂ
+        else if ((code >= 0x00a1) && (code <= 0x00df))  // „ÄÇ „Äú „Çú
         {
             *unip = (u16)((code - 0x00a1) + 0xff61);
 
         }
-        else if ((code >= 0x8140) && (code <= 0x81fc))  // 'Å@' Å` Åõ
+        else if ((code >= 0x8140) && (code <= 0x81fc))  // '„ÄÄ' „Äú ‚óã
         {
-            // ÉoÉâÉoÉâÇ»ÇÃÇ≈ÅAÉeÅ[ÉuÉãà¯Ç´
+            // „Éê„É©„Éê„É©„Å™„ÅÆ„Åß„ÄÅ„ÉÜ„Éº„Éñ„É´Âºï„Åç
             *unip = tblSJIS_UTF16_8140[code - 0x8140].unicode;
 
         }
-        else if ((code >= 0x824f) && (code <= 0x8258))  // ÇO Å` ÇX
+        else if ((code >= 0x824f) && (code <= 0x8258))  // Ôºê „Äú Ôºô
         {
             *unip = (u16)((code - 0x824f) + 0xff10);
 
         }
-        else if ((code >= 0x8260) && (code <= 0x8279))  // Ç` Å` Çy
+        else if ((code >= 0x8260) && (code <= 0x8279))  // Ôº° „Äú Ôº∫
         {
             *unip = (u16)((code - 0x8260) + 0xff21);
 
         }
-        else if ((code >= 0x8281) && (code <= 0x829a))  // ÇÅ Å` Çö
+        else if ((code >= 0x8281) && (code <= 0x829a))  // ÔΩÅ „Äú ÔΩö
         {
             *unip = (u16)((code - 0x8281) + 0xff41);
 
         }
-        else if ((code >= 0x829f) && (code <= 0x82f1))  // Çü Å` ÇÒ
+        else if ((code >= 0x829f) && (code <= 0x82f1))  // „ÅÅ „Äú „Çì
         {
             *unip = (u16)((code - 0x829f) + 0x3041);
 
         }
-        else if ((code >= 0x8340) && (code <= 0x8396))  // É@ Å` Éñ  Å¶0x837fÇÕî≤ÇØ
+        else if ((code >= 0x8340) && (code <= 0x8396))  // „Ç° „Äú „É∂  ‚Äª0x837f„ÅØÊäú„Åë
         {
             *unip = (u16)((code - 0x8340) + 0x30a1);
             if (code == 0x837f)
@@ -1713,21 +1713,21 @@ void MBi_ExSJIS_BEtoUTF16_LE(u8 *sjisp, u16 *unip, u16 length)
             }
 
         }
-        else if ((code >= 0x839f) && (code <= 0x83b6))  // Éü Å` É∂
+        else if ((code >= 0x839f) && (code <= 0x83b6))  // Œë „Äú Œ©
         {
             *unip = (u16)((code - 0x839f) + 0x0391);
             if (code >= 0x83b0)
                 (*unip)++;
 
         }
-        else if ((code >= 0x83bf) && (code <= 0x83d6))  // Éø Å` É÷
+        else if ((code >= 0x83bf) && (code <= 0x83d6))  // Œ± „Äú œâ
         {
             *unip = (u16)((code - 0x83bf) + 0x03b1);
             if (code >= 0x83d0)
                 (*unip)++;
 
         }
-        else if ((code >= 0x8440) && (code <= 0x8460))  // Ñ@ Å` Ñ`
+        else if ((code >= 0x8440) && (code <= 0x8460))  // –ê „Äú –Ø
         {
             *unip = (u16)((code - 0x8440) + 0x0410);
             if (code == 0x8446)
@@ -1740,7 +1740,7 @@ void MBi_ExSJIS_BEtoUTF16_LE(u8 *sjisp, u16 *unip, u16 length)
             }
 
         }
-        else if ((code >= 0x8470) && (code <= 0x8491))  // Ñp Å` Ñë Å¶0x847fÇÕî≤ÇØ
+        else if ((code >= 0x8470) && (code <= 0x8491))  // –∞ „Äú —è ‚Äª0x847f„ÅØÊäú„Åë
         {
             *unip = (u16)((code - 0x8470) + 0x0430);
             if (code == 0x8476)
@@ -1761,9 +1761,9 @@ void MBi_ExSJIS_BEtoUTF16_LE(u8 *sjisp, u16 *unip, u16 length)
             }
 
         }
-        else if ((code >= 0x849f) && (code <= 0x84be))  // Ñü Å` Ñæ
+        else if ((code >= 0x849f) && (code <= 0x84be))  // ‚îÄ „Äú ‚ïÇ
         {
-            // ÉoÉâÉoÉâÇ»ÇÃÇ≈ÅAÉeÅ[ÉuÉãà¯Ç´
+            // „Éê„É©„Éê„É©„Å™„ÅÆ„Åß„ÄÅ„ÉÜ„Éº„Éñ„É´Âºï„Åç
             *unip = tblSJIS_UTF16_849f[code - 0x849f].unicode;
         }
         else
@@ -1777,7 +1777,7 @@ void MBi_ExSJIS_BEtoUTF16_LE(u8 *sjisp, u16 *unip, u16 length)
 
 
 //======================================================
-// UTF16-LEÇ©ÇÁSJIS-BEÇ÷ÇÃïœä∑
+// UTF16-LE„Åã„ÇâSJIS-BE„Å∏„ÅÆÂ§âÊèõ
 //======================================================
 void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
 {
@@ -1795,7 +1795,7 @@ void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
         }
         else if (code == 0x005c)
         {
-            sjis_le = 0x815f;          // Å_
+            sjis_le = 0x815f;          // Ôºº
 
         }
         else if (code == 0x203e)
@@ -1805,22 +1805,22 @@ void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
         }
         else if ((code == 0x000d) || (code == 0x000a))
         {
-            sjis_le = code;            // â¸çsÉRÅ[Éh
+            sjis_le = code;            // ÊîπË°å„Ç≥„Éº„Éâ
 
         }
-        else if ((code >= 0x0020) && (code < 0x007e))   // ' ' Å` }
+        else if ((code >= 0x0020) && (code < 0x007e))   // ' ' „Äú }
         {
             sjis_le = code;
 
         }
         else if ((code >= 0x00a2) && (code <= 0x00f7))
-        {                              // Unicode = 0x00a2 - 0x00f7 ÇÕÅA SJIS = 0x814c - 0x81f7Ç…îzíu
+        {                              // Unicode = 0x00a2 - 0x00f7 „ÅØ„ÄÅ SJIS = 0x814c - 0x81f7„Å´ÈÖçÁΩÆ
             sjis_le =
                 SearchUnicodeTable(code, (SjisUtf16Pare *) & tblSJIS_UTF16_8140[0xc],
                                    0x81f7 - 0x814c);
 
         }
-        else if ((code >= 0xff61) && (code <= 0xff9f))  // ° Å` ﬂ
+        else if ((code >= 0xff61) && (code <= 0xff9f))  // „ÄÇ „Äú „Çú
         {
             sjis_le = (u16)((code - 0xff61) + 0x00a1);
 
@@ -1832,22 +1832,22 @@ void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
         }
         else if ((code >= 0xff01) && (code <= 0xffe5))
         {
-            if ((code >= 0xff10) && (code <= 0xff19))   // ÇO Å` ÇX
+            if ((code >= 0xff10) && (code <= 0xff19))   // Ôºê „Äú Ôºô
             {
                 sjis_le = (u16)((code - 0xff10) + 0x824f);
 
             }
-            else if ((code >= 0xff21) && (code <= 0xff3a))      // Ç` Å` Çy
+            else if ((code >= 0xff21) && (code <= 0xff3a))      // Ôº° „Äú Ôº∫
             {
                 sjis_le = (u16)((code - 0xff21) + 0x8260);
 
             }
-            else if ((code >= 0xff41) && (code <= 0xff5a))      // ÇÅ Å` Çö
+            else if ((code >= 0xff41) && (code <= 0xff5a))      // ÔΩÅ „Äú ÔΩö
             {
                 sjis_le = (u16)((code - 0xff41) + 0x8281);
             }
             else
-            {                          // Unicode = 0xff01 - 0xffe5 ÇÕÅA SJIS = 0x8143 - 0x8197Ç…îzíu
+            {                          // Unicode = 0xff01 - 0xffe5 „ÅØ„ÄÅ SJIS = 0x8143 - 0x8197„Å´ÈÖçÁΩÆ
                 sjis_le =
                     SearchUnicodeTable(code, (SjisUtf16Pare *) & tblSJIS_UTF16_8140[3],
                                        0x8197 - 0x8143);
@@ -1856,12 +1856,12 @@ void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
         }
         else if ((code >= 0x3000) && (code <= 0x30fe))
         {
-            if ((code >= 0x3041) && (code <= 0x3093))   // Çü Å` ÇÒ
+            if ((code >= 0x3041) && (code <= 0x3093))   // „ÅÅ „Äú „Çì
             {
                 sjis_le = (u16)((code - 0x3041) + 0x829f);
 
             }
-            else if ((code >= 0x30a1) && (code <= 0x30f6))      // É@ Å` Éñ  Å¶0x837fÇÕî≤ÇØ
+            else if ((code >= 0x30a1) && (code <= 0x30f6))      // „Ç° „Äú „É∂  ‚Äª0x837f„ÅØÊäú„Åë
             {
                 sjis_le = (u16)((code - 0x30a1) + 0x8340);
                 if (code >= 0x30e0)
@@ -1870,21 +1870,21 @@ void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
                 }
             }
             else
-            {                          // Unicode = 0x3000 - 0x30fe ÇÕÅA SJIS = 0x8140 - 0x81acÇ…îzíu
+            {                          // Unicode = 0x3000 - 0x30fe „ÅØ„ÄÅ SJIS = 0x8140 - 0x81ac„Å´ÈÖçÁΩÆ
                 sjis_le =
                     SearchUnicodeTable(code, (SjisUtf16Pare *) & tblSJIS_UTF16_8140[0],
                                        0x81ac - 0x8140);
             }
 
         }
-        else if ((code >= 0x0391) && (code <= 0x03a9))  // Éü Å` É∂
+        else if ((code >= 0x0391) && (code <= 0x03a9))  // Œë „Äú Œ©
         {
             sjis_le = (u16)((code - 0x0391) + 0x839f);
             if (code >= 0x03a3)
                 (sjis_le)--;
 
         }
-        else if ((code >= 0x03b1) && (code <= 0x03c9))  // Éø Å` É÷
+        else if ((code >= 0x03b1) && (code <= 0x03c9))  // Œ± „Äú œâ
         {
             sjis_le = (u16)((code - 0x03b1) + 0x83bf);
             if (code >= 0x03c3)
@@ -1896,7 +1896,7 @@ void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
             sjis_le = 0x8446;
 
         }
-        else if ((code >= 0x0410) && (code <= 0x042f))  // Ñ@ Å` Ñ`
+        else if ((code >= 0x0410) && (code <= 0x042f))  // –ê „Äú –Ø
         {
             sjis_le = (u16)((code - 0x0410) + 0x8440);
             if (code >= 0x0416)
@@ -1905,7 +1905,7 @@ void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
             }
 
         }
-        else if ((code >= 0x0430) && (code <= 0x044f))  // Ñp Å` Ñë Å¶0x847fÇÕî≤ÇØ
+        else if ((code >= 0x0430) && (code <= 0x044f))  // –∞ „Äú —è ‚Äª0x847f„ÅØÊäú„Åë
         {
             sjis_le = (u16)((code - 0x0430) + 0x8470);
             if (code >= 0x0436)
@@ -1923,14 +1923,14 @@ void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
             sjis_le = 0x8476;
 
         }
-        else if ((code >= 0x2500) && (code <= 0x254b))  // Ñü Å` Ñæ
+        else if ((code >= 0x2500) && (code <= 0x254b))  // ‚îÄ „Äú ‚ïÇ
         {
             sjis_le =
                 SearchUnicodeTable(code, (SjisUtf16Pare *) & tblSJIS_UTF16_849f, TBL849f_ELEM_NUM);
 
         }
         else if (((code >= 0x2010) && (code <= 0x2312)) || ((code >= 0x25a0) && (code <= 0x266f)))
-        {                              // è„ãLÉRÅ[ÉhÇÕÅA SJIS = 0x815c - 0x81fcÇ…îzíu
+        {                              // ‰∏äË®ò„Ç≥„Éº„Éâ„ÅØ„ÄÅ SJIS = 0x815c - 0x81fc„Å´ÈÖçÁΩÆ
             sjis_le =
                 SearchUnicodeTable(code, (SjisUtf16Pare *) & tblSJIS_UTF16_8140[0x815c - 0x8140],
                                    0x81fc - 0x815c);
@@ -1941,9 +1941,9 @@ void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
             sjis_le = 0x8140;
         }
 
-        // ïœä∑ÇµÇΩSJISÉRÅ[ÉhÇÉoÉbÉtÉ@Ç…äiî[
+        // Â§âÊèõ„Åó„ÅüSJIS„Ç≥„Éº„Éâ„Çí„Éê„ÉÉ„Éï„Ç°„Å´Ê†ºÁ¥ç
         if (sjis_le & 0xff00)
-        {                              // ASCIIÉRÅ[ÉhÇ≈Ç»ÇØÇÍÇŒÅAÉrÉbÉOÉGÉìÉfÉBÉAÉìå`éÆÇ≈äiî[ÅB
+        {                              // ASCII„Ç≥„Éº„Éâ„Åß„Å™„Åë„Çå„Å∞„ÄÅ„Éì„ÉÉ„Ç∞„Ç®„É≥„Éá„Ç£„Ç¢„É≥ÂΩ¢Âºè„ÅßÊ†ºÁ¥ç„ÄÇ
             *sjisp++ = (u8)(sjis_le >> 8);
         }
         *sjisp++ = (u8)(sjis_le);
@@ -1951,7 +1951,7 @@ void MBi_ExUTF16_LEtoSJIS_BE(u8 *sjisp, u16 *unip, u16 length)
 }
 
 
-// Unicode -> SJISÇ÷ÇÃÉeÅ[ÉuÉãà¯Ç´
+// Unicode -> SJIS„Å∏„ÅÆ„ÉÜ„Éº„Éñ„É´Âºï„Åç
 static u16 SearchUnicodeTable(u16 unicode, SjisUtf16Pare * tblp, int elem_num)
 {
     elem_num++;
@@ -1968,14 +1968,14 @@ static u16 SearchUnicodeTable(u16 unicode, SjisUtf16Pare * tblp, int elem_num)
 
 
 //======================================================
-// SJIS-BE <-> UTF16-LEïœä∑ÇÃÉ`ÉFÉbÉN
+// SJIS-BE <-> UTF16-LEÂ§âÊèõ„ÅÆ„ÉÅ„Çß„ÉÉ„ÇØ
 //======================================================
 void MBi_CheckSJIS_BEtoUTF16_LE(void)
 {
     u16     sjis, sjis_be, rev_sjis, sjis_le;
     u16     unicode;
 
-    // ASCIIÉRÅ[ÉhÇÃÉ`ÉFÉbÉN
+    // ASCII„Ç≥„Éº„Éâ„ÅÆ„ÉÅ„Çß„ÉÉ„ÇØ
     for (sjis = 0; sjis < 0x00ff; sjis++)
     {
         unicode = 0;
@@ -1986,7 +1986,7 @@ void MBi_CheckSJIS_BEtoUTF16_LE(void)
         MB_DEBUG_OUTPUT("0x%x\t-> 0x%x\t-> 0x%x\n", sjis, unicode, sjis_le);
     }
 
-    // SJISÉRÅ[ÉhÇÃÉ`ÉFÉbÉN
+    // SJIS„Ç≥„Éº„Éâ„ÅÆ„ÉÅ„Çß„ÉÉ„ÇØ
     for (sjis = 0x8140; sjis < 0x84ff; sjis++)
     {
         unicode = 0;
@@ -2001,120 +2001,120 @@ void MBi_CheckSJIS_BEtoUTF16_LE(void)
 
 
 //======================================================
-// SJISÉRÅ[Éh->UnicodeÉeÅ[ÉuÉã
+// SJIS„Ç≥„Éº„Éâ->Unicode„ÉÜ„Éº„Éñ„É´
 //======================================================
 
-// 0x8140Å`
+// 0x8140„Äú
 static const SjisUtf16Pare tblSJIS_UTF16_8140[TBL8140_ELEM_NUM] = {
-    {0x8140, 0x3000},                  // Å@ 
-    {0x8141, 0x3001},                  // ÅA 
-    {0x8142, 0x3002},                  // ÅB 
-    {0x8143, 0xFF0C},                  // ÅC 
-    {0x8144, 0xFF0E},                  // ÅD 
-    {0x8145, 0x30FB},                  // ÅE 
-    {0x8146, 0xFF1A},                  // ÅF 
-    {0x8147, 0xFF1B},                  // ÅG 
-    {0x8148, 0xFF1F},                  // ÅH 
-    {0x8149, 0xFF01},                  // ÅI 
-    {0x814A, 0x309B},                  // ÅJ 
-    {0x814B, 0x309C},                  // ÅK 
-    {0x814C, 0x00B4},                  // ÅL 
-    {0x814D, 0xFF40},                  // ÅM 
-    {0x814E, 0x00A8},                  // ÅN 
-    {0x814F, 0xFF3E},                  // ÅO 
-    {0x8150, 0xFFE3},                  // ÅP 
-    {0x8151, 0xFF3F},                  // ÅQ 
-    {0x8152, 0x30FD},                  // ÅR 
-    {0x8153, 0x30FE},                  // ÅS 
-    {0x8154, 0x309D},                  // ÅT 
-    {0x8155, 0x309E},                  // ÅU 
-    {0x8156, 0x3003},                  // ÅV 
-    {0x8157, 0x4EDD},                  // ÅW 
-    {0x8158, 0x3005},                  // ÅX 
-    {0x8159, 0x3006},                  // ÅY 
-    {0x815A, 0x3007},                  // ÅZ 
-    {0x815B, 0x30FC},                  // Å[ 
-    {0x815C, 0x2015},                  // Å\ 
-    {0x815D, 0x2010},                  // Å] 
-    {0x815E, 0xFF0F},                  // Å^ 
-    {0x815F, 0x005C},                  // Å_ 
-    {0x8160, 0x301C},                  // Å` 
-    {0x8161, 0x2016},                  // Åa 
-    {0x8162, 0xFF5C},                  // Åb 
-    {0x8163, 0x2026},                  // Åc 
-    {0x8164, 0x2025},                  // Åd 
-    {0x8165, 0x2018},                  // Åe 
-    {0x8166, 0x2019},                  // Åf 
-    {0x8167, 0x201C},                  // Åg 
-    {0x8168, 0x201D},                  // Åh 
-    {0x8169, 0xFF08},                  // Åi 
-    {0x816A, 0xFF09},                  // Åj 
-    {0x816B, 0x3014},                  // Åk 
-    {0x816C, 0x3015},                  // Ål 
-    {0x816D, 0xFF3B},                  // Åm 
-    {0x816E, 0xFF3D},                  // Ån 
-    {0x816F, 0xFF5B},                  // Åo 
-    {0x8170, 0xFF5D},                  // Åp 
-    {0x8171, 0x3008},                  // Åq 
-    {0x8172, 0x3009},                  // År 
-    {0x8173, 0x300A},                  // Ås 
-    {0x8174, 0x300B},                  // Åt 
-    {0x8175, 0x300C},                  // Åu 
-    {0x8176, 0x300D},                  // Åv 
-    {0x8177, 0x300E},                  // Åw 
-    {0x8178, 0x300F},                  // Åx 
-    {0x8179, 0x3010},                  // Åy 
-    {0x817A, 0x3011},                  // Åz 
-    {0x817B, 0xFF0B},                  // Å{ 
-    {0x817C, 0x2212},                  // Å| 
-    {0x817D, 0x00B1},                  // Å} 
-    {0x817E, 0x00D7},                  // Å~ 
+    {0x8140, 0x3000},                  // „ÄÄ 
+    {0x8141, 0x3001},                  // „ÄÅ 
+    {0x8142, 0x3002},                  // „ÄÇ 
+    {0x8143, 0xFF0C},                  // Ôºå 
+    {0x8144, 0xFF0E},                  // Ôºé 
+    {0x8145, 0x30FB},                  // „Éª 
+    {0x8146, 0xFF1A},                  // Ôºö 
+    {0x8147, 0xFF1B},                  // Ôºõ 
+    {0x8148, 0xFF1F},                  // Ôºü 
+    {0x8149, 0xFF01},                  // ÔºÅ 
+    {0x814A, 0x309B},                  // „Çõ 
+    {0x814B, 0x309C},                  // „Çú 
+    {0x814C, 0x00B4},                  // ¬¥ 
+    {0x814D, 0xFF40},                  // ÔΩÄ 
+    {0x814E, 0x00A8},                  // ¬® 
+    {0x814F, 0xFF3E},                  // Ôºæ 
+    {0x8150, 0xFFE3},                  // ‚Äæ 
+    {0x8151, 0xFF3F},                  // Ôºø 
+    {0x8152, 0x30FD},                  // „ÉΩ 
+    {0x8153, 0x30FE},                  // „Éæ 
+    {0x8154, 0x309D},                  // „Çù 
+    {0x8155, 0x309E},                  // „Çû 
+    {0x8156, 0x3003},                  // „ÄÉ 
+    {0x8157, 0x4EDD},                  // ‰ªù 
+    {0x8158, 0x3005},                  // „ÄÖ 
+    {0x8159, 0x3006},                  // „ÄÜ 
+    {0x815A, 0x3007},                  // „Äá 
+    {0x815B, 0x30FC},                  // „Éº 
+    {0x815C, 0x2015},                  // ‚Äî 
+    {0x815D, 0x2010},                  // ‚Äê 
+    {0x815E, 0xFF0F},                  // Ôºè 
+    {0x815F, 0x005C},                  // Ôºº 
+    {0x8160, 0x301C},                  // „Äú 
+    {0x8161, 0x2016},                  // ‚Äñ 
+    {0x8162, 0xFF5C},                  // ÔΩú 
+    {0x8163, 0x2026},                  // ‚Ä¶ 
+    {0x8164, 0x2025},                  // ‚Ä• 
+    {0x8165, 0x2018},                  // ‚Äò 
+    {0x8166, 0x2019},                  // ‚Äô 
+    {0x8167, 0x201C},                  // ‚Äú 
+    {0x8168, 0x201D},                  // ‚Äù 
+    {0x8169, 0xFF08},                  // Ôºà 
+    {0x816A, 0xFF09},                  // Ôºâ 
+    {0x816B, 0x3014},                  // „Äî 
+    {0x816C, 0x3015},                  // „Äï 
+    {0x816D, 0xFF3B},                  // Ôºª 
+    {0x816E, 0xFF3D},                  // ÔºΩ 
+    {0x816F, 0xFF5B},                  // ÔΩõ 
+    {0x8170, 0xFF5D},                  // ÔΩù 
+    {0x8171, 0x3008},                  // „Äà 
+    {0x8172, 0x3009},                  // „Äâ 
+    {0x8173, 0x300A},                  // „Ää 
+    {0x8174, 0x300B},                  // „Äã 
+    {0x8175, 0x300C},                  // „Äå 
+    {0x8176, 0x300D},                  // „Äç 
+    {0x8177, 0x300E},                  // „Äé 
+    {0x8178, 0x300F},                  // „Äè 
+    {0x8179, 0x3010},                  // „Äê 
+    {0x817A, 0x3011},                  // „Äë 
+    {0x817B, 0xFF0B},                  // Ôºã 
+    {0x817C, 0x2212},                  // ‚àí 
+    {0x817D, 0x00B1},                  // ¬± 
+    {0x817E, 0x00D7},                  // √ó 
     {0x817F, 0x3000},                  //  
-    {0x8180, 0x00F7},                  // ÅÄ 
-    {0x8181, 0xFF1D},                  // ÅÅ 
-    {0x8182, 0x2260},                  // ÅÇ 
-    {0x8183, 0xFF1C},                  // ÅÉ 
-    {0x8184, 0xFF1E},                  // ÅÑ 
-    {0x8185, 0x2266},                  // ÅÖ 
-    {0x8186, 0x2267},                  // ÅÜ 
-    {0x8187, 0x221E},                  // Åá 
-    {0x8188, 0x2234},                  // Åà 
-    {0x8189, 0x2642},                  // Åâ 
-    {0x818A, 0x2640},                  // Åä 
-    {0x818B, 0x00B0},                  // Åã 
-    {0x818C, 0x2032},                  // Åå 
-    {0x818D, 0x2033},                  // Åç 
-    {0x818E, 0x2103},                  // Åé 
-    {0x818F, 0xFFE5},                  // Åè 
-    {0x8190, 0xFF04},                  // Åê 
-    {0x8191, 0x00A2},                  // Åë 
-    {0x8192, 0x00A3},                  // Åí 
-    {0x8193, 0xFF05},                  // Åì 
-    {0x8194, 0xFF03},                  // Åî 
-    {0x8195, 0xFF06},                  // Åï 
-    {0x8196, 0xFF0A},                  // Åñ 
-    {0x8197, 0xFF20},                  // Åó 
-    {0x8198, 0x00A7},                  // Åò 
-    {0x8199, 0x2606},                  // Åô 
-    {0x819A, 0x2605},                  // Åö 
-    {0x819B, 0x25CB},                  // Åõ 
-    {0x819C, 0x25CF},                  // Åú 
-    {0x819D, 0x25CE},                  // Åù 
-    {0x819E, 0x25C7},                  // Åû 
-    {0x819F, 0x25C6},                  // Åü 
-    {0x81A0, 0x25A1},                  // Å† 
-    {0x81A1, 0x25A0},                  // Å° 
-    {0x81A2, 0x25B3},                  // Å¢ 
-    {0x81A3, 0x25B2},                  // Å£ 
-    {0x81A4, 0x25BD},                  // Å§ 
-    {0x81A5, 0x25BC},                  // Å• 
-    {0x81A6, 0x203B},                  // Å¶ 
-    {0x81A7, 0x3012},                  // Åß 
-    {0x81A8, 0x2192},                  // Å® 
-    {0x81A9, 0x2190},                  // Å© 
-    {0x81AA, 0x2191},                  // Å™ 
-    {0x81AB, 0x2193},                  // Å´ 
-    {0x81AC, 0x3013},                  // Å¨ 
+    {0x8180, 0x00F7},                  // √∑ 
+    {0x8181, 0xFF1D},                  // Ôºù 
+    {0x8182, 0x2260},                  // ‚â† 
+    {0x8183, 0xFF1C},                  // Ôºú 
+    {0x8184, 0xFF1E},                  // Ôºû 
+    {0x8185, 0x2266},                  // ‚â¶ 
+    {0x8186, 0x2267},                  // ‚âß 
+    {0x8187, 0x221E},                  // ‚àû 
+    {0x8188, 0x2234},                  // ‚à¥ 
+    {0x8189, 0x2642},                  // ‚ôÇ 
+    {0x818A, 0x2640},                  // ‚ôÄ 
+    {0x818B, 0x00B0},                  // ¬∞ 
+    {0x818C, 0x2032},                  // ‚Ä≤ 
+    {0x818D, 0x2033},                  // ‚Ä≥ 
+    {0x818E, 0x2103},                  // ‚ÑÉ 
+    {0x818F, 0xFFE5},                  // ¬• 
+    {0x8190, 0xFF04},                  // ÔºÑ 
+    {0x8191, 0x00A2},                  // ¬¢ 
+    {0x8192, 0x00A3},                  // ¬£ 
+    {0x8193, 0xFF05},                  // ÔºÖ 
+    {0x8194, 0xFF03},                  // ÔºÉ 
+    {0x8195, 0xFF06},                  // ÔºÜ 
+    {0x8196, 0xFF0A},                  // Ôºä 
+    {0x8197, 0xFF20},                  // Ôº† 
+    {0x8198, 0x00A7},                  // ¬ß 
+    {0x8199, 0x2606},                  // ‚òÜ 
+    {0x819A, 0x2605},                  // ‚òÖ 
+    {0x819B, 0x25CB},                  // ‚óã 
+    {0x819C, 0x25CF},                  // ‚óè 
+    {0x819D, 0x25CE},                  // ‚óé 
+    {0x819E, 0x25C7},                  // ‚óá 
+    {0x819F, 0x25C6},                  // ‚óÜ 
+    {0x81A0, 0x25A1},                  // ‚ñ° 
+    {0x81A1, 0x25A0},                  // ‚ñ† 
+    {0x81A2, 0x25B3},                  // ‚ñ≥ 
+    {0x81A3, 0x25B2},                  // ‚ñ≤ 
+    {0x81A4, 0x25BD},                  // ‚ñΩ 
+    {0x81A5, 0x25BC},                  // ‚ñº 
+    {0x81A6, 0x203B},                  // ‚Äª 
+    {0x81A7, 0x3012},                  // „Äí 
+    {0x81A8, 0x2192},                  // ‚Üí 
+    {0x81A9, 0x2190},                  // ‚Üê 
+    {0x81AA, 0x2191},                  // ‚Üë 
+    {0x81AB, 0x2193},                  // ‚Üì 
+    {0x81AC, 0x3013},                  // „Äì 
     {0x81AD, 0x3000},                  //  
     {0x81AE, 0x3000},                  //  
     {0x81AF, 0x3000},                  //  
@@ -2126,14 +2126,14 @@ static const SjisUtf16Pare tblSJIS_UTF16_8140[TBL8140_ELEM_NUM] = {
     {0x81B5, 0x3000},                  //  
     {0x81B6, 0x3000},                  //  
     {0x81B7, 0x3000},                  //  
-    {0x81B8, 0x2208},                  // Å∏ 
-    {0x81B9, 0x220B},                  // Åπ 
-    {0x81BA, 0x2286},                  // Å∫ 
-    {0x81BB, 0x2287},                  // Åª 
-    {0x81BC, 0x2282},                  // Åº 
-    {0x81BD, 0x2283},                  // ÅΩ 
-    {0x81BE, 0x222A},                  // Åæ 
-    {0x81BF, 0x2229},                  // Åø 
+    {0x81B8, 0x2208},                  // ‚àà 
+    {0x81B9, 0x220B},                  // ‚àã 
+    {0x81BA, 0x2286},                  // ‚äÜ 
+    {0x81BB, 0x2287},                  // ‚äá 
+    {0x81BC, 0x2282},                  // ‚äÇ 
+    {0x81BD, 0x2283},                  // ‚äÉ 
+    {0x81BE, 0x222A},                  // ‚à™ 
+    {0x81BF, 0x2229},                  // ‚à© 
     {0x81C0, 0x3000},                  //  
     {0x81C1, 0x3000},                  //  
     {0x81C2, 0x3000},                  //  
@@ -2142,13 +2142,13 @@ static const SjisUtf16Pare tblSJIS_UTF16_8140[TBL8140_ELEM_NUM] = {
     {0x81C5, 0x3000},                  //  
     {0x81C6, 0x3000},                  //  
     {0x81C7, 0x3000},                  //  
-    {0x81C8, 0x2227},                  // Å» 
-    {0x81C9, 0x2228},                  // Å… 
-    {0x81CA, 0x00AC},                  // Å  
-    {0x81CB, 0x21D2},                  // ÅÀ 
-    {0x81CC, 0x21D4},                  // ÅÃ 
-    {0x81CD, 0x2200},                  // ÅÕ 
-    {0x81CE, 0x2203},                  // ÅŒ 
+    {0x81C8, 0x2227},                  // ‚àß 
+    {0x81C9, 0x2228},                  // ‚à® 
+    {0x81CA, 0x00AC},                  // ¬¨ 
+    {0x81CB, 0x21D2},                  // ‚áí 
+    {0x81CC, 0x21D4},                  // ‚áî 
+    {0x81CD, 0x2200},                  // ‚àÄ 
+    {0x81CE, 0x2203},                  // ‚àÉ 
     {0x81CF, 0x3000},                  //  
     {0x81D0, 0x3000},                  //  
     {0x81D1, 0x3000},                  //  
@@ -2160,21 +2160,21 @@ static const SjisUtf16Pare tblSJIS_UTF16_8140[TBL8140_ELEM_NUM] = {
     {0x81D7, 0x3000},                  //  
     {0x81D8, 0x3000},                  //  
     {0x81D9, 0x3000},                  //  
-    {0x81DA, 0x2220},                  // Å⁄ 
-    {0x81DB, 0x22A5},                  // Å€ 
-    {0x81DC, 0x2312},                  // Å‹ 
-    {0x81DD, 0x2202},                  // Å› 
-    {0x81DE, 0x2207},                  // Åﬁ 
-    {0x81DF, 0x2261},                  // Åﬂ 
-    {0x81E0, 0x2252},                  // Å‡ 
-    {0x81E1, 0x226A},                  // Å· 
-    {0x81E2, 0x226B},                  // Å‚ 
-    {0x81E3, 0x221A},                  // Å„ 
-    {0x81E4, 0x223D},                  // Å‰ 
-    {0x81E5, 0x221D},                  // ÅÂ 
-    {0x81E6, 0x2235},                  // ÅÊ 
-    {0x81E7, 0x222B},                  // ÅÁ 
-    {0x81E8, 0x222C},                  // ÅË 
+    {0x81DA, 0x2220},                  // ‚à† 
+    {0x81DB, 0x22A5},                  // ‚ä• 
+    {0x81DC, 0x2312},                  // ‚åí 
+    {0x81DD, 0x2202},                  // ‚àÇ 
+    {0x81DE, 0x2207},                  // ‚àá 
+    {0x81DF, 0x2261},                  // ‚â° 
+    {0x81E0, 0x2252},                  // ‚âí 
+    {0x81E1, 0x226A},                  // ‚â™ 
+    {0x81E2, 0x226B},                  // ‚â´ 
+    {0x81E3, 0x221A},                  // ‚àö 
+    {0x81E4, 0x223D},                  // ‚àΩ 
+    {0x81E5, 0x221D},                  // ‚àù 
+    {0x81E6, 0x2235},                  // ‚àµ 
+    {0x81E7, 0x222B},                  // ‚à´ 
+    {0x81E8, 0x222C},                  // ‚à¨ 
     {0x81E9, 0x3000},                  //  
     {0x81EA, 0x3000},                  //  
     {0x81EB, 0x3000},                  //  
@@ -2182,57 +2182,57 @@ static const SjisUtf16Pare tblSJIS_UTF16_8140[TBL8140_ELEM_NUM] = {
     {0x81EE, 0x3000},                  //  
     {0x81EE, 0x3000},                  //  
     {0x81EF, 0x3000},                  //  
-    {0x81F0, 0x212B},                  // Å 
-    {0x81F1, 0x2030},                  // ÅÒ 
-    {0x81F2, 0x266F},                  // ÅÚ 
-    {0x81F3, 0x266D},                  // ÅÛ 
-    {0x81F4, 0x266A},                  // ÅÙ 
-    {0x81F5, 0x2020},                  // Åı 
-    {0x81F6, 0x2021},                  // Åˆ 
-    {0x81F7, 0x00B6},                  // Å˜ 
+    {0x81F0, 0x212B},                  // ‚Ñ´ 
+    {0x81F1, 0x2030},                  // ‚Ä∞ 
+    {0x81F2, 0x266F},                  // ‚ôØ 
+    {0x81F3, 0x266D},                  // ‚ô≠ 
+    {0x81F4, 0x266A},                  // ‚ô™ 
+    {0x81F5, 0x2020},                  // ‚Ä† 
+    {0x81F6, 0x2021},                  // ‚Ä° 
+    {0x81F7, 0x00B6},                  // ¬∂ 
     {0x81F8, 0x3000},                  //  
     {0x81F9, 0x3000},                  //  
     {0x81FA, 0x3000},                  //  
     {0x81FB, 0x3000},                  //  
-    {0x81FC, 0x25EF},                  // Å¸ 
+    {0x81FC, 0x25EF},                  // ‚óØ 
 };
 
 
-// 0x849fÅ`
-// UnicodeÇ≈ÇÕÅA0x2500-0x254bÇÃä‘
+// 0x849f„Äú
+// Unicode„Åß„ÅØ„ÄÅ0x2500-0x254b„ÅÆÈñì
 static const SjisUtf16Pare tblSJIS_UTF16_849f[TBL849f_ELEM_NUM] = {
-    {0x849F, 0x2500},                  // Ñü 
-    {0x84A0, 0x2502},                  // Ñ† 
-    {0x84A1, 0x250C},                  // Ñ° 
-    {0x84A2, 0x2510},                  // Ñ¢ 
-    {0x84A3, 0x2518},                  // Ñ£ 
-    {0x84A4, 0x2514},                  // Ñ§ 
-    {0x84A5, 0x251C},                  // Ñ• 
-    {0x84A6, 0x252C},                  // Ñ¶ 
-    {0x84A7, 0x2524},                  // Ñß 
-    {0x84A8, 0x2534},                  // Ñ® 
-    {0x84A9, 0x253C},                  // Ñ© 
-    {0x84AA, 0x2501},                  // Ñ™ 
-    {0x84AB, 0x2503},                  // Ñ´ 
-    {0x84AC, 0x250F},                  // Ñ¨ 
-    {0x84AD, 0x2513},                  // Ñ≠ 
-    {0x84AE, 0x251B},                  // ÑÆ 
-    {0x84AF, 0x2517},                  // ÑØ 
-    {0x84B0, 0x2523},                  // Ñ∞ 
-    {0x84B1, 0x2533},                  // Ñ± 
-    {0x84B2, 0x252B},                  // Ñ≤ 
-    {0x84B3, 0x253B},                  // Ñ≥ 
-    {0x84B4, 0x254B},                  // Ñ¥ 
-    {0x84B5, 0x2520},                  // Ñµ 
-    {0x84B6, 0x252F},                  // Ñ∂ 
-    {0x84B7, 0x2528},                  // Ñ∑ 
-    {0x84B8, 0x2537},                  // Ñ∏ 
-    {0x84B9, 0x253F},                  // Ñπ 
-    {0x84BA, 0x251D},                  // Ñ∫ 
-    {0x84BB, 0x2530},                  // Ñª 
-    {0x84BC, 0x2525},                  // Ñº 
-    {0x84BD, 0x2538},                  // ÑΩ 
-    {0x84BE, 0x2542},                  // Ñæ 
+    {0x849F, 0x2500},                  // ‚îÄ 
+    {0x84A0, 0x2502},                  // ‚îÇ 
+    {0x84A1, 0x250C},                  // ‚îå 
+    {0x84A2, 0x2510},                  // ‚îê 
+    {0x84A3, 0x2518},                  // ‚îò 
+    {0x84A4, 0x2514},                  // ‚îî 
+    {0x84A5, 0x251C},                  // ‚îú 
+    {0x84A6, 0x252C},                  // ‚î¨ 
+    {0x84A7, 0x2524},                  // ‚î§ 
+    {0x84A8, 0x2534},                  // ‚î¥ 
+    {0x84A9, 0x253C},                  // ‚îº 
+    {0x84AA, 0x2501},                  // ‚îÅ 
+    {0x84AB, 0x2503},                  // ‚îÉ 
+    {0x84AC, 0x250F},                  // ‚îè 
+    {0x84AD, 0x2513},                  // ‚îì 
+    {0x84AE, 0x251B},                  // ‚îõ 
+    {0x84AF, 0x2517},                  // ‚îó 
+    {0x84B0, 0x2523},                  // ‚î£ 
+    {0x84B1, 0x2533},                  // ‚î≥ 
+    {0x84B2, 0x252B},                  // ‚î´ 
+    {0x84B3, 0x253B},                  // ‚îª 
+    {0x84B4, 0x254B},                  // ‚ïã 
+    {0x84B5, 0x2520},                  // ‚î† 
+    {0x84B6, 0x252F},                  // ‚îØ 
+    {0x84B7, 0x2528},                  // ‚î® 
+    {0x84B8, 0x2537},                  // ‚î∑ 
+    {0x84B9, 0x253F},                  // ‚îø 
+    {0x84BA, 0x251D},                  // ‚îù 
+    {0x84BB, 0x2530},                  // ‚î∞ 
+    {0x84BC, 0x2525},                  // ‚î• 
+    {0x84BD, 0x2538},                  // ‚î∏ 
+    {0x84BE, 0x2542},                  // ‚ïÇ 
 };
 
 #endif /* defined(MB_CHANGE_TO_UNICODE) */

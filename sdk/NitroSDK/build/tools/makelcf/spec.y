@@ -13,16 +13,16 @@
 
   $Log: spec.y,v $
   Revision 1.15  2006/05/10 02:06:00  yasu
-  CodeWarrior 2.x ‚Ö‚Ì‘Î‰ž
+  CodeWarrior 2.x ã¸ã®å¯¾å¿œ
 
   Revision 1.14  2005/09/01 04:30:52  yasu
-  Overlay Group ‚ÌƒTƒ|[ƒg
+  Overlay Group ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.13  2005/06/22 00:50:06  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.12  2005/06/20 12:21:48  yasu
-  Surffix -> Suffix C³
+  Surffix -> Suffix ä¿®æ­£
 
   Revision 1.11  2004/07/10 04:06:17  yasu
   Support command 'Library'
@@ -48,7 +48,7 @@
   change SDK prefix iris -> nitro
 
   Revision 1.4  2004/01/15 10:47:56  yasu
-  Static StackSize ‚ÌŽÀ‘•
+  Static StackSize ã®å®Ÿè£…
 
   Revision 1.3  2004/01/14 12:38:08  yasu
   Change OverlayName->OverlayDefs

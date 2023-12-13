@@ -1,113 +1,113 @@
-������������������������������������������������������������������������������
-��                                                                          ��
-��  Readme-NitroDWC-2_2plus8-080630.txt                                     ��
-��                                                                          ��
-��  NITRO-DWC 2.2 plus8                                                     ��
-��                                                                          ��
-��  June 30, 2008                                                           ��
-��                                                                          ��
-������������������������������������������������������������������������������
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+■                                                                          ■
+■  Readme-NitroDWC-2_2plus8-080630.txt                                     ■
+■                                                                          ■
+■  NITRO-DWC 2.2 plus8                                                     ■
+■                                                                          ■
+■  June 30, 2008                                                           ■
+■                                                                          ■
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-1. �͂��߂�
+1. はじめに
 ==============================================================================
-   NITRO-DWC���g�����ƂŁA�j���e���h�[DS�̃��C�����X�ʐM�i�C���t���X�g���N�`��
-   �[���[�h�j�𗘗p���ăC���^�[�l�b�g�ɐڑ����A�F�B��o�^������A�F�B�̏�Ԃ�
-   �Q�Ƃ�����A�����ɂ��������̃j���e���h�[DS�Ɛڑ����邱�Ƃ��ł��܂��B
+   NITRO-DWCを使うことで、ニンテンドーDSのワイヤレス通信（インフラストラクチャ
+   ーモード）を利用してインターネットに接続し、友達を登録したり、友達の状態を
+   参照したり、条件にあった他のニンテンドーDSと接続することができます。
 
-   �E�����A�N�Z�X�|�C���g�ւ̐ڑ��̂��߂̐ݒ�@�\
-   �E�����A�N�Z�X�|�C���g�����IP�A�h���X�擾
-   �E�C�V���F�؃T�[�o���g�p�����F��
-   �E���[�U���E�p�X���[�h���Q�[�����[�U���ӎ�����K�v�̂Ȃ����[�U�Ǘ��V�X�e��
-   �E�C���^�[�l�b�g�ɐڑ��������Ƃ����邩�ǂ������Q�[�����[�U���ӎ�����K�v��
-     �Ȃ��A�F�B�o�^�V�X�e��
-   �E�s���葽���𑊎�Ƃ����ڑ������ӎ����Ȃ������I�ȃ��b�V���ڑ��쐬
-   �E�F�B�Ɍ��肵���ڑ������ӎ����Ȃ������I�ȃ��b�V���ڑ��쐬
-   �E�F�B�Ɍ��肵���T�[�o�N���C�A���g�����ł̔������I�ȃ��b�V���ڑ��쐬
-   �EHTTP�ʐM�@�\
-   �E�ėp�����L���O�@�\
-   �E�_�E�����[�h�@�\(Wi-Fi�_�E�����[�h�T�[�r�X)
-   �E�s��������`�F�b�N�@�\
+   ・無線アクセスポイントへの接続のための設定機能
+   ・無線アクセスポイントからのIPアドレス取得
+   ・任天堂認証サーバを使用した認証
+   ・ユーザ名・パスワードをゲームユーザが意識する必要のないユーザ管理システム
+   ・インターネットに接続したことがあるかどうかをゲームユーザが意識する必要の
+     ない、友達登録システム
+   ・不特定多数を相手とした接続順を意識しない自動的なメッシュ接続作成
+   ・友達に限定した接続順を意識しない自動的なメッシュ接続作成
+   ・友達に限定したサーバクライアント方式での半自動的なメッシュ接続作成
+   ・HTTP通信機能
+   ・汎用ランキング機能
+   ・ダウンロード機能(Wi-Fiダウンロードサービス)
+   ・不正文字列チェック機能
 
-   NITRO-DWC�̓���m�F�����Ă�����͈ȉ��̒ʂ�ł��B
+   NITRO-DWCの動作確認が取れている環境は以下の通りです。
 
-   �ENITRO-SDK 4.2 (plus �p�b�`�K�p) 
-   �ENITRO-System 2007/11/26�� (patch1 �K�p) 
-   �ENITRO-WiFi 2.1 (plus3 �p�b�`�K�p) 
-   �ENITRO-SDK Crypto ���C�u���� 1.0(��)
-   �ECodeWarrior for NINTENDO DS 2.0 SP2 Patch2 
+   ・NITRO-SDK 4.2 (plus パッチ適用) 
+   ・NITRO-System 2007/11/26版 (patch1 適用) 
+   ・NITRO-WiFi 2.1 (plus3 パッチ適用) 
+   ・NITRO-SDK Crypto ライブラリ 1.0(※)
+   ・CodeWarrior for NINTENDO DS 2.0 SP2 Patch2 
 
    +-------------------------------------------------------------------------+
-   |�� NITRO-DWC 2.2 plus2 �ȍ~�ł́Anintendo spot�Ή��̂��߂�               |
-   |   NITRO-SDK Crypto ���C�u�������K�v�ɂȂ�܂����B                       |
+   |※ NITRO-DWC 2.2 plus2 以降では、nintendo spot対応のために               |
+   |   NITRO-SDK Crypto ライブラリが必要になりました。                       |
    +-------------------------------------------------------------------------+
 
-   NITRO-DWC�̏ڍׂɂ��ẮA
+   NITRO-DWCの詳細については、
    $(NITRODWC_ROOT)/docs/
    $(NITRODWC_ROOT)/man/ja_JP/index.html
-   �����ǂ݂��������B
+   をお読みください。
 
-2. �g�p���@
+2. 使用方法
 ==============================================================================
-   �C���X�g�[���̍ۂ́A�p�b�P�[�W�̃A�[�J�C�u��C�ӂ̃f�B���N�g���ɓW�J���A��
-   ���ϐ�NITRODWC_ROOT��NitroDWC�f�B���N�g���ւ̃p�X��ݒ肵�ĉ������B
+   インストールの際は、パッケージのアーカイブを任意のディレクトリに展開し、環
+   境変数NITRODWC_ROOTにNitroDWCディレクトリへのパスを設定して下さい。
    
-   ���ɉߋ��̃o�[�W������NITRO-DWC���C���X�g�[������Ă���ꍇ�́A��U�폜��
-   �邩�A���l�[������Ȃǂ��āA�{�p�b�P�[�W���㏑���R�s�[���Ȃ��ł��������B
-   �܂��ANITRO-DWC-DL�ɂ��㏑�����Ȃ��ł��������B
+   既に過去のバージョンのNITRO-DWCがインストールされている場合は、一旦削除す
+   るか、リネームするなどして、本パッケージを上書きコピーしないでください。
+   また、NITRO-DWC-DLにも上書きしないでください。
    
-   �Ȃ��ANITRO-DWC���g�p����ꍇ�́A�C�V���̔F�؃T�[�o�y��GameSpy�T�[�o�ɐڑ�
-   ����K�v������܂��B���̂��߁A�C���^�[�l�b�g�ɐڑ��ł�������K�{�ƂȂ��
-   ���B
+   なお、NITRO-DWCを使用する場合は、任天堂の認証サーバ及びGameSpyサーバに接続
+   する必要があります。そのため、インターネットに接続できる環境が必須となりま
+   す。
 
-3. �C�����e
+3. 修正内容
 ==============================================================================
-   NITRO-DWC 2.2 ������ ����̏C�����e�͈ȉ��̒ʂ�ł��B
+   NITRO-DWC 2.2 正式版 からの修正内容は以下の通りです。
 
-   Readme-NitroDWC-2_2plus8-080630 �ŏC�����ꂽ���e
+   Readme-NitroDWC-2_2plus8-080630 で修正された内容
    --------------------------------------------------------------------------
-   �E �����ؒf���o���̏����̎d�l�ύX
+   ・ 無線切断検出時の処理の仕様変更
 
-   Readme-NitroDWC-2_2plus7-080627 �ŏC�����ꂽ���e
+   Readme-NitroDWC-2_2plus7-080627 で修正された内容
    --------------------------------------------------------------------------
-   �E �}�b�`���C�N���L�����Z�������ۂɋH�ɃX�^�b�N�̃o�b�t�@���������
-      �C��
+   ・ マッチメイクをキャンセルした際に稀にスタックのバッファが溢れる問題を
+      修正
 
-   Readme-NitroDWC-2_2plus6-080624 �ŏC�����ꂽ���e
+   Readme-NitroDWC-2_2plus6-080624 で修正された内容
    --------------------------------------------------------------------------
-   �E DWC_CleanupInetAsync[Async]�֐�������̏����ŏ������I���Ȃ������C��
-   �E DWC_DebugConnectInetAsync�֐����K���f�[�^�A�N�Z�X��O�ɂȂ�����C��
-   �E NITRO-Crypto���C�u�����̑g�ݍ��݂Ɋւ��闘�֐��̌���
+   ・ DWC_CleanupInetAsync[Async]関数が特定の条件で処理が終わらない問題を修正
+   ・ DWC_DebugConnectInetAsync関数が必ずデータアクセス例外になる問題を修正
+   ・ NITRO-Cryptoライブラリの組み込みに関する利便性の向上
 
-   Readme-NitroDWC-2_2plus5-080612 �ŏC�����ꂽ���e
+   Readme-NitroDWC-2_2plus5-080612 で修正された内容
    --------------------------------------------------------------------------
-   �E AOSS��炭�炭�����X�^�[�g���g�p�����ꍇ�̐ڑ����̉��P�C���̎��~��
+   ・ AOSSやらくらく無線スタートを使用した場合の接続性の改善修正の取り止め
 
-   Readme-NitroDWC-2_2plus4-080609 �ŏC�����ꂽ���e
+   Readme-NitroDWC-2_2plus4-080609 で修正された内容
    --------------------------------------------------------------------------
-   �E �C���^�[�l�b�g�ւ̎����ڑ�������nintendo spot�̎d�l�ύX�ɑΉ�
-   �E DWC_CheckInet�֐��̕s����C��
-   �E �C���^�[�l�b�g�ւ̎����ڑ��������̃������m�ۂɊւ�������C��
+   ・ インターネットへの自動接続処理がnintendo spotの仕様変更に対応
+   ・ DWC_CheckInet関数の不具合を修正
+   ・ インターネットへの自動接続処理中のメモリ確保に関する問題を修正
 
-   Readme-NitroDWC-2_2plus3-080604 �ŏC�����ꂽ���e
+   Readme-NitroDWC-2_2plus3-080604 で修正された内容
    --------------------------------------------------------------------------
-   �E RELEASE�r���h���̃f�o�b�O�o�͂�}�����ăR�[�h�T�C�Y���팸
+   ・ RELEASEビルド時のデバッグ出力を抑制してコードサイズを削減
 
-   Readme-NitroDWC-2_2plus2-080602 �ŏC�����ꂽ���e
+   Readme-NitroDWC-2_2plus2-080602 で修正された内容
    --------------------------------------------------------------------------
-   �E �C���^�[�l�b�g�ւ̎����ڑ������� nintendo spot �ɑΉ�
+   ・ インターネットへの自動接続処理が nintendo spot に対応
 
-   Readme-NitroDWC-2_2plus-080516 �ŏC�����ꂽ���e
+   Readme-NitroDWC-2_2plus-080516 で修正された内容
    --------------------------------------------------------------------------
-   �E �}�b�`���C�N���̃^�C���A�E�g�����̕s����C�� 
-   �E HTTP�v���g�R���X�^�b�N�̃`�����N�]���R�[�f�B���O�Ɋւ���s��̏C�� 
-   �E �uNitroSDK4.2�v�ɑΉ� 
-   �E Wi-Fi�R�l�N�V�����ݒ���̃��b�Z�[�W�Ɋ܂܂��URL�̕ύX 
-   �E Wi-Fi�R�l�N�V�����ݒ�ł̕s��C�� 
-   �E Reliable�ʐM����UnReliable�ʐM�������ꍇ�̕s��C���E�d�l�ύX 
-   �E �_�E�����[�h���C�u�����Ńt�@�C�����X�g���擾����Ƃ��̕s��C��
-   �E NAT�z���ł��Ȃ�����P2P�ڑ����s���ۂ̕s����C��
+   ・ マッチメイク中のタイムアウト処理の不具合を修正 
+   ・ HTTPプロトコルスタックのチャンク転送コーディングに関する不具合の修正 
+   ・ 「NitroSDK4.2」に対応 
+   ・ Wi-Fiコネクション設定内のメッセージに含まれるURLの変更 
+   ・ Wi-Fiコネクション設定での不具合修正 
+   ・ Reliable通信中にUnReliable通信をした場合の不具合修正・仕様変更 
+   ・ ダウンロードライブラリでファイルリストを取得するときの不具合修正
+   ・ NAT越えできない環境でP2P接続を行う際の不具合を修正
 
-   �e���ڂ̏ڍׂɂ��ẮA�֐����t�@�����X�}�j���A���ɋL�ڂ̕ύX���������Q��
-   �������B
+   各項目の詳細については、関数リファレンスマニュアルに記載の変更履歴をご参照
+   下さい。
 
 

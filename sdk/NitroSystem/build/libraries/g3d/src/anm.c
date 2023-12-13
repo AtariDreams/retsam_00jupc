@@ -28,15 +28,15 @@
 #include <nnsys/g3d/binres/res_struct_accessor.h>
 
 //
-// ƒfƒtƒHƒ‹ƒg‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒuƒŒƒ“ƒhŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^(ƒOƒ[ƒoƒ‹•Ï”)
-// AnmObj‚âRenderObj‚ÌƒCƒjƒVƒƒƒ‰ƒCƒYŽž‚ÉƒZƒbƒg‚³‚ê‚éŠÖ”ƒ|ƒCƒ“ƒ^
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ¬ãƒ³ãƒ‰é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿(ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°)
+// AnmObjã‚„RenderObjã®ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚ºæ™‚ã«ã‚»ãƒƒãƒˆã•ã‚Œã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
 //
 NNSG3dFuncAnmBlendMat NNS_G3dFuncBlendMatDefault = &NNSi_G3dAnmBlendMat;
 NNSG3dFuncAnmBlendJnt NNS_G3dFuncBlendJntDefault = &NNSi_G3dAnmBlendJnt;
 NNSG3dFuncAnmBlendVis NNS_G3dFuncBlendVisDefault = &NNSi_G3dAnmBlendVis;
 
 //
-// .nsbmaƒtƒH[ƒ}ƒbƒg(ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“)‚ÌƒfƒtƒHƒ‹ƒgƒnƒ“ƒhƒ‰
+// .nsbmaãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ(ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³)ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ³ãƒ‰ãƒ©
 //
 NNSG3dFuncAnmMat NNS_G3dFuncAnmMatNsBmaDefault =
 #ifndef NNS_G3D_NSBMA_DISABLE
@@ -47,7 +47,7 @@ NNSG3dFuncAnmMat NNS_G3dFuncAnmMatNsBmaDefault =
 
 
 //
-// .nsbtpƒtƒH[ƒ}ƒbƒg(ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“)‚ÌƒfƒtƒHƒ‹ƒgƒnƒ“ƒhƒ‰
+// .nsbtpãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ(ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³)ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ³ãƒ‰ãƒ©
 //
 NNSG3dFuncAnmMat NNS_G3dFuncAnmMatNsBtpDefault =
 #ifndef NNS_G3D_NSBTP_DISABLE
@@ -58,7 +58,7 @@ NNSG3dFuncAnmMat NNS_G3dFuncAnmMatNsBtpDefault =
 
 
 //
-// .nsbtaƒtƒH[ƒ}ƒbƒg(ƒeƒNƒXƒ`ƒƒSRTƒAƒjƒ[ƒVƒ‡ƒ“)‚ÌƒfƒtƒHƒ‹ƒgƒnƒ“ƒhƒ‰
+// .nsbtaãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ(ãƒ†ã‚¯ã‚¹ãƒãƒ£SRTã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³)ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ³ãƒ‰ãƒ©
 //
 NNSG3dFuncAnmMat NNS_G3dFuncAnmMatNsBtaDefault =
 #ifndef NNS_G3D_NSBTA_DISABLE
@@ -69,7 +69,7 @@ NNSG3dFuncAnmMat NNS_G3dFuncAnmMatNsBtaDefault =
 
 
 //
-// .nsbcaƒtƒH[ƒ}ƒbƒg(ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“)‚ÌƒfƒtƒHƒ‹ƒgƒnƒ“ƒhƒ‰
+// .nsbcaãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ(ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³)ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ³ãƒ‰ãƒ©
 //
 NNSG3dFuncAnmJnt NNS_G3dFuncAnmJntNsBcaDefault =
 #ifndef NNS_G3D_NSBCA_DISABLE
@@ -80,7 +80,7 @@ NNSG3dFuncAnmJnt NNS_G3dFuncAnmJntNsBcaDefault =
 
 
 //
-// .nsbvaƒtƒH[ƒ}ƒbƒg(ƒ”ƒBƒWƒrƒŠƒeƒBƒAƒjƒ[ƒVƒ‡ƒ“)‚ÌƒfƒtƒHƒ‹ƒgƒnƒ“ƒhƒ‰
+// .nsbvaãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ(ãƒ´ã‚£ã‚¸ãƒ“ãƒªãƒ†ã‚£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³)ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ³ãƒ‰ãƒ©
 //
 NNSG3dFuncAnmVis NNS_G3dFuncAnmVisNsBvaDefault =
 #ifndef NNS_G3D_NSBVA_DISABLE
@@ -93,10 +93,10 @@ NNSG3dFuncAnmVis NNS_G3dFuncAnmVisNsBvaDefault =
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmBlendMat
 
-    ƒfƒtƒHƒ‹ƒg‚Ìƒ}ƒeƒŠƒAƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ƒuƒŒƒ“ƒhŠÖ”
-    pResult‚É‘Î‚µ‚ÄŠeƒAƒjƒ[ƒVƒ‡ƒ“‚ª‡”Ô‚Éƒf[ƒ^‚ð‘‚«‰Á‚¦‚Ä‚¢‚­B
-    •Ô‚è’l‚ÍpResult‚É—LŒø‚ÈŒ‹‰Ê‚ª“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
-    (ƒAƒjƒ[ƒVƒ‡ƒ“‚ªŒvŽZ‚³‚ê‚½‚©‚Ç‚¤‚©)‚É‚È‚éB
+    ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ¬ãƒ³ãƒ‰é–¢æ•°
+    pResultã«å¯¾ã—ã¦å„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒé †ç•ªã«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãåŠ ãˆã¦ã„ãã€‚
+    è¿”ã‚Šå€¤ã¯pResultã«æœ‰åŠ¹ãªçµæžœãŒå…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
+    (ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒè¨ˆç®—ã•ã‚ŒãŸã‹ã©ã†ã‹)ã«ãªã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 BOOL NNSi_G3dAnmBlendMat(NNSG3dMatAnmResult* pResult,
                          const NNSG3dAnmObj* pAnmObj,
@@ -113,7 +113,7 @@ BOOL NNSi_G3dAnmBlendMat(NNSG3dMatAnmResult* pResult,
         {
             if (matID < p->numMapData)
             {
-                // matID‚©‚çƒŠƒ\[ƒX“à‚ÌID‚Ö•ÏŠ·
+                // matIDã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹å†…ã®IDã¸å¤‰æ›
                 u32 dataIdx = p->mapData[matID];
                 if ((dataIdx & (NNS_G3D_ANMOBJ_MAPDATA_EXIST |
                                 NNS_G3D_ANMOBJ_MAPDATA_DISABLED)) ==
@@ -145,7 +145,7 @@ blendScaleVec_(VecFx32* v0, const VecFx32* v1, fx32 ratio, BOOL isV1One)
 {
     if (isV1One)
     {
-        // *v1‚ª(1, 1, 1)‚Ìê‡
+        // *v1ãŒ(1, 1, 1)ã®å ´åˆ
         v0->x += ratio;
         v0->y += ratio;
         v0->z += ratio;
@@ -163,9 +163,9 @@ blendScaleVec_(VecFx32* v0, const VecFx32* v1, fx32 ratio, BOOL isV1One)
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmBlendJnt
 
-    ƒfƒtƒHƒ‹ƒg‚ÌƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒuƒŒƒ“ƒhŠÖ”
-    •Ô‚è’l‚ÍpResult‚É—LŒø‚ÈŒ‹‰Ê‚ª“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
-    (ƒAƒjƒ[ƒVƒ‡ƒ“‚ªŒvŽZ‚³‚ê‚½‚©‚Ç‚¤‚©)‚É‚È‚éB
+    ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ¬ãƒ³ãƒ‰é–¢æ•°
+    è¿”ã‚Šå€¤ã¯pResultã«æœ‰åŠ¹ãªçµæžœãŒå…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
+    (ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒè¨ˆç®—ã•ã‚ŒãŸã‹ã©ã†ã‹)ã«ãªã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 #include <nitro/code32.h>
 BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
@@ -182,7 +182,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
     if (!pAnmObj->next)
     {
         //
-        // ’Pˆê‚ÌƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“‚µ‚©‘¶Ý‚µ‚È‚¢ê‡
+        // å˜ä¸€ã®ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã—ã‹å­˜åœ¨ã—ãªã„å ´åˆ
         //
         u32 dataIdx;
         if (nodeID < pAnmObj->numMapData)
@@ -210,7 +210,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
             else
             {
                 //
-                // nodeID‚Ö‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ª‘¶Ý‚µ‚È‚¢‚Ì‚ÅAƒ‚ƒfƒ‹ƒf[ƒ^‚ÌJointSRT‚ðŽg—p
+                // nodeIDã¸ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã—ãªã„ã®ã§ã€ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®JointSRTã‚’ä½¿ç”¨
                 //
                 return FALSE;
             }
@@ -223,7 +223,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
     else
     {
         //
-        // •¡”‚ÌƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“‚ª‘¶Ý‚·‚éê‡
+        // è¤‡æ•°ã®ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã™ã‚‹å ´åˆ
         //
         const NNSG3dAnmObj* p;
         NNSG3dJntAnmResult r;
@@ -240,8 +240,8 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
         do
         {
             //
-            // ŠeƒAƒjƒ[ƒVƒ‡ƒ“‚Ìratio‚Ì‡Œv‚ðŒvŽZ:
-            // ŠeƒAƒjƒ[ƒVƒ‡ƒ“‚Ìratio‚Í0ˆÈãFX32_ONEˆÈ‰º‚Å‚ ‚é•K—v‚ª‚ ‚éB
+            // å„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ratioã®åˆè¨ˆã‚’è¨ˆç®—:
+            // å„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ratioã¯0ä»¥ä¸ŠFX32_ONEä»¥ä¸‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
             //
             if (nodeID < p->numMapData)
             {
@@ -268,15 +268,15 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
         if (sumOfRatio == 0)
         {
             //
-            // nodeID‚Ö‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ª‚P‚Â‚à‚Â‚¢‚Ä‚¢‚È‚¢‚©A
-            // ratio‚ª‘S‚Ä0‚È‚Ì‚ÅAƒ‚ƒfƒ‹ƒf[ƒ^‚ÌJointSRT‚ðŽg—p‚·‚éB
+            // nodeIDã¸ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒï¼‘ã¤ã‚‚ã¤ã„ã¦ã„ãªã„ã‹ã€
+            // ratioãŒå…¨ã¦0ãªã®ã§ã€ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®JointSRTã‚’ä½¿ç”¨ã™ã‚‹ã€‚
             //
             return FALSE;
         }
 
         if (numBlend == 1)
         {
-            // ŽÀÛ‚É‚Í‚P‚Â‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚µ‚©ON‚É‚È‚Á‚Ä‚È‚¢
+            // å®Ÿéš›ã«ã¯ï¼‘ã¤ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã—ã‹ONã«ãªã£ã¦ãªã„
             NNSG3dFuncAnmJnt func = (NNSG3dFuncAnmJnt)pLastAnmObj->funcAnm;
             u32 dataIdx = pLastAnmObj->mapData[nodeID];
 
@@ -294,16 +294,16 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
             }
         }
 
-        // ƒuƒŒƒ“ƒh‘O‚ÉŒ‹‰Ê‚ðƒ[ƒƒNƒŠƒA‚µ‚È‚­‚Ä‚Í‚È‚ç‚È‚¢
+        // ãƒ–ãƒ¬ãƒ³ãƒ‰å‰ã«çµæžœã‚’ã‚¼ãƒ­ã‚¯ãƒªã‚¢ã—ãªãã¦ã¯ãªã‚‰ãªã„
         MI_CpuClearFast(pResult, sizeof(*pResult));
-        pResult->flag = (NNSG3dJntAnmResultFlag)-1; // ƒtƒ‰ƒO‚¾‚¯‚Í‘S‚Ä—§‚Ä‚Ä‚¨‚­•K—v‚ª‚ ‚éB
+        pResult->flag = (NNSG3dJntAnmResultFlag)-1; // ãƒ•ãƒ©ã‚°ã ã‘ã¯å…¨ã¦ç«‹ã¦ã¦ãŠãå¿…è¦ãŒã‚ã‚‹ã€‚
 
         p = pAnmObj;
         do
         {
             if (nodeID < p->numMapData)
             {
-                // nodeID‚©‚çƒŠƒ\[ƒX“à‚ÌƒCƒ“ƒfƒbƒNƒX‚É•ÏŠ·
+                // nodeIDã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹å†…ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«å¤‰æ›
                 u32 dataIdx = p->mapData[nodeID];
                 if ((dataIdx & (NNS_G3D_ANMOBJ_MAPDATA_EXIST |
                                 NNS_G3D_ANMOBJ_MAPDATA_DISABLED)) ==
@@ -325,7 +325,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
                         }
 #endif
 
-                        // ‚±‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‘S‘Ì‚É‘Î‚·‚ératio‚ð‹‚ß‚éB
+                        // ã“ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å…¨ä½“ã«å¯¾ã™ã‚‹ratioã‚’æ±‚ã‚ã‚‹ã€‚
                         if (sumOfRatio != FX32_ONE)
                         {
                             ratio = FX_Div(p->ratio, sumOfRatio);
@@ -335,7 +335,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
                             ratio = p->ratio;
                         }
 
-                        // scale, scaleEx0, scaleEx1‚ÌƒuƒŒƒ“ƒh
+                        // scale, scaleEx0, scaleEx1ã®ãƒ–ãƒ¬ãƒ³ãƒ‰
                         blendScaleVec_(&pResult->scale,
                                        &r.scale,
                                        ratio,
@@ -351,7 +351,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
                                        ratio,
                                        r.flag & NNS_G3D_JNTANM_RESULTFLAG_SCALEEX1_ONE);
 
-                        // •½sˆÚ“®¬•ª‚ÌƒuƒŒƒ“ƒh
+                        // å¹³è¡Œç§»å‹•æˆåˆ†ã®ãƒ–ãƒ¬ãƒ³ãƒ‰
                         if (!(r.flag & NNS_G3D_JNTANM_RESULTFLAG_TRANS_ZERO))
                         {
                             pResult->trans.x += (fx32)((fx64)ratio * r.trans.x >> FX32_SHIFT);
@@ -359,7 +359,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
                             pResult->trans.z += (fx32)((fx64)ratio * r.trans.z >> FX32_SHIFT);
                         }
 
-                        // ‰ñ“]s—ñ‚ÌƒuƒŒƒ“ƒh
+                        // å›žè»¢è¡Œåˆ—ã®ãƒ–ãƒ¬ãƒ³ãƒ‰
                         if (!(r.flag & NNS_G3D_JNTANM_RESULTFLAG_ROT_ZERO))
                         {
                             pResult->rot._00 += ratio * r.rot._00 >> FX32_SHIFT;
@@ -387,7 +387,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
         }
         while(p);
 
-        // ŠOÏ‚ðŽg—p‚µ‚Ä3s–Ú‚ð‹‚ß‚é
+        // å¤–ç©ã‚’ä½¿ç”¨ã—ã¦3è¡Œç›®ã‚’æ±‚ã‚ã‚‹
         VEC_CrossProduct((VecFx32*)&pResult->rot._00,
                          (VecFx32*)&pResult->rot._10,
                          (VecFx32*)&pResult->rot._20);
@@ -400,7 +400,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
             (pResult->rot._01 == 0) &&
             (pResult->rot._02 == 0))
         {
-            // ƒuƒŒƒ“ƒhŒ‹‰Ê‚ÌXŽ²‚ªƒ[ƒƒxƒNƒgƒ‹‚É‚È‚è‚Ü‚µ‚½BƒuƒŒƒ“ƒh‚µ‚È‚¢ó‘Ô‚É–ß‚µ‚Ü‚·B
+            // ãƒ–ãƒ¬ãƒ³ãƒ‰çµæžœã®Xè»¸ãŒã‚¼ãƒ­ãƒ™ã‚¯ãƒˆãƒ«ã«ãªã‚Šã¾ã—ãŸã€‚ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ãªã„çŠ¶æ…‹ã«æˆ»ã—ã¾ã™ã€‚
             MI_CpuCopy32(&keepAxisX, &pResult->rot._00, sizeof(VecFx32));
         }
         else
@@ -412,7 +412,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
             (pResult->rot._21 == 0) &&
             (pResult->rot._22 == 0))
         {
-            // ƒuƒŒƒ“ƒhŒ‹‰Ê‚ÌZŽ²‚ªƒ[ƒƒxƒNƒgƒ‹‚É‚È‚è‚Ü‚µ‚½BƒuƒŒƒ“ƒh‚µ‚È‚¢ó‘Ô‚É–ß‚µ‚Ü‚·B
+            // ãƒ–ãƒ¬ãƒ³ãƒ‰çµæžœã®Zè»¸ãŒã‚¼ãƒ­ãƒ™ã‚¯ãƒˆãƒ«ã«ãªã‚Šã¾ã—ãŸã€‚ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ãªã„çŠ¶æ…‹ã«æˆ»ã—ã¾ã™ã€‚
             MI_CpuCopy32(&keepAxisZ, &pResult->rot._20, sizeof(VecFx32));
         }
         else
@@ -421,7 +421,7 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
         }
 #endif
 
-        // 3Ž²‚Æ‚à’¼Œð‚³‚¹‚Ä‚¨‚­
+        // 3è»¸ã¨ã‚‚ç›´äº¤ã•ã›ã¦ãŠã
         VEC_CrossProduct((VecFx32*)&pResult->rot._20,
                          (VecFx32*)&pResult->rot._00,
                          (VecFx32*)&pResult->rot._10);
@@ -435,8 +435,8 @@ BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult* pResult,
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmBlendVis
 
-    ƒfƒtƒHƒ‹ƒg‚ÌƒrƒWƒrƒŠƒeƒBƒAƒjƒ[ƒVƒ‡ƒ“ƒuƒŒƒ“ƒhŠÖ”
-    Œ‹‰Ê‚Ì˜_—˜a‚ð‚Æ‚Á‚Ä‚¢‚­
+    ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ“ã‚¸ãƒ“ãƒªãƒ†ã‚£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ¬ãƒ³ãƒ‰é–¢æ•°
+    çµæžœã®è«–ç†å’Œã‚’ã¨ã£ã¦ã„ã
  *---------------------------------------------------------------------------*/
 BOOL NNSi_G3dAnmBlendVis(NNSG3dVisAnmResult* pResult,
                          const NNSG3dAnmObj* pAnmObj,
@@ -453,7 +453,7 @@ BOOL NNSi_G3dAnmBlendVis(NNSG3dVisAnmResult* pResult,
     {
         if (nodeID < p->numMapData)
         {
-            // nodeID‚©‚çƒŠƒ\[ƒX“à‚ÌID‚Ö•ÏŠ·
+            // nodeIDã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹å†…ã®IDã¸å¤‰æ›
             u32 dataIdx = p->mapData[nodeID];
 
             if ((dataIdx & (NNS_G3D_ANMOBJ_MAPDATA_EXIST |
@@ -482,16 +482,16 @@ BOOL NNSi_G3dAnmBlendVis(NNSG3dVisAnmResult* pResult,
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ƒOƒ[ƒoƒ‹•Ï”
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //
 
 /*---------------------------------------------------------------------------*
     NNS_G3dAnmFmtNum
 
-    NNS_G3dAnmObjInitFuncArray‚É“o˜^‚³‚ê‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒH[ƒ}ƒbƒg‚Ì”B
-    ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒH[ƒ}ƒbƒg‚ð’Ç‰Á‚·‚éê‡‚ÍA‚±‚Ì’l‚ð‘‚â‚µA
-    (NNS_G3D_ANMFMT_MAXˆÈ‰º‚Å‚È‚­‚Ä‚Í‚È‚ç‚È‚¢)NNS_G3dAnmObjInitFuncArray‚É
-    ƒGƒ“ƒgƒŠ‚ð’Ç‰Á‚·‚é‚±‚Æ
+    NNS_G3dAnmObjInitFuncArrayã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®æ•°ã€‚
+    ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã‚’è¿½åŠ ã™ã‚‹å ´åˆã¯ã€ã“ã®å€¤ã‚’å¢—ã‚„ã—ã€
+    (NNS_G3D_ANMFMT_MAXä»¥ä¸‹ã§ãªãã¦ã¯ãªã‚‰ãªã„)NNS_G3dAnmObjInitFuncArrayã«
+    ã‚¨ãƒ³ãƒˆãƒªã‚’è¿½åŠ ã™ã‚‹ã“ã¨
  *---------------------------------------------------------------------------*/
 u32 NNS_G3dAnmFmtNum = 5;
 

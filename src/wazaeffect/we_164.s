@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_164.s
- * @brief	‚Ý‚ª‚í‚è			164
+ * @brief	ã¿ãŒã‚ã‚Š			164
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚Ý‚ª‚í‚è			164
+//	â– ã¿ãŒã‚ã‚Š			164
 //
 //
 // =============================================================================
@@ -100,7 +100,7 @@ SIDE_ENEMY:
 /*
 	POKEOAM_RES_INIT
 	POKEOAM_RES_LOAD	0
-	///< ŽÀ‘Ô
+	///< å®Ÿæ…‹
 	FUNC_CALL			WEST_SP_WE_SSP_POKE_VANISH, 2, WE_TOOL_M1, 1
 	POKEOAM_DROP		WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 	WAIT_FLAG
@@ -111,10 +111,10 @@ SIDE_ENEMY:
 	WAIT_FLAG
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_0
 	
-	///< ƒ|ƒPƒ‚ƒ“‚·‚è‘Ö‚¦
+	///< ãƒã‚±ãƒ¢ãƒ³ã™ã‚Šæ›¿ãˆ
 	HENSIN_ON			WE_HENSIN_MIGAWARI
 	
-	///< •Ïgƒ|ƒP
+	///< å¤‰èº«ãƒã‚±
 	POKEOAM_RES_LOAD	1
 	POKEOAM_DROP		WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_1, WEDEF_POKE_RES_1,
 	

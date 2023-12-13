@@ -2,7 +2,7 @@
 /**
  *
  *@file		render_oam.c
- *@brief	ƒŒƒ“ƒ_ƒ‰[—pƒOƒ[ƒoƒ‹OAMƒ}ƒl[ƒWƒƒƒVƒXƒeƒ€
+ *@brief	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç”¨ã‚°ãƒ­ãƒ¼ãƒãƒ«OAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚·ã‚¹ãƒ†ãƒ 
  *@author	tomoya takahashi
  *@data		2005.09.09
  *
@@ -20,29 +20,29 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒOƒ[ƒoƒ‹OAMƒ}ƒl[ƒWƒƒƒf[ƒ^
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct{
-	NNSG2dOamManagerInstance MainMan;	// ƒƒCƒ“OAM
-	NNSG2dOamManagerInstance SubMan;	// ƒTƒuOAM
+	NNSG2dOamManagerInstance MainMan;	// ãƒ¡ã‚¤ãƒ³OAM
+	NNSG2dOamManagerInstance SubMan;	// ã‚µãƒ–OAM
 	int heap;
 } REND_OAM_DATA;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static BOOL CallBackAddOamMain( const GXOamAttr* pOam, u16 affineIndex, BOOL /*bDoubleAffine*/ );
@@ -51,39 +51,39 @@ static u16 CallBackAddAffineMain( const MtxFx22* mtx );
 static u16 CallBackAddAffineSub( const MtxFx22* mtx );
 
 
-// ‚±‚ê‚Í’ÊMƒAƒCƒRƒ“—p‚ğŠm•Û‚µ‚Ü‚¹‚ñ
+// ã“ã‚Œã¯é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã‚’ç¢ºä¿ã—ã¾ã›ã‚“
 static void	REND_OAMInit_Simple(int mainOamStart, int mainOamNum, int mainAffineStart, int mainAffineNum,  int subOamStart, int subOamNum, int subAffineStart, int subAffineNum, int heap);
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-static REND_OAM_DATA* RendOam;		//@ƒŒƒ“ƒ_ƒ‰‚Å—p‚ÌOAMƒf[ƒ^
+static REND_OAM_DATA* RendOam;		//ã€€ãƒ¬ãƒ³ãƒ€ãƒ©ã§ç”¨ã®OAMãƒ‡ãƒ¼ã‚¿
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŒƒ“ƒ_ƒ‰‚ªg‚¤OAMƒ}ƒl[ƒWƒƒ‚Ìì¬
+ *@brief	ãƒ¬ãƒ³ãƒ€ãƒ©ãŒä½¿ã†OAMãƒãƒãƒ¼ã‚¸ãƒ£ã®ä½œæˆ
  *
- *@param	mainOamStart		ƒƒCƒ“OAMŠÇ—ŠJn”Ô†
- *@param	mainOamNum			ƒƒCƒ“OAMŠÇ—”
- *@param	mainAffineStart		ƒƒCƒ“ƒAƒtƒBƒ“ŠÇ—ŠJn”Ô†
- *@param	mainAffineNum		ƒƒCƒ“ƒAƒtƒBƒ“ŠÇ—”
- *@param	subOamStart			ƒTƒuOAMŠÇ—ŠJn”Ô†
- *@param	subOamNum			ƒTƒuOAMŠÇ—”
- *@param	subAffineStart		ƒTƒuƒAƒtƒBƒ“ŠÇ—ŠJn”Ô†
- *@param	subAffineNum		ƒTƒuƒAƒtƒBƒ“ŠÇ—”
- *@param	heap				g—pƒq[ƒv
+ *@param	mainOamStart		ãƒ¡ã‚¤ãƒ³OAMç®¡ç†é–‹å§‹ç•ªå·
+ *@param	mainOamNum			ãƒ¡ã‚¤ãƒ³OAMç®¡ç†æ•°
+ *@param	mainAffineStart		ãƒ¡ã‚¤ãƒ³ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é–‹å§‹ç•ªå·
+ *@param	mainAffineNum		ãƒ¡ã‚¤ãƒ³ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†æ•°
+ *@param	subOamStart			ã‚µãƒ–OAMç®¡ç†é–‹å§‹ç•ªå·
+ *@param	subOamNum			ã‚µãƒ–OAMç®¡ç†æ•°
+ *@param	subAffineStart		ã‚µãƒ–ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é–‹å§‹ç•ªå·
+ *@param	subAffineNum		ã‚µãƒ–ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†æ•°
+ *@param	heap				ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
- * ‚±‚±‚Åì¬‚³‚ê‚½OAMƒ}ƒl[ƒWƒƒ‚ğŠF‚Åg—p‚·‚é–‚É‚È‚è‚Ü‚·B
+ * ã“ã“ã§ä½œæˆã•ã‚ŒãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’çš†ã§ä½¿ç”¨ã™ã‚‹äº‹ã«ãªã‚Šã¾ã™ã€‚
  *
  *
- * ƒƒCƒ“–Ê‚Ì0`4‚ğ’ÊMƒAƒCƒRƒ“‚ªg—p‚·‚é‚½‚ß@
- * ‰½‚à‚µ‚È‚­‚Ä‚àƒfƒtƒHƒ‹ƒg‚Å’ÊM—p‚ÉŠm•Û‚µ‚Ü‚·
+ * ãƒ¡ã‚¤ãƒ³é¢ã®0ã€œ4ã‚’é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ãŒä½¿ç”¨ã™ã‚‹ãŸã‚ã€€
+ * ä½•ã‚‚ã—ãªãã¦ã‚‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§é€šä¿¡ç”¨ã«ç¢ºä¿ã—ã¾ã™
  *
  *
  */
@@ -95,7 +95,7 @@ void	REND_OAMInit(int mainOamStart, int mainOamNum, int mainAffineStart, int mai
 	int ma_start;
 	int ma_num;
 	
-	// •K‚¸4`124‚ÌŠÔ‚Ì’l‚É‚·‚é
+	// å¿…ãš4ã€œ124ã®é–“ã®å€¤ã«ã™ã‚‹
 	if( mainOamStart < 4 ){
 		mo_start = 4;
 
@@ -109,7 +109,7 @@ void	REND_OAMInit(int mainOamStart, int mainOamNum, int mainAffineStart, int mai
 		mo_num	 = mainOamNum;
 	}
 
-	// •K‚¸1`31‚ÌŠÔ‚Ì’l‚É‚·‚é
+	// å¿…ãš1ã€œ31ã®é–“ã®å€¤ã«ã™ã‚‹
 	if( mainAffineStart < 1 ){
 		ma_start = 1;
 
@@ -131,21 +131,21 @@ void	REND_OAMInit(int mainOamStart, int mainOamNum, int mainAffineStart, int mai
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŒƒ“ƒ_ƒ‰‚ªg‚¤OAMƒ}ƒl[ƒWƒƒ‚Ìì¬
+ *@brief	ãƒ¬ãƒ³ãƒ€ãƒ©ãŒä½¿ã†OAMãƒãƒãƒ¼ã‚¸ãƒ£ã®ä½œæˆ
  *
- *@param	mainOamStart		ƒƒCƒ“OAMŠÇ—ŠJn”Ô†
- *@param	mainOamNum			ƒƒCƒ“OAMŠÇ—”
- *@param	mainAffineStart		ƒƒCƒ“ƒAƒtƒBƒ“ŠÇ—ŠJn”Ô†
- *@param	mainAffineNum		ƒƒCƒ“ƒAƒtƒBƒ“ŠÇ—”
- *@param	subOamStart			ƒTƒuOAMŠÇ—ŠJn”Ô†
- *@param	subOamNum			ƒTƒuOAMŠÇ—”
- *@param	subAffineStart		ƒTƒuƒAƒtƒBƒ“ŠÇ—ŠJn”Ô†
- *@param	subAffineNum		ƒTƒuƒAƒtƒBƒ“ŠÇ—”
- *@param	heap				g—pƒq[ƒv
+ *@param	mainOamStart		ãƒ¡ã‚¤ãƒ³OAMç®¡ç†é–‹å§‹ç•ªå·
+ *@param	mainOamNum			ãƒ¡ã‚¤ãƒ³OAMç®¡ç†æ•°
+ *@param	mainAffineStart		ãƒ¡ã‚¤ãƒ³ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é–‹å§‹ç•ªå·
+ *@param	mainAffineNum		ãƒ¡ã‚¤ãƒ³ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†æ•°
+ *@param	subOamStart			ã‚µãƒ–OAMç®¡ç†é–‹å§‹ç•ªå·
+ *@param	subOamNum			ã‚µãƒ–OAMç®¡ç†æ•°
+ *@param	subAffineStart		ã‚µãƒ–ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é–‹å§‹ç•ªå·
+ *@param	subAffineNum		ã‚µãƒ–ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†æ•°
+ *@param	heap				ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
- * ‚±‚±‚Åì¬‚³‚ê‚½OAMƒ}ƒl[ƒWƒƒ‚ğŠF‚Åg—p‚·‚é–‚É‚È‚è‚Ü‚·B
+ * ã“ã“ã§ä½œæˆã•ã‚ŒãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’çš†ã§ä½¿ç”¨ã™ã‚‹äº‹ã«ãªã‚Šã¾ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 static void	REND_OAMInit_Simple(int mainOamStart, int mainOamNum, int mainAffineStart, int mainAffineNum,  int subOamStart, int subOamNum, int subAffineStart, int subAffineNum, int heap)
@@ -154,12 +154,12 @@ static void	REND_OAMInit_Simple(int mainOamStart, int mainOamNum, int mainAffine
 	
 	GF_ASSERT(RendOam == NULL);
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	RendOam = sys_AllocMemory(heap, sizeof(REND_OAM_DATA));
 	GF_ASSERT(RendOam);
 	RendOam->heap = heap;
 
-	// ƒƒCƒ“OAMƒoƒbƒtƒ@ì¬
+	// ãƒ¡ã‚¤ãƒ³OAMãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	result = NNS_G2dGetNewOamManagerInstance(
 			&RendOam->MainMan,
 			mainOamStart, mainOamNum,
@@ -168,7 +168,7 @@ static void	REND_OAMInit_Simple(int mainOamStart, int mainOamNum, int mainAffine
 
 	GF_ASSERT( result );
 
-	// ƒTƒuOAMƒoƒbƒtƒ@ì¬
+	// ã‚µãƒ–OAMãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	result = NNS_G2dGetNewOamManagerInstance(
 			&RendOam->SubMan,
 			subOamStart, subOamNum,
@@ -181,14 +181,14 @@ static void	REND_OAMInit_Simple(int mainOamStart, int mainOamNum, int mainAffine
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŒƒ“ƒ_ƒ‰‚ªg—p‚·‚éOAMƒ}ƒl[ƒWƒƒ‚ÌOAM“]‘—‚ğs‚¢‚Ü‚·B
+ *@brief	ãƒ¬ãƒ³ãƒ€ãƒ©ãŒä½¿ç”¨ã™ã‚‹OAMãƒãƒãƒ¼ã‚¸ãƒ£ã®OAMè»¢é€ã‚’è¡Œã„ã¾ã™ã€‚
  *
  *@param	none
  *
  *@return	none
  *
- * ‘S‘Ì‚Å‚P‰ñs‚¤‚¾‚¯‚Å‘åä•v‚Å‚·B
- * ‚±‚ÌŠÖ”‚ğ‚PƒtƒŒ[ƒ€‚Å•¡”‰ñŒÄ‚Ô‚Æ³í‚É•\¦‚³‚ê‚Ü‚¹‚ñB
+ * å…¨ä½“ã§ï¼‘å›è¡Œã†ã ã‘ã§å¤§ä¸ˆå¤«ã§ã™ã€‚
+ * ã“ã®é–¢æ•°ã‚’ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã§è¤‡æ•°å›å‘¼ã¶ã¨æ­£å¸¸ã«è¡¨ç¤ºã•ã‚Œã¾ã›ã‚“ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -203,7 +203,7 @@ void REND_OAMTrans(void)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŒƒ“ƒ_ƒ‰—p‚ÌƒOƒ[ƒoƒ‹OAMƒ}ƒl[ƒWƒƒƒf[ƒ^‚ğ”jŠü
+ *@brief	ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
  *@param	none
  *
@@ -216,7 +216,7 @@ void REND_OAM_Delete(void)
 {
 	GF_ASSERT(RendOam);
 	
-	// OAMƒŒƒWƒXƒ^‰Šú‰»
+	// OAMãƒ¬ã‚¸ã‚¹ã‚¿åˆæœŸåŒ–
 	REND_OAM_UtilOamRamClear_Main( RendOam->heap );	
 	REND_OAM_UtilOamRamClear_Sub( RendOam->heap );	
 
@@ -227,12 +227,12 @@ void REND_OAM_Delete(void)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒT[ƒtƒF[ƒX‚ğ‰Šú‰»
+ *@brief	ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’åˆæœŸåŒ–
  *
- *@param	pSurface		‰Šú‰»‚·‚éƒT[ƒtƒF[ƒX‚ÌÀ‘Ì‚Ìƒ|ƒCƒ“ƒ^
- *@param	pRect			ƒT[ƒtƒF[ƒX‚Ì‹éŒ`
- *@param	type			ƒT[ƒtƒF[ƒXƒ^ƒCƒv
- *@param	pSetRenderer	‚±‚ÌƒT[ƒtƒF[ƒX‚ğİ’è‚·‚éƒŒƒ“ƒ_ƒ‰[iİ’è‚µ‚È‚¢‚Æ‚«‚Í@NULLj
+ *@param	pSurface		åˆæœŸåŒ–ã™ã‚‹ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å®Ÿä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	pRect			ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®çŸ©å½¢
+ *@param	type			ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	pSetRenderer	ã“ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’è¨­å®šã™ã‚‹ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ï¼ˆè¨­å®šã—ãªã„ã¨ãã¯ã€€NULLï¼‰
  *
  *@return	none
  *
@@ -244,9 +244,9 @@ void REND_OAM_SetSurface(NNSG2dRenderSurface* pSurface,
 		NNSG2dSurfaceType type,
 		NNSG2dRendererInstance* pSetRenderer)
 {
-	GF_ASSERT(RendOam&&("‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ"));
+	GF_ASSERT(RendOam&&("åˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“"));
 	
-	// ƒT[ƒtƒF[ƒX‰Šú‰»
+	// ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹åˆæœŸåŒ–
 	if(type == NNS_G2D_SURFACETYPE_MAIN2D){
 		RNDP_InitSurface(pSurface, pRect,
 				CallBackAddOamMain, CallBackAddAffineMain,
@@ -263,12 +263,12 @@ void REND_OAM_SetSurface(NNSG2dRenderSurface* pSurface,
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŒƒ“ƒ_ƒ‰—p‚ÌƒOƒ[ƒoƒ‹OAMƒ}ƒl[ƒWƒƒƒf[ƒ^‚ªì¬Ï‚İ‚©ƒ`ƒFƒbƒN
+ *@brief	ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ‡ãƒ¼ã‚¿ãŒä½œæˆæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
  *
  *@param	none
  *
- *@retval	TURE		ì¬‚³‚ê‚Ä‚¢‚é
- *@retval	FALSE		ì¬‚³‚ê‚Ä‚¢‚È‚¢
+ *@retval	TURE		ä½œæˆã•ã‚Œã¦ã„ã‚‹
+ *@retval	FALSE		ä½œæˆã•ã‚Œã¦ã„ãªã„
  *
  *
  */
@@ -284,22 +284,22 @@ BOOL REND_OAM_Live(void)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒ}ƒl[ƒWƒƒƒCƒ“ƒXƒ^ƒ“ƒXæ“¾
+ *	@brief	OAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å–å¾—
  *
- *	@param	flag	ƒƒCƒ“‰æ–Ê—p‚©ƒTƒu‰æ–Ê—p‚©
+ *	@param	flag	ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨ã‹ã‚µãƒ–ç”»é¢ç”¨ã‹
  *
- *	@return	OAMƒ}ƒl[ƒWƒƒ[ƒCƒ“ƒXƒ^ƒ“ƒX
+ *	@return	OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
  *
  * flag
-	REND_OAM_MAIN,		// ƒƒCƒ“‰æ–Ê
-	REND_OAM_SUB,		// ƒTƒu‰æ–Ê
+	REND_OAM_MAIN,		// ãƒ¡ã‚¤ãƒ³ç”»é¢
+	REND_OAM_SUB,		// ã‚µãƒ–ç”»é¢
  */
 //-----------------------------------------------------------------------------
 NNSG2dOamManagerInstance* REND_OAM_GetOamManagerInstance( int flag )
 {
 	NNSG2dOamManagerInstance* p_ret;
 	
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“
 	GF_ASSERT( RendOam );
 	
 	if( flag == REND_OAM_MAIN ){
@@ -314,10 +314,10 @@ NNSG2dOamManagerInstance* REND_OAM_GetOamManagerInstance( int flag )
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“‰æ–Ê—p]
- *	@brief	OAMRAM‚ÌƒNƒŠƒA
+ * [ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨]
+ *	@brief	OAMRAMã®ã‚¯ãƒªã‚¢
  *
- *	@param	heap	ƒq[ƒv
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -329,10 +329,10 @@ void REND_OAM_UtilOamRamClear_Main( int heap )
 
 //----------------------------------------------------------------------------
 /**
- * [ƒTƒu‰æ–Ê—p]
- *	@brief	OAMRAM‚ÌƒNƒŠƒA
+ * [ã‚µãƒ–ç”»é¢ç”¨]
+ *	@brief	OAMRAMã®ã‚¯ãƒªã‚¢
  *
- *	@param	heap	ƒq[ƒv
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return
  */
@@ -343,35 +343,35 @@ void REND_OAM_UtilOamRamClear_Sub( int heap )
 }
 
 
-//	Oam Affine “o˜^ŠÖ”ì¬—á
+//	Oam Affine ç™»éŒ²é–¢æ•°ä½œæˆä¾‹
 //-----------------------------------------------------------------------------
 /**
- *@brief				OAM‚ğ’Ç‰Á‚·‚é‚½‚ß‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *@brief				OAMã‚’è¿½åŠ ã™ã‚‹ãŸã‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- *@param	pOamF’Ç‰Á‚·‚×‚«OAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *@param	affineIndexF‚±‚ÌOAM‚ªg—p‚·‚éAffineƒCƒ“ƒfƒbƒNƒX
- *@param	BOOL F”{ŠpAffine‚©‚Ç‚¤‚©
+ *@param	pOamï¼šè¿½åŠ ã™ã¹ãOAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	affineIndexï¼šã“ã®OAMãŒä½¿ç”¨ã™ã‚‹Affineã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	BOOL ï¼šå€è§’Affineã‹ã©ã†ã‹
  *
- *@retval	¬Œ÷FTRUE
- *@retval	¸”sFFALSE
+ *@retval	æˆåŠŸï¼šTRUE
+ *@retval	å¤±æ•—ï¼šFALSE
  *
  ----------------------------------------------------------------------------*/
-// ƒƒCƒ“‰æ–Ê—p
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨
 static BOOL CallBackAddOamMain( const GXOamAttr* pOam, u16 affineIndex, BOOL /*bDoubleAffine*/ )
 {
 	BOOL ret;
 	ret = NNS_G2dEntryOamManagerOamWithAffineIdx( &RendOam->MainMan, pOam, affineIndex );
-	GF_ASSERT( ret );		// “o˜^ƒI[ƒo[
+	GF_ASSERT( ret );		// ç™»éŒ²ã‚ªãƒ¼ãƒãƒ¼
 
 	return ret;
 }
 
-// ƒTƒu‰æ–Ê—p
+// ã‚µãƒ–ç”»é¢ç”¨
 static BOOL CallBackAddOamSub( const GXOamAttr* pOam, u16 affineIndex, BOOL /*bDoubleAffine*/ )
 {
 	BOOL ret;
     ret = NNS_G2dEntryOamManagerOamWithAffineIdx( &RendOam->SubMan, pOam, affineIndex );
-	GF_ASSERT( ret );		// “o˜^ƒI[ƒo[
+	GF_ASSERT( ret );		// ç™»éŒ²ã‚ªãƒ¼ãƒãƒ¼
 
 	return ret;
 }
@@ -379,15 +379,15 @@ static BOOL CallBackAddOamSub( const GXOamAttr* pOam, u16 affineIndex, BOOL /*bD
 
 //-----------------------------------------------------------------------------
 /**
- *@brief	Affineƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á‚·‚é‚½‚ß‚ÉŒÄ‚Î‚ê‚éŠÖ”‚Å‚·B
+ *@brief	Affineãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹ãŸã‚ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã§ã™ã€‚
  *
- *@param	mtxF’Ç‰Á‚·‚×‚«Affine•ÏŠ·s—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *@param	mtxï¼šè¿½åŠ ã™ã¹ãAffineå¤‰æ›è¡Œåˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *@return	’Ç‰Á‚µ‚½Affineƒpƒ‰ƒ[ƒ^‚ÌIndex
+ *@return	è¿½åŠ ã—ãŸAffineãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®Index
  *
  */
  //----------------------------------------------------------------------------
-// ƒƒCƒ“‰æ–Ê—p
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨
 static u16 CallBackAddAffineMain( const MtxFx22* mtx )
 {
 	u16 ret;
@@ -397,7 +397,7 @@ static u16 CallBackAddAffineMain( const MtxFx22* mtx )
 	return ret;
 }
 
-// ƒTƒu‰æ–Ê—p
+// ã‚µãƒ–ç”»é¢ç”¨
 static u16 CallBackAddAffineSub( const MtxFx22* mtx )
 {
 	u16 ret;

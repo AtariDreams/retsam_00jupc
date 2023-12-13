@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	spray.c
- * @bfief	�X�v���[����
+ * @bfief	スプレー処理
  * @author	Nozomu Saito
  *
  *
@@ -19,26 +19,26 @@
 
 //==============================================================================
 /**
- * 1�����Ƃ̃X�v���[���ʌ��Z
+ * 1歩ごとのスプレー効果減算
  *
- * @param	sv		�Z�[�u�f�[�^�|�C���^
- * @param	fsys	�t�B�[���h�V�X�e���|�C���^
+ * @param	sv		セーブデータポインタ
+ * @param	fsys	フィールドシステムポインタ
  * 
- * @retval	BOOL	TRUE:�X�v���[���ʐ؂�	FALSE:����ȊO
+ * @retval	BOOL	TRUE:スプレー効果切れ	FALSE:それ以外
  * 
  */
 //==============================================================================
 BOOL Spray_DecSpray(SAVEDATA * sv, FIELDSYS_WORK * fsys)
 {
 	u8 *spray;
-	//�Z�[�u�f�[�^�擾
+	//セーブデータ取得
 	spray = EncDataSave_GetSprayCnt(EncDataSave_GetSaveDataPtr(sv));
-	//0�łȂ���΁A���Z
+	//0でなければ、減算
 	if ( (*spray) > 0 ){
 		(*spray)--;
-		//���Z��������0�ɂȂ�������ʐ؂ꃁ�b�Z�[�W
+		//減算した結果0になったら効果切れメッセージ
 		if( (*spray)==0 ){
-			OS_Printf("�X�v���[���ʐ؂�\n");
+			OS_Printf("スプレー効果切れ\n");
 			EventSet_Script(fsys, SCRID_END_SPRAY, NULL);
 			return TRUE;
 		}

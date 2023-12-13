@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	comm_mystery_figt.c
- * @bfief	‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì
+ * @bfief	ãµã—ããªã€€ãŠãã‚Šã‚‚ã®
  * @author	Satoshi Mitsuhara
  * @date	06.05.08
  *
@@ -41,7 +41,7 @@
 
 #include "mysterylib.h"
 
-// e‚ÌƒeƒXƒgÀ‘•
+// è¦ªã®ãƒ†ã‚¹ãƒˆå®Ÿè£…
 //#define PARENT_TEST
 
 #if PL_T0852_080709_FIX
@@ -60,98 +60,98 @@ extern void STRBUF_SetStringCodeOrderLength( STRBUF* strbuf, const STRCODE* str,
 extern FUSHIGI_DATA * SaveData_GetFushigiData(SAVEDATA * sv);
 extern void MysteryCard_DisplayCardOnly(GF_BGL_INI *bgl, void *, int heapid);
 
-// ¦Qlƒtƒ@ƒCƒ‹
-//  src/field/comm_command_field.h       ’ÊMƒRƒ}ƒ“ƒh‚ÌƒRƒ}ƒ“ƒhƒ‰ƒxƒ‹
-//  src/field/comm_command_field.c       ’ÊMƒRƒ}ƒ“ƒh‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”ƒe[ƒuƒ‹
-//  src/field/comm_field_state.c         ’ÊM‚ÉŠÖ˜A‚·‚é—¬‚ê‚Ì§Œä  
-//  src/field/comm_direct_counter.c      ƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[‚QF‚ÌƒJƒEƒ“ƒ^[‚Å•K—v‚Èƒƒjƒ…[‚Æ‚»‚Ì—¬‚ê
+// â€»å‚è€ƒãƒ•ã‚¡ã‚¤ãƒ«
+//  src/field/comm_command_field.h       é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ã®ã‚³ãƒãƒ³ãƒ‰ãƒ©ãƒ™ãƒ«
+//  src/field/comm_command_field.c       é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
+//  src/field/comm_field_state.c         é€šä¿¡ã«é–¢é€£ã™ã‚‹æµã‚Œã®åˆ¶å¾¡  
+//  src/field/comm_direct_counter.c      ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼ï¼’Fã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã§å¿…è¦ãªãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨ãã®æµã‚Œ
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 
 enum {
-  MYSTERYGIFT_SEQ_INIT = 0,		/* ‰æ–ÊŠÖŒW‚Ì‰Šú‰» */
-  MYSTERYGIFT_SEQ_CREATE_SCREEN,	/* ‰æ–Êì¬ */
-  MYSTERYGIFT_SEQ_WAIT_FADE,		/* ƒtƒF[ƒh‚ğ‘Ò‚Âˆ— */
+  MYSTERYGIFT_SEQ_INIT = 0,		/* ç”»é¢é–¢ä¿‚ã®åˆæœŸåŒ– */
+  MYSTERYGIFT_SEQ_CREATE_SCREEN,	/* ç”»é¢ä½œæˆ */
+  MYSTERYGIFT_SEQ_WAIT_FADE,		/* ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å¾…ã¤å‡¦ç† */
   MYSTERYGIFT_SEQ_MAIN,			/* MAIN PROC */
   
-  MYSTERYGIFT_SEQ_RECV,			/* u‚¨‚­‚è‚à‚Ì‚ğ@‚¤‚¯‚Æ‚év */
-  MYSTERYGIFT_SEQ_DIRECT_YESNO,		/* ƒ_ƒCƒŒƒNƒg‚Å‘—‚éu‚Í‚¢^‚¢‚¢‚¦v */
+  MYSTERYGIFT_SEQ_RECV,			/* ã€ŒãŠãã‚Šã‚‚ã®ã‚’ã€€ã†ã‘ã¨ã‚‹ã€ */
+  MYSTERYGIFT_SEQ_DIRECT_YESNO,		/* ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã§é€ã‚‹ã€Œã¯ã„ï¼ã„ã„ãˆã€ */
 
-  MYSTERYGIFT_SEQ_RECV_BEACON,		/* ƒr[ƒRƒ“î•ñ‚ğó‚¯æ‚é */
+  MYSTERYGIFT_SEQ_RECV_BEACON,		/* ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’å—ã‘å–ã‚‹ */
 
-  /* DSe‹@‚©‚ç‚Ìƒ_ƒEƒ“ƒ[ƒhƒV[ƒPƒ“ƒX */
-  MYSTERYGIFT_SEQ_START_CHILD,		/* q‹@‚Æ‚µ‚Ä’ÊMŠJn */
-  MYSTERYGIFT_SEQ_RECV_YESNO_CHILD,	/* q‹@FŒ©‚Â‚¯‚½ƒf[ƒ^‚ğó‚¯æ‚é‚©H */
-  MYSTERYGIFT_SEQ_REQEST_CHILD,		/* q‹@Fe‚É‘Î‚µ‚ÄÚ‘±—v‹‚ğo‚µ‚½^e‘Ò‚¿ */
-  MYSTERYGIFT_SEQ_RECV_WAIT_CHILD1,	/* q‹@Fe‹@‚©‚çƒf[ƒ^‚ªóM‚³‚ê‚é‚Ü‚Å‘Ò‚Â */
-  MYSTERYGIFT_SEQ_RECV_WAIT_CHILD2,	/* q‹@FóM‚³‚ê‚½ƒf[ƒ^‚ÌˆÃ†‰»‚ğ‰ğ‚­ */
-  MYSTERYGIFT_SEQ_RECV_WAIT_CHILD3,	/* q‹@F“¯ŠúƒZ[ƒuI—¹‘Ò‚¿ */
+  /* DSè¦ªæ©Ÿã‹ã‚‰ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ */
+  MYSTERYGIFT_SEQ_START_CHILD,		/* å­æ©Ÿã¨ã—ã¦é€šä¿¡é–‹å§‹ */
+  MYSTERYGIFT_SEQ_RECV_YESNO_CHILD,	/* å­æ©Ÿï¼šè¦‹ã¤ã‘ãŸãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹ã‹ï¼Ÿ */
+  MYSTERYGIFT_SEQ_REQEST_CHILD,		/* å­æ©Ÿï¼šè¦ªã«å¯¾ã—ã¦æ¥ç¶šè¦æ±‚ã‚’å‡ºã—ãŸï¼è¦ªå¾…ã¡ */
+  MYSTERYGIFT_SEQ_RECV_WAIT_CHILD1,	/* å­æ©Ÿï¼šè¦ªæ©Ÿã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãŒå—ä¿¡ã•ã‚Œã‚‹ã¾ã§å¾…ã¤ */
+  MYSTERYGIFT_SEQ_RECV_WAIT_CHILD2,	/* å­æ©Ÿï¼šå—ä¿¡ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã®æš—å·åŒ–ã‚’è§£ã */
+  MYSTERYGIFT_SEQ_RECV_WAIT_CHILD3,	/* å­æ©Ÿï¼šåŒæœŸã‚»ãƒ¼ãƒ–çµ‚äº†å¾…ã¡ */
   MYSTERYGIFT_SEQ_RECV_WAIT_CHILD30,
   MYSTERYGIFT_SEQ_RECV_WAIT_CHILD31,
   MYSTERYGIFT_SEQ_RECV_WAIT_CHILD4,
-  MYSTERYGIFT_SEQ_SEND_RECV_REFUSAL,	/* q‹@F\‚µ‚İ‚ª‹‘”Û‚³‚ê‚½ê‡ */
-  MYSTERYGIFT_SEQ_SEND_RECV_CANCEL_INIT,/* q‹@FƒLƒƒƒ“ƒZƒ‹ˆ—€”õ */
-  MYSTERYGIFT_SEQ_SEND_RECV_CANCEL,	/* q‹@FƒLƒƒƒ“ƒZƒ‹ˆ— */
+  MYSTERYGIFT_SEQ_SEND_RECV_REFUSAL,	/* å­æ©Ÿï¼šç”³ã—è¾¼ã¿ãŒæ‹’å¦ã•ã‚ŒãŸå ´åˆ */
+  MYSTERYGIFT_SEQ_SEND_RECV_CANCEL_INIT,/* å­æ©Ÿï¼šã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†æº–å‚™ */
+  MYSTERYGIFT_SEQ_SEND_RECV_CANCEL,	/* å­æ©Ÿï¼šã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç† */
 
-  /* AGBƒJƒZƒbƒg‚©‚ç‚Ìƒ_ƒEƒ“ƒ[ƒhƒV[ƒPƒ“ƒX */
-  MYSTERYGIFT_SEQ_AGB_START_CHILD,	/* q‹@‚Æ‚µ‚Ä’ÊMŠJn */
-  MYSTERYGIFT_SEQ_AGB_RECV_YESNO_CHILD,	/* q‹@FŒ©‚Â‚¯‚½ƒf[ƒ^‚ğó‚¯æ‚é‚©H */
-  MYSTERYGIFT_SEQ_AGB_RECV_CHECK_CHILD,	/* q‹@Fó‚¯æ‚ê‚é‚©ƒ`ƒFƒbƒN */
-  MYSTERYGIFT_SEQ_AGB_REQEST_CHILD,	/* q‹@Fe‚É‘Î‚µ‚ÄÚ‘±—v‹‚ğo‚µ‚½^e‘Ò‚¿ */
-  MYSTERYGIFT_SEQ_AGB_RECV_WAIT_CHILD,	/* q‹@Fe‹@‚©‚çƒf[ƒ^‚ªóM‚³‚ê‚é‚Ü‚Å‘Ò‚Â */
-  MYSTERYGIFT_SEQ_AGB_RECV_WAIT_CHILD2,	/* q‹@F“¯ŠúƒZ[ƒuI—¹‘Ò‚¿ */
-  MYSTERYGIFT_SEQ_AGB_SEND_RECV_FLAG_CHILD,/* q‹@Fƒf[ƒ^‚ğó‚¯æ‚Á‚½|‚ğe‹@‚É‘—M */
+  /* AGBã‚«ã‚»ãƒƒãƒˆã‹ã‚‰ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ */
+  MYSTERYGIFT_SEQ_AGB_START_CHILD,	/* å­æ©Ÿã¨ã—ã¦é€šä¿¡é–‹å§‹ */
+  MYSTERYGIFT_SEQ_AGB_RECV_YESNO_CHILD,	/* å­æ©Ÿï¼šè¦‹ã¤ã‘ãŸãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹ã‹ï¼Ÿ */
+  MYSTERYGIFT_SEQ_AGB_RECV_CHECK_CHILD,	/* å­æ©Ÿï¼šå—ã‘å–ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯ */
+  MYSTERYGIFT_SEQ_AGB_REQEST_CHILD,	/* å­æ©Ÿï¼šè¦ªã«å¯¾ã—ã¦æ¥ç¶šè¦æ±‚ã‚’å‡ºã—ãŸï¼è¦ªå¾…ã¡ */
+  MYSTERYGIFT_SEQ_AGB_RECV_WAIT_CHILD,	/* å­æ©Ÿï¼šè¦ªæ©Ÿã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãŒå—ä¿¡ã•ã‚Œã‚‹ã¾ã§å¾…ã¤ */
+  MYSTERYGIFT_SEQ_AGB_RECV_WAIT_CHILD2,	/* å­æ©Ÿï¼šåŒæœŸã‚»ãƒ¼ãƒ–çµ‚äº†å¾…ã¡ */
+  MYSTERYGIFT_SEQ_AGB_SEND_RECV_FLAG_CHILD,/* å­æ©Ÿï¼šãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã£ãŸæ—¨ã‚’è¦ªæ©Ÿã«é€ä¿¡ */
   MYSTERYGIFT_SEQ_AGB_SEND_RECV_FLAG_CHILD2,
   
-  /* WiFi‚©‚ç‚Ìæ“¾ƒV[ƒPƒ“ƒX */
-  MYSTERYGIFT_WIFI_DOWNLOAD_MAIN,	/* WiFi’ÊM */
+  /* WiFiã‹ã‚‰ã®å–å¾—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ */
+  MYSTERYGIFT_WIFI_DOWNLOAD_MAIN,	/* WiFié€šä¿¡ */
   
-  /* ƒr[ƒRƒ“æ“¾ƒV[ƒPƒ“ƒX */
-  MYSTERYGIFT_BEACON_SEQ_INIT,		/* ƒr[ƒRƒ“æ“¾‰Šú‰» */
-  MYSTERYGIFT_BEACON_SEQ_WAIT,		/* ƒr[ƒRƒ“æ“¾@‰½‚à‚µ‚È‚¢ */
-  MYSTERYGIFT_BEACON_SEQ_TIMER,		/* ƒr[ƒRƒ“æ“¾’† */
+  /* ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ */
+  MYSTERYGIFT_BEACON_SEQ_INIT,		/* ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—åˆæœŸåŒ– */
+  MYSTERYGIFT_BEACON_SEQ_WAIT,		/* ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—ã€€ä½•ã‚‚ã—ãªã„ */
+  MYSTERYGIFT_BEACON_SEQ_TIMER,		/* ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—ä¸­ */
 
-  MYSTERYGIFT_BEACON_DOWNLOAD_YESNO,	/* ƒr[ƒRƒ“ƒ_ƒEƒ“ƒ[ƒh’† */
-  MYSTERYGIFT_BEACON_DOWNLOAD_WAIT_TITLE,	/* event_name‚ª‘—‚ç‚ê‚Ä‚­‚é‚Ì‚ğ‘Ò‚Â */
-  MYSTERYGIFT_BEACON_DOWNLOAD,		/* ƒr[ƒRƒ“ƒ_ƒEƒ“ƒ[ƒh’† */
-  MYSTERYGIFT_BEACON_DOWNLOAD_WAITSAVE,	/* ƒZ[ƒuI—¹‚ğ‘Ò‚Á‚ÄŸ‚Ìˆ—‚Ö */
+  MYSTERYGIFT_BEACON_DOWNLOAD_YESNO,	/* ãƒ“ãƒ¼ã‚³ãƒ³ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­ */
+  MYSTERYGIFT_BEACON_DOWNLOAD_WAIT_TITLE,	/* event_nameãŒé€ã‚‰ã‚Œã¦ãã‚‹ã®ã‚’å¾…ã¤ */
+  MYSTERYGIFT_BEACON_DOWNLOAD,		/* ãƒ“ãƒ¼ã‚³ãƒ³ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­ */
+  MYSTERYGIFT_BEACON_DOWNLOAD_WAITSAVE,	/* ã‚»ãƒ¼ãƒ–çµ‚äº†ã‚’å¾…ã£ã¦æ¬¡ã®å‡¦ç†ã¸ */
   MYSTERYGIFT_BEACON_DOWNLOAD_DEMO_WAIT,
-  MYSTERYGIFT_BEACON_DOWNLOAD_CANCEL,	/* ƒLƒƒƒ“ƒZƒ‹ˆ— */
+  MYSTERYGIFT_BEACON_DOWNLOAD_CANCEL,	/* ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç† */
   
-  /* ƒr[ƒRƒ“ƒ_ƒEƒ“ƒ[ƒhƒV[ƒPƒ“ƒX */
-  BEACON_STATE_INIT1,			// ‰Šúó‘Ô(’ÊMƒ‰ƒCƒuƒ‰ƒŠ€”õ)
-  BEACON_STATE_INIT2,			// ‰Šúó‘Ô
-  BEACON_STATE_START,			// ŠJn’¼Œã
-  BEACON_STATE_SCANNING,		// ƒXƒLƒƒƒ“’†
-  BEACON_STATE_DOWNLOAD,		// e‹@”­Œ©‚µ‚ÄAƒ_ƒEƒ“ƒ[ƒh’†
-  BEACON_STATE_COMPLETE,		// ƒ_ƒEƒ“ƒ[ƒhŠ®—¹
-  BEACON_STATE_CANCELING,		// ƒLƒƒƒ“ƒZƒ‹ˆ—’†
-  BEACON_STATE_FINISH,			// ƒ_ƒEƒ“ƒ[ƒhI—¹
-  BEACON_STATE_SUCCESS,			// ƒ_ƒEƒ“ƒ[ƒh¬Œ÷
-  BEACON_STATE_CRCERROR,		// ƒ_ƒEƒ“ƒ[ƒh‚b‚q‚bƒGƒ‰[	
-  BEACON_STATE_CANCEL,			// ƒLƒƒƒ“ƒZƒ‹I—¹
-  BEACON_STATE_ERROR,				// ƒGƒ‰[
+  /* ãƒ“ãƒ¼ã‚³ãƒ³ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ */
+  BEACON_STATE_INIT1,			// åˆæœŸçŠ¶æ…‹(é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªæº–å‚™)
+  BEACON_STATE_INIT2,			// åˆæœŸçŠ¶æ…‹
+  BEACON_STATE_START,			// é–‹å§‹ç›´å¾Œ
+  BEACON_STATE_SCANNING,		// ã‚¹ã‚­ãƒ£ãƒ³ä¸­
+  BEACON_STATE_DOWNLOAD,		// è¦ªæ©Ÿç™ºè¦‹ã—ã¦ã€ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­
+  BEACON_STATE_COMPLETE,		// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å®Œäº†
+  BEACON_STATE_CANCELING,		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†ä¸­
+  BEACON_STATE_FINISH,			// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çµ‚äº†
+  BEACON_STATE_SUCCESS,			// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æˆåŠŸ
+  BEACON_STATE_CRCERROR,		// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ï¼£ï¼²ï¼£ã‚¨ãƒ©ãƒ¼	
+  BEACON_STATE_CANCEL,			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†
+  BEACON_STATE_ERROR,				// ã‚¨ãƒ©ãƒ¼
 
-  MYSTERYGIFT_ERROR_FULL,		// ”z’Bˆõ‚Ü‚½‚ÍƒJ[ƒh‚ªˆê”t‚Åó‚¯æ‚ê‚È‚¢
+  MYSTERYGIFT_ERROR_FULL,		// é…é”å“¡ã¾ãŸã¯ã‚«ãƒ¼ãƒ‰ãŒä¸€æ¯ã§å—ã‘å–ã‚Œãªã„
   MYSTERYGIFT_SEQ_DISP_MSG,
   MYSTERYGIFT_SEQ_RETURN_TOPMENU,
-  MYSTERYGIFT_SEQ_GROUNDCHILD_CHECK,	// ‘·”z•zƒ`ƒFƒbƒN
+  MYSTERYGIFT_SEQ_GROUNDCHILD_CHECK,	// å­«é…å¸ƒãƒã‚§ãƒƒã‚¯
   
-  MYSTERYGIFT_SEQ_RETURN,		/* ƒ^ƒCƒgƒ‹‚Ìƒƒjƒ…[‚É–ß‚é */
-  MYSTERYGIFT_SEQ_GO_LOOKCARD,		/* ƒJ[ƒh‚ğŒ©‚é‚Ö”ò‚Ô */
+  MYSTERYGIFT_SEQ_RETURN,		/* ã‚¿ã‚¤ãƒˆãƒ«ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«æˆ»ã‚‹ */
+  MYSTERYGIFT_SEQ_GO_LOOKCARD,		/* ã‚«ãƒ¼ãƒ‰ã‚’è¦‹ã‚‹ã¸é£›ã¶ */
 
-  MYSTERYGIFT_SEQ_LOOP,			/* –³ŒÀƒ‹[ƒv */
-  MYSTERYGIFT_SEQ_DISP_CARD,		/* ƒJ[ƒhî•ñ‚ğ•\¦‚·‚é */
-  MYSTERYGIFT_SEQ_FADEOUT_RESET,	/* ƒtƒF[ƒhƒAƒEƒg¨ƒŠƒZƒbƒg */
+  MYSTERYGIFT_SEQ_LOOP,			/* ç„¡é™ãƒ«ãƒ¼ãƒ— */
+  MYSTERYGIFT_SEQ_DISP_CARD,		/* ã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚’è¡¨ç¤ºã™ã‚‹ */
+  MYSTERYGIFT_SEQ_FADEOUT_RESET,	/* ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆâ†’ãƒªã‚»ãƒƒãƒˆ */
   
 #ifdef PARENT_TEST
-  /* ˆÈ‰ºAƒfƒoƒbƒO—p */
-  MYSTERYGIFT_SEQ_START_PARENT,		/* e‹@F’ÊMŠJn */
-  MYSTERYGIFT_SEQ_SYNC_CHILD_TIMING,	/* e‹@Fq‹@‚Æ‚Ì“¯Šú‚ğ‘Ò‚Â */
-  MYSTERYGIFT_SEQ_SYNC_CHILD_PARENT,	/* e‹@Fq‹@‚Æ‚Ìƒ^ƒCƒ~ƒ“ƒO‚ ‚í‚¹ */
-  MYSTERYGIFT_SEQ_SENDDATA_PARENT,	/* e‹@Fƒf[ƒ^‘—MŠJn */
+  /* ä»¥ä¸‹ã€ãƒ‡ãƒãƒƒã‚°ç”¨ */
+  MYSTERYGIFT_SEQ_START_PARENT,		/* è¦ªæ©Ÿï¼šé€šä¿¡é–‹å§‹ */
+  MYSTERYGIFT_SEQ_SYNC_CHILD_TIMING,	/* è¦ªæ©Ÿï¼šå­æ©Ÿã¨ã®åŒæœŸã‚’å¾…ã¤ */
+  MYSTERYGIFT_SEQ_SYNC_CHILD_PARENT,	/* è¦ªæ©Ÿï¼šå­æ©Ÿã¨ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚ã‚ã› */
+  MYSTERYGIFT_SEQ_SENDDATA_PARENT,	/* è¦ªæ©Ÿï¼šãƒ‡ãƒ¼ã‚¿é€ä¿¡é–‹å§‹ */
 #endif	// PARENT_TEST
 
   MYSTERYGIFT_SEQ_MAX
@@ -173,15 +173,15 @@ typedef struct {
 #define MYSTERYGIFT_COMMDIRCHR	(MYSTERYGIFT_COMMTYPECHR + 17 * 8)
 #define MYSTERYGIFT_UPWINCHR	(MYSTERYGIFT_COMMDIRCHR + 6 * 4)
 
-#define	FONT_PALNO_NORMAL	0	/* ƒm[ƒ}ƒ‹ƒpƒŒƒbƒg */
-#define	FONT_PALNO_SELECT	1	/* ‘I‘ğƒpƒŒƒbƒg */
+#define	FONT_PALNO_NORMAL	0	/* ãƒãƒ¼ãƒãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆ */
+#define	FONT_PALNO_SELECT	1	/* é¸æŠæ™‚ãƒ‘ãƒ¬ãƒƒãƒˆ */
 #define WAKU_PALETTE_NUMBER1	2
 #define WAKU_PALETTE_NUMBER2	3
 #define	MYSTERYGIFT_BLACK	(GF_PRINTCOLOR_MAKE(1, 2, 15))
 #define	MYSTERYGIFT_WHITE	(GF_PRINTCOLOR_MAKE(15, 2, 0))
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static int CommParentStart(PROC *proc);
 static int CommChildStart(PROC *proc);
@@ -216,18 +216,18 @@ static int MysteryGif_DisplayMessage(PROC *proc, GF_BGL_BMPWIN *win, int msgid, 
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 static PROC *MysteryProc;
 
-/* ƒgƒbƒvƒƒCƒ“ƒƒjƒ…[—pƒf[ƒ^ */
+/* ãƒˆãƒƒãƒ—ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ãƒ‡ãƒ¼ã‚¿ */
 LISTDATA TopMainMenu_MenuData1[] = {
   { mystery_menu_001, (u32)TopMainMenuRecvGift },
   { mystery_menu_002, (u32)TopMainMenuLookCard },
   { mystery_menu_003, (u32)TopMainMenuRetire },
 };
 
-/* ’ÊM•û®‘I‘ğƒƒjƒ…[—pƒf[ƒ^ */
+/* é€šä¿¡æ–¹å¼é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ãƒ‡ãƒ¼ã‚¿ */
 LISTDATA CommTypeMenu_MenuData[] = {
   { mystery_menu_004, (u32)CommDirectMenuYesNo },
   { mystery_menu_009, (u32)CommBeaconMenuYesNo },
@@ -235,18 +235,18 @@ LISTDATA CommTypeMenu_MenuData[] = {
   { mystery_menu_006, (u32)CommTypeMenuRetire },
 };
 
-/* ’ÊM•û®‚Åuƒ_ƒCƒŒƒNƒgv‚ğ‘I‘ğ‚µ‚½‚ÌŠm”Fƒƒjƒ…[ */
+/* é€šä¿¡æ–¹å¼ã§ã€Œãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã€ã‚’é¸æŠã—ãŸæ™‚ã®ç¢ºèªãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
 LISTDATA CommDirectYesNoMenu_MenuData[] = {
   { mystery_menu_007, (u32)CommChildStart },
 #ifndef PARENT_TEST
   { mystery_menu_008, (u32)CommDirectMenuNo },
 #else
-  // ƒfƒoƒbƒO—p‚Å‚Íe‹@‚Æ‚µ‚Ä‹N“®‚·‚é
+  // ãƒ‡ãƒãƒƒã‚°ç”¨ã§ã¯è¦ªæ©Ÿã¨ã—ã¦èµ·å‹•ã™ã‚‹
   { mystery_menu_008, (u32)CommParentStart },
 #endif
 };
 
-/* ƒ_ƒCƒŒƒNƒg’ÊM‚ÉÚ‘±‚µ‚Ü‚·‚©u‚Í‚¢^‚¢‚¢‚¦vƒƒjƒ…[ */
+/* ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆé€šä¿¡æ™‚ã«æ¥ç¶šã—ã¾ã™ã‹ã€Œã¯ã„ï¼ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
 LISTDATA CommDirectCommYesNoMenu_MenuData[] = {
   { mystery_menu_007, (u32)CommChildRecvStart },
   { mystery_menu_008, (u32)CommDirectCommMenuNo },
@@ -254,12 +254,12 @@ LISTDATA CommDirectCommYesNoMenu_MenuData[] = {
 
 
 
-/* ’ÊM•û®‚ÅuWiFi‚Â‚¤‚µ‚ñv‚ğ‘I‘ğ‚µ‚½‚ÌŠm”Fƒƒjƒ…[ */
+/* é€šä¿¡æ–¹å¼ã§ã€ŒWiFiã¤ã†ã—ã‚“ã€ã‚’é¸æŠã—ãŸæ™‚ã®ç¢ºèªãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
 LISTDATA CommWiFiYesNoMenu_MenuData[] = {
   { mystery_menu_007, (u32)CommWiFiChildStart },
   { mystery_menu_008, (u32)CommDirectMenuNo },
 };
-/* WiFi’ÊM‚ÉÚ‘±‚µ‚Ü‚·‚©u‚Í‚¢^‚¢‚¢‚¦vƒƒjƒ…[ */
+/* WiFié€šä¿¡ã«æ¥ç¶šã—ã¾ã™ã‹ã€Œã¯ã„ï¼ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
 LISTDATA CommWiFiCommYesNoMenu_MenuData[] = {
   { mystery_menu_007, (u32)CommChildRecvStart },
   { mystery_menu_008, (u32)NULL },
@@ -267,12 +267,12 @@ LISTDATA CommWiFiCommYesNoMenu_MenuData[] = {
 
 
 
-/* ’ÊM•û®‚Åuƒuƒ[ƒhƒLƒƒƒXƒgv‚ğ‘I‘ğ‚µ‚½‚ÌŠm”Fƒƒjƒ…[ */
+/* é€šä¿¡æ–¹å¼ã§ã€Œãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã€ã‚’é¸æŠã—ãŸæ™‚ã®ç¢ºèªãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
 LISTDATA CommBeaconYesNoMenu_MenuData[] = {
   { mystery_menu_007, (u32)CommBeaconChildStart },
   { mystery_menu_008, (u32)CommDirectMenuNo },
 };
-/* ƒuƒ[ƒhƒLƒƒƒXƒg’ÊM‚ÉŒ©‚Â‚¯‚½ƒf[ƒ^‚ğóM‚·‚é‚©u‚Í‚¢^‚¢‚¢‚¦vƒƒjƒ…[ */
+/* ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆé€šä¿¡æ™‚ã«è¦‹ã¤ã‘ãŸãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹ã‹ã€Œã¯ã„ï¼ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
 LISTDATA CommBeaconCommYesNoMenu_MenuData[] = {
   { mystery_menu_007, (u32)CommChildRecvBeaconStart },
   { mystery_menu_008, (u32)CommChildRecvBeaconCancel },
@@ -282,26 +282,26 @@ LISTDATA CommBeaconCommYesNoMenu_MenuData[] = {
 
 
 
-/* ”Ä—pƒƒjƒ…[\‘¢‘Ì(’†g‚ğ‘‚«Š·‚¦‚ÄÄ—˜—p) */
+/* æ±ç”¨ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ§‹é€ ä½“(ä¸­èº«ã‚’æ›¸ãæ›ãˆã¦å†åˆ©ç”¨) */
 static BMPLIST_HEADER MenuListHeader = {
   NULL,
-  MysteryLib_MenuKeyMove,	 	/* ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ” */
-  NULL,				     	/* ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ” */
-  NULL,					/* BMPƒEƒBƒ“ƒhƒEƒf[ƒ^ */
-  0,/* Œã‚Å–„‚ß‚é */			/* ƒŠƒXƒg€–Ú” */
-  3,					/* •\¦Å‘å€–Ú” */
-  0,					/* ƒ‰ƒxƒ‹•\¦‚wÀ•W */
-  12,					/* €–Ú•\¦‚wÀ•W */
-  0,					/* ƒJ[ƒ\ƒ‹•\¦‚wÀ•W */
-  0,					/* •\¦‚xÀ•W */
-  FBMP_COL_BLACK,			/*•¶šF */
-  FBMP_COL_WHITE,			/*”wŒiF */
-  FBMP_COL_BLK_SDW,			/*•¶š‰eF */
-  0,					/* •¶šŠÔŠu‚w */
-  16,					/* •¶šŠÔŠu‚x */
-  BMPLIST_LRKEY_SKIP,			/* ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv */
-  FONT_SYSTEM, 				/* •¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å) */
-  0			  		/* ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF) */
+  MysteryLib_MenuKeyMove,	 	/* ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° */
+  NULL,				     	/* ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° */
+  NULL,					/* BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ */
+  0,/* å¾Œã§åŸ‹ã‚ã‚‹ */			/* ãƒªã‚¹ãƒˆé …ç›®æ•° */
+  3,					/* è¡¨ç¤ºæœ€å¤§é …ç›®æ•° */
+  0,					/* ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™ */
+  12,					/* é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™ */
+  0,					/* ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™ */
+  0,					/* è¡¨ç¤ºï¼¹åº§æ¨™ */
+  FBMP_COL_BLACK,			/*æ–‡å­—è‰² */
+  FBMP_COL_WHITE,			/*èƒŒæ™¯è‰² */
+  FBMP_COL_BLK_SDW,			/*æ–‡å­—å½±è‰² */
+  0,					/* æ–‡å­—é–“éš”ï¼¸ */
+  16,					/* æ–‡å­—é–“éš”ï¼¹ */
+  BMPLIST_LRKEY_SKIP,			/* ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ— */
+  FONT_SYSTEM, 				/* æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§) */
+  0			  		/* ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF) */
 };
 
 
@@ -315,7 +315,7 @@ static void *buffer;
 #ifdef PARENT_TEST
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	’ÊMƒf[ƒ^‚Ì‚Å‚Á‚¿‚ ‚°ŠÖ”
+ * @brief	é€šä¿¡ãƒ‡ãƒ¼ã‚¿ã®ã§ã£ã¡ã‚ã’é–¢æ•°
  * @param	NONE
  * @return	NONE
  */
@@ -328,7 +328,7 @@ static GIFT_COMM_PACK *DecchiCreateGiftData(MYSTERYGIFT_WORK *wk)
   int i;
   
   GIFT_COMM_PACK *gd = &decchi_giftdata;
-  // —Ç‚¢q‚Í^—‚µ‚¿‚áƒ_ƒ‚Å‚·I
+  // è‰¯ã„å­ã¯çœŸä¼¼ã—ã¡ã‚ƒãƒ€ãƒ¡ã§ã™ï¼
   static STRCODE title[] = { hu_, si_, gi_, na_, o_, ku_, ri_, mo_, no_, TE_, SU_, TO_, de_, su_, CR_,
 			     D__, S__, spc_, BA_, bou_, ZI_, YYO_, N_, EOM_, 0 };
   static STRCODE etext[] = { hu_, na_, tu_, ki_, ba_, ni_, spc_, hu_, ru_, bi_, ta_, ka_, i_, zu_, wo_, CR_,
@@ -353,72 +353,72 @@ static GIFT_COMM_PACK *DecchiCreateGiftData(MYSTERYGIFT_WORK *wk)
     0x44, 0x9F, 0x9E, 0xF1, 0x90, 0x20, 0x51, 0x90, 0xBF, 0xA8, 0x42, 0x5A,
   };
   
-  // •¶š—ñ‚ğ‚Æ‚Á‚Ä‚­‚é‚½‚ß‚É‰Šú‰»
+  // æ–‡å­—åˆ—ã‚’ã¨ã£ã¦ãã‚‹ãŸã‚ã«åˆæœŸåŒ–
   wk->msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_mystery_dat, HEAPID_MYSTERYGIFT);
   wk->word = WORDSET_Create(HEAPID_MYSTERYGIFT);
 
   MI_CpuClear8(gd, sizeof(GIFT_COMM_PACK));
-  // ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒRƒs[(PokemonParam)
+  // ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼(PokemonParam)
   for(i = 0; i < sizeof(pokedata); i++)
     gd->data.deli.data.pokemon.data[i] = pokedata[i];
 
-  // ‚»‚êˆÈŠO‚Ìƒf[ƒ^ƒZƒbƒg
+  // ãã‚Œä»¥å¤–ã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
   memcpy(gd->beacon.event_name, title, GIFT_DATA_CARD_TITLE_MAX*2);
   
-  gd->beacon.version = (1 << VERSION_DIAMOND) | (1 << VERSION_PEARL) | (1 << VERSION_PLATINUM);// ‘ÎÛƒo[ƒWƒ‡ƒ“
-  gd->beacon.only_one_flag = 0;			// ‚P“x‚¾‚¯”zMƒtƒ‰ƒO
-  gd->beacon.access_point = 0;			// ƒAƒNƒZƒXƒ|ƒCƒ“ƒg(–¢g—p)
-  gd->beacon.have_card = 1;			// ƒJ[ƒhî•ñ‚ğŠÜ‚ñ‚Å‚¢‚é‚©
-  gd->beacon.delivery_flag = 1;			// ”z’Bˆõ‚©‚çó‚¯æ‚é‚à‚Ì‚ğŠÜ‚ñ‚Å‚¢‚é‚©
+  gd->beacon.version = (1 << VERSION_DIAMOND) | (1 << VERSION_PEARL) | (1 << VERSION_PLATINUM);// å¯¾è±¡ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+  gd->beacon.only_one_flag = 0;			// ï¼‘åº¦ã ã‘é…ä¿¡ãƒ•ãƒ©ã‚°
+  gd->beacon.access_point = 0;			// ã‚¢ã‚¯ã‚»ã‚¹ãƒã‚¤ãƒ³ãƒˆ(æœªä½¿ç”¨)
+  gd->beacon.have_card = 1;			// ã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚’å«ã‚“ã§ã„ã‚‹ã‹
+  gd->beacon.delivery_flag = 1;			// é…é”å“¡ã‹ã‚‰å—ã‘å–ã‚‹ã‚‚ã®ã‚’å«ã‚“ã§ã„ã‚‹ã‹
 
-  // ƒJ[ƒhî•ñ‚Ì‚Å‚Á‚¿‚ ‚°
-  gd->data.card.re_deal_count = 128; 		// Ä”z•z‚Ì‰ñ”(0`254A255‚Í–³§ŒÀ)
-  gd->data.card.pokemon_icon[0] = 1;		// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚R‚Â•ª
-  gd->data.card.pokemon_icon[1] = 151;		// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚R‚Â•ª
-  gd->data.card.pokemon_icon[2] = 250;		// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚R‚Â•ª
+  // ã‚«ãƒ¼ãƒ‰æƒ…å ±ã®ã§ã£ã¡ã‚ã’
+  gd->data.card.re_deal_count = 128; 		// å†é…å¸ƒã®å›æ•°(0ã€œ254ã€255ã¯ç„¡åˆ¶é™)
+  gd->data.card.pokemon_icon[0] = 1;		// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ï¼“ã¤åˆ†
+  gd->data.card.pokemon_icon[1] = 151;		// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ï¼“ã¤åˆ†
+  gd->data.card.pokemon_icon[2] = 250;		// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ï¼“ã¤åˆ†
 
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_POKEMON;	// ƒ|ƒPƒ‚ƒ“
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_POKEEGG;	// ƒ^ƒ}ƒS
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_ITEM;	// ‚Ç‚¤‚®
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_RULE;	// ƒ‹[ƒ‹
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_GOODS;	// ƒOƒbƒY
-  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_ACCESSORY;	// ƒAƒNƒZƒTƒŠ
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_RANGEREGG;	// ƒ}ƒiƒtƒB[‚Ìƒ^ƒ}ƒS
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_MEMBERSCARD;	// ƒƒ“ƒo[ƒYƒJ[ƒh
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_LETTER;	// ƒI[ƒLƒh‚Ì‚Ä‚ª‚İ
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_WHISTLE;	// ‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_POKETCH;	// ƒ|ƒPƒbƒ`
-  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_CLEAR;	// ‚Ó‚µ‚¬—Ìˆæ‚Ì‹­§ƒNƒŠƒA
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_POKEMON;	// ãƒã‚±ãƒ¢ãƒ³
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_POKEEGG;	// ã‚¿ãƒã‚´
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_ITEM;	// ã©ã†ã
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_RULE;	// ãƒ«ãƒ¼ãƒ«
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_GOODS;	// ã‚°ãƒƒã‚º
+  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_ACCESSORY;	// ã‚¢ã‚¯ã‚»ã‚µãƒª
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_RANGEREGG;	// ãƒãƒŠãƒ•ã‚£ãƒ¼ã®ã‚¿ãƒã‚´
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_MEMBERSCARD;	// ãƒ¡ãƒ³ãƒãƒ¼ã‚ºã‚«ãƒ¼ãƒ‰
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_LETTER;	// ã‚ªãƒ¼ã‚­ãƒ‰ã®ã¦ãŒã¿
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_WHISTLE;	// ã¦ã‚“ã‹ã„ã®ãµãˆ
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_POKETCH;	// ãƒã‚±ãƒƒãƒ
+  //  gd->data.deli.gift_type = MYSTERYGIFT_TYPE_CLEAR;	// ãµã—ãé ˜åŸŸã®å¼·åˆ¶ã‚¯ãƒªã‚¢
 
 
-  gd->beacon.event_id = gd->data.deli.gift_type + 100;	// ƒCƒxƒ“ƒg‚h‚c
+  gd->beacon.event_id = gd->data.deli.gift_type + 100;	// ã‚¤ãƒ™ãƒ³ãƒˆï¼©ï¼¤
 
-  // ‚½‚Ü‚²‘®«‚¾‚Á‚½‚çƒ^ƒ}ƒSİ’è
+  // ãŸã¾ã”å±æ€§ã ã£ãŸã‚‰ã‚¿ãƒã‚´è¨­å®š
   if(gd->data.deli.gift_type == MYSTERYGIFT_TYPE_POKEEGG){
     u8 tamago = 1;
     POKEMON_PARAM *pp = (POKEMON_PARAM *)gd->data.deli.data.pokemon.data;
     PokeParaPut(pp, ID_PARA_tamago_flag, &tamago);
   }
 
-  // ƒAƒCƒeƒ€‘®«
+  // ã‚¢ã‚¤ãƒ†ãƒ å±æ€§
   if(gd->data.deli.gift_type == MYSTERYGIFT_TYPE_ITEM){
     gd->data.deli.data.item.itemNo = 80;
   }
 
-  // ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“
+  // ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³
   if(gd->data.deli.gift_type == MYSTERYGIFT_TYPE_RULE){
     REGULATION _dummycup = {
-      {EOM_}, // gmm‚©‚ç‚Æ‚Á‚Ä‚­‚é
-      80,//ƒŒƒxƒ‹‚Ì‡Œv‚W‚O‚Ü‚Å
-      3,//‚R•C
-      30,//ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚R‚O‚Ü‚Å
-      -20,//g’·§ŒÀ‚QD‚O‚‚¢‚©
-      -20,// ‘Ìd§ŒÀ‚Q‚O‚‹‚‡‚¢‚©
-      0,// i‰»ƒ|ƒPƒ‚ƒ“Q‰Á‚Å‚«‚È‚¢
-      0,// “Á•Ê‚Èƒ|ƒPƒ‚ƒ“Q‰Á‚Å‚«‚È‚¢
-      0,// “¯‚¶ƒ|ƒPƒ‚ƒ“Q‰Á‚Å‚«‚È‚¢
-      0,// “¯‚¶“¹‹ï‚½‚¹‚ç‚ê‚È‚¢
-      0,// ŒÅ’èƒ_ƒ[ƒW‹Z‚ª•K‚¸¸”s
+      {EOM_}, // gmmã‹ã‚‰ã¨ã£ã¦ãã‚‹
+      80,//ãƒ¬ãƒ™ãƒ«ã®åˆè¨ˆï¼˜ï¼ã¾ã§
+      3,//ï¼“åŒ¹
+      30,//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ï¼“ï¼ã¾ã§
+      -20,//èº«é•·åˆ¶é™ï¼’ï¼ï¼ï½ã„ã‹
+      -20,// ä½“é‡åˆ¶é™ï¼’ï¼ï½‹ï½‡ã„ã‹
+      0,// é€²åŒ–ãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+      0,// ç‰¹åˆ¥ãªãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+      0,// åŒã˜ãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+      0,// åŒã˜é“å…·æŒãŸã›ã‚‰ã‚Œãªã„
+      0,// å›ºå®šãƒ€ãƒ¡ãƒ¼ã‚¸æŠ€ãŒå¿…ãšå¤±æ•—
     };
     MSGDATA_MANAGER* msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_debug_mitsuhara_dat, HEAPID_MYSTERYGIFT);
     STRBUF* pStr = MSGMAN_AllocString( msgman, msg_regulation_dummy );
@@ -429,23 +429,23 @@ static GIFT_COMM_PACK *DecchiCreateGiftData(MYSTERYGIFT_WORK *wk)
     STRBUF_Delete(pStr);
   }
 
-  // ƒOƒbƒY
+  // ã‚°ãƒƒã‚º
   if(gd->data.deli.gift_type == MYSTERYGIFT_TYPE_GOODS){
     gd->data.deli.data.goods.goodsNo = 33;
   }
 
-  // ƒAƒNƒZƒTƒŠ
+  // ã‚¢ã‚¯ã‚»ã‚µãƒª
   if(gd->data.deli.gift_type == MYSTERYGIFT_TYPE_ACCESSORY){
     gd->data.deli.data.accessory.accType = MYSTERYGIFT_ACCTYPE_SEAL;
-    gd->data.deli.data.accessory.accNo = 79;//”š”­ƒV[ƒ‹
+    gd->data.deli.data.accessory.accNo = 79;//çˆ†ç™ºã‚·ãƒ¼ãƒ«
   }
 
-  // ƒ|ƒPƒbƒ`
+  // ãƒã‚±ãƒƒãƒ
   if(gd->data.deli.gift_type == MYSTERYGIFT_TYPE_POKETCH){
     gd->data.deli.data.poketch.id = 1; //POKETCH_APPID_STOPWATCH
   }
 
-  // ‚Ó‚µ‚¬—Ìˆæ‚Ì‹­§ƒNƒŠƒA
+  // ãµã—ãé ˜åŸŸã®å¼·åˆ¶ã‚¯ãƒªã‚¢
   if(gd->data.deli.gift_type == MYSTERYGIFT_TYPE_CLEAR){
     gd->beacon.version  = 0xFFFFFFFF;
     gd->beacon.event_id = 0xFFFF;
@@ -453,18 +453,18 @@ static GIFT_COMM_PACK *DecchiCreateGiftData(MYSTERYGIFT_WORK *wk)
 
 
   
-  // o—ˆã‚ª‚Á‚½ƒr[ƒRƒ“ƒf[ƒ^‚ğ–{‘Ì‚É‚àƒRƒs[‚µ‚Ä‚¨‚­(Ä”z•z—p)
+  // å‡ºæ¥ä¸ŠãŒã£ãŸãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æœ¬ä½“ã«ã‚‚ã‚³ãƒ”ãƒ¼ã—ã¦ãŠã(å†é…å¸ƒç”¨)
   memcpy(&gd->data.card.beacon, &gd->beacon, sizeof(GIFT_BEACON));
 
-  // ƒCƒxƒ“ƒg–¼‚ÌƒRƒs[
+  // ã‚¤ãƒ™ãƒ³ãƒˆåã®ã‚³ãƒ”ãƒ¼
   memcpy(gd->data.card.event_text, etext, GIFT_DATA_CARD_TEXT_MAX*2);
-  // Œãn––
+  // å¾Œå§‹æœ«
   MSGMAN_Delete(wk->msgman);
   WORDSET_Delete(wk->word);
 
 #ifdef DEBUG_ONLY_FOR_mituhara
-  // ƒfƒoƒbƒK‚ÅƒoƒCƒiƒŠ‚ğo—Í‚³‚¹‚ÄAGB-ROM‚ğì‚é‚½‚ß‚ÌƒAƒhƒŒƒX•\¦
-  OS_TPrintf("‚Å‚Á‚¿‚ ‚°ƒf[ƒ^F0x%08X - 0x%08X\n", &decchi_giftdata, (u32)&decchi_giftdata + sizeof(GIFT_COMM_PACK));
+  // ãƒ‡ãƒãƒƒã‚¬ã§ãƒã‚¤ãƒŠãƒªã‚’å‡ºåŠ›ã•ã›ã¦AGB-ROMã‚’ä½œã‚‹ãŸã‚ã®ã‚¢ãƒ‰ãƒ¬ã‚¹è¡¨ç¤º
+  OS_TPrintf("ã§ã£ã¡ã‚ã’ãƒ‡ãƒ¼ã‚¿ï¼š0x%08X - 0x%08X\n", &decchi_giftdata, (u32)&decchi_giftdata + sizeof(GIFT_COMM_PACK));
   OS_TPrintf("                  %dbytes\n", sizeof(GIFT_COMM_PACK));
 #endif
   
@@ -474,8 +474,8 @@ static GIFT_COMM_PACK *DecchiCreateGiftData(MYSTERYGIFT_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒ€ƒAƒCƒRƒ“‚ÌON/OFF
- * @param	flag: TRUE •\¦@FALSE ”ñ•\¦
+ * @brief	ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã®ON/OFF
+ * @param	flag: TRUE è¡¨ç¤ºã€€FALSE éè¡¨ç¤º
  * @return	NONE
  */
 //------------------------------------------------------------------
@@ -485,14 +485,14 @@ static void SetTimeWaitIcon(MYSTERYGIFT_WORK *wk, int flag)
     if(wk->time_icon == NULL){
       wk->time_icon = TimeWaitIconAdd(&wk->msgwin, MYSTERYGIFT_FRAMECHR1);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-      OS_TPrintf("--- ƒ^ƒCƒ€ƒAƒCƒRƒ“: ON\n");
+      OS_TPrintf("--- ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³: ON\n");
 #endif
     }
   } else {
     if(wk->time_icon){
       TimeWaitIconDel(wk->time_icon);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-      OS_TPrintf("--- ƒ^ƒCƒ€ƒAƒCƒRƒ“: OFF\n");
+      OS_TPrintf("--- ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³: OFF\n");
 #endif
     }
     wk->time_icon = NULL;
@@ -505,7 +505,7 @@ void SetTimeWaitIconEx(MYSTERYGIFT_WORK *wk, int flag)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚±‚Ìƒƒjƒ…[‰æ–Ê‚ÌÅIŒãn––
+ * @brief	ã“ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã®æœ€çµ‚å¾Œå§‹æœ«
  * @param	NONE
  * @return	NONE
  */
@@ -540,7 +540,7 @@ static void TopMainMenuFinish(PROC *proc)
 // *******************************************************************************************
 
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define RECORD_CHAR_CONT_NUM				(20)
 #define RECORD_CHAR_VRAMTRANS_MAIN_SIZE		(2048)
 #define RECORD_CHAR_VRAMTRANS_SUB_SIZE		(2048)
@@ -549,16 +549,16 @@ static void TopMainMenuFinish(PROC *proc)
 
 static void VBlankFunc( void * work )
 {
-  // ƒZƒ‹ƒAƒNƒ^[Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
   DoVramTransferManager();
-  // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+  // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
   REND_OAMTrans();	
   OS_SetIrqCheckFlag( OS_IE_V_BLANK );
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‚Ì‰Šú‰»
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®åˆæœŸåŒ–
  * @param	NONE
  * @return	NONE
  */
@@ -578,7 +578,7 @@ static void InitCellActor(MYSTERYGIFT_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	‘I‘ğ^‚â‚ß‚é“y‘äƒIƒuƒWƒFƒNƒg‚Ì“o˜^
+ * @brief	é¸æŠï¼ã‚„ã‚ã‚‹åœŸå°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç™»éŒ²
  * @param	NONE
  * @return	NONE
  */
@@ -600,7 +600,7 @@ static void SetBaseIcon(MYSTERYGIFT_WORK *wk, int anum)
 #ifdef PARENT_TEST
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	e‹@‚Æ‚µ‚Ä’ÊMŠJn
+ * @brief	è¦ªæ©Ÿã¨ã—ã¦é€šä¿¡é–‹å§‹
  * @param	NONE
  * @return	NONE
  */
@@ -610,14 +610,14 @@ static int CommParentStart(PROC *proc)
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
   SAVEDATA *sv = ((MAINWORK *)PROC_GetParentWork(proc))->savedata;
 
-  // ‘—‚éƒf[ƒ^‚Ì‚Å‚Á‚¿‚ ‚°
+  // é€ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã§ã£ã¡ã‚ã’
   GIFT_COMM_PACK *gd = DecchiCreateGiftData(wk);
-  // MYSTERYGIFT_WORK‚Öƒf[ƒ^‚ğƒZƒbƒg
+  // MYSTERYGIFT_WORKã¸ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
   memcpy(&wk->gift_data, gd, sizeof(GIFT_COMM_PACK));
   
   CommMysteryStateEnterGiftParent(wk, sv, COMM_MODE_MYSTERY);
 #ifdef DEBUG_ONLY_FOR_mituhara
-  OS_Printf("e‚Æ‚µ‚Ä’ÊMŠJn\n");
+  OS_Printf("è¦ªã¨ã—ã¦é€šä¿¡é–‹å§‹\n");
 #endif
   return MYSTERYGIFT_SEQ_START_PARENT;
 }
@@ -629,7 +629,7 @@ static int CommParentStart(PROC *proc)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒEƒBƒ“ƒhƒE‚ª‘¶İ‚·‚ê‚ÎƒNƒŠƒA‚·‚é
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒå­˜åœ¨ã™ã‚Œã°ã‚¯ãƒªã‚¢ã™ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -649,7 +649,7 @@ static void CMG_BmpTalkWinClear(GF_BGL_BMPWIN * win, u8 trans_sw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	q‹@‚Æ‚µ‚Ä’ÊMŠJn
+ * @brief	å­æ©Ÿã¨ã—ã¦é€šä¿¡é–‹å§‹
  * @param	NONE
  * @return	NONE
  */
@@ -659,25 +659,25 @@ static int CommChildStart(PROC *proc)
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
   
   if(wk->comm_type != MYSTERYCOMM_TYPE_AGBCARTRIDGE){
-    /* u‚¨‚­‚è‚à‚Ì@‚ğ@‚³‚ª‚µ‚Ä‚¢‚Ü‚·\n‚µ‚Î‚ç‚­@‚¨‚Ü‚¿@‚­‚¾‚³‚¢ccv */
+    /* ã€ŒãŠãã‚Šã‚‚ã®ã€€ã‚’ã€€ã•ãŒã—ã¦ã„ã¾ã™\nã—ã°ã‚‰ãã€€ãŠã¾ã¡ã€€ãã ã•ã„â€¦â€¦ã€ */
     DisplaySequence(proc, &wk->msgwin, mystery_01_004);
   }
-  /* u‚Í‚¢^‚¢‚¢‚¦v‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚Í‚¢‚Á‚½‚ñÁ‚· */
+  /* ã€Œã¯ã„ï¼ã„ã„ãˆã€ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¯ã„ã£ãŸã‚“æ¶ˆã™ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO], WINDOW_TRANS_ON);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-  OS_Printf("q‚Æ‚µ‚Ä’ÊMŠJn\n");
+  OS_Printf("å­ã¨ã—ã¦é€šä¿¡é–‹å§‹\n");
 #endif
   if(wk->comm_type != MYSTERYCOMM_TYPE_AGBCARTRIDGE){
     CommMysteryStateEnterGiftChild(wk, COMM_MODE_MYSTERY);
-    // ƒ^ƒCƒ€ƒAƒEƒgŠÔ‚ğİ’è
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“ã‚’è¨­å®š
     wk->timeout = MYSTERYGIFT_TIMEOUT;
-    // ’ÊMƒAƒCƒRƒ“•\¦
+    // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
     WirelessIconEasy();
-    // ƒ^ƒCƒ€ƒAƒCƒRƒ“•\¦
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
     SetTimeWaitIcon(wk, TRUE);
     return MYSTERYGIFT_SEQ_START_CHILD;
   } else {
-    OS_TPrintf("AGBƒJ[ƒgƒŠƒbƒW‚©‚ç‚Ì“]‘— \n");
+    OS_TPrintf("AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã‹ã‚‰ã®è»¢é€ \n");
     wk->from_seq = MYSTERYGIFT_SEQ_AGB_START_CHILD;
     return MYSTERYGIFT_SEQ_AGB_START_CHILD;
   }
@@ -686,7 +686,7 @@ static int CommChildStart(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚¨‚­‚è‚à‚Ì‚ğóM‚·‚é‚ÆŠm’è‚µ‚½‚Ì“®ì(q‹@)
+ * @brief	ãŠãã‚Šã‚‚ã®ã‚’å—ä¿¡ã™ã‚‹ã¨ç¢ºå®šã—ãŸæ™‚ã®å‹•ä½œ(å­æ©Ÿ)
  * @param	NONE
  * @return	NONE
  */
@@ -695,17 +695,17 @@ static int CommChildRecvStart(PROC *proc)
 {
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
-  // ƒ_ƒCƒŒƒNƒg’ÊM‚Ìê‡‚Í‚±‚±‚Åƒo[ƒWƒ‡ƒ“ˆá‚¢‚ğƒ`ƒFƒbƒN
+  // ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆé€šä¿¡ã®å ´åˆã¯ã“ã“ã§ãƒãƒ¼ã‚¸ãƒ§ãƒ³é•ã„ã‚’ãƒã‚§ãƒƒã‚¯
   if(wk->gift_error == COMMMYSTERYFUNC_ERROR_VERSION)
     return MYSTERYGIFT_ERROR_FULL;
   
-  // ƒzƒ“ƒg‚Éó‚¯æ‚ê‚é‚©ƒ`ƒFƒbƒN‚ğs‚¤
-  if(wk->gift_error == COMMMYSTERYFUNC_ERROR_FULLGIFT ||	/* ”z’Bˆõ‚ªˆê”t */
-     wk->gift_error == COMMMYSTERYFUNC_ERROR_FULLCARD ||	/* ƒJ[ƒh‚ªˆê”t */
-     wk->gift_error == COMMMYSTERYFUNC_ERROR_HAVE)		/* ˆê“x‚µ‚©ó‚¯æ‚ê‚È‚¢ */
+  // ãƒ›ãƒ³ãƒˆã«å—ã‘å–ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
+  if(wk->gift_error == COMMMYSTERYFUNC_ERROR_FULLGIFT ||	/* é…é”å“¡ãŒä¸€æ¯ */
+     wk->gift_error == COMMMYSTERYFUNC_ERROR_FULLCARD ||	/* ã‚«ãƒ¼ãƒ‰ãŒä¸€æ¯ */
+     wk->gift_error == COMMMYSTERYFUNC_ERROR_HAVE)		/* ä¸€åº¦ã—ã‹å—ã‘å–ã‚Œãªã„ */
     return MYSTERYGIFT_ERROR_FULL;
 
-  // ‘·”z•z‚Ìê‡‚Íƒzƒ“ƒg‚Éó‚¯æ‚é‚ÌHƒ`ƒFƒbƒN‚ğs‚¤
+  // å­«é…å¸ƒã®å ´åˆã¯ãƒ›ãƒ³ãƒˆã«å—ã‘å–ã‚‹ã®ï¼Ÿãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
   if(wk->gift_error == COMMMYSTERYFUNC_ERROR_GROUNDCHILD){
     /* mituhara; */
     return MYSTERYGIFT_ERROR_FULL;
@@ -714,21 +714,21 @@ static int CommChildRecvStart(PROC *proc)
   if(wk->comm_type == MYSTERYCOMM_TYPE_DIRECT){
     CommMysteryStateConnectGiftChild(wk->connectIndex);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-    OS_Printf("e‚É‘Î‚µ‚ÄÚ‘±—v‹‚ğo‚µ‚Ü‚µ‚½\n");
+    OS_Printf("è¦ªã«å¯¾ã—ã¦æ¥ç¶šè¦æ±‚ã‚’å‡ºã—ã¾ã—ãŸ\n");
 #endif  
   }
-  // u‚à‚¤‚µ‚±‚İ‚ğ@‚µ‚Ü‚µ‚½\n‚µ‚Î‚ç‚­@‚¨‚Ü‚¿‚­‚¾‚³‚¢cv
+  // ã€Œã‚‚ã†ã—ã“ã¿ã‚’ã€€ã—ã¾ã—ãŸ\nã—ã°ã‚‰ãã€€ãŠã¾ã¡ãã ã•ã„â€¦ã€
   DisplaySequence(proc, &wk->msgwin, mystery_01_007);
-  /* u‚Í‚¢^‚¢‚¢‚¦v‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚Í‚¢‚Á‚½‚ñÁ‚· */
+  /* ã€Œã¯ã„ï¼ã„ã„ãˆã€ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¯ã„ã£ãŸã‚“æ¶ˆã™ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO], WINDOW_TRANS_ON);
 
-  // ó‚¯æ‚èƒIƒuƒWƒFƒNƒg‚Ì•\¦(Wi-Fi‚Ìê‡‚ÍuŠÔ“I‚É‚µ‚©•\¦‚³‚ê‚È‚¢‚Ì‚ÅA‚»‚à‚»‚à•\¦‚µ‚È‚¢)
+  // å—ã‘å–ã‚Šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¡¨ç¤º(Wi-Fiã®å ´åˆã¯ç¬é–“çš„ã«ã—ã‹è¡¨ç¤ºã•ã‚Œãªã„ã®ã§ã€ãã‚‚ãã‚‚è¡¨ç¤ºã—ãªã„)
   if(wk->comm_type == MYSTERYCOMM_TYPE_DIRECT){
     SetBaseIcon(wk, 0);
     SetTimeWaitIcon(wk, TRUE);
   }
 
-  // ó‚¯æ‚è•û–@‚ª”÷–­‚É•Ï‚í‚é‚½‚ßAƒV[ƒPƒ“ƒX•ªŠò
+  // å—ã‘å–ã‚Šæ–¹æ³•ãŒå¾®å¦™ã«å¤‰ã‚ã‚‹ãŸã‚ã€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ†å²
   if(wk->comm_type == MYSTERYCOMM_TYPE_DIRECT){
     CommTimingSyncStart(MYSTERYGIFT_SYNC_CODE);
     return MYSTERYGIFT_SEQ_REQEST_CHILD;
@@ -740,7 +740,7 @@ static int CommChildRecvStart(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚ğƒZ[ƒu\‘¢‘Ì‚ÉƒZƒbƒg
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–æ§‹é€ ä½“ã«ã‚»ãƒƒãƒˆ
  * @param	NONE
  * @return	NONE
  */
@@ -755,7 +755,7 @@ static GIFT_DELIVERY *CommSetSaveData(PROC *proc)
   switch(wk->comm_type){
   case MYSTERYCOMM_TYPE_DIRECT:
     memcpy(gdata, CommGetMysteryGiftRecvBuff(0, NULL, 0), sizeof(GIFT_DATA));
-    /* óM‚µ‚½ƒf[ƒ^‚ÌˆÃ†‚ğdecode */
+    /* å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã®æš—å·ã‚’decode */
     MysteryLib_DecodeCryptoData(&wk->gift_data, &wk->gift_data.data, HEAPID_MYSTERYGIFT);
     break;
   case MYSTERYCOMM_TYPE_BEACON:
@@ -773,11 +773,11 @@ static GIFT_DELIVERY *CommSetSaveData(PROC *proc)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰f‰æ”zM—p‚Ì‰‰o‚ª•K—v‚©
+ * @brief   æ˜ ç”»é…ä¿¡ç”¨ã®æ¼”å‡ºãŒå¿…è¦ã‹
  *
  * @param   deli		
  *
- * @retval  TRUE:‰f‰æ”zM‚Ì‰‰o‚ª•K—v
+ * @retval  TRUE:æ˜ ç”»é…ä¿¡ã®æ¼”å‡ºãŒå¿…è¦
  */
 //--------------------------------------------------------------
 static BOOL MovieEffectModeCheck(GIFT_DELIVERY *deli)
@@ -798,10 +798,10 @@ static BOOL MovieEffectModeCheck(GIFT_DELIVERY *deli)
 			
 			pp = (POKEMON_PARAM *)&deli->data.pokemon.data;
 			place_no = PokeParaGet(pp, ID_PARA_get_place, NULL);
-	//		if(place_no >= 3003 && place_no <= 3014){	//’n–¼uƒ|ƒPƒ‚ƒ“‚¦‚¢‚ªv
+	//		if(place_no >= 3003 && place_no <= 3014){	//åœ°åã€Œãƒã‚±ãƒ¢ãƒ³ãˆã„ãŒã€
 			// MatchComment: add secondary condition to if statement
-            if((place_no >= 3 && place_no <= 14) || (place_no >= 64 && place_no <= 71)){	//’n–¼uƒ|ƒPƒ‚ƒ“‚¦‚¢‚ªv
-				//•sv‹c‚È‘¡‚è•¨‚Ìê‡Aget_place‚Ì•û‚Éplace_name_haihu.gmm‚Ìindex‚Å“ü‚Á‚Ä‚¢‚é
+            if((place_no >= 3 && place_no <= 14) || (place_no >= 64 && place_no <= 71)){	//åœ°åã€Œãƒã‚±ãƒ¢ãƒ³ãˆã„ãŒã€
+				//ä¸æ€è­°ãªè´ˆã‚Šç‰©ã®å ´åˆã€get_placeã®æ–¹ã«place_name_haihu.gmmã®indexã§å…¥ã£ã¦ã„ã‚‹
 				return TRUE;
 			}
 		}
@@ -813,7 +813,7 @@ static BOOL MovieEffectModeCheck(GIFT_DELIVERY *deli)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒV[ƒPƒ“ƒX
+ * @brief	ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  * @param	NONE
  * @return	NONE
  */
@@ -823,7 +823,7 @@ static void SaveSequence(void *p)
   int ret;
   MYSTERYGIFT_WORK *wk = (MYSTERYGIFT_WORK *)p;
   if(wk->save_cancel == TRUE){
-    // ƒZ[ƒu‚ªƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
+    // ã‚»ãƒ¼ãƒ–ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
     wk->func_hook = NULL;
   }
   ret = MysteryLib_SaveDSCard();
@@ -835,14 +835,14 @@ static void SaveSequence(void *p)
 	{
 	    Snd_SePlay( SEQ_SE_DP_SAVE );
 	}
-    //    OS_TPrintf("•ªŠ„ƒZ[ƒu‚ªI—¹‚µ‚Ü‚µ‚½\n");
+    //    OS_TPrintf("åˆ†å‰²ã‚»ãƒ¼ãƒ–ãŒçµ‚äº†ã—ã¾ã—ãŸ\n");
     wk->func_hook = NULL;
   }
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	“Í‚¢‚½ƒf[ƒ^‚ğƒZ[ƒu—Ìˆæ‚Ö“o˜^‚·‚é
+ * @brief	å±Šã„ãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–é ˜åŸŸã¸ç™»éŒ²ã™ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -857,8 +857,8 @@ static void CommChildSaveRecvData(PROC *proc)
   FUSHIGI_DATA *fdata;
 
 #if 0//def DEBUG_ONLY_FOR_mituhara
-  OS_TPrintf("ƒJ[ƒhî•ñ:\t%d\n", beacon->have_card);
-  OS_TPrintf("ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“:\t%3d : %3d : %3d\n",
+  OS_TPrintf("ã‚«ãƒ¼ãƒ‰æƒ…å ±:\t%d\n", beacon->have_card);
+  OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³:\t%3d : %3d : %3d\n",
 	     gdata->card.pokemon_icon[0], gdata->card.pokemon_icon[1], gdata->card.pokemon_icon[2]);
 #endif
   
@@ -867,30 +867,30 @@ static void CommChildSaveRecvData(PROC *proc)
   } else {
     RTCDate date;
     type = MYSTERYGIFT_CARD;
-    /* Ä”z•z‚µ‚½‰ñ”‚ğƒŠƒZƒbƒg */
+    /* å†é…å¸ƒã—ãŸå›æ•°ã‚’ãƒªã‚»ãƒƒãƒˆ */
     gdata->card.re_dealed_count = 0;	//gdata->card.re_deal_count;
-    /* ‚à‚µ‚àÄ”z•z‰Â”\ƒtƒ‰ƒO‚ªQ‚Ä‚¢‚½‚ç‰ñ”‚ğƒŠƒZƒbƒg */
+    /* ã‚‚ã—ã‚‚å†é…å¸ƒå¯èƒ½ãƒ•ãƒ©ã‚°ãŒå¯ã¦ã„ãŸã‚‰å›æ•°ã‚’ãƒªã‚»ãƒƒãƒˆ */
     if(beacon->re_deal_flag == FALSE)
       gdata->card.re_deal_count = 0;
-    /* ƒZ[ƒu‚·‚é“ú•t‚ğ“ü‚ê‚é */
+    /* ã‚»ãƒ¼ãƒ–ã™ã‚‹æ—¥ä»˜ã‚’å…¥ã‚Œã‚‹ */
     GF_RTC_GetDate(&date);
     gdata->card.recv_date = RTC_ConvertDateToDay(&date);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-    OS_Printf("%4d”N%2dŒ%2d“ú -> %08X\n", date.year, date.month, date.day, gdata->card.recv_date);
+    OS_Printf("%4då¹´%2dæœˆ%2dæ—¥ -> %08X\n", date.year, date.month, date.day, gdata->card.recv_date);
 #endif
   }
 
-  // ‚Ó‚µ‚¬ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğ“¾‚é
+  // ãµã—ããƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹
   fdata = SaveData_GetFushigiData(sv);
-  // ƒCƒxƒ“ƒg”Ô†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+  // ã‚¤ãƒ™ãƒ³ãƒˆç•ªå·ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
   FUSHIGIDATA_SetEventRecvFlag(fdata, beacon->event_id);
-  // ƒZ[ƒuƒGƒŠƒA‚Éƒf[ƒ^‚ğƒZƒbƒg
+  // ã‚»ãƒ¼ãƒ–ã‚¨ãƒªã‚¢ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
   if(type == MYSTERYGIFT_DELIVERY){
     ret = FUSHIGIDATA_SetDeliData(fdata, (const void *)gdata, GIFT_CARD_NONE);
   } else {
     ret = FUSHIGIDATA_SetCardData(fdata, (const void *)gdata);
   }
-  // ƒZ[ƒuƒV[ƒPƒ“ƒX‚ğ“o˜^
+  // ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ç™»éŒ²
   MysteryLib_InitSaveDSCard(sv);
   wk->save_cancel = FALSE;
   wk->func_hook = SaveSequence;
@@ -900,11 +900,11 @@ static void CommChildSaveRecvData(PROC *proc)
 
 
 //--------------------------------------------------------------------------------------------
-// «ƒ_ƒCƒŒƒNƒg’ÊM‚Åu‚Í‚¢^‚¢‚¢‚¦v‚ğ‘I‘ğ‚·‚éƒEƒBƒ“ƒhƒE
+// â†“ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆé€šä¿¡ã§ã€Œã¯ã„ï¼ã„ã„ãˆã€ã‚’é¸æŠã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ_ƒCƒŒƒNƒg’ÊM’†‚ÉŒ©‚Â‚©‚Á‚½e‚ÆÚ‘±‚·‚é‚©u‚Í‚¢^‚¢‚¢‚¦v
+ * @brief	ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆé€šä¿¡ä¸­ã«è¦‹ã¤ã‹ã£ãŸè¦ªã¨æ¥ç¶šã™ã‚‹ã‹ã€Œã¯ã„ï¼ã„ã„ãˆã€
  * @param	NONE
  * @return	NONE
  */
@@ -923,7 +923,7 @@ static void CreateDirectCommYesNoMenu(PROC *proc, int flag)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 23, 10, 6, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_COMMDIRCHR);
   // ----------------------------------------------------------------------------
   // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-  // ƒEƒBƒ“ƒhƒE‚Ì˜g‚¾‚¯•`‰æ‚ª’x‚ê‚é‚Ì‚ğC³
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ ã ã‘æç”»ãŒé…ã‚Œã‚‹ã®ã‚’ä¿®æ­£
   BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommDirectCommYesNoMenu_MenuData, NELEMS(CommDirectCommYesNoMenu_MenuData), win, msg);
   // ----------------------------------------------------------------------------
@@ -932,11 +932,11 @@ static void CreateDirectCommYesNoMenu(PROC *proc, int flag)
 
 
 //--------------------------------------------------------------------------------------------
-// «’ÊM•û–@‚Åƒ_ƒCƒŒƒNƒg’ÊM‚ğ‘I‘ğ‚µ‚½Û‚ÌŠm”FƒEƒBƒ“ƒhƒE
+// â†“é€šä¿¡æ–¹æ³•ã§ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆé€šä¿¡ã‚’é¸æŠã—ãŸéš›ã®ç¢ºèªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ_ƒCƒŒƒNƒg’ÊM‚µ‚Ü‚·‚©H‚Åu‚¢‚¢‚¦v‚ğ‘I‘ğ
+ * @brief	ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆé€šä¿¡ã—ã¾ã™ã‹ï¼Ÿã§ã€Œã„ã„ãˆã€ã‚’é¸æŠ
  * @param	NONE
  * @return	NONE
  */
@@ -944,11 +944,11 @@ static void CreateDirectCommYesNoMenu(PROC *proc, int flag)
 static int CommDirectMenuNo(PROC *proc)
 {
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
-  /* ¡‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•\¦‚³‚¹‚È‚¢ */
+  /* ä»Šã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã•ã›ãªã„ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO], WINDOW_TRANS_ON);
   CMG_BmpMenuWinClear(&wk->upwin, WINDOW_TRANS_ON);
   if(wk->comm_type == MYSTERYCOMM_TYPE_DIRECT){
-    SetTimeWaitIcon(wk, FALSE);	// ƒ^ƒCƒ€ƒAƒCƒRƒ“Á‹
+    SetTimeWaitIcon(wk, FALSE);	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆå»
   }
 
   WirelessIconEasyEnd();
@@ -958,9 +958,9 @@ static int CommDirectMenuNo(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ_ƒCƒŒƒNƒg’ÊM‚µ‚Ü‚·‚©Hu‚Í‚¢^‚¢‚¢‚¦v
+ * @brief	ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆé€šä¿¡ã—ã¾ã™ã‹ï¼Ÿã€Œã¯ã„ï¼ã„ã„ãˆã€
  * @param	NONE
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX”Ô†
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 static int CommDirectMenuYesNo(PROC *proc)
@@ -970,8 +970,8 @@ static int CommDirectMenuYesNo(PROC *proc)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/17
-// ˆê“x–³ü‚Å‚¨‚­‚è‚à‚Ì‚ğó‚¯æ‚ë‚¤‚Æ‚·‚é‚ÆA‚»‚ÌŒãAGB‚©‚çó‚¯æ‚ê‚È‚­‚È‚é
-// •s‹ï‡‚ÌC³‚ğ”½‰f
+// ä¸€åº¦ç„¡ç·šã§ãŠãã‚Šã‚‚ã®ã‚’å—ã‘å–ã‚ã†ã¨ã™ã‚‹ã¨ã€ãã®å¾ŒAGBã‹ã‚‰å—ã‘å–ã‚Œãªããªã‚‹
+// ä¸å…·åˆã®ä¿®æ­£ã‚’åæ˜ 
 #if !AFTERMASTER_070213_MISTERY_AGBCARTRIDGE_FIX
   if(wk->comm_type != MYSTERYCOMM_TYPE_AGBCARTRIDGE)
     wk->comm_type = MYSTERYCOMM_TYPE_DIRECT;
@@ -982,15 +982,15 @@ static int CommDirectMenuYesNo(PROC *proc)
     wk->comm_type = MYSTERYCOMM_TYPE_DIRECT;
 #endif
 // ----------------------------------------------------------------------------
-  /* ¡‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•\¦‚³‚¹‚È‚¢ */
+  /* ä»Šã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã•ã›ãªã„ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_TYPE], WINDOW_TRANS_ON);
-  /* ƒƒjƒ…[‚ğ‚·‚°‚©‚¦‚é */
+  /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã™ã’ã‹ãˆã‚‹ */
   win = &wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO];
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 23, 10, 6, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_COMMDIRCHR);
   // ----------------------------------------------------------------------------
   // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-  // ƒEƒBƒ“ƒhƒE‚Ì˜g‚¾‚¯•`‰æ‚ª’x‚ê‚é‚Ì‚ğC³
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ ã ã‘æç”»ãŒé…ã‚Œã‚‹ã®ã‚’ä¿®æ­£
   BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommDirectYesNoMenu_MenuData, NELEMS(CommDirectYesNoMenu_MenuData), win, mystery_01_003);
   // ----------------------------------------------------------------------------
@@ -1001,9 +1001,9 @@ static int CommDirectMenuYesNo(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	WiFiƒ_ƒEƒ“ƒ[ƒh’ÊM‚µ‚Ü‚·‚©Hu‚Í‚¢^‚¢‚¢‚¦v
+ * @brief	WiFiãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰é€šä¿¡ã—ã¾ã™ã‹ï¼Ÿã€Œã¯ã„ï¼ã„ã„ãˆã€
  * @param	NONE
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX”Ô†
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 static int CommWiFiMenuYesNo(PROC *proc)
@@ -1012,15 +1012,15 @@ static int CommWiFiMenuYesNo(PROC *proc)
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
   wk->comm_type = MYSTERYCOMM_TYPE_WIFI;
-  /* ¡‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•\¦‚³‚¹‚È‚¢ */
+  /* ä»Šã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã•ã›ãªã„ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_TYPE], WINDOW_TRANS_ON);
-  /* ƒƒjƒ…[‚ğ‚·‚°‚©‚¦‚é */
+  /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã™ã’ã‹ãˆã‚‹ */
   win = &wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO];
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 23, 10, 6, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_COMMDIRCHR);
   // ----------------------------------------------------------------------------
   // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-  // ƒEƒBƒ“ƒhƒE‚Ì˜g‚¾‚¯•`‰æ‚ª’x‚ê‚é‚Ì‚ğC³
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ ã ã‘æç”»ãŒé…ã‚Œã‚‹ã®ã‚’ä¿®æ­£
   BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommWiFiYesNoMenu_MenuData, NELEMS(CommWiFiYesNoMenu_MenuData), win, mystery_wifi_001);
   // ----------------------------------------------------------------------------
@@ -1034,9 +1034,9 @@ static int CommWiFiMenuYesNo(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒuƒ[ƒhƒLƒƒƒXƒg’ÊM‚µ‚Ü‚·‚©Hu‚Í‚¢^‚¢‚¢‚¦v
+ * @brief	ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆé€šä¿¡ã—ã¾ã™ã‹ï¼Ÿã€Œã¯ã„ï¼ã„ã„ãˆã€
  * @param	NONE
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX”Ô†
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 static int CommBeaconMenuYesNo(PROC *proc)
@@ -1045,15 +1045,15 @@ static int CommBeaconMenuYesNo(PROC *proc)
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
   wk->comm_type = MYSTERYCOMM_TYPE_BEACON;
-  /* ¡‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•\¦‚³‚¹‚È‚¢ */
+  /* ä»Šã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã•ã›ãªã„ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_TYPE], WINDOW_TRANS_ON);
-  /* ƒƒjƒ…[‚ğ‚·‚°‚©‚¦‚é */
+  /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã™ã’ã‹ãˆã‚‹ */
   win = &wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO];
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 23, 10, 6, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_COMMDIRCHR);
   // ----------------------------------------------------------------------------
   // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-  // ƒEƒBƒ“ƒhƒE‚Ì˜g‚¾‚¯•`‰æ‚ª’x‚ê‚é‚Ì‚ğC³
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ ã ã‘æç”»ãŒé…ã‚Œã‚‹ã®ã‚’ä¿®æ­£
   BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommBeaconYesNoMenu_MenuData, NELEMS(CommBeaconYesNoMenu_MenuData), win, mystery_broadcast_001);
   // ----------------------------------------------------------------------------
@@ -1063,7 +1063,7 @@ static int CommBeaconMenuYesNo(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒuƒ[ƒhƒLƒƒƒXƒg’ÊM‚ÉŒ©‚Â‚¯‚½ƒf[ƒ^‚ğóM‚·‚é‚©u‚Í‚¢^‚¢‚¢‚¦vƒƒjƒ…[
+ * @brief	ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆé€šä¿¡æ™‚ã«è¦‹ã¤ã‘ãŸãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹ã‹ã€Œã¯ã„ï¼ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  * @param	NONE
  * @return	NONE
  */
@@ -1078,7 +1078,7 @@ static void CreateBeaconCommYesNoMenu(PROC *proc)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 23, 10, 6, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_COMMDIRCHR);
   // ----------------------------------------------------------------------------
   // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-  // ƒEƒBƒ“ƒhƒE‚Ì˜g‚¾‚¯•`‰æ‚ª’x‚ê‚é‚Ì‚ğC³
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ ã ã‘æç”»ãŒé…ã‚Œã‚‹ã®ã‚’ä¿®æ­£
   BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommBeaconCommYesNoMenu_MenuData, NELEMS(CommBeaconCommYesNoMenu_MenuData), win, mystery_01_005);
   // ----------------------------------------------------------------------------
@@ -1087,7 +1087,7 @@ static void CreateBeaconCommYesNoMenu(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚İ‚Â‚©‚Á‚½ƒf[ƒ^‚ğ‚¶‚ã‚µ‚ñ‚µ‚Ü‚·‚©‚Åu‚¢‚¢‚¦v
+ * @brief	ã¿ã¤ã‹ã£ãŸãƒ‡ãƒ¼ã‚¿ã‚’ã˜ã‚…ã—ã‚“ã—ã¾ã™ã‹ã§ã€Œã„ã„ãˆã€
  * @param	NONE
  * @return	NONE
  */
@@ -1095,11 +1095,11 @@ static void CreateBeaconCommYesNoMenu(PROC *proc)
 static int CommDirectCommMenuNo(PROC *proc)
 {
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
-  /* ¡‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•\¦‚³‚¹‚È‚¢ */
+  /* ä»Šã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã•ã›ãªã„ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO], WINDOW_TRANS_ON);
   CMG_BmpMenuWinClear(&wk->upwin, WINDOW_TRANS_ON);
   WirelessIconEasyEnd();
-  /* ƒ_ƒCƒŒƒNƒg’ÊM‚Ìê‡‚Í’ÊM‰ñ˜H‚ğØ‚é */
+  /* ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆé€šä¿¡ã®å ´åˆã¯é€šä¿¡å›è·¯ã‚’åˆ‡ã‚‹ */
   if(wk->comm_type == MYSTERYCOMM_TYPE_DIRECT){
     CommMysteryExitGift();
   }
@@ -1109,7 +1109,7 @@ static int CommDirectCommMenuNo(PROC *proc)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒuƒ[ƒhƒLƒƒƒXƒg’ÊMŠJn
+ * @brief	ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆé€šä¿¡é–‹å§‹
  * @param	NONE
  * @return	NONE
  */
@@ -1118,15 +1118,15 @@ static int CommBeaconChildStart(PROC *proc)
 {
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
   
-  /* u‚¨‚­‚è‚à‚Ì@‚ğ@‚³‚ª‚µ‚Ä‚¢‚Ü‚·
-     @‚µ‚Î‚ç‚­@‚¨‚Ü‚¿@‚­‚¾‚³‚¢ccv */
+  /* ã€ŒãŠãã‚Šã‚‚ã®ã€€ã‚’ã€€ã•ãŒã—ã¦ã„ã¾ã™
+     ã€€ã—ã°ã‚‰ãã€€ãŠã¾ã¡ã€€ãã ã•ã„â€¦â€¦ã€ */
   DisplaySequence(proc, &wk->msgwin, mystery_01_004);
-  /* u‚Í‚¢^‚¢‚¢‚¦v‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚Í‚¢‚Á‚½‚ñÁ‚· */
+  /* ã€Œã¯ã„ï¼ã„ã„ãˆã€ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¯ã„ã£ãŸã‚“æ¶ˆã™ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO], WINDOW_TRANS_ON);
-  // ƒ^ƒCƒ€ƒAƒCƒRƒ“•\¦
+  // ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
   SetTimeWaitIcon(wk, TRUE);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-  OS_TPrintf("ƒr[ƒRƒ“î•ñ‚ğæ“¾‚·‚é\n");
+  OS_TPrintf("ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’å–å¾—ã™ã‚‹\n");
 #endif
   s_state = BEACON_STATE_INIT1;
   return MYSTERYGIFT_BEACON_DOWNLOAD_WAIT_TITLE;
@@ -1135,7 +1135,7 @@ static int CommBeaconChildStart(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚¨‚­‚è‚à‚Ì‚ğƒr[ƒRƒ“‚©‚çóM‚·‚é‚ÆŠm’è‚µ‚½‚Ì“®ì
+ * @brief	ãŠãã‚Šã‚‚ã®ã‚’ãƒ“ãƒ¼ã‚³ãƒ³ã‹ã‚‰å—ä¿¡ã™ã‚‹ã¨ç¢ºå®šã—ãŸæ™‚ã®å‹•ä½œ
  * @param	NONE
  * @return	NONE
  */
@@ -1144,22 +1144,22 @@ static int CommChildRecvBeaconStart(PROC *proc)
 {
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
-  OS_TPrintf("ƒGƒ‰[”Ô†‚Í %d\n", wk->gift_error);
+  OS_TPrintf("ã‚¨ãƒ©ãƒ¼ç•ªå·ã¯ %d\n", wk->gift_error);
 
   
-  // ƒzƒ“ƒg‚Éó‚¯æ‚ê‚é‚©ƒ`ƒFƒbƒN‚ğs‚¤
-  if(wk->gift_error == COMMMYSTERYFUNC_ERROR_FULLGIFT ||	/* ”z’Bˆõ‚ªˆê”t */
-     wk->gift_error == COMMMYSTERYFUNC_ERROR_FULLCARD ||	/* ƒJ[ƒh‚ªˆê”t */
-     wk->gift_error == COMMMYSTERYFUNC_ERROR_HAVE)		/* ˆê“x‚µ‚©ó‚¯æ‚ê‚È‚¢ */
+  // ãƒ›ãƒ³ãƒˆã«å—ã‘å–ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
+  if(wk->gift_error == COMMMYSTERYFUNC_ERROR_FULLGIFT ||	/* é…é”å“¡ãŒä¸€æ¯ */
+     wk->gift_error == COMMMYSTERYFUNC_ERROR_FULLCARD ||	/* ã‚«ãƒ¼ãƒ‰ãŒä¸€æ¯ */
+     wk->gift_error == COMMMYSTERYFUNC_ERROR_HAVE)		/* ä¸€åº¦ã—ã‹å—ã‘å–ã‚Œãªã„ */
     return MYSTERYGIFT_ERROR_FULL;
 
-  /* u‚Í‚¢^‚¢‚¢‚¦v‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚Í‚¢‚Á‚½‚ñÁ‚· */
+  /* ã€Œã¯ã„ï¼ã„ã„ãˆã€ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¯ã„ã£ãŸã‚“æ¶ˆã™ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO], WINDOW_TRANS_ON);
 
-  // ó‚¯æ‚èƒIƒuƒWƒFƒNƒg‚Ì•\¦		--- goto ‚±‚Ì“_‚Å‚ÍAo‚³‚È‚¢
+  // å—ã‘å–ã‚Šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¡¨ç¤º		--- goto ã“ã®æ™‚ç‚¹ã§ã¯ã€å‡ºã•ãªã„
  // SetBaseIcon(wk, 1);
 
-  /* ‚¨‚­‚è‚à‚Ì@‚ğ@‚¶‚ã‚µ‚ñ‚¿‚ã‚¤@‚Å‚·\n‚Å‚ñ‚°‚ñ‚ğ@‚«‚ç‚È‚¢‚Å@‚­‚¾‚³‚¢cc */
+  /* ãŠãã‚Šã‚‚ã®ã€€ã‚’ã€€ã˜ã‚…ã—ã‚“ã¡ã‚…ã†ã€€ã§ã™\nã§ã‚“ã’ã‚“ã‚’ã€€ãã‚‰ãªã„ã§ã€€ãã ã•ã„â€¦â€¦ */
   DisplaySequence(proc, &wk->msgwin, mystery_01_008);
   return MYSTERYGIFT_BEACON_DOWNLOAD;
 }
@@ -1167,7 +1167,7 @@ static int CommChildRecvBeaconStart(PROC *proc)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚¨‚­‚è‚à‚Ì‚ğó‚¯æ‚ç‚È‚¢‚ÆŠm’è‚µ‚½‚Æ‚«
+ * @brief	ãŠãã‚Šã‚‚ã®ã‚’å—ã‘å–ã‚‰ãªã„ã¨ç¢ºå®šã—ãŸã¨ã
  * @param	NONE
  * @return	NONE
  */
@@ -1190,7 +1190,7 @@ static int CommChildRecvBeaconCancel(PROC *proc)
 
 //------------------------------------------------------------------
 /**
- * @brief	WiFi‚Â‚¤‚µ‚ñ’ÊMŠJn
+ * @brief	WiFiã¤ã†ã—ã‚“é€šä¿¡é–‹å§‹
  * @param	NONE
  * @return	NONE
  */
@@ -1199,19 +1199,19 @@ static int CommWiFiChildStart(PROC *proc)
 {
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
   
-  /* u‚¨‚­‚è‚à‚Ì@‚ğ@‚³‚ª‚µ‚Ä‚¢‚Ü‚·
-     @‚µ‚Î‚ç‚­@‚¨‚Ü‚¿@‚­‚¾‚³‚¢ccv */
+  /* ã€ŒãŠãã‚Šã‚‚ã®ã€€ã‚’ã€€ã•ãŒã—ã¦ã„ã¾ã™
+     ã€€ã—ã°ã‚‰ãã€€ãŠã¾ã¡ã€€ãã ã•ã„â€¦â€¦ã€ */
   DisplaySequence(proc, &wk->msgwin, mystery_01_004);
 
 //  DisplaySequenceWiFi(proc, &wk->msgwin, dwc_message_0008);
   
   SetTimeWaitIcon(wk, TRUE);
-  /* u‚Í‚¢^‚¢‚¢‚¦v‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚Í‚¢‚Á‚½‚ñÁ‚· */
+  /* ã€Œã¯ã„ï¼ã„ã„ãˆã€ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¯ã„ã£ãŸã‚“æ¶ˆã™ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO], WINDOW_TRANS_ON);
-  // ƒ^ƒCƒ€ƒAƒCƒRƒ“•\¦
+  // ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
   SetTimeWaitIcon(wk, TRUE);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-  OS_TPrintf("WiFi’ÊM‚ğŠJn‚µ‚Ü‚·\n");
+  OS_TPrintf("WiFié€šä¿¡ã‚’é–‹å§‹ã—ã¾ã™\n");
 #endif
 
   wk->wifi_dl_seq = WIFI_MYSTERYGIFT_BASE;
@@ -1225,21 +1225,21 @@ static int CommWiFiChildStart(PROC *proc)
 
 
 //--------------------------------------------------------------------------------------------
-// «’ÊM•û–@‘I‘ğƒƒjƒ…[‚Ìˆ—
+// â†“é€šä¿¡æ–¹æ³•é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	’ÊM•û®‘I‘ğƒƒjƒ…[‚Åu‚à‚Ç‚év‚ğ‘I‘ğ
+ * @brief	é€šä¿¡æ–¹å¼é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ã€Œã‚‚ã©ã‚‹ã€ã‚’é¸æŠ
  * @param	NONE
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX”Ô†
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 static int CommTypeMenuRetire(PROC *proc)
 {
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
-  /* ¡‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•\¦‚³‚¹‚È‚¢ */
+  /* ä»Šã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã•ã›ãªã„ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_TYPE], WINDOW_TRANS_ON);
-  /* ƒƒCƒ“ƒƒjƒ…[‚ğ•\¦ */
+  /* ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º */
   CreateMenuWindow(proc, MYSTERYGIFT_TOPMENUCHR, mystery_01_001);
   return MYSTERYGIFT_SEQ_MAIN;
 }
@@ -1247,13 +1247,13 @@ static int CommTypeMenuRetire(PROC *proc)
 
 
 //--------------------------------------------------------------------------------------------
-// «ƒgƒbƒvƒƒCƒ“ƒƒjƒ…[‚Ìˆ—
+// â†“ãƒˆãƒƒãƒ—ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‡¦ç†
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ˆê”ÔÅ‰‚Ì‘I‘ğ‰æ–Ê‚Åu‚¨‚­‚è‚à‚Ì‚ğ@‚¤‚¯‚Æ‚év‚ğ‘I‘ğ
+ * @brief	ä¸€ç•ªæœ€åˆã®é¸æŠç”»é¢ã§ã€ŒãŠãã‚Šã‚‚ã®ã‚’ã€€ã†ã‘ã¨ã‚‹ã€ã‚’é¸æŠ
  * @param	NONE
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX”Ô†
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 static int TopMainMenuRecvGift(PROC *proc)
@@ -1265,26 +1265,26 @@ static int TopMainMenuRecvGift(PROC *proc)
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
   FUSHIGI_DATA *fdata = SaveData_GetFushigiData(wk->sv);
 
-  /* ƒr[ƒRƒ“æ“¾ˆ—‚ğ’â~ */
+  /* ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—å‡¦ç†ã‚’åœæ­¢ */
   if(wk->beacon_seq == MYSTERYGIFT_BEACON_SEQ_TIMER){
     wk->beacon_wait = 1;
     MysteryGiftBeaconProc_Main(wk);
   }
   
-  /* ¡‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•\¦‚³‚¹‚È‚¢ */
+  /* ä»Šã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã•ã›ãªã„ */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_MAIN], WINDOW_TRANS_ON);
-  /* ƒƒjƒ…[‚ğ‚·‚°‚©‚¦‚é */
+  /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã™ã’ã‹ãˆã‚‹ */
   win = &wk->selwin[MYSTERYGIFT_WIN_COMM_TYPE];
 #if 0
-  // ó‘Ô‚É‚æ‚Á‚Äƒƒjƒ…[‚Ì€–Ú‚Æ‘å‚«‚³‚ğ•Ï‰»‚³‚¹‚éƒ^ƒCƒv(•Ï‚í‚ç‚È‚­‚È‚Á‚½c)
+  // çŠ¶æ…‹ã«ã‚ˆã£ã¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã¨å¤§ãã•ã‚’å¤‰åŒ–ã•ã›ã‚‹ã‚¿ã‚¤ãƒ—(å¤‰ã‚ã‚‰ãªããªã£ãŸâ€¦)
   width = 16;
-  // Å‰‚Ìƒƒjƒ…[‚Í•K{
+  // æœ€åˆã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¯å¿…é ˆ
   ld[max++] = CommTypeMenu_MenuData[0];
-  // ‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ì‚ªŠJ‚¢‚½‚çƒtƒ‹ƒI[ƒvƒ“‚Æ‚È‚è‚Ü‚µ‚½
+  // ãµã—ããªãŠãã‚Šã‚‚ã®ãŒé–‹ã„ãŸã‚‰ãƒ•ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ã¨ãªã‚Šã¾ã—ãŸ
   ld[max++] = CommTypeMenu_MenuData[1];
   ld[max++] = CommTypeMenu_MenuData[2];
 
-  // ÅŒã‚à•K{
+  // æœ€å¾Œã‚‚å¿…é ˆ
   ld[max++] = CommTypeMenu_MenuData[3];
 #endif
   if(win->ini == NULL)
@@ -1292,7 +1292,7 @@ static int TopMainMenuRecvGift(PROC *proc)
 		     FONT_PALNO_NORMAL, MYSTERYGIFT_COMMTYPECHR);
   // ----------------------------------------------------------------------------
   // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-  // ƒEƒBƒ“ƒhƒE‚Ì˜g‚¾‚¯•`‰æ‚ª’x‚ê‚é‚Ì‚ğC³
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ ã ã‘æç”»ãŒé…ã‚Œã‚‹ã®ã‚’ä¿®æ­£
   BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommTypeMenu_MenuData, 4, win, mystery_01_002);
   // ----------------------------------------------------------------------------
@@ -1303,21 +1303,21 @@ static int TopMainMenuRecvGift(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ˆê”ÔÅ‰‚Ì‘I‘ğ‰æ–Ê‚ÅuƒJ[ƒh‚ğ@‚İ‚év‚ğ‘I‘ğ
+ * @brief	ä¸€ç•ªæœ€åˆã®é¸æŠç”»é¢ã§ã€Œã‚«ãƒ¼ãƒ‰ã‚’ã€€ã¿ã‚‹ã€ã‚’é¸æŠ
  * @param	NONE
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX”Ô†
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 static int TopMainMenuLookCard(PROC *proc)
 {
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
-  /* ƒr[ƒRƒ“æ“¾ˆ—‚ğ’â~ */
+  /* ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—å‡¦ç†ã‚’åœæ­¢ */
   if(wk->beacon_seq == MYSTERYGIFT_BEACON_SEQ_TIMER){
     wk->beacon_wait = 1;
     MysteryGiftBeaconProc_Main(wk);
   }
-  /* MYSTERYGIFT_SEQ_WAIT_FADE ¨ MYSTERYGIFT_SEQ_WAIT_RETURN */
+  /* MYSTERYGIFT_SEQ_WAIT_FADE â†’ MYSTERYGIFT_SEQ_WAIT_RETURN */
   MysteryLib_RequestFade(WIPE_TYPE_FADEOUT, MYSTERYGIFT_SEQ_GO_LOOKCARD, wk->seq, MYSTERYGIFT_SEQ_WAIT_FADE);
   return -1;
 }
@@ -1325,20 +1325,20 @@ static int TopMainMenuLookCard(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ˆê”ÔÅ‰‚Ì‘I‘ğ‰æ–Ê‚Åu‚â‚ß‚év‚ğ‘I‘ğ
+ * @brief	ä¸€ç•ªæœ€åˆã®é¸æŠç”»é¢ã§ã€Œã‚„ã‚ã‚‹ã€ã‚’é¸æŠ
  * @param	NONE
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX”Ô†
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 static int TopMainMenuRetire(PROC *proc)
 {
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
-  /* ƒr[ƒRƒ“æ“¾’†‚Å‚ ‚ê‚ÎI—¹‚³‚¹‚é */
+  /* ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—ä¸­ã§ã‚ã‚Œã°çµ‚äº†ã•ã›ã‚‹ */
   if(wk->beacon_seq == MYSTERYGIFT_BEACON_SEQ_TIMER)
     wk->beacon_wait = 1;
 
-  /* MYSTERYGIFT_SEQ_WAIT_FADE ¨ MYSTERYGIFT_SEQ_WAIT_RETURN */
+  /* MYSTERYGIFT_SEQ_WAIT_FADE â†’ MYSTERYGIFT_SEQ_WAIT_RETURN */
   MysteryLib_ChangeFadeType(1);
   MysteryLib_RequestFade(WIPE_TYPE_FADEOUT, MYSTERYGIFT_SEQ_RETURN, wk->seq, MYSTERYGIFT_SEQ_WAIT_FADE);
   return -1;
@@ -1351,7 +1351,7 @@ static int TopMainMenuRetire(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	BG‰Šú‰»
+ * @brief	BGåˆæœŸåŒ–
  * @param	none
  * @return	none
  */
@@ -1383,19 +1383,19 @@ static void BgInit( GF_BGL_INI * ini )
 
 //------------------------------------------------------------------
 /**
- * @brief	”wŒiƒOƒ‰ƒtƒBƒbƒNƒX‚Ì“o˜^
+ * @brief	èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã®ç™»éŒ²
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static void CreateBgScreenSub(GF_BGL_INI * ini)
 {
-  // ƒTƒu‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+  // ã‚µãƒ–ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_nclr, PALTYPE_SUB_BG, 16*2*8, 16*2, HEAPID_MYSTERYGIFT);
-  // ƒTƒu‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+  // ã‚µãƒ–ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
   ArcUtil_BgCharSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_lz_ccgr, ini,
 		    GF_BGL_FRAME1_S, 0, 10*16*0x20, 1, HEAPID_MYSTERYGIFT);
-  // ƒTƒu‰æ–ÊƒXƒNƒŠ[ƒ“‚P
+  // ã‚µãƒ–ç”»é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ï¼‘
   ArcUtil_ScrnSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_lz_cscr, ini,
 		  GF_BGL_FRAME1_S, 0, 32*24*2, 1, HEAPID_MYSTERYGIFT);
   GF_BGL_ScrPalChange(ini, GF_BGL_FRAME1_S, 0, 0, 32, 24, 8);
@@ -1404,25 +1404,25 @@ static void CreateBgScreenSub(GF_BGL_INI * ini)
 
 static void CreateBgScreen(GF_BGL_INI * ini)
 {
-  // ƒƒCƒ“‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_nclr, PALTYPE_MAIN_BG, 16*2*8, 16*2, HEAPID_MYSTERYGIFT);
-  // ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
   ArcUtil_BgCharSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_lz_ccgr, ini,
 		    GF_BGL_FRAME1_M, 0, 10*16*0x20, 1, HEAPID_MYSTERYGIFT);
-  // ƒƒCƒ“‰æ–ÊƒXƒNƒŠ[ƒ“‚P
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ï¼‘
   ArcUtil_ScrnSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_lz_cscr, ini,
 		  GF_BGL_FRAME1_M, 0, 32*24*2, 1, HEAPID_MYSTERYGIFT);
   GF_BGL_ScrPalChange(ini, GF_BGL_FRAME1_M, 0, 0, 32, 24, 8);
   GF_BGL_LoadScreenReq(ini, GF_BGL_FRAME1_M);
 
-  // ««‰æ–Ê‚ÌŠiq–Í—l
+  // â†“â†“ç”»é¢ã®æ ¼å­æ¨¡æ§˜
   CreateBgScreenSub(ini);
 }
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‚ğ“o˜^‚·‚é”Ä—pŠÖ”
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ç™»éŒ²ã™ã‚‹æ±ç”¨é–¢æ•°
  * @param	NONE
  * @return	NONE
  */
@@ -1434,20 +1434,20 @@ static void CreateWindowMenuData(PROC *proc, LISTDATA *ld, int num, GF_BGL_BMPWI
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
   if(wk->bmd)	BMP_MENULIST_Delete(wk->bmd);
-  /* ƒƒjƒ…[‚Ì•¶š—ñ‚ğ“o˜^ */
+  /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æ–‡å­—åˆ—ã‚’ç™»éŒ² */
   wk->bmd = BMP_MENULIST_Create(num,HEAPID_MYSTERYGIFT);
   wk->msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_mystery_dat, HEAPID_MYSTERYGIFT);
   for(i = 0; i < num; i++)
     BMP_MENULIST_AddArchiveString(wk->bmd, wk->msgman, ld[i].id, ld[i].param);
   MSGMAN_Delete(wk->msgman);
-  /* descì¬ ¨ •ÏX ¨ “o˜^ */
+  /* descä½œæˆ â†’ å¤‰æ›´ â†’ ç™»éŒ² */
   list_h = MenuListHeader;
   list_h.list = wk->bmd;
   list_h.count = list_h.line = num;
   list_h.win = win;
   if(wk->lw) 	BmpListExit(wk->lw, NULL, NULL);
   wk->lw = BmpListSet( &list_h, 0, 0, HEAPID_MYSTERYGIFT);
-  /* ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW•\¦ */
+  /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º */
   if(msg != -1)
     DisplaySequence(proc, &wk->msgwin, msg);
 }
@@ -1460,21 +1460,21 @@ static void CreateWindowMenuDataWiFi(PROC *proc, LISTDATA *ld, int num, GF_BGL_B
    MSGDATA_MANAGER* msgman;
 
   if(wk->bmd)	BMP_MENULIST_Delete(wk->bmd);
-  /* ƒƒjƒ…[‚Ì•¶š—ñ‚ğ“o˜^ */
+  /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æ–‡å­—åˆ—ã‚’ç™»éŒ² */
   wk->bmd = BMP_MENULIST_Create(num,HEAPID_MYSTERYGIFT);
   
-  wk->msgman = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_mystery_dat, HEAPID_MYSTERYGIFT );		///< ‚¢‚Â‚à‚Ì
+  wk->msgman = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_mystery_dat, HEAPID_MYSTERYGIFT );		///< ã„ã¤ã‚‚ã®
   for(i = 0; i < num; i++)
     BMP_MENULIST_AddArchiveString(wk->bmd, wk->msgman, ld[i].id, ld[i].param);
   MSGMAN_Delete(wk->msgman);
-  /* descì¬ ¨ •ÏX ¨ “o˜^ */
+  /* descä½œæˆ â†’ å¤‰æ›´ â†’ ç™»éŒ² */
   list_h = MenuListHeader;
   list_h.list = wk->bmd;
   list_h.count = list_h.line = num;
   list_h.win = win;
   if(wk->lw) 	BmpListExit(wk->lw, NULL, NULL);
   wk->lw = BmpListSet( &list_h, 0, 0, HEAPID_MYSTERYGIFT);
-  /* ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW•\¦ */
+  /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º */
   if(msg != -1)
     DisplaySequenceWiFi(proc, &wk->msgwin, msg);
 }
@@ -1482,7 +1482,7 @@ static void CreateWindowMenuDataWiFi(PROC *proc, LISTDATA *ld, int num, GF_BGL_B
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‚ğ•\¦‚·‚é
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -1495,20 +1495,20 @@ static void CreateMenuWindow(PROC *proc, int base, u32 msg)
   int i, index = 0;
   FUSHIGI_DATA *fdata = SaveData_GetFushigiData(wk->sv);
   win = &wk->selwin[MYSTERYGIFT_WIN_MAIN];
-  // •K—v‚Èƒƒjƒ…[‚Ì‚İ‚ğƒRƒs[
+  // å¿…è¦ãªãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã¿ã‚’ã‚³ãƒ”ãƒ¼
   ld[index++] = TopMainMenu_MenuData1[0];
   if(FUSHIGIDATA_IsExistsCardAll(fdata))
     ld[index++] = TopMainMenu_MenuData1[1];
   ld[index++] = TopMainMenu_MenuData1[2];
-  // ƒEƒBƒ“ƒhƒE“o˜^
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç™»éŒ²
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 8,  7, 16, index*2, FONT_PALNO_NORMAL, base);
   // ----------------------------------------------------------------------------
   // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-  // ƒEƒBƒ“ƒhƒE‚Ì˜g‚¾‚¯•`‰æ‚ª’x‚ê‚é‚Ì‚ğC³
-  // ƒEƒBƒ“ƒhƒE•\¦
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ ã ã‘æç”»ãŒé…ã‚Œã‚‹ã®ã‚’ä¿®æ­£
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
   BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
-  // ƒƒjƒ…[ì¬
+  // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
   CreateWindowMenuData(proc, ld, index, win, msg);
   // ----------------------------------------------------------------------------
 }
@@ -1516,9 +1516,9 @@ static void CreateMenuWindow(PROC *proc, int base, u32 msg)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒEƒBƒ“ƒhƒE‚ÖƒƒbƒZ[ƒW‚Ì•\¦
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	msgid	ƒƒbƒZ[ƒW‚ÌID
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¸ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msgid	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ID
  */
 //--------------------------------------------------------------------------------------------
 static void DisplaySequence(PROC *proc, GF_BGL_BMPWIN *win, u32 msgid)
@@ -1529,7 +1529,7 @@ static void DisplaySequence(PROC *proc, GF_BGL_BMPWIN *win, u32 msgid)
   wk->msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_mystery_dat, HEAPID_MYSTERYGIFT);
   wk->word = WORDSET_Create(HEAPID_MYSTERYGIFT);
 
-  /*ƒEƒBƒ“ƒhƒE˜g“à‚ğ“h‚è‚Â‚Ô‚·(“§–¾F) */
+  /*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ å†…ã‚’å¡—ã‚Šã¤ã¶ã™(é€æ˜è‰²) */
   GF_BGL_BmpWinDataFill(win, FontHeaderGet(FONT_TALK, FONT_HEADER_B_COLOR));
   if(wk->msg)
     msg = wk->msg;
@@ -1539,7 +1539,7 @@ static void DisplaySequence(PROC *proc, GF_BGL_BMPWIN *win, u32 msgid)
   wk->m_id = GF_STR_PrintColor(win, FONT_TALK, msg, 0, 0, wk->msg_wait, MYSTERYGIFT_BLACK, NULL);
   if(wk->msg == NULL)
     STRBUF_Delete(msg);
-  /*ƒEƒBƒ“ƒhƒE˜g•`‰æ(‰ï˜b—pƒEƒBƒ“ƒhƒE‚ğg—p) */
+  /*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ æç”»(ä¼šè©±ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨) */
   BmpTalkWinWrite(win, WINDOW_TRANS_ON, MYSTERYGIFT_FRAMECHR1, WAKU_PALETTE_NUMBER1);
   MSGMAN_Delete(wk->msgman);
   WORDSET_Delete(wk->word);
@@ -1554,7 +1554,7 @@ static void DisplaySequenceWiFi(PROC *proc, GF_BGL_BMPWIN *win, u32 msgid)
   wk->msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_wifi_system_dat, HEAPID_MYSTERYGIFT);
   wk->word = WORDSET_Create(HEAPID_MYSTERYGIFT);
 
-  /*ƒEƒBƒ“ƒhƒE˜g“à‚ğ“h‚è‚Â‚Ô‚·(“§–¾F) */
+  /*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ å†…ã‚’å¡—ã‚Šã¤ã¶ã™(é€æ˜è‰²) */
   GF_BGL_BmpWinDataFill(win, FontHeaderGet(FONT_TALK, FONT_HEADER_B_COLOR));
   if(wk->msg)
     msg = wk->msg;
@@ -1564,7 +1564,7 @@ static void DisplaySequenceWiFi(PROC *proc, GF_BGL_BMPWIN *win, u32 msgid)
   wk->m_id = GF_STR_PrintColor(win, FONT_TALK, msg, 0, 0, wk->msg_wait, MYSTERYGIFT_BLACK, NULL);
   if(wk->msg == NULL)
     STRBUF_Delete(msg);
-  /*ƒEƒBƒ“ƒhƒE˜g•`‰æ(‰ï˜b—pƒEƒBƒ“ƒhƒE‚ğg—p) */
+  /*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ æç”»(ä¼šè©±ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨) */
   BmpTalkWinWrite(win, WINDOW_TRANS_ON, MYSTERYGIFT_FRAMECHR1, WAKU_PALETTE_NUMBER1);
   MSGMAN_Delete(wk->msgman);
   WORDSET_Delete(wk->word);
@@ -1596,7 +1596,7 @@ static BOOL DisplaySequenceEndCheck(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‘I‘ğ•Às
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠï¼†å®Ÿè¡Œ
  * @param	NONE
  * @return	NONE
  */
@@ -1610,9 +1610,9 @@ static void DoMenuMain(PROC *proc, int *seq, int (*cfunc)(PROC *))
   
   ret = BmpListMain(wk->lw);
   switch(ret){
-  case BMPLIST_NULL:	/* ‰½‚à‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢ */
+  case BMPLIST_NULL:	/* ä½•ã‚‚é¸æŠã•ã‚Œã¦ã„ãªã„ */
     break;
-  case BMPLIST_CANCEL:	/* ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½ */
+  case BMPLIST_CANCEL:	/* ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ */
     Snd_SePlay(SEQ_SE_DP_SELECT);
     if(cfunc){
       ret_seq = cfunc(proc);
@@ -1620,7 +1620,7 @@ static void DoMenuMain(PROC *proc, int *seq, int (*cfunc)(PROC *))
 	*seq = ret_seq;
     }
     break;
-  default:		/* ‰½‚©‚ªŒˆ’è‚³‚ê‚½ */
+  default:		/* ä½•ã‹ãŒæ±ºå®šã•ã‚ŒãŸ */
     Snd_SePlay(SEQ_SE_DP_SELECT);
     if(ret){
       func = (static int (*)(PROC *))ret;
@@ -1634,12 +1634,12 @@ static void DoMenuMain(PROC *proc, int *seq, int (*cfunc)(PROC *))
 
 
 //--------------------------------------------------------------------------------------------
-// ˆÈ‰ºA‘g‚İ‡‚í‚¹‚µ‚È‚¨‚µ‚½ŠÖ”‚ğ‚¨‚­—\’è
+// ä»¥ä¸‹ã€çµ„ã¿åˆã‚ã›ã—ãªãŠã—ãŸé–¢æ•°ã‚’ãŠãäºˆå®š
 
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒXƒf[ƒ^‰Šú‰»
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  */
 //------------------------------------------------------------------
 static BOOL MysteryGift_InitGraphicsData(PROC *proc, MYSTERYGIFT_WORK *wk)
@@ -1647,20 +1647,20 @@ static BOOL MysteryGift_InitGraphicsData(PROC *proc, MYSTERYGIFT_WORK *wk)
   int type;
 
   MSG_PrintInit();
-  /* ƒƒbƒZ[ƒW‚ÌƒtƒHƒ“ƒgƒJƒ‰[‚ğİ’è */
+  /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®š */
   SystemFontPaletteLoad( PALTYPE_MAIN_BG, FONT_PALNO_NORMAL * 32, HEAPID_MYSTERYGIFT);
   SystemFontPaletteLoad( PALTYPE_MAIN_BG, FONT_PALNO_SELECT * 32, HEAPID_MYSTERYGIFT);
-  /*ƒEƒBƒ“ƒhƒE˜gƒLƒƒƒ‰AƒpƒŒƒbƒg‚ğƒZƒbƒg */
+  /*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ ã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ */
   type = CONFIG_GetWindowType(wk->cfg);
   TalkWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, MYSTERYGIFT_FRAMECHR1, WAKU_PALETTE_NUMBER1, type, HEAPID_MYSTERYGIFT);
   MenuWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2, 1, HEAPID_MYSTERYGIFT);
-  /* ’´‚²‚ß‚ñ‚È‚³‚¢ƒR[ƒh(ƒpƒŒƒbƒg‚OƒJƒ‰[‚O‚ÌF‚ğ‚Å‚Á‚¿‚ ‚°) */
+  /* è¶…ã”ã‚ã‚“ãªã•ã„ã‚³ãƒ¼ãƒ‰(ãƒ‘ãƒ¬ãƒƒãƒˆï¼ã‚«ãƒ©ãƒ¼ï¼ã®è‰²ã‚’ã§ã£ã¡ã‚ã’) */
   *((u16 *)HW_BG_PLTT) = RGB(12, 12, 31);
-  /* «ƒƒbƒZ[ƒW‚ğ•\¦‚·‚éƒEƒBƒ“ƒhƒE */
+  /* â†“ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ */
   if(!GF_BGL_BmpWinAddCheck(&wk->msgwin))
     GF_BGL_BmpWinAdd(wk->bgl, &wk->msgwin, GF_BGL_FRAME0_M, 2, 19, 27, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_WINDOWCHR);
-  DisplaySequence(proc, &wk->msgwin, mystery_01_001); /* u‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì@‚Ö@‚æ‚¤‚±‚»Iv */
-  /* ƒƒjƒ…[‚ğ•\¦‚·‚éƒEƒBƒ“ƒhƒE u‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì@‚Ö@‚æ‚¤‚±‚»Iv */
+  DisplaySequence(proc, &wk->msgwin, mystery_01_001); /* ã€Œãµã—ããªã€€ãŠãã‚Šã‚‚ã®ã€€ã¸ã€€ã‚ˆã†ã“ãï¼ã€ */
+  /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ ã€Œãµã—ããªã€€ãŠãã‚Šã‚‚ã®ã€€ã¸ã€€ã‚ˆã†ã“ãï¼ã€ */
   CreateMenuWindow(proc, MYSTERYGIFT_TOPMENUCHR, mystery_01_001);
   CreateBgScreen(wk->bgl);
   return TRUE;
@@ -1669,7 +1669,7 @@ static BOOL MysteryGift_InitGraphicsData(PROC *proc, MYSTERYGIFT_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	WiFiƒ_ƒEƒ“ƒ[ƒhƒƒCƒ“ˆ—
+ * @brief	WiFiãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ¡ã‚¤ãƒ³å‡¦ç†
  * @param	NONE
  * @return	NONE
  */
@@ -1680,7 +1680,7 @@ static void WiFi_MysteryGitft_Main(PROC *proc, int *seq)
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
   switch(WifiMysteryGift_Main(proc, &wk->wifi_dl_seq)){
-  case ND_RESULT_EXECUTE:		// Às’†
+  case ND_RESULT_EXECUTE:		// å®Ÿè¡Œä¸­
   
 //    if ( wk->wifi_dl_seq == WIFI_MYSTERYGIFT_NDLIB_INIT ){
 //		DisplaySequence(proc, &wk->msgwin, mystery_01_004);
@@ -1693,31 +1693,31 @@ static void WiFi_MysteryGitft_Main(PROC *proc, int *seq)
 //	if ( wk->wifi_check_func == NULL )	
   
     break;
-  case ND_RESULT_COMPLETE:		// ³íƒ_ƒEƒ“ƒ[ƒhI—¹
+  case ND_RESULT_COMPLETE:		// æ­£å¸¸ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çµ‚äº†
     memcpy(&wk->gift_data, wk->filebuffer, sizeof(GIFT_COMM_PACK));
     SetTimeWaitIcon(wk, FALSE);
     wk->from_seq = MYSTERYGIFT_WIFI_DOWNLOAD_MAIN;
     *seq = MYSTERYGIFT_SEQ_AGB_START_CHILD;
-    /* ƒV[ƒPƒ“ƒX•ÏX */
+    /* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´ */
     wk->wifi_wait = WIFI_CONNECT_WAIT;
 //	DisplaySequenceWiFi(proc, &wk->msgwin, dwc_message_0012 );
     break;
-  case ND_RESULT_NOT_FOUND_FILES:	// ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½
-  case ND_RESULT_DOWNLOAD_CANCEL:	// ƒ†[ƒU[‚©‚çƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
+  case ND_RESULT_NOT_FOUND_FILES:	// ãƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
+  case ND_RESULT_DOWNLOAD_CANCEL:	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
     SetTimeWaitIcon(wk, FALSE);
     wk->wifi_wait = WIFI_CONNECT_WAIT;
     *seq = MYSTERYGIFT_SEQ_SEND_RECV_CANCEL_INIT;
 //    DisplaySequenceWiFi(proc, &wk->msgwin, dwc_message_0012 );
     break;
-  case ND_RESULT_DOWNLOAD_ERROR:	// ‚È‚ñ‚ç‚©‚ÌƒGƒ‰[‚ª‹N‚«‚½
+  case ND_RESULT_DOWNLOAD_ERROR:	// ãªã‚“ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸ
     GF_BGL_BmpWinOff(&wk->wifiwin);
     GF_BGL_BmpWinDel(&wk->wifiwin);
     GF_BGL_ScrClear(wk->bgl, GF_BGL_FRAME0_M);
-    /* ƒƒCƒ“ƒƒjƒ…[‚ğ•\¦ */
+    /* ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º */
     Snd_SePlay(SEQ_SE_DP_SELECT);
     CreateMenuWindow(proc, MYSTERYGIFT_TOPMENUCHR, mystery_01_001);
 #if AFTER_MASTER_070426_WIFIICON_N81_EUR_FIX
-      GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJ–Ê‚n‚m
+      GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 #endif
     *seq = MYSTERYGIFT_SEQ_MAIN;
     break;
@@ -1726,7 +1726,7 @@ static void WiFi_MysteryGitft_Main(PROC *proc, int *seq)
 
 //------------------------------------------------------------------
 /**
- * @brief	Wi-Fi‚Å’ÊM‚Ö•œ‹A•s‰Â”\‚ÈƒGƒ‰[‚ª‹N‚«‚½ê‡‚Ìˆ—
+ * @brief	Wi-Fiã§é€šä¿¡ã¸å¾©å¸°ä¸å¯èƒ½ãªã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸå ´åˆã®å‡¦ç†
  * @param	NONE
  * @return	NONE
  */
@@ -1742,14 +1742,14 @@ void WifiMysteryGift_ErrorDisp(MYSTERYGIFT_WORK *wk)
 
   // MatchComment: new plat US change
   SetTimeWaitIcon(wk, FALSE);
-  // OBJ‰æ–Ê‚Í”ñ•\¦
+  // OBJç”»é¢ã¯éè¡¨ç¤º
   GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_OFF);
-  // ƒXƒNƒŠ[ƒ“‚ğƒNƒŠƒA‚µ‚Äc
+  // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¯ãƒªã‚¢ã—ã¦â€¦
   GF_BGL_ScrClear(wk->bgl, GF_BGL_FRAME0_M);
-  // ƒGƒ‰[”Ô†‚ğword‚ÖƒZƒbƒg‚µ‚Ä
+  // ã‚¨ãƒ©ãƒ¼ç•ªå·ã‚’wordã¸ã‚»ãƒƒãƒˆã—ã¦
   word = WORDSET_Create(HEAPID_MYSTERYGIFT);
   WORDSET_RegisterNumber(word, 0, wk->wifi_errcode, 5, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
-  // ƒEƒBƒ“ƒhƒE‚ğì‚Á‚Ä•\¦
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œã£ã¦è¡¨ç¤º
   MysteryLib_WinInit1(&mw, &wk->wifiwin, FONT_PALNO_SELECT, NARC_msg_wifi_system_dat, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   MysteryLib_WinInit2(&mw, 24, 16, 100);
   MysteryLib_WinInit3(&mw, MYSTERYLIB_WINTYPE_NORMAL, FONT_TALK);
@@ -1761,7 +1761,7 @@ void WifiMysteryGift_ErrorDisp(MYSTERYGIFT_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	”z’Bˆõ‚Ü‚½‚ÍƒJ[ƒh‚ªˆê”t‚Å‚¨‚­‚è‚à‚Ì‚ğó‚¯æ‚ê‚È‚¢
+ * @brief	é…é”å“¡ã¾ãŸã¯ã‚«ãƒ¼ãƒ‰ãŒä¸€æ¯ã§ãŠãã‚Šã‚‚ã®ã‚’å—ã‘å–ã‚Œãªã„
  * @param	NONE
  * @return	NONE
  */
@@ -1786,10 +1786,10 @@ static int MysteryGift_FullError(PROC *proc)
 
 //------------------------------------------------------------------
 /**
- * @brief	sXV•t‚«ƒƒbƒZ[ƒW‚Ì•\¦ˆ—
+ * @brief	è¡Œæ›´æ–°ä»˜ããƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤ºå‡¦ç†
  * @param	NONE
  * @return	NONE
- * ¦—\‚ß wk->msg_next_seq ‚ÉI—¹Œã‚ÌƒV[ƒPƒ“ƒX‚ğ“ü‚ê‚Ä‚¨‚­–
+ * â€»äºˆã‚ wk->msg_next_seq ã«çµ‚äº†å¾Œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å…¥ã‚Œã¦ãŠãäº‹
 */
 //------------------------------------------------------------------
 static int MysteryGif_DisplayMessage(PROC *proc, GF_BGL_BMPWIN *win, int msgid, int next_seq)
@@ -1799,21 +1799,21 @@ static int MysteryGif_DisplayMessage(PROC *proc, GF_BGL_BMPWIN *win, int msgid, 
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
   if(win && msgid){
-    // •\¦‚ªI—¹‚·‚é‚Ü‚Åmsgƒoƒbƒtƒ@‚ğ•Ûá‚¹‚Ë‚Î‚È‚ç‚È‚¢
+    // è¡¨ç¤ºãŒçµ‚äº†ã™ã‚‹ã¾ã§msgãƒãƒƒãƒ•ã‚¡ã‚’ä¿éšœã›ã­ã°ãªã‚‰ãªã„
     msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_mystery_dat, HEAPID_MYSTERYGIFT);
     word = WORDSET_Create(HEAPID_MYSTERYGIFT);
     wk->msg = MSGDAT_UTIL_AllocExpandString(word, msgman, msgid, HEAPID_MYSTERYGIFT);
     wk->msg_wait = 1;
-    // •\¦
+    // è¡¨ç¤º
     DisplaySequence(proc, win, msgid);
     wk->msg_next_seq = next_seq;
-    // g‚í‚È‚­‚È‚Á‚½ƒoƒbƒtƒ@‚ÍŠJ•ú
+    // ä½¿ã‚ãªããªã£ãŸãƒãƒƒãƒ•ã‚¡ã¯é–‹æ”¾
     WORDSET_Delete(word);
     MSGMAN_Delete(msgman);
 
   } else {
     if(GF_MSG_PrintEndCheck(wk->m_id) == 0){
-      // •\¦‚ªI‚í‚Á‚½‚çŠJ•ú
+      // è¡¨ç¤ºãŒçµ‚ã‚ã£ãŸã‚‰é–‹æ”¾
       STRBUF_Delete(wk->msg);
       wk->msg = NULL;
       wk->msg_wait = 0;
@@ -1826,7 +1826,7 @@ static int MysteryGif_DisplayMessage(PROC *proc, GF_BGL_BMPWIN *win, int msgid, 
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒGƒ‰[‚ª‹N‚«‚½Û‚É’ÊM‚ğØ‚éˆ—
+ * @brief	ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸéš›ã«é€šä¿¡ã‚’åˆ‡ã‚‹å‡¦ç†
  * @param	NONE
  * @return	NONE
  */
@@ -1836,15 +1836,15 @@ static void CommDisconnect(MYSTERYGIFT_WORK *wk)
   switch(wk->comm_type){
   case MYSTERYCOMM_TYPE_NULL:
     break;
-  case MYSTERYCOMM_TYPE_DIRECT:		// ƒ_ƒCƒŒƒNƒg’ÊM
+  case MYSTERYCOMM_TYPE_DIRECT:		// ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆé€šä¿¡
     CommMysteryExitGift();
-    WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+    WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
     break;
-  case MYSTERYCOMM_TYPE_AGBCARTRIDGE:	// ‚`‚f‚a‚ÌƒJ[ƒgƒŠƒbƒW‚©‚çƒ_ƒEƒ“ƒ[ƒh
+  case MYSTERYCOMM_TYPE_AGBCARTRIDGE:	// ï¼¡ï¼§ï¼¢ã®ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã‹ã‚‰ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
     break;
-  case MYSTERYCOMM_TYPE_BEACON:		// ƒr[ƒRƒ“‚©‚çƒ_ƒEƒ“ƒ[ƒh
+  case MYSTERYCOMM_TYPE_BEACON:		// ãƒ“ãƒ¼ã‚³ãƒ³ã‹ã‚‰ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
     break;
-  case MYSTERYCOMM_TYPE_WIFI:		// Wi-Fi‚©‚ç‚Ìƒ_ƒEƒ“ƒ[ƒh
+  case MYSTERYCOMM_TYPE_WIFI:		// Wi-Fiã‹ã‚‰ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
     break;
   }
 }
@@ -1852,11 +1852,11 @@ static void CommDisconnect(MYSTERYGIFT_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXF‰Šú‰»
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šåˆæœŸåŒ–
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT MysteryGiftProc_Init(PROC * proc, int * seq)
@@ -1871,38 +1871,38 @@ static PROC_RESULT MysteryGiftProc_Init(PROC * proc, int * seq)
 #endif
   
   MysteryGiftSetProcp(proc);
-  /* ƒ[ƒNƒGƒŠƒA‚ÍTITLE_STARTMENU‚Ìã‚Éì¬‚·‚é(–•Á‚Ì‡”Ô‚Í–â‘è‚È‚¢‚Í‚¸) */
+  /* ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã¯TITLE_STARTMENUã®ä¸Šã«ä½œæˆã™ã‚‹(æŠ¹æ¶ˆã®é †ç•ªã¯å•é¡Œãªã„ã¯ãš) */
   sys_CreateHeap( HEAPID_BASE_APP, HEAPID_MYSTERYGIFT, 0x30000);
   wk = PROC_AllocWork(proc, sizeof(MYSTERYGIFT_WORK), HEAPID_MYSTERYGIFT);
-  /* ‰Šú‰»•s—Ç‚ª•|‚¢‚Ì‚Åƒ[ƒN‚Íƒ[ƒƒNƒŠƒA */
+  /* åˆæœŸåŒ–ä¸è‰¯ãŒæ€–ã„ã®ã§ãƒ¯ãƒ¼ã‚¯ã¯ã‚¼ãƒ­ã‚¯ãƒªã‚¢ */
   memset(wk, 0, sizeof(MYSTERYGIFT_WORK));
   
-  /* Šeí•Ï”‚Ì‰Šú‰» */
+  /* å„ç¨®å¤‰æ•°ã®åˆæœŸåŒ– */
   wk->bgl = GF_BGL_BglIniAlloc(HEAPID_MYSTERYGIFT);
   GF_Disp_GX_VisibleControlInit();
   GF_Disp_GXS_VisibleControlInit();
   CommMysteryFunc_VramBankSet();
   BgInit(wk->bgl);
 
-  /* ‰æ–Ê‚Ì‰Šúİ’è */
+  /* ç”»é¢ã®åˆæœŸè¨­å®š */
   WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
   WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 
-  /* ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh */
+  /* ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ */
   Snd_DataSetByScene( SND_SCENE_HUSIGI, SEQ_PRESENT, 1 );
 
-  /* AGB‚©‚ç‚Ìƒ_ƒEƒ“ƒ[ƒh‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğİ’è */
+  /* AGBã‹ã‚‰ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’è¨­å®š */
   // ----------------------------------------------------------------------------
   // localize_spec_mark(LANG_ALL) imatake 2007/01/15
-  // Crypto ƒ‰ƒCƒuƒ‰ƒŠ“à‚Åƒƒ‚ƒŠ‚ğŠm•Û‚·‚éƒq[ƒv‚ğİ’è
+  // Crypto ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚’è¨­å®š
   SetAgbCartridgeHeapID(HEAPID_MYSTERYGIFT);
   // ----------------------------------------------------------------------------
   if(GetAgbCartridgeDataSize()){
     wk->comm_type = MYSTERYCOMM_TYPE_AGBCARTRIDGE;
     sys_InitAgbCasetteVer(CasetteVersion);
-    MysteryLib_SetAgbCartridgeIntr(TRUE);	/* AGBƒJ[ƒgƒŠƒbƒW‚Ì”²‚¯ŒŸoON */
+    MysteryLib_SetAgbCartridgeIntr(TRUE);	/* AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®æŠœã‘æ¤œå‡ºON */
   }
-  /* ƒr[ƒRƒ“æ“¾ƒV[ƒPƒ“ƒX‰Šú‰» */
+  /* ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ– */
   wk->beacon_seq = MYSTERYGIFT_BEACON_SEQ_WAIT;
   wk->sv = ((MAINWORK *)PROC_GetParentWork(proc))->savedata;
   wk->cfg = SaveData_GetConfig(wk->sv);
@@ -1924,7 +1924,7 @@ static PROC_RESULT MysteryGiftProc_Init(PROC * proc, int * seq)
 // =============================================================================
 //
 //
-//	¡ƒfƒ‚—p
+//	â– ãƒ‡ãƒ¢ç”¨
 //
 //
 // =============================================================================
@@ -1940,7 +1940,7 @@ typedef struct
 	fx32			move_speed;
 	fx32			range;
 	
-	///< ‰ñ“]Œn
+	///< å›è»¢ç³»
 	int				rot_seq;
 	int				rot_rad;
 
@@ -1965,9 +1965,9 @@ typedef struct
 {	
 	int				seq;			///< demo seq
 	int				demo_wait;
-	s8				brightness;		///< ‹P“x
+	s8				brightness;		///< è¼åº¦
 
-	MYSTERY_CLACT*		clact;		///< renddata clactSet ‚ğg‚í‚¹‚Ä‚à‚ç‚¤
+	MYSTERY_CLACT*		clact;		///< renddata clactSet ã‚’ä½¿ã‚ã›ã¦ã‚‚ã‚‰ã†
 	CLACT_HEADER		clActHeader[ 2 ];
 	CLACT_U_RES_OBJ_PTR resObjTbl[ 2 ][ CLACT_U_RES_MAX ];
 	DEMO_PARTICLE		pat_m[ DEMO_PARTICLE_MAX ];
@@ -1976,7 +1976,7 @@ typedef struct
 	DEMO_PARTICLE		pat_m_ball;
 	DEMO_PARTICLE		pat_s_ball;
 		
-	///< MYSTERYGIFT_WORK ‚©‚ç‚à‚ç‚Á‚Ä‚­‚é‚â‚Â
+	///< MYSTERYGIFT_WORK ã‹ã‚‰ã‚‚ã‚‰ã£ã¦ãã‚‹ã‚„ã¤
 	int* 			demo_state;
 	
 } DEMO_WORK;
@@ -2032,13 +2032,13 @@ static void demo_oam_load( DEMO_WORK* wk )
 			CLACT_U_ResManagerResAddArcKindCell( wk->clact->resMan[ CLACT_U_CELLANM_RES ], arc, ncnr, comp, id, CLACT_U_CELLANM_RES, heap );
 	}
 
-	// Chara“]‘—
+	// Charaè»¢é€
 //	CLACT_U_CharManagerSetAreaCont( wk->resObjTbl[ idx + 0 ][ CLACT_U_CHAR_RES ] );
 //	CLACT_U_CharManagerSetAreaCont( wk->resObjTbl[ idx + 1 ][ CLACT_U_CHAR_RES ] );
 	CLACT_U_CharManagerSet( wk->resObjTbl[ idx + 0 ][ CLACT_U_CHAR_RES ] );
 	CLACT_U_CharManagerSet( wk->resObjTbl[ idx + 1 ][ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSetCleanArea( wk->resObjTbl[ idx + 0 ][ CLACT_U_PLTT_RES ] );
 	CLACT_U_PlttManagerSetCleanArea( wk->resObjTbl[ idx + 1 ][ CLACT_U_PLTT_RES ] );
 
@@ -2278,7 +2278,7 @@ static void demo_tcb_set_main( DEMO_WORK* wk )
 			}
 			else
 			{
-				// ‚ç‚µ‚­‚È‚é‚æ‚¤‚Éƒe[ƒuƒ‹‚É‚µ‚½‚¾‚¯
+				// ã‚‰ã—ããªã‚‹ã‚ˆã†ã«ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã—ãŸã ã‘
 				int wait[] = {	  1, 30, 60, 90, 90,120,120,120,
 								150,150,150,150,180,180,180,180,
 								210,210,210,210,210,
@@ -2470,7 +2470,7 @@ static void Particle_TCB( TCB_PTR tcb, void* work )
 	}
 	
 	{
-		///< ˆ—
+		///< å‡¦ç†
 		BOOL bMove;
 
 		act1_mtx = *( ( VecFx32* )CLACT_GetMatrix( wk->act1 ) );
@@ -2621,14 +2621,14 @@ enum {
 
 static void BackGroundColorSet( void )
 {
-//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0x0000 );	//”wŒiF‰Šú‰»iƒƒCƒ“‰æ–Ê
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME1_M, 0x0000 );	//”wŒiF‰Šú‰»iƒƒCƒ“‰æ–Ê
-//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME2_M, 0x0000 );	//”wŒiF‰Šú‰»iƒƒCƒ“‰æ–Ê
-//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME3_M, 0x0000 );	//”wŒiF‰Šú‰»iƒƒCƒ“‰æ–Êj
-//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//”wŒiF‰Šú‰»iƒTƒu‰æ–Êjj
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME1_S, 0x0000 );	//”wŒiF‰Šú‰»iƒTƒu‰æ–Êjj
-//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME2_S, 0x0000 );	//”wŒiF‰Šú‰»iƒTƒu‰æ–Êjj
-//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME3_S, 0x0000 );	//”wŒiF‰Šú‰»iƒTƒu‰æ–Êj
+//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆãƒ¡ã‚¤ãƒ³ç”»é¢
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME1_M, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆãƒ¡ã‚¤ãƒ³ç”»é¢
+//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME2_M, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆãƒ¡ã‚¤ãƒ³ç”»é¢
+//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME3_M, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‰
+//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆã‚µãƒ–ç”»é¢ï¼‰ï¼‰
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME1_S, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆã‚µãƒ–ç”»é¢ï¼‰ï¼‰
+//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME2_S, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆã‚µãƒ–ç”»é¢ï¼‰ï¼‰
+//	GF_BGL_BackGroundColorSet( GF_BGL_FRAME3_S, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆã‚µãƒ–ç”»é¢ï¼‰
 }
 
 //--------------------------------------------------------------
@@ -2636,8 +2636,8 @@ static void BackGroundColorSet( void )
  * @brief	brightness fade
  *
  * @param	wk	
- * @param	fade_type		none = 0 ‚Ö@black = -16 ‚Ö white = +16‚Ö
- * @param	para			‰ÁZ’l
+ * @param	fade_type		none = 0 ã¸ã€€black = -16 ã¸ white = +16ã¸
+ * @param	para			åŠ ç®—å€¤
  *
  * @retval	static BOOL	
  *
@@ -2956,7 +2956,7 @@ static void Demo_TCB( TCB_PTR tcb, void* work )
 			}
 			
 			if ( cnt > DEMO_PARTICLE_1ST ){
-				demo_brightness_fade( wk, eDEMO_FADE_WHITE, 1 );	///< ‚±‚Á‚©‚çƒtƒF[ƒh‚µ‚Ä‚İ‚é
+				demo_brightness_fade( wk, eDEMO_FADE_WHITE, 1 );	///< ã“ã£ã‹ã‚‰ãƒ•ã‚§ãƒ¼ãƒ‰ã—ã¦ã¿ã‚‹
 			}
 			
 			if ( cnt > DEMO_PARTICLE_3RD ){
@@ -3012,11 +3012,11 @@ static void Demo_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXFƒƒCƒ“
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šãƒ¡ã‚¤ãƒ³
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
@@ -3029,48 +3029,48 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 
   //  OS_TPrintf("seq = %d\n", *seq);
   
-  // ƒr[ƒRƒ“æ“¾ƒV[ƒPƒ“ƒX
+  // ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
   if(wk->beacon_seq != MYSTERYGIFT_BEACON_SEQ_WAIT)
     MysteryGiftBeaconProc_Main(wk);
   
   switch(*seq){
   case MYSTERYGIFT_SEQ_INIT:
-    /* ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰» */
+    /* ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ– */
     MysteryLib_Init(HEAPID_MYSTERYGIFT);
     wk->seq = seq;
     *seq = MYSTERYGIFT_SEQ_CREATE_SCREEN;
     break;
 
   case   MYSTERYGIFT_SEQ_CREATE_SCREEN:
-    /* ‰æ–Êì¬ */
+    /* ç”»é¢ä½œæˆ */
     MysteryGift_InitGraphicsData(proc, wk);
     InitCellActor(wk);
 //    SetBaseIcon( wk, 1 );
-    /* ƒtƒF[ƒhƒCƒ“ */
+    /* ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ */
     MysteryLib_RequestFade(WIPE_TYPE_FADEIN, MYSTERYGIFT_SEQ_MAIN, seq, MYSTERYGIFT_SEQ_WAIT_FADE);
 #if 0
-    // ƒr[ƒRƒ“‚ÍE‚í‚È‚­‚Ä‚à—Ç‚­‚È‚è‚Ü‚µ‚½
+    // ãƒ“ãƒ¼ã‚³ãƒ³ã¯æ‹¾ã‚ãªãã¦ã‚‚è‰¯ããªã‚Šã¾ã—ãŸ
     wk->beacon_seq = MYSTERYGIFT_BEACON_SEQ_INIT;
 #endif
     break;
 
   case MYSTERYGIFT_SEQ_WAIT_FADE:
-    // ƒtƒF[ƒh‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Á‚ÄŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+    // ãƒ•ã‚§ãƒ¼ãƒ‰ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
     MysteryLib_FadeEndCheck(seq);
     break;
 
   case MYSTERYGIFT_SEQ_MAIN:
-    /* ƒgƒbƒvƒƒjƒ…[‚ÌƒƒCƒ“ƒ‹[ƒv */
+    /* ãƒˆãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ— */
     DoMenuMain(proc, seq, TopMainMenuRetire);
     break;
 
   case MYSTERYGIFT_SEQ_RECV:
-    /* ’ÊM•û®‚ğŒˆ’è‚·‚éƒEƒBƒ“ƒhƒE‚ÌƒƒCƒ“ƒ‹[ƒv */
+    /* é€šä¿¡æ–¹å¼ã‚’æ±ºå®šã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ— */
     DoMenuMain(proc, seq, CommTypeMenuRetire);
     break;
 
   case MYSTERYGIFT_SEQ_DIRECT_YESNO:
-    /* ƒ_ƒCƒŒƒNƒg‚Å‘—‚éu‚Í‚¢^‚¢‚¢‚¦v‚ÌƒƒCƒ“ƒ‹[ƒv */
+    /* ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã§é€ã‚‹ã€Œã¯ã„ï¼ã„ã„ãˆã€ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ— */
     DoMenuMain(proc, seq, CommDirectMenuNo);
     break;
 
@@ -3078,7 +3078,7 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 
 //--------------------------------------------------------------------------------------------
 
-    // WiFiƒ_ƒEƒ“ƒ[ƒh‚Ìˆ—
+    // WiFiãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã®å‡¦ç†
 
   case MYSTERYGIFT_WIFI_DOWNLOAD_MAIN:
     WiFi_MysteryGitft_Main(proc, seq);
@@ -3087,39 +3087,39 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 
 //--------------------------------------------------------------------------------------------
 
-    // ƒr[ƒRƒ“ƒ_ƒEƒ“ƒ[ƒh‚Ìˆ—
+    // ãƒ“ãƒ¼ã‚³ãƒ³ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã®å‡¦ç†
 
   case MYSTERYGIFT_BEACON_DOWNLOAD_WAIT_TITLE:
-    // event_name‚ª‘—‚ç‚ê‚Ä‚­‚é‚Ì‚ğ‘Ò‚Â
+    // event_nameãŒé€ã‚‰ã‚Œã¦ãã‚‹ã®ã‚’å¾…ã¤
     MysteryGift_BeaconMainLoop(wk);
-    // ƒr[ƒRƒ“î•ñ‚ğE‚Á‚½‚çˆÈ‰º‚Ìˆ—‚Öi‚ŞBƒ_ƒEƒ“ƒ[ƒhˆ—©‘Ì‚Í‘±‚¯‚Äs‚í‚ê‚é
-    // ˆÃ†‰»‚É”º‚¢A‘S‚Ä‚Ìƒf[ƒ^‚ğƒ_ƒEƒ“ƒ[ƒh‚µ‚Ä‚©‚çˆ—‚·‚é‚æ‚¤‚É•ÏX
+    // ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’æ‹¾ã£ãŸã‚‰ä»¥ä¸‹ã®å‡¦ç†ã¸é€²ã‚€ã€‚ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å‡¦ç†è‡ªä½“ã¯ç¶šã‘ã¦è¡Œã‚ã‚Œã‚‹
+    // æš—å·åŒ–ã«ä¼´ã„ã€å…¨ã¦ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã‹ã‚‰å‡¦ç†ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
     if(s_state == BEACON_STATE_SUCCESS){
-      // ƒ^ƒCƒ€ƒAƒCƒRƒ“Á‹
+      // ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆå»
       SetTimeWaitIcon(wk, FALSE);
-      // ƒr[ƒRƒ“î•ñ‚ğ–{—ˆ‚Ìƒ[ƒNƒGƒŠƒA‚ÉƒRƒs[•Û‘¶
+      // ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’æœ¬æ¥ã®ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã«ã‚³ãƒ”ãƒ¼ä¿å­˜
       CommSetSaveData(proc);
 
-      // ó‚¯æ‚Á‚½ƒr[ƒRƒ“î•ñ‚ÌƒGƒ‰[‚ğ’²‚×‚Ä‚¨‚­
+      // å—ã‘å–ã£ãŸãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã®ã‚¨ãƒ©ãƒ¼ã‚’èª¿ã¹ã¦ãŠã
       wk->gift_error = CommMysteryFunc_CheckGetGift(wk->sv, &wk->gift_data);
-      // ó‚¯æ‚è‹–‰Â‚Ì‚q‚n‚lƒo[ƒWƒ‡ƒ“‚ÆˆÙ‚È‚Á‚Ä‚¢‚½‚çó‚¯æ‚ê‚È‚¢
+      // å—ã‘å–ã‚Šè¨±å¯ã®ï¼²ï¼¯ï¼­ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¨ç•°ãªã£ã¦ã„ãŸã‚‰å—ã‘å–ã‚Œãªã„
       if(wk->gift_error == COMMMYSTERYFUNC_ERROR_VERSION){
-	SetTimeWaitIcon(wk, FALSE);	// 	ƒ^ƒCƒ€ƒAƒCƒRƒ“‚ğÁ‹
+	SetTimeWaitIcon(wk, FALSE);	// 	ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã‚’æ¶ˆå»
 	*seq = MYSTERYGIFT_ERROR_FULL;
       } else {
 
 	if(!GF_BGL_BmpWinAddCheck(&wk->upwin))
 	  GF_BGL_BmpWinAdd(wk->bgl, &wk->upwin, GF_BGL_FRAME0_M, 3, 2, 26, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_UPWINCHR);
 
-	// ‚±‚±‚ÅóM‚µ‚½ƒ^ƒCƒgƒ‹‚ğ•\¦
+	// ã“ã“ã§å—ä¿¡ã—ãŸã‚¿ã‚¤ãƒˆãƒ«ã‚’è¡¨ç¤º
 	DisplaySequenceDirect(proc, &wk->upwin, bsdown_c_fileheader());
 	DisplaySequence(proc, &wk->msgwin, mystery_01_005);
-	/* u‚Í‚¢^‚¢‚¢‚¦vƒƒjƒ…[‚Ìì¬ */
+	/* ã€Œã¯ã„ï¼ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½œæˆ */
 	CreateBeaconCommYesNoMenu(proc);
 	*seq = MYSTERYGIFT_BEACON_DOWNLOAD_YESNO;
       }
     }
-    // ƒLƒƒƒ“ƒZƒ‹ˆ—
+    // ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     if(s_state == BEACON_STATE_CANCEL || s_state == BEACON_STATE_CRCERROR){
       MysteryGift_BeaconCancel();
       *seq = MYSTERYGIFT_SEQ_SEND_RECV_CANCEL_INIT;
@@ -3127,19 +3127,19 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     break;
 
   case MYSTERYGIFT_BEACON_DOWNLOAD_YESNO:
-    // u‚¨‚­‚è‚à‚Ì‚ğ@‚¶‚ã‚µ‚ñ‚µ‚Ü‚·‚©vu‚Í‚¢^‚¢‚¢‚¦v
+    // ã€ŒãŠãã‚Šã‚‚ã®ã‚’ã€€ã˜ã‚…ã—ã‚“ã—ã¾ã™ã‹ã€ã€Œã¯ã„ï¼ã„ã„ãˆã€
     DoMenuMain(proc, seq, CommChildRecvBeaconCancel);
     MysteryGift_BeaconMainLoop(wk);
     break;
 
   case MYSTERYGIFT_BEACON_DOWNLOAD:
-    // ƒ_ƒEƒ“ƒ[ƒh‚Í‚·‚Å‚ÉI‚í‚Á‚Ä‚¢‚é
+    // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã¯ã™ã§ã«çµ‚ã‚ã£ã¦ã„ã‚‹
     deli = CommSetSaveData( proc );
 
     SetTimeWaitIcon( wk, TRUE );
     SetBaseIcon( wk, 1 );
     if(MovieEffectModeCheck(deli) == TRUE){
-		// ‰f‰æ‚Ìê‡‚Íƒfƒ‚‚ğo‚·
+		// æ˜ ç”»ã®å ´åˆã¯ãƒ‡ãƒ¢ã‚’å‡ºã™
 #ifndef DEMO_SAVE_OFF
 		CommChildSaveRecvData( proc );
 #endif
@@ -3158,11 +3158,11 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 
 			TCB_Add( Demo_TCB, demo_wk, 5 );
 		}		
-		OS_Printf( "----- ‰f‰æŠÙ‚Ì”z•z\n " );
+		OS_Printf( "----- æ˜ ç”»é¤¨ã®é…å¸ƒ\n " );
 	}
 	else 
 	{
-	    // ‰f‰æ‚¶‚á‚È‚¢ê‡‚ÍA‚±‚±‚Å‰º‰æ–Ê‚ÌXV(ó‚¯æ‚èƒAƒjƒ[ƒVƒ‡ƒ“’Ç‰Á)
+	    // æ˜ ç”»ã˜ã‚ƒãªã„å ´åˆã¯ã€ã“ã“ã§ä¸‹ç”»é¢ã®æ›´æ–°(å—ã‘å–ã‚Šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¿½åŠ )
 		MysteryLib_InitGift( wk->bgl, deli );
 		CommChildSaveRecvData( proc );
 	}
@@ -3193,7 +3193,7 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 	
 #ifdef PM_DEBUG
 #ifdef DEMO_SAVE_OFF
-		///< ƒZ[ƒu‚µ‚È‚¢‚©‚ç‚Æ‚è‚ ‚¦‚¸‚n‚j
+		///< ã‚»ãƒ¼ãƒ–ã—ãªã„ã‹ã‚‰ã¨ã‚Šã‚ãˆãšï¼¯ï¼«
 		if ( sys.trg & PAD_BUTTON_R ){
 			save_info = MYSTERYLIB_SEQ_SAVE_OK;
 		}
@@ -3226,15 +3226,15 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 				Snd_SePlay( SEQ_SE_DP_UG_020 );
 			}			
 			*seq = MYSTERYGIFT_BEACON_DOWNLOAD_DEMO_WAIT;
-			/* ‚¨‚­‚è‚à‚Ì‚ğ@‚¤‚¯‚Æ‚è‚Ü‚µ‚½I\nƒtƒŒƒ“ƒhƒŠƒB@ƒVƒ‡ƒbƒv@‚Å\n‚Í‚¢‚½‚Â‚¢‚ñ@‚©‚ç@‚¤‚¯‚Æ‚Á‚Ä‚ËI */
+			/* ãŠãã‚Šã‚‚ã®ã‚’ã€€ã†ã‘ã¨ã‚Šã¾ã—ãŸï¼\nãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚£ã€€ã‚·ãƒ§ãƒƒãƒ—ã€€ã§\nã¯ã„ãŸã¤ã„ã‚“ã€€ã‹ã‚‰ã€€ã†ã‘ã¨ã£ã¦ã­ï¼ */
 		//	*seq = MysteryGif_DisplayMessage( proc, &wk->msgwin, mystery_01_009, MYSTERYGIFT_SEQ_LOOP );
 		}
 		else if ( save_info == MYSTERYLIB_SEQ_SAVE_NG )
 		{
-			///< ƒZ[ƒuƒGƒ‰[ˆ—
+			///< ã‚»ãƒ¼ãƒ–ã‚¨ãƒ©ãƒ¼å‡¦ç†
 			SetTimeWaitIcon( wk, FALSE );
 			SetBaseIcon( wk, -1 );
-			wk->gift_data.beacon.have_card = 0;	// ƒJ[ƒh‰æ–Ê‚Í•\¦‚µ‚È‚¢
+			wk->gift_data.beacon.have_card = 0;	// ã‚«ãƒ¼ãƒ‰ç”»é¢ã¯è¡¨ç¤ºã—ãªã„
 
 			*seq = MysteryGif_DisplayMessage(proc, &wk->msgwin, mystery_err_006, MYSTERYGIFT_SEQ_LOOP);
 		}
@@ -3242,12 +3242,12 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     break;
     
   case MYSTERYGIFT_BEACON_DOWNLOAD_CANCEL:
-    // ƒLƒƒƒ“ƒZƒ‹ˆ—‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚¿‚Ü‚·
+    // ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¡ã¾ã™
     MysteryGift_BeaconMainLoop(wk);
     if(s_state == BEACON_STATE_CANCEL || s_state == BEACON_STATE_SUCCESS || s_state == BEACON_STATE_CRCERROR){
       if(s_state == BEACON_STATE_CANCEL)
 	MysteryGift_BeaconCancel();
-      // ƒLƒƒƒ“ƒZƒ‹ˆ—I—¹
+      // ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†çµ‚äº†
       *seq = CommDirectCommMenuNo(proc);
     }
     break;
@@ -3257,17 +3257,17 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 
 
 #ifdef PARENT_TEST
-    // ‚ ‚­‚Ü‚Å‚àƒeƒXƒg—p‚Ìe‹@‚Å‚·B
-    // ’ÊM‚ğƒXƒ^[ƒg‚³‚¹‚é‚Æ‚«‚Í‚`ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢
-    // ‚aƒ{ƒ^ƒ“‚ğ‰Ÿ‚¹‚Î‰½‘äŒq‚ª‚Á‚Ä‚¢‚é‚©’m‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·
+    // ã‚ãã¾ã§ã‚‚ãƒ†ã‚¹ãƒˆç”¨ã®è¦ªæ©Ÿã§ã™ã€‚
+    // é€šä¿¡ã‚’ã‚¹ã‚¿ãƒ¼ãƒˆã•ã›ã‚‹ã¨ãã¯ï¼¡ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„
+    // ï¼¢ãƒœã‚¿ãƒ³ã‚’æŠ¼ã›ã°ä½•å°ç¹‹ãŒã£ã¦ã„ã‚‹ã‹çŸ¥ã‚‹ã“ã¨ãŒã§ãã¾ã™
   case MYSTERYGIFT_SEQ_START_PARENT:
-    // e‹@‚Æ‚µ‚Ä’ÊMŠJn
+    // è¦ªæ©Ÿã¨ã—ã¦é€šä¿¡é–‹å§‹
     if(CommIsConnect(COMM_PARENT_ID)){
       CommMPSetBeaconTempData(&wk->gift_data.beacon);
       if(sys.trg & PAD_BUTTON_CANCEL){
 	Snd_SePlay(SEQ_SE_DP_SELECT);
 #ifdef DEBUG_ONLY_FOR_mituhara
-	OS_Printf("Œq‚ª‚Á‚Ä‚¢‚éq‚Ì”: %d\n", CommMysteryGetCommChild());
+	OS_Printf("ç¹‹ãŒã£ã¦ã„ã‚‹å­ã®æ•°: %d\n", CommMysteryGetCommChild());
 #endif
       }
       if(sys.trg & PAD_BUTTON_DECIDE){
@@ -3276,7 +3276,7 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 	CommTimingSyncStart(MYSTERYGIFT_SYNC_CODE);
 	*seq = MYSTERYGIFT_SEQ_SYNC_CHILD_TIMING;
 #ifdef DEBUG_ONLY_FOR_mituhara
-	OS_Printf("‘—MŠJn\n");
+	OS_Printf("é€ä¿¡é–‹å§‹\n");
 #endif
       }
     }
@@ -3290,7 +3290,7 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     
   case MYSTERYGIFT_SEQ_SYNC_CHILD_PARENT:
     //    if(--wk->sync_wait == 0){
-      /* ‚±‚±‚Åƒf[ƒ^‚Ì‘—M‚ğŠJn(wk->gift_data‚Éƒf[ƒ^‚ğó‚¯‚é) */
+      /* ã“ã“ã§ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡ã‚’é–‹å§‹(wk->gift_dataã«ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘ã‚‹) */
       MysteryLib_CreateCryptoData(&wk->gift_data, &wk->comm_data, HEAPID_MYSTERYGIFT);
       CommMysterySendGiftDataParent((const void *)&wk->comm_data, sizeof(GIFT_DATA));
       *seq = MYSTERYGIFT_SEQ_SENDDATA_PARENT;
@@ -3301,7 +3301,7 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     if(CommMysteryGiftGetRecvCheck() == TRUE){
       CommMysteryExitGift();
 #ifdef DEBUG_ONLY_FOR_mituhara
-      OS_Printf("’ÊM‚ª³í‚ÉI—¹‚µ‚Ü‚µ‚½I\n");
+      OS_Printf("é€šä¿¡ãŒæ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸï¼\n");
 #endif
       *seq = MYSTERYGIFT_SEQ_LOOP;
     }
@@ -3320,32 +3320,32 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 
   case MYSTERYGIFT_SEQ_START_CHILD:
     //    WirelessIconEasy_SetLevel(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
-    /* q‹@‚Æ‚µ‚Ä’ÊMŠJn */
+    /* å­æ©Ÿã¨ã—ã¦é€šä¿¡é–‹å§‹ */
     if((wk->connectIndex = CommMysteryCheckParentBeacon(wk)) != -1){
-      SetTimeWaitIcon(wk, FALSE);	// ƒ^ƒCƒ€ƒAƒCƒRƒ“Á‹
-      // ƒr[ƒRƒ“‚ÌƒGƒ‰[ƒ`ƒFƒbƒN‚Ì‚İs‚¤
-      // q‹@‚Ìê‡‚ÍAó‚¯æ‚èƒo[ƒWƒ‡ƒ“‚ªˆá‚Á‚Ä‚¢‚½‚çƒGƒ‰[‚ğ•\¦‚·‚é‚æ‚¤‚É‚µ‚½
+      SetTimeWaitIcon(wk, FALSE);	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆå»
+      // ãƒ“ãƒ¼ã‚³ãƒ³ã®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã®ã¿è¡Œã†
+      // å­æ©Ÿã®å ´åˆã¯ã€å—ã‘å–ã‚Šãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒé•ã£ã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ã—ãŸ
       wk->gift_error = CommMysteryFunc_CheckGetGift(wk->sv, &wk->gift_data);
-      // ƒr[ƒRƒ““à‚É–„‚ß‚Ü‚ê‚Ä‚¢‚éƒ^ƒCƒgƒ‹‚ğ•\¦‚·‚é
+      // ãƒ“ãƒ¼ã‚³ãƒ³å†…ã«åŸ‹ã‚è¾¼ã¾ã‚Œã¦ã„ã‚‹ã‚¿ã‚¤ãƒˆãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
       if(!GF_BGL_BmpWinAddCheck(&wk->upwin))
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->upwin, GF_BGL_FRAME0_M, 3, 2, 26, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_UPWINCHR);
       DisplaySequenceDirect(proc, &wk->upwin, wk->gift_data.beacon.event_name);
       DisplaySequence(proc, &wk->msgwin, mystery_01_005);
-      /* u‚Í‚¢^‚¢‚¢‚¦vƒƒjƒ…[‚Ìì¬ */
+      /* ã€Œã¯ã„ï¼ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½œæˆ */
       CreateDirectCommYesNoMenu(proc, 0);
       *seq = MYSTERYGIFT_SEQ_RECV_YESNO_CHILD;
     }
-    /* ƒLƒƒƒ“ƒZƒ‹ˆ— */
+    /* ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç† */
     if((sys.trg & PAD_BUTTON_CANCEL) || (--wk->timeout == 0)){
-      SetTimeWaitIcon(wk, FALSE);	// ƒ^ƒCƒ€ƒAƒCƒRƒ“Á‹
+      SetTimeWaitIcon(wk, FALSE);	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆå»
       CommMysteryExitGift();
-      WirelessIconEasyEnd();		// ’ÊMƒAƒCƒRƒ“íœ
+      WirelessIconEasyEnd();		// é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
       *seq = MYSTERYGIFT_SEQ_SEND_RECV_CANCEL_INIT;
     }
     break;
 
   case MYSTERYGIFT_SEQ_RECV_YESNO_CHILD:
-    /* u‚±‚Ì@‚¨‚­‚è‚à‚Ì@‚ğ@‚¶‚ã‚µ‚ñ@‚µ‚Ü‚·‚©Hv‚Ìu‚Í‚¢^‚¢‚¢‚¦v‘I‘ğ */
+    /* ã€Œã“ã®ã€€ãŠãã‚Šã‚‚ã®ã€€ã‚’ã€€ã˜ã‚…ã—ã‚“ã€€ã—ã¾ã™ã‹ï¼Ÿã€ã®ã€Œã¯ã„ï¼ã„ã„ãˆã€é¸æŠ */
 #if 0
     DoMenuMain(proc, seq, CommDirectMenuNo);
 #else
@@ -3354,17 +3354,17 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     break;
 
   case MYSTERYGIFT_SEQ_REQEST_CHILD:
-    /* e‹@‚©‚ç‚Ì‘—M‘Ò‚¿ */
+    /* è¦ªæ©Ÿã‹ã‚‰ã®é€ä¿¡å¾…ã¡ */
     value = CommGetCurrentID();
     if(value != COMM_PARENT_ID && CommIsConnect(value)){
       if(CommIsTimingSync(MYSTERYGIFT_SYNC_CODE) == TRUE){
 	SetTimeWaitIcon(wk, FALSE);
 	CommStateSetErrorCheck(TRUE,TRUE);
-	/* ‚¨‚­‚è‚à‚Ì@‚ğ@‚¶‚ã‚µ‚ñ‚¿‚ã‚¤@‚Å‚·
-	   ‚Å‚ñ‚°‚ñ‚ğ@‚«‚ç‚È‚¢‚Å@‚­‚¾‚³‚¢cc */
+	/* ãŠãã‚Šã‚‚ã®ã€€ã‚’ã€€ã˜ã‚…ã—ã‚“ã¡ã‚…ã†ã€€ã§ã™
+	   ã§ã‚“ã’ã‚“ã‚’ã€€ãã‚‰ãªã„ã§ã€€ãã ã•ã„â€¦â€¦ */
 	DisplaySequence(proc, &wk->msgwin, mystery_01_008);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-	OS_Printf("e‹@‚©‚ç‘—M‚ªŠJn‚³‚ê‚Ü‚µ‚½I\n");
+	OS_Printf("è¦ªæ©Ÿã‹ã‚‰é€ä¿¡ãŒé–‹å§‹ã•ã‚Œã¾ã—ãŸï¼\n");
 #endif
 	SetBaseIcon(wk, 1);
 	SetTimeWaitIcon(wk, TRUE);
@@ -3372,18 +3372,18 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 	*seq = MYSTERYGIFT_SEQ_RECV_WAIT_CHILD1;
       }
     } else if(value != COMM_PARENT_ID && CommIsConnect(value) == 0){
-      /* e‚Æ‚Ì’ÊM‚ª‚Æ‚Ü‚Á‚Ä‚µ‚Ü‚Á‚½‚çu‚à‚¤‚µ‚±‚İ‹‘”Ûv‚Æ‚İ‚È‚· */
+      /* è¦ªã¨ã®é€šä¿¡ãŒã¨ã¾ã£ã¦ã—ã¾ã£ãŸã‚‰ã€Œã‚‚ã†ã—ã“ã¿æ‹’å¦ã€ã¨ã¿ãªã™ */
       CommMysteryExitGift();
-      WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+      WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
       SetBaseIcon(wk, -1);
       SetTimeWaitIcon(wk, FALSE);
       *seq = MYSTERYGIFT_SEQ_SEND_RECV_REFUSAL;
       break;
     }
-    /* ƒLƒƒƒ“ƒZƒ‹ˆ— */
+    /* ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç† */
     if((sys.trg & PAD_BUTTON_CANCEL) || (--wk->timeout == 0)){
       CommMysteryExitGift();
-      WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+      WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
       SetBaseIcon(wk, -1);
       SetTimeWaitIcon(wk, FALSE);
       *seq = MYSTERYGIFT_SEQ_SEND_RECV_CANCEL_INIT;
@@ -3391,16 +3391,16 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     break;
 
   case MYSTERYGIFT_SEQ_RECV_WAIT_CHILD1:
-    /* e‹@‚©‚çƒf[ƒ^‘—M‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â */
+    /* è¦ªæ©Ÿã‹ã‚‰ãƒ‡ãƒ¼ã‚¿é€ä¿¡ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤ */
     if(CommMysteryCheckRecvData()){
       *seq = MYSTERYGIFT_SEQ_RECV_WAIT_CHILD2;
     }
-    /* ƒLƒƒƒ“ƒZƒ‹ˆ— */
+    /* ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç† */
     value = CommGetCurrentID();
     if((sys.trg & PAD_BUTTON_CANCEL) || (--wk->timeout == 0) || (value != COMM_PARENT_ID && CommIsConnect(value) == 0)){
       SetTimeWaitIcon(wk, FALSE);
       CommMysteryExitGift();
-      WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+      WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
       *seq = MYSTERYGIFT_SEQ_SEND_RECV_CANCEL_INIT;
     }
 
@@ -3408,58 +3408,58 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 
   case MYSTERYGIFT_SEQ_RECV_WAIT_CHILD2:
 #if 0//def DEBUG_ONLY_FOR_mituhara
-    OS_Printf("ó‚¯æ‚èŠm”F‚ª‚Å‚«‚Ü‚µ‚½I\n");
+    OS_Printf("å—ã‘å–ã‚Šç¢ºèªãŒã§ãã¾ã—ãŸï¼\n");
 #endif
-    // ‚±‚±‚Å‰º‰æ–Ê‚ÌXV(ó‚¯æ‚èƒAƒjƒ[ƒVƒ‡ƒ“’Ç‰Á)
+    // ã“ã“ã§ä¸‹ç”»é¢ã®æ›´æ–°(å—ã‘å–ã‚Šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¿½åŠ )
     deli = CommSetSaveData(proc);
     MysteryLib_InitGift(wk->bgl, deli);
     CommStateSetErrorCheck(FALSE,FALSE);
-    /* ‚±‚±‚ÅƒZ[ƒu‚µ‚Ä‚İ‚æ‚¤ */
+    /* ã“ã“ã§ã‚»ãƒ¼ãƒ–ã—ã¦ã¿ã‚ˆã† */
     CommChildSaveRecvData(proc);
     *seq = MYSTERYGIFT_SEQ_RECV_WAIT_CHILD3;
     break;
 
   case MYSTERYGIFT_SEQ_RECV_WAIT_CHILD3:
-    // ‚à‚µ‚àe‹@‚Æ‚Ì’ÊM‚ªØ‚ê‚½‚çƒZ[ƒu¸”s
+    // ã‚‚ã—ã‚‚è¦ªæ©Ÿã¨ã®é€šä¿¡ãŒåˆ‡ã‚ŒãŸã‚‰ã‚»ãƒ¼ãƒ–å¤±æ•—
     value = CommGetCurrentID();
     if(value != COMM_PARENT_ID && CommIsConnect(value) == 0){
       CommMysteryExitGift();
-      // ’ÊMØ’f
+      // é€šä¿¡åˆ‡æ–­
       wk->save_cancel = TRUE;
       MysteryLib_CancelSaveDSCard();
       SetTimeWaitIcon(wk, FALSE);
-      WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+      WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
       SetBaseIcon(wk, -1);
       *seq = MYSTERYGIFT_SEQ_RECV_WAIT_CHILD31;
       break;
     }
-    // ƒZ[ƒuŠ®—¹‘Ò‚¿
+    // ã‚»ãƒ¼ãƒ–å®Œäº†å¾…ã¡
     if(MysteryLib_GetSaveStatus() == MYSTERYLIB_SEQ_SAVE_LAST){
-      // e‹@‚Æ“¯Šú‚ğæ‚é
+      // è¦ªæ©Ÿã¨åŒæœŸã‚’å–ã‚‹
       CommTimingSyncStart(MYSTERYGIFT_SYNC_CODE2);
       *seq = MYSTERYGIFT_SEQ_RECV_WAIT_CHILD30;
-      wk->sync_wait = 120;	// ƒ^ƒCƒ€ƒAƒEƒg—pƒJƒEƒ“ƒ^
+      wk->sync_wait = 120;	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆç”¨ã‚«ã‚¦ãƒ³ã‚¿
 
     } else if(MysteryLib_GetSaveStatus() == MYSTERYLIB_SEQ_SAVE_NG){
-      /* ƒZ[ƒuƒGƒ‰[‚Ì‚Ìˆ— */
+      /* ã‚»ãƒ¼ãƒ–ã‚¨ãƒ©ãƒ¼ã®æ™‚ã®å‡¦ç† */
       MysteryLib_CancelSaveDSCard();
-      wk->gift_data.beacon.have_card = 0;	// ƒJ[ƒh‰æ–Ê‚Í•\¦‚µ‚È‚¢
+      wk->gift_data.beacon.have_card = 0;	// ã‚«ãƒ¼ãƒ‰ç”»é¢ã¯è¡¨ç¤ºã—ãªã„
       SetTimeWaitIcon(wk, FALSE);
       *seq = MysteryGif_DisplayMessage(proc, &wk->msgwin, mystery_err_006, MYSTERYGIFT_SEQ_LOOP);
     }
     break;
 
   case MYSTERYGIFT_SEQ_RECV_WAIT_CHILD30:
-    // e‹@‚©‚ç•Ô–‚ª–ß‚Á‚Ä‚«‚½‚çƒZ[ƒu¬Œ÷
+    // è¦ªæ©Ÿã‹ã‚‰è¿”äº‹ãŒæˆ»ã£ã¦ããŸã‚‰ã‚»ãƒ¼ãƒ–æˆåŠŸ
     if(CommIsTimingSync(MYSTERYGIFT_SYNC_CODE2) == TRUE){
-      // ÅŒã‚ÌƒZ[ƒu‚ğs‚¤
+      // æœ€å¾Œã®ã‚»ãƒ¼ãƒ–ã‚’è¡Œã†
       MysteryLib_DoLastSave();
       wk->sync_wait = 10;
       *seq = MYSTERYGIFT_SEQ_RECV_WAIT_CHILD4;
     } else if(--wk->sync_wait == 0){
-      /* ƒZ[ƒuƒGƒ‰[‚Ì‚Ìˆ— */
+      /* ã‚»ãƒ¼ãƒ–ã‚¨ãƒ©ãƒ¼ã®æ™‚ã®å‡¦ç† */
       MysteryLib_CancelSaveDSCard();
-      wk->gift_data.beacon.have_card = 0;	// ƒJ[ƒh‰æ–Ê‚Í•\¦‚µ‚È‚¢
+      wk->gift_data.beacon.have_card = 0;	// ã‚«ãƒ¼ãƒ‰ç”»é¢ã¯è¡¨ç¤ºã—ãªã„
       SetTimeWaitIcon(wk, FALSE);
       *seq = MysteryGif_DisplayMessage(proc, &wk->msgwin, mystery_err_006, MYSTERYGIFT_SEQ_LOOP);
     }
@@ -3467,10 +3467,10 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     
   case MYSTERYGIFT_SEQ_RECV_WAIT_CHILD31:
 #if 0//def DEBUG_ONLY_FOR_mituhara
-      OS_TPrintf("ƒZ[ƒu¸”s\n");
+      OS_TPrintf("ã‚»ãƒ¼ãƒ–å¤±æ•—\n");
 #endif
       //      DisplaySequence(proc, &wk->msgwin, mystery_err_008);
-      // ã‚ÌƒEƒBƒ“ƒhƒE‚ğÁ‚·
+      // ä¸Šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
       CMG_BmpMenuWinClear(&wk->upwin, WINDOW_TRANS_ON);
       wk->gift_data.beacon.have_card = 0;
       *seq = MysteryGif_DisplayMessage(proc, &wk->msgwin, mystery_err_008, MYSTERYGIFT_SEQ_LOOP);
@@ -3478,26 +3478,26 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 
   case MYSTERYGIFT_SEQ_RECV_WAIT_CHILD4:
     if(--wk->sync_wait == 0){ // || CommMysteryGiftGetRecvCheck() == TRUE){
-      // ’ÊMØ’f
+      // é€šä¿¡åˆ‡æ–­
       SetTimeWaitIcon(wk, FALSE);
       CommMysteryExitGift();
-      WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+      WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
       Snd_SePlay( SEQ_SE_DP_UG_020 );
       SetBaseIcon(wk, -1);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-      OS_Printf("Š®‘SI—¹\n");
+      OS_Printf("å®Œå…¨çµ‚äº†\n");
 #endif
-      /* ‚¨‚­‚è‚à‚Ì‚ğ@‚¤‚¯‚Æ‚è‚Ü‚µ‚½I\nƒtƒŒƒ“ƒhƒŠƒB@ƒVƒ‡ƒbƒv@‚Å\n‚Í‚¢‚½‚Â‚¢‚ñ@‚©‚ç@‚¤‚¯‚Æ‚Á‚Ä‚ËI */
+      /* ãŠãã‚Šã‚‚ã®ã‚’ã€€ã†ã‘ã¨ã‚Šã¾ã—ãŸï¼\nãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚£ã€€ã‚·ãƒ§ãƒƒãƒ—ã€€ã§\nã¯ã„ãŸã¤ã„ã‚“ã€€ã‹ã‚‰ã€€ã†ã‘ã¨ã£ã¦ã­ï¼ */
       *seq = MysteryGif_DisplayMessage(proc, &wk->msgwin, mystery_01_009, MYSTERYGIFT_SEQ_LOOP);
     }
     break;
 
   case MYSTERYGIFT_SEQ_SEND_RECV_REFUSAL:
-    /* \‚µ‚İ‚ª‹‘”Û‚³‚ê‚½ê‡‚Ìˆ— */
+    /* ç”³ã—è¾¼ã¿ãŒæ‹’å¦ã•ã‚ŒãŸå ´åˆã®å‡¦ç† */
     Snd_SePlay(SEQ_SE_DP_SELECT);
-    // u‚à‚¤‚µ‚±‚İ@‚ª@‚«‚å‚Ğ@‚³‚ê‚Ü‚µ‚½v
+    // ã€Œã‚‚ã†ã—ã“ã¿ã€€ãŒã€€ãã‚‡ã²ã€€ã•ã‚Œã¾ã—ãŸã€
     DisplaySequence(proc, &wk->msgwin, mystery_err_004);
-    // ã‚ÌƒEƒBƒ“ƒhƒE‚ğÁ‚·
+    // ä¸Šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
     CMG_BmpMenuWinClear(&wk->upwin, WINDOW_TRANS_ON);
     *seq = MYSTERYGIFT_SEQ_SEND_RECV_CANCEL;
     break;
@@ -3508,23 +3508,23 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 		wk->wifi_wait--;
 		break;
 	}
-    // 	ƒ^ƒCƒ€ƒAƒCƒRƒ“‚ğÁ‹
+    // 	ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã‚’æ¶ˆå»
     SetTimeWaitIcon(wk, FALSE);
-    /* ƒLƒƒƒ“ƒZƒ‹ˆ—‚Ì€”õ */
+    /* ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†ã®æº–å‚™ */
     Snd_SePlay(SEQ_SE_DP_SELECT);
-    // u‚¨‚­‚è‚à‚Ì@‚ª\n‚İ‚Â‚©‚è‚Ü‚¹‚ñ@‚Å‚µ‚½v
+    // ã€ŒãŠãã‚Šã‚‚ã®ã€€ãŒ\nã¿ã¤ã‹ã‚Šã¾ã›ã‚“ã€€ã§ã—ãŸã€
     DisplaySequence(proc, &wk->msgwin, mystery_err_003);
-    // ã‚ÌƒEƒBƒ“ƒhƒE‚ğÁ‚·
+    // ä¸Šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
     CMG_BmpMenuWinClear(&wk->upwin, WINDOW_TRANS_ON);
     *seq = MYSTERYGIFT_SEQ_SEND_RECV_CANCEL;
     break;
   case MYSTERYGIFT_SEQ_SEND_RECV_CANCEL:
 
-//    OS_TPrintf("ƒLƒƒƒ“ƒZƒ‹ˆ—\n");
+//    OS_TPrintf("ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†\n");
 
-    /* ƒ†[ƒU[‚É‚æ‚éƒLƒƒƒ“ƒZƒ‹ */
+    /* ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«ã‚ˆã‚‹ã‚­ãƒ£ãƒ³ã‚»ãƒ« */
     if(sys.trg){
-      /* ƒƒCƒ“ƒƒjƒ…[‚ğ•\¦ */
+      /* ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º */
       Snd_SePlay(SEQ_SE_DP_SELECT);
       CreateMenuWindow(proc, MYSTERYGIFT_TOPMENUCHR, mystery_01_001);
       *seq = MYSTERYGIFT_SEQ_MAIN;
@@ -3534,10 +3534,10 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     
 
 //--------------------------------------------------------------------------------------------
-//	‚`‚f‚aƒJ[ƒgƒŠƒbƒW‚©‚ç‚Ìƒf[ƒ^“]‘—
+//	ï¼¡ï¼§ï¼¢ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿è»¢é€
 
   case MYSTERYGIFT_SEQ_AGB_START_CHILD:
-    /* ƒr[ƒRƒ“î•ñ‚ğƒƒ‚ƒŠ‚ÖƒRƒs[‚µ‚Äƒƒjƒ…[‚ğ•\¦ */
+    /* ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’ãƒ¡ãƒ¢ãƒªã¸ã‚³ãƒ”ãƒ¼ã—ã¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤º */
   	if ( wk->wifi_wait ){
 		wk->wifi_wait--;
 		break;
@@ -3546,45 +3546,45 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
       ReadAgbCartridgeData(&wk->gift_data, sizeof(GIFT_COMM_PACK));
 
 #if 0
-    // ‹­§–•ÁƒeƒXƒg
+    // å¼·åˆ¶æŠ¹æ¶ˆãƒ†ã‚¹ãƒˆ
     wk->gift_data.beacon.version  = 0xFFFFFFFF;
     wk->gift_data.beacon.event_id = 0xFFFF;
 #endif
 
-    // å‚ÉƒXƒƒbƒgŒn‚ÌƒGƒ‰[ƒ`ƒFƒbƒN
+    // ä¸»ã«ã‚¹ãƒ­ãƒƒãƒˆç³»ã®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
     wk->gift_error = CommMysteryFunc_CheckGetGift(wk->sv, &wk->gift_data);
     
-    // ó‚¯æ‚è‹–‰Â‚Ì‚q‚n‚lƒo[ƒWƒ‡ƒ“‚ÆˆÙ‚È‚Á‚Ä‚¢‚½‚çó‚¯æ‚ê‚È‚¢
+    // å—ã‘å–ã‚Šè¨±å¯ã®ï¼²ï¼¯ï¼­ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¨ç•°ãªã£ã¦ã„ãŸã‚‰å—ã‘å–ã‚Œãªã„
     if(wk->gift_error == COMMMYSTERYFUNC_ERROR_VERSION){
-      SetTimeWaitIcon(wk, FALSE);	// 	ƒ^ƒCƒ€ƒAƒCƒRƒ“‚ğÁ‹
+      SetTimeWaitIcon(wk, FALSE);	// 	ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã‚’æ¶ˆå»
       *seq = MYSTERYGIFT_ERROR_FULL;
     } else {
       if(!GF_BGL_BmpWinAddCheck(&wk->upwin))
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->upwin, GF_BGL_FRAME0_M, 3, 2, 26, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_UPWINCHR);
       DisplaySequenceDirect(proc, &wk->upwin, wk->gift_data.beacon.event_name);
       DisplaySequence(proc, &wk->msgwin, mystery_01_005);
-      /* u‚Í‚¢^‚¢‚¢‚¦vƒƒjƒ…[‚Ìì¬ */
+      /* ã€Œã¯ã„ï¼ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½œæˆ */
       CreateDirectCommYesNoMenu(proc, 0);
       *seq = MYSTERYGIFT_SEQ_AGB_RECV_YESNO_CHILD;
     }
     break;
 
   case MYSTERYGIFT_SEQ_AGB_RECV_YESNO_CHILD:
-    /* u‚±‚Ì@‚¨‚­‚è‚à‚Ì@‚ğ@‚¶‚ã‚µ‚ñ@‚µ‚Ü‚·‚©Hv‚Ìu‚Í‚¢^‚¢‚¢‚¦v‘I‘ğ */
+    /* ã€Œã“ã®ã€€ãŠãã‚Šã‚‚ã®ã€€ã‚’ã€€ã˜ã‚…ã—ã‚“ã€€ã—ã¾ã™ã‹ï¼Ÿã€ã®ã€Œã¯ã„ï¼ã„ã„ãˆã€é¸æŠ */
     DoMenuMain(proc, seq, CommDirectCommMenuNo);
     break;
 
   case MYSTERYGIFT_SEQ_AGB_RECV_CHECK_CHILD:
-    /* óM‚Å‚«‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN */
+    /* å—ä¿¡ã§ãã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯ */
     *seq = MYSTERYGIFT_SEQ_AGB_REQEST_CHILD;
     break;
     
   case MYSTERYGIFT_SEQ_AGB_REQEST_CHILD:
-    // ‚±‚±‚Å‰º‰æ–Ê‚ÌXV(ó‚¯æ‚èƒAƒjƒ[ƒVƒ‡ƒ“’Ç‰Á)
+    // ã“ã“ã§ä¸‹ç”»é¢ã®æ›´æ–°(å—ã‘å–ã‚Šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¿½åŠ )
     deli = CommSetSaveData(proc);
     MysteryLib_InitGift(wk->bgl, deli);
-    /* ‚¨‚­‚è‚à‚Ì@‚ğ@‚¶‚ã‚µ‚ñ‚¿‚ã‚¤@‚Å‚·
-       ‚Å‚ñ‚°‚ñ‚ğ@‚«‚ç‚È‚¢‚Å@‚­‚¾‚³‚¢cc */
+    /* ãŠãã‚Šã‚‚ã®ã€€ã‚’ã€€ã˜ã‚…ã—ã‚“ã¡ã‚…ã†ã€€ã§ã™
+       ã§ã‚“ã’ã‚“ã‚’ã€€ãã‚‰ãªã„ã§ã€€ãã ã•ã„â€¦â€¦ */
     DisplaySequence(proc, &wk->msgwin, mystery_01_008);
     SetBaseIcon(wk, 1);
     SetTimeWaitIcon(wk, TRUE);
@@ -3593,15 +3593,15 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     break;
 
   case MYSTERYGIFT_SEQ_AGB_RECV_WAIT_CHILD:
-    /* e‹@‚©‚çƒf[ƒ^‘—M‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â */
+    /* è¦ªæ©Ÿã‹ã‚‰ãƒ‡ãƒ¼ã‚¿é€ä¿¡ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤ */
     if(--wk->sync_wait == 0){
-      /* ‚±‚±‚ÅƒZ[ƒu‚µ‚Ä‚İ‚æ‚¤ */
+      /* ã“ã“ã§ã‚»ãƒ¼ãƒ–ã—ã¦ã¿ã‚ˆã† */
       CommChildSaveRecvData(proc);
       *seq = MYSTERYGIFT_SEQ_AGB_RECV_WAIT_CHILD2;
     }
     break;
   case MYSTERYGIFT_SEQ_AGB_RECV_WAIT_CHILD2:
-    // ƒZ[ƒuŠ®—¹‘Ò‚¿
+    // ã‚»ãƒ¼ãƒ–å®Œäº†å¾…ã¡
     if(MysteryLib_GetSaveStatus() == MYSTERYLIB_SEQ_SAVE_LAST)
       MysteryLib_DoLastSave();
     if(MysteryLib_GetSaveStatus() == MYSTERYLIB_SEQ_SAVE_OK){
@@ -3609,12 +3609,12 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
       SetTimeWaitIcon(wk, FALSE);
       SetBaseIcon(wk, -1);
       Snd_SePlay( SEQ_SE_DP_UG_020 );
-      /* ‚¨‚­‚è‚à‚Ì‚ğ@‚¤‚¯‚Æ‚è‚Ü‚µ‚½I\nƒtƒŒƒ“ƒhƒŠƒB@ƒVƒ‡ƒbƒv@‚Å\n‚Í‚¢‚½‚Â‚¢‚ñ@‚©‚ç@‚¤‚¯‚Æ‚Á‚Ä‚ËI */
+      /* ãŠãã‚Šã‚‚ã®ã‚’ã€€ã†ã‘ã¨ã‚Šã¾ã—ãŸï¼\nãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚£ã€€ã‚·ãƒ§ãƒƒãƒ—ã€€ã§\nã¯ã„ãŸã¤ã„ã‚“ã€€ã‹ã‚‰ã€€ã†ã‘ã¨ã£ã¦ã­ï¼ */
       *seq = MysteryGif_DisplayMessage(proc, &wk->msgwin, mystery_01_009, MYSTERYGIFT_SEQ_AGB_SEND_RECV_FLAG_CHILD);
     } else if(MysteryLib_GetSaveStatus() == MYSTERYLIB_SEQ_SAVE_NG){
-      /* ƒZ[ƒuƒGƒ‰[‚Ì‚Ìˆ— */
+      /* ã‚»ãƒ¼ãƒ–ã‚¨ãƒ©ãƒ¼ã®æ™‚ã®å‡¦ç† */
       SetBaseIcon(wk, -1);
-      wk->gift_data.beacon.have_card = 0;	// ƒJ[ƒh‰æ–Ê‚Í•\¦‚µ‚È‚¢
+      wk->gift_data.beacon.have_card = 0;	// ã‚«ãƒ¼ãƒ‰ç”»é¢ã¯è¡¨ç¤ºã—ãªã„
       *seq = MysteryGif_DisplayMessage(proc, &wk->msgwin, mystery_err_006, MYSTERYGIFT_SEQ_LOOP);
     }
     break;
@@ -3630,32 +3630,32 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 //--------------------------------------------------------------------------------------------
 
   case MYSTERYGIFT_ERROR_FULL:
-    // ’ÊM‚ğØ‚éˆ—(‚½‚¾‚µ‘·”z•zƒ`ƒFƒbƒN‚Ìê‡‚ÍØ‚ç‚È‚¢)
+    // é€šä¿¡ã‚’åˆ‡ã‚‹å‡¦ç†(ãŸã ã—å­«é…å¸ƒãƒã‚§ãƒƒã‚¯ã®å ´åˆã¯åˆ‡ã‚‰ãªã„)
     if(wk->gift_error != COMMMYSTERYFUNC_ERROR_GROUNDCHILD)
       CommDisconnect(wk);
 
-    // ”z’Bˆõ‚Ü‚½‚ÍƒJ[ƒh‚ªˆê”t‚Åó‚¯æ‚ê‚È‚¢
+    // é…é”å“¡ã¾ãŸã¯ã‚«ãƒ¼ãƒ‰ãŒä¸€æ¯ã§å—ã‘å–ã‚Œãªã„
     *seq = MysteryGift_FullError(proc);
-    // ‚Í‚¢^‚¢‚¢‚¦‚Ìƒƒjƒ…[‚ğÁ‚·
+    // ã¯ã„ï¼ã„ã„ãˆã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æ¶ˆã™
     CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO], WINDOW_TRANS_ON);
     break;
 
   case MYSTERYGIFT_SEQ_DISP_MSG:
-    // ƒƒbƒZ[ƒW‚ª•\¦‚µI‚í‚é‚Ü‚Åƒ‹[ƒv
+    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒè¡¨ç¤ºã—çµ‚ã‚ã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
     *seq = MysteryGif_DisplayMessage(proc, NULL, NULL, *seq);
     break;
 
   case MYSTERYGIFT_SEQ_RETURN_TOPMENU:
     if(sys.trg){
-      /* ã‚Ìƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğÁ‚· */
+      /* ä¸Šã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ */
       CMG_BmpMenuWinClear(&wk->upwin, WINDOW_TRANS_ON);
       *seq = CommTypeMenuRetire(proc);
     }
     break;
 
   case MYSTERYGIFT_SEQ_GROUNDCHILD_CHECK:
-    OS_TPrintf("‘·”z•zƒ`ƒFƒbƒN\n");
-    /* u‚Í‚¢^‚¢‚¢‚¦vƒƒjƒ…[‚Ìì¬ */
+    OS_TPrintf("å­«é…å¸ƒãƒã‚§ãƒƒã‚¯\n");
+    /* ã€Œã¯ã„ï¼ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½œæˆ */
     CreateDirectCommYesNoMenu(proc, 1);
     *seq = MYSTERYGIFT_SEQ_RECV_YESNO_CHILD;
     wk->gift_error = COMMMYSTERYFUNC_ERROR_NONE;
@@ -3665,14 +3665,14 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 //--------------------------------------------------------------------------------------------
     
   case MYSTERYGIFT_SEQ_RETURN:
-    /* ƒ^ƒCƒgƒ‹‚Ìƒƒjƒ…[‚É–ß‚é */
+    /* ã‚¿ã‚¤ãƒˆãƒ«ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«æˆ»ã‚‹ */
     TopMainMenuFinish(proc);
     wk->to_seq = 0;
     return PROC_RES_FINISH;
     break;
 
   case MYSTERYGIFT_SEQ_GO_LOOKCARD:
-    /* ƒJ[ƒh‰æ–Ê‚Ös‚­ */
+    /* ã‚«ãƒ¼ãƒ‰ç”»é¢ã¸è¡Œã */
     TopMainMenuFinish(proc);
     wk->to_seq = 1;
     return PROC_RES_FINISH;
@@ -3680,7 +3680,7 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     
 
   case MYSTERYGIFT_SEQ_LOOP:
-    /* “dŒ¹‚ğ‚n‚e‚e‚É‚·‚é^ƒJ[ƒhî•ñ‚ª‚ ‚ê‚Î•\¦‚·‚é */
+    /* é›»æºã‚’ï¼¯ï¼¦ï¼¦ã«ã™ã‚‹ï¼ã‚«ãƒ¼ãƒ‰æƒ…å ±ãŒã‚ã‚Œã°è¡¨ç¤ºã™ã‚‹ */
     if(sys.trg){
       Snd_SePlay(SEQ_SE_DP_SELECT);
       if(wk->gift_data.beacon.have_card == 1){
@@ -3693,11 +3693,11 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     break;
 
   case MYSTERYGIFT_SEQ_DISP_CARD:
-    // ‰º‰æ–Ê‚ÍŠiq–Í—l‚ğ•œŠˆ
+    // ä¸‹ç”»é¢ã¯æ ¼å­æ¨¡æ§˜ã‚’å¾©æ´»
     CreateBgScreenSub(wk->bgl);
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
-    // ã‰æ–Ê‚ÍƒJ[ƒhî•ñ‚Ì•\¦
+    // ä¸Šç”»é¢ã¯ã‚«ãƒ¼ãƒ‰æƒ…å ±ã®è¡¨ç¤º
     MysteryCard_DisplayCardOnly(wk->bgl, &wk->gift_data.data.card, HEAPID_MYSTERYGIFT);
     MysteryLib_RequestFade(WIPE_TYPE_FADEIN, MYSTERYGIFT_SEQ_LOOP, wk->seq, MYSTERYGIFT_SEQ_WAIT_FADE);
     wk->gift_data.beacon.have_card = 0;
@@ -3708,12 +3708,12 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
     break;
   }
 
-  // í‚Å‚Í‚È‚¢‚¯‚ê‚ÇÀs‚µ‚½ŠÖ”‚Í‚±‚±‚ÅÀs
+  // å¸¸æ™‚ã§ã¯ãªã„ã‘ã‚Œã©å®Ÿè¡Œã—ãŸé–¢æ•°ã¯ã“ã“ã§å®Ÿè¡Œ
   if(wk->func_hook)
     wk->func_hook(wk);
 
   
-  // ƒAƒCƒRƒ“‚ğ•\¦‚·‚é‚½‚ß‚É•K—v‚È‹ì“®ˆ—
+  // ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã«å¿…è¦ãªé§†å‹•å‡¦ç†
 	MysteryLib_DoClact_Ex( wk->demo_state );
 
   return PROC_RES_CONTINUE;
@@ -3722,9 +3722,9 @@ static PROC_RESULT MysteryGiftProc_Main(PROC * proc, int * seq)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  * @param	NONE
- * @return	SAVEDATA	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	SAVEDATA	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 PROC *MyseryGiftGetProcp(void)
@@ -3738,11 +3738,11 @@ void MysteryGiftSetProcp(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXFI—¹
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šçµ‚äº†
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 extern const PROC_DATA MysteryCardProcData;
@@ -3768,7 +3768,7 @@ static PROC_RESULT MysteryGiftProc_End(PROC * proc, int * seq)
   sys_DeleteHeap(HEAPID_MYSTERYGIFT);
   if(wk->comm_type == MYSTERYCOMM_TYPE_AGBCARTRIDGE)
     sys_InitAgbCasetteVer(0);
-  MysteryLib_SetAgbCartridgeIntr(FALSE);	/* AGBƒJ[ƒgƒŠƒbƒW‚Ì”²‚¯ŒŸoOFF */
+  MysteryLib_SetAgbCartridgeIntr(FALSE);	/* AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®æŠœã‘æ¤œå‡ºOFF */
 
   return PROC_RES_FINISH;
 }
@@ -3779,40 +3779,40 @@ static PROC_RESULT MysteryGiftProc_End(PROC * proc, int * seq)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒr[ƒRƒ“æ“¾ƒV[ƒPƒ“ƒX
+ * @brief	ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
-#define BEACON_GATHER_TIME	(2*60)			// ƒr[ƒRƒ“î•ñ‚ğW‚ß‚éŠÔ
+#define BEACON_GATHER_TIME	(2*60)			// ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’é›†ã‚ã‚‹æ™‚é–“
 static void MysteryGiftBeaconProc_Main(MYSTERYGIFT_WORK *wk)
 {
   int flag;
 
   switch(wk->beacon_seq){
-  case MYSTERYGIFT_BEACON_SEQ_WAIT:	// ‰½‚à‚µ‚È‚¢
+  case MYSTERYGIFT_BEACON_SEQ_WAIT:	// ä½•ã‚‚ã—ãªã„
     break;
 
   case MYSTERYGIFT_BEACON_SEQ_INIT:
-    // * ƒp[ƒeƒB[ƒQ[ƒ€ŒŸõ‚Ì’ÊMˆ—ŠJniq‹@ó‘Ô‚Ì‚İj
+    // * ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚²ãƒ¼ãƒ æ¤œç´¢ã®é€šä¿¡å‡¦ç†é–‹å§‹ï¼ˆå­æ©ŸçŠ¶æ…‹ã®ã¿ï¼‰
     CommStateEnterPartyGameScanChild(wk->sv);
     wk->beacon_wait = BEACON_GATHER_TIME;
     wk->beacon_seq = MYSTERYGIFT_BEACON_SEQ_TIMER;
     break;
 
   case MYSTERYGIFT_BEACON_SEQ_TIMER:
-    // ƒr[ƒRƒ“ûW’†
+    // ãƒ“ãƒ¼ã‚³ãƒ³åé›†ä¸­
     flag = CommStateGetPartyGameBit();
 
 #if 0//def DEBUG_ONLY_FOR_mituhara
-    // ƒfƒoƒbƒO’†
+    // ãƒ‡ãƒãƒƒã‚°ä¸­
     if(sys.trg & PAD_BUTTON_L)	flag |= PARTYGAME_MYSTERY_BCON;
 #endif
 
     if(flag & PARTYGAME_MYSTERY_BCON)	wk->found_beacon = TRUE;
 
     if(--wk->beacon_wait == 0){
-      // ƒp[ƒeƒB[ƒQ[ƒ€ƒT[ƒ`‚ÌI—¹ˆ—
+      // ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚²ãƒ¼ãƒ ã‚µãƒ¼ãƒã®çµ‚äº†å‡¦ç†
       CommStateExitPartyGameScan();
       wk->beacon_seq = MYSTERYGIFT_BEACON_SEQ_WAIT;
     }
@@ -3823,33 +3823,33 @@ static void MysteryGiftBeaconProc_Main(MYSTERYGIFT_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒr[ƒRƒ“ƒ_ƒEƒ“ƒ[ƒh
- *		¦”C“V“°‹gŒ´—l‚Ìmain.c‚ğ‚±‚±‚ÉˆÚA
+ * @brief	ãƒ“ãƒ¼ã‚³ãƒ³ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
+ *		â€»ä»»å¤©å ‚å‰åŸæ§˜ã®main.cã‚’ã“ã“ã«ç§»æ¤
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
-// bsdown‚©‚ç•Ô‚Á‚Ä‚­‚éƒR[ƒ‹ƒoƒbƒN‚ğˆ—‚·‚éB
+// bsdownã‹ã‚‰è¿”ã£ã¦ãã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‡¦ç†ã™ã‚‹ã€‚
 static void MysteryGift_BSCallBack( int code )
 {
   switch( code ){
-  case BSDOWNCALLBACK_STARTSCAN:	// ƒXƒLƒƒƒ“ŠJn
+  case BSDOWNCALLBACK_STARTSCAN:	// ã‚¹ã‚­ãƒ£ãƒ³é–‹å§‹æ™‚
     s_state = BEACON_STATE_SCANNING;
     break;
-  case BSDOWNCALLBACK_START:		// e‹@‚ğ‚İ‚Â‚¯‚½‚Æ‚«
+  case BSDOWNCALLBACK_START:		// è¦ªæ©Ÿã‚’ã¿ã¤ã‘ãŸã¨ã
     s_state = BEACON_STATE_DOWNLOAD;
     break;
-  case BSDOWNCALLBACK_SUCCESS:		// ƒf[ƒ^‚ğŠ®‘S‚Éó‚¯æ‚Á‚½‚Æ‚«
+  case BSDOWNCALLBACK_SUCCESS:		// ãƒ‡ãƒ¼ã‚¿ã‚’å®Œå…¨ã«å—ã‘å–ã£ãŸã¨ã
     s_state = BEACON_STATE_COMPLETE;
     break;
-  case BSDOWNCALLBACK_FINISH:		// –³ü‚ÌI—¹ˆ—
+  case BSDOWNCALLBACK_FINISH:		// ç„¡ç·šã®çµ‚äº†å‡¦ç†
     if( s_state == BEACON_STATE_COMPLETE ){
       s_state = BEACON_STATE_FINISH;
     }	else {
       s_state = BEACON_STATE_CANCEL;				
     }
     break;
-  case BSDOWNCALLBACK_ERROR:		// ƒGƒ‰[”­¶
+  case BSDOWNCALLBACK_ERROR:		// ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿæ™‚
     s_state = BEACON_STATE_ERROR;
     break;
   }
@@ -3858,10 +3858,10 @@ static void MysteryGift_BSCallBack( int code )
 
 static void MysteryGift_BeaconCancel(void)
 {
-  OS_TPrintf("ƒCƒNƒjƒ…[ƒ‚ƒ“ŠJ•ú\n");
+  OS_TPrintf("ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³é–‹æ”¾\n");
   CommVRAMDFinalize();
   sys_FreeMemoryEz(buffer);
-  WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+  WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
   buffer = NULL;
 }
 
@@ -3870,8 +3870,8 @@ static void MysteryGift_BeaconMainLoop(MYSTERYGIFT_WORK *wk)
   if( s_state == BEACON_STATE_FINISH ){
     MysteryGift_BeaconCancel();
 
-    // ƒ_ƒEƒ“ƒ[ƒhŠ®—¹‘Ò‚¿B‚b‚q‚b‚ª³‚µ‚¢‚©ƒ`ƒFƒbƒN
-    // ƒR[ƒ‹ƒoƒbƒN‚Å‚È‚­A‚±‚±‚Åƒ`ƒFƒbƒN‚·‚é‚Ì‚ÍAŠ„‚è‚İ‚Éƒ‹[ƒ`ƒ“‚Éd‚¢ˆ—‚ğ‚¢‚ê‚½‚­‚È‚¢‚½‚ß
+    // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å®Œäº†å¾…ã¡ã€‚ï¼£ï¼²ï¼£ãŒæ­£ã—ã„ã‹ãƒã‚§ãƒƒã‚¯
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§ãªãã€ã“ã“ã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã®ã¯ã€å‰²ã‚Šè¾¼ã¿ã«ãƒ«ãƒ¼ãƒãƒ³ã«é‡ã„å‡¦ç†ã‚’ã„ã‚ŒãŸããªã„ãŸã‚
     if( bsdown_c_checkcrc() ) {
       s_state = BEACON_STATE_SUCCESS;
     } else {
@@ -3886,49 +3886,49 @@ static void MysteryGift_BeaconMainLoop(MYSTERYGIFT_WORK *wk)
   //  OS_TPrintf("s_state = %d\n", s_state - BEACON_STATE_INIT1);
   
   switch( s_state ){
-  case BEACON_STATE_INIT1:				// ‰Šúó‘Ô(’ÊMƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»)
+  case BEACON_STATE_INIT1:				// åˆæœŸçŠ¶æ…‹(é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–)
     CommVRAMDInitialize();
     s_state = BEACON_STATE_INIT2;
     break;			
-  case BEACON_STATE_INIT2:				// ‰Šúó‘Ô
+  case BEACON_STATE_INIT2:				// åˆæœŸçŠ¶æ…‹
     if(CommIsVRAMDInitialize() == TRUE){
       progress_time = 0;
       buffer = sys_AllocMemory(HEAPID_MYSTERYGIFT, bsdown_c_worksize());
       bsdown_c_init( &(wk->recvbuf[0]), MysteryGift_BSCallBack, buffer );
       s_state = BEACON_STATE_START;
-      WirelessIconEasy();	// ’ÊMƒAƒCƒRƒ“•\¦(ƒAƒ“ƒeƒi—§‚½‚È‚¢T-T)
+      WirelessIconEasy();	// é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º(ã‚¢ãƒ³ãƒ†ãƒŠç«‹ãŸãªã„T-T)
       debug_printf("PRESS A TO START\n");
     }
     break;
-  case BEACON_STATE_START:				// ‰Šúó‘Ô
+  case BEACON_STATE_START:				// åˆæœŸçŠ¶æ…‹
     debug_printf("INITIALIZING...\n");
     break;
-  case BEACON_STATE_SCANNING:			// ƒXƒLƒƒƒ“’†
+  case BEACON_STATE_SCANNING:			// ã‚¹ã‚­ãƒ£ãƒ³ä¸­
     debug_printf("SEARCHING......\n");
     //    debug_printf("PRESS START TO RESTART\n");
     break;
-  case BEACON_STATE_DOWNLOAD:			// e‹@”­Œ©‚µ‚ÄAƒ_ƒEƒ“ƒ[ƒh’†
+  case BEACON_STATE_DOWNLOAD:			// è¦ªæ©Ÿç™ºè¦‹ã—ã¦ã€ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­
     debug_printf("packets %d / %d\t", bsdown_c_received(), bsdown_c_total());
     progress_time++;
     debug_printf("time    %d : %d\n", (progress_time / 60) / 60, (progress_time / 60) % 60 );
     break;				
-  case BEACON_STATE_COMPLETE:			// ƒ_ƒEƒ“ƒ[ƒhŠ®—¹
+  case BEACON_STATE_COMPLETE:			// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å®Œäº†
     debug_printf("Finishing( size = %d byte )\n", bsdown_c_size());
     debug_printf("time    %d : %d\n", (progress_time / 60) / 60, (progress_time / 60) % 60 );				
     break;
-  case BEACON_STATE_CANCELING:		// ƒLƒƒƒ“ƒZƒ‹ˆ—’†
-    debug_printf("CANCELING......\n");    //    s_state = BEACON_STATE_FINISH;	// ¸”s‚µ‚ÄI—¹‚³‚¹‚é
+  case BEACON_STATE_CANCELING:		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†ä¸­
+    debug_printf("CANCELING......\n");    //    s_state = BEACON_STATE_FINISH;	// å¤±æ•—ã—ã¦çµ‚äº†ã•ã›ã‚‹
     break;
-  case BEACON_STATE_SUCCESS:			// ƒ_ƒEƒ“ƒ[ƒhI—¹
+  case BEACON_STATE_SUCCESS:			// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çµ‚äº†
     //    debug_printf("Complete( size = %d byte )\n", bsdown_c_size());
     //    debug_printf("time    %d : %d\n", (progress_time / 60) / 60, (progress_time / 60) % 60 );				
     //    debug_printf("PRESS START TO RESTART\n");				
     break;
-  case BEACON_STATE_CANCEL:			// ƒLƒƒƒ“ƒZƒ‹I—¹
+  case BEACON_STATE_CANCEL:			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†
     //    debug_printf("PRESS START TO RESTART\n");
     return;
     break;			
-  case BEACON_STATE_ERROR:				// ƒGƒ‰[	
+  case BEACON_STATE_ERROR:				// ã‚¨ãƒ©ãƒ¼	
     debug_printf("error......\n");
     break;
   case BEACON_STATE_CRCERROR:
@@ -3940,24 +3940,24 @@ static void MysteryGift_BeaconMainLoop(MYSTERYGIFT_WORK *wk)
   if(sys.trg & PAD_BUTTON_CANCEL){
     // ----------------------------------------------------------------------------
     // localize_spec_mark(LANG_ALL) imatake 2007/02/15
-    // ƒLƒƒƒ“ƒZƒ‹‚ÉSE‚ª2‰ñ–Â‚é‚Ì‚ğC³
+    // ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ™‚ã«SEãŒ2å›é³´ã‚‹ã®ã‚’ä¿®æ­£
     //Snd_SePlay(SEQ_SE_DP_SELECT); // MatchComment: show removed code
     // ----------------------------------------------------------------------------
-    // ƒŠƒZƒbƒgˆ—
+    // ãƒªã‚»ãƒƒãƒˆå‡¦ç†
     switch( s_state ){
-    case BEACON_STATE_SCANNING:			// ƒXƒLƒƒƒ“’†
-    case BEACON_STATE_DOWNLOAD:			// e‹@”­Œ©‚µ‚ÄAƒ_ƒEƒ“ƒ[ƒh’†
-    case BEACON_STATE_ERROR:				// ƒGƒ‰[
+    case BEACON_STATE_SCANNING:			// ã‚¹ã‚­ãƒ£ãƒ³ä¸­
+    case BEACON_STATE_DOWNLOAD:			// è¦ªæ©Ÿç™ºè¦‹ã—ã¦ã€ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­
+    case BEACON_STATE_ERROR:				// ã‚¨ãƒ©ãƒ¼
 
-      OS_TPrintf("ƒLƒƒƒ“ƒZƒ‹ˆË—Š\n");
+      OS_TPrintf("ã‚­ãƒ£ãƒ³ã‚»ãƒ«ä¾é ¼\n");
       if( bsdown_end() ){
 	s_state = BEACON_STATE_CANCELING;	
       }					
       break;
 				
-    case BEACON_STATE_SUCCESS:			// ƒ_ƒEƒ“ƒ[ƒhI—¹
-    case BEACON_STATE_CANCEL:			// ƒLƒƒƒ“ƒZƒ‹I—¹
-    case BEACON_STATE_CRCERROR:		// ‚b‚q‚bƒGƒ‰[
+    case BEACON_STATE_SUCCESS:			// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çµ‚äº†
+    case BEACON_STATE_CANCEL:			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†
+    case BEACON_STATE_CRCERROR:		// ï¼£ï¼²ï¼£ã‚¨ãƒ©ãƒ¼
       return;
     default:
       break;
@@ -3967,7 +3967,7 @@ static void MysteryGift_BeaconMainLoop(MYSTERYGIFT_WORK *wk)
 
 
 //------------------------------------------------------------------
-///	ƒvƒƒZƒXƒf[ƒ^
+///	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 //------------------------------------------------------------------
 const PROC_DATA MysteryGiftProcData = {
   MysteryGiftProc_Init,

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_184.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			184@ˆê“xŽg‚Á‚½‚à‚¿‚à‚Ì‚ð‚à‚¤ˆê“xŽg‚¤‚±‚Æ‚ª‚Å‚«‚éB
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			184ã€€ä¸€åº¦ä½¿ã£ãŸã‚‚ã¡ã‚‚ã®ã‚’ã‚‚ã†ä¸€åº¦ä½¿ã†ã“ã¨ãŒã§ãã‚‹ã€‚
  *
  *@author	HisashiSogabe
  *@data		2006.02.08
@@ -15,9 +15,9 @@
 	.include	"waza_seq_def.h"
 
 BE_184:
-	//ƒAƒCƒeƒ€‚ðŽ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍA‚¤‚Ü‚­‚«‚Ü‚ç‚ñ
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ã‚‹ã¨ãã¯ã€ã†ã¾ããã¾ã‚‰ã‚“
 	IF_PSP			IF_FLAG_NE,SIDE_ATTACK,ID_PSP_item,0,Umakukimaran
-	//ƒŠƒTƒCƒNƒ‹‚Ìƒ[ƒN‚ª‹ó‚Á‚Û‚ÌŽž‚ÍA‚¤‚Ü‚­‚«‚Ü‚ç‚ñ
+	//ãƒªã‚µã‚¤ã‚¯ãƒ«ã®ãƒ¯ãƒ¼ã‚¯ãŒç©ºã£ã½ã®æ™‚ã¯ã€ã†ã¾ããã¾ã‚‰ã‚“
 	RECYCLE			Umakukimaran
 	PSP_VALUE_WORK	VAL_SET,SIDE_ATTACK,ID_PSP_item,BUF_PARA_ITEM_WORK
 	MESSAGE_PARAM	RecycleMineMsg,TAG_NICK_ITEM,SIDE_ATTACK,SIDE_WORK

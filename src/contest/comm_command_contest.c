@@ -1,11 +1,11 @@
 //=============================================================================
 /**
  * @file	comm_command_contest.c
- * @brief	ƒf[ƒ^‚ğ‘—‚é‚½‚ß‚ÌƒRƒ}ƒ“ƒh‚ğƒe[ƒuƒ‹‰»‚µ‚Ä‚¢‚Ü‚·
- *          ƒRƒ“ƒeƒXƒg—p‚Å‚·
- *          comm_command_contest.h ‚Ì enum ‚Æ“¯‚¶•À‚Ñ‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+ * @brief	ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹ãŸã‚ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«åŒ–ã—ã¦ã„ã¾ã™
+ *          ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã§ã™
+ *          comm_command_contest.h ã® enum ã¨åŒã˜ä¸¦ã³ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
  * @author	matsuda
- * @date    2005.12.15(–Ø)
+ * @date    2005.12.15(æœ¨)
  */
 //=============================================================================
 
@@ -27,7 +27,7 @@
 
 
 //==============================================================================
-//  ƒe[ƒuƒ‹‚É‘‚­ŠÖ”‚Ì’è‹`
+//  ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ›¸ãé–¢æ•°ã®å®šç¾©
 //==============================================================================
 static	void CommContestRecvTiming(int id_no,int size,void *pData,void *work);
 static u8* CommContestGetRecvDataBuff( int netID,void*pWork,int size);
@@ -37,17 +37,17 @@ static	void CommContestRecvImcLocal(int id_no,int size,void *pData,void *work);
 static	void CommContestRecvImcForceEnd(int id_no,int size,void *pData,void *work);
 
 //==============================================================================
-//  static’è‹`
+//  staticå®šç¾©
 //==============================================================================
 static int _getDancingSize(void);
 static int _getImcLocalSize(void);
 
 //==============================================================================
-//	ƒe[ƒuƒ‹éŒ¾
-//  comm_shar.h ‚Ì enum ‚Æ“¯‚¶‚È‚ç‚Ñ‚É‚µ‚Ä‚­‚¾‚³‚¢
-//  CALLBACK‚ğŒÄ‚Î‚ê‚½‚­‚È‚¢ê‡‚ÍNULL‚ğ‘‚¢‚Ä‚­‚¾‚³‚¢
-//  ƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY‚ğ•Ô‚·ŠÖ”‚ğ‘‚¢‚Ä‚à‚ç‚¦‚é‚Æ’ÊM‚ªŒy‚­‚È‚è‚Ü‚·
-//  _getZero‚ÍƒTƒCƒY‚È‚µ‚ğ•Ô‚µ‚Ü‚·B_getVariable‚Í‰Â•Ïƒf[ƒ^g—p‚Ég‚¢‚Ü‚·
+//	ãƒ†ãƒ¼ãƒ–ãƒ«å®£è¨€
+//  comm_shar.h ã® enum ã¨åŒã˜ãªã‚‰ã³ã«ã—ã¦ãã ã•ã„
+//  CALLBACKã‚’å‘¼ã°ã‚ŒãŸããªã„å ´åˆã¯NULLã‚’æ›¸ã„ã¦ãã ã•ã„
+//  ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™é–¢æ•°ã‚’æ›¸ã„ã¦ã‚‚ã‚‰ãˆã‚‹ã¨é€šä¿¡ãŒè»½ããªã‚Šã¾ã™
+//  _getZeroã¯ã‚µã‚¤ã‚ºãªã—ã‚’è¿”ã—ã¾ã™ã€‚_getVariableã¯å¯å¤‰ãƒ‡ãƒ¼ã‚¿ä½¿ç”¨æ™‚ã«ä½¿ã„ã¾ã™
 //==============================================================================
 static const CommPacketTbl _CommPacketTbl[] = {
     {NULL,                      _getZero, NULL},		// CC_EXIT_CONTEST
@@ -70,7 +70,7 @@ static const CommPacketTbl _CommPacketTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg—p‚ÌƒRƒ}ƒ“ƒh‘ÌŒn‚É‰Šú‰»‚µ‚Ü‚·
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã®ã‚³ãƒãƒ³ãƒ‰ä½“ç³»ã«åˆæœŸåŒ–ã—ã¾ã™
  * @param   none
  * @retval  none
  */
@@ -83,7 +83,7 @@ void CommCommandContestInitialize(void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   óM—Ìˆææ“¾ŠÖ”(‹‘åƒf[ƒ^FCommSendHugeData‚ÌóM—p)
+ * @brief   å—ä¿¡é ˜åŸŸå–å¾—é–¢æ•°(å·¨å¤§ãƒ‡ãƒ¼ã‚¿ï¼šCommSendHugeDataã®å—ä¿¡ç”¨)
  *
  * @param   netID		
  * @param   pWork		
@@ -104,9 +104,9 @@ static u8* CommContestGetRecvDataBuff( int netID,void*pWork,int size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚R‚Â‚Æ‚àƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·
- * @param   command         ƒRƒ}ƒ“ƒh
- * @retval  ƒTƒCƒY   ‰Â•Ï‚È‚ç COMM_VARIABLE_SIZE Zero‚Í‚O‚ğ•Ô‚·
+ * @brief   ï¼“ã¤ã¨ã‚‚ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
+ * @param   command         ã‚³ãƒãƒ³ãƒ‰
+ * @retval  ã‚µã‚¤ã‚º   å¯å¤‰ãªã‚‰ COMM_VARIABLE_SIZE Zeroã¯ï¼ã‚’è¿”ã™
  */
 //--------------------------------------------------------------
 static int _getDancingSize(void)
@@ -116,9 +116,9 @@ static int _getDancingSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚R‚Â‚Æ‚àƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·
- * @param   command         ƒRƒ}ƒ“ƒh
- * @retval  ƒTƒCƒY   ‰Â•Ï‚È‚ç COMM_VARIABLE_SIZE Zero‚Í‚O‚ğ•Ô‚·
+ * @brief   ï¼“ã¤ã¨ã‚‚ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
+ * @param   command         ã‚³ãƒãƒ³ãƒ‰
+ * @retval  ã‚µã‚¤ã‚º   å¯å¤‰ãªã‚‰ COMM_VARIABLE_SIZE Zeroã¯ï¼ã‚’è¿”ã™
  */
 //--------------------------------------------------------------
 static int _getImcLocalSize(void)
@@ -137,11 +137,11 @@ static int _getImcLocalSize(void)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   “¯Šúæ‚è’ÊMóMˆ—
+ * @brief   åŒæœŸå–ã‚Šé€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  * @param   work		
  */
 //--------------------------------------------------------------
@@ -156,12 +156,12 @@ static	void CommContestRecvTiming(int id_no,int size,void *pData,void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒNƒŠƒbƒvƒf[ƒ^’ÊMóMˆ—
+ * @brief   ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static	void CommContestRecvClipData(int id_no,int size,void *pData,void *work)
@@ -178,8 +178,8 @@ static	void CommContestRecvClipData(int id_no,int size,void *pData,void *work)
 
 	//OS_TPrintf("clip_size = %d, size = %d\n", clip_size, size);
 	//OS_TPrintf("pData[0] = %d\n", ((u8*)pData)[0]);
-	//OS_TPrintf("clip‚Ìbreeder_no = %d\n", breeder_no);
-	//OS_TPrintf("clip‚ÌÅŒãƒf[ƒ^ = %d\n", clip_buf[clip_size - 1]);
+	//OS_TPrintf("clipã®breeder_no = %d\n", breeder_no);
+	//OS_TPrintf("clipã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", clip_buf[clip_size - 1]);
 
 	MI_CpuCopy8(pData, consys->c_game.imc_data[breeder_no], clip_size);
 	
@@ -188,13 +188,13 @@ static	void CommContestRecvClipData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒNƒŠƒbƒvƒf[ƒ^‘—M–½—ß
+ * @brief   ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿é€ä¿¡å‘½ä»¤
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		¡‚©‚ç‘—‚éƒ|ƒPƒ‚ƒ“‚ğŠ‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pp				ƒNƒŠƒbƒvƒf[ƒ^
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ä»Šã‹ã‚‰é€ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’æ‰€æŒã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pp				ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommContestSendClipData(CONTEST_SYSTEM *consys, int breeder_no, const IMC_CONTEST_SAVEDATA *imc_data)
@@ -210,7 +210,7 @@ BOOL CommContestSendClipData(CONTEST_SYSTEM *consys, int breeder_no, const IMC_C
 	
 	//OS_TPrintf("clip_size = %d\n", clip_size);
 	//OS_TPrintf("breeder_no = %d\n", clip_buf[clip_size]);
-	//OS_TPrintf("‘—MŒ³clip_data‚ÌÅŒãƒf[ƒ^ = %d\n", clip_buf[clip_size - 1]);
+	//OS_TPrintf("é€ä¿¡å…ƒclip_dataã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", clip_buf[clip_size - 1]);
 	if(CommSendData(CC_IMC_DATA, clip_buf, clip_size + 1) == TRUE){
 //		consys->recieve_count = 0;
 		ret = TRUE;
@@ -227,12 +227,12 @@ BOOL CommContestSendClipData(CONTEST_SYSTEM *consys, int breeder_no, const IMC_C
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒNƒŠƒbƒvƒf[ƒ^(‘Sˆõ•ª)’ÊMóMˆ—
+ * @brief   ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿(å…¨å“¡åˆ†)é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static	void CommContestRecvClipDataAll(int id_no,int size,void *pData,void *work)
@@ -249,7 +249,7 @@ static	void CommContestRecvClipDataAll(int id_no,int size,void *pData,void *work
 
 	//OS_TPrintf("all_size = %d, size = %d\n", all_size, size);
 	//OS_TPrintf("pData[0] = %d\n", ((u8*)pData)[0]);
-	//OS_TPrintf("clip‚ÌÅŒãƒf[ƒ^ = %d\n", clip_buf[all_size - 1]);
+	//OS_TPrintf("clipã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", clip_buf[all_size - 1]);
 	GF_ASSERT(all_size < CON_HUGEBUF_SIZE);
 
 	for(i = 0; i < BREEDER_MAX; i++){
@@ -261,14 +261,14 @@ static	void CommContestRecvClipDataAll(int id_no,int size,void *pData,void *work
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒNƒŠƒbƒvƒf[ƒ^(‘Sˆõ•ª)‘—M–½—ß
+ * @brief   ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿(å…¨å“¡åˆ†)é€ä¿¡å‘½ä»¤
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   imc_data		ƒNƒŠƒbƒvƒf[ƒ^
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   imc_data		ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  *
- * ¦eê—p–½—ß‚Å‚·B
+ * â€»è¦ªå°‚ç”¨å‘½ä»¤ã§ã™ã€‚
  */
 //--------------------------------------------------------------
 BOOL CommContestSendClipDataAll(CONTEST_SYSTEM *consys, IMC_CONTEST_SAVEDATA **imc_data)
@@ -289,7 +289,7 @@ BOOL CommContestSendClipDataAll(CONTEST_SYSTEM *consys, IMC_CONTEST_SAVEDATA **i
 	
 	//OS_TPrintf("all_size = %d\n", all_size);
 	//OS_TPrintf("breeder_no = %d\n", clip_buf[all_size]);
-	//OS_TPrintf("‘—MŒ³clip‚ÌÅŒãƒf[ƒ^ = %d\n", clip_buf[all_size - 1]);
+	//OS_TPrintf("é€ä¿¡å…ƒclipã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", clip_buf[all_size - 1]);
 	if(CommSendHugeData(CC_IMC_ALL_DATA, clip_buf, all_size) == TRUE){
 //		consys->recieve_count = 0;
 		ret = TRUE;
@@ -306,12 +306,12 @@ BOOL CommContestSendClipDataAll(CONTEST_SYSTEM *consys, IMC_CONTEST_SAVEDATA **i
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–Ê—pƒf[ƒ^’ÊMóMˆ—
+ * @brief   ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢ç”¨ãƒ‡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static	void CommContestRecvImcLocal(int id_no,int size,void *pData,void *work)
@@ -323,12 +323,12 @@ static	void CommContestRecvImcLocal(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–Ê—pFƒJƒEƒ“ƒ^[ƒf[ƒ^‘—M–½—ß
+ * @brief   ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢ç”¨ï¼šã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿é€ä¿¡å‘½ä»¤
  *
- * @param   imc_local		ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–Ê—p’ÊM‘—óMƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   counter			ƒJƒEƒ“ƒ^[
+ * @param   imc_local		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢ç”¨é€šä¿¡é€å—ä¿¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   counter			ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommContestSendImcLocal(CON_IMC_LOCAL *imc_local, u32 counter)
@@ -354,12 +354,12 @@ BOOL CommContestSendImcLocal(CON_IMC_LOCAL *imc_local, u32 counter)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–Ê—pAeEq ƒf[ƒ^’ÊMóMˆ—
+ * @brief   ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢ç”¨ã€è¦ªãƒ»å­ ãƒ‡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static	void CommContestRecvImcForceEnd(int id_no,int size,void *pData,void *work)
@@ -373,14 +373,14 @@ static	void CommContestRecvImcForceEnd(int id_no,int size,void *pData,void *work
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–Ê—pF‹­§I—¹ƒtƒ‰ƒO‘—M
+ * @brief   ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢ç”¨ï¼šå¼·åˆ¶çµ‚äº†ãƒ•ãƒ©ã‚°é€ä¿¡
  *
- * @param   imc_local		ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–Ê—p’ÊM‘—óMƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   counter			ƒJƒEƒ“ƒ^[
+ * @param   imc_local		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢ç”¨é€šä¿¡é€å—ä¿¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   counter			ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  *
- * eEqA‹¤‚Ég—po—ˆ‚Ü‚·B
+ * è¦ªãƒ»å­ã€å…±ã«ä½¿ç”¨å‡ºæ¥ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 BOOL CommContestSendImcForceEnd(CON_IMC_LOCAL *imc_local, int force_end)

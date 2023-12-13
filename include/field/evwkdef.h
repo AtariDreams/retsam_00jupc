@@ -1,11 +1,11 @@
 //==============================================================================================
 /**
  * @file	evwkdef.c
- * @brief	ƒtƒ‰ƒOAƒ[ƒN—Ìˆæ’è‹`
+ * @brief	ãƒ•ãƒ©ã‚°ã€ãƒ¯ãƒ¼ã‚¯é ˜åŸŸå®šç¾©
  * @author	Satoshi Nohara
  * @date	2005.11.07
  *
- * 2007.06.04	ƒvƒ‰ƒ`ƒi—p‚ÉƒIƒtƒZƒbƒg‚ð•ÏX
+ * 2007.06.04	ãƒ—ãƒ©ãƒãƒŠç”¨ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å¤‰æ›´
  */
 //==============================================================================================
 #ifndef __EVWKDEF_H__
@@ -13,121 +13,121 @@
 
 //----------------------------------------------------------------------------------------------
 //
-//	ƒtƒ‰ƒOŠÖ˜A’è‹`
+//	ãƒ•ãƒ©ã‚°é–¢é€£å®šç¾©
 //
 //----------------------------------------------------------------------------------------------
 //script/saveflag.h
 #define USRFLAG_START		0
-#define USRFLAG_MAX			2400						//ƒXƒNƒŠƒvƒg’è‹`‚Ìƒtƒ‰ƒOÅ‘å”
+#define USRFLAG_MAX			2400						//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå®šç¾©ã®ãƒ•ãƒ©ã‚°æœ€å¤§æ•°
 #define USRFLAG_AREA_MAX	(USRFLAG_MAX/8)
 
 //field/sysflag.h
 #define SYSFLAG_START		(USRFLAG_MAX)
-#define	SYSFLAG_MAX			320							//ƒVƒXƒeƒ€’è‹`‚Ìƒtƒ‰ƒOÅ‘å”
+#define	SYSFLAG_MAX			320							//ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ã®ãƒ•ãƒ©ã‚°æœ€å¤§æ•°
 #define	SYSFLAG_AREA_MAX	(SYSFLAG_MAX/8)
 
 #define TIMEFLAG_START		(USRFLAG_MAX+SYSFLAG_MAX)
-#define TIMEFLAG_MAX		192							//ŽžŠÔŒo‰ßƒCƒxƒ“ƒg—pƒtƒ‰ƒOÅ‘å”
+#define TIMEFLAG_MAX		192							//æ™‚é–“çµŒéŽã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ•ãƒ©ã‚°æœ€å¤§æ•°
 #define	TIMEFLAG_AREA_MAX	(TIMEFLAG_MAX/8)
 
-//ƒtƒ‰ƒOÅ‘å”
+//ãƒ•ãƒ©ã‚°æœ€å¤§æ•°
 #define	EVENT_FLAG_MAX		(USRFLAG_MAX+SYSFLAG_MAX+TIMEFLAG_MAX)
 #define	EVENT_FLAG_AREA_MAX	(EVENT_FLAG_MAX/8)
 
-//ƒtƒ‰ƒOƒIƒtƒZƒbƒg
-#define	SVFLG_START			0x0000						//ƒZ[ƒuƒtƒ‰ƒOƒXƒ^[ƒgƒiƒ“ƒo[
-#define	SCFLG_START			0x4000						//§Œäƒtƒ‰ƒOƒXƒ^[ƒgƒiƒ“ƒo[
+//ãƒ•ãƒ©ã‚°ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define	SVFLG_START			0x0000						//ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ã‚°ã‚¹ã‚¿ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
+#define	SCFLG_START			0x4000						//åˆ¶å¾¡ãƒ•ãƒ©ã‚°ã‚¹ã‚¿ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
 
-//ƒgƒŒ[ƒi[ƒtƒ‰ƒO
-#define TR_FLAG_START		1360						//ƒgƒŒ[ƒi[ID‘Î‰žƒtƒ‰ƒOŠJŽnˆÊ’u
-#define TR_FLAG_MAX			(USRFLAG_MAX-TR_FLAG_START)	//ƒgƒŒ[ƒi[ID‘Î‰žƒtƒ‰ƒOÅ‘å”
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ•ãƒ©ã‚°
+#define TR_FLAG_START		1360						//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDå¯¾å¿œãƒ•ãƒ©ã‚°é–‹å§‹ä½ç½®
+#define TR_FLAG_MAX			(USRFLAG_MAX-TR_FLAG_START)	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDå¯¾å¿œãƒ•ãƒ©ã‚°æœ€å¤§æ•°
 
-//ƒZ[ƒu‚µ‚È‚¢ƒtƒ‰ƒOŠÖ˜A’è‹`
-#define	CTRLFLAG_MAX		64							//§Œäƒtƒ‰ƒOÅ‘å”
+//ã‚»ãƒ¼ãƒ–ã—ãªã„ãƒ•ãƒ©ã‚°é–¢é€£å®šç¾©
+#define	CTRLFLAG_MAX		64							//åˆ¶å¾¡ãƒ•ãƒ©ã‚°æœ€å¤§æ•°
 #define	CTRLFLAG_AREA_MAX	(CTRLFLAG_MAX/8)
 
-//ƒtƒ‰ƒOƒXƒ^[ƒgƒiƒ“ƒo[
-#define FE_FLAG_START		(100)						//ƒCƒxƒ“ƒgis§Œäƒtƒ‰ƒO
-//#define FV_FLAG_START		(400)						//ƒoƒjƒbƒVƒ…ƒtƒ‰ƒO
-#define FV_FLAG_START		(370)						//ƒoƒjƒbƒVƒ…ƒtƒ‰ƒO
-#define FH_FLAG_START		(730)						//‰B‚µƒAƒCƒeƒ€ƒtƒ‰ƒO(256+28ŒÂ)
-//#define FB_FLAG_START		(FH_FLAG_START+256)			//ƒtƒB[ƒ‹ƒhã‚ÌƒAƒCƒeƒ€ƒtƒ‰ƒO(256ŒÂ)
-#define FB_FLAG_START		(FH_FLAG_START+256+28)		//ƒtƒB[ƒ‹ƒhã‚ÌƒAƒCƒeƒ€ƒtƒ‰ƒO(256+72ŒÂ)
+//ãƒ•ãƒ©ã‚°ã‚¹ã‚¿ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
+#define FE_FLAG_START		(100)						//ã‚¤ãƒ™ãƒ³ãƒˆé€²è¡Œåˆ¶å¾¡ãƒ•ãƒ©ã‚°
+//#define FV_FLAG_START		(400)						//ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°
+#define FV_FLAG_START		(370)						//ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°
+#define FH_FLAG_START		(730)						//éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚°(256+28å€‹)
+//#define FB_FLAG_START		(FH_FLAG_START+256)			//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã®ã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚°(256å€‹)
+#define FB_FLAG_START		(FH_FLAG_START+256+28)		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã®ã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚°(256+72å€‹)
 //730+256+28=1014
 //1014+256+72=1342
-//1360`ƒgƒŒ[ƒi[
+//1360ã€œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 
-#define LOCAL_FLAG_MAX		(64)						//ƒ[ƒJƒ‹ƒtƒ‰ƒO”(8bit*8=64)
+#define LOCAL_FLAG_MAX		(64)						//ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ãƒ©ã‚°æ•°(8bit*8=64)
 #define LOCAL_FLAG_AREA_MAX	(LOCAL_FLAG_MAX/8)
 
 //----------------------------------------------------------------------------------------------
 //
-//	ƒ[ƒNŠÖ˜A’è‹`
+//	ãƒ¯ãƒ¼ã‚¯é–¢é€£å®šç¾©
 //
 //----------------------------------------------------------------------------------------------
 //script/savework.h
 #define EVENT_WORK_AREA_MAX	288
 
-#define	SVWK_START			0x4000								//ƒZ[ƒuƒ[ƒN’è‹`ƒXƒ^[ƒgƒiƒ“ƒo[
+#define	SVWK_START			0x4000								//ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯å®šç¾©ã‚¹ã‚¿ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
 
-//ƒ[ƒNƒIƒtƒZƒbƒg
-#define LOCAL_WORK_START	(0+SVWK_START)						//ƒ[ƒJƒ‹ƒ[ƒNŠJŽn
-#define LOCAL_WORK_MAX		(32)								//ƒ[ƒJƒ‹ƒ[ƒN”
-#define OBJCHR_WORK_START	(LOCAL_WORK_START+LOCAL_WORK_MAX)	//•ÏX‰Â”\‚ÈOBJƒLƒƒƒ‰Žw’èƒ[ƒNŠJŽn
-#define OBJCHR_WORK_MAX		(16)								//•ÏX‰Â”\‚ÈOBJƒLƒƒƒ‰Žw’èƒ[ƒN”
-#define OTHERS_WORK_START	(OBJCHR_WORK_START+OBJCHR_WORK_MAX)	//‚»‚Ì‘¼‚Ìƒ[ƒNŠJŽn
-#define OTHERS_WORK_MAX		(64)								//‚»‚Ì‘¼‚Ìƒ[ƒN”
+//ãƒ¯ãƒ¼ã‚¯ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define LOCAL_WORK_START	(0+SVWK_START)						//ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯é–‹å§‹
+#define LOCAL_WORK_MAX		(32)								//ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯æ•°
+#define OBJCHR_WORK_START	(LOCAL_WORK_START+LOCAL_WORK_MAX)	//å¤‰æ›´å¯èƒ½ãªOBJã‚­ãƒ£ãƒ©æŒ‡å®šãƒ¯ãƒ¼ã‚¯é–‹å§‹
+#define OBJCHR_WORK_MAX		(16)								//å¤‰æ›´å¯èƒ½ãªOBJã‚­ãƒ£ãƒ©æŒ‡å®šãƒ¯ãƒ¼ã‚¯æ•°
+#define OTHERS_WORK_START	(OBJCHR_WORK_START+OBJCHR_WORK_MAX)	//ãã®ä»–ã®ãƒ¯ãƒ¼ã‚¯é–‹å§‹
+#define OTHERS_WORK_MAX		(64)								//ãã®ä»–ã®ãƒ¯ãƒ¼ã‚¯æ•°
 #define SYSWORK_MAX			(LOCAL_WORK_MAX+OBJCHR_WORK_MAX+OTHERS_WORK_MAX)	//
 
-#define	SVSCRWK_START		(SVWK_START+SYSWORK_MAX)			//script/savework.h(ƒXƒNƒŠƒvƒg—p)
-#define	SCWK_START			0x8000						//ƒf[ƒ^ŒðŠ·E”Ä—pƒ[ƒN’è‹`ƒXƒ^[ƒgƒiƒ“ƒo[
+#define	SVSCRWK_START		(SVWK_START+SYSWORK_MAX)			//script/savework.h(ã‚¹ã‚¯ãƒªãƒ—ãƒˆç”¨)
+#define	SCWK_START			0x8000						//ãƒ‡ãƒ¼ã‚¿äº¤æ›ãƒ»æ±Žç”¨ãƒ¯ãƒ¼ã‚¯å®šç¾©ã‚¹ã‚¿ãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
 
 #if 0
 //----------------------------------------------------------------------------------------------
 //
-//	ƒGƒƒ‰ƒ‹ƒh
+//	ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
 //
 //----------------------------------------------------------------------------------------------
-//ƒtƒ‰ƒO” = 2400
-//‚¬‚è‚¬‚è‚Ü‚ÅŽg—p‚µ‚Ä‚¢‚½
+//ãƒ•ãƒ©ã‚°æ•° = 2400
+//ãŽã‚ŠãŽã‚Šã¾ã§ä½¿ç”¨ã—ã¦ã„ãŸ
 
-//ƒgƒŒ[ƒi[ƒtƒ‰ƒO” = 864
-//854Žg—p‚µ‚Ä‚¢‚½
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ•ãƒ©ã‚°æ•° = 864
+//854ä½¿ç”¨ã—ã¦ã„ãŸ
 
-//ƒ[ƒN” = 256
-//‘½­—]—T‚ ‚éŠ´‚¶H‚¾‚Á‚½
+//ãƒ¯ãƒ¼ã‚¯æ•° = 256
+//å¤šå°‘ä½™è£•ã‚ã‚‹æ„Ÿã˜ï¼Ÿã ã£ãŸ
 #endif
 
 #if 0
 //----------------------------------------------------------------------------------------------
 //
-//	ƒ_ƒCƒ„Eƒp[ƒ‹
+//	ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«
 //
 //----------------------------------------------------------------------------------------------
-ƒgƒŒ[ƒi[ƒtƒ‰ƒO
-ŠJŽn	1360
-Å‘å”	1040
+ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ•ãƒ©ã‚°
+é–‹å§‹	1360
+æœ€å¤§æ•°	1040
 2400 - 1360 = 1040
 
-ƒ[ƒJƒ‹ƒtƒ‰ƒO
+ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ãƒ©ã‚°
 0-63
 
-–¢Žg—p
+æœªä½¿ç”¨
 63-99
 
-ƒCƒxƒ“ƒgƒtƒ‰ƒO
+ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
 100-399
 
-ƒoƒjƒbƒVƒ…ƒtƒ‰ƒO
+ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°
 400-729
 
-‰B‚µƒAƒCƒeƒ€ƒtƒ‰ƒO
+éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚°
 730-985(255)
 
-ƒtƒB[ƒ‹ƒhã‚ÌƒAƒCƒeƒ€
+ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã®ã‚¢ã‚¤ãƒ†ãƒ 
 986-1241
 
-–¢Žg—p
+æœªä½¿ç”¨
 1242-1359
 #endif
 

@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	slot_local.c
- * @brief	ƒ~ƒjƒQ[ƒ€@ƒXƒƒbƒg@ƒ[ƒJƒ‹
+ * @brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã€€ã‚¹ãƒ­ãƒƒãƒˆã€€ãƒ­ãƒ¼ã‚«ãƒ«
  * @author	kagaya
  * @data	05.07.13
  */
@@ -38,8 +38,8 @@
 //----
 #ifdef PM_DEBUG
 //----
-#define DEBUG_ON_SLOT			//’è‹`‚ÅƒfƒoƒbƒO‹@”\ON
-#define DEBUG_SLOT_PARAM_INIT	//’è‹`‚Å‹Uƒpƒ‰ƒƒ^‰Šú‰»
+#define DEBUG_ON_SLOT			//å®šç¾©ã§ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ON
+#define DEBUG_SLOT_PARAM_INIT	//å®šç¾©ã§å½ãƒ‘ãƒ©ãƒ¡ã‚¿åˆæœŸåŒ–
 //----
 #endif	//PM_DEBUG
 //----
@@ -54,29 +54,29 @@
 //--------------------------------------------------------------
 //	fx
 //--------------------------------------------------------------
-#define NUM_FX32(a)	(FX32_ONE*(a))							///<®”->FX32Œ^‚É
-#define FX32_NUM(a)	((a)/FX32_ONE)							///<FX32->®”‚É
-#define NUM_FX16(a)	(FX16_ONE*(a))							///<®”->FX16Œ^‚É
-#define FX16_NUM(a)	((a)/FX16_ONE)							///<FX16->®”‚É
+#define NUM_FX32(a)	(FX32_ONE*(a))							///<æ•´æ•°->FX32å‹ã«
+#define FX32_NUM(a)	((a)/FX32_ONE)							///<FX32->æ•´æ•°ã«
+#define NUM_FX16(a)	(FX16_ONE*(a))							///<æ•´æ•°->FX16å‹ã«
+#define FX16_NUM(a)	((a)/FX16_ONE)							///<FX16->æ•´æ•°ã«
 
-#define SUBD_NFX32(a) (NUM_FX32(192)+NUM_FX32(a))			///<‰º‰æ–Ê•â³ ®”->FX32
+#define SUBD_NFX32(a) (NUM_FX32(192)+NUM_FX32(a))			///<ä¸‹ç”»é¢è£œæ­£ æ•´æ•°->FX32
 
 //--------------------------------------------------------------
 ///	CLACT
 //--------------------------------------------------------------
-#define G2D_2DMAIN (NNS_G2D_VRAM_TYPE_2DMAIN)	//ã‰æ–Ê
-#define G2D_2DSUB  (NNS_G2D_VRAM_TYPE_2DSUB)	//‰º‰æ–Ê
-#define G2D_2DMAX  (NNS_G2D_VRAM_TYPE_MAX)		//—¼•û
+#define G2D_2DMAIN (NNS_G2D_VRAM_TYPE_2DMAIN)	//ä¸Šç”»é¢
+#define G2D_2DSUB  (NNS_G2D_VRAM_TYPE_2DSUB)	//ä¸‹ç”»é¢
+#define G2D_2DMAX  (NNS_G2D_VRAM_TYPE_MAX)		//ä¸¡æ–¹
 
 ///CELLTYPE
 typedef enum
 {
-	CELL_VRAM = FALSE,		///<ƒZƒ‹@VRAMí’“Œ^
-	CELL_TRANS = TRUE,		///<ƒZƒ‹@VRAM“]‘—Œ^
+	CELL_VRAM = FALSE,		///<ã‚»ãƒ«ã€€VRAMå¸¸é§å‹
+	CELL_TRANS = TRUE,		///<ã‚»ãƒ«ã€€VRAMè»¢é€å‹
 }CELLTYPE;
 
 //--------------------------------------------------------------
-///	BGƒvƒ‰ƒCƒIƒŠƒeƒB
+///	BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 typedef enum
 {
@@ -87,19 +87,19 @@ typedef enum
 }BGPRI;
 
 //--------------------------------------------------------------
-///	ƒVƒXƒeƒ€
+///	ã‚·ã‚¹ãƒ†ãƒ 
 //--------------------------------------------------------------
-#define SLOT_HEAPSIZE (0x00080000)			///<ƒq[ƒvƒTƒCƒY
-#define SLOT_VRAMTRANSM_REG_MAX (0x08)		///<VRAM“]‘—ƒ}ƒl[ƒWƒƒ@“o˜^Å‘å
+#define SLOT_HEAPSIZE (0x00080000)			///<ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º
+#define SLOT_VRAMTRANSM_REG_MAX (0x08)		///<VRAMè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã€€ç™»éŒ²æœ€å¤§
 
-#define STR_BUF_SIZE (256)		///<•¶šƒoƒbƒtƒ@ƒTƒCƒY
+#define STR_BUF_SIZE (256)		///<æ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define SLOT_EOA_MAX (128)	///<EOAÅ‘å
+#define SLOT_EOA_MAX (128)	///<EOAæœ€å¤§
 
 //--------------------------------------------------------------
 //	BG
 //--------------------------------------------------------------
-#define BGPLTTNO_MOUNT_SKY		(0x01)	///<‹óƒpƒŒƒbƒg
+#define BGPLTTNO_MOUNT_SKY		(0x01)	///<ç©ºãƒ‘ãƒ¬ãƒƒãƒˆ
 #define BGPLTTNO_LINE_1			(0x02)
 #define BGPLTTNO_LINE_2_0		(0x03)
 #define BGPLTTNO_LINE_2_1		(0x0c)
@@ -126,7 +126,7 @@ typedef enum
 #define BGF_SLOT_CHAR_NO_TALK (BGF_SLOT_CHAR_NO_WIN+TALK_WIN_CGX_SIZ)
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------
 #define SLOT_CLACT_MAX (64)
 #define SLOT_CLACT_TRANS_MAX (32)
@@ -144,21 +144,21 @@ typedef enum
 
 
 //--------------------------------------------------------------
-///	ŠG•¿í—Ş
+///	çµµæŸ„ç¨®é¡
 //--------------------------------------------------------------
 typedef enum
 {
-	REEL_RED7 = 0,		///<Ô‚V
-	REEL_BLACK7,		///<•‚V
-	REEL_REPLAY,		///<ƒŠƒvƒŒƒC
-	REEL_CHERRY,		///<ƒ`ƒFƒŠ[
-	REEL_BELL,			///<ƒxƒ‹
-	REEL_SUIKA,			///<ƒXƒCƒJ
-	REEL_PATTERN_MAX,	///<ŠG•¿Å‘å
+	REEL_RED7 = 0,		///<èµ¤ï¼—
+	REEL_BLACK7,		///<é»’ï¼—
+	REEL_REPLAY,		///<ãƒªãƒ—ãƒ¬ã‚¤
+	REEL_CHERRY,		///<ãƒã‚§ãƒªãƒ¼
+	REEL_BELL,			///<ãƒ™ãƒ«
+	REEL_SUIKA,			///<ã‚¹ã‚¤ã‚«
+	REEL_PATTERN_MAX,	///<çµµæŸ„æœ€å¤§
 }REEL_PATTERN;
 
 //--------------------------------------------------------------
-///@ƒŠ[ƒ‹”Ô†
+///ã€€ãƒªãƒ¼ãƒ«ç•ªå·
 //--------------------------------------------------------------
 typedef enum
 {
@@ -169,7 +169,7 @@ typedef enum
 }REEL_NUM;
 
 //--------------------------------------------------------------
-///	ƒ‰ƒCƒ“”Ô†
+///	ãƒ©ã‚¤ãƒ³ç•ªå·
 //--------------------------------------------------------------
 typedef enum
 {
@@ -182,7 +182,7 @@ typedef enum
 }LINENO;
 
 //--------------------------------------------------------------
-///	ƒ‰ƒCƒ“ƒrƒbƒg
+///	ãƒ©ã‚¤ãƒ³ãƒ“ãƒƒãƒˆ
 //--------------------------------------------------------------
 #define LINEBIT_NON (0)
 #define LINEBIT_1	(1<<0)
@@ -192,7 +192,7 @@ typedef enum
 #define LINEBIT_3_1 (1<<4)
 
 //--------------------------------------------------------------
-///	ƒŠ[ƒ‹ó‘Ô
+///	ãƒªãƒ¼ãƒ«çŠ¶æ…‹
 //--------------------------------------------------------------
 typedef enum
 {
@@ -202,7 +202,7 @@ typedef enum
 }REEL_ST;
 
 //--------------------------------------------------------------
-///	Œp‘±—¦ƒ_ƒEƒ“ƒ^ƒCƒv
+///	ç¶™ç¶šç‡ãƒ€ã‚¦ãƒ³ã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 typedef enum 
 {
@@ -212,7 +212,7 @@ typedef enum
 }CONTBONUSDOWN;
 
 //--------------------------------------------------------------
-///	ƒ{[ƒ‹í—Ş
+///	ãƒœãƒ¼ãƒ«ç¨®é¡
 //--------------------------------------------------------------
 typedef enum
 {
@@ -225,22 +225,22 @@ typedef enum
 }BALLTYPE;
 
 //--------------------------------------------------------------
-///	MBALL TYPE ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹“®ìƒ^ƒCƒv
+///	MBALL TYPE ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«å‹•ä½œã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 typedef enum
 {
-	MBALLMT_INIT = 0,		///<ƒ{[ƒ‹‰Šú‰»
-	MBALLMT_SPIN_START,		///<“]‚ª‚èŠJn
-	MBALLMT_OPEN,			///<ŠJ‚­
-	MBALLMT_CLOSE,			///<•Â‚¶‚é
-	MBALLMT_SPIN_OUT,		///<‰æ–ÊŠO‚Ö“]‚ª‚é
-	MBALLMT_SHAKE,			///<‚ä‚ê‚é
-	MBALLMT_STOP,			///<’â~
+	MBALLMT_INIT = 0,		///<ãƒœãƒ¼ãƒ«åˆæœŸåŒ–
+	MBALLMT_SPIN_START,		///<è»¢ãŒã‚Šé–‹å§‹
+	MBALLMT_OPEN,			///<é–‹ã
+	MBALLMT_CLOSE,			///<é–‰ã˜ã‚‹
+	MBALLMT_SPIN_OUT,		///<ç”»é¢å¤–ã¸è»¢ãŒã‚‹
+	MBALLMT_SHAKE,			///<ã‚†ã‚Œã‚‹
+	MBALLMT_STOP,			///<åœæ­¢
 	MBALLMT_MAX,
 }MBALLMT;
 
 //--------------------------------------------------------------
-///	ƒ{[ƒ‹ƒAƒjƒ”Ô†
+///	ãƒœãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -252,7 +252,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒsƒbƒsƒZƒ‹ƒAƒjƒ”Ô†
+///	ãƒ”ãƒƒãƒ”ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -265,7 +265,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒsƒbƒs
+///	ãƒ”ãƒƒãƒ”
 //--------------------------------------------------------------
 typedef enum
 {
@@ -276,35 +276,35 @@ typedef enum
 }PIPTYPE;
 
 //--------------------------------------------------------------
-///	PIPMT@ƒsƒbƒs“®ìƒ^ƒCƒv
+///	PIPMTã€€ãƒ”ãƒƒãƒ”å‹•ä½œã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 typedef enum
 {
-	PIPMT_INIT,		///<‰Šú‰»
-	PIPMT_START,	///<“oê
-	PIPMT_BACK,		///<–ß‚é
-	PIPMT_STAND,	///<—§‚¿
-	PIPMT_PATAPATA,	///<ƒpƒ^ƒpƒ^
-	PIPMT_NAKA,		///<’†‰›w‚µ
-	PIPMT_LEFT,		///<¶w‚µ
-	PIPMT_RIGHT,	///<‰Ew‚µ
-	PIPMT_BANZAI,	///<–œÎ
-	PIPMT_MAX,		///<“®ìÅ‘å
+	PIPMT_INIT,		///<åˆæœŸåŒ–
+	PIPMT_START,	///<ç™»å ´
+	PIPMT_BACK,		///<æˆ»ã‚‹
+	PIPMT_STAND,	///<ç«‹ã¡
+	PIPMT_PATAPATA,	///<ãƒ‘ã‚¿ãƒ‘ã‚¿
+	PIPMT_NAKA,		///<ä¸­å¤®æŒ‡ã—
+	PIPMT_LEFT,		///<å·¦æŒ‡ã—
+	PIPMT_RIGHT,	///<å³æŒ‡ã—
+	PIPMT_BANZAI,	///<ä¸‡æ­³
+	PIPMT_MAX,		///<å‹•ä½œæœ€å¤§
 }PIPMT;
 
 //--------------------------------------------------------------
-///	ƒ{[ƒiƒXŒp‘±‰‰o
+///	ãƒœãƒ¼ãƒŠã‚¹ç¶™ç¶šæ¼”å‡º
 //--------------------------------------------------------------
 typedef enum
 {
-	BCEFF_NON = 0,		///<‰½‚à–³‚µ
-	BCEFF_BACK,			///<–ß‚é
-	BCEFF_ANENCORE,		///<ƒAƒ“ƒR[ƒ‹
-	BCEFF_MAX,			///<Å‘å
+	BCEFF_NON = 0,		///<ä½•ã‚‚ç„¡ã—
+	BCEFF_BACK,			///<æˆ»ã‚‹
+	BCEFF_ANENCORE,		///<ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«
+	BCEFF_MAX,			///<æœ€å¤§
 }BCEFF;
 
 //--------------------------------------------------------------
-///	Šl“¾”or‰ñ”
+///	ç²å¾—æ•°orå›æ•°
 //--------------------------------------------------------------
 typedef enum
 {
@@ -313,70 +313,70 @@ typedef enum
 }BIGFONTTYPE;
 
 //--------------------------------------------------------------
-///	ƒQ[ƒ€
+///	ã‚²ãƒ¼ãƒ 
 //--------------------------------------------------------------
-#define BET_LOWEST	(3)						///<ƒxƒbƒg‚ÉÅ’áŒÀ•K—v‚ÈƒNƒŒƒWƒbƒg
-#define BET_LOWEST_BONUS	(1)				///<ƒ{[ƒiƒXAƒxƒbƒg‚ÉÅ’áŒÀ•K—v‚ÈƒNƒŒƒWƒbƒg
+#define BET_LOWEST	(3)						///<ãƒ™ãƒƒãƒˆã«æœ€ä½é™å¿…è¦ãªã‚¯ãƒ¬ã‚¸ãƒƒãƒˆ
+#define BET_LOWEST_BONUS	(1)				///<ãƒœãƒ¼ãƒŠã‚¹æ™‚ã€ãƒ™ãƒƒãƒˆã«æœ€ä½é™å¿…è¦ãªã‚¯ãƒ¬ã‚¸ãƒƒãƒˆ
 
 //--------------------------------------------------------------
-//	ƒŠ[ƒ‹
+//	ãƒªãƒ¼ãƒ«
 //--------------------------------------------------------------
-#define REEL_PT_MAX      (21)							// ŠG•¿Å‘å 21ŠG•¿
+#define REEL_PT_MAX      (21)							// çµµæŸ„æœ€å¤§ 21çµµæŸ„
 
-#define REEL_PT_V_SIZE   (32)							// ŠG•¿»²½Ş ƒhƒbƒg
-#define REEL_PT_V_OFFSET (16)							// ŠG•¿µÌ¾¯Ä
+#define REEL_PT_V_SIZE   (32)							// çµµæŸ„ã‚µã‚¤ã‚º ãƒ‰ãƒƒãƒˆ
+#define REEL_PT_V_OFFSET (16)							// çµµæŸ„ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define REEL_PT_V_MAX    (160)							// ŠG•¿cÅ‘å
-#define REEL_PT_V_DG(v)  ((v)/REEL_PT_V_SIZE)			// ÄŞ¯Ä -> ¸ŞØ¯ÄŞ
-#define REEL_PT_V_DG32(v)  ((FX32_NUM(v))/REEL_PT_V_SIZE)// ÄŞ¯Ä -> ¸ŞØ¯ÄŞ fx32
-#define REEL_PT_V_GD(v)  ((v)*REEL_PT_V_SIZE)			// ¸ŞØ¯ÄŞ -> ÄŞ¯Ä
-#define REEL_PT_V_GD32(v)  (NUM_FX32((v)*REEL_PT_V_SIZE))	// ¸ŞØ¯ÄŞ -> ÄŞ¯Ä
-#define REEL_SCROLL_MAX  (REEL_PT_MAX*REEL_PT_V_SIZE)	// Ø°Ù½¸Û°ÙÅ‘å
-#define REEL_CENTERN_V   ((0x09*8)+4)					// Ø°Ù’†‰›
+#define REEL_PT_V_MAX    (160)							// çµµæŸ„ç¸¦æœ€å¤§
+#define REEL_PT_V_DG(v)  ((v)/REEL_PT_V_SIZE)			// ãƒ‰ãƒƒãƒˆ -> ã‚°ãƒªãƒƒãƒ‰
+#define REEL_PT_V_DG32(v)  ((FX32_NUM(v))/REEL_PT_V_SIZE)// ãƒ‰ãƒƒãƒˆ -> ã‚°ãƒªãƒƒãƒ‰ fx32
+#define REEL_PT_V_GD(v)  ((v)*REEL_PT_V_SIZE)			// ã‚°ãƒªãƒƒãƒ‰ -> ãƒ‰ãƒƒãƒˆ
+#define REEL_PT_V_GD32(v)  (NUM_FX32((v)*REEL_PT_V_SIZE))	// ã‚°ãƒªãƒƒãƒ‰ -> ãƒ‰ãƒƒãƒˆ
+#define REEL_SCROLL_MAX  (REEL_PT_MAX*REEL_PT_V_SIZE)	// ãƒªãƒ¼ãƒ«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æœ€å¤§
+#define REEL_CENTERN_V   ((0x09*8)+4)					// ãƒªãƒ¼ãƒ«ä¸­å¤®
 
-#define MCREEL_PT_MAX		(0x06)						// Ï¼İØ°ÙŠG•¿Å‘å
-#define MCREEL_PT_V_SIZE	(0x14)						// Ï¼İØ°ÙŠG•¿»²½Ş
-#define MCREEL_PT_V_OFFSET	((0x06*0x08)+4+8)			// Ï¼İØ°ÙŠG•¿µÌ¾¯Ä
-#define MCREEL_PT_V_MAX		(0x02*MCREEL_PT_V_SIZE)		// Ï¼İØ°ÙcÅ‘å
-#define MCREEL_PT_V_GP(v)	((v)/MCREEL_PT_V_SIZE)		// À•W->¸ŞØ¯ÄŞ
+#define MCREEL_PT_MAX		(0x06)						// ãƒã‚·ãƒ³ãƒªãƒ¼ãƒ«çµµæŸ„æœ€å¤§
+#define MCREEL_PT_V_SIZE	(0x14)						// ãƒã‚·ãƒ³ãƒªãƒ¼ãƒ«çµµæŸ„ã‚µã‚¤ã‚º
+#define MCREEL_PT_V_OFFSET	((0x06*0x08)+4+8)			// ãƒã‚·ãƒ³ãƒªãƒ¼ãƒ«çµµæŸ„ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define MCREEL_PT_V_MAX		(0x02*MCREEL_PT_V_SIZE)		// ãƒã‚·ãƒ³ãƒªãƒ¼ãƒ«ç¸¦æœ€å¤§
+#define MCREEL_PT_V_GP(v)	((v)/MCREEL_PT_V_SIZE)		// åº§æ¨™->ã‚°ãƒªãƒƒãƒ‰
 #define MCREEL_SCROLL_MAX	(MCREEL_PT_MAX*MCREEL_PT_V_SIZE)
 
 //--------------------------------------------------------------
-///	’Š‘I
+///	æŠ½é¸
 //--------------------------------------------------------------
-#define LOTTERY_HITBIT_NON			(0)				///<–³‚µ
-#define LOTTERY_HITBIT_REPLAY		(1<<0)			///<ƒŠƒvƒŒƒC
-#define LOTTERY_HITBIT_REPLAY_B		(1<<1)			///<ƒŠƒvƒŒƒC@ƒrƒbƒO
-#define LOTTERY_HITBIT_CHERRY		(1<<2)			///<ƒ`ƒFƒŠ[
-#define LOTTERY_HITBIT_CHERRY_B		(1<<3)			///<ƒ`ƒFƒŠ[@ƒrƒbƒO
-#define LOTTERY_HITBIT_BELL			(1<<4)			///<ƒxƒ‹
-#define LOTTERY_HITBIT_BELL_B		(1<<5)			///<ƒxƒ‹@ƒrƒbƒO
-#define LOTTERY_HITBIT_SUIKA		(1<<6)			///<ƒXƒCƒJ
-#define LOTTERY_HITBIT_SUIKA_B		(1<<7)			///<ƒXƒCƒJ@ƒrƒbƒO
-#define LOTTERY_HITBIT_BLACK7		(1<<8)			///<•7
-#define LOTTERY_HITBIT_RED7			(1<<9)			///<Ô7
+#define LOTTERY_HITBIT_NON			(0)				///<ç„¡ã—
+#define LOTTERY_HITBIT_REPLAY		(1<<0)			///<ãƒªãƒ—ãƒ¬ã‚¤
+#define LOTTERY_HITBIT_REPLAY_B		(1<<1)			///<ãƒªãƒ—ãƒ¬ã‚¤ã€€ãƒ“ãƒƒã‚°
+#define LOTTERY_HITBIT_CHERRY		(1<<2)			///<ãƒã‚§ãƒªãƒ¼
+#define LOTTERY_HITBIT_CHERRY_B		(1<<3)			///<ãƒã‚§ãƒªãƒ¼ã€€ãƒ“ãƒƒã‚°
+#define LOTTERY_HITBIT_BELL			(1<<4)			///<ãƒ™ãƒ«
+#define LOTTERY_HITBIT_BELL_B		(1<<5)			///<ãƒ™ãƒ«ã€€ãƒ“ãƒƒã‚°
+#define LOTTERY_HITBIT_SUIKA		(1<<6)			///<ã‚¹ã‚¤ã‚«
+#define LOTTERY_HITBIT_SUIKA_B		(1<<7)			///<ã‚¹ã‚¤ã‚«ã€€ãƒ“ãƒƒã‚°
+#define LOTTERY_HITBIT_BLACK7		(1<<8)			///<é»’7
+#define LOTTERY_HITBIT_RED7			(1<<9)			///<èµ¤7
 
 #define LOTTERY_NUM_MAX (10)				
 
-///7ƒrƒbƒg
+///7ãƒ“ãƒƒãƒˆ
 #define LOTTERY_HITBIT_SEVEN_AND \
 (LOTTERY_HITBIT_BLACK7|LOTTERY_HITBIT_RED7)
-///ƒ{[ƒiƒXƒrƒbƒg
+///ãƒœãƒ¼ãƒŠã‚¹ãƒ“ãƒƒãƒˆ
 #define LOTTERY_HITBIT_BONUS_AND \
 (LOTTERY_HITBIT_REPLAY_B|LOTTERY_HITBIT_CHERRY_B|LOTTERY_HITBIT_BELL_B|LOTTERY_HITBIT_SUIKA_B)
 
-///q–ğAƒI[ƒgƒrƒbƒg
+///å­å½¹Aã‚ªãƒ¼ãƒˆãƒ“ãƒƒãƒˆ
 #define LOTTERY_HITBIT_AUTO_AND \
 (LOTTERY_HITBIT_REPLAY|LOTTERY_HITBIT_REPLAY_B|LOTTERY_HITBIT_BELL|LOTTERY_HITBIT_BELL_B)
 
-///q–ğAƒ{[ƒiƒXŠm’èƒrƒbƒg
+///å­å½¹Aãƒœãƒ¼ãƒŠã‚¹ç¢ºå®šãƒ“ãƒƒãƒˆ
 #define LOTTERY_HITBIT_BONUSMODE \
 (LOTTERY_HITBIT_SUIKA_B|LOTTERY_HITBIT_CHERRY_B)
 
 //--------------------------------------------------------------
-///	“–‚½‚è
+///	å½“ãŸã‚Š
 //--------------------------------------------------------------
-#define BIT_CHERRY		0x0001							// Ë¯ÄÌ×¸Ş
+#define BIT_CHERRY		0x0001							// ãƒ’ãƒƒãƒˆãƒ•ãƒ©ã‚°
 #define BIT_CHERRY_4	0x0002
 #define BIT_REPLAY		0x0004
 #define BIT_BELL		0x0008
@@ -385,7 +385,7 @@ typedef enum
 #define BIT_BIG_RED		0x0040
 
 //--------------------------------------------------------------
-///	Œp‘±—¦í—Ş
+///	ç¶™ç¶šç‡ç¨®é¡
 //--------------------------------------------------------------
 typedef enum
 {
@@ -399,7 +399,7 @@ typedef enum
 }CONTBONUSTYPE;
 
 //--------------------------------------------------------------
-///	Œp‘±—¦
+///	ç¶™ç¶šç‡
 //--------------------------------------------------------------
 typedef enum
 {
@@ -410,7 +410,7 @@ typedef enum
 }CONTBONUS;
 
 //--------------------------------------------------------------
-///	I—¹Œp‘±—¦
+///	çµ‚äº†ç¶™ç¶šç‡
 //--------------------------------------------------------------
 typedef enum
 {
@@ -427,64 +427,64 @@ typedef enum
 }CONT_BONUSEND;
 
 //--------------------------------------------------------------
-///	tcb	ƒvƒ‰ƒCƒIƒŠƒeƒB
+///	tcb	ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum
 {
-	TCBPRI_SLOT_BASE = 0x80,							///<ƒXƒƒbƒgƒx[ƒX
-	TCBPRI_REELCONTROL0,								///<ƒŠ[ƒ‹§Œä 0
-	TCBPRI_REELCONTROL1,								///<ƒŠ[ƒ‹§Œä 1
-	TCBPRI_REELCONTROL2,								///<ƒŠ[ƒ‹§Œä 2
-	TCBPRI_DDISPCONTROL,								///<‰º‰æ–Ê§Œä
-	TCBPRI_PLTTCONTROL,									///<ƒpƒŒƒbƒg§Œä
-	TCBPRI_MBALL,										///<ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
-	TCBPRI_BALLEFF,										///<ƒ{[ƒ‹ƒGƒtƒFƒNƒg
-	TCBPRI_PIKA,										///<ƒsƒJƒ`ƒ…ƒE
-	TCBPRI_PIP,											///<ƒsƒbƒs
-	TCBPRI_PAYOUTCONTROL,								///<ƒyƒCƒAƒEƒg§Œä
-	TCBPRI_REEL,										///<ƒŠ[ƒ‹ŠG
-	TCBPRI_REEL_BIGHIT,									///<‘å“–‚½‚èƒŠ[ƒ‹ŠG
-	TCBPRI_CREDITFONT,									///<ƒRƒCƒ“•¶š
-	TCBPRI_BONUSFONT,									///<ƒ{[ƒiƒX•¶š
-	TCBPRI_PLTTEFF,										///<ƒpƒŒƒbƒgƒGƒtƒFƒNƒg
+	TCBPRI_SLOT_BASE = 0x80,							///<ã‚¹ãƒ­ãƒƒãƒˆãƒ™ãƒ¼ã‚¹
+	TCBPRI_REELCONTROL0,								///<ãƒªãƒ¼ãƒ«åˆ¶å¾¡ 0
+	TCBPRI_REELCONTROL1,								///<ãƒªãƒ¼ãƒ«åˆ¶å¾¡ 1
+	TCBPRI_REELCONTROL2,								///<ãƒªãƒ¼ãƒ«åˆ¶å¾¡ 2
+	TCBPRI_DDISPCONTROL,								///<ä¸‹ç”»é¢åˆ¶å¾¡
+	TCBPRI_PLTTCONTROL,									///<ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶å¾¡
+	TCBPRI_MBALL,										///<ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
+	TCBPRI_BALLEFF,										///<ãƒœãƒ¼ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	TCBPRI_PIKA,										///<ãƒ”ã‚«ãƒãƒ¥ã‚¦
+	TCBPRI_PIP,											///<ãƒ”ãƒƒãƒ”
+	TCBPRI_PAYOUTCONTROL,								///<ãƒšã‚¤ã‚¢ã‚¦ãƒˆåˆ¶å¾¡
+	TCBPRI_REEL,										///<ãƒªãƒ¼ãƒ«çµµ
+	TCBPRI_REEL_BIGHIT,									///<å¤§å½“ãŸã‚Šãƒªãƒ¼ãƒ«çµµ
+	TCBPRI_CREDITFONT,									///<ã‚³ã‚¤ãƒ³æ–‡å­—
+	TCBPRI_BONUSFONT,									///<ãƒœãƒ¼ãƒŠã‚¹æ–‡å­—
+	TCBPRI_PLTTEFF,										///<ãƒ‘ãƒ¬ãƒƒãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	TCBPRI_BGM,											///<BGM
 };
 
 //--------------------------------------------------------------
-///	tcb	VIntrƒuƒ‰ƒ“ƒNƒvƒ‰ƒCƒIƒŠƒeƒB
+///	tcb	VIntrãƒ–ãƒ©ãƒ³ã‚¯ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum
 {
-	VINTRTCBPRI_SLOT_BASE = 0x100,							///<ƒXƒƒbƒgƒx[ƒX
-	VINTRTCBPRI_MBALLTRANS,									///<ƒ{[ƒ‹’Ç‰Á
+	VINTRTCBPRI_SLOT_BASE = 0x100,							///<ã‚¹ãƒ­ãƒƒãƒˆãƒ™ãƒ¼ã‚¹
+	VINTRTCBPRI_MBALLTRANS,									///<ãƒœãƒ¼ãƒ«è¿½åŠ 
 };
 
 //--------------------------------------------------------------
-///	tcb	VWaitƒuƒ‰ƒ“ƒNƒvƒ‰ƒCƒIƒŠƒeƒB
+///	tcb	VWaitãƒ–ãƒ©ãƒ³ã‚¯ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum
 {
-	VWAITTCBPRI_SLOT_BASE = 0x100,							///<ƒXƒƒbƒgƒx[ƒX
-	VWAITTCBPRI_MBALLTRANS,									///<ƒ{[ƒ‹’Ç‰Á
+	VWAITTCBPRI_SLOT_BASE = 0x100,							///<ã‚¹ãƒ­ãƒƒãƒˆãƒ™ãƒ¼ã‚¹
+	VWAITTCBPRI_MBALLTRANS,									///<ãƒœãƒ¼ãƒ«è¿½åŠ 
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[ƒvƒ‰ƒCƒIƒŠƒeƒB
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum
 {
-	CAPRI_BIGHIT_REEL,									///<ƒrƒbƒOƒqƒbƒgŠG•¿
-	CAPRI_CREDITFONT,									///<ƒRƒCƒ“•¶š
-	CAPRI_REEL,											///<ƒŠ[ƒ‹
-	CAPRI_BONUS_FONT,									///<ƒ{[ƒiƒXƒtƒHƒ“ƒg
-	CAPRI_PIKA,											///<ƒsƒJƒ`ƒ…ƒE
-	CAPRI_BALLEFF,										///<ƒ{[ƒ‹‰Œ
-	CAPRI_PIP,											///<ƒsƒbƒs
-	CAPRI_MBALL,										///<ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
+	CAPRI_BIGHIT_REEL,									///<ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆçµµæŸ„
+	CAPRI_CREDITFONT,									///<ã‚³ã‚¤ãƒ³æ–‡å­—
+	CAPRI_REEL,											///<ãƒªãƒ¼ãƒ«
+	CAPRI_BONUS_FONT,									///<ãƒœãƒ¼ãƒŠã‚¹ãƒ•ã‚©ãƒ³ãƒˆ
+	CAPRI_PIKA,											///<ãƒ”ã‚«ãƒãƒ¥ã‚¦
+	CAPRI_BALLEFF,										///<ãƒœãƒ¼ãƒ«ç…™
+	CAPRI_PIP,											///<ãƒ”ãƒƒãƒ”
+	CAPRI_MBALL,										///<ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[@ƒLƒƒƒ‰ID
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚­ãƒ£ãƒ©ID
 //--------------------------------------------------------------
 enum
 {
@@ -503,7 +503,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[@OBJƒpƒŒƒbƒgID
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€OBJãƒ‘ãƒ¬ãƒƒãƒˆID
 //--------------------------------------------------------------
 enum
 {
@@ -519,7 +519,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[@ƒZƒ‹ID
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚»ãƒ«ID
 //--------------------------------------------------------------
 enum
 {
@@ -538,7 +538,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[@ƒAƒjƒID
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚¢ãƒ‹ãƒ¡ID
 //--------------------------------------------------------------
 enum
 {
@@ -557,16 +557,16 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒEƒBƒ“ƒhƒEƒŠƒXƒg
+///	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒªã‚¹ãƒˆ
 //--------------------------------------------------------------
 enum
 {
-	SLOTWIN_TALK = 0,		///<‰ï˜bƒEƒBƒ“ƒhƒE
+	SLOTWIN_TALK = 0,		///<ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	SLOTWIN_MAX,
 };
 
 //--------------------------------------------------------------
-///	ƒƒbƒZ[ƒW”Ô†
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç•ªå·
 //--------------------------------------------------------------
 #define MSGNO_SANMAI		(msg_00)
 #define MSGNO_CREDIT_MAX	(msg_01)
@@ -585,8 +585,8 @@ typedef enum
 //==============================================================================
 //	typedef struct
 //==============================================================================
-typedef struct _TAG_SLOTMAIN SLOTMAIN;			///<SLOTMAIN ƒXƒƒbƒgƒƒCƒ“ƒ[ƒN
-typedef struct _TAG_CLACTSETDATA CLACTSETDATA;	///<CLACTSETDATA ƒZƒ‹ƒAƒNƒ^[
+typedef struct _TAG_SLOTMAIN SLOTMAIN;			///<SLOTMAIN ã‚¹ãƒ­ãƒƒãƒˆãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
+typedef struct _TAG_CLACTSETDATA CLACTSETDATA;	///<CLACTSETDATA ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 
 //--------------------------------------------------------------
 ///	MSGWORK
@@ -610,7 +610,7 @@ typedef struct
 }CLACT_WORK_EX;
 
 //--------------------------------------------------------------
-///	CELLARCDATA OAMŠGƒf[ƒ^
+///	CELLARCDATA OAMçµµãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 typedef struct
 {
@@ -713,7 +713,7 @@ typedef struct
 }SLOTBGM;
 
 //--------------------------------------------------------------
-///	DDISPCONTROL ‰º‰æ–ÊƒRƒ“ƒgƒ[ƒ‹\‘¢‘Ì
+///	DDISPCONTROL ä¸‹ç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -738,7 +738,7 @@ typedef struct
 }DDISPCONTROL;
 
 //--------------------------------------------------------------
-///	PLTTCONTROL\‘¢‘Ì
+///	PLTTCONTROLæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -762,7 +762,7 @@ typedef struct
 typedef struct
 {
 	u32 seq_no;
-	u32 auto_flag;		//©“®ƒvƒŒƒC
+	u32 auto_flag;		//è‡ªå‹•ãƒ—ãƒ¬ã‚¤
 	u32 auto_play_replay_avoid_flag;
 	u32 debug_lottery_bit;
 	u32 debug_auto_set;
@@ -779,46 +779,46 @@ typedef struct
 #endif
 
 //--------------------------------------------------------------
-///	SLOTMAIN\‘¢‘Ì
+///	SLOTMAINæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_SLOTMAIN
 {
-	u32 seq_no;								///<ƒV[ƒPƒ“ƒX
-	u32 next_seq_no;						///<ŸƒV[ƒPƒ“ƒX”Ô†
-	u32 bonus_game_flag;					///<ƒ{[ƒiƒXƒQ[ƒ€ƒtƒ‰ƒO
-	u32 bonus_hit_count;					///<ƒ{[ƒiƒXƒqƒbƒg‰ñ”
-	u32 bonus_count;						///<ƒ{[ƒiƒX‰ñ”
-	u32 bonus_get_coin;						///<ƒ{[ƒiƒX‚ÅŠl“¾‚µ‚½ƒRƒCƒ“‘”
-	u32 bonus_continue_prob;				///<ƒ{[ƒiƒXŒp‘±—¦
-	u32 bonus_continue_count;				///<ƒ{[ƒiƒXŒp‘±”
-	u32 bonus_continue_count_max;			///<ƒ{[ƒiƒXŒp‘±”Å‘å
-	u32 bonus_moonlight_flag;				///<ŒŒõƒtƒ‰ƒO
-	u32 bonus_moonlight_red_flag;			///<Ô‚¢Œƒtƒ‰ƒO
-	u32 bonus_game_end_flag;				///<ƒ{[ƒiƒXƒQ[ƒ€I—¹ƒtƒ‰ƒO
-	u32 reel_slip_hit_flag;					///<ƒŠ[ƒ‹ƒqƒbƒgƒtƒ‰ƒO
-	u32 yubisashi_type;						///<w·‚µƒ^ƒCƒv
-	u32 data_game_count;					///<ƒQ[ƒ€ƒJƒEƒ“ƒg
-	u32 data_miss_count;					///<ŠO‚ê‚½‰ñ”
-	u32 data_hit_count;						///<“–‚½‚Á‚½‰ñ”
-	REEL_PATTERN reel_hit_pattern;			///<ƒqƒbƒg‚µ‚½ƒŠ[ƒ‹ƒpƒ^[ƒ“
+	u32 seq_no;								///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u32 next_seq_no;						///<æ¬¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u32 bonus_game_flag;					///<ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°
+	u32 bonus_hit_count;					///<ãƒœãƒ¼ãƒŠã‚¹ãƒ’ãƒƒãƒˆå›æ•°
+	u32 bonus_count;						///<ãƒœãƒ¼ãƒŠã‚¹å›æ•°
+	u32 bonus_get_coin;						///<ãƒœãƒ¼ãƒŠã‚¹ã§ç²å¾—ã—ãŸã‚³ã‚¤ãƒ³ç·æ•°
+	u32 bonus_continue_prob;				///<ãƒœãƒ¼ãƒŠã‚¹ç¶™ç¶šç‡
+	u32 bonus_continue_count;				///<ãƒœãƒ¼ãƒŠã‚¹ç¶™ç¶šæ•°
+	u32 bonus_continue_count_max;			///<ãƒœãƒ¼ãƒŠã‚¹ç¶™ç¶šæ•°æœ€å¤§
+	u32 bonus_moonlight_flag;				///<æœˆå…‰ãƒ•ãƒ©ã‚°
+	u32 bonus_moonlight_red_flag;			///<èµ¤ã„æœˆãƒ•ãƒ©ã‚°
+	u32 bonus_game_end_flag;				///<ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ çµ‚äº†ãƒ•ãƒ©ã‚°
+	u32 reel_slip_hit_flag;					///<ãƒªãƒ¼ãƒ«ãƒ’ãƒƒãƒˆãƒ•ãƒ©ã‚°
+	u32 yubisashi_type;						///<æŒ‡å·®ã—ã‚¿ã‚¤ãƒ—
+	u32 data_game_count;					///<ã‚²ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ãƒˆ
+	u32 data_miss_count;					///<å¤–ã‚ŒãŸå›æ•°
+	u32 data_hit_count;						///<å½“ãŸã£ãŸå›æ•°
+	REEL_PATTERN reel_hit_pattern;			///<ãƒ’ãƒƒãƒˆã—ãŸãƒªãƒ¼ãƒ«ãƒ‘ã‚¿ãƒ¼ãƒ³
 	u32 reel_hit_line_bit;
-	CONTBONUS bonus_continue_prob_type;		///<ƒ{[ƒiƒXŒp‘±—¦í—Ş
-	CONTBONUSTYPE bonus_continue_type;		///<ƒ{[ƒiƒXŒp‘±—¦ƒ^ƒCƒv
-	u32 reel_stop_btn[REEL_MAX];			///<ƒXƒgƒbƒvƒ{ƒ^ƒ“Ši”[
-	int credit;								///<ƒNƒŒƒWƒbƒg
-	int payout;								///<x•¥‚¢
-	int bet;								///<ƒxƒbƒg
-	fx32 frame;								///<”Ä—pƒtƒŒ[ƒ€
-	int auto_hit_flag;						///<ƒI[ƒgƒqƒbƒgƒtƒ‰ƒO
-	u32 lottery_bit;						///<’Š‘Iƒtƒ‰ƒO
-	u32 hit_bit;							///<ƒqƒbƒgƒrƒbƒg
-	REEL_ST reel_status[REEL_MAX];			///<ƒŠ[ƒ‹ƒXƒe[ƒ^ƒX
-	SLOT_HARD hard;							///<‘äİ’è
+	CONTBONUS bonus_continue_prob_type;		///<ãƒœãƒ¼ãƒŠã‚¹ç¶™ç¶šç‡ç¨®é¡
+	CONTBONUSTYPE bonus_continue_type;		///<ãƒœãƒ¼ãƒŠã‚¹ç¶™ç¶šç‡ã‚¿ã‚¤ãƒ—
+	u32 reel_stop_btn[REEL_MAX];			///<ã‚¹ãƒˆãƒƒãƒ—ãƒœã‚¿ãƒ³æ ¼ç´
+	int credit;								///<ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆ
+	int payout;								///<æ”¯æ‰•ã„
+	int bet;								///<ãƒ™ãƒƒãƒˆ
+	fx32 frame;								///<æ±ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	int auto_hit_flag;						///<ã‚ªãƒ¼ãƒˆãƒ’ãƒƒãƒˆãƒ•ãƒ©ã‚°
+	u32 lottery_bit;						///<æŠ½é¸ãƒ•ãƒ©ã‚°
+	u32 hit_bit;							///<ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆ
+	REEL_ST reel_status[REEL_MAX];			///<ãƒªãƒ¼ãƒ«ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	SLOT_HARD hard;							///<å°è¨­å®š
 	
-	fx32 reel_speed;						///<ƒŠ[ƒ‹@‘¬“x
-	fx32 reel_dot_y[REEL_MAX];				///<ƒŠ[ƒ‹@ƒhƒbƒg
-	fx32 reel_offs_y[REEL_MAX];				///<ƒŠ[ƒ‹@ƒIƒtƒZƒbƒg
-	int  reel_grid_y[REEL_MAX];				///<ƒŠ[ƒ‹@ƒOƒŠƒbƒh
+	fx32 reel_speed;						///<ãƒªãƒ¼ãƒ«ã€€é€Ÿåº¦
+	fx32 reel_dot_y[REEL_MAX];				///<ãƒªãƒ¼ãƒ«ã€€ãƒ‰ãƒƒãƒˆ
+	fx32 reel_offs_y[REEL_MAX];				///<ãƒªãƒ¼ãƒ«ã€€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	int  reel_grid_y[REEL_MAX];				///<ãƒªãƒ¼ãƒ«ã€€ã‚°ãƒªãƒƒãƒ‰
 	
 	REELCONTROL reelcont[REEL_MAX];			///<REELCONTROL
 	PAYOUTCONTROL payoutcont;				///<PAYOUTCONTROL
@@ -875,7 +875,7 @@ typedef struct _TAG_SLOTMAIN
 #define SLOTMAIN_SIZE (sizeof(SLOTMAIN))
 
 //==============================================================================
-//	ŠO•”QÆ
+//	å¤–éƒ¨å‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 //	slot.c

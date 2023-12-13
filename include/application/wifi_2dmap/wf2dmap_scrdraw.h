@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_scrdraw.h
- *	@brief		ƒXƒNƒ[ƒ‹•`‰æÝ’èˆ—
+ *	@brief		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»è¨­å®šå‡¦ç†
  *	@author		tomoya takahshi
  *	@data		2007.03.19
  *
@@ -27,13 +27,13 @@
 
 //-----------------------------------------------------------------------------
 /**
- *			Žg—p§ŒÀ
+ *			ä½¿ç”¨åˆ¶é™
  *
- *			‚a‚f–Ê
- *			‚PFƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ð0x1000ƒTƒCƒYŽg—p‚µ‚Ü‚·B
- *			‚QFVBlank“à‚ÅGF_BGL_VBlankFunc(...)‚ð•K‚¸ŒÄ‚ñ‚Å‚­‚¾‚³‚¢
- *			‚n‚`‚l
- *			‚PFclact_util‚ÌƒfƒtƒHƒ‹ƒgƒŒƒ“ƒ_ƒ‰[‚Å‰Šú‰»‚µ‚Ä‚ ‚é
+ *			ï¼¢ï¼§é¢
+ *			ï¼‘ï¼šã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’0x1000ã‚µã‚¤ã‚ºä½¿ç”¨ã—ã¾ã™ã€‚
+ *			ï¼’ï¼šVBlankå†…ã§GF_BGL_VBlankFunc(...)ã‚’å¿…ãšå‘¼ã‚“ã§ãã ã•ã„
+ *			ï¼¯ï¼¡ï¼­
+ *			ï¼‘ï¼šclact_utilã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã§åˆæœŸåŒ–ã—ã¦ã‚ã‚‹
  */
 //-----------------------------------------------------------------------------
 
@@ -42,50 +42,50 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒXƒNƒ[ƒ‹•`‰æƒ[ƒN
+///	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WF2DMAP_SCRDRAW WF2DMAP_SCRDRAW;
 
 //-------------------------------------
-///	ƒXƒNƒ[ƒ‹•`‰æƒVƒXƒeƒ€‰Šú‰»ƒf[ƒ^
-//	ƒXƒNƒ[ƒ‹‚³‚¹‚éƒT[ƒtƒF[ƒXÝ’è
-//	ƒXƒNƒ[ƒ‹ˆ—‚³‚¹‚é‚a‚f–ÊƒRƒ“ƒgƒ[ƒ‹Ý’è
+///	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+//	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹è¨­å®š
+//	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†ã•ã›ã‚‹ï¼¢ï¼§é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
 //=====================================
 typedef struct {
-	u8	surface_type;	// ƒT[ƒtƒF[ƒX–ÊiCLACT_U_EASYRENDER_SURFACE_MAIN/CLACT_U_EASYRENDER_SURFACE_SUBj
-	u8	bg_frame;		// BGƒtƒŒ[ƒ€–Ê
-	u8	colorMode;		// ƒJƒ‰[ƒ‚[ƒh(GX_BG_COLORMODE_16‚È‚Ç)
-	u8	screenBase;		// ƒXƒNƒŠ[ƒ“ƒx[ƒX(GX_BG_SCRBASE_0xe000‚È‚Ç)
-	u8	charbase;		// ƒLƒƒƒ‰ƒNƒ^ƒx[ƒX(GX_BG_CHARBASE_0x00000‚È‚Ç)
-    u8	bgExtPltt;		//‚a‚fŠg’£ƒpƒŒƒbƒgƒXƒƒbƒg‘I‘ð(GX_BG_EXTPLTT_01‚È‚Ç)
-	u8	priority;		//•\Ž¦ƒvƒ‰ƒCƒIƒŠƒeƒB[
-	u8	mosaic;			//ƒ‚ƒUƒCƒNÝ’è
-	u8	arcid_scrn;		// “Ç‚Ýž‚ÞƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ÌƒA[ƒJƒCƒuID
-	u8	dataid_scrn;	// “Ç‚Ýž‚ÞƒXƒNƒŠ[ƒ“ƒf[ƒ^‚Ìƒf[ƒ^ID
-	u8	arcdata_comp;	// “Ç‚Ýž‚ÞƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ªˆ³k‚³‚ê‚Ä‚¢‚é‚©
+	u8	surface_type;	// ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹é¢ï¼ˆCLACT_U_EASYRENDER_SURFACE_MAIN/CLACT_U_EASYRENDER_SURFACE_SUBï¼‰
+	u8	bg_frame;		// BGãƒ•ãƒ¬ãƒ¼ãƒ é¢
+	u8	colorMode;		// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰(GX_BG_COLORMODE_16ãªã©)
+	u8	screenBase;		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ™ãƒ¼ã‚¹(GX_BG_SCRBASE_0xe000ãªã©)
+	u8	charbase;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹(GX_BG_CHARBASE_0x00000ãªã©)
+    u8	bgExtPltt;		//ï¼¢ï¼§æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆé¸æŠž(GX_BG_EXTPLTT_01ãªã©)
+	u8	priority;		//è¡¨ç¤ºãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼
+	u8	mosaic;			//ãƒ¢ã‚¶ã‚¤ã‚¯è¨­å®š
+	u8	arcid_scrn;		// èª­ã¿è¾¼ã‚€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+	u8	dataid_scrn;	// èª­ã¿è¾¼ã‚€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ãƒ‡ãƒ¼ã‚¿ID
+	u8	arcdata_comp;	// èª­ã¿è¾¼ã‚€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒåœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
 } WF2DMAP_SCRDRAWINIT;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒVƒXƒeƒ€ì¬
+// ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 GLOBAL WF2DMAP_SCRDRAW* WF2DMAP_SCRDrawSysInit( CLACT_U_EASYRENDER_DATA* p_render, GF_BGL_INI* p_bgl, const WF2DMAP_SCRDRAWINIT* cp_init, u32 heapID );
 GLOBAL void WF2DMAP_SCRDrawSysExit( WF2DMAP_SCRDRAW* p_sys );
 
-// ƒXƒNƒ[ƒ‹”½‰f
+// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åæ˜ 
 GLOBAL void WF2DMAP_SCRDrawSysMain( WF2DMAP_SCRDRAW* p_sys, const WF2DMAP_SCROLL* cp_scroll );
 
 #undef	GLOBAL

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_skill_prm.h
- * @brief	ƒtƒB[ƒ‹ƒh‹Zˆ—i”é“`‹Z‚È‚Çj
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æŠ€å‡¦ç†ï¼ˆç§˜ä¼æŠ€ãªã©ï¼‰
  * @author	Nozomu Saito
  * @date	2006.05.31
  */
@@ -14,8 +14,8 @@
 
 typedef struct FLD_SKILL_PRM_tag
 {
-	POKEMON_PARAM *PokeParam;		//ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€ƒ|ƒCƒ“ƒ^
-	void *Work;						//ƒ[ƒN
+	POKEMON_PARAM *PokeParam;		//ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ ãƒã‚¤ãƒ³ã‚¿
+	void *Work;						//ãƒ¯ãƒ¼ã‚¯
 }FLD_SKILL_PRM;
 
 extern FLD_SKILL_PRM *F_SkillPrm_AllocMemory(const int inHeapID, const u8 inPokePos, SAVEDATA* sv);

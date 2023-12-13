@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	poke_test.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒ`ƒFƒbƒN
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒã‚§ãƒƒã‚¯
  * @author	sogabe
  * @date	2005.11.08
  */
@@ -9,8 +9,8 @@
 
 #ifdef PM_DEBUG
 
-///< 0 = ƒvƒŒƒ[ƒ“—p
-///< 1 = •ÒW—p
+///< 0 = ãƒ—ãƒ¬ã‚¼ãƒ³ç”¨
+///< 1 = ç·¨é›†ç”¨
 #define ANIME_EDIT_MODE	( 1 )
 
 #if 1//ANIME_EDIT_MODE
@@ -48,7 +48,7 @@
 extern	BOOL	PMSVLD_Load(u32 src, void * dst, u32 len);
 extern	BOOL	PMSVLD_Save(u32 src, void * dst, u32 len);
 
-///< ƒRƒŒ‚ð—LŒø‚É‚·‚é‚ÆASAVE_BANK‚©‚çLOAD‚·‚é
+///< ã‚³ãƒ¬ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã¨ã€SAVE_BANKã‹ã‚‰LOADã™ã‚‹
 //#define		SAVE_BANK_LOAD
 
 #define		SAVE_BANK	(30)
@@ -57,7 +57,7 @@ extern	BOOL	PMSVLD_Save(u32 src, void * dst, u32 len);
 #define		HEIGHT_MIN	(-32)
 #define		SHADOW_MAX	(2)
 
-//#define		GO_USE		//—LŒø‚É‚·‚é‚ÆichinoseŽd—l
+//#define		GO_USE		//æœ‰åŠ¹ã«ã™ã‚‹ã¨ichinoseä»•æ§˜
 
 enum{
 	SIDE_MAIN=0,
@@ -91,11 +91,11 @@ enum{
 
 //==============================================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //
 //==============================================================================================
 
-#define	PGT_POKE_MAX	(600)					//ƒ|ƒPƒ‚ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ÌMAX
+#define	PGT_POKE_MAX	(600)					//ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®MAX
 #define	PGT_END_KEY		(PAD_BUTTON_L|PAD_BUTTON_R|PAD_BUTTON_SELECT)
 
 enum{
@@ -122,31 +122,31 @@ typedef struct{
 }PRG_ANIME;
 
 typedef struct{
-	u8					prg_anm_f;				//ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒiƒ“ƒo[i³–Êj
+	u8					prg_anm_f;				//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ï¼ˆæ­£é¢ï¼‰
 	u8					prg_anm_f_wait;
-	PRG_ANIME			prg_anm_b[3];			//ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒiƒ“ƒo[i”w–Êj
-	SOFT_SPRITE_ANIME	ssanm[SS_ANM_SEQ_MAX];	//ƒpƒ^[ƒ“ƒAƒjƒƒf[ƒ^
+	PRG_ANIME			prg_anm_b[3];			//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ï¼ˆèƒŒé¢ï¼‰
+	SOFT_SPRITE_ANIME	ssanm[SS_ANM_SEQ_MAX];	//ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 }POKE_ANM_DATA;
 
 
 
 // -----------------------------------------
 //
-//	¡ƒpƒ^[ƒ“’è‹`
+//	â– ãƒ‘ã‚¿ãƒ¼ãƒ³å®šç¾©
 //
 // -----------------------------------------
 enum {
-	PAD_F = 0,										///< ³–ÊƒAƒjƒ	
-	PAD_B,											///< ”w–ÊƒAƒjƒ
-	PAD_MAX,										///< ƒAƒjƒÅ‘å”	
+	PAD_F = 0,										///< æ­£é¢ã‚¢ãƒ‹ãƒ¡	
+	PAD_B,											///< èƒŒé¢ã‚¢ãƒ‹ãƒ¡
+	PAD_MAX,										///< ã‚¢ãƒ‹ãƒ¡æœ€å¤§æ•°	
 };
 
 enum {
 	
-	PAD_MODE_Init = 0,								///< ‰Šú‰»
-	PAD_MODE_BaseParaEdit,							///< Šî–{ƒpƒ‰ƒ[ƒ^Ý’è
-	PAD_MODE_F_AnimeEdit,							///< ³–ÊƒAƒjƒÝ’è
-	PAD_MODE_B_AnimeEdit,							///< ”w–ÊƒAƒjƒÝ’è
+	PAD_MODE_Init = 0,								///< åˆæœŸåŒ–
+	PAD_MODE_BaseParaEdit,							///< åŸºæœ¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
+	PAD_MODE_F_AnimeEdit,							///< æ­£é¢ã‚¢ãƒ‹ãƒ¡è¨­å®š
+	PAD_MODE_B_AnimeEdit,							///< èƒŒé¢ã‚¢ãƒ‹ãƒ¡è¨­å®š
 	
 };
 
@@ -207,20 +207,20 @@ typedef struct{
 	int					bg_g;
 	int					bg_b;
 	
-	// V‹K
+	// æ–°è¦
 	int					sub_page;
 	u32					save_bank;
 	u32					load_bank;
 	BOOL				is_anime;
 	BOOL				is_main_page;
 
-	// ‚±‚±ˆÈ‰º‚ÍAƒZ[ƒu‚µ‚Ä‚¢‚é‚Ì‚ÅAˆÊ’u‚Ì•ÏX‚ÍŒµ‹ÖI	
+	// ã“ã“ä»¥ä¸‹ã¯ã€ã‚»ãƒ¼ãƒ–ã—ã¦ã„ã‚‹ã®ã§ã€ä½ç½®ã®å¤‰æ›´ã¯åŽ³ç¦ï¼	
 	POKE_ANM_DATA		pad[PGT_POKE_MAX];
 	s8					height[PGT_POKE_MAX];
 	u8					shadow_size[PGT_POKE_MAX];
 	s8					shadow_ofx[PGT_POKE_MAX];
 	
-	// ƒvƒ‰ƒ`ƒi—p•Û‘¶ƒf[ƒ^
+	// ãƒ—ãƒ©ãƒãƒŠç”¨ä¿å­˜ãƒ‡ãƒ¼ã‚¿
 	POKE_ANM_EDIT_DATA	paed[ PGT_POKE_MAX ];
 }POKE_GRA_TEST;
 
@@ -229,7 +229,7 @@ typedef struct{
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 
@@ -315,17 +315,17 @@ static BOOL	PAD_PAT_AnmPos_Main(POKE_GRA_TEST* pgt);
 
 //==================================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==================================================================================================
 
 static	const	u16	pal[]={
-		GX_RGB(31,31,31),				//0:”’
-		GX_RGB(13,13,13),				//1:”Z‚¢ŠD
-		GX_RGB(24,24,24),				//2:”–‚¢ŠD
-		GX_RGB(15,31,15),				//3:‚¤‚·‚Ý‚Ç‚è
-		GX_RGB(31,15,15),				//4:‚¤‚·‚ ‚©
-		GX_RGB(19,19,19),				//5:ŠD
+		GX_RGB(31,31,31),				//0:ç™½
+		GX_RGB(13,13,13),				//1:æ¿ƒã„ç°
+		GX_RGB(24,24,24),				//2:è–„ã„ç°
+		GX_RGB(15,31,15),				//3:ã†ã™ã¿ã©ã‚Š
+		GX_RGB(31,15,15),				//4:ã†ã™ã‚ã‹
+		GX_RGB(19,19,19),				//5:ç°
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
@@ -335,10 +335,10 @@ static	const	u16	pal[]={
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
-		GX_RGB(31,31,31),				//15:”’
+		GX_RGB(31,31,31),				//15:ç™½
 };
 
-//ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+//ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 enum{
 	POKE_NUM=0,
 	POKE_SEX,
@@ -353,7 +353,7 @@ enum{
 	POKE_BG_COLOR_B
 };
 
-//ƒAƒjƒ[ƒVƒ‡ƒ“Ý’è
+//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
 enum{
 	MENU_ANM_FRONT=0,
 	MENU_ANM_BACK1,
@@ -391,25 +391,25 @@ typedef void (*PT_VIEW_FUNC_EX)(POKE_GRA_TEST *, GF_PRINTCOLOR, int );
 
 typedef struct
 {
-	u8		cursor_pos_x;	//ƒJ[ƒ\ƒ‹XˆÊ’u
-	u8		cursor_pos_y;	//ƒJ[ƒ\ƒ‹YˆÊ’u
-	u8		move_up;		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_down;		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_left;		//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_right;		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	PT_FUNC	a_button_act;	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+	u8		cursor_pos_x;	//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+	u8		cursor_pos_y;	//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+	u8		move_up;		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_down;		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_left;		//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_right;		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	PT_FUNC	a_button_act;	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 }MENU_LIST_PARAM;
 
-#define	MONS_NUM_X	(0)		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[•\Ž¦XˆÊ’u
-#define	MONS_NUM_Y	(8)		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[•\Ž¦YˆÊ’u
-#define	MONS_NAME_X	(32)	//ƒ‚ƒ“ƒXƒ^[–¼•\Ž¦XˆÊ’u
-#define	MONS_NAME_Y	(8)		//ƒ‚ƒ“ƒXƒ^[–¼•\Ž¦YˆÊ’u
-#define	MONS_SEX_X	(96)	//ƒ‚ƒ“ƒXƒ^[«•Ê•\Ž¦XˆÊ’u
-#define	MONS_SEX_Y	(8)		//ƒ‚ƒ“ƒXƒ^[«•Ê•\Ž¦YˆÊ’u
-#define	MONS_COL_X	(128)	//ƒ‚ƒ“ƒXƒ^[ƒJƒ‰[•\Ž¦XˆÊ’u
-#define	MONS_COL_Y	(8)		//ƒ‚ƒ“ƒXƒ^[ƒJƒ‰[•\Ž¦YˆÊ’u
-#define	MONS_PAT_X	(188)	//ƒ‚ƒ“ƒXƒ^[ƒAƒjƒƒpƒ^[ƒ“ƒiƒ“ƒo[•\Ž¦XˆÊ’u
-#define	MONS_PAT_Y	(8)		//ƒ‚ƒ“ƒXƒ^[ƒAƒjƒƒpƒ^[ƒ“ƒiƒ“ƒo[•\Ž¦YˆÊ’u
+#define	MONS_NUM_X	(0)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºXä½ç½®
+#define	MONS_NUM_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºYä½ç½®
+#define	MONS_NAME_X	(32)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åè¡¨ç¤ºXä½ç½®
+#define	MONS_NAME_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åè¡¨ç¤ºYä½ç½®
+#define	MONS_SEX_X	(96)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ€§åˆ¥è¡¨ç¤ºXä½ç½®
+#define	MONS_SEX_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ€§åˆ¥è¡¨ç¤ºYä½ç½®
+#define	MONS_COL_X	(128)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚«ãƒ©ãƒ¼è¡¨ç¤ºXä½ç½®
+#define	MONS_COL_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚«ãƒ©ãƒ¼è¡¨ç¤ºYä½ç½®
+#define	MONS_PAT_X	(188)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºXä½ç½®
+#define	MONS_PAT_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºYä½ç½®
 
 #define	POKE_NUM_DATA_X			(12)
 #define	POKE_NUM_DATA_Y			(0)
@@ -631,7 +631,7 @@ enum {
 };
 
 static	const	MENU_LIST_PARAM	mlp[]={
-	///< ‘O–Ê ”w–Ê Ø‚è‘Ö‚¦
+	///< å‰é¢ èƒŒé¢ åˆ‡ã‚Šæ›¿ãˆ
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 0 ),
@@ -641,7 +641,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_FB_CHANGE,
 		PAD_PageMain,
 	},
-	///< –Â‚«ºƒEƒFƒCƒg
+	///< é³´ãå£°ã‚¦ã‚§ã‚¤ãƒˆ
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 1 ),
@@ -651,7 +651,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_VOICE_WAIT,
 		PAD_VoiceMain,			
 	},
-	///< ƒvƒƒOƒ‰ƒ€ƒAƒjƒ
+	///< ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 2 ),
@@ -661,7 +661,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_PG_ANIME_WAIT,
 		PAD_PG_Anm_Main,			
 	},
-	///< ƒvƒƒOƒ‰ƒ€ƒAƒjƒ wait
+	///< ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ wait
 	{
 		CUR_POS_X4,
 		CUR_POS_FIX( 2 ),
@@ -672,17 +672,17 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		PAD_PG_AnmWait_Main,			
 	},
 
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚P
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼‘
 	{
 		CUR_POS_X1,				/// pos x
 		CUR_POS_FIX( 3 ),		/// pos y
-		ePAD_PG_ANIME,			/// ª
-		ePAD_EDIT_01 + 1,		/// «
-		ePAD_EDIT_01_POS + 0,		/// ©
-		ePAD_EDIT_01_WAIT + 0,		/// ¨
+		ePAD_PG_ANIME,			/// â†‘
+		ePAD_EDIT_01 + 1,		/// â†“
+		ePAD_EDIT_01_POS + 0,		/// â†
+		ePAD_EDIT_01_WAIT + 0,		/// â†’
 		PAD_PAT_Anm_Main,		/// [ A ]
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚Q
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼’
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 4 ),
@@ -692,7 +692,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 1,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚R
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼“
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 5 ),
@@ -702,7 +702,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 2,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚S
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼”
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 6 ),
@@ -712,7 +712,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 3,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚T
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼•
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 7 ),
@@ -722,7 +722,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 4,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚U
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼–
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 8 ),
@@ -732,7 +732,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 5,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚V
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼—
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 9 ),
@@ -742,7 +742,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 6,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚W
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼˜
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 10 ),
@@ -752,7 +752,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 7,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚X
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼™
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 11 ),
@@ -762,7 +762,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 8,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚P‚O
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼‘ï¼
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 12 ),
@@ -773,17 +773,17 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		PAD_PAT_Anm_Main,			
 	},
 
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚P
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼‘
 	{
 		CUR_POS_X2_PATW,				/// pos x
 		CUR_POS_FIX( 3 ),		/// pos y
-		ePAD_PG_ANIME,			/// ª
-		ePAD_EDIT_01_WAIT + 1,	/// «
-		ePAD_EDIT_01 + 0,		/// ©
-		ePAD_EDIT_01_POS + 0,		/// ¨
+		ePAD_PG_ANIME,			/// â†‘
+		ePAD_EDIT_01_WAIT + 1,	/// â†“
+		ePAD_EDIT_01 + 0,		/// â†
+		ePAD_EDIT_01_POS + 0,		/// â†’
 		PAD_PAT_AnmWait_Main,		/// [ A ]
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚Q
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼’
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 4 ),
@@ -793,7 +793,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 1,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚R
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼“
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 5 ),
@@ -803,7 +803,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 2,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚S
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼”
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 6 ),
@@ -813,7 +813,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 3,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚T
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼•
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 7 ),
@@ -823,7 +823,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 4,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚U
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼–
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 8 ),
@@ -833,7 +833,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 5,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚V
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼—
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 9 ),
@@ -843,7 +843,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 6,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚W
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼˜
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 10 ),
@@ -853,7 +853,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 7,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚X
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼™
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 11 ),
@@ -863,7 +863,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 8,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚P‚O
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼‘ï¼
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 12 ),
@@ -874,17 +874,17 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		PAD_PAT_AnmWait_Main,			
 	},
 
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚P
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼‘
 	{
 		CUR_POS_X2_PATP,				/// pos x
 		CUR_POS_FIX( 3 ),		/// pos y
-		ePAD_PG_ANIME,			/// ª
-		ePAD_EDIT_01_POS + 1,	/// «
-		ePAD_EDIT_01_WAIT + 0,		/// ©
-		ePAD_EDIT_01 + 0,		/// ¨
+		ePAD_PG_ANIME,			/// â†‘
+		ePAD_EDIT_01_POS + 1,	/// â†“
+		ePAD_EDIT_01_WAIT + 0,		/// â†
+		ePAD_EDIT_01 + 0,		/// â†’
 		PAD_PAT_AnmPos_Main,		/// [ A ]
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚Q
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼’
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 4 ),
@@ -894,7 +894,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 1,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚R
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼“
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 5 ),
@@ -904,7 +904,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 2,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚S
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼”
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 6 ),
@@ -914,7 +914,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 3,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚T
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼•
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 7 ),
@@ -924,7 +924,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 4,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚U
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼–
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 8 ),
@@ -934,7 +934,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 5,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚V
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼—
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 9 ),
@@ -944,7 +944,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 6,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚W
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼˜
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 10 ),
@@ -954,7 +954,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 7,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚X
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼™
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 11 ),
@@ -964,7 +964,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 8,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚P‚O
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼‘ï¼
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 12 ),
@@ -997,7 +997,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 #define	COL_CURSOR		(GF_PRINTCOLOR_MAKE(CURSOR_LETTER,CURSOR_SHADOW,CURSOR_GROUND))
 #define	COL_NONE		(GF_PRINTCOLOR_MAKE(NONE_LETTER,NONE_SHADOW,NONE_GROUND))
 
-///< ƒ|ƒPƒ‚ƒ“ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒf[ƒ^•œŒ³
+///< ãƒã‚±ãƒ¢ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å¾©å…ƒ
 static void RC_PPAD( u16 mons_no, u8* patno, u8* wait )
 {
 	POKE_ANM_TABLE_DP		pat;
@@ -1018,9 +1018,9 @@ static void FrontAnime_DP_Recover( POKE_GRA_TEST *pgt, int no )
 	
 	int index;
 	
-	POKE_ANM_DEBUG_PRINT( "\n ----- DP ƒf[ƒ^‚Ì “Ç‚Ýž‚ÝŠJŽn ----- \n" );
+	POKE_ANM_DEBUG_PRINT( "\n ----- DP ãƒ‡ãƒ¼ã‚¿ã® èª­ã¿è¾¼ã¿é–‹å§‹ ----- \n" );
 	POKE_ANM_DEBUG_PRINT( "\n");
-	POKE_ANM_DEBUG_PRINT( " ----- DP ƒf[ƒ^‚Ì “Ç‚Ýž‚Ý’†¥¥¥ ----- \n" );
+	POKE_ANM_DEBUG_PRINT( " ----- DP ãƒ‡ãƒ¼ã‚¿ã® èª­ã¿è¾¼ã¿ä¸­ãƒ»ãƒ»ãƒ» ----- \n" );
 	POKE_ANM_DEBUG_PRINT( "\n");
 
 	//PGT_POKE_MAX
@@ -1028,7 +1028,7 @@ static void FrontAnime_DP_Recover( POKE_GRA_TEST *pgt, int no )
 		
 		if ( i != no ){ continue; }
 		
-		///< “K³‚Èƒ|ƒPƒ‚ƒ“No‚É”z’u‚·‚é•K—v‚ª‚ ‚é
+		///< é©æ­£ãªãƒã‚±ãƒ¢ãƒ³Noã«é…ç½®ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 		index = PokeGraNoTable[ i ];
 		
 		// POKE_ANM_DEBUG_PRINT( " i = %3d  index = %3d \n", i, index );
@@ -1045,7 +1045,7 @@ static void FrontAnime_DP_Recover( POKE_GRA_TEST *pgt, int no )
 			pgt->paed[ index ].poke_anime[ 0 ].ssanm[ j ].oy	= 0;
 		}
 
-		///< ‰eƒTƒCƒY ‰e‚‚³ ‚‚³î•ñ
+		///< å½±ã‚µã‚¤ã‚º å½±é«˜ã• é«˜ã•æƒ…å ±
 		ArchiveDataLoadOfs( &ox,	ARC_POKE_SHADOW_OFX, 0, i, 1);
 		ArchiveDataLoadOfs( &oy,	ARC_POKE_YOFS,		 0, i, 1);
 		ArchiveDataLoadOfs( &size,	ARC_POKE_SHADOW,	 0, i, 1);
@@ -1053,7 +1053,7 @@ static void FrontAnime_DP_Recover( POKE_GRA_TEST *pgt, int no )
 		pgt->paed[ index ].shadow_size	= size;
 		pgt->paed[ index ].shadow_ofx	= ox;
 		
-		///< ƒAƒjƒƒf[ƒ^•œŒ³
+		///< ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å¾©å…ƒ
 		{
 			SOFT_SPRITE_ANIME_DP ssa[10];
 			
@@ -1069,7 +1069,7 @@ static void FrontAnime_DP_Recover( POKE_GRA_TEST *pgt, int no )
 			}
 		}
 		
-		///< ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒf[ƒ^•œŒ³
+		///< ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å¾©å…ƒ
 		{
 			u8 patno;
 			u8 wait;
@@ -1081,12 +1081,12 @@ static void FrontAnime_DP_Recover( POKE_GRA_TEST *pgt, int no )
 		}
 	}
 	
-	POKE_ANM_DEBUG_PRINT( "\n ----- DP ƒf[ƒ^‚Ì “Ç‚Ýž‚ÝI—¹ ----- \n" );
+	POKE_ANM_DEBUG_PRINT( "\n ----- DP ãƒ‡ãƒ¼ã‚¿ã® èª­ã¿è¾¼ã¿çµ‚äº† ----- \n" );
 }
 
 //==================================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==================================================================================================
 
@@ -1130,7 +1130,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 	PokeGraTestBGCreate(pgt,pgt->bgl);
 
 	pgt->ssm=SoftSpriteInit(HEAPID_BATTLE);
-	SoftSpritePaletteTransParamSet(pgt->ssm,0,SOFT_SPRITE_COL_SIZE);	//‰e‚Ì•ª‚à“]‘—‚·‚é‚æ‚¤‚ÉƒTƒCƒY‚ð•ÏX
+	SoftSpritePaletteTransParamSet(pgt->ssm,0,SOFT_SPRITE_COL_SIZE);	//å½±ã®åˆ†ã‚‚è»¢é€ã™ã‚‹ã‚ˆã†ã«ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 	pgt->pasp=PokeAnm_AllocMemory(HEAPID_BATTLE,2,0);
 
 	pgt->mons_no=1;
@@ -1195,15 +1195,15 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 		
 		int index;
 		
-		POKE_ANM_DEBUG_PRINT( "\n ----- DP ƒf[ƒ^‚Ì “Ç‚Ýž‚ÝŠJŽn ----- \n" );
+		POKE_ANM_DEBUG_PRINT( "\n ----- DP ãƒ‡ãƒ¼ã‚¿ã® èª­ã¿è¾¼ã¿é–‹å§‹ ----- \n" );
 		POKE_ANM_DEBUG_PRINT( "\n");
-		POKE_ANM_DEBUG_PRINT( " ----- DP ƒf[ƒ^‚Ì “Ç‚Ýž‚Ý’†¥¥¥ ----- \n" );
+		POKE_ANM_DEBUG_PRINT( " ----- DP ãƒ‡ãƒ¼ã‚¿ã® èª­ã¿è¾¼ã¿ä¸­ãƒ»ãƒ»ãƒ» ----- \n" );
 		POKE_ANM_DEBUG_PRINT( "\n");
 
 		//PGT_POKE_MAX
 		for ( i = 0; i < 494; i++ ){
 			
-			///< “K³‚Èƒ|ƒPƒ‚ƒ“No‚É”z’u‚·‚é•K—v‚ª‚ ‚é
+			///< é©æ­£ãªãƒã‚±ãƒ¢ãƒ³Noã«é…ç½®ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 			index = PokeGraNoTable[ i ];
 			
 			// POKE_ANM_DEBUG_PRINT( " i = %3d  index = %3d \n", i, index );
@@ -1229,7 +1229,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 				pgt->paed[ index ].poke_anime[ 1 ].ssanm[ j ].oy	= 0;
 			}
 
-			///< ‰eƒTƒCƒY ‰e‚‚³ ‚‚³î•ñ
+			///< å½±ã‚µã‚¤ã‚º å½±é«˜ã• é«˜ã•æƒ…å ±
 			ArchiveDataLoadOfs( &ox,	ARC_POKE_SHADOW_OFX, 0, i, 1);
 			ArchiveDataLoadOfs( &oy,	ARC_POKE_YOFS,		 0, i, 1);
 			ArchiveDataLoadOfs( &size,	ARC_POKE_SHADOW,	 0, i, 1);
@@ -1237,7 +1237,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 			pgt->paed[ index ].shadow_size	= size;
 			pgt->paed[ index ].shadow_ofx	= ox;
 			
-			///< ƒAƒjƒƒf[ƒ^•œŒ³
+			///< ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å¾©å…ƒ
 			{
 				SOFT_SPRITE_ANIME_DP ssa[10];
 				
@@ -1253,7 +1253,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 				}
 			}
 			
-			///< ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒf[ƒ^•œŒ³
+			///< ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å¾©å…ƒ
 			{
 				u8 patno;
 				u8 wait;
@@ -1265,7 +1265,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 			}
 		}
 		
-		POKE_ANM_DEBUG_PRINT( "\n ----- DP ƒf[ƒ^‚Ì “Ç‚Ýž‚ÝI—¹ ----- \n" );
+		POKE_ANM_DEBUG_PRINT( "\n ----- DP ãƒ‡ãƒ¼ã‚¿ã® èª­ã¿è¾¼ã¿çµ‚äº† ----- \n" );
 	}
 #if 0	
 	if ( !(sys.cont & ( PAD_BUTTON_R | PAD_BUTTON_L )) ){
@@ -1289,7 +1289,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 			}
 			pgt->paed[0].shadow_ofx=0x55;
 		}
-		POKE_ANM_DEBUG_PRINT( "\n ----- ƒf[ƒ^Ž©“®ƒ[ƒh ----- \n" );
+		POKE_ANM_DEBUG_PRINT( "\n ----- ãƒ‡ãƒ¼ã‚¿è‡ªå‹•ãƒ­ãƒ¼ãƒ‰ ----- \n" );
 	}
 #endif
 	
@@ -1322,26 +1322,26 @@ static	void	PokeTestMainScreenCreate(POKE_GRA_TEST *pgt)
 
 //============================================================================================
 /**
- *	í“¬”wŒi‰æ–Ê‰Šú‰»•‰æ–Ê¶¬
+ *	æˆ¦é—˜èƒŒæ™¯ç”»é¢åˆæœŸåŒ–ï¼†ç”»é¢ç”Ÿæˆ
  */
 //============================================================================================
 static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 {
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
@@ -1358,7 +1358,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -1390,7 +1390,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 		G2_SetBG0Priority(0x01);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[]={
 			///<FRAME1_S
@@ -1404,7 +1404,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 		GF_BGL_ScrClear(bgl, GF_BGL_FRAME1_S );
 	}
 
-	//”wŒiƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒh
+	//èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	{
 		TalkWinGraphicNullSet(bgl, GF_BGL_FRAME1_M,TALK_WIN_CGX_START,TALK_WIN_PAL_NO,0,HEAPID_BATTLE);
 		ArcUtil_BgCharSet(ARC_BATT_BG,BATTLE_BG00_NCGR_BIN,bgl,GF_BGL_FRAME3_M,0,0,1,HEAPID_BATTLE);
@@ -1427,7 +1427,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 
 //============================================================================================
 /**
- *	ƒƒCƒ“ƒ‹[ƒvƒ^ƒXƒN
+ *	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¹ã‚¯
  */
 //============================================================================================
 static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
@@ -1455,7 +1455,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 	if((sys.trg == PAD_BUTTON_X)&&(pgt->seq_no<SEQ_LOAD)&&(pgt->seq_no!=SEQ_POKEMON_CHECK_EDIT)){
 #ifdef GO_USE
 		Snd_SceneSet(SND_SCENE_DUMMY);
-		Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_FIGHT0101, 1 );	//ƒoƒgƒ‹‹ÈÄ¶
+		Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_FIGHT0101, 1 );	//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
 #else
 		pgt->seq_no_temp=pgt->seq_no;
 		pgt->seq_no=SEQ_SAVE;
@@ -1575,7 +1575,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 		}
 		pgt->seq_no=SEQ_POKEMON_CHECK;
 		break;
-	//ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+	//ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 	case SEQ_POKEMON_CHECK:
 		if(sys.trg & PAD_BUTTON_SELECT){
 			pgt->is_main_page = FALSE;
@@ -1612,7 +1612,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->seq_no=SEQ_POKEMON_CHECK;
 		}
 		break;
-	//ƒ|ƒPƒ‚ƒ“ƒAƒjƒƒZƒbƒg
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 	case SEQ_POKEMON_ANIME:
 		if(sys.repeat == PAD_KEY_UP){
 			move=mlp[pgt->pos].move_up;
@@ -1633,7 +1633,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->seq_no=SEQ_POKEMON_CHECK;
 		}
 #if 0
-		///< ¡‚ÌêŠ‚Ì³–ÊƒAƒjƒ‚ðDP‚É–ß‚·
+		///< ä»Šã®å ´æ‰€ã®æ­£é¢ã‚¢ãƒ‹ãƒ¡ã‚’DPã«æˆ»ã™
 		if ( sys.trg & PAD_KEY_LEFT ){
 			if( sys.cont & PAD_BUTTON_B ){
 				FrontAnime_DP_Recover( pgt, pgt->mons_no );
@@ -1768,7 +1768,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->seq_no=SEQ_POKEMON_ANIME;
 		}
 		break;
-	//ƒ[ƒh
+	//ãƒ­ãƒ¼ãƒ‰
 	case SEQ_LOAD:
 		if(PokeGraTestLoadAct(pgt)==TRUE){
 			pgt->seq_no=pgt->seq_no_temp;
@@ -1777,7 +1777,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			}
 		}
 		break;
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 	case SEQ_SAVE:
 		if(PokeGraTestSaveAct(pgt)==TRUE){
 			pgt->seq_no=pgt->seq_no_temp;
@@ -1786,7 +1786,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			}
 		}
 		break;
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	case SEQ_POKEMON_ANIME_ACT:
 		if((PokeAnm_IsFinished(pgt->pasp,0)==TRUE)&&
 		   (PokeAnm_IsFinished(pgt->pasp,1)==TRUE)&&
@@ -1798,7 +1798,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->is_anime = FALSE;
 		}
 		break;
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	case SEQ_POKEMON_ANIME_ACT_B:
 		if((PokeAnm_IsFinished(pgt->pasp,0)==TRUE)&&
 		   (SoftSpriteAnimeEndCheck(pgt->ss[0])==FALSE)){
@@ -1806,7 +1806,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->is_anime = FALSE;
 		}
 		break;
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	case SEQ_POKEMON_ANIME_ACT_F:
 		if((PokeAnm_IsFinished(pgt->pasp,1)==TRUE)&&
 		   (SoftSpriteAnimeEndCheck(pgt->ss[1])==FALSE)){
@@ -1824,7 +1824,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 
 //============================================================================================
 /**
- *	ƒƒCƒ“ƒ‹[ƒvƒ^ƒXƒN
+ *	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¹ã‚¯
  */
 //============================================================================================
 static	void	PokeGraTestDebugPrint(POKE_GRA_TEST *pgt,int mode)
@@ -1890,7 +1890,7 @@ static	void	PokeGraTestShadowSet(POKE_GRA_TEST *pgt,int height)
 
 //==============================================================================================
 //
-//	ƒ^ƒCƒgƒ‹ƒfƒoƒbƒNƒƒjƒ…[‚©‚çŒÄ‚Î‚ê‚é‚æ‚¤‚É’Ç‰Á
+//	ã‚¿ã‚¤ãƒˆãƒ«ãƒ‡ãƒãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã‚ˆã†ã«è¿½åŠ 
 //
 //==============================================================================================
 //--------------------------------------------------------------
@@ -1924,11 +1924,11 @@ static PROC_RESULT PokeGraTestProc_End(PROC * proc, int * seq)
 	PROC_FreeWork(proc);
 	sys_DeleteHeap(HEAPID_BATTLE);
 	Main_SetNextProc(NO_OVERLAY_ID, &TitleProcData);
-	//sys_MainProcChange( TitleMainProc );				//•œ‹Aæ
-	//ƒ\ƒtƒgƒŠƒZƒbƒg
-	//Ú×‚Íƒ\[ƒXæ“ª‚ÌuƒTƒEƒ“ƒhƒeƒXƒg‚Ì—áŠOˆ—‚É‚Â‚¢‚Äv‚ðŽQÆ‚µ‚Ä‰º‚³‚¢
+	//sys_MainProcChange( TitleMainProc );				//å¾©å¸°å…ˆ
+	//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆ
+	//è©³ç´°ã¯ã‚½ãƒ¼ã‚¹å…ˆé ­ã®ã€Œã‚µã‚¦ãƒ³ãƒ‰ãƒ†ã‚¹ãƒˆã®ä¾‹å¤–å‡¦ç†ã«ã¤ã„ã¦ã€ã‚’å‚ç…§ã—ã¦ä¸‹ã•ã„
 	//OS_InitReset();
-	OS_ResetSystem(0);									//ƒ\ƒtƒgƒŠƒZƒbƒg
+	OS_ResetSystem(0);									//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆ
 	return PROC_RES_FINISH;
 }
 
@@ -1943,9 +1943,9 @@ const PROC_DATA PokeAnimeEditorProcData = {
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
- * @param	work	VBLank‚É‚Íˆø”‚ª•K—v‚È‚Ì‚Å’è‹`‚µ‚Ä‚ ‚é‚ªŽÀÛ‚É‚ÍNULL‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅAƒAƒNƒZƒX‚Í‹ÖŽ~I
+ * @param	work	VBLankã«ã¯å¼•æ•°ãŒå¿…è¦ãªã®ã§å®šç¾©ã—ã¦ã‚ã‚‹ãŒå®Ÿéš›ã«ã¯NULLãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã€ã‚¢ã‚¯ã‚»ã‚¹ã¯ç¦æ­¢ï¼
  *
  * @retval	none	
  *
@@ -1967,7 +1967,7 @@ static	void	PokeGraTestVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	3D‰Šú‰»
+ * @brief	3DåˆæœŸåŒ–
  *
  * @retval	none	
  */
@@ -1983,10 +1983,10 @@ static void Init3DStuff_(void)
     G3X_AntiAlias(TRUE);
     G3X_AlphaBlend(TRUE);
 
-    // 3D –Ê‚Í“ÁŽêŒø‰ÊOFF‚Å‚à‘¼‚ÌBG–Ê‚Æƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒO‚ªs‚í‚ê‚Ü‚·‚ªA
-    // ‚»‚Ì‚½‚ß‚É‚Íƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒO‘ÎÛ–Ê‚ÌŽw’è‚ðs‚¤•K—v‚ª‚ ‚è‚Ü‚·B
-    // SDK ‚É‚Í‘ÎÛ–Ê‚Ì‚Ý‚ðÝ’è‚·‚é API ‚ª‘¶Ý‚µ‚È‚¢‚Ì‚ÅA‘ã‚í‚è‚É G2_SetBlendAlpha ‚ðŽg‚¢‚Ü‚·B
-    // ‚±‚Ìê‡ G2_SetBlendAlpha ‚ÌŒã‚ë2‚Â‚Ìˆø”‚Í–³Ž‹‚³‚ê‚Ü‚·B
+    // 3D é¢ã¯ç‰¹æ®ŠåŠ¹æžœOFFã§ã‚‚ä»–ã®BGé¢ã¨Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãŒè¡Œã‚ã‚Œã¾ã™ãŒã€
+    // ãã®ãŸã‚ã«ã¯Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°å¯¾è±¡é¢ã®æŒ‡å®šã‚’è¡Œã†å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+    // SDK ã«ã¯å¯¾è±¡é¢ã®ã¿ã‚’è¨­å®šã™ã‚‹ API ãŒå­˜åœ¨ã—ãªã„ã®ã§ã€ä»£ã‚ã‚Šã« G2_SetBlendAlpha ã‚’ä½¿ã„ã¾ã™ã€‚
+    // ã“ã®å ´åˆ G2_SetBlendAlpha ã®å¾Œã‚2ã¤ã®å¼•æ•°ã¯ç„¡è¦–ã•ã‚Œã¾ã™ã€‚
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BD, 0, 0);
 
     // clear color
@@ -1997,7 +1997,7 @@ static void Init3DStuff_(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“«•ÊƒQƒbƒg
+ * @brief	ãƒã‚±ãƒ¢ãƒ³æ€§åˆ¥ã‚²ãƒƒãƒˆ
  *
  * @retval	none	
  */
@@ -2019,27 +2019,27 @@ static	u8	PokeGraTestSexGet(u16 monsno)
 }
 
 //--------------------------------------------------------------
-//	ƒƒbƒZ[ƒW•\Ž¦ˆÊ’u’è‹`
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä½ç½®å®šç¾©
 //--------------------------------------------------------------
-#define	ANM_FRONT_NUM_X		(16)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_FRONT_X			(48)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_FRONT_WAIT_X	(208)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_FRONT_Y			(0)		//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+#define	ANM_FRONT_NUM_X		(16)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_FRONT_X			(48)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_FRONT_WAIT_X	(208)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_FRONT_Y			(0)		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
-#define	ANM_BACK_NUM_X		(16)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_X			(48)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_WAIT_X		(208)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_Y			(13)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_OFS_Y		(13)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+#define	ANM_BACK_NUM_X		(16)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_X			(48)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_WAIT_X		(208)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_Y			(13)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_OFS_Y		(13)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
-#define	ANM_NO_X	(16)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_NO_Y	(52)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	PAT_NO_X	(64)	//Patƒiƒ“ƒo[
-#define	PAT_NO_Y	(52)	//Patƒiƒ“ƒo[
-#define	WAIT_X		(112)	//ƒAƒjƒ[ƒVƒ‡ƒ“Wait
-#define	WAIT_Y		(52)	//ƒAƒjƒ[ƒVƒ‡ƒ“Wait
+#define	ANM_NO_X	(16)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_NO_Y	(52)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	PAT_NO_X	(64)	//PatãƒŠãƒ³ãƒãƒ¼
+#define	PAT_NO_Y	(52)	//PatãƒŠãƒ³ãƒãƒ¼
+#define	WAIT_X		(112)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³Wait
+#define	WAIT_Y		(52)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³Wait
 
-#define	ANM_NO_OFS_Y	(14)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+#define	ANM_NO_OFS_Y	(14)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
 #define	SVLD_X		(160 - 80)
 #define	SVLD_Y		( 80 - 16)
@@ -2672,7 +2672,7 @@ static BOOL	PAD_PAT_AnmPos_Main(POKE_GRA_TEST* pgt)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -2723,7 +2723,7 @@ static void PDA_PageChageView( POKE_GRA_TEST* pgt, GF_PRINTCOLOR col )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“ƒf[ƒ^•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -2764,7 +2764,7 @@ static	void	PokeTestPokePatDataPut(POKE_GRA_TEST *pgt)
 {
 	GF_BGL_BmpWinFill(pgt->win_m,0x0f,POKE_PAT_DATA_X,POKE_PAT_DATA_Y,12*1,16);
 
-	//ƒAƒjƒƒpƒ^[ƒ“ƒiƒ“ƒo[
+	//ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼
 	STRBUF_SetNumber(pgt->msg_buf, pgt->anm_pat,1,NUMBER_DISPTYPE_SPACE,NUMBER_CODETYPE_DEFAULT);
 	GF_STR_PrintSimple(pgt->win_m,FONT_SYSTEM,pgt->msg_buf,POKE_PAT_DATA_X,POKE_PAT_DATA_Y,MSG_NO_PUT,NULL);
 
@@ -2926,48 +2926,48 @@ static	int	PokeTestPokeFormMaxGet(POKE_GRA_TEST *pgt)
 	int	ret;
 
 	switch(pgt->mons_no){
-	//ƒ~ƒmƒ€ƒbƒ`
-	//ƒ~ƒmƒƒX
+	//ãƒŸãƒŽãƒ ãƒƒãƒ
+	//ãƒŸãƒŽãƒ¡ã‚¹
 	case MONSNO_MINOMUTTI:
 	case MONSNO_MINOMESU:
 		ret=FORMNO_MINOMUTTI_MAX;
 		break;
-	//ƒV[ƒEƒV
-	//ƒV[ƒhƒ‹ƒS
+	//ã‚·ãƒ¼ã‚¦ã‚·
+	//ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
 	case MONSNO_SIIUSI:
 	case MONSNO_SIIDORUGO:
 		ret=FORMNO_SII_MAX;
 		break;
-	//ƒ`ƒFƒŠƒVƒ…
+	//ãƒã‚§ãƒªã‚·ãƒ¥
 	case MONSNO_THERISYU:
 		ret=FORMNO_THERISYU_MAX;
 		break;
-	//ƒAƒEƒX
+	//ã‚¢ã‚¦ã‚¹
 	case MONSNO_AUSU:
 		ret=POKE_WAZA_TYPE_MAX;
 		break;
-	//ƒ|ƒƒ‹ƒ“
+	//ãƒãƒ¯ãƒ«ãƒ³
 	case MONSNO_POWARUN:
 		ret=FORMNO_POWARUN_MAX;
 		break;
-	//ƒfƒIƒLƒVƒX
+	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_DEOKISISU:
 		ret=FORMNO_DEOKISISU_MAX;
 		break;
-	//ƒAƒ“ƒm[ƒ“
+	//ã‚¢ãƒ³ãƒŽãƒ¼ãƒ³
 	case MONSNO_ANNOON:
 		ret=UNK_QUE;
 		break;
-	// ƒƒgƒ€
+	// ãƒ­ãƒˆãƒ 
 	case MONSNO_PURAZUMA:
-		ret=FORMNO_ROTOMU_MAX;		///<ƒƒgƒ€‚Ì•ÊƒtƒHƒ‹ƒ€MAX
+		ret=FORMNO_ROTOMU_MAX;		///<ãƒ­ãƒˆãƒ ã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ MAX
 		break;
-	// ƒMƒ‰ƒeƒBƒi
+	// ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 	case MONSNO_KIMAIRAN:
 		ret=FORMNO_GIRATINA_MAX;
 		break;
 	
-	// ‚µ‚¥ˆÓ–¡
+	// ã—ã‡æ„å‘³
 	case MONSNO_EURISU:
 		ret=FORMNO_SHEIMI_MAX;
 		break;
@@ -2980,7 +2980,7 @@ static	int	PokeTestPokeFormMaxGet(POKE_GRA_TEST *pgt)
 
 //==============================================================================================
 //
-//	ƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÚ“®
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 //
 //==============================================================================================
 static	void	CursorMove(POKE_GRA_TEST *pgt,int side,int pos,int mode)
@@ -3010,7 +3010,7 @@ static	void	CursorMove(POKE_GRA_TEST *pgt,int side,int pos,int mode)
 
 //==============================================================================================
 //
-//	ƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÚ“®
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 //
 //==============================================================================================
 static	void	YesNoCursorMove(POKE_GRA_TEST *pgt,int pos,int mode)
@@ -3065,7 +3065,7 @@ static	BOOL	PokeNumAct(POKE_GRA_TEST *pgt)
 		case NUM_CALC_MOVE:
 			PokeTestPokeNumDataPut(pgt,MODE_ACTIVE);
 			
-			///< ƒAƒjƒƒf[ƒ^XV
+			///< ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿æ›´æ–°
 			PokeGraTestSubScreenMake(pgt);
 			break;
 		case NUM_CALC_END:
@@ -3326,7 +3326,7 @@ static	BOOL	PokeBGColorBAct(POKE_GRA_TEST *pgt)
 
 //==============================================================================================
 //
-//	”’l•ÒW
+//	æ•°å€¤ç·¨é›†
 //
 //==============================================================================================
 static	int	PokeTestNumCalc(POKE_GRA_TEST *pgt,int *param,int keta,int min,int max,int mode)
@@ -3407,7 +3407,7 @@ static	int	PokeTestNumCalc(POKE_GRA_TEST *pgt,int *param,int keta,int min,int ma
 
 //==============================================================================================
 //
-//	ƒpƒ‰ƒ[ƒ^ƒ[ƒh
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 //
 //==============================================================================================
 static	BOOL	PokeGraTestLoadAct(POKE_GRA_TEST *pgt)
@@ -3459,7 +3459,7 @@ static	BOOL	PokeGraTestLoadAct(POKE_GRA_TEST *pgt)
 			{
 				int i;
 				int num = 0;
-				OS_Printf( " –Â‚«º‘‚«Š·‚¦’† \n" );
+				OS_Printf( " é³´ãå£°æ›¸ãæ›ãˆä¸­ \n" );
 				for ( i = 0; i < PGT_POKE_MAX;i++){
 					
 					if ( pgt->paed[ i ].poke_anime[ 1 ].voice_wait == 15
@@ -3490,7 +3490,7 @@ static	BOOL	PokeGraTestLoadAct(POKE_GRA_TEST *pgt)
 
 //==============================================================================================
 //
-//	ƒpƒ‰ƒ[ƒ^ƒZ[ƒu
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 //
 //==============================================================================================
 static	BOOL	PokeGraTestSaveAct(POKE_GRA_TEST *pgt)
@@ -3556,7 +3556,7 @@ static	void	PokeGraTestYesNoPut(POKE_GRA_TEST *pgt)
 
 #else
 
-///< ƒvƒŒƒ[ƒ“—p
+///< ãƒ—ãƒ¬ã‚¼ãƒ³ç”¨
 
 #include "common.h"
 #include "system/fontproc.h"
@@ -3591,7 +3591,7 @@ static	void	PokeGraTestYesNoPut(POKE_GRA_TEST *pgt)
 extern	BOOL	PMSVLD_Load(u32 src, void * dst, u32 len);
 extern	BOOL	PMSVLD_Save(u32 src, void * dst, u32 len);
 
-///< ƒRƒŒ‚ð—LŒø‚É‚·‚é‚ÆASAVE_BANK‚©‚çLOAD‚·‚é
+///< ã‚³ãƒ¬ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã¨ã€SAVE_BANKã‹ã‚‰LOADã™ã‚‹
 //#define		SAVE_BANK_LOAD
 
 #define		SAVE_BANK	(30)
@@ -3600,7 +3600,7 @@ extern	BOOL	PMSVLD_Save(u32 src, void * dst, u32 len);
 #define		HEIGHT_MIN	(-32)
 #define		SHADOW_MAX	(2)
 
-//#define		GO_USE		//—LŒø‚É‚·‚é‚ÆichinoseŽd—l
+//#define		GO_USE		//æœ‰åŠ¹ã«ã™ã‚‹ã¨ichinoseä»•æ§˜
 
 enum{
 	SIDE_MAIN=0,
@@ -3634,11 +3634,11 @@ enum{
 
 //==============================================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //
 //==============================================================================================
 
-#define	PGT_POKE_MAX	(600)					//ƒ|ƒPƒ‚ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ÌMAX
+#define	PGT_POKE_MAX	(600)					//ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®MAX
 #define	PGT_END_KEY		(PAD_BUTTON_L|PAD_BUTTON_R|PAD_BUTTON_SELECT)
 
 enum{
@@ -3665,31 +3665,31 @@ typedef struct{
 }PRG_ANIME;
 
 typedef struct{
-	u8					prg_anm_f;				//ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒiƒ“ƒo[i³–Êj
+	u8					prg_anm_f;				//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ï¼ˆæ­£é¢ï¼‰
 	u8					prg_anm_f_wait;
-	PRG_ANIME			prg_anm_b[3];			//ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒiƒ“ƒo[i”w–Êj
-	SOFT_SPRITE_ANIME	ssanm[SS_ANM_SEQ_MAX];	//ƒpƒ^[ƒ“ƒAƒjƒƒf[ƒ^
+	PRG_ANIME			prg_anm_b[3];			//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ï¼ˆèƒŒé¢ï¼‰
+	SOFT_SPRITE_ANIME	ssanm[SS_ANM_SEQ_MAX];	//ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 }POKE_ANM_DATA;
 
 
 
 // -----------------------------------------
 //
-//	¡ƒpƒ^[ƒ“’è‹`
+//	â– ãƒ‘ã‚¿ãƒ¼ãƒ³å®šç¾©
 //
 // -----------------------------------------
 enum {
-	PAD_F = 0,										///< ³–ÊƒAƒjƒ	
-	PAD_B,											///< ”w–ÊƒAƒjƒ
-	PAD_MAX,										///< ƒAƒjƒÅ‘å”	
+	PAD_F = 0,										///< æ­£é¢ã‚¢ãƒ‹ãƒ¡	
+	PAD_B,											///< èƒŒé¢ã‚¢ãƒ‹ãƒ¡
+	PAD_MAX,										///< ã‚¢ãƒ‹ãƒ¡æœ€å¤§æ•°	
 };
 
 enum {
 	
-	PAD_MODE_Init = 0,								///< ‰Šú‰»
-	PAD_MODE_BaseParaEdit,							///< Šî–{ƒpƒ‰ƒ[ƒ^Ý’è
-	PAD_MODE_F_AnimeEdit,							///< ³–ÊƒAƒjƒÝ’è
-	PAD_MODE_B_AnimeEdit,							///< ”w–ÊƒAƒjƒÝ’è
+	PAD_MODE_Init = 0,								///< åˆæœŸåŒ–
+	PAD_MODE_BaseParaEdit,							///< åŸºæœ¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
+	PAD_MODE_F_AnimeEdit,							///< æ­£é¢ã‚¢ãƒ‹ãƒ¡è¨­å®š
+	PAD_MODE_B_AnimeEdit,							///< èƒŒé¢ã‚¢ãƒ‹ãƒ¡è¨­å®š
 	
 };
 
@@ -3750,20 +3750,20 @@ typedef struct{
 	int					bg_g;
 	int					bg_b;
 	
-	// V‹K
+	// æ–°è¦
 	int					sub_page;
 	u32					save_bank;
 	u32					load_bank;
 	BOOL				is_anime;
 	BOOL				is_main_page;
 
-	// ‚±‚±ˆÈ‰º‚ÍAƒZ[ƒu‚µ‚Ä‚¢‚é‚Ì‚ÅAˆÊ’u‚Ì•ÏX‚ÍŒµ‹ÖI	
+	// ã“ã“ä»¥ä¸‹ã¯ã€ã‚»ãƒ¼ãƒ–ã—ã¦ã„ã‚‹ã®ã§ã€ä½ç½®ã®å¤‰æ›´ã¯åŽ³ç¦ï¼	
 	POKE_ANM_DATA		pad[PGT_POKE_MAX];
 	s8					height[PGT_POKE_MAX];
 	u8					shadow_size[PGT_POKE_MAX];
 	s8					shadow_ofx[PGT_POKE_MAX];
 	
-	// ƒvƒ‰ƒ`ƒi—p•Û‘¶ƒf[ƒ^
+	// ãƒ—ãƒ©ãƒãƒŠç”¨ä¿å­˜ãƒ‡ãƒ¼ã‚¿
 	POKE_ANM_EDIT_DATA	paed[ PGT_POKE_MAX ];
 }POKE_GRA_TEST;
 
@@ -3771,7 +3771,7 @@ typedef struct{
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 
@@ -3857,17 +3857,17 @@ static BOOL	PAD_PAT_AnmPos_Main(POKE_GRA_TEST* pgt);
 
 //==================================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==================================================================================================
 
 static	const	u16	pal[]={
-		GX_RGB(31,31,31),				//0:”’
-		GX_RGB(13,13,13),				//1:”Z‚¢ŠD
-		GX_RGB(24,24,24),				//2:”–‚¢ŠD
-		GX_RGB(15,31,15),				//3:‚¤‚·‚Ý‚Ç‚è
-		GX_RGB(31,15,15),				//4:‚¤‚·‚ ‚©
-		GX_RGB(19,19,19),				//5:ŠD
+		GX_RGB(31,31,31),				//0:ç™½
+		GX_RGB(13,13,13),				//1:æ¿ƒã„ç°
+		GX_RGB(24,24,24),				//2:è–„ã„ç°
+		GX_RGB(15,31,15),				//3:ã†ã™ã¿ã©ã‚Š
+		GX_RGB(31,15,15),				//4:ã†ã™ã‚ã‹
+		GX_RGB(19,19,19),				//5:ç°
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
@@ -3877,10 +3877,10 @@ static	const	u16	pal[]={
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
-		GX_RGB(31,31,31),				//15:”’
+		GX_RGB(31,31,31),				//15:ç™½
 };
 
-//ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+//ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 enum{
 	POKE_NUM=0,
 	POKE_SEX,
@@ -3895,7 +3895,7 @@ enum{
 	POKE_BG_COLOR_B
 };
 
-//ƒAƒjƒ[ƒVƒ‡ƒ“Ý’è
+//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
 enum{
 	MENU_ANM_FRONT=0,
 	MENU_ANM_BACK1,
@@ -3933,25 +3933,25 @@ typedef void (*PT_VIEW_FUNC_EX)(POKE_GRA_TEST *, GF_PRINTCOLOR, int );
 
 typedef struct
 {
-	u8		cursor_pos_x;	//ƒJ[ƒ\ƒ‹XˆÊ’u
-	u8		cursor_pos_y;	//ƒJ[ƒ\ƒ‹YˆÊ’u
-	u8		move_up;		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_down;		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_left;		//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_right;		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	PT_FUNC	a_button_act;	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+	u8		cursor_pos_x;	//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+	u8		cursor_pos_y;	//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+	u8		move_up;		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_down;		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_left;		//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_right;		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	PT_FUNC	a_button_act;	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 }MENU_LIST_PARAM;
 
-#define	MONS_NUM_X	(0)		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[•\Ž¦XˆÊ’u
-#define	MONS_NUM_Y	(8)		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[•\Ž¦YˆÊ’u
-#define	MONS_NAME_X	(32)	//ƒ‚ƒ“ƒXƒ^[–¼•\Ž¦XˆÊ’u
-#define	MONS_NAME_Y	(8)		//ƒ‚ƒ“ƒXƒ^[–¼•\Ž¦YˆÊ’u
-#define	MONS_SEX_X	(96)	//ƒ‚ƒ“ƒXƒ^[«•Ê•\Ž¦XˆÊ’u
-#define	MONS_SEX_Y	(8)		//ƒ‚ƒ“ƒXƒ^[«•Ê•\Ž¦YˆÊ’u
-#define	MONS_COL_X	(128)	//ƒ‚ƒ“ƒXƒ^[ƒJƒ‰[•\Ž¦XˆÊ’u
-#define	MONS_COL_Y	(8)		//ƒ‚ƒ“ƒXƒ^[ƒJƒ‰[•\Ž¦YˆÊ’u
-#define	MONS_PAT_X	(188)	//ƒ‚ƒ“ƒXƒ^[ƒAƒjƒƒpƒ^[ƒ“ƒiƒ“ƒo[•\Ž¦XˆÊ’u
-#define	MONS_PAT_Y	(8)		//ƒ‚ƒ“ƒXƒ^[ƒAƒjƒƒpƒ^[ƒ“ƒiƒ“ƒo[•\Ž¦YˆÊ’u
+#define	MONS_NUM_X	(0)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºXä½ç½®
+#define	MONS_NUM_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºYä½ç½®
+#define	MONS_NAME_X	(32)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åè¡¨ç¤ºXä½ç½®
+#define	MONS_NAME_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åè¡¨ç¤ºYä½ç½®
+#define	MONS_SEX_X	(96)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ€§åˆ¥è¡¨ç¤ºXä½ç½®
+#define	MONS_SEX_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ€§åˆ¥è¡¨ç¤ºYä½ç½®
+#define	MONS_COL_X	(128)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚«ãƒ©ãƒ¼è¡¨ç¤ºXä½ç½®
+#define	MONS_COL_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚«ãƒ©ãƒ¼è¡¨ç¤ºYä½ç½®
+#define	MONS_PAT_X	(188)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºXä½ç½®
+#define	MONS_PAT_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºYä½ç½®
 
 #define	POKE_NUM_DATA_X			(12)
 #define	POKE_NUM_DATA_Y			(0)
@@ -4173,7 +4173,7 @@ enum {
 };
 
 static	const	MENU_LIST_PARAM	mlp[]={
-	///< ‘O–Ê ”w–Ê Ø‚è‘Ö‚¦
+	///< å‰é¢ èƒŒé¢ åˆ‡ã‚Šæ›¿ãˆ
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 0 ),
@@ -4183,7 +4183,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_FB_CHANGE,
 		PAD_PageMain,
 	},
-	///< –Â‚«ºƒEƒFƒCƒg
+	///< é³´ãå£°ã‚¦ã‚§ã‚¤ãƒˆ
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 1 ),
@@ -4193,7 +4193,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_VOICE_WAIT,
 		PAD_VoiceMain,			
 	},
-	///< ƒvƒƒOƒ‰ƒ€ƒAƒjƒ
+	///< ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 2 ),
@@ -4203,7 +4203,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_PG_ANIME_WAIT,
 		PAD_PG_Anm_Main,			
 	},
-	///< ƒvƒƒOƒ‰ƒ€ƒAƒjƒ wait
+	///< ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ wait
 	{
 		CUR_POS_X4,
 		CUR_POS_FIX( 2 ),
@@ -4214,17 +4214,17 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		PAD_PG_AnmWait_Main,			
 	},
 
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚P
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼‘
 	{
 		CUR_POS_X1,				/// pos x
 		CUR_POS_FIX( 3 ),		/// pos y
-		ePAD_PG_ANIME,			/// ª
-		ePAD_EDIT_01 + 1,		/// «
-		ePAD_EDIT_01_POS + 0,		/// ©
-		ePAD_EDIT_01_WAIT + 0,		/// ¨
+		ePAD_PG_ANIME,			/// â†‘
+		ePAD_EDIT_01 + 1,		/// â†“
+		ePAD_EDIT_01_POS + 0,		/// â†
+		ePAD_EDIT_01_WAIT + 0,		/// â†’
 		PAD_PAT_Anm_Main,		/// [ A ]
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚Q
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼’
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 4 ),
@@ -4234,7 +4234,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 1,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚R
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼“
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 5 ),
@@ -4244,7 +4244,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 2,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚S
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼”
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 6 ),
@@ -4254,7 +4254,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 3,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚T
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼•
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 7 ),
@@ -4264,7 +4264,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 4,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚U
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼–
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 8 ),
@@ -4274,7 +4274,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 5,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚V
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼—
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 9 ),
@@ -4284,7 +4284,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 6,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚W
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼˜
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 10 ),
@@ -4294,7 +4294,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 7,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚X
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼™
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 11 ),
@@ -4304,7 +4304,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_WAIT + 8,
 		PAD_PAT_Anm_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ@‚P‚O
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã€€ï¼‘ï¼
 	{
 		CUR_POS_X1,
 		CUR_POS_FIX( 12 ),
@@ -4315,17 +4315,17 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		PAD_PAT_Anm_Main,			
 	},
 
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚P
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼‘
 	{
 		CUR_POS_X2_PATW,				/// pos x
 		CUR_POS_FIX( 3 ),		/// pos y
-		ePAD_PG_ANIME,			/// ª
-		ePAD_EDIT_01_WAIT + 1,	/// «
-		ePAD_EDIT_01 + 0,		/// ©
-		ePAD_EDIT_01_POS + 0,		/// ¨
+		ePAD_PG_ANIME,			/// â†‘
+		ePAD_EDIT_01_WAIT + 1,	/// â†“
+		ePAD_EDIT_01 + 0,		/// â†
+		ePAD_EDIT_01_POS + 0,		/// â†’
 		PAD_PAT_AnmWait_Main,		/// [ A ]
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚Q
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼’
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 4 ),
@@ -4335,7 +4335,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 1,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚R
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼“
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 5 ),
@@ -4345,7 +4345,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 2,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚S
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼”
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 6 ),
@@ -4355,7 +4355,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 3,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚T
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼•
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 7 ),
@@ -4365,7 +4365,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 4,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚U
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼–
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 8 ),
@@ -4375,7 +4375,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 5,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚V
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼—
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 9 ),
@@ -4385,7 +4385,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 6,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚W
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼˜
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 10 ),
@@ -4395,7 +4395,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 7,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚X
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼™
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 11 ),
@@ -4405,7 +4405,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01_POS + 8,
 		PAD_PAT_AnmWait_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒEƒGƒCƒg@‚P‚O
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ã‚¦ã‚¨ã‚¤ãƒˆã€€ï¼‘ï¼
 	{
 		CUR_POS_X2_PATW,
 		CUR_POS_FIX( 12 ),
@@ -4416,17 +4416,17 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		PAD_PAT_AnmWait_Main,			
 	},
 
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚P
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼‘
 	{
 		CUR_POS_X2_PATP,				/// pos x
 		CUR_POS_FIX( 3 ),		/// pos y
-		ePAD_PG_ANIME,			/// ª
-		ePAD_EDIT_01_POS + 1,	/// «
-		ePAD_EDIT_01_WAIT + 0,		/// ©
-		ePAD_EDIT_01 + 0,		/// ¨
+		ePAD_PG_ANIME,			/// â†‘
+		ePAD_EDIT_01_POS + 1,	/// â†“
+		ePAD_EDIT_01_WAIT + 0,		/// â†
+		ePAD_EDIT_01 + 0,		/// â†’
 		PAD_PAT_AnmPos_Main,		/// [ A ]
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚Q
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼’
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 4 ),
@@ -4436,7 +4436,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 1,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚R
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼“
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 5 ),
@@ -4446,7 +4446,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 2,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚S
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼”
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 6 ),
@@ -4456,7 +4456,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 3,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚T
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼•
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 7 ),
@@ -4466,7 +4466,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 4,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚U
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼–
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 8 ),
@@ -4476,7 +4476,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 5,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚V
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼—
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 9 ),
@@ -4486,7 +4486,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 6,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚W
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼˜
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 10 ),
@@ -4496,7 +4496,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 7,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚X
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼™
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 11 ),
@@ -4506,7 +4506,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 		ePAD_EDIT_01 + 8,
 		PAD_PAT_AnmPos_Main,			
 	},
-	///< ƒpƒ^[ƒ“ƒAƒjƒ ƒ|ƒWƒVƒ‡ƒ“@‚P‚O
+	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ ãƒã‚¸ã‚·ãƒ§ãƒ³ã€€ï¼‘ï¼
 	{
 		CUR_POS_X2_PATP,
 		CUR_POS_FIX( 12 ),
@@ -4539,7 +4539,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 #define	COL_CURSOR		(GF_PRINTCOLOR_MAKE(CURSOR_LETTER,CURSOR_SHADOW,CURSOR_GROUND))
 #define	COL_NONE		(GF_PRINTCOLOR_MAKE(NONE_LETTER,NONE_SHADOW,NONE_GROUND))
 
-///< ƒ|ƒPƒ‚ƒ“ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒf[ƒ^•œŒ³
+///< ãƒã‚±ãƒ¢ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å¾©å…ƒ
 static void RC_PPAD( u16 mons_no, u8* patno, u8* wait )
 {
 	POKE_ANM_TABLE_DP		pat;
@@ -4552,7 +4552,7 @@ static void RC_PPAD( u16 mons_no, u8* patno, u8* wait )
 
 //==================================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==================================================================================================
 
@@ -4596,7 +4596,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 	PokeGraTestBGCreate(pgt,pgt->bgl);
 
 	pgt->ssm=SoftSpriteInit(HEAPID_BATTLE);
-	SoftSpritePaletteTransParamSet(pgt->ssm,0,SOFT_SPRITE_COL_SIZE);	//‰e‚Ì•ª‚à“]‘—‚·‚é‚æ‚¤‚ÉƒTƒCƒY‚ð•ÏX
+	SoftSpritePaletteTransParamSet(pgt->ssm,0,SOFT_SPRITE_COL_SIZE);	//å½±ã®åˆ†ã‚‚è»¢é€ã™ã‚‹ã‚ˆã†ã«ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 	pgt->pasp=PokeAnm_AllocMemory(HEAPID_BATTLE,2,0);
 
 	pgt->mons_no=MONSNO_NAETORU;
@@ -4661,15 +4661,15 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 		
 		int index;
 		
-		POKE_ANM_DEBUG_PRINT( "\n ----- DP ƒf[ƒ^‚Ì “Ç‚Ýž‚ÝŠJŽn ----- \n" );
+		POKE_ANM_DEBUG_PRINT( "\n ----- DP ãƒ‡ãƒ¼ã‚¿ã® èª­ã¿è¾¼ã¿é–‹å§‹ ----- \n" );
 		POKE_ANM_DEBUG_PRINT( "\n");
-		POKE_ANM_DEBUG_PRINT( " ----- DP ƒf[ƒ^‚Ì “Ç‚Ýž‚Ý’†¥¥¥ ----- \n" );
+		POKE_ANM_DEBUG_PRINT( " ----- DP ãƒ‡ãƒ¼ã‚¿ã® èª­ã¿è¾¼ã¿ä¸­ãƒ»ãƒ»ãƒ» ----- \n" );
 		POKE_ANM_DEBUG_PRINT( "\n");
 
 		//PGT_POKE_MAX
 		for ( i = 0; i < 494; i++ ){
 			
-			///< “K³‚Èƒ|ƒPƒ‚ƒ“No‚É”z’u‚·‚é•K—v‚ª‚ ‚é
+			///< é©æ­£ãªãƒã‚±ãƒ¢ãƒ³Noã«é…ç½®ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 			index = PokeGraNoTable[ i ];
 			
 			// POKE_ANM_DEBUG_PRINT( " i = %3d  index = %3d \n", i, index );
@@ -4695,7 +4695,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 				pgt->paed[ index ].poke_anime[ 1 ].ssanm[ j ].oy	= 0;
 			}
 
-			///< ‰eƒTƒCƒY ‰e‚‚³ ‚‚³î•ñ
+			///< å½±ã‚µã‚¤ã‚º å½±é«˜ã• é«˜ã•æƒ…å ±
 			ArchiveDataLoadOfs( &ox,	ARC_POKE_SHADOW_OFX, 0, i, 1);
 			ArchiveDataLoadOfs( &oy,	ARC_POKE_YOFS,		 0, i, 1);
 			ArchiveDataLoadOfs( &size,	ARC_POKE_SHADOW,	 0, i, 1);
@@ -4703,7 +4703,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 			pgt->paed[ index ].shadow_size	= size;
 			pgt->paed[ index ].shadow_ofx	= ox;
 			
-			///< ƒAƒjƒƒf[ƒ^•œŒ³
+			///< ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å¾©å…ƒ
 			{
 				SOFT_SPRITE_ANIME_DP ssa[10];
 				
@@ -4719,7 +4719,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 				}
 			}
 			
-			///< ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒf[ƒ^•œŒ³
+			///< ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å¾©å…ƒ
 			{
 				u8 patno;
 				u8 wait;
@@ -4731,7 +4731,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 			}
 		}
 		
-		POKE_ANM_DEBUG_PRINT( "\n ----- DP ƒf[ƒ^‚Ì “Ç‚Ýž‚ÝI—¹ ----- \n" );
+		POKE_ANM_DEBUG_PRINT( "\n ----- DP ãƒ‡ãƒ¼ã‚¿ã® èª­ã¿è¾¼ã¿çµ‚äº† ----- \n" );
 	}
 #if 0
 	if ( !(sys.cont & ( PAD_BUTTON_R | PAD_BUTTON_L )) ){
@@ -4755,16 +4755,16 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 			}
 			pgt->paed[0].shadow_ofx=0x55;
 		}
-		POKE_ANM_DEBUG_PRINT( "\n ----- ƒf[ƒ^Ž©“®ƒ[ƒh ----- \n" );
+		POKE_ANM_DEBUG_PRINT( "\n ----- ãƒ‡ãƒ¼ã‚¿è‡ªå‹•ãƒ­ãƒ¼ãƒ‰ ----- \n" );
 	}
 #endif
 /*
-	Å‰‚©‚ç‚µ‚½‰æ–Ê
-	‚·‚½[‚Æ‘O–Ê
-	‚¹‚ê‚­‚Æ”w–Ê
-	‚Ð‚±‚´‚é
-	‚³‚ä‚¤1ŒÂ
-	LR10ŒÂ
+	æœ€åˆã‹ã‚‰ã—ãŸç”»é¢
+	ã™ãŸãƒ¼ã¨å‰é¢
+	ã›ã‚Œãã¨èƒŒé¢
+	ã²ã“ã–ã‚‹
+	ã•ã‚†ã†1å€‹
+	LR10å€‹
 */
 
 	{
@@ -4819,26 +4819,26 @@ static	void	PokeTestMainScreenCreate(POKE_GRA_TEST *pgt)
 
 //============================================================================================
 /**
- *	í“¬”wŒi‰æ–Ê‰Šú‰»•‰æ–Ê¶¬
+ *	æˆ¦é—˜èƒŒæ™¯ç”»é¢åˆæœŸåŒ–ï¼†ç”»é¢ç”Ÿæˆ
  */
 //============================================================================================
 static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 {
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
@@ -4855,7 +4855,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -4887,7 +4887,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 		G2_SetBG0Priority(0x01);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[]={
 			///<FRAME1_S
@@ -4901,7 +4901,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 		GF_BGL_ScrClear(bgl, GF_BGL_FRAME1_S );
 	}
 
-	//”wŒiƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒh
+	//èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	{
 		TalkWinGraphicNullSet(bgl, GF_BGL_FRAME1_M,TALK_WIN_CGX_START,TALK_WIN_PAL_NO,0,HEAPID_BATTLE);
 		ArcUtil_BgCharSet(ARC_BATT_BG,BATTLE_BG00_NCGR_BIN,bgl,GF_BGL_FRAME3_M,0,0,1,HEAPID_BATTLE);
@@ -4924,7 +4924,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 
 //============================================================================================
 /**
- *	ƒƒCƒ“ƒ‹[ƒvƒ^ƒXƒN
+ *	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¹ã‚¯
  */
 //============================================================================================
 static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
@@ -4958,7 +4958,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 		/*
 #ifdef GO_USE
 		Snd_SceneSet(SND_SCENE_DUMMY);
-		Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_FIGHT0101, 1 );	//ƒoƒgƒ‹‹ÈÄ¶
+		Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_FIGHT0101, 1 );	//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
 #else
 		pgt->seq_no_temp=pgt->seq_no;
 		pgt->seq_no=SEQ_SAVE;
@@ -5079,7 +5079,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 		}
 		pgt->seq_no=SEQ_POKEMON_CHECK;
 		break;
-	//ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+	//ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 	case SEQ_POKEMON_CHECK:
 		if(sys.trg & PAD_BUTTON_SELECT){
 			pgt->is_main_page = FALSE;
@@ -5118,7 +5118,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->seq_no=SEQ_POKEMON_CHECK;
 		}
 		break;
-	//ƒ|ƒPƒ‚ƒ“ƒAƒjƒƒZƒbƒg
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 	case SEQ_POKEMON_ANIME:
 		if(sys.repeat == PAD_KEY_UP){
 			move=mlp[pgt->pos].move_up;
@@ -5317,7 +5317,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->seq_no=SEQ_POKEMON_ANIME;
 		}
 		break;
-	//ƒ[ƒh
+	//ãƒ­ãƒ¼ãƒ‰
 	case SEQ_LOAD:
 		if(PokeGraTestLoadAct(pgt)==TRUE){
 			pgt->seq_no=pgt->seq_no_temp;
@@ -5326,7 +5326,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			}
 		}
 		break;
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 	case SEQ_SAVE:
 		if(PokeGraTestSaveAct(pgt)==TRUE){
 			pgt->seq_no=pgt->seq_no_temp;
@@ -5335,7 +5335,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			}
 		}
 		break;
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	case SEQ_POKEMON_ANIME_ACT:
 		if((PokeAnm_IsFinished(pgt->pasp,0)==TRUE)&&
 		   (PokeAnm_IsFinished(pgt->pasp,1)==TRUE)&&
@@ -5347,7 +5347,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->is_anime = FALSE;
 		}
 		break;
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	case SEQ_POKEMON_ANIME_ACT_B:
 		if((PokeAnm_IsFinished(pgt->pasp,0)==TRUE)&&
 		   (SoftSpriteAnimeEndCheck(pgt->ss[0])==FALSE)){
@@ -5355,7 +5355,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->is_anime = FALSE;
 		}
 		break;
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	case SEQ_POKEMON_ANIME_ACT_F:
 		if((PokeAnm_IsFinished(pgt->pasp,1)==TRUE)&&
 		   (SoftSpriteAnimeEndCheck(pgt->ss[1])==FALSE)){
@@ -5373,7 +5373,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 
 //============================================================================================
 /**
- *	ƒƒCƒ“ƒ‹[ƒvƒ^ƒXƒN
+ *	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¹ã‚¯
  */
 //============================================================================================
 static	void	PokeGraTestDebugPrint(POKE_GRA_TEST *pgt,int mode)
@@ -5439,7 +5439,7 @@ static	void	PokeGraTestShadowSet(POKE_GRA_TEST *pgt,int height)
 
 //==============================================================================================
 //
-//	ƒ^ƒCƒgƒ‹ƒfƒoƒbƒNƒƒjƒ…[‚©‚çŒÄ‚Î‚ê‚é‚æ‚¤‚É’Ç‰Á
+//	ã‚¿ã‚¤ãƒˆãƒ«ãƒ‡ãƒãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã‚ˆã†ã«è¿½åŠ 
 //
 //==============================================================================================
 //--------------------------------------------------------------
@@ -5473,11 +5473,11 @@ static PROC_RESULT PokeGraTestProc_End(PROC * proc, int * seq)
 	PROC_FreeWork(proc);
 	sys_DeleteHeap(HEAPID_BATTLE);
 	Main_SetNextProc(NO_OVERLAY_ID, &TitleProcData);
-	//sys_MainProcChange( TitleMainProc );				//•œ‹Aæ
-	//ƒ\ƒtƒgƒŠƒZƒbƒg
-	//Ú×‚Íƒ\[ƒXæ“ª‚ÌuƒTƒEƒ“ƒhƒeƒXƒg‚Ì—áŠOˆ—‚É‚Â‚¢‚Äv‚ðŽQÆ‚µ‚Ä‰º‚³‚¢
+	//sys_MainProcChange( TitleMainProc );				//å¾©å¸°å…ˆ
+	//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆ
+	//è©³ç´°ã¯ã‚½ãƒ¼ã‚¹å…ˆé ­ã®ã€Œã‚µã‚¦ãƒ³ãƒ‰ãƒ†ã‚¹ãƒˆã®ä¾‹å¤–å‡¦ç†ã«ã¤ã„ã¦ã€ã‚’å‚ç…§ã—ã¦ä¸‹ã•ã„
 	//OS_InitReset();
-	OS_ResetSystem(0);									//ƒ\ƒtƒgƒŠƒZƒbƒg
+	OS_ResetSystem(0);									//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆ
 	return PROC_RES_FINISH;
 }
 
@@ -5492,9 +5492,9 @@ const PROC_DATA PokeAnimeEditorProcData = {
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
- * @param	work	VBLank‚É‚Íˆø”‚ª•K—v‚È‚Ì‚Å’è‹`‚µ‚Ä‚ ‚é‚ªŽÀÛ‚É‚ÍNULL‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅAƒAƒNƒZƒX‚Í‹ÖŽ~I
+ * @param	work	VBLankã«ã¯å¼•æ•°ãŒå¿…è¦ãªã®ã§å®šç¾©ã—ã¦ã‚ã‚‹ãŒå®Ÿéš›ã«ã¯NULLãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã€ã‚¢ã‚¯ã‚»ã‚¹ã¯ç¦æ­¢ï¼
  *
  * @retval	none	
  *
@@ -5516,7 +5516,7 @@ static	void	PokeGraTestVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	3D‰Šú‰»
+ * @brief	3DåˆæœŸåŒ–
  *
  * @retval	none	
  */
@@ -5532,10 +5532,10 @@ static void Init3DStuff_(void)
     G3X_AntiAlias(TRUE);
     G3X_AlphaBlend(TRUE);
 
-    // 3D –Ê‚Í“ÁŽêŒø‰ÊOFF‚Å‚à‘¼‚ÌBG–Ê‚Æƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒO‚ªs‚í‚ê‚Ü‚·‚ªA
-    // ‚»‚Ì‚½‚ß‚É‚Íƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒO‘ÎÛ–Ê‚ÌŽw’è‚ðs‚¤•K—v‚ª‚ ‚è‚Ü‚·B
-    // SDK ‚É‚Í‘ÎÛ–Ê‚Ì‚Ý‚ðÝ’è‚·‚é API ‚ª‘¶Ý‚µ‚È‚¢‚Ì‚ÅA‘ã‚í‚è‚É G2_SetBlendAlpha ‚ðŽg‚¢‚Ü‚·B
-    // ‚±‚Ìê‡ G2_SetBlendAlpha ‚ÌŒã‚ë2‚Â‚Ìˆø”‚Í–³Ž‹‚³‚ê‚Ü‚·B
+    // 3D é¢ã¯ç‰¹æ®ŠåŠ¹æžœOFFã§ã‚‚ä»–ã®BGé¢ã¨Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãŒè¡Œã‚ã‚Œã¾ã™ãŒã€
+    // ãã®ãŸã‚ã«ã¯Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°å¯¾è±¡é¢ã®æŒ‡å®šã‚’è¡Œã†å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+    // SDK ã«ã¯å¯¾è±¡é¢ã®ã¿ã‚’è¨­å®šã™ã‚‹ API ãŒå­˜åœ¨ã—ãªã„ã®ã§ã€ä»£ã‚ã‚Šã« G2_SetBlendAlpha ã‚’ä½¿ã„ã¾ã™ã€‚
+    // ã“ã®å ´åˆ G2_SetBlendAlpha ã®å¾Œã‚2ã¤ã®å¼•æ•°ã¯ç„¡è¦–ã•ã‚Œã¾ã™ã€‚
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BD, 0, 0);
 
     // clear color
@@ -5546,7 +5546,7 @@ static void Init3DStuff_(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“«•ÊƒQƒbƒg
+ * @brief	ãƒã‚±ãƒ¢ãƒ³æ€§åˆ¥ã‚²ãƒƒãƒˆ
  *
  * @retval	none	
  */
@@ -5568,27 +5568,27 @@ static	u8	PokeGraTestSexGet(u16 monsno)
 }
 
 //--------------------------------------------------------------
-//	ƒƒbƒZ[ƒW•\Ž¦ˆÊ’u’è‹`
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä½ç½®å®šç¾©
 //--------------------------------------------------------------
-#define	ANM_FRONT_NUM_X		(16)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_FRONT_X			(48)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_FRONT_WAIT_X	(208)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_FRONT_Y			(0)		//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+#define	ANM_FRONT_NUM_X		(16)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_FRONT_X			(48)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_FRONT_WAIT_X	(208)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_FRONT_Y			(0)		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
-#define	ANM_BACK_NUM_X		(16)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_X			(48)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_WAIT_X		(208)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_Y			(13)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_OFS_Y		(13)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+#define	ANM_BACK_NUM_X		(16)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_X			(48)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_WAIT_X		(208)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_Y			(13)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_OFS_Y		(13)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
-#define	ANM_NO_X	(16)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_NO_Y	(52)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	PAT_NO_X	(64)	//Patƒiƒ“ƒo[
-#define	PAT_NO_Y	(52)	//Patƒiƒ“ƒo[
-#define	WAIT_X		(112)	//ƒAƒjƒ[ƒVƒ‡ƒ“Wait
-#define	WAIT_Y		(52)	//ƒAƒjƒ[ƒVƒ‡ƒ“Wait
+#define	ANM_NO_X	(16)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_NO_Y	(52)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	PAT_NO_X	(64)	//PatãƒŠãƒ³ãƒãƒ¼
+#define	PAT_NO_Y	(52)	//PatãƒŠãƒ³ãƒãƒ¼
+#define	WAIT_X		(112)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³Wait
+#define	WAIT_Y		(52)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³Wait
 
-#define	ANM_NO_OFS_Y	(14)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+#define	ANM_NO_OFS_Y	(14)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
 #define	SVLD_X		(160 - 80)
 #define	SVLD_Y		( 80 - 16)
@@ -6223,7 +6223,7 @@ static BOOL	PAD_PAT_AnmPos_Main(POKE_GRA_TEST* pgt)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -6276,7 +6276,7 @@ static void PDA_PageChageView( POKE_GRA_TEST* pgt, GF_PRINTCOLOR col )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“ƒf[ƒ^•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -6317,7 +6317,7 @@ static	void	PokeTestPokePatDataPut(POKE_GRA_TEST *pgt)
 {
 	GF_BGL_BmpWinFill(pgt->win_m,0x0f,POKE_PAT_DATA_X,POKE_PAT_DATA_Y,12*1,16);
 
-	//ƒAƒjƒƒpƒ^[ƒ“ƒiƒ“ƒo[
+	//ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼
 	STRBUF_SetNumber(pgt->msg_buf, pgt->anm_pat,1,NUMBER_DISPTYPE_SPACE,NUMBER_CODETYPE_DEFAULT);
 	GF_STR_PrintSimple(pgt->win_m,FONT_SYSTEM,pgt->msg_buf,POKE_PAT_DATA_X,POKE_PAT_DATA_Y,MSG_NO_PUT,NULL);
 
@@ -6479,35 +6479,35 @@ static	int	PokeTestPokeFormMaxGet(POKE_GRA_TEST *pgt)
 	int	ret;
 
 	switch(pgt->mons_no){
-	//ƒ~ƒmƒ€ƒbƒ`
-	//ƒ~ƒmƒƒX
+	//ãƒŸãƒŽãƒ ãƒƒãƒ
+	//ãƒŸãƒŽãƒ¡ã‚¹
 	case MONSNO_MINOMUTTI:
 	case MONSNO_MINOMESU:
 		ret=FORMNO_MINOMUTTI_MAX;
 		break;
-	//ƒV[ƒEƒV
-	//ƒV[ƒhƒ‹ƒS
+	//ã‚·ãƒ¼ã‚¦ã‚·
+	//ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
 	case MONSNO_SIIUSI:
 	case MONSNO_SIIDORUGO:
 		ret=FORMNO_SII_MAX;
 		break;
-	//ƒ`ƒFƒŠƒVƒ…
+	//ãƒã‚§ãƒªã‚·ãƒ¥
 	case MONSNO_THERISYU:
 		ret=FORMNO_THERISYU_MAX;
 		break;
-	//ƒAƒEƒX
+	//ã‚¢ã‚¦ã‚¹
 	case MONSNO_AUSU:
 		ret=POKE_WAZA_TYPE_MAX;
 		break;
-	//ƒ|ƒƒ‹ƒ“
+	//ãƒãƒ¯ãƒ«ãƒ³
 	case MONSNO_POWARUN:
 		ret=FORMNO_POWARUN_MAX;
 		break;
-	//ƒfƒIƒLƒVƒX
+	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_DEOKISISU:
 		ret=FORMNO_DEOKISISU_MAX;
 		break;
-	//ƒAƒ“ƒm[ƒ“
+	//ã‚¢ãƒ³ãƒŽãƒ¼ãƒ³
 	case MONSNO_ANNOON:
 		ret=UNK_QUE;
 		break;
@@ -6520,7 +6520,7 @@ static	int	PokeTestPokeFormMaxGet(POKE_GRA_TEST *pgt)
 
 //==============================================================================================
 //
-//	ƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÚ“®
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 //
 //==============================================================================================
 static	void	CursorMove(POKE_GRA_TEST *pgt,int side,int pos,int mode)
@@ -6550,7 +6550,7 @@ static	void	CursorMove(POKE_GRA_TEST *pgt,int side,int pos,int mode)
 
 //==============================================================================================
 //
-//	ƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÚ“®
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 //
 //==============================================================================================
 static	void	YesNoCursorMove(POKE_GRA_TEST *pgt,int pos,int mode)
@@ -6605,7 +6605,7 @@ static	BOOL	PokeNumAct(POKE_GRA_TEST *pgt)
 		case NUM_CALC_MOVE:
 			PokeTestPokeNumDataPut(pgt,MODE_ACTIVE);
 			
-			///< ƒAƒjƒƒf[ƒ^XV
+			///< ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿æ›´æ–°
 			PokeGraTestSubScreenMake(pgt);
 			break;
 		case NUM_CALC_END:
@@ -6866,7 +6866,7 @@ static	BOOL	PokeBGColorBAct(POKE_GRA_TEST *pgt)
 
 //==============================================================================================
 //
-//	”’l•ÒW
+//	æ•°å€¤ç·¨é›†
 //
 //==============================================================================================
 static	int	PokeTestNumCalc(POKE_GRA_TEST *pgt,int *param,int keta,int min,int max,int mode)
@@ -6947,7 +6947,7 @@ static	int	PokeTestNumCalc(POKE_GRA_TEST *pgt,int *param,int keta,int min,int ma
 
 //==============================================================================================
 //
-//	ƒpƒ‰ƒ[ƒ^ƒ[ƒh
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 //
 //==============================================================================================
 static	BOOL	PokeGraTestLoadAct(POKE_GRA_TEST *pgt)
@@ -6999,7 +6999,7 @@ static	BOOL	PokeGraTestLoadAct(POKE_GRA_TEST *pgt)
 			{
 				int i;
 				int num = 0;
-				OS_Printf( " –Â‚«º‘‚«Š·‚¦’† \n" );
+				OS_Printf( " é³´ãå£°æ›¸ãæ›ãˆä¸­ \n" );
 				for ( i = 0; i < PGT_POKE_MAX;i++){
 					
 					if ( pgt->paed[ i ].poke_anime[ 1 ].voice_wait == 15
@@ -7030,7 +7030,7 @@ static	BOOL	PokeGraTestLoadAct(POKE_GRA_TEST *pgt)
 
 //==============================================================================================
 //
-//	ƒpƒ‰ƒ[ƒ^ƒZ[ƒu
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 //
 //==============================================================================================
 static	BOOL	PokeGraTestSaveAct(POKE_GRA_TEST *pgt)

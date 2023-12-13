@@ -18,37 +18,37 @@
   do-indent.
 
   Revision 1.11  2004/09/25 12:10:38  sato_masaki
-  MBi_IsAbleToRecv()‚ğ’Ç‰ÁB(IsAbleToRecv()‚©‚ç‚ÌƒŠƒl[ƒ€)
+  MBi_IsAbleToRecv()ã‚’è¿½åŠ ã€‚(IsAbleToRecv()ã‹ã‚‰ã®ãƒªãƒãƒ¼ãƒ )
 
   Revision 1.10  2004/09/20 12:53:46  sato_masaki
-  MBi_get_blockinfo()‚Ì•Ô‚è’l‚ğABOOL’l‚É•ÏXB
+  MBi_get_blockinfo()ã®è¿”ã‚Šå€¤ã‚’ã€BOOLå€¤ã«å¤‰æ›´ã€‚
 
   Revision 1.9  2004/09/14 06:34:21  sato_masaki
-  MBDownloadFileInfo‚Éreserved—Ìˆæ‚ğ’Ç‰ÁB
+  MBDownloadFileInfoã«reservedé ˜åŸŸã‚’è¿½åŠ ã€‚
 
   Revision 1.8  2004/09/07 04:33:46  sato_masaki
-  MB_BlockInfo‚Ésegment_no‚ğ’Ç‰ÁB
+  MB_BlockInfoã«segment_noã‚’è¿½åŠ ã€‚
 
   Revision 1.7  2004/09/06 09:20:01  miya
-  ’è‹`íœ
+  å®šç¾©å‰Šé™¤
 
   Revision 1.6  2004/09/06 07:14:22  miya
-  d—l•ÏX‚É‚æ‚é•ÏX
+  ä»•æ§˜å¤‰æ›´ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.5  2004/09/06 03:48:08  miya
-  ”FØƒ‰ƒCƒuƒ‰ƒŠ’Ç‰Á
+  èªè¨¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªè¿½åŠ 
 
   Revision 1.4  2004/09/06 02:36:00  miya
-  d—l•ÏX‚É‚æ‚é’è‹`•ÏX
+  ä»•æ§˜å¤‰æ›´ã«ã‚ˆã‚‹å®šç¾©å¤‰æ›´
 
   Revision 1.3  2004/09/04 11:03:00  sato_masaki
-  ROM_HEADER_SIZE_FULL‚Ì’è‹`‚ğmb_fileinfo.c‚©‚çˆÚ“®B
+  ROM_HEADER_SIZE_FULLã®å®šç¾©ã‚’mb_fileinfo.cã‹ã‚‰ç§»å‹•ã€‚
 
   Revision 1.2  2004/09/04 09:56:32  sato_masaki
-  ƒZƒOƒƒ“ƒgADownloadFileInfo‚ÉŠÖ‚·‚é’è‹`‚ğ‚±‚¿‚ç‚ÖˆÚ“®B
+  ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã€DownloadFileInfoã«é–¢ã™ã‚‹å®šç¾©ã‚’ã“ã¡ã‚‰ã¸ç§»å‹•ã€‚
 
   Revision 1.1  2004/09/03 07:06:28  sato_masaki
-  ƒtƒ@ƒCƒ‹‚ğ‹@”\•Ê‚É•ªŠ„B
+  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ©Ÿèƒ½åˆ¥ã«åˆ†å‰²ã€‚
 
 
   $NoKeywords: $
@@ -62,7 +62,7 @@
 
 /* macro definition -------------------------------------------------------- */
 
-#define MB_DL_SEGMENT_NUM				(3)     //      RomHeader, ARM9Static, ARM7Static‚Ì3ƒZƒOƒƒ“ƒg
+#define MB_DL_SEGMENT_NUM				(3)     //      RomHeader, ARM9Static, ARM7Staticã®3ã‚»ã‚°ãƒ¡ãƒ³ãƒˆ
 #define MB_DOWNLOAD_FILEINFO_SIZE		(sizeof(MBDownloadFileInfo))
 
 #define MB_AUTHCODE_SIZE				(136)   /* Authentication code size */
@@ -72,11 +72,11 @@
 /* type structure definition --------------------------------------------------------- */
 
 //---------------------------------------------------------
-// e‹@‚©‚çq‹@‚É‘—M‚·‚éƒ}ƒ‹ƒ`ƒu[ƒg—pƒ_ƒEƒ“ƒ[ƒhƒtƒ@ƒCƒ‹î•ñ
+// è¦ªæ©Ÿã‹ã‚‰å­æ©Ÿã«é€ä¿¡ã™ã‚‹ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆç”¨ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±
 //---------------------------------------------------------
 
 /*
- * ƒZƒOƒƒ“ƒgƒ^ƒCƒv’è‹`
+ * ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å®šç¾©
  */
 typedef enum MbSegmentType
 {
@@ -87,60 +87,60 @@ typedef enum MbSegmentType
 MbSegmentType;
 
 /*
- * ƒ}ƒ‹ƒ`ƒu[ƒg‰Šúƒu[ƒgƒZƒOƒƒ“ƒgî•ñƒwƒbƒ_\‘¢‘Ì.
+ * ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆåˆæœŸãƒ–ãƒ¼ãƒˆã‚»ã‚°ãƒ¡ãƒ³ãƒˆæƒ…å ±ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“.
  */
 typedef struct MbDownloadFileInfoHeader
 {
-    u32     arm9EntryAddr;             /* ARM9ƒGƒ“ƒgƒŠƒAƒhƒŒƒX */
-    u32     arm7EntryAddr;             /* ARM7ƒGƒ“ƒgƒŠƒAƒhƒŒƒX */
+    u32     arm9EntryAddr;             /* ARM9ã‚¨ãƒ³ãƒˆãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ */
+    u32     arm7EntryAddr;             /* ARM7ã‚¨ãƒ³ãƒˆãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ */
     u32     padding;
 }
 MbDownloadFileInfoHeader;
 
 /*
- * ƒZƒOƒƒ“ƒg\¬î•ñ.
+ * ã‚»ã‚°ãƒ¡ãƒ³ãƒˆæ§‹æˆæƒ…å ±.
  */
 typedef struct MbSegmentInfo
 {
-    u32     recv_addr;                 // óM‚ÌˆêŠi”[ƒAƒhƒŒƒX
-    u32     load_addr;                 // ƒ[ƒhƒAƒhƒŒƒX       iÀsƒAƒhƒŒƒXj
-    u32     size;                      // ƒZƒOƒƒ“ƒgƒTƒCƒY
-    u32     target:1;                  // ƒ^[ƒQƒbƒg           iMI_PROCESSOR_ARM9 or _ARM7B–³‘®«‚Ìƒtƒ@ƒCƒ‹‚ÍARM9‚Æ‚·‚éBj
-    u32     rsv:31;                    // —\–ñB
+    u32     recv_addr;                 // å—ä¿¡æ™‚ã®ä¸€æ™‚æ ¼ç´ã‚¢ãƒ‰ãƒ¬ã‚¹
+    u32     load_addr;                 // ãƒ­ãƒ¼ãƒ‰ã‚¢ãƒ‰ãƒ¬ã‚¹       ï¼ˆå®Ÿè¡Œã‚¢ãƒ‰ãƒ¬ã‚¹ï¼‰
+    u32     size;                      // ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚µã‚¤ã‚º
+    u32     target:1;                  // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ           ï¼ˆMI_PROCESSOR_ARM9 or _ARM7ã€‚ç„¡å±æ€§ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ARM9ã¨ã™ã‚‹ã€‚ï¼‰
+    u32     rsv:31;                    // äºˆç´„ã€‚
 }
 MbSegmentInfo;                         // 16byte
 
 
 /*
- * ‰Šúƒu[ƒgƒZƒOƒƒ“ƒg‘S‘Ì‚Ì\‘¢‘Ì.
+ * åˆæœŸãƒ–ãƒ¼ãƒˆã‚»ã‚°ãƒ¡ãƒ³ãƒˆå…¨ä½“ã®æ§‹é€ ä½“.
  */
 typedef struct
 {
-    MbDownloadFileInfoHeader header;   // ƒwƒbƒ_î•ñ(ƒGƒ“ƒgƒŠ[ƒAƒhƒŒƒX‚ªŠi”[‚³‚ê‚é)
-    MbSegmentInfo seg[MB_DL_SEGMENT_NUM];       // ƒZƒOƒƒ“ƒgî•ñ
-    u32     auth_code[MB_AUTHCODE_SIZE / sizeof(u32)];  // ”FØ—pƒR[ƒh
-    u32     reserved[32 / sizeof(u32)]; // —\–ñ—Ìˆæ
+    MbDownloadFileInfoHeader header;   // ãƒ˜ãƒƒãƒ€æƒ…å ±(ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ ¼ç´ã•ã‚Œã‚‹)
+    MbSegmentInfo seg[MB_DL_SEGMENT_NUM];       // ã‚»ã‚°ãƒ¡ãƒ³ãƒˆæƒ…å ±
+    u32     auth_code[MB_AUTHCODE_SIZE / sizeof(u32)];  // èªè¨¼ç”¨ã‚³ãƒ¼ãƒ‰
+    u32     reserved[32 / sizeof(u32)]; // äºˆç´„é ˜åŸŸ
 }
 MBDownloadFileInfo;
 
 
-/* ƒuƒƒbƒNî•ñQÆ—pƒe[ƒuƒ‹ */
+/* ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±å‚ç…§ç”¨ãƒ†ãƒ¼ãƒ–ãƒ« */
 typedef struct
 {
-    // ŠeƒZƒOƒƒ“ƒg‚É‚¨‚¯‚éƒCƒ[ƒWæ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg
+    // å„ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã«ãŠã‘ã‚‹ã‚¤ãƒ¡ãƒ¼ã‚¸å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
     u32     seg_src_offset[MB_DL_SEGMENT_NUM];
-    u16     seg_head_blockno[MB_DL_SEGMENT_NUM];        // ƒZƒOƒƒ“ƒg‚Ìæ“ªƒuƒƒbƒN”Ô†
-    u16     block_num;                 /* ‘ƒuƒƒbƒN” */
+    u16     seg_head_blockno[MB_DL_SEGMENT_NUM];        // ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®å…ˆé ­ãƒ–ãƒ­ãƒƒã‚¯ç•ªå·
+    u16     block_num;                 /* ç·ãƒ–ãƒ­ãƒƒã‚¯æ•° */
 }
 MB_BlockInfoTable;
 
 
-/* ƒuƒƒbƒN“]‘—ŠÖ˜Aƒf[ƒ^ */
+/* ãƒ–ãƒ­ãƒƒã‚¯è»¢é€é–¢é€£ãƒ‡ãƒ¼ã‚¿ */
 typedef struct
 {
-    u32     child_address;             // q‹@‚ÌŠi”[ƒAƒhƒŒƒX
-    u32     size;                      // Block‚ÌƒTƒCƒY
-    u32     offset;                    // ƒCƒ[ƒWæ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg’l‚Å‚Â‚æ‚¤‚É‚·‚é
+    u32     child_address;             // å­æ©Ÿã®æ ¼ç´ã‚¢ãƒ‰ãƒ¬ã‚¹
+    u32     size;                      // Blockã®ã‚µã‚¤ã‚º
+    u32     offset;                    // ã‚¤ãƒ¡ãƒ¼ã‚¸å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã§æŒã¤ã‚ˆã†ã«ã™ã‚‹
     u8      segment_no;
     u8      pad[3];
 }
@@ -153,8 +153,8 @@ extern const MbSegmentType MBi_defaultLoadSegList[MB_DL_SEGMENT_NUM];
 /* functions --------------------------------------------------------------- */
 
 /*
- * MbDownloadFileInfoHeader‚Ö‚Ìƒ|ƒCƒ“ƒ^‚©‚çA
- * ƒZƒOƒƒ“ƒgî•ñ‚ğæ“¾
+ * MbDownloadFileInfoHeaderã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã€
+ * ã‚»ã‚°ãƒ¡ãƒ³ãƒˆæƒ…å ±ã‚’å–å¾—
  */
 static inline MbSegmentInfo *MBi_GetSegmentInfo(MbDownloadFileInfoHeader * mdfi, int i)
 {

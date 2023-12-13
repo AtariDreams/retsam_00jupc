@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wifi_p2pmatch_tool.h
- *	@brief		WiFi�N���u�ȊO�ŔC�V���F�؃T�[�o�ɃA�N�Z�X����Ƃ��ɁAWiFi�N���u��ŕ\������Ȃ��X�e�[�^�X��Ԃɂ���V�X�e��
+ *	@brief		WiFiクラブ以外で任天堂認証サーバにアクセスするときに、WiFiクラブ上で表示されないステータス状態にするシステム
  *	@author		tomoya takahashi
  *	@data		2008.03.28
  *
@@ -15,11 +15,11 @@
 
 #include "savedata/mystatus.h"
 
-// WiFi�N���u�ȊO�ŔC�V���F�؃T�[�o�ɃA�N�Z�X����Ƃ��ɁA
-// WiFi�N���u��ŕ\������Ȃ��X�e�[�^�X��Ԃɂ���V�X�e��
+// WiFiクラブ以外で任天堂認証サーバにアクセスするときに、
+// WiFiクラブ上で表示されないステータス状態にするシステム
 //
-// Set�ŃN���[�����܂��B�N���[���Ɏg�p�������[�N�͔C�V���T�[�o�Ƃ̒ʐM��
-// �ؒf����܂ŕێ����Ă��������B
+// Setでクリーンします。クリーンに使用したワークは任天堂サーバとの通信を
+// 切断するまで保持してください。
 typedef struct _WIFI_MACH_STATUS_tag _WIFI_MACH_STATUS;
 extern _WIFI_MACH_STATUS* WifiP2PMatch_CleanStatus_Set( const MYSTATUS* cp_mystatus, u32 heapID );
 extern void WifiP2PMatch_CleanStatus_Delete( _WIFI_MACH_STATUS* p_buff );

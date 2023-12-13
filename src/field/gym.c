@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	gym.c
- * @bfief	ƒWƒ€dŠ|‚¯‚Æ‚©
+ * @bfief	ã‚¸ãƒ ä»•æ›ã‘ã¨ã‹
  * @author	Nozomu Saito
  *
  */
@@ -30,7 +30,7 @@
 #include "script.h"
 #include "../fielddata/script/trainer_def.h"	//SCRID_TRAINER_MOVE_BATTLE
 #include "ev_trainer.h"
-//#include "arc/plgym_ghost.naix"	//–¢g—p
+//#include "arc/plgym_ghost.naix"	//æœªä½¿ç”¨
 
 #include "fielddata/maptable/zone_id.h"
 #include "eventdata.h"
@@ -40,28 +40,28 @@
 #include "fieldmap.h"
 #include	"../../include/msgdata/msg_c04gym0101.h"
 	
-#include "../fielddata/eventdata/zone_c05gym0101evd.h" //PLƒS[ƒXƒgƒWƒ€
+#include "../fielddata/eventdata/zone_c05gym0101evd.h" //PLã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
 
-//’è‹`‚ÅDPŠi“¬ƒWƒ€‚ğ–³Œø‰»
+//å®šç¾©ã§DPæ ¼é—˜ã‚¸ãƒ ã‚’ç„¡åŠ¹åŒ–
 #define DP_OLDGYM_NULL_FIGHT
 
-//ƒWƒ€‹¤’Ê
+//ã‚¸ãƒ å…±é€š
 #define ONE_GRID	(FX32_ONE*16)
 #define ONE_HEIGHT	(FX32_ONE*16)
 
-//…ƒWƒ€-----------------
-//…ƒWƒ€‚Ì…ˆÊ’è‹`
-#define WATER_LV1	(FX32_ONE*16*0)		//‚‚³‚P’iŠK
-#define WATER_LV2	(FX32_ONE*16*2)		//‚‚³‚Q’iŠK
-#define WATER_LV3	(FX32_ONE*16*4)		//‚‚³‚R’iŠK
-#define MODEL_WATER_LV1	(FX32_ONE*0)	//ƒ‚ƒfƒ‹‚‚³‚P’iŠK
-#define MODEL_WATER_LV2	(FX32_ONE*16*2)	//ƒ‚ƒfƒ‹‚‚³‚Q’iŠK
-#define MODEL_WATER_LV3	(FX32_ONE*16*4)	//ƒ‚ƒfƒ‹‚‚³‚R’iŠK
-#define WATER_DIF	(FX32_ONE)		//‚‚³•Ï“®’liƒ‚ƒfƒ‹‚‚³—pj
+//æ°´ã‚¸ãƒ -----------------
+//æ°´ã‚¸ãƒ ã®æ°´ä½å®šç¾©
+#define WATER_LV1	(FX32_ONE*16*0)		//é«˜ã•ï¼‘æ®µéš
+#define WATER_LV2	(FX32_ONE*16*2)		//é«˜ã•ï¼’æ®µéš
+#define WATER_LV3	(FX32_ONE*16*4)		//é«˜ã•ï¼“æ®µéš
+#define MODEL_WATER_LV1	(FX32_ONE*0)	//ãƒ¢ãƒ‡ãƒ«é«˜ã•ï¼‘æ®µéš
+#define MODEL_WATER_LV2	(FX32_ONE*16*2)	//ãƒ¢ãƒ‡ãƒ«é«˜ã•ï¼’æ®µéš
+#define MODEL_WATER_LV3	(FX32_ONE*16*4)	//ãƒ¢ãƒ‡ãƒ«é«˜ã•ï¼“æ®µéš
+#define WATER_DIF	(FX32_ONE)		//é«˜ã•å¤‰å‹•å€¤ï¼ˆãƒ¢ãƒ‡ãƒ«é«˜ã•ç”¨ï¼‰
 
-#define WTAER_GYM_DATA_HRIGHT_ID	(0)	//Šg’£‚‚³QÆƒCƒ“ƒfƒbƒNƒXi…ƒWƒ€…–Ê—pj
+#define WTAER_GYM_DATA_HRIGHT_ID	(0)	//æ‹¡å¼µé«˜ã•å‚ç…§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆæ°´ã‚¸ãƒ æ°´é¢ç”¨ï¼‰
 
-//ƒAƒjƒ§ŒäƒR[ƒh
+//ã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰
 #define WATER_GYM_BTN_ANM1		(1)
 #define WATER_GYM_BTN_ANM2		(2)
 #define WATER_GYM_BTN_ANM3		(3)
@@ -72,33 +72,33 @@
 #define WATER_GYM_EX_HEIGHT_H	(38)
 
 
-//ƒS[ƒXƒgƒWƒ€-----------------
-//ƒŠƒtƒgˆÊ’u’è‹`
-#define GHOST_LIFT_LV1	(FX32_ONE*16*0)		//‚‚³‚P’iŠK
-#define GHOST_LIFT_LV2	(FX32_ONE*16*10)		//‚‚³‚Q’iŠK
-#define MODEL_GHOST_LIFT_LV1	(FX32_ONE*0)	//ƒ‚ƒfƒ‹‚‚³‚P’iŠK
-#define MODEL_GHOST_LIFT_LV2	(FX32_ONE*16*10)	//ƒ‚ƒfƒ‹‚‚³‚Q’iŠK
-#define GHOST_LIFT_DIF	(FX32_ONE)		//‚‚³•Ï“®’liƒ‚ƒfƒ‹‚‚³—pj
+//ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ -----------------
+//ãƒªãƒ•ãƒˆä½ç½®å®šç¾©
+#define GHOST_LIFT_LV1	(FX32_ONE*16*0)		//é«˜ã•ï¼‘æ®µéš
+#define GHOST_LIFT_LV2	(FX32_ONE*16*10)		//é«˜ã•ï¼’æ®µéš
+#define MODEL_GHOST_LIFT_LV1	(FX32_ONE*0)	//ãƒ¢ãƒ‡ãƒ«é«˜ã•ï¼‘æ®µéš
+#define MODEL_GHOST_LIFT_LV2	(FX32_ONE*16*10)	//ãƒ¢ãƒ‡ãƒ«é«˜ã•ï¼’æ®µéš
+#define GHOST_LIFT_DIF	(FX32_ONE)		//é«˜ã•å¤‰å‹•å€¤ï¼ˆãƒ¢ãƒ‡ãƒ«é«˜ã•ç”¨ï¼‰
 
-#define GHOST_GYM_DATA_HRIGHT_ID	(0)	//Šg’£‚‚³QÆƒCƒ“ƒfƒbƒNƒXiƒS[ƒXƒgƒWƒ€ƒŠƒtƒg—pj
+#define GHOST_GYM_DATA_HRIGHT_ID	(0)	//æ‹¡å¼µé«˜ã•å‚ç…§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ãƒªãƒ•ãƒˆç”¨ï¼‰
 
 #define GHOST_GYM_EX_HEIGHT_X	(8)
 #define GHOST_GYM_EX_HEIGHT_Z	(13)
 #define GHOST_GYM_EX_HEIGHT_W	(3)
 #define GHOST_GYM_EX_HEIGHT_H	(2)
 
-//|ƒWƒ€-------------------
-//ƒtƒƒAŠÔ‹——£
+//é‹¼ã‚¸ãƒ -------------------
+//ãƒ•ãƒ­ã‚¢é–“è·é›¢
 #define FLOOR_MARGIN	(10)
 #define FLOOR_DISP_START_VAL	(9)
-#define STEEL_UD_LIFT_DIF	(FX32_ONE*8)		//‚‚³•Ï“®’liƒ‚ƒfƒ‹‚‚³—pj
-#define STEEL_FRLR_LIFT_DIF	(FX32_ONE*8)		//è‘O‰œ¶‰E•Ï“®’liƒ‚ƒfƒ‹‚‚³—pj
+#define STEEL_UD_LIFT_DIF	(FX32_ONE*8)		//é«˜ã•å¤‰å‹•å€¤ï¼ˆãƒ¢ãƒ‡ãƒ«é«˜ã•ç”¨ï¼‰
+#define STEEL_FRLR_LIFT_DIF	(FX32_ONE*8)		//æ‰‹å‰å¥¥å·¦å³å¤‰å‹•å€¤ï¼ˆãƒ¢ãƒ‡ãƒ«é«˜ã•ç”¨ï¼‰
 #define STEEL_CENTER_OFS	(FX32_ONE*8)
 
 #define STEEL_FOG_OFS	(0x76a0)
 #define STEEL_FOG_MAX	(72)
 
-//Ši“¬ƒWƒ€-------------------
+//æ ¼é—˜ã‚¸ãƒ -------------------
 #define DEBUG_FOOK_DP_COMBAT_GYM
 
 #define COMBAT_WALL_POS_MAX	(15)
@@ -119,7 +119,7 @@ enum{
 	WALLNO_12,
 };
 
-//“d‹CƒWƒ€------------------
+//é›»æ°—ã‚¸ãƒ ------------------
 #define ELEC_GEAR_NUM1_YROT	(3)
 #define ELEC_GEAR_NUM2_YROT	(4)
 #define ELEC_GEAR_NUM2_XROT	(2)
@@ -136,15 +136,15 @@ enum{
 #define ELEC_GEAR_CENTER_OFS_Z	(FX32_ONE*8)
 
 
-#define GEAR_ROT_DIR_LEFT	(0)		//‰ñ“]‚ª—^‚¦‚ç‚ê‚½‚Æ‚«‚»‚Ì•ûŒü‚É‰ñ“]‚·‚é
-#define GEAR_ROT_DIR_RIGHT	(1)		//‰ñ“]‚ª—^‚¦‚ç‚ê‚½‚Æ‚«‹t•ûŒü‚É‰ñ“]‚·‚é
+#define GEAR_ROT_DIR_LEFT	(0)		//å›è»¢ãŒä¸ãˆã‚‰ã‚ŒãŸã¨ããã®æ–¹å‘ã«å›è»¢ã™ã‚‹
+#define GEAR_ROT_DIR_RIGHT	(1)		//å›è»¢ãŒä¸ãˆã‚‰ã‚ŒãŸã¨ãé€†æ–¹å‘ã«å›è»¢ã™ã‚‹
 
-#define GEAR_ROT_TYPE_Y	(0)			//‚x²‰ñ“]
-#define GEAR_ROT_TYPE_X	(1)			//‚w²‰ñ“]
+#define GEAR_ROT_TYPE_Y	(0)			//ï¼¹è»¸å›è»¢
+#define GEAR_ROT_TYPE_X	(1)			//ï¼¸è»¸å›è»¢
 
-//‰º‹L3‚Â‚Ì’è‹`‚ÍA”½Œv‰ñ‚è‰ñ“]‚ğ—^‚¦‚½‚Æ‚«A”½Œv‰ñ‚è‚ğ‚·‚éƒMƒA‚Ì’è‹`‚Å‚·
-//2DƒGƒfƒBƒ^‚ğg—p‚·‚éÛA
-//w’è‰ñ“]•ûŒü‚Æ‹t‰ñ“]‚·‚éƒMƒA‚Ìê‡‚ÍROTATE_GEAR_PLUS90‚ÆROTATE_GEAR_MINUS90‚Ìg—p•û–@‚ğ‹t‚É‚µ‚Ü‚·
+//ä¸‹è¨˜3ã¤ã®å®šç¾©ã¯ã€åæ™‚è¨ˆå›ã‚Šå›è»¢ã‚’ä¸ãˆãŸã¨ãã€åæ™‚è¨ˆå›ã‚Šã‚’ã™ã‚‹ã‚®ã‚¢ã®å®šç¾©ã§ã™
+//2Dã‚¨ãƒ‡ã‚£ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹éš›ã€
+//æŒ‡å®šå›è»¢æ–¹å‘ã¨é€†å›è»¢ã™ã‚‹ã‚®ã‚¢ã®å ´åˆã¯ROTATE_GEAR_PLUS90ã¨ROTATE_GEAR_MINUS90ã®ä½¿ç”¨æ–¹æ³•ã‚’é€†ã«ã—ã¾ã™
 
 
 #define GEAR_ROT_SPEED		(0x400)
@@ -152,43 +152,43 @@ enum{
 
 
 typedef struct {
-	int seq;							///<ƒV[ƒPƒ“ƒX•Ûƒ[ƒN
+	int seq;							///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿æŒãƒ¯ãƒ¼ã‚¯
 }EVENT_GYM_WORK;
 
 static u8 GetBit(const u8 inBit, const int inData);
 
 static void ChangeBit(const u8 inBit, int *outData);
 
-//…ƒWƒ€
+//æ°´ã‚¸ãƒ 
 static BOOL GMEVENT_SetGymWaterLv1(GMEVENT_CONTROL * event);
 static BOOL GMEVENT_SetGymWaterLv2(GMEVENT_CONTROL * event);
 static BOOL GMEVENT_SetGymWaterLv3(GMEVENT_CONTROL * event);
 
 static void SetWaterGymButton(const u8 inWaterLv, FLD_3D_ANM_MNG_PTR field_3d_anime_ptr);
 
-//ƒS[ƒXƒgƒWƒ€
+//ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
 static BOOL GMEVENT_MoveUpGymGhost(GMEVENT_CONTROL * event);
 static BOOL GMEVENT_MoveDownGymGhost(GMEVENT_CONTROL * event);
 
-//|ƒWƒ€
+//é‹¼ã‚¸ãƒ 
 static BOOL GMEVENT_MoveUDGymSteel(GMEVENT_CONTROL * event);
 static BOOL GMEVENT_MoveLRGymSteel(GMEVENT_CONTROL * event);
 static BOOL GMEVENT_MoveFRGymSteel(GMEVENT_CONTROL * event);
 
-//Ši“¬ƒWƒ€
+//æ ¼é—˜ã‚¸ãƒ 
 #ifndef DP_OLDGYM_NULL_FIGHT
 static BOOL GMEVENT_MoveWallGymCombat(GMEVENT_CONTROL * event);
 #endif
 
-//“d‹CƒWƒ€
+//é›»æ°—ã‚¸ãƒ 
 static BOOL GMEVENT_RotateElecGymGear(GMEVENT_CONTROL * event);
 
 //---------------------------------------------------------------------------
 /**
- * @brief	§Œäƒrƒbƒgæ“¾
+ * @brief	åˆ¶å¾¡ãƒ“ãƒƒãƒˆå–å¾—
  * 
- * @param	inBit			‘ÎÛƒrƒbƒg
- * @param	inData			ƒf[ƒ^
+ * @param	inBit			å¯¾è±¡ãƒ“ãƒƒãƒˆ
+ * @param	inData			ãƒ‡ãƒ¼ã‚¿
  * 
  * @return	u8				bit
  */
@@ -202,10 +202,10 @@ static u8 GetBit(const u8 inBit, const int inData)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	§Œäƒrƒbƒg•ÏX
+ * @brief	åˆ¶å¾¡ãƒ“ãƒƒãƒˆå¤‰æ›´
  * 
- * @param	inBit		‘ÎÛƒrƒbƒg
- * @param	outData		ƒf[ƒ^
+ * @param	inBit		å¯¾è±¡ãƒ“ãƒƒãƒˆ
+ * @param	outData		ãƒ‡ãƒ¼ã‚¿
  * 
  * @return	none
  */
@@ -217,9 +217,9 @@ static void ChangeBit(const u8 inBit, int *outData)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	…ƒWƒ€:ƒ{ƒ^ƒ“ƒ`ƒFƒbƒN
+ * @brief	æ°´ã‚¸ãƒ :ãƒœã‚¿ãƒ³ãƒã‚§ãƒƒã‚¯
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -230,15 +230,15 @@ void GYM_CheckWaterGymButton(FIELDSYS_WORK *fsys)
 	int x,z;
 	BOOL rc;
 	int id;
-	int list[] = {BMID_R04_B1,BMID_R04_B2,BMID_R04_B3};	//ƒ{ƒ^ƒ“1Aƒ{ƒ^ƒ“2Aƒ{ƒ^ƒ“3
+	int list[] = {BMID_R04_B1,BMID_R04_B2,BMID_R04_B3};	//ãƒœã‚¿ãƒ³1ã€ãƒœã‚¿ãƒ³2ã€ãƒœã‚¿ãƒ³3
 
 	//*outScrID = SCRID_HONEY_TREE;
-	//©‹@À•Wæ“¾(ƒOƒŠƒbƒh)
+	//è‡ªæ©Ÿåº§æ¨™å–å¾—(ã‚°ãƒªãƒƒãƒ‰)
 	x = Player_NowGPosXGet( fsys->player );
 	z = Player_NowGPosZGet( fsys->player );
 	
 
-	//©‹@‚Ì‚¢‚éƒOƒŠƒbƒh‚Ì‹éŒ`‚ğì¬
+	//è‡ªæ©Ÿã®ã„ã‚‹ã‚°ãƒªãƒƒãƒ‰ã®çŸ©å½¢ã‚’ä½œæˆ
 	MPTL_MakeTargetRect( x, z, 0, 0, 1, 1, &rect);
 
 	rc = MPTL_CheckPluralMap3DObjInRect( fsys, list, NELEMS(list), &rect, NULL, &id);
@@ -249,35 +249,35 @@ void GYM_CheckWaterGymButton(FIELDSYS_WORK *fsys)
 		work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
 		water_gym_work = (WATER_GYM_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_WATER_GYM);
 		
-		//ƒCƒxƒ“ƒgƒR[ƒ‹
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
 		egw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(EVENT_GYM_WORK));
 		egw->seq = 0;
-		if (id == BMID_R04_B1){	//ƒ{ƒ^ƒ“1
+		if (id == BMID_R04_B1){	//ãƒœã‚¿ãƒ³1
 			FieldEvent_Call(fsys->event, GMEVENT_SetGymWaterLv3, egw);
 			water_gym_work->Water = GYM_WATER_LV3;
-		}else if(id == BMID_R04_B2){	//ƒ{ƒ^ƒ“2
+		}else if(id == BMID_R04_B2){	//ãƒœã‚¿ãƒ³2
 			FieldEvent_Call(fsys->event, GMEVENT_SetGymWaterLv2, egw);
 			water_gym_work->Water = GYM_WATER_LV2;
-		}else if(id == BMID_R04_B3){	//ƒ{ƒ^ƒ“3
+		}else if(id == BMID_R04_B3){	//ãƒœã‚¿ãƒ³3
 			FieldEvent_Call(fsys->event, GMEVENT_SetGymWaterLv1, egw);
 			water_gym_work->Water = GYM_WATER_LV1;
 		}else{
-			GF_ASSERT(0&&"…–Êã¸‰º~ƒGƒ‰[FOBJID•s³");
+			GF_ASSERT(0&&"æ°´é¢ä¸Šæ˜‡ä¸‹é™ã‚¨ãƒ©ãƒ¼ï¼šOBJIDä¸æ­£");
 		}
 	}
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	…ƒWƒ€:‚‚³“–‚½‚è”»’è
+ * @brief	æ°´ã‚¸ãƒ :é«˜ã•å½“ãŸã‚Šåˆ¤å®š
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @param	inHeight	‚‚³
- * @param	outHit		”»’èŒ‹‰Ê	TRUE:ƒqƒbƒg	FALSE:ƒqƒbƒg‚µ‚Ä‚È‚¢
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inHeight	é«˜ã•
+ * @param	outHit		åˆ¤å®šçµæœ	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒ’ãƒƒãƒˆã—ã¦ãªã„
  * 
- * @return	BOOL		TRUE:‚±‚Ì‚ ‚Æ’Êí“–‚½‚è”»’è‚ğs‚í‚È‚¢	FALSE:’Êí“–‚½‚è”»’è‚ğs‚¤
+ * @return	BOOL		TRUE:ã“ã®ã‚ã¨é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã‚ãªã„	FALSE:é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  */
 //---------------------------------------------------------------------------
 BOOL GYM_HitCheckWaterGym(	FIELDSYS_WORK *fsys,
@@ -285,7 +285,7 @@ BOOL GYM_HitCheckWaterGym(	FIELDSYS_WORK *fsys,
 							const fx32 inHeight, BOOL *outHit	)
 {
 	u8 attr;
-	//ƒAƒgƒŠƒrƒ…[ƒg‚ğ’²‚×‚é
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’èª¿ã¹ã‚‹
 	attr = GetAttributeLSB(fsys, inGridX, inGridZ);
 	if ( MATR_IsWaterHeightLv1(attr) ){
 		if (inHeight != 0){
@@ -304,16 +304,16 @@ BOOL GYM_HitCheckWaterGym(	FIELDSYS_WORK *fsys,
 		}
 	}
 	(*outHit) = FALSE;
-	return FALSE;	//’Êí“–‚½‚è”»’è‚ğÀs
+	return FALSE;	//é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’å®Ÿè¡Œ
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	…ƒWƒ€:…ˆÊ‚ğLV1‚É‚·‚é
+ * @brief	æ°´ã‚¸ãƒ :æ°´ä½ã‚’LV1ã«ã™ã‚‹
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL	TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_SetGymWaterLv1(GMEVENT_CONTROL * event)
@@ -324,11 +324,11 @@ static BOOL GMEVENT_SetGymWaterLv1(GMEVENT_CONTROL * event)
 
 	switch (egw->seq) {
 	case 0:
-		//ƒ{ƒ^ƒ“ƒAƒjƒiƒ{ƒ^ƒ“3‚ğ‰Ÿ‰ºj
+		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ï¼ˆãƒœã‚¿ãƒ³3ã‚’æŠ¼ä¸‹ï¼‰
 		SetWaterGymButton(GYM_WATER_LV1, fsys->field_3d_anime);
 		(egw->seq) ++;
 		break;
-	case 1:			//…ˆÊ‚ğ‰º~
+	case 1:			//æ°´ä½ã‚’ä¸‹é™
 		{
 			FLD_3D_ANM_DAT_PTR anime1,anime2,anime3;
 			anime1 = F3DA_GetFld3DAnmPtrByCode(WATER_GYM_BTN_ANM1, fsys->field_3d_anime);
@@ -337,14 +337,14 @@ static BOOL GMEVENT_SetGymWaterLv1(GMEVENT_CONTROL * event)
 			if ( F3DA_IsAnimeEnd(anime1) &&
 				 F3DA_IsAnimeEnd(anime2) &&
 				 F3DA_IsAnimeEnd(anime3) ){
-				//…–ÊOBJ‚ğæ“¾
+				//æ°´é¢OBJã‚’å–å¾—
 				ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_R04_W);
-				//yÀ•W•ÏX
+				//yåº§æ¨™å¤‰æ›´
 				{
 					VecFx32 vec;
 					vec = M3DO_GetGlobalVec(ptr);
 					vec.y -= WATER_DIF;	
-					if (vec.y <= MODEL_WATER_LV1){	//ƒZƒbƒgI—¹
+					if (vec.y <= MODEL_WATER_LV1){	//ã‚»ãƒƒãƒˆçµ‚äº†
 						vec.y = MODEL_WATER_LV1;
 						(egw->seq) ++;
 					}
@@ -353,9 +353,9 @@ static BOOL GMEVENT_SetGymWaterLv1(GMEVENT_CONTROL * event)
 			}
 		}
 		break;
-	case 2:	//‚‚³ƒZƒbƒg
+	case 2:	//é«˜ã•ã‚»ãƒƒãƒˆ
 		EXH_SetExHeight( WTAER_GYM_DATA_HRIGHT_ID, WATER_LV1, fsys->ExHeightList );
-		//…ˆÊ•ÏX‰¹’â~
+		//æ°´ä½å¤‰æ›´éŸ³åœæ­¢
 		Snd_SeStopBySeqNo( SE_NOMOSE_GYM_BUTTON, 0 );
 		(egw->seq) ++;
 		break;
@@ -368,11 +368,11 @@ static BOOL GMEVENT_SetGymWaterLv1(GMEVENT_CONTROL * event)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	…ƒWƒ€:…ˆÊ‚ğLV2‚É‚·‚é
+ * @brief	æ°´ã‚¸ãƒ :æ°´ä½ã‚’LV2ã«ã™ã‚‹
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL	TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_SetGymWaterLv2(GMEVENT_CONTROL * event)
@@ -382,8 +382,8 @@ static BOOL GMEVENT_SetGymWaterLv2(GMEVENT_CONTROL * event)
 	EVENT_GYM_WORK * egw = FieldEvent_GetSpecialWork(event);
 
 	switch (egw->seq) {
-	case 0:	//ã¸‚³‚ê‚é‚©A‰º~‚³‚¹‚é‚©‚ğŒˆ’è
-		//ƒ{ƒ^ƒ“ƒAƒjƒiƒ{ƒ^ƒ“2‚ğ‰Ÿ‰ºj
+	case 0:	//ä¸Šæ˜‡ã•ã‚Œã‚‹ã‹ã€ä¸‹é™ã•ã›ã‚‹ã‹ã‚’æ±ºå®š
+		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ï¼ˆãƒœã‚¿ãƒ³2ã‚’æŠ¼ä¸‹ï¼‰
 		SetWaterGymButton(GYM_WATER_LV2, fsys->field_3d_anime);
 		(egw->seq) ++;
 		break;
@@ -396,8 +396,8 @@ static BOOL GMEVENT_SetGymWaterLv2(GMEVENT_CONTROL * event)
 			if ( F3DA_IsAnimeEnd(anime1) &&
 				 F3DA_IsAnimeEnd(anime2) &&
 				 F3DA_IsAnimeEnd(anime3) ){
-				//Œ»İ‚Ì…ˆÊ‚ğæ“¾
-				//…–ÊOBJ‚ğæ“¾
+				//ç¾åœ¨ã®æ°´ä½ã‚’å–å¾—
+				//æ°´é¢OBJã‚’å–å¾—
 				ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_R04_W);
 				{
 					VecFx32 vec;
@@ -416,39 +416,39 @@ static BOOL GMEVENT_SetGymWaterLv2(GMEVENT_CONTROL * event)
 			}
 		}	
 		break;
-	case 2:			//…ˆÊ‚ğã¸
-		//…–ÊOBJ‚ğæ“¾
+	case 2:			//æ°´ä½ã‚’ä¸Šæ˜‡
+		//æ°´é¢OBJã‚’å–å¾—
 		ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_R04_W);
-		//yÀ•W•ÏX
+		//yåº§æ¨™å¤‰æ›´
 		{
 			VecFx32 vec;
 			vec = M3DO_GetGlobalVec(ptr);
 			vec.y += WATER_DIF;	
-			if (vec.y >= MODEL_WATER_LV2){	//ƒZƒbƒgI—¹
+			if (vec.y >= MODEL_WATER_LV2){	//ã‚»ãƒƒãƒˆçµ‚äº†
 				vec.y = MODEL_WATER_LV2;
 				(egw->seq) = 4;
 			}
 			M3DO_SetGlobalVec(ptr, &vec);
 		}
 		break;
-	case 3:		//…ˆÊ‚ğ~‰º
-		//…–ÊOBJ‚ğæ“¾
+	case 3:		//æ°´ä½ã‚’é™ä¸‹
+		//æ°´é¢OBJã‚’å–å¾—
 		ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_R04_W);
-		//yÀ•W•ÏX
+		//yåº§æ¨™å¤‰æ›´
 		{
 			VecFx32 vec;
 			vec = M3DO_GetGlobalVec(ptr);
 			vec.y -= WATER_DIF;	
-			if (vec.y <= MODEL_WATER_LV2){	//ƒZƒbƒgI—¹
+			if (vec.y <= MODEL_WATER_LV2){	//ã‚»ãƒƒãƒˆçµ‚äº†
 				vec.y = MODEL_WATER_LV2;
 				(egw->seq) = 4;
 			}
 			M3DO_SetGlobalVec(ptr, &vec);
 		}
 		break;
-	case 4:	//‚‚³ƒZƒbƒg
+	case 4:	//é«˜ã•ã‚»ãƒƒãƒˆ
 		EXH_SetExHeight( WTAER_GYM_DATA_HRIGHT_ID, WATER_LV2, fsys->ExHeightList );
-		//…ˆÊ•ÏX‰¹’â~
+		//æ°´ä½å¤‰æ›´éŸ³åœæ­¢
 		Snd_SeStopBySeqNo( SE_NOMOSE_GYM_BUTTON, 0 );
 		(egw->seq) ++;
 		break;
@@ -461,11 +461,11 @@ static BOOL GMEVENT_SetGymWaterLv2(GMEVENT_CONTROL * event)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	…ƒWƒ€:…ˆÊ‚ğLV3‚É‚·‚é
+ * @brief	æ°´ã‚¸ãƒ :æ°´ä½ã‚’LV3ã«ã™ã‚‹
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL	TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_SetGymWaterLv3(GMEVENT_CONTROL * event)
@@ -476,11 +476,11 @@ static BOOL GMEVENT_SetGymWaterLv3(GMEVENT_CONTROL * event)
 
 	switch (egw->seq) {
 	case 0:
-		//ƒ{ƒ^ƒ“ƒAƒjƒiƒ{ƒ^ƒ“1‚ğ‰Ÿ‰ºj
+		//ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ï¼ˆãƒœã‚¿ãƒ³1ã‚’æŠ¼ä¸‹ï¼‰
 		SetWaterGymButton(GYM_WATER_LV3, fsys->field_3d_anime);
 		(egw->seq) ++;
 		break;	
-	case 1:			//…ˆÊ‚ğã¸
+	case 1:			//æ°´ä½ã‚’ä¸Šæ˜‡
 		{
 			FLD_3D_ANM_DAT_PTR anime1,anime2,anime3;
 			anime1 = F3DA_GetFld3DAnmPtrByCode(WATER_GYM_BTN_ANM1, fsys->field_3d_anime);
@@ -489,14 +489,14 @@ static BOOL GMEVENT_SetGymWaterLv3(GMEVENT_CONTROL * event)
 			if ( F3DA_IsAnimeEnd(anime1) &&
 				 F3DA_IsAnimeEnd(anime2) &&
 				 F3DA_IsAnimeEnd(anime3) ){
-				//…–ÊOBJ‚ğæ“¾
+				//æ°´é¢OBJã‚’å–å¾—
 				ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_R04_W);
-				//yÀ•W•ÏX
+				//yåº§æ¨™å¤‰æ›´
 				{
 					VecFx32 vec;
 					vec = M3DO_GetGlobalVec(ptr);
 					vec.y += WATER_DIF;	
-					if (vec.y >= MODEL_WATER_LV3){	//ƒZƒbƒgI—¹
+					if (vec.y >= MODEL_WATER_LV3){	//ã‚»ãƒƒãƒˆçµ‚äº†
 						vec.y = MODEL_WATER_LV3;
 						(egw->seq) ++;
 					}
@@ -505,9 +505,9 @@ static BOOL GMEVENT_SetGymWaterLv3(GMEVENT_CONTROL * event)
 			}
 		}
 		break;
-	case 2:	//‚‚³ƒZƒbƒg
+	case 2:	//é«˜ã•ã‚»ãƒƒãƒˆ
 		EXH_SetExHeight( WTAER_GYM_DATA_HRIGHT_ID, WATER_LV3, fsys->ExHeightList );
-		//…ˆÊ•ÏX‰¹’â~
+		//æ°´ä½å¤‰æ›´éŸ³åœæ­¢
 		Snd_SeStopBySeqNo( SE_NOMOSE_GYM_BUTTON, 0 );
 		(egw->seq) ++;
 		break;
@@ -520,9 +520,9 @@ static BOOL GMEVENT_SetGymWaterLv3(GMEVENT_CONTROL * event)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	…ƒWƒ€:ƒZƒbƒgƒAƒbƒv
+ * @brief	æ°´ã‚¸ãƒ :ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -537,21 +537,21 @@ void GYM_SetupWaterGym(FIELDSYS_WORK *fsys)
 	GIMMICKWORK *work;
 	WATER_GYM_WORK *water_gym_work;
 	
-	//‚±‚±‚ÅƒMƒ~ƒbƒNƒ[ƒN‚Ì’†g‚ğŒ©‚é
+	//ã“ã“ã§ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã®ä¸­èº«ã‚’è¦‹ã‚‹
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
 	water_gym_work = (WATER_GYM_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_WATER_GYM);
 
-	//…–Ê‚Ìì¬
+	//æ°´é¢ã®ä½œæˆ
 	{
 		VecFx32 vec = {FX32_ONE*16*16,0,FX32_ONE*16*16};
 		M3DO_SetMap3DObjExp(fsys->Map3DObjExp,
 							fsys->MapResource,
 							BMID_R04_W,
 							&vec, NULL,
-							fsys->field_3d_anime );//<…ƒWƒ€…–Ê
+							fsys->field_3d_anime );//<æ°´ã‚¸ãƒ æ°´é¢
 	}
 
-	//Šg’£‚‚³‚Ìì¬
+	//æ‹¡å¼µé«˜ã•ã®ä½œæˆ
 	EXH_SetUpExHeightData(	WTAER_GYM_DATA_HRIGHT_ID,
 							WATER_GYM_EX_HEIGHT_X,
 							WATER_GYM_EX_HEIGHT_Z,
@@ -559,35 +559,35 @@ void GYM_SetupWaterGym(FIELDSYS_WORK *fsys)
 							WATER_GYM_EX_HEIGHT_H,
 							WATER_LV1,fsys->ExHeightList );
 
-	//…ˆÊ‚ğæ“¾
+	//æ°´ä½ã‚’å–å¾—
 	water = water_gym_work->Water;
-	//æ“¾‚µ‚½…ˆÊ‚ğŒ³‚ÉA
-	//…‚Ì‚‚³Aƒf[ƒ^‚Ì‚‚³Aƒ{ƒ^ƒ“‚Ì‰Ÿ‰ºó‹µ‚ğƒZƒbƒg
+	//å–å¾—ã—ãŸæ°´ä½ã‚’å…ƒã«ã€
+	//æ°´ã®é«˜ã•ã€ãƒ‡ãƒ¼ã‚¿ã®é«˜ã•ã€ãƒœã‚¿ãƒ³ã®æŠ¼ä¸‹çŠ¶æ³ã‚’ã‚»ãƒƒãƒˆ
 	
 	switch(water){
-	case GYM_WATER_LV1:		//ƒ{ƒ^ƒ“3‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é(‚P’iŠK)
+	case GYM_WATER_LV1:		//ãƒœã‚¿ãƒ³3ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹(ï¼‘æ®µéš)
 		model_water_height = MODEL_WATER_LV1;
 		data_height = WATER_LV1;
 		reverse1 = TRUE;
 		reverse2 = TRUE;
 		reverse3 = FALSE;
 		break;
-	case GYM_WATER_LV2:		//ƒ{ƒ^ƒ“2‚ª‰Ÿ‚³‚ê‚Ä‚¢‚éi‚Q’iŠKj
+	case GYM_WATER_LV2:		//ãƒœã‚¿ãƒ³2ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ï¼ˆï¼’æ®µéšï¼‰
 		model_water_height = MODEL_WATER_LV2;
 		data_height = WATER_LV2;
 		reverse1 = TRUE;
 		reverse2 = FALSE;
 		reverse3 = TRUE;
 		break;
-	case GYM_WATER_LV3:		//ƒ{ƒ^ƒ“1‚ª‰Ÿ‚³‚ê‚Ä‚¢‚éi‚R’iŠKj
+	case GYM_WATER_LV3:		//ãƒœã‚¿ãƒ³1ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ï¼ˆï¼“æ®µéšï¼‰
 		model_water_height = MODEL_WATER_LV3;
 		data_height = WATER_LV3;
 		reverse1 = FALSE;
 		reverse2 = TRUE;
 		reverse3 = TRUE;
 		break;
-	default:	//ƒf[ƒ^‚ª‰ó‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚éiƒ{ƒ^ƒ“1‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚±‚Æ‚É‚µ‚Ä‚¨‚­j
-		GF_ASSERT(0&&"ƒf[ƒ^‚ª•s³‚Å‚·");
+	default:	//ãƒ‡ãƒ¼ã‚¿ãŒå£Šã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ï¼ˆãƒœã‚¿ãƒ³1ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã“ã¨ã«ã—ã¦ãŠãï¼‰
+		GF_ASSERT(0&&"ãƒ‡ãƒ¼ã‚¿ãŒä¸æ­£ã§ã™");
 		model_water_height = MODEL_WATER_LV1;
 		data_height = WATER_LV1;
 		reverse1 = TRUE;
@@ -595,9 +595,9 @@ void GYM_SetupWaterGym(FIELDSYS_WORK *fsys)
 		reverse3 = FALSE;
 	}
 	
-	//…–ÊOBJ‚ğæ“¾
+	//æ°´é¢OBJã‚’å–å¾—
 	ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_R04_W);
-	//ƒ‚ƒfƒ‹‚ÌyÀ•W•ÏX
+	//ãƒ¢ãƒ‡ãƒ«ã®yåº§æ¨™å¤‰æ›´
 	{
 		VecFx32 vec;
 		vec = M3DO_GetGlobalVec(ptr);
@@ -605,62 +605,62 @@ void GYM_SetupWaterGym(FIELDSYS_WORK *fsys)
 		M3DO_SetGlobalVec(ptr, &vec);
 	}
 	//
-	//‚‚³ƒf[ƒ^‚Ì•ÏX
+	//é«˜ã•ãƒ‡ãƒ¼ã‚¿ã®å¤‰æ›´
 	EXH_SetExHeight( WTAER_GYM_DATA_HRIGHT_ID, data_height, fsys->ExHeightList );
 	
-	//‚Rí—Ş‚Ìƒ{ƒ^ƒ“ó‹µƒZƒbƒg
+	//ï¼“ç¨®é¡ã®ãƒœã‚¿ãƒ³çŠ¶æ³ã‚»ãƒƒãƒˆ
 	{
 		FLD_3D_ANM_DAT_PTR anime;
-		//ƒ{ƒ^ƒ“1
-		//ƒAƒjƒŒŸõ
+		//ãƒœã‚¿ãƒ³1
+		//ã‚¢ãƒ‹ãƒ¡æ¤œç´¢
 		anime = F3DA_GetFld3DAnmPtr( BMID_R04_B1, 0, fsys->field_3d_anime );
-		//§ŒäƒR[ƒhƒZƒbƒg
+		//åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		F3DA_SetControlCode( anime, WATER_GYM_BTN_ANM1 );
-		//ƒŠƒo[ƒXƒZƒbƒg
+		//ãƒªãƒãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
 		F3DA_SetAnimeReverseDirect( anime, reverse1 );
-		//ƒ‹[ƒv‰ñ”ƒZƒbƒg
+		//ãƒ«ãƒ¼ãƒ—å›æ•°ã‚»ãƒƒãƒˆ
 		F3DA_SetAnimeLoopMax( anime, 1 );
-		//ƒXƒgƒbƒvƒtƒ‰ƒOƒZƒbƒg
-		F3DA_SetStopFlg( anime, TRUE );	//’â~
-		//ƒAƒjƒI’[ƒtƒŒ[ƒ€‚ÉƒZƒbƒg
+		//ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
+		F3DA_SetStopFlg( anime, TRUE );	//åœæ­¢
+		//ã‚¢ãƒ‹ãƒ¡çµ‚ç«¯ãƒ•ãƒ¬ãƒ¼ãƒ ã«ã‚»ãƒƒãƒˆ
 		F3DA_SetLastFrame( anime );
 
-		//ƒ{ƒ^ƒ“2
-		//ƒAƒjƒŒŸõ
+		//ãƒœã‚¿ãƒ³2
+		//ã‚¢ãƒ‹ãƒ¡æ¤œç´¢
 		anime = F3DA_GetFld3DAnmPtr( BMID_R04_B2, 0, fsys->field_3d_anime );
-		//§ŒäƒR[ƒhƒZƒbƒg
+		//åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		F3DA_SetControlCode( anime, WATER_GYM_BTN_ANM2 );
-		//ƒŠƒo[ƒXƒZƒbƒg
+		//ãƒªãƒãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
 		F3DA_SetAnimeReverseDirect( anime, reverse2 );
-		//ƒ‹[ƒv‰ñ”ƒZƒbƒg
+		//ãƒ«ãƒ¼ãƒ—å›æ•°ã‚»ãƒƒãƒˆ
 		F3DA_SetAnimeLoopMax( anime, 1 );
-		//ƒXƒgƒbƒvƒtƒ‰ƒOƒZƒbƒg
-		F3DA_SetStopFlg( anime, TRUE );	//’â~
-		//ƒAƒjƒI’[ƒtƒŒ[ƒ€‚ÉƒZƒbƒg
+		//ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
+		F3DA_SetStopFlg( anime, TRUE );	//åœæ­¢
+		//ã‚¢ãƒ‹ãƒ¡çµ‚ç«¯ãƒ•ãƒ¬ãƒ¼ãƒ ã«ã‚»ãƒƒãƒˆ
 		F3DA_SetLastFrame( anime );
 
-		//ƒ{ƒ^ƒ“3
-		//ƒAƒjƒŒŸõ
+		//ãƒœã‚¿ãƒ³3
+		//ã‚¢ãƒ‹ãƒ¡æ¤œç´¢
 		anime = F3DA_GetFld3DAnmPtr( BMID_R04_B3, 0, fsys->field_3d_anime );
-		//§ŒäƒR[ƒhƒZƒbƒg
+		//åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		F3DA_SetControlCode( anime, WATER_GYM_BTN_ANM3 );
-		//ƒŠƒo[ƒXƒZƒbƒg
+		//ãƒªãƒãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
 		F3DA_SetAnimeReverseDirect( anime, reverse3 );
-		//ƒ‹[ƒv‰ñ”ƒZƒbƒg
+		//ãƒ«ãƒ¼ãƒ—å›æ•°ã‚»ãƒƒãƒˆ
 		F3DA_SetAnimeLoopMax( anime, 1 );
-		//ƒXƒgƒbƒvƒtƒ‰ƒOƒZƒbƒg
-		F3DA_SetStopFlg( anime, TRUE );	//’â~
-		//ƒAƒjƒI’[ƒtƒŒ[ƒ€‚ÉƒZƒbƒg
+		//ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
+		F3DA_SetStopFlg( anime, TRUE );	//åœæ­¢
+		//ã‚¢ãƒ‹ãƒ¡çµ‚ç«¯ãƒ•ãƒ¬ãƒ¼ãƒ ã«ã‚»ãƒƒãƒˆ
 		F3DA_SetLastFrame( anime );
 	}
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	…ƒWƒ€:ƒ{ƒ^ƒ“ƒAƒjƒ‚ÌƒZƒbƒg
+ * @brief	æ°´ã‚¸ãƒ :ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã®ã‚»ãƒƒãƒˆ
  * 
- * @param	inWaterLv			…ˆÊƒŒƒxƒ‹
- * @param	field_3d_anime_ptr	ƒAƒjƒŠÇ—ƒ|ƒCƒ“ƒ^
+ * @param	inWaterLv			æ°´ä½ãƒ¬ãƒ™ãƒ«
+ * @param	field_3d_anime_ptr	ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -670,15 +670,15 @@ static void SetWaterGymButton(const u8 inWaterLv, FLD_3D_ANM_MNG_PTR field_3d_an
 	FLD_3D_ANM_DAT_PTR anime;
 	int anime_a,anime_b,anime_c;
 	
-	if (inWaterLv == GYM_WATER_LV3){	//ƒ{ƒ^ƒ“‚P
+	if (inWaterLv == GYM_WATER_LV3){	//ãƒœã‚¿ãƒ³ï¼‘
 		anime_a = WATER_GYM_BTN_ANM1;
 		anime_b = WATER_GYM_BTN_ANM2;
 		anime_c = WATER_GYM_BTN_ANM3;
-	}else if(inWaterLv == GYM_WATER_LV2){			//ƒ{ƒ^ƒ“‚Q
+	}else if(inWaterLv == GYM_WATER_LV2){			//ãƒœã‚¿ãƒ³ï¼’
 		anime_a = WATER_GYM_BTN_ANM2;
 		anime_b = WATER_GYM_BTN_ANM1;
 		anime_c = WATER_GYM_BTN_ANM3;
-	}else if(inWaterLv == GYM_WATER_LV1){			//ƒ{ƒ^ƒ“‚R
+	}else if(inWaterLv == GYM_WATER_LV1){			//ãƒœã‚¿ãƒ³ï¼“
 		anime_a = WATER_GYM_BTN_ANM3;
 		anime_b = WATER_GYM_BTN_ANM1;
 		anime_c = WATER_GYM_BTN_ANM2;
@@ -703,19 +703,19 @@ static void SetWaterGymButton(const u8 inWaterLv, FLD_3D_ANM_MNG_PTR field_3d_an
 	F3DA_SetStopFlg(anime, FALSE);
 	F3DA_MoveAnime(anime);
 
-	//…—Ê•ÏX‰¹
+	//æ°´é‡å¤‰æ›´éŸ³
 	Snd_SePlay( SE_NOMOSE_GYM_BUTTON );
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//ƒS[ƒXƒgƒWƒ€
+//ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒS[ƒXƒgƒWƒ€:ƒZƒbƒgƒAƒbƒv
+ * @brief	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -729,21 +729,21 @@ void GYM_SetupGhostGym(FIELDSYS_WORK *fsys)
 	GIMMICKWORK *work;
 	GHOST_GYM_WORK *ghost_gym_work;
 	
-	//‚±‚±‚ÅƒMƒ~ƒbƒNƒ[ƒN‚Ì’†g‚ğŒ©‚é
+	//ã“ã“ã§ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã®ä¸­èº«ã‚’è¦‹ã‚‹
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
 	ghost_gym_work = (GHOST_GYM_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_GHOST_GYM);
 	
-	//ƒŠƒtƒg‚Ìì¬
+	//ãƒªãƒ•ãƒˆã®ä½œæˆ
 	{
 		VecFx32 vec = {FX32_ONE*(16*9+8),0,FX32_ONE*(16*13+8)};
 		M3DO_SetMap3DObjExp(fsys->Map3DObjExp,
 							fsys->MapResource,
 							BMID_LIFT_BASE01,
 							&vec, NULL,
-							fsys->field_3d_anime );//<ƒŠƒtƒg
+							fsys->field_3d_anime );//<ãƒªãƒ•ãƒˆ
 	}
 	
-	//Šg’£‚‚³‚Ìì¬
+	//æ‹¡å¼µé«˜ã•ã®ä½œæˆ
 	EXH_SetUpExHeightData(	GHOST_GYM_DATA_HRIGHT_ID,
 							GHOST_GYM_EX_HEIGHT_X,
 							GHOST_GYM_EX_HEIGHT_Z,
@@ -751,27 +751,27 @@ void GYM_SetupGhostGym(FIELDSYS_WORK *fsys)
 							GHOST_GYM_EX_HEIGHT_H,
 							GHOST_LIFT_LV1,fsys->ExHeightList );
 
-	//ƒŠƒtƒg‚ÌˆÊ’u‚ğæ“¾
+	//ãƒªãƒ•ãƒˆã®ä½ç½®ã‚’å–å¾—
 	lift = ghost_gym_work->Lift;
 	
 	switch(lift){
-	case GYM_GHOST_LIFT_LV1:		//‰ºƒtƒƒA
+	case GYM_GHOST_LIFT_LV1:		//ä¸‹ãƒ•ãƒ­ã‚¢
 		model_lift_height = MODEL_GHOST_LIFT_LV1;
 		data_height = GHOST_LIFT_LV1;
 		break;
-	case GYM_GHOST_LIFT_LV2:		//ãƒtƒƒA
+	case GYM_GHOST_LIFT_LV2:		//ä¸Šãƒ•ãƒ­ã‚¢
 		model_lift_height = MODEL_GHOST_LIFT_LV2;
 		data_height = GHOST_LIFT_LV2;
 		break;
-	default:	//ƒf[ƒ^‚ª‰ó‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é
-		GF_ASSERT(0 && "ƒf[ƒ^‚ª•s³‚Å‚·");
+	default:	//ãƒ‡ãƒ¼ã‚¿ãŒå£Šã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹
+		GF_ASSERT(0 && "ãƒ‡ãƒ¼ã‚¿ãŒä¸æ­£ã§ã™");
 		model_lift_height = MODEL_GHOST_LIFT_LV1;
 		data_height = GHOST_LIFT_LV1;
 	}
 	
-	//ƒŠƒtƒgOBJ‚ğæ“¾
+	//ãƒªãƒ•ãƒˆOBJã‚’å–å¾—
 	ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_LIFT_BASE01);
-	//ƒ‚ƒfƒ‹‚ÌyÀ•W•ÏX
+	//ãƒ¢ãƒ‡ãƒ«ã®yåº§æ¨™å¤‰æ›´
 	{
 		VecFx32 vec;
 		vec = M3DO_GetGlobalVec(ptr);
@@ -779,15 +779,15 @@ void GYM_SetupGhostGym(FIELDSYS_WORK *fsys)
 		M3DO_SetGlobalVec(ptr, &vec);
 	}
 	//
-	//‚‚³ƒf[ƒ^‚Ì•ÏX
+	//é«˜ã•ãƒ‡ãƒ¼ã‚¿ã®å¤‰æ›´
 	EXH_SetExHeight( GHOST_GYM_DATA_HRIGHT_ID, data_height, fsys->ExHeightList );
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒS[ƒXƒgƒWƒ€:ƒŠƒtƒgˆÚ“®
+ * @brief	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ãƒªãƒ•ãƒˆç§»å‹•
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -796,11 +796,11 @@ void GYM_MoveGhostGymLift(FIELDSYS_WORK *fsys)
 {
 	EVENT_GYM_WORK * egw;
 	
-	//ƒCƒxƒ“ƒgƒR[ƒ‹
+	//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
 	egw = sys_AllocMemoryLo( HEAPID_WORLD, sizeof(EVENT_GYM_WORK) );
 	egw->seq = 0;
 	
-	//©‹@‚ÌyÀ•W‚©‚çƒR[ƒ‹‚·‚éƒCƒxƒ“ƒg‚ğØ‚è‘Ö‚¦‚é
+	//è‡ªæ©Ÿã®yåº§æ¨™ã‹ã‚‰ã‚³ãƒ¼ãƒ«ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	{
 		VecFx32 vec;
 		GIMMICKWORK *work;
@@ -820,11 +820,11 @@ void GYM_MoveGhostGymLift(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒS[ƒXƒgƒWƒ€:ƒŠƒtƒg‚ğã‚°‚é
+ * @brief	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ãƒªãƒ•ãƒˆã‚’ä¸Šã’ã‚‹
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_MoveUpGymGhost(GMEVENT_CONTROL * event)
@@ -835,39 +835,39 @@ static BOOL GMEVENT_MoveUpGymGhost(GMEVENT_CONTROL * event)
 
 	switch (egw->seq) {
 	case 0:
-		Player_HeightGet_ON_OFF( fsys->player, FALSE );//©‹@‚Ì‚‚³©“®æ“¾‚ğƒIƒt
+		Player_HeightGet_ON_OFF( fsys->player, FALSE );//è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã‚’ã‚ªãƒ•
 
-		//ƒŠƒtƒg‰¹Ä¶
+		//ãƒªãƒ•ãƒˆéŸ³å†ç”Ÿ
 		Snd_SePlay( SEQ_SE_DP_ELEBETA );
 		(egw->seq) ++;
 		break;
-	case 1:	//ƒŠƒtƒg‚ğã¸
+	case 1:	//ãƒªãƒ•ãƒˆã‚’ä¸Šæ˜‡
 		{
-			//ƒŠƒtƒgOBJ‚ğæ“¾
+			//ãƒªãƒ•ãƒˆOBJã‚’å–å¾—
 			ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_LIFT_BASE01);
-			//yÀ•W•ÏX
+			//yåº§æ¨™å¤‰æ›´
 			{
 				VecFx32 vec;
 				vec = M3DO_GetGlobalVec(ptr);
 				vec.y += GHOST_LIFT_DIF;
 
-				if (vec.y >= MODEL_GHOST_LIFT_LV2){	//ƒZƒbƒgI—¹
+				if (vec.y >= MODEL_GHOST_LIFT_LV2){	//ã‚»ãƒƒãƒˆçµ‚äº†
 					vec.y = MODEL_GHOST_LIFT_LV2;
-					//ƒŠƒtƒg‰¹’â~
+					//ãƒªãƒ•ãƒˆéŸ³åœæ­¢
 					Snd_SeStopBySeqNo( SEQ_SE_DP_ELEBETA, 0 );
 					(egw->seq) ++;
 				}
-				Player_VecPosYSet( fsys->player, vec.y );	//©‹@‚‚³•ÏX
+				Player_VecPosYSet( fsys->player, vec.y );	//è‡ªæ©Ÿé«˜ã•å¤‰æ›´
 				M3DO_SetGlobalVec(ptr, &vec);
 			}
 		}
 		break;
-	case 2:	//‚‚³ƒZƒbƒg
+	case 2:	//é«˜ã•ã‚»ãƒƒãƒˆ
 		EXH_SetExHeight( GHOST_GYM_DATA_HRIGHT_ID, GHOST_LIFT_LV2, fsys->ExHeightList );
-		//©‹@‚Ì‚‚³©“®æ“¾‚ğƒIƒ“
+		//è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã‚’ã‚ªãƒ³
 		Player_HeightGetSet_ON_OFF( fsys->player, TRUE );
 
-		//ƒŠƒtƒgˆÚ“®I—¹‰¹
+		//ãƒªãƒ•ãƒˆç§»å‹•çµ‚äº†éŸ³
 		Snd_SePlay( SE_YOSUGA_GYM_LIFT );
 		(egw->seq) ++;
 		break;
@@ -880,11 +880,11 @@ static BOOL GMEVENT_MoveUpGymGhost(GMEVENT_CONTROL * event)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒS[ƒXƒgƒWƒ€:ƒŠƒtƒg‚ğ‰º‚°‚é
+ * @brief	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ãƒªãƒ•ãƒˆã‚’ä¸‹ã’ã‚‹
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_MoveDownGymGhost(GMEVENT_CONTROL * event)
@@ -895,39 +895,39 @@ static BOOL GMEVENT_MoveDownGymGhost(GMEVENT_CONTROL * event)
 
 	switch (egw->seq) {
 	case 0:
-		Player_HeightGet_ON_OFF( fsys->player, FALSE );//©‹@‚Ì‚‚³©“®æ“¾‚ğƒIƒt
+		Player_HeightGet_ON_OFF( fsys->player, FALSE );//è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã‚’ã‚ªãƒ•
 
-		//ƒŠƒtƒg‰¹Ä¶
+		//ãƒªãƒ•ãƒˆéŸ³å†ç”Ÿ
 		Snd_SePlay( SEQ_SE_DP_ELEBETA );
 		(egw->seq)	++;
 		break;
-	case 1:	//ƒŠƒtƒg‚ğ‰º~
+	case 1:	//ãƒªãƒ•ãƒˆã‚’ä¸‹é™
 		{
-			//ƒŠƒtƒgOBJ‚ğæ“¾
+			//ãƒªãƒ•ãƒˆOBJã‚’å–å¾—
 			ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_LIFT_BASE01);
-			//yÀ•W•ÏX
+			//yåº§æ¨™å¤‰æ›´
 			{
 				VecFx32 vec;
 				vec = M3DO_GetGlobalVec(ptr);
 				vec.y -= GHOST_LIFT_DIF;
 				
-				if (vec.y <= MODEL_GHOST_LIFT_LV1){	//ƒZƒbƒgI—¹
+				if (vec.y <= MODEL_GHOST_LIFT_LV1){	//ã‚»ãƒƒãƒˆçµ‚äº†
 					vec.y = MODEL_GHOST_LIFT_LV1;
-					//ƒŠƒtƒg‰¹’â~
+					//ãƒªãƒ•ãƒˆéŸ³åœæ­¢
 					Snd_SeStopBySeqNo( SEQ_SE_DP_ELEBETA, 0 );
 					(egw->seq) ++;
 				}
-				Player_VecPosYSet( fsys->player, vec.y );	//©‹@‚‚³•ÏX
+				Player_VecPosYSet( fsys->player, vec.y );	//è‡ªæ©Ÿé«˜ã•å¤‰æ›´
 				M3DO_SetGlobalVec(ptr, &vec);
 			}
 		}
 		break;
-	case 2:	//‚‚³ƒZƒbƒg
+	case 2:	//é«˜ã•ã‚»ãƒƒãƒˆ
 		EXH_SetExHeight( GHOST_GYM_DATA_HRIGHT_ID, GHOST_LIFT_LV1, fsys->ExHeightList );
-		//©‹@‚Ì‚‚³©“®æ“¾‚ğƒIƒ“
+		//è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã‚’ã‚ªãƒ³
 		Player_HeightGetSet_ON_OFF( fsys->player, TRUE );
 
-		//ƒŠƒtƒgˆÚ“®I—¹‰¹
+		//ãƒªãƒ•ãƒˆç§»å‹•çµ‚äº†éŸ³
 		Snd_SePlay( SE_YOSUGA_GYM_LIFT );
 		(egw->seq) ++;
 		break;
@@ -940,7 +940,7 @@ static BOOL GMEVENT_MoveDownGymGhost(GMEVENT_CONTROL * event)
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-//|ƒWƒ€
+//é‹¼ã‚¸ãƒ 
 static const u8 SteelGymHitTbl[4][1024] = 
 {
 	//#gym02_attr_01
@@ -1114,8 +1114,8 @@ typedef struct STEEL_GYM_TEMP_WORK_tag
 	int Floor2F;
 	int Floor3F;
 	int Floor4F;
-	u8 LiftHeight[STEEL_LIFT_MAX];	//ƒtƒƒA¯•Ê—pƒoƒbƒtƒ@@0:1F 1:2F 2:3F 3:4F
-	u8 LiftEntryIdx[STEEL_LIFT_MAX];		//Šg’£”z’uƒ‚ƒfƒ‹“o˜^ƒCƒ“ƒfƒbƒNƒX
+	u8 LiftHeight[STEEL_LIFT_MAX];	//ãƒ•ãƒ­ã‚¢è­˜åˆ¥ç”¨ãƒãƒƒãƒ•ã‚¡ã€€0:1F 1:2F 2:3F 3:4F
+	u8 LiftEntryIdx[STEEL_LIFT_MAX];		//æ‹¡å¼µé…ç½®ãƒ¢ãƒ‡ãƒ«ç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	LIFT_POSITION	LiftPos[STEEL_LIFT_MAX];
 	int ObjID[STEEL_LIFT_MAX];
 	u8 ListIdx;
@@ -1165,11 +1165,11 @@ static const STEEL_LIFT_INFO LiftInfo[STEEL_LIFT_MAX] = {
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒŠƒtƒg‚ÌƒoƒjƒbƒVƒ…
+ * @brief	é‹¼ã‚¸ãƒ :ãƒªãƒ•ãƒˆã®ãƒãƒ‹ãƒƒã‚·ãƒ¥
  * 
- * @param	inSteelTemp		|ƒWƒ€ƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒN
- * @param	inInvisible			ƒoƒjƒbƒVƒ…ƒtƒ‰ƒO
- * @param	inFloor				‘ÎÛƒtƒƒA
+ * @param	inSteelTemp		é‹¼ã‚¸ãƒ ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯
+ * @param	inInvisible			ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°
+ * @param	inFloor				å¯¾è±¡ãƒ•ãƒ­ã‚¢
  * 
  * @return	none
  */
@@ -1191,11 +1191,11 @@ static void InvisibleLift(const STEEL_GYM_TEMP_WORK *inSteelTemp,
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒŠƒtƒgƒqƒbƒg”»’è
+ * @brief	é‹¼ã‚¸ãƒ :ãƒªãƒ•ãƒˆãƒ’ãƒƒãƒˆåˆ¤å®š
  * 
- * @param	inSteelTemp		|ƒWƒ€ƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒN
+ * @param	inSteelTemp		é‹¼ã‚¸ãƒ ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯
  * 
- * @return	u8					ƒqƒbƒg‚µ‚½ƒŠƒtƒgƒCƒ“ƒfƒbƒNƒX
+ * @return	u8					ãƒ’ãƒƒãƒˆã—ãŸãƒªãƒ•ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //---------------------------------------------------------------------------
 static u8 CheckLiftHit(STEEL_GYM_TEMP_WORK *inSteelTemp)
@@ -1206,16 +1206,16 @@ static u8 CheckLiftHit(STEEL_GYM_TEMP_WORK *inSteelTemp)
 	u8 grid_z;
 	VecFx32 vec;
 	Player_VecPosGet( inSteelTemp->fsys->player, &vec );
-	//©‹@‚Ì‚‚³æ“¾
+	//è‡ªæ©Ÿã®é«˜ã•å–å¾—
 	height = vec.y/ONE_HEIGHT;
-	//©‹@‚ÌƒOƒŠƒbƒhÀ•W‚ğæ“¾
+	//è‡ªæ©Ÿã®ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã‚’å–å¾—
 	grid_x = vec.x/ONE_GRID;
 	grid_z = vec.z/ONE_GRID;
 	
 	for(i=0;i<STEEL_LIFT_MAX;i++){
-		//‚‚³”äŠr
+		//é«˜ã•æ¯”è¼ƒ
 		if (inSteelTemp->LiftPos[i].Height == height){
-			//XZ”äŠr
+			//XZæ¯”è¼ƒ
 			if ( (inSteelTemp->LiftPos[i].GridX == grid_x) &&
 					(inSteelTemp->LiftPos[i].GridZ == grid_z) ){
 				return i;
@@ -1227,10 +1227,10 @@ static u8 CheckLiftHit(STEEL_GYM_TEMP_WORK *inSteelTemp)
 #if 0
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒŠƒtƒg§Œäƒrƒbƒgæ“¾
+ * @brief	é‹¼ã‚¸ãƒ :ãƒªãƒ•ãƒˆåˆ¶å¾¡ãƒ“ãƒƒãƒˆå–å¾—
  * 
- * @param	inSteelGumWork		|ƒWƒ€ƒ[ƒN
- * @param	inBit				‘ÎÛƒrƒbƒg
+ * @param	inSteelGumWork		é‹¼ã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯
+ * @param	inBit				å¯¾è±¡ãƒ“ãƒƒãƒˆ
  * 
  * @return	none
  */
@@ -1244,11 +1244,11 @@ static u8 GetLiftPosBit(const STEEL_GYM_WORK *inSteelGymWork, const u8 inBit)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒŠƒtƒg§ŒäƒrƒbƒgƒZƒbƒg
+ * @brief	é‹¼ã‚¸ãƒ :ãƒªãƒ•ãƒˆåˆ¶å¾¡ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆ
  * 
- * @param	outSteelGymWork		|ƒWƒ€ƒ[ƒN
- * @param	inBit				‘ÎÛƒrƒbƒg
- * @param	inVal				’l
+ * @param	outSteelGymWork		é‹¼ã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯
+ * @param	inBit				å¯¾è±¡ãƒ“ãƒƒãƒˆ
+ * @param	inVal				å€¤
  * 
  * @return	none
  */
@@ -1256,7 +1256,7 @@ static u8 GetLiftPosBit(const STEEL_GYM_WORK *inSteelGymWork, const u8 inBit)
 static void SetLiftPosBit(STEEL_GYM_WORK *outSteelGymWork, const u8 inBit, const u8 inVal)
 {
 	int u,m,d;
-	GF_ASSERT((inVal<=1)&&"2ˆÈã‚Ì’l‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚·");
+	GF_ASSERT((inVal<=1)&&"2ä»¥ä¸Šã®å€¤ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã¾ã™");
 	
 	u = outSteelGymWork->LiftPosBit & (0xffffffff<<(inBit+1));
 	d = outSteelGymWork->LiftPosBit & (0xffffffff>>(32-inBit));
@@ -1266,10 +1266,10 @@ static void SetLiftPosBit(STEEL_GYM_WORK *outSteelGymWork, const u8 inBit, const
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒŠƒtƒg§Œäƒrƒbƒg•ÏX
+ * @brief	é‹¼ã‚¸ãƒ :ãƒªãƒ•ãƒˆåˆ¶å¾¡ãƒ“ãƒƒãƒˆå¤‰æ›´
  * 
- * @param	outSteelGymWork		|ƒWƒ€ƒ[ƒN
- * @param	inBit				‘ÎÛƒrƒbƒg
+ * @param	outSteelGymWork		é‹¼ã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯
+ * @param	inBit				å¯¾è±¡ãƒ“ãƒƒãƒˆ
  * 
  * @return	none
  */
@@ -1281,10 +1281,10 @@ static void ChangeLiftPosBit(STEEL_GYM_WORK *outSteelGymWork, const u8 inBit)
 #endif
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒŠƒtƒgˆÚ“®ƒCƒxƒ“ƒgƒR[ƒ‹
+ * @brief	é‹¼ã‚¸ãƒ :ãƒªãƒ•ãƒˆç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
  * 
- * @param	ioSteelTemp		|ƒWƒ€ƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒN
- * @param	inIdx			ƒŠƒtƒgƒCƒ“ƒfƒbƒNƒX
+ * @param	ioSteelTemp		é‹¼ã‚¸ãƒ ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯
+ * @param	inIdx			ãƒªãƒ•ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * 
  * @return	none
  */
@@ -1305,46 +1305,46 @@ static void CallLiftMoveEvent(STEEL_GYM_TEMP_WORK *ioSteelTemp, const u8 inIdx)
 
 	ioSteelTemp->ListIdx = inIdx;	
 	
-	//‘ÎÛƒŠƒtƒg‚Ìƒ^ƒCƒv‚ğæ“¾
+	//å¯¾è±¡ãƒªãƒ•ãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 	lift_type = ioSteelTemp->ObjID[inIdx];
-	//‘ÎÛƒŠƒtƒg‚ÌˆÊ’u‚ğæ“¾
+	//å¯¾è±¡ãƒªãƒ•ãƒˆã®ä½ç½®ã‚’å–å¾—
 	bit = GetBit(inIdx, steel_gym_work->LiftPosBit);
 	///bit = GetLiftPosBit(steel_gym_work, inIdx);
-	//ˆÊ’uXV
+	//ä½ç½®æ›´æ–°
 	///ChangeLiftPosBit(steel_gym_work, inIdx);
 	ChangeBit(inIdx,&steel_gym_work->LiftPosBit);
-	//ˆÚ“®ƒCƒxƒ“ƒg‚ğƒR[ƒ‹
-	if (lift_type == BMID_LIFT_BASE03){	//¶‰E
-		if (bit){		//¶‚Ö
+	//ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚³ãƒ¼ãƒ«
+	if (lift_type == BMID_LIFT_BASE03){	//å·¦å³
+		if (bit){		//å·¦ã¸
 			ioSteelTemp->MoveDir = MOVE_DIR_LEFT;
 			ioSteelTemp->Dst = LiftInfo[inIdx].BeforePos.GridX*ONE_GRID+STEEL_CENTER_OFS;
 			ioSteelTemp->LiftPos[inIdx] = LiftInfo[inIdx].BeforePos;		
-		}else{			//‰E‚Ö
+		}else{			//å³ã¸
 			ioSteelTemp->MoveDir = MOVE_DIR_RIGHT;
 			ioSteelTemp->Dst = LiftInfo[inIdx].AffterPos.GridX*ONE_GRID+STEEL_CENTER_OFS;
 			ioSteelTemp->LiftPos[inIdx] = LiftInfo[inIdx].AffterPos;
 		}
 		FieldEvent_Set(ioSteelTemp->fsys, GMEVENT_MoveLRGymSteel, egw);
-	}else if (lift_type == BMID_LIFT_BASE02) {			//è‘O‰œ
-		if (bit){		//‰œ‚Ö
+	}else if (lift_type == BMID_LIFT_BASE02) {			//æ‰‹å‰å¥¥
+		if (bit){		//å¥¥ã¸
 			ioSteelTemp->MoveDir = MOVE_DIR_REAR;
 			ioSteelTemp->Dst = LiftInfo[inIdx].BeforePos.GridZ*ONE_GRID+STEEL_CENTER_OFS;
 			ioSteelTemp->LiftPos[inIdx] = LiftInfo[inIdx].BeforePos;
-		}else{			//è‘O‚Ö
+		}else{			//æ‰‹å‰ã¸
 			ioSteelTemp->MoveDir = MOVE_DIR_FRONT;
 			ioSteelTemp->Dst = LiftInfo[inIdx].AffterPos.GridZ*ONE_GRID+STEEL_CENTER_OFS;
 			ioSteelTemp->LiftPos[inIdx] = LiftInfo[inIdx].AffterPos;
 		}
 		FieldEvent_Set(ioSteelTemp->fsys, GMEVENT_MoveFRGymSteel, egw);
-	}else{				//ã‰º
-		if (bit){		//‰º‚Ö
+	}else{				//ä¸Šä¸‹
+		if (bit){		//ä¸‹ã¸
 			ioSteelTemp->MoveDir = MOVE_DIR_DOWN;
 			ioSteelTemp->Dst = LiftInfo[inIdx].BeforePos.Height*ONE_HEIGHT;
 			ioSteelTemp->LiftPos[inIdx] = LiftInfo[inIdx].BeforePos;
-			//‚‚³ƒR[ƒhXV	(‰º‚è‚Íæ‚És‚Á‚Ä‚µ‚Ü‚¤)
+			//é«˜ã•ã‚³ãƒ¼ãƒ‰æ›´æ–°	(ä¸‹ã‚Šæ™‚ã¯å…ˆã«è¡Œã£ã¦ã—ã¾ã†)
 			ioSteelTemp->LiftHeight[inIdx] =
 							LiftInfo[inIdx].BeforeHeight;
-		}else{			//ã‚Ö
+		}else{			//ä¸Šã¸
 			ioSteelTemp->MoveDir = MOVE_DIR_UP;
 			ioSteelTemp->Dst = LiftInfo[inIdx].AffterPos.Height*ONE_HEIGHT;
 			ioSteelTemp->LiftPos[inIdx] = LiftInfo[inIdx].AffterPos;
@@ -1355,10 +1355,10 @@ static void CallLiftMoveEvent(STEEL_GYM_TEMP_WORK *ioSteelTemp, const u8 inIdx)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:°‚ÌƒoƒjƒbƒVƒ…
+ * @brief	é‹¼ã‚¸ãƒ :åºŠã®ãƒãƒ‹ãƒƒã‚·ãƒ¥
  * 
- * @param	steel_temp		|ƒWƒ€ƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒN
- * @param	inHeight		‚‚³
+ * @param	steel_temp		é‹¼ã‚¸ãƒ ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯
+ * @param	inHeight		é«˜ã•
  * 
  * @return	none
  */
@@ -1369,49 +1369,49 @@ static void SetLiftFloorVanish(STEEL_GYM_TEMP_WORK *steel_temp, const fx32 inHei
 	M3DO_PTR obj_ptr3F;
 	M3DO_PTR obj_ptr4F;
 	
-	//‚‚³‚É‰‚¶‚Ä°‚ğƒoƒjƒbƒVƒ…
+	//é«˜ã•ã«å¿œã˜ã¦åºŠã‚’ãƒãƒ‹ãƒƒã‚·ãƒ¥
 	obj_ptr2F = M3DO_GetMap3DObjData(steel_temp->fsys->Map3DObjExp, steel_temp->Floor2F);
 	obj_ptr3F = M3DO_GetMap3DObjData(steel_temp->fsys->Map3DObjExp, steel_temp->Floor3F);
 	obj_ptr4F = M3DO_GetMap3DObjData(steel_temp->fsys->Map3DObjExp, steel_temp->Floor4F);
 
 	if (inHeight>=ONE_HEIGHT*(FLOOR_MARGIN-FLOOR_DISP_START_VAL)){	//2F
-		M3DO_SetVanish(obj_ptr2F, FALSE);//•\¦
-		//STEEL_FLOOR_2F‚ÌƒŠƒtƒg‚ğ•\¦
+		M3DO_SetVanish(obj_ptr2F, FALSE);//è¡¨ç¤º
+		//STEEL_FLOOR_2Fã®ãƒªãƒ•ãƒˆã‚’è¡¨ç¤º
 		InvisibleLift(steel_temp, FALSE, STEEL_FLOOR_2F);
 	}else{
-		M3DO_SetVanish(obj_ptr2F, TRUE);//”ñ•\¦
-		//STEEL_FLOOR_2F‚ÌƒŠƒtƒg‚ğ”ñ•\¦
+		M3DO_SetVanish(obj_ptr2F, TRUE);//éè¡¨ç¤º
+		//STEEL_FLOOR_2Fã®ãƒªãƒ•ãƒˆã‚’éè¡¨ç¤º
 		InvisibleLift(steel_temp, TRUE, STEEL_FLOOR_2F);
 	}
 	
 	if (inHeight>=ONE_HEIGHT*(FLOOR_MARGIN*2-FLOOR_DISP_START_VAL)){	//3F
-		M3DO_SetVanish(obj_ptr3F, FALSE);//•\¦
-		//STEEL_FLOOR_3F‚ÌƒŠƒtƒg‚ğ•\¦
+		M3DO_SetVanish(obj_ptr3F, FALSE);//è¡¨ç¤º
+		//STEEL_FLOOR_3Fã®ãƒªãƒ•ãƒˆã‚’è¡¨ç¤º
 		InvisibleLift(steel_temp, FALSE, STEEL_FLOOR_3F);
 	}else{
-		M3DO_SetVanish(obj_ptr3F, TRUE);//”ñ•\¦
-		//STEEL_FLOOR_3F‚ÌƒŠƒtƒg‚ğ•\¦
+		M3DO_SetVanish(obj_ptr3F, TRUE);//éè¡¨ç¤º
+		//STEEL_FLOOR_3Fã®ãƒªãƒ•ãƒˆã‚’è¡¨ç¤º
 		InvisibleLift(steel_temp, TRUE, STEEL_FLOOR_3F);
 	}
 	
 	if (inHeight>=ONE_HEIGHT*(FLOOR_MARGIN*3-FLOOR_DISP_START_VAL)){	//4F
-		M3DO_SetVanish(obj_ptr4F, FALSE);//•\¦
-		//STEEL_FLOOR_4F‚ÌƒŠƒtƒg‚ğ•\¦
+		M3DO_SetVanish(obj_ptr4F, FALSE);//è¡¨ç¤º
+		//STEEL_FLOOR_4Fã®ãƒªãƒ•ãƒˆã‚’è¡¨ç¤º
 		InvisibleLift(steel_temp, FALSE, STEEL_FLOOR_4F);
 	}else{
-		M3DO_SetVanish(obj_ptr4F, TRUE);//”ñ•\¦
-		//STEEL_FLOOR_4F‚ÌƒŠƒtƒg‚ğ•\¦
+		M3DO_SetVanish(obj_ptr4F, TRUE);//éè¡¨ç¤º
+		//STEEL_FLOOR_4Fã®ãƒªãƒ•ãƒˆã‚’è¡¨ç¤º
 		InvisibleLift(steel_temp, TRUE, STEEL_FLOOR_4F);
 	}
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒŠƒtƒg‚Ìã‰ºˆÚ“®
+ * @brief	é‹¼ã‚¸ãƒ :ãƒªãƒ•ãƒˆã®ä¸Šä¸‹ç§»å‹•
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_MoveUDGymSteel(GMEVENT_CONTROL * event)
@@ -1425,46 +1425,46 @@ static BOOL GMEVENT_MoveUDGymSteel(GMEVENT_CONTROL * event)
 	
 	switch (egw->seq) {
 	case 0:
-		Player_HeightGet_ON_OFF( fsys->player, FALSE );//©‹@‚Ì‚‚³©“®æ“¾‚ğƒIƒt
+		Player_HeightGet_ON_OFF( fsys->player, FALSE );//è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã‚’ã‚ªãƒ•
 
-		//ƒŠƒtƒg‰¹Ä¶
+		//ãƒªãƒ•ãƒˆéŸ³å†ç”Ÿ
 		Snd_SePlay( SEQ_SE_DP_ELEBETA );
 		(egw->seq)	++;
 		break;
-	case 1:	//ƒŠƒtƒg‚ğˆÚ“®
+	case 1:	//ãƒªãƒ•ãƒˆã‚’ç§»å‹•
 		{
 			int entry;
-			//ƒŠƒtƒgOBJ‚ğæ“¾
+			//ãƒªãƒ•ãƒˆOBJã‚’å–å¾—
 			entry = steel_temp->LiftEntryIdx[steel_temp->ListIdx];
 			ptr = M3DO_GetMap3DObjData(fsys->Map3DObjExp, entry);
-			//yÀ•W•ÏX
+			//yåº§æ¨™å¤‰æ›´
 			{
 				VecFx32 vec;
 				vec = M3DO_GetGlobalVec(ptr);
 				if (steel_temp->MoveDir == MOVE_DIR_UP){
 					vec.y += STEEL_UD_LIFT_DIF;
-					if (vec.y >= steel_temp->Dst){	//ƒZƒbƒgI—¹
+					if (vec.y >= steel_temp->Dst){	//ã‚»ãƒƒãƒˆçµ‚äº†
 						vec.y = steel_temp->Dst;
-						//‚‚³ƒR[ƒhXV
+						//é«˜ã•ã‚³ãƒ¼ãƒ‰æ›´æ–°
 						steel_temp->LiftHeight[steel_temp->ListIdx] =
 							LiftInfo[steel_temp->ListIdx].AffterHeight;
-						//ƒŠƒtƒg‰¹’â~
+						//ãƒªãƒ•ãƒˆéŸ³åœæ­¢
 						Snd_SeStopBySeqNo( SEQ_SE_DP_ELEBETA, 0 );
 						(egw->seq) ++;
 					}
 				}else if (steel_temp->MoveDir == MOVE_DIR_DOWN){
 					vec.y -= STEEL_UD_LIFT_DIF;
-					if (vec.y <= steel_temp->Dst){	//ƒZƒbƒgI—¹
+					if (vec.y <= steel_temp->Dst){	//ã‚»ãƒƒãƒˆçµ‚äº†
 						vec.y = steel_temp->Dst;
-						//ƒŠƒtƒg‰¹’â~
+						//ãƒªãƒ•ãƒˆéŸ³åœæ­¢
 						Snd_SeStopBySeqNo( SEQ_SE_DP_ELEBETA, 0 );
 						(egw->seq) ++;
 					}
 				}else{
-					GF_ASSERT(0&&"•ûŒüw’èƒGƒ‰[");
+					GF_ASSERT(0&&"æ–¹å‘æŒ‡å®šã‚¨ãƒ©ãƒ¼");
 				}
 				
-				Player_VecPosYSet( fsys->player, vec.y );	//©‹@‚‚³•ÏX
+				Player_VecPosYSet( fsys->player, vec.y );	//è‡ªæ©Ÿé«˜ã•å¤‰æ›´
 				M3DO_SetGlobalVec(ptr, &vec);
 
 				SetLiftFloorVanish(steel_temp, vec.y);
@@ -1472,9 +1472,9 @@ static BOOL GMEVENT_MoveUDGymSteel(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 2:
-		//©‹@‚Ì‚‚³©“®æ“¾‚ğƒIƒ“
+		//è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã‚’ã‚ªãƒ³
 		Player_HeightGetSet_ON_OFF( fsys->player, TRUE );
-		//ƒŠƒtƒgˆÚ“®I—¹‰¹
+		//ãƒªãƒ•ãƒˆç§»å‹•çµ‚äº†éŸ³
 		Snd_SePlay( SE_YOSUGA_GYM_LIFT );
 		(egw->seq) ++;
 		break;
@@ -1487,11 +1487,11 @@ static BOOL GMEVENT_MoveUDGymSteel(GMEVENT_CONTROL * event)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒŠƒtƒg‚ğ¶‰E‚ÉˆÚ“®
+ * @brief	é‹¼ã‚¸ãƒ :ãƒªãƒ•ãƒˆã‚’å·¦å³ã«ç§»å‹•
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_MoveLRGymSteel(GMEVENT_CONTROL * event)
@@ -1506,63 +1506,63 @@ static BOOL GMEVENT_MoveLRGymSteel(GMEVENT_CONTROL * event)
 	fop = Player_FieldOBJGet( fsys->player );	
 	switch (egw->seq) {
 	case 0:
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
-			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_ON);	//o—ˆ‚éB“®‚«‚ğƒ|[ƒY
-			//ƒŠƒtƒg‰¹Ä¶
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
+			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_ON);	//å‡ºæ¥ã‚‹ã€‚å‹•ãã‚’ãƒãƒ¼ã‚º
+			//ãƒªãƒ•ãƒˆéŸ³å†ç”Ÿ
 			Snd_SePlay( SEQ_SE_DP_ELEBETA );
 			(egw->seq)	++;
 		}
 		break;
-	case 1:	//ƒŠƒtƒg‚ğˆÚ“®
+	case 1:	//ãƒªãƒ•ãƒˆã‚’ç§»å‹•
 		{
 			int entry;
-			//ƒŠƒtƒgOBJ‚ğæ“¾
+			//ãƒªãƒ•ãƒˆOBJã‚’å–å¾—
 			entry = steel_temp->LiftEntryIdx[steel_temp->ListIdx];
 			ptr = M3DO_GetMap3DObjData(fsys->Map3DObjExp, entry);
-			//xÀ•W•ÏX
+			//xåº§æ¨™å¤‰æ›´
 			{
 				VecFx32 vec,player_vec;
 				vec = M3DO_GetGlobalVec(ptr);
 				Player_VecPosGet( fsys->player, &player_vec );
 				vec.x = player_vec.x;
 				if (steel_temp->MoveDir == MOVE_DIR_RIGHT){
-					if (vec.x >= steel_temp->Dst){	//ƒZƒbƒgI—¹
+					if (vec.x >= steel_temp->Dst){	//ã‚»ãƒƒãƒˆçµ‚äº†
 						vec.x = steel_temp->Dst;
-						//ƒŠƒtƒg‰¹’â~
+						//ãƒªãƒ•ãƒˆéŸ³åœæ­¢
 						Snd_SeStopBySeqNo( SEQ_SE_DP_ELEBETA, 0 );
 						(egw->seq) ++;
 					}else{
-						if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?	
-							FieldOBJ_AcmdSet(fop,AC_WALK_R_2F);	//©‹@‰EˆÚ“®
+						if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?	
+							FieldOBJ_AcmdSet(fop,AC_WALK_R_2F);	//è‡ªæ©Ÿå³ç§»å‹•
 						}
 					}
 				}else if (steel_temp->MoveDir == MOVE_DIR_LEFT){
-					if (vec.x <= steel_temp->Dst){	//ƒZƒbƒgI—¹
+					if (vec.x <= steel_temp->Dst){	//ã‚»ãƒƒãƒˆçµ‚äº†
 						vec.x = steel_temp->Dst;
-						//ƒŠƒtƒg‰¹’â~
+						//ãƒªãƒ•ãƒˆéŸ³åœæ­¢
 						Snd_SeStopBySeqNo( SEQ_SE_DP_ELEBETA, 0 );
 						(egw->seq) ++;
 					}else{
-						if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?	
-							FieldOBJ_AcmdSet(fop,AC_WALK_L_2F);	//©‹@¶ˆÚ“®
+						if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?	
+							FieldOBJ_AcmdSet(fop,AC_WALK_L_2F);	//è‡ªæ©Ÿå·¦ç§»å‹•
 						}
 					}
 				}else{
-					GF_ASSERT(0&&"•ûŒüw’èƒGƒ‰[");
+					GF_ASSERT(0&&"æ–¹å‘æŒ‡å®šã‚¨ãƒ©ãƒ¼");
 				}
 				M3DO_SetGlobalVec(ptr, &vec);
 			}
 		}
 		break;
 	case 2:
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
-			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_OFF);	//o—ˆ‚éBƒ|[ƒY‰ğœ
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
+			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_OFF);	//å‡ºæ¥ã‚‹ã€‚ãƒãƒ¼ã‚ºè§£é™¤
 			(egw->seq) ++;
 		}
 	case 3:
-		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-			FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹
-			//ƒŠƒtƒgˆÚ“®I—¹‰¹
+		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+			FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†
+			//ãƒªãƒ•ãƒˆç§»å‹•çµ‚äº†éŸ³
 			Snd_SePlay( SE_YOSUGA_GYM_LIFT );
 			(egw->seq) ++;
 		}
@@ -1576,11 +1576,11 @@ static BOOL GMEVENT_MoveLRGymSteel(GMEVENT_CONTROL * event)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒŠƒtƒg‚ğè‘O‰œ‚ÉˆÚ“®
+ * @brief	é‹¼ã‚¸ãƒ :ãƒªãƒ•ãƒˆã‚’æ‰‹å‰å¥¥ã«ç§»å‹•
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_MoveFRGymSteel(GMEVENT_CONTROL * event)
@@ -1595,57 +1595,57 @@ static BOOL GMEVENT_MoveFRGymSteel(GMEVENT_CONTROL * event)
 	fop = Player_FieldOBJGet( fsys->player );	
 	switch (egw->seq) {
 	case 0:
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
-			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_ON);	//o—ˆ‚éB“®‚«‚ğƒ|[ƒY
-			//ƒŠƒtƒg‰¹Ä¶
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
+			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_ON);	//å‡ºæ¥ã‚‹ã€‚å‹•ãã‚’ãƒãƒ¼ã‚º
+			//ãƒªãƒ•ãƒˆéŸ³å†ç”Ÿ
 			Snd_SePlay( SEQ_SE_DP_ELEBETA );
 			(egw->seq)	++;
 		}
 		break;
-	case 1:	//ƒŠƒtƒg‚ğˆÚ“®
+	case 1:	//ãƒªãƒ•ãƒˆã‚’ç§»å‹•
 		{
 			int entry;
-			//ƒŠƒtƒgOBJ‚ğæ“¾
+			//ãƒªãƒ•ãƒˆOBJã‚’å–å¾—
 			entry = steel_temp->LiftEntryIdx[steel_temp->ListIdx];
 			ptr = M3DO_GetMap3DObjData(fsys->Map3DObjExp, entry);
-			//zÀ•W•ÏX
+			//zåº§æ¨™å¤‰æ›´
 			{
 				VecFx32 vec,player_vec;
 				vec = M3DO_GetGlobalVec(ptr);
 				Player_VecPosGet( fsys->player, &player_vec );
 				vec.z = player_vec.z;
 				if (steel_temp->MoveDir == MOVE_DIR_FRONT){
-					if (vec.z >= steel_temp->Dst){	//ƒZƒbƒgI—¹
+					if (vec.z >= steel_temp->Dst){	//ã‚»ãƒƒãƒˆçµ‚äº†
 						vec.z = steel_temp->Dst;
-						//ƒŠƒtƒg‰¹’â~
+						//ãƒªãƒ•ãƒˆéŸ³åœæ­¢
 						Snd_SeStopBySeqNo( SEQ_SE_DP_ELEBETA, 0 );
 						(egw->seq) ++;
 					}else{
-						if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?	
-							FieldOBJ_AcmdSet(fop,AC_WALK_D_2F);	//©‹@è‘OˆÚ“®
+						if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?	
+							FieldOBJ_AcmdSet(fop,AC_WALK_D_2F);	//è‡ªæ©Ÿæ‰‹å‰ç§»å‹•
 						}
 					}
 				}else if (steel_temp->MoveDir == MOVE_DIR_REAR){
-					if (vec.z <= steel_temp->Dst){	//ƒZƒbƒgI—¹
+					if (vec.z <= steel_temp->Dst){	//ã‚»ãƒƒãƒˆçµ‚äº†
 						vec.z = steel_temp->Dst;
-						//ƒŠƒtƒg‰¹’â~
+						//ãƒªãƒ•ãƒˆéŸ³åœæ­¢
 						Snd_SeStopBySeqNo( SEQ_SE_DP_ELEBETA, 0 );
 						(egw->seq) ++;
 					}else{
-						if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?	
-							FieldOBJ_AcmdSet(fop,AC_WALK_U_2F);	//©‹@‰œˆÚ“®
+						if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?	
+							FieldOBJ_AcmdSet(fop,AC_WALK_U_2F);	//è‡ªæ©Ÿå¥¥ç§»å‹•
 						}
 					}
 				}else{
-					GF_ASSERT(0&&"•ûŒüw’èƒGƒ‰[");
+					GF_ASSERT(0&&"æ–¹å‘æŒ‡å®šã‚¨ãƒ©ãƒ¼");
 				}
 				M3DO_SetGlobalVec(ptr, &vec);
 			}
 		}
 		break;
 	case 2:
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
-			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_OFF);	//o—ˆ‚éBƒ|[ƒY‰ğœ
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
+			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_OFF);	//å‡ºæ¥ã‚‹ã€‚ãƒãƒ¼ã‚ºè§£é™¤
 			(egw->seq) ++;
 		}
 		break;
@@ -1653,9 +1653,9 @@ static BOOL GMEVENT_MoveFRGymSteel(GMEVENT_CONTROL * event)
 		{
 			FIELD_OBJ_PTR fop;
 			fop = Player_FieldOBJGet( fsys->player );
-			if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-				FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹
-				//ƒŠƒtƒgˆÚ“®I—¹‰¹
+			if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+				FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†
+				//ãƒªãƒ•ãƒˆç§»å‹•çµ‚äº†éŸ³
 				Snd_SePlay( SE_YOSUGA_GYM_LIFT );
 				(egw->seq) ++;
 			}
@@ -1670,9 +1670,9 @@ static BOOL GMEVENT_MoveFRGymSteel(GMEVENT_CONTROL * event)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒZƒbƒgƒAƒbƒv
+ * @brief	é‹¼ã‚¸ãƒ :ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -1683,16 +1683,16 @@ void GYM_SetupSteelGym(FIELDSYS_WORK *fsys)
 	GIMMICKWORK *work;
 	STEEL_GYM_WORK *steel_gym_work;
 	
-	//‚±‚±‚ÅƒMƒ~ƒbƒNƒ[ƒN‚Ì’†g‚ğŒ©‚é
+	//ã“ã“ã§ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã®ä¸­èº«ã‚’è¦‹ã‚‹
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
 	steel_gym_work = (STEEL_GYM_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_STEEL_GYM);
 
-	//|ƒWƒ€ê—pƒ[ƒN‚ğƒAƒƒP[ƒg‚µ‚ÄAƒtƒB[ƒ‹ƒhƒ}ƒbƒv”Ä—pƒ[ƒNƒ|ƒCƒ“ƒ^‚É‚ ‚Ä‚é
+	//é‹¼ã‚¸ãƒ å°‚ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã—ã¦ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—æ±ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã«ã‚ã¦ã‚‹
 	fsys->fldmap->Work = sys_AllocMemory(HEAPID_FIELD, sizeof(STEEL_GYM_TEMP_WORK));
 	steel_temp = fsys->fldmap->Work;
 
 	steel_temp->fsys = fsys;
-	//°i2F`4Fj‚Ìì¬
+	//åºŠï¼ˆ2Fã€œ4Fï¼‰ã®ä½œæˆ
 	{
 		VecFx32 vec = {FX32_ONE*(16*16),0,FX32_ONE*(16*16)};
 		vec.y = ONE_HEIGHT*FLOOR_MARGIN;
@@ -1714,7 +1714,7 @@ void GYM_SetupSteelGym(FIELDSYS_WORK *fsys)
 							&vec,NULL,
 							fsys->field_3d_anime );
 	}
-	//ƒŠƒtƒg‚Ìì¬(24ŒÂ)
+	//ãƒªãƒ•ãƒˆã®ä½œæˆ(24å€‹)
 	{
 		VecFx32 vec;
 		int i;
@@ -1739,24 +1739,24 @@ void GYM_SetupSteelGym(FIELDSYS_WORK *fsys)
 									fsys->MapResource,
 									LiftInfo[i].ObjID,
 									&vec, NULL,
-									fsys->field_3d_anime );//<ƒŠƒtƒg
+									fsys->field_3d_anime );//<ãƒªãƒ•ãƒˆ
 
 			steel_temp->ObjID[i] = LiftInfo[i].ObjID;
 		}
 	}
 
-	//ƒoƒjƒbƒVƒ…ƒZƒbƒg
+	//ãƒãƒ‹ãƒƒã‚·ãƒ¥ã‚»ãƒƒãƒˆ
 	{
 		VecFx32 player_vec;
-		//©‹@‚Ì‚‚³‚ğæ“¾
+		//è‡ªæ©Ÿã®é«˜ã•ã‚’å–å¾—
 		Player_VecPosGet( fsys->player, &player_vec );
 		SetLiftFloorVanish(steel_temp, player_vec.y);
 	}
 	
-	//ƒNƒŠƒbƒvƒZƒbƒg
+	//ã‚¯ãƒªãƒƒãƒ—ã‚»ãƒƒãƒˆ
 	GFC_SetCameraClip(FX32_ONE * 100,FX32_ONE * 1700, fsys->camera_ptr);
 	
-	//ƒtƒHƒOƒZƒbƒg
+	//ãƒ•ã‚©ã‚°ã‚»ãƒƒãƒˆ
 	SetFogData(fsys->fog_data, FOG_SYS_ALL,
 			TRUE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x0200, STEEL_FOG_OFS);
 	
@@ -1774,31 +1774,31 @@ void GYM_SetupSteelGym(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:ƒŠƒtƒgƒ`ƒFƒbƒN
+ * @brief	é‹¼ã‚¸ãƒ :ãƒªãƒ•ãƒˆãƒã‚§ãƒƒã‚¯
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL	TRUE:ƒŠƒtƒg‚ ‚è		FALSE:ƒŠƒtƒg–³‚µ
+ * @return	BOOL	TRUE:ãƒªãƒ•ãƒˆã‚ã‚Š		FALSE:ãƒªãƒ•ãƒˆç„¡ã—
  */
 //---------------------------------------------------------------------------
 BOOL GYM_CheckSteelLift(FIELDSYS_WORK *fsys)
 {
-	//ƒŠƒtƒgƒqƒbƒgƒ`ƒFƒbƒN
+	//ãƒªãƒ•ãƒˆãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 	u8 idx;
 	STEEL_GYM_TEMP_WORK *steel_temp;
 
-	//ƒMƒ~ƒbƒNƒ[ƒN‚ğŒ©‚é
+	//ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã‚’è¦‹ã‚‹
 	{
 		int id;
 		GIMMICKWORK *work;
 		
-		//ƒMƒ~ƒbƒNƒ[ƒNæ“¾
+		//ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯å–å¾—
 		work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
-		//ƒMƒ~ƒbƒNƒR[ƒh‚ğæ“¾
+		//ã‚®ãƒŸãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 		id = GIMMICKWORK_GetAssignID(work);
 
 		if (id != FLD_GIMMICK_STEEL_GYM){
-			return FALSE;					//|ƒWƒ€ƒMƒ~ƒbƒN–³‚µ
+			return FALSE;					//é‹¼ã‚¸ãƒ ã‚®ãƒŸãƒƒã‚¯ç„¡ã—
 		}
 	}
 
@@ -1808,8 +1808,8 @@ BOOL GYM_CheckSteelLift(FIELDSYS_WORK *fsys)
 	}
 	idx = CheckLiftHit(steel_temp);
 	if (idx != STEEL_LIFT_MAX){
-		//ƒqƒbƒg‚µ‚½‚Ì‚Åˆ—
-		//ƒŠƒtƒg‚ÌˆÊ’u‚ÆƒŠƒtƒgƒ^ƒCƒv‚ÅAƒCƒxƒ“ƒg•ªŠò
+		//ãƒ’ãƒƒãƒˆã—ãŸã®ã§å‡¦ç†
+		//ãƒªãƒ•ãƒˆã®ä½ç½®ã¨ãƒªãƒ•ãƒˆã‚¿ã‚¤ãƒ—ã§ã€ã‚¤ãƒ™ãƒ³ãƒˆåˆ†å²
 		CallLiftMoveEvent(steel_temp, idx);
 		return TRUE;
 	}
@@ -1819,9 +1819,9 @@ BOOL GYM_CheckSteelLift(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:I—¹ˆ—
+ * @brief	é‹¼ã‚¸ãƒ :çµ‚äº†å‡¦ç†
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -1836,15 +1836,15 @@ void GYM_EndSteelGym(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:“–‚½‚è”»’è
+ * @brief	é‹¼ã‚¸ãƒ :å½“ãŸã‚Šåˆ¤å®š
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @param	inHeight	‚‚³
- * @param	outHit		”»’èŒ‹‰Ê	TRUE:ƒqƒbƒg	FALSE:ƒqƒbƒg‚µ‚Ä‚È‚¢
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inHeight	é«˜ã•
+ * @param	outHit		åˆ¤å®šçµæœ	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒ’ãƒƒãƒˆã—ã¦ãªã„
  * 
- * @return	BOOL		TRUE:‚±‚Ì‚ ‚Æ’Êí“–‚½‚è”»’è‚ğs‚í‚È‚¢	FALSE:’Êí“–‚½‚è”»’è‚ğs‚¤
+ * @return	BOOL		TRUE:ã“ã®ã‚ã¨é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã‚ãªã„	FALSE:é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  */
 //---------------------------------------------------------------------------
 BOOL GYM_HitCheckSteelGym(	FIELDSYS_WORK *fsys,
@@ -1854,16 +1854,16 @@ BOOL GYM_HitCheckSteelGym(	FIELDSYS_WORK *fsys,
 	u8 floor;
 	const u8 *tbl;
 	int index;
-	//ŠK‘w‚ğŒˆ’è
+	//éšå±¤ã‚’æ±ºå®š
 	floor = (inHeight/ONE_HEIGHT)/FLOOR_MARGIN;
-	GF_ASSERT(floor<=3&&"ŠK‘wƒGƒ‰[");
+	GF_ASSERT(floor<=3&&"éšå±¤ã‚¨ãƒ©ãƒ¼");
 	
 	tbl = SteelGymHitTbl[floor];
 	index = inGridX+inGridZ*32;
-	GF_ASSERT(index<1024&&"ƒCƒ“ƒfƒbƒNƒXƒGƒ‰[");
+	GF_ASSERT(index<1024&&"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚¨ãƒ©ãƒ¼");
 	(*outHit) = tbl[index];
 
-	return TRUE;	//’Êí“–‚½‚è”»’è‚Ís‚í‚È‚¢
+	return TRUE;	//é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã¯è¡Œã‚ãªã„
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -1871,7 +1871,7 @@ BOOL GYM_HitCheckSteelGym(	FIELDSYS_WORK *fsys,
 #ifndef DP_OLDGYM_NULL_FIGHT
 //----
 
-//Ši“¬ƒWƒ€
+//æ ¼é—˜ã‚¸ãƒ 
 typedef struct COMBAT_HIT_RECT_tag
 {
 	u8 X;
@@ -1881,7 +1881,7 @@ typedef struct COMBAT_HIT_RECT_tag
 typedef struct COMBAT_GYM_TEMP_WORK_tag
 {
 	FIELDSYS_WORK *fsys;
-	u8 WallEntryIdx[COMBAT_WALL_MAX];		//Šg’£”z’uƒ‚ƒfƒ‹“o˜^ƒCƒ“ƒfƒbƒNƒX
+	u8 WallEntryIdx[COMBAT_WALL_MAX];		//æ‹¡å¼µé…ç½®ãƒ¢ãƒ‡ãƒ«ç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 ///	int ObjID[COMBAT_WALL_MAX];
 	u8 WallPos[COMBAT_WALL_MAX];
 	u8 ListIdx;
@@ -1893,18 +1893,18 @@ typedef struct COMBAT_GYM_TEMP_WORK_tag
 typedef struct COMBAT_WALL_INFO_tag
 {
 	int ObjID;
-	u8 BaseZ;		//”z’u‚³‚ê‚éZÀ•W
-	u8 BeforeX;		//ˆÚ“®‘OXÀ•W(¶)
-	u8 AffterX;		//ˆÚ“®ŒãXÀ•Wi‰Ej
+	u8 BaseZ;		//é…ç½®ã•ã‚Œã‚‹Zåº§æ¨™
+	u8 BeforeX;		//ç§»å‹•å‰Xåº§æ¨™(å·¦æ™‚)
+	u8 AffterX;		//ç§»å‹•å¾ŒXåº§æ¨™ï¼ˆå³æ™‚ï¼‰
 	u8 dummy;	
 }COMBAT_WALL_INFO;
 
 typedef struct COMBAT_WALL_POS_INFO_tag
 {
-	u8 GridX;	//XÀ•W
-	u8 GridZ;	//ZÀ•W
-	u8 Bit;		//”­“®ğŒ	0:¶‚©‚ç‰Ÿ‚¹‚é@1‰E‚©‚ç‰Ÿ‚¹‚é
-	u8 WallNo;	//‚µ‚«‚è”Ô†
+	u8 GridX;	//Xåº§æ¨™
+	u8 GridZ;	//Zåº§æ¨™
+	u8 Bit;		//ç™ºå‹•æ¡ä»¶	0:å·¦ã‹ã‚‰æŠ¼ã›ã‚‹ã€€1å³ã‹ã‚‰æŠ¼ã›ã‚‹
+	u8 WallNo;	//ã—ãã‚Šç•ªå·
 }COMBAT_WALL_POS_INFO;
 
 typedef struct COMBAT_WALL_HIT_tag
@@ -1913,7 +1913,7 @@ typedef struct COMBAT_WALL_HIT_tag
 	COMBAT_HIT_RECT AffterRect[2];
 }COMBAT_WALL_HIT;
 
-//‚µ‚«‚èî•ñ
+//ã—ãã‚Šæƒ…å ±
 static const COMBAT_WALL_INFO WallInfo[COMBAT_WALL_MAX] = {
 	{ BMID_GYM_WALL06,  9,  9, 10, 0 },
 	{ BMID_GYM_WALL02, 10,  3,  4, 0 },
@@ -1929,7 +1929,7 @@ static const COMBAT_WALL_INFO WallInfo[COMBAT_WALL_MAX] = {
 	{ BMID_GYM_WALL03, 20,  3,  8, 1 },
 };
 
-//‚µ‚«‚è‰Ÿ‚µêŠî•ñ
+//ã—ãã‚ŠæŠ¼ã—å ´æ‰€æƒ…å ±
 static const COMBAT_WALL_POS_INFO WallPosInfo[COMBAT_WALL_POS_MAX] = {
 	{12, 20, 1, WALLNO_12},
 	{ 2, 20, 0, WALLNO_12},
@@ -1947,7 +1947,7 @@ static const COMBAT_WALL_POS_INFO WallPosInfo[COMBAT_WALL_POS_MAX] = {
 	{ 8,  9, 0, WALLNO_1},
 };
 
-//‚µ‚«‚è“–‚½‚è”»’è
+//ã—ãã‚Šå½“ãŸã‚Šåˆ¤å®š
 static const COMBAT_WALL_HIT WallHitInfo[COMBAT_WALL_MAX] = {
 	{ {{ 9, 2}, {12, 1}}, {{10, 2}, {13, 1}} },
 	{ {{ 3, 1}, { 5, 2}}, {{ 4, 1}, { 6, 2}} },
@@ -1965,12 +1965,12 @@ static const COMBAT_WALL_HIT WallHitInfo[COMBAT_WALL_MAX] = {
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Ši“¬ƒWƒ€:‚µ‚«‚èƒvƒbƒVƒ…”»’è
+ * @brief	æ ¼é—˜ã‚¸ãƒ :ã—ãã‚Šãƒ—ãƒƒã‚·ãƒ¥åˆ¤å®š
  * 
- * @param	inCombatTemp		Ši“¬ƒWƒ€ƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒN
- * @param	inDir				•ûŒü
+ * @param	inCombatTemp		æ ¼é—˜ã‚¸ãƒ ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯
+ * @param	inDir				æ–¹å‘
  * 
- * @return	u8					ƒqƒbƒg‚µ‚½ƒŠƒtƒgƒCƒ“ƒfƒbƒNƒX
+ * @return	u8					ãƒ’ãƒƒãƒˆã—ãŸãƒªãƒ•ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //---------------------------------------------------------------------------
 static u8 CheckWallPush(COMBAT_GYM_TEMP_WORK *inCombatTemp, const u8 inDir)
@@ -1982,20 +1982,20 @@ static u8 CheckWallPush(COMBAT_GYM_TEMP_WORK *inCombatTemp, const u8 inDir)
 	u8 grid_z;
 	VecFx32 vec;
 	Player_VecPosGet( inCombatTemp->fsys->player, &vec );
-	//©‹@‚ÌƒOƒŠƒbƒhÀ•W‚ğæ“¾
+	//è‡ªæ©Ÿã®ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã‚’å–å¾—
 	grid_x = vec.x/ONE_GRID;
 	grid_z = vec.z/ONE_GRID;
 	
 	for(i=0;i<COMBAT_WALL_POS_MAX;i++){
-		//XZ”äŠr
+		//XZæ¯”è¼ƒ
 		if ( (WallPosInfo[i].GridX == grid_x) &&
 				(WallPosInfo[i].GridZ == grid_z) ){
 			u8 no;
 			no = WallPosInfo[i].WallNo;
-			if (WallPosInfo[i].Bit){	//‰E‚É‚ ‚é
+			if (WallPosInfo[i].Bit){	//å³ã«ã‚ã‚‹
 				check_x = WallInfo[no].AffterX;
 				dir = DIR_LEFT;
-			}else{						//¶‚É‚ ‚é
+			}else{						//å·¦ã«ã‚ã‚‹
 				check_x = WallInfo[no].BeforeX;
 				dir = DIR_RIGHT;
 			}
@@ -2011,10 +2011,10 @@ static u8 CheckWallPush(COMBAT_GYM_TEMP_WORK *inCombatTemp, const u8 inDir)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Ši“¬ƒWƒ€:‚µ‚«‚èˆÚ“®ƒCƒxƒ“ƒgƒR[ƒ‹
+ * @brief	æ ¼é—˜ã‚¸ãƒ :ã—ãã‚Šç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
  * 
- * @param	ioCombatTemp	Ši“¬ƒWƒ€ƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒN
- * @param	inIdx			ƒŠƒtƒgƒCƒ“ƒfƒbƒNƒX
+ * @param	ioCombatTemp	æ ¼é—˜ã‚¸ãƒ ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯
+ * @param	inIdx			ãƒªãƒ•ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * 
  * @return	none
  */
@@ -2035,18 +2035,18 @@ static void CallWallMoveEvent(COMBAT_GYM_TEMP_WORK *ioCombatTemp, const u8 inIdx
 
 	ioCombatTemp->ListIdx = inIdx;
 	
-	//‘ÎÛƒŠƒtƒg‚ÌˆÊ’u‚ğæ“¾
+	//å¯¾è±¡ãƒªãƒ•ãƒˆã®ä½ç½®ã‚’å–å¾—
 	bit = GetBit(inIdx, combat_gym_work->WallPosBit);
 	
 	ChangeBit(inIdx,&combat_gym_work->WallPosBit);
-	//ˆÚ“®ƒCƒxƒ“ƒg‚ğƒR[ƒ‹
+	//ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚³ãƒ¼ãƒ«
 	
-	if (bit){		//¡‰E‚É‚ ‚é
+	if (bit){		//ä»Šå³ã«ã‚ã‚‹
 		ioCombatTemp->MoveDir = MOVE_DIR_LEFT;
 		ioCombatTemp->Dst = WallInfo[inIdx].BeforeX*ONE_GRID+COMBAT_CENTER_OFS_X;
 		ioCombatTemp->WallPos[inIdx] = WallInfo[inIdx].BeforeX;
 		ioCombatTemp->HitRect[inIdx] = &(WallHitInfo[inIdx].BeforeRect[0]);
-	}else{			//¡¶‚É‚ ‚é
+	}else{			//ä»Šå·¦ã«ã‚ã‚‹
 		ioCombatTemp->MoveDir = MOVE_DIR_RIGHT;
 		ioCombatTemp->Dst = WallInfo[inIdx].AffterX*ONE_GRID+COMBAT_CENTER_OFS_X;
 		ioCombatTemp->WallPos[inIdx] = WallInfo[inIdx].AffterX;
@@ -2057,9 +2057,9 @@ static void CallWallMoveEvent(COMBAT_GYM_TEMP_WORK *ioCombatTemp, const u8 inIdx
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Ši“¬ƒWƒ€:ƒZƒbƒgƒAƒbƒv
+ * @brief	æ ¼é—˜ã‚¸ãƒ :ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -2070,17 +2070,17 @@ void GYM_SetupCombatGym(FIELDSYS_WORK *fsys)
 	GIMMICKWORK *work;
 	COMBAT_GYM_WORK *combat_gym_work;
 	
-	//‚±‚±‚ÅƒMƒ~ƒbƒNƒ[ƒN‚Ì’†g‚ğŒ©‚é
+	//ã“ã“ã§ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã®ä¸­èº«ã‚’è¦‹ã‚‹
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
 	combat_gym_work = (COMBAT_GYM_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_COMBAT_GYM);
 
-	//Ši“¬ƒWƒ€ê—pƒ[ƒN‚ğƒAƒƒP[ƒg‚µ‚ÄAƒtƒB[ƒ‹ƒhƒ}ƒbƒv”Ä—pƒ[ƒNƒ|ƒCƒ“ƒ^‚É‚ ‚Ä‚é
+	//æ ¼é—˜ã‚¸ãƒ å°‚ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã—ã¦ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—æ±ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã«ã‚ã¦ã‚‹
 	fsys->fldmap->Work = sys_AllocMemory(HEAPID_FIELD, sizeof(COMBAT_GYM_TEMP_WORK));
 	combat_temp = fsys->fldmap->Work;
 
 	combat_temp->fsys = fsys;
 	
-	//‚µ‚«‚è‚Ìì¬(12ŒÂ)
+	//ã—ãã‚Šã®ä½œæˆ(12å€‹)
 	{
 		VecFx32 vec;
 		int i;
@@ -2105,7 +2105,7 @@ void GYM_SetupCombatGym(FIELDSYS_WORK *fsys)
 									fsys->MapResource,
 									WallInfo[i].ObjID,
 									&vec, NULL,
-									fsys->field_3d_anime );//<‚µ‚«‚è
+									fsys->field_3d_anime );//<ã—ãã‚Š
 
 			///combat_temp->ObjID[i] = WallInfo[i].ObjID;
 		}
@@ -2114,9 +2114,9 @@ void GYM_SetupCombatGym(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Ši“¬ƒWƒ€:I—¹ˆ—
+ * @brief	æ ¼é—˜ã‚¸ãƒ :çµ‚äº†å‡¦ç†
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -2131,9 +2131,9 @@ void GYM_EndCombatGym(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Ši“¬ƒWƒ€:‚µ‚«‚èƒ`ƒFƒbƒN
+ * @brief	æ ¼é—˜ã‚¸ãƒ :ã—ãã‚Šãƒã‚§ãƒƒã‚¯
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	BOOL	TRUE:HIT		FALSE:NO_HIT
  */
@@ -2144,18 +2144,18 @@ BOOL GYM_CheckCombatWall(FIELDSYS_WORK *fsys)
 	u8 dir;
 	COMBAT_GYM_TEMP_WORK *combat_temp;
 
-	//ƒMƒ~ƒbƒNƒ[ƒN‚ğŒ©‚é
+	//ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã‚’è¦‹ã‚‹
 	{
 		int id;
 		GIMMICKWORK *work;
 		
-		//ƒMƒ~ƒbƒNƒ[ƒNæ“¾
+		//ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯å–å¾—
 		work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
-		//ƒMƒ~ƒbƒNƒR[ƒh‚ğæ“¾
+		//ã‚®ãƒŸãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 		id = GIMMICKWORK_GetAssignID(work);
 
 		if (id != FLD_GIMMICK_COMBAT_GYM){
-			return FALSE;					//Ši“¬ƒWƒ€ƒMƒ~ƒbƒN–³‚µ
+			return FALSE;					//æ ¼é—˜ã‚¸ãƒ ã‚®ãƒŸãƒƒã‚¯ç„¡ã—
 		}
 	}
 
@@ -2166,7 +2166,7 @@ BOOL GYM_CheckCombatWall(FIELDSYS_WORK *fsys)
 	dir = Player_DirGet(fsys->player);
 	idx = CheckWallPush(combat_temp, dir);
 	if (idx != COMBAT_WALL_POS_MAX){
-		//ƒqƒbƒg‚µ‚½‚Ì‚Åˆ—
+		//ãƒ’ãƒƒãƒˆã—ãŸã®ã§å‡¦ç†
 		CallWallMoveEvent(combat_temp, idx);
 		return TRUE;
 	}
@@ -2176,15 +2176,15 @@ BOOL GYM_CheckCombatWall(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Ši“¬ƒWƒ€:‚µ‚«‚è“–‚½‚è”»’è
+ * @brief	æ ¼é—˜ã‚¸ãƒ :ã—ãã‚Šå½“ãŸã‚Šåˆ¤å®š
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @param	inHeight	‚‚³
- * @param	outHit		”»’èŒ‹‰Ê	TRUE:ƒqƒbƒg	FALSE:ƒqƒbƒg‚µ‚Ä‚È‚¢
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inHeight	é«˜ã•
+ * @param	outHit		åˆ¤å®šçµæœ	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒ’ãƒƒãƒˆã—ã¦ãªã„
  * 
- * @return	BOOL		TRUE:‚±‚Ì‚ ‚Æ’Êí“–‚½‚è”»’è‚ğs‚í‚È‚¢	FALSE:’Êí“–‚½‚è”»’è‚ğs‚¤
+ * @return	BOOL		TRUE:ã“ã®ã‚ã¨é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã‚ãªã„	FALSE:é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  */
 //---------------------------------------------------------------------------
 BOOL GYM_HitCheckCombatGym(	FIELDSYS_WORK *fsys,
@@ -2205,21 +2205,21 @@ BOOL GYM_HitCheckCombatGym(	FIELDSYS_WORK *fsys,
 				if ( (rect[j].X<=inGridX)&&
 						(inGridX < (rect[j].X+rect[j].W)) ){
 					(*outHit) = TRUE;
-					return TRUE;	//HIT‚µ‚½‚Ì‚ÅA’Êí“–‚½‚è”»’è‚ÍƒpƒX
+					return TRUE;	//HITã—ãŸã®ã§ã€é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã¯ãƒ‘ã‚¹
 				}
 			}
 		}
 	}
-	return FALSE;	//’Êí“–‚½‚è”»’è‚ğÀs
+	return FALSE;	//é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’å®Ÿè¡Œ
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Ši“¬ƒWƒ€:‚µ‚«‚è‚ÌˆÚ“®
+ * @brief	æ ¼é—˜ã‚¸ãƒ :ã—ãã‚Šã®ç§»å‹•
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_MoveWallGymCombat(GMEVENT_CONTROL * event)
@@ -2234,41 +2234,41 @@ static BOOL GMEVENT_MoveWallGymCombat(GMEVENT_CONTROL * event)
 	fop = Player_FieldOBJGet( fsys->player );
 	switch (egw->seq) {
 	case 0:
-		//‚µ‚«‚è‚ğ‰Ÿ‚·‰¹
+		//ã—ãã‚Šã‚’æŠ¼ã™éŸ³
 		Snd_SePlay( SE_TOBARI_GYM_MOVE );
-		//©‹@‚ÌˆÚ“®(•Ç‚É‚È‚Á‚Ä‚¢‚ÄAƒOƒŠƒbƒh‚ÌƒYƒŒ‚ª¶‚¶‚È‚¢‚½‚ßA©‹@‚ÌˆÚ“®ƒAƒjƒI—¹‚ğ‘Ò‚½‚¸‚ÉƒAƒjƒ“o˜^)
+		//è‡ªæ©Ÿã®ç§»å‹•(å£ã«ãªã£ã¦ã„ã¦ã€ã‚°ãƒªãƒƒãƒ‰ã®ã‚ºãƒ¬ãŒç”Ÿã˜ãªã„ãŸã‚ã€è‡ªæ©Ÿã®ç§»å‹•ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã‚’å¾…ãŸãšã«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²)
 		if (combat_temp->MoveDir == MOVE_DIR_RIGHT){
-			FieldOBJ_AcmdSet(fop,AC_WALK_R_8F);	//©‹@‰EˆÚ“®
+			FieldOBJ_AcmdSet(fop,AC_WALK_R_8F);	//è‡ªæ©Ÿå³ç§»å‹•
 		}else{
-			FieldOBJ_AcmdSet(fop,AC_WALK_L_8F);	//©‹@¶ˆÚ“®
+			FieldOBJ_AcmdSet(fop,AC_WALK_L_8F);	//è‡ªæ©Ÿå·¦ç§»å‹•
 		}
 		(egw->seq)	++;		
 		break;
-	case 1:	//‚µ‚«‚è‚ğˆÚ“®
+	case 1:	//ã—ãã‚Šã‚’ç§»å‹•
 		{
 			int entry;
-			//ƒŠƒtƒgOBJ‚ğæ“¾
+			//ãƒªãƒ•ãƒˆOBJã‚’å–å¾—
 			entry = combat_temp->WallEntryIdx[combat_temp->ListIdx];
 			ptr = M3DO_GetMap3DObjData(fsys->Map3DObjExp, entry);
-			//xÀ•W•ÏX
+			//xåº§æ¨™å¤‰æ›´
 			{
 				VecFx32 vec,player_vec;
 				vec = M3DO_GetGlobalVec(ptr);
 				
 				if (combat_temp->MoveDir == MOVE_DIR_RIGHT){
 					vec.x += (FX32_ONE*2);
-					if (vec.x >= combat_temp->Dst){	//ƒZƒbƒgI—¹
+					if (vec.x >= combat_temp->Dst){	//ã‚»ãƒƒãƒˆçµ‚äº†
 						vec.x = combat_temp->Dst;
 						(egw->seq) ++;
 					}
 				}else if (combat_temp->MoveDir == MOVE_DIR_LEFT){
 					vec.x -= (FX32_ONE*2);
-					if (vec.x <= combat_temp->Dst){	//ƒZƒbƒgI—¹
+					if (vec.x <= combat_temp->Dst){	//ã‚»ãƒƒãƒˆçµ‚äº†
 						vec.x = combat_temp->Dst;
 						(egw->seq) ++;
 					}
 				}else{
-					GF_ASSERT(0&&"•ûŒüw’èƒGƒ‰[");
+					GF_ASSERT(0&&"æ–¹å‘æŒ‡å®šã‚¨ãƒ©ãƒ¼");
 				}
 				M3DO_SetGlobalVec(ptr, &vec);
 			}
@@ -2278,9 +2278,9 @@ static BOOL GMEVENT_MoveWallGymCombat(GMEVENT_CONTROL * event)
 		{
 			FIELD_OBJ_PTR fop;
 			fop = Player_FieldOBJGet( fsys->player );
-			if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-				FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹
-				//‚µ‚«‚è“®‚­‰¹~‚ß‚é
+			if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+				FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†
+				//ã—ãã‚Šå‹•ãéŸ³æ­¢ã‚ã‚‹
 				Snd_SeStopBySeqNo( SE_TOBARI_GYM_MOVE, 0 );
 				(egw->seq) ++;
 			}
@@ -2298,7 +2298,7 @@ static BOOL GMEVENT_MoveWallGymCombat(GMEVENT_CONTROL * event)
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-//“d‹CƒWƒ€
+//é›»æ°—ã‚¸ãƒ 
 
 typedef struct ELEC_GYM_TEMP_WORK_tag
 {
@@ -2308,20 +2308,20 @@ typedef struct ELEC_GYM_TEMP_WORK_tag
 	u8 GearNum;
 	u8 RotateCode;
 	
-	u16 RotVal;			//‰ñ“]“x‡‚¢ƒ^ƒCƒv
-	u16 NowRotate;		//Œ»İ‰ñ“]’l
-	u16 DstRotate;		//–Ú“I‰ñ“]’l
+	u16 RotVal;			//å›è»¢åº¦åˆã„ã‚¿ã‚¤ãƒ—
+	u16 NowRotate;		//ç¾åœ¨å›è»¢å€¤
+	u16 DstRotate;		//ç›®çš„å›è»¢å€¤
 }ELEC_GYM_TEMP_WORK;
 
 typedef struct GEAR_tag
 {
-	int ObjID;		//ƒMƒA‚n‚a‚i‚h‚c
+	int ObjID;		//ã‚®ã‚¢ï¼¯ï¼¢ï¼ªï¼©ï¼¤
 	u8 X;
 	u8 Y;
 	u8 Z;
-	u8 RotateCode:2;	//‰ñ“]ó‹µ
-	u8 RotateDir:1;	//ƒMƒA‰ñ“]•ûŒü
-	u8 RotType:1;	//ƒMƒA‰ñ“]ƒ^ƒCƒv
+	u8 RotateCode:2;	//å›è»¢çŠ¶æ³
+	u8 RotateDir:1;	//ã‚®ã‚¢å›è»¢æ–¹å‘
+	u8 RotType:1;	//ã‚®ã‚¢å›è»¢ã‚¿ã‚¤ãƒ—
 	u8 dummy:4;
 }GEAR;
 
@@ -2374,33 +2374,33 @@ static const GEAR * const RoomGear[ELEC_ROOM_MAX] = {
 
 static const GEAR_HIT_RECT Room1GearHit[4*ELEC_GEAR_NUM1_YROT] =
 {
-	{ 1,8,2,1}, { 3,6,1,2}, { 4,8,2,1}, { 3,9,1,2},	//¶‚ÌƒMƒA
-	{ 6,8,2,1}, { 8,6,1,2}, { 9,8,2,1}, { 8,9,1,2},	//^‚ñ’†‚ÌƒMƒA
-	{11,8,2,1}, {13,6,1,2}, {14,8,2,1}, {13,9,1,2}	//‰E‚ÌƒMƒA
+	{ 1,8,2,1}, { 3,6,1,2}, { 4,8,2,1}, { 3,9,1,2},	//å·¦ã®ã‚®ã‚¢
+	{ 6,8,2,1}, { 8,6,1,2}, { 9,8,2,1}, { 8,9,1,2},	//çœŸã‚“ä¸­ã®ã‚®ã‚¢
+	{11,8,2,1}, {13,6,1,2}, {14,8,2,1}, {13,9,1,2}	//å³ã®ã‚®ã‚¢
 };
 static const GEAR_HIT_RECT Room2GearHit[4*ELEC_GEAR_NUM2_YROT+ELEC_GEAR_NUM2_XROT] =
 {
-	{ 4, 8,2,1}, { 6, 6,1,2}, { 7, 8,2,1}, { 6, 9,1,2},	//‰œ¶‚ÌƒMƒA
-	{ 9, 8,2,1}, {11, 6,1,2}, {12, 8,2,1}, {11, 9,1,2},	//‰œ^‚ñ’†‚ÌƒMƒA
-	{15, 6,1,5},										//‰œ‰Eicj‚ÌƒMƒA
-	{ 2,11,1,5},										//è‘O¶icj‚ÌƒMƒA
-	{ 4,13,2,1}, { 6,11,1,2}, { 7,13,2,1}, { 6,14,1,2},	//è‘O^‚ñ’†‚ÌƒMƒA
-	{ 9,13,2,1}, {11,11,1,2}, {12,13,2,1}, {11,14,1,2}	//è‘O‰E‚ÌƒMƒA
+	{ 4, 8,2,1}, { 6, 6,1,2}, { 7, 8,2,1}, { 6, 9,1,2},	//å¥¥å·¦ã®ã‚®ã‚¢
+	{ 9, 8,2,1}, {11, 6,1,2}, {12, 8,2,1}, {11, 9,1,2},	//å¥¥çœŸã‚“ä¸­ã®ã‚®ã‚¢
+	{15, 6,1,5},										//å¥¥å³ï¼ˆç¸¦ï¼‰ã®ã‚®ã‚¢
+	{ 2,11,1,5},										//æ‰‹å‰å·¦ï¼ˆç¸¦ï¼‰ã®ã‚®ã‚¢
+	{ 4,13,2,1}, { 6,11,1,2}, { 7,13,2,1}, { 6,14,1,2},	//æ‰‹å‰çœŸã‚“ä¸­ã®ã‚®ã‚¢
+	{ 9,13,2,1}, {11,11,1,2}, {12,13,2,1}, {11,14,1,2}	//æ‰‹å‰å³ã®ã‚®ã‚¢
 };
 static const GEAR_HIT_RECT Room3GearHit[4*ELEC_GEAR_NUM3_YROT+ELEC_GEAR_NUM3_XROT] =
 {
-	{ 4,8,2,1}, { 6, 6,1,2}, { 7,8,2,1}, { 6,9,1,2},	//ã’i‰œ¶‚ÌƒMƒA
-	{ 9,8,2,1}, {11, 6,1,2}, {12,8,2,1}, {11,9,1,2},	//ã’i‰œ^‚ñ’†‚ÌƒMƒA
-	{14,8,2,1}, {16, 6,1,2}, {17,8,2,1}, {16,9,1,2},	//ã’i‰œ‰E‚ÌƒMƒA
+	{ 4,8,2,1}, { 6, 6,1,2}, { 7,8,2,1}, { 6,9,1,2},	//ä¸Šæ®µå¥¥å·¦ã®ã‚®ã‚¢
+	{ 9,8,2,1}, {11, 6,1,2}, {12,8,2,1}, {11,9,1,2},	//ä¸Šæ®µå¥¥çœŸã‚“ä¸­ã®ã‚®ã‚¢
+	{14,8,2,1}, {16, 6,1,2}, {17,8,2,1}, {16,9,1,2},	//ä¸Šæ®µå¥¥å³ã®ã‚®ã‚¢
 	{ 2,11,1,5},
-	{ 4,13,2,1}, { 6,11,1,2}, { 7,13,2,1}, { 6,14,1,2},	//ã’iè‘O¶‚ÌƒMƒA
-	{ 9,13,2,1}, {11,11,1,2}, {12,13,2,1}, {11,14,1,2},	//ã’iè‘O^‚ñ’†‚ÌƒMƒA
-	{14,13,2,1}, {16,11,1,2}, {17,13,2,1}, {16,14,1,2},	//ã’iè‘O‰E‚ÌƒMƒA
+	{ 4,13,2,1}, { 6,11,1,2}, { 7,13,2,1}, { 6,14,1,2},	//ä¸Šæ®µæ‰‹å‰å·¦ã®ã‚®ã‚¢
+	{ 9,13,2,1}, {11,11,1,2}, {12,13,2,1}, {11,14,1,2},	//ä¸Šæ®µæ‰‹å‰çœŸã‚“ä¸­ã®ã‚®ã‚¢
+	{14,13,2,1}, {16,11,1,2}, {17,13,2,1}, {16,14,1,2},	//ä¸Šæ®µæ‰‹å‰å³ã®ã‚®ã‚¢
 	{20,11,1,5},
 	{ 2,16,1,5},
-	{ 4,18,2,1}, { 6,16,1,2}, { 7,18,2,1}, { 6,19,1,2},	//‰º’i¶‚ÌƒMƒA
-	{ 9,18,2,1}, {11,16,1,2}, {12,18,2,1}, {11,19,1,2},	//‰º’i^‚ñ’†‚ÌƒMƒA
-	{14,18,2,1}, {16,16,1,2}, {17,18,2,1}, {16,19,1,2},	//‰º’i‰E‚ÌƒMƒA
+	{ 4,18,2,1}, { 6,16,1,2}, { 7,18,2,1}, { 6,19,1,2},	//ä¸‹æ®µå·¦ã®ã‚®ã‚¢
+	{ 9,18,2,1}, {11,16,1,2}, {12,18,2,1}, {11,19,1,2},	//ä¸‹æ®µçœŸã‚“ä¸­ã®ã‚®ã‚¢
+	{14,18,2,1}, {16,16,1,2}, {17,18,2,1}, {16,19,1,2},	//ä¸‹æ®µå³ã®ã‚®ã‚¢
 	{20,16,1,5},
 };
 
@@ -2408,19 +2408,19 @@ static const GEAR_HIT_RECT * const RoomGearHit[ELEC_ROOM_MAX] = {
 	Room1GearHit,Room2GearHit,Room3GearHit
 };
 
-//ƒMƒA“–‚½‚è”»’è
+//ã‚®ã‚¢å½“ãŸã‚Šåˆ¤å®š
 
-//1•”‰®–Ú
+//1éƒ¨å±‹ç›®
 static const u8 Room1Rot0Hit[] = { 1,2,4,5,10,11 };
 static const u8 Room1Rot90Hit[] = { 0,1,5,6, 9,10 };
 static const u8 Room1Rot180Hit[] = { 0,3,6,7, 8, 9 };
 static const u8 Room1Rot270Hit[] = {  2,3,4,7, 8,11 };
-//2•”‰®–Ú
+//2éƒ¨å±‹ç›®
 static const u8 Room2Rot0Hit[] =  { 1,2,4,5,7,8,9,10,11,12,15 };
-static const u8 Room2Rot90Hit[] = { 0,1,4,5,6,11,12,13,14,0,0 };//Œã‚ë2‚Â‚Íƒ_ƒ~[i‚·‚Å‚ÉƒGƒ“ƒgƒŠ‚³‚ê‚Ä‚¢‚é”Ô†‚Å–„‚ß‚Æ‚­j
+static const u8 Room2Rot90Hit[] = { 0,1,4,5,6,11,12,13,14,0,0 };//å¾Œã‚2ã¤ã¯ãƒ€ãƒŸãƒ¼ï¼ˆã™ã§ã«ã‚¨ãƒ³ãƒˆãƒªã•ã‚Œã¦ã„ã‚‹ç•ªå·ã§åŸ‹ã‚ã¨ãï¼‰
 static const u8 Room2Rot180Hit[] = { 0,3,5,6,7,8, 9,10,12,13,17 };
-static const u8 Room2Rot270Hit[] = { 2,3,4,6,7,10,11,13,16,2,2 };//Œã‚ë2‚Â‚Íƒ_ƒ~[i‚·‚Å‚ÉƒGƒ“ƒgƒŠ‚³‚ê‚Ä‚¢‚é”Ô†‚Å–„‚ß‚Æ‚­j
-//3•”‰®–Ú
+static const u8 Room2Rot270Hit[] = { 2,3,4,6,7,10,11,13,16,2,2 };//å¾Œã‚2ã¤ã¯ãƒ€ãƒŸãƒ¼ï¼ˆã™ã§ã«ã‚¨ãƒ³ãƒˆãƒªã•ã‚Œã¦ã„ã‚‹ç•ªå·ã§åŸ‹ã‚ã¨ãï¼‰
+//3éƒ¨å±‹ç›®
 static const u8 Room3Rot0Hit[] =  { 2,6,7,11,14,15,17,21,25,28,29,31,38,39 };
 static const u8 Room3Rot90Hit[] = { 1,4,7,10,12,15,16,20,22,26,29,30,34,35 };
 static const u8 Room3Rot180Hit[] = { 0,4,5,9,13,16,19,23,25,27,30,33,36,39 };
@@ -2428,8 +2428,8 @@ static const u8 Room3Rot270Hit[] = { 3,5,6,8,12,13,14,18,24,26,27,28,32,37 };
 
 typedef struct GEAR_HIT_INFO_tag
 {
-	int HitNum;	//“–‚½‚è‹éŒ`”
-	u8 const *HitList[4];	//0,90,180,270‹‚Ì‚Æ‚«‚Ì“–‚½‚è”»’èƒe[ƒuƒ‹
+	int HitNum;	//å½“ãŸã‚ŠçŸ©å½¢æ•°
+	u8 const *HitList[4];	//0,90,180,270Â°ã®ã¨ãã®å½“ãŸã‚Šåˆ¤å®šãƒ†ãƒ¼ãƒ–ãƒ«
 }GEAR_HIT_INFO;
 
 GEAR_HIT_INFO GearHitInfo[ELEC_ROOM_MAX] = 
@@ -2441,11 +2441,11 @@ GEAR_HIT_INFO GearHitInfo[ELEC_ROOM_MAX] =
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“d‹CƒWƒ€:•”‰®‚É‰‚¶‚½ƒMƒAŒÂ”‚ğ•Ô‚·
+ * @brief	é›»æ°—ã‚¸ãƒ :éƒ¨å±‹ã«å¿œã˜ãŸã‚®ã‚¢å€‹æ•°ã‚’è¿”ã™
  * 
- * @param	inRoomNo	•”‰®ƒiƒ“ƒo[
+ * @param	inRoomNo	éƒ¨å±‹ãƒŠãƒ³ãƒãƒ¼
  * 
- * @return	u8			ƒMƒAŒÂ”
+ * @return	u8			ã‚®ã‚¢å€‹æ•°
  */
 //---------------------------------------------------------------------------
 static u8 GetGearNum(const u8 inRoomNo)
@@ -2470,11 +2470,11 @@ static u8 GetGearNum(const u8 inRoomNo)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“d‹CƒWƒ€:ƒMƒA‚Ì‰Šú‰ñ“]ŒvZ
+ * @brief	é›»æ°—ã‚¸ãƒ :ã‚®ã‚¢ã®åˆæœŸå›è»¢è¨ˆç®—
  *
- * @param	inGear			ƒMƒAƒf[ƒ^
- * @param	inRoomRotate	ƒMƒ~ƒbƒN”­“®‚É‚æ‚é’Ç‰Á‰ñ“]
- * @param	outRotate		‰ñ“]ƒxƒNƒgƒ‹Ši”[ƒoƒbƒtƒ@
+ * @param	inGear			ã‚®ã‚¢ãƒ‡ãƒ¼ã‚¿
+ * @param	inRoomRotate	ã‚®ãƒŸãƒƒã‚¯ç™ºå‹•ã«ã‚ˆã‚‹è¿½åŠ å›è»¢
+ * @param	outRotate		å›è»¢ãƒ™ã‚¯ãƒˆãƒ«æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  * 
  * @return	none
  */
@@ -2484,7 +2484,7 @@ static void GetStartRotate(const GEAR *inGear , const u8 inRoomRotate, VecFx32 *
 	fx32 *target = NULL;
 	fx16 rot,room_rot;
 
-	//‘«‚µ‚±‚İ‘ÎÛŒˆ’è
+	//è¶³ã—ã“ã¿å¯¾è±¡æ±ºå®š
 	switch (inGear->RotType){
 	case GEAR_ROT_TYPE_Y:
 		target = &(outRotate->y);
@@ -2498,12 +2498,12 @@ static void GetStartRotate(const GEAR *inGear , const u8 inRoomRotate, VecFx32 *
 
 	rot = 0;
 
-	//ƒMƒA‚²‚Æ‚Ì‰Šú‰ñ“]‚ğƒxƒNƒgƒ‹‚É‘«‚µ‚±‚Ş
+	//ã‚®ã‚¢ã”ã¨ã®åˆæœŸå›è»¢ã‚’ãƒ™ã‚¯ãƒˆãƒ«ã«è¶³ã—ã“ã‚€
 	GF_ASSERT(inGear->RotateCode<=GEAR_ROT_ST_270&&"ERROR:RotState unknown");
 	rot += (0x4000*inGear->RotateCode);
 
 	GF_ASSERT(inRoomRotate<=GEAR_ROT_ST_270&&"ERROR:RotState unknown");
-	//ƒ{ƒ^ƒ“‚É‚æ‚é‰ñ“]‚ğƒMƒA‚É‘«‚µ‚Ş(‰ñ“]•ûŒü‚É‚æ‚Á‚Ä‚Í·‚µˆø‚­)
+	//ãƒœã‚¿ãƒ³ã«ã‚ˆã‚‹å›è»¢ã‚’ã‚®ã‚¢ã«è¶³ã—è¾¼ã‚€(å›è»¢æ–¹å‘ã«ã‚ˆã£ã¦ã¯å·®ã—å¼•ã)
 	room_rot = 0x4000*inRoomRotate;
 	if (inGear->RotateDir == GEAR_ROT_DIR_LEFT){
 		rot += room_rot;
@@ -2518,9 +2518,9 @@ static void GetStartRotate(const GEAR *inGear , const u8 inRoomRotate, VecFx32 *
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“d‹CƒWƒ€:ƒZƒbƒgƒAƒbƒv
+ * @brief	é›»æ°—ã‚¸ãƒ :ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -2531,11 +2531,11 @@ void GYM_SetupElecGym(FIELDSYS_WORK *fsys)
 	GIMMICKWORK *work;
 	ELEC_GYM_WORK *elec_gym_work;
 	
-	//‚±‚±‚ÅƒMƒ~ƒbƒNƒ[ƒN‚Ì’†g‚ğŒ©‚é
+	//ã“ã“ã§ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã®ä¸­èº«ã‚’è¦‹ã‚‹
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
 	elec_gym_work = (ELEC_GYM_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_ELEC_GYM);
 
-	//“d‹CƒWƒ€ê—pƒ[ƒN‚ğƒAƒƒP[ƒg‚µ‚ÄAƒtƒB[ƒ‹ƒhƒ}ƒbƒv”Ä—pƒ[ƒNƒ|ƒCƒ“ƒ^‚É‚ ‚Ä‚é
+	//é›»æ°—ã‚¸ãƒ å°‚ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã—ã¦ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—æ±ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã«ã‚ã¦ã‚‹
 	fsys->fldmap->Work = sys_AllocMemory(HEAPID_FIELD, sizeof(ELEC_GYM_TEMP_WORK));
 	elec_temp = fsys->fldmap->Work;
 
@@ -2543,7 +2543,7 @@ void GYM_SetupElecGym(FIELDSYS_WORK *fsys)
 	elec_temp->RotateCode = elec_gym_work->GearRotateCode;
 ///	elec_temp->fsys = fsys;
 	
-	//•”‰®‚²‚Æ‚ÉƒMƒA‚ğì¬
+	//éƒ¨å±‹ã”ã¨ã«ã‚®ã‚¢ã‚’ä½œæˆ
 	{
 		VecFx32 vec;
 		VecFx32 rotate;
@@ -2562,17 +2562,17 @@ void GYM_SetupElecGym(FIELDSYS_WORK *fsys)
 			vec.x+=ELEC_GEAR_CENTER_OFS_X;
 			vec.z+=ELEC_GEAR_CENTER_OFS_Z;
 
-			//‚w²‰ñ“]‚È‚ç•â³‚ğ‚©‚¯‚é
+			//ï¼¸è»¸å›è»¢ãªã‚‰è£œæ­£ã‚’ã‹ã‘ã‚‹
 			if (room_gear[i].RotType == GEAR_ROT_TYPE_X){
 				vec.y+=ELEC_GEAR_CENTER_OFS_Y;
 			}
 			
-			//‰ñ“]ŒvZ
+			//å›è»¢è¨ˆç®—
 			{
 				rotate.x = 0;
 				rotate.y = 0;
 				rotate.z = 0;
-				//‰Šú‰ñ“]‚ğæ“¾
+				//åˆæœŸå›è»¢ã‚’å–å¾—
 				GetStartRotate(&(room_gear[i]), elec_gym_work->GearRotateCode, &rotate);
 			}
 			
@@ -2589,9 +2589,9 @@ void GYM_SetupElecGym(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“d‹CƒWƒ€:I—¹ˆ—
+ * @brief	é›»æ°—ã‚¸ãƒ :çµ‚äº†å‡¦ç†
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -2606,15 +2606,15 @@ void GYM_EndElecGym(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“d‹CƒWƒ€:“–‚½‚è”»’è
+ * @brief	é›»æ°—ã‚¸ãƒ :å½“ãŸã‚Šåˆ¤å®š
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @param	inHeight	‚‚³
- * @param	outHit		”»’èŒ‹‰Ê	TRUE:ƒqƒbƒg	FALSE:ƒqƒbƒg‚µ‚Ä‚È‚¢
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inHeight	é«˜ã•
+ * @param	outHit		åˆ¤å®šçµæœ	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒ’ãƒƒãƒˆã—ã¦ãªã„
  * 
- * @return	BOOL		TRUE:‚±‚Ì‚ ‚Æ’Êí“–‚½‚è”»’è‚ğs‚í‚È‚¢	FALSE:’Êí“–‚½‚è”»’è‚ğs‚¤
+ * @return	BOOL		TRUE:ã“ã®ã‚ã¨é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã‚ãªã„	FALSE:é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  */
 //---------------------------------------------------------------------------
 BOOL GYM_HitCheckElecGym(	FIELDSYS_WORK *fsys,
@@ -2640,19 +2640,19 @@ BOOL GYM_HitCheckElecGym(	FIELDSYS_WORK *fsys,
 		if ( (rect[idx].X<=inGridX)&&(inGridX<rect[idx].X+rect[idx].W) &&
 				(rect[idx].Z<=inGridZ)&&(inGridZ<rect[idx].Z+rect[idx].H) ){
 			(*outHit) = TRUE;
-			return TRUE;	//HIT‚µ‚½‚Ì‚ÅA’Êí“–‚½‚è”»’è‚ÍƒpƒX
+			return TRUE;	//HITã—ãŸã®ã§ã€é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã¯ãƒ‘ã‚¹
 		}
 	}
 		
-	return FALSE;	//’Êí“–‚½‚è”»’è‚ğÀs
+	return FALSE;	//é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’å®Ÿè¡Œ
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“d‹CƒWƒ€:ƒMƒA‰ñ“]
+ * @brief	é›»æ°—ã‚¸ãƒ :ã‚®ã‚¢å›è»¢
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inRotate	‰ñ“]i0:+90‹A1:-90‹A2:180‹j
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inRotate	å›è»¢ï¼ˆ0:+90Â°ã€1:-90Â°ã€2:180Â°ï¼‰
  * 
  * @return	none
  */
@@ -2669,7 +2669,7 @@ void GYM_RotateElecGymGear(FIELDSYS_WORK *fsys, const u8 inRotate)
 	
 	elec_temp = (ELEC_GYM_TEMP_WORK *)fsys->fldmap->Work;
 	
-	//ƒCƒxƒ“ƒgƒR[ƒ‹
+	//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
 	egw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(EVENT_GYM_WORK));
 	egw->seq = 0;
 
@@ -2700,7 +2700,7 @@ void GYM_RotateElecGymGear(FIELDSYS_WORK *fsys, const u8 inRotate)
 		elec_gym_work->GearRotateCode = rot_code;
 		elec_temp->RotateCode = rot_code;
 
-		//ƒMƒA‰ñ“]‰¹
+		//ã‚®ã‚¢å›è»¢éŸ³
 		Snd_SePlay( SE_NAGISA_GYM_BUTTON );
 		
 		FieldEvent_Call(fsys->event, GMEVENT_RotateElecGymGear, egw);
@@ -2709,11 +2709,11 @@ void GYM_RotateElecGymGear(FIELDSYS_WORK *fsys, const u8 inRotate)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“d‹CƒWƒ€:ƒMƒA‚Ì‰ñ“]
+ * @brief	é›»æ°—ã‚¸ãƒ :ã‚®ã‚¢ã®å›è»¢
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_RotateElecGymGear(GMEVENT_CONTROL * event)
@@ -2725,12 +2725,12 @@ static BOOL GMEVENT_RotateElecGymGear(GMEVENT_CONTROL * event)
 
 	elec_temp = (ELEC_GYM_TEMP_WORK *)fsys->fldmap->Work;
 	switch (egw->seq) {
-	case 0:	//ƒMƒA‰ñ“]
+	case 0:	//ã‚®ã‚¢å›è»¢
 		{
 			u8 i;
 			u16 rot;
 			u16 speed;
-			//‰ñ“]Œ`®‚²‚Æ‚ÉA•Ï‰»—Ê‚ğ‘«‚µ‚±‚Ş
+			//å›è»¢å½¢å¼ã”ã¨ã«ã€å¤‰åŒ–é‡ã‚’è¶³ã—ã“ã‚€
 			if (elec_temp->NowRotate + GEAR_ROT_SPEED <= elec_temp->DstRotate){
 				speed = GEAR_ROT_SPEED;
 			}else{
@@ -2746,16 +2746,16 @@ static BOOL GMEVENT_RotateElecGymGear(GMEVENT_CONTROL * event)
 
 			for(i=0;i<elec_temp->GearNum;i++){
 				int entry;
-				//ƒMƒAOBJ‚ğæ“¾
+				//ã‚®ã‚¢OBJã‚’å–å¾—
 				entry = elec_temp->ObjEntryIdx[i];
 				ptr = M3DO_GetMap3DObjData(fsys->Map3DObjExp, entry);
 
-				//‰ñ“]
+				//å›è»¢
 				{
 					VecFx32 *rot_vec;
 					rot_vec = M3DO_GetRotateVecPtr(ptr);
 
-					//Œv‰ñ‚èA”½Œv‰ñ‚è‚Å‘«‚·‚©ˆø‚­‚©•ªŠò‚·‚é
+					//æ™‚è¨ˆå›ã‚Šã€åæ™‚è¨ˆå›ã‚Šã§è¶³ã™ã‹å¼•ãã‹åˆ†å²ã™ã‚‹
 					{
 						const GEAR *room_gear;
 						fx32 *target;
@@ -2766,7 +2766,7 @@ static BOOL GMEVENT_RotateElecGymGear(GMEVENT_CONTROL * event)
 						}else{
 							apply_rot = rot;
 						}
-						//‰ñ“]²‘ÎÛ‚ÌŒˆ’è
+						//å›è»¢è»¸å¯¾è±¡ã®æ±ºå®š
 						switch (room_gear[i].RotType){
 						case GEAR_ROT_TYPE_Y:
 							target = &(rot_vec->y);
@@ -2798,35 +2798,35 @@ static BOOL GMEVENT_RotateElecGymGear(GMEVENT_CONTROL * event)
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-//PL ‘ƒWƒ€ kaga
+//PL è‰ã‚¸ãƒ  kaga
 
-//#define DEBUG_PL_KUSAGYM_TEST_TASK	//’è‹`‚ÅƒfƒoƒbƒO—pƒ^ƒXƒNƒZƒbƒg
+//#define DEBUG_PL_KUSAGYM_TEST_TASK	//å®šç¾©ã§ãƒ‡ãƒãƒƒã‚°ç”¨ã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
 
 //--------------------------------------------------------------
 //	define
 //--------------------------------------------------------------
-enum	///jí—Ş
+enum	///é‡ç¨®é¡
 {
-	HARITYPE_S = 0,	///<’Zj
-	HARITYPE_L,		///<’·j
-	HARITYPE_MAX,	///<jí—ŞÅ‘å
+	HARITYPE_S = 0,	///<çŸ­é‡
+	HARITYPE_L,		///<é•·é‡
+	HARITYPE_MAX,	///<é‡ç¨®é¡æœ€å¤§
 };
 
-enum	///‘ƒWƒ€isƒtƒ‰ƒO
+enum	///è‰ã‚¸ãƒ æ™‚åˆ»é€²è¡Œãƒ•ãƒ©ã‚°
 {
-	HARISEQFLAG_0,	///<‰Šú
-	HARISEQFLAG_1,	///<ƒgƒŒ[ƒi[ ƒC‚ğ“|‚µ‚½
-	HARISEQFLAG_2,	///<ƒgƒŒ[ƒi[ ƒ‚ğ“|‚µ‚½
-	HARISEQFLAG_3,	///<ƒgƒŒ[ƒi[ ƒn‚ğ“|‚µ‚½
-	HARISEQFLAG_4,	///<ƒWƒ€ƒŠ[ƒ_[‚ğ“|‚µ‚½
-	HARISEQFLAG_MAX,///<Å‘å
-	HARISEQFLAG_END=HARISEQFLAG_4,///<I—¹”Ô†
+	HARISEQFLAG_0,	///<åˆæœŸ
+	HARISEQFLAG_1,	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ ã‚¤ã‚’å€’ã—ãŸ
+	HARISEQFLAG_2,	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ ãƒ­ã‚’å€’ã—ãŸ
+	HARISEQFLAG_3,	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ ãƒã‚’å€’ã—ãŸ
+	HARISEQFLAG_4,	///<ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã—ãŸ
+	HARISEQFLAG_MAX,///<æœ€å¤§
+	HARISEQFLAG_END=HARISEQFLAG_4,///<çµ‚äº†ç•ªå·
 };
 
-typedef enum //‘ƒWƒ€ƒWƒƒƒ“ƒví—Ş
+typedef enum //è‰ã‚¸ãƒ ã‚¸ãƒ£ãƒ³ãƒ—ç¨®é¡
 {
-	HARIJUMP_H,	//‰¡
-	HARIJUMP_V,	//c
+	HARIJUMP_H,	//æ¨ª
+	HARIJUMP_V,	//ç¸¦
 	HARIJUMP_NON,
 }HARIJUMPTYPE;
 
@@ -2843,17 +2843,17 @@ typedef enum //‘ƒWƒ€ƒWƒƒƒ“ƒví—Ş
 #define HARI_ROTATE_FX360(a) (FX_GET_ROTA_NUM((a))+1)	///<360->0x10000
 #define HARI_ROTATE_MIN (360/60) ///<360->60
 #define HARI_ROTATE_MIN_FX (HARI_ROTATE_FX360(HARI_ROTATE_MIN)) ///<fx
-#define HARI_ROTATE_60M_FX(a) ((a)*HARI_ROTATE_MIN_FX) 	///<•ª fxæZ
+#define HARI_ROTATE_60M_FX(a) ((a)*HARI_ROTATE_MIN_FX) 	///<åˆ† fxä¹—ç®—
 
-#define HARI_ROTATE_90_FX (0x4000) ///<90“x fx
-#define HARI_ROTATE_15M_FX(a) ((a)*HARI_ROTATE_90_FX) ///<15•ª fx
+#define HARI_ROTATE_90_FX (0x4000) ///<90åº¦ fx
+#define HARI_ROTATE_15M_FX(a) ((a)*HARI_ROTATE_90_FX) ///<15åˆ† fx
 
-#define HARI_ROTATE_60M_1H_GAIN_FX(a) ((HARI_ROTATE_60M_FX(5)/60)*(a)) ///<•ª->’Zj‚Ì—Ê
+#define HARI_ROTATE_60M_1H_GAIN_FX(a) ((HARI_ROTATE_60M_FX(5)/60)*(a)) ///<åˆ†->çŸ­é‡ã®é‡
 
-#define HARI_ROTATE_OFFS_S_FX (HARI_ROTATE_90_FX*2) //’Zj‰ñ“]ƒIƒtƒZƒbƒg
-#define HARI_ROTATE_OFFS_L_FX (-HARI_ROTATE_90_FX*1) //’·j‰ñ“]ƒIƒtƒZƒbƒg
+#define HARI_ROTATE_OFFS_S_FX (HARI_ROTATE_90_FX*2) //çŸ­é‡å›è»¢ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define HARI_ROTATE_OFFS_L_FX (-HARI_ROTATE_90_FX*1) //é•·é‡å›è»¢ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define HARI_HITC_START_GX (5) //Œv‘ä‚ ‚½‚è”»’èÀ•W
+#define HARI_HITC_START_GX (5) //æ™‚è¨ˆå°ã‚ãŸã‚Šåˆ¤å®šåº§æ¨™
 #define HARI_HITC_START_GZ (7)
 #define HARI_HITC_SIZE_GX (13)
 #define HARI_HITC_SIZE_GZ (13)
@@ -2876,7 +2876,7 @@ typedef enum //‘ƒWƒ€ƒWƒƒƒ“ƒví—Ş
 //--------------------------------------------------------------
 //	struct
 //--------------------------------------------------------------
-typedef struct	///<
+typedef struct	///<æ™‚åˆ»
 {
 	s16 hour;
 	s16 min;
@@ -2889,20 +2889,20 @@ typedef struct
 	HARIJUMPTYPE jump_type;
 }EXATTRPOS;
 
-typedef struct	///<jOBJ
+typedef struct	///<é‡OBJ
 {
 	VecFx32 rotate;
 	u32 bmid;
-	u16 entry_idx;	//Šg’£ƒ‚ƒfƒ‹“o˜^ƒCƒ“ƒfƒbƒNƒX
+	u16 entry_idx;	//æ‹¡å¼µãƒ¢ãƒ‡ãƒ«ç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	M3DO_PTR m3do;
 }HARIOBJ;
 
-typedef struct PL_GRASS_GYM_LOCAL_WORK_tag	///<‘ƒWƒ€“à•”ƒ[ƒN
+typedef struct PL_GRASS_GYM_LOCAL_WORK_tag	///<è‰ã‚¸ãƒ å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 {
 	fx32 hour;
 	fx32 min;
 	int hari_hour_min_raise_flag;
-	HARIOBJ hari[HARITYPE_MAX];	//jOBJ
+	HARIOBJ hari[HARITYPE_MAX];	//é‡OBJ
 	FIELDSYS_WORK *fsys;
 	
 #ifdef DEBUG_PL_KUSAGYM_TEST_TASK
@@ -2910,7 +2910,7 @@ typedef struct PL_GRASS_GYM_LOCAL_WORK_tag	///<‘ƒWƒ€“à•”ƒ[ƒN
 #endif
 }PL_GRASS_GYM_LOCAL_WORK;
 
-typedef struct ///<‘ƒWƒ€ƒXƒNƒ[ƒ‹ƒ[ƒN
+typedef struct ///<è‰ã‚¸ãƒ ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
 {
 	int seq_no;
 	int start_x;
@@ -2923,7 +2923,7 @@ typedef struct ///<‘ƒWƒ€ƒXƒNƒ[ƒ‹ƒ[ƒN
 	FIELD_OBJ_PTR fldobj;
 }PLGRASSGYM_SCROLL_WORK;
 
-typedef struct ///<‘ƒWƒ€ƒCƒxƒ“ƒgƒ[ƒN
+typedef struct ///<è‰ã‚¸ãƒ ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 {
 	int seq_no;
 	int wait;
@@ -2944,19 +2944,19 @@ typedef struct ///<‘ƒWƒ€ƒCƒxƒ“ƒgƒ[ƒN
 //--------------------------------------------------------------
 //	data
 //--------------------------------------------------------------
-static const u32 DATA_HariBMID[HARITYPE_MAX] =	///<j”z’uƒ‚ƒfƒ‹ID
+static const u32 DATA_HariBMID[HARITYPE_MAX] =	///<é‡é…ç½®ãƒ¢ãƒ‡ãƒ«ID
 {
 	BMID_GYM04_HARI_S,
 	BMID_GYM04_HARI_L,
 };
 
-static const VecFx32 DATA_HariPos[HARITYPE_MAX] =	///<jÀ•W
+static const VecFx32 DATA_HariPos[HARITYPE_MAX] =	///<é‡åº§æ¨™
 {
 	{ HARI_CX_FX, HARI_CY_S_FX, HARI_CZ_FX },
 	{ HARI_CX_FX, HARI_CY_L_FX, HARI_CZ_FX },
 };
 
-static const u16 DATA_HariRotateHour[12] = ///<ŠÔ•ÊjŠp“x
+static const u16 DATA_HariRotateHour[12] = ///<æ™‚é–“åˆ¥é‡è§’åº¦
 {
 	HARI_ROTATE_60M_FX(0),	//0 or 12
 	HARI_ROTATE_60M_FX(5),	//1
@@ -2972,7 +2972,7 @@ static const u16 DATA_HariRotateHour[12] = ///<ŠÔ•ÊjŠp“x
 	HARI_ROTATE_60M_FX(55),	//11
 };
 
-static const TIMEDATA DATA_HariTimeData[HARISEQFLAG_MAX] = ///<is•Ê
+static const TIMEDATA DATA_HariTimeData[HARISEQFLAG_MAX] = ///<é€²è¡Œåˆ¥æ™‚åˆ»
 {
 	{ 7, 25 },
 	{ 6, 15 },
@@ -2992,7 +2992,7 @@ static const EXATTRPOS DATA_HariAttrPosEx[HARISEQFLAG_MAX] =
 	{11,8,HARIJUMP_V},
 };
 
-static ALIGN4 const u8 DATA_HariHitTbl[HARISEQFLAG_MAX][HARI_HITC_SIZE_GX*HARI_HITC_SIZE_GZ] = //Œv‘äƒV[ƒPƒ“ƒX•Ê‚ ‚½‚è”»’è
+static ALIGN4 const u8 DATA_HariHitTbl[HARISEQFLAG_MAX][HARI_HITC_SIZE_GX*HARI_HITC_SIZE_GZ] = //æ™‚è¨ˆå°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ¥ã‚ãŸã‚Šåˆ¤å®š
 {
 	{
 		1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -3083,9 +3083,9 @@ FUNSUI_HITC_SIZE_GZ] =
 
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€@ƒV[ƒPƒ“ƒXƒZƒbƒg
+ * PL è‰ã‚¸ãƒ ã€€æ™‚åˆ»ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚»ãƒƒãƒˆ
  * @param	fsys	FIELDSYS_WORK
- * @param	seq		HARISEQFLAG_0“™
+ * @param	seq		HARISEQFLAG_0ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3097,9 +3097,9 @@ static void gym_PLGrassTimeSeqSysSet( FIELDSYS_WORK *fsys, u16 seq )
 
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€@ƒV[ƒPƒ“ƒXæ“¾
+ * PL è‰ã‚¸ãƒ ã€€æ™‚åˆ»ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å–å¾—
  * @param	fsys	FIELDSYS_WORK
- * @param	seq		HARISEQFLAG_0“™
+ * @param	seq		HARISEQFLAG_0ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3111,9 +3111,9 @@ static u32 gym_PLGrassTimeSeqSysGet( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€@ŠÔ‚ği‚ß‚é
+ * PL è‰ã‚¸ãƒ ã€€æ™‚é–“ã‚’é€²ã‚ã‚‹
  * @param	work	PL_GRASS_GYM_LOCAL_WORK
- * @param	add		‘Œ¸’l
+ * @param	add		å¢—æ¸›å€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3136,7 +3136,7 @@ static void gym_PLGrassTimeGain( PL_GRASS_GYM_LOCAL_WORK *work, fx32 add )
 
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€ j‰ñ“]²ƒZƒbƒg
+ * PL è‰ã‚¸ãƒ  é‡å›è»¢è»¸ã‚»ãƒƒãƒˆ
  * @param	hari	HARIOBJ
  * @return	nothing
  */
@@ -3147,13 +3147,13 @@ static void gym_PLGrassHariRotateSet( HARIOBJ *hari )
 	VecFx32 *rot = M3DO_GetRotateVecPtr( hari->m3do );
 	
 	rot->x = hari->rotate.x;
-	rot->y = (0x00010000 - hari->rotate.y) % 0x00010000;	//”½“]
+	rot->y = (0x00010000 - hari->rotate.y) % 0x00010000;	//åè»¢
 	rot->z = hari->rotate.z;
 }
 
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€ ŠÔ‚©‚çjŠp“xƒZƒbƒg
+ * PL è‰ã‚¸ãƒ  æ™‚é–“ã‹ã‚‰é‡è§’åº¦ã‚»ãƒƒãƒˆ
  * @param	PL_GRASS_GYM_LOCAL_WORK *work
  * @retval	nothing
  */
@@ -3166,7 +3166,7 @@ static void gym_PLGrassTimeHariRotateSet( PL_GRASS_GYM_LOCAL_WORK *work )
 	hari = &work->hari[HARITYPE_L];
 	min = FX32_NUM( work->min );
 	
-	if( (min % 15) == 0 ){	//’š“x15•ª’PˆÊ
+	if( (min % 15) == 0 ){	//ä¸åº¦15åˆ†å˜ä½
 		hari->rotate.y = DATA_HariRotateHour[min/5];
 	}else{
 		hari->rotate.y = HARI_ROTATE_60M_FX( min );
@@ -3181,7 +3181,7 @@ static void gym_PLGrassTimeHariRotateSet( PL_GRASS_GYM_LOCAL_WORK *work )
 	hari = &work->hari[HARITYPE_S];
 	hari->rotate.y = DATA_HariRotateHour[hour];
 	
-	if( work->hari_hour_min_raise_flag == TRUE ){	//•ªis‚ğ‚É”½‰f
+	if( work->hari_hour_min_raise_flag == TRUE ){	//åˆ†é€²è¡Œã‚’æ™‚ã«åæ˜ 
 		hari->rotate.y += HARI_ROTATE_60M_1H_GAIN_FX( min ); 
 	}
 	
@@ -3193,7 +3193,7 @@ static void gym_PLGrassTimeHariRotateSet( PL_GRASS_GYM_LOCAL_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‘ƒWƒ€ƒfƒoƒbƒOƒeƒXƒg
+ * è‰ã‚¸ãƒ ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚¹ãƒˆ
  */
 //--------------------------------------------------------------
 #ifdef DEBUG_PL_KUSAGYM_TEST_TASK
@@ -3221,7 +3221,7 @@ static void gym_test_tcb( TCB_PTR tcb, void *wk )
 	gym_PLGrassTimeHariRotateSet( work );
 	
 	if( work->min == 0 ){
-		OS_Printf( "‘ƒWƒ€@%02d:%02d‚ğ‚¨’m‚ç‚¹‚µ‚Ü‚·\n",
+		OS_Printf( "è‰ã‚¸ãƒ æ™‚åˆ»ã€€%02d:%02dã‚’ãŠçŸ¥ã‚‰ã›ã—ã¾ã™\n",
 			FX32_NUM(work->hour), FX32_NUM(work->min) );
 	}
 #endif
@@ -3230,9 +3230,9 @@ static void gym_test_tcb( TCB_PTR tcb, void *wk )
 
 //---------------------------------------------------------------------------
 /**
- * @brief	PL ‘ƒWƒ€:ƒZƒbƒgƒAƒbƒv
+ * @brief	PL è‰ã‚¸ãƒ :ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -3251,11 +3251,11 @@ void GYM_SetupPLGrassGym( FIELDSYS_WORK *fsys )
 	memset( work, 0, sizeof(PL_GRASS_GYM_LOCAL_WORK) );
 	fsys->fldmap->Work = work;
 	
-	{	//ƒ[ƒN‰Šú‰»
+	{	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		work->fsys = fsys;
 	}
 	
-	{	//jƒ‚ƒfƒ‹ƒZƒbƒg
+	{	//é‡ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆ
 		int i;
 		HARIOBJ *hari = work->hari;
 		const u32 *bmid = DATA_HariBMID;
@@ -3276,7 +3276,7 @@ void GYM_SetupPLGrassGym( FIELDSYS_WORK *fsys )
 		}
 	}
 	
-	{	//ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğŒ³‚Éƒ^ƒCƒ€ƒV[ƒPƒ“ƒXƒZƒbƒg
+	{	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’å…ƒã«ã‚¿ã‚¤ãƒ ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚»ãƒƒãƒˆ
 		int type[HARISEQFLAG_3] =
 		{ GYM04EFF_FUNSUI_ALL, GYM04EFF_FUNSUI_ALL, GYM04EFF_FUNSUI_LEFT };
 		
@@ -3302,9 +3302,9 @@ void GYM_SetupPLGrassGym( FIELDSYS_WORK *fsys )
 
 //---------------------------------------------------------------------------
 /**
- * @brief	PL ‘ƒWƒ€:I—¹ˆ—
+ * @brief	PL è‰ã‚¸ãƒ :çµ‚äº†å‡¦ç†
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -3321,14 +3321,14 @@ void GYM_EndPLGrassGym( FIELDSYS_WORK *fsys )
 
 //---------------------------------------------------------------------------
 /**
- * @brief	PL ‘ƒWƒ€:‘ƒWƒ€—p“–‚½‚è”»’è
+ * @brief	PL è‰ã‚¸ãƒ :è‰ã‚¸ãƒ ç”¨å½“ãŸã‚Šåˆ¤å®š
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @param	inHeight	‚‚³
- * @param	outHit		”»’èŒ‹‰Ê	TRUE:ƒqƒbƒg	FALSE:ƒqƒbƒg‚µ‚Ä‚È‚¢
- * @return	BOOL		TRUE:‚±‚Ì‚ ‚Æ’Êí“–‚½‚è”»’è‚ğs‚í‚È‚¢	FALSE:’Êí“–‚½‚è”»’è‚ğs‚¤
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inHeight	é«˜ã•
+ * @param	outHit		åˆ¤å®šçµæœ	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒ’ãƒƒãƒˆã—ã¦ãªã„
+ * @return	BOOL		TRUE:ã“ã®ã‚ã¨é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã‚ãªã„	FALSE:é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  */
 //---------------------------------------------------------------------------
 BOOL GYM_HitCheckPLGrassGym( FIELDSYS_WORK *fsys,
@@ -3347,7 +3347,7 @@ BOOL GYM_HitCheckPLGrassGym( FIELDSYS_WORK *fsys,
 	hit = FALSE;
 	*outHit = FALSE;
 	
-	//Œv‘ä
+	//æ™‚è¨ˆå°
 	if( (inGridZ >= HARI_HITC_START_GZ && inGridZ <= HARI_HITC_END_GZ) &&
 		(inGridX >= HARI_HITC_START_GX && inGridX <= HARI_HITC_END_GX) ){
 		x = inGridX - HARI_HITC_START_GX;
@@ -3356,7 +3356,7 @@ BOOL GYM_HitCheckPLGrassGym( FIELDSYS_WORK *fsys,
 		*outHit = hit;
 	}
 	
-	//•¬…
+	//å™´æ°´
 	if( hit == FALSE &&
 		(inGridZ >= FUNSUI_HITC_START_GZ && inGridZ <= FUNSUI_HITC_END_GZ) &&
 		(inGridX >= FUNSUI_HITC_START_GX && inGridX <= FUNSUI_HITC_END_GX) ){
@@ -3371,11 +3371,11 @@ BOOL GYM_HitCheckPLGrassGym( FIELDSYS_WORK *fsys,
 
 //--------------------------------------------------------------
 /**
- * Œv’†S‚ÖƒXƒNƒ[ƒ‹@‰Šú‰»
+ * æ™‚è¨ˆä¸­å¿ƒã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€€åˆæœŸåŒ–
  * @param	fsys	FIELDSYS_WORK
  * @param	work	PLGRASSGYM_SCROLL_WORK
- * @param	gx		w’èGridXÀ•W
- * @param	gZ		w’èGridZÀ•W
+ * @param	gx		æŒ‡å®šGridXåº§æ¨™
+ * @param	gZ		æŒ‡å®šGridZåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3429,11 +3429,11 @@ static void gym_PLGrassCenterScrollInit(
 
 //--------------------------------------------------------------
 /**
- * Œv’†S‚ÖƒXƒNƒ[ƒ‹@Ä‰Šú‰»
+ * æ™‚è¨ˆä¸­å¿ƒã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€€å†åˆæœŸåŒ–
  * @param	fsys	FIELDSYS_WORK
  * @param	work	PLGRASSGYM_SCROLL_WORK
- * @param	gx		w’èGridXÀ•W
- * @param	gZ		w’èGridZÀ•W
+ * @param	gx		æŒ‡å®šGridXåº§æ¨™
+ * @param	gZ		æŒ‡å®šGridZåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3472,7 +3472,7 @@ static void gym_PLGrassCenterScrollReset(
 
 //--------------------------------------------------------------
 /**
- * Œv’†S‚ÖƒXƒNƒ[ƒ‹@”½“]‰Šú‰»
+ * æ™‚è¨ˆä¸­å¿ƒã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€€åè»¢åˆæœŸåŒ–
  * @param	work	PLGRASSGYM_SCROLL_WORK
  * @retval	nothing
  */
@@ -3488,7 +3488,7 @@ static void gym_PLGrassCenterScrollFlipInit( PLGRASSGYM_SCROLL_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * Œv’†S‚ÖƒXƒNƒ[ƒ‹@ƒpƒ‰ƒƒ^w’è
+ * æ™‚è¨ˆä¸­å¿ƒã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€€ãƒ‘ãƒ©ãƒ¡ã‚¿æŒ‡å®š
  * @param	work	PLGRASSGYM_SCROLL_WORK
  * @retval	nothing
  */
@@ -3506,7 +3506,7 @@ static void gym_PLGrassCenterScrollParamInit(
 
 //--------------------------------------------------------------
 /**
- * Œv’†S‚ÖƒXƒNƒ[ƒ‹@I—¹
+ * æ™‚è¨ˆä¸­å¿ƒã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€€çµ‚äº†
  * @param	fsys	FIELDSYS_WORK
  * @param	work	PLGRASSGYM_SCROLL_WORK
  * @retval	nothing
@@ -3523,9 +3523,9 @@ static void gym_PLGrassCenterScrollEnd(
 
 //--------------------------------------------------------------
 /**
- * Œv’†S‚ÖƒXƒNƒ[ƒ‹@ƒXƒNƒ[ƒ‹
+ * æ™‚è¨ˆä¸­å¿ƒã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€€ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  * @param	work	PLGRASSGYM_SCROLL_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL gym_PLGrassCenterScroll( PLGRASSGYM_SCROLL_WORK *work )
@@ -3565,10 +3565,10 @@ static BOOL gym_PLGrassCenterScroll( PLGRASSGYM_SCROLL_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€FƒCƒxƒ“ƒgˆ—@w’è‚Öi‚Ü‚¹‚é
+ * PL è‰ã‚¸ãƒ ï¼šã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ã€€æŒ‡å®šæ™‚åˆ»ã¸é€²ã¾ã›ã‚‹
  * @param	gym_l_work PL_GRASS_GYM_LOCAL_WORK
- * @param	nh	–Ú•W
- * @param	nm	–Ú•W•ª
+ * @param	nh	ç›®æ¨™æ™‚
+ * @param	nm	ç›®æ¨™åˆ†
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3613,9 +3613,9 @@ static BOOL PLGrassGymTimeGain(
 
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€:ƒCƒxƒ“ƒg@w’è‚Öi‚Ş
+ * PL è‰ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€æŒ‡å®šæ™‚åˆ»ã¸é€²ã‚€
  * @param	event	GMEVENT_CONTROL
- * @retval	BOOL	TRUE:I—¹ FALSE:Œp‘±
+ * @retval	BOOL	TRUE:çµ‚äº† FALSE:ç¶™ç¶š
  */
 //--------------------------------------------------------------
 static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
@@ -3627,26 +3627,26 @@ static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
 	PL_GRASS_GYM_LOCAL_WORK *gym_l_work = work->gym_l_work;
 	
 	switch( work->seq_no ){
-	case 0:	//Œv’†S‚ÖˆÚ“®
+	case 0:	//æ™‚è¨ˆä¸­å¿ƒã¸ç§»å‹•
 		gym_PLGrassCenterScrollInit(
 			fsys, &work->scroll, HARI_CX_GRID, HARI_CZ_GRID );
 		work->seq_no++;
-	case 1:								//’†SˆÚ“®‘Ò‚¿
+	case 1:								//ä¸­å¿ƒç§»å‹•å¾…ã¡
 		if( gym_PLGrassCenterScroll(&work->scroll) == TRUE ){
 			work->seq_no++;
 		}
 		
 		break;
-	case 2:	//’†SˆÚ“®Œã‚Ìˆê¡‘Ò‚¿
+	case 2:	//ä¸­å¿ƒç§»å‹•å¾Œã®ä¸€å¯¸å¾…ã¡
 		work->wait++;
 		if( work->wait < 8 ){
 			break;
 		}
 		
 		work->wait = 0;
-		Snd_SePlay( SEQ_SE_PL_TOKEI21 );			//Œv‰ñ“]SEÄ¶
+		Snd_SePlay( SEQ_SE_PL_TOKEI21 );			//æ™‚è¨ˆå›è»¢SEå†ç”Ÿ
 		work->seq_no++;
-	case 3:	//is
+	case 3:	//æ™‚åˆ»é€²è¡Œ
 
 #ifdef HARI_SEQ4_QUICK
 		if( gym_work->time_seqflag == HARISEQFLAG_4 ){
@@ -3667,14 +3667,14 @@ static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
 		}
 #endif
 		
-#ifndef HARI_SEQ4_QUICK	//³‹KŒvƒƒWƒbƒN
+#ifndef HARI_SEQ4_QUICK	//æ­£è¦æ™‚è¨ˆãƒ­ã‚¸ãƒƒã‚¯
 		if( gym_l_work->hour == work->next_hour &&
 			gym_l_work->min <= work->next_min ){
 			gym_l_work->hari_hour_min_raise_flag = FALSE;
 		}else{
 			gym_l_work->hari_hour_min_raise_flag = TRUE;
 		}
-#else	//SEQ4‚Ì‘Ò‚¿ŠÔ’Zk
+#else	//SEQ4ã®å¾…ã¡æ™‚é–“çŸ­ç¸®
 		if( gym_l_work->hour == work->next_hour ){
 			if(	gym_l_work->min <= work->next_min ||
 				gym_work->time_seqflag == HARISEQFLAG_4 ){
@@ -3687,13 +3687,13 @@ static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
 		gym_PLGrassTimeHariRotateSet( gym_l_work );
 		
 		if( ret == TRUE ){
-			Snd_SeStopBySeqNo( SEQ_SE_PL_TOKEI21, 0 );	//Œv‰ñ“]SE’â~
-			Snd_SePlay( SEQ_SE_DP_PIRORIRO2 );	//Œv‰ñ“]‚ªI—¹‚µ‚½SEÄ¶
+			Snd_SeStopBySeqNo( SEQ_SE_PL_TOKEI21, 0 );	//æ™‚è¨ˆå›è»¢SEåœæ­¢
+			Snd_SePlay( SEQ_SE_DP_PIRORIRO2 );	//æ™‚è¨ˆå›è»¢ãŒçµ‚äº†ã—ãŸSEå†ç”Ÿ
 			work->seq_no++;
 		}
 		
 		break;
-	case 4:	//isŒã‚Ìˆê¡‘Ò‚¿
+	case 4:	//æ™‚åˆ»é€²è¡Œå¾Œã®ä¸€å¯¸å¾…ã¡
 		work->wait++;
 		if( work->wait < 8 ){
 			break;
@@ -3712,17 +3712,17 @@ static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
 		}
 		
 		break;
-	case 5:	//•œ‹AƒXƒNƒ[ƒ‹
+	case 5:	//å¾©å¸°ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 		if( gym_PLGrassCenterScroll(&work->scroll) == TRUE ){
 			work->seq_no++;
 		}
 		
 		break;
-	case 6:	//I—¹
+	case 6:	//çµ‚äº†
 		gym_PLGrassCenterScrollEnd( fsys, &work->scroll );
 		sys_FreeMemoryEz( work );
 		return( TRUE );
-	case 7:	//•¬…’â~@•¬…‚Æ…•½ˆÊ’u‚ÖƒXƒNƒ[ƒ‹
+	case 7:	//å™´æ°´åœæ­¢ã€€å™´æ°´ã¨æ°´å¹³ä½ç½®ã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 		if( gym_PLGrassCenterScroll(&work->scroll) == TRUE ){
 			int gx = 20, gz = 19, dir_h = DIR_RIGHT;
 			if( gym_work->time_seqflag == HARISEQFLAG_3 ){
@@ -3735,13 +3735,13 @@ static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
 		}else{
 			break;
 		}
-	case 8:	//•¬…’â~@•¬…ˆÊ’u‚ÖƒXƒNƒ[ƒ‹
+	case 8:	//å™´æ°´åœæ­¢ã€€å™´æ°´ä½ç½®ã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 		if( gym_PLGrassCenterScroll(&work->scroll) == TRUE ){
 			work->seq_no++;
 		}
 		
 		break;
-	case 9:	//•¬…’â~@ˆê¡‘Ò‚¿
+	case 9:	//å™´æ°´åœæ­¢ã€€ä¸€å¯¸å¾…ã¡
 		work->wait++;
 		if( work->wait >= 4 ){
 			work->wait = 0;
@@ -3750,18 +3750,18 @@ static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
 			}else if( gym_work->time_seqflag == HARISEQFLAG_3 ){
 				FE_FldOBJGym04EffEndSet( fsys, GYM04EFF_FUNSUI_LEFT );
 			}
-			Snd_SePlay( SEQ_SE_DP_T_AME );					//•¬…’â~‰¹(ƒ‹[ƒv)‚ÌÄ¶
+			Snd_SePlay( SEQ_SE_DP_T_AME );					//å™´æ°´åœæ­¢éŸ³(ãƒ«ãƒ¼ãƒ—)ã®å†ç”Ÿ
 			work->seq_no++;
 		}
 		
 		break;
-	case 10: //•¬…’â~@•¬…’â~ƒAƒjƒ‘Ò‚¿
+	case 10: //å™´æ°´åœæ­¢ã€€å™´æ°´åœæ­¢ã‚¢ãƒ‹ãƒ¡å¾…ã¡
 		work->wait++;
 		
 		if( work->wait >= 60 ){
 			work->wait = 0;
 			work->seq_no++;
-			Snd_SeStopBySeqNo( SEQ_SE_DP_T_AME, 0 );		//•¬…’â~‰¹(ƒ‹[ƒv)‚Ì’â~
+			Snd_SeStopBySeqNo( SEQ_SE_DP_T_AME, 0 );		//å™´æ°´åœæ­¢éŸ³(ãƒ«ãƒ¼ãƒ—)ã®åœæ­¢
 			
 			MSGMAN_GetString( work->msgman,
 				msg_c04gym0101_fountain_01, work->strbuf );
@@ -3775,7 +3775,7 @@ static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
 		}
 		
 		break;
-	case 11: //•¬…’â~@’â~ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+	case 11: //å™´æ°´åœæ­¢ã€€åœæ­¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( FldTalkMsgEndCheck(work->msgidx) != TRUE ){
 			break;
 		}
@@ -3811,7 +3811,7 @@ static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
 				FE_FldOBJGym04EffEndSet( fsys, GYM04EFF_FUNSUI_LEFT );
 			}
 			
-			Snd_SePlay( SEQ_SE_PL_TOKEI21 );			//Œv‰ñ“]SEÄ¶
+			Snd_SePlay( SEQ_SE_PL_TOKEI21 );			//æ™‚è¨ˆå›è»¢SEå†ç”Ÿ
 			work->seq_no++;
 		}
 		
@@ -3830,8 +3830,8 @@ static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
 		gym_PLGrassTimeHariRotateSet( gym_l_work );
 		
 		if( ret == TRUE ){
-			Snd_SeStopBySeqNo( SEQ_SE_PL_TOKEI21, 0 );	//Œv‰ñ“]SE’â~
-			Snd_SePlay( SEQ_SE_DP_PIRORIRO2 );			//Œv‰ñ“]‚ªI—¹‚µ‚½SEÄ¶
+			Snd_SeStopBySeqNo( SEQ_SE_PL_TOKEI21, 0 );	//æ™‚è¨ˆå›è»¢SEåœæ­¢
+			Snd_SePlay( SEQ_SE_DP_PIRORIRO2 );			//æ™‚è¨ˆå›è»¢ãŒçµ‚äº†ã—ãŸSEå†ç”Ÿ
 			work->seq_no++;
 		}
 		
@@ -3863,10 +3863,10 @@ static BOOL GMEVENT_PLGrassGymTimeGain( GMEVENT_CONTROL *event )
 
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€F‚ği‚ß‚éƒCƒxƒ“ƒg
+ * PL è‰ã‚¸ãƒ ï¼šæ™‚åˆ»ã‚’é€²ã‚ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
  * @param	fsys	FIELDSYS_WORK
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒg”­“®,
- * 					FALSE=‚±‚êˆÈã‚Ìis‚Í–³‚¢‚½‚ß”­“®‚µ‚È‚¢
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•,
+ * 					FALSE=ã“ã‚Œä»¥ä¸Šã®æ™‚åˆ»é€²è¡Œã¯ç„¡ã„ãŸã‚ç™ºå‹•ã—ãªã„
  */
 //--------------------------------------------------------------
 BOOL GYM_PLGrass_TimeGainEventSet( FIELDSYS_WORK *fsys,
@@ -3885,7 +3885,7 @@ BOOL GYM_PLGrass_TimeGainEventSet( FIELDSYS_WORK *fsys,
 	gymwork->time_seqflag++;
 	gym_PLGrassTimeSeqSysSet( fsys, gymwork->time_seqflag );
 	
-	OS_Printf( "‘ƒWƒ€@is”Ô† %d\n", gymwork->time_seqflag );
+	OS_Printf( "è‰ã‚¸ãƒ ã€€æ™‚åˆ»é€²è¡Œç•ªå· %d\n", gymwork->time_seqflag );
 	
 	{
 		EV_PLGRASSGYM_TIME_WORK *work;
@@ -3913,10 +3913,10 @@ BOOL GYM_PLGrass_TimeGainEventSet( FIELDSYS_WORK *fsys,
 
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€FƒWƒƒƒ“ƒvˆÊ’uƒ`ƒFƒbƒN
+ * PL è‰ã‚¸ãƒ ï¼šã‚¸ãƒ£ãƒ³ãƒ—ä½ç½®ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK
- * @param	dir		is•ûŒü DIR_UP“™
- * @retval	BOOL	TRUE=ƒWƒƒƒ“ƒvˆÊ’u
+ * @param	dir		é€²è¡Œæ–¹å‘ DIR_UPç­‰
+ * @retval	BOOL	TRUE=ã‚¸ãƒ£ãƒ³ãƒ—ä½ç½®
  */
 //--------------------------------------------------------------
 BOOL GYM_PLGrass_ExJumpPosCheck(
@@ -3943,7 +3943,7 @@ BOOL GYM_PLGrass_ExJumpPosCheck(
 }
 
 //==============================================================================
-//	PL	Ši“¬ƒWƒ€ kaga	
+//	PL	æ ¼é—˜ã‚¸ãƒ  kaga	
 //==============================================================================
 #define FGGYM_BAG_MAX (9)
 #define FGGYM_BOX_MAX (11)
@@ -3956,9 +3956,9 @@ BOOL GYM_PLGrass_ExJumpPosCheck(
 #define FGGYM_GRID_SIZE_Z (32)
 #define FGGYM_GRID_SIZE_XZ (FGGYM_GRID_SIZE_X*FGGYM_GRID_SIZE_Z)
 
-//#define SANDBAG_PAUSE_FRAME (58)	//—h‚êƒAƒjƒƒ|[ƒYƒtƒŒ[ƒ€
-#define SANDBAG_START_FRAME (30)	//ƒTƒ“ƒhƒoƒbƒOˆÚ“®ŠJnƒtƒŒ[ƒ€
-#define SANDBAG_ACCEL_FRAME (36)	//ƒTƒ“ƒhƒoƒbƒO‰Á‘¬ƒtƒŒ[ƒ€
+//#define SANDBAG_PAUSE_FRAME (58)	//æºã‚Œã‚¢ãƒ‹ãƒ¡ãƒãƒ¼ã‚ºãƒ•ãƒ¬ãƒ¼ãƒ 
+#define SANDBAG_START_FRAME (30)	//ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define SANDBAG_ACCEL_FRAME (36)	//ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°åŠ é€Ÿãƒ•ãƒ¬ãƒ¼ãƒ 
 #define SANDBAG_BREAK_FRAME (43)
 #define SANDBAG_START_SPEED_FX ((FX32_ONE/2)/SANDBAG_START_FRAME)
 #define SANDBAG_MOVE_ANM_FRAME (SANDBAG_BREAK_FRAME-SANDBAG_START_FRAME)
@@ -3971,7 +3971,7 @@ BOOL GYM_PLGrass_ExJumpPosCheck(
 #define BAGMOVE_SCRSTART_GRID_R (4)
 
 //--------------------------------------------------------------
-///	ƒTƒ“ƒhƒoƒbƒOˆÚ“®ƒCƒxƒ“ƒg”Ô†
+///	ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -4013,12 +4013,12 @@ typedef enum
 //--------------------------------------------------------------
 typedef enum
 {
-	SBAGHIT_NON = 0,	// 0 ’Ês‰Â”\ 
-	SBAGHIT_HIT,		// 1 ’Ês•s‰Â
-	SBAGHIT_NOTV,		// 2 c•ûŒü•s‰Â
-	SBAGHIT_NOTH,		// 3 ‰¡•ûŒü•s‰Â
-	SBAGHIT_JOINT,		// 4 ƒWƒ‡ƒCƒ“ƒg
-	SBAGHIT_NOTL,		// 5 ¶ˆÚ“®•s‰Â
+	SBAGHIT_NON = 0,	// 0 é€šè¡Œå¯èƒ½ 
+	SBAGHIT_HIT,		// 1 é€šè¡Œä¸å¯
+	SBAGHIT_NOTV,		// 2 ç¸¦æ–¹å‘ä¸å¯
+	SBAGHIT_NOTH,		// 3 æ¨ªæ–¹å‘ä¸å¯
+	SBAGHIT_JOINT,		// 4 ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆ
+	SBAGHIT_NOTL,		// 5 å·¦ç§»å‹•ä¸å¯
 }SANDBAGHIT;
 
 //--------------------------------------------------------------
@@ -4123,7 +4123,7 @@ typedef struct
 }EV_PLFIGHT_GYM_BAG_MOVE;
 
 //--------------------------------------------------------------
-///	ƒTƒ“ƒhƒoƒbƒO‰ŠúˆÊ’u
+///	ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°åˆæœŸä½ç½®
 //--------------------------------------------------------------
 static const FGGYM_ACTPOS DATA_SandbagPosTbl[FGGYM_BAG_MAX] =
 {
@@ -4139,7 +4139,7 @@ static const FGGYM_ACTPOS DATA_SandbagPosTbl[FGGYM_BAG_MAX] =
 };
 
 //--------------------------------------------------------------
-///	” ‰ŠúˆÊ’u
+///	ç®±åˆæœŸä½ç½®
 //--------------------------------------------------------------
 static const FGGYM_ACTPOS DATA_BoxPosTbl[FGGYM_BOX_MAX] =
 {
@@ -4157,7 +4157,7 @@ static const FGGYM_ACTPOS DATA_BoxPosTbl[FGGYM_BOX_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒTƒ“ƒhƒoƒbƒO’Ê˜H
+///	ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°é€šè·¯
 //--------------------------------------------------------------
 static ALIGN4 const u8 DATA_SandbagHitMap[FGGYM_GRID_SIZE_XZ] =
 { //0             7               15               23               31
@@ -4197,7 +4197,7 @@ static ALIGN4 const u8 DATA_SandbagHitMap[FGGYM_GRID_SIZE_XZ] =
 };
 
 //--------------------------------------------------------------
-///	•ûŒü•ÊƒXƒNƒ[ƒ‹“K—pŠO‚Ì’l
+///	æ–¹å‘åˆ¥ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é©ç”¨å¤–ã®å€¤
 //--------------------------------------------------------------
 static const int DATA_PLFightGymScrollValue[DIR_4_MAX] =
 {
@@ -4228,7 +4228,7 @@ static void PLFightGym_ScrollSpeed( EV_PLFIGHT_GYM_BAG_MOVE *ev, fx32 s_fx );
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒZƒbƒgƒAƒbƒv
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -4251,11 +4251,11 @@ void GYM_SetupPLFightGym( FIELDSYS_WORK *fsys )
 	FE_EffectRegist( fsys->fes, FE_FLD_GYM07EFF );
 	FE_Gym07Eff_BoxSandbagMaxSet( fsys->fes, FGGYM_BOX_MAX, FGGYM_BAG_MAX );
 	
-	if( gym->init_flag == TRUE ){	//‰Šú‰»Ï‚İ
-		OS_Printf( "Ši“¬ƒWƒ€ ƒAƒNƒ^[•œ‹A\n" );
+	if( gym->init_flag == TRUE ){	//åˆæœŸåŒ–æ¸ˆã¿
+		OS_Printf( "æ ¼é—˜ã‚¸ãƒ  ã‚¢ã‚¯ã‚¿ãƒ¼å¾©å¸°\n" );
 		PLFightGym_ActFldOBJRecover( work );
-	}else{							//–¢‰Šú‰»
-		OS_Printf( "Ši“¬ƒWƒ€ ƒAƒNƒ^[‰Šú‰»\n" );
+	}else{							//æœªåˆæœŸåŒ–
+		OS_Printf( "æ ¼é—˜ã‚¸ãƒ  ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–\n" );
 		PLFightGym_ActInit( work );
 	}
 	
@@ -4264,7 +4264,7 @@ void GYM_SetupPLFightGym( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:I—¹ˆ—
+ * PL æ ¼é—˜ã‚¸ãƒ :çµ‚äº†å‡¦ç†
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -4278,13 +4278,13 @@ void GYM_EndPLFightGym( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:Ši“¬ƒWƒ€—p‚ ‚½‚è”»’è
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @param	inHeight	‚‚³
- * @param	outHit		”»’èŒ‹‰Ê	TRUE:ƒqƒbƒg	FALSE:ƒqƒbƒg‚µ‚Ä‚È‚¢
- * @return	BOOL		TRUE:‚±‚Ì‚ ‚Æ’Êí“–‚½‚è”»’è‚ğs‚í‚È‚¢	FALSE:’Êí“–‚½‚è”»’è‚ğs‚¤
+ * PL æ ¼é—˜ã‚¸ãƒ :æ ¼é—˜ã‚¸ãƒ ç”¨ã‚ãŸã‚Šåˆ¤å®š
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inHeight	é«˜ã•
+ * @param	outHit		åˆ¤å®šçµæœ	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒ’ãƒƒãƒˆã—ã¦ãªã„
+ * @return	BOOL		TRUE:ã“ã®ã‚ã¨é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã‚ãªã„	FALSE:é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  */
 //--------------------------------------------------------------
 BOOL GYM_HitCheckPLFightGym( FIELDSYS_WORK *fsys,
@@ -4296,12 +4296,12 @@ BOOL GYM_HitCheckPLFightGym( FIELDSYS_WORK *fsys,
 
 //--------------------------------------------------------------
 /**
- * ƒWƒ€dŠ|‚¯—pƒtƒB[ƒ‹ƒhOBJ‚ğ’Ç‰Á
+ * ã‚¸ãƒ ä»•æ›ã‘ç”¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚’è¿½åŠ 
  * @param	fsys	FIELDSYS_WORK
- * @param	gx		ƒOƒŠƒbƒhX
- * @param	gz		ƒOƒŠƒbƒhZ
- * @param	type	ACTTYPE_BOX“™
- * @retval	FIELD_OBJ_PTR ’Ç‰Á‚µ‚½FIELD_OBJ_PTR
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	type	ACTTYPE_BOXç­‰
+ * @retval	FIELD_OBJ_PTR è¿½åŠ ã—ãŸFIELD_OBJ_PTR
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_PTR PLFightGym_ActFldOBJAdd(
@@ -4318,7 +4318,7 @@ static FIELD_OBJ_PTR PLFightGym_ActFldOBJAdd(
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_PTR‚©‚çFGGYM_ACTWORK‰Šú‰»
+ * FIELD_OBJ_PTRã‹ã‚‰FGGYM_ACTWORKåˆæœŸåŒ–
  * @param	work	FGGYM_ACTWORK
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	fsys	FIELDSYS_WORK
@@ -4341,11 +4341,11 @@ static void PLFightGym_ActWorkInit(
 
 //--------------------------------------------------------------
 /**
- * ƒTƒ“ƒhƒoƒbƒOÀ•WŒŸõ
+ * ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°åº§æ¨™æ¤œç´¢
  * @param	work	PLFIGHT_GYM_LOCAL_WORK
- * @param	gx			ƒOƒŠƒbƒhX
- * @param	gz			ƒOƒŠƒbƒhZ
- * @retval	SANDBAG_WORK	NULL=ˆê’vƒiƒV
+ * @param	gx			ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gz			ã‚°ãƒªãƒƒãƒ‰Z
+ * @retval	SANDBAG_WORK	NULL=ä¸€è‡´ãƒŠã‚·
  */
 //--------------------------------------------------------------
 static SANDBAG_WORK * PLFightGym_SandbagPosSearch(
@@ -4368,11 +4368,11 @@ static SANDBAG_WORK * PLFightGym_SandbagPosSearch(
 
 //--------------------------------------------------------------
 /**
- * ” À•WŒŸõ
+ * ç®±åº§æ¨™æ¤œç´¢
  * @param	work	PLFIGHT_GYM_LOCAL_WORK
- * @param	gx			ƒOƒŠƒbƒhX
- * @param	gz			ƒOƒŠƒbƒhZ
- * @retval	BOX_WORK	NULL=ˆê’vƒiƒV
+ * @param	gx			ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gz			ã‚°ãƒªãƒƒãƒ‰Z
+ * @retval	BOX_WORK	NULL=ä¸€è‡´ãƒŠã‚·
  */
 //--------------------------------------------------------------
 static BOX_WORK * PLFightGym_BoxPosSearch(
@@ -4397,8 +4397,8 @@ static BOX_WORK * PLFightGym_BoxPosSearch(
 
 //--------------------------------------------------------------
 /**
- * ” íœ
- * @param	BOX_WORK	íœ‚·‚éBOX_WORK
+ * ç®±å‰Šé™¤
+ * @param	BOX_WORK	å‰Šé™¤ã™ã‚‹BOX_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4415,7 +4415,7 @@ static void PLFightGym_BoxDelete( BOX_WORK *box )
 
 //--------------------------------------------------------------
 /**
- * ” AƒTƒ“ƒhƒoƒbƒO‰Šú‰»
+ * ç®±ã€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°åˆæœŸåŒ–
  * @param	work	PLFIGHT_GYM_LOCAL_WORK
  * @retval	nothing
  */
@@ -4451,10 +4451,10 @@ static void PLFightGym_ActInit( PLFIGHT_GYM_LOCAL_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒWƒ€dŠ|‚¯—pƒtƒB[ƒ‹ƒhOBJ‚©‚ç•œŒ³
+ * ã‚¸ãƒ ä»•æ›ã‘ç”¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰å¾©å…ƒ
  * @param	fsys	FIELDSYS_WORK
- * @param	type	ACTTYPE_BOX“™
- * @retval	FIELD_OBJ_PTR ’Ç‰Á‚µ‚½FIELD_OBJ_PTR
+ * @param	type	ACTTYPE_BOXç­‰
+ * @retval	FIELD_OBJ_PTR è¿½åŠ ã—ãŸFIELD_OBJ_PTR
  */
 //--------------------------------------------------------------
 static void PLFightGym_ActFldOBJRecover( PLFIGHT_GYM_LOCAL_WORK *work )
@@ -4487,9 +4487,9 @@ static void PLFightGym_ActFldOBJRecover( PLFIGHT_GYM_LOCAL_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒTƒ“ƒhƒoƒbƒO‚ ‚½‚è”»’èæ“¾
- * @param	x	ƒOƒŠƒbƒhXÀ•W
- * @param	z	ƒOƒŠƒbƒhZÀ•W
+ * ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã‚ãŸã‚Šåˆ¤å®šå–å¾—
+ * @param	x	ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	z	ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
  * @retval	SANDBAGHIT	SANDBAGHIT
  */
 //--------------------------------------------------------------
@@ -4508,12 +4508,12 @@ static SANDBAGHIT SandbagHitFlagGet( int gx, int gz )
 
 //--------------------------------------------------------------
 /**
- * ƒTƒ“ƒhƒoƒbƒOˆÚ“®‰Â”\ƒ`ƒFƒbƒN
+ * ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•å¯èƒ½ãƒã‚§ãƒƒã‚¯
  * @param	work	PLFIGHT_GYM_LOCAL_WORK
- * @param	gx	Œ»ƒOƒŠƒbƒhXÀ•W
- * @param	gz	Œ»ƒOƒŠƒbƒhZÀ•W
- * @param	dir	•ûŒü
- * @retval	u32 	ƒqƒbƒgƒrƒbƒg@BAGHITBIT
+ * @param	gx	ç¾ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	gz	ç¾ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	dir	æ–¹å‘
+ * @retval	u32 	ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆã€€BAGHITBIT
  */
 //--------------------------------------------------------------
 static u32 SandbagMoveHitCheck(
@@ -4522,30 +4522,30 @@ static u32 SandbagMoveHitCheck(
 	u32 ret = BAGHITBIT_NON;
 	SANDBAGHIT b_flag,a_flag;
 	
-	b_flag = SandbagHitFlagGet( gx, gz );		//Œ»İˆÊ’u
+	b_flag = SandbagHitFlagGet( gx, gz );		//ç¾åœ¨ä½ç½®
 	
 	switch( b_flag ){
 	case SBAGHIT_JOINT:
 		ret |= BAGHITBIT_JOINT_NOW;
 		break;
-	case SBAGHIT_NOTV:	//c•ûŒüˆÚ“®•s‰Â
+	case SBAGHIT_NOTV:	//ç¸¦æ–¹å‘ç§»å‹•ä¸å¯
 		if( dir == DIR_UP || dir == DIR_DOWN ){
 			ret |= BAGHITBIT_WALL;
 		}
 		break;
-	case SBAGHIT_NOTH:	//‰¡•ûŒüˆÚ“®•s‰Â
+	case SBAGHIT_NOTH:	//æ¨ªæ–¹å‘ç§»å‹•ä¸å¯
 		if( dir == DIR_LEFT || dir == DIR_RIGHT ){
 			ret |= BAGHITBIT_WALL;
 		}
 		break;
-	case SBAGHIT_NOTL:	//¶•ûŒüˆÚ“®•s‰Â
+	case SBAGHIT_NOTL:	//å·¦æ–¹å‘ç§»å‹•ä¸å¯
 		if( dir == DIR_LEFT ){
 			ret |= BAGHITBIT_WALL;
 		}
 		break;
 	}
 	
-	gx += FieldOBJ_DirAddValueGX( dir );		//ˆÚ“®æ
+	gx += FieldOBJ_DirAddValueGX( dir );		//ç§»å‹•å…ˆ
 	gz += FieldOBJ_DirAddValueGZ( dir );
 	a_flag = SandbagHitFlagGet( gx, gz );
 	
@@ -4562,13 +4562,13 @@ static u32 SandbagMoveHitCheck(
 
 //--------------------------------------------------------------
 /**
- * ƒTƒ“ƒhƒoƒbƒOƒOƒŠƒbƒhˆÚ“®”æ“¾
+ * ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã‚°ãƒªãƒƒãƒ‰ç§»å‹•æ•°å–å¾—
  * @param	work	PLFIGHT_GYM_LOCAL_WORK
- * @param	gx	Œ»ƒOƒŠƒbƒhXÀ•W
- * @param	gz	Œ»ƒOƒŠƒbƒhZÀ•W
- * @param	dir	•ûŒü
- * @param	count	ˆÚ“®”Ši”[æ
- * @retval	u32 ƒqƒbƒgƒrƒbƒg	BAGHITBIT
+ * @param	gx	ç¾ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	gz	ç¾ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	dir	æ–¹å‘
+ * @param	count	ç§»å‹•æ•°æ ¼ç´å…ˆ
+ * @retval	u32 ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆ	BAGHITBIT
  */
 //--------------------------------------------------------------
 static u32 SandbagMoveGridGet(
@@ -4579,7 +4579,7 @@ static u32 SandbagMoveGridGet(
 	*count = 0;
 	hit = SandbagMoveHitCheck( work, gx, gz, dir );
 	
-	if( hit != BAGHITBIT_NON && hit != BAGHITBIT_JOINT_NOW ){	//‰‰ñ‚Ì‚İ–³‹
+	if( hit != BAGHITBIT_NON && hit != BAGHITBIT_JOINT_NOW ){	//åˆå›ã®ã¿ç„¡è¦–
 		return( hit );
 	}
 	
@@ -4595,9 +4595,9 @@ static u32 SandbagMoveGridGet(
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒO—h‚ê
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°æºã‚Œ
  * @param	event	GMEVENT_CONTROL
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL GMEVENT_PLFightGymSandbagShake( GMEVENT_CONTROL *event )
@@ -4616,8 +4616,8 @@ static BOOL GMEVENT_PLFightGymSandbagShake( GMEVENT_CONTROL *event )
 				FieldOBJ_AcmdCodeDirChange(work->dir,AC_STAY_WALK_U_2F) );
 			FE_Gym07Eff_SandbagShakeSet(
 				work->bag->act.eoa, work->dir, FALSE );
-			//Snd_SePlay( SEQ_SE_DP_UG_026 );	//ƒTƒ“ƒhƒoƒbƒO—h‚êSE
-			Snd_SePlay( SEQ_SE_PL_SUTYA2 );		//ƒTƒ“ƒhƒoƒbƒO—h‚êSE
+			//Snd_SePlay( SEQ_SE_DP_UG_026 );	//ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°æºã‚ŒSE
+			Snd_SePlay( SEQ_SE_PL_SUTYA2 );		//ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°æºã‚ŒSE
 			work->seq_no++;
 		}
 		
@@ -4636,9 +4636,9 @@ static BOOL GMEVENT_PLFightGymSandbagShake( GMEVENT_CONTROL *event )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•
  * @param	event	GMEVENT_CONTROL
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL GMEVENT_PLFightGymSandbagMove( GMEVENT_CONTROL *event )
@@ -4661,7 +4661,7 @@ static BOOL GMEVENT_PLFightGymSandbagMove( GMEVENT_CONTROL *event )
 		
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@‰Šú‰»
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€åˆæœŸåŒ–
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4678,12 +4678,12 @@ static FGGYM_EVRET EvBagMove_Init( EV_PLFIGHT_GYM_BAG_MOVE *work )
 	EOA_MatrixGet( act->eoa, &work->pos );
 	work->speed_fx = SANDBAG_START_SPEED_FX;
 	work->seq_no = SEQNO_BAGMOVE_ACMD_SET;
-	return( FGGYM_EVRET_NON );	//div_map.c‚Ì©‹@ˆÚ“®Š®—¹‘Ò‚¿
+	return( FGGYM_EVRET_NON );	//div_map.cã®è‡ªæ©Ÿç§»å‹•å®Œäº†å¾…ã¡
 }
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@©‹@ƒAƒjƒƒZƒbƒg
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4714,8 +4714,8 @@ static FGGYM_EVRET EvBagMove_AcmdSet( EV_PLFIGHT_GYM_BAG_MOVE *work )
 		}
 	}
 	
-	//Snd_SePlay( SEQ_SE_DP_UG_026 );	//ƒTƒ“ƒhƒoƒbƒO—h‚êSE
-	Snd_SePlay( SEQ_SE_PL_SUTYA2 );		//ƒTƒ“ƒhƒoƒbƒO—h‚êSE
+	//Snd_SePlay( SEQ_SE_DP_UG_026 );	//ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°æºã‚ŒSE
+	Snd_SePlay( SEQ_SE_PL_SUTYA2 );		//ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°æºã‚ŒSE
 	
 	work->seq_no = SEQNO_BAGMOVE_SHAKE_START;
 	return( FGGYM_EVRET_NEXT );
@@ -4723,7 +4723,7 @@ static FGGYM_EVRET EvBagMove_AcmdSet( EV_PLFIGHT_GYM_BAG_MOVE *work )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@Å‰‚Ì‚ä‚ê
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€æœ€åˆã®ã‚†ã‚Œ
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4742,8 +4742,8 @@ static FGGYM_EVRET EvBagMove_ShakeStart( EV_PLFIGHT_GYM_BAG_MOVE *work )
 		s /= work->move_grid*GRID/2;
 		FE_Gym07Eff_SandbagAnmSpeedSet( work->bag->act.eoa, s );
 		work->seq_no = SEQNO_BAGMOVE_MOVE;
-		Snd_SePlay( SEQ_SE_PL_GYM01 );		//ƒoƒbƒO@ƒŒ[ƒ‹ˆÚ“®SE
-		OS_Printf( "ƒTƒ“ƒhƒoƒbƒOƒXƒƒE speed=0x%x\n", s );
+		Snd_SePlay( SEQ_SE_PL_GYM01 );		//ãƒãƒƒã‚°ã€€ãƒ¬ãƒ¼ãƒ«ç§»å‹•SE
+		OS_Printf( "ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã‚¹ãƒ­ã‚¦ speed=0x%x\n", s );
 	}
 	
 	return( FGGYM_EVRET_NON );
@@ -4751,7 +4751,7 @@ static FGGYM_EVRET EvBagMove_ShakeStart( EV_PLFIGHT_GYM_BAG_MOVE *work )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@ˆÚ“®
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€ç§»å‹•
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4778,7 +4778,7 @@ static FGGYM_EVRET EvBagMove_Move( EV_PLFIGHT_GYM_BAG_MOVE *work )
 	
 	PLFightGym_ScrollSpeed( work, work->speed_fx );
 	
-	if( SIZE_GRID_FX32(work->count_fx) > work->old_count ){	//1G’´‚¦
+	if( SIZE_GRID_FX32(work->count_fx) > work->old_count ){	//1Gè¶…ãˆ
 		u32 ret;
 		
 		work->old_count = SIZE_GRID_FX32( work->count_fx );
@@ -4794,7 +4794,7 @@ static FGGYM_EVRET EvBagMove_Move( EV_PLFIGHT_GYM_BAG_MOVE *work )
 				work->speed_fx <<= 1;
 			}
 #endif
-		}else{	//áŠQ•¨ƒqƒbƒg
+		}else{	//éšœå®³ç‰©ãƒ’ãƒƒãƒˆ
 			FieldOBJTool_GridCenterPosGet(
 				bag->act.gx, bag->act.gz, &work->pos );
 			FieldOBJ_NowPosGX_Set( bag->act.fldobj, bag->act.gx );
@@ -4802,10 +4802,10 @@ static FGGYM_EVRET EvBagMove_Move( EV_PLFIGHT_GYM_BAG_MOVE *work )
 			FieldOBJ_GPosUpdate( bag->act.fldobj );
 			FE_Gym07Eff_SandbagAnmSpeedSet( bag->act.eoa, FX32_ONE );
 			
-			Snd_SeStopBySeqNo( SEQ_SE_PL_GYM01, 0 );		//ƒoƒbƒO@ƒŒ[ƒ‹ˆÚ“®SE’â~
-			//Snd_SePlay( SEQ_SE_DP_UG_026 );				//ƒTƒ“ƒhƒoƒbƒO—h‚êSE
-			Snd_SePlay( SEQ_SE_PL_SUTYA2 );					//ƒTƒ“ƒhƒoƒbƒO—h‚êSE
-			Snd_SePlay( SEQ_SE_PL_GYM02 );					//‹à‘®‚Å~‚Ü‚éSE
+			Snd_SeStopBySeqNo( SEQ_SE_PL_GYM01, 0 );		//ãƒãƒƒã‚°ã€€ãƒ¬ãƒ¼ãƒ«ç§»å‹•SEåœæ­¢
+			//Snd_SePlay( SEQ_SE_DP_UG_026 );				//ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°æºã‚ŒSE
+			Snd_SePlay( SEQ_SE_PL_SUTYA2 );					//ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°æºã‚ŒSE
+			Snd_SePlay( SEQ_SE_PL_GYM02 );					//é‡‘å±ã§æ­¢ã¾ã‚‹SE
 			
 			if( (ret&BAGHITBIT_BOX) == 0 ){
 				if( work->scr_flag == TRUE ){
@@ -4829,7 +4829,7 @@ static FGGYM_EVRET EvBagMove_Move( EV_PLFIGHT_GYM_BAG_MOVE *work )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@” ”j‰óŠJn
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€ç®±ç ´å£Šé–‹å§‹
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4843,8 +4843,8 @@ static FGGYM_EVRET EvBagMove_BreakBoxStart( EV_PLFIGHT_GYM_BAG_MOVE *work )
 		work->frame = 0;
 		work->seq_no = SEQNO_BAGMOVE_BREAK_BOX;
 		FE_Gym07Eff_BoxBreakAnmSet( work->break_box->act.eoa );
-		//Snd_SePlay( SEQ_SE_DP_W173C );		//”j‰óSE
-		Snd_SePlay( SEQ_SE_DP_UG_026 );			//”j‰óSE
+		//Snd_SePlay( SEQ_SE_DP_W173C );		//ç ´å£ŠSE
+		Snd_SePlay( SEQ_SE_DP_UG_026 );			//ç ´å£ŠSE
 	}
 	
 	return( FGGYM_EVRET_NON );
@@ -4852,7 +4852,7 @@ static FGGYM_EVRET EvBagMove_BreakBoxStart( EV_PLFIGHT_GYM_BAG_MOVE *work )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@” ”j‰ó
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€ç®±ç ´å£Š
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4877,7 +4877,7 @@ static FGGYM_EVRET EvBagMove_BreakBox( EV_PLFIGHT_GYM_BAG_MOVE *work )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@ƒTƒ“ƒhƒoƒbƒOƒXƒNƒ[ƒ‹I—¹‘Ò‚¿
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†å¾…ã¡
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4897,7 +4897,7 @@ static FGGYM_EVRET EvBagMove_ScrollWait( EV_PLFIGHT_GYM_BAG_MOVE *work )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@”½“]ƒXƒNƒ[ƒ‹I—¹‘Ò‚¿
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€åè»¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†å¾…ã¡
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4916,7 +4916,7 @@ static FGGYM_EVRET EvBagMove_FlipScrollWait( EV_PLFIGHT_GYM_BAG_MOVE *work )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@ƒTƒ“ƒhƒoƒbƒOƒAƒjƒI—¹‘Ò‚¿
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4932,7 +4932,7 @@ static FGGYM_EVRET EvBagMove_ShakeWait( EV_PLFIGHT_GYM_BAG_MOVE *work )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@©‹@ƒAƒjƒI—¹‘Ò‚¿
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4952,7 +4952,7 @@ static FGGYM_EVRET EvBagMove_AcmdWait( EV_PLFIGHT_GYM_BAG_MOVE *work )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒCƒxƒ“ƒg@ƒTƒ“ƒhƒoƒbƒOˆÚ“®@I—¹
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã€€çµ‚äº†
  * @param	work	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	FGGYM_EVRET	FGGYM_EVRET
  */
@@ -4964,7 +4964,7 @@ static FGGYM_EVRET EvBagMove_End( EV_PLFIGHT_GYM_BAG_MOVE *work )
 }
 
 //--------------------------------------------------------------
-///	PL Ši“¬ƒWƒ€ƒTƒ“ƒhƒoƒbƒOˆÚ“®ƒCƒxƒ“ƒgˆ—ƒe[ƒuƒ‹
+///	PL æ ¼é—˜ã‚¸ãƒ ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static FGGYM_EVRET (* const DATA_EvBagMoveTbl[SEQNO_BAGMOVE_MAX])(
 		EV_PLFIGHT_GYM_BAG_MOVE * ) =
@@ -4984,10 +4984,10 @@ static FGGYM_EVRET (* const DATA_EvBagMoveTbl[SEQNO_BAGMOVE_MAX])(
 		
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€@ƒCƒxƒ“ƒgƒZƒbƒg‹¤’Ê•”•ª
+ * PL è‰ã‚¸ãƒ ã€€ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆå…±é€šéƒ¨åˆ†
  * @param	gym_l	PL_GRASS_GYM_LOCAL_WORK
  * @param	bag		SANDBAG_WORK
- * @param	dir		‰Ÿ‚µ‚½•ûŒü@DIR_UP“™
+ * @param	dir		æŠ¼ã—ãŸæ–¹å‘ã€€DIR_UPç­‰
  * @param	EV_PLFIGHT_GYM_BAG_MOVE* EV_PLFIGHT_GYM_BAG_MOVE
  */
 //--------------------------------------------------------------
@@ -5011,11 +5011,11 @@ static EV_PLFIGHT_GYM_BAG_MOVE * PLFightGym_EvWorkInit(
 
 //--------------------------------------------------------------
 /**
- * PL ‘ƒWƒ€@ƒTƒ“ƒhƒoƒbƒO—h‚êƒCƒxƒ“ƒgƒZƒbƒg
+ * PL è‰ã‚¸ãƒ ã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°æºã‚Œã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param	fsys	FIELDSYS_WORK
  * @param	gym_l	PL_GRASS_GYM_LOCAL_WORK
  * @param	bag		SANDBAG_WORK
- * @param	dir		‰Ÿ‚µ‚½•ûŒü@DIR_UP“™
+ * @param	dir		æŠ¼ã—ãŸæ–¹å‘ã€€DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5028,11 +5028,11 @@ static void PLFightGym_SandbagShakeEventSet( FIELDSYS_WORK *fsys,
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€@ƒTƒ“ƒhƒoƒbƒOˆÚ“®ƒCƒxƒ“ƒgƒZƒbƒg
+ * PL æ ¼é—˜ã‚¸ãƒ ã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param	fsys	FIELDSYS_WORK
  * @param	gym_l	PL_GRASS_GYM_LOCAL_WORK
  * @param	bag		SANDBAG_WORK
- * @param	dir		‰Ÿ‚µ‚½•ûŒü@DIR_UP“™
+ * @param	dir		æŠ¼ã—ãŸæ–¹å‘ã€€DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5045,9 +5045,9 @@ static void PLFightGym_SandbagMoveEventSet( FIELDSYS_WORK *fsys,
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:ƒTƒ“ƒhƒoƒbƒOƒ`ƒFƒbƒN
+ * PL æ ¼é—˜ã‚¸ãƒ :ã‚µãƒ³ãƒ‰ãƒãƒƒã‚°ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒg‹N“® FALSE=–³‚µ
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹• FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 BOOL GYM_PLFightGymEventHitCheck( FIELDSYS_WORK *fsys )
@@ -5080,7 +5080,7 @@ BOOL GYM_PLFightGymEventHitCheck( FIELDSYS_WORK *fsys )
 		
 		if( count == 0 ){
 			PLFightGym_SandbagShakeEventSet( fsys, work, bag, dir );
-		}else{											//áŠQ•¨–³‚µ
+		}else{											//éšœå®³ç‰©ç„¡ã—
 			PLFightGym_SandbagMoveEventSet( fsys, work, bag, dir );
 		}
 	}
@@ -5090,11 +5090,11 @@ BOOL GYM_PLFightGymEventHitCheck( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:‰æ–ÊƒXƒNƒ[ƒ‹ƒZƒbƒg
+ * PL æ ¼é—˜ã‚¸ãƒ :ç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚»ãƒƒãƒˆ
  * @param	fsys	FIELDSYS_WORK
  * @param	ev	EV_PLFIGHT_GYM_BAG_MOVE
- * @param	act	ƒXƒNƒ[ƒ‹‘ÎÛ‚Æ‚È‚éFGGYM_ACTWORK
- * @param	dir	ƒXƒNƒ[ƒ‹‚·‚é•ûŒü
+ * @param	act	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯¾è±¡ã¨ãªã‚‹FGGYM_ACTWORK
+ * @param	dir	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹æ–¹å‘
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5121,7 +5121,7 @@ static void PLFightGym_ScrollInit( FIELDSYS_WORK *fsys,
 	work->target_gx = gx + (FieldOBJ_DirAddValueGX(dir)*work->count_max);
 	work->target_gz = gz + (FieldOBJ_DirAddValueGZ(dir)*work->count_max);
 	
-	OS_Printf( "Ši“¬ƒWƒ€@ƒTƒ“ƒhƒoƒbƒNƒXƒNƒ[ƒ‹%d\n", work->count_max );
+	OS_Printf( "æ ¼é—˜ã‚¸ãƒ ã€€ã‚µãƒ³ãƒ‰ãƒãƒƒã‚¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«%d\n", work->count_max );
 	
 	gx = Player_NowGPosXGet( fsys->player );
 	gz = Player_NowGPosZGet( fsys->player );
@@ -5143,9 +5143,9 @@ static void PLFightGym_ScrollInit( FIELDSYS_WORK *fsys,
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:‰æ–ÊƒXƒNƒ[ƒ‹I—¹
+ * PL æ ¼é—˜ã‚¸ãƒ :ç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†
  * @param	ev	EV_PLFIGHT_GYM_BAG_WORK
- * @retval	int	TRUE=I—¹
+ * @retval	int	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static void PLFightGym_ScrollEnd( EV_PLFIGHT_GYM_BAG_MOVE *ev )
@@ -5157,7 +5157,7 @@ static void PLFightGym_ScrollEnd( EV_PLFIGHT_GYM_BAG_MOVE *ev )
 	{
 		VecFx32 spos;
 		FieldOBJ_VecPosGet( work->fldobj, &spos );
-		OS_Printf( "Ši“¬ƒWƒ€ ƒXƒNƒ[ƒ‹I—¹" );
+		OS_Printf( "æ ¼é—˜ã‚¸ãƒ  ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†" );
 		OS_Printf( "SX=0x%x,PX=0x%x,", spos.x, pos->x );
 		OS_Printf( "PZ=0x%x,PZ=0x%x\n", spos.z, pos->z );
 	}
@@ -5170,9 +5170,9 @@ static void PLFightGym_ScrollEnd( EV_PLFIGHT_GYM_BAG_MOVE *ev )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:‰æ–ÊƒXƒNƒ[ƒ‹I—¹ƒ`ƒFƒbƒN
+ * PL æ ¼é—˜ã‚¸ãƒ :ç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	ev	EV_PLFIGHT_GYM_BAG_WORK
- * @retval	int	TRUE=I—¹
+ * @retval	int	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL PLFightGym_ScrollEndCheck( EV_PLFIGHT_GYM_BAG_MOVE *ev )
@@ -5183,11 +5183,11 @@ static BOOL PLFightGym_ScrollEndCheck( EV_PLFIGHT_GYM_BAG_MOVE *ev )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:‰æ–ÊƒXƒNƒ[ƒ‹“K—pƒ`ƒFƒbƒN
+ * PL æ ¼é—˜ã‚¸ãƒ :ç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é©ç”¨ãƒã‚§ãƒƒã‚¯
  * @param	ev		PLFIGHT_GYM_BAG_MOVE
- * @param	act		ƒXƒNƒ[ƒ‹‘ÎÛ‚Æ‚È‚éFGGYM_ACTWORK
- * @param	dir		ƒXƒNƒ[ƒ‹‚·‚é•ûŒü
- * @retval	BOOL	TRUE=ƒXƒNƒ[ƒ‹“K—p”ÍˆÍ
+ * @param	act		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¯¾è±¡ã¨ãªã‚‹FGGYM_ACTWORK
+ * @param	dir		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹æ–¹å‘
+ * @retval	BOOL	TRUE=ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é©ç”¨ç¯„å›²
  */
 //--------------------------------------------------------------
 static BOOL PLFightGym_ScrollSetCheck(
@@ -5208,7 +5208,7 @@ static BOOL PLFightGym_ScrollSetCheck(
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:‰æ–ÊƒXƒNƒ[ƒ‹ŠJn
+ * PL æ ¼é—˜ã‚¸ãƒ :ç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é–‹å§‹
  * @param	ev	EV_PLFIGHT_GYM_BAG_WORK
  * @retval	nothing
  */
@@ -5227,7 +5227,7 @@ static void PLFightGym_ScrollStart( EV_PLFIGHT_GYM_BAG_MOVE *ev, int flip )
 
 //--------------------------------------------------------------
 /**
- * PL Ši“¬ƒWƒ€:‰æ–ÊƒXƒNƒ[ƒ‹
+ * PL æ ¼é—˜ã‚¸ãƒ :ç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  * @param	ev	EV_PLFIGHT_GYM_BAG_MOVE
  * @retval	nothing
  */
@@ -5237,7 +5237,7 @@ static void PLFightGym_Scroll( EV_PLFIGHT_GYM_BAG_MOVE *ev, int ac )
 	FGGYM_SCRWORK *work = &ev->scrwork;
 	
 	switch( work->seq_no ){
-	case 0:		//‘Ò‹@
+	case 0:		//å¾…æ©Ÿ
 		break;
 	case 1:
 		if( FieldOBJ_AcmdSetCheck(work->fldobj) == TRUE ){
@@ -5250,7 +5250,7 @@ static void PLFightGym_Scroll( EV_PLFIGHT_GYM_BAG_MOVE *ev, int ac )
 			}
 		}
 		break;
-	case 2:		//div_map‚Ö”½‰f‚³‚ê‚éŠÔ
+	case 2:		//div_mapã¸åæ˜ ã•ã‚Œã‚‹é–“
 		work->end = TRUE;
 		work->seq_no = 0;
 		break;
@@ -5259,9 +5259,9 @@ static void PLFightGym_Scroll( EV_PLFIGHT_GYM_BAG_MOVE *ev, int ac )
 
 //--------------------------------------------------------------
 /**
- * ‘¬“x‚©‚çƒAƒjƒƒR[ƒh‚ğ‘I‚ÑƒXƒNƒ[ƒ‹ˆ—
+ * é€Ÿåº¦ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰ã‚’é¸ã³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†
  * @param	ev		EV_PLFIGHT_GYM_BAG_MOVE
- * @param	s_fx	ˆÚ“®‘¬“x
+ * @param	s_fx	ç§»å‹•é€Ÿåº¦
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5283,15 +5283,15 @@ static void PLFightGym_ScrollSpeed( EV_PLFIGHT_GYM_BAG_MOVE *ev, fx32 s_fx )
 }
 
 //==============================================================================
-//	PL ƒS[ƒXƒgƒWƒ€@kaga
+//	PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€kaga
 //==============================================================================
 //--------------------------------------------------------------
 //	debug
 //--------------------------------------------------------------
 //#define DEBUG_PLG_LIGHT_CHECK
-//#define DEBUG_PLG_WINON		//’è‹`‚ÅƒEƒBƒ“ƒhƒEON
-//#define DEBUG_PLG_OBJWIN	//’è‹`‚ÅOBJƒEƒBƒ“ƒhƒEON
-//#define DEBUG_PLG_FOG_OFF		//’è‹`‚ÅƒtƒHƒOOFF
+//#define DEBUG_PLG_WINON		//å®šç¾©ã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ON
+//#define DEBUG_PLG_OBJWIN	//å®šç¾©ã§OBJã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ON
+//#define DEBUG_PLG_FOG_OFF		//å®šç¾©ã§ãƒ•ã‚©ã‚°OFF
 
 //--------------------------------------------------------------
 //	define
@@ -5306,7 +5306,7 @@ static void PLFightGym_ScrollSpeed( EV_PLFIGHT_GYM_BAG_MOVE *ev, fx32 s_fx )
 #define PLG_LIGHT_MOVE_SPEED_FX (FX32_ONE)
 #define PLG_LIGHT_SCALE_SPEED_FX (0x00c0)
 
-#define PLG_LIGHT_RANGE_DEF (2) //ƒ‰ƒCƒgƒfƒtƒHƒ‹ƒg‹——£
+#define PLG_LIGHT_RANGE_DEF (2) //ãƒ©ã‚¤ãƒˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè·é›¢
 
 #define PLG_LOFF_TBL_MAX (0xffffffff)
 
@@ -5332,13 +5332,13 @@ static void PLFightGym_ScrollSpeed( EV_PLFIGHT_GYM_BAG_MOVE *ev, fx32 s_fx )
 #define PLG_FOG_ALPHA (1)
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[”
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
 //--------------------------------------------------------------
 #define	PLG_CLACT_MAX (16)
 #define PLG_ACT_MAX (PLG_CLACT_MAX)
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒLƒƒƒ‰ƒŠƒ\[ƒX”
+///	ã‚»ãƒ«ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹æ•°
 //--------------------------------------------------------------
 enum
 {
@@ -5347,7 +5347,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒpƒŒƒbƒgƒŠƒ\[ƒX”
+///	ã‚»ãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹æ•°
 //--------------------------------------------------------------
 enum
 {
@@ -5356,7 +5356,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒŠƒ\[ƒX”
+///	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹æ•°
 //--------------------------------------------------------------
 enum
 {
@@ -5365,7 +5365,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒAƒjƒƒŠƒ\[ƒX”
+///	ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹æ•°
 //--------------------------------------------------------------
 enum
 {
@@ -5374,7 +5374,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	TCBƒvƒ‰ƒCƒIƒŠƒeƒBƒIƒtƒZƒbƒg
+///	TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 enum
 {
@@ -5385,7 +5385,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒXƒe[ƒW”	*STAGE04‚ÍƒŠ[ƒ_[•”‰®
+///	ã‚¹ãƒ†ãƒ¼ã‚¸æ•°	*STAGE04ã¯ãƒªãƒ¼ãƒ€ãƒ¼éƒ¨å±‹
 //--------------------------------------------------------------
 enum
 {
@@ -5396,7 +5396,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒqƒ“ƒg‚ª’u‚©‚ê‚éƒXƒe[ƒW
+///	ãƒ’ãƒ³ãƒˆãŒç½®ã‹ã‚Œã‚‹ã‚¹ãƒ†ãƒ¼ã‚¸
 //--------------------------------------------------------------
 enum
 {
@@ -5406,7 +5406,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒqƒ“ƒg”Ô†
+///	ãƒ’ãƒ³ãƒˆç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -5562,7 +5562,7 @@ static const VecFx32 DATA_PlgLightPosTbl[DIR_4_MAX][PLG_LIGHT_RANGE_MAX];
 #endif
 
 //--------------------------------------------------------------
-///	PL ƒS[ƒXƒgƒWƒ€:ƒqƒ“ƒgƒf[ƒ^
+///	PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ãƒ’ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 static const PLG_HINTDATA DATA_PlgHintDataTbl[PLG_STAGE_HINT_MAX] =
 {
@@ -5571,7 +5571,7 @@ static const PLG_HINTDATA DATA_PlgHintDataTbl[PLG_STAGE_HINT_MAX] =
 };
 
 //--------------------------------------------------------------
-///	PL ƒS[ƒXƒgƒWƒ€:ƒqƒ“ƒg”z’uƒ}ƒbƒv
+///	PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ãƒ’ãƒ³ãƒˆé…ç½®ãƒãƒƒãƒ—
 //--------------------------------------------------------------
 static ALIGN4 const u8 DATA_PlgHintMap0Tbl[PLGGYM_HINTM0_GRID_SIZE_XZ] =
 {
@@ -5616,14 +5616,14 @@ static const u8 * const DATA_PlgHintMapTbl[PLG_STAGE_HINT_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒqƒ“ƒgNo‚ÆƒhƒAÚ‘±
+///	ãƒ’ãƒ³ãƒˆNoã¨ãƒ‰ã‚¢æ¥ç¶š
 //--------------------------------------------------------------
 static const PLG_EXIT DATA_PlgExitData0[] =
 {
 	{ 0, 4, 2 },
 	{ 1, 8, 2 },
 	{ 2, 12, 2 },
-	{ PLG_HINT_MAX, 0, 0 },//I’[
+	{ PLG_HINT_MAX, 0, 0 },//çµ‚ç«¯
 };
 
 static const PLG_EXIT DATA_PlgExitData1[] =
@@ -5633,7 +5633,7 @@ static const PLG_EXIT DATA_PlgExitData1[] =
 	{ 5, 14, 2 },
 	{ 6, 19, 2 },
 	{ 7, 24, 2 },
-	{ PLG_HINT_MAX, 0, 0 },//I’[
+	{ PLG_HINT_MAX, 0, 0 },//çµ‚ç«¯
 };
 
 static const PLG_EXIT * const DATA_PlgExitDataTbl[PLG_STAGE_HINT_MAX] =
@@ -5644,7 +5644,7 @@ static const PLG_EXIT * const DATA_PlgExitDataTbl[PLG_STAGE_HINT_MAX] =
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€:ƒZƒbƒgƒAƒbƒv
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -5675,10 +5675,10 @@ void GYM_SetupPLGhostGym( FIELDSYS_WORK *fsys )
 	
 	FE_EffectRegist( fsys->fes, FE_FLD_GYM05EFF );
 	
-	//‰e‚ğ‚Â‚¯‚È‚¢
+	//å½±ã‚’ã¤ã‘ãªã„
 	FieldOBJSys_ShadowJoinSet( fsys->fldobjsys, FALSE );
 	
-	{	//ålŒö‚ğFOG–³Œøƒ^ƒCƒv‚É
+	{	//ä¸»äººå…¬ã‚’FOGç„¡åŠ¹ã‚¿ã‚¤ãƒ—ã«
 		int code = GHOSTHERO;
 		PLAYER_STATE_PTR jiki = fsys->player;
 		FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
@@ -5688,7 +5688,7 @@ void GYM_SetupPLGhostGym( FIELDSYS_WORK *fsys )
 		FieldOBJ_DrawReset( fldobj, code );
 	}
 	
-	{	//ƒMƒ‡ƒG[‚ğFOG–³Œø‚É
+	{	//ã‚®ãƒ§ã‚¨ãƒ¼ã‚’FOGç„¡åŠ¹ã«
 		FE_Gyoe_NotFogSet( fsys, TRUE );
 	}
 	
@@ -5696,11 +5696,11 @@ void GYM_SetupPLGhostGym( FIELDSYS_WORK *fsys )
 	PlgClActSetData_Init( work );
 #endif
 	
-	{	//ƒ‰ƒCƒgƒAƒNƒ^[‰Šú‰»
+	{	//ãƒ©ã‚¤ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 		PlgLightAct_Init( work );
 	}
 	
-	{	//ƒqƒ“ƒgƒpƒlƒ‹‰Šú‰»
+	{	//ãƒ’ãƒ³ãƒˆãƒ‘ãƒãƒ«åˆæœŸåŒ–
 		int stage = 0;
 		int zone_id = fsys->location->zone_id;
 		const PLG_HINTDATA *hint = DATA_PlgHintDataTbl;
@@ -5715,9 +5715,9 @@ void GYM_SetupPLGhostGym( FIELDSYS_WORK *fsys )
 			gym->init_flag = TRUE;
 			gym->hint_no = GYM_PLGHOST_HINT_MAX;
 			
-			if( stage != PLG_STAGE_HINT_MAX ){			//ƒqƒ“ƒg—L‚è
+			if( stage != PLG_STAGE_HINT_MAX ){			//ãƒ’ãƒ³ãƒˆæœ‰ã‚Š
 				const u8 *hit = DATA_PlgHintMapTbl[stage];	//GX,GZ
-				int rnd = gf_mtRand() % hint->max_no;		//ƒqƒ“ƒgNo
+				int rnd = gf_mtRand() % hint->max_no;		//ãƒ’ãƒ³ãƒˆNo
 				gym->hint_no = rnd + hint->start_no;
 				
 				do{
@@ -5737,12 +5737,12 @@ void GYM_SetupPLGhostGym( FIELDSYS_WORK *fsys )
 			}
 		}
 		
-		if( gym->hint_no != GYM_PLGHOST_HINT_MAX ){		//ƒqƒ“ƒg—L‚è
+		if( gym->hint_no != GYM_PLGHOST_HINT_MAX ){		//ãƒ’ãƒ³ãƒˆæœ‰ã‚Š
 			int id;
 			const PLG_EXIT *tbl = DATA_PlgExitDataTbl[stage];
 			
-			while( tbl->hint_no != PLG_HINT_MAX ){	//ŠO‚êƒhƒAİ’è
-				if( tbl->hint_no != gym->hint_no ){	//“–‚½‚èˆÈŠO‚ÌƒhƒA
+			while( tbl->hint_no != PLG_HINT_MAX ){	//å¤–ã‚Œãƒ‰ã‚¢è¨­å®š
+				if( tbl->hint_no != gym->hint_no ){	//å½“ãŸã‚Šä»¥å¤–ã®ãƒ‰ã‚¢
 					id = EventData_SearchNowConnectIDByXZ(
 							fsys, tbl->x, tbl->z );
 					EventData_ConnectDataZoneChange(
@@ -5763,7 +5763,7 @@ void GYM_SetupPLGhostGym( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€:I—¹ˆ—
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :çµ‚äº†å‡¦ç†
  * @param	fsys
  * @retval	nothing
  */
@@ -5785,7 +5785,7 @@ void GYM_EndPLGhostGym( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€:í’“ˆ—
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :å¸¸é§å‡¦ç†
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -5793,7 +5793,7 @@ void GYM_EndPLGhostGym( FIELDSYS_WORK *fsys )
 //--------------------------------------------------------------
 static void PlgProcTcb( TCB_PTR tcb, void *wk )
 {
-//FieldOBJ BlActƒŒƒxƒ‹‚Å‚Ì‘Î‰‚Ìˆ×A•s—v‚Æ‚È‚é
+//FieldOBJ BlActãƒ¬ãƒ™ãƒ«ã§ã®å¯¾å¿œã®ç‚ºã€ä¸è¦ã¨ãªã‚‹
 #if 0
 	PLGHOST_GYM_LOCAL_WORK *work = wk;
 	
@@ -5811,7 +5811,7 @@ static void PlgProcTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€:ƒtƒHƒO‰Šú‰»
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ãƒ•ã‚©ã‚°åˆæœŸåŒ–
  * @param	gyml	PLGHOST_GYM_LOCAL_WORK
  * @retval	nothing
  */
@@ -5854,7 +5854,7 @@ static void PlgFog_Init( PLGHOST_GYM_LOCAL_WORK *gyml )
 }
 
 //--------------------------------------------------------------
-//	DEBUG:ƒtƒHƒOƒeƒXƒg
+//	DEBUG:ãƒ•ã‚©ã‚°ãƒ†ã‚¹ãƒˆ
 //--------------------------------------------------------------
 #ifdef PM_DEBUG
 u8 * DEBUG_GYM_PLGhostGym_FogRedGet( FIELDSYS_WORK *fsys )
@@ -5917,7 +5917,7 @@ void DEBUG_GYM_PLGhostGym_FogSet( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€:ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‰Šú‰»
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆåˆæœŸåŒ–
  * @param	PLGHOST_GYM_LOCAL_WORK
  * @retval	nothing
  */
@@ -5942,7 +5942,7 @@ static void PlgClActSetData_Init( PLGHOST_GYM_LOCAL_WORK *gyml )
 	set->clact_resm_anm = CLACT_U_ResManagerInit(
 			PLG_CLACT_RES_ANM_MAX, CLACT_U_CELLANM_RES, HEAPID_FIELD );
 	
-	{	//ƒŠƒ\[ƒXƒZƒbƒg
+	{	//ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
 		int i;
 		ARCHANDLE *hd;
 		hd = ArchiveDataHandleOpen( ARC_PLGYM_GHOST, HEAPID_FIELD );
@@ -5982,7 +5982,7 @@ static void PlgClActSetData_Init( PLGHOST_GYM_LOCAL_WORK *gyml )
 		ArchiveDataHandleClose( hd );
 	}
 
-	{	//•`‰æ—pTCB
+	{	//æç”»ç”¨TCB
 		int pri;
 		pri = FieldOBJSys_TCBStandardPriorityGet( gyml->fsys->fldobjsys ) + PLG_TCBOFFS_DRAW;
 		set->tcb_clact_draw = TCB_Add( PlgClActSetData_DrawTcb, gyml, pri );
@@ -5992,7 +5992,7 @@ static void PlgClActSetData_Init( PLGHOST_GYM_LOCAL_WORK *gyml )
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€:ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgíœ
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆå‰Šé™¤
  * @param	gyml	PLGHOST_GYM_LOCAL_WORK
  * @retval	nothing
  */
@@ -6048,7 +6048,7 @@ static void PlgClActSetData_Delete( PLGHOST_GYM_LOCAL_WORK *gyml )
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€FƒZƒ‹ƒAƒNƒ^[•`‰æ
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ï¼šã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»
  * @param	tcb	TCB_PTR
  * @param	wk	PLGHOST_GYM_LOCAL_WORK
  * @retval	nothing
@@ -6066,7 +6066,7 @@ static void PlgClActSetData_DrawTcb( TCB_PTR tcb, void *wk )
 #if 0
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€:ƒZƒ‹ƒŠƒ\[ƒXVƒuƒ‰ƒ“ƒN“]‘—
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€
  * @param	tcb	TCB_PTR
  * @param	wk	PLGHOST_GYM_LOCAL_WORK
  * @retval	nothing
@@ -6092,14 +6092,14 @@ static void PlgClActSetData_VBlankTrans( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€FƒZƒ‹ƒAƒNƒ^[’Ç‰Á
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ï¼šã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param	set	PLG_CLACT_SETDATA
- * @param	pos	ˆÊ’u
- * @param	char_id	ƒLƒƒƒ‰ID
- * @param	pltt_id	ƒpƒŒƒbƒgID
- * @param	cell_id	ƒZƒ‹ID
- * @param	anm_id	ƒAƒjƒID
- * @retval	CLACT_WORK_PTR	’Ç‰Á‚³‚ê‚½CLACT_WORK_PTR
+ * @param	pos	ä½ç½®
+ * @param	char_id	ã‚­ãƒ£ãƒ©ID
+ * @param	pltt_id	ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param	cell_id	ã‚»ãƒ«ID
+ * @param	anm_id	ã‚¢ãƒ‹ãƒ¡ID
+ * @retval	CLACT_WORK_PTR	è¿½åŠ ã•ã‚ŒãŸCLACT_WORK_PTR
  */
 //--------------------------------------------------------------
 #ifdef DEBUG_PLG_OBJWIN
@@ -6138,7 +6138,7 @@ static CLACT_WORK_PTR PlgClActAdd(
 
 //--------------------------------------------------------------
 /**
- * PL ƒ‰ƒCƒgƒAƒNƒ^[‰Šú‰»
+ * PL ãƒ©ã‚¤ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  * @param	gyml	PLGHOST_GYM_LOCAL_WORK
  * @retval	nothing
  */
@@ -6202,12 +6202,12 @@ static void PlgLightAct_Init( PLGHOST_GYM_LOCAL_WORK *gyml )
 		}
 	}
 	
-	OS_Printf( "ƒS[ƒXƒgƒWƒ€@ƒ‰ƒCƒgƒAƒNƒ^[”@%d\n", count );
+	OS_Printf( "ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€ãƒ©ã‚¤ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼æ•°ã€€%d\n", count );
 }
 
 //--------------------------------------------------------------
 /**
- * PL ƒ‰ƒCƒgƒAƒNƒ^[íœ
+ * PL ãƒ©ã‚¤ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  * @param	gyml	PLGHOST_GYM_LOCAL_WORK
  * @retval	nothing
  */
@@ -6227,7 +6227,7 @@ static void PlgLightAct_Delete( PLGHOST_GYM_LOCAL_WORK *gyml )
 
 //--------------------------------------------------------------
 /**
- * PL ƒ‰ƒCƒgƒAƒNƒ^[ƒ^ƒXƒN
+ * PL ãƒ©ã‚¤ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã‚¿ã‚¹ã‚¯
  * @param	tcb
  * @param	wk	tcb work
  * @retval	nothing
@@ -6246,7 +6246,7 @@ static void PlgLightAct_Tcb( TCB_PTR tcb, void *wk )
 	if( (sys.trg & PAD_BUTTON_SELECT) ){
 		act->range++;
 		act->range %= PLG_LIGHT_RANGE_MAX;
-		OS_Printf( "ƒS[ƒXƒgƒWƒ€@ƒ‰ƒCƒg‹——£%d\n", act->range );
+		OS_Printf( "ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€ãƒ©ã‚¤ãƒˆè·é›¢%d\n", act->range );
 	}
 	
 	dir = FieldOBJ_DirDispGet( fldobj );
@@ -6312,8 +6312,8 @@ static void DEBUG_PlgLightCheck( PLG_LIGHT_ACT_WORK *act )
 		if( trg & PAD_BUTTON_B ){
 			act->debug_mode++;
 			act->debug_mode &= 0x01;
-			if( act->debug_mode )OS_Printf( "ƒ‚[ƒh@Šgk\n" );
-			else OS_Printf( "ƒ‚[ƒh À•W\n" );
+			if( act->debug_mode )OS_Printf( "ãƒ¢ãƒ¼ãƒ‰ã€€æ‹¡ç¸®\n" );
+			else OS_Printf( "ãƒ¢ãƒ¼ãƒ‰ åº§æ¨™\n" );
 		}
 		
 		if( act->debug_mode == 0 ){
@@ -6328,7 +6328,7 @@ static void DEBUG_PlgLightCheck( PLG_LIGHT_ACT_WORK *act )
 			}
 			
 			if( trg & PAD_BUTTON_START ){
-				OS_Printf( "ƒ‰ƒCƒgÀ•W@x=%d,y=%d\n",
+				OS_Printf( "ãƒ©ã‚¤ãƒˆåº§æ¨™ã€€x=%d,y=%d\n",
 					FX32_NUM(act->offs.x), FX32_NUM(act->offs.y) );
 			}
 		}else{
@@ -6343,7 +6343,7 @@ static void DEBUG_PlgLightCheck( PLG_LIGHT_ACT_WORK *act )
 			}
 			
 			if( trg & PAD_BUTTON_START ){
-				OS_Printf( "ƒ‰ƒCƒgŠgk—¦ " );
+				OS_Printf( "ãƒ©ã‚¤ãƒˆæ‹¡ç¸®ç‡ " );
 				OS_Printf( "X = 0x%x ", act->scale_fx.x );
 				OS_Printf( "Y = 0x%x\n", act->scale_fx.y );
 			}
@@ -6357,9 +6357,9 @@ static void DEBUG_PlgLightCheck( PLG_LIGHT_ACT_WORK *act )
 
 //--------------------------------------------------------------
 /**
- * FOBJˆÚ“®æ‚ÌáŠQ•¨‚ğ”»’è‚·‚é
+ * FOBJç§»å‹•å…ˆã®éšœå®³ç‰©ã‚’åˆ¤å®šã™ã‚‹
  * @param	gyml	PLGHOST_GYM_LOCAL_WORK
- * @retval	int		áŠQ•¨‚Ü‚Å‚ÌƒOƒŠƒbƒh”
+ * @retval	int		éšœå®³ç‰©ã¾ã§ã®ã‚°ãƒªãƒƒãƒ‰æ•°
  */
 //--------------------------------------------------------------
 #if 0
@@ -6395,11 +6395,11 @@ static int PlgJikiHitRangeGet(
 
 //--------------------------------------------------------------
 /**
- * –Ú•W’l‚Ö‚Ì‘Œ¸
- * @param	val	’l
- * @param	tar	–Ú•W’l
- * @param	add	‘Œ¸’l
- * @retval	BOOL	TRUE=–Ú•W’l‚Æˆê’v
+ * ç›®æ¨™å€¤ã¸ã®å¢—æ¸›
+ * @param	val	å€¤
+ * @param	tar	ç›®æ¨™å€¤
+ * @param	add	å¢—æ¸›å€¤
+ * @retval	BOOL	TRUE=ç›®æ¨™å€¤ã¨ä¸€è‡´
  */
 //--------------------------------------------------------------
 #if 0
@@ -6418,11 +6418,11 @@ static void PlgTargetAdd( fx32 *val, fx32 tar, fx32 add )
 
 //--------------------------------------------------------------
 /**
- * –Ú•W’l‚Ö‚Ì‘Œ¸ VecFx32
- * @param	vec	’l
- * @param	tar	–Ú•W’l
- * @param	add	‘Œ¸’l
- * @retval	BOOL	TRUE=–Ú•W’l‚Æˆê’v
+ * ç›®æ¨™å€¤ã¸ã®å¢—æ¸› VecFx32
+ * @param	vec	å€¤
+ * @param	tar	ç›®æ¨™å€¤
+ * @param	add	å¢—æ¸›å€¤
+ * @retval	BOOL	TRUE=ç›®æ¨™å€¤ã¨ä¸€è‡´
  */
 //--------------------------------------------------------------
 static void PlgTargetAddVecFx32(
@@ -6436,9 +6436,9 @@ static void PlgTargetAddVecFx32(
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€:©‹@ƒ‰ƒCƒg‹üƒ`ƒFƒbƒN
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :è‡ªæ©Ÿãƒ©ã‚¤ãƒˆè¦–ç·šãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK
- * @retval	BOOL	TRUE=ƒ‰ƒCƒgƒqƒbƒg‚É‚æ‚é‹üƒCƒxƒ“ƒg”­“®
+ * @retval	BOOL	TRUE=ãƒ©ã‚¤ãƒˆãƒ’ãƒƒãƒˆã«ã‚ˆã‚‹è¦–ç·šã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  */
 //--------------------------------------------------------------
 BOOL GYM_EventCheckPLGhostGymLightTrainer( FIELDSYS_WORK *fsys )
@@ -6452,7 +6452,7 @@ BOOL GYM_EventCheckPLGhostGymLightTrainer( FIELDSYS_WORK *fsys )
 	gmc = SaveData_GetGimmickWork( GameSystem_GetSaveData(fsys) );
 	
 	if( GIMMICKWORK_GetAssignID(gmc) != FLD_GIMMICK_GHOST_GYM ){
-		return( FALSE );	//ƒS[ƒXƒgƒWƒ€‚Å‚Í‚È‚¢
+		return( FALSE );	//ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã§ã¯ãªã„
 	}
 	
 	i = 0;
@@ -6461,13 +6461,13 @@ BOOL GYM_EventCheckPLGhostGymLightTrainer( FIELDSYS_WORK *fsys )
 	jiki = fsys->player;
 	jobj = Player_FieldOBJGet( jiki );
 	range = PLG_LIGHT_RANGE_DEF;
-	dir = FieldOBJTool_DirFlip( FieldOBJ_DirDispGet(jobj) ); //Œõ‚Ì•ûŒü‚ğ”½“]
+	dir = FieldOBJTool_DirFlip( FieldOBJ_DirDispGet(jobj) ); //å…‰ã®æ–¹å‘ã‚’åè»¢
 	
 	while( FieldOBJSys_FieldOBJSearch(fos,&fldobj,&i,FLDOBJ_STA_BIT_USE) ){
 #if 1	//formal
 		if( fldobj != jobj && EvTrainer_FightFlagCheck(fsys,fldobj) == TRUE ){
 			hit = EvTrainer_EyeRangeHitCheck( fldobj, jiki, dir, range );
-			if( hit != EYE_CHECK_NOHIT ){	//ƒqƒbƒg@ƒCƒxƒ“ƒg‹N“®
+			if( hit != EYE_CHECK_NOHIT ){	//ãƒ’ãƒƒãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•
 				int scr_id = FieldOBJ_EventIDGet( fldobj );
 				EventSet_Script( fsys, SCRID_TRAINER_MOVE_BATTLE, fldobj );
 				EventSet_TrainerEyeData(
@@ -6480,9 +6480,9 @@ BOOL GYM_EventCheckPLGhostGymLightTrainer( FIELDSYS_WORK *fsys )
 #else	//debug
 		if( fldobj != jobj ){
 			hit = EvTrainer_EyeRangeHitCheck( fldobj, jiki, dir, range );
-			if( hit != EYE_CHECK_NOHIT ){	//ƒqƒbƒg@ƒCƒxƒ“ƒg‹N“®
+			if( hit != EYE_CHECK_NOHIT ){	//ãƒ’ãƒƒãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•
 				int id = FieldOBJ_OBJIDGet( fldobj );
-				OS_Printf( "©‹@‰ù’†“d“”ƒqƒbƒg OBJ ID=%d\n" );
+				OS_Printf( "è‡ªæ©Ÿæ‡ä¸­é›»ç¯ãƒ’ãƒƒãƒˆ OBJ ID=%d\n" );
 				return( FALSE );
 			}
 		}
@@ -6494,10 +6494,10 @@ BOOL GYM_EventCheckPLGhostGymLightTrainer( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€:í“¬Œã‚ÌƒgƒŒ[ƒi[‚ğƒ‰ƒ“ƒ_ƒ€ˆÚ“®‚É
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :æˆ¦é—˜å¾Œã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚’ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•ã«
  * @param	fsys	FIELDSYS_WORK
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	BOOL	TRUE=•ÏX‚µ‚½
+ * @retval	BOOL	TRUE=å¤‰æ›´ã—ãŸ
  */
 //--------------------------------------------------------------
 BOOL GYM_PlGhostGymTrainerMoveCodeChange(
@@ -6508,7 +6508,7 @@ BOOL GYM_PlGhostGymTrainerMoveCodeChange(
 	gmc = SaveData_GetGimmickWork( GameSystem_GetSaveData(fsys) );
 	
 	if( GIMMICKWORK_GetAssignID(gmc) != FLD_GIMMICK_GHOST_GYM ){
-		return( FALSE );	//ƒS[ƒXƒgƒWƒ€‚Å‚Í‚È‚¢
+		return( FALSE );	//ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã§ã¯ãªã„
 	}
 	
 	{
@@ -6545,18 +6545,18 @@ BOOL GYM_PlGhostGymTrainerMoveCodeChange(
 
 //--------------------------------------------------------------
 /**
- * PL ƒS[ƒXƒgƒWƒ€FŠO‚êƒhƒAƒ`ƒFƒbƒN
+ * PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ï¼šå¤–ã‚Œãƒ‰ã‚¢ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK *
- * @param	x		ƒhƒAƒOƒŠƒbƒhX
- * @param	z		ƒhƒAƒOƒŠƒbƒhZ
- * @param	dir		i“ü•ûŒü@ŠO‚ê‚Ìê‡‚Í•ûŒü‚ª”½“]‚³‚ê‚éB
- * @retval	BOOL	TRUE=ƒS[ƒXƒgƒWƒ€‚ÌŠO‚êƒhƒA‚Å‚ ‚éB
+ * @param	x		ãƒ‰ã‚¢ã‚°ãƒªãƒƒãƒ‰X
+ * @param	z		ãƒ‰ã‚¢ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	dir		é€²å…¥æ–¹å‘ã€€å¤–ã‚Œã®å ´åˆã¯æ–¹å‘ãŒåè»¢ã•ã‚Œã‚‹ã€‚
+ * @retval	BOOL	TRUE=ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã®å¤–ã‚Œãƒ‰ã‚¢ã§ã‚ã‚‹ã€‚
  */
 //--------------------------------------------------------------
 BOOL GYM_PlGhostGymHintMissDoorCheck(
 		FIELDSYS_WORK *fsys, int gx, int gz, int *dir )
 {
-	if( (*dir) != DIR_UP ){	//ãˆÈŠO
+	if( (*dir) != DIR_UP ){	//ä¸Šä»¥å¤–
 		return( FALSE );
 	}
 	
@@ -6565,7 +6565,7 @@ BOOL GYM_PlGhostGymHintMissDoorCheck(
 		gmc = SaveData_GetGimmickWork( GameSystem_GetSaveData(fsys) );
 	
 		if( GIMMICKWORK_GetAssignID(gmc) != FLD_GIMMICK_GHOST_GYM ){
-			return( FALSE );	//ƒS[ƒXƒgƒWƒ€‚Å‚Í‚È‚¢
+			return( FALSE );	//ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã§ã¯ãªã„
 		}
 		
 		{
@@ -6573,7 +6573,7 @@ BOOL GYM_PlGhostGymHintMissDoorCheck(
 			gym = GIMMICKWORK_Get( gmc, FLD_GIMMICK_GHOST_GYM );
 	
 			if( gym->hint_no == GYM_PLGHOST_HINT_MAX ){
-				return( FALSE );	//ƒqƒ“ƒg‚ª‚È‚¢
+				return( FALSE );	//ãƒ’ãƒ³ãƒˆãŒãªã„
 			}
 			
 			{
@@ -6595,7 +6595,7 @@ BOOL GYM_PlGhostGymHintMissDoorCheck(
 				while( tbl->hint_no != PLG_HINT_MAX ){
 					if( tbl->x == gx && tbl->z == gz &&
 						tbl->hint_no == gym->hint_no ){
-						return( FALSE );	//³‰ğ‚Å‚ ‚é
+						return( FALSE );	//æ­£è§£ã§ã‚ã‚‹
 					}
 					tbl++;
 				}
@@ -6604,13 +6604,13 @@ BOOL GYM_PlGhostGymHintMissDoorCheck(
 	}
 	
 	(*dir) = DIR_DOWN;
-	OS_Printf( "ƒS[ƒXƒgƒWƒ€@ŠO‚êƒhƒA‚Ìˆ×Ai“ü•ûŒü‚ğ”½“]‚³‚¹‚Ü‚µ‚½\n" );
-	return( TRUE );	//ŠO‚êƒhƒA‚Å‚ ‚é
+	OS_Printf( "ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã€€å¤–ã‚Œãƒ‰ã‚¢ã®ç‚ºã€é€²å…¥æ–¹å‘ã‚’åè»¢ã•ã›ã¾ã—ãŸ\n" );
+	return( TRUE );	//å¤–ã‚Œãƒ‰ã‚¢ã§ã‚ã‚‹
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒgOBJÀ•W‚ğƒZƒbƒg	debug
+ * ãƒ©ã‚¤ãƒˆOBJåº§æ¨™ã‚’ã‚»ãƒƒãƒˆ	debug
  * @param	act	PLG_LIGHT_ACT_WORK
  * @retval	nothing
  */
@@ -6635,20 +6635,20 @@ static void PlgLightActPosSet( PLG_LIGHT_ACT_WORK *act )
 		
 		x = FX32_NUM( j_pos.x - f_pos.x );
 		
-		if( x > 0 ){		//©‹@‚æ‚è¶
+		if( x > 0 ){		//è‡ªæ©Ÿã‚ˆã‚Šå·¦
 			x /= 16;
 			pos.x -= NUM_FX32( x );
-		}else if( x < 0 ){	//‰E
+		}else if( x < 0 ){	//å³
 			x /= 16;
 			pos.x -= NUM_FX32( x );
 		}
 		
 		y = FX32_NUM( j_pos.z - f_pos.z );
 		
-		if( y > 0 ){		//©‹@‚æ‚èã
+		if( y > 0 ){		//è‡ªæ©Ÿã‚ˆã‚Šä¸Š
 			y /= 8;
 			pos.y += NUM_FX32( y );
-		}else if( y < 0 ){	//‰º
+		}else if( y < 0 ){	//ä¸‹
 			y /= 64;
 			pos.y += NUM_FX32( y );
 		}
@@ -6662,7 +6662,7 @@ static void PlgLightActPosSet( PLG_LIGHT_ACT_WORK *act )
 	CLACT_SetRotation( act->clact, DATA_PlgLightRotateTbl[dir] );
 	
 	if( sys.trg & PAD_BUTTON_L ){
-		OS_Printf( "ƒ‰ƒCƒgƒAƒNƒ^[(ID=%d)À•W X=%d,Y=%d\n",
+		OS_Printf( "ãƒ©ã‚¤ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼(ID=%d)åº§æ¨™ X=%d,Y=%d\n",
 				FieldOBJ_OBJIDGet(act->fldobj),
 				FX32_NUM(pos.x), FX32_NUM(pos.y) );
 	}
@@ -6670,7 +6670,7 @@ static void PlgLightActPosSet( PLG_LIGHT_ACT_WORK *act )
 #endif
 
 //--------------------------------------------------------------
-///	ƒ‰ƒCƒg•ûŒü‹——£•ÊŠgk—¦
+///	ãƒ©ã‚¤ãƒˆæ–¹å‘è·é›¢åˆ¥æ‹¡ç¸®ç‡
 //--------------------------------------------------------------
 #ifdef DEBUG_PLG_OBJWIN
 static const VecFx32 DATA_PlgLightRangeTbl[DIR_4_MAX][PLG_LIGHT_RANGE_MAX] =
@@ -6711,7 +6711,7 @@ static const VecFx32 DATA_PlgLightRangeTbl[DIR_4_MAX][PLG_LIGHT_RANGE_MAX] =
 #endif
 
 //--------------------------------------------------------------
-///	ƒ‰ƒCƒg•ûŒü•Ê‰ñ“]Šp“x
+///	ãƒ©ã‚¤ãƒˆæ–¹å‘åˆ¥å›è»¢è§’åº¦
 //--------------------------------------------------------------
 #ifdef DEBUG_PLG_OBJWIN
 static const u32 DATA_PlgLightRotateTbl[DIR_4_MAX] =
@@ -6724,7 +6724,7 @@ static const u32 DATA_PlgLightRotateTbl[DIR_4_MAX] =
 #endif
 
 //--------------------------------------------------------------
-///	ƒ‰ƒCƒg•ûŒüA‹——£•Ê•\¦ˆÊ’u
+///	ãƒ©ã‚¤ãƒˆæ–¹å‘ã€è·é›¢åˆ¥è¡¨ç¤ºä½ç½®
 //--------------------------------------------------------------
 #ifdef DEBUG_PLG_OBJWIN
 static const VecFx32 DATA_PlgLightPosTbl[DIR_4_MAX][PLG_LIGHT_RANGE_MAX] =
@@ -6766,7 +6766,7 @@ static const VecFx32 DATA_PlgLightPosTbl[DIR_4_MAX][PLG_LIGHT_RANGE_MAX] =
 
 #ifdef DEBUG_PLGHOSTGYM_CAPTURE
 //--------------------------------------------------------------
-//	ƒ‰ƒCƒgON,OFF
+//	ãƒ©ã‚¤ãƒˆON,OFF
 //--------------------------------------------------------------
 void DEBUG_PlGhostGym_LightVanish( FIELDSYS_WORK *fsys )
 {

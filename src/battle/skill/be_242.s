@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_242.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			242�@�ЂƂO�ɏo���Z���o���B�i�_�u���o�g���ɂ��Ή��j
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			242　ひとつ前に出た技を出す。（ダブルバトルにも対応）
  *
  *@author	HisashiSogabe
  *@data		2006.02.14
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_242:
-	//�o����Z��I�����ċZ�̃V�[�P���X�փW�����v
+	//出せる技を選択して技のシーケンスへジャンプ
 	MANEKKO			Umakukimaran
 	ATTACK_MESSAGE
 	SERVER_WAIT

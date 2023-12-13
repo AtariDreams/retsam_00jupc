@@ -31,7 +31,7 @@ extern "C" {
 #endif
 
 //------------------------------------------------------------------------------
-// ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹ Ž¯•ÊŽq ŠÖ˜A
+// ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ« è­˜åˆ¥å­ é–¢é€£
 #define NNS_G2D_BINFILE_SIG_CELLANIM          (u32)'NANR'
 #define NNS_G2D_BINFILE_SIG_MULTICELLANIM     (u32)'NMAR'
 
@@ -39,21 +39,21 @@ extern "C" {
 #define NNS_G2D_USEREXBLK_ANMATTR             (u32)'UAAT'
 
 //------------------------------------------------------------------------------
-// ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹ Šg’£Žq
+// ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ« æ‹¡å¼µå­
 #define NNS_G2D_BINFILE_EXT_CELLANIM          "NANR"
 #define NNS_G2D_BINFILE_EXT_MULTICELLANIM     "NMAR"
 
 //
-// ƒo[ƒWƒ‡ƒ“î•ñ
-// Ver         •ÏX“_
+// ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±
+// Ver         å¤‰æ›´ç‚¹
 // -------------------------------------
-// 1.0         ‰”Å
+// 1.0         åˆç‰ˆ
 //
 #define NNS_G2D_NANR_MAJOR_VER   1
 #define NNS_G2D_NANR_MINOR_VER   0
 
 
-// NNSG2dAnimSequenceData ƒƒ“ƒoƒAƒNƒZƒX‚É—˜—p
+// NNSG2dAnimSequenceData ãƒ¡ãƒ³ãƒã‚¢ã‚¯ã‚»ã‚¹ã«åˆ©ç”¨
 #define NNS_G2D_ANIMTYPE_SHIFT      16
 #define NNS_G2D_ANIMTYPE_MASK       0xFF00
 #define NNS_G2D_ANIMELEM_MASK       0x00FF
@@ -62,16 +62,16 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnimationType
 
-  Description:  Animation ‚Ì Ží—Þ
-                NNSG2dAnimSequence ‚ª•ÛŽ‚µ‚Ü‚·
-                i‚Â‚Ü‚èA‚Ð‚Æ‚Â‚ÌSequence“à‚Å‚Í“¯ˆêNNSG2dAnimationType‚ª•Ûá‚³‚ê‚Ü‚·j
+  Description:  Animation ã® ç¨®é¡ž
+                NNSG2dAnimSequence ãŒä¿æŒã—ã¾ã™
+                ï¼ˆã¤ã¾ã‚Šã€ã²ã¨ã¤ã®Sequenceå†…ã§ã¯åŒä¸€NNSG2dAnimationTypeãŒä¿éšœã•ã‚Œã¾ã™ï¼‰
                 
  *---------------------------------------------------------------------------*/
 typedef enum NNSG2dAnimationType
 {
-    NNS_G2D_ANIMATIONTYPE_INVALID           = 0x0, // •s³‚ÈŽí—Þ
-    NNS_G2D_ANIMATIONTYPE_CELL                   , // ƒZƒ‹
-    NNS_G2D_ANIMATIONTYPE_MULTICELLLOCATION      , // ƒ}ƒ‹ƒ`ƒZƒ‹
+    NNS_G2D_ANIMATIONTYPE_INVALID           = 0x0, // ä¸æ­£ãªç¨®é¡ž
+    NNS_G2D_ANIMATIONTYPE_CELL                   , // ã‚»ãƒ«
+    NNS_G2D_ANIMATIONTYPE_MULTICELLLOCATION      , // ãƒžãƒ«ãƒã‚»ãƒ«
     NNS_G2D_ANIMATIONTYPE_MAX
 }
 NNSG2dAnimationType;
@@ -79,14 +79,14 @@ NNSG2dAnimationType;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnimationElement
 
-  Description:  Animation —v‘f ‚Ì Ží—Þ
-                NNSG2dAnimSequence ‚ª•ÛŽ‚µ‚Ü‚·
-                i‚Â‚Ü‚èA‚Ð‚Æ‚Â‚ÌSequence“à‚Å‚Í“¯ˆêNNSG2dAnimationElement‚ª•Ûá‚³‚ê‚Ü‚·j
+  Description:  Animation è¦ç´  ã® ç¨®é¡ž
+                NNSG2dAnimSequence ãŒä¿æŒã—ã¾ã™
+                ï¼ˆã¤ã¾ã‚Šã€ã²ã¨ã¤ã®Sequenceå†…ã§ã¯åŒä¸€NNSG2dAnimationElementãŒä¿éšœã•ã‚Œã¾ã™ï¼‰
                 
  *---------------------------------------------------------------------------*/
 typedef enum NNSG2dAnimationElement
 {
-    NNS_G2D_ANIMELEMENT_INDEX           = 0x0, // Index ‚Ì‚Ý
+    NNS_G2D_ANIMELEMENT_INDEX           = 0x0, // Index ã®ã¿
     NNS_G2D_ANIMELEMENT_INDEX_SRT            , // Index + SRT 
     NNS_G2D_ANIMELEMENT_INDEX_T              , // Index + T 
     NNS_G2D_ANIMELEMENT_MAX
@@ -96,18 +96,18 @@ NNSG2dAnimationElement;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnimationPlayMode
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ÌÄ¶•û–@
-                NNSG2dAnimSequence ‚ª•ÛŽ‚µ‚Ü‚·
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å†ç”Ÿæ–¹æ³•
+                NNSG2dAnimSequence ãŒä¿æŒã—ã¾ã™
                 
                 
  *---------------------------------------------------------------------------*/
 typedef enum NNSG2dAnimationPlayMode
 {
-    NNS_G2D_ANIMATIONPLAYMODE_INVALID = 0x0,    // –³Œø
-    NNS_G2D_ANIMATIONPLAYMODE_FORWARD,          // ƒƒ“ƒ^ƒCƒ€Ä¶(‡•ûŒü)
-    NNS_G2D_ANIMATIONPLAYMODE_FORWARD_LOOP,     // ƒŠƒs[ƒgÄ¶(‡•ûŒüƒ‹[ƒv)
-    NNS_G2D_ANIMATIONPLAYMODE_REVERSE,          // ‰•œÄ¶(ƒŠƒo[ƒXi‡{‹t•ûŒüj
-    NNS_G2D_ANIMATIONPLAYMODE_REVERSE_LOOP,     // ‰•œÄ¶ƒŠƒs[ƒgiƒŠƒo[ƒXi‡{‹t‡•ûŒüj ƒ‹[ƒvj
+    NNS_G2D_ANIMATIONPLAYMODE_INVALID = 0x0,    // ç„¡åŠ¹
+    NNS_G2D_ANIMATIONPLAYMODE_FORWARD,          // ãƒ¯ãƒ³ã‚¿ã‚¤ãƒ å†ç”Ÿ(é †æ–¹å‘)
+    NNS_G2D_ANIMATIONPLAYMODE_FORWARD_LOOP,     // ãƒªãƒ”ãƒ¼ãƒˆå†ç”Ÿ(é †æ–¹å‘ãƒ«ãƒ¼ãƒ—)
+    NNS_G2D_ANIMATIONPLAYMODE_REVERSE,          // å¾€å¾©å†ç”Ÿ(ãƒªãƒãƒ¼ã‚¹ï¼ˆé †ï¼‹é€†æ–¹å‘ï¼‰
+    NNS_G2D_ANIMATIONPLAYMODE_REVERSE_LOOP,     // å¾€å¾©å†ç”Ÿãƒªãƒ”ãƒ¼ãƒˆï¼ˆãƒªãƒãƒ¼ã‚¹ï¼ˆé †ï¼‹é€†é †æ–¹å‘ï¼‰ ãƒ«ãƒ¼ãƒ—ï¼‰
     NNS_G2D_ANIMATIONPLAYMODE_MAX               
 }
 NNSG2dAnimationPlayMode;
@@ -116,35 +116,35 @@ NNSG2dAnimationPlayMode;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnimDataSRT
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê
-                NNSG2dAnimFrameData.pContent ‚Ìæ‚ª‚±‚Ìƒf[ƒ^‚É‚È‚Á‚Ä‚¢‚Ü‚·B
-                «—ˆ“I‚É‚ÍAƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê NNSG2dAnimDataSRT ˆÈŠO‚Ì 
-                •¡”‚ÌƒtƒH[ƒ}ƒbƒg‚ÌƒTƒ|[ƒg‚ª—\’è‚³‚ê‚Ä‚¢‚Ü‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœ
+                NNSG2dAnimFrameData.pContent ã®å…ˆãŒã“ã®ãƒ‡ãƒ¼ã‚¿ã«ãªã£ã¦ã„ã¾ã™ã€‚
+                å°†æ¥çš„ã«ã¯ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœ NNSG2dAnimDataSRT ä»¥å¤–ã® 
+                è¤‡æ•°ã®ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ã‚µãƒãƒ¼ãƒˆãŒäºˆå®šã•ã‚Œã¦ã„ã¾ã™ã€‚
                                 
  *---------------------------------------------------------------------------*/
-typedef       u16       NNSG2dAnimData; // index ‚Ì‚Ý
+typedef       u16       NNSG2dAnimData; // index ã®ã¿
 
-typedef struct NNSG2dAnimDataSRT        // index + SRT î•ñ
+typedef struct NNSG2dAnimDataSRT        // index + SRT æƒ…å ±
 {
-    u16         index;      // ƒCƒ“ƒfƒbƒNƒX
+    u16         index;      // ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
     
-    u16         rotZ;       // ‰ñ“]
+    u16         rotZ;       // å›žè»¢
     
-    fx32        sx;         // ƒXƒP[ƒ‹X
-    fx32        sy;         // ƒXƒP[ƒ‹Y
+    fx32        sx;         // ã‚¹ã‚±ãƒ¼ãƒ«X
+    fx32        sy;         // ã‚¹ã‚±ãƒ¼ãƒ«Y
     
-    s16         px;         // ˆÊ’uX
-    s16         py;         // ˆÊ’uY
+    s16         px;         // ä½ç½®X
+    s16         py;         // ä½ç½®Y
     
 }NNSG2dAnimDataSRT;
 
-typedef struct NNSG2dAnimDataT        // index + T î•ñ
+typedef struct NNSG2dAnimDataT        // index + T æƒ…å ±
 {
-    u16         index;      // ƒCƒ“ƒfƒbƒNƒX    
-    u16         pad_;       // ‰ñ“]
+    u16         index;      // ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹    
+    u16         pad_;       // å›žè»¢
 
-    s16         px;         // ˆÊ’uX
-    s16         py;         // ˆÊ’uY
+    s16         px;         // ä½ç½®X
+    s16         py;         // ä½ç½®Y
     
 }NNSG2dAnimDataT;
 
@@ -153,16 +153,16 @@ typedef struct NNSG2dAnimDataT        // index + T î•ñ
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnimFrameData
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€
-                ƒAƒjƒ[ƒVƒ‡ƒ“‚ð\¬‚·‚é’PˆÊ—v‘f
-                ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ª•¡”˜A‚È‚Á‚Ä ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ð
-                Œ`¬‚µ‚Ü‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ 
+                ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æ§‹æˆã™ã‚‹å˜ä½è¦ç´ 
+                ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ãŒè¤‡æ•°é€£ãªã£ã¦ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’
+                å½¢æˆã—ã¾ã™ã€‚
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dAnimFrameData
 {
-    void*           pContent;   // ƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    u16             frames;     // ƒAƒjƒƒtƒŒ[ƒ€Ž‘±ŽžŠÔ( ’PˆÊ : ƒrƒfƒIƒtƒŒ[ƒ€ )
+    void*           pContent;   // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    u16             frames;     // ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ æŒç¶šæ™‚é–“( å˜ä½ : ãƒ“ãƒ‡ã‚ªãƒ•ãƒ¬ãƒ¼ãƒ  )
     u16             pad16;      // pading 
     
 }NNSG2dAnimFrameData;
@@ -174,21 +174,21 @@ typedef struct NNSG2dAnimFrameData
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnimFrameData
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX
-                ˆê˜A‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ÌW‡
-                ‚¢‚í‚ä‚éƒAƒjƒ[ƒVƒ‡ƒ“‚É‘Î‰ž‚·‚éŠT”O‚Å‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+                ä¸€é€£ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®é›†åˆ
+                ã„ã‚ã‚†ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹æ¦‚å¿µã§ã™ã€‚
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dAnimSequenceData
 {
-    u16                     numFrames;         // ƒV[ƒPƒ“ƒX‚ð\¬‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”
-    u16                     loopStartFrameIdx; // ƒ‹[ƒvŠJŽnƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒtƒŒ[ƒ€”Ô†
+    u16                     numFrames;         // ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’æ§‹æˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+    u16                     loopStartFrameIdx; // ãƒ«ãƒ¼ãƒ—é–‹å§‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
     
-    u32                     animType;          // ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŽí—Þ(ãˆÊ16 bit)|
-                                               //  ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì—v‘f(‰ºˆÊ16 bit)
-                                               // iNNSG2dAnimFrameData.pContent‚Ìæ‚ª•Ï‰»‚µ‚Ü‚·j
+    u32                     animType;          // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç¨®é¡ž(ä¸Šä½16 bit)|
+                                               //  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®è¦ç´ (ä¸‹ä½16 bit)
+                                               // ï¼ˆNNSG2dAnimFrameData.pContentã®å…ˆãŒå¤‰åŒ–ã—ã¾ã™ï¼‰
                                                       
-    NNSG2dAnimationPlayMode playMode;          // ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ÌÄ¶•û–@
+    NNSG2dAnimationPlayMode playMode;          // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å†ç”Ÿæ–¹æ³•
     NNSG2dAnimFrameData*    pAnmFrameArray;    // offset form the head of pFrameArray.
     
 }NNSG2dAnimSequenceData;
@@ -200,22 +200,22 @@ typedef struct NNSG2dAnimSequenceData
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnimBankData
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒoƒ“ƒN
-                •¡”‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ð‚Ü‚Æ‚ß‚éŠT”O‚Å‚·B
-                ’Êí ƒAƒjƒ[ƒVƒ‡ƒ“ƒoƒ“ƒN == ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚Å‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ³ã‚¯
+                è¤‡æ•°ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ã¾ã¨ã‚ã‚‹æ¦‚å¿µã§ã™ã€‚
+                é€šå¸¸ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ³ã‚¯ == ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚
                 
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dAnimBankData
 {
     
-    u16                       numSequences;         // ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX”
-    u16                       numTotalFrames;       // ‘ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”
-    NNSG2dAnimSequenceData*   pSequenceArrayHead;   // ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    NNSG2dAnimFrameData*      pFrameArrayHead;      // ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    void*                     pAnimContents;        // ƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    void*                     pStringBank;          // ƒXƒgƒŠƒ“ƒOƒoƒ“ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^iŽÀsŽž‚ÉÝ’èj
-    void*                     pExtendedData;        // ƒ‰ƒCƒuƒ‰ƒŠŠg’£—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^(–¢Žg—p)
+    u16                       numSequences;         // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
+    u16                       numTotalFrames;       // ç·ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+    NNSG2dAnimSequenceData*   pSequenceArrayHead;   // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    NNSG2dAnimFrameData*      pFrameArrayHead;      // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    void*                     pAnimContents;        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœé…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    void*                     pStringBank;          // ã‚¹ãƒˆãƒªãƒ³ã‚°ãƒãƒ³ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆå®Ÿè¡Œæ™‚ã«è¨­å®šï¼‰
+    void*                     pExtendedData;        // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªæ‹¡å¼µé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿(æœªä½¿ç”¨)
 
 }NNSG2dAnimBankData;
 
@@ -227,15 +227,15 @@ typedef struct NNSG2dAnimBankData
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnimBankDataBlock
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒoƒ“ƒNƒuƒƒbƒN
-                ƒAƒjƒ[ƒVƒ‡ƒ“ƒoƒ“ƒN‚ðŠÜ‚ÞƒoƒCƒiƒŠƒuƒƒbƒN‚Å‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ³ã‚¯ãƒ–ãƒ­ãƒƒã‚¯
+                ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ³ã‚¯ã‚’å«ã‚€ãƒã‚¤ãƒŠãƒªãƒ–ãƒ­ãƒƒã‚¯ã§ã™ã€‚
                 
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dAnimBankDataBlock
 {
-    NNSG2dBinaryBlockHeader     blockHeader;    // ƒoƒCƒiƒŠƒwƒbƒ_
-    NNSG2dAnimBankData          animBankData;   // ƒAƒjƒ[ƒVƒ‡ƒ“ƒoƒ“ƒN
+    NNSG2dBinaryBlockHeader     blockHeader;    // ãƒã‚¤ãƒŠãƒªãƒ˜ãƒƒãƒ€
+    NNSG2dAnimBankData          animBankData;   // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ³ã‚¯
     
 }NNSG2dAnimBankDataBlock;
 
@@ -257,8 +257,8 @@ typedef struct NNSG2dUserExAnimSequenceAttr
 
 typedef struct NNSG2dUserExAnimAttrBank
 {
-    u16                           numSequences; // ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX”
-    u16                           numAttribute; // ƒAƒgƒŠƒrƒ…[ƒg”FŒ»Ý‚Í1ŒÅ’è
+    u16                           numSequences; // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
+    u16                           numAttribute; // ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæ•°ï¼šç¾åœ¨ã¯1å›ºå®š
     NNSG2dUserExAnimSequenceAttr* pAnmSeqAttrArray;   
     
 }NNSG2dUserExAnimAttrBank;
@@ -271,7 +271,7 @@ typedef struct NNSG2dUserExAnimAttrBank
 // inline functions.
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-// ƒAƒjƒ[ƒVƒ‡ƒ“Ží—ÞŽæ“¾ŠÖ˜A
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç¨®é¡žå–å¾—é–¢é€£
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -311,7 +311,7 @@ NNS_G2dGetAnimSequenceElementType( const NNSG2dAnimSequenceData* pAnimSeq )
 }
 
 //------------------------------------------------------------------------------
-// ƒV[ƒPƒ“ƒX‚Ì‘ƒrƒfƒIƒtƒŒ[ƒ€’·‚ðŒvŽZ‚µ‚Ü‚·B
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ç·ãƒ“ãƒ‡ã‚ªãƒ•ãƒ¬ãƒ¼ãƒ é•·ã‚’è¨ˆç®—ã—ã¾ã™ã€‚
 NNS_G2D_INLINE u32 NNS_G2dCalcAnimSequenceTotalVideoFrames
 ( 
      const NNSG2dAnimSequenceData* pAnimSeq 
@@ -327,8 +327,8 @@ NNS_G2D_INLINE u32 NNS_G2dCalcAnimSequenceTotalVideoFrames
     return total;
 }
 //------------------------------------------------------------------------------
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒoƒ“ƒN’†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX”Ô†‚ðŽæ“¾‚µ‚Ü‚·
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ªƒAƒjƒ[ƒVƒ‡ƒ“ƒoƒ“ƒN’†‚ÉŠÜ‚Ü‚ê‚é‚à‚Ì‚Å‚ ‚é‚±‚Æ‚ðŠú‘Ò‚µ‚Ä‚¢‚Ü‚·B
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ³ã‚¯ä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·ã‚’å–å¾—ã—ã¾ã™
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãŒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ³ã‚¯ä¸­ã«å«ã¾ã‚Œã‚‹ã‚‚ã®ã§ã‚ã‚‹ã“ã¨ã‚’æœŸå¾…ã—ã¦ã„ã¾ã™ã€‚
 // 
 #ifndef NNS_FROM_TOOL
 NNS_G2D_INLINE u16 NNS_G2dGetAnimSequenceIndex
@@ -342,23 +342,23 @@ NNS_G2D_INLINE u16 NNS_G2dGetAnimSequenceIndex
         / (u32)sizeof( NNSG2dAnimSequenceData ) );
 }
 #else
-// NNS_G2dGetAnimSequenceIndex() ‚Í VCŠÂ‹«‚Å‚ÍŒx‚ª”­¶‚·‚éƒR[ƒh‚È‚Ì‚ÅA’è‹`‚µ‚Ü‚¹‚ñB
+// NNS_G2dGetAnimSequenceIndex() ã¯ VCç’°å¢ƒã§ã¯è­¦å‘ŠãŒç™ºç”Ÿã™ã‚‹ã‚³ãƒ¼ãƒ‰ãªã®ã§ã€å®šç¾©ã—ã¾ã›ã‚“ã€‚
 #endif
 
 //------------------------------------------------------------------------------
-// NNSG2dAnimBankData ‚©‚ç NNSG2dUserExAnimAttrBank ‚ðŽæ“¾‚µ‚Ü‚·
-// Žæ“¾‚ÉŽ¸”s‚µ‚½ê‡‚ÍANULL‚ª•Ô‚è‚Ü‚·B
-// ƒ†[ƒUŠg’£ƒAƒgƒŠƒrƒ…[ƒg‚ðŠÜ‚Þƒf[ƒ^‚ðo—Í‚·‚é‚½‚ß‚É‚ÍAg2dcvtr.exe 2.8 ˆÈ~‚ð
-// —˜—p‚µA-oua ƒIƒvƒVƒ‡ƒ“‚ðŽw’è‚µ‚Äƒf[ƒ^‚ðo—Í‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+// NNSG2dAnimBankData ã‹ã‚‰ NNSG2dUserExAnimAttrBank ã‚’å–å¾—ã—ã¾ã™
+// å–å¾—ã«å¤±æ•—ã—ãŸå ´åˆã¯ã€NULLãŒè¿”ã‚Šã¾ã™ã€‚
+// ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’å«ã‚€ãƒ‡ãƒ¼ã‚¿ã‚’å‡ºåŠ›ã™ã‚‹ãŸã‚ã«ã¯ã€g2dcvtr.exe 2.8 ä»¥é™ã‚’
+// åˆ©ç”¨ã—ã€-oua ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æŒ‡å®šã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚’å‡ºåŠ›ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 // 
 NNS_G2D_INLINE const NNSG2dUserExAnimAttrBank* 
 NNS_G2dGetUserExAnimAttrBank( const NNSG2dAnimBankData* pAnimBank )
 {
-    // ƒuƒƒbƒN‚ðŽæ“¾‚µ‚Ü‚·
+    // ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã—ã¾ã™
     const NNSG2dUserExDataBlock* pBlk 
         = NNSi_G2dGetUserExDataBlkByID( pAnimBank->pExtendedData,
                                         NNS_G2D_USEREXBLK_ANMATTR );
-    // ƒuƒƒbƒN‚ÌŽæ“¾‚É¬Œ÷‚µ‚½‚ç...
+    // ãƒ–ãƒ­ãƒƒã‚¯ã®å–å¾—ã«æˆåŠŸã—ãŸã‚‰...
     if( pBlk != NULL )
     {
         return (const NNSG2dUserExAnimAttrBank*)(pBlk + 1);
@@ -368,8 +368,8 @@ NNS_G2dGetUserExAnimAttrBank( const NNSG2dAnimBankData* pAnimBank )
 }
 
 //------------------------------------------------------------------------------
-// ”Ô†‚ðŽw’è‚µ‚ÄƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ÌŠg’£ƒAƒgƒŠƒrƒ…[ƒgî•ñ‚ðŽæ“¾‚µ‚Ü‚·
-// •s³‚È”Ô†‚ªŽw’è‚³‚ê‚½ê‡‚ÍANULL‚ð•Ô‚µ‚Ü‚·B
+// ç•ªå·ã‚’æŒ‡å®šã—ã¦ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæƒ…å ±ã‚’å–å¾—ã—ã¾ã™
+// ä¸æ­£ãªç•ªå·ãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ã€NULLã‚’è¿”ã—ã¾ã™ã€‚
 //
 NNS_G2D_INLINE const NNSG2dUserExAnimSequenceAttr* 
 NNS_G2dGetUserExAnimSequenceAttr
@@ -389,8 +389,8 @@ NNS_G2dGetUserExAnimSequenceAttr
 }
 
 //------------------------------------------------------------------------------
-// ”Ô†‚ðŽw’è‚µ‚ÄƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ÌŠg’£ƒAƒgƒŠƒrƒ…[ƒgî•ñ‚ðŽæ“¾‚µ‚Ü‚·
-// •s³‚È”Ô†‚ªŽw’è‚³‚ê‚½ê‡‚ÍANULL‚ð•Ô‚µ‚Ü‚·B
+// ç•ªå·ã‚’æŒ‡å®šã—ã¦ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæƒ…å ±ã‚’å–å¾—ã—ã¾ã™
+// ä¸æ­£ãªç•ªå·ãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ã€NULLã‚’è¿”ã—ã¾ã™ã€‚
 //
 NNS_G2D_INLINE const NNSG2dUserExAnimFrameAttr* 
 NNS_G2dGetUserExAnimFrameAttr
@@ -409,8 +409,8 @@ NNS_G2dGetUserExAnimFrameAttr
     }   
 }
 //------------------------------------------------------------------------------
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚Ì
-// ƒAƒgƒŠƒrƒ…[ƒg’l‚ðŽæ“¾‚µ‚Ü‚·
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®
+// ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå€¤ã‚’å–å¾—ã—ã¾ã™
 NNS_G2D_INLINE u32
 NNS_G2dGetUserExAnimSeqAttrValue
 ( 
@@ -422,8 +422,8 @@ NNS_G2dGetUserExAnimSeqAttrValue
 }
 
 //------------------------------------------------------------------------------
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚Ì
-// ƒAƒgƒŠƒrƒ…[ƒg’l‚ðŽæ“¾‚µ‚Ü‚·
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®
+// ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå€¤ã‚’å–å¾—ã—ã¾ã™
 NNS_G2D_INLINE u32
 NNS_G2dGetUserExAnimFrmAttrValue
 ( 

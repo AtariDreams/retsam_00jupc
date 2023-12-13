@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_296.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			í“¬’†‚ÉƒMƒ‰ƒeƒBƒiƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			æˆ¦é—˜ä¸­ã«ã‚®ãƒ©ãƒ†ã‚£ãƒŠãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸
  *@author	HisashiSogabe
  *@data		2008.05.16
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_296:
-	//ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ÌÄŒvŽZ‚ðŽwŽ¦
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å†è¨ˆç®—ã‚’æŒ‡ç¤º
 	VALUE				VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG2,SERVER_STATUS_FLAG2_POKEPARA_CALC
 	PSP_VALUE			VAL_SET,SIDE_CLIENT_WORK,ID_PSP_form_no,FORMNO_GIRATINA_NORMAL
 	VALUE				VAL_SET,BUF_PARA_TEMP_WORK,0
@@ -28,6 +28,6 @@ GiratinaSpeabi2:
 GiratinaSpeabiSet:
 	PSP_VALUE_WORK		VAL_SET,SIDE_CLIENT_WORK,ID_PSP_speabino,BUF_PARA_CALC_WORK
 	GOSUB				SUB_SEQ_TENKIYA
-	//ÄŒvŽZ‚³‚ê‚½ƒpƒ‰ƒ[ƒ^‚ðƒŠƒ[ƒh
+	//å†è¨ˆç®—ã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒªãƒ­ãƒ¼ãƒ‰
 	POKEPARA_RELOAD		SIDE_CLIENT_WORK
 	SEQ_END

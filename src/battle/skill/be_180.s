@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_180.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			180@Ž©•ª‚ÌT‚¦ƒ|ƒPƒ‚ƒ“‚Ì‹Z‚ðƒ‰ƒ“ƒ_ƒ€‚Åo‚·
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			180ã€€è‡ªåˆ†ã®æŽ§ãˆãƒã‚±ãƒ¢ãƒ³ã®æŠ€ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§å‡ºã™
  *
  *@author	HisashiSogabe
  *@data		2006.02.07
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_180:
-	//ƒ‰ƒ“ƒ_ƒ€‚Åo‚¹‚é‹Z‚ð‘I‘ð‚µ‚Ä‹Z‚ÌƒV[ƒPƒ“ƒX‚ÖƒWƒƒƒ“ƒv
+	//ãƒ©ãƒ³ãƒ€ãƒ ã§å‡ºã›ã‚‹æŠ€ã‚’é¸æŠžã—ã¦æŠ€ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸ã‚¸ãƒ£ãƒ³ãƒ—
 	NEKONOTE		Umakukimaran
 	ATTACK_MESSAGE
 	SERVER_WAIT

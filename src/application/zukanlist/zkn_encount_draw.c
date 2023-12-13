@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_encount_draw.c
- *	@brief		ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^•`‰æƒVƒXƒeƒ€
+ *	@brief		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æç”»ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2006.02.09
  *
@@ -18,24 +18,24 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define GRID_MUDDY_MUSK_NONE	( 0 )
@@ -103,13 +103,13 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void PrintMain( GF_BGL_BMPWIN* win, u8* char_buff, u16 char_sizex, u16 char_sizey, int grid_size, int chip_no, u8 win_x, u8 win_y );
@@ -123,24 +123,24 @@ static int GetMuddyChip( int mask8 );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^ì¬
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	win				ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- *	@param	char_buff		ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@
- *	@param	char_size_x		ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY‚˜
- *	@param	char_size_y		ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY‚™
- *	@param	grid_size		1ƒOƒŠƒbƒhƒsƒNƒZƒ‹ƒTƒCƒY
- *	@param	p_buff			ƒOƒ‰ƒtƒBƒbƒNƒoƒbƒtƒ@
- *	@param	size_x			ƒoƒbƒtƒ@‰¡ƒTƒCƒY
- *	@param	size_y			ƒoƒbƒtƒ@cƒTƒCƒY
- *	@param	win_x			bitmapƒEƒBƒ“ƒhƒE‚É‘‚«‚ŞÀ•W‚˜
- *	@param	win_y			bitmapƒEƒBƒ“ƒhƒE‚É‘‚«‚ŞÀ•W‚™
- *	@param	win_size_x		bitmapƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY‚˜
- *	@param	win_size_y		bitmapƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY‚™
+ *	@param	win				ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	char_buff		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡
+ *	@param	char_size_x		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºï½˜
+ *	@param	char_size_y		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºï½™
+ *	@param	grid_size		1ã‚°ãƒªãƒƒãƒ‰ãƒ”ã‚¯ã‚»ãƒ«ã‚µã‚¤ã‚º
+ *	@param	p_buff			ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
+ *	@param	size_x			ãƒãƒƒãƒ•ã‚¡æ¨ªã‚µã‚¤ã‚º
+ *	@param	size_y			ãƒãƒƒãƒ•ã‚¡ç¸¦ã‚µã‚¤ã‚º
+ *	@param	win_x			bitmapã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«æ›¸ãè¾¼ã‚€åº§æ¨™ï½˜
+ *	@param	win_y			bitmapã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«æ›¸ãè¾¼ã‚€åº§æ¨™ï½™
+ *	@param	win_size_x		bitmapã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºï½˜
+ *	@param	win_size_y		bitmapã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºï½™
  *
  *	@return	none
  *
- *	ƒTƒCƒY‚Í‘S•”ƒsƒNƒZƒ‹
+ *	ã‚µã‚¤ã‚ºã¯å…¨éƒ¨ãƒ”ã‚¯ã‚»ãƒ«
  */
 //-----------------------------------------------------------------------------
 void ZKN_ENCOUNTDRAW_PrintChar( GF_BGL_BMPWIN * win, u8* char_buff, u16 char_sizex, u16 char_sizey, u8 grid_size, u8* p_buff, u8 size_x, u8 size_y, u16 win_x, u16 win_y )
@@ -148,12 +148,12 @@ void ZKN_ENCOUNTDRAW_PrintChar( GF_BGL_BMPWIN * win, u8* char_buff, u16 char_siz
 	int i, j;
 
 
-	// ƒ`ƒbƒvƒf[ƒ^‘‚«‚İ
+	// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	for( i=0; i<size_y; i++ ){
 
 		for( j=0; j<size_x; j++ ){
 
-			// ‘‚«‚İ
+			// æ›¸ãè¾¼ã¿
 			PrintMain( win, char_buff,	
 					char_sizex, char_sizey,
 					grid_size, p_buff[ (i*size_y)+j ],	// chipdata
@@ -165,11 +165,11 @@ void ZKN_ENCOUNTDRAW_PrintChar( GF_BGL_BMPWIN * win, u8* char_buff, u16 char_siz
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒŠƒbƒhƒf[ƒ^‚ÌŠŠ‚ç‚©ƒOƒ‰ƒtƒBƒbƒNì¬
+ *	@brief	ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ã®æ»‘ã‚‰ã‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ä½œæˆ
  *
- *	@param	p_buff	ƒoƒbƒtƒ@
- *	@param	size_x	ƒoƒbƒtƒ@ƒTƒCƒY‚˜
- *	@param	size_y	ƒoƒbƒtƒ@ƒTƒCƒY‚™
+ *	@param	p_buff	ãƒãƒƒãƒ•ã‚¡
+ *	@param	size_x	ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºï½˜
+ *	@param	size_y	ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºï½™
  *
  *	@return	none
  */
@@ -190,18 +190,18 @@ void ZKN_ENCOUNTDRAW_MakeMuddyData( u8* p_buff, u8 size_x, u8 size_y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒE‚Ö‚Ì‘‚«‚İƒƒCƒ“
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¸ã®æ›¸ãè¾¼ã¿ãƒ¡ã‚¤ãƒ³
  *
- *	@param	win			bmpƒEƒBƒ“ƒhƒE
- *	@param	char_buff	ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@
- *	@param	char_sizex	ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY‚˜
- *	@param	char_sizey	ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY‚™
- *	@param	grid_size	ƒOƒŠƒbƒhƒTƒCƒY
- *	@param	chip_no		ƒ`ƒbƒvƒiƒ“ƒo[
- *	@param	win_x		ƒEƒBƒ“ƒhƒE‘‚«‚İÀ•W‚˜
- *	@param	win_y		ƒEƒBƒ“ƒhƒE‘‚«‚İÀ•W‚™
- *	@param	win_size_x	ƒEƒBƒ“ƒhƒEƒTƒCƒY‚˜
- *	@param	win_size_y	ƒEƒBƒ“ƒhƒEƒTƒCƒY‚™
+ *	@param	win			bmpã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	char_buff	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡
+ *	@param	char_sizex	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºï½˜
+ *	@param	char_sizey	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºï½™
+ *	@param	grid_size	ã‚°ãƒªãƒƒãƒ‰ã‚µã‚¤ã‚º
+ *	@param	chip_no		ãƒãƒƒãƒ—ãƒŠãƒ³ãƒãƒ¼
+ *	@param	win_x		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›¸ãè¾¼ã¿åº§æ¨™ï½˜
+ *	@param	win_y		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›¸ãè¾¼ã¿åº§æ¨™ï½™
+ *	@param	win_size_x	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºï½˜
+ *	@param	win_size_y	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºï½™
  *
  *	@return	none
  */
@@ -226,11 +226,11 @@ static void PrintMain( GF_BGL_BMPWIN* win, u8* char_buff, u16 char_sizex, u16 ch
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒŠƒbƒhƒf[ƒ^‚ÉŠÛ‚ß‚İƒOƒ‰ƒtƒBƒbƒNƒiƒ“ƒo[‚ğİ’è
+ *	@brief	ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ä¸¸ã‚è¾¼ã¿ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼ã‚’è¨­å®š
  *
- *	@param	p_buff		ƒOƒŠƒbƒhƒoƒbƒtƒ@
- *	@param	x			ƒ`ƒFƒbƒN‚˜À•W
- *	@param	y			ƒ`ƒFƒbƒN‚™À•W
+ *	@param	p_buff		ã‚°ãƒªãƒƒãƒ‰ãƒãƒƒãƒ•ã‚¡
+ *	@param	x			ãƒã‚§ãƒƒã‚¯ï½˜åº§æ¨™
+ *	@param	y			ãƒã‚§ãƒƒã‚¯ï½™åº§æ¨™
  *	
  *	@return	none
  */
@@ -240,16 +240,16 @@ static void MuddyMain( u8* p_buff, int x, int y, int size_x, int size_y )
 	int mask8;
 	int chip_no;
 	
-	// ’†g‚ªƒJƒ‰‚È‚çƒ`ƒFƒbƒN
+	// ä¸­èº«ãŒã‚«ãƒ©ãªã‚‰ãƒã‚§ãƒƒã‚¯
 	if( p_buff[ (y * size_x) + x ] == ZKN_ENCOUNT_DRAW_MUDDY_NONE ){
 		
-		// ‚W•ûŒüƒ`ƒbƒvƒf[ƒ^æ“¾
+		// ï¼˜æ–¹å‘ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å–å¾—
 		GetGrid8Data( p_buff, &mask8, x, y, size_x, size_y );
 
-		// ŠÛ‚ß‚İƒ`ƒbƒvƒiƒ“ƒo[æ“¾
+		// ä¸¸ã‚è¾¼ã¿ãƒãƒƒãƒ—ãƒŠãƒ³ãƒãƒ¼å–å¾—
 		chip_no = GetMuddyChip( mask8 );
 
-		// Ši”[
+		// æ ¼ç´
 		p_buff[ (y * size_x) + x ] = chip_no;
 	}
 }
@@ -257,13 +257,13 @@ static void MuddyMain( u8* p_buff, int x, int y, int size_x, int size_y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒŠƒbƒh‚Ìƒ`ƒbƒvƒf[ƒ^‚ğæ“¾
+ *	@brief	ã‚°ãƒªãƒƒãƒ‰ã®ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *	@param	p_buff	ƒoƒbƒtƒ@
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	p_buff	ãƒãƒƒãƒ•ã‚¡
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  *
- *	@return	ƒ`ƒbƒvƒf[ƒ^	‚È‚¢‚Æ‚« -1
+ *	@return	ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿	ãªã„ã¨ã -1
  */
 //-----------------------------------------------------------------------------
 static int GetGridChipData( u8* p_buff, int x, int y, int size_x, int size_y )
@@ -282,14 +282,14 @@ static int GetGridChipData( u8* p_buff, int x, int y, int size_x, int size_y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	xy‚ğ’†S‚É‚µ‚½‰ñ‚è‚Ì‚W“_ƒf[ƒ^æ“¾
+ *	@brief	xyã‚’ä¸­å¿ƒã«ã—ãŸå›ã‚Šã®ï¼˜ç‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	p_buff		ƒoƒbƒtƒ@
- *	@param	p_8buff		‚W“_ƒf[ƒ^æ“¾ƒoƒbƒtƒ@
- *	@param	x			ƒoƒbƒtƒ@‚˜À•W
- *	@param	y			ƒoƒbƒtƒ@‚™À•W
- *	@param	size_x		ƒoƒbƒtƒ@ƒTƒCƒY‚˜
- *	@param	size_y		ƒoƒbƒtƒ@ƒTƒCƒY‚™
+ *	@param	p_buff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	p_8buff		ï¼˜ç‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒãƒƒãƒ•ã‚¡
+ *	@param	x			ãƒãƒƒãƒ•ã‚¡ï½˜åº§æ¨™
+ *	@param	y			ãƒãƒƒãƒ•ã‚¡ï½™åº§æ¨™
+ *	@param	size_x		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºï½˜
+ *	@param	size_y		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºï½™
  *
  *	@return	none
  */
@@ -301,45 +301,45 @@ static void GetGrid8Data( u8* p_buff, int* p_mask8, int x, int y, int size_x, in
 
 	*p_mask8 = 0;
 	
-	// ‚W•ûŒü‚Ì“_‚ğŒŸõ
-	// ã
+	// ï¼˜æ–¹å‘ã®ç‚¹ã‚’æ¤œç´¢
+	// ä¸Š
 	if( GetGridChipData( p_buff, x, y - 1, size_x, size_y ) == ZKN_ENCOUNT_DRAW_MUDDY_NORMAL ){
 		*p_mask8 |= GRID_MUDDY_MUSK_U;
 	}
-	// ‰º
+	// ä¸‹
 	if( GetGridChipData( p_buff, x, y + 1, size_x, size_y ) == ZKN_ENCOUNT_DRAW_MUDDY_NORMAL ){
 		*p_mask8 |= GRID_MUDDY_MUSK_D;
 	}
-	// ¶
+	// å·¦
 	if( GetGridChipData( p_buff, x - 1, y, size_x, size_y ) == ZKN_ENCOUNT_DRAW_MUDDY_NORMAL ){
 		*p_mask8 |= GRID_MUDDY_MUSK_L;
 	}
-	// ‰E
+	// å³
 	if( GetGridChipData( p_buff, x + 1, y, size_x,  size_y ) == ZKN_ENCOUNT_DRAW_MUDDY_NORMAL ){
 		*p_mask8 |= GRID_MUDDY_MUSK_R;
 	}
 
-	// Î‚ß‚Í—¼˜e‚ª–³‚¢‚Æ‚«‚¾‚¯ƒ`ƒFƒbƒN‚·‚é
-	// ¶ã
+	// æ–œã‚ã¯ä¸¡è„‡ãŒç„¡ã„ã¨ãã ã‘ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+	// å·¦ä¸Š
 	if( (((*p_mask8) & GRID_MUDDY_MUSK_U) == 0) && (((*p_mask8) & GRID_MUDDY_MUSK_L) == 0) ){
 		if( GetGridChipData( p_buff, x - 1, y - 1, size_x, size_y ) == ZKN_ENCOUNT_DRAW_MUDDY_NORMAL ){
 			*p_mask8 |= GRID_MUDDY_MUSK_UL;
 		}
 	}
 
-	// ‰Eã
+	// å³ä¸Š
 	if( (((*p_mask8) & GRID_MUDDY_MUSK_U) == 0) && (((*p_mask8) & GRID_MUDDY_MUSK_R) == 0) ){
 		if( GetGridChipData( p_buff, x + 1, y - 1, size_x, size_y ) == ZKN_ENCOUNT_DRAW_MUDDY_NORMAL ){
 			*p_mask8 |= GRID_MUDDY_MUSK_UR;
 		}
 	}
-	// ¶‰º
+	// å·¦ä¸‹
 	if( (((*p_mask8) & GRID_MUDDY_MUSK_D) == 0) && (((*p_mask8) & GRID_MUDDY_MUSK_L) == 0) ){
 		if( GetGridChipData( p_buff, x - 1, y + 1, size_x, size_y ) == ZKN_ENCOUNT_DRAW_MUDDY_NORMAL ){
 			*p_mask8 |= GRID_MUDDY_MUSK_DL;
 		}
 	}
-	// ‰E‰º
+	// å³ä¸‹
 	if( (((*p_mask8) & GRID_MUDDY_MUSK_D) == 0) && (((*p_mask8) & GRID_MUDDY_MUSK_R) == 0) ){
 		if( GetGridChipData( p_buff, x + 1, y + 1, size_x, size_y ) == ZKN_ENCOUNT_DRAW_MUDDY_NORMAL ){
 			*p_mask8 |= GRID_MUDDY_MUSK_DR;
@@ -349,11 +349,11 @@ static void GetGrid8Data( u8* p_buff, int* p_mask8, int x, int y, int size_x, in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÛ‚ß‚İƒ`ƒbƒvƒf[ƒ^ì¬
+ *	@brief	ä¸¸ã‚è¾¼ã¿ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_8buff		‚W•ûŒüƒ`ƒbƒvƒf[ƒ^
+ *	@param	p_8buff		ï¼˜æ–¹å‘ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ŠÛ‚ß‚İƒf[ƒ^
+ *	@return	ä¸¸ã‚è¾¼ã¿ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static int GetMuddyChip( int mask8 )
@@ -504,7 +504,7 @@ static int GetMuddyChip( int mask8 )
 		break;
 
 	default:
-		// ‚¨‚©‚µ‚¢
+		// ãŠã‹ã—ã„
 		GF_ASSERT_MSG( 0, "%x", mask8 );
 		break;
 	}

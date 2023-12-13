@@ -18,7 +18,7 @@
   do-indent.
 
   Revision 1.11  2005/02/18 06:41:24  yasu
-  OS_DisableInterrupts •Ô’l‚ÌŒ^C³
+  OS_DisableInterrupts è¿”å€¤ã®å‹ä¿®æ­£
 
   Revision 1.10  2005/01/12 11:09:27  takano_makoto
   fix copyright header.

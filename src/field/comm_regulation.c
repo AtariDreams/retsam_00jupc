@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_regulation.c
- * @bfief	ÉåÉMÉÖÉåÅ[ÉVÉáÉìä«óùÇÃÉCÉxÉìÉg
+ * @bfief	„É¨„ÇÆ„É•„É¨„Éº„Ç∑„Éß„É≥ÁÆ°ÁêÜ„ÅÆ„Ç§„Éô„É≥„Éà
  * @author	katsumi ohno
  * @date	06/05/22
  */
@@ -50,62 +50,62 @@
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-// âpåÍî≈ÇÃÇ›ï\é¶Ç∑ÇÈílÇÉCÉìÉ`ÅEÉ|ÉìÉhånÇ…ïœä∑
+// Ëã±Ë™ûÁâà„ÅÆ„ÅøË°®Á§∫„Åô„ÇãÂÄ§„Çí„Ç§„É≥„ÉÅ„Éª„Éù„É≥„ÉâÁ≥ª„Å´Â§âÊèõ
 #include "localize.h"
 // ----------------------------------------------------------------------------
 
-#define _EVWIN_MSG_BUF_SIZE		(90 * 2)			//ÉÅÉbÉZÅ[ÉWÉoÉbÉtÉ@ÉTÉCÉY
+#define _EVWIN_MSG_BUF_SIZE		(90 * 2)			//„É°„ÉÉ„Çª„Éº„Ç∏„Éê„ÉÉ„Éï„Ç°„Çµ„Ç§„Ç∫
 #define _CGX_COUNTER_TOP_NUM (1)
 
 //------------------------------------------------
-///îƒópëIëÉÅÉjÉÖÅ[ÇÃÉäÉXÉg
+///Ê±éÁî®ÈÅ∏Êäû„É°„Éã„É•„Éº„ÅÆ„É™„Çπ„Éà
 //------------------------------------------------
 static const BMPLIST_HEADER _menuListHeader = {
-    NULL,			// ï\é¶ï∂éöÉfÅ[É^É|ÉCÉìÉ^
-    NULL,					// ÉJÅ[É\Éãà⁄ìÆÇ≤Ç∆ÇÃÉRÅ[ÉãÉoÉbÉNä÷êî
-    NULL,					// àÍóÒï\é¶Ç≤Ç∆ÇÃÉRÅ[ÉãÉoÉbÉNä÷êî
+    NULL,			// Ë°®Á§∫ÊñáÂ≠ó„Éá„Éº„Çø„Éù„Ç§„É≥„Çø
+    NULL,					// „Ç´„Éº„ÇΩ„É´ÁßªÂãï„Åî„Å®„ÅÆ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
+    NULL,					// ‰∏ÄÂàóË°®Á§∫„Åî„Å®„ÅÆ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
     NULL,					// 
-    0,	// ÉäÉXÉgçÄñ⁄êî
-    0,	// ï\é¶ç≈ëÂçÄñ⁄êî
-    0,						// ÉâÉxÉãï\é¶Çwç¿ïW
-    8,						// çÄñ⁄ï\é¶Çwç¿ïW
-    0,						// ÉJÅ[É\Éãï\é¶Çwç¿ïW
-    0,						// ï\é¶Çxç¿ïW
-    FBMP_COL_BLACK,			// ï∂éöêF
-    FBMP_COL_WHITE,			// îwåiêF
-    FBMP_COL_BLK_SDW,		// ï∂éöâeêF
-    0,						// ï∂éöä‘äuÇw
-    16,						// ï∂éöä‘äuÇx
-    BMPLIST_LRKEY_SKIP,		// ÉyÅ[ÉWÉXÉLÉbÉvÉ^ÉCÉv
-    FONT_SYSTEM,			// ï∂éöéwíË
-    0,						// ÇaÇfÉJÅ[É\Éã(allow)ï\é¶ÉtÉâÉO(0:ON,1:OFF)
-    NULL,                   // ÉèÅ[ÉN
+    0,	// „É™„Çπ„ÉàÈ†ÖÁõÆÊï∞
+    0,	// Ë°®Á§∫ÊúÄÂ§ßÈ†ÖÁõÆÊï∞
+    0,						// „É©„Éô„É´Ë°®Á§∫Ôº∏Â∫ßÊ®ô
+    8,						// È†ÖÁõÆË°®Á§∫Ôº∏Â∫ßÊ®ô
+    0,						// „Ç´„Éº„ÇΩ„É´Ë°®Á§∫Ôº∏Â∫ßÊ®ô
+    0,						// Ë°®Á§∫ÔºπÂ∫ßÊ®ô
+    FBMP_COL_BLACK,			// ÊñáÂ≠óËâ≤
+    FBMP_COL_WHITE,			// ËÉåÊôØËâ≤
+    FBMP_COL_BLK_SDW,		// ÊñáÂ≠óÂΩ±Ëâ≤
+    0,						// ÊñáÂ≠óÈñìÈöîÔº∏
+    16,						// ÊñáÂ≠óÈñìÈöîÔºπ
+    BMPLIST_LRKEY_SKIP,		// „Éö„Éº„Ç∏„Çπ„Ç≠„ÉÉ„Éó„Çø„Ç§„Éó
+    FONT_SYSTEM,			// ÊñáÂ≠óÊåáÂÆö
+    0,						// Ôº¢Ôºß„Ç´„Éº„ÇΩ„É´(allow)Ë°®Á§∫„Éï„É©„Ç∞(0:ON,1:OFF)
+    NULL,                   // „ÉØ„Éº„ÇØ
 };
 
 
 //-----------------------------------------------------------------
-//  ÉåÉMÉÖÉåÅ[ÉVÉáÉìÉäÉXÉg
+//  „É¨„ÇÆ„É•„É¨„Éº„Ç∑„Éß„É≥„É™„Çπ„Éà
 //-----------------------------------------------------------------
 
 typedef struct{
-    BMPLIST_WORK* lw;		 // ÉÅÉjÉÖÅ[ÉèÅ[ÉNÉ|ÉCÉìÉ^
-    BMPLIST_WORK* subLw;		 // ÉÅÉjÉÖÅ[ÉèÅ[ÉNÉ|ÉCÉìÉ^
+    BMPLIST_WORK* lw;		 // „É°„Éã„É•„Éº„ÉØ„Éº„ÇØ„Éù„Ç§„É≥„Çø
+    BMPLIST_WORK* subLw;		 // „É°„Éã„É•„Éº„ÉØ„Éº„ÇØ„Éù„Ç§„É≥„Çø
 	BMPLIST_DATA*   menulist;
 	BMPLIST_DATA*   subMenulist;
     FIELDSYS_WORK* pFSys;
-	STRBUF* MsgString;							// âÔòbÉÅÉbÉZÅ[ÉWóp
-	STRBUF* MsgString2;							// âÔòbÉÅÉbÉZÅ[ÉWóp
-	STRBUF* TalkString;							// âÔòbÉÅÉbÉZÅ[ÉWóp
-	STRBUF* TalkStringEx;							// âÔòbÉÅÉbÉZÅ[ÉWExpandóp
+	STRBUF* MsgString;							// ‰ºöË©±„É°„ÉÉ„Çª„Éº„Ç∏Áî®
+	STRBUF* MsgString2;							// ‰ºöË©±„É°„ÉÉ„Çª„Éº„Ç∏Áî®
+	STRBUF* TalkString;							// ‰ºöË©±„É°„ÉÉ„Çª„Éº„Ç∏Áî®
+	STRBUF* TalkStringEx;							// ‰ºöË©±„É°„ÉÉ„Çª„Éº„Ç∏ExpandÁî®
     GF_BGL_BMPWIN winReg;
     GF_BGL_BMPWIN win;
     GF_BGL_BMPWIN winSub;
-	GF_BGL_BMPWIN MsgWin;									// âÔòbÉEÉCÉìÉhÉE
-	WORDSET* WordSet;					// ÉÅÉbÉZÅ[ÉWìWäJópÉèÅ[ÉNÉ}ÉlÅ[ÉWÉÉÅ[
-	MSGDATA_MANAGER* MsgManager;				// ñºëOì¸óÕÉÅÉbÉZÅ[ÉWÉfÅ[É^É}ÉlÅ[ÉWÉÉÅ[
+	GF_BGL_BMPWIN MsgWin;									// ‰ºöË©±„Ç¶„Ç§„É≥„Éâ„Ç¶
+	WORDSET* WordSet;					// „É°„ÉÉ„Çª„Éº„Ç∏Â±ïÈñãÁî®„ÉØ„Éº„ÇØ„Éû„Éç„Éº„Ç∏„É£„Éº
+	MSGDATA_MANAGER* MsgManager;				// ÂêçÂâçÂÖ•Âäõ„É°„ÉÉ„Çª„Éº„Ç∏„Éá„Éº„Çø„Éû„Éç„Éº„Ç∏„É£„Éº
     ZKN_HEIGHT_GRAM_PTR pZKN;
     u16* retWk;
-    int	msgIndex;								// èIóπåüèoópÉèÅ[ÉN
+    int	msgIndex;								// ÁµÇ‰∫ÜÊ§úÂá∫Áî®„ÉØ„Éº„ÇØ
     u16 selectReg;
     u16 selectSub;
     int seq;
@@ -116,7 +116,7 @@ typedef struct{
 
 //------------------------------------------------------------------
 /**
- * ÉÅÉbÉZÅ[ÉWÇÇæÇ∑
+ * „É°„ÉÉ„Çª„Éº„Ç∏„Çí„Å†„Åô
  * @param   wk		
  */
 //------------------------------------------------------------------
@@ -139,7 +139,7 @@ static void _messageOn(_EV_REGULATION_LIST_WORK* wk, int msg)
 
 //------------------------------------------------------------------
 /**
- * ÉÅÉbÉZÅ[ÉWÇè¡Ç∑
+ * „É°„ÉÉ„Çª„Éº„Ç∏„ÇíÊ∂à„Åô
  * @param   wk		
  */
 //------------------------------------------------------------------
@@ -155,7 +155,7 @@ static void _messageDelete(_EV_REGULATION_LIST_WORK* wk, BOOL bDisp)
 
 //------------------------------------------------------------------
 /**
- * CUPñºÇÇOÇ…ìoò^
+ * CUPÂêç„ÇíÔºê„Å´ÁôªÈå≤
  * @param   wk		
  */
 //------------------------------------------------------------------
@@ -168,7 +168,7 @@ static void _registerCupName(_EV_REGULATION_LIST_WORK* wk,int regNo)
 
 //------------------------------------------------------------------
 /**
- * ÉåÉMÉÖÉåÅ[ÉVÉáÉìÉäÉXÉgï\é¶
+ * „É¨„ÇÆ„É•„É¨„Éº„Ç∑„Éß„É≥„É™„Çπ„ÉàË°®Á§∫
  * @param   wk		
  */
 //------------------------------------------------------------------
@@ -229,7 +229,7 @@ static void _deleteRegulationList(_EV_REGULATION_LIST_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ÉåÉMÉÖÉåÅ[ÉVÉáÉìëIëÉÅÉjÉÖÅ[ ëIëíÜ
+ * „É¨„ÇÆ„É•„É¨„Éº„Ç∑„Éß„É≥ÈÅ∏Êäû„É°„Éã„É•„Éº ÈÅ∏Êäû‰∏≠
  * @param   _EV_REGULATION_LIST_WORK wk
  */
 //------------------------------------------------------------------
@@ -242,11 +242,11 @@ static int _regulationListFunc(_EV_REGULATION_LIST_WORK* wk)
     ret = BmpListMain(wk->lw);
     BmpListPosGet( wk->lw, NULL, &wk->selectReg );
 
-	//BMPÉäÉXÉgÇÃëSëÃà íuÇéÊìæ
-	tmp_pos_bak = wk->pos_bak;		//ëﬁî
+	//BMP„É™„Çπ„Éà„ÅÆÂÖ®‰Ωì‰ΩçÁΩÆ„ÇíÂèñÂæó
+	tmp_pos_bak = wk->pos_bak;		//ÈÄÄÈÅø
 	BmpListDirectPosGet( wk->lw, &wk->pos_bak );
 
-	//ÉJÅ[É\ÉãÇ™ìÆÇ¢ÇΩÇ©É`ÉFÉbÉN
+	//„Ç´„Éº„ÇΩ„É´„ÅåÂãï„ÅÑ„Åü„Åã„ÉÅ„Çß„ÉÉ„ÇØ
 	if( tmp_pos_bak != wk->pos_bak ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
@@ -264,7 +264,7 @@ static int _regulationListFunc(_EV_REGULATION_LIST_WORK* wk)
         wk->pFSys->regulation = NULL;
         _deleteRegulationList(wk);
         return -1;
-      default:  // ÉåÉMÉÖÉåÅ[ÉVÉáÉìëIë
+      default:  // „É¨„ÇÆ„É•„É¨„Éº„Ç∑„Éß„É≥ÈÅ∏Êäû
 		Snd_SePlay( SEQ_SE_DP_SELECT );
         wk->pFSys->regulation = Data_GetRegulation(wk->pFSys->savedata, ret);
         break;
@@ -274,7 +274,7 @@ static int _regulationListFunc(_EV_REGULATION_LIST_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ÉTÉuÉEÉCÉìÉhÉEï\é¶Å@OKÇ©ÉãÅ[ÉãÉ`ÉFÉbÉNÇ©
+ * „Çµ„Éñ„Ç¶„Ç§„É≥„Éâ„Ç¶Ë°®Á§∫„ÄÄOK„Åã„É´„Éº„É´„ÉÅ„Çß„ÉÉ„ÇØ„Åã
  * @param   wk		
  */
 //------------------------------------------------------------------
@@ -337,11 +337,11 @@ static int _regulationSubFunc(_EV_REGULATION_LIST_WORK* wk)
     ret = BmpListMain(wk->subLw);
     BmpListPosGet( wk->subLw, NULL, &wk->selectSub );
     
-	//BMPÉäÉXÉgÇÃëSëÃà íuÇéÊìæ
-	tmp_pos_bak = wk->pos_bak2;		//ëﬁî
+	//BMP„É™„Çπ„Éà„ÅÆÂÖ®‰Ωì‰ΩçÁΩÆ„ÇíÂèñÂæó
+	tmp_pos_bak = wk->pos_bak2;		//ÈÄÄÈÅø
 	BmpListDirectPosGet( wk->subLw, &wk->pos_bak2 );
 
-	//ÉJÅ[É\ÉãÇ™ìÆÇ¢ÇΩÇ©É`ÉFÉbÉN
+	//„Ç´„Éº„ÇΩ„É´„ÅåÂãï„ÅÑ„Åü„Åã„ÉÅ„Çß„ÉÉ„ÇØ
 	if( tmp_pos_bak != wk->pos_bak2 ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
@@ -353,7 +353,7 @@ static int _regulationSubFunc(_EV_REGULATION_LIST_WORK* wk)
 		Snd_SePlay( SEQ_SE_DP_SELECT );
         ret = -1;
         break;
-      default:  // submenuåàíË
+      default:  // submenuÊ±∫ÂÆö
 		Snd_SePlay( SEQ_SE_DP_SELECT );
         _deleteRegulationList(wk);
         break;
@@ -371,22 +371,22 @@ static int _regulationSubFunc(_EV_REGULATION_LIST_WORK* wk)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ÉåÉMÉÖÉåÅ[ÉVÉáÉìèåèï\é¶
+ * @brief	„É¨„ÇÆ„É•„É¨„Éº„Ç∑„Éß„É≥Êù°‰ª∂Ë°®Á§∫
  * @param	FIELDSYS_WORK
  * @retval	none
  */
 //-----------------------------------------------------------------------------
 
 static u8 getTbl[]={
-  REGULATION_POKE_NUM,      //É|ÉPÉÇÉìêî
-  REGULATION_LEVEL,         //É|ÉPÉÇÉìÇÃÉåÉxÉã
-  REGULATION_TOTAL_LEVEL,   //É|ÉPÉÇÉìÇÃÉåÉxÉãçáåv
-  REGULATION_HEIGHT,        //êgí∑   0.2 - 9.9m 
-  REGULATION_WEIGHT,       //ëÃèd    1-99  kg
-  REGULATION_EVOLUTION,     //êiâªÉ|ÉPÉÇÉìÇ©Ç«Ç§Ç©
-  REGULATION_LEGEND,       // ì`ê‡ånóLñ≥
-  REGULATION_BOTH_MONSTER, //ìØÇ∂É|ÉPÉÇÉìÇnÇjÇ©ÅH
-  REGULATION_BOTH_ITEM,    //ìØÇ∂ìπãÔÇ™ÇnÇjÇ©ÅH
+  REGULATION_POKE_NUM,      //„Éù„Ç±„É¢„É≥Êï∞
+  REGULATION_LEVEL,         //„Éù„Ç±„É¢„É≥„ÅÆ„É¨„Éô„É´
+  REGULATION_TOTAL_LEVEL,   //„Éù„Ç±„É¢„É≥„ÅÆ„É¨„Éô„É´ÂêàË®à
+  REGULATION_HEIGHT,        //Ë∫´Èï∑   0.2 - 9.9m 
+  REGULATION_WEIGHT,       //‰ΩìÈáç    1-99  kg
+  REGULATION_EVOLUTION,     //ÈÄ≤Âåñ„Éù„Ç±„É¢„É≥„Åã„Å©„ÅÜ„Åã
+  REGULATION_LEGEND,       // ‰ºùË™¨Á≥ªÊúâÁÑ°
+  REGULATION_BOTH_MONSTER, //Âêå„Åò„Éù„Ç±„É¢„É≥ÔºØÔº´„ÅãÔºü
+  REGULATION_BOTH_ITEM,    //Âêå„ÅòÈÅìÂÖ∑„ÅåÔºØÔº´„ÅãÔºü
 };
 
 static u8 getMsg[]={
@@ -431,12 +431,12 @@ static void _createViewWindow(_EV_REGULATION_LIST_WORK* wk)
     _registerCupName(wk, wk->selectReg-1);
 //    Data_GetRegulationName(wk->pFSys->savedata, wk->selectReg, pBuf2, HEAPID_FIELD);
   //  WORDSET_RegisterWord( pWordSet, 0, pBuf2, PM_MALE, TRUE, PM_LANG);
-    MSGMAN_GetString( msgman, msg_dbc_rule26, pBuf1 );   //Ç©Ç¡Ç’
+    MSGMAN_GetString( msgman, msg_dbc_rule26, pBuf1 );   //„Åã„Å£„Å∑
     WORDSET_ExpandStr(pWordSet, pBuf2, pBuf1 );
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf2, _HEAD_LEFT + _COLON, 0, MSG_NO_PUT, NULL);
 
     for(i = 0;i < 9;i++){
-        MSGMAN_GetString( msgman, msg_dbc_rule06+i, pBuf1 );   // çÄñ⁄ëSïî
+        MSGMAN_GetString( msgman, msg_dbc_rule06+i, pBuf1 );   // È†ÖÁõÆÂÖ®ÈÉ®
         GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT,
                            _STATE_UP + _HEIGHT*i, MSG_NO_PUT, NULL);
     }
@@ -445,40 +445,40 @@ static void _createViewWindow(_EV_REGULATION_LIST_WORK* wk)
         ans = Regulation_GetParam(wk->pFSys->regulation,getTbl[i]);
         msg = getMsg[i];
         switch(getTbl[i]){
-          case REGULATION_POKE_NUM:      //É|ÉPÉÇÉìêî
+          case REGULATION_POKE_NUM:      //„Éù„Ç±„É¢„É≥Êï∞
             WORDSET_RegisterNumber(pWordSet, 0,
                                    ans, 1,
                                    NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
             break;
-          case REGULATION_LEVEL:         //É|ÉPÉÇÉìÇÃÉåÉxÉã
+          case REGULATION_LEVEL:         //„Éù„Ç±„É¢„É≥„ÅÆ„É¨„Éô„É´
             // ----------------------------------------------------------------------------
             // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-            // êîéöç∂ë§ÇÃÉpÉfÉBÉìÉOÇèúãé
+            // Êï∞Â≠óÂ∑¶ÂÅ¥„ÅÆ„Éë„Éá„Ç£„É≥„Ç∞„ÇíÈô§Âéª
             WORDSET_RegisterNumber(pWordSet, 0,
                                    ans, 3,
                                    NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
             // ----------------------------------------------------------------------------
             break;
-          case REGULATION_TOTAL_LEVEL:   //É|ÉPÉÇÉìÇÃÉåÉxÉãçáåv
+          case REGULATION_TOTAL_LEVEL:   //„Éù„Ç±„É¢„É≥„ÅÆ„É¨„Éô„É´ÂêàË®à
             if(ans == 0){
                 msg = msg_dbc_rule27;
             }
             else{
                 // ----------------------------------------------------------------------------
                 // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-                // êîéöç∂ë§ÇÃÉpÉfÉBÉìÉOÇèúãé
+                // Êï∞Â≠óÂ∑¶ÂÅ¥„ÅÆ„Éë„Éá„Ç£„É≥„Ç∞„ÇíÈô§Âéª
                 WORDSET_RegisterNumber(pWordSet, 0,
                                        ans, 3,
                                        NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
                 // ----------------------------------------------------------------------------
             }
             break;
-          case REGULATION_HEIGHT:        //êgí∑   0.2 - 9.9m
+          case REGULATION_HEIGHT:        //Ë∫´Èï∑   0.2 - 9.9m
             // ----------------------------------------------------------------------------
             // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-            // êîéöç∂ë§ÇÃÉpÉfÉBÉìÉOÇèúãéÅAâpåÍî≈ÇÃÇ›ï\é¶Ç∑ÇÈílÇÉCÉìÉ`ånÇ…ïœä∑
+            // Êï∞Â≠óÂ∑¶ÂÅ¥„ÅÆ„Éë„Éá„Ç£„É≥„Ç∞„ÇíÈô§Âéª„ÄÅËã±Ë™ûÁâà„ÅÆ„ÅøË°®Á§∫„Åô„ÇãÂÄ§„Çí„Ç§„É≥„ÉÅÁ≥ª„Å´Â§âÊèõ
 #if PM_LANG == LANG_ENGLISH
-            ans = ans >= 0 ? PG5_CM_TO_INCH(ans * 10) : -PG5_CM_TO_INCH(-ans * 10);		// ans ÇÕ 10cm íPà 
+            ans = ans >= 0 ? PG5_CM_TO_INCH(ans * 10) : -PG5_CM_TO_INCH(-ans * 10);		// ans „ÅØ 10cm Âçò‰Ωç
             WORDSET_RegisterNumber(pWordSet, 0,
                                    abs(ans/12), 2,
                                    NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
@@ -501,10 +501,10 @@ static void _createViewWindow(_EV_REGULATION_LIST_WORK* wk)
                 msg++;
             }
             break;
-          case REGULATION_WEIGHT:       //ëÃèd    1-99  kg
+          case REGULATION_WEIGHT:       //‰ΩìÈáç    1-99  kg
             // ----------------------------------------------------------------------------
             // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-            // êîéöç∂ë§ÇÃÉpÉfÉBÉìÉOÇèúãéÅAâpåÍî≈ÇÃÇ›ï\é¶Ç∑ÇÈílÇÉ|ÉìÉhånÇ…ïœä∑
+            // Êï∞Â≠óÂ∑¶ÂÅ¥„ÅÆ„Éë„Éá„Ç£„É≥„Ç∞„ÇíÈô§Âéª„ÄÅËã±Ë™ûÁâà„ÅÆ„ÅøË°®Á§∫„Åô„ÇãÂÄ§„Çí„Éù„É≥„ÉâÁ≥ª„Å´Â§âÊèõ
 #if PM_LANG == LANG_ENGLISH
             ans = ans >= 0 ? PG5_KG_TO_POUND(ans) : -PG5_KG_TO_POUND(-ans);
             WORDSET_RegisterNumber(pWordSet, 0,
@@ -523,10 +523,10 @@ static void _createViewWindow(_EV_REGULATION_LIST_WORK* wk)
                 msg++;
             }
             break;
-          case REGULATION_EVOLUTION:     //êiâªÉ|ÉPÉÇÉìÇ©Ç«Ç§Ç©
-          case REGULATION_LEGEND:       // ì`ê‡ånóLñ≥
-          case REGULATION_BOTH_MONSTER: //ìØÇ∂É|ÉPÉÇÉìÇnÇjÇ©ÅH
-          case REGULATION_BOTH_ITEM:    //ìØÇ∂ìπãÔÇ™ÇnÇjÇ©ÅH
+          case REGULATION_EVOLUTION:     //ÈÄ≤Âåñ„Éù„Ç±„É¢„É≥„Åã„Å©„ÅÜ„Åã
+          case REGULATION_LEGEND:       // ‰ºùË™¨Á≥ªÊúâÁÑ°
+          case REGULATION_BOTH_MONSTER: //Âêå„Åò„Éù„Ç±„É¢„É≥ÔºØÔº´„ÅãÔºü
+          case REGULATION_BOTH_ITEM:    //Âêå„ÅòÈÅìÂÖ∑„ÅåÔºØÔº´„ÅãÔºü
             if(ans == 0){
                 msg++;
             }
@@ -560,7 +560,7 @@ static void _deleteViewWindow(_EV_REGULATION_LIST_WORK* wk)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	É|ÉPÉÇÉìåüç∏
+ * @brief	„Éù„Ç±„É¢„É≥Ê§úÊüª
  * @param	FIELDSYS_WORK
  * @retval	none
  */
@@ -600,7 +600,7 @@ static BOOL _pokeCheck(_EV_REGULATION_LIST_WORK* wk)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ÉåÉMÉÖÉåÅ[ÉVÉáÉìÉCÉxÉìÉg
+ * @brief	„É¨„ÇÆ„É•„É¨„Éº„Ç∑„Éß„É≥„Ç§„Éô„É≥„Éà
  * @param	FIELDSYS_WORK
  * @retval	none
  */
@@ -645,11 +645,11 @@ static BOOL GMEVENT_RegulationList(GMEVENT_CONTROL * event)
         ret = _regulationListFunc(wk);
         if( ret == -1){
             *wk->retWk = REGULATION_RET_END;
-            wk->seq = _FREE;  // ÉåÉMÉÖÉåÅ[ÉVÉáÉìåàÇﬂÇ»Ç©Ç¡ÇΩ
+            wk->seq = _FREE;  // „É¨„ÇÆ„É•„É¨„Éº„Ç∑„Éß„É≥Ê±∫„ÇÅ„Å™„Åã„Å£„Åü
         }
         else if(ret == 2){
             *wk->retWk = REGULATION_RET_NONE;
-            wk->seq = _FREE;  // ÉåÉMÉÖÉåÅ[ÉVÉáÉìåàÇﬂÇ»Ç©Ç¡ÇΩ
+            wk->seq = _FREE;  // „É¨„ÇÆ„É•„É¨„Éº„Ç∑„Éß„É≥Ê±∫„ÇÅ„Å™„Åã„Å£„Åü
         }
         else if(ret == 1){
             wk->seq = _SUB_MENU;
@@ -671,10 +671,10 @@ static BOOL GMEVENT_RegulationList(GMEVENT_CONTROL * event)
             wk->seq = _VIEW_MENU;
         }
         break;
-      case _CHECK:  // èåèÇÃåüç∏
+      case _CHECK:  // Êù°‰ª∂„ÅÆÊ§úÊüª
         if(_pokeCheck(wk)){
             *wk->retWk = REGULATION_RET_OK;
-            wk->seq = _FREE;  // äÆóπ
+            wk->seq = _FREE;  // ÂÆå‰∫Ü
         }
         else{
             wk->seq = _ERROR_KEYWAIT;
@@ -746,7 +746,7 @@ static _EV_REGULATION_LIST_WORK* _createRegulationWork(FIELDSYS_WORK * pFSys)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ÉåÉMÉÖÉåÅ[ÉVÉáÉìÉÅÉjÉÖÅ[ãNìÆ
+ * @brief	„É¨„ÇÆ„É•„É¨„Éº„Ç∑„Éß„É≥„É°„Éã„É•„ÉºËµ∑Âãï
  * @param	FIELDSYS_WORK
  * @retval	none
  */

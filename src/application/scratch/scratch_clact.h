@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	scratch_clact.h
- * @brief	uƒXƒNƒ‰ƒbƒ`vƒZƒ‹ƒAƒNƒ^[
+ * @brief	ã€Œã‚¹ã‚¯ãƒ©ãƒƒãƒã€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
  * @author	Satoshi Nohara
  * @date	07.12.11
  */
@@ -16,35 +16,35 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚ÌŽí—Þ‚Ì”iƒ}ƒ‹ƒ`ƒZƒ‹Eƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚ÍŽg—p‚µ‚È‚¢j
+//CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ç¨®é¡žã®æ•°ï¼ˆï¼ãƒžãƒ«ãƒã‚»ãƒ«ãƒ»ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã¯ä½¿ç”¨ã—ãªã„ï¼‰
 #define SCRATCH_RESOURCE_NUM		(4)
 
 enum{
-	DISP_MAIN	= 0,		//ã‰æ–Ê
-	DISP_SUB	= 1,		//‰º‰æ–Ê
+	DISP_MAIN	= 0,		//ä¸Šç”»é¢
+	DISP_SUB	= 1,		//ä¸‹ç”»é¢
 };
 
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 typedef struct{
-	CLACT_SET_PTR 			ClactSet;							//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	RendData;							//ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	ResMan[SCRATCH_RESOURCE_NUM];		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	//resƒIƒuƒWƒFtbl(ã‰º‰æ–Ê)
+	CLACT_SET_PTR 			ClactSet;							//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	RendData;							//ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	ResMan[SCRATCH_RESOURCE_NUM];		//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
+	//resã‚ªãƒ–ã‚¸ã‚§tbl(ä¸Šä¸‹ç”»é¢)
 	CLACT_U_RES_OBJ_PTR 	ResObjTbl[SCRATCH_RES_OBJ_MAX][SCRATCH_RESOURCE_NUM];
 }SCRATCH_CLACT;
 
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
 extern void					ScratchClact_InitCellActor( SCRATCH_CLACT* wk );

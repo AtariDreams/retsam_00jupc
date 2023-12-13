@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_a22c.c
- * @bfief	ƒ|ƒPƒbƒ`iƒAƒvƒŠNoa22Fƒ}[ƒLƒ“ƒOƒ}ƒbƒvj@ƒRƒ“ƒgƒ[ƒ‹
+ * @bfief	ãƒã‚±ãƒƒãƒï¼ˆã‚¢ãƒ—ãƒªNoa22ï¼šãƒžãƒ¼ã‚­ãƒ³ã‚°ãƒžãƒƒãƒ—ï¼‰ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -19,11 +19,11 @@
 #include "poketch_prv.h"
 
 //==============================================================
-// ˆÚ“®ƒ|ƒPƒ‚ƒ“î•ñ‚ÌXV•p“x“™
+// ç§»å‹•ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ã®æ›´æ–°é »åº¦ç­‰
 //==============================================================
 enum {
-	MOVEPOKE_WALKCOUNT_SHOW = 5,	///< ”ñ•\Ž¦¨•\Ž¦‚ÉØ‚è‘Ö‚¦‚é•à”
-	MOVEPOKE_SHOW_PERCENTAGE = 50,	///< ”ñ•\Ž¦¨•\Ž¦Ø‚è‘Ö‚¦Žž‚Ì¬Œ÷Šm—¦i100•ª—¦j
+	MOVEPOKE_WALKCOUNT_SHOW = 5,	///< éžè¡¨ç¤ºâ†’è¡¨ç¤ºã«åˆ‡ã‚Šæ›¿ãˆã‚‹æ­©æ•°
+	MOVEPOKE_SHOW_PERCENTAGE = 50,	///< éžè¡¨ç¤ºâ†’è¡¨ç¤ºåˆ‡ã‚Šæ›¿ãˆæ™‚ã®æˆåŠŸç¢ºçŽ‡ï¼ˆ100åˆ†çŽ‡ï¼‰
 };
 
 
@@ -57,7 +57,7 @@ typedef struct {
 }APPWORK;
 
 //==============================================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //==============================================================
 enum {
 	SEQ_INIT,
@@ -87,7 +87,7 @@ static BOOL check_update_player_location( APPWORK* wk );
 
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠ‚Ì§ŒäŠÖ”ƒAƒhƒŒƒX‚ðƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‹‚É“n‚·
+ * ã‚¢ãƒ—ãƒªã®åˆ¶å¾¡é–¢æ•°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«æ¸¡ã™
  */
 //------------------------------------------------------------------
 static void NitroStaticInit(void)
@@ -97,12 +97,12 @@ static void NitroStaticInit(void)
 
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠ‰Šú‰»ŠÖ”
+ * ã‚¢ãƒ—ãƒªåˆæœŸåŒ–é–¢æ•°
  *
- * @param   wk_ptr		ƒ[ƒNƒAƒhƒŒƒX‚ð•Û‘¶‚·‚éƒ|ƒCƒ“ƒ^‚ÌƒAƒhƒŒƒX
- * @param   conwk		ƒAƒvƒŠ‚ª–{‘Ì‚©‚çî•ñ‚ðŽæ“¾‚·‚éÛ‚É•K—v‚Æ‚È‚éƒ[ƒNiƒAƒvƒŠ‚Ö‚Í”ñŒöŠJj
- * @param   bgl			BGLƒ‚ƒWƒ…[ƒ‹ƒwƒbƒ_
- * @param   param		ƒJƒ‰[Eƒ‚ƒmƒNƒ‚È‚Ç“®ìƒ^ƒCƒviƒAƒvƒŠˆË‘¶j
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   conwk		ã‚¢ãƒ—ãƒªãŒæœ¬ä½“ã‹ã‚‰æƒ…å ±ã‚’å–å¾—ã™ã‚‹éš›ã«å¿…è¦ã¨ãªã‚‹ãƒ¯ãƒ¼ã‚¯ï¼ˆã‚¢ãƒ—ãƒªã¸ã¯éžå…¬é–‹ï¼‰
+ * @param   bgl			BGLãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ˜ãƒƒãƒ€
+ * @param   param		ã‚«ãƒ©ãƒ¼ãƒ»ãƒ¢ãƒŽã‚¯ãƒ­ãªã©å‹•ä½œã‚¿ã‚¤ãƒ—ï¼ˆã‚¢ãƒ—ãƒªä¾å­˜ï¼‰
  */
 //------------------------------------------------------------------
 static BOOL Poketch_A22_Init(void **wk_ptr, CONTACT_WORK* conwk, GF_BGL_INI* bgl, u32 param)
@@ -126,9 +126,9 @@ static BOOL Poketch_A22_Init(void **wk_ptr, CONTACT_WORK* conwk, GF_BGL_INI* bgl
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‚ÌƒZƒbƒgƒAƒbƒv
+ * ãƒ¯ãƒ¼ã‚¯ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -189,9 +189,9 @@ static BOOL SetupWork( APPWORK *wk, CONTACT_WORK* conwk, GF_BGL_INI* bgl, u32 pa
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‚ÌƒNƒŠ[ƒ“ƒAƒbƒv
+ * ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒƒãƒ—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -209,9 +209,9 @@ static void CleanupWork( APPWORK *wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠƒƒCƒ“ŠÖ”
+ * ã‚¢ãƒ—ãƒªãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- * @param   wk_adrs		ƒ[ƒNƒAƒhƒŒƒX
+ * @param   wk_adrs		ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -242,9 +242,9 @@ static void Poketch_A22_Main(TCB_PTR tcb, void *wk_adrs)
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠI—¹ŠÖ”
+ * ã‚¢ãƒ—ãƒªçµ‚äº†é–¢æ•°
  *
- * @param   wk_adrs		ƒ[ƒNƒAƒhƒŒƒX
+ * @param   wk_adrs		ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -255,10 +255,10 @@ static void Poketch_A22_Quit(void *wk_adrs)
 
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒX•ÏX
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		•ÏXŒã‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		å¤‰æ›´å¾Œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
@@ -278,11 +278,11 @@ static void ChangeSeq(APPWORK *wk, u32 seq)
 
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF‰æ–Ê\’z
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šç”»é¢æ§‹ç¯‰
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅƒAƒvƒŠI—¹
+ * @retval  BOOL		TRUEã§ã‚¢ãƒ—ãƒªçµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL SeqInit(APPWORK *wk)
@@ -305,17 +305,17 @@ static BOOL SeqInit(APPWORK *wk)
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF“ü—Í‘Ò‚¿
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šå…¥åŠ›å¾…ã¡
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅƒAƒvƒŠI—¹
+ * @retval  BOOL		TRUEã§ã‚¢ãƒ—ãƒªçµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL SeqWaitTouch(APPWORK *wk)
 {
 	enum {
-		MARK_HIT_RANGE = 8,		// ’†S“_‚©‚çã‰º¶‰E‚É‚±‚ê‚¾‚¯iƒhƒbƒgj”½‰ž‚·‚é
+		MARK_HIT_RANGE = 8,		// ä¸­å¿ƒç‚¹ã‹ã‚‰ä¸Šä¸‹å·¦å³ã«ã“ã‚Œã ã‘ï¼ˆãƒ‰ãƒƒãƒˆï¼‰åå¿œã™ã‚‹
 	};
 
 	u32 x, y;
@@ -360,11 +360,11 @@ static BOOL SeqWaitTouch(APPWORK *wk)
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒhƒ‰ƒbƒO’†
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ‰ãƒ©ãƒƒã‚°ä¸­
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅƒAƒvƒŠI—¹
+ * @retval  BOOL		TRUEã§ã‚¢ãƒ—ãƒªçµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL SeqDrag(APPWORK *wk)
@@ -394,11 +394,11 @@ static BOOL SeqDrag(APPWORK *wk)
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFI—¹ˆ—
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅƒAƒvƒŠI—¹
+ * @retval  BOOL		TRUEã§ã‚¢ãƒ—ãƒªçµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL SeqQuit(APPWORK *wk)
@@ -426,7 +426,7 @@ static BOOL SeqQuit(APPWORK *wk)
 
 //------------------------------------------------------------------
 /**
- * ƒ}[ƒN‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ð•À‚×’¼‚µ
+ * ãƒžãƒ¼ã‚¯ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’ä¸¦ã¹ç›´ã—
  *
  * @param   wk		
  * @param   top_id		
@@ -462,12 +462,12 @@ static void replace_priority( APPWORK* wk, int top_id )
 }
 //------------------------------------------------------------------
 /**
- * ƒvƒŒƒCƒ„[‚ÌˆÊ’uiƒ^ƒEƒ“ƒ}ƒbƒvÀ•WjXVƒ`ƒFƒbƒN
- * XV‚³‚ê‚½‚çvpara‚Ì“à—e‚à‘‚«Š·‚¦‚é
+ * ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ï¼ˆã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—åº§æ¨™ï¼‰æ›´æ–°ãƒã‚§ãƒƒã‚¯
+ * æ›´æ–°ã•ã‚ŒãŸã‚‰vparaã®å†…å®¹ã‚‚æ›¸ãæ›ãˆã‚‹
  *
  * @param   wk		
  *
- * @retval  BOOL	TRUE‚ÅXV‚³‚ê‚½
+ * @retval  BOOL	TRUEã§æ›´æ–°ã•ã‚ŒãŸ
  */
 //------------------------------------------------------------------
 static BOOL check_update_player_location( APPWORK* wk )
@@ -476,7 +476,7 @@ static BOOL check_update_player_location( APPWORK* wk )
 
 	if(PoketchGetPlayerMoveTrg(wk->conwk))
 	{
-		// Ž©‹@‚ÌƒOƒŠƒbƒhiƒ}ƒbƒvãj‚ª•Ï‚í‚Á‚½‚çXV
+		// è‡ªæ©Ÿã®ã‚°ãƒªãƒƒãƒ‰ï¼ˆãƒžãƒƒãƒ—ä¸Šï¼‰ãŒå¤‰ã‚ã£ãŸã‚‰æ›´æ–°
 		int x, y;
 		FLDTOWNMAP_GetBlockXZ( PoketchGetFieldSysWork(wk->conwk), &x, &y );
 		if( (x != wk->vpara.player_x) || (y != wk->vpara.player_y) )
@@ -486,7 +486,7 @@ static BOOL check_update_player_location( APPWORK* wk )
 			ret = TRUE;
 		}
 
-		// ˆÚ“®ƒ|ƒPƒ‚ƒ“‚Ìó‘Ô‚É‚æ‚Á‚Ä‚àXV
+		// ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹ã«ã‚ˆã£ã¦ã‚‚æ›´æ–°
 		if( ++(wk->movepokeWalkCount) >= MOVEPOKE_WALKCOUNT_SHOW )
 		{
 			int i;

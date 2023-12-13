@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_local.c
- * @brief	’ÊM‚Ì’áƒŒƒxƒ‹‚È”Ä—pŠÖ”‚ğW‚ß‚½‚à‚Ì
+ * @brief	é€šä¿¡ã®ä½ãƒ¬ãƒ™ãƒ«ãªæ±ç”¨é–¢æ•°ã‚’é›†ã‚ãŸã‚‚ã®
  * @author	Katsumi Ohno
  * @date    2005.09.12
  */
@@ -16,10 +16,10 @@
 
 //==============================================================================
 /**
- * ƒT[ƒrƒX”Ô†‚É‘Î‰‚µ‚½q‹@Ú‘±MAXl”‚ğæ“¾
- * ƒT[ƒrƒX”Ô†‚Í include/communication/comm_def.h‚É‚ ‚è‚Ü‚·
- * @param   serviceNo ƒT[ƒrƒX”Ô†
- * @retval  q‹@‘ä”
+ * ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·ã«å¯¾å¿œã—ãŸå­æ©Ÿæ¥ç¶šMAXäººæ•°ã‚’å–å¾—
+ * ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·ã¯ include/communication/comm_def.hã«ã‚ã‚Šã¾ã™
+ * @param   serviceNo ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
+ * @retval  å­æ©Ÿå°æ•°
  */
 //==============================================================================
 
@@ -71,10 +71,10 @@ u16 CommLocalGetServiceMaxEntry(u16 serviceNo)
 
 //==============================================================================
 /**
- * ƒT[ƒrƒX”Ô†‚É‘Î‰‚µ‚½q‹@Ú‘±MAXl”‚ğæ“¾
- * ƒT[ƒrƒX”Ô†‚Í include/communication/comm_def.h‚É‚ ‚è‚Ü‚·
- * @param   serviceNo ƒT[ƒrƒX”Ô†
- * @retval  q‹@‘ä”
+ * ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·ã«å¯¾å¿œã—ãŸå­æ©Ÿæ¥ç¶šMAXäººæ•°ã‚’å–å¾—
+ * ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·ã¯ include/communication/comm_def.hã«ã‚ã‚Šã¾ã™
+ * @param   serviceNo ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
+ * @retval  å­æ©Ÿå°æ•°
  */
 //==============================================================================
 
@@ -125,8 +125,8 @@ u16 CommLocalGetServiceMinEntry(u16 serviceNo)
 
 //==============================================================================
 /**
- * ƒ†ƒjƒIƒ“ƒOƒ‹[ƒv¯•ÊŠÖ”
- * @param   serviceNo ƒT[ƒrƒX”Ô†
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ã‚°ãƒ«ãƒ¼ãƒ—è­˜åˆ¥é–¢æ•°
+ * @param   serviceNo ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
  * @retval  yes=union
  */
 //==============================================================================
@@ -146,8 +146,8 @@ BOOL CommLocalIsUnionGroup(int serviceNo)
 
 //==============================================================================
 /**
- * @brief   WiFiƒOƒ‹[ƒv¯•ÊŠÖ”
- * @param   serviceNo ƒT[ƒrƒX”Ô†
+ * @brief   WiFiã‚°ãƒ«ãƒ¼ãƒ—è­˜åˆ¥é–¢æ•°
+ * @param   serviceNo ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
  * @retval  yes=union
  */
 //==============================================================================
@@ -174,8 +174,8 @@ BOOL CommLocalIsWiFiGroup(int serviceNo)
 
 //==============================================================================
 /**
- * @brief   WiFi4lÚ‘±ƒOƒ‹[ƒv¯•ÊŠÖ”
- * @param   serviceNo ƒT[ƒrƒX”Ô†
+ * @brief   WiFi4äººæ¥ç¶šã‚°ãƒ«ãƒ¼ãƒ—è­˜åˆ¥é–¢æ•°
+ * @param   serviceNo ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
  * @retval  yes=union
  */
 //==============================================================================
@@ -184,8 +184,8 @@ BOOL CommLocalIsWiFiQuartetGroup(int serviceNo)
 {
     switch(serviceNo){
       case COMM_MODE_WIFI_POFIN:   // WIFI	POFIN
-      case COMM_MODE_LOBBY_WIFI:   // WIFIƒƒr[
-      case COMM_MODE_CLUB_WIFI:   // WIFIƒNƒ‰ƒu
+      case COMM_MODE_LOBBY_WIFI:   // WIFIãƒ­ãƒ“ãƒ¼
+      case COMM_MODE_CLUB_WIFI:   // WIFIã‚¯ãƒ©ãƒ–
         return TRUE;
     }
     return FALSE;
@@ -193,8 +193,8 @@ BOOL CommLocalIsWiFiQuartetGroup(int serviceNo)
 
 //==============================================================================
 /**
- * @brief   WiFi—F’BÚ‘±‚ÌƒOƒ‹[ƒv¯•ÊŠÖ”
- * @param   serviceNo ƒT[ƒrƒX”Ô†
+ * @brief   WiFiå‹é”æ¥ç¶šã®ã‚°ãƒ«ãƒ¼ãƒ—è­˜åˆ¥é–¢æ•°
+ * @param   serviceNo ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
  * @retval  yes=union
  */
 //==============================================================================
@@ -216,8 +216,8 @@ BOOL CommLocalIsWiFiFriendGroup(int serviceNo)
 
 //==============================================================================
 /**
- * @brief   ƒ_ƒCƒŒƒNƒgƒR[ƒi[¯•ÊŠÖ”
- * @param   serviceNo ƒT[ƒrƒX”Ô†
+ * @brief   ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼è­˜åˆ¥é–¢æ•°
+ * @param   serviceNo ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
  * @retval  yes=union
  */
 //==============================================================================
@@ -225,12 +225,12 @@ BOOL CommLocalIsWiFiFriendGroup(int serviceNo)
 BOOL CommLocalIsDirectCounterGroup(int serviceNo)
 {
     switch(serviceNo){
-      case COMM_MODE_BATTLE_SINGLE:    // 1vs1 ƒoƒgƒ‹
-      case COMM_MODE_BATTLE_DOUBLE:    // 1vs1 ƒ_ƒuƒ‹ƒoƒgƒ‹
-      case COMM_MODE_BATTLE_MIX_1ON1:  // 1vs1 ƒ~ƒbƒNƒXƒoƒgƒ‹
-      case COMM_MODE_BATTLE_MULTI:     // 2vs2 ƒ}ƒ‹ƒ`ƒoƒgƒ‹
-      case COMM_MODE_BATTLE_MIX_2ON2:  // 2vs2 ƒ~ƒbƒNƒXƒoƒgƒ‹
-      case COMM_MODE_CONTEST:           // 2-4  ƒRƒ“ƒeƒXƒg
+      case COMM_MODE_BATTLE_SINGLE:    // 1vs1 ãƒãƒˆãƒ«
+      case COMM_MODE_BATTLE_DOUBLE:    // 1vs1 ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
+      case COMM_MODE_BATTLE_MIX_1ON1:  // 1vs1 ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
+      case COMM_MODE_BATTLE_MULTI:     // 2vs2 ãƒãƒ«ãƒãƒãƒˆãƒ«
+      case COMM_MODE_BATTLE_MIX_2ON2:  // 2vs2 ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
+      case COMM_MODE_CONTEST:           // 2-4  ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
         return TRUE;
     }
     return FALSE;

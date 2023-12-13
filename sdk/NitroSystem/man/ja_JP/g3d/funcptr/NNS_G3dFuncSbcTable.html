@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 	<TITLE>NNS_G3dFuncSbcTable</TITLE>
@@ -12,7 +12,7 @@
 
 <H1 align="left">NNS_G3dFuncSbcTable</H1>
 
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nnsys/g3d/sbc.h&gt;
@@ -21,12 +21,12 @@ typedef void (*NNSG3dFuncSbc)(NNSG3dRS* rs, u32 opt);
 
 NNSG3dFuncSbc NNS_G3dFuncSbcTable[NNS_G3D_SBC_COMMAND_NUM];</CODE></PRE>
 </DL>
-<H2>����</H2>
-<P><A href="../sbc/NNS_G3dDraw.html" target="_self"><CODE>NNS_G3dDraw</CODE></A>�֐��̎��s���ɁASBC�ƌĂ΂����̃o�C�g�R�[�h�����߂��܂����A�X��SBC���߂ɑΉ�����֐��̃|�C���^��<CODE>NNS_G3dFuncSbcTable</CODE>�z��Ɋi�[����Ă��܂��B���̔z��̗v�f��ύX����ƁA�Ή�����SBC���߂ɑ΂��Ď��s����鏈����؂�ւ��邱�Ƃ��ł��܂��B<CODE>NNSG3dFuncSbc</CODE>�^�̊֐��́A<CODE>NNSG3dRS</CODE>�\���̂ւ̃|�C���^�Ɠǂݍ���SBC�R�}���h�̃I�v�V�����i�R�r�b�g�j�������ɂƂ�܂��B</P>
-<H2>�Q��</H2>
-<P><A href="../sbc/SBCCallback.html">SBC�ƃR�[���o�b�N</A>�@<A href="../sbc/NNS_G3dDraw.html" target="_self"><CODE>NNS_G3dDraw</CODE></A></P>
-<H2>����</H2>
-<P>2004/10/19 ����</P>
+<H2>説明</H2>
+<P><A href="../sbc/NNS_G3dDraw.html" target="_self"><CODE>NNS_G3dDraw</CODE></A>関数の実行時に、SBCと呼ばれる一種のバイトコードを解釈しますが、個々のSBC命令に対応する関数のポインタが<CODE>NNS_G3dFuncSbcTable</CODE>配列に格納されています。この配列の要素を変更すると、対応するSBC命令に対して実行される処理を切り替えることができます。<CODE>NNSG3dFuncSbc</CODE>型の関数は、<CODE>NNSG3dRS</CODE>構造体へのポインタと読み込んだSBCコマンドのオプション（３ビット）を引数にとります。</P>
+<H2>参照</H2>
+<P><A href="../sbc/SBCCallback.html">SBCとコールバック</A>　<A href="../sbc/NNS_G3dDraw.html" target="_self"><CODE>NNS_G3dDraw</CODE></A></P>
+<H2>履歴</H2>
+<P>2004/10/19 初版</P>
 </BODY>
 
 </HTML>

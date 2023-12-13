@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending.c
- * @brief	ƒGƒ“ƒfƒBƒ“ƒO ƒƒCƒ“§Œä
+ * @brief	ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚° ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡
  * @author	matsuda
- * @date	2008.04.07(ŒŽ)
+ * @date	2008.04.07(æœˆ)
  */
 //==============================================================================
 #include "common.h"
@@ -33,62 +33,62 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒGƒ“ƒfƒBƒ“ƒO‚ÅŽg—p‚·‚éƒq[ƒvƒTƒCƒY
+///ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º
 #define HEAPSIZE_ENDING_DEMO	(0x80000)
 
 
 //--------------------------------------------------------------
-//	CL_ACT—p‚Ì’è”’è‹`
+//	CL_ACTç”¨ã®å®šæ•°å®šç¾©
 //--------------------------------------------------------------
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJŽn
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define ENDING_OAM_START_MAIN			(0)
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define ENDING_OAM_END_MAIN				(128)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define ENDING_OAM_AFFINE_START_MAIN		(0)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define ENDING_OAM_AFFINE_END_MAIN		(32)
-///ƒTƒu	OAMŠÇ——ÌˆæEŠJŽn
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define ENDING_OAM_START_SUB				(0)
-///ƒTƒu	OAMŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define ENDING_OAM_END_SUB				(128)
-///ƒTƒu ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn
+///ã‚µãƒ– ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define ENDING_OAM_AFFINE_START_SUB		(0)
-///ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define ENDING_OAM_AFFINE_END_SUB		(32)
 
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒLƒƒƒ‰ƒNƒ^IDŠÇ—”(ã‰æ–Ê{‰º‰æ–Ê)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDç®¡ç†æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define ENDING_CHAR_MAX					(48 + 48)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define ENDING_CHAR_VRAMSIZE_MAIN		(1024 * 0x40)	//64K
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define ENDING_CHAR_VRAMSIZE_SUB			(512 * 0x20)	//32K
 
-///ƒƒCƒ“‰æ–Ê{ƒTƒu‰æ–Ê‚ÅŽg—p‚·‚éƒAƒNƒ^[‘”
-#define ENDING_ACTOR_MAX					(64 + 64)	//ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê
+///ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‹ã‚µãƒ–ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç·æ•°
+#define ENDING_ACTOR_MAX					(64 + 64)	//ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢
 
-///OBJ‚ÅŽg—p‚·‚éƒpƒŒƒbƒg–{”(ã‰æ–Ê{‰º‰æ–Ê)
+///OBJã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define ENDING_OAM_PLTT_MAX				(16 + 16)
 
-///OAMƒŠƒ\[ƒXFƒLƒƒƒ‰“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define ENDING_OAMRESOURCE_CHAR_MAX		(ENDING_CHAR_MAX)
-///OAMƒŠƒ\[ƒXFƒpƒŒƒbƒg“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define ENDING_OAMRESOURCE_PLTT_MAX		(ENDING_OAM_PLTT_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define ENDING_OAMRESOURCE_CELL_MAX		(64)
-///OAMƒŠƒ\[ƒXFƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define ENDING_OAMRESOURCE_CELLANM_MAX	(64)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒžãƒ«ãƒã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define ENDING_OAMRESOURCE_MCELL_MAX		(8)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define ENDING_OAMRESOURCE_MCELLANM_MAX	(8)
 
 
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰Ý’è
+//	ã‚«ãƒ¡ãƒ©è¨­å®š
 //--------------------------------------------------------------
 #define FOOTPRINT_CAMERA_MODE			GF_CAMERA_PERSPECTIV	//(GF_CAMERA_ORTHO)
 
@@ -99,16 +99,16 @@
 #define FOOTPRINT_CAMERA_TY				( -FX32_ONE * 8 )
 #define FOOTPRINT_CAMERA_TZ				( 0 )
 
-///ƒJƒƒ‰‚Ì’Ž‹“_‚Ü‚Å‚Ì‹——£
+///ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–ç‚¹ã¾ã§ã®è·é›¢
 #define FOOTPRINT_CAMERA_DISTANCE		(0x7c000)	//(0x96 << FX32_SHIFT)
 
-///ƒJƒƒ‰ƒAƒ“ƒOƒ‹
+///ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«
 static const CAMERA_ANGLE EndingCameraAngle = {
 	FX_GET_ROTA_NUM(0), FX_GET_ROTA_NUM(0), FX_GET_ROTA_NUM(0),
 };
 
 //==============================================================================
-//	CLACT—pƒf[ƒ^
+//	CLACTç”¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static	const TCATS_OAM_INIT EndingTcats = {
 	ENDING_OAM_START_MAIN, ENDING_OAM_END_MAIN,
@@ -136,7 +136,7 @@ static const TCATS_RESOURCE_NUM_LIST EndingResourceList = {
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void Ending_Update(TCB_PTR tcb, void *work);
 static void VBlankFunc( void * work );
@@ -162,20 +162,20 @@ static void Ending_FinalVramBankSet(GF_BGL_INI *bgl);
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT EndingProc_Init( PROC * proc, int * seq )
 {
 	ENDING_MAIN_WORK *emw;
 	
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -195,11 +195,11 @@ PROC_RESULT EndingProc_Init( PROC * proc, int * seq )
 //	simple_3DBGInit(HEAPID_ENDING_DEMO);
 	emw->g3Dman = Ending_3D_Init(HEAPID_ENDING_DEMO);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	emw->pfd = PaletteFadeInit(HEAPID_ENDING_DEMO);
 	PaletteFadeWorkAllocSet(emw->pfd, FADE_MAIN_BG, 0x200, HEAPID_ENDING_DEMO);
 	PaletteFadeWorkAllocSet(emw->pfd, FADE_SUB_BG, 0x200, HEAPID_ENDING_DEMO);
-	PaletteFadeWorkAllocSet(emw->pfd, FADE_MAIN_OBJ, 0x200-0x40, HEAPID_ENDING_DEMO);	//’ÊMƒAƒCƒRƒ“-ƒ[ƒJƒ‰ƒCƒY—p
+	PaletteFadeWorkAllocSet(emw->pfd, FADE_MAIN_OBJ, 0x200-0x40, HEAPID_ENDING_DEMO);	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³-ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨
 	PaletteFadeWorkAllocSet(emw->pfd, FADE_SUB_OBJ, 0x200, HEAPID_ENDING_DEMO);
 	PaletteTrans_AutoSet(emw->pfd, TRUE);
 	
@@ -209,27 +209,27 @@ PROC_RESULT EndingProc_Init( PROC * proc, int * seq )
 
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-	//VRAMŠ„‚è“–‚ÄÝ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	Ending_VramBankSet(emw->bgl);
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	emw->msgman = MSGMAN_Create( 
 		MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_stafflist_dat, HEAPID_ENDING_DEMO );
 
-	//ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹ŠJ‚«‚Á‚Ï‚È‚µ‚É‚·‚é
+	//ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«é–‹ãã£ã±ãªã—ã«ã™ã‚‹
 	emw->ending_hdl = ArchiveDataHandleOpen(ARC_ENDING, HEAPID_ENDING_DEMO);
 
-	//ƒJƒƒ‰ì¬
+	//ã‚«ãƒ¡ãƒ©ä½œæˆ
 	Ending_CameraInit(emw);
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€ì¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	emw->csp=CATS_AllocMemory(HEAPID_ENDING_DEMO);
 	CATS_SystemInit(emw->csp,&EndingTcats,&EndingCcmm,ENDING_OAM_PLTT_MAX);
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(
 		NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -238,16 +238,16 @@ PROC_RESULT EndingProc_Init( PROC * proc, int * seq )
 	CATS_ResourceManagerInit(emw->csp,emw->crp,&EndingResourceList);
 	CLACT_U_SetSubSurfaceMatrix(CATS_EasyRenderGet(emw->csp), 0, ENDING_SUB_ACTOR_DISTANCE);
 
-	//í’“ƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+	//å¸¸é§ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 	Ending_DefaultBGLoad(emw);
 
-	//ƒXƒ^ƒbƒtƒ[ƒ‹§ŒäƒVƒXƒeƒ€
+	//ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«åˆ¶å¾¡ã‚·ã‚¹ãƒ†ãƒ 
 	emw->list_work = PlEnding_ListWork_Create( 
 		emw->bgl, -240, FRAME_M_STAFFROLL, SYSTEM_FONT_PAL, emw->msgman );
 	emw->list_work_sub = PlEnding_ListWork_Create( 
 		emw->bgl, -240-192-16, FRAME_S_STAFFROLL, SYSTEM_FONT_PAL, emw->msgman );
 
-	// ƒXƒ^ƒbƒtƒ[ƒ‹‚Ì‰ÂŽ‹”ÍˆÍÝ’è
+	// ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«ã®å¯è¦–ç¯„å›²è¨­å®š
 //	G2_SetWnd0Position( 0, 94, 255, 192 );
 	G2_SetWnd0Position( 0, 192-24, 255, 192 );
 	G2_SetWnd0InsidePlane( GX_WND_PLANEMASK_ALL ^ GX_WND_PLANEMASK_BG1, TRUE );
@@ -260,7 +260,7 @@ PROC_RESULT EndingProc_Init( PROC * proc, int * seq )
 	GX_SetVisibleWnd(GX_WNDMASK_W0);
 	GXS_SetVisibleWnd(GX_WNDMASK_W0);
 	
-	//ƒƒCƒ“‰æ–ÊÝ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢è¨­å®š
 	sys.disp3DSW = DISP_3D_TO_SUB;
 	GF_Disp_DispSelect();
 	GF_Disp_DispOn();
@@ -271,9 +271,9 @@ PROC_RESULT EndingProc_Init( PROC * proc, int * seq )
 
 	sys_VBlankFuncChange(VBlankFunc, emw);
 
-	Snd_DataSetByScene( SND_SCENE_ENDING, SEQ_BLD_ENDING, 1 );	//ƒGƒ“ƒfƒBƒ“ƒO‹ÈÄ¶
+	Snd_DataSetByScene( SND_SCENE_ENDING, SEQ_BLD_ENDING, 1 );	//ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°æ›²å†ç”Ÿ
 
-	//^‚ÁˆÃ‚É‚µ‚Ä‚¨‚­
+	//çœŸã£æš—ã«ã—ã¦ãŠã
 	SetBrightness(BRIGHTNESS_BLACK, ENDING_FADE_PLANE, MASK_DOUBLE_DISPLAY);
 	WIPE_SetMstBrightness( WIPE_DISP_MAIN, 0 );
 	WIPE_SetMstBrightness( WIPE_DISP_SUB, 0 );
@@ -291,12 +291,12 @@ PROC_RESULT EndingProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT EndingProc_Main( PROC * proc, int * seq )
@@ -315,7 +315,7 @@ PROC_RESULT EndingProc_Main( PROC * proc, int * seq )
 		SEQ_OUT,
 	};
 	
-	//ƒXƒ^ƒbƒtƒ[ƒ‹§Œä
+	//ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«åˆ¶å¾¡
 	if(emw->list_work != NULL){
 		PlEnding_ListWork_Scroll( emw->list_work, 1 );
 		emw->list_end_flag = PlEnding_ListWork_Scroll( emw->list_work_sub, 1 );
@@ -328,7 +328,7 @@ PROC_RESULT EndingProc_Main( PROC * proc, int * seq )
 			emw->skip_seq = SKIPSEQ_START;
 		}
 	}
-	//ƒXƒLƒbƒv§Œä
+	//ã‚¹ã‚­ãƒƒãƒ—åˆ¶å¾¡
 	switch(emw->skip_seq){
 	case SKIPSEQ_NO_SKIP:
 		break;
@@ -338,11 +338,11 @@ PROC_RESULT EndingProc_Main( PROC * proc, int * seq )
 				EndingSceneSetup_Unload(emw, emw->scene_no);
 				emw->scene_init_ok = FALSE;
 			}
-			//‹P“x•ÏXƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚Ä‚¢‚½ê‡‚Í‹­§I—¹
+			//è¼åº¦å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ã¦ã„ãŸå ´åˆã¯å¼·åˆ¶çµ‚äº†
 			if(IsFinishedBrightnessChg(MASK_DOUBLE_DISPLAY) == FALSE){
 				BrightnessChgReset(MASK_DOUBLE_DISPLAY);
 			}
-			//VramÝ’è•ÏX(Šù‚É•ÏXÏ‚Ý‚Ìê‡‚Í’†‚Å‚Í‚¶‚©‚ê‚é)
+			//Vramè¨­å®šå¤‰æ›´(æ—¢ã«å¤‰æ›´æ¸ˆã¿ã®å ´åˆã¯ä¸­ã§ã¯ã˜ã‹ã‚Œã‚‹)
 			FinalSceneVramSetup(emw);
 			
 			emw->scene_no = ENDING_SCENE_COPYRIGHT;
@@ -359,7 +359,7 @@ PROC_RESULT EndingProc_Main( PROC * proc, int * seq )
 	}
 	
 	
-	//ƒƒCƒ“
+	//ãƒ¡ã‚¤ãƒ³
 	switch(*seq){
 	case SEQ_SCENE_LOAD:
 		if(emw->skip_seq == SKIPSEQ_NO_SKIP || emw->skip_seq == SKIPSEQ_SKIP_END){
@@ -388,11 +388,11 @@ PROC_RESULT EndingProc_Main( PROC * proc, int * seq )
 #ifdef PM_DEBUG
 #ifdef DEBUG_ENDING_CAMERA
 	if(emw->debug_mode == 0){
-		//ƒfƒoƒbƒOƒJƒƒ‰ˆÚ“®
+		//ãƒ‡ãƒãƒƒã‚°ã‚«ãƒ¡ãƒ©ç§»å‹•
 		Debug_CameraMove(emw);
 	}
 	else{
-		//ƒfƒoƒbƒO”z’u•¨‚Ì”z’uŠÔŠu§Œä
+		//ãƒ‡ãƒãƒƒã‚°é…ç½®ç‰©ã®é…ç½®é–“éš”åˆ¶å¾¡
 		EndingTool_Debug_ModelLineArrangeSetting(emw, MODEL_LINE_0);
 	}
 	if(sys.trg & PAD_BUTTON_SELECT){
@@ -410,12 +410,12 @@ PROC_RESULT EndingProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT EndingProc_End( PROC * proc, int * seq )
@@ -431,36 +431,36 @@ PROC_RESULT EndingProc_End( PROC * proc, int * seq )
 		FinalSceneVramExit(emw);
 	}
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ð•ú
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	MSGMAN_Delete( emw->msgman );
 	
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	CATS_ResourceDestructor_S(emw->csp,emw->crp);
 	CATS_FreeMemory(emw->csp);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(emw->pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(emw->pfd, FADE_SUB_BG);
 	PaletteFadeWorkAllocFree(emw->pfd, FADE_MAIN_OBJ);
 	PaletteFadeWorkAllocFree(emw->pfd, FADE_SUB_OBJ);
 	PaletteFadeFree(emw->pfd);
 
-	//ƒJƒƒ‰íœ
+	//ã‚«ãƒ¡ãƒ©å‰Šé™¤
 	Ending_CameraExit(emw);
 
-	//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+	//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 	ArchiveDataHandleClose( emw->ending_hdl );
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	sys_DeleteHeap( HEAPID_ENDING_DEMO );
 
 	return PROC_RES_FINISH;
@@ -505,7 +505,7 @@ static void EndingSceneVramExit(ENDING_MAIN_WORK *emw)
 	GF_BGL_VisibleSet( FRAME_M_STAFFROLL, VISIBLE_OFF );
 	GF_BGL_VisibleSet( FRAME_S_STAFFROLL, VISIBLE_OFF );
 
-	// BG_SYSTEM‰ð•ú
+	// BG_SYSTEMè§£æ”¾
 	GF_BGL_BGControlExit( emw->bgl, FRAME_S_BG );
 	GF_BGL_BGControlExit( emw->bgl, FRAME_S_STAFFROLL );
 	GF_BGL_BGControlExit( emw->bgl, FRAME_S_EFF );
@@ -520,7 +520,7 @@ static void EndingSceneVramExit(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒBƒi[ƒŒ—p‚ÉVRAMƒoƒ“ƒNÝ’è‚ð•ÏX
+ * @brief   ãƒ•ã‚£ãƒŠãƒ¼ãƒ¬ç”¨ã«VRAMãƒãƒ³ã‚¯è¨­å®šã‚’å¤‰æ›´
  *
  * @param   emw		
  */
@@ -528,7 +528,7 @@ static void EndingSceneVramExit(ENDING_MAIN_WORK *emw)
 void FinalSceneVramSetup(ENDING_MAIN_WORK *emw)
 {
 	if(emw->list_work == NULL){
-		return;	//Šù‚É•ÏX‚³‚ê‚Ä‚¢‚é
+		return;	//æ—¢ã«å¤‰æ›´ã•ã‚Œã¦ã„ã‚‹
 	}
 	EndingSceneVramExit(emw);
 	
@@ -551,7 +551,7 @@ static void FinalSceneVramExit(ENDING_MAIN_WORK *emw)
 {
 	GF_ASSERT(emw->list_work == NULL);
 	
-	// BG_SYSTEM‰ð•ú
+	// BG_SYSTEMè§£æ”¾
 	GF_BGL_BGControlExit( emw->bgl, FRAME_FIN_M_BG );
 	GF_BGL_BGControlExit( emw->bgl, FRAME_FIN_M_CAP_A );
 	GF_BGL_BGControlExit( emw->bgl, FRAME_FIN_M_CAP_B );
@@ -561,7 +561,7 @@ static void FinalSceneVramExit(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -572,10 +572,10 @@ static void VBlankFunc( void * work )
 {
 	ENDING_MAIN_WORK *emw = work;
 	
-	// ƒZƒ‹ƒAƒNƒ^[Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(emw->pfd);
 	
@@ -586,9 +586,9 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNÝ’è‚ðs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Ending_VramBankSet(GF_BGL_INI *bgl)
@@ -596,27 +596,27 @@ static void Ending_VramBankSet(GF_BGL_INI *bgl)
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_23_G,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_23_G,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_0_F			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_0_F			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -631,22 +631,22 @@ static void Ending_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME_M_STAFFROLL	ƒXƒ^ƒbƒtƒ[ƒ‹
+			///<FRAME_M_STAFFROLL	ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
 				FRAME_BGPRI_M_STAFFROLL, 0, 0, FALSE
 			},
-			///<FRAME_M_BG			”wŒi
+			///<FRAME_M_BG			èƒŒæ™¯
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
 				FRAME_BGPRI_M_BG, 0, 0, FALSE
 			},
-			///<FRAME_M_CAPTURE		ƒLƒƒƒvƒ`ƒƒ‰æ‘œ(Šg’£BG)
+			///<FRAME_M_CAPTURE		ã‚­ãƒ£ãƒ—ãƒãƒ£ç”»åƒ(æ‹¡å¼µBG)
 			{
 				0, 0, 0, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
 				GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_23,
@@ -668,26 +668,26 @@ static void Ending_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_ScrollSet(bgl, FRAME_M_CAPTURE, GF_BGL_SCROLL_X_SET, 0);
 		GF_BGL_ScrollSet(bgl, FRAME_M_CAPTURE, GF_BGL_SCROLL_Y_SET, 0);
 
-		//3D–Ê
+		//3Dé¢
 		G2_SetBG0Priority(FRAME_BGPRI_3D);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME_S_STAFFROLL	ƒXƒ^ƒbƒtƒ[ƒ‹
+			///<FRAME_S_STAFFROLL	ã‚¹ã‚¿ãƒƒãƒ•ãƒ­ãƒ¼ãƒ«
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
 				FRAME_BGPRI_S_STAFFROLL, 0, 0, FALSE
 			},
-			///<FRAME_S_EFF			ƒGƒtƒFƒNƒg(Œ»ó–¢Žg—p)
+			///<FRAME_S_EFF			ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ(ç¾çŠ¶æœªä½¿ç”¨)
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
 				FRAME_BGPRI_S_EFF, 0, 0, FALSE
 			},
-			///<FRAME_S_BG			”wŒi
+			///<FRAME_S_BG			èƒŒæ™¯
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
@@ -721,9 +721,9 @@ static void Ending_VramBankSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNÝ’è‚ðs‚¤(ƒtƒBƒi[ƒŒ—p)
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†(ãƒ•ã‚£ãƒŠãƒ¼ãƒ¬ç”¨)
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Ending_FinalVramBankSet(GF_BGL_INI *bgl)
@@ -731,27 +731,27 @@ static void Ending_FinalVramBankSet(GF_BGL_INI *bgl)
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_256_AB,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_23_G,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_BG_256_AB,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_23_G,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -766,22 +766,22 @@ static void Ending_FinalVramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME_FIN_M_BG			”wŒi
+			///<FRAME_FIN_M_BG			èƒŒæ™¯
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
 				FRAME_BGPRI_M_BG, 0, 0, FALSE
 			},
-			///<FRAME_FIN_M_CAP_A		ƒLƒƒƒvƒ`ƒƒ‰æ‘œ(Šg’£BG)
+			///<FRAME_FIN_M_CAP_A		ã‚­ãƒ£ãƒ—ãƒãƒ£ç”»åƒ(æ‹¡å¼µBG)
 			{
 				0, 0, 0, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
 				GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x20000, GX_BG_EXTPLTT_23,
 				FRAME_BGPRI_FIN_M_CAPTURE_TOP, 0, 0, FALSE
 			},
-			///<FRAME_FIN_M_CAP_B		ƒLƒƒƒvƒ`ƒƒ‰æ‘œ(Šg’£BG)
+			///<FRAME_FIN_M_CAP_B		ã‚­ãƒ£ãƒ—ãƒãƒ£ç”»åƒ(æ‹¡å¼µBG)
 			{
 				0, 0, 0, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
 				GX_BG_SCRBASE_0x2800, GX_BG_CHARBASE_0x30000, GX_BG_EXTPLTT_23,
@@ -803,10 +803,10 @@ static void Ending_FinalVramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_ScrollSet(bgl, FRAME_FIN_M_CAP_B, GF_BGL_SCROLL_X_SET, 0);
 		GF_BGL_ScrollSet(bgl, FRAME_FIN_M_CAP_B, GF_BGL_SCROLL_Y_SET, 0);
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME_FIN_S_BG			”wŒi
+			///<FRAME_FIN_S_BG			èƒŒæ™¯
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
@@ -824,9 +824,9 @@ static void Ending_FinalVramBankSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -844,14 +844,14 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘SƒV[ƒ“‹¤’Ê‚ÅŽg—p‚·‚éƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ðÝ’è
+ * @brief   å…¨ã‚·ãƒ¼ãƒ³å…±é€šã§ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
  * @param   emw		
  */
 //--------------------------------------------------------------
 static void Ending_DefaultBGLoad(ENDING_MAIN_WORK *emw)
 {
-	//ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	//ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	PaletteWorkSet_Arc(emw->pfd, ARC_ENDING, NARC_ending_font_NCLR, HEAPID_ENDING_DEMO, 
 		FADE_MAIN_BG, 0x20, SYSTEM_FONT_PAL * 16);
 	PaletteWorkSet_Arc(emw->pfd, ARC_ENDING, NARC_ending_font_NCLR, HEAPID_ENDING_DEMO, 
@@ -860,7 +860,7 @@ static void Ending_DefaultBGLoad(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹XV
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«æ›´æ–°
  *
  * @param   emw		
  *
@@ -884,14 +884,14 @@ static void Model3D_Update(ENDING_MAIN_WORK *emw)
 	
 	MTX_Identity33(&rot);
 
-	//‚R‚c•`‰æŠJŽn
+	//ï¼“ï¼¤æç”»é–‹å§‹
 	GF_G3X_Reset();
 	
 	GFC_AttachCamera(emw->camera);
-	GFC_SetCameraView(FOOTPRINT_CAMERA_MODE, emw->camera); //ŽË‰eÝ’è
+	GFC_SetCameraView(FOOTPRINT_CAMERA_MODE, emw->camera); //å°„å½±è¨­å®š
 	GFC_CameraLookAt();
 
-	// ƒ‰ƒCƒg‚ÆƒAƒ“ƒrƒGƒ“ƒg
+	// ãƒ©ã‚¤ãƒˆã¨ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
 	switch(emw->scene_no){
 	case ENDING_SCENE_MAP1:
 		NNS_G3dGlbLightVector( 0, 1897, -3600, -466 );
@@ -924,20 +924,20 @@ static void Model3D_Update(ENDING_MAIN_WORK *emw)
 		NNS_G3dGlbMaterialColorSpecEmi( GX_RGB( 31,31,31 ), GX_RGB( 31,31,31 ), FALSE );
 		break;
 	}
-	//íŽžON‚Ìƒ‰ƒCƒg
+	//å¸¸æ™‚ONã®ãƒ©ã‚¤ãƒˆ
 	NNS_G3dGlbLightVector( 3, 0, -FX32_ONE, 0 );
 	NNS_G3dGlbLightColor( 3, GX_RGB( 28,28,28 ) );
 	
-	// ˆÊ’uÝ’è
+	// ä½ç½®è¨­å®š
 	NNS_G3dGlbSetBaseTrans(&trans);
-	// Šp“xÝ’è
+	// è§’åº¦è¨­å®š
 	NNS_G3dGlbSetBaseRot(&rot);
-	// ƒXƒP[ƒ‹Ý’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
 	NNS_G3dGlbSetBaseScale(&scale_vec);
 
 //	NNS_G3dGlbFlush();
 	
-	// •`‰æ
+	// æç”»
 	NNS_G3dGePushMtx();
 	{
 		int line, i;
@@ -953,9 +953,9 @@ static void Model3D_Update(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰ì¬
+ * @brief   ã‚«ãƒ¡ãƒ©ä½œæˆ
  *
- * @param   emw		ƒQ[ƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   emw		ã‚²ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Ending_CameraInit(ENDING_MAIN_WORK *emw)
@@ -969,7 +969,7 @@ static void Ending_CameraInit(ENDING_MAIN_WORK *emw)
 	GFC_InitCameraTDA(&target, FOOTPRINT_CAMERA_DISTANCE, &EndingCameraAngle,
 		FOOTPRINT_CAMERA_PERSPWAY, FOOTPRINT_CAMERA_MODE, FALSE, emw->camera);
 
-//	GFC_SetCameraAngleRot(&cam_rotate, emw->camera);	//­‚µãŒü‚«‚ÌƒJƒƒ‰‚É‚·‚é
+//	GFC_SetCameraAngleRot(&cam_rotate, emw->camera);	//å°‘ã—ä¸Šå‘ãã®ã‚«ãƒ¡ãƒ©ã«ã™ã‚‹
 //	GFC_SetCameraAngleRev(&cam_rev_ang, emw->camera);
 	GFC_SetCameraPos(&cam_pos, emw->camera);
 	GFC_SetLookTarget(&t_pos, emw->camera);
@@ -982,9 +982,9 @@ static void Ending_CameraInit(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‰ð•ú
+ * @brief   ã‚«ãƒ¡ãƒ©è§£æ”¾
  *
- * @param   emw		ƒQ[ƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   emw		ã‚²ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Ending_CameraExit(ENDING_MAIN_WORK *emw)
@@ -994,9 +994,9 @@ static void Ending_CameraExit(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘«Õƒ{[ƒh—p3DBG‰Šú‰»ŠÖ”
+ * @brief   è¶³è·¡ãƒœãƒ¼ãƒ‰ç”¨3DBGåˆæœŸåŒ–é–¢æ•°
  * 
- * @param   ƒq[ƒvID
+ * @param   ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 static GF_G3DMAN * Ending_3D_Init(int heap_id)
@@ -1010,28 +1010,28 @@ static GF_G3DMAN * Ending_3D_Init(int heap_id)
 
 static void EndingSimpleSetUp(void)
 {
-	// ‚R‚cŽg—p–Ê‚ÌÝ’è(•\Ž¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// ŠeŽí•`‰æƒ‚[ƒh‚ÌÝ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜Ž)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚ÌÝ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚ÌÝ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘«Õƒ{[ƒh—p3DBGI—¹ˆ—
+ * @brief   è¶³è·¡ãƒœãƒ¼ãƒ‰ç”¨3DBGçµ‚äº†å‡¦ç†
  *
  * @param   g3Dman		
  */
@@ -1043,7 +1043,7 @@ static void Ending_3D_Exit(GF_G3DMAN *g3Dman)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO‹@”\FƒJƒƒ‰ˆÚ“®
+ * @brief   ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ï¼šã‚«ãƒ¡ãƒ©ç§»å‹•
  *
  * @param   emw		
  */
@@ -1058,10 +1058,10 @@ static void Debug_CameraMove(ENDING_MAIN_WORK *emw)
 	int mode = 0;
 	VecFx32 print_vec;
 	enum{
-		MODE_ROTATE, 		//Ž©“]
-		MODE_SHIFT,			//•½sˆÚ“®
-		MODE_DISTANCE,		//‹——£
-		MODE_ANGLE_REV,		//Œö“]
+		MODE_ROTATE, 		//è‡ªè»¢
+		MODE_SHIFT,			//å¹³è¡Œç§»å‹•
+		MODE_DISTANCE,		//è·é›¢
+		MODE_ANGLE_REV,		//å…¬è»¢
 	};
 	static CAMERA_ANGLE cam_up = {0, 0, 0};
 	
@@ -1103,7 +1103,7 @@ static void Debug_CameraMove(ENDING_MAIN_WORK *emw)
 			return;
 		}
 		GFC_SetCameraAngleRot(&cam_up,emw->camera);
-	//	GFC_SetCamUp(&cam_up, emw->camera);	//­‚µãŒü‚«‚ÌƒJƒƒ‰‚É‚·‚é
+	//	GFC_SetCamUp(&cam_up, emw->camera);	//å°‘ã—ä¸Šå‘ãã®ã‚«ãƒ¡ãƒ©ã«ã™ã‚‹
 		OS_TPrintf("cam_up.x = %d, y = %d, z = %d\n", cam_up.x, cam_up.y, cam_up.z);
 		print_vec = GFC_GetLookTarget(emw->camera);
 		OS_TPrintf("target.x = %d, y = %d, z = %d\n", print_vec.x, print_vec.y, print_vec.z);
@@ -1131,7 +1131,7 @@ static void Debug_CameraMove(ENDING_MAIN_WORK *emw)
 		}
 		GFC_ShiftCamera(&move, emw->camera);
 		move = GFC_GetCameraPos(emw->camera);
-		OS_TPrintf("ƒJƒƒ‰ˆÊ’u x=%d(16i:%x), y=%d(16i:%x), z=%d(16i:%x)\n", move.x, move.x, move.y, move.y, move.z, move.z);
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©ä½ç½® x=%d(16é€²:%x), y=%d(16é€²:%x), z=%d(16é€²:%x)\n", move.x, move.x, move.y, move.y, move.z, move.z);
 		print_vec = GFC_GetLookTarget(emw->camera);
 		OS_TPrintf("target.x = %d, y = %d, z = %d\n", print_vec.x, print_vec.y, print_vec.z);
 		print_vec = GFC_GetCameraPos(emw->camera);
@@ -1159,7 +1159,7 @@ static void Debug_CameraMove(ENDING_MAIN_WORK *emw)
 		}
 		GFC_AddCameraAngleRev(&angle, emw->camera);
 		angle = GFC_GetCameraAngle(emw->camera);
-		OS_TPrintf("ƒJƒƒ‰ƒAƒ“ƒOƒ‹@x=%d, y=%d, z=%d\n", angle.x, angle.y, angle.z);
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã€€x=%d, y=%d, z=%d\n", angle.x, angle.y, angle.z);
 		print_vec = GFC_GetLookTarget(emw->camera);
 		OS_TPrintf("target.x = %d, y = %d, z = %d\n", print_vec.x, print_vec.y, print_vec.z);
 		print_vec = GFC_GetCameraPos(emw->camera);
@@ -1172,7 +1172,7 @@ static void Debug_CameraMove(ENDING_MAIN_WORK *emw)
 		if(sys.cont & PAD_KEY_DOWN){
 			GFC_AddCameraDistance(-FX32_ONE, emw->camera);
 		}
-		OS_TPrintf("ƒJƒƒ‰‹——£%d(16i:%x)\n", GFC_GetCameraDistance(emw->camera), GFC_GetCameraDistance(emw->camera));
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©è·é›¢ï¼%d(16é€²:%x)\n", GFC_GetCameraDistance(emw->camera), GFC_GetCameraDistance(emw->camera));
 		print_vec = GFC_GetLookTarget(emw->camera);
 		OS_TPrintf("target.x = %d, y = %d, z = %d\n", print_vec.x, print_vec.y, print_vec.z);
 		print_vec = GFC_GetCameraPos(emw->camera);

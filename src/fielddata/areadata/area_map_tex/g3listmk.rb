@@ -1,5 +1,5 @@
-#@‘æˆêˆø”F“Ç‚ÝŽæ‚èƒtƒ@ƒCƒ‹
-#@‘æ“ñˆø”Fíœ•”•ªiƒpƒXj
+#ã€€ç¬¬ä¸€å¼•æ•°ï¼šèª­ã¿å–ã‚Šãƒ•ã‚¡ã‚¤ãƒ«
+#ã€€ç¬¬äºŒå¼•æ•°ï¼šå‰Šé™¤éƒ¨åˆ†ï¼ˆãƒ‘ã‚¹ï¼‰
 arg = $*
 texlist = open(arg[0]);
 del = arg[1]

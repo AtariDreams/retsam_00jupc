@@ -2,13 +2,13 @@
 /**
  *
  *@file		clact_util_res.c
- *@brief	ƒZƒ‹ƒAƒNƒ^[ƒ†[ƒeƒBƒŠƒeƒBƒVƒXƒeƒ€
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã‚·ã‚¹ãƒ†ãƒ 
  *@author	tomoya takahashi	
  *@data		2005.09.01
  *
  *
- * ‚±‚ÌƒVƒXƒeƒ€‚ÍACLACT‚ğŠÈ’P‚Ég—p‚Å‚«‚é‚æ‚¤ƒŠƒ\[ƒX‚ğŠÇ—‚·‚é
- * ƒVƒXƒeƒ€‚ğ‚Ü‚Æ‚ß‚½•¨‚Å‚·B
+ * ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã¯ã€CLACTã‚’ç°¡å˜ã«ä½¿ç”¨ã§ãã‚‹ã‚ˆã†ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†ã™ã‚‹
+ * ã‚·ã‚¹ãƒ†ãƒ ã‚’ã¾ã¨ã‚ãŸç‰©ã§ã™ã€‚
  *
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -28,144 +28,144 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-//	ƒIƒuƒWƒF
+//	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+//	ã‚ªãƒ–ã‚¸ã‚§
 //	
 //=====================================
 typedef struct _CLACT_U_RES_OBJ{
-	RES_OBJ_PTR		res_obj;		// ƒŠƒ\[ƒXƒIƒuƒWƒF
-	int				type;			// ƒŠƒ\[ƒXƒ^ƒCƒv
-	void*			res_ex;			// Šg’£ƒf[ƒ^	(ƒAƒ“ƒpƒbƒNŒã‚Ìƒf[ƒ^‚ğŠi”[‚µ‚½‚èA
-									// ‚»‚ê‚¼‚ê‚ÌƒŠƒ\[ƒX‚Éˆá‚¤ƒf[ƒ^‚ğŠi”[)
+	RES_OBJ_PTR		res_obj;		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+	int				type;			// ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+	void*			res_ex;			// æ‹¡å¼µãƒ‡ãƒ¼ã‚¿	(ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸã‚Šã€
+									// ãã‚Œãã‚Œã®ãƒªã‚½ãƒ¼ã‚¹ã«é•ã†ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´)
 } CLACT_U_RES_OBJ;
 
 //-------------------------------------
 //	
-//	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ŠÇ—\‘¢‘Ì
+//	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç®¡ç†æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct _CLACT_U_RES_MANAGER{
-	RES_MANAGER_PTR res_manager;	// g—p‚·‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
-	CLACT_U_RES_OBJ*	resObj;		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒNƒg
-	int					tbl_num;	// ƒe[ƒuƒ‹”
-	int					tbl_now;	// ¡‚Ì“o˜^”
-	int					type;		// ƒŠƒ\[ƒXƒ^ƒCƒv
+	RES_MANAGER_PTR res_manager;	// ä½¿ç”¨ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	CLACT_U_RES_OBJ*	resObj;		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	int					tbl_num;	// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+	int					tbl_now;	// ä»Šã®ç™»éŒ²æ•°
+	int					type;		// ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
 } CLACT_U_RES_MANAGER;
 
 //-------------------------------------
 //	
-//	ƒf[ƒ^ŠÇ—ƒwƒbƒ_[
+//	ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ˜ãƒƒãƒ€ãƒ¼
 //	
 //=====================================
 typedef struct _CLACT_U_RES_HEADER_SUB{
 	int		id;
 	char	file_path[64];
-	int		ex[2];			// Šg’£ƒf[ƒ^
+	int		ex[2];			// æ‹¡å¼µãƒ‡ãƒ¼ã‚¿
 } CLACT_U_RES_HEADER_SUB;
 
 //-------------------------------------
 //	
-//	ƒA[ƒJƒCƒuƒf[ƒ^ŠÇ—ƒwƒbƒ_[
+//	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ˜ãƒƒãƒ€ãƒ¼
 //	
 //=====================================
 typedef struct _CLACT_U_RES_HEADER_SUBARC{
-	int		arcFile;		// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
-	int		dataIdx;		// ƒf[ƒ^idx
-	BOOL	compFlag;		// ˆ³kƒtƒ‰ƒO
+	int		arcFile;		// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+	int		dataIdx;		// ãƒ‡ãƒ¼ã‚¿idx
+	BOOL	compFlag;		// åœ§ç¸®ãƒ•ãƒ©ã‚°
 	int		id;
-	int		ex[2];			// Šg’£ƒf[ƒ^
+	int		ex[2];			// æ‹¡å¼µãƒ‡ãƒ¼ã‚¿
 } CLACT_U_RES_HEADER_SUBARC;
 
 //-------------------------------------
 //	
-//	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒwƒbƒ_[\‘¢‘Ì
+//	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct _CLACT_U_RES_HEADER{
-	void*			tbl;			// ƒwƒbƒ_[ƒe[ƒuƒ‹
-	int				tbl_num;		// ƒe[ƒuƒ‹”
-	int				type;			// ƒŠƒ\[ƒXƒ^ƒCƒv
-	u8				arc_flag;		// ƒA[ƒJƒCƒu‚³‚ê‚½ƒf[ƒ^‚©
+	void*			tbl;			// ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
+	int				tbl_num;		// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+	int				type;			// ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+	u8				arc_flag;		// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‹
 } CLACT_U_RES_HEADER;
 
 //-----------------------------------------------
 //
-//	ŒÂX‚ÌŠg’£ƒf[ƒ^
+//	å€‹ã€…ã®æ‹¡å¼µãƒ‡ãƒ¼ã‚¿
 //
 //==============================================
 //-------------------------------------
 //	
-//	ƒLƒƒƒ‰ƒNƒ^
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 //	
 //=====================================
 typedef struct {
-	NNSG2dCharacterData* pCharData;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-	int	vram_type;						// Vramƒ^ƒCƒv
+	NNSG2dCharacterData* pCharData;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	int	vram_type;						// Vramã‚¿ã‚¤ãƒ—
 } CLACT_U_RES_EX_CHAR;
 
 //-------------------------------------
 //	
-//	ƒpƒŒƒbƒg
+//	ãƒ‘ãƒ¬ãƒƒãƒˆ
 //	
 //=====================================
 typedef struct {
-	NNSG2dPaletteData* pPlttData;		// ƒpƒŒƒbƒgƒf[ƒ^
-	int	vram_type;						// Vramƒ^ƒCƒv
-	int	pltt_num;						// ƒpƒŒƒbƒgƒiƒ“ƒo[
+	NNSG2dPaletteData* pPlttData;		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+	int	vram_type;						// Vramã‚¿ã‚¤ãƒ—
+	int	pltt_num;						// ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 } CLACT_U_RES_EX_PLTT;
 
 //-------------------------------------
 //	
-//	ƒZƒ‹
+//	ã‚»ãƒ«
 //	
 //=====================================
 typedef struct {
-	NNSG2dCellDataBank* pCellData;		// ƒZƒ‹ƒf[ƒ^
+	NNSG2dCellDataBank* pCellData;		// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
 } CLACT_U_RES_EX_CELL;
 
 //-------------------------------------
 //	
-//	ƒZƒ‹ƒAƒjƒ
+//	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 //	
 //=====================================
 typedef struct {
-	NNSG2dAnimBankData* pCellANMData;	// ƒZƒ‹ƒAƒjƒƒf[ƒ^
+	NNSG2dAnimBankData* pCellANMData;	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 } CLACT_U_RES_EX_CELLANM;
 
 //-------------------------------------
 //	
-//	ƒ}ƒ‹ƒ`ƒZƒ‹
+//	ãƒãƒ«ãƒã‚»ãƒ«
 //	
 //=====================================
 typedef struct {
-	NNSG2dMultiCellDataBank* pMultiData;	// ƒ}ƒ‹ƒ`ƒZƒ‹ƒf[ƒ^
+	NNSG2dMultiCellDataBank* pMultiData;	// ãƒãƒ«ãƒã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
 } CLACT_U_RES_EX_MULTI;
 
 //-------------------------------------
 //	
-//	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+//	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 //	
 //=====================================
 typedef struct {
-	NNSG2dAnimBankData* pMultiANMData;		// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^
+	NNSG2dAnimBankData* pMultiANMData;		// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 } CLACT_U_RES_EX_MULTIANM;
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-//	ƒe[ƒuƒ‹—p
+//	ãƒ†ãƒ¼ãƒ–ãƒ«ç”¨
 static CLACT_U_RES_OBJ_PTR getCleanResObj(CLACT_U_RES_MANAGER_PTR resm);
 static void loadOneData(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_PTR resObj, const char* path, int id, int vram, int pltt_num, int type, int heap);
 static void SetArcOneData(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_PTR resObj, int arcFile, int dataIdx, BOOL compFlag, int id, int vram, int pltt_num, int type, int heap, u32 alloc_type);
@@ -173,7 +173,7 @@ static void SetArcOneData_ArcHandle(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OB
 static void* ArcHandle_Load(ARCHANDLE* p_handle, u32 dataIdx, BOOL compressedFlag, u32 heapID, u32 alloc_type);
 
 
-// ‚»‚ê‚¼‚ê‚ÌŠg’£ƒf[ƒ^ì¬
+// ãã‚Œãã‚Œã®æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ä½œæˆ
 static void makeExData(CLACT_U_RES_OBJ_PTR resObj, int type, int vram_type, int pltt_num, int heap);
 static CLACT_U_RES_EX_CHAR* makeExChar(void* res, int vram_type, int heap);
 static CLACT_U_RES_EX_PLTT* makeExPltt(void* res, int vram_type, int pltt_num, int heap);
@@ -185,11 +185,11 @@ static CLACT_U_RES_EX_MULTIANM* makeExMultiAnm(void* res, int heap);
 static void* getExData( CONST_CLACT_U_RES_OBJ_PTR resObj );
 
 
-// ‚»‚ê‚¼‚ê‚ÌŠg’£ƒf[ƒ^”jŠü
+// ãã‚Œãã‚Œã®æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ç ´æ£„
 static void delExData(CLACT_U_RES_OBJ_PTR resObj);
 
 
-// ƒwƒbƒ_[“Ç‚İ‚İ‚æ‚¤
+// ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿ã‚ˆã†
 static int getHeaderType(char* buff);
 static int getHeaderArc(char* buff);
 
@@ -216,13 +216,13 @@ static void delCopyStr(char* copy);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXŠÇ—ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
  *
- *@param	tbl_num			ƒf[ƒ^“o˜^”
- *@param	res_type		ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	heap			g—p‚·‚éƒq[ƒv
+ *@param	tbl_num			ãƒ‡ãƒ¼ã‚¿ç™»éŒ²æ•°
+ *@param	res_type		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	heap			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_RES_MANAGER_PTR	ƒZƒ‹ƒAƒNƒ^[ƒ†[ƒeƒBƒŠƒeƒBƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒ|ƒCƒ“ƒ^
+ *@return	CLACT_RES_MANAGER_PTR	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -230,23 +230,23 @@ static void delCopyStr(char* copy);
 CLACT_U_RES_MANAGER_PTR CLACT_U_ResManagerInit(int tbl_num, int res_type, int heap)
 {
 	CLACT_U_RES_MANAGER_PTR	resm;
-	int	i;	// ƒ‹[ƒv—p
+	int	i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 
-	// ƒŠƒ\[ƒXŠÇ—ƒf[ƒ^Ši”[æ‚ğì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆã‚’ä½œæˆ
 	resm = sys_AllocMemory(heap, sizeof(CLACT_U_RES_MANAGER));
 	
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	resm->res_manager = RESM_Init(tbl_num, heap);
 
-	// ƒIƒuƒWƒF“o˜^ƒe[ƒuƒ‹ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	resm->resObj = sys_AllocMemory(heap, sizeof(CLACT_U_RES_OBJ)*tbl_num);
 	memset(resm->resObj, 0, sizeof(CLACT_U_RES_OBJ)*tbl_num);
 	
 	resm->tbl_num = tbl_num;
 	resm->tbl_now = 0;
 	
-	// ƒŠƒ\[ƒXƒ^ƒCƒv‘ã“ü
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ä»£å…¥
 	resm->type	= res_type;
 	
 	return resm;
@@ -255,9 +255,9 @@ CLACT_U_RES_MANAGER_PTR CLACT_U_ResManagerInit(int tbl_num, int res_type, int he
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚Ì”jŠü
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ç ´æ£„
  *
- *@param	resm	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
+ *@param	resm	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
  *	
  *@return	none
  *
@@ -270,19 +270,19 @@ void CLACT_U_ResManagerDelete(CLACT_U_RES_MANAGER_PTR resm)
 	GF_ASSERT(resm->res_manager);
 	GF_ASSERT(resm->resObj);
 	
-	// “o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ğ‘S‚Ä”jŠü
+	// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’å…¨ã¦ç ´æ£„
 	CLACT_U_ResManagerResDeleteAll(resm);
 	
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ğ‰ğ•ú
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	RESM_Delete(resm->res_manager);
 	resm->res_manager = NULL;
 
-	// ƒIƒuƒWƒF“o˜^ƒe[ƒuƒ‹ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	sys_FreeMemoryEz(resm->resObj);
 	resm->resObj = NULL;
 	 
-	// ƒŠƒ\[ƒXŠÇ—ƒf[ƒ^Ši”[æ‚ğì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆã‚’ä½œæˆ
 	sys_FreeMemoryEz(resm);
 	resm = NULL;
 }
@@ -290,14 +290,14 @@ void CLACT_U_ResManagerDelete(CLACT_U_RES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒf[ƒ^‚ğƒwƒbƒ_[‚©‚ç“Ç‚İ‚Şi’P”­j
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã‚‰èª­ã¿è¾¼ã‚€ï¼ˆå˜ç™ºï¼‰
  *
- *@param	resm	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	head	ƒwƒbƒ_[
- *@param	no		ƒwƒbƒ_[‚Ì‰½”Ô–Ú‚ğ“Ç‚İ‚Ş‚©
- *@param	heap	g—p‚·‚éƒq[ƒv
+ *@param	resm	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	head	ãƒ˜ãƒƒãƒ€ãƒ¼
+ *@param	no		ãƒ˜ãƒƒãƒ€ãƒ¼ã®ä½•ç•ªç›®ã‚’èª­ã¿è¾¼ã‚€ã‹
+ *@param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
- *@return	“Ç‚İ‚ñ‚¾ƒf[ƒ^
+ *@return	èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -312,19 +312,19 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddHd(CLACT_U_RES_MANAGER_PTR resm, con
 	GF_ASSERT(resm);
 	GF_ASSERT(head);
 	GF_ASSERT(head->tbl_num > no);
-	GF_ASSERT_MSG(resm->type == head->type, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·" );
+	GF_ASSERT_MSG(resm->type == head->type, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™" );
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj,  "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ" );
+	GF_ASSERT_MSG(obj,  "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“" );
 	if(head->arc_flag == 0){
-		// ”ñƒA[ƒJƒCƒu—pƒwƒbƒ_
+		// éã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨ãƒ˜ãƒƒãƒ€
 		hs = (CLACT_U_RES_HEADER_SUB*)head->tbl + no;
-		GF_ASSERT_MSG( (CLACT_U_ResManagerCheckID(resm, hs->id) == TRUE), "ID‚ªd•¡‚µ‚Ä‚¢‚Ü‚·")
+		GF_ASSERT_MSG( (CLACT_U_ResManagerCheckID(resm, hs->id) == TRUE), "IDãŒé‡è¤‡ã—ã¦ã„ã¾ã™")
 		loadOneData(resm, obj, hs->file_path, hs->id, hs->ex[0], hs->ex[1], head->type, heap);
 	}else{
-		// ƒA[ƒJƒCƒu—pƒwƒbƒ_
+		// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨ãƒ˜ãƒƒãƒ€
 		harc = (CLACT_U_RES_HEADER_SUBARC*)head->tbl + no;
-		GF_ASSERT_MSG( (CLACT_U_ResManagerCheckID(resm, harc->id) == TRUE), "ID‚ªd•¡‚µ‚Ä‚¢‚Ü‚·")
+		GF_ASSERT_MSG( (CLACT_U_ResManagerCheckID(resm, harc->id) == TRUE), "IDãŒé‡è¤‡ã—ã¦ã„ã¾ã™")
 		SetArcOneData(resm, obj, harc->arcFile, harc->dataIdx, harc->compFlag, harc->id, harc->ex[0], harc->ex[1], head->type, heap, ALLOC_TOP);
 	}
 	resm->tbl_now++;
@@ -335,14 +335,14 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddHd(CLACT_U_RES_MANAGER_PTR resm, con
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì“o˜^
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
  *
- *@param	resm			ƒLƒƒƒ‰ƒNƒ^—p‚Éì¬‚µ‚½ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	path			ƒtƒ@ƒCƒ‹ƒpƒX
- *@param	id				ŠÇ—‚h‚c
- *@param	vram			‚u‚’‚‚ƒ^ƒCƒv(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
+ *@param	resm			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç”¨ã«ä½œæˆã—ãŸãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	path			ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ *@param	id				ç®¡ç†ï¼©ï¼¤
+ *@param	vram			ï¼¶ï½’ï½ï½ã‚¿ã‚¤ãƒ—(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
  *
- *@return	CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -352,11 +352,11 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddChar(CLACT_U_RES_MANAGER_PTR resm, c
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG((resm->type == CLACT_U_CHAR_RES), "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
-	GF_ASSERT_MSG( CLACT_U_ResManagerCheckID(resm, id) == TRUE, "ID‚ªd•¡‚µ‚Ä‚¢‚Ü‚·")
+	GF_ASSERT_MSG((resm->type == CLACT_U_CHAR_RES), "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
+	GF_ASSERT_MSG( CLACT_U_ResManagerCheckID(resm, id) == TRUE, "IDãŒé‡è¤‡ã—ã¦ã„ã¾ã™")
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	loadOneData(resm, obj, path, id, vram, 0, CLACT_U_CHAR_RES, heap);
 	resm->tbl_now++;
 
@@ -366,15 +366,15 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddChar(CLACT_U_RES_MANAGER_PTR resm, c
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚Ì“o˜^
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
  *
- *@param	resm			ƒpƒŒƒbƒg—p‚Éì¬‚µ‚½ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	path			ƒtƒ@ƒCƒ‹ƒpƒX
- *@param	id				ŠÇ—‚h‚c
- *@param	vram			‚u‚’‚‚ƒ^ƒCƒv(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
- *@param	pltt_num		•K—v‚ÈƒpƒŒƒbƒgƒiƒ“ƒo[
+ *@param	resm			ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ã«ä½œæˆã—ãŸãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	path			ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ *@param	id				ç®¡ç†ï¼©ï¼¤
+ *@param	vram			ï¼¶ï½’ï½ï½ã‚¿ã‚¤ãƒ—(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
+ *@param	pltt_num		å¿…è¦ãªãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
  *
- *@return	CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -384,11 +384,11 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddPltt(CLACT_U_RES_MANAGER_PTR resm, c
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES , "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
-	GF_ASSERT_MSG( CLACT_U_ResManagerCheckID(resm, id) == TRUE, "ID‚ªd•¡‚µ‚Ä‚¢‚Ü‚·")
+	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES , "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
+	GF_ASSERT_MSG( CLACT_U_ResManagerCheckID(resm, id) == TRUE, "IDãŒé‡è¤‡ã—ã¦ã„ã¾ã™")
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	loadOneData(resm, obj, path, id, vram, pltt_num, CLACT_U_PLTT_RES, heap);
 	resm->tbl_now++;
 
@@ -398,15 +398,15 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddPltt(CLACT_U_RES_MANAGER_PTR resm, c
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹AƒZƒ‹ƒAƒjƒAƒ}ƒ‹ƒ`ƒZƒ‹Aƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^‚Ì“o˜^
+ *@brief	ã‚»ãƒ«ã€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã€ãƒãƒ«ãƒã‚»ãƒ«ã€ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
  *
- *@param	resm			ƒpƒŒƒbƒg—p‚Éì¬‚µ‚½ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	path			ƒtƒ@ƒCƒ‹ƒpƒX
- *@param	id				ŠÇ—‚h‚c
- *@param	type			ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	heap			g—pƒq[ƒv
+ *@param	resm			ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ã«ä½œæˆã—ãŸãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	path			ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ *@param	id				ç®¡ç†ï¼©ï¼¤
+ *@param	type			ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -416,11 +416,11 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddKindCell(CLACT_U_RES_MANAGER_PTR res
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG( CLACT_U_ResManagerCheckID(resm, id) == TRUE , "ID‚ªd•¡‚µ‚Ä‚¢‚Ü‚·");
+	GF_ASSERT_MSG( CLACT_U_ResManagerCheckID(resm, id) == TRUE , "IDãŒé‡è¤‡ã—ã¦ã„ã¾ã™");
 	GF_ASSERT(type == resm->type);
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	loadOneData(resm, obj, path, id, 0, 0, type, heap);
 	resm->tbl_now++;
 	
@@ -430,16 +430,16 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddKindCell(CLACT_U_RES_MANAGER_PTR res
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒA[ƒJƒCƒu‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì“o˜^
+ *@brief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
  *
- *@param	resm			ƒLƒƒƒ‰ƒNƒ^—p‚Éì¬‚µ‚½ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	arcFile			ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- *@param	id				ŠÇ—‚h‚c
- *@param	vram			‚u‚’‚‚ƒ^ƒCƒv(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
+ *@param	resm			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç”¨ã«ä½œæˆã—ãŸãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	arcFile			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ *@param	id				ç®¡ç†ï¼©ï¼¤
+ *@param	vram			ï¼¶ï½’ï½ï½ã‚¿ã‚¤ãƒ—(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
  *
- *@return	CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -449,10 +449,10 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcChar(CLACT_U_RES_MANAGER_PTR resm
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	SetArcOneData(resm, obj, arcFile, dataIdx, compFlag, id, vram, 0, CLACT_U_CHAR_RES, heap, ALLOC_TOP);
 
 	resm->tbl_now++;
@@ -464,10 +464,10 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcChar_AllocType(CLACT_U_RES_MANAGE
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	SetArcOneData(resm, obj, arcFile, dataIdx, compFlag, id, vram, 0, CLACT_U_CHAR_RES, heap, alloc_type);
 
 	resm->tbl_now++;
@@ -478,17 +478,17 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcChar_AllocType(CLACT_U_RES_MANAGE
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚Ì“o˜^
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
  *
- *@param	resm			ƒpƒŒƒbƒg—p‚Éì¬‚µ‚½ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	arcFile			ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- *@param	id				ŠÇ—‚h‚c
- *@param	vram			‚u‚’‚‚ƒ^ƒCƒv(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
- *@param	pltt_num		•K—v‚ÈƒpƒŒƒbƒg‚Ì–{”i‚P–{‚P‚UF)
+ *@param	resm			ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ã«ä½œæˆã—ãŸãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	arcFile			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ *@param	id				ç®¡ç†ï¼©ï¼¤
+ *@param	vram			ï¼¶ï½’ï½ï½ã‚¿ã‚¤ãƒ—(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
+ *@param	pltt_num		å¿…è¦ãªãƒ‘ãƒ¬ãƒƒãƒˆã®æœ¬æ•°ï¼ˆï¼‘æœ¬ï¼ï¼‘ï¼–è‰²)
  *
- *@return	CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -498,10 +498,10 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcPltt(CLACT_U_RES_MANAGER_PTR resm
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	SetArcOneData(resm, obj, arcFile, dataIdx, compFlag, id, vram, pltt_num, CLACT_U_PLTT_RES, heap, ALLOC_TOP);
 
 	resm->tbl_now++;
@@ -512,10 +512,10 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcPltt_AllocType(CLACT_U_RES_MANAGE
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	SetArcOneData(resm, obj, arcFile, dataIdx, compFlag, id, vram, pltt_num, CLACT_U_PLTT_RES, heap, alloc_type);
 
 	resm->tbl_now++;
@@ -525,17 +525,17 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcPltt_AllocType(CLACT_U_RES_MANAGE
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹AƒZƒ‹ƒAƒjƒAƒ}ƒ‹ƒ`ƒZƒ‹Aƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^‚Ì“o˜^
+ *@brief	ã‚»ãƒ«ã€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã€ãƒãƒ«ãƒã‚»ãƒ«ã€ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
  *
- *@param	resm			ƒpƒŒƒbƒg—p‚Éì¬‚µ‚½ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	arcFile			ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- *@param	id				ŠÇ—‚h‚c
- *@param	type			ƒŠƒ\[ƒXƒ^ƒCƒv(CLACT_U_CELL_RES‚©CLACT_U_CELLANM_RES)
- *@param	heap			g—pƒq[ƒv
+ *@param	resm			ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ã«ä½œæˆã—ãŸãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	arcFile			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ *@param	id				ç®¡ç†ï¼©ï¼¤
+ *@param	type			ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—(CLACT_U_CELL_RESã‹CLACT_U_CELLANM_RES)
+ *@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -547,7 +547,7 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcKindCell(CLACT_U_RES_MANAGER_PTR 
 	GF_ASSERT(resm);
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	SetArcOneData(resm, obj, arcFile, dataIdx, compFlag, id, 0, 0, type, heap, ALLOC_TOP);
 
 	resm->tbl_now++;
@@ -557,13 +557,13 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcKindCell(CLACT_U_RES_MANAGER_PTR 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒA[ƒJƒCƒu‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌƒŠƒ\[ƒX•ÏX
+ *@brief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹å¤‰æ›´
  *
- *@param	resm			ƒLƒƒƒ‰ƒNƒ^—pƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
- *@param	resObj			•ÏX‚·‚éƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	arcFile			ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©
+ *@param	resm			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç”¨ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
+ *@param	resObj			å¤‰æ›´ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	arcFile			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
  *
  * @return none
  *
@@ -572,22 +572,22 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcKindCell(CLACT_U_RES_MANAGER_PTR 
 //-----------------------------------------------------------------------------
 void CLACT_U_ResManagerResChgArcChar(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_PTR resObj, int arcFile, int dataIdx, BOOL compFlag, int heap)
 {
-	int vram_type;	// Vram“]‘—æ
+	int vram_type;	// Vramè»¢é€å…ˆ
 	int id;			// ID
 	
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	GF_ASSERT(resObj);
-	GF_ASSERT_MSG(resObj->type == CLACT_U_CHAR_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resObj->type == CLACT_U_CHAR_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^•Û‘¶
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	id = CLACT_U_ResManagerGetResObjID( resObj );
 	vram_type =	CLACT_U_ResManagerGetResObjVramType( resObj );
 	
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^”jŠü
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CLACT_U_ResManagerResDelete( resm, resObj );
 
-	// ‚±‚Ìƒf[ƒ^ƒe[ƒuƒ‹‚ÉV‚µ‚­ƒf[ƒ^“Ç‚İ‚İ
+	// ã“ã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ–°ã—ããƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	SetArcOneData(resm, resObj, arcFile, dataIdx, compFlag, id, vram_type, 0, CLACT_U_CHAR_RES, heap, ALLOC_TOP);
 }
 
@@ -595,14 +595,14 @@ void CLACT_U_ResManagerResChgArcChar(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_O
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ÌƒŠƒ\[ƒX‚ğ•ÏX
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´
  *
- *@param	resm			ƒpƒŒƒbƒg—pƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
- *@param	resObj			•ÏX‚·‚éƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	arcFile			ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- *@param	heap			g—p‚·‚éƒq[ƒv
+ *@param	resm			ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
+ *@param	resObj			å¤‰æ›´ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	arcFile			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ *@param	heap			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
@@ -611,39 +611,39 @@ void CLACT_U_ResManagerResChgArcChar(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_O
 //-----------------------------------------------------------------------------
 void CLACT_U_ResManagerResChgArcPltt(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_PTR resObj, int arcFile, int dataIdx, BOOL compFlag, int heap)
 {
-	int vram_type;	// Vram“]‘—æ
-	int pltt_num;	// ƒpƒŒƒbƒg“]‘—”
+	int vram_type;	// Vramè»¢é€å…ˆ
+	int pltt_num;	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€æ•°
 	int id;			// ID
 	
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	GF_ASSERT(resObj);
-	GF_ASSERT_MSG(resObj->type == CLACT_U_PLTT_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resObj->type == CLACT_U_PLTT_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^•Û‘¶
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	id = CLACT_U_ResManagerGetResObjID( resObj );
 	vram_type =	CLACT_U_ResManagerGetResObjVramType( resObj );
 	pltt_num = CLACT_U_ResManagerGetResObjPlttNum( resObj );
 	
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^”jŠü
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CLACT_U_ResManagerResDelete( resm, resObj );
 
-	// ‚±‚Ìƒf[ƒ^ƒe[ƒuƒ‹‚ÉV‚µ‚­ƒf[ƒ^“Ç‚İ‚İ
+	// ã“ã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ–°ã—ããƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	SetArcOneData(resm, resObj, arcFile, dataIdx, compFlag, id, vram_type, pltt_num, CLACT_U_PLTT_RES, heap, ALLOC_TOP);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹AƒZƒ‹ƒAƒjƒAƒ}ƒ‹ƒ`ƒZƒ‹Aƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^‚ÌƒŠƒ\[ƒX‚ğ•ÏX
+ *@brief	ã‚»ãƒ«ã€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã€ãƒãƒ«ãƒã‚»ãƒ«ã€ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´
  *
- *@param	resm			•ÏX‚·‚éƒŠƒ\[ƒX—pƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
- *@param	resObj			•ÏX‚·‚éƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	arcFile			ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©
- *@param	type			ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	heap			g—p‚·‚éƒq[ƒv
+ *@param	resm			å¤‰æ›´ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç”¨ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
+ *@param	resObj			å¤‰æ›´ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	arcFile			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹
+ *@param	type			ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	heap			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
@@ -657,36 +657,36 @@ void CLACT_U_ResManagerResChgArcKindCell(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_R
 	GF_ASSERT(resm);
 	GF_ASSERT(resObj);
 
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^•Û‘¶
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	id = CLACT_U_ResManagerGetResObjID( resObj );
 	
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^”jŠü
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CLACT_U_ResManagerResDelete( resm, resObj );
 
-	// ‚±‚Ìƒf[ƒ^ƒe[ƒuƒ‹‚ÉV‚µ‚­ƒf[ƒ^“Ç‚İ‚İ
+	// ã“ã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ–°ã—ããƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	SetArcOneData(resm, resObj, arcFile, dataIdx, compFlag, id, 0, 0, type, heap, ALLOC_TOP);
 }
 
 //----------------------------------------------------------------------------
 /**
- * ¡ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹•û®
+ * â– ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«æ–¹å¼
  *
- *@brief	ƒA[ƒJƒCƒu‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì“o˜^
+ *@brief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
  *
- *@param	resm			ƒLƒƒƒ‰ƒNƒ^—p‚Éì¬‚µ‚½ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	arcHandle		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©	(TRUE ˆ³k  @@FALSE ”ñˆ³k)
- *@param	id				ŠÇ—‚h‚c		id•¡‚µ‚È‚¢‚æ‚¤‚Éƒ†[ƒU[‚ªİ’èj
- *@param	vram			‚u‚’‚‚ƒ^ƒCƒv
- *@param	heap			g—pƒq[ƒv
+ *@param	resm			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç”¨ã«ä½œæˆã—ãŸãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	arcHandle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹	(TRUE åœ§ç¸®  ã€€ã€€FALSE éåœ§ç¸®)
+ *@param	id				ç®¡ç†ï¼©ï¼¤		ï¼ˆé‡è¤‡ã—ãªã„ã‚ˆã†ã«ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒè¨­å®šï¼‰
+ *@param	vram			ï¼¶ï½’ï½ï½ã‚¿ã‚¤ãƒ—
+ *@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
- * Vramƒ^ƒCƒv
-	main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN
-	sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB
-	—¼•û‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAX
+ * Vramã‚¿ã‚¤ãƒ—
+	mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN
+	subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB
+	ä¸¡æ–¹ã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAX
  *
  */
 //-----------------------------------------------------------------------------
@@ -695,10 +695,10 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcChar_ArcHandle(CLACT_U_RES_MANAGE
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	
 	SetArcOneData_ArcHandle(resm, obj, arcHandle, dataIdx, compFlag, id, vram, 0, CLACT_U_CHAR_RES, heap, ALLOC_TOP);
 
@@ -711,10 +711,10 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcChar_ArcHandle_AllocType(CLACT_U_
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	
 	SetArcOneData_ArcHandle(resm, obj, arcHandle, dataIdx, compFlag, id, vram, 0, CLACT_U_CHAR_RES, heap, alloc_type);
 
@@ -725,25 +725,25 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcChar_ArcHandle_AllocType(CLACT_U_
 
 //----------------------------------------------------------------------------
 /**
- * ¡ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹•û®
+ * â– ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«æ–¹å¼
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚Ì“o˜^
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
  *
- *@param	resm			ƒpƒŒƒbƒg—p‚Éì¬‚µ‚½ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	arcHandle		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©	(TRUE ˆ³k  @@FALSE ”ñˆ³k)
- *@param	id				ŠÇ—‚h‚c		id•¡‚µ‚È‚¢‚æ‚¤‚Éƒ†[ƒU[‚ªİ’èj
- *@param	vram			‚u‚’‚‚ƒ^ƒCƒv
- *@param	pltt_num		ƒpƒŒƒbƒg“Ç‚İ‚İ–{”
- *@param	heap			g—pƒq[ƒv
+ *@param	resm			ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ã«ä½œæˆã—ãŸãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	arcHandle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹	(TRUE åœ§ç¸®  ã€€ã€€FALSE éåœ§ç¸®)
+ *@param	id				ç®¡ç†ï¼©ï¼¤		ï¼ˆé‡è¤‡ã—ãªã„ã‚ˆã†ã«ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒè¨­å®šï¼‰
+ *@param	vram			ï¼¶ï½’ï½ï½ã‚¿ã‚¤ãƒ—
+ *@param	pltt_num		ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æœ¬æ•°
+ *@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
- * Vramƒ^ƒCƒv
-	main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN
-	sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB
-	—¼•û‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAX
+ * Vramã‚¿ã‚¤ãƒ—
+	mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN
+	subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB
+	ä¸¡æ–¹ã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAX
  *
  */
 //-----------------------------------------------------------------------------
@@ -752,10 +752,10 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcPltt_ArcHandle(CLACT_U_RES_MANAGE
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	SetArcOneData_ArcHandle(resm, obj, arcHandle, dataIdx, compFlag, id, vram, pltt_num, CLACT_U_PLTT_RES, heap, ALLOC_TOP);
 
 	resm->tbl_now++;
@@ -766,10 +766,10 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcPltt_ArcHandle_AllocType(CLACT_U_
 	CLACT_U_RES_OBJ_PTR obj;
 
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	SetArcOneData_ArcHandle(resm, obj, arcHandle, dataIdx, compFlag, id, vram, pltt_num, CLACT_U_PLTT_RES, heap, alloc_type);
 
 	resm->tbl_now++;
@@ -778,29 +778,29 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcPltt_ArcHandle_AllocType(CLACT_U_
 
 //----------------------------------------------------------------------------
 /**
- * ¡ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹•û®
+ * â– ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«æ–¹å¼
  *
- *@brief	ƒZƒ‹AƒZƒ‹ƒAƒjƒAƒ}ƒ‹ƒ`ƒZƒ‹Aƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^‚Ì“o˜^
+ *@brief	ã‚»ãƒ«ã€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã€ãƒãƒ«ãƒã‚»ãƒ«ã€ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
  *
- *@param	resm			ƒpƒŒƒbƒg—p‚Éì¬‚µ‚½ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	arcHandle		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©	(TRUE ˆ³k  @@FALSE ”ñˆ³k)
- *@param	id				ŠÇ—‚h‚c		id•¡‚µ‚È‚¢‚æ‚¤‚Éƒ†[ƒU[‚ªİ’èj
- *@param	type			ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	heap			g—pƒq[ƒv
+ *@param	resm			ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ã«ä½œæˆã—ãŸãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	arcHandle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹	(TRUE åœ§ç¸®  ã€€ã€€FALSE éåœ§ç¸®)
+ *@param	id				ç®¡ç†ï¼©ï¼¤		ï¼ˆé‡è¤‡ã—ãªã„ã‚ˆã†ã«ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒè¨­å®šï¼‰
+ *@param	type			ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒŠƒ\[ƒXƒ^ƒCƒv
+ * ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
 	enum{
-		CLACT_U_CHAR_RES,		// ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_PLTT_RES,		// ƒpƒŒƒbƒgƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_CELL_RES,		// ƒZƒ‹ƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_CELLANM_RES,	// ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_MULTI_RES,		// ƒ}ƒ‹ƒ`ƒZƒ‹ƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_MULTIANM_RES,	// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_RES_MAX			// Å‘å
+		CLACT_U_CHAR_RES,		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_PLTT_RES,		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_CELL_RES,		// ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_CELLANM_RES,	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_MULTI_RES,		// ãƒãƒ«ãƒã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_MULTIANM_RES,	// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_RES_MAX			// æœ€å¤§
 	};
  *
  */
@@ -812,7 +812,7 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcKindCell_ArcHandle(CLACT_U_RES_MA
 	GF_ASSERT(resm);
 	
 	obj = getCleanResObj(resm);
-	GF_ASSERT_MSG(obj, "‚à‚¤‹ó‚«‚Ìƒe[ƒuƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG(obj, "ã‚‚ã†ç©ºãã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“");
 	SetArcOneData_ArcHandle(resm, obj, arcHandle, dataIdx, compFlag, id, 0, 0, type, heap, ALLOC_TOP);
 
 	resm->tbl_now++;
@@ -821,16 +821,16 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcKindCell_ArcHandle(CLACT_U_RES_MA
 
 //----------------------------------------------------------------------------
 /**
- * ¡ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹•û®
+ * â– ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«æ–¹å¼
  *
- *@brief	ƒA[ƒJƒCƒu‚³‚ê‚½ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌƒŠƒ\[ƒX•ÏX
+ *@brief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹å¤‰æ›´
  *
- *@param	resm			ƒLƒƒƒ‰ƒNƒ^—pƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
- *@param	resObj			•ÏX‚·‚éƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	arcHandle		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©	(TRUE ˆ³k  @@FALSE ”ñˆ³k)
- *@param	heap			g—pƒq[ƒv
+ *@param	resm			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç”¨ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
+ *@param	resObj			å¤‰æ›´ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	arcHandle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹	(TRUE åœ§ç¸®  ã€€ã€€FALSE éåœ§ç¸®)
+ *@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  * @return none
  *
@@ -839,38 +839,38 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerResAddArcKindCell_ArcHandle(CLACT_U_RES_MA
 //-----------------------------------------------------------------------------
 void CLACT_U_ResManagerResChgArcChar_ArcHandle(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_PTR resObj, ARCHANDLE* arcHandle, int dataIdx, BOOL compFlag, int heap)
 {
-	int vram_type;	// Vram“]‘—æ
+	int vram_type;	// Vramè»¢é€å…ˆ
 	int id;			// ID
 	
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_CHAR_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	GF_ASSERT(resObj);
-	GF_ASSERT_MSG(resObj->type == CLACT_U_CHAR_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resObj->type == CLACT_U_CHAR_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^•Û‘¶
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	id = CLACT_U_ResManagerGetResObjID( resObj );
 	vram_type =	CLACT_U_ResManagerGetResObjVramType( resObj );
 	
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^”jŠü
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CLACT_U_ResManagerResDelete( resm, resObj );
 
-	// ‚±‚Ìƒf[ƒ^ƒe[ƒuƒ‹‚ÉV‚µ‚­ƒf[ƒ^“Ç‚İ‚İ
+	// ã“ã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ–°ã—ããƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	SetArcOneData_ArcHandle(resm, resObj, arcHandle, dataIdx, compFlag, id, vram_type, 0, CLACT_U_CHAR_RES, heap, ALLOC_TOP);
 }
 
 
 //----------------------------------------------------------------------------
 /**
- * ¡ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹•û®
+ * â– ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«æ–¹å¼
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ÌƒŠƒ\[ƒX‚ğ•ÏX
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´
  *
- *@param	resm			ƒpƒŒƒbƒg—pƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
- *@param	resObj			•ÏX‚·‚éƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	arcHandle		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©	(TRUE ˆ³k  @@FALSE ”ñˆ³k)
- *@param	heap			g—p‚·‚éƒq[ƒv
+ *@param	resm			ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
+ *@param	resObj			å¤‰æ›´ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	arcHandle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹	(TRUE åœ§ç¸®  ã€€ã€€FALSE éåœ§ç¸®)
+ *@param	heap			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
@@ -879,52 +879,52 @@ void CLACT_U_ResManagerResChgArcChar_ArcHandle(CLACT_U_RES_MANAGER_PTR resm, CLA
 //-----------------------------------------------------------------------------
 void CLACT_U_ResManagerResChgArcPltt_ArcHandle(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_PTR resObj, ARCHANDLE* arcHandle, int dataIdx, BOOL compFlag, int heap)
 {
-	int vram_type;	// Vram“]‘—æ
-	int pltt_num;	// ƒpƒŒƒbƒg“]‘—”
+	int vram_type;	// Vramè»¢é€å…ˆ
+	int pltt_num;	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€æ•°
 	int id;			// ID
 	
 	GF_ASSERT(resm);
-	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resm->type == CLACT_U_PLTT_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 	GF_ASSERT(resObj);
-	GF_ASSERT_MSG(resObj->type == CLACT_U_PLTT_RES, "ƒŠƒ\[ƒXƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·");
+	GF_ASSERT_MSG(resObj->type == CLACT_U_PLTT_RES, "ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™");
 
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^•Û‘¶
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	id = CLACT_U_ResManagerGetResObjID( resObj );
 	vram_type =	CLACT_U_ResManagerGetResObjVramType( resObj );
 	pltt_num = CLACT_U_ResManagerGetResObjPlttNum( resObj );
 	
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^”jŠü
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CLACT_U_ResManagerResDelete( resm, resObj );
 
-	// ‚±‚Ìƒf[ƒ^ƒe[ƒuƒ‹‚ÉV‚µ‚­ƒf[ƒ^“Ç‚İ‚İ
+	// ã“ã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ–°ã—ããƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	SetArcOneData_ArcHandle(resm, resObj, arcHandle, dataIdx, compFlag, id, vram_type, pltt_num, CLACT_U_PLTT_RES, heap, ALLOC_TOP);
 }
 
 //----------------------------------------------------------------------------
 /**
- * ¡ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹•û®
+ * â– ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«æ–¹å¼
  *
- *@brief	ƒZƒ‹AƒZƒ‹ƒAƒjƒAƒ}ƒ‹ƒ`ƒZƒ‹Aƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^‚ÌƒŠƒ\[ƒX‚ğ•ÏX
+ *@brief	ã‚»ãƒ«ã€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã€ãƒãƒ«ãƒã‚»ãƒ«ã€ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´
  *
- *@param	resm			•ÏX‚·‚éƒŠƒ\[ƒX—pƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
- *@param	resObj			•ÏX‚·‚éƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	arcHandle		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *@param	detaIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag		ˆ³k‚³‚ê‚Ä‚¢‚é‚©	(TRUE ˆ³k  @@FALSE ”ñˆ³k)
- *@param	type			ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	heap			g—p‚·‚éƒq[ƒv
+ *@param	resm			å¤‰æ›´ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç”¨ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
+ *@param	resObj			å¤‰æ›´ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	arcHandle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *@param	detaIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag		åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹	(TRUE åœ§ç¸®  ã€€ã€€FALSE éåœ§ç¸®)
+ *@param	type			ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	heap			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
- * ƒŠƒ\[ƒXƒ^ƒCƒv
+ * ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
 	enum{
-		CLACT_U_CHAR_RES,		// ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_PLTT_RES,		// ƒpƒŒƒbƒgƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_CELL_RES,		// ƒZƒ‹ƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_CELLANM_RES,	// ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_MULTI_RES,		// ƒ}ƒ‹ƒ`ƒZƒ‹ƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_MULTIANM_RES,	// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX‚ğŠÇ—
-		CLACT_U_RES_MAX			// Å‘å
+		CLACT_U_CHAR_RES,		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_PLTT_RES,		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_CELL_RES,		// ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_CELLANM_RES,	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_MULTI_RES,		// ãƒãƒ«ãƒã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_MULTIANM_RES,	// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
+		CLACT_U_RES_MAX			// æœ€å¤§
 	};
  *
  */
@@ -936,13 +936,13 @@ void CLACT_U_ResManagerResChgArcKindCell_ArcHandle(CLACT_U_RES_MANAGER_PTR resm,
 	GF_ASSERT(resm);
 	GF_ASSERT(resObj);
 
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^•Û‘¶
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	id = CLACT_U_ResManagerGetResObjID( resObj );
 	
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^”jŠü
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CLACT_U_ResManagerResDelete( resm, resObj );
 
-	// ‚±‚Ìƒf[ƒ^ƒe[ƒuƒ‹‚ÉV‚µ‚­ƒf[ƒ^“Ç‚İ‚İ
+	// ã“ã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ–°ã—ããƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	SetArcOneData_ArcHandle(resm, resObj, arcHandle, dataIdx, compFlag, id, 0, 0, type, heap, ALLOC_TOP);
 }
 
@@ -950,14 +950,14 @@ void CLACT_U_ResManagerResChgArcKindCell_ArcHandle(CLACT_U_RES_MANAGER_PTR resm,
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒf[ƒ^‚ğƒwƒbƒ_[‚©‚ç“Ç‚İ‚Ş
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã‚‰èª­ã¿è¾¼ã‚€
  *
- *@param	resm		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒ|ƒCƒ“ƒ^
- *@param	head		ƒwƒbƒ_[
- *@param	p_ro_tbl	ƒƒ‚ƒŠŠm•ÛÏ‚İƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	resm		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+ *@param	head		ãƒ˜ãƒƒãƒ€ãƒ¼
+ *@param	p_ro_tbl	ãƒ¡ãƒ¢ãƒªç¢ºä¿æ¸ˆã¿ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
- *@return	int			“Ç‚İ‚İ”
+ *@return	int			èª­ã¿è¾¼ã¿æ•°
  *
  *
  */
@@ -974,14 +974,14 @@ int CLACT_U_ResManagerResAddsHd(CLACT_U_RES_MANAGER_PTR resm, const CLACT_U_RES_
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒf[ƒ^‚ğƒwƒbƒ_[‚©‚ç“Ç‚İ‚Ş(“Ç‚İ‚Ş”‚ğw’è)
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã‚‰èª­ã¿è¾¼ã‚€(èª­ã¿è¾¼ã‚€æ•°ã‚’æŒ‡å®š)
  *
- *@param	resm		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒ|ƒCƒ“ƒ^
- *@param	head		ƒwƒbƒ_[
- *@param	start		“Ç‚İ‚İŠJnƒe[ƒuƒ‹ƒiƒ“ƒo[
- *@param	num			“Ç‚İ‚İ”
- *@param	p_ro_tbl	ƒƒ‚ƒŠŠm•ÛÏ‚İƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	resm		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+ *@param	head		ãƒ˜ãƒƒãƒ€ãƒ¼
+ *@param	start		èª­ã¿è¾¼ã¿é–‹å§‹ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
+ *@param	num			èª­ã¿è¾¼ã¿æ•°
+ *@param	p_ro_tbl	ãƒ¡ãƒ¢ãƒªç¢ºä¿æ¸ˆã¿ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
@@ -997,11 +997,11 @@ void CLACT_U_ResManagerResAddsHdEx(CLACT_U_RES_MANAGER_PTR resm, const CLACT_U_R
 	for(i=start;i<start+num;i++){
 		obj = CLACT_U_ResManagerResAddHd(resm, head, i, heap);
 
-		// “Ç‚İ‚ñ‚¾ƒŠƒ\[ƒX‚ğŠi”[
+		// èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã‚’æ ¼ç´
 		if(p_ro_tbl != NULL){
-			if(p_ro_tbl->tbl_num > p_ro_tbl->tbl_now){	// “o˜^‰Â”\‚È‚ç“o˜^
-				p_ro_tbl->tbl[ p_ro_tbl->tbl_now ] = obj;// “o˜^‚µ‚½ƒIƒuƒWƒF‚ğİ’è
-				p_ro_tbl->tbl_now++;	// “o˜^”ƒJƒEƒ“ƒg
+			if(p_ro_tbl->tbl_num > p_ro_tbl->tbl_now){	// ç™»éŒ²å¯èƒ½ãªã‚‰ç™»éŒ²
+				p_ro_tbl->tbl[ p_ro_tbl->tbl_now ] = obj;// ç™»éŒ²ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚’è¨­å®š
+				p_ro_tbl->tbl_now++;	// ç™»éŒ²æ•°ã‚«ã‚¦ãƒ³ãƒˆ
 			}
 		}
 	}
@@ -1010,12 +1010,12 @@ void CLACT_U_ResManagerResAddsHdEx(CLACT_U_RES_MANAGER_PTR resm, const CLACT_U_R
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹ì¬
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
  *
- *@param	num		ƒe[ƒuƒ‹”
- *@param	heap	g—pƒq[ƒv
+ *@param	num		ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+ *@param	heap	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_OBJ_TBL* ì¬ƒf[ƒ^
+ *@return	CLACT_U_RES_OBJ_TBL* ä½œæˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1024,7 +1024,7 @@ CLACT_U_RES_OBJ_TBL* CLACT_U_ResManagerResObjTblMake(int num, int heap)
 {
 	CLACT_U_RES_OBJ_TBL* resTbl;
 
-	// ƒŠƒ\[ƒXƒIƒuƒWƒFŠi”[—Ìˆæ‚ğì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§æ ¼ç´é ˜åŸŸã‚’ä½œæˆ
 	resTbl = sys_AllocMemory(heap, sizeof(CLACT_U_RES_OBJ_TBL));
 	resTbl->tbl = sys_AllocMemory(heap, sizeof(CLACT_U_RES_OBJ_PTR)*num);
 	resTbl->tbl_num = num;
@@ -1036,9 +1036,9 @@ CLACT_U_RES_OBJ_TBL* CLACT_U_ResManagerResObjTblMake(int num, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹”jŠü
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
  *
- *@param	tbl		”jŠüƒe[ƒuƒ‹
+ *@param	tbl		ç ´æ£„ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *@return	none
  *
@@ -1054,11 +1054,11 @@ void CLACT_U_ResManagerResObjTblDelete(CLACT_U_RES_OBJ_TBL* tbl)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	c‚è“o˜^‰Â”\”æ“¾
+ *@brief	æ®‹ã‚Šç™»éŒ²å¯èƒ½æ•°å–å¾—
  *
- *@param	resm		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒ|ƒCƒ“ƒ^
+ *@param	resm		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  *
- *@return	int		c‚è“o˜^‰Â”\”
+ *@return	int		æ®‹ã‚Šç™»éŒ²å¯èƒ½æ•°
  *
  *
  */
@@ -1072,13 +1072,13 @@ int CLACT_U_ResManagerRest(CLACT_U_RES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID‚Ìƒf[ƒ^‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *@brief	IDã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *@param	resm	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	id		ƒ`ƒFƒbƒN‚·‚éID
+ *@param	resm	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	id		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ID
  *
- *@retval	TRUE	ID‚Ìƒf[ƒ^‚ª–³‚¢
- *@retval	FALSE	ID‚Ìƒf[ƒ^‚ª‚ ‚é
+ *@retval	TRUE	IDã®ãƒ‡ãƒ¼ã‚¿ãŒç„¡ã„
+ *@retval	FALSE	IDã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹
  *
  *
  */
@@ -1093,14 +1093,14 @@ BOOL CLACT_U_ResManagerCheckID(CONST_CLACT_U_RES_MANAGER_PTR resm, int id)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒŠƒ\[ƒXƒIƒuƒWƒF“à‚Ì“Ç‚İ‚ñ‚Å‚«‚½ƒf[ƒ^‚Ì‚İ”jŠü
- *			ID‚âƒŠƒ\[ƒXƒ^ƒCƒv‚È‚Ç‚Ìî•ñ‚Í•Û‚µ‚½‚Ü‚Ü
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§å†…ã®èª­ã¿è¾¼ã‚“ã§ããŸãƒ‡ãƒ¼ã‚¿ã®ã¿ç ´æ£„
+ *			IDã‚„ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ãªã©ã®æƒ…å ±ã¯ä¿æŒã—ãŸã¾ã¾
  *
- *	@param	res_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	res_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
- * ‚±‚ÌŠÖ”‚ğŒÄ‚Ô‚ÆVram‚Ö‚ÌƒŠƒ\[ƒX‚Ì“]‘—‚È‚Ç‚ªs‚¦‚È‚­‚È‚è‚Ü‚·B
+ * ã“ã®é–¢æ•°ã‚’å‘¼ã¶ã¨Vramã¸ã®ãƒªã‚½ãƒ¼ã‚¹ã®è»¢é€ãªã©ãŒè¡Œãˆãªããªã‚Šã¾ã™ã€‚
  * 
  *
  */
@@ -1109,20 +1109,20 @@ void CLACT_U_ResManagerResOnlyDelete( CLACT_U_RES_OBJ_PTR res_obj )
 {
 	GF_ASSERT( res_obj );
 	
-	// Šg’£ƒf[ƒ^”jŠü
+	// æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	delExData(res_obj);
 
-	// ƒŠƒ\[ƒX‚Ì¶ƒf[ƒ^”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ã®ç”Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	RESM_SetRes(res_obj->res_obj, NULL);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒX”jŠü
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *@param	resm		ƒZƒ‹ƒAƒNƒ^[ƒ†[ƒeƒBƒŠƒeƒBƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒ|ƒCƒ“ƒ^
- *@param	res_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resm		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+ *@param	res_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *@return	none
  *
@@ -1134,10 +1134,10 @@ void CLACT_U_ResManagerResDelete(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_P
 	GF_ASSERT(resm);
 	GF_ASSERT(resm->resObj);
 
-	// Šg’£ƒf[ƒ^”jŠü
+	// æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	delExData(res_obj);
 
-	// ƒŠƒ\[ƒX‚ğ”jŠü‚µAƒf[ƒ^ƒe[ƒuƒ‹‚ğ‹ó‚É‚·‚é
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã€ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç©ºã«ã™ã‚‹
 	RESM_DeleteRes(resm->res_manager, res_obj->res_obj);
 	res_obj->res_obj = NULL;
 	
@@ -1147,9 +1147,9 @@ void CLACT_U_ResManagerResDelete(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_P
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒX‘S”jŠü
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹å…¨ç ´æ£„
  *
- *@param	resm		ƒZƒ‹ƒAƒNƒ^[ƒ†[ƒeƒBƒŠƒeƒBƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒ|ƒCƒ“ƒ^
+ *@param	resm		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -1158,7 +1158,7 @@ void CLACT_U_ResManagerResDelete(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_P
 //-----------------------------------------------------------------------------
 void CLACT_U_ResManagerResDeleteAll(CLACT_U_RES_MANAGER_PTR resm)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	for(i=0;i<resm->tbl_num;i++){
 		if(resm->resObj[i].res_obj != NULL){
@@ -1170,18 +1170,18 @@ void CLACT_U_ResManagerResDeleteAll(CLACT_U_RES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID‚ÌƒŠƒ\[ƒX‚ğæ“¾
+ *@brief	IDã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
  *
- *@param	id		æ“¾‚·‚éƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚éŠÇ—‚h‚c
+ *@param	id		å–å¾—ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ç®¡ç†ï¼©ï¼¤
  *	
- *@return	CLACT_U_RES_OBJ_PTR		ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
 //-----------------------------------------------------------------------------
 CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerGetIDResObjPtr(CONST_CLACT_U_RES_MANAGER_PTR resm, int id)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	int ret_id;	// id
 
 	GF_ASSERT(resm);
@@ -1203,11 +1203,11 @@ CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerGetIDResObjPtr(CONST_CLACT_U_RES_MANAGER_P
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒF‚©‚ç‚h‚c‚ğæ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‹ã‚‰ï¼©ï¼¤ã‚’å–å¾—
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *	
- *@return	int		ŠÇ—‚h‚c
+ *@return	int		ç®¡ç†ï¼©ï¼¤
  *
  *
  */
@@ -1221,11 +1221,11 @@ int CLACT_U_ResManagerGetResObjID(CONST_CLACT_U_RES_OBJ_PTR resObj)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒF‚©‚ç‚h‚c‚ğİ’è
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‹ã‚‰ï¼©ï¼¤ã‚’è¨­å®š
  *
- *@param	resm	•ÏX‚·‚éƒIƒuƒWƒF‚Ì“o˜^‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	id		İ’è‚·‚éID
+ *@param	resm	å¤‰æ›´ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	id		è¨­å®šã™ã‚‹ID
  *	
  *@return	none
  *
@@ -1242,15 +1242,15 @@ void CLACT_U_ResManagerSetResObjID(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒF‚ÌƒŠƒ\[ƒX‚ğæ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *	
- *@return	void*	ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ *@return	void*	ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒAƒ“ƒpƒbƒN‹Ö~‚Å‚·B
- * ƒAƒ“ƒpƒbƒNÏ‚İƒtƒ@ƒCƒ‹‚ğæ“¾‚·‚éŠÖ”‚ğ—pˆÓ‚µ‚Ä‚¢‚é‚½‚ßA
- * ‚»‚¿‚ç‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B
+ * ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯ç¦æ­¢ã§ã™ã€‚
+ * ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯æ¸ˆã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—ã™ã‚‹é–¢æ•°ã‚’ç”¨æ„ã—ã¦ã„ã‚‹ãŸã‚ã€
+ * ãã¡ã‚‰ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -1261,8 +1261,8 @@ void* CLACT_U_ResManagerGetResObjRes(CONST_CLACT_U_RES_OBJ_PTR resObj)
 	GF_ASSERT(resObj);
 	buff = RESM_GetRes(resObj->res_obj);
 
-	// CLACT_U_ResManagerResOnlyDelete‚Åƒf[ƒ^‚ğ”jŠü‚µ‚½ˆ×A
-	// ƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñB
+	// CLACT_U_ResManagerResOnlyDeleteã§ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã—ãŸç‚ºã€
+	// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“ã€‚
 	GF_ASSERT( buff );
 	
 	return buff;
@@ -1271,11 +1271,11 @@ void* CLACT_U_ResManagerGetResObjRes(CONST_CLACT_U_RES_OBJ_PTR resObj)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğæ“¾	ƒŠƒ\[ƒXƒf[ƒ^‚ğƒAƒ“ƒpƒbƒN‚µ‚Ä‚©‚çæ“¾
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯ã—ã¦ã‹ã‚‰å–å¾—
  *
- *@param	resObj	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@return	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXƒf[ƒ^
+ *@return	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1294,11 +1294,11 @@ NNSG2dCharacterData* CLACT_U_ResManagerGetResObjResChar(CONST_CLACT_U_RES_OBJ_PT
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ğæ“¾	ƒŠƒ\[ƒXƒf[ƒ^‚ğƒAƒ“ƒpƒbƒN‚µ‚Ä‚©‚çæ“¾
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯ã—ã¦ã‹ã‚‰å–å¾—
  *
- *@param	resObj	ƒpƒŒƒbƒgƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@return	ƒpƒŒƒbƒgƒŠƒ\[ƒXƒf[ƒ^
+ *@return	ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1317,11 +1317,11 @@ NNSG2dPaletteData* CLACT_U_ResManagerGetResObjResPltt(CONST_CLACT_U_RES_OBJ_PTR 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒf[ƒ^‚ğæ“¾	ƒŠƒ\[ƒXƒf[ƒ^‚ğƒAƒ“ƒpƒbƒN‚µ‚Ä‚©‚çæ“¾
+ *@brief	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯ã—ã¦ã‹ã‚‰å–å¾—
  *
- *@param	resObj	ƒZƒ‹ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@return	ƒZƒ‹ƒŠƒ\[ƒXƒf[ƒ^
+ *@return	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1340,11 +1340,11 @@ NNSG2dCellDataBank* CLACT_U_ResManagerGetResObjResCell(CONST_CLACT_U_RES_OBJ_PTR
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒAƒjƒƒf[ƒ^‚ğæ“¾	ƒŠƒ\[ƒXƒf[ƒ^‚ğƒAƒ“ƒpƒbƒN‚µ‚Ä‚©‚çæ“¾
+ *@brief	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯ã—ã¦ã‹ã‚‰å–å¾—
  *
- *@param	resObj	ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@return	ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒXƒf[ƒ^
+ *@return	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1363,11 +1363,11 @@ NNSG2dCellAnimBankData* CLACT_U_ResManagerGetResObjResCellAnm(CONST_CLACT_U_RES_
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ}ƒ‹ƒ`ƒZƒ‹ƒf[ƒ^‚ğæ“¾	ƒŠƒ\[ƒXƒf[ƒ^‚ğƒAƒ“ƒpƒbƒN‚µ‚Ä‚©‚çæ“¾
+ *@brief	ãƒãƒ«ãƒã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯ã—ã¦ã‹ã‚‰å–å¾—
  *
- *@param	resObj	ƒ}ƒ‹ƒ`ƒZƒ‹ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒãƒ«ãƒã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@return	ƒ}ƒ‹ƒ`ƒZƒ‹ƒŠƒ\[ƒXƒf[ƒ^
+ *@return	ãƒãƒ«ãƒã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1386,11 +1386,11 @@ NNSG2dMultiCellDataBank* CLACT_U_ResManagerGetResObjResMultiCell(CONST_CLACT_U_R
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒf[ƒ^‚ğæ“¾	ƒŠƒ\[ƒXƒf[ƒ^‚ğƒAƒ“ƒpƒbƒN‚µ‚Ä‚©‚çæ“¾
+ *@brief	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯ã—ã¦ã‹ã‚‰å–å¾—
  *
- *@param	resObj	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@return	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒXƒf[ƒ^
+ *@return	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1409,11 +1409,11 @@ NNSG2dMultiCellAnimBankData* CLACT_U_ResManagerGetResObjResMultiCellAnim(CONST_C
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒF‚Éİ’è‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚Ìƒ^ƒCƒv‚ğæ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *	
- *@return	int		ƒŠƒ\[ƒXƒ^ƒCƒv
+ *@return	int		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
  *
  *
  */
@@ -1427,11 +1427,11 @@ int CLACT_U_ResManagerGetResObjResType(CONST_CLACT_U_RES_OBJ_PTR resObj)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒF‚Éİ’è‚³‚ê‚Ä‚¢‚éVramƒ^ƒCƒv‚ğæ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹Vramã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *	
- *@return	int		Vramƒ^ƒCƒviƒLƒƒƒ‰ƒNƒ^BƒpƒŒƒbƒg‚Ì‚İj
+ *@return	int		Vramã‚¿ã‚¤ãƒ—ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€‚ãƒ‘ãƒ¬ãƒƒãƒˆæ™‚ã®ã¿ï¼‰
  *
  *
  */
@@ -1458,11 +1458,11 @@ int CLACT_U_ResManagerGetResObjVramType(CONST_CLACT_U_RES_OBJ_PTR resObj)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒF‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒŒƒbƒg“Ç‚İ‚İ”‚ğæ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°ã‚’å–å¾—
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *	
- *@return	int		Vramƒ^ƒCƒviƒpƒŒƒbƒg‚Ì‚İj
+ *@return	int		Vramã‚¿ã‚¤ãƒ—ï¼ˆãƒ‘ãƒ¬ãƒƒãƒˆæ™‚ã®ã¿ï¼‰
  *
  *
  */
@@ -1483,12 +1483,12 @@ int CLACT_U_ResManagerGetResObjPlttNum(CONST_CLACT_U_RES_OBJ_PTR resObj)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒF‚Éİ’è‚³‚ê‚Ä‚¢‚évramƒ^ƒCƒv‚ğæ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹vramã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- *@param	resobj	ƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	vram	vramƒ^ƒCƒv	ƒƒCƒ“:1	ƒTƒu:2
+ *@param	resobj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	vram	vramã‚¿ã‚¤ãƒ—	ãƒ¡ã‚¤ãƒ³:1	ã‚µãƒ–:2
  *	
- *@return	int		vramƒ^ƒCƒviƒLƒƒƒ‰ƒNƒ^BƒpƒŒƒbƒg‚Ì‚İj
+ *@return	int		vramã‚¿ã‚¤ãƒ—ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€‚ãƒ‘ãƒ¬ãƒƒãƒˆæ™‚ã®ã¿ï¼‰
  *
  *
  */
@@ -1513,10 +1513,10 @@ void CLACT_U_ResManagerSetResObjVramType(CLACT_U_RES_OBJ_PTR resObj, int vram)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒF‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒŒƒbƒg“Ç‚İ‚İ”‚ğæ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°ã‚’å–å¾—
  *
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	pltt	ƒpƒŒƒbƒg“Ç‚İ‚İ”
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	pltt	ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°
  *	
  *@return	none
  *
@@ -1542,11 +1542,11 @@ void CLACT_U_ResManagerSetResObjPlttNum(CLACT_U_RES_OBJ_PTR resObj, int pltt)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_[ƒTƒCƒY‚ğæ“¾
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
  *@param	none
  *
- *@return	int		ƒTƒCƒY
+ *@return	int		ã‚µã‚¤ã‚º
  *
  *
  */
@@ -1559,15 +1559,15 @@ int CLACT_U_ResManagerGetHeaderSize(void)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒwƒbƒ_[‚ğ”z—ñ‚ÅŠm•Û‚µ‚½‚Æ‚«‚ÌŠe—v‘f”‚Ìƒf[ƒ^‚ğ
- *			æ“¾‚·‚éŠÖ”
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’é…åˆ—ã§ç¢ºä¿ã—ãŸã¨ãã®å„è¦ç´ æ•°ã®ãƒ‡ãƒ¼ã‚¿ã‚’
+ *			å–å¾—ã™ã‚‹é–¢æ•°
  *
- *@param	head	ƒwƒbƒ_[ƒf[ƒ^i”z—ñj
- *@param	no		—v‘f”
+ *@param	head	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆé…åˆ—ï¼‰
+ *@param	no		è¦ç´ æ•°
  *
  *@return	CLACT_U_RES_HEADER_PTR
  *
- * no‚ª”z—ñ‚Ì—v‘f”‚æ‚è‘å‚«‚¢A•s“–‚Èƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ä‚µ‚Ü‚¢‚Ü‚·B
+ * noãŒé…åˆ—ã®è¦ç´ æ•°ã‚ˆã‚Šå¤§ãã„æ™‚ã€ä¸å½“ãªãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¦ã—ã¾ã„ã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -1579,11 +1579,11 @@ CLACT_U_RES_HEADER_PTR CLACT_U_ResManagerGetHeaderNoData(CLACT_U_RES_HEADER_PTR 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒAƒNƒ^[ƒ†[ƒeƒBƒŠƒeƒBƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒwƒbƒ_[“Ç‚İ‚İ
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿
  *
- *@param	path		ƒwƒbƒ_[ƒtƒ@ƒCƒ‹ƒpƒX
- *@param	head		ƒwƒbƒ_[Ši”[æ
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	path		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ *@param	head		ãƒ˜ãƒƒãƒ€ãƒ¼æ ¼ç´å…ˆ
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
@@ -1591,36 +1591,36 @@ CLACT_U_RES_HEADER_PTR CLACT_U_ResManagerGetHeaderNoData(CLACT_U_RES_HEADER_PTR 
 //-----------------------------------------------------------------------------
 void CLACT_U_ResManagerHeaderLoad(const char* path, CLACT_U_RES_HEADER_PTR head,int heap)
 {
-	char* tmp;				// ‰ğ•ú—p
-	char* buff;				// ƒtƒ@ƒCƒ‹ƒf[ƒ^
-	int	i;					// ƒ‹[ƒv—p
+	char* tmp;				// è§£æ”¾ç”¨
+	char* buff;				// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
+	int	i;					// ãƒ«ãƒ¼ãƒ—ç”¨
 
-	GF_ASSERT(head);		// ƒwƒbƒ_[—Ìˆæ‚ğŠm•Û‚µ‚Ä‚­‚¾‚³‚¢
+	GF_ASSERT(head);		// ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸã‚’ç¢ºä¿ã—ã¦ãã ã•ã„
 
 
-	// ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+	// ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 	tmp = sys_LoadFile(heap, path);
-	GF_ASSERT_MSG(tmp, "ƒwƒbƒ_[“Ç‚İ‚İ¸”s");
+	GF_ASSERT_MSG(tmp, "ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿å¤±æ•—");
 
-	// ƒ[ƒNƒoƒbƒtƒ@
+	// ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡
 	buff = makeCopyStr(tmp, heap);
 	
-	// ƒŠƒ\[ƒXƒ^ƒCƒvæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—å–å¾—
 	head->type = getHeaderType(buff);
-	delCopyStr(buff);			// ‚¢‚Á‚½‚ñ”jŠü
-	buff = makeCopyStr(tmp, heap);	// ÄƒRƒs[
+	delCopyStr(buff);			// ã„ã£ãŸã‚“ç ´æ£„
+	buff = makeCopyStr(tmp, heap);	// å†ã‚³ãƒ”ãƒ¼
 
-	// ƒA[ƒJƒCƒuƒ^ƒCƒvæ“¾
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¿ã‚¤ãƒ—å–å¾—
 	head->arc_flag = getHeaderArc(buff);
-	delCopyStr(buff);			// ‚¢‚Á‚½‚ñ”jŠü
-	buff = makeCopyStr(tmp, heap);	// ÄƒRƒs[
+	delCopyStr(buff);			// ã„ã£ãŸã‚“ç ´æ£„
+	buff = makeCopyStr(tmp, heap);	// å†ã‚³ãƒ”ãƒ¼
 
-	// ƒf[ƒ^”‚Ìæ“¾
+	// ãƒ‡ãƒ¼ã‚¿æ•°ã®å–å¾—
 	head->tbl_num = getHeaderNum(buff, head->type, head->arc_flag);
-	delCopyStr(buff);			// ‚¢‚Á‚½‚ñ”jŠü
-	buff = makeCopyStr(tmp, heap);	// ÄƒRƒs[
+	delCopyStr(buff);			// ã„ã£ãŸã‚“ç ´æ£„
+	buff = makeCopyStr(tmp, heap);	// å†ã‚³ãƒ”ãƒ¼
 	
-	// ƒf[ƒ^•ª‚Ì—¬ˆæ‚ÌŠm•Û
+	// ãƒ‡ãƒ¼ã‚¿åˆ†ã®æµåŸŸã®ç¢ºä¿
 	if(head->tbl_num > 0){
 		if(head->arc_flag == 0){
 			head->tbl = sys_AllocMemory(heap, sizeof(CLACT_U_RES_HEADER_SUB)*head->tbl_num);
@@ -1631,12 +1631,12 @@ void CLACT_U_ResManagerHeaderLoad(const char* path, CLACT_U_RES_HEADER_PTR head,
 		head->tbl = NULL;
 	}
 	
-	// ƒf[ƒ^‚ğŠi”[
+	// ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
 	if(head->tbl){
 		loadHeaderData(buff, head->type, head->tbl, head->tbl_num, head->arc_flag);	
 	}
 	
-	// “Ç‚İ‚İƒtƒ@ƒCƒ‹‚ğ”jŠü
+	// èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç ´æ£„
 	delCopyStr(buff);
 	sys_FreeMemoryEz(tmp);
 }
@@ -1644,54 +1644,54 @@ void CLACT_U_ResManagerHeaderLoad(const char* path, CLACT_U_RES_HEADER_PTR head,
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒAƒNƒ^[ƒ†[ƒeƒBƒŠƒeƒBƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒoƒCƒiƒŠƒwƒbƒ_[“Ç‚İ‚İ
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒŠãƒªãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿
  *
- *@param	cp_bindata		ƒoƒCƒiƒŠƒf[ƒ^
- *@param	head			ƒwƒbƒ_[Ši”[æ
- *@param	heap			g—p‚·‚éƒq[ƒv
+ *@param	cp_bindata		ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿
+ *@param	head			ãƒ˜ãƒƒãƒ€ãƒ¼æ ¼ç´å…ˆ
+ *@param	heap			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
- * Binaryƒf[ƒ^‘®		‘Sƒf[ƒ^4byte‹æØ‚è
- *	ƒŠƒ\[ƒXƒ^ƒCƒv
- *	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹idx
- *	ƒf[ƒ^idx
- *	ˆ³kƒtƒ‰ƒO
- *	ŠÇ—ID
- *	–£Vramƒ^ƒCƒv				‚¢‚ç‚È‚¢‚Æ‚«‚Íƒ_ƒ~[ƒf[ƒ^
- *	  £ƒpƒŒƒbƒg“Ç‚İ‚İ–{”	‚¢‚ç‚È‚¢‚Æ‚«‚Íƒ_ƒ~[ƒf[ƒ^
+ * Binaryãƒ‡ãƒ¼ã‚¿æ›¸å¼		å…¨ãƒ‡ãƒ¼ã‚¿4byteåŒºåˆ‡ã‚Š
+ *	ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«idx
+ *	ãƒ‡ãƒ¼ã‚¿idx
+ *	åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *	ç®¡ç†ID
+ *	ï¼Šâ–²Vramã‚¿ã‚¤ãƒ—				ã„ã‚‰ãªã„ã¨ãã¯ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *	  â–²ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æœ¬æ•°	ã„ã‚‰ãªã„ã¨ãã¯ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
  *
- * –ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‚Ì
- * £ƒpƒŒƒbƒgƒŠƒ\[ƒX‚Ì
+ * ï¼Šã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã®æ™‚
+ * â–²ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã®æ™‚
  *	
  */
 //-----------------------------------------------------------------------------
 void CLACT_U_ResManagerHeaderLoadBinary(const void* cp_bindata, CLACT_U_RES_HEADER_PTR head,int heap)
 {
-	int	i;					// ƒ‹[ƒv—p
-	const int* view;		// ƒoƒCƒiƒŠƒf[ƒ^“àQÆ—p
+	int	i;					// ãƒ«ãƒ¼ãƒ—ç”¨
+	const int* view;		// ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿å†…å‚ç…§ç”¨
 
-	GF_ASSERT(head);		// ƒwƒbƒ_[—Ìˆæ‚ğŠm•Û‚µ‚Ä‚­‚¾‚³‚¢
+	GF_ASSERT(head);		// ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸã‚’ç¢ºä¿ã—ã¦ãã ã•ã„
 
-	// QÆ‚Å‚«‚é‚æ‚¤‚Éint*Œ^‚ÅŒ©‚é
+	// å‚ç…§ã§ãã‚‹ã‚ˆã†ã«int*å‹ã§è¦‹ã‚‹
 	view = cp_bindata;
 
-	// ƒŠƒ\[ƒXƒ^ƒCƒvæ“¾
-	head->type = view[0];		// æ“ª4byte ƒŠƒ\[ƒXƒ^ƒCƒv
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—å–å¾—
+	head->type = view[0];		// å…ˆé ­4byte ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
 
-	head->arc_flag = 1;			// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ŒÅ’è
+	head->arc_flag = 1;			// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å›ºå®š
 
-	// ƒf[ƒ^”‚Ìæ“¾
+	// ãƒ‡ãƒ¼ã‚¿æ•°ã®å–å¾—
 	head->tbl_num = getHeaderNumBinary( (const CLACT_U_RES_HEADER_SUBARC*)(view + 1) );
 	
-	// ƒf[ƒ^•ª‚Ì—Ìˆæ‚ÌŠm•Û
+	// ãƒ‡ãƒ¼ã‚¿åˆ†ã®é ˜åŸŸã®ç¢ºä¿
 	if(head->tbl_num > 0){
 		head->tbl = sys_AllocMemory(heap, sizeof(CLACT_U_RES_HEADER_SUBARC)*head->tbl_num);
 	}else{
 		head->tbl = NULL;
 	}
 	
-	// ƒf[ƒ^‚ğŠi”[
+	// ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
 	if(head->tbl){
 		memcpy( head->tbl, view + 1, sizeof(CLACT_U_RES_HEADER_SUBARC)*head->tbl_num );
 	}
@@ -1700,9 +1700,9 @@ void CLACT_U_ResManagerHeaderLoadBinary(const void* cp_bindata, CLACT_U_RES_HEAD
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒwƒbƒ_[”jŠü
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ˜ãƒƒãƒ€ãƒ¼ç ´æ£„
  *
- *@param	head		ƒwƒbƒ_[ƒ|ƒCƒ“ƒ^
+ *@param	head		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -1721,11 +1721,11 @@ void CLACT_U_ResManagerHeaderFree(CLACT_U_RES_HEADER_PTR head)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒwƒbƒ_[‚É“Ç‚İ‚Ü‚ê‚Ä‚¢‚éƒf[ƒ^”æ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ã«èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°å–å¾—
  *
- *@param	head		ƒŠƒ\[ƒXƒwƒbƒ_
+ *@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€
  *
- *@return	int		“Ç‚İ‚Ü‚ê‚Ä‚¢‚éƒf[ƒ^”
+ *@return	int		èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°
  *
  *
  */
@@ -1739,11 +1739,11 @@ int CLACT_U_ResManagerHeaderSetDataNum(CONST_CLACT_U_RES_HEADER_PTR head)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒwƒbƒ_[‚É“Ç‚İ‚Ü‚ê‚Ä‚¢‚éƒf[ƒ^‚ÌƒŠƒ\[ƒXƒ^ƒCƒv
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ã«èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
  *
- *@param	head		ƒŠƒ\[ƒXƒwƒbƒ_
+ *@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€
  *
- *@return	int		ƒŠƒ\[ƒXƒ^ƒCƒv
+ *@return	int		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
  *
  *
  */
@@ -1757,11 +1757,11 @@ int CLACT_U_ResManagerHeaderSetDataResType(CONST_CLACT_U_RES_HEADER_PTR head)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒwƒbƒ_[‚É“Ç‚İ‚Ü‚ê‚Ä‚¢‚éƒf[ƒ^‚ÍƒA[ƒJƒCƒu‚³‚ê‚Ä‚¢‚é‚©
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ã«èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚Œã¦ã„ã‚‹ã‹
  *
- *@param	head		ƒŠƒ\[ƒXƒwƒbƒ_
+ *@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€
  *
- *@return	int			0F‚³‚ê‚Ä‚È‚¢	1F‚³‚ê‚Ä‚é
+ *@return	int			0ï¼šã•ã‚Œã¦ãªã„	1ï¼šã•ã‚Œã¦ã‚‹
  *
  *
  */
@@ -1775,11 +1775,11 @@ int CLACT_U_ResManagerHeaderSetDataArc(CONST_CLACT_U_RES_HEADER_PTR head)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ÌID‚ğ•ÏX‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®IDã‚’å¤‰æ›´ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
- *	@param	param		İ’è‚·‚éID
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
+ *	@param	param		è¨­å®šã™ã‚‹ID
  *
  *	@return	none
  *
@@ -1805,19 +1805,19 @@ void CLACT_U_ResManagerHeaderDataIDSet( CLACT_U_RES_HEADER_PTR head, int no, int
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ÌID‚ğæ“¾‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®IDã‚’å–å¾—ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	int		ŠÇ—ID
+ *	@return	int		ç®¡ç†ID
  *
  *
  */
 //-----------------------------------------------------------------------------
 int CLACT_U_ResManagerHeaderDataIDGet( CONST_CLACT_U_RES_HEADER_PTR head, int no )
 {
-	int ret_id;		// –ß‚è’l—p
+	int ret_id;		// æˆ»ã‚Šå€¤ç”¨
 	
 	GF_ASSERT( head );
 	GF_ASSERT( head->tbl_num > no );
@@ -1837,13 +1837,13 @@ int CLACT_U_ResManagerHeaderDataIDGet( CONST_CLACT_U_RES_HEADER_PTR head, int no
 
 //----------------------------------------------------------------------------
 /**
- *	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ê—p
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å°‚ç”¨
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID‚ğ•ÏX‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«IDã‚’å¤‰æ›´ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
- *	@param	param		İ’è‚·‚éƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
+ *	@param	param		è¨­å®šã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
  *
  *	@return	none
  *
@@ -1864,21 +1864,21 @@ void CLACT_U_ResManagerHeaderArcFileSet( CLACT_U_RES_HEADER_PTR head, int no, in
 
 //----------------------------------------------------------------------------
 /**
- *	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ê—p
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å°‚ç”¨
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID‚ğæ“¾‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«IDã‚’å–å¾—ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	int		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
+ *	@return	int		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
  *
  *
  */
 //-----------------------------------------------------------------------------
 int CLACT_U_ResManagerHeaderArcFileGet( CONST_CLACT_U_RES_HEADER_PTR head, int no )
 {
-	int ret_id;		// –ß‚è’l—p
+	int ret_id;		// æˆ»ã‚Šå€¤ç”¨
 	
 	GF_ASSERT( head );
 	GF_ASSERT( head->tbl_num > no );
@@ -1894,13 +1894,13 @@ int CLACT_U_ResManagerHeaderArcFileGet( CONST_CLACT_U_RES_HEADER_PTR head, int n
 
 //----------------------------------------------------------------------------
 /**
- *	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ê—p
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å°‚ç”¨
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éƒA[ƒJƒCƒuidx‚ğ•ÏX‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–idxã‚’å¤‰æ›´ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
- *	@param	param		İ’è‚·‚éƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
+ *	@param	param		è¨­å®šã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
  *
  *	@return	none
  *
@@ -1921,21 +1921,21 @@ void CLACT_U_ResManagerHeaderDataIdxSet( CLACT_U_RES_HEADER_PTR head, int no, in
 
 //----------------------------------------------------------------------------
 /**
- *	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ê—p
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å°‚ç”¨
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚Ìƒf[ƒ^idx‚ğæ“¾‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒ‡ãƒ¼ã‚¿idxã‚’å–å¾—ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	int			ƒf[ƒ^idx
+ *	@return	int			ãƒ‡ãƒ¼ã‚¿idx
  *
  *
  */
 //-----------------------------------------------------------------------------
 int CLACT_U_ResManagerHeaderDataIdxGet( CONST_CLACT_U_RES_HEADER_PTR head, int no )
 {
-	int ret_id;		// –ß‚è’l—p
+	int ret_id;		// æˆ»ã‚Šå€¤ç”¨
 	
 	GF_ASSERT( head );
 	GF_ASSERT( head->tbl_num > no );
@@ -1951,13 +1951,13 @@ int CLACT_U_ResManagerHeaderDataIdxGet( CONST_CLACT_U_RES_HEADER_PTR head, int n
 
 //----------------------------------------------------------------------------
 /**
- *	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ê—p
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å°‚ç”¨
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éˆ³kƒtƒ@ƒCƒ‹ƒtƒ‰ƒO‚ğ•ÏX‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹åœ§ç¸®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ãƒ©ã‚°ã‚’å¤‰æ›´ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
- *	@param	param		İ’è‚·‚éƒtƒ‰ƒO	iTRUE@FALSEj
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
+ *	@param	param		è¨­å®šã™ã‚‹ãƒ•ãƒ©ã‚°	ï¼ˆTRUEã€€FALSEï¼‰
  *
  *	@return	none
  *
@@ -1978,21 +1978,21 @@ void CLACT_U_ResManagerHeaderCompFlagSet( CLACT_U_RES_HEADER_PTR head, int no, i
 
 //----------------------------------------------------------------------------
 /**
- *	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ê—p
+ *	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å°‚ç”¨
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚Ìƒf[ƒ^idx‚ğæ“¾‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒ‡ãƒ¼ã‚¿idxã‚’å–å¾—ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	int			ˆ³kƒtƒ‰ƒO	iTRUE@FALSEj
+ *	@return	int			åœ§ç¸®ãƒ•ãƒ©ã‚°	ï¼ˆTRUEã€€FALSEï¼‰
  *
  *
  */
 //-----------------------------------------------------------------------------
 int CLACT_U_ResManagerHeaderCompFlagGet( CONST_CLACT_U_RES_HEADER_PTR head, int no )
 {
-	int ret_id;		// –ß‚è’l—p
+	int ret_id;		// æˆ»ã‚Šå€¤ç”¨
 	
 	GF_ASSERT( head );
 	GF_ASSERT( head->tbl_num > no );
@@ -2009,11 +2009,11 @@ int CLACT_U_ResManagerHeaderCompFlagGet( CONST_CLACT_U_RES_HEADER_PTR head, int 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éVRamƒ^ƒCƒv‚ğ•ÏX‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹VRamã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
- *	@param	param		İ’è‚·‚éVRamƒ^ƒCƒv
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
+ *	@param	param		è¨­å®šã™ã‚‹VRamã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  *
@@ -2039,10 +2039,10 @@ void CLACT_U_ResManagerHeaderVramTypeSet( CLACT_U_RES_HEADER_PTR head, int no, i
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ÌVramType‚ğæ“¾‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®VramTypeã‚’å–å¾—ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	int		VramType
  *
@@ -2051,7 +2051,7 @@ void CLACT_U_ResManagerHeaderVramTypeSet( CLACT_U_RES_HEADER_PTR head, int no, i
 //-----------------------------------------------------------------------------
 int CLACT_U_ResManagerHeaderVramTypeGet( CONST_CLACT_U_RES_HEADER_PTR head, int no )
 {
-	int ret_id;		// –ß‚è’l—p
+	int ret_id;		// æˆ»ã‚Šå€¤ç”¨
 	
 	GF_ASSERT( head );
 	GF_ASSERT( head->tbl_num > no );
@@ -2072,11 +2072,11 @@ int CLACT_U_ResManagerHeaderVramTypeGet( CONST_CLACT_U_RES_HEADER_PTR head, int 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éƒpƒŒƒbƒg“Ç‚İ‚İ”‚ğ•ÏX‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°ã‚’å¤‰æ›´ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
- *	@param	param		İ’è‚·‚éƒpƒŒƒbƒg“Ç‚İ‚İ”
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
+ *	@param	param		è¨­å®šã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°
  *
  *	@return	none
  *
@@ -2102,10 +2102,10 @@ void CLACT_U_ResManagerHeaderPlttNumSet( CLACT_U_RES_HEADER_PTR head, int no, in
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒwƒbƒ_‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ÌƒpƒŒƒbƒg“Ç‚İ‚İ”‚ğæ“¾‚·‚é
+ *	@brief	ãƒ˜ãƒƒãƒ€ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	head		ƒŠƒ\[ƒXƒwƒbƒ_[
- *	@param	no			ƒŠƒ\[ƒXƒwƒbƒ_[“à‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	head		ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *	@param	no			ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	int		VramType
  *
@@ -2114,7 +2114,7 @@ void CLACT_U_ResManagerHeaderPlttNumSet( CLACT_U_RES_HEADER_PTR head, int no, in
 //-----------------------------------------------------------------------------
 int CLACT_U_ResManagerHeaderPlttNumGet( CONST_CLACT_U_RES_HEADER_PTR head, int no )
 {
-	int ret_id;		// –ß‚è’l—p
+	int ret_id;		// æˆ»ã‚Šå€¤ç”¨
 	
 	GF_ASSERT( head );
 	GF_ASSERT( head->tbl_num > no );
@@ -2135,11 +2135,11 @@ int CLACT_U_ResManagerHeaderPlttNumGet( CONST_CLACT_U_RES_HEADER_PTR head, int n
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‹ó‚¢‚Ä‚¢‚éƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹‚ğæ“¾
+ *@brief	ç©ºã„ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
  *
  *@param	none
  *
- *@return	CLACT_U_RES_OBJ_PTR	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@return	CLACT_U_RES_OBJ_PTR	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *
  */
@@ -2160,13 +2160,13 @@ static CLACT_U_RES_OBJ_PTR getCleanResObj(CLACT_U_RES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Šg’£ƒf[ƒ^ì¬
+ *@brief	æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *@param	resObj		ƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	type		ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	vram_type	Vramƒ^ƒCƒv
- *@param	pltt_num	ƒpƒŒƒbƒg”
- *@param	heap		ƒq[ƒvƒiƒ“ƒo[
+ *@param	resObj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	type		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	vram_type	Vramã‚¿ã‚¤ãƒ—
+ *@param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆæ•°
+ *@param	heap		ãƒ’ãƒ¼ãƒ—ãƒŠãƒ³ãƒãƒ¼
  *
  *@return	none
  *
@@ -2177,7 +2177,7 @@ static void makeExData(CLACT_U_RES_OBJ_PTR resObj, int type, int vram_type, int 
 {
 	void* res;
 
-	res = RESM_GetRes(resObj->res_obj);		// ƒŠƒ\[ƒXæ“¾
+	res = RESM_GetRes(resObj->res_obj);		// ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	
 	switch(type){
 	case CLACT_U_CHAR_RES:
@@ -2204,13 +2204,13 @@ static void makeExData(CLACT_U_RES_OBJ_PTR resObj, int type, int vram_type, int 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^Šg’£ƒf[ƒ^ì¬
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *@param	res			ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- *@param	vram_type	vramƒ^ƒCƒv
- *@param	heap		g—pƒq[ƒv
+ *@param	res			ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ *@param	vram_type	vramã‚¿ã‚¤ãƒ—
+ *@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_EX_CHAR*	ì¬‚µ‚½ƒf[ƒ^
+ *@return	CLACT_U_RES_EX_CHAR*	ä½œæˆã—ãŸãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -2229,14 +2229,14 @@ static CLACT_U_RES_EX_CHAR* makeExChar(void* res, int vram_type, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒgŠg’£ƒf[ƒ^‚ğì¬
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆæ‹¡å¼µãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
  *
- *@param	res			ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- *@param	vram_type	Vramƒ^ƒCƒv
- *@param	pltt_num	ƒpƒŒƒbƒg”
- *@param	heap		g—pƒq[ƒv
+ *@param	res			ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ *@param	vram_type	Vramã‚¿ã‚¤ãƒ—
+ *@param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆæ•°
+ *@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_EX_PLTT* ì¬‚µ‚½ƒf[ƒ^
+ *@return	CLACT_U_RES_EX_PLTT* ä½œæˆã—ãŸãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -2256,12 +2256,12 @@ static CLACT_U_RES_EX_PLTT* makeExPltt(void* res, int vram_type, int pltt_num, i
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹Šg’£ƒf[ƒ^‚ğì¬
+ *@brief	ã‚»ãƒ«æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
  *
- *@param	res		ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- *@param	heap	g—pƒq[ƒv
+ *@param	res		ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ *@param	heap	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_EX_CELL*	ì¬ƒf[ƒ^
+ *@return	CLACT_U_RES_EX_CELL*	ä½œæˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -2279,12 +2279,12 @@ static CLACT_U_RES_EX_CELL* makeExCell(void* res, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒAƒjƒŠg’£ƒf[ƒ^ì¬
+ *@brief	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *@param	res		ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- *@param	heap	g—pƒq[ƒv
+ *@param	res		ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ *@param	heap	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_EX_CELLANM*	ì¬ƒf[ƒ^
+ *@return	CLACT_U_RES_EX_CELLANM*	ä½œæˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -2302,12 +2302,12 @@ static CLACT_U_RES_EX_CELLANM*	makeExCellAnm(void* res, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ}ƒ‹ƒ`ƒZƒ‹Šg’£ƒf[ƒ^ì¬
+ *@brief	ãƒãƒ«ãƒã‚»ãƒ«æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *@param	res		ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- *@param	heap	g—pƒq[ƒv
+ *@param	res		ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ *@param	heap	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_EX_MULTI*	ì¬ƒf[ƒ^
+ *@return	CLACT_U_RES_EX_MULTI*	ä½œæˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -2325,12 +2325,12 @@ static CLACT_U_RES_EX_MULTI*	makeExMulti(void* res, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒŠg’£ƒf[ƒ^ì¬
+ *@brief	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *@param	res		ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- *@param	heap	g—pƒq[ƒv
+ *@param	res		ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ *@param	heap	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_EX_MULTIANM* ì¬ƒf[ƒ^
+ *@return	CLACT_U_RES_EX_MULTIANM* ä½œæˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -2349,9 +2349,9 @@ static CLACT_U_RES_EX_MULTIANM* makeExMultiAnm(void* res, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚»‚ê‚¼‚ê‚ÌŠg’£ƒf[ƒ^‚ğ”jŠü
+ *@brief	ãã‚Œãã‚Œã®æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *@param	ƒŠƒ\[ƒXƒIƒuƒWƒF	
+ *@param	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§	
  *
  *@return	none
  *
@@ -2369,11 +2369,11 @@ static void delExData(CLACT_U_RES_OBJ_PTR resObj)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Šg’£ƒf[ƒ^æ“¾
+ *	@brief	æ‹¡å¼µãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	ŠeŠg’£ƒf[ƒ^
+ *	@return	å„æ‹¡å¼µãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -2382,8 +2382,8 @@ static void* getExData( CONST_CLACT_U_RES_OBJ_PTR resObj )
 {
 	GF_ASSERT( resObj );
 
-	// CLACT_U_ResManagerResOnlyDelete‚Åƒf[ƒ^‚ğ”jŠü‚µ‚½ˆ×A
-	// ƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñB
+	// CLACT_U_ResManagerResOnlyDeleteã§ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã—ãŸç‚ºã€
+	// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“ã€‚
 	GF_ASSERT( resObj->res_ex );
 	
 	return resObj->res_ex;
@@ -2394,50 +2394,50 @@ static void* getExData( CONST_CLACT_U_RES_OBJ_PTR resObj )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚P‚Â‚Ìƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ *@brief	ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- *@param	resm	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
- *@param	resObj	ƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	path	ƒtƒ@ƒCƒ‹ƒpƒX
- *@param	id		ŠÇ—ID
- *@param	vram	vramƒ^ƒCƒv
- *@param	pltt_numƒpƒŒƒbƒgg—p—Ê
- *@param	type	ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	heap	g—pƒq[ƒv
+ *@param	resm	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ *@param	resObj	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	path	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ *@param	id		ç®¡ç†ID
+ *@param	vram	vramã‚¿ã‚¤ãƒ—
+ *@param	pltt_numãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨é‡
+ *@param	type	ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	heap	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *@return	CLACT_U_RES_OBJ_PTR		ƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@return	CLACT_U_RES_OBJ_PTR		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
 //-----------------------------------------------------------------------------
 static void loadOneData(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_PTR resObj, const char* path, int id, int vram, int pltt_num, int type, int heap)
 {
-	resObj->res_obj = RESM_AddRes(resm->res_manager, path, id, heap);	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	resObj->res_obj = RESM_AddRes(resm->res_manager, path, id, heap);	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	
-	resObj->type = type;	// ƒŠƒ\[ƒXƒ^ƒCƒv
+	resObj->type = type;	// ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
 	
-	// ‚»‚Ì‘¼ƒf[ƒ^İ’è
+	// ãã®ä»–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	makeExData(resObj, type, vram, pltt_num, heap);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚P‚Â‚ÌƒA[ƒJƒCƒuƒf[ƒ^‚ğƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Éİ’è‚·‚é
+ *@brief	ï¼‘ã¤ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã«è¨­å®šã™ã‚‹
  *
- *@param	resm		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒf[ƒ^
- *@param	resObj		ƒf[ƒ^Ši”[æƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	arcFile		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹I‚„‚˜
- *@param	dataIdx		ƒf[ƒ^Idx	
- *@param	compFlag	ˆ³kƒtƒ‰ƒO
- *@param	id			ŠÇ—ID
- *@param	vram		Vramƒ^ƒCƒv
- *@param	pltt_num	ƒpƒŒƒbƒg“Ç‚İ‚İ”
- *@param	type		ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	heap		g—pƒq[ƒv
- *@param	alloc_type	ƒAƒƒP[ƒgƒ^ƒCƒv
- *	ALLOC_TOP = 0,			///< ƒq[ƒv‚Ìæ“ª‚©‚ç
- *	ALLOC_BOTTOM = 1,		///< ƒq[ƒv‚ÌI’[‚©‚ç
+ *@param	resm		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ‡ãƒ¼ã‚¿
+ *@param	resObj		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	arcFile		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«Iï½„ï½˜
+ *@param	dataIdx		ãƒ‡ãƒ¼ã‚¿Idx	
+ *@param	compFlag	åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *@param	id			ç®¡ç†ID
+ *@param	vram		Vramã‚¿ã‚¤ãƒ—
+ *@param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°
+ *@param	type		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
+ *@param	alloc_type	ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—
+ *	ALLOC_TOP = 0,			///< ãƒ’ãƒ¼ãƒ—ã®å…ˆé ­ã‹ã‚‰
+ *	ALLOC_BOTTOM = 1,		///< ãƒ’ãƒ¼ãƒ—ã®çµ‚ç«¯ã‹ã‚‰
  *
  *@return	none
  *	
@@ -2448,37 +2448,37 @@ static void SetArcOneData(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OBJ_PTR resO
 {
 	void* res;
 	
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	res = ArcUtil_Load(arcFile, dataIdx, compFlag, heap, alloc_type);
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚Éİ’è
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«è¨­å®š
 	resObj->res_obj = RESM_AddResNormal(resm->res_manager, res, id);
 
-	// ƒŠƒ\[ƒXƒ^ƒCƒv
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
 	resObj->type = type;
 	
-	// ‚»‚Ì‘¼ƒf[ƒ^İ’è
+	// ãã®ä»–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	makeExData(resObj, type, vram, pltt_num, heap);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- * ¡ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹•û®
+ * â– ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«æ–¹å¼
  *
- *@brief	‚P‚Â‚ÌƒA[ƒJƒCƒuƒf[ƒ^‚ğƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Éİ’è‚·‚é
+ *@brief	ï¼‘ã¤ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã«è¨­å®šã™ã‚‹
  *
- *@param	resm		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒf[ƒ^
- *@param	resObj		ƒf[ƒ^Ši”[æƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	arcHandle	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *@param	dataIdx		ƒf[ƒ^Idx	
- *@param	compFlag	ˆ³kƒtƒ‰ƒO
- *@param	id			ŠÇ—ID
- *@param	vram		Vramƒ^ƒCƒv
- *@param	pltt_num	ƒpƒŒƒbƒg“Ç‚İ‚İ”
- *@param	type		ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	heap		g—pƒq[ƒv
- *@param	alloc_type	ƒƒ‚ƒŠŠm•Ûƒ^ƒCƒv
+ *@param	resm		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ‡ãƒ¼ã‚¿
+ *@param	resObj		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	arcHandle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *@param	dataIdx		ãƒ‡ãƒ¼ã‚¿Idx	
+ *@param	compFlag	åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *@param	id			ç®¡ç†ID
+ *@param	vram		Vramã‚¿ã‚¤ãƒ—
+ *@param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°
+ *@param	type		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
+ *@param	alloc_type	ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚¿ã‚¤ãƒ—
  *
  *@return	none
  *	
@@ -2491,24 +2491,24 @@ static void SetArcOneData_ArcHandle(CLACT_U_RES_MANAGER_PTR resm, CLACT_U_RES_OB
 	
 	res = ArcHandle_Load( arcHandle, dataIdx, compFlag, heap, alloc_type);
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚Éİ’è
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«è¨­å®š
 	resObj->res_obj = RESM_AddResNormal(resm->res_manager, res, id);
 
-	// ƒŠƒ\[ƒXƒ^ƒCƒv
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
 	resObj->type = type;
 	
-	// ‚»‚Ì‘¼ƒf[ƒ^İ’è
+	// ãã®ä»–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	makeExData(resObj, type, vram, pltt_num, heap);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒf[ƒ^ƒ^ƒCƒv‚ğæ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- *@param	buff	ƒwƒbƒ_[ƒf[ƒ^
+ *@param	buff	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
  *
- *@return	int		ƒŠƒ\[ƒXƒ^ƒCƒv
+ *@return	int		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
  *
  *
  */
@@ -2518,7 +2518,7 @@ static int getHeaderType(char* buff)
 	int no;
 	char* tok;
 	
-	// æ“ª‚É‚ ‚é
+	// å…ˆé ­ã«ã‚ã‚‹
 	tok	= strtok(buff, ",");
 	
 	no = atoi(tok);
@@ -2529,11 +2529,11 @@ static int getHeaderType(char* buff)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒA[ƒJƒCƒu‚³‚ê‚½ƒtƒ@ƒCƒ‹—p‚©‚ğæ“¾
+ *@brief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ç”¨ã‹ã‚’å–å¾—
  *
- *@param	buff	ƒwƒbƒ_[ƒf[ƒ^
+ *@param	buff	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
  *
- *@return	int		ƒA[ƒJƒCƒu‚³‚ê‚½ƒf[ƒ^‚æ‚¤‚©
+ *@return	int		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚ˆã†ã‹
  *
  *
  */
@@ -2543,7 +2543,7 @@ static int getHeaderArc(char* buff)
 	int no;
 	char* tok;
 	
-	// æ“ª‚©‚ç‚Q”Ô–Ú
+	// å…ˆé ­ã‹ã‚‰ï¼’ç•ªç›®
 	tok	= strtok(buff, ",");
 	tok	= strtok(NULL, ",");
 	
@@ -2555,51 +2555,51 @@ static int getHeaderArc(char* buff)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_[‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^”‚ğæ“¾
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°ã‚’å–å¾—
  *
- *@param	buff	ƒwƒbƒ_[ƒf[ƒ^
- *@param	type	ƒwƒbƒ_[ƒ^ƒCƒv
- *@param	arcFlag	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ *@param	buff	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	type	ãƒ˜ãƒƒãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
+ *@param	arcFlag	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- *@return	int		ƒwƒbƒ_[”
+ *@return	int		ãƒ˜ãƒƒãƒ€ãƒ¼æ•°
  *
  *
  */
 //-----------------------------------------------------------------------------
 static int getHeaderNum(char* buff, int type, int arcFlag)
 {
-	int count;			// ƒf[ƒ^”ƒJƒEƒ“ƒg
-	char* path_or_arc;	// ƒtƒ@ƒCƒ‹ƒpƒX‚©ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹
-	char* data_idx;		// ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
-	char* commpFlag;	// ˆ³k‚³‚ê‚½ƒf[ƒ^‚©
+	int count;			// ãƒ‡ãƒ¼ã‚¿æ•°ã‚«ã‚¦ãƒ³ãƒˆ
+	char* path_or_arc;	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«
+	char* data_idx;		// ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	char* commpFlag;	// åœ§ç¸®ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‹
 	char* id;			// ID
 	char* vram;			// vram
 	char* pltt;			// pltt
 
-	// Å‰‚Ì‚P‚Â‚ÍƒŠƒ\[ƒX‚Ìí—Ş‚È‚Ì‚Å”ò‚Î‚·
+	// æœ€åˆã®ï¼‘ã¤ã¯ãƒªã‚½ãƒ¼ã‚¹ã®ç¨®é¡ãªã®ã§é£›ã°ã™
 	strtok(buff, ",");
 	strtok(NULL, ",");
 	strtok(NULL, "\n");
 	
 	count = 0;
 	if(arcFlag == 0){
-		loadHeaderCore(NULL, &path_or_arc,&id, &vram, &pltt, type);	// ‚P‚Â‚Ìƒf[ƒ^Ši”[
+		loadHeaderCore(NULL, &path_or_arc,&id, &vram, &pltt, type);	// ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	}else{
 		loadHeaderCoreArc(NULL, &path_or_arc,&data_idx,&commpFlag,&id,&vram,&pltt,type);
 	}
 	
-	// ƒpƒX‚ª'0'‚Ìƒf[ƒ^‚ªI’[
+	// ãƒ‘ã‚¹ãŒ'0'ã®ãƒ‡ãƒ¼ã‚¿ãŒçµ‚ç«¯
 	while(path_or_arc[0] != 'e'){
 		count++;
 
 		if(arcFlag == 0){
-			loadHeaderCore(NULL, &path_or_arc, &id, &vram, &pltt, type);	// ‚P‰ñ–ÚˆÈ~‚ÍNULL‚ÅOK
+			loadHeaderCore(NULL, &path_or_arc, &id, &vram, &pltt, type);	// ï¼‘å›ç›®ä»¥é™ã¯NULLã§OK
 		}else{
 			loadHeaderCoreArc(NULL, &path_or_arc,&data_idx,&commpFlag,&id,&vram,&pltt,type);
 		}
 
 		if(path_or_arc == NULL){
-			GF_ASSERT(0);		// I’[ƒR[ƒh‚ª–³‚¢
+			GF_ASSERT(0);		// çµ‚ç«¯ã‚³ãƒ¼ãƒ‰ãŒç„¡ã„
 		}
 	}
 
@@ -2609,11 +2609,11 @@ static int getHeaderNum(char* buff, int type, int arcFlag)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒoƒCƒiƒŠƒf[ƒ^‚Ìƒwƒbƒ_[ƒe[ƒuƒ‹”‚ğæ“¾
+ *	@brief	ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã®ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ã‚’å–å¾—
  *
- *	@param	buff	ƒoƒCƒiƒŠƒf[ƒ^
+ *	@param	buff	ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@return	I—¹ƒR[ƒh‚ğ“ü‚ê‚È‚¢ƒe[ƒuƒ‹”
+ *	@return	çµ‚äº†ã‚³ãƒ¼ãƒ‰ã‚’å…¥ã‚Œãªã„ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
  *
  */
@@ -2633,13 +2633,13 @@ static int getHeaderNumBinary( const CLACT_U_RES_HEADER_SUBARC* buff )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_[ƒf[ƒ^‚ğ“Ç‚İ‚İ
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿
  *
- *@param	buff	ƒwƒbƒ_[ƒf[ƒ^
- *@param	type	ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	tbl		“Ç‚İ‚İæ
- *@param	num		“Ç‚İ‚İ‚·‚¤
- *@param	arcFlag	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚©‚Ç‚¤‚©
+ *@param	buff	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	type	ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	tbl		èª­ã¿è¾¼ã¿å…ˆ
+ *@param	num		èª­ã¿è¾¼ã¿ã™ã†
+ *@param	arcFlag	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã©ã†ã‹
  *
  *@return	none
  *
@@ -2648,23 +2648,23 @@ static int getHeaderNumBinary( const CLACT_U_RES_HEADER_SUBARC* buff )
 //-----------------------------------------------------------------------------
 static void loadHeaderData(char* buff, int type, void* tbl, int num, int arcFlag)
 {
-	int i;		// ƒ‹[ƒv—p
-	char* path_or_arc;	// ƒtƒ@ƒCƒ‹ƒpƒX‚©ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹
-	char* data_idx;		// ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
-	char* commpFlag;	// ˆ³k‚³‚ê‚½ƒf[ƒ^‚©
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	char* path_or_arc;	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«
+	char* data_idx;		// ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	char* commpFlag;	// åœ§ç¸®ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‹
 	char* id;			// ID
 	char* vram;			// vram
 	char* pltt;			// pltt
 
-	// Å‰‚Ì‚P‚Â‚ÍƒŠƒ\[ƒX‚Ìí—Ş‚È‚Ì‚Å”ò‚Î‚·
+	// æœ€åˆã®ï¼‘ã¤ã¯ãƒªã‚½ãƒ¼ã‚¹ã®ç¨®é¡ãªã®ã§é£›ã°ã™
 	strtok(buff, ",");
 	strtok(NULL, ",");
 	strtok(NULL, "\n");
 
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	for(i=0;i<num;i++){
 		if(arcFlag == 0){
-			loadHeaderCore(NULL, &path_or_arc, &id, &vram, &pltt, type);	// ‚P‚Â‚Ìƒf[ƒ^Ši”[
+			loadHeaderCore(NULL, &path_or_arc, &id, &vram, &pltt, type);	// ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 			setDataHeader((CLACT_U_RES_HEADER_SUB*)tbl + i, path_or_arc, id, vram, pltt);
 		}else{
 			loadHeaderCoreArc(NULL, &path_or_arc,&data_idx,&commpFlag,&id,&vram,&pltt,type);
@@ -2676,14 +2676,14 @@ static void loadHeaderData(char* buff, int type, void* tbl, int num, int arcFlag
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚P‚Â‚Ìƒf[ƒ^‚ğ“Ç‚İ‚ñ‚Å‚­‚é
+ *@brief	ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚“ã§ãã‚‹
  *
- *@param	buff		ƒwƒbƒ_[ƒf[ƒ^
- *@param	file_path	ƒpƒXŠi”[æ
- *@param	id			IDŠi”[æ
- *@param	vram		‚u‚’‚‚ƒ^ƒCƒv(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
- *@param	pltt		ƒpƒŒƒbƒgŠi”[æ
- *@param	type		ƒŠƒ\[ƒXƒ^ƒCƒv
+ *@param	buff		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	file_path	ãƒ‘ã‚¹æ ¼ç´å…ˆ
+ *@param	id			IDæ ¼ç´å…ˆ
+ *@param	vram		ï¼¶ï½’ï½ï½ã‚¿ã‚¤ãƒ—(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
+ *@param	pltt		ãƒ‘ãƒ¬ãƒƒãƒˆæ ¼ç´å…ˆ
+ *@param	type		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
  *
  *@return	none
  *
@@ -2709,7 +2709,7 @@ static void loadHeaderCore(char* buff, char** file_path, char** id, char** vram,
 		*pltt = NULL;
 		break;
 	default:
-		GF_ASSERT_MSG(0, "•s³‚ÈƒtƒH[ƒ}ƒbƒg‚Å‚·\n");
+		GF_ASSERT_MSG(0, "ä¸æ­£ãªãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã™\n");
 		break;
 	}
 }
@@ -2717,12 +2717,12 @@ static void loadHeaderCore(char* buff, char** file_path, char** id, char** vram,
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚P‚Â‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ *@brief	ï¼‘ã¤ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- *@param	buff	ƒwƒbƒ_[ƒf[ƒ^
- *@param	path	ƒpƒXŠi”[æ
- *@param	id		IDŠi”[æ
- *@param	type	Vramƒ^ƒCƒvŠi”[æ
+ *@param	buff	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	path	ãƒ‘ã‚¹æ ¼ç´å…ˆ
+ *@param	id		IDæ ¼ç´å…ˆ
+ *@param	type	Vramã‚¿ã‚¤ãƒ—æ ¼ç´å…ˆ
  *
  *@return	none
  *
@@ -2740,13 +2740,13 @@ static void loadCharHeaderCore(char* buff, char** path, char** id, char** type)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒŒƒbƒg‚Ì‚P‚Â‚Ìƒf[ƒ^‚ğæ“¾
+ *@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã®ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *@param	buff		ƒwƒbƒ_[ƒf[ƒ^
- *@param	path		ƒpƒXŠi”[æ
- *@param	id			‚h‚cŠi”[æ
- *@param	type		‚u‚’‚‚ƒ^ƒCƒv(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
- *@param	pltt_num	ƒpƒŒƒbƒg”
+ *@param	buff		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	path		ãƒ‘ã‚¹æ ¼ç´å…ˆ
+ *@param	id			ï¼©ï¼¤æ ¼ç´å…ˆ
+ *@param	type		ï¼¶ï½’ï½ï½ã‚¿ã‚¤ãƒ—(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
+ *@param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆæ•°
  *
  *@return	none
  *
@@ -2765,11 +2765,11 @@ static void loadPlttHeaderCore(char* buff, char** path, char** id, char** type, 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹—Ş‚Ìƒwƒbƒ_[ƒf[ƒ^Ši”[
+ *@brief	ã‚»ãƒ«é¡ã®ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿æ ¼ç´
  *	
- *@param	buff	ƒwƒbƒ_[ƒf[ƒ^
- *@param	path	ƒpƒXŠi”[æ
- *@param	id		‚h‚cŠi”[æ
+ *@param	buff	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	path	ãƒ‘ã‚¹æ ¼ç´å…ˆ
+ *@param	id		ï¼©ï¼¤æ ¼ç´å…ˆ
  *
  *@return	none
  *
@@ -2786,13 +2786,13 @@ static void loadKindCellHeaderCore(char* buff, char** path, char** id)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒf[ƒ^İ’è
+ *@brief	ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *@param	head	İ’èæ
- *@param	path	İ’èƒpƒX
- *@param	id		İ’è‚h‚c
- *@param	vram	İ’è‚u‚’‚‚ƒ^ƒCƒv(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
- *@param	pltt	İ’èƒpƒŒƒbƒgƒiƒ“ƒo[
+ *@param	head	è¨­å®šå…ˆ
+ *@param	path	è¨­å®šãƒ‘ã‚¹
+ *@param	id		è¨­å®šï¼©ï¼¤
+ *@param	vram	è¨­å®šï¼¶ï½’ï½ï½ã‚¿ã‚¤ãƒ—(NNS_G2D_VRAM_TYPE_2DMAIN,NNS_G2D_VRAM_TYPE_2DSUB,NNS_G2D_VRAM_TYPE_2DMAX)
+ *@param	pltt	è¨­å®šãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
  *	
  *@return	none
  *
@@ -2818,16 +2818,16 @@ static void setDataHeader(CLACT_U_RES_HEADER_SUB* head, char* path, char* id, ch
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹—pƒwƒbƒ_[“Ç‚İ‚İŠÖ”
+ *@brief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿é–¢æ•°
  *
- *@param	buff		ƒwƒbƒ_[ƒf[ƒ^
- *@param	srcFile		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹IDŠi”[æ
- *@param	dataIdx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXŠi”[æ
- *@param	compFlag	ˆ³kƒtƒ‰ƒOŠi”[æ
- *@param	id			ŠÇ—IDŠi”[æ
- *@param	vram		Vramƒ^ƒCƒvŠi”[æ
- *@param	pltt		ƒpƒŒƒbƒgg—p—ÊŠi”[æ
- *@param	type		ƒŠƒ\[ƒXƒ^ƒCƒv
+ *@param	buff		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	srcFile		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«IDæ ¼ç´å…ˆ
+ *@param	dataIdx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´å…ˆ
+ *@param	compFlag	åœ§ç¸®ãƒ•ãƒ©ã‚°æ ¼ç´å…ˆ
+ *@param	id			ç®¡ç†IDæ ¼ç´å…ˆ
+ *@param	vram		Vramã‚¿ã‚¤ãƒ—æ ¼ç´å…ˆ
+ *@param	pltt		ãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨é‡æ ¼ç´å…ˆ
+ *@param	type		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
  *
  *@return	none
  *
@@ -2853,7 +2853,7 @@ static void loadHeaderCoreArc(char* buff, char** srcFile, char** dataIdx, char**
 		*pltt = NULL;
 		break;
 	default:
-		GF_ASSERT_MSG(0, "•s³‚ÈƒtƒH[ƒ}ƒbƒg‚Å‚·\n");
+		GF_ASSERT_MSG(0, "ä¸æ­£ãªãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã™\n");
 		break;
 	}
 }
@@ -2861,14 +2861,14 @@ static void loadHeaderCoreArc(char* buff, char** srcFile, char** dataIdx, char**
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *@param	buff		ƒwƒbƒ_[ƒf[ƒ^
- *@param	srcFile		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *@param	dataIdx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag	ˆ³kƒtƒ‰ƒO
- *@param	id			ŠÇ—ID
- *@param	type		Vramƒ^ƒCƒv
+ *@param	buff		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	srcFile		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *@param	dataIdx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag	åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *@param	id			ç®¡ç†ID
+ *@param	type		Vramã‚¿ã‚¤ãƒ—
  *
  *@return	none
  *
@@ -2888,15 +2888,15 @@ static void loadCharHeaderCoreArc(char* buff, char** srcFile, char** dataIdx, ch
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒA[ƒJƒCƒu—pƒpƒŒƒbƒgƒwƒbƒ_[ƒf[ƒ^“Ç‚İ‚İ
+ *@brief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *@param	buff		ƒwƒbƒ_[ƒf[ƒ^
- *@param	srcFile		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *@param	dataIdx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag	ˆ³kƒtƒ‰ƒO
- *@param	id			ŠÇ—ID
- *@param	type		Vramƒ^ƒCƒv
- *@param	pltt_num	ƒpƒŒƒbƒgg—p—Ê
+ *@param	buff		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	srcFile		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *@param	dataIdx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag	åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *@param	id			ç®¡ç†ID
+ *@param	type		Vramã‚¿ã‚¤ãƒ—
+ *@param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨é‡
  *
  *@return
  *
@@ -2917,14 +2917,14 @@ static void loadPlttHeaderCoreArc(char* buff, char** srcFile, char** dataIdx, ch
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹AƒZƒ‹ƒAƒjƒAƒ}ƒ‹ƒ`ƒZƒ‹Aƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
-			ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹—p“Ç‚İ‚İ
+ *@brief	ã‚»ãƒ«ã€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã€ãƒãƒ«ãƒã‚»ãƒ«ã€ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ç”¨èª­ã¿è¾¼ã¿
  *
- *@param	buff		ƒwƒbƒ_[ƒf[ƒ^
- *@param	srcFile		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *@param	dataIdx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag	ˆ³kƒtƒ‰ƒO
- *@param	id			ŠÇ—ID
+ *@param	buff		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	srcFile		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *@param	dataIdx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag	åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *@param	id			ç®¡ç†ID
  *	
  *@return	none
  *
@@ -2943,15 +2943,15 @@ static void loadKindCellHeaderCoreArc(char* buff, char** srcFile, char** dataIdx
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_‚Éƒf[ƒ^‚ğŠi”[
+ *@brief	ãƒ˜ãƒƒãƒ€ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
  *
- *@param	head		Ši”[æƒwƒbƒ_
- *@param	srcFile		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *@param	dataIdx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *@param	compFlag	ˆ³kƒtƒ‰ƒO
- *@param	id			ŠÇ—ID
- *@param	type		Vramƒ^ƒCƒv
- *@param	pltt_num	ƒpƒŒƒbƒgg—p—Ê
+ *@param	head		æ ¼ç´å…ˆãƒ˜ãƒƒãƒ€
+ *@param	srcFile		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *@param	dataIdx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *@param	compFlag	åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *@param	id			ç®¡ç†ID
+ *@param	type		Vramã‚¿ã‚¤ãƒ—
+ *@param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨é‡
  *
  *@return	none
  *
@@ -2978,15 +2978,15 @@ static void setDataHeaderArc(CLACT_U_RES_HEADER_SUBARC* head, char* arcFile, cha
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^‚Ì“Ç‚İo‚µiƒƒ‚ƒŠŠm•Û‚·‚éj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å‡ºã—ï¼ˆãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ï¼‰
  *
- * @param	p_handle		ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- * @param   dataIdx			ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   compressedFlag	ˆ³k‚³‚ê‚Ä‚¢‚é‚©H
- * @param	heapID			g—p‚·‚éƒq[ƒv
- * @param	alloc_type		ƒAƒƒbƒNƒ^ƒCƒv
+ * @param	p_handle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ * @param   dataIdx			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   compressedFlag	åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹ï¼Ÿ
+ * @param	heapID			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ * @param	alloc_type		ã‚¢ãƒ­ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
  *
- * @retval  void*			“Ç‚İo‚µ—Ìˆæƒ|ƒCƒ“ƒ^
+ * @retval  void*			èª­ã¿å‡ºã—é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void* ArcHandle_Load(ARCHANDLE* p_handle, u32 dataIdx, BOOL compressedFlag, u32 heapID, u32 alloc_type)
@@ -3022,10 +3022,10 @@ static void* ArcHandle_Load(ARCHANDLE* p_handle, u32 dataIdx, BOOL compressedFla
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒoƒbƒtƒ@‚ÌƒRƒs[‚ğì¬
+ *@brief	ãƒãƒƒãƒ•ã‚¡ã®ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆ
  *
- *@param	buff	ƒRƒs[‚·‚éƒoƒbƒtƒ@
- *@param	heap	g—p‚·‚éƒq[ƒv
+ *@param	buff	ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+ *@param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return
  *
@@ -3049,9 +3049,9 @@ char* makeCopyStr(const char* buff, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒRƒs[‚ğ”jŠü
+ *@brief	ã‚³ãƒ”ãƒ¼ã‚’ç ´æ£„
  *
- *@param	copy	ƒRƒs[
+ *@param	copy	ã‚³ãƒ”ãƒ¼
  *
  *@return	none
  *

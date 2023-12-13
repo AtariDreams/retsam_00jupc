@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	factory_def.h
- * @bfief	�u�o�g���t�@�N�g���[�v��`
+ * @bfief	「バトルファクトリー」定義
  * @author	Satoshi Nohara
  * @date	07.03.29
  */
@@ -12,49 +12,49 @@
 
 //============================================================================================
 //
-//	��`(enum�֎~)
+//	定義(enum禁止)
 //
 //============================================================================================
-#define FACTORY_LAP_ENEMY_MAX	(7)							//1�T���̓G�g���[�i�[�̍ő吔
-#define FACTORY_LAP_MAX			(8)							///�t�@�N�g���[�̍ő����
-#define FACTORY_LAP_MULTI_ENEMY_MAX	(FACTORY_LAP_ENEMY_MAX*2)//�}���`1�T���̓G�g���[�i�[�̍ő吔
+#define FACTORY_LAP_ENEMY_MAX	(7)							//1週毎の敵トレーナーの最大数
+#define FACTORY_LAP_MAX			(8)							///ファクトリーの最大周回数
+#define FACTORY_LAP_MULTI_ENEMY_MAX	(FACTORY_LAP_ENEMY_MAX*2)//マルチ1週毎の敵トレーナーの最大数
 
-//���ӁI(frontier_tool.h�ɂ��郌�x����`�Ƃ���Ȃ��悤�ɒ��ӁI)
-//�t�@�N�g���[�̃Q�[�����x��
-#define FACTORY_LEVEL_50		(0)							//���x��50
-#define FACTORY_LEVEL_OPEN		(1)							//�I�[�v��
-#define FACTORY_LEVEL_MAX		(2)							//�ő吔
+//注意！(frontier_tool.hにあるレベル定義とずれないように注意！)
+//ファクトリーのゲームレベル
+#define FACTORY_LEVEL_50		(0)							//レベル50
+#define FACTORY_LEVEL_OPEN		(1)							//オープン
+#define FACTORY_LEVEL_MAX		(2)							//最大数
 
-//�^�C�v
+//タイプ
 #define FACTORY_TYPE_SINGLE		(0)
 #define FACTORY_TYPE_DOUBLE		(1)
 #define FACTORY_TYPE_MULTI		(2)
 #define FACTORY_TYPE_WIFI_MULTI	(3)
-#define FACTORY_TYPE_MAX		(4)							//�ő吔
+#define FACTORY_TYPE_MAX		(4)							//最大数
 
-//���[�h
-#define FACTORY_MODE_RENTAL		(0)							//�����^��
-#define FACTORY_MODE_TRADE		(1)							//����
+//モード
+#define FACTORY_MODE_RENTAL		(0)							//レンタル
+#define FACTORY_MODE_TRADE		(1)							//交換
 
-//�|�P������
-#define FACTORY_RENTAL_POKE_MAX	(6)							//�����^���|�P�����f�[�^�̍ő吔
-#define FACTORY_MINE_POKE_MAX	(4)							//�����|�P�����f�[�^�̍ő吔
-#define FACTORY_ENEMY_POKE_MAX	(4)							//�G�|�P�����f�[�^�̍ő吔
-#define FACTORY_TOTAL_POKE_MAX	(FACTORY_MINE_POKE_MAX+FACTORY_ENEMY_POKE_MAX)	//���`�F�b�N�Ɏg�p
+//ポケモン数
+#define FACTORY_RENTAL_POKE_MAX	(6)							//レンタルポケモンデータの最大数
+#define FACTORY_MINE_POKE_MAX	(4)							//味方ポケモンデータの最大数
+#define FACTORY_ENEMY_POKE_MAX	(4)							//敵ポケモンデータの最大数
+#define FACTORY_TOTAL_POKE_MAX	(FACTORY_MINE_POKE_MAX+FACTORY_ENEMY_POKE_MAX)	//被りチェックに使用
 
-//�߂�l�ɕK�v�ȃ��[�N�̐�
-#define	FACTORY_PARTY_POKE_MAX	(6)							//POKEPARTY�̃|�P������(6���ő�)
+//戻り値に必要なワークの数
+#define	FACTORY_PARTY_POKE_MAX	(6)							//POKEPARTYのポケモン数(6が最大)
 #define FACTORY_RET_WORK_MAX	(FACTORY_PARTY_POKE_MAX)	//ret_work[]
 #define FACTORY_SEL_WORK_MAX	(FACTORY_PARTY_POKE_MAX)	//sel_poke_no[]
 
-//�߂�l
-#define FACTORY_RET_CANCEL		(0xff)						//�������Ȃ��ŃL�����Z������
+//戻り値
+#define FACTORY_RET_CANCEL		(0xff)						//何もしないでキャンセルした
 
-//���R�[�hID�擾���Ɏg�p
-#define FACTORY_RECID_SIZE		(4)							//�A���A�ő�A���A�����A�ő������4��
-//#define FACTORY_RECID_NUM		(FACTORY_RECID_SIZE * 3)	//�V���O���A�_�u���A�}���`��3��
+//レコードID取得時に使用
+#define FACTORY_RECID_SIZE		(4)							//連勝、最大連勝、交換、最大交換の4つ
+//#define FACTORY_RECID_NUM		(FACTORY_RECID_SIZE * 3)	//シングル、ダブル、マルチの3つ
 
-//FACTORY_SCRWORK�̎擾�R�[�h(factory.s�Ŏg�p)
+//FACTORY_SCRWORKの取得コード(factory.sで使用)
 #define FA_ID_SET_MODE				(0)
 #define FA_ID_SET_LEVEL				(1)
 #define FA_ID_SET_TYPE				(2)
@@ -98,11 +98,11 @@
 #define FA_ID_RENTAL_POKE_CREATE	(40)
 #define FA_ID_BRAIN_APPEAR_MSG_CHK	(41)
 
-//�ʐM�o�b�t�@�̃T�C�Y(send_buf,recv_buf)
+//通信バッファのサイズ(send_buf,recv_buf)
 //#define FACTORY_COMM_BUF_LEN		(40)
 #define FACTORY_COMM_BUF_LEN		(60)
 
-//�ʐM�^�C�v
+//通信タイプ
 //fssc_factory_sub.c
 #define FACTORY_COMM_BASIC			(0)
 #define FACTORY_COMM_TR				(1)
@@ -117,20 +117,20 @@
 //#define FACTORY_COMM_PAIR_CANCEL	(9)
 #define FACTORY_COMM_TRADE			(10)
 
-//�ʐM�̎���1�l�̃|�P������
+//通信の時の1人のポケモン数
 #define	FACTORY_COMM_POKE_NUM		(2)
 
-//�ʐM�l��
+//通信人数
 #define	FACTORY_COMM_PLAYER_NUM		(2)
 
-//����(�}���`�Ȃ�G�̐���4�ȂǁA1�l�������2�ɂȂ�)
+//総数(マルチなら敵の数が4など、1人あたりは2になる)
 #define FACTORY_FLAG_SOLO			(0)					//2
 #define FACTORY_FLAG_TOTAL			(1)					//2+2=4
 
-//���R�[�h�Z�b�g�ɓn���O�ɐ��������Ȃ��ƃ_���I
-//�d�l���́u�Z�[�u�f�[�^�ɂ��āv�̗��ɍő吔�������Ă���
-#define FACTORY_TRADE_MAX			(9999)				//������
-#define FACTORY_RENSYOU_MAX			(9999)				//�A����
+//レコードセットに渡す前に制限かけないとダメ！
+//仕様書の「セーブデータについて」の欄に最大数が書いてある
+#define FACTORY_TRADE_MAX			(9999)				//交換回数
+#define FACTORY_RENSYOU_MAX			(9999)				//連勝数
 
 
 #endif	//__FACTORY_DEF_H__

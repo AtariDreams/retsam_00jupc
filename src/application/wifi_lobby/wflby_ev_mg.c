@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_ev_mg.c
- *	@brief		ƒ~ƒjƒQ[ƒ€ƒCƒxƒ“ƒg
+ *	@brief		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¤ãƒ™ãƒ³ãƒˆ
  *	@author		tomoya takahashi
  *	@data		2008.01.14
  *
@@ -24,80 +24,80 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 #ifdef PM_DEBUG
-//#define	WFLBY_EV_MG_DEBUG_MATCHING_STATE	// ƒ}ƒbƒ`ƒ“ƒOƒXƒe[ƒ^ƒX•\¦
+//#define	WFLBY_EV_MG_DEBUG_MATCHING_STATE	// ãƒãƒƒãƒãƒ³ã‚°ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º
 #endif
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-///	‚İ‚É‚°[‚Ş@ƒ}ƒbƒ`ƒ“ƒO@ƒ^ƒCƒ€ƒAƒEƒg
+///	ã¿ã«ã’ãƒ¼ã‚€ã€€ãƒãƒƒãƒãƒ³ã‚°ã€€ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 //=====================================
 #define WFLBY_EV_MG_MATCHWAIT_TIMEOUT	( 30*30 )
 
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒW‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 //=====================================
 #define WFLBY_EV_MG_MSGCHANGE_TIMING	( 11*30 )
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€Q‰ÁƒV[ƒPƒ“ƒX
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‚åŠ ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
 	WFLBY_EV_MG_INIT,
-	WFLBY_EV_MG_ENTRY_CHK,		// Q‰Á‚Å‚«‚é‚©ƒ`ƒFƒbƒN
-	WFLBY_EV_MG_ENTRY_SEL_MSG,	// Q‰Á‚·‚é‚©‘I‘ğ
-	WFLBY_EV_MG_ENTRY_SEL,		// Q‰Á‚·‚é‚©‘I‘ğ
-	WFLBY_EV_MG_ENTRY_SELWAIT,	// Q‰Á‚·‚é‚©‘I‘ğ‘Ò‚¿
-	WFLBY_EV_MG_HELP,			// ƒwƒ‹ƒv•\¦
-	WFLBY_EV_MG_MATCHSTART,		// ƒ}ƒbƒ`ƒ“ƒOŠJn
-	WFLBY_EV_MG_MATCHWAIT,		// ƒ}ƒbƒ`ƒ“ƒOƒEƒGƒCƒg
-	WFLBY_EV_MG_MATCHOKWAIT,	// ƒ^ƒCƒ€ƒŠƒ~ƒbƒg‚ğ‰z‚¦‚½Œã‚Éƒ}ƒbƒ`ƒ“ƒOŠ®—¹‘Ò‚¿
-	WFLBY_EV_MG_INFO_INIT,		// CommInfo‚Ì‰Šú‰»	
-	WFLBY_EV_MG_INFO_POKE,		// CommInfo‚ÌPokeData‘—M
-	WFLBY_EV_MG_STARTWAIT,		// ƒQ[ƒ€ŠJn‘Ò‚¿
-	WFLBY_EV_MG_PLIDX_RESET,	// PLAYER_IDX‰Šú‰»
-	WFLBY_EV_MG_PLIDX_SEND,		// PLAYER_IDX‘—M
-	WFLBY_EV_MG_PLIDX_CHECK,	// PLAYER_IDXƒ`ƒFƒbƒN
-	WFLBY_EV_MG_COMM_START,		// ’ÊMŠJn
-	WFLBY_EV_MG_CANCEL_MSG,		// CANCELˆ—ƒ`ƒFƒbƒN
-	WFLBY_EV_MG_CANCEL_MSG_WAIT,// CANCELˆ—ƒ`ƒFƒbƒN
-	WFLBY_EV_MG_CANCEL_CHECK,	// CANCELˆ—ƒ`ƒFƒbƒN
-	WFLBY_EV_MG_CANCEL_WAIT,	// CANCELˆ—ƒ`ƒFƒbƒN
-	WFLBY_EV_MG_CANCEL_MW,		// CANCELˆ—ƒ`ƒFƒbƒN	MATCHWAIT‚É–ß‚é
-	WFLBY_EV_MG_CANCEL_ININ,	// CANCELˆ—ƒ`ƒFƒbƒN	INFO_INIT‚És‚­
-	WFLBY_EV_MG_CANCEL_MOKW,	// CANCELˆ—ƒ`ƒFƒbƒN	MATCHOKWAIT‚És‚­
-	WFLBY_EV_MG_ERREND,			// ’ÊMØ’fI—¹
-	WFLBY_EV_MG_ERRENDWAIT,		// ’ÊMØ’fI—¹‘Ò‚¿
-	WFLBY_EV_MG_MSG_WAIT,		// ƒƒbƒZ[ƒWI—¹‘Ò‚¿
-	WFLBY_EV_MG_MSG_SYNC,		// ƒƒbƒZ[ƒWI—¹‘Ò‚¿“¯Šúˆ—
-	WFLBY_EV_MG_MSG_SYNCWAIT,	// ƒƒbƒZ[ƒWI—¹‘Ò‚¿“¯Šú‘Ò‚¿
+	WFLBY_EV_MG_ENTRY_CHK,		// å‚åŠ ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+	WFLBY_EV_MG_ENTRY_SEL_MSG,	// å‚åŠ ã™ã‚‹ã‹é¸æŠ
+	WFLBY_EV_MG_ENTRY_SEL,		// å‚åŠ ã™ã‚‹ã‹é¸æŠ
+	WFLBY_EV_MG_ENTRY_SELWAIT,	// å‚åŠ ã™ã‚‹ã‹é¸æŠå¾…ã¡
+	WFLBY_EV_MG_HELP,			// ãƒ˜ãƒ«ãƒ—è¡¨ç¤º
+	WFLBY_EV_MG_MATCHSTART,		// ãƒãƒƒãƒãƒ³ã‚°é–‹å§‹
+	WFLBY_EV_MG_MATCHWAIT,		// ãƒãƒƒãƒãƒ³ã‚°ã‚¦ã‚¨ã‚¤ãƒˆ
+	WFLBY_EV_MG_MATCHOKWAIT,	// ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆã‚’è¶ŠãˆãŸå¾Œã«ãƒãƒƒãƒãƒ³ã‚°å®Œäº†å¾…ã¡
+	WFLBY_EV_MG_INFO_INIT,		// CommInfoã®åˆæœŸåŒ–	
+	WFLBY_EV_MG_INFO_POKE,		// CommInfoã®PokeDataé€ä¿¡
+	WFLBY_EV_MG_STARTWAIT,		// ã‚²ãƒ¼ãƒ é–‹å§‹å¾…ã¡
+	WFLBY_EV_MG_PLIDX_RESET,	// PLAYER_IDXåˆæœŸåŒ–
+	WFLBY_EV_MG_PLIDX_SEND,		// PLAYER_IDXé€ä¿¡
+	WFLBY_EV_MG_PLIDX_CHECK,	// PLAYER_IDXãƒã‚§ãƒƒã‚¯
+	WFLBY_EV_MG_COMM_START,		// é€šä¿¡é–‹å§‹
+	WFLBY_EV_MG_CANCEL_MSG,		// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯
+	WFLBY_EV_MG_CANCEL_MSG_WAIT,// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯
+	WFLBY_EV_MG_CANCEL_CHECK,	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯
+	WFLBY_EV_MG_CANCEL_WAIT,	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯
+	WFLBY_EV_MG_CANCEL_MW,		// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯	MATCHWAITã«æˆ»ã‚‹
+	WFLBY_EV_MG_CANCEL_ININ,	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯	INFO_INITã«è¡Œã
+	WFLBY_EV_MG_CANCEL_MOKW,	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯	MATCHOKWAITã«è¡Œã
+	WFLBY_EV_MG_ERREND,			// é€šä¿¡åˆ‡æ–­çµ‚äº†
+	WFLBY_EV_MG_ERRENDWAIT,		// é€šä¿¡åˆ‡æ–­çµ‚äº†å¾…ã¡
+	WFLBY_EV_MG_MSG_WAIT,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
+	WFLBY_EV_MG_MSG_SYNC,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡åŒæœŸå‡¦ç†
+	WFLBY_EV_MG_MSG_SYNCWAIT,	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡åŒæœŸå¾…ã¡
 	WFLBY_EV_MG_END,
 } ;
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€’ÊMØ’fƒV[ƒPƒ“ƒX
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é€šä¿¡åˆ‡æ–­ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
 	WFLBY_EV_MG_END_REQ,
@@ -105,21 +105,21 @@ enum {
 } ;
 
 
-#define _TIMING_GAME_CHECK			(13)// ‚Â‚È‚ª‚Á‚½’¼Œã
-#define _TIMING_GAME_CHECK2			(14)// ‚Â‚È‚ª‚Á‚½’¼Œã
-#define _TIMING_GAME_START			(15)// ƒ^ƒCƒ~ƒ“ƒO‚ğ‚»‚ë‚¦‚é
-#define _TIMING_GAME_START2			(18)// ƒ^ƒCƒ~ƒ“ƒO‚ğ‚»‚ë‚¦‚é
-#define _TIMING_POKEDATA_SEND		(17)// ƒ^ƒCƒ~ƒ“ƒO‚ğ‚»‚ë‚¦‚é
+#define _TIMING_GAME_CHECK			(13)// ã¤ãªãŒã£ãŸç›´å¾Œ
+#define _TIMING_GAME_CHECK2			(14)// ã¤ãªãŒã£ãŸç›´å¾Œ
+#define _TIMING_GAME_START			(15)// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ãã‚ãˆã‚‹
+#define _TIMING_GAME_START2			(18)// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ãã‚ãˆã‚‹
+#define _TIMING_POKEDATA_SEND		(17)// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ãã‚ãˆã‚‹
 
-#define WFLBY_EV_MG_SYNC_RETRANS_TIMING	(5*30)	// ’Êl“¯ŠúƒRƒ}ƒ“ƒh‚ğÄ“]‘—‚·‚éƒ^ƒCƒ~ƒ“ƒO
+#define WFLBY_EV_MG_SYNC_RETRANS_TIMING	(5*30)	// é€šäººåŒæœŸã‚³ãƒãƒ³ãƒ‰ã‚’å†è»¢é€ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€ƒJƒ“ƒoƒ“•`‰æƒ‚[ƒh
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚«ãƒ³ãƒãƒ³æç”»ãƒ¢ãƒ¼ãƒ‰
 //=====================================
 enum {
-	WFLBY_EV_MG_KANBAN_MODE_NORMAL,		// ’Êí
-	WFLBY_EV_MG_KANBAN_MODE_COUNTDOWN,	// ƒJƒEƒ“ƒgƒ_ƒEƒ“‹@”\‚Â‚«
+	WFLBY_EV_MG_KANBAN_MODE_NORMAL,		// é€šå¸¸
+	WFLBY_EV_MG_KANBAN_MODE_COUNTDOWN,	// ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³æ©Ÿèƒ½ã¤ã
 	WFLBY_EV_MG_KANBAN_MODE_NUM,
 } ;
 enum{
@@ -134,7 +134,7 @@ enum{
 
 
 //-------------------------------------
-///	ƒvƒŒƒCƒ„[ƒ~ƒjƒQ[ƒ€Œf¦”Â
+///	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æ²ç¤ºæ¿
 //=====================================
 #define WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_X				( 18 )
 #define WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_Y				( 3 )
@@ -154,13 +154,13 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-///	ƒJƒ“ƒoƒ“ƒ[ƒN
+///	ã‚«ãƒ³ãƒãƒ³ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	u8	recruit;
@@ -175,7 +175,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€Q‰ÁƒCƒxƒ“ƒgƒ[ƒN
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‚åŠ ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	s16 timeout;
@@ -185,28 +185,28 @@ typedef struct {
 	u8	msg_sync;
 	u8	last_entry_num;
 	u16 match_entry_num;
-	u16 sync_count;	// “¯Šúˆ—‚É‚Ç‚Ì‚­‚ç‚¢‚©‚©‚Á‚Ä‚¢‚é‚©
+	u16 sync_count;	// åŒæœŸå‡¦ç†ã«ã©ã®ãã‚‰ã„ã‹ã‹ã£ã¦ã„ã‚‹ã‹
 
 	s32 tmp_userid;
 
 	s32 match_timeout;
 
-	// 10•b‘OƒƒbƒZ[ƒW•ÏX
+	// 10ç§’å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¤‰æ›´
 	BOOL timelimit_10;
 	
 
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgê—p
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆå°‚ç”¨
 	BMPLIST_HEADER		bmplist;
-	u32					bmplist_num;	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg”
+	u32					bmplist_num;	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆæ•°
 
-	// ƒJƒ“ƒoƒ“ƒ[ƒN
+	// ã‚«ãƒ³ãƒãƒ³ãƒ¯ãƒ¼ã‚¯
 	WFLBY_EV_MG_KANBANWK	kanban;
 } WFLBY_EV_MG_WK;
 
 
 
 //-------------------------------------
-///	ƒvƒŒƒCƒ„[ŠÅ”ÂƒCƒxƒ“ƒgƒ[ƒN
+///	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼çœ‹æ¿ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	WFLBY_EV_MG_KANBANWK data;
@@ -215,11 +215,11 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒƒbƒZ[ƒWƒŠƒXƒgƒf[ƒ^
+ *		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	Šî–{ƒwƒbƒ_[
+///	åŸºæœ¬ãƒ˜ãƒƒãƒ€ãƒ¼
 //=====================================
 static const BMPLIST_HEADER sc_WFLBY_EV_MG_HEADER = {
 	NULL,
@@ -227,37 +227,37 @@ static const BMPLIST_HEADER sc_WFLBY_EV_MG_HEADER = {
 	NULL,
 	NULL,
 
-	0,	//ƒŠƒXƒg€–Ú”
-	3,	//•\¦Å‘å€–Ú”
-	0,								//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,								//€–Ú•\¦‚wÀ•W
-	0,								//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,								//•\¦‚xÀ•W
-	FBMP_COL_BLACK,					//•\¦•¶šF
-	FBMP_COL_WHITE,					//•\¦”wŒiF
-	FBMP_COL_BLK_SDW,				//•\¦•¶š‰eF
-	0,								//•¶šŠÔŠu‚w
-	16,								//•¶šŠÔŠu‚x
-	BMPLIST_NO_SKIP,				//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,					//•¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0,								//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	0,	//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	3,	//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,								//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,								//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,								//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,								//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,					//è¡¨ç¤ºæ–‡å­—è‰²
+	FBMP_COL_WHITE,					//è¡¨ç¤ºèƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,				//è¡¨ç¤ºæ–‡å­—å½±è‰²
+	0,								//æ–‡å­—é–“éš”ï¼¸
+	16,								//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_NO_SKIP,				//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,					//æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0,								//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 
 	NULL
 };
 //-------------------------------------
-///	Q‰Á‘I‘ğƒŠƒXƒg
+///	å‚åŠ é¸æŠãƒªã‚¹ãƒˆ
 //=====================================
 enum {
-	WFLBY_EV_MG_SELLIST_ENTRY,	// Q‰Á‚·‚é
-	WFLBY_EV_MG_SELLIST_HELP,	// ‚¹‚Â‚ß‚¢
-	WFLBY_EV_MG_SELLIST_NO,		// Q‰Á‚µ‚È‚¢
-	WFLBY_EV_MG_SELLIST_NUM,	// Q‰Ál”
+	WFLBY_EV_MG_SELLIST_ENTRY,	// å‚åŠ ã™ã‚‹
+	WFLBY_EV_MG_SELLIST_HELP,	// ã›ã¤ã‚ã„
+	WFLBY_EV_MG_SELLIST_NO,		// å‚åŠ ã—ãªã„
+	WFLBY_EV_MG_SELLIST_NUM,	// å‚åŠ äººæ•°
 } ;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_MsgPrint( WFLBY_EV_MG_WK* p_wk, WFLBY_EVENTWK* p_eventwk, WFLBY_ROOMWK* p_rmwk, u32 msgidx, u32 retseq );
@@ -268,7 +268,7 @@ static void WFLBY_EV_MG_WK_ExitBmpList( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* p_
 
 static BOOL WFLBY_EV_MG_Cancel_MatchWait( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* p_rmwk, WFLBY_EV_MG_PARAM* p_param, WFLBY_EVENTWK* p_wk, u32 plno );
 
-// ƒJƒ“ƒoƒ“
+// ã‚«ãƒ³ãƒãƒ³
 static void WFLBY_EV_MG_MINIGAME_PrintInit( WFLBY_EV_MG_KANBANWK* p_evwk, WFLBY_ROOMWK* p_rmwk, u32 minigame_type, u32 kanban_mode,  s32 count );
 static void WFLBY_EV_MG_MINIGAME_PrintExit( WFLBY_EV_MG_KANBANWK* p_evwk, WFLBY_ROOMWK* p_rmwk );
 static void WFLBY_EV_MG_MINIGAME_PrintSetCount( WFLBY_EV_MG_KANBANWK* p_evwk, s32 count );
@@ -278,7 +278,7 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Core( WFLBY_EV_MG_KANBANWK* p_evw
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒ~ƒjƒQ[ƒ€‚ÌŠJnƒCƒxƒ“ƒg
+ *	@brief		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®é–‹å§‹ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
@@ -295,20 +295,20 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 //	OS_TPrintf( "mg start seq=%d\n", WFLBY_EVENTWK_GetSeq( p_wk ) );
 
 
-	// ‚Qd‚Åswitch•ª‚Ìƒ`ƒFƒbƒN‚ª‚©‚©‚é‚ªƒGƒ‰[ƒ`ƒFƒbƒN‚ğ
-	// ‚¢‚ë‚ñ‚ÈƒV[ƒPƒ“ƒX‚É“ü‚ê‚é‚Ì‚ª‚¢‚â‚È‚Ì‚Å‚±‚±‚Åˆê‹C‚Éƒ`ƒFƒbƒN‚·‚é
+	// ï¼’é‡ã§switchåˆ†ã®ãƒã‚§ãƒƒã‚¯ãŒã‹ã‹ã‚‹ãŒã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã‚’
+	// ã„ã‚ã‚“ãªã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«å…¥ã‚Œã‚‹ã®ãŒã„ã‚„ãªã®ã§ã“ã“ã§ä¸€æ°—ã«ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	switch( WFLBY_EVENTWK_GetSeq( p_wk ) ){
 
-	// ƒ}ƒbƒ`Š®—¹Œã
-	case WFLBY_EV_MG_INFO_INIT:		// CommInfo‚Ì‰Šú‰»	
-	case WFLBY_EV_MG_INFO_POKE:		// CommInfo‚ÌPokeData‘—M
-	case WFLBY_EV_MG_STARTWAIT:		// ƒQ[ƒ€ŠJn‘Ò‚¿
-	case WFLBY_EV_MG_PLIDX_RESET:	// PLAYER_IDX‰Šú‰»
-	case WFLBY_EV_MG_PLIDX_SEND:		// PLAYER_IDX‘—M
-	case WFLBY_EV_MG_PLIDX_CHECK:	// PLAYER_IDXƒ`ƒFƒbƒN
-	case WFLBY_EV_MG_MSG_SYNC:		// ƒƒbƒZ[ƒWI—¹‘Ò‚¿“¯Šúˆ—
-	case WFLBY_EV_MG_MSG_SYNCWAIT:	// ƒƒbƒZ[ƒWI—¹‘Ò‚¿“¯Šú‘Ò‚¿
-		// Ú‘±l”‚ªŒ¸‚Á‚½‚çƒGƒ‰[‚Ö
+	// ãƒãƒƒãƒå®Œäº†å¾Œ
+	case WFLBY_EV_MG_INFO_INIT:		// CommInfoã®åˆæœŸåŒ–	
+	case WFLBY_EV_MG_INFO_POKE:		// CommInfoã®PokeDataé€ä¿¡
+	case WFLBY_EV_MG_STARTWAIT:		// ã‚²ãƒ¼ãƒ é–‹å§‹å¾…ã¡
+	case WFLBY_EV_MG_PLIDX_RESET:	// PLAYER_IDXåˆæœŸåŒ–
+	case WFLBY_EV_MG_PLIDX_SEND:		// PLAYER_IDXé€ä¿¡
+	case WFLBY_EV_MG_PLIDX_CHECK:	// PLAYER_IDXãƒã‚§ãƒƒã‚¯
+	case WFLBY_EV_MG_MSG_SYNC:		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡åŒæœŸå‡¦ç†
+	case WFLBY_EV_MG_MSG_SYNCWAIT:	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡åŒæœŸå¾…ã¡
+		// æ¥ç¶šäººæ•°ãŒæ¸›ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã¸
 		if( p_evwk->match_entry_num > DWC_LOBBY_MG_GetEntryNum( p_param->mg_type ) ){
 			OS_TPrintf( "p_evwk->match_entry_num > DWC_LOBBY_MG_GetEntryNum( p_param->mg_type ) = %d > %d\n", p_evwk->match_entry_num,  DWC_LOBBY_MG_GetEntryNum( p_param->mg_type ) );
 			p_param->in_ok = WFLBY_EV_MG_RET_NG_DISCON;
@@ -316,7 +316,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			break;
 		}
 
-		// ’ÊMl”‚æ‚èƒGƒ“ƒgƒŠ[l”‚ª‘½‚¢‚Æ‚«‚Í‚¨‚©‚µ‚¢
+		// é€šä¿¡äººæ•°ã‚ˆã‚Šã‚¨ãƒ³ãƒˆãƒªãƒ¼äººæ•°ãŒå¤šã„ã¨ãã¯ãŠã‹ã—ã„
 		if( p_evwk->match_entry_num > CommGetConnectNum() ){
 			OS_TPrintf( "p_evwk->match_entry_num > CommGetConnectNum() = %d > %d\n", p_evwk->match_entry_num, CommGetConnectNum() );
 			p_param->in_ok = WFLBY_EV_MG_RET_NG_DISCON;
@@ -324,7 +324,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			break;
 		}
 
-		// Ú‘±‚ªØ’f‚³‚ê‚½‚çI—¹
+		// æ¥ç¶šãŒåˆ‡æ–­ã•ã‚ŒãŸã‚‰çµ‚äº†
 		if( CommStateWifiP2PGetConnectState() == COMMSTATE_WIFIP2P_CONNECT_NONE ){
 			OS_TPrintf( "CommStateWifiP2PGetConnectState() == COMMSTATE_WIFIP2P_CONNECT_NONE\n" );
 			p_param->in_ok = WFLBY_EV_MG_RET_NG_DISCON;
@@ -332,9 +332,9 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			break;
 		}
 
-	// ƒ^ƒCƒ€ƒŠƒ~ƒbƒg‚ğ‰z‚¦‚½Œã‚Éƒ}ƒbƒ`ƒ“ƒOŠ®—¹‘Ò‚¿
+	// ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆã‚’è¶ŠãˆãŸå¾Œã«ãƒãƒƒãƒãƒ³ã‚°å®Œäº†å¾…ã¡
 	case WFLBY_EV_MG_MATCHOKWAIT:	
-		// e‚ÅEÚ‘±l”©•ª‚¾‚¯‚É‚È‚Á‚½‚çƒIƒƒŠ
+		// è¦ªã§ãƒ»æ¥ç¶šäººæ•°è‡ªåˆ†ã ã‘ã«ãªã£ãŸã‚‰ã‚ªãƒ¯ãƒª
 		if( DWC_LOBBY_MG_MyParent() == TRUE ){
 			if( DWC_LOBBY_MG_GetEntryNum( p_param->mg_type ) <= 1 ){
 				OS_TPrintf( "DWC_LOBBY_MG_GetEntryNum( p_param->mg_type ) <= 1\n" );
@@ -344,7 +344,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			}
 		}
 
-		// ƒ^ƒCƒ€ƒAƒEƒgƒ`ƒFƒbƒN
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒã‚§ãƒƒã‚¯
 		p_evwk->match_timeout --;
 		if( p_evwk->match_timeout < 0 ){
 			OS_TPrintf( "application timeout\n" );
@@ -355,36 +355,36 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 
 
-	// ƒ}ƒbƒ`Š®—¹Œã{ƒ}ƒbƒ`‘O
-	case WFLBY_EV_MG_MATCHWAIT:		// ƒ}ƒbƒ`ƒ“ƒOƒEƒGƒCƒg
-	case WFLBY_EV_MG_CANCEL_CHECK:	// CANCELˆ—ƒ`ƒFƒbƒN
-	case WFLBY_EV_MG_CANCEL_MSG_WAIT:// CANCELˆ—ƒ`ƒFƒbƒN
-	case WFLBY_EV_MG_CANCEL_WAIT:	// CANCELˆ—ƒ`ƒFƒbƒN
-	case WFLBY_EV_MG_CANCEL_MW:		// CANCELˆ—ƒ`ƒFƒbƒN	MATCHWAIT‚É–ß‚é
-	case WFLBY_EV_MG_CANCEL_ININ:	// CANCELˆ—ƒ`ƒFƒbƒN	INFO_INIT‚És‚­
-	case WFLBY_EV_MG_CANCEL_MOKW:	// CANCELˆ—ƒ`ƒFƒbƒN	MATCHOKWAIT‚És‚­
-		// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒå®Œäº†å¾Œï¼‹ãƒãƒƒãƒå‰
+	case WFLBY_EV_MG_MATCHWAIT:		// ãƒãƒƒãƒãƒ³ã‚°ã‚¦ã‚¨ã‚¤ãƒˆ
+	case WFLBY_EV_MG_CANCEL_CHECK:	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯
+	case WFLBY_EV_MG_CANCEL_MSG_WAIT:// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯
+	case WFLBY_EV_MG_CANCEL_WAIT:	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯
+	case WFLBY_EV_MG_CANCEL_MW:		// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯	MATCHWAITã«æˆ»ã‚‹
+	case WFLBY_EV_MG_CANCEL_ININ:	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯	INFO_INITã«è¡Œã
+	case WFLBY_EV_MG_CANCEL_MOKW:	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯	MATCHOKWAITã«è¡Œã
+		// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		switch( CommWifiIsMatched() ){
-		case 2:		// ƒGƒ‰[‚âCANCEL
-		case 3:		// ƒ^ƒCƒ€ƒAƒEƒg
-		case 4:		// Ø’f
-		case 5:		// Œy“x‚È‚¦‚ç[
+		case 2:		// ã‚¨ãƒ©ãƒ¼ã‚„CANCEL
+		case 3:		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+		case 4:		// åˆ‡æ–­
+		case 5:		// è»½åº¦ãªãˆã‚‰ãƒ¼
 			OS_TPrintf( "err CommWifiIsMatched()==%d\n", CommWifiIsMatched() );
 			p_param->in_ok = WFLBY_EV_MG_RET_NG_DISCON;
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
 			break;
-		// ‚»‚Ì‘¼‚ÌƒGƒ‰[‚âÚ‘±’†‚È‚Ç‚Í‚»‚Ì‚Ü‚Ü‚É‚µ‚Ä‚¨‚­
-		// ‚»‚Ì‘¼‚ÌƒGƒ‰[‚ÍROOM‚Åƒ`ƒFƒbƒN‚µ‚Ä‚é
+		// ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼ã‚„æ¥ç¶šä¸­ãªã©ã¯ãã®ã¾ã¾ã«ã—ã¦ãŠã
+		// ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼ã¯ROOMã§ãƒã‚§ãƒƒã‚¯ã—ã¦ã‚‹
 		default:
 			break;
 		}
 
-		// Ø’fƒGƒ‰[ƒ`ƒFƒbƒN
+		// åˆ‡æ–­ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		
 		break;	
 
 
-	// ‚»‚Ì‘¼‚ÍƒGƒ‰[ƒ`ƒFƒbƒN‚¢‚ç‚È‚¢
+	// ãã®ä»–ã¯ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã„ã‚‰ãªã„
 	default:
 		break;
 	}
@@ -397,27 +397,27 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 	
 	
 	switch( WFLBY_EVENTWK_GetSeq( p_wk ) ){
-	// ƒ}ƒbƒ`ƒ“ƒOŠJn
+	// ãƒãƒƒãƒãƒ³ã‚°é–‹å§‹
 	case WFLBY_EV_MG_INIT:
 		p_evwk = WFLBY_EVENTWK_AllocWk( p_wk, sizeof(WFLBY_EV_MG_WK) );
 
-		// ƒV[ƒPƒ“ƒX‚ği‚ß‚Ä‚¨‚­
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é€²ã‚ã¦ãŠã
 		WFLBY_EVENTWK_AddSeq( p_wk );
 		break;
 
-	// Q‰Á‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+	// å‚åŠ ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	case WFLBY_EV_MG_ENTRY_CHK:		
 
-		// Q‰ÁƒƒbƒN‚ª‚©‚©‚Á‚Ä‚È‚¢‚©H
+		// å‚åŠ ãƒ­ãƒƒã‚¯ãŒã‹ã‹ã£ã¦ãªã„ã‹ï¼Ÿ
 		if( WFLBY_SYSTEM_MGFLAG_GetLock( p_system ) ){
 			p_param->in_ok = WFLBY_EV_MG_RET_NG_LOCK;
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_END );
 			break;
 		}
 		
-		// Á“”‚µ‚Ä‚È‚¢‚©H
+		// æ¶ˆç¯ã—ã¦ãªã„ã‹ï¼Ÿ
 		if( WFLBY_SYSTEM_Event_GetMiniGameStop( p_system ) ){
-			// ‚à‚¤ƒ~ƒjƒQ[ƒ€ŠJÃ‚µ‚Ä‚é
+			// ã‚‚ã†ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é–‹å‚¬ã—ã¦ã‚‹
 			p_param->in_ok = WFLBY_EV_MG_RET_NG_TIME;
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_END );
 			break;
@@ -425,36 +425,36 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 		Snd_SePlay( WFLBY_SND_MINIGAME );
 
-		// ƒV[ƒPƒ“ƒX‚ği‚ß‚é
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é€²ã‚ã‚‹
 		WFLBY_EVENTWK_AddSeq( p_wk );
 		break;
 
-	// Q‰Á‚·‚é‚©‘I‘ğ
+	// å‚åŠ ã™ã‚‹ã‹é¸æŠ
 	case WFLBY_EV_MG_ENTRY_SEL_MSG:
-		// ¡‚Ì‚Æ‚±‚ëQ‰Á‚Å‚«‚é
-		// Q‰Á‚·‚é‚©¿–â
+		// ä»Šã®ã¨ã“ã‚å‚åŠ ã§ãã‚‹
+		// å‚åŠ ã™ã‚‹ã‹è³ªå•
 		WFLBY_ROOM_MSG_SetMinigame( p_rmwk, p_param->wflby_mg_type, 0 );
 		WFLBY_EV_MG_MsgPrint( p_evwk, p_wk, p_rmwk, msg_wifi_h_info_01_01, WFLBY_EV_MG_ENTRY_SEL );
 		break;
 
-	// Q‰Á‚·‚é‚©‘I‘ğ
+	// å‚åŠ ã™ã‚‹ã‹é¸æŠ
 	case WFLBY_EV_MG_ENTRY_SEL:		
-		// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg‚Ì•\¦
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆã®è¡¨ç¤º
 		WFLBY_EV_MG_WK_InitBmpList( p_evwk, p_rmwk, WFLBY_EV_MG_SELLIST_NUM, msg_wifi_h_info_01_02 );
 		WFLBY_ROOM_LISTWIN_Start( p_rmwk, &p_evwk->bmplist, 0, 0 );
 
-		// ‘I‘ğ‘Ò‚¿‚Ö
+		// é¸æŠå¾…ã¡ã¸
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ENTRY_SELWAIT );
 		break;
 		
-	// Q‰Á‚·‚é‚©‘I‘ğ‘Ò‚¿
+	// å‚åŠ ã™ã‚‹ã‹é¸æŠå¾…ã¡
 	case WFLBY_EV_MG_ENTRY_SELWAIT:	
 		{
 			u32 sel;
 			BOOL end = FALSE;
 			sel = WFLBY_ROOM_LISTWIN_Main( p_rmwk );
 			switch( sel ){
-			// Ø’f‚Ö
+			// åˆ‡æ–­ã¸
 			case BMPLIST_CANCEL:
 			case WFLBY_EV_MG_SELLIST_NO:
 				p_param->in_ok = WFLBY_EV_MG_RET_NG_MY;
@@ -462,13 +462,13 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				end = TRUE;
 				break;
 
-			// à–¾‚Ö
+			// èª¬æ˜ã¸
 			case WFLBY_EV_MG_SELLIST_HELP:
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_HELP );
 				end = TRUE;
 				break;
 
-			// Ú‘±‚Ö
+			// æ¥ç¶šã¸
 			case WFLBY_EV_MG_SELLIST_ENTRY:
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_MATCHSTART );
 				end = TRUE;
@@ -485,37 +485,37 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// ƒwƒ‹ƒv•\¦
+	// ãƒ˜ãƒ«ãƒ—è¡¨ç¤º
 	case WFLBY_EV_MG_HELP:			
 		WFLBY_ROOM_MSG_SetMinigame( p_rmwk, p_param->wflby_mg_type, 0 );
 		WFLBY_EV_MG_MsgPrint( p_evwk, p_wk, p_rmwk, p_param->wflby_mg_type+msg_wifi_h_info_07_01, WFLBY_EV_MG_ENTRY_SEL_MSG );
 		break;
 
-	// ƒ}ƒbƒ`ƒ“ƒOŠJn
+	// ãƒãƒƒãƒãƒ³ã‚°é–‹å§‹
 	case WFLBY_EV_MG_MATCHSTART:
 
-		// ”O‚Ì‚½‚ß‚à‚¤ˆê“xÁ“”‚µ‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN‚·‚é	
-		// Á“”‚µ‚Ä‚È‚¢‚©H
+		// å¿µã®ãŸã‚ã‚‚ã†ä¸€åº¦æ¶ˆç¯ã—ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹	
+		// æ¶ˆç¯ã—ã¦ãªã„ã‹ï¼Ÿ
 		if( WFLBY_SYSTEM_Event_GetMiniGameStop( p_system ) ){
-			// ‚à‚¤ƒ~ƒjƒQ[ƒ€ŠJÃ‚µ‚Ä‚é
+			// ã‚‚ã†ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é–‹å‚¬ã—ã¦ã‚‹
 			p_param->in_ok = WFLBY_EV_MG_RET_NG_TIME;
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_END );
 			break;
 		}
 
-		// •åW’†‚Å
+		// å‹Ÿé›†ä¸­ã§
 		if( DWC_LOBBY_MG_CheckRecruit( p_param->mg_type ) == TRUE ){
 
-			// ‚à‚¤“ü‚ê‚È‚¢‚©ƒ`ƒFƒbƒN
+			// ã‚‚ã†å…¥ã‚Œãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( (DWC_LOBBY_MG_GetRest( p_param->mg_type ) == 0) ||
 				(DWC_LOBBY_MG_CheckEntryOk( p_param->mg_type ) == FALSE)){
-				// ‚à‚¤ƒ~ƒjƒQ[ƒ€ŠJÃ‚µ‚Ä‚é
+				// ã‚‚ã†ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é–‹å‚¬ã—ã¦ã‚‹
 				p_param->in_ok = WFLBY_EV_MG_RET_NG_PLAYING;
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_END );
 				break;
 			}
 
-			// ƒŠƒ~ƒbƒg‚ª‚·‚Å‚É0‚¶‚á‚È‚¢‚©ƒ`ƒFƒbƒN
+			// ãƒªãƒŸãƒƒãƒˆãŒã™ã§ã«0ã˜ã‚ƒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( DWC_LOBBY_MG_GetTimeLimit( p_param->mg_type ) == 0 ){
 				p_param->in_ok = WFLBY_EV_MG_RET_NG_LOCK;
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_END );
@@ -524,14 +524,14 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 
 		
-		// ¡‚ÌƒŠƒ~ƒbƒgŠÔ‚ğæ“¾
+		// ä»Šã®ãƒªãƒŸãƒƒãƒˆæ™‚é–“ã‚’å–å¾—
 		p_evwk->timeout = DWC_LOBBY_MG_GetTimeLimit( p_param->mg_type );
 
-		// ƒ}ƒbƒ`ƒ“ƒOƒ^ƒCƒ€ƒAƒEƒg‚Ìİ’è
+		// ãƒãƒƒãƒãƒ³ã‚°ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã®è¨­å®š
 		p_evwk->match_timeout = WFLBY_EV_MG_MATCHWAIT_TIMEOUT;
 		
-		// ‘¼‚Ìƒƒ“ƒo[‚ğ‘Ò‚Á‚Ä‚¢‚Ü‚·‚ÆƒƒbƒZ[ƒW
-		// 10•b‘O‚É‚È‚Á‚Ä‚¢‚½‚çA‚à‚¤‚·‚®ƒQ[ƒ€n‚Ü‚é‚æI
+		// ä»–ã®ãƒ¡ãƒ³ãƒãƒ¼ã‚’å¾…ã£ã¦ã„ã¾ã™ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+		// 10ç§’å‰ã«ãªã£ã¦ã„ãŸã‚‰ã€ã‚‚ã†ã™ãã‚²ãƒ¼ãƒ å§‹ã¾ã‚‹ã‚ˆï¼
 		{
 			STRBUF* p_str;
 			
@@ -545,28 +545,28 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 		}
 
-		// P2PÚ‘±ŠJn
+		// P2Pæ¥ç¶šé–‹å§‹
 		CommStateWifiP2PStart( p_param->mg_type );
 
-		// •åWŠJn‚ğ‹³‚¦‚é
+		// å‹Ÿé›†é–‹å§‹ã‚’æ•™ãˆã‚‹
 		if( DWC_LOBBY_MG_MyParent() == TRUE ){
-			// e‚È‚ç•åWŠJn‚ğ‹³‚¦‚é
+			// è¦ªãªã‚‰å‹Ÿé›†é–‹å§‹ã‚’æ•™ãˆã‚‹
 			WFLBY_SYSTEM_TOPIC_SendMiniGame( p_system, p_param->wflby_mg_type, 1, 
 					plno, 0, 0, 0, FALSE );
 			p_evwk->last_entry_num = 1;
 		}
 
-		//	ƒ~ƒjƒQ[ƒ€ƒJƒ“ƒoƒ“•\¦
+		//	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚«ãƒ³ãƒãƒ³è¡¨ç¤º
 		WFLBY_EV_MG_MINIGAME_PrintInit( &p_evwk->kanban, p_rmwk, 
 				p_param->wflby_mg_type, WFLBY_EV_MG_KANBAN_MODE_COUNTDOWN,
 				p_evwk->timeout );
 		WFLBY_EV_MG_MINIGAME_PrintMinigame( &p_evwk->kanban, p_rmwk, TRUE );
 
-		// ƒV[ƒPƒ“ƒX‚ği‚ß‚Ä‚¨‚­
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é€²ã‚ã¦ãŠã
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_MATCHWAIT );
 		break;	
 
-	// ƒ}ƒbƒ`ƒ“ƒO‘Ò‚¿
+	// ãƒãƒƒãƒãƒ³ã‚°å¾…ã¡
 	case WFLBY_EV_MG_MATCHWAIT:
 		{
 			u32 state;
@@ -583,12 +583,12 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			}
 #endif
 
-			// ƒ^ƒCƒ€ƒAƒEƒgƒJƒEƒ“ƒg
+			// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚«ã‚¦ãƒ³ãƒˆ
 			p_evwk->timeout  = DWC_LOBBY_MG_GetTimeLimit( p_param->mg_type );
 			WFLBY_EV_MG_MINIGAME_PrintSetCount( &p_evwk->kanban, p_evwk->timeout );
 
 
-			// 10•b‘OƒƒbƒZ[ƒWƒ`ƒFƒ“ƒW
+			// 10ç§’å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒã‚§ãƒ³ã‚¸
 			if( (p_evwk->timeout <= WFLBY_EV_MG_MSGCHANGE_TIMING) && (p_evwk->timelimit_10==FALSE) ){
 				STRBUF* p_str;
 				
@@ -599,11 +599,11 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 			}
 
-			// ƒJƒ“ƒoƒ“•`‰æXV
+			// ã‚«ãƒ³ãƒãƒ³æç”»æ›´æ–°
 			WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( &p_evwk->kanban, p_rmwk, FALSE );
 
 
-			// ƒ}ƒbƒ`ƒ“ƒO¸”s
+			// ãƒãƒƒãƒãƒ³ã‚°å¤±æ•—
 			if( state == COMMSTATE_WIFIP2P_CONNECT_NONE ){
 				p_param->in_ok = WFLBY_EV_MG_RET_NG_DISCON;
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
@@ -611,12 +611,12 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 			}
 
-			// ƒ}ƒbƒ`ƒ“ƒO¬Œ÷
+			// ãƒãƒƒãƒãƒ³ã‚°æˆåŠŸ
 			if( state == COMMSTATE_WIFIP2P_CONNECT_MATCH ){
 				
 				p_param->in_ok = WFLBY_EV_MG_RET_OK;
 
-				// l”‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW‚ğ•ÏX‚·‚é
+				// äººæ•°ã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰æ›´ã™ã‚‹
 				{
 					u32 msgidx;
 					STRBUF* p_str;
@@ -633,33 +633,33 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 					WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 					WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_INFO_INIT );
 
-					// ¡‚ÌÚ‘±l”‚ğ•Û‘¶
+					// ä»Šã®æ¥ç¶šäººæ•°ã‚’ä¿å­˜
 					p_evwk->match_entry_num	= con_num;
 				}
 
-				// ƒJƒ“ƒoƒ“•`‰æXV
+				// ã‚«ãƒ³ãƒãƒ³æç”»æ›´æ–°
 				WFLBY_EV_MG_MINIGAME_PrintSetCount( &p_evwk->kanban, 0 );
 				WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( &p_evwk->kanban, p_rmwk, FALSE );
 				break;
 			}
 
 
-			// Bƒ{ƒ^ƒ“‚ÅQ‰ÁCancel
+			// Bãƒœã‚¿ãƒ³ã§å‚åŠ Cancel
 			if( p_evwk->timelimit_10 == FALSE ){
 				if( sys.trg & PAD_BUTTON_CANCEL ){
 
 					Snd_SePlay( SEQ_SE_DP_SELECT );
 					
 					if( DWC_LOBBY_MG_MyParent() == FALSE ){
-						// q‹@—pˆ—
+						// å­æ©Ÿç”¨å‡¦ç†
 						p_param->in_ok = WFLBY_EV_MG_RET_NG_BCAN;
-						// ƒ^ƒCƒ€ƒEƒGƒCƒgƒAƒCƒRƒ“”jŠü
+						// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚¢ã‚¤ã‚³ãƒ³ç ´æ£„
 						WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 						WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
 					}else{
-						// e‹@‚Íƒ`ƒFƒbƒN‚ğ“ü‚ê‚é
+						// è¦ªæ©Ÿã¯ãƒã‚§ãƒƒã‚¯ã‚’å…¥ã‚Œã‚‹
 						p_param->in_ok = WFLBY_EV_MG_RET_NG_BCAN;
-						// ƒ^ƒCƒ€ƒEƒGƒCƒgƒAƒCƒRƒ“”jŠü
+						// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚¢ã‚¤ã‚³ãƒ³ç ´æ£„
 						WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 						WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_CANCEL_MSG );
 					}
@@ -669,13 +669,13 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			}
 			
 
-			// e‚È‚çƒ^ƒCƒ€ƒAƒEƒgƒ`ƒFƒbƒN
-			// •åWl”•ÏXƒgƒsƒbƒN¶¬
+			// è¦ªãªã‚‰ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒã‚§ãƒƒã‚¯
+			// å‹Ÿé›†äººæ•°å¤‰æ›´ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 			if( DWC_LOBBY_MG_MyParent() == TRUE ){
-				// l”‚Ì•ÏX‚ğƒ`ƒFƒbƒN
+				// äººæ•°ã®å¤‰æ›´ã‚’ãƒã‚§ãƒƒã‚¯
 				if( p_evwk->last_entry_num != con_num ){
 					p_evwk->last_entry_num = con_num;
-					if( con_num != WFLBY_MINIGAME_MAX ){	// 4l‚É‚È‚Á‚½‚ç‚à‚¤‚¾‚³‚È‚¢
+					if( con_num != WFLBY_MINIGAME_MAX ){	// 4äººã«ãªã£ãŸã‚‰ã‚‚ã†ã ã•ãªã„
 						WFLBY_SYSTEM_TOPIC_SendMiniGame( p_system, 
 								p_param->wflby_mg_type, con_num, plno,
 								0,0,0, FALSE );
@@ -683,10 +683,10 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				}
 				
 				if( p_evwk->timeout == 0 ){
-					// l”‚ª‚Pl‚È‚çƒ^ƒCƒ€ƒAƒEƒg
+					// äººæ•°ãŒï¼‘äººãªã‚‰ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 					if( DWC_LOBBY_MG_GetEntryNum( p_param->mg_type ) <= 1 ){
 						
-						// ƒ^ƒCƒ€ƒAƒEƒg
+						// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 						p_param->in_ok = WFLBY_EV_MG_RET_NG_MIN;
 						WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
 					
@@ -696,7 +696,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				}
 			}
 
-			// •åW‚ª‘¶‘±‚µ‚Ä‚ ‚»‚ñ‚Å‚½‚çAl”‚É“ü‚ê‚È‚©‚Á‚½
+			// å‹Ÿé›†ãŒå­˜ç¶šã—ã¦ã‚ãã‚“ã§ãŸã‚‰ã€äººæ•°ã«å…¥ã‚Œãªã‹ã£ãŸ
 			if( (DWC_LOBBY_MG_CheckRecruit( p_param->mg_type ) == TRUE) &&
 				(DWC_LOBBY_MG_CheckEntryOk( p_param->mg_type ) == FALSE) ){
 				p_param->in_ok = WFLBY_EV_MG_RET_NG_NUM;
@@ -704,9 +704,9 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				break;
 			}
 
-			// ƒ^ƒCƒ€ƒAƒEƒg‚É‚È‚Á‚½‚çÚ‘±Š®—¹‘Ò‚¿‚Ö
+			// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã«ãªã£ãŸã‚‰æ¥ç¶šå®Œäº†å¾…ã¡ã¸
 			if( p_evwk->timeout == 0 ){
-				// ŠÔ‚ª—ˆ‚½‚Ì‚Åi‚Ş  ƒ}ƒbƒ`ƒ“ƒO‚ÌŒ‹‰Ê‘Ò‚¿‚Ö
+				// æ™‚é–“ãŒæ¥ãŸã®ã§é€²ã‚€  ãƒãƒƒãƒãƒ³ã‚°ã®çµæœå¾…ã¡ã¸
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_MATCHOKWAIT );
 				{
 					STRBUF* p_str;
@@ -722,14 +722,14 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// ƒ^ƒCƒ€ƒŠƒ~ƒbƒg‚ğ‰z‚¦‚½Œã‚Éƒ}ƒbƒ`ƒ“ƒOŠ®—¹‘Ò‚¿
-	// ‚½‚¾’P‚Éƒ}ƒbƒ`ƒ“ƒO‚ªŠ®—¹‚·‚é‚Ì‚ğ‘Ò‚Â
+	// ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆã‚’è¶ŠãˆãŸå¾Œã«ãƒãƒƒãƒãƒ³ã‚°å®Œäº†å¾…ã¡
+	// ãŸã å˜ã«ãƒãƒƒãƒãƒ³ã‚°ãŒå®Œäº†ã™ã‚‹ã®ã‚’å¾…ã¤
 	case WFLBY_EV_MG_MATCHOKWAIT:
 		{
 			u32 state;
 			u32 con_num;
 
-			// ƒJƒ“ƒoƒ“•`‰æXV
+			// ã‚«ãƒ³ãƒãƒ³æç”»æ›´æ–°
 			WFLBY_EV_MG_MINIGAME_PrintSetCount( &p_evwk->kanban, 0 );
 			WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( &p_evwk->kanban, p_rmwk, FALSE );
 
@@ -744,20 +744,20 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			}
 #endif
 
-			// ƒGƒ‰[ƒ`ƒFƒbƒN
+			// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 			switch( CommWifiIsMatched() ){
 			case 3:
 			case 4:
 				p_param->in_ok = WFLBY_EV_MG_RET_NG_DISCON;
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
 				break;
-			// ‚»‚Ì‘¼‚ÌƒGƒ‰[‚âÚ‘±’†‚È‚Ç‚Í‚»‚Ì‚Ü‚Ü‚É‚µ‚Ä‚¨‚­
-			// ‚»‚Ì‘¼‚ÌƒGƒ‰[‚ÍROOM‚Åƒ`ƒFƒbƒN‚µ‚Ä‚é
+			// ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼ã‚„æ¥ç¶šä¸­ãªã©ã¯ãã®ã¾ã¾ã«ã—ã¦ãŠã
+			// ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼ã¯ROOMã§ãƒã‚§ãƒƒã‚¯ã—ã¦ã‚‹
 			default:
 				break;
 			}
 
-			// ƒ}ƒbƒ`ƒ“ƒO¸”s
+			// ãƒãƒƒãƒãƒ³ã‚°å¤±æ•—
 			if( state == COMMSTATE_WIFIP2P_CONNECT_NONE ){
 				p_param->in_ok = WFLBY_EV_MG_RET_NG_DISCON;
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
@@ -765,18 +765,18 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 			}
 
-			// ƒ}ƒbƒ`ƒ“ƒO¬Œ÷
+			// ãƒãƒƒãƒãƒ³ã‚°æˆåŠŸ
 			if( state == COMMSTATE_WIFIP2P_CONNECT_MATCH ){
 				
 				p_param->in_ok = WFLBY_EV_MG_RET_OK;
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_INFO_INIT );
 
-				// ¡‚ÌÚ‘±l”‚ğ•Û‘¶
+				// ä»Šã®æ¥ç¶šäººæ•°ã‚’ä¿å­˜
 				p_evwk->match_entry_num	= con_num;
 				break;
 			}
 
-			// •åW‚ª‘¶‘±‚µ‚Ä‚ ‚»‚ñ‚Å‚½‚çAl”‚É“ü‚ê‚È‚©‚Á‚½
+			// å‹Ÿé›†ãŒå­˜ç¶šã—ã¦ã‚ãã‚“ã§ãŸã‚‰ã€äººæ•°ã«å…¥ã‚Œãªã‹ã£ãŸ
 			if( (DWC_LOBBY_MG_CheckRecruit( p_param->mg_type ) == TRUE) &&
 				(DWC_LOBBY_MG_CheckEntryOk( p_param->mg_type ) == FALSE) ){
 				p_param->in_ok = WFLBY_EV_MG_RET_NG_NUM;
@@ -786,62 +786,62 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// CommInfo‚Ì‰Šú‰»
+	// CommInfoã®åˆæœŸåŒ–
 	case WFLBY_EV_MG_INFO_INIT:	
 
-		// ƒJƒ“ƒoƒ“•`‰æXV
+		// ã‚«ãƒ³ãƒãƒ³æç”»æ›´æ–°
 		WFLBY_EV_MG_MINIGAME_PrintSetCount( &p_evwk->kanban, 0 );
 		WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( &p_evwk->kanban, p_rmwk, FALSE );
 
-		// ƒXƒe[ƒ^ƒX‚ğ•ÏX‚·‚é
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
 		WFLBY_SYSTEM_SetMyStatus( WFLBY_ROOM_GetSystemData(p_rmwk), p_param->wflby_mg_status );
 		
 
 		OS_TPrintf( "matchok netid%d\n", CommGetCurrentID() );
 
-		// 4lÚ‘±ƒ‚[ƒh‚É‚·‚é
+		// 4äººæ¥ç¶šãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹
 		CommStateChangeWiFiLobbyMinigame();
 
 		// Info
 		CommInfoInitialize( WFLBY_SYSTEM_GetSaveData( WFLBY_ROOM_GetSystemData( p_rmwk ) ), NULL );
 
-		// Lê‚ÌMYSTATUS‚ğİ’è‚·‚é
+		// åºƒå ´ã®MYSTATUSã‚’è¨­å®šã™ã‚‹
 		CommInfoSetWiFiPlaceMyStatus( WFLBY_SYSTEM_GetMgMyStatus( p_system ) );
 
-		// “¯Šú‚È‚µ
+		// åŒæœŸãªã—
 		CommSetWifiBothNet(FALSE);
 
 		
-		// “¯ŠúŠJn
+		// åŒæœŸé–‹å§‹
 		WFLBY_EV_MG_Sync( p_evwk, p_wk, WFLBY_EV_MG_INFO_POKE, _TIMING_POKEDATA_SEND );
 		break;
 	
-	// CommInfo‚ÌPokeData‘—M
+	// CommInfoã®PokeDataé€ä¿¡
 	case WFLBY_EV_MG_INFO_POKE:
 
-		// ƒJƒ“ƒoƒ“•`‰æXV
+		// ã‚«ãƒ³ãƒãƒ³æç”»æ›´æ–°
 		WFLBY_EV_MG_MINIGAME_PrintSetCount( &p_evwk->kanban, 0 );
 		WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( &p_evwk->kanban, p_rmwk, FALSE );
 
-		// ©•ª‚ğ‹³‚¦‚é
+		// è‡ªåˆ†ã‚’æ•™ãˆã‚‹
 		CommInfoSendPokeData();
 
-		// ©•ª‚ÍƒGƒ“ƒgƒŠ[
+		// è‡ªåˆ†ã¯ã‚¨ãƒ³ãƒˆãƒªãƒ¼
 		CommInfoSetEntry( CommGetCurrentID() );
 
-		// ’ÊMŠJn–½—ß‘Ò‚¿‚Ö
+		// é€šä¿¡é–‹å§‹å‘½ä»¤å¾…ã¡ã¸
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_STARTWAIT );
 		break;
 
-	// ƒQ[ƒ€ŠJn‘Ò‚¿
+	// ã‚²ãƒ¼ãƒ é–‹å§‹å¾…ã¡
 	case WFLBY_EV_MG_STARTWAIT:
 
-		// ƒJƒ“ƒoƒ“•`‰æXV
+		// ã‚«ãƒ³ãƒãƒ³æç”»æ›´æ–°
 		WFLBY_EV_MG_MINIGAME_PrintSetCount( &p_evwk->kanban, 0 );
 		WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( &p_evwk->kanban, p_rmwk, FALSE );
 
 
-		// V‚µ‚­—ˆ‚½l‚ğENTRYó‘Ô‚É‚·‚é
+		// æ–°ã—ãæ¥ãŸäººã‚’ENTRYçŠ¶æ…‹ã«ã™ã‚‹
 		{
 			int netid;
 			while( (netid = CommInfoGetNewNameID()) != INVALID_NETID ){
@@ -852,11 +852,11 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 		/*
         if( CommGetCurrentID() == 0 ){
-            // V‹KPOKEDATA‚ğóM‚µ‚½‚ç‚İ‚ñ‚È‚É‘—M
-			CommInfoSendArray_ServerSide();	// ‚İ‚ñ‚È‚©‚ç‚à‚ç‚Á‚½POKEDATA‚ğ‘—M
+            // æ–°è¦POKEDATAã‚’å—ä¿¡ã—ãŸã‚‰ã¿ã‚“ãªã«é€ä¿¡
+			CommInfoSendArray_ServerSide();	// ã¿ã‚“ãªã‹ã‚‰ã‚‚ã‚‰ã£ãŸPOKEDATAã‚’é€ä¿¡
         }
 		//*/
-		// l”‚ª‚»‚ë‚Á‚½‚çƒQ[ƒ€‚ğŠJn‚³‚¹‚é
+		// äººæ•°ãŒãã‚ã£ãŸã‚‰ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã•ã›ã‚‹
 		if( CommInfoGetEntryNum() >= DWC_LOBBY_MG_GetEntryNum( p_param->mg_type ) ){
 			if( DWC_LOBBY_MG_MyParent() == TRUE ){
 				if( p_evwk->start_game_set == FALSE ){
@@ -865,13 +865,13 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				}
 			}
 
-			// e‚©‚çƒQ[ƒ€ŠJn–½—ß‚ª‚«‚½‚çƒQ[ƒ€‚ğŠJn‚·‚é
+			// è¦ªã‹ã‚‰ã‚²ãƒ¼ãƒ é–‹å§‹å‘½ä»¤ãŒããŸã‚‰ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã™ã‚‹
 			if( DWC_LOBBY_MG_CheckStartGame() == TRUE ){
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_PLIDX_RESET );
 			}
 		}else{
 
-			// l”‚ª‚»‚ë‚¤‘O‚Ée‚©‚çƒQ[ƒ€ŠJn‚ª‚«‚½‚çA©•ª‚½‚¿‚ÍQ‰Á‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅI‚í‚é
+			// äººæ•°ãŒãã‚ã†å‰ã«è¦ªã‹ã‚‰ã‚²ãƒ¼ãƒ é–‹å§‹ãŒããŸã‚‰ã€è‡ªåˆ†ãŸã¡ã¯å‚åŠ ã—ã¦ã„ãªã„ã®ã§çµ‚ã‚ã‚‹
 			if( DWC_LOBBY_MG_CheckStartGame() == TRUE ){
 				p_param->in_ok = WFLBY_EV_MG_RET_NG_DISCON;
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
@@ -880,24 +880,24 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// PLAYER_IDX‰Šú‰»
+	// PLAYER_IDXåˆæœŸåŒ–
 	case WFLBY_EV_MG_PLIDX_RESET:	
 
-		// ƒJƒ“ƒoƒ“•`‰æXV
+		// ã‚«ãƒ³ãƒãƒ³æç”»æ›´æ–°
 		WFLBY_EV_MG_MINIGAME_PrintSetCount( &p_evwk->kanban, 0 );
 		WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( &p_evwk->kanban, p_rmwk, FALSE );
 
 		CommToolTempDataReset();
-		WFLBY_SYSTEM_PLIDX_Clear( p_system );	// P2P’ÊM‘Šèƒƒr[“àPLIDXƒoƒbƒtƒ@ƒNƒŠƒA
+		WFLBY_SYSTEM_PLIDX_Clear( p_system );	// P2Pé€šä¿¡ç›¸æ‰‹ãƒ­ãƒ“ãƒ¼å†…PLIDXãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 		WFLBY_EV_MG_Sync( p_evwk, p_wk, WFLBY_EV_MG_PLIDX_SEND, _TIMING_GAME_CHECK2 );
 		break;
 
-	// PLAYER_IDX‘—M
+	// PLAYER_IDXé€ä¿¡
 	case WFLBY_EV_MG_PLIDX_SEND:
 		{
 			BOOL result;
 
-			// ƒJƒ“ƒoƒ“•`‰æXV
+			// ã‚«ãƒ³ãƒãƒ³æç”»æ›´æ–°
 			WFLBY_EV_MG_MINIGAME_PrintSetCount( &p_evwk->kanban, 0 );
 			WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( &p_evwk->kanban, p_rmwk, FALSE );
 
@@ -910,10 +910,10 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;	
 
-	// PLAYER_IDXƒ`ƒFƒbƒN
+	// PLAYER_IDXãƒã‚§ãƒƒã‚¯
 	case WFLBY_EV_MG_PLIDX_CHECK:
 
-		// ƒJƒ“ƒoƒ“•`‰æXV
+		// ã‚«ãƒ³ãƒãƒ³æç”»æ›´æ–°
 		WFLBY_EV_MG_MINIGAME_PrintSetCount( &p_evwk->kanban, 0 );
 		WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( &p_evwk->kanban, p_rmwk, FALSE );
 
@@ -927,7 +927,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			s32  parent_id;
 
 
-			// ƒGƒ“ƒgƒŠ[”‚ğæ“¾
+			// ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°ã‚’å–å¾—
 			con_num = CommInfoGetEntryNum();
 
 			current_id = CommGetCurrentID();
@@ -941,22 +941,22 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 				if( current_id != i ){
 
-					// PLAYER_IDX‚ªˆê‚©ƒ`ƒFƒbƒN
+					// PLAYER_IDXãŒä¸€ç·’ã‹ãƒã‚§ãƒƒã‚¯
 					cp_data = CommToolGetTempData(i);	
 
-					// ƒXƒe[ƒ^ƒX‚ÌóM‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+					// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å—ä¿¡ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 					if( cp_data != NULL ){
 
-						// P2P’ÊM‚µ‚Ä‚¢‚é‘Šè‚ÌPLIDX‚ğ•Û‘¶‚·‚é
-						WFLBY_SYSTEM_PLIDX_Set( p_system, cp_data[0], i );	// P2P’ÊM‘Šèƒƒr[“àPLIDXƒoƒbƒtƒ@ƒNƒŠƒA
+						// P2Pé€šä¿¡ã—ã¦ã„ã‚‹ç›¸æ‰‹ã®PLIDXã‚’ä¿å­˜ã™ã‚‹
+						WFLBY_SYSTEM_PLIDX_Set( p_system, cp_data[0], i );	// P2Pé€šä¿¡ç›¸æ‰‹ãƒ­ãƒ“ãƒ¼å†…PLIDXãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 						if( cp_data[0] == parent_id ){
 							parent_man = TRUE;
 						}
 						ok_num ++;
 					}
 				}else{
-					// ©•ª
-					WFLBY_SYSTEM_PLIDX_SetMyData( p_system, i );	// P2P’ÊM‘Šèƒƒr[“àPLIDXƒoƒbƒtƒ@ƒNƒŠƒA
+					// è‡ªåˆ†
+					WFLBY_SYSTEM_PLIDX_SetMyData( p_system, i );	// P2Pé€šä¿¡ç›¸æ‰‹ãƒ­ãƒ“ãƒ¼å†…PLIDXãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 					if( DWC_LOBBY_MG_MyParent() == TRUE ){
 						parent_man = TRUE;
 					}
@@ -965,14 +965,14 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			}
 
 
-			// ‘Sˆõ‚ÌƒXƒe[ƒ^ƒX‚ğóM‚µ‚Äƒ`ƒFƒbƒNŒ‹‰Ê‚ªOK‚È‚çŸ‚Ìˆ—‚Ö
+			// å…¨å“¡ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å—ä¿¡ã—ã¦ãƒã‚§ãƒƒã‚¯çµæœãŒOKãªã‚‰æ¬¡ã®å‡¦ç†ã¸
 			if( ok_num == con_num ){
 
 				if( parent_man == TRUE ){
-					// ’ÊMƒƒ“ƒo[’†‚É‚¿‚á‚ñ‚Æe‚ª‚¢‚é‚©‚ğƒ`ƒFƒbƒN
+					// é€šä¿¡ãƒ¡ãƒ³ãƒãƒ¼ä¸­ã«ã¡ã‚ƒã‚“ã¨è¦ªãŒã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 					WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_COMM_START );
 				}else{
-					// ©•ª‚ÌÚ‘±‚µ‚Ä‚¢‚éƒƒ“ƒo[‚Ì’†‚Ée‚Í‚¢‚È‚¢‚Ì‚ÅAØ’f	
+					// è‡ªåˆ†ã®æ¥ç¶šã—ã¦ã„ã‚‹ãƒ¡ãƒ³ãƒãƒ¼ã®ä¸­ã«è¦ªã¯ã„ãªã„ã®ã§ã€åˆ‡æ–­	
 					p_param->in_ok = WFLBY_EV_MG_RET_NG_DISCON;
 					WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
 					OS_TPrintf( "mg not parent\n" );
@@ -981,39 +981,39 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 		
-	// ’ÊMŠJn
+	// é€šä¿¡é–‹å§‹
 	case WFLBY_EV_MG_COMM_START:
 
-		CommStateSetErrorCheck(FALSE,TRUE);	// Ø’f‚ÍƒGƒ‰[‚É‚µ‚È‚¢
+		CommStateSetErrorCheck(FALSE,TRUE);	// åˆ‡æ–­ã¯ã‚¨ãƒ©ãƒ¼ã«ã—ãªã„
 
-		// e‚È‚çƒQ[ƒ€‚ğ‚µ‚Ä‚¢‚é‚±‚Æ‚ğ‘—M
+		// è¦ªãªã‚‰ã‚²ãƒ¼ãƒ ã‚’ã—ã¦ã„ã‚‹ã“ã¨ã‚’é€ä¿¡
 		if( DWC_LOBBY_MG_MyParent() == TRUE ){
 			int count;
 			WFLBY_MINIGAME_PLIDX plidx;
 
-			// ƒ~ƒjƒQ[ƒ€‚ÉQ‰Á‚µ‚Ä‚¢‚él‚ğæ“¾
+			// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã«å‚åŠ ã—ã¦ã„ã‚‹äººã‚’å–å¾—
 			WFLBY_SYSTEM_PLIDX_Get( p_system, &plidx );
 			count = DWC_LOBBY_MG_GetEntryNum( p_param->mg_type );
 			
-			// e‚È‚çƒQ[ƒ€ŠJnƒgƒsƒbƒNì¬
+			// è¦ªãªã‚‰ã‚²ãƒ¼ãƒ é–‹å§‹ãƒˆãƒ”ãƒƒã‚¯ä½œæˆ
 			WFLBY_SYSTEM_TOPIC_SendMiniGame( p_system, p_param->wflby_mg_type,
 					count, plidx.plidx[0], plidx.plidx[1], plidx.plidx[2], plidx.plidx[3], TRUE );
 
 			OS_TPrintf( "mgame start topic send count==%d\n", count );
 		}
 
-		// ƒ{ƒEƒPƒ“ƒm[ƒg
-//		WFLBY_SYSTEM_FNOTE_SetPlayMinigame( p_system, p_param->wflby_mg_type );	// ev_def.c‚Å‚â‚Á‚Ä‚é
+		// ãƒœã‚¦ã‚±ãƒ³ãƒãƒ¼ãƒˆ
+//		WFLBY_SYSTEM_FNOTE_SetPlayMinigame( p_system, p_param->wflby_mg_type );	// ev_def.cã§ã‚„ã£ã¦ã‚‹
 				
-		// “¯Šú‚ğæ‚Á‚½‚çI—¹
+		// åŒæœŸã‚’å–ã£ãŸã‚‰çµ‚äº†
 		WFLBY_ROOM_TALKWIN_StopTimeWait( p_rmwk );
 		WFLBY_EV_MG_Sync( p_evwk, p_wk,
 				WFLBY_EV_MG_END, _TIMING_GAME_START2 ); 
 		break;
 
-	// CANCELˆ—ƒ`ƒFƒbƒN		ƒƒbƒZ[ƒW•\¦
+	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	case WFLBY_EV_MG_CANCEL_MSG:
-		// ƒƒbƒZ[ƒW•\¦
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		{
 			STRBUF* p_str;
 
@@ -1021,14 +1021,14 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 		}
 
-		// ƒƒbƒZ[ƒW‘Ò‚¿‚Ö
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡ã¸
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_CANCEL_MSG_WAIT );
 		
-		// ƒTƒuƒEƒBƒ“ƒhƒE‚ğ”jŠü
+		// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç ´æ£„
 		WFLBY_EV_MG_MINIGAME_PrintExit( &p_evwk->kanban, p_rmwk );
 		break;
 
-	// CANCELˆ—ƒƒbƒZ[ƒWƒEƒGƒCƒg
+	// CANCELå‡¦ç†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¨ã‚¤ãƒˆ
 	case WFLBY_EV_MG_CANCEL_MSG_WAIT:
 		{
 			BOOL result;
@@ -1041,39 +1041,39 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// CANCELˆ—ƒ`ƒFƒbƒN		YESNOƒEƒBƒ“ƒhƒE•\¦
+	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯		YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 	case WFLBY_EV_MG_CANCEL_CHECK:
-		// YESNOƒEƒBƒ“ƒhƒEON
+		// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ON
 		WFLBY_ROOM_YESNOWIN_StartNo( p_rmwk );
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_CANCEL_WAIT );
 		break;
 
-	// CANCELˆ—ƒ`ƒFƒbƒN		YESNO‘I‘ğ‘Ò‚¿
+	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯		YESNOé¸æŠå¾…ã¡
 	case WFLBY_EV_MG_CANCEL_WAIT:
 		{
 			WFLBY_ROOM_YESNO_RET result;
 			result = WFLBY_ROOM_YESNOWIN_Main( p_rmwk );
 			switch( result ){
-			// ‚Í‚¢
+			// ã¯ã„
 			case WFLBY_ROOM_YESNO_OK:	
-				// YESNOƒEƒBƒ“ƒhƒE‚ğÁ‚µ‚·
+				// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã—ã™
 				WFLBY_ROOM_YESNOWIN_End( p_rmwk );
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
 
-				// Q‰ÁƒƒbƒNİ’è
+				// å‚åŠ ãƒ­ãƒƒã‚¯è¨­å®š
 				WFLBY_SYSTEM_MGFLAG_SetLock( p_system );
 				break;
 				
-			// ‚¢‚¢‚¦
+			// ã„ã„ãˆ
 			case WFLBY_ROOM_YESNO_NO:
-				// YESNOƒEƒBƒ“ƒhƒE‚ğÁ‚µ,MATCHWAIT‚É–ß‚é
+				// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã—,MATCHWAITã«æˆ»ã‚‹
 				WFLBY_ROOM_YESNOWIN_End( p_rmwk );
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_CANCEL_MW );
 				break;
 
-			// ‘I‚Ñ’†
+			// é¸ã³ä¸­
 			case WFLBY_ROOM_YESNO_WAIT:	
-				// ƒ}ƒbƒ`ƒ“ƒOŠ®—¹‚ğ‘Ò‚Â
+				// ãƒãƒƒãƒãƒ³ã‚°å®Œäº†ã‚’å¾…ã¤
 				{
 					BOOL result;
 					result = WFLBY_EV_MG_Cancel_MatchWait( p_evwk, p_rmwk, p_param, p_wk, plno );
@@ -1086,7 +1086,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// CANCELˆ—ƒ`ƒFƒbƒN	MATCHWAIT‚É–ß‚é
+	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯	MATCHWAITã«æˆ»ã‚‹
 	case WFLBY_EV_MG_CANCEL_MW:		
 
 		p_evwk->timeout  = DWC_LOBBY_MG_GetTimeLimit( p_param->mg_type );
@@ -1095,7 +1095,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 				p_evwk->timeout );
 		WFLBY_EV_MG_MINIGAME_PrintMinigame( &p_evwk->kanban, p_rmwk, TRUE );
 
-		// ‘¼‚Ìƒƒ“ƒo[‚ğ‘Ò‚Á‚Ä‚¢‚Ü‚·‚ÆƒƒbƒZ[ƒW
+		// ä»–ã®ãƒ¡ãƒ³ãƒãƒ¼ã‚’å¾…ã£ã¦ã„ã¾ã™ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		{
 			STRBUF* p_str;
 			if( p_evwk->timeout > WFLBY_EV_MG_MSGCHANGE_TIMING ){
@@ -1110,7 +1110,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_MATCHWAIT );
 		break;
 		
-	// CANCELˆ—ƒ`ƒFƒbƒN	INFO_INIT‚És‚­
+	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯	INFO_INITã«è¡Œã
 	case WFLBY_EV_MG_CANCEL_ININ:	
 		{
 			u32 con_num;
@@ -1119,7 +1119,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 			p_param->in_ok = WFLBY_EV_MG_RET_OK;
 
-			// l”‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW‚ğ•ÏX‚·‚é
+			// äººæ•°ã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰æ›´ã™ã‚‹
 			{
 				u32 msgidx;
 				STRBUF* p_str;
@@ -1137,7 +1137,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 			}
 
-			// ƒJƒ“ƒoƒ“‚ğÄ•\¦
+			// ã‚«ãƒ³ãƒãƒ³ã‚’å†è¡¨ç¤º
 			WFLBY_EV_MG_MINIGAME_PrintInit( &p_evwk->kanban, p_rmwk, 
 					p_param->wflby_mg_type, WFLBY_EV_MG_KANBAN_MODE_COUNTDOWN,
 					0 );
@@ -1145,7 +1145,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// CANCELˆ—ƒ`ƒFƒbƒN	MATCHOKWAIT‚És‚­
+	// CANCELå‡¦ç†ãƒã‚§ãƒƒã‚¯	MATCHOKWAITã«è¡Œã
 	case WFLBY_EV_MG_CANCEL_MOKW:
 		{
 			STRBUF* p_str;
@@ -1154,7 +1154,7 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			WFLBY_ROOM_TALKWIN_PrintStrAllPut( p_rmwk, p_str );
 			WFLBY_ROOM_TALKWIN_StartTimeWait( p_rmwk );
 
-			// ƒJƒ“ƒoƒ“‚ğÄ•\¦
+			// ã‚«ãƒ³ãƒãƒ³ã‚’å†è¡¨ç¤º
 			WFLBY_EV_MG_MINIGAME_PrintInit( &p_evwk->kanban, p_rmwk, 
 					p_param->wflby_mg_type, WFLBY_EV_MG_KANBAN_MODE_COUNTDOWN,
 					0 );
@@ -1166,15 +1166,15 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 		
-	// ’ÊMØ’fI—¹
+	// é€šä¿¡åˆ‡æ–­çµ‚äº†
 	case WFLBY_EV_MG_ERREND:
-		// ’ÊMØ’f
+		// é€šä¿¡åˆ‡æ–­
         CommInfoFinalize();
 		CommStateWifiP2PEnd();
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERRENDWAIT );
 		break;
 
-	// ’ÊMØ’fI—¹‘Ò‚¿
+	// é€šä¿¡åˆ‡æ–­çµ‚äº†å¾…ã¡
 	case WFLBY_EV_MG_ERRENDWAIT:
 		{
 			u32 status;
@@ -1185,28 +1185,28 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		}
 		break;
 
-	// ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 	case WFLBY_EV_MG_MSG_WAIT:		
 		if( WFLBY_ROOM_TALKWIN_WaitEnd( p_rmwk ) == TRUE ){
 			WFLBY_EVENTWK_SetSeq( p_wk, p_evwk->msg_ret_seq );
 		}
 		break;
 
-	// ƒƒbƒZ[ƒWI—¹‘Ò‚¿“¯Šúˆ—
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡åŒæœŸå‡¦ç†
 	case WFLBY_EV_MG_MSG_SYNC:
 		if( p_evwk->msg_wait > 0 ){
 			p_evwk->msg_wait--;
 		}
 		if( p_evwk->msg_wait == 0 ){
-			// “¯ŠúŠJn
+			// åŒæœŸé–‹å§‹
 			CommTimingSyncStart(p_evwk->msg_sync);
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_MSG_SYNCWAIT );
 		}
 		break;
 
-	// ƒƒbƒZ[ƒWI—¹‘Ò‚¿“¯Šúˆ—
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡åŒæœŸå‡¦ç†
 	case WFLBY_EV_MG_MSG_SYNCWAIT:
-		// ƒRƒ}ƒ“ƒhÄ“]‘—ˆ—
+		// ã‚³ãƒãƒ³ãƒ‰å†è»¢é€å‡¦ç†
 		p_evwk->sync_count ++;
 		if( p_evwk->sync_count >= WFLBY_EV_MG_SYNC_RETRANS_TIMING ){
 			OS_TPrintf( "re sync start \n" );
@@ -1214,16 +1214,16 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			p_evwk->sync_count = 0;
 		}
 		
-		// “¯ŠúŠ®—¹‘Ò‚¿
+		// åŒæœŸå®Œäº†å¾…ã¡
 		if(CommIsTimingSync(p_evwk->msg_sync)){
 			WFLBY_EVENTWK_SetSeq( p_wk, p_evwk->msg_ret_seq );
 		}
 		break;
 
-	// I—¹
+	// çµ‚äº†
 	case WFLBY_EV_MG_END:
 
-		//‚ ‚Æ‚µ‚Ü‚Â
+		//ã‚ã¨ã—ã¾ã¤
 		{
 			WFLBY_ROOM_TALKWIN_Off( p_rmwk );
 			WFLBY_EV_MG_WK_ExitBmpList( p_evwk, p_rmwk );
@@ -1241,20 +1241,20 @@ BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒ~ƒjƒQ[ƒ€‚©‚ç‚Ì‘Şºˆ—
+ *	@brief		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‹ã‚‰ã®é€€å®¤å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_EV_MG_End( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 {
 	switch( WFLBY_EVENTWK_GetSeq( p_wk ) ){
-	// Ø’fƒŠƒNƒGƒXƒg
+	// åˆ‡æ–­ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	case WFLBY_EV_MG_END_REQ:
-		// P2P’ÊM‚ğØ’f‚·‚é
+		// P2Pé€šä¿¡ã‚’åˆ‡æ–­ã™ã‚‹
 		CommStateSetErrorCheck(FALSE,FALSE);
 
-		// ’ÊMØ’f
-		if( CommStateIsWifiLoginMatchState() == FALSE ){	// Loginó‘Ô‚¶‚á‚È‚©‚Á‚½‚ç‚â‚é
-			// InfoI—¹
+		// é€šä¿¡åˆ‡æ–­
+		if( CommStateIsWifiLoginMatchState() == FALSE ){	// LoginçŠ¶æ…‹ã˜ã‚ƒãªã‹ã£ãŸã‚‰ã‚„ã‚‹
+			// Infoçµ‚äº†
 			CommInfoFinalize();
 			CommStateWifiP2PEnd();
 		}
@@ -1262,7 +1262,7 @@ BOOL WFLBY_EV_MG_End( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_END_WAIT );
 		break;
 		
-	// Ø’f‘Ò‚¿
+	// åˆ‡æ–­å¾…ã¡
 	case WFLBY_EV_MG_END_WAIT:
 		if( CommStateIsWifiLoginMatchState() == TRUE ){
 			return TRUE;
@@ -1285,7 +1285,7 @@ BOOL WFLBY_EV_MG_End( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒ~ƒjƒQ[ƒ€ƒJƒ“ƒoƒ“ƒCƒxƒ“ƒg
+ *	@brief		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚«ãƒ³ãƒãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_EV_DEF_PlayerA_MINIGAME_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
@@ -1330,7 +1330,7 @@ BOOL WFLBY_EV_DEF_PlayerA_MINIGAME_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_
 			p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msgidx );
 			WFLBY_ROOM_BOARDWIN_PrintStr( p_rmwk, p_str );
 
-			// Ú‘±ó‘Ô‚ğ•\¦
+			// æ¥ç¶šçŠ¶æ…‹ã‚’è¡¨ç¤º
 			WFLBY_EV_MG_MINIGAME_PrintInit( &p_evwk->data, p_rmwk, minigame_type, WFLBY_EV_MG_KANBAN_MODE_NORMAL, 0 );
 			// 
 			WFLBY_EV_MG_MINIGAME_PrintMinigame( &p_evwk->data, p_rmwk, TRUE );
@@ -1366,18 +1366,18 @@ BOOL WFLBY_EV_DEF_PlayerA_MINIGAME_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•\¦ˆ—
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_eventwk	ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
- *	@param	msgidx		ƒƒbƒZ[ƒWIDX
- *	@param	retseq		–ß‚éƒV[ƒPƒ“ƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_eventwk	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	msgidx		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
+ *	@param	retseq		æˆ»ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_MsgPrint( WFLBY_EV_MG_WK* p_wk, WFLBY_EVENTWK* p_eventwk, WFLBY_ROOMWK* p_rmwk, u32 msgidx, u32 retseq )
@@ -1387,7 +1387,7 @@ static void WFLBY_EV_MG_MsgPrint( WFLBY_EV_MG_WK* p_wk, WFLBY_EVENTWK* p_eventwk
 	p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_INFO, msgidx );
 	WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-	// –ß‚éƒV[ƒPƒ“ƒXİ’è
+	// æˆ»ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹è¨­å®š
 	p_wk->msg_ret_seq = retseq;
 
 	
@@ -1396,14 +1396,14 @@ static void WFLBY_EV_MG_MsgPrint( WFLBY_EV_MG_WK* p_wk, WFLBY_EVENTWK* p_eventwk
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW•\¦ˆ—	’ÊM“¯Šú
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå‡¦ç†	é€šä¿¡åŒæœŸ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_eventwk	ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
- *	@param	msgidx		ƒƒbƒZ[ƒWIDX
- *	@param	retseq		–ß‚éƒV[ƒPƒ“ƒX
- *	@param	syncno		“¯Šúƒiƒ“ƒo[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_eventwk	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	msgidx		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDX
+ *	@param	retseq		æˆ»ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *	@param	syncno		åŒæœŸãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_MsgPrintSync( WFLBY_EV_MG_WK* p_wk, WFLBY_EVENTWK* p_eventwk, WFLBY_ROOMWK* p_rmwk, u32 msgidx, u32 retseq, u32 syncno, u32 msgwait )
@@ -1413,16 +1413,16 @@ static void WFLBY_EV_MG_MsgPrintSync( WFLBY_EV_MG_WK* p_wk, WFLBY_EVENTWK* p_eve
 	p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_INFO, msgidx );
 	WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 
-	// –ß‚éƒV[ƒPƒ“ƒXİ’è
+	// æˆ»ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹è¨­å®š
 	p_wk->msg_ret_seq = retseq;
 
-	// “¯Šúƒiƒ“ƒo[İ’è
+	// åŒæœŸãƒŠãƒ³ãƒãƒ¼è¨­å®š
 	p_wk->msg_sync = syncno;
 
-	// ƒEƒGƒCƒgİ’è
+	// ã‚¦ã‚¨ã‚¤ãƒˆè¨­å®š
 	p_wk->msg_wait = msgwait;
 
-	// ƒVƒ“ƒNƒŠ®—¹‘Ò‚¿ƒEƒGƒCƒg
+	// ã‚·ãƒ³ã‚¯ãƒ­å®Œäº†å¾…ã¡ã‚¦ã‚¨ã‚¤ãƒˆ
 	p_wk->sync_count = 0;
 
 	
@@ -1431,26 +1431,26 @@ static void WFLBY_EV_MG_MsgPrintSync( WFLBY_EV_MG_WK* p_wk, WFLBY_EVENTWK* p_eve
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊM“¯Šú
+ *	@brief	é€šä¿¡åŒæœŸ
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_eventwk		ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	retseq			Ÿ‚ÌƒV[ƒPƒ“ƒX
- *	@param	syncno			“¯Šú’è”
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_eventwk		ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	retseq			æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *	@param	syncno			åŒæœŸå®šæ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_Sync( WFLBY_EV_MG_WK* p_wk, WFLBY_EVENTWK* p_eventwk, u32 retseq, u32 syncno )
 {
-	// –ß‚éƒV[ƒPƒ“ƒXİ’è
+	// æˆ»ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹è¨­å®š
 	p_wk->msg_ret_seq = retseq;
 
-	// “¯Šúƒiƒ“ƒo[İ’è
+	// åŒæœŸãƒŠãƒ³ãƒãƒ¼è¨­å®š
 	p_wk->msg_sync = syncno;
 
-	// ƒEƒGƒCƒgİ’è
+	// ã‚¦ã‚¨ã‚¤ãƒˆè¨­å®š
 	p_wk->msg_wait = 0;
 
-	// ƒVƒ“ƒNƒŠ®—¹‘Ò‚¿ƒEƒGƒCƒg
+	// ã‚·ãƒ³ã‚¯ãƒ­å®Œäº†å¾…ã¡ã‚¦ã‚¨ã‚¤ãƒˆ
 	p_wk->sync_count = 0;
 
 	
@@ -1460,12 +1460,12 @@ static void WFLBY_EV_MG_Sync( WFLBY_EV_MG_WK* p_wk, WFLBY_EVENTWK* p_eventwk, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg‚Ìì¬
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆã®ä½œæˆ
  *
- *	@param	p_evwk			ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	p_rmwk			•”‰®ƒ[ƒN
- *	@param	num				ƒŠƒXƒg”
- *	@param	msg_start		Å‰‚Ì•¶š—ñ
+ *	@param	p_evwk			ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk			éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	num				ãƒªã‚¹ãƒˆæ•°
+ *	@param	msg_start		æœ€åˆã®æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_WK_InitBmpList( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* p_rmwk, u32 num, u32 msg_start )
@@ -1473,17 +1473,17 @@ static void WFLBY_EV_MG_WK_InitBmpList( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* p_
 	int i;
 	STRBUF* p_str;
 
-	// ƒoƒbƒtƒ@ì¬
+	// ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	WFLBY_ROOM_LISTWIN_CreateBmpList( p_rmwk, num );
 	p_evwk->bmplist_num = num;
 
-	// ƒf[ƒ^ì¬
+	// ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<num; i++ ){
 		p_str = WFLBY_ROOM_MSG_Get(p_rmwk, WFLBY_DEFMSG_TYPE_INFO, msg_start+i );
 		WFLBY_ROOM_LISTWIN_SetBmpListStr( p_rmwk, p_str, i );
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒwƒbƒ_[‚Éİ’è
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã«è¨­å®š
 	p_evwk->bmplist			= sc_WFLBY_EV_MG_HEADER;
 	p_evwk->bmplist.count	= p_evwk->bmplist_num;
 	if( p_evwk->bmplist.line > p_evwk->bmplist_num ){
@@ -1494,10 +1494,10 @@ static void WFLBY_EV_MG_WK_InitBmpList( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg”jŠüˆ—
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆç ´æ£„å‡¦ç†
  *
- *	@param	p_evwk	ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	p_rmwk	•”‰®ƒ[ƒN
+ *	@param	p_evwk	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk	éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_WK_ExitBmpList( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* p_rmwk )
@@ -1508,15 +1508,15 @@ static void WFLBY_EV_MG_WK_ExitBmpList( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CANCEL’†‚Ìƒ}ƒbƒ`ƒ“ƒOŠ®—¹‘Ò‚¿‹¤’Êˆ—
+ *	@brief	CANCELä¸­ã®ãƒãƒƒãƒãƒ³ã‚°å®Œäº†å¾…ã¡å…±é€šå‡¦ç†
  *
- *	@param	p_evwk		ƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
- *	@param	p_param		ƒ~ƒjƒQ[ƒ€ƒpƒ‰ƒ[ƒ^
- *	@param	p_wk		ƒCƒxƒ“ƒgƒ[ƒN
+ *	@param	p_evwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_param		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	p_wk		ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒ}ƒbƒ`ƒ“ƒO‚ªŠ®—¹‚µ‚½‚©Aƒ^ƒCƒ€ƒAƒEƒg‚©
- *	@retval	FALSE	‚È‚É‚à‚È‚©‚Á‚½
+ *	@retval	TRUE	ãƒãƒƒãƒãƒ³ã‚°ãŒå®Œäº†ã—ãŸã‹ã€ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‹
+ *	@retval	FALSE	ãªã«ã‚‚ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_EV_MG_Cancel_MatchWait( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* p_rmwk, WFLBY_EV_MG_PARAM* p_param, WFLBY_EVENTWK* p_wk, u32 plno )
@@ -1530,41 +1530,41 @@ static BOOL WFLBY_EV_MG_Cancel_MatchWait( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* 
 	con_num = DWC_LOBBY_MG_GetEntryNum( p_param->mg_type );
 
 
-	// ƒ}ƒbƒ`ƒ“ƒO¸”s
+	// ãƒãƒƒãƒãƒ³ã‚°å¤±æ•—
 	if( state == COMMSTATE_WIFIP2P_CONNECT_NONE ){
 		p_param->in_ok = WFLBY_EV_MG_RET_NG_DISCON;
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
 		return TRUE;
 	}
 
-	// ƒ}ƒbƒ`ƒ“ƒO¬Œ÷
+	// ãƒãƒƒãƒãƒ³ã‚°æˆåŠŸ
 	if( state == COMMSTATE_WIFIP2P_CONNECT_MATCH ){
 
-		// ¡‚ÌÚ‘±l”‚ğ•Û‘¶
+		// ä»Šã®æ¥ç¶šäººæ•°ã‚’ä¿å­˜
 		p_evwk->match_entry_num	= con_num;
 
-		// INFO_INIT‚És‚­
+		// INFO_INITã«è¡Œã
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_CANCEL_ININ );
 		return TRUE;
 	}
 
-	// l”‚Ì•ÏX‚ğƒ`ƒFƒbƒN
+	// äººæ•°ã®å¤‰æ›´ã‚’ãƒã‚§ãƒƒã‚¯
 	if( p_evwk->last_entry_num != con_num ){
 		p_evwk->last_entry_num = con_num;
-		if( con_num != WFLBY_MINIGAME_MAX ){	// 4l‚É‚È‚Á‚½‚ç‚à‚¤‚¾‚³‚È‚¢
+		if( con_num != WFLBY_MINIGAME_MAX ){	// 4äººã«ãªã£ãŸã‚‰ã‚‚ã†ã ã•ãªã„
 			WFLBY_SYSTEM_TOPIC_SendMiniGame( p_system, 
 					p_param->wflby_mg_type, con_num, plno,
 					0,0,0, FALSE );
 		}
 	}
 	
-	// ƒ^ƒCƒ€ƒAƒEƒgƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒã‚§ãƒƒã‚¯
 	p_evwk->timeout  = DWC_LOBBY_MG_GetTimeLimit( p_param->mg_type );
 	if( p_evwk->timeout == 0 ){
-		// l”‚ª‚Pl‚È‚çƒ^ƒCƒ€ƒAƒEƒg
+		// äººæ•°ãŒï¼‘äººãªã‚‰ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 		if( DWC_LOBBY_MG_GetEntryNum( p_param->mg_type ) <= 1 ){
 			
-			// ƒ^ƒCƒ€ƒAƒEƒg
+			// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 			p_param->in_ok = WFLBY_EV_MG_RET_NG_MIN;
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_ERREND );
 		
@@ -1572,13 +1572,13 @@ static BOOL WFLBY_EV_MG_Cancel_MatchWait( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* 
 			return TRUE;
 		}
 
-		// ‚»‚¤‚Å‚È‚¯‚ê‚ÎA
-		// ŠÔ‚ª—ˆ‚½‚Ì‚Åi‚Ş  ƒ}ƒbƒ`ƒ“ƒO‚ÌŒ‹‰Ê‘Ò‚¿‚Ö
+		// ãã†ã§ãªã‘ã‚Œã°ã€
+		// æ™‚é–“ãŒæ¥ãŸã®ã§é€²ã‚€  ãƒãƒƒãƒãƒ³ã‚°ã®çµæœå¾…ã¡ã¸
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_CANCEL_MOKW );
 		return TRUE;
 	}else{
 
-		// ‚P‚O•b‘O‚É‚È‚Á‚½‚çƒ}ƒbƒ`ƒ“ƒO‘Ò‚¿‚Ö
+		// ï¼‘ï¼ç§’å‰ã«ãªã£ãŸã‚‰ãƒãƒƒãƒãƒ³ã‚°å¾…ã¡ã¸
 		if( p_evwk->timeout <= WFLBY_EV_MG_MSGCHANGE_TIMING ){
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_MG_CANCEL_MW );
 			return TRUE;
@@ -1594,12 +1594,12 @@ static BOOL WFLBY_EV_MG_Cancel_MatchWait( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒ“ƒoƒ“ƒ[ƒN‚Ì‰Šú‰»
+ *	@brief	ã‚«ãƒ³ãƒãƒ³ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- *	@param	p_evwk			ƒ[ƒN
- *	@param	minigame_type	ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
- *	@param	kanban_mode		ƒJƒ“ƒoƒ“ƒ‚[ƒh
- *	@param	count			ƒJƒEƒ“ƒg‚Ì’l
+ *	@param	p_evwk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	minigame_type	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
+ *	@param	kanban_mode		ã‚«ãƒ³ãƒãƒ³ãƒ¢ãƒ¼ãƒ‰
+ *	@param	count			ã‚«ã‚¦ãƒ³ãƒˆã®å€¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_MINIGAME_PrintInit( WFLBY_EV_MG_KANBANWK* p_evwk, WFLBY_ROOMWK* p_rmwk, u32 minigame_type, u32 kanban_mode,  s32 count )
@@ -1617,7 +1617,7 @@ static void WFLBY_EV_MG_MINIGAME_PrintInit( WFLBY_EV_MG_KANBANWK* p_evwk, WFLBY_
 	p_evwk->minigame_type	= minigame_type;
 	WFLBY_EV_MG_MINIGAME_PrintSetCount( p_evwk, count );
 
-	// Ú‘±ó‘Ô‚ğ•\¦
+	// æ¥ç¶šçŠ¶æ…‹ã‚’è¡¨ç¤º
 	WFLBY_ROOM_SUBWIN_Start( p_rmwk, 
 			WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_X,
 			WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_Y,
@@ -1627,9 +1627,9 @@ static void WFLBY_EV_MG_MINIGAME_PrintInit( WFLBY_EV_MG_KANBANWK* p_evwk, WFLBY_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒ“ƒoƒ“ƒ[ƒN‚Ì”jŠü
+ *	@brief	ã‚«ãƒ³ãƒãƒ³ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
  *
- *	@param	p_evwk			ƒ[ƒN
+ *	@param	p_evwk			ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_MINIGAME_PrintExit( WFLBY_EV_MG_KANBANWK* p_evwk, WFLBY_ROOMWK* p_rmwk )
@@ -1640,10 +1640,10 @@ static void WFLBY_EV_MG_MINIGAME_PrintExit( WFLBY_EV_MG_KANBANWK* p_evwk, WFLBY_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒ“ƒoƒ“‚Å•\¦‚·‚éƒJƒEƒ“ƒ^‚Ì’l‚ğİ’è
+ *	@brief	ã‚«ãƒ³ãƒãƒ³ã§è¡¨ç¤ºã™ã‚‹ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã‚’è¨­å®š
  *
- *	@param	p_evwk		ƒ[ƒN
- *	@param	count		ƒJƒEƒ“ƒ^‚Ì’l	iƒVƒ“ƒN”’PˆÊj
+ *	@param	p_evwk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	count		ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤	ï¼ˆã‚·ãƒ³ã‚¯æ•°å˜ä½ï¼‰
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_MINIGAME_PrintSetCount( WFLBY_EV_MG_KANBANWK* p_evwk, s32 count )
@@ -1651,7 +1651,7 @@ static void WFLBY_EV_MG_MINIGAME_PrintSetCount( WFLBY_EV_MG_KANBANWK* p_evwk, s3
 	s16 set_num;
 
 	set_num = count / 30;
-	// •b‚É•ÏX
+	// ç§’ã«å¤‰æ›´
 	if( set_num != p_evwk->number ){
 		p_evwk->number = set_num;
 		p_evwk->write |= WFLBY_EV_MG_KANBAN_DRAW_MSK_COUNT;
@@ -1660,11 +1660,11 @@ static void WFLBY_EV_MG_MINIGAME_PrintSetCount( WFLBY_EV_MG_KANBANWK* p_evwk, s3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•åW’†‚Ì•\¦
+ *	@brief	å‹Ÿé›†ä¸­ã®è¡¨ç¤º
  *
- *	@param	p_evwk		ŠÅ”Âƒf[ƒ^ƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
- *	@param	force		â‘Î‚É‘‚­
+ *	@param	p_evwk		çœ‹æ¿ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	force		çµ¶å¯¾ã«æ›¸ã
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( WFLBY_EV_MG_KANBANWK* p_evwk, WFLBY_ROOMWK* p_rmwk, BOOL force )
@@ -1674,11 +1674,11 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Recruit( WFLBY_EV_MG_KANBANWK* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€•`‰æ
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æç”»
  *
- *	@param	p_evwk		ƒJƒ“ƒoƒ“ƒf[ƒ^ƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
- *	@param	force		â‘Î‚É‘‚­
+ *	@param	p_evwk		ã‚«ãƒ³ãƒãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	force		çµ¶å¯¾ã«æ›¸ã
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_MINIGAME_PrintMinigame( WFLBY_EV_MG_KANBANWK* p_evwk, WFLBY_ROOMWK* p_rmwk, BOOL force )
@@ -1688,12 +1688,12 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame( WFLBY_EV_MG_KANBANWK* p_evwk, WF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€•`‰æ
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æç”»
  *
- *	@param	p_evwk		ƒJƒ“ƒoƒ“ƒf[ƒ^ƒ[ƒN
- *	@param	p_rmwk		•”‰®ƒ[ƒN
- *	@param	force		â‘Î‚É‘‚­
- *	@param	play_write	—V‚Ñ’†‚ğ‘‚«‚Ş‚©	TRUEF‘‚«‚Ş
+ *	@param	p_evwk		ã‚«ãƒ³ãƒãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
+ *	@param	force		çµ¶å¯¾ã«æ›¸ã
+ *	@param	play_write	éŠã³ä¸­ã‚’æ›¸ãè¾¼ã‚€ã‹	TRUEï¼šæ›¸ãè¾¼ã‚€
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Core( WFLBY_EV_MG_KANBANWK* p_evwk, WFLBY_ROOMWK* p_rmwk, BOOL force, BOOL play_write )
@@ -1705,20 +1705,20 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Core( WFLBY_EV_MG_KANBANWK* p_evw
 	u32 num;
 
 
-	// ƒtƒ‰ƒO—§‚Äˆ—
+	// ãƒ•ãƒ©ã‚°ç«‹ã¦å‡¦ç†
 	if( force ){
 		p_evwk->write = WFLBY_EV_MG_KANBAN_DRAW_MSK_ALL;
 	}
 
-	// DWCƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv‚É•ÏX
+	// DWCãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—ã«å¤‰æ›´
 	switch( p_evwk->minigame_type ){
-	case WFLBY_GAME_BALLSLOW:	// ‹Ê“Š‚°
+	case WFLBY_GAME_BALLSLOW:	// ç‰æŠ•ã’
 		dwc_minigame = DWC_LOBBY_MG_BALLSLOW;
 		break;
-	case WFLBY_GAME_BALANCEBALL:	// ‹Êæ‚è
+	case WFLBY_GAME_BALANCEBALL:	// ç‰ä¹—ã‚Š
 		dwc_minigame = DWC_LOBBY_MG_BALANCEBALL;
 		break;
-	case WFLBY_GAME_BALLOON:		// ‚Ó‚¤‚¹‚ñ‚í‚è
+	case WFLBY_GAME_BALLOON:		// ãµã†ã›ã‚“ã‚ã‚Š
 		dwc_minigame = DWC_LOBBY_MG_BALLOON;
 		break;
 	
@@ -1728,7 +1728,7 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Core( WFLBY_EV_MG_KANBANWK* p_evw
 		break;
 	}
 
-	// —V‚ñ‚Å‚é‚©ƒ`ƒFƒbƒN
+	// éŠã‚“ã§ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	{
 		recruit = DWC_LOBBY_MG_CheckRecruit( dwc_minigame );
 		if( p_evwk->recruit != recruit ){
@@ -1743,7 +1743,7 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Core( WFLBY_EV_MG_KANBANWK* p_evw
 		p_evwk->play = play;
 	}
 
-	// l”ƒ`ƒFƒbƒN
+	// äººæ•°ãƒã‚§ãƒƒã‚¯
 	{
 		if( recruit == TRUE ){
 			num = DWC_LOBBY_MG_GetRest( dwc_minigame );
@@ -1759,15 +1759,15 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Core( WFLBY_EV_MG_KANBANWK* p_evw
 	
 
 
-	// •`‰æˆ—
-	// ƒ^ƒCƒgƒ‹
+	// æç”»å‡¦ç†
+	// ã‚¿ã‚¤ãƒˆãƒ«
 	if( p_evwk->write & WFLBY_EV_MG_KANBAN_DRAW_MSK_TITLE ){
-		// •\¦ƒNƒŠƒA
+		// è¡¨ç¤ºã‚¯ãƒªã‚¢
 		WFLBY_ROOM_SUBWIN_ClearRect( p_rmwk, 
 				WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_TITLE_X, WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_TITLE_Y,
 				WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_SIZX*8, 16 );
 
-		// ƒ~ƒjƒQ[ƒ€–¼•`‰æ
+		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ åæç”»
 		WFLBY_ROOM_MSG_SetMinigame( p_rmwk, p_evwk->minigame_type, 0 );
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_profile_05_06 );
 		WFLBY_ROOM_SUBWIN_Print( p_rmwk, p_str, 
@@ -1776,17 +1776,17 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Core( WFLBY_EV_MG_KANBANWK* p_evw
 	}
 
 	
-	// —V‚ñ‚Å‚é‚©
+	// éŠã‚“ã§ã‚‹ã‹
 	if( p_evwk->write & WFLBY_EV_MG_KANBAN_DRAW_MSK_PLAY ){
-		// •\¦ƒNƒŠƒA
+		// è¡¨ç¤ºã‚¯ãƒªã‚¢
 		WFLBY_ROOM_SUBWIN_ClearRect( p_rmwk, 
 				WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_PLAYING_X, WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_PLAYING_Y,
 				WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_SIZX*8, 16 );
 
-		//  ‘‚«‚Ş‚©H
+		//  æ›¸ãè¾¼ã‚€ã‹ï¼Ÿ
 		if( play_write == TRUE ){
 
-			// —V‚ñ‚Å‚é‚Æ‚«‚¾‚¯o‚·
+			// éŠã‚“ã§ã‚‹ã¨ãã ã‘å‡ºã™
 			if( (p_evwk->play == FALSE) && (p_evwk->recruit == TRUE) ){
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_bord2_02 );
 				WFLBY_ROOM_SUBWIN_Print( p_rmwk, p_str, 
@@ -1796,15 +1796,15 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Core( WFLBY_EV_MG_KANBANWK* p_evw
 		}
 	}
 
-	// Q‰Ál”‚Æc‚èl”
+	// å‚åŠ äººæ•°ã¨æ®‹ã‚Šäººæ•°
 	if( p_evwk->write & WFLBY_EV_MG_KANBAN_DRAW_MSK_PLAYERNUM ){
-		// •\¦ƒNƒŠƒA->Œã‚ë‚Ì‚Ù‚¤‚¾‚¯
+		// è¡¨ç¤ºã‚¯ãƒªã‚¢->å¾Œã‚ã®ã»ã†ã ã‘
 		WFLBY_ROOM_SUBWIN_ClearRect( p_rmwk, 
 				WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_PLAYNUM_X, 
 				WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_PLAYNUM_Y,
 				WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_SIZX*8, 32 );
 
-		// •`‰æ
+		// æç”»
 		WFLBY_ROOM_MSG_SetNumber( p_rmwk, p_evwk->num, 1, 1, NUMBER_DISPTYPE_ZERO );
 		WFLBY_ROOM_MSG_SetNumber( p_rmwk, WFLBY_MINIGAME_MAX - p_evwk->num, 1, 0, NUMBER_DISPTYPE_ZERO );
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_bord2_01 );
@@ -1813,17 +1813,17 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Core( WFLBY_EV_MG_KANBANWK* p_evw
 				WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_PLAYNUM_Y );
 	}
 
-	// ƒJƒEƒ“ƒg’l
+	// ã‚«ã‚¦ãƒ³ãƒˆå€¤
 	if( p_evwk->mode == WFLBY_EV_MG_KANBAN_MODE_COUNTDOWN ){
 		if( p_evwk->write & WFLBY_EV_MG_KANBAN_DRAW_MSK_COUNT ){
 
-			// •\¦ƒNƒŠƒA
+			// è¡¨ç¤ºã‚¯ãƒªã‚¢
 			WFLBY_ROOM_SUBWIN_ClearRect( p_rmwk, 
 					WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_COUNT_X, 
 					WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_COUNT_Y,
 					WFLBY_EV_DEF_PLAYER_KANBAN_SUBWIN_SIZX*8, 16 );
 
-			// •`‰æ
+			// æç”»
 			WFLBY_ROOM_MSG_SetNumber( p_rmwk, p_evwk->number, 2, 0, NUMBER_DISPTYPE_ZERO );
 			p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_INFO, msg_wifi_h_info_02_03 );
 			WFLBY_ROOM_SUBWIN_Print( p_rmwk, p_str, 
@@ -1833,7 +1833,7 @@ static void WFLBY_EV_MG_MINIGAME_PrintMinigame_Core( WFLBY_EV_MG_KANBANWK* p_evw
 		}
 	}
 
-	// •`‰æƒtƒ‰ƒOƒNƒŠƒA
+	// æç”»ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 	p_evwk->write = 0;
 }
 

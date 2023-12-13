@@ -1,6 +1,6 @@
 /**
  *	@file	porucase_bmp.c
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXBMPƒEƒBƒ“ƒhƒE§Œä
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ¶å¾¡
  *	@author Miyuki Iwasawa
  *	@date	06.03.15
  */
@@ -39,37 +39,37 @@ static void PoruListCB_ForMove( BMPLIST_WORK * work, u32 param, u8 mode );
 static void MenuListCB_ForMove( BMPLIST_WORK * work, u32 param, u8 mode );
 
 static const BMPLIST_HEADER PoruListHeader = {
-	NULL,					//•\Ž¦•¶Žšƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	PoruListCB_ForMove,PoruListCB_ForLine,	//ƒR[ƒ‹ƒoƒbƒN(ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ/ˆês‚²‚Æ)
-	NULL,					//GF_BGL_BMPWIN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	0,PORULIST_MAX,					//ƒŠƒXƒg€–Ú”,•\Ž¦Å‘å€–Ú”
-	0,8,0,					//•\Ž¦XÀ•W(ƒ‰ƒxƒ‹/€–Ú/ƒJ[ƒ\ƒ‹)
-	0,						//•\Ž¦‚xÀ•W
-	FBMP_COL_BLACK,FBMP_COL_NULL,FBMP_COL_BLK_SDW,		//•¶ŽšF,”wŒiF,‰eF
-	0,0,				//•¶ŽšŠÔŠuX,Y
-//	BMPLIST_NO_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	BMPLIST_LRKEY_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,		//•¶ŽšŽw’è
-	1,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
-	NULL,				//ƒ[ƒNƒ|ƒCƒ“ƒ^
+	NULL,					//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	PoruListCB_ForMove,PoruListCB_ForLine,	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯(ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨/ä¸€è¡Œã”ã¨)
+	NULL,					//GF_BGL_BMPWINæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	0,PORULIST_MAX,					//ãƒªã‚¹ãƒˆé …ç›®æ•°,è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,8,0,					//è¡¨ç¤ºXåº§æ¨™(ãƒ©ãƒ™ãƒ«/é …ç›®/ã‚«ãƒ¼ã‚½ãƒ«)
+	0,						//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,FBMP_COL_NULL,FBMP_COL_BLK_SDW,		//æ–‡å­—è‰²,èƒŒæ™¯è‰²,å½±è‰²
+	0,0,				//æ–‡å­—é–“éš”X,Y
+//	BMPLIST_NO_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	BMPLIST_LRKEY_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,		//æ–‡å­—æŒ‡å®š
+	1,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+	NULL,				//ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 static const BMPLIST_HEADER MenuListHeader = {
-	NULL,					//•\Ž¦•¶Žšƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	MenuListCB_ForMove,NULL,	//ƒR[ƒ‹ƒoƒbƒN(ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ/ˆês‚²‚Æ)
-	NULL,					//GF_BGL_BMPWIN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	0,3,					//ƒŠƒXƒg€–Ú”,•\Ž¦Å‘å€–Ú”
-	0,8,0,					//•\Ž¦XÀ•W(ƒ‰ƒxƒ‹/€–Ú/ƒJ[ƒ\ƒ‹)
-	0,						//•\Ž¦‚xÀ•W
-	FBMP_COL_BLACK,FBMP_COL_WHITE,FBMP_COL_BLK_SDW,		//•¶ŽšF,”wŒiF,‰eF
-	0,0,				//•¶ŽšŠÔŠuX,Y
-	BMPLIST_NO_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,		//•¶ŽšŽw’è
-	0,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
-	NULL,				//ƒ[ƒNƒ|ƒCƒ“ƒ^
+	NULL,					//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	MenuListCB_ForMove,NULL,	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯(ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨/ä¸€è¡Œã”ã¨)
+	NULL,					//GF_BGL_BMPWINæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	0,3,					//ãƒªã‚¹ãƒˆé …ç›®æ•°,è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,8,0,					//è¡¨ç¤ºXåº§æ¨™(ãƒ©ãƒ™ãƒ«/é …ç›®/ã‚«ãƒ¼ã‚½ãƒ«)
+	0,						//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,FBMP_COL_WHITE,FBMP_COL_BLK_SDW,		//æ–‡å­—è‰²,èƒŒæ™¯è‰²,å½±è‰²
+	0,0,				//æ–‡å­—é–“éš”X,Y
+	BMPLIST_NO_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,		//æ–‡å­—æŒ‡å®š
+	0,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+	NULL,				//ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒgƒ[ƒNƒNƒŠƒA
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
  */
 static void porulist_linkClear(PORU_LIST* pl)
 {
@@ -78,13 +78,13 @@ static void porulist_linkClear(PORU_LIST* pl)
 }
 
 /**
- * @brief	ƒ|ƒ‹ƒgƒƒbƒZ[ƒW•`‰æ
+ * @brief	ãƒãƒ«ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
  */
 static void poru_msgWrite(PORU_CASE_WORK* wk,STRBUF* msg,u8 spd,u8 win_f)
 {
 	GF_PRINTCOLOR col = GF_PRINTCOLOR_MAKE(FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_WHITE);
 
-	//ƒEƒBƒ“ƒhƒE•`‰æ
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 	if(win_f){
 		BmpTalkWinWrite( &wk->win[WIN_MSG], WINDOW_TRANS_OFF, BMPL_TALK_WIN_CGX, BMPL_TALK_WIN_PAL);
 	}
@@ -94,14 +94,14 @@ static void poru_msgWrite(PORU_CASE_WORK* wk,STRBUF* msg,u8 spd,u8 win_f)
 	MsgPrintSkipFlagSet( MSG_SKIP_ON );
 	MsgPrintAutoFlagSet( MSG_SKIP_OFF );
 	
-	//ƒƒbƒZ[ƒW•`‰æ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 	wk->msgIdx = GF_STR_PrintColor(
 		&wk->win[WIN_MSG], FONT_TALK, msg,
 		0, 0, spd, col, NULL );
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒg‚Ìƒ‚[ƒh•Ê—v‘f”
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã®ãƒ¢ãƒ¼ãƒ‰åˆ¥è¦ç´ æ•°
  */
 static u16 PoruList_GetListNum(PORUTO_PARAM* pp,PORU_CASE_WORK* wk)
 {
@@ -130,9 +130,9 @@ static u16 PoruList_GetListNum(PORUTO_PARAM* pp,PORU_CASE_WORK* wk)
 		if((flag & mode) == 0){
 			continue;
 		}
-		pl->view = 1;	//viewƒtƒ‰ƒOOn
+		pl->view = 1;	//viewãƒ•ãƒ©ã‚°On
 
-		//ƒŠƒXƒg‚ðŒq‚®
+		//ãƒªã‚¹ãƒˆã‚’ç¹‹ã
 		if(wk->startID == 0xFF){
 //			wk->startID = wk->endID = pl->myid;
 			wk->startID = pl->myid;
@@ -143,18 +143,18 @@ static u16 PoruList_GetListNum(PORUTO_PARAM* pp,PORU_CASE_WORK* wk)
 		wk->endID = pl->myid;
 		++count;
 	}
-	//zŠÂƒŠƒXƒg‚ð•Â‚¶‚é
+	//å¾ªç’°ãƒªã‚¹ãƒˆã‚’é–‰ã˜ã‚‹
 //	pp->list[wk->endID].next = wk->startID;
 //	pp->list[wk->startID].prev = wk->endID;
 	
-	//u‚â‚ß‚év€–Ú•ª‚Í•K‚¸Šm•Û
+	//ã€Œã‚„ã‚ã‚‹ã€é …ç›®åˆ†ã¯å¿…ãšç¢ºä¿
 	count += 1;
 	
 	return count;
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒgƒƒjƒ…[ì¬
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
  */
 void PoruList_CreatePMenu(PORU_CASE_WORK* wk)
 {
@@ -163,7 +163,7 @@ void PoruList_CreatePMenu(PORU_CASE_WORK* wk)
 	
 	wk->viewNum =  PoruList_GetListNum(wk->param,wk);
 	
-	//BMPƒŠƒXƒg—Ìˆæì¬
+	//BMPãƒªã‚¹ãƒˆé ˜åŸŸä½œæˆ
 	wk->plist = BMP_MENULIST_Create(wk->viewNum,wk->heapID);
 
 //	for(i = wk->startID;i != 0xFF;i = next){
@@ -183,16 +183,16 @@ void PoruList_CreatePMenu(PORU_CASE_WORK* wk)
 	//		PorutoName_GetNameAdrByMan(wk->nameMan,pl->flavor),pl->myid);
 	}
 
-	//u‚â‚ß‚év‚ðƒŠƒXƒg‚É’Ç‰Á
+	//ã€Œã‚„ã‚ã‚‹ã€ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ 
 	BMP_MENULIST_AddString(wk->plist,wk->msgDat.endbuf,0xFF);
 
-	//BMPƒŠƒXƒg‚ð‰Šú‰»
+	//BMPãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–
 	MI_CpuCopy8(&PoruListHeader,&wk->plist_h,sizeof(BMPLIST_HEADER));
 
-	wk->curPos = wk->param->curPos;		//‘O‰ñ‚ÌˆÊ’u‚ð•œ‹A
+	wk->curPos = wk->param->curPos;		//å‰å›žã®ä½ç½®ã‚’å¾©å¸°
 	wk->listPos = wk->param->listPos;
 
-	//ƒŠƒXƒg”‚ª‚Ð‚Æ‚ÂŒ¸‚Á‚Ä‚¢‚ê‚ÎƒJ[ƒ\ƒ‹ˆÊ’u‚ðƒ}ƒCƒiƒX•â³
+	//ãƒªã‚¹ãƒˆæ•°ãŒã²ã¨ã¤æ¸›ã£ã¦ã„ã‚Œã°ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ãƒžã‚¤ãƒŠã‚¹è£œæ­£
 	if(wk->param->ret_mode){
 		if(wk->listPos == 0){
 			if(wk->curPos != 0 && wk->curPos >= (wk->viewNum-1)){
@@ -210,20 +210,20 @@ void PoruList_CreatePMenu(PORU_CASE_WORK* wk)
 	wk->plist_h.work = (void*)wk;
 	wk->plist_h.count = wk->viewNum;
 
-	//ƒŠƒXƒg’Ç‰Á
+	//ãƒªã‚¹ãƒˆè¿½åŠ 
 	wk->plist_cb_f = 0;
 	wk->plist_wk = BmpListSet(&wk->plist_h,wk->listPos,wk->curPos,wk->heapID);
 	wk->plist_cb_f = 1;
-	//LV•\Ž¦ƒEƒBƒ“ƒhƒEOn
+	//LVè¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦On
 //	GF_BGL_BmpWinOn(&wk->win[WIN_PLISTLV]);
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒg@ƒƒjƒ…[ƒŠƒXƒgíœ
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆå‰Šé™¤
  */
 void PoruList_DeletePMenu(PORU_CASE_WORK* wk,BOOL trans)
 {
-	//ƒEƒBƒ“ƒhƒE—Ìˆæ‰Šú‰»
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é ˜åŸŸåˆæœŸåŒ–
 	GF_BGL_BmpWinFill( &(wk->win[WIN_PLIST]),WINCLR_COL(FBMP_COL_NULL),
 			0, 0,BMPL_PLIST_SX*8,BMPL_PLIST_SY*8);
 //	GF_BGL_BmpWinFill( &(wk->win[WIN_PLISTLV]),WINCLR_COL(FBMP_COL_NULL),
@@ -234,11 +234,11 @@ void PoruList_DeletePMenu(PORU_CASE_WORK* wk,BOOL trans)
 //		GF_BGL_BmpWinOff(&wk->win[WIN_PLISTLV]);
 	}
 
-	//ƒŠƒXƒg‰ð•ú
+	//ãƒªã‚¹ãƒˆè§£æ”¾
 	BmpListExit(wk->plist_wk,&(wk->listPos),&(wk->curPos));
 	BMP_MENULIST_Delete(wk->plist);
 
-	//ƒJ[ƒ\ƒ‹ˆÊ’u•Û‘¶
+	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä¿å­˜
 	wk->param->listPos = wk->listPos;
 	wk->param->curPos = wk->curPos;
 
@@ -247,7 +247,7 @@ void PoruList_DeletePMenu(PORU_CASE_WORK* wk,BOOL trans)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒ{ƒ^ƒ“ƒvƒbƒVƒ…Žžˆ—
+ *	@brief	ãƒãƒ«ãƒˆãƒœã‚¿ãƒ³ãƒ—ãƒƒã‚·ãƒ¥æ™‚å‡¦ç†
  */
 void PoruBtn_StateSet(PORU_CASE_WORK* wk,u8 idx,u8 state)
 {
@@ -285,7 +285,7 @@ void PoruBtn_StateSet(PORU_CASE_WORK* wk,u8 idx,u8 state)
 		wk->tp_f = BACT_ST_01;
 		break;
 	case BACT_ST_INI_PUSH:
-		//ƒP[ƒX‰Šú‰»Žž‚É‰Ÿ‚µ‚½ó‘Ô‚É‚·‚éƒRƒ}ƒ“ƒh
+		//ã‚±ãƒ¼ã‚¹åˆæœŸåŒ–æ™‚ã«æŠ¼ã—ãŸçŠ¶æ…‹ã«ã™ã‚‹ã‚³ãƒžãƒ³ãƒ‰
 		CLACT_AnmChg(wk->pActBtn[idx],idx*BACT_PTN+BACT_ST_01);
 		CLACT_SetAnmFlag(wk->pActBtn[idx],TRUE);
 		GF_BGL_BmpWinShift(
@@ -299,7 +299,7 @@ void PoruBtn_StateSet(PORU_CASE_WORK* wk,u8 idx,u8 state)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒgƒ\[ƒg
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã‚½ãƒ¼ãƒˆ
  */
 void PoruList_SortMenu(PORU_CASE_WORK* wk,u8 mode)
 {
@@ -309,9 +309,9 @@ void PoruList_SortMenu(PORU_CASE_WORK* wk,u8 mode)
 	//SE
 	Snd_SePlay(PORUC_SE_BTN);
 	
-	//ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg&ƒAƒjƒˆ—
+	//ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆ&ã‚¢ãƒ‹ãƒ¡å‡¦ç†
 	if(wk->tp_f != BACT_ST_INI){
-		//Œ»Ý‚Ìƒ‚[ƒhƒ`ƒFƒbƒN
+		//ç¾åœ¨ã®ãƒ¢ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 		if(mode == wk->viewMode){
 			PoruBtn_StateSet(wk,mode,BACT_ST_03);
 			return;
@@ -322,12 +322,12 @@ void PoruList_SortMenu(PORU_CASE_WORK* wk,u8 mode)
 	wk->viewMode = mode;
 	PoruList_DeletePMenu(wk,FALSE);
 
-	//ƒJ[ƒ\ƒ‹ˆÊ’uƒŠƒZƒbƒg
+	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒªã‚»ãƒƒãƒˆ
 	wk->listPos = wk->curPos = 0;
 	wk->param->listPos = wk->param->curPos = 0;
 	PoruList_CreatePMenu(wk);
 
-	//‰º‰æ–Êà–¾Ø‚è‘Ö‚¦
+	//ä¸‹ç”»é¢èª¬æ˜Žåˆ‡ã‚Šæ›¿ãˆ
 	GF_BGL_BmpWinFill( &(wk->win[WIN_EXPS]),WINCLR_COL(FBMP_COL_NULL),
 		0, 0,BMPL_EXPS_SX*8,BMPL_EXPS_SY*8);
 	if(wk->viewMode == PVIEW_ALL){
@@ -339,7 +339,7 @@ void PoruList_SortMenu(PORU_CASE_WORK* wk,u8 mode)
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/15
-	// •¶Žš‚ªƒEƒBƒ“ƒhƒE‚Ì’†‰›‚É—ˆ‚é‚æ‚¤‚ÉA•`‰æˆÊ’u‚ð1ƒsƒNƒZƒ‹‰º‚ÉˆÚ“®
+	// æ–‡å­—ãŒã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸­å¤®ã«æ¥ã‚‹ã‚ˆã†ã«ã€æç”»ä½ç½®ã‚’1ãƒ”ã‚¯ã‚»ãƒ«ä¸‹ã«ç§»å‹•
 	GF_STR_PrintColor(
 		&wk->win[WIN_EXPS], FONT_SYSTEM,
 		wk->msgDat.exbuf[wk->viewMode],
@@ -348,7 +348,7 @@ void PoruList_SortMenu(PORU_CASE_WORK* wk,u8 mode)
 }
 
 /**
- *	@brief	–¡ƒ}[ƒNƒAƒNƒ^[ƒZƒbƒg
+ *	@brief	å‘³ãƒžãƒ¼ã‚¯ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  */
 static void flaverActSet(PORU_CASE_WORK* wk,PORU_LIST* pl)
 {
@@ -371,12 +371,12 @@ static void flaverActSet(PORU_CASE_WORK* wk,PORU_LIST* pl)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒg@ƒƒjƒ…[ƒR[ƒ‹ƒoƒbƒO(ˆê—ñ•\Ž¦‚²‚Æ)
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚°(ä¸€åˆ—è¡¨ç¤ºã”ã¨)
  *	
- *	@param	work	BMPƒŠƒXƒg‚ÅÝ’è‚µ‚½ƒ[ƒN
- *	@param	index	BMPƒŠƒXƒg‚ªŽg—p‚µ‚Ä‚¢‚éƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- *	@param	param	BMPƒŠƒXƒg‚Ìƒpƒ‰ƒ[ƒ^
- *	@param	y		YÀ•W
+ *	@param	work	BMPãƒªã‚¹ãƒˆã§è¨­å®šã—ãŸãƒ¯ãƒ¼ã‚¯
+ *	@param	index	BMPãƒªã‚¹ãƒˆãŒä½¿ç”¨ã—ã¦ã„ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	param	BMPãƒªã‚¹ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	y		Yåº§æ¨™
  *
  *	@return	none
  */
@@ -389,8 +389,8 @@ static void PoruListCB_ForLine(BMPLIST_WORK* work,u32 param,u8 y)
 	col = GF_PRINTCOLOR_MAKE(FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL);
 
 #if 0
-	if(wk->plist_cb_f){	//‰Šú‰»ŽžˆÈŠO‚È‚çˆ—‚·‚é
-		//ƒf[ƒ^ƒVƒtƒg
+	if(wk->plist_cb_f){	//åˆæœŸåŒ–æ™‚ä»¥å¤–ãªã‚‰å‡¦ç†ã™ã‚‹
+		//ãƒ‡ãƒ¼ã‚¿ã‚·ãƒ•ãƒˆ
 		if(sys.repeat & PAD_KEY_UP){
 			GF_BGL_BmpWinShift(
 				&wk->win[WIN_PLISTLV], GF_BGL_BMPWIN_SHIFT_D,
@@ -402,7 +402,7 @@ static void PoruListCB_ForLine(BMPLIST_WORK* work,u32 param,u8 y)
 		}
 	}
 
-	//LV•\Ž¦	
+	//LVè¡¨ç¤º	
 	if(param == 0xFF){
 		GF_BGL_BmpWinFill( &(wk->win[WIN_PLISTLV]),WINCLR_COL(FBMP_COL_NULL),
 			0, y,BMPL_PLISTLV_SX*8,16);
@@ -416,11 +416,11 @@ static void PoruListCB_ForLine(BMPLIST_WORK* work,u32 param,u8 y)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒ‹ƒgƒŠƒXƒg@ƒƒjƒ…[ƒR[ƒ‹ƒoƒbƒO(ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ)
+ *	@brief	ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚°(ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨)
  *
- * @param	work	BMPƒŠƒXƒg‚ÅÝ’è‚µ‚½ƒ[ƒN
- * @param	param	BMPƒŠƒXƒg‚Ìƒpƒ‰ƒ[ƒ^
- * @param	mode	‰Šú‰»Žž = 1
+ * @param	work	BMPãƒªã‚¹ãƒˆã§è¨­å®šã—ãŸãƒ¯ãƒ¼ã‚¯
+ * @param	param	BMPãƒªã‚¹ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	mode	åˆæœŸåŒ–æ™‚ = 1
  *
  * @return	none
  */
@@ -437,11 +437,11 @@ static void PoruListCB_ForMove( BMPLIST_WORK * work, u32 param, u8 mode )
 	if(!mode){
 		Snd_SePlay(PORUC_SE_SEL);
 	}
-	//ƒJ[ƒ\ƒ‹ˆÚ“®
+	//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 	BmpListPosGet( work, &scr, &cur );
 	CATS_ObjectPosSet(wk->pAct[NACT_CURSOR],NACT_CUR_PX,cur*NACT_CUR_SY+NACT_CUR_PY);
 	
-	//–îˆóƒ}[ƒN•`‰æƒRƒ“ƒgƒ[ƒ‹
+	//çŸ¢å°ãƒžãƒ¼ã‚¯æç”»ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 	if(scr == 0){
 		CLACT_SetDrawFlag(wk->pAct[NACT_UP],FALSE);
 	}else{
@@ -453,7 +453,7 @@ static void PoruListCB_ForMove( BMPLIST_WORK * work, u32 param, u8 mode )
 		CLACT_SetDrawFlag(wk->pAct[NACT_DOWN],FALSE);
 	}
 
-	//‚È‚ß‚ç‚©‚³ƒEƒBƒ“ƒhƒEˆê’UƒNƒŠƒA
+	//ãªã‚ã‚‰ã‹ã•ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä¸€æ—¦ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinFill( &(wk->win[WIN_TASTE]),WINCLR_COL(FBMP_COL_NULL),
 		0, 0,BMPL_TASTE_SX*8,BMPL_TASTE_SY*8);
 
@@ -463,10 +463,10 @@ static void PoruListCB_ForMove( BMPLIST_WORK * work, u32 param, u8 mode )
 		CATS_ObjectEnableCap(wk->pOam->act,FALSE);
 		return;
 	}
-	//ƒ}[ƒN•`‰æ
+	//ãƒžãƒ¼ã‚¯æç”»
 	flaverActSet(wk,&wk->param->list[param]);
 	
-	//‚È‚ß‚ç‚©‚³•\Ž¦
+	//ãªã‚ã‚‰ã‹ã•è¡¨ç¤º
 	STRBUF_Clear(wk->msgDat.tmp);
 
 	taste = wk->param->list[param].taste;
@@ -481,19 +481,19 @@ static void PoruListCB_ForMove( BMPLIST_WORK * work, u32 param, u8 mode )
 		&wk->win[WIN_TASTE], FONT_SYSTEM, wk->msgDat.tmp,
 		8, 0, MSG_ALLPUT, col, NULL );
 	
-	//ƒ|ƒ‹ƒg‰æ‘œXV
+	//ãƒãƒ«ãƒˆç”»åƒæ›´æ–°
 	PoruOam_ChangeFlavor(wk->poruMan,wk->pOam,wk->param->list[param].flavor);
 	CATS_ObjectEnableCap(wk->pOam->act,TRUE);
 }
 
 /**
- *	@brief	ƒƒjƒ…[ƒŠƒXƒgì¬
+ *	@brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆä½œæˆ
  */
 void MenuList_Create(PORU_CASE_WORK* wk)
 {
 	u8 i = 0;
 	
-	//BMPƒŠƒXƒg—Ìˆæì¬
+	//BMPãƒªã‚¹ãƒˆé ˜åŸŸä½œæˆ
 	wk->mlist = BMP_MENULIST_Create(MLIST_MAX,wk->heapID);
 
 	for(i = 0;i < MLIST_MAX;i++){
@@ -501,7 +501,7 @@ void MenuList_Create(PORU_CASE_WORK* wk)
 			wk->msgMan,mes_p_select_02_01+i,i);
 	}
 
-	//BMPƒŠƒXƒg‚ð‰Šú‰»
+	//BMPãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–
 	MI_CpuCopy8(&MenuListHeader,&wk->mlist_h,sizeof(BMPLIST_HEADER));
 
 	wk->mlist_h.win = &(wk->win[WIN_MENU]);
@@ -509,25 +509,25 @@ void MenuList_Create(PORU_CASE_WORK* wk)
 	wk->mlist_h.work = (void*)wk;
 	wk->mlist_h.count = MLIST_MAX;
 
-	//ƒEƒBƒ“ƒhƒEƒtƒŒ[ƒ€•`‰æ
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ¬ãƒ¼ãƒ æç”»
 	BmpMenuWinWrite( &wk->win[WIN_MENU], WINDOW_TRANS_OFF, BMPL_MENU_WIN_CGX, BMPL_MENU_WIN_PAL );
 
-	//ƒŠƒXƒg’Ç‰Á
+	//ãƒªã‚¹ãƒˆè¿½åŠ 
 	wk->mlist_wk = BmpListSet(&wk->mlist_h,0,0,wk->heapID);
 }
 
 /**
- *	@brief	ƒƒjƒ…[ƒŠƒXƒgíœ
+ *	@brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆå‰Šé™¤
  */
 void MenuList_Delete(PORU_CASE_WORK* wk)
 {
 	u16 cur,list;
 	
-	//ƒEƒBƒ“ƒhƒEƒNƒŠƒA
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
 	BmpMenuWinClear(&(wk->win[WIN_MENU]),WINDOW_TRANS_ON);	
 	GF_BGL_BmpWinOff(&wk->win[WIN_MENU]);
 
-	//ƒŠƒXƒg‰ð•ú
+	//ãƒªã‚¹ãƒˆè§£æ”¾
 	BmpListExit(wk->mlist_wk,&list,&cur);
 	BMP_MENULIST_Delete(wk->mlist);
 
@@ -537,11 +537,11 @@ void MenuList_Delete(PORU_CASE_WORK* wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒƒjƒ…[ƒŠƒXƒg@ƒƒjƒ…[ƒR[ƒ‹ƒoƒbƒO(ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ)
+ *	@brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚°(ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨)
  *
- * @param	work	BMPƒŠƒXƒg‚ÅÝ’è‚µ‚½ƒ[ƒN
- * @param	param	BMPƒŠƒXƒg‚Ìƒpƒ‰ƒ[ƒ^
- * @param	mode	‰Šú‰»Žž = 1
+ * @param	work	BMPãƒªã‚¹ãƒˆã§è¨­å®šã—ãŸãƒ¯ãƒ¼ã‚¯
+ * @param	param	BMPãƒªã‚¹ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	mode	åˆæœŸåŒ–æ™‚ = 1
  *
  * @return	none
  */
@@ -554,11 +554,11 @@ static void MenuListCB_ForMove( BMPLIST_WORK * work, u32 param, u8 mode )
 }
 
 /**
- *	@brief	YesNoƒEƒBƒ“ƒhƒE•`‰æ‘OƒƒbƒZ[ƒW•\Ž¦
+ *	@brief	YesNoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  */
 void YesNoList_StartMsgSet(PORU_CASE_WORK* wk)
 {
-	//ƒ|ƒ‹ƒg‚ðŽÌ‚Ä‚Ü‚·‚©ƒƒbƒZ[ƒW•`‰æ
+	//ãƒãƒ«ãƒˆã‚’æ¨ã¦ã¾ã™ã‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 	STRBUF_Clear(wk->msgDat.tmp);
 	WORDSET_RegisterWord( wk->msgDat.wset,0,
 			PorutoName_GetNameAdrByMan(wk->nameMan,wk->param->list[wk->selectID].flavor),
@@ -569,11 +569,11 @@ void YesNoList_StartMsgSet(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒg‚ðŽÌ‚Ä‚Ü‚·ƒƒbƒZ[ƒWƒZƒbƒg
+ *	@brief	ãƒãƒ«ãƒˆã‚’æ¨ã¦ã¾ã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  */
 void YesNoList_DelMsgSet(PORU_CASE_WORK* wk)
 {
-	//ƒ|ƒ‹ƒg‚ðŽÌ‚Ä‚Ü‚·‚©ƒƒbƒZ[ƒW•`‰æ
+	//ãƒãƒ«ãƒˆã‚’æ¨ã¦ã¾ã™ã‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 	STRBUF_Clear(wk->msgDat.tmp);
 	WORDSET_RegisterWord( wk->msgDat.wset,0,
 			PorutoName_GetNameAdrByMan(wk->nameMan,wk->param->list[wk->selectID].flavor),
@@ -584,11 +584,11 @@ void YesNoList_DelMsgSet(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	YesNoƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	YesNoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  */
 void YesNoList_Create(PORU_CASE_WORK* wk)
 {
-	// ‚Í‚¢E‚¢‚¢‚¦
+	// ã¯ã„ãƒ»ã„ã„ãˆ
 	static const BMPWIN_DAT YesNoBmpWin = {
 		BMPL_MYN_FRM,BMPL_MYN_PX,BMPL_MYN_PY,BMPL_MYN_SX,BMPL_MYN_SY,
 		BMPL_MYN_PAL,BMPL_MYN_CGX
@@ -599,7 +599,7 @@ void YesNoList_Create(PORU_CASE_WORK* wk)
 }
 
 /**
- *	@brief	‰Šú‰æ–Ê•`‰æƒƒbƒZ[ƒWƒZƒbƒg
+ *	@brief	åˆæœŸç”»é¢æç”»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  */
 void PoruCase_DrawInitialMsg(PORU_CASE_WORK* wk)
 {
@@ -608,15 +608,15 @@ void PoruCase_DrawInitialMsg(PORU_CASE_WORK* wk)
 	GF_PRINTCOLOR scol = GF_PRINTCOLOR_MAKE(2,3,1);
 //	GF_PRINTCOLOR scol = GF_PRINTCOLOR_MAKE(2,3,15);
 	
-	//ƒ^ƒCƒgƒ‹•`‰æ
+	//ã‚¿ã‚¤ãƒˆãƒ«æç”»
 	GF_STR_PrintColor(
 		&wk->win[WIN_EXPM], FONT_SYSTEM, wk->msgDat.sbuf,
 		4, 0, MSG_ALLPUT, col, NULL );
 
-	//ƒ{ƒ^ƒ“ƒƒbƒZ[ƒW•`‰æ
+	//ãƒœã‚¿ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 	for(i = 0;i < PVIEW_MAX;i++){
 //	tomoya takahashi
-//	•¶Žš‚Ìã‚ªØ‚ê‚È‚¢‚æ‚¤‚É‚‚³‚ð•ÏX
+//	æ–‡å­—ã®ä¸ŠãŒåˆ‡ã‚Œãªã„ã‚ˆã†ã«é«˜ã•ã‚’å¤‰æ›´
 //		static const u8 ypos[] = {2,2,4,6,2,6};
 		static const u8 ypos[] = {2,10,4,6,10,6};
 		siz = (BMPL_SW01_SX*8)-

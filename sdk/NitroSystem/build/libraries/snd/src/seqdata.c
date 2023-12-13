@@ -39,11 +39,11 @@
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndSeqArcGetSeqCount
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu’†‚ÌƒV[ƒPƒ“ƒX‚Ì”‚ğæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®æ•°ã‚’å–å¾—
 
-  Arguments:    seqArc - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu
+  Arguments:    seqArc - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 
-  Returns:      ƒV[ƒPƒ“ƒX‚Ì”
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®æ•°
  *---------------------------------------------------------------------------*/
 u32 NNSi_SndSeqArcGetSeqCount( const NNSSndSeqArc* seqArc )
 {
@@ -54,12 +54,12 @@ u32 NNSi_SndSeqArcGetSeqCount( const NNSSndSeqArc* seqArc )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndSeqArcGetSeqInfo
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu’†‚ÌƒV[ƒPƒ“ƒXî•ñ‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æƒ…å ±ã®å–å¾—
 
-  Arguments:    seqArc - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu
-                seqNo  - ƒCƒ“ƒfƒbƒNƒX”Ô†
+  Arguments:    seqArc - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+                seqNo  - ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 
-  Returns:      ƒV[ƒPƒ“ƒXî•ñ\‘¢‘Ì
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æƒ…å ±æ§‹é€ ä½“
  *---------------------------------------------------------------------------*/
 const NNSSndSeqArcSeqInfo* NNSi_SndSeqArcGetSeqInfo(
     const NNSSndSeqArc* seqArc,

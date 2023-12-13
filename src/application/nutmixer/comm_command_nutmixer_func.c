@@ -2,7 +2,7 @@
 /**
  *
  *	@file		comm_command_nutmixer_func.h
- *	@brief		’ÊMƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *	@brief		é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *	@author		tomoya takahashi
  *	@data		2006.05.23
  *
@@ -21,46 +21,46 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
-*/
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-/**
- *					\‘¢‘ÌéŒ¾
-*/
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-/**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *		’ÊM‰Šú‰»ŠÖ”
+ *					æ§‹é€ ä½“å®£è¨€
+*/
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/**
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
+*/
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+/**
+ *		é€šä¿¡åˆæœŸåŒ–é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊM‚Ì‰Šú‰»
+ *	@brief	é€šä¿¡ã®åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 void CommCommandNutMixerInitialize( NMIX_GAMEWORK* pWork, MYSTATUS* p_mystate )
@@ -68,17 +68,17 @@ void CommCommandNutMixerInitialize( NMIX_GAMEWORK* pWork, MYSTATUS* p_mystate )
 	int playno;
 	int i;
 
-	// ’ÊMó‘Ôƒ`ƒFƒbƒN
+	// é€šä¿¡çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
 	if( pWork->commpack_flg == NUTMIX_COMM_PACK_COMM ){
-		// ’ÊMl”æ“¾
+		// é€šä¿¡äººæ•°å–å¾—
 		pWork->comm_count = CommGetConnectNum();
 	}else{
-		// ”ñ’ÊM
+		// éé€šä¿¡
 		pWork->comm_count = 1;
 	}
 	OS_Printf( "comm_count = %d\n", pWork->comm_count );
 
-	// ’ÊMƒpƒbƒNƒVƒXƒeƒ€“®‚³ŠJn
+	// é€šä¿¡ãƒ‘ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ å‹•ã•é–‹å§‹
 	pWork->comm_work = NMIX_CommPack_CommandInitialize( 
 			NutMixer_CommCommandTclGet(),
 			NutMixer_CommCommandTblNumGet(),
@@ -90,8 +90,8 @@ void CommCommandNutMixerInitialize( NMIX_GAMEWORK* pWork, MYSTATUS* p_mystate )
 	memset( pWork->game_comm_pack.playno_netid, NUTMIXER_MEMBER_MAX, sizeof(u8) * NUTMIXER_MEMBER_MAX );
 	
 	if( pWork->commpack_flg == NUTMIX_COMM_PACK_COMM ){
-		// ƒvƒŒƒCƒ„[ƒiƒ“ƒo[[„ƒlƒbƒgIDæ“¾”z—ñ‚ğì¬
-		// ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒXæ“¾
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼ãƒ¼ï¼ãƒãƒƒãƒˆIDå–å¾—é…åˆ—ã‚’ä½œæˆ
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—
 		playno = 0;
 		for( i=0; i<NUTMIXER_MEMBER_MAX; i++ ){
 
@@ -109,106 +109,106 @@ void CommCommandNutMixerInitialize( NMIX_GAMEWORK* pWork, MYSTATUS* p_mystate )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊM‚Ì”jŠü
+ *	@brief	é€šä¿¡ã®ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 void CommCommandNutMixerDest( NMIX_GAMEWORK* pWork )
 {
-	// ’ÊMƒpƒbƒNƒVƒXƒeƒ€”jŠü
+	// é€šä¿¡ãƒ‘ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	NMIX_CommPack_CommDelete( pWork->comm_work );
 	pWork->comm_work = NULL;
 }
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒQ[ƒ€ˆ—
- *		“¯Šú—p
+ *		ã‚²ãƒ¼ãƒ å‡¦ç†
+ *		åŒæœŸç”¨
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ŠJn“¯Šú		qóM
+ *	@brief	ã‚²ãƒ¼ãƒ é–‹å§‹åŒæœŸ		å­å—ä¿¡
  *
- *	@param	netID		Ú‘±”Ô†
- *	@param	size		ƒoƒbƒtƒ@ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	netID		æ¥ç¶šç•ªå·
+ *	@param	size		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerGameSysStart( int netID, int size, void* pBuff, void* pWork )
 {
 	NMIX_GAMEWORK* p_game = pWork;
 
-	OS_Printf( "e->q ƒQ[ƒ€ŠJn‘Oˆ—ŠJn\n" );
-	// ƒQ[ƒ€‘Oˆ—ŠJn
+	OS_Printf( "è¦ª->å­ ã‚²ãƒ¼ãƒ é–‹å§‹å‰å‡¦ç†é–‹å§‹\n" );
+	// ã‚²ãƒ¼ãƒ å‰å‡¦ç†é–‹å§‹
 	NMIX_SetMainSeq( p_game, NMIX_GAME_MAINSEQ_BEFORE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€Àˆ—@I—¹	qóM
+ *	@brief	ã‚²ãƒ¼ãƒ å®Ÿå‡¦ç†ã€€çµ‚äº†	å­å—ä¿¡
  *
- *	@param	netID		Ú‘±”Ô†
- *	@param	size		ƒoƒbƒtƒ@ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	netID		æ¥ç¶šç•ªå·
+ *	@param	size		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerGameEnd( int netID, int size, void* pBuff, void* pWork )
 {
 	NMIX_GAMEWORK* p_game = pWork;
 
-	OS_Printf( "e->q ƒQ[ƒ€I—¹\n" );
-	// ƒQ[ƒ€Àˆ—@I—¹‚Ö
+	OS_Printf( "è¦ª->å­ ã‚²ãƒ¼ãƒ çµ‚äº†\n" );
+	// ã‚²ãƒ¼ãƒ å®Ÿå‡¦ç†ã€€çµ‚äº†ã¸
 	NMIX_EXSetMainSeq( p_game, NMIX_GAME_MAINSEQ_GAMEEND );
 }
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒf[ƒ^óM—p
+ *		ãƒ‡ãƒ¼ã‚¿å—ä¿¡ç”¨
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	e‚©‚çƒQ[ƒ€ŠJn‘Oî•ñ‚ğó‚¯æ‚é
+ *	@brief	è¦ªã‹ã‚‰ã‚²ãƒ¼ãƒ é–‹å§‹å‰æƒ…å ±ã‚’å—ã‘å–ã‚‹
  *
- *	@param	netID		Ú‘±ID
- *	@param	size		ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒ[ƒN
+ *	@param	netID		æ¥ç¶šID
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerGameBeforeDataKo( int netID, int size, void* pBuff, void* pWork )
 {
 	NMIX_GAMEWORK* p_game = pWork;
 
-	// ƒoƒbƒtƒ@‚ÉŠi”[
+	// ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
 	memcpy( &p_game->game_comm_pack.get_ko_before_data, pBuff, size );
 
-	// eƒf[ƒ^‚ğİ’è
+	// è¦ªãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	p_game->game_comm_pack.get_game_data[ COMM_PARENT_ID ].oya = p_game->game_comm_pack.get_ko_before_data.oya;
 
-	OS_Printf( "e->q@ƒX[ƒvƒ¿’l %d\n •ûŒüƒGƒtƒFƒNƒg %d \n", p_game->game_comm_pack.get_game_data[ COMM_PARENT_ID ].oya.alpha_num, p_game->game_comm_pack.get_game_data[ COMM_PARENT_ID ].oya.rota_req_eff);
+	OS_Printf( "è¦ª->å­ã€€ã‚¹ãƒ¼ãƒ—Î±å€¤ %d\n æ–¹å‘ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ %d \n", p_game->game_comm_pack.get_game_data[ COMM_PARENT_ID ].oya.alpha_num, p_game->game_comm_pack.get_game_data[ COMM_PARENT_ID ].oya.rota_req_eff);
 
 
-	OS_Printf( "e[„q ƒQ[ƒ€ŠJn‘Oî•ñæ“¾ 0[%d] 1[%d] 2[%d] 3[%d] \n", 
+	OS_Printf( "è¦ªãƒ¼ï¼å­ ã‚²ãƒ¼ãƒ é–‹å§‹å‰æƒ…å ±å–å¾— 0[%d] 1[%d] 2[%d] 3[%d] \n", 
 			p_game->game_comm_pack.get_ko_before_data.before[0].nut_type,
 			p_game->game_comm_pack.get_ko_before_data.before[1].nut_type,
 			p_game->game_comm_pack.get_ko_before_data.before[2].nut_type,
 			p_game->game_comm_pack.get_ko_before_data.before[3].nut_type );
 
-	// ƒQ[ƒ€Àˆ—ŠJn
+	// ã‚²ãƒ¼ãƒ å®Ÿå‡¦ç†é–‹å§‹
 	NMIX_SetMainSeq( p_game, NMIX_GAME_MAINSEQ_RES_LOAD );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‚©‚ç–Ø‚ÌÀƒf[ƒ^‚ğæ“¾
+ *	@brief	å­ã‹ã‚‰æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *	@param	netID		Ú‘±”Ô†
- *	@param	size		ƒoƒbƒtƒ@ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	netID		æ¥ç¶šç•ªå·
+ *	@param	size		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerGameBeforeData( int netID, int size, void* pBuff, void* pWork )
@@ -218,19 +218,19 @@ void CommNutMixerGameBeforeData( int netID, int size, void* pBuff, void* pWork )
 	int in_count;
 
 
-	// e‚Ì‚Æ‚«ó‚¯æ‚é	
-	// e‚ÍA‘S‚Äó‚¯æ‚Á‚½‚çAq‚É–Ø‚ÌÀî•ñ‚ğ“]‘—
+	// è¦ªã®ã¨ãå—ã‘å–ã‚‹	
+	// è¦ªã¯ã€å…¨ã¦å—ã‘å–ã£ãŸã‚‰ã€å­ã«æœ¨ã®å®Ÿæƒ…å ±ã‚’è»¢é€
 	if( NMIX_CommPack_CommGetCurrentID( p_game->comm_work ) == COMM_PARENT_ID ){
-		// ƒoƒbƒtƒ@‚ÉŠi”[
+		// ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
 		memcpy( &p_game->game_comm_pack.get_before_data[ netID ], pBuff, size );
 		p_game->game_comm_pack.get_before_data_flg[ netID ] = TRUE;
 
-		// q‚É‘—‚éƒf[ƒ^‚É‚à’Ç‰Á
+		// å­ã«é€ã‚‹ãƒ‡ãƒ¼ã‚¿ã«ã‚‚è¿½åŠ 
 		p_game->game_comm_pack.get_oya_ko_before_data.before[ netID ] = p_game->game_comm_pack.get_before_data[ netID ];
 
-		OS_Printf( "q[„e ƒQ[ƒ€ŠJn‘Oî•ñæ“¾ netID[ %d ] nuts_data[ %d ]\n", netID, p_game->game_comm_pack.get_before_data[ netID ] );
+		OS_Printf( "å­ãƒ¼ï¼è¦ª ã‚²ãƒ¼ãƒ é–‹å§‹å‰æƒ…å ±å–å¾— netID[ %d ] nuts_data[ %d ]\n", netID, p_game->game_comm_pack.get_before_data[ netID ] );
 
-		// ’ÊM‘Šè‘Sˆõ‚©‚ç—ˆ‚½‚©ƒ`ƒFƒbƒN
+		// é€šä¿¡ç›¸æ‰‹å…¨å“¡ã‹ã‚‰æ¥ãŸã‹ãƒã‚§ãƒƒã‚¯
 		in_count = 0;
 		for( i=0; i<NUTMIXER_MEMBER_MAX; i++ ){
 			if( p_game->game_comm_pack.get_before_data_flg[ i ] == TRUE ){
@@ -238,16 +238,16 @@ void CommNutMixerGameBeforeData( int netID, int size, void* pBuff, void* pWork )
 			}
 		}
 
-		// ‘Sˆõ‚©‚ç‚«‚½‚çAƒQ[ƒ€ŠJn‘Oî•ñ“]‘—
+		// å…¨å“¡ã‹ã‚‰ããŸã‚‰ã€ã‚²ãƒ¼ãƒ é–‹å§‹å‰æƒ…å ±è»¢é€
 		if( in_count >= p_game->comm_count ){
-			OS_Printf( "q‚ÉƒQ[ƒ€ŠJn‘Oî•ñ“]‘— in_c=%d  comm_c=%d\n", in_count, p_game->comm_count );
+			OS_Printf( "å­ã«ã‚²ãƒ¼ãƒ é–‹å§‹å‰æƒ…å ±è»¢é€ in_c=%d  comm_c=%d\n", in_count, p_game->comm_count );
 
-			// 1‰ñe‚Ì‰Šú‰»ƒf[ƒ^‚à“n‚·
+			// 1å›è¦ªã®åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã‚‚æ¸¡ã™
 			NMIX_DATA_OyaCommDataMake_Init( &p_game->oya_data,
-					&p_game->game_comm_pack.get_oya_ko_before_data.oya, p_game->comm_count );	// ’ÊMƒf[ƒ^İ’è
+					&p_game->game_comm_pack.get_oya_ko_before_data.oya, p_game->comm_count );	// é€šä¿¡ãƒ‡ãƒ¼ã‚¿è¨­å®š
 
 
-			// ƒf[ƒ^“]‘—
+			// ãƒ‡ãƒ¼ã‚¿è»¢é€
 			NMIX_CommPack_CommSendData( CNM_MIXER_GAME_BEFOREDATA_KO,
 					&p_game->game_comm_pack.get_oya_ko_before_data,
 					CommNutMixerGetGameBeforeKoSize(),
@@ -260,12 +260,12 @@ void CommNutMixerGameBeforeData( int netID, int size, void* pBuff, void* pWork )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒf[ƒ^‚ğæ“¾			e‚©‚çq‚Ö
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—			è¦ªã‹ã‚‰å­ã¸
  *
- *	@param	netID		Ú‘±”Ô†
- *	@param	size		ƒoƒbƒtƒ@ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	netID		æ¥ç¶šç•ªå·
+ *	@param	size		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerGameData( int netID, int size, void* pBuff, void* pWork )
@@ -276,13 +276,13 @@ void CommNutMixerGameData( int netID, int size, void* pBuff, void* pWork )
 	BOOL rota_req_eff;
 	u8	rota_way;
 
-	// eƒf[ƒ^æ“¾
+	// è¦ªãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_gamedata = pBuff;
 	p_oya	   = &p_gamedata->oya;
 
-	// ƒoƒbƒtƒ@‚ÉŠi”[
-	// ‚½‚¾Ae‚Ì‰ñ“]–îˆóî•ñ‚Í•Û
-	// BTS:615‚Ö‚Ì‘Îˆ tomoya
+	// ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
+	// ãŸã ã€è¦ªã®å›è»¢çŸ¢å°æƒ…å ±ã¯ä¿æŒ
+	// BTS:615ã¸ã®å¯¾å‡¦ tomoya
 	if( (p_game->game_comm_pack.get_game_data[ netID ].oya.rota_req_eff == TRUE) && (p_oya->rota_req_eff == FALSE) && (netID == COMM_PARENT_ID) ){
 		rota_req_eff = TRUE;
 		rota_way	 = p_game->game_comm_pack.get_game_data[ netID ].oya.rota_way;
@@ -290,11 +290,11 @@ void CommNutMixerGameData( int netID, int size, void* pBuff, void* pWork )
 		rota_req_eff = FALSE;
 	}
 
-	// ƒoƒbƒtƒ@‚ÉŠi”[
+	// ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
 	memcpy( &p_game->game_comm_pack.get_game_data[ netID ], pBuff, size );
 
-	// ‚à‚µrota_req_eff‚ªTRUE‚È‚çã‘‚«
-	// BTS:615‚Ö‚Ì‘Îˆ tomoya
+	// ã‚‚ã—rota_req_effãŒTRUEãªã‚‰ä¸Šæ›¸ã
+	// BTS:615ã¸ã®å¯¾å‡¦ tomoya
 	if( rota_req_eff == TRUE ){
 		p_game->game_comm_pack.get_game_data[ netID ].oya.rota_req_eff	= rota_req_eff;
 		p_game->game_comm_pack.get_game_data[ netID ].oya.rota_way		= rota_way;
@@ -305,12 +305,12 @@ void CommNutMixerGameData( int netID, int size, void* pBuff, void* pWork )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	eƒQ[ƒ€ƒf[ƒ^‚ğæ“¾			e‚©‚çq‚Ö
+ *	@brief	è¦ªã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—			è¦ªã‹ã‚‰å­ã¸
  *
- *	@param	netID		Ú‘±”Ô†
- *	@param	size		ƒoƒbƒtƒ@ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	netID		æ¥ç¶šç•ªå·
+ *	@param	size		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerOyaGameData( int netID, int size, void* pBuff, void* pWork )
@@ -320,12 +320,12 @@ void CommNutMixerOyaGameData( int netID, int size, void* pBuff, void* pWork )
 	BOOL rota_req_eff;
 	u8	rota_way;
 
-	// eî•ñ
+	// è¦ªæƒ…å ±
 	p_oya = pBuff;
 
-	// ƒoƒbƒtƒ@‚ÉŠi”[
-	// ‚½‚¾A‰ñ“]–îˆóî•ñ‚Í•Û
-	// BTS:615‚Ö‚Ì‘Îˆ tomoya
+	// ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
+	// ãŸã ã€å›è»¢çŸ¢å°æƒ…å ±ã¯ä¿æŒ
+	// BTS:615ã¸ã®å¯¾å‡¦ tomoya
 	if( (p_game->game_comm_pack.get_game_data[ netID ].oya.rota_req_eff == TRUE) && (p_oya->rota_req_eff == FALSE) ){
 		rota_req_eff = TRUE;
 		rota_way	 = p_game->game_comm_pack.get_game_data[ netID ].oya.rota_way;
@@ -335,8 +335,8 @@ void CommNutMixerOyaGameData( int netID, int size, void* pBuff, void* pWork )
 	
 	memcpy( &p_game->game_comm_pack.get_game_data[ netID ].oya, pBuff, size );
 
-	// ‚à‚µrota_req_eff‚ªTRUE‚È‚çã‘‚«
-	// BTS:615‚Ö‚Ì‘Îˆ tomoya
+	// ã‚‚ã—rota_req_effãŒTRUEãªã‚‰ä¸Šæ›¸ã
+	// BTS:615ã¸ã®å¯¾å‡¦ tomoya
 	if( rota_req_eff == TRUE ){
 		p_game->game_comm_pack.get_game_data[ netID ].oya.rota_req_eff	= rota_req_eff;
 		p_game->game_comm_pack.get_game_data[ netID ].oya.rota_way		= rota_way;
@@ -345,99 +345,99 @@ void CommNutMixerOyaGameData( int netID, int size, void* pBuff, void* pWork )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	eƒQ[ƒ€ƒf[ƒ^‚ğæ“¾			e‚©‚çq‚Ö
+ *	@brief	è¦ªã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—			è¦ªã‹ã‚‰å­ã¸
  *
- *	@param	netID		Ú‘±”Ô†
- *	@param	size		ƒoƒbƒtƒ@ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	netID		æ¥ç¶šç•ªå·
+ *	@param	size		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerKoGameData( int netID, int size, void* pBuff, void* pWork )
 {
 	NMIX_GAMEWORK* p_game = pWork;
 
-	// ƒoƒbƒtƒ@‚ÉŠi”[
+	// ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
 	memcpy( &p_game->game_comm_pack.get_game_data[ netID ].one, pBuff, size );
-    // óM‚µ‚½‘Šè‚ğ‹L˜^
+    // å—ä¿¡ã—ãŸç›¸æ‰‹ã‚’è¨˜éŒ²
     p_game->comm_switchCh[netID]++;
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€Œ‹‰Êƒf[ƒ^‚ğæ“¾
+ *	@brief	ã‚²ãƒ¼ãƒ çµæœãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *	@param	netID		Ú‘±”Ô†
- *	@param	size		ƒoƒbƒtƒ@ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	netID		æ¥ç¶šç•ªå·
+ *	@param	size		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerGameResultData( int netID, int size, void* pBuff, void* pWork )
 {
 	NMIX_GAMEWORK* p_game = pWork;
 
-	// ƒoƒbƒtƒ@‚ÉŠi”[
+	// ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
 	memcpy( &p_game->game_comm_pack.get_result_data, pBuff, size );
 
-	OS_Printf( "e[„q ƒQ[ƒ€Œ‹‰Êî•ñæ“¾\n" );
+	OS_Printf( "è¦ªãƒ¼ï¼å­ ã‚²ãƒ¼ãƒ çµæœæƒ…å ±å–å¾—\n" );
 
-	// Œ‹‰Ê•\¦‚ÉˆÈ~
+	// çµæœè¡¨ç¤ºã«ä»¥é™
 	NMIX_SetMainSeq( p_game, NMIX_GAME_MAINSEQ_RESULT );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^óM
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿å—ä¿¡
  *
- *	@param	netID		Ú‘±”Ô†
- *	@param	size		ƒoƒbƒtƒ@ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	netID		æ¥ç¶šç•ªå·
+ *	@param	size		ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerPorutoData( int netID, int size, void* pBuff, void* pWork )
 {
 	NMIX_GAMEWORK* p_game = pWork;
 
-	// ƒoƒbƒtƒ@‚ÉŠi”[
+	// ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
 	memcpy( p_game->game_comm_pack.p_get_ko_poruto, pBuff, size );
-	OS_Printf( "e[„q ƒ|ƒ‹ƒgƒf[ƒ^æ“¾\n" );
+	OS_Printf( "è¦ªãƒ¼ï¼å­ ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—\n" );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e‚©‚ç@ƒQ[ƒ€‚ğ‚Â‚Ã‚¯‚é‚©‚ğó‚¯æ‚é
+ *	@brief	è¦ªã‹ã‚‰ã€€ã‚²ãƒ¼ãƒ ã‚’ã¤ã¥ã‘ã‚‹ã‹ã‚’å—ã‘å–ã‚‹
  *
- *	@param	netID		Ú‘±ID
- *	@param	size		ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒ[ƒN
+ *	@param	netID		æ¥ç¶šID
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerGameNextDataKo( int netID, int size, void* pBuff, void* pWork )
 {
 	NMIX_GAMEWORK* p_game = pWork;
 
-	// ƒoƒbƒtƒ@‚ÉŠi”[
+	// ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
 	memcpy( &p_game->game_comm_pack.get_game_next, pBuff, size );
 
-	OS_Printf( "e[„q ƒQ[ƒ€I—¹ %d \n", p_game->game_comm_pack.get_game_next );
+	OS_Printf( "è¦ªãƒ¼ï¼å­ ã‚²ãƒ¼ãƒ çµ‚äº† %d \n", p_game->game_comm_pack.get_game_next );
 
 	
-	// ƒQ[ƒ€ˆ—Š®‘S@I—¹‚Ö
+	// ã‚²ãƒ¼ãƒ å‡¦ç†å®Œå…¨ã€€çµ‚äº†ã¸
 	NMIX_SetMainSeq( p_game, NMIX_GAME_MIANSEQ_RES_RELEASE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‚©‚çƒQ[ƒ€‚ğ‚Â‚Ã‚¯‚½‚¢‚©ó‚¯æ‚é
+ *	@brief	å­ã‹ã‚‰ã‚²ãƒ¼ãƒ ã‚’ã¤ã¥ã‘ãŸã„ã‹å—ã‘å–ã‚‹
  *
- *	@param	netID		Ú‘±ID
- *	@param	size		ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	pWork		ƒ[ƒN
+ *	@param	netID		æ¥ç¶šID
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	pWork		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void CommNutMixerGameNextData( int netID, int size, void* pBuff, void* pWork )
@@ -447,30 +447,30 @@ void CommNutMixerGameNextData( int netID, int size, void* pBuff, void* pWork )
 	int in_count;
 	u8 send;
 
-	// e‚Ì‚Æ‚«ó‚¯æ‚é	
-	// e‚ÍA‘S‚Äó‚¯æ‚Á‚½‚çAq‚É–Ø‚ÌÀî•ñ‚ğ“]‘—
+	// è¦ªã®ã¨ãå—ã‘å–ã‚‹	
+	// è¦ªã¯ã€å…¨ã¦å—ã‘å–ã£ãŸã‚‰ã€å­ã«æœ¨ã®å®Ÿæƒ…å ±ã‚’è»¢é€
 	if( NMIX_CommPack_CommGetCurrentID( p_game->comm_work ) == COMM_PARENT_ID ){
-		// ƒoƒbƒtƒ@‚ÉŠi”[
+		// ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
 		memcpy( &p_game->game_comm_pack.game_next[ netID ], pBuff, size );
 		p_game->game_comm_pack.get_next_data_flg[ netID ] = TRUE;
 
-		OS_Printf( "q[„e ƒQ[ƒ€I—¹ƒf[ƒ^ netID[ %d ] next_data[ %d ]\n", netID, p_game->game_comm_pack.game_next[ netID ] );
+		OS_Printf( "å­ãƒ¼ï¼è¦ª ã‚²ãƒ¼ãƒ çµ‚äº†ãƒ‡ãƒ¼ã‚¿ netID[ %d ] next_data[ %d ]\n", netID, p_game->game_comm_pack.game_next[ netID ] );
 
-		// ’ÊM‘Šè‘Sˆõ‚©‚ç—ˆ‚½‚©ƒ`ƒFƒbƒN
+		// é€šä¿¡ç›¸æ‰‹å…¨å“¡ã‹ã‚‰æ¥ãŸã‹ãƒã‚§ãƒƒã‚¯
 		in_count = 0;
-		send = 1;	// Å‰‚É‘±‚¯‚é‚ğ‚¢‚ê‚Ä‚¨‚«@ŠF‚ª1‚È‚ç1 ˆêl‚Å‚à0‚È‚ç0‚È‚Ì‚Å
-					// •‚Åƒ`ƒFƒbƒN‚µ‚Ä‚¢‚­
+		send = 1;	// æœ€åˆã«ç¶šã‘ã‚‹ã‚’ã„ã‚Œã¦ãŠãã€€çš†ãŒ1ãªã‚‰1 ä¸€äººã§ã‚‚0ãªã‚‰0ãªã®ã§
+					// ï¼†ã§ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ã
 		for( i=0; i<NUTMIXER_MEMBER_MAX; i++ ){
 			if( p_game->game_comm_pack.get_next_data_flg[ i ] == TRUE ){
 				send &= p_game->game_comm_pack.game_next[ i ];
 				in_count ++;
 			}
 		}
-		// ‘Sˆõ‚©‚ç‚«‚½‚çAƒQ[ƒ€I—¹ƒf[ƒ^“]‘—
+		// å…¨å“¡ã‹ã‚‰ããŸã‚‰ã€ã‚²ãƒ¼ãƒ çµ‚äº†ãƒ‡ãƒ¼ã‚¿è»¢é€
 		if( in_count >= p_game->comm_count ){
-			OS_Printf( "q‚ÉƒQ[ƒ€I—¹ƒf[ƒ^“]‘— in_c=%d  comm_c=%d\n", in_count, p_game->comm_count );
+			OS_Printf( "å­ã«ã‚²ãƒ¼ãƒ çµ‚äº†ãƒ‡ãƒ¼ã‚¿è»¢é€ in_c=%d  comm_c=%d\n", in_count, p_game->comm_count );
 
-			// ƒf[ƒ^“]‘—
+			// ãƒ‡ãƒ¼ã‚¿è»¢é€
 			NMIX_CommPack_CommSendData( CNM_MIXER_GAME_NEXT_KO,
 					&send,
 					CommNutMixerGetOneSize(),
@@ -482,13 +482,13 @@ void CommNutMixerGameNextData( int netID, int size, void* pBuff, void* pWork )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒTƒCƒYæ“¾ŠÖ”
+ *			ã‚µã‚¤ã‚ºå–å¾—é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	0ƒTƒCƒY
- *	@return	ƒTƒCƒY
+ *	@brief	0ã‚µã‚¤ã‚º
+ *	@return	ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int CommNutMixerGetZeroSize( void )
@@ -498,8 +498,8 @@ int CommNutMixerGetZeroSize( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	1ƒTƒCƒY
- *	@return	ƒTƒCƒY
+ *	@brief	1ã‚µã‚¤ã‚º
+ *	@return	ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int CommNutMixerGetOneSize( void )
@@ -509,8 +509,8 @@ int CommNutMixerGetOneSize( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€‘O’ÊMƒf[ƒ^q‚ªó‚¯æ‚éƒTƒCƒYæ“¾
- *	@return	ƒTƒCƒY
+ *	@brief	ã‚²ãƒ¼ãƒ å‰é€šä¿¡ãƒ‡ãƒ¼ã‚¿å­ãŒå—ã‘å–ã‚‹ã‚µã‚¤ã‚ºå–å¾—
+ *	@return	ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int CommNutMixerGetGameBeforeKoSize( void )
@@ -520,8 +520,8 @@ int CommNutMixerGetGameBeforeKoSize( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€‘OƒTƒCƒY’ÊMƒf[ƒ^ƒTƒCƒYæ“¾
- *	@return	ƒTƒCƒY
+ *	@brief	ã‚²ãƒ¼ãƒ å‰ã‚µã‚¤ã‚ºé€šä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
+ *	@return	ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int CommNutMixerGetGameBeforeSize( void )
@@ -531,8 +531,8 @@ int CommNutMixerGetGameBeforeSize( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒf[ƒ^ƒTƒCƒYæ“¾
- *	@return	ƒTƒCƒY
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
+ *	@return	ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int CommNutMixerGetGameSize( void )
@@ -542,8 +542,8 @@ int CommNutMixerGetGameSize( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€Œ‹‰Êƒf[ƒ^ƒTƒCƒYæ“¾
- *	@return	ƒTƒCƒY
+ *	@brief	ã‚²ãƒ¼ãƒ çµæœãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
+ *	@return	ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int CommNutMixerGetGameResultSize( void )
@@ -553,7 +553,7 @@ int CommNutMixerGetGameResultSize( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	eƒQ[ƒ€ƒf[ƒ^
+ *	@brief	è¦ªã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 int CommNutMixerGetOyaGameSize( void )
@@ -563,7 +563,7 @@ int CommNutMixerGetOyaGameSize( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	qƒQ[ƒ€ƒf[ƒ^
+ *	@brief	å­ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 int CommNutMixerGetKoGameSize( void )

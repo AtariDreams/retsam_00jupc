@@ -5,47 +5,47 @@
 
 enum {
 	////////////////////////////
-	//ƒfƒBƒAƒ‹ƒKAƒpƒ‹ƒLƒA“oê
+	//ãƒ‡ã‚£ã‚¢ãƒ«ã‚¬ã€ãƒ‘ãƒ«ã‚­ã‚¢ç™»å ´
 	////////////////////////////
 	
-	//Ô‚¢½
-	//DS_EFF_00 = SEQ_SE_PL_KUSARI,						//‚±‚ê‚¾‚¯BANK_SE_FIELD
+	//èµ¤ã„éŽ–
+	//DS_EFF_00 = SEQ_SE_PL_KUSARI,						//ã“ã‚Œã ã‘BANK_SE_FIELD
 
-	//•‚¢‹Ê‚ª‚ä‚ç‚ä‚ç—Ž‚¿‚Ä‚­‚é
+	//é»’ã„çŽ‰ãŒã‚†ã‚‰ã‚†ã‚‰è½ã¡ã¦ãã‚‹
 	DS_EFF_01 = SEQ_SE_DP_CLIMAX01,						//
 
-	//•‚¢‹Ê‚ª‘å‚«‚­‚È‚é
+	//é»’ã„çŽ‰ãŒå¤§ãããªã‚‹
 	DS_EFF_02 = SEQ_SE_DP_CLIMAX03,						//
 
-	//”——Ío‚·‚½‚ß‚É—‹Œn‚Ì‰¹
-	DS_EFF_03 = SEQ_SE_DP_CLIMAX06,						//•‚¢‹Ê‚Ìƒ^ƒ’†‚É–Â‚ç‚·(DP‚Æ“¯‚¶Š´‚¶‚Å)
+	//è¿«åŠ›å‡ºã™ãŸã‚ã«é›·ç³»ã®éŸ³
+	DS_EFF_03 = SEQ_SE_DP_CLIMAX06,						//é»’ã„çŽ‰ã®ã‚¿ãƒ¡ä¸­ã«é³´ã‚‰ã™(DPã¨åŒã˜æ„Ÿã˜ã§)
 
-	//”——Í‚¾‚·‚½‚ß‚ÉƒS[Œn‚Ì‰¹
-	DS_EFF_04 = SEQ_SE_DP_CLIMAX09,						//•‚¢‹Ê‚Ìƒ^ƒ’†‚É–Â‚ç‚·(DP‚Æ“¯‚¶Š´‚¶‚Å)
+	//è¿«åŠ›ã ã™ãŸã‚ã«ã‚´ãƒ¼ç³»ã®éŸ³
+	DS_EFF_04 = SEQ_SE_DP_CLIMAX09,						//é»’ã„çŽ‰ã®ã‚¿ãƒ¡ä¸­ã«é³´ã‚‰ã™(DPã¨åŒã˜æ„Ÿã˜ã§)
 
-	//•‚¢‹Ê‚Écü‚ª“ü‚é‰¹
+	//é»’ã„çŽ‰ã«ç¸¦ç·šãŒå…¥ã‚‹éŸ³
 	DS_EFF_05 = SEQ_SE_DP_CLIMAX10,						//
 
-	//ƒfƒBƒAƒ‹ƒKAƒpƒ‹ƒLƒA‚ª•‚¢‹Ê‚©‚ç“oê
+	//ãƒ‡ã‚£ã‚¢ãƒ«ã‚¬ã€ãƒ‘ãƒ«ã‚­ã‚¢ãŒé»’ã„çŽ‰ã‹ã‚‰ç™»å ´
 	DS_EFF_06 = SEQ_SE_DP_CLIMAX12,						//
 
 	////////////////////////////
-	//ƒMƒ‰ƒeƒBƒi“oê
+	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´
 	////////////////////////////
 
-	//DS_DARK = SEQ_SE_PL_W467,							//•s‰¸‚È•µˆÍ‹C
-	DS_HOLE = SEQ_SE_PL_W060,							//ŒŠ‚ªŠJ‚­
-	DS_WAVE	= SEQ_SE_PL_W082C,							//“oê
+	//DS_DARK = SEQ_SE_PL_W467,							//ä¸ç©ãªé›°å›²æ°—
+	DS_HOLE = SEQ_SE_PL_W060,							//ç©´ãŒé–‹ã
+	DS_WAVE	= SEQ_SE_PL_W082C,							//ç™»å ´
 
 	//DS_BLACK_BALL_ON = SEQ_SE_DP_CLIMAX03,
 	
 	////////////////////////////
-	//ƒ†ƒNƒV[‚È‚Ç“oê
+	//ãƒ¦ã‚¯ã‚·ãƒ¼ãªã©ç™»å ´
 	////////////////////////////
 	
-	//DS_APPEAR = SEQ_SE_DP_182,						//Œõ”ò‚ñ‚Å‚¢‚­
-	//DS_APPEAR2= SEQ_SE_DP_W392,						//ŒõL‚ª‚é
-	DS_APPEAR2= SEQ_SE_PL_W392,							//ŒõL‚ª‚é
+	//DS_APPEAR = SEQ_SE_DP_182,						//å…‰é£›ã‚“ã§ã„ã
+	//DS_APPEAR2= SEQ_SE_DP_W392,						//å…‰åºƒãŒã‚‹
+	DS_APPEAR2= SEQ_SE_PL_W392,							//å…‰åºƒãŒã‚‹
 
 	//DS_JUMP = SEQ_SE_DP_023,
 	//DS_COIN = SEQ_SE_DP_031,

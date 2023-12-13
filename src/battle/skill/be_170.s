@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_170.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			170�@��U�Z�@�^�[���̍ŏ��Ɂu�����������́@���イ���イ��傭���@�����߂Ă���I�v�̃��b�Z�[�W���o�āA
- *				 �Z���o��܂ł̊ԁA���肪�U���Z�������Ƀq�b�g��������A�Ђ��ŋZ���o���Ȃ��Ȃ�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			170　後攻技　ターンの最初に「○○○○○は　しゅうちゅうりょくを　たかめている！」のメッセージが出て、
+ *				 技が出るまでの間、相手が攻撃技を自分にヒットさせたら、ひるんで技が出せなくなる
  *
  *@author	HisashiSogabe
  *@data		2006.02.06

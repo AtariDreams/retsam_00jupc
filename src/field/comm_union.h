@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_union.h
- * @brief	ƒ†ƒjƒIƒ“ƒ‹[ƒ€§Œäˆ—
+ * @brief	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ åˆ¶å¾¡å‡¦ç†
  * @author	Akito Mori
  * @date    2005.12.10
  */
@@ -45,29 +45,29 @@ extern u8	Union_GetRomCode( void );
 
 extern const u16 Union_GroupObjTable[];
 
-// Å‘åŽq‹@Ú‘±l”
+// æœ€å¤§å­æ©ŸæŽ¥ç¶šäººæ•°
 #define UNION_CONNECT_CHILD_MAX	( 4 )
 
-// Å‘åÚ‘±l”
+// æœ€å¤§æŽ¥ç¶šäººæ•°
 #define UNION_CONNECT_MAX		( UNION_CONNECT_CHILD_MAX+1 )
 
 //--------------------------------------------------------------
-// ƒXƒNƒŠƒvƒg—p
+// ã‚¹ã‚¯ãƒªãƒ—ãƒˆç”¨
 //--------------------------------------------------------------
 
-// ƒXƒNƒŠƒvƒg‚ÅŽÀs‚µ‚½‘I‘ðŒ‹‰Ê‚ð–á‚¤
+// ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§å®Ÿè¡Œã—ãŸé¸æŠžçµæžœã‚’è²°ã†
 extern void Union_ScriptResultGet( COMM_UNIONROOM_WORK *cuw, int var, u32 result);
 
-// e‹@‚ÌƒXƒ^[ƒg‚ð‘Ò‚Â
+// è¦ªæ©Ÿã®ã‚¹ã‚¿ãƒ¼ãƒˆã‚’å¾…ã¤
 extern u32 Union_ParentStartCommandSet( COMM_UNIONROOM_WORK *cuw );
 
-// Žq‹@‚©‚ç‚à‚ç‚Á‚½“à—e‚ðƒXƒNƒŠƒvƒg‚É•Ô‚·
+// å­æ©Ÿã‹ã‚‰ã‚‚ã‚‰ã£ãŸå†…å®¹ã‚’ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«è¿”ã™
 extern u32 Union_ChildSelectCommandSet(COMM_UNIONROOM_WORK *cuw);
 
 
 
 //--------------------------------------------------------------
-// ’ÊMƒR[ƒ‹ƒoƒbƒN—p
+// é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨
 //--------------------------------------------------------------
 extern void CommUnionRecvStatus(int netID, int size, void* pBuff, void* pWork);
 extern void CommUnionRecvSelect(int netID, int size, void* pBuff, void* pWork);

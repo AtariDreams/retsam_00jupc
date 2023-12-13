@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wbr_common.h
- *	@brief		wifi	ƒoƒgƒ‹ƒ‹[ƒ€@‹¤’Êƒwƒbƒ_[
+ *	@brief		wifi	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã€€å…±é€šãƒ˜ãƒƒãƒ€ãƒ¼
  *	@author		tomoya takahashi
  *	@data		2007.02.15
  *
@@ -31,31 +31,31 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define WBR_COMM_NUM		(2)	// ‚P“x‚É‚Â‚È‚ª‚él”
-#define WBR_COMM_OYA_AID	(0)	// e‚ÌAID
-#define WBR_COMM_MYSTATUSSIZE	(32)	// mystatus‚ÌƒTƒCƒY
+#define WBR_COMM_NUM		(2)	// ï¼‘åº¦ã«ã¤ãªãŒã‚‹äººæ•°
+#define WBR_COMM_OYA_AID	(0)	// è¦ªã®AID
+#define WBR_COMM_MYSTATUSSIZE	(32)	// mystatusã®ã‚µã‚¤ã‚º
 
-// ƒOƒŠƒbƒhƒf[ƒ^
-#define WBR_COMM_GRID_SIZ	( 16 )	// 1ƒOƒŠƒbƒhƒTƒCƒY
+// ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿
+#define WBR_COMM_GRID_SIZ	( 16 )	// 1ã‚°ãƒªãƒƒãƒ‰ã‚µã‚¤ã‚º
 
 
 //-------------------------------------
-///	s“®ƒtƒ‰ƒO
+///	è¡Œå‹•ãƒ•ãƒ©ã‚°
 //=====================================
 typedef enum {
-	WBR_MOVE_NONE,	// ‰½‚à‚È‚µiƒL[“ü—Í‘Ò‚¿j
-	WBR_MOVE_TURN,	// U‚èŒü‚«
-	WBR_MOVE_WALK,	// •à‚«
-	WBR_MOVE_TALK,	// ˜b‚µ‚©‚¯
-	WBR_MOVE_RUN,	// ‘–‚è
+	WBR_MOVE_NONE,	// ä½•ã‚‚ãªã—ï¼ˆã‚­ãƒ¼å…¥åŠ›å¾…ã¡ï¼‰
+	WBR_MOVE_TURN,	// æŒ¯ã‚Šå‘ã
+	WBR_MOVE_WALK,	// æ­©ã
+	WBR_MOVE_TALK,	// è©±ã—ã‹ã‘
+	WBR_MOVE_RUN,	// èµ°ã‚Š
 	WBR_MOVE_NUM
 } WBR_MOVE_FLAG;
 
 //-------------------------------------
-///	s“®ƒtƒ‰ƒO
+///	è¡Œå‹•ãƒ•ãƒ©ã‚°
 //=====================================
 typedef enum {
 	WBR_WAY_TOP,
@@ -66,16 +66,16 @@ typedef enum {
 } WBR_WAY_FLAG;
 
 //-------------------------------------
-///	˜b‚µ‚©‚¯TALKƒ‚[ƒh
+///	è©±ã—ã‹ã‘TALKãƒ¢ãƒ¼ãƒ‰
 //=====================================
 typedef enum {
-	WBR_TALK_NONE,	// ˜b‚µ‚©‚¯ŠÖŒW‚È‚µ
-	WBR_TALK_OYA,	// ˜b‚µ‚©‚¯ŠÖŒW‚Ìe
-	WBR_TALK_KO,	// ˜b‚µ‚©‚¯ŠÖŒW‚ÌŽq
+	WBR_TALK_NONE,	// è©±ã—ã‹ã‘é–¢ä¿‚ãªã—
+	WBR_TALK_OYA,	// è©±ã—ã‹ã‘é–¢ä¿‚ã®è¦ª
+	WBR_TALK_KO,	// è©±ã—ã‹ã‘é–¢ä¿‚ã®å­
 } WBR_TALK_FLAG;
 
 //-------------------------------------
-///	˜b‚µ‚©‚¯ƒŠƒNƒGƒXƒgƒtƒ‰ƒO
+///	è©±ã—ã‹ã‘ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°
 //=====================================
 typedef enum {
 	WBR_TALK_REQ_START,
@@ -84,28 +84,28 @@ typedef enum {
 
 
 //-------------------------------------
-///	˜bƒV[ƒPƒ“ƒX
+///	è©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 typedef enum {
-	WBR_TALK_SEQ_START,			// ˜b‚µ‚©‚¯ŠJŽn
-	WBR_TALK_SEQ_NEXT,			// ˜b‚µ‚©‚¯ŽŸ‚ÍH
-	WBR_TALK_SEQ_END,			// ˜b‚µ‚©‚¯I—¹
-	WBR_TALK_SEQ_EXIT,			// ˜b‚µ‚©‚¯‚©‚ç”²‚¯‚é
-	WBR_TALK_SEQ_TRCARD_REQ,	// ƒgƒŒ[ƒi[ƒJ[ƒhƒŠƒNƒGƒXƒg
-	WBR_TALK_SEQ_TRCARD_START,	// ƒgƒŒ[ƒi[ƒJ[ƒhŠJŽn
-	WBR_TALK_SEQ_TRCARD_ENDWAIT,// ƒgƒŒ[ƒi[ƒJ[ƒhI—¹‘Ò‚¿
-	WBR_TALK_SEQ_TRCARD_END,	// ƒgƒŒ[ƒi[ƒJ[ƒhI—¹
+	WBR_TALK_SEQ_START,			// è©±ã—ã‹ã‘é–‹å§‹
+	WBR_TALK_SEQ_NEXT,			// è©±ã—ã‹ã‘æ¬¡ã¯ï¼Ÿ
+	WBR_TALK_SEQ_END,			// è©±ã—ã‹ã‘çµ‚äº†
+	WBR_TALK_SEQ_EXIT,			// è©±ã—ã‹ã‘ã‹ã‚‰æŠœã‘ã‚‹
+	WBR_TALK_SEQ_TRCARD_REQ,	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	WBR_TALK_SEQ_TRCARD_START,	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰é–‹å§‹
+	WBR_TALK_SEQ_TRCARD_ENDWAIT,// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
+	WBR_TALK_SEQ_TRCARD_END,	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰çµ‚äº†
 	WBR_TALK_SEQ_NUM	
 } WBR_TALK_SEQ;
 
 
 
-#define WBR_MOVEWAIT_TURN	(2)	// U‚èŒü‚«“®ìƒVƒ“ƒN”
-#define WBR_MOVEWAIT_WALK	(8)	// •à‚«“®ìƒVƒ“ƒN”
-#define WBR_MOVEWAIT_RUN	(4)	// ‘–‚è“®ìƒVƒ“ƒN”
+#define WBR_MOVEWAIT_TURN	(2)	// æŒ¯ã‚Šå‘ãå‹•ä½œã‚·ãƒ³ã‚¯æ•°
+#define WBR_MOVEWAIT_WALK	(8)	// æ­©ãå‹•ä½œã‚·ãƒ³ã‚¯æ•°
+#define WBR_MOVEWAIT_RUN	(4)	// èµ°ã‚Šå‹•ä½œã‚·ãƒ³ã‚¯æ•°
 
 //-------------------------------------
-///	’ÊM“¯Šú’è”
+///	é€šä¿¡åŒæœŸå®šæ•°
 //=====================================
 enum {
 	WBR_COMM_SYNC_START,
@@ -113,35 +113,35 @@ enum {
 } ;
 
 
-//  ƒRƒ}ƒ“ƒhƒLƒ…[‚Ìƒoƒbƒtƒ@”
+//  ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã®ãƒãƒƒãƒ•ã‚¡æ•°
 #define WBR_CMDQ_BUFFNUM	(16)
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	˜b‚µ‚©‚¯ƒŠƒNƒGƒXƒg
+///	è©±ã—ã‹ã‘ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 //=====================================
 typedef struct {
-	u16 flag;		// ˜b‚µ‚©‚¯ŠJŽnorI—¹	WBR_TALK_REQ_FLAG
-	u16 netid;		// Ž©•ª‚ÌNETID
+	u16 flag;		// è©±ã—ã‹ã‘é–‹å§‹orçµ‚äº†	WBR_TALK_REQ_FLAG
+	u16 netid;		// è‡ªåˆ†ã®NETID
 } WBR_TALK_REQ;
 
 
 //-------------------------------------
-///	˜bƒf[ƒ^
+///	è©±ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u8	netid;			// Ž©•ª‚ÌID
-	u8	talk_mode;		// ˜bƒ‚[ƒhi‚Í‚È‚µ‚©‚¯‚½‚Ì‚©@‚©‚¯‚ç‚ê‚½‚Ì‚©j
-	u8	talk_playid;	// ˜b‚µ‚©‚¯‚Ä‚¢‚éƒvƒŒƒCƒ„[ID
-	u8	talk_seq;		// ˜b‚µ‚©‚¯ƒV[ƒPƒ“ƒX
+	u8	netid;			// è‡ªåˆ†ã®ID
+	u8	talk_mode;		// è©±ãƒ¢ãƒ¼ãƒ‰ï¼ˆã¯ãªã—ã‹ã‘ãŸã®ã‹ã€€ã‹ã‘ã‚‰ã‚ŒãŸã®ã‹ï¼‰
+	u8	talk_playid;	// è©±ã—ã‹ã‘ã¦ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+	u8	talk_seq;		// è©±ã—ã‹ã‘ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 } WBR_TALK_DATA;
 
 //-------------------------------------
-///	ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+///	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	WF2DMAP_ACTCMD act;
@@ -150,28 +150,28 @@ typedef struct {
 
 #if 0
 //-------------------------------------
-///	ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+///	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	// À•W
+	// åº§æ¨™
 	s16 x;
 	s16 y;
 	u8 z;
 	u8 playid;
 
-	// “®ì
-	u8	move_flag;		// “®ì
-	u8	way_flag;		// •ûŒü
-	u8	talk_mode;		// ˜bƒ‚[ƒhi‚Í‚È‚µ‚©‚¯‚½‚Ì‚©@‚©‚¯‚ç‚ê‚½‚Ì‚©j
-	u8	talk_playid;	// ˜b‚µ‚©‚¯‚Ä‚¢‚éƒvƒŒƒCƒ„[ID
-	u8	talk_seq;		// ˜b‚µ‚©‚¯ƒV[ƒPƒ“ƒX
+	// å‹•ä½œ
+	u8	move_flag;		// å‹•ä½œ
+	u8	way_flag;		// æ–¹å‘
+	u8	talk_mode;		// è©±ãƒ¢ãƒ¼ãƒ‰ï¼ˆã¯ãªã—ã‹ã‘ãŸã®ã‹ã€€ã‹ã‘ã‚‰ã‚ŒãŸã®ã‹ï¼‰
+	u8	talk_playid;	// è©±ã—ã‹ã‘ã¦ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+	u8	talk_seq;		// è©±ã—ã‹ã‘ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 
 	u8	pad[1];
 } WBR_OBJ_DATA;
 #endif
 
 //-------------------------------------
-///	 Žq’ÊMƒf[ƒ^
+///	 å­é€šä¿¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	WF2DMAP_REQCMD req;
@@ -179,7 +179,7 @@ typedef struct {
 
 #if 0
 //-------------------------------------
-///	 Žq’ÊMƒf[ƒ^
+///	 å­é€šä¿¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	u8	move_flag;
@@ -189,7 +189,7 @@ typedef struct {
 #endif
 
 //-------------------------------------
-///	˜bŽq’ÊMƒf[ƒ^
+///	è©±å­é€šä¿¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	WBR_TALK_DATA talk_data;
@@ -197,16 +197,16 @@ typedef struct {
 
 
 //-------------------------------------
-///	 e’ÊMƒf[ƒ^
+///	 è¦ªé€šä¿¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	WBR_OBJ_DATA	obj_data;
 } WBR_OYA_COMM_GAME;
 
 //-------------------------------------
-///	’ÊMŠî–{î•ñ
-//	Ž©•ª‚ÌŠî–{“I‚Èî•ñ
-//	MYSTATUS‚È‚Ç‚È‚Ç
+///	é€šä¿¡åŸºæœ¬æƒ…å ±
+//	è‡ªåˆ†ã®åŸºæœ¬çš„ãªæƒ…å ±
+//	MYSTATUSãªã©ãªã©
 //=====================================
 typedef struct {
 	TR_CARD_DATA tr_card;
@@ -214,7 +214,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	MYSTATUSƒf[ƒ^
+///	MYSTATUSãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	const MYSTATUS* cp_mystatus[ WBR_COMM_NUM ];
@@ -226,7 +226,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #undef	GLOBAL

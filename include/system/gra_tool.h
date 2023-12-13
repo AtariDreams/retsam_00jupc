@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	gra_tool.h
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒc[ƒ‹
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ„ãƒ¼ãƒ«
  * @author	goto
  * @date	2005.11.16
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -13,58 +13,58 @@
 #ifndef	_GRA_TOOL_H_
 #define _GRA_TOOL_H_
 
-#include "battle/graphic/pl_batt_obj_def.h"						///< ƒA[ƒJƒCƒuƒf[ƒ^
-#include "battle/graphic/pl_batt_bg_def.h"						///< ƒA[ƒJƒCƒuƒf[ƒ^
+#include "battle/graphic/pl_batt_obj_def.h"						///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
+#include "battle/graphic/pl_batt_bg_def.h"						///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰“WŠJƒpƒ‰ƒ[ƒ^
+///ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©å±•é–‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct
 {
-	u8	*exchr_buffer;		///<ƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰ƒf[ƒ^“WŠJƒoƒbƒtƒ@
-	int	arcID;				///<ƒA[ƒJƒCƒu“à‚Ìƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒuƒiƒ“ƒo[
-	int	pal_index;			///<ƒA[ƒJƒCƒu“à‚Ìƒ|ƒPƒ‚ƒ“ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
-	int	height;				///<ƒ|ƒPƒ‚ƒ“‚‚³î•ñ
+	u8	*exchr_buffer;		///<ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿å±•é–‹ãƒãƒƒãƒ•ã‚¡
+	int	arcID;				///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒŠãƒ³ãƒãƒ¼
+	int	pal_index;			///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+	int	height;				///<ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±
 }EXCHR_PARAM;
 
 
 // -----------------------------------------
 //
-//	¡’è”’è‹`
+//	â– å®šæ•°å®šç¾©
 //
 // -----------------------------------------
-// 2D¨1D•ÏŠ·‚Ég—p
-#define CHAR_DOT_X		(8/2)								///< 1ƒLƒƒƒ‰‚ÌƒoƒCƒgƒTƒCƒY
-#define CHAR_DOT_Y		(8)									///< 1ƒLƒƒƒ‰‚ÌƒoƒCƒgƒTƒCƒY
-#define CHAR_BYTE		(CHAR_DOT_X * CHAR_DOT_Y)			///< 1ƒLƒƒƒ‰ƒoƒCƒg”
+// 2Dâ†’1Då¤‰æ›ã«ä½¿ç”¨
+#define CHAR_DOT_X		(8/2)								///< 1ã‚­ãƒ£ãƒ©ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+#define CHAR_DOT_Y		(8)									///< 1ã‚­ãƒ£ãƒ©ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+#define CHAR_BYTE		(CHAR_DOT_X * CHAR_DOT_Y)			///< 1ã‚­ãƒ£ãƒ©ãƒã‚¤ãƒˆæ•°
 
 // -----------------------------------------
 //
-//	¡ƒ|ƒPƒ‚ƒ“—p’è”’è‹`
-//		(í“¬“Á‰»‚È‚Ì‚ÅˆÚ“®‚·‚éê‡‚à‚ ‚è‚Ü‚·B)
+//	â– ãƒã‚±ãƒ¢ãƒ³ç”¨å®šæ•°å®šç¾©
+//		(æˆ¦é—˜ç‰¹åŒ–ãªã®ã§ç§»å‹•ã™ã‚‹å ´åˆã‚‚ã‚ã‚Šã¾ã™ã€‚)
 //
 // -----------------------------------------
-#define POKE_TEX_X		(0)									///< ƒ|ƒPƒ‚ƒ“•ÏŠ·—pƒeƒNƒXƒ`ƒƒØ‚èæ‚èŠJnˆÊ’uX
-#define POKE_TEX_Y		(0)									///< ƒ|ƒPƒ‚ƒ“•ÏŠ·—pƒeƒNƒXƒ`ƒƒØ‚èæ‚èŠJnˆÊ’uY
-#define POKE_TEX_W		(10)								///< ƒ|ƒPƒ‚ƒ“•ÏŠ·—pƒeƒNƒXƒ`ƒƒØ‚èæ‚èI—¹ˆÊ’uX
-#define POKE_TEX_H		(10)								///< ƒ|ƒPƒ‚ƒ“•ÏŠ·—pƒeƒNƒXƒ`ƒƒØ‚èæ‚èI—¹ˆÊ’uY
+#define POKE_TEX_X		(0)									///< ãƒã‚±ãƒ¢ãƒ³å¤‰æ›ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚Šé–‹å§‹ä½ç½®X
+#define POKE_TEX_Y		(0)									///< ãƒã‚±ãƒ¢ãƒ³å¤‰æ›ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚Šé–‹å§‹ä½ç½®Y
+#define POKE_TEX_W		(10)								///< ãƒã‚±ãƒ¢ãƒ³å¤‰æ›ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚Šçµ‚äº†ä½ç½®X
+#define POKE_TEX_H		(10)								///< ãƒã‚±ãƒ¢ãƒ³å¤‰æ›ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ‡ã‚Šå–ã‚Šçµ‚äº†ä½ç½®Y
 #define POKE_TEX_SIZE	(POKE_TEX_W * POKE_TEX_H * CHAR_BYTE)
 
-#define PO_CHAR_ID		(POKE_OAM_NCGR)		///< ƒ_ƒ~[ƒf[ƒ^‚ÌƒA[ƒJƒCƒuID
+#define PO_CHAR_ID		(POKE_OAM_NCGR)		///< ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 #define PO_PLTT_ID		(POKE_OAM_NCLR)
 #define PO_CELL_ID		(POKE_OAM_NCER)
 #define PO_CELLANM_ID	(POKE_OAM_NANR)
 
-#define PB_N_SCREEN_ID		(POKE_SCREEN_N_NSCR);		///< ƒ_ƒ~[ƒXƒNƒŠ[ƒ“‚ÌƒA[ƒJƒCƒuID
+#define PB_N_SCREEN_ID		(POKE_SCREEN_N_NSCR);		///< ãƒ€ãƒŸãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 #define PB_F_SCREEN_ID		(POKE_SCREEN_F_NSCR);
-#define PB_N_512_SCREEN_ID	(POKE_SCREEN_N_512_NSCR);	///< ƒ_ƒ~[ƒXƒNƒŠ[ƒ“‚ÌƒA[ƒJƒCƒuID512x512
+#define PB_N_512_SCREEN_ID	(POKE_SCREEN_N_512_NSCR);	///< ãƒ€ãƒŸãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID512x512
 #define PB_F_512_SCREEN_ID	(POKE_SCREEN_F_512_NSCR);
 
 // -----------------------------------------
 //
-//	¡•ÏŠ·—p‚Ì‹éŒ`\‘¢‘Ì
+//	â– å¤‰æ›ç”¨ã®çŸ©å½¢æ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct {
@@ -97,7 +97,7 @@ extern void* ChangesInto_BattlePokeData_Alloc(int arc_id, int index_no, int heap
 extern void* ChangesInto_BattlePokePalData_Alloc(int arc_id, int index_no, int heap_id);
 
 
-/// ƒ|ƒPƒ‚ƒ“‚Ì‚Ô‚¿‘Î‰Ver g‚Á‚Ä‚é‚à‚Ì‚¾‚¯‘‚â‚µ‚Ü‚µ‚½B
+/// ãƒã‚±ãƒ¢ãƒ³ã®ã¶ã¡å¯¾å¿œVer ä½¿ã£ã¦ã‚‹ã‚‚ã®ã ã‘å¢—ã‚„ã—ã¾ã—ãŸã€‚
 extern void  Ex_ChangesInto_OAM_from_PokeTex(int arc_id, int index_no, int heap_id, int x, int y, int w, int h, void* buff, u32 rnd, BOOL animeFlag, int dir, int monsno);
 extern void  Ex_ChangesInto_OAM_from_PokeTex_RC(int arc_id, int index_no, int heap_id, const CHANGES_INTO_DATA_RECT* rc, void* buff, u32 rnd, BOOL animeFlag, int dir, int monsno);
 

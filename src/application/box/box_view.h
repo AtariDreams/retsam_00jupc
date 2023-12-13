@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	box_view.h
- * @brief	�{�b�N�X�����ʁ@�`�敔���L�w�b�_
+ * @brief	ボックス操作画面　描画部共有ヘッダ
  * @author	taya
  * @date	2005.09.13
  */
@@ -19,7 +19,7 @@
 
 //------------------------------------------------------
 /*
- * 60fps���̖]�݂��̂ĂȂ����߂Ɂc
+ * 60fps化の望みを捨てないために…
  */
 //------------------------------------------------------
 #define BOX_FPS_60
@@ -37,7 +37,7 @@
 
 //-----------------------------------------------------
 /**
- *  �a�f����U��
+ *  ＢＧ割り振り
  */
 //-----------------------------------------------------
 enum {
@@ -51,7 +51,7 @@ enum {
 	FRM_SUB_ICONLINE = GF_BGL_FRAME2_S,
 	FRM_SUB_BACK     = GF_BGL_FRAME3_S,
 
-	// �悳��׃��[�h���̊���U��
+	// つよさ比べモード時の割り振り
 	FRM_SUB_COMPARE_BMPWIN = GF_BGL_FRAME0_S,
 	FRM_SUB_COMPARE_PAGE1  = GF_BGL_FRAME1_S,
 	FRM_SUB_COMPARE_PAGE2  = GF_BGL_FRAME2_S,
@@ -59,7 +59,7 @@ enum {
 };
 //-----------------------------------------------------
 /**
- *  �a�f�p���b�g����U��
+ *  ＢＧパレット割り振り
  */
 //-----------------------------------------------------
 enum {
@@ -85,7 +85,7 @@ enum {
 	PAL_SUB_BG2,
 	PAL_SUB_BMPWIN,
 
-	// �悳����׃��[�h
+	// つよさくらべモード
 	PAL_SUB_COMPARE_LEFT = 0,
 	PAL_SUB_COMPARE_RIGHT,
 	PAL_SUB_COMPARE_CONDITION,
@@ -93,21 +93,21 @@ enum {
 
 //-----------------------------------------------------
 /**
- * �n�a�i�p���b�g����U��
+ * ＯＢＪパレット割り振り
  */
 //-----------------------------------------------------
 enum {
 	OBJPAL_CURSOR = 0,
 	OBJPAL_MAINBUTTON,
-	OBJPAL_ICON,			// �|�P�����A�C�R���ɂS�{
+	OBJPAL_ICON,			// ポケモンアイコンに４本
 	OBJPAL_ICON2,
 	OBJPAL_ICON3,
 	OBJPAL_ICON4,
-	OBJPAL_AREASELECT_ICON,	// �͈͑I���A�C�R���ɂ��S�{
+	OBJPAL_AREASELECT_ICON,	// 範囲選択アイコンにも４本
 	OBJPAL_AREASELECT_ICON2,
 	OBJPAL_AREASELECT_ICON3,
 	OBJPAL_AREASELECT_ICON4,
-	OBJPAL_TYPE,			// �^�C�v�A�C�R���ɂR�{
+	OBJPAL_TYPE,			// タイプアイコンに３本
 	OBJPAL_TYPE2,
 	OBJPAL_TYPE3,
 	OBJPAL_TRAYICON_WP = 0x0d,
@@ -116,13 +116,13 @@ enum {
 
 	//------------------------------
 
-	OBJPAL_CURSOR_EXPERTMODE = OBJPAL_MAINBUTTON,	// �������Ă�
+	OBJPAL_CURSOR_EXPERTMODE = OBJPAL_MAINBUTTON,	// 同居してる
 	OBJPAL_TRAYICON_TOP = OBJPAL_TRAYICON_WP,
 
-	// �ǂ����������[�h�Ŏg���A�C�e���A�C�R���p�p���b�g�w��
-	// �|�P�����A�C�R���͈̔͑I���͍s��Ȃ��̂ŁA�������ہX�g�킹�Ă��炤
-	OBJPAL_ITEMICON_INFOWIN = OBJPAL_AREASELECT_ICON,	// �A�C�e�������E�B���h�E�p�A�C�R��
-	OBJPAL_ITEMICON1,	// ����ł�A�C�R���A�o�Ă���A�C�R���A������A�C�R���ō��v�R�܂�
+	// どうぐ整理モードで使うアイテムアイコン用パレット指定
+	// ポケモンアイコンの範囲選択は行わないので、そこを丸々使わせてもらう
+	OBJPAL_ITEMICON_INFOWIN = OBJPAL_AREASELECT_ICON,	// アイテム説明ウィンドウ用アイコン
+	OBJPAL_ITEMICON1,	// つかんでるアイコン、出てくるアイコン、消えるアイコンで合計３個まで
 	OBJPAL_ITEMICON2,
 	OBJPAL_ITEMICON3,
 
@@ -137,18 +137,18 @@ enum {
 
 //-----------------------------------------------------
 /**
- *  �n�a�i�L�����ʒu����U��i���C��LCD���j
+ *  ＯＢＪキャラ位置割り振り（メインLCD側）
  */
 //-----------------------------------------------------
 enum {
-	OBJCHAR_TRAYICON_SIZE = 4 * 4 * 2,	// 8bit �Ȃ̂�
+	OBJCHAR_TRAYICON_SIZE = 4 * 4 * 2,	// 8bit なので
 	OBJCHAR_POKEICON_SIZE = 4 * 4,
 
 	OBJCHAR_CURSOR_POS = 0,
 	OBJCHAR_CURSOR_SIZE = 88,
 
 	OBJCHAR_TRAY_ICON_POS = OBJCHAR_CURSOR_POS + OBJCHAR_CURSOR_SIZE,			// 0+88 = 88
-	OBJCHAR_TRAY_ICON_HALF_SIZE = 480,	// OBJCHAR_POKEICON_SIZE * 30�i�P�{�b�N�X���j
+	OBJCHAR_TRAY_ICON_HALF_SIZE = 480,	// OBJCHAR_POKEICON_SIZE * 30（１ボックス分）
 	OBJCHAR_TRAY_ICON_SIZE = 960,
 
 	OBJCHAR_PARTY_ICON_POS = OBJCHAR_TRAY_ICON_POS + OBJCHAR_TRAY_ICON_SIZE,	// 88+960 = 1048,
@@ -170,13 +170,13 @@ enum {
 	OBJCHAR_POKETYPE_HALF_SIZE = 8,
 	OBJCHAR_POKETYPE_SIZE = 16,
 
-	// �����܂ŏ풓 -------------------------------------
+	// ここまで常駐 -------------------------------------
 	OBJCHAR_FIX_END = OBJCHAR_POKETYPE_POS + OBJCHAR_POKETYPE_SIZE,			// 1504+16 = 1520
 
-	// �͈͑I���|�P�A�C�R��
+	// 範囲選択ポケアイコン
 	OBJCHAR_AREASELECT_ICON_POS = OBJCHAR_FIX_END,
 
-	// �A�C�e���A�C�R��
+	// アイテムアイコン
 	OBJCHAR_ITEMICON_POS_TOP = OBJCHAR_FIX_END,
 	OBJCHAR_ITEMICON_SIZE = 16,
 	OBJCHAR_ITEMICON_INFO_POS = OBJCHAR_ITEMICON_POS_TOP,
@@ -186,7 +186,7 @@ enum {
 
 	OBJCHAR_ITEMICON_END = OBJCHAR_ITEMICON_3_POS+OBJCHAR_ITEMICON_SIZE,	// 1520+3*16= 1568
 
-	// �g���C�A�C�R��
+	// トレイアイコン
 	OBJCHAR_TRAYICON_POS = OBJCHAR_ITEMICON_END,
 
 
@@ -194,14 +194,14 @@ enum {
 
 //-----------------------------------------------------
 /**
- *  �n�a�i�L�����ʒu����U��i�T�uLCD���j
+ *  ＯＢＪキャラ位置割り振り（サブLCD側）
  */
 //-----------------------------------------------------
 enum {
 	OBJCHAR_SUB_BUTTON_POS = 0,
 	OBJCHAR_SUB_BUTTON_SIZE = 192,
 
-	// �����܂ŏ풓 --------------------------------------
+	// ここまで常駐 --------------------------------------
 	OBJCHAR_SUB_FIX_END = OBJCHAR_SUB_BUTTON_POS + OBJCHAR_SUB_BUTTON_SIZE,
 
 	OBHCHAR_SUB_MARKICON_POS = OBJCHAR_SUB_FIX_END,
@@ -211,7 +211,7 @@ enum {
 };
 //-----------------------------------------------------
 /**
- *  ��ʃ��C�A�E�g
+ *  画面レイアウト
  */
 //-----------------------------------------------------
 enum {
@@ -288,11 +288,11 @@ enum {
 
 //-----------------------------------------------------
 /**
- *  �A�N�^�[�v���C�I���e�B
+ *  アクタープライオリティ
  */
 //-----------------------------------------------------
 enum {
-	/* �J�[�\���͎w���A�C�R���ɓ��� */
+	/* カーソルは指すアイコンに同期 */
 	BGPRI_TRAY_ICON = 2,
 	BGPRI_PARTY_ICON = 1,
 	BGPRI_MOVING_ICON = 1,
@@ -329,18 +329,18 @@ enum {
 
 
 /*============================================================================*/
-/*  �A�C�R���`��֘A                                                          */
+/*  アイコン描画関連                                                          */
 /*============================================================================*/
 
 #define BOXICON_CHAR_SIZE		(4*4)
 
-// �{��8bit�Ȃ̂ŃL������*0x40�K�v�����A�A�j�������Ȃ̂Ŕ����ŗǂ��B+0x80�̓w�b�_���B
+// 本来8bitなのでキャラ数*0x40必要だが、アニメ無しなので半分で良い。+0x80はヘッダ分。
 #define BOXICON_CHARBUF_SIZE	(BOXICON_CHAR_SIZE*0x20+0x80)	
 
 enum {
-	ICON_ANM_NORMAL,	///< �ʏ펞
-	ICON_ANM_RELEASE,	///< �������Ƃ�
-	ICON_ANM_COMEBACK,	///< �߂��Ă���Ƃ�
+	ICON_ANM_NORMAL,	///< 通常時
+	ICON_ANM_RELEASE,	///< 逃がすとき
+	ICON_ANM_COMEBACK,	///< 戻ってくるとき
 };
 
 enum{
@@ -410,12 +410,12 @@ extern void BoxAppView_Icon_ResetImageBank( BOX_ICON_SYS* sys, BOX_ICON_WORK* ic
 extern const BOXAPP_WORK* BoxAppView_GetMainWork( BOXAPP_VIEW_WORK* vwk );
 
 //==============================================================================
-//	�|�P�����A�C�R���ĕ`��
+//	ポケモンアイコン再描画
 //==============================================================================
 extern void BoxAppView_PokeIconRewrite_VramTrans(BOX_ICON_SYS* iconSys, BOX_ICON_WORK *icon, BOOL a2); // MatchComment: BoxAppView_PokeIconRewrite_VramTrans now takes 3rd argument
 
 /*============================================================================*/
-/*  �A�C�e���A�C�R���֘A                                                      */
+/*  アイテムアイコン関連                                                      */
 /*============================================================================*/
 typedef		struct _ITEMICON_VIEW_WORK		ITEMICON_VIEW_WORK;
 
@@ -442,7 +442,7 @@ extern BOOL BoxAppView_ItemIcon_WaitRestore( ITEMICON_VIEW_WORK* wk );
 
 
 /*============================================================================*/
-/*  �g���C�`��֘A                                                            */
+/*  トレイ描画関連                                                            */
 /*============================================================================*/
 
 enum {
@@ -451,21 +451,21 @@ enum {
 
 //-----------------------------------------------------
 /**
- *  �g���C�`�揈�����[�N
+ *  トレイ描画処理ワーク
  */
 //-----------------------------------------------------
 typedef struct {
-	u8  trayNum;		///< �\�����g���C�i���o�[
-	u8  scrnPos;		///< �\�����g���C�̕`��J�n�X�N���[���w�ʒu�i�L�����P�ʁj
-	u8  imgPos;			///< �\�����g���C�̉摜�]���ʒu�i�L�����E�p���b�g�E�t������OBJ���X�j
+	u8  trayNum;		///< 表示中トレイナンバー
+	u8  scrnPos;		///< 表示中トレイの描画開始スクリーンＸ位置（キャラ単位）
+	u8  imgPos;			///< 表示中トレイの画像転送位置（キャラ・パレット・付随するOBJ等々）
 	u8  scrollOutIcon;	///<
 
-	u32 scrollWait;		///< �X�N���[�������^�C�}�[
+	u32 scrollWait;		///< スクロール処理タイマー
 
-	s32 scrollPos;		///< ���݂̃X�N���[���l�i�v�Z�p = �Œ菬���j
-	s32 scrollSetPos;	///< ���݂̃X�N���[���l�i�Z�b�g�p = �����j
-	s32 scrollValue;	///< �X�N���[�����̉��Z�l
-	s32 scrollEndPos;	///< �X�N���[���I�����̒l
+	s32 scrollPos;		///< 現在のスクロール値（計算用 = 固定小数）
+	s32 scrollSetPos;	///< 現在のスクロール値（セット用 = 整数）
+	s32 scrollValue;	///< スクロール時の加算値
+	s32 scrollEndPos;	///< スクロール終了時の値
 
 	fx32  scrollIconXpos[BOX_MAX_COLUMN];
 	u32   scrollInTrayNumber;
@@ -477,8 +477,8 @@ typedef struct {
 
 	BOOL  scrollEndFlag;
 
-	u16  icon_release_pos;	///< �������A�C�R���ʒu
-	u8   wpseq;			///< �ǎ��ύX����V�[�P���X
+	u16  icon_release_pos;	///< 逃がしアイコン位置
+	u8   wpseq;			///< 壁紙変更動作シーケンス
 	u8   wp_taskFlag;
 	u8   mvseq;
 
@@ -505,7 +505,7 @@ typedef struct {
 
 //-----------------------------------------------------
 /**
- *  �g���C�`��֐��Q
+ *  トレイ描画関数群
  */
 //-----------------------------------------------------
 extern BOOL BoxAppView_TrayInit( TRAY_VIEW_WORK* wk, BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpara, GF_BGL_INI* bgl, CLACT_SET_PTR actsys );
@@ -532,7 +532,7 @@ extern void BoxAppView_TrayIconAleaSelectQuit( TRAY_VIEW_WORK* wk );
 
 
 /*============================================================================*/
-/*  �莝���g���C�`��֘A                                                      */
+/*  手持ちトレイ描画関連                                                      */
 /*============================================================================*/
 typedef struct {
 	BOXAPP_VIEW_WORK*		vwk;
@@ -589,10 +589,10 @@ extern void BoxAppView_PartyIconMarkUpdate( PARTY_VIEW_WORK* wk );
 
 
 /*============================================================================*/
-/*  �J�[�\���`��֘A                                                          */
+/*  カーソル描画関連                                                          */
 /*============================================================================*/
 
-/// �J�[�\���`�揈�����[�N
+/// カーソル描画処理ワーク
 typedef struct {
 	CLACT_SET_PTR		actsys;
 	CLACT_WORK_PTR		act;
@@ -692,7 +692,7 @@ extern BOX_ICON_WORK * BoxAppView_CursorCatchIconPtrGet( CURSOR_VIEW_WORK* wk, i
 
 
 /*============================================================================*/
-/*  �{�^���`��֘A                                                            */
+/*  ボタン描画関連                                                            */
 /*============================================================================*/
 typedef struct {
 	CLACT_SET_PTR		actsys;
@@ -726,7 +726,7 @@ extern void BoxAppView_ButtonStateChange( BUTTON_VIEW_WORK* wk, BOXAPPVIEW_BUTTO
 
 
 /*============================================================================*/
-/*  �X�e�[�^�X�`��֘A                                                        */
+/*  ステータス描画関連                                                        */
 /*============================================================================*/
 typedef struct {
 	BOOL					enableFlag;
@@ -774,7 +774,7 @@ extern void BoxAppView_Status_StartSoftSpritePreparation( STATUS_VIEW_WORK* wk )
 extern BOOL BoxAppView_Status_WaitSoftSpritePreparation( STATUS_VIEW_WORK* wk );
 
 /*============================================================================*/
-/*  ���b�Z�[�W�`��֘A                                                        */
+/*  メッセージ描画関連                                                        */
 /*============================================================================*/
 
 #define BOX_MSG_MAXLEN		(64)
@@ -814,7 +814,7 @@ extern void BoxAppView_MenuCursorUpdate( MSG_VIEW_WORK* wk, const BOXAPP_MENU* m
 extern void BoxAppView_MenuMarkUpdate( MSG_VIEW_WORK* wk, const BOXAPP_MENU* menu );
 
 /*============================================================================*/
-/*  ����E�B���h�E�`��֘A                                                    */
+/*  特殊ウィンドウ描画関連                                                    */
 /*============================================================================*/
 enum {
 	TRAYICON_CHAR_BYTESIZE = OBJCHAR_TRAYICON_SIZE * 0x20,
@@ -879,7 +879,7 @@ extern void BoxAppView_ExWin_TransTrayIconCharData( EXWIN_VIEW_WORK* wk, u32 tra
 extern NNSG2dCellDataBank* BoxAppView_ExWin_GetTrayIconCellDataAdrs( EXWIN_VIEW_WORK* wk );
 
 /*============================================================================*/
-/*  ���[���R���g���[���֘A                                                    */
+/*  リールコントロール関連                                                    */
 /*============================================================================*/
 
 typedef struct _REEL_VIEW_WORK	REEL_VIEW_WORK;
@@ -896,7 +896,7 @@ extern BOOL BoxAppView_Reel_MoveIconWait( REEL_VIEW_WORK* wk );
 extern void BoxAppView_Reel_MarkIconUpdate( REEL_VIEW_WORK* wk );
 
 /*============================================================================*/
-/*  �悳����׊֘A                                                           */
+/*  つよさくらべ関連                                                           */
 /*============================================================================*/
 typedef struct _COMPARE_VIEW_WORK	COMPARE_VIEW_WORK;
 
@@ -910,7 +910,7 @@ extern void BoxAppView_Compare_ChangePage( COMPARE_VIEW_WORK* wk );
 extern BOOL BoxAppView_Compare_WaitChangePage( COMPARE_VIEW_WORK* wk );
 
 /*============================================================================*/
-/*  �`�惁�C��                                                                */
+/*  描画メイン                                                                */
 /*============================================================================*/
 extern TCB_PTR BoxAppView_VTaskAdd(TCB_FUNC func, void* wk_adrs, u32 pri );
 

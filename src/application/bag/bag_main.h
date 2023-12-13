@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	bag_main.h
- * @brief	ƒoƒbƒO‰æ–Êˆ—
+ * @brief	ãƒãƒƒã‚°ç”»é¢å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	06.04.17
  */
@@ -19,17 +19,17 @@
 #include "itemtool/myitem.h"
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	BAG_LARGE_POKE_MAX		( BAG_NORMAL_ITEM_MAX )		// Å‘åƒTƒCƒY‚Ìƒ|ƒPƒbƒg
+#define	BAG_LARGE_POKE_MAX		( BAG_NORMAL_ITEM_MAX )		// æœ€å¤§ã‚µã‚¤ã‚ºã®ãƒã‚±ãƒƒãƒˆ
 
-#define	P_ICON_SIZ_X	( 10 )		// ƒ|ƒPƒbƒgƒAƒCƒRƒ“‚ÌXƒTƒCƒY
-#define	P_ICON_SIZ_Y	( 10 )		// ƒ|ƒPƒbƒgƒAƒCƒRƒ“‚ÌYƒTƒCƒY
-#define	P_ICON_DEF_PX	( 6 )		// ƒ|ƒPƒbƒgƒAƒCƒRƒ“‚Ì•\Ž¦XÀ•W
-#define	P_ICON_DEF_SX	( 90 )		// ƒ|ƒPƒbƒgƒAƒCƒRƒ“‚Ì•\Ž¦—Ìˆæ‚ÌXƒTƒCƒY
+#define	P_ICON_SIZ_X	( 10 )		// ãƒã‚±ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³ã®Xã‚µã‚¤ã‚º
+#define	P_ICON_SIZ_Y	( 10 )		// ãƒã‚±ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³ã®Yã‚µã‚¤ã‚º
+#define	P_ICON_DEF_PX	( 6 )		// ãƒã‚±ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºXåº§æ¨™
+#define	P_ICON_DEF_SX	( 90 )		// ãƒã‚±ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºé ˜åŸŸã®Xã‚µã‚¤ã‚º
 
 
-// ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
 	WIN_LIST = 0,
 	WIN_INFO,
@@ -48,32 +48,32 @@ enum {
 	WIN_MAX
 };
 
-// ’Ç‰ÁƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// è¿½åŠ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
 	ADD_WIN_MENU = 0,
 
 	ADD_WIN_MAX
 };
 
-// ƒƒjƒ…[€–Ú
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®
 enum {
-	BAG_MENU_TSUKAU = 0,	// ‚Â‚©‚¤
-	BAG_MENU_ORIRU,			// ‚¨‚è‚é
-	BAG_MENU_MIRU,			// ‚Ý‚é
-	BAG_MENU_UMERU,			// ‚¤‚ß‚é
-	BAG_MENU_HIRAKU,		// ‚Ð‚ç‚­
-	BAG_MENU_SUTERU,		// ‚·‚Ä‚é
-	BAG_MENU_TOUROKU,		// ‚Æ‚¤‚ë‚­
-	BAG_MENU_KAIZYO,		// ‚©‚¢‚¶‚å
-	BAG_MENU_MOTASERU,		// ‚à‚½‚¹‚é
-	BAG_MENU_TAGUWOMIRU,	// ƒ^ƒO‚ð‚Ý‚é
-	BAG_MENU_KETTEI,		// ‚¯‚Á‚Ä‚¢
-	BAG_MENU_YAMERU,		// ‚â‚ß‚é
+	BAG_MENU_TSUKAU = 0,	// ã¤ã‹ã†
+	BAG_MENU_ORIRU,			// ãŠã‚Šã‚‹
+	BAG_MENU_MIRU,			// ã¿ã‚‹
+	BAG_MENU_UMERU,			// ã†ã‚ã‚‹
+	BAG_MENU_HIRAKU,		// ã²ã‚‰ã
+	BAG_MENU_SUTERU,		// ã™ã¦ã‚‹
+	BAG_MENU_TOUROKU,		// ã¨ã†ã‚ã
+	BAG_MENU_KAIZYO,		// ã‹ã„ã˜ã‚‡
+	BAG_MENU_MOTASERU,		// ã‚‚ãŸã›ã‚‹
+	BAG_MENU_TAGUWOMIRU,	// ã‚¿ã‚°ã‚’ã¿ã‚‹
+	BAG_MENU_KETTEI,		// ã‘ã£ã¦ã„
+	BAG_MENU_YAMERU,		// ã‚„ã‚ã‚‹
 
 	BAG_MENU_MAX
 };
 
-// ƒZƒ‹ƒAƒNƒ^[ŠÇ—”Ô†
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†ç•ªå·
 enum {
 	ACT_BAG = 0,
 	ACT_POKE_CURSOR,
@@ -95,53 +95,53 @@ enum {
 };
 
 
-// ƒy[ƒWØ‚è‘Ö‚¦—pƒ[ƒN
+// ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	u8	next;			// ŽŸ‚Ìƒy[ƒW
-	u8	move;			// ˆÚ“®•ûŒü
+	u8	next;			// æ¬¡ã®ãƒšãƒ¼ã‚¸
+	u8	move;			// ç§»å‹•æ–¹å‘
 
-	u8	cur_seq;		// ƒ|ƒPƒbƒgƒJ[ƒ\ƒ‹ˆÚ“®ƒV[ƒPƒ“ƒX
-	u8	cur_cnt;		// ƒ|ƒPƒbƒgƒJ[ƒ\ƒ‹ˆÚ“®ƒJƒEƒ“ƒ^
+	u8	cur_seq;		// ãƒã‚±ãƒƒãƒˆã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	cur_cnt;		// ãƒã‚±ãƒƒãƒˆã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã‚«ã‚¦ãƒ³ã‚¿
 
-	u8	tp_seq;			// ƒ^ƒbƒ`ƒpƒlƒ‹ˆ—ƒV[ƒPƒ“ƒX
-	u8	tp_cnt;			// ƒ^ƒbƒ`ƒpƒlƒ‹ˆ—ƒJƒEƒ“ƒ^
-	u8	tp_button;		// ƒ{ƒ^ƒ“”Ô†
-	u8	tp_chg:4;		// ˆá‚¤ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©
-	u8	tp_push:3;		// ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚ê‚Ä‚¢‚é‚©
-	u8	tp_mode:1;		// ƒ^ƒbƒ`ƒpƒlƒ‹‚Å‚Ì•ÏX‚©‚Ç‚¤‚©
+	u8	tp_seq;			// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	tp_cnt;			// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å‡¦ç†ã‚«ã‚¦ãƒ³ã‚¿
+	u8	tp_button;		// ãƒœã‚¿ãƒ³ç•ªå·
+	u8	tp_chg:4;		// é•ã†ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‹
+	u8	tp_push:3;		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã‚Œã¦ã„ã‚‹ã‹
+	u8	tp_mode:1;		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§ã®å¤‰æ›´ã‹ã©ã†ã‹
 }PAGE_CHG_WORK;
 
 
 
-// ƒoƒbƒO‚ÅŽQÆ‚·‚éƒf[ƒ^
+// ãƒãƒƒã‚°ã§å‚ç…§ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 typedef struct {
-	MINEITEM * item;	// ŽQÆ‚·‚éƒAƒCƒeƒ€ƒf[ƒ^
-	u16	cur;			// ƒJ[ƒ\ƒ‹ˆÊ’u
-	u16	scr;			// ƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^
-//	u16	pos;			// Œ»Ý’l ( cur + scr )
-	u8	type;			// ƒ|ƒPƒbƒgƒ^ƒCƒv
-	u8	max;			// ƒAƒCƒeƒ€Å‘å”
+	MINEITEM * item;	// å‚ç…§ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+	u16	cur;			// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u16	scr;			// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿
+//	u16	pos;			// ç¾åœ¨å€¤ ( cur + scr )
+	u8	type;			// ãƒã‚±ãƒƒãƒˆã‚¿ã‚¤ãƒ—
+	u8	max;			// ã‚¢ã‚¤ãƒ†ãƒ æœ€å¤§æ•°
 }POCKET_DATA;
 
 struct _BAG_DATA {
-	SAVEDATA * sv;		// ƒZ[ƒuƒf[ƒ^
+	SAVEDATA * sv;		// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 
-	POCKET_DATA	p_data[BAG_POKE_MAX];	// ƒ|ƒPƒbƒg‚²‚Æ‚Ìƒf[ƒ^
-	u8	p_now;							// Œ»Ý‚Ìƒ|ƒPƒbƒg
-	u8	mode;							// ƒoƒbƒO‰æ–Ê‚Ì–ðŠ„
-	u16	ret_item;						// ‘I‘ðƒAƒCƒeƒ€
-	u16	ret_mode;						// I—¹ƒ‚[ƒh
+	POCKET_DATA	p_data[BAG_POKE_MAX];	// ãƒã‚±ãƒƒãƒˆã”ã¨ã®ãƒ‡ãƒ¼ã‚¿
+	u8	p_now;							// ç¾åœ¨ã®ãƒã‚±ãƒƒãƒˆ
+	u8	mode;							// ãƒãƒƒã‚°ç”»é¢ã®å½¹å‰²
+	u16	ret_item;						// é¸æŠžã‚¢ã‚¤ãƒ†ãƒ 
+	u16	ret_mode;						// çµ‚äº†ãƒ¢ãƒ¼ãƒ‰
 
-	void * bag_cursor;		// ƒJ[ƒ\ƒ‹ˆÊ’u‚ÌŠO•”‹L‰¯—Ìˆæ
+	void * bag_cursor;		// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®å¤–éƒ¨è¨˜æ†¶é ˜åŸŸ
 
-	void * icwk;			// ƒAƒCƒeƒ€Žg—pƒ`ƒFƒbƒNƒ[ƒN
+	void * icwk;			// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
 
-	u8	use_poke;			// ƒAƒCƒeƒ€‚ðŽg—p‚µ‚½ƒ|ƒPƒ‚ƒ“
+	u8	use_poke;			// ã‚¢ã‚¤ãƒ†ãƒ ã‚’ä½¿ç”¨ã—ãŸãƒã‚±ãƒ¢ãƒ³
 
-	u8	fnote_sale_cnt;		// –`Œ¯ƒm[ƒg—p”„‚Á‚½ŒÂ”
+	u8	fnote_sale_cnt;		// å†’é™ºãƒŽãƒ¼ãƒˆç”¨å£²ã£ãŸå€‹æ•°
 
-	u16	cycle_flg:1;		// Ž©“]ŽÔƒtƒ‰ƒO ( 0=off, 1=on )
-	u16	map_mode:15;		// ƒ}ƒbƒvƒ‚[ƒh
+	u16	cycle_flg:1;		// è‡ªè»¢è»Šãƒ•ãƒ©ã‚° ( 0=off, 1=on )
+	u16	map_mode:15;		// ãƒžãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰
 };
 
 typedef struct {
@@ -149,64 +149,64 @@ typedef struct {
 	u8	mv;
 	u8	next;
 	u8	cnt;
-	fx32 tbl[8];	// ƒy[ƒWƒJ[ƒ\ƒ‹ˆÚ“®ƒe[ƒuƒ‹
+	fx32 tbl[8];	// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 }POCKET_CURSOR_MOVE;
 
 typedef struct {
-	GF_BGL_INI * bgl;						// BGLƒf[ƒ^
+	GF_BGL_INI * bgl;						// BGLãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_BMPWIN	win[WIN_MAX];			// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^i’Êíj
-	GF_BGL_BMPWIN	add_win[ADD_WIN_MAX];	// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^i’Ç‰Áj
+	GF_BGL_BMPWIN	win[WIN_MAX];			// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ï¼ˆé€šå¸¸ï¼‰
+	GF_BGL_BMPWIN	add_win[ADD_WIN_MAX];	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ï¼ˆè¿½åŠ ï¼‰
 
-	BAG_DATA * dat;							// ƒoƒbƒOƒf[ƒ^
+	BAG_DATA * dat;							// ãƒãƒƒã‚°ãƒ‡ãƒ¼ã‚¿
 
-	MYITEM * myitem;		// ŽèŽ‚¿ƒAƒCƒeƒ€ƒf[ƒ^
-	MYSTATUS * myst;		// ƒvƒŒ[ƒ„[ƒf[ƒ^
-	CONFIG * cfg;			// ƒRƒ“ƒtƒBƒOƒf[ƒ^
+	MYITEM * myitem;		// æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+	MYSTATUS * myst;		// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CONFIG * cfg;			// ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
 
-	ARCHANDLE * gra_h;		// ƒOƒ‰ƒtƒBƒbƒN‚ÌƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	ARCHANDLE * gra_h;		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 
 	CATS_SYS_PTR	csp;
 	CATS_RES_PTR	crp;
 	CATS_ACT_PTR	cap[BAG_ACT_MAX];
 
-	NUMFONT * num_font;			// 8x8ƒtƒHƒ“ƒg
-	MSGDATA_MANAGER * msg_man;	// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
-	WORDSET * wset;				// ’PŒêƒZƒbƒg
+	NUMFONT * num_font;			// 8x8ãƒ•ã‚©ãƒ³ãƒˆ
+	MSGDATA_MANAGER * msg_man;	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£
+	WORDSET * wset;				// å˜èªžã‚»ãƒƒãƒˆ
 
-	MSGDATA_MANAGER * item_man;	// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
-	MSGDATA_MANAGER * waza_man;	// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
+	MSGDATA_MANAGER * item_man;	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£
+	MSGDATA_MANAGER * waza_man;	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£
 
-	STRBUF * menu_str[BAG_MENU_MAX];	// ƒƒjƒ…[€–Ú
-	BMP_MENULIST_DATA * md;				// BMPƒƒjƒ…[ƒf[ƒ^
-	BMPMENU_WORK * mw;					// BMPƒƒjƒ…[ƒ[ƒN
+	STRBUF * menu_str[BAG_MENU_MAX];	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®
+	BMP_MENULIST_DATA * md;				// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	BMPMENU_WORK * mw;					// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
 
-	BMPLIST_WORK * lw;			// BMPƒŠƒXƒgƒf[ƒ^
-	BMP_MENULIST_DATA * ld;		// BMPƒŠƒXƒgƒf[ƒ^
-	STRBUF * itemname[BAG_LARGE_POKE_MAX];					// ƒAƒCƒeƒ€–¼“WŠJêŠ
+	BMPLIST_WORK * lw;			// BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	BMP_MENULIST_DATA * ld;		// BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	STRBUF * itemname[BAG_LARGE_POKE_MAX];					// ã‚¢ã‚¤ãƒ†ãƒ åå±•é–‹å ´æ‰€
 
-	STRBUF * expb;			// ƒƒbƒZ[ƒW“WŠJêŠ
+	STRBUF * expb;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹å ´æ‰€
 
-	STRBUF * num_str1;		// ŒÂ”•\Ž¦E"x"
-	STRBUF * num_str2;		// ŒÂ”•\Ž¦EŒÂ”
+	STRBUF * num_str1;		// å€‹æ•°è¡¨ç¤ºãƒ»"x"
+	STRBUF * num_str2;		// å€‹æ•°è¡¨ç¤ºãƒ»å€‹æ•°
 
-	STRBUF * pocket_name[BAG_POKE_MAX];	// ƒ|ƒPƒbƒg–¼“WŠJêŠƒ|ƒCƒ“ƒ^
-	u8	p_max;				// ƒ|ƒPƒbƒg”
+	STRBUF * pocket_name[BAG_POKE_MAX];	// ãƒã‚±ãƒƒãƒˆåå±•é–‹å ´æ‰€ãƒã‚¤ãƒ³ã‚¿
+	u8	p_max;				// ãƒã‚±ãƒƒãƒˆæ•°
 
-	u8	sex;				// «•Ê
+	u8	sex;				// æ€§åˆ¥
 
-	u8	midx;				// ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+	u8	midx;				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	u8	p_icon_gx;			// ƒy[ƒW‚O‚ÌƒAƒCƒRƒ“‚ÌXÀ•W
-	u8	p_icon_sx;			// ƒAƒCƒRƒ“‚ÌŠÔŠu
+	u8	p_icon_gx;			// ãƒšãƒ¼ã‚¸ï¼ã®ã‚¢ã‚¤ã‚³ãƒ³ã®Xåº§æ¨™
+	u8	p_icon_sx;			// ã‚¢ã‚¤ã‚³ãƒ³ã®é–“éš”
 
 	PAGE_CHG_WORK	page_work;
-	fx32 p_mv_tbl[8];		// ƒy[ƒWƒJ[ƒ\ƒ‹ˆÚ“®ƒe[ƒuƒ‹
+	fx32 p_mv_tbl[8];		// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 
 	POCKET_CURSOR_MOVE	pcmv;
 	u8	p_next;
 
-	u8	info_put;			// ƒAƒCƒeƒ€î•ñƒZƒbƒg
+	u8	info_put;			// ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã‚»ãƒƒãƒˆ
 
 	u8	irekae_flg;
 	u8	irekae_pos;
@@ -215,17 +215,17 @@ typedef struct {
 	u8	arrow_mv;
 	u8	arrow_cnt;
 
-	u8	se_type;		// ƒŠƒXƒg‘I‘ðŽž‚ÌSE
+	u8	se_type;		// ãƒªã‚¹ãƒˆé¸æŠžæ™‚ã®SE
 
-	u8	sub_seq;		// ƒTƒuƒV[ƒPƒ“ƒX
-	u32	use_func;		// ƒoƒbƒO“àŽg—pŠÖ”
+	u8	sub_seq;		// ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u32	use_func;		// ãƒãƒƒã‚°å†…ä½¿ç”¨é–¢æ•°
 
-	s16	sel_num;		// ŒÂ”‘I‘ðF‘I‘ð”
-	u16	sel_max;		// ŒÂ”‘I‘ðFÅ‘å”
-	u32	sel_price;		// ‘I‘ð‚³‚ê‚½ƒAƒCƒeƒ€‚Ì’l’i
+	s16	sel_num;		// å€‹æ•°é¸æŠžï¼šé¸æŠžæ•°
+	u16	sel_max;		// å€‹æ•°é¸æŠžï¼šæœ€å¤§æ•°
+	u32	sel_price;		// é¸æŠžã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã®å€¤æ®µ
 
-	u8	enter_anm_flg;	// ƒTƒu‰æ–ÊŒˆ’èƒ{ƒ^ƒ“ƒAƒjƒ
-	u8	enter_anm_cnt;	// ƒTƒu‰æ–ÊŒˆ’èƒ{ƒ^ƒ“ƒJƒEƒ“ƒg
+	u8	enter_anm_flg;	// ã‚µãƒ–ç”»é¢æ±ºå®šãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡
+	u8	enter_anm_cnt;	// ã‚µãƒ–ç”»é¢æ±ºå®šãƒœã‚¿ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 
 	u8	wheel_flg;
 //	s16	wheel_pos;
@@ -238,29 +238,29 @@ typedef struct {
 
 }BAG_WORK;
 
-typedef int (*pBagFunc)(BAG_WORK *);	// ŠÖ”ƒ|ƒCƒ“ƒ^Œ^
+typedef int (*pBagFunc)(BAG_WORK *);	// é–¢æ•°ãƒã‚¤ãƒ³ã‚¿åž‹
 
 
-#define	POS_GET_ID		( 0 )		// ƒAƒCƒeƒ€”Ô†
-#define	POS_GET_NUM		( 1 )		// ŠŽ”
+#define	POS_GET_ID		( 0 )		// ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+#define	POS_GET_NUM		( 1 )		// æ‰€æŒæ•°
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * Œ»Ý‚Ìƒ|ƒPƒbƒg‚ÌŽw’èˆÊ’u‚ÌƒAƒCƒeƒ€‚ðŽæ“¾
+ * ç¾åœ¨ã®ãƒã‚±ãƒƒãƒˆã®æŒ‡å®šä½ç½®ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—
  *
- * @param	wk		ƒoƒbƒO‰æ–Ê‚Ìƒ[ƒN
- * @param	pos		ˆÊ’u
- * @param	id		Žæ“¾ID
+ * @param	wk		ãƒãƒƒã‚°ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
+ * @param	id		å–å¾—ID
  *
- * @return	Žw’èˆÊ’u‚ÌƒAƒCƒeƒ€
+ * @return	æŒ‡å®šä½ç½®ã®ã‚¢ã‚¤ãƒ†ãƒ 
  *
- * @li	id = POS_GET_ID : ƒAƒCƒeƒ€”Ô†
- * @li	id = POS_GET_NUM : ŠŽ”
+ * @li	id = POS_GET_ID : ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @li	id = POS_GET_NUM : æ‰€æŒæ•°
  */
 //--------------------------------------------------------------------------------------------
 extern u16 Bag_PosItemGet( BAG_WORK * wk, u16 pos, u16 id );
@@ -268,11 +268,11 @@ extern u16 Bag_PosItemGet( BAG_WORK * wk, u16 pos, u16 id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒpƒ‰ƒ[ƒ^Žæ“¾
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  *
- * @param	menu_num	ƒƒjƒ…[”Ô†
+ * @param	menu_num	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç•ªå·
  *
- * @return	ƒpƒ‰ƒ[ƒ^
+ * @return	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 extern const u32 Bag_MenuParamGet( u32 menu_num );

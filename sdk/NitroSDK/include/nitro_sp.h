@@ -21,28 +21,28 @@
   merge nitro.h and nitro_sp.h
 
   Revision 1.7  2004/02/10 02:04:59  yada
-  mi/*.h ‚ª‘‚¦‚Ä‚«‚½‚Ì‚Å mi.h ‚É“Z‚ß‚é
+  mi/*.h ãŒå¢—ãˆã¦ããŸã®ã§ mi.h ã«çºã‚ã‚‹
 
   Revision 1.6  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.5  2003/12/22 14:07:05  yasu
-  •K{ƒtƒ@ƒCƒ‹C³
+  å¿…é ˆãƒ•ã‚¡ã‚¤ãƒ«ä¿®æ­£
 
   Revision 1.4  2003/12/22 04:01:47  ida
-  snd/snd.h ’Ç‰Á
+  snd/snd.h è¿½åŠ 
 
   Revision 1.3  2003/12/16 10:52:29  yasu
-  ƒtƒ@ƒCƒ‹’Ç‰Á
+  ãƒ•ã‚¡ã‚¤ãƒ«è¿½åŠ 
 
   Revision 1.2  2003/12/16 05:26:45  yasu
-  ioreg ƒtƒ@ƒCƒ‹–¼•ÏX
+  ioreg ãƒ•ã‚¡ã‚¤ãƒ«åå¤‰æ›´
 
   Revision 1.1  2003/11/13 02:29:56  yasu
-  include/iris ‰º‚æ‚è include ’¼‰º‚ÖˆÚ“®
+  include/iris ä¸‹ã‚ˆã‚Š include ç›´ä¸‹ã¸ç§»å‹•
 
   Revision 1.1  2003/11/12 12:33:50  yasu
-  V‹Kì¬
+  æ–°è¦ä½œæˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

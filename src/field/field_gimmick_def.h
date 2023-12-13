@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_gimmick_def.h
- * @brief	ƒ}ƒbƒvŒÅ—L‚ÌŽdŠ|‚¯‚ÌID‚ð’è‹`‚·‚éƒtƒ@ƒCƒ‹
+ * @brief	ãƒžãƒƒãƒ—å›ºæœ‰ã®ä»•æŽ›ã‘ã®IDã‚’å®šç¾©ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	saito
  * @date	2006.02.09
  *
@@ -11,20 +11,20 @@
 #define __FIELD_GIMMICK_DEF_H__
 
 typedef enum{
-	FLD_GIMMICK_NONE,			//0:‚È‚µ
-	FLD_GIMMICK_WATER_GYM,		//1:…ƒWƒ€
-	FLD_GIMMICK_GHOST_GYM,		//2:ƒS[ƒXƒgƒWƒ€
-	FLD_GIMMICK_STEEL_GYM,		//3:|ƒWƒ€
-	FLD_GIMMICK_COMBAT_GYM,		//4:Ši“¬ƒWƒ€
-	FLD_GIMMICK_ELEC_GYM,		//5:“d‹CƒWƒ€
-	FLD_GIMMICK_SAFARI_TRAIN,	//6:ƒTƒtƒ@ƒŠ“dŽÔ
-	FLD_GIMMICK_FLD_LIFT,		//7:ƒtƒB[ƒ‹ƒhƒŠƒtƒg
-	FLD_GIMMICK_PL_GRASS_GYM,	//8:PL‘ƒWƒ€
-	FLD_GIMMICK_TORNWORLD,		//9:‚â‚Ô‚ê‚½‚¹‚©‚¢
-	FLD_GIMMICK_VILLA,			//10:•Ê‘‘
+	FLD_GIMMICK_NONE,			//0:ãªã—
+	FLD_GIMMICK_WATER_GYM,		//1:æ°´ã‚¸ãƒ 
+	FLD_GIMMICK_GHOST_GYM,		//2:ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
+	FLD_GIMMICK_STEEL_GYM,		//3:é‹¼ã‚¸ãƒ 
+	FLD_GIMMICK_COMBAT_GYM,		//4:æ ¼é—˜ã‚¸ãƒ 
+	FLD_GIMMICK_ELEC_GYM,		//5:é›»æ°—ã‚¸ãƒ 
+	FLD_GIMMICK_SAFARI_TRAIN,	//6:ã‚µãƒ•ã‚¡ãƒªé›»è»Š
+	FLD_GIMMICK_FLD_LIFT,		//7:ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒªãƒ•ãƒˆ
+	FLD_GIMMICK_PL_GRASS_GYM,	//8:PLè‰ã‚¸ãƒ 
+	FLD_GIMMICK_TORNWORLD,		//9:ã‚„ã¶ã‚ŒãŸã›ã‹ã„
+	FLD_GIMMICK_VILLA,			//10:åˆ¥è˜
 }FLD_GYMMICK_ID;
 
-#define FLD_GIMMICK_MAX	(11)		//ƒMƒ~ƒbƒN–³‚µ‚ðŠÜ‚ß‚½”
+#define FLD_GIMMICK_MAX	(11)		//ã‚®ãƒŸãƒƒã‚¯ç„¡ã—ã‚’å«ã‚ãŸæ•°
 
 #endif	//__FIELD_GIMMICK_DEF_H__
 

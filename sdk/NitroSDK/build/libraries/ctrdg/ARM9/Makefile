@@ -13,10 +13,10 @@
 #
 # $Log: Makefile,v $
 # Revision 1.4  2006/04/05 10:47:59  okubata_ryoma
-# AGBバックアップライブラリのSDK収録のための変更
+# AGB繝舌ャ繧ｯ繧｢繝�繝励Λ繧､繝悶Λ繝ｪ縺ｮSDK蜿朱鹸縺ｮ縺溘ａ縺ｮ螟画峩
 #
 # Revision 1.3  2006/03/02 10:12:00  okubata_ryoma
-# ctrdg_vib.cの追加
+# ctrdg_vib.c縺ｮ霑ｽ蜉
 #
 # Revision 1.2  2004/09/14 09:58:34  yada
 # add ctrdg_proc.c

@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_connect.c
- *	@brief		Wi-Fiƒƒr[‚ÉÚ‘±	Ø’fˆ—ƒvƒƒbƒN
+ *	@brief		Wi-Fiãƒ­ãƒ“ãƒ¼ã«æŽ¥ç¶š	åˆ‡æ–­å‡¦ç†ãƒ—ãƒ­ãƒƒã‚¯
  *	@author		tomoya takahashi
  *	@data		2007.12.12
  *
@@ -43,46 +43,46 @@
 
 #include "application/connect_anm.h"
 
-// ƒ_ƒ~[ƒOƒ‰ƒtƒBƒbƒN‚Å‚·
+// ãƒ€ãƒŸãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã§ã™
 #include "application/wifi_p2pmatch/wifip2pmatch.naix"
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 #ifdef PM_DEBUG
-#define WFLBY_CONNECT_DEBUG_START		// •”‰®‚ÌŽí—Þ‚È‚Ç‚ð‘I‘ð‚µ‚Ä‚à‚ç‚¤
+#define WFLBY_CONNECT_DEBUG_START		// éƒ¨å±‹ã®ç¨®é¡žãªã©ã‚’é¸æŠžã—ã¦ã‚‚ã‚‰ã†
 #endif
 
 #ifdef WFLBY_CONNECT_DEBUG_START
-static s32 DEBUG_SEL_ROOM;		// ‘I‘ð‚µ‚½•”‰®‚È‚è‚È‚ñ‚È‚è
+static s32 DEBUG_SEL_ROOM;		// é¸æŠžã—ãŸéƒ¨å±‹ãªã‚Šãªã‚“ãªã‚Š
 static s32 DEBUG_SEL_SEASON;
 static s32 DEBUG_SEL_ITEM;
-extern BOOL D_Tomoya_WiFiLobby_DebugStart;	// ƒfƒoƒbƒNŠJŽnî•ñ
+extern BOOL D_Tomoya_WiFiLobby_DebugStart;	// ãƒ‡ãƒãƒƒã‚¯é–‹å§‹æƒ…å ±
 #endif
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒƒCƒ“ƒV[ƒPƒ“ƒX
+///	ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
 	WFLBY_CONNECT_SEQ_FADEIN,
@@ -116,12 +116,12 @@ enum {
 
 
 //-------------------------------------
-///	‘ÞŽºƒV[ƒPƒ“ƒX
+///	é€€å®¤ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
 	WFLBY_DISCONNECT_SEQ_FADEIN,
 	WFLBY_DISCONNECT_SEQ_FADEWAIT,
-#if 0	// ƒ^ƒCƒ€ƒAƒEƒgƒƒbƒZ[ƒW‚ÍLê“à‚Åo‚·‚±‚Æ‚É‚È‚Á‚½
+#if 0	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯åºƒå ´å†…ã§å‡ºã™ã“ã¨ã«ãªã£ãŸ
 	WFLBY_DISCONNECT_SEQ_TIMEOUT_MSG,
 	WFLBY_DISCONNECT_SEQ_TIMEOUT_MSG_WAIT,
 #endif
@@ -135,28 +135,28 @@ enum {
 	WFLBY_DISCONNECT_SEQ_FADEOUT,
 	WFLBY_DISCONNECT_SEQ_FADEOUTWAIT,
 } ;
-#define WFLBY_DISCONNECT_WLDSENDWAIT_TIMEOUT	( 30*30 )	// ¢ŠEƒf[ƒ^‘—MŠ®—¹ƒ`ƒFƒbƒNƒ^ƒCƒ€ƒAƒEƒg
-#define WFLBY_DISCONNECT_LOGOUT_ENDMSG_WAIT		( 3*30 )	// ƒƒbƒZ[ƒW•\Ž¦ŠÔŠu
+#define WFLBY_DISCONNECT_WLDSENDWAIT_TIMEOUT	( 30*30 )	// ä¸–ç•Œãƒ‡ãƒ¼ã‚¿é€ä¿¡å®Œäº†ãƒã‚§ãƒƒã‚¯ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+#define WFLBY_DISCONNECT_LOGOUT_ENDMSG_WAIT		( 3*30 )	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–“éš”
 
 
 
 
 
 //-------------------------------------
-///	•\Ž¦ƒVƒXƒeƒ€
+///	è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 // BG
 enum{
-	// ƒƒCƒ“‰æ–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢
 	WFLBY_BGCNT_MAIN_BACK,
 	WFLBY_BGCNT_MAIN_WIN,
 	
-	// ƒTƒu‰æ–Ê
+	// ã‚µãƒ–ç”»é¢
 	WFLBY_BGCNT_SUB_BACK,
 
-	WFLBY_BGCNT_NUM,	// ‚a‚fƒRƒ“ƒgƒ[ƒ‹ƒe[ƒuƒ‹”
+	WFLBY_BGCNT_NUM,	// ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 };
-// ƒƒCƒ“PLTT
+// ãƒ¡ã‚¤ãƒ³PLTT
 enum{
 	WFLBY_MAIN_PLTT_BACKSTART,
 	WFLBY_MAIN_PLTT_BACKEND = 0xb,
@@ -166,7 +166,7 @@ enum{
 	WFLBY_MAIN_PLTT_SYSWIN,
 	WFLBY_MAIN_PLTT_NUM,
 };
-// ƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 #define WFLBY_TALKWINGRA_CGX		( 1 )
 #define WFLBY_SYSWINGRA_CGX			( WFLBY_TALKWINGRA_CGX+TALK_WIN_CGX_SIZ )
 #define WFLBY_SYSWINGRA_CGXEND		( WFLBY_SYSWINGRA_CGX+MENU_WIN_CGX_SIZ )
@@ -174,7 +174,7 @@ enum{
 
 
 //-------------------------------------
-///	ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
+///	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 #define WFLBY_WINSYS_STRBUFNUM	( 256 )
 
@@ -182,7 +182,7 @@ enum{
 
 
 //-------------------------------------
-///	‰ï˜bƒEƒBƒ“ƒhƒE
+///	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define WFLBY_TALKWIN_X			( 2 )
 #define WFLBY_TALKWIN_Y			( 19 )
@@ -193,7 +193,7 @@ enum{
 
 
 //-------------------------------------
-///	ƒVƒXƒeƒ€ƒEƒCƒ“ƒhƒE
+///	ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define WFLBY_SYSTEMWIN_X			( 4 )
 #define WFLBY_SYSTEMWIN_Y			( 4 )
@@ -203,7 +203,7 @@ enum{
 #define WFLBY_SYSTEMWIN_CGXEND	( WFLBY_SYSTEMWIN_CGX+(WFLBY_SYSTEMWIN_SIZX*WFLBY_SYSTEMWIN_SIZY) )
 
 //-------------------------------------
-///	YESNOƒEƒBƒ“ƒhƒE
+///	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define WFLBY_YESNOWIN_X			( 25 )
 #define WFLBY_YESNOWIN_Y			( 13 )
@@ -213,7 +213,7 @@ enum{
 #define WFLBY_YESNOWIN_CGXEND	( WFLBY_YESNOWIN_CGX+(WFLBY_YESNOWIN_SIZX*WFLBY_YESNOWIN_SIZY) )
 
 //-------------------------------------
-///	ƒ^ƒCƒgƒ‹
+///	ã‚¿ã‚¤ãƒˆãƒ«
 //=====================================
 #define WFLBY_TITLEWIN_X		( 5 )
 #define WFLBY_TITLEWIN_Y		( 1 )
@@ -230,72 +230,72 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
+///	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
-	WORDSET*			p_wordset;	// ƒ[ƒhƒZƒbƒg
-	MSGDATA_MANAGER*	p_msgman;	// ƒ[ƒhƒZƒbƒg
-	GF_BGL_BMPWIN		win;		// ‰ï˜bƒEƒBƒ“ƒhƒE
-	STRBUF*				p_str;		// •¶Žš—ñƒoƒbƒtƒ@
-	STRBUF*				p_tmp;		// •¶Žš—ñƒoƒbƒtƒ@
-	u32					fontid;		// ƒƒbƒZ[ƒW‚ÌƒtƒHƒ“ƒgID	
-	void*				p_timewait;	// ƒ^ƒCƒ€ƒEƒGƒCƒg
+	WORDSET*			p_wordset;	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	MSGDATA_MANAGER*	p_msgman;	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	GF_BGL_BMPWIN		win;		// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	STRBUF*				p_str;		// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+	STRBUF*				p_tmp;		// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+	u32					fontid;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ³ãƒˆID	
+	void*				p_timewait;	// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆ
 	u32					msgspeed;
 	u32					msgno;
 
 #ifdef WFLBY_CONNECT_DEBUG_START
-	MSGDATA_MANAGER*	p_debug_msgman;	// ƒ[ƒhƒZƒbƒg
+	MSGDATA_MANAGER*	p_debug_msgman;	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 #endif
 } WFLBY_WINWK;
 
 
 //-------------------------------------
-///	ƒƒOˆø—pƒ[ƒN
+///	ãƒ­ã‚°å¼•ç”¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	SAVEDATA*			p_save;		// ƒZ[ƒuƒf[ƒ^
-	u32					seq;		// ƒV[ƒPƒ“ƒX
-	u32					wait;		// ”Ä—pƒEƒGƒCƒg
-	GF_BGL_INI*			p_bgl;		// bglƒRƒ“ƒgƒ[ƒ‹
-	WFLBY_WINWK			title;		// ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE
-	WFLBY_WINWK			talk;		// ‰ï˜bƒEƒBƒ“ƒhƒE
-	WFLBY_WINWK			talk_system;// ‰ï˜bƒEƒBƒ“ƒhƒE
-	WFLBY_WINWK			system;		// ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE
-	BMPMENU_WORK*		p_yesno;	// yesnoƒEƒBƒ“ƒhƒE
+	SAVEDATA*			p_save;		// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+	u32					seq;		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u32					wait;		// æ±Žç”¨ã‚¦ã‚¨ã‚¤ãƒˆ
+	GF_BGL_INI*			p_bgl;		// bglã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+	WFLBY_WINWK			title;		// ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_WINWK			talk;		// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_WINWK			talk_system;// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WFLBY_WINWK			system;		// ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	BMPMENU_WORK*		p_yesno;	// yesnoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	
-	CONNECT_BG_PALANM	cbp;		// WifiÚ‘±BGƒpƒŒƒbƒgƒAƒjƒ§Œä
+	CONNECT_BG_PALANM	cbp;		// WifiæŽ¥ç¶šBGãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡
 } WFLBY_CONNECTWK;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒf[ƒ^•”•ª
+ *					ãƒ‡ãƒ¼ã‚¿éƒ¨åˆ†
  */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒOƒ‰ƒtƒBƒbƒNŠÖ˜A
+///	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢é€£
 //=====================================
-// ƒoƒ“ƒNÝ’è
+// ãƒãƒ³ã‚¯è¨­å®š
 static const GF_BGL_DISPVRAM sc_WFLBY_BANK = {
-	GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_OBJ_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-	GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+	GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_OBJ_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+	GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 };
 
-// BGÝ’è
+// BGè¨­å®š
 static const GF_BGL_SYS_HEADER sc_BGINIT = {
 	GX_DISPMODE_GRAPHICS,
 	GX_BGMODE_0,
@@ -303,14 +303,14 @@ static const GF_BGL_SYS_HEADER sc_BGINIT = {
 	GX_BG0_AS_2D
 };
 
-// BGƒRƒ“ƒgƒ[ƒ‹
+// BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 static const u32 sc_WFLBY_BGCNT_FRM[ WFLBY_BGCNT_NUM ] = {
 	GF_BGL_FRAME0_M,
 	GF_BGL_FRAME1_M,
 	GF_BGL_FRAME0_S,
 };
 static const GF_BGL_BGCNT_HEADER sc_WFLBY_BGCNT_DATA[ WFLBY_BGCNT_NUM ] = {
-	// ƒƒCƒ“‰æ–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢
 	{	// sc_WFLBY_BGCNT_FRM[WFLBY_BGCNT_MAIN_BACK]
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xe800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -322,7 +322,7 @@ static const GF_BGL_BGCNT_HEADER sc_WFLBY_BGCNT_DATA[ WFLBY_BGCNT_NUM ] = {
 		0, 0, 0, FALSE
 	},
 
-	// ƒTƒu‰æ–Ê
+	// ã‚µãƒ–ç”»é¢
 	{	// sc_WFLBY_BGCNT_FRM[WFLBY_BGCNT_SUB_BACK]
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xe800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -340,7 +340,7 @@ static const BMPWIN_DAT	sc_WFLBY_BMPWIN_DAT_YESNO = {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_VBlank( void* p_work );
@@ -372,13 +372,13 @@ static void WFLBY_CONNECT_WIN_PrintDEBUG2( WFLBY_WINWK* p_wk, u32 strid, u32 ite
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒCƒ“	ŠJŽn
+ *	@brief	ãƒ­ã‚°ã‚¤ãƒ³	é–‹å§‹
  *
- *	@param	p_proc		ƒvƒƒbƒNƒ[ƒN
- *	@param	p_seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval	PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval	PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval	PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBY_CONNECT_Init(PROC* p_proc, int* p_seq)
@@ -386,29 +386,29 @@ PROC_RESULT WFLBY_CONNECT_Init(PROC* p_proc, int* p_seq)
 	WFLBY_CONNECTWK* p_wk;
 	WFLBY_CONNECT_PARAM* p_param;
 
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WFLBY_ROOM, 0x20000 );
 	
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk = PROC_AllocWork( p_proc, sizeof(WFLBY_CONNECTWK), HEAPID_WFLBY_ROOM );
 	memset( p_wk, 0, sizeof(WFLBY_CONNECTWK) );
 
-	// ƒpƒ‰ƒ[ƒ^Žæ“¾
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	p_param	= PROC_GetParentWork( p_proc );
 	p_wk->p_save		= p_param->p_save;
 
 
-	// BGMƒ`ƒFƒ“ƒW
-	Snd_DataSetByScene( SND_SCENE_P2P, SEQ_WIFILOBBY, 0 );	//wifiƒƒr[Ä¶
+	// BGMãƒã‚§ãƒ³ã‚¸
+	Snd_DataSetByScene( SND_SCENE_P2P, SEQ_WIFILOBBY, 0 );	//wifiãƒ­ãƒ“ãƒ¼å†ç”Ÿ
 
-	// ‚±‚ÌƒvƒƒbƒN“à‚ÅÝ’è‚·‚éƒpƒ‰ƒ[ƒ^‚ð‰Šú‰»
+	// ã“ã®ãƒ—ãƒ­ãƒƒã‚¯å†…ã§è¨­å®šã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
 	p_param->enter			= FALSE;
 
 
-	// ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 	WFLBY_CONNECT_GraphicInit( p_wk, HEAPID_WFLBY_ROOM );
 
-	// ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	WFLBY_CONNECT_WIN_Init( &p_wk->talk, p_wk->p_bgl, FONT_TALK, NARC_msg_wifi_lobby_dat,
 			WFLBY_TALKWIN_X, WFLBY_TALKWIN_Y, 
 			WFLBY_TALKWIN_SIZX, WFLBY_TALKWIN_SIZY,
@@ -428,20 +428,20 @@ PROC_RESULT WFLBY_CONNECT_Init(PROC* p_proc, int* p_seq)
 			WFLBY_TITLEWIN_CGX, p_wk->p_save, HEAPID_WFLBY_ROOM );
 
 
-	//  ƒ^ƒCƒgƒ‹‘‚«ž‚Ý
+	//  ã‚¿ã‚¤ãƒˆãƒ«æ›¸ãè¾¼ã¿
 	WFLBY_CONNECT_WIN_PrintTitle( &p_wk->title, msg_wifilobby_018 );
 
 
-	// VBlankŠÖ”Ý’è
+	// VBlanké–¢æ•°è¨­å®š
 	sys_VBlankFuncChange( WFLBY_CONNECT_VBlank, p_wk );
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	return PROC_RES_FINISH;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒCƒ“ƒƒCƒ“
+ *	@brief	ãƒ­ã‚°ã‚¤ãƒ³ãƒ¡ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
@@ -454,21 +454,21 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 
 
 	switch( *p_seq ){
-	// ƒtƒF[ƒhƒCƒ“
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	case WFLBY_CONNECT_SEQ_FADEIN:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 				WIPE_FADE_OUTCOLOR, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_WFLBY_ROOM );
 		(*p_seq)++;
 		break;
 
-	// ƒtƒF[ƒhƒCƒ“‘Ò‚¿
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 	case WFLBY_CONNECT_SEQ_FADEWAIT:
 		if( WIPE_SYS_EndCheck() ){
 			(*p_seq)++;
 		}
 		break;
 
-	// ƒƒOƒCƒ“ƒ`ƒFƒbƒN
+	// ãƒ­ã‚°ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯
 	case WFLBY_CONNECT_SEQ_LOGIN_CHECK:
 		if( p_param->check_skip == FALSE ){
 			WFLBY_CONNECT_WIN_Print( &p_wk->talk_system, dwc_message_0002 );
@@ -477,7 +477,7 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 			(*p_seq)++;
 		}else{
 #ifdef WFLBY_CONNECT_DEBUG_START
-			// ŽžŠÔ’Zkƒ‚[ƒh‚Å‚µ‚©•”‰®‚ð‘I‚Î‚È‚¢
+			// æ™‚é–“çŸ­ç¸®ãƒ¢ãƒ¼ãƒ‰ã§ã—ã‹éƒ¨å±‹ã‚’é¸ã°ãªã„
 			if( D_Tomoya_WiFiLobby_DebugStart == TRUE ){
 				(*p_seq) = WFLBY_CONNECT_SEQ_DEBUG_SEL_ROOM;
 			}else{
@@ -489,7 +489,7 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 		}
 		break;
 
-	// ƒƒOƒCƒ“ƒ`ƒFƒbƒN‘Ò‚¿
+	// ãƒ­ã‚°ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯å¾…ã¡
 	case WFLBY_CONNECT_SEQ_LOGIN_CHECK_WAIT:
 		{
 			u32 result;
@@ -499,7 +499,7 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 			case 0:	
 
 #ifdef WFLBY_CONNECT_DEBUG_START
-				// ŽžŠÔ’Zkƒ‚[ƒh‚Å‚µ‚©•”‰®‚ð‘I‚Î‚È‚¢
+				// æ™‚é–“çŸ­ç¸®ãƒ¢ãƒ¼ãƒ‰ã§ã—ã‹éƒ¨å±‹ã‚’é¸ã°ãªã„
 				if( D_Tomoya_WiFiLobby_DebugStart == TRUE ){
 					(*p_seq) = WFLBY_CONNECT_SEQ_DEBUG_SEL_ROOM;
 				}else{
@@ -588,7 +588,7 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 		break;
 #endif
 
-	// ƒƒOƒCƒ“ŠJŽn
+	// ãƒ­ã‚°ã‚¤ãƒ³é–‹å§‹
 	case WFLBY_CONNECT_SEQ_LOGIN:
 		{
 			WFLBY_USER_PROFILE* p_profile;
@@ -613,25 +613,25 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 		(*p_seq)++;
 		break;
 
-	// DWC ƒƒOƒCƒ“‘Ò‚¿
+	// DWC ãƒ­ã‚°ã‚¤ãƒ³å¾…ã¡
 	case WFLBY_CONNECT_SEQ_LOGIN_WAIT_DWC:
-		// ƒGƒ‰[ˆ—
+		// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 		if( CommStateIsWifiError() || CommStateWifiLobbyError() ){
 			WFLBY_CONNECT_WIN_EndTimeWait( &p_wk->talk_system );
 			(*p_seq) = WFLBY_CONNECT_SEQ_ERRON;
 		}
 
-		if( CommStateWifiLobbyDwcLoginCheck() == TRUE ){	// DWC_LoginAsync‚ÌÚ‘±Š®—¹
-			// WiFiƒNƒ‰ƒu‚Å‚Ìó‘Ô‚ðNONE‚É‚·‚éˆ—
+		if( CommStateWifiLobbyDwcLoginCheck() == TRUE ){	// DWC_LoginAsyncã®æŽ¥ç¶šå®Œäº†
+			// WiFiã‚¯ãƒ©ãƒ–ã§ã®çŠ¶æ…‹ã‚’NONEã«ã™ã‚‹å‡¦ç†
 			WFLBY_SYSTEM_WiFiClubBuff_Init( p_param->p_system );
 			(*p_seq)++;
 		}
 		break;
 
-	// ƒƒOƒCƒ“‘Ò‚¿
+	// ãƒ­ã‚°ã‚¤ãƒ³å¾…ã¡
 	case WFLBY_CONNECT_SEQ_LOGIN_WAIT:
 		
-		// ƒGƒ‰[ˆ—
+		// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 		if( CommStateIsWifiError() || CommStateWifiLobbyError() ){
 			WFLBY_CONNECT_WIN_EndTimeWait( &p_wk->talk_system );
 			(*p_seq) = WFLBY_CONNECT_SEQ_ERRON;
@@ -648,17 +648,17 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 				RECORD_Score_Add( p_rec, SCORE_ID_LOBBY_LOGIN );
 			}
 
-			// ƒƒOƒCƒ“‚µ‚½ŽžŠÔ‚ð•Û‘¶
+			// ãƒ­ã‚°ã‚¤ãƒ³ã—ãŸæ™‚é–“ã‚’ä¿å­˜
 			{
 				p_param->p_wflby_counter->time = GF_RTC_GetDateTimeBySecond();
 			}
 			
-			p_param->enter = TRUE;	// “üêŠ®—¹
+			p_param->enter = TRUE;	// å…¥å ´å®Œäº†
 			(*p_seq)++;
 		}
 		break;
 
-	// ƒGƒ‰[•\Ž¦
+	// ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 	case WFLBY_CONNECT_SEQ_ERRON:
 		{
 			COMMSTATE_DWCERROR* pErr;
@@ -673,7 +673,7 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 				msgno = dwc_lobby_0001;
 			}
 
-			// WiFiƒNƒ‰ƒu‚Å‚Ìó‘Ô‚ðNONE‚É‚·‚éƒoƒbƒtƒ@‚ð”jŠü
+			// WiFiã‚¯ãƒ©ãƒ–ã§ã®çŠ¶æ…‹ã‚’NONEã«ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’ç ´æ£„
 			WFLBY_SYSTEM_WiFiClubBuff_Exit( p_param->p_system );
 
 			WFLBY_CONNECT_WIN_Off( &p_wk->talk );
@@ -684,7 +684,7 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 		}
 		break;
 
-	// ƒL[“ü—Í‘Ò‚¿
+	// ã‚­ãƒ¼å…¥åŠ›å¾…ã¡
 	case WFLBY_CONNECT_SEQ_ERR:
 		if( sys.trg & PAD_BUTTON_DECIDE ){
 			WFLBY_ERR_TYPE err_type;
@@ -694,22 +694,22 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 				COMMSTATE_DWCERROR* pErr = CommStateGetWifiError();
 				err_type = WFLBY_ERR_GetErrType( pErr->errorCode, pErr->errorType );
 				if( err_type == WFLBY_ERR_TYPE_RETRY ){
-					// ÄÚ‘±
+					// å†æŽ¥ç¶š
 					(*p_seq) = WFLBY_CONNECT_SEQ_RETRY;
 				}else{
-					// ”²‚¯‚é
+					// æŠœã‘ã‚‹
 					(*p_seq) = WFLBY_CONNECT_SEQ_LOGOUT;
 					break;
 				}
 			}else{
 
-				// ÄÚ‘±
+				// å†æŽ¥ç¶š
 				(*p_seq) = WFLBY_CONNECT_SEQ_RETRY;
 			}
 		}
 		break;
 
-	// ÄÚ‘±Ž¿–â
+	// å†æŽ¥ç¶šè³ªå•
 	case WFLBY_CONNECT_SEQ_RETRY:
 		WFLBY_CONNECT_WIN_Off( &p_wk->system );
 		WFLBY_CONNECT_WIN_Print( &p_wk->talk, msg_wifilobby_052 );
@@ -719,7 +719,7 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 		(*p_seq)++;
 		break;
 	
-	// ÄÚ‘±‰ñ“š
+	// å†æŽ¥ç¶šå›žç­”
 	case WFLBY_CONNECT_SEQ_RETRYWAIT:
 		{
 			u32 result;
@@ -727,7 +727,7 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 			switch( result ){
 			// YES
 			case 0:	
-				// ‚¢‚Á‚½‚ñƒƒOƒAƒEƒg
+				// ã„ã£ãŸã‚“ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ
 				CommStateWifiLobbyLogout();
 				(*p_seq) = WFLBY_CONNECT_SEQ_RETRYLOGOUTWAIT;
 				break;
@@ -740,14 +740,14 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 		}
 		break;
 
-	// ÄÚ‘±Žž‚ÌƒƒOƒAƒEƒg‘Ò‚¿
+	// å†æŽ¥ç¶šæ™‚ã®ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå¾…ã¡
 	case WFLBY_CONNECT_SEQ_RETRYLOGOUTWAIT:
 		if( CommStateIsInitialize() == FALSE ){
 			(*p_seq) = WFLBY_CONNECT_SEQ_LOGIN;
 		}
 		break;
 
-	// ƒƒOƒAƒEƒg
+	// ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ
 	case WFLBY_CONNECT_SEQ_LOGOUT:
 		WFLBY_CONNECT_WIN_Off( &p_wk->talk );
 		WFLBY_CONNECT_WIN_Off( &p_wk->talk_system );
@@ -756,7 +756,7 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 		(*p_seq)++;
 		break;
 		
-	// ƒƒOƒAƒEƒg‚Ü‚¿
+	// ãƒ­ã‚°ã‚¢ã‚¦ãƒˆã¾ã¡
 	case WFLBY_CONNECT_SEQ_LOGOUTWAIT:
 		if( CommStateIsInitialize() == FALSE ){
 			WFLBY_CONNECT_WIN_Off( &p_wk->talk );
@@ -765,14 +765,14 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 		}
 		break;
 
-	// ƒtƒF[ƒhƒAƒEƒg
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case WFLBY_CONNECT_SEQ_FADEOUT:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
 				WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_WFLBY_ROOM );
 		(*p_seq)++;
 		break;
 
-	// ƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 	case WFLBY_CONNECT_SEQ_FADEOUTWAIT:
 		if( WIPE_SYS_EndCheck() ){
 			return PROC_RES_FINISH;
@@ -791,7 +791,7 @@ PROC_RESULT WFLBY_CONNECT_Main(PROC* p_proc, int* p_seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒCƒ“@I—¹
+ *	@brief	ãƒ­ã‚°ã‚¤ãƒ³ã€€çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBY_CONNECT_Exit(PROC* p_proc, int* p_seq)
@@ -800,27 +800,27 @@ PROC_RESULT WFLBY_CONNECT_Exit(PROC* p_proc, int* p_seq)
 	
 	p_wk	= PROC_GetWork( p_proc );
 
-	// Š„‚èž‚ÝÝ’è
+	// å‰²ã‚Šè¾¼ã¿è¨­å®š
 	sys_VBlankFuncChange( NULL, NULL );
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	ConnectBGPalAnm_End(&p_wk->cbp);
 
-	// ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_CONNECT_WIN_Exit( &p_wk->talk );
 	WFLBY_CONNECT_WIN_Exit( &p_wk->talk_system );
 	WFLBY_CONNECT_WIN_Exit( &p_wk->system );
 	WFLBY_CONNECT_WIN_Exit( &p_wk->title );
 
-	// ƒOƒ‰ƒtƒBƒbƒN”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
 	WFLBY_CONNECT_GraphicExit( p_wk );
 
 	ConnectBGPalAnm_OccSet(&p_wk->cbp, FALSE);
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_wk );
 
-	// ƒq[ƒv”jŠü
+	// ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_WFLBY_ROOM );
 
 	return PROC_RES_FINISH;
@@ -831,7 +831,7 @@ PROC_RESULT WFLBY_CONNECT_Exit(PROC* p_proc, int* p_seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ø’fˆ—	‰Šú‰»
+ *	@brief	åˆ‡æ–­å‡¦ç†	åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBY_DISCONNECT_Init(PROC* p_proc, int* p_seq)
@@ -839,21 +839,21 @@ PROC_RESULT WFLBY_DISCONNECT_Init(PROC* p_proc, int* p_seq)
 	WFLBY_CONNECTWK* p_wk;
 	WFLBY_DISCONNECT_PARAM* p_param;
 
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WFLBY_ROOM, 0x20000 );
 	
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk = PROC_AllocWork( p_proc, sizeof(WFLBY_CONNECTWK), HEAPID_WFLBY_ROOM );
 	memset( p_wk, 0, sizeof(WFLBY_CONNECTWK) );
 
-	// ƒpƒ‰ƒ[ƒ^Žæ“¾
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	p_param	= PROC_GetParentWork( p_proc );
 	p_wk->p_save		= p_param->p_save;
 
-	// ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 	WFLBY_CONNECT_GraphicInit( p_wk, HEAPID_WFLBY_ROOM );
 
-	// ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	WFLBY_CONNECT_WIN_Init( &p_wk->talk, p_wk->p_bgl, FONT_TALK, NARC_msg_wifi_system_dat,
 			WFLBY_TALKWIN_X, WFLBY_TALKWIN_Y, 
 			WFLBY_TALKWIN_SIZX, WFLBY_TALKWIN_SIZY,
@@ -870,20 +870,20 @@ PROC_RESULT WFLBY_DISCONNECT_Init(PROC* p_proc, int* p_seq)
 			WFLBY_TITLEWIN_CGX, p_wk->p_save, HEAPID_WFLBY_ROOM );
 
 
-	//  ƒ^ƒCƒgƒ‹‘‚«ž‚Ý
+	//  ã‚¿ã‚¤ãƒˆãƒ«æ›¸ãè¾¼ã¿
 	WFLBY_CONNECT_WIN_PrintTitle( &p_wk->title, msg_wifilobby_018 );
     WirelessIconEasy();
 
-	// VBlankŠÖ”Ý’è
+	// VBlanké–¢æ•°è¨­å®š
 	sys_VBlankFuncChange( WFLBY_CONNECT_VBlank, p_wk );
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	return PROC_RES_FINISH;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ø’fˆ—	ƒƒCƒ“
+ *	@brief	åˆ‡æ–­å‡¦ç†	ãƒ¡ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBY_DISCONNECT_Main(PROC* p_proc, int* p_seq)
@@ -895,17 +895,17 @@ PROC_RESULT WFLBY_DISCONNECT_Main(PROC* p_proc, int* p_seq)
 	p_param	= PROC_GetParentWork( p_proc );
 
 	switch( *p_seq ){
-	// ƒtƒF[ƒhƒCƒ“
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	case WFLBY_DISCONNECT_SEQ_FADEIN:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 				WIPE_FADE_OUTCOLOR, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_WFLBY_ROOM );
 		(*p_seq)++;
 		break;
 
-	// ƒtƒF[ƒhƒCƒ“ƒEƒGƒCƒg
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¦ã‚¨ã‚¤ãƒˆ
 	case WFLBY_DISCONNECT_SEQ_FADEWAIT:
 		if( WIPE_SYS_EndCheck() ){
-#if 0	// ƒ^ƒCƒ€ƒAƒEƒgƒƒbƒZ[ƒW‚ÍLê“à‚Åo‚·‚±‚Æ‚É‚È‚Á‚½
+#if 0	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯åºƒå ´å†…ã§å‡ºã™ã“ã¨ã«ãªã£ãŸ
 			if( p_param->timeout == TRUE ){
 				(*p_seq) = WFLBY_DISCONNECT_SEQ_TIMEOUT_MSG;
 			}else{
@@ -915,14 +915,14 @@ PROC_RESULT WFLBY_DISCONNECT_Main(PROC* p_proc, int* p_seq)
 		}
 		break;
 
-#if 0	// ƒ^ƒCƒ€ƒAƒEƒgƒƒbƒZ[ƒW‚ÍLê“à‚Åo‚·‚±‚Æ‚É‚È‚Á‚½
-	// ƒ^ƒCƒ€ƒAƒEƒg‘ÞŽºŽžƒƒbƒZ[ƒW•\Ž¦
+#if 0	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯åºƒå ´å†…ã§å‡ºã™ã“ã¨ã«ãªã£ãŸ
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆé€€å®¤æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	case WFLBY_DISCONNECT_SEQ_TIMEOUT_MSG:
 		WFLBY_CONNECT_WIN_PrintWait( &p_wk->talk, msg_hiroba_end_01 );
 		(*p_seq) = WFLBY_DISCONNECT_SEQ_TIMEOUT_MSG_WAIT;
 		break;
 
-	// ƒ^ƒCƒ€ƒAƒEƒg‘ÞŽºŽžƒƒbƒZ[ƒW•\Ž¦‘Ò‚¿
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆé€€å®¤æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾…ã¡
 	case WFLBY_DISCONNECT_SEQ_TIMEOUT_MSG_WAIT:
 		if( WFLBY_CONNECT_WIN_PrintEndWait( &p_wk->talk ) ){
 			(*p_seq) = WFLBY_DISCONNECT_SEQ_LOGOUT_MSG;
@@ -930,12 +930,12 @@ PROC_RESULT WFLBY_DISCONNECT_Main(PROC* p_proc, int* p_seq)
 		break;
 #endif
 
-	// ‘ÞŽºƒƒbƒZ[ƒW•\Ž¦
+	// é€€å®¤ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	case WFLBY_DISCONNECT_SEQ_LOGOUT_MSG:
 		WFLBY_CONNECT_WIN_Print( &p_wk->talk, dwc_message_0011 );
-		// ƒGƒ‰[ƒ`ƒFƒbƒN
+		// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		if( CommStateIsWifiError() || CommStateWifiLobbyError() ){
-			// ƒGƒ‰[‚È‚ç‚·‚®‚ÉLOGOUT
+			// ã‚¨ãƒ©ãƒ¼ãªã‚‰ã™ãã«LOGOUT
 			(*p_seq) = WFLBY_DISCONNECT_SEQ_LOGOUT;
 			WFLBY_CONNECT_WIN_StartTimeWait( &p_wk->talk );
 		}else{
@@ -944,27 +944,27 @@ PROC_RESULT WFLBY_DISCONNECT_Main(PROC* p_proc, int* p_seq)
 		}
 		break;
 
-	//  ¢ŠEƒf[ƒ^‘—M
+	//  ä¸–ç•Œãƒ‡ãƒ¼ã‚¿é€ä¿¡
 	case WFLBY_DISCONNECT_SEQ_WLDSEND:
 		DWC_LOBBY_WLDDATA_Send();
 
-		// ƒ^ƒCƒ€ƒEƒGƒCƒgÝ’è
+		// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆè¨­å®š
 		p_wk->wait = WFLBY_DISCONNECT_WLDSENDWAIT_TIMEOUT;
 		(*p_seq) = WFLBY_DISCONNECT_SEQ_WLDWAIT;
 		break;
 		
-	//  ¢ŠEƒf[ƒ^‘—MŠ®—¹‘Ò‚¿
+	//  ä¸–ç•Œãƒ‡ãƒ¼ã‚¿é€ä¿¡å®Œäº†å¾…ã¡
 	case WFLBY_DISCONNECT_SEQ_WLDWAIT:
 		if( (p_wk->wait - 1) >= 0 ){
 			p_wk->wait --;
 		}
-		// ƒf[ƒ^‚ªƒuƒ[ƒhƒLƒƒƒXƒg‚³‚ê‚é‚©ƒ^ƒCƒ€ƒAƒEƒg‚ª—ˆ‚é‚©‚ÅƒƒOƒAƒEƒgˆ—‚É‚·‚é
+		// ãƒ‡ãƒ¼ã‚¿ãŒãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã•ã‚Œã‚‹ã‹ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãŒæ¥ã‚‹ã‹ã§ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå‡¦ç†ã«ã™ã‚‹
 		if( DWC_LOBBY_WLDDATA_SendWait() || (p_wk->wait == 0) ){
 			(*p_seq) = WFLBY_DISCONNECT_SEQ_LOGOUT;
 		}
 		break;
 
-	// ƒƒOƒAƒEƒgˆ—
+	// ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå‡¦ç†
 	case WFLBY_DISCONNECT_SEQ_LOGOUT:
 		CommStateWifiLobbyLogout();
 		(*p_seq) = WFLBY_DISCONNECT_SEQ_LOGOUT_WAIT;
@@ -973,27 +973,27 @@ PROC_RESULT WFLBY_DISCONNECT_Main(PROC* p_proc, int* p_seq)
 	case WFLBY_DISCONNECT_SEQ_LOGOUT_WAIT:
 		if( CommStateIsInitialize() == FALSE ){
 
-			// ƒ^ƒCƒ€ƒAƒEƒgI—¹
+			// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆçµ‚äº†
 			WFLBY_CONNECT_WIN_EndTimeWait( &p_wk->talk_system );
 
-			// WiFiƒNƒ‰ƒu—p‚É‘—‚ç‚ê‚éƒ_ƒ~[î•ñ‚ð”jŠü‚·‚é
+			// WiFiã‚¯ãƒ©ãƒ–ç”¨ã«é€ã‚‰ã‚Œã‚‹ãƒ€ãƒŸãƒ¼æƒ…å ±ã‚’ç ´æ£„ã™ã‚‹
 			WFLBY_SYSTEM_WiFiClubBuff_Exit( p_param->p_system );
 			
 			(*p_seq) = WFLBY_DISCONNECT_SEQ_LOGOUT_END;
 		}
 		break;
 
-	// ƒƒOƒAƒEƒgŠ®—¹ƒƒbƒZ[ƒW
+	// ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå®Œäº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WFLBY_DISCONNECT_SEQ_LOGOUT_END:
 		WFLBY_CONNECT_WIN_Print( &p_wk->talk, dwc_message_0012 );
 
-		// ƒ^ƒCƒ€ƒEƒGƒCƒgÝ’è
+		// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆè¨­å®š
 		p_wk->wait = WFLBY_DISCONNECT_LOGOUT_ENDMSG_WAIT;
 
 		(*p_seq) = WFLBY_DISCONNECT_SEQ_LOGOUT_END_MSGWAIT;
 		break;
 
-	// ƒƒOƒAƒEƒgŠ®—¹ƒƒbƒZ[ƒW‘Ò‚¿
+	// ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå®Œäº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 	case WFLBY_DISCONNECT_SEQ_LOGOUT_END_MSGWAIT:
 		if( (p_wk->wait - 1) >= 0 ){
 			p_wk->wait --;
@@ -1025,7 +1025,7 @@ PROC_RESULT WFLBY_DISCONNECT_Main(PROC* p_proc, int* p_seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ø’fˆ—	”jŠü
+ *	@brief	åˆ‡æ–­å‡¦ç†	ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WFLBY_DISCONNECT_Exit(PROC* p_proc, int* p_seq)
@@ -1034,26 +1034,26 @@ PROC_RESULT WFLBY_DISCONNECT_Exit(PROC* p_proc, int* p_seq)
 	
 	p_wk	= PROC_GetWork( p_proc );
 
-	// Š„‚èž‚ÝÝ’è
+	// å‰²ã‚Šè¾¼ã¿è¨­å®š
 	sys_VBlankFuncChange( NULL, NULL );
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	ConnectBGPalAnm_End(&p_wk->cbp);
 
-	// ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_CONNECT_WIN_Exit( &p_wk->talk );
 	WFLBY_CONNECT_WIN_Exit( &p_wk->system );
 	WFLBY_CONNECT_WIN_Exit( &p_wk->title );
 
-	// ƒOƒ‰ƒtƒBƒbƒN”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
 	WFLBY_CONNECT_GraphicExit( p_wk );
 
 	ConnectBGPalAnm_OccSet(&p_wk->cbp, FALSE);
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_wk );
 
-	// ƒq[ƒv”jŠü
+	// ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_WFLBY_ROOM );
 
 	return PROC_RES_FINISH;
@@ -1065,13 +1065,13 @@ PROC_RESULT WFLBY_DISCONNECT_Exit(PROC* p_proc, int* p_seq)
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankŠÖ”
+ *	@brief	VBlanké–¢æ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_VBlank( void* p_work )
@@ -1085,28 +1085,28 @@ static void WFLBY_CONNECT_VBlank( void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_GraphicInit( WFLBY_CONNECTWK* p_wk, u32 heapID )
 {
-	// ”¼“§–¾ƒŒƒWƒXƒ^OFF
+	// åŠé€æ˜Žãƒ¬ã‚¸ã‚¹ã‚¿OFF
 	G2_BlendNone();
 	G2S_BlendNone();
 	
-	// BANKÝ’è
+	// BANKè¨­å®š
 	GF_Disp_SetBank( &sc_WFLBY_BANK );
 
-	// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚ð•‚É‚·‚é
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚’é»’ã«ã™ã‚‹
 	{
 		GF_BGL_BackGroundColorSet( sc_WFLBY_BGCNT_FRM[WFLBY_BGCNT_MAIN_BACK], 0 );
 	}
 	
 
-	// BGÝ’è
+	// BGè¨­å®š
 	{
 		int i;
 
@@ -1124,7 +1124,7 @@ static void WFLBY_CONNECT_GraphicInit( WFLBY_CONNECTWK* p_wk, u32 heapID )
 	}
 	
 
-	// ƒEƒBƒ“ƒhƒEÝ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	{
 		CONFIG* p_config;
 		u8 winnum;
@@ -1132,11 +1132,11 @@ static void WFLBY_CONNECT_GraphicInit( WFLBY_CONNECTWK* p_wk, u32 heapID )
 		p_config = SaveData_GetConfig( p_wk->p_save );
 		winnum = CONFIG_GetWindowType( p_config );
 
-		// •¶ŽšƒpƒŒƒbƒg
+		// æ–‡å­—ãƒ‘ãƒ¬ãƒƒãƒˆ
 		SystemFontPaletteLoad( PALTYPE_MAIN_BG, WFLBY_MAIN_PLTT_SYSFONT*32, heapID );
 		TalkFontPaletteLoad( PALTYPE_MAIN_BG, WFLBY_MAIN_PLTT_TALKFONT*32, heapID );
 
-		// ƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 		MenuWinGraphicSet(
 				p_wk->p_bgl, sc_WFLBY_BGCNT_FRM[WFLBY_BGCNT_MAIN_WIN], WFLBY_SYSWINGRA_CGX,
 				WFLBY_MAIN_PLTT_SYSWIN, 0, heapID );
@@ -1146,9 +1146,9 @@ static void WFLBY_CONNECT_GraphicInit( WFLBY_CONNECTWK* p_wk, u32 heapID )
 	}
 
 
-	// ƒoƒbƒNƒOƒ‰ƒtƒBƒbƒN‚ð‘‚«ž‚Þ
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’æ›¸ãè¾¼ã‚€
 	{
-		// ƒJƒ‰[ƒpƒŒƒbƒg
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 		ArcUtil_PalSet( ARC_WIFIP2PMATCH_GRA, 
 				NARC_wifip2pmatch_conect_NCLR, 
 				PALTYPE_MAIN_BG, WFLBY_MAIN_PLTT_BACKSTART, 
@@ -1158,7 +1158,7 @@ static void WFLBY_CONNECT_GraphicInit( WFLBY_CONNECTWK* p_wk, u32 heapID )
 				PALTYPE_SUB_BG, WFLBY_MAIN_PLTT_BACKSTART, 
 				WFLBY_MAIN_PLTT_BACKEND*32, heapID );
 
-		// ƒLƒƒƒ‰ƒNƒ^
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 		ArcUtil_BgCharSet( ARC_WIFIP2PMATCH_GRA, 
 				NARC_wifip2pmatch_conect_NCGR, p_wk->p_bgl, 
 				sc_WFLBY_BGCNT_FRM[WFLBY_BGCNT_MAIN_BACK], 0, 0, FALSE, heapID );
@@ -1166,21 +1166,21 @@ static void WFLBY_CONNECT_GraphicInit( WFLBY_CONNECTWK* p_wk, u32 heapID )
 				NARC_wifip2pmatch_conect_sub_NCGR, p_wk->p_bgl, 
 				sc_WFLBY_BGCNT_FRM[WFLBY_BGCNT_SUB_BACK], 0, 0, FALSE, heapID );
 
-		// ƒXƒNƒŠ[ƒ“
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 		ArcUtil_ScrnSet( ARC_WIFIP2PMATCH_GRA, NARC_wifip2pmatch_conect_01_NSCR,
 				p_wk->p_bgl, sc_WFLBY_BGCNT_FRM[WFLBY_BGCNT_MAIN_BACK], 0, 0, FALSE, heapID );
 		ArcUtil_ScrnSet( ARC_WIFIP2PMATCH_GRA, NARC_wifip2pmatch_conect_sub_NSCR,
 				p_wk->p_bgl, sc_WFLBY_BGCNT_FRM[WFLBY_BGCNT_SUB_BACK], 0, 0, FALSE, heapID );
 	}
 
-	// ’ÊMƒOƒ‰ƒtƒBƒbƒNON
+	// é€šä¿¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ON
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 	
 	{
 		ARCHANDLE* p_handle;
 		p_handle = ArchiveDataHandleOpen( ARC_WIFIP2PMATCH_GRA, heapID );
 
-		//WifiÚ‘±BGƒpƒŒƒbƒgƒAƒjƒƒVƒXƒeƒ€‰Šú‰»
+		//WifiæŽ¥ç¶šBGãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 		ConnectBGPalAnm_Init(&p_wk->cbp, p_handle, 
 			NARC_wifip2pmatch_conect_anm_NCLR, heapID);
 
@@ -1190,14 +1190,14 @@ static void WFLBY_CONNECT_GraphicInit( WFLBY_CONNECTWK* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN”jŠü
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
  *	
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_GraphicExit( WFLBY_CONNECTWK* p_wk )
 {
-	// BG‚Ì”jŠü
+	// BGã®ç ´æ£„
 	{
 		int i;
 
@@ -1205,16 +1205,16 @@ static void WFLBY_CONNECT_GraphicExit( WFLBY_CONNECTWK* p_wk )
 			GF_BGL_BGControlExit( p_wk->p_bgl, sc_WFLBY_BGCNT_FRM[i] );
 		}
 
-		// BGL”jŠü
+		// BGLç ´æ£„
 		sys_FreeMemoryEz( p_wk->p_bgl );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN	VBLANK
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯	VBLANK
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_GraphicVBlank( WFLBY_CONNECTWK* p_wk )
@@ -1226,19 +1226,19 @@ static void WFLBY_CONNECT_GraphicVBlank( WFLBY_CONNECTWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF‰Šú‰»
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§åˆæœŸåŒ–
  *	
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *	@param	p_bgl		BGL
- *	@param	fontid		ƒtƒHƒ“ƒgID
- *	@param	msgid		ƒƒbƒZ[ƒWID
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	sizx		ƒTƒCƒY‚˜
- *	@param	sizy		ƒTƒCƒY‚™
- *	@param	cgx			ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
- *	@param	p_save		ƒZ[ƒuƒf[ƒ^
- *	@param	heapID		ƒq[ƒv
+ *	@param	fontid		ãƒ•ã‚©ãƒ³ãƒˆID
+ *	@param	msgid		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	sizx		ã‚µã‚¤ã‚ºï½˜
+ *	@param	sizy		ã‚µã‚¤ã‚ºï½™
+ *	@param	cgx			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	p_save		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_WIN_Init( WFLBY_WINWK* p_wk, GF_BGL_INI* p_bgl, u32 fontid, u32 msgid, u32 x, u32 y, u32 sizx, u32 sizy, u32 cgx, SAVEDATA* p_save, u32 heapID )
@@ -1252,7 +1252,7 @@ static void WFLBY_CONNECT_WIN_Init( WFLBY_WINWK* p_wk, GF_BGL_INI* p_bgl, u32 fo
 	p_wk->msgno		= 0;
 
 #ifdef WFLBY_CONNECT_DEBUG_START
-	p_wk->p_debug_msgman	= MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_debug_tomoya_dat, heapID );;	// ƒ[ƒhƒZƒbƒg
+	p_wk->p_debug_msgman	= MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_debug_tomoya_dat, heapID );;	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 #endif
 
 	GF_BGL_BmpWinAdd( p_bgl, &p_wk->win, 
@@ -1261,23 +1261,23 @@ static void WFLBY_CONNECT_WIN_Init( WFLBY_WINWK* p_wk, GF_BGL_INI* p_bgl, u32 fo
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF	ƒƒbƒZ[ƒW•\Ž¦
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	strid		•\Ž¦STR
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	strid		è¡¨ç¤ºSTR
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_WIN_Print( WFLBY_WINWK* p_wk, u32 strid )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 	
-	// ƒEƒBƒ“ƒhƒE‚ÌƒNƒŠ[ƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	MSGMAN_GetString( p_wk->p_msgman, strid, p_wk->p_tmp );
 	WORDSET_ExpandStr( p_wk->p_wordset, p_wk->p_str, p_wk->p_tmp );
 
@@ -1296,14 +1296,14 @@ static void WFLBY_CONNECT_WIN_Print( WFLBY_WINWK* p_wk, u32 strid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒE•\Ž¦OFF
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºOFF
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_WIN_Off( WFLBY_WINWK* p_wk )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
@@ -1323,9 +1323,9 @@ static void WFLBY_CONNECT_WIN_Off( WFLBY_WINWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒgŠJŽn
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆé–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_WIN_StartTimeWait( WFLBY_WINWK* p_wk )
@@ -1338,9 +1338,9 @@ static void WFLBY_CONNECT_WIN_StartTimeWait( WFLBY_WINWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒg’âŽ~
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆåœæ­¢
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_WIN_EndTimeWait( WFLBY_WINWK* p_wk )
@@ -1354,14 +1354,14 @@ static void WFLBY_CONNECT_WIN_EndTimeWait( WFLBY_WINWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEƒIƒuƒWƒF	OFF
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ–ã‚¸ã‚§	OFF
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_WIN_Exit( WFLBY_WINWK* p_wk )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
@@ -1384,23 +1384,23 @@ static void WFLBY_CONNECT_WIN_Exit( WFLBY_WINWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ÁƒZ[ƒW•`‰æ
+ *	@brief	ãƒ¡ã£ã‚»ãƒ¼ã‚¸æç”»
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	strid		•¶Žš—ñ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	strid		æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_WIN_PrintWait( WFLBY_WINWK* p_wk, u32 strid )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çÁ‚·
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰æ¶ˆã™
 	if( GF_MSG_PrintEndCheck( p_wk->msgno ) ){
 		GF_STR_PrintForceStop( p_wk->msgno );
 	}
 	
-	// ƒEƒBƒ“ƒhƒE‚ÌƒNƒŠ[ƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	MSGMAN_GetString( p_wk->p_msgman, strid, p_wk->p_tmp );
 	WORDSET_ExpandStr( p_wk->p_wordset, p_wk->p_str, p_wk->p_tmp );
 
@@ -1419,12 +1419,12 @@ static void WFLBY_CONNECT_WIN_PrintWait( WFLBY_WINWK* p_wk, u32 strid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW‚ªI—¹‚µ‚½‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒçµ‚äº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- 	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ 	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_CONNECT_WIN_PrintEndWait( const WFLBY_WINWK* cp_wk )
@@ -1437,18 +1437,18 @@ static BOOL WFLBY_CONNECT_WIN_PrintEndWait( const WFLBY_WINWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹“Á‰»•`‰æŠÖ”
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«ç‰¹åŒ–æç”»é–¢æ•°
  *
- *	@param	p_wk		ƒ[ƒN	
- *	@param	strid		•¶Žš—ñID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯	
+ *	@param	strid		æ–‡å­—åˆ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_WIN_PrintTitle( WFLBY_WINWK* p_wk, u32 strid )
 {
-	// ƒEƒBƒ“ƒhƒE‚ÌƒNƒŠ[ƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 0 );
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	MSGMAN_GetString( p_wk->p_msgman, strid, p_wk->p_tmp );
 	WORDSET_ExpandStr( p_wk->p_wordset, p_wk->p_str, p_wk->p_tmp );
 
@@ -1461,22 +1461,22 @@ static void WFLBY_CONNECT_WIN_PrintTitle( WFLBY_WINWK* p_wk, u32 strid )
 #ifdef WFLBY_CONNECT_DEBUG_START
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒoƒbƒNŽ–€‚Ì•\Ž¦
+ *	@brief	ãƒ‡ãƒãƒƒã‚¯äº‹é …ã®è¡¨ç¤º
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	strid		•¶Žš—ñ
- *	@param	num			”Žš
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	strid		æ–‡å­—åˆ—
+ *	@param	num			æ•°å­—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_WIN_PrintDEBUG( WFLBY_WINWK* p_wk, u32 strid, u32 num )
 {
-	// ƒ[ƒhƒZƒbƒg‚É”ŽšÝ’è
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«æ•°å­—è¨­å®š
 	WORDSET_RegisterNumber( p_wk->p_wordset, 0, num, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
 
-	// ƒEƒBƒ“ƒhƒE‚ÌƒNƒŠ[ƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	MSGMAN_GetString( p_wk->p_debug_msgman, strid, p_wk->p_tmp );
 	WORDSET_ExpandStr( p_wk->p_wordset, p_wk->p_str, p_wk->p_tmp );
 
@@ -1495,13 +1495,13 @@ static void WFLBY_CONNECT_WIN_PrintDEBUG( WFLBY_WINWK* p_wk, u32 strid, u32 num 
 
 static void WFLBY_CONNECT_WIN_PrintDEBUG2( WFLBY_WINWK* p_wk, u32 strid, u32 item )
 {
-	// ƒ[ƒhƒZƒbƒg‚É”ŽšÝ’è
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«æ•°å­—è¨­å®š
 	WORDSET_RegisterWiFiLobbyItemName( p_wk->p_wordset, 0, item );
 
-	// ƒEƒBƒ“ƒhƒE‚ÌƒNƒŠ[ƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	MSGMAN_GetString( p_wk->p_debug_msgman, strid, p_wk->p_tmp );
 	WORDSET_ExpandStr( p_wk->p_wordset, p_wk->p_str, p_wk->p_tmp );
 
@@ -1522,10 +1522,10 @@ static void WFLBY_CONNECT_WIN_PrintDEBUG2( WFLBY_WINWK* p_wk, u32 strid, u32 ite
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒhƒZƒbƒg‚ÉƒGƒ‰[ƒiƒ“ƒo[‚ðÝ’è‚·‚é
+ *	@brief	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«ã‚¨ãƒ©ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	number		”Žš
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	number		æ•°å­—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_CONNECT_WIN_SetErrNumber( WFLBY_WINWK* p_wk, u32 number )

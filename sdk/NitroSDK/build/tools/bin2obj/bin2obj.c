@@ -12,25 +12,25 @@
 
   $Log: bin2obj.c,v $
   Revision 1.7  2006/07/21 07:57:19  yasu
-  PowerPC ‘Î‰ž
+  PowerPC å¯¾å¿œ
 
   Revision 1.6  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.5  2005/06/14 00:57:07  yasu
-  -s ƒIƒvƒVƒ‡ƒ“‚Ì’Ç‰Á
+  -s ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¿½åŠ 
 
   Revision 1.4  2005/06/13 08:52:26  yasu
-  %f ‚ðƒVƒ“ƒ{ƒ‹–¼‚É‘Î‰ž
+  %f ã‚’ã‚·ãƒ³ãƒœãƒ«åã«å¯¾å¿œ
 
   Revision 1.3  2005/06/13 02:56:34  yasu
-  ƒIƒvƒVƒ‡ƒ“‚ÌC³AƒeƒXƒgì¬‚É‚æ‚é“®ì‚ÌŠm”F
+  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ä¿®æ­£ã€ãƒ†ã‚¹ãƒˆä½œæˆã«ã‚ˆã‚‹å‹•ä½œã®ç¢ºèª
 
   Revision 1.2  2005/06/10 12:55:42  yasu
-  1st ƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO
+  1st ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°
 
   Revision 1.1  2005/06/10 00:43:01  yasu
-  ‰Šú”Å
+  åˆæœŸç‰ˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -39,7 +39,7 @@
 /*---------------------------------------------------------------------------*
   Name:         main
 
-  Description:  bin2obj ƒƒCƒ“
+  Description:  bin2obj ãƒ¡ã‚¤ãƒ³
  *---------------------------------------------------------------------------*/
 int main(int argc, char *argv[])
 {
@@ -56,18 +56,18 @@ int main(int argc, char *argv[])
 /*---------------------------------------------------------------------------*
   Name:         bin2obj
 
-  Description:  ƒIƒuƒWƒFƒNƒgî•ñ‚ðo—Í‚·‚é
+  Description:  ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã‚’å‡ºåŠ›ã™ã‚‹
 
-  Arguments:    t     ˆ—Œã‚Ì bin2obj ˆø”
+  Arguments:    t     å‡¦ç†å¾Œã® bin2obj å¼•æ•°
   
-  Returns:      TRUE ¬Œ÷  FALSE Ž¸”s
+  Returns:      TRUE æˆåŠŸ  FALSE å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL bin2obj(const Bin2ObjArgs * t)
 {
     Object  object;
 
     //
-    // ƒIƒuƒWƒFƒNƒgƒf[ƒ^ì¬
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
     //
     object_init(&object, t->machine, t->endian);
 
@@ -81,7 +81,7 @@ BOOL bin2obj(const Bin2ObjArgs * t)
     map_section(&object);
 
     //
-    // ƒIƒuƒWƒFƒNƒgo—Í
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‡ºåŠ›
     //
     if (!output_object(&object, t->object_filename))
     {

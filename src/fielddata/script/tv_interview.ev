@@ -1,6 +1,6 @@
 //============================================================================================
-//						tv_interview.ev(¿–âŒ^)
-//						ƒeƒŒƒr—pƒXƒNƒŠƒvƒgEƒf[ƒ^
+//						tv_interview.ev(è³ªå•å‹)
+//						ãƒ†ãƒ¬ãƒ“ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ»ãƒ‡ãƒ¼ã‚¿
 //============================================================================================
 
 	.text
@@ -14,7 +14,7 @@
 //============================================================================================
 //============================================================================================
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgŒÄ‚Ño‚µƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘¼ã³å‡ºã—ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 
 _EVENT_DATA		ev_tv_interview_01
@@ -30,19 +30,19 @@ _EVENT_DATA		ev_tv_interview_10
 _EVENT_DATA		ev_tv_interview_11
 _EVENT_DATA		ev_tv_interview_12
 _EVENT_DATA		ev_tv_interview_13
-_EVENT_DATA		ev_tv_interview_14	//š
-_EVENT_DATA		ev_tv_interview_15	//š
-_EVENT_DATA		ev_tv_interview_16	//š
-_EVENT_DATA		ev_tv_interview_17	//š
-_EVENT_DATA		ev_tv_interview_18	//š
-_EVENT_DATA		ev_tv_interview_19	//š
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA		ev_tv_interview_14	//â˜…
+_EVENT_DATA		ev_tv_interview_15	//â˜…
+_EVENT_DATA		ev_tv_interview_16	//â˜…
+_EVENT_DATA		ev_tv_interview_17	//â˜…
+_EVENT_DATA		ev_tv_interview_18	//â˜…
+_EVENT_DATA		ev_tv_interview_19	//â˜…
+_EVENT_DATA_END						//çµ‚äº†
 
 
 //============================================================================================
 //============================================================================================
 //--------------------------------------------------------------------
-//	ƒCƒ“ƒ^ƒrƒ…[‚Ì“±“üƒƒbƒZ[ƒW‚ğo‚·
+//	ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã®å°å…¥ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™
 //--------------------------------------------------------------------
 	.macro	_TV_INTERVIEW_MSG	id, arc_id, msg_id
 	.short	EV_SEQ_TV_INTERVIEW
@@ -53,7 +53,7 @@ _EVENT_DATA_END						//I—¹
 	.endm
 
 //--------------------------------------------------------------------
-//	ƒCƒ“ƒ^ƒrƒ…[Œ‹‰Ê“o˜^ˆ—ŒÄ‚Ño‚µ
+//	ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼çµæœç™»éŒ²å‡¦ç†å‘¼ã³å‡ºã—
 //--------------------------------------------------------------------
 	.macro	_TV_INTERVIEW_ENTRY	id, ans_wk1, ans_wk2
 	.short	EV_SEQ_TV_INTERVIEW
@@ -66,88 +66,88 @@ _EVENT_DATA_END						//I—¹
 //============================================================================================
 //
 //
-//			ƒeƒŒƒr—pƒRƒ}ƒ“ƒh’è‹`
+//			ãƒ†ãƒ¬ãƒ“ç”¨ã‚³ãƒãƒ³ãƒ‰å®šç¾©
 //
 //
 //============================================================================================
 //--------------------------------------------------------------------
-//	TVƒf[ƒ^\¬060707u¿–âvƒV[ƒg
+//	TVãƒ‡ãƒ¼ã‚¿æ§‹æˆ060707ã€Œè³ªå•ã€ã‚·ãƒ¼ãƒˆ
 //
-//	GREEN@‚ÅŒŸõ
+//	GREENã€€ã§æ¤œç´¢
 //
-//	SCWK_PARAM0		í—Ş”»•Ê—p
+//	SCWK_PARAM0		ç¨®é¡åˆ¤åˆ¥ç”¨
 //--------------------------------------------------------------------
-/*ƒWƒ€§”e*/
-ev_tv_interview_01:	//Œ‡”Ô
+/*ã‚¸ãƒ åˆ¶è¦‡*/
+ev_tv_interview_01:	//æ¬ ç•ª
 	_LDVAL			SCWK_PARAM0, 1
 	_JUMP			ev_tv_interview_common
 
-/*’§íIƒoƒgƒ‹ƒ^ƒ[*/
+/*æŒ‘æˆ¦ï¼ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼*/
 ev_tv_interview_02:
 	_LDVAL			SCWK_PARAM0, 2
 	_JUMP			ev_tv_interview_common
 
-/*’§íIƒtƒ@ƒNƒgƒŠ[*/
-ev_tv_interview_03:	//Œ‡”Ô
+/*æŒ‘æˆ¦ï¼ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼*/
+ev_tv_interview_03:	//æ¬ ç•ª
 	_LDVAL			SCWK_PARAM0, 3
 	_JUMP			ev_tv_interview_common
 
-/*GREEN ‚ ‚È‚½‚Ìƒ|ƒPƒ‚ƒ“*/
+/*GREEN ã‚ãªãŸã®ãƒã‚±ãƒ¢ãƒ³*/
 ev_tv_interview_04:
 	_LDVAL			SCWK_PARAM0, 4
 	_JUMP			ev_tv_interview_common
 
-/*‚¨‚·‚·‚ß‚Ì‚Ç‚¤‚®*/
-ev_tv_interview_05:	//Œ‡”Ô
+/*ãŠã™ã™ã‚ã®ã©ã†ã*/
+ev_tv_interview_05:	//æ¬ ç•ª
 	_LDVAL			SCWK_PARAM0, 5
 	_JUMP			ev_tv_interview_common
 
-/*GREEN ‚¨‹C‚É“ü‚è‚Ìƒ|ƒPƒbƒ`*/
+/*GREEN ãŠæ°—ã«å…¥ã‚Šã®ãƒã‚±ãƒƒãƒ*/
 ev_tv_interview_06:
 	_LDVAL			SCWK_PARAM0, 6
 	_JUMP			ev_tv_interview_common
 
-/*’§íIƒRƒ“ƒeƒXƒgI*/
+/*æŒ‘æˆ¦ï¼ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼*/
 ev_tv_interview_07:
 	_LDVAL			SCWK_PARAM0, 7
 	_JUMP			ev_tv_interview_common
 
-/*ƒ|ƒPƒ‚ƒ“‚É—á‚¦‚½‚çH*/
-ev_tv_interview_08:	//Œ‡”Ô
+/*ãƒã‚±ãƒ¢ãƒ³ã«ä¾‹ãˆãŸã‚‰ï¼Ÿ*/
+ev_tv_interview_08:	//æ¬ ç•ª
 	_LDVAL			SCWK_PARAM0, 8
 	_JUMP			ev_tv_interview_common
 
-/*GREEN ƒ|ƒPƒ‚ƒ“ƒNƒŠƒbƒvI*/
+/*GREEN ãƒã‚±ãƒ¢ãƒ³ã‚¯ãƒªãƒƒãƒ—ï¼*/
 ev_tv_interview_09:
 	_LDVAL			SCWK_PARAM0, 9
 	_JUMP			ev_tv_interview_common
 
-/*GREEN «Šif’f*/
+/*GREEN æ€§æ ¼è¨ºæ–­*/
 ev_tv_interview_10:
 	_LDVAL			SCWK_PARAM0, 10
 	_JUMP			ev_tv_interview_common
 
-/*GREEN ƒ|ƒtƒBƒ“—¿—*/
+/*GREEN ãƒãƒ•ã‚£ãƒ³æ–™ç†*/
 ev_tv_interview_11:
 	_LDVAL			SCWK_PARAM0, 11
 	_JUMP			ev_tv_interview_common
 
-/*ŒğŠ·‚µ‚½ƒ|ƒPƒ‚ƒ“*/
-ev_tv_interview_12:	//Œ‡”Ô
+/*äº¤æ›ã—ãŸãƒã‚±ãƒ¢ãƒ³*/
+ev_tv_interview_12:	//æ¬ ç•ª
 	_LDVAL			SCWK_PARAM0, 12
 	_JUMP			ev_tv_interview_common
 
-/*˜A‚ê•à‚«–‹i*/
+/*é€£ã‚Œæ­©ãæº€å–«*/
 ev_tv_interview_13:
 	_LDVAL			SCWK_PARAM0, 13
 	_JUMP			ev_tv_interview_common
 
-/*ƒoƒgƒ‹ƒXƒe[ƒWš*/
+/*ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸â˜…*/
 ev_tv_interview_14:
 	_LDVAL			SCWK_PARAM0, 14
 	_JUMP			ev_tv_interview_common
 
-/*‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš*/
+/*ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…*/
 ev_tv_interview_15:
 	_IFVAL_JUMP		SYS_WORK_INTERVIEW_NO,EQ,1,ev_tv_interview_16
 	_IFVAL_JUMP		SYS_WORK_INTERVIEW_NO,EQ,2,ev_tv_interview_17
@@ -156,22 +156,22 @@ ev_tv_interview_15:
 	_LDVAL			SCWK_PARAM0, 15
 	_JUMP			ev_tv_interview_common
 
-/*‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš*/
+/*ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…*/
 ev_tv_interview_16:
 	_LDVAL			SCWK_PARAM0, 16
 	_JUMP			ev_tv_interview_common
 
-/*‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš*/
+/*ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…*/
 ev_tv_interview_17:
 	_LDVAL			SCWK_PARAM0, 17
 	_JUMP			ev_tv_interview_common
 
-/*‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš*/
+/*ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…*/
 ev_tv_interview_18:
 	_LDVAL			SCWK_PARAM0, 18
 	_JUMP			ev_tv_interview_common
 
-/*ƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µš*/
+/*ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—â˜…*/
 ev_tv_interview_19:
 	_LDVAL			SCWK_PARAM0, 19
 	_JUMP			ev_tv_interview_common
@@ -179,62 +179,62 @@ ev_tv_interview_19:
 
 //--------------------------------------------------------------------
 //--------------------------------------------------------------------
-/*‹¤’Êˆ—*/
+/*å…±é€šå‡¦ç†*/
 ev_tv_interview_common:
 	_TALK_OBJ_START
 
-	/*ƒCƒ“ƒ^ƒrƒ…ƒA[‚ÌoŒ»ƒ`ƒFƒbƒN*/
+	/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ã®å‡ºç¾ãƒã‚§ãƒƒã‚¯*/
 	_TV_INTERVIEWER_CHECK	SCWK_PARAM0, SCWK_ANSWER
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,0, ev_tv_interview_after	/*oŒ»‚µ‚Ä‚È‚¢‚Í¿–â“š‚¦‚½Œã‚Ö*/
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0, ev_tv_interview_after	/*å‡ºç¾ã—ã¦ãªã„æ™‚ã¯è³ªå•ç­”ãˆãŸå¾Œã¸*/
 
-	/*u‚¨‚Í‚È‚µ@‚«‚©‚¹‚Ä@‚à‚ç‚¦‚Ü‚·‚©Hv*/
+	/*ã€ŒãŠã¯ãªã—ã€€ãã‹ã›ã¦ã€€ã‚‚ã‚‰ãˆã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG			msg_tv_interview_00_01
 	_YES_NO_WIN			SCWK_ANSWER
-	_IFVAL_JUMP			SCWK_ANSWER, EQ, 0, ev_tv_interview_accept	/*u‚Í‚¢v*/
-	_JUMP				ev_tv_interview_refuse						/*u‚¢‚¢‚¦v*/
+	_IFVAL_JUMP			SCWK_ANSWER, EQ, 0, ev_tv_interview_accept	/*ã€Œã¯ã„ã€*/
+	_JUMP				ev_tv_interview_refuse						/*ã€Œã„ã„ãˆã€*/
 	_END
 
 
 //--------------------------------------------------------------------
-/*							u‚Í‚¢v								*/
+/*							ã€Œã¯ã„ã€								*/
 //--------------------------------------------------------------------
 ev_tv_interview_accept:
-	/*ƒCƒ“ƒ^ƒrƒ…[‚Ì“±“üƒƒbƒZ[ƒW‚ğo‚·(id,arc,msg)*/
+	/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã®å°å…¥ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™(id,arc,msg)*/
 	_TV_INTERVIEW_MSG	SCWK_PARAM0, SCWK_TEMP0, SCWK_TEMP1
 	_TALKMSG_ARC		SCWK_TEMP0, SCWK_TEMP1
 
-	/*«Šif’f‚Ì*/
+	/*æ€§æ ¼è¨ºæ–­ã®æ™‚*/
 	_IFVAL_JUMP			SCWK_PARAM0,EQ,10, ev_tv_interview_ask_poketype
 
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	_TALK_CLOSE
 
-	/*ŠÈˆÕ‰ï˜b“ü—Í*/
+	/*ç°¡æ˜“ä¼šè©±å…¥åŠ›*/
 	_PMS_INPUT_SINGLE	SCWK_ANSWER, SCWK_TEMP0, SCWK_TEMP1
 	_SET_MAP_PROC
 
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒLƒƒƒ“ƒZƒ‹‚µ‚½‚ç*/
+	/*ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸã‚‰*/
 	_IFVAL_JUMP			SCWK_ANSWER, EQ, 0, ev_tv_interview_cancel
 
-	/*ƒCƒ“ƒ^ƒrƒ…[Œ‹‰Ê“o˜^ˆ—ŒÄ‚Ño‚µ*/
+	/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼çµæœç™»éŒ²å‡¦ç†å‘¼ã³å‡ºã—*/
 	_TV_INTERVIEW_ENTRY	SCWK_PARAM0, SCWK_TEMP0, SCWK_TEMP1
 
-	/*ƒCƒ“ƒ^ƒrƒ…[“š‚¦‚½Œã‚Ö*/
+	/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ç­”ãˆãŸå¾Œã¸*/
 	_JUMP				ev_tv_interview_after
 	_END
 
 
 //--------------------------------------------------------------------
-/*				«Šif’f‚Ì(ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚P‚V‘ğ)					*/
+/*				æ€§æ ¼è¨ºæ–­ã®æ™‚(ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ï¼‘ï¼—æŠ)					*/
 //--------------------------------------------------------------------
 ev_tv_interview_ask_poketype:
 	_BMPLIST_INIT_EX	1,1,0,1,SCWK_TEMP0
-	_BMPLIST_MAKE_LIST		msg_tv_interview_type01, EV_WIN_TALK_MSG_NONE, 1	/*ƒm[ƒ}ƒ‹*/
-	_BMPLIST_MAKE_LIST		msg_tv_interview_type02, EV_WIN_TALK_MSG_NONE, 2	/*‚Ù‚Ì‚¨*/
+	_BMPLIST_MAKE_LIST		msg_tv_interview_type01, EV_WIN_TALK_MSG_NONE, 1	/*ãƒãƒ¼ãƒãƒ«*/
+	_BMPLIST_MAKE_LIST		msg_tv_interview_type02, EV_WIN_TALK_MSG_NONE, 2	/*ã»ã®ãŠ*/
 	_BMPLIST_MAKE_LIST		msg_tv_interview_type03, EV_WIN_TALK_MSG_NONE, 3
 	_BMPLIST_MAKE_LIST		msg_tv_interview_type04, EV_WIN_TALK_MSG_NONE, 4
 	_BMPLIST_MAKE_LIST		msg_tv_interview_type05, EV_WIN_TALK_MSG_NONE, 5
@@ -248,26 +248,26 @@ ev_tv_interview_ask_poketype:
 	_BMPLIST_MAKE_LIST		msg_tv_interview_type13, EV_WIN_TALK_MSG_NONE, 13
 	_BMPLIST_MAKE_LIST		msg_tv_interview_type14, EV_WIN_TALK_MSG_NONE, 14
 	_BMPLIST_MAKE_LIST		msg_tv_interview_type15, EV_WIN_TALK_MSG_NONE, 15
-	_BMPLIST_MAKE_LIST		msg_tv_interview_type16, EV_WIN_TALK_MSG_NONE, 16	/*‚ ‚­*/
-	_BMPLIST_MAKE_LIST		msg_tv_interview_type17, EV_WIN_TALK_MSG_NONE, 17	/*‚Í‚ª‚Ë*/
+	_BMPLIST_MAKE_LIST		msg_tv_interview_type16, EV_WIN_TALK_MSG_NONE, 16	/*ã‚ã*/
+	_BMPLIST_MAKE_LIST		msg_tv_interview_type17, EV_WIN_TALK_MSG_NONE, 17	/*ã¯ãŒã­*/
 	_BMPLIST_START
 
-	/*ƒŠƒXƒg‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚½‚ç*/
+	/*ãƒªã‚¹ãƒˆã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸã‚‰*/
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,EV_WIN_B_CANCEL, ev_tv_interview_cancel
 
-	/*ƒCƒ“ƒ^ƒrƒ…[Œ‹‰Ê“o˜^ˆ—ŒÄ‚Ño‚µ*/
+	/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼çµæœç™»éŒ²å‡¦ç†å‘¼ã³å‡ºã—*/
 	_TV_INTERVIEW_ENTRY	SCWK_PARAM0, SCWK_TEMP0, SCWK_TEMP1
 
-	/*ƒCƒ“ƒ^ƒrƒ…[“š‚¦‚½Œã‚Ö*/
+	/*ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ç­”ãˆãŸå¾Œã¸*/
 	_JUMP				ev_tv_interview_after
 	_END
 
 
 //--------------------------------------------------------------------
-/*					ƒCƒ“ƒ^ƒrƒ…[‚É“š‚¦‚½Œã‚ÌƒƒbƒZ[ƒW				*/
+/*					ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã«ç­”ãˆãŸå¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸				*/
 //--------------------------------------------------------------------
 ev_tv_interview_after:
-	/*u‚¨‚Í‚È‚µ@‚ ‚è‚ª‚Æ‚¤@‚²‚´‚¢‚Ü‚·Iv*/
+	/*ã€ŒãŠã¯ãªã—ã€€ã‚ã‚ŠãŒã¨ã†ã€€ã”ã–ã„ã¾ã™ï¼ã€*/
 	_TALKMSG			msg_tv_interview_00_03
 	_LAST_KEYWAIT
 	_JUMP				ev_tv_interview_end
@@ -275,11 +275,11 @@ ev_tv_interview_after:
 
 
 //--------------------------------------------------------------------
-/*					u‚¢‚¢‚¦vAƒLƒƒƒ“ƒZƒ‹							*/
+/*					ã€Œã„ã„ãˆã€ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«							*/
 //--------------------------------------------------------------------
 ev_tv_interview_refuse:
 ev_tv_interview_cancel:
-	/*u‚ ‚ç‚ç@‚»‚ê‚Í@‚´‚ñ‚Ë‚ñ@‚Å‚·v*/
+	/*ã€Œã‚ã‚‰ã‚‰ã€€ãã‚Œã¯ã€€ã–ã‚“ã­ã‚“ã€€ã§ã™ã€*/
 	_TALKMSG			msg_tv_interview_00_02
 	_LAST_KEYWAIT
 	_JUMP				ev_tv_interview_end
@@ -287,7 +287,7 @@ ev_tv_interview_cancel:
 
 
 //--------------------------------------------------------------------
-/*							‹¤’ÊI—¹								*/
+/*							å…±é€šçµ‚äº†								*/
 //--------------------------------------------------------------------
 ev_tv_interview_end:
 	_TALK_CLOSE

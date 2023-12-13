@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_save.c
- * @brief	’ÊM‚ğg‚Á‚½”Ä—pŠÖ”
+ * @brief	é€šä¿¡ã‚’ä½¿ã£ãŸæ±ç”¨é–¢æ•°
  * @author	Katsumi Ohno
  * @date    2006.03.14
  */
@@ -13,7 +13,7 @@
 #include "communication/comm_save.h"
 
 //==============================================================================
-// ’ÊM“¯Šú—p’è‹`
+// é€šä¿¡åŒæœŸç”¨å®šç¾©
 //==============================================================================
 #define COMM_SAVE_SYNCHRO_NO1	( 111 )
 #define COMM_SAVE_SYNCHRO_NO2	( 112 )
@@ -21,7 +21,7 @@
 
 
 //==============================================================================
-// ƒV[ƒPƒ“ƒX’è‹`
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
 //==============================================================================
 enum{
 	COMMSAVE_SEQ_START=0,
@@ -34,7 +34,7 @@ enum{
 };
 //==============================================================================
 /**
- * @brief   ’ÊM“¯ŠúƒZ[ƒuˆ—‰Šú‰»
+ * @brief   é€šä¿¡åŒæœŸã‚»ãƒ¼ãƒ–å‡¦ç†åˆæœŸåŒ–
  *
  * @param   savedata		
  * @param   BlockID		
@@ -50,33 +50,33 @@ void CommSyncronizeSaveInit( int *seq )
 
 //==============================================================================
 /**
- * @brief   ’ÊM“¯ŠúƒZ[ƒuƒV[ƒPƒ“ƒX
+ * @brief   é€šä¿¡åŒæœŸã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param   savedata	ƒZ[ƒuƒf[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒXŠÇ——p‚í[‚­‚Ìƒ|ƒCƒ“ƒ^
+ * @param   savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç®¡ç†ç”¨ã‚ãƒ¼ãã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int			0:ˆ—’†	1:I—¹
+ * @retval  int			0:å‡¦ç†ä¸­	1:çµ‚äº†
  */
 //==============================================================================
 int CommSyncronizeSave( SAVEDATA *savedata, int BlockID, int *seq )
 {
 	SAVE_RESULT result;
 	switch(*seq){
-	// 1‰ñ–Ú‚Ì“¯ŠúŠJn
+	// 1å›ç›®ã®åŒæœŸé–‹å§‹
 	case COMMSAVE_SEQ_START:
 		CommTimingSyncStart( COMM_SAVE_SYNCHRO_NO1 );
 		*seq = COMMSAVE_SEQ_SYNCRO1;
 		break;
 
-	// “¯ŠúI—¹{ƒZ[ƒu‰Šú‰»
+	// åŒæœŸçµ‚äº†ï¼‹ã‚»ãƒ¼ãƒ–åˆæœŸåŒ–
 	case COMMSAVE_SEQ_SYNCRO1:
 		if(CommIsTimingSync(COMM_SAVE_SYNCHRO_NO1)){
 			SaveData_DivSave_Init(savedata, BlockID);
 			*seq = COMMSAVE_SEQ_SAVE;
-			OS_Printf("“¯Šú‚P‰ñ–Ú\n");
+			OS_Printf("åŒæœŸï¼‘å›ç›®\n");
 		}
 		break;
-	// ƒZ[ƒu
+	// ã‚»ãƒ¼ãƒ–
 	case COMMSAVE_SEQ_SAVE:
 		result = SaveData_DivSave_Main(savedata);
 		GF_ASSERT(result != SAVE_RESULT_OK);
@@ -84,31 +84,31 @@ int CommSyncronizeSave( SAVEDATA *savedata, int BlockID, int *seq )
 		if (result == SAVE_RESULT_LAST){
 			*seq = COMMSAVE_SEQ_SYNCRO2;
 			CommTimingSyncStart( COMM_SAVE_SYNCHRO_NO2 );
-			OS_Printf("ƒZ[ƒu‘O”¼I—¹\n");
+			OS_Printf("ã‚»ãƒ¼ãƒ–å‰åŠçµ‚äº†\n");
 		}
 		break;
-	// 2‰ñ–Ú‚Ì“¯Šú
+	// 2å›ç›®ã®åŒæœŸ
 	case COMMSAVE_SEQ_SYNCRO2:
 		if(CommIsTimingSync(COMM_SAVE_SYNCHRO_NO2)){
 			*seq = COMMSAVE_SEQ_SAVE_FINISH;
-			OS_Printf("“¯Šú‚Q‰ñ–Ú\n");
+			OS_Printf("åŒæœŸï¼’å›ç›®\n");
 		}
 		break;
-	// ƒZ[ƒuc‚èƒZƒNƒ^‘‚«‚İˆ—
+	// ã‚»ãƒ¼ãƒ–æ®‹ã‚Šã‚»ã‚¯ã‚¿æ›¸ãè¾¼ã¿å‡¦ç†
 	case COMMSAVE_SEQ_SAVE_FINISH:
 		result = SaveData_DivSave_Main(savedata);
 		GF_ASSERT(result != SAVE_RESULT_NG);
 		GF_ASSERT(result != SAVE_RESULT_LAST);
 		if (result == SAVE_RESULT_OK) {
-			OS_Printf("ƒZ[ƒuŒã”¼I—¹\n");
+			OS_Printf("ã‚»ãƒ¼ãƒ–å¾ŒåŠçµ‚äº†\n");
 			*seq = COMMSAVE_SEQ_SYNCRO3;
 		}
 		break;
-	// I—¹“¯Šú
+	// çµ‚äº†åŒæœŸ
 	case COMMSAVE_SEQ_SYNCRO3:
 			*seq = COMMSAVE_SEQ_END;
 		break;
-	// I—¹
+	// çµ‚äº†
 	case COMMSAVE_SEQ_END:
 		return 1;
 		break;

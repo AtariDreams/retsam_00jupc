@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ‰ƒbƒp[ƒ†[ƒeƒBƒŠƒeƒB[ ƒ\[ƒX
+ * @brief ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ©ãƒƒãƒ‘ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ¼ ã‚½ãƒ¼ã‚¹
  */
 
 #include <lobby/dwci_lobby.h>
@@ -26,7 +26,7 @@
 
 
 /** 
- * @brief ’èŠúˆ—Bó‘Ô‚ğ‘JˆÚ‚³‚¹‚Ü‚·B
+ * @brief å®šæœŸå‡¦ç†ã€‚çŠ¶æ…‹ã‚’é·ç§»ã•ã›ã¾ã™ã€‚
  */
 void PPW_LobbyInnerProfile::Process()
 {
@@ -38,7 +38,7 @@ void PPW_LobbyInnerProfile::Process()
         {
             break;
         }
-        // STATE_DATARECVED‚É‚È‚Á‚½ê‡‚Íready‚Ìƒ`ƒFƒbƒN‚às‚¤‚Ì‚Åbreak‚µ‚È‚¢BƒXƒe[ƒg‚Ì‘JˆÚ‚ª’x‚êAæ‚É©•ª‚ªjoin‚·‚é‚Ì‚ğ–h‚®B
+        // STATE_DATARECVEDã«ãªã£ãŸå ´åˆã¯readyã®ãƒã‚§ãƒƒã‚¯ã‚‚è¡Œã†ã®ã§breakã—ãªã„ã€‚ã‚¹ãƒ†ãƒ¼ãƒˆã®é·ç§»ãŒé…ã‚Œã€å…ˆã«è‡ªåˆ†ãŒjoinã™ã‚‹ã®ã‚’é˜²ãã€‚
     case STATE_DATARECVED:
         if(systemProfile.Get().ready)
         {
@@ -62,12 +62,12 @@ void PPW_LobbyInnerProfile::Process()
 
 
 /** 
- * @brief ‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Îƒ†[ƒU‚ğ“o˜^‚µ‚Ü‚·B
+ * @brief ã™ã§ã«ç™»éŒ²ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ãƒ¦ãƒ¼ã‚¶ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
  * 
- * @param id ƒ†[ƒUID
+ * @param id ãƒ¦ãƒ¼ã‚¶ID
  * 
- * @retval TRUE “o˜^‚µ‚½B
- * @retval FALSE “o˜^Ï‚İB
+ * @retval TRUE ç™»éŒ²ã—ãŸã€‚
+ * @retval FALSE ç™»éŒ²æ¸ˆã¿ã€‚
  */
 BOOL PPW_LobbyProfileManager::AddProfile(s32 id)
 {
@@ -77,7 +77,7 @@ BOOL PPW_LobbyProfileManager::AddProfile(s32 id)
     ret = profiles.insert(newProfile);
     if(!ret.second)
     {
-        // “o˜^Ï‚İ
+        // ç™»éŒ²æ¸ˆã¿
         delete newProfile;
         return TRUE;
     }
@@ -85,12 +85,12 @@ BOOL PPW_LobbyProfileManager::AddProfile(s32 id)
 }
 
 /** 
- * @brief ƒ†[ƒU‚ğíœ‚µ‚Ü‚·B
+ * @brief ãƒ¦ãƒ¼ã‚¶ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
  * 
- * @param id ƒ†[ƒUID
+ * @param id ãƒ¦ãƒ¼ã‚¶ID
  * 
- * @retval TRUE íœ‚µ‚½B
- * @retval FALSE ‘¶İ‚µ‚È‚©‚Á‚½B
+ * @retval TRUE å‰Šé™¤ã—ãŸã€‚
+ * @retval FALSE å­˜åœ¨ã—ãªã‹ã£ãŸã€‚
  */
 BOOL PPW_LobbyProfileManager::RemoveProfile(s32 id)
 {
@@ -107,12 +107,12 @@ BOOL PPW_LobbyProfileManager::RemoveProfile(s32 id)
 }
 
 /** 
- * @brief ƒ†[ƒU‚ğ’T‚µ‚Ü‚·B
+ * @brief ãƒ¦ãƒ¼ã‚¶ã‚’æ¢ã—ã¾ã™ã€‚
  * 
- * @param id ƒ†[ƒUID
+ * @param id ãƒ¦ãƒ¼ã‚¶ID
  * 
- * @retval ƒvƒƒtƒB[ƒ‹ Œ©‚Â‚©‚Á‚½B
- * @retval NULL Œ©‚Â‚©‚ç‚È‚©‚Á‚½B
+ * @retval ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ« è¦‹ã¤ã‹ã£ãŸã€‚
+ * @retval NULL è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚
  */
 PPW_LobbyInnerProfile* PPW_LobbyProfileManager::FindProfile(s32 id)
 {
@@ -125,7 +125,7 @@ PPW_LobbyInnerProfile* PPW_LobbyProfileManager::FindProfile(s32 id)
 }
 
 /** 
- * @brief ƒ†[ƒUî•ñ‚ğ‘S‚Äíœ‚µ‚Ü‚·B
+ * @brief ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã‚’å…¨ã¦å‰Šé™¤ã—ã¾ã™ã€‚
  */
 void PPW_LobbyProfileManager::ClearProfile()
 {
@@ -137,22 +137,22 @@ void PPW_LobbyProfileManager::ClearProfile()
 }
 
 /** 
- * @brief ActivateÏ‚İQ‰ÁÒ‚ª–ˆõ‚Å‚ ‚é‚©’²‚×‚Ü‚·B
+ * @brief Activateæ¸ˆã¿å‚åŠ è€…ãŒæº€å“¡ã§ã‚ã‚‹ã‹èª¿ã¹ã¾ã™ã€‚
  * 
- * @retval TRUE –ˆõB
- * @retval FALSE ‚Ü‚¾B
+ * @retval TRUE æº€å“¡ã€‚
+ * @retval FALSE ã¾ã ã€‚
  */
 BOOL PPW_LobbyProfileManager::IsFull() const
 {
-    // •‰‰×‚ğŒy‚­‚·‚é‚½‚ß‚É‚Ü‚¸vector‚Ì‘å‚«‚³‚Å”äŠr‚µAŸ‚ÉactivateÏ‚İ‚ÌƒTƒCƒY‚ğŠm”F‚·‚é
-    // ©•ª‚Ì•ª‚ğ1ƒvƒ‰ƒX‚µ‚Ä”‚¦‚é
+    // è² è·ã‚’è»½ãã™ã‚‹ãŸã‚ã«ã¾ãšvectorã®å¤§ãã•ã§æ¯”è¼ƒã—ã€æ¬¡ã«activateæ¸ˆã¿ã®ã‚µã‚¤ã‚ºã‚’ç¢ºèªã™ã‚‹
+    // è‡ªåˆ†ã®åˆ†ã‚’1ãƒ—ãƒ©ã‚¹ã—ã¦æ•°ãˆã‚‹
     return profiles.size()+1 == PPW_LOBBY_MAX_PLAYER_NUM_MAIN && EnumId().size()+1 == PPW_LOBBY_MAX_PLAYER_NUM_MAIN;
 }
 
 /** 
- * @brief ActivateÏ‚İQ‰ÁÒ‘Sˆõ‚Ìpid‚ğ—ñ‹“‚µ‚Ü‚·B
+ * @brief Activateæ¸ˆã¿å‚åŠ è€…å…¨å“¡ã®pidã‚’åˆ—æŒ™ã—ã¾ã™ã€‚
  * 
- * @retval ƒ†[ƒUID‚ÌvectorB
+ * @retval ãƒ¦ãƒ¼ã‚¶IDã®vectorã€‚
  */
 std::vector<s32, DWCi_Allocator<s32> > PPW_LobbyProfileManager::EnumId() const
 {
@@ -169,11 +169,11 @@ std::vector<s32, DWCi_Allocator<s32> > PPW_LobbyProfileManager::EnumId() const
 }
 
 /** 
- * @brief ©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ğ‰Šú‰»‚µ‚Ü‚·B
+ * @brief è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
  * 
- * @param id ƒ†[ƒUIDB
- * @param userProfile ƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹B
- * @param userProfileSize ƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹ƒTƒCƒYB
+ * @param id ãƒ¦ãƒ¼ã‚¶IDã€‚
+ * @param userProfile ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã€‚
+ * @param userProfileSize ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚ºã€‚
  */
 void PPW_LobbyProfileManager::InitializeMyProfile(s32 id, const u8* userProfile, u32 userProfileSize)
 {
@@ -184,23 +184,23 @@ void PPW_LobbyProfileManager::InitializeMyProfile(s32 id, const u8* userProfile,
 }
 
 /** 
- * @brief Q‰ÁÒ‘Sˆõ‚ÌƒvƒƒtƒB[ƒ‹‚ğóM‚µ‚½‚©’²‚×‚Ü‚·B
+ * @brief å‚åŠ è€…å…¨å“¡ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å—ä¿¡ã—ãŸã‹èª¿ã¹ã¾ã™ã€‚
  * 
- * @retval TRUE óM‚µ‚½B
- * @retval FALSE ‚Ü‚¾B
+ * @retval TRUE å—ä¿¡ã—ãŸã€‚
+ * @retval FALSE ã¾ã ã€‚
  */
 BOOL PPW_LobbyProfileManager::CheckAllProfilesRecved() const
 {
-    // ƒvƒƒtƒB[ƒ‹‚ğóM‚µ‚Ä‚¢‚È‚¢‚à‚Ì‚ğ’T‚·
+    // ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å—ä¿¡ã—ã¦ã„ãªã„ã‚‚ã®ã‚’æ¢ã™
     PPW_ProfileContainer::const_iterator it = std::find_if(profiles.begin(), profiles.end(), std::not1(std::mem_fun(&PPW_LobbyInnerProfile::IsDataRecved)));
     return it == profiles.end();
 }
 
-// ’èŠúÀs
-// •K—v‚É‰‚¶‚Äƒ†[ƒUÚ‘±ƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ô
+// å®šæœŸå®Ÿè¡Œ
+// å¿…è¦ã«å¿œã˜ã¦ãƒ¦ãƒ¼ã‚¶æ¥ç¶šã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã¶
 void PPW_LobbyProfileManager::Process()
 {
-    // Ú‘±‚µ‚½l‚ÌƒvƒƒtƒB[ƒ‹“o˜^Šm”F
+    // æ¥ç¶šã—ãŸäººã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ç™»éŒ²ç¢ºèª
     for(PPW_ProfileContainer::iterator it = profiles.begin(); it != profiles.end(); it++)
     {
         (*it)->Process();
@@ -217,7 +217,7 @@ void PPW_LobbyProfileManager::Process()
             
             PPW_LobbySystemProfile publicSystemProfile = systemProfile.ToPublicSystemProfile();
             
-            // ƒ†[ƒUÚ‘±Š®—¹ƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ô
+            // ãƒ¦ãƒ¼ã‚¶æ¥ç¶šå®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã¶
             PPW_GetLobby()->GetCallbacks().lobbyPlayerConnectedCallback((*it)->GetPid(), &publicSystemProfile, DWCi_GetVectorBuffer(userProfile.data),
                                                                             userProfile.data.size());
             (*it)->Activate();

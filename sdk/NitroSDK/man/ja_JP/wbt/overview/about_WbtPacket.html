@@ -1,44 +1,44 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>WBT�g�p���̃p�P�b�g�̗���</TITLE>
+<TITLE>WBT使用時のパケットの流れ</TITLE>
 <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </HEAD>
 <BODY>
-<H1 align="left">WBT�g�p���̃p�P�b�g�̗���</H1>
-<H2>����</H2>
+<H1 align="left">WBT使用時のパケットの流れ</H1>
+<H2>説明</H2>
 <P>
-WBT���g�p�����ۂ̃_�E�����[�h�A�y�уA�b�v���[�h���̃p�P�b�g�̗�����A�ȉ��ɐ}�Ƃ��Ď����܂��B<BR>
+WBTを使用した際のダウンロード、及びアップロード時のパケットの流れを、以下に図として示します。<BR>
 <BR>
-<FONT color="red"><B>(����)�e�q�Ԃł͔���d�ʐM�Ȃ̂ŃA�b�v���[�h�A�_�E�����[�h�������ɔ��������ꍇ�͎q�@������݂ăA�b�v���[�h���D�悳��܂��B</B></FONT><BR>
+<FONT color="red"><B>(注意)親子間では半二重通信なのでアップロード、ダウンロードが同時に発生した場合は子機側からみてアップロードが優先されます。</B></FONT><BR>
 </P>
 <HR>
-<P><B>�_�E�����[�h���̃p�P�b�g�̗���</B></P>
+<P><B>ダウンロード時のパケットの流れ</B></P>
 <P>
-�_�E�����[�h���ɐe�q�Ԃł���肳���p�P�b�g�̗���ɂ��Đ}�Ŏ����܂��B
+ダウンロード時に親子間でやり取りされるパケットの流れについて図で示します。
 </P>
 <BLOCKQUOTE><IMG src="image_WBT_Download.GIF" border="0"></BLOCKQUOTE>
 
 <HR>
-<P><B>�A�b�v���[�h���̃p�P�b�g�̗���</B></P>
+<P><B>アップロード時のパケットの流れ</B></P>
 <P>
-�����̗���͊�{�I�Ƀ_�E�����[�h�̏������e�q���]���������ł����A
-�A�b�v���[�h�́A�e�@�Ƀ_�E�����[�h�����Ă����Ȃ���΂����Ȃ��̂ŁA�q�@�̓A�b�v���[�h�������^�C�~���O�Őe�@��
- WBT_PutUserData ��p���ău���b�N���𑗂��Ēm�点��K�v������܂��B<BR>
-�i�����A�A�b�v���[�h����^�C�~���O�� RequestSync �シ���ł���A�A�b�v���[�h����u���b�N���Œ�ł���Ȃ�A
-RequestSync �̎�M�R�[���o�b�N�� WBT_GetBlockInfo ���Ăяo���Ă����܂��܂���B�j<BR>
-�A�b�v���[�h���ɐe�q�Ԃł���肳���p�P�b�g�̗���ɂ��Đ}�Ŏ����܂��B<BR>
+処理の流れは基本的にダウンロードの処理が親子反転しただけですが、
+アップロードは、親機にダウンロードをしてもらわなければいけないので、子機はアップロードしたいタイミングで親機へ
+ WBT_PutUserData を用いてブロック情報を送って知らせる必要があります。<BR>
+（もし、アップロードするタイミングが RequestSync 後すぐであり、アップロードするブロックも固定であるなら、
+RequestSync の受信コールバックで WBT_GetBlockInfo を呼び出してもかまいません。）<BR>
+アップロード時に親子間でやり取りされるパケットの流れについて図で示します。<BR>
 </P>
 <BLOCKQUOTE><IMG src="image_WBT_Upload.GIF" border="0"></BLOCKQUOTE>
 
-<H2>�Q��</H2>
-<P><CODE><A href="../list_wbt.html">WBT�֐��ꗗ</A><BR>
+<H2>参照</H2>
+<P><CODE><A href="../list_wbt.html">WBT関数一覧</A><BR>
 </CODE></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2006/03/13 ����</P>
+2006/03/13 初版</P>
 </BODY>
 </HTML>

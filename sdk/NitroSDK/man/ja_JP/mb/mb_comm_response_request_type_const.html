@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MBCommResponseRequestType</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MBCommResponseRequestType</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -32,40 +32,40 @@ typedef	enum
   </dd>
 </dl>
 
-<H2>����</H2>
-<P>�}���`�u�[�g�e�@����q�@�֒ʒm����ڑ�������\���񋓒萔�������܂��B<BR>
-�e�l�̈Ӗ��͈ȉ��̒ʂ�ł��B<BR>
+<H2>説明</H2>
+<P>マルチブート親機から子機へ通知する接続応答を表す列挙定数を示します。<BR>
+各値の意味は以下の通りです。<BR>
 <TABLE border="0">
   <TBODY>
 
     <TR>
-      <TD>�l</TD>
-      <TD>�Ӗ�</TD>
+      <TD>値</TD>
+      <TD>意味</TD>
     </TR>
 
     <TR>
       <TD>MB_COMM_RESPONSE_REQUEST_KICK</TD>
-      <TD>�q�@�̐ڑ������ۂ��Đؒf�����邱�Ƃ�\���܂��B<BR>
+      <TD>子機の接続を拒否して切断させることを表します。<BR>
 	  </TD>
     </TR>
 
     <TR>
       <TD>MB_COMM_RESPONSE_REQUEST_ACCEPT</TD>
-      <TD>�q�@�̐ڑ��������ăG���g���[�v�����󂯓���邱�Ƃ�\���܂��B<BR>
+      <TD>子機の接続を許可してエントリー要求を受け入れることを表します。<BR>
 	  </TD>
     </TR>
 
     <TR>
       <TD>MB_COMM_RESPONSE_REQUEST_DOWNLOAD</TD>
-      <TD>�q�@�̃_�E�����[�h�v���������ă_�E�����[�h�J�n��ʒm���邱�Ƃ�\���܂��B<br>
-	  <a href="parent/MB_CommStartSending.html">MB_CommStartSending</a>�֐��͂��̒萔���w�肵��<A href="parent/MB_CommResponseRequest.html">MB_CommResponseRequest</A>�֐����Ăяo�����ƂƓ����ł��B
+      <TD>子機のダウンロード要求を許可してダウンロード開始を通知することを表します。<br>
+	  <a href="parent/MB_CommStartSending.html">MB_CommStartSending</a>関数はこの定数を指定して<A href="parent/MB_CommResponseRequest.html">MB_CommResponseRequest</A>関数を呼び出すことと等価です。
 	  </TD>
     </TR>
 
     <TR>
       <TD>MB_COMM_RESPONSE_REQUEST_BOOT</TD>
-      <TD>�q�@�̃u�[�g�v���������ău�[�g�J�n��ʒm���邱�Ƃ�\���܂��B<br>
-	  <a href="parent/MB_CommBootRequest.html">MB_CommBootRequest</a>�֐��͂��̒萔���w�肵��<A href="parent/MB_CommResponseRequest.html">MB_CommResponseRequest</A>�֐����Ăяo�����ƂƓ����ł��B
+      <TD>子機のブート要求を許可してブート開始を通知することを表します。<br>
+	  <a href="parent/MB_CommBootRequest.html">MB_CommBootRequest</a>関数はこの定数を指定して<A href="parent/MB_CommResponseRequest.html">MB_CommResponseRequest</A>関数を呼び出すことと等価です。
 	  </TD>
     </TR>
 
@@ -73,17 +73,17 @@ typedef	enum
 </TABLE>
 <BR>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="parent/MB_CommResponseRequest.html">MB_CommResponseRequest</A> 
 <a href="parent/MB_CommStartSending.html">MB_CommStartSending</a> 
 <a href="parent/MB_CommBootRequest.html">MB_CommBootRequest</a>
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/09/27 �񋓒l�ǉ�<br>
-2004/08/27 ����<BR>
+2004/09/27 列挙値追加<br>
+2004/08/27 初版<BR>
 </P>
 </body>
 </html>

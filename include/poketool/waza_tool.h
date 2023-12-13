@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	waza_tool.h
- * @bfief	‹Zƒpƒ‰ƒ[ƒ^ƒc[ƒ‹ŒS
+ * @bfief	æŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ„ãƒ¼ãƒ«éƒ¡
  * @author	HisashiSogabe
  * @date	05.07.28
  */
@@ -11,7 +11,7 @@
 #ifndef	__WAZA_TOOL_H_
 #define	__WAZA_TOOL_H_
 
-//WT_WazaDataParaGet‚Åg—p‚·‚éID
+//WT_WazaDataParaGetã§ä½¿ç”¨ã™ã‚‹ID
 #define	ID_WTD_battleeffect		(0)
 #define	ID_WTD_kind				(1)
 #define	ID_WTD_damage			(2)
@@ -22,16 +22,16 @@
 #define	ID_WTD_attackrange		(7)
 #define	ID_WTD_attackpri		(8)
 #define	ID_WTD_flag				(9)
-#define	ID_WTD_ap_no			(10)			//ƒRƒ“ƒeƒXƒg—pƒpƒ‰ƒ[ƒ^@ƒAƒs[ƒ‹No
-#define	ID_WTD_contype			(11)			//ƒRƒ“ƒeƒXƒg—pƒpƒ‰ƒ[ƒ^@ƒRƒ“ƒeƒXƒg‹Zƒ^ƒCƒv
+#define	ID_WTD_ap_no			(10)			//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€€ã‚¢ãƒ”ãƒ¼ãƒ«No
+#define	ID_WTD_contype			(11)			//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã‚¿ã‚¤ãƒ—
 #define	ID_WTD_end				(12)
 
-//ƒAƒZƒ“ƒuƒ‰‚Åinclude‚³‚ê‚Ä‚¢‚éê‡‚ÍA‰º‚ÌéŒ¾‚ğ–³‹‚Å‚«‚é‚æ‚¤‚Éifndef‚ÅˆÍ‚ñ‚Å‚ ‚é
+//ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§includeã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€ä¸‹ã®å®£è¨€ã‚’ç„¡è¦–ã§ãã‚‹ã‚ˆã†ã«ifndefã§å›²ã‚“ã§ã‚ã‚‹
 #ifndef	__ASM_NO_DEF_
 
 typedef struct _ARCHANDLE  ARCHANDLE;
 
-///<‹Zƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘Ì
+///<æŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“
 typedef struct waza_table_data WAZA_TABLE_DATA;
 
 extern	void		WT_WazaTableDataGet(void *buffer);

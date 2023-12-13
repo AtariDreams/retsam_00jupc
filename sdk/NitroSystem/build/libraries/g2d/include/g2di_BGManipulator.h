@@ -29,13 +29,13 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dBGGetCharSize
 
-  Description:  �Ώ� BG �ʂ̃L�����N�^�P�ʂł̃T�C�Y���擾���܂��B
+  Description:  対象 BG 面のキャラクタ単位でのサイズを取得します。
 
-  Arguments:    pWidth:     BG �ʂ̕����i�[����o�b�t�@�ւ̃|�C���^�B
-                pHeight:    BG �ʂ̍������i�[����o�b�t�@�ւ̃|�C���^�B
-                n:          �ΏۂƂ��� BG �ʁB
+  Arguments:    pWidth:     BG 面の幅を格納するバッファへのポインタ。
+                pHeight:    BG 面の高さを格納するバッファへのポインタ。
+                n:          対象とする BG 面。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void NNSi_G2dBGGetCharSize(int* pWidth, int* pHeight, NNSG2dBGSelect n);
 
@@ -44,11 +44,11 @@ void NNSi_G2dBGGetCharSize(int* pWidth, int* pHeight, NNSG2dBGSelect n);
 /*---------------------------------------------------------------------------*
   Name:         GetBGNo
 
-  Description:  �Ώ�BG�ʂ� BG �ԍ����擾���܂��B
+  Description:  対象BG面の BG 番号を取得します。
 
-  Arguments:    n:          �Ώۂ� BG �ʁB
+  Arguments:    n:          対象の BG 面。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE int GetBGNo(NNSG2dBGSelect n)
 {
@@ -59,11 +59,11 @@ NNS_G2D_INLINE int GetBGNo(NNSG2dBGSelect n)
 /*---------------------------------------------------------------------------*
   Name:         GetBGnCNT
 
-  Description:  �Ώۂ� BG �ʂ𐧌䂷�� BGnCNT ���W�X�^�ւ̃|�C���^���擾���܂��B
+  Description:  対象の BG 面を制御する BGnCNT レジスタへのポインタを取得します。
 
-  Arguments:    n:          �ΏۂƂ��� BG �ʁB
+  Arguments:    n:          対象とする BG 面。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE REGType16v* GetBGnCNT(NNSG2dBGSelect n)
 {
@@ -76,11 +76,11 @@ NNS_G2D_INLINE REGType16v* GetBGnCNT(NNSG2dBGSelect n)
 /*---------------------------------------------------------------------------*
   Name:         IsBG03D
 
-  Description:  ���C����� BG0 ��3D�Ɋ��蓖�Ă��Ă��邩�ǂ������ׂ܂��B
+  Description:  メイン画面 BG0 が3Dに割り当てられているかどうか調べます。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      3D�Ɋ��蓖�Ă��Ă���Ȃ�TRUE�B
+  Returns:      3Dに割り当てられているならTRUE。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL IsBG03D( void )
 {
@@ -90,12 +90,12 @@ NNS_G2D_INLINE BOOL IsBG03D( void )
 /*---------------------------------------------------------------------------*
   Name:         IsMainBG
 
-  Description:  NNSG2dBGSelect �^�̒l�� ���C����� BG ��\���Ă��邩
-                ���肵�܂��B
+  Description:  NNSG2dBGSelect 型の値が メイン画面 BG を表しているか
+                判定します。
 
-  Arguments:    bg: ����Ώ�
+  Arguments:    bg: 判定対象
 
-  Returns:      ���C����� BG ��\���Ă���Ȃ� TRUE�B
+  Returns:      メイン画面 BG を表しているなら TRUE。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL IsMainBG(NNSG2dBGSelect bg)
 {
@@ -106,11 +106,11 @@ NNS_G2D_INLINE BOOL IsMainBG(NNSG2dBGSelect bg)
 /*---------------------------------------------------------------------------*
   Name:         GetBGMode*
 
-  Description:  ���݂�BG���[�h���擾���܂��B
+  Description:  現在のBGモードを取得します。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      ���݂�BG���[�h�B
+  Returns:      現在のBGモード。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE GXBGMode GetBGModeMain( void )
 {
@@ -125,12 +125,12 @@ NNS_G2D_INLINE GXBGMode GetBGModeSub( void )
 /*---------------------------------------------------------------------------*
   Name:         IsBGUseExtPltt*
 
-  Description:  �Ώۂ� BG �ʂ�S������O���t�B�b�N�G���W����
-                �g���p���b�g���g�p���邩�ǂ������肵�܂��B
+  Description:  対象の BG 面を担当するグラフィックエンジンが
+                拡張パレットを使用するかどうか判定します。
 
-  Arguments:    bg: ����Ώۂ� BG �ʁB
+  Arguments:    bg: 判定対象の BG 面。
 
-  Returns:      �g���p���b�g���L���Ȃ� TRUE�B
+  Returns:      拡張パレットが有効なら TRUE。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL IsBGUseExtPlttMain( void )
 {
@@ -150,14 +150,14 @@ NNS_G2D_INLINE BOOL IsBGUseExtPltt(NNSG2dBGSelect bg)
 /*---------------------------------------------------------------------------*
   Name:         IsSubBGExtPlttAvailable
 
-  Description:  �T�u��ʂ̊g���p���b�g�� VRAM �����蓖�Ă��Ă��邩
-                ���肵�܂��B
-                �T�u��ʂł�0123�S�X���b�g�Ɋ��蓖�Ă邩�A�S�����蓖�ĂȂ�����
-                �ǂ��炩���� VRAM �̊��蓖�Ă��s���܂���B
+  Description:  サブ画面の拡張パレットに VRAM が割り当てられているか
+                判定します。
+                サブ画面では0123全スロットに割り当てるか、全く割り当てないかの
+                どちらかしか VRAM の割り当てが行えません。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      VRAM �����蓖�Ă��Ă���Ȃ� TRUE�B
+  Returns:      VRAM が割り当てられているなら TRUE。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL IsSubBGExtPlttAvailable( void )
 {
@@ -167,12 +167,12 @@ NNS_G2D_INLINE BOOL IsSubBGExtPlttAvailable( void )
 /*---------------------------------------------------------------------------*
   Name:         IsMainBGExtPltt01Available
 
-  Description:  ���C����ʂ̊g���p���b�g�X���b�g01�� VRAM �����蓖�Ă���
-                ���邩���肵�܂��B
+  Description:  メイン画面の拡張パレットスロット01に VRAM が割り当てられて
+                いるか判定します。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      VRAM �����蓖�Ă��Ă���Ȃ� TRUE�B
+  Returns:      VRAM が割り当てられているなら TRUE。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL IsMainBGExtPltt01Available( void )
 {
@@ -186,12 +186,12 @@ NNS_G2D_INLINE BOOL IsMainBGExtPltt01Available( void )
 /*---------------------------------------------------------------------------*
   Name:         IsMainBGExtPltt23Available
 
-  Description:  ���C����ʂ̊g���p���b�g�X���b�g23�� VRAM �����蓖�Ă���
-                ���邩���肵�܂��B
+  Description:  メイン画面の拡張パレットスロット23に VRAM が割り当てられて
+                いるか判定します。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      VRAM �����蓖�Ă��Ă���Ȃ� TRUE�B
+  Returns:      VRAM が割り当てられているなら TRUE。
  *---------------------------------------------------------------------------*/
 static BOOL IsMainBGExtPltt23Available( void )
 {
@@ -205,16 +205,16 @@ static BOOL IsMainBGExtPltt23Available( void )
 /*---------------------------------------------------------------------------*
   Name:         MakeBGnCNTVal*
 
-  Description:  BGnCNT ���W�X�^�ɐݒ肷�邽�߂̒l���쐬���܂��B
+  Description:  BGnCNT レジスタに設定するための値を作成します。
 
-  Arguments:    screenSize: BG�ʂ̃T�C�Y
-                areaOver:   �G���A�I�[�o�[����
-                colorMode:  �J���[���[�h
-                screenBase: �X�N���[���x�[�X�I�t�Z�b�g
-                charBase:   �L�����N�^�x�[�X�I�t�Z�b�g
-                bgExtPltt:  �g���p���b�g�X���b�g
+  Arguments:    screenSize: BG面のサイズ
+                areaOver:   エリアオーバー処理
+                colorMode:  カラーモード
+                screenBase: スクリーンベースオフセット
+                charBase:   キャラクタベースオフセット
+                bgExtPltt:  拡張パレットスロット
 
-  Returns:     �쐬�����l�B
+  Returns:     作成した値。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE u16 MakeBGnCNTValText(
     GXBGScrSizeText screenSize,
@@ -281,11 +281,11 @@ NNS_G2D_INLINE u16 MakeBGnCNTVal256x16Pltt(
 /*---------------------------------------------------------------------------*
   Name:         GetBG*Offset
 
-  Description:  ���C����ʂ̃X�N���[��or�L�����N�^�x�[�X�I�t�Z�b�g���擾���܂��B
+  Description:  メイン画面のスクリーンorキャラクタベースオフセットを取得します。
 
-  Arguments:    �Ȃ��B
+  Arguments:    なし。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE int GetBGCharOffset(void)
 {
@@ -302,12 +302,12 @@ NNS_G2D_INLINE int GetBGScrOffset(void)
 /*---------------------------------------------------------------------------*
   Name:         GetBGn*Ptr
 
-  Description:  �Ώ� BG �ʂ̃X�N���[��or�L�����N�^�x�[�X�ւ̃|�C���^��
-                �擾���܂��B
+  Description:  対象 BG 面のスクリーンorキャラクタベースへのポインタを
+                取得します。
 
-  Arguments:    n:      �ΏۂƂȂ� BG �ʁB
+  Arguments:    n:      対象となる BG 面。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void* GetBGnCharPtr(NNSG2dBGSelect n)
 {
@@ -328,14 +328,14 @@ NNS_G2D_INLINE void* GetBGnScrPtr(NNSG2dBGSelect n)
 /*---------------------------------------------------------------------------*
   Name:         LoadBGnChar
 
-  Description:  �Ώ� BG �ʂ̃L�����N�^�f�[�^�����[�h���܂��B
+  Description:  対象 BG 面のキャラクタデータをロードします。
 
-  Arguments:    n:      �ΏۂƂȂ� BG �ʁB
-                pSrc:   ���[�h����f�[�^�ւ̃|�C���^�B
-                offset: ���[�h��̃L�����N�^�x�[�X����̃I�t�Z�b�g
-                szByte: ���[�h����f�[�^�̃T�C�Y�B
+  Arguments:    n:      対象となる BG 面。
+                pSrc:   ロードするデータへのポインタ。
+                offset: ロード先のキャラクタベースからのオフセット
+                szByte: ロードするデータのサイズ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void LoadBGnChar(NNSG2dBGSelect n, const void *pSrc, u32 offset, u32 szByte)
 {
@@ -350,17 +350,17 @@ NNS_G2D_INLINE void LoadBGnChar(NNSG2dBGSelect n, const void *pSrc, u32 offset, 
 /*---------------------------------------------------------------------------*
   Name:         SetBGnControl*
 
-  Description:  �Ώ� BG �ʂ� BGControl ���s���܂��B
+  Description:  対象 BG 面の BGControl を行います。
 
-  Arguments:    n:          �Ώۂ� BG �ʎw��B
-                screenSize: �X�N���[���T�C�Y�B
-                colorMode:  �J���[���[�h�B
-                areaOver:   �G���A�I�[�o�[�����B
-                screenBase: �X�N���[���x�[�X�u���b�N�B
-                charBase:   �L�����N�^�x�[�X�u���b�N�B
-                bgExtPltt:  �g���p���b�g�X���b�g�I���B
+  Arguments:    n:          対象の BG 面指定。
+                screenSize: スクリーンサイズ。
+                colorMode:  カラーモード。
+                areaOver:   エリアオーバー処理。
+                screenBase: スクリーンベースブロック。
+                charBase:   キャラクタベースブロック。
+                bgExtPltt:  拡張パレットスロット選択。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void SetBGnControlText(
     NNSG2dBGSelect n,

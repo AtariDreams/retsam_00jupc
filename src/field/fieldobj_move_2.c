@@ -2,7 +2,7 @@
 /**
  *
  * @file	fieldobj_move_2.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@Šî–{“®ìŒn‚»‚Ì2
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€åŸºæœ¬å‹•ä½œç³»ãã®2
  * @author	kagaya
  * @data	05.07.21
  *
@@ -18,14 +18,14 @@
 //==============================================================================
 //	define
 //==============================================================================
-///ƒgƒŒ[ƒi[ƒyƒA@eˆÚ“®’â~
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒšã‚¢ã€€è¦ªç§»å‹•åœæ­¢
 #define PAIR_TR_OYA_STA_BIT_STOP \
 	(FLDOBJ_STA_BIT_ATTR_GET_ERROR		| \
 	 FLDOBJ_STA_BIT_HEIGHT_GET_ERROR	| \
 	 FLDOBJ_STA_BIT_PAUSE_MOVE)
 
 //--------------------------------------------------------------
-///	ƒRƒs[“®ì”Ô†
+///	ã‚³ãƒ”ãƒ¼å‹•ä½œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -38,49 +38,49 @@ enum
 };
 
 //--------------------------------------------------------------
-///	•ÇˆÚ“®@—˜‚«è
+///	å£ç§»å‹•ã€€åˆ©ãæ‰‹
 //--------------------------------------------------------------
 typedef enum
 {
-	ALONG_L = 0,		///<¶
-	ALONG_R,			///<‰E
-	ALONG_LR,			///<¶‰E
+	ALONG_L = 0,		///<å·¦
+	ALONG_R,			///<å³
+	ALONG_LR,			///<å·¦å³
 }ALONG_DIR;
 
 //==============================================================================
 //	typedef
 //==============================================================================
 //--------------------------------------------------------------
-//	MV_PAIR_WORK\‘¢‘Ì
+//	MV_PAIR_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	u8 seq_no;												///<“®ì”Ô†
-	u8 jiki_init;											///<©‹@î•ñ‰Šú‰»Š®—¹
-	s16 jiki_gx;											///<©‹@ƒOƒŠƒbƒhÀ•WX
-	s16 jiki_gz;											///<©‹@ƒOƒŠƒbƒhÀ•WZ
-	u16 jiki_ac;											///<©‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh
+	u8 seq_no;												///<å‹•ä½œç•ªå·
+	u8 jiki_init;											///<è‡ªæ©Ÿæƒ…å ±åˆæœŸåŒ–å®Œäº†
+	s16 jiki_gx;											///<è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+	s16 jiki_gz;											///<è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
+	u16 jiki_ac;											///<è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
 }MV_PAIR_WORK;
 
 #define MV_PAIR_WORK_SIZE (sizeof(MV_PAIR_WORK))
 
 //--------------------------------------------------------------
-//	MV_TR_PAIR_WORK\‘¢‘Ì
+//	MV_TR_PAIR_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	u8 seq_no;											///<“®ì”Ô†
-	u8 oya_init;										///<eî•ñ‰Šú‰»Š®—¹
-	s16 oya_gx;											///<eƒOƒŠƒbƒhÀ•WX
-	s16 oya_gz;											///<eƒOƒŠƒbƒhÀ•WZ
-	u16 oya_ac;											///<©‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh
-	FIELD_OBJ_PTR oyaobj;								///<e‚Æ‚È‚éOBJ
+	u8 seq_no;											///<å‹•ä½œç•ªå·
+	u8 oya_init;										///<è¦ªæƒ…å ±åˆæœŸåŒ–å®Œäº†
+	s16 oya_gx;											///<è¦ªã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+	s16 oya_gz;											///<è¦ªã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
+	u16 oya_ac;											///<è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
+	FIELD_OBJ_PTR oyaobj;								///<è¦ªã¨ãªã‚‹OBJ
 }MV_TR_PAIR_WORK;
 
 #define MV_TR_PAIR_WORK_SIZE (sizeof(MV_TR_PAIR_WORK))
 
 //--------------------------------------------------------------
-///	MV_HIDE_WORK\‘¢‘Ì
+///	MV_HIDE_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -94,7 +94,7 @@ typedef struct
 #define MV_HIDE_WORK_SIZE (sizeof(MV_HIDE_WORK))
 
 //--------------------------------------------------------------
-///	MV_COPY_WORK\‘¢‘Ì
+///	MV_COPY_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -107,7 +107,7 @@ typedef struct
 #define MV_COPY_WORK_SIZE (sizeof(MV_COPY_WORK))
 
 //--------------------------------------------------------------
-///	MV_ALONGW_WORK\‘¢‘Ì
+///	MV_ALONGW_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -119,7 +119,7 @@ typedef struct
 #define MV_ALONGW_WORK_SIZE (sizeof(MV_ALONGW_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 int (* const DATA_PairMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work );
 
@@ -141,11 +141,11 @@ static int PairTr_OyaCheckAcmdSet( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
 int (* const DATA_HideMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_HIDE_WORK *work );
 
 //==============================================================================
-//	MV_PAIR	©‹@˜A‚ê•à‚«
+//	MV_PAIR	è‡ªæ©Ÿé€£ã‚Œæ­©ã
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_PAIR@‰Šú‰»
+ * MV_PAIRã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -161,7 +161,7 @@ void FieldOBJ_MovePair_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_PAIR@“®ì
+ * MV_PAIRã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -181,7 +181,7 @@ void FieldOBJ_MovePair_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_PAIR íœ
+ * MV_PAIR å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -191,14 +191,14 @@ void FieldOBJ_MovePair_Delete( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	MV_PAIR “®ì
+//	MV_PAIR å‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * Pair 0
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_PAIR_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int PairMove_Init( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work )
@@ -224,7 +224,7 @@ static int PairMove_Init( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work )
  * Pair 1
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_PAIR_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int PairMove_Move( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work )
@@ -238,7 +238,7 @@ static int PairMove_Move( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	‚Â‚ê‚ ‚é‚«“®ìƒe[ƒuƒ‹
+///	ã¤ã‚Œã‚ã‚‹ãå‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_PairMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work ) =
 {
@@ -247,14 +247,14 @@ static int (* const DATA_PairMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *wor
 };
 
 //==============================================================================
-//	MV_PAIR@ƒp[ƒc
+//	MV_PAIRã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@‚ª‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN@‘¶İ‚·‚é‚Ì‚Å‚ ‚ê‚Îî•ñ‰Šú‰» 
+ * è‡ªæ©ŸãŒå­˜åœ¨ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã€€å­˜åœ¨ã™ã‚‹ã®ã§ã‚ã‚Œã°æƒ…å ±åˆæœŸåŒ– 
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_PAIR_WORK
- * @retval	int		FALSE=‘¶İ‚µ‚Ä‚¢‚È‚¢
+ * @retval	int		FALSE=å­˜åœ¨ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 static int Pair_WorkSetJikiSearch( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work )
@@ -276,7 +276,7 @@ static int Pair_WorkSetJikiSearch( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_PAIR_WORK‰Šú‰»@©‹@‚ª‚¢‚é–‘O’ñ
+ * MV_PAIR_WORKåˆæœŸåŒ–ã€€è‡ªæ©ŸãŒã„ã‚‹äº‹å‰æ
  * @param	fldobj	FIELD_OBJ_PTR	
  * @param	work	MV_PAIR_WORK
  * @retval	nothing
@@ -295,10 +295,10 @@ static void Pair_WorkInit( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ©‹@À•WXVƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿåº§æ¨™æ›´æ–°ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_PAIR_WORK
- * @retval	int		TRUE=XV‚µ‚½
+ * @retval	int		TRUE=æ›´æ–°ã—ãŸ
  */
 //--------------------------------------------------------------
 static int Pair_JikiPosUpdateCheck( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work )
@@ -320,7 +320,7 @@ static int Pair_JikiPosUpdateCheck( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ©‹@À•WƒZƒbƒg
+ * è‡ªæ©Ÿåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_PAIR_WORK
  * @retval	nothing
@@ -337,9 +337,9 @@ static void Pair_JikiPosSet( FIELD_OBJ_PTR fldobj, MV_PAIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒAƒjƒƒR[ƒhæ“¾
+ * è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	u32		ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh
+ * @retval	u32		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 static u32 Pair_JikiAcmdCodeGet( FIELD_OBJ_PTR fldobj )
@@ -361,9 +361,9 @@ static u32 Pair_JikiAcmdCodeGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒAƒjƒƒR[ƒhA•ûŒü‚ğæ“¾‚µƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ğƒZƒbƒg
+ * è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰ã€æ–¹å‘ã‚’å–å¾—ã—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=ƒZƒbƒg‚Å‚«‚½ FALSE=d‚È‚è‚É‚æ‚èƒZƒbƒg‚Å‚«‚È‚¢
+ * @retval	int		TRUE=ã‚»ãƒƒãƒˆã§ããŸ FALSE=é‡ãªã‚Šã«ã‚ˆã‚Šã‚»ãƒƒãƒˆã§ããªã„
  */
 //--------------------------------------------------------------
 static int Pair_JikiCheckAcmdSet( FIELD_OBJ_PTR fldobj )
@@ -388,11 +388,11 @@ static int Pair_JikiCheckAcmdSet( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	MV_TR_PAIR ƒgƒŒ[ƒi[˜A‚ê•à‚«
+//	MV_TR_PAIR ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€£ã‚Œæ­©ã
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_TR_PAIR@‰Šú‰»
+ * MV_TR_PAIRã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -410,7 +410,7 @@ void FieldOBJ_MovePairTr_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_TR_PAIR@“®ì
+ * MV_TR_PAIRã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -429,7 +429,7 @@ void FieldOBJ_MovePairTr_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_TR_PAIR íœ
+ * MV_TR_PAIR å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -440,7 +440,7 @@ void FieldOBJ_MovePairTr_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_TR_PAIR@•œ‹A
+ * MV_TR_PAIRã€€å¾©å¸°
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -453,14 +453,14 @@ void FieldOBJ_MovePairTr_Return( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	MV_TR_PAIR “®ì
+//	MV_TR_PAIR å‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * Pair 0
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_TR_PAIR_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int PairTrMove_Init( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
@@ -485,7 +485,7 @@ static int PairTrMove_Init( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
  * Pair 1
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_PAIR_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int PairTrMove_Move( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
@@ -500,7 +500,7 @@ static int PairTrMove_Move( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	‚Â‚ê‚ ‚é‚«“®ìƒe[ƒuƒ‹
+///	ã¤ã‚Œã‚ã‚‹ãå‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_PairTrMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work ) =
 {
@@ -509,13 +509,13 @@ static int (* const DATA_PairTrMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK
 };
 
 //==============================================================================
-//	MV_TR_PAIR@ƒp[ƒc
+//	MV_TR_PAIRã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘ÎÛ‚ªƒyƒA“®ì‚©‚Ç‚¤‚©BƒyƒA“®ì‚Å‚ ‚ê‚Î‘Š•û‚ğ’T‚·
+ * å¯¾è±¡ãŒãƒšã‚¢å‹•ä½œã‹ã©ã†ã‹ã€‚ãƒšã‚¢å‹•ä½œã§ã‚ã‚Œã°ç›¸æ–¹ã‚’æ¢ã™
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	FIELD_OBJ_PTR@‘Š•û‚ÌFIELD_OBJ_PTRANULL=ƒyƒA“®ì‚Å‚Í‚È‚¢
+ * @retval	FIELD_OBJ_PTRã€€ç›¸æ–¹ã®FIELD_OBJ_PTRã€NULL=ãƒšã‚¢å‹•ä½œã§ã¯ãªã„
  */
 //--------------------------------------------------------------
 FIELD_OBJ_PTR FieldOBJ_MovePairSearch( FIELD_OBJ_PTR fldobj )
@@ -550,10 +550,10 @@ FIELD_OBJ_PTR FieldOBJ_MovePairSearch( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * e‚ª‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN@‘¶İ‚·‚é‚Ì‚Å‚ ‚ê‚Îî•ñ‰Šú‰» 
+ * è¦ªãŒå­˜åœ¨ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã€€å­˜åœ¨ã™ã‚‹ã®ã§ã‚ã‚Œã°æƒ…å ±åˆæœŸåŒ– 
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_TR_PAIR_WORK
- * @retval	int		FALSE=‘¶İ‚µ‚Ä‚¢‚È‚¢
+ * @retval	int		FALSE=å­˜åœ¨ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 static int PairTr_WorkSetOyaSearch( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
@@ -586,7 +586,7 @@ static int PairTr_WorkSetOyaSearch( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work 
 
 //--------------------------------------------------------------
 /**
- * MV_TR_PAIR_WORK‰Šú‰»@e‚ª‚¢‚é–‘O’ñ
+ * MV_TR_PAIR_WORKåˆæœŸåŒ–ã€€è¦ªãŒã„ã‚‹äº‹å‰æ
  * @param	fldobj	FIELD_OBJ_PTR	
  * @param	work	MV_TR_PAIR_WORK
  * @retval	nothing
@@ -603,10 +603,10 @@ static void PairTr_WorkInit( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work, FIELD_
 
 //--------------------------------------------------------------
 /**
- * eÀ•WXVƒ`ƒFƒbƒN
+ * è¦ªåº§æ¨™æ›´æ–°ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_PAIR_WORK
- * @retval	int		TRUE=XV‚µ‚½
+ * @retval	int		TRUE=æ›´æ–°ã—ãŸ
  */
 //--------------------------------------------------------------
 static int PairTr_OyaPosUpdateCheck( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
@@ -626,7 +626,7 @@ static int PairTr_OyaPosUpdateCheck( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work
 	return( FALSE );
 }
 
-#if 0	//‘Š•û‚Ì‚‚³‚ğl—¶‚µ‚Ä‚¢‚È‚¢
+#if 0	//ç›¸æ–¹ã®é«˜ã•ã‚’è€ƒæ…®ã—ã¦ã„ãªã„
 static int PairTr_OyaPosUpdateCheck( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
 {
 	FIELD_OBJ_PTR oyaobj = work->oyaobj;
@@ -664,7 +664,7 @@ static int PairTr_OyaPosUpdateCheck( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work
 
 //--------------------------------------------------------------
 /**
- * eÀ•WƒZƒbƒg
+ * è¦ªåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_PAIR_WORK
  * @retval	nothing
@@ -678,9 +678,9 @@ static void PairTr_OyaPosSet( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * eƒAƒjƒƒR[ƒhA•ûŒü‚ğæ“¾‚µƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ğƒZƒbƒg
+ * è¦ªã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰ã€æ–¹å‘ã‚’å–å¾—ã—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=ƒZƒbƒg‚Å‚«‚½ FALSE=d‚È‚è‚É‚æ‚èƒZƒbƒg‚Å‚«‚È‚¢
+ * @retval	int		TRUE=ã‚»ãƒƒãƒˆã§ããŸ FALSE=é‡ãªã‚Šã«ã‚ˆã‚Šã‚»ãƒƒãƒˆã§ããªã„
  */
 //--------------------------------------------------------------
 static int PairTr_OyaCheckAcmdSet( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
@@ -749,11 +749,11 @@ static int PairTr_OyaCheckAcmdSet( FIELD_OBJ_PTR fldobj, MV_TR_PAIR_WORK *work )
 #endif
 
 //==============================================================================
-//	MV_HIDE_SNOW@‰B‚ê–ª@á
+//	MV_HIDE_SNOWã€€éš ã‚Œè“‘ã€€é›ª
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_HIDE ‰Šú‰»
+ * MV_HIDE åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	type	HIDETYPE
  * @retval	nothing
@@ -767,7 +767,7 @@ static void FldOBJ_MoveHide_Init( FIELD_OBJ_PTR fldobj, HIDETYPE type )
 	FieldOBJ_StatusBitOFF_Move( fldobj );
 	FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_SHADOW_VANISH );
 	
-	{															//‚‚³—‚Æ‚·
+	{															//é«˜ã•è½ã¨ã™
 		VecFx32 offs = { 0, NUM_FX32(-32), 0 };
 		FieldOBJ_VecDrawOffsSet( fldobj, &offs );
 	}
@@ -775,7 +775,7 @@ static void FldOBJ_MoveHide_Init( FIELD_OBJ_PTR fldobj, HIDETYPE type )
 
 //--------------------------------------------------------------
 /**
- * MV_HIDE_SNOW ‰Šú‰»
+ * MV_HIDE_SNOW åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -787,7 +787,7 @@ void FieldOBJ_MoveHideSnow_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_HIDE_SAND ‰Šú‰»
+ * MV_HIDE_SAND åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -799,7 +799,7 @@ void FieldOBJ_MoveHideSand_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_HIDE_GRND ‰Šú‰»
+ * MV_HIDE_GRND åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -811,7 +811,7 @@ void FieldOBJ_MoveHideGround_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_HIDE_KUSA ‰Šú‰»
+ * MV_HIDE_KUSA åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -823,7 +823,7 @@ void FieldOBJ_MoveHideKusa_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_HIDE “®ì
+ * MV_HIDE å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -836,7 +836,7 @@ void FieldOBJ_MoveHide_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_HIDE íœ
+ * MV_HIDE å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -849,7 +849,7 @@ void FieldOBJ_MoveHide_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_HIDE •œ‹A
+ * MV_HIDE å¾©å¸°
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -871,14 +871,14 @@ void FieldOBJ_MoveHide_Return( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	MV_HIDE “®ì
+//	MV_HIDE å‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * hide 0
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_HIDE_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int HideMove_Init( FIELD_OBJ_PTR fldobj, MV_HIDE_WORK *work )
@@ -900,7 +900,7 @@ static int HideMove_Init( FIELD_OBJ_PTR fldobj, MV_HIDE_WORK *work )
  * hide 1
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_HIDE_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int HideMove_Move( FIELD_OBJ_PTR fldobj, MV_HIDE_WORK *work )
@@ -915,7 +915,7 @@ static int HideMove_Move( FIELD_OBJ_PTR fldobj, MV_HIDE_WORK *work )
 			}
 		}
 		
-		//add pl í‚É‰e‚ğÁ‚·
+		//add pl å¸¸ã«å½±ã‚’æ¶ˆã™
 		FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_SHADOW_VANISH );
 	}
 	
@@ -923,7 +923,7 @@ static int HideMove_Move( FIELD_OBJ_PTR fldobj, MV_HIDE_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	MV_HIDE “®ìƒe[ƒuƒ‹
+///	MV_HIDE å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_HideMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_HIDE_WORK *work ) =
 {
@@ -932,11 +932,11 @@ static int (* const DATA_HideMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_HIDE_WORK *wor
 };
 
 //==============================================================================
-//	MV_HIDE ƒp[ƒc
+//	MV_HIDE ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_HIDE ‰B‚ê–ªEOA_PTRƒZƒbƒg
+ * MV_HIDE éš ã‚Œè“‘EOA_PTRã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	eoa		EOA_PTR
  * @retval	nothing
@@ -950,7 +950,7 @@ void FieldOBJ_MoveHideEoaPtrSet( FIELD_OBJ_PTR fldobj, EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * MV_HIDE ‰B‚ê–ªEOA_PTRæ“¾
+ * MV_HIDE éš ã‚Œè“‘EOA_PTRå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	eoa		EOA_PTR
  * @retval	nothing
@@ -964,7 +964,7 @@ EOA_PTR FieldOBJ_MoveHideEoaPtrGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_HIDE ‰B‚ê–ªA’E‚¢‚¾ó‘Ô‚É
+ * MV_HIDE éš ã‚Œè“‘ã€è„±ã„ã çŠ¶æ…‹ã«
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -982,10 +982,10 @@ static int (* const DATA_CopyMoveTbl[SEQNO_COPYMOVE_MAX])( FIELD_OBJ_PTR, MV_COP
 
 //--------------------------------------------------------------
 /**
- * ‚à‚Ì‚Ü‚Ë@ƒ[ƒN‰Šú‰»
+ * ã‚‚ã®ã¾ã­ã€€ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		‰Šú•ûŒü
- * @param	lgrass	’·‚¢‘ŒÀ’è‚à‚Ì‚Ü‚Ë FALSE=Not
+ * @param	dir		åˆæœŸæ–¹å‘
+ * @param	lgrass	é•·ã„è‰é™å®šã‚‚ã®ã¾ã­ FALSE=Not
  * @retval
  */
 //--------------------------------------------------------------
@@ -999,7 +999,7 @@ static void MoveCopy_WorkInit( FIELD_OBJ_PTR fldobj, int dir, u32 lgrass )
 
 //--------------------------------------------------------------
 /**
- * MV_COPYU ‰Šú‰»
+ * MV_COPYU åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1011,7 +1011,7 @@ void FieldOBJ_MoveCopyU_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_COPYD ‰Šú‰»
+ * MV_COPYD åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1023,7 +1023,7 @@ void FieldOBJ_MoveCopyD_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_COPYL ‰Šú‰»
+ * MV_COPYL åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1035,7 +1035,7 @@ void FieldOBJ_MoveCopyL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_COPYR ‰Šú‰»
+ * MV_COPYR åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1047,7 +1047,7 @@ void FieldOBJ_MoveCopyR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_COPYLGRASSU ‰Šú‰»
+ * MV_COPYLGRASSU åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1059,7 +1059,7 @@ void FieldOBJ_MoveCopyLGrassU_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_COPYLGRASSD ‰Šú‰»
+ * MV_COPYLGRASSD åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1071,7 +1071,7 @@ void FieldOBJ_MoveCopyLGrassD_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_COPYLGRASSL ‰Šú‰»
+ * MV_COPYLGRASSL åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1083,7 +1083,7 @@ void FieldOBJ_MoveCopyLGrassL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_COPYLGRASSR ‰Šú‰»
+ * MV_COPYLGRASSR åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1095,7 +1095,7 @@ void FieldOBJ_MoveCopyLGrassR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_COPY “®ì
+ * MV_COPY å‹•ä½œ
  * @param
  * @retval
  */
@@ -1108,10 +1108,10 @@ void FieldOBJ_MoveCopy_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_COPY “®ì@‰‰ñ•ûŒü@‚»‚Ì0
+ * MV_COPY å‹•ä½œã€€åˆå›æ–¹å‘ã€€ãã®0
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_COPY_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CopyMove_FirstInit( FIELD_OBJ_PTR fldobj, MV_COPY_WORK *work )
@@ -1127,10 +1127,10 @@ static int CopyMove_FirstInit( FIELD_OBJ_PTR fldobj, MV_COPY_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_COPYU “®ì@‰‰ñ•ûŒü@‚»‚Ì1
+ * MV_COPYU å‹•ä½œã€€åˆå›æ–¹å‘ã€€ãã®1
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_COPY_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CopyMove_FirstWait( FIELD_OBJ_PTR fldobj, MV_COPY_WORK *work )
@@ -1145,10 +1145,10 @@ static int CopyMove_FirstWait( FIELD_OBJ_PTR fldobj, MV_COPY_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_COPY “®ì 0
+ * MV_COPY å‹•ä½œ 0
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_COPY_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CopyMove_Init( FIELD_OBJ_PTR fldobj, MV_COPY_WORK *work )
@@ -1166,9 +1166,9 @@ static int CopyMove_Init( FIELD_OBJ_PTR fldobj, MV_COPY_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‚à‚Ì‚Ü‚Ë‘ˆÚ“®ƒ`ƒFƒbƒN
+ * ã‚‚ã®ã¾ã­è‰ç§»å‹•ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @retval	u32		hit bit	
  */
 //--------------------------------------------------------------
@@ -1186,7 +1186,7 @@ static u32 CopyMove_LongGrassHitCheck( FIELD_OBJ_PTR fldobj, int dir )
 
 //--------------------------------------------------------------
 /**
- * ƒRƒs[“®ì ˆÚ“®ƒZƒbƒg
+ * ã‚³ãƒ”ãƒ¼å‹•ä½œ ç§»å‹•ã‚»ãƒƒãƒˆ
  * @param
  * @retval
  */
@@ -1213,10 +1213,10 @@ static void CopyMove_MoveSet( FIELD_OBJ_PTR fldobj, int dir, int ac, u32 lgrass_
 
 //--------------------------------------------------------------
 /**
- * MV_COPY “®ì 1
+ * MV_COPY å‹•ä½œ 1
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_COPY_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CopyMove_CmdSet( FIELD_OBJ_PTR fldobj, MV_COPY_WORK *work )
@@ -1255,10 +1255,10 @@ static int CopyMove_CmdSet( FIELD_OBJ_PTR fldobj, MV_COPY_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_COPY “®ì 2
+ * MV_COPY å‹•ä½œ 2
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_COPY_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CopyMove_MoveWait( FIELD_OBJ_PTR fldobj, MV_COPY_WORK *work )
@@ -1274,7 +1274,7 @@ static int CopyMove_MoveWait( FIELD_OBJ_PTR fldobj, MV_COPY_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	ƒRƒs[“®ìƒe[ƒuƒ‹
+///	ã‚³ãƒ”ãƒ¼å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_CopyMoveTbl[SEQNO_COPYMOVE_MAX])( FIELD_OBJ_PTR, MV_COPY_WORK * ) =
 {
@@ -1286,17 +1286,17 @@ static int (* const DATA_CopyMoveTbl[SEQNO_COPYMOVE_MAX])( FIELD_OBJ_PTR, MV_COP
 };
 
 //==============================================================================
-//	•Ç‰ˆ‚¢ˆÚ“®
+//	å£æ²¿ã„ç§»å‹•
 //==============================================================================
 static int AlongWall_WallMove( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work, int ac );
 static int (* const DATA_AlongMoveTbl[3])( FIELD_OBJ_PTR, MV_ALONGW_WORK * );
 
 //--------------------------------------------------------------
 /**
- * •Ç‰ˆ‚¢ˆÚ“®@ƒ[ƒN‰Šú‰»
+ * å£æ²¿ã„ç§»å‹•ã€€ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR
- * @param	dir_h_init	‰Šú—˜‚«è
- * @param	dir_h		—˜‚«è
+ * @param	dir_h_init	åˆæœŸåˆ©ãæ‰‹
+ * @param	dir_h		åˆ©ãæ‰‹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1309,7 +1309,7 @@ static void AlongWallWorkInit( FIELD_OBJ_PTR fldobj, ALONG_DIR dir_h_init, ALONG
 
 //--------------------------------------------------------------
 /**
- * •Ç‰ˆ‚¢ˆÚ“®@¶è@‰Šú‰»
+ * å£æ²¿ã„ç§»å‹•ã€€å·¦æ‰‹ã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1321,7 +1321,7 @@ void FieldOBJ_AlongWallL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •Ç‰ˆ‚¢ˆÚ“®@‰Eè@‰Šú‰»
+ * å£æ²¿ã„ç§»å‹•ã€€å³æ‰‹ã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1333,7 +1333,7 @@ void FieldOBJ_AlongWallR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •Ç‰ˆ‚¢ˆÚ“®@—¼è¶@‰Šú‰»
+ * å£æ²¿ã„ç§»å‹•ã€€ä¸¡æ‰‹å·¦ã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1345,7 +1345,7 @@ void FieldOBJ_AlongWallLRL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •Ç‰ˆ‚¢ˆÚ“®@—¼è‰E@‰Šú‰»
+ * å£æ²¿ã„ç§»å‹•ã€€ä¸¡æ‰‹å³ã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1357,7 +1357,7 @@ void FieldOBJ_AlongWallLRR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •Ç‰ˆ‚¢ˆÚ“®@“®ì
+ * å£æ²¿ã„ç§»å‹•ã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1370,10 +1370,10 @@ void FieldOBJ_AlongWall_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ì ‰Šú‰»
+ * å‹•ä½œ åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_ALONGW_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AlongWallMove_Init( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work )
@@ -1385,10 +1385,10 @@ static int AlongWallMove_Init( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * “®ì ‰Šú‰»
+ * å‹•ä½œ åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_ALONGW_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AlongWallMove_CmdSet( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work )
@@ -1400,10 +1400,10 @@ static int AlongWallMove_CmdSet( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * “®ì ƒRƒ}ƒ“ƒhI—¹‘Ò‚¿
+ * å‹•ä½œ ã‚³ãƒãƒ³ãƒ‰çµ‚äº†å¾…ã¡
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_ALONGW_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AlongWallMove_CmdWait( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work )
@@ -1417,7 +1417,7 @@ static int AlongWallMove_CmdWait( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	•Ç“`‚¢ˆÚ“®@“®ìƒe[ƒuƒ‹
+//	å£ä¼ã„ç§»å‹•ã€€å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_AlongMoveTbl[3])( FIELD_OBJ_PTR, MV_ALONGW_WORK * ) =
 {
@@ -1427,7 +1427,7 @@ static int (* const DATA_AlongMoveTbl[3])( FIELD_OBJ_PTR, MV_ALONGW_WORK * ) =
 };
 
 //--------------------------------------------------------------
-///	è‚ÌˆÊ’u
+///	æ‰‹ã®ä½ç½®
 //--------------------------------------------------------------
 static const int DATA_DirHandPosX[DIR_4_MAX][2] = 
 {
@@ -1446,7 +1446,7 @@ static const int DATA_DirHandPosZ[DIR_4_MAX][2] =
 };
 
 //--------------------------------------------------------------
-///	Œ©¸‚Á‚½Û‚Ì”»’èˆÊ’u
+///	è¦‹å¤±ã£ãŸéš›ã®åˆ¤å®šä½ç½®
 //--------------------------------------------------------------
 static const int DATA_DirHandLostPosX[DIR_4_MAX][2] =
 {
@@ -1465,7 +1465,7 @@ static const int DATA_DirHandLostPosZ[DIR_4_MAX][2] =
 };
 
 //--------------------------------------------------------------
-///	Œ©¸‚Á‚½Û‚Ì•ûŒüØ‚è‘Ö‚¦
+///	è¦‹å¤±ã£ãŸéš›ã®æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
 //--------------------------------------------------------------
 static const int DATA_DirHandLostDir[DIR_4_MAX][2] =
 {
@@ -1476,7 +1476,7 @@ static const int DATA_DirHandLostDir[DIR_4_MAX][2] =
 };
 
 //--------------------------------------------------------------
-///	•ÇÕ“Ë‚Ì•ûŒüØ‚è‘Ö‚¦
+///	å£è¡çªæ™‚ã®æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
 //--------------------------------------------------------------
 static const int DATA_DirHandAttrHitDir[DIR_4_MAX][2] =
 {
@@ -1487,20 +1487,20 @@ static const int DATA_DirHandAttrHitDir[DIR_4_MAX][2] =
 };
 
 //--------------------------------------------------------------
-///	è‚Ì‚Ş‚«”½“]
+///	æ‰‹ã®ã‚€ãåè»¢
 //--------------------------------------------------------------
 static const ALONG_DIR DATA_DirHandFlip[ALONG_LR] =
 { ALONG_R, ALONG_L };
 	
 //--------------------------------------------------------------
 /**
- * •Ç‰ˆ‚¢@w’è•ûŒü‚Ì•Ç‚ğE‚¤
+ * å£æ²¿ã„ã€€æŒ‡å®šæ–¹å‘ã®å£ã‚’æ‹¾ã†
  * @param	fsys	FIELDSYS_WORK
- * @param	gx		ƒOƒŠƒbƒhX
- * @param	gz		ƒOƒŠƒbƒhZ
- * @param	dir		Œü‚«
- * @param	hdir	—˜‚«è
- * @retval	BOOL	TRUE=•Ç‚ ‚è
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	dir		å‘ã
+ * @param	hdir	åˆ©ãæ‰‹
+ * @retval	BOOL	TRUE=å£ã‚ã‚Š
  */
 //--------------------------------------------------------------
 static BOOL AlongWall_HandHitGet( FIELDSYS_WORK *fsys, int gx, int gz, int dir, ALONG_DIR hdir )
@@ -1514,13 +1514,13 @@ static BOOL AlongWall_HandHitGet( FIELDSYS_WORK *fsys, int gx, int gz, int dir, 
 
 //--------------------------------------------------------------
 /**
- * •Ç‰ˆ‚¢@•ÇÁ¸‚Ì•ÇŒŸõ
+ * å£æ²¿ã„ã€€å£æ¶ˆå¤±æ™‚ã®å£æ¤œç´¢
  * @param	fsys	FIELDSYS_WORK
- * @param	gx		ƒOƒŠƒbƒhX
- * @param	gz		ƒOƒŠƒbƒhZ
- * @param	dir		Œü‚«
- * @param	hdir	—˜‚«è
- * @retval	BOOL	TRUE=•Ç‚ ‚è
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	dir		å‘ã
+ * @param	hdir	åˆ©ãæ‰‹
+ * @retval	BOOL	TRUE=å£ã‚ã‚Š
  */
 //--------------------------------------------------------------
 static BOOL AlongWall_HandLostHitGet(
@@ -1535,10 +1535,10 @@ static BOOL AlongWall_HandLostHitGet(
 
 //--------------------------------------------------------------
 /**
- * •Ç‰ˆ‚¢ˆÚ“®@è‚ÌˆÊ’u‚É•Ç‚Í‚ ‚é‚©
+ * å£æ²¿ã„ç§»å‹•ã€€æ‰‹ã®ä½ç½®ã«å£ã¯ã‚ã‚‹ã‹
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	dir_hand	ALONG_DIR
- * @retval	int		TRUE=•ÇƒAƒŠ
+ * @retval	int		TRUE=å£ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int AlongWall_HandWallCheck( FIELD_OBJ_PTR fldobj, int dir, ALONG_DIR dir_hand )
@@ -1552,10 +1552,10 @@ static int AlongWall_HandWallCheck( FIELD_OBJ_PTR fldobj, int dir, ALONG_DIR dir
 
 //--------------------------------------------------------------
 /**
- * •Ç‰ˆ‚¢ˆÚ“®@•Çè’T‚è
+ * å£æ²¿ã„ç§»å‹•ã€€å£æ‰‹æ¢ã‚Š
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	dir_hand	ALONG_DIR
- * @retval	int		TRUE=•ÇƒAƒŠ
+ * @retval	int		TRUE=å£ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int AlongWall_HandLostWallCheck( FIELD_OBJ_PTR fldobj, int dir, ALONG_DIR dir_hand )
@@ -1569,20 +1569,20 @@ static int AlongWall_HandLostWallCheck( FIELD_OBJ_PTR fldobj, int dir, ALONG_DIR
 
 //--------------------------------------------------------------
 /**
- * •ÇˆÚ“®ƒ`ƒFƒbƒN
+ * å£ç§»å‹•ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	dir_hand	ALONG_DIR
- * @retval	int		ˆÚ“®‚·‚é‚×‚«•ûŒü
+ * @retval	int		ç§»å‹•ã™ã‚‹ã¹ãæ–¹å‘
  */
 //--------------------------------------------------------------
 static int AlongWall_MoveHitCheck( FIELD_OBJ_PTR fldobj, int dir_move, ALONG_DIR dir_hand )
 {
-	if( AlongWall_HandWallCheck(fldobj,dir_move,dir_hand) == FALSE ){	//•Ç‚ª–³‚¢
+	if( AlongWall_HandWallCheck(fldobj,dir_move,dir_hand) == FALSE ){	//å£ãŒç„¡ã„
 		if( AlongWall_HandLostWallCheck(fldobj,dir_move,dir_hand) == FALSE ){
-			return( DIR_NOT );									//è’T‚è‚Å‚à•Ç‚ª–³‚¢
+			return( DIR_NOT );									//æ‰‹æ¢ã‚Šã§ã‚‚å£ãŒç„¡ã„
 		}
 		
-		dir_move = DATA_DirHandLostDir[dir_move][dir_hand];		//•Ç”­Œ© •ûŒüØ‚è‘Ö‚¦
+		dir_move = DATA_DirHandLostDir[dir_move][dir_hand];		//å£ç™ºè¦‹ æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
 	}
 	
 	return( dir_move );
@@ -1590,11 +1590,11 @@ static int AlongWall_MoveHitCheck( FIELD_OBJ_PTR fldobj, int dir_move, ALONG_DIR
 
 //--------------------------------------------------------------
 /**
- * •Ç“`‚¢ˆÚ“®ƒ`ƒFƒbƒN
+ * å£ä¼ã„ç§»å‹•ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir_move	ˆÚ“®•ûŒü DIR_NOT=ˆÚ“®•s‰Â
- * @param	dir_hand	•Ç‘¤‚Ìè‚ÌŒü‚«
- * @retval	u32		ƒqƒbƒgƒrƒbƒg
+ * @param	dir_move	ç§»å‹•æ–¹å‘ DIR_NOT=ç§»å‹•ä¸å¯
+ * @param	dir_hand	å£å´ã®æ‰‹ã®å‘ã
+ * @retval	u32		ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static u32 AlongWall_WallMoveCheck( FIELD_OBJ_PTR fldobj, int *dir_move, ALONG_DIR dir_hand )
@@ -1613,10 +1613,10 @@ static u32 AlongWall_WallMoveCheck( FIELD_OBJ_PTR fldobj, int *dir_move, ALONG_D
 
 //--------------------------------------------------------------
 /**
- * •Ç“`‚¢ˆÚ“®
+ * å£ä¼ã„ç§»å‹•
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_ALONGW_WORK
- * @retval	int		TRUE=ˆÚ“®‚µ‚½
+ * @retval	int		TRUE=ç§»å‹•ã—ãŸ
  */
 //--------------------------------------------------------------
 static int AlongWall_WallMove( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work, int ac )
@@ -1627,21 +1627,21 @@ static int AlongWall_WallMove( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work, int a
 	
 	ret = AlongWall_WallMoveCheck( fldobj, &dir_move, dir_hand );
 	
-	if( dir_move == DIR_NOT ){					//•Ç‚ª‚È‚¢
+	if( dir_move == DIR_NOT ){					//å£ãŒãªã„
 		dir_move = FieldOBJ_DirDispGet( fldobj );
 		ac = FieldOBJ_AcmdCodeDirChange( dir_move, AC_STAY_WALK_U_16F );
 		FieldOBJ_CmdSet( fldobj, ac );
 		return( FALSE );
 	}
 	
-	if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//ˆÚ“®‰Â”\ 
+	if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//ç§»å‹•å¯èƒ½ 
 		ac = FieldOBJ_AcmdCodeDirChange( dir_move, ac );
 		FieldOBJ_StatusBitON_Move( fldobj );
 		FieldOBJ_CmdSet( fldobj, ac );
 		return( TRUE );
 	}
 	
-	//ˆÚ“®§ŒÀƒqƒbƒg&—¼è—˜‚«@”½“]‚ğ‚İ‚é
+	//ç§»å‹•åˆ¶é™ãƒ’ãƒƒãƒˆ&ä¸¡æ‰‹åˆ©ãã€€åè»¢ã‚’è©¦ã¿ã‚‹
 	if( (ret & FLDOBJ_MOVE_HIT_BIT_LIM) && work->dir_hand_init == ALONG_LR ){
 		dir_move = FieldOBJTool_DirFlip( FieldOBJ_DirDispGet(fldobj) );
 		dir_hand = DATA_DirHandFlip[dir_hand];
@@ -1649,14 +1649,14 @@ static int AlongWall_WallMove( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work, int a
 		
 		ret = AlongWall_WallMoveCheck( fldobj, &dir_move, dir_hand );
 		
-		if( dir_move == DIR_NOT ){					//•Ç‚ª‚È‚¢
+		if( dir_move == DIR_NOT ){					//å£ãŒãªã„
 			dir_move = FieldOBJ_DirDispGet( fldobj );
 			ac = FieldOBJ_AcmdCodeDirChange( dir_move, AC_STAY_WALK_U_16F );
 			FieldOBJ_CmdSet( fldobj, ac );
 			return( FALSE );
 		}
 		
-		if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//ˆÚ“®‰Â”\ 
+		if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//ç§»å‹•å¯èƒ½ 
 			ac = FieldOBJ_AcmdCodeDirChange( dir_move, ac );
 			FieldOBJ_StatusBitON_Move( fldobj );
 			FieldOBJ_CmdSet( fldobj, ac );
@@ -1664,20 +1664,20 @@ static int AlongWall_WallMove( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work, int a
 		}
 	}
 	
-	//•Çƒqƒbƒg@ˆÚ“®•ûŒü•ÏX
+	//å£ãƒ’ãƒƒãƒˆã€€ç§»å‹•æ–¹å‘å¤‰æ›´
 	if( (ret & FLDOBJ_MOVE_HIT_BIT_ATTR) ){
 		dir_move = DATA_DirHandAttrHitDir[dir_move][dir_hand];
 		
 		ret = AlongWall_WallMoveCheck( fldobj, &dir_move, dir_hand );
 		
-		if( dir_move == DIR_NOT ){					//•Ç‚ª–³‚¢
+		if( dir_move == DIR_NOT ){					//å£ãŒç„¡ã„
 			dir_move = FieldOBJ_DirDispGet( fldobj );
 			ac = FieldOBJ_AcmdCodeDirChange( dir_move, AC_STAY_WALK_U_16F );
 			FieldOBJ_CmdSet( fldobj, ac );
 			return( FALSE );
 		}
 		
-		if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//ˆÚ“®‰Â”\ 
+		if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//ç§»å‹•å¯èƒ½ 
 			ac = FieldOBJ_AcmdCodeDirChange( dir_move, ac );
 			FieldOBJ_StatusBitON_Move( fldobj );
 			FieldOBJ_CmdSet( fldobj, ac );
@@ -1685,8 +1685,8 @@ static int AlongWall_WallMove( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work, int a
 		}
 	}
 	
-	//ˆÚ“®•s‰Â
-	dir_move = FieldOBJ_DirDispGet( fldobj );	//Œü‚«‚ğ–ß‚·
+	//ç§»å‹•ä¸å¯
+	dir_move = FieldOBJ_DirDispGet( fldobj );	//å‘ãã‚’æˆ»ã™
 	ac = FieldOBJ_AcmdCodeDirChange( dir_move, AC_STAY_WALK_U_16F );
 	FieldOBJ_CmdSet( fldobj, ac );
 	return( FALSE );

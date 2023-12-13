@@ -15,7 +15,7 @@
   indent source
 
   Revision 1.4  2006/03/17 04:53:00  yasu
-  photoshop ‚Åì¬‚µ‚½ppmƒtƒ@ƒCƒ‹iNetPBMformats Plugin Œo—R)‚ğ“Ç‚ß‚È‚©‚Á‚½‚Ì‚ğC³
+  photoshop ã§ä½œæˆã—ãŸppmãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆNetPBMformats Plugin çµŒç”±)ã‚’èª­ã‚ãªã‹ã£ãŸã®ã‚’ä¿®æ­£
 
   Revision 1.3  2006/01/18 02:12:27  kitase_hirotake
   do-indent

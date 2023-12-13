@@ -21,41 +21,41 @@
   fix header comment
 
   Revision 1.12  2004/03/30 04:51:14  yada
-  HW_DTCM_ARENA_HI_MAX‚Ì define síœ
+  HW_DTCM_ARENA_HI_MAXã® define è¡Œå‰Šé™¤
 
   Revision 1.11  2004/02/17 08:20:44  yada
-  ŒÅ’è‚ÌSYSƒ‚[ƒhƒXƒ^ƒbƒNˆÊ’u’è‹`‚ğ”rœ
+  å›ºå®šã®SYSãƒ¢ãƒ¼ãƒ‰ã‚¹ã‚¿ãƒƒã‚¯ä½ç½®å®šç¾©ã‚’æ’é™¤
 
   Revision 1.10  2004/02/16 09:37:57  yada
-  ƒXƒ^ƒbƒNŠJnƒAƒhƒŒƒX’è‹`’Ç‰Á
+  ã‚¹ã‚¿ãƒƒã‚¯é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹å®šç¾©è¿½åŠ 
 
   Revision 1.9  2004/02/09 11:32:48  yada
-  ”z—ñ‚Ì‘å‚«‚³‚ğƒTƒCƒY’è‹`‚©‚çæ“¾‚·‚é‚æ‚¤‚É‚µ‚½B
-  OS_GetDTCM() ‚ğíœ
+  é…åˆ—ã®å¤§ãã•ã‚’ã‚µã‚¤ã‚ºå®šç¾©ã‹ã‚‰å–å¾—ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
+  OS_GetDTCM() ã‚’å‰Šé™¤
 
   Revision 1.8  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.7  2004/01/27 00:12:08  yada
-  DTCM“à‚Ì—\–ñ—Ìˆæ“™‚ÌƒTƒCƒYC³
+  DTCMå†…ã®äºˆç´„é ˜åŸŸç­‰ã®ã‚µã‚¤ã‚ºä¿®æ­£
 
   Revision 1.6  2004/01/16 04:12:04  yada
-  ƒXƒ^ƒbƒNƒTƒCƒY’è‹`C³
+  ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚ºå®šç¾©ä¿®æ­£
 
   Revision 1.5  2004/01/15 08:25:44  yada
-  ƒRƒƒ“ƒg’Ç‰Á
+  ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ 
 
   Revision 1.4  2004/01/08 12:04:00  yada
-  DTCM‚É—\–ñ—Ìˆæ‚ğ0x20‘‚â‚µ‚½
+  DTCMã«äºˆç´„é ˜åŸŸã‚’0x20å¢—ã‚„ã—ãŸ
 
   Revision 1.3  2004/01/07 01:41:54  yada
-  DTCM, ITCM‚Ì arena—p‚ÌƒfƒtƒHƒ‹ƒgLo/Hi’l’è‹`
+  DTCM, ITCMã® arenaç”¨ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆLo/Hiå€¤å®šç¾©
 
   Revision 1.2  2003/12/22 13:37:18  yasu
-  OS_GetDTCM ‚ğƒ}ƒNƒ‚É
+  OS_GetDTCM ã‚’ãƒã‚¯ãƒ­ã«
 
   Revision 1.1  2003/12/17 06:05:39  yasu
-  mmap_reserved.h ‚ğ mmap_tcm.h ‚Æ mmap_shared.h ‚É•ªŠ„
+  mmap_reserved.h ã‚’ mmap_tcm.h ã¨ mmap_shared.h ã«åˆ†å‰²
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

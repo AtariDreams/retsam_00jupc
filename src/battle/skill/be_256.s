@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_256.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			255 �P�^�[�����߂ĂQ�^�[���߂ōU������{�u���Ȃ��ق�v��Ԃɂ���
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			255 １ターン溜めて２ターンめで攻撃する＋「あなをほる」状態にする
  *
  *@author	HisashiSogabe
  *@data		2005.11.24
@@ -16,7 +16,7 @@
 
 BE_256:
 	IF_PSP			IF_FLAG_BIT,SIDE_ATTACK,ID_PSP_condition2,CONDITION2_KEEP,SeqWazaAfter
-	//�������ʂŗ��߂Ȃ��Ă������ʂ������Ă���Ƃ��́A�Z�𔭓�
+	//装備効果で溜めなくていい効果を持っているときは、技を発動
 	SOUBI_CHECK		SOUBI_HAVE,SIDE_ATTACK,SOUBI_2TURNWAZAWO1TURN,BE_256_NEXT
 	PSP_VALUE		VAL_BIT,SIDE_ATTACK,ID_PSP_waza_kouka,WAZAKOUKA_ANAWOHORU
 	VALUE			VAL_SET,BUF_PARA_ADD_STATUS_DIRECT,ADD_COND2_KEEP|ADD_STATUS_ATTACK
@@ -26,16 +26,16 @@ BE_256_NEXT:
 	PSP_VALUE		VAL_BIT,SIDE_ATTACK,ID_PSP_waza_kouka,WAZAKOUKA_ANAWOHORU
 	PSP_VALUE		VAL_BIT,SIDE_ATTACK,ID_PSP_waza_kouka_temp,WAZAKOUKA_ANAWOHORU
 	GOSUB			SUB_SEQ_EQPITEM_2TURNWO1TURN
-	//���ꂪ�K�v���͔���
+	//これが必要かは微妙
 	VANISH_ON_OFF	SIDE_ATTACK,SW_VANISH_ON
-	//�U���Ώۂ����Ȃ����́A�Ȃɂ����Ȃ�
+	//攻撃対象がいない時は、なにもしない
 	IF				IF_FLAG_EQ,BUF_PARA_DEFENCE_CLIENT,NONE_CLIENT_NO,BE_256_END
 SeqWazaAfter:
 	CRITICAL_CHECK
 	DAMAGE_CALC
 BE_256_END:
-	//�p�������n�̂��ߋZ�̃t���O�𗎂Ƃ�
+	//姿を消す系のため技のフラグを落とす
 	PSP_VALUE		VAL_NBIT,SIDE_ATTACK,ID_PSP_waza_kouka,WAZAKOUKA_KIE
-	//���ߌ�̏������܂Ƃ߂��T�u���[�`�����R�[��
+	//ため後の処理をまとめたサブルーチンをコール
 	GOSUB			SUB_SEQ_TAME_AFTER
 	SEQ_END

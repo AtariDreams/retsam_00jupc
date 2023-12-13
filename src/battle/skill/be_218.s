@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_218.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			218�@�З͂͂��邪�A�U������x�ɔ��Ă��܂��A�f�����������Ă����B�P��̍U���ɂ��P�i�K������B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			218　威力はあるが、攻撃する度に疲れてしまい、素早さが落ちていく。１回の攻撃につき１段階落ちる。
  *
  *@author	HisashiSogabe
  *@data		2006.02.10

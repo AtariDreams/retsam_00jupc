@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wifi_country.c
- * @brief	WI-FI�n����ʂŎg�p���镶���񓙂̃f�[�^���O�����J���邽�߂̎d�g��
+ * @brief	WI-FI地球画面で使用する文字列等のデータを外部公開するための仕組み
  * @author	taya
  * @date	2006.04.22
  */
@@ -16,13 +16,13 @@
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/26
-// �n�����A���t�@�x�b�g���Ƀ\�[�g���ĕ\������悤�ɕύX
+// 地名をアルファベット順にソートして表示するように変更
 // localize_spec_mark(LANG_ALL) imatake 2007/02/21
-// �n�����X�g�ƃ\�[�g�e�[�u���̎��ۂ̗v�f�����H���Ⴄ�ꍇ�ɑΉ�
+// 地名リストとソートテーブルの実際の要素数が食い違う場合に対応
 
 #include "geo_sort.res"
 
-//�f�[�^�\���́i���n��e�[�u���f�[�^�j
+//データ構造体（国地域テーブルデータ）
 typedef struct EARTH_AREATABLE_tag
 {
 	u8			nationID;
@@ -34,7 +34,7 @@ typedef struct EARTH_AREATABLE_tag
 }EARTH_AREATABLE;
 
 static const EARTH_AREATABLE NationFlag_to_AreaID[] = {
-	{country000,	NARC_wifi_earth_place_place_pos_wrd_dat, NARC_msg_wifi_place_msg_world_dat, CountryNameSort, COUNTRY_NAME_SORT_NUM	},	//�_�~�[
+	{country000,	NARC_wifi_earth_place_place_pos_wrd_dat, NARC_msg_wifi_place_msg_world_dat, CountryNameSort, COUNTRY_NAME_SORT_NUM	},	//ダミー
 	{country009,	NARC_wifi_earth_place_place_pos_ARG_dat, NARC_msg_wifi_place_msg_ARG_dat,   PlaceNameSort0,  PLACE_NAME_SORT_NUM_0	},
 	{country012,	NARC_wifi_earth_place_place_pos_AUS_dat, NARC_msg_wifi_place_msg_AUS_dat,   PlaceNameSort1,  PLACE_NAME_SORT_NUM_1	},
 	{country028,	NARC_wifi_earth_place_place_pos_BRA_dat, NARC_msg_wifi_place_msg_BRA_dat,   PlaceNameSort2,  PLACE_NAME_SORT_NUM_2	},
@@ -62,7 +62,7 @@ static const EARTH_AREATABLE NationFlag_to_AreaID[] = {
 
 //------------------------------------------------------------------
 /**
- * �f�[�^�����擾
+ * データ長を取得
  *
  * @retval  u32		
  */
@@ -74,14 +74,14 @@ u32 WIFI_COUNTRY_GetDataLen( void )
 
 //------------------------------------------------------------------
 /**
- * ���R�[�h���f�[�^�C���f�b�N�X�ɕϊ�
+ * 国コードをデータインデックスに変換
  *
- * �f�[�^�C���f�b�N�X�́A�e��t���f�[�^���������邽�߂Ɏg�p����B
- * �f�[�^�C���f�b�N�X���O�̎��A���̍��̃��[�J���n��f�[�^�͑��݂��Ȃ��B
+ * データインデックスは、各種付随データを引っ張るために使用する。
+ * データインデックスが０の時、その国のローカル地域データは存在しない。
  *
- * @param   countryCode		���R�[�h
+ * @param   countryCode		国コード
  *
- * @retval  u32		�����f�[�^�C���f�b�N�X
+ * @retval  u32		内部データインデックス
  */
 //------------------------------------------------------------------
 u32 WIFI_COUNTRY_CountryCodeToDataIndex( u32 countryCode )
@@ -102,11 +102,11 @@ u32 WIFI_COUNTRY_CountryCodeToDataIndex( u32 countryCode )
 
 //------------------------------------------------------------------
 /**
- * ���R�[�h����n�搔���擾
+ * 国コードから地域数を取得
  *
- * @param   countryCode		���R�[�h
+ * @param   countryCode		国コード
  *
- * @retval  �n�搔(�n�悪���݂��Ȃ����̏ꍇ��0)
+ * @retval  地域数(地域が存在しない国の場合は0)
  */
 //------------------------------------------------------------------
 u32 WIFI_COUNTRY_CountryCodeToPlaceIndexMax( u32 countryCode )
@@ -127,11 +127,11 @@ u32 WIFI_COUNTRY_CountryCodeToPlaceIndexMax( u32 countryCode )
 
 //------------------------------------------------------------------
 /**
- * ���R�[�h���烍�[�J���n�於������̃��b�Z�[�W�f�[�^ID���擾
+ * 国コードからローカル地域名文字列のメッセージデータIDを取得
  *
- * @param   countryCode		���R�[�h
+ * @param   countryCode		国コード
  *
- * @retval  u32		�n�於������̃��b�Z�[�W�f�[�^ID�iARC_MSG���j
+ * @retval  u32		地域名文字列のメッセージデータID（ARC_MSG内）
  */
 //------------------------------------------------------------------
 u32 WIFI_COUNTRY_CountryCodeToPlaceMsgDataID( u32 countryCode )
@@ -143,11 +143,11 @@ u32 WIFI_COUNTRY_CountryCodeToPlaceMsgDataID( u32 countryCode )
 
 //------------------------------------------------------------------
 /**
- * �f�[�^�C���f�b�N�X���烍�[�J���n�於������̃��b�Z�[�W�f�[�^ID���擾
+ * データインデックスからローカル地域名文字列のメッセージデータIDを取得
  *
- * @param   datID	�f�[�^�C���f�b�N�X
+ * @param   datID	データインデックス
  *
- * @retval  u32		�n�於������̃��b�Z�[�W�f�[�^ID�iARC_MSG���j
+ * @retval  u32		地域名文字列のメッセージデータID（ARC_MSG内）
  */
 //------------------------------------------------------------------
 u32 WIFI_COUNTRY_DataIndexToPlaceMsgDataID( u32 dataIndex )
@@ -159,11 +159,11 @@ u32 WIFI_COUNTRY_DataIndexToPlaceMsgDataID( u32 dataIndex )
 
 //------------------------------------------------------------------
 /**
- * �f�[�^�C���f�b�N�X���獑�R�[�h���擾
+ * データインデックスから国コードを取得
  *
- * @param   dataIndex		�f�[�^�C���f�b�N�X
+ * @param   dataIndex		データインデックス
  *
- * @retval  u32		���R�[�h
+ * @retval  u32		国コード
  */
 //------------------------------------------------------------------
 u32 WIFI_COUNTRY_DataIndexToCountryCode( u32 dataIndex )
@@ -176,11 +176,11 @@ u32 WIFI_COUNTRY_DataIndexToCountryCode( u32 dataIndex )
 
 //------------------------------------------------------------------
 /**
- * �f�[�^�C���f�b�N�X����n��f�[�^ID���擾
+ * データインデックスから地域データIDを取得
  *
- * @param   dataIndex		�f�[�^�C���f�b�N�X
+ * @param   dataIndex		データインデックス
  *
- * @retval  u32		�n��f�[�^ID
+ * @retval  u32		地域データID
  */
 //------------------------------------------------------------------
 u32 WIFI_COUNTRY_DataIndexToPlaceDataID( u32 dataIndex )
@@ -192,15 +192,15 @@ u32 WIFI_COUNTRY_DataIndexToPlaceDataID( u32 dataIndex )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/26
-// �n�����A���t�@�x�b�g���Ƀ\�[�g���ĕ\������悤�ɕύX
+// 地名をアルファベット順にソートして表示するように変更
 
 //------------------------------------------------------------------
 /**
- * �f�[�^�C���f�b�N�X����n���̃A���t�@�x�b�g�����擾
+ * データインデックスから地名のアルファベット順を取得
  *
- * @param   dataIndex		�f�[�^�C���f�b�N�X
+ * @param   dataIndex		データインデックス
  *
- * @retval  u8		gmm�t�@�C�����̃C���f�b�N�X
+ * @retval  u8		gmmファイル内のインデックス
  */
 //------------------------------------------------------------------
 const u8 *WIFI_COUNTRY_DataIndexToPlaceSortTable( u32 dataIndex )
@@ -215,15 +215,15 @@ const u8 *WIFI_COUNTRY_DataIndexToPlaceSortTable( u32 dataIndex )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/21
-// �n�����X�g�ƃ\�[�g�e�[�u���̎��ۂ̗v�f�����H���Ⴄ�ꍇ�ɑΉ�
+// 地名リストとソートテーブルの実際の要素数が食い違う場合に対応
 
 //------------------------------------------------------------------
 /**
- * �f�[�^�C���f�b�N�X����n���̃\�[�g�e�[�u���̗v�f�����擾
+ * データインデックスから地名のソートテーブルの要素数を取得
  *
- * @param   dataIndex		�f�[�^�C���f�b�N�X
+ * @param   dataIndex		データインデックス
  *
- * @retval  u8		�\�[�g�e�[�u���̗v�f��
+ * @retval  u8		ソートテーブルの要素数
  */
 //------------------------------------------------------------------
 u32 WIFI_COUNTRY_DataIndexToPlaceSortTableSize( u32 dataIndex )

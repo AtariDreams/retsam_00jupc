@@ -5,51 +5,51 @@
 #include "system/savedata_def.h"
 
 
-// ‚Æ‚è‚ ‚¦‚¸AƒZ[ƒu—Ìˆæfix‚Ì‚½‚ß•K—v‚È‚à‚Ì‚ğ’è‹`’†
-#define CB_DEF_SEAL_MAX				(8)			///< “\‚ê‚é–‡”
-#define CB_DEF_CORE_MAX				(12)		///< ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚Ì”
-#define CB_DEF_ITEM_DATA_NUM_MAX	(80)		///< ƒV[ƒ‹‚Ìí—Ş
-#define CB_DEF_ITEM_DATA_NUM		(80 + 1)	//(80)		///< ƒV[ƒ‹‚Ìí—Ş
-#define CB_DEF_SEAL_STOCK_MAX		(99)		///< ƒV[ƒ‹Å‘å”
+// ã¨ã‚Šã‚ãˆãšã€ã‚»ãƒ¼ãƒ–é ˜åŸŸfixã®ãŸã‚å¿…è¦ãªã‚‚ã®ã‚’å®šç¾©ä¸­
+#define CB_DEF_SEAL_MAX				(8)			///< è²¼ã‚Œã‚‹æšæ•°
+#define CB_DEF_CORE_MAX				(12)		///< ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®æ•°
+#define CB_DEF_ITEM_DATA_NUM_MAX	(80)		///< ã‚·ãƒ¼ãƒ«ã®ç¨®é¡
+#define CB_DEF_ITEM_DATA_NUM		(80 + 1)	//(80)		///< ã‚·ãƒ¼ãƒ«ã®ç¨®é¡
+#define CB_DEF_SEAL_STOCK_MAX		(99)		///< ã‚·ãƒ¼ãƒ«æœ€å¤§æ•°
 
-#define CB_DEF_INDEX_ORIGIN			(1)			///< index ‚ÌŠJn (0 = –³ ‚Åˆµ‚¤‚Ì‚Å 1 ‚©‚ç)
+#define CB_DEF_INDEX_ORIGIN			(1)			///< index ã®é–‹å§‹ (0 = ç„¡ ã§æ‰±ã†ã®ã§ 1 ã‹ã‚‰)
 
 
 enum {
-	CB_ENUM_SEAL_ID_000 = 0,	///< Š‚µ‚Ä‚¢‚È‚¢
+	CB_ENUM_SEAL_ID_000 = 0,	///< æ‰€æŒã—ã¦ã„ãªã„
 	CB_ENUM_SEAL_ID_001,
 };
-#define CB_DEF_SEAL_NONE	(CB_ENUM_SEAL_ID_000)		///< ƒV[ƒ‹‚ğ‚Á‚Ä‚¢‚È‚¢
+#define CB_DEF_SEAL_NONE	(CB_ENUM_SEAL_ID_000)		///< ã‚·ãƒ¼ãƒ«ã‚’æŒã£ã¦ã„ãªã„
 
 
 ///< custom
-typedef struct _CUSTOM_BALL_SEAL		CB_SEAL;		///< ƒV[ƒ‹‚Ìƒf[ƒ^
-typedef struct _CUSTOM_BALL_CORE		CB_CORE;		///< ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚Ìƒf[ƒ^
+typedef struct _CUSTOM_BALL_SEAL		CB_SEAL;		///< ã‚·ãƒ¼ãƒ«ã®ãƒ‡ãƒ¼ã‚¿
+typedef struct _CUSTOM_BALL_CORE		CB_CORE;		///< ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ãƒ‡ãƒ¼ã‚¿
 
 ///< item
-typedef struct _CUSTOM_BALL_ITEM_DATA	CB_ITEM_DATA;	///< ƒAƒCƒeƒ€ƒf[ƒ^
+typedef struct _CUSTOM_BALL_ITEM_DATA	CB_ITEM_DATA;	///< ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 
 ///< save
-typedef struct _CUSTOM_BALL_SAVE_DATA	CB_SAVE_DATA;	///< ƒZ[ƒuƒf[ƒ^ custom/core ŠÜ‚Ş
+typedef struct _CUSTOM_BALL_SAVE_DATA	CB_SAVE_DATA;	///< ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ custom/core å«ã‚€
 
 
 // -----------------------------------------
 //
-//	  ƒV[ƒ‹‚Ìƒf[ƒ^
+//	â–¡ ã‚·ãƒ¼ãƒ«ã®ãƒ‡ãƒ¼ã‚¿
 //
 // -----------------------------------------
 struct _CUSTOM_BALL_SEAL {
 	
-	u8	seal_id;		///< ƒV[ƒ‹”Ô†
-	u8	x;				///< x À•W
-	u8	y;				///< y À•W
+	u8	seal_id;		///< ã‚·ãƒ¼ãƒ«ç•ªå·
+	u8	x;				///< x åº§æ¨™
+	u8	y;				///< y åº§æ¨™
 	
 };
 
 
 // -----------------------------------------
 //
-//	  ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚Ìƒf[ƒ^(ƒ|ƒPƒ‚ƒ“‚Ìè‚¿‚à•Û)
+//	â–¡ ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ãƒ‡ãƒ¼ã‚¿(ãƒã‚±ãƒ¢ãƒ³ã®æ‰‹æŒã¡ã‚‚ä¿æŒ)
 //
 // -----------------------------------------
 struct _CUSTOM_BALL_CORE {
@@ -80,17 +80,17 @@ struct _CUSTOM_BALL_SAVE_DATA {
 // =============================================================================
 //
 //
-//	¡ŠÖ”
+//	â– é–¢æ•°
 //
 //
 // =============================================================================
-extern int				CustomBall_GetWorkSize(void);								///< ƒZ[ƒu—Ìˆæ‚ÌƒTƒCƒY‚ğæ“¾
-extern CB_SAVE_DATA*	CustomBall_AllocSaveData(u32 heap_id);						///< ƒZ[ƒu—Ìˆæ‚ğŠm•Û
-extern void				CustomBall_Init(CB_SAVE_DATA* csd);							///< ‰Šú‰»ˆ—
+extern int				CustomBall_GetWorkSize(void);								///< ã‚»ãƒ¼ãƒ–é ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å–å¾—
+extern CB_SAVE_DATA*	CustomBall_AllocSaveData(u32 heap_id);						///< ã‚»ãƒ¼ãƒ–é ˜åŸŸã‚’ç¢ºä¿
+extern void				CustomBall_Init(CB_SAVE_DATA* csd);							///< åˆæœŸåŒ–å‡¦ç†
 
 
-///< ƒAƒNƒZƒXŠÖ” --- custom
-extern CB_SAVE_DATA*	CB_SaveData_AllDataGet(SAVEDATA* sv);						///< ƒZ[ƒuƒf[ƒ^‚ğæ“¾‚·‚é
+///< ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•° --- custom
+extern CB_SAVE_DATA*	CB_SaveData_AllDataGet(SAVEDATA* sv);						///< ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 
 extern CB_CORE*			CB_SaveData_CoreDataGet(CB_SAVE_DATA* save, int no);
 extern void				CB_SaveData_CoreDataSet(CB_SAVE_DATA* save, CB_CORE* core, int no);
@@ -98,33 +98,33 @@ extern void				CB_SaveData_CoreDataSet(CB_SAVE_DATA* save, CB_CORE* core, int no
 extern CB_SEAL*			CB_SaveData_SealDataGet(CB_CORE* core, int no);
 extern void				CB_SaveData_SealDataSet(CB_CORE* core, CB_SEAL* seal, int no);
 
-extern u8				CB_SaveData_SealIDGet(const CB_SEAL* seal);						///< w’è‚³‚ê‚½ƒV[ƒ‹‚ÌID‚ğæ“¾
-extern void				CB_SaveData_SealIDSet(CB_SEAL* seal, u8 id);					///< w’è‚³‚ê‚½ƒV[ƒ‹‚ÌID‚ğİ’è
+extern u8				CB_SaveData_SealIDGet(const CB_SEAL* seal);						///< æŒ‡å®šã•ã‚ŒãŸã‚·ãƒ¼ãƒ«ã®IDã‚’å–å¾—
+extern void				CB_SaveData_SealIDSet(CB_SEAL* seal, u8 id);					///< æŒ‡å®šã•ã‚ŒãŸã‚·ãƒ¼ãƒ«ã®IDã‚’è¨­å®š
 
-extern u8				CB_SaveData_SealPXGet(const CB_SEAL* seal);						///< w’è‚³‚ê‚½ƒV[ƒ‹‚ÌX‚ğæ“¾
-extern void				CB_SaveData_SealPXSet(CB_SEAL* seal, u8 id);					///< w’è‚³‚ê‚½ƒV[ƒ‹‚ÌX‚ğİ’è
+extern u8				CB_SaveData_SealPXGet(const CB_SEAL* seal);						///< æŒ‡å®šã•ã‚ŒãŸã‚·ãƒ¼ãƒ«ã®Xã‚’å–å¾—
+extern void				CB_SaveData_SealPXSet(CB_SEAL* seal, u8 id);					///< æŒ‡å®šã•ã‚ŒãŸã‚·ãƒ¼ãƒ«ã®Xã‚’è¨­å®š
 
-extern u8				CB_SaveData_SealPYGet(const CB_SEAL* seal);						///< w’è‚³‚ê‚½ƒV[ƒ‹‚ÌY‚ğæ“¾
-extern void				CB_SaveData_SealPYSet(CB_SEAL* seal, u8 id);					///< w’è‚³‚ê‚½ƒV[ƒ‹‚ÌY‚ğİ’è
+extern u8				CB_SaveData_SealPYGet(const CB_SEAL* seal);						///< æŒ‡å®šã•ã‚ŒãŸã‚·ãƒ¼ãƒ«ã®Yã‚’å–å¾—
+extern void				CB_SaveData_SealPYSet(CB_SEAL* seal, u8 id);					///< æŒ‡å®šã•ã‚ŒãŸã‚·ãƒ¼ãƒ«ã®Yã‚’è¨­å®š
 
 
-///< ƒAƒNƒZƒXŠÖ” --- item
-extern CB_ITEM_DATA*	CB_SaveData_ItemDataGet(CB_SAVE_DATA* save);					///< ƒAƒCƒeƒ€ƒf[ƒ^‘S‘Ì
+///< ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•° --- item
+extern CB_ITEM_DATA*	CB_SaveData_ItemDataGet(CB_SAVE_DATA* save);					///< ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿å…¨ä½“
 
-extern u8				CB_SaveData_ItemTypeGet(const CB_ITEM_DATA* save, int no);		///< ƒAƒCƒeƒ€ƒ^ƒCƒvæ“¾
-extern void				CB_SaveData_ItemTypeSet(CB_ITEM_DATA* save, int no, int type);	///< ƒAƒCƒeƒ€ƒ^ƒCƒvİ’è
+extern u8				CB_SaveData_ItemTypeGet(const CB_ITEM_DATA* save, int no);		///< ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—å–å¾—
+extern void				CB_SaveData_ItemTypeSet(CB_ITEM_DATA* save, int no, int type);	///< ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—è¨­å®š
 
-extern u8				CB_SaveData_ItemNumGet(const CB_ITEM_DATA* save, int no);		///< ƒAƒCƒeƒ€ŒÂ”æ“¾
-extern u8				CB_SaveData_ItemNumGet_CBO(const CB_ITEM_DATA* item, int no);	///< ƒAƒCƒeƒ€ŒÂ”æ“¾
-extern void				CB_SaveData_ItemNumSet(CB_ITEM_DATA* save, int no, int stock);	///< ƒAƒCƒeƒ€ŒÂ”İ’è
-extern void				CB_SaveData_ItemNumAdd(CB_ITEM_DATA* save, int no, s16 stock);	///< ƒAƒCƒeƒ€ŒÂ”‘Œ¸
+extern u8				CB_SaveData_ItemNumGet(const CB_ITEM_DATA* save, int no);		///< ã‚¢ã‚¤ãƒ†ãƒ å€‹æ•°å–å¾—
+extern u8				CB_SaveData_ItemNumGet_CBO(const CB_ITEM_DATA* item, int no);	///< ã‚¢ã‚¤ãƒ†ãƒ å€‹æ•°å–å¾—
+extern void				CB_SaveData_ItemNumSet(CB_ITEM_DATA* save, int no, int stock);	///< ã‚¢ã‚¤ãƒ†ãƒ å€‹æ•°è¨­å®š
+extern void				CB_SaveData_ItemNumAdd(CB_ITEM_DATA* save, int no, s16 stock);	///< ã‚¢ã‚¤ãƒ†ãƒ å€‹æ•°å¢—æ¸›
 
-extern BOOL				CB_SaveData_ItemNumAddCheck(CB_SAVE_DATA* save, int no, s16 stock);	///< ƒAƒCƒeƒ€ŒÂ”‘Œ¸
+extern BOOL				CB_SaveData_ItemNumAddCheck(CB_SAVE_DATA* save, int no, s16 stock);	///< ã‚¢ã‚¤ãƒ†ãƒ å€‹æ•°å¢—æ¸›
 extern BOOL				CB_SaveData_ItemNumAddCheck_CBO(CB_SAVE_DATA* save, int no, s16 stock);
-extern BOOL				CB_SaveData_IsAddIt(CB_SAVE_DATA* save, int no, s16 stock);			///< ƒAƒCƒeƒ€ŒÂ”‘Œ¸ƒ`ƒFƒbƒN‚Ì‚İ
+extern BOOL				CB_SaveData_IsAddIt(CB_SAVE_DATA* save, int no, s16 stock);			///< ã‚¢ã‚¤ãƒ†ãƒ å€‹æ•°å¢—æ¸›ãƒã‚§ãƒƒã‚¯ã®ã¿
 
 
-///< ƒc[ƒ‹Œn
+///< ãƒ„ãƒ¼ãƒ«ç³»
 extern void CB_Tool_SaveData_Copy(const CB_SAVE_DATA* from, CB_SAVE_DATA* to);
 extern void CB_Tool_CoreData_Copy(const CB_CORE* from, CB_CORE* to);
 extern void CB_Tool_SealData_Copy(const CB_SEAL* from, CB_SEAL* to);
@@ -139,11 +139,11 @@ extern int CB_Tool_SealTotalNumGet(const CB_SAVE_DATA* save, int id);
 
 #include "include/poketool/poke_tool.h"
 
-///< ƒfƒoƒbƒOŠÖ”
+///< ãƒ‡ãƒãƒƒã‚°é–¢æ•°
 enum {
-	DEBUG_CB_MODE_CLEAR,			///< –³‚µ
-	DEBUG_CB_MODE_ITEM_FULL = 1,	///< ƒAƒCƒeƒ€Å‘å
-	DEBUG_CB_MODE_ITEM_RANDOM,		///< “K“–‚ÈƒV[ƒ‹‚ğ—pˆÓ
+	DEBUG_CB_MODE_CLEAR,			///< ç„¡ã—
+	DEBUG_CB_MODE_ITEM_FULL = 1,	///< ã‚¢ã‚¤ãƒ†ãƒ æœ€å¤§
+	DEBUG_CB_MODE_ITEM_RANDOM,		///< é©å½“ãªã‚·ãƒ¼ãƒ«ã‚’ç”¨æ„
 };
 
 extern void Debug_CB_Set(POKEMON_PARAM* pp);

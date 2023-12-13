@@ -2,7 +2,7 @@
 /**
  *
  * @file	fieldobj_debug.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@ƒfƒoƒbƒO
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ‡ãƒãƒƒã‚°
  * @author	kagaya
  * @data	2005.07.11
  *
@@ -17,89 +17,89 @@
 #include "../fielddata/maptable/zone_id.h"
 
 //==============================================================================
-//	ƒGƒCƒŠƒAƒXƒeƒXƒg
+//	ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ†ã‚¹ãƒˆ
 //==============================================================================
 #ifdef DEBUG_ALIES
 
 const FIELD_OBJ_H DATA_DebugFldOBJHeaderR202A[2] =
 {
 	{
-		128,		///<¯•ÊID
-		BOY1,		///<•\¦‚·‚éOBJƒR[ƒh
-		MV_DMY,	///<“®ìƒR[ƒh
-		0,			///<ƒCƒxƒ“ƒgƒ^ƒCƒv
-		ZONE_ID_C01,///<ƒCƒxƒ“ƒgƒtƒ‰ƒO
-		SCRID_ALIES,///<ƒCƒxƒ“ƒgID
-		DIR_DOWN,	///<w’è•ûŒü
-		0,	///<w’èƒpƒ‰ƒƒ^ 0
-		0,	///<w’èƒpƒ‰ƒƒ^ 1
-		0,	///<w’èƒpƒ‰ƒƒ^ 2
-		1,	///<X•ûŒüˆÚ“®§ŒÀ
-		1,///<Z•ûŒüˆÚ“®§ŒÀ
-		171,///<ƒOƒŠƒbƒhX
-		798,///<ƒOƒŠƒbƒhZ
-		0,	///<Y’l
+		128,		///<è­˜åˆ¥ID
+		BOY1,		///<è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰
+		MV_DMY,	///<å‹•ä½œã‚³ãƒ¼ãƒ‰
+		0,			///<ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+		ZONE_ID_C01,///<ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
+		SCRID_ALIES,///<ã‚¤ãƒ™ãƒ³ãƒˆID
+		DIR_DOWN,	///<æŒ‡å®šæ–¹å‘
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 0
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 1
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 2
+		1,	///<Xæ–¹å‘ç§»å‹•åˆ¶é™
+		1,///<Zæ–¹å‘ç§»å‹•åˆ¶é™
+		171,///<ã‚°ãƒªãƒƒãƒ‰X
+		798,///<ã‚°ãƒªãƒƒãƒ‰Z
+		0,	///<Yå€¤
 	},
 	{
-		129,		///<¯•ÊID
-		BOARD_A,	///<•\¦‚·‚éOBJƒR[ƒh
-		MV_DMY,	///<“®ìƒR[ƒh
-		0,			///<ƒCƒxƒ“ƒgƒ^ƒCƒv
-		ZONE_ID_C01,///<ƒCƒxƒ“ƒgƒtƒ‰ƒO
-		SCRID_ALIES,///<ƒCƒxƒ“ƒgID
-		DIR_DOWN,	///<w’è•ûŒü
-		0,	///<w’èƒpƒ‰ƒƒ^ 0
-		0,	///<w’èƒpƒ‰ƒƒ^ 1
-		0,	///<w’èƒpƒ‰ƒƒ^ 2
-		1,	///<X•ûŒüˆÚ“®§ŒÀ
-		1,///<Z•ûŒüˆÚ“®§ŒÀ
-		170,///<ƒOƒŠƒbƒhX
-		798,///<ƒOƒŠƒbƒhZ
-		0,	///<Y’l
+		129,		///<è­˜åˆ¥ID
+		BOARD_A,	///<è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰
+		MV_DMY,	///<å‹•ä½œã‚³ãƒ¼ãƒ‰
+		0,			///<ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+		ZONE_ID_C01,///<ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
+		SCRID_ALIES,///<ã‚¤ãƒ™ãƒ³ãƒˆID
+		DIR_DOWN,	///<æŒ‡å®šæ–¹å‘
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 0
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 1
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 2
+		1,	///<Xæ–¹å‘ç§»å‹•åˆ¶é™
+		1,///<Zæ–¹å‘ç§»å‹•åˆ¶é™
+		170,///<ã‚°ãƒªãƒƒãƒ‰X
+		798,///<ã‚°ãƒªãƒƒãƒ‰Z
+		0,	///<Yå€¤
 	},
 };
 
 const FIELD_OBJ_H DATA_DebugFldOBJHeaderC01[2] =
 {
 	{
-		128,		///<¯•ÊID
-		BOY1,		///<•\¦‚·‚éOBJƒR[ƒh
-		MV_DMY,	///<“®ìƒR[ƒh
-		0,			///<ƒCƒxƒ“ƒgƒ^ƒCƒv
-		0,///<ƒCƒxƒ“ƒgƒtƒ‰ƒO
-		0,///<ƒCƒxƒ“ƒgID
-		DIR_DOWN,	///<w’è•ûŒü
-		0,	///<w’èƒpƒ‰ƒƒ^ 0
-		0,	///<w’èƒpƒ‰ƒƒ^ 1
-		0,	///<w’èƒpƒ‰ƒƒ^ 2
-		1,	///<X•ûŒüˆÚ“®§ŒÀ
-		1,///<Z•ûŒüˆÚ“®§ŒÀ
-		171,///<ƒOƒŠƒbƒhX
-		798,///<ƒOƒŠƒbƒhZ
-		0,	///<Y’l
+		128,		///<è­˜åˆ¥ID
+		BOY1,		///<è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰
+		MV_DMY,	///<å‹•ä½œã‚³ãƒ¼ãƒ‰
+		0,			///<ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+		0,///<ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
+		0,///<ã‚¤ãƒ™ãƒ³ãƒˆID
+		DIR_DOWN,	///<æŒ‡å®šæ–¹å‘
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 0
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 1
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 2
+		1,	///<Xæ–¹å‘ç§»å‹•åˆ¶é™
+		1,///<Zæ–¹å‘ç§»å‹•åˆ¶é™
+		171,///<ã‚°ãƒªãƒƒãƒ‰X
+		798,///<ã‚°ãƒªãƒƒãƒ‰Z
+		0,	///<Yå€¤
 	},
 	{
-		129,		///<¯•ÊID
-		BOARD_A,		///<•\¦‚·‚éOBJƒR[ƒh
-		MV_DMY,	///<“®ìƒR[ƒh
-		0,			///<ƒCƒxƒ“ƒgƒ^ƒCƒv
-		0,///<ƒCƒxƒ“ƒgƒtƒ‰ƒO
-		0,///<ƒCƒxƒ“ƒgID
-		DIR_DOWN,	///<w’è•ûŒü
-		0,	///<w’èƒpƒ‰ƒƒ^ 0
-		0,	///<w’èƒpƒ‰ƒƒ^ 1
-		0,	///<w’èƒpƒ‰ƒƒ^ 2
-		1,	///<X•ûŒüˆÚ“®§ŒÀ
-		1,///<Z•ûŒüˆÚ“®§ŒÀ
-		170,///<ƒOƒŠƒbƒhX
-		798,///<ƒOƒŠƒbƒhZ
-		0,	///<Y’l
+		129,		///<è­˜åˆ¥ID
+		BOARD_A,		///<è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰
+		MV_DMY,	///<å‹•ä½œã‚³ãƒ¼ãƒ‰
+		0,			///<ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+		0,///<ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
+		0,///<ã‚¤ãƒ™ãƒ³ãƒˆID
+		DIR_DOWN,	///<æŒ‡å®šæ–¹å‘
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 0
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 1
+		0,	///<æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ 2
+		1,	///<Xæ–¹å‘ç§»å‹•åˆ¶é™
+		1,///<Zæ–¹å‘ç§»å‹•åˆ¶é™
+		170,///<ã‚°ãƒªãƒƒãƒ‰X
+		798,///<ã‚°ãƒªãƒƒãƒ‰Z
+		0,	///<Yå€¤
 	},
 };
 
 //--------------------------------------------------------------
 /**
- * ƒGƒCƒŠƒAƒXƒeƒXƒg@ŒÃ‚¢ƒ][ƒ“OBJíœ‚ÌƒeƒXƒg
+ * ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ†ã‚¹ãƒˆã€€å¤ã„ã‚¾ãƒ¼ãƒ³OBJå‰Šé™¤æ™‚ã®ãƒ†ã‚¹ãƒˆ
  * @param
  * @retval
  */
@@ -118,14 +118,14 @@ FIELD_OBJ_H * DEBUG_FieldOBJ_ZoneUpdateDeleteAliesHeader(
 		debughead[max] = DATA_DebugFldOBJHeaderC01[0];
 		debughead[max+1] = DATA_DebugFldOBJHeaderC01[1];
 		max += 2;
-		OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ ƒ][ƒ“XVíœˆ—‚É‚ÄƒGƒCƒŠƒAƒXƒeƒXƒg@C01\n" );
+		OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚¾ãƒ¼ãƒ³æ›´æ–°å‰Šé™¤å‡¦ç†ã«ã¦ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ†ã‚¹ãƒˆã€€C01\n" );
 	}else if( new_zone_id == ZONE_ID_R202 ){
 		debughead = sys_AllocMemoryLo( HEAPID_FIELD, FIELD_OBJ_H_SIZE*(max+2) );
 		memcpy( debughead, head, FIELD_OBJ_H_SIZE*max );
 		debughead[max] = DATA_DebugFldOBJHeaderR202A[0];
 		debughead[max+1] = DATA_DebugFldOBJHeaderR202A[1];
 		max += 2;
-		OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ ƒ][ƒ“XVíœˆ—‚É‚ÄƒGƒCƒŠƒAƒXƒeƒXƒg@R202\n" );
+		OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚¾ãƒ¼ãƒ³æ›´æ–°å‰Šé™¤å‡¦ç†ã«ã¦ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ†ã‚¹ãƒˆã€€R202\n" );
 	}else{
 		debughead = sys_AllocMemoryLo( HEAPID_FIELD, FIELD_OBJ_H_SIZE*(max) );
 		memcpy( debughead, head, FIELD_OBJ_H_SIZE*max );
@@ -142,7 +142,7 @@ void DEBUG_FieldOBJ_ZoneUpdateDeleteAliesHeaderDelete( FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ AddBin()ƒGƒCƒŠƒAƒX—p
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ AddBin()ã‚¨ã‚¤ãƒªã‚¢ã‚¹ç”¨
  * @param
  * @retval
  */
@@ -159,14 +159,14 @@ FIELD_OBJ_H * DEBUG_FieldOBJ_AddBinHeaderAlies(
 		debughead[max] = DATA_DebugFldOBJHeaderC01[0];
 		debughead[max+1] = DATA_DebugFldOBJHeaderC01[1];
 		max += 2;
-		OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ ˆêŠ‡’Ç‰Áˆ—‚É‚ÄƒGƒCƒŠƒAƒXƒeƒXƒg@C01\n" );
+		OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ä¸€æ‹¬è¿½åŠ å‡¦ç†ã«ã¦ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ†ã‚¹ãƒˆã€€C01\n" );
 	}else if( zone_id == ZONE_ID_R202 ){
 		debughead = sys_AllocMemoryLo( HEAPID_WORLD, FIELD_OBJ_H_SIZE*(max+2) );
 		memcpy( debughead, head, FIELD_OBJ_H_SIZE*max );
 		debughead[max] = DATA_DebugFldOBJHeaderR202A[0];
 		debughead[max+1] = DATA_DebugFldOBJHeaderR202A[1];
 		max += 2;
-		OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ ˆêŠ‡’Ç‰Áˆ—‚É‚ÄƒGƒCƒŠƒAƒXƒeƒXƒg@C01\n" );
+		OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ä¸€æ‹¬è¿½åŠ å‡¦ç†ã«ã¦ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ†ã‚¹ãƒˆã€€C01\n" );
 	}else{
 		debughead = sys_AllocMemoryLo( HEAPID_WORLD, FIELD_OBJ_H_SIZE*max );
 		memcpy( debughead, head, FIELD_OBJ_H_SIZE*max );

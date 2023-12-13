@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	wazatool.c
- * @brief	‹ZƒGƒtƒFƒNƒgŠÖ˜A‚Ì”Ä—pƒc[ƒ‹‚Ìƒwƒbƒ_
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£ã®æ±ç”¨ãƒ„ãƒ¼ãƒ«ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2005.09.02(‹à)
+ * @date	2005.09.02(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -19,7 +19,7 @@
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 typedef struct{
 	s16 x;
@@ -30,14 +30,14 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZƒGƒtƒFƒNƒg“®ìƒ^ƒXƒN‚Åg‚¤ƒƒ‚ƒŠ‚ÌŠm•Û
+ * @brief   æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œã‚¿ã‚¹ã‚¯ã§ä½¿ã†ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
  *
- * @param   heap_area		g—p‚·‚éƒq[ƒvƒGƒŠƒA
- * @param   size			Šm•Û‚·‚éƒTƒCƒY
+ * @param   heap_area		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚¨ãƒªã‚¢
+ * @param   size			ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º
  *
- * @retval  Šm•Û‚µ‚½ƒƒ‚ƒŠ‚Ìæ“ªƒAƒhƒŒƒX
+ * @retval  ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * Šm•Û‚µ‚½ƒƒ‚ƒŠ‚Í0ƒNƒŠƒA‚³‚ê‚Ä‚¢‚Ü‚·
+ * ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã¯0ã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ã¾ã™
  */
 //--------------------------------------------------------------
 void * WazaTool_AllocClearMemory(int heap_area, u32 size)
@@ -49,25 +49,25 @@ void * WazaTool_AllocClearMemory(int heap_area, u32 size)
 	return work;
 }
 
-///‹ZƒGƒtƒFƒNƒg—p n“_EI“_À•Wƒf[ƒ^
+///æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ å§‹ç‚¹ãƒ»çµ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
 static const POINT WazaEffPos[][ 6 ] = 
 {
 	{	//FightType	1vs1
 		//ClientNo
-		{ APPEAR_X_TYPE_AA, APPEAR_Y_TYPE_AA },				//–¡•û1
-		{ APPEAR_X_TYPE_BB, APPEAR_Y_TYPE_BB },				//“G1
-		{ CONTEST_ATTACK_POKE_X,  CONTEST_ATTACK_POKE_Y },	//ƒRƒ“ƒeƒXƒgUŒ‚—p
-		{ CONTEST_DEFENCE_POKE_X, CONTEST_DEFENCE_POKE_Y },	//ƒRƒ“ƒeƒXƒg–hŒä—p
+		{ APPEAR_X_TYPE_AA, APPEAR_Y_TYPE_AA },				//å‘³æ–¹1
+		{ APPEAR_X_TYPE_BB, APPEAR_Y_TYPE_BB },				//æ•µ1
+		{ CONTEST_ATTACK_POKE_X,  CONTEST_ATTACK_POKE_Y },	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæ”»æ’ƒç”¨
+		{ CONTEST_DEFENCE_POKE_X, CONTEST_DEFENCE_POKE_Y },	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé˜²å¾¡ç”¨
 		{ 0,0 },
 		{ 0,0 },
 	},
 	{	//FightType 2vs2
-		{ APPEAR_X_TYPE_AA, APPEAR_Y_TYPE_AA },		//–¡•û1
-		{ APPEAR_X_TYPE_BB, APPEAR_Y_TYPE_BB },		//“G1
-		{ APPEAR_X_TYPE_A, APPEAR_Y_TYPE_A },		//–¡•û1
-		{ APPEAR_X_TYPE_B, APPEAR_Y_TYPE_B },		//“G1
-		{ APPEAR_X_TYPE_C, APPEAR_Y_TYPE_C },		//–¡•û2
-		{ APPEAR_X_TYPE_D, APPEAR_Y_TYPE_D },		//“G2
+		{ APPEAR_X_TYPE_AA, APPEAR_Y_TYPE_AA },		//å‘³æ–¹1
+		{ APPEAR_X_TYPE_BB, APPEAR_Y_TYPE_BB },		//æ•µ1
+		{ APPEAR_X_TYPE_A, APPEAR_Y_TYPE_A },		//å‘³æ–¹1
+		{ APPEAR_X_TYPE_B, APPEAR_Y_TYPE_B },		//æ•µ1
+		{ APPEAR_X_TYPE_C, APPEAR_Y_TYPE_C },		//å‘³æ–¹2
+		{ APPEAR_X_TYPE_D, APPEAR_Y_TYPE_D },		//æ•µ2
 	},
 };
 
@@ -98,18 +98,18 @@ void WazaEffPosGet_ClientType(WE_SYS_PTR wsp, int client_no, s16*x, s16* y)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZƒGƒtƒFƒNƒgn“_AI“_À•Wæ“¾
+ * @brief   æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå§‹ç‚¹ã€çµ‚ç‚¹åº§æ¨™å–å¾—
  *
  * @param   we_sys		
- * @param   client_no	ƒNƒ‰ƒCƒAƒ“ƒgNo
+ * @param   client_no	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNo
  * @param   get_pos		PM_??? or EFF_???
  *
  * @retval  
  *
- * POKE_* = ŒÂX‚Ìƒ|ƒPƒ‚ƒ“‚Ì‘å‚«‚³‚É‚æ‚Á‚ÄÀ•W‚ª•Ï‚í‚èAŠG‚Ì‘å‚«‚³‚ªˆá‚Á‚Ä‚àí‚É
- *          ‚»‚ÌŠG‚É‚ ‚Á‚½ƒ|ƒPƒ‚ƒ“‚Ì’†S‚ÌÀ•W‚ğæ‚ê‚éB
+ * POKE_* = å€‹ã€…ã®ãƒã‚±ãƒ¢ãƒ³ã®å¤§ãã•ã«ã‚ˆã£ã¦åº§æ¨™ãŒå¤‰ã‚ã‚Šã€çµµã®å¤§ãã•ãŒé•ã£ã¦ã‚‚å¸¸ã«
+ *          ãã®çµµã«ã‚ã£ãŸãƒã‚±ãƒ¢ãƒ³ã®ä¸­å¿ƒã®åº§æ¨™ã‚’å–ã‚Œã‚‹ã€‚
  *
- * EFF_* =  ƒ|ƒPƒ‚ƒ“‚ÌƒIƒtƒZƒbƒg‚ÍŠÖŒW‚È‚µ‚Åí‚É‹¤’Ê‚Ì’†SÀ•W‚ğæ“¾‚·‚é
+ * EFF_* =  ãƒã‚±ãƒ¢ãƒ³ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã¯é–¢ä¿‚ãªã—ã§å¸¸ã«å…±é€šã®ä¸­å¿ƒåº§æ¨™ã‚’å–å¾—ã™ã‚‹
  */
 //--------------------------------------------------------------
 s16 GetWazaEffPos(WE_SYS_PTR we_sys, int client_no, int get_pos)
@@ -144,12 +144,12 @@ s16 GetWazaEffPos(WE_SYS_PTR we_sys, int client_no, int get_pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’èƒNƒ‰ƒCƒAƒ“ƒgNo‚Ìƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[‚ÌƒfƒtƒHƒ‹ƒgƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB‚ğæ“¾‚·‚é
- * @param   client_no		ƒNƒ‰ƒCƒAƒ“ƒgNO
- * @retval  ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @brief   æŒ‡å®šã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNoã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹
+ * @param   client_no		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNO
+ * @retval  ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  * 
- * DP‚Å‚Íƒ|ƒPƒ‚ƒ“‚Íƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚È‚Ì‚ÅˆÓ–¡‚Í‚È‚¢‚¯‚Ç‹ŒƒGƒtƒFƒNƒgƒ\[ƒX‚ğ‚Á‚Ä‚­‚éˆ×‚Ì
- * ŒİŠ·—p‚Æ‚µ‚Ä—pˆÓ‚µ‚½
+ * DPã§ã¯ãƒã‚±ãƒ¢ãƒ³ã¯ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãªã®ã§æ„å‘³ã¯ãªã„ã‘ã©æ—§ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚½ãƒ¼ã‚¹ã‚’æŒã£ã¦ãã‚‹ç‚ºã®
+ * äº’æ›ç”¨ã¨ã—ã¦ç”¨æ„ã—ãŸ
  */
 //--------------------------------------------------------------
 u32 GetPokeSoftPri(u8 client_no)
@@ -161,17 +161,17 @@ u32 GetPokeSoftPri(u8 client_no)
 
 //-------------------------------------
 //	
-//	CATS_ACT_PTR‚ÌƒpƒŒƒbƒgNOæ“¾ŠÖ”
+//	CATS_ACT_PTRã®ãƒ‘ãƒ¬ãƒƒãƒˆNOå–å¾—é–¢æ•°
 //	
 //=====================================
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	cap‚ÌQÆ‚µ‚Ä‚¢‚éƒpƒŒƒbƒgƒiƒ“ƒo[‚ğæ“¾‚·‚é
+ *	@brief	capã®å‚ç…§ã—ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cap	ƒAƒNƒ^[ƒf[ƒ^
+ *	@param	cap	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒpƒŒƒbƒgNO	0`15
+ *	@return	ãƒ‘ãƒ¬ãƒƒãƒˆNO	0ã€œ15
  *
  *
  */
@@ -184,20 +184,20 @@ u8 WazaTool_CapPlttNoGet( CATS_ACT_PTR cap )
 
 //-------------------------------------
 //	
-//	Hƒuƒ‰ƒ“ƒNŠÖ”‚ğƒpƒbƒN‚µ‚½ŠÖ”
+//	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚’ãƒ‘ãƒƒã‚¯ã—ãŸé–¢æ•°
 //
-//	ŒãXŠg’£‚·‚é‚Æ‚±‚à‚ ‚é‚©‚à’m‚ê‚È‚¢‚½‚ßì¬
+//	å¾Œã€…æ‹¡å¼µã™ã‚‹ã¨ã“ã‚‚ã‚ã‚‹ã‹ã‚‚çŸ¥ã‚Œãªã„ãŸã‚ä½œæˆ
 //	
 //=====================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	Hƒuƒ‰ƒ“ƒNŠÖ”İ’è‚ğƒpƒbƒN‚µ‚½ŠÖ”
+ *	@brief	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°è¨­å®šã‚’ãƒ‘ãƒƒã‚¯ã—ãŸé–¢æ•°
  *
- *	@param	func		İ’è‚·‚éHƒuƒ‰ƒ“ƒN“®ìŠÖ”
- *	@param	work		ƒ[ƒN
+ *	@param	func		è¨­å®šã™ã‚‹Hãƒ–ãƒ©ãƒ³ã‚¯å‹•ä½œé–¢æ•°
+ *	@param	work		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	WAZATOOL_HBLANK_FALSE	¸”s
- *	@retval	WAZATOOL_HBLANK_TRUE	¬Œ÷
+ *	@retval	WAZATOOL_HBLANK_FALSE	å¤±æ•—
+ *	@retval	WAZATOOL_HBLANK_TRUE	æˆåŠŸ
  */
 //-----------------------------------------------------------------------------
 int WazaTool_HBlankSet( INTR_FUNC func, void * work )
@@ -212,29 +212,29 @@ int WazaTool_HBlankSet( INTR_FUNC func, void * work )
 }
 
 //-------------------------------------
-//	œƒGƒtƒFƒNƒg•ûŒüƒ`ƒFƒ“ƒW
-//	@‰¡‚Æc‚ÌƒxƒNƒgƒ‹•ûŒü‚ğ•Ô‚µ‚Ü‚·B
-//	@–ß‚è’l‚ğŠ|‚¯‚é‚±‚Æ‚ÅA‚»‚Ì•ûŒü‚ÌƒxƒNƒgƒ‹‚É‚È‚è‚Ü‚·B
-//	@
-//	@‰ñ“]‚Ín“_‚ÆI“_‚ğ“n‚µ‚Ä‚à‚ç‚¢A
-//	@‰ñ“]•ûŒü‚ª‹t‚É‚È‚é’l‚ğÄİ’è‚µ‚Ü‚·B
-//	@ê‡‚É‚æ‚Á‚Ä‚Ín“_‚Ì’l‚ª•Ï‚í‚é‚Æ‚«‚à‚ ‚è‚Ü‚·B
-//	@—áj•ÏX‘O@n0 I15 •ÏXŒã@n360 I‚í‚è345
+//	â—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ–¹å‘ãƒã‚§ãƒ³ã‚¸
+//	ã€€æ¨ªã¨ç¸¦ã®ãƒ™ã‚¯ãƒˆãƒ«æ–¹å‘ã‚’è¿”ã—ã¾ã™ã€‚
+//	ã€€æˆ»ã‚Šå€¤ã‚’æ›ã‘ã‚‹ã“ã¨ã§ã€ãã®æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã«ãªã‚Šã¾ã™ã€‚
+//	ã€€
+//	ã€€å›è»¢ã¯å§‹ç‚¹ã¨çµ‚ç‚¹ã‚’æ¸¡ã—ã¦ã‚‚ã‚‰ã„ã€
+//	ã€€å›è»¢æ–¹å‘ãŒé€†ã«ãªã‚‹å€¤ã‚’å†è¨­å®šã—ã¾ã™ã€‚
+//	ã€€å ´åˆã«ã‚ˆã£ã¦ã¯å§‹ç‚¹ã®å€¤ãŒå¤‰ã‚ã‚‹ã¨ãã‚‚ã‚ã‚Šã¾ã™ã€‚
+//	ã€€ä¾‹ï¼‰å¤‰æ›´å‰ã€€å§‹0 çµ‚15 å¤‰æ›´å¾Œã€€å§‹360 çµ‚ã‚ã‚Š345
 //=====================================
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[‚©‚çX•ûŒüƒxƒNƒgƒ‹‚ğæ“¾‚·‚é
+ *	@brief	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰Xæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	we_sys			‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	client_no		ƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
+ *	@param	we_sys			æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	client_no		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	1				‚»‚Ì•ûŒü‚ÅOK
- *	@retval	-1				‹t•ûŒü‚ÌƒxƒNƒgƒ‹
+ *	@retval	1				ãã®æ–¹å‘ã§OK
+ *	@retval	-1				é€†æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«
  *
- * œí“¬‚Ì©•ªƒTƒCƒh‚ğŠî€‚Æ‚µ‚½•ûŒü‚Å‚·B
+ * â—æˆ¦é—˜æ™‚ã®è‡ªåˆ†ã‚µã‚¤ãƒ‰ã‚’åŸºæº–ã¨ã—ãŸæ–¹å‘ã§ã™ã€‚
  *
- * œ‰ñ“]•ûŒü‚à‚±‚ÌŠÖ”‚Å•ÏX‚Å‚«‚Ü‚·B
+ * â—å›è»¢æ–¹å‘ã‚‚ã“ã®é–¢æ•°ã§å¤‰æ›´ã§ãã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -243,21 +243,21 @@ int WazaTool_VecChangeX( WE_SYS_PTR we_sys, int client_no )
 	int side;
 	int out_put = 1;
 
-	// Ä“xæ“¾
+	// å†åº¦å–å¾—
 	side = WET_SideCheck( we_sys, client_no );
 		
-	// ƒRƒ“ƒeƒXƒg‚©ƒ`ƒFƒbƒN
+	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‹ãƒã‚§ãƒƒã‚¯
 	if( WES_ContestFlag_Get( we_sys ) ){
-		// ƒRƒ“ƒeƒXƒg‚Ì‚Æ‚«
-		//	©•ªƒTƒCƒh‚ÍX•ûŒü‹tƒxƒNƒgƒ‹
-		//	‘ŠèƒTƒCƒh‚ÍX•ûŒü‚»‚Ì‚Ü‚Ü
+		// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ã¨ã
+		//	è‡ªåˆ†ã‚µã‚¤ãƒ‰ã¯Xæ–¹å‘é€†ãƒ™ã‚¯ãƒˆãƒ«
+		//	ç›¸æ‰‹ã‚µã‚¤ãƒ‰ã¯Xæ–¹å‘ãã®ã¾ã¾
 		if( side == SIDE_MINE ){
 			out_put = -1;
 		}
 	}else{
-		// í“¬‚Ì‚Æ‚«
-		//	©•ªƒTƒCƒh‚ÍX•ûŒü‚»‚Ì‚Ü‚Ü
-		//	‘ŠèƒTƒCƒh‚ÍX•ûŒü‹tƒxƒNƒgƒ‹
+		// æˆ¦é—˜ã®ã¨ã
+		//	è‡ªåˆ†ã‚µã‚¤ãƒ‰ã¯Xæ–¹å‘ãã®ã¾ã¾
+		//	ç›¸æ‰‹ã‚µã‚¤ãƒ‰ã¯Xæ–¹å‘é€†ãƒ™ã‚¯ãƒˆãƒ«
 		if( side == SIDE_ENEMY ){
 			out_put = -1;
 		}
@@ -269,15 +269,15 @@ int WazaTool_VecChangeX( WE_SYS_PTR we_sys, int client_no )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[‚©‚çY•ûŒüƒxƒNƒgƒ‹‚ğæ“¾‚·‚é
+ *	@brief	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰Yæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	we_sys			‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	client_no		ƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
+ *	@param	we_sys			æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	client_no		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	1				‚»‚Ì•ûŒü‚ÅOK
- *	@retval	-1				‹t•ûŒü‚ÌƒxƒNƒgƒ‹
+ *	@retval	1				ãã®æ–¹å‘ã§OK
+ *	@retval	-1				é€†æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«
  *
- * œí“¬‚Ì©•ªƒTƒCƒh‚ğŠî€‚Æ‚µ‚½•ûŒü‚Å‚·B
+ * â—æˆ¦é—˜æ™‚ã®è‡ªåˆ†ã‚µã‚¤ãƒ‰ã‚’åŸºæº–ã¨ã—ãŸæ–¹å‘ã§ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -286,11 +286,11 @@ int WazaTool_VecChangeY( WE_SYS_PTR we_sys, int client_no )
 	int side;
 	int out_put = 1;
 
-	// Ä“xæ“¾
+	// å†åº¦å–å¾—
 	side = WET_SideCheck( we_sys, client_no );
 		
-	//	©•ªƒTƒCƒh‚ÍY•ûŒü‚»‚Ì‚Ü‚Ü
-	//	‘ŠèƒTƒCƒh‚ÍY•ûŒü‹tƒxƒNƒgƒ‹
+	//	è‡ªåˆ†ã‚µã‚¤ãƒ‰ã¯Yæ–¹å‘ãã®ã¾ã¾
+	//	ç›¸æ‰‹ã‚µã‚¤ãƒ‰ã¯Yæ–¹å‘é€†ãƒ™ã‚¯ãƒˆãƒ«
 	if( side == SIDE_ENEMY ){
 		out_put = -1;
 	}
@@ -301,19 +301,19 @@ int WazaTool_VecChangeY( WE_SYS_PTR we_sys, int client_no )
 
 //-----------------------------------------------------------------------------
 /**
- *		“™·@ŒvZ
+ *		ç­‰å·®ã€€è¨ˆç®—
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“™·‚ğ‹‚ß‚é
+ *	@brief	ç­‰å·®ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	a		n“_
- *	@param	an		I“_
- *	@param	n		ƒVƒ“ƒN”
+ *	@param	a		å§‹ç‚¹
+ *	@param	an		çµ‚ç‚¹
+ *	@param	n		ã‚·ãƒ³ã‚¯æ•°
  *
- *	@return	“™·
+ *	@return	ç­‰å·®
  *
  *
  */
@@ -330,26 +330,26 @@ fx32 WazaTool_GetDiff( fx32 a, fx32 an, u32 n )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“™·diff‚Åa`an‚É‚È‚é‚½‚ß‚É•K—v‚ÈƒVƒ“ƒN”
+ *	@brief	ç­‰å·®diffã§aã€œanã«ãªã‚‹ãŸã‚ã«å¿…è¦ãªã‚·ãƒ³ã‚¯æ•°
  *	
- *	@param	a		n“_
- *	@param	an		I“_
- *	@param	diff	“™·
+ *	@param	a		å§‹ç‚¹
+ *	@param	an		çµ‚ç‚¹
+ *	@param	diff	ç­‰å·®
  *
- *	@return	•K—vƒVƒ“ƒN”	(â‘Î’lj
+ *	@return	å¿…è¦ã‚·ãƒ³ã‚¯æ•°	(çµ¶å¯¾å€¤ï¼‰
  *
- * ¬”“_ˆÈ‰ºØ‚èã‚°
+ * å°æ•°ç‚¹ä»¥ä¸‹åˆ‡ã‚Šä¸Šã’
  *
  */
 //-----------------------------------------------------------------------------
 u32 WazaTool_GetDiffSync( fx32 a, fx32 an, fx32 diff )
 {
 	fx32 ans;
-	fx32 smal;		// ¬”•”
+	fx32 smal;		// å°æ•°éƒ¨
 
 	ans = FX_Div( (an - a), diff );
 
-	// ¬”“_ˆÈ‰ºØ‚èã‚°
+	// å°æ•°ç‚¹ä»¥ä¸‹åˆ‡ã‚Šä¸Šã’
 	smal = FX_Modf( ans, &ans );
 	if( smal ){
 		ans += FX32_ONE;
@@ -364,12 +364,12 @@ u32 WazaTool_GetDiffSync( fx32 a, fx32 an, fx32 diff )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•W”½‰fŠÖ”
+ *	@brief	åº§æ¨™åæ˜ é–¢æ•°
  *
- *	@param	p_wtc	ƒf[ƒ^
- *	@param	cap		ƒAƒNƒ^[
- *	@param	c_x		’†SÀ•W
- *	@param	c_y		’†SÀ•W
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿
+ *	@param	cap		ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	c_x		ä¸­å¿ƒåº§æ¨™
+ *	@param	c_y		ä¸­å¿ƒåº§æ¨™
  *
  *	@return	none
  */
@@ -381,10 +381,10 @@ void WazaTool_SetCapMatrix( WAZATOOL_CALCMOVE* p_wtc, CATS_ACT_PTR cap, s16 c_x,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šg‘å’l”½‰fŠÖ”
+ *	@brief	æ‹¡å¤§å€¤åæ˜ é–¢æ•°
  *
- *	@param	p_wtc	ƒf[ƒ^
- *	@param	cap		ƒAƒNƒ^[
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿
+ *	@param	cap		ã‚¢ã‚¯ã‚¿ãƒ¼
  *
  *	@return	none
  */
@@ -398,12 +398,12 @@ void WazaTool_SetCapScale( WAZATOOL_CALCMOVE* p_wtc, CATS_ACT_PTR cap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•W”½‰fŠÖ”
+ *	@brief	åº§æ¨™åæ˜ é–¢æ•°
  *
- *	@param	p_wtc	ƒf[ƒ^
- *	@param	ssp		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
- *	@param	c_x		’†S‚˜À•W
- *	@param	c_y		’†S‚™À•W
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿
+ *	@param	ssp		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+ *	@param	c_x		ä¸­å¿ƒï½˜åº§æ¨™
+ *	@param	c_y		ä¸­å¿ƒï½™åº§æ¨™
  *
  *	@return	none
  */
@@ -416,10 +416,10 @@ void WazaTool_SetSspMatrix( WAZATOOL_CALCMOVE* p_wtc, SOFT_SPRITE* ssp, s16 c_x,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šg‘å’l”½‰fŠÖ”
+ *	@brief	æ‹¡å¤§å€¤åæ˜ é–¢æ•°
  *
- *	@param	p_wtc	ƒf[ƒ^
- *	@param	ssp		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿
+ *	@param	ssp		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  *
  *	@return	none
  */
@@ -432,15 +432,15 @@ void WazaTool_SetSspScale( WAZATOOL_CALCMOVE* p_wtc, SOFT_SPRITE* ssp )
 
 //-----------------------------------------------------------------------------
 /**
- *		‰ñ“]
+ *		å›è»¢
  *
- *		Šp“x‚Í
- *			0“x  ->0
- *			360“x->65535(0xffff)
- *		‚Å‚·B
+ *		è§’åº¦ã¯
+ *			0åº¦  ->0
+ *			360åº¦->65535(0xffff)
+ *		ã§ã™ã€‚
  *		FX_GET_ROTA_NUM(x)	( (x*0xffff) / 360 )
- *		‚±‚Ìƒ}ƒNƒ‚ğg—p‚·‚ê‚ÎAæ“¾‚Å‚«‚Ü‚·B
- *		—áj
+ *		ã“ã®ãƒã‚¯ãƒ­ã‚’ä½¿ç”¨ã™ã‚Œã°ã€å–å¾—ã§ãã¾ã™ã€‚
+ *		ä¾‹ï¼‰
  *			FX_GET_ROTA_NUM(360) == 0xffff
  *
  *	2005/11/18 tomoya takahashi
@@ -449,25 +449,25 @@ void WazaTool_SetSspScale( WAZATOOL_CALCMOVE* p_wtc, SOFT_SPRITE* ssp )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰ñ“]ŒvZ‰Šú‰»
+ *	@brief	å›è»¢è¨ˆç®—åˆæœŸåŒ–
  *
- *	@param	p_wtc	“®ìŒvZƒ[ƒN
- *	@param	r_sx	ŠJn‚˜Šp“x	(0`65535) 65535‚Å360“x‚Å‚·B
- *	@param	r_ex	I—¹‚˜Šp“x	(0`65535) 65535‚Å360“x‚Å‚·B
- *	@param	r_sy	ŠJn‚™Šp“x	(0`65535) 65535‚Å360“x‚Å‚·B
- *	@param	r_ey	I—¹‚™Šp“x	(0`65535) 65535‚Å360“x‚Å‚·B
- *	@param	wx		‚˜•ûŒü•
- *	@param	wy		‚™•ûŒü•
- *	@param	sync	ƒVƒ“ƒN”
+ *	@param	p_wtc	å‹•ä½œè¨ˆç®—ãƒ¯ãƒ¼ã‚¯
+ *	@param	r_sx	é–‹å§‹ï½˜è§’åº¦	(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
+ *	@param	r_ex	çµ‚äº†ï½˜è§’åº¦	(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
+ *	@param	r_sy	é–‹å§‹ï½™è§’åº¦	(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
+ *	@param	r_ey	çµ‚äº†ï½™è§’åº¦	(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
+ *	@param	wx		ï½˜æ–¹å‘å¹…
+ *	@param	wy		ï½™æ–¹å‘å¹…
+ *	@param	sync	ã‚·ãƒ³ã‚¯æ•°
  *
  *	@return	none
  *
- * X•ûŒü	sinƒJ[ƒu
- * Y•ûŒü	cosƒJ[ƒu
+ * Xæ–¹å‘	sinã‚«ãƒ¼ãƒ–
+ * Yæ–¹å‘	cosã‚«ãƒ¼ãƒ–
  *
- *			1‰ñ“]•ª‚µ‚©İ’è‚Å‚«‚Ü‚¹‚ñB
- *			‚±‚ÌŠÖ”‚Åİ’è‚µ‚½Œãwork[0]‚ğ‰ñ“]‚µ‚½‚¢‰ñ””{
- *			‚µ‚Ä‚­‚¾‚³‚¢
+ *			1å›è»¢åˆ†ã—ã‹è¨­å®šã§ãã¾ã›ã‚“ã€‚
+ *			ã“ã®é–¢æ•°ã§è¨­å®šã—ãŸå¾Œwork[0]ã‚’å›è»¢ã—ãŸã„å›æ•°å€
+ *			ã—ã¦ãã ã•ã„
  */
 //-----------------------------------------------------------------------------
 void WazaTool_InitRotaFx( WAZATOOL_CALCMOVE* p_wtc, u16 r_sx, u16 r_ex, u16 r_sy, u16 r_ey, fx32 wx, fx32 wy, int sync )
@@ -484,7 +484,7 @@ void WazaTool_InitRotaFx( WAZATOOL_CALCMOVE* p_wtc, u16 r_sx, u16 r_ex, u16 r_sy
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰ñ“]ŒvZ‰Šú‰»@‰ñ“]‘¬“x‚©‚ç‹‚ß‚é
+ *	@brief	å›è»¢è¨ˆç®—åˆæœŸåŒ–ã€€å›è»¢é€Ÿåº¦ã‹ã‚‰æ±‚ã‚ã‚‹
  *
  *	@param	p_wtc
  *	@param	r_sx
@@ -506,13 +506,13 @@ void WazaTool_InitRotaSpeedFx( WAZATOOL_CALCMOVE* p_wtc, u16 r_sx, u16 r_ex, u16
 
 	GF_ASSERT(p_wtc);
 
-	// ˆÚ“®•ûŒü‚ğİ’è
+	// ç§»å‹•æ–¹å‘ã‚’è¨­å®š
 	if( r_sx > r_ex ){
 		speed_x = -speed_x;
 	}
 	sp_x = speed_x;
 
-	//‰ñ“]ˆÚ“®ƒf[ƒ^‚ğİ’è
+	//å›è»¢ç§»å‹•ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	p_wtc->work[0] = WazaTool_GetDiffSync( r_sx*FX32_ONE, r_ex*FX32_ONE, sp_x*FX32_ONE );
 	p_wtc->work[1] = r_sx;
 	p_wtc->work[2] = wx;
@@ -525,23 +525,23 @@ void WazaTool_InitRotaSpeedFx( WAZATOOL_CALCMOVE* p_wtc, u16 r_sx, u16 r_ex, u16
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰ñ“]ŒvZ
+ *	@brief	å›è»¢è¨ˆç®—
  *
- *	@param	p_wtc	“®ìŒvZƒ[ƒN
+ *	@param	p_wtc	å‹•ä½œè¨ˆç®—ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
- *	work[0]		ŒvZ‰ñ”
- *	work[1]		‚˜•ûŒü‰ñ“]Šp“x		(0`65535) 65535‚Å360“x‚Å‚·B
- *	work[2]		‚˜•ûŒüU‚ê•		fx32Œ^
- *	work[3]		‚™•ûŒü‰ñ“]Šp“x		(0`65535) 65535‚Å360“x‚Å‚·B
- *	work[4]		‚™•ûŒüU‚ê•		fx32Œ^
- *	work[5]		‚˜•ûŒü‰ñ“]•Ï‰»—Ê	(0`65535) 65535‚Å360“x‚Å‚·B
- *	work[6]		‚™•ûŒü‰ñ“]•Ï‰»—Ê	(0`65535) 65535‚Å360“x‚Å‚·B
+ *	work[0]		è¨ˆç®—å›æ•°
+ *	work[1]		ï½˜æ–¹å‘å›è»¢è§’åº¦		(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
+ *	work[2]		ï½˜æ–¹å‘æŒ¯ã‚Œå¹…		fx32å‹
+ *	work[3]		ï½™æ–¹å‘å›è»¢è§’åº¦		(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
+ *	work[4]		ï½™æ–¹å‘æŒ¯ã‚Œå¹…		fx32å‹
+ *	work[5]		ï½˜æ–¹å‘å›è»¢å¤‰åŒ–é‡	(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
+ *	work[6]		ï½™æ–¹å‘å›è»¢å¤‰åŒ–é‡	(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
  *
- * X•ûŒü	sinƒJ[ƒu
- * Y•ûŒü	cosƒJ[ƒu
+ * Xæ–¹å‘	sinã‚«ãƒ¼ãƒ–
+ * Yæ–¹å‘	cosã‚«ãƒ¼ãƒ–
  */
 //-----------------------------------------------------------------------------
 BOOL WazaTool_CalcRotaFx( WAZATOOL_CALCMOVE* p_wtc )
@@ -550,17 +550,17 @@ BOOL WazaTool_CalcRotaFx( WAZATOOL_CALCMOVE* p_wtc )
 	GF_ASSERT(p_wtc);
 	
 	if( p_wtc->work[0] ){
-		//Šp“x•Ï‰»
+		//è§’åº¦å¤‰åŒ–
 		p_wtc->work[1] += p_wtc->work[5];
 		p_wtc->work[3] += p_wtc->work[6];
 
-		// 0`65535‚ğƒ‹[ƒv
+		// 0ã€œ65535ã‚’ãƒ«ãƒ¼ãƒ—
 		p_wtc->work[1] &= 0xffff;
 		p_wtc->work[3] &= 0xffff;
 
 		p_wtc->work[0]--;
 
-		//‰~‚ğ•`‚­
+		//å††ã‚’æã
 		p_wtc->x = FX_Mul( FX_SinIdx(p_wtc->work[1]), p_wtc->work[2] ) >> FX32_SHIFT;
 		p_wtc->y = FX_Mul( FX_CosIdx(p_wtc->work[3]), p_wtc->work[4] ) >> FX32_SHIFT;
 		return TRUE;
@@ -572,15 +572,15 @@ BOOL WazaTool_CalcRotaFx( WAZATOOL_CALCMOVE* p_wtc )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒvZ•”½‰fŠÖ”
+ *	@brief	è¨ˆç®—ï¼†åæ˜ é–¢æ•°
  *
- *	@param	p_wtc	ŒvZƒf[ƒ^
- *	@param	c_x		’†S‚˜À•W
- *	@param	c_y		’†S‚™À•W
- *	@param	cap		ƒAƒNƒ^[
+ *	@param	p_wtc	è¨ˆç®—ãƒ‡ãƒ¼ã‚¿
+ *	@param	c_x		ä¸­å¿ƒï½˜åº§æ¨™
+ *	@param	c_y		ä¸­å¿ƒï½™åº§æ¨™
+ *	@param	cap		ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -598,15 +598,15 @@ BOOL WazaTool_CalcAndReflectRotaFxCap( WAZATOOL_CALCMOVE* p_wtc, s16 c_x, s16 c_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒvZ•”½‰fŠÖ”
+ *	@brief	è¨ˆç®—ï¼†åæ˜ é–¢æ•°
  *
- *	@param	p_wtc	ŒvZƒf[ƒ^
- *	@param	c_x		’†S‚˜À•W
- *	@param	c_y		’†S‚™À•W
- *	@param	ssp		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+ *	@param	p_wtc	è¨ˆç®—ãƒ‡ãƒ¼ã‚¿
+ *	@param	c_x		ä¸­å¿ƒï½˜åº§æ¨™
+ *	@param	c_y		ä¸­å¿ƒï½™åº§æ¨™
+ *	@param	ssp		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -623,20 +623,20 @@ BOOL WazaTool_CalcAndReflectRotaFxSsp( WAZATOOL_CALCMOVE* p_wtc, s16 c_x, s16 c_
 
 //-----------------------------------------------------------------------------
 /**
- *		•½sˆÚ“®
+ *		å¹³è¡Œç§»å‹•
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- * œˆÚ“®ƒXƒs[ƒh‚Å‰Šú‰»
- *	@brief	•½sˆÚ“®ŒvZ‰Šú‰»ŠÖ”
+ * â—ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰ã§åˆæœŸåŒ–
+ *	@brief	å¹³è¡Œç§»å‹•è¨ˆç®—åˆæœŸåŒ–é–¢æ•°
  *
- *	@param	p_wtc	ƒf[ƒ^İ’èæ
- *	@param	sx		ˆÚ“®ŠJn‚˜À•W
- *	@param	ex		ˆÚ“®I—¹‚˜À•W
- *	@param	sy		ˆÚ“®ŠJn‚™À•W
- *	@param	ey		ˆÚ“®I—¹‚™À•W
- *	@param	speed_x	‚˜•ûŒüƒXƒs[ƒh	
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	sx		ç§»å‹•é–‹å§‹ï½˜åº§æ¨™
+ *	@param	ex		ç§»å‹•çµ‚äº†ï½˜åº§æ¨™
+ *	@param	sy		ç§»å‹•é–‹å§‹ï½™åº§æ¨™
+ *	@param	ey		ç§»å‹•çµ‚äº†ï½™åº§æ¨™
+ *	@param	speed_x	ï½˜æ–¹å‘ã‚¹ãƒ”ãƒ¼ãƒ‰	
  *
  *	@return	none
  */
@@ -647,13 +647,13 @@ void WazaTool_InitStraightSpeed( WAZATOOL_CALCMOVE* p_wtc, s16 sx, s16 ex, s16 s
 
 	GF_ASSERT(p_wtc);
 
-	// ˆÚ“®•ûŒü‚ğİ’è
+	// ç§»å‹•æ–¹å‘ã‚’è¨­å®š
 	if( sx > ex ){
 		speed_x = -speed_x;
 	}
 	sp_x = speed_x;
 
-	// ’¼üˆÚ“®ƒf[ƒ^‚ğİ’è
+	// ç›´ç·šç§»å‹•ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	p_wtc->x = sx;
 	p_wtc->y = sy;
 	p_wtc->work[0] = WazaTool_GetDiffSync( sx*FX32_ONE, ex*FX32_ONE, sp_x*FX32_ONE );
@@ -663,15 +663,15 @@ void WazaTool_InitStraightSpeed( WAZATOOL_CALCMOVE* p_wtc, s16 sx, s16 ex, s16 s
 
 //----------------------------------------------------------------------------
 /**
- * œˆÚ“®ƒXƒs[ƒh‚Å‰Šú‰»
- *	@brief	•½sˆÚ“®ŒvZ‰Šú‰»ŠÖ”	iŒÅ’è­”g—pj
+ * â—ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰ã§åˆæœŸåŒ–
+ *	@brief	å¹³è¡Œç§»å‹•è¨ˆç®—åˆæœŸåŒ–é–¢æ•°	ï¼ˆå›ºå®šå°‘æ•°ä½¿ç”¨ï¼‰
  *
- *	@param	p_wtc	ƒf[ƒ^İ’èæ
- *	@param	sx		ˆÚ“®ŠJn‚˜À•W
- *	@param	ex		ˆÚ“®I—¹‚˜À•W
- *	@param	sy		ˆÚ“®ŠJn‚™À•W
- *	@param	ey		ˆÚ“®I—¹‚™À•W
- *	@param	speed_x	‚˜•ûŒüƒXƒs[ƒh	
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	sx		ç§»å‹•é–‹å§‹ï½˜åº§æ¨™
+ *	@param	ex		ç§»å‹•çµ‚äº†ï½˜åº§æ¨™
+ *	@param	sy		ç§»å‹•é–‹å§‹ï½™åº§æ¨™
+ *	@param	ey		ç§»å‹•çµ‚äº†ï½™åº§æ¨™
+ *	@param	speed_x	ï½˜æ–¹å‘ã‚¹ãƒ”ãƒ¼ãƒ‰	
  *
  *	@return	none
  */
@@ -682,13 +682,13 @@ void WazaTool_InitStraightSpeedFx( WAZATOOL_CALCMOVE* p_wtc, s16 sx, s16 ex, s16
 
 	GF_ASSERT(p_wtc);
 
-	// ˆÚ“®•ûŒü‚ğİ’è
+	// ç§»å‹•æ–¹å‘ã‚’è¨­å®š
 	if( sx > ex ){
 		speed_x = -speed_x;
 	}
 	sp_x = speed_x;
 
-	// ’¼üˆÚ“®ƒf[ƒ^‚ğİ’è
+	// ç›´ç·šç§»å‹•ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	p_wtc->x = sx;
 	p_wtc->y = sy;
 	p_wtc->work[0] = WazaTool_GetDiffSync( sx*FX32_ONE, ex*FX32_ONE, sp_x*FX32_ONE );
@@ -700,15 +700,15 @@ void WazaTool_InitStraightSpeedFx( WAZATOOL_CALCMOVE* p_wtc, s16 sx, s16 ex, s16
 
 //----------------------------------------------------------------------------
 /**
- * œSync”‚Å‰Šú‰»
- *	@brief	•½sˆÚ“®ŒvZ‰Šú‰»ŠÖ”
+ * â—Syncæ•°ã§åˆæœŸåŒ–
+ *	@brief	å¹³è¡Œç§»å‹•è¨ˆç®—åˆæœŸåŒ–é–¢æ•°
  *
- *	@param	p_wtc	ƒf[ƒ^İ’èæ
- *	@param	sx		ˆÚ“®ŠJn‚˜À•W
- *	@param	ex		ˆÚ“®I—¹‚˜À•W
- *	@param	sy		ˆÚ“®ŠJn‚™À•W
- *	@param	ey		ˆÚ“®I—¹‚™À•W
- *	@param	sync	g—p‚·‚éƒVƒ“ƒN”	
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	sx		ç§»å‹•é–‹å§‹ï½˜åº§æ¨™
+ *	@param	ex		ç§»å‹•çµ‚äº†ï½˜åº§æ¨™
+ *	@param	sy		ç§»å‹•é–‹å§‹ï½™åº§æ¨™
+ *	@param	ey		ç§»å‹•çµ‚äº†ï½™åº§æ¨™
+ *	@param	sync	ä½¿ç”¨ã™ã‚‹ã‚·ãƒ³ã‚¯æ•°	
  *
  *	@return	none
  */
@@ -717,7 +717,7 @@ void WazaTool_InitStraightSync( WAZATOOL_CALCMOVE* p_wtc, s16 sx, s16 ex, s16 sy
 {
 	GF_ASSERT(p_wtc);
 
-	// ’¼üˆÚ“®ƒf[ƒ^‚ğİ’è
+	// ç›´ç·šç§»å‹•ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	p_wtc->x = sx;
 	p_wtc->y = sy;
 	p_wtc->work[0] = sync;
@@ -727,15 +727,15 @@ void WazaTool_InitStraightSync( WAZATOOL_CALCMOVE* p_wtc, s16 sx, s16 ex, s16 sy
 
 //----------------------------------------------------------------------------
 /**
- * œSync”‚Å‰Šú‰»
- *	@brief	•½sˆÚ“®ŒvZ‰Šú‰»ŠÖ”	iŒÅ’è­”g—pj
+ * â—Syncæ•°ã§åˆæœŸåŒ–
+ *	@brief	å¹³è¡Œç§»å‹•è¨ˆç®—åˆæœŸåŒ–é–¢æ•°	ï¼ˆå›ºå®šå°‘æ•°ä½¿ç”¨ï¼‰
  *
- *	@param	p_wtc	ƒf[ƒ^İ’èæ
- *	@param	sx		ˆÚ“®ŠJn‚˜À•W
- *	@param	ex		ˆÚ“®I—¹‚˜À•W
- *	@param	sy		ˆÚ“®ŠJn‚™À•W
- *	@param	ey		ˆÚ“®I—¹‚™À•W
- *	@param	sync	g—p‚·‚ésync”
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	sx		ç§»å‹•é–‹å§‹ï½˜åº§æ¨™
+ *	@param	ex		ç§»å‹•çµ‚äº†ï½˜åº§æ¨™
+ *	@param	sy		ç§»å‹•é–‹å§‹ï½™åº§æ¨™
+ *	@param	ey		ç§»å‹•çµ‚äº†ï½™åº§æ¨™
+ *	@param	sync	ä½¿ç”¨ã™ã‚‹syncæ•°
  *
  *	@return	none
  */
@@ -745,7 +745,7 @@ void WazaTool_InitStraightSyncFx( WAZATOOL_CALCMOVE* p_wtc, s16 sx, s16 ex, s16 
 
 	GF_ASSERT(p_wtc);
 
-	// ’¼üˆÚ“®ƒf[ƒ^‚ğİ’è
+	// ç›´ç·šç§»å‹•ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	p_wtc->x = sx;
 	p_wtc->y = sy;
 	p_wtc->work[0] = sync;
@@ -758,16 +758,16 @@ void WazaTool_InitStraightSyncFx( WAZATOOL_CALCMOVE* p_wtc, s16 sx, s16 ex, s16 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•½sˆÚ“®ŒvZ
+ *	@brief	å¹³è¡Œç§»å‹•è¨ˆç®—
  *
- *	@param	p_wtc	“®ìŒvZƒ[ƒN
+ *	@param	p_wtc	å‹•ä½œè¨ˆç®—ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
- *	work[0]		ŒvZ‰ñ”
- *	work[1]		x•Ï‰»—Ê
- *	work[2]		y•Ï‰»—Ê
+ *	work[0]		è¨ˆç®—å›æ•°
+ *	work[1]		xå¤‰åŒ–é‡
+ *	work[2]		yå¤‰åŒ–é‡
  */
 //-----------------------------------------------------------------------------
 BOOL WazaTool_CalcStraight( WAZATOOL_CALCMOVE* p_wtc )
@@ -788,18 +788,18 @@ BOOL WazaTool_CalcStraight( WAZATOOL_CALCMOVE* p_wtc )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•½sˆÚ“®ŒvZ	iŒÅ’è­”g—pj
+ *	@brief	å¹³è¡Œç§»å‹•è¨ˆç®—	ï¼ˆå›ºå®šå°‘æ•°ä½¿ç”¨ï¼‰
  *
- *	@param	p_wtc	“®ìŒvZƒ[ƒN
+ *	@param	p_wtc	å‹•ä½œè¨ˆç®—ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
- *	work[0]		ŒvZ‰ñ”
- *	work[1]		‚˜•Ï‰»—Ê		fx32Œ^
- *	work[2]		‚™•Ï‰»—Ê		fx32Œ^
- *	work[3]		•Ï‰»‚µ‚½’l		fx32Œ^	‰Šú’l‚Í‚O
- *	work[4]		•Ï‰»‚µ‚½’l		fx32Œ^	‰Šú’l‚Í‚O
+ *	work[0]		è¨ˆç®—å›æ•°
+ *	work[1]		ï½˜å¤‰åŒ–é‡		fx32å‹
+ *	work[2]		ï½™å¤‰åŒ–é‡		fx32å‹
+ *	work[3]		å¤‰åŒ–ã—ãŸå€¤		fx32å‹	åˆæœŸå€¤ã¯ï¼
+ *	work[4]		å¤‰åŒ–ã—ãŸå€¤		fx32å‹	åˆæœŸå€¤ã¯ï¼
  */
 //-----------------------------------------------------------------------------
 BOOL WazaTool_CalcStraightFx( WAZATOOL_CALCMOVE* p_wtc )
@@ -823,13 +823,13 @@ BOOL WazaTool_CalcStraightFx( WAZATOOL_CALCMOVE* p_wtc )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒvZ•”½‰f
+ *	@brief	è¨ˆç®—ï¼†åæ˜ 
  *
- *	@param	p_wtc	ŒvZƒf[ƒ^
- *	@param	cap		ƒAƒNƒ^[
+ *	@param	p_wtc	è¨ˆç®—ãƒ‡ãƒ¼ã‚¿
+ *	@param	cap		ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -848,13 +848,13 @@ BOOL WazaTool_CalcAndReflectStraightFxCap( WAZATOOL_CALCMOVE* p_wtc, CATS_ACT_PT
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒvZ•”½‰f
+ *	@brief	è¨ˆç®—ï¼†åæ˜ 
  *
- *	@param	p_wtc	ŒvZƒf[ƒ^
- *	@param	ssp		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+ *	@param	p_wtc	è¨ˆç®—ãƒ‡ãƒ¼ã‚¿
+ *	@param	ssp		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -872,22 +872,22 @@ BOOL WazaTool_CalcAndReflectStraightFxSsp( WAZATOOL_CALCMOVE* p_wtc, SOFT_SPRITE
 
 //-----------------------------------------------------------------------------
 /**
- *		R‚È‚èˆÚ“®
+ *		å±±ãªã‚Šç§»å‹•
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	R‚È‚èˆÚ“®‰Šú‰»@Y•ûŒü		(ŒÅ’è­”g—p)
+ *	@brief	å±±ãªã‚Šç§»å‹•åˆæœŸåŒ–ã€€Yæ–¹å‘		(å›ºå®šå°‘æ•°ä½¿ç”¨)
  *
- *	@param	p_wtc_st		•½sˆÚ“®ƒpƒ‰ƒ[ƒ^İ’èæ
- *	@param	p_wtc_rt		‰ñ“]ƒpƒ‰ƒ[ƒ^İ’èæ
- *	@param	sx				n“_‚˜À•W
- *	@param	ex				I“_‚˜À•W
- *	@param	sy				n“_‚™À•W
- *	@param	ey				I“_‚™À•W
- *	@param	sync			ŒvZƒVƒ“ƒN”
- *	@param	width			‚â‚Ü‚È‚è‚Ì•	Y•ûŒü
+ *	@param	p_wtc_st		å¹³è¡Œç§»å‹•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	p_wtc_rt		å›è»¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	sx				å§‹ç‚¹ï½˜åº§æ¨™
+ *	@param	ex				çµ‚ç‚¹ï½˜åº§æ¨™
+ *	@param	sy				å§‹ç‚¹ï½™åº§æ¨™
+ *	@param	ey				çµ‚ç‚¹ï½™åº§æ¨™
+ *	@param	sync			è¨ˆç®—ã‚·ãƒ³ã‚¯æ•°
+ *	@param	width			ã‚„ã¾ãªã‚Šã®å¹…	Yæ–¹å‘
  *
  *	@return	none
  *
@@ -896,10 +896,10 @@ BOOL WazaTool_CalcAndReflectStraightFxSsp( WAZATOOL_CALCMOVE* p_wtc, SOFT_SPRITE
 //-----------------------------------------------------------------------------
 void WazaTool_InitCurveYFx( WAZATOOL_CALCMOVE* p_wtc_st, WAZATOOL_CALCMOVE* p_wtc_rt, s16 sx, s16 ex, s16 sy, s16 ey, u16 sync, fx32 width )
 {
-	// •½sˆÚ“®İ’è
+	// å¹³è¡Œç§»å‹•è¨­å®š
 	WazaTool_InitStraightSyncFx( p_wtc_st, sx, ex, sy, ey, sync );
 	
-	// ‰ñ“]İ’è
+	// å›è»¢è¨­å®š
 	p_wtc_rt->x = 0;
 	p_wtc_rt->y	= 0;
 	WazaTool_InitRotaFx( p_wtc_rt, 
@@ -911,16 +911,16 @@ void WazaTool_InitCurveYFx( WAZATOOL_CALCMOVE* p_wtc_st, WAZATOOL_CALCMOVE* p_wt
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	R‚È‚èˆÚ“®‰Šú‰»@‚˜•ûŒü		(ŒÅ’è­”g—p)
+ *	@brief	å±±ãªã‚Šç§»å‹•åˆæœŸåŒ–ã€€ï½˜æ–¹å‘		(å›ºå®šå°‘æ•°ä½¿ç”¨)
  *
- *	@param	p_wtc_st		•½sˆÚ“®ƒpƒ‰ƒ[ƒ^İ’èæ
- *	@param	p_wtc_rt		‰ñ“]ƒpƒ‰ƒ[ƒ^İ’èæ
- *	@param	sx				n“_‚˜À•W
- *	@param	ex				I“_‚˜À•W
- *	@param	sy				n“_‚™À•W
- *	@param	ey				I“_‚™À•W
- *	@param	sync			ŒvZƒVƒ“ƒN”
- *	@param	width			‚â‚Ü‚È‚è‚Ì•	X•ûŒü
+ *	@param	p_wtc_st		å¹³è¡Œç§»å‹•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	p_wtc_rt		å›è»¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	sx				å§‹ç‚¹ï½˜åº§æ¨™
+ *	@param	ex				çµ‚ç‚¹ï½˜åº§æ¨™
+ *	@param	sy				å§‹ç‚¹ï½™åº§æ¨™
+ *	@param	ey				çµ‚ç‚¹ï½™åº§æ¨™
+ *	@param	sync			è¨ˆç®—ã‚·ãƒ³ã‚¯æ•°
+ *	@param	width			ã‚„ã¾ãªã‚Šã®å¹…	Xæ–¹å‘
  *
  *	@return	none
  *
@@ -929,10 +929,10 @@ void WazaTool_InitCurveYFx( WAZATOOL_CALCMOVE* p_wtc_st, WAZATOOL_CALCMOVE* p_wt
 //-----------------------------------------------------------------------------
 void WazaTool_InitCurveXFx( WAZATOOL_CALCMOVE* p_wtc_st, WAZATOOL_CALCMOVE* p_wtc_rt, s16 sx, s16 ex, s16 sy, s16 ey, u16 sync, fx32 width )
 {
-	// •½sˆÚ“®İ’è
+	// å¹³è¡Œç§»å‹•è¨­å®š
 	WazaTool_InitStraightSyncFx( p_wtc_st, sx, ex, sy, ey, sync );
 	
-	// ‰ñ“]İ’è
+	// å›è»¢è¨­å®š
 	p_wtc_rt->x = 0;
 	p_wtc_rt->y	= 0;
 	WazaTool_InitRotaFx( p_wtc_rt, 
@@ -943,37 +943,37 @@ void WazaTool_InitCurveXFx( WAZATOOL_CALCMOVE* p_wtc_st, WAZATOOL_CALCMOVE* p_wt
 
 //----------------------------------------------------------------------------
 /**
- * œ•½sˆÚ“®‚Æ‰ñ“]‚Ì‚ ‚í‚¹‹Z
- *	@brief	R‚È‚èˆÚ“®ŒvZ	iŒÅ’è­”g—pj
+ * â—å¹³è¡Œç§»å‹•ã¨å›è»¢ã®ã‚ã‚ã›æŠ€
+ *	@brief	å±±ãªã‚Šç§»å‹•è¨ˆç®—	ï¼ˆå›ºå®šå°‘æ•°ä½¿ç”¨ï¼‰
  *
- *	@param	p_wtc_st	•½sˆÚ“®ŒvZƒ[ƒN	(ƒƒCƒ“)
- *	@param	p_wtc_rt	‰ñ“]ŒvZƒ[ƒN		(ƒTƒu)
+ *	@param	p_wtc_st	å¹³è¡Œç§»å‹•è¨ˆç®—ãƒ¯ãƒ¼ã‚¯	(ãƒ¡ã‚¤ãƒ³)
+ *	@param	p_wtc_rt	å›è»¢è¨ˆç®—ãƒ¯ãƒ¼ã‚¯		(ã‚µãƒ–)
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
- *	–p_wtc_st‚Ìx,yÀ•W‚ªŒvZŒ‹‰Ê‚É‚È‚è‚Ü‚·B
- *	–‰Šú‰»‚Ép_wtc_rt‚Ìx,y‚Í0‚Å‰Šú‰»‚µ‚Ä‚­‚¾‚³‚¢B
+ *	ï¼Šp_wtc_stã®x,yåº§æ¨™ãŒè¨ˆç®—çµæœã«ãªã‚Šã¾ã™ã€‚
+ *	ï¼ŠåˆæœŸåŒ–æ™‚ã«p_wtc_rtã®x,yã¯0ã§åˆæœŸåŒ–ã—ã¦ãã ã•ã„ã€‚
  *
- * p_wtc_st	•½sˆÚ“®—p
- *	x			‘S‘Ì‚Ì‚˜À•WŒvZŒ‹‰Ê
- *	y			‘S‘Ì‚Ì‚™À•WŒvZŒ‹‰Ê
- *	work[0]		ŒvZ‰ñ”
- *	work[1]		‚˜•Ï‰»—Ê		fx32Œ^
- *	work[2]		‚™•Ï‰»—Ê		fx32Œ^
- *	work[3]		•Ï‰»‚µ‚½’l		fx32Œ^	‰Šú’l‚Í‚O
- *	work[4]		•Ï‰»‚µ‚½’l		fx32Œ^	‰Šú’l‚Í‚O
+ * p_wtc_st	å¹³è¡Œç§»å‹•ç”¨
+ *	x			å…¨ä½“ã®ï½˜åº§æ¨™è¨ˆç®—çµæœ
+ *	y			å…¨ä½“ã®ï½™åº§æ¨™è¨ˆç®—çµæœ
+ *	work[0]		è¨ˆç®—å›æ•°
+ *	work[1]		ï½˜å¤‰åŒ–é‡		fx32å‹
+ *	work[2]		ï½™å¤‰åŒ–é‡		fx32å‹
+ *	work[3]		å¤‰åŒ–ã—ãŸå€¤		fx32å‹	åˆæœŸå€¤ã¯ï¼
+ *	work[4]		å¤‰åŒ–ã—ãŸå€¤		fx32å‹	åˆæœŸå€¤ã¯ï¼
  *
- * p_wtc_rt	‰ñ“]—p
- *	x			‰ñ“]‚Ì‚İ‚ÌŒvZŒ‹‰Ê
- *	y			‰ñ“]‚Ì‚İ‚ÌŒvZŒ‹‰Ê
- *	work[0]		ŒvZ‰ñ”
- *	work[1]		‚˜•ûŒü‰ñ“]Šp“x		(0`65535) 65535‚Å360“x‚Å‚·B
- *	work[2]		‚˜•ûŒüU‚ê•		fx32Œ^
- *	work[3]		‚™•ûŒü‰ñ“]Šp“x		(0`65535) 65535‚Å360“x‚Å‚·B
- *	work[4]		‚™•ûŒüU‚ê•		fx32Œ^
- *	work[5]		‚˜•ûŒü‰ñ“]•Ï‰»—Ê	(0`65535) 65535‚Å360“x‚Å‚·B
- *	work[6]		‚™•ûŒü‰ñ“]•Ï‰»—Ê	(0`65535) 65535‚Å360“x‚Å‚·B
+ * p_wtc_rt	å›è»¢ç”¨
+ *	x			å›è»¢ã®ã¿ã®è¨ˆç®—çµæœ
+ *	y			å›è»¢ã®ã¿ã®è¨ˆç®—çµæœ
+ *	work[0]		è¨ˆç®—å›æ•°
+ *	work[1]		ï½˜æ–¹å‘å›è»¢è§’åº¦		(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
+ *	work[2]		ï½˜æ–¹å‘æŒ¯ã‚Œå¹…		fx32å‹
+ *	work[3]		ï½™æ–¹å‘å›è»¢è§’åº¦		(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
+ *	work[4]		ï½™æ–¹å‘æŒ¯ã‚Œå¹…		fx32å‹
+ *	work[5]		ï½˜æ–¹å‘å›è»¢å¤‰åŒ–é‡	(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
+ *	work[6]		ï½™æ–¹å‘å›è»¢å¤‰åŒ–é‡	(0ã€œ65535) 65535ã§360åº¦ã§ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 BOOL WazaTool_CalcCurveFx( WAZATOOL_CALCMOVE* p_wtc_st, WAZATOOL_CALCMOVE* p_wtc_rt )
@@ -983,16 +983,16 @@ BOOL WazaTool_CalcCurveFx( WAZATOOL_CALCMOVE* p_wtc_st, WAZATOOL_CALCMOVE* p_wtc
 	GF_ASSERT(p_wtc_st);
 	GF_ASSERT(p_wtc_rt);
 
-	// •½sˆÚ“®ŒvZ
+	// å¹³è¡Œç§»å‹•è¨ˆç®—
 	st_end = WazaTool_CalcStraightFx( p_wtc_st );
-	// R‚È‚èŒvZ
+	// å±±ãªã‚Šè¨ˆç®—
 	rt_end = WazaTool_CalcRotaFx( p_wtc_rt );
 
-	// •½sˆÚ“®‚Æ‰ñ“]‚Ì‰ÁZ
+	// å¹³è¡Œç§»å‹•ã¨å›è»¢ã®åŠ ç®—
 	p_wtc_st->x += p_wtc_rt->x;
 	p_wtc_st->y += p_wtc_rt->y;
 
-	// ŒvZI—¹ƒ`ƒFƒbƒN
+	// è¨ˆç®—çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( (st_end == rt_end) && (st_end == FALSE) ){
 		return FALSE;
 	}
@@ -1003,14 +1003,14 @@ BOOL WazaTool_CalcCurveFx( WAZATOOL_CALCMOVE* p_wtc_st, WAZATOOL_CALCMOVE* p_wtc
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒvZ•”½‰f
+ *	@brief	è¨ˆç®—ï¼†åæ˜ 
  *
- *	@param	p_wtc_st	’¼üˆÚ“®—p
- *	@param	p_wtc_rt	‰ñ“]—p
- *	@param	cap			ƒAƒNƒ^[
+ *	@param	p_wtc_st	ç›´ç·šç§»å‹•ç”¨
+ *	@param	p_wtc_rt	å›è»¢ç”¨
+ *	@param	cap			ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -1029,14 +1029,14 @@ BOOL WazaTool_CalcAndReflectCurveFxCap( WAZATOOL_CALCMOVE* p_wtc_st, WAZATOOL_CA
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒvZ•”½‰f
+ *	@brief	è¨ˆç®—ï¼†åæ˜ 
  *
- *	@param	p_wtc_st	’¼üˆÚ“®ƒf[ƒ^
- *	@param	p_wtc_rt	‰ñ“]ƒf[ƒ^
- *	@param	ssp			ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+ *	@param	p_wtc_st	ç›´ç·šç§»å‹•ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_wtc_rt	å›è»¢ãƒ‡ãƒ¼ã‚¿
+ *	@param	ssp			ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -1052,16 +1052,16 @@ BOOL WazaTool_CalcAndReflectCurveFxSsp( WAZATOOL_CALCMOVE* p_wtc_st, WAZATOOL_CA
 }
 
 
-//WAZATOOL_CALCMOVE_ONE\‘¢‘Ì—pŠÖ”ŒS
+//WAZATOOL_CALCMOVE_ONEæ§‹é€ ä½“ç”¨é–¢æ•°éƒ¡
 //----------------------------------------------------------------------------
 /**
- *œÀ”
- *	@brief	‚P‚Â‚Ì’l‚ğ“™·‚Å“®‚©‚·‰Šú‰»ŠÖ”@iƒVƒ“ƒN”w’èj
+ *â—å®Ÿæ•°
+ *	@brief	ï¼‘ã¤ã®å€¤ã‚’ç­‰å·®ã§å‹•ã‹ã™åˆæœŸåŒ–é–¢æ•°ã€€ï¼ˆã‚·ãƒ³ã‚¯æ•°æŒ‡å®šï¼‰
  *
- *	@param	p_wtc	ƒf[ƒ^İ’èæ
- *	@param	a		ŠJn’l
- *	@param	an		I—¹’l
- *	@param	sync	ƒVƒ“ƒN”
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	a		é–‹å§‹å€¤
+ *	@param	an		çµ‚äº†å€¤
+ *	@param	sync	ã‚·ãƒ³ã‚¯æ•°
  *
  *	@return	none
  *
@@ -1079,13 +1079,13 @@ void WazaTool_InitMoveOneSync( WAZATOOL_CALCMOVE_ONE* p_wtc, s32 a, s32 an, u32 
 
 //----------------------------------------------------------------------------
 /**
- *œÀ”
- *	@brief	‚P‚Â‚Ì’l‚ğ“™·‚Å“®‚©‚·‰Šú‰»ŠÖ”@iƒXƒs[ƒhw’èj
+ *â—å®Ÿæ•°
+ *	@brief	ï¼‘ã¤ã®å€¤ã‚’ç­‰å·®ã§å‹•ã‹ã™åˆæœŸåŒ–é–¢æ•°ã€€ï¼ˆã‚¹ãƒ”ãƒ¼ãƒ‰æŒ‡å®šï¼‰
  *
- *	@param	p_wtc	ƒf[ƒ^İ’èæ
- *	@param	a		ŠJn’l
- *	@param	an		I—¹’l
- *	@param	speed	ƒXƒs[ƒh
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	a		é–‹å§‹å€¤
+ *	@param	an		çµ‚äº†å€¤
+ *	@param	speed	ã‚¹ãƒ”ãƒ¼ãƒ‰
  *
  *	@return	none
  *
@@ -1103,13 +1103,13 @@ void WazaTool_InitMoveOneSpeed( WAZATOOL_CALCMOVE_ONE* p_wtc, s32 a, s32 an, s16
 
 //----------------------------------------------------------------------------
 /**
- *œŒÅ’è­”
- *	@brief	‚P‚Â‚Ì’l‚ğ“™·‚Å“®‚©‚·‰Šú‰»ŠÖ”@iƒVƒ“ƒN”w’èj
+ *â—å›ºå®šå°‘æ•°
+ *	@brief	ï¼‘ã¤ã®å€¤ã‚’ç­‰å·®ã§å‹•ã‹ã™åˆæœŸåŒ–é–¢æ•°ã€€ï¼ˆã‚·ãƒ³ã‚¯æ•°æŒ‡å®šï¼‰
  *
- *	@param	p_wtc	ƒf[ƒ^İ’èæ
- *	@param	a		ŠJn’l
- *	@param	an		I—¹’l
- *	@param	sync	ƒVƒ“ƒN”
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	a		é–‹å§‹å€¤
+ *	@param	an		çµ‚äº†å€¤
+ *	@param	sync	ã‚·ãƒ³ã‚¯æ•°
  *
  *	@return	none
  *
@@ -1128,13 +1128,13 @@ void WazaTool_InitMoveOneSyncFx( WAZATOOL_CALCMOVE_ONE* p_wtc, s16 a, s16 an, u3
 
 //----------------------------------------------------------------------------
 /**
- *œŒÅ’è­”
- *	@brief	‚P‚Â‚Ì’l‚ğ“™·‚Å“®‚©‚·‰Šú‰»ŠÖ”@iƒXƒs[ƒhw’èj
+ *â—å›ºå®šå°‘æ•°
+ *	@brief	ï¼‘ã¤ã®å€¤ã‚’ç­‰å·®ã§å‹•ã‹ã™åˆæœŸåŒ–é–¢æ•°ã€€ï¼ˆã‚¹ãƒ”ãƒ¼ãƒ‰æŒ‡å®šï¼‰
  *
- *	@param	p_wtc	ƒf[ƒ^İ’èæ
- *	@param	a		ŠJn’l
- *	@param	an		I—¹’l
- *	@param	speed	ƒXƒs[ƒh
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *	@param	a		é–‹å§‹å€¤
+ *	@param	an		çµ‚äº†å€¤
+ *	@param	speed	ã‚¹ãƒ”ãƒ¼ãƒ‰
  *
  *	@return	none
  *
@@ -1153,16 +1153,16 @@ void WazaTool_InitMoveOneSpeedFx( WAZATOOL_CALCMOVE_ONE* p_wtc, s16 a, s16 an, f
 
 //----------------------------------------------------------------------------
 /**
- *œÀ”
- *	@brief	1‚Â‚Ì’l‚Ì“™·ŒvZ
+ *â—å®Ÿæ•°
+ *	@brief	1ã¤ã®å€¤ã®ç­‰å·®è¨ˆç®—
  *
- *	@param	p_wtc	ƒ[ƒN
+ *	@param	p_wtc	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
- *	work[0]		ŒvZ‰ñ”
- *	work[1]		•Ï‰»—Ê	
+ *	work[0]		è¨ˆç®—å›æ•°
+ *	work[1]		å¤‰åŒ–é‡	
  *
  */
 //-----------------------------------------------------------------------------
@@ -1182,17 +1182,17 @@ BOOL WazaTool_CalcMoveOne( WAZATOOL_CALCMOVE_ONE* p_wtc )
 
 //----------------------------------------------------------------------------
 /**
- *œŒÅ’è­”
- *	@brief	1‚Â‚Ì’l‚Ì“™·ŒvZ
+ *â—å›ºå®šå°‘æ•°
+ *	@brief	1ã¤ã®å€¤ã®ç­‰å·®è¨ˆç®—
  *
- *	@param	p_wtc	ƒ[ƒN
+ *	@param	p_wtc	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
- *	work[0]		ŒvZ‰ñ”
- *	work[1]		•Ï‰»—Ê	
- *	work[2]		¡‚Ü‚Å‚É•Ï‰»‚µ‚½—Ê
+ *	work[0]		è¨ˆç®—å›æ•°
+ *	work[1]		å¤‰åŒ–é‡	
+ *	work[2]		ä»Šã¾ã§ã«å¤‰åŒ–ã—ãŸé‡
  *
  */
 //-----------------------------------------------------------------------------
@@ -1214,13 +1214,13 @@ BOOL WazaTool_CalcMoveOneFx( WAZATOOL_CALCMOVE_ONE* p_wtc )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒTƒCƒ“”gŒvZ‰Šú‰»ŠÖ”
+ *	@brief	ã‚µã‚¤ãƒ³æ³¢è¨ˆç®—åˆæœŸåŒ–é–¢æ•°
  *
- *	@param	p_wtc		ŒvZƒpƒ‰ƒ[ƒ^Ši”[æ
- *	@param	s_r			ŠJn‰ñ“]Šp
- *	@param	e_r			I—¹‰ñ“]Šp
- *	@param	w			Å‘å‚Ó‚è•
- *	@param	sync		ƒVƒ“ƒN”
+ *	@param	p_wtc		è¨ˆç®—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	s_r			é–‹å§‹å›è»¢è§’
+ *	@param	e_r			çµ‚äº†å›è»¢è§’
+ *	@param	w			æœ€å¤§ãµã‚Šå¹…
+ *	@param	sync		ã‚·ãƒ³ã‚¯æ•°
  *
  *	@return	none
  *
@@ -1238,12 +1238,12 @@ void WazaTool_InitSinCosOneSyncFx( WAZATOOL_CALCMOVE_ONE* p_wtc, u16 s_r, u16 e_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	sin”gŒvZ
+ *	@brief	sinæ³¢è¨ˆç®—
  *
- *	@param	p_wtc	ŒvZƒf[ƒ^
+ *	@param	p_wtc	è¨ˆç®—ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -1253,15 +1253,15 @@ BOOL WazaTool_CalcSinOne( WAZATOOL_CALCMOVE_ONE* p_wtc )
 	GF_ASSERT(p_wtc);
 	
 	if( p_wtc->work[0] ){
-		//Šp“x•Ï‰»
+		//è§’åº¦å¤‰åŒ–
 		p_wtc->work[1] += p_wtc->work[3];
 
-		// 0`65535‚ğƒ‹[ƒv
+		// 0ã€œ65535ã‚’ãƒ«ãƒ¼ãƒ—
 		p_wtc->work[1] &= 0xffff;
 
 		p_wtc->work[0]--;
 
-		//‰~‚ğ•`‚­
+		//å††ã‚’æã
 		p_wtc->num = FX_Mul( FX_SinIdx(p_wtc->work[1]), p_wtc->work[2] ) >> FX32_SHIFT;
 
 		return TRUE;
@@ -1273,12 +1273,12 @@ BOOL WazaTool_CalcSinOne( WAZATOOL_CALCMOVE_ONE* p_wtc )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	cos”gŒvZ
+ *	@brief	cosæ³¢è¨ˆç®—
  *
- *	@param	p_wtc	ŒvZƒf[ƒ^
+ *	@param	p_wtc	è¨ˆç®—ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -1288,15 +1288,15 @@ BOOL WazaTool_CalcCosOne( WAZATOOL_CALCMOVE_ONE* p_wtc )
 	GF_ASSERT(p_wtc);
 	
 	if( p_wtc->work[0] ){
-		//Šp“x•Ï‰»
+		//è§’åº¦å¤‰åŒ–
 		p_wtc->work[1] += p_wtc->work[3];
 
-		// 0`65535‚ğƒ‹[ƒv
+		// 0ã€œ65535ã‚’ãƒ«ãƒ¼ãƒ—
 		p_wtc->work[1] &= 0xffff;
 
 		p_wtc->work[0]--;
 
-		//‰~‚ğ•`‚­
+		//å††ã‚’æã
 		p_wtc->num = FX_Mul( FX_CosIdx(p_wtc->work[1]), p_wtc->work[2] ) >> FX32_SHIFT;
 
 		return TRUE;
@@ -1308,13 +1308,13 @@ BOOL WazaTool_CalcCosOne( WAZATOOL_CALCMOVE_ONE* p_wtc )
 
 //--------------------------------------------------------------
 /**
- * @brief	Šgk‰Šú‰»
+ * @brief	æ‹¡ç¸®åˆæœŸåŒ–
  *
  * @param	p_wtc	
- * @param	ss				ŠJnƒXƒP[ƒ‹
- * @param	ds				’ÊíƒXƒP[ƒ‹
- * @param	es				I—¹ƒXƒP[ƒ‹
- * @param	sync			ƒtƒŒ[ƒ€”
+ * @param	ss				é–‹å§‹ã‚¹ã‚±ãƒ¼ãƒ«
+ * @param	ds				é€šå¸¸ã‚¹ã‚±ãƒ¼ãƒ«
+ * @param	es				çµ‚äº†ã‚¹ã‚±ãƒ¼ãƒ«
+ * @param	sync			ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
  * @retval	none	
  *
@@ -1331,13 +1331,13 @@ void WazaTool_InitScaleRate(WAZATOOL_CALCMOVE* p_wtc, s16 ss, s16 ds, s16 es, u3
 	
 	wk = p_wtc;
 	
-	wk->work[0] = sync;			///< ‚©‚©‚éŠÔ
+	wk->work[0] = sync;			///< ã‹ã‹ã‚‹æ™‚é–“
 	
-	///< Šg‘å—¦
+	///< æ‹¡å¤§ç‡
 	wk->work[1] = WazaTool_GetDiff(SCALE_RATE_PER(ss, ds) * FX32_ONE,
 								   SCALE_RATE_PER(es, ds) * FX32_ONE, sync);
 
-	///< Œ»İ‚ÌŠg‘å—¦x,y
+	///< ç¾åœ¨ã®æ‹¡å¤§ç‡x,y
 	wk->x = SCALE_RATE_PER(ss, ds);
 	wk->y = SCALE_RATE_PER(ss, ds);
 	wk->work[3] = wk->x * FX32_ONE;
@@ -1347,7 +1347,7 @@ void WazaTool_InitScaleRate(WAZATOOL_CALCMOVE* p_wtc, s16 ss, s16 ds, s16 es, u3
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠgkÀs
+ * @brief	æ‹¡ç¸®å®Ÿè¡Œ
  *
  * @param	p_wtc	
  *
@@ -1379,15 +1379,15 @@ BOOL WazaTool_CalcScaleRate(WAZATOOL_CALCMOVE* p_wtc)
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠgkXY”½‰f
+ * @brief	æ‹¡ç¸®XYåæ˜ 
  *
- * @param	p_wtc		”Ä—p
- * @param	sx			ŠJnƒXƒP[ƒ‹X
- * @param	ex			I—¹ƒXƒP[ƒ‹X
- * @param	sy			ŠJnƒXƒP[ƒ‹Y
- * @param	ey			I—¹ƒXƒP[ƒ‹Y
- * @param	ds			Šî–{’l
- * @param	sync		ƒVƒ“ƒN”
+ * @param	p_wtc		æ±ç”¨
+ * @param	sx			é–‹å§‹ã‚¹ã‚±ãƒ¼ãƒ«X
+ * @param	ex			çµ‚äº†ã‚¹ã‚±ãƒ¼ãƒ«X
+ * @param	sy			é–‹å§‹ã‚¹ã‚±ãƒ¼ãƒ«Y
+ * @param	ey			çµ‚äº†ã‚¹ã‚±ãƒ¼ãƒ«Y
+ * @param	ds			åŸºæœ¬å€¤
+ * @param	sync		ã‚·ãƒ³ã‚¯æ•°
  *
  * @retval	none	
  *
@@ -1401,16 +1401,16 @@ void WazaTool_InitScaleRateEx(WAZATOOL_CALCMOVE* p_wtc, s16 sx, s16 ex, s16 sy, 
 	
 	wk = p_wtc;
 	
-	wk->work[0] = sync;			///< ‚©‚©‚éŠÔ
+	wk->work[0] = sync;			///< ã‹ã‹ã‚‹æ™‚é–“
 	
-	///< Šg‘å—¦
+	///< æ‹¡å¤§ç‡
 	wk->work[1] = WazaTool_GetDiff(SCALE_RATE_PER(sx, ds) * FX32_ONE,
 								   SCALE_RATE_PER(ex, ds) * FX32_ONE, sync);
 	
 	wk->work[2] = WazaTool_GetDiff(SCALE_RATE_PER(sy, ds) * FX32_ONE,
 								   SCALE_RATE_PER(ey, ds) * FX32_ONE, sync);
 
-	///< Œ»İ‚ÌŠg‘å—¦x,y
+	///< ç¾åœ¨ã®æ‹¡å¤§ç‡x,y
 	wk->x = SCALE_RATE_PER(sx, ds);
 	wk->y = SCALE_RATE_PER(sy, ds);
 	wk->work[3] = wk->x * FX32_ONE;
@@ -1420,7 +1420,7 @@ void WazaTool_InitScaleRateEx(WAZATOOL_CALCMOVE* p_wtc, s16 sx, s16 ex, s16 sy, 
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠgkAXY”½‰f
+ * @brief	æ‹¡ç¸®ã€XYåæ˜ 
  *
  * @param	p_wtc	
  *
@@ -1451,7 +1451,7 @@ BOOL WazaTool_CalcScaleRateEx(WAZATOOL_CALCMOVE* p_wtc)
 
 //--------------------------------------------------------------
 /**
- * @brief	Šgkƒpƒ‰ƒ[ƒ^[‚ğ•ÏŠ·
+ * @brief	æ‹¡ç¸®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å¤‰æ›
  *
  * @param	p_wtc	
  * @param	x	
@@ -1470,11 +1470,11 @@ void WazaTool_CalcScaleRateToClactScale(WAZATOOL_CALCMOVE* p_wtc, f32* x, f32* y
 
 //--------------------------------------------------------------
 /**
- * @brief	Šî–{À•WA‚‚³AƒXƒP[ƒ‹‚©‚ç•â³À•W‚ğ‹‚ß‚é
+ * @brief	åŸºæœ¬åº§æ¨™ã€é«˜ã•ã€ã‚¹ã‚±ãƒ¼ãƒ«ã‹ã‚‰è£œæ­£åº§æ¨™ã‚’æ±‚ã‚ã‚‹
  *
- * @param	def_y		Šî–{À•W
- * @param	poke_h		‚‚³
- * @param	sy			ƒXƒP[ƒ‹’l
+ * @param	def_y		åŸºæœ¬åº§æ¨™
+ * @param	poke_h		é«˜ã•
+ * @param	sy			ã‚¹ã‚±ãƒ¼ãƒ«å€¤
  *
  * @retval	s16	
  *
@@ -1495,11 +1495,11 @@ s16 WazaTool_CalcScaleRateToYPos(s16 def_y, int poke_h, u32 sy)
 
 //--------------------------------------------------------------
 /**
- * @brief	Šî–{À•WA‚‚³AƒXƒP[ƒ‹‚©‚ç•â³À•W‚ğ‹‚ß‚é
+ * @brief	åŸºæœ¬åº§æ¨™ã€é«˜ã•ã€ã‚¹ã‚±ãƒ¼ãƒ«ã‹ã‚‰è£œæ­£åº§æ¨™ã‚’æ±‚ã‚ã‚‹
  *
- * @param	def_y		Šî–{À•W
- * @param	poke_h		‚‚³
- * @param	sy			ƒXƒP[ƒ‹’l
+ * @param	def_y		åŸºæœ¬åº§æ¨™
+ * @param	poke_h		é«˜ã•
+ * @param	sy			ã‚¹ã‚±ãƒ¼ãƒ«å€¤
  *
  * @retval	s16
  *
@@ -1536,13 +1536,13 @@ s16	WazaTool_CalcScaleRateToYPosFX(s16 def_y, int poke_h, fx32 sy)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚É•â³’n‚ğ”½‰f‚·‚é
+ * @brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«è£œæ­£åœ°ã‚’åæ˜ ã™ã‚‹
  *
  * @param	ssp	
  * @param	def_y	
  * @param	poke_height	
  * @param	scale	
- * @param	mode			ƒ‚[ƒh	EOFS_MODE QÆ
+ * @param	mode			ãƒ¢ãƒ¼ãƒ‰	EOFS_MODE å‚ç…§
  *
  * @retval	none	
  *
@@ -1586,13 +1586,13 @@ void WazaTool_PokeOffsetSetOAM(CATS_ACT_PTR cap, s16 def_y, s16 poke_height, fx3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒvZ•”½‰f
+ *	@brief	è¨ˆç®—ï¼†åæ˜ 
  *
- *	@param	p_wtc	ƒf[ƒ^
- *	@param	cap		ƒAƒNƒ^[
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿
+ *	@param	cap		ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL WazaTool_CalcAndReflectScaleRateCap( WAZATOOL_CALCMOVE* p_wtc, CATS_ACT_PTR cap )
@@ -1607,13 +1607,13 @@ BOOL WazaTool_CalcAndReflectScaleRateCap( WAZATOOL_CALCMOVE* p_wtc, CATS_ACT_PTR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒvZ•”½‰f
+ *	@brief	è¨ˆç®—ï¼†åæ˜ 
  *
- *	@param	p_wtc	ƒf[ƒ^
- *	@param	ssp		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿
+ *	@param	ssp		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL WazaTool_CalcAndReflectScaleRateSsp( WAZATOOL_CALCMOVE* p_wtc, SOFT_SPRITE* ssp )
@@ -1628,13 +1628,13 @@ BOOL WazaTool_CalcAndReflectScaleRateSsp( WAZATOOL_CALCMOVE* p_wtc, SOFT_SPRITE*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒvZ•”½‰f
+ *	@brief	è¨ˆç®—ï¼†åæ˜ 
  *
- *	@param	p_wtc	ƒf[ƒ^
- *	@param	cap		ƒAƒNƒ^[
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿
+ *	@param	cap		ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL WazaTool_CalcAndReflectScaleRateExCap( WAZATOOL_CALCMOVE* p_wtc, CATS_ACT_PTR cap )
@@ -1649,13 +1649,13 @@ BOOL WazaTool_CalcAndReflectScaleRateExCap( WAZATOOL_CALCMOVE* p_wtc, CATS_ACT_P
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒvZ•”½‰f
+ *	@brief	è¨ˆç®—ï¼†åæ˜ 
  *
- *	@param	p_wtc	ƒf[ƒ^
- *	@param	ssp		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+ *	@param	p_wtc	ãƒ‡ãƒ¼ã‚¿
+ *	@param	ssp		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL WazaTool_CalcAndReflectScaleRateExSsp( WAZATOOL_CALCMOVE* p_wtc, SOFT_SPRITE* ssp )
@@ -1671,11 +1671,11 @@ BOOL WazaTool_CalcAndReflectScaleRateExSsp( WAZATOOL_CALCMOVE* p_wtc, SOFT_SPRIT
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ»İó‹µ‚ÆA1ŒÂ‘O‚Ìó‹µ‚©‚çU‚èˆÊ’u‚ğŒˆ‚ß‚éŠÖ”
+ * @brief	ç¾åœ¨çŠ¶æ³ã¨ã€1å€‹å‰ã®çŠ¶æ³ã‹ã‚‰æŒ¯ã‚Šä½ç½®ã‚’æ±ºã‚ã‚‹é–¢æ•°
  *
- * @param	now			¡
- * @param	befor		1ŒÂ‘O
- * @param	p			‚Ó‚è•
+ * @param	now			ä»Š
+ * @param	befor		1å€‹å‰
+ * @param	p			ãµã‚Šå¹…
  *
  * @retval	static inline void	
  *
@@ -1697,13 +1697,13 @@ static inline void WazaTool_ShakeTool(s16* now, s32* befor, s32 p)
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠÈˆÕƒVƒFƒCƒN
+ * @brief	ç°¡æ˜“ã‚·ã‚§ã‚¤ã‚¯
  *
  * @param	p_wtc	
- * @param	x			x‚Ì‚Ó‚è•
- * @param	y			y‚Ì‚Ó‚è•
- * @param	sync		—h‚ç‚·ƒ^ƒCƒ~ƒ“ƒO
- * @param	num			—h‚ç‚·‰ñ”
+ * @param	x			xã®ãµã‚Šå¹…
+ * @param	y			yã®ãµã‚Šå¹…
+ * @param	sync		æºã‚‰ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+ * @param	num			æºã‚‰ã™å›æ•°
  *
  * @retval	none	
  *
@@ -1721,13 +1721,13 @@ void WazaTool_InitShake(WAZATOOL_CALCMOVE* p_wtc, s16 x, s16 y, u32 sync, u32 nu
 	wk->work[1] = sync;
 	wk->work[2] = num;
 	
-	wk->work[3] = 0;			///< ©E¨E ‚Å1ƒZƒbƒg
+	wk->work[3] = 0;			///< â†ãƒ»â†’ãƒ» ã§1ã‚»ãƒƒãƒˆ
 	
 	wk->work[4] = x;
 	wk->work[5] = y;
 	
-	wk->work[6] = x * -1;		///< 1ŒÂ‘O‚Ìó‘Ô
-	wk->work[7] = y * -1;		///< 1ŒÂ‘O‚Ìó‘Ô
+	wk->work[6] = x * -1;		///< 1å€‹å‰ã®çŠ¶æ…‹
+	wk->work[7] = y * -1;		///< 1å€‹å‰ã®çŠ¶æ…‹
 
 	wk->x = 0;
 	wk->y = 0;	
@@ -1736,7 +1736,7 @@ void WazaTool_InitShake(WAZATOOL_CALCMOVE* p_wtc, s16 x, s16 y, u32 sync, u32 nu
 
 //--------------------------------------------------------------
 /**
- * @brief	—h‚ç‚µ
+ * @brief	æºã‚‰ã—
  *
  * @param	p_wtc	
  *
@@ -1774,15 +1774,15 @@ BOOL WazaTool_CalcShake(WAZATOOL_CALCMOVE* p_wtc)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒvZ•”½‰f
+ *	@brief	è¨ˆç®—ï¼†åæ˜ 
  *
- *	@param	p_wtc	ŒvZƒf[ƒ^
- *	@param	c_x		’†SÀ•W
- *	@param	c_y		’†SÀ•W
- *	@param	cap		ƒAƒNƒ^[
+ *	@param	p_wtc	è¨ˆç®—ãƒ‡ãƒ¼ã‚¿
+ *	@param	c_x		ä¸­å¿ƒåº§æ¨™
+ *	@param	c_y		ä¸­å¿ƒåº§æ¨™
+ *	@param	cap		ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -1800,15 +1800,15 @@ BOOL WazaTool_CalcAndReflectShakeCap( WAZATOOL_CALCMOVE* p_wtc, s16 c_x, s16 c_y
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒvZ•”½‰f
+ *	@brief	è¨ˆç®—ï¼†åæ˜ 
  *
- *	@param	p_wtc	ŒvZƒf[ƒ^
- *	@param	c_x		’†S‚˜À•W
- *	@param	c_y		’†S‚™À•W
- *	@param	ssp		ƒXƒvƒ‰ƒCƒg
+ *	@param	p_wtc	è¨ˆç®—ãƒ‡ãƒ¼ã‚¿
+ *	@param	c_x		ä¸­å¿ƒï½˜åº§æ¨™
+ *	@param	c_y		ä¸­å¿ƒï½™åº§æ¨™
+ *	@param	ssp		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -1827,34 +1827,34 @@ BOOL WazaTool_CalcAndReflectShakeSsp( WAZATOOL_CALCMOVE* p_wtc, s16 c_x, s16 c_y
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	c‘œƒf[ƒ^‚ğp_wtz‚Éİ’è‚µ‚Ü‚·B
+ *	@brief	æ®‹åƒãƒ‡ãƒ¼ã‚¿ã‚’p_wtzã«è¨­å®šã—ã¾ã™ã€‚
  *
- *	@param	p_wtz		c‘œƒf[ƒ^Ši”[æ
- *	@param	p_wtc		“®ìƒf[ƒ^iŠeWazaTool_Init`ŠÖ”‚Å‰Šú‰»‚µ‚½‚à‚Ìj
- *	@param	p_func		“®ìŠÖ”
- *	@param	x			ˆÚ“®‚ÌŠî€‚Æ‚È‚é‚˜À•W
- *	@param	y			ˆÚ“®‚ÌŠî€‚Æ‚È‚é‚™À•W
- *	@param	wait		c‘œ‚ğ•\¦‚µ‚Ä‚¢‚­ƒ^ƒCƒ~ƒ“ƒO
- *	@param	zanzou_num	c‘œ‚Ì”		‚PˆÈã
- *	@param	type		À•W‚É”½‰f‚³‚¹‚é‚©Šg‘åk¬‚É”½‰f‚³‚¹‚é‚©
- *	@param	cap_00		c‘œ‚ÌOAM‚O
- *	@param	cap_01		c‘œ‚ÌOAM‚P		c‘œ‚Ì”‚ª‚PˆÈ‰º‚Ì@NULL
- *	@param	cap_02		c‘œ‚ÌOAM‚Q		c‘œ‚Ì”‚ª‚QˆÈ‰º‚Ì@NULL
- *	@param	cap_03		c‘œ‚ÌOAM‚R		c‘œ‚Ì”‚ª‚RˆÈ‰º‚Ì@NULL
+ *	@param	p_wtz		æ®‹åƒãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	p_wtc		å‹•ä½œãƒ‡ãƒ¼ã‚¿ï¼ˆå„WazaTool_Initã€œé–¢æ•°ã§åˆæœŸåŒ–ã—ãŸã‚‚ã®ï¼‰
+ *	@param	p_func		å‹•ä½œé–¢æ•°
+ *	@param	x			ç§»å‹•ã®åŸºæº–ã¨ãªã‚‹ï½˜åº§æ¨™
+ *	@param	y			ç§»å‹•ã®åŸºæº–ã¨ãªã‚‹ï½™åº§æ¨™
+ *	@param	wait		æ®‹åƒã‚’è¡¨ç¤ºã—ã¦ã„ãã‚¿ã‚¤ãƒŸãƒ³ã‚°
+ *	@param	zanzou_num	æ®‹åƒã®æ•°		ï¼‘ä»¥ä¸Š
+ *	@param	type		åº§æ¨™ã«åæ˜ ã•ã›ã‚‹ã‹æ‹¡å¤§ç¸®å°ã«åæ˜ ã•ã›ã‚‹ã‹
+ *	@param	cap_00		æ®‹åƒã®OAMï¼
+ *	@param	cap_01		æ®‹åƒã®OAMï¼‘		æ®‹åƒã®æ•°ãŒï¼‘ä»¥ä¸‹ã®æ™‚ã€€NULL
+ *	@param	cap_02		æ®‹åƒã®OAMï¼’		æ®‹åƒã®æ•°ãŒï¼’ä»¥ä¸‹ã®æ™‚ã€€NULL
+ *	@param	cap_03		æ®‹åƒã®OAMï¼“		æ®‹åƒã®æ•°ãŒï¼“ä»¥ä¸‹ã®æ™‚ã€€NULL
  *
  *	@return	none
  *
- * type		c‘œ”½‰fƒ^ƒCƒv
-	WAZATOOL_ZANZOU_TYPE_MATRIX,	// ƒ^ƒCƒv	À•W
-	WAZATOOL_ZANZOU_TYPE_SCALE,		// ƒ^ƒCƒv	Šg‘åk¬
+ * type		æ®‹åƒåæ˜ ã‚¿ã‚¤ãƒ—
+	WAZATOOL_ZANZOU_TYPE_MATRIX,	// ã‚¿ã‚¤ãƒ—	åº§æ¨™
+	WAZATOOL_ZANZOU_TYPE_SCALE,		// ã‚¿ã‚¤ãƒ—	æ‹¡å¤§ç¸®å°
  * 
  */
 //-----------------------------------------------------------------------------
 void WazaTool_InitZanzou( WAZATOOL_ZANZOU* p_wtz, WAZATOOL_CALCMOVE* p_wtc, WAZATOOL_CALCFUNC p_func, s16 x, s16 y, u16 wait, u8 zanzou_num, u8 type, CATS_ACT_PTR cap_00, CATS_ACT_PTR cap_01, CATS_ACT_PTR cap_02, CATS_ACT_PTR cap_03 )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_wtz->x = x;
 	p_wtz->y = y;
 	p_wtz->move_func	= p_func;
@@ -1871,7 +1871,7 @@ void WazaTool_InitZanzou( WAZATOOL_ZANZOU* p_wtz, WAZATOOL_CALCMOVE* p_wtc, WAZA
 	p_wtz->cap[ WAZATOOL_ZANZOU_2 ] = cap_02;
 	p_wtz->cap[ WAZATOOL_ZANZOU_3 ] = cap_03;
 
-	// c‘œ‚Ì•\¦OFF
+	// æ®‹åƒã®è¡¨ç¤ºOFF
 	for( i=0; i<p_wtz->zanzou_num; i++ ){
 		CATS_ObjectEnableCap( p_wtz->cap[i], FALSE );
 	}
@@ -1880,11 +1880,11 @@ void WazaTool_InitZanzou( WAZATOOL_ZANZOU* p_wtz, WAZATOOL_CALCMOVE* p_wtc, WAZA
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	c‘œ‚Ì“®ìƒpƒ‰ƒ[ƒ^‚ğ•ÏX‚·‚é
+ *	@brief	æ®‹åƒã®å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã™ã‚‹
  *
- *	@param	p_wtz		c‘œƒf[ƒ^
- *	@param	p_wtc		İ’è“®ìƒf[ƒ^
- *	@param	p_func		İ’è“®ìŠÖ”
+ *	@param	p_wtz		æ®‹åƒãƒ‡ãƒ¼ã‚¿
+ *	@param	p_wtc		è¨­å®šå‹•ä½œãƒ‡ãƒ¼ã‚¿
+ *	@param	p_func		è¨­å®šå‹•ä½œé–¢æ•°
  *
  *	@return	none
  *
@@ -1904,12 +1904,12 @@ void WazaTool_ChangeMoveZanzou( WAZATOOL_ZANZOU* p_wtz, WAZATOOL_CALCMOVE* p_wtc
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	c‘œ‚ğ“®ì‚³‚¹‚é
+ *	@brief	æ®‹åƒã‚’å‹•ä½œã•ã›ã‚‹
  *
- *	@param	p_wtz		c‘œ“®ìƒf[ƒ^
+ *	@param	p_wtz		æ®‹åƒå‹•ä½œãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE		“r’†
- *	@retval	FALSE		Š®—¹
+ *	@retval	TRUE		é€”ä¸­
+ *	@retval	FALSE		å®Œäº†
  *
  *
  */
@@ -1920,79 +1920,79 @@ BOOL WazaTool_CalcZanzou( WAZATOOL_ZANZOU* p_wtz )
 	BOOL ret[WAZATOOL_ZANZOU_MAX];
 	f32 s_x, s_y;
 
-	// •Ï”‰Šú‰»
+	// å¤‰æ•°åˆæœŸåŒ–
 	for( i=0; i<WAZATOOL_ZANZOU_MAX; i++ ){
 		ret[i] = TRUE;
 	}
 	
-	// “o˜^ˆ—
+	// ç™»éŒ²å‡¦ç†
 	if( p_wtz->wait <= p_wtz->count ){
 
-		// ‚P‘Ì“®ìŠJn
+		// ï¼‘ä½“å‹•ä½œé–‹å§‹
 		CATS_ObjectEnableCap( p_wtz->cap[ p_wtz->zanzou_move ], TRUE );
 		p_wtz->zanzou_move++;
 		p_wtz->count = 0;
 	}
 
-	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒJƒEƒ“ƒgˆ—
+	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	if( p_wtz->zanzou_move < p_wtz->zanzou_num ){
 		p_wtz->count++;
 	}
 	
-	// “®ìˆ—
+	// å‹•ä½œå‡¦ç†
 	for( i=0; i<p_wtz->zanzou_move; i++ ){
 		
-		// ŒvZ	
+		// è¨ˆç®—	
 		ret[ i ] = p_wtz->move_func( &p_wtz->move_param[ i ] );
 
-		// ”½‰f
+		// åæ˜ 
 		if( ret[ i ] ){
-			// “®ì’†‚Í’l‚ÌXV
+			// å‹•ä½œä¸­ã¯å€¤ã®æ›´æ–°
 			if( p_wtz->type == WAZATOOL_ZANZOU_TYPE_MATRIX ){
 				CATS_ObjectPosSetCap( p_wtz->cap[ i ], p_wtz->x + p_wtz->move_param[ i ].x, p_wtz->y + p_wtz->move_param[ i ].y );
 			}else{
 
-				// CalcScaleRate‚ğg—p‚µ‚Ä‚¢‚é‚Æ‚·‚é
+				// CalcScaleRateã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã¨ã™ã‚‹
 				WazaTool_CalcScaleRateToClactScale( &p_wtz->move_param[ i ], &s_x, &s_y );
 				CATS_ObjectScaleSetCap( p_wtz->cap[ i ],
 						s_x, s_y);
 			}
 		}else{
-			// “®ìŠ®—¹‚µ‚½‚ç•\¦OFF
+			// å‹•ä½œå®Œäº†ã—ãŸã‚‰è¡¨ç¤ºOFF
 			CATS_ObjectEnableCap( p_wtz->cap[ i ], FALSE );
 		}
 	}
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	for( i=0; i<p_wtz->zanzou_num; i++ ){
 
-		// ‚Ü‚¾ŒvZ“r’†‚ÌƒIƒuƒWƒFƒNƒg‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+		// ã¾ã è¨ˆç®—é€”ä¸­ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( ret[i] == TRUE ){	
 			return TRUE;
 		}
 	}
 		
-	// ret[]‚Ì’†g‚ª‘S•”FALSE‚È‚ç‘SŒvZŠ®—¹
+	// ret[]ã®ä¸­èº«ãŒå…¨éƒ¨FALSEãªã‚‰å…¨è¨ˆç®—å®Œäº†
 	return FALSE;
 }
 
 
 //-------------------------------------
 //	
-//	”Ä—p“I‚Ég‚¦‚é“®ìƒ[ƒN‚ğ
-//	ì¬‚·‚éŠÖ”ŒS
+//	æ±ç”¨çš„ã«ä½¿ãˆã‚‹å‹•ä½œãƒ¯ãƒ¼ã‚¯ã‚’
+//	ä½œæˆã™ã‚‹é–¢æ•°éƒ¡
 //
-//	‰ñ“]ˆÚ“®‚È‚Ç‚Í‹¤’Ê‚Ì“®ì‚ğ‚·‚é‚±‚Æ‚ª‘½‚¢‚½‚ßì¬
+//	å›è»¢ç§»å‹•ãªã©ã¯å…±é€šã®å‹•ä½œã‚’ã™ã‚‹ã“ã¨ãŒå¤šã„ãŸã‚ä½œæˆ
 //	
 //=====================================
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰ñ“]ˆÚ“®‚ÌƒfƒtƒHƒ‹ƒgİ’è
+ *	@brief	å›è»¢ç§»å‹•ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¨­å®š
  *
- *	@param	p_wtc		“®ìŒvZƒf[ƒ^Ši”[æ
- *	@param	rota_num	‰ñ“]”
- *	@param	sync		1‰ñ“]ƒVƒ“ƒN”
+ *	@param	p_wtc		å‹•ä½œè¨ˆç®—ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	rota_num	å›è»¢æ•°
+ *	@param	sync		1å›è»¢ã‚·ãƒ³ã‚¯æ•°
  *
  *	@return	none
  */
@@ -2014,26 +2014,26 @@ void WazaTool_MakeDefRota( WAZATOOL_CALCMOVE* p_wtc, int rota_num, int rota_one_
 
 //-------------------------------------
 //	
-//	alphaƒtƒF[ƒhƒ^ƒXƒN
+//	alphaãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯
 //	
 //=====================================
-//ƒtƒF[ƒhƒ^ƒXƒN
+//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯
 static void WazaTool_TskAlphaFade( TCB_PTR tcb, void* work )
 {
 	BOOL check;
 	WAZATOOL_ALPHA_FADE* wk = work;
 
-	// ŒvZ•”
+	// è¨ˆç®—éƒ¨
 	check = WazaTool_CalcStraightFx( &wk->wtc );
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( check == FALSE ){
 
 		wk->end_flag = TRUE;
 		TCB_Delete( tcb );
 	}else{
 
-		// ƒ}ƒCƒiƒX‚Í‚O‚É
+		// ãƒã‚¤ãƒŠã‚¹ã¯ï¼ã«
 		if( wk->wtc.x < 0 ){
 			wk->wtc.x = 0;
 		}
@@ -2041,7 +2041,7 @@ static void WazaTool_TskAlphaFade( TCB_PTR tcb, void* work )
 			wk->wtc.y = 0;
 		}
 		
-		// ”½‰f•”
+		// åæ˜ éƒ¨
 		G2_ChangeBlendAlpha( wk->wtc.x, wk->wtc.y );
 	}
 }
@@ -2049,14 +2049,14 @@ static void WazaTool_TskAlphaFade( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒ‹ƒtƒ@ƒtƒF[ƒhƒ^ƒXƒNŠJn
+ *	@brief	ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯é–‹å§‹
  *
- *	@param	p_alfd	ƒf[ƒ^Ši”[æ
- *	@param	sev1	‘ÎÌ–Ê‚P‚ÌŠJnŒW”
- *	@param	eev1	‘ÎÌ–Ê‚P‚ÌI—¹ŒW”
- *	@param	sev2	‘ÎÌ–Ê‚Q‚ÌŠJnŒW”
- *	@param	eev2	‘ÎÌ–Ê‚Q‚ÌI—¹ŒW”
- *	@param	sync	g—pƒVƒ“ƒN”
+ *	@param	p_alfd	ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	sev1	å¯¾ç§°é¢ï¼‘ã®é–‹å§‹ä¿‚æ•°
+ *	@param	eev1	å¯¾ç§°é¢ï¼‘ã®çµ‚äº†ä¿‚æ•°
+ *	@param	sev2	å¯¾ç§°é¢ï¼’ã®é–‹å§‹ä¿‚æ•°
+ *	@param	eev2	å¯¾ç§°é¢ï¼’ã®çµ‚äº†ä¿‚æ•°
+ *	@param	sync	ä½¿ç”¨ã‚·ãƒ³ã‚¯æ•°
  *
  *	@return	none
  *
@@ -2065,25 +2065,25 @@ static void WazaTool_TskAlphaFade( TCB_PTR tcb, void* work )
 //-----------------------------------------------------------------------------
 void WazaTool_StartAlphaFade( WAZATOOL_ALPHA_FADE* p_alfd, s16 sev1, s16 eev1, s16 sev2, s16 eev2, int sync )
 {
-	// •Ï‰»ƒpƒ‰ƒ[ƒ^İ’è
+	// å¤‰åŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 	WazaTool_InitStraightSyncFx( &p_alfd->wtc, sev1, eev1, sev2, eev2, sync );
 
-	// I—¹ƒtƒ‰ƒO‰Šú‰»
+	// çµ‚äº†ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 	p_alfd->end_flag = FALSE;
 
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	TCB_Add( WazaTool_TskAlphaFade, p_alfd, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒ‹ƒtƒ@ƒtƒF[ƒhƒ^ƒXƒNI—¹ƒ`ƒFƒbƒN
+ *	@brief	ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_alfd	ƒAƒ‹ƒtƒ@ƒtƒF[ƒhƒ^ƒXƒNƒ[ƒN
+ *	@param	p_alfd	ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  *
  *
  */
@@ -2095,34 +2095,34 @@ BOOL WazaTool_EndCheckAlphaFade( const WAZATOOL_ALPHA_FADE* p_alfd )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒ‰ƒXƒ^[—pƒVƒXƒeƒ€
+ *		ãƒ©ã‚¹ã‚¿ãƒ¼ç”¨ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	HDMAƒRƒ“ƒgƒ[ƒ‹
+//	HDMAã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 //	
 //=====================================
 typedef void (*pWazaTool_LSVBCFunc)( void* work );
-// 1/30 ‚ğƒJƒo[‚·‚éƒVƒXƒeƒ€
+// 1/30 ã‚’ã‚«ãƒãƒ¼ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
 typedef struct _WAZATOOL_LASTER_VBLANK_CONT{
 	TCB_PTR		vdma_tcb;
 	TCB_PTR		vbuff_tcb;
-	BOOL vblank_lst_flg;// VBlank‚Ås‚¤ˆ—‚ğs‚¤‚©‚Ìƒtƒ‰ƒO
-	BOOL dma_set_flg;	//ƒƒCƒ“ƒ‹[ƒv’†‚ÌVƒuƒ‰ƒ“‚©‚ğƒ`ƒFƒbƒN‚·‚éƒtƒ‰ƒO
+	BOOL vblank_lst_flg;// VBlankã§è¡Œã†å‡¦ç†ã‚’è¡Œã†ã‹ã®ãƒ•ãƒ©ã‚°
+	BOOL dma_set_flg;	//ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ä¸­ã®Vãƒ–ãƒ©ãƒ³ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ•ãƒ©ã‚°
 	
-	pWazaTool_LSVBCFunc	vblank1;	// ‚R‚OƒtƒŒ[ƒ€‚Ì’Êí‚ÌVƒuƒ‰ƒ“ƒN—pˆ—
-	pWazaTool_LSVBCFunc	vblank2;	// “r’†‚ÌVƒuƒ‰ƒ“ƒN—pˆ—
+	pWazaTool_LSVBCFunc	vblank1;	// ï¼“ï¼ãƒ•ãƒ¬ãƒ¼ãƒ ã®é€šå¸¸ã®Vãƒ–ãƒ©ãƒ³ã‚¯ç”¨å‡¦ç†
+	pWazaTool_LSVBCFunc	vblank2;	// é€”ä¸­ã®Vãƒ–ãƒ©ãƒ³ã‚¯ç”¨å‡¦ç†
 	void * work;
 } WAZATOOL_LSVBC;
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	’ÊíVƒuƒ‰ƒ“ƒN
+ *	@brief	é€šå¸¸Vãƒ–ãƒ©ãƒ³ã‚¯
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  *
@@ -2134,12 +2134,12 @@ static void WazaTool_LSVBC_VBlank1( TCB_PTR tcb, void* work )
 	WAZATOOL_LSVBC* wk = work;
 	
 	if( wk->vblank_lst_flg ){
-		// Ÿ‚ÌVƒuƒ‰ƒ“ƒNŠúŠÔ’†‚ÉDMAİ’è‚ğs‚¤
-		// ‚Q‰ñ–Ú‚Í‚±‚±‚Ås‚¤‚Ì‚Å‚P‰ñ–Ú‚¾‚¯ƒƒCƒ“ƒ‹[ƒv
-		// ‚È‚¢‚Å‚­‚éVƒuƒ‰ƒ“ƒNŠúŠÔ’†‚É‚â‚Á‚Ä‚à‚ç‚¤
+		// æ¬¡ã®Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«DMAè¨­å®šã‚’è¡Œã†
+		// ï¼’å›ç›®ã¯ã“ã“ã§è¡Œã†ã®ã§ï¼‘å›ç›®ã ã‘ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
+		// ãªã„ã§ãã‚‹Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«ã‚„ã£ã¦ã‚‚ã‚‰ã†
 		wk->dma_set_flg = TRUE;
 
-		// ’Êí‚ÌVƒuƒ‰ƒ“ƒNˆ—
+		// é€šå¸¸ã®Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†
 		wk->vblank1( wk->work );
 
 	}else{
@@ -2149,7 +2149,7 @@ static void WazaTool_LSVBC_VBlank1( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“r’†‚É“ü‚éVƒuƒ‰ƒ“ƒNŠúŠÔ—pŠÖ”
+ *	@brief	é€”ä¸­ã«å…¥ã‚‹Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ç”¨é–¢æ•°
  *
  *	@param	tcb
  *	@param	work 
@@ -2165,7 +2165,7 @@ static void WazaTool_LSVBC_VBlank2( TCB_PTR tcb, void* work )
 	
 	if( wk->vblank_lst_flg && wk->dma_set_flg ){
 
-		// “r’†‚ÌVƒuƒ‰ƒ“ƒNˆ—
+		// é€”ä¸­ã®Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†
 		wk->vblank2( wk->work );
 		
 		wk->dma_set_flg = FALSE;
@@ -2175,12 +2175,12 @@ static void WazaTool_LSVBC_VBlank2( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[Vƒuƒ‰ƒ“ƒNƒVƒXƒeƒ€
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼Vãƒ–ãƒ©ãƒ³ã‚¯ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@param	p_lsvbc		ƒ‰ƒXƒ^[Vƒuƒ‰ƒ“ƒNƒVƒXƒeƒ€ƒ[ƒN
- *	@param	work		ˆø”‚É“n‚·ƒ[ƒN
- *	@param	pfunc1		’Êí‚ÌVƒuƒ‰ƒ“ƒN
- *	@param	pfunc2		“r’†‚ÌVƒuƒ‰ƒ“ƒN
+ *	@param	p_lsvbc		ãƒ©ã‚¹ã‚¿ãƒ¼Vãƒ–ãƒ©ãƒ³ã‚¯ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	work		å¼•æ•°ã«æ¸¡ã™ãƒ¯ãƒ¼ã‚¯
+ *	@param	pfunc1		é€šå¸¸ã®Vãƒ–ãƒ©ãƒ³ã‚¯
+ *	@param	pfunc2		é€”ä¸­ã®Vãƒ–ãƒ©ãƒ³ã‚¯
  *
  *	@return
  *
@@ -2197,7 +2197,7 @@ static void WazaTool_LSVBC_Init( WAZATOOL_LSVBC* p_lsvbc, void* work, pWazaTool_
 	p_lsvbc->vblank1		= pfunc1;
 	p_lsvbc->vblank2		= pfunc2;
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	p_lsvbc->vbuff_tcb = VWaitTCB_Add( WazaTool_LSVBC_VBlank1, p_lsvbc, 0 );
 	p_lsvbc->vdma_tcb = VIntrTCB_Add( WazaTool_LSVBC_VBlank2, p_lsvbc, 0 );
 }
@@ -2205,9 +2205,9 @@ static void WazaTool_LSVBC_Init( WAZATOOL_LSVBC* p_lsvbc, void* work, pWazaTool_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[—pVƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€”jŠü
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ç”¨Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_lsvbc		”jŠü‚·‚éƒ‰ƒXƒ^[Vƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€
+ *	@param	p_lsvbc		ç ´æ£„ã™ã‚‹ãƒ©ã‚¹ã‚¿ãƒ¼Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -2218,7 +2218,7 @@ static void WazaTool_LSVBC_Delete( WAZATOOL_LSVBC* p_lsvbc )
 {
 	GF_ASSERT( p_lsvbc );
 
-	// VBlankŠÖ””jŠü
+	// VBlanké–¢æ•°ç ´æ£„
 	if( p_lsvbc->vbuff_tcb != NULL ){
 		TCB_Delete( p_lsvbc->vbuff_tcb );
 	}
@@ -2231,9 +2231,9 @@ static void WazaTool_LSVBC_Delete( WAZATOOL_LSVBC* p_lsvbc )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Vƒuƒ‰ƒ“ƒNƒVƒXƒeƒ€‚Ì‚P‚¶’â~
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®ï¼‘ã˜åœæ­¢
  *
- *	@param	p_lsvbc		ƒ[ƒN
+ *	@param	p_lsvbc		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2249,9 +2249,9 @@ static void WazaTool_LSVBC_Stop( WAZATOOL_LSVBC* p_lsvbc )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Vƒuƒ‰ƒ“ƒNƒVƒXƒeƒ€‚ÌÄŠJ
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®å†é–‹
  *
- *	@param	p_lsvbc		ƒ[ƒN
+ *	@param	p_lsvbc		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2267,25 +2267,25 @@ static void WazaTool_LSVBC_Start( WAZATOOL_LSVBC* p_lsvbc )
 
 //-------------------------------------
 //	
-//	ƒoƒbƒtƒ@“à‚ğ‰½‚à‘€ì‚µ‚È‚¢
+//	ãƒãƒƒãƒ•ã‚¡å†…ã‚’ä½•ã‚‚æ“ä½œã—ãªã„
 //	
 //=====================================
 typedef struct _WAZATOOL_DEFLASTER{
 	WAZATOOL_LSVBC vblank;
 
-	// ƒ‰ƒXƒ^[ƒf[ƒ^
-	LASTER_SYS_PTR lst;	// ƒ‰ƒXƒ^[ƒVƒXƒeƒ€
-	u32	buff1[ WAZATOOL_DEFLASTER_BUFF_SIZE ];	// ƒ_ƒuƒ‹ƒoƒbƒtƒ@
-	u32	buff2[ WAZATOOL_DEFLASTER_BUFF_SIZE ];	// ƒ_ƒuƒ‹ƒoƒbƒtƒ@
-	u32	addr;	// DMA“]‘—æ
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	LASTER_SYS_PTR lst;	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+	u32	buff1[ WAZATOOL_DEFLASTER_BUFF_SIZE ];	// ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡
+	u32	buff2[ WAZATOOL_DEFLASTER_BUFF_SIZE ];	// ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡
+	u32	addr;	// DMAè»¢é€å…ˆ
 } WAZATOOL_DEFLASTER;
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	DMA“]‘—İ’è
+ *	@brief	DMAè»¢é€è¨­å®š
  *
- *	@param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -2296,21 +2296,21 @@ static void WazaTool_DefLasterDmaTransSet( WAZATOOL_DEFLASTER* wk )
 {
 	const void* buff;
 
-	// QÆ—pƒoƒbƒtƒ@æ“¾
+	// å‚ç…§ç”¨ãƒãƒƒãƒ•ã‚¡å–å¾—
 	buff = LASTER_GetReadBuff( wk->lst );
 
 	LASTER_DmaStop();
 	
-	// HBlankDmaTrans‚Éİ’è
+	// HBlankDmaTransã«è¨­å®š
 	LASTER_DmaSet( buff, (void*)wk->addr, 4, LASTER_DMA_TYPE32 );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[—pVƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€‚É“n‚·’ÊíVƒuƒ‰ƒ“ƒNŠÖ”
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ç”¨Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã«æ¸¡ã™é€šå¸¸Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
  *
- *	@param	work	ƒ[ƒN
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2321,19 +2321,19 @@ static void WazaTool_DefLasterNormVblank( void* work )
 {
 	WAZATOOL_DEFLASTER* wk = work;
 
-	// ƒoƒbƒtƒ@ƒXƒCƒbƒ`
+	// ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒ
 	LASTER_VBlank( wk->lst );
 
-	// HDMA“o˜^
+	// HDMAç™»éŒ²
 	WazaTool_DefLasterDmaTransSet( wk );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief ƒ‰ƒXƒ^[—pVƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€‚É“n‚·“r’†‚ÉŒÄ‚Î‚ê‚éVƒuƒ‰ƒ“ƒN—pˆ—
+ *	@brief ãƒ©ã‚¹ã‚¿ãƒ¼ç”¨Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã«æ¸¡ã™é€”ä¸­ã«å‘¼ã°ã‚Œã‚‹Vãƒ–ãƒ©ãƒ³ã‚¯ç”¨å‡¦ç†
  *
- *	@param		work	ƒ[ƒN
+ *	@param		work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return		none
  *
@@ -2344,20 +2344,20 @@ static void WazaTool_DefLasterCenterVblank( void* work )
 {
 	WAZATOOL_DEFLASTER* wk = work;
 
-	// HDMA“o˜^
+	// HDMAç™»éŒ²
 	WazaTool_DefLasterDmaTransSet( wk );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ˆ—‰Šú‰»
+ *	@brief	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†åˆæœŸåŒ–
  *
- *	@param	addr		“]‘—æƒŒƒWƒXƒ^ƒAƒhƒŒƒX
- *	@param	init_num	ƒoƒbƒtƒ@‚Ì‰Šú’l
- *	@param	heap		ƒq[ƒvID
+ *	@param	addr		è»¢é€å…ˆãƒ¬ã‚¸ã‚¹ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹
+ *	@param	init_num	ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸå€¤
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ì¬‚µ‚½ƒ‰ƒXƒ^[ˆ—ƒf[ƒ^
+ *	@return	ä½œæˆã—ãŸãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -2375,11 +2375,11 @@ WAZATOOL_DEFLASTER_PTR WazaTool_InitDefLaster( u32 addr, u32 init_num, int heap 
 	GF_ASSERT( p_lst->lst );
 	p_lst->addr			= addr;
 
-	// ƒoƒbƒtƒ@‚Ì‰Šú‰»
+	// ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
 	MI_CpuFill32( p_lst->buff1, init_num, sizeof(u32) * WAZATOOL_DEFLASTER_BUFF_SIZE );
 	MI_CpuFill32( p_lst->buff2, init_num, sizeof(u32) * WAZATOOL_DEFLASTER_BUFF_SIZE );
 
-	// Vƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€‚ğ‰Šú‰»
+	// Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–
 	WazaTool_LSVBC_Init( &p_lst->vblank, p_lst, WazaTool_DefLasterNormVblank, WazaTool_DefLasterCenterVblank );
 
 	return p_lst;
@@ -2388,9 +2388,9 @@ WAZATOOL_DEFLASTER_PTR WazaTool_InitDefLaster( u32 addr, u32 init_num, int heap 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ˆ—‚ÌI—¹
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†ã®çµ‚äº†
  *
- *	@param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2401,10 +2401,10 @@ void WazaTool_DeleteDefLaster( WAZATOOL_DEFLASTER_PTR p_lst )
 {
 	GF_ASSERT( p_lst );
 
-	// VblankŠÇ—ƒVƒXƒeƒ€”jŠü
+	// Vblankç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WazaTool_LSVBC_Delete( &p_lst->vblank );
 	
-	// ƒ‰ƒXƒ^[ƒVƒXƒeƒ€”jŠü
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	if( p_lst->lst != NULL ){
 		LASTER_Delete( p_lst->lst );
 	}
@@ -2415,11 +2415,11 @@ void WazaTool_DeleteDefLaster( WAZATOOL_DEFLASTER_PTR p_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‘‚«‚İ—pƒoƒbƒtƒ@‚Ìæ“¾
+ *	@brief	æ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
  *
- *	@param	cp_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	cp_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	‘‚«‚İ—pƒoƒbƒtƒ@
+ *	@return	æ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡
  *
  *
  */
@@ -2434,11 +2434,11 @@ void* WazaTool_GetDefLasterWriteBuff( CONST_WAZATOOL_DEFLASTER_PTR cp_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	QÆ—pƒoƒbƒtƒ@‚ğæ“¾
+ *	@brief	å‚ç…§ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
  *
- *	@param	cp_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	cp_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	QÆ—pƒoƒbƒtƒ@
+ *	@return	å‚ç…§ç”¨ãƒãƒƒãƒ•ã‚¡
  *
  *
  */
@@ -2453,14 +2453,14 @@ const void* WazaTool_GetDefLasterReadBuff( CONST_WAZATOOL_DEFLASTER_PTR cp_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ˆ—‚Ì’â~
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†ã®åœæ­¢
  *
- *	@param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒ[ƒN
+ *	@param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- * Vƒuƒ‰ƒ“ƒNŠÖ”‚ª‹@”\‚µ‚È‚­‚È‚é‚Ì‚ÅA
- * ‰æ–Ê‚Éƒ‰ƒXƒ^[‚ª”½‰f‚³‚ê‚È‚­‚È‚è‚Ü‚·B
+ * Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ãŒæ©Ÿèƒ½ã—ãªããªã‚‹ã®ã§ã€
+ * ç”»é¢ã«ãƒ©ã‚¹ã‚¿ãƒ¼ãŒåæ˜ ã•ã‚Œãªããªã‚Šã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -2474,13 +2474,13 @@ void WazaTool_StopDefLaster( WAZATOOL_DEFLASTER_PTR p_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ˆ—ƒXƒ^[ƒg
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- *	@param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
- * ‰æ–Ê‚Éƒ‰ƒXƒ^[‚ª”½‰f‚³‚ê‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
+ * ç”»é¢ã«ãƒ©ã‚¹ã‚¿ãƒ¼ãŒåæ˜ ã•ã‚Œã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -2495,10 +2495,10 @@ void WazaTool_StartDefLaster( WAZATOOL_DEFLASTER* p_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒf[ƒ^“]‘—æƒAƒhƒŒƒX‚ğÄİ’è
+ *	@brief	ãƒ‡ãƒ¼ã‚¿è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å†è¨­å®š
  *
- *	@param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
- *	@param	addr	“]‘—æƒAƒhƒŒƒX
+ *	@param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	addr	è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *	@return	none
  *
@@ -2515,11 +2515,11 @@ void WazaTool_SetDefLasterTransAddr( WAZATOOL_DEFLASTER_PTR p_lst, u32 addr )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒf[ƒ^“]‘—æƒAƒhƒŒƒX‚ğæ“¾
+ * @brief	ãƒ‡ãƒ¼ã‚¿è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ * @param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
- * @retval	u32		“]‘—æƒAƒhƒŒƒX
+ * @retval	u32		è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //--------------------------------------------------------------
@@ -2532,27 +2532,27 @@ u32 WazaTool_GetDefLasterTransAddr( WAZATOOL_DEFLASTER_PTR p_lst )
 
 //-------------------------------------
 //	
-//	1/30ƒtƒŒ[ƒ€‘Î‰
+//	1/30ãƒ•ãƒ¬ãƒ¼ãƒ å¯¾å¿œ
 //	
-// ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒ‰ƒbƒvŠÖ”
-// SINƒJ[ƒuƒXƒNƒ[ƒ‹‚³‚¹‚Ü‚·
+// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ©ãƒƒãƒ—é–¢æ•°
+// SINã‚«ãƒ¼ãƒ–ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã¾ã™
 //	
 //	
 //=====================================
 typedef struct _WAZATOOL_SCRLASTER{
 	WAZATOOL_LSVBC vblank;
 
-	// ƒ‰ƒXƒ^[ƒf[ƒ^
-	LASTER_SCROLL_PTR lst;	// ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒVƒXƒeƒ€
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	LASTER_SCROLL_PTR lst;	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
 } WAZATOOL_SCRLASTER;
 
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[—pVƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€‚É“n‚·’ÊíVƒuƒ‰ƒ“ƒNŠÖ”
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ç”¨Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã«æ¸¡ã™é€šå¸¸Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
  *
- *	@param	work	ƒ[ƒN
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2571,9 +2571,9 @@ static void WazaTool_ScrLasterNormVblank( void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief ƒ‰ƒXƒ^[—pVƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€‚É“n‚·“r’†‚ÉŒÄ‚Î‚ê‚éVƒuƒ‰ƒ“ƒN—pˆ—
+ *	@brief ãƒ©ã‚¹ã‚¿ãƒ¼ç”¨Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã«æ¸¡ã™é€”ä¸­ã«å‘¼ã°ã‚Œã‚‹Vãƒ–ãƒ©ãƒ³ã‚¯ç”¨å‡¦ç†
  *
- *	@param		work	ƒ[ƒN
+ *	@param		work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return		none
  *
@@ -2590,23 +2590,23 @@ static void WazaTool_ScrLasterCenterVblank( void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒVƒXƒeƒ€¶¬
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ ç”Ÿæˆ
  *
- *	@param	start		ƒXƒNƒ[ƒ‹ŠJn‚™À•W
- *	@param	end			ƒXƒNƒ[ƒ‹I—¹‚™À•W
- *	@param	add_r		sinƒJ[ƒuƒe[ƒuƒ‹ì¬‚ÌŠp“x‚ğ‘«‚µ‚Ä‚¢‚­’l(0`65535)
- *	@param	r_w			sinƒJ[ƒu‚Ì”¼Œa
- *	@param	scr_sp		ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒXƒs[ƒh	®”*100‚µ‚½’l	ƒ}ƒCƒiƒX—LŒø
- *	@param	bg_no		ƒ‰ƒXƒ^[‚ğ‚©‚¯‚éBG‚Ì”Ô†
- *	@param	tsk_pri		ƒ^ƒXƒN—Dæ‡ˆÊ
- *	@param	init_num	ƒoƒbƒtƒ@‚ğ‰Šú‰»‚·‚é’l
- *	@param	heap		g—p‚·‚éƒq[ƒv
+ *	@param	start		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é–‹å§‹ï½™åº§æ¨™
+ *	@param	end			ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†ï½™åº§æ¨™
+ *	@param	add_r		sinã‚«ãƒ¼ãƒ–ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆæ™‚ã®è§’åº¦ã‚’è¶³ã—ã¦ã„ãå€¤(0ã€œ65535)
+ *	@param	r_w			sinã‚«ãƒ¼ãƒ–ã®åŠå¾„
+ *	@param	scr_sp		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰	æ•´æ•°*100ã—ãŸå€¤	ãƒã‚¤ãƒŠã‚¹æœ‰åŠ¹
+ *	@param	bg_no		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚’ã‹ã‘ã‚‹BGã®ç•ªå·
+ *	@param	tsk_pri		ã‚¿ã‚¹ã‚¯å„ªå…ˆé †ä½
+ *	@param	init_num	ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–ã™ã‚‹å€¤
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ì¬‚µ‚½ƒ‰ƒXƒ^[ƒf[ƒ^
+ *	@return	ä½œæˆã—ãŸãƒ©ã‚¹ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
  * 
- * start <= ƒXƒNƒ[ƒ‹”ÍˆÍ <= end
+ * start <= ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç¯„å›² <= end
  *
- * bg_no = 0`3	ƒƒCƒ“‰æ–ÊŒÅ’è
+ * bg_no = 0ã€œ3	ãƒ¡ã‚¤ãƒ³ç”»é¢å›ºå®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -2621,14 +2621,14 @@ WAZATOOL_SCRLASTER_PTR WazaTool_InitScrLaster( u8 start, u8 end, u16 add_r, fx32
 	GF_ASSERT( p_lst );
 	memset( p_lst, 0, sizeof(WAZATOOL_SCRLASTER) );
 
-	// bg_no‚©‚çƒŒƒWƒXƒ^‚ÌƒAƒhƒŒƒX‚ğæ“¾
+	// bg_noã‹ã‚‰ãƒ¬ã‚¸ã‚¹ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 	addr = WazaTool_GetLasterBGDestAddr( bg_no );
 
-	// ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒVƒXƒeƒ€ì¬
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_lst->lst = LASTER_ScrollInit( heap );
 	LASTER_ScrollStart( p_lst->lst, start, end, add_r, r_w, scr_sp, addr, init_num, tsk_pri );
 	
-	// VBlankŠÇ—ƒVƒXƒeƒ€ì¬
+	// VBlankç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	WazaTool_LSVBC_Init( &p_lst->vblank, p_lst, WazaTool_ScrLasterNormVblank, WazaTool_ScrLasterCenterVblank );
 
 	return p_lst;
@@ -2637,9 +2637,9 @@ WAZATOOL_SCRLASTER_PTR WazaTool_InitScrLaster( u8 start, u8 end, u16 add_r, fx32
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹”jŠü
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç ´æ£„
  *
- *	@param	p_lst	ƒ[ƒN
+ *	@param	p_lst	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2651,10 +2651,10 @@ void WazaTool_DeleteScrLaster( WAZATOOL_SCRLASTER_PTR p_lst )
 	GF_ASSERT( p_lst );
 	
 
-	// Vƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€”jŠü
+	// Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WazaTool_LSVBC_Delete( &p_lst->vblank );
 
-	// ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹”jŠü
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç ´æ£„
 	if( p_lst->lst ){
 		LASTER_ScrollDelete( p_lst->lst );
 	}
@@ -2665,11 +2665,11 @@ void WazaTool_DeleteScrLaster( WAZATOOL_SCRLASTER_PTR p_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‘‚«‚İ—pƒoƒbƒtƒ@û˜^
+ *	@brief	æ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡åéŒ²
  *
- *	@param	cp_lst	ƒ[ƒN
+ *	@param	cp_lst	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒoƒbƒtƒ@
+ *	@return	ãƒãƒƒãƒ•ã‚¡
  *
  *
  */
@@ -2683,11 +2683,11 @@ void* WazaTool_GetScrLasterWriteBuff( CONST_WAZATOOL_SCRLASTER_PTR cp_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	QÆ—pƒoƒbƒtƒ@‚ğæ“¾
+ *	@brief	å‚ç…§ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
  *
- *	@param	cp_lst	ƒ[ƒN
+ *	@param	cp_lst	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒoƒbƒtƒ@
+ *	@return	ãƒãƒƒãƒ•ã‚¡
  *
  *
  */
@@ -2701,14 +2701,14 @@ const void* WazaTool_GetScrLasterReadBuff( CONST_WAZATOOL_SCRLASTER_PTR cp_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[”½‰f‚Ì’â~
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼åæ˜ ã®åœæ­¢
  *
- *	@param	p_lst	ƒ[ƒN
+ *	@param	p_lst	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- * Vƒuƒ‰ƒ“ƒNŠÖ”‚ª‹@”\‚µ‚È‚­‚È‚é‚Ì‚ÅA
- * ‰æ–Ê‚Éƒ‰ƒXƒ^[‚ª”½‰f‚³‚ê‚È‚­‚È‚è‚Ü‚·B
+ * Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ãŒæ©Ÿèƒ½ã—ãªããªã‚‹ã®ã§ã€
+ * ç”»é¢ã«ãƒ©ã‚¹ã‚¿ãƒ¼ãŒåæ˜ ã•ã‚Œãªããªã‚Šã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -2722,13 +2722,13 @@ void WazaTool_StopScrLaster( WAZATOOL_SCRLASTER_PTR p_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[”½‰f‚ÌŠJn
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼åæ˜ ã®é–‹å§‹
  *
- *	@param	p_lst	ƒ[ƒN
+ *	@param	p_lst	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- * ‰æ–Ê‚Éƒ‰ƒXƒ^[‚ª”½‰f‚³‚ê‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
+ * ç”»é¢ã«ãƒ©ã‚¹ã‚¿ãƒ¼ãŒåæ˜ ã•ã‚Œã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -2744,12 +2744,12 @@ void WazaTool_StartScrLaster( WAZATOOL_SCRLASTER_PTR p_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[‚Ìƒoƒbƒtƒ@‚Éİ’è‚·‚éÀ•Wƒf[ƒ^‚ğì¬
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã®ãƒãƒƒãƒ•ã‚¡ã«è¨­å®šã™ã‚‹åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
  *
- *	@param	x	İ’è‚˜À•W
- *	@param	y	İ’è‚™À•W
+ *	@param	x	è¨­å®šï½˜åº§æ¨™
+ *	@param	y	è¨­å®šï½™åº§æ¨™
  *
- *	@return	ƒoƒbƒtƒ@‚Éİ’è‚·‚é’l
+ *	@return	ãƒãƒƒãƒ•ã‚¡ã«è¨­å®šã™ã‚‹å€¤
  *
  *
  */
@@ -2762,11 +2762,11 @@ u32 WazaTool_GetLasterBuffMatrixData( u16 x, u16 y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BGƒiƒ“ƒo[‚É‘Î‰‚µ‚½ƒAƒhƒŒƒX‚ğ•Ô‚·
+ *	@brief	BGãƒŠãƒ³ãƒãƒ¼ã«å¯¾å¿œã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  *
- *	@param	bg_no	BGƒiƒ“ƒo[
+ *	@param	bg_no	BGãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	ƒAƒhƒŒƒX
+ *	@return	ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *
  */
@@ -2796,10 +2796,10 @@ u32 WazaTool_GetLasterBGDestAddr( int bg_no )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒGƒtƒFƒNƒg‚ÌBG‚É—Dæ‡ˆÊ‚ğİ’è
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®BGã«å„ªå…ˆé †ä½ã‚’è¨­å®š
  *
- *	@param	we_sys		‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€
- *	@param	pri			—Dæ‡ˆÊ 
+ *	@param	we_sys		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	pri			å„ªå…ˆé †ä½ 
  *
  *	@return	none
  *
@@ -2834,20 +2834,20 @@ void WazaTool_SetEffectBGPriority( WE_SYS_PTR we_sys, int pri )
 // =============================================================================
 //
 //
-//	¡ƒc[ƒ‹H‚Æ‚©H
+//	â– ãƒ„ãƒ¼ãƒ«ï¼Ÿã¨ã‹ï¼Ÿ
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	2“_‚Ì’†“_‚ğ‹‚ß‚é
+ * @brief	2ç‚¹ã®ä¸­ç‚¹ã‚’æ±‚ã‚ã‚‹
  *
- * @param	x1				“_1‚Ìx
- * @param	y1				“_1‚Ìy
- * @param	x2				“_2‚Ìx
- * @param	y2				“_2‚Ìy
- * @param	mx				’†“_x
- * @param	my				’†“_y
+ * @param	x1				ç‚¹1ã®x
+ * @param	y1				ç‚¹1ã®y
+ * @param	x2				ç‚¹2ã®x
+ * @param	y2				ç‚¹2ã®y
+ * @param	mx				ä¸­ç‚¹x
+ * @param	my				ä¸­ç‚¹y
  *
  * @retval	none	
  *
@@ -2862,14 +2862,14 @@ void WazaTool_MiddlePointGet(s16 px1, s16 py1, s16 px2, s16 py2, s16* mx, s16* m
 
 //--------------------------------------------------------------
 /**
- * @brief	2“_‚Ì’†“_‚ğ‹‚ß‚é
+ * @brief	2ç‚¹ã®ä¸­ç‚¹ã‚’æ±‚ã‚ã‚‹
  *
- * @param	x1				“_1‚Ìx
- * @param	y1				“_1‚Ìy
- * @param	x2				“_2‚Ìx
- * @param	y2				“_2‚Ìy
- * @param	mx				’†“_x
- * @param	my				’†“_y
+ * @param	x1				ç‚¹1ã®x
+ * @param	y1				ç‚¹1ã®y
+ * @param	x2				ç‚¹2ã®x
+ * @param	y2				ç‚¹2ã®y
+ * @param	mx				ä¸­ç‚¹x
+ * @param	my				ä¸­ç‚¹y
  *
  * @retval	none	
  *
@@ -2884,13 +2884,13 @@ void WazaTool_MiddlePointGetFx(s16 px1, s16 py1, s16 px2, s16 py2, fx32* mx, fx3
 
 //--------------------------------------------------------------
 /**
- * @brief	2“_‚Ì‹——£‚ğ‹‚ß‚é
+ * @brief	2ç‚¹ã®è·é›¢ã‚’æ±‚ã‚ã‚‹
  *
- * @param	x1				“_1‚Ìx
- * @param	y1				“_1‚Ìy
- * @param	x2				“_2‚Ìx
- * @param	y2				“_2‚Ìy
- * @param	range			‹——£
+ * @param	x1				ç‚¹1ã®x
+ * @param	y1				ç‚¹1ã®y
+ * @param	x2				ç‚¹2ã®x
+ * @param	y2				ç‚¹2ã®y
+ * @param	range			è·é›¢
  *
  * @retval	none	
  *
@@ -2906,13 +2906,13 @@ void WazaTool_RangeGetFx(s16 x1, s16 y1, s16 x2, s16 y2, fx32* range)
 
 //--------------------------------------------------------------
 /**
- * @brief	“_‚Æ“_‚©‚çŠp“x‚ğ‹‚ß‚é
+ * @brief	ç‚¹ã¨ç‚¹ã‹ã‚‰è§’åº¦ã‚’æ±‚ã‚ã‚‹
  *
- * @param	x1				“_1‚Ìx
- * @param	y1				“_1‚Ìy
- * @param	x2				“_2‚Ìx
- * @param	y2				“_2‚Ìy
- * @param	angle			Šp“x
+ * @param	x1				ç‚¹1ã®x
+ * @param	y1				ç‚¹1ã®y
+ * @param	x2				ç‚¹2ã®x
+ * @param	y2				ç‚¹2ã®y
+ * @param	angle			è§’åº¦
  *
  * @retval	none	
  *
@@ -2936,13 +2936,13 @@ void WazaTool_PointToPointAngleGet(s16 x1, s16 y1, s16 x2, s16 y2, u16* angle)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒ‰ƒ[ƒ^‚Ì‘Œ¸ŠÇ—
+ * @brief	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å¢—æ¸›ç®¡ç†
  *
- * @param	p			‘ÎÛ
- * @param	ep			ŒÀŠE
- * @param	cp			‘Œ¸’l
+ * @param	p			å¯¾è±¡
+ * @param	ep			é™ç•Œ
+ * @param	cp			å¢—æ¸›å€¤
  *
- * @retval	BOOL		TRUE = ŒÀŠE‚É“’B‚µ‚½
+ * @retval	BOOL		TRUE = é™ç•Œã«åˆ°é”ã—ãŸ
  *
  */
 //--------------------------------------------------------------
@@ -2976,18 +2976,18 @@ BOOL WazaTool_ParamCalc(int* p, int ep, s32 cp)
 // ----------------------------------------------------------------------------
 //
 //
-//	¡ƒ\ƒtƒgƒtƒF[ƒhŠÖ”ŒS
+//	â– ã‚½ãƒ•ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰é–¢æ•°éƒ¡
 //
 //
 // ----------------------------------------------------------------------------
 // -----------------------------------------
 //
-//	¡ ƒ\ƒtƒgƒtƒF[ƒh‘€ì\‘¢‘Ì
+//	â–  ã‚½ãƒ•ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰æ“ä½œæ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct _TPAL_SOFT_FADE_SYS {
 	
-	BOOL	active;				///< TRUE = “®ì’†
+	BOOL	active;				///< TRUE = å‹•ä½œä¸­
 	TCB_PTR	tcb;
 	
 	FADEREQ req;
@@ -3008,7 +3008,7 @@ typedef struct _TPAL_SOFT_FADE_SYS {
 
 //--------------------------------------------------------------
 /**
- * @brief	“®ìTCB
+ * @brief	å‹•ä½œTCB
  *
  * @param	tcb	
  * @param	work	
@@ -3061,11 +3061,11 @@ static void PSF_Tcb(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	ó‘Ôƒ`ƒFƒbƒN
+ * @brief	çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
  *
  * @param	psp			PAL_SFS_PTR
  *
- * @retval	BOOL		TRUE = Às’†
+ * @retval	BOOL		TRUE = å®Ÿè¡Œä¸­
  *
  */
 //--------------------------------------------------------------
@@ -3079,7 +3079,7 @@ BOOL IsPaletteSoftFade(PAL_SFS_PTR psp)
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹ˆ—
+ * @brief	çµ‚äº†å‡¦ç†
  *
  * @param	psp	
  *
@@ -3101,16 +3101,16 @@ void PaletteSoftFadeDelete(PAL_SFS_PTR psp)
  * @brief	
  *
  * @param	pfd				pfd
- * @param	heap_area		ƒq[ƒv
- * @param	req				ƒf[ƒ^”Ô†
- * @param	start_pos		ŠJnˆÊ’u
- * @param	col_num			I—¹ˆÊ’u
- * @param	wait			ƒEƒFƒCƒg
- * @param	param			evy ŒvZ’l (start end‚Å•„†‚ğ•t‰Á‚·‚é‚Ì‚Å®”‚Å“n‚µ‚Ä‚­‚¾‚³‚¢)
- * @param	start_evy		ŠJn”Z“x
- * @param	end_evy			I—¹”Z“x
- * @param	next_rgb		•ÏXŒã‚ÌF
- * @param	tcb_pri			TCB—Dæ“x
+ * @param	heap_area		ãƒ’ãƒ¼ãƒ—
+ * @param	req				ãƒ‡ãƒ¼ã‚¿ç•ªå·
+ * @param	start_pos		é–‹å§‹ä½ç½®
+ * @param	col_num			çµ‚äº†ä½ç½®
+ * @param	wait			ã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	param			evy è¨ˆç®—å€¤ (start endã§ç¬¦å·ã‚’ä»˜åŠ ã™ã‚‹ã®ã§æ•´æ•°ã§æ¸¡ã—ã¦ãã ã•ã„)
+ * @param	start_evy		é–‹å§‹æ¿ƒåº¦
+ * @param	end_evy			çµ‚äº†æ¿ƒåº¦
+ * @param	next_rgb		å¤‰æ›´å¾Œã®è‰²
+ * @param	tcb_pri			TCBå„ªå…ˆåº¦
  *
  * @retval	PAL_SFS_PTR	
  *

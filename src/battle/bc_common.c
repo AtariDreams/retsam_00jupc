@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	bc_common.h
- * @brief	í“¬EƒRƒ“ƒeƒXƒg‹¤’Ê‚Åg—p‚³‚ê‚éƒ\[ƒX
+ * @brief	æˆ¦é—˜ãƒ»ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…±é€šã§ä½¿ç”¨ã•ã‚Œã‚‹ã‚½ãƒ¼ã‚¹
  * @author	matsuda
- * @date	2006.05.26(‹à)
+ * @date	2006.05.26(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -75,16 +75,16 @@
 #include "poketool/pokegra/height_o.naix"
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 
 static	void	HenshinChrSetAct(WAZA_POKE_CHANGE_PARAM *wpcp, int dir_client, int dir_type, int heap_id);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //-----------------------------------------------------------------------------
-//		ƒGƒ“ƒJƒEƒ“ƒgÀ•Wƒe[ƒuƒ‹
+//		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆåº§æ¨™ãƒ†ãƒ¼ãƒ–ãƒ«
 //-----------------------------------------------------------------------------
 
 const	s16	EncountPosTable[][3]={
@@ -116,9 +116,9 @@ const	s16	SlideInPosTable[][3]={
 
 //============================================================================================
 /**
- *	•Ïg‚ÅƒLƒƒƒ‰VRAM‚ğ‘‚«Š·‚¦‚éˆ—
+ *	å¤‰èº«ã§ã‚­ãƒ£ãƒ©VRAMã‚’æ›¸ãæ›ãˆã‚‹å‡¦ç†
  *
- * @param[in]	wpcp	EXCHR_PARAM\‘¢‘Ì
+ * @param[in]	wpcp	EXCHR_PARAMæ§‹é€ ä½“
  */
 //============================================================================================
 void	HenshinChrSet(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id)
@@ -128,9 +128,9 @@ void	HenshinChrSet(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id)
 
 //============================================================================================
 /**
- *	‚æ‚±‚Ç‚è‚ÅƒLƒƒƒ‰VRAM‚ğ‘‚«Š·‚¦‚éˆ—
+ *	ã‚ˆã“ã©ã‚Šã§ã‚­ãƒ£ãƒ©VRAMã‚’æ›¸ãæ›ãˆã‚‹å‡¦ç†
  *
- * @param[in]	wpcp	EXCHR_PARAM\‘¢‘Ì
+ * @param[in]	wpcp	EXCHR_PARAMæ§‹é€ ä½“
  */
 //============================================================================================
 void	YokodoriChrSet(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id)
@@ -140,9 +140,9 @@ void	YokodoriChrSet(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id)
 
 //============================================================================================
 /**
- *	•Ïg‚È‚Ç‚ÅƒLƒƒƒ‰VRAM‚ğ‘‚«Š·‚¦‚éˆ—
+ *	å¤‰èº«ãªã©ã§ã‚­ãƒ£ãƒ©VRAMã‚’æ›¸ãæ›ãˆã‚‹å‡¦ç†
  *
- * @param[in]	wpcp	EXCHR_PARAM\‘¢‘Ì
+ * @param[in]	wpcp	EXCHR_PARAMæ§‹é€ ä½“
  */
 //============================================================================================
 static	void	HenshinChrSetAct(WAZA_POKE_CHANGE_PARAM *wpcp, int dir_client, int dir_type, int heap_id)
@@ -202,7 +202,7 @@ static	void	HenshinChrSetAct(WAZA_POKE_CHANGE_PARAM *wpcp, int dir_client, int d
 	pos_y=CT_PokemonAppearPosGet(wpcp->client_type[wpcp->at_client_no],POS_ID_Y);
 	SoftSpriteParaSet(wpcp->ss[wpcp->at_client_no],SS_PARA_POS_Y,pos_y+ofs_y);
 
-	//ƒ|ƒPƒ‚ƒ“‚Ì‰eî•ñXV
+	//ãƒã‚±ãƒ¢ãƒ³ã®å½±æƒ…å ±æ›´æ–°
 	if(dir==PARA_FRONT){
 		ARCHANDLE* handle = ArchiveDataHandleOpen( ARC_PM_EDIT, heap_id );
 		PokeEditData_HeightSet( handle, &height, mons_no );
@@ -220,9 +220,9 @@ static	void	HenshinChrSetAct(WAZA_POKE_CHANGE_PARAM *wpcp, int dir_client, int d
 
 //============================================================================================
 /**
- *	•Ïg‚È‚Ç‚ÅƒLƒƒƒ‰VRAM‚ğ‘‚«Š·‚¦‚½‚à‚Ì‚ğ–ß‚·ˆ—
+ *	å¤‰èº«ãªã©ã§ã‚­ãƒ£ãƒ©VRAMã‚’æ›¸ãæ›ãˆãŸã‚‚ã®ã‚’æˆ»ã™å‡¦ç†
  *
- * @param[in]	wpcp	EXCHR_PARAM\‘¢‘Ì
+ * @param[in]	wpcp	EXCHR_PARAMæ§‹é€ ä½“
  */
 //============================================================================================
 void	HenshinChrPop(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id)
@@ -262,9 +262,9 @@ void	HenshinChrPop(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id)
 
 //============================================================================================
 /**
- *	‚İ‚ª‚í‚è‚ÌƒLƒƒƒ‰VRAM‚ğ‘‚«Š·‚¦‚éˆ—
+ *	ã¿ãŒã‚ã‚Šã®ã‚­ãƒ£ãƒ©VRAMã‚’æ›¸ãæ›ãˆã‚‹å‡¦ç†
  *
- * @param[in]	wpcp	EXCHR_PARAM\‘¢‘Ì
+ * @param[in]	wpcp	EXCHR_PARAMæ§‹é€ ä½“
  */
 //============================================================================================
 void	MigawariChrSet(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id)
@@ -306,7 +306,7 @@ void	MigawariChrSet(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id)
 	wpcp->excp[wpcp->at_client_no]->height=height;
 	pos_y=CT_PokemonAppearPosGet(wpcp->client_type[wpcp->at_client_no],POS_ID_Y)+wpcp->excp[wpcp->at_client_no]->height;
 	SoftSpriteParaSet(wpcp->ss[wpcp->at_client_no],SS_PARA_POS_Y,pos_y);
-	//ƒ|ƒPƒ‚ƒ“‚Ì‰eî•ñXV
+	//ãƒã‚±ãƒ¢ãƒ³ã®å½±æƒ…å ±æ›´æ–°
 	if(wpcp->client_type[wpcp->at_client_no]&CLIENT_ENEMY_FLAG){
 		SoftSpriteParaSet(wpcp->ss[wpcp->at_client_no],SS_PARA_SHADOW_SIZE,1);
 		SoftSpriteParaSet(wpcp->ss[wpcp->at_client_no],SS_PARA_SHADOW_Y,pos_y+(SHADOW_OFS-height));
@@ -318,10 +318,10 @@ void	MigawariChrSet(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id)
 
 //--------------------------------------------------------------
 /**
- *	ƒ|ƒPƒ‚ƒ“‚ÌAppearPos‚ğæ“¾‚·‚é
+ *	ãƒã‚±ãƒ¢ãƒ³ã®AppearPosã‚’å–å¾—ã™ã‚‹
  *
- * @param[in]   client_type		æ“¾‚·‚éClientType
- * @param[in]   pos_id			æ“¾‚·‚éÀ•WIDiclient_tool.h‚É’è‹`j
+ * @param[in]   client_type		å–å¾—ã™ã‚‹ClientType
+ * @param[in]   pos_id			å–å¾—ã™ã‚‹åº§æ¨™IDï¼ˆclient_tool.hã«å®šç¾©ï¼‰
  */
 //--------------------------------------------------------------
 s16		CT_PokemonAppearPosGet(int client_type,int pos_id)

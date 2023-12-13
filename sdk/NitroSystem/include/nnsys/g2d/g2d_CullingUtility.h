@@ -28,16 +28,16 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dIsInViewCircle
 
-  Description:  ���̈�������肵�܂��i�~�j
+  Description:  可視領域内か判定します（円）
                 
                 
-  Arguments:    pvUL:            ���̈� ��`�i����j
-                pvSize:          ���̈� ��`�i�T�C�Y�j
-                pos:             �Ώە� �ʒu
-                boundingR:      ���E�~ ���a      
+  Arguments:    pvUL:            可視領域 矩形（左上）
+                pvSize:          可視領域 矩形（サイズ）
+                pos:             対象物 位置
+                boundingR:      境界円 半径      
                 
                 
-  Returns:      ���̈����
+  Returns:      可視領域内か
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dIsInViewCircle( const NNSG2dFVec2* pvUL, const NNSG2dFVec2* pvSize, const NNSG2dFVec2* pos, fx32 boundingR );

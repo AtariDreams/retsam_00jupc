@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_right_box.c
- *	@brief		‰E‚Ì” 
+ *	@brief		å³ã®ç®±
  *	@author		tomoya takahashi
  *	@data		2005.09.22
  *
@@ -23,20 +23,20 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define IMC_RIGHT_BOX_ACCE_MAX	(10)
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void ImcRightSetAcceList( IMC_RIGHT_BOX* p_data, IMC_OBJLIST* objList, BOOL top_bottom, NNSG2dCharacterData** SWSP_UPchar );
@@ -45,10 +45,10 @@ static void imcRbox_GetAcceEncSize( IMC_OBJLIST* objlist, int* enc_x, int* enc_y
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Eƒ{ƒbƒNƒX—p—Ìˆæì¬
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹ç”¨é ˜åŸŸä½œæˆ
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	init		‰Eƒ{ƒbƒNƒX‰Šú‰»ƒf[ƒ^
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	init		å³ãƒœãƒƒã‚¯ã‚¹åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -57,7 +57,7 @@ static void imcRbox_GetAcceEncSize( IMC_OBJLIST* objlist, int* enc_x, int* enc_y
 //-----------------------------------------------------------------------------
 void IMC_RBOX_InitSys( IMC_RIGHT_BOX* rbox, IMC_RIGHT_BOX_INIT* init )
 {
-	// •`‰æƒf[ƒ^ì¬
+	// æç”»ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	rbox->boxDraw.SWSP_drawSys	= init->SWSP_drawSys;
 	rbox->boxDraw.SWSP_charData	= init->SWSP_charData;
 	rbox->boxDraw.SWSP_plttData	= init->SWSP_plttData;
@@ -67,7 +67,7 @@ void IMC_RBOX_InitSys( IMC_RIGHT_BOX* rbox, IMC_RIGHT_BOX_INIT* init )
 	rbox->boxDraw.acce			= init->acce;
 	rbox->boxDraw.bg_no			= 0;
 
-	// ƒVƒXƒeƒ€ƒf[ƒ^
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 	rbox->boxData.objListTbl = init->objListTbl;
 
 	rbox->boxData.dummy.next = &rbox->boxData.dummy;
@@ -78,12 +78,12 @@ void IMC_RBOX_InitSys( IMC_RIGHT_BOX* rbox, IMC_RIGHT_BOX_INIT* init )
 	rbox->boxData.obj_count_max = init->acce_count_max;
 
 
-	// ƒ|ƒPƒ‚ƒ“ƒIƒuƒWƒFì¬
+	// ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 	{
 		IMC_OBJLIST* objList;
 		objList = IMC_OBJLIST_MakeObjList( rbox->boxData.objListTbl, &rbox->boxDraw.poke, IMC_OBJLIST_POKE );
 
-		// æ“ª‚ÉƒŠƒXƒg“o˜^
+		// å…ˆé ­ã«ãƒªã‚¹ãƒˆç™»éŒ²
 		IMC_OBJLIST_Set( objList, &rbox->boxData.dummy_poke );
 	}
 }
@@ -91,9 +91,9 @@ void IMC_RBOX_InitSys( IMC_RIGHT_BOX* rbox, IMC_RIGHT_BOX_INIT* init )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Eƒ{ƒbƒN—p—Ìˆæ”jŠü
+ *	@brief	å³ãƒœãƒƒã‚¯ç”¨é ˜åŸŸç ´æ£„
  *
- *	@param	rbox		”jŠü‚·‚é‰Eƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	rbox		ç ´æ£„ã™ã‚‹å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -102,10 +102,10 @@ void IMC_RBOX_InitSys( IMC_RIGHT_BOX* rbox, IMC_RIGHT_BOX_INIT* init )
 //-----------------------------------------------------------------------------
 void IMC_RBOX_DeleteSys( IMC_RIGHT_BOX* rbox )
 {
-	// ƒ|ƒPƒ‚ƒ“”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³ç ´æ£„
 	IMC_RBOX_DeletePoke( rbox );
 
-	// ƒŠƒXƒg”jŠü
+	// ãƒªã‚¹ãƒˆç ´æ£„
 	IMC_RBOX_DeleteAccessorieAll( rbox );
 	
 	memset( rbox, 0, sizeof(IMC_RIGHT_BOX) );
@@ -115,14 +115,14 @@ void IMC_RBOX_DeleteSys( IMC_RIGHT_BOX* rbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒvƒŒƒCƒ„[—pì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”¨ä½œæˆ
  *
- *	@param	rbox			‰Eƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	poke_para		ì¬‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	arc_data		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^Ši”[—Ìˆæ
- *	@param	x				xÀ•W
- *	@param	y				yÀ•W
- *	@param	pri				•\¦—Dæ‡ˆÊ
+ *	@param	rbox			å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	poke_para		ä½œæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	arc_data		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿æ ¼ç´é ˜åŸŸ
+ *	@param	x				xåº§æ¨™
+ *	@param	y				yåº§æ¨™
+ *	@param	pri				è¡¨ç¤ºå„ªå…ˆé †ä½
  *
  *	@return	none
  *
@@ -131,13 +131,13 @@ void IMC_RBOX_DeleteSys( IMC_RIGHT_BOX* rbox )
 //-----------------------------------------------------------------------------
 void IMC_RBOX_AddPokePlayer( IMC_RIGHT_BOX* rbox, POKEMON_PARAM* poke_para, SOFT_SPRITE_ARC* arc_data, int x, int y, int pri, int heap )
 {
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	IMC_POKE_Init( &rbox->boxDraw.poke, rbox->boxDraw.SSM_drawSys, poke_para, arc_data, heap );
 
-	// •\¦—Dæ‡ˆÊ
+	// è¡¨ç¤ºå„ªå…ˆé †ä½
 	IMC_POKE_DrawPrioritySet( &rbox->boxDraw.poke, pri );
 
-	// À•W
+	// åº§æ¨™
 	IMC_POKE_MatrixSet( &rbox->boxDraw.poke, x, y );
 }
 
@@ -145,11 +145,11 @@ void IMC_RBOX_AddPokePlayer( IMC_RIGHT_BOX* rbox, POKEMON_PARAM* poke_para, SOFT
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	rbox			‰Eƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	poke_para		ì¬‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	arc_data		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^Ši”[—Ìˆæ
+ *	@param	rbox			å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	poke_para		ä½œæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	arc_data		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿æ ¼ç´é ˜åŸŸ
  *	@param	heap
  *
  *	@return	none
@@ -159,33 +159,33 @@ void IMC_RBOX_AddPokePlayer( IMC_RIGHT_BOX* rbox, POKEMON_PARAM* poke_para, SOFT
 //-----------------------------------------------------------------------------
 void IMC_RBOX_AddPoke( IMC_RIGHT_BOX* rbox, POKEMON_PARAM* poke_para, SOFT_SPRITE_ARC* arc_data, int heap )
 {
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	IMC_POKE_Init( &rbox->boxDraw.poke, rbox->boxDraw.SSM_drawSys, poke_para, arc_data, heap );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	rbox			‰Eƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	poke_para		ì¬‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	arc_data		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^Ši”[—Ìˆæ
- *	@param	heap			ƒq[ƒvID
+ *	@param	rbox			å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	poke_para		ä½œæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	arc_data		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿æ ¼ç´é ˜åŸŸ
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 void IMC_RBOX_AddPoke_Contest( IMC_RIGHT_BOX* rbox, POKEMON_PARAM* poke_para, SOFT_SPRITE_ARC* arc_data, int heap )
 {
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	IMC_POKE_InitEx( &rbox->boxDraw.poke, rbox->boxDraw.SSM_drawSys, poke_para, arc_data, heap, TRUE );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ˆÚ“®’Ç‰Á
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ç§»å‹•è¿½åŠ 
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒX
- *	@param	poke	ƒ|ƒPƒ‚ƒ“ƒIƒuƒWƒF
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹
+ *	@param	poke	ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
@@ -194,16 +194,16 @@ void IMC_RBOX_AddPoke_Contest( IMC_RIGHT_BOX* rbox, POKEMON_PARAM* poke_para, SO
 //-----------------------------------------------------------------------------
 void IMC_RBOX_MoveAddPoke( IMC_RIGHT_BOX* rbox, IMC_OBJLIST* poke )
 {
-	// ƒ|ƒPƒ‚ƒ“ãƒŠƒXƒg‚ÌÅŒã‚É“o˜^
+	// ãƒã‚±ãƒ¢ãƒ³ä¸Šãƒªã‚¹ãƒˆã®æœ€å¾Œã«ç™»éŒ²
 	IMC_OBJLIST_Set(  poke, rbox->boxData.dummy_poke.prev);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ˆÚ“®‚³‚¹‚é‚½‚ßƒŠƒXƒg‚©‚çíœ
+ *	@brief	ç§»å‹•ã•ã›ã‚‹ãŸã‚ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
  *	
- *	@param	poke		ƒ|ƒPƒ‚ƒ“ƒIƒuƒWƒF
+ *	@param	poke		ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return
  *
@@ -212,16 +212,16 @@ void IMC_RBOX_MoveAddPoke( IMC_RIGHT_BOX* rbox, IMC_OBJLIST* poke )
 //-----------------------------------------------------------------------------
 void IMC_RBOX_MoveDeletePoke( IMC_OBJLIST* poke )
 {
-	// ƒŠƒXƒg‚©‚ç”jŠü
+	// ãƒªã‚¹ãƒˆã‹ã‚‰ç ´æ£„
 	IMC_OBJLIST_Delete( poke );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒIƒuƒWƒFƒNƒg”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -230,7 +230,7 @@ void IMC_RBOX_MoveDeletePoke( IMC_OBJLIST* poke )
 //-----------------------------------------------------------------------------
 void IMC_RBOX_DeletePoke( IMC_RIGHT_BOX* rbox )
 {
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	IMC_POKE_Delete( &rbox->boxDraw.poke );
 }
 
@@ -238,16 +238,16 @@ void IMC_RBOX_DeletePoke( IMC_RIGHT_BOX* rbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚ÌV‹K’Ç‰Á
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã®æ–°è¦è¿½åŠ 
  *
- *	@param	rbox				‰Eƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	accessorie_no		’Ç‰Á‚·‚éƒAƒNƒZƒTƒŠƒiƒ“ƒo[
- *	@param	x					XÀ•W
- *	@param	y					YÀ•W
- *	@param	pri					•\¦—Dæ‡ˆÊ
+ *	@param	rbox				å³ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	accessorie_no		è¿½åŠ ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+ *	@param	x					Xåº§æ¨™
+ *	@param	y					Yåº§æ¨™
+ *	@param	pri					è¡¨ç¤ºå„ªå…ˆé †ä½
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	¸”s	i“o˜^Å‘å”ˆÈã“o˜^‚µ‚æ‚¤‚Æ‚µ‚½j
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—	ï¼ˆç™»éŒ²æœ€å¤§æ•°ä»¥ä¸Šç™»éŒ²ã—ã‚ˆã†ã¨ã—ãŸï¼‰
  *
  *
  */
@@ -257,11 +257,11 @@ BOOL IMC_RBOX_AddAccessorieEasy( IMC_RIGHT_BOX* rbox, int accessorie_no, int x, 
 	IMC_ACCE_ADD acce_add;
 	IMC_ACCESSORIE_OBJ* acce_obj;
 	
-	// Å‘å“o˜^”ƒ`ƒFƒbƒN
+	// æœ€å¤§ç™»éŒ²æ•°ãƒã‚§ãƒƒã‚¯
 	if( rbox->boxData.obj_count < rbox->boxData.obj_count_max ){
 
-		// ƒAƒNƒZƒTƒŠ‚ğ“o˜^‚µAƒŠƒXƒg‚É“o˜^
-		// ƒAƒNƒZƒTƒŠ“o˜^ƒf[ƒ^ì¬
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’ç™»éŒ²ã—ã€ãƒªã‚¹ãƒˆã«ç™»éŒ²
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªç™»éŒ²ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		acce_add.objTbl		= rbox->boxDraw.acce;
 		acce_add.SWSPsys	= rbox->boxDraw.SWSP_drawSys;
 		acce_add.SWSPchar	= rbox->boxDraw.SWSP_charData[ accessorie_no ];
@@ -271,24 +271,24 @@ BOOL IMC_RBOX_AddAccessorieEasy( IMC_RIGHT_BOX* rbox, int accessorie_no, int x, 
 		acce_add.accessorie_no = accessorie_no;
 		acce_add.pltt_offs	= rbox->boxDraw.accePlttOfsTbl[ accessorie_no ];
 
-		// “o˜^
+		// ç™»éŒ²
 		acce_obj = IMC_ACCE_ObjAdd( &acce_add );
 
-		// •\¦—Dæ‡ˆÊİ’è
+		// è¡¨ç¤ºå„ªå…ˆé †ä½è¨­å®š
 		IMC_ACCE_ObjDrawPrioritySet( acce_obj, pri );
 
-		// ƒŠƒXƒgƒIƒuƒWƒFì¬
+		// ãƒªã‚¹ãƒˆã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 		{
 			IMC_OBJLIST* objList;
 
 			objList = IMC_OBJLIST_MakeObjList( rbox->boxData.objListTbl, acce_obj, IMC_OBJLIST_ACCE );
 			
 			
-			// ƒŠƒXƒg‚Ìæ“ª‚É“o˜^
+			// ãƒªã‚¹ãƒˆã®å…ˆé ­ã«ç™»éŒ²
 			IMC_OBJLIST_Set( objList, &rbox->boxData.dummy );
 		}
 
-		//	ƒIƒuƒWƒFƒNƒg”’Ç‰Á
+		//	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°è¿½åŠ 
 		rbox->boxData.obj_count ++;
 
 		return TRUE;
@@ -301,13 +301,13 @@ BOOL IMC_RBOX_AddAccessorieEasy( IMC_RIGHT_BOX* rbox, int accessorie_no, int x, 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚ÌˆÚ“®’Ç‰Á
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã®ç§»å‹•è¿½åŠ 
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	acce_obj	ƒAƒNƒZƒTƒŠƒf[ƒ^
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	acce_obj	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	¸”s	i“o˜^Å‘å”ˆÈã“o˜^‚µ‚æ‚¤‚Æ‚µ‚½j
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—	ï¼ˆç™»éŒ²æœ€å¤§æ•°ä»¥ä¸Šç™»éŒ²ã—ã‚ˆã†ã¨ã—ãŸï¼‰
  *
  *
  */
@@ -316,10 +316,10 @@ BOOL IMC_RBOX_AddAccessorieMoveEasy( IMC_RIGHT_BOX* rbox, IMC_OBJLIST* acce_obj 
 {
 	if( rbox->boxData.obj_count < rbox->boxData.obj_count_max ){
 
-		// ƒŠƒXƒg‚Ìæ“ª‚É“o˜^
+		// ãƒªã‚¹ãƒˆã®å…ˆé ­ã«ç™»éŒ²
 		IMC_OBJLIST_Set( acce_obj, &rbox->boxData.dummy );
 
-		//	ƒIƒuƒWƒFƒNƒg”’Ç‰Á
+		//	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°è¿½åŠ 
 		rbox->boxData.obj_count ++;
 
 		return TRUE;
@@ -334,15 +334,15 @@ BOOL IMC_RBOX_AddAccessorieMoveEasy( IMC_RIGHT_BOX* rbox, IMC_OBJLIST* acce_obj 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚ÌV‹K’Ç‰Á
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã®æ–°è¦è¿½åŠ 
  *
- *	@param	rbox				‰Eƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	accessorie_no		’Ç‰Á‚·‚éƒAƒNƒZƒTƒŠƒiƒ“ƒo[
- *	@param	x					XÀ•W
- *	@param	y					YÀ•W
+ *	@param	rbox				å³ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	accessorie_no		è¿½åŠ ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+ *	@param	x					Xåº§æ¨™
+ *	@param	y					Yåº§æ¨™
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval FALSE	¸”s
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval FALSE	å¤±æ•—
  *
  *
  */
@@ -352,11 +352,11 @@ BOOL IMC_RBOX_AddAccessorie( IMC_RIGHT_BOX* rbox, int accessorie_no, int x, int 
 	IMC_ACCE_ADD acce_add;
 	IMC_ACCESSORIE_OBJ* acce_obj;
 	
-	// Å‘å“o˜^”ƒ`ƒFƒbƒN
+	// æœ€å¤§ç™»éŒ²æ•°ãƒã‚§ãƒƒã‚¯
 	if( rbox->boxData.obj_count < rbox->boxData.obj_count_max ){
 
-		// ƒAƒNƒZƒTƒŠ‚ğ“o˜^‚µAƒŠƒXƒg‚É“o˜^
-		// ƒAƒNƒZƒTƒŠ“o˜^ƒf[ƒ^ì¬
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’ç™»éŒ²ã—ã€ãƒªã‚¹ãƒˆã«ç™»éŒ²
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªç™»éŒ²ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		acce_add.objTbl		= rbox->boxDraw.acce;
 		acce_add.SWSPsys	= rbox->boxDraw.SWSP_drawSys;
 		acce_add.SWSPchar	= rbox->boxDraw.SWSP_charData[ accessorie_no ];
@@ -366,21 +366,21 @@ BOOL IMC_RBOX_AddAccessorie( IMC_RIGHT_BOX* rbox, int accessorie_no, int x, int 
 		acce_add.accessorie_no = accessorie_no;
 		acce_add.pltt_offs	= rbox->boxDraw.accePlttOfsTbl[ accessorie_no ];
 
-		// “o˜^
+		// ç™»éŒ²
 		acce_obj = IMC_ACCE_ObjAdd( &acce_add );
 
-		// ƒŠƒXƒgƒIƒuƒWƒFì¬
+		// ãƒªã‚¹ãƒˆã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 		{
 			IMC_OBJLIST* objList;
 
 			objList = IMC_OBJLIST_MakeObjList( rbox->boxData.objListTbl, acce_obj, IMC_OBJLIST_ACCE );
 			
 			
-			// ƒŠƒXƒg‚Ìæ“ª‚É“o˜^
+			// ãƒªã‚¹ãƒˆã®å…ˆé ­ã«ç™»éŒ²
 			ImcRightSetAcceList( rbox, objList, TRUE, SWSP_UPchar );
 		}
 
-		//	ƒIƒuƒWƒFƒNƒg”’Ç‰Á
+		//	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°è¿½åŠ 
 		rbox->boxData.obj_count ++;
 
 		return TRUE;
@@ -391,25 +391,25 @@ BOOL IMC_RBOX_AddAccessorie( IMC_RIGHT_BOX* rbox, int accessorie_no, int x, int 
 
 //----------------------------------------------------------------------------
 /**
- *	[×‚©‚¢ˆ—@ƒCƒ[ƒWƒNƒŠƒbƒvì¬ƒVƒXƒeƒ€‚Å‚Í‚±‚Á‚¿‚ğŒÄ‚Ô]
- *	@brief	ƒAƒNƒZƒTƒŠ‚ÌˆÚ“®’Ç‰Á
+ *	[ç´°ã‹ã„å‡¦ç†ã€€ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ä½œæˆã‚·ã‚¹ãƒ†ãƒ ã§ã¯ã“ã£ã¡ã‚’å‘¼ã¶]
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã®ç§»å‹•è¿½åŠ 
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	acce_obj	ƒAƒNƒZƒTƒŠƒf[ƒ^
- *	@param	SWSP_UPchar			”»’è—pƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	acce_obj	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	SWSP_UPchar			åˆ¤å®šç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	¸”s	i“o˜^Å‘å”ˆÈã“o˜^‚µ‚æ‚¤‚Æ‚µ‚½j
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—	ï¼ˆç™»éŒ²æœ€å¤§æ•°ä»¥ä¸Šç™»éŒ²ã—ã‚ˆã†ã¨ã—ãŸï¼‰
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_RBOX_AddAccessorieMove( IMC_RIGHT_BOX* rbox, IMC_OBJLIST* acce_obj, NNSG2dCharacterData** SWSP_UPchar )
 {
 	if( rbox->boxData.obj_count < rbox->boxData.obj_count_max ){
 
-		// ƒŠƒXƒg‚Ìæ“ª‚É“o˜^
+		// ãƒªã‚¹ãƒˆã®å…ˆé ­ã«ç™»éŒ²
 		ImcRightSetAcceList( rbox, acce_obj, TRUE, SWSP_UPchar );
 
-		//	ƒIƒuƒWƒFƒNƒg”’Ç‰Á
+		//	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°è¿½åŠ 
 		rbox->boxData.obj_count ++;
 
 		return TRUE;
@@ -421,10 +421,10 @@ BOOL IMC_RBOX_AddAccessorieMove( IMC_RIGHT_BOX* rbox, IMC_OBJLIST* acce_obj, NNS
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒIƒuƒWƒF”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒX
- *	@param	acce_obj	”jŠü‚·‚éƒAƒNƒZƒTƒŠ
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹
+ *	@param	acce_obj	ç ´æ£„ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒª
  *
  *	@return	none
  *
@@ -433,29 +433,29 @@ BOOL IMC_RBOX_AddAccessorieMove( IMC_RIGHT_BOX* rbox, IMC_OBJLIST* acce_obj, NNS
 //-----------------------------------------------------------------------------
 void IMC_RBOX_DeleteAccessorie( IMC_RIGHT_BOX* rbox, IMC_OBJLIST* acce_obj )
 {
-	// ƒŠƒXƒg‚©‚ç”jŠü
+	// ãƒªã‚¹ãƒˆã‹ã‚‰ç ´æ£„
 	IMC_OBJLIST_Delete( acce_obj );
 	
-	// ƒAƒNƒZƒTƒŠ”jŠü
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªç ´æ£„
 	IMC_ACCE_ObjDelete( (IMC_ACCESSORIE_OBJ*)acce_obj->obj_data );
 
-	// ƒŠƒXƒg‚ğ”jŠü
+	// ãƒªã‚¹ãƒˆã‚’ç ´æ£„
 	IMC_OBJLIST_DeleteObjList( acce_obj );
 	
-	//	ƒIƒuƒWƒFƒNƒg”íœ
+	//	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°å‰Šé™¤
 	rbox->boxData.obj_count--;
 
-	// ƒ}ƒCƒiƒX‚Ì’l‚É‚È‚Á‚½‚ç‚¨‚©‚µ‚¢
+	// ãƒã‚¤ãƒŠã‚¹ã®å€¤ã«ãªã£ãŸã‚‰ãŠã‹ã—ã„
 	GF_ASSERT( rbox->boxData.obj_count >= 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ˆÚ“®‚³‚¹‚é‚½‚ß‚ÌƒŠƒXƒg‚©‚ç‚Ìíœ
+ *	@brief	ç§»å‹•ã•ã›ã‚‹ãŸã‚ã®ãƒªã‚¹ãƒˆã‹ã‚‰ã®å‰Šé™¤
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒX
- *	@param	acce_obj	ˆÚ“®‚³‚¹‚é‚½‚ß‚ÉƒŠƒXƒg‚©‚çíœ‚·‚éƒAƒNƒZƒTƒŠƒf[ƒ^
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹
+ *	@param	acce_obj	ç§»å‹•ã•ã›ã‚‹ãŸã‚ã«ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -464,21 +464,21 @@ void IMC_RBOX_DeleteAccessorie( IMC_RIGHT_BOX* rbox, IMC_OBJLIST* acce_obj )
 //-----------------------------------------------------------------------------
 void IMC_RBOX_DeleteAccessorieMove( IMC_RIGHT_BOX* rbox, IMC_OBJLIST* acce_obj )
 {
-	// ƒŠƒXƒg‚©‚ç”jŠü
+	// ãƒªã‚¹ãƒˆã‹ã‚‰ç ´æ£„
 	IMC_OBJLIST_Delete( acce_obj );
 
-	//	ƒIƒuƒWƒFƒNƒg”íœ
+	//	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°å‰Šé™¤
 	rbox->boxData.obj_count--;
-	// ƒ}ƒCƒiƒX‚Ì’l‚É‚È‚Á‚½‚ç‚¨‚©‚µ‚¢
+	// ãƒã‚¤ãƒŠã‚¹ã®å€¤ã«ãªã£ãŸã‚‰ãŠã‹ã—ã„
 	GF_ASSERT( rbox->boxData.obj_count >= 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“o˜^‚³‚ê‚Ä‚¢‚éƒAƒNƒZƒTƒŠ‘S‚Ä‚ğ‚Í‚«
+ *	@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªå…¨ã¦ã‚’ã¯ã
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒX
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹
  *
  *	@return	none
  *
@@ -490,18 +490,18 @@ void IMC_RBOX_DeleteAccessorieAll( IMC_RIGHT_BOX* rbox )
 	IMC_OBJLIST_DeleteAll( &rbox->boxData.dummy );
 	IMC_OBJLIST_DeleteAll( &rbox->boxData.dummy_poke );
 
-	//	ƒIƒuƒWƒFƒNƒg”íœ
+	//	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°å‰Šé™¤
 	rbox->boxData.obj_count = 0;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Eƒ{ƒbƒNƒX“à‚ÌƒXƒvƒ‰ƒCƒg‚Å•\¦‚³‚ê‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚ğ“®‚©‚·
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹å†…ã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã§è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‹•ã‹ã™
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒX
- *	@param	x		‘«‚·‚˜’l
- *	@param	y		‘«‚·‚™’l
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹
+ *	@param	x		è¶³ã™ï½˜å€¤
+ *	@param	y		è¶³ã™ï½™å€¤
  *	
  *	@return
  *
@@ -516,11 +516,11 @@ void IMC_RBOX_ListMove( IMC_RIGHT_BOX* rbox, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚Ìã‚ÌƒAƒNƒZƒTƒŠ‚ğ“®‚©‚·
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã®ä¸Šã®ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’å‹•ã‹ã™
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒX
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  *
  *	@return	none
  */
@@ -532,12 +532,12 @@ void IMC_RBOX_PokeUpListMove( IMC_RIGHT_BOX* rbox, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Eƒ{ƒbƒNƒXƒŠƒXƒg‚ÌÀ•W‚ğİ’è
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆã®åº§æ¨™ã‚’è¨­å®š
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒX
- *	@param	old_x		‘O‚Í‰½ˆ‚ğŠî€‚É‚µ‚Ä‚¢‚½‚Ì‚©
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹
+ *	@param	old_x		å‰ã¯ä½•å‡¦ã‚’åŸºæº–ã«ã—ã¦ã„ãŸã®ã‹
  *	@param	old_y
- *	@param	x			‚±‚ê‚©‚ç‚Í‰½ˆ‚ğŠî€‚É‚·‚é‚Ì‚©
+ *	@param	x			ã“ã‚Œã‹ã‚‰ã¯ä½•å‡¦ã‚’åŸºæº–ã«ã™ã‚‹ã®ã‹
  *	@param	y 
  *
  *	@return	none
@@ -555,9 +555,9 @@ void IMC_RBOX_ListMatSet( IMC_RIGHT_BOX* rbox, int old_x, int old_y, int x, int 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Eƒ{ƒbƒNƒX‚ÌƒAƒNƒZƒTƒŠ•\¦ƒvƒ‰ƒCƒIƒŠƒeƒB‚ğİ’è
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’è¨­å®š
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒX 
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹ 
  *
  *	@return	none
  *
@@ -568,12 +568,12 @@ void IMC_RBOX_SetObjPriority( IMC_RIGHT_BOX* rbox )
 {
 	IMC_RBOX_SetObjPriorityMC( rbox, IMC_RBOX_ACCE_PRIORITY_START );
 }
-// ×‚©‚­
+// ç´°ã‹ã
 void IMC_RBOX_SetObjPriorityMC( IMC_RIGHT_BOX* rbox, int priority )
 {
 	IMC_OBJLIST* work;
 
-	// æ“ª‚©‚çƒ|ƒPƒ‚ƒ“‚Ü‚Å
+	// å…ˆé ­ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã¾ã§
 	work = rbox->boxData.dummy_poke.next;
 	while( work != &rbox->boxData.dummy_poke ){
 
@@ -589,9 +589,9 @@ void IMC_RBOX_SetObjPriorityMC( IMC_RIGHT_BOX* rbox, int priority )
 		work = work->next;
 	}
 
-	priority -= 8;	// ­‚µŠÔŠu‚ğ‚ ‚¯‚é@‚²•`‰æ–h~‚Ì‚½‚ß
+	priority -= 8;	// å°‘ã—é–“éš”ã‚’ã‚ã‘ã‚‹ã€€ã”æç”»é˜²æ­¢ã®ãŸã‚
 
-	// ƒ|ƒPƒ‚ƒ“‚©‚ç‰º
+	// ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰ä¸‹
 	work = rbox->boxData.dummy.next;
 	while( work != &rbox->boxData.dummy ){
 
@@ -609,7 +609,7 @@ void IMC_RBOX_SetObjPriorityMC( IMC_RIGHT_BOX* rbox, int priority )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—Dæ‡ˆÊ‘«‚µZ
+ *	@brief	å„ªå…ˆé †ä½è¶³ã—ç®—
  *
  *	@param	rbox
  *	@param	pri 
@@ -620,7 +620,7 @@ void IMC_RBOX_AddObjPriorityMC( IMC_RIGHT_BOX* rbox, int priority )
 	IMC_OBJLIST* work;
 	int tmp_pri;
 
-	// æ“ª‚©‚çƒ|ƒPƒ‚ƒ“‚Ü‚Å
+	// å…ˆé ­ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã¾ã§
 	work = rbox->boxData.dummy_poke.next;
 	while( work != &rbox->boxData.dummy_poke ){
 
@@ -636,7 +636,7 @@ void IMC_RBOX_AddObjPriorityMC( IMC_RIGHT_BOX* rbox, int priority )
 		work = work->next;
 	}
 
-	// ƒ|ƒPƒ‚ƒ“‚©‚ç‰º
+	// ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰ä¸‹
 	work = rbox->boxData.dummy.next;
 	while( work != &rbox->boxData.dummy ){
 
@@ -657,12 +657,12 @@ void IMC_RBOX_AddObjPriorityMC( IMC_RIGHT_BOX* rbox, int priority )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚ª‰Eƒ{ƒbƒNƒX‚É“–‚½‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãŒå³ãƒœãƒƒã‚¯ã‚¹ã«å½“ãŸã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE		ƒqƒbƒg
- *	@retval	FALSE		”ñƒqƒbƒg
+ *	@retval	TRUE		ãƒ’ãƒƒãƒˆ
+ *	@retval	FALSE		éãƒ’ãƒƒãƒˆ
  *
  *
  */
@@ -682,14 +682,14 @@ BOOL IMC_RBOX_TPHit( IMC_RIGHT_BOX* rbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	w’èÀ•W‚ª‰Eƒ{ƒbƒNƒX‚É“–‚½‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	æŒ‡å®šåº§æ¨™ãŒå³ãƒœãƒƒã‚¯ã‚¹ã«å½“ãŸã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	x			”»’è‚˜À•W
- *	@param	y			”»’è‚™À•W
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	x			åˆ¤å®šï½˜åº§æ¨™
+ *	@param	y			åˆ¤å®šï½™åº§æ¨™
  *
- *	@retval	TRUE		ƒqƒbƒg
- *	@retval	FALSE		”ñƒqƒbƒg
+ *	@retval	TRUE		ãƒ’ãƒƒãƒˆ
+ *	@retval	FALSE		éãƒ’ãƒƒãƒˆ
  *
  *
  */
@@ -709,12 +709,12 @@ BOOL IMC_RBOX_TPHitSelf( IMC_RIGHT_BOX* rbox, int x, int y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒIƒuƒWƒFƒNƒg‚²‚Æ‚Ì“–‚½‚è”»’è‚ğs‚¤
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã”ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒX
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹
  *
- *	@retval	”ñNULL	‚ ‚½‚éƒAƒNƒZƒTƒŠ
- *	@retval	NULL	‚È‚µ
+ *	@retval	éNULL	ã‚ãŸã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒª
+ *	@retval	NULL	ãªã—
  *
  *
  */
@@ -724,7 +724,7 @@ IMC_OBJLIST* IMC_RBOX_TPHitObj( IMC_RIGHT_BOX* rbox )
 	IMC_OBJLIST* work;
 	BOOL	ret;
 
-	// æ“ª‚ÌƒAƒNƒZƒTƒŠ‚©‚ç
+	// å…ˆé ­ã®ã‚¢ã‚¯ã‚»ã‚µãƒªã‹ã‚‰
 	work = rbox->boxData.dummy_poke.next;
 	while( work != &rbox->boxData.dummy_poke ){
 
@@ -739,7 +739,7 @@ IMC_OBJLIST* IMC_RBOX_TPHitObj( IMC_RIGHT_BOX* rbox )
 	}
 
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì‰º‚ÌƒAƒNƒZƒTƒŠ
+	// ãƒã‚±ãƒ¢ãƒ³ã®ä¸‹ã®ã‚¢ã‚¯ã‚»ã‚µãƒª
 	work = rbox->boxData.dummy.next;
 	while( work != &rbox->boxData.dummy ){
 
@@ -760,16 +760,16 @@ IMC_OBJLIST* IMC_RBOX_TPHitObj( IMC_RIGHT_BOX* rbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚²‚Æ‚Ì“–‚½‚è”»’è‚ğ×‚©‚­s‚¤
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã”ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’ç´°ã‹ãè¡Œã†
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒX
- *	@param	offset_x	ƒIƒtƒZƒbƒg‚˜À•W
- *	@param	offset_y	ƒIƒtƒZƒbƒg‚™À•W
- *	@param	SWSP_UPchar	”»’èƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒe[ƒuƒ‹
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹
+ *	@param	offset_x	ã‚ªãƒ•ã‚»ãƒƒãƒˆï½˜åº§æ¨™
+ *	@param	offset_y	ã‚ªãƒ•ã‚»ãƒƒãƒˆï½™åº§æ¨™
+ *	@param	SWSP_UPchar	åˆ¤å®šã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *	@return	none
  *
- * ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğQÆ‚µ‚Ä”²‚«F‚Å‚Í‚È‚¢‚©ƒ`ƒFƒbƒN
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã—ã¦æŠœãè‰²ã§ã¯ãªã„ã‹ãƒã‚§ãƒƒã‚¯
  *
  */
 //-----------------------------------------------------------------------------
@@ -778,7 +778,7 @@ IMC_OBJLIST* IMC_RBOX_TPHitObjEx( IMC_RIGHT_BOX* rbox, int* offset_x, int* offse
 	IMC_OBJLIST* work;
 	BOOL	ret;
 
-	// ƒ|ƒPƒ‚ƒ“‚Ìã‚ÌƒAƒNƒZƒTƒŠ‚©‚ç
+	// ãƒã‚±ãƒ¢ãƒ³ã®ä¸Šã®ã‚¢ã‚¯ã‚»ã‚µãƒªã‹ã‚‰
 	work = rbox->boxData.dummy_poke.next;
 	while( work != &rbox->boxData.dummy_poke ){
 
@@ -793,7 +793,7 @@ IMC_OBJLIST* IMC_RBOX_TPHitObjEx( IMC_RIGHT_BOX* rbox, int* offset_x, int* offse
 	}
 
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì‰º‚ÌƒAƒNƒZƒTƒŠ
+	// ãƒã‚±ãƒ¢ãƒ³ã®ä¸‹ã®ã‚¢ã‚¯ã‚»ã‚µãƒª
 	work = rbox->boxData.dummy.next;
 	while( work != &rbox->boxData.dummy ){
 
@@ -813,10 +813,10 @@ IMC_OBJLIST* IMC_RBOX_TPHitObjEx( IMC_RIGHT_BOX* rbox, int* offset_x, int* offse
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG‚ğ•\¦
+ *	@brief	BGã‚’è¡¨ç¤º
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒX
- *	@param	bg_num		‰Eƒ{ƒbƒNƒXBGƒiƒ“ƒo[
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹
+ *	@param	bg_num		å³ãƒœãƒƒã‚¯ã‚¹BGãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
@@ -827,7 +827,7 @@ void IMC_RBOX_BGSet( IMC_RIGHT_BOX* rbox, int bg_num, int heap )
 {
 	IMC_BG_ADD add;
 	
-	// “o˜^ƒf[ƒ^İ’è
+	// ç™»éŒ²ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	add.bg_ini		= rbox->boxDraw.BG_Ini;
 	add.arc_file	= ARC_IMAGECLIP_GRA;
 	add.char_arc	= IMC_BG_RIGHT_CG_ARC_GET(bg_num);
@@ -849,9 +849,9 @@ void IMC_RBOX_BGSet( IMC_RIGHT_BOX* rbox, int bg_num, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG‚ğƒNƒŠ[ƒ“‚·‚é
+ *	@brief	BGã‚’ã‚¯ãƒªãƒ¼ãƒ³ã™ã‚‹
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒX
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹
  *
  *	@return	none
  *
@@ -865,11 +865,11 @@ void IMC_RBOX_BGClean( IMC_RIGHT_BOX* rbox )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“À•W‚ğæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åº§æ¨™ã‚’å–å¾—
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒX
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  *
  *	@return	none
  */
@@ -882,11 +882,11 @@ void IMC_RBOX_GetPokeMatrix( IMC_RIGHT_BOX* rbox, int* x, int* y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•Û‚µ‚Ä‚¢‚éƒAƒNƒZƒTƒŠ”æ“¾
+ *	@brief	ä¿æŒã—ã¦ã„ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°å–å¾—
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒX
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹
  *
- *	@return	ƒAƒNƒZƒTƒŠ”
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
  */
 //-----------------------------------------------------------------------------
 int IMC_RBOX_GetNowHaveAcceNum( IMC_RIGHT_BOX* rbox )
@@ -896,11 +896,11 @@ int IMC_RBOX_GetNowHaveAcceNum( IMC_RIGHT_BOX* rbox )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚Ìã‚Éæ‚Á‚Ä‚¢‚éƒAƒNƒZƒTƒŠ‚ªH‚¢‚ñ‚Å‚¢‚éƒTƒCƒY‚ğæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã®ä¸Šã«ä¹—ã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãŒé£Ÿã„è¾¼ã‚“ã§ã„ã‚‹ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	@param	rbox		‰Eƒ{ƒbƒNƒXƒ[ƒN
- *	@param	enc_x		H‚¢‚ñ‚Å‚éƒTƒCƒY‚˜
- *	@param	enc_y		H‚¢‚ñ‚Å‚éƒTƒCƒY‚™
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹ãƒ¯ãƒ¼ã‚¯
+ *	@param	enc_x		é£Ÿã„è¾¼ã‚“ã§ã‚‹ã‚µã‚¤ã‚ºï½˜
+ *	@param	enc_y		é£Ÿã„è¾¼ã‚“ã§ã‚‹ã‚µã‚¤ã‚ºï½™
  *
  *	@return	none
  */
@@ -935,10 +935,10 @@ void IMC_RBOX_GetPokeUpListEncSize( IMC_RIGHT_BOX* rbox, int* enc_x, int* enc_y 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Eƒ{ƒbƒNƒX@Fİ’è
+ *	@brief	å³ãƒœãƒƒã‚¯ã‚¹ã€€è‰²è¨­å®š
  *
- *	@param	rbox	‰Eƒ{ƒbƒNƒX
- *	@param	color	F
+ *	@param	rbox	å³ãƒœãƒƒã‚¯ã‚¹
+ *	@param	color	è‰²
  *
  *	@return	none
  */
@@ -947,7 +947,7 @@ void IMC_RBOX_SetObjColor( IMC_RIGHT_BOX* rbox, GXRgb color )
 {
 	IMC_OBJLIST* work;
 
-	// ƒ|ƒPƒ‚ƒ“‚Ìã‚ÌƒAƒNƒZƒTƒŠ‚©‚ç
+	// ãƒã‚±ãƒ¢ãƒ³ã®ä¸Šã®ã‚¢ã‚¯ã‚»ã‚µãƒªã‹ã‚‰
 	work = rbox->boxData.dummy_poke.next;
 	while( work != &rbox->boxData.dummy_poke ){
 
@@ -963,7 +963,7 @@ void IMC_RBOX_SetObjColor( IMC_RIGHT_BOX* rbox, GXRgb color )
 		work = work->next;
 	}
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì‰º‚ÌƒAƒNƒZƒTƒŠ
+	// ãƒã‚±ãƒ¢ãƒ³ã®ä¸‹ã®ã‚¢ã‚¯ã‚»ã‚µãƒª
 	work = rbox->boxData.dummy.next;
 	while( work != &rbox->boxData.dummy ){
 		IMC_ACCESSORIE_OBJ* p_obj = work->obj_data;
@@ -980,12 +980,12 @@ void IMC_RBOX_SetObjColor( IMC_RIGHT_BOX* rbox, GXRgb color )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ã‚©‰º‚ÉƒAƒNƒZƒTƒŠ‚ğİ’è‚·‚é
+ *	@brief	ä¸Šã‹ä¸‹ã«ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_data			ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	objList			ƒAƒNƒZƒTƒŠƒf[ƒ^
- *	@param	top_bottom		TRUE@æ“ª@BOTTOM@ÅŒã”ö
- *	@param	SWSP_UPchar			”»’è—pƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@param	p_data			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	objList			ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	top_bottom		TRUEã€€å…ˆé ­ã€€BOTTOMã€€æœ€å¾Œå°¾
+ *	@param	SWSP_UPchar			åˆ¤å®šç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -1010,13 +1010,13 @@ static void ImcRightSetAcceList( IMC_RIGHT_BOX* p_data, IMC_OBJLIST* objList, BO
 	int in_size_right, in_size_bottom;
 #endif
 	
-	// À•W‚ğæ“¾
+	// åº§æ¨™ã‚’å–å¾—
 	IMC_OBJLIST_ACCEPOKE_MatGet( objList, &x, &y );
 
-	// ƒTƒCƒY‚ğæ“¾
+	// ã‚µã‚¤ã‚ºã‚’å–å¾—
 	IMC_OBJLIST_ACCEPOKE_SizeGet( objList, &size_x, &size_y );
 
-	// H‚¢‚ñ‚Å‚æ‚¢ƒTƒCƒYæ“¾
+	// é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºå–å¾—
 #if PLFIX_S2407
 	IMC_OBJLIST_ACCEPOKE_InSizeGet( objList, &in_size_x, &in_size_right, &in_size_y, &in_size_bottom );
 
@@ -1034,11 +1034,11 @@ static void ImcRightSetAcceList( IMC_RIGHT_BOX* p_data, IMC_OBJLIST* objList, BO
 #endif
 
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 	char_data = SWSP_UPchar[ IMC_DRAW_POKE_CHAR_ID ];
 	
-	// ƒ|ƒPƒ‚ƒ“ƒGƒŠƒA‚Éˆø‚Á‚©‚©‚é‚©ƒ`ƒFƒbƒN
-	// 16“_ƒ`ƒFƒbƒN‚·‚é
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒªã‚¢ã«å¼•ã£ã‹ã‹ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+	// 16ç‚¹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	check = FALSE;
 	for( i=0; i<16; i++ ){
 		IMC_CALC_HitPoint16Get( top, bottom, left, right, i, &ch_x, &ch_y );
@@ -1046,23 +1046,23 @@ static void ImcRightSetAcceList( IMC_RIGHT_BOX* p_data, IMC_OBJLIST* objList, BO
 	}
 
 	
-	// ƒ|ƒPƒ‚ƒ“‚Ìã‚È‚çƒ|ƒPƒ‚ƒ“‚ÌãƒŠƒXƒg‚É
+	// ãƒã‚±ãƒ¢ãƒ³ã®ä¸Šãªã‚‰ãƒã‚±ãƒ¢ãƒ³ã®ä¸Šãƒªã‚¹ãƒˆã«
 	if( check ){
 		
 		if( top_bottom ){
-			// æ“ª‚É“o˜^
+			// å…ˆé ­ã«ç™»éŒ²
 			IMC_OBJLIST_Set( objList, &p_data->boxData.dummy_poke );
 		}else{
-			// ÅŒã”ö‚É“o˜^
+			// æœ€å¾Œå°¾ã«ç™»éŒ²
 			IMC_OBJLIST_Set( objList, p_data->boxData.dummy_poke.prev );
 		}
 	}else{
 
 		if( top_bottom ){
-			// æ“ª‚É“o˜^
+			// å…ˆé ­ã«ç™»éŒ²
 			IMC_OBJLIST_Set( objList, &p_data->boxData.dummy );
 		}else{
-			// ÅŒã”ö‚É“o˜^
+			// æœ€å¾Œå°¾ã«ç™»éŒ²
 			IMC_OBJLIST_Set( objList, p_data->boxData.dummy.prev );
 		}
 	}
@@ -1070,25 +1070,25 @@ static void ImcRightSetAcceList( IMC_RIGHT_BOX* p_data, IMC_OBJLIST* objList, BO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠH‚¢‚İƒTƒCƒY@æ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªé£Ÿã„è¾¼ã¿ã‚µã‚¤ã‚ºã€€å–å¾—
  *
- *	@param	objlist		ƒAƒNƒZƒTƒŠƒŠƒXƒg
- *	@param	enc_x		H‚¢‚İ‚˜ƒTƒCƒY
- *	@param	enc_y		H‚¢‚İ‚™ƒTƒCƒY
+ *	@param	objlist		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆ
+ *	@param	enc_x		é£Ÿã„è¾¼ã¿ï½˜ã‚µã‚¤ã‚º
+ *	@param	enc_y		é£Ÿã„è¾¼ã¿ï½™ã‚µã‚¤ã‚º
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void imcRbox_GetAcceEncSize( IMC_OBJLIST* objlist, int* enc_x, int* enc_y )
 {
-	int size_x,size_y;			// ƒIƒuƒWƒFƒNƒgƒTƒCƒYXY
-	int mat_x, mat_y;			// ƒIƒuƒWƒFƒNƒgÀ•W
-	int in_size_x, in_size_y;	// H‚¢‚ñ‚Å‚æ‚¢ƒTƒCƒYXY
+	int size_x,size_y;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚µã‚¤ã‚ºXY
+	int mat_x, mat_y;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåº§æ¨™
+	int in_size_x, in_size_y;	// é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºXY
 #if PLFIX_S2407
-	int in_size_right, in_size_bottom;	// H‚¢‚ñ‚Å‚æ‚¢ƒTƒCƒYXY
+	int in_size_right, in_size_bottom;	// é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºXY
 #endif
-	int top, bottom, left, right;// ã‰º‰E¶
-	int in_top, in_bottom, in_left, in_right;// H‚¢‚İã‰º‰E¶
+	int top, bottom, left, right;// ä¸Šä¸‹å³å·¦
+	int in_top, in_bottom, in_left, in_right;// é£Ÿã„è¾¼ã¿ä¸Šä¸‹å³å·¦
 
 	IMC_OBJLIST_ACCEPOKE_SizeGet( objlist, &size_x, &size_y );
 	IMC_OBJLIST_ACCEPOKE_MatGet( objlist, &mat_x, &mat_y );
@@ -1111,14 +1111,14 @@ static void imcRbox_GetAcceEncSize( IMC_OBJLIST* objlist, int* enc_x, int* enc_y
 #endif
 
 
-	// ‰Eƒ{ƒbƒNƒX‹éŒ`ŠO‚É‚Ç‚Ì‚­‚ç‚¢H‚¢‚ñ‚Å‚¢‚é‚©‚ğƒ`ƒFƒbƒN
-	// ƒvƒ‰ƒX‚ªH‚¢‚ñ‚Å‚¢‚éƒTƒCƒY@ƒ}ƒCƒiƒX‚ÍOK
+	// å³ãƒœãƒƒã‚¯ã‚¹çŸ©å½¢å¤–ã«ã©ã®ãã‚‰ã„é£Ÿã„è¾¼ã‚“ã§ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+	// ãƒ—ãƒ©ã‚¹ãŒé£Ÿã„è¾¼ã‚“ã§ã„ã‚‹ã‚µã‚¤ã‚ºã€€ãƒã‚¤ãƒŠã‚¹ã¯OK
 	in_left		= IMC_RBOX_AREA_X_MOVEOK - left;
 	in_right	= right - (IMC_RBOX_AREA_X_MOVEOK + IMC_RBOX_AREA_WIDTH_MOVEOK);
 	in_top		= IMC_RBOX_AREA_Y_MOVEOK - top;
 	in_bottom	= bottom - (IMC_RBOX_AREA_Y_MOVEOK + IMC_RBOX_AREA_HEIGHT_MOVEOK);
 
-	// H‚¢‚ñ‚Å‚¢‚éƒTƒCƒY‚ğ•Ô‚·
+	// é£Ÿã„è¾¼ã‚“ã§ã„ã‚‹ã‚µã‚¤ã‚ºã‚’è¿”ã™
 	if( in_left > 0 ){
 		*enc_x = in_left;
 	}else if( in_right > 0 ){

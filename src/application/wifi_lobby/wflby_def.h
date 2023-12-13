@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_def.h
- *	@brief		WiFiƒƒr[	’ÊM\‘¢‘Ì
+ *	@brief		WiFiãƒ­ãƒ“ãƒ¼	é€šä¿¡æ§‹é€ ä½“
  *	@author		tomoya	takahashi	
  *	@data		2007.09.14
  *
@@ -23,12 +23,12 @@
 
 //-----------------------------------------------------------------------------
 /**
- *			‘S‘ÌƒfƒoƒbƒN
+ *			å…¨ä½“ãƒ‡ãƒãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 #ifdef PM_DEBUG
-//#define WFLBY_DEBUG_ROOM_WLDTIMER_AUTO	// ƒI[ƒg‚Å¢ŠEŽžŒv‚É“ü‚Á‚½‚èo‚½‚è
-//#define WFLBY_DEBUG_ROOM_MINIGAME_AUTO	// ƒI[ƒg‚Åƒ~ƒjƒQ[ƒ€o‚½‚è“ü‚Á‚½‚è
+//#define WFLBY_DEBUG_ROOM_WLDTIMER_AUTO	// ã‚ªãƒ¼ãƒˆã§ä¸–ç•Œæ™‚è¨ˆã«å…¥ã£ãŸã‚Šå‡ºãŸã‚Š
+//#define WFLBY_DEBUG_ROOM_MINIGAME_AUTO	// ã‚ªãƒ¼ãƒˆã§ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‡ºãŸã‚Šå…¥ã£ãŸã‚Š
 #endif
 
 #ifdef WFLBY_DEBUG_ROOM_WLDTIMER_AUTO
@@ -42,90 +42,90 @@ extern BOOL WFLBY_DEBUG_ROOM_MINIGAME_AUTO_FLAG;
 
 //-----------------------------------------------------------------------------
 /**
- *				‘S‹¤’Ê
+ *				å…¨å…±é€š
  */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-/// •”‰®I—¹ƒCƒxƒ“ƒg‚©‚ç•”‰®‚ðI—¹‚³‚¹‚é‚Ü‚Å‚ÌŽžŠÔ
+/// éƒ¨å±‹çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰éƒ¨å±‹ã‚’çµ‚äº†ã•ã›ã‚‹ã¾ã§ã®æ™‚é–“
 //=====================================
-#define WFLBY_END_OVERTIME		( 30*30 )	// 30•b
-#define WFLBY_END_BGMFADEOUT	( 28*30 )	// ‚Ì‚±‚è28•b‚É‚È‚Á‚½‚çBGM‚ðƒtƒF[ƒhƒAƒEƒg‚³‚¹‚é
+#define WFLBY_END_OVERTIME		( 30*30 )	// 30ç§’
+#define WFLBY_END_BGMFADEOUT	( 28*30 )	// ã®ã“ã‚Š28ç§’ã«ãªã£ãŸã‚‰BGMã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã•ã›ã‚‹
 
 //-------------------------------------
-/// ’Êí‚ÌƒCƒxƒ“ƒg‚ªŽóM‚µ‚Ä‚©‚ç”½‰f‚³‚¹‚é‚Ü‚Å‚ÌŽžŠÔ
+/// é€šå¸¸ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒå—ä¿¡ã—ã¦ã‹ã‚‰åæ˜ ã•ã›ã‚‹ã¾ã§ã®æ™‚é–“
 //=====================================
-#define WFLBY_EVENT_STARTTIME	( 10*30 )	// 10•b
+#define WFLBY_EVENT_STARTTIME	( 10*30 )	// 10ç§’
 
 //-------------------------------------
-///	1•”‰®‚Ìl”
+///	1éƒ¨å±‹ã®äººæ•°
 //=====================================
 #define WFLBY_PLAYER_MAX	(20)
 
 //-------------------------------------
-///	ƒ}ƒbƒv”z’ul•¨‚ÌƒvƒŒƒCƒ„[NO
+///	ãƒžãƒƒãƒ—é…ç½®äººç‰©ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
 //=====================================
-#define WFLBY_MAPPERSON_ID			( 0xff )	// ƒJƒEƒ“ƒ^[‚É‚¢‚él
-#define WFLBY_MAPPERSON_PIERROT_ID	( 0xfe )	// ƒsƒGƒiƒsƒGƒ‚Íl‚Æ“¯‚¶‚æ‚¤‚É˜b‚µ‚©‚¯‚é‚±‚Æ‚ªo—ˆ‚é‚Ì‚Åplayid‚Ìƒ`ƒFƒbƒN‚ð‚µ‚Ä‚­‚¾‚³‚¢j
+#define WFLBY_MAPPERSON_ID			( 0xff )	// ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã«ã„ã‚‹äºº
+#define WFLBY_MAPPERSON_PIERROT_ID	( 0xfe )	// ãƒ”ã‚¨ãƒ­ï¼ˆãƒ”ã‚¨ãƒ­ã¯äººã¨åŒã˜ã‚ˆã†ã«è©±ã—ã‹ã‘ã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹ã®ã§playidã®ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¦ãã ã•ã„ï¼‰
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€l”
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ äººæ•°
 //=====================================
 #define WFLBY_MINIGAME_MAX	(4)
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€eBCANCEL	ŽQ‰ÁƒƒbƒNŽžŠÔ
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ è¦ªBCANCEL	å‚åŠ ãƒ­ãƒƒã‚¯æ™‚é–“
 //=====================================
 #define WFLBY_MINIGAME_LOCK_TIME	(30*30)
 
 
 //-------------------------------------
-///	‘«Õƒ{[ƒhl”
+///	è¶³è·¡ãƒœãƒ¼ãƒ‰äººæ•°
 //=====================================
 #define WFLBY_FOOT_MAX	(8)
 
 //-------------------------------------
-///	1•”‰®‚Éo‚·ƒtƒ[ƒg‚ÌÅ‘å”
+///	1éƒ¨å±‹ã«å‡ºã™ãƒ•ãƒ­ãƒ¼ãƒˆã®æœ€å¤§æ•°
 //=====================================
 #define WFLBY_FLOAT_MAX		(9)
 
 //-------------------------------------
-///	1ƒtƒ[ƒg‚Ì’èˆõ
+///	1ãƒ•ãƒ­ãƒ¼ãƒˆã®å®šå“¡
 //=====================================
 #define WFLBY_FLOAT_ON_NUM		(3)
 
 //-------------------------------------
-///		¢ŠEƒf[ƒ^ –³Œø‘ID
+///		ä¸–ç•Œãƒ‡ãƒ¼ã‚¿ ç„¡åŠ¹å›½ID
 //=====================================
-#define WFLBY_WLDDATA_NATION_NONE		( country000 )	// –³Œø‚È‘ID
+#define WFLBY_WLDDATA_NATION_NONE		( country000 )	// ç„¡åŠ¹ãªå›½ID
 
 //-------------------------------------
-///	1l‚Æ‰ï˜b‚Å‚«‚éÅ‘å”
+///	1äººã¨ä¼šè©±ã§ãã‚‹æœ€å¤§æ•°
 //=====================================
 #define WFLBY_TALK_MAX		( 6 )
 
 //-------------------------------------
-///	‰ï˜b‰ž“š‘Ò‚¿ŽžŠÔ
+///	ä¼šè©±å¿œç­”å¾…ã¡æ™‚é–“
 //=====================================
-#define WFLBY_TALK_RECV_WAIT		( 900 )		// 30•b
-#define WFLBY_TALK_RECV_HALF_WAIT	( 450 )		// 15•b	’†ŠÔƒƒbƒZ[ƒW‚Ì•\Ž¦
+#define WFLBY_TALK_RECV_WAIT		( 900 )		// 30ç§’
+#define WFLBY_TALK_RECV_HALF_WAIT	( 450 )		// 15ç§’	ä¸­é–“ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
 
 //-------------------------------------
-///	•s³‚ÈŒ¾ŒêƒR[ƒh‚Ì‚Æ‚«
+///	ä¸æ­£ãªè¨€èªžã‚³ãƒ¼ãƒ‰ã®ã¨ã
 //=====================================
-#define WFLBY_REGIONCODE_ERR	( LANG_ENGLISH )	// ‰p‘‚Ìl‚Æ‚µ‚Äˆµ‚¢‚Ü‚·
+#define WFLBY_REGIONCODE_ERR	( LANG_ENGLISH )	// è‹±å›½ã®äººã¨ã—ã¦æ‰±ã„ã¾ã™
 
 //-------------------------------------
-///	s‚Á‚½‚±‚Æ‚Ì—š—ð@•ÛŽ”
+///	è¡Œã£ãŸã“ã¨ã®å±¥æ­´ã€€ä¿æŒæ•°
 //=====================================
 #define WFLBY_LASTACT_BUFFNUM	( 12 )
 
 //-------------------------------------
-///	ƒ†[ƒU‚ªƒvƒƒtƒB[ƒ‹—p‚É‘I‘ð‚·‚é‘®«ƒ^ƒCƒv
+///	ãƒ¦ãƒ¼ã‚¶ãŒãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ç”¨ã«é¸æŠžã™ã‚‹å±žæ€§ã‚¿ã‚¤ãƒ—
 //=====================================
-#define WFLBY_SELECT_TYPENUM		(2)								// ‘I‘ð”
+#define WFLBY_SELECT_TYPENUM		(2)								// é¸æŠžæ•°
 typedef enum{
-	WFLBY_POKEWAZA_TYPE_NONE,	// ‘I‚Î‚È‚¢
+	WFLBY_POKEWAZA_TYPE_NONE,	// é¸ã°ãªã„
 	WFLBY_POKEWAZA_TYPE_NORMAL,
 	WFLBY_POKEWAZA_TYPE_BATTLE,
 	WFLBY_POKEWAZA_TYPE_HIKOU,
@@ -148,128 +148,128 @@ typedef enum{
 
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
 //=====================================
 typedef enum{
-	WFLBY_GAME_BALLSLOW,	// ‹Ê“Š‚°
-	WFLBY_GAME_BALANCEBALL,	// ‹Êæ‚è
-	WFLBY_GAME_BALLOON,		// ‚Ó‚¤‚¹‚ñ‚í‚è
-	WFLBY_GAME_FOOTWHITE,	// ‘«Õƒ{[ƒh@”’
-	WFLBY_GAME_FOOTBLACK,	// ‘«Õƒ{[ƒh@•
-	WFLBY_GAME_WLDTIMER,	// ¢ŠEŽžŒv
-	WFLBY_GAME_NEWS,		// ƒƒr[ƒjƒ…[ƒX
-	WFLBY_GAME_TALK,		// ‚¨‚µ‚á‚×‚è
-	WFLBY_GAME_ITEM,		// ƒKƒWƒFƒbƒg
-	WFLBY_GAME_ITEMCHG,		// ƒKƒWƒFƒbƒgŒðŠ·
+	WFLBY_GAME_BALLSLOW,	// çŽ‰æŠ•ã’
+	WFLBY_GAME_BALANCEBALL,	// çŽ‰ä¹—ã‚Š
+	WFLBY_GAME_BALLOON,		// ãµã†ã›ã‚“ã‚ã‚Š
+	WFLBY_GAME_FOOTWHITE,	// è¶³è·¡ãƒœãƒ¼ãƒ‰ã€€ç™½
+	WFLBY_GAME_FOOTBLACK,	// è¶³è·¡ãƒœãƒ¼ãƒ‰ã€€é»’
+	WFLBY_GAME_WLDTIMER,	// ä¸–ç•Œæ™‚è¨ˆ
+	WFLBY_GAME_NEWS,		// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
+	WFLBY_GAME_TALK,		// ãŠã—ã‚ƒã¹ã‚Š
+	WFLBY_GAME_ITEM,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
+	WFLBY_GAME_ITEMCHG,		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆäº¤æ›
 
-	WFLBY_GAME_UNKNOWN,		// ‚í‚©‚ç‚È‚¢
+	WFLBY_GAME_UNKNOWN,		// ã‚ã‹ã‚‰ãªã„
 
-	WFLBY_GAME_NUM,			// ”
+	WFLBY_GAME_NUM,			// æ•°
 
-	// P2P’ÊM‚·‚éƒ~ƒjƒQ[ƒ€‚Ì”
+	// P2Pé€šä¿¡ã™ã‚‹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®æ•°
 	WFLBY_GAME_P2PGAME_NUM = WFLBY_GAME_BALLOON + 1,
 } WFLBY_GAMETYPE;
 
 //-------------------------------------
-///	ŽžŠÔƒCƒxƒ“ƒgƒ^ƒCƒv
+///	æ™‚é–“ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
 //=====================================
 typedef enum{
-	WFLBY_EVENT_NEON,		// ƒlƒIƒ“
-	WFLBY_EVENT_FIRE,		// ƒtƒ@ƒCƒA[
-	WFLBY_EVENT_PARADE,		// ƒpƒŒ[ƒh
-	WFLBY_EVENT_LIGHT_OFF,	// ƒ‰ƒCƒgƒIƒt
-	WFLBY_EVENT_CLOSE,		// ƒNƒ[ƒY
+	WFLBY_EVENT_NEON,		// ãƒã‚ªãƒ³
+	WFLBY_EVENT_FIRE,		// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼
+	WFLBY_EVENT_PARADE,		// ãƒ‘ãƒ¬ãƒ¼ãƒ‰
+	WFLBY_EVENT_LIGHT_OFF,	// ãƒ©ã‚¤ãƒˆã‚ªãƒ•
+	WFLBY_EVENT_CLOSE,		// ã‚¯ãƒ­ãƒ¼ã‚º
 
-	WFLBY_EVENT_UNKNOWN,	// ‚í‚©‚ç‚È‚¢
+	WFLBY_EVENT_UNKNOWN,	// ã‚ã‹ã‚‰ãªã„
 	
-	WFLBY_EVENT_NUM,		// ”
+	WFLBY_EVENT_NUM,		// æ•°
 } WFLBY_EVENTTYPE;
 
 //-------------------------------------
-///	ƒ^ƒCƒ€ƒCƒxƒ“ƒg	ƒƒbƒZ[ƒW’è”
+///	ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆ	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å®šæ•°
 //=====================================
 typedef enum{
-	WFLBY_EVENT_GMM_NEON,		// ƒlƒIƒ“
-	WFLBY_EVENT_GMM_FIRE,		// ƒtƒ@ƒCƒA[
-	WFLBY_EVENT_GMM_PARADE,		// ƒpƒŒ[ƒh
+	WFLBY_EVENT_GMM_NEON,		// ãƒã‚ªãƒ³
+	WFLBY_EVENT_GMM_FIRE,		// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼
+	WFLBY_EVENT_GMM_PARADE,		// ãƒ‘ãƒ¬ãƒ¼ãƒ‰
 	
-	WFLBY_EVENT_GMM_NUM,		// ”
+	WFLBY_EVENT_GMM_NUM,		// æ•°
 } WFLBY_EVENTGMM_TYPE;
 
 //-------------------------------------
-///	ƒAƒCƒeƒ€ƒ^ƒCƒv
+///	ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—
 //=====================================
 enum{
-	WFLBY_ITEM_BELL00,		// ƒxƒ‹¬
-	WFLBY_ITEM_BELL01,		// ƒxƒ‹’†
-	WFLBY_ITEM_BELL02,		// ƒxƒ‹‘å
-	WFLBY_ITEM_DRAM00,		// ƒhƒ‰ƒ€¬
-	WFLBY_ITEM_DRAM01,		// ƒhƒ‰ƒ€’†
-	WFLBY_ITEM_DRAM02,		// ƒhƒ‰ƒ€‘å
-	WFLBY_ITEM_CYMBALS00,	// ƒVƒ“ƒoƒ‹¬
-	WFLBY_ITEM_CYMBALS01,	// ƒVƒ“ƒoƒ‹’†
-	WFLBY_ITEM_CYMBALS02,	// ƒVƒ“ƒoƒ‹‘å
-	WFLBY_ITEM_RIPPRU00,	// ƒŠƒbƒvƒ‹¬
-	WFLBY_ITEM_RIPPRU01,	// ƒŠƒbƒvƒ‹’†
-	WFLBY_ITEM_RIPPRU02,	// ƒŠƒbƒvƒ‹‘å
-	WFLBY_ITEM_SIGNAL00,	// ƒVƒOƒiƒ‹¬
-	WFLBY_ITEM_SIGNAL01,	// ƒVƒOƒiƒ‹’†
-	WFLBY_ITEM_SIGNAL02,	// ƒVƒOƒiƒ‹‘å
-	WFLBY_ITEM_WINK00,		// ƒEƒBƒ“ƒN¬
-	WFLBY_ITEM_WINK01,		// ƒEƒBƒ“ƒN’†
-	WFLBY_ITEM_WINK02,		// ƒEƒBƒ“ƒN‘å
-	WFLBY_ITEM_CRACKER00,	// ƒNƒ‰ƒbƒJ[¬
-	WFLBY_ITEM_CRACKER01,	// ƒNƒ‰ƒbƒJ[’†
-	WFLBY_ITEM_CRACKER02,	// ƒNƒ‰ƒbƒJ[‘å
-	WFLBY_ITEM_SPARK00,		// ƒXƒp[ƒNƒ‹¬
-	WFLBY_ITEM_SPARK01,		// ƒXƒp[ƒNƒ‹’†
-	WFLBY_ITEM_SPARK02,		// ƒXƒp[ƒNƒ‹‘å
-	WFLBY_ITEM_BALLOON00,	// ƒoƒ‹[ƒ“¬
-	WFLBY_ITEM_BALLOON01,	// ƒoƒ‹[ƒ“’†
-	WFLBY_ITEM_BALLOON02,	// ƒoƒ‹[ƒ“‘å
-	WFLBY_ITEM_NUM,		// ”
+	WFLBY_ITEM_BELL00,		// ãƒ™ãƒ«å°
+	WFLBY_ITEM_BELL01,		// ãƒ™ãƒ«ä¸­
+	WFLBY_ITEM_BELL02,		// ãƒ™ãƒ«å¤§
+	WFLBY_ITEM_DRAM00,		// ãƒ‰ãƒ©ãƒ å°
+	WFLBY_ITEM_DRAM01,		// ãƒ‰ãƒ©ãƒ ä¸­
+	WFLBY_ITEM_DRAM02,		// ãƒ‰ãƒ©ãƒ å¤§
+	WFLBY_ITEM_CYMBALS00,	// ã‚·ãƒ³ãƒãƒ«å°
+	WFLBY_ITEM_CYMBALS01,	// ã‚·ãƒ³ãƒãƒ«ä¸­
+	WFLBY_ITEM_CYMBALS02,	// ã‚·ãƒ³ãƒãƒ«å¤§
+	WFLBY_ITEM_RIPPRU00,	// ãƒªãƒƒãƒ—ãƒ«å°
+	WFLBY_ITEM_RIPPRU01,	// ãƒªãƒƒãƒ—ãƒ«ä¸­
+	WFLBY_ITEM_RIPPRU02,	// ãƒªãƒƒãƒ—ãƒ«å¤§
+	WFLBY_ITEM_SIGNAL00,	// ã‚·ã‚°ãƒŠãƒ«å°
+	WFLBY_ITEM_SIGNAL01,	// ã‚·ã‚°ãƒŠãƒ«ä¸­
+	WFLBY_ITEM_SIGNAL02,	// ã‚·ã‚°ãƒŠãƒ«å¤§
+	WFLBY_ITEM_WINK00,		// ã‚¦ã‚£ãƒ³ã‚¯å°
+	WFLBY_ITEM_WINK01,		// ã‚¦ã‚£ãƒ³ã‚¯ä¸­
+	WFLBY_ITEM_WINK02,		// ã‚¦ã‚£ãƒ³ã‚¯å¤§
+	WFLBY_ITEM_CRACKER00,	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼å°
+	WFLBY_ITEM_CRACKER01,	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ä¸­
+	WFLBY_ITEM_CRACKER02,	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼å¤§
+	WFLBY_ITEM_SPARK00,		// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«å°
+	WFLBY_ITEM_SPARK01,		// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«ä¸­
+	WFLBY_ITEM_SPARK02,		// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«å¤§
+	WFLBY_ITEM_BALLOON00,	// ãƒãƒ«ãƒ¼ãƒ³å°
+	WFLBY_ITEM_BALLOON01,	// ãƒãƒ«ãƒ¼ãƒ³ä¸­
+	WFLBY_ITEM_BALLOON02,	// ãƒãƒ«ãƒ¼ãƒ³å¤§
+	WFLBY_ITEM_NUM,		// æ•°
 
-	// ƒKƒWƒFƒbƒg‰Šú’l	i‚Ü‚¾‰½‚ð‚à‚ç‚Á‚½‚©•s–¾‚È‚Æ‚«j
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆåˆæœŸå€¤	ï¼ˆã¾ã ä½•ã‚’ã‚‚ã‚‰ã£ãŸã‹ä¸æ˜Žãªã¨ãï¼‰
 	WFLBY_ITEM_INIT = 0xff,
 
-	// ‚Ð‚Æ‚Â‚ÌŽí—Þ‚ÌƒAƒCƒeƒ€‚É‚ ‚é’iŠK”
+	// ã²ã¨ã¤ã®ç¨®é¡žã®ã‚¢ã‚¤ãƒ†ãƒ ã«ã‚ã‚‹æ®µéšŽæ•°
 	WFLBY_ITEM_DANKAI = 3,
 } ;
-// ƒKƒWƒFƒbƒg‚ÌGROUP‚ÌŽí—Þ
+// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã®GROUPã®ç¨®é¡ž
 #define WFLBY_ITEM_GROUPNUM (WFLBY_ITEM_NUM/WFLBY_ITEM_DANKAI) 
-typedef u32 WFLBY_ITEMTYPE;	// ƒAƒCƒeƒ€—pŒ^éŒ¾
+typedef u32 WFLBY_ITEMTYPE;	// ã‚¢ã‚¤ãƒ†ãƒ ç”¨åž‹å®£è¨€
 
 //-------------------------------------
-///	ƒgƒsƒbƒNƒXƒf[ƒ^
+///	ãƒˆãƒ”ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
 //=====================================
-typedef enum {	// ƒgƒsƒbƒNƒXƒ^ƒCƒv
-	NEWS_TOPICTYPE_CONNECT,			// ˆ¥ŽA
-	NEWS_TOPICTYPE_ITEM,			// ƒKƒWƒFƒbƒg‚ÌŒðŠ·
-	NEWS_TOPICTYPE_MINIGAME,		// ƒ~ƒjƒQ[ƒ€
-	NEWS_TOPICTYPE_FOOTBOARD,		// ‚ ‚µ‚ ‚Æƒ{[ƒh
-	NEWS_TOPICTYPE_WORLDTIMER,		// ¢ŠEŽžŒv
-	NEWS_TOPICTYPE_LOBBYNEWS,		// ƒƒr[ƒjƒ…[ƒX
-	NEWS_TOPICTYPE_TIMEEVENT,		// ŽžŠÔƒCƒxƒ“ƒg
-	NEWS_TOPICTYPE_VIPIN,			// VIP‚ª“üŽº‚µ‚½‚Æ‚«‚Ìƒjƒ…[ƒX
-	NEWS_TOPICTYPE_MGRESULT,		// ƒ~ƒjƒQ[ƒ€Œ‹‰Ê
+typedef enum {	// ãƒˆãƒ”ãƒƒã‚¯ã‚¹ã‚¿ã‚¤ãƒ—
+	NEWS_TOPICTYPE_CONNECT,			// æŒ¨æ‹¶
+	NEWS_TOPICTYPE_ITEM,			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã®äº¤æ›
+	NEWS_TOPICTYPE_MINIGAME,		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
+	NEWS_TOPICTYPE_FOOTBOARD,		// ã‚ã—ã‚ã¨ãƒœãƒ¼ãƒ‰
+	NEWS_TOPICTYPE_WORLDTIMER,		// ä¸–ç•Œæ™‚è¨ˆ
+	NEWS_TOPICTYPE_LOBBYNEWS,		// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
+	NEWS_TOPICTYPE_TIMEEVENT,		// æ™‚é–“ã‚¤ãƒ™ãƒ³ãƒˆ
+	NEWS_TOPICTYPE_VIPIN,			// VIPãŒå…¥å®¤ã—ãŸã¨ãã®ãƒ‹ãƒ¥ãƒ¼ã‚¹
+	NEWS_TOPICTYPE_MGRESULT,		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµæžœ
 
-	NEWS_TOPICTYPE_NUM,		// ƒgƒsƒbƒNƒ^ƒCƒv”
+	NEWS_TOPICTYPE_NUM,		// ãƒˆãƒ”ãƒƒã‚¯ã‚¿ã‚¤ãƒ—æ•°
 } NEWS_TOPICTYPE;
 
 //-------------------------------------
-///	•”‰®ƒ^ƒCƒv
+///	éƒ¨å±‹ã‚¿ã‚¤ãƒ—
 //=====================================
 typedef enum{
-	WFLBY_ROOM_FIRE,			// ‰Î
-	WFLBY_ROOM_WARTER,			// …
-	WFLBY_ROOM_ELEC,			// “d‹C
-	WFLBY_ROOM_GRASS,			// ‘
-	WFLBY_ROOM_SPECIAL,			// “ÁŽê
-	WFLBY_ROOM_NUM,				// •”‰®”
+	WFLBY_ROOM_FIRE,			// ç«
+	WFLBY_ROOM_WARTER,			// æ°´
+	WFLBY_ROOM_ELEC,			// é›»æ°—
+	WFLBY_ROOM_GRASS,			// è‰
+	WFLBY_ROOM_SPECIAL,			// ç‰¹æ®Š
+	WFLBY_ROOM_NUM,				// éƒ¨å±‹æ•°
 } WFLBY_ROOM_TYPE;
 
 //-------------------------------------
-///	ƒV[ƒYƒ“ƒ^ƒCƒv
+///	ã‚·ãƒ¼ã‚ºãƒ³ã‚¿ã‚¤ãƒ—
 //=====================================
 typedef enum {
 	WFLBY_SEASON_NONE,
@@ -281,32 +281,32 @@ typedef enum {
 } WFLBY_SEASON_TYPE;
 
 //-------------------------------------
-///	ƒXƒe[ƒ^ƒX
+///	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //=====================================
 typedef enum {
 	WFLBY_STATUS_NONE,
-	WFLBY_STATUS_LOGIN,			// ƒƒOƒCƒ“ó‘Ô(’Êí)
-	WFLBY_STATUS_BALLSLOW,		// ‹Ê‚¢‚ê
-	WFLBY_STATUS_BALANCEBALL,	// ‹Êæ‚è
-	WFLBY_STATUS_BALLOON,		// •—‘D‚í‚è
-	WFLBY_STATUS_FOOTBOAD00,	// ‘«Õƒ{[ƒh
-	WFLBY_STATUS_FOOTBOAD01,	// ‘«Õƒ{[ƒh
-	WFLBY_STATUS_WORLDTIMER,	// ¢ŠEŽžŒv
-	WFLBY_STATUS_TOPIC,			// ƒjƒ…[ƒX
-	WFLBY_STATUS_TALK,			// ‰ï˜b
-	WFLBY_STATUS_FLOAT,			// ƒtƒ[ƒg
-	WFLBY_STATUS_LOGOUT,		// ‘ÞŽº
-	WFLBY_STATUS_MATCHING,		// ƒ~ƒjƒQ[ƒ€‚Ìƒ}ƒbƒ`ƒ“ƒO’†
-	WFLBY_STATUS_ANKETO,		// ƒAƒ“ƒP[ƒg’†
+	WFLBY_STATUS_LOGIN,			// ãƒ­ã‚°ã‚¤ãƒ³çŠ¶æ…‹(é€šå¸¸)
+	WFLBY_STATUS_BALLSLOW,		// çŽ‰ã„ã‚Œ
+	WFLBY_STATUS_BALANCEBALL,	// çŽ‰ä¹—ã‚Š
+	WFLBY_STATUS_BALLOON,		// é¢¨èˆ¹ã‚ã‚Š
+	WFLBY_STATUS_FOOTBOAD00,	// è¶³è·¡ãƒœãƒ¼ãƒ‰
+	WFLBY_STATUS_FOOTBOAD01,	// è¶³è·¡ãƒœãƒ¼ãƒ‰
+	WFLBY_STATUS_WORLDTIMER,	// ä¸–ç•Œæ™‚è¨ˆ
+	WFLBY_STATUS_TOPIC,			// ãƒ‹ãƒ¥ãƒ¼ã‚¹
+	WFLBY_STATUS_TALK,			// ä¼šè©±
+	WFLBY_STATUS_FLOAT,			// ãƒ•ãƒ­ãƒ¼ãƒˆ
+	WFLBY_STATUS_LOGOUT,		// é€€å®¤
+	WFLBY_STATUS_MATCHING,		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®ãƒžãƒƒãƒãƒ³ã‚°ä¸­
+	WFLBY_STATUS_ANKETO,		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆä¸­
 	
 
-	WFLBY_STATUS_UNKNOWN,		// •s–¾
+	WFLBY_STATUS_UNKNOWN,		// ä¸æ˜Ž
 	
 	WFLBY_STATUS_NUM,
 } WFLBY_STATUS_TYPE;
 
 //-------------------------------------
-///	ˆ¥ŽAŽžŠÔ‘Ñ
+///	æŒ¨æ‹¶æ™‚é–“å¸¯
 //=====================================
 typedef enum {
 	WFLBY_AISATSU_MORNING,
@@ -317,20 +317,20 @@ typedef enum {
 
 
 //-------------------------------------
-///	ƒ‰ƒCƒgƒf[ƒ^
+///	ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef enum {
-	WFLBY_DRAW_LIGHT_ROOM,	// Žº“àƒ‰ƒCƒg
-	WFLBY_DRAW_LIGHT_LAMP,	// ƒ‰ƒ“ƒvƒ‰ƒCƒg
-	WFLBY_DRAW_LIGHT_CLOFF,	// ƒNƒ[ƒYŒãÁ‚¦‚éƒ‰ƒCƒg
-	WFLBY_DRAW_LIGHT_FLOAT,	// ƒtƒ[ƒg—pƒ‰ƒCƒg
+	WFLBY_DRAW_LIGHT_ROOM,	// å®¤å†…ãƒ©ã‚¤ãƒˆ
+	WFLBY_DRAW_LIGHT_LAMP,	// ãƒ©ãƒ³ãƒ—ãƒ©ã‚¤ãƒˆ
+	WFLBY_DRAW_LIGHT_CLOFF,	// ã‚¯ãƒ­ãƒ¼ã‚ºå¾Œæ¶ˆãˆã‚‹ãƒ©ã‚¤ãƒˆ
+	WFLBY_DRAW_LIGHT_FLOAT,	// ãƒ•ãƒ­ãƒ¼ãƒˆç”¨ãƒ©ã‚¤ãƒˆ
 } WFLBY_DRAW_LIGHT_TYPE;
 
 
 
 
 //-------------------------------------
-///	Žº“àƒlƒIƒ“æ~’²
+///	å®¤å†…ãƒã‚ªãƒ³è«§èª¿
 //=====================================
 typedef enum {
 	WFLBY_LIGHT_NEON_ROOM0,
@@ -343,7 +343,7 @@ typedef enum {
 } WFLBY_LIGHT_NEON_ROOMTYPE;
 
 //-------------------------------------
-///	°ƒlƒIƒ“æ~’²
+///	åºŠãƒã‚ªãƒ³è«§èª¿
 //=====================================
 typedef enum {
 	WFLBY_LIGHT_NEON_FLOOR0,
@@ -354,7 +354,7 @@ typedef enum {
 } WFLBY_LIGHT_NEON_FLOORTYPE;
 
 //-------------------------------------
-///	ƒ‚ƒjƒ…ƒƒ“ƒgƒlƒIƒ“æ~’²
+///	ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆãƒã‚ªãƒ³è«§èª¿
 //=====================================
 typedef enum {
 	WFLBY_LIGHT_NEON_MONU0,
@@ -366,10 +366,10 @@ typedef enum {
 
 
 //-------------------------------------
-///	—š—ð’è”
+///	å±¥æ­´å®šæ•°
 //=====================================
 typedef enum {
-	WFLBY_LASTACTION_BOY1,			// l•¨‚Æ‚ÌÚG
+	WFLBY_LASTACTION_BOY1,			// äººç‰©ã¨ã®æŽ¥è§¦
 	WFLBY_LASTACTION_BOY3,
 	WFLBY_LASTACTION_MAN3,
 	WFLBY_LASTACTION_BADMAN,
@@ -386,16 +386,16 @@ typedef enum {
 	WFLBY_LASTACTION_COWGIRL,
 	WFLBY_LASTACTION_GORGGEOUSW,
 
-	WFLBY_LASTACTION_BALLSLOW,		// ‹Ê“Š‚°
-	WFLBY_LASTACTION_BALANCEBALL,	// ‹Êæ‚è
-	WFLBY_LASTACTION_BALLOON,		// ‚Ó‚¤‚¹‚ñ‚í‚è
-	WFLBY_LASTACTION_FOOTWHITE,		// ‘«Õƒ{[ƒh@”’
-	WFLBY_LASTACTION_FOOTBLACK,		// ‘«Õƒ{[ƒh@•
-	WFLBY_LASTACTION_WLDTIMER,		// ¢ŠEŽžŒv
-	WFLBY_LASTACTION_NEWS,			// ƒƒr[ƒjƒ…[ƒX
-	WFLBY_LASTACTION_ANKETO,		// ƒAƒ“ƒP[ƒg
+	WFLBY_LASTACTION_BALLSLOW,		// çŽ‰æŠ•ã’
+	WFLBY_LASTACTION_BALANCEBALL,	// çŽ‰ä¹—ã‚Š
+	WFLBY_LASTACTION_BALLOON,		// ãµã†ã›ã‚“ã‚ã‚Š
+	WFLBY_LASTACTION_FOOTWHITE,		// è¶³è·¡ãƒœãƒ¼ãƒ‰ã€€ç™½
+	WFLBY_LASTACTION_FOOTBLACK,		// è¶³è·¡ãƒœãƒ¼ãƒ‰ã€€é»’
+	WFLBY_LASTACTION_WLDTIMER,		// ä¸–ç•Œæ™‚è¨ˆ
+	WFLBY_LASTACTION_NEWS,			// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
+	WFLBY_LASTACTION_ANKETO,		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 
-	// ƒvƒ‰ƒ`ƒiŒã‚Í‚±‚êˆÈ~‚É’Ç‰Á
+	// ãƒ—ãƒ©ãƒãƒŠå¾Œã¯ã“ã‚Œä»¥é™ã«è¿½åŠ 
 
 	WFLBY_LASTACTION_MAX,
 } WFLBY_LASTACTION_TYPE;
@@ -403,7 +403,7 @@ typedef enum {
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒgŠî–{î•ñ
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆåŸºæœ¬æƒ…å ±
 //=====================================
 #define ANKETO_NORMAL_Q_NUM		( 50 )
 #define ANKETO_SPECIAL_Q_NUM	( 10 )
@@ -417,7 +417,7 @@ enum{
 
 
 //-------------------------------------
-///	ŽžŠÔ		4byte
+///	æ™‚é–“		4byte
 //=====================================
 typedef struct {
 	union{
@@ -430,8 +430,8 @@ typedef struct {
 		};
 	};
 } WFLBY_TIME;
-// ‘€ìŠÖ”
-// cp_time cp_add p_anm@‚·‚×‚Ä“¯‚¶‚à‚Ì‚Å‚à‘åä•v‚Å‚·
+// æ“ä½œé–¢æ•°
+// cp_time cp_add p_anmã€€ã™ã¹ã¦åŒã˜ã‚‚ã®ã§ã‚‚å¤§ä¸ˆå¤«ã§ã™
 extern void WFLBY_TIME_Set( WFLBY_TIME* p_time, const s64* cp_settime );
 extern void WFLBY_TIME_Add( const WFLBY_TIME* cp_time, const WFLBY_TIME* cp_add, WFLBY_TIME* p_ans );
 extern void WFLBY_TIME_Sub( const WFLBY_TIME* cp_time, const WFLBY_TIME* cp_sub, WFLBY_TIME* p_ans );
@@ -439,50 +439,50 @@ extern void WFLBY_TIME_Sub( const WFLBY_TIME* cp_time, const WFLBY_TIME* cp_sub,
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒƒr[ƒjƒ…[ƒX@ƒgƒsƒbƒNƒf[ƒ^
+ *				ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ã€€ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
-#define NEWS_TOPICNAME_NUM	( 4 )	// •\Ž¦‚³‚ê‚él‚ÌÅ‘å”
+#define NEWS_TOPICNAME_NUM	( 4 )	// è¡¨ç¤ºã•ã‚Œã‚‹äººã®æœ€å¤§æ•°
 
 //-------------------------------------
-///	ƒƒr[ƒjƒ…[ƒX@ƒgƒsƒbƒN‘—Mƒf[ƒ^
+///	ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ã€€ãƒˆãƒ”ãƒƒã‚¯é€ä¿¡ãƒ‡ãƒ¼ã‚¿
 //	20byte
 //=====================================
 typedef struct{
-	s32	lobby_id[NEWS_TOPICNAME_NUM];	// Lê‚ÌID	32byte
-	u8	num;							// ŽQ‰ÁŽÒ
-	u8	topic_type;						// ƒgƒsƒbƒNƒ^ƒCƒv		NEWS_TOPICTYPE
-	u8	item;							// ƒAƒCƒeƒ€ƒiƒ“ƒo[		WFLBY_ITEMTYPE
-	u8	minigame:7;						// ƒ~ƒjƒQ[ƒ€ƒiƒ“ƒo[	WFLBY_GAMETYPE
-	u8	play:1;							// ƒ~ƒjƒQ[ƒ€‚ð—V‚ñ‚Å‚¢‚éí‘Ô‚©
+	s32	lobby_id[NEWS_TOPICNAME_NUM];	// åºƒå ´ã®ID	32byte
+	u8	num;							// å‚åŠ è€…
+	u8	topic_type;						// ãƒˆãƒ”ãƒƒã‚¯ã‚¿ã‚¤ãƒ—		NEWS_TOPICTYPE
+	u8	item;							// ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼		WFLBY_ITEMTYPE
+	u8	minigame:7;						// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼	WFLBY_GAMETYPE
+	u8	play:1;							// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’éŠã‚“ã§ã„ã‚‹å¸¸æ…‹ã‹
 } WFLBY_TOPIC;
 
 
 //-----------------------------------------------------------------------------
 /**
- *				¢ŠE’n}ƒf[ƒ^
+ *				ä¸–ç•Œåœ°å›³ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
-#define WFLBY_WLDTIMER_DATA_MAX		(50)	// Å‘åŠi”[’nˆæ”
+#define WFLBY_WLDTIMER_DATA_MAX		(50)	// æœ€å¤§æ ¼ç´åœ°åŸŸæ•°
 //-------------------------------------
-///	1’nˆæƒf[ƒ^
+///	1åœ°åŸŸãƒ‡ãƒ¼ã‚¿
 //	4byte
 //=====================================
 typedef struct {
-	u16 nation;			///<‘
-	u8  area;			///<’nˆæ
-	u8  outside:4;		///<‘ÞŽºƒtƒ‰ƒO
-	u8  flag:4;			///<ƒf[ƒ^—L–³	iƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚Ì‚©‚Ç‚¤‚©j
+	u16 nation;			///<å›½
+	u8  area;			///<åœ°åŸŸ
+	u8  outside:4;		///<é€€å®¤ãƒ•ãƒ©ã‚°
+	u8  flag:4;			///<ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡	ï¼ˆãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã®ã‹ã©ã†ã‹ï¼‰
 } WFLBY_COUNTRY;
 //-------------------------------------
-///	¢ŠE’n}’nˆæƒf[ƒ^
+///	ä¸–ç•Œåœ°å›³åœ°åŸŸãƒ‡ãƒ¼ã‚¿
 //	8*WFLBY_WLDTIMER_DATA_MAX	byte
 //=====================================
 typedef struct _WFLBY_WLDTIMER{
 	WFLBY_COUNTRY	data[WFLBY_WLDTIMER_DATA_MAX];
 } WFLBY_WLDTIMER;
 //-------------------------------------
-///	ƒAƒNƒZƒXŠÖ”
+///	ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 //=====================================
 extern void WFLBY_WLDTIMER_SetData( WFLBY_WLDTIMER* p_data, u16 nation, u8 area, BOOL outside );
 extern u16 WFLBY_WLDTIMER_GetNation( const WFLBY_WLDTIMER* cp_data, u8 index );
@@ -496,20 +496,20 @@ extern BOOL WFLBY_WLDTIMER_GetDataFlag( const WFLBY_WLDTIMER* cp_data, u8 index 
 
 //-----------------------------------------------------------------------------
 /**
- *			‘«Õƒf[ƒ^
+ *			è¶³è·¡ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	1‘«Õƒf[ƒ^
+///	1è¶³è·¡ãƒ‡ãƒ¼ã‚¿
 //	12byte
 //=====================================
 typedef struct {
-	u16		monsno;		///< ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-	u16		col;		///< ‘«Õ‚ÌF
-	s16		x;			///< ‚˜À•W
-	s16		y;			///< ‚™À•W
-	u8		formno;		///< ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
-	u8		move;		///< “®ìƒ^ƒCƒv
+	u16		monsno;		///< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u16		col;		///< è¶³è·¡ã®è‰²
+	s16		x;			///< ï½˜åº§æ¨™
+	s16		y;			///< ï½™åº§æ¨™
+	u8		formno;		///< ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+	u8		move;		///< å‹•ä½œã‚¿ã‚¤ãƒ—
 
 	u16		pad;
 } WFLBY_FOOT;
@@ -517,22 +517,22 @@ typedef struct {
 
 
 #if 0
-#define WFLBY_FTBRD_DATA_MAX	( 600 )	// Å‘åŒ”
+#define WFLBY_FTBRD_DATA_MAX	( 600 )	// æœ€å¤§ä»¶æ•°
 //-------------------------------------
-///	1‘«Õƒf[ƒ^
+///	1è¶³è·¡ãƒ‡ãƒ¼ã‚¿
 //	8byte
 //=====================================
 typedef struct {
-	u16		monsno;		///< ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-	u8		formno;		///< ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
-	u8		sex;		///< «•Ê
-	u16		col;		///< ‘«Õ‚ÌF
-	u8		flag;		///< ƒf[ƒ^—L–³	
+	u16		monsno;		///< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u8		formno;		///< ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+	u8		sex;		///< æ€§åˆ¥
+	u16		col;		///< è¶³è·¡ã®è‰²
+	u8		flag;		///< ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡	
 	u8		dummy;		///< 
 } WFLBY_FOOT;
 
 //-------------------------------------
-///	‘«Õƒf[ƒ^
+///	è¶³è·¡ãƒ‡ãƒ¼ã‚¿
 //	8*WFLBY_FTBRD_DATA_MAX	byte
 //=====================================
 typedef struct _WFLBY_FTBRD{
@@ -542,8 +542,8 @@ typedef struct _WFLBY_FTBRD{
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒ‰ƒCƒgƒŠƒ\[ƒX‘€ì
- *				ƒ‰ƒCƒg‚Ì‰e‹¿‚ðŽó‚¯‚éƒ‚ƒfƒ‹‚Í‚±‚±‚ð’Ê‚·
+ *			ãƒ©ã‚¤ãƒˆãƒªã‚½ãƒ¼ã‚¹æ“ä½œ
+ *				ãƒ©ã‚¤ãƒˆã®å½±éŸ¿ã‚’å—ã‘ã‚‹ãƒ¢ãƒ‡ãƒ«ã¯ã“ã“ã‚’é€šã™
  */
 //-----------------------------------------------------------------------------
 extern void WFLBY_LIGHT_SetUpMdl( void* p_file );
@@ -554,14 +554,14 @@ extern void WFLBY_LIGHT_SetUpMdl( void* p_file );
 
 //-----------------------------------------------------------------------------
 /**
- *			‚ ‚¢‚±‚Æ‚Î	ƒf[ƒ^
+ *			ã‚ã„ã“ã¨ã°	ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
-// ƒ[ƒh”
+// ãƒ¯ãƒ¼ãƒ‰æ•°
 #define WFLBY_AIKOTOBA_WORD_NUM	( 4 )	
 
 //-------------------------------------
-///	‚ ‚¢‚±‚Æ‚Îƒoƒbƒtƒ@
+///	ã‚ã„ã“ã¨ã°ãƒãƒƒãƒ•ã‚¡
 //=====================================
 typedef struct { 
 	PMS_WORD word[ WFLBY_AIKOTOBA_WORD_NUM ];
@@ -572,35 +572,35 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *			P2Pƒ~ƒjƒQ[ƒ€‚È‚Ç‚ÉŽg—p‚·‚éƒ[ƒN
+ *			P2PãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãªã©ã«ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	VIPƒtƒ‰ƒOƒoƒbƒtƒ@
+///	VIPãƒ•ãƒ©ã‚°ãƒãƒƒãƒ•ã‚¡
 //=====================================
 typedef struct {
-	u8  vip[ WFLBY_PLAYER_MAX ];	// ‘SƒvƒŒƒCƒ„[•ª‚ÌVIPƒtƒ‰ƒO
+	u8  vip[ WFLBY_PLAYER_MAX ];	// å…¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åˆ†ã®VIPãƒ•ãƒ©ã‚°
 } WFLBY_VIPFLAG;
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€—pPLIDXƒoƒbƒtƒ@
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ç”¨PLIDXãƒãƒƒãƒ•ã‚¡
 //=====================================
 typedef struct {
-	u8  plidx[ WFLBY_MINIGAME_MAX ];	// ‘SƒvƒŒƒCƒ„[•ª‚Ìƒƒr[“àl•¨IDX
+	u8  plidx[ WFLBY_MINIGAME_MAX ];	// å…¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åˆ†ã®ãƒ­ãƒ“ãƒ¼å†…äººç‰©IDX
 } WFLBY_MINIGAME_PLIDX;
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒg•ÛŽƒ[ƒN
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆä¿æŒãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	u32	anketo_no;		// ƒAƒ“ƒP[ƒg’Ê‚µƒiƒ“ƒo[
-	u32	select;			// ‘I‘ðƒiƒ“ƒo[
+	u32	anketo_no;		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆé€šã—ãƒŠãƒ³ãƒãƒ¼
+	u32	select;			// é¸æŠžãƒŠãƒ³ãƒãƒ¼
 } WFLBY_ANKETO;
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒgŒ‹‰Êî•ñ
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæžœæƒ…å ±
 //=====================================
 typedef struct {
 	u32	ans[ ANKETO_ANSWER_NUM ];	
@@ -612,7 +612,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *			’nˆæ‚ª‚ ‚é‚Ì‚©ƒ`ƒFƒbƒN
+ *			åœ°åŸŸãŒã‚ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 extern BOOL WFLBY_AREA_Check( u16 nation, u16 area );
@@ -620,7 +620,7 @@ extern BOOL WFLBY_AREA_Check( u16 nation, u16 area );
 
 //-----------------------------------------------------------------------------
 /**
- *			Lê“à‹Zƒ^ƒCƒv’è”‚©‚çí“¬—p‹Zƒ^ƒCƒv’è”‚ð‹‚ß‚éŠÖ”
+ *			åºƒå ´å†…æŠ€ã‚¿ã‚¤ãƒ—å®šæ•°ã‹ã‚‰æˆ¦é—˜ç”¨æŠ€ã‚¿ã‚¤ãƒ—å®šæ•°ã‚’æ±‚ã‚ã‚‹é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 extern u32 WFLBY_BattleWazaType_Get( WFLBY_POKEWAZA_TYPE type );
@@ -630,22 +630,22 @@ extern u32 WFLBY_BattleWazaType_Get( WFLBY_POKEWAZA_TYPE type );
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒGƒ‰[ˆ—
+ *			ã‚¨ãƒ©ãƒ¼å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	‚»‚ÌŒã‚Ç‚¤‚·‚é‚×‚«‚©‚Ì’è”
+///	ãã®å¾Œã©ã†ã™ã‚‹ã¹ãã‹ã®å®šæ•°
 //=====================================
 typedef enum {
-	WFLBY_ERR_TYPE_RETRY,	// ÄÚ‘±
-	WFLBY_ERR_TYPE_END,		// I—¹‚Ö
+	WFLBY_ERR_TYPE_RETRY,	// å†æŽ¥ç¶š
+	WFLBY_ERR_TYPE_END,		// çµ‚äº†ã¸
 } WFLBY_ERR_TYPE;
 
 
 extern int WFLBY_ERR_GetStrID( int errno,int errtype );
 extern WFLBY_ERR_TYPE WFLBY_ERR_GetErrType( int errno,int errtype );
 
-// ƒGƒ‰[‚ª”­¶’†‚È‚Ì‚©‚ðƒ`ƒFƒbƒN
+// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿä¸­ãªã®ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 extern BOOL WFLBY_ERR_CheckError( void );
 
 

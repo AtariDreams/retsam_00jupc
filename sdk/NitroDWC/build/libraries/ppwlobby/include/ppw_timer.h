@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief ƒ|ƒPƒ‚ƒ“ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ “à•”ŒöŠJƒwƒbƒ_
+ * @brief ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª å†…éƒ¨å…¬é–‹ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef PPW_TIMER_H_
@@ -48,7 +48,7 @@ public:
         }
     }
     
-    // FALSE‚ð•Ô‚·‚Æƒ^ƒCƒ}[‚ðíœ‚·‚é
+    // FALSEã‚’è¿”ã™ã¨ã‚¿ã‚¤ãƒžãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
     BOOL Process(s64 currentTime)
     {
         if(currentTime - lastInvokedTime > interval)
@@ -89,7 +89,7 @@ public:
         {
             if(!it->second.Process(currentTime))
             {
-                // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ªFALSE‚ð•Ô‚µ‚½‚Æ‚«‚Ííœ‚·‚é
+                // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãŒFALSEã‚’è¿”ã—ãŸã¨ãã¯å‰Šé™¤ã™ã‚‹
                 timers.erase(it++);
                 continue;
             }

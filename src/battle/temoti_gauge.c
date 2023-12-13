@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	temoti_gauge.c
- * @brief	è‚¿ƒQ[ƒW
+ * @brief	æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸
  * @author	matsuda
- * @date	2006.06.14(…)
+ * @date	2006.06.14(æ°´)
  */
 //==============================================================================
 #include "common.h"
@@ -17,122 +17,122 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///è‚¿ƒQ[ƒW‚ÌƒAƒjƒƒV[ƒPƒ“ƒX”Ô†
+///æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 enum{
-	TGANM_BALL_ALIVE_ENEMY,		///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é(¶‚«‚Ä‚¢‚é)F“G‘¤
-	TGANM_BALL_NG_ENEMY,		///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é(ƒXƒe[ƒ^ƒXˆÙí)F“G‘¤
-	TGANM_BALL_DEAD_ENEMY,		///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é(‹Câ)F“G‘¤
-	TGANM_BALL_ALIVE_MINE,		///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é(¶‚«‚Ä‚¢‚é)F©‹@‘¤
-	TGANM_BALL_NG_MINE,			///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é(ƒXƒe[ƒ^ƒXˆÙí)F©‹@‘¤
-	TGANM_BALL_DEAD_MINE,		///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é(‹Câ)F©‹@‘¤
-	TGANM_BALL_NONE,			///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚¢(©‹@A“G—¼•û)
-	TGANM_ARROW_ENEMY,			///<–îˆó(“G‘¤)
-	TGANM_ARROW_MINE,			///<–îˆó(©‹@‘¤)
+	TGANM_BALL_ALIVE_ENEMY,		///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹(ç”Ÿãã¦ã„ã‚‹)ï¼šæ•µå´
+	TGANM_BALL_NG_ENEMY,		///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹(ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸)ï¼šæ•µå´
+	TGANM_BALL_DEAD_ENEMY,		///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹(æ°—çµ¶)ï¼šæ•µå´
+	TGANM_BALL_ALIVE_MINE,		///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹(ç”Ÿãã¦ã„ã‚‹)ï¼šè‡ªæ©Ÿå´
+	TGANM_BALL_NG_MINE,			///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹(ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸)ï¼šè‡ªæ©Ÿå´
+	TGANM_BALL_DEAD_MINE,		///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹(æ°—çµ¶)ï¼šè‡ªæ©Ÿå´
+	TGANM_BALL_NONE,			///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ãªã„(è‡ªæ©Ÿã€æ•µä¸¡æ–¹)
+	TGANM_ARROW_ENEMY,			///<çŸ¢å°(æ•µå´)
+	TGANM_ARROW_MINE,			///<çŸ¢å°(è‡ªæ©Ÿå´)
 };
 
 //--------------------------------------------------------------
-//	–îˆó
+//	çŸ¢å°
 //--------------------------------------------------------------
-///–îˆó“oêŠJnÀ•WX(©‹@‘¤)
+///çŸ¢å°ç™»å ´é–‹å§‹åº§æ¨™X(è‡ªæ©Ÿå´)
 #define ARROW_MINE_START_X			(256 + 96)
-///–îˆó“’…À•WX(©‹@‘¤)
+///çŸ¢å°åˆ°ç€åº§æ¨™X(è‡ªæ©Ÿå´)
 #define ARROW_MINE_END_X			(256 - 32)
-///–îˆóÀ•WY(©‹@‘¤)
+///çŸ¢å°åº§æ¨™Y(è‡ªæ©Ÿå´)
 #define ARROW_MINE_Y				(128 - 8)
 
-///–îˆó“oêŠJnÀ•WX(“G‘¤)
+///çŸ¢å°ç™»å ´é–‹å§‹åº§æ¨™X(æ•µå´)
 #define ARROW_ENEMY_START_X			(-96)
-///–îˆó“’…À•WX(“G‘¤)
+///çŸ¢å°åˆ°ç€åº§æ¨™X(æ•µå´)
 #define ARROW_ENEMY_END_X			(32)
-///–îˆóÀ•WY(“G‘¤)
+///çŸ¢å°åº§æ¨™Y(æ•µå´)
 #define ARROW_ENEMY_Y				(56)
 
-///–îˆóIN‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///çŸ¢å°INé€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define ARROW_IN_SPEED				(0x1200)	//(0x0e00) changed by soga 2007/11/09
-///–îˆóOUT‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///çŸ¢å°OUTé€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define ARROW_OUT_SPEED				(0x0400)
 
 //--------------------------------------------------------------
-//	ƒ{[ƒ‹
+//	ãƒœãƒ¼ãƒ«
 //--------------------------------------------------------------
-///ƒ{[ƒ‹“oêŠJnÀ•WX(©‹@‘¤)
+///ãƒœãƒ¼ãƒ«ç™»å ´é–‹å§‹åº§æ¨™X(è‡ªæ©Ÿå´)
 #define BALL_MINE_START_X			(256 + 20)
-///ƒ{[ƒ‹“’…À•WX(©‹@‘¤)
+///ãƒœãƒ¼ãƒ«åˆ°ç€åº§æ¨™X(è‡ªæ©Ÿå´)
 #define BALL_MINE_END_X				(256 - 128 + 20 + 14)
-///ƒ{[ƒ‹À•WY(©‹@‘¤)
+///ãƒœãƒ¼ãƒ«åº§æ¨™Y(è‡ªæ©Ÿå´)
 #define BALL_MINE_Y					(ARROW_MINE_Y - 6)
 
-///ƒ{[ƒ‹“oêŠJnÀ•WX(“G‘¤)
+///ãƒœãƒ¼ãƒ«ç™»å ´é–‹å§‹åº§æ¨™X(æ•µå´)
 #define BALL_ENEMY_START_X			(-20)
-///ƒ{[ƒ‹“’…À•WX(“G‘¤)
+///ãƒœãƒ¼ãƒ«åˆ°ç€åº§æ¨™X(æ•µå´)
 #define BALL_ENEMY_END_X			(128 - 20 - 14)
-///ƒ{[ƒ‹À•WY(“G‘¤)
+///ãƒœãƒ¼ãƒ«åº§æ¨™Y(æ•µå´)
 #define BALL_ENEMY_Y				(ARROW_ENEMY_Y - 6)
 
-///ƒ{[ƒ‹IN‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒœãƒ¼ãƒ«INé€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define BALL_IN_SPEED				(ARROW_IN_SPEED)
-///ƒ{[ƒ‹OUT‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒœãƒ¼ãƒ«OUTé€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define BALL_OUT_SPEED				(0x0c00)
 
-///ƒGƒ“ƒJƒEƒ“ƒgINA1ŒÂ–Ú‚Ìƒ{[ƒ‹‚ªINŠJn‚·‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+///ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆINæ™‚ã€1å€‹ç›®ã®ãƒœãƒ¼ãƒ«ãŒINé–‹å§‹ã™ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define BALL_ENCOUNT_FAST_IN_WAIT	(5)
-///ƒGƒ“ƒJƒEƒ“ƒgINAƒ{[ƒ‹ˆê‚Â–ˆ‚Ì“®‚«n‚ß‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+///ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆINæ™‚ã€ãƒœãƒ¼ãƒ«ä¸€ã¤æ¯ã®å‹•ãå§‹ã‚ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define BALL_ENCOUNT_IN_WAIT		(3)
-///ƒ{[ƒ‹ˆê‚Â–ˆ‚ÌXÀ•W”z’uŠÔŠu
+///ãƒœãƒ¼ãƒ«ä¸€ã¤æ¯ã®Xåº§æ¨™é…ç½®é–“éš”
 #define BALL_SPACE_X				(16)
-///ƒ{[ƒ‹‚ªƒGƒ“ƒJƒEƒ“ƒgINA‹l‚Ü‚Á‚½ó‘Ô‚É‚È‚é‚ÌXÀ•W”z’uŠÔŠu
+///ãƒœãƒ¼ãƒ«ãŒã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆINæ™‚ã€è©°ã¾ã£ãŸçŠ¶æ…‹ã«ãªã‚‹æ™‚ã®Xåº§æ¨™é…ç½®é–“éš”
 #define BALL_OVER_SPACE_X				(15)
-///ƒ{[ƒ‹‚ªƒGƒ“ƒJƒEƒ“ƒgINA‹l‚Ü‚Á‚½ó‘Ô‚É‚È‚é‚ÌXÀ•WƒIƒtƒZƒbƒgÀ•W
+///ãƒœãƒ¼ãƒ«ãŒã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆINæ™‚ã€è©°ã¾ã£ãŸçŠ¶æ…‹ã«ãªã‚‹æ™‚ã®Xåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™
 #define BALL_OVER_LEN				(6)
 
-///ƒ{[ƒ‹‰ñ“]‘¬“x(©‹@‘¤)
+///ãƒœãƒ¼ãƒ«å›è»¢é€Ÿåº¦(è‡ªæ©Ÿå´)
 #define BALL_MINE_ROTATION		(-0x2800)
-///ƒ{[ƒ‹‰ñ“]‘¬“x(“G‘¤)
+///ãƒœãƒ¼ãƒ«å›è»¢é€Ÿåº¦(æ•µå´)
 #define BALL_ENEMY_ROTATION		(-BALL_MINE_ROTATION)
 
-///ƒ{[ƒ‹‚ÌƒRƒƒ“‚Ì“®ì‚ğn‚ß‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+///ãƒœãƒ¼ãƒ«ã®ã‚³ãƒ­ãƒ³ã®å‹•ä½œã‚’å§‹ã‚ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define BALL_KORON_WAIT			(0)
-///ƒ{[ƒ‹‚ÌƒRƒƒ“‚Ì“®ì‚Ì‚ÌˆÚ“®‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒœãƒ¼ãƒ«ã®ã‚³ãƒ­ãƒ³ã®å‹•ä½œã®æ™‚ã®ç§»å‹•é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define BALL_KORON_SPEED		(0x0600)
-///ƒRƒƒ““®ì‘O‚ÌÎ‚ßŒü‚«‚Å’â~‚µ‚Ä‚¢‚éƒAƒjƒ‚ÌƒtƒŒ[ƒ€”Ô†(©‹@‘¤)
+///ã‚³ãƒ­ãƒ³å‹•ä½œå‰ã®æ–œã‚å‘ãã§åœæ­¢ã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·(è‡ªæ©Ÿå´)
 #define BALL_NANAME_ANM_FRAME_MINE	(1)
-///ƒRƒƒ““®ì‘O‚ÌÎ‚ßŒü‚«‚Å’â~‚µ‚Ä‚¢‚éƒAƒjƒ‚ÌƒtƒŒ[ƒ€”Ô†(“G‘¤)
+///ã‚³ãƒ­ãƒ³å‹•ä½œå‰ã®æ–œã‚å‘ãã§åœæ­¢ã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·(æ•µå´)
 #define BALL_NANAME_ANM_FRAME_ENEMY	(1)
 
 //--------------------------------------------------------------
-//	”¼“§–¾
+//	åŠé€æ˜
 //--------------------------------------------------------------
-///”¼“§–¾‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///åŠé€æ˜é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define ARROW_ALPHA_OUT_SP			(0x0100)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒGƒ“ƒJƒEƒ“ƒgƒAƒEƒg‚ÌAƒJƒXƒ^ƒ€ƒ{[ƒ‹‚Ìƒ[ƒh‚Å“®‚«‚ªƒKƒNƒKƒN‚É‚È‚é‚Ì‚ÅA“®‚«n‚ß‚é‚Ü‚Å
-///­‚µƒEƒFƒCƒg‚ğ“ü‚ê‚é(ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚Ìƒ[ƒh‚ªI‚í‚Á‚½‚ç“®‚«n‚ß‚é‚®‚ç‚¢‚É‚µ‚Ä‚¢‚é)
+///ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã®æ™‚ã€ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ã§å‹•ããŒã‚¬ã‚¯ã‚¬ã‚¯ã«ãªã‚‹ã®ã§ã€å‹•ãå§‹ã‚ã‚‹ã¾ã§
+///å°‘ã—ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹(ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ãŒçµ‚ã‚ã£ãŸã‚‰å‹•ãå§‹ã‚ã‚‹ãã‚‰ã„ã«ã—ã¦ã„ã‚‹)
 #define ARROW_SCROLL_OUT_START_WAIT		(4)
 #define BALL_OUT_ENCOUNT_START_WAIT		(ARROW_SCROLL_OUT_START_WAIT)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///–îˆóƒ[ƒN
+///çŸ¢å°ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	CATS_ACT_PTR cap;
 	TCB_PTR tcb;
 	ARROW_OUT_TYPE out_type;
 	TEMOTI_SIDE side;
 	BALL_POS_TYPE pos_type;
-	s32 x;			///<XÀ•W(‰ºˆÊ8ƒrƒbƒg¬”)
-	s16 alpha;		///<”¼“§–¾ƒ¿ƒŒƒWƒXƒ^’l(‰ºˆÊ8ƒrƒbƒg¬”)
+	s32 x;			///<Xåº§æ¨™(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s16 alpha;		///<åŠé€æ˜Î±ãƒ¬ã‚¸ã‚¹ã‚¿å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 	u8 seq;
 	u8 start_wait;
 }TG_ARROW_WORK;
 
-///ƒ{[ƒ‹ƒ[ƒN
+///ãƒœãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	CATS_ACT_PTR cap;
 	TCB_PTR tcb;
@@ -140,7 +140,7 @@ typedef struct{
 	BALL_POS_TYPE pos_type;
 	BALL_OUT_TYPE out_type;
 	s8 *in_count;
-	s16 *arrow_alpha;		///<–îˆó‚ªŠÇ—‚µ‚Ä‚¢‚é”¼“§–¾ƒ¿ƒŒƒWƒXƒ^’l‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	s16 *arrow_alpha;		///<çŸ¢å°ãŒç®¡ç†ã—ã¦ã„ã‚‹åŠé€æ˜Î±ãƒ¬ã‚¸ã‚¹ã‚¿å€¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	s32 x;
 	s32 end_x;
 	s32 over_end_x;
@@ -152,7 +152,7 @@ typedef struct{
 	u8 start_wait;
 }TG_BALL_WORK;
 
-///è‚¿ƒQ[ƒWƒ[ƒN
+///æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
 typedef struct _TEMOTIGAUGE_WORK{
 	TG_ARROW_WORK	arrow;
 	TG_BALL_WORK	ball[POKEMON_TEMOTI_MAX];
@@ -161,68 +161,68 @@ typedef struct _TEMOTIGAUGE_WORK{
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///è‚¿ƒQ[ƒW–îˆóƒAƒNƒ^[ƒwƒbƒ_
+///æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸çŸ¢å°ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S TemotiGaugeArrowObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 10, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_TEMOTI_GAUGE,	//ƒLƒƒƒ‰
-		PLTTID_TEMOTI_GAUGE,	//ƒpƒŒƒbƒg
-		CELLID_TEMOTI_GAUGE,	//ƒZƒ‹
-		CELLANMID_TEMOTI_GAUGE,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 10, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_TEMOTI_GAUGE,	//ã‚­ãƒ£ãƒ©
+		PLTTID_TEMOTI_GAUGE,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_TEMOTI_GAUGE,	//ã‚»ãƒ«
+		CELLANMID_TEMOTI_GAUGE,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	0,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	0,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///è‚¿ƒQ[ƒWƒ{[ƒ‹ƒAƒNƒ^[ƒwƒbƒ_
+///æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒœãƒ¼ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S TemotiGaugeBallObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 8, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_TEMOTI_GAUGE,	//ƒLƒƒƒ‰
-		PLTTID_TEMOTI_GAUGE,	//ƒpƒŒƒbƒg
-		CELLID_TEMOTI_GAUGE,	//ƒZƒ‹
-		CELLANMID_TEMOTI_GAUGE,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 8, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_TEMOTI_GAUGE,	//ã‚­ãƒ£ãƒ©
+		PLTTID_TEMOTI_GAUGE,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_TEMOTI_GAUGE,	//ã‚»ãƒ«
+		CELLANMID_TEMOTI_GAUGE,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	0,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	0,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///©‹@‘¤–îˆóˆÊ’uY
+///è‡ªæ©Ÿå´çŸ¢å°ä½ç½®Y
 ALIGN4 static const u16 ArrowMinePosY[] = {
 	ARROW_MINE_Y - 36,		//BALL_POS_HIGH
 	ARROW_MINE_Y,			//BALL_POS_MIDDLE
 	ARROW_MINE_Y,			//BALL_POS_LOW
 };
 
-///“G‘¤–îˆóˆÊ’uY
+///æ•µå´çŸ¢å°ä½ç½®Y
 ALIGN4 static const u16 ArrowEnemyPosY[] = {
 	ARROW_ENEMY_Y - 36,		//BALL_POS_HIGH
 	ARROW_ENEMY_Y,			//BALL_POS_MIDDLE
 	ARROW_ENEMY_Y,			//BALL_POS_LOW
 };
 
-///©‹@‘¤ƒ{[ƒ‹ˆÊ’uY
+///è‡ªæ©Ÿå´ãƒœãƒ¼ãƒ«ä½ç½®Y
 ALIGN4 static const u16 BallMinePosY[] = {
 	BALL_MINE_Y - 36,		//BALL_POS_HIGH
 	BALL_MINE_Y,			//BALL_POS_MIDDLE
 	BALL_MINE_Y,			//BALL_POS_LOW
 };
 
-///“G‘¤ƒ{[ƒ‹ˆÊ’uY
+///æ•µå´ãƒœãƒ¼ãƒ«ä½ç½®Y
 ALIGN4 static const u16 BallEnemyPosY[] = {
 	BALL_ENEMY_Y - 36,		//BALL_POS_HIGH
 	BALL_ENEMY_Y,			//BALL_POS_MIDDLE
@@ -231,7 +231,7 @@ ALIGN4 static const u16 BallEnemyPosY[] = {
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void TEMOTI_ArrowIn(TG_ARROW_WORK *arrow, TEMOTI_SIDE side, BALL_POS_TYPE pos_type,
 	CATS_SYS_PTR csp, CATS_RES_PTR crp);
@@ -255,7 +255,7 @@ static void TEMOTI_SystemWorkFree(TEMOTIGAUGE_PTR tb);
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒQ[ƒW‚ÌƒŠƒ\[ƒX‚ğƒ[ƒh‚·‚é
+ * @brief   æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param   csp			
  * @param   crp			
@@ -283,7 +283,7 @@ void TEMOTI_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, PALETTE_FADE_PTR pf
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒQ[ƒW‚ÌƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
+ * @brief   æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
  *
  * @param   crp			
  */
@@ -298,9 +298,9 @@ void TEMOTI_ResourceFree(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒQ[ƒWƒ[ƒN‚ğAlloc‚·‚é
+ * @brief   æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã‚’Allocã™ã‚‹
  *
- * @retval  è‚¿ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static TEMOTIGAUGE_PTR TEMOTI_SystemWorkAlloc(void)
@@ -314,9 +314,9 @@ static TEMOTIGAUGE_PTR TEMOTI_SystemWorkAlloc(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒQ[ƒWƒ[ƒN‚ğFree‚·‚é
+ * @brief   æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã‚’Freeã™ã‚‹
  *
- * @param   tb		è‚¿ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tb		æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void TEMOTI_SystemWorkFree(TEMOTIGAUGE_PTR tb)
@@ -328,12 +328,12 @@ static void TEMOTI_SystemWorkFree(TEMOTIGAUGE_PTR tb)
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒQ[ƒWINƒGƒtƒFƒNƒg‚ğ‹N“®‚·‚é
+ * @brief   æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸INã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èµ·å‹•ã™ã‚‹
  *
- * @param   status[]	ƒ|ƒPƒ‚ƒ“‚ÌƒXƒe[ƒ^ƒXî•ñ(POKEMON_TEMOTI_MAX•ª‚Ì”z—ñ)
+ * @param   status[]	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æƒ…å ±(POKEMON_TEMOTI_MAXåˆ†ã®é…åˆ—)
  * @param   side		TEMOTI_MINE or TEMOTI_ENEMY
  *
- * @retval  è‚¿ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 TEMOTIGAUGE_PTR TEMOTI_InEffectSet(u8 status[], TEMOTI_SIDE side, BALL_IN_TYPE ball_in_type,
@@ -355,11 +355,11 @@ TEMOTIGAUGE_PTR TEMOTI_InEffectSet(u8 status[], TEMOTI_SIDE side, BALL_IN_TYPE b
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒQ[ƒWINƒGƒtƒFƒNƒg‚ÌI—¹Šm”F
+ * @brief   æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸INã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®çµ‚äº†ç¢ºèª
  *
- * @param   tg		è‚¿ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tg		æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹A@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 BOOL TEMOTI_InEffectEndCheck(TEMOTIGAUGE_PTR tg)
@@ -381,13 +381,13 @@ BOOL TEMOTI_InEffectEndCheck(TEMOTIGAUGE_PTR tg)
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒQ[ƒWOUTƒGƒtƒFƒNƒg‚ğ‹N“®‚·‚é
+ * @brief   æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸OUTã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èµ·å‹•ã™ã‚‹
  *
  * @p
- * @param   status[]	ƒ|ƒPƒ‚ƒ“‚ÌƒXƒe[ƒ^ƒXî•ñ(POKEMON_TEMOTI_MAX•ª‚Ì”z—ñ)
+ * @param   status[]	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æƒ…å ±(POKEMON_TEMOTI_MAXåˆ†ã®é…åˆ—)
  * @param   side		TEMOTI_MINE or TEMOTI_ENEMY
  *
- * @retval  è‚¿ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void TEMOTI_OutEffectSet(TEMOTIGAUGE_PTR tg, 
@@ -405,11 +405,11 @@ void TEMOTI_OutEffectSet(TEMOTIGAUGE_PTR tg,
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒQ[ƒWINƒGƒtƒFƒNƒg‚ÌI—¹Šm”F
+ * @brief   æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸INã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®çµ‚äº†ç¢ºèª
  *
- * @param   tg		è‚¿ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tg		æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹A@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 BOOL TEMOTI_OutEffectEndCheck(TEMOTIGAUGE_PTR tg)
@@ -431,11 +431,11 @@ BOOL TEMOTI_OutEffectEndCheck(TEMOTIGAUGE_PTR tg)
 
 //--------------------------------------------------------------
 /**
- * @brief   è‚¿ƒQ[ƒW‚ÌƒGƒtƒFƒNƒg‰ğ•úˆ—
+ * @brief   æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè§£æ”¾å‡¦ç†
  *
- * @param   tg		è‚¿ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tg		æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒAƒNƒ^[‚ÌíœAè‚¿ƒQ[ƒWƒ[ƒN©g‚Ì‰ğ•ú‚ğs‚¢‚Ü‚·
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ã®å‰Šé™¤ã€æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯è‡ªèº«ã®è§£æ”¾ã‚’è¡Œã„ã¾ã™
  */
 //--------------------------------------------------------------
 void TEMOTI_EffectFree(TEMOTIGAUGE_PTR tg)
@@ -453,14 +453,14 @@ void TEMOTI_EffectFree(TEMOTIGAUGE_PTR tg)
 
 //==============================================================================
 //
-//	–îˆó“oê
+//	çŸ¢å°ç™»å ´
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –îˆó“oêƒGƒtƒFƒNƒg‚ğ‹N“®‚·‚é
+ * @brief   çŸ¢å°ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èµ·å‹•ã™ã‚‹
  *
- * @param   arrow			–îˆóƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   arrow			çŸ¢å°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   side		TEMOTI_MINE or TEMOTI_ENEMY
  */
 //--------------------------------------------------------------
@@ -471,7 +471,7 @@ static void TEMOTI_ArrowIn(TG_ARROW_WORK *arrow, TEMOTI_SIDE side, BALL_POS_TYPE
 	
 	MI_CpuClear8(arrow, sizeof(TG_ARROW_WORK));
 	
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	arrow->cap = CATS_ObjectAdd_S(csp, crp, &TemotiGaugeArrowObjParam);
 	if(side == TEMOTI_MINE){
 		CATS_ObjectPosSetCap(arrow->cap, ARROW_MINE_START_X, ArrowMinePosY[pos_type]);
@@ -483,11 +483,11 @@ static void TEMOTI_ArrowIn(TG_ARROW_WORK *arrow, TEMOTI_SIDE side, BALL_POS_TYPE
 	}
 	CATS_ObjectUpdate(arrow->cap->act);
 
-	//ƒ[ƒNİ’è
+	//ãƒ¯ãƒ¼ã‚¯è¨­å®š
 	arrow->side = side;
 	arrow->pos_type = pos_type;
 	
-	//ƒ^ƒXƒN¶¬
+	//ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	arrow->seq = 0;
 	arrow->tcb = TCB_Add(ArrowTask_In, arrow, TCBPRI_TEMOTIGAUGE_ARROW);
 	
@@ -496,10 +496,10 @@ static void TEMOTI_ArrowIn(TG_ARROW_WORK *arrow, TEMOTI_SIDE side, BALL_POS_TYPE
 
 //--------------------------------------------------------------
 /**
- * @brief   –îˆó“®ìƒ^ƒXƒNF‰æ–ÊIN
+ * @brief   çŸ¢å°å‹•ä½œã‚¿ã‚¹ã‚¯ï¼šç”»é¢IN
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		–îˆóƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		çŸ¢å°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ArrowTask_In(TCB_PTR tcb, void *work)
@@ -507,7 +507,7 @@ static void ArrowTask_In(TCB_PTR tcb, void *work)
 	TG_ARROW_WORK *arrow = work;
 	
 	switch(arrow->seq){
-	case 0:	//ƒ[ƒN‰Šú‰»
+	case 0:	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		{
 			s16 x, y;
 			CATS_ObjectPosGetCap(arrow->cap, &x, &y);
@@ -543,22 +543,22 @@ static void ArrowTask_In(TCB_PTR tcb, void *work)
 
 //==============================================================================
 //
-//	–îˆó‘Şê
+//	çŸ¢å°é€€å ´
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –îˆó‘ŞêƒGƒtƒFƒNƒg‚ğ‹N“®‚·‚é
+ * @brief   çŸ¢å°é€€å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èµ·å‹•ã™ã‚‹
  *
- * @param   arrow			–îˆóƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   out_type		‘Şê“®ìw’è
+ * @param   arrow			çŸ¢å°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   out_type		é€€å ´å‹•ä½œæŒ‡å®š
  */
 //--------------------------------------------------------------
 static void TEMOTI_ArrowOut(TG_ARROW_WORK *arrow, ARROW_OUT_TYPE out_type)
 {
 	GF_ASSERT(arrow->cap != NULL && arrow->tcb == NULL);
 	
-	//ƒ^ƒXƒN¶¬
+	//ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	arrow->seq = 0;
 	arrow->out_type = out_type;
 	if(out_type == ARROW_OUT_TYPE_SCROLL){
@@ -572,10 +572,10 @@ static void TEMOTI_ArrowOut(TG_ARROW_WORK *arrow, ARROW_OUT_TYPE out_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   –îˆó“®ìƒ^ƒXƒNF‰æ–ÊOUT
+ * @brief   çŸ¢å°å‹•ä½œã‚¿ã‚¹ã‚¯ï¼šç”»é¢OUT
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		–îˆóƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		çŸ¢å°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ArrowTask_Out(TCB_PTR tcb, void *work)
@@ -583,16 +583,16 @@ static void ArrowTask_Out(TCB_PTR tcb, void *work)
 	TG_ARROW_WORK *arrow = work;
 	
 	switch(arrow->seq){
-	case 0:	//ƒ[ƒN‰Šú‰»
+	case 0:	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		{
 			s16 x, y;
 			CATS_ObjectPosGetCap(arrow->cap, &x, &y);
 			arrow->x = x << 8;
 		}
 
-		CATS_ObjectObjModeSetCap(arrow->cap, GX_OAM_MODE_XLU);	//”¼“§–¾OBJƒ‚[ƒh
+		CATS_ObjectObjModeSetCap(arrow->cap, GX_OAM_MODE_XLU);	//åŠé€æ˜OBJãƒ¢ãƒ¼ãƒ‰
 
-		//”¼“§–¾ƒŒƒWƒXƒ^İ’è
+		//åŠé€æ˜ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
 		arrow->alpha = 16 << 8;
 		G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, 
 			GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 
@@ -620,7 +620,7 @@ static void ArrowTask_Out(TCB_PTR tcb, void *work)
 			}
 		}
 		
-		//”¼“§–¾
+		//åŠé€æ˜
 		arrow->alpha -= ARROW_ALPHA_OUT_SP;
 		if(arrow->alpha <= 0){
 			arrow->alpha = 0;
@@ -641,19 +641,19 @@ static void ArrowTask_Out(TCB_PTR tcb, void *work)
 
 //==============================================================================
 //
-//	ƒ{[ƒ‹“oê
+//	ãƒœãƒ¼ãƒ«ç™»å ´
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{[ƒ‹“oêƒGƒtƒFƒNƒg‚ğ‹N“®‚·‚é
+ * @brief   ãƒœãƒ¼ãƒ«ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èµ·å‹•ã™ã‚‹
  *
- * @param   arrow			–îˆóƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   in_count		ƒ{[ƒ‹‘S‚Ä‚Å‹¤’Ê‚Åg—p‚·‚éƒJƒEƒ“ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   arrow			çŸ¢å°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   in_count		ãƒœãƒ¼ãƒ«å…¨ã¦ã§å…±é€šã§ä½¿ç”¨ã™ã‚‹ã‚«ã‚¦ãƒ³ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   side		TEMOTI_MINE or TEMOTI_ENEMY
- * @param   ball_in_type	ƒ{[ƒ‹“oê“®ìƒ^ƒCƒv
- * @param   pos				‰½ŒÂ–Ú‚Ìƒ{[ƒ‹‚©
- * @param   anmseq			ƒAƒjƒƒV[ƒPƒ“ƒX”Ô†
+ * @param   ball_in_type	ãƒœãƒ¼ãƒ«ç™»å ´å‹•ä½œã‚¿ã‚¤ãƒ—
+ * @param   pos				ä½•å€‹ç›®ã®ãƒœãƒ¼ãƒ«ã‹
+ * @param   anmseq			ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------
 static void TEMOTI_BallIn(TG_BALL_WORK *ball, s8 *in_count, TEMOTI_SIDE side, 
@@ -664,7 +664,7 @@ static void TEMOTI_BallIn(TG_BALL_WORK *ball, s8 *in_count, TEMOTI_SIDE side,
 	
 	MI_CpuClear8(ball, sizeof(TG_BALL_WORK));
 	
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	ball->cap = CATS_ObjectAdd_S(csp, crp, &TemotiGaugeBallObjParam);
 	if(side == TEMOTI_MINE){
 		CATS_ObjectPosSetCap(ball->cap, BALL_MINE_START_X, BallMinePosY[pos_type]);
@@ -676,7 +676,7 @@ static void TEMOTI_BallIn(TG_BALL_WORK *ball, s8 *in_count, TEMOTI_SIDE side,
 //	CATS_ObjectAffineSetCap(ball->cap, CLACT_AFFINE_NORMAL);
 	CATS_ObjectUpdate(ball->cap->act);
 
-	//ƒ[ƒNİ’è
+	//ãƒ¯ãƒ¼ã‚¯è¨­å®š
 	ball->side = side;
 	ball->pos = pos;
 	ball->pos_type = pos_type;
@@ -693,7 +693,7 @@ static void TEMOTI_BallIn(TG_BALL_WORK *ball, s8 *in_count, TEMOTI_SIDE side,
 		ball->over_end_x = BALL_ENEMY_END_X - pos * BALL_OVER_SPACE_X + BALL_OVER_LEN;
 	}
 	
-	//ƒ^ƒXƒN¶¬
+	//ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	ball->seq = 0;
 	if(ball_in_type == BALL_IN_TYPE_ENCOUNT){
 		ball->wait = BALL_ENCOUNT_IN_WAIT * pos + BALL_ENCOUNT_FAST_IN_WAIT;
@@ -707,10 +707,10 @@ static void TEMOTI_BallIn(TG_BALL_WORK *ball, s8 *in_count, TEMOTI_SIDE side,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{[ƒ‹“®ìƒ^ƒXƒNFƒGƒ“ƒJƒEƒ“ƒg‚Ì‰æ–ÊIN
+ * @brief   ãƒœãƒ¼ãƒ«å‹•ä½œã‚¿ã‚¹ã‚¯ï¼šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ™‚ã®ç”»é¢IN
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		–îˆóƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		çŸ¢å°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BallTask_EncountIn(TCB_PTR tcb, void *work)
@@ -718,7 +718,7 @@ static void BallTask_EncountIn(TCB_PTR tcb, void *work)
 	TG_BALL_WORK *ball = work;
 	
 	switch(ball->seq){
-	case 0:	//ƒ[ƒN‰Šú‰»
+	case 0:	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		{
 			s16 x, y;
 			CATS_ObjectPosGetCap(ball->cap, &x, &y);
@@ -818,10 +818,10 @@ static void BallTask_EncountIn(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{[ƒ‹“®ìƒ^ƒXƒNF“ü‚ê‘Ö‚¦‚Ì‰æ–ÊIN
+ * @brief   ãƒœãƒ¼ãƒ«å‹•ä½œã‚¿ã‚¹ã‚¯ï¼šå…¥ã‚Œæ›¿ãˆæ™‚ã®ç”»é¢IN
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		–îˆóƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		çŸ¢å°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BallTask_ChangeIn(TCB_PTR tcb, void *work)
@@ -829,7 +829,7 @@ static void BallTask_ChangeIn(TCB_PTR tcb, void *work)
 	TG_BALL_WORK *ball = work;
 	
 	switch(ball->seq){
-	case 0:	//ƒ[ƒN‰Šú‰»
+	case 0:	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		{
 			s16 x, y;
 			CATS_ObjectPosGetCap(ball->cap, &x, &y);
@@ -872,24 +872,24 @@ static void BallTask_ChangeIn(TCB_PTR tcb, void *work)
 
 //==============================================================================
 //
-//	ƒ{[ƒ‹‘Şê
+//	ãƒœãƒ¼ãƒ«é€€å ´
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{[ƒ‹‘ŞêƒGƒtƒFƒNƒg‚ğ‹N“®‚·‚é
+ * @brief   ãƒœãƒ¼ãƒ«é€€å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èµ·å‹•ã™ã‚‹
  *
- * @param   ball			–îˆóƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pos				ƒ{[ƒ‹è‚¿ˆÊ’u
- * @param   out_type		‘Şê“®ìw’è
- * @param   alpha			–îˆó‚ªŠÇ—‚µ‚Ä‚¢‚é”¼“§–¾ƒŒƒWƒXƒ^’l‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ball			çŸ¢å°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos				ãƒœãƒ¼ãƒ«æ‰‹æŒã¡ä½ç½®
+ * @param   out_type		é€€å ´å‹•ä½œæŒ‡å®š
+ * @param   alpha			çŸ¢å°ãŒç®¡ç†ã—ã¦ã„ã‚‹åŠé€æ˜ãƒ¬ã‚¸ã‚¹ã‚¿å€¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void TEMOTI_BallOut(TG_BALL_WORK *ball, int pos, BALL_OUT_TYPE out_type, s16 *alpha)
 {
 	GF_ASSERT(ball->cap != NULL && ball->tcb == NULL);
 	
-	//ƒ^ƒXƒN¶¬
+	//ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	ball->seq = 0;
 	if(out_type == BALL_OUT_TYPE_ENCOUNT){
 		ball->arrow_alpha = alpha;
@@ -907,10 +907,10 @@ static void TEMOTI_BallOut(TG_BALL_WORK *ball, int pos, BALL_OUT_TYPE out_type, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{[ƒ‹“®ìƒ^ƒXƒNF‰æ–ÊOUT
+ * @brief   ãƒœãƒ¼ãƒ«å‹•ä½œã‚¿ã‚¹ã‚¯ï¼šç”»é¢OUT
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		–îˆóƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		çŸ¢å°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BallTask_EncountOut(TCB_PTR tcb, void *work)
@@ -918,17 +918,17 @@ static void BallTask_EncountOut(TCB_PTR tcb, void *work)
 	TG_BALL_WORK *ball = work;
 	
 	if((*(ball->arrow_alpha)) == 0){
-		ball->seq = 100;	//I—¹‚Ö
+		ball->seq = 100;	//çµ‚äº†ã¸
 	}
 	
 	switch(ball->seq){
-	case 0:	//ƒ[ƒN‰Šú‰»
+	case 0:	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		{
 			s16 x, y;
 			CATS_ObjectPosGetCap(ball->cap, &x, &y);
 			ball->x = x << 8;
 		}
-		CATS_ObjectObjModeSetCap(ball->cap, GX_OAM_MODE_XLU);	//”¼“§–¾OBJƒ‚[ƒh
+		CATS_ObjectObjModeSetCap(ball->cap, GX_OAM_MODE_XLU);	//åŠé€æ˜OBJãƒ¢ãƒ¼ãƒ‰
 		ball->seq++;
 		//break;
 	case 1:
@@ -969,10 +969,10 @@ static void BallTask_EncountOut(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{[ƒ‹“®ìƒ^ƒXƒNF‰æ–ÊOUT(“ü‚ê‘Ö‚¦)
+ * @brief   ãƒœãƒ¼ãƒ«å‹•ä½œã‚¿ã‚¹ã‚¯ï¼šç”»é¢OUT(å…¥ã‚Œæ›¿ãˆæ™‚)
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		–îˆóƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		çŸ¢å°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BallTask_ChangeOut(TCB_PTR tcb, void *work)
@@ -980,15 +980,15 @@ static void BallTask_ChangeOut(TCB_PTR tcb, void *work)
 	TG_BALL_WORK *ball = work;
 	
 	if((*(ball->arrow_alpha)) == 0){
-		ball->seq = 100;	//I—¹‚Ö
+		ball->seq = 100;	//çµ‚äº†ã¸
 	}
 	
 	switch(ball->seq){
-	case 0:	//ƒ[ƒN‰Šú‰»
-		CATS_ObjectObjModeSetCap(ball->cap, GX_OAM_MODE_XLU);	//”¼“§–¾OBJƒ‚[ƒh
+	case 0:	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+		CATS_ObjectObjModeSetCap(ball->cap, GX_OAM_MODE_XLU);	//åŠé€æ˜OBJãƒ¢ãƒ¼ãƒ‰
 		ball->seq++;
 		//break;
-	case 1:		//”¼“§–¾I—¹‘Ò‚¿
+	case 1:		//åŠé€æ˜çµ‚äº†å¾…ã¡
 		break;
 	case 100:
 	default:
@@ -1002,9 +1002,9 @@ static void BallTask_ChangeOut(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒe[ƒ^ƒXî•ñ‚©‚çAƒ{[ƒ‹‚ÌƒAƒjƒƒV[ƒPƒ“ƒX”Ô†‚ğæ“¾‚·‚é
- * @param   status		ƒXƒe[ƒ^ƒXî•ñ
- * @retval  ƒAƒjƒƒV[ƒPƒ“ƒX”Ô†
+ * @brief   ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æƒ…å ±ã‹ã‚‰ã€ãƒœãƒ¼ãƒ«ã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·ã‚’å–å¾—ã™ã‚‹
+ * @param   status		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æƒ…å ±
+ * @retval  ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------
 static int BallStatusAnimeSeqGet(int status, TEMOTI_SIDE side)
@@ -1031,9 +1031,9 @@ static int BallStatusAnimeSeqGet(int status, TEMOTI_SIDE side)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{[ƒ‹‚ÌƒAƒjƒƒV[ƒPƒ“ƒX‚©‚çA”½‘ÎÄ¶‚ÌƒAƒjƒƒV[ƒPƒ“ƒX”Ô†‚ğæ“¾‚·‚é
- * @param   anm_seq		ƒAƒjƒƒV[ƒPƒ“ƒX
- * @retval  ”½‘ÎÄ¶‚ÌƒAƒjƒƒV[ƒPƒ“ƒX
+ * @brief   ãƒœãƒ¼ãƒ«ã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‹ã‚‰ã€åå¯¾å†ç”Ÿã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·ã‚’å–å¾—ã™ã‚‹
+ * @param   anm_seq		ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * @retval  åå¯¾å†ç”Ÿã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------
 static int BallStatusFlipAnimeSeqGet(int anm_seq)

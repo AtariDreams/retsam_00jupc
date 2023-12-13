@@ -1,17 +1,17 @@
 //==============================================================================
 /**
  * @file	tower_tool.c
- * @brief	ƒoƒgƒ‹ƒ^ƒ[ŠÖ˜Aƒc[ƒ‹—Ş
+ * @brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é–¢é€£ãƒ„ãƒ¼ãƒ«é¡
  * @author	nohara
  * @date	2007.05.28
  *
- * b_tower_fld.c‚Ìˆ—‚ğˆÚ“®
+ * b_tower_fld.cã®å‡¦ç†ã‚’ç§»å‹•
  *
- * ŠÖ˜Aƒ\[ƒX	field/scr_btower.c		í’“
- *				field/b_tower_scr.c		ƒtƒB[ƒ‹ƒhƒTƒu
- *				field/b_tower_ev.c		í’“
- *				field/b_tower_wifi.c	í’“
- *				field/b_tower_fld.c		ƒtƒB[ƒ‹ƒhƒTƒu
+ * é–¢é€£ã‚½ãƒ¼ã‚¹	field/scr_btower.c		å¸¸é§
+ *				field/b_tower_scr.c		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–
+ *				field/b_tower_ev.c		å¸¸é§
+ *				field/b_tower_wifi.c	å¸¸é§
+ *				field/b_tower_fld.c		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–
  */
 //==============================================================================
 #include "common.h"
@@ -36,21 +36,21 @@
 #include "field/ev_time.h"
 #include "field/fieldobj_code.h"
 #include "msgdata/msg.naix"
-//’ÊM
+//é€šä¿¡
 #include "communication/comm_tool.h"
 #include "communication/comm_system.h"
 #include "communication/comm_def.h"
 #include "communication/comm_info.h"
-//ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€
+//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ 
 #include "frontier_tool.h"
 #include "frontier_def.h"
-//ƒoƒgƒ‹ƒ^ƒ[
+//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 #include "../field/b_tower_scr_def.h"
 #include "../field/b_tower_ev.h"
 //#include "../field/b_tower_fld.h"
 #include "savedata/b_tower_local.h"
 #include "tower_tool.h"
-//³®ƒf[ƒ^‚ªo—ˆ‚é‚Ü‚ÅƒCƒ“ƒNƒ‹[ƒh
+//æ­£å¼ãƒ‡ãƒ¼ã‚¿ãŒå‡ºæ¥ã‚‹ã¾ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include "battle/attr_def.h"
 #include "itemtool/itemsym.h"
 #include "battle/wazano_def.h"
@@ -62,13 +62,13 @@
 
 
 //==============================================================================
-//	externéŒ¾
+//	externå®£è¨€
 //==============================================================================
 extern void	BattleParam_TrainerDataMake(BATTLE_PARAM *bp);
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 BOOL FSRomBattleTowerTrainerDataMake(BTOWER_SCRWORK* wk,B_TOWER_PARTNER_DATA *tr_data,u16 tr_no,int cnt,u16 *set_poke_no,u16 *set_item_no,B_TOWER_PAREPOKE_PARAM* poke,int heapID);
 void btltower_BtlPartnerSelectWifi(SAVEDATA* sv,B_TOWER_PARTNER_DATA* wk,const u8 round);
@@ -96,28 +96,28 @@ static int BtlTower_GetArcVersion( u8 play_mode );
 
 //==============================================================================
 //
-//	frontier_tool.c‚É—‚½ˆ—‚ª‚ ‚é‚Ì‚Å‚ ‚Æ‚Å’²®‚·‚é
+//	frontier_tool.cã«ä¼¼ãŸå‡¦ç†ãŒã‚ã‚‹ã®ã§ã‚ã¨ã§èª¿æ•´ã™ã‚‹
 //	
 //==============================================================================
 
 //------------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi[ƒf[ƒ^¶¬iƒƒ€ƒf[ƒ^‚ğB_TOWER_PARTNER_DATA\‘¢‘Ì‚É“WŠJj
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’B_TOWER_PARTNER_DATAæ§‹é€ ä½“ã«å±•é–‹ï¼‰
  *
- * @param[in/out]	tr_data		¶¬‚·‚éB_TOWER_PARTNAER_DATA\‘¢‘Ì
- * @param[in]		tr_no		¶¬Œ³‚É‚È‚éƒgƒŒ[ƒi[ID
- * @param[in]		cnt			ƒgƒŒ[ƒi[‚É‚½‚¹‚éƒ|ƒPƒ‚ƒ“‚Ì”
- * @param[in]		set_poke_no	ƒyƒA‚ğ‘g‚ñ‚Å‚¢‚éƒgƒŒ[ƒi[‚Ì‚¿ƒ|ƒPƒ‚ƒ“iNULL‚¾‚Æƒ`ƒFƒbƒN‚È‚µj
- * @param[in]		set_item_no	ƒyƒA‚ğ‘g‚ñ‚Å‚¢‚éƒgƒŒ[ƒi[‚Ì‚¿ƒ|ƒPƒ‚ƒ“‚Ì‘•”õƒAƒCƒeƒ€
- *								iNULL‚¾‚Æƒ`ƒFƒbƒN‚È‚µj
- * @param[in/out]	poke		’Š‘I‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚Ì“ñ‘Ì‚Ìƒpƒ‰ƒ[ƒ^‚ğ
- *								Ši”[‚µ‚Ä•Ô‚·\‘¢‘ÌŒ^ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^(NULL‚¾‚Æƒ`ƒFƒbƒN‚È‚µj
- * @param[in]		heapID		ƒq[ƒvID
+ * @param[in/out]	tr_data		ç”Ÿæˆã™ã‚‹B_TOWER_PARTNAER_DATAæ§‹é€ ä½“
+ * @param[in]		tr_no		ç”Ÿæˆå…ƒã«ãªã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param[in]		cnt			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã«æŒãŸã›ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ•°
+ * @param[in]		set_poke_no	ãƒšã‚¢ã‚’çµ„ã‚“ã§ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³ï¼ˆNULLã ã¨ãƒã‚§ãƒƒã‚¯ãªã—ï¼‰
+ * @param[in]		set_item_no	ãƒšã‚¢ã‚’çµ„ã‚“ã§ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ 
+ *								ï¼ˆNULLã ã¨ãƒã‚§ãƒƒã‚¯ãªã—ï¼‰
+ * @param[in/out]	poke		æŠ½é¸ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã®äºŒä½“ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’
+ *								æ ¼ç´ã—ã¦è¿”ã™æ§‹é€ ä½“å‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿(NULLã ã¨ãƒã‚§ãƒƒã‚¯ãªã—ï¼‰
+ * @param[in]		heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	FALSE	’Š‘Iƒ‹[ƒv‚ª50‰ñˆÈ“à‚ÅI‚í‚Á‚½
- * @retval	TRUE	’Š‘Iƒ‹[ƒv‚ª50‰ñˆÈ“à‚ÅI‚í‚ç‚È‚©‚Á‚½
+ * @retval	FALSE	æŠ½é¸ãƒ«ãƒ¼ãƒ—ãŒ50å›ä»¥å†…ã§çµ‚ã‚ã£ãŸ
+ * @retval	TRUE	æŠ½é¸ãƒ«ãƒ¼ãƒ—ãŒ50å›ä»¥å†…ã§çµ‚ã‚ã‚‰ãªã‹ã£ãŸ
  *
- * š—‚½ˆ— b_tower_fld.c RomBattleTowerTrainerDataMake
+ * â˜…ä¼¼ãŸå‡¦ç† b_tower_fld.c RomBattleTowerTrainerDataMake
  */
 //------------------------------------------------------------------------------
 BOOL FSRomBattleTowerTrainerDataMake(BTOWER_SCRWORK* wk,B_TOWER_PARTNER_DATA *tr_data,u16 tr_no,int cnt,u16 *set_poke_no,u16 *set_item_no,B_TOWER_PAREPOKE_PARAM* poke,int heapID)
@@ -125,11 +125,11 @@ BOOL FSRomBattleTowerTrainerDataMake(BTOWER_SCRWORK* wk,B_TOWER_PARTNER_DATA *tr
 	BOOL			ret = 0;
 	B_TOWER_TRAINER_ROM_DATA	*trd;
 	
-	//ƒgƒŒ[ƒi[ƒf[ƒ^ƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	trd = Frontier_TrainerDataGet(	&tr_data->bt_trd, tr_no, heapID, 
 									BtlTower_GetTrArc(wk->play_mode) );
 
-	//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒZƒbƒg
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	ret = BattleTowerPokemonSetAct(wk,trd,tr_no,&tr_data->btpwd[0],cnt,set_poke_no,set_item_no,poke,heapID);
 	
 	sys_FreeMemoryEz(trd);
@@ -139,21 +139,21 @@ BOOL FSRomBattleTowerTrainerDataMake(BTOWER_SCRWORK* wk,B_TOWER_PARTNER_DATA *tr
 
 //============================================================================================
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[‚Ìƒ|ƒPƒ‚ƒ“‚ğŒˆ‚ß‚é
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³ã‚’æ±ºã‚ã‚‹
  *
- * @param[in]		trd			ƒgƒŒ[ƒi[ƒf[ƒ^
- * @param[in]		tr_no		ƒgƒŒ[ƒi[ƒiƒ“ƒo[
- * @param[in/out]	pwd			B_TOWER_POKEMON\‘¢‘Ì
- * @param[in]		cnt			ƒgƒŒ[ƒi[‚É‚½‚¹‚éƒ|ƒPƒ‚ƒ“‚Ì”
- * @param[in]		set_poke_no	ƒyƒA‚ğ‘g‚ñ‚Å‚¢‚éƒgƒŒ[ƒi[‚Ì‚¿ƒ|ƒPƒ‚ƒ“iNULL‚¾‚Æƒ`ƒFƒbƒN‚È‚µj
- * @param[in]		set_item_no	ƒyƒA‚ğ‘g‚ñ‚Å‚¢‚éƒgƒŒ[ƒi[‚Ì‚¿ƒ|ƒPƒ‚ƒ“‚Ì‘•”õƒAƒCƒeƒ€
- *								iNULL‚¾‚Æƒ`ƒFƒbƒN‚È‚µj
- * @param[in/out]	poke		’Š‘I‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚Ì“ñ‘Ì‚Ìƒpƒ‰ƒ[ƒ^‚ğ
- *								Ši”[‚µ‚Ä•Ô‚·\‘¢‘ÌŒ^ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^(NULL‚¾‚Æƒ`ƒFƒbƒN‚È‚µj
- * @param[in]		heapID		ƒq[ƒvID
+ * @param[in]		trd			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+ * @param[in]		tr_no		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param[in/out]	pwd			B_TOWER_POKEMONæ§‹é€ ä½“
+ * @param[in]		cnt			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã«æŒãŸã›ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ•°
+ * @param[in]		set_poke_no	ãƒšã‚¢ã‚’çµ„ã‚“ã§ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³ï¼ˆNULLã ã¨ãƒã‚§ãƒƒã‚¯ãªã—ï¼‰
+ * @param[in]		set_item_no	ãƒšã‚¢ã‚’çµ„ã‚“ã§ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ 
+ *								ï¼ˆNULLã ã¨ãƒã‚§ãƒƒã‚¯ãªã—ï¼‰
+ * @param[in/out]	poke		æŠ½é¸ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã®äºŒä½“ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’
+ *								æ ¼ç´ã—ã¦è¿”ã™æ§‹é€ ä½“å‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿(NULLã ã¨ãƒã‚§ãƒƒã‚¯ãªã—ï¼‰
+ * @param[in]		heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	FALSE	’Š‘Iƒ‹[ƒv‚ª50‰ñˆÈ“à‚ÅI‚í‚Á‚½
- * @retval	TRUE	’Š‘Iƒ‹[ƒv‚ª50‰ñˆÈ“à‚ÅI‚í‚ç‚È‚©‚Á‚½
+ * @retval	FALSE	æŠ½é¸ãƒ«ãƒ¼ãƒ—ãŒ50å›ä»¥å†…ã§çµ‚ã‚ã£ãŸ
+ * @retval	TRUE	æŠ½é¸ãƒ«ãƒ¼ãƒ—ãŒ50å›ä»¥å†…ã§çµ‚ã‚ã‚‰ãªã‹ã£ãŸ
  */
 //============================================================================================
 static BOOL BattleTowerPokemonSetAct(BTOWER_SCRWORK* wk,B_TOWER_TRAINER_ROM_DATA *trd,
@@ -173,7 +173,7 @@ static BOOL BattleTowerPokemonSetAct(BTOWER_SCRWORK* wk,B_TOWER_TRAINER_ROM_DATA
 	B_TOWER_POKEMON_ROM_DATA	prd_s;
 	B_TOWER_POKEMON_ROM_DATA	prd_d;
 
-	//è‚¿ƒ|ƒPƒ‚ƒ“‚ÌMAX‚Í4‘Ì‚Ü‚Å
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®MAXã¯4ä½“ã¾ã§
 	GF_ASSERT(cnt<=4);
 
 	set_count=0;
@@ -184,7 +184,7 @@ static BOOL BattleTowerPokemonSetAct(BTOWER_SCRWORK* wk,B_TOWER_TRAINER_ROM_DATA
 		set_index=trd->use_poke_table[poke_index];
 		Frontier_PokemonRomDataGet(&prd_d,set_index,BtlTower_GetPokeArc(wk->play_mode));
 
-		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚Ìƒ`ƒFƒbƒNi“¯ˆê‚Ìƒ|ƒPƒ‚ƒ“‚Í‚½‚È‚¢j
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã®ãƒã‚§ãƒƒã‚¯ï¼ˆåŒä¸€ã®ãƒã‚±ãƒ¢ãƒ³ã¯æŒãŸãªã„ï¼‰
 		for(i=0;i<set_count;i++){
 			Frontier_PokemonRomDataGet(&prd_s,set_index_no[i],BtlTower_GetPokeArc(wk->play_mode));
 			if(prd_s.mons_no==prd_d.mons_no){
@@ -195,9 +195,9 @@ static BOOL BattleTowerPokemonSetAct(BTOWER_SCRWORK* wk,B_TOWER_TRAINER_ROM_DATA
 			continue;
 		}
 
-		//ƒyƒA‚ğ‘g‚ñ‚Å‚¢‚éƒgƒŒ[ƒi[‚Ì‚¿ƒ|ƒPƒ‚ƒ“‚Æ‚Ìƒ`ƒFƒbƒN
+		//ãƒšã‚¢ã‚’çµ„ã‚“ã§ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³ã¨ã®ãƒã‚§ãƒƒã‚¯
 		if(set_poke_no!=NULL){
-			//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚Ìƒ`ƒFƒbƒNi“¯ˆê‚Ìƒ|ƒPƒ‚ƒ“‚Í‚½‚È‚¢j
+			//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã®ãƒã‚§ãƒƒã‚¯ï¼ˆåŒä¸€ã®ãƒã‚±ãƒ¢ãƒ³ã¯æŒãŸãªã„ï¼‰
 			for(i=0;i<cnt;i++){
 				if(set_poke_no[i]==prd_d.mons_no){
 					break;
@@ -208,9 +208,9 @@ static BOOL BattleTowerPokemonSetAct(BTOWER_SCRWORK* wk,B_TOWER_TRAINER_ROM_DATA
 			}
 		}
 
-		//50‰ñ‚Ü‚í‚µ‚ÄAŒˆ‚Ü‚ç‚È‚¢‚æ‚¤‚È‚çA“¯ˆêƒAƒCƒeƒ€ƒ`ƒFƒbƒN‚Í‚µ‚È‚¢
+		//50å›ã¾ã‚ã—ã¦ã€æ±ºã¾ã‚‰ãªã„ã‚ˆã†ãªã‚‰ã€åŒä¸€ã‚¢ã‚¤ãƒ†ãƒ ãƒã‚§ãƒƒã‚¯ã¯ã—ãªã„
 		if(loop_count<50){
-			//‘•”õƒAƒCƒeƒ€‚Ìƒ`ƒFƒbƒNi“¯ˆê‚ÌƒAƒCƒeƒ€‚Í‚½‚È‚¢j
+			//è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒã‚§ãƒƒã‚¯ï¼ˆåŒä¸€ã®ã‚¢ã‚¤ãƒ†ãƒ ã¯æŒãŸãªã„ï¼‰
 			for(i=0;i<set_count;i++){
 				Frontier_PokemonRomDataGet(	&prd_s,set_index_no[i],
 											BtlTower_GetPokeArc(wk->play_mode));
@@ -222,9 +222,9 @@ static BOOL BattleTowerPokemonSetAct(BTOWER_SCRWORK* wk,B_TOWER_TRAINER_ROM_DATA
 				loop_count++;
 				continue;
 			}
-			//ƒyƒA‚ğ‘g‚ñ‚Å‚¢‚éƒgƒŒ[ƒi[‚Ì‚¿ƒ|ƒPƒ‚ƒ“‚Ì‘•”õƒAƒCƒeƒ€‚Æ‚Ìƒ`ƒFƒbƒN
+			//ãƒšã‚¢ã‚’çµ„ã‚“ã§ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã¨ã®ãƒã‚§ãƒƒã‚¯
 			if(set_item_no!=NULL){
-				//‘•”õƒAƒCƒeƒ€‚Ìƒ`ƒFƒbƒNi“¯ˆê‚ÌƒAƒCƒeƒ€‚Í‚½‚È‚¢j
+				//è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒã‚§ãƒƒã‚¯ï¼ˆåŒä¸€ã®ã‚¢ã‚¤ãƒ†ãƒ ã¯æŒãŸãªã„ï¼‰
 				for(i=0;i<cnt;i++){
 					if((set_item_no[i]==prd_d.item_no) && (set_item_no[i]!=0)){
 						break;
@@ -255,7 +255,7 @@ static BOOL BattleTowerPokemonSetAct(BTOWER_SCRWORK* wk,B_TOWER_TRAINER_ROM_DATA
 	if(poke == NULL){
 		return ret;
 	}
-	//ƒ|ƒCƒ“ƒ^‚ªNULL‚Å‚È‚¯‚ê‚ÎA’Š‘I‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚Ì•K—v‚Èƒpƒ‰ƒ[ƒ^‚ğ•Ô‚·
+	//ãƒã‚¤ãƒ³ã‚¿ãŒNULLã§ãªã‘ã‚Œã°ã€æŠ½é¸ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã®å¿…è¦ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿”ã™
 	poke->poke_id = id;
 	for(i = 0;i< BTOWER_STOCK_PAREPOKE_MAX;i++){
 		poke->poke_no[i] = set_index_no[i];
@@ -266,7 +266,7 @@ static BOOL BattleTowerPokemonSetAct(BTOWER_SCRWORK* wk,B_TOWER_TRAINER_ROM_DATA
 
 //--------------------------------------------------------------
 /**
- *	@brief	Wifi ƒgƒŒ[ƒi[’Š‘I
+ *	@brief	Wifi ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸
  */
 //--------------------------------------------------------------
 void btltower_BtlPartnerSelectWifi(SAVEDATA* sv,B_TOWER_PARTNER_DATA* wk,const u8 round)
@@ -282,23 +282,23 @@ void btltower_BtlPartnerSelectWifi(SAVEDATA* sv,B_TOWER_PARTNER_DATA* wk,const u
 	wifiSave = SaveData_GetTowerWifiData(sv);
 
 	if(!TowerWifiData_IsPlayerDataEnable(wifiSave)){
-		//ƒf[ƒ^‚ª‚È‚¢(ROM‚©‚ç–³—–î—’Š‘I)
+		//ãƒ‡ãƒ¼ã‚¿ãŒãªã„(ROMã‹ã‚‰ç„¡ç†çŸ¢ç†æŠ½é¸)
 		btltower_BtlPartnerSelectSD(wk,round);
 		return;
 	}
 
-	//ƒZ[ƒuƒf[ƒ^‚©‚çˆø‚Á’£‚é
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å¼•ã£å¼µã‚‹
 	TowerWifiData_GetBtlPlayerData(wifiSave,wk,round);
 }
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒVƒ“ƒOƒ‹ƒ_ƒuƒ‹ ƒgƒŒ[ƒi[’Š‘IŒ‹‰Êæ“¾
+ *	@brief	ã‚·ãƒ³ã‚°ãƒ«ãƒ€ãƒ–ãƒ« ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸çµæœå–å¾—
  *	
- * @param[in/out]	tr_data		¶¬‚·‚éB_TOWER_PARTNAER_DATA\‘¢‘Ì
- * @param[in]		tr_no		¶¬Œ³‚É‚È‚éƒgƒŒ[ƒi[ID
- * @param[in]		cnt			ƒgƒŒ[ƒi[‚É‚½‚¹‚éƒ|ƒPƒ‚ƒ“‚Ì”
- * @param[in]		heapID		ƒq[ƒvID
+ * @param[in/out]	tr_data		ç”Ÿæˆã™ã‚‹B_TOWER_PARTNAER_DATAæ§‹é€ ä½“
+ * @param[in]		tr_no		ç”Ÿæˆå…ƒã«ãªã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param[in]		cnt			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã«æŒãŸã›ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ•°
+ * @param[in]		heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 static void btltower_BtlPartnerSelectSD(B_TOWER_PARTNER_DATA* wk,const u8 round)
@@ -311,24 +311,24 @@ static void btltower_BtlPartnerSelectSD(B_TOWER_PARTNER_DATA* wk,const u8 round)
 
 	MI_CpuClear8(wk,sizeof(B_TOWER_PARTNER_DATA));
 
-	//–{“–‚ÍROM/RAMƒf[ƒ^‚©‚çˆø‚Á’£‚Á‚Ä‚­‚é
+	//æœ¬å½“ã¯ROM/RAMãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å¼•ã£å¼µã£ã¦ãã‚‹
 	tr_src = &(b_tower_trainer_data[round]);
 	poke_src = b_tower_poke_data;
 	poke_idx = &(b_tower_dmy_enemy[round]);
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^ƒRƒs[
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	MI_CpuCopy8(tr_src,&wk->bt_trd,sizeof(B_TOWER_TRAINER));
 	wk->bt_trd.dummy = poke_idx->obj_code;
 
-	//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒRƒs[
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	for(i = 0;i < 4;i++){
 		MI_CpuCopy8(&(poke_src[poke_idx->pokeno[i]]),&(wk->btpwd[i]),sizeof(B_TOWER_POKEMON));
 	}
 }
 
-//‚¿ƒ|ƒPƒ‚ƒ“Œˆ’è‚Íƒ‰ƒ“ƒ_ƒ€‚Å‚µ‚Ä‚¢‚é‚ª–³ŒÀƒ‹[ƒv–h~‚Ì‚½‚ßA
-//‚ ‚é’ö“x‚Ü‚í‚µ‚½‚çAƒ|ƒPƒ‚ƒ“‚Ì•sˆê’v‚Ì‚İ‚ğƒ`ƒFƒbƒN‚µ‚ÄA
-//ƒAƒCƒeƒ€‚ğŒÅ’è‚Å‚½‚¹‚é‚½‚ß‚ÌƒAƒCƒeƒ€ƒe[ƒuƒ‹
+//æŒã¡ãƒã‚±ãƒ¢ãƒ³æ±ºå®šã¯ãƒ©ãƒ³ãƒ€ãƒ ã§ã—ã¦ã„ã‚‹ãŒç„¡é™ãƒ«ãƒ¼ãƒ—é˜²æ­¢ã®ãŸã‚ã€
+//ã‚ã‚‹ç¨‹åº¦ã¾ã‚ã—ãŸã‚‰ã€ãƒã‚±ãƒ¢ãƒ³ã®ä¸ä¸€è‡´ã®ã¿ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã€
+//ã‚¢ã‚¤ãƒ†ãƒ ã‚’å›ºå®šã§æŒãŸã›ã‚‹ãŸã‚ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u16 BattleTowerPokemonItem[]={
 	ITEM_HIKARINOKONA,
 	ITEM_RAMUNOMI,
@@ -337,18 +337,18 @@ static const u16 BattleTowerPokemonItem[]={
 };
 //============================================================================================
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^¶¬
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç”Ÿæˆ
  *
- *	@param[in/out]	pwd	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚Ì“WŠJêŠ
- *	@param[in]		poke_no	ƒ^ƒ[romƒf[ƒ^ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- *	@param[in]		poke_id	ƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg‚·‚éid
- *	@param[in]		poke_rnd	ƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg‚·‚éŒÂ«—”(0‚ªˆø‚«“n‚³‚ê‚½‚çŠÖ”“à‚Å¶¬)
- *	@param[in]		pow_rnd	ƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg‚·‚épow_rnd’l
- *	@param[in]		mem_idx	ƒƒ“ƒo[indexBˆê‘Ì–Úor“ñ‘Ì–Ú
- *	@param[in]		itemfix	TRUE‚È‚çŒÅ’èƒAƒCƒeƒ€BFALSE‚È‚çromƒf[ƒ^‚ÌƒAƒCƒeƒ€
- *	@param[in]		heapID	ƒeƒ“ƒ|ƒ‰ƒŠƒƒ‚ƒŠ‚ğŠm•Û‚·‚éƒq[ƒvID
+ *	@param[in/out]	pwd	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å±•é–‹å ´æ‰€
+ *	@param[in]		poke_no	ã‚¿ãƒ¯ãƒ¼romãƒ‡ãƒ¼ã‚¿ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param[in]		poke_id	ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆã™ã‚‹id
+ *	@param[in]		poke_rnd	ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆã™ã‚‹å€‹æ€§ä¹±æ•°(0ãŒå¼•ãæ¸¡ã•ã‚ŒãŸã‚‰é–¢æ•°å†…ã§ç”Ÿæˆ)
+ *	@param[in]		pow_rnd	ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆã™ã‚‹pow_rndå€¤
+ *	@param[in]		mem_idx	ãƒ¡ãƒ³ãƒãƒ¼indexã€‚ä¸€ä½“ç›®oräºŒä½“ç›®
+ *	@param[in]		itemfix	TRUEãªã‚‰å›ºå®šã‚¢ã‚¤ãƒ†ãƒ ã€‚FALSEãªã‚‰romãƒ‡ãƒ¼ã‚¿ã®ã‚¢ã‚¤ãƒ†ãƒ 
+ *	@param[in]		heapID	ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	personal_rnd:¶¬‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”’l
+ *	@return	personal_rnd:ç”Ÿæˆã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°å€¤
  *
  */
 //============================================================================================
@@ -363,29 +363,29 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 	
 	MI_CpuClear8(pwd,sizeof(B_TOWER_POKEMON));
 	
-	//ƒƒ€ƒf[ƒ^ƒ[ƒh
+	//ãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	Frontier_PokemonRomDataGet(&prd_s,poke_no,BtlTower_GetPokeArc(wk->play_mode));
 	
-	//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
 	pwd->mons_no=prd_s.mons_no;
 
-	//ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
+	//ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
 	pwd->form_no=prd_s.form_no;
 
-	//‘•”õ“¹‹ï
+	//è£…å‚™é“å…·
 	if(itemfix){
-		//50‰ñˆÈã‚Ü‚í‚µ‚Ä‚¢‚½ƒtƒ‰ƒO‚ªTURE‚È‚çA‘•”õƒAƒCƒeƒ€‚ÍŒÅ’è‚Ì‚à‚Ì‚ğ‚½‚¹‚é
+		//50å›ä»¥ä¸Šã¾ã‚ã—ã¦ã„ãŸãƒ•ãƒ©ã‚°ãŒTUREãªã‚‰ã€è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã¯å›ºå®šã®ã‚‚ã®ã‚’æŒãŸã›ã‚‹
 		pwd->item_no=BattleTowerPokemonItem[mem_idx];
 	}else{
-		//romƒf[ƒ^‚É“o˜^‚³‚ê‚½ƒAƒCƒeƒ€‚ğ‚½‚¹‚é
+		//romãƒ‡ãƒ¼ã‚¿ã«ç™»éŒ²ã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒãŸã›ã‚‹
 		pwd->item_no=prd_s.item_no;
 	}
 
-	//‚È‚Â‚«“x‚Í255‚ªƒfƒtƒHƒ‹ƒg
+	//ãªã¤ãåº¦ã¯255ãŒãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
 	friend=255;
 	for(i=0;i<WAZA_TEMOTI_MAX;i++){
 		pwd->waza[i]=prd_s.waza[i];
-		//‚â‚Â‚ ‚½‚è‚ğ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍA‚È‚Â‚«“x‚ğ0‚É‚·‚é
+		//ã‚„ã¤ã‚ãŸã‚Šã‚’æŒã£ã¦ã„ã‚‹ã¨ãã¯ã€ãªã¤ãåº¦ã‚’0ã«ã™ã‚‹
 		if(prd_s.waza[i]==WAZANO_YATUATARI){
 			friend=0;
 		}
@@ -395,29 +395,29 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 	pwd->id_no=poke_id;
 
 	if(poke_rnd == 0){
-		//ŒÂ«—”
+		//å€‹æ€§ä¹±æ•°
 		do{
 //			personal_rnd=(gf_rand()|gf_rand()<<16);
 			personal_rnd=(btower_rand(wk)|btower_rand(wk)<<16);
 #if 0
 		}while((prd_s.chr!=PokeSeikakuGetRnd(personal_rnd))&&(PokeRareGetPara(poke_id,personal_rnd)==TRUE));
 #else
-		//ƒvƒ‰ƒ`ƒi‚Íƒ^ƒ[‚àC³‚·‚é(08.03.17)(—‚½ˆ—‚ªfrontier_tool.c‚É‚à‚ ‚é‚Ì‚Å’ˆÓI)
-		//ƒf[ƒ^‚Ì«Ši‚Æˆê’v‚µ‚Ä‚¢‚È‚¢"‚à‚µ‚­‚Í"ƒŒƒA‚Ì‚ÍAƒ‹[ƒv‚ğ‰ñ‚·
+		//ãƒ—ãƒ©ãƒãƒŠã¯ã‚¿ãƒ¯ãƒ¼ã‚‚ä¿®æ­£ã™ã‚‹(08.03.17)(ä¼¼ãŸå‡¦ç†ãŒfrontier_tool.cã«ã‚‚ã‚ã‚‹ã®ã§æ³¨æ„ï¼)
+		//ãƒ‡ãƒ¼ã‚¿ã®æ€§æ ¼ã¨ä¸€è‡´ã—ã¦ã„ãªã„"ã‚‚ã—ãã¯"ãƒ¬ã‚¢ã®æ™‚ã¯ã€ãƒ«ãƒ¼ãƒ—ã‚’å›ã™
 		}while((prd_s.chr!=PokeSeikakuGetRnd(personal_rnd))||(PokeRareGetPara(poke_id,personal_rnd)==TRUE));
 #endif
 
-		//OS_Printf( "Œˆ’è‚µ‚½personal_rnd = %d\n", personal_rnd );
+		//OS_Printf( "æ±ºå®šã—ãŸpersonal_rnd = %d\n", personal_rnd );
 		//OS_Printf( "PokeSeikakuGetRnd = %d\n", PokeSeikakuGetRnd(personal_rnd) );
-		//OS_Printf( "ƒŒƒA‚¶‚á‚È‚¢‚© = %d\n", PokeRareGetPara(poke_id,personal_rnd) );
+		//OS_Printf( "ãƒ¬ã‚¢ã˜ã‚ƒãªã„ã‹ = %d\n", PokeRareGetPara(poke_id,personal_rnd) );
 		pwd->personal_rnd=personal_rnd;
 	}else{
-		pwd->personal_rnd = poke_rnd;	//0‚Å‚È‚¯‚ê‚Îˆø”‚Ì’l‚ğg—p
+		pwd->personal_rnd = poke_rnd;	//0ã§ãªã‘ã‚Œã°å¼•æ•°ã®å€¤ã‚’ä½¿ç”¨
 		personal_rnd = poke_rnd;
 	}
 	
 		
-	//ƒpƒ[—”
+	//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	pwd->hp_rnd=pow_rnd;
 	pwd->pow_rnd=pow_rnd;
 	pwd->def_rnd=pow_rnd;
@@ -425,7 +425,7 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 	pwd->spepow_rnd=pow_rnd;
 	pwd->spedef_rnd=pow_rnd;
 
-	//“w—Í’l
+	//åŠªåŠ›å€¤
 	exp=0;
 	for(i=0;i<6;i++){
 		if(prd_s.exp_bit&No2Bit(i)){
@@ -443,13 +443,13 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 		}
 	}
 
-	//‹Zƒ|ƒCƒ“ƒg
+	//æŠ€ãƒã‚¤ãƒ³ãƒˆ
 	pwd->pp_count=0;
 
-	//‘ƒR[ƒh
+	//å›½ã‚³ãƒ¼ãƒ‰
 	pwd->country_code=CasetteLanguage;
 
-	//“Á«
+	//ç‰¹æ€§
 	i=PokePersonalParaGet(pwd->mons_no,ID_PER_speabi2);
 	if(i){
 		if(pwd->personal_rnd&1){
@@ -461,10 +461,10 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 		pwd->tokusei=PokePersonalParaGet(pwd->mons_no,ID_PER_speabi1);
 	}
 
-	//‚È‚Â‚«“x
+	//ãªã¤ãåº¦
 	pwd->natuki=friend;
 
-	//ƒjƒbƒNƒl[ƒ€
+	//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
 	MSGDAT_MonsNameGet(pwd->mons_no,heapID,&(pwd->nickname[0]));
 
 	return personal_rnd;
@@ -472,7 +472,7 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒ^ƒ[—p@ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^¶¬
+ * @brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ã€€ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç”Ÿæˆ
  */
 //--------------------------------------------------------------
 BATTLE_PARAM* BtlTower_CreateBattleParam( BTOWER_SCRWORK* wk, FRONTIER_EX_PARAM* ex_param )
@@ -497,19 +497,19 @@ BATTLE_PARAM* BtlTower_CreateBattleParam( BTOWER_SCRWORK* wk, FRONTIER_EX_PARAM*
 										ex_param->bag_cursor,
 										ex_param->battle_cursor);
 
-	bp->bg_id = BG_ID_TOWER;			//Šî–{”wŒiw’è
-	bp->ground_id = GROUND_ID_TOWER;	//Šî–{’n–Êw’è
+	bp->bg_id = BG_ID_TOWER;			//åŸºæœ¬èƒŒæ™¯æŒ‡å®š
+	bp->ground_id = GROUND_ID_TOWER;	//åŸºæœ¬åœ°é¢æŒ‡å®š
 
-	//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒZƒbƒg
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	pp = PokemonParam_AllocWork(wk->heapID);
 	
-	//‘I‚ñ‚¾è‚¿ƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+	//é¸ã‚“ã æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	val8 = 50;
 	PokeParty_Init(bp->poke_party[POKEPARTY_MINE],wk->member_num);
 	for(i = 0;i < wk->member_num;i++){
 		PokeCopyPPtoPP(PokeParty_GetMemberPointer(party,wk->member[i]),pp);
 
-		//ƒŒƒxƒ‹’²®
+		//ãƒ¬ãƒ™ãƒ«èª¿æ•´
 		if(PokeParaGet(pp,ID_PARA_level,NULL) > val8){
 			val32 = PokeLevelExpGet(PokeParaGet(pp,ID_PARA_monsno,NULL),val8);
 
@@ -520,26 +520,26 @@ BATTLE_PARAM* BtlTower_CreateBattleParam( BTOWER_SCRWORK* wk, FRONTIER_EX_PARAM*
 	}
 	sys_FreeMemoryEz(pp);
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬i©•ª‘¤j
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆè‡ªåˆ†å´ï¼‰
 	BattleParam_TrainerDataMake(bp);
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^(enemy1)‚ğƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿(enemy1)ã‚’ã‚»ãƒƒãƒˆ
 	BattleTowerTrainerDataMake(bp,&(wk->tr_data[0]),wk->member_num,CLIENT_NO_ENEMY,wk->heapID);
 
-	//AIƒZƒbƒg
+	//AIã‚»ãƒƒãƒˆ
 	for( i=0; i < CLIENT_MAX ;i++ ){
 		bp->trainer_data[i].aibit = FR_AI_EXPERT;
 	}
-	OS_Printf( "ƒgƒŒ[ƒi[‚ÌAI = %d\n", FR_AI_EXPERT );
+	OS_Printf( "ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®AI = %d\n", FR_AI_EXPERT );
 
 	switch(wk->play_mode){
 	case BTWR_MODE_MULTI:
-		//ƒyƒAƒf[ƒ^‚ğƒZƒbƒg
+		//ãƒšã‚¢ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		BattleTowerTrainerDataMake(bp,&(wk->five_data[wk->partner]),wk->member_num,CLIENT_NO_MINE2,wk->heapID);
-		//«‚±‚±‚Í‹¤’Êˆ—‚Å—¬‚ê‚Ä‚¢‚¢
+		//â†“ã“ã“ã¯å…±é€šå‡¦ç†ã§æµã‚Œã¦ã„ã„
 	case BTWR_MODE_COMM_MULTI:
 	case BTWR_MODE_WIFI_MULTI:
-		//ƒgƒŒ[ƒi[ƒf[ƒ^(enemy2)‚ğƒZƒbƒg
+		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿(enemy2)ã‚’ã‚»ãƒƒãƒˆ
 		BattleTowerTrainerDataMake(bp,&(wk->tr_data[1]),wk->member_num,CLIENT_NO_ENEMY2,wk->heapID);
 		break;
 	default:
@@ -550,13 +550,13 @@ BATTLE_PARAM* BtlTower_CreateBattleParam( BTOWER_SCRWORK* wk, FRONTIER_EX_PARAM*
 
 //============================================================================================
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi[ƒf[ƒ^¶¬
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
  *
- * @param[in/out]	bp			¶¬‚·‚éBATTLE_PARAM\‘¢‘Ì
- * @param[in]		tr_data		¶¬Œ³‚É‚È‚éƒgƒŒ[ƒi[ƒf[ƒ^
- * @param[in]		cnt			ƒgƒŒ[ƒi[‚Ì‚¿ƒ|ƒPƒ‚ƒ“”
- * @param[in]		client_no	¶¬‚·‚éclient_no
- * @param[in]		heapID		ƒq[ƒvIDiPOKEMON_PARAM‚Ì¶¬‚É•K—vj
+ * @param[in/out]	bp			ç”Ÿæˆã™ã‚‹BATTLE_PARAMæ§‹é€ ä½“
+ * @param[in]		tr_data		ç”Ÿæˆå…ƒã«ãªã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+ * @param[in]		cnt			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³æ•°
+ * @param[in]		client_no	ç”Ÿæˆã™ã‚‹client_no
+ * @param[in]		heapID		ãƒ’ãƒ¼ãƒ—IDï¼ˆPOKEMON_PARAMã®ç”Ÿæˆã«å¿…è¦ï¼‰
  */
 //============================================================================================
 static void	BattleTowerTrainerDataMake(BATTLE_PARAM *bp,B_TOWER_PARTNER_DATA *tr_data,int cnt,int client_no,int heapID)
@@ -566,10 +566,10 @@ static void	BattleTowerTrainerDataMake(BATTLE_PARAM *bp,B_TOWER_PARTNER_DATA *tr
 	POKEMON_PARAM	*pp;
 
 #if 0
-	//ƒgƒŒ[ƒi[ID‚ğƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’ã‚»ãƒƒãƒˆ
 	bp->trainer_id[client_no]=tr_data->bt_trd.player_id;
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^‚ğƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	bp->trainer_data[client_no].tr_type=tr_data->bt_trd.tr_type;
 	PM_strcpy(&bp->trainer_data[client_no].name[0],&tr_data->bt_trd.name[0]);
 	pd=(PMS_DATA *)&tr_data->bt_trd.win_word[0];
@@ -580,7 +580,7 @@ static void	BattleTowerTrainerDataMake(BATTLE_PARAM *bp,B_TOWER_PARTNER_DATA *tr
 	BattleParamTrainerDataSet( bp, &tr_data->bt_trd, cnt, client_no, heapID );
 #endif
 
-	//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒZƒbƒg
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	pp=PokemonParam_AllocWork(heapID);
 	for(i=0;i<cnt;i++){
 		Frontier_PokeParaMake(&tr_data->btpwd[i],pp,FRONTIER_LEVEL_50);
@@ -592,7 +592,7 @@ static void	BattleTowerTrainerDataMake(BATTLE_PARAM *bp,B_TOWER_PARTNER_DATA *tr
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒ^ƒ[@ƒvƒŒƒCƒ‚[ƒh‚©‚çFIGHT_TYPE‚ğ•Ô‚·
+ * @brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰FIGHT_TYPEã‚’è¿”ã™
  */
 //--------------------------------------------------------------
 static u32 btower_GetFightType(u8 play_mode)
@@ -615,7 +615,7 @@ static u32 btower_GetFightType(u8 play_mode)
 #if 0
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@©‹@«•Ê‚Æƒ‚ƒ“ƒXƒ^[No‚ğ‘—M
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€è‡ªæ©Ÿæ€§åˆ¥ã¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼Noã‚’é€ä¿¡
  */
 //--------------------------------------------------------------
 void BTowerComm_SendPlayerData(BTOWER_SCRWORK* wk,SAVEDATA *sv)
@@ -638,7 +638,7 @@ void BTowerComm_SendPlayerData(BTOWER_SCRWORK* wk,SAVEDATA *sv)
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@’ÊMƒ}ƒ‹ƒ`@’Š‘I‚µ‚½ƒgƒŒ[ƒi[No‚ğq‹@‚É‘—M
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€šä¿¡ãƒãƒ«ãƒã€€æŠ½é¸ã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noã‚’å­æ©Ÿã«é€ä¿¡
  */
 //--------------------------------------------------------------
 void BTowerComm_SendTrainerData(BTOWER_SCRWORK* wk)
@@ -649,21 +649,21 @@ void BTowerComm_SendTrainerData(BTOWER_SCRWORK* wk)
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@’ÊMƒ}ƒ‹ƒ`@ƒŠƒ^ƒCƒA‚·‚é‚©‚Ç‚¤‚©‚ğŒİ‚¢‚É‘—M
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€šä¿¡ãƒãƒ«ãƒã€€ãƒªã‚¿ã‚¤ã‚¢ã™ã‚‹ã‹ã©ã†ã‹ã‚’äº’ã„ã«é€ä¿¡
  *
- *	@param	retire	TRUE‚È‚çƒŠƒ^ƒCƒA
+ *	@param	retire	TRUEãªã‚‰ãƒªã‚¿ã‚¤ã‚¢
  */
 //--------------------------------------------------------------
 void FSBTowerComm_SendRetireSelect(BTOWER_SCRWORK* wk,u16 retire)
 {
-	//©•ª‚Ì‘I‘ğŒ‹‰Ê‚ğƒ[ƒN‚É•Û‘¶
+	//è‡ªåˆ†ã®é¸æŠçµæœã‚’ãƒ¯ãƒ¼ã‚¯ã«ä¿å­˜
 	wk->retire_f = retire;
 	wk->send_buf[0] = retire;
 }
 
 #if 0
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@‘—‚ç‚ê‚Ä‚«‚½ƒvƒŒƒCƒ„[ƒf[ƒ^‚ğó‚¯æ‚é
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€ã‚‰ã‚Œã¦ããŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
  */
 u16 BTowerComm_RecvPlayerData(BTOWER_SCRWORK* wk,const u16* recv_buf)
 {
@@ -689,14 +689,14 @@ u16 BTowerComm_RecvPlayerData(BTOWER_SCRWORK* wk,const u16* recv_buf)
 }
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@‘—‚ç‚ê‚Ä‚«‚½ƒgƒŒ[ƒi[ƒf[ƒ^‚ğó‚¯æ‚é
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€ã‚‰ã‚Œã¦ããŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
  */
 u16	BTowerComm_RecvTrainerData(BTOWER_SCRWORK* wk,const u16* recv_buf)
 {
 	int i;
 
 	if(CommGetCurrentID() == COMM_PARENT_ID){
-		return 0;	//e‚Í‘—M‚·‚é‚¾‚¯‚È‚Ì‚Åó‚¯æ‚ç‚È‚¢
+		return 0;	//è¦ªã¯é€ä¿¡ã™ã‚‹ã ã‘ãªã®ã§å—ã‘å–ã‚‰ãªã„
 	}
 
 	MI_CpuCopy8(recv_buf,wk->trainer,BTOWER_STOCK_TRAINER_MAX*2);
@@ -713,10 +713,10 @@ u16	BTowerComm_RecvTrainerData(BTOWER_SCRWORK* wk,const u16* recv_buf)
 #endif
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@‘—‚ç‚ê‚Ä‚«‚½ƒŠƒ^ƒCƒA‚·‚é‚©‚Ç‚¤‚©‚ÌŒ‹‰Ê‚ğó‚¯æ‚é
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€ã‚‰ã‚Œã¦ããŸãƒªã‚¿ã‚¤ã‚¢ã™ã‚‹ã‹ã©ã†ã‹ã®çµæœã‚’å—ã‘å–ã‚‹
  *
- *	@retval	0	ƒŠƒ^ƒCƒA‚µ‚È‚¢
- *	@retval	1	ƒŠƒ^ƒCƒA‚·‚é
+ *	@retval	0	ãƒªã‚¿ã‚¤ã‚¢ã—ãªã„
+ *	@retval	1	ãƒªã‚¿ã‚¤ã‚¢ã™ã‚‹
  */
 u16	FSBTowerComm_RecvRetireSelect(BTOWER_SCRWORK* wk,const u16* recv_buf)
 {
@@ -731,51 +731,51 @@ u16	FSBTowerComm_RecvRetireSelect(BTOWER_SCRWORK* wk,const u16* recv_buf)
 
 //--------------------------------------------------------------
 /**
- * @brief	‘Îíƒ|ƒPƒ‚ƒ“‚ÌƒA[ƒJƒCƒu‚ğæ“¾
+ * @brief	å¯¾æˆ¦ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’å–å¾—
  */
 //--------------------------------------------------------------
 int BtlTower_GetPokeArc( u8 play_mode )
 {
 	if( BtlTower_GetArcVersion(play_mode) == 0 ){
-		return ARC_BTD_PM;			//‚c‚o
+		return ARC_BTD_PM;			//ï¼¤ï¼°
 	}
 
-	return ARC_PL_BTD_PM;			//ƒvƒ‰ƒ`ƒi
+	return ARC_PL_BTD_PM;			//ãƒ—ãƒ©ãƒãƒŠ
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	‘ÎíƒgƒŒ[ƒi[‚ÌƒA[ƒJƒCƒu‚ğæ“¾
+ * @brief	å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’å–å¾—
  */
 //--------------------------------------------------------------
 int BtlTower_GetTrArc( u8 play_mode )
 {
 	if( BtlTower_GetArcVersion(play_mode) == 0 ){
-		return ARC_BTD_TR;			//‚c‚o
+		return ARC_BTD_TR;			//ï¼¤ï¼°
 	}
 
-	return ARC_PL_BTD_TR;			//ƒvƒ‰ƒ`ƒi
+	return ARC_PL_BTD_TR;			//ãƒ—ãƒ©ãƒãƒŠ
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	‘ÎíƒgƒŒ[ƒi[‚ÌƒƒbƒZ[ƒWƒA[ƒJƒCƒu‚ğæ“¾
+ * @brief	å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’å–å¾—
  */
 //--------------------------------------------------------------
 int BtlTower_GetTrMsgArc( u8 play_mode )
 {
 	if( BtlTower_GetArcVersion(play_mode) == 0 ){
-		return NARC_msg_tower_trainer_dat;			//‚c‚o
+		return NARC_msg_tower_trainer_dat;			//ï¼¤ï¼°
 	}
 
-	return NARC_msg_tower_trainerpl_dat;			//ƒvƒ‰ƒ`ƒi
+	return NARC_msg_tower_trainerpl_dat;			//ãƒ—ãƒ©ãƒãƒŠ
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒo[ƒWƒ‡ƒ“‚ğƒ`ƒFƒbƒN‚µ‚ÄA‚Ç‚¿‚ç‚ÌƒA[ƒJƒCƒu‚ğæ“¾‚©ƒ`ƒFƒbƒN
+ * @brief	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã€ã©ã¡ã‚‰ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’å–å¾—ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @retval	"0=DPA1=ƒvƒ‰ƒ`ƒi"
+ * @retval	"0=DPã€1=ãƒ—ãƒ©ãƒãƒŠ"
  */
 //--------------------------------------------------------------
 static int BtlTower_GetArcVersion( u8 play_mode )
@@ -786,47 +786,47 @@ static int BtlTower_GetArcVersion( u8 play_mode )
 
 	switch( play_mode ){
 
-	//’ÊM
+	//é€šä¿¡
 	case BTWR_MODE_COMM_MULTI:
 	case BTWR_MODE_WIFI_MULTI:
 
 		my1 = CommInfoGetMyStatus( 0 );
 		if( my1 == NULL ){
-			OS_Printf( "CommInfoGetMyStatus(0)æ“¾o—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½\n" );
+			OS_Printf( "CommInfoGetMyStatus(0)å–å¾—å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸ\n" );
 			GF_ASSERT(0);
 		}
 
 		my2 = CommInfoGetMyStatus( 1 );
 		if( my2 == NULL ){
-			OS_Printf( "CommInfoGetMyStatus(1)æ“¾o—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½\n" );
+			OS_Printf( "CommInfoGetMyStatus(1)å–å¾—å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸ\n" );
 			GF_ASSERT(0);
 		}
 
-		//ƒƒ€ƒR[ƒhæ“¾
+		//ãƒ­ãƒ ã‚³ãƒ¼ãƒ‰å–å¾—
 		rom_code1 = MyStatus_GetRomCode( my1 );
 		rom_code2 = MyStatus_GetRomCode( my2 );
 
 #if 0
-		//DPŠÜ‚Ü‚ê‚Ä‚¢‚½‚ç
+		//DPå«ã¾ã‚Œã¦ã„ãŸã‚‰
 		if( (rom_code1 == VERSION_DIAMOND) || (rom_code1 == VERSION_PEARL) ){
-			return 0;			//‚c‚o
+			return 0;			//ï¼¤ï¼°
 		}
 
-		//DPŠÜ‚Ü‚ê‚Ä‚¢‚½‚ç
+		//DPå«ã¾ã‚Œã¦ã„ãŸã‚‰
 		if( (rom_code2 == VERSION_DIAMOND) || (rom_code2 == VERSION_PEARL) ){
-			return 0;			//‚c‚o
+			return 0;			//ï¼¤ï¼°
 		}
 #else
-		//DPŠÜ‚Ü‚ê‚Ä‚¢‚½‚ç
+		//DPå«ã¾ã‚Œã¦ã„ãŸã‚‰
 		if( (rom_code1 == POKEMON_DP_ROM_CODE) || (rom_code2 == POKEMON_DP_ROM_CODE) ){
-			return 0;			//‚c‚o
+			return 0;			//ï¼¤ï¼°
 		}
 #endif
 
-		return 1;			//ƒvƒ‰ƒ`ƒi(š‹à‹â‚Æƒvƒ‰ƒ`ƒiš)
+		return 1;			//ãƒ—ãƒ©ãƒãƒŠ(â˜…é‡‘éŠ€ã¨ãƒ—ãƒ©ãƒãƒŠâ˜…)
 	};
 
-	return 1;				//ƒvƒ‰ƒ`ƒi(š‹à‹â‚Æƒvƒ‰ƒ`ƒiš)
+	return 1;				//ãƒ—ãƒ©ãƒãƒŠ(â˜…é‡‘éŠ€ã¨ãƒ—ãƒ©ãƒãƒŠâ˜…)
 }
 
 

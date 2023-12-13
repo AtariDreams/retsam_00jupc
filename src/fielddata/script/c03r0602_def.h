@@ -1,11 +1,11 @@
 #ifndef _C03R0602_DEF_H_
 #define _C03R0602_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C03R0602_GENTLEMAN		(1)
 #define	SCRID_C03R0602_BOY2		(2)
 #define	SCRID_C03R0602_OLDMAN1		(3)
 #define	SCRID_C03R0602_ASSISTANTM		(4)
-#define	SCRID_C03R0602_DATA_MAX		(4)		//最大数
+#define	SCRID_C03R0602_DATA_MAX		(4)		//譛螟ｧ謨ｰ
 
 #endif //_C03R0602_DEF_H_

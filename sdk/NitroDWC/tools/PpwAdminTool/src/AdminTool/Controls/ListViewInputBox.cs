@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 /// <summary>
-/// ƒŠƒXƒgƒrƒ…[ã‚ÅƒAƒCƒeƒ€‚ğ•ÒW‚·‚é‚½‚ß‚ÌƒeƒLƒXƒgƒ{ƒbƒNƒX
+/// ãƒªã‚¹ãƒˆãƒ“ãƒ¥ãƒ¼ä¸Šã§ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç·¨é›†ã™ã‚‹ãŸã‚ã®ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹
 /// </summary>
 public class ListViewInputBox : TextBox
 {
@@ -56,7 +56,7 @@ public class ListViewInputBox : TextBox
 
     public delegate void InputEventHandler(object sender, InputEventArgs e);
 
-    //ƒCƒxƒ“ƒgƒfƒŠƒQ[ƒg‚ÌéŒ¾
+    //ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒªã‚²ãƒ¼ãƒˆã®å®£è¨€
     public event InputEventHandler FinishInput;
 
     private InputEventArgs args = new InputEventArgs();
@@ -65,8 +65,8 @@ public class ListViewInputBox : TextBox
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="parent">‘ÎÛ‚Æ‚È‚éListViewƒRƒ“ƒgƒ[ƒ‹</param>
-    /// <param name="info">ƒqƒbƒgƒeƒXƒgŒ‹‰Ê</param>
+    /// <param name="parent">å¯¾è±¡ã¨ãªã‚‹ListViewã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="info">ãƒ’ãƒƒãƒˆãƒ†ã‚¹ãƒˆçµæœ</param>
     public ListViewInputBox(ListView parent, int row, int column)
         : base()
     {
@@ -76,8 +76,8 @@ public class ListViewInputBox : TextBox
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="parent">‘ÎÛ‚Æ‚È‚éListViewƒRƒ“ƒgƒ[ƒ‹</param>
-    /// <param name="info">ƒqƒbƒgƒeƒXƒgŒ‹‰Ê</param>
+    /// <param name="parent">å¯¾è±¡ã¨ãªã‚‹ListViewã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="info">ãƒ’ãƒƒãƒˆãƒ†ã‚¹ãƒˆçµæœ</param>
     public ListViewInputBox(ListView parent, ListViewHitTestInfo info)
         : base()
     {
@@ -102,7 +102,7 @@ public class ListViewInputBox : TextBox
         }
 
         int width;
-        // index‚ª0‚Ì‚Ís‘S‘Ì‚Ì•‚ğæ“¾‚µ‚Ä‚µ‚Ü‚¤‚Ì‚Åindex1‚ÌLeft‚ğ•‚Æ‚·‚é
+        // indexãŒ0ã®æ™‚ã¯è¡Œå…¨ä½“ã®å¹…ã‚’å–å¾—ã—ã¦ã—ã¾ã†ã®ã§index1ã®Leftã‚’å¹…ã¨ã™ã‚‹
         if (column == 0 && item.SubItems.Count >= 1)
         {
             width = item.SubItems[1].Bounds.Left;
@@ -130,7 +130,7 @@ public class ListViewInputBox : TextBox
     void Finish(string new_name)
     {
         finished = true;
-        this.Hide();    // KeyDown‚ÅI—¹‚µ‚½ê‡A‚±‚±‚ÅLostFocus‚ªŒÄ‚Î‚ê‚é‚±‚Æ‚É’ˆÓ
+        this.Hide();    // KeyDownã§çµ‚äº†ã—ãŸå ´åˆã€ã“ã“ã§LostFocusãŒå‘¼ã°ã‚Œã‚‹ã“ã¨ã«æ³¨æ„
         args.NewText = new_name;
         FinishInput(this, args);
     }

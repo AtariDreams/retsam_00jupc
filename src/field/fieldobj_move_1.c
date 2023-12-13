@@ -2,7 +2,7 @@
 /**
  *
  * @file	fieldobj_move_1.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@Šî–{“®ìŒn‚»‚Ì1@ƒTƒu“®ì
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€åŸºæœ¬å‹•ä½œç³»ãã®1ã€€ã‚µãƒ–å‹•ä½œ
  * @author	kagaya
  * @data	05.07.21
  *
@@ -22,7 +22,7 @@
 //==============================================================================
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void MoveSub_InitProcCall( FIELD_OBJ_PTR fldobj );
 static int MoveSub_StartCheckProcCall( FIELD_OBJ_PTR fldobj );
@@ -48,11 +48,11 @@ int (* const DATA_FldOBJ_EventTypeStartCheckProcTbl[])( FIELD_OBJ_PTR );
 int (* const DATA_FldOBJ_EventTypeMoveProcTbl[])( FIELD_OBJ_PTR );
 
 //==============================================================================
-//	ƒTƒu“®ì
+//	ã‚µãƒ–å‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒTƒu“®ì‰Šú‰»
+ * ã‚µãƒ–å‹•ä½œåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -64,9 +64,9 @@ void FieldOBJ_MoveSubProcInit( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒTƒu“®ì
+ * ã‚µãƒ–å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=ƒTƒu“®ì‚É‚æ‚éˆÚ“®ƒAƒŠ
+ * @retval	int		TRUE=ã‚µãƒ–å‹•ä½œã«ã‚ˆã‚‹ç§»å‹•ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 int FieldOBJ_MoveSub( FIELD_OBJ_PTR fldobj )
@@ -83,11 +83,11 @@ int FieldOBJ_MoveSub( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒTƒu“®ìˆ—@ƒp[ƒc
+//	ã‚µãƒ–å‹•ä½œå‡¦ç†ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰Šú‰»ŠÖ”ŒÄ‚Ño‚µ
+ * åˆæœŸåŒ–é–¢æ•°å‘¼ã³å‡ºã—
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -100,9 +100,9 @@ static void MoveSub_InitProcCall( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒ`ƒFƒbƒNŠÖ”ŒÄ‚Ño‚µ
+ * ãƒã‚§ãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=ƒ`ƒFƒbƒN‚Éˆø‚Á‚©‚©‚Á‚½
+ * @retval	int		TRUE=ãƒã‚§ãƒƒã‚¯ã«å¼•ã£ã‹ã‹ã£ãŸ
  */
 //--------------------------------------------------------------
 static int MoveSub_StartCheckProcCall( FIELD_OBJ_PTR fldobj )
@@ -113,9 +113,9 @@ static int MoveSub_StartCheckProcCall( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”ŒÄ‚Ño‚µ
+ * å‹•ä½œé–¢æ•°å‘¼ã³å‡ºã—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=“®ì’†
+ * @retval	int		TRUE=å‹•ä½œä¸­
  */
 //--------------------------------------------------------------
 static int MoveSub_MoveProcCall( FIELD_OBJ_PTR fldobj )
@@ -125,13 +125,13 @@ static int MoveSub_MoveProcCall( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒTƒu“®ì—pƒp[ƒc
+//	ã‚µãƒ–å‹•ä½œç”¨ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * À•WXVŠJn‚ğƒ`ƒFƒbƒN
+ * åº§æ¨™æ›´æ–°é–‹å§‹ã‚’ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=XV
+ * @retval	int		TRUE=æ›´æ–°
  */
 //--------------------------------------------------------------
 static int MoveSub_PosUpdateStartCheck( FIELD_OBJ_PTR fldobj )
@@ -155,9 +155,9 @@ static int MoveSub_PosUpdateStartCheck( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * À•WXVI—¹‚ğƒ`ƒFƒbƒN
+ * åº§æ¨™æ›´æ–°çµ‚äº†ã‚’ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=I—¹
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static int MoveSub_PosUpdateEndCheck( FIELD_OBJ_PTR fldobj )
@@ -180,11 +180,11 @@ static int MoveSub_PosUpdateEndCheck( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒTƒu“®ì@–³‚µ
+//	ã‚µãƒ–å‹•ä½œã€€ç„¡ã—
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒTƒu“®ì‰Šú‰»@–³‚µ
+ * ã‚µãƒ–å‹•ä½œåˆæœŸåŒ–ã€€ç„¡ã—
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -195,7 +195,7 @@ static void SubMoveNon_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒTƒu“®ìƒXƒ^[ƒgƒ`ƒFƒbƒN@–³‚µ
+ * ã‚µãƒ–å‹•ä½œã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯ã€€ç„¡ã—
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	int		FALSE
  */
@@ -207,9 +207,9 @@ static int SubMoveNon_StartCheck( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒTƒu“®ì@–³‚µ
+ * ã‚µãƒ–å‹•ä½œã€€ç„¡ã—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=“®ì’†
+ * @retval	int		TRUE=å‹•ä½œä¸­
  */
 //--------------------------------------------------------------
 static int SubMoveNon_Move( FIELD_OBJ_PTR fldobj )
@@ -218,10 +218,10 @@ static int SubMoveNon_Move( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒTƒu“®ì@~‚Ü‚Á‚Ä‚«‚å‚ë‚«‚å‚ë
+//	ã‚µãƒ–å‹•ä½œã€€æ­¢ã¾ã£ã¦ãã‚‡ã‚ãã‚‡ã‚
 //==============================================================================
 //--------------------------------------------------------------
-///	SUBWORK_KYORO\‘¢‘Ì
+///	SUBWORK_KYOROæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -240,20 +240,20 @@ typedef struct
 #define SUBWORK_KYORO_SIZE (sizeof(SUBWORK_KYORO))
 
 //--------------------------------------------------------------
-///	‚«‚å‚ë‚«‚å‚ëŒü‚«
+///	ãã‚‡ã‚ãã‚‡ã‚å‘ã
 //--------------------------------------------------------------
 enum
 {
-	DIR_H_TYPE = 0,		///<‰¡•ûŒü‚«‚å‚ë‚«‚å‚ë
-	DIR_V_TYPE,			///<c•ûŒü‚«‚å‚ë‚«‚å‚ë
+	DIR_H_TYPE = 0,		///<æ¨ªæ–¹å‘ãã‚‡ã‚ãã‚‡ã‚
+	DIR_V_TYPE,			///<ç¸¦æ–¹å‘ãã‚‡ã‚ãã‚‡ã‚
 };
 
-#define KYORO_WAIT_FRAME (8)		///<‚«‚å‚ë‚«‚å‚ë‚Ì‡ŠÔ
-#define KYORO_COUNT_MAX (4)			///<‚«‚å‚ë‚«‚å‚ë‰ñ”Å‘å
+#define KYORO_WAIT_FRAME (8)		///<ãã‚‡ã‚ãã‚‡ã‚ã®åˆé–“
+#define KYORO_COUNT_MAX (4)			///<ãã‚‡ã‚ãã‚‡ã‚å›æ•°æœ€å¤§
 
 //--------------------------------------------------------------
 /**
- * ~‚Ü‚Á‚Ä‚«‚å‚ë‚«‚å‚ë@‰Šú‰»
+ * æ­¢ã¾ã£ã¦ãã‚‡ã‚ãã‚‡ã‚ã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -268,9 +268,9 @@ static void SubMoveKyoro_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ~‚Ü‚Á‚Ä‚«‚å‚ë‚«‚å‚ë@ƒXƒ^[ƒgƒ`ƒFƒbƒN
+ * æ­¢ã¾ã£ã¦ãã‚‡ã‚ãã‚‡ã‚ã€€ã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=“®ìƒAƒŠ
+ * @retval	int		TRUE=å‹•ä½œã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int SubMoveKyoro_StartCheck( FIELD_OBJ_PTR fldobj )
@@ -280,13 +280,13 @@ static int SubMoveKyoro_StartCheck( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_MoveSubProcWorkGet( fldobj );
 	
 	switch( work->check_seq_no ){
-	case 0:														//ˆÚ“®ŠJnŠÄ‹
+	case 0:														//ç§»å‹•é–‹å§‹ç›£è¦–
 		if( MoveSub_PosUpdateStartCheck(fldobj) == TRUE ){
 			work->check_seq_no++;
 		}
 		
 		break;
-	case 1:														//ˆÚ“®I—¹ŠÄ‹
+	case 1:														//ç§»å‹•çµ‚äº†ç›£è¦–
 		if( MoveSub_PosUpdateEndCheck(fldobj) == FALSE ){
 			break;
 		}
@@ -299,7 +299,7 @@ static int SubMoveKyoro_StartCheck( FIELD_OBJ_PTR fldobj )
 		}
 		
 		work->check_seq_no++;
-	case 2:														//ˆÚ“®Š®—¹ŠÄ‹
+	case 2:														//ç§»å‹•å®Œäº†ç›£è¦–
 		if( FieldOBJ_StatusBitCheck_Move(fldobj) == TRUE ){
 #ifdef DEBUG_IDO_ASSERT
 			GF_ASSERT( MoveSub_PosUpdateStartCheck(fldobj) == TRUE &&
@@ -311,7 +311,7 @@ static int SubMoveKyoro_StartCheck( FIELD_OBJ_PTR fldobj )
 		work->check_seq_no++;
 		work->walk_count = 0;
 		work->move_seq_no = 0;
-	case 3:														//ƒTƒu“®ì’†
+	case 3:														//ã‚µãƒ–å‹•ä½œä¸­
 		return( TRUE );
 	}
 	
@@ -320,9 +320,9 @@ static int SubMoveKyoro_StartCheck( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ~‚Ü‚Á‚Ä‚«‚å‚ë‚«‚å‚ë@“®ì
+ * æ­¢ã¾ã£ã¦ãã‚‡ã‚ãã‚‡ã‚ã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=“®ì’†
+ * @retval	int		TRUE=å‹•ä½œä¸­
  */
 //--------------------------------------------------------------
 static int SubMoveKyoro_Move( FIELD_OBJ_PTR fldobj )
@@ -332,7 +332,7 @@ static int SubMoveKyoro_Move( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_MoveSubProcWorkGet( fldobj );
 	
 	switch( work->move_seq_no ){
-	case 0:														//‰Šú‰»
+	case 0:														//åˆæœŸåŒ–
 		{
 			int type_tbl[4] = {DIR_H_TYPE,DIR_H_TYPE,DIR_V_TYPE,DIR_V_TYPE};
 			int dir = FieldOBJ_DirDispGet( fldobj );
@@ -340,7 +340,7 @@ static int SubMoveKyoro_Move( FIELD_OBJ_PTR fldobj )
 			work->dir_type = type_tbl[dir];
 			work->move_seq_no++;
 		}
-	case 1:														//•ûŒüƒZƒbƒg	
+	case 1:														//æ–¹å‘ã‚»ãƒƒãƒˆ	
 		{
 			int dir_tbl[2][2] = { {DIR_LEFT,DIR_RIGHT},{DIR_UP,DIR_DOWN} };
 			int dir = dir_tbl[work->dir_type][work->dir_no];
@@ -384,10 +384,10 @@ static int SubMoveKyoro_Move( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒTƒu“®ì@~‚Ü‚Á‚ÄƒNƒ‹ƒNƒ‹
+//	ã‚µãƒ–å‹•ä½œã€€æ­¢ã¾ã£ã¦ã‚¯ãƒ«ã‚¯ãƒ«
 //==============================================================================
 //--------------------------------------------------------------
-///	SUBWORK_SPIN_STOP\‘¢‘Ì
+///	SUBWORK_SPIN_STOPæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -406,20 +406,20 @@ typedef struct
 #define SUBWORK_SPIN_STOP_SIZE (sizeof(SUBWORK_SPIN_STOP))
 
 //--------------------------------------------------------------
-///	‰ñ“]•ûŒü
+///	å›è»¢æ–¹å‘
 //--------------------------------------------------------------
 enum
 {
-	SPIN_STOP_L_TYPE = 0,		///<¶‰ñ“]
-	SPIN_STOP_R_TYPE,			///<‰E‰ñ“]
+	SPIN_STOP_L_TYPE = 0,		///<å·¦å›è»¢
+	SPIN_STOP_R_TYPE,			///<å³å›è»¢
 };
 
-#define SPIN_STOP_WAIT_FRAME (8)	///<‰ñ“]‚ÌŠÔ
-#define SPIN_STOP_COUNT_MAX (4)		///<‰ñ“]Å‘å”
+#define SPIN_STOP_WAIT_FRAME (8)	///<å›è»¢ã®é–“
+#define SPIN_STOP_COUNT_MAX (4)		///<å›è»¢æœ€å¤§æ•°
 
 //--------------------------------------------------------------
 /**
- * ~‚Ü‚Á‚ÄƒNƒ‹ƒNƒ‹@‰Šú‰»
+ * æ­¢ã¾ã£ã¦ã‚¯ãƒ«ã‚¯ãƒ«ã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -445,9 +445,9 @@ static void SubMoveSpinStop_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ~‚Ü‚Á‚ÄƒNƒ‹ƒNƒ‹@ƒXƒ^[ƒgƒ`ƒFƒbƒN
+ * æ­¢ã¾ã£ã¦ã‚¯ãƒ«ã‚¯ãƒ«ã€€ã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=“®ìƒAƒŠ
+ * @retval	int		TRUE=å‹•ä½œã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int SubMoveSpinStop_StartCheck( FIELD_OBJ_PTR fldobj )
@@ -457,13 +457,13 @@ static int SubMoveSpinStop_StartCheck( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_MoveSubProcWorkGet( fldobj );
 	
 	switch( work->check_seq_no ){
-	case 0:														//ˆÚ“®ŠJnŠÄ‹
+	case 0:														//ç§»å‹•é–‹å§‹ç›£è¦–
 		if( MoveSub_PosUpdateStartCheck(fldobj) == TRUE ){
 			work->check_seq_no++;
 		}
 		
 		break;
-	case 1:														//ˆÚ“®I—¹ŠÄ‹
+	case 1:														//ç§»å‹•çµ‚äº†ç›£è¦–
 		if( MoveSub_PosUpdateEndCheck(fldobj) == FALSE ){
 			break;
 		}
@@ -476,11 +476,11 @@ static int SubMoveSpinStop_StartCheck( FIELD_OBJ_PTR fldobj )
 		}
 		
 		work->check_seq_no++;
-	case 2:														//ˆÚ“®Š®—¹ŠÄ‹
+	case 2:														//ç§»å‹•å®Œäº†ç›£è¦–
 		if( FieldOBJ_StatusBitCheck_Move(fldobj) == TRUE ){
 #ifdef DEBUG_IDO_ASSERT
 			GF_ASSERT( MoveSub_PosUpdateStartCheck(fldobj) == TRUE &&
-				"SubMoveKyoro_StartCheck()‘ÎÛ‚ÌˆÚ“®•û–@‚ªˆÙí" );
+				"SubMoveKyoro_StartCheck()å¯¾è±¡ã®ç§»å‹•æ–¹æ³•ãŒç•°å¸¸" );
 #endif
 			break;
 		}
@@ -488,7 +488,7 @@ static int SubMoveSpinStop_StartCheck( FIELD_OBJ_PTR fldobj )
 		work->check_seq_no++;
 		work->walk_count = 0;
 		work->move_seq_no = 0;
-	case 3:														//ƒTƒu“®ì’†
+	case 3:														//ã‚µãƒ–å‹•ä½œä¸­
 		return( TRUE );
 	}
 	
@@ -497,9 +497,9 @@ static int SubMoveSpinStop_StartCheck( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ~‚Ü‚Á‚ÄƒNƒ‹ƒNƒ‹@“®ì
+ * æ­¢ã¾ã£ã¦ã‚¯ãƒ«ã‚¯ãƒ«ã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=“®ì’†
+ * @retval	int		TRUE=å‹•ä½œä¸­
  */
 //--------------------------------------------------------------
 static int SubMoveSpinStop_Move( FIELD_OBJ_PTR fldobj )
@@ -511,18 +511,18 @@ static int SubMoveSpinStop_Move( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_MoveSubProcWorkGet( fldobj );
 	
 	switch( work->move_seq_no ){
-	case 0:														//‰Šú‰»
+	case 0:														//åˆæœŸåŒ–
 		{
 			int i,dir = FieldOBJ_DirDispGet( fldobj );
 			
 			for( i = 0; (i < DIR_4_MAX && dir != spin_tbl[work->dir_type][i]); i++ ){}
-			GF_ASSERT( i < DIR_4_MAX && "SubMoveKyoro_Move()•ûŒüˆÙí" );
+			GF_ASSERT( i < DIR_4_MAX && "SubMoveKyoro_Move()æ–¹å‘ç•°å¸¸" );
 			
 			work->origin_dir = dir;
-			work->dir_no = (i + 1) % SPIN_STOP_COUNT_MAX;		//+1=1‚Âæ
+			work->dir_no = (i + 1) % SPIN_STOP_COUNT_MAX;		//+1=1ã¤å…ˆ
 			work->move_seq_no++;
 		}
-	case 1:														//•ûŒüƒZƒbƒg	
+	case 1:														//æ–¹å‘ã‚»ãƒƒãƒˆ	
 		{
 			int dir = spin_tbl[work->dir_type][work->dir_no];
 			int code = FieldOBJ_AcmdCodeDirChange( dir, AC_DIR_U );
@@ -568,7 +568,7 @@ static int SubMoveSpinStop_Move( FIELD_OBJ_PTR fldobj )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒCƒxƒ“ƒgƒ^ƒCƒv•Ê‰Šú‰»ŠÖ” EV_TYPE_NORMAL“™‚Ì’l‚Éˆê’v
+//	ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—åˆ¥åˆæœŸåŒ–é–¢æ•° EV_TYPE_NORMALç­‰ã®å€¤ã«ä¸€è‡´
 //--------------------------------------------------------------
 static void (* const DATA_FldOBJ_EventTypeInitProcTbl[])( FIELD_OBJ_PTR ) =
 {
@@ -588,7 +588,7 @@ static void (* const DATA_FldOBJ_EventTypeInitProcTbl[])( FIELD_OBJ_PTR ) =
 };
 
 //--------------------------------------------------------------
-//	ƒCƒxƒ“ƒgƒ^ƒCƒv•ÊƒXƒ^[ƒgƒ`ƒFƒbƒNŠÖ”@EV_TYPE_NORMAL“™‚Ì’l‚Éˆê’v
+//	ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—åˆ¥ã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯é–¢æ•°ã€€EV_TYPE_NORMALç­‰ã®å€¤ã«ä¸€è‡´
 //--------------------------------------------------------------
 static int (* const DATA_FldOBJ_EventTypeStartCheckProcTbl[])( FIELD_OBJ_PTR ) =
 {
@@ -608,7 +608,7 @@ static int (* const DATA_FldOBJ_EventTypeStartCheckProcTbl[])( FIELD_OBJ_PTR ) =
 };
 
 //--------------------------------------------------------------
-//	ƒCƒxƒ“ƒgƒ^ƒCƒv•Ê“®ìŠÖ” EV_TYPE_NORMAL“™‚Ì’l‚Éˆê’v
+//	ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—åˆ¥å‹•ä½œé–¢æ•° EV_TYPE_NORMALç­‰ã®å€¤ã«ä¸€è‡´
 //--------------------------------------------------------------
 static int (* const DATA_FldOBJ_EventTypeMoveProcTbl[])( FIELD_OBJ_PTR ) =
 {

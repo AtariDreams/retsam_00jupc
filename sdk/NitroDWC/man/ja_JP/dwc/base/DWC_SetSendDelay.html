@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWC_SetSendDelay</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWC_SetSendDelay</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -21,54 +21,54 @@ BOOL DWC_SetSendDelay( u16 delay, u8 aid )
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
 		  <A href="DWC_SendReliable.html">DWC_SendReliable</A> / 
 		  <A href="DWC_SendReliableBitmap.html">DWC_SendReliableBitmap</A> / 
 		  <A href="DWC_SendUnreliable.html">DWC_SendUnreliable</A> / 
 		  <A href="DWC_SendUnreliableBitmap.html">DWC_SendUnreliableBitmap</A>
-		  �֐��ɂ��<BR>�f�[�^���M��x�������鎞�Ԃ�ݒ肵�܂��B
+		  関数による<BR>データ送信を遅延させる時間を設定します。
 		</P>
 		<P>
-		  �f�[�^�̑��M�x���́A�f�[�^���M�̓x�Ƀo�b�t�@��Alloc���A�w�莞�ԑ҂�����Ƀf�[�^�̑��M���s�����Ƃɂ���Ď������Ă��܂��B
-		  ���̂��߁A�A�v���P�[�V�������S�Ẵf�[�^�𑗐M���I��������ŃR�l�N�V������ؒf����ƁA�o�b�t�@�őҋ@���Ă����f�[�^�����M���ꂸ�ɔj������Ă��܂��܂��B
+		  データの送信遅延は、データ送信の度にバッファをAllocし、指定時間待った後にデータの送信を行うことによって実現しています。
+		  そのため、アプリケーションが全てのデータを送信し終えたつもりでコネクションを切断すると、バッファで待機していたデータが送信されずに破棄されてしまいます。
 		</P>
 		<P>
-		  ���l�̒x���̃f�o�b�O�́A��M�x���̐ݒ�ɂ���čs�����Ƃ��ł���̂ŁA<A href="DWC_SetRecvDelay.html">DWC_SetRecvDelay</A>�֐����g�p����悤�ɂ��Ă��������B
+		  同様の遅延のデバッグは、受信遅延の設定によって行うことができるので、<A href="DWC_SetRecvDelay.html">DWC_SetRecvDelay</A>関数を使用するようにしてください。
 		<P>
-		  ����̓f�o�b�O�p�̊֐��ł��B
-		  �ŏIROM�ŁiFINALROM�j���C�u�����ł͉���������s���܂���B
+		  これはデバッグ用の関数です。
+		  最終ROM版（FINALROM）ライブラリでは何も動作を行いません。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>delay</CODE></STRONG></EM></TD>
-					<TD width="75%">�x�����ԁi�P�ʁFmsec�j</TD>
+					<TD width="75%">遅延時間（単位：msec）</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>aid</CODE></STRONG></EM></TD>
-					<TD>���M���AID</TD>
+					<TD>送信先のAID</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<TABLE border="1">
 		<TBODY>
 			<TR>
 				<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
-				<TD width="75%">�x�����Ԑݒ萬��</TD>
+				<TD width="75%">遅延時間設定成功</TD>
 			</TR>
 			<TR>
 				<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
-				<TD><A href="FriendsMatch.html">FriendsMatch���C�u����</A>�񓮍쒆�A������AID�w��A�������̓������m�ۂ̎��s�ɂ��ݒ莸�s</TD>
+				<TD><A href="FriendsMatch.html">FriendsMatchライブラリ</A>非動作中、無効なAID指定、もしくはメモリ確保の失敗により設定失敗</TD>
 			</TR>
 		</TBODY>
 		</TABLE>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<CODE>
 				<A href="DWC_SetRecvDelay.html">DWC_SetRecvDelay</A>,
@@ -79,12 +79,12 @@ BOOL DWC_SetSendDelay( u16 delay, u8 aid )
 			</CODE>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2006/02/21 �֐������ȗ������L�q����悤�C��<BR>
-			2006/01/18 �Ԃ�l��BOOL�ɕύX�������ƂɑΉ�<BR>
-			2005/12/16 �{�֐��̎g�p�𐄏����Ȃ��|��ǋL<BR>
-			2005/07/22 ����<BR>
+			2006/02/21 関数名を省略せず記述するよう修正<BR>
+			2006/01/18 返り値をBOOLに変更したことに対応<BR>
+			2005/12/16 本関数の使用を推奨しない旨を追記<BR>
+			2005/07/22 初版<BR>
 		</P>
 
 	</BODY>

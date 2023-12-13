@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_mp.h
- * @brief	�ʐM�̐ڑ����Ǘ����Ă���N���X  comm_system.c ���番��
+ * @brief	通信の接続を管理しているクラス  comm_system.c から分離
  * @author	Katsumi Ohno
  * @date    2006.01.25
  */
@@ -11,125 +11,125 @@
 #define _COMM_MP_H_
 
 
-#include "gflib/tcb.h" //TCB_PTR�̂���
-#include "savedata/mystatus.h" //MYSTATUS�̂���
+#include "gflib/tcb.h" //TCB_PTRのため
+#include "savedata/mystatus.h" //MYSTATUSのため
 
 //==============================================================================
-// extern�錾
+// extern宣言
 //==============================================================================
 
-/// ������
+/// 初期化
 extern void CommMPInitialize(MYSTATUS* pMyStatus, BOOL blink);
-/// �ʐM���Ă��邩�ǂ���
+/// 通信しているかどうか
 extern BOOL CommMPIsConnect(void);
 
-//�e�@�̏����������܂��B�Ȃ��ɂ���q�@��҂��܂�
+//親機の初期化をします。つなぎにくる子機を待ちます
 extern BOOL CommMPParentInit(BOOL bAlloc, BOOL bTGIDChange, BOOL bEntry);
-// �q�@�̏����������܂��B�����ɐe�@��T���ɍs���܂�
+// 子機の初期化をします。同時に親機を探しに行きます
 extern BOOL CommMPChildInit(BOOL bAlloc, BOOL bBconInit);
-/// �ʐM�I������
+/// 通信終了処理
 extern BOOL CommMPFinalize(void);
-/// �ʐM���Ă��Ȃ������̂܂ܐ��ޏ���
+/// 通信していないがそのまま潜む処理
 extern void CommMPStealth(BOOL bStalth);
-// ���������e�@�̐���Ԃ��܂�
+// 発見した親機の数を返します
 extern int CommMPGetParentCount(void);
-// �e�@�̃X�L�������X�g�ɍX�V���������ꍇTRUE
+// 親機のスキャンリストに更新があった場合TRUE
 extern BOOL CommMPIsScanListChange(void);
-// �e�@���E���t���O�����Z�b�g
+// 親機を拾うフラグをリセット
 extern void CommMPResetScanChangeFlag(void);
-// �e�@�����݂Ȃ����Ă���䐔��Ԃ�
+// 親機が現在つながっている台数を返す
 extern int CommMPGetParentConnectionNum(int index);
-// �����Ɍq���ł����l�������炻��index��Ԃ��܂�
+// すぐに繋いでいい人がいたらそのindexを返します
 extern int CommMPGetFastConnectIndex(void);
-// ���̒i�K�Ōq���ł����l�������炻��index��Ԃ��܂�
+// 次の段階で繋いでいい人がいたらそのindexを返します
 extern int CommMPGetNextConnectIndex(void);
-// �e�@�̖��O��MYSTATUS�ŕԂ��܂��B
+// 親機の名前をMYSTATUSで返します。
 extern void CommMPGetParentName(int index, MYSTATUS* pMyStatus);
-// �e�@��ID��Ԃ��܂�
+// 親機のIDを返します
 extern u32 CommMPGetPokeID(int index);
-// �q�@�@MP��ԂŐڑ�-- CC_CONNECT_STARTING���A���Ă����琬���ł�
+// 子機　MP状態で接続-- CC_CONNECT_STARTINGが帰ってきたら成功です
 extern int CommMPChildNameAndIDConnect(STRBUF* pStrBuff, u32 pokeID);
-// �q�@�@�f�[�^�V�F�A�����O��ԂŐڑ�-- TRUE���A���Ă����琬���ł�
+// 子機　データシェアリング状態で接続-- TRUEが帰ってきたら成功です
 extern BOOL CommMPChildIndexConnect(u16 index);
-// �q�@ �e�@��BCON�̃^�C���A�E�g���Ď����܂�
+// 子機 親機のBCONのタイムアウトを監視します
 extern void CommMPParentBconCheck(void);
 
-/// �ʐM�؂�ւ����s���i�e�q���]�ɕK�v�ȏ����j
+/// 通信切り替えを行う（親子反転に必要な処理）
 extern BOOL CommMPSwitchParentChild(void);
-/// �ʐM�ؒf���[�h�ɓ��������ǂ���
+/// 通信切断モードに入ったかどうか
 extern BOOL CommMPIsConnectStalth(void);
-/// �q�@���Ȃ��������ǂ������m�F
+/// 子機がつながったかどうかを確認
 extern BOOL CommMPIsChildsConnecting(void);
-/// �e�@������ؒf�����ꍇTRUE
+/// 親機が回線切断した場合TRUE
 extern BOOL CommMPParentDisconnect(void);
-/// VRAMD�̃C�N�j���[�������̂Ă�
+/// VRAMDのイクニューモンを捨てる
 extern void CommVRAMDFinalize(void);
-/// VRAMD�̃C�N�j���[������ݒ�J�n���Ă���
+/// VRAMDのイクニューモンを設定開始していた
 extern BOOL CommIsVRAMDStart(void);
-/// �ʐM�G���[���ǂ���
+/// 通信エラーかどうか
 extern BOOL CommMPIsError(void);
-/// ������������ł��邩�ǂ���
+/// 初期化がすんでいるかどうか
 extern BOOL CommMPIsInitialize(void);
-/// �q�@�����Ȃ������G���[�ɂ������ꍇ�Z�b�g����
+/// 子機がいない事をエラーにしたい場合セットする
 extern void CommMPSetNoChildError(BOOL bOn);
-/// �N�������������ɃG���[�ɂ������ꍇ�Z�b�g����
+/// 誰かが落ちた時にエラーにしたい場合セットする
 extern void CommMPSetDisconnectOtherError(BOOL bOn);
 
-/// �r�[�R���f�[�^�𓾂�  �폜�\��
+/// ビーコンデータを得る  削除予定
 extern WMBssDesc* CommMPGetWMBssDesc(int index);
-/// �r�[�R���̃f�[�^���N���A����
+/// ビーコンのデータをクリアする
 extern void ChildBconDataInit(void);
-/// GF�r�[�R���f�[�^�𓾂�
+/// GFビーコンデータを得る
 extern _GF_BSS_DATA_INFO* CommMPGetGFBss(int index);
-/// �r�[�R���f�[�^������  �폜�\��
+/// ビーコンデータを消す  削除予定
 extern void CommMPResetWMBssDesc(int index);
-/// �r�[�R���f�[�^������
+/// ビーコンデータを消す
 extern void CommMPResetGFBss(int index);
 
 
-///������BCON��PMS�f�[�^������������ ���̊֐���CommMPFlashMyBss���ĂԂ��ƂŔ��f�����
+///自分のBCONのPMSデータを書き換える この関数はCommMPFlashMyBssを呼ぶことで反映される
 extern void CommMPSetMyPMS(PMS_DATA* pPMS);
-///������BCON�̃��M�����[�V�����f�[�^������������ ���̊֐���CommMPFlashMyBss���ĂԂ��ƂŔ��f�����
+///自分のBCONのレギュレーションデータを書き換える この関数はCommMPFlashMyBssを呼ぶことで反映される
 extern void CommMPSetMyRegulation(void* pRegulation);
-///�r�[�R���f�[�^�Ɍ��݂̏󋵂𔽉f������
+///ビーコンデータに現在の状況を反映させる
 extern void CommMPFlashMyBss(void);
 
-/// MYSTATUS�𓾂�
+/// MYSTATUSを得る
 extern MYSTATUS* CommMPGetMyStatus(void);
-/// BCON���Ɋ܂܂��MYSTATUS��Ԃ�
+/// BCON内に含まれるMYSTATUSを返す
 extern MYSTATUS* CommMPGetBconMyStatus(int index);
 
-/// �����ؒf���[�h�ɓ��������ǂ�����Ԃ�
+/// 自動切断モードに入ったかどうかを返す
 extern BOOL CommMPIsAutoExit(void);
-/// �����ؒf���[�hON
+/// 自動切断モードON
 extern void CommMPSetAutoExit(void);
-/// WM�ʐM���A�C�h����Ԃɂ��邩�ǂ���
+/// WM通信がアイドル状態にあるかどうか
 extern BOOL CommMPIsStateIdle(void);
 
 extern void CommMPSetBackupMacAddress(u8* pMac, int netID);
-/// �T�[�r�X�ԍ����擾����
+/// サービス番号を取得する
 extern int CommMPGetServiceNo(void);
-/// ���C�t�^�C�������������� �܂��͌��ɖ߂�
+/// ライフタイムを小さくする または元に戻す
 extern void CommMPSetLifeTime(BOOL bMinimum);
 
-/// �C�ӂ̃T�[�r�X�̗��p�Ґ���Ԃ��܂�
+/// 任意のサービスの利用者数を返します
 extern int CommMPGetServiceNumber(int serviceNo);
-// �v���Z�X����
+// プロセス処理
 extern void CommMpProcess(u16 bitmap);
-// �r�[�R���𑗂������ǂ�������
+// ビーコンを送ったかどうか検査
 extern BOOL CommMPIsParentBeaconSent(void);
 
 extern BOOL CommMPIsChildStateScan(void);
 
-//   �r�[�R���f�[�^�Ɏ��R�Ƀf�[�^���ڂ��܂�
+//   ビーコンデータに自由にデータを載せます
 extern void CommMPSetBeaconTempData(void* pData);
-//   �r�[�R���f�[�^����f�[�^�������o���܂�
+//   ビーコンデータからデータを引き出します
 extern const void* CommMPGetBeaconTempData(int index);
 
-// �֘A�Q�[���̃r�[�R�����W
+// 関連ゲームのビーコン収集
 extern BOOL CommMPPartyGameScanChildInit(void);
 
-// �ڑ����悤�Ƃ��Ă���`�����l���A�ڑ������`�����l���𓾂�
+// 接続しようとしているチャンネル、接続したチャンネルを得る
 extern int CommMPGetChannel(void);
 
 #ifdef PM_DEBUG

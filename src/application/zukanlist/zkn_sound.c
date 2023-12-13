@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_sound.c
- *	@brief		‹ƒ‚«ºƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+ *	@brief		æ³£ãå£°ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  *	@author		tomoya takahashi
  *	@data		2006.01.20
  *
@@ -38,34 +38,34 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_SOUND_EVENT_NUM ( 0 )	// ƒCƒxƒ“ƒg”
-//#define ZKN_SOUND_EVENT_CHANGE_BIG ( 0x1 << 0 )	// ‘å‚«‚³‚­‚ç‚×‚Ö
+#define ZKN_SOUND_EVENT_NUM ( 0 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
+//#define ZKN_SOUND_EVENT_CHANGE_BIG ( 0x1 << 0 )	// å¤§ãã•ãã‚‰ã¹ã¸
 
 #define ZKN_SOUND_OAM_BG_PRI	(0)
 #define ZKN_SOUND_OAM_PRI	(17)
 
 //-------------------------------------
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_SOUND_SEQINIT_ALLOC,
@@ -83,7 +83,7 @@ enum{
 
 
 
-// ”gŒ`ƒf[ƒ^•`‰æ
+// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿æç”»
 #define ZKN_SOUND_DRAW_BMP_ONE_SIZE_X	( 1 )
 #define ZKN_SOUND_DRAW_BMP_ONE_SIZE_Y	( 1 )
 #define ZKN_SOUND_DRAW_BMP_Y_MAX		( 32 )
@@ -92,13 +92,13 @@ enum{
 #define ZKN_SOUND_DRAW_BMP_PL			(6)
 
 
-// ”gŒ`ƒf[ƒ^ƒXƒNƒ[ƒ‹
+// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 #define ZKN_SOUND_SCRL_BMP_SPEED	( 4 )
 
 
-// –_ƒOƒ‰ƒt
-#define ZKN_SOUND_GRAPH_NUM			( 9 )		// ƒOƒ‰ƒt‚Ì‰¡—v‘f”
-#define ZKN_SOUND_GRAPH_ZANZOU_NUM	( 9 )		// c‘œ‚Ìc—v‘f”
+// æ£’ã‚°ãƒ©ãƒ•
+#define ZKN_SOUND_GRAPH_NUM			( 9 )		// ã‚°ãƒ©ãƒ•ã®æ¨ªè¦ç´ æ•°
+#define ZKN_SOUND_GRAPH_ZANZOU_NUM	( 9 )		// æ®‹åƒã®ç¸¦è¦ç´ æ•°
 #define ZKN_SOUND_GRAPH_MAT_DEF_X	( 112 )
 #define ZKN_SOUND_GRAPH_MAT_DEF_Y	( 96 )
 #define ZKN_SOUND_GRAPH_MAT_OFS_X	( 16 )
@@ -106,47 +106,47 @@ enum{
 #define ZKN_SOUND_GRAPH_DES_COUNT	( 2 )
 #define ZKN_SOUND_GRAPH_DOWN_COUNT	( 16 )
 
-// ƒtƒF[ƒh—p
+// ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 #define ZKN_SOUND_FADE_PLANEMSK	( GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD )
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	‹ƒ‚«º‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	æ³£ãå£°ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	int*				p_event_key;		// ƒCƒxƒ“ƒgƒL[
-	ZKN_GLB_DATA*		p_glb;				// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	int*				p_event_key;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
+	ZKN_GLB_DATA*		p_glb;				// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
-	// ƒƒCƒ“ƒRƒ‚ƒ“ƒOƒ[ƒoƒ‹
-	ZKN_APL_DATA*	p_main_common;	// ƒAƒvƒŠƒf[ƒ^
+	// ãƒ¡ã‚¤ãƒ³ã‚³ãƒ¢ãƒ³ã‚°ãƒ­ãƒ¼ãƒãƒ«
+	ZKN_APL_DATA*	p_main_common;	// ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 
-	// ƒTƒuƒTƒEƒ“ƒhƒAƒvƒŠƒf[ƒ^
-	ZKN_APL_DATA*	p_sub_sound;	// ƒAƒvƒŠƒf[ƒ^
+	// ã‚µãƒ–ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+	ZKN_APL_DATA*	p_sub_sound;	// ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 } ZKN_SOUND_GLB;
 
 //-------------------------------------
-//	‹ƒ‚«º‰æ–Ê@•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	æ³£ãå£°ç”»é¢ã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DRAWDATA*	p_drawglb;			// •`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DRAWDATA*	p_drawglb;			// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
 	int pokegra_move_x;
 	int pokegra_move_y;
 
-	int fade_mode;		// ƒtƒF[ƒhƒ‚[ƒh
-	int fade_sync;		// ƒtƒF[ƒhƒVƒ“ƒN”
+	int fade_mode;		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+	int fade_sync;		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ãƒ³ã‚¯æ•°
 } ZKN_SOUND_DRAWGLB;
 
 
 //-------------------------------------
-//	‹ƒ‚«º‰æ–Ê@“à•”ƒ[ƒN
+//	æ³£ãå£°ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ‰¹ºƒf[ƒ^
+	// éŸ³å£°ãƒ‡ãƒ¼ã‚¿
 	const SNDWaveData* cp_snd_data;
 	int tick;
 	int data_num;
@@ -155,26 +155,26 @@ typedef struct {
 } ZKN_SOUND_WORK;
 
 //-------------------------------------
-//	ƒOƒ‰ƒtc‘œƒf[ƒ^
+//	ã‚°ãƒ©ãƒ•æ®‹åƒãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR act;
-	int dess_count;		// ”ñ•\¦ƒJƒEƒ“ƒ^
+	int dess_count;		// éè¡¨ç¤ºã‚«ã‚¦ãƒ³ã‚¿
 } ZKN_GRAPH_ZANZOU;
 
 //-------------------------------------
-//	ƒOƒ‰ƒtæ“ª
+//	ã‚°ãƒ©ãƒ•å…ˆé ­
 //=====================================
 typedef struct {
 	CLACT_WORK_PTR act;
-	int level;			// ¡‚¢‚éƒŒƒxƒ‹
-	int down_count;	// —‚¿‚é‚Ü‚Å‚ÌƒJƒEƒ“ƒ^
+	int level;			// ä»Šã„ã‚‹ãƒ¬ãƒ™ãƒ«
+	int down_count;	// è½ã¡ã‚‹ã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
 
 } ZKNGRAPH_TOP;
 
 
 //-------------------------------------
-//	ƒOƒ‰ƒt‚P—v‘fƒf[ƒ^
+//	ã‚°ãƒ©ãƒ•ï¼‘è¦ç´ ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	ZKN_GRAPH_ZANZOU zanzou[ ZKN_SOUND_GRAPH_ZANZOU_NUM ];
@@ -183,17 +183,17 @@ typedef struct {
 
 
 //-------------------------------------
-//	‹ƒ‚«º‰æ–Ê@“à•”ƒ[ƒN
+//	æ³£ãå£°ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒ|ƒPƒOƒ‰ƒtƒF[ƒh—p“®ìƒ[ƒN
+	// ãƒã‚±ã‚°ãƒ©ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨å‹•ä½œãƒ¯ãƒ¼ã‚¯
 	ZKN_UTIL_MOVE_WORK pokegra_move;
 
-	// ƒOƒ‰ƒtƒf[ƒ^
+	// ã‚°ãƒ©ãƒ•ãƒ‡ãƒ¼ã‚¿
 	ZKN_GRAPH_ONE_DATA snd_graph_act[ ZKN_SOUND_GRAPH_NUM ];
 	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];
 
-	// BMPƒXƒNƒ[ƒ‹§Œä
+	// BMPã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åˆ¶å¾¡
 	int scrl_num;
 	int last_y;
 	int last_tick;
@@ -202,12 +202,12 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_SOUND_GLB* MakeSoundGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -223,7 +223,7 @@ static int SoundEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknSoundProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -234,11 +234,11 @@ static int ZknSoundProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 static int ZknSoundProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
 
-// ƒ|ƒPƒOƒ‰
+// ãƒã‚±ã‚°ãƒ©
 static void ZknSoundPokeGraOn( ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb );
 static void ZknSoundPokeGraOff( ZKN_SOUND_DRAWGLB* p_drawglb );
 
-// ƒtƒF[ƒhˆ—
+// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknSoundOamFadeInit( ZKN_SOUND_DRAW* p_draw );
 static void ZknSoundOamFadeDelete( ZKN_SOUND_DRAW* p_draw );
 static void ZknSoundFadeInit( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb, BOOL fadein_out );
@@ -246,7 +246,7 @@ static BOOL ZknSoundFadeMain( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawg
 static void ZknSoundFadeOtherInit( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb, BOOL fadein_out );
 static BOOL ZknSoundFadeOtherMain( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb, BOOL fadein_out );
 
-// Resource“Ç‚İ‚İ
+// Resourceèª­ã¿è¾¼ã¿
 static void ZknSoundLoadRes( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb, const ZKN_SOUND_WORK* cp_datawork, int heap );
 static void ZknSoundDeleteRes( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawglb );
 static void ZknSoundSetUpBg( ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb, int heap );
@@ -268,7 +268,7 @@ static void ZknSoundBmpDraw( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawgl
 static void ZknSoundBmpDammyDraw( ZKN_SOUND_DRAWGLB* p_drawglb, int start, int end, int x, int def_y, int* p_set_y );
 static void ZknSoundBmpDrawOne( GF_BGL_BMPWIN* p_bmp, u8 data, int x, int def_y, int* p_set_y );
 
-// –_ƒOƒ‰ƒt
+// æ£’ã‚°ãƒ©ãƒ•
 static void ZknSoundGraphLevelSet( ZKN_SOUND_WORK* p_work, ZKN_SOUND_GLB* p_glb );
 static void ZknSoundGraphInit( ZKN_SOUND_DRAW* p_draw );
 static void ZknSoundGraphMove( ZKN_SOUND_DRAW* p_draw, const ZKN_SOUND_WORK* cp_work );
@@ -280,11 +280,11 @@ static void ZknSoundGraphSetLevelMatrixTop( CLACT_WORK_PTR act, int level );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ƒ‚«º@ƒAƒvƒŠì¬
+ *	@brief	æ³£ãå£°ã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		g—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -317,9 +317,9 @@ void ZKN_SoundAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	ƒTƒu‰æ–Ê@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã‚µãƒ–ç”»é¢ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -335,11 +335,11 @@ void ZKN_SoundAplDelete( ZKN_APL_DATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒOƒ‰ƒtƒF[ƒhƒAƒEƒgæİ’è
+ *	@brief	ãƒã‚±ã‚°ãƒ©ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå…ˆè¨­å®š
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	x		‚wÀ•W
- *	@param	y		‚xÀ•W
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	x		ï¼¸åº§æ¨™
+ *	@param	y		ï¼¹åº§æ¨™
  *
  *	@return	none
  */
@@ -354,10 +354,10 @@ void ZKN_SoundPokeGraFadeOutSet( ZKN_APL_DATA* p_data, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒ‚[ƒhİ’è
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰è¨­å®š
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	fade_mode	ƒtƒF[ƒhƒ‚[ƒh
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	fade_mode	ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
  *
  *	@return	none
  */
@@ -371,10 +371,10 @@ void ZKN_SoundFadeModeSet( ZKN_APL_DATA* p_data, int fade_mode )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒVƒ“ƒN”İ’è
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ãƒ³ã‚¯æ•°è¨­å®š
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	fade_mode	ƒtƒF[ƒhƒVƒ“ƒN”
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	fade_mode	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ãƒ³ã‚¯æ•°
  *
  *	@return	none
  */
@@ -389,18 +389,18 @@ void ZKN_SoundFadeModeSync( ZKN_APL_DATA* p_data, int fade_sync )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ƒ‚«º@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æ³£ãå£°ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -414,16 +414,16 @@ static ZKN_SOUND_GLB* MakeSoundGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_SOUND_GLB) );
 
-	// main‰æ–Ê‚©‚ç‚ÌƒCƒxƒ“ƒgƒL[
+	// mainç”»é¢ã‹ã‚‰ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrMain( zkn_sys ); 
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 	
-	// ‚ß‚¢‚ñƒOƒ[ƒoƒ‹ƒAƒvƒŠƒf[ƒ^æ“¾
+	// ã‚ã„ã‚“ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_glb->p_main_common = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_COMMON );
 
-	// ƒTƒu–Â‚«ºƒOƒ[ƒoƒ‹ƒAƒvƒŠƒf[ƒ^æ“¾
+	// ã‚µãƒ–é³´ãå£°ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_glb->p_sub_sound = ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_SOUND );
 
 	return p_glb;
@@ -432,12 +432,12 @@ static ZKN_SOUND_GLB* MakeSoundGlb( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ƒ‚«º@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æ³£ãå£°ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -451,7 +451,7 @@ static ZKN_SOUND_DRAWGLB* MakeSoundDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_SOUND_DRAWGLB) );
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 	return p_glb;
@@ -460,12 +460,12 @@ static ZKN_SOUND_DRAWGLB* MakeSoundDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ƒ‚«º@ƒCƒxƒ“ƒgì¬
+ *	@brief	æ³£ãå£°ã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		g—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -475,7 +475,7 @@ static ZKN_EVENT_DATA* MakeSoundEvent( int heap, ZKN_SYS_PTR zkn_sys )
 	ZKN_EVENT_DATA* p_event_tbl;
 	int event_num = SoundEventDataNumGet();
 
-	// ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_event_tbl = sys_AllocMemory( heap, sizeof(ZKN_EVENT_DATA) * event_num );
 	GF_ASSERT( p_event_tbl );
 	memset( p_event_tbl, 0, sizeof(ZKN_EVENT_DATA) * event_num );
@@ -489,9 +489,9 @@ static ZKN_EVENT_DATA* MakeSoundEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ƒ‚«º@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	æ³£ãå£°ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -507,9 +507,9 @@ static void DeleteSoundGlb( ZKN_SOUND_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ƒ‚«º@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	æ³£ãå£°ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -525,9 +525,9 @@ static void DeleteSoundDrawGlb( ZKN_SOUND_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ƒ‚«º@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	æ³£ãå£°ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -547,11 +547,11 @@ static void DeleteSoundEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ƒ‚«ºƒAƒvƒŠ@ƒCƒxƒ“ƒg”æ“¾
+ *	@brief	æ³£ãå£°ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	‹ƒ‚«ºƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	æ³£ãå£°ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -564,19 +564,19 @@ static int SoundEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -587,20 +587,20 @@ static int ZknSoundProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 	ZKN_SOUND_WORK* p_work;
 	int mons_no = ZKN_GLBDATA_PokeMonsNoGet( p_glb->p_glb );
 	
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_SOUND_WORK) );
 	GF_ASSERT( p_work );
 	memset( p_work, 0, sizeof(ZKN_SOUND_WORK) );
 	p_dodata->p_work = p_work;
 	
 
-	// ƒTƒEƒ“ƒhƒf[ƒ^æ“¾
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_work->cp_snd_data = Snd_ZukanWaveDataSet( mons_no );
 
-	// ƒf[ƒ^”z—ñ”æ“¾
+	// ãƒ‡ãƒ¼ã‚¿é…åˆ—æ•°å–å¾—
 	p_work->data_num = Snd_WaveDataSampleSizeGet( p_work->cp_snd_data );
 
-	// ƒ`ƒbƒN”æ“¾
+	// ãƒãƒƒã‚¯æ•°å–å¾—
 	ZknSoundGetTich( p_work, p_glb );
 	
 	return ZKN_PROC_TRUE;
@@ -608,14 +608,14 @@ static int ZknSoundProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -626,7 +626,7 @@ static int ZknSoundProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 	ZKN_SOUND_WORK*	p_work = p_dodata->p_work;
 	
 	
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -636,10 +636,10 @@ static int ZknSoundProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 		return ZKN_PROC_FALSE;
 	}
 
-	// ƒ`ƒbƒN”‚ğæ“¾
+	// ãƒãƒƒã‚¯æ•°ã‚’å–å¾—
 	ZknSoundGetTich( p_work, p_glb );
 
-	// ”gŒ`ƒŒƒxƒ‹İ’è
+	// æ³¢å½¢ãƒ¬ãƒ™ãƒ«è¨­å®š
 	ZknSoundGraphLevelSet( p_work, p_glb );
 
 	return ZKN_PROC_FALSE;
@@ -647,14 +647,14 @@ static int ZknSoundProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -672,17 +672,17 @@ static int ZknSoundProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -706,15 +706,15 @@ static int ZknSoundProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 		ZknSoundLoadRes( p_drawwork, p_drawglb, cp_dataglb, cp_datawork, p_drawdata->heap );
 
 		
-		// ƒtƒF[ƒh‰Šú‰»
+		// ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
 		if( p_drawglb->fade_mode == ZKN_SOUND_FADE_MODE_MY ){
 			ZknSoundFadeInit( p_drawwork, p_drawglb, cp_dataglb, TRUE );
 		}else{
 			ZknSoundFadeOtherInit( p_drawwork, p_drawglb, cp_dataglb, TRUE );
 		}
 
-		// ‰¹‚ÌƒtƒF[ƒh
-		Snd_BgmFadeOut( 0, BGM_FADE_ZUKAN_NAKIGOE_TIME );		//ƒtƒF[ƒhƒAƒEƒg
+		// éŸ³ã®ãƒ•ã‚§ãƒ¼ãƒ‰
+		Snd_BgmFadeOut( 0, BGM_FADE_ZUKAN_NAKIGOE_TIME );		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		
 		p_drawdata->seq++;
 		break;
@@ -727,7 +727,7 @@ static int ZknSoundProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 		}
 
 		if( (check == TRUE) && ( Snd_FadeCheck() == 0 ) ){
-			Snd_PlayerPause( PLAYER_FIELD, TRUE );		//ƒtƒB[ƒ‹ƒhBGMƒ|[ƒY
+			Snd_PlayerPause( PLAYER_FIELD, TRUE );		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒãƒ¼ã‚º
 			p_drawdata->seq++;
 		}
 		break;
@@ -741,17 +741,17 @@ static int ZknSoundProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -763,10 +763,10 @@ static int ZknSoundProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 	ZKN_SOUND_DRAWGLB* p_drawglb = p_glbdraw;
 	ZKN_SOUND_DRAW* p_drawwork = p_drawdata->p_work;
 
-	// ”gŒ`ƒf[ƒ^“®ì
+	// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿å‹•ä½œ
 	ZknSoundBmpScroll( p_drawwork, p_drawglb, cp_datawork );
 
-	// ƒOƒ‰ƒt“®ì
+	// ã‚°ãƒ©ãƒ•å‹•ä½œ
 	ZknSoundGraphMove( p_drawwork, cp_datawork );
 
 	return ZKN_PROC_FALSE;
@@ -774,17 +774,17 @@ static int ZknSoundProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -806,8 +806,8 @@ static int ZknSoundProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dr
 			ZknSoundFadeOtherInit( p_drawwork, p_drawglb, cp_dataglb, FALSE );
 		}
 
-		Snd_PlayerPause( PLAYER_FIELD, FALSE );			//ƒtƒB[ƒ‹ƒhBGMÄŠJ
-		Snd_BgmFadeIn( BGM_VOL_MAX, BGM_FADE_ZUKAN_NAKIGOE_TIME, BGM_FADEIN_START_VOL_MIN );	//ƒtƒF[ƒhƒCƒ“
+		Snd_PlayerPause( PLAYER_FIELD, FALSE );			//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMå†é–‹
+		Snd_BgmFadeIn( BGM_VOL_MAX, BGM_FADE_ZUKAN_NAKIGOE_TIME, BGM_FADEIN_START_VOL_MIN );	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 
 		p_drawdata->seq++;
 		break;
@@ -848,10 +848,10 @@ static int ZknSoundProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\¦ON
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤ºON
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -861,19 +861,19 @@ static void ZknSoundPokeGraOn( ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB
 	SOFT_SPRITE* p_pokegra = ZKN_GlbPokemonGraphicGet( p_drawglb->p_drawglb );
 	int monsno = ZKN_GLBDATA_PokeMonsNoGet( cp_glb->p_glb );
 
-	// ƒ|ƒPƒ‚ƒ“İ’è
+	// ãƒã‚±ãƒ¢ãƒ³è¨­å®š
 	ZKN_UTIL_PokemonGraphicSet( p_drawglb->p_drawglb, cp_glb->p_glb, monsno,
 			PARA_FRONT, ZKN_SOUND_POKEGRA_DRAW_X, ZKN_SOUND_POKEGRA_DRAW_Y );
 	
-	// •\¦
+	// è¡¨ç¤º
 	SoftSpriteParaSet( p_pokegra, SS_PARA_VANISH, FALSE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\¦OFF
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤ºOFF
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -882,18 +882,18 @@ static void ZknSoundPokeGraOff( ZKN_SOUND_DRAWGLB* p_drawglb )
 {
 	SOFT_SPRITE* p_pokegra = ZKN_GlbPokemonGraphicGet( p_drawglb->p_drawglb );
 
-	// •\¦OFF
+	// è¡¨ç¤ºOFF
 	SoftSpriteParaSet( p_pokegra, SS_PARA_VANISH, TRUE );
 
-	// ƒ\ƒtƒgƒpƒŒƒbƒgƒtƒF[ƒh‚ª‚©‚©‚Á‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅOFF
+	// ã‚½ãƒ•ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãŒã‹ã‹ã£ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§OFF
 	SoftSpritePalFadeOff( p_pokegra );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒh‰Šú‰»
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -902,7 +902,7 @@ static void ZknSoundOamFadeInit( ZKN_SOUND_DRAW* p_draw )
 {
 	int i, j;
 
-	// ‘SƒOƒ‰ƒtƒAƒNƒ^[¶¬
+	// å…¨ã‚°ãƒ©ãƒ•ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	for( i=0; i<ZKN_SOUND_GRAPH_NUM; i++ ){
 
 		for( j=0; j<ZKN_SOUND_GRAPH_ZANZOU_NUM; j++ ){
@@ -914,9 +914,9 @@ static void ZknSoundOamFadeInit( ZKN_SOUND_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒhƒŠƒZƒbƒg
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -925,7 +925,7 @@ static void ZknSoundOamFadeDelete( ZKN_SOUND_DRAW* p_draw )
 {
 	int i, j;
 
-	// ‘SƒOƒ‰ƒtƒAƒNƒ^[¶¬
+	// å…¨ã‚°ãƒ©ãƒ•ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	for( i=0; i<ZKN_SOUND_GRAPH_NUM; i++ ){
 
 		for( j=0; j<ZKN_SOUND_GRAPH_ZANZOU_NUM; j++ ){
@@ -937,72 +937,72 @@ static void ZknSoundOamFadeDelete( ZKN_SOUND_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—‰Šú‰»
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†åˆæœŸåŒ–
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSoundFadeInit( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb, BOOL fadein_out )
 {
-	// ”¼“§–¾OAMİ’è
+	// åŠé€æ˜OAMè¨­å®š
 	ZknSoundOamFadeInit( p_draw );
 
-	// ƒuƒ‰ƒCƒgƒlƒXˆ—‚ğs‚Á‚Ä‚æ‚¢‚©
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å‡¦ç†ã‚’è¡Œã£ã¦ã‚ˆã„ã‹
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_SOUND_FADE_SYNC, 
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_SOUND_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_SOUND_FADE_SYNC, 
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_SOUND_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}
 	}
 
-	// ƒuƒ‰ƒCƒgƒlƒX’lİ’è
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤è¨­å®š
 	ZKN_GLB_SpritePokeGraPalFade( p_drawglb->p_drawglb, &p_drawglb->p_drawglb->fade );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—ƒƒCƒ“
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
- *	@retval	TRUE	ƒtƒF[ƒhI—¹
- *	@retval	FALSE	ƒtƒF[ƒh“r’†
+ *	@retval	TRUE	ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
+ *	@retval	FALSE	ãƒ•ã‚§ãƒ¼ãƒ‰é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknSoundFadeMain( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb, BOOL fadein_out )
 {
 	BOOL check;
 
-	// ƒuƒ‰ƒCƒgƒlƒX‚µ‚æ‚¤‹–‰Â‚Å‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã—ã‚ˆã†è¨±å¯ã§ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		check = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade );
 	}else{
 		check = ZKN_GLB_ChangeFadeEndCheck( &p_drawglb->p_drawglb->fade );
 	}
 
-	// I‚í‚Á‚½‚çI—¹ˆ—
+	// çµ‚ã‚ã£ãŸã‚‰çµ‚äº†å‡¦ç†
 	if( check ){
 		if( fadein_out ){
-			// ”¼“§–¾OAM”jŠü
+			// åŠé€æ˜OAMç ´æ£„
 			ZknSoundOamFadeDelete( p_draw );
 		}
 
 		return TRUE;
 	}else{
-		// ƒuƒ‰ƒCƒgƒlƒX’lİ’è
+		// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤è¨­å®š
 		ZKN_GLB_SpritePokeGraPalFade( p_drawglb->p_drawglb, &p_drawglb->p_drawglb->fade );
 	}
 
@@ -1011,37 +1011,37 @@ static BOOL ZknSoundFadeMain( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawg
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘¼ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ö‚ÌƒtƒF[ƒhˆ—
+ *	@brief	ä»–ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“@ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ã‚¢ã‚¦ãƒˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknSoundFadeOtherInit( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb, BOOL fadein_out )
 {
-	// ”¼“§–¾OAMİ’è
+	// åŠé€æ˜OAMè¨­å®š
 	ZknSoundOamFadeInit( p_draw );
 
 
-	// ƒtƒF[ƒhƒAƒEƒg‚Ì‚¾‚¯‚Ìˆ—
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®æ™‚ã ã‘ã®å‡¦ç†
 	if( fadein_out == FALSE ){
-		// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒtƒF[ƒh
+		// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰
 		ZKN_UTIL_MoveReq( &p_draw->pokegra_move, ZKN_SOUND_POKEGRA_DRAW_X, p_drawglb->pokegra_move_x, ZKN_SOUND_POKEGRA_DRAW_Y, p_drawglb->pokegra_move_y, p_drawglb->fade_sync );
 	}
 
-	// ƒuƒ‰ƒCƒgƒlƒX‚ğg‚Á‚Ä—Ç‚¢‚©Áª¯¸
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ã£ã¦è‰¯ã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, p_drawglb->fade_sync, 
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_SOUND_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, p_drawglb->fade_sync, 
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_SOUND_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}
@@ -1049,15 +1049,15 @@ static void ZknSoundFadeOtherInit( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘¼ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ö‚ÌƒtƒF[ƒhˆ—ƒƒCƒ“
+ *	@brief	ä»–ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“@ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ã‚¢ã‚¦ãƒˆ
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknSoundFadeOtherMain( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb, BOOL fadein_out )
@@ -1066,19 +1066,19 @@ static BOOL ZknSoundFadeOtherMain( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_
 	int i;
 	
 
-	// ƒtƒF[ƒhƒAƒEƒg‚Ì‚Æ‚«‚Ì‚İ‚Ìˆ—
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®ã¨ãã®ã¿ã®å‡¦ç†
 	if( fadein_out == FALSE ){
-		// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN
+		// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 		check[0] = ZKN_UTIL_MoveMain( &p_draw->pokegra_move );
 
-		// À•Wİ’è
+		// åº§æ¨™è¨­å®š
 		ZKN_GlbPokemonGraphicSetMatrix( p_drawglb->p_drawglb, p_draw->pokegra_move.x, p_draw->pokegra_move.y );
 
 	}else{
 		check[0] = TRUE;
 	}
 	
-	// ƒuƒ‰ƒCƒgƒlƒX‚ğg—p‚µ‚Ä‚æ‚¢‚Æ‚«‚Í©•ª‚Åfade‚ğ“®‚©‚·
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ã¦ã‚ˆã„ã¨ãã¯è‡ªåˆ†ã§fadeã‚’å‹•ã‹ã™
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		check[1] = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade );
 	}else{
@@ -1093,9 +1093,9 @@ static BOOL ZknSoundFadeOtherMain( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_
 
 	if( i==2 ){
 
-		// ƒtƒF[ƒhƒCƒ“‚Ì‚Æ‚«‚Í”¼“§–¾”jŠü
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®ã¨ãã¯åŠé€æ˜ç ´æ£„
 		if( fadein_out == TRUE ){
-			// OAM”¼“§–¾İ’è”jŠü
+			// OAMåŠé€æ˜è¨­å®šç ´æ£„
 			ZknSoundOamFadeDelete( p_draw );
 		}
 		return TRUE;
@@ -1107,13 +1107,13 @@ static BOOL ZknSoundFadeOtherMain( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource“Ç‚İ‚İ•‰æ–Ê\’z
+ *	@brief	Resourceèª­ã¿è¾¼ã¿ï¼†ç”»é¢æ§‹ç¯‰
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_datawork	ƒf[ƒ^ƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_datawork	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1121,35 +1121,35 @@ static BOOL ZknSoundFadeOtherMain( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_
 static void ZknSoundLoadRes( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* cp_glb, const ZKN_SOUND_WORK* cp_datawork, int heap )
 {
 	
-	// BGİ’è
+	// BGè¨­å®š
 	ZknSoundSetUpBg( p_drawglb, cp_glb, heap );
 
 
-	// OAMƒŠƒ\[ƒX“Ç‚İ‚İ
+	// OAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	ZknSoundOamResLoad( p_draw, p_drawglb, heap );
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	ZknSoundOamInit( p_draw, p_drawglb, heap );
 
 	// FONTOAM
 	ZknSoundFontOamInit( p_draw, p_drawglb, cp_glb, heap );
 
-	// ƒ|ƒPƒOƒ‰ON
+	// ãƒã‚±ã‚°ãƒ©ON
 	ZknSoundPokeGraOn( p_drawglb, cp_glb );
 
-	// ƒXƒNƒ[ƒ‹İ’è
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¨­å®š
 	ZknSoundBmpScrollSetUp( p_draw, p_drawglb );
 
-	// ƒOƒ‰ƒt‰Šú‰»
+	// ã‚°ãƒ©ãƒ•åˆæœŸåŒ–
 	ZknSoundGraphInit( p_draw );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource”jŠü
+ *	@brief	Resourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1159,24 +1159,24 @@ static void ZknSoundDeleteRes( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_draw
 	// FONTOAM
 	ZknSoundFontOamDelete( p_draw );
 	
-	// ƒAƒNƒ^[”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	ZknSoundOamDelete( p_draw );
 
-	// OAMƒŠƒ\[ƒX”jŠü
+	// OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	ZknSoundOamResDelete( p_draw, p_drawglb );
 
-	// BGİ’èƒŠƒZƒbƒg
+	// BGè¨­å®šãƒªã‚»ãƒƒãƒˆ
 	ZknSoundPutBackBg( p_drawglb );
 	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒi–ÊƒZƒbƒg	
+ *	@brief	èƒŒæ™¯é¢ã‚»ãƒƒãƒˆ	
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1186,25 +1186,25 @@ static void ZknSoundSetUpBg( ZKN_SOUND_DRAWGLB* p_drawglb, const ZKN_SOUND_GLB* 
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_main_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M, 0, 0, TRUE, heap );
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_voice_bg_main1_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG–Ê‚ğŒ³‚É–ß‚·
+ *	@brief	BGé¢ã‚’å…ƒã«æˆ»ã™
  *
  *	@param	p_drawglb
  *	@param	cp_glb 
@@ -1216,7 +1216,7 @@ static void ZknSoundPutBackBg( ZKN_SOUND_DRAWGLB* p_drawglb )
 {
 	GF_BGL_ScrollReq( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M, GF_BGL_SCROLL_X_SET, 0 );
 
-	// •`‰æƒGƒŠƒA‚ÌƒLƒƒƒ‰ƒNƒ^‚ğ‰Šú‰»
+	// æç”»ã‚¨ãƒªã‚¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’åˆæœŸåŒ–
 	GF_BGL_BmpWinFill( &p_drawglb->p_drawglb->bmp_mfont,
 			0 , 
 			0,
@@ -1233,11 +1233,11 @@ static void ZknSoundPutBackBg( ZKN_SOUND_DRAWGLB* p_drawglb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResource“Ç‚İ‚İ
+ *	@brief	OAMResourceèª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1247,38 +1247,38 @@ static void ZknSoundOamResLoad(  ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_dr
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_drawglb );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_voice_oam_main_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_voice_oam_main_lzh_NCGR + ZKN_SOUND_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			NARC_zukan_zkn_voice_oam_main_NCLR, FALSE, 
 			NARC_zukan_zkn_voice_oam_main_NCLR + ZKN_SOUND_RES_ID, 
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			ZKN_SOUND_PLTT_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_draw->res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_voice_oam_main_lzh_NCER, TRUE,
 			NARC_zukan_zkn_voice_oam_main_lzh_NCER + ZKN_SOUND_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_voice_oam_main_lzh_NANR, TRUE,
@@ -1288,11 +1288,11 @@ static void ZknSoundOamResLoad(  ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResource”jŠü
+ *	@brief	OAMResourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1304,7 +1304,7 @@ static void ZknSoundOamResDelete( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_d
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -1321,11 +1321,11 @@ static void ZknSoundOamResDelete( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒAƒNƒ^[ƒoƒbƒtƒ@ì¬
+ *	@brief	OAMã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -1337,7 +1337,7 @@ static void ZknSoundOamInit( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawgl
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_drawglb;
 	int i, j;
 	
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_voice_oam_main_lzh_NCGR + ZKN_SOUND_RES_ID,
 			NARC_zukan_zkn_voice_oam_main_NCLR + ZKN_SOUND_RES_ID, 
@@ -1357,7 +1357,7 @@ static void ZknSoundOamInit( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawgl
 	add.mat.x		= 0;
 	add.mat.y		= 0;
 
-	// ‘SƒOƒ‰ƒtƒAƒNƒ^[¶¬
+	// å…¨ã‚°ãƒ©ãƒ•ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	for( i=0; i<ZKN_SOUND_GRAPH_NUM; i++ ){
 
 		for( j=0; j<ZKN_SOUND_GRAPH_ZANZOU_NUM; j++ ){
@@ -1369,9 +1369,9 @@ static void ZknSoundOamInit( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawgl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒAƒNƒ^[ƒoƒbƒtƒ@”jŠü
+ *	@brief	OAMã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1380,7 +1380,7 @@ static void ZknSoundOamDelete( ZKN_SOUND_DRAW* p_draw )
 {
 	int i, j;
 
-	// ‘SƒOƒ‰ƒtƒAƒNƒ^[¶¬
+	// å…¨ã‚°ãƒ©ãƒ•ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	for( i=0; i<ZKN_SOUND_GRAPH_NUM; i++ ){
 
 		for( j=0; j<ZKN_SOUND_GRAPH_ZANZOU_NUM; j++ ){
@@ -1393,12 +1393,12 @@ static void ZknSoundOamDelete( ZKN_SOUND_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAMì¬
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1409,9 +1409,9 @@ static void ZknSoundFontOamInit( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
  *
- *	@param	p_draw •`‰æƒ[ƒN
+ *	@param	p_draw æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1422,9 +1422,9 @@ static void ZknSoundFontOamDelete( ZKN_SOUND_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ`ƒbƒN”æ“¾
+ *	@brief	ãƒãƒƒã‚¯æ•°å–å¾—
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  */
@@ -1433,24 +1433,24 @@ static void ZknSoundGetTich( ZKN_SOUND_WORK* p_work, ZKN_SOUND_GLB* p_glb )
 {
 	int pitch = ZKN_SoundSubAplGetPitchNum( p_glb->p_sub_sound );
 	
-	// ƒ`ƒbƒN”æ“¾
+	// ãƒãƒƒã‚¯æ•°å–å¾—
 	p_work->tick = Snd_ZukanPlayerGetSampleTick( SND_HANDLE_PMVOICE, p_work->cp_snd_data, pitch );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”gŒ`ƒf[ƒ^‚ğƒrƒbƒgƒ}ƒbƒv‚É‘‚­
+ *	@brief	æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«æ›¸ã
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_snd_data	‰¹ƒf[ƒ^
- *	@param	start		•`‰æƒf[ƒ^”z—ñŠJnˆÊ’u
- *	@param	end			•`‰æƒf[ƒ^”z—ñI—¹ˆÊ’u
- *	@param	draw_xnum	•`‰æ‚·‚é‚˜’l		‚±‚Ì”‰¡‚É‘‚«‚½‚¢
- *	@param	x			•`‰æ‚˜À•W
- *	@param	def_y		ƒfƒtƒHƒ‹ƒgYˆÊ’u
- *	@param	p_set_y		ÅŒã‚Éİ’è‚µ‚½YÀ•W
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_snd_data	éŸ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	start		æç”»ãƒ‡ãƒ¼ã‚¿é…åˆ—é–‹å§‹ä½ç½®
+ *	@param	end			æç”»ãƒ‡ãƒ¼ã‚¿é…åˆ—çµ‚äº†ä½ç½®
+ *	@param	draw_xnum	æç”»ã™ã‚‹ï½˜å€¤		ã“ã®æ•°æ¨ªã«æ›¸ããŸã„
+ *	@param	x			æç”»ï½˜åº§æ¨™
+ *	@param	def_y		ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆYä½ç½®
+ *	@param	p_set_y		æœ€å¾Œã«è¨­å®šã—ãŸYåº§æ¨™
  *
  *	@return	none
  */
@@ -1459,10 +1459,10 @@ static void ZknSoundBmpDraw( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawgl
 {
 	const u8* p_snd_wave = Snd_WaveDataSampleAdrsGet( cp_snd_data );
 	int i;
-	int arry_idx;		// QÆ”z—ñƒCƒ“ƒfƒbƒNƒX
-	int arry_num;		// ”z—ñ—v‘f”
+	int arry_idx;		// å‚ç…§é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int arry_num;		// é…åˆ—è¦ç´ æ•°
 
-	// •`‰æƒGƒŠƒA‚ÌƒLƒƒƒ‰ƒNƒ^‚ğ‰Šú‰»
+	// æç”»ã‚¨ãƒªã‚¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’åˆæœŸåŒ–
 	GF_BGL_BmpWinFill( &p_drawglb->p_drawglb->bmp_mfont,
 			0 , x,
 			def_y - ZKN_SOUND_DRAW_BMP_Y_MAX,
@@ -1487,7 +1487,7 @@ static void ZknSoundBmpDraw( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_drawgl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚P‚Â‚Ìƒf[ƒ^‚ğƒrƒbƒgƒ}ƒbƒv‚É‘‚«‚Ş
+ *	@brief	ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«æ›¸ãè¾¼ã‚€
  *
  *	@param	p_bmp
  *	@param	data
@@ -1503,7 +1503,7 @@ static void ZknSoundBmpDrawOne( GF_BGL_BMPWIN* p_bmp, u8 data, int x, int def_y,
 	int draw_st_y;
 	int draw_y, draw_y2;
 
-	// yÀ•W‚É•ÏX
+	// yåº§æ¨™ã«å¤‰æ›´
 	if( data > 127 ){
 		y = data - 255;
 	}else{
@@ -1511,12 +1511,12 @@ static void ZknSoundBmpDrawOne( GF_BGL_BMPWIN* p_bmp, u8 data, int x, int def_y,
 	}
 
 	if( y != 0 ){
-		// ‚‚³‚ğ‚ ‚í‚¹‚é		-32`32‚Ì’l‚É•ÏX
+		// é«˜ã•ã‚’ã‚ã‚ã›ã‚‹		-32ã€œ32ã®å€¤ã«å¤‰æ›´
 		y = FX_Mul( ZKN_SOUND_DRAW_BMP_Y_MAX << FX32_SHIFT, y << FX32_SHIFT );	
 		y = FX_Div( y, 127 << FX32_SHIFT ) >> FX32_SHIFT;
 	}
 
-	//@•`‰æc”@‚Æ•`‰æŠJnÀ•Wæ“¾
+	//ã€€æç”»ç¸¦æ•°ã€€ã¨æç”»é–‹å§‹åº§æ¨™å–å¾—
 	draw_y = (def_y + y);
 	draw_y2 = (def_y + (*p_set_y));
 	if( draw_y > draw_y2 ){
@@ -1535,13 +1535,13 @@ static void ZknSoundBmpDrawOne( GF_BGL_BMPWIN* p_bmp, u8 data, int x, int def_y,
 
 	GF_BGL_BmpWinFill( p_bmp, ZKN_SOUND_DRAW_BMP_PL, x, draw_st_y, ZKN_SOUND_DRAW_BMP_ONE_SIZE_X, draw_y );
 
-	// ¡İ’è‚µ‚½“_‚ğ•Û‘¶
+	// ä»Šè¨­å®šã—ãŸç‚¹ã‚’ä¿å­˜
 	*p_set_y = y;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[ƒf[ƒ^‚ğ•`‰æ‚·‚é
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’æç”»ã™ã‚‹
  *
  *	@param	p_drawglb
  *	@param	start
@@ -1557,7 +1557,7 @@ static void ZknSoundBmpDammyDraw( ZKN_SOUND_DRAWGLB* p_drawglb, int start, int e
 {
 	int i;
 	
-	// •`‰æƒGƒŠƒA‚ÌƒLƒƒƒ‰ƒNƒ^‚ğ‰Šú‰»
+	// æç”»ã‚¨ãƒªã‚¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’åˆæœŸåŒ–
 	GF_BGL_BmpWinFill( &p_drawglb->p_drawglb->bmp_mfont,
 			0, x, def_y - ZKN_SOUND_DRAW_BMP_Y_MAX,
 			ZKN_SOUND_DRAW_BMP_ONE_SIZE_X * (end - start),
@@ -1574,7 +1574,7 @@ static void ZknSoundBmpDammyDraw( ZKN_SOUND_DRAWGLB* p_drawglb, int start, int e
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‚ÌƒXƒNƒ[ƒ‹§Œä
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åˆ¶å¾¡
  *
  *	@param	p_draw
  *	@param	p_drawglb
@@ -1587,17 +1587,17 @@ static void ZknSoundBmpScroll( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_draw
 {
 	int draw_x;
 
-	// ˆê’èƒXƒs[ƒh‚ÅƒXƒNƒ[ƒ‹
+	// ä¸€å®šã‚¹ãƒ”ãƒ¼ãƒ‰ã§ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 	p_draw->scrl_num += ZKN_SOUND_SCRL_BMP_SPEED;
 	p_draw->scrl_num %= 256;
 
-	// •`‰æŠJnˆÊ’uŒˆ’è
+	// æç”»é–‹å§‹ä½ç½®æ±ºå®š
 	draw_x = p_draw->scrl_num - (ZKN_SOUND_SCRL_BMP_SPEED * 2);
 	if( draw_x < 0 ){
 		draw_x += 256;
 	}
 
-	// ƒXƒNƒ[ƒ‹À•W‚ÆƒXƒs[ƒh‚©‚ç”gŒ`ƒf[ƒ^•`‰æ
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã¨ã‚¹ãƒ”ãƒ¼ãƒ‰ã‹ã‚‰æ³¢å½¢ãƒ‡ãƒ¼ã‚¿æç”»
 	if( p_draw->last_tick != cp_work->tick ){
 		ZknSoundBmpDraw( p_draw, p_drawglb, 
 				cp_work->cp_snd_data, 
@@ -1609,22 +1609,22 @@ static void ZknSoundBmpScroll( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p_draw
 				draw_x, ZKN_SOUND_DRAW_BMP_DEF_Y, &p_draw->last_y );
 	}
 
-	// ƒXƒNƒ[ƒ‹İ’è
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¨­å®š
 	GF_BGL_ScrollReq( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M, GF_BGL_SCROLL_X_SET, p_draw->scrl_num );
 	
-	// CG“]‘—İ’è
+	// CGè»¢é€è¨­å®š
 	GF_BGL_BmpWinOnVReq( &p_drawglb->p_drawglb->bmp_mfont );
 
-	// ƒ`ƒbƒN•Û‘¶
+	// ãƒãƒƒã‚¯ä¿å­˜
 	p_draw->last_tick = cp_work->tick;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Â‚«º”gŒ`ƒf[ƒ^‚Ì‰Šú‰»
+ *	@brief	é³´ãå£°æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
  *
- *	@param	p_draw		•`‰æƒ[ƒN	
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯	
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return
  */
@@ -1642,7 +1642,7 @@ static void ZknSoundBmpScrollSetUp( ZKN_SOUND_DRAW* p_draw, ZKN_SOUND_DRAWGLB* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒt‚Ìƒf[ƒ^‘S•”‰Šú‰»
+ *	@brief	ã‚°ãƒ©ãƒ•ã®ãƒ‡ãƒ¼ã‚¿å…¨éƒ¨åˆæœŸåŒ–
  *
  *	@param	p_draw 
  *
@@ -1653,7 +1653,7 @@ static void ZknSoundGraphInit( ZKN_SOUND_DRAW* p_draw )
 {
 	int i;
 
-	// ƒOƒ‰ƒtƒf[ƒ^‰Šú‰»
+	// ã‚°ãƒ©ãƒ•ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	for( i=0; i<ZKN_SOUND_GRAPH_NUM; i++ ){
 		ZknSoundGraphInitData( &p_draw->snd_graph_act[i], i );
 	}
@@ -1661,10 +1661,10 @@ static void ZknSoundGraphInit( ZKN_SOUND_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**	
- *	@brief	ƒOƒ‰ƒt“®ì
+ *	@brief	ã‚°ãƒ©ãƒ•å‹•ä½œ
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	cp_work	ƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1673,7 +1673,7 @@ static void ZknSoundGraphMove( ZKN_SOUND_DRAW* p_draw, const ZKN_SOUND_WORK* cp_
 {
 	int i;
 
-	// ƒOƒ‰ƒtƒf[ƒ^“®ì
+	// ã‚°ãƒ©ãƒ•ãƒ‡ãƒ¼ã‚¿å‹•ä½œ
 	for( i=0; i<ZKN_SOUND_GRAPH_NUM; i++ ){
 		ZknSoundGraphMoveData( &p_draw->snd_graph_act[i], cp_work->snd_graph_data[ i ] );
 	}
@@ -1682,10 +1682,10 @@ static void ZknSoundGraphMove( ZKN_SOUND_DRAW* p_draw, const ZKN_SOUND_WORK* cp_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒf[ƒ^‰Šú‰»
+ *	@brief	ã‚°ãƒ©ãƒ•ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_data	ƒf[ƒ^
- *	@param	x_num	‚˜—v‘f”	
+ *	@param	p_data	ãƒ‡ãƒ¼ã‚¿
+ *	@param	x_num	ï½˜è¦ç´ æ•°	
  *
  *	@return	none
  */
@@ -1695,7 +1695,7 @@ static void ZknSoundGraphInitData( ZKN_GRAPH_ONE_DATA* p_data, int x_num )
 	int i;
 	VecFx32 mat;
 
-	// À•W‚ğİ’è•”ñ•\¦‚É‚·‚é
+	// åº§æ¨™ã‚’è¨­å®šï¼†éè¡¨ç¤ºã«ã™ã‚‹
 	mat.x = (ZKN_SOUND_GRAPH_MAT_DEF_X + ( ZKN_SOUND_GRAPH_MAT_OFS_X*x_num )) << FX32_SHIFT;
 	mat.y = ZKN_SOUND_GRAPH_MAT_DEF_Y << FX32_SHIFT;
 	for( i=0; i<ZKN_SOUND_GRAPH_ZANZOU_NUM; i++ ){
@@ -1705,7 +1705,7 @@ static void ZknSoundGraphInitData( ZKN_GRAPH_ONE_DATA* p_data, int x_num )
 		CLACT_AnmChg( p_data->zanzou[ i ].act, 1 );
 	}
 
-	// æ“ª‚ÌƒAƒNƒ^[‚ÌÀ•W‚Æ‰Šúƒ[ƒN‚ğİ’è
+	// å…ˆé ­ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã®åº§æ¨™ã¨åˆæœŸãƒ¯ãƒ¼ã‚¯ã‚’è¨­å®š
 	mat.y = ZKN_SOUND_GRAPH_MAT_DEF_Y << FX32_SHIFT;
 	CLACT_SetMatrix( p_data->top.act, &mat );
 	CLACT_SetDrawFlag( p_data->top.act, FALSE );
@@ -1714,10 +1714,10 @@ static void ZknSoundGraphInitData( ZKN_GRAPH_ONE_DATA* p_data, int x_num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒt“®ì
+ *	@brief	ã‚°ãƒ©ãƒ•å‹•ä½œ
  *
- *	@param	p_data	ƒOƒ‰ƒtƒf[ƒ^
- *	@param	level	¡‚ÌƒŒƒxƒ‹
+ *	@param	p_data	ã‚°ãƒ©ãƒ•ãƒ‡ãƒ¼ã‚¿
+ *	@param	level	ä»Šã®ãƒ¬ãƒ™ãƒ«
  *
  *	@return	none
  */
@@ -1727,20 +1727,20 @@ static void ZknSoundGraphMoveData( ZKN_GRAPH_ONE_DATA* p_data, int level )
 	int i;
 	int now_max_level = 0;
 	
-	// level‚É‚æ‚éŠeƒ[ƒN‚Ìİ’è
+	// levelã«ã‚ˆã‚‹å„ãƒ¯ãƒ¼ã‚¯ã®è¨­å®š
 	for( i=0; i<level; i++ ){
 		CLACT_SetDrawFlag( p_data->zanzou[i].act, TRUE );
 		p_data->zanzou[i].dess_count = ZKN_SOUND_GRAPH_DES_COUNT * (i + 1);
 	}
 
-	// c‘œ“®ì
+	// æ®‹åƒå‹•ä½œ
 	for( i=0; i<ZKN_SOUND_GRAPH_ZANZOU_NUM; i++ ){
-		// •`‰æ‚µ‚Ä‚¢‚é‚È‚ç
-		// ”jŠüƒJƒEƒ“ƒ^‚ª0‚É‚È‚é‚Ü‚Å•`‰æ‚·‚é
+		// æç”»ã—ã¦ã„ã‚‹ãªã‚‰
+		// ç ´æ£„ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã«ãªã‚‹ã¾ã§æç”»ã™ã‚‹
 		if( CLACT_GetDrawFlag( p_data->zanzou[i].act ) ){
 			if( (p_data->zanzou[i].dess_count - 1) > 0 ){
 				p_data->zanzou[i].dess_count--;
-				now_max_level = i + 1;	// ¡‚ÌÅ‘åƒŒƒxƒ‹
+				now_max_level = i + 1;	// ä»Šã®æœ€å¤§ãƒ¬ãƒ™ãƒ«
 			}else{
 
 				CLACT_SetDrawFlag( p_data->zanzou[i].act, FALSE );
@@ -1749,16 +1749,16 @@ static void ZknSoundGraphMoveData( ZKN_GRAPH_ONE_DATA* p_data, int level )
 		}
 	}
 	
-	// level‚ÌÀ•W‚É’¸“_‚ğ‚Á‚Ä‚¢‚­
+	// levelã®åº§æ¨™ã«é ‚ç‚¹ã‚’æŒã£ã¦ã„ã
 	if( p_data->top.level <= now_max_level ){
 		
 		ZknSoundGraphSetLevelMatrixTop( p_data->top.act, now_max_level );
 		p_data->top.down_count = ZKN_SOUND_GRAPH_DOWN_COUNT;
 
-		// ‚±‚¤‚·‚é‚±‚Æ‚É‚æ‚èˆê”Ô‰º‚Ì‚Í‚O‚Å‚à”ñ•\¦‚Å
-		// ‚È‚É‚©ã¸‚·‚é‚Æ‚«‚É‚Ì‚İ•`‰æŠJn‚Æ‚¢‚¤ˆ—‚É‚È‚é‚Í‚¸
+		// ã“ã†ã™ã‚‹ã“ã¨ã«ã‚ˆã‚Šä¸€ç•ªä¸‹ã®æ™‚ã¯ï¼ã§ã‚‚éè¡¨ç¤ºã§
+		// ãªã«ã‹ä¸Šæ˜‡ã™ã‚‹ã¨ãã«ã®ã¿æç”»é–‹å§‹ã¨ã„ã†å‡¦ç†ã«ãªã‚‹ã¯ãš
 		if( p_data->top.level < now_max_level ){
-			// •\¦‚É
+			// è¡¨ç¤ºã«
 			CLACT_SetDrawFlag( p_data->top.act, TRUE );
 		}
 
@@ -1768,10 +1768,10 @@ static void ZknSoundGraphMoveData( ZKN_GRAPH_ONE_DATA* p_data, int level )
 
 
 
-	// æ“ª“®ì
+	// å…ˆé ­å‹•ä½œ
 	if( p_data->top.level > 0 ){
 
-		// ƒ_ƒEƒ“ƒJƒEƒ“ƒg‚ª0‚æ‚è¬‚³‚­‚È‚Á‚½‚ç—‚¿‚Ä‚¢‚­
+		// ãƒ€ã‚¦ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãŒ0ã‚ˆã‚Šå°ã•ããªã£ãŸã‚‰è½ã¡ã¦ã„ã
 		if( p_data->top.down_count < 0 ){
 			p_data->top.level --;
 			ZknSoundGraphSetLevelMatrixTop( p_data->top.act, p_data->top.level );
@@ -1780,7 +1780,7 @@ static void ZknSoundGraphMoveData( ZKN_GRAPH_ONE_DATA* p_data, int level )
 		}
 	}else{
 
-		// ”ñ•\¦‚É
+		// éè¡¨ç¤ºã«
 		CLACT_SetDrawFlag( p_data->top.act, FALSE );
 	}
 	
@@ -1788,7 +1788,7 @@ static void ZknSoundGraphMoveData( ZKN_GRAPH_ONE_DATA* p_data, int level )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[‚Éˆø”ƒŒƒxƒ‹‚ÌYÀ•W‚ğİ’è‚·‚é
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ã«å¼•æ•°ãƒ¬ãƒ™ãƒ«ã®Yåº§æ¨™ã‚’è¨­å®šã™ã‚‹
  *
  *	@param	act
  *	@param	level 
@@ -1809,10 +1809,10 @@ static void ZknSoundGraphSetLevelMatrixTop( CLACT_WORK_PTR act, int level )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–_üƒOƒ‰ƒtƒf[ƒ^æ“¾ŠÖ”
+ *	@brief	æ£’ç·šã‚°ãƒ©ãƒ•ãƒ‡ãƒ¼ã‚¿å–å¾—é–¢æ•°
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	
  *	@return	none
  */
@@ -1823,7 +1823,7 @@ static void ZknSoundGraphLevelSet( ZKN_SOUND_WORK* p_work, ZKN_SOUND_GLB* p_glb 
 	
 	memset( p_work->snd_graph_data, 0, sizeof(u8)* ZKN_SOUND_GRAPH_NUM);
 
-	if( Snd_PMVoicePlayCheck() != 0 ){	// Ä¶’†‚Ì‚İæ“¾
+	if( Snd_PMVoicePlayCheck() != 0 ){	// å†ç”Ÿä¸­ã®ã¿å–å¾—
 		Snd_ZukanWaveLevelSet_New( p_work->cp_snd_data, p_work->snd_graph_data, ZKN_SOUND_GRAPH_NUM, pitch );
 	}
 }

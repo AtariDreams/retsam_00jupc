@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_scroll.c
- *	@brief		ƒXƒNƒ[ƒ‹ƒf[ƒ^ŠÇ—+ƒXƒNƒ[ƒ‹À•WŠÇ—ƒ‚ƒWƒ…[ƒ‹
+ *	@brief		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ç®¡ç†+ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
  *	@author		tomoya takahashi
  *	@data		2007.03.19
  *
@@ -17,54 +17,54 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define WF2DMAP_SCROLL_CENTER_X	( 112 )	// ’†SÀ•W
-#define WF2DMAP_SCROLL_CENTER_Y ( 96 )	// ’†SÀ•W
+#define WF2DMAP_SCROLL_CENTER_X	( 112 )	// ä¸­å¿ƒåº§æ¨™
+#define WF2DMAP_SCROLL_CENTER_Y ( 96 )	// ä¸­å¿ƒåº§æ¨™
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ƒf[ƒ^ŒvŽZ
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿è¨ˆç®—
  *
- *	@param	p_data		ƒXƒNƒ[ƒ‹ƒf[ƒ^ƒ[ƒN
- *	@param	cp_objwk	ƒIƒuƒWƒFƒNƒgŠÇ—ƒVƒXƒeƒ€
+ *	@param	p_data		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_objwk	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_SCRContSysMain( WF2DMAP_SCROLL* p_data, const WF2DMAP_OBJWK* cp_objwk )
 {
 	WF2DMAP_POS hero_pos;
 
-	// ƒIƒuƒWƒFƒNƒg
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	hero_pos = WF2DMAP_OBJWkFrameMatrixGet( cp_objwk );
 
 	// hero_pos
@@ -76,9 +76,9 @@ void WF2DMAP_SCRContSysMain( WF2DMAP_SCROLL* p_data, const WF2DMAP_OBJWK* cp_obj
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ƒf[ƒ^‰Šú‰»
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *	
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_SCROLLSysDataInit( WF2DMAP_SCROLL* p_sys )
@@ -88,11 +88,11 @@ void WF2DMAP_SCROLLSysDataInit( WF2DMAP_SCROLL* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ƒf[ƒ^Ý’è
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_sys		ƒ[ƒN
- *	@param	draw_top	ƒXƒNƒ[ƒ‹ãÀ•W
- *	@param	draw_left	ƒXƒNƒ[ƒ‹¶À•W
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	draw_top	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä¸Šåº§æ¨™
+ *	@param	draw_left	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å·¦åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_SCROLLSysDataSet( WF2DMAP_SCROLL* p_sys, s16 draw_top, s16 draw_left )
@@ -103,11 +103,11 @@ void WF2DMAP_SCROLLSysDataSet( WF2DMAP_SCROLL* p_sys, s16 draw_top, s16 draw_lef
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ƒf[ƒ^Žæ“¾
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	cp_sys		ƒ[ƒN
+ *	@param	cp_sys		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ãÀ•W
+ *	@return	ä¸Šåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 s16 WF2DMAP_SCROLLSysTopGet( const WF2DMAP_SCROLL* cp_sys )
@@ -117,11 +117,11 @@ s16 WF2DMAP_SCROLLSysTopGet( const WF2DMAP_SCROLL* cp_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ƒf[ƒ^Žæ“¾
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	cp_sys		ƒ[ƒN
+ *	@param	cp_sys		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	¶À•W
+ *	@return	å·¦åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 s16 WF2DMAP_SCROLLSysLeftGet( const WF2DMAP_SCROLL* cp_sys )
@@ -131,10 +131,10 @@ s16 WF2DMAP_SCROLLSysLeftGet( const WF2DMAP_SCROLL* cp_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ãÀ•W‚ð‘«‚·
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä¸Šåº§æ¨™ã‚’è¶³ã™
  *	
- *	@param	p_sys		ƒ[ƒN
- *	@param	add			‘«‚·’l
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	add			è¶³ã™å€¤
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_SCROLLSysTopAdd( WF2DMAP_SCROLL* p_sys, s16 add )
@@ -144,10 +144,10 @@ void WF2DMAP_SCROLLSysTopAdd( WF2DMAP_SCROLL* p_sys, s16 add )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹¶À•W‚ð‘«‚·
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å·¦åº§æ¨™ã‚’è¶³ã™
  *
- *	@param	p_sys		ƒ[ƒN
- *	@param	add			‘«‚·’l
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	add			è¶³ã™å€¤
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_SCROLLSysLeftAdd( WF2DMAP_SCROLL* p_sys, s16 add )

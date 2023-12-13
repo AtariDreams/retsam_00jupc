@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	tr_card_time.c
- * @bfief	ƒgƒŒ[ƒi[ƒJ[ƒhŠÔXV
+ * @bfief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰æ™‚é–“æ›´æ–°
  * @author	Nozomu Saito
  */
 //============================================================================================
@@ -13,15 +13,15 @@
 #include "application/trainer_card.h"
 #include "tr_card_time.h"
 
-//ƒoƒbƒW•…HƒXƒs[ƒh
+//ãƒãƒƒã‚¸è…é£Ÿã‚¹ãƒ”ãƒ¼ãƒ‰
 #define SUB_BADGE_CORRODE	(10)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒW‚ğ•…H‚³‚¹‚éˆ—i‚P“ú–ˆ‚ÉŒÄ‚Î‚ê‚éj
+ * ãƒãƒƒã‚¸ã‚’è…é£Ÿã•ã›ã‚‹å‡¦ç†ï¼ˆï¼‘æ—¥æ¯ã«å‘¼ã°ã‚Œã‚‹ï¼‰
  *
- * @param	sv				ƒZ[ƒuƒf[ƒ^
- * @param	diff_days		·•ª“ú”
+ * @param	sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	diff_days		å·®åˆ†æ—¥æ•°
  *
  * @return	none
  */
@@ -42,7 +42,7 @@ void TRCTIME_CorrodeBadge(SAVEDATA *sv, const s32 diff_days)
 	badge_ptr = TRCSave_GetBadgeDataPtr(trc_ptr);
 	my_st = SaveData_GetMyStatus(sv);
 	for(i=0;i<8;i++){
-		//‚Á‚Ä‚È‚¯‚ê‚Îˆ—‚ğ”ò‚Î‚·
+		//æŒã£ã¦ãªã‘ã‚Œã°å‡¦ç†ã‚’é£›ã°ã™
 		if (MyStatus_GetBadgeFlag(my_st, i) == FALSE){
 			continue;
 		}

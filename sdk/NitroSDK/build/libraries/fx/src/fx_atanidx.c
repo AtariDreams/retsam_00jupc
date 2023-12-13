@@ -21,10 +21,10 @@
   do-indent.
 
   Revision 1.3  2005/02/18 07:27:46  yasu
-  ’˜ì”N“x•ÏX
+  è‘—ä½œå¹´åº¦å¤‰æ›´
 
   Revision 1.2  2005/02/18 07:27:05  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.1  2004/06/16 11:24:36  seiki_masashi
   FX_AtanIdx, FX_Atan2Idx

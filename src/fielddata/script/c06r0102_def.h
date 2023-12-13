@@ -1,12 +1,12 @@
 #ifndef _C06R0102_DEF_H_
 #define _C06R0102_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C06R0102_SCOPE		(1)
 #define	SCRID_C06R0102_WOMAN3_01		(2)
 #define	SCRID_C06R0102_BOY3_01		(3)
 #define	SCRID_C06R0102_MIDDLEMAN1_01		(4)
 #define	SCRID_C06R0102_PICNICGIRL_01		(5)
-#define	SCRID_C06R0102_DATA_MAX		(5)		//最大数
+#define	SCRID_C06R0102_DATA_MAX		(5)		//譛螟ｧ謨ｰ
 
 #endif //_C06R0102_DEF_H_

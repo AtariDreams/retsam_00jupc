@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  *
- * GDSƒhƒŒƒXƒAƒbƒv‚ÌƒTƒu\‘¢‘Ì‚â’è”’è‹`
+ * GDSãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã®ã‚µãƒ–æ§‹é€ ä½“ã‚„å®šæ•°å®šç¾©
  *
  */
 //==============================================================================
@@ -11,41 +11,41 @@
 #include "gds_define.h"
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-#define GT_IMC_SAVEDATA_NICKNAME_STR_NUM	(11)	///<ƒjƒbƒNƒl[ƒ€‚Ì•¶Žš—ñ”
-#define GT_IMC_SAVEDATA_OYANAME_STR_NUM 	(8)		///<eƒl[ƒ€‚Ì•¶Žš—ñ”
-#define GT_IMC_SAVEDATA_STRBUF_NUM	  		(12)	///<STRBUFF‚Ì•K—v—v‘f”
-#define	GT_IMC_RBOX_OBJ_MAX					(11)	// ‰Eƒ{ƒbƒNƒX‚ÌƒIƒuƒWƒFƒNƒg“o˜^Å‘å”
-													// ƒAƒNƒZƒTƒŠ10 + ƒ|ƒPƒ‚ƒ“1
-#define GT_IMC_SAVEDATA_TELEVISION_ACCE_NUM	( GT_IMC_RBOX_OBJ_MAX - 1 )		///<ƒeƒŒƒr‹ÇƒAƒNƒZƒTƒŠ“o˜^”
+#define GT_IMC_SAVEDATA_NICKNAME_STR_NUM	(11)	///<ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã®æ–‡å­—åˆ—æ•°
+#define GT_IMC_SAVEDATA_OYANAME_STR_NUM 	(8)		///<è¦ªãƒãƒ¼ãƒ ã®æ–‡å­—åˆ—æ•°
+#define GT_IMC_SAVEDATA_STRBUF_NUM	  		(12)	///<STRBUFFã®å¿…è¦è¦ç´ æ•°
+#define	GT_IMC_RBOX_OBJ_MAX					(11)	// å³ãƒœãƒƒã‚¯ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²æœ€å¤§æ•°
+													// ã‚¢ã‚¯ã‚»ã‚µãƒª10 + ãƒã‚±ãƒ¢ãƒ³1
+#define GT_IMC_SAVEDATA_TELEVISION_ACCE_NUM	( GT_IMC_RBOX_OBJ_MAX - 1 )		///<ãƒ†ãƒ¬ãƒ“å±€ã‚¢ã‚¯ã‚»ã‚µãƒªç™»éŒ²æ•°
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 //-------------------------------------
-//	ƒhƒŒƒXƒAƒbƒv—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+//	ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u32 personal_rnd;				///<ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
-	u32 idno;						///<IDNo	ƒŒƒAƒ|ƒPƒ‚ƒ“—p
-	u16	monsno;						///<ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-	u16 oyaname[ GT_IMC_SAVEDATA_OYANAME_STR_NUM ];	///<ƒjƒbƒNƒl[ƒ€
-	s8 poke_pri;					///<ƒ|ƒPƒ‚ƒ“—Dæ‡ˆÊ
-	u8 poke_x;						///<ƒ|ƒPƒ‚ƒ“‚˜À•W
-	u8 poke_y;						///<ƒ|ƒPƒ‚ƒ“‚™À•W
-	u8 form_id;					///<Œ`óƒAƒgƒŠƒrƒ…[ƒg
+	u32 personal_rnd;				///<ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
+	u32 idno;						///<IDNo	ãƒ¬ã‚¢ãƒã‚±ãƒ¢ãƒ³ç”¨
+	u16	monsno;						///<ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u16 oyaname[ GT_IMC_SAVEDATA_OYANAME_STR_NUM ];	///<ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+	s8 poke_pri;					///<ãƒã‚±ãƒ¢ãƒ³å„ªå…ˆé †ä½
+	u8 poke_x;						///<ãƒã‚±ãƒ¢ãƒ³ï½˜åº§æ¨™
+	u8 poke_y;						///<ãƒã‚±ãƒ¢ãƒ³ï½™åº§æ¨™
+	u8 form_id;					///<å½¢çŠ¶ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 }GT_IMC_SAVEDATA_POKEMON;
 
 //-------------------------------------
-//	ƒhƒŒƒXƒAƒbƒv—pƒAƒNƒZƒTƒŠƒf[ƒ^\‘¢‘Ì
+//	ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ç”¨ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //=====================================
 typedef struct {
-	u8 accessory_no;	///<ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
-	u8 accessory_x;		///<ƒAƒNƒZƒTƒŠ‚˜À•W
-	u8 accessory_y;		///<ƒAƒNƒZƒTƒŠ‚™À•W
-	s8 accessory_pri;	///<ƒAƒNƒZƒTƒŠ•\Ž¦—Dæ
+	u8 accessory_no;	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+	u8 accessory_x;		///<ã‚¢ã‚¯ã‚»ã‚µãƒªï½˜åº§æ¨™
+	u8 accessory_y;		///<ã‚¢ã‚¯ã‚»ã‚µãƒªï½™åº§æ¨™
+	s8 accessory_pri;	///<ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºå„ªå…ˆ
 }GT_IMC_SAVEDATA_ACCESSORIE;
 
 

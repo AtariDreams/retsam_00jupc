@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_direct_counter.c
- * @bfief	’ÊMƒ_ƒCƒŒƒNƒgƒR[ƒi[‚ÌƒJƒEƒ“ƒ^[
+ * @bfief	é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
  * @author	katsumi ohno
  * @date	05/08/04
  */
@@ -43,32 +43,32 @@
 #include "ev_time.h"
 
 //==============================================================================
-// externéŒ¾
+// externå®£è¨€
 //==============================================================================
 
 #include "comm_direct_counter.h"
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 
-/// ID‚ğ•¶š—ñ‚É‚µ‚½ê‡‚Ì’·‚³
+/// IDã‚’æ–‡å­—åˆ—ã«ã—ãŸå ´åˆã®é•·ã•
 #define _ID_STR_LENGTH   (5)
-/// ID‚ğƒoƒbƒtƒ@‚É“ü‚ê‚é‚É{‚·‚é’l 10‚Í‘½‚ß‚Éİ’è
+/// IDã‚’ãƒãƒƒãƒ•ã‚¡ã«å…¥ã‚Œã‚‹æ™‚ã«ï¼‹ã™ã‚‹å€¤ 10ã¯å¤šã‚ã«è¨­å®š
 #define _ID_STR_BUFF_LENGTH   (_ID_STR_LENGTH + 10 + EOM_SIZE)
-// –Ø‚ÌÀƒNƒ‰ƒbƒVƒ…Å‘ål”‚Å‘‚¢‚Ä‚ ‚é
+// æœ¨ã®å®Ÿã‚¯ãƒ©ãƒƒã‚·ãƒ¥æœ€å¤§äººæ•°ã§æ›¸ã„ã¦ã‚ã‚‹
 #define _DIRECT_CORNER_CREATURE_MAX (5)
-// •\¦‚·‚ée‹@ƒŠƒXƒg
+// è¡¨ç¤ºã™ã‚‹è¦ªæ©Ÿãƒªã‚¹ãƒˆ
 #define _DISP_SCAN_PARENT_COUNT_MAX (5)
 
-// e‹@‘I‘ğ‚ÌƒŠƒXƒg‰¡•
+// è¦ªæ©Ÿé¸æŠã®ãƒªã‚¹ãƒˆæ¨ªå¹…
 #define _PARENT_MENU_LIST_WIDTH (20)
-// q‹@•\¦ƒŠƒXƒg‚Ì‰¡•
+// å­æ©Ÿè¡¨ç¤ºãƒªã‚¹ãƒˆã®æ¨ªå¹…
 #define _CHILD_MENU_LIST_WIDTH (17)
-// •\¦‚·‚éq‹@ƒŠƒXƒg
+// è¡¨ç¤ºã™ã‚‹å­æ©Ÿãƒªã‚¹ãƒˆ
 #define _DISP_CONNECT_CHILD_COUNT_MAX (6)
 
-#define _EVWIN_MSG_BUF_SIZE		(70 * GLOBAL_MSGLEN)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _EVWIN_MSG_BUF_SIZE		(70 * GLOBAL_MSGLEN)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define _STRBUF_TEMP_ELEMENTS_NUM (8)
 
 #define _CGX_COUNTER_TOP_NUM (1)
@@ -77,7 +77,7 @@
 
 
 enum{
-    _TIMING_GUESTROOM = 10,    // ‚»‚ë‚Á‚ÄƒQƒXƒgƒ‹[ƒ€‚É“ü‚éê‡‚Ìƒ^ƒCƒ~ƒ“ƒO”Ô†
+    _TIMING_GUESTROOM = 10,    // ãã‚ã£ã¦ã‚²ã‚¹ãƒˆãƒ«ãƒ¼ãƒ ã«å…¥ã‚‹å ´åˆã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ç•ªå·
 
 };
 
@@ -91,44 +91,44 @@ enum yesno_list_e {
 };
 
 
-typedef struct __INFO_WORK* _INFO_WORK_PTR;		// “V‹C§Œäƒf[ƒ^ƒ|ƒCƒ“ƒ^
+typedef struct __INFO_WORK* _INFO_WORK_PTR;		// å¤©æ°—åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
 typedef void (*INFO_FUNC_PTR)(_INFO_WORK_PTR pInfo);
 typedef void (*STATE_FUNC_PTR)(TCB_PTR tcb, void* work);
 
-// ó‹µ\‘¢‘Ì
+// çŠ¶æ³æ§‹é€ ä½“
 typedef struct __INFO_WORK{
-	STRBUF* pStrBuf[_STRBUF_TEMP_ELEMENTS_NUM]; // ƒƒbƒZ[ƒW‚ğ‡¬‚µ‚Äo—Í‚·‚éê‡‚ÌŠi”[êŠ
+	STRBUF* pStrBuf[_STRBUF_TEMP_ELEMENTS_NUM]; // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’åˆæˆã—ã¦å‡ºåŠ›ã™ã‚‹å ´åˆã®æ ¼ç´å ´æ‰€
 
-    GF_BGL_BMPWIN win;		 // BMPƒEƒBƒ“ƒhƒEƒ[ƒN
-    GF_BGL_BMPWIN subWin;	 // BMPSubƒEƒBƒ“ƒhƒEƒ[ƒN
-    GF_BGL_BMPWIN talkWin;   // ‰ï˜b—pƒEƒCƒ“ƒhƒEƒ[ƒN
+    GF_BGL_BMPWIN win;		 // BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
+    GF_BGL_BMPWIN subWin;	 // BMPSubã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
+    GF_BGL_BMPWIN talkWin;   // ä¼šè©±ç”¨ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
 
-    WORDSET* pWordSetMain;  //ƒ[ƒhƒZƒbƒg\‘¢‘Ì
-    WORDSET* pWordSetSub;   //ƒ[ƒhƒZƒbƒg\‘¢‘Ì
-    WORDSET* pWordSetTalk;  //ƒ[ƒhƒZƒbƒg\‘¢‘Ì
+    WORDSET* pWordSetMain;  //ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆæ§‹é€ ä½“
+    WORDSET* pWordSetSub;   //ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆæ§‹é€ ä½“
+    WORDSET* pWordSetTalk;  //ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆæ§‹é€ ä½“
 
-    BMPLIST_WORK* lw;		 // ƒƒjƒ…[ƒ[ƒNƒ|ƒCƒ“ƒ^
-    BMPMENU_WORK* yesNoWork; // YesNoƒƒjƒ…[ƒ[ƒNƒ|ƒCƒ“ƒ^
+    BMPLIST_WORK* lw;		 // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+    BMPMENU_WORK* yesNoWork; // YesNoãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 	BMPLIST_DATA*   menulist;
-    FIELDSYS_WORK* pFSys;    // ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€‚Ìƒ|ƒCƒ“ƒ^
-    STATE_FUNC_PTR pState;    // ˆ—‚ğƒXƒe[ƒg‚ÅŠÇ—
-    INFO_FUNC_PTR pFunc;         // YesNoƒƒjƒ…[‚ÅYes‘I‘ğ‚µ‚½ê‡‚Ì“®ì
-    MSGDATA_MANAGER* msg_man;   // ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
+    FIELDSYS_WORK* pFSys;    // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®ãƒã‚¤ãƒ³ã‚¿
+    STATE_FUNC_PTR pState;    // å‡¦ç†ã‚’ã‚¹ãƒ†ãƒ¼ãƒˆã§ç®¡ç†
+    INFO_FUNC_PTR pFunc;         // YesNoãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§Yesé¸æŠã—ãŸå ´åˆã®å‹•ä½œ
+    MSGDATA_MANAGER* msg_man;   // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
     MYSTATUS* pMyStatus;
     MYSTATUS* pBconStatus;
     u8 bNewInfoTrg[COMM_MACHINE_MAX];
-    u32 retCode;  // ŠO•”‚É•Ô‚·ƒR[ƒh
-    u16 curPos;              // ƒJ[ƒ\ƒ‹ˆÊ’u
+    u32 retCode;  // å¤–éƒ¨ã«è¿”ã™ã‚³ãƒ¼ãƒ‰
+    u16 curPos;              // ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
     u16 connectIndex;
     u8 connectNum;
     u8 selectGameMode;
     u8 type1;
     u8 type2;
-    u8 msgIndex;          // ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX ƒƒbƒZ[ƒWI—¹‘Ò‚¿‚Ég—p
-    u8 selectChildNetID;  // Œ»İˆ—’†‚Ìq‹@‚ÌID
+    u8 msgIndex;          // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡ã«ä½¿ç”¨
+    u8 selectChildNetID;  // ç¾åœ¨å‡¦ç†ä¸­ã®å­æ©Ÿã®ID
     u8 waitMsgCount;
-    u8 bSubWin;              // SubWindow‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
+    u8 bSubWin;              // SubWindowã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
     u8 bReWrite;
 } _INFO_WORK;
 
@@ -137,20 +137,20 @@ typedef void (*pInfoFunc)(_INFO_WORK *);
 
 
 
-// ƒƒjƒ…[€–Ú‚Ìe‹@–¼‚ğŠi”[‚µ‚Ä‚¢‚éƒoƒbƒtƒ@
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®è¦ªæ©Ÿåã‚’æ ¼ç´ã—ã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
-// ”Ä—p’è‹`
+// æ±ç”¨å®šç¾©
 static void _commonFunc(TCB_PTR tcb, void* work);
-static void _changeState(STATE_FUNC_PTR pState);  // ƒXƒe[ƒg‚ğ•ÏX‚·‚é
+static void _changeState(STATE_FUNC_PTR pState);  // ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å¤‰æ›´ã™ã‚‹
 static void _talkStart(int messageIdx, BOOL bExpand);
 
 static void _chkFunc(TCB_PTR tcb, void* work);
 
-// ƒRƒƒVƒAƒ€ƒ‚[ƒh‘I‘ğ
+// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ¢ãƒ¼ãƒ‰é¸æŠ
 static void _gameModeMatchWaitAndListCreate(TCB_PTR tcb, void* work);
 static void _gameModeMatchFunc(TCB_PTR tcb, void* work);
 static void _childStart(_INFO_WORK* pInfo);
@@ -160,11 +160,11 @@ static void	_parentMenuListCursor(BMPLIST_WORK * wk,u32 param,u8 mode);
 static void _parentMenuListLineCallBackAllPrint(BMPLIST_WORK * wk,u32 param,u8 y);
 static void _parentMenuListLineCallBack(BMPLIST_WORK * wk,u32 param,u8 y);
 
-// ƒ‚[ƒhI—¹ˆ—
+// ãƒ¢ãƒ¼ãƒ‰çµ‚äº†å‡¦ç†
 static void _exit(_INFO_WORK* pInfo);
 static void _chkFuncExit(TCB_PTR tcb, void* work);
 
-// q‹@‚ªe‹@‚ğ‘I‘ğ‚·‚éó‘Ô
+// å­æ©ŸãŒè¦ªæ©Ÿã‚’é¸æŠã™ã‚‹çŠ¶æ…‹
 static void _selectParentWindowOpen(_INFO_WORK* pInfo);
 static void _myNameAndIDDisp(_INFO_WORK* pInfo);
 static void _selectParentListWaitAndListCreate(TCB_PTR tcb, void* work);
@@ -177,7 +177,7 @@ static void _selectParentCancelYesNoCheck1(TCB_PTR tcb, void* work);
 static void _selectParentCancelYesNoCheck(TCB_PTR tcb, void* work);
 
 
-// e‹@‚ªq‹@Ú‘±‚ğ‘Ò‚Á‚Ä‚¢‚éó‘Ô
+// è¦ªæ©ŸãŒå­æ©Ÿæ¥ç¶šã‚’å¾…ã£ã¦ã„ã‚‹çŠ¶æ…‹
 static void _commDisconnect(void);
 static void _childListWindowOpen(_INFO_WORK* pInfo);
 static void _childListStartMessage(void);
@@ -215,20 +215,20 @@ static void _childConnectNGFunc(TCB_PTR tcb, void* work);
 static void _startChildConnectReset(_INFO_WORK* pInfo);
 static void _childConnectResetFunc(TCB_PTR tcb, void* work);
 
-// •”‰®‚ÉˆÄ“à‚·‚éƒƒbƒZ[ƒW
+// éƒ¨å±‹ã«æ¡ˆå†…ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 static void _pleaseGuestRoomStart(_INFO_WORK* pInfo);
 
-// ƒQ[ƒ€ƒ‚[ƒh‚É‚æ‚éÅ‘åAÅ­l”‚ğ“¾‚é
+// ã‚²ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã‚‹æœ€å¤§ã€æœ€å°‘äººæ•°ã‚’å¾—ã‚‹
 static int _getMaxPlayNum(void);
 static int _getMinPlayNum(void);
-// ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“’l‚ğ“¾‚é
+// ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³å€¤ã‚’å¾—ã‚‹
 static int _getRegulationNo(void);
    
 
-static _INFO_WORK* _pInfo = NULL;  // ‚±‚ÌŠÖ”‚ÌÀ‘Ì‚ğ‚à‚Âƒ|ƒCƒ“ƒ^
+static _INFO_WORK* _pInfo = NULL;  // ã“ã®é–¢æ•°ã®å®Ÿä½“ã‚’ã‚‚ã¤ãƒã‚¤ãƒ³ã‚¿
 
-// ƒƒjƒ…[‚ğƒ^ƒXƒN‚É“o˜^‚µ‚Ä‚¢‚­Û‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB[
-// d‚Ë‚é‚²‚Æ‚É‚ ‚ª‚é‚æ‚¤‚É‚·‚é‚½‚ß’è‹`‚µ‚Ä‚¨‚­
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã‚¿ã‚¹ã‚¯ã«ç™»éŒ²ã—ã¦ã„ãéš›ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼
+// é‡ã­ã‚‹ã”ã¨ã«ã‚ãŒã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚å®šç¾©ã—ã¦ãŠã
 enum menuTaskPri_e {
     _TCB_PRI_TOP = 0,
     _MENU_TALK_PRI = _TCB_PRI_TOP,
@@ -238,14 +238,14 @@ enum menuTaskPri_e {
     _PARENT_CONNECT_OK_PRI = 0
 };
 
-#define _TCB_COMMCHECK_PRT   (10)    ///< ƒtƒB[ƒ‹ƒh‚ğ•à‚­’ÊM‚ÌŠÄ‹ƒ‹[ƒ`ƒ“‚ÌPRI
+#define _TCB_COMMCHECK_PRT   (10)    ///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’æ­©ãé€šä¿¡ã®ç›£è¦–ãƒ«ãƒ¼ãƒãƒ³ã®PRI
 
-// ‚µ‚Î‚ç‚­‚·‚é‚Æ‘Ò‹@ƒƒbƒZ[ƒW‚É•ÏX‚·‚é
+// ã—ã°ã‚‰ãã™ã‚‹ã¨å¾…æ©Ÿãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«å¤‰æ›´ã™ã‚‹
 #define _CHILD_WAIT_MSG_CHANGE_TIME (30*3)
 
 
 //==============================================================================
-//	YesNoƒƒjƒ…[ƒŠƒXƒg—pƒf[ƒ^
+//	YesNoãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static const BMPWIN_DAT _yesNoBmpDat = {
     FLD_MBGFRM_FONT, FLD_YESNO_WIN_PX, FLD_YESNO_WIN_PY,
@@ -255,8 +255,8 @@ static const BMPWIN_DAT _yesNoBmpDat = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊMƒ_ƒCƒŒƒNƒgƒR[ƒi[‚ÌƒJƒEƒ“ƒ^[—pƒƒjƒ…[  ƒXƒ^[ƒg
- * @param   pMsg •\¦ƒƒbƒZ[ƒW
+ * @brief   é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ç”¨ãƒ¡ãƒ‹ãƒ¥ãƒ¼  ã‚¹ã‚¿ãƒ¼ãƒˆ
+ * @param   pMsg è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -282,9 +282,9 @@ static void _talkStart(int messageIdx, BOOL bExpand)
 
 //MatchComment: duplicate the above function to an inline routine
 //MatchComment: copy these defines from savedata/config.c
-#define	MSG_SPEED_SLOW		( 8 )		///< ƒƒbƒZ[ƒW‘¬“xF’x‚¢
-#define	MSG_SPEED_NORMAL	( 4 )		///< ƒƒbƒZ[ƒW‘¬“xF•’Ê
-#define	MSG_SPEED_FAST		( 1 )		///< ƒƒbƒZ[ƒW‘¬“xF‘¬‚¢
+#define	MSG_SPEED_SLOW		( 8 )		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€Ÿåº¦ï¼šé…ã„
+#define	MSG_SPEED_NORMAL	( 4 )		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€Ÿåº¦ï¼šæ™®é€š
+#define	MSG_SPEED_FAST		( 1 )		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€Ÿåº¦ï¼šé€Ÿã„
 
 static inline void _talkStartFast(int messageIdx, BOOL bExpand)
 {
@@ -312,18 +312,18 @@ static inline void _talkStartFast(int messageIdx, BOOL bExpand)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”Ä—pƒŠƒXƒg‚Ìì¬
- * @param   header ƒŠƒXƒgƒwƒbƒ_[
- * @param   x,y   ŠJnÀ•W
- * @param   width,height  •‚‚³
- * @param   chrofs  ƒLƒƒƒ‰ƒNƒ^[‚ğ‚¨‚­ƒIƒtƒZƒbƒg
+ * @brief   æ±ç”¨ãƒªã‚¹ãƒˆã®ä½œæˆ
+ * @param   header ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼
+ * @param   x,y   é–‹å§‹åº§æ¨™
+ * @param   width,height  å¹…é«˜ã•
+ * @param   chrofs  ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’ãŠãã‚ªãƒ•ã‚»ãƒƒãƒˆ
  * @retval  none
  */
 //--------------------------------------------------------------
 static void _listCreate(BMPLIST_HEADER header,u8 x,u8 y,u8 width,u8 height,u16 chrofs)
 {
     BMPLIST_HEADER list_h;
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     if(!GF_BGL_BmpWinAddCheck(&_pInfo->win)){
         GF_BGL_BmpWinAdd(_pInfo->pFSys->bgl,&_pInfo->win,
                          GF_BGL_FRAME3_M, x, y, width, height, FLD_SYSFONT_PAL, chrofs);
@@ -339,7 +339,7 @@ static void _listCreate(BMPLIST_HEADER header,u8 x,u8 y,u8 width,u8 height,u16 c
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊMƒ_ƒCƒŒƒNƒgƒR[ƒi[‚ÌƒJƒEƒ“ƒ^[—pƒƒjƒ…[  ƒXƒ^[ƒg
+ * @brief   é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ç”¨ãƒ¡ãƒ‹ãƒ¥ãƒ¼  ã‚¹ã‚¿ãƒ¼ãƒˆ
  * @param   none
  * @retval  none
  */
@@ -349,7 +349,7 @@ static void _infoInitialize(FIELDSYS_WORK* pFSys)
 {
     int i;
     
-    GF_ASSERT_RETURN((_pInfo==NULL) && "‚QdŠm•Û‚Í‚¨‚©‚µ‚¢",);
+    GF_ASSERT_RETURN((_pInfo==NULL) && "ï¼’é‡ç¢ºä¿ã¯ãŠã‹ã—ã„",);
     _pInfo = sys_AllocMemory(HEAPID_FIELD, sizeof(_INFO_WORK));
     MI_CpuFill8(_pInfo, 0, sizeof(_INFO_WORK));
 
@@ -357,7 +357,7 @@ static void _infoInitialize(FIELDSYS_WORK* pFSys)
     _pInfo->pFSys = pFSys;
     _pInfo->bSubWin = FALSE;
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	_pInfo->msg_man = MSGMAN_Create(
         MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_directbattlecorner_dat, HEAPID_FIELD );
 
@@ -383,7 +383,7 @@ static void _infoInitialize(FIELDSYS_WORK* pFSys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠJ•úˆ—
+ * @brief   é–‹æ”¾å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -421,8 +421,8 @@ static void _infoFinalize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   I—¹•”•ª
- * @param   pInfo		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çµ‚äº†éƒ¨åˆ†
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -434,8 +434,8 @@ static void _exit(_INFO_WORK* pInfo)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@ƒXƒ^[ƒg
- * @param   pInfo		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å­æ©Ÿã‚¹ã‚¿ãƒ¼ãƒˆ
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -445,32 +445,32 @@ static void _childStart(_INFO_WORK* pInfo)
     CommFieldStateEnterBattleChild(pInfo->pFSys, pInfo->selectGameMode, _getRegulationNo());
 }
 
-///ƒfƒoƒbƒOƒƒjƒ…[e‹@‘I‘ğ‚ÌƒŠƒXƒg
+///ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦ªæ©Ÿé¸æŠã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER _parentMenuListHeader = {
-    NULL,  // •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    _parentMenuListCursor,// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    _parentMenuListLineCallBackAllPrint,// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,  // è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    _parentMenuListCursor,// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    _parentMenuListLineCallBackAllPrint,// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,                   // GF_BGL_BMPWIN* win
-    SCAN_PARENT_COUNT_MAX,	// ƒŠƒXƒg€–Ú”
-    _DISP_SCAN_PARENT_COUNT_MAX,	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+    SCAN_PARENT_COUNT_MAX,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    _DISP_SCAN_PARENT_COUNT_MAX,	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
     NULL                    // work
 };
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÚ“®–ˆ‚ÌƒR[ƒ‹ƒoƒbƒN
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•æ¯ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -481,18 +481,18 @@ static void	_parentMenuListCursor(BMPLIST_WORK * wk,u32 param,u8 mode)
     _pInfo->bReWrite = TRUE;
 //	_parentMenuListLineCallBackAllPrint( wk, param, mode );
 //
-	if( mode == 0 ){	//‰Šú‰»ˆÈŠO
+	if( mode == 0 ){	//åˆæœŸåŒ–ä»¥å¤–
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘SƒŠƒXƒg‚ğ•`‰æ‚µ‚È‚¨‚·
+ *	@brief	å…¨ãƒªã‚¹ãƒˆã‚’æç”»ã—ãªãŠã™
  *
- *	@param	wk		ƒ[ƒN
- *	@param	param	•¶š—ñƒpƒ‰ƒ[ƒ^ibmplistdata“à•”“I‚É‚ÍŠXheapID‚Ég—p‚µ‚Ä‚¢‚éj
- *	@param	y		‚xˆÊ’u
+ *	@param	wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	param	æ–‡å­—åˆ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆbmplistdataå†…éƒ¨çš„ã«ã¯æ‰€ã€…heapIDã«ä½¿ç”¨ã—ã¦ã„ã‚‹ï¼‰
+ *	@param	y		ï¼¹ä½ç½®
  */
 //-----------------------------------------------------------------------------
 static void _parentMenuListLineCallBackAllPrint(BMPLIST_WORK * wk,u32 param,u8 y)
@@ -505,7 +505,7 @@ static void _parentMenuListLineCallBackAllPrint(BMPLIST_WORK * wk,u32 param,u8 y
 
 //--------------------------------------------------------------
 /**
- * @brief   eˆê——‚Ì‚Pƒ‰ƒCƒ“ƒR[ƒ‹ƒoƒbƒN
+ * @brief   è¦ªä¸€è¦§ã®ï¼‘ãƒ©ã‚¤ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -556,7 +556,7 @@ static void _parentMenuListLineCallBack(BMPLIST_WORK * wk,u32 param,u8 y)
 
 //--------------------------------------------------------------
 /**
- * @brief   e‹@‚ğ‘I‘ğ‚·‚éƒEƒCƒ“ƒhƒE‚ğŠJ‚­
+ * @brief   è¦ªæ©Ÿã‚’é¸æŠã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
  * @param   none
  * @retval  none
  */
@@ -566,7 +566,7 @@ static void _selectParentWindowOpen(_INFO_WORK* pInfo)
 {
     int i;
 
-    // ©•ª‚Ì–¼‘O{ID‚Ì•\¦
+    // è‡ªåˆ†ã®åå‰ï¼‹IDã®è¡¨ç¤º
     if(!GF_BGL_BmpWinAddCheck(&_pInfo->subWin)){
         GF_BGL_BmpWinAdd(_pInfo->pFSys->bgl,&_pInfo->subWin, GF_BGL_FRAME3_M,
                          23, 2, 8, 4,
@@ -615,8 +615,8 @@ static void _selectParentWindowOpen(_INFO_WORK* pInfo)
 
 //--------------------------------------------------------------
 /**
- * @brief   –¼‘O‚ÆID‚ğ•\¦‚·‚é
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   åå‰ã¨IDã‚’è¡¨ç¤ºã™ã‚‹
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -632,7 +632,7 @@ static void _myNameAndIDDisp(_INFO_WORK* pInfo)
     MSGMAN_GetString( _pInfo->msg_man, DBCNameAndID, _pInfo->pStrBuf[6] );
     WORDSET_ExpandStr(_pInfo->pWordSetSub, _pInfo->pStrBuf[7], _pInfo->pStrBuf[6] );
 
-    // ©•ª‚Ì–¼‘O‚ÆID•\¦
+    // è‡ªåˆ†ã®åå‰ã¨IDè¡¨ç¤º
     GF_STR_PrintSimple( &_pInfo->subWin, FONT_SYSTEM, _pInfo->pStrBuf[7], 2, 2, 0, NULL );
 
 
@@ -640,9 +640,9 @@ static void _myNameAndIDDisp(_INFO_WORK* pInfo)
 
 //--------------------------------------------------------------
 /**
- * @brief   e‹@ˆê——ƒƒjƒ…[‚ÌÀs•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è¦ªæ©Ÿä¸€è¦§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -659,7 +659,7 @@ static void _selectParentListWaitAndListCreate(TCB_PTR tcb, void* work)
         _pInfo->menulist = BMP_MENULIST_Create( SCAN_PARENT_COUNT_MAX, HEAPID_FIELD );
         for(i=0; i< SCAN_PARENT_COUNT_MAX; i++){
 
-			// ƒŠƒXƒg‚Ì”š‚¾‚¯‘‚¢‚Ä‚¨‚­
+			// ãƒªã‚¹ãƒˆã®æ•°å­—ã ã‘æ›¸ã„ã¦ãŠã
 			WORDSET_RegisterNumber(_pInfo->pWordSetMain, CURRENT_PLAYER_WORD_IDX,
 								   i+1, 2,
 								   NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
@@ -681,9 +681,9 @@ static void _selectParentListWaitAndListCreate(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   e‹@ˆê——ƒƒjƒ…[‚ÌÀs•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è¦ªæ©Ÿä¸€è¦§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -696,7 +696,7 @@ static void _selectParentListFunc(TCB_PTR tcb, void* work)
 
     _myNameAndIDDisp(pInfo);
 
-    if(CommIsError()){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         _pInfo->retCode = COMM_RETVAL_ERROR;
         _commDisconnect();
         _listEnd(tcb, pInfo);
@@ -723,10 +723,10 @@ static void _selectParentListFunc(TCB_PTR tcb, void* work)
             BmpListDirectPosGet(pInfo->lw, &pInfo->connectIndex);
             if(CommMPGetParentCount() > pInfo->connectIndex){
 
-				// e‚É‚Â‚È‚¬‚És‚­ó‘Ô‚ÌeƒŠƒXƒg‚ğ•`‰æ‚·‚é
+				// è¦ªã«ã¤ãªãã«è¡ŒãçŠ¶æ…‹ã®è¦ªãƒªã‚¹ãƒˆã‚’æç”»ã™ã‚‹
 				_selectParentSetName(pInfo);
 
-				//BMPList‚ÌˆÊ’u‚©‚çBeacon‚ªÀÛ‚É‘¶İ‚·‚éIndex‚ğæ“¾‚µ‚È‚¨‚·
+				//BMPListã®ä½ç½®ã‹ã‚‰BeaconãŒå®Ÿéš›ã«å­˜åœ¨ã™ã‚‹Indexã‚’å–å¾—ã—ãªãŠã™
 				pInfo->connectIndex = CommBmpListPosBconIndexGet(pInfo->connectIndex);
 
                 CommFieldStateConnectBattleChild(pInfo->connectIndex);
@@ -743,8 +743,8 @@ static void _selectParentListFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   e‹@‚Ì–¼‘O‚ğE‚¤‚½‚Ñ‚Éƒƒjƒ…[‚É’Ç‰Á‚·‚é
- * @param   pNet		ƒlƒbƒgƒ[ƒNó‹µ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è¦ªæ©Ÿã®åå‰ã‚’æ‹¾ã†ãŸã³ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«è¿½åŠ ã™ã‚‹
+ * @param   pNet		ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯çŠ¶æ³æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -752,7 +752,7 @@ static void _selectParentListFunc(TCB_PTR tcb, void* work)
 static void _selectParentSetName(_INFO_WORK* pInfo)
 {
     if(CommMPIsScanListChange() || _pInfo->bReWrite){
-        // ‰½‚àƒŠƒXƒg‚ÉXV‚ª‚È‚¯‚ê‚Î•`‰æ•ÏX‚ğ‚µ‚È‚¢
+        // ä½•ã‚‚ãƒªã‚¹ãƒˆã«æ›´æ–°ãŒãªã‘ã‚Œã°æç”»å¤‰æ›´ã‚’ã—ãªã„
         _pInfo->bReWrite = FALSE;
         CommMPResetScanChangeFlag();
 
@@ -760,10 +760,10 @@ static void _selectParentSetName(_INFO_WORK* pInfo)
 //        GF_BGL_BmpWinDataFill( &_pInfo->win, 15 );
 //
 
-		// •\¦•ÏX‚·‚é‚Æ‚±‚ë‚ğƒNƒŠƒA
+		// è¡¨ç¤ºå¤‰æ›´ã™ã‚‹ã¨ã“ã‚ã‚’ã‚¯ãƒªã‚¢
 		GF_BGL_BmpWinFill( &_pInfo->win, 15, 8, 0, _PARENT_MENU_LIST_WIDTH - 8, (_DISP_SCAN_PARENT_COUNT_MAX*2)*8 );
 
-		// ‘S€–Ú•`‰æ
+		// å…¨é …ç›®æç”»
 		_parentMenuListLineCallBackAllPrint(_pInfo->lw, 0, 0);
 //        GF_BGL_BmpWinOnVReq(&_pInfo->win);
         GF_BGL_BmpWinOn(&_pInfo->win);
@@ -772,7 +772,7 @@ static void _selectParentSetName(_INFO_WORK* pInfo)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@@e‹@‚ÉÚ‘±ƒŠƒNƒGƒXƒg‚ğo‚µ‚ÄA‘Ò‹@ó‘Ô
+ * @brief   å­æ©Ÿã€€è¦ªæ©Ÿã«æ¥ç¶šãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã—ã¦ã€å¾…æ©ŸçŠ¶æ…‹
  * @param   void
  * @retval  none
  */
@@ -782,10 +782,10 @@ static void _selectParentExec(TCB_PTR tcb, void* work)
     _INFO_WORK* pInfo = (_INFO_WORK*)work;
 
 
-	// BTS’ÊMƒGƒ‰[F0078
-	// e‚Æ‚ÌÚ‘±’†‚Ée‚ª‚¢‚È‚­‚È‚Á‚½‚Æ‚«‚Ì
-	// ƒGƒ‰[ˆ—
-    if(CommIsError()){  // ƒGƒ‰[‚Íe‹@‘I‘ğ‚É–ß‚é
+	// BTSé€šä¿¡ã‚¨ãƒ©ãƒ¼ï¼š0078
+	// è¦ªã¨ã®æ¥ç¶šä¸­ã«è¦ªãŒã„ãªããªã£ãŸã¨ãã®
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯è¦ªæ©Ÿé¸æŠã«æˆ»ã‚‹
         _listEnd(tcb, pInfo);
         _talkStart(DBCConnectError, FALSE);
         _startChildConnectReset(pInfo);
@@ -793,7 +793,7 @@ static void _selectParentExec(TCB_PTR tcb, void* work)
     }
 
 #if PLFIX_T1618
-	// e‚ÌCommInfo‚ğóM‚·‚é‚Ü‚Å‘Ò‚Â
+	// è¦ªã®CommInfoã‚’å—ä¿¡ã™ã‚‹ã¾ã§å¾…ã¤
 	if( CommInfoGetMyStatus( CommGetCurrentID() ) == NULL ){
 		return ;
 	}
@@ -804,7 +804,7 @@ static void _selectParentExec(TCB_PTR tcb, void* work)
 
     CommMPGetParentName(pInfo->connectIndex, _pInfo->pBconStatus);
     WORDSET_RegisterPlayerName( pInfo->pWordSetTalk, TARGET_PLAYER_WORD_IDX, _pInfo->pBconStatus);
-    if(_getMinPlayNum() <= 2){  //1vs1 1on1‚Ìê‡
+    if(_getMinPlayNum() <= 2){  //1vs1 1on1ã®å ´åˆ
         _talkStart(DBCChildWait, TRUE);
     }
     else{
@@ -817,9 +817,9 @@ static void _selectParentExec(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@@e‹@‚ÉÚ‘±ƒŠƒNƒGƒXƒg‚ğo‚µ‚ÄA‘Ò‹@ó‘Ô‚ÌÀs•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pNet		ƒlƒbƒgƒ[ƒNó‹µ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å­æ©Ÿã€€è¦ªæ©Ÿã«æ¥ç¶šãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã—ã¦ã€å¾…æ©ŸçŠ¶æ…‹ã®å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pNet		ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯çŠ¶æ³æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -828,7 +828,7 @@ static BOOL _waitWindowCommonFunc(TCB_PTR tcb, void* work)
 {
     _INFO_WORK* pInfo = work;
     
-    if(CommIsError()){  // ƒGƒ‰[‚Íe‹@‘I‘ğ‚É–ß‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯è¦ªæ©Ÿé¸æŠã«æˆ»ã‚‹
         _listEnd(tcb, pInfo);
         _talkStart(DBCConnectError, FALSE);
         _startChildConnectReset(pInfo);
@@ -844,13 +844,13 @@ static BOOL _waitWindowCommonFunc(TCB_PTR tcb, void* work)
         _startChildConnectNG(pInfo);
     }
     else if( CommListGet(COMM_PARENT_ID , _YESNO_DIFFER_REGULATION) == CommGetCurrentID() ){
-        // e‹@‚©‚çƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ˆá”½‚ğó‚¯‚½
+        // è¦ªæ©Ÿã‹ã‚‰ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é•åã‚’å—ã‘ãŸ
         _talkStart(DBCDifferRule, FALSE);
         _changeState(_regulationDiffer);
     }
     else if( CommListGet(COMM_PARENT_ID , _YESNO_YES_RESULT) == CommGetCurrentID() ){
         CommListReset();
-        // e‹@‚©‚çYES‚ğóM
+        // è¦ªæ©Ÿã‹ã‚‰YESã‚’å—ä¿¡
         pInfo->connectNum = CommInfoGetEntryNum();
         if(!FldTalkMsgEndCheck(_pInfo->msgIndex)){
             GF_STR_PrintForceStop(_pInfo->msgIndex);
@@ -858,7 +858,7 @@ static BOOL _waitWindowCommonFunc(TCB_PTR tcb, void* work)
         _listEnd(tcb, pInfo);
         _startChildConnectOK(pInfo);
     }
-    else if(CommRecvIsExit()){     // ‘S‹‘”Û‚³‚ê‚½ê‡
+    else if(CommRecvIsExit()){     // å…¨æ‹’å¦ã•ã‚ŒãŸå ´åˆ
         _listEnd(tcb, pInfo);
         _startChildConnectNG(pInfo);
     }
@@ -870,9 +870,9 @@ static BOOL _waitWindowCommonFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@@e‹@‚ÉÚ‘±ƒŠƒNƒGƒXƒg‚ğo‚µ‚ÄA‘Ò‹@ó‘Ô‚ÌÀs•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pNet		ƒlƒbƒgƒ[ƒNó‹µ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å­æ©Ÿã€€è¦ªæ©Ÿã«æ¥ç¶šãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã—ã¦ã€å¾…æ©ŸçŠ¶æ…‹ã®å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pNet		ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯çŠ¶æ³æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -886,7 +886,7 @@ static void _waitWindowFunc(TCB_PTR tcb, void* work)
     }
     if(_waitWindowCommonFunc(tcb,work)){
     }
-    else if(PAD_BUTTON_CANCEL & sys.trg){  // Q‰Á‚ğ‚â‚ß‚é‚©‚Ç‚¤‚©–â‚¢‡‚í‚¹
+    else if(PAD_BUTTON_CANCEL & sys.trg){  // å‚åŠ ã‚’ã‚„ã‚ã‚‹ã‹ã©ã†ã‹å•ã„åˆã‚ã›
         _talkStart(DBCMemberCancelCheck, FALSE);
         _changeState(_selectParentCancelYesNoCheck1);
     }
@@ -898,7 +898,7 @@ static void _selectParentCancelYesNoCheck1(TCB_PTR tcb, void* work)
     if(_waitWindowCommonFunc(tcb,work)){
     }
     else if(FldTalkMsgEndCheck(_pInfo->msgIndex)){
-        // ‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
+        // ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
         pInfo->yesNoWork = BmpYesNoSelectInit(_pInfo->pFSys->bgl,
                                                &_yesNoBmpDat, MENU_WIN_CGX_NUM,
                                                MENU_WIN_PAL, HEAPID_FIELD );
@@ -917,44 +917,44 @@ static void _selectParentCancelYesNoCheck(TCB_PTR tcb, void* work)
         return;
     }
     ret = BmpYesNoSelectMain(pInfo->yesNoWork, HEAPID_FIELD);
-    if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+    if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
         _listEnd(tcb, pInfo);
         _talkStart(DBCMemberCancel, FALSE);
         _startChildConnectReset(pInfo);
     }
-    else if(ret != BMPMENU_NULL){ // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+    else if(ret != BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
  //       _talkStart(DBCChildWait, FALSE);
         _changeState(_selectParentExec);
     }
 
 }
 
-///ƒfƒoƒbƒOƒƒjƒ…[e‹@‘I‘ğ‚ÌƒŠƒXƒg
+///ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦ªæ©Ÿé¸æŠã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER _childListHeader = {
-    NULL,  // •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,  // è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,                   // win
-    _DIRECT_CORNER_CREATURE_MAX,	// ƒŠƒXƒg€–Ú”
-    _DIRECT_CORNER_CREATURE_MAX,	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    1,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶šw’è
-    1,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+    _DIRECT_CORNER_CREATURE_MAX,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    _DIRECT_CORNER_CREATURE_MAX,	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    1,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    1,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
     NULL                    //work
 };
 
 //--------------------------------------------------------------
 /**
- * @brief   eˆê——‚Ìˆêƒ‰ƒCƒ“ƒR[ƒ‹ƒoƒbƒN
+ * @brief   è¦ªä¸€è¦§ã®ä¸€ãƒ©ã‚¤ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -989,12 +989,12 @@ static void _childListLineCallBack(BMPLIST_WORK * wk,u32 param,u8 y)
 static void _parentStart(_INFO_WORK* pInfo)
 {
     CommFieldStateEnterBattleParent(pInfo->pFSys, pInfo->selectGameMode, _getRegulationNo() );
-    //_childListWindowOpen(pInfo);  // Ú‘±‚µ‚Ä‚­‚éq‹@ƒŠƒXƒg‚ğ•\¦
+    //_childListWindowOpen(pInfo);  // æ¥ç¶šã—ã¦ãã‚‹å­æ©Ÿãƒªã‚¹ãƒˆã‚’è¡¨ç¤º
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ñüØ’f
+ * @brief   å›ç·šåˆ‡æ–­
  * @param   none
  * @retval  none
  */
@@ -1006,9 +1006,9 @@ static void _commDisconnect(void)
 
 //==============================================================================
 /**
- * ŠÇ—ƒXƒe[ƒg‚Ì•ÏX
- * @param   state  •Ï‚¦‚éƒXƒe[ƒg‚ÌŠÖ”
- * @param   time   ƒXƒe[ƒg•ÛŠÔ
+ * ç®¡ç†ã‚¹ãƒ†ãƒ¼ãƒˆã®å¤‰æ›´
+ * @param   state  å¤‰ãˆã‚‹ã‚¹ãƒ†ãƒ¼ãƒˆã®é–¢æ•°
+ * @param   time   ã‚¹ãƒ†ãƒ¼ãƒˆä¿æŒæ™‚é–“
  * @retval  none
  */
 //==============================================================================
@@ -1020,7 +1020,7 @@ static void _changeState(STATE_FUNC_PTR pState)
 
 //--------------------------------------------------------------
 /**
- * @brief   Ú‘±‚·‚éq‹@ˆê——ƒEƒCƒ“ƒhƒE‚ğŠJ‚­
+ * @brief   æ¥ç¶šã™ã‚‹å­æ©Ÿä¸€è¦§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
  * @param   none
  * @retval  none
  */
@@ -1033,7 +1033,7 @@ static void _childListWindowOpen(_INFO_WORK* pInfo)
     TCB_Add(_commonFunc, pInfo, _MENU_CHILD_LIST_PRI);
     _childListStartMessage();
     
-    // ‚ ‚ÆH‚É‚ñ‚Ì•\¦
+    // ã‚ã¨ï¼Ÿã«ã‚“ã®è¡¨ç¤º
     if(!GF_BGL_BmpWinAddCheck(&_pInfo->subWin)){
         GF_BGL_BmpWinAdd(_pInfo->pFSys->bgl,&_pInfo->subWin, GF_BGL_FRAME3_M,
                          22, 2, 9, 4,
@@ -1046,9 +1046,9 @@ static void _childListWindowOpen(_INFO_WORK* pInfo)
     GF_BGL_BmpWinOn(&_pInfo->subWin);
     pInfo->bSubWin = TRUE;
 
-    // ©•ª‚Ìƒf[ƒ^‚ğ‘—M
+    // è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡
     //CommInfoSendPokeData();
-    CommInfoSetEntry(0);// ©•ª‚Í‚·‚Å‚Éó•tŠ®—¹
+    CommInfoSetEntry(0);// è‡ªåˆ†ã¯ã™ã§ã«å—ä»˜å®Œäº†
 
     _changeState(_waitAndChildListCreate);
 
@@ -1100,8 +1100,8 @@ static void _childListStartMessage(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   l”‚Ì•\¦
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   äººæ•°ã®è¡¨ç¤º
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1110,7 +1110,7 @@ static void _numDisp(_INFO_WORK* pInfo)
 {
     int msgno,num;
 
-    // l”•\¦
+    // äººæ•°è¡¨ç¤º
     if(CommInfoGetEntryNum() >= _getMinPlayNum()){
         num = CommInfoGetEntryNum();
         msgno = DBCChildPlayNum;
@@ -1134,7 +1134,7 @@ static void _numDisp(_INFO_WORK* pInfo)
 
 static void _yesnoMemberCheckStart(int netID, _INFO_WORK* pInfo)
 {
-    // ƒQ[ƒ€ƒ‚[ƒh‚É‚ ‚í‚¹‚½ƒZƒŠƒtˆê——
+    // ã‚²ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ã«ã‚ã‚ã›ãŸã‚»ãƒªãƒ•ä¸€è¦§
     int _msgsParentCheck[]={
         DBCParentCheckTrade,
         DBCParentCheckSingle,
@@ -1171,9 +1171,9 @@ static void _yesnoMemberCheckStart(int netID, _INFO_WORK* pInfo)
 
 //--------------------------------------------------------------
 /**
- * @brief   e‹@ˆê——ƒƒjƒ…[‚ÌÀs•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è¦ªæ©Ÿä¸€è¦§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1191,9 +1191,9 @@ static void _commonFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‚ªo‚½‚çAq‹@ƒŠƒXƒg‚ğo‚·
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå‡ºãŸã‚‰ã€å­æ©Ÿãƒªã‚¹ãƒˆã‚’å‡ºã™
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1226,9 +1226,9 @@ static void _waitAndChildListCreate(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@ƒŠƒXƒg‚ğ•\¦‚µ‚Ä‚¢‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å­æ©Ÿãƒªã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1241,7 +1241,7 @@ static void _childListSelectFunc(TCB_PTR tcb, void* work)
 
     _numDisp(pInfo);
 
-    for(i = 0;i < COMM_MACHINE_MAX;i++){  // mustatusŒŸ¸
+    for(i = 0;i < COMM_MACHINE_MAX;i++){  // mustatusæ¤œæŸ»
         if(CommInfoIsBattleNewName(i) && (i != 0 )){
             _pInfo->bNewInfoTrg[i] = TRUE;
             _pInfo->bReWrite = TRUE;
@@ -1258,7 +1258,7 @@ static void _childListSelectFunc(TCB_PTR tcb, void* work)
 
     if(_pInfo->bReWrite){
         _pInfo->bReWrite = FALSE;
-        BmpListRewrite(_pInfo->lw); // ƒEƒCƒ“ƒhƒEÄ•`‰æ
+        BmpListRewrite(_pInfo->lw); // ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†æç”»
         for(i = 0; i < BmpListParamGet(_pInfo->lw,BMPLIST_ID_LINE); i++){
             _childListLineCallBack(_pInfo->lw, 0, i);
         }
@@ -1272,8 +1272,8 @@ static void _childListSelectFunc(TCB_PTR tcb, void* work)
         _changeState(_waitAndYesNoMenuCreate);
         return;
     }
-    if(CommIsError()){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
-        // ‰ñüØ’f
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
+        // å›ç·šåˆ‡æ–­
         _commDisconnect();
         _listEnd(tcb, pInfo);
         _pInfo->retCode = COMM_RETVAL_ERROR;
@@ -1282,11 +1282,11 @@ static void _childListSelectFunc(TCB_PTR tcb, void* work)
         switch(ret){
           case BMPLIST_NULL:
             break;
-          case BMPLIST_CANCEL:  // –ß‚é
+          case BMPLIST_CANCEL:  // æˆ»ã‚‹
             _changeState(_childListBCancelCheck);
             break;
-          default:   // Å’ál”‚É’B‚µ‚Ä‚¢‚½‚çŠJn‚ÌŠm”F
-            if(_getMinPlayNum() <= CommInfoGetEntryNum()){  // Å’áÚ‘±l”‚É’B‚µ‚½
+          default:   // æœ€ä½äººæ•°ã«é”ã—ã¦ã„ãŸã‚‰é–‹å§‹ã®ç¢ºèª
+            if(_getMinPlayNum() <= CommInfoGetEntryNum()){  // æœ€ä½æ¥ç¶šäººæ•°ã«é”ã—ãŸ
                 int _msgsParentFinalCheck[]={
                     0,
                     0,
@@ -1321,9 +1321,9 @@ static void _childListSelectFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚Í‚¢A‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚µ•ªŠò‚·‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã¯ã„ã€ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã—åˆ†å²ã™ã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1338,14 +1338,14 @@ static void _childListSelect_YesNoWait(TCB_PTR tcb, void* work)
     
     BmpListMain(pInfo->lw);
     ret = BmpYesNoSelectMain(pInfo->yesNoWork, HEAPID_FIELD);
-    if(!CommIsConnect(pInfo->selectChildNetID)){   //Q‰Á’†~
+    if(!CommIsConnect(pInfo->selectChildNetID)){   //å‚åŠ ä¸­æ­¢
         if(ret == BMPMENU_NULL){
             BmpYesNoWinDel(pInfo->yesNoWork, HEAPID_FIELD);
         }
-        if(pInfo->selectGameMode == COMM_MODE_CONTEST){  // ƒRƒ“ƒeƒXƒg‚ÉŒŠ”²‚¯‚Í–³‚¢
+        if(pInfo->selectGameMode == COMM_MODE_CONTEST){  // ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«ç©´æŠœã‘ã¯ç„¡ã„
             for(i = 1 ; i < _getMaxPlayNum() ; i++){
                 if(CommIsConnect(i)){
-                    CommInfoDeletePlayer( i ); // “o˜^‚ğÁ‚·
+                    CommInfoDeletePlayer( i ); // ç™»éŒ²ã‚’æ¶ˆã™
                     CommListSet(_YESNO_ALL_EXIT, i);
                 }
             }
@@ -1353,40 +1353,40 @@ static void _childListSelect_YesNoWait(TCB_PTR tcb, void* work)
             _changeState(_waitAndChildListSelect2);
         }
         else{
-            CommInfoDeletePlayer( pInfo->selectChildNetID ); // “o˜^‚ğÁ‚·
+            CommInfoDeletePlayer( pInfo->selectChildNetID ); // ç™»éŒ²ã‚’æ¶ˆã™
             _talkStart(DBCConnectError, FALSE);
             _changeState(_waitAndChildListSelect2);
         }
     }
-    else if(CommIsError() ||   // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
-       CommRecvIsExit()){   // q‹@‘¤‚ª‹‘”Û‚µ‚Ä‚«‚½
+    else if(CommIsError() ||   // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
+       CommRecvIsExit()){   // å­æ©Ÿå´ãŒæ‹’å¦ã—ã¦ããŸ
         if(ret == BMPMENU_NULL){
             BmpYesNoWinDel(pInfo->yesNoWork, HEAPID_FIELD);
         }
-        CommInfoDeletePlayer( pInfo->selectChildNetID ); // “o˜^‚ğÁ‚·
+        CommInfoDeletePlayer( pInfo->selectChildNetID ); // ç™»éŒ²ã‚’æ¶ˆã™
         _talkStart(DBCConnectError, FALSE);
         _changeState(_waitAndChildListSelect2);
     }
-    else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+    else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
 
         if((pInfo->selectGameMode == COMM_MODE_BATTLE_SINGLE) ||
            (pInfo->selectGameMode == COMM_MODE_BATTLE_DOUBLE)){
-            if(!CommInfoRegulationCheck()){  // ’ÊM‚µ‚½ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ªˆÙ‚È‚é ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚È‚¢ê‡‚Í‚©‚ç‚Á‚Û‚Ì‚Í‚¸
+            if(!CommInfoRegulationCheck()){  // é€šä¿¡ã—ãŸãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒç•°ãªã‚‹ ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãªã„å ´åˆã¯ã‹ã‚‰ã£ã½ã®ã¯ãš
                 _talkStart(DBCDifferRule, FALSE);
                 _changeState(_regulationDiffer);
                 CommListSet(_YESNO_DIFFER_REGULATION, pInfo->selectChildNetID);
                 return;
             }
         }
-        CommInfoSetEntry( pInfo->selectChildNetID );  //ƒGƒ“ƒgƒŠ[‚·‚é
+        CommInfoSetEntry( pInfo->selectChildNetID );  //ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã™ã‚‹
         CommListSet(_YESNO_YES_RESULT, pInfo->selectChildNetID);
-        if(_getMaxPlayNum() == CommInfoGetEntryNum()){  // Ú‘±l”‚É’B‚µ‚½
+        if(_getMaxPlayNum() == CommInfoGetEntryNum()){  // æ¥ç¶šäººæ•°ã«é”ã—ãŸ
             pInfo->connectNum = CommInfoGetEntryNum();
-            if(_getMaxPlayNum() > 2){ // “ñlˆÈã‚Ì‚Æ‚«‚ÍÄŠm”Fƒ‚[ƒh‚Ö
+            if(_getMaxPlayNum() > 2){ // äºŒäººä»¥ä¸Šã®ã¨ãã¯å†ç¢ºèªãƒ¢ãƒ¼ãƒ‰ã¸
                 _changeState(_childListFinalCheck);
             }
             else{
-                _listEnd(tcb,pInfo);   // ‚»‚Ì‚Ü‚Ü‚²ˆÄ“à
+                _listEnd(tcb,pInfo);   // ãã®ã¾ã¾ã”æ¡ˆå†…
                 _startParentExec(pInfo);
             }
         }
@@ -1395,11 +1395,11 @@ static void _childListSelect_YesNoWait(TCB_PTR tcb, void* work)
             _changeState(_waitAndChildListSelect);
         }
     }
-    else if(ret != BMPMENU_NULL){ // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
-        if(pInfo->selectGameMode == COMM_MODE_CONTEST){  // ƒRƒ“ƒeƒXƒg‚ÉŒŠ”²‚¯‚Í–³‚¢
+    else if(ret != BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
+        if(pInfo->selectGameMode == COMM_MODE_CONTEST){  // ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«ç©´æŠœã‘ã¯ç„¡ã„
             for(i = 1 ; i < _getMaxPlayNum() ; i++){
                 if(CommIsConnect(i)){
-                    CommInfoDeletePlayer( i ); // “o˜^‚ğÁ‚·
+                    CommInfoDeletePlayer( i ); // ç™»éŒ²ã‚’æ¶ˆã™
                     CommListSet(_YESNO_ALL_EXIT, i);
                 }
             }
@@ -1407,7 +1407,7 @@ static void _childListSelect_YesNoWait(TCB_PTR tcb, void* work)
             _changeState(_waitAndChildListSelect);
         }
         else{
-            CommInfoDeletePlayer( pInfo->selectChildNetID ); // “o˜^‚ğÁ‚·
+            CommInfoDeletePlayer( pInfo->selectChildNetID ); // ç™»éŒ²ã‚’æ¶ˆã™
             CommListSet(_YESNO_NO_RESULT, pInfo->selectChildNetID);
             _childListStartMessage();
             _changeState(_waitAndChildListSelect);
@@ -1417,9 +1417,9 @@ static void _childListSelect_YesNoWait(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ªˆÙ‚È‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒç•°ãªã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1439,9 +1439,9 @@ static void _regulationDiffer(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‚ªo‚½‚çA‘Ò‹@ó‘Ô‚Ö‚¢‚­B ƒŠƒXƒg‚Ío‚½‚Ü‚Ü
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå‡ºãŸã‚‰ã€å¾…æ©ŸçŠ¶æ…‹ã¸ã„ãã€‚ ãƒªã‚¹ãƒˆã¯å‡ºãŸã¾ã¾
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1464,9 +1464,9 @@ static void _waitAndChildListSelect2(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‚ªo‚½‚çA‘Ò‹@ó‘Ô‚Ö‚¢‚­B ƒŠƒXƒg‚Ío‚½‚Ü‚Ü
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå‡ºãŸã‚‰ã€å¾…æ©ŸçŠ¶æ…‹ã¸ã„ãã€‚ ãƒªã‚¹ãƒˆã¯å‡ºãŸã¾ã¾
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1485,9 +1485,9 @@ static void _waitAndChildListSelect(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€‚ğŠJn‚µ‚Ä‚¢‚¢‚©‚Ç‚¤‚©‚Ì‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã—ã¦ã„ã„ã‹ã©ã†ã‹ã®ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1527,9 +1527,9 @@ static void _childListFinalCheck(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€‚ğŠJn‚µ‚Ä‚¢‚¢‚©‚Ç‚¤‚©‚Ì‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‘Ò‹@
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã—ã¦ã„ã„ã‹ã©ã†ã‹ã®ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¾…æ©Ÿ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1563,19 +1563,19 @@ static void _childListFinalCheckFunc2(TCB_PTR tcb, void* work)
 
     BmpListMain(pInfo->lw);
     ret = BmpYesNoSelectMain(pInfo->yesNoWork, HEAPID_FIELD);
-    if(CommIsError() || (CommGetConnectNum() != pInfo->connectNum)){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError() || (CommGetConnectNum() != pInfo->connectNum)){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         if(ret == BMPMENU_NULL){
             BmpYesNoWinDel(pInfo->yesNoWork,HEAPID_FIELD);
         }
         pInfo->yesNoWork = NULL;
         _changeState(_exitBattle);
     }
-    else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
-        if(pInfo->selectGameMode == COMM_MODE_CONTEST){  // ƒRƒ“ƒeƒXƒg‚ÉŒŠ”²‚¯‚Í–³‚¢
+    else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
+        if(pInfo->selectGameMode == COMM_MODE_CONTEST){  // ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«ç©´æŠœã‘ã¯ç„¡ã„
             for(i = 1 ; i < CommGetConnectNum() ; i++){
                 if(!CommIsConnect(i)){
                     _changeState(_exitBattle);
-                    //ŒŠ‚ª”²‚¯‚Ä‚¢‚é
+                    //ç©´ãŒæŠœã‘ã¦ã„ã‚‹
 //                    CommStateSetEntryChildEnable(TRUE);
   //                  _commDisconnect();
     //                _listEnd(tcb, pInfo);
@@ -1584,10 +1584,10 @@ static void _childListFinalCheckFunc2(TCB_PTR tcb, void* work)
                 }
             }
         }
-        CommTimingSyncStart(_TIMING_GUESTROOM); // ƒQƒXƒgƒ‹[ƒ€‚És‚­‘—M
+        CommTimingSyncStart(_TIMING_GUESTROOM); // ã‚²ã‚¹ãƒˆãƒ«ãƒ¼ãƒ ã«è¡Œãé€ä¿¡
         _changeState(_childListGuestRoomMessageWait);
     }
-    else if(ret != BMPMENU_NULL){ // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+    else if(ret != BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
         CommStateSetEntryChildEnable(TRUE);
         _commDisconnect();
         _listEnd(tcb, pInfo);
@@ -1647,9 +1647,9 @@ static void _exitBattleFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   BƒLƒƒƒ“ƒZƒ‹‚Å”²‚¯‚é‚Ì‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚¾‚µ
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ã§æŠœã‘ã‚‹æ™‚ã®ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã ã—
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1684,11 +1684,11 @@ static void _childListBCancelCheck(TCB_PTR tcb, void* work)
     _numDisp(pInfo);
 
     if(CommInfoGetEntryNum() > 1){
-        // q‹@‚ª‚¢‚éê‡ –ß‚é‘O‚ÉŠm”F
+        // å­æ©ŸãŒã„ã‚‹å ´åˆ æˆ»ã‚‹å‰ã«ç¢ºèª
         _talkStart(_msgsParentBCancel[pInfo->selectGameMode], FALSE);
         _changeState(_childListBCancelCheckFunc1);
     }
-    else{   //’N‚à“o˜^‚ª‚È‚¢ê‡‚à‚Ç‚é
+    else{   //èª°ã‚‚ç™»éŒ²ãŒãªã„å ´åˆã‚‚ã©ã‚‹
         _commDisconnect();
         _listEnd(tcb, pInfo);
         _pInfo->retCode = COMM_RETVAL_CANCEL;
@@ -1712,9 +1712,9 @@ static void _childListBCancelCheckFunc1(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   BƒLƒƒƒ“ƒZƒ‹‚Å”²‚¯‚é‚Ì‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‘Ò‚¿
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ã§æŠœã‘ã‚‹æ™‚ã®ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¾…ã¡
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1728,15 +1728,15 @@ static void _childListBCancelCheckFunc(TCB_PTR tcb, void* work)
 
     BmpListMain(pInfo->lw);
     ret = BmpYesNoSelectMain(pInfo->yesNoWork, HEAPID_FIELD);
-    if(CommIsError()){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         ret = BMPLIST_CANCEL;
     }
-    if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+    if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
         _commDisconnect();
         _listEnd(tcb, pInfo);
         _pInfo->retCode = COMM_RETVAL_CANCEL;
     }
-    else if(ret != BMPMENU_NULL){ // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+    else if(ret != BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
         _childListStartMessage();
         _changeState(_waitAndChildListSelect);
     }
@@ -1744,9 +1744,9 @@ static void _childListBCancelCheckFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   “o˜^Š®—¹A‘Sˆõ‚Ì’ÊMŠJn‚ğ‘Ò‚Â
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç™»éŒ²å®Œäº†ã€å…¨å“¡ã®é€šä¿¡é–‹å§‹ã‚’å¾…ã¤
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1756,14 +1756,14 @@ static void _childListGuestRoomMessageWait(TCB_PTR tcb, void* work)
     _INFO_WORK* pInfo = (_INFO_WORK*)work;
     u32	ret = BMPLIST_NULL;
 
-    if(CommIsError() || (CommGetConnectNum() != pInfo->connectNum)){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError() || (CommGetConnectNum() != pInfo->connectNum)){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         _changeState(_exitBattle);
     }
     else{
         _numDisp(pInfo);
         BmpListMain(pInfo->lw);
-        if(CommIsTimingSync(_TIMING_GUESTROOM)){ // óM‚µ‚½ê‡
-            if(CommToolIsInitialize()){  // ’ÊM‚µ‚Ä‚é‚È‚ç
+        if(CommIsTimingSync(_TIMING_GUESTROOM)){ // å—ä¿¡ã—ãŸå ´åˆ
+            if(CommToolIsInitialize()){  // é€šä¿¡ã—ã¦ã‚‹ãªã‚‰
                 _listEnd(tcb, pInfo);
                 _pleaseGuestRoomStart(pInfo);
             }
@@ -1773,9 +1773,9 @@ static void _childListGuestRoomMessageWait(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‘Ò‹@Œã‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…æ©Ÿå¾Œã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1799,9 +1799,9 @@ static void _waitAndYesNoMenuCreate(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@ƒŠƒXƒg‚ğ•Â‚¶‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å­æ©Ÿãƒªã‚¹ãƒˆã‚’é–‰ã˜ã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1827,8 +1827,8 @@ static void _listEnd(TCB_PTR tcb,_INFO_WORK* pInfo)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘I‚ñ‚¾e‹@‚ÉÚ‘±‚µ‚É‚¢‚­
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   é¸ã‚“ã è¦ªæ©Ÿã«æ¥ç¶šã—ã«ã„ã
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1844,8 +1844,8 @@ static void _startParentExec(_INFO_WORK* pInfo)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘I‚ñ‚¾e‹@‚ÉÚ‘±‚µ‚É‚¢‚­
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   é¸ã‚“ã è¦ªæ©Ÿã«æ¥ç¶šã—ã«ã„ã
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1867,8 +1867,8 @@ static void _startChildConnectOK(_INFO_WORK* pInfo)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Sˆõ‚ÌƒRƒ}ƒ“ƒhóM‚ğ‘Ò‚Á‚ÄˆÄ“à‚³‚ê‚é
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨å“¡ã®ã‚³ãƒãƒ³ãƒ‰å—ä¿¡ã‚’å¾…ã£ã¦æ¡ˆå†…ã•ã‚Œã‚‹
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1880,11 +1880,11 @@ static void _guestRoomOKFunc(TCB_PTR tcb, void* work)
     if((CommGetCurrentID() == COMM_PARENT_ID) && (CommGetConnectNum() != pInfo->connectNum) ){
         _changeState(_guestRoomExitFunc);
     }
-    else if(CommRecvIsExit() || CommIsError()){  // ‰ğU–½—ß
+    else if(CommRecvIsExit() || CommIsError()){  // è§£æ•£å‘½ä»¤
         _changeState(_guestRoomExitFunc);
     }
     else if(FldTalkMsgEndCheck(_pInfo->msgIndex)){
-        CommTimingSyncStart(_TIMING_GUESTROOM); // ƒQƒXƒgƒ‹[ƒ€‚És‚­‘—M
+        CommTimingSyncStart(_TIMING_GUESTROOM); // ã‚²ã‚¹ãƒˆãƒ«ãƒ¼ãƒ ã«è¡Œãé€ä¿¡
         _changeState(_guestRoomOKFunc2);
     }
 }
@@ -1893,8 +1893,8 @@ static void _guestRoomOKFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Sˆõ‚ÌƒRƒ}ƒ“ƒhóM‚ğ‘Ò‚Á‚ÄˆÄ“à‚³‚ê‚é
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨å“¡ã®ã‚³ãƒãƒ³ãƒ‰å—ä¿¡ã‚’å¾…ã£ã¦æ¡ˆå†…ã•ã‚Œã‚‹
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1906,11 +1906,11 @@ static void _guestRoomOKFunc2(TCB_PTR tcb, void* work)
     if((CommGetCurrentID() == COMM_PARENT_ID) && (CommGetConnectNum() != pInfo->connectNum) ){
         _changeState(_guestRoomExitFunc);
     }
-    else if(CommRecvIsExit() || CommIsError()){  // ‰ğU–½—ß
+    else if(CommRecvIsExit() || CommIsError()){  // è§£æ•£å‘½ä»¤
         _changeState(_guestRoomExitFunc);
         return;
     }
-    else if(!CommIsConnect(COMM_PARENT_ID)){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    else if(!CommIsConnect(COMM_PARENT_ID)){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
        _changeState(_guestRoomExitFunc);
         return;
     }
@@ -1918,18 +1918,18 @@ static void _guestRoomOKFunc2(TCB_PTR tcb, void* work)
         _changeState(_guestRoomExitFunc);
         return;
     }
-    else if(CommIsTimingSync(_TIMING_GUESTROOM)){ // óM‚µ‚½ê‡
-        if(CommToolIsInitialize()){  // ’ÊM‚µ‚Ä‚é‚È‚ç
+    else if(CommIsTimingSync(_TIMING_GUESTROOM)){ // å—ä¿¡ã—ãŸå ´åˆ
+        if(CommToolIsInitialize()){  // é€šä¿¡ã—ã¦ã‚‹ãªã‚‰
             if(!FldTalkMsgEndCheck(_pInfo->msgIndex)){
                 GF_STR_PrintForceStop(_pInfo->msgIndex);
             }
-            pInfo->connectNum = CommGetConnectNum(); // l”Œˆ
+            pInfo->connectNum = CommGetConnectNum(); // äººæ•°æ±º
             _pleaseGuestRoomStart(pInfo);
             TCB_Delete(tcb);
             return;
         }
     }
-        // ‚ ‚é’ö“xŠÔ‚ª‰ß‚¬‚½‚çƒƒbƒZ[ƒW•ÏX
+        // ã‚ã‚‹ç¨‹åº¦æ™‚é–“ãŒéããŸã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¤‰æ›´
     if(_pInfo->waitMsgCount!=0){
         _pInfo->waitMsgCount--;
         if(_pInfo->waitMsgCount==0){
@@ -1969,8 +1969,8 @@ static void _guestRoomOKFunc2(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQƒXƒg€”õó‘Ô‚¾‚Á‚½‚ªŒ³‚É–ß‚é‚±‚Æ‚É‚È‚Á‚½
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ã‚¹ãƒˆæº–å‚™çŠ¶æ…‹ã ã£ãŸãŒå…ƒã«æˆ»ã‚‹ã“ã¨ã«ãªã£ãŸ
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2000,8 +2000,8 @@ static void _guestRoomExitFuncEnd(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   NG‚ª‹A‚Á‚Ä‚«‚½‚Ì‚Åe‚ğ‘I‚Ñ‚È‚¨‚·
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   NGãŒå¸°ã£ã¦ããŸã®ã§è¦ªã‚’é¸ã³ãªãŠã™
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2013,13 +2013,13 @@ static void _startChildConnectNG(_INFO_WORK* pInfo)
     _talkStart(DBCChildConnectNG, TRUE);
     CommFieldStateRebootBattleChild();
     TCB_Add(_childConnectNGFunc, pInfo, _PARENT_CONNECT_OK_PRI);
-//    CommSendData(CS_EXIT, NULL, 0); // ‘S‘ÌƒRƒ}ƒ“ƒh”­M‚¢‚ç‚È‚¢‚Í‚¸ 2005.8.31
+//    CommSendData(CS_EXIT, NULL, 0); // å…¨ä½“ã‚³ãƒãƒ³ãƒ‰ç™ºä¿¡ã„ã‚‰ãªã„ã¯ãš 2005.8.31
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   NG‚ª‹A‚Á‚Ä‚«‚½‚Ì‚Åe‚ğ‘I‚Ñ‚È‚¨‚·ˆ—‚ÖˆÚ“®
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   NGãŒå¸°ã£ã¦ããŸã®ã§è¦ªã‚’é¸ã³ãªãŠã™å‡¦ç†ã¸ç§»å‹•
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2040,8 +2040,8 @@ static void _childConnectNGFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ‰[AÄ‹N“®‚É‚È‚Á‚½‚Ì‚Åe‚ğ‘I‚Ñ‚È‚¨‚·
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¨ãƒ©ãƒ¼ã€å†èµ·å‹•ã«ãªã£ãŸã®ã§è¦ªã‚’é¸ã³ãªãŠã™
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2053,7 +2053,7 @@ static void _startChildConnectReset(_INFO_WORK* pInfo)
 #if PLFIX_T1618
 	{
 		int i;
-		// e‚ÌPOKEDATA”jŠü
+		// è¦ªã®POKEDATAç ´æ£„
 		for( i=0; i<COMM_MACHINE_MAX; i++ ){
 			CommInfoDeletePlayer( i );
 		}
@@ -2061,13 +2061,13 @@ static void _startChildConnectReset(_INFO_WORK* pInfo)
 #endif
 				
     TCB_Add(_childConnectResetFunc, pInfo, _PARENT_CONNECT_OK_PRI);
-//    CommSendData(CS_EXIT, NULL, 0); //Ø’fƒRƒ}ƒ“ƒh‚ğˆê‰”­M ˆ«‚³‚·‚é‚æ‚¤‚È‚çØ‚è
+//    CommSendData(CS_EXIT, NULL, 0); //åˆ‡æ–­ã‚³ãƒãƒ³ãƒ‰ã‚’ä¸€å¿œç™ºä¿¡ æ‚ªã•ã™ã‚‹ã‚ˆã†ãªã‚‰åˆ‡ã‚Š
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ‰[‚ª‹A‚Á‚Ä‚«‚½‚Ì‚Åe‚ğ‘I‚Ñ‚È‚¨‚·ˆ—‚ÖˆÚ“®
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¨ãƒ©ãƒ¼ãŒå¸°ã£ã¦ããŸã®ã§è¦ªã‚’é¸ã³ãªãŠã™å‡¦ç†ã¸ç§»å‹•
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2091,15 +2091,15 @@ static void _pleaseGuestRoomStart(_INFO_WORK* pInfo)
     _pInfo->retCode = COMM_RETVAL_OK;
     CommStateSetErrorCheck(TRUE,TRUE);
     CommInfoSendPokeData();
-    CommMPSetNoChildError(TRUE);  // ‚±‚±‚©‚ç‚ÍNOCHILDƒGƒ‰[—LŒø
+    CommMPSetNoChildError(TRUE);  // ã“ã“ã‹ã‚‰ã¯NOCHILDã‚¨ãƒ©ãƒ¼æœ‰åŠ¹
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€ƒ‚[ƒh‚É•K—v‚ÈÅ¬l”‚ğ‹A‚·
+ * @brief   ã‚²ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ã«å¿…è¦ãªæœ€å°äººæ•°ã‚’å¸°ã™
  * @param   none
- * @retval  Å¬l”
+ * @retval  æœ€å°äººæ•°
  */
 //--------------------------------------------------------------
 
@@ -2110,9 +2110,9 @@ int _getMinPlayNum(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€ƒ‚[ƒh‚É•K—v‚ÈÅ‘ål”‚ğ‹A‚·
+ * @brief   ã‚²ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰ã«å¿…è¦ãªæœ€å¤§äººæ•°ã‚’å¸°ã™
  * @param   none
- * @retval  Å‘ål”
+ * @retval  æœ€å¤§äººæ•°
  */
 //--------------------------------------------------------------
 
@@ -2123,9 +2123,9 @@ static int _getMaxPlayNum(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“’l‚ğ“¾‚é
+ * @brief   ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³å€¤ã‚’å¾—ã‚‹
  * @param   none
- * @retval  Å‘ål”
+ * @retval  æœ€å¤§äººæ•°
  */
 //--------------------------------------------------------------
 
@@ -2136,8 +2136,8 @@ static int _getRegulationNo(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŠƒXƒg‚ğ•Â‚¶‚é
- * @param   pInfo		ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒªã‚¹ãƒˆã‚’é–‰ã˜ã‚‹
+ * @param   pInfo		ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2148,11 +2148,11 @@ static int _getRegulationNo(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   e‹@‚ğ‘I‘ğ‚·‚éƒEƒCƒ“ƒhƒE‚ğŠJ‚­
- * @param   FIELDSYS_WORK* pFSys   ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   connectMode      ’ÊMƒ‚[ƒh
- * @param   type1            ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ó‘Ô  ‚©  ƒ‰ƒ“ƒN
- * @param   type2            ƒRƒ“ƒeƒXƒgí—Ş
+ * @brief   è¦ªæ©Ÿã‚’é¸æŠã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
+ * @param   FIELDSYS_WORK* pFSys   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   connectMode      é€šä¿¡ãƒ¢ãƒ¼ãƒ‰
+ * @param   type1            ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³çŠ¶æ…‹  ã‹  ãƒ©ãƒ³ã‚¯
+ * @param   type2            ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç¨®é¡
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2178,12 +2178,12 @@ void CommParentSelectParentWindowOpen(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   e‹@‚ğ‘I‘ğ‚·‚éƒEƒCƒ“ƒhƒE‚ğŒŸ¸‚·‚é
+ * @brief   è¦ªæ©Ÿã‚’é¸æŠã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’æ¤œæŸ»ã™ã‚‹
  * @param   none
- * @retval  COMM_RETVAL_NULL    BMPLIST_NULL      ‘I‘ğ’†
-            COMM_RETVAL_CANCEL  BMPLIST_CANCEL    userƒLƒƒƒ“ƒZƒ‹
-            COMM_RETVAL_OK      (0)               ‘I‘ğŠ®—¹
-            COMM_RETVAL_ERROR   (1)               ’ÊMƒGƒ‰[
+ * @retval  COMM_RETVAL_NULL    BMPLIST_NULL      é¸æŠä¸­
+            COMM_RETVAL_CANCEL  BMPLIST_CANCEL    userã‚­ãƒ£ãƒ³ã‚»ãƒ«
+            COMM_RETVAL_OK      (0)               é¸æŠå®Œäº†
+            COMM_RETVAL_ERROR   (1)               é€šä¿¡ã‚¨ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 
@@ -2199,11 +2199,11 @@ u32 CommSelectParentWindowCheck(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@ˆê——ƒEƒCƒ“ƒhƒE‚ğŠJ‚­
- * @param   FIELDSYS_WORK* pFSys   ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   connectMode      ’ÊMƒ‚[ƒh
- * @param   type1            ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ó‘Ô  ‚©  ƒ‰ƒ“ƒN
- * @param   type2            ƒRƒ“ƒeƒXƒgí—Ş
+ * @brief   å­æ©Ÿä¸€è¦§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
+ * @param   FIELDSYS_WORK* pFSys   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   connectMode      é€šä¿¡ãƒ¢ãƒ¼ãƒ‰
+ * @param   type1            ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³çŠ¶æ…‹  ã‹  ãƒ©ãƒ³ã‚¯
+ * @param   type2            ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç¨®é¡
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2223,18 +2223,18 @@ void CommChildWindowOpen(FIELDSYS_WORK* pFSys,
 
 void CommChildListWindowOpen(void)
 {
-    _childListWindowOpen(_pInfo);  // Ú‘±‚µ‚Ä‚­‚éq‹@ƒŠƒXƒg‚ğ•\¦
+    _childListWindowOpen(_pInfo);  // æ¥ç¶šã—ã¦ãã‚‹å­æ©Ÿãƒªã‚¹ãƒˆã‚’è¡¨ç¤º
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief   e‹@‚ğ‘I‘ğ‚·‚éƒEƒCƒ“ƒhƒE‚ğŒŸ¸‚·‚é
+ * @brief   è¦ªæ©Ÿã‚’é¸æŠã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’æ¤œæŸ»ã™ã‚‹
  * @param   none
- * @retval  COMM_RETVAL_NULL    BMPLIST_NULL      ‘I‘ğ’†
-            COMM_RETVAL_CANCEL  BMPLIST_CANCEL    userƒLƒƒƒ“ƒZƒ‹
-            COMM_RETVAL_OK      (0)               ‘I‘ğŠ®—¹
-            COMM_RETVAL_ERROR   (1)               ’ÊMƒGƒ‰[
+ * @retval  COMM_RETVAL_NULL    BMPLIST_NULL      é¸æŠä¸­
+            COMM_RETVAL_CANCEL  BMPLIST_CANCEL    userã‚­ãƒ£ãƒ³ã‚»ãƒ«
+            COMM_RETVAL_OK      (0)               é¸æŠå®Œäº†
+            COMM_RETVAL_ERROR   (1)               é€šä¿¡ã‚¨ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 
@@ -2249,7 +2249,7 @@ u32 CommChildWindowCheck(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒCƒŒƒNƒgƒR[ƒi[ƒ‹[ƒ€‚É“ü‚Á‚½‚Ìˆ—
+ * @brief   ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼ãƒ«ãƒ¼ãƒ ã«å…¥ã£ãŸæ™‚ã®å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -2263,9 +2263,9 @@ BOOL CommDirectIsRoomInitialize(void)
 
 //==============================================================================
 /**
- * I—¹‚ğ‚Ğ‚Æ‚Â‚Å‚àó‚¯æ‚Á‚½‚©‚Ç‚¤‚©’m‚ç‚¹‚é
+ * çµ‚äº†ã‚’ã²ã¨ã¤ã§ã‚‚å—ã‘å–ã£ãŸã‹ã©ã†ã‹çŸ¥ã‚‰ã›ã‚‹
  * @param   none
- * @retval  óM‚µ‚Ä‚¢‚½ê‡TRUE óM‚µ‚Ä‚¢‚È‚©‚Á‚½‚çFALSE
+ * @retval  å—ä¿¡ã—ã¦ã„ãŸå ´åˆTRUE å—ä¿¡ã—ã¦ã„ãªã‹ã£ãŸã‚‰FALSE
  */
 //==============================================================================
 
@@ -2280,7 +2280,7 @@ BOOL CommRecvIsExit(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—pƒ_ƒCƒŒƒNƒgƒR[ƒi[e‹@Ú‘±
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼è¦ªæ©Ÿæ¥ç¶š
  * @param   none
  * @retval  none
  */
@@ -2294,7 +2294,7 @@ void CommDirectParent_Debug(FIELDSYS_WORK* pFSys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—pƒ_ƒCƒŒƒNƒgƒR[ƒi[q‹@Ú‘±
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼å­æ©Ÿæ¥ç¶š
  * @param   none
  * @retval  none
  */
@@ -2308,7 +2308,7 @@ void CommDirectChild_Debug(FIELDSYS_WORK* pFSys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—pƒ_ƒCƒŒƒNƒgƒR[ƒi[Ú‘±Š®—¹
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼æ¥ç¶šå®Œäº†
  * @param   none
  * @retval  none
  */
@@ -2316,14 +2316,14 @@ void CommDirectChild_Debug(FIELDSYS_WORK* pFSys)
 
 void CommDirectConnect_Debug(void)
 {
-    // •”‰®‚ÉˆÄ“à‚·‚éƒƒbƒZ[ƒW
+    // éƒ¨å±‹ã«æ¡ˆå†…ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
     _pleaseGuestRoomStart(_pInfo);
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—pƒ_ƒCƒŒƒNƒgƒR[ƒi[‰Šúƒpƒ‰ƒ[ƒ^İ’è
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼åˆæœŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
  * @param   none
  * @retval  none
  */

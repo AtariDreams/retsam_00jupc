@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_236.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			236�@�T�^�[���̊ԁA�Ώۑ��肪�Z�ŉ񕜂ł��Ȃ���ԂɂȂ�B
- *				�y�������������z�y�˂ނ�z�y��ǂ肬�̂��ˁz�ȂǑS�Ẳ񕜌n�ɂ����B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			236　５ターンの間、対象相手が技で回復できない状態になる。
+ *				【じこさいせい】【ねむる】【やどりぎのたね】など全ての回復系にきく。
  *
  *@author	HisashiSogabe
  *@data		2006.02.16

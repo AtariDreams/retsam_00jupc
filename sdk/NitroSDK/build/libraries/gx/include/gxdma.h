@@ -12,13 +12,13 @@
 
   $Log: gxdma.h,v $
   Revision 1.4  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ðC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.3  2005/02/28 05:26:13  yosizaki
   do-indent.
 
   Revision 1.2  2004/12/02 11:26:12  takano_makoto
-  ƒf[ƒ^ƒTƒCƒY‚ª¬‚³‚¢ê‡‚ÉCPUƒRƒs[‚·‚é‚æ‚¤‚ÉC³
+  ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒå°ã•ã„å ´åˆã«CPUã‚³ãƒ”ãƒ¼ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.1  2004/08/10 12:48:57  takano_makoto
   Initial Update.

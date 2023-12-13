@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	vchat.c
- * @bfief	ƒ{ƒCƒXƒ`ƒƒƒbƒgƒ‰ƒbƒp[B“ñl“d˜bƒ‚[ƒhê—p
+ * @bfief	ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆãƒ©ãƒƒãƒ‘ãƒ¼ã€‚äºŒäººé›»è©±ãƒ¢ãƒ¼ãƒ‰å°‚ç”¨
  * @author	kazuki yoshihara
  * @date	06/02/27
  */
@@ -21,7 +21,7 @@
 
 #define MYNNSFORMAT NNS_SND_STRM_FORMAT_PCM16
 
-//----------------- ‚±‚Ì•”•ª‚ÍƒfƒtƒHƒ‹ƒg‚ÅŒˆ‚Ü‚Á‚Ä‚¢‚Ü‚·B‘—M—Ê‚Æ‚ÍŠÖŒW‚µ‚Ü‚¹‚ñ
+//----------------- ã“ã®éƒ¨åˆ†ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§æ±ºã¾ã£ã¦ã„ã¾ã™ã€‚é€ä¿¡é‡ã¨ã¯é–¢ä¿‚ã—ã¾ã›ã‚“
 #define VCHAT_SAMPLING_RATE       8000   // Hz
 #define SAMPLING_BYTE        2      // byte = 16bit
 #define MAX_SAMPLING_TIME   68     // ms
@@ -33,32 +33,32 @@
 //#define VCT_ERROR_NONE (VCT_SUCCESS)
 
 
-// ƒ}ƒCƒNƒQƒCƒ“‚ğİ’è
+// ãƒã‚¤ã‚¯ã‚²ã‚¤ãƒ³ã‚’è¨­å®š
 #define MY_AMPGAIN PM_AMPGAIN_160 
 //#define MY_AMPGAIN PM_AMPGAIN_80
 //#define MY_AMPGAIN PM_AMPGAIN_40
 //#define MY_AMPGAIN PM_AMPGAIN_20
 
-// ‰½ƒtƒŒ[ƒ€‚Ü‚Å—š—ğ‚ğ‚Á‚ÄAƒ`ƒFƒbƒN‚·‚é‚©
+// ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ã¾ã§å±¥æ­´ã‚’æŒã£ã¦ã€ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‹
 #define HAWLING_CHECKFRAME 16
 
-// “d˜b‚ğ‚©‚¯‚Ä‚à‚¤ˆê“xƒŠƒgƒ‰ƒC‚·‚éŠÔ
+// é›»è©±ã‚’ã‹ã‘ã¦ã‚‚ã†ä¸€åº¦ãƒªãƒˆãƒ©ã‚¤ã™ã‚‹æ™‚é–“
 #define VCT_START_TIMEOUT_NUM 60
 
 #define _MAX_PLAYER_NUM  (4)
 
 typedef struct{
     u8 sRecBuffer[VCHAT_WAVE_SAMPLE * 2 * MAX_CHANNELS];
-    void* _vWork_temp;    // ƒAƒ‰ƒCƒƒ“ƒg‚³‚ê‚Ä‚¢‚È‚¢‚±‚Ì\‘¢‘Ì‚ÌƒAƒhƒŒƒX
+    void* _vWork_temp;    // ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã•ã‚Œã¦ã„ãªã„ã“ã®æ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 	u8* pAudioBuffer;
-	u8* pAudioBufferOrg;  // ƒAƒ‰ƒCƒƒ“ƒg‚³‚ê‚Ä‚¢‚È‚¢AudioBuff
+	u8* pAudioBufferOrg;  // ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã•ã‚Œã¦ã„ãªã„AudioBuff
 	u8 sPlayBuffer[VCHAT_WAVE_SAMPLE * 2 * MAX_CHANNELS];
-    // –³‰¹ƒTƒEƒ“ƒh‚Æ‚µ‚Ä“n‚·—p‚Ìƒoƒbƒtƒ@ií‚É‚Oj
+    // ç„¡éŸ³ã‚µã‚¦ãƒ³ãƒ‰ã¨ã—ã¦æ¸¡ã™ç”¨ã®ãƒãƒƒãƒ•ã‚¡ï¼ˆå¸¸ã«ï¼ï¼‰
     u8 sSilentBuffer[VCHAT_WAVE_SAMPLE * 2 * MAX_CHANNELS];
 	void (*disconnectCallback)();
 	VCTSession sSession[(_MAX_PLAYER_NUM-1)];
-    BOOL bConf[_MAX_PLAYER_NUM];  //‘Î˜bƒ‚[ƒh‚©‚Ç‚¤‚©
-    int mode;     // vct‚Ì‰ï˜bƒ‚[ƒh 
+    BOOL bConf[_MAX_PLAYER_NUM];  //å¯¾è©±ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹
+    int mode;     // vctã®ä¼šè©±ãƒ¢ãƒ¼ãƒ‰ 
 	int state;
 	int off_flag;
 	int heapID;
@@ -66,15 +66,15 @@ typedef struct{
 	VCTSession *session;
     u8 bSendVoice;
     u8 firstCallback;
-    u16 vctTime;  //ƒŠƒNƒGƒXƒg‚ÌŠÔŒv‘ª
+    u16 vctTime;  //ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®æ™‚é–“è¨ˆæ¸¬
     MICAutoParam micParam;
     
-    // ƒnƒEƒŠƒ“ƒOAƒNƒŠƒbƒvŒŸo‚Ü‚í‚è
+    // ãƒã‚¦ãƒªãƒ³ã‚°ã€ã‚¯ãƒªãƒƒãƒ—æ¤œå‡ºã¾ã‚ã‚Š
     int hc_state;
     int hc_ampgain;
     int hc_ampchangeflag;
     int hc_seqcount;
-    int hc_hawlingflag;			// ˆê“xƒnƒEƒŠƒ“ƒO‚µ‚Ä‚©‚çA‚Ü‚¾ˆê“x‚àƒL[“ü—Í‚ª‚È‚¢B
+    int hc_hawlingflag;			// ä¸€åº¦ãƒã‚¦ãƒªãƒ³ã‚°ã—ã¦ã‹ã‚‰ã€ã¾ã ä¸€åº¦ã‚‚ã‚­ãƒ¼å…¥åŠ›ãŒãªã„ã€‚
     u16 hc_check[HAWLING_CHECKFRAME];
     int hc_index;
     
@@ -90,9 +90,9 @@ static MYVCT_WORK* _vWork = NULL;
 
 static void StartSoundLoop();
 
-// ‰Šú‰»ˆ—Beq‹¤’ÊBƒZƒbƒVƒ‡ƒ“Šm—§Œã‚ÉŒÄ‚Î‚ê‚éB
+// åˆæœŸåŒ–å‡¦ç†ã€‚è¦ªå­å…±é€šã€‚ã‚»ãƒƒã‚·ãƒ§ãƒ³ç¢ºç«‹å¾Œã«å‘¼ã°ã‚Œã‚‹ã€‚
 //
-// ‰¹ºŒn‚Ì‰Šú‰»iÅ‰‚Ì‚P‰ñ‚Ì‚İj
+// éŸ³å£°ç³»ã®åˆæœŸåŒ–ï¼ˆæœ€åˆã®ï¼‘å›ã®ã¿ï¼‰
 //
 
 static u8 *_test_buffer;
@@ -105,7 +105,7 @@ static int _difftime = 0;
 static void InitFirst()
 {
     OHNO_PRINT("Init sound system\n");
-    // ƒ}ƒCƒNŠÖ˜A‚Ì‰Šú‰»
+    // ãƒã‚¤ã‚¯é–¢é€£ã®åˆæœŸåŒ–
     //
     MIC_Init();
     PM_Init();
@@ -122,11 +122,11 @@ static void InitFirst()
 	    ret = PM_SetAmp(PM_AMP_ON);
 	    if( ret == PM_RESULT_SUCCESS )
 	    {
-		    OHNO_PRINT("AMP‚ğƒIƒ“‚É‚µ‚Ü‚µ‚½B\n");
+		    OHNO_PRINT("AMPã‚’ã‚ªãƒ³ã«ã—ã¾ã—ãŸã€‚\n");
 	    }
 	    else
 	    {
-		    OHNO_PRINT("AMP‚Ì‰Šú‰»‚É¸”si%dj", ret);
+		    OHNO_PRINT("AMPã®åˆæœŸåŒ–ã«å¤±æ•—ï¼ˆ%dï¼‰", ret);
 	    }
     }
 
@@ -135,11 +135,11 @@ static void InitFirst()
 	    ret = PM_SetAmpGain(MY_AMPGAIN);
 	    if( ret == PM_RESULT_SUCCESS )
 	    {
-		    OHNO_PRINT("AMP‚ÌƒQƒCƒ“‚ğİ’è‚µ‚Ü‚µ‚½B\n");
+		    OHNO_PRINT("AMPã®ã‚²ã‚¤ãƒ³ã‚’è¨­å®šã—ã¾ã—ãŸã€‚\n");
 	    }
 	    else
 	    {
-		    OHNO_PRINT("AMP‚ÌƒQƒCƒ“İ’è‚É¸”si%dj", ret);
+		    OHNO_PRINT("AMPã®ã‚²ã‚¤ãƒ³è¨­å®šã«å¤±æ•—ï¼ˆ%dï¼‰", ret);
 	    }
     }
     
@@ -157,7 +157,7 @@ static void InitFirst()
     	_vWork->hc_index = 0;		
 	}
 	VCT_EnableVAD( TRUE );
-    // ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚Ì‰Šú‰»
+    // ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
     //
     NNS_SndInit();
     NNS_SndStrmInit(&_vWork->sSndStream);
@@ -177,12 +177,12 @@ static void InitFirst()
 #define HAWLING_SEQ_C 12
 #define HAWLING_SEQ_D 100
 #define HAWLING_SEQ_E 4
-// ƒnƒEƒŠƒ“ƒOŒŸoƒ‹[ƒ`ƒ“
-// HAWLING_SEQ_AƒtƒŒ[ƒ€˜A‘±‚Å‹K’è’lA‚ğ’´‚¦‚½ê‡Aƒ}ƒCƒNƒQƒCƒ“‚ğ‚P’iŠK‰º‚°‚éB
-// ‚³‚ç‚É‚»‚Ì‚Ü‚ÜHAWLING_SEQ_BƒtƒŒ[ƒ€ƒnƒEƒŠƒ“ƒO‚ª‘±‚¢‚½‚çA
-// HAWLING_SEQ_CƒtƒŒ[ƒ€Aƒ}ƒCƒN‚©‚ç‚Ì‘—M‚ğ‚Æ‚ß‚é
-// HAWLING_SEQ_DƒtƒŒ[ƒ€˜A‘±‚Å‹K’è’lA‚ğ’´‚¦‚é‚±‚Æ‚È‚­A‰½‚©“ü—Í‚ª‚ ‚ê‚ÎƒQƒCƒ“‚ğ‚P’iŠKã‚°‚éB
-// •Ô‚è’l‚ª‚P‚È‚çA“ü—Í‚Í‚O‚ğB
+// ãƒã‚¦ãƒªãƒ³ã‚°æ¤œå‡ºãƒ«ãƒ¼ãƒãƒ³
+// HAWLING_SEQ_Aãƒ•ãƒ¬ãƒ¼ãƒ é€£ç¶šã§è¦å®šå€¤Aã‚’è¶…ãˆãŸå ´åˆã€ãƒã‚¤ã‚¯ã‚²ã‚¤ãƒ³ã‚’ï¼‘æ®µéšä¸‹ã’ã‚‹ã€‚
+// ã•ã‚‰ã«ãã®ã¾ã¾HAWLING_SEQ_Bãƒ•ãƒ¬ãƒ¼ãƒ ãƒã‚¦ãƒªãƒ³ã‚°ãŒç¶šã„ãŸã‚‰ã€
+// HAWLING_SEQ_Cãƒ•ãƒ¬ãƒ¼ãƒ ã€ãƒã‚¤ã‚¯ã‹ã‚‰ã®é€ä¿¡ã‚’ã¨ã‚ã‚‹
+// HAWLING_SEQ_Dãƒ•ãƒ¬ãƒ¼ãƒ é€£ç¶šã§è¦å®šå€¤Aã‚’è¶…ãˆã‚‹ã“ã¨ãªãã€ä½•ã‹å…¥åŠ›ãŒã‚ã‚Œã°ã‚²ã‚¤ãƒ³ã‚’ï¼‘æ®µéšä¸Šã’ã‚‹ã€‚
+// è¿”ã‚Šå€¤ãŒï¼‘ãªã‚‰ã€å…¥åŠ›ã¯ï¼ã‚’ã€‚
 
 #define HAWLING_BORDER_1 0x0300
 #define HAWLING_BORDER_2 0x0200
@@ -218,7 +218,7 @@ static void change_gain(int d)
 	_vWork->hc_ampchangeflag = 1;
 }
 
-// ƒQ[ƒ€“ü—Í‚ª‚ ‚ê‚ÎA‚±‚±‚É“ü‚ê‚éB‚Æ‚è‚ ‚¦‚¸APAD_KEY_READ‚Ì“ü—Í‚ª‚ ‚ê‚Î‚Æ‚µ‚Ä‚¨‚­B
+// ã‚²ãƒ¼ãƒ å…¥åŠ›ãŒã‚ã‚Œã°ã€ã“ã“ã«å…¥ã‚Œã‚‹ã€‚ã¨ã‚Šã‚ãˆãšã€PAD_KEY_READã®å…¥åŠ›ãŒã‚ã‚Œã°ã¨ã—ã¦ãŠãã€‚
 static int hasGameInput()
 {
 	return PAD_Read();	
@@ -247,19 +247,19 @@ static int check_hawling(s16 *data, int length)
     {
     	if( _vWork->hc_state == 0 )
     	{
-    		// ¡‚Ü‚Å‚Í³í
+    		// ä»Šã¾ã§ã¯æ­£å¸¸
     		_vWork->hc_state = 1;
     		_vWork->hc_seqcount = 0;
     	}
     	else if( _vWork->hc_state == 1 )
     	{
-    		// ‘O‰ñ‚àŠî€’l‰z‚¦
+    		// å‰å›ã‚‚åŸºæº–å€¤è¶Šãˆ
     		if( _vWork->hc_seqcount++ >= HAWLING_SEQ_A )
     		{
-    			// HAWLING_SEQ_AˆÈãŠî€’l‰z‚¦
-    			// ƒAƒ“ƒv‚ğˆê’iŠK‰º‚°‚é
+    			// HAWLING_SEQ_Aä»¥ä¸ŠåŸºæº–å€¤è¶Šãˆ
+    			// ã‚¢ãƒ³ãƒ—ã‚’ä¸€æ®µéšä¸‹ã’ã‚‹
     			change_gain( _vWork->hc_ampgain + 1 );
-    			OHNO_PRINT("‰¹—Ê‚Ì“ü—Í‚ªˆê’èŠÔ‹K’è’l‚ğ’´‚¦‚Ä‚Ü‚·Bƒ}ƒCƒN‚ÌƒQƒCƒ“‚ğˆê’iŠK‰º‚°‚Ü‚·(%d)\n", _vWork->hc_ampgain);
+    			OHNO_PRINT("éŸ³é‡ã®å…¥åŠ›ãŒä¸€å®šæ™‚é–“è¦å®šå€¤ã‚’è¶…ãˆã¦ã¾ã™ã€‚ãƒã‚¤ã‚¯ã®ã‚²ã‚¤ãƒ³ã‚’ä¸€æ®µéšä¸‹ã’ã¾ã™(%d)\n", _vWork->hc_ampgain);
 	    		_vWork->hc_state = 2;
 	    		_vWork->hc_seqcount = HAWLING_SEQ_E;
 	    		_vWork->hc_hawlingflag = 1;
@@ -267,11 +267,11 @@ static int check_hawling(s16 *data, int length)
     	}
     	else if( _vWork->hc_state == 2 )
     	{
-    		// ƒQƒCƒ“‚ª‰º‚ª‚Á‚Ä‚©‚ç‚à˜A‘±‚µ‚ÄŠî€‰z‚¦’†
+    		// ã‚²ã‚¤ãƒ³ãŒä¸‹ãŒã£ã¦ã‹ã‚‰ã‚‚é€£ç¶šã—ã¦åŸºæº–è¶Šãˆä¸­
     		if( _vWork->hc_seqcount++ >= HAWLING_SEQ_B )
     		{
-    			// ‚¢‚Á‚½‚ñ‰¹‚ğ~‚ß‚éƒ‚[ƒh‚ÖˆÚs
-    			OHNO_PRINT("ƒQƒCƒ“‚ğ‰º‚°‚Ä‚à‚Ü‚¾‹K’è’l‚ğ’´‚¦‘±‚¯‚Ä‚¢‚Ü‚·BƒnƒEƒŠƒ“ƒO‚Ì‹°‚ê‚ª‚ ‚é‚Ì‚Åˆê’Uƒ}ƒCƒN‚ğ~‚ß‚Ü‚·B(%d)\n", _vWork->hc_ampgain);
+    			// ã„ã£ãŸã‚“éŸ³ã‚’æ­¢ã‚ã‚‹ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œ
+    			OHNO_PRINT("ã‚²ã‚¤ãƒ³ã‚’ä¸‹ã’ã¦ã‚‚ã¾ã è¦å®šå€¤ã‚’è¶…ãˆç¶šã‘ã¦ã„ã¾ã™ã€‚ãƒã‚¦ãƒªãƒ³ã‚°ã®æã‚ŒãŒã‚ã‚‹ã®ã§ä¸€æ—¦ãƒã‚¤ã‚¯ã‚’æ­¢ã‚ã¾ã™ã€‚(%d)\n", _vWork->hc_ampgain);
 	    		_vWork->hc_state = 3;
 	    		_vWork->hc_seqcount = 0;
     		}
@@ -281,21 +281,21 @@ static int check_hawling(s16 *data, int length)
     {
     	if( _vWork->hc_state == 0 )
     	{
-    		// ³í
+    		// æ­£å¸¸
     		if( _vWork->hc_seqcount++ >= HAWLING_SEQ_D && (hasGameInput() || _vWork->hc_hawlingflag == 0) ) 
     		{
-  				// ƒQƒCƒ“‚ğˆê’iŠKã‚°‚é
+  				// ã‚²ã‚¤ãƒ³ã‚’ä¸€æ®µéšä¸Šã’ã‚‹
   				if( _vWork->hc_ampgain > 0 )
   				{
 	    			change_gain( _vWork->hc_ampgain - 1 );
 	    			if( _vWork->hc_hawlingflag == 1 )
 	    			{
-		    			OHNO_PRINT("ˆê’èŠÔ‹K’è‚ğ‚±‚¦‚Ü‚¹‚ñ‚Å‚µ‚½‚Ì‚ÅAƒL[“ü—Í‚Æ“¯‚ÉƒQƒCƒ“‚ğ‚ ‚°‚Ü‚µ‚½(%d)\n", _vWork->hc_ampgain);
+		    			OHNO_PRINT("ä¸€å®šæ™‚é–“è¦å®šã‚’ã“ãˆã¾ã›ã‚“ã§ã—ãŸã®ã§ã€ã‚­ãƒ¼å…¥åŠ›ã¨åŒæ™‚ã«ã‚²ã‚¤ãƒ³ã‚’ã‚ã’ã¾ã—ãŸ(%d)\n", _vWork->hc_ampgain);
 			    		_vWork->hc_hawlingflag = 0;	    			
 	    			}
 	    			else
 	    			{
-		    			OHNO_PRINT("ˆê’èŠÔ‹K’è‚ğ‚±‚¦‚Ü‚¹‚ñ‚Å‚µ‚½‚Ì‚ÅAƒQƒCƒ“‚ğ‚ ‚°‚Ü‚µ‚½(%d)\n", _vWork->hc_ampgain);
+		    			OHNO_PRINT("ä¸€å®šæ™‚é–“è¦å®šã‚’ã“ãˆã¾ã›ã‚“ã§ã—ãŸã®ã§ã€ã‚²ã‚¤ãƒ³ã‚’ã‚ã’ã¾ã—ãŸ(%d)\n", _vWork->hc_ampgain);
 	    			}
 	    				
   				}
@@ -304,7 +304,7 @@ static int check_hawling(s16 *data, int length)
     	}
     	else if( _vWork->hc_state == 1 ) 
     	{
-    		// ‘O‰ñ‚ÍŠî€‰z‚¦
+    		// å‰å›ã¯åŸºæº–è¶Šãˆ
     		_vWork->hc_state = 0; 
     		_vWork->hc_seqcount = 0;    		
     	}
@@ -318,11 +318,11 @@ static int check_hawling(s16 *data, int length)
     	}
     	else if( _vWork->hc_state == 3 )
     	{
-    		// ‰¹‚ğ‚Æ‚ß‚Ä‚¢‚éÅ’†
+    		// éŸ³ã‚’ã¨ã‚ã¦ã„ã‚‹æœ€ä¸­
     		if( _vWork->hc_seqcount++ >= HAWLING_SEQ_C )
     		{
-    			// ‰¹~‚ßI—¹
-    			OHNO_PRINT("ƒ}ƒCƒN“ü—Í‚ğ•œ‹A‚³‚¹‚Ü‚·\n");
+    			// éŸ³æ­¢ã‚çµ‚äº†
+    			OHNO_PRINT("ãƒã‚¤ã‚¯å…¥åŠ›ã‚’å¾©å¸°ã•ã›ã¾ã™\n");
 	    		_vWork->hc_state = 0; 
 	    		_vWork->hc_seqcount = 0;        				
     		}
@@ -333,7 +333,7 @@ static int check_hawling(s16 *data, int length)
     
     if( _vWork->hc_state == 3 )
    	{
-   		// ‰¹‚ğ‚Æ‚ß‚Ä‚¢‚éÅ’†
+   		// éŸ³ã‚’ã¨ã‚ã¦ã„ã‚‹æœ€ä¸­
    		return 1;
    	}
    	
@@ -341,7 +341,7 @@ static int check_hawling(s16 *data, int length)
 }
 #endif
 //
-// ‰¹ºˆ—ƒR[ƒ‹ƒoƒbƒNiNitroSystem NNS_SndStrm‚ğ—˜—pj
+// éŸ³å£°å‡¦ç†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ï¼ˆNitroSystem NNS_SndStrmã‚’åˆ©ç”¨ï¼‰
 //
 static void micCallback(MICResult result, void *arg)
 {
@@ -395,15 +395,15 @@ static void SndCallback(NNSSndStrmCallbackStatus sts,
 
 	if( PAD_DetectFold() )
 	{
-		// DS‚ğ•Â‚¶‚½ê‡
+		// DSã‚’é–‰ã˜ãŸå ´åˆ
    		micSrc = _vWork->sSilentBuffer;
 	}
 
-    // ‰¹º‘—óM‚ÍóM‚Íí‚És‚¢‚Ü‚·BVAD‚ÆSSP‚ÌƒXƒe[ƒgŠÇ—‚É‚æ‚Á‚ÄAƒZƒbƒVƒ‡ƒ“‚ª‚ ‚é‚Æ‚«‚Ì‚İ
-    // ÀÛ‚É‘—MEóM‚ğs‚¢‚Ü‚·B
+    // éŸ³å£°é€å—ä¿¡ã¯å—ä¿¡ã¯å¸¸ã«è¡Œã„ã¾ã™ã€‚VADã¨SSPã®ã‚¹ãƒ†ãƒ¼ãƒˆç®¡ç†ã«ã‚ˆã£ã¦ã€ã‚»ãƒƒã‚·ãƒ§ãƒ³ãŒã‚ã‚‹ã¨ãã®ã¿
+    // å®Ÿéš›ã«é€ä¿¡ãƒ»å—ä¿¡ã‚’è¡Œã„ã¾ã™ã€‚
     //
-    // length‚ÍŒ»İƒI[ƒfƒBƒI‚ÌƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒgEƒrƒbƒg”‚É‰‚¶‚½32ms•ª‚É‚Ì‚İ‘Î‰‚µ‚Ä‚¢‚Ü‚·B
-    // i—áF8KHz, 8Bit ‚Å256ƒoƒCƒgjB‚»‚êˆÈŠO‚ÌƒTƒCƒY‚ğ“n‚·‚Æassertion‚µ‚Ü‚·B
+    // lengthã¯ç¾åœ¨ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆãƒ»ãƒ“ãƒƒãƒˆæ•°ã«å¿œã˜ãŸ32msåˆ†ã«ã®ã¿å¯¾å¿œã—ã¦ã„ã¾ã™ã€‚
+    // ï¼ˆä¾‹ï¼š8KHz, 8Bit ã§256ãƒã‚¤ãƒˆï¼‰ã€‚ãã‚Œä»¥å¤–ã®ã‚µã‚¤ã‚ºã‚’æ¸¡ã™ã¨assertionã—ã¾ã™ã€‚
     //
     
     if( _vWork->off_flag == 0 ) 
@@ -417,38 +417,38 @@ static void SndCallback(NNSSndStrmCallbackStatus sts,
 
 	    VCT_SendAudio(micSrc, length);
 	  
-//	    OHNO_PRINT("› length 0x%x\n", length);  
+//	    OHNO_PRINT("â—‹ length 0x%x\n", length);  
     }else{
-//   	    OHNO_PRINT("~");
+//   	    OHNO_PRINT("Ã—");
     }  
     for (ch = 0; ch < nChannels; ++ch) {
         if( !VCT_ReceiveAudio(buffer[ch], length, NULL) )
         {
-            // ‰¹ºƒf[ƒ^‚ğó‚¯æ‚ê‚È‚©‚Á‚½B
-            // ƒoƒbƒtƒ@‚ğ‚OƒNƒŠƒA
+            // éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚Œãªã‹ã£ãŸã€‚
+            // ãƒãƒƒãƒ•ã‚¡ã‚’ï¼ã‚¯ãƒªã‚¢
             //        	MI_CpuClear32(buffer[ch], length);	
-            //OHNO_PRINT("‰¹ºƒf[ƒ^‚ğó‚¯æ‚ê‚Ü‚¹‚ñ‚Å‚µ‚½B");
+            //OHNO_PRINT("éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚");
             
         }
     }
 #if 0
-    if(_vWork->mode != VCT_MODE_CONFERENCE){  // ƒJƒ“ƒtƒ@ƒŒƒ“ƒX‚Ìê‡‚·‚Å‚É‰ï˜b’†ˆµ‚¢‚É‚·‚é
+    if(_vWork->mode != VCT_MODE_CONFERENCE){  // ã‚«ãƒ³ãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®å ´åˆã™ã§ã«ä¼šè©±ä¸­æ‰±ã„ã«ã™ã‚‹
         for (ch = 0; ch < nChannels; ++ch) {
             if( !VCT_ReceiveAudio(buffer[ch], length, NULL) )
             {
-                // ‰¹ºƒf[ƒ^‚ğó‚¯æ‚ê‚È‚©‚Á‚½B
-                // ƒoƒbƒtƒ@‚ğ‚OƒNƒŠƒA
+                // éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚Œãªã‹ã£ãŸã€‚
+                // ãƒãƒƒãƒ•ã‚¡ã‚’ï¼ã‚¯ãƒªã‚¢
                 //        	MI_CpuClear32(buffer[ch], length);	
-                //OHNO_PRINT("‰¹ºƒf[ƒ^‚ğó‚¯æ‚ê‚Ü‚¹‚ñ‚Å‚µ‚½B");
+                //OHNO_PRINT("éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚");
                 
             }
         }
     }
     else{
-        // ƒ\ƒtƒgƒ~ƒLƒT[‚ğg‚¤ê‡‚ÍA‚Pƒ`ƒƒƒ“ƒlƒ‹‚É‚Ì‚İ‘‚«‚İ‚Ü‚·
+        // ã‚½ãƒ•ãƒˆãƒŸã‚­ã‚µãƒ¼ã‚’ä½¿ã†å ´åˆã¯ã€ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«ã«ã®ã¿æ›¸ãè¾¼ã¿ã¾ã™
         VCT_ReceiveAudio(buffer[0], length, NULL);
-        // c‚è‚Ìƒ`ƒƒƒ“ƒlƒ‹‚É‚ÍƒRƒs[‚ğ‘‚«‚Ş‚±‚Æ‚ÅAÄ¶‚Ì‰¹ºo—ÍƒŒƒxƒ‹‚ğã‚°‚Ä‚¢‚Ü‚·
-        // iƒJƒ“ƒtƒ@ƒŒƒ“ƒXƒ‚[ƒh‚Ì‚İj
+        // æ®‹ã‚Šã®ãƒãƒ£ãƒ³ãƒãƒ«ã«ã¯ã‚³ãƒ”ãƒ¼ã‚’æ›¸ãè¾¼ã‚€ã“ã¨ã§ã€å†ç”Ÿæ™‚ã®éŸ³å£°å‡ºåŠ›ãƒ¬ãƒ™ãƒ«ã‚’ä¸Šã’ã¦ã„ã¾ã™
+        // ï¼ˆã‚«ãƒ³ãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰æ™‚ã®ã¿ï¼‰
         if (nChannels > 1) {
             for (ch = 1; ch < nChannels; ++ch) {
                 MI_CpuCopyFast(buffer[0], buffer[ch], length);
@@ -468,7 +468,7 @@ static void ClearSession(VCTSession *session);
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
-// “d˜b‚ğ‚©‚¯‚éB
+// é›»è©±ã‚’ã‹ã‘ã‚‹ã€‚
 //
 
 static int startCall( u8 aid )
@@ -480,8 +480,8 @@ static int startCall( u8 aid )
     if (_vWork->session == NULL) {
         session = VCT_CreateSession(aid);
         if (session == NULL) {
-            // ƒZƒbƒVƒ‡ƒ“‚ğg‚¢Ø‚Á‚Ä‚¢‚éA‚Ü‚½‚Íaid‚ª©•ª©g‚Ìê‡
-            // CraeteSession ‚ª¸”s‚µ‚Ü‚·
+            // ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚’ä½¿ã„åˆ‡ã£ã¦ã„ã‚‹ã€ã¾ãŸã¯aidãŒè‡ªåˆ†è‡ªèº«ã®å ´åˆ
+            // CraeteSession ãŒå¤±æ•—ã—ã¾ã™
             OHNO_PRINT("Can't create session!\n");
             return 0;
         }
@@ -490,7 +490,7 @@ static int startCall( u8 aid )
     }
     else{
         session = _vWork->session;
-        ret = VCT_Request(session, VCT_REQUEST_INVITE);  //‚à‚¤ˆê“x‘—‚é
+        ret = VCT_Request(session, VCT_REQUEST_INVITE);  //ã‚‚ã†ä¸€åº¦é€ã‚‹
     }
     if (ret != VCT_ERROR_NONE){
         OHNO_PRINT("Can't request Invite [%d]\n", ret);
@@ -509,7 +509,7 @@ static int receiveCall( u8 aid )
 {
 	BOOL ret;
 	if ( _vWork->session != NULL && _vWork->session->state == VCT_STATE_INCOMING ) {
-         // ‘¼‚Ì’[––‚©‚ç‰ï˜b—v‹‚ª‚ ‚Á‚½ê‡A‚±‚±‚ÅOK‚ğ•Ô‚µ‚ÄƒXƒgƒŠ[ƒ~ƒ“ƒO‚ğŠJn
+         // ä»–ã®ç«¯æœ«ã‹ã‚‰ä¼šè©±è¦æ±‚ãŒã‚ã£ãŸå ´åˆã€ã“ã“ã§OKã‚’è¿”ã—ã¦ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°ã‚’é–‹å§‹
         
         ret = VCT_Response(_vWork->session, VCT_RESPONSE_OK);
         if (ret != VCT_ERROR_NONE){
@@ -522,7 +522,7 @@ static int receiveCall( u8 aid )
 	        OHNO_PRINT("can't start session! %d\n", _vWork->session->aid);
 	        return 0;	        
         } else {
-   	        OHNO_PRINT("ƒXƒgƒŠ[ƒ~ƒ“ƒO‚ğŠJn‚µ‚Ü‚·%d\n", _vWork->session->aid);	        
+   	        OHNO_PRINT("ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°ã‚’é–‹å§‹ã—ã¾ã™%d\n", _vWork->session->aid);	        
 		}
 	        
                 
@@ -536,7 +536,7 @@ static int receiveCall( u8 aid )
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
-//  VoiceChat‚ÌƒCƒxƒ“ƒgƒR[ƒ‹ƒoƒbƒNŠÖ” ƒJƒ“ƒtƒ@ƒŒƒ“ƒXƒ‚[ƒh
+//  VoiceChatã®ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° ã‚«ãƒ³ãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰
 //
 static void VoiceChatEventCallbackConference(u8 aid, VCTEvent event, VCTSession *session, void *data)
 {
@@ -562,7 +562,7 @@ static void VoiceChatEventCallbackConference(u8 aid, VCTEvent event, VCTSession 
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
-// VoiceChat‚ÌƒCƒxƒ“ƒgƒR[ƒ‹ƒoƒbƒNŠÖ” “d˜bƒ‚[ƒh
+// VoiceChatã®ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° é›»è©±ãƒ¢ãƒ¼ãƒ‰
 //
 static void VoiceChatEventCallbackPhone(u8 aid, VCTEvent event, VCTSession *session, void *data)
 {
@@ -612,12 +612,12 @@ static void VoiceChatEventCallbackPhone(u8 aid, VCTEvent event, VCTSession *sess
         OHNO_PRINT("200 OK From %d\n", session->aid);
         if(session->mode != _vWork->mode){
             ClearSession(session);
-            OHNO_PRINT("ƒZƒbƒVƒ‡ƒ“‚ªˆá‚¤‚à‚Ì‚ª—ˆ‚½\n");
+            OHNO_PRINT("ã‚»ãƒƒã‚·ãƒ§ãƒ³ãŒé•ã†ã‚‚ã®ãŒæ¥ãŸ\n");
             return;
         }
         if( VCT_StartStreaming(session) )
         {
-	        OHNO_PRINT("ƒXƒgƒŠ[ƒ~ƒ“ƒO‚ğŠJn‚µ‚Ü‚·%d\n", session->aid);	        
+	        OHNO_PRINT("ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°ã‚’é–‹å§‹ã—ã¾ã™%d\n", session->aid);	        
 	        _vWork->state = VCTSTATE_CALLING;
         } else 
         {
@@ -645,7 +645,7 @@ static void VoiceChatEventCallbackPhone(u8 aid, VCTEvent event, VCTSession *sess
 
 /////////////////////////////////////////////////////////////////////////////////////
 //
-// ƒZƒbƒVƒ‡ƒ“‚ÌƒNƒŠƒA
+// ã‚»ãƒƒã‚·ãƒ§ãƒ³ã®ã‚¯ãƒªã‚¢
 //
 static void ClearSession(VCTSession *session)
 {
@@ -665,10 +665,10 @@ static void ClearSession(VCTSession *session)
 static int s_count = 0;
 #endif
 
-// –ˆƒtƒŒ[ƒ€ŒÄ‚Î‚ê‚éB
+// æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å‘¼ã°ã‚Œã‚‹ã€‚
 void myvct_main( )
 {
-    // ƒQ[ƒ€ƒtƒŒ[ƒ€‚Éˆê“xŒÄ‚Ño‚·ƒƒCƒ“ŠÖ”B
+    // ã‚²ãƒ¼ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä¸€åº¦å‘¼ã³å‡ºã™ãƒ¡ã‚¤ãƒ³é–¢æ•°ã€‚
 	OSTick      start;
     start = OS_GetTick(); 
 //    OHNO_PRINT("VCT_Main[%d]", OS_TicksToMicroSeconds32(start - _tick_time) );
@@ -716,7 +716,7 @@ void myvct_main( )
 #endif	    
 
 
-    if(_vWork->mode != VCT_MODE_CONFERENCE){  // ƒJƒ“ƒtƒ@ƒŒƒ“ƒX‚Ìê‡‚·‚Å‚É‰ï˜b’†ˆµ‚¢‚É‚·‚é
+    if(_vWork->mode != VCT_MODE_CONFERENCE){  // ã‚«ãƒ³ãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®å ´åˆã™ã§ã«ä¼šè©±ä¸­æ‰±ã„ã«ã™ã‚‹
 
 //    OHNO_PRINT("st: %d %d\n",_vWork->state, mydwc_getaid());
 
@@ -725,19 +725,19 @@ void myvct_main( )
 		case VCTSTATE_INIT:
 		{
 			if( mydwc_getaid() == 0 ){
-				// e‚ª“d˜b‚ğ‚©‚¯‚éB
+				// è¦ªãŒé›»è©±ã‚’ã‹ã‘ã‚‹ã€‚
 				if( startCall(1) ) {
-					// ‘Šè‚Ì”½‰‘Ò‚¿
+					// ç›¸æ‰‹ã®åå¿œå¾…ã¡
 					_vWork->state = VCTSTATE_WAIT;
                     _vWork->vctTime = VCT_START_TIMEOUT_NUM;
 				}
 			}
 			else if(mydwc_getaid() == 1)
 			{
-				// e‚©‚ç“d˜b‚ª‚©‚©‚Á‚Ä‚­‚é‚Ì‚ğ‘Ò‚Â
+				// è¦ªã‹ã‚‰é›»è©±ãŒã‹ã‹ã£ã¦ãã‚‹ã®ã‚’å¾…ã¤
 				if( receiveCall(0) )
 				{
-					// ‚©‚©‚Á‚Ä‚«‚½
+					// ã‹ã‹ã£ã¦ããŸ
 					_vWork->state = VCTSTATE_CALLING;
 				}
 			}
@@ -745,15 +745,15 @@ void myvct_main( )
 		}
 		
 		case VCTSTATE_WAIT:
-		 // q‹@‚ª“d˜b‚Éo‚é‚Ì‚ğ‘Ò‚Á‚Ä‚¢‚éB
+		 // å­æ©ŸãŒé›»è©±ã«å‡ºã‚‹ã®ã‚’å¾…ã£ã¦ã„ã‚‹ã€‚
         _vWork->vctTime --;
         if(_vWork->vctTime ==0){
-            _vWork->state = VCTSTATE_INIT; //‚à‚¤ˆê“x“d˜b‚ğ‚©‚¯‚é
+            _vWork->state = VCTSTATE_INIT; //ã‚‚ã†ä¸€åº¦é›»è©±ã‚’ã‹ã‘ã‚‹
         }
 		 break;
 		 
 		case VCTSTATE_CALLING:
-			// “d˜b’†
+			// é›»è©±ä¸­
 			break;
 	}
     }
@@ -787,7 +787,7 @@ static void FreeFunc(void *ptr, u32 size)
 
 //==============================================================================
 /**
- * ƒAƒ‰ƒCƒƒ“ƒg‚ğ‚»‚ë‚¦‚½ƒƒ‚ƒŠ‚ğ•Ô‚·
+ * ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã‚’ãã‚ãˆãŸãƒ¡ãƒ¢ãƒªã‚’è¿”ã™
  * @param   none
  * @retval  none
  */
@@ -827,7 +827,7 @@ void myvct_init( int heapID, int codec,int maxEntry )
 		InitFirst();
 	}
 	
-	// ƒ}ƒCƒN‚Ì‰Šú‰»
+	// ãƒã‚¤ã‚¯ã®åˆæœŸåŒ–
 	
     length = (u32)(VCHAT_SAMPLING_RATE * VCT_AUDIO_FRAME_LENGTH * SAMPLING_BYTE) / 1000;
     
@@ -842,7 +842,7 @@ void myvct_init( int heapID, int codec,int maxEntry )
 	    _vWork->firstCallback = 1;
     }
         
-    // ƒTƒEƒ“ƒhƒXƒgƒŠ[ƒ€Ä¶‚Ì‰Šú‰»B‚P‘Î‚P‰ï˜bŒÀ’è
+    // ã‚µã‚¦ãƒ³ãƒ‰ã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿã®åˆæœŸåŒ–ã€‚ï¼‘å¯¾ï¼‘ä¼šè©±é™å®š
     NNS_SndStrmAllocChannel(&_vWork->sSndStream, 1, cArray);
     NNS_SndStrmSetVolume(&_vWork->sSndStream, 0);
 
@@ -863,7 +863,7 @@ void myvct_init( int heapID, int codec,int maxEntry )
 	{
 	    VCTConfig config;
 	    
-        if(!CommLocalIsWiFiQuartetGroup(CommStateGetServiceNo())){   // ‚SlÚ‘±‚Ì‚Íƒ{ƒCƒXƒ`ƒƒƒbƒg‚ğ©“®‹N“®‚µ‚È‚¢
+        if(!CommLocalIsWiFiQuartetGroup(CommStateGetServiceNo())){   // ï¼”äººæ¥ç¶šã®æ™‚ã¯ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã‚’è‡ªå‹•èµ·å‹•ã—ãªã„
             config.mode         = VCT_MODE_PHONE;
         }
         else{
@@ -917,8 +917,8 @@ void myvct_setCodec( int codec )
 
 //==============================================================================
 /**
- * ‰ï˜bI—¹—v‹‚ğ‚¾‚µ‚Ü‚·B‚Ü‚¾’Ê˜b‚Å‚«‚Ä‚¢‚È‚¢‚Æ‚«‚Í‘¦À‚ÉI—¹‚µ‚Ü‚·B
- * myvct_setDisconnectCallback‚Åİ’è‚³‚ê‚½ƒR[ƒ‹ƒoƒbƒN‚ªŒÄ‚Ño‚³‚ê‚Ü‚·B
+ * ä¼šè©±çµ‚äº†è¦æ±‚ã‚’ã ã—ã¾ã™ã€‚ã¾ã é€šè©±ã§ãã¦ã„ãªã„ã¨ãã¯å³åº§ã«çµ‚äº†ã—ã¾ã™ã€‚
+ * myvct_setDisconnectCallbackã§è¨­å®šã•ã‚ŒãŸã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒå‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -926,7 +926,7 @@ void myvct_setCodec( int codec )
 void myvct_endConnection(){
 	int ret;
 	
-	// ‚Ü‚¾‰ï˜b—v‹‚ğo‚·‘O‚ÅAó‚¯æ‚é‘O
+	// ã¾ã ä¼šè©±è¦æ±‚ã‚’å‡ºã™å‰ã§ã€å—ã‘å–ã‚‹å‰
 	if( _vWork->session == NULL || _vWork->state == VCTSTATE_INIT ) {
 		mydwc_stopvchat();
 		return;
@@ -934,7 +934,7 @@ void myvct_endConnection(){
 	
 	if( _vWork->state == VCTSTATE_WAIT )
 	{
-		// ‰ï˜b—v‹‚ğo‚µ‚Ä‚Ü‚¾•Ô–‚ª—ˆ‚é‘OB
+		// ä¼šè©±è¦æ±‚ã‚’å‡ºã—ã¦ã¾ã è¿”äº‹ãŒæ¥ã‚‹å‰ã€‚
 		ret = VCT_Request( _vWork->session, VCT_REQUEST_CANCEL );
         if (ret != VCT_ERROR_NONE){
 			OHNO_PRINT("Can't request Cancel [%d]\n", ret);
@@ -943,7 +943,7 @@ void myvct_endConnection(){
 		}			
 	}
 
-	// ‰ï˜b’†B‰ï˜bI—¹—v‹‚ğo‚·B
+	// ä¼šè©±ä¸­ã€‚ä¼šè©±çµ‚äº†è¦æ±‚ã‚’å‡ºã™ã€‚
 	ret = VCT_Request( _vWork->session, VCT_REQUEST_BYE );
     if (ret != VCT_ERROR_NONE){
 		OHNO_PRINT("Can't request Bye [%d]\n", ret);
@@ -955,9 +955,9 @@ void myvct_endConnection(){
 
 //==============================================================================
 /**
- * ‰ï˜bI—¹ˆ—Š®—¹ƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚µ‚Ü‚·B
- * ‘Šè‚©‚çØ‚ç‚ê‚½ê‡‚àŒÄ‚Ño‚³‚ê‚Ü‚·B
- * ‚±‚ÌŠÖ”‚ªŒÄ‚Ño‚³‚ê‚é’¼‘O‚ÉAvchat.c—p‚Ìƒ[ƒN‚ª‰ğ•ú‚³‚ê‚Ü‚·B
+ * ä¼šè©±çµ‚äº†å‡¦ç†å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã—ã¾ã™ã€‚
+ * ç›¸æ‰‹ã‹ã‚‰åˆ‡ã‚‰ã‚ŒãŸå ´åˆã‚‚å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
+ * ã“ã®é–¢æ•°ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹ç›´å‰ã«ã€vchat.cç”¨ã®ãƒ¯ãƒ¼ã‚¯ãŒè§£æ”¾ã•ã‚Œã¾ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -969,7 +969,7 @@ void myvct_setDisconnectCallback( void (*disconnectCallback)() )
 
 //==============================================================================
 /**
- * ƒ‰ƒCƒuƒ‰ƒŠI—¹ˆ—
+ * ãƒ©ã‚¤ãƒ–ãƒ©ãƒªçµ‚äº†å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -981,29 +981,29 @@ void myvct_free(void){
 	{
 		callback = _vWork->disconnectCallback;
 		
-		// ƒ}ƒCƒN‚ÌƒTƒ“ƒvƒŠƒ“ƒO‚ÆƒXƒgƒŠ[ƒ€‚ğ‚Æ‚ß‚éB
+		// ãƒã‚¤ã‚¯ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã¨ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’ã¨ã‚ã‚‹ã€‚
 	    (void)MIC_StopAutoSampling();
 	    NNS_SndStrmStop(&_vWork->sSndStream);	
 		NNS_SndStrmFreeChannel(&_vWork->sSndStream);
 	
-		// VCTƒ‰ƒCƒuƒ‰ƒŠI—¹ˆ—	
+		// VCTãƒ©ã‚¤ãƒ–ãƒ©ãƒªçµ‚äº†å‡¦ç†	
 		VCT_Cleanup();
 		
-		// ƒƒ‚ƒŠ‚ğ‰ğ•ú
+		// ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
         sys_FreeMemory( _vWork->heapID, _vWork->pAudioBufferOrg );
         sys_FreeMemory( _vWork->heapID, _vWork->_vWork_temp  );
 		_vWork = NULL;
 		
-		// ƒR[ƒ‹ƒoƒbƒN‚ÌŒÄ‚Ño‚µB
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å‘¼ã³å‡ºã—ã€‚
 		if( callback != NULL ) callback();
 	}
 }
 
 //==============================================================================
 /**
- * ‰¹‚ğE‚Á‚½‚Ì‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+ * éŸ³ã‚’æ‹¾ã£ãŸã®ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
  * @param   
- * @retval  E‚Á‚½‚çTRUE
+ * @retval  æ‹¾ã£ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -1037,11 +1037,11 @@ BOOL myvct_isVchatOn(){
 
 //==============================================================================
 /**
- * VCTƒJƒ“ƒtƒ@ƒŒƒ“ƒX‚Éµ‘Ò‚·‚é
- * @param   bitmap   Ú‘±‚µ‚Ä‚¢‚éCLIENT‚ÌBITMAP
- * @param   myAid    ©•ª‚ÌID
- * @retval  TRUE İ’è‚Å‚«‚½
- * @retval  FALSE Œ»ó‚Ì‚Ü‚Ü ‚à‚µ‚­‚Í•K—v‚ª‚È‚¢
+ * VCTã‚«ãƒ³ãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã«æ‹›å¾…ã™ã‚‹
+ * @param   bitmap   æ¥ç¶šã—ã¦ã„ã‚‹CLIENTã®BITMAP
+ * @param   myAid    è‡ªåˆ†ã®ID
+ * @retval  TRUE è¨­å®šã§ããŸ
+ * @retval  FALSE ç¾çŠ¶ã®ã¾ã¾ ã‚‚ã—ãã¯å¿…è¦ãŒãªã„
  */
 //==============================================================================
 
@@ -1057,7 +1057,7 @@ BOOL myvct_AddConference(int bitmap, int myAid)
         if(i == myAid){
             continue;
         }
-        if( bitmap & (1<<i)){  //‚¢‚éê‡
+        if( bitmap & (1<<i)){  //ã„ã‚‹å ´åˆ
             if(_vWork->bConf[i]==TRUE){
                 continue;
             }
@@ -1068,7 +1068,7 @@ BOOL myvct_AddConference(int bitmap, int myAid)
             }
             else{
                 _vWork->bConf[i] = TRUE;
-                OHNO_PRINT("AddConferenceİ’è %d\n", i);
+                OHNO_PRINT("AddConferenceè¨­å®š %d\n", i);
             }
         }
     }
@@ -1077,11 +1077,11 @@ BOOL myvct_AddConference(int bitmap, int myAid)
 
 //==============================================================================
 /**
- * VCTƒJƒ“ƒtƒ@ƒŒƒ“ƒX‚©‚ç‘Sˆõ‚Í‚¸‚·
- * @param   bitmap   Ú‘±‚µ‚Ä‚¢‚éCLIENT‚ÌBITMAP
- * @param   myAid    ©•ª‚ÌID
- * @retval  TRUE İ’è‚Å‚«‚½
- * @retval  FALSE Œ»ó‚Ì‚Ü‚Ü ‚à‚µ‚­‚Í•K—v‚ª‚È‚¢
+ * VCTã‚«ãƒ³ãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‹ã‚‰å…¨å“¡ã¯ãšã™
+ * @param   bitmap   æ¥ç¶šã—ã¦ã„ã‚‹CLIENTã®BITMAP
+ * @param   myAid    è‡ªåˆ†ã®ID
+ * @retval  TRUE è¨­å®šã§ããŸ
+ * @retval  FALSE ç¾çŠ¶ã®ã¾ã¾ ã‚‚ã—ãã¯å¿…è¦ãŒãªã„
  */
 //==============================================================================
 

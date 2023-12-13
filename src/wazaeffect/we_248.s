@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_248.s
- * @brief	‚Ý‚ç‚¢‚æ‚¿			248
+ * @brief	ã¿ã‚‰ã„ã‚ˆã¡			248
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚Ý‚ç‚¢‚æ‚¿			248
+//	â– ã¿ã‚‰ã„ã‚ˆã¡			248
 //
 //
 // =============================================================================
@@ -32,10 +32,10 @@ WEST_MIRAIYOTI:
 	
 	SEQEND
 
-#define WE093_SHAKE_MOVE	(2)	// ‰¡—h‚ê•
+#define WE093_SHAKE_MOVE	(2)	// æ¨ªæºã‚Œå¹…
 #define WE093_SHAKE_SYNC	(1)	
 #define WE093_SHAKE_ATNUM	(2)
-// Œõ‚é
+// å…‰ã‚‹
 #define WE093_PAL_FADE_AT	(WE_TOOL_M1)
 #define WE093_PAL_FADE_DF	(WE_TOOL_E1)
 #define WE093_PAL_FADE_NUM	(1)
@@ -48,12 +48,12 @@ WEST_248_TURN_1:
 	WAIT_FLAG
 	
 
-	// ƒ|ƒPƒ‚ƒ“OAM€”õ
+	// ãƒã‚±ãƒ¢ãƒ³OAMæº–å‚™
 	POKEOAM_RES_INIT
 
 	POKEOAM_RES_LOAD	0,
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	POKEOAM_DROP	WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, WE093_SHAKE_MOVE, 0,WE093_SHAKE_SYNC, WE093_SHAKE_ATNUM, WE_TOOL_M1 | WE_TOOL_SSP, 0, 0
@@ -62,9 +62,9 @@ WEST_248_TURN_1:
 	WAIT	10
 	SE_C		SEQ_SE_DP_W060
 	
-	WAIT_FLAG	///<TCB‘Ò‚¿
+	WAIT_FLAG	///<TCBå¾…ã¡
 
-	// ƒ|ƒPƒ‚ƒ“OAM”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³OAMç ´æ£„
 	POKEOAM_RES_FREE
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_0
 
@@ -79,12 +79,12 @@ WEST_248_TURN_2:
 	WAIT_FLAG
 	
 
-	// ƒ|ƒPƒ‚ƒ“OAM€”õ
+	// ãƒã‚±ãƒ¢ãƒ³OAMæº–å‚™
 	POKEOAM_RES_INIT
 
 	POKEOAM_RES_LOAD	0,
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	POKEOAM_DROP	WEDEF_DROP_E1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 	PT_DROP_EX		WEDEF_DROP_E2, WEDEF_DROP_E2,
 
@@ -97,9 +97,9 @@ WEST_248_TURN_2:
 	FUNC_CALL		WEST_SP_WE_093, 0,0,0,0,0,0,0,0,0
 	SE_R			SEQ_SE_DP_480
 
-	WAIT_FLAG	///<TCB‘Ò‚¿
+	WAIT_FLAG	///<TCBå¾…ã¡
 
-	// ƒ|ƒPƒ‚ƒ“OAM”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³OAMç ´æ£„
 	POKEOAM_RES_FREE
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_0
 	PT_DROP_RESET_EX

@@ -12,10 +12,10 @@
 
   $Log: dwc_ranking.c,v $
   Revision 1.17  2007/08/23 23:32:35  takayama
-  DWC_2_2_RC1 ‚Ì“_‚Éƒ[ƒ‹ƒoƒbƒN‚µ‚½B
+  DWC_2_2_RC1 ã®æ™‚ç‚¹ã«ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã—ãŸã€‚
 
   Revision 1.14  2007/05/31 07:05:32  nakata
-  DWC_RNK_GET_MODE_NEAR_HI‚ÆDWC_RNK_GET_MODE_NEAR_LOW‚ğ’Ç‰Á
+  DWC_RNK_GET_MODE_NEAR_HIã¨DWC_RNK_GET_MODE_NEAR_LOWã‚’è¿½åŠ 
 
   Revision 1.13  2006/06/21 01:04:22  hayashi
   changed to accept DWC_RnkPutScoreAsync with no user defined data.
@@ -54,7 +54,7 @@
   character code converting
 
   Revision 1.2  2006/04/11 09:01:33  hayashi
-  DWC_RnkInitialize‚ÅAÚ‘±æ‚ÌƒT[ƒo[‚ğ‘I‘ğ‚Å‚«‚é‚æ‚¤‚É‚µ‚½
+  DWC_RnkInitializeã§ã€æ¥ç¶šå…ˆã®ã‚µãƒ¼ãƒãƒ¼ã‚’é¸æŠã§ãã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.1  2006/04/10 10:16:58  hayashi
   added the ranking module
@@ -86,7 +86,7 @@
    ------------------------------------------------------------------------- */
 
 //
-// ‚±‚ê‚Ídwc_serverurl_inetrnal.h‚Å‚à’è‹`‚³‚ê‚Ä‚¢‚é‚ª\‘¢ãŠÈ’P‚Ì‚½‚ß’¼‘‚«
+// ã“ã‚Œã¯dwc_serverurl_inetrnal.hã§ã‚‚å®šç¾©ã•ã‚Œã¦ã„ã‚‹ãŒæ§‹é€ ä¸Šç°¡å˜ã®ãŸã‚ç›´æ›¸ã
 //
 #define DWC_AUTH_NAS_URL		"https://nas.nintendowifi.net/ac"
 
@@ -98,48 +98,48 @@
         struct
    ------------------------------------------------------------------------- */
 
-// DWC_RnkInitialize‚É“n‚³‚ê‚é‰Šú‰»•¶š—ñ‚ğƒp[ƒX‚·‚é‚½‚ß‚Ì\‘¢‘Ì
+// DWC_RnkInitializeã«æ¸¡ã•ã‚Œã‚‹åˆæœŸåŒ–æ–‡å­—åˆ—ã‚’ãƒ‘ãƒ¼ã‚¹ã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“
 typedef union{
 
 	char	data[84];
 
 	struct{
-		char	secretkey[20];	// ”é–§Œ®
-		char	randkey_1[8];	// “à•”ˆÃ†Œ®‚P
-		char	randkey_2[8];	// “à•”ˆÃ†Œ®‚Q
-		char	randkey_3[8];	// “à•”ˆÃ†Œ®‚R
-		char	randkey_4[8];	// “à•”ˆÃ†Œ®‚S
-		char	gamename[32];	// ƒQ[ƒ€–¼
+		char	secretkey[20];	// ç§˜å¯†éµ
+		char	randkey_1[8];	// å†…éƒ¨æš—å·éµï¼‘
+		char	randkey_2[8];	// å†…éƒ¨æš—å·éµï¼’
+		char	randkey_3[8];	// å†…éƒ¨æš—å·éµï¼“
+		char	randkey_4[8];	// å†…éƒ¨æš—å·éµï¼”
+		char	gamename[32];	// ã‚²ãƒ¼ãƒ å
 	}info;
 
 }	DWCiRankingInitData;
 
-// óMƒf[ƒ^‚ğó‚¯æ‚é‚½‚ß‚Ì\‘¢‘Ì
+// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹ãŸã‚ã®æ§‹é€ ä½“
 //
 typedef struct{
 
-	u32					size;	// ƒTƒCƒY(bytes)
-	DWCRnkGetMode		mode;	// ƒ‚[ƒh
+	u32					size;	// ã‚µã‚¤ã‚º(bytes)
+	DWCRnkGetMode		mode;	// ãƒ¢ãƒ¼ãƒ‰
 
 	union{
 
 		void*				header;
 
-		struct{								// ¡ ƒ‰ƒ“ƒLƒ“ƒOƒŠƒXƒgæ“¾‚Ìƒwƒbƒ_
+		struct{								// â–  ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒªã‚¹ãƒˆå–å¾—æ™‚ã®ãƒ˜ãƒƒãƒ€
 											//
-			u32	count;						//   æ“¾‚µ‚½s”
+			u32	count;						//   å–å¾—ã—ãŸè¡Œæ•°
 											//
-			u32	total;						//   ‘”
+			u32	total;						//   ç·æ•°
 											//
-			DWCRnkData	rankingdata;		//   ƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‚Ìæ“ªƒ|ƒCƒ“ƒ^
+			DWCRnkData	rankingdata;		//   ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
 
 		}				*listheader;
 
-		struct{								// ¡ ‡ˆÊæ“¾‚Ìƒwƒbƒ_
+		struct{								// â–  é †ä½å–å¾—æ™‚ã®ãƒ˜ãƒƒãƒ€
 											//
-			u32	order;						//   ‡ˆÊ
+			u32	order;						//   é †ä½
 											//
-			u32	total;						//   ‘”
+			u32	total;						//   ç·æ•°
 
 		}				*orderheader;
 
@@ -148,7 +148,7 @@ typedef struct{
 } DWCiRankingResponse;
 
 
-// Ú‘±æ‚ÌƒT[ƒo[‚ğæ“¾‚·‚é‚½‚ß‚É”FØƒT[ƒo[‚ÌƒAƒhƒŒƒX‚ğQÆ
+// æ¥ç¶šå…ˆã®ã‚µãƒ¼ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹ãŸã‚ã«èªè¨¼ã‚µãƒ¼ãƒãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å‚ç…§
 //
 extern DWCHttpParam DWCauthhttpparam;
 
@@ -156,16 +156,16 @@ extern DWCHttpParam DWCauthhttpparam;
         variable
    ------------------------------------------------------------------------- */
 
-// ƒ‰ƒ“ƒLƒ“ƒOƒ‚ƒWƒ…[ƒ‹‚Ìó‘ÔŠÇ—\‘¢‘Ì
+// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®çŠ¶æ…‹ç®¡ç†æ§‹é€ ä½“
 struct {
 
-	DWCRnkState	state;		// ƒXƒe[ƒ^ƒX
+	DWCRnkState	state;		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 
 	s32			pid;		// GameSpy Profile ID
 
-}	g_rankinginfo	=		// ‰Šúƒf[ƒ^
+}	g_rankinginfo	=		// åˆæœŸãƒ‡ãƒ¼ã‚¿
 						{
-							DWC_RNK_STATE_NOTREADY,	// ƒXƒe[ƒ^ƒX
+							DWC_RNK_STATE_NOTREADY,	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 						};
 
 
@@ -183,16 +183,16 @@ DWCRnkError	DWCi_RankingGetResponse( DWCiRankingResponse* out );
 /*---------------------------------------------------------------------------*
   Name:		DWCi_RankingGetResponse
 
-  Description:	’ÊM‚ÅóM‚µ‚½ƒf[ƒ^‚ğæ“¾‚µ‚Ü‚·B
-				æ“¾‚µ‚½ƒoƒbƒtƒ@‚ÍADWC_RnkShutdown()‚ÌŒÄ‚Ño‚µ‚Å‰ğ•ú‚³‚ê
-				‚é‚Ü‚Å—LŒø‚Å‚·B
+  Description:	é€šä¿¡ã§å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
+				å–å¾—ã—ãŸãƒãƒƒãƒ•ã‚¡ã¯ã€DWC_RnkShutdown()ã®å‘¼ã³å‡ºã—ã§è§£æ”¾ã•ã‚Œ
+				ã‚‹ã¾ã§æœ‰åŠ¹ã§ã™ã€‚
 
-  Arguments:	out	Œ‹‰Ê‚ğŠi”[‚·‚éDWCiRankingResponse\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:	out	çµæœã‚’æ ¼ç´ã™ã‚‹DWCiRankingResponseæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:		DWC_RNK_SUCCESS					¬Œ÷
-  				DWC_RNK_IN_ERROR				ƒGƒ‰[”­¶’†
-  				DWC_RNK_ERROR_NOTCOMPLETED		’ÊM–¢Š®—¹
-				DWC_RNK_ERROR_EMPTY_RESPONSE	‹ó‚ÌƒŒƒXƒ|ƒ“ƒX
+  Returns:		DWC_RNK_SUCCESS					æˆåŠŸ
+  				DWC_RNK_IN_ERROR				ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
+  				DWC_RNK_ERROR_NOTCOMPLETED		é€šä¿¡æœªå®Œäº†
+				DWC_RNK_ERROR_EMPTY_RESPONSE	ç©ºã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹
  *---------------------------------------------------------------------------*/
 
 DWCRnkError	DWCi_RankingGetResponse( DWCiRankingResponse* out ){
@@ -200,30 +200,30 @@ DWCRnkError	DWCi_RankingGetResponse( DWCiRankingResponse* out ){
 	void* buf;
 	u32 size;
 
-	// DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if (DWCi_IsError()) return DWC_RNK_IN_ERROR;
 
-	// ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
 	//
 	if( g_rankinginfo.state != DWC_RNK_STATE_COMPLETED ){
 	
-		// ’ÊM‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢
+		// é€šä¿¡ãŒå®Œäº†ã—ã¦ã„ãªã„
 		return DWC_RNK_ERROR_NOTCOMPLETED;
 	
 	}
 
-	// ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^æ“¾
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
 	// 
 	buf = DWCi_RankingSessionGetResponse( &size );
 
 	if( size == 0 ){
 	
-		// ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‚ª‹ó
+		// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ãŒç©º
 		return DWC_RNK_ERROR_EMPTY_RESPONSE;
 	
 	}
 
-	// •Ô‚è’l‚ÉƒZƒbƒg‚·‚é
+	// è¿”ã‚Šå€¤ã«ã‚»ãƒƒãƒˆã™ã‚‹
 	//
 	out->size = size;
 	out->mode = (DWCRnkGetMode)((u32*)buf)[0];
@@ -241,20 +241,20 @@ DWCRnkError	DWCi_RankingGetResponse( DWCiRankingResponse* out ){
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkInitialize
 
-  Description:	ƒ‰ƒ“ƒLƒ“ƒOƒ‚ƒWƒ…[ƒ‹‚ğ‰Šú‰»‚µ‚Ü‚·
-  				Šù‚É‰Šú‰»Ï‚İ‚Ìê‡‚â‰Šú‰»ƒf[ƒ^‚ª•s³‚Èê‡‚Í¸”s‚µ‚Ü‚·
-  				’ÊM—p”é–§Œ®•¶š—ñ‚ÍSDK‰^—pÒ‚É‚æ‚è”­s‚³‚ê‚é‚à‚Ì‚ÅAƒT[ƒo[
-  				‚É‘Î‚µ‚Äƒ†ƒj[ƒN‚Å‚·B
+  Description:	ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’åˆæœŸåŒ–ã—ã¾ã™
+  				æ—¢ã«åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã‚„åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ãŒä¸æ­£ãªå ´åˆã¯å¤±æ•—ã—ã¾ã™
+  				é€šä¿¡ç”¨ç§˜å¯†éµæ–‡å­—åˆ—ã¯SDKé‹ç”¨è€…ã«ã‚ˆã‚Šç™ºè¡Œã•ã‚Œã‚‹ã‚‚ã®ã§ã€ã‚µãƒ¼ãƒãƒ¼
+  				ã«å¯¾ã—ã¦ãƒ¦ãƒ‹ãƒ¼ã‚¯ã§ã™ã€‚
 
-  Arguments:	initdata		’ÊM—p”é–§Œ®•¶š—ñ
-  				userdata		ƒ†[ƒU[ƒf[ƒ^
+  Arguments:	initdata		é€šä¿¡ç”¨ç§˜å¯†éµæ–‡å­—åˆ—
+  				userdata		ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
   Returns:
-	DWC_RNK_SUCCESS							¬Œ÷
-	DWC_RNK_ERROR_INIT_ALREADYINITIALIZED	‰Šú‰»Ï
-	DWC_RNK_ERROR_INIT_INVALID_INITDATASIZE	•s³‚È‰Šú‰»ƒf[ƒ^ƒTƒCƒY
-	DWC_RNK_ERROR_INIT_INVALID_INITDATA		•s³‚È‰Šú‰»ƒf[ƒ^
-	DWC_RNK_ERROR_INIT_INVALID_USERDATA		•s³‚Èƒ†[ƒU[ƒf[ƒ^
+	DWC_RNK_SUCCESS							æˆåŠŸ
+	DWC_RNK_ERROR_INIT_ALREADYINITIALIZED	åˆæœŸåŒ–æ¸ˆ
+	DWC_RNK_ERROR_INIT_INVALID_INITDATASIZE	ä¸æ­£ãªåˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	DWC_RNK_ERROR_INIT_INVALID_INITDATA		ä¸æ­£ãªåˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+	DWC_RNK_ERROR_INIT_INVALID_USERDATA		ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
  *---------------------------------------------------------------------------*/
 
@@ -266,48 +266,48 @@ DWCRnkError	DWC_RnkInitialize(	const char* initdata,
 	char secretkey[21];
 	char buf[9] = "";
 
-	// DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if (DWCi_IsError()) return DWC_RNK_IN_ERROR;
 
-	// ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
 	if( g_rankinginfo.state != DWC_RNK_STATE_NOTREADY ){
 	
-		// ‰Šú‰»Ï‚İ
+		// åˆæœŸåŒ–æ¸ˆã¿
 		return DWC_RNK_ERROR_INIT_ALREADYINITIALIZED;
 	
 	}
 
-	// ƒ†[ƒU[ƒf[ƒ^‚Ì³“–«‚ğŒŸØ
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®æ­£å½“æ€§ã‚’æ¤œè¨¼
 	if( !DWC_CheckUserData( userdata )
 		|| !DWC_CheckHasProfile( userdata )){
 
-		// •s³‚Èƒ†[ƒU[ƒf[ƒ^
+		// ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿
 		return DWC_RNK_ERROR_INIT_INVALID_USERDATA;
 
 	}
 
-	// ‰Šú‰»ƒf[ƒ^ƒ`ƒFƒbƒN
+	// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 	if( strlen( initdata ) >= sizeof( DWCiRankingInitData ) ){
 
-		// ƒTƒCƒY‚ª•s³
+		// ã‚µã‚¤ã‚ºãŒä¸æ­£
 		return DWC_RNK_ERROR_INIT_INVALID_INITDATASIZE;
 
 	}
 
-	// ƒ|ƒCƒ“ƒ^‚ÉƒLƒƒƒXƒg
+	// ãƒã‚¤ãƒ³ã‚¿ã«ã‚­ãƒ£ã‚¹ãƒˆ
 	ptr = (DWCiRankingInitData*)initdata;
 
-	// ”é–§Œ®‚Ìæ“¾
+	// ç§˜å¯†éµã®å–å¾—
 	strncpy( secretkey, ptr->info.secretkey, 20 );
 	secretkey[20] = '\0';
 
-	// “à•”ˆÃ†Œ®‚Ì•œŒ³
+	// å†…éƒ¨æš—å·éµã®å¾©å…ƒ
 	randkey_1 = strtoul( strncpy( buf, ptr->info.randkey_1, 8 ), NULL, 16 );
 	randkey_2 = strtoul( strncpy( buf, ptr->info.randkey_2, 8 ), NULL, 16 );
 	randkey_3 = strtoul( strncpy( buf, ptr->info.randkey_3, 8 ), NULL, 16 );
 	randkey_4 = strtoul( strncpy( buf, ptr->info.randkey_4, 8 ), NULL, 16 );
 
-	// “à•”ˆÃ†Œ®‚Ì³“–«‚ğŒŸØ
+	// å†…éƒ¨æš—å·éµã®æ­£å½“æ€§ã‚’æ¤œè¨¼
 	if( !DWCi_RankingValidateKey(	ptr->info.gamename,
 									secretkey,
 									randkey_1,
@@ -315,28 +315,28 @@ DWCRnkError	DWC_RnkInitialize(	const char* initdata,
 									randkey_3,
 									randkey_4) ){
 	
-		// •s³‚ÈƒL[
+		// ä¸æ­£ãªã‚­ãƒ¼
 		return DWC_RNK_ERROR_INIT_INVALID_INITDATA;
 	
 	}
 
-	// GameSpyProfileID‚ğ•Û‚·‚é
+	// GameSpyProfileIDã‚’ä¿æŒã™ã‚‹
 	g_rankinginfo.pid = userdata->gs_profile_id;
 
-	// Ú‘±æ‚ÌƒT[ƒo[‚ğ‘I‘ğ‚·‚é
+	// æ¥ç¶šå…ˆã®ã‚µãƒ¼ãƒãƒ¼ã‚’é¸æŠã™ã‚‹
 	if( strcmp( DWCauthhttpparam.url, DWC_AUTH_NAS_URL ) == 0 ){
 	
-		// HTTPƒ‚ƒWƒ…[ƒ‹‚ğ‰Šú‰»(–{”ÔƒT[ƒo[)
+		// HTTPãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’åˆæœŸåŒ–(æœ¬ç•ªã‚µãƒ¼ãƒãƒ¼)
 		DWCi_RankingSessionInitialize( TRUE );
 
 	}else{
 	
-		// HTTPƒ‚ƒWƒ…[ƒ‹‚ğ‰Šú‰»(ŠJ”­ƒT[ƒo[)
+		// HTTPãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’åˆæœŸåŒ–(é–‹ç™ºã‚µãƒ¼ãƒãƒ¼)
 		DWCi_RankingSessionInitialize( FALSE );
 
 	}
 
-	// ƒXƒe[ƒ^ƒX‚ğƒZƒbƒg
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	g_rankinginfo.state = DWC_RNK_STATE_INITIALIZED;
 
 
@@ -348,21 +348,21 @@ DWCRnkError	DWC_RnkInitialize(	const char* initdata,
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkShutdown
 
-  Description:	ƒ‰ƒ“ƒLƒ“ƒOƒ‚ƒWƒ…[ƒ‹‚Åg—p‚µ‚½ƒŠƒ\[ƒX‚ğŠJ•ú‚µ‚Ü‚·B
-				óMƒoƒbƒtƒ@‚ªŠJ•ú‚³‚ê‚é‚½‚ßADWCi_RankingGetResponse()‚Åæ“¾
-				‚µ‚½ƒoƒbƒtƒ@‚Í–³Œø‚É‚È‚è‚Ü‚·B
+  Description:	ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§ä½¿ç”¨ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã‚’é–‹æ”¾ã—ã¾ã™ã€‚
+				å—ä¿¡ãƒãƒƒãƒ•ã‚¡ãŒé–‹æ”¾ã•ã‚Œã‚‹ãŸã‚ã€DWCi_RankingGetResponse()ã§å–å¾—
+				ã—ãŸãƒãƒƒãƒ•ã‚¡ã¯ç„¡åŠ¹ã«ãªã‚Šã¾ã™ã€‚
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		DWC_RNK_SUCCESS	¬Œ÷
+  Returns:		DWC_RNK_SUCCESS	æˆåŠŸ
  *---------------------------------------------------------------------------*/
 
 DWCRnkError	DWC_RnkShutdown(){
 
-	// HTTPƒ‚ƒWƒ…[ƒ‹‚ÌŠJ•ú
+	// HTTPãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®é–‹æ”¾
 	DWCi_RankingSessionShutdown();
 
-	// ƒXƒe[ƒ^ƒX‚ğƒZƒbƒg
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	g_rankinginfo.state = DWC_RNK_STATE_NOTREADY;
 
 	return DWC_RNK_SUCCESS;
@@ -373,21 +373,21 @@ DWCRnkError	DWC_RnkShutdown(){
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkPutScoreAsync
 
-  Description:	ƒXƒRƒA‚ğ“o˜^‚·‚é”ñ“¯Šúˆ—‚ğŠJn‚µ‚Ü‚·B
+  Description:	ã‚¹ã‚³ã‚¢ã‚’ç™»éŒ²ã™ã‚‹éåŒæœŸå‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ã€‚
   				
 
-  Arguments:	category	ƒJƒeƒSƒŠ[
-				region		ƒŠ[ƒWƒ‡ƒ“ƒR[ƒh
-  				score		ƒXƒRƒA
-				data		ƒ†[ƒU[’è‹`ƒf[ƒ^‚Ìƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
-				size		data‚ÌƒTƒCƒY(DWC_RNK_DATA_MAXˆÈ‰º)
+  Arguments:	category	ã‚«ãƒ†ã‚´ãƒªãƒ¼
+				region		ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
+  				score		ã‚¹ã‚³ã‚¢
+				data		ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+				size		dataã®ã‚µã‚¤ã‚º(DWC_RNK_DATA_MAXä»¥ä¸‹)
 
-  Returns:		DWC_RNK_SUCCESS						¬Œ÷
-  				DWC_RNK_IN_ERROR					ƒGƒ‰[”­¶’†
-  				DWC_RNK_ERROR_PUT_NOTREADY			–¢‰Šú‰»
-				DWC_RNK_ERROR_INVALID_PARAMETER		•s³‚Èƒpƒ‰ƒ[ƒ^[
-				DWC_RNK_ERROR_PUT_INVALID_KEY		ˆÃ†‰»ƒL[‚ª•s³
-				DWC_RNK_ERROR_PUT_NOMEMORY			ƒƒ‚ƒŠ[•s‘«
+  Returns:		DWC_RNK_SUCCESS						æˆåŠŸ
+  				DWC_RNK_IN_ERROR					ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
+  				DWC_RNK_ERROR_PUT_NOTREADY			æœªåˆæœŸåŒ–
+				DWC_RNK_ERROR_INVALID_PARAMETER		ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+				DWC_RNK_ERROR_PUT_INVALID_KEY		æš—å·åŒ–ã‚­ãƒ¼ãŒä¸æ­£
+				DWC_RNK_ERROR_PUT_NOMEMORY			ãƒ¡ãƒ¢ãƒªãƒ¼ä¸è¶³
  *---------------------------------------------------------------------------*/
 DWCRnkError	DWC_RnkPutScoreAsync(	u32 category,
 									DWCRnkRegion region,
@@ -397,40 +397,40 @@ DWCRnkError	DWC_RnkPutScoreAsync(	u32 category,
 
 	DWCiRankingSessionResult res;
 
-	// DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if (DWCi_IsError()) return DWC_RNK_IN_ERROR;
 
-	// ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
 	//
 	if( ( g_rankinginfo.state != DWC_RNK_STATE_INITIALIZED ) 
 		&& (g_rankinginfo.state != DWC_RNK_STATE_COMPLETED ) ){
 	
-		// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+		// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
 		return DWC_RNK_ERROR_PUT_NOTREADY;
 	
 	}
 
-	// ƒpƒ‰ƒ[ƒ^[ƒ`ƒFƒbƒN
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 	//
 	if( (category > DWC_RNK_CATEGORY_MAX)
 		|| (size > DWC_RNK_DATA_MAX)){
 	
-		// •s³‚Èƒpƒ‰ƒ[ƒ^[
+		// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 		return DWC_RNK_ERROR_INVALID_PARAMETER;
 	
 	}
 
 	if( (data == NULL) && (size != 0) ){
 	
-		// •s³‚Èƒpƒ‰ƒ[ƒ^[
+		// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 		//
-		// ƒ†[ƒU[’è‹`ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ªNULL‚Ìê‡‚ÍƒTƒCƒY‚à0‚Å‚ ‚é•K—v‚ª‚ ‚é
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ãŒNULLã®å ´åˆã¯ã‚µã‚¤ã‚ºã‚‚0ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 		//
 		return DWC_RNK_ERROR_INVALID_PARAMETER;
 
 	}
 
-	// ƒŠƒNƒGƒXƒg”­s
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œ
 	//
 	res = DWCi_RankingSessionPutAsync(	category,
 										g_rankinginfo.pid,
@@ -439,7 +439,7 @@ DWCRnkError	DWC_RnkPutScoreAsync(	u32 category,
 										data,
 										size );
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	switch( res ){
 
 	case DWCi_RANKING_SESSION_ERROR_INVALID_KEY:
@@ -450,7 +450,7 @@ DWCRnkError	DWC_RnkPutScoreAsync(	u32 category,
 
 	}
 
-	// ƒXƒe[ƒ^ƒX‚ğƒZƒbƒg
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	g_rankinginfo.state = DWC_RNK_STATE_PUT_ASYNC;
 
 	return DWC_RNK_SUCCESS;
@@ -461,20 +461,20 @@ DWCRnkError	DWC_RnkPutScoreAsync(	u32 category,
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkGetScoreAsync
 
-  Description:	ƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‚ğæ“¾‚·‚é”ñ“¯Šúˆ—‚ğŠJn‚µ‚Ü‚·B
+  Description:	ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹éåŒæœŸå‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ã€‚
 
-  Arguments:	mode		æ“¾ƒ‚[ƒh
-  				category	ƒJƒeƒSƒŠ[
-				region		ƒŠ[ƒWƒ‡ƒ“ƒR[ƒhiOR‚Å•¡”w’è‰Â”\j
-				param		ƒpƒ‰ƒ[ƒ^[
+  Arguments:	mode		å–å¾—ãƒ¢ãƒ¼ãƒ‰
+  				category	ã‚«ãƒ†ã‚´ãƒªãƒ¼
+				region		ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ï¼ˆORã§è¤‡æ•°æŒ‡å®šå¯èƒ½ï¼‰
+				param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 
 
-  Returns:		DWC_RNK_SUCCESS						¬Œ÷
-  				DWC_RNK_IN_ERROR					ƒGƒ‰[”­¶’†
-  				DWC_RNK_ERROR_GET_NOTREADY			–¢‰Šú‰»
-				DWC_RNK_ERROR_INVALID_PARAMETER		•s³‚Èƒpƒ‰ƒ[ƒ^[
-				DWC_RNK_ERROR_GET_INVALID_KEY		ˆÃ†‰»ƒL[‚ª•s³
-				DWC_RNK_ERROR_GET_NOMEMORY			ƒƒ‚ƒŠ[•s‘«
+  Returns:		DWC_RNK_SUCCESS						æˆåŠŸ
+  				DWC_RNK_IN_ERROR					ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
+  				DWC_RNK_ERROR_GET_NOTREADY			æœªåˆæœŸåŒ–
+				DWC_RNK_ERROR_INVALID_PARAMETER		ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+				DWC_RNK_ERROR_GET_INVALID_KEY		æš—å·åŒ–ã‚­ãƒ¼ãŒä¸æ­£
+				DWC_RNK_ERROR_GET_NOMEMORY			ãƒ¡ãƒ¢ãƒªãƒ¼ä¸è¶³
   *---------------------------------------------------------------------------*/
 
 DWCRnkError	DWC_RnkGetScoreAsync(	DWCRnkGetMode mode,
@@ -484,143 +484,143 @@ DWCRnkError	DWC_RnkGetScoreAsync(	DWCRnkGetMode mode,
 
 	DWCiRankingSessionResult res;
 
-	// DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if (DWCi_IsError()) return DWC_RNK_IN_ERROR;
 
-	// ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
 	//
 	if( ( g_rankinginfo.state != DWC_RNK_STATE_INITIALIZED ) 
 		&& (g_rankinginfo.state != DWC_RNK_STATE_COMPLETED ) ){
 	
-		// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+		// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
 		return DWC_RNK_ERROR_GET_NOTREADY;
 	
 	}
 
-	// ƒpƒ‰ƒ[ƒ^[ƒ`ƒFƒbƒN
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 	//
 	if( (category > DWC_RNK_CATEGORY_MAX)
 		|| (param == NULL) ){
 	
-		// •s³‚Èƒpƒ‰ƒ[ƒ^[
+		// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 		return DWC_RNK_ERROR_INVALID_PARAMETER;
 	
 	}
 
 	switch( mode ){
 
-	// ‡ˆÊ
+	// é †ä½
 	//
 	case DWC_RNK_GET_MODE_ORDER:
 
-		// ƒTƒCƒYƒ`ƒFƒbƒN
+		// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 		if( param->size != sizeof(param->order) ){
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
-		// ƒpƒ‰ƒ[ƒ^[ƒ`ƒFƒbƒN
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 		switch( param->order.sort ){
 
-		case DWC_RNK_ORDER_ASC:	// ¸‡
-		case DWC_RNK_ORDER_DES:	// ~‡
-			// ³í
+		case DWC_RNK_ORDER_ASC:	// æ˜‡é †
+		case DWC_RNK_ORDER_DES:	// é™é †
+			// æ­£å¸¸
 			break;
 
 		default:
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
 		break;
 
-	// ƒnƒCƒXƒRƒA
+	// ãƒã‚¤ã‚¹ã‚³ã‚¢
 	//
 	case DWC_RNK_GET_MODE_TOPLIST:
 
-		// ƒTƒCƒYƒ`ƒFƒbƒN
+		// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 		if( param->size != sizeof(param->toplist) ){
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
-		// ƒpƒ‰ƒ[ƒ^[ƒ`ƒFƒbƒN
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 		switch( param->toplist.sort ){
 
-		case DWC_RNK_ORDER_ASC:	// ¸‡
-		case DWC_RNK_ORDER_DES:	// ~‡
-			// ³í
+		case DWC_RNK_ORDER_ASC:	// æ˜‡é †
+		case DWC_RNK_ORDER_DES:	// é™é †
+			// æ­£å¸¸
 			break;
 
 		default:
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
 		if( param->toplist.limit > DWC_RNK_GET_MAX ||
 			param->toplist.limit == 0 ){
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
 		break;
 
-	case DWC_RNK_GET_MODE_NEAR:	// ü•ÓƒXƒRƒA
+	case DWC_RNK_GET_MODE_NEAR:	// å‘¨è¾ºã‚¹ã‚³ã‚¢
 	case DWC_RNK_GET_MODE_NEAR_HI:
 	case DWC_RNK_GET_MODE_NEAR_LOW:
 
-		// ƒTƒCƒYƒ`ƒFƒbƒN
+		// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 		if( param->size != sizeof(param->near) ){
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
-		// ƒpƒ‰ƒ[ƒ^[ƒ`ƒFƒbƒN
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 		switch( param->near.sort ){
 
-		case DWC_RNK_ORDER_ASC:	// ¸‡
-		case DWC_RNK_ORDER_DES:	// ~‡
-			// ³í
+		case DWC_RNK_ORDER_ASC:	// æ˜‡é †
+		case DWC_RNK_ORDER_DES:	// é™é †
+			// æ­£å¸¸
 			break;
 
 		default:
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
 		if( param->near.limit > DWC_RNK_GET_MAX ||
 			param->near.limit <= 1 ){
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
 		break;
 
-	case DWC_RNK_GET_MODE_FRIENDS:	// —F’Bw’èƒ‰ƒ“ƒLƒ“ƒO
+	case DWC_RNK_GET_MODE_FRIENDS:	// å‹é”æŒ‡å®šãƒ©ãƒ³ã‚­ãƒ³ã‚°
 
 
-		// ƒTƒCƒYƒ`ƒFƒbƒN
+		// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 		if( param->size != sizeof(param->friends) ){
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
-		// ƒpƒ‰ƒ[ƒ^[ƒ`ƒFƒbƒN
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 		switch( param->friends.sort ){
 
-		case DWC_RNK_ORDER_ASC:	// ¸‡
-		case DWC_RNK_ORDER_DES:	// ~‡
-			// ³í
+		case DWC_RNK_ORDER_ASC:	// æ˜‡é †
+		case DWC_RNK_ORDER_DES:	// é™é †
+			// æ­£å¸¸
 			break;
 
 		default:
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
 		if( param->friends.limit > (DWC_RNK_FRIENDS_MAX+1) ||
 			param->friends.limit <= 1 ){
-			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 			return DWC_RNK_ERROR_INVALID_PARAMETER;
 		}
 
@@ -628,7 +628,7 @@ DWCRnkError	DWC_RnkGetScoreAsync(	DWCRnkGetMode mode,
 
 	}
 
-	// ƒŠƒNƒGƒXƒg”­s
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œ
 	//
 	res = DWCi_RankingSessionGetAsync(	mode,
 										category,
@@ -636,7 +636,7 @@ DWCRnkError	DWC_RnkGetScoreAsync(	DWCRnkGetMode mode,
 										region,
 										param );
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	switch( res ){
 
 	case DWCi_RANKING_SESSION_ERROR_INVALID_KEY:
@@ -647,7 +647,7 @@ DWCRnkError	DWC_RnkGetScoreAsync(	DWCRnkGetMode mode,
 
 	}
 
-	// ƒXƒe[ƒ^ƒX‚ğƒZƒbƒg
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	g_rankinginfo.state = DWC_RNK_STATE_GET_ASYNC;
 
 	return DWC_RNK_SUCCESS;
@@ -658,37 +658,37 @@ DWCRnkError	DWC_RnkGetScoreAsync(	DWCRnkGetMode mode,
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkCancelProcess
 
-  Description:	”ñ“¯Šúˆ—‚ğ’†’f‚µ‚Ü‚·B
-  				’†’f‚·‚é‚ÆDWC_RNK_STATE_ERROR‚É‘JˆÚ‚·‚é‚½‚ßAÄ’ÊM‚ğs‚¤
-  				ê‡‚É‚ÍI—¹A‰Šú‰»ˆ—‚ğŒo‚é•K—v‚ª‚ ‚è‚Ü‚·B
+  Description:	éåŒæœŸå‡¦ç†ã‚’ä¸­æ–­ã—ã¾ã™ã€‚
+  				ä¸­æ–­ã™ã‚‹ã¨DWC_RNK_STATE_ERRORã«é·ç§»ã™ã‚‹ãŸã‚ã€å†é€šä¿¡ã‚’è¡Œã†
+  				å ´åˆã«ã¯çµ‚äº†ã€åˆæœŸåŒ–å‡¦ç†ã‚’çµŒã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		DWC_RNK_SUCCESS					¬Œ÷
-  				DWC_RNK_IN_ERROR				ƒGƒ‰[”­¶’†
-  				DWC_RNK_ERROR_CANCEL_NOTASK		”ñ“¯Šúƒ^ƒXƒN‚ª‚È‚¢
+  Returns:		DWC_RNK_SUCCESS					æˆåŠŸ
+  				DWC_RNK_IN_ERROR				ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
+  				DWC_RNK_ERROR_CANCEL_NOTASK		éåŒæœŸã‚¿ã‚¹ã‚¯ãŒãªã„
  *---------------------------------------------------------------------------*/
 
 DWCRnkError	DWC_RnkCancelProcess(){
 
-	// DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if (DWCi_IsError())return DWC_RNK_IN_ERROR;
 
-	// ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
 	//
 	if( (g_rankinginfo.state != DWC_RNK_STATE_PUT_ASYNC) &&
 		(g_rankinginfo.state != DWC_RNK_STATE_GET_ASYNC) ){
 	
-		// ”ñ“¯Šúˆ—’†‚Ìƒ^ƒXƒN‚ª‚È‚¢
+		// éåŒæœŸå‡¦ç†ä¸­ã®ã‚¿ã‚¹ã‚¯ãŒãªã„
 		return DWC_RNK_ERROR_CANCEL_NOTASK;
 	
 	}
 
-	// ƒLƒƒƒ“ƒZƒ‹‚·‚é
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
 	//
 	DWCi_RankingSessionCancel();
 
-	// ƒXƒe[ƒ^ƒX‚ğƒZƒbƒg
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	//
 	g_rankinginfo.state = DWC_RNK_STATE_ERROR;
 
@@ -701,64 +701,64 @@ DWCRnkError	DWC_RnkCancelProcess(){
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkProcess
 
-  Description:	”ñ“¯Šúˆ—‚ğXV‚µ‚Ü‚·
+  Description:	éåŒæœŸå‡¦ç†ã‚’æ›´æ–°ã—ã¾ã™
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		DWC_RNK_SUCCESS					¬Œ÷
-  				DWC_RNK_IN_ERROR				ƒGƒ‰[”­¶’†
-				DWC_RNK_PROCESS_NOTASK	”ñ“¯Šúƒ^ƒXƒN‚ª‚È‚¢
+  Returns:		DWC_RNK_SUCCESS					æˆåŠŸ
+  				DWC_RNK_IN_ERROR				ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
+				DWC_RNK_PROCESS_NOTASK	éåŒæœŸã‚¿ã‚¹ã‚¯ãŒãªã„
  *---------------------------------------------------------------------------*/
 
 DWCRnkError DWC_RnkProcess(){
 
-	// DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if (DWCi_IsError()) return DWC_RNK_IN_ERROR;
 
-	// ƒXƒe[ƒ^ƒXƒ`ƒFƒbƒN
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚§ãƒƒã‚¯
 	//
 	if( (g_rankinginfo.state != DWC_RNK_STATE_PUT_ASYNC) &&
 		(g_rankinginfo.state != DWC_RNK_STATE_GET_ASYNC) ){
 	
-		// ”ñ“¯Šúˆ—’†‚Ìƒ^ƒXƒN‚ª‚È‚¢
+		// éåŒæœŸå‡¦ç†ä¸­ã®ã‚¿ã‚¹ã‚¯ãŒãªã„
 		return DWC_RNK_PROCESS_NOTASK;
 	
 	}
 
-	// ˆ—‚ği‚ß‚é
+	// å‡¦ç†ã‚’é€²ã‚ã‚‹
 	//
 	switch( DWCi_RankingSessionProcess() ){
 
 	case DWCi_RANKING_SESSION_STATE_ERROR:
 
-		// ƒGƒ‰[”­¶
+		// ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
 		g_rankinginfo.state = DWC_RNK_STATE_ERROR;
 
 		break;
 	
 	case DWCi_RANKING_SESSION_STATE_CANCELED:
 		
-		//!< ƒLƒƒƒ“ƒZƒ‹
+		//!< ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		g_rankinginfo.state = DWC_RNK_STATE_ERROR;
 
 		break;
 	
 	case DWCi_RANKING_SESSION_STATE_INITIAL:
 		
-		//!< ‰Šúó‘Ô
+		//!< åˆæœŸçŠ¶æ…‹
 		break;
 
-	case DWCi_RANKING_SESSION_STATE_REQUEST:		//!< ƒŠƒNƒGƒXƒg”­s
-	case DWCi_RANKING_SESSION_STATE_GETTING_TOKEN:	//!< ƒg[ƒNƒ“æ“¾’†
-	case DWCi_RANKING_SESSION_STATE_GOT_TOKEN:		//!< ƒg[ƒNƒ“æ“¾Š®—¹
-	case DWCi_RANKING_SESSION_STATE_SENDING_DATA:	//!< ƒf[ƒ^‘—M’†
+	case DWCi_RANKING_SESSION_STATE_REQUEST:		//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œ
+	case DWCi_RANKING_SESSION_STATE_GETTING_TOKEN:	//!< ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—ä¸­
+	case DWCi_RANKING_SESSION_STATE_GOT_TOKEN:		//!< ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å®Œäº†
+	case DWCi_RANKING_SESSION_STATE_SENDING_DATA:	//!< ãƒ‡ãƒ¼ã‚¿é€ä¿¡ä¸­
 
-		// ˆ—’†
+		// å‡¦ç†ä¸­
 		break;
 
 	case DWCi_RANKING_SESSION_STATE_COMPLETED:
 
-		// Š®—¹
+		// å®Œäº†
 		g_rankinginfo.state = DWC_RNK_STATE_COMPLETED;
 
 		break;
@@ -774,9 +774,9 @@ DWCRnkError DWC_RnkProcess(){
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkGetState
 
-  Description:	Œ»İ‚Ìˆ—ó‘Ô‚ğæ“¾‚µ‚Ü‚·
+  Description:	ç¾åœ¨ã®å‡¦ç†çŠ¶æ…‹ã‚’å–å¾—ã—ã¾ã™
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
   Returns:		DWCRnkState
  *---------------------------------------------------------------------------*/
@@ -791,17 +791,17 @@ DWCRnkState	DWC_RnkGetState(){
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkResGetRow
 
-  Description:	’ÊM‚ÅóM‚µ‚½ƒ‰ƒ“ƒLƒ“ƒOƒŠƒXƒg‚©‚ç”CˆÓ‚Ìs‚ğ’Šo‚µ‚Äæ“¾‚µ‚Ü‚·
+  Description:	é€šä¿¡ã§å—ä¿¡ã—ãŸãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒªã‚¹ãƒˆã‹ã‚‰ä»»æ„ã®è¡Œã‚’æŠ½å‡ºã—ã¦å–å¾—ã—ã¾ã™
 
-  Arguments:	out		Œ‹‰Ê‚ğŠi”[‚·‚éDWCRnkData\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-				index	æ“¾‚·‚éƒŠƒXƒg‚ÌƒCƒ“ƒfƒbƒNƒX
+  Arguments:	out		çµæœã‚’æ ¼ç´ã™ã‚‹DWCRnkDataæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+				index	å–å¾—ã™ã‚‹ãƒªã‚¹ãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-  Returns:		DWC_RNK_SUCCESS					¬Œ÷
-  				DWC_RNK_IN_ERROR				ƒGƒ‰[”­¶’†
-				DWC_RNK_ERROR_INVALID_MODE		•s³‚Èƒ‚[ƒh
-  				DWC_RNK_ERROR_INVALID_PARAMETER	•s³‚Èƒpƒ‰ƒ[ƒ^[
-  				DWC_RNK_ERROR_NOTCOMPLETED		’ÊM–¢Š®—¹
-				DWC_RNK_ERROR_EMPTY_RESPONSE	‹ó‚ÌƒŒƒXƒ|ƒ“ƒX
+  Returns:		DWC_RNK_SUCCESS					æˆåŠŸ
+  				DWC_RNK_IN_ERROR				ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
+				DWC_RNK_ERROR_INVALID_MODE		ä¸æ­£ãªãƒ¢ãƒ¼ãƒ‰
+  				DWC_RNK_ERROR_INVALID_PARAMETER	ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+  				DWC_RNK_ERROR_NOTCOMPLETED		é€šä¿¡æœªå®Œäº†
+				DWC_RNK_ERROR_EMPTY_RESPONSE	ç©ºã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹
  *---------------------------------------------------------------------------*/
 
 DWCRnkError	DWC_RnkResGetRow(	DWCRnkData* out,
@@ -811,22 +811,22 @@ DWCRnkError	DWC_RnkResGetRow(	DWCRnkData* out,
 	DWCiRankingResponse res;
 	DWCRnkError err;
 
-	// DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if (DWCi_IsError()) return DWC_RNK_IN_ERROR;
 
-	// ƒŒƒXƒ|ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğ“¾‚é
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹
 	// 
 	err = DWCi_RankingGetResponse( &res );
 	if( err != DWC_RNK_SUCCESS )
 		return err;
 
-	// ƒŒƒXƒ|ƒ“ƒX‚ª‡’v‚·‚é‚©‚ğƒ`ƒFƒbƒN
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãŒåˆè‡´ã™ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	// 
 	switch( res.mode ){
 
 	case DWC_RNK_GET_MODE_ORDER:
 
-		// ‡ˆÊæ“¾ƒŠƒNƒGƒXƒg‚Å‚Íƒ‰ƒ“ƒLƒ“ƒOƒŠƒXƒg‚Í‚È‚¢‚Ì‚ÅƒGƒ‰[
+		// é †ä½å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆã§ã¯ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒªã‚¹ãƒˆã¯ãªã„ã®ã§ã‚¨ãƒ©ãƒ¼
 		return DWC_RNK_ERROR_INVALID_MODE;
 
 	case DWC_RNK_GET_MODE_TOPLIST:
@@ -839,7 +839,7 @@ DWCRnkError	DWC_RnkResGetRow(	DWCRnkData* out,
 
 	}
 
-	// •s³ƒpƒ‰ƒ[ƒ^[ƒ`ƒFƒbƒN
+	// ä¸æ­£ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 	//
 	if( out == NULL )
 		return DWC_RNK_ERROR_INVALID_PARAMETER;
@@ -847,7 +847,7 @@ DWCRnkError	DWC_RnkResGetRow(	DWCRnkData* out,
 	if( index >= res.listheader->count )
 		return DWC_RNK_ERROR_INVALID_PARAMETER;
 
-	// ƒV[ƒN‚·‚é
+	// ã‚·ãƒ¼ã‚¯ã™ã‚‹
 	//
 	ptr = &res.listheader->rankingdata;
 
@@ -857,7 +857,7 @@ DWCRnkError	DWC_RnkResGetRow(	DWCRnkData* out,
 
 	}
 
-	// ƒƒ‚ƒŠ[ƒAƒNƒZƒXƒI[ƒo[‚ÌŒŸ’m
+	// ãƒ¡ãƒ¢ãƒªãƒ¼ã‚¢ã‚¯ã‚»ã‚¹ã‚ªãƒ¼ãƒãƒ¼ã®æ¤œçŸ¥
 	// 
 	if( (u32)&ptr->userdata + ptr->size > (u32)res.header + res.size ){
 
@@ -865,7 +865,7 @@ DWCRnkError	DWC_RnkResGetRow(	DWCRnkData* out,
 
 	}
 
-	// •Ô‚è’l‚ÌƒZƒbƒg
+	// è¿”ã‚Šå€¤ã®ã‚»ãƒƒãƒˆ
 	*out = *ptr;
 	out->userdata = &ptr->userdata;
 
@@ -878,16 +878,16 @@ DWCRnkError	DWC_RnkResGetRow(	DWCRnkData* out,
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkResGetRowCount
 
-  Description:	’ÊM‚ÅóM‚µ‚½ƒ‰ƒ“ƒLƒ“ƒOƒŠƒXƒg‚©‚ç”CˆÓ‚Ìs‚ğ’Šo‚µ‚Äæ“¾‚µ‚Ü‚·
+  Description:	é€šä¿¡ã§å—ä¿¡ã—ãŸãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒªã‚¹ãƒˆã‹ã‚‰ä»»æ„ã®è¡Œã‚’æŠ½å‡ºã—ã¦å–å¾—ã—ã¾ã™
 
-  Arguments:	count	s”‚ğæ“¾‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:	count	è¡Œæ•°ã‚’å–å¾—ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:		DWC_RNK_SUCCESS					¬Œ÷
-  				DWC_RNK_IN_ERROR				ƒGƒ‰[”­¶’†
-				DWC_RNK_ERROR_INVALID_MODE		•s³‚Èƒ‚[ƒh
-  				DWC_RNK_ERROR_INVALID_PARAMETER	•s³‚Èƒpƒ‰ƒ[ƒ^[
-  				DWC_RNK_ERROR_NOTCOMPLETED		’ÊM–¢Š®—¹
-				DWC_RNK_ERROR_EMPTY_RESPONSE	‹ó‚ÌƒŒƒXƒ|ƒ“ƒX
+  Returns:		DWC_RNK_SUCCESS					æˆåŠŸ
+  				DWC_RNK_IN_ERROR				ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
+				DWC_RNK_ERROR_INVALID_MODE		ä¸æ­£ãªãƒ¢ãƒ¼ãƒ‰
+  				DWC_RNK_ERROR_INVALID_PARAMETER	ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+  				DWC_RNK_ERROR_NOTCOMPLETED		é€šä¿¡æœªå®Œäº†
+				DWC_RNK_ERROR_EMPTY_RESPONSE	ç©ºã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹
  *---------------------------------------------------------------------------*/
 
 DWCRnkError	DWC_RnkResGetRowCount( u32* count ){
@@ -895,27 +895,27 @@ DWCRnkError	DWC_RnkResGetRowCount( u32* count ){
 	DWCiRankingResponse res;
 	DWCRnkError err;
 
-	// DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if (DWCi_IsError()) return DWC_RNK_IN_ERROR;
 
-	// ƒŒƒXƒ|ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğ“¾‚é
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹
 	// 
 	err = DWCi_RankingGetResponse( &res );
 	if( err != DWC_RNK_SUCCESS )
 		return err;
 
-	// •s³ƒpƒ‰ƒ[ƒ^[ƒ`ƒFƒbƒN
+	// ä¸æ­£ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 	//
 	if( count == NULL )
 		return DWC_RNK_ERROR_INVALID_PARAMETER;
 
-	// ƒŒƒXƒ|ƒ“ƒX‚ª‡’v‚·‚é‚©‚ğƒ`ƒFƒbƒN
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãŒåˆè‡´ã™ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	// 
 	switch( res.mode ){
 
 	case DWC_RNK_GET_MODE_ORDER:
 
-		// ‡ˆÊæ“¾ƒŠƒNƒGƒXƒg‚Å‚Íƒ‰ƒ“ƒLƒ“ƒOƒŠƒXƒg‚Í‚È‚¢‚Ì‚ÅƒGƒ‰[
+		// é †ä½å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆã§ã¯ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒªã‚¹ãƒˆã¯ãªã„ã®ã§ã‚¨ãƒ©ãƒ¼
 		return DWC_RNK_ERROR_INVALID_MODE;
 
 	case DWC_RNK_GET_MODE_TOPLIST:
@@ -928,7 +928,7 @@ DWCRnkError	DWC_RnkResGetRowCount( u32* count ){
 
 	}
 
-	// •Ô‚è’l‚ğƒZƒbƒg
+	// è¿”ã‚Šå€¤ã‚’ã‚»ãƒƒãƒˆ
 	//
 	*count = res.listheader->count;
 
@@ -941,16 +941,16 @@ DWCRnkError	DWC_RnkResGetRowCount( u32* count ){
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkResGetOrder
 
-  Description:	‡ˆÊ‚ğæ“¾‚µ‚Ü‚·
+  Description:	é †ä½ã‚’å–å¾—ã—ã¾ã™
 
-  Arguments:	order*	‡ˆÊ‚ğæ“¾‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:	order*	é †ä½ã‚’å–å¾—ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:		DWC_RNK_SUCCESS					¬Œ÷
-  				DWC_RNK_IN_ERROR				ƒGƒ‰[”­¶’†
-				DWC_RNK_ERROR_INVALID_MODE		•s³‚Èƒ‚[ƒh
-  				DWC_RNK_ERROR_INVALID_PARAMETER	•s³‚Èƒpƒ‰ƒ[ƒ^[
-  				DWC_RNK_ERROR_NOTCOMPLETED		’ÊM–¢Š®—¹
-				DWC_RNK_ERROR_EMPTY_RESPONSE	‹ó‚ÌƒŒƒXƒ|ƒ“ƒX
+  Returns:		DWC_RNK_SUCCESS					æˆåŠŸ
+  				DWC_RNK_IN_ERROR				ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
+				DWC_RNK_ERROR_INVALID_MODE		ä¸æ­£ãªãƒ¢ãƒ¼ãƒ‰
+  				DWC_RNK_ERROR_INVALID_PARAMETER	ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+  				DWC_RNK_ERROR_NOTCOMPLETED		é€šä¿¡æœªå®Œäº†
+				DWC_RNK_ERROR_EMPTY_RESPONSE	ç©ºã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹
  *---------------------------------------------------------------------------*/
 
 DWCRnkError	DWC_RnkResGetOrder( u32* order ){
@@ -958,26 +958,26 @@ DWCRnkError	DWC_RnkResGetOrder( u32* order ){
 	DWCiRankingResponse res;
 	DWCRnkError err;
 
-	// DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if (DWCi_IsError()) return DWC_RNK_IN_ERROR;
 
-	// ƒŒƒXƒ|ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğ“¾‚é
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹
 	// 
 	err = DWCi_RankingGetResponse( &res );
 	if( err != DWC_RNK_SUCCESS )
 		return err;
 
-	// •s³ƒpƒ‰ƒ[ƒ^[ƒ`ƒFƒbƒN
+	// ä¸æ­£ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 	//
 	if( order == NULL )
 		return DWC_RNK_ERROR_INVALID_PARAMETER;
 
-	// ƒŒƒXƒ|ƒ“ƒX‚ª‡’v‚·‚é‚©‚ğƒ`ƒFƒbƒN
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãŒåˆè‡´ã™ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	// 
 	if( res.mode != DWC_RNK_GET_MODE_ORDER )
 		return DWC_RNK_ERROR_INVALID_MODE;
 
-	// •Ô‚è’l‚ğƒZƒbƒg
+	// è¿”ã‚Šå€¤ã‚’ã‚»ãƒƒãƒˆ
 	//
 	*order = res.orderheader->order;
 
@@ -990,15 +990,15 @@ DWCRnkError	DWC_RnkResGetOrder( u32* order ){
 /*---------------------------------------------------------------------------*
   Name:		DWC_RnkResGetTotal
 
-  Description:	‘”‚ğæ“¾‚µ‚Ü‚·
+  Description:	ç·æ•°ã‚’å–å¾—ã—ã¾ã™
 
-  Arguments:	total*	‡ˆÊ‚ğæ“¾‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:	total*	é †ä½ã‚’å–å¾—ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:		DWC_RNK_SUCCESS					¬Œ÷
-  				DWC_RNK_IN_ERROR				ƒGƒ‰[”­¶’†
-  				DWC_RNK_ERROR_INVALID_PARAMETER	•s³‚Èƒpƒ‰ƒ[ƒ^[
-  				DWC_RNK_ERROR_NOTCOMPLETED		’ÊM–¢Š®—¹
-				DWC_RNK_ERROR_EMPTY_RESPONSE	‹ó‚ÌƒŒƒXƒ|ƒ“ƒX
+  Returns:		DWC_RNK_SUCCESS					æˆåŠŸ
+  				DWC_RNK_IN_ERROR				ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
+  				DWC_RNK_ERROR_INVALID_PARAMETER	ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+  				DWC_RNK_ERROR_NOTCOMPLETED		é€šä¿¡æœªå®Œäº†
+				DWC_RNK_ERROR_EMPTY_RESPONSE	ç©ºã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹
  *---------------------------------------------------------------------------*/
 
 DWCRnkError	DWC_RnkResGetTotal( u32* total ){
@@ -1006,21 +1006,21 @@ DWCRnkError	DWC_RnkResGetTotal( u32* total ){
 	DWCiRankingResponse res;
 	DWCRnkError err;
 
-	// DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if (DWCi_IsError()) return DWC_RNK_IN_ERROR;
 
-	// ƒŒƒXƒ|ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğ“¾‚é
+	// ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹
 	// 
 	err = DWCi_RankingGetResponse( &res );
 	if( err != DWC_RNK_SUCCESS )
 		return err;
 
-	// •s³ƒpƒ‰ƒ[ƒ^[ƒ`ƒFƒbƒN
+	// ä¸æ­£ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 	//
 	if( total == NULL )
 		return DWC_RNK_ERROR_INVALID_PARAMETER;
 
-	// •Ô‚è’l‚ğƒZƒbƒg
+	// è¿”ã‚Šå€¤ã‚’ã‚»ãƒƒãƒˆ
 	//
 	*total = res.orderheader->total;
 

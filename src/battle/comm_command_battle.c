@@ -1,9 +1,9 @@
 //=============================================================================
 /**
  * @file	comm_command_battle.c
- * @brief	�f�[�^�𑗂邽�߂̃R�}���h���e�[�u�������Ă��܂�
- *          �o�g���p�ł�
- *          comm_command_battle.h �� enum �Ɠ������тł���K�v������܂�
+ * @brief	データを送るためのコマンドをテーブル化しています
+ *          バトル用です
+ *          comm_command_battle.h の enum と同じ並びである必要があります
  * @author	Katsumi Ohno
  * @date    2005.11.08
  */
@@ -26,11 +26,11 @@ extern	vu32 battle_vblank_count;
 #endif
 
 //==============================================================================
-//  �e�[�u���ɏ����֐��̒�`
+//  テーブルに書く関数の定義
 //==============================================================================
 
 //==============================================================================
-//  �v���g�^�C�v�錾
+//  プロトタイプ宣言
 //==============================================================================
 
 void CommCommandBattleSendData(BATTLE_WORK *bw,int access,int para,void *data,u8 size);
@@ -54,7 +54,7 @@ BOOL CommCommandBattleSendFriendListMake(BATTLE_SIO_WORK *bsw);
 
 
 //==============================================================================
-//  static��`
+//  static定義
 //==============================================================================
 static int _getServerVersion(void);
 static int _getMyStatus(void);
@@ -90,12 +90,12 @@ static  void CommCommandBattleRecvFriendList(int netID, int size, void* pBuff, v
 static  void CommCommandBattleMakeFriendList( MYSTATUS *mystatus, FRIEND_LIST *friendlist, FRIEND_LIST *sendbuf );
 
 //==============================================================================
-//	�e�[�u���錾
-//  comm_command_battle.h �� enum �Ɠ����Ȃ�тɂ��Ă�������
-//  CALLBACK���Ă΂ꂽ���Ȃ��ꍇ��NULL�������Ă�������
-//  �R�}���h�̃T�C�Y��Ԃ��֐��������Ă��炦��ƒʐM���y���Ȃ�܂�
-//  _getZero�̓T�C�Y�Ȃ���Ԃ��܂��B_getVariable�͉σf�[�^�g�p���Ɏg���܂�
-//  comm_command_field.c���Q�l�ɂ��Ă݂Ă�������
+//	テーブル宣言
+//  comm_command_battle.h の enum と同じならびにしてください
+//  CALLBACKを呼ばれたくない場合はNULLを書いてください
+//  コマンドのサイズを返す関数を書いてもらえると通信が軽くなります
+//  _getZeroはサイズなしを返します。_getVariableは可変データ使用時に使います
+//  comm_command_field.cを参考にしてみてください
 //==============================================================================
 static const CommPacketTbl _CommPacketTbl[] = {
     {CommCommandBattleEnd,					_getVariable,		NULL},					// CB_EXIT_BATTLE
@@ -114,8 +114,8 @@ static const CommPacketTbl _CommPacketTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM�̏��������s���܂�
- * @param   pWork   �o�g���Ŏg�p���郏�[�N�̃|�C���^
+ * @brief   バトルコマンド通信の初期化を行います
+ * @param   pWork   バトルで使用するワークのポインタ
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -129,7 +129,7 @@ void CommCommandBattleInitialize(void* pWork)
 
 	bw=(BATTLE_WORK *)pWork;
 
-	//�ΐ�^��Đ����͉������Ȃ��ŏI��
+	//対戦録画再生時は何もしないで終了
 	if(BattleWorkBattleStatusFlagGet(bw)&BATTLE_STATUS_FLAG_REC_BATTLE){
 		return;
 	}
@@ -153,8 +153,8 @@ void CommCommandBattleInitialize(void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM�̏��������s���܂��i�ŏ��̎莝���̌����p�j
- * @param   pWork   �o�g���Ŏg�p���郏�[�N�̃|�C���^
+ * @brief   バトルコマンド通信の初期化を行います（最初の手持ちの交換用）
+ * @param   pWork   バトルで使用するワークのポインタ
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -168,9 +168,9 @@ void CommCommandBattleCPInitialize(void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   �R�Ƃ��T�C�Y��Ԃ��܂�
- * @param   command         �R�}���h
- * @retval  �T�C�Y   �ςȂ� COMM_VARIABLE_SIZE Zero�͂O��Ԃ�
+ * @brief   ３つともサイズを返します
+ * @param   command         コマンド
+ * @retval  サイズ   可変なら COMM_VARIABLE_SIZE Zeroは０を返す
  */
 //--------------------------------------------------------------
 static int _getServerVersion(void)
@@ -283,7 +283,7 @@ static u8   * _getFriendListBufAdrs( int netID, void *pWork, int size )
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���M����
+ * @brief   バトルコマンド通信送信処理
  * @param   none
  * @retval  none
  */
@@ -302,10 +302,10 @@ void CommCommandBattleSendData(BATTLE_WORK *bw,int access,int para,void *data,u8
 	write=BattleWorkSioSendWriteGet(bw);
 	over=BattleWorkSioSendOverGet(bw);
 
-	//�����Que�ւ̏������݂Ńo�b�t�@�I�[�o�[���邩�`�F�b�N
+	//今回のQueへの書き込みでバッファオーバーするかチェック
 	if(write[0]+sizeof(SIO_SEND_DATA)+size+1>BATTLE_SIO_BUF_SIZE){
-	//�I�[�o�[�����ꍇ�́Aover�o�b�t�@�ɂ��̎|���i�[
-	//write�o�b�t�@��擪�ɖ߂�
+	//オーバーした場合は、overバッファにその旨を格納
+	//writeバッファを先頭に戻す
 		over[0]=write[0];
 		write[0]=0;
 	}
@@ -329,7 +329,7 @@ void CommCommandBattleSendData(BATTLE_WORK *bw,int access,int para,void *data,u8
 	}
 
 #ifdef SIO_COMMENT_ON
-	OS_Printf("���M�v������܂���: w->%04x o->%04x \n",write[0],over[0]);
+	OS_Printf("送信要求ありました: w->%04x o->%04x \n",write[0],over[0]);
 #endif
 
 	sys_FreeMemoryEz(ssd);
@@ -337,7 +337,7 @@ void CommCommandBattleSendData(BATTLE_WORK *bw,int access,int para,void *data,u8
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM��M����
+ * @brief   バトルコマンド通信受信処理
  * @param   none
  * @retval  none
  */
@@ -352,16 +352,16 @@ static	void CommCommandBattleRecvData(int id_no,int size,void *pData,void *work)
 	u16				*write=BattleWorkSioRecvWriteGet(bw);
 	u16				*over=BattleWorkSioRecvOverGet(bw);
 
-	//�����Que�ւ̏������݂Ńo�b�t�@�I�[�o�[���邩�`�F�b�N
+	//今回のQueへの書き込みでバッファオーバーするかチェック
 	if(write[0]+size+1>BATTLE_SIO_BUF_SIZE){
-	//�I�[�o�[�����ꍇ�́Aover�o�b�t�@�ɂ��̎|���i�[
-	//write�o�b�t�@��擪�ɖ߂�
+	//オーバーした場合は、overバッファにその旨を格納
+	//writeバッファを先頭に戻す
 		over[0]=write[0];
 		write[0]=0;
 	}
 
 #ifdef SIO_COMMENT_ON
-	OS_Printf("��M�v������܂���: size->%d w->%04x o->%04x \n",size,write[0],over[0]);
+	OS_Printf("受信要求ありました: size->%d w->%04x o->%04x \n",size,write[0],over[0]);
 #endif
 
 	for(i=0;i<size;i++){
@@ -372,7 +372,7 @@ static	void CommCommandBattleRecvData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���M����
+ * @brief   バトルコマンド通信送信処理
  * @param   none
  * @retval  none
  */
@@ -381,12 +381,12 @@ BOOL CommCommandBattleSendServerVersionData(BATTLE_SIO_WORK *bsw,u32 version)
 {
 	POKEPARTY	*ppt;
 
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A���M���Ȃ�
+	//送信バッファが空ではないときは、送信しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
 
-	//�����҂�
+	//同期待ち
 	if(CommIsTimingSync(COMM_BATTLE_SV_SYNC_NUM)==FALSE){
 		return FALSE;
 	}
@@ -400,7 +400,7 @@ BOOL CommCommandBattleSendServerVersionData(BATTLE_SIO_WORK *bsw,u32 version)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���MTCB�p�V�[�P���X�i���o�[��`
+ * @brief   バトルコマンド通信送信TCB用シーケンスナンバー定義
  */
 //--------------------------------------------------------------
 static	void CommCommandBattleRecvServerVersionData(int id_no,int size,void *pData,void *work)
@@ -419,7 +419,7 @@ static	void CommCommandBattleRecvServerVersionData(int id_no,int size,void *pDat
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���M����
+ * @brief   バトルコマンド通信送信処理
  * @param   none
  * @retval  none
  */
@@ -428,7 +428,7 @@ BOOL CommCommandBattleSendMyStatusDataMake(BATTLE_SIO_WORK *bsw)
 {
 	MYSTATUS	*ms;
 
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A�������Ȃ�
+	//送信バッファが空ではないときは、生成しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
@@ -442,12 +442,12 @@ BOOL CommCommandBattleSendMyStatusDataMake(BATTLE_SIO_WORK *bsw)
 
 BOOL CommCommandBattleSendMyStatusDataWait(BATTLE_SIO_WORK *bsw)
 {
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A���M���Ȃ�
+	//送信バッファが空ではないときは、送信しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
 
-	//�����҂�
+	//同期待ち
 	if(CommIsTimingSync(COMM_BATTLE_MS_SYNC_NUM)==FALSE){
 		return FALSE;
 	}
@@ -457,7 +457,7 @@ BOOL CommCommandBattleSendMyStatusDataWait(BATTLE_SIO_WORK *bsw)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���MTCB�p�V�[�P���X�i���o�[��`
+ * @brief   バトルコマンド通信送信TCB用シーケンスナンバー定義
  */
 //--------------------------------------------------------------
 static	void CommCommandBattleRecvMyStatusData(int id_no,int size,void *pData,void *work)
@@ -473,7 +473,7 @@ static	void CommCommandBattleRecvMyStatusData(int id_no,int size,void *pData,voi
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���M����
+ * @brief   バトルコマンド通信送信処理
  * @param   none
  * @retval  none
  */
@@ -482,7 +482,7 @@ BOOL CommCommandBattleSendTrainerDataMake(BATTLE_SIO_WORK *bsw)
 {
 	TRAINER_DATA	*td;
 
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A�������Ȃ�
+	//送信バッファが空ではないときは、生成しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
@@ -496,12 +496,12 @@ BOOL CommCommandBattleSendTrainerDataMake(BATTLE_SIO_WORK *bsw)
 
 BOOL CommCommandBattleSendTrainerDataWait(BATTLE_SIO_WORK *bsw)
 {
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A���M���Ȃ�
+	//送信バッファが空ではないときは、送信しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
 
-	//�����҂�
+	//同期待ち
 	if(CommIsTimingSync(COMM_BATTLE_TR_SYNC_NUM)==FALSE){
 		return FALSE;
 	}
@@ -511,7 +511,7 @@ BOOL CommCommandBattleSendTrainerDataWait(BATTLE_SIO_WORK *bsw)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���MTCB�p�V�[�P���X�i���o�[��`
+ * @brief   バトルコマンド通信送信TCB用シーケンスナンバー定義
  */
 //--------------------------------------------------------------
 static	void CommCommandBattleRecvTrainerData(int id_no,int size,void *pData,void *work)
@@ -528,7 +528,7 @@ static	void CommCommandBattleRecvTrainerData(int id_no,int size,void *pData,void
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���M����
+ * @brief   バトルコマンド通信送信処理
  * @param   none
  * @retval  none
  */
@@ -537,7 +537,7 @@ BOOL CommCommandBattleSendPokeDataMake(BATTLE_SIO_WORK *bsw)
 {
 	POKEPARTY	*ppt;
 
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A�������Ȃ�
+	//送信バッファが空ではないときは、生成しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
@@ -551,12 +551,12 @@ BOOL CommCommandBattleSendPokeDataMake(BATTLE_SIO_WORK *bsw)
 
 BOOL CommCommandBattleSendPokeDataWait(BATTLE_SIO_WORK *bsw)
 {
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A���M���Ȃ�
+	//送信バッファが空ではないときは、送信しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
 
-	//�����҂�
+	//同期待ち
 	if(CommIsTimingSync(COMM_BATTLE_POKE_SYNC_NUM)==FALSE){
 		return FALSE;
 	}
@@ -566,7 +566,7 @@ BOOL CommCommandBattleSendPokeDataWait(BATTLE_SIO_WORK *bsw)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���MTCB�p�V�[�P���X�i���o�[��`
+ * @brief   バトルコマンド通信送信TCB用シーケンスナンバー定義
  */
 //--------------------------------------------------------------
 static	void CommCommandBattleRecvPokeData(int id_no,int size,void *pData,void *work)
@@ -582,7 +582,7 @@ static	void CommCommandBattleRecvPokeData(int id_no,int size,void *pData,void *w
 
 //--------------------------------------------------------------
 /**
- * @brief   �y���b�v�{�C�X�ʐM���M����
+ * @brief   ペラップボイス通信送信処理
  * @param   none
  * @retval  none
  */
@@ -591,7 +591,7 @@ BOOL CommCommandBattleSendPokeVoiceMake(BATTLE_SIO_WORK *bsw)
 {
 	PERAPVOICE	*pv;
 
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A�������Ȃ�
+	//送信バッファが空ではないときは、生成しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
@@ -605,12 +605,12 @@ BOOL CommCommandBattleSendPokeVoiceMake(BATTLE_SIO_WORK *bsw)
 
 BOOL CommCommandBattleSendPokeVoiceWait(BATTLE_SIO_WORK *bsw)
 {
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A���M���Ȃ�
+	//送信バッファが空ではないときは、送信しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
 
-	//�����҂�
+	//同期待ち
 	if(CommIsTimingSync(COMM_BATTLE_POKEV_SYNC_NUM)==FALSE){
 		return FALSE;
 	}
@@ -621,7 +621,7 @@ BOOL CommCommandBattleSendPokeVoiceWait(BATTLE_SIO_WORK *bsw)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Ƃ������O���[�v�ʐM���M����
+ * @brief   ともだちグループ通信送信処理
  * @param   none
  * @retval  none
  */
@@ -631,23 +631,23 @@ BOOL CommCommandBattleSendFriendListMake(BATTLE_SIO_WORK *bsw)
 	FRIEND_LIST	*fl;
 	MYSTATUS    *status;
 
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A�������Ȃ�
+	//送信バッファが空ではないときは、生成しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
 
 	fl=(FRIEND_LIST *)&bsw->sio_send_buffer[0];
 
-	OS_Printf("�Ƃ������O���[�v�f�[�^�쐬�O\n");
+	OS_Printf("ともだちグループデータ作成前\n");
 
-	// �ʐM�}���`�o�g���^���[�̎��̓X�e�[�^�X�̎擾���@�������Ⴄ
+	// 通信マルチバトルタワーの時はステータスの取得方法が少し違う
 	if(bsw->bp->fight_type&FIGHT_TYPE_TOWER){
 		status = bsw->bp->my_status[CommGetCurrentID()*2];
 	}else{
 		status = bsw->bp->my_status[CommGetCurrentID()];
 	}
 	
-	// �F�B�O���[�v�f�[�^�쐬
+	// 友達グループデータ作成
 	CommCommandBattleMakeFriendList( status, bsw->bp->friendlist, 
 									(FRIEND_LIST*)bsw->sio_send_buffer );
 
@@ -665,12 +665,12 @@ BOOL CommCommandBattleSendFriendListMake(BATTLE_SIO_WORK *bsw)
 
 BOOL CommCommandBattleSendFriendListWait(BATTLE_SIO_WORK *bsw)
 {
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A���M���Ȃ�
+	//送信バッファが空ではないときは、送信しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
 
-	//�����҂�
+	//同期待ち
 	if(CommIsTimingSync(COMM_BATTLE_FLIST_SYNC_NUM)==FALSE){
 		return FALSE;
 	}
@@ -680,7 +680,7 @@ BOOL CommCommandBattleSendFriendListWait(BATTLE_SIO_WORK *bsw)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���MTCB�p�V�[�P���X�i���o�[��`
+ * @brief   バトルコマンド通信送信TCB用シーケンスナンバー定義
  */
 //--------------------------------------------------------------
 static	void CommCommandBattleRecvPokeVoice(int id_no,int size,void *pData,void *work)
@@ -696,7 +696,7 @@ static	void CommCommandBattleRecvPokeVoice(int id_no,int size,void *pData,void *
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���M����
+ * @brief   バトルコマンド通信送信処理
  * @param   none
  * @retval  none
  */
@@ -705,7 +705,7 @@ BOOL CommCommandBattleSendTowerTrDataMake(BATTLE_SIO_WORK *bsw,int no)
 {
 	TRAINER_DATA	*tr_data;
 
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A�������Ȃ�
+	//送信バッファが空ではないときは、生成しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
@@ -719,12 +719,12 @@ BOOL CommCommandBattleSendTowerTrDataMake(BATTLE_SIO_WORK *bsw,int no)
 
 BOOL CommCommandBattleSendTowerTrDataWait(BATTLE_SIO_WORK *bsw,int no,int sync_num)
 {
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A���M���Ȃ�
+	//送信バッファが空ではないときは、送信しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
 
-	//�����҂�
+	//同期待ち
 	if(CommIsTimingSync(sync_num)==FALSE){
 		return FALSE;
 	}
@@ -739,7 +739,7 @@ BOOL CommCommandBattleSendTowerTrDataWait(BATTLE_SIO_WORK *bsw,int no,int sync_n
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���MTCB�p�V�[�P���X�i���o�[��`
+ * @brief   バトルコマンド通信送信TCB用シーケンスナンバー定義
  */
 //--------------------------------------------------------------
 static	void CommCommandBattleRecvTTData(int id_no,int size,void *pData,void *work)
@@ -755,7 +755,7 @@ static	void CommCommandBattleRecvTTData(int id_no,int size,void *pData,void *wor
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���M����
+ * @brief   バトルコマンド通信送信処理
  * @param   none
  * @retval  none
  */
@@ -764,7 +764,7 @@ BOOL CommCommandBattleSendTowerPokeDataMake(BATTLE_SIO_WORK *bsw,int no)
 {
 	POKEPARTY	*ppt;
 
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A�������Ȃ�
+	//送信バッファが空ではないときは、生成しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
@@ -778,12 +778,12 @@ BOOL CommCommandBattleSendTowerPokeDataMake(BATTLE_SIO_WORK *bsw,int no)
 
 BOOL CommCommandBattleSendTowerPokeDataWait(BATTLE_SIO_WORK *bsw,int no,int sync_num)
 {
-	//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A���M���Ȃ�
+	//送信バッファが空ではないときは、送信しない
 	if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 		return FALSE;
 	}
 
-	//�����҂�
+	//同期待ち
 	if(CommIsTimingSync(sync_num)==FALSE){
 		return FALSE;
 	}
@@ -798,7 +798,7 @@ BOOL CommCommandBattleSendTowerPokeDataWait(BATTLE_SIO_WORK *bsw,int no,int sync
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���MTCB�p�V�[�P���X�i���o�[��`
+ * @brief   バトルコマンド通信送信TCB用シーケンスナンバー定義
  */
 //--------------------------------------------------------------
 static	void CommCommandBattleRecvTPData(int id_no,int size,void *pData,void *work)
@@ -814,7 +814,7 @@ static	void CommCommandBattleRecvTPData(int id_no,int size,void *pData,void *wor
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���MTCB�p�V�[�P���X�i���o�[��`
+ * @brief   バトルコマンド通信送信TCB用シーケンスナンバー定義
  */
 //--------------------------------------------------------------
 enum{
@@ -824,7 +824,7 @@ enum{
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���MTCB
+ * @brief   バトルコマンド通信送信TCB
  * @param   none
  * @retval  none
  */
@@ -845,26 +845,26 @@ void TCB_CommCommandBattleSendData(TCB_PTR tcb,void *work)
 
 	switch(tss->seq_no){
 	case TSS_SEQ_SEND:
-		//���M�o�b�t�@����ł͂Ȃ��Ƃ��́A���M���Ȃ�
+		//送信バッファが空ではないときは、送信しない
 		if(CommGetSendRestSize()!=COMM_COMMAND_SEND_SIZE_MAX){
 			break;
 		}
-		//�o�b�t�@�̓ǂݍ��݈ʒu�Ə������݈ʒu�������Ƃ��̓f�[�^���Ȃ��̂ŁA���M���Ȃ�
+		//バッファの読み込み位置と書き込み位置が同じときはデータがないので、送信しない
 		if(read[0]==write[0]){
 			break;
 		}
-		//�o�b�t�@�̓ǂݍ��݈ʒu�ƃI�[�o�[�o�b�t�@�������Ƃ��͐擪�ɖ߂�
+		//バッファの読み込み位置とオーバーバッファが同じときは先頭に戻す
 		if(read[0]==over[0]){
 			read[0]=0;
 			over[0]=0;
 		}
 #ifdef SIO_COMMENT_ON
-		OS_Printf("�o�b�t�@�c��F%d\n",CommGetSendRestSize());
+		OS_Printf("バッファ残り：%d\n",CommGetSendRestSize());
 #endif
 		size=sizeof(SIO_SEND_DATA)+(src[read[0]+SIO_BUF_SIZE_LOW]|(src[read[0]+SIO_BUF_SIZE_HIGH]<<8));
 		if(CommSendData(CB_BATTLE_DATA,(void *)&src[read[0]],size)==TRUE){
 #ifdef DEBUG_ONLY_FOR_sogabe
-//			OS_TPrintf("���M�A���Faccess->%d para->%d data->%02d size->%03d timing->%d\n",src[read[0]+SIO_BUF_ACCESS],
+//			OS_TPrintf("送信アリ：access->%d para->%d data->%02d size->%03d timing->%d\n",src[read[0]+SIO_BUF_ACCESS],
 //																						  src[read[0]+SIO_BUF_PARA],
 //																						  src[read[0]+SIO_BUF_DATA],
 //																						  size,
@@ -872,10 +872,10 @@ void TCB_CommCommandBattleSendData(TCB_PTR tcb,void *work)
 #endif
 			read[0]+=size;
 #ifdef SIO_COMMENT_ON
-			OS_Printf("���M�o�b�t�@�A�h���X: src->%08x\n",&src[0]);
-			OS_Printf("���M�o�b�t�@�A�h���X: bw->%08x\n",BattleWorkSioSendBufGet(tss->bw));
-			OS_Printf("���M���܂���: size->%04x r->%04x w->%04x o->%04x\n",size,read[0],write[0],over[0]);
-			OS_Printf("�o�b�t�@�c��F%d\n",CommGetSendRestSize());
+			OS_Printf("送信バッファアドレス: src->%08x\n",&src[0]);
+			OS_Printf("送信バッファアドレス: bw->%08x\n",BattleWorkSioSendBufGet(tss->bw));
+			OS_Printf("送信しました: size->%04x r->%04x w->%04x o->%04x\n",size,read[0],write[0],over[0]);
+			OS_Printf("バッファ残り：%d\n",CommGetSendRestSize());
 #endif
 		}
 		break;
@@ -889,7 +889,7 @@ void TCB_CommCommandBattleSendData(TCB_PTR tcb,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM���MTCB�p�V�[�P���X�i���o�[��`
+ * @brief   バトルコマンド通信送信TCB用シーケンスナンバー定義
  */
 //--------------------------------------------------------------
 enum{
@@ -899,7 +899,7 @@ enum{
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���R�}���h�ʐM��MTCB
+ * @brief   バトルコマンド通信受信TCB
  * @param   none
  * @retval  none
  */
@@ -920,11 +920,11 @@ void TCB_CommCommandBattleRecvData(TCB_PTR tcb,void *work)
 
 	switch(tsr->seq_no){
 	case TSR_SEQ_RECV:
-		//�o�b�t�@�̓ǂݍ��݈ʒu�Ə������݈ʒu�������Ƃ��̓f�[�^���Ȃ��̂ŁA��M���Ȃ�
+		//バッファの読み込み位置と書き込み位置が同じときはデータがないので、受信しない
 		if(read[0]==write[0]){
 			break;
 		}
-		//�o�b�t�@�̓ǂݍ��݈ʒu�ƃI�[�o�[�o�b�t�@�������Ƃ��͐擪�ɖ߂�
+		//バッファの読み込み位置とオーバーバッファが同じときは先頭に戻す
 		if(read[0]==over[0]){
 			read[0]=0;
 			over[0]=0;
@@ -933,7 +933,7 @@ void TCB_CommCommandBattleRecvData(TCB_PTR tcb,void *work)
 			size=sizeof(SIO_SEND_DATA)+(src[read[0]+SIO_BUF_SIZE_LOW]|(src[read[0]+SIO_BUF_SIZE_HIGH]<<8));
 			read[0]+=size;
 #ifdef SIO_COMMENT_ON
-			OS_Printf("��M���܂���; r->%04x w->%04x o->%04x\n",read[0],write[0],over[0]);
+			OS_Printf("受信しました; r->%04x w->%04x o->%04x\n",read[0],write[0],over[0]);
 #endif
 		}
 		break;
@@ -947,7 +947,7 @@ void TCB_CommCommandBattleRecvData(TCB_PTR tcb,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   �퓬�I������
+ * @brief   戦闘終了処理
  * @param   none
  * @retval  none
  */
@@ -965,7 +965,7 @@ static	void CommCommandBattleEnd(int id_no,int size,void *pData,void *work)
 
 //------------------------------------------------------------------
 /**
- * $brief   ���肠���O���[�v�f�[�^�̑��M
+ * $brief   しりあいグループデータの送信
  *
  * @param   mystatus		
  * @param   friendlist		
@@ -978,29 +978,29 @@ static void CommCommandBattleMakeFriendList( MYSTATUS *mystatus, FRIEND_LIST *fr
 {
 	int i;
 
-	// ���M�f�[�^�̍쐬
-	PM_strcpy( sendbuf->name, MyStatus_GetMyName( mystatus ));	// ���O
+	// 送信データの作成
+	PM_strcpy( sendbuf->name, MyStatus_GetMyName( mystatus ));	// 名前
 	sendbuf->id       = MyStatus_GetID(mystatus);				// ID
-	sendbuf->region   = MyStatus_GetRegionCode(mystatus);		// ���[�W����
+	sendbuf->region   = MyStatus_GetRegionCode(mystatus);		// リージョン
 	sendbuf->rom_code = MyStatus_GetRomCode(mystatus);			// ROM
-	sendbuf->sex      = MyStatus_GetMySex(mystatus);			// ����
+	sendbuf->sex      = MyStatus_GetMySex(mystatus);			// 性別
 	
-	for(i=0;i<FRIENDLIST_FRIEND_MAX;i++){						// �����̒m�荇����ID��
-		sendbuf->group_id[i]      = friendlist[i].id;			// �m�荇���̒m�荇���Ƃ��Ă͓n�����߂ɐ��`
+	for(i=0;i<FRIENDLIST_FRIEND_MAX;i++){						// 自分の知り合いのIDを
+		sendbuf->group_id[i]      = friendlist[i].id;			// 知り合いの知り合いとしては渡すために整形
 		sendbuf->group_romcode[i] = friendlist[i].rom_code;
 		sendbuf->group_region[i]  = friendlist[i].region;
 		sendbuf->group_sex[i]     = friendlist[i].sex;
 	}
 
 
-	// ���M
+	// 送信
 //	CommSendHugeData( CB_FRINEDLIST, sendbuf, sizeof(FRIEND_LIST) );
 	
 }
 
 //==============================================================================
 /**
- * $brief   �Ƃ������O���[�v�ɓo�^���邽�߂̃f�[�^����M����
+ * $brief   ともだちグループに登録するためのデータを受信した
  *
  * @param   netID		
  * @param   size		
@@ -1014,7 +1014,7 @@ void CommCommandBattleRecvFriendList(int netID, int size, void* pBuff, void* pWo
 {
 	BATTLE_SIO_WORK		*bsw=(BATTLE_SIO_WORK *)pWork;
 	
-	OS_Printf("���肠���O���[�v�f�[�^����\n");
+	OS_Printf("しりあいグループデータ到着\n");
 	
 	if(CommGetCurrentID()!=netID){
 		FriendList_Update( bsw->bp->friendlist, (FRIEND_LIST*)pBuff, 1, HEAPID_BATTLE );
@@ -1027,7 +1027,7 @@ void CommCommandBattleRecvFriendList(int netID, int size, void* pBuff, void* pWo
 
 
 //==============================================================================
-/// FRIEND_LIST�̃T�C�Y��Ԃ�
+/// FRIEND_LISTのサイズを返す
 //==============================================================================
 static int _getFriendListSize(void)
 {

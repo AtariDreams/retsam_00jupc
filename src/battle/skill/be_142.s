@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_142.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			142�@�g�p�����|�P�����̂g�o�������ɂȂ�ւ��Ɂu���������v���ő�܂ŏグ��
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			142　使用したポケモンのＨＰが半分になる替わりに「こうげき」が最大まで上げる
  *
  *@author	HisashiSogabe
  *@data		2006.02.02

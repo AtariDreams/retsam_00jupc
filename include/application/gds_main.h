@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	gds_main.h
- * @brief	GDS�v���b�N���䃁�C���̃w�b�_
+ * @brief	GDSプロック制御メインのヘッダ
  * @author	matsuda
- * @date	2008.01.17(��)
+ * @date	2008.01.17(木)
  */
 //==============================================================================
 #ifndef __GDS_MAIN_H__
@@ -11,37 +11,37 @@
 
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
-///GDS�v���b�N������Ăяo���Ƃ��Ɉ����n���p�����[�^�\����
+///GDSプロック制御を呼び出すときに引き渡すパラメータ構造体
 typedef struct{
-	FIELDSYS_WORK *fsys;	///<�t�B�[���h�V�X�e���ւ̃|�C���^
-	SAVEDATA *savedata;		///<�Z�[�u�f�[�^�ւ̃|�C���^
-	int connect;			///<0�ȊO:����ڑ�(�ڑ����́u�͂�/�������v�I�𖳂�)�B0�ȊO:2�x�ڈȍ~
+	FIELDSYS_WORK *fsys;	///<フィールドシステムへのポインタ
+	SAVEDATA *savedata;		///<セーブデータへのポインタ
+	int connect;			///<0以外:初回接続(接続時の「はい/いいえ」選択無し)。0以外:2度目以降
 	u8 gds_mode;			///<BR_MODE_GDS_???
 }GDSPROC_PARAM;
 
-///GDS�v���b�N����̃��C���\����
+///GDSプロック制御のメイン構造体
 typedef struct{
-	GDSPROC_PARAM *proc_param;		///<�Ăяo���p�����[�^�ւ̃|�C���^
-	BOOL connect_success;			///<TRUE:�l�b�g�ڑ����B�@FALSE:�ڑ����Ă��Ȃ�
-	PROC *sub_proc;					///<���s���̃T�u�v���Z�X
+	GDSPROC_PARAM *proc_param;		///<呼び出しパラメータへのポインタ
+	BOOL connect_success;			///<TRUE:ネット接続中。　FALSE:接続していない
+	PROC *sub_proc;					///<実行中のサブプロセス
 
-	void 			*heapPtr;		///<NitroDWC�ɓn���q�[�v���[�N�̉���p�|�C���^
-	NNSFndHeapHandle heapHandle;	///<heapPtr��32�o�C�g�A���C�����g�ɍ��킹���|�C���^
+	void 			*heapPtr;		///<NitroDWCに渡すヒープワークの解放用ポインタ
+	NNSFndHeapHandle heapHandle;	///<heapPtrを32バイトアライメントに合わせたポインタ
 
-	DWCInetControl   stConnCtrl;	// DWC�ڑ����[�N
+	DWCInetControl   stConnCtrl;	// DWC接続ワーク
 	
-	int comm_initialize_ok;			///<TRUE:�ʐM�������ς�
+	int comm_initialize_ok;			///<TRUE:通信初期化済み
 
 	
-	//Wifi�ڑ���ʂ̌��ʂ��󂯎��
-	BOOL ret_connect;				///<TRUE:Wifi�ڑ��s�����B�@FALSE:�ڑ����Ȃ�����
+	//Wifi接続画面の結果を受け取る
+	BOOL ret_connect;				///<TRUE:Wifi接続行った。　FALSE:接続しなかった
 }GDSPROC_MAIN_WORK;
 
 
 //==============================================================================
-//	�O���֐��錾
+//	外部関数宣言
 //==============================================================================
 
 extern PROC_RESULT GdsMainProc_Init( PROC * proc, int * seq );

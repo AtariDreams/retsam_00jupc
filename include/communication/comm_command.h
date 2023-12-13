@@ -1,8 +1,8 @@
 //=============================================================================
 /**
  * @file	comm_command.h
- * @brief	�f�[�^���L���s���ꍇ�̒ʐM�V�X�e��
- *          �g�p����ꍇ�ɏ������ޕK�v��������̂��܂Ƃ߂��w�b�_�[
+ * @brief	データ共有を行う場合の通信システム
+ *          使用する場合に書き込む必要があるものをまとめたヘッダー
  * @author	Katsumi Ohno
  * @date    2005.07.26
  */
@@ -13,77 +13,77 @@
 
 
 //==============================================================================
-//	��`
+//	定義
 //==============================================================================
 
 //==============================================================================
-//	�^�錾
+//	型宣言
 //==============================================================================
-// �R�[���o�b�N�֐��̏���
+// コールバック関数の書式
 typedef void (*PTRCommRecvFunc)(int netID, int size, void* pData, void* pWork);
-// �T�C�Y���Œ�̏ꍇ�T�C�Y���֐��ŕԂ�
+// サイズが固定の場合サイズを関数で返す
 typedef int (*PTRCommRecvSizeFunc)(void);
-// ��M�o�b�t�@�������Ă���ꍇ���̃|�C���^
+// 受信バッファを持っている場合そのポインタ
 typedef u8* (*PTRCommRecvBuffAddr)(int netID, void* pWork, int size);
 
 
 typedef struct {
-    PTRCommRecvFunc callbackFunc;    ///< �R�}���h���������ɌĂ΂��R�[���o�b�N�֐�
-    PTRCommRecvSizeFunc getSizeFunc; ///< �R�}���h�̑��M�f�[�^�T�C�Y���Œ�Ȃ珑���Ă�������
+    PTRCommRecvFunc callbackFunc;    ///< コマンドがきた時に呼ばれるコールバック関数
+    PTRCommRecvSizeFunc getSizeFunc; ///< コマンドの送信データサイズが固定なら書いてください
     PTRCommRecvBuffAddr getAddrFunc;
 } CommPacketTbl;
 
 #define   _SET(callfunc, getSize, name)       {callfunc,  getSize},
 
-/// �ėp�ʐM�R�}���h�̒�`
+/// 汎用通信コマンドの定義
 enum CommCommand_e {
-  CS_NONE = 0xee,                ///< �Ȃɂ����Ȃ�
-  CS_FREE = 0,                   ///< ��R�}���h
-  CS_COMMAND_MIN = 1,             ///< �ŏ��l
-  CS_EXIT = CS_COMMAND_MIN,            ///< �I��
-  CS_AUTO_EXIT,            ///< �����I��
-  CS_COMM_INFO,       ///< info���
-  CS_COMM_INFO_ARRAY,  ///< info���𓊂��Ԃ�
-  CS_COMM_INFO_END,   ///< info��񑗐M�I��
-  CS_COMM_NEGOTIATION,  ///< ���������̃l�S�V�G�[�V����
+  CS_NONE = 0xee,                ///< なにもしない
+  CS_FREE = 0,                   ///< 空コマンド
+  CS_COMMAND_MIN = 1,             ///< 最小値
+  CS_EXIT = CS_COMMAND_MIN,            ///< 終了
+  CS_AUTO_EXIT,            ///< 自動終了
+  CS_COMM_INFO,       ///< info情報
+  CS_COMM_INFO_ARRAY,  ///< info情報を投げ返す
+  CS_COMM_INFO_END,   ///< info情報送信終了
+  CS_COMM_NEGOTIATION,  ///< 初期化時のネゴシエーション
   CS_COMM_NEGOTIATION_RETURN,
-  CS_DEBUG_VARIABLE,         ///< �f�o�b�O�p�i�{�ԂŃR�}���h�ԍ����ς��Ȃ��悤�ɂ��̂܂܂����Ă����j
-  CS_DEBUG_START,            ///< �f�o�b�O�p �o�g���X�^�[�g
-  CS_DSMP_CHANGE,            ///< DS���[�h�ʐM��MP���[�h�ʐM���ɐ؂�ւ��鋖�𓾂�
-  CS_DSMP_CHANGE_REQ,        ///< DS���[�h�ʐM��MP���[�h�ʐM���ɐ؂�ւ���w�����o��
-  CS_DSMP_CHANGE_END,        ///< DS���[�h�ʐM��MP���[�h�ʐM���ɐ؂�ւ������������Ƃ�ʒm
-  CS_COMMAND_THROWOUT,       ///< �R�}���h��j�����鋖�𓾂�
-  CS_COMMAND_THROWOUT_REQ,   ///< �R�}���h��j������w�����o��
-  CS_COMMAND_THROWOUT_END,   ///< �R�}���h�j�������������Ƃ�ʒm-----
-  CS_TIMING_SYNC,            ///< ���������R�}���h
-  CS_TIMING_SYNC_END,        ///< ��������ꂽ���Ƃ�Ԃ��R�}���h
-  CS_TIMING_SYNC_INFO,       ///< �����̏󋵂��q�@�ɕԂ��R�}���h
-  CS_LIST_NO,                ///< DS��p �I��ԍ��𑗂肠��
-  CS_TOOL_TEMP,              ///< DS��p �ėp�f�[�^�]��
+  CS_DEBUG_VARIABLE,         ///< デバッグ用（本番でコマンド番号が変わらないようにこのままおいておく）
+  CS_DEBUG_START,            ///< デバッグ用 バトルスタート
+  CS_DSMP_CHANGE,            ///< DSモード通信かMPモード通信かに切り替える許可を得る
+  CS_DSMP_CHANGE_REQ,        ///< DSモード通信かMPモード通信かに切り替える指示を出す
+  CS_DSMP_CHANGE_END,        ///< DSモード通信かMPモード通信かに切り替え完了したことを通知
+  CS_COMMAND_THROWOUT,       ///< コマンドを破棄する許可を得る
+  CS_COMMAND_THROWOUT_REQ,   ///< コマンドを破棄する指示を出す
+  CS_COMMAND_THROWOUT_END,   ///< コマンド破棄完了したことを通知-----
+  CS_TIMING_SYNC,            ///< 同期を取るコマンド
+  CS_TIMING_SYNC_END,        ///< 同期が取れたことを返すコマンド
+  CS_TIMING_SYNC_INFO,       ///< 同期の状況を子機に返すコマンド
+  CS_LIST_NO,                ///< DS専用 選択番号を送りあう
+  CS_TOOL_TEMP,              ///< DS専用 汎用データ転送
   CS_WIFI_EXIT,
-  //------------------------------------------------�����܂�----------
-  CS_COMMAND_MAX   // �I�[--------------����͈ړ������Ȃ��ł�������     22
+  //------------------------------------------------ここまで----------
+  CS_COMMAND_MAX   // 終端--------------これは移動させないでください     22
 };
 
-#define COMM_VARIABLE_SIZE (0xffff)   ///< �σf�[�^���M�ł��邱�Ƃ������Ă���
+#define COMM_VARIABLE_SIZE (0xffff)   ///< 可変データ送信であることを示している
 
 
-/// �R�}���h�e�[�u���̏�����������
+/// コマンドテーブルの初期化をする
 extern void CommCommandInitialize(const CommPacketTbl* pCommPacketLocal,int listNum,void* pWork);
-/// �R�}���h�e�[�u���̊J������
+/// コマンドテーブルの開放処理
 extern void CommCommandFinalize( void );
-/// �f�[�^�̃T�C�Y�𓾂�
+/// データのサイズを得る
 extern int CommCommandGetPacketSize(int command);
-///  �R�}���h�e�[�u����j�����鎞�̖���
+///  コマンドテーブルを破棄する時の命令
 extern BOOL CommCommandThrowOut(void);
-///  �R�}���h�e�[�u�����j�����I��������ǂ�������
+///  コマンドテーブルが破棄し終わったかどうか検査
 extern BOOL CommCommandIsThrowOuted(void);
-///  �R�[���o�b�N���Ă�
+///  コールバックを呼ぶ
 extern void CommCommandCallBack(int netID, int command, int size, void* pData);
-/// �v�����g
+/// プリント
 extern void CommCommandDebugPrint(int command);
 
-// �T�C�Y�w��p�ȈՊ֐�  �e�ʍ팸�̈�extern�錾  06.03.29
+// サイズ指定用簡易関数  容量削減の為extern宣言  06.03.29
 extern int _getVariable(void);
 extern int _getZero(void);
 extern int _getOne(void);

@@ -2,14 +2,14 @@
 //============================================================================================
 /**
  * @file	arc_tool.c
- * @bfief	ƒA[ƒJƒCƒo—pƒc[ƒ‹ƒvƒƒOƒ‰ƒ€
+ * @bfief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒç”¨ãƒ„ãƒ¼ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.05.30
  */
 //============================================================================================
 
 #include "common.h"
-#define	 __ARC_TOOL_DAT_TBL_	//ƒA[ƒJƒCƒoƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚à—LŒø‚É‚·‚é‚½‚ß‚Ì’è‹`
+#define	 __ARC_TOOL_DAT_TBL_	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã‚‚æœ‰åŠ¹ã«ã™ã‚‹ãŸã‚ã®å®šç¾©
 #include "system/arc_tool.h"
 #include "arc_tool_def.h"
 
@@ -27,19 +27,19 @@ u32		ArchiveDataSizeGet(int file_kind,int index);
 
 void	ArchiveDataLoadByHandleContinue( ARCHANDLE* handle, u32 size, void* buffer );
 
-#define	ALLOC_HEAD	(0)		//—Ìˆæ‚ğŠm•Û‚·‚é‚Æ‚«æ“ª‚©‚çŠm•Û
-#define	ALLOC_TAIL	(1)		//—Ìˆæ‚ğŠm•Û‚·‚é‚Æ‚«Œã‚ë‚©‚çŠm•Û
+#define	ALLOC_HEAD	(0)		//é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹ã¨ãå…ˆé ­ã‹ã‚‰ç¢ºä¿
+#define	ALLOC_TAIL	(1)		//é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹ã¨ãå¾Œã‚ã‹ã‚‰ç¢ºä¿
 
 //============================================================================================
 /**
  *
- *	nnsarc‚Åì¬‚µ‚½ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚É‘Î‚µ‚ÄIndex‚ğw’è‚µ‚Ä”CˆÓ‚Ìƒf[ƒ^‚ğæ‚èo‚·
+ *	nnsarcã§ä½œæˆã—ãŸã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã«å¯¾ã—ã¦Indexã‚’æŒ‡å®šã—ã¦ä»»æ„ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™
  *
- * @param[in]	data		“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğŠi”[‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	name		“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹–¼
- * @param[in]	index		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
- * @param[in]	ofs			“Ç‚İ‚Şƒf[ƒ^‚Ìæ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg
- * @param[in]	ofs_size	“Ç‚İ‚Şƒf[ƒ^ƒTƒCƒY
+ * @param[in]	data		èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	name		èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @param[in]	index		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	ofs			èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param[in]	ofs_size	èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *
  */
 //============================================================================================
@@ -56,23 +56,23 @@ static	void	ArchiveDataLoadIndex(void *data,const char *name,int index,int ofs,i
 
 	FS_InitFile(&p_file);
 	FS_OpenFile(&p_file,name);
-	FS_SeekFile(&p_file,ARC_HEAD_SIZE_POS,FS_SEEK_SET);				///<ƒA[ƒJƒCƒuƒwƒbƒ_‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,2);									///<ƒA[ƒJƒCƒuƒwƒbƒ_ƒTƒCƒY‚ğƒ[ƒh
+	FS_SeekFile(&p_file,ARC_HEAD_SIZE_POS,FS_SEEK_SET);				///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,2);									///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
 	fat_top=size;
-	FS_SeekFile(&p_file,fat_top+SIZE_OFFSET,FS_SEEK_SET);			///<FAT‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,4);									///<FATƒTƒCƒY‚ğƒ[ƒh
-	FS_ReadFile(&p_file,&file_cnt,2);								///<FileCount‚ğƒ[ƒh
+	FS_SeekFile(&p_file,fat_top+SIZE_OFFSET,FS_SEEK_SET);			///<FATã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,4);									///<FATã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
+	FS_ReadFile(&p_file,&file_cnt,2);								///<FileCountã‚’ãƒ­ãƒ¼ãƒ‰
 	GF_ASSERT_MSG(file_cnt>index,"ServerArchiveDataLoadIndex file=%s, fileCnt=%d, index=%d", name, file_cnt, index);
 	fnt_top=fat_top+size;
-	FS_SeekFile(&p_file,fnt_top+SIZE_OFFSET,FS_SEEK_SET);			///<FNT‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,4);									///<FNTƒTƒCƒY‚ğƒ[ƒh
+	FS_SeekFile(&p_file,fnt_top+SIZE_OFFSET,FS_SEEK_SET);			///<FNTã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,4);									///<FNTã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
 	img_top=fnt_top+size;
 	
-	FS_SeekFile(&p_file,fat_top+FAT_HEAD_SIZE+index*8,FS_SEEK_SET);	///<æ‚èo‚µ‚½‚¢FATƒe[ƒuƒ‹‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&top,4);									///<FATƒe[ƒuƒ‹top‚ğƒ[ƒh
-	FS_ReadFile(&p_file,&bottom,4);									///<FATƒe[ƒuƒ‹bottom‚ğƒ[ƒh
+	FS_SeekFile(&p_file,fat_top+FAT_HEAD_SIZE+index*8,FS_SEEK_SET);	///<å–ã‚Šå‡ºã—ãŸã„FATãƒ†ãƒ¼ãƒ–ãƒ«ã«ç§»å‹•
+	FS_ReadFile(&p_file,&top,4);									///<FATãƒ†ãƒ¼ãƒ–ãƒ«topã‚’ãƒ­ãƒ¼ãƒ‰
+	FS_ReadFile(&p_file,&bottom,4);									///<FATãƒ†ãƒ¼ãƒ–ãƒ«bottomã‚’ãƒ­ãƒ¼ãƒ‰
 
-	FS_SeekFile(&p_file,img_top+IMG_HEAD_SIZE+top+ofs,FS_SEEK_SET);	///<æ‚èo‚µ‚½‚¢IMG‚Ìæ“ª‚ÉˆÚ“®
+	FS_SeekFile(&p_file,img_top+IMG_HEAD_SIZE+top+ofs,FS_SEEK_SET);	///<å–ã‚Šå‡ºã—ãŸã„IMGã®å…ˆé ­ã«ç§»å‹•
 	
 	if(ofs_size){
 		size=ofs_size;
@@ -82,7 +82,7 @@ static	void	ArchiveDataLoadIndex(void *data,const char *name,int index,int ofs,i
 	}
 
 	GF_ASSERT_MSG(size!=0,"ServerArchiveDataLoadIndex:ReadDataSize=0!");
-	FS_ReadFile(&p_file,data,size);									///<ƒf[ƒ^‚ğƒ[ƒh
+	FS_ReadFile(&p_file,data,size);									///<ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
 	FS_CloseFile(&p_file);
 }
@@ -91,15 +91,15 @@ static	void	ArchiveDataLoadIndex(void *data,const char *name,int index,int ofs,i
 //============================================================================================
 /**
  *
- *	nnsarc‚Åì¬‚µ‚½ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚É‘Î‚µ‚ÄIndex‚ğw’è‚µ‚Ä”CˆÓ‚Ìƒf[ƒ^‚ğæ‚èo‚·
- *	“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğŠi”[‚·‚éƒ[ƒN‚à‚±‚ÌŠÖ”“à‚ÅŠm•Û‚µ‚ÄAƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ *	nnsarcã§ä½œæˆã—ãŸã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã«å¯¾ã—ã¦Indexã‚’æŒ‡å®šã—ã¦ä»»æ„ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™
+ *	èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚‚ã“ã®é–¢æ•°å†…ã§ç¢ºä¿ã—ã¦ã€ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
- * @param[in]	name		“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹–¼
- * @param[in]	index		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
- * @param[in]	heap_id		ƒƒ‚ƒŠ‚ğŠm•Û‚·‚éƒq[ƒv—Ìˆæ‚ÌID
- * @param[in]	ofs			“Ç‚İ‚Şƒf[ƒ^‚Ìæ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg
- * @param[in]	ofs_size	“Ç‚İ‚Şƒf[ƒ^ƒTƒCƒY
- * @param[in]	flag		—Ìˆæ‚Ì‘OŒã‚Ç‚¿‚ç‚©‚çŠm•Û‚·‚é‚©ƒtƒ‰ƒO
+ * @param[in]	name		èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @param[in]	index		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	heap_id		ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ID
+ * @param[in]	ofs			èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param[in]	ofs_size	èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param[in]	flag		é ˜åŸŸã®å‰å¾Œã©ã¡ã‚‰ã‹ã‚‰ç¢ºä¿ã™ã‚‹ã‹ãƒ•ãƒ©ã‚°
  *
  */
 //============================================================================================
@@ -117,23 +117,23 @@ static	void	*ArchiveDataLoadIndexMalloc(const char *name,int index,int heap_id,i
 
 	FS_InitFile(&p_file);
 	FS_OpenFile(&p_file,name);
-	FS_SeekFile(&p_file,ARC_HEAD_SIZE_POS,FS_SEEK_SET);				///<ƒA[ƒJƒCƒuƒwƒbƒ_‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,2);									///<ƒA[ƒJƒCƒuƒwƒbƒ_ƒTƒCƒY‚ğƒ[ƒh
+	FS_SeekFile(&p_file,ARC_HEAD_SIZE_POS,FS_SEEK_SET);				///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,2);									///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
 	fat_top=size;
-	FS_SeekFile(&p_file,fat_top+SIZE_OFFSET,FS_SEEK_SET);			///<FAT‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,4);									///<FATƒTƒCƒY‚ğƒ[ƒh
-	FS_ReadFile(&p_file,&file_cnt,2);								///<FileCount‚ğƒ[ƒh
+	FS_SeekFile(&p_file,fat_top+SIZE_OFFSET,FS_SEEK_SET);			///<FATã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,4);									///<FATã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
+	FS_ReadFile(&p_file,&file_cnt,2);								///<FileCountã‚’ãƒ­ãƒ¼ãƒ‰
 	GF_ASSERT_MSG(file_cnt>index,"ServerArchiveDataLoadIndex file=%s, fileCnt=%d, index=%d", name, file_cnt, index);
 	fnt_top=fat_top+size;
-	FS_SeekFile(&p_file,fnt_top+SIZE_OFFSET,FS_SEEK_SET);			///<FNT‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,4);									///<FNTƒTƒCƒY‚ğƒ[ƒh
+	FS_SeekFile(&p_file,fnt_top+SIZE_OFFSET,FS_SEEK_SET);			///<FNTã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,4);									///<FNTã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
 	img_top=fnt_top+size;
 	
-	FS_SeekFile(&p_file,fat_top+FAT_HEAD_SIZE+index*8,FS_SEEK_SET);	///<æ‚èo‚µ‚½‚¢FATƒe[ƒuƒ‹‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&top,4);									///<FATƒe[ƒuƒ‹top‚ğƒ[ƒh
-	FS_ReadFile(&p_file,&bottom,4);									///<FATƒe[ƒuƒ‹bottom‚ğƒ[ƒh
+	FS_SeekFile(&p_file,fat_top+FAT_HEAD_SIZE+index*8,FS_SEEK_SET);	///<å–ã‚Šå‡ºã—ãŸã„FATãƒ†ãƒ¼ãƒ–ãƒ«ã«ç§»å‹•
+	FS_ReadFile(&p_file,&top,4);									///<FATãƒ†ãƒ¼ãƒ–ãƒ«topã‚’ãƒ­ãƒ¼ãƒ‰
+	FS_ReadFile(&p_file,&bottom,4);									///<FATãƒ†ãƒ¼ãƒ–ãƒ«bottomã‚’ãƒ­ãƒ¼ãƒ‰
 
-	FS_SeekFile(&p_file,img_top+IMG_HEAD_SIZE+top+ofs,FS_SEEK_SET);		///<æ‚èo‚µ‚½‚¢IMG‚Ìæ“ª‚ÉˆÚ“®
+	FS_SeekFile(&p_file,img_top+IMG_HEAD_SIZE+top+ofs,FS_SEEK_SET);		///<å–ã‚Šå‡ºã—ãŸã„IMGã®å…ˆé ­ã«ç§»å‹•
 
 	if(ofs_size){
 		size=ofs_size;
@@ -148,7 +148,7 @@ static	void	*ArchiveDataLoadIndexMalloc(const char *name,int index,int heap_id,i
 	else{
 		data=sys_AllocMemoryLo(heap_id,size);
 	}
-	FS_ReadFile(&p_file,data,size);									///<ƒf[ƒ^‚ğƒ[ƒh
+	FS_ReadFile(&p_file,data,size);									///<ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
 	FS_CloseFile(&p_file);
 
@@ -157,11 +157,11 @@ static	void	*ArchiveDataLoadIndexMalloc(const char *name,int index,int heap_id,i
 
 //============================================================================================
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^ƒ[ƒh
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
  *
- * @param[in]	data		“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğŠi”[‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	arcID		“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—ŞƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[iarc_tool.h‚É‹Lqj
- * @param[in]	datID		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
+ * @param[in]	data		èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	arcID		èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ï¼ˆarc_tool.hã«è¨˜è¿°ï¼‰
+ * @param[in]	datID		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	ArchiveDataLoad(void *data, int arcID, int datID)
@@ -171,15 +171,15 @@ void	ArchiveDataLoad(void *data, int arcID, int datID)
 
 //============================================================================================
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^ƒ[ƒhi“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğŠi”[‚·‚éƒ[ƒN‚ğŠÖ”“à‚ÅŠm•Û‚·‚éƒo[ƒWƒ‡ƒ“j
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ï¼ˆèª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’é–¢æ•°å†…ã§ç¢ºä¿ã™ã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼‰
  *
- * ¦ŠÖ”“à‚Åƒ[ƒN‚ğAlloc‚·‚é‚Ì‚ÅA©‘O‚ÅŠJ•úˆ—‚ğ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·(sys_FreeMemoryEz(—Ìˆæƒ|ƒCƒ“ƒ^)‚ÅŠJ•új
+ * â€»é–¢æ•°å†…ã§ãƒ¯ãƒ¼ã‚¯ã‚’Allocã™ã‚‹ã®ã§ã€è‡ªå‰ã§é–‹æ”¾å‡¦ç†ã‚’ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™(sys_FreeMemoryEz(é ˜åŸŸãƒã‚¤ãƒ³ã‚¿)ã§é–‹æ”¾ï¼‰
  *
- * @param[in]	arcID		“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—ŞƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[iarc_tool.h‚É‹Lqj
- * @param[in]	datID		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
- * @param[in]	heap_id		ƒƒ‚ƒŠ‚ğŠm•Û‚·‚éƒq[ƒv—Ìˆæ‚ÌID
+ * @param[in]	arcID		èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ï¼ˆarc_tool.hã«è¨˜è¿°ï¼‰
+ * @param[in]	datID		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	heap_id		ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ID
  *
- * @retval	ŠÖ”“à‚ÅŠm•Û‚µ‚½ƒf[ƒ^Ši”[ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @retval	é–¢æ•°å†…ã§ç¢ºä¿ã—ãŸãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //============================================================================================
 void* ArchiveDataLoadMalloc(int arcID, int datID, int heapID)
@@ -189,15 +189,15 @@ void* ArchiveDataLoadMalloc(int arcID, int datID, int heapID)
 
 //============================================================================================
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^ƒ[ƒhi“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğŠi”[‚·‚éƒ[ƒN‚ğŠÖ”“à‚ÅŠm•Û‚·‚éƒo[ƒWƒ‡ƒ“i—Ìˆæ‚ÌŒã‚ë‚©‚çŠm•Ûjj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ï¼ˆèª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’é–¢æ•°å†…ã§ç¢ºä¿ã™ã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼ˆé ˜åŸŸã®å¾Œã‚ã‹ã‚‰ç¢ºä¿ï¼‰ï¼‰
  *
- * ¦ŠÖ”“à‚Åƒ[ƒN‚ğAlloc‚·‚é‚Ì‚ÅA©‘O‚ÅŠJ•úˆ—‚ğ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·(sys_FreeMemoryEz(—Ìˆæƒ|ƒCƒ“ƒ^)‚ÅŠJ•új
+ * â€»é–¢æ•°å†…ã§ãƒ¯ãƒ¼ã‚¯ã‚’Allocã™ã‚‹ã®ã§ã€è‡ªå‰ã§é–‹æ”¾å‡¦ç†ã‚’ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™(sys_FreeMemoryEz(é ˜åŸŸãƒã‚¤ãƒ³ã‚¿)ã§é–‹æ”¾ï¼‰
  *
- * @param[in]	arcID		“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—ŞƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[iarc_tool.h‚É‹Lqj
- * @param[in]	datID		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
- * @param[in]	heapID		ƒƒ‚ƒŠ‚ğŠm•Û‚·‚éƒq[ƒv—Ìˆæ‚ÌID
+ * @param[in]	arcID		èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ï¼ˆarc_tool.hã«è¨˜è¿°ï¼‰
+ * @param[in]	datID		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	heapID		ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ID
  *
- * @retval	ŠÖ”“à‚ÅŠm•Û‚µ‚½ƒf[ƒ^Ši”[ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @retval	é–¢æ•°å†…ã§ç¢ºä¿ã—ãŸãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //============================================================================================
 void* ArchiveDataLoadMallocLo(int arcID, int datID, int heapID)
@@ -207,13 +207,13 @@ void* ArchiveDataLoadMallocLo(int arcID, int datID, int heapID)
 
 //============================================================================================
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^ƒ[ƒhiƒIƒtƒZƒbƒgw’è‚ ‚èj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ï¼ˆã‚ªãƒ•ã‚»ãƒƒãƒˆæŒ‡å®šã‚ã‚Šï¼‰
  *
- * @param[in]	data		“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğŠi”[‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	arcID		“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—ŞƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[iarc_tool.h‚É‹Lqj
- * @param[in]	datID		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
- * @param[in]	ofs			“Ç‚İ‚Şƒf[ƒ^‚Ìæ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg
- * @param[in]	size		“Ç‚İ‚Şƒf[ƒ^ƒTƒCƒY
+ * @param[in]	data		èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	arcID		èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ï¼ˆarc_tool.hã«è¨˜è¿°ï¼‰
+ * @param[in]	datID		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	ofs			èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param[in]	size		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //============================================================================================
 void ArchiveDataLoadOfs(void *data, int arcID, int datID, int ofs, int size)
@@ -223,17 +223,17 @@ void ArchiveDataLoadOfs(void *data, int arcID, int datID, int ofs, int size)
 
 //============================================================================================
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^ƒ[ƒhi“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğŠi”[‚·‚éƒ[ƒN‚ğŠÖ”“à‚ÅŠm•Û‚·‚éƒo[ƒWƒ‡ƒ“‚ÆƒIƒtƒZƒbƒgw’è‚ ‚èj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ï¼ˆèª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’é–¢æ•°å†…ã§ç¢ºä¿ã™ã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¨ã‚ªãƒ•ã‚»ãƒƒãƒˆæŒ‡å®šã‚ã‚Šï¼‰
  *
- * ¦ŠÖ”“à‚Åƒ[ƒN‚ğAlloc‚·‚é‚Ì‚ÅA©‘O‚ÅŠJ•úˆ—‚ğ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·(sys_FreeMemoryEz(—Ìˆæƒ|ƒCƒ“ƒ^)‚ÅŠJ•új
+ * â€»é–¢æ•°å†…ã§ãƒ¯ãƒ¼ã‚¯ã‚’Allocã™ã‚‹ã®ã§ã€è‡ªå‰ã§é–‹æ”¾å‡¦ç†ã‚’ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™(sys_FreeMemoryEz(é ˜åŸŸãƒã‚¤ãƒ³ã‚¿)ã§é–‹æ”¾ï¼‰
  *
- * @param[in]	arcID		“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—ŞƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[iarc_tool.h‚É‹Lqj
- * @param[in]	datID		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
- * @param[in]	heapID		ƒƒ‚ƒŠ‚ğŠm•Û‚·‚éƒq[ƒv—Ìˆæ‚ÌID
- * @param[in]	ofs			“Ç‚İ‚Şƒf[ƒ^‚Ìæ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg
- * @param[in]	size		“Ç‚İ‚Şƒf[ƒ^ƒTƒCƒY
+ * @param[in]	arcID		èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ï¼ˆarc_tool.hã«è¨˜è¿°ï¼‰
+ * @param[in]	datID		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	heapID		ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ID
+ * @param[in]	ofs			èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param[in]	size		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *
- * @retval	ŠÖ”“à‚ÅŠm•Û‚µ‚½ƒf[ƒ^Ši”[ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @retval	é–¢æ•°å†…ã§ç¢ºä¿ã—ãŸãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //============================================================================================
 void* ArchiveDataLoadMallocOfs(int arcID, int datID, int heapID, int ofs, int size)
@@ -243,17 +243,17 @@ void* ArchiveDataLoadMallocOfs(int arcID, int datID, int heapID, int ofs, int si
 
 //============================================================================================
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^ƒ[ƒhi“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğŠi”[‚·‚éƒ[ƒN‚ğŠÖ”“à‚ÅŠm•Û‚·‚éƒo[ƒWƒ‡ƒ“‚ÆƒIƒtƒZƒbƒgw’è‚ ‚èj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ï¼ˆèª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’é–¢æ•°å†…ã§ç¢ºä¿ã™ã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¨ã‚ªãƒ•ã‚»ãƒƒãƒˆæŒ‡å®šã‚ã‚Šï¼‰
  *
- * ¦ŠÖ”“à‚Åƒ[ƒN‚ğAlloc‚·‚é‚Ì‚ÅA©‘O‚ÅŠJ•úˆ—‚ğ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·(sys_FreeMemoryEz(—Ìˆæƒ|ƒCƒ“ƒ^)‚ÅŠJ•új
+ * â€»é–¢æ•°å†…ã§ãƒ¯ãƒ¼ã‚¯ã‚’Allocã™ã‚‹ã®ã§ã€è‡ªå‰ã§é–‹æ”¾å‡¦ç†ã‚’ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™(sys_FreeMemoryEz(é ˜åŸŸãƒã‚¤ãƒ³ã‚¿)ã§é–‹æ”¾ï¼‰
  *
- * @param[in]	arcID		“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—ŞƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[iarc_tool.h‚É‹Lqj
- * @param[in]	datID		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
- * @param[in]	heapID		ƒƒ‚ƒŠ‚ğŠm•Û‚·‚éƒq[ƒv—Ìˆæ‚ÌID
- * @param[in]	ofs			“Ç‚İ‚Şƒf[ƒ^‚Ìæ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒg
- * @param[in]	size		“Ç‚İ‚Şƒf[ƒ^ƒTƒCƒY
+ * @param[in]	arcID		èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ï¼ˆarc_tool.hã«è¨˜è¿°ï¼‰
+ * @param[in]	datID		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	heapID		ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ID
+ * @param[in]	ofs			èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param[in]	size		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *
- * @retval	ŠÖ”“à‚ÅŠm•Û‚µ‚½ƒf[ƒ^Ši”[ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @retval	é–¢æ•°å†…ã§ç¢ºä¿ã—ãŸãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //============================================================================================
 void	*ArchiveDataLoadMallocOfsLo(int arcID, int datID, int heapID, int ofs, int size)
@@ -263,10 +263,10 @@ void	*ArchiveDataLoadMallocOfsLo(int arcID, int datID, int heapID, int ofs, int 
 
 //============================================================================================
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^‚Ìƒtƒ@ƒCƒ‹”‚ğæ“¾
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚¡ã‚¤ãƒ«æ•°ã‚’å–å¾—
  *
- * @param[in]	arcID	“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—ŞƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[iarc_tool.h‚É‹Lqj
- * @param[in]	datID		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
+ * @param[in]	arcID	èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ï¼ˆarc_tool.hã«è¨˜è¿°ï¼‰
+ * @param[in]	datID		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u16		ArchiveDataFileCntGet(int arcID, int datID)
@@ -278,24 +278,24 @@ u16		ArchiveDataFileCntGet(int arcID, int datID)
 
 	FS_InitFile(&p_file);
 	FS_OpenFile(&p_file,ArchiveFileTable[arcID]);
-	FS_SeekFile(&p_file,ARC_HEAD_SIZE_POS,FS_SEEK_SET);				///<ƒA[ƒJƒCƒuƒwƒbƒ_‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,2);									///<ƒA[ƒJƒCƒuƒwƒbƒ_ƒTƒCƒY‚ğƒ[ƒh
+	FS_SeekFile(&p_file,ARC_HEAD_SIZE_POS,FS_SEEK_SET);				///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,2);									///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
 	fat_top=size;
-	FS_SeekFile(&p_file,fat_top+SIZE_OFFSET,FS_SEEK_SET);			///<FAT‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,4);									///<FATƒTƒCƒY‚ğƒ[ƒh
-	FS_ReadFile(&p_file,&file_cnt,2);								///<FileCount‚ğƒ[ƒh
+	FS_SeekFile(&p_file,fat_top+SIZE_OFFSET,FS_SEEK_SET);			///<FATã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,4);									///<FATã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
+	FS_ReadFile(&p_file,&file_cnt,2);								///<FileCountã‚’ãƒ­ãƒ¼ãƒ‰
 
 	return	file_cnt;
 }
 
 //============================================================================================
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^‚ÌƒTƒCƒY‚ğæ“¾
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	ArchiveDataLoad‚ğg—p‚·‚éAŠm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY‚ğæ“¾‚·‚é‚Ì‚Ég—p‚µ‚Ü‚·
+ *	ArchiveDataLoadã‚’ä½¿ç”¨ã™ã‚‹æ™‚ã€ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ã®ã«ä½¿ç”¨ã—ã¾ã™
  *
- * @param[in]	arcID		“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—ŞƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[iarc_tool.h‚É‹Lqj
- * @param[in]	datID		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
+ * @param[in]	arcID		èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ï¼ˆarc_tool.hã«è¨˜è¿°ï¼‰
+ * @param[in]	datID		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u32		ArchiveDataSizeGet(int arcID,int datID)
@@ -312,23 +312,23 @@ u32		ArchiveDataSizeGet(int arcID,int datID)
 
 	FS_InitFile(&p_file);
 	FS_OpenFile(&p_file,ArchiveFileTable[arcID]);
-	FS_SeekFile(&p_file,ARC_HEAD_SIZE_POS,FS_SEEK_SET);				///<ƒA[ƒJƒCƒuƒwƒbƒ_‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,2);									///<ƒA[ƒJƒCƒuƒwƒbƒ_ƒTƒCƒY‚ğƒ[ƒh
+	FS_SeekFile(&p_file,ARC_HEAD_SIZE_POS,FS_SEEK_SET);				///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,2);									///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
 	fat_top=size;
-	FS_SeekFile(&p_file,fat_top+SIZE_OFFSET,FS_SEEK_SET);			///<FAT‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,4);									///<FATƒTƒCƒY‚ğƒ[ƒh
-	FS_ReadFile(&p_file,&file_cnt,2);								///<FileCount‚ğƒ[ƒh
+	FS_SeekFile(&p_file,fat_top+SIZE_OFFSET,FS_SEEK_SET);			///<FATã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,4);									///<FATã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
+	FS_ReadFile(&p_file,&file_cnt,2);								///<FileCountã‚’ãƒ­ãƒ¼ãƒ‰
 	GF_ASSERT_MSG(file_cnt>datID,"ServerArchiveDataLoadIndex:FileCnt<Index");
 	fnt_top=fat_top+size;
-	FS_SeekFile(&p_file,fnt_top+SIZE_OFFSET,FS_SEEK_SET);			///<FNT‚ÌƒTƒCƒYŠi”[ˆÊ’u‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&size,4);									///<FNTƒTƒCƒY‚ğƒ[ƒh
+	FS_SeekFile(&p_file,fnt_top+SIZE_OFFSET,FS_SEEK_SET);			///<FNTã®ã‚µã‚¤ã‚ºæ ¼ç´ä½ç½®ã«ç§»å‹•
+	FS_ReadFile(&p_file,&size,4);									///<FNTã‚µã‚¤ã‚ºã‚’ãƒ­ãƒ¼ãƒ‰
 	img_top=fnt_top+size;
 	
-	FS_SeekFile(&p_file,fat_top+FAT_HEAD_SIZE+datID*8,FS_SEEK_SET);	///<æ‚èo‚µ‚½‚¢FATƒe[ƒuƒ‹‚ÉˆÚ“®
-	FS_ReadFile(&p_file,&top,4);									///<FATƒe[ƒuƒ‹top‚ğƒ[ƒh
-	FS_ReadFile(&p_file,&bottom,4);									///<FATƒe[ƒuƒ‹bottom‚ğƒ[ƒh
+	FS_SeekFile(&p_file,fat_top+FAT_HEAD_SIZE+datID*8,FS_SEEK_SET);	///<å–ã‚Šå‡ºã—ãŸã„FATãƒ†ãƒ¼ãƒ–ãƒ«ã«ç§»å‹•
+	FS_ReadFile(&p_file,&top,4);									///<FATãƒ†ãƒ¼ãƒ–ãƒ«topã‚’ãƒ­ãƒ¼ãƒ‰
+	FS_ReadFile(&p_file,&bottom,4);									///<FATãƒ†ãƒ¼ãƒ–ãƒ«bottomã‚’ãƒ­ãƒ¼ãƒ‰
 
-	FS_SeekFile(&p_file,img_top+IMG_HEAD_SIZE+top,FS_SEEK_SET);		///<æ‚èo‚µ‚½‚¢IMG‚Ìæ“ª‚ÉˆÚ“®
+	FS_SeekFile(&p_file,img_top+IMG_HEAD_SIZE+top,FS_SEEK_SET);		///<å–ã‚Šå‡ºã—ãŸã„IMGã®å…ˆé ­ã«ç§»å‹•
 	size=bottom-top;
 	GF_ASSERT_MSG(size!=0,"ServerArchiveDataLoadIndex:ReadDataSize=0!");
 
@@ -340,7 +340,7 @@ u32		ArchiveDataSizeGet(int arcID,int datID)
 
 //--------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìƒnƒ“ƒhƒ‹ŠÇ—\‘¢‘Ì
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æ§‹é€ ä½“
  */
 //--------------------------------------------------------
 struct _ARCHANDLE{
@@ -353,12 +353,12 @@ struct _ARCHANDLE{
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^‚Ìƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
  *
- * @param   arcId		ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   heapId		ŠÇ——pƒq[ƒv‚h‚c
+ * @param   arcId		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   heapId		ç®¡ç†ç”¨ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- * @retval  ARCHANDLE	ƒI[ƒvƒ“‚³‚ê‚½ƒnƒ“ƒhƒ‹‚Ìƒ|ƒCƒ“ƒ^i¸”s‚È‚çNULLj
+ * @retval  ARCHANDLE	ã‚ªãƒ¼ãƒ—ãƒ³ã•ã‚ŒãŸãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆå¤±æ•—ãªã‚‰NULLï¼‰
  */
 //------------------------------------------------------------------
 ARCHANDLE* ArchiveDataHandleOpen( u32 arcId, u32 heapId )
@@ -368,7 +368,7 @@ ARCHANDLE* ArchiveDataHandleOpen( u32 arcId, u32 heapId )
 	{
 		u32 fnt_top, tmp;
 
-		// ‚QƒoƒCƒg‚ğ“Ç‚İ‚ñ‚¾‚ÉƒSƒ~‚ª“ü‚ç‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¨‚­
+		// ï¼’ãƒã‚¤ãƒˆã‚’èª­ã¿è¾¼ã‚“ã æ™‚ã«ã‚´ãƒŸãŒå…¥ã‚‰ãªã„ã‚ˆã†ã«ã—ã¦ãŠã
 		handle->fat_top = 0;
 
 		FS_InitFile( &(handle->file) );
@@ -389,9 +389,9 @@ ARCHANDLE* ArchiveDataHandleOpen( u32 arcId, u32 heapId )
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^‚Ìƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
  *
- * @param   handle			ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -403,13 +403,13 @@ void ArchiveDataHandleClose( ARCHANDLE* handle )
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğg‚Á‚Äƒf[ƒ^æ“¾i“à•”‚ÅƒAƒƒP[ƒg‚µ‚½ƒƒ‚ƒŠ‚Éj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ã£ã¦ãƒ‡ãƒ¼ã‚¿å–å¾—ï¼ˆå†…éƒ¨ã§ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã—ãŸãƒ¡ãƒ¢ãƒªã«ï¼‰
  *
- * @param   handle			ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^
- * @param   datID			ƒA[ƒJƒCƒu“à‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   heapID			ƒƒ‚ƒŠƒAƒƒP[ƒg—p‚Ìƒq[ƒv‚h‚c
+ * @param   handle			ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿
+ * @param   datID			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   heapID			ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ãƒˆç”¨ã®ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- * @retval  u32				ƒf[ƒ^ƒTƒCƒYiƒoƒCƒgj
+ * @retval  u32				ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 void* ArchiveDataLoadAllocByHandle( ARCHANDLE* handle, u32 datId, u32 heapID )
@@ -435,11 +435,11 @@ void* ArchiveDataLoadAllocByHandle( ARCHANDLE* handle, u32 datId, u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğg‚Á‚Äƒf[ƒ^æ“¾
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ã£ã¦ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param   handle		ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^
- * @param   datId		ƒA[ƒJƒCƒu“à‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   buffer		ƒf[ƒ^“Ç‚İ‚İæƒoƒbƒtƒ@
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿
+ * @param   datId		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   buffer		ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å…ˆãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -459,11 +459,11 @@ void ArchiveDataLoadByHandle( ARCHANDLE* handle, u32 datId, void* buffer )
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğg‚Á‚Äƒf[ƒ^ƒTƒCƒYæ“¾
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ã£ã¦ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  *
- * @param   handle		ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^
- * @param   datId		ƒA[ƒJƒCƒu“à‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @retval	u32			ƒCƒ“ƒfƒbƒNƒX‚Ìƒf[ƒ^ƒTƒCƒY
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿
+ * @param   datId		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @retval	u32			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *
  */
 //------------------------------------------------------------------
@@ -482,13 +482,13 @@ u32 ArchiveDataSizeGetByHandle( ARCHANDLE* handle, u32 datId )
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğg‚Á‚Äƒf[ƒ^æ“¾i“Ç‚İ‚İŠJnƒIƒtƒZƒbƒg•ƒTƒCƒYw’èj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ã£ã¦ãƒ‡ãƒ¼ã‚¿å–å¾—ï¼ˆèª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼†ã‚µã‚¤ã‚ºæŒ‡å®šï¼‰
  *
- * @param   handle		ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^
- * @param   datId		ƒA[ƒJƒCƒu“à‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   ofs			“Ç‚İ‚İŠJnƒIƒtƒZƒbƒg
- * @param   size		“Ç‚İ‚İƒTƒCƒY
- * @param   buffer		ƒf[ƒ^“Ç‚İ‚İæƒoƒbƒtƒ@
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿
+ * @param   datId		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   ofs			èª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   size		èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º
+ * @param   buffer		ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å…ˆãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -507,11 +507,11 @@ void ArchiveDataLoadOfsByHandle( ARCHANDLE* handle, u32 datId, u32 ofs, u32 size
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğg‚Á‚ÄƒCƒ[ƒWƒf[ƒ^ƒIƒtƒZƒbƒgæ“¾
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ã£ã¦ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
  *
- * @param   handle		ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^
- * @param   datId		ƒA[ƒJƒCƒu“à‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param   offset		ƒIƒtƒZƒbƒg“Ç‚İ‚İæƒoƒbƒtƒ@
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿
+ * @param   datId		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   offset		ã‚ªãƒ•ã‚»ãƒƒãƒˆèª­ã¿è¾¼ã¿å…ˆãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -529,11 +529,11 @@ void ArchiveDataLoadImgofsByHandle( ARCHANDLE* handle, u32 datId, u32* offset )
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğg‚Á‚Äƒf[ƒ^æ“¾iƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹“àî•ñ‚Ì‘±‚«‚©‚ç“Ç‚İ‚İj
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ã£ã¦ãƒ‡ãƒ¼ã‚¿å–å¾—ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«å†…æƒ…å ±ã®ç¶šãã‹ã‚‰èª­ã¿è¾¼ã¿ï¼‰
  *
- * @param   handle		ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^
- * @param   size		“Ç‚İ‚İƒTƒCƒY
- * @param   buffer		ƒf[ƒ^“Ç‚İ‚İæƒoƒbƒtƒ@
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿
+ * @param   size		èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º
+ * @param   buffer		ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å…ˆãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -544,9 +544,9 @@ void ArchiveDataLoadByHandleContinue( ARCHANDLE* handle, u32 size, void* buffer 
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğ‰î‚µ‚Äƒtƒ@ƒCƒ‹ƒV[ƒN
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ä»‹ã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ãƒ¼ã‚¯
  *
- * @param   handle		ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿
  * @param   size
  *
  */
@@ -558,9 +558,9 @@ void ArchiveDataSeekByHandle( ARCHANDLE* handle, u32 size )
 
 //------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğ‰î‚µ‚Äƒtƒ@ƒCƒ‹ƒV[ƒN@Œ»İˆÊ’u‚©‚ç
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ä»‹ã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ãƒ¼ã‚¯ã€€ç¾åœ¨ä½ç½®ã‹ã‚‰
  *
- * @param   handle		ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^
+ * @param   handle		ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿
  * @param   size
  *
  */
@@ -572,10 +572,10 @@ void ArchiveDataSeekByHandleCur( ARCHANDLE* handle, u32 size )
 
 //============================================================================================
 /**
- * ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^‚Ìƒtƒ@ƒCƒ‹”‚ğæ“¾(ƒnƒ“ƒhƒ‹g—p)
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚¡ã‚¤ãƒ«æ•°ã‚’å–å¾—(ãƒãƒ³ãƒ‰ãƒ«ä½¿ç”¨)
  *
- * @param	handle			ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^
- * @retval	u16				ƒtƒ@ƒCƒ‹”	
+ * @param	handle			ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿
+ * @retval	u16				ãƒ•ã‚¡ã‚¤ãƒ«æ•°	
  */
 //============================================================================================
 u16		ArchiveDataFileCntGetByHandle(ARCHANDLE* handle)

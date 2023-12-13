@@ -14,16 +14,16 @@
 /**
  * @file
  *
- * @brief ƒ|ƒPƒ‚ƒ“ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ “à•”ŒöŠJƒwƒbƒ_
+ * @brief ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª å†…éƒ¨å…¬é–‹ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef PPW_INNERINFO_H_
 #define PPW_INNERINFO_H_
 
-#ifdef max  // gcc‚Ìdeque‚ÅƒRƒ“ƒpƒCƒ‹ƒGƒ‰[‚É‚È‚é‚Ì‚Åundef
+#ifdef max  // gccã®dequeã§ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã®ã§undef
     #undef max
 #endif
-#ifdef min  // gcc‚Ìdeque‚ÅƒRƒ“ƒpƒCƒ‹ƒGƒ‰[‚É‚È‚é‚Ì‚Åundef
+#ifdef min  // gccã®dequeã§ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹ã®ã§undef
     #undef min
 #endif
 
@@ -34,7 +34,7 @@ class PPW_Lobby;
 class PPW_LobbyInnerInfoManager : public DWCi_Base
 {
 public:
-    // ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚Å‹¤—L‚·‚éƒf[ƒ^
+    // ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã§å…±æœ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
     struct TimeData
     {
         s64 openedTime;
@@ -68,13 +68,13 @@ private:
     };
     
     STATE state;
-    BOOL isTimeDataSet;       // ‰ŠúƒVƒXƒeƒ€ƒf[ƒ^‚ðƒZƒbƒgÏ‚Ý‚©
+    BOOL isTimeDataSet;       // åˆæœŸã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆæ¸ˆã¿ã‹
     
     TimeData timeData;
     s64 lockedTime;
     BOOL bLockReserved;
     
-    // PPW_LobbySchedule‚Æ“¯“à—e
+    // PPW_LobbyScheduleã¨åŒå†…å®¹
     u32 lockTime;
     u32 random;
     u32 roomFlag;
@@ -108,7 +108,7 @@ public:
     BOOL NeedLock() const;
     BOOL Lock();
     
-    // ƒXƒPƒWƒ…[ƒ‹‹y‚ÑVIPƒf[ƒ^‚ªƒ_ƒEƒ“ƒ[ƒh‚³‚ê‚½
+    // ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«åŠã³VIPãƒ‡ãƒ¼ã‚¿ãŒãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã•ã‚ŒãŸ
     BOOL Downloaded()
     {
         state = DOWNLOADED;
@@ -120,7 +120,7 @@ public:
         return state >= DOWNLOADED;
     }
     
-    // î•ñ‚ª‹¤—L‚³‚ê‚½
+    // æƒ…å ±ãŒå…±æœ‰ã•ã‚ŒãŸ
     BOOL Shared()
     {
         state = SHARED;

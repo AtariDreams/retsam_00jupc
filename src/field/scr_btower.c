@@ -1,19 +1,19 @@
 //==============================================================================================
 /**
  * @file	scr_btower.c
- * @brief	ƒoƒgƒ‹ƒ^ƒ[Œn@ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhê—pƒ\[ƒX
+ * @brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç³»ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰å°‚ç”¨ã‚½ãƒ¼ã‚¹
  * @author	Miyuki Iwasawa
  * @date	2006.05.23
  *
  * 2007.05.24	Satoshi Nohara
  *
- * frontier/fssc_tower.c‚Éˆ—‚ğˆÚ“®
+ * frontier/fssc_tower.cã«å‡¦ç†ã‚’ç§»å‹•
  *
- * ŠÖ˜Aƒ\[ƒX	field/scr_btower.c		í’“
- *				field/b_tower_scr.c		ƒtƒB[ƒ‹ƒhƒTƒu¨í’“
- *				field/b_tower_ev.c		í’“
- *				field/b_tower_wifi.c	í’“
- *				field/b_tower_fld.c		ƒtƒB[ƒ‹ƒhƒTƒu¨í’“
+ * é–¢é€£ã‚½ãƒ¼ã‚¹	field/scr_btower.c		å¸¸é§
+ *				field/b_tower_scr.c		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–â†’å¸¸é§
+ *				field/b_tower_ev.c		å¸¸é§
+ *				field/b_tower_wifi.c	å¸¸é§
+ *				field/b_tower_fld.c		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–â†’å¸¸é§
  */
 //==============================================================================================
 #include "common.h"
@@ -54,13 +54,13 @@ static u16 btltower_GetMineObj(BTOWER_SCRWORK* wk,u8 mode);
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[—pƒ[ƒNì¬‚Æ‰Šú‰»
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒ¯ãƒ¼ã‚¯ä½œæˆã¨åˆæœŸåŒ–
  *
- *	@param	init	‰Šú‰»ƒ‚[ƒhw’è
+ *	@param	init	åˆæœŸåŒ–ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
  *					BTWR_PLAY_NEW:new game
  *					BTWR_PLAY_CONTINUE:new game
  *					
- *	@param	mode	ƒvƒŒƒCƒ‚[ƒhw’è:BTWR_MODE_`
+ *	@param	mode	ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š:BTWR_MODE_ã€œ
  *
  *	@return 0
  */
@@ -77,10 +77,10 @@ BOOL EvCmdBattleTowerWorkInit(VM_MACHINE* core)
 }
 
 //--------------------------------------------------------------------------------------------
-//ƒoƒgƒ‹ƒ^ƒ[—pƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒh
+//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰
 //-------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[§Œä—pƒ[ƒNƒ|ƒCƒ“ƒ^‰Šú‰»
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿åˆæœŸåŒ–
  */
 BOOL EvCmdBattleTowerWorkClear(VM_MACHINE* core)
 {
@@ -89,7 +89,7 @@ BOOL EvCmdBattleTowerWorkClear(VM_MACHINE* core)
 }
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[—pƒ[ƒN‰ğ•ú
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  *	@return 0
  */
@@ -97,7 +97,7 @@ BOOL EvCmdBattleTowerWorkRelease(VM_MACHINE* core)
 {
 	BTOWER_SCRWORK* wk;
 	
-	//ƒ[ƒN—Ìˆæ‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯é ˜åŸŸè§£æ”¾
 	TowerScr_WorkRelease(core->fsys->btower_wk);
 	core->fsys->btower_wk = NULL;
 	return 0;
@@ -105,10 +105,10 @@ BOOL EvCmdBattleTowerWorkRelease(VM_MACHINE* core)
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[—pƒRƒ}ƒ“ƒhŒQŒÄ‚Ño‚µƒCƒ“ƒ^[ƒtƒF[ƒX
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ã‚³ãƒãƒ³ãƒ‰ç¾¤å‘¼ã³å‡ºã—ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  *
- *	@param	com_id		u16:ƒRƒ}ƒ“ƒhID
- *	@param	retwk_id	u16:•Ô‚è’l‚ğŠi”[‚·‚éƒ[ƒN‚ÌID
+ *	@param	com_id		u16:ã‚³ãƒãƒ³ãƒ‰ID
+ *	@param	retwk_id	u16:è¿”ã‚Šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ID
  */
 //--------------------------------------------------------------
 BOOL EvCmdBattleTowerTools(VM_MACHINE* core)
@@ -127,9 +127,9 @@ BOOL EvCmdBattleTowerTools(VM_MACHINE* core)
 
 	switch(com_id){
 
-	//ƒ[ƒN”ñˆË‘¶
+	//ãƒ¯ãƒ¼ã‚¯éä¾å­˜
 	
-	//1:ƒoƒgƒ‹ƒ^ƒ[Q‰Á‰Â”\‚Èƒ|ƒPƒ‚ƒ“”‚Ìƒ`ƒFƒbƒN
+	//1:ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‚åŠ å¯èƒ½ãªãƒã‚±ãƒ¢ãƒ³æ•°ã®ãƒã‚§ãƒƒã‚¯
 	case BTWR_TOOL_CHK_ENTRY_POKE_NUM:
 		if(param == 0){
 			*ret_wk = TowerScrTools_CheckEntryPokeNum(wk->member_num,core->fsys->savedata,1);
@@ -138,7 +138,7 @@ BOOL EvCmdBattleTowerTools(VM_MACHINE* core)
 		}
 		break;
 
-	//2:ƒŠƒZƒbƒg
+	//2:ãƒªã‚»ãƒƒãƒˆ
 	case BTWR_TOOL_SYSTEM_RESET:
 		TowerScrTools_SystemReset();
 		break;
@@ -152,7 +152,7 @@ BOOL EvCmdBattleTowerTools(VM_MACHINE* core)
 						SaveData_GetTowerPlayData(core->fsys->savedata));
 		break;
 
-	//’Eo—p‚ÉŒ»İ‚ÌƒƒP[ƒVƒ‡ƒ“‚ğ‹L‰¯‚·‚é
+	//è„±å‡ºç”¨ã«ç¾åœ¨ã®ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¨˜æ†¶ã™ã‚‹
 	case BTWR_TOOL_PUSH_NOW_LOCATION:
 		TowerScrTools_PushNowLocation(core->fsys);
 		break;
@@ -195,21 +195,21 @@ BOOL EvCmdBattleTowerTools(VM_MACHINE* core)
 		EventCmd_BTowerWifiCall(core->event_work,param,retwk_id,*ret_wk);
 		return 1;
 	
-	//ƒ[ƒNˆË‘¶
+	//ãƒ¯ãƒ¼ã‚¯ä¾å­˜
 	
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊŒÄ‚Ño‚µ
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢å‘¼ã³å‡ºã—
 	case BTWR_SUB_SELECT_POKE:
 		buf = GetEvScriptWorkMemberAdrs(core->fsys, ID_EVSCR_SUBPROC_WORK);
 		TowerScr_SelectPoke(wk,core->event_work,buf);
 		return 1;
 
-	//‘I‘ğ‚³‚ê‚½ƒ|ƒPƒ‚ƒ“æ“¾*/
+	//é¸æŠã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³å–å¾—*/
 	case BTWR_SUB_GET_ENTRY_POKE:
 		buf = GetEvScriptWorkMemberAdrs(core->fsys, ID_EVSCR_SUBPROC_WORK);
 		*ret_wk = TowerScr_GetEntryPoke(wk,buf,core->fsys->savedata);
 		break;
 
-	//Q‰Áw’è‚µ‚½è‚¿ƒ|ƒPƒ‚ƒ“‚ÌğŒƒ`ƒFƒbƒN
+	//å‚åŠ æŒ‡å®šã—ãŸæ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®æ¡ä»¶ãƒã‚§ãƒƒã‚¯
 	case BTWR_SUB_CHK_ENTRY_POKE:
 		*ret_wk = TowerScr_CheckEntryPoke(wk,core->fsys->savedata);
 		break;
@@ -238,7 +238,7 @@ BOOL EvCmdBattleTowerTools(VM_MACHINE* core)
 		*ret_wk = TowerScr_GetEnemyObj(wk,param);
 		break;
 
-	//Œ»İ‚ÌƒvƒŒƒCƒ‚[ƒh‚ğæ“¾
+	//ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
 	case BTWR_SUB_GET_PLAY_MODE:
 		*ret_wk = (u16)TowerScr_GetPlayMode(wk);
 		break;
@@ -277,7 +277,7 @@ BOOL EvCmdBattleTowerTools(VM_MACHINE* core)
 		break;
 
 	//d31r0201.ev
-	//(BTS’ÊM142)•ÏX‚Ì‘ÎÛ
+	//(BTSé€šä¿¡142)å¤‰æ›´ã®å¯¾è±¡
 	case BTWR_SUB_WIFI_RANK_UP:
 		*ret_wk = TowerScr_SetWifiRank(wk,core->fsys->savedata,1);
 		break;
@@ -286,7 +286,7 @@ BOOL EvCmdBattleTowerTools(VM_MACHINE* core)
 		*ret_wk = btltower_GetMineObj(wk,param);
 		break;
 
-	//ƒvƒŒƒCƒ‰ƒ“ƒ_ƒ€ƒV[ƒh‚ğXV‚·‚é
+	//ãƒ—ãƒ¬ã‚¤ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰ã‚’æ›´æ–°ã™ã‚‹
 	case BTWR_SUB_UPDATE_RANDOM:
 		*ret_wk = TowerScr_PlayRandUpdate(wk,core->fsys->savedata);
 		break;
@@ -299,14 +299,14 @@ BOOL EvCmdBattleTowerTools(VM_MACHINE* core)
 		}
 		break;
 
-	//58:óMƒoƒbƒtƒ@ƒNƒŠƒA
+	//58:å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	case BTWR_SUB_RECV_BUF_CLEAR:
 		MI_CpuClear8(wk->recv_buf,BTWR_SIO_BUF_LEN);
 		break;
 
 	default:
-		OS_Printf( "“n‚³‚ê‚½com_id = %d\n", com_id );
-		GF_ASSERT( (0) && "com_id‚ª–¢‘Î‰‚Å‚·I" );
+		OS_Printf( "æ¸¡ã•ã‚ŒãŸcom_id = %d\n", com_id );
+		GF_ASSERT( (0) && "com_idãŒæœªå¯¾å¿œã§ã™ï¼" );
 		*ret_wk = 0;
 		break;
 	}
@@ -314,7 +314,7 @@ BOOL EvCmdBattleTowerTools(VM_MACHINE* core)
 }
 
 /**
- *	@brief	’Š‘IÏ‚İ‚Ì5lO‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğ•Ô‚·
+ *	@brief	æŠ½é¸æ¸ˆã¿ã®5äººè¡†ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
  */
 BOOL EvCmdBattleTowerGetSevenPokeData(VM_MACHINE* core)
 {
@@ -322,8 +322,8 @@ BOOL EvCmdBattleTowerGetSevenPokeData(VM_MACHINE* core)
 	u16 *ret_poke,*ret_waza;
 	BTOWER_SCRWORK* wk = core->fsys->btower_wk;
 
-	id =  VMGetWorkValue(core);		//5lOid
-	idx =  VMGetWorkValue(core);	//æ‚è‚½‚¢ƒ|ƒPƒ‚ƒ“‚Ìidx
+	id =  VMGetWorkValue(core);		//5äººè¡†id
+	idx =  VMGetWorkValue(core);	//å–ã‚ŠãŸã„ãƒã‚±ãƒ¢ãƒ³ã®idx
 
 	ret_poke = GetEventWorkAdrs(core->fsys,VMGetU16(core));
 	ret_waza = GetEventWorkAdrs(core->fsys,VMGetU16(core));
@@ -335,9 +335,9 @@ BOOL EvCmdBattleTowerGetSevenPokeData(VM_MACHINE* core)
 }
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[ ƒvƒ‰ƒCƒY‚ğ‚à‚ç‚¦‚éó‘Ô‚©‚Ç‚¤‚©H
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ ãƒ—ãƒ©ã‚¤ã‚ºã‚’ã‚‚ã‚‰ãˆã‚‹çŠ¶æ…‹ã‹ã©ã†ã‹ï¼Ÿ
  *
- *	@param	retwk_id	u16:•Ô‚è’l‚ğŠi”[‚·‚éƒ[ƒN‚ÌID
+ *	@param	retwk_id	u16:è¿”ã‚Šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ID
  */
 BOOL EvCmdBattleTowerIsPrizeGet(VM_MACHINE* core)
 {
@@ -352,9 +352,9 @@ BOOL EvCmdBattleTowerIsPrizeGet(VM_MACHINE* core)
 }
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒvƒ‰ƒCƒY‚ğ“n‚·ƒqƒg‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©H
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒ—ãƒ©ã‚¤ã‚ºã‚’æ¸¡ã™ãƒ’ãƒˆã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ï¼Ÿ
  *
- *	@param	retwk_id	u16:•Ô‚è’l‚ğŠi”[‚·‚éƒ[ƒN‚ÌID
+ *	@param	retwk_id	u16:è¿”ã‚Šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ID
  */
 BOOL EvCmdBattleTowerIsPrizemanSet(VM_MACHINE* core)
 {
@@ -369,7 +369,7 @@ BOOL EvCmdBattleTowerIsPrizemanSet(VM_MACHINE* core)
 }
 
 /**
- *	@brief	’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^‘—M
+ *	@brief	é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿é€ä¿¡
  */
 BOOL EvCmdBattleTowerSendBuf(VM_MACHINE* core)
 {
@@ -381,51 +381,51 @@ BOOL EvCmdBattleTowerSendBuf(VM_MACHINE* core)
 
 	BTOWER_SCRWORK* wk = core->fsys->btower_wk;
 
-	OS_Printf( "’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^‘—M\n" );
+	OS_Printf( "é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿é€ä¿¡\n" );
 
 	*ret_wk = 0;
-	//MI_CpuClear8(wk->recv_buf,BTWR_SIO_BUF_LEN);		//Ä‘—M‚Ì‚½‚ß‚É•ª‚¯‚½(08.07.03)
+	//MI_CpuClear8(wk->recv_buf,BTWR_SIO_BUF_LEN);		//å†é€ä¿¡ã®ãŸã‚ã«åˆ†ã‘ãŸ(08.07.03)
 
-	//‘—MƒRƒ}ƒ“ƒh‚ª‘‚¦‚½‚çA‘—M‘O‚ÉóMƒoƒbƒtƒ@‚ÌƒNƒŠƒA‚ğŒÄ‚Î‚È‚¢‚Æƒ_ƒI
+	//é€ä¿¡ã‚³ãƒãƒ³ãƒ‰ãŒå¢—ãˆãŸã‚‰ã€é€ä¿¡å‰ã«å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚¯ãƒªã‚¢ã‚’å‘¼ã°ãªã„ã¨ãƒ€ãƒ¡ï¼
 	//TOOLS BTWR_SUB_RECV_BUF_CLEAR
 
 	switch(mode){
-	case TOWER_COMM_PLAYER_DATA:	//ƒ|ƒPƒ‚ƒ“‘I‘ğ
+	case TOWER_COMM_PLAYER_DATA:	//ãƒã‚±ãƒ¢ãƒ³é¸æŠ
 		command = FC_TOWER_PLAYER_DATA;
 		BTowerComm_SendPlayerData(core->fsys->btower_wk,core->fsys->savedata);
 		break;
-	case TOWER_COMM_TR_DATA:		//’Š‘IƒgƒŒ[ƒi[
+	case TOWER_COMM_TR_DATA:		//æŠ½é¸ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 		command = FC_TOWER_TR_DATA;
 		BTowerComm_SendTrainerData(core->fsys->btower_wk);
 		break;
-	case TOWER_COMM_RETIRE_SELECT:	//ƒŠƒ^ƒCƒA‚ğ‘I‚Ô‚©H
+	case TOWER_COMM_RETIRE_SELECT:	//ãƒªã‚¿ã‚¤ã‚¢ã‚’é¸ã¶ã‹ï¼Ÿ
 		command = FC_TOWER_RETIRE_SELECT;
 		BTowerComm_SendRetireSelect(core->fsys->btower_wk,param);
 		break;
 	}
 	OS_Printf(">>btwr send = %d,%d,%d\n",wk->send_buf[0],wk->send_buf[1],wk->send_buf[2]);
 
-	//©•ªA‘Šè‚Ì‚Ç‚¿‚ç‚©‚ªDP‚Ì‚ÍADP‚Ì’ÊMˆ—
+	//è‡ªåˆ†ã€ç›¸æ‰‹ã®ã©ã¡ã‚‰ã‹ãŒDPã®æ™‚ã¯ã€DPã®é€šä¿¡å‡¦ç†
 	if( Frontier_CheckDPRomCode(core->fsys->savedata) == 1 ){
 
-		OS_Printf( "DP‚ÌŒ`®‚Ì’ÊMˆ—\n" );
+		OS_Printf( "DPã®å½¢å¼ã®é€šä¿¡å‡¦ç†\n" );
 		//CommToolSetTempData(CommGetCurrentID(),wk->send_buf);
-		//*ret_wk = 1;		//¬Œ÷
+		//*ret_wk = 1;		//æˆåŠŸ
 #if 1
-		//“¯Šú‘Ò‚¿AóMl”‘Ò‚¿‚ª‚È‚¢‚Ì‚ÅAÄ‘—M‚µ‚Ä‚à‚¸‚ê‚»‚¤‚¾‚ªˆê‰B
+		//åŒæœŸå¾…ã¡ã€å—ä¿¡äººæ•°å¾…ã¡ãŒãªã„ã®ã§ã€å†é€ä¿¡ã—ã¦ã‚‚ãšã‚Œãã†ã ãŒä¸€å¿œã€‚
 		if( CommToolSetTempData(CommGetCurrentID(),wk->send_buf) == TRUE ){
-			*ret_wk = 1;		//¬Œ÷
+			*ret_wk = 1;		//æˆåŠŸ
 		}else{
-			return 1;			//’ˆÓI
+			return 1;			//æ³¨æ„ï¼
 		}
 #endif
 	}else{
-		OS_Printf( "PL‚ÌŒ`®‚Ì’ÊMˆ—\n" );
+		OS_Printf( "PLã®å½¢å¼ã®é€šä¿¡å‡¦ç†\n" );
 		CommCommandFrontierInitialize( wk );
-		//size = 35;					//’è‹`‚ª‚È‚¢H‚Û‚¢‚Ì‚ÅA‚Æ‚è‚ ‚¦‚¸’¼’l
-		size = BTWR_SIO_BUF_LEN;		//buf‚Í[35]‚ÅA2byte‚È‚Ì‚ÅAsize=70
+		//size = 35;					//å®šç¾©ãŒãªã„ï¼Ÿã½ã„ã®ã§ã€ã¨ã‚Šã‚ãˆãšç›´å€¤
+		size = BTWR_SIO_BUF_LEN;		//bufã¯[35]ã§ã€2byteãªã®ã§ã€size=70
 		if( CommSendData(command,wk->send_buf,size) == TRUE ){
-			*ret_wk = 1;	//¬Œ÷
+			*ret_wk = 1;	//æˆåŠŸ
 		}
 	}
 
@@ -433,7 +433,7 @@ BOOL EvCmdBattleTowerSendBuf(VM_MACHINE* core)
 }
 
 /**
- *	@brief	’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^óM
+ *	@brief	é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿å—ä¿¡
  */
 static BOOL EvWaitBattleTowerRecvBuf(VM_MACHINE * core);
 BOOL EvCmdBattleTowerRecvBuf(VM_MACHINE* core)
@@ -442,17 +442,17 @@ BOOL EvCmdBattleTowerRecvBuf(VM_MACHINE* core)
 	u16	mode;
 	BTOWER_SCRWORK* wk = core->fsys->btower_wk;
 
-	OS_Printf( "’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^óM\n" );
+	OS_Printf( "é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿å—ä¿¡\n" );
 
 	mode = VMGetWorkValue(core);
 	retwk_id = VMGetU16(core);
 	
-	//©•ªA‘Šè‚Ì‚Ç‚¿‚ç‚©‚ªDP‚Ì‚ÍADP‚Ì’ÊMˆ—
+	//è‡ªåˆ†ã€ç›¸æ‰‹ã®ã©ã¡ã‚‰ã‹ãŒDPã®æ™‚ã¯ã€DPã®é€šä¿¡å‡¦ç†
 	if( Frontier_CheckDPRomCode(core->fsys->savedata) == 1 ){
-		OS_Printf( "DP‚ÌŒ`®‚Ì’ÊMˆ—\n" );
+		OS_Printf( "DPã®å½¢å¼ã®é€šä¿¡å‡¦ç†\n" );
 		EventCmd_BTowerSioRecvBuf(core->fsys->event,mode,retwk_id);
 	}else{
-		OS_Printf( "PL‚ÌŒ`®‚Ì’ÊMˆ—\n" );
+		OS_Printf( "PLã®å½¢å¼ã®é€šä¿¡å‡¦ç†\n" );
 		wk->ret_wkno = retwk_id;
 		wk->mode = mode;
 		VM_SetWait( core, EvWaitBattleTowerRecvBuf );
@@ -460,14 +460,14 @@ BOOL EvCmdBattleTowerRecvBuf(VM_MACHINE* core)
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL EvWaitBattleTowerRecvBuf(VM_MACHINE * core)
 {
 	u8 check_num;
 	BTOWER_SCRWORK* wk = core->fsys->btower_wk;
 	u16* ret_wk = GetEventWorkAdrs( core->fsys, wk->ret_wkno );
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^‚Íe‚¾‚¯‘—MAq‚¾‚¯óM‚ÌŒ`‚É‚È‚Á‚Ä‚¢‚é‚½‚ß
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã¯è¦ªã ã‘é€ä¿¡ã€å­ã ã‘å—ä¿¡ã®å½¢ã«ãªã£ã¦ã„ã‚‹ãŸã‚
 	if( wk->mode == TOWER_COMM_TR_DATA ){
 		check_num = 1;
 	}else{
@@ -484,7 +484,7 @@ static BOOL EvWaitBattleTowerRecvBuf(VM_MACHINE * core)
 }
 
 /**
- *	@brief	ƒŠ[ƒ_[ƒf[ƒ^ƒ‹[ƒ€ID‚ğæ“¾
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ«ãƒ¼ãƒ IDã‚’å–å¾—
  */
 BOOL EvCmdBattleTowerGetLeaderRoomID(VM_MACHINE* core)
 {
@@ -502,7 +502,7 @@ BOOL EvCmdBattleTowerGetLeaderRoomID(VM_MACHINE* core)
 }
 
 /**
- *	@brief	ƒŠ[ƒ_[DLƒf[ƒ^‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©H
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼DLãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ï¼Ÿ
  */
 BOOL EvCmdBattleTowerIsLeaderDataExist(VM_MACHINE* core)
 {
@@ -515,7 +515,7 @@ BOOL EvCmdBattleTowerIsLeaderDataExist(VM_MACHINE* core)
 
 
 /**
- *	@biref	•K—v‚Èl•¨OBJƒR[ƒh‚ğ•Ô‚·
+ *	@biref	å¿…è¦ãªäººç‰©OBJã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
  */
 static u16 btltower_GetMineObj(BTOWER_SCRWORK* wk,u8 mode)
 {
@@ -545,16 +545,16 @@ static u16 btltower_GetMineObj(BTOWER_SCRWORK* wk,u8 mode)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒEƒBƒ“ƒhƒE•\¦
+ * æ‰€æŒãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 //============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //============================================================================================
 BOOL EvCmdBtlPointWinWrite(VM_MACHINE * core)	
@@ -571,9 +571,9 @@ BOOL EvCmdBtlPointWinWrite(VM_MACHINE * core)
 }
 //--------------------------------------------------------------------------------------------
 /**
- * Šƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒEƒBƒ“ƒhƒEíœ
+ * æ‰€æŒãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -588,9 +588,9 @@ BOOL EvCmdBtlPointWinDel(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šƒoƒgƒ‹ƒ|ƒCƒ“ƒgÄ•\¦
+ * æ‰€æŒãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆå†è¡¨ç¤º
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -605,9 +605,9 @@ BOOL EvCmdBtlPointWrite(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğæ“¾
+ * æ‰€æŒãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -625,9 +625,9 @@ BOOL EvCmdCheckBtlPoint( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğ‰Á‚¦‚é
+ * ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’åŠ ãˆã‚‹
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -638,7 +638,7 @@ BOOL EvCmdAddBtlPoint( VM_MACHINE * core )
 	SAVEDATA * sv = fsys->savedata;
 	u16 value = VMGetWorkValue(core);
 
-	//ƒŒƒR[ƒhXV
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°
 	RECORD_Add( SaveData_GetRecord(core->fsys->savedata), RECID_WIN_BP, value );
 
 	TowerScoreData_SetBattlePoint(
@@ -649,9 +649,9 @@ BOOL EvCmdAddBtlPoint( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğˆø‚­
+ * ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’å¼•ã
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -662,7 +662,7 @@ BOOL EvCmdSubBtlPoint( VM_MACHINE * core )
 	SAVEDATA * sv = fsys->savedata;
 	u16 value = VMGetWorkValue(core);
 
-	//ƒŒƒR[ƒhXV
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°
 	RECORD_Add( SaveData_GetRecord(core->fsys->savedata), RECID_USE_BP, value );
 
 	TowerScoreData_SetBattlePoint(
@@ -673,9 +673,9 @@ BOOL EvCmdSubBtlPoint( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğw’èƒ|ƒCƒ“ƒg‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·i_COMP_GOLD‚Ìƒoƒgƒ‹ƒ|ƒCƒ“ƒg”Åj
+ * ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’æŒ‡å®šãƒã‚¤ãƒ³ãƒˆæŒã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™ï¼ˆ_COMP_GOLDã®ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆç‰ˆï¼‰
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -701,9 +701,9 @@ BOOL EvCmdCompBtlPoint( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ÆŒğŠ·‚Å‚«‚éƒAƒCƒeƒ€‚Ìƒf[ƒ^‚ğ•Ô‚·
+ * ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã¨äº¤æ›ã§ãã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -711,8 +711,8 @@ BOOL EvCmdCompBtlPoint( VM_MACHINE * core )
 BOOL EvCmdGetBtlPointGift( VM_MACHINE * core )
 {
 	u8	ofs = 0;
-	u16	list_id = VMGetWorkValue(core);	//ƒŠƒXƒgno
-	u16	item_idx = VMGetWorkValue(core);	//ƒAƒCƒeƒ€index
+	u16	list_id = VMGetWorkValue(core);	//ãƒªã‚¹ãƒˆno
+	u16	item_idx = VMGetWorkValue(core);	//ã‚¢ã‚¤ãƒ†ãƒ index
 	u16* ret_item = VMGetWork(core);
 	u16* ret_bp = VMGetWork(core);
 

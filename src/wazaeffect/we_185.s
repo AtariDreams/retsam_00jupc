@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_185.s
- * @brief	‚¾‚Ü‚µ‚¤‚¿			185
+ * @brief	ã ã¾ã—ã†ã¡			185
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚¾‚Ü‚µ‚¤‚¿			185
+//	â– ã ã¾ã—ã†ã¡			185
 //
 //
 // =============================================================================
@@ -29,7 +29,7 @@
 #define WE185_SHAKE_SYNC	( 1 )//*/
 
 WEST_DAMASIUTI:
-	// ”wŒi•ÏX
+	// èƒŒæ™¯å¤‰æ›´
 	LOAD_PARTICLE_DROP	0,W_185_SPA
 	
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, 12, WE_PAL_BLACK,
@@ -37,10 +37,10 @@ WEST_DAMASIUTI:
 
 	SE_L			SEQ_SE_DP_061
 	
-	// ƒ|ƒPƒ‚ƒ“OAM€”õ
+	// ãƒã‚±ãƒ¢ãƒ³OAMæº–å‚™
 	POKEOAM_RES_INIT
 	POKEOAM_RES_LOAD	0,
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	POKEOAM_DROP		WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 	PT_DROP_EX			WEDEF_DROP_M2, WEDEF_DROP_M2,
 	
@@ -53,7 +53,7 @@ WEST_DAMASIUTI:
 	ADD_PARTICLE 	0,W_185_185_DAMASI_BALL, EMTFUNC_DEFENCE_POS
 	SE_R			SEQ_SE_DP_030
 
-	// ‚Ó‚é‚¦‚³‚¹‚é
+	// ãµã‚‹ãˆã•ã›ã‚‹
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, WE185_SHAKE_WIDTH, 0,WE185_SHAKE_SYNC, WE185_SHAKE_NUM, WE_TOOL_E1 | WE_TOOL_SSP, 0, 0
 	
 	WAIT			15
@@ -64,12 +64,12 @@ WEST_DAMASIUTI:
 
 	WAIT_FLAG
 	
-	// ƒ|ƒPƒ‚ƒ“OAM”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³OAMç ´æ£„
 	POKEOAM_RES_FREE
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_0
 	PT_DROP_RESET_EX
 	
-	// ”wŒi–ß‚·
+	// èƒŒæ™¯æˆ»ã™
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 12, 0, WE_PAL_BLACK,
 	WAIT_FLAG
 	

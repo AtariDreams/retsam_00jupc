@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_player_local.h
- * @brief	�v���C���[�f�[�^�̃��[�J����`
+ * @brief	プレイヤーデータのローカル定義
  * @author	Katsumi Ohno
  * @date    2008.01.24
  */
@@ -11,38 +11,38 @@
 #define __COMM_PLAYER_LOCAL_H__
 
 //==============================================================================
-// ��`
+// 定義
 //==============================================================================
 
 
-/// �����ȃt�B�[���h�}�b�v�A�N�^�[�ԍ�
+/// 無効なフィールドマップアクター番号
 #define _NULL_FIELD_MAP_ACT_ID (-1)
-/// �l�b�g�v���[���[�̓^�X�N�͌���ł���
+/// ネットプレーヤーはタスクは後方でいい
 #define _TASK_PRI_NET_PLAYER  (100)
-/// �l�b�g�v���[���[�����͂���Ɍ�
+/// ネットプレーヤー生成はさらに後
 #define _TASK_PRI_NET_PLAYER_CREATE  (_TASK_PRI_NET_PLAYER+100)
-/// BLACT_HEADER work�́@�e�q�@ID�����Ă����ꏊ
-/// �O�ƂP�͖{���̃q�[���[�A�j���Ŏg�p���Ă���̂łQ�ԂɂȂ��Ă���
+/// BLACT_HEADER workの　親子機IDを入れておく場所
+/// ０と１は本物のヒーローアニメで使用しているので２番になっている
 #define _WORK_MACHINE_ID (2)
 
-#define _NAME_DISP (0)   ///< �v���[���[�ɖ��O��\������
+#define _NAME_DISP (0)   ///< プレーヤーに名前を表示する
 
-#define _NO_PLACE_INITIALIZE (0xff)  ///< �ړ��̏��������I����Ă��Ȃ��ꍇ
+#define _NO_PLACE_INITIALIZE (0xff)  ///< 移動の初期化が終わっていない場合
 
-#define _PLACEDATA_SEND_SIZE (5)  ///< �ꏊ�f�[�^�𑗐M����ꍇ�̃T�C�Y
-#define _IDPLACEDATA_SEND_SIZE (4)  ///< ID���ꏊ�f�[�^�𑗐M����ꍇ�̃T�C�Y
+#define _PLACEDATA_SEND_SIZE (5)  ///< 場所データを送信する場合のサイズ
+#define _IDPLACEDATA_SEND_SIZE (4)  ///< IDつき場所データを送信する場合のサイズ
 
-//#define _BLOW_STOP_COUNT (15)  // �ŏ��ɓ����Ȃ���
-#define _BLOW_COUNTER_NUM_MAX   (27)  // �ӂ���΂����t���[����
-#define _BIGBLOW_COUNTER_NUM_MAX   (45)  // �ӂ���΂����t���[����
-#define _BLOW_COUNTER_STOP   (0xff)  // �~�߂Ă�����Ԃ̒l
+//#define _BLOW_STOP_COUNT (15)  // 最初に動かない数
+#define _BLOW_COUNTER_NUM_MAX   (27)  // ふき飛ばされるフレーム数
+#define _BIGBLOW_COUNTER_NUM_MAX   (45)  // ふき飛ばされるフレーム数
+#define _BLOW_COUNTER_STOP   (0xff)  // 止めておく区間の値
 
-#define _TALK_TARGET_INDEX_WORK (0)  ///< ��b�f�[�^�@�b�����ID�̈ʒu
-#define _TALK_MY_INDEX_WORK (1)  ///< ��b�f�[�^�@�b���Ă���ID�̈ʒu
+#define _TALK_TARGET_INDEX_WORK (0)  ///< 会話データ　話相手のIDの位置
+#define _TALK_MY_INDEX_WORK (1)  ///< 会話データ　話しているIDの位置
 
-#define _FLAG_TVTOPIC_NUM (5)  ///TV�ɗ����ꍇ�̊��̐�
+#define _FLAG_TVTOPIC_NUM (5)  ///TVに流れる場合の旗の数
 
-// ���j���[���E�C���h�E���^�X�N�ɓo�^���Ă����ۂ̃v���C�I���e�B�[
+// メニュー＆ウインドウをタスクに登録していく際のプライオリティー
 enum menuTaskPri_e {
     _TALK_WINDOW_PRI = 10001,
 };
@@ -66,20 +66,20 @@ enum hedFieldEffect {
 };
 
 
-#define _LOCAL_WIN_PX (2)   // GF_BGL_BmpAdd�Ŏg�p���� �����E�C���h�E��PX�l
-#define _LOCAL_WIN_PY (19)   // GF_BGL_BmpAdd�Ŏg�p���� �����E�C���h�E��PY�l
-#define _LOCAL_WIN_SX (28)   // GF_BGL_BmpAdd�Ŏg�p���� �����E�C���h�E��SX�l
-#define _LOCAL_WIN_SY (4)   // GF_BGL_BmpAdd�Ŏg�p���� �����E�C���h�E��SY�l
+#define _LOCAL_WIN_PX (2)   // GF_BGL_BmpAddで使用する 文字ウインドウのPX値
+#define _LOCAL_WIN_PY (19)   // GF_BGL_BmpAddで使用する 文字ウインドウのPY値
+#define _LOCAL_WIN_SX (28)   // GF_BGL_BmpAddで使用する 文字ウインドウのSX値
+#define _LOCAL_WIN_SY (4)   // GF_BGL_BmpAddで使用する 文字ウインドウのSY値
 
 #define _DASH_BIT (0x80)
 #define _DEBUG_DASH_BIT (0x40)
 
 #define _MSG_MAX  (50*GLOBAL_MSGLEN)    ///<
 
-#define _KEEP_FLAG_MAX (5)  // �L�����Ă���ID
+#define _KEEP_FLAG_MAX (5)  // 記憶しておくID
 
 //==============================================================================
-//	�^�錾
+//	型宣言
 //==============================================================================
 
 typedef struct{
@@ -110,58 +110,58 @@ typedef struct{
 } _Grid;
 
 typedef struct{
-    u8 netID:4;      // �b���Ă���l
-    u8 targetID:4;   // �b���������Ă���l
-    u8 bItemMenu:1;      //  �A�C�e�����j���[���J���ɂ����Ă���
-    u8 bPersonalInformation:1;      // �l�����J���Ă���
+    u8 netID:4;      // 話している人
+    u8 targetID:4;   // 話しかけられている人
+    u8 bItemMenu:1;      //  アイテムメニューを開きにいっている
+    u8 bPersonalInformation:1;      // 個人情報を開いている
 } _talkMenuInfo;
 
 typedef struct{
     u32 holdBit;
     PLAYER_CONDITION_MGR_PTR pCondMgr;
-    PLAYER_STATE_PTR pPlayer[COMM_MACHINE_MAX];   // �v���[���[�̃|�C���^
-    EOA_PTR pMark[COMM_MACHINE_MAX];  //�܂��
-    u8 bActive[COMM_MACHINE_MAX];     // �v���[���[�����݂��邩�ǂ���
-    TCB_PTR pTask;          // �����^�X�N�̃|�C���^
+    PLAYER_STATE_PTR pPlayer[COMM_MACHINE_MAX];   // プレーヤーのポインタ
+    EOA_PTR pMark[COMM_MACHINE_MAX];  //まんぷ
+    u8 bActive[COMM_MACHINE_MAX];     // プレーヤーが存在するかどうか
+    TCB_PTR pTask;          // 処理タスクのポインタ
     FIELDSYS_WORK* pFSys;
-    _talkMenuInfo talkMenuInfo;   // �������ǂ�������b��Ԃɂ��邩�ǂ����L�� �T�[�o�ɂ͖���
+    _talkMenuInfo talkMenuInfo;   // 自分がどういう会話状態にあるかどうか記憶 サーバには無い
     u8 handCount[COMM_MACHINE_MAX];
-    _PlayerPlace sPlayerPlaceServer[ COMM_MACHINE_MAX ];  // �T�[�o�[�̃v���[���[�̈ʒu���
-    _PlayerPlace sPlayerPlace[ COMM_MACHINE_MAX ];  // �v���[���[�̈ʒu���
-    u8 bMoveControl[ COMM_MACHINE_MAX ]; ///< �@�̃R���g���[�����
-    u8 bMoveControlFlag[ COMM_MACHINE_MAX ]; ///< �@�̃R���g���[����� �n�^��p
+    _PlayerPlace sPlayerPlaceServer[ COMM_MACHINE_MAX ];  // サーバーのプレーヤーの位置情報
+    _PlayerPlace sPlayerPlace[ COMM_MACHINE_MAX ];  // プレーヤーの位置情報
+    u8 bMoveControl[ COMM_MACHINE_MAX ]; ///< 機のコントロール状態
+    u8 bMoveControlFlag[ COMM_MACHINE_MAX ]; ///< 機のコントロール状態 ハタ専用
     u8 bMoveControlVS[ COMM_MACHINE_MAX ];
-    u8 hedFE[ COMM_MACHINE_MAX ]; ///< ���̏�̃t�B�[���h�G�t�F�N�g�Ǘ�
+    u8 hedFE[ COMM_MACHINE_MAX ]; ///< 頭の上のフィールドエフェクト管理
     s8 blowDir[COMM_MACHINE_MAX];
-    u8 blowCounterS[COMM_MACHINE_MAX];   // ������΂��J�E���^
+    u8 blowCounterS[COMM_MACHINE_MAX];   // 吹き飛ばしカウンタ
     u8 blowDirS[COMM_MACHINE_MAX];
     u8 giddyCounter[COMM_MACHINE_MAX];
     u8 countHole[COMM_MACHINE_MAX];
     u8 bBlowBigS[COMM_MACHINE_MAX];
-    u8 bMoveChange[COMM_MACHINE_MAX]; // �ړ������̂ő��M���邽�߂̃t���O
-    u8 walkCount[COMM_MACHINE_MAX];   // �������x
-    u8 walkCountClient[COMM_MACHINE_MAX];   // �������x �N���C�A���g
+    u8 bMoveChange[COMM_MACHINE_MAX]; // 移動したので送信するためのフラグ
+    u8 walkCount[COMM_MACHINE_MAX];   // 歩き速度
+    u8 walkCountClient[COMM_MACHINE_MAX];   // 歩き速度 クライアント
     _SEND_FLAG sendFlagData[COMM_MACHINE_MAX+1];
   //  u8 sendFlagDataID[COMM_MACHINE_MAX];
-    MYSTATUS* pKeepFlag[_KEEP_FLAG_MAX];  // 5�����肱�̎��ɏd�����Ȃ���΋L�^
-    MYSTATUS* pNowFlag[COMM_MACHINE_MAX];  //�݂�Ȃ��瑗�M���ꂽ���̂͂����ɓ���
-//    MYSTATUS* pMyFlag;   //�����������Ă���͂� ����𑗐M������
+    MYSTATUS* pKeepFlag[_KEEP_FLAG_MAX];  // 5つ分ありこの時に重複しなければ記録
+    MYSTATUS* pNowFlag[COMM_MACHINE_MAX];  //みんなから送信されたものはここに入る
+//    MYSTATUS* pMyFlag;   //自分が持っているはた これを送信しあう
     u16 oldPad;
     u16 myDeliveryFlagNum;
     u8 bStartLineChk[4]; //
-    u8 bTalkMenuDisp;   ///<< ��b�E�C���h�E�\����TRUE
-//    u8 msgIndex;      ///< ���b�Z�[�W�C���f�b�N�X ���b�Z�[�W�I���҂��Ɏg�p
+    u8 bTalkMenuDisp;   ///<< 会話ウインドウ表示中TRUE
+//    u8 msgIndex;      ///< メッセージインデックス メッセージ終了待ちに使用
     u8 bFlagDataRecv;
-    u8 moveSync;     ///< �ړ��ʒu����
-    u8 bPosAllSend;  ///< �S���̈ʒu���đ��M����t���O
-    u8 bMyMoveControl; ///< ���@�̃R���g���[��
-    u8 bResetting;   ///< ���Z�b�g���̏ꍇ����ɓ����Ȃ��悤��
-    u8 bUnder;    // �n�����ǂ���
-    u8 bFirstMoveEnable;  // �e�@�����Ȃ��Ȃ����ꍇ�A�e�@�ɐڑ������ꍇ �J�n�𑗐M���邽�߂�FLG
-    u8 forceDirFlg;  //�����p�x����
-    u8 bMoveControlVSRoom; //�ΐ핔���ł̈ړ�
-    u8 bDataSendFlag; // ���̓�������
-  u8 bNotRecvMoveData;  //�����̈ړ��f�[�^���T�[�o����󂯎��Ȃ�
+    u8 moveSync;     ///< 移動位置同期
+    u8 bPosAllSend;  ///< 全員の位置を再送信するフラグ
+    u8 bMyMoveControl; ///< 自機のコントロール
+    u8 bResetting;   ///< リセット中の場合勝手に動かないように
+    u8 bUnder;    // 地下かどうか
+    u8 bFirstMoveEnable;  // 親機がいなくなった場合、親機に接続した場合 開始を送信するためのFLG
+    u8 forceDirFlg;  //強制角度調整
+    u8 bMoveControlVSRoom; //対戦部屋での移動
+    u8 bDataSendFlag; // 旗の動き制御
+  u8 bNotRecvMoveData;  //自分の移動データをサーバから受け取らない
 } CommPlayerWork;
 
 

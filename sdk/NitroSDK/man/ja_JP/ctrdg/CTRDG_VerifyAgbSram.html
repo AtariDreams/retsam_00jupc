@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>CTRDG_Read</TITLE>
@@ -9,45 +9,45 @@
 </HEAD>
 <BODY>
 <H1 align="left">CTRDG_VerifyAgbSram</H1>
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
   <PRE><CODE>u32 CTRDG_VerifyAgbSram(u32 tgt, const void* src, u32 size);
   </CODE></PRE>
-  <PRE>�Ή�����AGB���̊֐��F<A href="coordinate.html"><CODE>u32 VerifySram(u8 *tgt,u8 *src,u32 size)</CODE></A></PRE>
+  <PRE>対応するAGB時の関数：<A href="coordinate.html"><CODE>u32 VerifySram(u8 *tgt,u8 *src,u32 size)</CODE></A></PRE>
 </DL>
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD><B><I>tgt</I></B></TD>
-      <TD>�x���t�@�C�� SRAM �A�h���X�ւ̃|�C���^(�������ݐ�̃f�[�^�AAGB �������}�b�v��̃A�h���X)</TD>
+      <TD>ベリファイ先 SRAM アドレスへのポインタ(書き込み先のデータ、AGB メモリマップ上のアドレス)</TD>
     </TR>
     <TR>
       <TD><B><I>src</I></B></TD>
-      <TD>�x���t�@�C�����[�N�̈�A�h���X�ւ̃|�C���^(�I���W�i���̃f�[�^)</TD>
+      <TD>ベリファイ元ワーク領域アドレスへのポインタ(オリジナルのデータ)</TD>
     </TR>
     <TR>
       <TD><B><I>size</I></B></TD>
-      <TD>�o�C�g�P�ʂł̃x���t�@�C�T�C�Y</TD>
+      <TD>バイト単位でのベリファイサイズ</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�Ԃ�l</H2>
-<P>�x���t�@�C�ɐ�������� 0 ��Ԃ��܂��B�x���t�@�C�G���[���̓f�o�C�X���G���[�A�h���X��Ԃ��܂��B</P>
-<H2>����</H2>
-<P>���[�N�̈�� src �A�h���X����̃f�[�^�� SRAM �� tgt �A�h���X�̃f�[�^�� size �o�C�g���x���t�@�C���܂��B<br>
-�{�֐��́A�x���t�@�C������ɏI�������Ȃ�� 0 ��Ԃ��A�x���t�@�C�G���[���������Ȃ�΃G���[�̔��������A�h���X��Ԃ��܂��B</P>
-<P>�A�N�Z�X�T�C�N���̐ݒ�͊֐����ōs���܂��̂ŁA���O�ɍs���K�v�͂���܂���B</P>
-<P>�����̊֐����ł͈����ԃJ�[�g���b�W�o�X�����b�N����܂��̂Œ��ӂ��ĉ������B<br>
+<H2>返り値</H2>
+<P>ベリファイに成功すれば 0 を返します。ベリファイエラー時はデバイス側エラーアドレスを返します。</P>
+<H2>説明</H2>
+<P>ワーク領域の src アドレスからのデータと SRAM の tgt アドレスのデータを size バイト分ベリファイします。<br>
+本関数は、ベリファイが正常に終了したならば 0 を返し、ベリファイエラーがあったならばエラーの発生したアドレスを返します。</P>
+<P>アクセスサイクルの設定は関数内で行いますので、事前に行う必要はありません。</P>
+<P>※この関数内では一定期間カートリッジバスがロックされますので注意して下さい。<br>
 <br>
-�܂� IS-NITRO-DEBUGGER 1.66 �ȑO�̃o�[�W�����ł� AGB �o�b�N�A�b�v�f�o�C�X�ɐ���ɃA�N�Z�X���邱�Ƃ͂ł��܂���̂ŁA���ӂ��Ă��������B</P>
-<H2>�Q��</H2>
+また IS-NITRO-DEBUGGER 1.66 以前のバージョンでは AGB バックアップデバイスに正常にアクセスすることはできませんので、注意してください。</P>
+<H2>参照</H2>
 <P><CODE><A href="CTRDG_VerifyAgbSramAsync.html">CTRDG_VerifyAgbSramAsync</A><BR>
 </CODE></P>
-<H2>����</H2>
-<P>2006/05/25 IS-NITRO-DEBUGGER 1.66 �ȑO�̃o�[�W�����ł� AGB �o�b�N�A�b�v�f�o�C�X�ɐ���ɃA�N�Z�X�ł��Ȃ����Ƃ�ǋL<BR>
-2006/04/07 ����</P>
+<H2>履歴</H2>
+<P>2006/05/25 IS-NITRO-DEBUGGER 1.66 以前のバージョンでは AGB バックアップデバイスに正常にアクセスできないことを追記<BR>
+2006/04/07 初版</P>
 </BODY>
 </HTML>

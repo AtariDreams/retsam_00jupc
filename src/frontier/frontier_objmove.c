@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_objmove.c
- * @brief	OBJ����R�[�h�̎�����
+ * @brief	OBJ動作コードの実動作
  * @author	matsuda
- * @date	2007.07.27(��)
+ * @date	2007.07.27(金)
  */
 //==============================================================================
 #include "common.h"
@@ -31,14 +31,14 @@
 
 
 //==============================================================================
-//	�^��`
+//	型定義
 //==============================================================================
-///OBJ����R�[�h�̊֐��^
+///OBJ動作コードの関数型
 typedef BOOL (*FSS_OBJMOVE_FUNC)(FMAIN_PTR, FSS_ACTOR_WORK *);
 
 
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static void FSS_ObjMoveFunc(FMAIN_PTR fmain, FSS_ACTOR_WORK *fss_actor);
 void FSS_ObjMoveFuncIDSet(FMAIN_PTR fmain, u16 playid, u8 move_id, s16 work[], int work_num);
@@ -47,10 +47,10 @@ static BOOL MoveFunc_Kyoro(FMAIN_PTR fmain, FSS_ACTOR_WORK *fss_actor);
 
 
 //==============================================================================
-//	�֐��e�[�u��
+//	関数テーブル
 //==============================================================================
-///OBJ����R�[�h�̎��s�֐��e�[�u��
-///		��OBJMOVE_ID_???�ƕ��т𓯂��ɂ��Ă������ƁI
+///OBJ動作コードの実行関数テーブル
+///		※OBJMOVE_ID_???と並びを同じにしておくこと！
 static const FSS_OBJMOVE_FUNC FssObjMoveFuncTbl[] = {
 	NULL,
 	MoveFunc_Kyoro,
@@ -65,13 +65,13 @@ static const FSS_OBJMOVE_FUNC FssObjMoveFuncTbl[] = {
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   OBJ����R�[�h�ݒ�
+ * @brief   OBJ動作コード設定
  *
  * @param   fmain		
- * @param   playid		OBJ�F��ID
- * @param   move_id		OBJ����R�[�hID(OBJMOVE_ID_???)
- * @param   work[]		�����Ƃ��ēn���l�̓������z��
- * @param   work_num	work[]�̗v�f��
+ * @param   playid		OBJ認識ID
+ * @param   move_id		OBJ動作コードID(OBJMOVE_ID_???)
+ * @param   work[]		引数として渡す値の入った配列
+ * @param   work_num	work[]の要素数
  */
 //--------------------------------------------------------------
 void FSS_ObjMoveFuncIDSet(FMAIN_PTR fmain, u16 playid, u8 move_id, s16 work[], int work_num)
@@ -90,10 +90,10 @@ void FSS_ObjMoveFuncIDSet(FMAIN_PTR fmain, u16 playid, u8 move_id, s16 work[], i
 
 //--------------------------------------------------------------
 /**
- * @brief   OBJ����R�[�h���s
+ * @brief   OBJ動作コード実行
  *
  * @param   fmain		
- * @param   fss_actor	�Ώ�OBJ�̃A�N�^�[�|�C���^
+ * @param   fss_actor	対象OBJのアクターポインタ
  */
 //--------------------------------------------------------------
 static void FSS_ObjMoveFunc(FMAIN_PTR fmain, FSS_ACTOR_WORK *fss_actor)
@@ -112,7 +112,7 @@ static void FSS_ObjMoveFunc(FMAIN_PTR fmain, FSS_ACTOR_WORK *fss_actor)
 
 //--------------------------------------------------------------
 /**
- * @brief   �S�Ă�OBJ��OBJ����R�[�h�����s
+ * @brief   全てのOBJのOBJ動作コードを実行
  *
  * @param   fmain		
  */
@@ -136,27 +136,27 @@ void FSS_ObjMoveFuncAll(FMAIN_PTR fmain)
 
 //==============================================================================
 //
-//	����R�[�h���s�֐�
+//	動作コード実行関数
 //
 //==============================================================================
-///����낫���̌�����ς���E�F�C�g�l
+///きょろきょろの向きを変えるウェイト値
 #define KYORO_WAIT		(30)
-///���ʂ������Ă��鎞�̃E�F�C�g�l
+///正面を向いている時のウェイト値
 #define KYORO_FRONT_WAIT	(45)
 //--------------------------------------------------------------
 /**
- * @brief   OBJ����F����낫��낷��
+ * @brief   OBJ動作：きょろきょろする
  *
  * @param   fmain		
  * @param   fss_actor		
  *
- * @retval  TRUE:����I��
+ * @retval  TRUE:動作終了
  *
- * work[0] = ���ʂ̌���(FC_DIR_???)
- * work[1] = ����낫��듮��ōŏ��Ɍ���������������肷��t���O(0 or 1)
- * work[2] = �����E�F�C�g
+ * work[0] = 正面の向き(FC_DIR_???)
+ * work[1] = きょろきょろ動作で最初に向かせる方向を決定するフラグ(0 or 1)
+ * work[2] = 初期ウェイト
  *
- * ���ʂ̌�����DOWN�̏ꍇ�Awork[1]��0���ƁA�����E�A1���ƁA�E�����A�ƃA�j�����܂�
+ * 正面の向きがDOWNの場合、work[1]が0だと、左＞右、1だと、右＞左、とアニメします
  */
 //--------------------------------------------------------------
 static BOOL MoveFunc_Kyoro(FMAIN_PTR fmain, FSS_ACTOR_WORK *fss_actor)

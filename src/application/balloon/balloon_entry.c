@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon_entry.c
- * @brief	•—‘DŠ„‚èFƒGƒ“ƒgƒŠ[‰æ–Ê•Œ‹‰Ê‰æ–Ê
+ * @brief	é¢¨èˆ¹å‰²ã‚Šï¼šã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢ï¼†çµæœç”»é¢
  * @author	matsuda
- * @date	2007.11.06(‰Î)
+ * @date	2007.11.06(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -33,9 +33,9 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒƒCƒ“ƒV[ƒPƒ“ƒX
+///ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	MAINSEQ_INIT,
 	MAINSEQ_ENTRY_INIT,
@@ -47,13 +47,13 @@ enum{
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///•—‘DŠ„‚èƒGƒ“ƒgƒŠ[‰æ–ÊROCƒ[ƒN\‘¢‘Ì’è‹`
+///é¢¨èˆ¹å‰²ã‚Šã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢ROCãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“å®šç¾©
 typedef struct{
-	BALLOON_SYSTEM_WORK *bsw;		///<•—‘DŠ„‚èƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MNGM_ENTRYWK *mngm_entry;		///<ƒGƒ“ƒgƒŠ[‰æ–ÊƒAƒvƒŠ‚Ìƒ|ƒCƒ“ƒ^
-	MNGM_RESULTWK *mngm_result;		///<Œ‹‰Ê”­•\‰æ–ÊƒAƒvƒŠ‚Ìƒ|ƒCƒ“ƒ^
+	BALLOON_SYSTEM_WORK *bsw;		///<é¢¨èˆ¹å‰²ã‚Šã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MNGM_ENTRYWK *mngm_entry;		///<ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢ã‚¢ãƒ—ãƒªã®ãƒã‚¤ãƒ³ã‚¿
+	MNGM_RESULTWK *mngm_result;		///<çµæœç™ºè¡¨ç”»é¢ã‚¢ãƒ—ãƒªã®ãƒã‚¤ãƒ³ã‚¿
 }BALLOON_ENTRY_PROC_WORK;
 
 
@@ -64,10 +64,10 @@ typedef struct{
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DŠ„‚èƒGƒ“ƒgƒŠ[‰æ–ÊF‰Šú‰»
+ * @brief   é¢¨èˆ¹å‰²ã‚Šã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢ï¼šåˆæœŸåŒ–
  *
- * @param   proc		PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒXƒ[ƒN
+ * @param   proc		PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¯ãƒ¼ã‚¯
  *
  * @retval  
  */
@@ -86,10 +86,10 @@ PROC_RESULT BalloonEntryProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DŠ„‚èƒGƒ“ƒgƒŠ[‰æ–ÊFƒƒCƒ“
+ * @brief   é¢¨èˆ¹å‰²ã‚Šã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒXƒ[ƒN
+ * @param   proc		PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¯ãƒ¼ã‚¯
  *
  * @retval  
  */
@@ -98,12 +98,12 @@ PROC_RESULT BalloonEntryProc_Main( PROC * proc, int * seq )
 {
 	BALLOON_ENTRY_PROC_WORK * entry  = PROC_GetWork( proc );
 
-	// ’ÊMƒGƒ‰[ƒ`ƒFƒbƒN
+	// é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( entry->bsw->dis_error == TRUE ){
 
 		switch( entry->bsw->dis_error_seq ){
 		case 0:
-			// WIPE’†‚È‚ç’†’f‚µ‚Ä^‚ÁˆÃ‚É‚·‚éA
+			// WIPEä¸­ãªã‚‰ä¸­æ–­ã—ã¦çœŸã£æš—ã«ã™ã‚‹ã€
 			if( WIPE_SYS_EndCheck() == TRUE ){
 				WIPE_SYS_ExeEnd();
 			}
@@ -112,7 +112,7 @@ PROC_RESULT BalloonEntryProc_Main( PROC * proc, int * seq )
 			break;
 
 		case 1:
-			// ‚Ü‚Ã‚Í’ÊMØ’f
+			// ã¾ã¥ã¯é€šä¿¡åˆ‡æ–­
 			if( MNGM_ERROR_DisconnectWait( &entry->bsw->entry_param ) == TRUE ){
 				entry->bsw->dis_error_seq ++;
 			}
@@ -120,7 +120,7 @@ PROC_RESULT BalloonEntryProc_Main( PROC * proc, int * seq )
 
 		default:
 		case 2:
-			// ‚³‚ç‚Éƒ[ƒN‚ğ‘S•””jŠü‚·‚é
+			// ã•ã‚‰ã«ãƒ¯ãƒ¼ã‚¯ã‚’å…¨éƒ¨ç ´æ£„ã™ã‚‹
 			if( entry->mngm_entry != NULL ){
 				MNGM_ENTRY_Exit(entry->mngm_entry);
 				entry->mngm_entry = NULL;
@@ -135,7 +135,7 @@ PROC_RESULT BalloonEntryProc_Main( PROC * proc, int * seq )
 		return PROC_RES_CONTINUE;
 	}
 	
-	// ƒƒCƒ“ƒV[ƒPƒ“ƒX
+	// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	switch(*seq){
 	case MAINSEQ_INIT:
 		if(entry->bsw->mode == BALLOON_MODE_ENTRY){
@@ -146,7 +146,7 @@ PROC_RESULT BalloonEntryProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	
-	//ƒGƒ“ƒgƒŠ[‰æ–Ê
+	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢
 	case MAINSEQ_ENTRY_INIT:
 		entry->mngm_entry = MNGM_ENTRY_InitBalloon(&entry->bsw->entry_param, HEAPID_BALLOON );
 		(*seq)++;
@@ -160,7 +160,7 @@ PROC_RESULT BalloonEntryProc_Main( PROC * proc, int * seq )
 		}
 		break;
 
-	//Œ‹‰Ê”­•\‰æ–Ê
+	//çµæœç™ºè¡¨ç”»é¢
 	case MAINSEQ_RESULT_INIT:
 		entry->mngm_result = MNGM_RESULT_InitBalloon(&entry->bsw->entry_param, 
 			&entry->bsw->result_param, HEAPID_BALLOON );
@@ -175,7 +175,7 @@ PROC_RESULT BalloonEntryProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	
-	//I—¹
+	//çµ‚äº†
 	case MAINSEQ_END:
 	default:
 		return PROC_RES_FINISH;
@@ -186,10 +186,10 @@ PROC_RESULT BalloonEntryProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DŠ„‚èƒGƒ“ƒgƒŠ[‰æ–ÊFI—¹ˆ—
+ * @brief   é¢¨èˆ¹å‰²ã‚Šã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   proc		PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒXƒ[ƒN
+ * @param   proc		PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¯ãƒ¼ã‚¯
  *
  * @retval  
  */
@@ -198,7 +198,7 @@ PROC_RESULT BalloonEntryProc_End(PROC *proc, int *seq)
 {
 	BALLOON_ENTRY_PROC_WORK * entry  = PROC_GetWork( proc );
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
 	return PROC_RES_FINISH;
 }

@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SOC_Accept</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">SOC_Accept</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
@@ -20,75 +20,75 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 
 <table width="100%">
   <tr>
     <td><code><em><strong>s</strong></em></code></td>
     <td> <code>
-    <a href="SOC_Socket.html">SOC_Socket()</a></code>�ɂ���č쐬���A<code><a href="SOC_Bind.html">SOC_Bind()</a></code>�ɂ���ăA�h���X���o�C���h���A<code><a href="SOC_Listen.html">SOC_Listen()</a></code>�̌Ăяo���ɐ��������\�P�b�g���w�肵�܂��B</td>
+    <a href="SOC_Socket.html">SOC_Socket()</a></code>によって作成し、<code><a href="SOC_Bind.html">SOC_Bind()</a></code>によってアドレスをバインドし、<code><a href="SOC_Listen.html">SOC_Listen()</a></code>の呼び出しに成功したソケットを指定します。</td>
   </tr>
   <tr>
     <td><code><em><strong>sockAddr</strong></em></code></td>
-    <td>�k���|�C���^���A�󂯕t�����ڑ�����̃\�P�b�g �A�h���X���L�^���邽�߂̃\�P�b�g�A�h���X�\����(<code><a href="SOCSockAddr.html">SOCSockAddr</a>,<a href="SOCSockAddrIn.html">SOCSockAddrIn</a></code>)�ւ̃|�C���^���w�肵�܂��B<br>
-��k���|�C���^���w�肵���ꍇ�́A�\�P�b�g�A�h���X��<code>len</code>�t�B�[���h�͓K�؂ɏ��������Ă��������B(�� <code>sizeof(SOCSockAddrIn)</code>)</td>
+    <td>ヌルポインタか、受け付けた接続相手のソケット アドレスを記録するためのソケットアドレス構造体(<code><a href="SOCSockAddr.html">SOCSockAddr</a>,<a href="SOCSockAddrIn.html">SOCSockAddrIn</a></code>)へのポインタを指定します。<br>
+非ヌルポインタを指定した場合は、ソケットアドレスの<code>len</code>フィールドは適切に初期化してください。(例 <code>sizeof(SOCSockAddrIn)</code>)</td>
   </tr>
 </table>
 
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 
 <table width="100%">
   <tr>
-    <td>0�ȏ�</td>
-    <td>�󂯕t�����ڑ��̃\�P�b�g�L�q�q�B</td>
+    <td>0以上</td>
+    <td>受け付けた接続のソケット記述子。</td>
   </tr>
   <tr>
     <td><code>SOC_EALREADY</code></td>
-    <td>�ڑ��������J�n���Ă��܂��B</td>
+    <td>接続処理を開始しています。</td>
   </tr>
   <tr>
     <td><code>SOC_EINVAL</code></td>
-    <td>�����ȏ����B(�ڑ��������J�n���Ă��܂��ATCP�\�P�b�g�ł͂���܂���AListen �p�̃\�P�b�g���L���ł͂���܂���A�Ȃ�)</td>
+    <td>無効な処理。(接続処理を開始しています、TCPソケットではありません、Listen 用のソケットが有効ではありません、など)</td>
   </tr>
   <tr>
     <td><code>SOC_EMFILE</code></td>
-    <td>�\�P�b�g�L�q�q������ȏ���܂���B</td>
+    <td>ソケット記述子をこれ以上作れません。</td>
   </tr>
   <tr>
     <td><code>SOC_ENETRESET</code></td>
-    <td>�\�P�b�g������������Ă��܂���B</td>
+    <td>ソケットが初期化されていません。</td>
   </tr>
   <tr>
     <td><code>SOC_ENOBUFS</code></td>
-    <td>���\�[�X�s���B</td>
+    <td>リソース不足。</td>
   </tr>
   <tr>
     <td><code>SOC_ENOMEN</code></td>
-    <td>�������[�s���B</td>
+    <td>メモリー不足。</td>
   </tr>
   <tr>
     <td><code>SOC_ETIMEDOUT</code></td>
-    <td>TCP�̃R�l�N�g�^�C���A�E�g�B</td>
+    <td>TCPのコネクトタイムアウト。</td>
   </tr>
   <tr>
     <td> <code>SOC_EWOULDBLOCK</code></td>
-    <td>�{�֐��͕������[�h�łȂ��Ǝ��s�ł��܂���BListen �p�\�P�b�g���񕕍����[�h�̏ꍇ�A���̃G���[�R�[�h��Ԃ��ďI�����܂��B</td>
+    <td>本関数は封鎖モードでないと実行できません。Listen 用ソケットが非封鎖モードの場合、このエラーコードを返して終了します。</td>
   </tr>
 
 </table>
 
-<p><strong><em>����</em></strong>�F�ǉ��̃G���[������̃��C�u���������[�X�Ő�������Ԃ���邱�Ƃ�����܂��B���ׂĂ̕��̕Ԃ�l�͔ėp�̃G���[�Ƃ��Ĉ����Ă��������B</p>
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>�ڑ��L���[����擪�̐ڑ��v�������o���āA�w�肵���\�P�b�g�Ɠ����\�P�b�g�^�C�v�A�v���g�R���A�A�h���X�t�@�~���[
-�̐V�����\�P�b�g���쐬���A�V�����\�P�b�g�L�q�q��Ԃ��܂��B���̃\�P�b�g�͂���ɐڑ��v�����󂯕t������悤�ɂ��̂܂܎c��܂��B</p>
+<p>接続キューから先頭の接続要求を取り出して、指定したソケットと同じソケットタイプ、プロトコル、アドレスファミリー
+の新しいソケットを作成し、新しいソケット記述子を返します。元のソケットはさらに接続要求を受け付けられるようにそのまま残ります。</p>
 
-<p>����ł́A���̊֐��ł�CPS�̎d�l�ɂ��킹�� Socket �̍쐬�� Bind���s���A����� Listen �� Accept �������ɍs���Ă��܂��̂ŁAListen �p�̃\�P�b�g���������[�h�ł���Ƃ��̂ݓ��삵�܂��B<br>
-�܂��ڑ��L���[�Ƃ����T�O������܂���B</p>
+<p>現状では、この関数ではCPSの仕様にあわせて Socket の作成と Bindを行い、さらに Listen と Accept が同時に行われていますので、Listen 用のソケットが封鎖モードであるときのみ動作します。<br>
+また接続キューという概念もありません。</p>
 
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 
 <p>
 <code><a href="SOC_Socket.html">SOC_Socket</a></code>,
@@ -97,9 +97,9 @@
 <code><a href="SOC_Listen.html">SOC_Listen</a></code>,
 <code><a href="SOC_Fcntl.html">SOC_Fcntl</a></code>
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/09/13 ����<BR>
-2006/01/13 �Ԓl�̏C��</P>
+2005/09/13 初版<BR>
+2006/01/13 返値の修正</P>
 </body>
 </html>

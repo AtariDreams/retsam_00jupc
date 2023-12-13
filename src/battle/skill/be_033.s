@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_033.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			033�@�G���u�ǂ��v��Ԃɂ���A���̓ł̃_���[�W�̓^�[�����Ƃɑ����Ă���
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			033　敵を「どく」状態にする、この毒のダメージはターンごとに増えていく
  *
  *@author	HisashiSogabe
  *@data		2006.01.17

@@ -2,7 +2,7 @@
 /**
  *
  *@file		wipe_sub.c
- *@brief	‰æ–Ê‚«‚è‚©‚¦ƒƒCƒvˆ—
+ *@brief	ç”»é¢ãã‚Šã‹ãˆãƒ¯ã‚¤ãƒ—å‡¦ç†
  *@author	tomoya takahashi
  *@data		2005.08.18
  *
@@ -23,29 +23,29 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define SUM_NUM_MINI	(128)
 #define ROTA_NUM(x)		((0xffff*(x))/360)
 
-// ƒhƒA—p
-// ‚±‚Ì’l‚Å,¡‚ÌŠJ‚¢‚Ä‚¢‚é’l‚ğŠ„‚é‚ÆŠp“x‚ªo‚Ä‚­‚é
+// ãƒ‰ã‚¢ç”¨
+// ã“ã®å€¤ã§,ä»Šã®é–‹ã„ã¦ã„ã‚‹å€¤ã‚’å‰²ã‚‹ã¨è§’åº¦ãŒå‡ºã¦ãã‚‹
 #define	WIPE_DOOR_ROTA_NUM	(21)
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒ}ƒXƒ^[ƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒhƒ[ƒN
+//	ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
 //	
 //=====================================
 typedef struct {
-	int a_count;	// •Ï‰»”i’iŠK”j
-	int piece_sync;	// ‚P•Ğ‚ÌƒVƒ“ƒN”
-	int sync_c;		// ƒVƒ“ƒNƒJƒEƒ“ƒg
+	int a_count;	// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰
+	int piece_sync;	// ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+	int sync_c;		// ã‚·ãƒ³ã‚¯ã‚«ã‚¦ãƒ³ãƒˆ
 
 	int set_num;
 	int end_num;
@@ -57,7 +57,7 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	ƒEƒBƒ“ƒhƒEÀ•W‚ğƒpƒbƒN
+//	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åº§æ¨™ã‚’ãƒ‘ãƒƒã‚¯
 //	
 //=====================================
 typedef struct {
@@ -66,7 +66,7 @@ typedef struct {
 	int x2;
 	int y2;
 } WIPE_WND_POSITION;
-typedef struct {	// ˆø”—p
+typedef struct {	// å¼•æ•°ç”¨
 	u8 x1;
 	u8 y1;
 	u8 x2;
@@ -76,56 +76,56 @@ typedef struct {	// ˆø”—p
 
 //-------------------------------------
 //	
-//	ƒEƒBƒ“ƒhƒE•ÏŒ`\‘¢‘Ì
+//	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰å½¢æ§‹é€ ä½“
 //
-//	ƒVƒƒƒbƒ^[EƒCƒ“/ƒAƒEƒg
-//	ƒXƒ‰ƒCƒhEƒCƒ“/ƒAƒEƒg
-//	ƒVƒƒƒbƒ^[EƒCƒ“/ƒAƒEƒg
-//	ƒ{ƒbƒNƒXEƒCƒ“/ƒAƒEƒg
-//	ˆ——p\‘¢‘Ì‚Å‚·B
+//	ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ãƒ»ã‚¤ãƒ³/ã‚¢ã‚¦ãƒˆ
+//	ã‚¹ãƒ©ã‚¤ãƒ‰ãƒ»ã‚¤ãƒ³/ã‚¢ã‚¦ãƒˆ
+//	ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ãƒ»ã‚¤ãƒ³/ã‚¢ã‚¦ãƒˆ
+//	ãƒœãƒƒã‚¯ã‚¹ãƒ»ã‚¤ãƒ³/ã‚¢ã‚¦ãƒˆ
+//	å‡¦ç†ç”¨æ§‹é€ ä½“ã§ã™ã€‚
 //	
 //=====================================
 typedef struct {
-	WIPE_WND_POSITION st;	// ŠJnÀ•W
-	WIPE_WND_POSITION add;	// ‰ÁZÀ•W
-	WIPE_WND_POSITION ed;	// I—¹À•W
+	WIPE_WND_POSITION st;	// é–‹å§‹åº§æ¨™
+	WIPE_WND_POSITION add;	// åŠ ç®—åº§æ¨™
+	WIPE_WND_POSITION ed;	// çµ‚äº†åº§æ¨™
 
-	int disp;		// –Ê
-	int wnd_no;		// ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
+	int disp;		// é¢
+	int wnd_no;		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
 	
-	int a_count;	// •Ï‰»”i’iŠK”j
-	int piece_sync;	// ‚P•Ğ‚ÌƒVƒ“ƒN”
-	int sync_c;		// ƒVƒ“ƒNƒJƒEƒ“ƒg
-	int fade_flg;	// ƒtƒF[ƒhƒtƒ‰ƒO
+	int a_count;	// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰
+	int piece_sync;	// ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+	int sync_c;		// ã‚·ãƒ³ã‚¯ã‚«ã‚¦ãƒ³ãƒˆ
+	int fade_flg;	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 
 	WNDP_SYS_PTR wnd_sys;
 } WIPE_TYPE_WND_MOVE;
 
 //-------------------------------------
 //	
-//	ƒEƒBƒ“ƒhƒE•ÏŒ`‰Šú‰»—p
+//	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰å½¢åˆæœŸåŒ–ç”¨
 //	
 //=====================================
 typedef struct {
-	WIPE_WND_POSITION_FP st;	// ŠJnÀ•W
-	WIPE_WND_POSITION_FP ed;	// I—¹À•W
+	WIPE_WND_POSITION_FP st;	// é–‹å§‹åº§æ¨™
+	WIPE_WND_POSITION_FP ed;	// çµ‚äº†åº§æ¨™
 
-	u8 wnd_no;		// ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
+	u8 wnd_no;		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
 
-	u8 in_wnd;		// ƒEƒBƒ“ƒhƒE‚Ì’†
-	u8 out_wnd;	// ƒEƒBƒ“ƒhƒE‚ÌŠO
+	u8 in_wnd;		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸­
+	u8 out_wnd;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å¤–
 
-	u8 fade_flg;	// ƒtƒF[ƒhƒtƒ‰ƒO
+	u8 fade_flg;	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 
 } WIPE_TYPE_WND_MOVE_FP;
 
 
 //-------------------------------------
 //	
-//	ƒEƒBƒ“ƒhƒE•ÏŒ`\‘¢‘Ì
-//	ƒEƒBƒ“ƒhƒE‚ğ‚Q‚Âg‚¤‚Æ‚«‚æ‚¤
+//	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰å½¢æ§‹é€ ä½“
+//	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ï¼’ã¤ä½¿ã†ã¨ãã‚ˆã†
 //
-//	ƒXƒvƒŠƒbƒgEƒCƒ“/ƒAƒEƒg
+//	ã‚¹ãƒ—ãƒªãƒƒãƒˆãƒ»ã‚¤ãƒ³/ã‚¢ã‚¦ãƒˆ
 //	
 //=====================================
 typedef struct {
@@ -135,56 +135,56 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	HBlank’†‚Ìwndƒf[ƒ^
-//	\‘¢‘Ì
+//	HBlankä¸­ã®wndãƒ‡ãƒ¼ã‚¿
+//	æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	short	wnd_data[2][192];	// wndƒf[ƒ^
-	short	wnd_tmp[2][192];		// ƒƒCƒ“ƒ‹[ƒvŒvZ—p
+	short	wnd_data[2][192];	// wndãƒ‡ãƒ¼ã‚¿
+	short	wnd_tmp[2][192];		// ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—è¨ˆç®—ç”¨
 	
-	int wnd_no;		// ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
+	int wnd_no;		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
 } WIPE_TYPE_HB_WND_ONE;
 
 //-------------------------------------
 //	
-//	Hblank’†‚Ìwndƒf[ƒ^‚ğ
-//	‘©‚Ë‚½\‘¢‘Ì
+//	Hblankä¸­ã®wndãƒ‡ãƒ¼ã‚¿ã‚’
+//	æŸã­ãŸæ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
 	WIPE_TYPE_HB_WND_ONE* data;
 	int wnd_data_num;
-	int disp;		// –Ê
+	int disp;		// é¢
 } WIPE_TYPE_HB_WND;
 
 
 //-------------------------------------
 //	
-//	HBlank‚ğg—p‚µ‰~‚ğwnd‚Å•`‚­ƒVƒXƒeƒ€‚Ì
-//	\‘¢‘Ì
+//	HBlankã‚’ä½¿ç”¨ã—å††ã‚’wndã§æãã‚·ã‚¹ãƒ†ãƒ ã®
+//	æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	WIPE_TYPE_HB_WND hb_circle;	// HblankCIRCLEƒf[ƒ^
-	int	r;		// ”¼Œa
-	int x;		// ’†SÀ•W
+	WIPE_TYPE_HB_WND hb_circle;	// HblankCIRCLEãƒ‡ãƒ¼ã‚¿
+	int	r;		// åŠå¾„
+	int x;		// ä¸­å¿ƒåº§æ¨™
 	int y;
-	int add_r;		// ”¼Œa•Ï‰»’l
-	int a_count;	// •Ï‰»”i’iŠK”j
-	int piece_sync;	// ‚P•Ğ‚ÌƒVƒ“ƒN”
-	int sync_c;		// ƒVƒ“ƒNƒJƒEƒ“ƒg
-	int heap;		// g—p‚·‚éƒq[ƒv
-	int fade_flg;	// ƒtƒF[ƒhƒtƒ‰ƒO
+	int add_r;		// åŠå¾„å¤‰åŒ–å€¤
+	int a_count;	// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰
+	int piece_sync;	// ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+	int sync_c;		// ã‚·ãƒ³ã‚¯ã‚«ã‚¦ãƒ³ãƒˆ
+	int heap;		// ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+	int fade_flg;	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 
-	WNDP_SYS_PTR wnd_sys;	// ƒEƒBƒ“ƒhƒEİ’èƒf[ƒ^•Û‘¶—Ìˆæ
-	WIPE_HBLANK* p_wipehb;	// ƒƒCƒvHBlankƒ[ƒN
+	WNDP_SYS_PTR wnd_sys;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®šãƒ‡ãƒ¼ã‚¿ä¿å­˜é ˜åŸŸ
+	WIPE_HBLANK* p_wipehb;	// ãƒ¯ã‚¤ãƒ—HBlankãƒ¯ãƒ¼ã‚¯
 } WIPE_TYPE_WND_CIRCLE;
 
 //-------------------------------------
 //	
-//	HBlank‚ğg—p‚µ‰~‚ğwnd‚Å•`‚­ƒVƒXƒeƒ€
-//	ƒpƒbƒNŠÖ”‚Ìˆø”
+//	HBlankã‚’ä½¿ç”¨ã—å††ã‚’wndã§æãã‚·ã‚¹ãƒ†ãƒ 
+//	ãƒ‘ãƒƒã‚¯é–¢æ•°ã®å¼•æ•°
 //	
 //=====================================
 typedef struct {
@@ -200,29 +200,29 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	HBlank‚ğg—p‚µƒJ[ƒeƒ“‚ğwnd‚Å•`‚­ƒVƒXƒeƒ€‚Ì
-//	\‘¢‘Ì
+//	HBlankã‚’ä½¿ç”¨ã—ã‚«ãƒ¼ãƒ†ãƒ³ã‚’wndã§æãã‚·ã‚¹ãƒ†ãƒ ã®
+//	æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	WIPE_TYPE_HB_WND hb_c;	// Hblankƒf[ƒ^
-	int rota;		// ŠJ‚«Šp“x
-	int rota_add;	// ‚P‰ñ‚ÅŠJ‚­Šp“x
-	int a_count;	// •Ï‰»”i’iŠK”j
-	int piece_sync;	// ‚P•Ğ‚ÌƒVƒ“ƒN”
-	int sync_c;		// ƒVƒ“ƒNƒJƒEƒ“ƒg
-	int fade_flg;	// ƒtƒF[ƒhƒtƒ‰ƒO
+	WIPE_TYPE_HB_WND hb_c;	// Hblankãƒ‡ãƒ¼ã‚¿
+	int rota;		// é–‹ãè§’åº¦
+	int rota_add;	// ï¼‘å›ã§é–‹ãè§’åº¦
+	int a_count;	// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰
+	int piece_sync;	// ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+	int sync_c;		// ã‚·ãƒ³ã‚¯ã‚«ã‚¦ãƒ³ãƒˆ
+	int fade_flg;	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 
 	WNDP_SYS_PTR wnd_sys;
-	WIPE_HBLANK* p_wipehb;	// ƒƒCƒvHBlankƒ[ƒN
+	WIPE_HBLANK* p_wipehb;	// ãƒ¯ã‚¤ãƒ—HBlankãƒ¯ãƒ¼ã‚¯
 
-	int heap;		// g—p‚·‚éƒq[ƒv
+	int heap;		// ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 } WIPE_TYPE_WND_CURTAIN;
 
 //-------------------------------------
 //	
-//	HBlank‚ğg—p‚µƒJ[ƒeƒ“‚ğ•\¦‚·‚éƒVƒXƒeƒ€
-//	ƒpƒbƒNŠÖ”‚Ìˆø”
+//	HBlankã‚’ä½¿ç”¨ã—ã‚«ãƒ¼ãƒ†ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
+//	ãƒ‘ãƒƒã‚¯é–¢æ•°ã®å¼•æ•°
 //	
 //=====================================
 typedef struct {
@@ -237,29 +237,29 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	HBlank‚ğg—p‚µƒhƒA‚ğwnd‚Å•`‚­ƒVƒXƒeƒ€‚Ì
-//	\‘¢‘Ì
+//	HBlankã‚’ä½¿ç”¨ã—ãƒ‰ã‚¢ã‚’wndã§æãã‚·ã‚¹ãƒ†ãƒ ã®
+//	æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	WIPE_TYPE_HB_WND hb_d;	// Hblankƒf[ƒ^
-	int open_max;	// Å‘å‚ÌŠJ‚­‹——£
-	int open_r;		// ŠJ‚­‰ñ“]’l
-	int open_r_a;	// ‘«‚·’l
-	int a_count;	// •Ï‰»”i’iŠK”j
-	int piece_sync;	// ‚P•Ğ‚ÌƒVƒ“ƒN”
-	int sync_c;		// ƒVƒ“ƒNƒJƒEƒ“ƒg
-	int fade_flg;	// ƒtƒF[ƒhƒtƒ‰ƒO
+	WIPE_TYPE_HB_WND hb_d;	// Hblankãƒ‡ãƒ¼ã‚¿
+	int open_max;	// æœ€å¤§ã®é–‹ãè·é›¢
+	int open_r;		// é–‹ãå›è»¢å€¤
+	int open_r_a;	// è¶³ã™å€¤
+	int a_count;	// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰
+	int piece_sync;	// ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+	int sync_c;		// ã‚·ãƒ³ã‚¯ã‚«ã‚¦ãƒ³ãƒˆ
+	int fade_flg;	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 
 	WNDP_SYS_PTR wnd_sys;
-	WIPE_HBLANK* p_wipehb;	// ƒƒCƒvHBlankƒ[ƒN
-	int heap;		// g—p‚·‚éƒq[ƒv
+	WIPE_HBLANK* p_wipehb;	// ãƒ¯ã‚¤ãƒ—HBlankãƒ¯ãƒ¼ã‚¯
+	int heap;		// ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 } WIPE_TYPE_WND_DOOR;
 
 //-------------------------------------
 //	
-//	HBlank‚ğg—p‚µƒhƒA‚ğ•\¦‚·‚éƒVƒXƒeƒ€
-//	ƒpƒbƒNŠÖ”‚Ìˆø”
+//	HBlankã‚’ä½¿ç”¨ã—ãƒ‰ã‚¢ã‚’è¡¨ç¤ºã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
+//	ãƒ‘ãƒƒã‚¯é–¢æ•°ã®å¼•æ•°
 //	
 //=====================================
 typedef struct {
@@ -273,47 +273,47 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	•ªŠ„‚³‚ê‚½ƒEƒBƒ“ƒhƒE‚ÌŠeX‚Ìİ’è
+//	åˆ†å‰²ã•ã‚ŒãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å„ã€…ã®è¨­å®š
 //	
 //=====================================
 typedef struct {
-	WIPE_WND_POSITION st;	// ŠJnÀ•W
-	WIPE_WND_POSITION add;	// ‰ÁZÀ•W
-	WIPE_WND_POSITION ed;	// I—¹À•W
+	WIPE_WND_POSITION st;	// é–‹å§‹åº§æ¨™
+	WIPE_WND_POSITION add;	// åŠ ç®—åº§æ¨™
+	WIPE_WND_POSITION ed;	// çµ‚äº†åº§æ¨™
 } WIPE_TYPE_WND_D_PIECE;
 
 //-------------------------------------
 //	
-//	‚P‚Â‚ÌƒEƒBƒ“ƒhƒE‚ğ•¡”‚ÌƒEƒBƒ“ƒhƒE
-//	g—p‚µ‚Ä‚¢‚é‚©‚Ì‚æ‚¤‚Ég—p‚·‚é
+//	ï¼‘ã¤ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¤‡æ•°ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+//	ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã®ã‚ˆã†ã«ä½¿ç”¨ã™ã‚‹
 //	
 //=====================================
 typedef struct {
-	WIPE_TYPE_HB_WND		hb_divi;		// Hblankİ’èƒf[ƒ^
+	WIPE_TYPE_HB_WND		hb_divi;		// Hblankè¨­å®šãƒ‡ãƒ¼ã‚¿
 	
-	WIPE_TYPE_WND_D_PIECE* piece_tbl;		// •ªŠ„‚µ‚½ƒf[ƒ^
-	int						piece_num;		// ƒEƒBƒ“ƒhƒE•ªŠ„”
+	WIPE_TYPE_WND_D_PIECE* piece_tbl;		// åˆ†å‰²ã—ãŸãƒ‡ãƒ¼ã‚¿
+	int						piece_num;		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ†å‰²æ•°
 
-	int a_count;		// •Ï‰»”i’iŠK”j
-	int piece_sync;		// ‚P•Ğ‚ÌƒVƒ“ƒN”
-	int sync_c;			// ƒVƒ“ƒNƒJƒEƒ“ƒg
-	int fade_flg;	// ƒtƒF[ƒhƒtƒ‰ƒO
+	int a_count;		// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰
+	int piece_sync;		// ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+	int sync_c;			// ã‚·ãƒ³ã‚¯ã‚«ã‚¦ãƒ³ãƒˆ
+	int fade_flg;	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 
-	WNDP_SYS_PTR wnd_sys;	// ƒEƒBƒ“ƒhƒEVblank•ÏXƒVƒXƒeƒ€‚Ìƒ[ƒN
-	WIPE_HBLANK* p_wipehb;	// ƒƒCƒvHBlankƒ[ƒN
-	int heap;			// g—p‚·‚éƒq[ƒv
+	WNDP_SYS_PTR wnd_sys;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Vblankå¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
+	WIPE_HBLANK* p_wipehb;	// ãƒ¯ã‚¤ãƒ—HBlankãƒ¯ãƒ¼ã‚¯
+	int heap;			// ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 } WIPE_TYPE_WND_DIVI;
 
 //-------------------------------------
 //	
-//	‚P‚Â‚ÌƒEƒBƒ“ƒhƒE‚ğ•¡”‚ÌƒEƒBƒ“ƒhƒE
-//	g—p‚µ‚Ä‚¢‚é‚©‚Ì‚æ‚¤‚Ég—p‚·‚é	
-//	ˆø”—p
+//	ï¼‘ã¤ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¤‡æ•°ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+//	ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã®ã‚ˆã†ã«ä½¿ç”¨ã™ã‚‹	
+//	å¼•æ•°ç”¨
 //=====================================
 typedef struct {
-	const WIPE_WND_POSITION_FP* p_st;	// •ªŠ„‚µ‚½ŠeX‚ÌŠJnÀ•W	—Dæ‡ˆÊi‚O„‚j
-	const WIPE_WND_POSITION_FP* p_ed;	// •ªŠ„‚µ‚½ŠeX‚ÌI—¹À•W
-	u16 divi_num;				// •ªŠ„”
+	const WIPE_WND_POSITION_FP* p_st;	// åˆ†å‰²ã—ãŸå„ã€…ã®é–‹å§‹åº§æ¨™	å„ªå…ˆé †ä½ï¼ˆï¼ï¼ï½ï¼‰
+	const WIPE_WND_POSITION_FP* p_ed;	// åˆ†å‰²ã—ãŸå„ã€…ã®çµ‚äº†åº§æ¨™
+	u16 divi_num;				// åˆ†å‰²æ•°
 	u16 wnd_no;
 	u8 in_wnd;
 	u8 out_wnd;
@@ -323,44 +323,44 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	ƒXƒNƒŠƒ…[‚P‚Â‚Ìƒf[ƒ^
+//	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
-	int	rota;		// Œ»İ‚Ì‰ñ“]Šp
-	int s_rota;		// ‰ñ“]Šp“x‰Šú’l
-	int add_num_rota;	// ‰ñ“]Šp“x‚ÌÅ‘å•Ï‰»’l
+	int	rota;		// ç¾åœ¨ã®å›è»¢è§’
+	int s_rota;		// å›è»¢è§’åº¦åˆæœŸå€¤
+	int add_num_rota;	// å›è»¢è§’åº¦ã®æœ€å¤§å¤‰åŒ–å€¤
 } WIPE_TYPE_WND_SCREW_ONE;
 
 //-------------------------------------
 //	
-//	ƒXƒNƒŠƒ…[ƒf[ƒ^\‘¢‘Ì
+//	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //
 //=====================================
 typedef struct {
-	WIPE_TYPE_HB_WND		hb;		// Hblankİ’èƒf[ƒ^
+	WIPE_TYPE_HB_WND		hb;		// Hblankè¨­å®šãƒ‡ãƒ¼ã‚¿
 	
-	WIPE_TYPE_WND_SCREW_ONE screw;	// ƒXƒNƒŠƒ…[ƒf[ƒ^
+	WIPE_TYPE_WND_SCREW_ONE screw;	// ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	int a_count_max;	// •Ï‰»”i’iŠK”jÅ‘å”
-	int a_count;		// •Ï‰»”i’iŠK”jƒJƒEƒ“ƒg’l
-	int piece_sync;		// ‚P•Ğ‚ÌƒVƒ“ƒN”
-	int sync_c;			// ƒVƒ“ƒNƒJƒEƒ“ƒg
-	int fade_flg;		// ƒtƒF[ƒhƒtƒ‰ƒO
-	int heap;			// ƒq[ƒv
+	int a_count_max;	// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰æœ€å¤§æ•°
+	int a_count;		// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰ã‚«ã‚¦ãƒ³ãƒˆå€¤
+	int piece_sync;		// ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+	int sync_c;			// ã‚·ãƒ³ã‚¯ã‚«ã‚¦ãƒ³ãƒˆ
+	int fade_flg;		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+	int heap;			// ãƒ’ãƒ¼ãƒ—
 
-	WNDP_SYS_PTR wnd_sys;	// ƒEƒBƒ“ƒhƒEVblank•ÏXƒVƒXƒeƒ€‚Ìƒ[ƒN
-	WIPE_HBLANK* p_wipehb;	// ƒƒCƒvHBlankƒ[ƒN
+	WNDP_SYS_PTR wnd_sys;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Vblankå¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
+	WIPE_HBLANK* p_wipehb;	// ãƒ¯ã‚¤ãƒ—HBlankãƒ¯ãƒ¼ã‚¯
 } WIPE_TYPE_WND_SCREW;
 
 //-------------------------------------
 //	
-//	ƒXƒNƒŠƒ…[“®ìŠÖ”ˆø”
+//	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼å‹•ä½œé–¢æ•°å¼•æ•°
 //	
 //=====================================
 typedef struct {
-	u16	s_rota;		// ŠJn‰ñ“]Šp
-	u16	e_rota;		// I—¹‰ñ“]Šp
+	u16	s_rota;		// é–‹å§‹å›è»¢è§’
+	u16	e_rota;		// çµ‚äº†å›è»¢è§’
 	
 	u8 in_wnd;
 	u8 out_wnd;
@@ -369,44 +369,44 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	ƒtƒ‰ƒbƒVƒ…‚S•ûŒüƒf[ƒ^
+//	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ï¼”æ–¹å‘ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
-	int	rota;		// Œ»İ‚Ì‰ñ“]Šp
-	int s_rota;		// ‰ñ“]Šp“x‰Šú’l
-	int add_num_rota;	// ‰ñ“]Šp“x‚ÌÅ‘å•Ï‰»’l
+	int	rota;		// ç¾åœ¨ã®å›è»¢è§’
+	int s_rota;		// å›è»¢è§’åº¦åˆæœŸå€¤
+	int add_num_rota;	// å›è»¢è§’åº¦ã®æœ€å¤§å¤‰åŒ–å€¤
 } WIPE_TYPE_WND_FLASH_FOUR_ONE;
 
 //-------------------------------------
 //	
-//	ƒtƒ‰ƒbƒVƒ…‚S•ûŒüƒf[ƒ^\‘¢‘Ì
+//	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ï¼”æ–¹å‘ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //
 //=====================================
 typedef struct {
-	WIPE_TYPE_HB_WND		hb;		// Hblankİ’èƒf[ƒ^
+	WIPE_TYPE_HB_WND		hb;		// Hblankè¨­å®šãƒ‡ãƒ¼ã‚¿
 	
-	WIPE_TYPE_WND_FLASH_FOUR_ONE screw;	// ƒXƒNƒŠƒ…[ƒf[ƒ^
+	WIPE_TYPE_WND_FLASH_FOUR_ONE screw;	// ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	int a_count_max;	// •Ï‰»”i’iŠK”jÅ‘å”
-	int a_count;		// •Ï‰»”i’iŠK”jƒJƒEƒ“ƒg’l
-	int piece_sync;		// ‚P•Ğ‚ÌƒVƒ“ƒN”
-	int sync_c;			// ƒVƒ“ƒNƒJƒEƒ“ƒg
-	int fade_flg;		// ƒtƒF[ƒhƒtƒ‰ƒO
-	int heap;			// ƒq[ƒv
+	int a_count_max;	// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰æœ€å¤§æ•°
+	int a_count;		// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰ã‚«ã‚¦ãƒ³ãƒˆå€¤
+	int piece_sync;		// ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+	int sync_c;			// ã‚·ãƒ³ã‚¯ã‚«ã‚¦ãƒ³ãƒˆ
+	int fade_flg;		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+	int heap;			// ãƒ’ãƒ¼ãƒ—
 
-	WNDP_SYS_PTR wnd_sys;	// ƒEƒBƒ“ƒhƒEVblank•ÏXƒVƒXƒeƒ€‚Ìƒ[ƒN
-	WIPE_HBLANK* p_wipehb;	// ƒƒCƒvHBlankƒ[ƒN
+	WNDP_SYS_PTR wnd_sys;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Vblankå¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
+	WIPE_HBLANK* p_wipehb;	// ãƒ¯ã‚¤ãƒ—HBlankãƒ¯ãƒ¼ã‚¯
 } WIPE_TYPE_WND_FLASH_FOUR;
 
 //-------------------------------------
 //	
-//	ƒtƒ‰ƒbƒVƒ…‚S•ûŒü“®ìŠÖ”ˆø”
+//	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ï¼”æ–¹å‘å‹•ä½œé–¢æ•°å¼•æ•°
 //	
 //=====================================
 typedef struct {
-	u16	s_rota;		// ŠJn‰ñ“]Šp
-	u16	e_rota;		// I—¹‰ñ“]Šp
+	u16	s_rota;		// é–‹å§‹å›è»¢è§’
+	u16	e_rota;		// çµ‚äº†å›è»¢è§’
 	
 	u8 in_wnd;
 	u8 out_wnd;
@@ -414,22 +414,22 @@ typedef struct {
 } WIPE_TYPE_WND_FLASH_FOUR_FP;
 
 //-------------------------------------
-//	V•ûŒüWND“®ì@Hƒuƒ‰ƒ“ƒNƒ[ƒN
+//	Væ–¹å‘WNDå‹•ä½œã€€Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	u8 in_out_write[ 192 ];	// in_wnd out_wndƒtƒ‰ƒO
-	u8 in_out_read[ 192 ];	// in_wnd out_wndƒtƒ‰ƒO
+	u8 in_out_write[ 192 ];	// in_wnd out_wndãƒ•ãƒ©ã‚°
+	u8 in_out_read[ 192 ];	// in_wnd out_wndãƒ•ãƒ©ã‚°
 	
 	int wnd_no;
 } WIPE_TYPE_WND_VMOVE_HDATA;
 
 //-------------------------------------
-//	V•ûŒüWND“®ì@‘©‚Ë‚½ƒf[ƒ^
+//	Væ–¹å‘WNDå‹•ä½œã€€æŸã­ãŸãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	WIPE_TYPE_WND_VMOVE_HDATA data[2];
-	u8 wnd_data_num;	// ƒEƒBƒ“ƒhƒEg—p”(Å‘å2)
-	u8 disp;		// –Ê
+	u8 wnd_data_num;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨æ•°(æœ€å¤§2)
+	u8 disp;		// é¢
 } WIPE_TYPE_WND_VMOVE;
 enum{
 	WIPE_WND_VMOVE_INWND,
@@ -438,14 +438,14 @@ enum{
 
 //-------------------------------------
 //	
-//	c•ûŒüHƒuƒ‰ƒ“ƒNg—pƒEƒBƒ“ƒhƒE“®ì
-//	ƒVƒXƒeƒ€
+//	ç¸¦æ–¹å‘Hãƒ–ãƒ©ãƒ³ã‚¯ä½¿ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œ
+//	ã‚·ã‚¹ãƒ†ãƒ 
 //	
 //=====================================
 //-------------------------------------
-//	“®ìƒf[ƒ^
+//	å‹•ä½œãƒ‡ãƒ¼ã‚¿
 //
-//	in_out‚Ì—Ìˆæ‚ªs_y‚©‚çe_y‚Ö‚ÆL‚ª‚Á‚Ä‚¢‚«‚Ü‚·
+//	in_outã®é ˜åŸŸãŒs_yã‹ã‚‰e_yã¸ã¨åºƒãŒã£ã¦ã„ãã¾ã™
 //=====================================
 typedef struct {
 	u8 s_y;		
@@ -454,27 +454,27 @@ typedef struct {
 } WIPE_TYPE_WND_VMOVE_DATA;
 
 //-------------------------------------
-//	ŠÇ—ƒf[ƒ^
+//	ç®¡ç†ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	WIPE_TYPE_WND_VMOVE HblankData;	// Hƒuƒ‰ƒ“ƒNƒf[ƒ^
+	WIPE_TYPE_WND_VMOVE HblankData;	// Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿
 
 	const WIPE_TYPE_WND_VMOVE_DATA* p_param;
 	int param_num;
 
-	int a_count_max;	// •Ï‰»”i’iŠK”jÅ‘å”
-	int a_count;		// •Ï‰»”i’iŠK”jƒJƒEƒ“ƒg’l
-	int piece_sync;		// ‚P•Ğ‚ÌƒVƒ“ƒN”
-	int sync_c;			// ƒVƒ“ƒNƒJƒEƒ“ƒg
-	int fade_flg;		// ƒtƒF[ƒhƒtƒ‰ƒO
-	int heap;			// ƒq[ƒv
+	int a_count_max;	// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰æœ€å¤§æ•°
+	int a_count;		// å¤‰åŒ–æ•°ï¼ˆæ®µéšæ•°ï¼‰ã‚«ã‚¦ãƒ³ãƒˆå€¤
+	int piece_sync;		// ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+	int sync_c;			// ã‚·ãƒ³ã‚¯ã‚«ã‚¦ãƒ³ãƒˆ
+	int fade_flg;		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+	int heap;			// ãƒ’ãƒ¼ãƒ—
 
-	WNDP_SYS_PTR wnd_sys;	// ƒEƒBƒ“ƒhƒEVblank•ÏXƒVƒXƒeƒ€‚Ìƒ[ƒN
-	WIPE_HBLANK* p_wipehb;	// ƒƒCƒvHBlankƒ[ƒN
+	WNDP_SYS_PTR wnd_sys;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Vblankå¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
+	WIPE_HBLANK* p_wipehb;	// ãƒ¯ã‚¤ãƒ—HBlankãƒ¯ãƒ¼ã‚¯
 } WIPE_TYPE_WND_VMOVE_CONT;
 
 //-------------------------------------
-//	ƒpƒ‰ƒ[ƒ^
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	const WIPE_TYPE_WND_VMOVE_DATA* cp_data;
@@ -486,28 +486,28 @@ typedef struct {
 //-------------------------------------
 //
 //	
-//		ƒ|ƒPƒ‚ƒ“ƒƒCƒv
+//		ãƒã‚±ãƒ¢ãƒ³ãƒ¯ã‚¤ãƒ—
 //
 //	
 //=====================================
 //-------------------------------------
-//	ƒpƒ‰ƒ[ƒ^
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	WIPE_TYPE_WND_MOVE_FP wnd_move;
 	WIPE_TYPE_WND_VMOVE_PARAM wnd_split;
-	fx32 sync_div_par;	// ƒVƒ“ƒN”‚ÌŠ„‡iwnd_move‚ÌŠ„‡j
+	fx32 sync_div_par;	// ã‚·ãƒ³ã‚¯æ•°ã®å‰²åˆï¼ˆwnd_moveã®å‰²åˆï¼‰
 } WIPE_TYPE_WND_PESOCOM_PARAM;
 
 //-------------------------------------
-//	ƒ[ƒN
+//	ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	WIPE_TYPE_WND_MOVE wnd_move;
 	WIPE_TYPE_WND_VMOVE_CONT wnd_split;
 	WIPE_TYPE_WND_PESOCOM_PARAM* p_param;
 	u8 sub_divi;
-	u8 seq;	// ƒV[ƒPƒ“ƒX
+	u8 seq;	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	u8 fade_flg;
 	u8 dummy;
 } WIPE_TYPE_WND_PESOCOM;
@@ -517,10 +517,10 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ŠeíŒvZ—p
+// å„ç¨®è¨ˆç®—ç”¨
 static fx32 sum_tan(int rota);
 static int sub_rota_height_width_one( int rota, int height );
 static void sum_rota_height_width(int rota, int* depth, int work_num, int s_h);
@@ -530,7 +530,7 @@ static int sum_add_wnd_width(int num1, int num2);
 static void sum_add_wnd(WIPE_WND_POSITION* num, WIPE_WND_POSITION* add);
 static void sum_set_wnd_position(WIPE_WND_POSITION* st, WIPE_WND_POSITION* ed, WIPE_WND_POSITION* add, const WIPE_WND_POSITION_FP* set_st, const WIPE_WND_POSITION_FP* set_ed, int division );
 
-// ƒEƒBƒ“ƒhƒEˆ——p
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡¦ç†ç”¨
 static void scchg_WndEnd(int flag, WNDP_SYS_PTR wnd_sys, int disp);
 static void scchg_h_Wnd(void* work);
 static void scchg_h_WndMake(WIPE_TYPE_HB_WND* data, int flag, int disp, int heap);
@@ -543,7 +543,7 @@ static void scchg_WndSwap(TCB_PTR tcb, void* work);
 static void scchg_WndSetUp(WNDP_SYS_PTR wnd_sys, int in_wnd, int out_wnd, int wnd_no, int disp, int x1, int y1, int x2, int y2, int fade_flg);
 static void scchg_WndVisible(WNDP_SYS_PTR wnd_sys, int plane, int disp, int fade_flg);
 
-// ƒEƒBƒ“ƒhƒEY“®ìˆ——p
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Yå‹•ä½œå‡¦ç†ç”¨
 static void scchg_h_VMoveWndInit( WIPE_TYPE_WND_VMOVE* p_wnddata, int disp, int data_num, int wnd_no0, int wnd_no1 );
 
 static void scchg_h_VMoveWnd_SwapReq( WIPE_TYPE_WND_VMOVE* p_wnddata );
@@ -554,12 +554,12 @@ static void scchg_h_VMoveWnd_Swap( TCB_PTR tcb, void* p_work );
 static void scchg_h_VMoveWnd_Main( void* p_work );
 
 
-// ƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒhˆ——p
+// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ç”¨
 static void scchg_FadeInit(WIPE_SYS_WIPE_WORK* wipe, int fade_flag);
 static BOOL scchg_FadePack(WIPE_SYS_WIPE_WORK* wipe);
 static BOOL scchg_FadeCalcMain( WIPE_BRIGHTNESS_FADE* data );
 
-// lŠp•\¦ƒEƒBƒ“ƒhƒEˆ——p
+// å››è§’è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡¦ç†ç”¨
 static void scchg_WndMovePackInit( WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_WND_MOVE_FP* pram );
 static BOOL scchg_WndMovePack(WIPE_SYS_WIPE_WORK* wipe);
 
@@ -568,21 +568,21 @@ static BOOL scchg_WndMoveDoublePack(WIPE_SYS_WIPE_WORK* wipe);
 static void scchg_WndMoveInit(WIPE_TYPE_WND_MOVE* data, const WIPE_TYPE_WND_MOVE_FP* pram, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys);
 static BOOL scchg_WndMoveMain(WIPE_TYPE_WND_MOVE* data);
 
-// ‰~•\¦ƒEƒBƒ“ƒhƒEˆ——p
+// å††è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡¦ç†ç”¨
 static void scchg_WndCirclePackInit( WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_WND_CIRCLE_FP* param );
 static BOOL scchg_WndCirclePack(WIPE_SYS_WIPE_WORK* wipe);
 static void scchg_WndCircleInit(WIPE_TYPE_WND_CIRCLE* data, const WIPE_TYPE_WND_CIRCLE_FP* param, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys, WIPE_HBLANK* p_wipehb, int heap);
 static BOOL scchg_WndCircleMain(WIPE_TYPE_WND_CIRCLE* data);
 static void scchg_WndCircleSum(WIPE_TYPE_WND_CIRCLE* work);
 
-// ƒJ[ƒeƒ“Œ^ƒEƒBƒ“ƒhƒE•\¦—p
+// ã‚«ãƒ¼ãƒ†ãƒ³å‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºç”¨
 static void scchg_WndCurtainPackInit( WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_WND_CURTAIN_FP* param);
 static BOOL scchg_WndCurtainPack(WIPE_SYS_WIPE_WORK* wipe);
 static void scchg_WndCurtainInit(WIPE_TYPE_WND_CURTAIN* data, const WIPE_TYPE_WND_CURTAIN_FP* param, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys, WIPE_HBLANK* p_wipehb, int heap );
 static BOOL scchg_WndCurtainMain(WIPE_TYPE_WND_CURTAIN* data);
 static void scchg_WndCurtainSum(WIPE_TYPE_WND_CURTAIN* work);
 
-// ƒhƒAŒ^ƒEƒBƒ“ƒhƒE•\¦—p
+// ãƒ‰ã‚¢å‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºç”¨
 
 static void scchg_WndDoorPackInit(WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_WND_DOOR_FP* param);
 static BOOL scchg_WndDoorPack(WIPE_SYS_WIPE_WORK* wipe);
@@ -590,7 +590,7 @@ static void scchg_WndDoorInit(WIPE_TYPE_WND_DOOR* data, const WIPE_TYPE_WND_DOOR
 static BOOL scchg_WndDoorMain(WIPE_TYPE_WND_DOOR* data);
 static void scchg_WndDoorSum(WIPE_TYPE_WND_DOOR* work);
 
-// 1ƒEƒBƒ“ƒhƒE•ªŠ„ˆ—ƒVƒXƒeƒ€
+// 1ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ†å‰²å‡¦ç†ã‚·ã‚¹ãƒ†ãƒ 
 static void scchg_WndDivisionPackInit(WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_WND_DIVI_FP* param);
 static BOOL scchg_WndDivisionPack(WIPE_SYS_WIPE_WORK* wipe);
 static BOOL scchg_WndDivisionMain(WIPE_TYPE_WND_DIVI* data);
@@ -600,7 +600,7 @@ static void scchg_WndDivisionSum(WIPE_TYPE_WND_DIVI* work);
 static void scchg_WndDivisionMainSub(WIPE_TYPE_WND_DIVI* data);
 static void scchg_WndDivisionSumSub(WIPE_TYPE_HB_WND* hb_divi, WIPE_WND_POSITION* set);
 
-// ƒXƒNƒŠƒ…[
+// ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼
 static void scchg_WndScrewPackInit(WIPE_SYS_WIPE_WORK* wipe, WIPE_TYPE_WND_SCREW_FP* param);
 static BOOL scchg_WndScrewPack(WIPE_SYS_WIPE_WORK* wipe);
 static void scchg_WndScrewInit(WIPE_TYPE_WND_SCREW* data, WIPE_TYPE_WND_SCREW_FP* param, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys, WIPE_HBLANK* p_wipehb, int heap );
@@ -609,7 +609,7 @@ static void scchg_WndScrewEnd(WIPE_TYPE_WND_SCREW* data);
 static void scchg_WndScrewSum(WIPE_TYPE_WND_SCREW* work);
 static void scchg_WndScrewOneAdd( WIPE_TYPE_WND_SCREW_ONE* p_data, int count, int count_max );
 
-// ƒtƒ‰ƒbƒVƒ…@‚S
+// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€ï¼”
 static void scchg_WndFlashFourPackInit(WIPE_SYS_WIPE_WORK* wipe, WIPE_TYPE_WND_FLASH_FOUR_FP* param);
 static BOOL scchg_WndFlashFourPack(WIPE_SYS_WIPE_WORK* wipe);
 static void scchg_WndFlashFourInit(WIPE_TYPE_WND_FLASH_FOUR* data, WIPE_TYPE_WND_FLASH_FOUR_FP* param, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys, WIPE_HBLANK* p_wipehb, int heap );
@@ -619,7 +619,7 @@ static void scchg_WndFlashFourSum(WIPE_TYPE_WND_FLASH_FOUR* work);
 static void scchg_WndFlashFourOneAdd( WIPE_TYPE_WND_FLASH_FOUR_ONE* p_data, int count, int count_max );
 
 
-// Hƒuƒ‰ƒ“ƒNg—p	ƒEƒBƒ“ƒhƒEY•ûŒüˆÚ“®ƒVƒXƒeƒ€
+// Hãƒ–ãƒ©ãƒ³ã‚¯ä½¿ç”¨	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Yæ–¹å‘ç§»å‹•ã‚·ã‚¹ãƒ†ãƒ 
 static void scchg_WndWndVMovePackInit(WIPE_SYS_WIPE_WORK* wipe, WIPE_TYPE_WND_VMOVE_PARAM* param);
 static BOOL scchg_WndWndVMovePack(WIPE_SYS_WIPE_WORK* wipe);
 static void scchg_WndWndVMoveInit(WIPE_TYPE_WND_VMOVE_CONT* data, WIPE_TYPE_WND_VMOVE_PARAM* param, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys, WIPE_HBLANK* p_wipehb, int heap );
@@ -629,7 +629,7 @@ static void scchg_WndWndVMoveSum(WIPE_TYPE_WND_VMOVE_CONT* work);
 static void scchg_WndWndVMoveSub_Core( const WIPE_TYPE_WND_VMOVE_DATA* p_one, WIPE_TYPE_WND_VMOVE_HDATA* p_buff, int count, int count_max );
 
 
-// ƒpƒ\ƒRƒ“ƒƒCƒv
+// ãƒ‘ã‚½ã‚³ãƒ³ãƒ¯ã‚¤ãƒ—
 static void scchg_WndWndPesocomPackInit(WIPE_SYS_WIPE_WORK* wipe, WIPE_TYPE_WND_PESOCOM_PARAM* param);
 static BOOL scchg_WndWndPesocomPack(WIPE_SYS_WIPE_WORK* wipe);
 static void scchg_WndWndPesocomInit(WIPE_TYPE_WND_PESOCOM* data, WIPE_TYPE_WND_PESOCOM_PARAM* param, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys, WIPE_HBLANK* p_wipehb, int heap );
@@ -642,14 +642,14 @@ static BOOL scchg_WndWndPesocomOutMain(WIPE_TYPE_WND_PESOCOM* data, WIPE_SYS_WIP
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒtƒF[ƒhƒAƒEƒg
+ *@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
- *@return	BOOL	TRUEFI—¹@FALSEF‘±s
+ *@return	BOOL	TRUEï¼šçµ‚äº†ã€€FALSEï¼šç¶šè¡Œ
  *
- * ƒtƒF[ƒhƒAƒEƒg
- *	‰æ–Ê‚ª™X‚ÉˆÃ‚­‚È‚Á‚Ä‚¢‚­
+ * ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+ *	ç”»é¢ãŒå¾ã€…ã«æš—ããªã£ã¦ã„ã
  *
  */
 //-----------------------------------------------------------------------------
@@ -669,14 +669,14 @@ BOOL WipeFunc00(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒtƒF[ƒhƒCƒ“
+ *@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
- *@return	BOOL	TRUEFI—¹@FALSEF‘±s
+ *@return	BOOL	TRUEï¼šçµ‚äº†ã€€FALSEï¼šç¶šè¡Œ
  *
- *  ƒtƒF[ƒhƒCƒ“
- *		‰æ–Ê‚ª™X‚É–¾‚é‚­‚È‚èA‰æ–Ê‚ª•\¦‚³‚ê‚é
+ *  ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+ *		ç”»é¢ãŒå¾ã€…ã«æ˜ã‚‹ããªã‚Šã€ç”»é¢ãŒè¡¨ç¤ºã•ã‚Œã‚‹
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc01(WIPE_SYS_WIPE_WORK* wipe)
@@ -695,13 +695,13 @@ BOOL WipeFunc01(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒVƒƒƒbƒ^[ƒAƒEƒg
+ *@brief	ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	noen
  *
- * ã‚©‚ç‰º‚Ö‚ÌƒVƒƒƒbƒ^[ƒAƒEƒg
+ * ä¸Šã‹ã‚‰ä¸‹ã¸ã®ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¢ã‚¦ãƒˆ
  *
  *
  */
@@ -733,13 +733,13 @@ BOOL WipeFunc02(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒVƒƒƒbƒ^[ƒCƒ“
+ *@brief	ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * ã‚©‚ç‰º‚Ö‚ÌƒVƒƒƒbƒ^[ƒCƒ“
+ * ä¸Šã‹ã‚‰ä¸‹ã¸ã®ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¤ãƒ³
  *
  */
 //-----------------------------------------------------------------------------
@@ -769,13 +769,13 @@ BOOL WipeFunc03(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒVƒƒƒbƒ^[ƒAƒEƒg
+ *@brief	ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	noen
  *
- * ‰º‚©‚çã‚Ö‚ÌƒVƒƒƒbƒ^[ƒAƒEƒg
+ * ä¸‹ã‹ã‚‰ä¸Šã¸ã®ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¢ã‚¦ãƒˆ
  *
  *
  */
@@ -807,13 +807,13 @@ BOOL WipeFunc04(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒVƒƒƒbƒ^[ƒCƒ“
+ *@brief	ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * ‰º‚©‚çã‚Ö‚ÌƒVƒƒƒbƒ^[ƒCƒ“
+ * ä¸‹ã‹ã‚‰ä¸Šã¸ã®ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¤ãƒ³
  *
  */
 //-----------------------------------------------------------------------------
@@ -843,9 +843,9 @@ BOOL WipeFunc05(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒ‰ƒCƒhƒAƒEƒg
+ *@brief	ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	noen
  *
@@ -878,9 +878,9 @@ BOOL WipeFunc06(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒ‰ƒCƒhƒCƒ“
+ *@brief	ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -912,13 +912,13 @@ BOOL WipeFunc07(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒvƒŠƒbƒgEƒAƒEƒg
+ *@brief	ã‚¹ãƒ—ãƒªãƒƒãƒˆãƒ»ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * c@‰æ–Êã‰º‚©‚ç
+ * ç¸¦ã€€ç”»é¢ä¸Šä¸‹ã‹ã‚‰
  * 
  */
 //-----------------------------------------------------------------------------
@@ -950,13 +950,13 @@ BOOL WipeFunc08(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒvƒŠƒbƒgEƒCƒ“
+ *@brief	ã‚¹ãƒ—ãƒªãƒƒãƒˆãƒ»ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * c@‰æ–Ê’†‰›‚©‚ç
+ * ç¸¦ã€€ç”»é¢ä¸­å¤®ã‹ã‚‰
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc09(WIPE_SYS_WIPE_WORK* wipe)
@@ -986,13 +986,13 @@ BOOL WipeFunc09(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒvƒŠƒbƒgEƒAƒEƒg
+ *@brief	ã‚¹ãƒ—ãƒªãƒƒãƒˆãƒ»ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * c@‰æ–Ê’†‰›‚©‚ç
+ * ç¸¦ã€€ç”»é¢ä¸­å¤®ã‹ã‚‰
  * 
  */
 //-----------------------------------------------------------------------------
@@ -1023,13 +1023,13 @@ BOOL WipeFunc10(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒvƒŠƒbƒgEƒCƒ“
+ *@brief	ã‚¹ãƒ—ãƒªãƒƒãƒˆãƒ»ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * c@‰æ–Êã‰º‚©‚ç
+ * ç¸¦ã€€ç”»é¢ä¸Šä¸‹ã‹ã‚‰
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc11(WIPE_SYS_WIPE_WORK* wipe)
@@ -1060,13 +1060,13 @@ BOOL WipeFunc11(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒvƒŠƒbƒgEƒAƒEƒg
+ *@brief	ã‚¹ãƒ—ãƒªãƒƒãƒˆãƒ»ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * ‰¡@‰æ–Ê¶‰E‚©‚ç
+ * æ¨ªã€€ç”»é¢å·¦å³ã‹ã‚‰
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc12(WIPE_SYS_WIPE_WORK* wipe)
@@ -1094,13 +1094,13 @@ BOOL WipeFunc12(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒvƒŠƒbƒgEƒCƒ“
+ *@brief	ã‚¹ãƒ—ãƒªãƒƒãƒˆãƒ»ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * ‰¡@‰æ–Ê’†‰›‚©‚ç
+ * æ¨ªã€€ç”»é¢ä¸­å¤®ã‹ã‚‰
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc13(WIPE_SYS_WIPE_WORK* wipe)
@@ -1128,13 +1128,13 @@ BOOL WipeFunc13(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒvƒŠƒbƒgEƒAƒEƒg
+ *@brief	ã‚¹ãƒ—ãƒªãƒƒãƒˆãƒ»ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * ‰¡@‰æ–Ê’†‰›‚©‚ç
+ * æ¨ªã€€ç”»é¢ä¸­å¤®ã‹ã‚‰
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc14(WIPE_SYS_WIPE_WORK* wipe)
@@ -1168,13 +1168,13 @@ BOOL WipeFunc14(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒvƒŠƒbƒgEƒCƒ“
+ *@brief	ã‚¹ãƒ—ãƒªãƒƒãƒˆãƒ»ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * ‰¡@‰æ–Ê¶‰E‚©‚ç
+ * æ¨ªã€€ç”»é¢å·¦å³ã‹ã‚‰
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc15(WIPE_SYS_WIPE_WORK* wipe)
@@ -1208,13 +1208,13 @@ BOOL WipeFunc15(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒz[ƒ‹EƒAƒEƒg
+ *@brief	ãƒ›ãƒ¼ãƒ«ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- *	‰~Œ`ƒtƒF[ƒhƒAƒEƒg
+ *	å††å½¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc16(WIPE_SYS_WIPE_WORK* wipe)
@@ -1241,13 +1241,13 @@ BOOL WipeFunc16(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒz[ƒ‹EƒCƒ“
+ *@brief	ãƒ›ãƒ¼ãƒ«ãƒ»ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- *	‰~Œ`ƒtƒF[ƒhƒCƒ“
+ *	å††å½¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc17(WIPE_SYS_WIPE_WORK* wipe)
@@ -1274,13 +1274,13 @@ BOOL WipeFunc17(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒgƒ“ƒlƒ‹EƒAƒEƒg
+ *@brief	ãƒˆãƒ³ãƒãƒ«ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- *	‰~Œ`ƒtƒF[ƒhƒAƒEƒg
+ *	å††å½¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc18(WIPE_SYS_WIPE_WORK* wipe)
@@ -1306,13 +1306,13 @@ BOOL WipeFunc18(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒgƒ“ƒlƒ‹EƒCƒ“
+ *@brief	ãƒˆãƒ³ãƒãƒ«ãƒ»ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- *	‰~Œ`ƒtƒF[ƒhƒCƒ“
+ *	å††å½¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc19(WIPE_SYS_WIPE_WORK* wipe)
@@ -1338,9 +1338,9 @@ BOOL WipeFunc19(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒJ[ƒeƒ“EƒAƒEƒg
+ *@brief	ã‚«ãƒ¼ãƒ†ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1372,9 +1372,9 @@ BOOL WipeFunc20(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒJ[ƒeƒ“EƒCƒ“
+ *@brief	ã‚«ãƒ¼ãƒ†ãƒ³ãƒ»ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1385,7 +1385,7 @@ BOOL WipeFunc21(WIPE_SYS_WIPE_WORK* wipe)
 	if(wipe->sequence == WIPE_INIT){
 		static const WIPE_TYPE_WND_CURTAIN_FP param = {
 			0,
-			ROTA_NUM(90),// tan90‚Í’l•s’è‚É‚È‚é‚Ì‚ÅAˆÀ’è‚ğ‹‚ß90‚É‚µ‚Ä‚¢‚Ü‚·B
+			ROTA_NUM(90),// tan90ã¯å€¤ä¸å®šã«ãªã‚‹ã®ã§ã€å®‰å®šã‚’æ±‚ã‚90ã«ã—ã¦ã„ã¾ã™ã€‚
 			WNDP_WND_0,
 			GX_BLEND_ALL,
 			GX_BLEND_PLANEMASK_BD,
@@ -1406,13 +1406,13 @@ BOOL WipeFunc21(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ{ƒbƒNƒXƒAƒEƒg
+ *@brief	ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none	
  *
- * ŠO‚©‚ç’†
+ * å¤–ã‹ã‚‰ä¸­
  *
  */
 //-----------------------------------------------------------------------------
@@ -1442,12 +1442,12 @@ BOOL WipeFunc22(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ{ƒbƒNƒXƒCƒ“
+ *@brief	ãƒœãƒƒã‚¯ã‚¹ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
- * ’†‚©‚çŠO
+ * ä¸­ã‹ã‚‰å¤–
  *
  *
  */
@@ -1478,13 +1478,13 @@ BOOL WipeFunc23(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ{ƒbƒNƒXƒAƒEƒg
+ *@brief	ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none	
  *
- *	’†‚©‚çŠO
+ *	ä¸­ã‹ã‚‰å¤–
  *
  */
 //-----------------------------------------------------------------------------
@@ -1514,12 +1514,12 @@ BOOL WipeFunc24(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ{ƒbƒNƒXƒCƒ“
+ *@brief	ãƒœãƒƒã‚¯ã‚¹ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
- * ŠO‚©‚ç’†
+ * å¤–ã‹ã‚‰ä¸­
  *
  *
  */
@@ -1550,9 +1550,9 @@ BOOL WipeFunc25(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒhƒAƒAƒEƒg
+ *@brief	ãƒ‰ã‚¢ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none	
  *
@@ -1585,9 +1585,9 @@ BOOL WipeFunc26(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒhƒAƒCƒ“
+ *@brief	ãƒ‰ã‚¢ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  *
@@ -1620,9 +1620,9 @@ BOOL WipeFunc27(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒ‹ƒ^ƒl[ƒgƒAƒEƒg
+ *@brief	ã‚ªãƒ«ã‚¿ãƒãƒ¼ãƒˆã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none	
  *
@@ -1668,9 +1668,9 @@ BOOL WipeFunc28(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒ‹ƒ^ƒl[ƒgEƒCƒ“
+ *@brief	ã‚ªãƒ«ã‚¿ãƒãƒ¼ãƒˆãƒ»ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  *
@@ -1716,9 +1716,9 @@ BOOL WipeFunc29(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒuƒ‰ƒCƒ“ƒhƒAƒEƒg
+ *@brief	ãƒ–ãƒ©ã‚¤ãƒ³ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none	
  *
@@ -1753,9 +1753,9 @@ BOOL WipeFunc30(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒuƒ‰ƒCƒ“ƒhEƒCƒ“
+ *@brief	ãƒ–ãƒ©ã‚¤ãƒ³ãƒ‰ãƒ»ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  *
@@ -1790,9 +1790,9 @@ BOOL WipeFunc31(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒNƒŠƒ…[EƒAƒEƒg
+ *@brief	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  *
@@ -1822,9 +1822,9 @@ BOOL WipeFunc32(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒNƒŠƒ…[EƒCƒ“
+ *@brief	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ãƒ»ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  *
@@ -1854,9 +1854,9 @@ BOOL WipeFunc33(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒtƒ‰ƒbƒVƒ…EƒAƒEƒg@‚S
+ *@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãƒ»ã‚¢ã‚¦ãƒˆã€€ï¼”
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  *
@@ -1886,9 +1886,9 @@ BOOL WipeFunc34(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒtƒ‰ƒbƒVƒ…EƒCƒ“	‚S
+ *@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãƒ»ã‚¤ãƒ³	ï¼”
  *
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return	none
  *
@@ -1899,7 +1899,7 @@ BOOL WipeFunc35(WIPE_SYS_WIPE_WORK* wipe)
 {
 	if(wipe->sequence == WIPE_INIT){
 		WIPE_TYPE_WND_FLASH_FOUR_FP param = {
-			FX_GET_ROTA_NUM(0), FX_GET_ROTA_NUM(45),	// 45‚É‚¤‚µ‚È‚¢‚ÆŒ„ŠÔ‚ª‚ ‚¢‚Ä‚µ‚Ü‚Á‚½B
+			FX_GET_ROTA_NUM(0), FX_GET_ROTA_NUM(45),	// 45ã«ã†ã—ãªã„ã¨éš™é–“ãŒã‚ã„ã¦ã—ã¾ã£ãŸã€‚
 			GX_BLEND_PLANEMASK_BD,
 			GX_BLEND_ALL,
 			WIPE_FADE_IN
@@ -1918,13 +1918,13 @@ BOOL WipeFunc35(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒgƒ“ƒlƒ‹EƒAƒEƒg	ã‚©‚ç
+ *@brief	ãƒˆãƒ³ãƒãƒ«ãƒ»ã‚¢ã‚¦ãƒˆ	ä¸Šã‹ã‚‰
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- *	‰~Œ`ƒtƒF[ƒhƒAƒEƒg
+ *	å††å½¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc36(WIPE_SYS_WIPE_WORK* wipe)
@@ -1950,13 +1950,13 @@ BOOL WipeFunc36(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒgƒ“ƒlƒ‹EƒCƒ“		ã‚©‚ç
+ *@brief	ãƒˆãƒ³ãƒãƒ«ãƒ»ã‚¤ãƒ³		ä¸Šã‹ã‚‰
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- *	‰~Œ`ƒtƒF[ƒhƒCƒ“
+ *	å††å½¢ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 BOOL WipeFunc37(WIPE_SYS_WIPE_WORK* wipe)
@@ -1982,9 +1982,9 @@ BOOL WipeFunc37(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒ‰ƒCƒhƒAƒEƒg
+ *@brief	ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	noen
  */
@@ -2015,9 +2015,9 @@ BOOL WipeFunc38(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒ‰ƒCƒhƒCƒ“
+ *@brief	ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -2049,9 +2049,9 @@ BOOL WipeFunc39(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒ\ƒRƒ“@ƒAƒEƒg
+ *@brief	ãƒ‘ã‚½ã‚³ãƒ³ã€€ã‚¢ã‚¦ãƒˆ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	noen
  */
@@ -2095,9 +2095,9 @@ BOOL WipeFunc40(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒ\ƒRƒ“@ƒCƒ“
+ *@brief	ãƒ‘ã‚½ã‚³ãƒ³ã€€ã‚¤ãƒ³
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -2143,19 +2143,19 @@ BOOL WipeFunc41(WIPE_SYS_WIPE_WORK* wipe)
 
 //-----------------------------------------------------------------------------
 //
-//	ŠeƒƒCƒv‚Åg—p‚·‚éŠÖ”ŒS
+//	å„ãƒ¯ã‚¤ãƒ—ã§ä½¿ç”¨ã™ã‚‹é–¢æ•°éƒ¡
 //
 //=============================================================================
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ^ƒ“ƒWƒFƒ“ƒgŒvZ
+ *@brief	ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆè¨ˆç®—
  *
- *@param	rota		‰ñ“]Šp
+ *@param	rota		å›è»¢è§’
  *
- *@return	fx32		tan(rota)‚Ì’l
+ *@return	fx32		tan(rota)ã®å€¤
  *
- *	ƒ^ƒ“ƒWƒFƒ“ƒg‚ÍŠp“x‚X‚O‚Ì‚Æ‚«‚ÍA•s’è’l‚É‚È‚é‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢
+ *	ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆã¯è§’åº¦ï¼™ï¼ã®ã¨ãã¯ã€ä¸å®šå€¤ã«ãªã‚‹ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„
  *
  *
  */
@@ -2166,23 +2166,23 @@ static fx32 sum_tan(int rota)
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]Šp‚Æ‚‚³‚©‚ç•‚ğ‹‚ß‚é
+ *	@brief	å›è»¢è§’ã¨é«˜ã•ã‹ã‚‰å¹…ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	rota		‰ñ“]Šp“x
- *	@param	height		‚‚³
+ *	@param	rota		å›è»¢è§’åº¦
+ *	@param	height		é«˜ã•
  *
- *	@return	•
+ *	@return	å¹…
  */
 //-----------------------------------------------------------------------------
 static int sub_rota_height_width_one( int rota, int height )
 {
-	fx32	tan;			// ƒ^ƒ“ƒWƒFƒ“ƒgŒvZ—p
-	fx32	width;			// •ŒvZ—p
+	fx32	tan;			// ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆè¨ˆç®—ç”¨
+	fx32	width;			// å¹…è¨ˆç®—ç”¨
 
-	// ƒ^ƒ“ƒWƒFƒ“ƒgŒvZ
+	// ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆè¨ˆç®—
 	tan = sum_tan(rota);
 	
-	// ƒ^ƒ“ƒWƒFƒ“ƒg‚ğg—p‚µA¡‚ÌŠp“x‚ÅA‚‚³‚Ì‚Ì•‚ğ‹‚ß‚é
+	// ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆã‚’ä½¿ç”¨ã—ã€ä»Šã®è§’åº¦ã§ã€é«˜ã•ã®æ™‚ã®å¹…ã‚’æ±‚ã‚ã‚‹
 	width = FX_Mul(tan, height << FX32_SHIFT);
 	width >>= FX32_SHIFT;
 	
@@ -2192,12 +2192,12 @@ static int sub_rota_height_width_one( int rota, int height )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰ñ“]Šp‚©‚çƒoƒbƒtƒ@‚É‚»‚ÌŠp“x‚ÅA‚‚³‚Ì‚Æ‚«‚Ì•‚ğ‹‚ß‚é
+ *@brief	å›è»¢è§’ã‹ã‚‰ãƒãƒƒãƒ•ã‚¡ã«ãã®è§’åº¦ã§ã€é«˜ã•ã®ã¨ãã®å¹…ã‚’æ±‚ã‚ã‚‹
  *
- *@param	rota		‰ñ“]Šp
- *@param	depth		•Ši”[ƒ[ƒN
- *@param	work_num	ƒ[ƒN‚Ì”z—ñ—v‘f”
- *@param	s_h			‚‚³ŠJn’n“_i—v‘f”•ªƒ‹[ƒv‚Å‚Ü‚í‚·j
+ *@param	rota		å›è»¢è§’
+ *@param	depth		å¹…æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+ *@param	work_num	ãƒ¯ãƒ¼ã‚¯ã®é…åˆ—è¦ç´ æ•°
+ *@param	s_h			é«˜ã•é–‹å§‹åœ°ç‚¹ï¼ˆè¦ç´ æ•°åˆ†ãƒ«ãƒ¼ãƒ—ã§ã¾ã‚ã™ï¼‰
  *
  *@return
  *
@@ -2207,16 +2207,16 @@ static int sub_rota_height_width_one( int rota, int height )
 static void sum_rota_height_width(int rota, int* depth, int work_num, int s_h)
 {
 	int i;
-	fx32	tan;			// ƒ^ƒ“ƒWƒFƒ“ƒgŒvZ—p
-	fx32	width, height;	// •ŒvZ—p
+	fx32	tan;			// ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆè¨ˆç®—ç”¨
+	fx32	width, height;	// å¹…è¨ˆç®—ç”¨
 	int st,ed;
 
-	// ƒ^ƒ“ƒWƒFƒ“ƒgŒvZ
+	// ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆè¨ˆç®—
 	tan = sum_tan(rota);
 	
-	// ŠeYÀ•W‚Å‚Ì•‚ğ‘ã“ü‚·‚é
+	// å„Yåº§æ¨™ã§ã®å¹…ã‚’ä»£å…¥ã™ã‚‹
 	for(i=s_h;i<work_num;i++){
-		// ƒ^ƒ“ƒWƒFƒ“ƒg‚ğg—p‚µA¡‚ÌŠp“x‚ÅA‚‚³‚Ì‚Ì•‚ğ‹‚ß‚é
+		// ã‚¿ãƒ³ã‚¸ã‚§ãƒ³ãƒˆã‚’ä½¿ç”¨ã—ã€ä»Šã®è§’åº¦ã§ã€é«˜ã•ã®æ™‚ã®å¹…ã‚’æ±‚ã‚ã‚‹
 		height = i<<FX32_SHIFT;
 		width = FX_Mul(tan, height);
 		width >>= FX32_SHIFT;
@@ -2227,12 +2227,12 @@ static void sum_rota_height_width(int rota, int* depth, int work_num, int s_h)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	OŠpŒ`‚ÌŠp“x‚Æ’ê•Ó‚©‚ç‚‚³‚ğ‹‚ß‚é
+ *@brief	ä¸‰è§’å½¢ã®è§’åº¦ã¨åº•è¾ºã‹ã‚‰é«˜ã•ã‚’æ±‚ã‚ã‚‹
  *
- *@param	rota			Šp“x
- *@param	underground		’ê•Ó‚Ì’·‚³
+ *@param	rota			è§’åº¦
+ *@param	underground		åº•è¾ºã®é•·ã•
  *
- *@return	int		‚‚³
+ *@return	int		é«˜ã•
  *
  *
  */
@@ -2252,13 +2252,13 @@ static int sum_triangle_height(int rota, int underground)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•ªŠ„”‚©‚ç‚P‰ñ‚É‘«‚·’l‚ğ‹‚ß‚é
+ *@brief	åˆ†å‰²æ•°ã‹ã‚‰ï¼‘å›ã«è¶³ã™å€¤ã‚’æ±‚ã‚ã‚‹
  *
- *@param	st		ŠJn“_
- *@param	ed		I—¹“_
- *@param	divi	•ªŠ„”
+ *@param	st		é–‹å§‹ç‚¹
+ *@param	ed		çµ‚äº†ç‚¹
+ *@param	divi	åˆ†å‰²æ•°
  *
- *@return	int		"SUM_NUM_MINI”{‚É‚³‚ê‚½1‰ñ‚É‘«‚·’l"
+ *@return	int		"SUM_NUM_MINIå€ã«ã•ã‚ŒãŸ1å›ã«è¶³ã™å€¤"
  *
  *
  */
@@ -2276,12 +2276,12 @@ static int sum_add_num(int st, int ed, int divi)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒEÀ•W‚ğ•‚ª‚O`‚Q‚T‚T‚ğ’´‚¦‚È‚¢‚æ‚¤‚É‘«‚·
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åº§æ¨™ã‚’å¹…ãŒï¼ã€œï¼’ï¼•ï¼•ã‚’è¶…ãˆãªã„ã‚ˆã†ã«è¶³ã™
  *
- *@param	num1		‘«‚·’l‚P
- *@param	num2		‘«‚·’l‚Q
+ *@param	num1		è¶³ã™å€¤ï¼‘
+ *@param	num2		è¶³ã™å€¤ï¼’
  *
- *@return	int		‘«‚µ‚½’l
+ *@return	int		è¶³ã—ãŸå€¤
  *
  *
  */
@@ -2305,10 +2305,10 @@ static int sum_add_wnd_width(int num1, int num2)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ|ƒWƒVƒ‡ƒ“ƒf[ƒ^‚ğ‘«‚µ‚±‚Ş
+ *@brief	ãƒã‚¸ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’è¶³ã—ã“ã‚€
  *
- *@param	num		‘«‚µ‚±‚Ş’l‚Ö‚Ìƒ|ƒCƒ“ƒ^	
- *@param	add		‘«‚·’l‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *@param	num		è¶³ã—ã“ã‚€å€¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿	
+ *@param	add		è¶³ã™å€¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return
  *
@@ -2326,14 +2326,14 @@ static void sum_add_wnd(WIPE_WND_POSITION* num, WIPE_WND_POSITION* add)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒf[ƒ^‚ğİ’è‚·‚é
+ *@brief	ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
  *
- *@param	st			ŠJn
- *@param	ed			I—¹
- *@param	add			‘«‚·’l
- *@param	set_st		ŠJnÀ•Wİ’èƒf[ƒ^
- *@param	set_ed		I—¹À•Wİ’èƒf[ƒ^
- *@param	division	•ªŠ„”
+ *@param	st			é–‹å§‹
+ *@param	ed			çµ‚äº†
+ *@param	add			è¶³ã™å€¤
+ *@param	set_st		é–‹å§‹åº§æ¨™è¨­å®šãƒ‡ãƒ¼ã‚¿
+ *@param	set_ed		çµ‚äº†åº§æ¨™è¨­å®šãƒ‡ãƒ¼ã‚¿
+ *@param	division	åˆ†å‰²æ•°
  *
  *@return	none
  *
@@ -2342,19 +2342,19 @@ static void sum_add_wnd(WIPE_WND_POSITION* num, WIPE_WND_POSITION* add)
 //-----------------------------------------------------------------------------
 static void sum_set_wnd_position(WIPE_WND_POSITION* st, WIPE_WND_POSITION* ed, WIPE_WND_POSITION* add, const WIPE_WND_POSITION_FP* set_st, const WIPE_WND_POSITION_FP* set_ed, int division )
 {
-	// À•W‚ğİ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	st->x1 = set_st->x1*SUM_NUM_MINI;
 	st->y1 = set_st->y1*SUM_NUM_MINI;
 	st->x2 = set_st->x2*SUM_NUM_MINI;
 	st->y2 = set_st->y2*SUM_NUM_MINI;
 
-	// I—¹ˆÊ’u‚ğ•Û‘¶
+	// çµ‚äº†ä½ç½®ã‚’ä¿å­˜
 	ed->x1 = set_ed->x1;
 	ed->y1 = set_ed->y1;
 	ed->x2 = set_ed->x2;
 	ed->y2 = set_ed->y2;
 
-	// ˆÚ“®’l‚ğŒvZ
+	// ç§»å‹•å€¤ã‚’è¨ˆç®—
 	add->x1 = sum_add_num(set_st->x1, set_ed->x1, division);
 	add->y1 = sum_add_num(set_st->y1, set_ed->y1, division);
 	add->x2 = sum_add_num(set_st->x2, set_ed->x2, division);
@@ -2364,26 +2364,26 @@ static void sum_set_wnd_position(WIPE_WND_POSITION* st, WIPE_WND_POSITION* ed, W
 
 //----------------------------------------------------------------------------
 /**
- *@brief	ƒtƒF[ƒhˆ—‚ğƒpƒbƒN‚µ‚½ŠÖ”	‰Šú‰»
+ *@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã‚’ãƒ‘ãƒƒã‚¯ã—ãŸé–¢æ•°	åˆæœŸåŒ–
  *
- *@param	wipe		ƒƒCƒvƒ[ƒN
- *@param	fade_flag	ƒtƒF[ƒhEƒCƒ“
-						ƒtƒF[ƒhEƒAƒEƒg	ƒtƒ‰ƒO
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+ *@param	fade_flag	ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ»ã‚¤ãƒ³
+						ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ»ã‚¢ã‚¦ãƒˆ	ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void scchg_FadeInit(WIPE_SYS_WIPE_WORK* wipe, int fade_flag)
 {
-	int start, end;					// ŠJnAI—¹ƒuƒ‰ƒCƒgƒlƒX’l
+	int start, end;					// é–‹å§‹ã€çµ‚äº†ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤
 	WIPE_BRIGHTNESS_FADE* data;
 
 	wipe->wipe_work = sys_AllocMemory( wipe->heap, sizeof( WIPE_BRIGHTNESS_FADE ) );
 	memset( wipe->wipe_work, 0, sizeof( WIPE_BRIGHTNESS_FADE ) );
 	data = wipe->wipe_work;
 
-	// ƒuƒ‰ƒCƒgƒlƒXİ’è
-	// ŠJnƒuƒ‰ƒCƒgƒlƒX’l
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è¨­å®š
+	// é–‹å§‹ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤
 	if( fade_flag == WIPE_FADE_IN ){
 		if(wipe->color == WIPE_FADE_WHITE){
 			start	= BRIGHTNESS_WHITE;
@@ -2393,10 +2393,10 @@ static void scchg_FadeInit(WIPE_SYS_WIPE_WORK* wipe, int fade_flag)
 			end		= BRIGHTNESS_NORMAL;
 		}else{
 
-			// ˆê‰“®‚­‚æ‚¤‚É‚µ‚Ä‚¨‚­
+			// ä¸€å¿œå‹•ãã‚ˆã†ã«ã—ã¦ãŠã
 			start	= BRIGHTNESS_BLACK;
 			end		= BRIGHTNESS_NORMAL;
-			// ”’•ˆÈŠO‚Ìİ’è
+			// ç™½é»’ä»¥å¤–ã®è¨­å®š
 			GF_ASSERT_MSG( 0, "color %x", wipe->color );
 		}
 	}else{
@@ -2408,17 +2408,17 @@ static void scchg_FadeInit(WIPE_SYS_WIPE_WORK* wipe, int fade_flag)
 			end		= BRIGHTNESS_BLACK;
 		}else{
 
-			// ˆê‰“®‚­‚æ‚¤‚É‚µ‚Ä‚¨‚­
+			// ä¸€å¿œå‹•ãã‚ˆã†ã«ã—ã¦ãŠã
 			start	= BRIGHTNESS_NORMAL;
 			end		= BRIGHTNESS_BLACK;
-			// ”’•ˆÈŠO‚Ìİ’è
+			// ç™½é»’ä»¥å¤–ã®è¨­å®š
 			GF_ASSERT_MSG( 0, "color %x", wipe->color );
 		}
 	}
 	WIPE_SetMstBrightness( wipe->disp, start );
 	
 
-	// ƒuƒ‰ƒCƒgƒlƒX•Ï‰»’lƒpƒ‰ƒ[ƒ^İ’è
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å¤‰åŒ–å€¤ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 	data->a_count		= wipe->division;
 	data->piece_sync	= wipe->piece_sync;
 	data->sync_c		= 0;
@@ -2434,11 +2434,11 @@ static void scchg_FadeInit(WIPE_SYS_WIPE_WORK* wipe, int fade_flag)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒtƒF[ƒhˆ—‚ğƒpƒbƒN‚µ‚½ŠÖ”
+ *@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã‚’ãƒ‘ãƒƒã‚¯ã—ãŸé–¢æ•°
  *
- *@param	wipe		ƒƒCƒvƒ[ƒN
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *@return	BOOL	I—¹FTRUE	‘±sFFALSE
+ *@return	BOOL	çµ‚äº†ï¼šTRUE	ç¶šè¡Œï¼šFALSE
  *
  *
  */
@@ -2447,7 +2447,7 @@ static BOOL scchg_FadePack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_BRIGHTNESS_FADE* data = wipe->wipe_work;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 
 	
 	switch(wipe->sequence){
@@ -2478,12 +2478,12 @@ static BOOL scchg_FadePack(WIPE_SYS_WIPE_WORK* wipe)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒhŒvZƒƒCƒ“
+ *	@brief	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰è¨ˆç®—ãƒ¡ã‚¤ãƒ³
  *
- *	@param	data	ƒ[ƒN
+ *	@param	data	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL scchg_FadeCalcMain( WIPE_BRIGHTNESS_FADE* data )
@@ -2494,7 +2494,7 @@ static BOOL scchg_FadeCalcMain( WIPE_BRIGHTNESS_FADE* data )
 	if(data->sync_c >= data->piece_sync){
 		data->sync_c = 0;
 		
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		if((data->a_count - 1) > 0){
 			data->a_count--;
 	
@@ -2509,7 +2509,7 @@ static BOOL scchg_FadeCalcMain( WIPE_BRIGHTNESS_FADE* data )
 	return ret;
 }
 
-// Hƒuƒ‰ƒ“ƒNê—p
+// Hãƒ–ãƒ©ãƒ³ã‚¯å°‚ç”¨
 static inline void wndp_setWndPosition_HBlank(int x1, int y1, int x2, int y2, int wnd_no, int disp)
 {
 	if(wnd_no == WNDP_WND_0){
@@ -2539,16 +2539,16 @@ static inline void set_H_WndData( WIPE_TYPE_HB_WND* shb, int v_c, int i )
 {
 	WIPE_TYPE_HB_WND_ONE* one;
 
-	one = scchg_h_WndIdxDataGet(shb, i);	// ƒCƒ“ƒfƒbƒNƒX‚Ìƒf[ƒ^æ“¾
+	one = scchg_h_WndIdxDataGet(shb, i);	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ‡ãƒ¼ã‚¿å–å¾—
 	wndp_setWndPosition_HBlank(one->wnd_data[0][v_c], 0, one->wnd_data[1][v_c], 192, one->wnd_no, shb->disp);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚ğ•`‚­HblankŠÖ”
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æãHblanké–¢æ•°
  *
- *@param	work	ƒf[ƒ^
+ *@param	work	ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -2583,12 +2583,12 @@ static void scchg_h_Wnd(void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Hƒuƒ‰ƒ“ƒNƒEƒBƒ“ƒhƒEƒf[ƒ^ì¬
+ *@brief	Hãƒ–ãƒ©ãƒ³ã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *@param	data	ƒf[ƒ^Ši”[æ
- *@param	flag	ƒEƒBƒ“ƒhƒEƒf[ƒ^ƒtƒ‰ƒO
- *@param	disp	•\¦–Ê
- *@param	heap	g—p‚·‚éƒq[ƒv
+ *@param	data	ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *@param	flag	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ©ã‚°
+ *@param	disp	è¡¨ç¤ºé¢
+ *@param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	noen
  *
@@ -2598,12 +2598,12 @@ static void scchg_h_Wnd(void* work)
 static void scchg_h_WndMake(WIPE_TYPE_HB_WND* data, int flag, int disp, int heap)
 {
 	switch(flag){
-	case WNDP_WND_0:	// ‚Ç‚¿‚ç‚©•Ğ•û‚Ì‚Æ‚«
+	case WNDP_WND_0:	// ã©ã¡ã‚‰ã‹ç‰‡æ–¹ã®ã¨ã
 	case WNDP_WND_1:
 		data->data = sys_AllocMemory(heap, sizeof(WIPE_TYPE_HB_WND_ONE));
 		data->wnd_data_num	= 1;
 		data->disp			= disp;
-		data->data->wnd_no	= flag;		// flag = WNDƒiƒ“ƒo[
+		data->data->wnd_no	= flag;		// flag = WNDãƒŠãƒ³ãƒãƒ¼
 		break;
 	case 2:
 		{
@@ -2611,7 +2611,7 @@ static void scchg_h_WndMake(WIPE_TYPE_HB_WND* data, int flag, int disp, int heap
 			data->data = sys_AllocMemory(heap, sizeof(WIPE_TYPE_HB_WND_ONE)*2);
 			data->wnd_data_num	= 2;
 			data->disp			= disp;
-			for(i=0;i<2;i++){			// ƒEƒBƒ“ƒhƒEƒf[ƒ^İ’è
+			for(i=0;i<2;i++){			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿è¨­å®š
 				data->data[i].wnd_no	= i;
 			}
 		}
@@ -2624,9 +2624,9 @@ static void scchg_h_WndMake(WIPE_TYPE_HB_WND* data, int flag, int disp, int heap
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒEƒf[ƒ^”jŠü
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *@param	data	”jŠü‚·‚éƒEƒBƒ“ƒhƒEƒf[ƒ^
+ *@param	data	ç ´æ£„ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
  *
  *@return
  *
@@ -2642,10 +2642,10 @@ static void scchg_h_WndDel(WIPE_TYPE_HB_WND* data)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ÀÛ‚ÉVƒuƒ‰ƒ“ƒN’†‚Éƒ[ƒN‚ğ”jŠü‚·‚éŠÖ”
+ *	@brief	å®Ÿéš›ã«Vãƒ–ãƒ©ãƒ³ã‚¯ä¸­ã«ãƒ¯ãƒ¼ã‚¯ã‚’ç ´æ£„ã™ã‚‹é–¢æ•°
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒf[ƒ^
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ‡ãƒ¼ã‚¿
  *
  *	@return
  *
@@ -2663,7 +2663,7 @@ static void scchg_v_h_WndDel( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÀÛ‚Éƒ[ƒN‚ğ”jŠü‚·‚éŠÖ”
+ *	@brief	å®Ÿéš›ã«ãƒ¯ãƒ¼ã‚¯ã‚’ç ´æ£„ã™ã‚‹é–¢æ•°
  *
  *	@param	data 
  *
@@ -2679,11 +2679,11 @@ static void scchg_main_h_WndDel( WIPE_TYPE_HB_WND* data )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[‚ÌƒEƒBƒ“ƒhƒEƒf[ƒ^‚ğæ“¾
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *@param	wnd_no	æ“¾‚·‚éƒEƒBƒ“ƒhƒEƒiƒ“ƒo[	
+ *@param	wnd_no	å–å¾—ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼	
  *
- *@return	ƒEƒBƒ“ƒhƒEƒf[ƒ^	–³‚¢‚Æ‚«NULL
+ *@return	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿	ç„¡ã„ã¨ãNULL
  *
  *
  */
@@ -2704,12 +2704,12 @@ static WIPE_TYPE_HB_WND_ONE* scchg_h_WndNoDataGet(WIPE_TYPE_HB_WND* data, int wn
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒCƒ“ƒfƒbƒNƒX‚ÌƒEƒBƒ“ƒhƒEƒf[ƒ^æ“¾
+ *@brief	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *@param	data	æ“¾æ
- *@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *@param	data	å–å¾—å…ˆ
+ *@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *@return	ƒEƒBƒ“ƒhƒEƒf[ƒ^	–³‚¢‚Æ‚«NULL
+ *@return	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿	ç„¡ã„ã¨ãNULL
  *
  *
  */
@@ -2724,11 +2724,11 @@ static WIPE_TYPE_HB_WND_ONE* scchg_h_WndIdxDataGet(WIPE_TYPE_HB_WND* data, int i
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒƒCƒ“ƒ‹[ƒv‚ÅŒvZ‚µ‚½ƒEƒBƒ“ƒhƒE‚ÌŒ`‚Ìƒoƒbƒtƒ@‚ğ
- *			”½‰fƒe[ƒuƒ‹‚É‘ã“ü
+ *@brief	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã§è¨ˆç®—ã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å½¢ã®ãƒãƒƒãƒ•ã‚¡ã‚’
+ *			åæ˜ ãƒ†ãƒ¼ãƒ–ãƒ«ã«ä»£å…¥
  *
- *@param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- *@param	work	ƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ *@param	work	ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -2742,7 +2742,7 @@ static void scchg_WndSwap(TCB_PTR tcb, void* work)
 	int i;
 
 	for(i=0;i<swc->wnd_data_num;i++){
-		one = scchg_h_WndIdxDataGet(swc, i);		// ƒCƒ“ƒfƒbƒNƒX‚Ìƒf[ƒ^æ“¾
+		one = scchg_h_WndIdxDataGet(swc, i);		// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ‡ãƒ¼ã‚¿å–å¾—
 		memcpy(one->wnd_data, one->wnd_tmp, sizeof(short)*2*192);	// sizeof(short)*2*192
 	}
 	TCB_Delete( tcb );
@@ -2752,11 +2752,11 @@ static void scchg_WndSwap(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE“®ì‚ÌŒãˆ—
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œã®å¾Œå‡¦ç†
  *
- *@param	flag		WIPE_FADE_IN:ƒtƒF[ƒhƒCƒ“	WIPE_FADE_OUT:ƒtƒF[ƒhƒAƒEƒg
- *@param	wnd_sys		ƒEƒBƒ“ƒhƒEVblankˆ—ƒ[ƒN
- *@param	disp		•\¦–Ê
+ *@param	flag		WIPE_FADE_IN:ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³	WIPE_FADE_OUT:ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+ *@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Vblankå‡¦ç†ãƒ¯ãƒ¼ã‚¯
+ *@param	disp		è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -2766,12 +2766,12 @@ static void scchg_WndSwap(TCB_PTR tcb, void* work)
 static void scchg_WndEnd(int flag, WNDP_SYS_PTR wnd_sys, int disp)
 {
 	if(flag == WIPE_FADE_IN){
-		// ƒtƒF[ƒhEƒCƒ“‚ªI—¹‚µ‚½‚çg—p‚µ‚½ƒEƒBƒ“ƒhƒE‚Ì•\¦‚ğƒIƒt
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ»ã‚¤ãƒ³ãŒçµ‚äº†ã—ãŸã‚‰ä½¿ç”¨ã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºã‚’ã‚ªãƒ•
 		WNDP_V_SetVisibleWnd(wnd_sys, GX_WNDMASK_NONE, disp);
 
 	}else{
 
-		// ƒEƒBƒ“ƒhƒE0‚ğ‰æ–Ê‚¢‚Á‚Ï‚¢‚ÉL‚°‚é
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0ã‚’ç”»é¢ã„ã£ã±ã„ã«åºƒã’ã‚‹
 		WNDP_V_SetVisibleWnd(wnd_sys, GX_WNDMASK_W0, disp);
 		WNDP_V_SetWndInsidePlane(wnd_sys, GX_BLEND_ALL, FALSE, 0, disp);
 		WNDP_V_SetWndPosition(wnd_sys, 0,0,0,0,0, disp);	
@@ -2782,18 +2782,18 @@ static void scchg_WndEnd(int flag, WNDP_SYS_PTR wnd_sys, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚ğg—p‚Å‚«‚éó‘Ô‚É‚·‚é
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã§ãã‚‹çŠ¶æ…‹ã«ã™ã‚‹
  *
- *@param	wnd_sys		ƒEƒBƒ“ƒhƒEVblankİ’èƒVƒXƒeƒ€—pƒ[ƒN
- *@param	in_wnd		ƒEƒBƒ“ƒhƒE“àİ’è
- *@param	out_wnd		ƒEƒBƒ“ƒhƒEŠOİ’è
- *@param	wnd_no		ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *@param	disp		ƒEƒBƒ“ƒhƒE•\¦–Ê
- *@param	x1			ƒEƒBƒ“ƒhƒEÀ•W
+ *@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Vblankè¨­å®šã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯
+ *@param	in_wnd		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…è¨­å®š
+ *@param	out_wnd		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤–è¨­å®š
+ *@param	wnd_no		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *@param	disp		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé¢
+ *@param	x1			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åº§æ¨™
  *@param	y1
  *@param	x2
  *@param	y2
- *@param	fade_flg	ƒtƒF[ƒhƒtƒ‰ƒO
+ *@param	fade_flg	ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
  *
  *@return	none
  *
@@ -2802,14 +2802,14 @@ static void scchg_WndEnd(int flag, WNDP_SYS_PTR wnd_sys, int disp)
 //-----------------------------------------------------------------------------
 static void scchg_WndSetUp(WNDP_SYS_PTR wnd_sys, int in_wnd, int out_wnd, int wnd_no, int disp, int x1, int y1, int x2, int y2, int fade_flg)
 {
-	// ƒEƒBƒ“ƒhƒE‚Ì“àŠO‚ğİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å†…å¤–ã‚’è¨­å®š
 	if( fade_flg == WIPE_FADE_IN ){
-		// ƒtƒF[ƒhƒCƒ“
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		WNDP_SetWndInsidePlane(in_wnd, FALSE, wnd_no, disp);
 		WNDP_SetWndOutsidePlane(out_wnd, FALSE, disp);
 		WNDP_SetWndPosition(x1,y1,x2,y2, wnd_no, disp);
 	}else{
-		// ƒtƒF[ƒhƒAƒEƒg
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		WNDP_V_SetWndInsidePlane(wnd_sys, in_wnd, FALSE, wnd_no, disp);
 		WNDP_V_SetWndOutsidePlane(wnd_sys, out_wnd, FALSE, disp);
 		WNDP_V_SetWndPosition(wnd_sys, x1,y1,x2,y2, wnd_no, disp);
@@ -2819,12 +2819,12 @@ static void scchg_WndSetUp(WNDP_SYS_PTR wnd_sys, int in_wnd, int out_wnd, int wn
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief		ƒEƒBƒ“ƒhƒE•\¦”ñ•\¦İ’è
+ *	@brief		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºéè¡¨ç¤ºè¨­å®š
  *
- *	@param	wnd_sys		ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
- *	@param	plane		•\¦ƒEƒBƒ“ƒhƒE–Ê
- *	@param	disp		•\¦‰æ–Ê
- *	@param	fade_flg	ƒtƒF[ƒhƒCƒ“EƒAƒEƒgƒtƒ‰ƒO
+ *	@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	plane		è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢
+ *	@param	disp		è¡¨ç¤ºç”»é¢
+ *	@param	fade_flg	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆãƒ•ãƒ©ã‚°
  *
  *	@return	none
  *
@@ -2845,13 +2845,13 @@ static void scchg_WndVisible(WNDP_SYS_PTR wnd_sys, int plane, int disp, int fade
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	c•ûŒü@Hƒuƒ‰ƒ“ƒNg—p@ƒEƒBƒ“ƒhƒE“®ì
+ *	@brief	ç¸¦æ–¹å‘ã€€Hãƒ–ãƒ©ãƒ³ã‚¯ä½¿ç”¨ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œ
  *
- *	@param	p_wnddata	ƒ[ƒN
- *	@param	disp		–Ê
- *	@param	data_num	ƒEƒBƒ“ƒhƒEg—p”	(1 or 2)
- *	@param	wnd_no0		ƒ[ƒN‚O‚ÌƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *	@param	wnd_no1		ƒ[ƒN‚P‚ÌƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
+ *	@param	p_wnddata	ãƒ¯ãƒ¼ã‚¯
+ *	@param	disp		é¢
+ *	@param	data_num	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨æ•°	(1 or 2)
+ *	@param	wnd_no0		ãƒ¯ãƒ¼ã‚¯ï¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *	@param	wnd_no1		ãƒ¯ãƒ¼ã‚¯ï¼‘ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  */
@@ -2874,9 +2874,9 @@ static void scchg_h_VMoveWndInit( WIPE_TYPE_WND_VMOVE* p_wnddata, int disp, int 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒƒbƒvƒoƒbƒtƒ@ƒŠƒNƒGƒXƒg
+ *	@brief	ã‚¹ãƒ¯ãƒƒãƒ—ãƒãƒƒãƒ•ã‚¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_wnddata	ƒ[ƒN
+ *	@param	p_wnddata	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2888,24 +2888,24 @@ static void scchg_h_VMoveWnd_SwapReq( WIPE_TYPE_WND_VMOVE* p_wnddata )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìŠJn@Vƒuƒ‰ƒ“ƒN‚ª‚«‚½‚çŠJn‚µ‚Ü‚·B
+ *	@brief	å‹•ä½œé–‹å§‹ã€€Vãƒ–ãƒ©ãƒ³ã‚¯ãŒããŸã‚‰é–‹å§‹ã—ã¾ã™ã€‚
  *
- *	@param	p_wnddata ƒ[ƒN
+ *	@param	p_wnddata ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void scchg_h_VMoveWnd_Start( WIPE_HBLANK* p_wipehb, WIPE_TYPE_WND_VMOVE* p_wnddata, u32 heap )
 {
-	// HblankŠÖ”‚ğİ’è
+	// Hblanké–¢æ•°ã‚’è¨­å®š
 	WIPE_V_HBlankInit(p_wipehb, p_wnddata, scchg_h_VMoveWnd_Main, p_wnddata->disp, heap);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìI—¹
+ *	@brief	å‹•ä½œçµ‚äº†
  *
- *	@param	p_wnddata	Vƒuƒ‰ƒ“ƒN‚ª‚«‚½‚çI—¹‚µ‚Ü‚·B
+ *	@param	p_wnddata	Vãƒ–ãƒ©ãƒ³ã‚¯ãŒããŸã‚‰çµ‚äº†ã—ã¾ã™ã€‚
  *
  *	@return	none
  */
@@ -2918,10 +2918,10 @@ static void scchg_h_VMoveWnd_End( WIPE_HBLANK* p_wipehb, WIPE_TYPE_WND_VMOVE* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒƒbƒvƒoƒbƒtƒ@
+ *	@brief	ã‚¹ãƒ¯ãƒƒãƒ—ãƒãƒƒãƒ•ã‚¡
  *
- *	@param	tcb			ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- *	@param	p_work		ƒ[ƒN
+ *	@param	tcb			ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2991,9 +2991,9 @@ static inline void set_H_VMoveWndData( WIPE_TYPE_WND_VMOVE* shb, int v_c, int i 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Hƒuƒ‰ƒ“ƒNƒf[ƒ^İ’è
+ *	@brief	Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  */
@@ -3030,10 +3030,10 @@ static void scchg_h_VMoveWnd_Main( void* p_work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒEƒBƒ“ƒhƒE“®ìƒpƒbƒN‰Šú‰»ŠÖ”
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œãƒ‘ãƒƒã‚¯åˆæœŸåŒ–é–¢æ•°
  *
- *	@param	wipe	ƒƒCƒvƒf[ƒ^
- *	@param	param	ƒEƒBƒ“ƒhƒE“®ìƒf[ƒ^
+ *	@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
+ *	@param	param	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  *
@@ -3044,29 +3044,29 @@ static void scchg_WndMovePackInit( WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_WND
 {
 	WIPE_TYPE_WND_MOVE* wwm;
 
-	// ƒtƒF[ƒhŠJn
+	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	wipe->wipe_work = sys_AllocMemory(wipe->heap, sizeof(WIPE_TYPE_WND_MOVE));
 	
 	wwm = (WIPE_TYPE_WND_MOVE*)wipe->wipe_work;
 	
 	scchg_WndMoveInit(wwm, pram, wipe->division, wipe->piece_sync, wipe->disp, wipe->wnd_sys);
 	
-	// ƒEƒBƒ“ƒhƒEƒIƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 	if(pram->wnd_no == 0){
 		scchg_WndVisible(wipe->wnd_sys, GX_WNDMASK_W0, wwm->disp, wwm->fade_flg);
 	}else{
 		scchg_WndVisible(wipe->wnd_sys,GX_WNDMASK_W1, wwm->disp, wwm->fade_flg);
 	}
 	
-	wipe->sequence++;		// ƒƒCƒ““®ì‚Ö
+	wipe->sequence++;		// ãƒ¡ã‚¤ãƒ³å‹•ä½œã¸
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE“®ìƒpƒbƒN
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œãƒ‘ãƒƒã‚¯
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -3077,7 +3077,7 @@ static BOOL scchg_WndMovePack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_TYPE_WND_MOVE* wwm;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 	
 	wwm = (WIPE_TYPE_WND_MOVE*)wipe->wipe_work;
 	
@@ -3111,11 +3111,11 @@ static BOOL scchg_WndMovePack(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚Q‚Â‚ÌƒEƒBƒ“ƒhƒE‚ğ“¯‚É“®‚©‚·ŠÖ”‚Ì‰Šú‰»
+ *@brief	ï¼’ã¤ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’åŒæ™‚ã«å‹•ã‹ã™é–¢æ•°ã®åˆæœŸåŒ–
  *
- *@param	wipe		ƒƒCƒv\‘¢‘Ì
- *@param	pram1		ƒEƒBƒ“ƒhƒE‚O‚Ìˆø”ƒf[ƒ^
- *@param	pram2		ƒEƒBƒ“ƒhƒE‚P‚Ìˆø”ƒf[ƒ^
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—æ§‹é€ ä½“
+ *@param	pram1		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ã®å¼•æ•°ãƒ‡ãƒ¼ã‚¿
+ *@param	pram2		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼‘ã®å¼•æ•°ãƒ‡ãƒ¼ã‚¿
  *	
  *@return	none
  *
@@ -3126,7 +3126,7 @@ static void scchg_WndMoveDoublePackInit(WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYP
 {
 	WIPE_TYPE_WND_DMOVE* wwm;
 
-	// ƒtƒF[ƒhŠJn
+	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	wipe->wipe_work = sys_AllocMemory(wipe->heap, sizeof(WIPE_TYPE_WND_DMOVE));
 	wwm = (WIPE_TYPE_WND_DMOVE*)wipe->wipe_work;
 	scchg_WndMoveInit(&wwm->wnd0, pram1, wipe->division, wipe->piece_sync, wipe->disp, wipe->wnd_sys);
@@ -3139,12 +3139,12 @@ static void scchg_WndMoveDoublePackInit(WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYP
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚Q‚Â‚ÌƒEƒBƒ“ƒhƒE‚ğ“¯‚É“®‚©‚·ŠÖ”‚Ì‰Šú‰»
+ *@brief	ï¼’ã¤ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’åŒæ™‚ã«å‹•ã‹ã™é–¢æ•°ã®åˆæœŸåŒ–
  *
- *@param	wipe		ƒƒCƒv\‘¢‘Ì
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—æ§‹é€ ä½“
  *	
- *@retval	TRUE		I—¹
- *@retval	FALSE		‘±s
+ *@retval	TRUE		çµ‚äº†
+ *@retval	FALSE		ç¶šè¡Œ
  *
  *
  */
@@ -3153,7 +3153,7 @@ static BOOL scchg_WndMoveDoublePack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_TYPE_WND_DMOVE* wwm;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 	
 	wwm = (WIPE_TYPE_WND_DMOVE*)wipe->wipe_work;
 	
@@ -3186,14 +3186,14 @@ static BOOL scchg_WndMoveDoublePack(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE•ÏŒ`ˆ—‚Ì‰Šú‰»
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰å½¢å‡¦ç†ã®åˆæœŸåŒ–
  *
- *@param	data		ƒf[ƒ^Ši”[æ
- *@param	param		ƒEƒBƒ“ƒhƒE•ÏŒ`ƒf[ƒ^
- *@param	division	ˆ—•ªŠ„”
- *@param	piece_sync	‚P•Ğ‚ÌƒVƒ“ƒN”
- *@param	disp		•\¦–Ê
- *@param	wnd_sys		ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ *@param	data		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *@param	param		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰å½¢ãƒ‡ãƒ¼ã‚¿
+ *@param	division	å‡¦ç†åˆ†å‰²æ•°
+ *@param	piece_sync	ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+ *@param	disp		è¡¨ç¤ºé¢
+ *@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -3202,10 +3202,10 @@ static BOOL scchg_WndMoveDoublePack(WIPE_SYS_WIPE_WORK* wipe)
 //-----------------------------------------------------------------------------
 static void scchg_WndMoveInit(WIPE_TYPE_WND_MOVE* data, const WIPE_TYPE_WND_MOVE_FP* pram, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys)
 {
-	// À•W‚ğİ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	sum_set_wnd_position(&data->st, &data->ed, &data->add, &pram->st, &pram->ed, division);
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	data->disp			= disp;
 	data->wnd_no		= pram->wnd_no;
 	data->a_count		= division;
@@ -3214,7 +3214,7 @@ static void scchg_WndMoveInit(WIPE_TYPE_WND_MOVE* data, const WIPE_TYPE_WND_MOVE
 	data->wnd_sys		= wnd_sys;
 	data->fade_flg		= pram->fade_flg;
 
-	// ƒEƒBƒ“ƒhƒE‚Ì“àŠO‚ğİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å†…å¤–ã‚’è¨­å®š
 	scchg_WndSetUp(wnd_sys, pram->in_wnd, pram->out_wnd, pram->wnd_no, disp,
 			pram->st.x1,pram->st.y1,
 			pram->st.x2,pram->st.y2,
@@ -3224,11 +3224,11 @@ static void scchg_WndMoveInit(WIPE_TYPE_WND_MOVE* data, const WIPE_TYPE_WND_MOVE
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚ÌŒ`‚ğ•ÏŒ`‚³‚¹‚é
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å½¢ã‚’å¤‰å½¢ã•ã›ã‚‹
  *
- *@param	data	ƒEƒBƒ“ƒhƒE•ÏŒ`ƒf[ƒ^
+ *@param	data	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰å½¢ãƒ‡ãƒ¼ã‚¿
  *
- *@return	BOOL	TRUEFI—¹		FALSEF‘±s
+ *@return	BOOL	TRUEï¼šçµ‚äº†		FALSEï¼šç¶šè¡Œ
  *
  *
  */
@@ -3239,11 +3239,11 @@ static BOOL scchg_WndMoveMain(WIPE_TYPE_WND_MOVE* data)
 	if(data->sync_c >= data->piece_sync){
 		data->sync_c = 0;
 		
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		if((data->a_count - 1) > 0){
 			data->a_count--;
 	
-			// ‘«‚µZ
+			// è¶³ã—ç®—
 			sum_add_wnd(&data->st, &data->add);
 		}else{
 			WNDP_V_SetWndPosition(data->wnd_sys, data->ed.x1,data->ed.y1,data->ed.x2,data->ed.y2, data->wnd_no, data->disp);
@@ -3261,10 +3261,10 @@ static BOOL scchg_WndMoveMain(WIPE_TYPE_WND_MOVE* data)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒEƒBƒ“ƒhƒE‚Å‰~‚ğ•`‚­ƒVƒXƒeƒ€
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å††ã‚’æãã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@param	wipe	ƒƒCƒvƒ[ƒN
- *	@param	param	‰Šú‰»ƒf[ƒ^
+ *	@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	param	åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -3275,23 +3275,23 @@ static void scchg_WndCirclePackInit( WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_W
 {
 	WIPE_TYPE_WND_CIRCLE* wwm;
 	
-	// ƒƒCƒvŠJn
+	// ãƒ¯ã‚¤ãƒ—é–‹å§‹
 	wipe->wipe_work = sys_AllocMemory(wipe->heap, sizeof(WIPE_TYPE_WND_CIRCLE));
 	wwm = (WIPE_TYPE_WND_CIRCLE*)wipe->wipe_work;
 	scchg_WndCircleInit(wwm, param, wipe->division, wipe->piece_sync, wipe->disp, wipe->wnd_sys, wipe->p_wipehb, wipe->heap);
 
-	// ƒƒCƒ““®ì‚Ö
+	// ãƒ¡ã‚¤ãƒ³å‹•ä½œã¸
 	wipe->sequence++;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚Å‰~‚ğ•`‚­ƒVƒXƒeƒ€
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å††ã‚’æãã‚·ã‚¹ãƒ†ãƒ 
  *
- *@param	wipe		ƒƒCƒvƒ[ƒN
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *@return	BOOL		TRUEFI—¹		FALSEF‘±s
+ *@return	BOOL		TRUEï¼šçµ‚äº†		FALSEï¼šç¶šè¡Œ
  *
  *
  */
@@ -3300,7 +3300,7 @@ static BOOL scchg_WndCirclePack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_TYPE_WND_CIRCLE* wwm;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 	
 	wwm = (WIPE_TYPE_WND_CIRCLE*)wipe->wipe_work;
 	
@@ -3314,7 +3314,7 @@ static BOOL scchg_WndCirclePack(WIPE_SYS_WIPE_WORK* wipe)
 		break;
 
 	case WIPE_END:
-		scchg_h_WndDel(&wwm->hb_circle);	// ƒEƒBƒ“ƒhƒEİ’èƒf[ƒ^”jŠü
+		scchg_h_WndDel(&wwm->hb_circle);	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®šãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		sys_FreeMemoryEz(wipe->wipe_work);
 		wipe->wipe_work = NULL;
 		wipe->sequence++;
@@ -3335,15 +3335,15 @@ static BOOL scchg_WndCirclePack(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰~•`‰æƒVƒXƒeƒ€‚ğ‰Šú‰»
+ *@brief	å††æç”»ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–
  *
- *@param	data			ƒf[ƒ^Ši”[æ
- *@param	param			ƒƒCƒvƒf[ƒ^
- *@param	division		ˆ—•ªŠ„”
- *@param	piece_sync		‚P•Ğ‚ÌƒVƒ“ƒN”
- *@param	disp			•\¦–Ê
- *@param	wnd_sys			ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- *@param	heap			g—p‚·‚éƒq[ƒvID
+ *@param	data			ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *@param	param			ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
+ *@param	division		å‡¦ç†åˆ†å‰²æ•°
+ *@param	piece_sync		ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+ *@param	disp			è¡¨ç¤ºé¢
+ *@param	wnd_sys			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ *@param	heap			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
  *
  *@return	none
  *
@@ -3355,10 +3355,10 @@ static void scchg_WndCircleInit(WIPE_TYPE_WND_CIRCLE* data, const WIPE_TYPE_WND_
 	int add_r;
 	WIPE_TYPE_HB_WND_ONE* one;
 
-	// •Ï‰»’l‚ğ‹‚ß‚é
+	// å¤‰åŒ–å€¤ã‚’æ±‚ã‚ã‚‹
 	add_r = sum_add_num(param->r, param->e_r, division);
 
-	// ƒf[ƒ^‚ğİ’è
+	// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	scchg_h_WndMake(&data->hb_circle, param->wnd_no, disp, heap);
 	data->r					= param->r*SUM_NUM_MINI;
 	data->x					= param->x;
@@ -3372,34 +3372,34 @@ static void scchg_WndCircleInit(WIPE_TYPE_WND_CIRCLE* data, const WIPE_TYPE_WND_
 	data->heap				= heap;
 	data->fade_flg			= param->fade_flg;
 	
-	scchg_WndCircleSum(data);	// 1‰ñŒvZ‚·‚é
+	scchg_WndCircleSum(data);	// 1å›è¨ˆç®—ã™ã‚‹
 	VWaitTCB_Add(scchg_WndSwap,&data->hb_circle, WIPE_VBLANK_WND_SWAP_TCB );
 
-	// ƒEƒBƒ“ƒhƒEİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	one = scchg_h_WndIdxDataGet(&data->hb_circle, 0);
 	scchg_WndSetUp(wnd_sys, param->in_wnd, param->out_wnd, param->wnd_no, disp,
 			one->wnd_tmp[0][0], 0, one->wnd_tmp[1][0], 192,
 			data->fade_flg);
 
-	// ƒEƒBƒ“ƒhƒEƒIƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 	if(param->wnd_no == 0){
 		scchg_WndVisible( wnd_sys, GX_WNDMASK_W0, disp, data->fade_flg );
 	}else{
 		scchg_WndVisible(wnd_sys, GX_WNDMASK_W1, disp, data->fade_flg);
 	}
 	
-	// HblankŠÖ”‚ğİ’è
+	// Hblanké–¢æ•°ã‚’è¨­å®š
 	WIPE_V_HBlankInit(data->p_wipehb, &data->hb_circle, scchg_h_Wnd, disp, heap);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰~•`‰æƒƒCƒ“ˆ—
+ *@brief	å††æç”»ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *@param	data	ƒEƒBƒ“ƒhƒE•ÏŒ`ƒf[ƒ^
+ *@param	data	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤‰å½¢ãƒ‡ãƒ¼ã‚¿
  *
- *@return	BOOL	TRUEFI—¹		FALSEF‘±s
+ *@return	BOOL	TRUEï¼šçµ‚äº†		FALSEï¼šç¶šè¡Œ
  *
  *
  */
@@ -3410,7 +3410,7 @@ static BOOL scchg_WndCircleMain(WIPE_TYPE_WND_CIRCLE* data)
 	if(data->sync_c >= data->piece_sync){
 		data->sync_c = 0;
 		
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		if((data->a_count - 1) > 0){
 			data->a_count--;
 			data->r += data->add_r;	
@@ -3430,14 +3430,14 @@ static BOOL scchg_WndCircleMain(WIPE_TYPE_WND_CIRCLE* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰~ƒf[ƒ^ŒvZƒTƒuŠÖ”
+ *@brief	å††ãƒ‡ãƒ¼ã‚¿è¨ˆç®—ã‚µãƒ–é–¢æ•°
  *
- *@param	c_r		”¼ŒaiSUM_NUM_MINI‚Å‚©‚¯‚½’lj
- *@param	c_x		’†SÀ•W
- *@param	c_y		’†SÀ•W
- *@param	n_h		¡‚Ì‚‚³
- *@param	st		ƒEƒBƒ“ƒhƒE‰¡‚ÌŠJn“_
- *@param	ed		ƒEƒBƒ“ƒhƒE‰¡‚ÌI—¹“_
+ *@param	c_r		åŠå¾„ï¼ˆSUM_NUM_MINIã§ã‹ã‘ãŸå€¤ï¼‰
+ *@param	c_x		ä¸­å¿ƒåº§æ¨™
+ *@param	c_y		ä¸­å¿ƒåº§æ¨™
+ *@param	n_h		ä»Šã®é«˜ã•
+ *@param	st		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¨ªã®é–‹å§‹ç‚¹
+ *@param	ed		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¨ªã®çµ‚äº†ç‚¹
  *
  *@return	none
  *
@@ -3446,11 +3446,11 @@ static BOOL scchg_WndCircleMain(WIPE_TYPE_WND_CIRCLE* data)
 //-----------------------------------------------------------------------------
 static void scchg_WndCircleSumSub(int c_r, int c_x, int c_y, int n_h, int* st, int* ed)
 {
-	fx32 r;			// ”¼Œa
-	fx32 height;	// ‚‚³
-	fx32 width;		// •
+	fx32 r;			// åŠå¾„
+	fx32 height;	// é«˜ã•
+	fx32 width;		// å¹…
 
-	// ‚R•½•û‚Ì’è—‚Å¡‚Ì‚‚³‚©‚ç‰~‚Ì•‚ğ‹‚ß‚é
+	// ï¼“å¹³æ–¹ã®å®šç†ã§ä»Šã®é«˜ã•ã‹ã‚‰å††ã®å¹…ã‚’æ±‚ã‚ã‚‹
 	
 	r = c_r / SUM_NUM_MINI;
 
@@ -3463,13 +3463,13 @@ static void scchg_WndCircleSumSub(int c_r, int c_x, int c_y, int n_h, int* st, i
 		*st = 0;
 		*ed = 0;
 	}else{
-		// ”¼Œa‚©‚ç•‚ğ‹‚ß‚é
+		// åŠå¾„ã‹ã‚‰å¹…ã‚’æ±‚ã‚ã‚‹
 		height <<= FX32_SHIFT;
 		r <<= FX32_SHIFT;
 		width = FX_Sqrt(FX_Mul(r,r) - FX_Mul(height,height));
 		width >>= FX32_SHIFT;
 
-		// ƒEƒBƒ“ƒhƒE‚ÌŠJn“_‚ğİ’è
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®é–‹å§‹ç‚¹ã‚’è¨­å®š
 		*st = c_x - width;
 		if(*st < 0){
 			*st = 0;
@@ -3484,9 +3484,9 @@ static void scchg_WndCircleSumSub(int c_r, int c_x, int c_y, int n_h, int* st, i
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰~ƒf[ƒ^‚ÌŒvZ‚ğs‚¤
+ *@brief	å††ãƒ‡ãƒ¼ã‚¿ã®è¨ˆç®—ã‚’è¡Œã†
  *
- *@param	work		‰~•`‰æƒVƒXƒeƒ€‚Ìƒf[ƒ^
+ *@param	work		å††æç”»ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -3496,25 +3496,25 @@ static void scchg_WndCircleSumSub(int c_r, int c_x, int c_y, int n_h, int* st, i
 static void scchg_WndCircleSum(WIPE_TYPE_WND_CIRCLE* work)
 {
 	WIPE_TYPE_HB_WND* shb = &work->hb_circle;
-	int i;			// ƒ‹[ƒv—p
-	int st;			// ƒEƒBƒ“ƒhƒEŠJn“_
-	int ed;			// ƒEƒBƒ“ƒhƒEI—¹“_
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int st;			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹ç‚¹
+	int ed;			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦çµ‚äº†ç‚¹
 	int roop_end;
 	WIPE_TYPE_HB_WND_ONE* one;
 
-	// ƒCƒ“ƒfƒbƒNƒX‚O‚ÌƒEƒBƒ“ƒhƒEƒf[ƒ^‚ğæ“¾
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	one = scchg_h_WndIdxDataGet(shb, 0);
 
-	// ”¼Œa‚ª‰æ–Ê“à‚É‚ ‚é‚Æ‚«‚Í
-	// ’†S‚Ü‚Å•‚ğ‹‚ß‚½‚ç‰º”¼•ª‚ÍƒRƒs[‚·‚é‚æ‚¤‚É‚·‚é
+	// åŠå¾„ãŒç”»é¢å†…ã«ã‚ã‚‹ã¨ãã¯
+	// ä¸­å¿ƒã¾ã§å¹…ã‚’æ±‚ã‚ãŸã‚‰ä¸‹åŠåˆ†ã¯ã‚³ãƒ”ãƒ¼ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 	for(i=0;i < 192;i++){
-		if(i <= work->y){		// ”¼Œa‚Ü‚Å‚Í•’Ê‚Ì‹‚ß‚é
+		if(i <= work->y){		// åŠå¾„ã¾ã§ã¯æ™®é€šã®æ±‚ã‚ã‚‹
 			scchg_WndCircleSumSub(work->r, work->x, work->y, i, &st, &ed);
 		}else{
-			if(i <= (work->y*2)){		// ”¼Œa‚©‚ç”¼Œa‚Ì‚Q”{‚Ü‚Å‚Í,ƒRƒs[
+			if(i <= (work->y*2)){		// åŠå¾„ã‹ã‚‰åŠå¾„ã®ï¼’å€ã¾ã§ã¯,ã‚³ãƒ”ãƒ¼
 				st = one->wnd_tmp[0][(work->y*2)-i];
 				ed = one->wnd_tmp[1][(work->y*2)-i];
-			}else{				// ‚»‚Ì‘¼‚Í•’Ê‚É‹‚ß‚é
+			}else{				// ãã®ä»–ã¯æ™®é€šã«æ±‚ã‚ã‚‹
 				scchg_WndCircleSumSub(work->r, work->x, work->y, i, &st, &ed);
 			}
 		}
@@ -3528,16 +3528,16 @@ static void scchg_WndCircleSum(WIPE_TYPE_WND_CIRCLE* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚ğƒJ[ƒeƒ“‚Ì‚æ‚¤‚É•\¦‚·‚é‰Šú‰»ŠÖ”
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚«ãƒ¼ãƒ†ãƒ³ã®ã‚ˆã†ã«è¡¨ç¤ºã™ã‚‹åˆæœŸåŒ–é–¢æ•°
  *
- *@param	wipe		ƒƒCƒvƒ[ƒN
- *@param	param		ŠÖ”ˆø”
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+ *@param	param		é–¢æ•°å¼•æ•°
  *
- *	rota		ŠJnŠp“x		Šp“x‚Í‚O`‚W‚X‚Å‚¨Šè‚¢‚µ‚Ü‚·
- *	e_rota		I—¹Šp“x		‚Ü‚½ƒ‰ƒWƒAƒ“’l‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B
- *	wnd_no		ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *	in_wnd		ƒEƒBƒ“ƒhƒE“à‚Ì–Ê
- *	out_wnd		ƒEƒBƒ“ƒhƒEŠO‚Ì–Ê
+ *	rota		é–‹å§‹è§’åº¦		è§’åº¦ã¯ï¼ã€œï¼˜ï¼™ã§ãŠé¡˜ã„ã—ã¾ã™
+ *	e_rota		çµ‚äº†è§’åº¦		ã¾ãŸãƒ©ã‚¸ã‚¢ãƒ³å€¤ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+ *	wnd_no		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *	in_wnd		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã®é¢
+ *	out_wnd		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤–ã®é¢
  *
  *	@return
  *
@@ -3548,7 +3548,7 @@ static void scchg_WndCurtainPackInit( WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_
 {
 	WIPE_TYPE_WND_CURTAIN* wwm;
 
-	// ƒtƒF[ƒhŠJn
+	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	wipe->wipe_work = sys_AllocMemory(wipe->heap, sizeof(WIPE_TYPE_WND_CURTAIN));
 	wwm = (WIPE_TYPE_WND_CURTAIN*)wipe->wipe_work;
 	scchg_WndCurtainInit(wwm, param,wipe->division, wipe->piece_sync,  wipe->disp,  wipe->wnd_sys, wipe->p_wipehb, wipe->heap);
@@ -3558,11 +3558,11 @@ static void scchg_WndCurtainPackInit( WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚ğƒJ[ƒeƒ“‚Ì‚æ‚¤‚É•\¦‚·‚é
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚«ãƒ¼ãƒ†ãƒ³ã®ã‚ˆã†ã«è¡¨ç¤ºã™ã‚‹
  *
- *@param	wipe		ƒƒCƒvƒ[ƒN
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *@return	BOOL	TRUEFI—¹	FALSEF‘±s
+ *@return	BOOL	TRUEï¼šçµ‚äº†	FALSEï¼šç¶šè¡Œ
  *
  */
 //-----------------------------------------------------------------------------
@@ -3570,7 +3570,7 @@ static BOOL scchg_WndCurtainPack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_TYPE_WND_CURTAIN* wwm;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 	
 	wwm = (WIPE_TYPE_WND_CURTAIN*)wipe->wipe_work;
 	
@@ -3605,16 +3605,16 @@ static BOOL scchg_WndCurtainPack(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚Å‚ÌƒJ[ƒeƒ“•`‰æŠJn
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§ã®ã‚«ãƒ¼ãƒ†ãƒ³æç”»é–‹å§‹
  *
- *@param	data		ƒJ[ƒeƒ“•`‰æƒf[ƒ^
- *@param	param		ƒJ[ƒeƒ““®ìƒf[ƒ^
- *@param	division	ˆ—‚Ì•ªŠ„”
- *@param	piece_sync	‚P•Ğ‚ÌƒVƒ“ƒN”
- *@param	disp		ƒEƒBƒ“ƒhƒE•\¦–Ê
- *@param	wnd_sys		ƒEƒBƒ“ƒhƒEVblankˆ—ƒVƒXƒeƒ€‚Ìƒ[ƒN
- *@param	p_wipehb	ƒƒCƒvHƒuƒ‰ƒ“ƒNƒ[ƒN
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	data		ã‚«ãƒ¼ãƒ†ãƒ³æç”»ãƒ‡ãƒ¼ã‚¿
+ *@param	param		ã‚«ãƒ¼ãƒ†ãƒ³å‹•ä½œãƒ‡ãƒ¼ã‚¿
+ *@param	division	å‡¦ç†ã®åˆ†å‰²æ•°
+ *@param	piece_sync	ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+ *@param	disp		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé¢
+ *@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Vblankå‡¦ç†ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
+ *@param	p_wipehb	ãƒ¯ã‚¤ãƒ—Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
@@ -3627,7 +3627,7 @@ static void scchg_WndCurtainInit(WIPE_TYPE_WND_CURTAIN* data, const WIPE_TYPE_WN
 	
 	data->rota_add = sum_add_num(param->rota, param->e_rota, division);
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	scchg_h_WndMake(&data->hb_c, param->wnd_no, disp, heap);
 	data->rota		= param->rota*SUM_NUM_MINI;
 	data->a_count	= division;
@@ -3638,17 +3638,17 @@ static void scchg_WndCurtainInit(WIPE_TYPE_WND_CURTAIN* data, const WIPE_TYPE_WN
 	data->heap		= heap;
 	data->fade_flg	= param->fade_flg;
 	
-	scchg_WndCurtainSum(data);	// 1‰ñŒvZ‚·‚é
+	scchg_WndCurtainSum(data);	// 1å›è¨ˆç®—ã™ã‚‹
 	VWaitTCB_Add(scchg_WndSwap,&data->hb_c, WIPE_VBLANK_WND_SWAP_TCB );
 
-	// ƒEƒBƒ“ƒhƒE•\¦İ’è
-	// ƒEƒBƒ“ƒhƒEİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºè¨­å®š
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	one = scchg_h_WndIdxDataGet(&data->hb_c, 0);
 	scchg_WndSetUp(wnd_sys, param->in_wnd, param->out_wnd,
 			param->wnd_no, disp, one->wnd_tmp[0][0], 0, one->wnd_tmp[1][0], 192,
 			data->fade_flg);
 
-	// ƒEƒBƒ“ƒhƒEƒIƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 	if(param->wnd_no == 0){
 		scchg_WndVisible(wnd_sys, GX_WNDMASK_W0, disp, data->fade_flg);
 	}else{
@@ -3656,18 +3656,18 @@ static void scchg_WndCurtainInit(WIPE_TYPE_WND_CURTAIN* data, const WIPE_TYPE_WN
 	}
 	
 
-	// HblankŠÖ”‚ğİ’è
+	// Hblanké–¢æ•°ã‚’è¨­å®š
 	WIPE_V_HBlankInit(data->p_wipehb, &data->hb_c, scchg_h_Wnd, disp, heap);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒEƒJ[ƒeƒ“•\¦‚ÌƒƒCƒ“ˆ—
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚«ãƒ¼ãƒ†ãƒ³è¡¨ç¤ºã®ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *@param	data	ƒEƒBƒ“ƒhƒE“®ìƒf[ƒ^
+ *@param	data	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œãƒ‡ãƒ¼ã‚¿
  *	
- *@return	BOOL	TRUEFI—¹	FALSEF‘±s
+ *@return	BOOL	TRUEï¼šçµ‚äº†	FALSEï¼šç¶šè¡Œ
  *
  *
  */
@@ -3678,14 +3678,14 @@ static BOOL scchg_WndCurtainMain(WIPE_TYPE_WND_CURTAIN* data)
 	if(data->sync_c >= data->piece_sync){
 		data->sync_c = 0;
 		
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		if((data->a_count - 1) > 0){
 			data->a_count--;
 			data->rota += data->rota_add;
-			scchg_WndCurtainSum(data);		// ŒvZ
+			scchg_WndCurtainSum(data);		// è¨ˆç®—
 			VWaitTCB_Add(scchg_WndSwap,&data->hb_c, WIPE_VBLANK_WND_SWAP_TCB );
 		}else{
-			// ˆ—I—¹
+			// å‡¦ç†çµ‚äº†
 			WIPE_V_HBlankDelete(data->p_wipehb, data->hb_c.disp, data->heap);
 			return TRUE;
 		}
@@ -3697,9 +3697,9 @@ static BOOL scchg_WndCurtainMain(WIPE_TYPE_WND_CURTAIN* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚ğƒJ[ƒeƒ“‚Ì‚æ‚¤‚É•\¦‚·‚éƒf[ƒ^‚ğŒvZ
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚«ãƒ¼ãƒ†ãƒ³ã®ã‚ˆã†ã«è¡¨ç¤ºã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’è¨ˆç®—
  *
- *@param	work		ƒEƒBƒ“ƒhƒE“®ìƒf[ƒ^
+ *@param	work		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‹•ä½œãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -3713,13 +3713,13 @@ static void scchg_WndCurtainSum(WIPE_TYPE_WND_CURTAIN* work)
 	int width[192];
 	WIPE_TYPE_HB_WND_ONE* one;
 
-	// ƒCƒ“ƒfƒbƒNƒX‚O‚ÌƒEƒBƒ“ƒhƒEƒf[ƒ^‚ğæ“¾
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	one = scchg_h_WndIdxDataGet(&work->hb_c, 0);
 
-	// Šp“x‚©‚çŠe‚‚³‚Å‚Ì•‚ğ‹‚ß‚é
+	// è§’åº¦ã‹ã‚‰å„é«˜ã•ã§ã®å¹…ã‚’æ±‚ã‚ã‚‹
 	sum_rota_height_width(work->rota/SUM_NUM_MINI, width, 192, 0);
 
-	// ŠeYÀ•W‚Å‚Ì•‚ğ‘ã“ü‚·‚é
+	// å„Yåº§æ¨™ã§ã®å¹…ã‚’ä»£å…¥ã™ã‚‹
 	for(i=0;i<192;i++){
 		one->wnd_tmp[0][i] = sum_add_wnd_width(128, -width[i]);
 		one->wnd_tmp[1][i] = sum_add_wnd_width(128, width[i]);
@@ -3729,15 +3729,15 @@ static void scchg_WndCurtainSum(WIPE_TYPE_WND_CURTAIN* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒhƒAƒtƒF[ƒhƒpƒbƒNŠÖ”	‰Šú‰»ŠÖ”
+ *@brief	ãƒ‰ã‚¢ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ãƒƒã‚¯é–¢æ•°	åˆæœŸåŒ–é–¢æ•°
  *
- *@param	wipe		ƒƒCƒvƒ[ƒN
- *@param	param		ƒhƒAƒf[ƒ^
- *	s_d			ŠJnŠJ‚«Šp“x	iROTA_NUM(0)`ROTA_NUM(90)j
- *	e_d			I—¹ŠJ‚«Šp“x	iROTA_NUM(0)`ROTA_NUM(90)j
- *	wnd_no		g—pƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *	in_wnd		ƒEƒBƒ“ƒhƒE“à–Êİ’è
- *	out_wnd		ƒEƒBƒ“ƒhƒEŠO–Êİ’è
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+ *@param	param		ãƒ‰ã‚¢ãƒ‡ãƒ¼ã‚¿
+ *	s_d			é–‹å§‹é–‹ãè§’åº¦	ï¼ˆROTA_NUM(0)ã€œROTA_NUM(90)ï¼‰
+ *	e_d			çµ‚äº†é–‹ãè§’åº¦	ï¼ˆROTA_NUM(0)ã€œROTA_NUM(90)ï¼‰
+ *	wnd_no		ä½¿ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *	in_wnd		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…é¢è¨­å®š
+ *	out_wnd		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤–é¢è¨­å®š
  *
  *@return	none
  *
@@ -3747,7 +3747,7 @@ static void scchg_WndCurtainSum(WIPE_TYPE_WND_CURTAIN* work)
 static void scchg_WndDoorPackInit(WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_WND_DOOR_FP* param)
 {
 	WIPE_TYPE_WND_DOOR* wwm;
-	// ƒtƒF[ƒhŠJn
+	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	wipe->wipe_work = sys_AllocMemory(wipe->heap, sizeof(WIPE_TYPE_WND_DOOR));
 	wwm = (WIPE_TYPE_WND_DOOR*)wipe->wipe_work;
 	scchg_WndDoorInit(wwm, param, wipe->division, wipe->piece_sync,  wipe->disp, wipe->wnd_sys, wipe->p_wipehb, wipe->heap);
@@ -3757,11 +3757,11 @@ static void scchg_WndDoorPackInit(WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_WND_
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒhƒAƒtƒF[ƒhƒpƒbƒNŠÖ”
+ *@brief	ãƒ‰ã‚¢ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ãƒƒã‚¯é–¢æ•°
  *
- *@param	wipe		ƒƒCƒvƒ[ƒN
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *@return	BOOL	TRUEFI—¹		FALSEF‘±s
+ *@return	BOOL	TRUEï¼šçµ‚äº†		FALSEï¼šç¶šè¡Œ
  *
  *
  */
@@ -3770,7 +3770,7 @@ static BOOL scchg_WndDoorPack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_TYPE_WND_DOOR* wwm;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 	
 	wwm = (WIPE_TYPE_WND_DOOR*)wipe->wipe_work;
 	
@@ -3802,17 +3802,17 @@ static BOOL scchg_WndDoorPack(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚ÅƒhƒAƒtƒF[ƒh‰Šú‰»
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§ãƒ‰ã‚¢ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *@param	data		ƒf[ƒ^Ši”[æ
- *@param	param		ƒhƒA“®ìƒf[ƒ^
- *@param	division	ˆ—•ªŠ„”
- *@param	piece_sync	‚P•Ğ‚ÌƒVƒ“ƒN”
- *@param	disp		ƒEƒBƒ“ƒhƒE•\¦–Ê
- *@param	wnd_no		g—pƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *@param	wnd_sys		ƒEƒBƒ“ƒhƒEVblankİ’èƒ[ƒN
- *@param	wipe_hb		ƒƒCƒvHƒuƒ‰ƒ“ƒNƒ[ƒN
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	data		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *@param	param		ãƒ‰ã‚¢å‹•ä½œãƒ‡ãƒ¼ã‚¿
+ *@param	division	å‡¦ç†åˆ†å‰²æ•°
+ *@param	piece_sync	ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+ *@param	disp		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé¢
+ *@param	wnd_no		ä½¿ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Vblankè¨­å®šãƒ¯ãƒ¼ã‚¯
+ *@param	wipe_hb		ãƒ¯ã‚¤ãƒ—Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *	
  *@return	none
  *
@@ -3824,13 +3824,13 @@ static void scchg_WndDoorInit(WIPE_TYPE_WND_DOOR* data, const WIPE_TYPE_WND_DOOR
 	int add_num;
 	WIPE_TYPE_HB_WND_ONE* one;
 
-	// ‚P‰ñ‚ÅŠJ‚­ƒhƒA‚Ì‹——£‚ğŒvZ
+	// ï¼‘å›ã§é–‹ããƒ‰ã‚¢ã®è·é›¢ã‚’è¨ˆç®—
 	add_num	= (param->e_d - param->s_d);
 	add_num	/= division;
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	scchg_h_WndMake(&data->hb_d, param->wnd_no, disp, heap);
-	data->open_max		= 128*FX32_ONE;	// ‰¡•‚Ì”¼•ª‚Ì’l‚Ål‚¦‚é
+	data->open_max		= 128*FX32_ONE;	// æ¨ªå¹…ã®åŠåˆ†ã®å€¤ã§è€ƒãˆã‚‹
 	data->open_r		= param->s_d;
 	data->open_r_a		= add_num;
 	data->a_count	= division;
@@ -3841,36 +3841,36 @@ static void scchg_WndDoorInit(WIPE_TYPE_WND_DOOR* data, const WIPE_TYPE_WND_DOOR
 	data->heap		= heap;
 	data->fade_flg	= param->fade_flg;
 
-	// ƒhƒAŒvZ
+	// ãƒ‰ã‚¢è¨ˆç®—
 	scchg_WndDoorSum(data);
 	VWaitTCB_Add(scchg_WndSwap,&data->hb_d, WIPE_VBLANK_WND_SWAP_TCB );
 	
-	// ƒEƒBƒ“ƒhƒEİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	one = scchg_h_WndIdxDataGet(&data->hb_d, 0);
 	scchg_WndSetUp(wnd_sys, param->in_wnd, param->out_wnd, 
 			param->wnd_no, disp,
 			one->wnd_tmp[0][96], 0, one->wnd_tmp[1][96], 192,
-			data->fade_flg);	// ‚X‚U‚©‚ç‚É‚·‚é‚×‚µ
+			data->fade_flg);	// ï¼™ï¼–ã‹ã‚‰ã«ã™ã‚‹ã¹ã—
 
-	// ƒEƒBƒ“ƒhƒEƒIƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 	if(param->wnd_no == 0){
 		scchg_WndVisible(wnd_sys, GX_WNDMASK_W0, disp, data->fade_flg);
 	}else{
 		scchg_WndVisible(wnd_sys, GX_WNDMASK_W1, disp, data->fade_flg);
 	}
 
-	// HblankŠÖ”‚ğİ’è
+	// Hblanké–¢æ•°ã‚’è¨­å®š
 	WIPE_V_HBlankInit(data->p_wipehb, &data->hb_d, scchg_h_Wnd, disp, heap);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒhƒAƒtƒF[ƒhƒƒCƒ“
+ *@brief	ãƒ‰ã‚¢ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¡ã‚¤ãƒ³
  *
- *@param	data		ƒhƒAƒf[ƒ^
+ *@param	data		ãƒ‰ã‚¢ãƒ‡ãƒ¼ã‚¿
  *
- *@return	BOOL		TRUEFI—¹		FALSEF¸”s
+ *@return	BOOL		TRUEï¼šçµ‚äº†		FALSEï¼šå¤±æ•—
  *
  *
  */
@@ -3881,14 +3881,14 @@ static BOOL scchg_WndDoorMain(WIPE_TYPE_WND_DOOR* data)
 	if(data->sync_c >= data->piece_sync){
 		data->sync_c = 0;
 		
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		if((data->a_count - 1) > 0){
 			data->a_count--;
 			data->open_r += data->open_r_a;
-			scchg_WndDoorSum(data);		// ŒvZ
+			scchg_WndDoorSum(data);		// è¨ˆç®—
 			VWaitTCB_Add(scchg_WndSwap, &data->hb_d, WIPE_VBLANK_WND_SWAP_TCB );
 		}else{
-			// ˆ—I—¹
+			// å‡¦ç†çµ‚äº†
 			WIPE_V_HBlankDelete(data->p_wipehb, data->hb_d.disp, data->heap);
 			return TRUE;
 		}
@@ -3900,9 +3900,9 @@ static BOOL scchg_WndDoorMain(WIPE_TYPE_WND_DOOR* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒhƒAŒ^‚ÌƒEƒBƒ“ƒhƒEŒvZ
+ *@brief	ãƒ‰ã‚¢å‹ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨ˆç®—
  *
- *@param	work		ƒhƒAƒf[ƒ^
+ *@param	work		ãƒ‰ã‚¢ãƒ‡ãƒ¼ã‚¿
  *
  *@return	noen
  *
@@ -3912,38 +3912,38 @@ static BOOL scchg_WndDoorMain(WIPE_TYPE_WND_DOOR* data)
 static void scchg_WndDoorSum(WIPE_TYPE_WND_DOOR* work)
 {
 	int i;
-	int tri_h;		// ‰œs‚«•\Œ»‚Ì‚Q“™•ÓOŠpŒ`‚Ì‚‚³
-	int rota;		// ‰œs‚«•\Œ»‚Ì‚Q“™•ÓOŠpŒ`‚Ì’¸“_‚ÌŠp“x
-	int tri_data[192];	// ‰œs‚«•\Œ»‚Ì‚Q“™•ÓOŠpŒ`‚ÌŒ`ƒf[ƒ^
-	int tri_n;		// tri_dataƒe[ƒuƒ‹‚Ì—v‘f”
-	int h_open;		// ¡‚ÌŠJ‚¢‚Ä‚¢‚é’l‚Ì”¼•ª
-	int set_w;		// ƒEƒBƒ“ƒhƒE‚Éİ’è‚·‚é•
-	int st, ed;		// ŠJn“_AI—¹“_
-	WIPE_TYPE_HB_WND_ONE* one;	// ƒEƒBƒ“ƒhƒEİ’èƒf[ƒ^
+	int tri_h;		// å¥¥è¡Œãè¡¨ç¾ã®ï¼’ç­‰è¾ºä¸‰è§’å½¢ã®é«˜ã•
+	int rota;		// å¥¥è¡Œãè¡¨ç¾ã®ï¼’ç­‰è¾ºä¸‰è§’å½¢ã®é ‚ç‚¹ã®è§’åº¦
+	int tri_data[192];	// å¥¥è¡Œãè¡¨ç¾ã®ï¼’ç­‰è¾ºä¸‰è§’å½¢ã®å½¢ãƒ‡ãƒ¼ã‚¿
+	int tri_n;		// tri_dataãƒ†ãƒ¼ãƒ–ãƒ«ã®è¦ç´ æ•°
+	int h_open;		// ä»Šã®é–‹ã„ã¦ã„ã‚‹å€¤ã®åŠåˆ†
+	int set_w;		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¨­å®šã™ã‚‹å¹…
+	int st, ed;		// é–‹å§‹ç‚¹ã€çµ‚äº†ç‚¹
+	WIPE_TYPE_HB_WND_ONE* one;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®šãƒ‡ãƒ¼ã‚¿
 
-	// ƒCƒ“ƒfƒbƒNƒX‚O‚ÌƒEƒBƒ“ƒhƒE‚ğæ“¾
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å–å¾—
 	one = scchg_h_WndIdxDataGet(&work->hb_d, 0);
 
-	// ¡‚ÌŠJ‚­’l‚ğ‹‚ß‚é
+	// ä»Šã®é–‹ãå€¤ã‚’æ±‚ã‚ã‚‹
 	h_open = FX_Mul(FX_SinIdx(work->open_r), work->open_max);
 	h_open >>= FX32_SHIFT;
 	
-	rota = h_open*2;						// ¡‚ÌŠJ‚­’l‚ğ‹‚ß‚é
-	rota = rota / WIPE_DOOR_ROTA_NUM;		// ‚Q“™•ÓOŠpŒ`‚ÌÄ“x‚ÌŠp“x‚ğ‹‚ß‚é
-	rota += 1;								// 90“x‰ñ”ğ
-	rota = 180 - (rota*2);					// OŠpŒ`‚Ì’¸“_‚ÌŠp“x‚ğ‹‚ß‚é
-	rota = ROTA_NUM(rota);					// FX‚ÌŒvZ‚Åg—p‚·‚éŠp“x‚Ì’PˆÊ‚É‚·‚é
-	rota /= 2;								// •‚ğ‹‚ß‚é‚½‚ß”¼•ª‚ÌŠp“x‚É‚·‚é
-	tri_h = sum_triangle_height(rota, 256);	// OŠpŒ`‚Ì‚‚³‚ğæ“¾
-	tri_h >>= FX32_SHIFT;					// fx32‚©‚çint‚Ö
+	rota = h_open*2;						// ä»Šã®é–‹ãå€¤ã‚’æ±‚ã‚ã‚‹
+	rota = rota / WIPE_DOOR_ROTA_NUM;		// ï¼’ç­‰è¾ºä¸‰è§’å½¢ã®å†åº¦ã®è§’åº¦ã‚’æ±‚ã‚ã‚‹
+	rota += 1;								// 90åº¦å›é¿
+	rota = 180 - (rota*2);					// ä¸‰è§’å½¢ã®é ‚ç‚¹ã®è§’åº¦ã‚’æ±‚ã‚ã‚‹
+	rota = ROTA_NUM(rota);					// FXã®è¨ˆç®—ã§ä½¿ç”¨ã™ã‚‹è§’åº¦ã®å˜ä½ã«ã™ã‚‹
+	rota /= 2;								// å¹…ã‚’æ±‚ã‚ã‚‹ãŸã‚åŠåˆ†ã®è§’åº¦ã«ã™ã‚‹
+	tri_h = sum_triangle_height(rota, 256);	// ä¸‰è§’å½¢ã®é«˜ã•ã‚’å–å¾—
+	tri_h >>= FX32_SHIFT;					// fx32ã‹ã‚‰intã¸
 	GF_ASSERT(tri_h < 192);
 
-	sum_rota_height_width(rota, tri_data, tri_h, 0);	// OŠpŒ`‚ÌŒ`ƒf[ƒ^‚ğ‹‚ß‚é
+	sum_rota_height_width(rota, tri_data, tri_h, 0);	// ä¸‰è§’å½¢ã®å½¢ãƒ‡ãƒ¼ã‚¿ã‚’æ±‚ã‚ã‚‹
 	
-	// ƒhƒAŒ^‚ÌƒEƒBƒ“ƒhƒEƒf[ƒ^‚ğì¬
+	// ãƒ‰ã‚¢å‹ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 	for(i=0;i<96;i++){
 
-		// ƒEƒBƒ“ƒhƒE‚Éİ’è‚·‚é•‚ğ‹‚ß‚é
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¨­å®šã™ã‚‹å¹…ã‚’æ±‚ã‚ã‚‹
 		tri_n = tri_h - (i+1);
 		set_w = h_open;
 		if(tri_n > 0){
@@ -3952,11 +3952,11 @@ static void scchg_WndDoorSum(WIPE_TYPE_WND_DOOR* work)
 			}
 		}
 
-		// ŠJn“_I—¹“_‚ğ‹‚ß‚é
+		// é–‹å§‹ç‚¹çµ‚äº†ç‚¹ã‚’æ±‚ã‚ã‚‹
 		st = sum_add_wnd_width(128, -set_w);
 		ed = sum_add_wnd_width(128, set_w);
 
-		// ƒEƒBƒ“ƒhƒE‚Éİ’è‚·‚é
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¨­å®šã™ã‚‹
 		one->wnd_tmp[0][i] = st;
 		one->wnd_tmp[1][i] = ed;
 		one->wnd_tmp[0][191 - i] = st;
@@ -3967,10 +3967,10 @@ static void scchg_WndDoorSum(WIPE_TYPE_WND_DOOR* work)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚PƒEƒBƒ“ƒhƒE•ªŠ„ˆ—ƒtƒF[ƒhƒpƒbƒN
+ *	@brief	ï¼‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ†å‰²å‡¦ç†ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ãƒƒã‚¯
  *
- *	@param	wipe		ƒƒCƒvƒ[ƒN
- *	@param	param		•ªŠ„ƒtƒF[ƒhƒf[ƒ^
+ *	@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		åˆ†å‰²ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -3980,7 +3980,7 @@ static void scchg_WndDoorSum(WIPE_TYPE_WND_DOOR* work)
 static void scchg_WndDivisionPackInit(WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_WND_DIVI_FP* param)
 {
 	WIPE_TYPE_WND_DIVI* wwm;
-	// ƒtƒF[ƒhŠJn
+	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	wipe->wipe_work = sys_AllocMemory(wipe->heap, sizeof(WIPE_TYPE_WND_DIVI));
 	wwm = (WIPE_TYPE_WND_DIVI*)wipe->wipe_work;
 	scchg_WndDivisionInit(wwm, param, wipe->division, wipe->piece_sync,  wipe->disp, wipe->wnd_sys, wipe->p_wipehb, wipe->heap);
@@ -3990,11 +3990,11 @@ static void scchg_WndDivisionPackInit(WIPE_SYS_WIPE_WORK* wipe, const WIPE_TYPE_
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚PƒEƒBƒ“ƒhƒE•ªŠ„ˆ—ƒtƒF[ƒhƒpƒbƒN
+ *@brief	ï¼‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ†å‰²å‡¦ç†ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ãƒƒã‚¯
  *
- *@param	wipe		ƒƒCƒvƒ[ƒN
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *	
- *@return	BOOL	TRUEFI—¹		FALSEF‘±s
+ *@return	BOOL	TRUEï¼šçµ‚äº†		FALSEï¼šç¶šè¡Œ
  *
  *
  */
@@ -4003,7 +4003,7 @@ static BOOL scchg_WndDivisionPack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_TYPE_WND_DIVI* wwm;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 	
 	wwm = (WIPE_TYPE_WND_DIVI*)wipe->wipe_work;
 	
@@ -4018,7 +4018,7 @@ static BOOL scchg_WndDivisionPack(WIPE_SYS_WIPE_WORK* wipe)
 		break;
 
 	case WIPE_END:
-		scchg_WndDivisionEnd(wwm);	// •ªŠ„ƒEƒBƒ“ƒhƒEƒf[ƒ^”jŠü
+		scchg_WndDivisionEnd(wwm);	// åˆ†å‰²ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		scchg_h_WndDel(&wwm->hb_divi);
 		
 		sys_FreeMemoryEz(wipe->wipe_work);
@@ -4041,16 +4041,16 @@ static BOOL scchg_WndDivisionPack(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚PƒEƒBƒ“ƒhƒE•ªŠ„ƒtƒF[ƒh‰Šú‰»
+ *@brief	ï¼‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ†å‰²ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *@param	data		ƒf[ƒ^Ši”[æ
- *@param	param		‚PƒEƒBƒ“ƒhƒE•ªŠ„ƒf[ƒ^
- *@param	division	ˆ—•ªŠ„”
- *@param	piece_sync	•ªŠ„‚µ‚½‚P•Ğ‚ÌƒVƒ“ƒN”
- *@param	disp		ƒEƒBƒ“ƒhƒE•\¦–Ê
- *@param	wnd_sys		ƒEƒBƒ“ƒhƒEVblankİ’èƒVƒXƒeƒ€ƒ[ƒN
- *@param	p_wipehb	ƒƒCƒv—pHƒuƒ‰ƒ“ƒNƒ[ƒN
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	data		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *@param	param		ï¼‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ†å‰²ãƒ‡ãƒ¼ã‚¿
+ *@param	division	å‡¦ç†åˆ†å‰²æ•°
+ *@param	piece_sync	åˆ†å‰²ã—ãŸï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+ *@param	disp		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé¢
+ *@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Vblankè¨­å®šã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *@param	p_wipehb	ãƒ¯ã‚¤ãƒ—ç”¨Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
@@ -4062,19 +4062,19 @@ static void scchg_WndDivisionInit(WIPE_TYPE_WND_DIVI* data, const WIPE_TYPE_WND_
 	int i;
 	WIPE_TYPE_HB_WND_ONE* one;
 	
-	// •ªŠ„ƒf[ƒ^ì¬
-	// ƒƒ‚ƒŠƒAƒƒbƒN
+	// åˆ†å‰²ãƒ‡ãƒ¼ã‚¿ä½œæˆ
+	// ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ãƒƒã‚¯
 	data->piece_tbl = sys_AllocMemory(heap, sizeof(WIPE_TYPE_WND_D_PIECE)*param->divi_num);
 	GF_ASSERT(data->piece_tbl != NULL);
 	data->piece_num = param->divi_num;
 
-	// ƒf[ƒ^Ši”[
+	// ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	for(i=0;i<param->divi_num;i++){
 
 		sum_set_wnd_position(&data->piece_tbl[i].st, &data->piece_tbl[i].ed, &data->piece_tbl[i].add, (param->p_st+i), (param->p_ed+i), division);
 	}
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	scchg_h_WndMake(&data->hb_divi, param->wnd_no, disp, heap);
 	data->a_count		= division;
 	data->piece_sync	= piece_sync;
@@ -4084,24 +4084,24 @@ static void scchg_WndDivisionInit(WIPE_TYPE_WND_DIVI* data, const WIPE_TYPE_WND_
 	data->heap			= heap;
 	data->fade_flg		= param->fade_flg;
 
-	// •ªŠ„ŒvZ
+	// åˆ†å‰²è¨ˆç®—
 	scchg_WndDivisionSum(data);
 	VWaitTCB_Add(scchg_WndSwap,&data->hb_divi, WIPE_VBLANK_WND_SWAP_TCB );
 	
-	// ƒEƒBƒ“ƒhƒEİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	one = scchg_h_WndIdxDataGet(&data->hb_divi, 0);
 	scchg_WndSetUp(wnd_sys, param->in_wnd, param->out_wnd, param->wnd_no, disp,
 			one->wnd_tmp[0][0], 0, one->wnd_tmp[1][0], 192,
-			data->fade_flg);	// ‚X‚U‚©‚ç‚É‚·‚é‚×‚µ
+			data->fade_flg);	// ï¼™ï¼–ã‹ã‚‰ã«ã™ã‚‹ã¹ã—
 
-	// ƒEƒBƒ“ƒhƒEƒIƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 	if(param->wnd_no == 0){
 		scchg_WndVisible(data->wnd_sys, GX_WNDMASK_W0, disp, data->fade_flg);
 	}else{
 		scchg_WndVisible(data->wnd_sys,GX_WNDMASK_W1, disp, data->fade_flg);
 	}
 
-	// HblankŠÖ”‚ğİ’è
+	// Hblanké–¢æ•°ã‚’è¨­å®š
 	WIPE_V_HBlankInit(data->p_wipehb, &data->hb_divi, scchg_h_Wnd, disp, heap);
 }
 	
@@ -4109,11 +4109,11 @@ static void scchg_WndDivisionInit(WIPE_TYPE_WND_DIVI* data, const WIPE_TYPE_WND_
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	1ƒEƒBƒ“ƒhƒE‚ğ•ªŠ„‚µ‚Ä‚»‚ê‚¼‚ê‚Å“®‚©‚·
+ *@brief	1ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’åˆ†å‰²ã—ã¦ãã‚Œãã‚Œã§å‹•ã‹ã™
  *
- *@param	data		•ªŠ„‚µ‚½ƒEƒBƒ“ƒhƒEƒf[ƒ^
+ *@param	data		åˆ†å‰²ã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
  *
- *@return	BOOL		TRUEFI—¹		FALSEF‘±s
+ *@return	BOOL		TRUEï¼šçµ‚äº†		FALSEï¼šç¶šè¡Œ
  *
  *
  */
@@ -4125,17 +4125,17 @@ static BOOL scchg_WndDivisionMain(WIPE_TYPE_WND_DIVI* data)
 	if(data->sync_c >= data->piece_sync){
 		data->sync_c = 0;
 		
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		if((data->a_count - 1) > 0){
 			data->a_count--;
 
-			// “®‚©‚·
+			// å‹•ã‹ã™
 			scchg_WndDivisionMainSub(data);			
 			
-			scchg_WndDivisionSum(data);		// ŒvZ
+			scchg_WndDivisionSum(data);		// è¨ˆç®—
 			VWaitTCB_Add(scchg_WndSwap,&data->hb_divi, WIPE_VBLANK_WND_SWAP_TCB );
 		}else{
-			// ˆ—I—¹
+			// å‡¦ç†çµ‚äº†
 			WIPE_V_HBlankDelete(data->p_wipehb, data->hb_divi.disp, data->heap);
 			return TRUE;
 		}
@@ -4147,9 +4147,9 @@ static BOOL scchg_WndDivisionMain(WIPE_TYPE_WND_DIVI* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ŠeX‚Ì•ªŠ„ƒf[ƒ^‚ğ”jŠü‚·‚é
+ *@brief	å„ã€…ã®åˆ†å‰²ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
  *
- *@param	data	ƒEƒBƒ“ƒhƒE•ªŠ„ƒf[ƒ^
+ *@param	data	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ†å‰²ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -4158,7 +4158,7 @@ static BOOL scchg_WndDivisionMain(WIPE_TYPE_WND_DIVI* data)
 //-----------------------------------------------------------------------------
 static void scchg_WndDivisionEnd(WIPE_TYPE_WND_DIVI* data)
 {
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ğ‰ğ•ú
+	// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
 	sys_FreeMemoryEz( data->piece_tbl);
 	data->piece_tbl = NULL;
 }
@@ -4166,9 +4166,9 @@ static void scchg_WndDivisionEnd(WIPE_TYPE_WND_DIVI* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ŠeX‚Ìƒf[ƒ^‚ğƒEƒBƒ“ƒhƒE‚Ìİ’èƒf[ƒ^‚É•ÏŠ·
+ *@brief	å„ã€…ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¨­å®šãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›
  *
- *@param	work		‚PƒEƒBƒ“ƒhƒE•ªŠ„ƒf[ƒ^
+ *@param	work		ï¼‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ†å‰²ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -4177,13 +4177,13 @@ static void scchg_WndDivisionEnd(WIPE_TYPE_WND_DIVI* data)
 //-----------------------------------------------------------------------------
 static void scchg_WndDivisionSum(WIPE_TYPE_WND_DIVI* work)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	WIPE_TYPE_HB_WND_ONE* one;
 	
 	one = scchg_h_WndIdxDataGet(&work->hb_divi, 0);
-	memset(one->wnd_tmp, 0, 768);	// ƒNƒŠƒA
+	memset(one->wnd_tmp, 0, 768);	// ã‚¯ãƒªã‚¢
 
-	// —v‘f‚O‚ªˆê”Ô—Dæ‡ˆÊ‚ª‚‚­‚È‚é‚æ‚¤‚ÉÅŒã‚Ì—v‘f‚©‚çƒf[ƒ^‚ğİ’è‚µ‚Ä‚¢‚­
+	// è¦ç´ ï¼ãŒä¸€ç•ªå„ªå…ˆé †ä½ãŒé«˜ããªã‚‹ã‚ˆã†ã«æœ€å¾Œã®è¦ç´ ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã—ã¦ã„ã
 	for(i = (work->piece_num-1); i >= 0; i--){
 		scchg_WndDivisionSumSub(&work->hb_divi, &work->piece_tbl[i].st);
 	}
@@ -4192,20 +4192,20 @@ static void scchg_WndDivisionSum(WIPE_TYPE_WND_DIVI* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE•ªŠ„ƒf[ƒ^ŒvZƒTƒuŠÖ”
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ†å‰²ãƒ‡ãƒ¼ã‚¿è¨ˆç®—ã‚µãƒ–é–¢æ•°
  *
- *@param	hb_divi		Hƒuƒ‰ƒ“ƒNİ’èƒf[ƒ^
- *@param	set			İ’èƒf[ƒ^
+ *@param	hb_divi		Hãƒ–ãƒ©ãƒ³ã‚¯è¨­å®šãƒ‡ãƒ¼ã‚¿
+ *@param	set			è¨­å®šãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * İ’è‚·‚é
+ * è¨­å®šã™ã‚‹
  *
  */
 //-----------------------------------------------------------------------------
 static void scchg_WndDivisionSumSub(WIPE_TYPE_HB_WND* hb_divi, WIPE_WND_POSITION* set)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	WIPE_TYPE_HB_WND_ONE* one;
 	WIPE_WND_POSITION set_data;
 	
@@ -4225,21 +4225,21 @@ static void scchg_WndDivisionSumSub(WIPE_TYPE_HB_WND* hb_divi, WIPE_WND_POSITION
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒƒCƒ“ŠÖ”‚Ì“à•”ŠÖ”
+ *@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°ã®å†…éƒ¨é–¢æ•°
  *
- *@param	data		ƒf[ƒ^
+ *@param	data		ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- * ÀÛ‚É•ªŠ„‚³‚ê‚½‚»‚ê‚¼‚ê‚ÌƒEƒBƒ“ƒhƒE‚ğ“®‚©‚·
+ * å®Ÿéš›ã«åˆ†å‰²ã•ã‚ŒãŸãã‚Œãã‚Œã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‹•ã‹ã™
  *
  */
 //-----------------------------------------------------------------------------
 static void scchg_WndDivisionMainSub(WIPE_TYPE_WND_DIVI* data)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
-	// ‚»‚ê‚¼‚ê“®‚©‚·
+	// ãã‚Œãã‚Œå‹•ã‹ã™
 	for(i=0;i<data->piece_num;i++){
 		sum_add_wnd(&data->piece_tbl[i].st, &data->piece_tbl[i].add);
 	}
@@ -4247,11 +4247,11 @@ static void scchg_WndDivisionMainSub(WIPE_TYPE_WND_DIVI* data)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠƒ…[ŠÖ”‰Šú‰»
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼é–¢æ•°åˆæœŸåŒ–
  *
- *	@param	wipe		ƒƒCƒv
- *	@param	param		ƒpƒ‰ƒ[ƒ^
- *	@param	flag		ƒtƒF[ƒhƒCƒ“ƒAƒEƒgƒtƒ‰ƒO
+ *	@param	wipe		ãƒ¯ã‚¤ãƒ—
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	flag		ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆãƒ•ãƒ©ã‚°
  *
  *	@return	none
  */
@@ -4270,19 +4270,19 @@ static void scchg_WndScrewPackInit(WIPE_SYS_WIPE_WORK* wipe, WIPE_TYPE_WND_SCREW
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠƒ…[ƒƒCƒvƒƒCƒ“ˆ—
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ãƒ¯ã‚¤ãƒ—ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	wipe		ƒƒCƒv
+ *	@param	wipe		ãƒ¯ã‚¤ãƒ—
  *	
- *	@retval	TRUE		I—¹
- *	@retval	FALSE		‘±s
+ *	@retval	TRUE		çµ‚äº†
+ *	@retval	FALSE		ç¶šè¡Œ
  */
 //-----------------------------------------------------------------------------
 static BOOL scchg_WndScrewPack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_TYPE_WND_SCREW* wwm;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 	
 	wwm = (WIPE_TYPE_WND_SCREW*)wipe->wipe_work;
 	
@@ -4297,7 +4297,7 @@ static BOOL scchg_WndScrewPack(WIPE_SYS_WIPE_WORK* wipe)
 		break;
 
 	case WIPE_END:
-		scchg_WndScrewEnd(wwm);	// ƒEƒBƒ“ƒhƒEƒf[ƒ^”jŠü
+		scchg_WndScrewEnd(wwm);	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		scchg_h_WndDel(&wwm->hb);
 		
 		sys_FreeMemoryEz(wipe->wipe_work);
@@ -4319,16 +4319,16 @@ static BOOL scchg_WndScrewPack(WIPE_SYS_WIPE_WORK* wipe)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠƒ…[‰Šú‰»ŠÖ”
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼åˆæœŸåŒ–é–¢æ•°
  *
- *	@param	data		ƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
- *	@param	division	•ªŠ„”
- *	@param	piece_sync	ƒVƒ“ƒN”
- *	@param	disp		‰æ–Ê
- *	@param	wnd_sys		ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
- *	@param	p_wipehb	Hƒuƒ‰ƒ“ƒNŠÖ”ƒVƒXƒeƒ€
- *	@param	heap		ƒq[ƒv
+ *	@param	data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	division	åˆ†å‰²æ•°
+ *	@param	piece_sync	ã‚·ãƒ³ã‚¯æ•°
+ *	@param	disp		ç”»é¢
+ *	@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wipehb	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -4338,12 +4338,12 @@ static void scchg_WndScrewInit(WIPE_TYPE_WND_SCREW* data, WIPE_TYPE_WND_SCREW_FP
 	WIPE_TYPE_HB_WND_ONE* one0;
 	WIPE_TYPE_HB_WND_ONE* one1;
 
-	// •Ï‰»’l‚ğ‹‚ß‚é
+	// å¤‰åŒ–å€¤ã‚’æ±‚ã‚ã‚‹
 	data->screw.rota		= 0;
 	data->screw.s_rota		= param->s_rota;
 	data->screw.add_num_rota = param->e_rota - param->s_rota;
 
-	// ƒf[ƒ^‚ğİ’è
+	// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	scchg_h_WndMake(&data->hb, 2, disp, heap);
 	data->a_count_max		= division;
 	data->a_count			= 0;
@@ -4355,10 +4355,10 @@ static void scchg_WndScrewInit(WIPE_TYPE_WND_SCREW* data, WIPE_TYPE_WND_SCREW_FP
 	data->fade_flg			= param->fade_flg;
 	
 	scchg_WndScrewOneAdd(&data->screw, data->a_count, data->a_count_max);
-	scchg_WndScrewSum(data);	// 1‰ñŒvZ‚·‚é
+	scchg_WndScrewSum(data);	// 1å›è¨ˆç®—ã™ã‚‹
 	VWaitTCB_Add(scchg_WndSwap,&data->hb, WIPE_VBLANK_WND_SWAP_TCB );
 
-	// ƒEƒBƒ“ƒhƒEİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	one0 = scchg_h_WndIdxDataGet(&data->hb, 0);
 	one1 = scchg_h_WndIdxDataGet(&data->hb, 1);
 	scchg_WndSetUp(wnd_sys, param->in_wnd, param->out_wnd, 0, disp,
@@ -4368,21 +4368,21 @@ static void scchg_WndScrewInit(WIPE_TYPE_WND_SCREW* data, WIPE_TYPE_WND_SCREW_FP
 			one1->wnd_tmp[0][0], 0, one1->wnd_tmp[1][0], 192,
 			data->fade_flg);
 
-	// ƒEƒBƒ“ƒhƒEƒIƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 	scchg_WndVisible( wnd_sys, GX_WNDMASK_W0|GX_WNDMASK_W1, disp, data->fade_flg );
 
-	// HblankŠÖ”‚ğİ’è
+	// Hblanké–¢æ•°ã‚’è¨­å®š
 	WIPE_V_HBlankInit(data->p_wipehb, &data->hb, scchg_h_Wnd, disp, heap);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠƒ…[ƒƒCƒ“ŠÖ”
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	data	ƒ[ƒN
+ *	@param	data	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE		I—¹
- *	@retval	FALSE		‘±s
+ *	@retval	TRUE		çµ‚äº†
+ *	@retval	FALSE		ç¶šè¡Œ
  */
 //-----------------------------------------------------------------------------
 static BOOL scchg_WndScrewMain(WIPE_TYPE_WND_SCREW* data)
@@ -4391,16 +4391,16 @@ static BOOL scchg_WndScrewMain(WIPE_TYPE_WND_SCREW* data)
 	if(data->sync_c >= data->piece_sync){
 		data->sync_c = 0;
 		
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		if((data->a_count + 1) <= data->a_count_max){
 			data->a_count++;
 
-			// “®‚©‚·
+			// å‹•ã‹ã™
 			scchg_WndScrewOneAdd(&data->screw, data->a_count, data->a_count_max);
-			scchg_WndScrewSum(data);		// ŒvZ
+			scchg_WndScrewSum(data);		// è¨ˆç®—
 			VWaitTCB_Add(scchg_WndSwap,&data->hb, WIPE_VBLANK_WND_SWAP_TCB );
 		}else{
-			// ˆ—I—¹
+			// å‡¦ç†çµ‚äº†
 			WIPE_V_HBlankDelete(data->p_wipehb, data->hb.disp, data->heap);
 			return TRUE;
 		}
@@ -4410,9 +4410,9 @@ static BOOL scchg_WndScrewMain(WIPE_TYPE_WND_SCREW* data)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠƒ…[ƒ[ƒN”jŠüŠÖ”
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯ç ´æ£„é–¢æ•°
  *
- *	@param	data	ƒ[ƒN
+ *	@param	data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4423,9 +4423,9 @@ static void scchg_WndScrewEnd(WIPE_TYPE_WND_SCREW* data)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠƒ…[ƒf[ƒ^ŒvZŠÖ”
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿è¨ˆç®—é–¢æ•°
  *
- *	@param	work	ƒ[ƒN
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  */
@@ -4439,25 +4439,25 @@ static void scchg_WndScrewSum(WIPE_TYPE_WND_SCREW* work)
 	int i;
 
 
-	// ƒEƒBƒ“ƒhƒE0¶‘¤	ƒEƒBƒ“ƒhƒE1 ‰E‘¤‚ÅŒvZ‚µ‚Ü‚·
-	// ƒEƒBƒ“ƒhƒEƒe[ƒuƒ‹‚É’l‚ğİ’è
-	// ƒEƒBƒ“ƒhƒE0‚Í I“_128  n“_128-(y*tan(rota))
-	// ƒEƒBƒ“ƒhƒE1‚Í n“_128  I“_128+(y*tan(rota))
-	// Šp“x90ˆÈã‚É‚È‚Á‚½‚ç
-	// ƒEƒBƒ“ƒhƒE0‚Í I“_128-(y*tan(rota))  n“_0
-	// ƒEƒBƒ“ƒhƒE1‚Í n“_128+(y*tan(rota))  I“_255
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0å·¦å´	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦1 å³å´ã§è¨ˆç®—ã—ã¾ã™
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ†ãƒ¼ãƒ–ãƒ«ã«å€¤ã‚’è¨­å®š
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0ã¯ çµ‚ç‚¹128  å§‹ç‚¹128-(y*tan(rota))
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦1ã¯ å§‹ç‚¹128  çµ‚ç‚¹128+(y*tan(rota))
+	// è§’åº¦90ä»¥ä¸Šã«ãªã£ãŸã‚‰
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0ã¯ çµ‚ç‚¹128-(y*tan(rota))  å§‹ç‚¹0
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦1ã¯ å§‹ç‚¹128+(y*tan(rota))  çµ‚ç‚¹255
 	
 	rota_num = work->screw.rota % FX_GET_ROTA_NUM( 90 );
 	
 	one0 = scchg_h_WndIdxDataGet(&work->hb, 0);
 	one1 = scchg_h_WndIdxDataGet(&work->hb, 1);
-	// l‚¦‚â‚·‚¢‚Ì‚ÅAƒEƒBƒ“ƒhƒE1‚Ì•û‚ÅŒvZ‚µ‚Ä
-	// ŒvZŒ‹‰Ê‚ğƒTƒu‚ÉXY”½“]‚µ‚Äİ’è‚·‚é
+	// è€ƒãˆã‚„ã™ã„ã®ã§ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦1ã®æ–¹ã§è¨ˆç®—ã—ã¦
+	// è¨ˆç®—çµæœã‚’ã‚µãƒ–ã«XYåè»¢ã—ã¦è¨­å®šã™ã‚‹
 	for( i=0; i<96; i++ ){
 		if( work->screw.rota < FX_GET_ROTA_NUM( 90 ) ){
 			x1 = 128;
 
-			// ‰ñ“]Šp‚Æ‚‚³‚©‚çì‚ç‚ê‚é‚RŠpŒ`‚Ì•‚ğ‹‚ß‚é
+			// å›è»¢è§’ã¨é«˜ã•ã‹ã‚‰ä½œã‚‰ã‚Œã‚‹ï¼“è§’å½¢ã®å¹…ã‚’æ±‚ã‚ã‚‹
 			x2 = sub_rota_height_width_one( rota_num, (96 - i) );
 
 			if( x2 > 127 ){
@@ -4486,7 +4486,7 @@ static void scchg_WndScrewSum(WIPE_TYPE_WND_SCREW* work)
 			one1->wnd_tmp[0][i] = 128;
 			one1->wnd_tmp[1][i] = 128;
 		}else{
-			// ‰ñ“]Šp‚Æ‚‚³‚©‚çì‚ç‚ê‚é‚RŠpŒ`‚Ì•‚ğ‹‚ß‚é
+			// å›è»¢è§’ã¨é«˜ã•ã‹ã‚‰ä½œã‚‰ã‚Œã‚‹ï¼“è§’å½¢ã®å¹…ã‚’æ±‚ã‚ã‚‹
 			x1 = sub_rota_height_width_one( FX_GET_ROTA_NUM( 90 ) - rota_num, (i - 96) );
 
 			if( x1 > 127 ){
@@ -4504,11 +4504,11 @@ static void scchg_WndScrewSum(WIPE_TYPE_WND_SCREW* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Pƒf[ƒ^‚ÌŒvZ
+ *	@brief	ï¼‘ãƒ‡ãƒ¼ã‚¿ã®è¨ˆç®—
  *
- *	@param	p_data		ƒ[ƒN
- *	@param	count		Œ»İ¶³İÀ
- *	@param	count_max	¶³İÀÅ‘å”
+ *	@param	p_data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	count		ç¾åœ¨ã‚«ã‚¦ãƒ³ã‚¿
+ *	@param	count_max	ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§æ•°
  *
  *	@return	none
  */
@@ -4524,10 +4524,10 @@ static void scchg_WndScrewOneAdd( WIPE_TYPE_WND_SCREW_ONE* p_data, int count, in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒbƒVƒ…ƒƒCƒv@‚S•ûŒü
+ *	@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãƒ¯ã‚¤ãƒ—ã€€ï¼”æ–¹å‘
  *
- *	@param	wipe		ƒƒCƒvƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
+ *	@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -4546,19 +4546,19 @@ static void scchg_WndFlashFourPackInit(WIPE_SYS_WIPE_WORK* wipe, WIPE_TYPE_WND_F
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒbƒVƒ…@‚S•ûŒü
+ *	@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€ï¼”æ–¹å‘
  *
- *	@param	wipe	ƒƒCƒvƒ[ƒN
+ *	@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE		I—¹
- *	@retval	FALSE		‘±s
+ *	@retval	TRUE		çµ‚äº†
+ *	@retval	FALSE		ç¶šè¡Œ
  */
 //-----------------------------------------------------------------------------
 static BOOL scchg_WndFlashFourPack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_TYPE_WND_FLASH_FOUR* wwm;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 	
 	wwm = (WIPE_TYPE_WND_FLASH_FOUR*)wipe->wipe_work;
 	
@@ -4573,7 +4573,7 @@ static BOOL scchg_WndFlashFourPack(WIPE_SYS_WIPE_WORK* wipe)
 		break;
 
 	case WIPE_END:
-		scchg_WndFlashFourEnd(wwm);	// ƒEƒBƒ“ƒhƒEƒf[ƒ^”jŠü
+		scchg_WndFlashFourEnd(wwm);	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		scchg_h_WndDel(&wwm->hb);
 		
 		sys_FreeMemoryEz(wipe->wipe_work);
@@ -4595,16 +4595,16 @@ static BOOL scchg_WndFlashFourPack(WIPE_SYS_WIPE_WORK* wipe)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒbƒVƒ…@‚S•ûŒü@‰Šú‰»ˆ—
+ *	@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€ï¼”æ–¹å‘ã€€åˆæœŸåŒ–å‡¦ç†
  *
- *	@param	data		ƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
- *	@param	division	•ªŠ„”
- *	@param	piece_sync	ƒVƒ“ƒN”
- *	@param	disp		‰æ–Ê
- *	@param	wnd_sys		ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
- *	@param	p_wipehb	Hƒuƒ‰ƒ“ƒNŠÖ”ƒVƒXƒeƒ€
- *	@param	heap		ƒq[ƒv
+ *	@param	data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	division	åˆ†å‰²æ•°
+ *	@param	piece_sync	ã‚·ãƒ³ã‚¯æ•°
+ *	@param	disp		ç”»é¢
+ *	@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wipehb	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -4614,12 +4614,12 @@ static void scchg_WndFlashFourInit(WIPE_TYPE_WND_FLASH_FOUR* data, WIPE_TYPE_WND
 	WIPE_TYPE_HB_WND_ONE* one0;
 	WIPE_TYPE_HB_WND_ONE* one1;
 	
-	// •Ï‰»’l‚ğ‹‚ß‚é
+	// å¤‰åŒ–å€¤ã‚’æ±‚ã‚ã‚‹
 	data->screw.rota		= param->s_rota;
 	data->screw.s_rota		= param->s_rota;
 	data->screw.add_num_rota = param->e_rota - param->s_rota;
 
-	// ƒf[ƒ^‚ğİ’è
+	// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	scchg_h_WndMake(&data->hb, 2, disp, heap);
 	data->a_count_max		= division;
 	data->a_count			= 0;
@@ -4630,10 +4630,10 @@ static void scchg_WndFlashFourInit(WIPE_TYPE_WND_FLASH_FOUR* data, WIPE_TYPE_WND
 	data->heap				= heap;
 	data->fade_flg			= param->fade_flg;
 	
-	scchg_WndFlashFourSum(data);	// 1‰ñŒvZ‚·‚é
+	scchg_WndFlashFourSum(data);	// 1å›è¨ˆç®—ã™ã‚‹
 	VWaitTCB_Add(scchg_WndSwap,&data->hb, WIPE_VBLANK_WND_SWAP_TCB );
 
-	// ƒEƒBƒ“ƒhƒEİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	one0 = scchg_h_WndIdxDataGet(&data->hb, 0);
 	one1 = scchg_h_WndIdxDataGet(&data->hb, 1);
 	scchg_WndSetUp(wnd_sys, param->in_wnd, param->out_wnd, 0, disp,
@@ -4643,21 +4643,21 @@ static void scchg_WndFlashFourInit(WIPE_TYPE_WND_FLASH_FOUR* data, WIPE_TYPE_WND
 			0, 0, 255, 192,
 			data->fade_flg);
 
-	// ƒEƒBƒ“ƒhƒEƒIƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 	scchg_WndVisible( wnd_sys, GX_WNDMASK_W0|GX_WNDMASK_W1, disp, data->fade_flg );
 
-	// HblankŠÖ”‚ğİ’è
+	// Hblanké–¢æ•°ã‚’è¨­å®š
 	WIPE_V_HBlankInit(data->p_wipehb, &data->hb, scchg_h_Wnd, disp, heap);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒbƒVƒ…@‚S•ûŒüƒƒCƒ“ŠÖ”
+ *	@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€ï¼”æ–¹å‘ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	data	ƒ[ƒN
+ *	@param	data	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE		I—¹
- *	@retval	FALSE		‘±s
+ *	@retval	TRUE		çµ‚äº†
+ *	@retval	FALSE		ç¶šè¡Œ
  */
 //-----------------------------------------------------------------------------
 static BOOL scchg_WndFlashFourMain(WIPE_TYPE_WND_FLASH_FOUR* data)
@@ -4666,16 +4666,16 @@ static BOOL scchg_WndFlashFourMain(WIPE_TYPE_WND_FLASH_FOUR* data)
 	if(data->sync_c >= data->piece_sync){
 		data->sync_c = 0;
 		
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		if((data->a_count + 1) <= data->a_count_max){
 			data->a_count++;
 
-			// “®‚©‚·
+			// å‹•ã‹ã™
 			scchg_WndFlashFourOneAdd(&data->screw, data->a_count, data->a_count_max);
-			scchg_WndFlashFourSum(data);		// ŒvZ
+			scchg_WndFlashFourSum(data);		// è¨ˆç®—
 			VWaitTCB_Add(scchg_WndSwap,&data->hb, WIPE_VBLANK_WND_SWAP_TCB );
 		}else{
-			// ˆ—I—¹
+			// å‡¦ç†çµ‚äº†
 			WIPE_V_HBlankDelete(data->p_wipehb, data->hb.disp, data->heap);
 			return TRUE;
 		}
@@ -4685,9 +4685,9 @@ static BOOL scchg_WndFlashFourMain(WIPE_TYPE_WND_FLASH_FOUR* data)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒbƒVƒ…‚S•ûŒü”jŠüŠÖ”
+ *	@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ï¼”æ–¹å‘ç ´æ£„é–¢æ•°
  *
- *	@param	data	ƒ[ƒN
+ *	@param	data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4698,9 +4698,9 @@ static void scchg_WndFlashFourEnd(WIPE_TYPE_WND_FLASH_FOUR* data)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒbƒVƒ…‚S•ûŒüŠÖ”	ŒvZ
+ *	@brief	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ï¼”æ–¹å‘é–¢æ•°	è¨ˆç®—
  *
- *	@param	work	ƒ[ƒN
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4718,10 +4718,10 @@ static void scchg_WndFlashFourSum(WIPE_TYPE_WND_FLASH_FOUR* work)
 	one0 = scchg_h_WndIdxDataGet(&work->hb, 0);
 	one1 = scchg_h_WndIdxDataGet(&work->hb, 1);
 
-	// ‰Eã‚Ì•”•ª‚ğŠî€‚É‚S‚Â‚ÌƒuƒƒbƒN‚Ì’l‚ğİ’è‚µ‚Ä‚¢‚­
-	// ‚O`‚S‚TÄŞ‚ÅŠ®‘S‚É•Â‚¶‚é
+	// å³ä¸Šã®éƒ¨åˆ†ã‚’åŸºæº–ã«ï¼”ã¤ã®ãƒ–ãƒ­ãƒƒã‚¯ã®å€¤ã‚’è¨­å®šã—ã¦ã„ã
+	// ï¼ã€œï¼”ï¼•ãƒ‰ã§å®Œå…¨ã«é–‰ã˜ã‚‹
 	for( i=0; i<96; i++ ){
-		// ‰ñ“]Šp‚Æ‚‚³‚©‚çì‚ç‚ê‚é‚RŠpŒ`‚Ì•‚ğ‹‚ß‚é
+		// å›è»¢è§’ã¨é«˜ã•ã‹ã‚‰ä½œã‚‰ã‚Œã‚‹ï¼“è§’å½¢ã®å¹…ã‚’æ±‚ã‚ã‚‹
 		x1 = sub_rota_height_width_one( rota_num, (96 - i) );
 		x2 = sub_rota_height_width_one( FX_GET_ROTA_NUM(90) - rota_num, (96 - i) );
 		if( x1 > 127 ){
@@ -4731,19 +4731,19 @@ static void scchg_WndFlashFourSum(WIPE_TYPE_WND_FLASH_FOUR* work)
 			x2 = 127;
 		}
 
-		// ¶ã
+		// å·¦ä¸Š
 		one0->wnd_tmp[0][i] = 128 - x2;
 		one0->wnd_tmp[1][i] = 128 - x1;
 		
-		// ¶‰º
+		// å·¦ä¸‹
 		one0->wnd_tmp[0][191 - i] = 128 - x2;
 		one0->wnd_tmp[1][191 - i] = 128 - x1;
 		
-		// ‰Eã
+		// å³ä¸Š
 		one1->wnd_tmp[0][i] = 128 + x1;
 		one1->wnd_tmp[1][i] = 128 + x2;
 		
-		// ‰E‰º
+		// å³ä¸‹
 		one1->wnd_tmp[0][191 - i] = 128 + x1;
 		one1->wnd_tmp[1][191 - i] = 128 + x2;
 	}
@@ -4751,11 +4751,11 @@ static void scchg_WndFlashFourSum(WIPE_TYPE_WND_FLASH_FOUR* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Šp“xŒvZˆ—
+ *	@brief	è§’åº¦è¨ˆç®—å‡¦ç†
  *
- *	@param	p_data		ƒ[ƒN
- *	@param	count		Œ»İ¶³İÀ
- *	@param	count_max	¶³İÀÅ‘å”
+ *	@param	p_data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	count		ç¾åœ¨ã‚«ã‚¦ãƒ³ã‚¿
+ *	@param	count_max	ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§æ•°
  *
  *	@return	none
  */
@@ -4773,10 +4773,10 @@ static void scchg_WndFlashFourOneAdd( WIPE_TYPE_WND_FLASH_FOUR_ONE* p_data, int 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEHƒuƒ‰ƒ“ƒNg—p@c“®ì@‰Šú‰»
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Hãƒ–ãƒ©ãƒ³ã‚¯ä½¿ç”¨ã€€ç¸¦å‹•ä½œã€€åˆæœŸåŒ–
  *
- *	@param	wipe		ƒƒCƒvƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
+ *	@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -4795,19 +4795,19 @@ static void scchg_WndWndVMovePackInit(WIPE_SYS_WIPE_WORK* wipe, WIPE_TYPE_WND_VM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEHƒuƒ‰ƒ“ƒNg—p@c“®ì	“®ì
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Hãƒ–ãƒ©ãƒ³ã‚¯ä½¿ç”¨ã€€ç¸¦å‹•ä½œ	å‹•ä½œ
  *
- *	@param	wipe		ƒƒCƒvƒ[ƒN
+ *	@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL scchg_WndWndVMovePack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_TYPE_WND_VMOVE_CONT* wwm;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 	
 	wwm = (WIPE_TYPE_WND_VMOVE_CONT*)wipe->wipe_work;
 	
@@ -4822,7 +4822,7 @@ static BOOL scchg_WndWndVMovePack(WIPE_SYS_WIPE_WORK* wipe)
 		break;
 
 	case WIPE_END:
-		scchg_WndWndVMoveEnd(wwm);	// ƒEƒBƒ“ƒhƒEƒf[ƒ^”jŠü
+		scchg_WndWndVMoveEnd(wwm);	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		
 		sys_FreeMemoryEz(wipe->wipe_work);
 		wipe->wipe_work = NULL;
@@ -4843,25 +4843,25 @@ static BOOL scchg_WndWndVMovePack(WIPE_SYS_WIPE_WORK* wipe)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEHƒuƒ‰ƒ“ƒNg—p@c“®ì	‰Šú‰»
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Hãƒ–ãƒ©ãƒ³ã‚¯ä½¿ç”¨ã€€ç¸¦å‹•ä½œ	åˆæœŸåŒ–
  *
- *	@param	data		ƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
- *	@param	division	•ªŠ„”
- *	@param	piece_sync	ƒVƒ“ƒN”
- *	@param	disp		‰æ–Ê
- *	@param	wnd_sys		ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
- *	@param	p_wipehb	Hƒuƒ‰ƒ“ƒNŠÖ”ƒVƒXƒeƒ€
- *	@param	heap		ƒq[ƒv
+ *	@param	data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	division	åˆ†å‰²æ•°
+ *	@param	piece_sync	ã‚·ãƒ³ã‚¯æ•°
+ *	@param	disp		ç”»é¢
+ *	@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wipehb	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void scchg_WndWndVMoveInit(WIPE_TYPE_WND_VMOVE_CONT* data, WIPE_TYPE_WND_VMOVE_PARAM* param, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys, WIPE_HBLANK* p_wipehb, int heap )
 {
-	// Hƒuƒ‰ƒ“ƒNƒ[ƒN‰Šú‰»
+	// Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	scchg_h_VMoveWndInit( &data->HblankData, disp, 1, WNDP_WND_0, 0 );
-	// ‰Šúƒ[ƒN’l‚ğİ’è
+	// åˆæœŸãƒ¯ãƒ¼ã‚¯å€¤ã‚’è¨­å®š
 	if( param->fade_flg == WIPE_FADE_IN ){
 		memset( data->HblankData.data[0].in_out_write, WIPE_WND_VMOVE_OUTWND, sizeof( u8 ) * 192 );
 		memset( data->HblankData.data[0].in_out_read, WIPE_WND_VMOVE_OUTWND, sizeof( u8 ) * 192 );
@@ -4871,13 +4871,13 @@ static void scchg_WndWndVMoveInit(WIPE_TYPE_WND_VMOVE_CONT* data, WIPE_TYPE_WND_
 	}
 
 
-	// ƒf[ƒ^ƒe[ƒuƒ‹İ’è
+	// ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«è¨­å®š
 	data->p_param = param->cp_data;
 	data->param_num = param->data_num;
 	data->fade_flg = param->fade_flg;
 	data->heap	= heap;
 
-	// •Ï‰»”‚ÆƒVƒ“ƒN”İ’è
+	// å¤‰åŒ–æ•°ã¨ã‚·ãƒ³ã‚¯æ•°è¨­å®š
 	data->a_count_max		= division;
 	data->a_count			= 0;
 	data->piece_sync		= piece_sync;
@@ -4885,30 +4885,30 @@ static void scchg_WndWndVMoveInit(WIPE_TYPE_WND_VMOVE_CONT* data, WIPE_TYPE_WND_
 	data->wnd_sys			= wnd_sys;
 	data->p_wipehb		= p_wipehb;
 
-	// Hƒuƒ‰ƒ“ƒNŠÖ”İ’è
+	// Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°è¨­å®š
 	scchg_h_VMoveWnd_Start( p_wipehb, &data->HblankData, heap );
 
 
-	// ƒEƒBƒ“ƒhƒEİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	if( param->fade_flg == WIPE_FADE_OUT ){
 		scchg_WndSetUp(wnd_sys, GX_BLEND_PLANEMASK_BD, GX_BLEND_ALL, WNDP_WND_0, disp, 0, 0, 0, 0, param->fade_flg);
 	}else{
 		scchg_WndSetUp(wnd_sys, GX_BLEND_ALL, GX_BLEND_PLANEMASK_BD, WNDP_WND_0, disp, 0, 0, 0, 0, param->fade_flg);
 	}
 
-	// ƒEƒBƒ“ƒhƒEƒIƒ“
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 	scchg_WndVisible( wnd_sys, GX_WNDMASK_W0, disp, data->fade_flg );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ““®ì
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	data	ƒ[ƒN
+ *	@param	data	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	 TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	 TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL scchg_WndWndVMoveMain(WIPE_TYPE_WND_VMOVE_CONT* data)
@@ -4917,15 +4917,15 @@ static BOOL scchg_WndWndVMoveMain(WIPE_TYPE_WND_VMOVE_CONT* data)
 	if(data->sync_c >= data->piece_sync){
 		data->sync_c = 0;
 		
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		if((data->a_count + 1) <= data->a_count_max){
 			data->a_count++;
 
-			// “®‚©‚·
-			scchg_WndWndVMoveSum(data);		// ŒvZ
+			// å‹•ã‹ã™
+			scchg_WndWndVMoveSum(data);		// è¨ˆç®—
 			scchg_h_VMoveWnd_SwapReq( &data->HblankData );
 		}else{
-			// ˆ—I—¹
+			// å‡¦ç†çµ‚äº†
 			scchg_h_VMoveWnd_End(data->p_wipehb, &data->HblankData, data->heap);
 			return TRUE;
 		}
@@ -4935,9 +4935,9 @@ static BOOL scchg_WndWndVMoveMain(WIPE_TYPE_WND_VMOVE_CONT* data)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”jŠüŠÖ”
+ *	@brief	ç ´æ£„é–¢æ•°
  *	
- *	@param	data	ƒ[ƒN
+ *	@param	data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4948,9 +4948,9 @@ static void scchg_WndWndVMoveEnd(WIPE_TYPE_WND_VMOVE_CONT* data)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‚Éƒf[ƒ^İ’èŠÖ”
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿è¨­å®šé–¢æ•°
  *
- *	@param	work	ƒ[ƒN
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4961,7 +4961,7 @@ static void scchg_WndWndVMoveSum(WIPE_TYPE_WND_VMOVE_CONT* work)
 	WIPE_TYPE_WND_VMOVE_HDATA* p_buff;
 	const WIPE_TYPE_WND_VMOVE_DATA* cp_one;
 
-	// ‘‚«‚İæƒoƒbƒtƒ@
+	// æ›¸ãè¾¼ã¿å…ˆãƒãƒƒãƒ•ã‚¡
 	p_buff = &work->HblankData.data[0];
 
 	for( i=0; i<work->param_num; i++ ){
@@ -4972,10 +4972,10 @@ static void scchg_WndWndVMoveSum(WIPE_TYPE_WND_VMOVE_CONT* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒvZCore
+ *	@brief	è¨ˆç®—Core
  *
- *	@param	p_one		‚P‚Â‚Ì“®ìƒf[ƒ^
- *	@param	p_buff		‘‚«‚İæƒoƒbƒtƒ@ƒf[ƒ^
+ *	@param	p_one		ï¼‘ã¤ã®å‹•ä½œãƒ‡ãƒ¼ã‚¿
+ *	@param	p_buff		æ›¸ãè¾¼ã¿å…ˆãƒãƒƒãƒ•ã‚¡ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -4983,8 +4983,8 @@ static void scchg_WndWndVMoveSum(WIPE_TYPE_WND_VMOVE_CONT* work)
 static void scchg_WndWndVMoveSub_Core( const WIPE_TYPE_WND_VMOVE_DATA* p_one, WIPE_TYPE_WND_VMOVE_HDATA* p_buff, int count, int count_max )
 {
 	int i;
-	int sum_work;	// ŒvZƒ[ƒN
-	int e_y_sum;	// I—¹YÀ•W‚ÌŒvZŒ‹‰Ê
+	int sum_work;	// è¨ˆç®—ãƒ¯ãƒ¼ã‚¯
+	int e_y_sum;	// çµ‚äº†Yåº§æ¨™ã®è¨ˆç®—çµæœ
 	int min_y;
 	int max_y;
 	int set_wndmsk;
@@ -4993,7 +4993,7 @@ static void scchg_WndWndVMoveSub_Core( const WIPE_TYPE_WND_VMOVE_DATA* p_one, WI
 	e_y_sum = sum_work / count_max;
 	e_y_sum += p_one->s_y;
 
-	// for•ª‚Å‚Ü‚í‚·‚½‚ßÅ¬Y‚ÆÅ‘åY‚ğ‹‚ß‚é
+	// foråˆ†ã§ã¾ã‚ã™ãŸã‚æœ€å°Yã¨æœ€å¤§Yã‚’æ±‚ã‚ã‚‹
 	if( p_one->s_y <= p_one->e_y ){
 		min_y = p_one->s_y;
 		max_y = p_one->e_y;
@@ -5010,7 +5010,7 @@ static void scchg_WndWndVMoveSub_Core( const WIPE_TYPE_WND_VMOVE_DATA* p_one, WI
 	}
 
 	for( i=min_y; i<max_y; i++ ){
-		// ƒ}ƒXƒNØ‚è‘Ö‚¦
+		// ãƒã‚¹ã‚¯åˆ‡ã‚Šæ›¿ãˆ
 		if( i==e_y_sum ){
 			if( set_wndmsk == WIPE_WND_VMOVE_INWND ){
 				set_wndmsk = WIPE_WND_VMOVE_OUTWND;
@@ -5024,10 +5024,10 @@ static void scchg_WndWndVMoveSub_Core( const WIPE_TYPE_WND_VMOVE_DATA* p_one, WI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒ\ƒRƒ“@ƒƒCƒv@‰Šú‰»@ƒpƒbƒN
+ *	@brief	ãƒ‘ã‚½ã‚³ãƒ³ã€€ãƒ¯ã‚¤ãƒ—ã€€åˆæœŸåŒ–ã€€ãƒ‘ãƒƒã‚¯
  *
- *	@param	wipe		ƒƒCƒvƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
+ *	@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void scchg_WndWndPesocomPackInit(WIPE_SYS_WIPE_WORK* wipe, WIPE_TYPE_WND_PESOCOM_PARAM* param)
@@ -5050,19 +5050,19 @@ static void scchg_WndWndPesocomPackInit(WIPE_SYS_WIPE_WORK* wipe, WIPE_TYPE_WND_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒ\ƒRƒ“ƒƒCƒv@ƒƒCƒ“@ƒpƒbƒN
+ *	@brief	ãƒ‘ã‚½ã‚³ãƒ³ãƒ¯ã‚¤ãƒ—ã€€ãƒ¡ã‚¤ãƒ³ã€€ãƒ‘ãƒƒã‚¯
  *
- *	@param	wipe	ƒƒCƒvƒ[ƒN
+ *	@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@ratval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@ratval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL scchg_WndWndPesocomPack(WIPE_SYS_WIPE_WORK* wipe)
 {
 	WIPE_TYPE_WND_PESOCOM* wwm;
 	BOOL	ret;
-	BOOL	ret_num = FALSE;		// ‚±‚ÌŠÖ”‚Ì–ß‚è’l
+	BOOL	ret_num = FALSE;		// ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤
 	
 	wwm = (WIPE_TYPE_WND_PESOCOM*)wipe->wipe_work;
 	
@@ -5100,16 +5100,16 @@ static BOOL scchg_WndWndPesocomPack(WIPE_SYS_WIPE_WORK* wipe)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒ\ƒRƒ“ƒƒCƒv@‰Šú‰»
+ *	@brief	ãƒ‘ã‚½ã‚³ãƒ³ãƒ¯ã‚¤ãƒ—ã€€åˆæœŸåŒ–
  *
- *	@param	data		ƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
- *	@param	division	•ªŠ„”
- *	@param	piece_sync	ƒVƒ“ƒN”
- *	@param	disp		‰æ–Ê
- *	@param	wnd_sys		ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
- *	@param	p_wipehb	Hƒuƒ‰ƒ“ƒNŠÖ”ƒVƒXƒeƒ€
- *	@param	heap		ƒq[ƒv
+ *	@param	data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	division	åˆ†å‰²æ•°
+ *	@param	piece_sync	ã‚·ãƒ³ã‚¯æ•°
+ *	@param	disp		ç”»é¢
+ *	@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wipehb	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void scchg_WndWndPesocomInit(WIPE_TYPE_WND_PESOCOM* data, WIPE_TYPE_WND_PESOCOM_PARAM* param, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys, WIPE_HBLANK* p_wipehb, int heap )
@@ -5119,13 +5119,13 @@ static void scchg_WndWndPesocomInit(WIPE_TYPE_WND_PESOCOM* data, WIPE_TYPE_WND_P
 	move_divi = FX_Mul( division * FX32_ONE, param->sync_div_par ) >> FX32_SHIFT;
 	data->sub_divi = division - move_divi;
 
-	// ƒpƒ‰ƒ[ƒ^•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿å­˜
 	data->p_param = param;
 	data->fade_flg = param->wnd_move.fade_flg;
 
 	// wnd_move
 	scchg_WndMoveInit(&data->wnd_move, &param->wnd_move, move_divi, piece_sync, disp, wnd_sys);
-	if(param->wnd_move.wnd_no == 0){	// ƒEƒBƒ“ƒhƒEƒIƒ“
+	if(param->wnd_move.wnd_no == 0){	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 		scchg_WndVisible(wnd_sys, GX_WNDMASK_W0,disp, param->wnd_move.fade_flg);
 	}else{
 		scchg_WndVisible(wnd_sys,GX_WNDMASK_W1, disp, param->wnd_move.fade_flg);
@@ -5136,12 +5136,12 @@ static void scchg_WndWndPesocomInit(WIPE_TYPE_WND_PESOCOM* data, WIPE_TYPE_WND_P
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒ\ƒRƒ“@ƒƒCƒv@ƒƒCƒ“ˆ—
+ *	@brief	ãƒ‘ã‚½ã‚³ãƒ³ã€€ãƒ¯ã‚¤ãƒ—ã€€ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
  *	@param	data
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL scchg_WndWndPesocomMain(WIPE_TYPE_WND_PESOCOM* data, WIPE_SYS_WIPE_WORK* wipe )
@@ -5178,16 +5178,16 @@ static BOOL scchg_WndWndPesocomMain(WIPE_TYPE_WND_PESOCOM* data, WIPE_SYS_WIPE_W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒ\ƒRƒ“@ƒƒCƒvƒAƒEƒg@‰Šú‰»
+ *	@brief	ãƒ‘ã‚½ã‚³ãƒ³ã€€ãƒ¯ã‚¤ãƒ—ã‚¢ã‚¦ãƒˆã€€åˆæœŸåŒ–
  *
- *	@param	data		ƒ[ƒN
- *	@param	param		ƒpƒ‰ƒ[ƒ^
- *	@param	division	•ªŠ„”
- *	@param	piece_sync	ƒVƒ“ƒN”
- *	@param	disp		‰æ–Ê
- *	@param	wnd_sys		ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
- *	@param	p_wipehb	Hƒuƒ‰ƒ“ƒNŠÖ”ƒVƒXƒeƒ€
- *	@param	heap		ƒq[ƒv
+ *	@param	data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	division	åˆ†å‰²æ•°
+ *	@param	piece_sync	ã‚·ãƒ³ã‚¯æ•°
+ *	@param	disp		ç”»é¢
+ *	@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wipehb	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void scchg_WndWndPesocomOutInit(WIPE_TYPE_WND_PESOCOM* data, WIPE_TYPE_WND_PESOCOM_PARAM* param, int division, int piece_sync, int disp, WNDP_SYS_PTR wnd_sys, WIPE_HBLANK* p_wipehb, int heap )
@@ -5197,7 +5197,7 @@ static void scchg_WndWndPesocomOutInit(WIPE_TYPE_WND_PESOCOM* data, WIPE_TYPE_WN
 	data->sub_divi = FX_Mul( division * FX32_ONE, param->sync_div_par ) >> FX32_SHIFT;
 	split_divi = division - data->sub_divi;
 
-	// ƒpƒ‰ƒ[ƒ^•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿å­˜
 	data->p_param = param;
 	data->fade_flg = param->wnd_move.fade_flg;
 
@@ -5209,12 +5209,12 @@ static void scchg_WndWndPesocomOutInit(WIPE_TYPE_WND_PESOCOM* data, WIPE_TYPE_WN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒ\ƒRƒ“@ƒƒCƒvƒAƒEƒg@ƒƒCƒ“ˆ—
+ *	@brief	ãƒ‘ã‚½ã‚³ãƒ³ã€€ãƒ¯ã‚¤ãƒ—ã‚¢ã‚¦ãƒˆã€€ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
  *	@param	data
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL scchg_WndWndPesocomOutMain(WIPE_TYPE_WND_PESOCOM* data, WIPE_SYS_WIPE_WORK* wipe )
@@ -5230,7 +5230,7 @@ static BOOL scchg_WndWndPesocomOutMain(WIPE_TYPE_WND_PESOCOM* data, WIPE_SYS_WIP
 
 			// wnd_move
 			scchg_WndMoveInit(&data->wnd_move, &data->p_param->wnd_move, data->sub_divi, wipe->piece_sync, wipe->disp, wipe->wnd_sys);
-			if(data->p_param->wnd_move.wnd_no == 0){	// ƒEƒBƒ“ƒhƒEƒIƒ“
+			if(data->p_param->wnd_move.wnd_no == 0){	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ³
 				scchg_WndVisible(wipe->wnd_sys, GX_WNDMASK_W0, wipe->disp, data->p_param->wnd_move.fade_flg);
 			}else{
 				scchg_WndVisible(wipe->wnd_sys,GX_WNDMASK_W1, wipe->disp, data->p_param->wnd_move.fade_flg);

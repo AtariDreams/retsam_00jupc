@@ -1,20 +1,20 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>�֐����t�@�����X�g�b�v�y�[�W</TITLE>
+<TITLE>関数リファレンストップページ</TITLE>
 <LINK rel="stylesheet" href="css/main.css">
 </HEAD>
 <BODY>
 
 <DIV class="title">
 	<IMG src="img/logo-b.gif" alt="NITRO-System" width="480" height="120"><BR>
-	�֐����t�@�����X�}�j���A��<BR>
-	�i���{��Łj
+	関数リファレンスマニュアル<BR>
+	（日本語版）
 </DIV>
 <DIV class="version">
-	NITRO-System 2007�N11��26���őΉ�
+	NITRO-System 2007年11月26日版対応
 </DIV>
 
 <P class="confidential">
@@ -30,48 +30,48 @@
 </P>
 
 <P class="caution-jp">
-	[���ӁI]�@���̃h�L�������g�̓��e�́A�閧���ł��邽�߁A���d�Ȏ戵���A�Ǘ����s�Ȃ��Ă��������B
+	[注意！]　このドキュメントの内容は、秘密情報であるため、厳重な取扱い、管理を行なってください。
 </P>
 
 <P class="copyright">
 	&copy; 2004-2007 Nintendo Co.,Ltd. All rights reserved.
 </P>
 <P class="browser">
-	Microsoft Internet Explorer 5.0�ȍ~����
+	Microsoft Internet Explorer 5.0以降推奨
 </P>
 
 
 <HR>
-<H1 class="caution">���ӎ���</H1>
-<H2 class="caution">�}���`�X���b�h�ł̓���ɂ���</H2>
+<H1 class="caution">注意事項</H1>
+<H2 class="caution">マルチスレッドでの動作について</H2>
 <P class="caution">
-	NITRO-System���C�u�����́A��{�I�ɃX���b�h�Z�[�t�i�}���`�X���b�h�ɑΉ������`�j�ɐ݌v����Ă��܂���B
-	���̂��߁ANITRO-System�̊e���C�u������API�����荞�݃n���h����قȂ�X���b�h����Ăяo�����ꍇ�A
-	����ɓ��삵�Ȃ��\��������܂��B
+	NITRO-Systemライブラリは、基本的にスレッドセーフ（マルチスレッドに対応した形）に設計されていません。
+	このため、NITRO-Systemの各ライブラリのAPIを割り込みハンドラや異なるスレッドから呼び出した場合、
+	正常に動作しない可能性があります。
 </P>
 <P class="caution">
-	�������A�T�E���h�h���C�o(SND)�̊֐��̓X���b�h�Z�[�t�ł��̂ŁA
-	���荞�݃n���h����قȂ�X���b�h����Ăяo�����Ƃ��ł��܂��B
+	ただし、サウンドドライバ(SND)の関数はスレッドセーフですので、
+	割り込みハンドラや異なるスレッドから呼び出すことができます。
 </P>
 
-<H2 class="caution">���Z��̎g�p�ɂ���</H2>
+<H2 class="caution">除算器の使用について</H2>
 <P class="caution">
-	NITRO-System��G2D�����G3D���C�u�����ł͏��Z����g�p���Ă��܂��B
-	���̂��߁A���荞�ݏ������ŏ��Z��̏�Ԃ̑ޔ�/�������s�킸��NITRO-System���g�p���܂��ƁA
-	���荞�݌��̉��Z���ʂ�j�󂵂Ă��܂��\��������܂��B
-������܂��B
+	NITRO-SystemのG2DおよびG3Dライブラリでは除算器を使用しています。
+	そのため、割り込み処理内で除算器の状態の退避/復元を行わずにNITRO-Systemを使用しますと、
+	割り込み元の演算結果を破壊してしまう可能性があります。
+があります。
 </P>
 <P class="caution">
-	���荞�ݏ�����NITRO-System���g�p����ꍇ�ɂ́A
-	NITRO-SDK��CP_SaveContext(),CP_RestoreContext()���g�p���āA
-	���Z��̏�Ԃ�ޔ��E��������悤�ɂ��Ă��������B
+	割り込み処理でNITRO-Systemを使用する場合には、
+	NITRO-SDKのCP_SaveContext(),CP_RestoreContext()を使用して、
+	除算器の状態を退避・復元するようにしてください。
 </P>
 
 
 <HR>
-<H1>����̊֐����t�@�����X�ɂ�����V�K�E�ύX�_�s2007/11/26�t</H1>
+<H1>今回の関数リファレンスにおける新規・変更点《2007/11/26》</H1>
 
-<H2>�V�K</H2>
+<H2>新規</H2>
 <TABLE>
 	<TBODY>
 		<TR><TD><A href="./g2d/SoftwareSprite/NNS_G2dSetupSoftwareSpriteMaterial.html">NNS_G2dSetupSoftwareSpriteMaterial</A></TD></TR>
@@ -81,15 +81,15 @@
 	</TBODY>
 </TABLE>
 
-<H2>�ύX</H2>
+<H2>変更</H2>
 <TABLE>
 	<TBODY>
 		<TR><TD><A href="./g2d/CellAnimation/NNS_G2dInitCellAnimationVramTransfered.html">NNS_G2dInitCellAnimationVramTransfered</A></TD></TR>
 		<TR><TD><A href="./g2d/CellAnimation/NNS_G2dInitializeCellAnimationVramTransfered.html">NNS_G2dInitializeCellAnimationVramTransfered</A></TD></TR>
 		<TR><TD><A href="./g2d/Oam/NNS_G2dApplyOamManagerToHWSprite.html">NNS_G2dApplyOamManagerToHWSprite</A></TD></TR>
-		<TR><TD><A href="./g2d/OamSoftEmu/OAMSoftEmu_Overview.html">OAM�\�t�g�E�G�A�X�v���C�g�`�惂�W���[��</A></TD></TR>
+		<TR><TD><A href="./g2d/OamSoftEmu/OAMSoftEmu_Overview.html">OAMソフトウエアスプライト描画モジュール</A></TD></TR>
 		<TR><TD><A href="./g2d/SoftwareSprite/NNS_G2dSetupSoftwareSpriteCamera.html">NNS_G2dSetupSoftwareSpriteCamera</A></TD></TR>
-		<TR><TD><A href="./g2d/SoftwareSprite/SoftwareSprite_Overview.html">�\�t�g�E�F�A�X�v���C�g�T�v</A></TD></TR>
+		<TR><TD><A href="./g2d/SoftwareSprite/SoftwareSprite_Overview.html">ソフトウェアスプライト概要</A></TD></TR>
 		<TR><TD><A href="./g3d/kernel/NNS_G3dPlttLoad.html">NNS_G3dPlttLoad</A></TD></TR>
 		<TR><TD><A href="./g3d/kernel/NNS_G3dRenderObjTestFlag.html">NNS_G3dRenderObjTestFlag</A></TD></TR>
 		<TR><TD><A href="./g3d/kernel/NNS_G3dTexLoad.html">NNS_G3dTexLoad</A></TD></TR>
@@ -118,7 +118,7 @@
 	</TBODY>
 </TABLE>
 
-<H2>�폜</H2>
+<H2>削除</H2>
 <TABLE>
 	<TBODY>
 		<TR><TD>NNS_G3dGetPosMtxFromStack</TD></TR>

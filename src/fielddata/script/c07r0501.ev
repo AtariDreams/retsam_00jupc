@@ -9,23 +9,23 @@
 	.include	"../eventdata/zone_c07r0501evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c07r0501_clown
 _EVENT_DATA		ev_c07r0501_fighter
 _EVENT_DATA_END
 
 /********************************************************************/
-/*							ƒsƒGƒ		@							*/
+/*							ãƒ”ã‚¨ãƒ­		ã€€							*/
 /********************************************************************/
 ev_c07r0501_clown:
 	_TALK_OBJ_START
 
-	//ƒP[ƒX‚ð–á‚Á‚½Œã
+	//ã‚±ãƒ¼ã‚¹ã‚’è²°ã£ãŸå¾Œ
 	_IF_FLAGON_JUMP		FE_COIN_CASE_GET,ev_c07r0501_clown_06
 
 	_TALK_KEYWAIT		msg_c07r0501_clown_01
@@ -40,25 +40,25 @@ ev_c07r0501_clown:
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,DIR_DOWN,	ev_c07r0501_dir_down
 	_END
 
-//ŽålŒö¶Œü‚«
+//ä¸»äººå…¬å·¦å‘ã
 ev_c07r0501_dir_left:
 	_OBJ_ANIME		C07R0501_CLOWN,anm_c07r0501_clown_01_03
 	_OBJ_ANIME_WAIT
 	_JUMP				ev_c07r0501_clown_03
 
-//ŽålŒöãŒü‚«
+//ä¸»äººå…¬ä¸Šå‘ã
 ev_c07r0501_dir_up:
 	_OBJ_ANIME		C07R0501_CLOWN,anm_c07r0501_clown_01_04
 	_OBJ_ANIME_WAIT
 	_JUMP				ev_c07r0501_clown_03
 
-//ŽålŒö‰EŒü‚«
+//ä¸»äººå…¬å³å‘ã
 ev_c07r0501_dir_right:
 	_OBJ_ANIME		C07R0501_CLOWN,anm_c07r0501_clown_01_01
 	_OBJ_ANIME_WAIT
 	_JUMP				ev_c07r0501_clown_03
 
-//ŽålŒö‰ºŒü‚«
+//ä¸»äººå…¬ä¸‹å‘ã
 ev_c07r0501_dir_down:
 	_OBJ_ANIME		C07R0501_CLOWN,anm_c07r0501_clown_01_02
 	_OBJ_ANIME_WAIT
@@ -68,31 +68,31 @@ ev_c07r0501_dir_down:
 ev_c07r0501_clown_03:
 	_TALKMSG	msg_c07r0501_clown_03
 
-	_BMPMENU_INIT		1,1,0,0,SCWK_PARAM0			//BƒLƒƒƒ“ƒZƒ‹–³Œø
+	_BMPMENU_INIT		1,1,0,0,SCWK_PARAM0			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹
 	_BMPMENU_MAKE_LIST	msg_ev_win_145,0
 	_BMPMENU_MAKE_LIST	msg_ev_win_146,1
 	_BMPMENU_START
 
-	//¶‰E‚Ç‚¿‚ç‚Å‚àA‚T‚O“‚ÌŠm—¦‚Å‚à‚ç‚¦‚éB
+	//å·¦å³ã©ã¡ã‚‰ã§ã‚‚ã€ï¼•ï¼ï¼…ã®ç¢ºçŽ‡ã§ã‚‚ã‚‰ãˆã‚‹ã€‚
 	_GET_RND		SCWK_ANSWER,2
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c07r0501_clown_04
 
 	_TALKMSG		msg_c07r0501_clown_05
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_KOINKEESU
 	_LDVAL			SCWK_TEMP1,1
 
 	_FLAG_SET		FE_COIN_CASE_GET
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
 
-//‚Í‚¸‚ê
+//ã¯ãšã‚Œ
 ev_c07r0501_clown_04:
 	_TALKMSG		msg_c07r0501_clown_04
 	_LAST_KEYWAIT
@@ -100,7 +100,7 @@ ev_c07r0501_clown_04:
 	_TALK_OBJ_END
 	_END
 
-//ƒP[ƒX‚ð–á‚Á‚½Œã
+//ã‚±ãƒ¼ã‚¹ã‚’è²°ã£ãŸå¾Œ
 ev_c07r0501_clown_06:
 	_TALKMSG		msg_c07r0501_clown_06
 	_LAST_KEYWAIT
@@ -109,7 +109,7 @@ ev_c07r0501_clown_06:
 	_END
 
 //--------------------------------------------------------------------
-//ƒsƒGƒˆê‰ñ“]
+//ãƒ”ã‚¨ãƒ­ä¸€å›žè»¢
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c07r0501_clown_01_01
 	_ANIME_DATA	AC_DIR_U,1
@@ -158,7 +158,7 @@ _ANIME_LABEL anm_c07r0501_clown_01_04
 
 
 /********************************************************************/
-/*							Ši“¬‰Æ		@							*/
+/*							æ ¼é—˜å®¶		ã€€							*/
 /********************************************************************/
 ev_c07r0501_fighter:
 	_EASY_OBJ_MSG	msg_c07r0501_fighter_01

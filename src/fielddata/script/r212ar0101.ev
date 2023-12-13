@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_r212ar0101evc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r212ar0101_flag_change
 _EVENT_DATA		ev_r212ar0101_maid1
@@ -23,36 +23,36 @@ _EVENT_DATA		ev_r212ar0101_maid4
 _EVENT_DATA		ev_r212ar0101_maid5
 _EVENT_DATA_END
 
-#define MAID_TURN_SMALL		(5)				/*�ŏ��l*/
-#define MAID_TURN_RAND		(5)				/*�����_���̕�*/
+#define MAID_TURN_SMALL		(5)				/*最小値*/
+#define MAID_TURN_RAND		(5)				/*ランダムの幅*/
 
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_r212ar0101_flag_change:
-	_ARRIVE_FLAG_SET	FLAG_ARRIVE_R212AR0101	//����
+	_ARRIVE_FLAG_SET	FLAG_ARRIVE_R212AR0101	//到着
 	_FLAG_SET			FV_R212AR0101_MAID
 	_FLAG_SET			FV_R212AR0101_BOSS
 
-	/*1���o�߂��Ă�����*/
+	/*1日経過していたら*/
 	_IF_FLAGOFF_JUMP	TMFLG_R212AR0101_MAID,ev_r212ar0101_turn_set
 	_END
 
-/*1���o�߂�����N���A�^�[�����ύX�����悤�ɂ��Ă���*/
+/*1日経過したらクリアターンが変更されるようにしている*/
 ev_r212ar0101_turn_set:
 	_GET_RND			SYS_WORK_MAID_TURN,MAID_TURN_RAND
 	_ADD_WK				SYS_WORK_MAID_TURN,MAID_TURN_SMALL
 	_FLAG_SET			TMFLG_R212AR0101_MAID
 
-	/*�����킵����*/
-	/*�����������̔��ʗp�̃g���[�i�[�t���O�𗎂Ƃ�*/
+	/*★挑戦したか*/
+	/*勝利したかの判別用のトレーナーフラグを落とす*/
 	_TRAINER_FLAG_RESET PRINCE_09
 	_TRAINER_FLAG_RESET PRINCESS_08
 	_END
 
 
 /********************************************************************/
-/*							���C�h�P								*/
+/*							メイド１								*/
 /********************************************************************/
 ev_r212ar0101_maid1:
 	_TALK_OBJ_START
@@ -68,7 +68,7 @@ ev_r212ar0101_maid1:
 
 
 /********************************************************************/
-/*							���C�h�Q								*/
+/*							メイド２								*/
 /********************************************************************/
 ev_r212ar0101_maid2:
 	_TALK_OBJ_START
@@ -84,24 +84,24 @@ ev_r212ar0101_maid2:
 
 
 /********************************************************************/
-/*							���C�h�R								*/
+/*							メイド３								*/
 /********************************************************************/
 ev_r212ar0101_maid3:
 	_TALK_OBJ_START
 
-	/*�����킵����*/
-	/*���łɏ������Ă�����*/
+	/*★挑戦したか*/
+	/*すでに勝利していたら*/
 	_IF_TR_FLAGON_JUMP PRINCE_09,ev_r212ar0101_maid_win
 	_IF_TR_FLAGON_JUMP PRINCESS_08,ev_r212ar0101_maid_win
 
-	/*�����ɂ���ăA�j����������*/
+	/*向きによってアニメをかえる*/
 	_PLAYER_DIR_GET	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_UP,ev_c01_poketch_dir_up
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_DOWN,ev_c01_poketch_dir_down
 	_JUMP			ev_r212ar0101_maid3_common
 	_END
 
-/*�ʒu�𒲐�*/
+/*位置を調整*/
 ev_c01_poketch_dir_up:
 	_OBJ_ANIME		R212AR0101_MAID_03,anm_r212ar0101_maid_03_dir_up_turn_r
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r212ar0101_player_dir_up_turn_l
@@ -117,7 +117,7 @@ ev_c01_poketch_dir_down:
 	_END
 
 ev_r212ar0101_maid3_common:
-	/*�����b���ŕ���*/
+	/*初回会話かで分岐*/
 	_IF_FLAGOFF_CALL	FE_R212AR0101_MAID_TALK,ev_r212ar0101_maid3_talk_off
 	_IF_FLAGON_CALL		FE_R212AR0101_MAID_TALK,ev_r212ar0101_maid3_talk_on
 
@@ -126,36 +126,36 @@ ev_r212ar0101_maid3_common:
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_r212ar0101_maid3_01
 
-	/*�����񂵂�����o���Ȃ��悤�ɂ���*/
-	/*�����킵����*/
-	/*�����������̔��ʗp�Ƀg���[�i�[�t���O�𗧂Ă�*/
+	/*一日一回しか挑戦出来ないようにする*/
+	/*★挑戦したか*/
+	/*勝利したかの判別用にトレーナーフラグを立てる*/
 	_TRAINER_FLAG_SET PRINCE_09
 	_TRAINER_FLAG_SET PRINCESS_08
 
 	_TALK_KEYWAIT	msg_r212ar0101_maid3_04
 	_TALK_CLOSE
 
-	/*�����Ɉړ����ĉ�����*/
+	/*一歩上に移動して下向き*/
 	_OBJ_ANIME		R212AR0101_MAID_03,anm_r212ar0101_maid_03_walk_u
 	_OBJ_ANIME_WAIT
 
-	/*�N���A*/
+	/*クリア*/
 	_LDVAL			SYS_WORK_MAID_WIN_TURN,0
 	_LDVAL			SCWK_TEMP1,0
 
-	/*�ΐ푊��o��*/
+	/*対戦相手登場*/
 	_FLAG_RESET		FV_R212AR0101_MAID
 	_OBJ_ADD		R212AR0101_MAID
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	/*�o��*/
+	/*登場*/
 	_OBJ_ANIME		R212AR0101_MAID,anm_r212ar0101_maid_appear
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_r212ar0101_maid_01_01
 	_TALK_CLOSE
 
-	/*�퓬�Ăяo��*/
+	/*戦闘呼び出し*/
 	_TRAINER_BTL_SET	MAID_01,0
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_r212ar0101_battle_lose
@@ -164,19 +164,19 @@ ev_r212ar0101_maid3_common:
 	_TALK_KEYWAIT	msg_r212ar0101_maid_01_02
 	_TALK_CLOSE
 
-	/*�ޏ�*/
+	/*退場*/
 	_OBJ_ANIME		R212AR0101_MAID,anm_r212ar0101_maid_del
 	_OBJ_ANIME_WAIT
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	/*�o��*/
+	/*登場*/
 	_OBJ_ANIME		R212AR0101_MAID,anm_r212ar0101_maid_appear
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_r212ar0101_maid_02_01
 	_TALK_CLOSE
 
-	/*�퓬�Ăяo��*/
+	/*戦闘呼び出し*/
 	_TRAINER_BTL_SET	MAID_02,0
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_r212ar0101_battle_lose
@@ -185,19 +185,19 @@ ev_r212ar0101_maid3_common:
 	_TALK_KEYWAIT	msg_r212ar0101_maid_02_02
 	_TALK_CLOSE
 
-	/*�ޏ�*/
+	/*退場*/
 	_OBJ_ANIME		R212AR0101_MAID,anm_r212ar0101_maid_del
 	_OBJ_ANIME_WAIT
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	/*�o��*/
+	/*登場*/
 	_OBJ_ANIME		R212AR0101_MAID,anm_r212ar0101_maid_appear
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_r212ar0101_maid_03_01
 	_TALK_CLOSE
 
-	/*�퓬�Ăяo��*/
+	/*戦闘呼び出し*/
 	_TRAINER_BTL_SET	MAID_03,0
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_r212ar0101_battle_lose
@@ -206,19 +206,19 @@ ev_r212ar0101_maid3_common:
 	_TALK_KEYWAIT	msg_r212ar0101_maid_03_02
 	_TALK_CLOSE
 
-	/*�ޏ�*/
+	/*退場*/
 	_OBJ_ANIME		R212AR0101_MAID,anm_r212ar0101_maid_del
 	_OBJ_ANIME_WAIT
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	/*�o��*/
+	/*登場*/
 	_OBJ_ANIME		R212AR0101_MAID,anm_r212ar0101_maid_appear
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_r212ar0101_maid_04_01
 	_TALK_CLOSE
 
-	/*�퓬�Ăяo��*/
+	/*戦闘呼び出し*/
 	_TRAINER_BTL_SET	MAID_04,0
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_r212ar0101_battle_lose
@@ -227,11 +227,11 @@ ev_r212ar0101_maid3_common:
 	_TALK_KEYWAIT	msg_r212ar0101_maid_04_02
 	_TALK_CLOSE
 
-	/*�ޏ�*/
+	/*退場*/
 	_OBJ_ANIME		R212AR0101_MAID,anm_r212ar0101_maid_del
 	_OBJ_ANIME_WAIT
 
-	/*������Ɉړ����ĉE����*/
+	/*一歩下に移動して右向き*/
 	_OBJ_ANIME		R212AR0101_MAID_03,anm_r212ar0101_maid_03_walk_d
 	_OBJ_ANIME_WAIT
 
@@ -240,19 +240,19 @@ ev_r212ar0101_maid3_common:
 	_TALK_KEYWAIT	msg_r212ar0101_maid3_05
 	_TALK_CLOSE
 
-	/*�����Ɉړ����ĉ�����*/
+	/*一歩上に移動して下向き*/
 	_OBJ_ANIME		R212AR0101_MAID_03,anm_r212ar0101_maid_03_walk_u
 	_OBJ_ANIME_WAIT
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	/*�o��*/
+	/*登場*/
 	_OBJ_ANIME		R212AR0101_MAID,anm_r212ar0101_maid_appear
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_r212ar0101_maid_05_01
 	_TALK_CLOSE
 
-	/*�퓬�Ăяo��*/
+	/*戦闘呼び出し*/
 	_TRAINER_BTL_SET	MAID_05,0
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_r212ar0101_battle_lose
@@ -261,12 +261,12 @@ ev_r212ar0101_maid3_common:
 	_TALK_KEYWAIT	msg_r212ar0101_maid_05_02
 	_TALK_CLOSE
 
-	/*�ޏ�*/
+	/*退場*/
 	_OBJ_ANIME		R212AR0101_MAID,anm_r212ar0101_maid_del
 	_OBJ_ANIME_WAIT
 	_OBJ_DEL		R212AR0101_MAID
 
-	/*������Ɉړ����ĉE����*/
+	/*一歩下に移動して右向き*/
 	_OBJ_ANIME		R212AR0101_MAID_03,anm_r212ar0101_maid_03_walk_d
 	_OBJ_ANIME_WAIT
 
@@ -274,55 +274,55 @@ ev_r212ar0101_maid3_common:
 	_NUMBER_NAME	1,SCWK_TEMP1
 	_TALK_KEYWAIT	msg_r212ar0101_maid3_06
 
-	/*�^�[�������Ⴄ*/
+	/*ターン数が違う*/
 	_IFWK_JUMP		SCWK_TEMP1,NE,SYS_WORK_MAID_TURN,ev_r212ar0101_turn_not
 
-	/*�j���ǂ���̃{�X�����߂�*/
+	/*男女どちらのボスか決める*/
 	_GET_RND		SCWK_TEMP2,2
 	_IFVAL_CALL		SCWK_TEMP2,EQ,0,ev_r212ar0101_maid_boss_m
 	_IFVAL_CALL		SCWK_TEMP2,EQ,1,ev_r212ar0101_maid_boss_f
 	_TALK_CLOSE
 
-	/*�����Ɉړ����ĉ�����*/
+	/*一歩上に移動して下向き*/
 	_OBJ_ANIME		R212AR0101_MAID_03,anm_r212ar0101_maid_03_walk_u
 	_OBJ_ANIME_WAIT
 
-	/*�o��*/
+	/*登場*/
 	_FLAG_RESET		FV_R212AR0101_BOSS
 	_OBJ_ADD		R212AR0101_BOSS
 	_OBJ_ANIME		R212AR0101_BOSS,anm_r212ar0101_maid_appear
 	_OBJ_ANIME_WAIT
 
-	/*�퓬�O���b�Z�[�W*/
+	/*戦闘前メッセージ*/
 	_IFVAL_CALL		SCWK_TEMP2,EQ,0,ev_r212ar0101_maid_boss_m_02
 	_IFVAL_CALL		SCWK_TEMP2,EQ,1,ev_r212ar0101_maid_boss_f_02
 	_TALK_CLOSE
 
-	/*�퓬�Ăяo��*/
+	/*戦闘呼び出し*/
 	_TRAINER_BTL_SET	SCWK_TEMP3,0
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_r212ar0101_battle_lose
 
-	/*�����킵����*/
-	/*�����������̔��ʗp�Ƀg���[�i�[�t���O�𗧂Ă�*/
+	/*★挑戦したか*/
+	/*勝利したかの判別用にトレーナーフラグを立てる*/
 	_TRAINER_FLAG_SET PRINCE_09
 	_TRAINER_FLAG_SET PRINCESS_08
 
-	/*�퓬�チ�b�Z�[�W*/
+	/*戦闘後メッセージ*/
 	_IFVAL_CALL		SCWK_TEMP2,EQ,0,ev_r212ar0101_maid_boss_m_03
 	_IFVAL_CALL		SCWK_TEMP2,EQ,1,ev_r212ar0101_maid_boss_f_03
 	_TALK_CLOSE
 
-	/*�ޏ�*/
+	/*退場*/
 	_OBJ_ANIME		R212AR0101_BOSS,anm_r212ar0101_maid_del
 	_OBJ_ANIME_WAIT
 	_OBJ_DEL		R212AR0101_BOSS
 
-	/*������Ɉړ����ĉE����*/
+	/*一歩下に移動して右向き*/
 	_OBJ_ANIME		R212AR0101_MAID_03,anm_r212ar0101_maid_03_walk_d
 	_OBJ_ANIME_WAIT
 
-	/*���݂��ƃ��b�Z�[�W*/
+	/*おみごとメッセージ*/
 	_IFVAL_CALL		SCWK_TEMP2,EQ,0,ev_r212ar0101_maid_boss_m_04
 	_IFVAL_CALL		SCWK_TEMP2,EQ,1,ev_r212ar0101_maid_boss_f_04
 
@@ -334,7 +334,7 @@ ev_r212ar0101_maid_win:
 	_JUMP			ev_r212ar0101_maid3_end
 	_END
 
-/*�g���[�i�[ID�Z�b�g*/
+/*トレーナーIDセット*/
 ev_r212ar0101_maid_boss_m:
 	_LDVAL			SCWK_TEMP3,PRINCE_09
 	_LDVAL			OBJCHRWORK0,GORGGEOUSM
@@ -349,7 +349,7 @@ ev_r212ar0101_maid_boss_f:
 	_TALK_KEYWAIT	msg_r212ar0101_maid3_11
 	_RET
 
-/*�퓬�O���b�Z�[�W*/
+/*戦闘前メッセージ*/
 ev_r212ar0101_maid_boss_m_02:
 	_TALK_KEYWAIT	msg_r212ar0101_prince_01
 	_RET
@@ -358,7 +358,7 @@ ev_r212ar0101_maid_boss_f_02:
 	_TALK_KEYWAIT	msg_r212ar0101_princess_01
 	_RET
 
-/*�퓬�チ�b�Z�[�W*/
+/*戦闘後メッセージ*/
 ev_r212ar0101_maid_boss_m_03:
 	_TALK_KEYWAIT	msg_r212ar0101_prince_02
 	_RET
@@ -367,7 +367,7 @@ ev_r212ar0101_maid_boss_f_03:
 	_TALK_KEYWAIT	msg_r212ar0101_princess_02
 	_RET
 
-/*���݂��ƃ��b�Z�[�W*/
+/*おみごとメッセージ*/
 ev_r212ar0101_maid_boss_m_04:
 	_TALK_KEYWAIT	msg_r212ar0101_maid3_08
 	_RET
@@ -377,21 +377,21 @@ ev_r212ar0101_maid_boss_f_04:
 	_RET
 
 //--------------------------------------------------------------------
-//���C�h	�ʒu����
+//メイド	位置調整
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0101_maid_03_dir_up_turn_r
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���C�h	�ʒu����
+//メイド	位置調整
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0101_maid_03_dir_down_turn_r
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���C�h	������
+//メイド	一歩上へ
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0101_maid_03_walk_u
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -399,7 +399,7 @@ _ANIME_LABEL anm_r212ar0101_maid_03_walk_u
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���C�h	������֌��̈ʒu
+//メイド	一歩下へ元の位置
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0101_maid_03_walk_d
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -407,7 +407,7 @@ _ANIME_LABEL anm_r212ar0101_maid_03_walk_d
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���C�h	�ޏ�
+//メイド	退場
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0101_maid_del
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -415,7 +415,7 @@ _ANIME_LABEL anm_r212ar0101_maid_del
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���C�h	�o��
+//メイド	登場
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0101_maid_appear
 	_ANIME_DATA	AC_VANISH_OFF,1
@@ -423,7 +423,7 @@ _ANIME_LABEL anm_r212ar0101_maid_appear
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��l��	�ʒu����
+//主人公	位置調整
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0101_player_dir_up_turn_l
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -432,7 +432,7 @@ _ANIME_LABEL anm_r212ar0101_player_dir_up_turn_l
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��l��	�ʒu����
+//主人公	位置調整
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0101_player_dir_down_turn_l
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -442,7 +442,7 @@ _ANIME_LABEL anm_r212ar0101_player_dir_down_turn_l
 
 
 /********************************************************************/
-/*						�^�[�������Ⴄ								*/
+/*						ターン数が違う								*/
 /********************************************************************/
 ev_r212ar0101_turn_not:
 	_TALK_KEYWAIT	msg_r212ar0101_maid3_09
@@ -452,7 +452,7 @@ ev_r212ar0101_turn_not:
 
 
 /********************************************************************/
-/*						�����b���ŕ���							*/
+/*						初回会話かで分岐							*/
 /********************************************************************/
 ev_r212ar0101_maid3_talk_off:
 	_TALK_KEYWAIT	msg_r212ar0101_maid3_01
@@ -468,7 +468,7 @@ ev_r212ar0101_maid3_talk_on:
 
 
 /********************************************************************/
-/*							�u�������v								*/
+/*							「いいえ」								*/
 /********************************************************************/
 no_r212ar0101_maid3_01:
 	_TALK_KEYWAIT	msg_r212ar0101_maid3_03
@@ -483,7 +483,7 @@ ev_r212ar0101_maid3_end:
 
 
 /********************************************************************/
-/*							���ʔs�k����							*/
+/*							共通敗北処理							*/
 /********************************************************************/
 ev_r212ar0101_battle_lose:
 	_TRAINER_LOSE
@@ -492,7 +492,7 @@ ev_r212ar0101_battle_lose:
 
 
 /********************************************************************/
-/*							���C�h�S								*/
+/*							メイド４								*/
 /********************************************************************/
 ev_r212ar0101_maid4:
 	_TALK_OBJ_START
@@ -507,7 +507,7 @@ ev_r212ar0101_maid4:
 	_END
 
 //--------------------------------------------------------------------
-//���C�h�����̌�����
+//メイドが元の向きへ
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0101_maid_01_turn
 	_ANIME_DATA	AC_DIR_D,1
@@ -527,7 +527,7 @@ _ANIME_LABEL anm_r212ar0101_maid_04_turn
 
 
 /********************************************************************/
-/*							���C�h�T								*/
+/*							メイド５								*/
 /********************************************************************/
 ev_r212ar0101_maid5:
 	_EASY_OBJ_MSG	msg_r212ar0101_maid5_01

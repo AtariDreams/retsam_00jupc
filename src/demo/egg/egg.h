@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	egg.c
- * @brief	‚½‚Ü‚²ƒfƒ‚
+ * @brief	ãŸã¾ã”ãƒ‡ãƒ¢
  * @author	goto
- * @date	2006.05.20(“y)
+ * @date	2006.05.20(åœŸ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -30,7 +30,7 @@
 
 // -----------------------------------------
 //
-//	  public
+//	â–¡ public
 //
 // -----------------------------------------
 extern const PROC_DATA EGG_ProcData;
@@ -38,7 +38,7 @@ extern const PROC_DATA EGG_ProcData;
 // =============================================================================
 //
 //
-//	 ’è‹`‚Æ‚©
+//	â–¡å®šç¾©ã¨ã‹
 //
 //
 // =============================================================================
@@ -46,21 +46,21 @@ extern const PROC_DATA EGG_ProcData;
 #define EGG_DEMO_HEAP_SIZE				(0x40000)
 #define EGG_DEMO_VRAM_TRANSFER_TASK_NUM	(BATTLE_VRAM_TRANSFER_TASK_NUM)
 
-///< EGG_Demo_Main —pƒV[ƒPƒ“ƒX
+///< EGG_Demo_Main ç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum EEGG_Demo_Main {
-	EDMS_INIT	= 0,		///< ‰Šú‰»
-	EDMS_MAIN,				///< ƒƒCƒ“
-	EDMS_NAME_IN_INIT,		///< –¼‘O
-	EDMS_NAME_IN_MAIN,		///< “ü—Í‘Ò‚¿
-	EDMS_NAME_IN_EXIT,		///< –¼‘O“ü—ÍŠ®—¹
-	EDMS_EXIT,				///< I—¹
-	EDMS_FREE,				///< ‰ğ•ú
+	EDMS_INIT	= 0,		///< åˆæœŸåŒ–
+	EDMS_MAIN,				///< ãƒ¡ã‚¤ãƒ³
+	EDMS_NAME_IN_INIT,		///< åå‰
+	EDMS_NAME_IN_MAIN,		///< å…¥åŠ›å¾…ã¡
+	EDMS_NAME_IN_EXIT,		///< åå‰å…¥åŠ›å®Œäº†
+	EDMS_EXIT,				///< çµ‚äº†
+	EDMS_FREE,				///< è§£æ”¾
 };
 
 ///< window ID
 enum {
-	EDWIN_MESSAGE = 0,		///< ƒƒbƒZ[ƒW
-	EDWIN_SELECT,			///< ‚Í‚¢E‚¢‚¢‚¦
+	EDWIN_MESSAGE = 0,		///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	EDWIN_SELECT,			///< ã¯ã„ãƒ»ã„ã„ãˆ
 	
 	EDWIN_MAX,
 };
@@ -95,7 +95,7 @@ enum {
 	EDID_WND_NANR,
 };
 
-///< ƒV[ƒPƒ“ƒX
+///< ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum EGG_MAIN_DEMO {
 	
 	EMD_SEQ_INIT = 0,
@@ -107,11 +107,11 @@ enum EGG_MAIN_DEMO {
 	EMD_SEQ_DEMO_3,
 	EMD_SEQ_DEMO_4,
 	EMD_SEQ_DEMO_5,
-	EMD_SEQ_DEMO_MSG_1,			///< ›z‰»‚µ‚½‚ ‚Æ
+	EMD_SEQ_DEMO_MSG_1,			///< å­µåŒ–ã—ãŸã‚ã¨
 	EMD_SEQ_DEMO_MSG_2,
 	EMD_SEQ_DEMO_MSG_2_2,
 	EMD_SEQ_DEMO_MSG_3,
-	EMD_SEQ_DEMO_SEL_1,			///< ‚Í‚¢E‚¢‚¢‚¦
+	EMD_SEQ_DEMO_SEL_1,			///< ã¯ã„ãƒ»ã„ã„ãˆ
 	EMD_SEQ_DEMO_SEL_2,
 	EMD_SEQ_DEMO_SEL_3,
 	
@@ -120,16 +120,16 @@ enum EGG_MAIN_DEMO {
 	EMD_SEQ_END,
 };
 
-///< ƒ‚[ƒh
+///< ãƒ¢ãƒ¼ãƒ‰
 enum {
 	EDM_MODE_NORMAL = 0,
 	EDM_MODE_SPECIAL,
 };
 
-#define EGG_DEMO_NEAR			(FX32_ONE)			///< ƒJƒƒ‰
+#define EGG_DEMO_NEAR			(FX32_ONE)			///< ã‚«ãƒ¡ãƒ©
 #define EGG_DEMO_FAR			(FX32_ONE * 900)
 
-#define EGG_DEMO_CHAR_OFS		(20)				///< ‹C‹x‚ß
+#define EGG_DEMO_CHAR_OFS		(20)				///< æ°—ä¼‘ã‚
 
 #define EGG_DEMO_TALK_CHAR_OFS	(EGG_DEMO_CHAR_OFS)
 #define EGG_DEMO_MENU_CHAR_OFS	(EGG_DEMO_TALK_CHAR_OFS + TALK_WIN_CGX_SIZ)
@@ -167,28 +167,28 @@ enum {
 // =============================================================================
 //
 //
-//	 \‘¢‘Ì‚Æ‚©
+//	â–¡æ§‹é€ ä½“ã¨ã‹
 //
 //
 // =============================================================================
 // -----------------------------------------
 //
-//	 ƒvƒƒbƒNƒR[ƒ‹ƒpƒ‰ƒ[ƒ^
+//	â–¡ãƒ—ãƒ­ãƒƒã‚¯ã‚³ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //
 // -----------------------------------------
 typedef struct {
 	
-	POKEMON_PARAM*	pp;				///< ‚Ó‚©‚·‚éƒ|ƒPƒ‚ƒ“
+	POKEMON_PARAM*	pp;				///< ãµã‹ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³
 	CONFIG*			cfg;			///< config	
 	MYSTATUS*		my;
-	u16				bgmno;			///< BGMƒiƒ“ƒo[
+	u16				bgmno;			///< BGMãƒŠãƒ³ãƒãƒ¼
 	
 } EGG_CALL_PARAM;
 
 
 // -----------------------------------------
 //
-//	 ƒvƒƒbƒN—pƒƒCƒ“ƒ[ƒN
+//	â–¡ãƒ—ãƒ­ãƒƒã‚¯ç”¨ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
@@ -205,7 +205,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	 ƒp[ƒeƒBƒNƒ‹“o˜^—pƒ[ƒN
+//	â–¡ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç™»éŒ²ç”¨ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
@@ -220,7 +220,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	 ƒp[ƒeƒBƒNƒ‹ŠÇ—
+//	â–¡ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç®¡ç†
 //
 // -----------------------------------------
 typedef struct  {
@@ -234,7 +234,7 @@ typedef struct  {
 
 // -----------------------------------------
 //
-//	 ƒVƒXƒeƒ€—pƒ[ƒN
+//	â–¡ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
@@ -245,7 +245,7 @@ typedef struct {
 	int						msg_index;
 	int						msg_speed;
 	
-	int						win_type;			///< config ‚©‚ç
+	int						win_type;			///< config ã‹ã‚‰
 	GF_BGL_BMPWIN			win[ EDWIN_MAX ];
 	
 	GF_G3DMAN*				g3Dman;
@@ -266,7 +266,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	 ƒfƒ‚—pƒ[ƒN
+//	â–¡ãƒ‡ãƒ¢ç”¨ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
@@ -279,18 +279,18 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	 ƒƒCƒ“ƒ[ƒN
+//	â–¡ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
 	
-	///< ----- ƒVƒXƒeƒ€“I‚È‚à‚Ì
+	///< ----- ã‚·ã‚¹ãƒ†ãƒ çš„ãªã‚‚ã®
 	
-	EGG_PROC_WORK*		epwk;		///< ƒvƒƒbƒNƒ[ƒN
+	EGG_PROC_WORK*		epwk;		///< ãƒ—ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
 	
-	COMMON_SYS_WORK 	sys;		///< ƒVƒXƒeƒ€
+	COMMON_SYS_WORK 	sys;		///< ã‚·ã‚¹ãƒ†ãƒ 
 	
-	///< ----- ‚»‚Ì‘¼
+	///< ----- ãã®ä»–
 	int					mode;
 	int					seq;
 	
@@ -299,8 +299,8 @@ typedef struct {
 	
 	u8					voice_wait;
 	
-	SOFT_SPRITE*		ssp_poke;	///< ƒ|ƒPƒ‚ƒ“
-//	SOFT_SPRITE*		ssp_egg;	///< ‚½‚Ü‚²
+	SOFT_SPRITE*		ssp_poke;	///< ãƒã‚±ãƒ¢ãƒ³
+//	SOFT_SPRITE*		ssp_egg;	///< ãŸã¾ã”
 	
 	CATS_ACT_PTR		egg;
 	CATS_ACT_PTR		wnd_t;
@@ -313,7 +313,7 @@ typedef struct {
 // =============================================================================
 //
 //
-//	 ƒvƒƒgƒ^ƒCƒv‚Æ‚©
+//	â–¡ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã¨ã‹
 //
 //
 // =============================================================================
@@ -387,11 +387,11 @@ extern BOOL EggMain_Executed(EGG_MAIN_WORK* emwk);
 
 
 
-///< proc ŒÄ‚Ño‚µ
+///< proc å‘¼ã³å‡ºã—
 extern void EventCmd_EGGProc(GMEVENT_CONTROL * event, void* param);
 
 
-///< ƒfƒoƒbƒOŒÄ‚Ño‚µ
+///< ãƒ‡ãƒãƒƒã‚°å‘¼ã³å‡ºã—
 extern void DebugEGG_DemoStart(FIELDSYS_WORK *fsys);
 extern void DebugEGG_DemoStartMana(FIELDSYS_WORK *fsys);
 

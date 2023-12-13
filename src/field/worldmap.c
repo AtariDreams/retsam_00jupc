@@ -1,14 +1,14 @@
 //=============================================================================
 /**
  * @file	worldmap.c
- * @bfief	ƒ[ƒ‹ƒhƒ}ƒbƒv\’zˆ—
+ * @bfief	ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—æ§‹ç¯‰å‡¦ç†
  * @author	saitou, mori GAME FREAK inc.
  *
  *
  */
 //=============================================================================
-// ƒGƒŠƒA–ˆ‚ÉƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ðØ‚è‘Ö‚¦‚é‚Ì‚ÅAƒGƒŠƒA‘JˆÚ‚µ‚½Û‚É
-// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ðƒGƒŠƒA”Ô†‚©‚ç¶¬‚µ‚Ä“Ç‚Ýž‚Þˆ—‚Ì’Ç‰Á‚ðŒãXs‚¤
+// ã‚¨ãƒªã‚¢æ¯Žã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã®ã§ã€ã‚¨ãƒªã‚¢é·ç§»ã—ãŸéš›ã«
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¨ãƒªã‚¢ç•ªå·ã‹ã‚‰ç”Ÿæˆã—ã¦èª­ã¿è¾¼ã‚€å‡¦ç†ã®è¿½åŠ ã‚’å¾Œã€…è¡Œã†
 
 
 #include "common.h"
@@ -29,7 +29,7 @@
 
 
 //===========================================================================
-// ’è”
+// å®šæ•°
 //===========================================================================
 ///#define	OLD_MAP_MATRIX
 #define MAP_MATRIX_WIDTH_MAX	(30)
@@ -38,26 +38,26 @@
 #define MAP_MATRIX_PREFIX_MAX	(16)
 
 //===========================================================================
-// \‘¢‘Ì’è‹`
+// æ§‹é€ ä½“å®šç¾©
 //===========================================================================
 //------------------------------------------------------------------
-///	ƒ}ƒbƒvƒ}ƒgƒŠƒbƒNƒXî•ñ•ÛŽ—pƒ[ƒN
+///	ãƒžãƒƒãƒ—ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹æƒ…å ±ä¿æŒç”¨ãƒ¯ãƒ¼ã‚¯
 //------------------------------------------------------------------
 typedef struct MATRIX_TABLE_tag
 {
-	u8	size_h;							///<ƒ}ƒbƒvƒ}ƒgƒŠƒbƒNƒX‚Ìc•
-	u8	size_w;							///<ƒ}ƒbƒvƒ}ƒgƒŠƒbƒNƒX‚Ì‰¡•
-	u16	ZoneMat[MAP_MATRIX_MAX];		///<ƒ][ƒ“IDƒe[ƒuƒ‹
-	u8	HeightBase[MAP_MATRIX_MAX];		///<‚‚³Žw’èƒe[ƒuƒ‹
-	u16	ArcIndex[MAP_MATRIX_MAX];		///<ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹
-	u8	Prefix[MAP_MATRIX_PREFIX_MAX];	///<ƒtƒ@ƒCƒ‹–¼‚ÌƒvƒŒƒtƒBƒbƒNƒX
+	u8	size_h;							///<ãƒžãƒƒãƒ—ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹ã®ç¸¦å¹…
+	u8	size_w;							///<ãƒžãƒƒãƒ—ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹ã®æ¨ªå¹…
+	u16	ZoneMat[MAP_MATRIX_MAX];		///<ã‚¾ãƒ¼ãƒ³IDãƒ†ãƒ¼ãƒ–ãƒ«
+	u8	HeightBase[MAP_MATRIX_MAX];		///<é«˜ã•æŒ‡å®šãƒ†ãƒ¼ãƒ–ãƒ«
+	u16	ArcIndex[MAP_MATRIX_MAX];		///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
+	u8	Prefix[MAP_MATRIX_PREFIX_MAX];	///<ãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹
 }MATRIX_TABLE;
 
 //------------------------------------------------------------------
-///	ƒ[ƒ‹ƒhƒ}ƒbƒv\‘¢‘Ì
+///	ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—æ§‹é€ ä½“
 //------------------------------------------------------------------
 struct _WORLD_MAP{
-	u8  MatrixW,MatrixH;						///< ƒGƒŠƒA‚Ìc‰¡•
+	u8  MatrixW,MatrixH;						///< ã‚¨ãƒªã‚¢ã®ç¸¦æ¨ªå¹…
 	u8 matrix_id;
 	MATRIX_TABLE MapMatrix;
 };
@@ -68,7 +68,7 @@ struct _WORLD_MAP{
 //============================================================================================
 //============================================================================================
 //------------------------------------------------------------------
-//ƒA[ƒJƒCƒo‚©‚çƒ}ƒgƒŠƒbƒNƒX‚ðŽæ“¾
+//ã‚¢ãƒ¼ã‚«ã‚¤ãƒã‹ã‚‰ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹ã‚’å–å¾—
 //------------------------------------------------------------------
 static void SetupMapMatrix(MATRIX_TABLE * Mmtx, const u16 matrix_id, int zone_id)
 {
@@ -79,7 +79,7 @@ static void SetupMapMatrix(MATRIX_TABLE * Mmtx, const u16 matrix_id, int zone_id
 
 	{
 		int i;
-		//\‘¢‘Ì‰Šú‰»
+		//æ§‹é€ ä½“åˆæœŸåŒ–
 		Mmtx->size_w = 0;
 		Mmtx->size_h = 0;
 	
@@ -95,15 +95,15 @@ static void SetupMapMatrix(MATRIX_TABLE * Mmtx, const u16 matrix_id, int zone_id
 	
 	mem = ArchiveDataLoadMallocLo( ARC_MAP_MATRIX, matrix_id, HEAPID_WORLD );
 	p = &((u8*)(mem))[0];
-	Mmtx->size_w = *p;	//‰¡ƒTƒCƒY
+	Mmtx->size_w = *p;	//æ¨ªã‚µã‚¤ã‚º
 	p++;
-	Mmtx->size_h = *p;	//cƒTƒCƒY
+	Mmtx->size_h = *p;	//ç¸¦ã‚µã‚¤ã‚º
 	p++;
 	zone_flg = *p;
 	p++;
 	height_flg = *p;
 	p++;
-	prefix_size = *p;					//ƒvƒŒƒtƒBƒNƒX•¶Žš—ñƒTƒCƒY
+	prefix_size = *p;					//ãƒ—ãƒ¬ãƒ•ã‚£ã‚¯ã‚¹æ–‡å­—åˆ—ã‚µã‚¤ã‚º
 	p++;
 
 	GF_ASSERT(prefix_size <= MAP_MATRIX_PREFIX_MAX);
@@ -119,7 +119,7 @@ static void SetupMapMatrix(MATRIX_TABLE * Mmtx, const u16 matrix_id, int zone_id
 		MI_CpuCopy8(p, Mmtx->ZoneMat, Mmtx->size_w * Mmtx->size_h * 2);
 		p+=(Mmtx->size_w * Mmtx->size_h * 2);
 	}else{
-		//ƒ][ƒ“Žw’è‚Ìƒ}ƒgƒŠƒbƒNƒX•\‚ª‚È‚¢ê‡‚ÍAƒ][ƒ“ID‚ð•~‚«‹l‚ß‚Ä¶¬‚·‚é
+		//ã‚¾ãƒ¼ãƒ³æŒ‡å®šã®ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹è¡¨ãŒãªã„å ´åˆã¯ã€ã‚¾ãƒ¼ãƒ³IDã‚’æ•·ãè©°ã‚ã¦ç”Ÿæˆã™ã‚‹
 		MI_CpuFill16(Mmtx->ZoneMat, zone_id, Mmtx->size_w * Mmtx->size_h * sizeof(u16));
 	}
 	if (height_flg){
@@ -133,7 +133,7 @@ static void SetupMapMatrix(MATRIX_TABLE * Mmtx, const u16 matrix_id, int zone_id
 }
 
 //------------------------------------------------------------------
-//	WORLD_MAP‰Šú‰»
+//	WORLD_MAPåˆæœŸåŒ–
 //------------------------------------------------------------------
 WORLD_MAP_PTR WorldMapInit(void)
 {
@@ -141,7 +141,7 @@ WORLD_MAP_PTR WorldMapInit(void)
 }
 
 //--------------------------------------------------------------
-///	WORLD_MAP‰Šú‰»@ƒq[ƒvŽw’è
+///	WORLD_MAPåˆæœŸåŒ–ã€€ãƒ’ãƒ¼ãƒ—æŒ‡å®š
 //--------------------------------------------------------------
 WORLD_MAP_PTR WorldMapInitHeap( u32 heap_id )
 {
@@ -156,7 +156,7 @@ WORLD_MAP_PTR WorldMapInitHeap( u32 heap_id )
 }
 
 //--------------------------------------------------------------
-//	WORLD_MAP@î•ñ‚ÌˆÚ“®
+//	WORLD_MAPã€€æƒ…å ±ã®ç§»å‹•
 //--------------------------------------------------------------
 void WorldMapRemove( WORLD_MAP_PTR re_world, WORLD_MAP_PTR world )
 {
@@ -168,10 +168,10 @@ void WorldMapRemove( WORLD_MAP_PTR re_world, WORLD_MAP_PTR world )
 	
 //==============================================================================
 /**
- * ƒ][ƒ“‚h‚c‚ðŒ³‚ÉAƒ}ƒbƒvƒ}ƒgƒŠƒbƒNƒX‚ðì¬
+ * ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤ã‚’å…ƒã«ã€ãƒžãƒƒãƒ—ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹ã‚’ä½œæˆ
  *
- * @param   zone_id	ƒ][ƒ“‚h‚c
- * @param   world	WORLD_MAP\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   zone_id	ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤
+ * @param   world	WORLD_MAPæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -181,7 +181,7 @@ void SetUpWorldMatrix(const int zone_id, WORLD_MAP_PTR world)
 	u16 matrix_id;
 
 	matrix_id = ZoneData_GetMatrixID(zone_id);
-	//ƒA[ƒJƒCƒo‚©‚çƒ}ƒgƒŠƒbƒNƒX‚ðŽæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒã‹ã‚‰ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	SetupMapMatrix(&world->MapMatrix,matrix_id,zone_id);
 	world->matrix_id = matrix_id;
 	world->MatrixH = world->MapMatrix.size_h;
@@ -191,16 +191,16 @@ void SetUpWorldMatrix(const int zone_id, WORLD_MAP_PTR world)
 
 //==============================================================================
 /**
- * ƒ[ƒ‹ƒhƒ}ƒbƒv\‘¢‘Ì‚Ì‰ð•ú
+ * ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—æ§‹é€ ä½“ã®è§£æ”¾
  *
- * @param   world		WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
+ * @param   world		WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
 //==============================================================================
 void WorldMapRelease(const WORLD_MAP_PTR world)
 {
-	sys_FreeMemoryEz(world);						// ƒ[ƒ‹ƒhƒ}ƒbƒv‰ð•ú
+	sys_FreeMemoryEz(world);						// ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—è§£æ”¾
 	
 }
 
@@ -209,7 +209,7 @@ void WorldMapRelease(const WORLD_MAP_PTR world)
 //------------------------------------------------------------------------------
 //
 //
-// ‚±‚±‚©‚ç‰º‚ÍWORLD_MAP‚Ìƒƒ“ƒo‚ðŽQÆ‚·‚é‚½‚ß‚ÌƒCƒ“ƒ^[ƒtƒF[ƒXŠÖ”‚Å‚·B
+// ã“ã“ã‹ã‚‰ä¸‹ã¯WORLD_MAPã®ãƒ¡ãƒ³ãƒã‚’å‚ç…§ã™ã‚‹ãŸã‚ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹é–¢æ•°ã§ã™ã€‚
 //
 //
 //------------------------------------------------------------------------------
@@ -217,38 +217,38 @@ void WorldMapRelease(const WORLD_MAP_PTR world)
 //------------------------------------------------------------------------------
 u16 GetArcIndexFromBlockIndex(int index, const WORLD_MAP_PTR world)
 {
-	GF_ASSERT((index<(world->MatrixW*world->MatrixH)) && "ƒ}ƒbƒv‚Ì”ÍˆÍ‚ð’´‚¦‚Ä‚¢‚é");
+	GF_ASSERT((index<(world->MatrixW*world->MatrixH)) && "ãƒžãƒƒãƒ—ã®ç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹");
 	return world->MapMatrix.ArcIndex[index];
 }
 
 //==============================================================================
 /**
- * Œ»Ý“Ç‚Ýž‚ñ‚Å‚¢‚éƒ[ƒ‹ƒhƒ}ƒbƒv‚Ì‰¡•‚ðŽæ“¾‚·‚é
+ * ç¾åœ¨èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ã®æ¨ªå¹…ã‚’å–å¾—ã™ã‚‹
  *
- * @param   world		WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
+ * @param   world		WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int			‰¡•
+ * @retval  int			æ¨ªå¹…
  */
 //==============================================================================
 int  GetWorldMapMatrixW(const WORLD_MAP_PTR world)
 {
-	GF_ASSERT((world!=NULL) && "worldmap‚ª–¢Šm•Û");
+	GF_ASSERT((world!=NULL) && "worldmapãŒæœªç¢ºä¿");
 
 	return world->MatrixW;
 }
 
 //==============================================================================
 /**
- * Œ»Ý“Ç‚Ýž‚ñ‚Å‚¢‚éƒ[ƒ‹ƒhƒ}ƒbƒv‚Ìc•‚ðŽæ“¾‚·‚é
+ * ç¾åœ¨èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ã®ç¸¦å¹…ã‚’å–å¾—ã™ã‚‹
  *
- * @param   world		WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
+ * @param   world		WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int			c•
+ * @retval  int			ç¸¦å¹…
  */
 //==============================================================================
 int  GetWorldMapMatrixH(const WORLD_MAP_PTR world)
 {
-	GF_ASSERT((world!=NULL) && "worldmap‚ª–¢Šm•Û");
+	GF_ASSERT((world!=NULL) && "worldmapãŒæœªç¢ºä¿");
 
 	return world->MatrixH;
 
@@ -258,10 +258,10 @@ int  GetWorldMapMatrixH(const WORLD_MAP_PTR world)
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒuƒƒbƒNÀ•W‚ð‚à‚Æ‚Éƒ}ƒbƒvƒ}ƒgƒŠƒbƒNƒX‚©‚ç‚Ìƒ][ƒ“IDŽæ“¾
- * @param	world	WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
- * @param	gx		XˆÊ’ui’nŒ`ƒuƒƒbƒN’PˆÊj
- * @param	gz		ZˆÊ’ui’nŒ`ƒuƒƒbƒN’PˆÊj
+ * @brief	ãƒ–ãƒ­ãƒƒã‚¯åº§æ¨™ã‚’ã‚‚ã¨ã«ãƒžãƒƒãƒ—ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹ã‹ã‚‰ã®ã‚¾ãƒ¼ãƒ³IDå–å¾—
+ * @param	world	WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	gx		Xä½ç½®ï¼ˆåœ°å½¢ãƒ–ãƒ­ãƒƒã‚¯å˜ä½ï¼‰
+ * @param	gz		Zä½ç½®ï¼ˆåœ°å½¢ãƒ–ãƒ­ãƒƒã‚¯å˜ä½ï¼‰
  */
 //------------------------------------------------------------------
 u16 World_GetZoneIDFromMatrixXZ(const WORLD_MAP * world, int gx, int gz)
@@ -275,10 +275,10 @@ u16 World_GetZoneIDFromMatrixXZ(const WORLD_MAP * world, int gx, int gz)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ðŒ³‚Éƒ}ƒbƒvƒ}ƒgƒŠƒbƒNƒX‚©‚ç‚Ìƒ][ƒ“IDŽæ“¾
- * @param	world	WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
- * @param	gx		XˆÊ’ui’nŒ`ƒuƒƒbƒN’PˆÊj
- * @param	gz		ZˆÊ’ui’nŒ`ƒuƒƒbƒN’PˆÊj
+ * @brief	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å…ƒã«ãƒžãƒƒãƒ—ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹ã‹ã‚‰ã®ã‚¾ãƒ¼ãƒ³IDå–å¾—
+ * @param	world	WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	gx		Xä½ç½®ï¼ˆåœ°å½¢ãƒ–ãƒ­ãƒƒã‚¯å˜ä½ï¼‰
+ * @param	gz		Zä½ç½®ï¼ˆåœ°å½¢ãƒ–ãƒ­ãƒƒã‚¯å˜ä½ï¼‰
  */
 //------------------------------------------------------------------
 u16 World_GetZoneIDFromBlockIdx(const WORLD_MAP * world, const int inBlockIdx)
@@ -293,9 +293,9 @@ u16 World_GetZoneIDFromBlockIdx(const WORLD_MAP * world, const int inBlockIdx)
 
 //==============================================================================
 /**
- * ƒ}ƒgƒŠƒbƒNƒXIDŽæ“¾
+ * ãƒžãƒˆãƒªãƒƒã‚¯ã‚¹IDå–å¾—
  *
- * @param   world	WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
+ * @param   world	WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -308,15 +308,15 @@ u8 GetWorldMatrixID(const WORLD_MAP_PTR world)
 
 //==============================================================================
 /**
- * ƒ}ƒgƒŠƒNƒXID‚©‚çƒ][ƒ“ID‚ðŽæ“¾
+ * ãƒžãƒˆãƒªã‚¯ã‚¹IDã‹ã‚‰ã‚¾ãƒ¼ãƒ³IDã‚’å–å¾—
  *
- * @param   world		WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
- * @param   matrix_id	ƒ}ƒgƒŠƒNƒXID
- * @param   gx			XÀ•W(ƒuƒƒbƒN)
- * @param   gz			ZÀ•W(ƒuƒƒbƒN)
- * @param   gw			•
+ * @param   world		WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   matrix_id	ãƒžãƒˆãƒªã‚¯ã‚¹ID
+ * @param   gx			Xåº§æ¨™(ãƒ–ãƒ­ãƒƒã‚¯)
+ * @param   gz			Zåº§æ¨™(ãƒ–ãƒ­ãƒƒã‚¯)
+ * @param   gw			å¹…
  *
- * @retval  int			ƒ][ƒ“ID		
+ * @retval  int			ã‚¾ãƒ¼ãƒ³ID		
  */
 //==============================================================================
 int GetZoneIDFromMatrixID(	const WORLD_MAP_PTR world,
@@ -332,15 +332,15 @@ int GetZoneIDFromMatrixID(	const WORLD_MAP_PTR world,
 
 //==============================================================================
 /**
- * ƒ}ƒgƒŠƒNƒXID‚©‚ç‚‚³ƒx[ƒX‚ðŽæ“¾
+ * ãƒžãƒˆãƒªã‚¯ã‚¹IDã‹ã‚‰é«˜ã•ãƒ™ãƒ¼ã‚¹ã‚’å–å¾—
  *
- * @param   world		WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
- * @param   matrix_id	ƒ}ƒgƒŠƒNƒXID
- * @param   gx			XÀ•W
- * @param   gz			ZÀ•W
- * @param   gw			•
+ * @param   world		WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   matrix_id	ãƒžãƒˆãƒªã‚¯ã‚¹ID
+ * @param   gx			Xåº§æ¨™
+ * @param   gz			Zåº§æ¨™
+ * @param   gw			å¹…
  *
- * @retval  int			‚‚³ƒx[ƒX		
+ * @retval  int			é«˜ã•ãƒ™ãƒ¼ã‚¹		
  */
 //==============================================================================
 int GetHeightBaseFromMatrixID(	const WORLD_MAP_PTR world,
@@ -357,7 +357,7 @@ int GetHeightBaseFromMatrixID(	const WORLD_MAP_PTR world,
 //==============================================================================
 //==============================================================================
 //
-//		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“—pƒAƒNƒZƒXŠÖ”
+//		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 //
 //==============================================================================
 //==============================================================================
@@ -368,11 +368,11 @@ typedef struct FIELD_MAT_ZONE_ID_tag
 
 //==============================================================================
 /**
- * ƒtƒB[ƒ‹ƒhƒ}ƒgƒŠƒNƒX\‘¢‘Ìì¬
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒˆãƒªã‚¯ã‚¹æ§‹é€ ä½“ä½œæˆ
  *
- * @param   inHeapID	ƒq[ƒvID
+ * @param   inHeapID	ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  FMZ_PTR		\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^		
+ * @retval  FMZ_PTR		æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿		
  */
 //==============================================================================
 FMZ_PTR InitFMZ(const u32 inHeapID)
@@ -385,15 +385,15 @@ FMZ_PTR InitFMZ(const u32 inHeapID)
 
 	mem = ArchiveDataLoadMallocLo( ARC_MAP_MATRIX, MATRIX_ID_SINOU, inHeapID );
 	p = &((u8*)(mem))[0];
-	//‰¡ƒTƒCƒY
+	//æ¨ªã‚µã‚¤ã‚º
 	p++;
-	//cƒTƒCƒY
+	//ç¸¦ã‚µã‚¤ã‚º
 	p++;
-	//ƒ][ƒ“ƒtƒ‰ƒO
+	//ã‚¾ãƒ¼ãƒ³ãƒ•ãƒ©ã‚°
 	p++;
-	//ƒnƒCƒgƒtƒ‰ƒO
+	//ãƒã‚¤ãƒˆãƒ•ãƒ©ã‚°
 	p++;
-	prefix_size = *p;					//ƒvƒŒƒtƒBƒNƒX•¶Žš—ñƒTƒCƒY
+	prefix_size = *p;					//ãƒ—ãƒ¬ãƒ•ã‚£ã‚¯ã‚¹æ–‡å­—åˆ—ã‚µã‚¤ã‚º
 	p++;
 	p+=(prefix_size);
 
@@ -406,9 +406,9 @@ FMZ_PTR InitFMZ(const u32 inHeapID)
 
 //==============================================================================
 /**
- * ƒtƒB[ƒ‹ƒhƒ}ƒgƒŠƒNƒX\‘¢‘Ì‰ð•ú
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒˆãƒªã‚¯ã‚¹æ§‹é€ ä½“è§£æ”¾
  *
- * @param   fmzp		\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fmzp		æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -421,11 +421,11 @@ void FreeFMZ(FMZ_PTR fmzp)
 
 //==============================================================================
 /**
- * ƒuƒƒbƒNÀ•W‚©‚çAƒ\[ƒ“ID‚ðŽæ“¾
+ * ãƒ–ãƒ­ãƒƒã‚¯åº§æ¨™ã‹ã‚‰ã€ã‚½ãƒ¼ãƒ³IDã‚’å–å¾—
  *
- * @param   fmzp		\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   inBlockX	ƒuƒƒbƒNXÀ•W
- * @param   inBlockZ	ƒuƒƒbƒNZÀ•W
+ * @param   fmzp		æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   inBlockX	ãƒ–ãƒ­ãƒƒã‚¯Xåº§æ¨™
+ * @param   inBlockZ	ãƒ–ãƒ­ãƒƒã‚¯Zåº§æ¨™
  *
  * @retval  none		
  */
@@ -438,11 +438,11 @@ int GetFieldMatrixZoneID(const FMZ_CONST_PTR fmdp, const u32 inBlockX, const u32
 #ifdef PM_DEBUG
 //==============================================================================
 /**
- * @brief	Žw’è‚µ‚½ƒ][ƒ“‚Ì¶ãƒuƒƒbƒNÀ•W‚ðŽæ“¾‚·‚é
+ * @brief	æŒ‡å®šã—ãŸã‚¾ãƒ¼ãƒ³ã®å·¦ä¸Šãƒ–ãƒ­ãƒƒã‚¯åº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- * @param	zoneID		ƒ][ƒ“ID
- * @param   px			Žæ“¾‚µ‚½ƒuƒƒbƒNXÀ•W‚ðŠi”[‚·‚éƒ|ƒCƒ“ƒ^
- * @param   pz			Žæ“¾‚µ‚½ƒuƒƒbƒNZÀ•W‚ðŠi”[‚·‚éƒ|ƒCƒ“ƒ^
+ * @param	zoneID		ã‚¾ãƒ¼ãƒ³ID
+ * @param   px			å–å¾—ã—ãŸãƒ–ãƒ­ãƒƒã‚¯Xåº§æ¨™ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
+ * @param   pz			å–å¾—ã—ãŸãƒ–ãƒ­ãƒƒã‚¯Zåº§æ¨™ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -465,7 +465,7 @@ int GetBlockPosFromZoneID(int zoneID,u16* px,u16* pz)
 			}
 		}
 	}
-	//Œ©‚Â‚©‚ç‚È‚¢
+	//è¦‹ã¤ã‹ã‚‰ãªã„
 	*px = 0;
 	*pz = 0;
 	return 0;
@@ -474,14 +474,14 @@ int GetBlockPosFromZoneID(int zoneID,u16* px,u16* pz)
 
 //==============================================================================
 /**
- * @brief	Žw’è‚µ‚½ƒ}ƒgƒŠƒbƒNƒX‚h‚c‚ÌƒuƒƒbƒNÀ•W‚É‘Î‰ž‚·‚éƒ][ƒ“‚h‚c‚ðŽæ“¾
- * ¦Žg‚¤êŠ‚ÍŒÀ’è‚³‚ê‚Ü‚·B
+ * @brief	æŒ‡å®šã—ãŸãƒžãƒˆãƒªãƒƒã‚¯ã‚¹ï¼©ï¼¤ã®ãƒ–ãƒ­ãƒƒã‚¯åº§æ¨™ã«å¯¾å¿œã™ã‚‹ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤ã‚’å–å¾—
+ * â€»ä½¿ã†å ´æ‰€ã¯é™å®šã•ã‚Œã¾ã™ã€‚
  *
- * @param   matrixID	ƒ}ƒgƒŠƒNƒXID
- * @param   x			ƒuƒƒbƒNXÀ•W
- * @param   z			ƒuƒƒbƒNZÀ•W
+ * @param   matrixID	ãƒžãƒˆãƒªã‚¯ã‚¹ID
+ * @param   x			ãƒ–ãƒ­ãƒƒã‚¯Xåº§æ¨™
+ * @param   z			ãƒ–ãƒ­ãƒƒã‚¯Zåº§æ¨™
  *
- * @retval  int			ƒ][ƒ“‚h‚c		
+ * @retval  int			ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤		
  */
 //==============================================================================
 int GetZoneIDFromMatID(const int inMatID, const u16 inX, const u16 inZ)
@@ -500,20 +500,20 @@ int GetZoneIDFromMatID(const int inMatID, const u16 inX, const u16 inZ)
 
 //==============================================================================
 /**
- * Žw’è‚ÌƒuƒƒbƒN‚É‘Î‰ž‚µ‚Ä‚¢‚é‚‚³ƒf[ƒ^ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ðŽæ“¾
+ * æŒ‡å®šã®ãƒ–ãƒ­ãƒƒã‚¯ã«å¯¾å¿œã—ã¦ã„ã‚‹é«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- * @param   Block		ƒuƒƒbƒN
- * @param   mapresource		WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
+ * @param   Block		ãƒ–ãƒ­ãƒƒã‚¯
+ * @param   mapresource		WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  char *		ƒuƒƒbƒNƒtƒ@ƒCƒ‹–¼‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  char *		ãƒ–ãƒ­ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 const u16 GetWorldMapArcIdx(const int Block, const WORLD_MAP_PTR world)
 {
 	u16 index;
-	int ggx = Block % world->MatrixW;							//Œ»Ý‚Íƒ][ƒ““àî•ñ‚ª–³‚¢‚Ì‚Å‰¼\’z
+	int ggx = Block % world->MatrixW;							//ç¾åœ¨ã¯ã‚¾ãƒ¼ãƒ³å†…æƒ…å ±ãŒç„¡ã„ã®ã§ä»®æ§‹ç¯‰
 	int ggz = Block / world->MatrixW;
-	GF_ASSERT((world!=NULL) && "world‚ª–¢Šm•Û");
+	GF_ASSERT((world!=NULL) && "worldãŒæœªç¢ºä¿");
 
 	index = GetArcIndexFromBlockIndex(Block,world);
 	return index;
@@ -524,10 +524,10 @@ const u16 GetWorldMapArcIdx(const int Block, const WORLD_MAP_PTR world)
 //============================================================================================
 //
 //
-//			ƒ}ƒbƒv‘‚«Š·‚¦“ÁŽêˆ—
+//			ãƒžãƒƒãƒ—æ›¸ãæ›ãˆç‰¹æ®Šå‡¦ç†
 //
 //
-//			¦”Ä—p«‚Í‚Ü‚Á‚½‚­‚È‚¢Bƒ_ƒCƒ„ƒ‚ƒ“ƒh•ƒp[ƒ‹ê—p‚¾‚ÆŽv‚í‚ê‚é
+//			â€»æ±Žç”¨æ€§ã¯ã¾ã£ãŸããªã„ã€‚ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰ï¼†ãƒ‘ãƒ¼ãƒ«å°‚ç”¨ã ã¨æ€ã‚ã‚Œã‚‹
 //
 //
 //============================================================================================
@@ -535,8 +535,8 @@ const u16 GetWorldMapArcIdx(const int Block, const WORLD_MAP_PTR world)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒNƒŠƒAŒã‚ÌŒÎ‚ðoŒ»‚³‚¹‚é
- * @param	world	WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¯ãƒªã‚¢å¾Œã®æ¹–ã‚’å‡ºç¾ã•ã›ã‚‹
+ * @param	world	WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void World_Overwrite_L04(WORLD_MAP_PTR world)
@@ -561,8 +561,8 @@ void World_Overwrite_L04(WORLD_MAP_PTR world)
 
 //------------------------------------------------------------------
 /**
- * @brief	‰Ô‚ÌŠy‰€‚Ö‚Ì“¹‚ðoŒ»‚³‚¹‚é
- * @param	world	WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	èŠ±ã®æ¥½åœ’ã¸ã®é“ã‚’å‡ºç¾ã•ã›ã‚‹
+ * @param	world	WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void World_Overwrite_R224(WORLD_MAP_PTR world)

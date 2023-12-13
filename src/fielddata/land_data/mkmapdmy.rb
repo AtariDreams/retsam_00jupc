@@ -1,14 +1,14 @@
-#’nŒ`—pƒ_ƒ~[ƒtƒ@ƒCƒ‹Šeí¶¬
-#‘æˆêˆø” ƒ_ƒ~[ƒf[ƒ^Ši”[êŠ‚Ö‚Ì‘Š‘ÎƒpƒX
-#‘æ“ñˆø” ƒoƒCƒiƒŠƒf[ƒ^Ši”[êŠ‚Ö‚Ì‘Š‘ÎƒpƒX
-#‘æOˆø” imdƒf[ƒ^Ši”[êŠ‚Ö‚Ì‘Š‘ÎƒpƒX
-#‘ælˆø” ƒŠƒXƒgƒtƒ@ƒCƒ‹ƒl[ƒ€
-#‘æŒÜˆø” ’nŒ`ƒ‚ƒfƒ‹ƒRƒ“ƒpƒCƒ‹ƒŠƒXƒgƒtƒ@ƒCƒ‹ƒl[ƒ€
+#åœ°å½¢ç”¨ãƒ€ãƒŸãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«å„ç¨®ç”Ÿæˆ
+#ç¬¬ä¸€å¼•æ•° ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€ã¸ã®ç›¸å¯¾ãƒ‘ã‚¹
+#ç¬¬äºŒå¼•æ•° ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€ã¸ã®ç›¸å¯¾ãƒ‘ã‚¹
+#ç¬¬ä¸‰å¼•æ•° imdãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€ã¸ã®ç›¸å¯¾ãƒ‘ã‚¹
+#ç¬¬å››å¼•æ•° ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ 
+#ç¬¬äº”å¼•æ•° åœ°å½¢ãƒ¢ãƒ‡ãƒ«ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ 
 
 require "fileutils"
 $KCODE = "SJIS"
 
-#’è”’è‹`
+#å®šæ•°å®šç¾©
 ExtAttr = "a.dat"
 ExtImd = "c.imd"
 ExtBhc = "h.bhc"
@@ -63,7 +63,7 @@ cdrive = Dir.pwd
 $_idParam = Struct.new("IdParam", :fpath, :id, :no)
 $_fileDat = Struct.new("FileDat", :path, :dmy, :mode, :lst, :mk_lst)
 
-#ƒtƒ@ƒCƒ‹ƒŠƒXƒgƒf[ƒ^æ“¾
+#ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 $file_lst = Array.new
 $file_ct = 0
 File.open(file_tmp,"r"){ |file|
@@ -79,7 +79,7 @@ File.open(file_tmp,"r"){ |file|
 	end
 }
 
-#ŒÂX‚Ìƒtƒ@ƒCƒ‹ƒŠƒXƒgæ“¾
+#å€‹ã€…ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆå–å¾—
 for m in $file_lst do
   File.open(file_dir + m.path,"r"){ |file|
 	file.gets
@@ -94,7 +94,7 @@ for m in $file_lst do
 	  line_tmp = nil
 	  line_tmp = line.slice(/#END.*/)
 	  if line_tmp != nil then
-		break	#I—¹ƒR[ƒh”­Œ©
+		break	#çµ‚äº†ã‚³ãƒ¼ãƒ‰ç™ºè¦‹
 	  end
 	  line_buf = line.split(",")
 	  m.lst << $_idParam.new
@@ -106,12 +106,12 @@ for m in $file_lst do
   }
 end
 
-#ƒŠƒXƒg‚ğŒ‹‡
+#ãƒªã‚¹ãƒˆã‚’çµåˆ
 for m in $file_lst do
   $g3_lst += m.lst
 end
 
-#IDÕ“ËŒŸo
+#IDè¡çªæ¤œå‡º
 $conflictFile = open("result.txt","w")
 def IsConflict(name)
   cNum = 0
@@ -137,9 +137,9 @@ def IsConflict(name)
   return 1
 end
 
-#makeƒŠƒXƒgì¬
+#makeãƒªã‚¹ãƒˆä½œæˆ
 for m in $g3_lst do
-  #‰ß‹‚ÌƒŠƒXƒg‚É‚È‚¯‚ê‚ÎÕ“ËŒŸõ
+  #éå»ã®ãƒªã‚¹ãƒˆã«ãªã‘ã‚Œã°è¡çªæ¤œç´¢
   if $confList.include?(m.id)== FALSE then
 	ret = IsConflict(m)
 
@@ -167,7 +167,7 @@ end
 f.close
 =end
 
-#‘¶İ‚µ‚Ä‚¢‚éimdƒtƒ@ƒCƒ‹ƒŠƒXƒg‚ğæ“¾
+#å­˜åœ¨ã—ã¦ã„ã‚‹imdãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆã‚’å–å¾—
 Dir.chdir(dmy_isp){
   tmp = s_fmap+ExtImd
   $lst1 = Dir.glob(tmp)
@@ -189,7 +189,7 @@ end
 f.close
 =end
 
-#‘¶İ‚µ‚È‚¢ƒtƒ@ƒCƒ‹‚ğƒŠƒXƒg
+#å­˜åœ¨ã—ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒªã‚¹ãƒˆ
 for m in $file_lst do
   m.mk_lst = Array.new
   for n in m.lst do
@@ -222,7 +222,7 @@ end
 f.close
 =end
 
-#‘¶İ‚µ‚È‚¢ƒtƒ@ƒCƒ‹‚ğì¬
+#å­˜åœ¨ã—ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆ
 for m in $file_lst do
   d_path = dmypath + m.dmy
   make_ct = 1;
@@ -236,29 +236,29 @@ for m in $file_lst do
   for k in m.mk_lst do
 	n = k.id
 	if k.no.to_i == m.mode then
-	  d_path = dmypath + RangeOutName	#”ÍˆÍŠOƒ_ƒ~[
+	  d_path = dmypath + RangeOutName	#ç¯„å›²å¤–ãƒ€ãƒŸãƒ¼
 	  puts "HIT! range out start!"
 	end
 
-	#imdƒf[ƒ^ƒ_ƒ~[
+	#imdãƒ‡ãƒ¼ã‚¿ãƒ€ãƒŸãƒ¼
 	path = dmy_isp+n+ExtImd
 	if FileTest.exist?(path)==FALSE then
 	  FileUtils.cp(d_path+ExtImd,path)
 	  puts "new file = " + path
 	end
-	#‚‚³ƒf[ƒ^ƒ_ƒ~[
+	#é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ€ãƒŸãƒ¼
 	path = dmy_bsp+n+ExtBhc
 	if FileTest.exist?(path)==FALSE then
 	 FileUtils.cp(d_path+ExtBhc,path) 
 	 puts "new file = " + path
 	end
-	#”z’uƒ‚ƒfƒ‹ƒf[ƒ^ƒ_ƒ~[
+	#é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ€ãƒŸãƒ¼
 	path = dmy_bsp+n+ExtObj
 	if FileTest.exist?(path)==FALSE then
 	 FileUtils.cp(d_path+ExtObj,path) 
 	 puts "new file = " + path
 	end
-	#attrƒf[ƒ^ƒ_ƒ~[
+	#attrãƒ‡ãƒ¼ã‚¿ãƒ€ãƒŸãƒ¼
 	path = dmy_bsp+n+ExtAttr
 	if FileTest.exist?(path)==FALSE then
 	 FileUtils.cp(d_path+ExtAttr,path) 

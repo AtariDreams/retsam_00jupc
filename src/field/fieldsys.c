@@ -1,7 +1,7 @@
 //===========================================================================
 /**
  * @file	fieldsys.c
- * @brief	ƒQ[ƒ€ƒƒCƒ“§Œä
+ * @brief	ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡
  * @author	tamada	GAME FREAK Inc.
  *
  */
@@ -31,9 +31,9 @@
 #include "field/situation.h"
 #include "field/situation_local.h"
 
-#include "communication/communication.h"  // ’ÊMˆ—‚Ì‚½‚ß
-#include "comm_player.h"  // ’ÊMˆ—‚Ì‚½‚ß
-#include "comm_field_state.h"// ’ÊMˆ—‚Ì‚½‚ß
+#include "communication/communication.h"  // é€šä¿¡å‡¦ç†ã®ãŸã‚
+#include "comm_player.h"  // é€šä¿¡å‡¦ç†ã®ãŸã‚
+#include "comm_field_state.h"// é€šä¿¡å‡¦ç†ã®ãŸã‚
 
 #include "ev_check.h"		//EV_REQUEST
 
@@ -45,9 +45,9 @@
 
 #ifdef PM_DEBUG
 
-#define WORLD_HEAP_LEAK_CHECK	//ƒ[ƒ‹ƒhƒq[ƒvƒŠ[ƒNƒ`ƒFƒbƒN—p
-#define	EVENT_HEAP_LEAK_CHECK	//ƒCƒxƒ“ƒgƒq[ƒvƒŠ[ƒNƒ`ƒFƒbƒN—p
-#define	SYSTEM_HEAP_LEAK_CHECK	//ƒVƒXƒeƒ€ƒq[ƒvƒŠ[ƒNƒ`ƒFƒbƒN—p
+#define WORLD_HEAP_LEAK_CHECK	//ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒ’ãƒ¼ãƒ—ãƒªãƒ¼ã‚¯ãƒã‚§ãƒƒã‚¯ç”¨
+#define	EVENT_HEAP_LEAK_CHECK	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ’ãƒ¼ãƒ—ãƒªãƒ¼ã‚¯ãƒã‚§ãƒƒã‚¯ç”¨
+#define	SYSTEM_HEAP_LEAK_CHECK	//ã‚·ã‚¹ãƒ†ãƒ ãƒ’ãƒ¼ãƒ—ãƒªãƒ¼ã‚¯ãƒã‚§ãƒƒã‚¯ç”¨
 
 static u32 SystemHeapFreeSize = 0;
 static u32 WorldHeapFreeSize = 0;
@@ -71,19 +71,19 @@ static void FieldMap_Control(FIELDSYS_WORK * fsys);
 
 //------------------------------------------------------------------
 /**
- * @brief	§Œäƒ[ƒN—p\‘¢‘Ì’è‹`
+ * @brief	åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ç”¨æ§‹é€ ä½“å®šç¾©
  */
 //------------------------------------------------------------------
 typedef struct _CONTROL_WORK{
-	PROC * mainproc;		///<ƒƒCƒ“ƒvƒƒZƒX•Ûƒ[ƒN
-	PROC * subproc;			///<ƒTƒuƒvƒƒZƒX•Ûƒ[ƒN
-	BOOL pause_flag;		///<ƒ|[ƒYƒtƒ‰ƒOiƒfƒoƒbƒO—pj
-	BOOL end_flag;			///<I—¹ƒtƒ‰ƒOiƒfƒoƒbƒO—pHj
+	PROC * mainproc;		///<ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ä¿æŒãƒ¯ãƒ¼ã‚¯
+	PROC * subproc;			///<ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ä¿æŒãƒ¯ãƒ¼ã‚¯
+	BOOL pause_flag;		///<ãƒãƒ¼ã‚ºãƒ•ãƒ©ã‚°ï¼ˆãƒ‡ãƒãƒƒã‚°ç”¨ï¼‰
+	BOOL end_flag;			///<çµ‚äº†ãƒ•ãƒ©ã‚°ï¼ˆãƒ‡ãƒãƒƒã‚°ç”¨ï¼Ÿï¼‰
 };
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“§Œäƒ[ƒN
+ * @brief	ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
  */
 //------------------------------------------------------------------
 static FIELDSYS_WORK	* FieldSysWork;
@@ -92,13 +92,13 @@ static FIELDSYS_WORK	* FieldSysWork;
 //===========================================================================
 //
 //
-//		ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXŠÖ”
+//		ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //
 //
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXF‰Šú‰»FƒRƒ“ƒeƒBƒjƒ…[
+ * @brief	ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ï¼šåˆæœŸåŒ–ï¼šã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
  */
 //------------------------------------------------------------------
 static PROC_RESULT ContinueGameMainProc_Init(PROC * proc, int * seq)
@@ -117,7 +117,7 @@ static PROC_RESULT ContinueGameMainProc_Init(PROC * proc, int * seq)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXF‰Šú‰»F‚³‚¢‚µ‚å‚©‚ç
+ * @brief	ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ï¼šåˆæœŸåŒ–ï¼šã•ã„ã—ã‚‡ã‹ã‚‰
  */
 //------------------------------------------------------------------
 static PROC_RESULT FirstGameMainProc_Init(PROC * proc, int * seq)
@@ -130,7 +130,7 @@ static PROC_RESULT FirstGameMainProc_Init(PROC * proc, int * seq)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXFƒƒCƒ“
+ * @brief	ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ï¼šãƒ¡ã‚¤ãƒ³
  */
 //------------------------------------------------------------------
 static PROC_RESULT GameMainProc_Main(PROC * proc, int * seq)
@@ -145,9 +145,9 @@ static PROC_RESULT GameMainProc_Main(PROC * proc, int * seq)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXFI—¹
+ * @brief	ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ï¼šçµ‚äº†
  *
- * ÀÛ‚É‚ÍŒÄ‚Î‚ê‚é‚±‚Æ‚Í‚È‚¢‚Æl‚¦‚ç‚ê‚é
+ * å®Ÿéš›ã«ã¯å‘¼ã°ã‚Œã‚‹ã“ã¨ã¯ãªã„ã¨è€ƒãˆã‚‰ã‚Œã‚‹
  */
 //------------------------------------------------------------------
 static PROC_RESULT GameMainProc_End(PROC * proc, int * seq)
@@ -176,13 +176,13 @@ const PROC_DATA ContinueGameProcData = {
 };
 //===========================================================================
 //
-//	‘€ìŠÖ”
+//	æ“ä½œé–¢æ•°
 //
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒƒCƒ“¶¬
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¡ã‚¤ãƒ³ç”Ÿæˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void GameSystem_CreateFieldProc(FIELDSYS_WORK * fsys)
@@ -198,8 +198,8 @@ void GameSystem_CreateFieldProc(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒƒCƒ“I—¹ƒŠƒNƒGƒXƒg
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¡ã‚¤ãƒ³çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void GameSystem_FinishFieldProc(FIELDSYS_WORK * fsys)
@@ -208,10 +208,10 @@ void GameSystem_FinishFieldProc(FIELDSYS_WORK * fsys)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒƒCƒ“‚Ì‘¶İƒ`ƒFƒbƒN
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒƒCƒ“‚ª‘¶İ‚µ‚Ä‚¢‚é
- * @retval	FALSE	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒƒCƒ“‚Í‘¶İ‚µ‚Ä‚¢‚È‚¢
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¡ã‚¤ãƒ³ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¡ã‚¤ãƒ³ãŒå­˜åœ¨ã—ã¦ã„ã‚‹
+ * @retval	FALSE	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¡ã‚¤ãƒ³ã¯å­˜åœ¨ã—ã¦ã„ãªã„
  */
 //------------------------------------------------------------------
 BOOL GameSystem_CheckFieldProcExists(FIELDSYS_WORK * fsys)
@@ -221,11 +221,11 @@ BOOL GameSystem_CheckFieldProcExists(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒƒCƒ““®ìƒ`ƒFƒbƒN
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒƒCƒ“‚ª“®ì‚µ‚Ä‚¢‚é
- * @retval	FALSE	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒƒCƒ“‚Í“®ì‚µ‚Ä‚¢‚È‚¢
- *					iƒTƒuƒvƒƒZƒX“®ì’†‚©A‰Šú‰»EI—¹ˆ—’†j
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¡ã‚¤ãƒ³å‹•ä½œãƒã‚§ãƒƒã‚¯
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¡ã‚¤ãƒ³ãŒå‹•ä½œã—ã¦ã„ã‚‹
+ * @retval	FALSE	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¡ã‚¤ãƒ³ã¯å‹•ä½œã—ã¦ã„ãªã„
+ *					ï¼ˆã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹å‹•ä½œä¸­ã‹ã€åˆæœŸåŒ–ãƒ»çµ‚äº†å‡¦ç†ä¸­ï¼‰
  */
 //------------------------------------------------------------------
 BOOL GameSystem_CheckFieldMain(FIELDSYS_WORK * fsys)
@@ -239,10 +239,10 @@ BOOL GameSystem_CheckFieldMain(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒTƒuƒvƒƒZƒX‚Ì‘¶İƒ`ƒFƒbƒN
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE	ƒtƒB[ƒ‹ƒhƒTƒuƒvƒƒZƒX‚ª‘¶İ‚µ‚Ä‚¢‚é
- * @retval	FALSE	ƒtƒB[ƒ‹ƒhƒTƒuƒvƒƒZƒX‚Í‘¶İ‚µ‚Ä‚¢‚È‚¢
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãŒå­˜åœ¨ã—ã¦ã„ã‚‹
+ * @retval	FALSE	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã¯å­˜åœ¨ã—ã¦ã„ãªã„
  */
 //------------------------------------------------------------------
 BOOL GameSystem_CheckSubProcExists(FIELDSYS_WORK * fsys)
@@ -252,10 +252,10 @@ BOOL GameSystem_CheckSubProcExists(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒTƒuƒvƒƒZƒX‚Ì¶¬ˆ—
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pdata	ƒvƒƒZƒXƒf[ƒ^
- * @param	param	ƒvƒƒZƒX‚É“n‚·ƒpƒ‰ƒ[ƒ^
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã®ç”Ÿæˆå‡¦ç†
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pdata	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	param	ãƒ—ãƒ­ã‚»ã‚¹ã«æ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //------------------------------------------------------------------
 void GameSystem_StartSubProc(FIELDSYS_WORK * fsys, const PROC_DATA * pdata, void * param)
@@ -267,8 +267,8 @@ void GameSystem_StartSubProc(FIELDSYS_WORK * fsys, const PROC_DATA * pdata, void
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒƒCƒ“‚ÌI—¹
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã®çµ‚äº†
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void GameSystem_FinishGame(FIELDSYS_WORK * fsys)
@@ -279,15 +279,15 @@ void GameSystem_FinishGame(FIELDSYS_WORK * fsys)
 //===========================================================================
 //
 //
-//		‰Šú‰»ŠÖ”
+//		åˆæœŸåŒ–é–¢æ•°
 //
 //
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€‰Šú‰»ˆ—
- * @param	proc		ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	FIELDSYS_WORK	ƒtƒB[ƒ‹ƒhƒƒCƒ“§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ åˆæœŸåŒ–å‡¦ç†
+ * @param	proc		ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	FIELDSYS_WORK	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static FIELDSYS_WORK * GameSystem_Init(PROC * proc)
@@ -295,24 +295,24 @@ static FIELDSYS_WORK * GameSystem_Init(PROC * proc)
 	MAINWORK * main;
 	FIELDSYS_WORK * fsys;
 
-	//ƒ[ƒ‹ƒhƒq[ƒvŠm•Û(Šm•Û‚µ‚Á‚Ï‚È‚µ)
+	//ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒ’ãƒ¼ãƒ—ç¢ºä¿(ç¢ºä¿ã—ã£ã±ãªã—)
 	//sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WORLD, 0x20000 );
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WORLD, 0x1c000 );
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_EVENT, 0x04000 );
 	sys_CreateHeap( HEAPID_BASE_SYSTEM, HEAPID_COMMICON, 0x300 );
 
-	//ƒtƒB[ƒ‹ƒhƒƒCƒ“§Œäƒ[ƒN‚ğŠm•Û
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿
 	fsys = PROC_AllocWork(proc, sizeof(FIELDSYS_WORK), HEAPID_WORLD);
 	MI_CpuClear8(fsys, sizeof(FIELDSYS_WORK));
 
-	//ƒtƒB[ƒ‹ƒh§Œä—pƒ[ƒN‚ğŠm•Û
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿
 	fsys->ctrl = sys_AllocMemory(HEAPID_WORLD, sizeof(CONTROL_WORK));
 	fsys->ctrl->mainproc = NULL;
 	fsys->ctrl->subproc = NULL;
 	fsys->ctrl->pause_flag = FALSE;
 	fsys->ctrl->end_flag = FALSE;
 
-	//ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğŠ„‚è“–‚Ä
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å‰²ã‚Šå½“ã¦
 	main = PROC_GetParentWork(proc);
 	fsys->savedata = main->savedata;
 
@@ -320,15 +320,15 @@ static FIELDSYS_WORK * GameSystem_Init(PROC * proc)
 
 	fsys->location = Situation_GetNowLocation(SaveData_GetSituation(fsys->savedata));
 
-	//ƒQ[ƒ€§Œä—p‚Ìƒ[ƒNŠm•Û
-	//ƒQ[ƒ€’†Aí‚ÉŠm•Û‚³‚ê‚Ä‚¢‚éƒ[ƒN‚Í‚±‚±‚ÅŠm•Û‚·‚é
-	fsys->World = WorldMapInit();								//ƒ[ƒ‹ƒhƒ}ƒbƒv\‘¢‘ÌŠm•Û
-	EventData_Sys_Create(fsys, HEAPID_WORLD);					//ƒCƒxƒ“ƒgƒf[ƒ^§Œä¶¬
-	fsys->bag_cursor = MyItem_BagCursorAlloc(HEAPID_WORLD);		//ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹î•ñ
-	fsys->SwayGrass = SwayGrass_AllocSwayGrass(HEAPID_WORLD);	//—h‚ê‘\‘¢‘Ìƒƒ‚ƒŠŠm•Û
-	SwayGrass_InitSwayGrass(fsys->SwayGrass);	//—h‚ê‘‰Šú‰»
-	fsys->p_zukandata = ZKN_DW_Alloc( HEAPID_WORLD );	// }ŠÓƒŠƒXƒgˆÊ’u•Û‘¶—Ìˆæ
-	fsys->battle_cursor = BattleCursorDisp_AllocWork(HEAPID_WORLD);	//í“¬‰ŠúƒJ[ƒ\ƒ‹•\¦ó‘Ô
+	//ã‚²ãƒ¼ãƒ åˆ¶å¾¡ç”¨ã®ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+	//ã‚²ãƒ¼ãƒ ä¸­ã€å¸¸ã«ç¢ºä¿ã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã¯ã“ã“ã§ç¢ºä¿ã™ã‚‹
+	fsys->World = WorldMapInit();								//ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—æ§‹é€ ä½“ç¢ºä¿
+	EventData_Sys_Create(fsys, HEAPID_WORLD);					//ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿åˆ¶å¾¡ç”Ÿæˆ
+	fsys->bag_cursor = MyItem_BagCursorAlloc(HEAPID_WORLD);		//ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«æƒ…å ±
+	fsys->SwayGrass = SwayGrass_AllocSwayGrass(HEAPID_WORLD);	//æºã‚Œè‰æ§‹é€ ä½“ãƒ¡ãƒ¢ãƒªç¢ºä¿
+	SwayGrass_InitSwayGrass(fsys->SwayGrass);	//æºã‚Œè‰åˆæœŸåŒ–
+	fsys->p_zukandata = ZKN_DW_Alloc( HEAPID_WORLD );	// å›³é‘‘ãƒªã‚¹ãƒˆä½ç½®ä¿å­˜é ˜åŸŸ
+	fsys->battle_cursor = BattleCursorDisp_AllocWork(HEAPID_WORLD);	//æˆ¦é—˜åˆæœŸã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºçŠ¶æ…‹
 
 
 	return fsys;
@@ -337,28 +337,28 @@ static FIELDSYS_WORK * GameSystem_Init(PROC * proc)
 //===========================================================================
 //
 //
-//		I—¹ŠÖ”
+//		çµ‚äº†é–¢æ•°
 //
 //
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€I—¹ˆ—
- * @param	proc		ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ çµ‚äº†å‡¦ç†
+ * @param	proc		ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void GameSystem_End(PROC * proc)
 {
 	FIELDSYS_WORK * fsys = PROC_GetWork(proc);
 
-	//ƒQ[ƒ€§Œä—p‚Ìƒ[ƒN‰ğ•ú
-	//ƒQ[ƒ€’†Aí‚ÉŠm•Û‚³‚ê‚Ä‚¢‚éƒ[ƒN‚Í‚±‚±‚Å‰ğ•ú‚·‚é
-	WorldMapRelease(fsys->World);				// ƒ[ƒ‹ƒhƒ}ƒbƒv\‘¢‘Ì‰ğ•ú
-	EventData_Sys_Delete(fsys);					// ƒCƒxƒ“ƒgƒf[ƒ^§Œä‰ğ•ú
-	sys_FreeMemoryEz(fsys->bag_cursor);			// ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹î•ñ
-	SwayGrass_FreeSwayGrass(fsys->SwayGrass);	//—h‚ê‘ƒ[ƒN‰ğ•ú
-	ZKN_DW_Free( fsys->p_zukandata );			// }ŠÓƒŠƒXƒgˆÊ’u•Û‘¶—Ìˆæ
-	BattleCursorDisp_Free(fsys->battle_cursor);	// í“¬‰ŠúƒJ[ƒ\ƒ‹•\¦ó‘Ô
+	//ã‚²ãƒ¼ãƒ åˆ¶å¾¡ç”¨ã®ãƒ¯ãƒ¼ã‚¯è§£æ”¾
+	//ã‚²ãƒ¼ãƒ ä¸­ã€å¸¸ã«ç¢ºä¿ã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã¯ã“ã“ã§è§£æ”¾ã™ã‚‹
+	WorldMapRelease(fsys->World);				// ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—æ§‹é€ ä½“è§£æ”¾
+	EventData_Sys_Delete(fsys);					// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿åˆ¶å¾¡è§£æ”¾
+	sys_FreeMemoryEz(fsys->bag_cursor);			// ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«æƒ…å ±
+	SwayGrass_FreeSwayGrass(fsys->SwayGrass);	//æºã‚Œè‰ãƒ¯ãƒ¼ã‚¯è§£æ”¾
+	ZKN_DW_Free( fsys->p_zukandata );			// å›³é‘‘ãƒªã‚¹ãƒˆä½ç½®ä¿å­˜é ˜åŸŸ
+	BattleCursorDisp_Free(fsys->battle_cursor);	// æˆ¦é—˜åˆæœŸã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºçŠ¶æ…‹
 
 	sys_FreeMemoryEz(fsys->ctrl);
 	PROC_FreeWork(proc);
@@ -371,14 +371,14 @@ static void GameSystem_End(PROC * proc)
 //===========================================================================
 /**
  * 
- * ƒƒCƒ“ŠÖ”
+ * ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
  */
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒvƒƒZƒXŒÄ‚Ño‚µˆ—
- * @param	proc	ƒTƒuƒvƒƒZƒXƒ|ƒCƒ“ƒ^‚ğ•Û‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹å‘¼ã³å‡ºã—å‡¦ç†
+ * @param	proc	ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿æŒã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void ProcCall(PROC ** proc)
@@ -392,10 +392,10 @@ static void ProcCall(PROC ** proc)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒƒCƒ“ˆ—
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒƒCƒ“§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE	I—¹
- * @retval	FALSE	Œp‘±“®ì
+ * @brief	ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³å‡¦ç†
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE	çµ‚äº†
+ * @retval	FALSE	ç¶™ç¶šå‹•ä½œ
  */
 //------------------------------------------------------------------
 BOOL GameSystem_Main(FIELDSYS_WORK * fsys)
@@ -406,7 +406,7 @@ BOOL GameSystem_Main(FIELDSYS_WORK * fsys)
 	event_end = FieldEvent_Control(fsys);
 	if(event_end == TRUE && fsys->fldmap != NULL)
 	{
-		//ƒ|ƒPƒbƒ`ƒXƒŠ[ƒv‰ğœˆ—
+		//ãƒã‚±ãƒƒãƒã‚¹ãƒªãƒ¼ãƒ—è§£é™¤å‡¦ç†
 		Field_SendPoketchInfo( fsys, POKETCH_SEND_SLEEP, FALSE );
 	}
 
@@ -423,8 +423,8 @@ BOOL GameSystem_Main(FIELDSYS_WORK * fsys)
 
 	if (fsys->ctrl->end_flag && !fsys->event
 			&& !fsys->ctrl->mainproc && !fsys->ctrl->subproc) {
-		//I—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚èAƒCƒxƒ“ƒg‚àƒTƒuƒvƒƒZƒX‚àƒƒCƒ“ƒvƒƒZƒX‚à
-		//‚È‚¯‚ê‚ÎI—¹‚³‚¹‚é
+		//çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã‚Šã€ã‚¤ãƒ™ãƒ³ãƒˆã‚‚ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚‚ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ã‚‚
+		//ãªã‘ã‚Œã°çµ‚äº†ã•ã›ã‚‹
 		return TRUE;
 	}
 	return FALSE;
@@ -432,7 +432,7 @@ BOOL GameSystem_Main(FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ©‹@‘€ìAƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿæ“ä½œã€ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
  *
  * @param	fsys		FIELDSYS_WORK
  *
@@ -445,10 +445,10 @@ void FieldMap_Control(FIELDSYS_WORK * fsys)
 	EV_REQUEST	req;
     BOOL bMoveControl = FALSE;
 
-    //ƒ|[ƒYó‘Ô‚Å‚È‚­A
-    //ƒtƒB[ƒ‹ƒhƒƒCƒ“‚ª“®ì‚µ‚Ä‚¢‚Ä
-    //ƒCƒxƒ“ƒg‚ª”­¶‚µ‚Ä‚¢‚È‚¢ê‡A
-    //	Šeíˆ—‚ğÀs‚·‚é
+    //ãƒãƒ¼ã‚ºçŠ¶æ…‹ã§ãªãã€
+    //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ã‚¤ãƒ³ãŒå‹•ä½œã—ã¦ã„ã¦
+    //ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ã¦ã„ãªã„å ´åˆã€
+    //	å„ç¨®å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
     if (!fsys->ctrl->pause_flag
         && fsys->main_mode_flag
         && FieldEvent_Check(fsys) == FALSE) {
@@ -462,7 +462,7 @@ void FieldMap_Control(FIELDSYS_WORK * fsys)
 			if (SystemHeapFreeSize == 0) {
 				SystemHeapFreeSize = sys_GetHeapFreeSize(HEAPID_BASE_SYSTEM);
 			} else if (SystemHeapFreeSize != sys_GetHeapFreeSize(HEAPID_BASE_SYSTEM)) {
-                //ASSERT•\¦‚ğæ‚É
+                //ASSERTè¡¨ç¤ºã‚’å…ˆã«
 				GF_ASSERT_MSG(0, "SYSTEM HEAP SIZE %d < %d\n",
 						SystemHeapFreeSize, sys_GetHeapFreeSize(HEAPID_BASE_SYSTEM));
 				sys_DeleteHeap(HEAPID_BASE_SYSTEM);
@@ -486,8 +486,8 @@ void FieldMap_Control(FIELDSYS_WORK * fsys)
 #endif	//EVENT_HEAP_LEAK_CHECK
 
 			if (bMoveControl == FALSE) {
-				//ƒq[ƒv‚ÌƒŠ[ƒN‚ğŒŸo‚µ‚½‚çƒ^ƒCƒgƒ‹‚É–ß‚é
-				//¨ƒ^ƒCƒgƒ‹‚Åƒq[ƒv‚ğŠJ•ú‚·‚é‚Ì‚ÅƒŠ[ƒN‰ÓŠ‚ª‚í‚©‚é
+				//ãƒ’ãƒ¼ãƒ—ã®ãƒªãƒ¼ã‚¯ã‚’æ¤œå‡ºã—ãŸã‚‰ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
+				//â†’ã‚¿ã‚¤ãƒˆãƒ«ã§ãƒ’ãƒ¼ãƒ—ã‚’é–‹æ”¾ã™ã‚‹ã®ã§ãƒªãƒ¼ã‚¯ç®‡æ‰€ãŒã‚ã‹ã‚‹
 				EventSet_ReturnToTitle(fsys);
 			}
 		}
@@ -501,24 +501,24 @@ void FieldMap_Control(FIELDSYS_WORK * fsys)
 	map_mode = fsys->MapMode;
 
 	if(fsys->location->zone_id == ZONE_ID_D31R0201){
-		//ƒ^ƒ[ó•t‚Ìƒ}ƒbƒvƒ‚[ƒh‚ÍMAP_MODE_BTOWER‚¾‚ª
-		//ƒCƒxƒ“ƒgƒ`ƒFƒbƒN‚Íƒm[ƒ}ƒ‹‚És‚¤
+		//ã‚¿ãƒ¯ãƒ¼å—ä»˜ã®ãƒãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰ã¯MAP_MODE_BTOWERã ãŒ
+		//ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ã¯ãƒãƒ¼ãƒãƒ«ã«è¡Œã†
 		map_mode = MAP_MODE_GROUND;
 	}
     switch(map_mode){
       case MAP_MODE_UNDER:
         if(bMoveControl){
             if(CommPlayerIsControl()){
-                if( CheckRequestUG( &req, fsys ) == TRUE ){  // ’Yz
+                if( CheckRequestUG( &req, fsys ) == TRUE ){  // ç‚­é‰±
                 }
             }
         }
-        CommPlayersMove(fsys, bMoveControl);  // ’ÊMˆÚ“®
+        CommPlayersMove(fsys, bMoveControl);  // é€šä¿¡ç§»å‹•
         break;
       case MAP_MODE_COLOSSEUM:
         if(bMoveControl){
             if(CommPlayerIsControl()){
-                if( CheckRequestVSRoom( &req, fsys ) == TRUE ){  // ‘Îí•”‰®
+                if( CheckRequestVSRoom( &req, fsys ) == TRUE ){  // å¯¾æˆ¦éƒ¨å±‹
                     bMoveControl = FALSE;
                 }
             }
@@ -526,12 +526,12 @@ void FieldMap_Control(FIELDSYS_WORK * fsys)
                 bMoveControl = FALSE;
             }
         }
-        CommPlayersMove(fsys, bMoveControl);  // ’ÊMˆÚ“®
+        CommPlayersMove(fsys, bMoveControl);  // é€šä¿¡ç§»å‹•
         break;
       case MAP_MODE_UNION:
         if(bMoveControl){
             if( CheckRequestUnion( &req, fsys ) == TRUE ){
-                //ƒCƒxƒ“ƒg‹N“®‚µ‚½‚çA‚Ìˆ—‚ğ‚±‚±‚É“ü‚ê‚é
+                //ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ã—ãŸã‚‰ã€ã®å‡¦ç†ã‚’ã“ã“ã«å…¥ã‚Œã‚‹
             }else{
                 Player_MoveControl( fsys->player,
 						fsys->map_cont_dat,DIR_NOT, req.trg, req.cont, FALSE );
@@ -541,16 +541,16 @@ void FieldMap_Control(FIELDSYS_WORK * fsys)
 	  case MAP_MODE_BTOWER:
         if(bMoveControl){
             if( CheckRequestBTower( &req, fsys ) == TRUE ){
-                StopPlaceName(fsys->fldmap->place_name_cont);	//’n–¼•\¦ƒLƒƒƒ“ƒZƒ‹
-                BoardSetDirect( fsys, BOARD_REQ_DEL );	// ŠÅ”Âˆ—”jŠüi‘¦Á‹j
-				Player_EventPoketchCancel( fsys->player );	//©‹@ƒ|ƒPƒbƒ`ó‘ÔƒLƒƒƒ“ƒZƒ‹
-                //ƒ|ƒPƒbƒ`ƒXƒŠ[ƒvˆ—
+                StopPlaceName(fsys->fldmap->place_name_cont);	//åœ°åè¡¨ç¤ºã‚­ãƒ£ãƒ³ã‚»ãƒ«
+                BoardSetDirect( fsys, BOARD_REQ_DEL );	// çœ‹æ¿å‡¦ç†ç ´æ£„ï¼ˆå³æ¶ˆå»ï¼‰
+				Player_EventPoketchCancel( fsys->player );	//è‡ªæ©Ÿãƒã‚±ãƒƒãƒçŠ¶æ…‹ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+                //ãƒã‚±ãƒƒãƒã‚¹ãƒªãƒ¼ãƒ—å‡¦ç†
                 Field_SendPoketchInfo( fsys, POKETCH_SEND_SLEEP, TRUE );
             }
             else{
-                //ƒCƒxƒ“ƒg‚ª”­¶‚µ‚È‚­‚Ä‚àAŒˆ’èƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚ç’n–¼•\¦‚ÍƒLƒƒƒ“ƒZƒ‹‚·‚é
+                //ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ãªãã¦ã‚‚ã€æ±ºå®šãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã‚‰åœ°åè¡¨ç¤ºã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
                 if (sys.trg & PAD_BUTTON_DECIDE){
-                    StopPlaceName(fsys->fldmap->place_name_cont);	//’n–¼•\¦ƒLƒƒƒ“ƒZƒ‹
+                    StopPlaceName(fsys->fldmap->place_name_cont);	//åœ°åè¡¨ç¤ºã‚­ãƒ£ãƒ³ã‚»ãƒ«
                 }
 				
 				{
@@ -564,20 +564,20 @@ void FieldMap_Control(FIELDSYS_WORK * fsys)
             }
         }
 		break;
-      default: // ’ÊM‚µ‚Ä‚¢‚È‚¢•’Ê‚Ìó‘Ô
+      default: // é€šä¿¡ã—ã¦ã„ãªã„æ™®é€šã®çŠ¶æ…‹
         if(bMoveControl){
             if( CheckRequest( &req, fsys ) == TRUE ){
-                StopPlaceName(fsys->fldmap->place_name_cont);	//’n–¼•\¦ƒLƒƒƒ“ƒZƒ‹
-                BoardSetDirect( fsys, BOARD_REQ_DEL );	// ŠÅ”Âˆ—”jŠüi‘¦Á‹j
-				Player_MoveStateClear( fsys->player );	//©‹@“®ìó‘Ôi©“]Ô‘¬“x‚È‚ÇjƒNƒŠƒA
-				Player_EventPoketchCancel( fsys->player );	//©‹@ƒ|ƒPƒbƒ`ó‘ÔƒLƒƒƒ“ƒZƒ‹
-                //ƒ|ƒPƒbƒ`ƒXƒŠ[ƒvˆ—
+                StopPlaceName(fsys->fldmap->place_name_cont);	//åœ°åè¡¨ç¤ºã‚­ãƒ£ãƒ³ã‚»ãƒ«
+                BoardSetDirect( fsys, BOARD_REQ_DEL );	// çœ‹æ¿å‡¦ç†ç ´æ£„ï¼ˆå³æ¶ˆå»ï¼‰
+				Player_MoveStateClear( fsys->player );	//è‡ªæ©Ÿå‹•ä½œçŠ¶æ…‹ï¼ˆè‡ªè»¢è»Šé€Ÿåº¦ãªã©ï¼‰ã‚¯ãƒªã‚¢
+				Player_EventPoketchCancel( fsys->player );	//è‡ªæ©Ÿãƒã‚±ãƒƒãƒçŠ¶æ…‹ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+                //ãƒã‚±ãƒƒãƒã‚¹ãƒªãƒ¼ãƒ—å‡¦ç†
                 Field_SendPoketchInfo( fsys, POKETCH_SEND_SLEEP, TRUE );
             }
             else{
-                //ƒCƒxƒ“ƒg‚ª”­¶‚µ‚È‚­‚Ä‚àAŒˆ’èƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚ç’n–¼•\¦‚ÍƒLƒƒƒ“ƒZƒ‹‚·‚é
+                //ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ãªãã¦ã‚‚ã€æ±ºå®šãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã‚‰åœ°åè¡¨ç¤ºã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
                 if (sys.trg & PAD_BUTTON_DECIDE){
-                    StopPlaceName(fsys->fldmap->place_name_cont);	//’n–¼•\¦ƒLƒƒƒ“ƒZƒ‹
+                    StopPlaceName(fsys->fldmap->place_name_cont);	//åœ°åè¡¨ç¤ºã‚­ãƒ£ãƒ³ã‚»ãƒ«
                 }
 				
 				{
@@ -597,34 +597,34 @@ void FieldMap_Control(FIELDSYS_WORK * fsys)
 //===========================================================================
 /**
  * 
- * ƒAƒvƒŠƒ^ƒXƒNİ’è(ƒtƒB[ƒ‹ƒh‚Íƒz[ƒ‹ƒhó‘Ô‚É‚È‚é)
+ * ã‚¢ãƒ—ãƒªã‚¿ã‚¹ã‚¯è¨­å®š(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¯ãƒ›ãƒ¼ãƒ«ãƒ‰çŠ¶æ…‹ã«ãªã‚‹)
  *
  */
 //===========================================================================
 void FieldSystemProc_SeqHold(void)
 {
 	FieldSysWork->ctrl->pause_flag = TRUE;
-    CommDisableSendMoveData();  // ˆÚ“®‹Ö~
+    CommDisableSendMoveData();  // ç§»å‹•ç¦æ­¢
 }
 
 
 //===========================================================================
 /**
  * 
- * ƒAƒvƒŠƒ^ƒXƒNI—¹(ƒtƒB[ƒ‹ƒh•œ‹A)
+ * ã‚¢ãƒ—ãƒªã‚¿ã‚¹ã‚¯çµ‚äº†(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°)
  *
  */
 //===========================================================================
 void FieldSystemProc_SeqHoldEnd(void)
 {
 	FieldSysWork->ctrl->pause_flag = FALSE;
-    CommEnableSendMoveData();  //ˆÚ“®‹–‰Â
+    CommEnableSendMoveData();  //ç§»å‹•è¨±å¯
 }
 
 
 //===========================================================================
 //
-// ƒ|ƒPƒbƒ`ŠÖ˜A
+// ãƒã‚±ãƒƒãƒé–¢é€£
 //
 //===========================================================================
 
@@ -653,9 +653,9 @@ GF_BGL_INI * FieldBglIniGet( void * fsys )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	SAVEDATA	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	SAVEDATA	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 SAVEDATA * GameSystem_GetSaveData(void * fsys)

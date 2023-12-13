@@ -2,9 +2,9 @@
 #  k.ohno    2007.12.7 create
 #  crcinsert.rb
 #
-#  g—p•û–@Fruby crcinsert.rb list.txt
-#  crcŒŸ¸ŠÖ”‚ğ·‚µ‚ŞŠÖ”‚ğƒe[ƒuƒ‹‚©‚ç“Ç‚İ‚İ–„‚ß‚ñ‚Å‚¢‚­
-#  ‚»‚Ì‚Î‚©‚¬‚è‚ÌrubyƒXƒNƒŠƒvƒg
+#  ä½¿ç”¨æ–¹æ³•ï¼šruby crcinsert.rb list.txt
+#  crcæ¤œæŸ»é–¢æ•°ã‚’å·®ã—è¾¼ã‚€é–¢æ•°ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿åŸ‹ã‚è¾¼ã‚“ã§ã„ã
+#  ãã®ã°ã‹ãã‚Šã®rubyã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 
 
 $FILE_TAG = "File"
@@ -13,14 +13,14 @@ $SETFUNC_TAG = "Set"
 $CHECKFUNC_TAG = "Chk"
 
 
-## ŠÖ”‚ğ–„‚ß‚ŞƒŠƒXƒg
+## é–¢æ•°ã‚’åŸ‹ã‚è¾¼ã‚€ãƒªã‚¹ãƒˆ
 class FuncList
   def initialize
     @bSet = false
     @FuncParam = ""
     @FuncString2 = ""
-    @SaveLabel = ""       ## GMDATA_ID_WIFILIST‚Æ‚©
-    @SwitchTag = ""  ## ŒŸõ‚ğs‚¤‚Ì‚©‚Ç‚¤‚©
+    @SaveLabel = ""       ## GMDATA_ID_WIFILISTã¨ã‹
+    @SwitchTag = ""  ## æ¤œç´¢ã‚’è¡Œã†ã®ã‹ã©ã†ã‹
   end
   
   def setBSet(bSet)
@@ -57,11 +57,11 @@ class FuncList
   
 end
 
-## ƒtƒ@ƒCƒ‹•ÏŠ·î•ñ‚ğW‚ß‚½ƒNƒ‰ƒX
+## ãƒ•ã‚¡ã‚¤ãƒ«å¤‰æ›æƒ…å ±ã‚’é›†ã‚ãŸã‚¯ãƒ©ã‚¹
 class ConvFile
   def initialize
-    @FILE_NAME = ""       ## /src/savedata/wifilist.c‚È‚Ç
-    @SaveLabel = ""       ## GMDATA_ID_WIFILIST‚Æ‚©
+    @FILE_NAME = ""       ## /src/savedata/wifilist.cãªã©
+    @SaveLabel = ""       ## GMDATA_ID_WIFILISTã¨ã‹
     @SetListArray = []    ## 
   end
   def setFileName(fname)
@@ -92,7 +92,7 @@ end
 
 
 ##
-##  “ü—Íƒe[ƒuƒ‹‚ğarray‚É·‚µ‘Ö‚¦‚é
+##  å…¥åŠ›ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’arrayã«å·®ã—æ›¿ãˆã‚‹
 ##
 def readTable( listArray, inputListFile )
   cf = ConvFile.new
@@ -123,9 +123,9 @@ end
 
 
 ##
-##  ƒe[ƒuƒ‹ƒtƒ@ƒCƒ‹‚©‚çŠÖ”‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’T‚·
+##  ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰é–¢æ•°ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’æ¢ã™
 ##
-##line  ƒtƒ@ƒCƒ‹‚Ìˆês
+##line  ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸€è¡Œ
 ##
 # $SETFUNC_FIND = 1
 # $CHECKFUNC_FIND = 2
@@ -153,7 +153,7 @@ end
 
 
 ##
-##  ’è‹`‚É‚ ‚Á‚½ŠÖ”‚ğŒ©‚Â‚¯‚Ä’è‹`‚ğ’Ç‰Á‚µ‚Ä‚¢‚­
+##  å®šç¾©ã«ã‚ã£ãŸé–¢æ•°ã‚’è¦‹ã¤ã‘ã¦å®šç¾©ã‚’è¿½åŠ ã—ã¦ã„ã
 ##
 def convertFile( readFile , writeFile, convfileP )
   r = `pwd`
@@ -192,12 +192,12 @@ end
 
 
 
-##main•”•ª
+##mainéƒ¨åˆ†
 
-InputTable = ARGV.shift    ## ƒe[ƒuƒ‹ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+InputTable = ARGV.shift    ## ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 list_array = []
 
-#‰ğÍ‚ğs‚¤
+#è§£æã‚’è¡Œã†
 readTable( list_array, InputTable )
 
 list_array.each{ |cf|

@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief ƒ|ƒPƒ‚ƒ“ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ “à•”ŒöŠJƒwƒbƒ_
+ * @brief ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª å†…éƒ¨å…¬é–‹ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef PPW_CHANNEL_H_
@@ -27,8 +27,8 @@ class PPW_Channel : public DWCi_Base
 {
     PPW_LOBBY_CHANNEL_KIND kind;
     DWCi_String name;
-    BOOL isUserListEnumerated;  // ƒ†[ƒUƒŠƒXƒg‚ğ—ñ‹“Ï‚İ‚©
-    BOOL isModeSet;             // ‰Šúƒ`ƒƒƒ“ƒlƒ‹ƒ‚[ƒh‚ğƒZƒbƒgÏ‚İ‚©
+    BOOL isUserListEnumerated;  // ãƒ¦ãƒ¼ã‚¶ãƒªã‚¹ãƒˆã‚’åˆ—æŒ™æ¸ˆã¿ã‹
+    BOOL isModeSet;             // åˆæœŸãƒãƒ£ãƒ³ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆæ¸ˆã¿ã‹
     
 public:
     PPW_Channel()
@@ -44,7 +44,7 @@ public:
     {
     }
     
-    // ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚é‚à‚µ‚­‚Í“üº’†‚È‚çTRUE
+    // ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ã‚‹ã‚‚ã—ãã¯å…¥å®¤ä¸­ãªã‚‰TRUE
     BOOL Exist() const
     {
         if(kind != PPW_LOBBY_CHANNEL_KIND_INVALID)

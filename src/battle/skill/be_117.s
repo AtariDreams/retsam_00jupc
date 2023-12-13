@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_117.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			117�@�T�^�[���A���œG���U������i�������͑���s�j�U�����O���ƋZ�͏I���A
- *				 �G�ɍU����������x�Ƀ_���[�W��������B�u�܂邭�Ȃ�v�̎g�p��Ɏg���Ɣ{�_���[�W�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			117　５ターン連続で敵を攻撃する（発動中は操作不可）攻撃が外れると技は終了、
+ *				 敵に攻撃が当たる度にダメージが増える。「まるくなる」の使用後に使うと倍ダメージ。
  *
  *@author	HisashiSogabe
  *@data		2005.01.31

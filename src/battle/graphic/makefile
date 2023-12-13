@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ‹ZƒGƒtƒFƒNƒg
+# Project:  æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -22,7 +22,7 @@ include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
 
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= pl_batt_bg.narc pl_batt_obj.narc
 
 #----------------------------------------------------------------------------
@@ -30,14 +30,14 @@ LDIRT_CLEAN	= pl_batt_bg.narc pl_batt_obj.narc
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 
 #-------------------------------
-#	Às‡
-#		ƒŠƒ\[ƒXƒRƒs[
-#		ƒŠƒ\[ƒXƒA[ƒJƒCƒu
-#		‹ZƒGƒtƒFƒNƒgƒA[ƒJƒCƒu
+#	å®Ÿè¡Œé †
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚³ãƒ”ãƒ¼
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+#		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 #-------------------------------
 do-build: res_cp pl_batt_bg.narc pl_batt_obj.narc
 
-#----------- ƒT[ƒo[‚©‚çƒRƒs[‚·‚é -----------
+#----------- ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã‚³ãƒ”ãƒ¼ã™ã‚‹ -----------
 res_cp:
 	xcopy /d /y $(CP_BG_RES_DIR)*.NCGR $(RES_BG_DIR)
 	xcopy /d /y $(CP_BG_RES_DIR)*.NCLR $(RES_BG_DIR)
@@ -48,7 +48,7 @@ res_cp:
 	xcopy /d /y $(CP_OBJ_RES_DIR)*.NANR $(RES_OBJ_DIR)
 	xcopy /d /y $(CP_TOOL_RES_DIR)battbgcnv.exe $(RES_TOOL_DIR)
 
-#----------- ƒA[ƒJƒCƒu‚·‚é -----------
+#----------- ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ -----------
 pl_batt_bg.narc: $(RES_BG_DIR:\\=/)*.N*R batt_bg.lst
 #	nnsarc -c -l -n -i pl_batt_bg.narc -S batt_bg.lst
 	battbgcnv $(RES_BG_DIR)battle_bg00.NCGR

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_event_aplchg.c
- *	@brief		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“•ÏXƒCƒxƒ“ƒg
+ *	@brief		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å¤‰æ›´ã‚¤ãƒ™ãƒ³ãƒˆ
  *	@author		tomoya takahashi 
  *	@data		2006.01.18
  *
@@ -17,54 +17,54 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
-*/
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-/**
- *					\‘¢‘ÌéŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
+*/
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+/**
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void ZknAplStart( ZKN_APL_DATA* p_apl, ZKN_EVENT_SYS_PTR p_event, ZKN_PROC_SYS_PTR p_proc );
 
 //-----------------------------------------------------------------------------
 /**
- *		‰½‚à–³‚µ[„ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠJn
+ *		ä½•ã‚‚ç„¡ã—ãƒ¼ï¼ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠJn
+ *	@brief		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
  *
- *	@param		p_work	ƒ[ƒN
+ *	@param		p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval		TRUE	ƒCƒxƒ“ƒgI—¹
- *	@retval		FALSE	ƒCƒxƒ“ƒg‘±s
+ *	@retval		TRUE	ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ *	@retval		FALSE	ã‚¤ãƒ™ãƒ³ãƒˆç¶šè¡Œ
  *
  *
  */
@@ -75,13 +75,13 @@ BOOL ZKN_EVENT_AplStart( ZKN_EVENT_WORK* p_work )
 
 	switch( p_work->seq ){
 	case 0:
-		// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠJn
+		// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
 		ZknAplStart( p_data->p_apl, p_data->p_event, p_data->p_proc );
 		p_work->seq++;
 		break;
 
 	case 1:
-		// “®ìŠJn‚ğŠm”F
+		// å‹•ä½œé–‹å§‹ã‚’ç¢ºèª
 		if( ZKN_PROC_MainMoveCheck( p_data->p_proc ) == TRUE ){
 			p_work->seq++;
 		}
@@ -98,18 +98,18 @@ BOOL ZKN_EVENT_AplStart( ZKN_EVENT_WORK* p_work )
 
 //-----------------------------------------------------------------------------
 /**
- *		‘O‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“I—¹[„Ÿ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠJn
+ *		å‰ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ãƒ¼ï¼æ¬¡ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“•ÏX
+ *	@brief		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å¤‰æ›´
  *
- *	@param		p_work	ƒ[ƒN
+ *	@param		p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval		TRUE	ƒCƒxƒ“ƒgI—¹
- *	@retval		FALSE	ƒCƒxƒ“ƒg‘±s
+ *	@retval		TRUE	ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ *	@retval		FALSE	ã‚¤ãƒ™ãƒ³ãƒˆç¶šè¡Œ
  *
  *
  */
@@ -120,7 +120,7 @@ BOOL ZKN_EVENT_AplChange( ZKN_EVENT_WORK* p_work )
 
 	switch( p_work->seq ){
 	//-------------------------------------
-	//		¡‚ÌƒvƒƒZƒXI—¹
+	//		ä»Šã®ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 	//=====================================
 	case 0:
 		ZKN_PROC_EndReq( p_data->p_proc );
@@ -128,7 +128,7 @@ BOOL ZKN_EVENT_AplChange( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		I—¹ƒ`ƒFƒbƒN
+	//		çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	//=====================================
 	case 1:
 		if( ZKN_PROC_EndCheck( p_data->p_proc ) == TRUE ){
@@ -137,16 +137,16 @@ BOOL ZKN_EVENT_AplChange( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		ŸŠJn
+	//		æ¬¡é–‹å§‹
 	//=====================================
 	case 2:
-		// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠJn
+		// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
 		ZknAplStart( p_data->p_apl, p_data->p_event, p_data->p_proc );
 		p_work->seq++;
 		break;
 
 	//-------------------------------------
-	//		ŠJnƒ`ƒFƒbƒN
+	//		é–‹å§‹ãƒã‚§ãƒƒã‚¯
 	//=====================================
 	case 3:
 		if( ZKN_PROC_MainMoveCheck( p_data->p_proc ) == TRUE ){
@@ -155,7 +155,7 @@ BOOL ZKN_EVENT_AplChange( ZKN_EVENT_WORK* p_work )
 		break;
 
 	default:
-		// ‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢
+		// ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„
 		GF_ASSERT( 0 );
 		break;
 	}
@@ -165,18 +165,18 @@ BOOL ZKN_EVENT_AplChange( ZKN_EVENT_WORK* p_work )
 
 //-----------------------------------------------------------------------------
 /**
- *		¡‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“I—¹[„}ŠÓ”jŠü
+ *		ä»Šã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ãƒ¼ï¼å›³é‘‘ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¡‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğI—¹‚³‚¹}ŠÓ‚ÌI—¹
+ *	@brief	ä»Šã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’çµ‚äº†ã•ã›å›³é‘‘ã®çµ‚äº†
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval		TRUE	ƒCƒxƒ“ƒgI—¹
- *	@retval		FALSE	ƒCƒxƒ“ƒg‘±s
+ *	@retval		TRUE	ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ *	@retval		FALSE	ã‚¤ãƒ™ãƒ³ãƒˆç¶šè¡Œ
  *
  *
  */
@@ -189,7 +189,7 @@ BOOL ZKN_EVENT_AplEndZknDelete( ZKN_EVENT_WORK* p_work )
 
 	switch( p_work->seq ){
 	//-------------------------------------
-	//		¡‚ÌƒvƒƒZƒXI—¹
+	//		ä»Šã®ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 	//=====================================
 	case 0:
 		ZKN_PROC_EndReq( p_data->p_proc_m );
@@ -200,7 +200,7 @@ BOOL ZKN_EVENT_AplEndZknDelete( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		I—¹ƒ`ƒFƒbƒN
+	//		çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	//=====================================
 	case 1:
 		check[0] = ZKN_PROC_EndCheck( p_data->p_proc_m );
@@ -218,14 +218,14 @@ BOOL ZKN_EVENT_AplEndZknDelete( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		”jŠüƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	//		ç ´æ£„ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	//=====================================
 	case 2:
 		*p_data->p_delete_flag = TRUE;
 		return TRUE;
 
 	default:
-		// ‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢
+		// ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„
 		GF_ASSERT( 0 );
 		break;
 	}
@@ -237,7 +237,7 @@ BOOL ZKN_EVENT_AplEndZknDelete( ZKN_EVENT_WORK* p_work )
 
 //-----------------------------------------------------------------------------
 /**
- *	¡‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“I—¹
+ *	ä»Šã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_EVENT_AplEnd( ZKN_EVENT_WORK* p_work )
@@ -246,7 +246,7 @@ BOOL ZKN_EVENT_AplEnd( ZKN_EVENT_WORK* p_work )
 
 	switch( p_work->seq ){
 	//-------------------------------------
-	//		¡‚ÌƒvƒƒZƒXI—¹
+	//		ä»Šã®ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 	//=====================================
 	case 0:
 		ZKN_PROC_EndReq( p_data->p_proc );
@@ -254,7 +254,7 @@ BOOL ZKN_EVENT_AplEnd( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		I—¹ƒ`ƒFƒbƒN
+	//		çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	//=====================================
 	case 1:
 		
@@ -264,15 +264,15 @@ BOOL ZKN_EVENT_AplEnd( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		”jŠüƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	//		ç ´æ£„ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	//=====================================
 	case 2:
-		// ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+		// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		ZKN_EVENT_Init( p_data->p_event, NULL, 0 );
 		return TRUE;
 
 	default:
-		// ‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢
+		// ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„
 		GF_ASSERT( 0 );
 		break;
 	}
@@ -282,7 +282,7 @@ BOOL ZKN_EVENT_AplEnd( ZKN_EVENT_WORK* p_work )
 
 //-----------------------------------------------------------------------------
 /**
- *		main‰æ–ÊƒTƒu‰æ–Ê‘S•ÏX
+ *		mainç”»é¢ã‚µãƒ–ç”»é¢å…¨å¤‰æ›´
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_EVENT_AplAllChange( ZKN_EVENT_WORK* p_work )
@@ -293,7 +293,7 @@ BOOL ZKN_EVENT_AplAllChange( ZKN_EVENT_WORK* p_work )
 
 	switch( p_work->seq ){
 	//-------------------------------------
-	//		¡‚ÌƒvƒƒZƒXI—¹
+	//		ä»Šã®ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 	//=====================================
 	case 0:
 		ZKN_PROC_EndReq( p_data->p_proc_m );
@@ -304,7 +304,7 @@ BOOL ZKN_EVENT_AplAllChange( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		I—¹ƒ`ƒFƒbƒN
+	//		çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	//=====================================
 	case 1:
 		check[0] = ZKN_PROC_EndCheck( p_data->p_proc_m );
@@ -322,10 +322,10 @@ BOOL ZKN_EVENT_AplAllChange( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		ŸŠJn
+	//		æ¬¡é–‹å§‹
 	//=====================================
 	case 2:
-		// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠJn
+		// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
 		ZknAplStart( p_data->p_apl_m, p_data->p_event_m, p_data->p_proc_m );
 		ZknAplStart( p_data->p_apl_s, p_data->p_event_s, p_data->p_proc_s );
 		ZknAplStart( p_data->p_apl_mc, p_data->p_event_mc, p_data->p_proc_mc );
@@ -334,7 +334,7 @@ BOOL ZKN_EVENT_AplAllChange( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠJn‚ğƒ`ƒFƒbƒN	
+	//		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹ã‚’ãƒã‚§ãƒƒã‚¯	
 	//=====================================
 	case 3:
 		if( p_data->p_apl_m ){
@@ -367,7 +367,7 @@ BOOL ZKN_EVENT_AplAllChange( ZKN_EVENT_WORK* p_work )
 		break;
 
 	default:
-		// ‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢
+		// ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„
 		GF_ASSERT( 0 );
 		break;
 	}
@@ -377,7 +377,7 @@ BOOL ZKN_EVENT_AplAllChange( ZKN_EVENT_WORK* p_work )
 
 //-----------------------------------------------------------------------------
 /**
- *		main‰æ–ÊƒTƒu‰æ–Ê	‚Q‚Â•ÏX
+ *		mainç”»é¢ã‚µãƒ–ç”»é¢	ï¼’ã¤å¤‰æ›´
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_EVENT_AplDoubleChange( ZKN_EVENT_WORK* p_work )
@@ -388,7 +388,7 @@ BOOL ZKN_EVENT_AplDoubleChange( ZKN_EVENT_WORK* p_work )
 
 	switch( p_work->seq ){
 	//-------------------------------------
-	//		¡‚ÌƒvƒƒZƒXI—¹
+	//		ä»Šã®ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
 	//=====================================
 	case 0:
 		ZKN_PROC_EndReq( p_data->p_proc_m );
@@ -397,7 +397,7 @@ BOOL ZKN_EVENT_AplDoubleChange( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		I—¹ƒ`ƒFƒbƒN
+	//		çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	//=====================================
 	case 1:
 		check[0] = ZKN_PROC_EndCheck( p_data->p_proc_m );
@@ -413,17 +413,17 @@ BOOL ZKN_EVENT_AplDoubleChange( ZKN_EVENT_WORK* p_work )
 		break;
 
 	//-------------------------------------
-	//		ŸŠJn
+	//		æ¬¡é–‹å§‹
 	//=====================================
 	case 2:
-		// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠJn
+		// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
 		ZknAplStart( p_data->p_apl_m, p_data->p_event_m, p_data->p_proc_m );
 		ZknAplStart( p_data->p_apl_s, p_data->p_event_s, p_data->p_proc_s );
 		p_work->seq++;
 		break;
 
 	//-------------------------------------
-	//		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠJnƒ`ƒFƒbƒN
+	//		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹ãƒã‚§ãƒƒã‚¯
 	//=====================================
 	case 3:
 		if( p_data->p_apl_m ){
@@ -448,7 +448,7 @@ BOOL ZKN_EVENT_AplDoubleChange( ZKN_EVENT_WORK* p_work )
 		break;
 
 	default:
-		// ‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢
+		// ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„
 		GF_ASSERT( 0 );
 		break;
 	}
@@ -461,17 +461,17 @@ BOOL ZKN_EVENT_AplDoubleChange( ZKN_EVENT_WORK* p_work )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌŠJn
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®é–‹å§‹
  *
- *	@param	p_apl		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	p_event		ƒCƒxƒ“ƒgƒVƒXƒeƒ€
- *	@param	p_proc		ƒvƒƒZƒXƒVƒXƒeƒ€
+ *	@param	p_apl		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_event		ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_proc		ãƒ—ãƒ­ã‚»ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -482,17 +482,17 @@ static void ZknAplStart( ZKN_APL_DATA* p_apl, ZKN_EVENT_SYS_PTR p_event, ZKN_PRO
 {
 	ZKN_PROC_INIT			proc_init;
 
-	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_apl ){
 
-		// ƒvƒƒZƒX‚É“o˜^
+		// ãƒ—ãƒ­ã‚»ã‚¹ã«ç™»éŒ²
 		proc_init.p_glb_data	= p_apl->p_glb_data;
 		proc_init.p_glb_draw	= p_apl->p_glb_draw;
 		proc_init.cp_do_func	= p_apl->do_func;
 		proc_init.cp_draw_func	= p_apl->draw_func;
 		ZKN_PROC_Init( p_proc, &proc_init );
 
-		// ƒCƒxƒ“ƒg“o˜^
+		// ã‚¤ãƒ™ãƒ³ãƒˆç™»éŒ²
 		ZKN_EVENT_Init( p_event, p_apl->p_event_data, p_apl->event_num );
 	}
 }
@@ -506,14 +506,14 @@ static void ZknAplStart( ZKN_APL_DATA* p_apl, ZKN_EVENT_SYS_PTR p_event, ZKN_PRO
 
 //-----------------------------------------------------------------------------
 /**
- *		ŠeƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚É•ÏX‚·‚éƒCƒxƒ“ƒgƒf[ƒ^ì¬ŠÖ”
+ *		å„ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã«å¤‰æ›´ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒf[ƒ^”jŠüŠÖ”
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„é–¢æ•°
  *
- *	@param	p_event_data	ƒf[ƒ^
+ *	@param	p_event_data	ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -526,16 +526,16 @@ void ZKN_EVENT_DeleteData( ZKN_EVENT_DATA* p_event_data )
 	p_event_data->work.p_data = NULL;
 }
 
-// ƒ\[ƒg‰æ–Ê
+// ã‚½ãƒ¼ãƒˆç”»é¢
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg‚É•ÏX‚·‚éƒCƒxƒ“ƒg¶¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã«å¤‰æ›´ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆç”Ÿæˆ
  *
- *	@param	heap				ƒq[ƒv
- *	@param	p_event_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys				}ŠÓƒVƒXƒeƒ€
- *	@param	event_key			ƒCƒxƒ“ƒgƒL[
+ *	@param	heap				ãƒ’ãƒ¼ãƒ—
+ *	@param	p_event_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys				å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key			ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -549,38 +549,38 @@ void ZKN_EVENT_MakeChangeSortSearch( int heap, ZKN_EVENT_DATA* p_event_data, ZKN
 	p_event_data->key_msk	= event_key;
 	p_event_data->func		= ZKN_EVENT_AplAllChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_AllCHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_AllCHANGE) );
-	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_mc	= ZKN_SYS_GetProcSysMainCommon( zkn_sys );		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_sc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );		// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_mc	= ZKN_SYS_GetProcSysMainCommon( zkn_sys );		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_sc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_mc= ZKN_SYS_GetEventSysMainCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_sc= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_mc= ZKN_SYS_GetEventSysMainCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_sc= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_SORTSEARCH );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_SORTSEARCH );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_mc	= NULL;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_sc	= NULL;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_SORTSEARCH );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_SORTSEARCH );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_mc	= NULL;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_sc	= NULL;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_event_data->work.p_data = p_e_data;
 }
 
-// }ŠÓƒVƒXƒeƒ€I—¹
+// å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓI—¹ƒCƒxƒ“ƒg‚Ì¶¬
+ *	@brief	å›³é‘‘çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆã®ç”Ÿæˆ
  *
- *	@param	heap			ƒq[ƒvID
- *	@param	p_event_data	ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys			}ŠÓƒVƒXƒeƒ€
- *	@param	event_key			ƒCƒxƒ“ƒgƒL[
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—ID
+ *	@param	p_event_data	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys			å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key			ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -594,7 +594,7 @@ void ZKN_EVENT_MakeZukanEnd( int heap, ZKN_EVENT_DATA* p_event_data, ZKN_SYS_PTR
 	p_event_data->key_msk	= event_key;
 	p_event_data->func		= ZKN_EVENT_AplEndZknDelete;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_END_ZKN_DELETE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_END_ZKN_DELETE) );
@@ -608,16 +608,16 @@ void ZKN_EVENT_MakeZukanEnd( int heap, ZKN_EVENT_DATA* p_event_data, ZKN_SYS_PTR
 }
 
 
-// }ŠÓ‰æ–Ê
+// å›³é‘‘ç”»é¢
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ‚É•ÏX‚·‚éƒCƒxƒ“ƒg¶¬
+ *	@brief	å›³é‘‘ã«å¤‰æ›´ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆç”Ÿæˆ
  *
- *	@param	heap				ƒq[ƒv
- *	@param	p_event_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys				}ŠÓƒVƒXƒeƒ€
- *	@param	event_key			ƒCƒxƒ“ƒgƒL[
+ *	@param	heap				ãƒ’ãƒ¼ãƒ—
+ *	@param	p_event_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys				å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key			ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -631,38 +631,38 @@ void ZKN_EVENT_MakeChangeZukan( int heap, ZKN_EVENT_DATA* p_event_data, ZKN_SYS_
 	p_event_data->key_msk	= event_key;
 	p_event_data->func		= ZKN_EVENT_AplAllChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_AllCHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_AllCHANGE) );
-	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_mc	= ZKN_SYS_GetProcSysMainCommon( zkn_sys );		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_sc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );		// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_mc	= ZKN_SYS_GetProcSysMainCommon( zkn_sys );		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_sc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_mc= ZKN_SYS_GetEventSysMainCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_sc= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_mc= ZKN_SYS_GetEventSysMainCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_sc= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_mc	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_COMMON );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_sc	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN_COMMON );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_mc	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_COMMON );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_sc	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN_COMMON );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_event_data->work.p_data = p_e_data;
 }
 
-// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê
+// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ÉˆÚ“®
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã«ç§»å‹•
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	event_key			ƒCƒxƒ“ƒgƒL[
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key			ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -676,37 +676,37 @@ void ZKN_EVENT_MakeChangePokeList( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR
 	p_data->key_msk	= event_key;
 	p_data->func		= ZKN_EVENT_AplAllChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_AllCHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_AllCHANGE) );
-	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_mc	= ZKN_SYS_GetProcSysMainCommon( zkn_sys );		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_sc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );		// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_mc	= ZKN_SYS_GetProcSysMainCommon( zkn_sys );		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_sc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_mc= ZKN_SYS_GetEventSysMainCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_sc= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_mc= ZKN_SYS_GetEventSysMainCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_sc= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_POKELIST );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_POKELIST );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_mc	= NULL;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_sc	= NULL;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_POKELIST );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_POKELIST );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_mc	= NULL;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_sc	= NULL;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
 
-// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìã‰æ–Ê‚Ì‚İ•ÏX
+// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ä¸Šç”»é¢ã®ã¿å¤‰æ›´
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ğÄƒXƒ^[ƒg
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚’å†ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- *	@param	p_event		ƒCƒxƒ“ƒgŠi”[æ
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		ƒq[ƒv
- *	@param	event_key			ƒCƒxƒ“ƒgƒL[
+ *	@param	p_event		ã‚¤ãƒ™ãƒ³ãƒˆæ ¼ç´å…ˆ
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	event_key			ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *	
  *	@return	none
  */
@@ -718,25 +718,25 @@ void ZKN_EVENT_MakeStartMainPokeList( ZKN_EVENT_DATA* p_event, ZKN_SYS_PTR zkn_s
 	p_event->key_msk	= event_key;
 	p_event->func		= ZKN_EVENT_AplChange;
 
-	// ƒCƒxƒ“ƒgƒ[ƒNì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_aplchg = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_CHANGE) );
 	GF_ASSERT( p_aplchg );
 	p_aplchg->p_apl		= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_POKELIST );
 	p_aplchg->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );
 	p_aplchg->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );
 	
-	// ƒCƒxƒ“ƒgƒ[ƒNİ’è
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯è¨­å®š
 	p_event->work.p_data = p_aplchg;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•z}ˆÚ“®
+ *	@brief	åˆ†å¸ƒå›³ç§»å‹•
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	event_key	ƒCƒxƒ“ƒgƒL[
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key	ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  */
@@ -748,30 +748,30 @@ void ZKN_EVENT_MakeChangeRange( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zk
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplDoubleChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_DOUBLE_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_DOUBLE_CHANGE) );
-	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_RANGE );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_RANGE );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_RANGE );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_RANGE );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•z‚ÌƒƒCƒ“‰æ–Ê‚¾‚¯•ÏX
+ *	@brief	åˆ†å¸ƒã®ãƒ¡ã‚¤ãƒ³ç”»é¢ã ã‘å¤‰æ›´
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	event_key	ƒCƒxƒ“ƒgƒL[
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key	ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  */
@@ -783,15 +783,15 @@ void ZKN_EVENT_MakeChangeRangeMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PT
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_CHANGE) );
-	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_RANGE );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_RANGE );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
@@ -799,12 +799,12 @@ void ZKN_EVENT_MakeChangeRangeMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PT
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ƒ‚«ºˆÚ“®
+ *	@brief	æ³£ãå£°ç§»å‹•
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	event_key	ƒCƒxƒ“ƒgƒL[
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key	ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -818,18 +818,18 @@ void ZKN_EVENT_MakeChangeSound( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zk
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplDoubleChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_DOUBLE_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_DOUBLE_CHANGE) );
-	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_SOUND );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_SOUND );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_SOUND );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_SOUND );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
@@ -837,12 +837,12 @@ void ZKN_EVENT_MakeChangeSound( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zk
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ƒ‚«ºˆÚ“®
+ *	@brief	æ³£ãå£°ç§»å‹•
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	event_key	ƒCƒxƒ“ƒgƒL[
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key	ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -856,15 +856,15 @@ void ZKN_EVENT_MakeChangeSoundMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PT
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_CHANGE) );
-	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_SOUND );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_SOUND );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
@@ -872,12 +872,12 @@ void ZKN_EVENT_MakeChangeSoundMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PT
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‘å‚«‚³”ä‚×ˆÚ“®
+ *	@brief	å¤§ãã•æ¯”ã¹ç§»å‹•
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	event_key	ƒCƒxƒ“ƒgƒL[
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key	ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -891,18 +891,18 @@ void ZKN_EVENT_MakeChangeBig( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplDoubleChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_DOUBLE_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_DOUBLE_CHANGE) );
-	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_BIG );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_BIG );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
@@ -910,12 +910,12 @@ void ZKN_EVENT_MakeChangeBig( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‘å‚«‚³”ä‚×ˆÚ“®	
+ *	@brief	å¤§ãã•æ¯”ã¹ç§»å‹•	
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	event_key	ƒCƒxƒ“ƒgƒL[
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key	ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -929,15 +929,15 @@ void ZKN_EVENT_MakeChangeBigMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR 
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_CHANGE) );
-	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
@@ -947,12 +947,12 @@ void ZKN_EVENT_MakeChangeBigMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR 
 //
 /**
  *
- *	@brief	‘å‚«‚³”ä‚×ˆÚ“®	
+ *	@brief	å¤§ãã•æ¯”ã¹ç§»å‹•	
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	event_key	ƒCƒxƒ“ƒgƒL[
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key	ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -966,27 +966,27 @@ void ZKN_EVENT_MakeChangeBigWeightMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SY
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_CHANGE) );
-	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG_WEIGHT );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG_WEIGHT );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓ‚Ì‚İì¬‚·‚é
+ *	@brief	å›³é‘‘ã®ã¿ä½œæˆã™ã‚‹
  *
- *	@param	heap			ƒq[ƒv
- *	@param	p_event_data	ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys			}ŠÓƒVƒXƒeƒ€
- *	@param	event_key		ƒCƒxƒ“ƒgƒL[
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	p_event_data	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys			å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key		ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  */
@@ -998,30 +998,30 @@ void ZKN_EVENT_MakeChangeZukanOnly(  int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_P
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplDoubleChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_DOUBLE_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_DOUBLE_CHANGE) );
-	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒf[ƒ^ƒƒCƒ“‰æ–Ê‚Ì‚İì¬‚·‚é
+ *	@brief	å›³é‘‘ãƒ‡ãƒ¼ã‚¿ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã¿ä½œæˆã™ã‚‹
  *
- *	@param	heap			ƒq[ƒv
- *	@param	p_event_data	ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys			}ŠÓƒVƒXƒeƒ€
- *	@param	event_key		ƒCƒxƒ“ƒgƒL[
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	p_event_data	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys			å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key		ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  */
@@ -1033,27 +1033,27 @@ void ZKN_EVENT_MakeChangeZukanNormalMainOnly(  int heap, ZKN_EVENT_DATA* p_data,
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_CHANGE) );
-	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒf[ƒ^ƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“
+ *	@brief	å›³é‘‘ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *
- *	@param	heap			ƒq[ƒv
- *	@param	p_event_data	ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys			}ŠÓƒVƒXƒeƒ€
- *	@param	event_key		ƒCƒxƒ“ƒgƒL[
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	p_event_data	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys			å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key		ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  */
@@ -1065,30 +1065,30 @@ void ZKN_EVENT_MakeChangeZukanGraphic(  int heap, ZKN_EVENT_DATA* p_data, ZKN_SY
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplDoubleChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_DOUBLE_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_DOUBLE_CHANGE) );
-	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_GRA );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN_GRA );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_GRA );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN_GRA );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒf[ƒ^Œ¾Œêƒo[ƒWƒ‡ƒ“ƒƒCƒ“‰æ–Ê‚Ì‚İì¬‚·‚é
+ *	@brief	å›³é‘‘ãƒ‡ãƒ¼ã‚¿è¨€èªãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã¿ä½œæˆã™ã‚‹
  *
- *	@param	heap			ƒq[ƒv
- *	@param	p_event_data	ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	zkn_sys			}ŠÓƒVƒXƒeƒ€
- *	@param	event_key		ƒCƒxƒ“ƒgƒL[
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	p_event_data	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys			å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key		ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  */
@@ -1100,15 +1100,15 @@ void ZKN_EVENT_MakeChangeZukanTextMainOnly(  int heap, ZKN_EVENT_DATA* p_data, Z
 	p_data->key_msk		= event_key;
 	p_data->func		= ZKN_EVENT_AplChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_CHANGE) );
-	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_TEXT );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_TEXT );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_data->work.p_data = p_e_data;
 }
@@ -1116,12 +1116,12 @@ void ZKN_EVENT_MakeChangeZukanTextMainOnly(  int heap, ZKN_EVENT_DATA* p_data, Z
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒTƒuƒRƒ‚ƒ“‚Ì‚İ•ÏX
+ *	@brief	å›³é‘‘ã‚µãƒ–ã‚³ãƒ¢ãƒ³ã®ã¿å¤‰æ›´
  *
- *	@param	heap			ƒq[ƒv
- *	@param	p_event_data	ƒCƒxƒ“ƒgƒf[ƒ^Ši”[æ
- *	@param	zkn_sys			}ŠÓƒVƒXƒeƒ€
- *	@param	event_key		ƒCƒxƒ“ƒgƒL[
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	p_event_data	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	zkn_sys			å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	event_key		ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
  *
  *	@return	none
  */
@@ -1133,21 +1133,21 @@ void ZKN_EVENT_MakeChangeZukanCommonSubOnly( int heap, ZKN_EVENT_DATA* p_event_d
 	p_event_data->key_msk		= event_key;
 	p_event_data->func		= ZKN_EVENT_AplChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_CHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_CHANGE) );
-	p_e_data->p_proc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event	= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event	= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN_COMMON );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN_COMMON );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_event_data->work.p_data = p_e_data;
 }
 
 #ifdef PM_DEBUG
-// ‚‚³”ä‚×DEBUGƒAƒvƒŠ‚Ö
+// é«˜ã•æ¯”ã¹DEBUGã‚¢ãƒ—ãƒªã¸
 void ZKN_EVENT_BigHeightDebugApl( ZKN_EVENT_DATA* p_event, ZKN_SYS_PTR zkn_sys, int heap, int event_key )
 {
 	ZKN_EVENT_APL_AllCHANGE* p_e_data;
@@ -1155,29 +1155,29 @@ void ZKN_EVENT_BigHeightDebugApl( ZKN_EVENT_DATA* p_event, ZKN_SYS_PTR zkn_sys, 
 	p_event->key_msk	= event_key;
 	p_event->func		= ZKN_EVENT_AplAllChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_AllCHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_AllCHANGE) );
-	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_mc	= ZKN_SYS_GetProcSysMainCommon( zkn_sys );		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_sc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );		// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_mc	= ZKN_SYS_GetProcSysMainCommon( zkn_sys );		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_sc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_mc= ZKN_SYS_GetEventSysMainCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_sc= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_mc= ZKN_SYS_GetEventSysMainCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_sc= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_HEIGHT_DEBUG );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_mc	= NULL;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_sc	= NULL;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_HEIGHT_DEBUG );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_mc	= NULL;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_sc	= NULL;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_event->work.p_data = p_e_data;
 }
 
-// ‚‚³”ä‚×DEBUGƒAƒvƒŠ‚©‚ç‚‚³”ä‚×‚É•œ‹A
+// é«˜ã•æ¯”ã¹DEBUGã‚¢ãƒ—ãƒªã‹ã‚‰é«˜ã•æ¯”ã¹ã«å¾©å¸°
 void ZKN_EVENT_BigHeightDebugAplReturn( ZKN_EVENT_DATA* p_event, ZKN_SYS_PTR zkn_sys, int heap, int event_key )
 {
 	ZKN_EVENT_APL_AllCHANGE* p_e_data;
@@ -1185,24 +1185,24 @@ void ZKN_EVENT_BigHeightDebugAplReturn( ZKN_EVENT_DATA* p_event, ZKN_SYS_PTR zkn
 	p_event->key_msk	= event_key;
 	p_event->func		= ZKN_EVENT_AplAllChange;
 	
-	// ƒCƒxƒ“ƒgƒf[ƒ^ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_e_data = sys_AllocMemory( heap, sizeof(ZKN_EVENT_APL_AllCHANGE) );
 	GF_ASSERT( p_e_data );
 	memset( p_e_data, 0, sizeof(ZKN_EVENT_APL_AllCHANGE) );
-	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_mc	= ZKN_SYS_GetProcSysMainCommon( zkn_sys );		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	p_e_data->p_proc_sc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );		// ƒvƒƒbƒNƒVƒXƒeƒ€
+	p_e_data->p_proc_m	= ZKN_SYS_GetProcSysMain( zkn_sys );			// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_s	= ZKN_SYS_GetProcSysSub( zkn_sys );				// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_mc	= ZKN_SYS_GetProcSysMainCommon( zkn_sys );		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_proc_sc	= ZKN_SYS_GetProcSysSubCommon( zkn_sys );		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 		
-	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_mc= ZKN_SYS_GetEventSysMainCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	p_e_data->p_event_sc= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	p_e_data->p_event_m	= ZKN_SYS_GetEventSysMain( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_s	= ZKN_SYS_GetEventSysSub( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_mc= ZKN_SYS_GetEventSysMainCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	p_e_data->p_event_sc= ZKN_SYS_GetEventSysSubCommon( zkn_sys );		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_BIG );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_mc	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_COMMON );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	p_e_data->p_apl_sc	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN_COMMON );		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	p_e_data->p_apl_m	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_BIG );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_s	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_BIG );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_mc	= ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_COMMON );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	p_e_data->p_apl_sc	= ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN_COMMON );		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 	
 	p_event->work.p_data = p_e_data;
 }

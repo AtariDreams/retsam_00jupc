@@ -27,12 +27,12 @@
 #include "zonedata.h"
 
 //#include "under_tp.h"
-#include "comm_field_state.h"  // ’n‰º’ÊM—p
+#include "comm_field_state.h"  // åœ°ä¸‹é€šä¿¡ç”¨
 
 #include "ev_mapchange.h"
-#include "eventdata.h"		//ƒ][ƒ“–ˆ‚ÌƒCƒxƒ“ƒgƒf[ƒ^QÆ‚Ì‚½‚ß
+#include "eventdata.h"		//ã‚¾ãƒ¼ãƒ³æ¯ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å‚ç…§ã®ãŸã‚
 
-//«ƒ|ƒPƒ‚ƒ“ŠÖ˜A
+//â†“ãƒã‚±ãƒ¢ãƒ³é–¢é€£
 #include "system/buflen.h"
 
 #include "system/msgdata_util.h"
@@ -63,7 +63,7 @@
 #include "field_camera.h"
 
 
-#define	FDBG_DEBUG_PL		(FLD_SYSFONT_PAL)	//ƒpƒŒƒbƒgƒiƒ“ƒo[
+#define	FDBG_DEBUG_PL		(FLD_SYSFONT_PAL)	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 
 #define DISP_LINE_MAX	(9)
 
@@ -72,7 +72,7 @@
 
 
 //----------------------------------------------------------------------------
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //----------------------------------------------------------------------------
 typedef struct _DEBUG_WINDOW_DATA{
 //	u8	work;
@@ -81,7 +81,7 @@ typedef struct _DEBUG_WINDOW_DATA{
 	u16 debug_cursor;
 
 	GF_BGL_BMPWIN	win;
-	BMPLIST_WORK* lw;		// BMPƒƒjƒ…[ƒ[ƒN
+	BMPLIST_WORK* lw;		// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
 	struct _FIELDSYS_WORK * fsys;
 	BMP_MENULIST_DATA 	*ld;
 }DEBUG_WINDOW_DATA;
@@ -95,7 +95,7 @@ typedef struct _DEBUG_WORK_DATA{
 	
 	GF_BGL_BMPWIN	win;
 	s8	rod;
-	u8	MovePokeInfoNo;	//0`2
+	u8	MovePokeInfoNo;	//0ã€œ2
 	s8	zone_idx;
 	u8	SafariArea;
 }DEBUG_WORK_DATA;
@@ -195,11 +195,11 @@ static const GF_CAMERA_PARAM TestOrgCamera[] =
 //------------------------------------------------------------------------------
 extern u8 HC_DebugCheckHeight(const fx32 inX, const fx32 inZ, MHI_CONST_PTR inMap3DInfo, const BOOL inDetail);
 //---------------------------------------------------------------------------
-//	static •Ï”
+//	static å¤‰æ•°
 //---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
-//	static ŠÖ”
+//	static é–¢æ•°
 //---------------------------------------------------------------------------
 static void InitDebugWindow(DEBUG_WINDOW_DATA *wp);
 static void DebugListFree(TCB_PTR tcb,void* work);
@@ -236,19 +236,19 @@ static void DebugWinMovePokeName(TCB_PTR tcb,void *work);
 static void SetupEntryMovePoke(TCB_PTR tcb,void *work);
 static void SetupMovePokeZoneChgWin(TCB_PTR tcb,void *work);
 
-//‚‚³•ÏX
+//é«˜ã•å¤‰æ›´
 static void SetPlayerHeightChangeTask(TCB_PTR tcb,void *work);
 
-//‚‚³ƒfƒoƒbƒO
+//é«˜ã•ãƒ‡ãƒãƒƒã‚°
 static void DebugCheckHeightGrid(TCB_PTR tcb,void *work);
 static void DebugCheckHeightBlock(TCB_PTR tcb,void *work);
 
-//‘å—Ê”­¶
+//å¤§é‡ç™ºç”Ÿ
 static void DebugGenerate(TCB_PTR tcb,void *work);
 static void DebugStartGenerate(TCB_PTR tcb,void *work);
 static void SetupGeneZoneInfoWin(TCB_PTR tcb,void *work);
 
-//ƒTƒtƒ@ƒŠ
+//ã‚µãƒ•ã‚¡ãƒª
 static void DebugSafari(TCB_PTR tcb,void *work);
 
 //AGB
@@ -256,11 +256,11 @@ static void DebugSetAgbVer(TCB_PTR tcb,void *work);
 static void DebugAgbVer(TCB_PTR tcb,void *work);
 
 //----------------------------------------------------------------------------
-//	ƒŠƒXƒg€–Ú–¼
+//	ãƒªã‚¹ãƒˆé …ç›®å
 //----------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------
-//	€–Ú‚ÆÀsŠÖ”‚ÌƒŠƒXƒg
+//	é …ç›®ã¨å®Ÿè¡Œé–¢æ•°ã®ãƒªã‚¹ãƒˆ
 //--------------------------------------------------------------------------
 typedef struct ID_PARAM_tag
 {
@@ -332,9 +332,9 @@ static const ID_PARAM DebugAgbMenuList[] = {
 };
 
 //---------------------------------------------------------------------------
-//  ƒEƒBƒ“ƒhƒEİ’è
+//  ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 //---------------------------------------------------------------------------
-//ƒƒCƒ“ƒEƒBƒ“ƒhƒE
+//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 static const BMPWIN_DAT	MainDebugListWindowData = {
 	GF_BGL_FRAME3_M,
 	0,1,
@@ -342,42 +342,42 @@ static const BMPWIN_DAT	MainDebugListWindowData = {
 	FDBG_DEBUG_PL,8
 };
 
-//ƒJƒƒ‰ƒEƒBƒ“ƒhƒE
+//ã‚«ãƒ¡ãƒ©ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 static const BMPWIN_DAT	CameraDebugListWindowData = {
 	GF_BGL_FRAME3_M,
 	0,1,
 	14,7,
 	FDBG_DEBUG_PL,8
 };
-//—h‚ê‘
+//æºã‚Œè‰
 static const BMPWIN_DAT	SwayDebugListWindowData = {
 	GF_BGL_FRAME3_M,
 	0,1,
 	8,10,
 	FDBG_DEBUG_PL,8
 };
-//’Ş‚è
+//é‡£ã‚Š
 static const BMPWIN_DAT	FishingDebugListWindowData = {
 	GF_BGL_FRAME3_M,
 	0,1,
 	16,7,
 	FDBG_DEBUG_PL,8
 };
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³
 static const BMPWIN_DAT	MovePokeDebugListWindowData = {
 	GF_BGL_FRAME3_M,
 	0,1,
 	12,7,
 	FDBG_DEBUG_PL,8
 };
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“–¼
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å
 static const BMPWIN_DAT	MovePokeNameDebugListWindowData = {
 	GF_BGL_FRAME3_M,
 	0,1,
 	8,8,
 	FDBG_DEBUG_PL,8
 };
-//‘å—Ê”­¶
+//å¤§é‡ç™ºç”Ÿ
 static const BMPWIN_DAT	GeneDebugListWindowData = {
 	GF_BGL_FRAME3_M,
 	0,1,
@@ -394,38 +394,38 @@ static const BMPWIN_DAT	AgbDebugListWindowData = {
 
 
 
-//ƒŠƒXƒgì¬
+//ãƒªã‚¹ãƒˆä½œæˆ
 static void MakeBmpList(struct _FIELDSYS_WORK *fsys, const int inNum, ID_PARAM const *list, BMPWIN_DAT const * win_dat)
 {
 	TCB_PTR pTcb;
 	DEBUG_WINDOW_DATA *wp;
 
 	BMPLIST_HEADER bmplist_h = {
-		//MainDebugList,		//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-		NULL,				//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-		NULL,				//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,		//‚Ps‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		//MainDebugList,		//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+		NULL,				//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+		NULL,				//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,		//ï¼‘è¡Œã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 		NULL,		//GF_BGL_BMPWIN * 
-		0,//ƒŠƒXƒg€–Ú”
-		0,//•\¦Å‘å€–Ú”
-		2,					//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-		12,					//€–Ú•\¦‚wÀ•W
-		1,					//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-		8,					//•\¦‚xÀ•W
-		FBMP_COL_WHITE,		//•¶šF
-		FBMP_COL_BLACK,		//”wŒiF
-		FBMP_COL_BLK_SDW,	//•¶š‰eF
-		0,					//•¶šŠÔŠu‚w
-		1,					//•¶šŠÔŠu‚x
-		BMPLIST_LRKEY_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-		FONT_SYSTEM,			//•¶šw’è
-		0,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+		0,//ãƒªã‚¹ãƒˆé …ç›®æ•°
+		0,//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+		2,					//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+		12,					//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+		1,					//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+		8,					//è¡¨ç¤ºï¼¹åº§æ¨™
+		FBMP_COL_WHITE,		//æ–‡å­—è‰²
+		FBMP_COL_BLACK,		//èƒŒæ™¯è‰²
+		FBMP_COL_BLK_SDW,	//æ–‡å­—å½±è‰²
+		0,					//æ–‡å­—é–“éš”ï¼¸
+		1,					//æ–‡å­—é–“éš”ï¼¹
+		BMPLIST_LRKEY_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+		FONT_SYSTEM,			//æ–‡å­—æŒ‡å®š
+		0,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 		NULL,				//*work
 	};
 	
 	wp = sys_AllocMemory(HEAPID_D_SAITO,sizeof(DEBUG_WINDOW_DATA));
 	if(wp == NULL){
-		//ƒ[ƒNƒGƒŠƒA‚ªæ“¾‚Å‚«‚È‚¯‚ê‚Î‰½‚à‚µ‚È‚¢
+		//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ãŒå–å¾—ã§ããªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„
 		OS_Printf("map_num debug menu crate failed\n");
 		return;
 	}
@@ -433,10 +433,10 @@ static void MakeBmpList(struct _FIELDSYS_WORK *fsys, const int inNum, ID_PARAM c
 
 	wp->fsys = fsys;
 
-	//ƒfƒoƒbƒOƒƒjƒ…[—p•Ï”‰Šú‰»
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨å¤‰æ•°åˆæœŸåŒ–
 	InitDebugWindow(wp);
 
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(DebugListControlTask,wp,0);
 
 
@@ -454,9 +454,9 @@ static void MakeBmpList(struct _FIELDSYS_WORK *fsys, const int inNum, ID_PARAM c
 		MSGMAN_Delete(msgman);
 	}
 
-	//BITMAPƒƒjƒ…[’Ç‰Á
+	//BITMAPãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ 
 	GF_BGL_BmpWinAddEx(fsys->bgl,&wp->win,win_dat);
-	//BMPƒŠƒXƒgİ’è
+	//BMPãƒªã‚¹ãƒˆè¨­å®š
 	bmplist_h.count = inNum;
 	if (DISP_LINE_MAX < inNum){
 		bmplist_h.line = DISP_LINE_MAX;
@@ -467,12 +467,12 @@ static void MakeBmpList(struct _FIELDSYS_WORK *fsys, const int inNum, ID_PARAM c
 	bmplist_h.list = wp->ld;
 	bmplist_h.win = &wp->win;
 	wp->lw = BmpListSet(&bmplist_h,0,0,HEAPID_D_SAITO);
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//ƒEƒBƒ“ƒhƒE\’z
+//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetWindow(	struct _FIELDSYS_WORK * fsys, TCB_FUNC t_func, DRAW_FUNC d_func,
 						u8 posx, u8 posy, u8 sizx, u8 sizy 	)
 {
@@ -483,74 +483,74 @@ static void SetWindow(	struct _FIELDSYS_WORK * fsys, TCB_FUNC t_func, DRAW_FUNC 
 	d_work->fsys = fsys;
 	d_work->StrBuf = STRBUF_Create(2, HEAPID_D_SAITO);
 
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(t_func,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, posx, posy, sizx, sizy, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
 
-	//Šm—¦ƒtƒ‰ƒO•\¦
+	//ç¢ºç‡ãƒ•ãƒ©ã‚°è¡¨ç¤º
 	d_func(d_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
 //===============================================================================
-//	ƒEƒBƒ“ƒhƒE‹¤’Ê
+//	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å…±é€š
 //===============================================================================
-//‰Šú‰»
+//åˆæœŸåŒ–
 static void InitDebugWindow(DEBUG_WINDOW_DATA *wp)
 {
 	wp->debug_list = 0;
 	wp->debug_cursor = 0;
 }
-//ƒŠƒXƒg‚ÌŠJ•úˆ—
+//ãƒªã‚¹ãƒˆã®é–‹æ”¾å‡¦ç†
 static void DebugListFree(TCB_PTR tcb,void* work)
 {
 	DEBUG_WINDOW_DATA	*wp;
 
 	wp = (DEBUG_WINDOW_DATA*)work;
 
-	//BMPƒEƒBƒ“ƒhƒEOFF
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OFF
 	GF_BGL_BmpWinOff(&wp->win);
 
-	//BMPƒŠƒXƒg”jŠü
+	//BMPãƒªã‚¹ãƒˆç ´æ£„
 	BmpListExit( wp->lw,&wp->debug_list,&wp->debug_cursor );
-	//BMPWindowÁ‹
+	//BMPWindowæ¶ˆå»
 	GF_BGL_BmpWinDel( &wp->win );
 	return;
 }
-//ƒfƒoƒbƒOƒEƒBƒ“ƒhƒE‚ğ‰ğ•ú
+//ãƒ‡ãƒãƒƒã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è§£æ”¾
 static void FreeDebugWindow(TCB_PTR tcb,void* work)
 {
-	//ƒŠƒXƒg‚ÌŠJ•úˆ—
+	//ãƒªã‚¹ãƒˆã®é–‹æ”¾å‡¦ç†
 	DebugListFree(tcb,work);
-	//ƒ[ƒNƒƒ‚ƒŠŠJ•ú
+	//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 	sys_FreeMemoryEz(work);
 }
 
-//ƒfƒoƒbƒOƒEƒBƒ“ƒhƒE‚ğ‰ğ•ú(ƒƒ‚ƒŠ‰ğ•ú–³‚µ)
+//ãƒ‡ãƒãƒƒã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è§£æ”¾(ãƒ¡ãƒ¢ãƒªè§£æ”¾ç„¡ã—)
 static void FreeDebugWindowNoFreeMem(TCB_PTR tcb,void* work)
 {
-	//ƒŠƒXƒg‚ÌŠJ•úˆ—
+	//ãƒªã‚¹ãƒˆã®é–‹æ”¾å‡¦ç†
 	DebugListFree(tcb,work);
 }
-//ƒfƒoƒbƒOƒEƒBƒ“ƒhƒEI—¹
+//ãƒ‡ãƒãƒƒã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦çµ‚äº†
 static void DebugWindowExit(TCB_PTR tcb,void* work)
 {
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒ^ƒXƒNÁ‹
+	//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//OBJ“™‚Ì“®ì’â~‰ğœ
-	FieldSystemProc_SeqHoldEnd();//OBJ“™‚Ì“®ì’â~‰ğœ
+	//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
+	FieldSystemProc_SeqHoldEnd();//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 	FieldSystemProc_SeqHoldEnd();
 	return;
 }
-//ƒŠƒXƒgƒRƒ“ƒgƒ[ƒ‹
+//ãƒªã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 static void DebugListControlTask(TCB_PTR tcb,void* work)
 {
 	s32	ret_code;
@@ -560,25 +560,25 @@ static void DebugListControlTask(TCB_PTR tcb,void* work)
 	wp = (DEBUG_WINDOW_DATA*)work;
 
 	ret_code = BmpListMain(wp->lw);
-	//ƒL[‘€ì”»’è
+	//ã‚­ãƒ¼æ“ä½œåˆ¤å®š
 	if(sys.trg & PAD_BUTTON_A){
 		if(ret_code){
-			BMP_MENULIST_Delete( wp->ld );	//‚Æ‚è‚ ‚¦‚¸
+			BMP_MENULIST_Delete( wp->ld );	//ã¨ã‚Šã‚ãˆãš
 			func = (TCB_FUNC)ret_code;
 			func(tcb,work);
 		}
 		return;
 	}
-	//ƒƒjƒ…[ƒLƒƒƒ“ƒZƒ‹
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if(sys.trg & PAD_BUTTON_B){
-		BMP_MENULIST_Delete( wp->ld );	//‚Æ‚è‚ ‚¦‚¸
+		BMP_MENULIST_Delete( wp->ld );	//ã¨ã‚Šã‚ãˆãš
 		DebugWindowExit(tcb,work);
 		return;
 	}
 }
 
 //================================================================================
-//	ƒJƒƒ‰î•ñ
+//	ã‚«ãƒ¡ãƒ©æƒ…å ±
 //================================================================================
 static void DrawCameraInfo(GF_CAMERA_PTR camera_ptr,GF_BGL_BMPWIN	*win, const u8 inNo)
 {	
@@ -613,7 +613,7 @@ static void DrawCameraInfo(GF_CAMERA_PTR camera_ptr,GF_BGL_BMPWIN	*win, const u8
 	GF_STR_PrintSimple(win, FONT_SYSTEM, str, 7*8, 0, MSG_ALLPUT, NULL );
 	
 	angle = GFC_GetCameraAngle(camera_ptr);
-	//‹ÂŠpË’n–Ê‚©‚ç‚ÌŒX‚«‚É•ÏŠ·
+	//ä»°è§’â‡’åœ°é¢ã‹ã‚‰ã®å‚¾ãã«å¤‰æ›
 	angle_x = -angle.x;
 
 	STRBUF_SetHexNumber(str, angle.x, 8, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
@@ -636,7 +636,7 @@ static void DrawCameraInfo(GF_CAMERA_PTR camera_ptr,GF_BGL_BMPWIN	*win, const u8
 	}
 	
 	{
-		//ƒjƒAEƒtƒ@[
+		//ãƒ‹ã‚¢ãƒ»ãƒ•ã‚¡ãƒ¼
 		int near,far;
 		near = GFC_GetCameraNear(camera_ptr)/FX32_ONE;
 		far = GFC_GetCameraFar(camera_ptr)/FX32_ONE;
@@ -651,7 +651,7 @@ static void DrawCameraInfo(GF_CAMERA_PTR camera_ptr,GF_BGL_BMPWIN	*win, const u8
 		GF_STR_PrintSimple(win, FONT_SYSTEM, str, 8*8, 7*16, MSG_ALLPUT, NULL );
 	}
 	{
-		//’‹“_
+		//æ³¨è¦–ç‚¹
 		VecFx32 look_at = GFC_GetLookTarget(camera_ptr);
 		MSGMAN_GetString(man, D_SAITO_CAM_INFO11 ,msg_buf);
 		GF_STR_PrintSimple(win, FONT_SYSTEM, msg_buf, 1*8, 8*16, MSG_ALLPUT, NULL );
@@ -672,7 +672,7 @@ static void DrawCameraInfo(GF_CAMERA_PTR camera_ptr,GF_BGL_BMPWIN	*win, const u8
 	}
 
 	{
-		//ƒJƒƒ‰ƒe[ƒuƒ‹”Ô†
+		//ã‚«ãƒ¡ãƒ©ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·
 		STRBUF_SetNumber(str, inNo, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		GF_STR_PrintSimple(win, FONT_SYSTEM, str, 8*8, 11*16, MSG_ALLPUT, NULL );
 	}
@@ -685,7 +685,7 @@ static void DrawCameraInfo(GF_CAMERA_PTR camera_ptr,GF_BGL_BMPWIN	*win, const u8
 	
 }
 
-//ƒJƒƒ‰—pƒEƒBƒ“ƒhƒEƒZƒbƒg
+//ã‚«ãƒ¡ãƒ©ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 static void SetCameraDebugWindow(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -693,17 +693,17 @@ static void SetCameraDebugWindow(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
-	//ƒJƒƒ‰ƒEƒBƒ“ƒhƒE\’z
+	//ã‚«ãƒ¡ãƒ©ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	MakeBmpList(fsys, NELEMS(DebugCameraMenuList),DebugCameraMenuList, &CameraDebugListWindowData);
 	
 }
-//ƒJƒƒ‰ƒŠƒXƒgƒEƒBƒ“ƒhƒE•\¦’†ƒ^ƒXƒN
+//ã‚«ãƒ¡ãƒ©ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä¸­ã‚¿ã‚¹ã‚¯
 static void CameraListDispTask(TCB_PTR tcb,void* work)
 {
 	BOOL flg;
@@ -735,8 +735,8 @@ static void CameraListDispTask(TCB_PTR tcb,void* work)
 	}
 	
 	if (flg == TRUE){
-		//ƒJƒƒ‰ƒpƒ‰ƒ[ƒ^•ÏX
-		//ƒJƒƒ‰ƒZƒbƒg
+		//ã‚«ãƒ¡ãƒ©ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´
+		//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 		{
 			if(d_work->fld_camera == TRUE){
 				Debug_FieldCameraTblPtrGet(
@@ -746,9 +746,9 @@ static void CameraListDispTask(TCB_PTR tcb,void* work)
 			else{
 				GFC_InitCameraTDA(
 					Player_VecPosPtrGet(d_work->fsys->player),
-					TestOrgCamera[d_work->camera_tbl_no].Distance,		// ‹——£
+					TestOrgCamera[d_work->camera_tbl_no].Distance,		// è·é›¢
 					&TestOrgCamera[d_work->camera_tbl_no].Angle,		//
-					TestOrgCamera[d_work->camera_tbl_no].PerspWay,		// “ŠË‰h‚ÌŠp“x
+					TestOrgCamera[d_work->camera_tbl_no].PerspWay,		// æŠ•å°„æ „ã®è§’åº¦
 					TestOrgCamera[d_work->camera_tbl_no].View,
 					TRUE,
 					d_work->camera);
@@ -760,53 +760,53 @@ static void CameraListDispTask(TCB_PTR tcb,void* work)
 			}
 			GFC_CopyCameraTracePtr(d_work->fsys->camera_ptr, d_work->camera);
 		}
-		//ƒJƒƒ‰î•ñ•\¦
+		//ã‚«ãƒ¡ãƒ©æƒ…å ±è¡¨ç¤º
 		DrawCameraInfo(d_work->camera,&d_work->win,d_work->camera_tbl_no);
 	}
 
 	if (sys.trg & PAD_BUTTON_B){
-		//ƒJƒƒ‰”½‰f
+		//ã‚«ãƒ¡ãƒ©åæ˜ 
 		GFC_CopyCamera(d_work->camera,d_work->fsys->camera_ptr);
-		//ƒJƒƒ‰íœ
+		//ã‚«ãƒ¡ãƒ©å‰Šé™¤
 		GFC_FreeCamera(d_work->camera);
-		//ƒJƒƒ‰ƒAƒ^ƒbƒ`
+		//ã‚«ãƒ¡ãƒ©ã‚¢ã‚¿ãƒƒãƒ
 		GFC_AttachCamera(d_work->fsys->camera_ptr);
 		
 		GF_BGL_BmpWinOff( &d_work->win );
 		GF_BGL_BmpWinDel( &d_work->win );
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’â~‰ğœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 	}
 }
 
-//ƒJƒƒ‰î•ñƒEƒBƒ“ƒhƒE•\¦’†ƒ^ƒXƒN
+//ã‚«ãƒ¡ãƒ©æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä¸­ã‚¿ã‚¹ã‚¯
 static void CameraInfoDispTask(TCB_PTR tcb,void* work)
 {
 	DEBUG_WORK_DATA *d_work = (DEBUG_WORK_DATA *)work;
 
 	if (sys.trg & PAD_BUTTON_B){
 		
-		//ƒJƒƒ‰íœ
+		//ã‚«ãƒ¡ãƒ©å‰Šé™¤
 		GFC_FreeCamera(d_work->camera);
-		//ƒJƒƒ‰ƒAƒ^ƒbƒ`
+		//ã‚«ãƒ¡ãƒ©ã‚¢ã‚¿ãƒƒãƒ
 		GFC_AttachCamera(d_work->fsys->camera_ptr);
 		
 		GF_BGL_BmpWinOff( &d_work->win );
 		GF_BGL_BmpWinDel( &d_work->win );
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’â~‰ğœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 	}
 }
 
-//ƒJƒƒ‰î•ñ—pƒEƒBƒ“ƒhƒE\’z
+//ã‚«ãƒ¡ãƒ©æƒ…å ±ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetCameraInfoWindow(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -816,25 +816,25 @@ static void SetCameraInfoWindow(struct _FIELDSYS_WORK * fsys)
 	d_work->camera_tbl_no = 0;
 	
 	d_work->fsys = fsys;
-	//ƒJƒƒ‰¶¬
+	//ã‚«ãƒ¡ãƒ©ç”Ÿæˆ
 	d_work->camera = GFC_AllocCamera(HEAPID_D_SAITO);
 	GFC_CopyCamera(d_work->fsys->camera_ptr, d_work->camera);
 	GFC_AttachCamera(d_work->camera);
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(CameraInfoDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 14, 24, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
-	//ƒJƒƒ‰î•ñ•\¦
+	//ã‚«ãƒ¡ãƒ©æƒ…å ±è¡¨ç¤º
 	DrawCameraInfo(d_work->camera,&d_work->win, d_work->camera_tbl_no);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//ƒJƒƒ‰ƒŠƒXƒg—pƒEƒBƒ“ƒhƒE\’z
+//ã‚«ãƒ¡ãƒ©ãƒªã‚¹ãƒˆç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetCameraListWindow(struct _FIELDSYS_WORK * fsys, int fld_camera)
 {
 	
@@ -845,35 +845,35 @@ static void SetCameraListWindow(struct _FIELDSYS_WORK * fsys, int fld_camera)
 	d_work->fld_camera = fld_camera;
 	
 	d_work->fsys = fsys;
-	//ƒJƒƒ‰¶¬
+	//ã‚«ãƒ¡ãƒ©ç”Ÿæˆ
 	d_work->camera = GFC_AllocCamera(HEAPID_D_SAITO);
 	{
 		GFC_InitCameraTDA(
 				Player_VecPosPtrGet(fsys->player),
-				TestOrgCamera[0].Distance,		// ‹——£
+				TestOrgCamera[0].Distance,		// è·é›¢
 				&TestOrgCamera[0].Angle,		//
-				TestOrgCamera[0].PerspWay,		// “ŠË‰h‚ÌŠp“x
+				TestOrgCamera[0].PerspWay,		// æŠ•å°„æ „ã®è§’åº¦
 				TestOrgCamera[0].View,
 				TRUE,
 				d_work->camera);
 		GFC_CopyCameraTracePtr(d_work->fsys->camera_ptr, d_work->camera);
 	}
 	GFC_AttachCamera(d_work->camera);
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(CameraListDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 14, 24, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
-	//ƒJƒƒ‰î•ñ•\¦
+	//ã‚«ãƒ¡ãƒ©æƒ…å ±è¡¨ç¤º
 	DrawCameraInfo(d_work->camera,&d_work->win, d_work->camera_tbl_no);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//ƒJƒƒ‰î•ñ—pƒEƒBƒ“ƒhƒEƒZƒbƒg
+//ã‚«ãƒ¡ãƒ©æƒ…å ±ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 static void SetupCameraInfoWindow(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -881,15 +881,15 @@ static void SetupCameraInfoWindow(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒJƒƒ‰î•ñƒEƒBƒ“ƒhƒE\’z
+	//ã‚«ãƒ¡ãƒ©æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetCameraInfoWindow(fsys);
 }
 
-//ƒJƒƒ‰ƒŠƒXƒg—pƒEƒBƒ“ƒhƒEƒZƒbƒg
+//ã‚«ãƒ¡ãƒ©ãƒªã‚¹ãƒˆç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 static void SetupCameraListWindow(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -897,17 +897,17 @@ static void SetupCameraListWindow(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒJƒƒ‰î•ñƒEƒBƒ“ƒhƒE\’z
+	//ã‚«ãƒ¡ãƒ©æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetCameraListWindow(fsys, FALSE);
 }
 
-//ƒJƒƒ‰ƒŠƒXƒg—pƒEƒBƒ“ƒhƒEƒZƒbƒg
-//	SetupCameraListWindow‚Æ‚Ìˆá‚¢‚ÍA‚±‚¿‚ç‚ÍƒtƒB[ƒ‹ƒhƒJƒƒ‰(ƒ][ƒ“ƒf[ƒ^•\‚Åİ’èo—ˆ‚éƒJƒƒ‰)
-//	‚ğg—p‚·‚é‚±‚Æ
+//ã‚«ãƒ¡ãƒ©ãƒªã‚¹ãƒˆç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
+//	SetupCameraListWindowã¨ã®é•ã„ã¯ã€ã“ã¡ã‚‰ã¯ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚«ãƒ¡ãƒ©(ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ã§è¨­å®šå‡ºæ¥ã‚‹ã‚«ãƒ¡ãƒ©)
+//	ã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨
 static void SetupCameraListZoneWindow(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -915,15 +915,15 @@ static void SetupCameraListZoneWindow(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒJƒƒ‰î•ñƒEƒBƒ“ƒhƒE\’z
+	//ã‚«ãƒ¡ãƒ©æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetCameraListWindow(fsys, TRUE);
 }
 
-//—h‚ê‘ƒŒƒR[ƒh•\¦
+//æºã‚Œè‰ãƒ¬ã‚³ãƒ¼ãƒ‰è¡¨ç¤º
 static void DrawSwayGrassRec(struct _FIELDSYS_WORK * fsys, GF_BGL_BMPWIN	*win)
 {
 	int i;
@@ -937,7 +937,7 @@ static void DrawSwayGrassRec(struct _FIELDSYS_WORK * fsys, GF_BGL_BMPWIN	*win)
 		chain = hist->SwayGrassRec[i].Chain;
 		monsno = hist->SwayGrassRec[i].MonsNo;
 		{
-			//ƒ|ƒPƒ‚ƒ“–¼æ“¾‚Ì‚½‚ßAƒ|ƒPƒ‚ƒ“¶¬
+			//ãƒã‚±ãƒ¢ãƒ³åå–å¾—ã®ãŸã‚ã€ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ
 			STRBUF *name_buf;
 			name_buf = MSGDAT_UTIL_GetMonsName( monsno, HEAPID_D_SAITO );
 
@@ -956,7 +956,7 @@ static void DrawSwayGrassRec(struct _FIELDSYS_WORK * fsys, GF_BGL_BMPWIN	*win)
 	
 }
 
-//—h‚ê‘ƒŒƒR[ƒhEî•ñƒEƒBƒ“ƒhƒE•\¦’†ƒ^ƒXƒN
+//æºã‚Œè‰ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ»æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä¸­ã‚¿ã‚¹ã‚¯
 static void SwayGrassInfoDispTask(TCB_PTR tcb,void* work)
 {
 	DEBUG_WORK_DATA *d_work = (DEBUG_WORK_DATA *)work;
@@ -967,14 +967,14 @@ static void SwayGrassInfoDispTask(TCB_PTR tcb,void* work)
 		GF_BGL_BmpWinDel( &d_work->win );
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’â~‰ğœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 	}
 }
 
-//—h‚ê‘ƒŒƒR[ƒh—pƒEƒBƒ“ƒhƒE\’z
+//æºã‚Œè‰ãƒ¬ã‚³ãƒ¼ãƒ‰ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetSwayGrassRecWindow(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -983,21 +983,21 @@ static void SetSwayGrassRecWindow(struct _FIELDSYS_WORK * fsys)
 	d_work = sys_AllocMemory(HEAPID_D_SAITO,sizeof(DEBUG_WORK_DATA));
 	
 	d_work->fsys = fsys;
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(SwayGrassInfoDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 14, 6, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
-	//—h‚ê‘ƒŒƒR[ƒh•\¦
+	//æºã‚Œè‰ãƒ¬ã‚³ãƒ¼ãƒ‰è¡¨ç¤º
 	DrawSwayGrassRec(fsys, &d_work->win);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//—h‚ê‘ƒŒƒR[ƒh•\¦
+//æºã‚Œè‰ãƒ¬ã‚³ãƒ¼ãƒ‰è¡¨ç¤º
 static void DispSwayGrassRec(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -1005,11 +1005,11 @@ static void DispSwayGrassRec(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//—h‚ê‘î•ñƒEƒBƒ“ƒhƒE\’z
+	//æºã‚Œè‰æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetSwayGrassRecWindow(fsys);
 
 }
@@ -1022,13 +1022,13 @@ static void CameraControlTask(TCB_PTR tcb,void *work)
 
 	if ( (sys.cont & PAD_BUTTON_B) && (sys.trg & PAD_BUTTON_X) ){
 
-		//ƒJƒƒ‰ƒZƒbƒg
+		//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 		{
 			GFC_InitCameraTDA(
 				Player_VecPosPtrGet(d_work->fsys->player),
-				TestOrgCamera[0].Distance,		// ‹——£
+				TestOrgCamera[0].Distance,		// è·é›¢
 				&TestOrgCamera[0].Angle,		//
-				TestOrgCamera[0].PerspWay,		// “ŠË‰h‚ÌŠp“x
+				TestOrgCamera[0].PerspWay,		// æŠ•å°„æ „ã®è§’åº¦
 				TestOrgCamera[0].View,
 				TRUE,
 				d_work->camera);
@@ -1038,17 +1038,17 @@ static void CameraControlTask(TCB_PTR tcb,void *work)
 	}
 
 	if (sys.cont & PAD_BUTTON_L){
-		//ƒJƒƒ‰”½‰f
+		//ã‚«ãƒ¡ãƒ©åæ˜ 
 		GFC_CopyCamera(d_work->camera,d_work->fsys->camera_ptr);
-		//ƒJƒƒ‰íœ
+		//ã‚«ãƒ¡ãƒ©å‰Šé™¤
 		GFC_FreeCamera(d_work->camera);
-		//ƒJƒƒ‰ƒAƒ^ƒbƒ`
+		//ã‚«ãƒ¡ãƒ©ã‚¢ã‚¿ãƒƒãƒ
 		GFC_AttachCamera(d_work->fsys->camera_ptr);
-		//ƒ[ƒNƒƒ‚ƒŠŠJ•ú
+		//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 		sys_FreeMemoryEz(d_work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’â~‰ğœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 	}
 }
@@ -1063,26 +1063,26 @@ static void SetCamera(TCB_PTR tcb,void *work)
 	d_work = sys_AllocMemory(HEAPID_D_SAITO,sizeof(DEBUG_WORK_DATA));
 	
 	d_work->fsys = wp->fsys;
-	//ƒJƒƒ‰¶¬
+	//ã‚«ãƒ¡ãƒ©ç”Ÿæˆ
 	d_work->camera = GFC_AllocCamera(HEAPID_D_SAITO);
 	GFC_CopyCamera(d_work->fsys->camera_ptr, d_work->camera);
 	GFC_AttachCamera(d_work->camera);
 	
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
-	//ƒEƒBƒ“ƒhƒE‰ğ•ú
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒ^ƒXƒNƒZƒbƒg
+	//ã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
 	TCB_Add(CameraControlTask,d_work,0);
 
 }
 
 //-----------------------------------------------------------------------------
-//	ƒAƒNƒZƒXŠÖ”
+//	ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 //-----------------------------------------------------------------------------
-//ƒfƒoƒbƒOƒƒCƒ“ƒEƒBƒ“ƒhƒE\’zŠÖ”
+//ãƒ‡ãƒãƒƒã‚°ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰é–¢æ•°
 void DBGSAI_MapNumDebugListSet(struct _FIELDSYS_WORK * fsys)
 {
 	MakeBmpList(fsys, NELEMS(DebugMenuMainList), DebugMenuMainList, &MainDebugListWindowData);
@@ -1090,7 +1090,7 @@ void DBGSAI_MapNumDebugListSet(struct _FIELDSYS_WORK * fsys)
 
 static int DebugPlayerHeightOfs = 0;
 
-//‚‚³‚ğ•Ï‚¦‚é
+//é«˜ã•ã‚’å¤‰ãˆã‚‹
 static void HeightChangeTask(TCB_PTR tcb,void* work)
 {
 	VecFx32 *ofs;
@@ -1104,20 +1104,20 @@ static void HeightChangeTask(TCB_PTR tcb,void* work)
 //	bl_w = BLACT_WorkGet(FldBlActIdx, map3Ddata->actor[0].actorno);
 	
 	if (sys.trg & PAD_KEY_UP){
-		OS_Printf("ƒfƒoƒbƒOF‚‚³UP\n");
+		OS_Printf("ãƒ‡ãƒãƒƒã‚°ï¼šé«˜ã•UP\n");
 		DebugPlayerHeightOfs++;
 		ofs->y += (FX32_ONE/4);
 //		bl_w->Matrix.y+= (FX32_ONE/4);
 	}else if (sys.trg & PAD_KEY_DOWN){
-		OS_Printf("ƒfƒoƒbƒOF‚‚³DOWN\n");
+		OS_Printf("ãƒ‡ãƒãƒƒã‚°ï¼šé«˜ã•DOWN\n");
 		DebugPlayerHeightOfs--;
 		ofs->y -= (FX32_ONE/4);
 //		bl_w->Matrix.y-= (FX32_ONE/4);
 	}
 
 	if (sys.trg & PAD_BUTTON_X){
-		//ƒŠƒZƒbƒg
-		OS_Printf("ƒfƒoƒbƒOF‚‚³ƒŠƒZƒbƒg\n");
+		//ãƒªã‚»ãƒƒãƒˆ
+		OS_Printf("ãƒ‡ãƒãƒƒã‚°ï¼šé«˜ã•ãƒªã‚»ãƒƒãƒˆ\n");
 		DebugPlayerHeightOfs = 0;
 		ofs->y = vec->y;
 		ofs->y += (FX32_ONE*16);
@@ -1129,12 +1129,12 @@ static void HeightChangeTask(TCB_PTR tcb,void* work)
 	if (sys.trg & PAD_BUTTON_B){
 		sys_FreeMemoryEz(work);
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’â~‰ğœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 	}
 }
 
-//‚‚³•ÏXƒ^ƒXƒNƒZƒbƒg
+//é«˜ã•å¤‰æ›´ã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
 static void SetPlayerHeightChangeTask(TCB_PTR tcb,void *work)
 {
 	DEBUG_WORK_DATA *d_work;
@@ -1144,11 +1144,11 @@ static void SetPlayerHeightChangeTask(TCB_PTR tcb,void *work)
 	d_work = sys_AllocMemory(HEAPID_D_SAITO,sizeof(DEBUG_WORK_DATA));
 	
 	d_work->fsys = wp->fsys;	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒ^ƒXƒNƒZƒbƒg
+	//ã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
 	TCB_Add(HeightChangeTask,d_work,0);
 }
 
@@ -1162,13 +1162,13 @@ typedef struct {
 	FIELDSYS_WORK * fsys;
 }ATTR_CONT;
 
-//ƒAƒgƒŠƒrƒ…[ƒgî•ñ•\¦
+//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæƒ…å ±è¡¨ç¤º
 static void DispAttrInfo(ATTR_CONT *work)
 {	
 	GF_BGL_BmpWinDataFill( &work->win, 0x0f );
 	GF_BGL_BmpWinDataFill( &work->win2, 0x0f );
 	
-	//©‹@‚ÌˆÊ’u‚ÌƒAƒgƒŠƒrƒ…[ƒg‚ğ•\¦
+	//è‡ªæ©Ÿã®ä½ç½®ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’è¡¨ç¤º
 	{
 		int grid_x,grid_z,height;
 		int base_x,base_z;
@@ -1186,7 +1186,7 @@ static void DispAttrInfo(ATTR_CONT *work)
 		msg_buf = STRBUF_Create(16,HEAPID_D_SAITO);
 		str = STRBUF_Create(4, HEAPID_D_SAITO);
 
-		//©‹@ƒOƒŠƒbƒhÀ•W‚ğæ“¾
+		//è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã‚’å–å¾—
 		grid_x = Player_NowGPosXGet( work->fsys->player );
 		grid_z = Player_NowGPosZGet( work->fsys->player );
 		{
@@ -1203,7 +1203,7 @@ static void DispAttrInfo(ATTR_CONT *work)
 			for(j=0;j<3;j++){
 				disp_ofs_x = ATTR_ONE_DISP_SIZE*j*8;
 				x = base_x+j;
-				//ƒAƒgƒŠƒrƒ…[ƒgæ“¾
+				//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
 				rc = GetHitAttr(work->fsys, x, z);
 
 				if (rc){
@@ -1220,7 +1220,7 @@ static void DispAttrInfo(ATTR_CONT *work)
 			}
 		}
 			
-		//©‹@ƒOƒŠƒbƒh‚©‚çAƒuƒƒbƒNÀ•WAƒuƒƒbƒN“àƒ[ƒJƒ‹À•W‚ğŒvZ
+		//è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰ã€ãƒ–ãƒ­ãƒƒã‚¯åº§æ¨™ã€ãƒ–ãƒ­ãƒƒã‚¯å†…ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‚’è¨ˆç®—
 		{
 			int block_x,block_z;
 			u8 local_x,local_z;
@@ -1259,28 +1259,28 @@ static void DispAttrInfo(ATTR_CONT *work)
 	GF_BGL_BmpWinOn( &work->win2 );
 }
 
-//ƒAƒgƒŠƒrƒ…[ƒgŠm”FƒRƒ“ƒgƒ[ƒ‹
+//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç¢ºèªã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 static void DebugCheckAttrControlTask(TCB_PTR tcb,void* work)
 {
 	ATTR_CONT	*wp;
 	wp = (ATTR_CONT*)work;
-	//ƒƒjƒ…[ƒLƒƒƒ“ƒZƒ‹
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if(sys.trg & PAD_BUTTON_B){
 		GF_BGL_BmpWinOff( &wp->win );
 		GF_BGL_BmpWinDel( &wp->win );
 		GF_BGL_BmpWinOff( &wp->win2 );
 		GF_BGL_BmpWinDel( &wp->win2 );
-		//ƒ[ƒNƒƒ‚ƒŠŠJ•ú
+		//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 		sys_FreeMemoryEz(work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’â~‰ğœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 		return;
 	}
 }
 
-//ƒAƒgƒŠƒrƒ…[ƒgŠm”F
+//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç¢ºèª
 void DBGSAI_CheckAttribute(struct _FIELDSYS_WORK * fsys)
 {
 	ATTR_CONT *d_work;
@@ -1298,9 +1298,9 @@ void DBGSAI_CheckAttribute(struct _FIELDSYS_WORK * fsys)
 			6+3*2, 3*2, 1, 1+size_w*size_h );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	TCB_Add(DebugCheckAttrControlTask,d_work,0);
-	//î•ñ•\¦
+	//æƒ…å ±è¡¨ç¤º
 	DispAttrInfo(d_work);
 }
 
@@ -1320,7 +1320,7 @@ static BOOL DebugCheckHeightGridIn(	struct _FIELDSYS_WORK * fsys,
 	BOOL block_result;
 	int non_height_count;
 	
-	//ƒOƒŠƒbƒh‚ğfx32‚É
+	//ã‚°ãƒªãƒƒãƒ‰ã‚’fx32ã«
 	base_x = inGridX*16*FX32_ONE;
 	base_z = inGridZ*16*FX32_ONE;
 
@@ -1328,7 +1328,7 @@ static BOOL DebugCheckHeightGridIn(	struct _FIELDSYS_WORK * fsys,
 	height_info = GetDivMapHeightInfo(fsys->map_cont_dat,idx);
 	
 	{
-		//ƒuƒƒbƒNƒIƒtƒZƒbƒg•ª‚ğŒ¸Z
+		//ãƒ–ãƒ­ãƒƒã‚¯ã‚ªãƒ•ã‚»ãƒƒãƒˆåˆ†ã‚’æ¸›ç®—
 		x_ofs = (((inGridX/32)*BLOCK_GRID_W)+(BLOCK_GRID_W/2))*16*FX32_ONE;
 		z_ofs = (((inGridZ/32)*BLOCK_GRID_H)+(BLOCK_GRID_H/2))*16*FX32_ONE;
 		base_x -= x_ofs;
@@ -1348,7 +1348,7 @@ static BOOL DebugCheckHeightGridIn(	struct _FIELDSYS_WORK * fsys,
 					//return TRUE;
 					block_result = TRUE;
 				}else{
-					OS_Printf("ƒ†ƒjƒbƒg“àÀ•W%d,%d‚Í•¡”‚Ì‚‚³‚ğ‚Á‚Ä‚¢‚Ü‚·\n",i,j);
+					OS_Printf("ãƒ¦ãƒ‹ãƒƒãƒˆå†…åº§æ¨™%d,%dã¯è¤‡æ•°ã®é«˜ã•ã‚’æŒã£ã¦ã„ã¾ã™\n",i,j);
 					count++;
 				}
 			}else if(rc==2){
@@ -1358,7 +1358,7 @@ static BOOL DebugCheckHeightGridIn(	struct _FIELDSYS_WORK * fsys,
 						block_result = FALSE;
 					}
 				}else{
-					OS_Printf("ƒ†ƒjƒbƒg“àÀ•W%d,%d‚Í“¯‚¶‚‚³‚ğ•¡”‚Á‚Ä‚¢‚Ü‚·\n",i,j);
+					OS_Printf("ãƒ¦ãƒ‹ãƒƒãƒˆå†…åº§æ¨™%d,%dã¯åŒã˜é«˜ã•ã‚’è¤‡æ•°æŒã£ã¦ã„ã¾ã™\n",i,j);
 				}
 
 			}else if(rc==3){
@@ -1369,20 +1369,20 @@ static BOOL DebugCheckHeightGridIn(	struct _FIELDSYS_WORK * fsys,
 						block_result = FALSE;
 					}
 				}else{
-					OS_Printf("ƒ†ƒjƒbƒg“àÀ•W%d,%d‚Í‚‚³‚ğ‚Á‚Ä‚¢‚Ü‚¹‚ñ\n",i,j);
+					OS_Printf("ãƒ¦ãƒ‹ãƒƒãƒˆå†…åº§æ¨™%d,%dã¯é«˜ã•ã‚’æŒã£ã¦ã„ã¾ã›ã‚“\n",i,j);
 				}
 			}
 		}
 	}
 	if (inRoop == FALSE){
-		if (non_height_count!=256){//‚PƒOƒŠƒbƒh‘S‚Ä‚‚³‚ª–³‚©‚Á‚½‚Æ‚«ˆÈŠO
-			OS_Printf("ƒOƒŠƒbƒh“à‚É‚‚³‚Ì‚È‚¢êŠ‚ª‚ ‚è‚Ü‚·\n");
+		if (non_height_count!=256){//ï¼‘ã‚°ãƒªãƒƒãƒ‰å…¨ã¦é«˜ã•ãŒç„¡ã‹ã£ãŸã¨ãä»¥å¤–
+			OS_Printf("ã‚°ãƒªãƒƒãƒ‰å†…ã«é«˜ã•ã®ãªã„å ´æ‰€ãŒã‚ã‚Šã¾ã™\n");
 		}
 		return block_result;
 	}
 
 	if (inDetail){
-		OS_Printf("ƒOƒŠƒbƒh“à‚É‚ÍA•¡”‚Ì‚‚³‚ğ‚Âƒ†ƒjƒbƒg‚ª%d‰ÓŠ‘¶İ‚µ‚Ü‚·\n",count);
+		OS_Printf("ã‚°ãƒªãƒƒãƒ‰å†…ã«ã¯ã€è¤‡æ•°ã®é«˜ã•ã‚’æŒã¤ãƒ¦ãƒ‹ãƒƒãƒˆãŒ%dç®‡æ‰€å­˜åœ¨ã—ã¾ã™\n",count);
 	}
 	
 	if (count>0){
@@ -1395,7 +1395,7 @@ static BOOL DebugCheckHeightGridIn(	struct _FIELDSYS_WORK * fsys,
 static void DebugCheckHeightGrid(TCB_PTR tcb,void *work)
 {
 	DEBUG_WINDOW_DATA *wp = (DEBUG_WINDOW_DATA *)work;
-	//‚‚³ƒfƒoƒbƒO
+	//é«˜ã•ãƒ‡ãƒãƒƒã‚°
 	{
 		u8 idx;
 		int i,j;
@@ -1407,7 +1407,7 @@ static void DebugCheckHeightGrid(TCB_PTR tcb,void *work)
 		
 		Player_VecPosGet(wp->fsys->player, &base);
 
-		//Šî“_
+		//åŸºç‚¹
 		base.x-=(8*FX32_ONE);
 		base.z-=(8*FX32_ONE);
 
@@ -1418,7 +1418,7 @@ static void DebugCheckHeightGrid(TCB_PTR tcb,void *work)
 			local_x = grid_x%32;
 			local_z = grid_z%32;
 
-			OS_Printf("\n//ƒuƒƒbƒN“àƒOƒŠƒbƒhÀ•W%d,%d‚Ì‚‚³‚ğƒ`ƒFƒbƒN\n",local_x,local_z);
+			OS_Printf("\n//ãƒ–ãƒ­ãƒƒã‚¯å†…ã‚°ãƒªãƒƒãƒ‰åº§æ¨™%d,%dã®é«˜ã•ã‚’ãƒã‚§ãƒƒã‚¯\n",local_x,local_z);
 		}
 
 		DebugCheckHeightGridIn(wp->fsys,
@@ -1433,7 +1433,7 @@ static void DebugCheckHeightGrid(TCB_PTR tcb,void *work)
 static void DebugCheckHeightBlock(TCB_PTR tcb,void *work)
 {
 	DEBUG_WINDOW_DATA *wp = (DEBUG_WINDOW_DATA *)work;
-	//‚‚³ƒfƒoƒbƒO
+	//é«˜ã•ãƒ‡ãƒãƒƒã‚°
 	{
 		int i,j;
 		int block_x,block_z;
@@ -1443,7 +1443,7 @@ static void DebugCheckHeightBlock(TCB_PTR tcb,void *work)
 		block_x = Player_NowGPosXGet( wp->fsys->player )/BLOCK_GRID_W;
 		block_z = Player_NowGPosZGet( wp->fsys->player )/BLOCK_GRID_H;
 
-		OS_Printf("\n//ƒuƒƒbƒN%d,%d‚Ì‚‚³‚ğƒ`ƒFƒbƒN\n",block_x,block_z);
+		OS_Printf("\n//ãƒ–ãƒ­ãƒƒã‚¯%d,%dã®é«˜ã•ã‚’ãƒã‚§ãƒƒã‚¯\n",block_x,block_z);
 
 		count = 0;
 		for(i=0;i<32;i++){
@@ -1452,12 +1452,12 @@ static void DebugCheckHeightBlock(TCB_PTR tcb,void *work)
 				base_grid_z = block_z*32+j;
 				rc = DebugCheckHeightGridIn(wp->fsys, base_grid_x, base_grid_z, FALSE, FALSE);
 				if (rc){
-					OS_Printf("‚‚³‚Q‘wˆÈã‚ÌƒOƒŠƒbƒhF%d,%d\n",i,j);
+					OS_Printf("é«˜ã•ï¼’å±¤ä»¥ä¸Šã®ã‚°ãƒªãƒƒãƒ‰ï¼š%d,%d\n",i,j);
 					count++;
 				}
 			}
 		}
-		OS_Printf("‚Q‘wˆÈã‚Ì‚‚³‚ğ‚ÂƒOƒŠƒbƒh‚ğ%dŒÂ”­Œ©\n",count);
+		OS_Printf("ï¼’å±¤ä»¥ä¸Šã®é«˜ã•ã‚’æŒã¤ã‚°ãƒªãƒƒãƒ‰ã‚’%då€‹ç™ºè¦‹\n",count);
 	}
 
 	DebugWindowExit(tcb,work);
@@ -1476,15 +1476,15 @@ static void SetSwayGrass(TCB_PTR tcb,void *work)
 		(*charge)=POKESEARCHER_CHARGE_MAX;
 	}
 	
-	//—h‚ê‘ƒZƒbƒg
+	//æºã‚Œè‰ã‚»ãƒƒãƒˆ
 	SwayGrass_Setup(wp->fsys);
 	
 	DebugWindowExit(tcb,work);
 }
 
-/////////////////////////////////////////////—h‚ê‘ŠÖ˜A//////////////////////////////////////////
+/////////////////////////////////////////////æºã‚Œè‰é–¢é€£//////////////////////////////////////////
 
-//—h‚ê‘ƒƒCƒ“
+//æºã‚Œè‰ãƒ¡ã‚¤ãƒ³
 static void DebugWinSwayGrass(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -1492,17 +1492,17 @@ static void DebugWinSwayGrass(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	MakeBmpList(fsys, NELEMS(DebugSwayGrassMenuList), DebugSwayGrassMenuList, &SwayDebugListWindowData);
 }
 
-//ƒAƒjƒƒiƒ“ƒo[•\¦
+//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤º
 static void DrawChain(DEBUG_WORK_DATA *d_work)
 {
 	GF_BGL_BmpWinDataFill( &d_work->win, 0x0f );
@@ -1510,7 +1510,7 @@ static void DrawChain(DEBUG_WORK_DATA *d_work)
 	GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, d_work->StrBuf, 0, 0, MSG_ALLPUT, NULL );
 }
 
-//—h‚ê‘ƒ`ƒF[ƒ“•\¦’†ƒ^ƒXƒN
+//æºã‚Œè‰ãƒã‚§ãƒ¼ãƒ³è¡¨ç¤ºä¸­ã‚¿ã‚¹ã‚¯
 static void ChainDispTask(TCB_PTR tcb,void* work)
 {
 	DEBUG_WORK_DATA *d_work = (DEBUG_WORK_DATA *)work;
@@ -1542,14 +1542,14 @@ static void ChainDispTask(TCB_PTR tcb,void* work)
 		STRBUF_Delete(d_work->StrBuf);
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’â~‰ğœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 	}
 }
 
-//ƒ`ƒF[ƒ“—pƒEƒBƒ“ƒhƒE\’z
+//ãƒã‚§ãƒ¼ãƒ³ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetChainWindow(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -1558,22 +1558,22 @@ static void SetChainWindow(struct _FIELDSYS_WORK * fsys)
 	d_work = sys_AllocMemory(HEAPID_D_SAITO,sizeof(DEBUG_WORK_DATA));
 	d_work->fsys = fsys;
 	d_work->StrBuf = STRBUF_Create(10, HEAPID_D_SAITO);
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(ChainDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 4, 2, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
 
-	//ƒ`ƒF[ƒ“•\¦
+	//ãƒã‚§ãƒ¼ãƒ³è¡¨ç¤º
 	DrawChain(d_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//ƒ`ƒF[ƒ“w’èƒEƒBƒ“ƒhƒEƒZƒbƒg
+//ãƒã‚§ãƒ¼ãƒ³æŒ‡å®šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 static void SetupSwayGrassChain(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -1581,15 +1581,15 @@ static void SetupSwayGrassChain(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetChainWindow(fsys);
 }
 
-//—h‚ê‘î•ñ•\¦
+//æºã‚Œè‰æƒ…å ±è¡¨ç¤º
 static void DrawSwayGrassInfo(struct _FIELDSYS_WORK * fsys, GF_BGL_BMPWIN	*win)
 {
 	int i;
@@ -1625,7 +1625,7 @@ static void DrawSwayGrassInfo(struct _FIELDSYS_WORK * fsys, GF_BGL_BMPWIN	*win)
 	
 }
 
-//—h‚ê‘î•ñ—pƒEƒBƒ“ƒhƒE\’z
+//æºã‚Œè‰æƒ…å ±ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetSwayGrassInfoWindow(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -1634,21 +1634,21 @@ static void SetSwayGrassInfoWindow(struct _FIELDSYS_WORK * fsys)
 	d_work = sys_AllocMemory(HEAPID_D_SAITO,sizeof(DEBUG_WORK_DATA));
 	
 	d_work->fsys = fsys;
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(SwayGrassInfoDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 16, 8, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
-	//—h‚ê‘ƒŒƒR[ƒh•\¦
+	//æºã‚Œè‰ãƒ¬ã‚³ãƒ¼ãƒ‰è¡¨ç¤º
 	DrawSwayGrassInfo(fsys, &d_work->win);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//—h‚ê‘î•ñ•\¦
+//æºã‚Œè‰æƒ…å ±è¡¨ç¤º
 static void DispSwayGrassInfo(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -1656,19 +1656,19 @@ static void DispSwayGrassInfo(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//—h‚ê‘î•ñƒEƒBƒ“ƒhƒE\’z
+	//æºã‚Œè‰æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetSwayGrassInfoWindow(fsys);
 
 }
 
-/////////////////////’Ş‚è
+/////////////////////é‡£ã‚Š
 extern u8 DebugFishProbFlg;
 static void DrawSpFishingPoint(DEBUG_WORK_DATA *d_work);
-//’Ş‚èƒƒCƒ“
+//é‡£ã‚Šãƒ¡ã‚¤ãƒ³
 static void DebugWinFishing(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -1676,17 +1676,17 @@ static void DebugWinFishing(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	MakeBmpList(fsys, NELEMS(DebugFishingMenuList), DebugFishingMenuList, &FishingDebugListWindowData);
 }
 
-//’ŞŠÆƒiƒ“ƒo[•\¦
+//é‡£ç«¿ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤º
 static void DrawFishingRod(DEBUG_WORK_DATA *d_work)
 {
 	GF_BGL_BmpWinDataFill( &d_work->win, 0x0f );
@@ -1694,7 +1694,7 @@ static void DrawFishingRod(DEBUG_WORK_DATA *d_work)
 	GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, d_work->StrBuf, 0, 0, MSG_ALLPUT, NULL );
 }
 
-//ƒƒbƒh•\¦’†ƒ^ƒXƒN
+//ãƒ­ãƒƒãƒ‰è¡¨ç¤ºä¸­ã‚¿ã‚¹ã‚¯
 static void RodDispTask(TCB_PTR tcb,void* work)
 {
 	DEBUG_WORK_DATA *d_work = (DEBUG_WORK_DATA *)work;
@@ -1728,9 +1728,9 @@ static void RodDispTask(TCB_PTR tcb,void* work)
 
 		STRBUF_Delete(d_work->StrBuf);
 		
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’â~‰ğœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 		rc = DebugSetFishingEncount( d_work->fsys, d_work->rod );
 		OS_Printf("fishing = %d\n",rc);
@@ -1745,13 +1745,13 @@ static void RodDispTask(TCB_PTR tcb,void* work)
 		STRBUF_Delete(d_work->StrBuf);
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 		MakeBmpList(fsys, NELEMS(DebugFishingMenuList), DebugFishingMenuList, &FishingDebugListWindowData);
 	}
 }
 
-//’Ş‚è—pƒEƒBƒ“ƒhƒE\’z
+//é‡£ã‚Šç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetFishingRodWindow(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -1761,21 +1761,21 @@ static void SetFishingRodWindow(struct _FIELDSYS_WORK * fsys)
 	d_work->fsys = fsys;
 	d_work->StrBuf = STRBUF_Create(2, HEAPID_D_SAITO);
 	d_work->rod = 0;
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(RodDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 2, 2, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
 
-	//ƒƒbƒh•\¦
+	//ãƒ­ãƒƒãƒ‰è¡¨ç¤º
 	DrawFishingRod(d_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
-//’Ş‚èŠÆw’èƒEƒBƒ“ƒhƒEƒZƒbƒg
+//é‡£ã‚Šç«¿æŒ‡å®šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 static void SetupFishingRod(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -1783,15 +1783,15 @@ static void SetupFishingRod(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetFishingRodWindow(fsys);
 }
 
-//’Ş‚èŠm—¦ƒtƒ‰ƒO•\¦
+//é‡£ã‚Šç¢ºç‡ãƒ•ãƒ©ã‚°è¡¨ç¤º
 static void DrawFishingProb(DEBUG_WORK_DATA *d_work)
 {
 	GF_BGL_BmpWinDataFill( &d_work->win, 0x0f );
@@ -1799,7 +1799,7 @@ static void DrawFishingProb(DEBUG_WORK_DATA *d_work)
 	GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, d_work->StrBuf, 0, 0, MSG_ALLPUT, NULL );
 }
 
-//Šm—¦ƒtƒ‰ƒO•\¦’†ƒ^ƒXƒN
+//ç¢ºç‡ãƒ•ãƒ©ã‚°è¡¨ç¤ºä¸­ã‚¿ã‚¹ã‚¯
 static void FishProbDispTask(TCB_PTR tcb,void* work)
 {
 	DEBUG_WORK_DATA *d_work = (DEBUG_WORK_DATA *)work;
@@ -1828,13 +1828,13 @@ static void FishProbDispTask(TCB_PTR tcb,void* work)
 		STRBUF_Delete(d_work->StrBuf);
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 		MakeBmpList(fsys, NELEMS(DebugFishingMenuList), DebugFishingMenuList, &FishingDebugListWindowData);
 	}
 }
 
-//’Ş‚è—pƒEƒBƒ“ƒhƒE\’z
+//é‡£ã‚Šç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetFishingProbWindow(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -1844,22 +1844,22 @@ static void SetFishingProbWindow(struct _FIELDSYS_WORK * fsys)
 	d_work->fsys = fsys;
 	d_work->StrBuf = STRBUF_Create(2, HEAPID_D_SAITO);
 
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(FishProbDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 2, 2, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
 
-	//Šm—¦ƒtƒ‰ƒO•\¦
+	//ç¢ºç‡ãƒ•ãƒ©ã‚°è¡¨ç¤º
 	DrawFishingProb(d_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//’Ş‚èŠm—¦ƒtƒ‰ƒOw’èƒEƒBƒ“ƒhƒEƒZƒbƒg
+//é‡£ã‚Šç¢ºç‡ãƒ•ãƒ©ã‚°æŒ‡å®šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 static void SetupFishingProb(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -1867,15 +1867,15 @@ static void SetupFishingProb(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetFishingProbWindow(fsys);
 }
 
-//“Áê’Ş‚èƒ|ƒCƒ“ƒg•\¦’†ƒ^ƒXƒN
+//ç‰¹æ®Šé‡£ã‚Šãƒã‚¤ãƒ³ãƒˆè¡¨ç¤ºä¸­ã‚¿ã‚¹ã‚¯
 static void SpFishPointDispTask(TCB_PTR tcb,void* work)
 {
 	DEBUG_WORK_DATA *d_work = (DEBUG_WORK_DATA *)work;
@@ -1889,13 +1889,13 @@ static void SpFishPointDispTask(TCB_PTR tcb,void* work)
 		STRBUF_Delete(d_work->StrBuf);
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 		MakeBmpList(fsys, NELEMS(DebugFishingMenuList), DebugFishingMenuList, &FishingDebugListWindowData);
 	}
 }
 
-//“Áê’Ş‚èƒ|ƒCƒ“ƒgƒEƒBƒ“ƒhƒE\’z
+//ç‰¹æ®Šé‡£ã‚Šãƒã‚¤ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetSpFishingPointWindow(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -1905,21 +1905,21 @@ static void SetSpFishingPointWindow(struct _FIELDSYS_WORK * fsys)
 	d_work->fsys = fsys;
 	d_work->StrBuf = STRBUF_Create(32, HEAPID_D_SAITO);
 
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(SpFishPointDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 8, 10, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
 
-	//ƒ|ƒCƒ“ƒg•\¦
+	//ãƒã‚¤ãƒ³ãƒˆè¡¨ç¤º
 	DrawSpFishingPoint(d_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
-//“Áê’Ş‚èƒ|ƒCƒ“ƒgƒEƒBƒ“ƒhƒEƒZƒbƒg
+//ç‰¹æ®Šé‡£ã‚Šãƒã‚¤ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 static void SetupSpFishingPoint(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -1927,15 +1927,15 @@ static void SetupSpFishingPoint(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetSpFishingPointWindow(fsys);
 }
 
-//“Áê’Ş‚èƒ|ƒCƒ“ƒg•\¦
+//ç‰¹æ®Šé‡£ã‚Šãƒã‚¤ãƒ³ãƒˆè¡¨ç¤º
 static void DrawSpFishingPoint(DEBUG_WORK_DATA *d_work)
 {
 	int pos[8];
@@ -1982,7 +1982,7 @@ static void DrawSpFishingPoint(DEBUG_WORK_DATA *d_work)
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³
 static void SetMovePokeInfoWindow(struct _FIELDSYS_WORK * fsys);
 static void DrawMovePokeInfo(DEBUG_WORK_DATA *d_work);
 static void MovePokeInfoDispTask(TCB_PTR tcb,void* work);
@@ -1995,7 +1995,7 @@ static void SetMovePokeZoneChgWin(struct _FIELDSYS_WORK * fsys, const u16 inPos)
 static void DrawMovePokeZone(DEBUG_WORK_DATA *d_work);
 static void MovePokeZoneDispTask(TCB_PTR tcb,void* work);
 
-//ƒƒCƒ“
+//ãƒ¡ã‚¤ãƒ³
 static void DebugWinMovePoke(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -2003,17 +2003,17 @@ static void DebugWinMovePoke(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	MakeBmpList(fsys, NELEMS(DebugMovePokeMenuList), DebugMovePokeMenuList, &MovePokeDebugListWindowData);
 }
 
-//î•ñ•\¦ƒEƒBƒ“ƒhƒEƒZƒbƒg
+//æƒ…å ±è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 static void SetupMovePokeInfo(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -2021,15 +2021,15 @@ static void SetupMovePokeInfo(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetMovePokeInfoWindow(fsys);
 }
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“î•ñƒEƒBƒ“ƒhƒE\’z
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetMovePokeInfoWindow(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -2040,22 +2040,22 @@ static void SetMovePokeInfoWindow(struct _FIELDSYS_WORK * fsys)
 	d_work->StrBuf = STRBUF_Create(32, HEAPID_D_SAITO);
 	d_work->rod = 0;
 	d_work->MovePokeInfoNo = 0;
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(MovePokeInfoDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 16, 18, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
 
-	//î•ñ•\¦
+	//æƒ…å ±è¡¨ç¤º
 	DrawMovePokeInfo(d_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“î•ñ•\¦
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³æƒ…å ±è¡¨ç¤º
 static void DrawMovePokeInfo(DEBUG_WORK_DATA *d_work)
 {
 	STRBUF *str;
@@ -2075,7 +2075,7 @@ static void DrawMovePokeInfo(DEBUG_WORK_DATA *d_work)
 	str = d_work->StrBuf;
 	msg_buf = d_work->StrBuf;
 
-	//ƒZ[ƒuƒf[ƒ^æ“¾
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	data = EncDataSave_GetSaveDataPtr(d_work->fsys->savedata);
 	mpd = EncDataSave_GetMovePokeDataPtr(data, d_work->MovePokeInfoNo);
 
@@ -2090,33 +2090,33 @@ static void DrawMovePokeInfo(DEBUG_WORK_DATA *d_work)
 		u8 cond = EncDataSave_GetMovePokeDataParam(mpd, MP_PARAM_COND);
 		u8 enc = EncDataSave_GetMovePokeDataParam(mpd, MP_PARAM_ENC);
 
-		//ƒ|ƒPƒ‚ƒ“–¼
+		//ãƒã‚±ãƒ¢ãƒ³å
 		MSGMAN_GetString(man, poke_name_list[d_work->MovePokeInfoNo] ,msg_buf);		
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, msg_buf, 1*8, 0, MSG_ALLPUT, NULL );
-		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
 		STRBUF_SetNumber(str, monsno, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, str, 1*8, 1*16, MSG_ALLPUT, NULL );
-		//ƒŒƒxƒ‹
+		//ãƒ¬ãƒ™ãƒ«
 		STRBUF_SetNumber(str, lv, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, str, 1*8, 2*16, MSG_ALLPUT, NULL );
 		//HP
 		STRBUF_SetNumber(str, hp, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, str, 1*8, 3*16, MSG_ALLPUT, NULL );
-		//ƒpƒ[—”
+		//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 		STRBUF_SetHexNumber(str, pow_rnd, 8, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, str, 1*8, 4*16, MSG_ALLPUT, NULL );
-		//ŒÂ«—”
+		//å€‹æ€§ä¹±æ•°
 		STRBUF_SetHexNumber(str, per_rnd, 8, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, str, 1*8, 5*16, MSG_ALLPUT, NULL );
-		//ó‘Ô
+		//çŠ¶æ…‹
 		STRBUF_SetNumber(str, cond, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, str, 1*8, 6*16, MSG_ALLPUT, NULL );
-		//êŠ
+		//å ´æ‰€
 		STRBUF_SetNumber(str, zone_id, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, str, 1*8, 7*16, MSG_ALLPUT, NULL );
 		PNC_GetPlaceNameFromZoneID(zone_id, HEAPID_FIELD, msg_buf);
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, msg_buf, 4*8, 7*16, MSG_ALLPUT, NULL );
-		//ƒGƒ“ƒJƒEƒ“ƒgƒtƒ‰ƒO
+		//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ•ãƒ©ã‚°
 		STRBUF_SetNumber(str, enc, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, str, 1*8, 8*16, MSG_ALLPUT, NULL );
 
@@ -2129,7 +2129,7 @@ static void DrawMovePokeInfo(DEBUG_WORK_DATA *d_work)
 	GF_BGL_BmpWinOn( &d_work->win );
 }
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“î•ñ•\¦ƒ^ƒXƒN
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³æƒ…å ±è¡¨ç¤ºã‚¿ã‚¹ã‚¯
 static void MovePokeInfoDispTask(TCB_PTR tcb,void* work)
 {
 	BOOL flg;
@@ -2153,7 +2153,7 @@ static void MovePokeInfoDispTask(TCB_PTR tcb,void* work)
 	}
 	
 	if (flg == TRUE){
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“î•ñ•\¦
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³æƒ…å ±è¡¨ç¤º
 		DrawMovePokeInfo(d_work);
 	}
 
@@ -2167,9 +2167,9 @@ static void MovePokeInfoDispTask(TCB_PTR tcb,void* work)
 		STRBUF_Delete(d_work->StrBuf);
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒƒjƒ…[ƒƒCƒ“‚Ö
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ã‚¤ãƒ³ã¸
 		MakeBmpList(fsys, NELEMS(DebugMovePokeMenuList), DebugMovePokeMenuList, &MovePokeDebugListWindowData);
 	}
 }
@@ -2181,15 +2181,15 @@ static void SetupEntryMovePoke(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetEntryMovePokeWindow(fsys);
 }
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒGƒ“ƒgƒŠƒEƒBƒ“ƒhƒE\’z
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ãƒˆãƒªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetEntryMovePokeWindow(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -2197,25 +2197,25 @@ static void SetEntryMovePokeWindow(struct _FIELDSYS_WORK * fsys)
 	TCB_PTR	pTcb = NULL;
 	d_work = sys_AllocMemory(HEAPID_D_SAITO,sizeof(DEBUG_WORK_DATA));
 	d_work->fsys = fsys;
-	d_work->StrBuf = STRBUF_Create(16, HEAPID_D_SAITO); //ˆÚ“®ƒ|ƒPƒ‚ƒ“–¼‚ğ•\¦
+	d_work->StrBuf = STRBUF_Create(16, HEAPID_D_SAITO); //ç§»å‹•ãƒã‚±ãƒ¢ãƒ³åã‚’è¡¨ç¤º
 	d_work->rod = 0;
 	d_work->MovePokeInfoNo = 0;
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(EntryMovePokeTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 6, 2, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
 
-	//î•ñ•\¦
+	//æƒ…å ±è¡¨ç¤º
 	DrawMovePokeName(d_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“–¼•\¦
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³åè¡¨ç¤º
 static void DrawMovePokeName(DEBUG_WORK_DATA *d_work)
 {
 	MSGDATA_MANAGER* man;
@@ -2229,7 +2229,7 @@ static void DrawMovePokeName(DEBUG_WORK_DATA *d_work)
 
 	man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_debug_saito_dat, HEAPID_D_SAITO);
 
-	//ƒ|ƒPƒ‚ƒ“–¼
+	//ãƒã‚±ãƒ¢ãƒ³å
 	MSGMAN_GetString(man, poke_name_list[d_work->MovePokeInfoNo] ,d_work->StrBuf);		
 	GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, d_work->StrBuf, 1*8, 0, MSG_ALLPUT, NULL );
 	
@@ -2238,7 +2238,7 @@ static void DrawMovePokeName(DEBUG_WORK_DATA *d_work)
 	GF_BGL_BmpWinOn( &d_work->win );
 }
 
-//ƒGƒ“ƒgƒŠˆÚ“®ƒ|ƒPƒ‚ƒ“‘I‘ğƒ^ƒXƒN
+//ã‚¨ãƒ³ãƒˆãƒªç§»å‹•ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¿ã‚¹ã‚¯
 static void EntryMovePokeTask(TCB_PTR tcb,void* work)
 {
 	BOOL flg;
@@ -2262,14 +2262,14 @@ static void EntryMovePokeTask(TCB_PTR tcb,void* work)
 	}
 	
 	if (flg == TRUE){
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“î•ñ•\¦
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³æƒ…å ±è¡¨ç¤º
 		DrawMovePokeName(d_work);
 	}
 	
 	if (sys.trg & PAD_BUTTON_A){
-		//ƒGƒ“ƒgƒŠ
+		//ã‚¨ãƒ³ãƒˆãƒª
 		MP_AddMovePoke(d_work->fsys->savedata, d_work->MovePokeInfoNo);
-		Snd_SePlay( SEQ_SE_DP_SELECT );		//“o˜^‚µ‚½‚ç–Â‚ç‚µ‚Æ‚­
+		Snd_SePlay( SEQ_SE_DP_SELECT );		//ç™»éŒ²ã—ãŸã‚‰é³´ã‚‰ã—ã¨ã
 		
 	}else if (sys.trg & PAD_BUTTON_B){
 		struct _FIELDSYS_WORK * fsys;
@@ -2279,14 +2279,14 @@ static void EntryMovePokeTask(TCB_PTR tcb,void* work)
 		GF_BGL_BmpWinDel( &d_work->win );
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒƒjƒ…[ƒƒCƒ“‚Ö
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ã‚¤ãƒ³ã¸
 		MakeBmpList(fsys, NELEMS(DebugMovePokeMenuList), DebugMovePokeMenuList, &MovePokeDebugListWindowData);
 	}
 }
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“–¼ƒƒCƒ“
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³åãƒ¡ã‚¤ãƒ³
 static void DebugWinMovePokeName(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -2294,17 +2294,17 @@ static void DebugWinMovePokeName(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	MakeBmpList(fsys, NELEMS(DebugMovePokeNameList), DebugMovePokeNameList, &MovePokeNameDebugListWindowData);
 }
 
-//ƒ][ƒ“•ÏXƒEƒBƒ“ƒhƒEƒZƒbƒg
+//ã‚¾ãƒ¼ãƒ³å¤‰æ›´ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 static void SetupMovePokeZoneChgWin(TCB_PTR tcb,void *work)
 {
 	u16 pos;
@@ -2313,18 +2313,18 @@ static void SetupMovePokeZoneChgWin(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·(ƒ[ƒN‚Íc‚·)
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™(ãƒ¯ãƒ¼ã‚¯ã¯æ®‹ã™)
 	FreeDebugWindowNoFreeMem(tcb,work);
 	pos = wp->debug_cursor;
-	//ƒ[ƒNƒƒ‚ƒŠŠJ•ú
+	//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 	sys_FreeMemoryEz(work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetMovePokeZoneChgWin(fsys,pos);
 }
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒ][ƒ“ƒEƒBƒ“ƒhƒE\’z
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¾ãƒ¼ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetMovePokeZoneChgWin(struct _FIELDSYS_WORK * fsys, const u16 inPos)
 {
 	
@@ -2341,29 +2341,29 @@ static void SetMovePokeZoneChgWin(struct _FIELDSYS_WORK * fsys, const u16 inPos)
 			d_work->zone_idx = LOCATION_MAX;
 		}
 	}
-	d_work->StrBuf = STRBUF_Create(32, HEAPID_D_SAITO); //ƒ][ƒ“–¼‚ğ•\¦
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	d_work->StrBuf = STRBUF_Create(32, HEAPID_D_SAITO); //ã‚¾ãƒ¼ãƒ³åã‚’è¡¨ç¤º
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(MovePokeZoneDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 18, 2, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
 
-	//î•ñ•\¦
+	//æƒ…å ±è¡¨ç¤º
 	DrawMovePokeZone(d_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒ][ƒ“•\¦
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¾ãƒ¼ãƒ³è¡¨ç¤º
 static void DrawMovePokeZone(DEBUG_WORK_DATA *d_work)
 {
 	int zone_id;
 	GF_BGL_BmpWinDataFill( &d_work->win, 0x0f );
 	
-	//ƒ][ƒ“–¼æ“¾
+	//ã‚¾ãƒ¼ãƒ³åå–å¾—
 	if ((d_work->zone_idx>=0)&&(d_work->zone_idx<LOCATION_MAX)){
 		zone_id = MP_GetMovePokeZone(d_work->zone_idx);
 	}else{
@@ -2373,7 +2373,7 @@ static void DrawMovePokeZone(DEBUG_WORK_DATA *d_work)
 	GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, d_work->StrBuf, 0, 0, MSG_ALLPUT, NULL );
 }
 
-//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒ][ƒ“•\¦’†ƒ^ƒXƒN
+//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¾ãƒ¼ãƒ³è¡¨ç¤ºä¸­ã‚¿ã‚¹ã‚¯
 static void MovePokeZoneDispTask(TCB_PTR tcb,void* work)
 {
 	DEBUG_WORK_DATA *d_work = (DEBUG_WORK_DATA *)work;
@@ -2402,8 +2402,8 @@ static void MovePokeZoneDispTask(TCB_PTR tcb,void* work)
 	if ( sys.trg & PAD_BUTTON_A ){
 		struct _FIELDSYS_WORK * fsys;
 		fsys = d_work->fsys;
-		Snd_SePlay( SEQ_SE_DP_SELECT );		//êŠ•ÏX‚µ‚½‚ç–Â‚ç‚µ‚Æ‚­
-		//êŠ•ÏX
+		Snd_SePlay( SEQ_SE_DP_SELECT );		//å ´æ‰€å¤‰æ›´ã—ãŸã‚‰é³´ã‚‰ã—ã¨ã
+		//å ´æ‰€å¤‰æ›´
 		MP_DebugUpdateData( EncDataSave_GetSaveDataPtr(fsys->savedata),
 							d_work->MovePokeInfoNo, d_work->zone_idx);
 
@@ -2412,10 +2412,10 @@ static void MovePokeZoneDispTask(TCB_PTR tcb,void* work)
 
 		STRBUF_Delete(d_work->StrBuf);
 		
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 		sys_FreeMemoryEz((void *)work);
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒƒjƒ…[ƒƒCƒ“‚Ö
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ã‚¤ãƒ³ã¸
 		MakeBmpList(fsys, NELEMS(DebugMovePokeMenuList), DebugMovePokeMenuList, &MovePokeDebugListWindowData);
 	}else if(sys.trg & PAD_BUTTON_B){
 		struct _FIELDSYS_WORK * fsys;
@@ -2426,10 +2426,10 @@ static void MovePokeZoneDispTask(TCB_PTR tcb,void* work)
 
 		STRBUF_Delete(d_work->StrBuf);
 		
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
 		sys_FreeMemoryEz((void *)work);
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒƒjƒ…[ƒƒCƒ“‚Ö
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ã‚¤ãƒ³ã¸
 		MakeBmpList(fsys, NELEMS(DebugMovePokeMenuList), DebugMovePokeMenuList, &MovePokeDebugListWindowData);
 	}
 }
@@ -2438,7 +2438,7 @@ static void MovePokeZoneDispTask(TCB_PTR tcb,void* work)
 static void SetGeneZoneInfoWin(struct _FIELDSYS_WORK * fsys);
 static void DrawGeneZone(DEBUG_WORK_DATA *d_work);
 static void GeneInfoDispTask(TCB_PTR tcb,void* work);
-//‘å—Ê”­¶
+//å¤§é‡ç™ºç”Ÿ
 static void DebugGenerate(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -2446,17 +2446,17 @@ static void DebugGenerate(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	MakeBmpList(fsys, NELEMS(DebugGeneMenuList), DebugGeneMenuList, &GeneDebugListWindowData);	
 }
 
-//‘å—Ê”­¶î•ñ•\¦ƒZƒbƒgƒAƒbƒv
+//å¤§é‡ç™ºç”Ÿæƒ…å ±è¡¨ç¤ºã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 static void SetupGeneZoneInfoWin(TCB_PTR tcb,void *work)
 {
 	u16 pos;
@@ -2465,15 +2465,15 @@ static void SetupGeneZoneInfoWin(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetGeneZoneInfoWin(fsys);
 }
 
-//‘å—Ê”­¶ŠJn
+//å¤§é‡ç™ºç”Ÿé–‹å§‹
 static void DebugStartGenerate(TCB_PTR tcb,void *work)
 {
 	struct _FIELDSYS_WORK * fsys;
@@ -2481,18 +2481,18 @@ static void DebugStartGenerate(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//OBJ“™‚Ì“®ì’â~‰ğœ
+	//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 	FieldSystemProc_SeqHoldEnd();
-	//‘å—Ê”­¶ŠJn
+	//å¤§é‡ç™ºç”Ÿé–‹å§‹
 	EncDataSave_StartGenerate( fsys->savedata );
-	Snd_SePlay( SEQ_SE_DP_SELECT );		//”­¶‚³‚¹‚½‚ç–Â‚ç‚µ‚Æ‚­
+	Snd_SePlay( SEQ_SE_DP_SELECT );		//ç™ºç”Ÿã•ã›ãŸã‚‰é³´ã‚‰ã—ã¨ã
 }
 
-//‘å—Ê”­¶î•ñ•\¦ƒZƒbƒgƒAƒbƒv
+//å¤§é‡ç™ºç”Ÿæƒ…å ±è¡¨ç¤ºã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 static void SetGeneZoneInfoWin(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -2500,23 +2500,23 @@ static void SetGeneZoneInfoWin(struct _FIELDSYS_WORK * fsys)
 	TCB_PTR	pTcb = NULL;
 	d_work = sys_AllocMemory(HEAPID_D_SAITO,sizeof(DEBUG_WORK_DATA));
 	d_work->fsys = fsys;
-	d_work->StrBuf = STRBUF_Create(32, HEAPID_D_SAITO); //ƒ][ƒ“–¼‚ğ•\¦
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	d_work->StrBuf = STRBUF_Create(32, HEAPID_D_SAITO); //ã‚¾ãƒ¼ãƒ³åã‚’è¡¨ç¤º
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(GeneInfoDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 18, 4, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
 
-	//î•ñ•\¦
+	//æƒ…å ±è¡¨ç¤º
 	DrawGeneZone(d_work);
 
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 	return;
 }
 
-//‘å—Ê”­¶êŠ•\¦
+//å¤§é‡ç™ºç”Ÿå ´æ‰€è¡¨ç¤º
 static void DrawGeneZone(DEBUG_WORK_DATA *d_work)
 {
 	ENC_SV_PTR data;
@@ -2529,7 +2529,7 @@ static void DrawGeneZone(DEBUG_WORK_DATA *d_work)
 
 	data = EncDataSave_GetSaveDataPtr(d_work->fsys->savedata);
 	
-	//ƒ][ƒ“–¼æ“¾
+	//ã‚¾ãƒ¼ãƒ³åå–å¾—
 	zone_id = GenerateZone_GetZone( EncDataSave_GetRandSeed(data,  ENC_RND_SEED_GENERATE) );
 	PNC_GetPlaceNameFromZoneID(zone_id, HEAPID_FIELD, d_work->StrBuf);
 	GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, d_work->StrBuf, 0, 0, MSG_ALLPUT, NULL );
@@ -2542,7 +2542,7 @@ static void DrawGeneZone(DEBUG_WORK_DATA *d_work)
 	MSGMAN_Delete( man );
 }
 
-//”­¶êŠ•\¦’†ƒ^ƒXƒN
+//ç™ºç”Ÿå ´æ‰€è¡¨ç¤ºä¸­ã‚¿ã‚¹ã‚¯
 static void GeneInfoDispTask(TCB_PTR tcb,void* work)
 {
 	DEBUG_WORK_DATA *d_work = (DEBUG_WORK_DATA *)work;
@@ -2553,9 +2553,9 @@ static void GeneInfoDispTask(TCB_PTR tcb,void* work)
 		GF_BGL_BmpWinDel( &d_work->win );
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//‘å—Ê”­¶ƒƒCƒ“
+		//å¤§é‡ç™ºç”Ÿãƒ¡ã‚¤ãƒ³
 		MakeBmpList(d_work->fsys, NELEMS(DebugGeneMenuList), DebugGeneMenuList, &GeneDebugListWindowData);
 	}
 }
@@ -2572,19 +2572,19 @@ static void DebugSafari(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
 
 	
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	SetSafariInfoWindow(fsys);
 }
 
-//ƒTƒtƒ@ƒŠî•ñƒEƒBƒ“ƒhƒE\’z
+//ã‚µãƒ•ã‚¡ãƒªæƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 static void SetSafariInfoWindow(struct _FIELDSYS_WORK * fsys)
 {
 	
@@ -2596,20 +2596,20 @@ static void SetSafariInfoWindow(struct _FIELDSYS_WORK * fsys)
 	d_work->rod = 0;
 	d_work->MovePokeInfoNo = 0;
 	d_work->SafariArea = 0;
-	//ƒƒCƒ“ˆ—ƒ^ƒXƒN’Ç‰Á
+	//ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¿ã‚¹ã‚¯è¿½åŠ 
 	pTcb = TCB_Add(SafariInfoDispTask,d_work,0);
 
 	GF_BGL_BmpWinAdd( d_work->fsys->bgl,&d_work->win,GF_BGL_FRAME3_M, 0, 0, 10, 6, 1, 1 );
 	
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 16<<1, HEAPID_D_SAITO );
 
-	//î•ñ•\¦
+	//æƒ…å ±è¡¨ç¤º
 	DrawSafariInfo(d_work);
 
 	return;
 }
 
-//ƒTƒtƒ@ƒŠî•ñ•\¦ƒ^ƒXƒN
+//ã‚µãƒ•ã‚¡ãƒªæƒ…å ±è¡¨ç¤ºã‚¿ã‚¹ã‚¯
 static void SafariInfoDispTask(TCB_PTR tcb,void* work)
 {
 	DEBUG_WORK_DATA *d_work = work;
@@ -2642,15 +2642,15 @@ static void SafariInfoDispTask(TCB_PTR tcb,void* work)
 		STRBUF_Delete(d_work->StrBuf);
 
 		sys_FreeMemoryEz((void *)work);
-		//ƒ^ƒXƒNÁ‹
+		//ã‚¿ã‚¹ã‚¯æ¶ˆå»
 		TCB_Delete(tcb);
-		//OBJ“™‚Ì“®ì’â~‰ğœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 	}
 
 }
 
-//ƒTƒtƒ@ƒŠî•ñ•\¦
+//ã‚µãƒ•ã‚¡ãƒªæƒ…å ±è¡¨ç¤º
 static void DrawSafariInfo(DEBUG_WORK_DATA *d_work)
 {
 	STRBUF *str;
@@ -2668,11 +2668,11 @@ static void DrawSafariInfo(DEBUG_WORK_DATA *d_work)
 		
 		seed = EncDataSave_GetRandSeed(
 								EncDataSave_GetSaveDataPtr(d_work->fsys->savedata),ENC_RND_SEED_SAFARI);
-		//ƒTƒtƒ@ƒŠ—”
+		//ã‚µãƒ•ã‚¡ãƒªä¹±æ•°
 		STRBUF_SetHexNumber(str, seed, 8, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		GF_STR_PrintSimple(&d_work->win, FONT_SYSTEM, str, 1*8, 0*16, MSG_ALLPUT, NULL );
 		
-		//ƒGƒ“ƒgƒŠƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒX•\¦
+		//ã‚¨ãƒ³ãƒˆãƒªãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹è¡¨ç¤º
 		SafariEnc_DebugGetSafariTbl(seed,
 									ZukanWork_GetZenkokuZukanFlag(
 										SaveData_GetZukanWork(GameSystem_GetSaveData(d_work->fsys))),
@@ -2702,21 +2702,21 @@ static void DebugSetAgbVer(TCB_PTR tcb,void *work)
 	wp = (DEBUG_WINDOW_DATA *)work;
 	fsys = wp->fsys;
 	
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
 	FreeDebugWindow(tcb,work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//ƒCƒxƒ“ƒgƒtƒbƒN
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 	FieldSystemProc_SeqHold();
-	//ƒEƒBƒ“ƒhƒE\’z
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹ç¯‰
 	MakeBmpList(fsys, NELEMS(DebugAgbMenuList), DebugAgbMenuList, &AgbDebugListWindowData);
 }
 
-//‚`‚f‚aƒXƒƒbƒgƒo[ƒWƒ‡ƒ“•ÏX
+//ï¼¡ï¼§ï¼¢ã‚¹ãƒ­ãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³å¤‰æ›´
 static void DebugAgbVer(TCB_PTR tcb,void *work)
 {
 	DEBUG_WINDOW_DATA *wp;
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ğÁ‚·(ƒ[ƒN‚Íc‚·)
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™(ãƒ¯ãƒ¼ã‚¯ã¯æ®‹ã™)
 	FreeDebugWindowNoFreeMem(tcb,work);
 	
 	wp = (DEBUG_WINDOW_DATA *)work;
@@ -2744,13 +2744,13 @@ static void DebugAgbVer(TCB_PTR tcb,void *work)
 
 	OS_Printf("ver:%d\n",sys.AgbCasetteVersion);
 
-	Snd_SePlay( SEQ_SE_DP_SELECT );		//”­¶‚³‚¹‚½‚ç–Â‚ç‚µ‚Æ‚­
+	Snd_SePlay( SEQ_SE_DP_SELECT );		//ç™ºç”Ÿã•ã›ãŸã‚‰é³´ã‚‰ã—ã¨ã
 
-	//ƒ[ƒNƒƒ‚ƒŠŠJ•ú
+	//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 	sys_FreeMemoryEz(work);
-	//ƒƒCƒ“ƒEƒBƒ“ƒhƒEƒ^ƒXƒNÁ‹
+	//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¹ã‚¯æ¶ˆå»
 	TCB_Delete(tcb);
-	//OBJ“™‚Ì“®ì’â~‰ğœ
+	//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 	FieldSystemProc_SeqHoldEnd();
 }
 

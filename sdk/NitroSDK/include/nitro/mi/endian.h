@@ -15,7 +15,7 @@
   indent source
 
   Revision 1.4  2007/01/19 04:36:00  yosizaki
-  copyright���X�V.
+  copyrightを更新.
 
   Revision 1.3  2007/01/16 05:56:24  yosizaki
   small fix
@@ -47,24 +47,24 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         MI_SwapEndian8
 
-  Description:  8bit �l�̃G���f�B�A����ϊ�����}�N��.
-                ���ۂɂ͏�ɉ��̕ϊ����s��Ȃ�.
+  Description:  8bit 値のエンディアンを変換するマクロ.
+                実際には常に何の変換も行わない.
 
-  Arguments:    val               �G���f�B�A����ϊ�����l.
+  Arguments:    val               エンディアンを変換する値.
 
-  Returns:      �G���f�B�A����ϊ������l.
+  Returns:      エンディアンを変換した値.
  *---------------------------------------------------------------------------*/
 #define MI_SwapEndian8(val) (u8)(val)
 
 /*---------------------------------------------------------------------------*
   Name:         MI_SwapEndian16
 
-  Description:  16bit �l�̃G���f�B�A����ϊ�����}�N��.
-                �萔�ɑ΂��Ă��g�p�\����������������]�������_�ɒ���.
+  Description:  16bit 値のエンディアンを変換するマクロ.
+                定数に対しても使用可能だが引数が複数回評価される点に注意.
 
-  Arguments:    val               �G���f�B�A����ϊ�����l.
+  Arguments:    val               エンディアンを変換する値.
 
-  Returns:      �G���f�B�A����ϊ������l.
+  Returns:      エンディアンを変換した値.
  *---------------------------------------------------------------------------*/
 #define MI_SwapEndian16(val) (u16)( \
                               (((val) & 0xFF00UL) >> 8UL) | \
@@ -73,12 +73,12 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         MI_SwapEndian32
 
-  Description:  32bit �l�̃G���f�B�A����ϊ�����}�N��.
-                �萔�ɑ΂��Ă��g�p�\����������������]�������_�ɒ���.
+  Description:  32bit 値のエンディアンを変換するマクロ.
+                定数に対しても使用可能だが引数が複数回評価される点に注意.
 
-  Arguments:    val               �G���f�B�A����ϊ�����l.
+  Arguments:    val               エンディアンを変換する値.
 
-  Returns:      �G���f�B�A����ϊ������l.
+  Returns:      エンディアンを変換した値.
  *---------------------------------------------------------------------------*/
 #define MI_SwapEndian32(val) (u32)( \
                               (((val) & 0xFF000000UL) >> 24UL) | \
@@ -105,14 +105,14 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         MI_HTo*
 
-  Description:  ���݂̊�����w��̃G���f�B�A���֒l�ϊ�.
-                �j���e���h�[DS�ł̓��g���G���f�B�A�����̂���,
-                *HToLE* �̏ꍇ�ɂ͉������Ȃ��}�N���Ƃ��ĕϊ������.
-                �萔�ɑ΂��Ă��g�p�\����������������]�������_�ɒ���.
+  Description:  現在の環境から指定のエンディアンへ値変換.
+                ニンテンドーDSではリトルエンディアン環境のため,
+                *HToLE* の場合には何もしないマクロとして変換される.
+                定数に対しても使用可能だが引数が複数回評価される点に注意.
 
-  Arguments:    val               �G���f�B�A����ϊ�����l.
+  Arguments:    val               エンディアンを変換する値.
 
-  Returns:      �w��̃G���f�B�A���ɕϊ������l.
+  Returns:      指定のエンディアンに変換した値.
  *---------------------------------------------------------------------------*/
 #define MI_HToLE8(val)  MIi_SwapEndian8IfBE(val)
 #define MI_HToBE8(val)  MIi_SwapEndian8IfLE(val)
@@ -124,14 +124,14 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         MI_*ToH*
 
-  Description:  �w��̃G���f�B�A�����猻�݂̊��֒l�ϊ�.
-                �j���e���h�[DS�ł̓��g���G���f�B�A�����̂���,
-                *LEToH* �̏ꍇ�ɂ͉������Ȃ��}�N���Ƃ��ĕϊ������.
-                �萔�ɑ΂��Ă��g�p�\����������������]�������_�ɒ���.
+  Description:  指定のエンディアンから現在の環境へ値変換.
+                ニンテンドーDSではリトルエンディアン環境のため,
+                *LEToH* の場合には何もしないマクロとして変換される.
+                定数に対しても使用可能だが引数が複数回評価される点に注意.
 
-  Arguments:    val               �G���f�B�A����ϊ�����l.
+  Arguments:    val               エンディアンを変換する値.
 
-  Returns:      �w��̃G���f�B�A������ϊ������l.
+  Returns:      指定のエンディアンから変換した値.
  *---------------------------------------------------------------------------*/
 #define MI_LEToH8(val)  MIi_SwapEndian8IfBE(val)
 #define MI_BEToH8(val)  MIi_SwapEndian8IfLE(val)
@@ -143,13 +143,13 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         MI_LoadLE*
 
-  Description:  �w��A�h���X���烊�g���G���f�B�A���Œl���擾.
-                ���̊֐��̓��e�͌��݂̊��̃G���f�B�A���Ɉˑ����Ȃ�.
+  Description:  指定アドレスからリトルエンディアンで値を取得.
+                この関数の内容は現在の環境のエンディアンに依存しない.
 
-  Arguments:    ptr               ���g���G���f�B�A���œǂݍ��ރf�[�^�A�h���X.
-                                  �A���C�������g���l������K�v�͂Ȃ�.
+  Arguments:    ptr               リトルエンディアンで読み込むデータアドレス.
+                                  アラインメントを考慮する必要はない.
 
-  Returns:      ���g���G���f�B�A���œ���ꂽ�w��r�b�g���̒l.
+  Returns:      リトルエンディアンで得られた指定ビット幅の値.
  *---------------------------------------------------------------------------*/
 SDK_INLINE u8 MI_LoadLE8(const void *ptr)
 {
@@ -170,13 +170,13 @@ SDK_INLINE u32 MI_LoadLE32(const void *ptr)
 /*---------------------------------------------------------------------------*
   Name:         MI_LoadBE*
 
-  Description:  �w��A�h���X����r�b�O�G���f�B�A���Œl���擾.
-                ���̊֐��̓��e�͌��݂̊��̃G���f�B�A���Ɉˑ����Ȃ�.
+  Description:  指定アドレスからビッグエンディアンで値を取得.
+                この関数の内容は現在の環境のエンディアンに依存しない.
 
-  Arguments:    ptr              �r�b�O�G���f�B�A���œǂݍ��ރf�[�^�A�h���X.
-                                 �A���C�������g���l������K�v�͂Ȃ�.
+  Arguments:    ptr              ビッグエンディアンで読み込むデータアドレス.
+                                 アラインメントを考慮する必要はない.
 
-  Returns:      �r�b�O�G���f�B�A���œ���ꂽ�w��r�b�g���̒l.
+  Returns:      ビッグエンディアンで得られた指定ビット幅の値.
  *---------------------------------------------------------------------------*/
 SDK_INLINE u8 MI_LoadBE8(const void *ptr)
 {
@@ -197,12 +197,12 @@ SDK_INLINE u32 MI_LoadBE32(const void *ptr)
 /*---------------------------------------------------------------------------*
   Name:         MI_StoreLE*
 
-  Description:  �w��A�h���X�փ��g���G���f�B�A���Œl���i�[.
-                ���̊֐��̓��e�͌��݂̊��̃G���f�B�A���Ɉˑ����Ȃ�.
+  Description:  指定アドレスへリトルエンディアンで値を格納.
+                この関数の内容は現在の環境のエンディアンに依存しない.
 
-  Arguments:    ptr               ���g���G���f�B�A���ŏ������ރf�[�^�A�h���X.
-                                  �A���C�������g���l������K�v�͂Ȃ�.
-                val               �������ޒl.
+  Arguments:    ptr               リトルエンディアンで書き込むデータアドレス.
+                                  アラインメントを考慮する必要はない.
+                val               書き込む値.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -229,12 +229,12 @@ SDK_INLINE void MI_StoreLE32(void *ptr, u32 val)
 /*---------------------------------------------------------------------------*
   Name:         MI_StoreBE*
 
-  Description:  �w��A�h���X�փr�b�O�G���f�B�A���Œl���i�[.
-                ���̊֐��̓��e�͌��݂̊��̃G���f�B�A���Ɉˑ����Ȃ�.
+  Description:  指定アドレスへビッグエンディアンで値を格納.
+                この関数の内容は現在の環境のエンディアンに依存しない.
 
-  Arguments:    ptr               �r�b�O�G���f�B�A���ŏ������ރf�[�^�A�h���X.
-                                  �A���C�������g���l������K�v�͂Ȃ�.
-                val               �������ޒl.
+  Arguments:    ptr               ビッグエンディアンで書き込むデータアドレス.
+                                  アラインメントを考慮する必要はない.
+                val               書き込む値.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

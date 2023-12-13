@@ -15,19 +15,19 @@
   do-indent
 
   Revision 1.2  2005/08/18 04:33:45  ida
-  ƒLƒƒƒbƒVƒ…–³Œø‰»ˆ—‚ÌÅ“K‰»
+  ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç„¡åŠ¹åŒ–å‡¦ç†ã®æœ€é©åŒ–
 
   Revision 1.1  2005/04/12 06:16:12  ida
-  SND‚ğNITRO-SDK‚ÖˆÚİ
+  SNDã‚’NITRO-SDKã¸ç§»è¨­
 
   Revision 1.13  2005/02/28 04:12:11  ida
-  prgNoƒƒ“ƒo’Ç‰Á
+  prgNoãƒ¡ãƒ³ãƒè¿½åŠ 
 
   Revision 1.12  2005/02/17 07:50:51  ida
-  ŠÖ”–¼Get‚ğRead‚Ö•ÏX
+  é–¢æ•°åGetã‚’Readã¸å¤‰æ›´
 
   Revision 1.11  2005/02/16 07:48:10  ida
-  ƒhƒ‰ƒCƒoî•ñæ“¾ŠÖ”’Ç‰Á
+  ãƒ‰ãƒ©ã‚¤ãƒæƒ…å ±å–å¾—é–¢æ•°è¿½åŠ 
 
   Revision 1.10  2004/08/02 05:32:15  ida
   add capture status
@@ -150,13 +150,13 @@ static const void *ConvAddr(const void *p, const void *baseFrom, const void *bas
 /*---------------------------------------------------------------------------*
   Name:         ConvAddr
 
-  Description:  ƒAƒhƒŒƒX‚Ì•ÏŠ·‚ğs‚¢‚Ü‚·B
+  Description:  ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å¤‰æ›ã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    p - •ÏŠ·‚·‚éŒ³‚ÌƒAƒhƒŒƒX
-                baseFrom - Œ³‚ÌƒAƒhƒŒƒX‚Ì‹N“_ƒAƒhƒŒƒX
-                baseTo - •ÏŠ·Œã‚ÌƒAƒhƒŒƒX‚Ì‹N“_ƒAƒhƒŒƒX
+  Arguments:    p - å¤‰æ›ã™ã‚‹å…ƒã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+                baseFrom - å…ƒã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã®èµ·ç‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                baseTo - å¤‰æ›å¾Œã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã®èµ·ç‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-  Returns:      •ÏŠ·Œã‚ÌƒAƒhƒŒƒX
+  Returns:      å¤‰æ›å¾Œã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static  inline
@@ -177,12 +177,12 @@ const void *ConvAddr(const void *p, const void *baseFrom, const void *baseTo)
 /*---------------------------------------------------------------------------*
   Name:         SND_GetPlayerStatus
 
-  Description:  ƒvƒŒƒCƒ„[‚ÌƒXƒe[ƒ^ƒX‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—ã—ã¾ã™ã€‚
 
   Arguments:    None.
 
-  Returns:      ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX‚Ìƒrƒbƒgƒ}ƒXƒN
-                ƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚é‚ÆAƒAƒNƒeƒBƒu
+  Returns:      ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                ãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã‚‹ã¨ã€ã‚¢ã‚¯ãƒ†ã‚£ãƒ–
  *---------------------------------------------------------------------------*/
 u32 SND_GetPlayerStatus(void)
 {
@@ -199,12 +199,12 @@ u32 SND_GetPlayerStatus(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_GetChannelStatus
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒXƒe[ƒ^ƒX‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—ã—ã¾ã™ã€‚
 
   Arguments:    None.
 
-  Returns:      ƒ`ƒƒƒ“ƒlƒ‹ƒXƒe[ƒ^ƒX‚Ìƒrƒbƒgƒ}ƒXƒN
-                ƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚é‚ÆAƒAƒNƒeƒBƒu
+  Returns:      ãƒãƒ£ãƒ³ãƒãƒ«ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                ãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã‚‹ã¨ã€ã‚¢ã‚¯ãƒ†ã‚£ãƒ–
  *---------------------------------------------------------------------------*/
 u32 SND_GetChannelStatus(void)
 {
@@ -221,12 +221,12 @@ u32 SND_GetChannelStatus(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_GetCaptureStatus
 
-  Description:  ƒLƒƒƒvƒ`ƒƒ‚ÌƒXƒe[ƒ^ƒX‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—ã—ã¾ã™ã€‚
 
   Arguments:    None.
 
-  Returns:      ƒLƒƒƒvƒ`ƒƒƒXƒe[ƒ^ƒX‚Ìƒrƒbƒgƒ}ƒXƒN
-                ƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚é‚ÆAƒAƒNƒeƒBƒu
+  Returns:      ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+                ãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã‚‹ã¨ã€ã‚¢ã‚¯ãƒ†ã‚£ãƒ–
  *---------------------------------------------------------------------------*/
 u32 SND_GetCaptureStatus(void)
 {
@@ -243,11 +243,11 @@ u32 SND_GetCaptureStatus(void)
 /*---------------------------------------------------------------------------*
   Name:         SND_GetPlayerTickCounter
 
-  Description:  ƒvƒŒƒCƒ„[‚Ìƒ`ƒbƒNƒJƒEƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒãƒƒã‚¯ã‚«ã‚¦ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
 
-  Returns:      ƒ`ƒbƒNƒJƒEƒ“ƒ^‚Ì’l
+  Returns:      ãƒãƒƒã‚¯ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤
  *---------------------------------------------------------------------------*/
 u32 SND_GetPlayerTickCounter(int playerNo)
 {
@@ -265,12 +265,12 @@ u32 SND_GetPlayerTickCounter(int playerNo)
 /*---------------------------------------------------------------------------*
   Name:         SND_GetPlayerLocalVariable
 
-  Description:  ƒV[ƒPƒ“ƒXƒ[ƒJƒ‹•Ï”‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                varNo - •Ï””Ô†
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                varNo - å¤‰æ•°ç•ªå·
 
-  Returns:      •Ï”‚Ì’l
+  Returns:      å¤‰æ•°ã®å€¤
  *---------------------------------------------------------------------------*/
 s16 SND_GetPlayerLocalVariable(int playerNo, int varNo)
 {
@@ -289,11 +289,11 @@ s16 SND_GetPlayerLocalVariable(int playerNo, int varNo)
 /*---------------------------------------------------------------------------*
   Name:         SND_GetPlayerGlobalVariable
 
-  Description:  ƒV[ƒPƒ“ƒXƒOƒ[ƒoƒ‹•Ï”‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    varNo - •Ï””Ô†
+  Arguments:    varNo - å¤‰æ•°ç•ªå·
 
-  Returns:      •Ï”‚Ì’l
+  Returns:      å¤‰æ•°ã®å€¤
  *---------------------------------------------------------------------------*/
 s16 SND_GetPlayerGlobalVariable(int varNo)
 {
@@ -311,13 +311,13 @@ s16 SND_GetPlayerGlobalVariable(int varNo)
 /*---------------------------------------------------------------------------*
   Name:         SND_ReadChannelInfo
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹î•ñ‚ğ“Ç‚İ‚Æ‚è‚Ü‚·B
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã‚’èª­ã¿ã¨ã‚Šã¾ã™ã€‚
 
-  Arguments:    driverInfo - ƒhƒ‰ƒCƒoî•ñ\‘¢‘Ì
-                chNo - ƒ`ƒƒƒ“ƒlƒ‹”Ô†
-                chInfo - æ“¾‚µ‚½î•ñ‚ğŠi”[‚·‚éƒ`ƒƒƒ“ƒlƒ‹î•ñ\‘¢‘Ì
+  Arguments:    driverInfo - ãƒ‰ãƒ©ã‚¤ãƒæƒ…å ±æ§‹é€ ä½“
+                chNo - ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·
+                chInfo - å–å¾—ã—ãŸæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±æ§‹é€ ä½“
 
-  Returns:      “Ç‚İ‚Æ‚è‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      èª­ã¿ã¨ã‚Šã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL SND_ReadChannelInfo(const SNDDriverInfo * driverInfo, int chNo, SNDChannelInfo * chInfo)
 {
@@ -404,13 +404,13 @@ BOOL SND_ReadChannelInfo(const SNDDriverInfo * driverInfo, int chNo, SNDChannelI
 /*---------------------------------------------------------------------------*
   Name:         SND_ReadPlayerInfo
 
-  Description:  ƒvƒŒƒCƒ„[î•ñ‚ğ“Ç‚İ‚Æ‚è‚Ü‚·B
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã‚’èª­ã¿ã¨ã‚Šã¾ã™ã€‚
 
-  Arguments:    driverInfo - ƒhƒ‰ƒCƒoî•ñ\‘¢‘Ì
-                playerNo - ƒvƒŒƒCƒ„[”Ô†
-                playerInfo - æ“¾‚µ‚½î•ñ‚ğŠi”[‚·‚éƒvƒŒƒCƒ„[î•ñ\‘¢‘Ì
+  Arguments:    driverInfo - ãƒ‰ãƒ©ã‚¤ãƒæƒ…å ±æ§‹é€ ä½“
+                playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                playerInfo - å–å¾—ã—ãŸæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±æ§‹é€ ä½“
 
-  Returns:      “Ç‚İ‚Æ‚è‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      èª­ã¿ã¨ã‚Šã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL SND_ReadPlayerInfo(const SNDDriverInfo * driverInfo, int playerNo, SNDPlayerInfo * playerInfo)
 {
@@ -446,14 +446,14 @@ BOOL SND_ReadPlayerInfo(const SNDDriverInfo * driverInfo, int playerNo, SNDPlaye
 /*---------------------------------------------------------------------------*
   Name:         SND_ReadTrackInfo
 
-  Description:  ƒgƒ‰ƒbƒNî•ñ‚ğ“Ç‚İ‚Æ‚è‚Ü‚·B
+  Description:  ãƒˆãƒ©ãƒƒã‚¯æƒ…å ±ã‚’èª­ã¿ã¨ã‚Šã¾ã™ã€‚
 
-  Arguments:    driverInfo - ƒhƒ‰ƒCƒoî•ñ\‘¢‘Ì
-                playerNo - ƒvƒŒƒCƒ„[”Ô†
-                trackNo - ƒgƒ‰ƒbƒN”Ô†
-                trackInfo - æ“¾‚µ‚½î•ñ‚ğŠi”[‚·‚éƒgƒ‰ƒbƒNî•ñ\‘¢‘Ì
+  Arguments:    driverInfo - ãƒ‰ãƒ©ã‚¤ãƒæƒ…å ±æ§‹é€ ä½“
+                playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                trackNo - ãƒˆãƒ©ãƒƒã‚¯ç•ªå·
+                trackInfo - å–å¾—ã—ãŸæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒˆãƒ©ãƒƒã‚¯æƒ…å ±æ§‹é€ ä½“
 
-  Returns:      “Ç‚İ‚Æ‚è‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      èª­ã¿ã¨ã‚Šã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL SND_ReadTrackInfo(const SNDDriverInfo * driverInfo, int playerNo, int trackNo,
                        SNDTrackInfo * trackInfo)

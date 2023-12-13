@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ug_local.h
- * @brief	’n‰º‹¤’Ê€–Ú‚Ìƒ[ƒJƒ‹éŒ¾
+ * @brief	åœ°ä¸‹å…±é€šé …ç›®ã®ãƒ­ãƒ¼ã‚«ãƒ«å®£è¨€
  * @author	k.ohno
  * @date	2006.3.9
  */
@@ -12,24 +12,24 @@
 #include "ug_list.h"
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
-typedef int (*pGetNumFunc)(void* work);   // —v‘f‚ÌŒÂ”‚ğ•Ô‚·ŠÖ”
-typedef int (*pGetTypeFunc)(int index, void* work);   // —v‘f‚Ì’†g‚ğ‡‚Éæ‚èo‚·ŠÖ”‚ğ•Ô‚·
-typedef int (*pGetCaratFunc)(int index, void* work);   // —v‘f‚Ì’†gƒpƒ‰ƒ[ƒ^‚ğ‡‚Éæ‚èo‚·ŠÖ”‚ğ•Ô‚·
-typedef	void (*pBmpCallBack)(BMPLIST_WORK * wk,u32 param,u8 mode);	//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+typedef int (*pGetNumFunc)(void* work);   // è¦ç´ ã®å€‹æ•°ã‚’è¿”ã™é–¢æ•°
+typedef int (*pGetTypeFunc)(int index, void* work);   // è¦ç´ ã®ä¸­èº«ã‚’é †ã«å–ã‚Šå‡ºã™é–¢æ•°ã‚’è¿”ã™
+typedef int (*pGetCaratFunc)(int index, void* work);   // è¦ç´ ã®ä¸­èº«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’é †ã«å–ã‚Šå‡ºã™é–¢æ•°ã‚’è¿”ã™
+typedef	void (*pBmpCallBack)(BMPLIST_WORK * wk,u32 param,u8 mode);	//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
 #define _SHOP_BUY_LIST_MAX (5)
 
 #define _FIELD_START_MENU_MAX ( 7 )
-#define	_FIELD_MENU_MAX		( 6 )					// €–ÚÅ‘å”
-#define	_FLDMENU_CLACT_MAX	( _FIELD_START_MENU_MAX + 1 )	// ƒZƒ‹ƒAƒNƒ^[Å‘å”i€–Ú{ƒJ[ƒ\ƒ‹j
+#define	_FIELD_MENU_MAX		( 6 )					// é …ç›®æœ€å¤§æ•°
+#define	_FLDMENU_CLACT_MAX	( _FIELD_START_MENU_MAX + 1 )	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°ï¼ˆé …ç›®ï¼‹ã‚«ãƒ¼ã‚½ãƒ«ï¼‰
 
-#define _MENURETURN_EXIT   BMPLIST_CANCEL //(0xf0)   // ‚Æ‚¶‚é‚ğ•\¦‚µ‚½ê‡‚Ì–ß‚è’l
+#define _MENURETURN_EXIT   BMPLIST_CANCEL //(0xf0)   // ã¨ã˜ã‚‹ã‚’è¡¨ç¤ºã—ãŸå ´åˆã®æˆ»ã‚Šå€¤
 
-#define _MENU_UG_PRI  (10000)   // ƒƒjƒ…[‚Ìƒ^ƒXƒNpriorty
+#define _MENU_UG_PRI  (10000)   // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¿ã‚¹ã‚¯priorty
 
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 
 typedef struct{
@@ -37,25 +37,25 @@ typedef struct{
   TCB_PTR pTCB;
   FLD_COMACT_WORK* fca;
   FIELDSYS_WORK* pFSys;
-  GF_BGL_BMPWIN  win;		// BMPƒEƒBƒ“ƒhƒEƒ[ƒN
-  GF_BGL_BMPWIN  winSub;		// BMPƒEƒBƒ“ƒhƒEƒ[ƒN
-  GF_BGL_BMPWIN  winSub2;		// BMPƒEƒBƒ“ƒhƒEƒ[ƒN
+  GF_BGL_BMPWIN  win;		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
+  GF_BGL_BMPWIN  winSub;		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
+  GF_BGL_BMPWIN  winSub2;		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
   BMPLIST_DATA*  menulist;
   BMPLIST_DATA*  subMenulist;
-  BMPLIST_WORK*  lw;		// BMPƒƒjƒ…[ƒ[ƒN
+  BMPLIST_WORK*  lw;		// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
   UG_BMPLIST_WORK* pUGlw;
-  BMPLIST_WORK*  subLw;		// BMPƒƒjƒ…[ƒ[ƒN
+  BMPLIST_WORK*  subLw;		// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
   BMPMENU_WORK* mw;
-  BMP_MENULIST_DATA * ld;	// BMPƒŠƒXƒgƒf[ƒ^
+  BMP_MENULIST_DATA * ld;	// BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
   BMPMENU_WORK*  pYesNoWork;
-  pBmpCallBack pLineCallBack;  // 1LINEƒR[ƒ‹ƒoƒbƒN
-  pBmpCallBack pIconCallBack;  // ICONƒR[ƒ‹ƒoƒbƒN
+  pBmpCallBack pLineCallBack;  // 1LINEã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+  pBmpCallBack pIconCallBack;  // ICONã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
   STRBUF* pStrBuf1;
   STRBUF* pStrBuf2;
   WORDSET* pWordSet;
-  FIELD_CLACT	fcat;		// ƒZƒ‹ƒAƒNƒ^[İ’èƒf[ƒ^
+  FIELD_CLACT	fcat;		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®šãƒ‡ãƒ¼ã‚¿
   CATS_ACT_PTR	cap[_FLDMENU_CLACT_MAX];
-  u32	clact_max;			// ƒZƒ‹ƒAƒNƒ^[“o˜^”
+  u32	clact_max;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²æ•°
   pBagEndFunc endfunc;
   pGetNumFunc getNumFunc;
   pGetTypeFunc getTypeFunc;
@@ -70,9 +70,9 @@ typedef struct{
   int cursor;
   int line;
   u32 list_id;
-  u16	pos;				// ƒƒjƒ…[ˆÊ’u
-  u32	ret;				// ƒƒjƒ…[–ß‚è
-  u16 connectIndex;  // ‚Â‚È‚®e‹@‚ÌINDEX
+  u16	pos;				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½ç½®
+  u32	ret;				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼æˆ»ã‚Š
+  u16 connectIndex;  // ã¤ãªãè¦ªæ©Ÿã®INDEX
   u8 waitMode;
   u8 endState;
   u8 work;
@@ -115,7 +115,7 @@ extern void _stoneMenuStart_Pc(_START_WORK* pStart);
 extern void _trapMenuStart_Pc(_START_WORK* pStart);
 extern void _treasureMenuStart_Pc(_START_WORK* pStart);
 
-/// MENUƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•\¦”‚ğŒ©‚Ä•â³
+/// MENUã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’è¡¨ç¤ºæ•°ã‚’è¦‹ã¦è£œæ­£
 extern void UgBagCursorLineLimit(_START_WORK* pStart, int line,int count);
 extern void _udCurDisp(_START_WORK* pPc, int line,  int maxLine , int windowNum);
 
@@ -128,7 +128,7 @@ enum _LOCAL_UG_MENU_RET {
 };
 
 
-// ƒL[‚ğ‹L‰¯‚µ‚Ä‚¨‚­d‘g‚İ
+// ã‚­ãƒ¼ã‚’è¨˜æ†¶ã—ã¦ãŠãä»•çµ„ã¿
 
 #define _KEY_RESERVE_BUFF  (20)
 
@@ -136,7 +136,7 @@ enum{
   _KEY_NAME_NONE,
   _KEY_NAME_PC,
   _KEY_NAME_BAG,
-  _KEY_NAME_SHOP_GOODS,      //ugdef.h UG_SHOP_TRAP‚Æ‚¨‚È‚¶
+  _KEY_NAME_SHOP_GOODS,      //ugdef.h UG_SHOP_TRAPã¨ãŠãªã˜
   _KEY_NAME_SHOP_TRAP,
   _KEY_NAME_SHOP_TREASURE,
 };
@@ -161,7 +161,7 @@ enum{
   _KEY_MENU_BUY_GOODS,
   _KEY_MENU_BUY_TRAP,
   _KEY_MENU_BUY_TREASURE,
-  _KEY_MENU_SHOP_MAIN,   // ‚¤‚é‚©‚¤
+  _KEY_MENU_SHOP_MAIN,   // ã†ã‚‹ã‹ã†
   _KEY_MENU_PC_SEND,
   _KEY_MENU_PC_RECV,
   _KEY_MENU_PC_RADAR,

@@ -1,6 +1,6 @@
 /**
  *	@file	nutmixer.c
- *	@brief	ñÿÇÃé¿Ç‹Ç∫Ç‹Ç∫óøóù
+ *	@brief	Êú®„ÅÆÂÆü„Åæ„Åú„Åæ„ÅúÊñôÁêÜ
  *	@author	Miyuki Iwasawa
  *	@date	06.04.06
  */
@@ -30,7 +30,7 @@
 #include "communication/communication.h"
 #include "communication/comm_state.h"
 
-//ÉvÉçÉgÉ^ÉCÉvêÈåæÅ@ÉçÅ[ÉJÉã
+//„Éó„É≠„Éà„Çø„Ç§„ÉóÂÆ£Ë®Ä„ÄÄ„É≠„Éº„Ç´„É´
 //================================================================
 
 //#define VCHATPAUSE_ON
@@ -42,8 +42,8 @@ static void VChatPauseOffTcb( TCB_PTR tcb, void* pwork );
 
 //------------------------------------------------------------------
 /**
- * @brief	ÉTÉuÉvÉçÉZÉXåƒÇ—èoÇµèàóù
- * @param	proc	ÉTÉuÉvÉçÉZÉXÉ|ÉCÉìÉ^Çï€éùÇ∑ÇÈÉèÅ[ÉNÇ÷ÇÃÉ|ÉCÉìÉ^
+ * @brief	„Çµ„Éñ„Éó„É≠„Çª„ÇπÂëº„Å≥Âá∫„ÅóÂá¶ÁêÜ
+ * @param	proc	„Çµ„Éñ„Éó„É≠„Çª„Çπ„Éù„Ç§„É≥„Çø„Çí‰øùÊåÅ„Åô„Çã„ÉØ„Éº„ÇØ„Å∏„ÅÆ„Éù„Ç§„É≥„Çø
  */
 //------------------------------------------------------------------
 BOOL NutMixerProcCall(PROC ** proc)
@@ -59,7 +59,7 @@ BOOL NutMixerProcCall(PROC ** proc)
 }
 
 /**
- *	@brief	ÉiÉbÉcÉ~ÉLÉTÅ[Å@ÉvÉçÉZÉXèâä˙âª
+ *	@brief	„Éä„ÉÉ„ÉÑ„Éü„Ç≠„Çµ„Éº„ÄÄ„Éó„É≠„Çª„ÇπÂàùÊúüÂåñ
  */
 PROC_RESULT	NutMixerProc_Init(PROC* proc,int *seq)
 {
@@ -68,30 +68,30 @@ PROC_RESULT	NutMixerProc_Init(PROC* proc,int *seq)
 	
 	HeapStatePush();
 
-	//ÉqÅ[ÉvçÏê¨
+	//„Éí„Éº„Éó‰ΩúÊàê
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_NUT_MIXER,0x20000);
 	wk = PROC_AllocWork(proc,sizeof(NUTMIXER_WORK),HEAPID_NUT_MIXER);
 	MI_CpuClear8(wk,sizeof(NUTMIXER_WORK));
 
 	wk->heapID = HEAPID_NUT_MIXER;
 
-	//à¯åpÇ¨ÉpÉâÉÅÅ[É^
+	//ÂºïÁ∂ô„Åé„Éë„É©„É°„Éº„Çø
 	wk->param = pp;
 
 	if( (pp->wifi_pofin) && (pp->wifi_vchat) ){
-		// É{ÉCÉXÉ`ÉÉÉbÉgäJén
+		// „Éú„Ç§„Çπ„ÉÅ„É£„ÉÉ„ÉàÈñãÂßã
 		mydwc_startvchat( HEAPID_NUT_MIXER );
 		OS_Printf( "vct on\n" );
 	}
 
-	// wifiÇ©Ç«Ç§Ç©Çê›íË
+	// wifi„Åã„Å©„ÅÜ„Åã„ÇíË®≠ÂÆö
 	wk->wifi = pp->wifi_pofin;
 	wk->wifi_vchat = pp->wifi_vchat;
 
-	// ÉoÉbÉOÉJÅ[É\Éãà íuãLâØóÃàÊèâä˙âª
+	// „Éê„ÉÉ„Ç∞„Ç´„Éº„ÇΩ„É´‰ΩçÁΩÆË®òÊÜ∂È†òÂüüÂàùÊúüÂåñ
 	wk->bag_cursor = MyItem_BagCursorAlloc( wk->heapID );
 
-	//ìÆçÏÉÇÅ[ÉhéÊìæ
+	//Âãï‰Ωú„É¢„Éº„ÉâÂèñÂæó
 	if(pp->sys_mode == 1){
 		wk->comm_f = TRUE;
 	}
@@ -100,7 +100,7 @@ PROC_RESULT	NutMixerProc_Init(PROC* proc,int *seq)
 }
 
 /**
- *	@brief	ÉiÉbÉcÉ~ÉLÉTÅ[Å@ÉvÉçÉZÉXÉÅÉCÉì
+ *	@brief	„Éä„ÉÉ„ÉÑ„Éü„Ç≠„Çµ„Éº„ÄÄ„Éó„É≠„Çª„Çπ„É°„Ç§„É≥
  */
 PROC_RESULT	NutMixerProc_Main(PROC* proc,int *seq)
 {
@@ -140,7 +140,7 @@ PROC_RESULT	NutMixerProc_Main(PROC* proc,int *seq)
 }
 
 /**
- *	@brief	ÉiÉbÉcÉ~ÉLÉTÅ[Å@ÉvÉçÉZÉXèIóπ
+ *	@brief	„Éä„ÉÉ„ÉÑ„Éü„Ç≠„Çµ„Éº„ÄÄ„Éó„É≠„Çª„ÇπÁµÇ‰∫Ü
  */
 PROC_RESULT NutMixerProc_End(PROC* proc,int *seq)
 {
@@ -152,17 +152,17 @@ PROC_RESULT NutMixerProc_End(PROC* proc,int *seq)
 	switch( *seq ){
 	case 0:
 		
-		//ÉèÅ[ÉNÉGÉäÉAâï˙
+		//„ÉØ„Éº„ÇØ„Ç®„É™„Ç¢Ëß£Êîæ
 		heapID = wk->heapID;
 
-		// ÉoÉbÉOÉJÅ[É\Éãà íuãLâØóÃàÊîjä¸
+		// „Éê„ÉÉ„Ç∞„Ç´„Éº„ÇΩ„É´‰ΩçÁΩÆË®òÊÜ∂È†òÂüüÁ†¥Ê£Ñ
 		sys_FreeMemoryEz( wk->bag_cursor );
 
 		MI_CpuClear8(wk,sizeof(NUTMIXER_WORK));
 		PROC_FreeWork(proc);
 
 		if( (pp->wifi_pofin) && (pp->wifi_vchat) ){
-			// É{ÉCÉXÉ`ÉÉÉbÉgèIóπ
+			// „Éú„Ç§„Çπ„ÉÅ„É£„ÉÉ„ÉàÁµÇ‰∫Ü
 			mydwc_stopvchat();
 		}
 		
@@ -171,12 +171,12 @@ PROC_RESULT NutMixerProc_End(PROC* proc,int *seq)
 
 		sys_DeleteHeap(heapID);
 
-		// Wi-FiÇ≈Ç»ÇØÇÍÇŒÇ±ÇÃÇ‹Ç‹î≤ÇØÇÈ
+		// Wi-Fi„Åß„Å™„Åë„Çå„Å∞„Åì„ÅÆ„Åæ„ÅæÊäú„Åë„Çã
 		if( pp->wifi_pofin == FALSE ){
 			return PROC_RES_FINISH;
 		}
 
-		// à»â∫Wi-FiÇÃÇ∆Ç´ÇÃÇ›
+		// ‰ª•‰∏ãWi-Fi„ÅÆ„Å®„Åç„ÅÆ„Åø
 		CommStateSetErrorCheck(FALSE,TRUE);
 		CommTimingSyncStart(SYNCHROID_PROC_END);
 
@@ -185,7 +185,7 @@ PROC_RESULT NutMixerProc_End(PROC* proc,int *seq)
 
 	case 1:
 		if( (CommIsTimingSync(SYNCHROID_PROC_END)) ||
-			(CommGetConnectNum() < CommInfoGetEntryNum()) ){	// êlêîÇ™è≠Ç»Ç≠Ç»Ç¡ÇΩÇÁÇªÇÃÇ‹Ç‹î≤ÇØÇÈ
+			(CommGetConnectNum() < CommInfoGetEntryNum()) ){	// ‰∫∫Êï∞„ÅåÂ∞ë„Å™„Åè„Å™„Å£„Åü„Çâ„Åù„ÅÆ„Åæ„ÅæÊäú„Åë„Çã
 			return PROC_RES_FINISH;
 		}
 		break;
@@ -198,15 +198,15 @@ PROC_RESULT NutMixerProc_End(PROC* proc,int *seq)
 }
 
 //====================================================================
-//ÉçÅ[ÉJÉãÉTÉuä÷êî
+//„É≠„Éº„Ç´„É´„Çµ„ÉñÈñ¢Êï∞
 //====================================================================
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PauseäJén
+ *	@brief	PauseÈñãÂßã
  *
- *	@param	p_wk	ÉèÅ[ÉN
+ *	@param	p_wk	„ÉØ„Éº„ÇØ
  */
 //-----------------------------------------------------------------------------
 static void VChatPauseStart( NUTMIXER_WORK* p_wk )
@@ -220,7 +220,7 @@ static void VChatPauseStart( NUTMIXER_WORK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	É{ÉCÉXÉ`ÉÉÉbÉgPauseOFFTCB
+ *	@brief	„Éú„Ç§„Çπ„ÉÅ„É£„ÉÉ„ÉàPauseOFFTCB
  */
 //-----------------------------------------------------------------------------
 static void VChatPauseOffTcb( TCB_PTR tcb, void* pwork )

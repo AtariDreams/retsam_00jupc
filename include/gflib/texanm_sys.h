@@ -2,7 +2,7 @@
 /**
  *
  *	@file		texanm_sys.h
- *	@brief		ITPƒAƒjƒƒf[ƒ^‚Ì•K—v‚ÈŠ‚Ì‚Ý‚ð”²‚«o‚µƒeƒNƒXƒ`ƒƒ‚ðƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ðŽæ“¾‚·‚éƒVƒXƒeƒ€
+ *	@brief		ITPã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®å¿…è¦ãªæ‰€ã®ã¿ã‚’æŠœãå‡ºã—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi	
  *	@data		2005.10.31
  *
@@ -23,50 +23,50 @@
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹“®ìƒVƒXƒeƒ€‚Å‚·B
- *	‚Ü‚½itp_conv‚ÅƒRƒ“ƒo[ƒg‚³‚ê‚½ƒf[ƒ^‚ðƒAƒ“ƒpƒbƒN‚µ‚Ä
- *	Žg—p‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+ *	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«å‹•ä½œã‚·ã‚¹ãƒ†ãƒ ã§ã™ã€‚
+ *	ã¾ãŸitp_convã§ã‚³ãƒ³ãƒãƒ¼ãƒˆã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯ã—ã¦
+ *	ä½¿ç”¨ã§ãã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚
  *
- *	TEXANM_DATATBL‚Ì’†‚ÉˆÈ‰º‚æ‚¤‚Èƒf[ƒ^‚ðÝ’è‚·‚é‚±‚Æ‚É‚æ‚è
- *	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹‚ðì¬‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
- *		¡ƒtƒŒ[ƒ€ƒf[ƒ^ƒe[ƒuƒ‹
- *@		const static u16 FrameTbl[ ANMTBL_NUM ] = {
+ *	TEXANM_DATATBLã®ä¸­ã«ä»¥ä¸‹ã‚ˆã†ãªãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã“ã¨ã«ã‚ˆã‚Š
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
+ *		â– ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *ã€€		const static u16 FrameTbl[ ANMTBL_NUM ] = {
  *				0, 4, 8, 12, 16, 20, 24, 28, 32, 36,
  *				40, 44, 48, 52, 56, 60
  *			};
- *		¡ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒXƒf[ƒ^ƒe[ƒuƒ‹
- *@		const static u8 TexidxTbl[ ANMTBL_NUM ] = {
+ *		â– ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *ã€€		const static u8 TexidxTbl[ ANMTBL_NUM ] = {
  *				0, 8, 9, 10, 11, 12, 13, 14, 15, 1,
  *				2, 3, 4, 5, 6, 7
  *			};
- *		¡ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒXƒf[ƒ^ƒe[ƒuƒ‹
- *@		const static u8 PlttIdxTbl[ ANMTBL_NUM ] = {
+ *		â– ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *ã€€		const static u8 PlttIdxTbl[ ANMTBL_NUM ] = {
  *				0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
  *				0, 0, 0, 0, 0, 0
  *			};
  *
- *		¡ƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
+ *		â– ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *			const static TEXANM_DATATBL TexAnmTbl = {
- *				FrameTbl,		// ƒtƒŒ[ƒ€ƒf[ƒ^ƒe[ƒuƒ‹
- *				TexidxTbl,		// ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹
- *				PlttidxTbl,		// ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹
- *				ANMTBL_NUM		// ƒe[ƒuƒ‹—v‘f”		‚Rƒe[ƒuƒ‹‚Ì—v‘f”‚Íˆê‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ *				FrameTbl,		// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *				TexidxTbl,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
+ *				PlttidxTbl,		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
+ *				ANMTBL_NUM		// ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°		ï¼“ãƒ†ãƒ¼ãƒ–ãƒ«ã®è¦ç´ æ•°ã¯ä¸€ç·’ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  *			};
  *
- *		–Šeƒf[ƒ^ƒe[ƒuƒ‹‚Ìƒf[ƒ^‚Í—v‘f”‚ÅƒŠƒ“ƒN‚µ‚Ü‚·B
- *		–ƒtƒŒ[ƒ€ƒf[ƒ^ƒe[ƒuƒ‹‚Ì’l‚ÍA‚»‚Ì—v‘f”‚Ìƒf[ƒ^‚ðŽg—p‚·‚éŠúŠÔ‚ÌŠJŽnƒtƒŒ[ƒ€”‚Å‚·B
- *		@I—¹ƒtƒŒ[ƒ€‚Í(ŽŸ‚Ì—v‘f”-1)‚Å‚·B
- *		–ã‚Ì—á‚Å‚·‚ÆAƒtƒŒ[ƒ€‚ª0`3‚ÌŽž‚Í	ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX0 ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX0
- *						ƒtƒŒ[ƒ€‚ª8`11‚ÌŽž‚Í	ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX9 ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX0
- *		@‚Æ‚¢‚Á‚½Š´‚¶‚Å‚·B
+ *		ï¼Šå„ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã¯è¦ç´ æ•°ã§ãƒªãƒ³ã‚¯ã—ã¾ã™ã€‚
+ *		ï¼Šãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã®å€¤ã¯ã€ãã®è¦ç´ æ•°ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹æœŸé–“ã®é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã§ã™ã€‚
+ *		ã€€çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ ã¯(æ¬¡ã®è¦ç´ æ•°-1)ã§ã™ã€‚
+ *		ï¼Šä¸Šã®ä¾‹ã§ã™ã¨ã€ãƒ•ãƒ¬ãƒ¼ãƒ ãŒ0ã€œ3ã®æ™‚ã¯	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹0 ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹0
+ *						ãƒ•ãƒ¬ãƒ¼ãƒ ãŒ8ã€œ11ã®æ™‚ã¯	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹9 ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹0
+ *		ã€€ã¨ã„ã£ãŸæ„Ÿã˜ã§ã™ã€‚
  *
- *		¡‚ÍŽè“®‚ÅƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹‚ðì¬‚µ‚Ü‚µ‚½‚ªA
- *		itp_conv‚ÅƒRƒ“ƒo[ƒg‚µ‚½ƒf[ƒ^‚ðŽg—p‚·‚é‚Æitpƒtƒ@ƒCƒ‹‚©‚çì¬‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B
- *			E‘Oˆ—itp_conv‚Åitpƒtƒ@ƒCƒ‹‚ðƒRƒ“ƒo[ƒg->ƒRƒ“ƒo[ƒgŒã‚Ìƒtƒ@ƒCƒ‹‚ªo—ˆ‚Ü‚·B
+ *		ä»Šã¯æ‰‹å‹•ã§ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã—ã¾ã—ãŸãŒã€
+ *		itp_convã§ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹ã¨itpãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ä½œæˆã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã™ã€‚
+ *			ãƒ»å‰å‡¦ç†itp_convã§itpãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆ->ã‚³ãƒ³ãƒãƒ¼ãƒˆå¾Œã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒå‡ºæ¥ã¾ã™ã€‚
  *			
- *			‚PFƒRƒ“ƒo[ƒgŒã‚Ìƒtƒ@ƒCƒ‹‚ðRAM‚É“Ç‚Ýž‚ñ‚Å‚«‚Ü‚·B
- *			‚QFTEXANM_UnPackLoadFileŠÖ”‚ÅƒAƒ“ƒpƒbƒN(TEXANM_DATATBLŒ`Ž®‚Ìƒtƒ@ƒCƒ‹‚É‚·‚é)
- *		‚±‚ê‚Åitpƒtƒ@ƒCƒ‹“à‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ðŽg—p‚·‚éŽ–‚ªo—ˆ‚Ü‚·B
+ *			ï¼‘ï¼šã‚³ãƒ³ãƒãƒ¼ãƒˆå¾Œã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’RAMã«èª­ã¿è¾¼ã‚“ã§ãã¾ã™ã€‚
+ *			ï¼’ï¼šTEXANM_UnPackLoadFileé–¢æ•°ã§ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯(TEXANM_DATATBLå½¢å¼ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ã™ã‚‹)
+ *		ã“ã‚Œã§itpãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹äº‹ãŒå‡ºæ¥ã¾ã™ã€‚
  *			
  *			
  */
@@ -75,61 +75,61 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
+//	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 //
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ÌŒˆ‚Ü‚è
-//		Šeƒe[ƒuƒ‹‚Ì—v‘f”‚Ítbl_num‚Ì”‚Å“ˆê
-//		‚µ‚Ä‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æ±ºã¾ã‚Š
+//		å„ãƒ†ãƒ¼ãƒ–ãƒ«ã®è¦ç´ æ•°ã¯tbl_numã®æ•°ã§çµ±ä¸€
+//		ã—ã¦ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 //	
 //=====================================
 typedef struct {
-	const u16*	cp_frame;		// ƒtƒŒ[ƒ€@ƒe[ƒuƒ‹
-	const u8*	cp_tex_idx;		// ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX@ƒe[ƒuƒ‹
-	const u8*	cp_pltt_idx;	// ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX@ƒe[ƒuƒ‹
-	u32			tbl_num;		// ƒe[ƒuƒ‹”
+	const u16*	cp_frame;		// ãƒ•ãƒ¬ãƒ¼ãƒ ã€€ãƒ†ãƒ¼ãƒ–ãƒ«
+	const u8*	cp_tex_idx;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ãƒ†ãƒ¼ãƒ–ãƒ«
+	const u8*	cp_pltt_idx;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ãƒ†ãƒ¼ãƒ–ãƒ«
+	u32			tbl_num;		// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 } TEXANM_DATATBL;
 
 //-------------------------------------
 //	
-//	‚ ‚éŽž“_‚ÌƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX‚ÆƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX
+//	ã‚ã‚‹æ™‚ç‚¹ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 //	
 //=====================================
 typedef struct {
-	u8	tex_idx;		// ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX	
-	u8	pltt_idx;		// ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX
+	u8	tex_idx;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	
+	u8	pltt_idx;		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 } TEXANM_DATA;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	frame”‚É‘Î‰ž‚·‚éƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX@ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX‚ÌŽæ“¾
+ *	@brief	frameæ•°ã«å¯¾å¿œã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
  *
- *	@param	cp_texanm	ƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
- *	@param	c_frame		Œ»ÝƒtƒŒ[ƒ€”
+ *	@param	cp_texanm	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	c_frame		ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
- *	@return	ƒtƒŒ[ƒ€”‚É‘Î‰ž‚µ‚½ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX@ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX
+ *	@return	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã«å¯¾å¿œã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	
 		typedef struct {
-			u8	tex_idx;		// ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX	
-			u8	pltt_idx;		// ƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX
+			u8	tex_idx;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	
+			u8	pltt_idx;		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 		} TEXANM_DATA;
  *
  *
@@ -140,14 +140,14 @@ GLOBAL TEXANM_DATA TEXANM_GetFrameData( const TEXANM_DATATBL* cp_texanm, const u
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ROM‚©‚ç“Ç‚Ýž‚ñ‚Å‚«‚½ƒf[ƒ^‚ðƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹Œ`Ž®‚ÉƒAƒ“ƒpƒbƒN‚·‚é
+ *	@brief	ROMã‹ã‚‰èª­ã¿è¾¼ã‚“ã§ããŸãƒ‡ãƒ¼ã‚¿ã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«å½¢å¼ã«ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_buff			“Ç‚Ýž‚ñ‚Å‚«‚½ƒf[ƒ^
- *	@param	op_texanm		ƒAƒ“ƒpƒbƒNæƒeƒNƒXƒ`ƒƒƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒe[ƒuƒ‹
+ *	@param	cp_buff			èª­ã¿è¾¼ã‚“ã§ããŸãƒ‡ãƒ¼ã‚¿
+ *	@param	op_texanm		ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯å…ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *	@return	none
  *
- * œop_texanm‚ðŽg—p‚µ‚Ä‚¢‚éŠúŠÔ‚Å‚Ícp_buff‚Ìƒƒ‚ƒŠ‚ÍŠm•Û‚µ‚½‚Ü‚Ü‚É‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢
+ * â—op_texanmã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹æœŸé–“ã§ã¯cp_buffã®ãƒ¡ãƒ¢ãƒªã¯ç¢ºä¿ã—ãŸã¾ã¾ã«ã—ã¦ãŠã„ã¦ãã ã•ã„
  *
  */
 //-----------------------------------------------------------------------------

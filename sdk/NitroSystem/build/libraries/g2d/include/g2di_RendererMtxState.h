@@ -25,63 +25,63 @@
 //
 // Matrix Cache state Manager
 //
-// �s��X�^�b�N�̏�Ԃ��Ǘ����A
-// �s��X�^�b�N�̃}�g���N�X�L���b�V���ւ̃��[�h����������������W���[���B
+// 行列スタックの状態を管理し、
+// 行列スタックのマトリクスキャッシュへのロードを処理する内部モジュール。
 //
-// �s��X�^�b�N�ւ̑�������b�v���āA�s��X�^�b�N�̏�ԊǗ����s���܂��B
+// 行列スタックへの操作をラップして、行列スタックの状態管理を行います。
 // 
-// �����_�����W���[���ɂ���Ďg�p����܂��B
-// �����_�����W���[���͒��ڍs��L���b�V���𑀍삹���ɁA
-// ���ׂĂ̑����{���W���[���̃��\�b�h���o�R���čs���܂��B
+// レンダラモジュールによって使用されます。
+// レンダラモジュールは直接行列キャッシュを操作せずに、
+// すべての操作を本モジュールのメソッドを経由して行います。
 //
-// �s��X�^�b�N�ւ̑����񋓂��܂��B
-//      A�F�J�����g�s���SR�l���ύX���ꂽ
-//      B�F�J�����g�s���SR�l���s��L���b�V���ɓǂݍ��܂ꂽ
-//      C�F�s��X�^�b�N��Push���ꂽ�B
+// 行列スタックへの操作を列挙します。
+//      A：カレント行列のSR値が変更された
+//      B：カレント行列のSR値が行列キャッシュに読み込まれた
+//      C：行列スタックがPushされた。
 //
-// �Ή�����֐��Ăяo���́A
+// 対応する関数呼び出しは、
 //
-//      A�FNNSi_G2dMCMSetCurrentMtxSRChanged()
-//      B�FNNSi_G2dMCMStoreCurrentMtxToMtxCache( )
-//      C�FNNSi_G2dMCMSetMtxStackPushed( u16 newPos, u16 lastPos )
+//      A：NNSi_G2dMCMSetCurrentMtxSRChanged()
+//      B：NNSi_G2dMCMStoreCurrentMtxToMtxCache( )
+//      C：NNSi_G2dMCMSetMtxStackPushed( u16 newPos, u16 lastPos )
 //
-// �ƂȂ�܂��B
+// となります。
 //
-// �ΏƓI�Ƀ����_���R�A���W���[���͖{���W���[������؎Q�Ƃ��܂���B
-// �����_�����R�A�W���[���͍s��L���b�V�����W���[���݂̂𗘗p���܂��B
+// 対照的にレンダラコアモジュールは本モジュールを一切参照しません。
+// レンダラモコアジュールは行列キャッシュモジュールのみを利用します。
 //
-// �֐����� NNSi_G2dMCM.....
+// 関数命名 NNSi_G2dMCM.....
 
 
 
 
 //------------------------------------------------------------------------------
-// ���W���[�������藘�p �^��`
+// モジュール内限定利用 型定義
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// �s��X�^�b�N���̍s��̏�Ԃ�����킷�B
+// 行列スタック内の行列の状態をあらわす。
 typedef enum MCMRndMtxStateType
 {
-    MCM_MTX_NOT_SR = 0,                        // SR �ϊ�����Ă��Ȃ�
-    MCM_MTX_SR_NOT_CACHELOADED,                // SR �ϊ�����Ă���A�}�g���N�X�L���b�V���ւ̃��[�h�����������Ă��Ȃ�
-    MCM_MTX_SR_NOT_CACHELOADED_STACKCHANGED,   // SR �ϊ�����Ă���A�}�g���N�X�L���b�V���ւ̃��[�h�����������Ă��Ȃ�
-                                               // �X�^�b�N�����삳��Ă���
-    MCM_MTX_SR_CACHELOADED                     // SR �ϊ�����Ă���A�}�g���N�X�L���b�V���ւ̃��[�h���������Ă���
+    MCM_MTX_NOT_SR = 0,                        // SR 変換されていない
+    MCM_MTX_SR_NOT_CACHELOADED,                // SR 変換されており、マトリクスキャッシュへのロードがが完了していない
+    MCM_MTX_SR_NOT_CACHELOADED_STACKCHANGED,   // SR 変換されており、マトリクスキャッシュへのロードがが完了していない
+                                               // スタックが操作されている
+    MCM_MTX_SR_CACHELOADED                     // SR 変換されており、マトリクスキャッシュへのロードが完了している
 
 }MCMRndMtxStateType;
 
 //------------------------------------------------------------------------------
-// �s��X�^�b�N�̏�Ԃ�����킵�܂��B
-// �}�g���N�X�X�^�b�N���̍s��Ɠ����T�C�Y�̃X�^�b�N�\�����Ƃ�܂��B
+// 行列スタックの状態をあらわします。
+// マトリクススタック中の行列と同じサイズのスタック構造をとります。
 //
-// �{�f�[�^�𗘗p���āA�}�g���N�X�L���b�V���ւ̃��[�h�����𐧌䂵�Ă��܂��B
+// 本データを利用して、マトリクスキャッシュへのロード処理を制御しています。
 //
-// �s�񂻂̂��̈ȊO�̏����i�[���Ă��܂��B
+// 行列そのもの以外の情報を格納しています。
 typedef struct MCMMtxState
 {
-    u16                      mtxCacheIdx; // �s��L���b�V���ԍ�
-    u16                      groupID;     // ����̃}�g���N�X�L���b�V�����Q�Ƃ���O���[�vID
+    u16                      mtxCacheIdx; // 行列キャッシュ番号
+    u16                      groupID;     // 同一のマトリクスキャッシュを参照するグループID
     u16                      stateType;   // MCMRndMtxStateType
     u16                      pad16;
     
@@ -112,29 +112,29 @@ NNS_G2D_INLINE void SetMtxStateGroupID_( MCMMtxState* pMtxState, u16 groupID )
 
 
 //------------------------------------------------------------------------------
-// �s��X�^�b�N�̏�Ԃ�����킷�f�[�^
-// �s��X�^�b�N�Ɠ����T�C�Y�̃X�^�b�N�ł��B
-// �J�����g�ʒu���A�s��X�^�b�N�Ɠ������܂��B
+// 行列スタックの状態をあらわすデータ
+// 行列スタックと同じサイズのスタックです。
+// カレント位置が、行列スタックと同調します。
 static MCMMtxState           mtxStateStack_[G2Di_NUM_MTX_CACHE];
 static u16                   groupID_ = 0;
 
 
 
 //------------------------------------------------------------------------------
-// ����������J�̊֐�
+// 内部限定公開の関数
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-// �J�����g�s��̏�ԍ\���̂��擾���܂�
+// カレント行列の状態構造体を取得します
 NNS_G2D_INLINE MCMMtxState* GetCuurentMtxState_()
 {
     return &mtxStateStack_[NNSi_G2dGetMtxStackPos()];
 }
 
 //------------------------------------------------------------------------------
-// �X�^�b�N�̐e�K�w�����ǂ�
-// �e�K�w�� groupID ������Ȃ�΁A
-// ������L���V�����[�h�ς݂ɃZ�b�g����
-// (groupID ������Ȃ�΁A����̍s��L���b�V�����Q�Ƃ��܂��B)
+// スタックの親階層をたどり
+// 親階層の groupID が同一ならば、
+// それをキャシュロード済みにセットする
+// (groupID が同一ならば、同一の行列キャッシュを参照します。)
 NNS_G2D_INLINE void SetParentMtxStateLoaded_( u16 mtxCacheIdx, u16 groupID )
 {
     int i;
@@ -147,7 +147,7 @@ NNS_G2D_INLINE void SetParentMtxStateLoaded_( u16 mtxCacheIdx, u16 groupID )
         {
             break;
         }else{
-            // �L���V�����[�h�ς� �� �Z�b�g
+            // キャシュロード済み に セット
             mtxStateStack_[i].stateType   = MCM_MTX_SR_CACHELOADED;
             SetMtxStateMtxCacheIdx_( &mtxStateStack_[i], mtxCacheIdx );
         }
@@ -159,21 +159,21 @@ NNS_G2D_INLINE void SetParentMtxStateLoaded_( u16 mtxCacheIdx, u16 groupID )
 }
 
 //------------------------------------------------------------------------------
-// �V�����A�O���[�vID���擾���܂�
+// 新しい、グループIDを取得します
 NNS_G2D_INLINE u16 GetNewGroupID_()
 {
     return groupID_++;
 }
 
 //------------------------------------------------------------------------------
-// �V�����A�O���[�vID���擾���܂�
+// 新しい、グループIDを取得します
 NNS_G2D_INLINE void InitGroupID_()
 {
     groupID_ = 0;
 }
 
 //------------------------------------------------------------------------------
-// �O�����J�֐�
+// 外部公開関数
 //------------------------------------------------------------------------------
 NNS_G2D_INLINE void NNSi_G2dMCMInitMtxCache()
 {
@@ -183,13 +183,13 @@ NNS_G2D_INLINE void NNSi_G2dMCMInitMtxCache()
     InitGroupID_();
     
     //
-    // �}�g���N�X�X�e�[�g�̏�����
+    // マトリクスステートの初期化
     //
     MI_CpuClearFast( mtxStateStack_, sizeof( mtxStateStack_ ) );
 }
 
 //------------------------------------------------------------------------------
-// �J�����g NNSG2dRndCore2DMtxCache �ւ̃|�C���^���擾���܂�
+// カレント NNSG2dRndCore2DMtxCache へのポインタを取得します
 //
 NNS_G2D_INLINE NNSG2dRndCore2DMtxCache*   NNSi_G2dMCMGetCurrentMtxCache()
 {
@@ -197,71 +197,71 @@ NNS_G2D_INLINE NNSG2dRndCore2DMtxCache*   NNSi_G2dMCMGetCurrentMtxCache()
 }
 
 //------------------------------------------------------------------------------
-// MtxChache �� ���e���������܂�
+// MtxChache の 内容を消去します
 //
-// 2D Graphics Engine �����^�����O��p�̏����ł��B
+// 2D Graphics Engine レンタリング専用の処理です。
 //
 NNS_G2D_INLINE void NNSi_G2dMCMCleanupMtxCache()
 {
     //
-    // �}�g���N�X�X�^�b�N�̃��Z�b�g
+    // マトリクススタックのリセット
     //
     NNSi_G2dInitRndMtxStack();
     //
-    // �}�g���N�X�L���V���̃��Z�b�g
+    // マトリクスキャシュのリセット
     //
     NNSi_RMCResetMtxCache();
 
     InitGroupID_();
     
     //
-    // �}�g���N�X�X�e�[�g�̏�����
+    // マトリクスステートの初期化
     //
     MI_CpuClearFast( mtxStateStack_, sizeof( mtxStateStack_ ) );
 }
 
 //------------------------------------------------------------------------------
-// ���݂̍s�񂪃L���b�V���ɓǂݍ��ޕK�v�������Ԃ��擾���܂��B
+// 現在の行列がキャッシュに読み込む必要がある状態か取得します。
 NNS_G2D_INLINE BOOL NNSi_G2dMCMShouldCurrentMtxBeLoadedToMtxCache( )
 {
     MCMMtxState*     pCurrMtxState = GetCuurentMtxState_();
     //
-    // SR �ϊ�����Ă���
-    // �L���b�V���ɓǂݍ��܂�Ă��Ȃ��Ȃ��...
+    // SR 変換されており
+    // キャッシュに読み込まれていないならば...
     //       
     return (BOOL)( pCurrMtxState->stateType == MCM_MTX_SR_NOT_CACHELOADED ||
                    pCurrMtxState->stateType == MCM_MTX_SR_NOT_CACHELOADED_STACKCHANGED );
 }
 
 //------------------------------------------------------------------------------
-// �J�����g�s��̏�Ԃ�SR�ύX���s��ꂽ��Ԃɐݒ肵�܂��B
+// カレント行列の状態をSR変更が行われた状態に設定します。
 NNS_G2D_INLINE void NNSi_G2dMCMSetCurrentMtxSRChanged()
 {
     MCMMtxState*     pCurrMtxState = GetCuurentMtxState_();
     
     //
-    // �J�����g�s��̏�Ԃɂ���āA�������ω����܂��B
+    // カレント行列の状態によって、処理が変化します。
     //
     switch( pCurrMtxState->stateType )
     {
     case MCM_MTX_SR_NOT_CACHELOADED:
         //
-        // ���[�h�O�̏�ԂȂ�΁A�J�����g�s���Ԃ̍X�V�������͕K�v���Ȃ��B
-        // (�܂�A�i�`�撼�O�̃^�C�~���O�Ŏ��s�����j���[�h�����O�ł���΁A
-        // ���xSR�ϊ����s���Ă��}�g���N�X�L���b�V���͏���Ȃ��B)
+        // ロード前の状態ならば、カレント行列状態の更新処理等は必要がない。
+        // (つまり、（描画直前のタイミングで実行される）ロード処理前であれば、
+        // 何度SR変換を行ってもマトリクスキャッシュは消費しない。)
         //
         return;
     case MCM_MTX_NOT_SR:
     case MCM_MTX_SR_NOT_CACHELOADED_STACKCHANGED:
     case MCM_MTX_SR_CACHELOADED:
-        // �s��X�^�b�N�F�J�����g�s��̏�Ԃ��X�V����
+        // 行列スタック：カレント行列の状態を更新する
         {
-            // �V���� �s��L���b�V�� ���g�p����K�v������
-            // �ʃO���[�v�Ƃ��ăO���[�vID��ݒ肵�܂��B
+            // 新たな 行列キャッシュ を使用する必要がある
+            // 別グループとしてグループIDを設定します。
             SetMtxStateGroupID_( pCurrMtxState, GetNewGroupID_() );
             
             //
-            // SR���ύX����Ă��邪�A�L���b�V���ւ̃��[�h������ł��Ȃ����
+            // SRが変更されているが、キャッシュへのロードがすんでいない状態
             //
             pCurrMtxState->stateType = MCM_MTX_SR_NOT_CACHELOADED;
             
@@ -275,17 +275,17 @@ NNS_G2D_INLINE void NNSi_G2dMCMSetCurrentMtxSRChanged()
 
 
 //------------------------------------------------------------------------------
-// �J�����g�s��Push����ɑΉ����鏈�����s���܂��B
+// カレント行列Push操作に対応する処理を行います。
 NNS_G2D_INLINE void NNSi_G2dMCMSetMtxStackPushed( u16 newPos, u16 lastPos )
 {
     
     mtxStateStack_[newPos] = mtxStateStack_[lastPos];
     //
-    // stateType �� MCM_MTX_SR_NOT_CACHELOADED �������ꍇ��
-    // MCM_MTX_SR_NOT_CACHELOADED_STACKCHANGED �ւƏ�Ԃ�ύX���܂��B
+    // stateType が MCM_MTX_SR_NOT_CACHELOADED だった場合は
+    // MCM_MTX_SR_NOT_CACHELOADED_STACKCHANGED へと状態を変更します。
     // 
-    // �i ���̌��ʁA�V����SR�ϊ����N��NNSi_G2dMCMSetCurrentMtxSRChanged()
-    //    �����s�����ۂ̐U�镑�����ω����܂��B)
+    // （ その結果、新たにSR変換が起きNNSi_G2dMCMSetCurrentMtxSRChanged()
+    //    が実行される際の振る舞いが変化します。)
     //    
     if( mtxStateStack_[lastPos].stateType == MCM_MTX_SR_NOT_CACHELOADED )
     {
@@ -296,16 +296,16 @@ NNS_G2D_INLINE void NNSi_G2dMCMSetMtxStackPushed( u16 newPos, u16 lastPos )
 }
 
 //------------------------------------------------------------------------------
-// �J�����g�s����w�肵�� MtxChache�Ɋi�[���܂��B
+// カレント行列を指定した MtxChacheに格納します。
 // 
-// flip �@�\ �� �g�p���� OBJ �� affine�ϊ�����K�v������ꍇ�� 
-// ��p�� �s��� �������A�i�[���܂��B
+// flip 機能 を 使用した OBJ を affine変換する必要がある場合は 
+// 専用の 行列を 生成し、格納します。
 //
-// 2D Graphics Engine �����^�����O��p�̏����ł��B
+// 2D Graphics Engine レンタリング専用の処理です。
 //
 static void NNSi_G2dMCMStoreCurrentMtxToMtxCache( )
 {   
-    // �K�v��������΁A�������Ȃ�  
+    // 必要が無ければ、何もしない  
     if( NNSi_G2dMCMShouldCurrentMtxBeLoadedToMtxCache() )
     {
         MCMMtxState* pCurrentState = GetCuurentMtxState_();            
@@ -315,22 +315,22 @@ static void NNSi_G2dMCMStoreCurrentMtxToMtxCache( )
         NNS_G2D_MINMAX_ASSERT( mtxCacheIdx, 0, G2Di_NUM_MTX_CACHE - 1 );
            
         //
-        // �L���V���C���f�b�N�X�̌���
+        // キャシュインデックスの決定
         //
         SetMtxStateMtxCacheIdx_( pCurrentState, mtxCacheIdx );
            
         ////
-        //// �K�v������΁c
+        //// 必要があれば…
         ////
         //if( mtxCacheIdx != NNS_G2D_OAM_AFFINE_IDX_NONE )
         {
            //
-           // �L���b�V��������������
+           // キャッシュを初期化する
            //
            NNS_G2dInitRndCore2DMtxCache( NNSi_RMCGetMtxCacheByIdx( mtxCacheIdx ) );
                   
            //
-           // �L���b�V���ɍs����R�s�[����
+           // キャッシュに行列をコピーする
            //    
            NNSi_G2dGetMtxRS( NNSi_G2dGetCurrentMtxFor2DHW(), 
                                 &NNSi_G2dMCMGetCurrentMtxCache()->m22 );
@@ -340,7 +340,7 @@ static void NNSi_G2dMCMStoreCurrentMtxToMtxCache( )
                                         pCurrMtxState->mtxCacheIdx );
         }
         //
-        // SR�ϊ������L���� �e�K�w�̏�Ԃ����[�h�ς݂ɍX�V����
+        // SR変換を共有する 親階層の状態をロード済みに更新する
         //
         SetParentMtxStateLoaded_( mtxCacheIdx, groupID );
     }

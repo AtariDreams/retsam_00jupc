@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_plist_main.c
- * @brief	í“¬—pƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê
+ * @brief	æˆ¦é—˜ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢
  * @author	Hiroyuki Nakamura
  * @date	05.02.01
  */
@@ -52,81 +52,81 @@
 #endif PM_DEBUG
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// ƒƒCƒ“ƒV[ƒPƒ“ƒX
+// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
-	SEQ_BPL_INIT = 0,		// ‰Šú‰»
-	SEQ_BPL_SELECT,			// ƒ|ƒPƒ‚ƒ“‘I‘ð‰æ–ÊƒRƒ“ƒgƒ[ƒ‹
-	SEQ_BPL_IREKAE,			// “ü‚ê‘Ö‚¦ƒy[ƒWƒRƒ“ƒgƒ[ƒ‹
-	SEQ_BPL_ST_MAIN,		// ƒXƒe[ƒ^ƒXƒƒCƒ“‰æ–ÊƒRƒ“ƒgƒ[ƒ‹
-	SEQ_BPL_ST_WAZASEL,		// ƒXƒe[ƒ^ƒX‹Z‘I‘ð‰æ–ÊƒRƒ“ƒgƒ[ƒ‹
-	SEQ_BPL_ST_SKILL,		// ƒXƒe[ƒ^ƒX‹Z‰æ–ÊƒRƒ“ƒgƒ[ƒ‹
+	SEQ_BPL_INIT = 0,		// åˆæœŸåŒ–
+	SEQ_BPL_SELECT,			// ãƒã‚±ãƒ¢ãƒ³é¸æŠžç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+	SEQ_BPL_IREKAE,			// å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+	SEQ_BPL_ST_MAIN,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+	SEQ_BPL_ST_WAZASEL,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠžç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+	SEQ_BPL_ST_SKILL,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€ç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 
-	SEQ_BPL_PAGE1_CHG,			// ƒ|ƒPƒ‚ƒ“‘I‘ð‚Ö
-	SEQ_BPL_PAGECHG_IREKAE,		// “ü‚ê‘Ö‚¦ƒy[ƒW‚Ö
-	SEQ_BPL_PAGECHG_STMAIN,		// ƒXƒe[ƒ^ƒXÚ×‚Ö
-	SEQ_BPL_PAGECHG_WAZASEL,	// ƒXƒe[ƒ^ƒX‹Z‘I‘ð‚Ö
-	SEQ_BPL_PAGECHG_WAZAINFO,	// ƒXƒe[ƒ^ƒX‹ZÚ×‰æ–Ê‚Ö
-	SEQ_BPL_PAGECHG_WAZASET_S,	// ‹Z–Y‚ê‘I‘ð‰æ–Ê‚Ö
-	SEQ_BPL_PAGECHG_WAZASET_I,	// ‹Z–Y‚êŒˆ’è‚Ö
-	SEQ_BPL_PAGECHG_PPRCV,		// ‹Z‰ñ•œ‚Ö
+	SEQ_BPL_PAGE1_CHG,			// ãƒã‚±ãƒ¢ãƒ³é¸æŠžã¸
+	SEQ_BPL_PAGECHG_IREKAE,		// å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã¸
+	SEQ_BPL_PAGECHG_STMAIN,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è©³ç´°ã¸
+	SEQ_BPL_PAGECHG_WAZASEL,	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠžã¸
+	SEQ_BPL_PAGECHG_WAZAINFO,	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€è©³ç´°ç”»é¢ã¸
+	SEQ_BPL_PAGECHG_WAZASET_S,	// æŠ€å¿˜ã‚Œé¸æŠžç”»é¢ã¸
+	SEQ_BPL_PAGECHG_WAZASET_I,	// æŠ€å¿˜ã‚Œæ±ºå®šã¸
+	SEQ_BPL_PAGECHG_PPRCV,		// æŠ€å›žå¾©ã¸
 
-	SEQ_BPL_POKECHG,		// ƒ|ƒPƒ‚ƒ“Ø‚è‘Ö‚¦
-	SEQ_BPL_CHG_ERR_SET,	// “ü‚ê‘Ö‚¦ƒGƒ‰[ƒZƒbƒg
-	SEQ_BPL_IREKAE_ERR,		// “ü‚ê‘Ö‚¦ƒGƒ‰[I—¹‘Ò‚¿
+	SEQ_BPL_POKECHG,		// ãƒã‚±ãƒ¢ãƒ³åˆ‡ã‚Šæ›¿ãˆ
+	SEQ_BPL_CHG_ERR_SET,	// å…¥ã‚Œæ›¿ãˆã‚¨ãƒ©ãƒ¼ã‚»ãƒƒãƒˆ
+	SEQ_BPL_IREKAE_ERR,		// å…¥ã‚Œæ›¿ãˆã‚¨ãƒ©ãƒ¼çµ‚äº†å¾…ã¡
 
-	SEQ_BPL_MSG_WAIT,		// ƒƒbƒZ[ƒW•\Ž¦
-	SEQ_BPL_TRG_WAIT,		// ƒƒbƒZ[ƒW•\Ž¦Œã‚ÌƒL[‘Ò‚¿
+	SEQ_BPL_MSG_WAIT,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	SEQ_BPL_TRG_WAIT,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾Œã®ã‚­ãƒ¼å¾…ã¡
 
-	SEQ_BPL_WAZADEL_SEL,	// ‹Z–Y‚ê‘I‘ð
-	SEQ_BPL_WAZADEL_MAIN,	// ‹Z–Y‚êŒˆ’è
+	SEQ_BPL_WAZADEL_SEL,	// æŠ€å¿˜ã‚Œé¸æŠž
+	SEQ_BPL_WAZADEL_MAIN,	// æŠ€å¿˜ã‚Œæ±ºå®š
 
-	SEQ_BPL_WAZARCV_SEL,	// ‹Z‰ñ•œ‘I‘ð
+	SEQ_BPL_WAZARCV_SEL,	// æŠ€å›žå¾©é¸æŠž
 
-	SEQ_BPL_BUTTON_WAIT,	// ƒ{ƒ^ƒ“ƒAƒjƒI—¹‘Ò‚¿
+	SEQ_BPL_BUTTON_WAIT,	// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 
-	SEQ_BPL_STRCV,			// ƒXƒe[ƒ^ƒX‰ñ•œ
-	SEQ_BPL_PPALLRCV,		// PP‘S‰ñ•œ
+	SEQ_BPL_STRCV,			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å›žå¾©
+	SEQ_BPL_PPALLRCV,		// PPå…¨å›žå¾©
 
-	SEQ_BPL_ENDSET,			// I—¹ƒtƒF[ƒhƒZƒbƒg
-	SEQ_BPL_END,			// I—¹
+	SEQ_BPL_ENDSET,			// çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	SEQ_BPL_END,			// çµ‚äº†
 };
 
-#define	TMP_MSG_BUF_SIZ		( 512 )		// ƒeƒ“ƒ|ƒ‰ƒŠƒƒbƒZ[ƒWƒTƒCƒY
+#define	TMP_MSG_BUF_SIZ		( 512 )		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚µã‚¤ã‚º
 
-#define	PLATE_BG_SX		( 16 )		// ƒvƒŒ[ƒgBGƒTƒCƒYX
-#define	PLATE_BG_SY		( 6 )		// ƒvƒŒ[ƒgBGƒTƒCƒYY
-#define	PLATE_BG_P_PX	( 0 )		// ƒ|ƒPƒ‚ƒ“‚ª‚¢‚éê‡‚ÌƒvƒŒ[ƒgBGŽQÆXÀ•W
-#define	PLATE_BG_P_PY	( 0 )		// ƒ|ƒPƒ‚ƒ“‚ª‚¢‚éê‡‚ÌƒvƒŒ[ƒgBGŽQÆYÀ•W
-#define	PLATE_BG_N_PX	( 16 )		// ƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚¢ê‡‚ÌƒvƒŒ[ƒgBGŽQÆXÀ•W
-#define	PLATE_BG_N_PY	( 13 )		// ƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚¢ê‡‚ÌƒvƒŒ[ƒgBGŽQÆYÀ•W
+#define	PLATE_BG_SX		( 16 )		// ãƒ—ãƒ¬ãƒ¼ãƒˆBGã‚µã‚¤ã‚ºX
+#define	PLATE_BG_SY		( 6 )		// ãƒ—ãƒ¬ãƒ¼ãƒˆBGã‚µã‚¤ã‚ºY
+#define	PLATE_BG_P_PX	( 0 )		// ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹å ´åˆã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGå‚ç…§Xåº§æ¨™
+#define	PLATE_BG_P_PY	( 0 )		// ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹å ´åˆã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGå‚ç…§Yåº§æ¨™
+#define	PLATE_BG_N_PX	( 16 )		// ãƒã‚±ãƒ¢ãƒ³ãŒã„ãªã„å ´åˆã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGå‚ç…§Xåº§æ¨™
+#define	PLATE_BG_N_PY	( 13 )		// ãƒã‚±ãƒ¢ãƒ³ãŒã„ãªã„å ´åˆã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGå‚ç…§Yåº§æ¨™
 
-#define	PLATE_POKE1_PX	( 0 )		// ƒ|ƒPƒ‚ƒ“‚P‚ÌƒvƒŒ[ƒgBGXÀ•W
-#define	PLATE_POKE1_PY	( 0 )		// ƒ|ƒPƒ‚ƒ“‚P‚ÌƒvƒŒ[ƒgBGYÀ•W
-#define	PLATE_POKE2_PX	( 16 )		// ƒ|ƒPƒ‚ƒ“‚Q‚ÌƒvƒŒ[ƒgBGXÀ•W
-#define	PLATE_POKE2_PY	( 1 )		// ƒ|ƒPƒ‚ƒ“‚Q‚ÌƒvƒŒ[ƒgBGYÀ•W
-#define	PLATE_POKE3_PX	( 0 )		// ƒ|ƒPƒ‚ƒ“‚R‚ÌƒvƒŒ[ƒgBGXÀ•W
-#define	PLATE_POKE3_PY	( 6 )		// ƒ|ƒPƒ‚ƒ“‚R‚ÌƒvƒŒ[ƒgBGYÀ•W
-#define	PLATE_POKE4_PX	( 16 )		// ƒ|ƒPƒ‚ƒ“‚S‚ÌƒvƒŒ[ƒgBGXÀ•W
-#define	PLATE_POKE4_PY	( 7 )		// ƒ|ƒPƒ‚ƒ“‚S‚ÌƒvƒŒ[ƒgBGYÀ•W
-#define	PLATE_POKE5_PX	( 0 )		// ƒ|ƒPƒ‚ƒ“‚T‚ÌƒvƒŒ[ƒgBGXÀ•W
-#define	PLATE_POKE5_PY	( 12 )		// ƒ|ƒPƒ‚ƒ“‚T‚ÌƒvƒŒ[ƒgBGYÀ•W
-#define	PLATE_POKE6_PX	( 16 )		// ƒ|ƒPƒ‚ƒ“‚U‚ÌƒvƒŒ[ƒgBGXÀ•W
-#define	PLATE_POKE6_PY	( 13 )		// ƒ|ƒPƒ‚ƒ“‚U‚ÌƒvƒŒ[ƒgBGYÀ•W
+#define	PLATE_POKE1_PX	( 0 )		// ãƒã‚±ãƒ¢ãƒ³ï¼‘ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGXåº§æ¨™
+#define	PLATE_POKE1_PY	( 0 )		// ãƒã‚±ãƒ¢ãƒ³ï¼‘ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGYåº§æ¨™
+#define	PLATE_POKE2_PX	( 16 )		// ãƒã‚±ãƒ¢ãƒ³ï¼’ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGXåº§æ¨™
+#define	PLATE_POKE2_PY	( 1 )		// ãƒã‚±ãƒ¢ãƒ³ï¼’ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGYåº§æ¨™
+#define	PLATE_POKE3_PX	( 0 )		// ãƒã‚±ãƒ¢ãƒ³ï¼“ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGXåº§æ¨™
+#define	PLATE_POKE3_PY	( 6 )		// ãƒã‚±ãƒ¢ãƒ³ï¼“ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGYåº§æ¨™
+#define	PLATE_POKE4_PX	( 16 )		// ãƒã‚±ãƒ¢ãƒ³ï¼”ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGXåº§æ¨™
+#define	PLATE_POKE4_PY	( 7 )		// ãƒã‚±ãƒ¢ãƒ³ï¼”ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGYåº§æ¨™
+#define	PLATE_POKE5_PX	( 0 )		// ãƒã‚±ãƒ¢ãƒ³ï¼•ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGXåº§æ¨™
+#define	PLATE_POKE5_PY	( 12 )		// ãƒã‚±ãƒ¢ãƒ³ï¼•ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGYåº§æ¨™
+#define	PLATE_POKE6_PX	( 16 )		// ãƒã‚±ãƒ¢ãƒ³ï¼–ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGXåº§æ¨™
+#define	PLATE_POKE6_PY	( 13 )		// ãƒã‚±ãƒ¢ãƒ³ï¼–ã®ãƒ—ãƒ¬ãƒ¼ãƒˆBGYåº§æ¨™
 
-#define	P2_EXPGAGE_PX	( 32+14 )	// ƒy[ƒW‚Q‚ÌŒoŒ±’lƒQ[ƒW‘‚«Š·‚¦XÀ•W
-#define	P2_EXPGAGE_PY	( 5 )		// ƒy[ƒW‚Q‚ÌŒoŒ±’lƒQ[ƒW‘‚«Š·‚¦YÀ•W
-#define	P3_EXPGAGE_PX	( 10 )		// ƒy[ƒW‚R‚ÌŒoŒ±’lƒQ[ƒW‘‚«Š·‚¦XÀ•W
-#define	P3_EXPGAGE_PY	( 8 )		// ƒy[ƒW‚R‚ÌŒoŒ±’lƒQ[ƒW‘‚«Š·‚¦YÀ•W
+#define	P2_EXPGAGE_PX	( 32+14 )	// ãƒšãƒ¼ã‚¸ï¼’ã®çµŒé¨“å€¤ã‚²ãƒ¼ã‚¸æ›¸ãæ›ãˆXåº§æ¨™
+#define	P2_EXPGAGE_PY	( 5 )		// ãƒšãƒ¼ã‚¸ï¼’ã®çµŒé¨“å€¤ã‚²ãƒ¼ã‚¸æ›¸ãæ›ãˆYåº§æ¨™
+#define	P3_EXPGAGE_PX	( 10 )		// ãƒšãƒ¼ã‚¸ï¼“ã®çµŒé¨“å€¤ã‚²ãƒ¼ã‚¸æ›¸ãæ›ãˆXåº§æ¨™
+#define	P3_EXPGAGE_PY	( 8 )		// ãƒšãƒ¼ã‚¸ï¼“ã®çµŒé¨“å€¤ã‚²ãƒ¼ã‚¸æ›¸ãæ›ãˆYåº§æ¨™
 
-#define	EXP_CGX			( 0x16 )	// ŒoŒ±’lƒQ[ƒWƒLƒƒƒ‰”Ô†
-#define	EXP_DOT_CHR_MAX	( 8 )		// ŒoŒ±’lƒQ[ƒW‚ÌƒLƒƒƒ‰”
-#define	EXP_DOT_MAX		( 64 )		// ŒoŒ±’lƒQ[ƒW‚ÌÅ‘åƒhƒbƒg”
+#define	EXP_CGX			( 0x16 )	// çµŒé¨“å€¤ã‚²ãƒ¼ã‚¸ã‚­ãƒ£ãƒ©ç•ªå·
+#define	EXP_DOT_CHR_MAX	( 8 )		// çµŒé¨“å€¤ã‚²ãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒ©æ•°
+#define	EXP_DOT_MAX		( 64 )		// çµŒé¨“å€¤ã‚²ãƒ¼ã‚¸ã®æœ€å¤§ãƒ‰ãƒƒãƒˆæ•°
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void BattlePokeList_Main( TCB_PTR tcb, void * work );
 
@@ -192,9 +192,9 @@ static void BattleBag_SubItem( BATTLE_WORK * bw, u16 item, u16 page, u32 heap );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ƒvƒŒ[ƒg•\Ž¦ˆÊ’u
+// ãƒ—ãƒ¬ãƒ¼ãƒˆè¡¨ç¤ºä½ç½®
 static const u8 PlatePos[][2] =
 {
 	{ PLATE_POKE1_PX, PLATE_POKE1_PY },
@@ -205,7 +205,7 @@ static const u8 PlatePos[][2] =
 	{ PLATE_POKE6_PX, PLATE_POKE6_PY }
 };
 
-// ƒ|ƒPƒ‚ƒ“‘I‘ð‰æ–ÊˆÚ“®ƒe[ƒuƒ‹
+// ãƒã‚±ãƒ¢ãƒ³é¸æŠžç”»é¢ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 static const POINTER_WORK NormalMoveTable[] =
 {
 	{  0,  0, 16, 6,	6,2,0,1 },		// 0
@@ -214,10 +214,10 @@ static const POINTER_WORK NormalMoveTable[] =
 	{ 16,  7, 16, 6,	1,5,2,3 },		// 3
 	{  0, 12, 16, 6,	2,1,4,5 },		// 4
 	{ 16, 13, 16, 6,	3,6,4,5 },		// 5
-	{ 25, 19,  7, 5,	5,0,6,6 },		// 6i–ß‚éj
+	{ 25, 19,  7, 5,	5,0,6,6 },		// 6ï¼ˆæˆ»ã‚‹ï¼‰
 };
 
-// ƒy[ƒW‚P‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W
+// ãƒšãƒ¼ã‚¸ï¼‘ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 static const RECT_HIT_TBL Page1_HitRect[] =
 {
 	{  0*8,  6*8-1,  0*8, 16*8-1 },
@@ -232,88 +232,88 @@ static const RECT_HIT_TBL Page1_HitRect[] =
 
 static const RECT_HIT_TBL ChgPage_HitRect[] =
 {
-	{  1*8, 18*8-1,  1*8, 31*8-1 },		// 0 : “ü‚ê‘Ö‚¦
-	{ 19*8, 24*8-1,  0*8, 13*8-1 },		// 1 : ‹­‚³‚ðŒ©‚é
-	{ 19*8, 24*8-1, 13*8, 26*8-1 },		// 2 : ‹Z‚ðŒ©‚é
-	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 3 : –ß‚é
+	{  1*8, 18*8-1,  1*8, 31*8-1 },		// 0 : å…¥ã‚Œæ›¿ãˆ
+	{ 19*8, 24*8-1,  0*8, 13*8-1 },		// 1 : å¼·ã•ã‚’è¦‹ã‚‹
+	{ 19*8, 24*8-1, 13*8, 26*8-1 },		// 2 : æŠ€ã‚’è¦‹ã‚‹
+	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 3 : æˆ»ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-// ƒXƒe[ƒ^ƒXƒƒCƒ“ƒy[ƒW‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 static const RECT_HIT_TBL StMainPage_HitRect[] =
 {
-	{ 19*8, 24*8-1,  0*8,  5*8-1 },		// 0 : ‘O‚Ìƒ|ƒPƒ‚ƒ“‚Ö
-	{ 19*8, 24*8-1,  5*8, 10*8-1 },		// 1 : ŽŸ‚Ìƒ|ƒPƒ‚ƒ“‚Ö
-	{ 19*8, 24*8-1, 12*8, 25*8-1 },		// 2 : ‹Z‚ðŒ©‚é
-	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 3 : –ß‚é
+	{ 19*8, 24*8-1,  0*8,  5*8-1 },		// 0 : å‰ã®ãƒã‚±ãƒ¢ãƒ³ã¸
+	{ 19*8, 24*8-1,  5*8, 10*8-1 },		// 1 : æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ã¸
+	{ 19*8, 24*8-1, 12*8, 25*8-1 },		// 2 : æŠ€ã‚’è¦‹ã‚‹
+	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 3 : æˆ»ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-// ƒXƒe[ƒ^ƒX‹Z‘I‘ðƒy[ƒW‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠžãƒšãƒ¼ã‚¸ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 static const RECT_HIT_TBL StWazaSelPage_HitRect[] =
 {
-	{  6*8, 12*8-1,  0*8, 16*8-1 },		// 0 : ‹Z‚P
-	{  6*8, 12*8-1, 16*8, 32*8-1 },		// 1 : ‹Z‚Q
-	{ 12*8, 18*8-1,  0*8, 16*8-1 },		// 2 : ‹Z‚R
-	{ 12*8, 18*8-1, 16*8, 32*8-1 },		// 3 : ‹Z‚S
-	{ 19*8, 24*8-1,  0*8,  5*8-1 },		// 4 : ‘O‚Ìƒ|ƒPƒ‚ƒ“‚Ö
-	{ 19*8, 24*8-1,  5*8, 10*8-1 },		// 5 : ŽŸ‚Ìƒ|ƒPƒ‚ƒ“‚Ö
-	{ 19*8, 24*8-1, 12*8, 25*8-1 },		// 6 : ‹­‚³‚ðŒ©‚é
-	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 7 : –ß‚é
+	{  6*8, 12*8-1,  0*8, 16*8-1 },		// 0 : æŠ€ï¼‘
+	{  6*8, 12*8-1, 16*8, 32*8-1 },		// 1 : æŠ€ï¼’
+	{ 12*8, 18*8-1,  0*8, 16*8-1 },		// 2 : æŠ€ï¼“
+	{ 12*8, 18*8-1, 16*8, 32*8-1 },		// 3 : æŠ€ï¼”
+	{ 19*8, 24*8-1,  0*8,  5*8-1 },		// 4 : å‰ã®ãƒã‚±ãƒ¢ãƒ³ã¸
+	{ 19*8, 24*8-1,  5*8, 10*8-1 },		// 5 : æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ã¸
+	{ 19*8, 24*8-1, 12*8, 25*8-1 },		// 6 : å¼·ã•ã‚’è¦‹ã‚‹
+	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 7 : æˆ»ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
 
-// ƒXƒe[ƒ^ƒX‹Z‘I‘ðƒy[ƒW‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠžãƒšãƒ¼ã‚¸ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 static const RECT_HIT_TBL StWazaInfoPage_HitRect[] =
 {
-	{ 19*8, 21*8-1, 11*8, 16*8-1 },		// 0 : ‹Z‚P
-	{ 19*8, 21*8-1, 16*8, 21*8-1 },		// 1 : ‹Z‚Q
-	{ 21*8, 23*8-1, 11*8, 16*8-1 },		// 2 : ‹Z‚R
-	{ 21*8, 23*8-1, 16*8, 21*8-1 },		// 3 : ‹Z‚S
-	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 4 : –ß‚é
+	{ 19*8, 21*8-1, 11*8, 16*8-1 },		// 0 : æŠ€ï¼‘
+	{ 19*8, 21*8-1, 16*8, 21*8-1 },		// 1 : æŠ€ï¼’
+	{ 21*8, 23*8-1, 11*8, 16*8-1 },		// 2 : æŠ€ï¼“
+	{ 21*8, 23*8-1, 16*8, 21*8-1 },		// 3 : æŠ€ï¼”
+	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 4 : æˆ»ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-// ‹Z–Y‚ê‘I‘ðƒy[ƒW‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W
+// æŠ€å¿˜ã‚Œé¸æŠžãƒšãƒ¼ã‚¸ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 static const RECT_HIT_TBL Page5_HitRect[] =
 {
-	{  6*8, 12*8-1,  0*8, 16*8-1 },		// 0 : ‹Z‚P‰æ–Ê‚Ö
-	{  6*8, 12*8-1, 16*8, 32*8-1 },		// 1 : ‹Z‚Q‰æ–Ê‚Ö
-	{ 12*8, 18*8-1,  0*8, 16*8-1 },		// 2 : ‹Z‚R‰æ–Ê‚Ö
-	{ 12*8, 18*8-1, 16*8, 32*8-1 },		// 3 : ‹Z‚S‰æ–Ê‚Ö
-	{ 18*8, 24*8-1,  8*8, 24*8-1 },		// 4 : ‹Z‚T‰æ–Ê‚Ö
-	{  0*8,  5*8-1, 23*8, 32*8-1 },		// 5 : í“¬<->ƒRƒ“ƒeƒXƒg‚ÌØ‚è‘Ö‚¦
-	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 6 : –ß‚é
+	{  6*8, 12*8-1,  0*8, 16*8-1 },		// 0 : æŠ€ï¼‘ç”»é¢ã¸
+	{  6*8, 12*8-1, 16*8, 32*8-1 },		// 1 : æŠ€ï¼’ç”»é¢ã¸
+	{ 12*8, 18*8-1,  0*8, 16*8-1 },		// 2 : æŠ€ï¼“ç”»é¢ã¸
+	{ 12*8, 18*8-1, 16*8, 32*8-1 },		// 3 : æŠ€ï¼”ç”»é¢ã¸
+	{ 18*8, 24*8-1,  8*8, 24*8-1 },		// 4 : æŠ€ï¼•ç”»é¢ã¸
+	{  0*8,  5*8-1, 23*8, 32*8-1 },		// 5 : æˆ¦é—˜<->ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®åˆ‡ã‚Šæ›¿ãˆ
+	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 6 : æˆ»ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-// ‹Z–Y‚êŒˆ’èƒy[ƒW‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W
+// æŠ€å¿˜ã‚Œæ±ºå®šãƒšãƒ¼ã‚¸ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 static const RECT_HIT_TBL Page6_HitRect[] =
 {
-	{ 19*8, 24*8-1,  0*8, 26*8-1 },		// 0 : í“¬‚Ö
-	{  0*8,  5*8-1, 23*8, 32*8-1 },		// 1 : í“¬<->ƒRƒ“ƒeƒXƒg‚ÌØ‚è‘Ö‚¦
-	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 2 : –ß‚é
+	{ 19*8, 24*8-1,  0*8, 26*8-1 },		// 0 : æˆ¦é—˜ã¸
+	{  0*8,  5*8-1, 23*8, 32*8-1 },		// 1 : æˆ¦é—˜<->ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®åˆ‡ã‚Šæ›¿ãˆ
+	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 2 : æˆ»ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-// ‹Z‰ñ•œƒy[ƒW‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W
+// æŠ€å›žå¾©ãƒšãƒ¼ã‚¸ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 static const RECT_HIT_TBL PPRcvPage_HitRect[] =
 {
-	{  6*8, 12*8-1,  0*8, 16*8-1 },		// 0 : ‹Z‚P‰ñ•œ
-	{  6*8, 12*8-1, 16*8, 32*8-1 },		// 1 : ‹Z‚Q‰ñ•œ
-	{ 12*8, 18*8-1,  0*8, 16*8-1 },		// 2 : ‹Z‚R‰ñ•œ
-	{ 12*8, 18*8-1, 16*8, 32*8-1 },		// 3 : ‹Z‚S‰ñ•œ
-	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 4 : –ß‚é
+	{  6*8, 12*8-1,  0*8, 16*8-1 },		// 0 : æŠ€ï¼‘å›žå¾©
+	{  6*8, 12*8-1, 16*8, 32*8-1 },		// 1 : æŠ€ï¼’å›žå¾©
+	{ 12*8, 18*8-1,  0*8, 16*8-1 },		// 2 : æŠ€ï¼“å›žå¾©
+	{ 12*8, 18*8-1, 16*8, 32*8-1 },		// 3 : æŠ€ï¼”å›žå¾©
+	{ 19*8, 24*8-1, 27*8, 32*8-1 },		// 4 : æˆ»ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * í“¬—pƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ^ƒXƒN’Ç‰Á
+ * æˆ¦é—˜ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚¿ã‚¹ã‚¯è¿½åŠ 
  *
- * @param	dat		ƒŠƒXƒgƒf[ƒ^
+ * @param	dat		ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -335,21 +335,21 @@ void BattlePokeList_TaskAdd( BPLIST_DATA * dat )
 	wk->ev_contest = BattleWorkContestSeeFlagGet( dat->bw );
 
 	wk->multi_pos = BattleWorkClientTypeGet( dat->bw, dat->client_no );
-// CLIENT_TYPE_A : ‘O‰q
-// CLIENT_TYPE_C : Œã‰q
+// CLIENT_TYPE_A : å‰è¡›
+// CLIENT_TYPE_C : å¾Œè¡›
 
 
-/*** ƒeƒXƒg ***/
+/*** ãƒ†ã‚¹ãƒˆ ***/
 //	wk->dat->chg_waza = 20;
 //	wk->dat->mode = BPL_MODE_WAZASET;
-//	wk->page = BPLIST_PAGE_PP_RCV;		// PP‰ñ•œ‹Z‘I‘ðƒy[ƒW
+//	wk->page = BPLIST_PAGE_PP_RCV;		// PPå›žå¾©æŠ€é¸æŠžãƒšãƒ¼ã‚¸
 //	wk->ev_contest = 1;
 /**************/
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒ^ƒXƒN
+ * ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  *
  * @param	tcb
  * @param	work
@@ -362,11 +362,11 @@ static void BattlePokeList_Main( TCB_PTR tcb, void * work )
 	BPLIST_WORK * wk = (BPLIST_WORK *)work;
 
 	switch( wk->seq ){
-	case SEQ_BPL_INIT:		// ‰Šú‰»
+	case SEQ_BPL_INIT:		// åˆæœŸåŒ–
 		wk->seq = BPL_SeqInit( wk );
 		break;
 
-	case SEQ_BPL_SELECT:	// ƒ|ƒPƒ‚ƒ“‘I‘ð‰æ–ÊƒRƒ“ƒgƒ[ƒ‹
+	case SEQ_BPL_SELECT:	// ãƒã‚±ãƒ¢ãƒ³é¸æŠžç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 		wk->seq = BPL_SeqPokeSelect( wk );
 		break;
 
@@ -374,15 +374,15 @@ static void BattlePokeList_Main( TCB_PTR tcb, void * work )
 		wk->seq = BPL_SeqPokeIrekae( wk );
 		break;
 
-	case SEQ_BPL_ST_MAIN:	// ƒXƒe[ƒ^ƒXƒƒCƒ“‰æ–ÊƒRƒ“ƒgƒ[ƒ‹
+	case SEQ_BPL_ST_MAIN:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 		wk->seq = BPL_SeqStatusMain( wk );
 		break;
 
-	case SEQ_BPL_ST_WAZASEL:	// ƒXƒe[ƒ^ƒX‹Z‘I‘ð‰æ–ÊƒRƒ“ƒgƒ[ƒ‹
+	case SEQ_BPL_ST_WAZASEL:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠžç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 		wk->seq = BPL_SeqWazaSelect( wk );
 		break;
 
-	case SEQ_BPL_ST_SKILL:		// ‹Z‰æ–ÊƒRƒ“ƒgƒ[ƒ‹
+	case SEQ_BPL_ST_SKILL:		// æŠ€ç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 		wk->seq = BPL_SeqStInfoWaza( wk );
 		break;
 
@@ -390,15 +390,15 @@ static void BattlePokeList_Main( TCB_PTR tcb, void * work )
 		wk->seq = BPL_SeqPage1Chg( wk );
 		break;
 
-	case SEQ_BPL_PAGECHG_IREKAE:	// “ü‚ê‘Ö‚¦ƒy[ƒW‚Ö
+	case SEQ_BPL_PAGECHG_IREKAE:	// å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã¸
 		wk->seq = BPL_SeqPageChgIrekae( wk );
 		break;
 
-	case SEQ_BPL_PAGECHG_STMAIN:	// ƒXƒe[ƒ^ƒXÚ×‚Ö
+	case SEQ_BPL_PAGECHG_STMAIN:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è©³ç´°ã¸
 		wk->seq = BPL_SeqPageChgStatus( wk );
 		break;
 
-	case SEQ_BPL_PAGECHG_WAZASEL:	// ‹Z‘I‘ð‚Ö
+	case SEQ_BPL_PAGECHG_WAZASEL:	// æŠ€é¸æŠžã¸
 		wk->seq = BPL_SeqPageChgStWazaSel( wk );
 		break;
 
@@ -406,7 +406,7 @@ static void BattlePokeList_Main( TCB_PTR tcb, void * work )
 		wk->seq = BPL_SeqPageChgWazaInfo( wk );
 		break;
 
-	case SEQ_BPL_PAGECHG_WAZASET_S:	// ‹Z–Y‚ê‘I‘ð‰æ–Ê‚Ö
+	case SEQ_BPL_PAGECHG_WAZASET_S:	// æŠ€å¿˜ã‚Œé¸æŠžç”»é¢ã¸
 		wk->seq = BPL_SeqPageChgWazaSetSel( wk );
 		break;
 
@@ -414,59 +414,59 @@ static void BattlePokeList_Main( TCB_PTR tcb, void * work )
 		wk->seq = BPL_SeqPageChgWazaSetEnter( wk );
 		break;
 
-	case SEQ_BPL_PAGECHG_PPRCV:	// ‹Z‰ñ•œ‚Ö
+	case SEQ_BPL_PAGECHG_PPRCV:	// æŠ€å›žå¾©ã¸
 		wk->seq = BPL_SeqPageChgPPRcv( wk );
 		break;
 
-	case SEQ_BPL_POKECHG:		// ƒ|ƒPƒ‚ƒ“Ø‚è‘Ö‚¦
+	case SEQ_BPL_POKECHG:		// ãƒã‚±ãƒ¢ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 		wk->seq = BPL_SeqPokeChange( wk );
 		break;
 
-	case SEQ_BPL_CHG_ERR_SET:	// “ü‚ê‘Ö‚¦ƒGƒ‰[ƒZƒbƒg
+	case SEQ_BPL_CHG_ERR_SET:	// å…¥ã‚Œæ›¿ãˆã‚¨ãƒ©ãƒ¼ã‚»ãƒƒãƒˆ
 		wk->seq = BPL_SeqChgErrSet( wk );
 		break;
 
-	case SEQ_BPL_IREKAE_ERR:	// “ü‚ê‘Ö‚¦ƒGƒ‰[I—¹‘Ò‚¿
+	case SEQ_BPL_IREKAE_ERR:	// å…¥ã‚Œæ›¿ãˆã‚¨ãƒ©ãƒ¼çµ‚äº†å¾…ã¡
 		wk->seq = BPL_SeqIrekaeErr( wk );
 		break;
 
-	case SEQ_BPL_MSG_WAIT:	// ƒƒbƒZ[ƒWƒEƒFƒCƒg
+	case SEQ_BPL_MSG_WAIT:	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
 		wk->seq = BPL_SeqMsgWait( wk );
 		break;
 
-	case SEQ_BPL_TRG_WAIT:	// ƒƒbƒZ[ƒW•\Ž¦Œã‚ÌƒL[‘Ò‚¿
+	case SEQ_BPL_TRG_WAIT:	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾Œã®ã‚­ãƒ¼å¾…ã¡
 		wk->seq = BPL_SeqTrgWait( wk );
 		break;
 
-	case SEQ_BPL_WAZADEL_SEL:	// ‹Z–Y‚ê‘I‘ð
+	case SEQ_BPL_WAZADEL_SEL:	// æŠ€å¿˜ã‚Œé¸æŠž
 		wk->seq = BPL_SeqWazaDelSelect( wk );
 		break;
 
-	case SEQ_BPL_WAZADEL_MAIN:	// ‹Z–Y‚êŒˆ’è
+	case SEQ_BPL_WAZADEL_MAIN:	// æŠ€å¿˜ã‚Œæ±ºå®š
 		wk->seq = BPL_SeqWazaDelMain( wk );
 		break;
 
-	case SEQ_BPL_WAZARCV_SEL:	// ‹Z‰ñ•œ‘I‘ð
+	case SEQ_BPL_WAZARCV_SEL:	// æŠ€å›žå¾©é¸æŠž
 		wk->seq = BPL_SeqWazaRcvSelect( wk );
 		break;
 
-	case SEQ_BPL_BUTTON_WAIT:	// ƒ{ƒ^ƒ“ƒAƒjƒI—¹‘Ò‚¿
+	case SEQ_BPL_BUTTON_WAIT:	// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 		wk->seq = BPL_SeqButtonWait( wk );
 		break;
 
-	case SEQ_BPL_STRCV:			// ƒXƒe[ƒ^ƒX‰ñ•œ
+	case SEQ_BPL_STRCV:			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å›žå¾©
 		wk->seq = BPL_SeqStRcv( wk );
 		break;
 
-	case SEQ_BPL_PPALLRCV:		// PP‘S‰ñ•œ
+	case SEQ_BPL_PPALLRCV:		// PPå…¨å›žå¾©
 		wk->seq = BPL_SeqPPAllRcv( wk );
 		break;
 
-	case SEQ_BPL_ENDSET:	// I—¹ƒtƒF[ƒhƒZƒbƒg
+	case SEQ_BPL_ENDSET:	// çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		wk->seq = BPL_SeqEndSet( wk );
 		break;
 
-	case SEQ_BPL_END:		// I—¹
+	case SEQ_BPL_END:		// çµ‚äº†
 		if( BPL_SeqEnd( tcb, wk ) == TRUE ){
 			return;
 		}
@@ -480,11 +480,11 @@ static void BattlePokeList_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰Šú‰»ƒV[ƒPƒ“ƒX
+ * åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqInit( BPLIST_WORK * wk )
@@ -528,7 +528,7 @@ static u8 BPL_SeqInit( BPLIST_WORK * wk )
 		BAPP_CursorMvWkSetFlag( wk->cmv_wk, 1 );
 	}
 
-	// ƒ}ƒ‹ƒ`‚Ì‚Æ‚«‚Ì‰ŠúˆÊ’u•â³
+	// ãƒžãƒ«ãƒã®ã¨ãã®åˆæœŸä½ç½®è£œæ­£
 	if( wk->page == BPLIST_PAGE_SELECT &&
 		BattlePokeList_MultiPosCheck( wk, 0 ) == TRUE ){
 		wk->dat->sel_poke = 1;
@@ -545,11 +545,11 @@ static u8 BPL_SeqInit( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‘I‘ðƒy[ƒW‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * ãƒã‚±ãƒ¢ãƒ³é¸æŠžãƒšãƒ¼ã‚¸ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPokeSelect( BPLIST_WORK * wk )
@@ -580,18 +580,18 @@ static u8 BPL_SeqPokeSelect( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€Žg—p
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_PokeItemUse( BPLIST_WORK * wk )
 {
 	BPLIST_DATA * dat = wk->dat;
 
-	// ‚³‚µ‚¨‚³‚¦‚ÅŽg—p•s‰Â
+	// ã•ã—ãŠã•ãˆã§ä½¿ç”¨ä¸å¯
 	if( ( dat->sel_poke == 0 && dat->skill_item_use[0] != 0 ) ||
 		( dat->sel_poke == 1 && dat->skill_item_use[1] != 0 ) ){
 		BattlePokeList_ItemUseSkillErrMsgSet( wk );
@@ -601,7 +601,7 @@ static u8 BPL_PokeItemUse( BPLIST_WORK * wk )
 		return SEQ_BPL_MSG_WAIT;
 	}
 
-	// ‚P‚Â‚Ì‹Z‚ÌPP‰ñ•œ
+	// ï¼‘ã¤ã®æŠ€ã®PPå›žå¾©
 	if( ItemParamGet( dat->item, ITEM_PRM_PP_RCV, dat->heap ) != 0 &&
 		ItemParamGet( dat->item, ITEM_PRM_ALL_PP_RCV, dat->heap ) == 0 &&
 		wk->poke[dat->sel_poke].egg == 0 ){
@@ -611,11 +611,11 @@ static u8 BPL_PokeItemUse( BPLIST_WORK * wk )
 	}
 
 	if( BattleWorkStatusRecover(dat->bw,dat->client_no,dat->list_row[dat->sel_poke],0,dat->item) == TRUE ){
-		// ‘S‹ZPP‰ñ•œ
+		// å…¨æŠ€PPå›žå¾©
 		if( ItemParamGet( dat->item, ITEM_PRM_ALL_PP_RCV, dat->heap ) != 0 ){
 			wk->ret_seq = SEQ_BPL_PAGECHG_PPRCV;
 		}else{
-			// í“¬‚Éo‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ÅA•mŽ€‰ñ•œˆÈŠO
+			// æˆ¦é—˜ã«å‡ºã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã§ã€ç€•æ­»å›žå¾©ä»¥å¤–
 			if( BattlePokeList_PokeSetCheck( wk, dat->sel_poke ) == 1 &&
 				ItemParamGet( dat->item, ITEM_PRM_DEATH_RCV, dat->heap ) == 0 ){
 				BattleBag_SubItem( dat->bw, dat->item, dat->bag_page, dat->heap );
@@ -658,11 +658,11 @@ static u8 BPL_PokeItemUse( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦ƒy[ƒW‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPokeIrekae( BPLIST_WORK * wk )
@@ -670,7 +670,7 @@ static u8 BPL_SeqPokeIrekae( BPLIST_WORK * wk )
 	u8	ret = BPL_IrekaeSelect( wk );
 
 	switch( ret ){
-	case 0:		// “ü‚ê‘Ö‚¦‚é
+	case 0:		// å…¥ã‚Œæ›¿ãˆã‚‹
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_POKE_CHG );
 		if( BPL_IrekaeCheck( wk ) == TRUE ){
@@ -679,21 +679,21 @@ static u8 BPL_SeqPokeIrekae( BPLIST_WORK * wk )
 		wk->ret_seq = SEQ_BPL_CHG_ERR_SET;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 1:		// ‹­‚³‚ðŒ©‚é
+	case 1:		// å¼·ã•ã‚’è¦‹ã‚‹
 		if( BPL_TamagoCheck( wk ) == TRUE ){ break; }
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_STATUS1 );
 		wk->ret_seq = SEQ_BPL_PAGECHG_STMAIN;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 2:		// ‹Z‚ðŒ©‚é
+	case 2:		// æŠ€ã‚’è¦‹ã‚‹
 		if( BPL_TamagoCheck( wk ) == TRUE ){ break; }
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_WAZASEL1 );
 		wk->ret_seq = SEQ_BPL_PAGECHG_WAZASEL;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 3:		// –ß‚é
+	case 3:		// æˆ»ã‚‹
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_RET );
 		wk->ret_seq = SEQ_BPL_PAGE1_CHG;
@@ -705,11 +705,11 @@ static u8 BPL_SeqPokeIrekae( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒXƒƒCƒ“ƒy[ƒW‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqStatusMain( BPLIST_WORK * wk )
@@ -717,7 +717,7 @@ static u8 BPL_SeqStatusMain( BPLIST_WORK * wk )
 	u8	ret = BPL_StatusMainSelect( wk );
 
 	switch( ret ){
-	case 0:		// ‘O‚Ìƒ|ƒPƒ‚ƒ“‚Ö
+	case 0:		// å‰ã®ãƒã‚±ãƒ¢ãƒ³ã¸
 		{
 			u8 pos = BPL_NextPokeGet( wk, wk->dat->sel_poke, -1 );
 			if( pos == 0xff ){ break; }
@@ -728,7 +728,7 @@ static u8 BPL_SeqStatusMain( BPLIST_WORK * wk )
 		wk->ret_seq = SEQ_BPL_POKECHG;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 1:		// ŽŸ‚Ìƒ|ƒPƒ‚ƒ“‚Ö
+	case 1:		// æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ã¸
 		{
 			u8 pos = BPL_NextPokeGet( wk, wk->dat->sel_poke, 1 );
 			if( pos == 0xff ){ break; }
@@ -739,16 +739,16 @@ static u8 BPL_SeqStatusMain( BPLIST_WORK * wk )
 		wk->ret_seq = SEQ_BPL_POKECHG;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 2:		// ‹Z‚ðŒ©‚é
+	case 2:		// æŠ€ã‚’è¦‹ã‚‹
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_WAZASEL2 );
 		wk->ret_seq = SEQ_BPL_PAGECHG_WAZASEL;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 3:		// –ß‚é
+	case 3:		// æˆ»ã‚‹
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_RET );
-		wk->chg_page_cp = 1;		// “ü‚ê‘Ö‚¦ƒy[ƒW‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ðu‹­‚³‚ðŒ©‚év‚Ö
+		wk->chg_page_cp = 1;		// å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ã€Œå¼·ã•ã‚’è¦‹ã‚‹ã€ã¸
 		wk->ret_seq = SEQ_BPL_PAGECHG_IREKAE;
 		return SEQ_BPL_BUTTON_WAIT;
 	}
@@ -758,11 +758,11 @@ static u8 BPL_SeqStatusMain( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‹Z‘I‘ðƒy[ƒW‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠžãƒšãƒ¼ã‚¸ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqWazaSelect( BPLIST_WORK * wk )
@@ -770,10 +770,10 @@ static u8 BPL_SeqWazaSelect( BPLIST_WORK * wk )
 	u8	ret = BPL_StWazaSelect( wk );
 
 	switch( ret ){
-	case 0:		// ‹Z‚P
-	case 1:		// ‹Z‚Q
-	case 2:		// ‹Z‚R
-	case 3:		// ‹Z‚S
+	case 0:		// æŠ€ï¼‘
+	case 1:		// æŠ€ï¼’
+	case 2:		// æŠ€ï¼“
+	case 3:		// æŠ€ï¼”
 		if( wk->poke[wk->dat->sel_poke].waza[ret].id == 0 ){
 			break;
 		}
@@ -783,7 +783,7 @@ static u8 BPL_SeqWazaSelect( BPLIST_WORK * wk )
 		wk->ret_seq = SEQ_BPL_PAGECHG_WAZAINFO;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 4:		// ‘O‚Ìƒ|ƒPƒ‚ƒ“‚Ö
+	case 4:		// å‰ã®ãƒã‚±ãƒ¢ãƒ³ã¸
 		{
 			u8 pos = BPL_NextPokeGet( wk, wk->dat->sel_poke, -1 );
 			if( pos == 0xff ){ break; }
@@ -794,7 +794,7 @@ static u8 BPL_SeqWazaSelect( BPLIST_WORK * wk )
 		wk->ret_seq = SEQ_BPL_POKECHG;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 5:		// ŽŸ‚Ìƒ|ƒPƒ‚ƒ“‚Ö
+	case 5:		// æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ã¸
 		{
 			u8 pos = BPL_NextPokeGet( wk, wk->dat->sel_poke, 1 );
 			if( pos == 0xff ){ break; }
@@ -805,16 +805,16 @@ static u8 BPL_SeqWazaSelect( BPLIST_WORK * wk )
 		wk->ret_seq = SEQ_BPL_POKECHG;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 6:		// ‹­‚³‚ðŒ©‚é
+	case 6:		// å¼·ã•ã‚’è¦‹ã‚‹
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_STATUS2 );
 		wk->ret_seq = SEQ_BPL_PAGECHG_STMAIN;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 7:		// –ß‚é
+	case 7:		// æˆ»ã‚‹
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_RET );
-		wk->chg_page_cp = 2;		// “ü‚ê‘Ö‚¦ƒy[ƒW‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ðu‹Z‚ðŒ©‚év‚Ö
+		wk->chg_page_cp = 2;		// å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ã€ŒæŠ€ã‚’è¦‹ã‚‹ã€ã¸
 		wk->ret_seq = SEQ_BPL_PAGECHG_IREKAE;
 		return SEQ_BPL_BUTTON_WAIT;
 	}
@@ -825,11 +825,11 @@ static u8 BPL_SeqWazaSelect( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‹ZÚ×ƒy[ƒW‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€è©³ç´°ãƒšãƒ¼ã‚¸ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqStInfoWaza( BPLIST_WORK * wk )
@@ -837,10 +837,10 @@ static u8 BPL_SeqStInfoWaza( BPLIST_WORK * wk )
 	u8	ret = BPL_StInfoWazaSelect( wk );
 
 	switch( ret ){
-	case 0:		// ‹Z‚P
-	case 1:		// ‹Z‚Q
-	case 2:		// ‹Z‚R
-	case 3:		// ‹Z‚S
+	case 0:		// æŠ€ï¼‘
+	case 1:		// æŠ€ï¼’
+	case 2:		// æŠ€ï¼“
+	case 3:		// æŠ€ï¼”
 		if( wk->dat->sel_wp != ret &&
 			wk->poke[wk->dat->sel_poke].waza[ret].id == 0 ){
 			break;
@@ -849,7 +849,7 @@ static u8 BPL_SeqStInfoWaza( BPLIST_WORK * wk )
 		wk->dat->sel_wp = ret;
 		return SEQ_BPL_PAGECHG_WAZAINFO;
 
-	case 4:		// –ß‚é
+	case 4:		// æˆ»ã‚‹
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_RET );
 		wk->ret_seq = SEQ_BPL_PAGECHG_WAZASEL;
@@ -861,11 +861,11 @@ static u8 BPL_SeqStInfoWaza( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚T‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * ãƒšãƒ¼ã‚¸ï¼•ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqWazaDelSelect( BPLIST_WORK * wk )
@@ -883,7 +883,7 @@ static u8 BPL_SeqWazaDelSelect( BPLIST_WORK * wk )
 	}
 
 	switch( ret ){
-	case 0:		// ‹Z
+	case 0:		// æŠ€
 	case 1:
 	case 2:
 	case 3:
@@ -895,7 +895,7 @@ static u8 BPL_SeqWazaDelSelect( BPLIST_WORK * wk )
 		wk->ret_seq = SEQ_BPL_PAGECHG_WAZASET_I;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 5:		// í“¬<->ƒRƒ“ƒeƒXƒgØ‚è‘Ö‚¦
+	case 5:		// æˆ¦é—˜<->ã‚³ãƒ³ãƒ†ã‚¹ãƒˆåˆ‡ã‚Šæ›¿ãˆ
 		if( wk->ev_contest == 0 ){ break; }
 		wk->bc_put ^= 1;
 		wk->wws_page_cp = (u8)ret;
@@ -904,7 +904,7 @@ static u8 BPL_SeqWazaDelSelect( BPLIST_WORK * wk )
 		wk->ret_seq = SEQ_BPL_PAGECHG_WAZASET_S;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 6:		// ƒLƒƒƒ“ƒZƒ‹
+	case 6:		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		wk->dat->sel_wp = BPL_SEL_WP_CANCEL;
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_RET );
@@ -916,11 +916,11 @@ static u8 BPL_SeqWazaDelSelect( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚U‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * ãƒšãƒ¼ã‚¸ï¼–ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqWazaDelMain( BPLIST_WORK * wk )
@@ -938,7 +938,7 @@ static u8 BPL_SeqWazaDelMain( BPLIST_WORK * wk )
 	}
 
 	switch( ret ){
-	case 0:		// ‚í‚·‚ê‚é
+	case 0:		// ã‚ã™ã‚Œã‚‹
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		if( wk->bc_put == 0 ){
 			BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_WAZADEL_B );
@@ -958,7 +958,7 @@ static u8 BPL_SeqWazaDelMain( BPLIST_WORK * wk )
 		}
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 1:		// í“¬<->ƒRƒ“ƒeƒXƒgØ‚è‘Ö‚¦
+	case 1:		// æˆ¦é—˜<->ã‚³ãƒ³ãƒ†ã‚¹ãƒˆåˆ‡ã‚Šæ›¿ãˆ
 		if( wk->ev_contest == 0 ){ break; }
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_CONTEST );
@@ -967,7 +967,7 @@ static u8 BPL_SeqWazaDelMain( BPLIST_WORK * wk )
 		wk->ret_seq = SEQ_BPL_PAGECHG_WAZASET_I;
 		return SEQ_BPL_BUTTON_WAIT;
 
-	case 2:		// ƒLƒƒƒ“ƒZƒ‹
+	case 2:		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_RET );
 		wk->wwm_page_cp = 0;
@@ -980,11 +980,11 @@ static u8 BPL_SeqWazaDelMain( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‰ñ•œ‘I‘ðƒy[ƒW‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * æŠ€å›žå¾©é¸æŠžãƒšãƒ¼ã‚¸ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqWazaRcvSelect( BPLIST_WORK * wk )
@@ -1005,7 +1005,7 @@ static u8 BPL_SeqWazaRcvSelect( BPLIST_WORK * wk )
 	}
 
 	switch( ret ){
-	case 0:		// ‹Z
+	case 0:		// æŠ€
 	case 1:
 	case 2:
 	case 3:
@@ -1026,7 +1026,7 @@ static u8 BPL_SeqWazaRcvSelect( BPLIST_WORK * wk )
 		}
 		break;
 
-	case 4:		// ƒLƒƒƒ“ƒZƒ‹
+	case 4:		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		Snd_SePlay( SEQ_SE_DP_DECIDE );
 		BattlePokeList_ButtonAnmInit( wk, BPL_BUTTON_RET );
 		wk->ret_seq = SEQ_BPL_PAGE1_CHG;
@@ -1038,11 +1038,11 @@ static u8 BPL_SeqWazaRcvSelect( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦Fƒ|ƒPƒ‚ƒ“‘I‘ðƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPage1Chg( BPLIST_WORK * wk )
@@ -1053,11 +1053,11 @@ static u8 BPL_SeqPage1Chg( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦Fƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦ƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPageChgIrekae( BPLIST_WORK * wk )
@@ -1068,11 +1068,11 @@ static u8 BPL_SeqPageChgIrekae( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦FƒXƒe[ƒ^ƒXƒƒCƒ“ƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPageChgStatus( BPLIST_WORK * wk )
@@ -1083,11 +1083,11 @@ static u8 BPL_SeqPageChgStatus( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦FƒXƒe[ƒ^ƒX‹Z‘I‘ðƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠžãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPageChgStWazaSel( BPLIST_WORK * wk )
@@ -1098,11 +1098,11 @@ static u8 BPL_SeqPageChgStWazaSel( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦F‹ZÚ×ƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šæŠ€è©³ç´°ãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPageChgWazaInfo( BPLIST_WORK * wk )
@@ -1113,11 +1113,11 @@ static u8 BPL_SeqPageChgWazaInfo( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦F‹Z–Y‚êƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šæŠ€å¿˜ã‚Œãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPageChgWazaSetSel( BPLIST_WORK * wk )
@@ -1132,11 +1132,11 @@ static u8 BPL_SeqPageChgWazaSetSel( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦F‹Z–Y‚êÚ×ƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šæŠ€å¿˜ã‚Œè©³ç´°ãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPageChgWazaSetEnter( BPLIST_WORK * wk )
@@ -1152,11 +1152,11 @@ static u8 BPL_SeqPageChgWazaSetEnter( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦F‹Z‰ñ•œƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šæŠ€å›žå¾©ãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPageChgPPRcv( BPLIST_WORK * wk )
@@ -1171,11 +1171,11 @@ static u8 BPL_SeqPageChgPPRcv( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‚«‚è‚©‚¦ƒV[ƒPƒ“ƒX
+ * ãƒã‚±ãƒ¢ãƒ³ãã‚Šã‹ãˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPokeChange( BPLIST_WORK * wk )
@@ -1192,11 +1192,11 @@ static u8 BPL_SeqPokeChange( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦ƒGƒ‰[ƒZƒbƒg
+ * å…¥ã‚Œæ›¿ãˆã‚¨ãƒ©ãƒ¼ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqChgErrSet( BPLIST_WORK * wk )
@@ -1208,11 +1208,11 @@ static u8 BPL_SeqChgErrSet( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦ƒGƒ‰[ƒƒbƒZ[ƒWI—¹‘Ò‚¿ƒV[ƒPƒ“ƒX
+ * å…¥ã‚Œæ›¿ãˆã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqIrekaeErr( BPLIST_WORK * wk )
@@ -1223,11 +1223,11 @@ static u8 BPL_SeqIrekaeErr( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•\Ž¦ƒV[ƒPƒ“ƒX
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqMsgWait( BPLIST_WORK * wk )
@@ -1240,11 +1240,11 @@ static u8 BPL_SeqMsgWait( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•\Ž¦Œã‚ÌƒL[‘Ò‚¿ƒV[ƒPƒ“ƒX
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾Œã®ã‚­ãƒ¼å¾…ã¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqTrgWait( BPLIST_WORK * wk )
@@ -1257,11 +1257,11 @@ static u8 BPL_SeqTrgWait( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒI—¹‘Ò‚¿ƒV[ƒPƒ“ƒX
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqButtonWait( BPLIST_WORK * wk )
@@ -1274,11 +1274,11 @@ static u8 BPL_SeqButtonWait( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ•œƒV[ƒPƒ“ƒX
+ * å›žå¾©ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqStRcv( BPLIST_WORK * wk )
@@ -1305,7 +1305,7 @@ static u8 BPL_SeqStRcv( BPLIST_WORK * wk )
 		Snd_SePlay( SEQ_SE_DP_KAIFUKU );
 		break;
 
-	case 1:		// HP‰ñ•œ
+	case 1:		// HPå›žå¾©
 		if( wk->poke[dat->sel_poke].hp != wk->rcv_hp ){
 			wk->poke[dat->sel_poke].hp++;
 			BattlePokeList_P1_HPPut( wk, dat->sel_poke );
@@ -1314,7 +1314,7 @@ static u8 BPL_SeqStRcv( BPLIST_WORK * wk )
 		wk->rcv_seq = 3;
 		break;
 
-	case 2:		// PP‰ñ•œ
+	case 2:		// PPå›žå¾©
 		if( wk->poke[dat->sel_poke].waza[dat->sel_wp].pp != wk->rcv_pp[0] ){
 			wk->poke[dat->sel_poke].waza[dat->sel_wp].pp++;
 			BattlePokeList_PPRcv( wk, WIN_P7_SKILL1+dat->sel_wp, dat->sel_wp );
@@ -1330,7 +1330,7 @@ static u8 BPL_SeqStRcv( BPLIST_WORK * wk )
 		wk->ret_seq = SEQ_BPL_ENDSET;
 		return SEQ_BPL_MSG_WAIT;
 
-	case 4:		// •mŽ€‰ñ•œ‚Ì‚½‚ß‚É‚P“x‚¾‚¯ŒÄ‚Ô
+	case 4:		// ç€•æ­»å›žå¾©ã®ãŸã‚ã«ï¼‘åº¦ã ã‘å‘¼ã¶
 		if( wk->poke[dat->sel_poke].hp != wk->rcv_hp ){
 			wk->poke[dat->sel_poke].hp++;
 			BattlePokeList_P1_HPPut( wk, dat->sel_poke );
@@ -1345,11 +1345,11 @@ static u8 BPL_SeqStRcv( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * PP‘S‰ñ•œƒV[ƒPƒ“ƒX
+ * PPå…¨å›žå¾©ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		í“¬ƒ|ƒPƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒã‚±ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqPPAllRcv( BPLIST_WORK * wk )
@@ -1370,7 +1370,7 @@ static u8 BPL_SeqPPAllRcv( BPLIST_WORK * wk )
 		wk->rcv_seq = 1;
 		break;
 
-	case 1:		// PP‰ñ•œ
+	case 1:		// PPå›žå¾©
 		j = 0;
 		for( i=0; i<4; i++ ){
 			if( wk->poke[dat->sel_poke].waza[i].id == 0 ){
@@ -1400,11 +1400,11 @@ static u8 BPL_SeqPPAllRcv( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * I—¹ƒtƒF[ƒhƒZƒbƒgƒV[ƒPƒ“ƒX
+ * çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqEndSet( BPLIST_WORK * wk )
@@ -1415,12 +1415,12 @@ static u8 BPL_SeqEndSet( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * I—¹ƒV[ƒPƒ“ƒX
+ * çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = ƒtƒF[ƒh’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_SeqEnd( TCB_PTR tcb, BPLIST_WORK * wk )
@@ -1447,7 +1447,7 @@ static u8 BPL_SeqEnd( TCB_PTR tcb, BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAM‰Šú‰»
+ * VRAMåˆæœŸåŒ–
  *
  * @param	none
  *
@@ -1458,16 +1458,16 @@ static u8 BPL_SeqEnd( TCB_PTR tcb, BPLIST_WORK * wk )
 static void BPL_VramInit(void)
 {
 	GF_BGL_DISPVRAM	tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
@@ -1475,9 +1475,9 @@ static void BPL_VramInit(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰Šú‰»
+ * BGåˆæœŸåŒ–
  *
- * @param	dat		ƒŠƒXƒgƒf[ƒ^
+ * @param	dat		ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1536,9 +1536,9 @@ static void BPL_BgInit( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1557,11 +1557,11 @@ static void BPL_BgExit( GF_BGL_INI * ini )
 }
 
 /*
-#define	PCOL_N_BLUE		( GF_PRINTCOLOR_MAKE( 7, 8, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÂ
-#define	PCOL_N_RED		( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÔ
+#define	PCOL_N_BLUE		( GF_PRINTCOLOR_MAKE( 7, 8, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé’
+#define	PCOL_N_RED		( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šèµ¤
 
-#define	PCOL_B_BLUE		( GF_PRINTCOLOR_MAKE( 10, 11, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[Fƒ{ƒ^ƒ“—pÂ
-#define	PCOL_B_RED		( GF_PRINTCOLOR_MAKE( 12, 13, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[Fƒ{ƒ^ƒ“—pÔ
+#define	PCOL_B_BLUE		( GF_PRINTCOLOR_MAKE( 10, 11, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šãƒœã‚¿ãƒ³ç”¨é’
+#define	PCOL_B_RED		( GF_PRINTCOLOR_MAKE( 12, 13, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šãƒœã‚¿ãƒ³ç”¨èµ¤
 */
 #define	SFNT_COL_BLUE	( 7 )
 #define	SFNT_COL_RED	( 3 )
@@ -1570,9 +1570,9 @@ static void BPL_BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1616,17 +1616,17 @@ static void BPL_BgGraphicSet( BPLIST_WORK * wk )
 		memcpy( wk->wb_pal, &pltt[BPL_PAL_B_GREEN*16], 0x20*2 );
 	}
 	
-	// ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒgƒZƒbƒg
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	PaletteWorkSet_Arc(
 		wk->pfd, ARC_FONT, NARC_font_system_ncrl,
 		wk->dat->heap, FADE_SUB_BG, 0x20, BPL_PAL_SYS_FONT*16 );
 
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒgƒZƒbƒg
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	PaletteWorkSet_Arc(
 		wk->pfd, ARC_FONT, NARC_font_talk_ncrl,
 		wk->dat->heap, FADE_SUB_BG, 0x20, BPL_PAL_TALK_FONT*16 );
 
-	// ‰ï˜bƒEƒBƒ“ƒhƒEƒZƒbƒg
+	// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 	{
 		WINTYPE	wt = BattleWorkConfigWinTypeGet( wk->dat->bw );
 		ArcUtil_BgCharSet(
@@ -1637,7 +1637,7 @@ static void BPL_BgGraphicSet( BPLIST_WORK * wk )
 			wk->dat->heap, FADE_SUB_BG, 0x20, BPL_PAL_TALK_WIN*16 );
 	}
 
-	{	// ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg—pƒpƒŒƒbƒg‚ÌÂ‚ÆÔ‚ðƒVƒXƒeƒ€ƒtƒHƒ“ƒg—p‚ÌƒpƒŒƒbƒg‚ÉƒRƒs[
+	{	// ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã®é’ã¨èµ¤ã‚’ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆç”¨ã®ãƒ‘ãƒ¬ãƒƒãƒˆã«ã‚³ãƒ”ãƒ¼
 		u16 * pal = PaletteWorkDefaultWorkGet( wk->pfd, FADE_SUB_BG );
 		u16	* buf = sys_AllocMemory( wk->dat->heap, 0x20 );
 
@@ -1652,9 +1652,9 @@ static void BPL_BgGraphicSet( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜AƒZƒbƒg
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1670,9 +1670,9 @@ static void BPL_MsgManSet( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aíœ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1688,9 +1688,9 @@ static void BPL_MsgManExit( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1764,12 +1764,12 @@ static void BPL_PokeDataMake( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‘I‘ð
+ * ãƒã‚±ãƒ¢ãƒ³é¸æŠž
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ‘I‘ð‚³‚ê‚½"
- * @retval	"FALSE = –¢‘I‘ð"
+ * @retval	"TRUE = é¸æŠžã•ã‚ŒãŸ"
+ * @retval	"FALSE = æœªé¸æŠž"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_PokemonSelect( BPLIST_WORK * wk )
@@ -1801,12 +1801,12 @@ static u8 BPL_PokemonSelect( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦ƒy[ƒW‘I‘ð
+ * å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸é¸æŠž
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"0xff != ‘I‘ð‚³‚ê‚½"
- * @retval	"0xff = –¢‘I‘ð"
+ * @retval	"0xff != é¸æŠžã•ã‚ŒãŸ"
+ * @retval	"0xff = æœªé¸æŠž"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_IrekaeSelect( BPLIST_WORK * wk )
@@ -1829,12 +1829,12 @@ static u8 BPL_IrekaeSelect( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‘I‘ð
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é¸æŠž
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"0xff != ‘I‘ð‚³‚ê‚½"
- * @retval	"0xff = –¢‘I‘ð"
+ * @retval	"0xff != é¸æŠžã•ã‚ŒãŸ"
+ * @retval	"0xff = æœªé¸æŠž"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_StatusMainSelect( BPLIST_WORK * wk )
@@ -1857,12 +1857,12 @@ static u8 BPL_StatusMainSelect( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‹Z‘I‘ð
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠž
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"0xff != ‘I‘ð‚³‚ê‚½"
- * @retval	"0xff = –¢‘I‘ð"
+ * @retval	"0xff != é¸æŠžã•ã‚ŒãŸ"
+ * @retval	"0xff = æœªé¸æŠž"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_StWazaSelect( BPLIST_WORK * wk )
@@ -1885,12 +1885,12 @@ static u8 BPL_StWazaSelect( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‹ZÚ×‘I‘ð
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€è©³ç´°é¸æŠž
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"0xff != ‘I‘ð‚³‚ê‚½"
- * @retval	"0xff = –¢‘I‘ð"
+ * @retval	"0xff != é¸æŠžã•ã‚ŒãŸ"
+ * @retval	"0xff = æœªé¸æŠž"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_StInfoWazaSelect( BPLIST_WORK * wk )
@@ -1914,13 +1914,13 @@ static u8 BPL_StInfoWazaSelect( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ{ƒ^ƒ“‰Ÿ‚µ”»’è
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ãƒœã‚¿ãƒ³æŠ¼ã—åˆ¤å®š
  *
- * @param	wk		ƒ[ƒN
- * @param	tbl		TPƒf[ƒ^ƒe[ƒuƒ‹
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	tbl		TPãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- * @retval	"RECT_HIT_NONE = ‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢"
- * @retval	"RECT_HIT_NONE != ‰Ÿ‚µ‚½ƒ{ƒ^ƒ“”Ô†"
+ * @retval	"RECT_HIT_NONE = æŠ¼ã•ã‚Œã¦ã„ãªã„"
+ * @retval	"RECT_HIT_NONE != æŠ¼ã—ãŸãƒœã‚¿ãƒ³ç•ªå·"
  */
 //--------------------------------------------------------------------------------------------
 static int BPL_TPCheck( BPLIST_WORK * wk, const RECT_HIT_TBL * tbl )
@@ -1956,14 +1956,14 @@ static int BPL_TPCheck( BPLIST_WORK * wk, const RECT_HIT_TBL * tbl )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Žw’èˆÊ’u‚Éƒ|ƒPƒ‚ƒ“‚ª‘¶Ý‚·‚é‚©
+ * æŒ‡å®šä½ç½®ã«ãƒã‚±ãƒ¢ãƒ³ãŒå­˜åœ¨ã™ã‚‹ã‹
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
  *
- * @retval	"0 = ‚¢‚È‚¢"
- * @retval	"1 = í“¬’†"
- * @retval	"2 = T‚¦"
+ * @retval	"0 = ã„ãªã„"
+ * @retval	"1 = æˆ¦é—˜ä¸­"
+ * @retval	"2 = æŽ§ãˆ"
  */
 //--------------------------------------------------------------------------------------------
 u8 BattlePokeList_PokeSetCheck( BPLIST_WORK * wk, s32 pos )
@@ -1980,14 +1980,14 @@ u8 BattlePokeList_PokeSetCheck( BPLIST_WORK * wk, s32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŽŸ‚Ìƒ|ƒPƒ‚ƒ“‚ðŽæ“¾
+ * æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ã‚’å–å¾—
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		Œ»ÝˆÊ’u
- * @param	mv		ˆÚ“®•ûŒü
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ç¾åœ¨ä½ç½®
+ * @param	mv		ç§»å‹•æ–¹å‘
  *
- * @retval	"0xff = ŽŸ‚Ìƒ|ƒPƒ‚ƒ“‚È‚µ"
- * @retval	"0xff != ŽŸ‚Ìƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u"
+ * @retval	"0xff = æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ãªã—"
+ * @retval	"0xff != æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_NextPokeGet( BPLIST_WORK * wk, s32 pos, s32 mv )
@@ -2038,9 +2038,9 @@ static u8 BPL_NextPokeGet( BPLIST_WORK * wk, s32 pos, s32 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒŒ[ƒg‘‚«Š·‚¦
+ * ãƒ—ãƒ¬ãƒ¼ãƒˆæ›¸ãæ›ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2070,10 +2070,10 @@ static void BPL_PokePlateSet( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŒoŒ±’lƒQ[ƒW‘‚«Š·‚¦
+ * çµŒé¨“å€¤ã‚²ãƒ¼ã‚¸æ›¸ãæ›ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒW”Ô†
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸ç•ªå·
  *
  * @return	none
  */
@@ -2092,8 +2092,8 @@ static void BPL_ExpGagePut( BPLIST_WORK * wk, u8 page )
 
 	pd = &wk->poke[wk->dat->sel_poke];
 
-/* ƒ‹ƒrƒTƒtƒ@‚Ìˆç‚Ä‰®‚ÅLv100ˆÈã‚ÌŒoŒ±’l‚É‚È‚é‚½‚ßAƒ}ƒCƒiƒX•\Ž¦‚É‚È‚Á‚Ä‚µ‚Ü‚¤•s‹ï‡‘Îˆ */
-#if T1653_060815_FIX	// ‘ÎˆŒã
+/* ãƒ«ãƒ“ã‚µãƒ•ã‚¡ã®è‚²ã¦å±‹ã§Lv100ä»¥ä¸Šã®çµŒé¨“å€¤ã«ãªã‚‹ãŸã‚ã€ãƒžã‚¤ãƒŠã‚¹è¡¨ç¤ºã«ãªã£ã¦ã—ã¾ã†ä¸å…·åˆå¯¾å‡¦ */
+#if T1653_060815_FIX	// å¯¾å‡¦å¾Œ
 	if( pd->lv < 100 ){
 		max = pd->next_lv_exp - pd->now_lv_exp;
 		now = pd->now_exp - pd->now_lv_exp;
@@ -2101,7 +2101,7 @@ static void BPL_ExpGagePut( BPLIST_WORK * wk, u8 page )
 		max = 0;
 		now = 0;
 	}
-#else					// ‘Îˆ‘O
+#else					// å¯¾å‡¦å‰
 	max = pd->next_lv_exp - pd->now_lv_exp;
 	now = pd->now_exp - pd->now_lv_exp;
 #endif	// T1653_060815_FIX
@@ -2147,11 +2147,11 @@ static void BPL_P3_ExpGagePut( BPLIST_WORK * wk, u16 cgx, u16 px, u16 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Z‚Ìƒn[ƒg‘‚«Š·‚¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã®ãƒãƒ¼ãƒˆæ›¸ãæ›ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	chr		Žg—pƒLƒƒƒ‰
- * @param	num		‰½ŒÂ–Ú‚Ìƒn[ƒg‚©
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	chr		ä½¿ç”¨ã‚­ãƒ£ãƒ©
+ * @param	num		ä½•å€‹ç›®ã®ãƒãƒ¼ãƒˆã‹
  *
  * @return	none
  */
@@ -2174,9 +2174,9 @@ static void BPL_ContestWazaHeartPutMain( BPLIST_WORK * wk, u16 chr, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Z‚Ìƒn[ƒg‰Šú‰»
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã®ãƒãƒ¼ãƒˆåˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2192,10 +2192,10 @@ static void BPL_ContestWazaHeartInit( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Z‚Ìƒn[ƒg•\Ž¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã®ãƒãƒ¼ãƒˆè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒWID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸ID
  *
  * @return	none
  */
@@ -2234,10 +2234,10 @@ static void BPL_ContestWazaHeartPut( BPLIST_WORK * wk, u8 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk			ƒ[ƒN
- * @param	next_page	ŽŸ‚Ìƒy[ƒW
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯
+ * @param	next_page	æ¬¡ã®ãƒšãƒ¼ã‚¸
  *
  * @return	none
  */
@@ -2266,25 +2266,25 @@ static void BPL_PageChange( BPLIST_WORK * wk, u8 next_page )
 }
 
 static const u32 ScreenArc[][2] =
-{	// ƒ{ƒ^ƒ“BGƒXƒNƒŠ[ƒ“, ”wŒiBGƒXƒNƒŠ[ƒ“
-	{ NARC_b_plist_gra_poke_sel_t_NSCR, NARC_b_plist_gra_poke_sel_u_NSCR },				// ƒ|ƒPƒ‚ƒ“‘I‘ðƒy[ƒW
-	{ NARC_b_plist_gra_poke_chg_t_NSCR, NARC_b_plist_gra_poke_chg_u_NSCR },				// ƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦ƒy[ƒW
-	{ NARC_b_plist_gra_st_main_t_NSCR, NARC_b_plist_gra_st_main_u_NSCR },				// ƒXƒe[ƒ^ƒXƒƒCƒ“ƒy[ƒW
-	{ NARC_b_plist_gra_st_waza_sel_t_NSCR, NARC_b_plist_gra_st_waza_sel_u_NSCR },		// ƒXƒe[ƒ^ƒXÚ×ƒy[ƒW
-	{ NARC_b_plist_gra_st_waza_main_t_NSCR, NARC_b_plist_gra_st_waza_main_u_NSCR },		// ƒXƒe[ƒ^ƒX‹Zƒy[ƒW
-	{ NARC_b_plist_gra_item_waza_t_NSCR, NARC_b_plist_gra_item_waza_u_NSCR },			// PP‰ñ•œ‹Z‘I‘ðƒy[ƒW
-	{ NARC_b_plist_gra_waza_delb_sel_t_NSCR, NARC_b_plist_gra_waza_delb_sel_u_NSCR },	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Pƒy[ƒWií“¬‹Z‘I‘ðj
-	{ NARC_b_plist_gra_waza_delb_main_t_NSCR, NARC_b_plist_gra_waza_delb_main_u_NSCR },	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Qƒy[ƒWií“¬‹ZÚ×j
-	{ NARC_b_plist_gra_waza_delc_sel_t_NSCR, NARC_b_plist_gra_waza_delc_sel_u_NSCR },	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Rƒy[ƒWiƒRƒ“ƒeƒXƒg‹ZÚ×j
-	{ NARC_b_plist_gra_waza_delc_main_t_NSCR, NARC_b_plist_gra_waza_delc_main_u_NSCR },	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Sƒy[ƒWiƒRƒ“ƒeƒXƒg‹Z‘I‘ðj
+{	// ãƒœã‚¿ãƒ³BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³, èƒŒæ™¯BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³
+	{ NARC_b_plist_gra_poke_sel_t_NSCR, NARC_b_plist_gra_poke_sel_u_NSCR },				// ãƒã‚±ãƒ¢ãƒ³é¸æŠžãƒšãƒ¼ã‚¸
+	{ NARC_b_plist_gra_poke_chg_t_NSCR, NARC_b_plist_gra_poke_chg_u_NSCR },				// ãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸
+	{ NARC_b_plist_gra_st_main_t_NSCR, NARC_b_plist_gra_st_main_u_NSCR },				// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸
+	{ NARC_b_plist_gra_st_waza_sel_t_NSCR, NARC_b_plist_gra_st_waza_sel_u_NSCR },		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è©³ç´°ãƒšãƒ¼ã‚¸
+	{ NARC_b_plist_gra_st_waza_main_t_NSCR, NARC_b_plist_gra_st_waza_main_u_NSCR },		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€ãƒšãƒ¼ã‚¸
+	{ NARC_b_plist_gra_item_waza_t_NSCR, NARC_b_plist_gra_item_waza_u_NSCR },			// PPå›žå¾©æŠ€é¸æŠžãƒšãƒ¼ã‚¸
+	{ NARC_b_plist_gra_waza_delb_sel_t_NSCR, NARC_b_plist_gra_waza_delb_sel_u_NSCR },	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼‘ãƒšãƒ¼ã‚¸ï¼ˆæˆ¦é—˜æŠ€é¸æŠžï¼‰
+	{ NARC_b_plist_gra_waza_delb_main_t_NSCR, NARC_b_plist_gra_waza_delb_main_u_NSCR },	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼’ãƒšãƒ¼ã‚¸ï¼ˆæˆ¦é—˜æŠ€è©³ç´°ï¼‰
+	{ NARC_b_plist_gra_waza_delc_sel_t_NSCR, NARC_b_plist_gra_waza_delc_sel_u_NSCR },	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼“ãƒšãƒ¼ã‚¸ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€è©³ç´°ï¼‰
+	{ NARC_b_plist_gra_waza_delc_main_t_NSCR, NARC_b_plist_gra_waza_delc_main_u_NSCR },	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼”ãƒšãƒ¼ã‚¸ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€é¸æŠžï¼‰
 };
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGƒXƒNƒŠ[ƒ“‘‚«Š·‚¦
+ * BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒWID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸ID
  *
  * @return	none
  */
@@ -2306,12 +2306,12 @@ static void BPL_PageChgBgScreenChg( BPLIST_WORK * wk, u8 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦ƒ`ƒFƒbƒN
+ * å…¥ã‚Œæ›¿ãˆãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = “ü‚ê‘Ö‚¦‰Â"
- * @retval	"FALSE = “ü‚ê‘Ö‚¦•s‰Â"
+ * @retval	"TRUE = å…¥ã‚Œæ›¿ãˆå¯"
+ * @retval	"FALSE = å…¥ã‚Œæ›¿ãˆä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_IrekaeCheck( BPLIST_WORK * wk )
@@ -2321,7 +2321,7 @@ static u8 BPL_IrekaeCheck( BPLIST_WORK * wk )
 
 	dat = &wk->poke[wk->dat->sel_poke];
 
-	// ‘¼l
+	// ä»–äºº
 	if( BattlePokeList_MultiPosCheck( wk, wk->dat->sel_poke ) == TRUE ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m05 );
 		{
@@ -2337,7 +2337,7 @@ static u8 BPL_IrekaeCheck( BPLIST_WORK * wk )
 		return FALSE;
 	}
 
-	// •mŽ€
+	// ç€•æ­»
 	if( dat->hp == 0 ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m02 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(dat->pp) );
@@ -2346,7 +2346,7 @@ static u8 BPL_IrekaeCheck( BPLIST_WORK * wk )
 		return FALSE;
 	}
 
-	// o‚Ä‚¢‚é
+	// å‡ºã¦ã„ã‚‹
 //	if( BattlePokeList_PokeSetCheck( wk, wk->dat->sel_poke ) == 1 ){
 	if( wk->dat->list_row[wk->dat->sel_poke] == wk->dat->fight_poke1 ||
 		wk->dat->list_row[wk->dat->sel_poke] == wk->dat->fight_poke2 ){
@@ -2358,13 +2358,13 @@ static u8 BPL_IrekaeCheck( BPLIST_WORK * wk )
 		return FALSE;
 	}
 
-	// ƒ^ƒ}ƒS
+	// ã‚¿ãƒžã‚´
 	if( BPL_TamagoCheck( wk ) == TRUE ){
 		MSGMAN_GetString( wk->mman, mes_b_plist_m04, wk->msg_buf );
 		return FALSE;
 	}
 
-	// ‘I‘ð‚³‚ê‚Ä‚¢‚é
+	// é¸æŠžã•ã‚Œã¦ã„ã‚‹
 	if( wk->dat->double_sel != 6 && wk->dat->list_row[wk->dat->sel_poke] == wk->dat->double_sel ){
 		dat = &wk->poke[wk->dat->sel_poke];
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m18 );
@@ -2374,7 +2374,7 @@ static u8 BPL_IrekaeCheck( BPLIST_WORK * wk )
 		return FALSE;
 	}
 
-	// ‹Z
+	// æŠ€
 	if( wk->dat->chg_waza != 0 ){
 		dat = &wk->poke[wk->init_poke];
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m03 );
@@ -2389,12 +2389,12 @@ static u8 BPL_IrekaeCheck( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒ}ƒSƒ`ƒFƒbƒN
+ * ã‚¿ãƒžã‚´ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ƒ^ƒ}ƒS"
- * @retval	"FALSE = ƒ^ƒ}ƒSˆÈŠO"
+ * @retval	"TRUE = ã‚¿ãƒžã‚´"
+ * @retval	"FALSE = ã‚¿ãƒžã‚´ä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_TamagoCheck( BPLIST_WORK * wk )
@@ -2407,12 +2407,12 @@ static u8 BPL_TamagoCheck( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ_ƒuƒ‹ƒoƒgƒ‹ƒ`ƒFƒbƒN
+ * ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ƒ_ƒuƒ‹ƒoƒgƒ‹"
- * @retval	"FALSE = ƒ_ƒuƒ‹ƒoƒgƒ‹ˆÈŠO"
+ * @retval	"TRUE = ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«"
+ * @retval	"FALSE = ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 u8 BattlePokeList_DoubleCheck( BPLIST_WORK * wk )
@@ -2428,12 +2428,12 @@ u8 BattlePokeList_DoubleCheck( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ}ƒ‹ƒ`ƒoƒgƒ‹ƒ`ƒFƒbƒN
+ * ãƒžãƒ«ãƒãƒãƒˆãƒ«ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ƒ}ƒ‹ƒ`ƒoƒgƒ‹"
- * @retval	"FALSE = ƒ}ƒ‹ƒ`ƒoƒgƒ‹ˆÈŠO"
+ * @retval	"TRUE = ãƒžãƒ«ãƒãƒãƒˆãƒ«"
+ * @retval	"FALSE = ãƒžãƒ«ãƒãƒãƒˆãƒ«ä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 u8 BattlePokeList_MultiCheck( BPLIST_WORK * wk )
@@ -2448,13 +2448,13 @@ u8 BattlePokeList_MultiCheck( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ}ƒ‹ƒ`ƒoƒgƒ‹‚Åƒp[ƒgƒi[‚Ìƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+ * ãƒžãƒ«ãƒãƒãƒˆãƒ«ã§ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
  *
- * @retval	"TRUE = ‚Í‚¢"
- * @retval	"FALSE = ‚¢‚¢‚¦"
+ * @retval	"TRUE = ã¯ã„"
+ * @retval	"FALSE = ã„ã„ãˆ"
  */
 //--------------------------------------------------------------------------------------------
 u8 BattlePokeList_MultiPosCheck( BPLIST_WORK * wk, u8 pos )
@@ -2471,12 +2471,12 @@ u8 BattlePokeList_MultiPosCheck( BPLIST_WORK * wk, u8 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”é“`‹Zƒ`ƒFƒbƒN
+ * ç§˜ä¼æŠ€ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ”é“`‹Z"
- * @retval	"FALSE = ”é“`‹ZˆÈŠO"
+ * @retval	"TRUE = ç§˜ä¼æŠ€"
+ * @retval	"FALSE = ç§˜ä¼æŠ€ä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BPL_HidenCheck( BPLIST_WORK * wk )
@@ -2493,40 +2493,40 @@ static u8 BPL_HidenCheck( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒpƒ‰ƒ[ƒ^‚ð”ñ•\Ž¦‚Éií“¬j
+ * æŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’éžè¡¨ç¤ºã«ï¼ˆæˆ¦é—˜ï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_HidenOff_Battle( BPLIST_WORK * wk )
 {
-	// •ª—ÞƒAƒCƒRƒ“
+	// åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³
 	CATS_ObjectEnableCap( wk->cap[BPL_CA_BUNRUI], 0 );
 
-	// •ª—Þ
+	// åˆ†é¡ž
 	GF_BGL_BmpWinOffVReq( &wk->add_win[WIN_P6_BRNAME] );
 
-	// –½’†
+	// å‘½ä¸­
 	GF_BGL_BmpWinOffVReq( &wk->add_win[WIN_P6_HITNUM] );
 
-	// ˆÐ—Í
+	// å¨åŠ›
 	GF_BGL_BmpWinOffVReq( &wk->add_win[WIN_P6_POWNUM] );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒpƒ‰ƒ[ƒ^‚ð”ñ•\Ž¦‚ÉiƒRƒ“ƒeƒXƒgj
+ * æŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’éžè¡¨ç¤ºã«ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_HidenOff_Contest( BPLIST_WORK * wk )
 {
-	// ƒn[ƒg
+	// ãƒãƒ¼ãƒˆ
 	BPL_ContestWazaHeartInit( wk );
 	GF_BGL_LoadScreenV_Req( wk->bgl, GF_BGL_FRAME3_S );
 }
@@ -2534,12 +2534,12 @@ static void BPL_HidenOff_Contest( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€‚ðŒ¸‚ç‚·
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¸›ã‚‰ã™
  *
- * @param	bw		í“¬‚Ìƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€”Ô†
- * @param	page	ƒ|ƒPƒbƒg”Ô†
- * @param	heap	ƒq[ƒvID
+ * @param	bw		æˆ¦é—˜ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	page	ãƒã‚±ãƒƒãƒˆç•ªå·
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */

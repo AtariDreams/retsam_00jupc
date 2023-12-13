@@ -1,90 +1,90 @@
-#ƒZƒ‹ƒAƒNƒ^[ƒ†[ƒeƒBƒŠƒeƒBƒVƒXƒeƒ€
-#	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒoƒCƒiƒŠƒwƒbƒ_[’è‹`ƒtƒ@ƒCƒ‹Œ`Ž®‚É®Œ`‚·‚é
+#ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã‚·ã‚¹ãƒ†ãƒ 
+#	ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒŠãƒªãƒ˜ãƒƒãƒ€ãƒ¼å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ã«æ•´å½¢ã™ã‚‹
 #	
-#	¡‚Ü‚Å‚ÌƒeƒLƒXƒgŒ`Ž®‚Ìƒtƒ@ƒCƒ‹‚ðƒoƒCƒiƒŠ‚ÉƒRƒ“ƒo[ƒg‚Å‚«‚éŒ`Ž®‚É•Ï‰»‚³‚¹‚é
+#	ä»Šã¾ã§ã®ãƒ†ã‚­ã‚¹ãƒˆå½¢å¼ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒã‚¤ãƒŠãƒªã«ã‚³ãƒ³ãƒãƒ¼ãƒˆã§ãã‚‹å½¢å¼ã«å¤‰åŒ–ã•ã›ã‚‹
 #
-#	ˆø”‚P
-#		ƒRƒ“ƒo[ƒg‘ÎÛ
-#	ˆø”‚Q
-#		‘‚«o‚·ƒtƒ@ƒCƒ‹–¼
+#	å¼•æ•°ï¼‘
+#		ã‚³ãƒ³ãƒãƒ¼ãƒˆå¯¾è±¡
+#	å¼•æ•°ï¼’
+#		æ›¸ãå‡ºã™ãƒ•ã‚¡ã‚¤ãƒ«å
 #
-#	–ß‚è’l
-#		¬Œ÷	1
-#		Ž¸”s	0
+#	æˆ»ã‚Šå€¤
+#		æˆåŠŸ	1
+#		å¤±æ•—	0
 
-#ˆø”‚Í‚Q‚Â•K—v
+#å¼•æ•°ã¯ï¼’ã¤å¿…è¦
 if( 2 > @ARGV ){
 
-	print( "err--ˆø”‚Ì”‚ª".@ARGV."ŒÂ‚Å‚·B\n" );
-	print( "ˆø”‚P@ƒRƒ“ƒo[ƒg‘ÎÛ\n" );
-	print( "ˆø”‚Q@‘‚«o‚·ƒtƒ@ƒCƒ‹–¼\n" );
+	print( "err--å¼•æ•°ã®æ•°ãŒ".@ARGV."å€‹ã§ã™ã€‚\n" );
+	print( "å¼•æ•°ï¼‘ã€€ã‚³ãƒ³ãƒãƒ¼ãƒˆå¯¾è±¡\n" );
+	print( "å¼•æ•°ï¼’ã€€æ›¸ãå‡ºã™ãƒ•ã‚¡ã‚¤ãƒ«å\n" );
 	exit(1);
 }
 
 
-#	ƒRƒ“ƒo[ƒg‘ÎÛ‚Ìƒtƒ@ƒCƒ‹Œ`Ž®
+#	ã‚³ãƒ³ãƒãƒ¼ãƒˆå¯¾è±¡ã®ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼
 #
-#		ƒŠƒ\[ƒXƒ^ƒCƒv,@ƒA[ƒJƒCƒuƒtƒ‰ƒO,												<-ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒtƒ‰ƒO‚ª‚ ‚é
-#		ƒA[ƒJƒCƒuidx,ƒf[ƒ^idx,ˆ³kƒtƒ‰ƒO,ŠÇ—ID,vramƒ^ƒCƒv,ƒpƒŒƒbƒg“Ç‚Ýž‚Ý–{”,		<-‚±‚Ì—v‘f”‚ªƒŠƒ\[ƒXƒ^ƒCƒv‚É‚æ‚Á‚Äˆá‚¤
-#		ƒA[ƒJƒCƒuidx,ƒf[ƒ^idx,ˆ³kƒtƒ‰ƒO,ŠÇ—ID,vramƒ^ƒCƒv,ƒpƒŒƒbƒg“Ç‚Ýž‚Ý–{”,		<-‚±‚Ì—v‘f”‚ªƒŠƒ\[ƒXƒ^ƒCƒv‚É‚æ‚Á‚Äˆá‚¤
-#	<I—¹ƒR[ƒh>e,e,e,e,e,e,															<-ŒÂX‚ÌŒÂ”‚ªˆá‚¤
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—,ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ãƒ©ã‚°,												<-ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ãƒ©ã‚°ãŒã‚ã‚‹
+#		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–idx,ãƒ‡ãƒ¼ã‚¿idx,åœ§ç¸®ãƒ•ãƒ©ã‚°,ç®¡ç†ID,vramã‚¿ã‚¤ãƒ—,ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æœ¬æ•°,		<-ã“ã®è¦ç´ æ•°ãŒãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦é•ã†
+#		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–idx,ãƒ‡ãƒ¼ã‚¿idx,åœ§ç¸®ãƒ•ãƒ©ã‚°,ç®¡ç†ID,vramã‚¿ã‚¤ãƒ—,ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æœ¬æ•°,		<-ã“ã®è¦ç´ æ•°ãŒãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦é•ã†
+#	<çµ‚äº†ã‚³ãƒ¼ãƒ‰>e,e,e,e,e,e,															<-å€‹ã€…ã®å€‹æ•°ãŒé•ã†
 
-#	ƒZƒ‹ƒAƒNƒ^[ƒ†[ƒeƒBƒŠƒeƒBƒVƒXƒeƒ€
-#			ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒoƒCƒiƒŠƒwƒbƒ_[’è‹`ƒtƒ@ƒCƒ‹Œ`Ž®
-#—áj
-#*		ƒŠƒ\[ƒXƒ^ƒCƒv,																	<-ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒtƒ‰ƒO‚ð”pŽ~
-#*		ƒA[ƒJƒCƒuidx,ƒf[ƒ^idx,ˆ³kƒtƒ‰ƒO,ŠÇ—ID,vramƒ^ƒCƒv,ƒpƒŒƒbƒg“Ç‚Ýž‚Ý–{”,		<-—v‘f”‚ðŒÅ’è		6ŒÂ
-#*		ƒA[ƒJƒCƒuidx,ƒf[ƒ^idx,ˆ³kƒtƒ‰ƒO,ŠÇ—ID,vramƒ^ƒCƒv,ƒpƒŒƒbƒg“Ç‚Ýž‚Ý–{”,		<-—v‘f”‚ðŒÅ’è		6ŒÂ
-#*	<I—¹ƒR[ƒh>e,e,e,e,e,e,															<-ŒÂ”‚ðŒÅ’è		6ŒÂ
+#	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã‚·ã‚¹ãƒ†ãƒ 
+#			ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒŠãƒªãƒ˜ãƒƒãƒ€ãƒ¼å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼
+#ä¾‹ï¼‰
+#*		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—,																	<-ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ãƒ©ã‚°ã‚’å»ƒæ­¢
+#*		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–idx,ãƒ‡ãƒ¼ã‚¿idx,åœ§ç¸®ãƒ•ãƒ©ã‚°,ç®¡ç†ID,vramã‚¿ã‚¤ãƒ—,ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æœ¬æ•°,		<-è¦ç´ æ•°ã‚’å›ºå®š		6å€‹
+#*		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–idx,ãƒ‡ãƒ¼ã‚¿idx,åœ§ç¸®ãƒ•ãƒ©ã‚°,ç®¡ç†ID,vramã‚¿ã‚¤ãƒ—,ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æœ¬æ•°,		<-è¦ç´ æ•°ã‚’å›ºå®š		6å€‹
+#*	<çµ‚äº†ã‚³ãƒ¼ãƒ‰>e,e,e,e,e,e,															<-å€‹æ•°ã‚’å›ºå®š		6å€‹
 
-#“Ç‚Ýž‚Ýƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+#èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 #
 open( FILEIN, $ARGV[0] );
 @in_file = <FILEIN>;
 
 if( @in_file == 0 ){
-	print( "$ARGV[0]‚ðŠJ‚¯‚Ü‚¹‚ñ\n" );
+	print( "$ARGV[0]ã‚’é–‹ã‘ã¾ã›ã‚“\n" );
 	exit(1);
 }
 
 close( FILEIN );
 
-#‘‚«ž‚Ýƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+#æ›¸ãè¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 #
 open( FILEOUT, ">$ARGV[1]" );
 
-#ƒf[ƒ^‚ð®Œ`‚µ‚È‚ª‚ç‘‚«o‚·
+#ãƒ‡ãƒ¼ã‚¿ã‚’æ•´å½¢ã—ãªãŒã‚‰æ›¸ãå‡ºã™
 $res_type_flag = 1;
 foreach $one (@in_file){
 
-	#ƒRƒƒ“ƒg•”•ª‚ð”jŠü
+	#ã‚³ãƒ¡ãƒ³ãƒˆéƒ¨åˆ†ã‚’ç ´æ£„
 	$one =~ s/,[^,]*\r*\n/,\n/;
 	
 	
-	#ƒ^ƒu@ƒXƒy[ƒX‚ð”rœ
+	#ã‚¿ãƒ–ã€€ã‚¹ãƒšãƒ¼ã‚¹ã‚’æŽ’é™¤
 	$one =~ s/\s//g;
 	$one =~ s/\t//g;
 
-	#ENUM_FILE‚Ì‚ ‚és‚Í‚»‚Ì‚Ü‚Ü‘‚«o‚·
+	#ENUM_FILEã®ã‚ã‚‹è¡Œã¯ãã®ã¾ã¾æ›¸ãå‡ºã™
 	if( $one =~ /ENUM_FILE/ ){
 		print( FILEOUT $one);
 	}else{
-		#ƒŠƒ\[ƒXƒ^ƒCƒv‚Ì‚Æ‚«
+		#ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—ã®ã¨ã
 		if( $res_type_flag ){
 
-			#æ“ª‚©‚ç,‚Ü‚Å‚ð‘‚«o‚·
+			#å…ˆé ­ã‹ã‚‰,ã¾ã§ã‚’æ›¸ãå‡ºã™
 			$one =~ /^([^,]+,)/;
 
 			print(FILEOUT $1);
 			$res_type_flag = 0;
 		}else{
 			
-			#Šeƒf[ƒ^‚Ì‚Æ‚«
-			#6‚Â‚Ìƒf[ƒ^‚ÉŒÅ’è
+			#å„ãƒ‡ãƒ¼ã‚¿ã®ã¨ã
+			#6ã¤ã®ãƒ‡ãƒ¼ã‚¿ã«å›ºå®š
 			@one_list = split( ",", $one );
 			$data_num = 0;
 			foreach $list_data ( @one_list ){
-				#\r\n‚ª‚È‚¢‚©ƒ`ƒFƒbƒN
+				#\r\nãŒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 				if( !($list_data =~ /\n/) ){
 					
 					if( $data_num < 6 ){
@@ -95,7 +95,7 @@ foreach $one (@in_file){
 				}
 			}
 
-			#6‚æ‚è¬‚³‚¢‚Æ‚«‚Í‚U‚É‚È‚é‚Ü‚Åƒ_ƒ~[ƒf[ƒ^‚ð‘‚«o‚·
+			#6ã‚ˆã‚Šå°ã•ã„ã¨ãã¯ï¼–ã«ãªã‚‹ã¾ã§ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™
 			for( ; $data_num < 6; $data_num ++ ){
 				$one =~ /^([^,]+,)/;
 				print( FILEOUT $1 );

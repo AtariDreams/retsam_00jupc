@@ -2,7 +2,7 @@
 /**
  * 
  * @file	guru2.c
- * @brief	‚®‚é‚®‚éŒğŠ·
+ * @brief	ãã‚‹ãã‚‹äº¤æ›
  * @author	kagaya
  * @data	05.07.13
  *
@@ -17,7 +17,7 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-///	ŠÇ—ƒV[ƒPƒ“ƒX
+///	ç®¡ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //--------------------------------------------------------------
 enum
 {
@@ -61,13 +61,13 @@ static const PROC_DATA Guru2Receipt_Proc;
 static const PROC_DATA Guru2Main_Proc;
 
 //==============================================================================
-//	‚®‚é‚®‚éŒğŠ·
+//	ãã‚‹ãã‚‹äº¤æ›
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·@ƒvƒƒZƒX@‰Šú‰»
+ * ãã‚‹ãã‚‹äº¤æ›ã€€ãƒ—ãƒ­ã‚»ã‚¹ã€€åˆæœŸåŒ–
  * @param	param	GURU2_PARAM
- * @param	heap_id	ƒq[ƒvID
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
  * @retval	GURU2PROC_WORK	GURU2PROC_WORK
  */
 //--------------------------------------------------------------
@@ -78,10 +78,10 @@ GURU2PROC_WORK * Guru2_ProcInit( GURU2_PARAM *param, u32 heap_id )
 	g2p = sys_AllocMemory( heap_id, sizeof(GURU2PROC_WORK) );
 	memset( g2p, 0, sizeof(GURU2PROC_WORK) );
 	
-	//ŠO•”ƒf[ƒ^ƒZƒbƒg
+	//å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	g2p->param = *param;
 	
-	//’ÊM‰Šú‰»
+	//é€šä¿¡åˆæœŸåŒ–
 	g2p->g2c = Guru2Comm_WorkInit( g2p, heap_id );
 	
 	return( g2p );
@@ -89,33 +89,33 @@ GURU2PROC_WORK * Guru2_ProcInit( GURU2_PARAM *param, u32 heap_id )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·@ƒvƒƒZƒX@I—¹
+ * ãã‚‹ãã‚‹äº¤æ›ã€€ãƒ—ãƒ­ã‚»ã‚¹ã€€çµ‚äº†
  * @param	g2p		GURU2PROC_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 void Guru2_ProcDelete( GURU2PROC_WORK *g2p )
 {
-	//ƒ[ƒN”½‰f
+	//ãƒ¯ãƒ¼ã‚¯åæ˜ 
 	
-	//ƒ†ƒjƒIƒ“ƒ‹[ƒ€’ÊM‚Ö
+	//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ é€šä¿¡ã¸
 	Guru2Comm_CommUnionRoomChange( g2p->g2c );
 	
-	//’ÊMƒ[ƒNíœ
+	//é€šä¿¡ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
 	Guru2Comm_WorkDelete( g2p->g2c );
 	
-	//ƒŠƒ\[ƒXŠJ•ú
+	//ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
 	sys_FreeMemoryEz( g2p );
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ó•tI—¹@–ß‚è’lƒ`ƒFƒbƒN
+ * å—ä»˜çµ‚äº†ã€€æˆ»ã‚Šå€¤ãƒã‚§ãƒƒã‚¯
  * @param	g2p	GURU2PROC_WORK *
- * @retval	BOOL	TRUE=Œp‘± FALSE=I—¹
+ * @retval	BOOL	TRUE=ç¶™ç¶š FALSE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL Guru2_ReceiptRetCheck( GURU2PROC_WORK *g2p )
@@ -124,11 +124,11 @@ BOOL Guru2_ReceiptRetCheck( GURU2PROC_WORK *g2p )
 }
 
 //==============================================================================
-//	ƒCƒxƒ“ƒg
+//	ã‚¤ãƒ™ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·ˆ——pƒ[ƒNì¬
+ * ãã‚‹ãã‚‹äº¤æ›å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  * @param	FIELDSYS_WORK *fsys
  * @retval	void*	
  */
@@ -153,9 +153,9 @@ void * EventCmd_Guru2ProcWorkAlloc( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·ƒCƒxƒ“ƒgˆ—
- * @param	wk		EventCmd_Guru2ProcWorkAlloc()‚Ì–ß‚è’l@I—¹ŠJ•ú
- * @retval	BOOL	TRUE=I—¹
+ * ãã‚‹ãã‚‹äº¤æ›ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
+ * @param	wk		EventCmd_Guru2ProcWorkAlloc()ã®æˆ»ã‚Šå€¤ã€€çµ‚äº†æ™‚é–‹æ”¾
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL EventCmd_Guru2Proc( void *wk )
@@ -171,13 +171,13 @@ BOOL EventCmd_Guru2Proc( void *wk )
 }
 
 //==============================================================================
-//	‚®‚é‚®‚éŒğŠ·@ƒvƒƒZƒX
+//	ãã‚‹ãã‚‹äº¤æ›ã€€ãƒ—ãƒ­ã‚»ã‚¹
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·@‰Šú‰»
+ * ãã‚‹ãã‚‹äº¤æ›ã€€åˆæœŸåŒ–
  * @param	g2call	GURU2_CALL_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL Guru2Proc_Init( GURU2_CALL_WORK *g2call )
@@ -190,9 +190,9 @@ static BOOL Guru2Proc_Init( GURU2_CALL_WORK *g2call )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·@Q‰ÁÒó•t
+ * ãã‚‹ãã‚‹äº¤æ›ã€€å‚åŠ è€…å—ä»˜
  * @param	g2c	GURU2_CALL_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL Guru2Proc_Receipt( GURU2_CALL_WORK *g2call )
@@ -201,7 +201,7 @@ static BOOL Guru2Proc_Receipt( GURU2_CALL_WORK *g2call )
 		if( Guru2_ReceiptRetCheck(g2call->g2p) == FALSE ){
 			g2call->seq_no = SEQNO_G2P_END;
 		}else{
-			CommStateSetErrorCheck( TRUE, TRUE ); //Ø’f•s‰Â
+			CommStateSetErrorCheck( TRUE, TRUE ); //åˆ‡æ–­ä¸å¯
 			
 			g2call->plist =
 				Guru2ListEvent_SetProc( g2call->fsys, g2call->psel_pos );
@@ -215,9 +215,9 @@ static BOOL Guru2Proc_Receipt( GURU2_CALL_WORK *g2call )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·@ƒ|ƒPƒ‚ƒ“‘I‘ğ
+ * ãã‚‹ãã‚‹äº¤æ›ã€€ãƒã‚±ãƒ¢ãƒ³é¸æŠ
  * @param	g2call	GURU2_CALL_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL Guru2Proc_PokeSelect( GURU2_CALL_WORK *g2call )
@@ -226,14 +226,14 @@ static BOOL Guru2Proc_PokeSelect( GURU2_CALL_WORK *g2call )
 		int ret = g2call->plist->ret_sel;
 		sys_FreeMemoryEz( g2call->plist );
 		
-		if( g2call->plist->ret_mode == PL_RET_STATUS ){ //ƒXƒe[ƒ^ƒX‰{——
+		if( g2call->plist->ret_mode == PL_RET_STATUS ){ //ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é–²è¦§
 			g2call->psd = PSTATUS_Temoti_Create(
 				g2call->fsys, HEAPID_BASE_APP, PST_MODE_NORMAL );
 			g2call->psel_pos = ret;
 			g2call->psd->pos = ret;
 			FieldPokeStatus_SetProc( g2call->fsys, g2call->psd );	
 			g2call->seq_no = SEQNO_G2P_POKE_STATUS;
-		}else{											//ƒQ[ƒ€‚Ö
+		}else{											//ã‚²ãƒ¼ãƒ ã¸
 			g2call->g2p->trade_no = ret;
 			GameSystem_StartSubProc(
 				g2call->fsys, &Guru2Main_Proc, g2call->g2p );
@@ -247,9 +247,9 @@ static BOOL Guru2Proc_PokeSelect( GURU2_CALL_WORK *g2call )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·@ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰{——
+ * ãã‚‹ãã‚‹äº¤æ›ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é–²è¦§
  * @param	g2call	GURU2_CALL_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL Guru2Proc_PokeStatus( GURU2_CALL_WORK *g2call )
@@ -266,9 +266,9 @@ static BOOL Guru2Proc_PokeStatus( GURU2_CALL_WORK *g2call )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·@‚®‚é‚®‚éŒğŠ·ƒQ[ƒ€
+ * ãã‚‹ãã‚‹äº¤æ›ã€€ãã‚‹ãã‚‹äº¤æ›ã‚²ãƒ¼ãƒ 
  * @param	g2call	GURU2_CALL_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL Guru2Proc_Guru2Game( GURU2_CALL_WORK *g2call )
@@ -282,9 +282,9 @@ static BOOL Guru2Proc_Guru2Game( GURU2_CALL_WORK *g2call )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·@I—¹
+ * ãã‚‹ãã‚‹äº¤æ›ã€€çµ‚äº†
  * @param	g2call	GURU2_CALL_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL Guru2Proc_End( GURU2_CALL_WORK *g2call )
@@ -294,7 +294,7 @@ static BOOL Guru2Proc_End( GURU2_CALL_WORK *g2call )
 }
 
 //--------------------------------------------------------------
-/// ‚®‚é‚®‚éŒğŠ·@ƒvƒƒZƒX‚Ü‚Æ‚ß
+/// ãã‚‹ãã‚‹äº¤æ›ã€€ãƒ—ãƒ­ã‚»ã‚¹ã¾ã¨ã‚
 //--------------------------------------------------------------
 static BOOL (* const DATA_Guru2ProcTbl[SEQNO_G2P_MAX])(GURU2_CALL_WORK*) =
 {
@@ -309,11 +309,11 @@ static BOOL (* const DATA_Guru2ProcTbl[SEQNO_G2P_MAX])(GURU2_CALL_WORK*) =
 //==============================================================================
 //	data
 //==============================================================================
-// ƒI[ƒo[ƒŒƒCIDéŒ¾
+// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 FS_EXTERN_OVERLAY(guru2);
 
 //--------------------------------------------------------------
-///	‚®‚é‚®‚éó•tƒvƒƒZƒXƒf[ƒ^
+///	ãã‚‹ãã‚‹å—ä»˜ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 static const PROC_DATA Guru2Receipt_Proc = {
 	Guru2Receipt_Init,
@@ -323,7 +323,7 @@ static const PROC_DATA Guru2Receipt_Proc = {
 };
 
 //--------------------------------------------------------------
-///	‚®‚é‚®‚éƒƒCƒ“ƒvƒƒZƒXƒf[ƒ^
+///	ãã‚‹ãã‚‹ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 static const PROC_DATA Guru2Main_Proc = {
 	Guru2Main_Init,
@@ -342,13 +342,13 @@ BOOL EventCmd_Guru2Proc( void *wk )
 	FIELDSYS_WORK *fsys = work->fsys;
 	
 	switch( work->seq_no ){
-	case SEQNO_G2P_INIT:	//‰Šú‰»
+	case SEQNO_G2P_INIT:	//åˆæœŸåŒ–
 		work->g2p = Guru2_ProcInit( &work->param, HEAPID_WORLD );
 		work->seq_no = SEQNO_G2P_RECEIPT;
 		
 		GameSystem_StartSubProc( fsys, &Guru2Receipt_Proc, work->g2p );
 		break;
-	case SEQNO_G2P_RECEIPT:	//ó•t
+	case SEQNO_G2P_RECEIPT:	//å—ä»˜
 		if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ){
 			break;
 		}
@@ -362,7 +362,7 @@ BOOL EventCmd_Guru2Proc( void *wk )
 		work->g2p->guru2_mode = GURU2MODE_POKESEL;
 		work->seq_no = SEQNO_G2P_POKE_SELECT;
 		break;
-	case SEQNO_G2P_POKE_SELECT: //ƒ|ƒPƒ‚ƒ“‘I‘ğ
+	case SEQNO_G2P_POKE_SELECT: //ãƒã‚±ãƒ¢ãƒ³é¸æŠ
 		if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ){
 			break;
 		}
@@ -370,14 +370,14 @@ BOOL EventCmd_Guru2Proc( void *wk )
 		{
 			int ret = work->plist->ret_sel;
 			
-			sys_FreeMemoryEz( work->plist );		//ƒŠƒXƒgƒ[ƒNŠJ•ú
+			sys_FreeMemoryEz( work->plist );		//ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 			
-			if( ret == PL_SEL_POS_EXIT ){			//ƒLƒƒƒ“ƒZƒ‹
+			if( ret == PL_SEL_POS_EXIT ){			//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				work->seq_no = SEQNO_G2P_CANCEL;
 				break;
 			}
 			
-			if( work->plist->ret_mode == PL_RET_STATUS ){	//ƒXƒe[ƒ^ƒX‰{——
+			if( work->plist->ret_mode == PL_RET_STATUS ){	//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é–²è¦§
 				work->psd = PSTATUS_Temoti_Create(
 					fsys, HEAPID_BASE_APP, PST_MODE_NORMAL );
 				work->psd->pos = ret;
@@ -393,7 +393,7 @@ BOOL EventCmd_Guru2Proc( void *wk )
 		work->g2p->guru2_mode = GURU2MODE_GAME_MAIN;
 		work->seq_no = SEQNO_G2P_MAIN;
 		break;
-	case SEQNO_G2P_STATUS:	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX
+	case SEQNO_G2P_STATUS:	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 		if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ){
 			break;
 		}
@@ -402,16 +402,16 @@ BOOL EventCmd_Guru2Proc( void *wk )
 		work->plist = Guru2ListEvent_SetProc( fsys );
 		work->seq_no = SEQNO_G2P_POKE_SELECT;
 		break;
-	case SEQNO_G2P_MAIN:	//‚®‚é‚®‚éƒƒCƒ“
+	case SEQNO_G2P_MAIN:	//ãã‚‹ãã‚‹ãƒ¡ã‚¤ãƒ³
 		if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ){
 			break;
 		}
 		
 		work->seq_no = SEQNO_G2P_END;
 		break;
-	case SEQNO_G2P_CANCEL:	//ƒLƒƒƒ“ƒZƒ‹
-		if( CommGetCurrentID() == 0 ){	//e
-			if( Guru2Comm_PokeSelCancelCheck(work->g2p->g2c) ){ //‘SƒLƒƒƒ“ƒZƒ‹
+	case SEQNO_G2P_CANCEL:	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+		if( CommGetCurrentID() == 0 ){	//è¦ª
+			if( Guru2Comm_PokeSelCancelCheck(work->g2p->g2c) ){ //å…¨ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				work->seq_no = SEQNO_G2P_END;
 			}else{
 				u16 bit = G2COMM_GMSBIT_CANCEL;
@@ -431,21 +431,21 @@ BOOL EventCmd_Guru2Proc( void *wk )
 				break;
 			}
 			
-			if( oya_end == G2C_OYA_END_FLAG_EXE ){	//eØ’fÀs’†
+			if( oya_end == G2C_OYA_END_FLAG_EXE ){	//è¦ªåˆ‡æ–­å®Ÿè¡Œä¸­
 				break;
 			}
 			
-			work->seq_no = SEQNO_G2P_END;	//eØ’fÏ‚İ
+			work->seq_no = SEQNO_G2P_END;	//è¦ªåˆ‡æ–­æ¸ˆã¿
 		}
 		
 		break;
-	case SEQNO_G2P_OYA_CANCEL_START:		//eƒLƒƒƒ“ƒZƒ‹‘Šèó‚¯æ‚è‘Ò‚¿
+	case SEQNO_G2P_OYA_CANCEL_START:		//è¦ªã‚­ãƒ£ãƒ³ã‚»ãƒ«ç›¸æ‰‹å—ã‘å–ã‚Šå¾…ã¡
 		CommTimingSyncStart( COMM_GURU2_TIMINGSYNC_NO );
 		work->seq_no = SEQNO_G2P_OYA_CANCEL_TIMING_WAIT;
 		break;
-	case SEQNO_G2P_OYA_CANCEL_TIMING_WAIT:	//eƒLƒƒƒ“ƒZƒ‹’ÊMI—¹‘Ò‚¿
+	case SEQNO_G2P_OYA_CANCEL_TIMING_WAIT:	//è¦ªã‚­ãƒ£ãƒ³ã‚»ãƒ«é€šä¿¡çµ‚äº†å¾…ã¡
 		if( CommIsTimingSync(COMM_GURU2_TIMINGSYNC_NO) ){
-			CommStateSetErrorCheck( FALSE, FALSE ); //Ø’f‰Â”\‚É
+			CommStateSetErrorCheck( FALSE, FALSE ); //åˆ‡æ–­å¯èƒ½ã«
 			CommStateSetLimitNum(1);
 			CommStateUnionBconCollectionRestart();
 			work->seq_no = SEQNO_G2P_CANCEL_CONNECT_CHECK;
@@ -455,7 +455,7 @@ BOOL EventCmd_Guru2Proc( void *wk )
 		if( CommGetConnectNum() > 1 ){
 			break;
 		}
-	case SEQNO_G2P_END:		//I—¹
+	case SEQNO_G2P_END:		//çµ‚äº†
 		Guru2_ProcDelete( work->g2p );
 		sys_FreeMemoryEz( wk );
 		return( TRUE );
@@ -490,10 +490,10 @@ static void (* const DATA_Guru2ConnectProcTbl[GURU2CONNECTPROC_MAX])(
 		GURU2_CONNECT_WORK * );
 #endif
 
-//	‚®‚é‚®‚éŒğŠ·@ƒ|ƒPƒ‚ƒ“‘I‚Ñ‚©‚ç”­¶‚·‚é’ÊMˆ—
+//	ãã‚‹ãã‚‹äº¤æ›ã€€ãƒã‚±ãƒ¢ãƒ³é¸ã³ã‹ã‚‰ç™ºç”Ÿã™ã‚‹é€šä¿¡å‡¦ç†
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚é’ÊMˆ—@ƒXƒe[ƒ^ƒXæ“¾
+ * ãã‚‹ãã‚‹é€šä¿¡å‡¦ç†ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—
  * @param	g2c	GURU2_CALL_WORK
  * @retval
  */
@@ -505,7 +505,7 @@ int Guru2_ConnectStateGet( GURU2_CALL_WORK *g2call )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚é’ÊMˆ——pƒ[ƒN‰Šú‰»
+ * ãã‚‹ãã‚‹é€šä¿¡å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  * @param	g2call	GURU2_CALL_WORK
  * @retval	nothing
  */
@@ -520,7 +520,7 @@ static void Guru2_ConnectProcInit( GURU2_CALL_WORK *g2call )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚é’ÊMˆ——pƒ[ƒNíœ
+ * ãã‚‹ãã‚‹é€šä¿¡å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  * @param	g2c	GURU2_CALL_WORK
  * @retval	nothing
  */
@@ -533,7 +533,7 @@ static void Guru2_ConnectProcDelete( GURU2_CALL_WORK *g2call )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚é’ÊMˆ—@TCB
+ * ãã‚‹ãã‚‹é€šä¿¡å‡¦ç†ã€€TCB
  * @param	tcb	TCB_PTR
  * @retval	nothing
  */
@@ -546,7 +546,7 @@ static void Guru2_ConnectProcTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚é’ÊMˆ—
+ * ãã‚‹ãã‚‹é€šä¿¡å‡¦ç†
  * @param	g2call GURU2_CALL_WORK
  * @retval	nothing
  */
@@ -559,7 +559,7 @@ static void Guru2_ConnectProc( GURU2_CALL_WORK *g2call )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚é’ÊM@eq‹¤’Ê@
+ * ãã‚‹ãã‚‹é€šä¿¡ã€€è¦ªå­å…±é€šã€€
  * @param	work	GURU2_CONNECT_WORK
  * @retval	nothing
  */
@@ -570,7 +570,7 @@ static void Guru2ConnectProc_BeConnect( GURU2_CONNECT_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚é’ÊM@eq‹¤’Ê@“¯ŠúƒV[ƒPƒ“ƒX
+ * ãã‚‹ãã‚‹é€šä¿¡ã€€è¦ªå­å…±é€šã€€åŒæœŸã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  * @param	work	GURU2_CONNECT_WORK
  * @retval	nothing
  */
@@ -578,17 +578,17 @@ static void Guru2ConnectProc_BeConnect( GURU2_CONNECT_WORK *work )
 static void Guru2ConnectProc_Timing( GURU2_CONNECT_WORK *work )
 {
 	switch( work->seq_no ){
-	case 0:	//“¯ŠúŠJn
+	case 0:	//åŒæœŸé–‹å§‹
 		CommTimingSyncStart( COMM_GURU2_TIMINGSYNC_NO );
 		work->state = GURU2CONNECT_TIMING;
 		work->seq_no++;
 		break;
-	case 1:	//“¯Šú‘Ò‚¿
+	case 1:	//åŒæœŸå¾…ã¡
 		if( CommIsTimingSync(COMM_GURU2_TIMINGSYNC_NO) ){
 			work->seq_no++;
 		}
 		break;
-	case 2:	//w’èÚ‘±”‚É‚È‚é‚Ü‚Å‘Ò‚¿
+	case 2:	//æŒ‡å®šæ¥ç¶šæ•°ã«ãªã‚‹ã¾ã§å¾…ã¡
 		if( work->connect_num >= CommGetConnectNum() ){
 			work->state = GURU2CONNECT_ON;
 			work->proc_no = GURU2CONNECTPROC_NON;
@@ -599,7 +599,7 @@ static void Guru2ConnectProc_Timing( GURU2_CONNECT_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚é’ÊM@Ø’fƒV[ƒPƒ“ƒX
+ * ãã‚‹ãã‚‹é€šä¿¡ã€€åˆ‡æ–­ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  * @param	work	GURU2_CONNECT_WORK
  * @retval	nothing
  */
@@ -607,20 +607,20 @@ static void Guru2ConnectProc_Timing( GURU2_CONNECT_WORK *work )
 static void Guru2ConnectProc_Cut( GURU2_CONNECT_WORK *work )
 {
 	switch( work->seq_no ){
-	case 0:	//“¯ŠúŠJn
+	case 0:	//åŒæœŸé–‹å§‹
 		CommTimingSyncStart( COMM_GURU2_TIMINGSYNC_NO );
 		work->state = GURU2CONNECT_CUT_EXE;
 		work->seq_no++;
 		break;
-	case 1:	//“¯Šú‘Ò‚¿
+	case 1:	//åŒæœŸå¾…ã¡
 		if( CommIsTimingSync(COMM_GURU2_TIMINGSYNC_NO) ){
-			CommStateSetErrorCheck( FALSE, FALSE );		//Ø’f‰Â”\‚É
+			CommStateSetErrorCheck( FALSE, FALSE );		//åˆ‡æ–­å¯èƒ½ã«
 			CommStateSetLimitNum(1);
 			CommStateUnionBconCollectionRestart();
 			work->seq_no++;
 		}
 		break;
-	case 2:	//©g‚Ì‚İ‚É‚È‚é‚Ü‚Å‘Ò‚¿
+	case 2:	//è‡ªèº«ã®ã¿ã«ãªã‚‹ã¾ã§å¾…ã¡
 		if( CommGetConnectNum() <= 1 ){
 			work->state = GURU2CONNECT_CUT;
 			work->proc_no = GURU2CONNECTPROC_NON;
@@ -630,7 +630,7 @@ static void Guru2ConnectProc_Cut( GURU2_CONNECT_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	‚®‚é‚®‚é’ÊMƒvƒƒZƒXƒe[ƒuƒ‹
+///	ãã‚‹ãã‚‹é€šä¿¡ãƒ—ãƒ­ã‚»ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static void (* const DATA_Guru2ConnectProcTbl[GURU2CONNECTPROC_MAX])(
 		GURU2_CONNECT_WORK * ) =

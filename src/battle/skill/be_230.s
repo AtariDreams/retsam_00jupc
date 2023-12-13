@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_230.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			230�@�U�����鑊�����ɍU�������Ƃ��З͂��キ�A�x���ꍇ�͈З͂��Q�{�ɂȂ�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			230　攻撃する相手より先に攻撃したとき威力が弱く、遅い場合は威力が２倍になる。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14

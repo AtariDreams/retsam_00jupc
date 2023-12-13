@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d05r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		pos_d05r0101_gingaboss
 _EVENT_DATA_END
@@ -27,12 +27,12 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*							ƒ{ƒX(POS)								*/
+/*							ãƒœã‚¹(POS)								*/
 /********************************************************************/
 pos_d05r0101_gingaboss:
 	_EVENT_START
 
-	/*‰æ–Êã•”‚©‚ç“oê*/
+	/*ç”»é¢ä¸Šéƒ¨ã‹ã‚‰ç™»å ´*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0101_player_00
 	_OBJ_ANIME		D05R0101_GINGABOSS,anm_d05r0101_gingaboss_01
 	_OBJ_ANIME_WAIT
@@ -40,21 +40,21 @@ pos_d05r0101_gingaboss:
 	_TALK_KEYWAIT	msg_d05r0101_gingaboss_01
 	_TALK_CLOSE
 
-	/*ã‚ðŒü‚¢‚Ä*/
+	/*ä¸Šã‚’å‘ã„ã¦*/
 	_OBJ_ANIME		D05R0101_GINGABOSS,anm_d05r0101_gingaboss_02
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0101_player_01
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d05r0101_gingaboss_02
 
-	/*Œü‚«‡‚Á‚Ä*/
+	/*å‘ãåˆã£ã¦*/
 	_OBJ_ANIME		D05R0101_GINGABOSS,anm_d05r0101_gingaboss_03
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d05r0101_gingaboss_03
 	_TALK_CLOSE
 
-	/*207”Ô“¹˜H‚Ö‹Ž‚Á‚Ä‚¢‚­*/
+	/*207ç•ªé“è·¯ã¸åŽ»ã£ã¦ã„ã*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0101_player_04
 	_OBJ_ANIME		D05R0101_GINGABOSS,anm_d05r0101_gingaboss_04
 	_OBJ_ANIME_WAIT
@@ -66,7 +66,7 @@ pos_d05r0101_gingaboss:
 
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒKƒ{ƒX	‹ß‚Ã‚­
+//ã‚®ãƒ³ã‚¬ãƒœã‚¹	è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d05r0101_gingaboss_01
 	_ANIME_DATA	AC_WALK_D_8F,6
@@ -74,21 +74,21 @@ _ANIME_LABEL anm_d05r0101_gingaboss_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒKƒ{ƒX	ã‚ðŒü‚¢‚Ä
+//ã‚®ãƒ³ã‚¬ãƒœã‚¹	ä¸Šã‚’å‘ã„ã¦
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d05r0101_gingaboss_02
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒKƒ{ƒX	¶‚ðŒü‚¢‚Ä
+//ã‚®ãƒ³ã‚¬ãƒœã‚¹	å·¦ã‚’å‘ã„ã¦
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d05r0101_gingaboss_03
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒKƒ{ƒX	‹Ž‚Á‚Ä‚¢‚­
+//ã‚®ãƒ³ã‚¬ãƒœã‚¹	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d05r0101_gingaboss_04
 	_ANIME_DATA	AC_WAIT_8F,3
@@ -96,7 +96,7 @@ _ANIME_LABEL anm_d05r0101_gingaboss_04
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒMƒ“ƒKƒ{ƒX‚ðŒ©‚é
+//ä¸»äººå…¬	ã‚®ãƒ³ã‚¬ãƒœã‚¹ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d05r0101_player_00
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
@@ -105,7 +105,7 @@ _ANIME_LABEL anm_d05r0101_player_00
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ã‚ðŒ©‚é
+//ä¸»äººå…¬	ä¸Šã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d05r0101_player_01
 	_ANIME_DATA	AC_WAIT_8F,3
@@ -115,7 +115,7 @@ _ANIME_LABEL anm_d05r0101_player_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	“¹‚ð‚ ‚¯‚é
+//ä¸»äººå…¬	é“ã‚’ã‚ã‘ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d05r0101_player_04
 	_ANIME_DATA	AC_WALK_D_8F,1

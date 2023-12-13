@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dSetOamSoftEmuUVFlipCorrectFunc</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_G2dSetOamSoftEmuUVFlipCorrectFunc</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,26 +22,26 @@ void    NNS_G2dSetOamSoftEmuUVFlipCorrectFunc( NNS_G2dOamSoftEmuUVFlipCorrectFun
                             
 </CODE></pre>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pFunc</font></strong></em></td>
-    <td width="87%">[IN] OAM�\�t�g�E�F�A�X�v���C�g�G�~�����[�V���� �Ŏg�p����� UV�l�␳�֐��|�C���^</td>
+    <td width="87%">[IN] OAMソフトウェアスプライトエミュレーション で使用される UV値補正関数ポインタ</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B<BR>
+<h2>返り値</h2>
+<p>なし。<BR>
 </p>
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-OAM�\�t�g�E�F�A�X�v���C�g�G�~�����[�V���� �Ŏg�p����� UV�l�␳�֐��|�C���^��ݒ肵�܂��B<BR>
-�֐��|�C���^�𖳌��ɂ���ɂ� NNS_G2dResetOamSoftEmuUVFlipCorrectFunc() �����g�p���������B<BR>
+OAMソフトウェアスプライトエミュレーション で使用される UV値補正関数ポインタを設定します。<BR>
+関数ポインタを無効にするには NNS_G2dResetOamSoftEmuUVFlipCorrectFunc() をご使用ください。<BR>
 <BR>
-�R�[���o�b�N�̓\�t�g�E�F�A4����UV�l�ւ̃|�C���^�Ɛ������������̃t���b�v�󋵃t���O�������ɌĂяo����܂��B
-�{�֐��́A�\�t�g�E�F�A�X�v���C�g�̃t���b�v�����̍ۂɃe�N�X�`���T���v�����O�ʒu��1�e�N�Z������Ă��܂��d�l���A������邱�Ƃ�ړI�ɗp�ӂ���܂����B<BR>
+コールバックはソフトウェア4隅のUV値へのポインタと水平垂直方向のフリップ状況フラグを引数に呼び出されます。
+本関数は、ソフトウェアスプライトのフリップ処理の際にテクスチャサンプリング位置が1テクセルずれてしまう仕様を、回避することを目的に用意されました。<BR>
 <BR>
-�T�^�I�Ȏ�������ȉ��Ɏ����܂��B
+典型的な実装例を以下に示します。
 <BR>
 <CODE>
 <pre>
@@ -70,22 +70,22 @@ void UVFlipCorrectFunc_
 </pre>
 </CODE>
 <BR>
-�{�֐��Őݒ�\�ȕ␳�֐��́A�A�t�B���ϊ����ꂽ�X�v���C�g�̃T���v�����O�ʒu�␳���T�|�[�g���Ă��܂���B<BR>
-����́A�������ד����l������ƁA�A�t�B���ϊ��X�v���C�g�̃T���v�����O�ʒu�␳�͑f�ޑ��ł̑Ή��������I�Ƃ̔��f�Ɋ�Â��Ă��܂��B<BR>
-�i�f�ޑ��ł̑Ή��Ƃ́A�h�T���v���ʒu�����ꂽ���ʁA�ڗ������e�����o�Ȃ��悤�ɃZ���̎���̃s�N�Z���ɓ����F��z�u����h�Ȃǂ̑΍�̂��Ƃł��B�j
+本関数で設定可能な補正関数は、アフィン変換されたスプライトのサンプリング位置補正をサポートしていません。<BR>
+これは、処理負荷等を考慮すると、アフィン変換スプライトのサンプリング位置補正は素材側での対応が現実的との判断に基づいています。<BR>
+（素材側での対応とは、”サンプル位置がずれた結果、目立った影響が出ないようにセルの周りのピクセルに透明色を配置する”などの対策のことです。）
 
 
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <CODE><A href="NNS_G2dResetOamSoftEmuUVFlipCorrectFunc.html">NNS_G2dResetOamSoftEmuUVFlipCorrectFunc</A><br>
 </CODE>
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/11/10 �T���v���R�[�h��ǉ�<BR>
-2004/07/20 ����
+2004/11/10 サンプルコードを追加<BR>
+2004/07/20 初版
 </P>
 </body>
 </html>

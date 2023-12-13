@@ -15,13 +15,13 @@
   do-indent
 
   Revision 1.8  2005/11/14 05:10:03  okubata_ryoma
-  SDK_INLINE ‚É‘Î‰
+  SDK_INLINE ã«å¯¾å¿œ
 
   Revision 1.7  2005/03/03 13:08:04  takano_makoto
-  •s—v‚Èasm•\‹L‚ğíœ
+  ä¸è¦ãªasmè¡¨è¨˜ã‚’å‰Šé™¤
 
   Revision 1.6  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.5  2005/02/28 05:26:13  yosizaki
   do-indent.

@@ -1,57 +1,57 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>�^�C�} (overview) </TITLE>
+<TITLE>タイマ (overview) </TITLE>
 <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </HEAD>
 <BODY>
-<H1 align="left">�^�C�} (overview)</H1>
-<H2>����</H2>
-<P>DS �ɂ�16 bit �̃n�[�h�E�F�A�^�C�}�� 4�p�ӂ���Ă��܂��B���ꂼ���Ɨ������Ďg�p���邱�Ƃ��o���܂����A�A�������^�C�}�𕹗p����
-32 bit / 48 bit / 64 bit �̃^�C�}�Ƃ��Ďg�p���邱�Ƃ��\�ł��B</P>
-<P>�������A���[�U�͂��̑S�Ẵ^�C�}�𖳏����Ŏg�p�ł���킯�ł͂���܂���BNitroSDK
-�� OS���Ń^�C�}���g�p���Ă���ꍇ�A���̃^�C�}�̓��[�U�����ڎg�p���Ă͂����܂���B</P>
-<P>NitroSDK �����Ń^�C�}���g�p����@�\�Ƃ��āA<A href="../time/about_Tick.html">�`�b�N�V�X�e��</A>��<A href="../alarm/about_Alarm.html">�A���[���V�X�e��</A>������܂��B�f�t�H���g�ł̓`�b�N�V�X�e���� �^�C�}0 ��p���A�A���[���V�X�e���̓^�C�}
-1 ��p���܂��B�܂��A���[���V�X�e�����g�p����ꍇ�̓`�b�N�V�X�e�����K�{�ƂȂ�܂��B�]���āA</P>
-<P>�@�E�A���[���V�X�e���͎g�p���Ȃ����A�`�b�N�V�X�e����p����ꍇ�@�c�@�^�C�}
-0 �͎g�p�ł��܂���B</P>
-<P>�@�E�A���[���V�X�e����p����ꍇ�@(���̏ꍇ�K���`�b�N�V�X�e����p���܂�)�@�c�@�^�C�}
-0 �� 1 �͎g�p�ł��܂���B</P>
-<P>�Ƃ������񂪐����܂��B( ��������f�t�H���g�ݒ�̏ꍇ )</P>
-<P>NitroSDK �ł́ADEBUG �r���h�̍ۂɂ̓V�X�e���Ŏg�p���Ă���^�C�}���A�^�C�}�֐���p���ăA�N�Z�X���悤�Ƃ���ƌx����\������~���܂��B</P>
+<H1 align="left">タイマ (overview)</H1>
+<H2>説明</H2>
+<P>DS には16 bit のハードウェアタイマが 4つ用意されています。それぞれを独立させて使用することも出来ますし、連続したタイマを併用して
+32 bit / 48 bit / 64 bit のタイマとして使用することも可能です。</P>
+<P>しかし、ユーザはこの全てのタイマを無条件で使用できるわけではありません。NitroSDK
+の OS内でタイマを使用している場合、そのタイマはユーザが直接使用してはいけません。</P>
+<P>NitroSDK 内部でタイマを使用する機能として、<A href="../time/about_Tick.html">チックシステム</A>と<A href="../alarm/about_Alarm.html">アラームシステム</A>があります。デフォルトではチックシステムは タイマ0 を用い、アラームシステムはタイマ
+1 を用います。またアラームシステムを使用する場合はチックシステムが必須となります。従って、</P>
+<P>　・アラームシステムは使用しないが、チックシステムを用いる場合　…　タイマ
+0 は使用できません。</P>
+<P>　・アラームシステムを用いる場合　(この場合必ずチックシステムを用います)　…　タイマ
+0 と 1 は使用できません。</P>
+<P>という制約が生じます。( いずれもデフォルト設定の場合 )</P>
+<P>NitroSDK では、DEBUG ビルドの際にはシステムで使用しているタイマを、タイマ関数を用いてアクセスしようとすると警告を表示し停止します。</P>
 <HR>
-<P><B>�^�C�}�̓���</B></P>
-<P>�^�C�}�J�E���g���W�X�^�ɒl��ݒ肵�āA�^�C�}�R���g���[�����W�X�^�̃C�l�[�u���t���O��L���ɂ���ƈ��Ԋu�ŃJ�E���g�A�b�v���n�܂�܂��B�J�E���g�A�b�v�̊Ԋu�́A�ݒ�ɂ��V�X�e���N���b�N(
-�� 33MHz ) �� 1�{�A64�{�A256 �{�A1024 �{�̉��ꂩ��I�����邱�Ƃ��\�ł��B</P>
-<P>�^�C�}���荞�݂́A�J�E���^�� 0xFFFF ���� 0x0000 �ɂȂ�Ƃ��ɔ������܂��B�\�߃^�C�}���荞�݂̃n���h����
-<CODE><A href="../irq/OS_SetIrqFunction.html">OS_SetIrqFunction()</A></CODE> �Őݒ肵�Ă���΂��̃n���h�����Ă΂�܂��B</P>
-<P>�n�[�h�E�F�A�̎d�l�ł́A�^�C�}�͖����I�Ɏ~�߂Ȃ����艽�x�ł��J�E���g�A�b�v�Ɗ��荞�݂��J��Ԃ��܂����A�ŏ��̊��荞�ݔ����ł̂݊��荞�݃n���h�����Ăт�����܂��B�^�C�}�̃J�E���g�A�b�v�Ɗ��荞�ݔ����͂��̌�������܂����A�ēx�ݒ肵�Ȃ�����A���荞�݃n���h���͌Ăяo����܂���B</P>
+<P><B>タイマの動作</B></P>
+<P>タイマカウントレジスタに値を設定して、タイマコントロールレジスタのイネーブルフラグを有効にすると一定間隔でカウントアップが始まります。カウントアップの間隔は、設定によりシステムクロック(
+約 33MHz ) の 1倍、64倍、256 倍、1024 倍の何れかを選択することが可能です。</P>
+<P>タイマ割り込みは、カウンタが 0xFFFF から 0x0000 になるときに発生します。予めタイマ割り込みのハンドラを
+<CODE><A href="../irq/OS_SetIrqFunction.html">OS_SetIrqFunction()</A></CODE> で設定していればそのハンドラが呼ばれます。</P>
+<P>ハードウェアの仕様では、タイマは明示的に止めない限り何度でもカウントアップと割り込みを繰り返しますが、最初の割り込み発生でのみ割り込みハンドラが呼びだされます。タイマのカウントアップと割り込み発生はその後も続きますが、再度設定しない限り、割り込みハンドラは呼び出されません。</P>
 <HR>
-<P><B>�^�C�}�̐ݒ�ƊJ�n</B></P>
-<P>�^�C�}�J�E���g���W�X�^�ƁA�^�C�}�R���g���[�����W�X�^�ɓK�؂Ȓl��ݒ肵�A�^�C�}���X�^�[�g����֐��͈ȉ��̒ʂ�ł��B</P>
+<P><B>タイマの設定と開始</B></P>
+<P>タイマカウントレジスタと、タイマコントロールレジスタに適切な値を設定し、タイマをスタートする関数は以下の通りです。</P>
 <P><A href="OS_StartTimer.html"><CODE>OS_StartTimer()<BR>
 OS_StartTimer32()<BR>
 OS_StartTimer48()<BR>
 OS_StartTimer64()</CODE></A></P>
 <HR>
-<P><B>�^�C�}�̒�~</B></P>
-<P>�^�C�}�R���g���[�����W�X�^�̃C�l�[�u���t���O���N���A���āA�^�C�}���~����֐��͈ȉ��̒ʂ�ł��B</P>
+<P><B>タイマの停止</B></P>
+<P>タイマコントロールレジスタのイネーブルフラグをクリアして、タイマを停止する関数は以下の通りです。</P>
 <P><A href="OS_StopTimer.html"><CODE>OS_StopTimer()<BR>
 OS_StopTimer32()<BR>
 OS_StopTimer48()<BR>
 OS_StopTimer64()</CODE></A></P>
 <HR>
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE>
-<A href="../list_os.html#Timer">OS�֐��ꗗ(�^�C�})</A>, <A href="../list_os.html#Time">OS�֐��ꗗ(����)</A>, <A href="../list_os.html#Alarm">OS�֐��ꗗ(�A���[��)</A><BR>
+<A href="../list_os.html#Timer">OS関数一覧(タイマ)</A>, <A href="../list_os.html#Time">OS関数一覧(時間)</A>, <A href="../list_os.html#Alarm">OS関数一覧(アラーム)</A><BR>
 </CODE></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/03/08 �p�ꓝ�� [������] �� [���荞��]<br>
-2004/12/13 �p������ȂǏC��<BR>
-2004/11/16 ����</P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/13 用語や語尾など修正<BR>
+2004/11/16 初版</P>
 </BODY>
 </HTML>

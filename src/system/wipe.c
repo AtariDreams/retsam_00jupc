@@ -2,7 +2,7 @@
 /**
  *
  *@file		wipe.c
- *@brief	DP‰æ–ÊØ‚è‘Ö‚¦ƒVƒXƒeƒ€
+ *@brief	DPç”»é¢åˆ‡ã‚Šæ›¿ãˆã‚·ã‚¹ãƒ†ãƒ 
  *@author	tomoya takahashi
  *@data		2005.08.18
  *
@@ -29,7 +29,7 @@
 
 //-------------------------------------
 //	
-//	Vblank’†‚É“o˜^‚·‚éƒf[ƒ^
+//	Vblankä¸­ã«ç™»éŒ²ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
@@ -41,7 +41,7 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	vblank’†‚É”jŠü‚·‚éƒf[ƒ^
+//	vblankä¸­ã«ç ´æ£„ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
@@ -52,72 +52,72 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ‰æ–ÊØ‚è‘Ö‚¦ƒpƒ^[ƒ“’è”
+// ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ‘ã‚¿ãƒ¼ãƒ³å®šæ•°
 enum{
-	WIPE_THE_SAME_TIME = 0,		// “¯
-	WIPE_START_MAIN,			// ƒƒCƒ“ŠJn
-	WIPE_START_SUB,				// ƒTƒuŠJn
+	WIPE_THE_SAME_TIME = 0,		// åŒæ™‚
+	WIPE_START_MAIN,			// ãƒ¡ã‚¤ãƒ³é–‹å§‹
+	WIPE_START_SUB,				// ã‚µãƒ–é–‹å§‹
 };
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	‰æ–ÊØ‚è‘Ö‚¦ƒpƒ^[ƒ“ƒe[ƒuƒ‹
+//	ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
 //	
 //=====================================
 typedef struct {
-	// ‰æ–ÊØ‚è‘Ö‚¦ƒpƒ^[ƒ“ƒtƒ‰ƒO
+	// ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ•ãƒ©ã‚°
 	int wipe_pattern;
 	
-	// ƒƒCƒ“ƒTƒu‚ÌƒƒCƒv‚Ì‘¶İA”ñ‘¶İƒtƒ‰ƒO
-	BOOL wipe_exist_m;	// ƒƒCƒv‚ªI—¹‚µ‚½‚çFALSE‚É‚È‚Á‚Ä‚µ‚Ü‚·	ƒƒCƒvI—¹‚µ‚½‚©ƒ`ƒFƒbƒN—p
-	BOOL wipe_exist_s;	// ƒƒCƒv‚ªI—¹‚µ‚½‚çFALSE‚É‚È‚Á‚Ä‚µ‚Ü‚·	ƒƒCƒvI—¹‚µ‚½‚©Áª¯¸—p
+	// ãƒ¡ã‚¤ãƒ³ã‚µãƒ–ã®ãƒ¯ã‚¤ãƒ—ã®å­˜åœ¨ã€éå­˜åœ¨ãƒ•ãƒ©ã‚°
+	BOOL wipe_exist_m;	// ãƒ¯ã‚¤ãƒ—ãŒçµ‚äº†ã—ãŸã‚‰FALSEã«ãªã£ã¦ã—ã¾ã™	ãƒ¯ã‚¤ãƒ—çµ‚äº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯ç”¨
+	BOOL wipe_exist_s;	// ãƒ¯ã‚¤ãƒ—ãŒçµ‚äº†ã—ãŸã‚‰FALSEã«ãªã£ã¦ã—ã¾ã™	ãƒ¯ã‚¤ãƒ—çµ‚äº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯ç”¨
 
-	BOOL wipe_exist_m_check;	// ƒƒCƒv‚ªI—¹‚µ‚Ä‚àTRUE‚Ì‚Ü‚Ü‚Å‚·B	ƒƒCƒv‘¶İƒ`ƒFƒbƒN—p
-	BOOL wipe_exist_s_check;	// ƒƒCƒv‚ªI—¹‚µ‚Ä‚àTRUE‚Ì‚Ü‚Ü‚Å‚·B	ƒƒCƒv‘¶İƒ`ƒFƒbƒN—p
+	BOOL wipe_exist_m_check;	// ãƒ¯ã‚¤ãƒ—ãŒçµ‚äº†ã—ã¦ã‚‚TRUEã®ã¾ã¾ã§ã™ã€‚	ãƒ¯ã‚¤ãƒ—å­˜åœ¨ãƒã‚§ãƒƒã‚¯ç”¨
+	BOOL wipe_exist_s_check;	// ãƒ¯ã‚¤ãƒ—ãŒçµ‚äº†ã—ã¦ã‚‚TRUEã®ã¾ã¾ã§ã™ã€‚	ãƒ¯ã‚¤ãƒ—å­˜åœ¨ãƒã‚§ãƒƒã‚¯ç”¨
 } WIPE_SYS_PATTERN_DATA;
 
 
 //-------------------------------------
 //	
-//	ƒtƒF[ƒhƒVƒXƒeƒ€ƒf[ƒ^
+//	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct _WIPE_SYS_DATA{
-	// ƒtƒF[ƒhƒpƒ^[ƒ“ƒf[ƒ^
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
 	WIPE_SYS_PATTERN_DATA	wipe_pattern_data;
 
-	// ƒƒCƒvƒf[ƒ^
+	// ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
 	WIPE_SYS_WIPE_WORK	wipe_m;
 	WIPE_SYS_WIPE_WORK	wipe_s;
 
-	// HBlankƒ[ƒN
+	// HBlankãƒ¯ãƒ¼ã‚¯
 	WIPE_HBLANK			wipehb;
 
-	// wndsysƒ[ƒN
+	// wndsysãƒ¯ãƒ¼ã‚¯
 	WNDP_SYS	wnd_sys;
 
-	// “®ìƒtƒ‰ƒO
+	// å‹•ä½œãƒ•ãƒ©ã‚°
 	u16 move_flg;	
-	u8 effect_flg_m;	// ‰æ–Ê‚É‰½‚©‰e‹¿‚ğ‚ ‚½‚¦‚Ä‚¢‚é‚©
-	u8 effect_flg_s;	// ‰æ–Ê‚É‰½‚©‰e‹¿‚ğ‚ ‚½‚¦‚Ä‚¢‚é‚©
+	u8 effect_flg_m;	// ç”»é¢ã«ä½•ã‹å½±éŸ¿ã‚’ã‚ãŸãˆã¦ã„ã‚‹ã‹
+	u8 effect_flg_s;	// ç”»é¢ã«ä½•ã‹å½±éŸ¿ã‚’ã‚ãŸãˆã¦ã„ã‚‹ã‹
 
-	// ƒtƒF[ƒhƒAƒEƒgƒJƒ‰[
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚«ãƒ©ãƒ¼
 	u16 fade_color;
 
 } WIPE_SYS_DATA;	// size		316byte
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
@@ -152,7 +152,7 @@ static void resetMstBrightnessVblank( TCB_PTR tcb, void* work );
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹éŒ¾éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å®£è¨€å®£è¨€
 */
 //-----------------------------------------------------------------------------
 const static pWIPEFunc WipeFunc[] = {
@@ -202,25 +202,25 @@ const static pWIPEFunc WipeFunc[] = {
 
 //-------------------------------------
 //
-//	ƒƒCƒvƒVƒXƒeƒ€ƒ[ƒN
+//	ãƒ¯ã‚¤ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 //	316byte
 //	
-//	‘å‘Ì‚Ì‰æ–Ê‚Åg—p‚·‚éƒVƒXƒeƒ€‚Ì‚½‚ß
-//	ƒOƒ[ƒoƒ‹‚Éƒ[ƒN‚ğ‚Â‚±‚Æ‚É‚µ‚Ü‚µ‚½
+//	å¤§ä½“ã®ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ã®ãŸã‚
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«ã«ãƒ¯ãƒ¼ã‚¯ã‚’æŒã¤ã“ã¨ã«ã—ã¾ã—ãŸ
 //=====================================
 static WIPE_SYS_DATA WipeSysWork;
 
 //----------------------------------------------------------------------------
 /**
- *@brief	‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒv‚ğŠJn
+ *@brief	ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ¯ã‚¤ãƒ—ã‚’é–‹å§‹
  *
- *@param	pattern		Ø‚è‘Ö‚¦ƒpƒ^[ƒ“”Ô†
- *@param	wipe_m		ƒƒCƒv@@ƒƒCƒ“‰æ–ÊƒƒCƒv”Ô†
- *@param	wipe_s		ƒƒCƒv@@ƒTƒu‰æ–ÊƒƒCƒv”Ô†
- *@param	color		ƒƒCƒv‚ÌF
- *@param	division	ŠeƒƒCƒvˆ—‚Ì•ªŠ„”
- *@param	piece_sync	ŠeƒƒCƒv‚Ìˆ—‚ğ•ªŠ„‚µ‚½‚P•Ğ‚ÌƒVƒ“ƒN”
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	pattern		åˆ‡ã‚Šæ›¿ãˆãƒ‘ã‚¿ãƒ¼ãƒ³ç•ªå·
+ *@param	wipe_m		ãƒ¯ã‚¤ãƒ—ã€€ã€€ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ¯ã‚¤ãƒ—ç•ªå·
+ *@param	wipe_s		ãƒ¯ã‚¤ãƒ—ã€€ã€€ã‚µãƒ–ç”»é¢ãƒ¯ã‚¤ãƒ—ç•ªå·
+ *@param	color		ãƒ¯ã‚¤ãƒ—ã®è‰²
+ *@param	division	å„ãƒ¯ã‚¤ãƒ—å‡¦ç†ã®åˆ†å‰²æ•°
+ *@param	piece_sync	å„ãƒ¯ã‚¤ãƒ—ã®å‡¦ç†ã‚’åˆ†å‰²ã—ãŸï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  */
@@ -230,42 +230,42 @@ void WIPE_SYS_Start(int pattern, int wipe_m, int wipe_s, u16 color, int division
 	WIPE_SYS_DATA* scw;
 	u16 set_color;
 	
-	//"division ‚O–³Œø‚Å‚·"
+	//"division ï¼ç„¡åŠ¹ã§ã™"
 	GF_ASSERT(division);
-	//"piece_sync ‚O–³Œø‚Å‚·"
+	//"piece_sync ï¼ç„¡åŠ¹ã§ã™"
 	GF_ASSERT(piece_sync);
-	// “®ì’†‚È‚ç‚Æ‚ß‚é
+	// å‹•ä½œä¸­ãªã‚‰ã¨ã‚ã‚‹
 	GF_ASSERT( WipeSysWork.move_flg == FALSE );
 
-	// ƒ[ƒNƒ|ƒCƒ“ƒ^İ’è
+	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿è¨­å®š
 	scw = &WipeSysWork;
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	cleanWipeData( scw );
 
-	// Ø‚è‘Ö‚¦ƒpƒ^[ƒ“ƒf[ƒ^ì¬
+	// åˆ‡ã‚Šæ›¿ãˆãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	setScreenChangePattern(pattern, &scw->wipe_pattern_data);
 
-	// HBlankƒ[ƒN‚Ì‰Šúİ’è
+	// HBlankãƒ¯ãƒ¼ã‚¯ã®åˆæœŸè¨­å®š
 	scchg_HBlankWorkSet( &scw->wipehb );
 
-	// İ’èƒJƒ‰[æ“¾
+	// è¨­å®šã‚«ãƒ©ãƒ¼å–å¾—
 	set_color = getSetColor( scw, color );
 	
-	// ƒƒCƒvƒ[ƒN‚Ìì¬
+	// ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯ã®ä½œæˆ
 	setWipeWork(&scw->wipe_m, wipe_m, division, piece_sync, 0, NULL, WIPE_DISP_MAIN, &scw->wnd_sys, &scw->wipehb, heap, set_color);
 	setWipeWork(&scw->wipe_s, wipe_s, division, piece_sync, 0, NULL, WIPE_DISP_SUB, &scw->wnd_sys, &scw->wipehb, heap, set_color);
 
-	scw->move_flg	= TRUE;			// “®ì’†‚É‚·‚é	
+	scw->move_flg	= TRUE;			// å‹•ä½œä¸­ã«ã™ã‚‹	
 
-	// ‰Šú‰»ŠÖ”‚ğÀs
-	// ‚P‰ñ–Ú‚Ì“®ì‚Í‰Šú‰»‚É‚È‚Á‚Ä‚¢‚é
-	// ‰Šú‰»“®ì‚ÅA‰æ–Ê‚Ìİ’èiƒEƒBƒ“ƒhƒEƒ}ƒXƒN‚Å•‚­‚µ‚½‚èAƒuƒ‰ƒCƒgƒlƒX‚Ì‰Šúİ’è‚ğ‚¨‚±‚È‚Á‚½‚èj
-	// ‚ğ‚·‚é‚Ì‚Å‚±‚±‚ÅŒÄ‚Ô
+	// åˆæœŸåŒ–é–¢æ•°ã‚’å®Ÿè¡Œ
+	// ï¼‘å›ç›®ã®å‹•ä½œã¯åˆæœŸåŒ–ã«ãªã£ã¦ã„ã‚‹
+	// åˆæœŸåŒ–å‹•ä½œã§ã€ç”»é¢ã®è¨­å®šï¼ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯ã§é»’ãã—ãŸã‚Šã€ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã®åˆæœŸè¨­å®šã‚’ãŠã“ãªã£ãŸã‚Šï¼‰
+	// ã‚’ã™ã‚‹ã®ã§ã“ã“ã§å‘¼ã¶
 	wipeFuncPack(&scw->wipe_pattern_data.wipe_exist_m, &scw->wipe_m);
 	wipeFuncPack(&scw->wipe_pattern_data.wipe_exist_s, &scw->wipe_s);
 		
-	// ‚à‚µƒtƒF[ƒhƒCƒ“‚Ì@••@”’•‚Ì‚Æ‚«@••@ƒEƒBƒ“ƒhƒE‚ğg—p‚µ‚½ƒƒCƒv
-	// ‚È‚ç‚ÎAÌŞ×²ÄÈ½İ’è‚ğOFF‚·‚é
+	// ã‚‚ã—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®æ™‚ã€€ï¼†ï¼†ã€€ç™½é»’ã®ã¨ãã€€ï¼†ï¼†ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—
+	// ãªã‚‰ã°ã€ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è¨­å®šã‚’OFFã™ã‚‹
 	if( scw->wipe_pattern_data.wipe_exist_m_check ){
 		resetMstBrightnessCheck_Do( &scw->wipe_m );
 		scw->effect_flg_m = TRUE;
@@ -280,7 +280,7 @@ void WIPE_SYS_Start(int pattern, int wipe_m, int wipe_s, u16 color, int division
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒvƒƒCƒ“ŠÖ”
+ *	@brief	ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ¯ã‚¤ãƒ—ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
  *	@param	none
  *
@@ -292,11 +292,11 @@ void WIPE_SYS_Main( void )
 	WIPE_SYS_DATA* scw = &WipeSysWork;
 	BOOL	ret;
 
-	// “®ìƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚Æ‚«‚Ì‚İ“®ì
+	// å‹•ä½œãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹ã¨ãã®ã¿å‹•ä½œ
 	if( scw->move_flg  ){
 		ret = screenChangeSub(&scw->wipe_pattern_data, &scw->wipe_m, &scw->wipe_s);
 		if(ret == TRUE){
-			// ƒƒCƒvI—¹
+			// ãƒ¯ã‚¤ãƒ—çµ‚äº†
 			endWipe( scw );
 		}
 	}
@@ -304,12 +304,12 @@ void WIPE_SYS_Main( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒv@I—¹ƒ`ƒFƒbƒN
+ *	@brief	ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ¯ã‚¤ãƒ—ã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
  *	@param	none
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WIPE_SYS_EndCheck( void )
@@ -322,7 +322,7 @@ BOOL WIPE_SYS_EndCheck( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒv‚Ì‹­§I—¹
+ *	@brief	ãƒ¯ã‚¤ãƒ—ã®å¼·åˆ¶çµ‚äº†
  *
  *	@param	none
  *
@@ -331,10 +331,10 @@ BOOL WIPE_SYS_EndCheck( void )
 //-----------------------------------------------------------------------------
 void WIPE_SYS_ExeEnd( void )
 {
-	// HBLANK‰Šú‰»
+	// HBLANKåˆæœŸåŒ–
 	WIPE_HBlankDelete( &WipeSysWork.wipehb, WIPE_DISP_MAIN );
 	WIPE_HBlankDelete( &WipeSysWork.wipehb, WIPE_DISP_SUB );
-	// WNDƒ[ƒN”jŠü
+	// WNDãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	if( WipeSysWork.wipe_pattern_data.wipe_exist_m ){
 		WipeSysWork.wipe_m.sequence = WIPE_END;	
 	}
@@ -345,20 +345,20 @@ void WIPE_SYS_ExeEnd( void )
 			&WipeSysWork.wipe_m);
 	wipeFuncPack(&WipeSysWork.wipe_pattern_data.wipe_exist_s,
 			&WipeSysWork.wipe_s);
-	// ƒƒCƒvI—¹
-	WipeSysWork.move_flg = FALSE;	// “®ìOFF
+	// ãƒ¯ã‚¤ãƒ—çµ‚äº†
+	WipeSysWork.move_flg = FALSE;	// å‹•ä½œOFF
 	WipeSysWork.effect_flg_m = FALSE;
 	WipeSysWork.effect_flg_s = FALSE;
-	// ƒ[ƒN‚ÌƒNƒŠƒA
+	// ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
 	cleanWipeData( &WipeSysWork );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒv‚ª‰æ–Ê‚É‰e‹¿‚ğ—^‚¦‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¯ã‚¤ãƒ—ãŒç”»é¢ã«å½±éŸ¿ã‚’ä¸ãˆã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	TRUE	ƒƒCƒvó‘ÔƒNƒŠƒA‚µ‚Ä‚¢‚é
- *	@retval	FALSE	ƒƒCƒvó‘ÔƒNƒŠƒA‚³‚ê‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ãƒ¯ã‚¤ãƒ—çŠ¶æ…‹ã‚¯ãƒªã‚¢ã—ã¦ã„ã‚‹
+ *	@retval	FALSE	ãƒ¯ã‚¤ãƒ—çŠ¶æ…‹ã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WIPE_SYS_EffectCheck( void )
@@ -373,16 +373,16 @@ BOOL WIPE_SYS_EffectCheck( void )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒƒCƒvó‘Ô‚ğ‰ğœ‚·‚é
+ *	@brief	ãƒ¯ã‚¤ãƒ—çŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹
  *
- *	@param	disp	‰ğœ‚µ‚½‚¢‰æ–Ê
- *	@param	heap	g—p‚·‚éƒq[ƒv
+ *	@param	disp	è§£é™¤ã—ãŸã„ç”»é¢
+ *	@param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
  * disp
-	WIPE_DISP_MAIN,		// ƒƒCƒ“–Ê
-	WIPE_DISP_SUB		// ƒTƒu–Ê
+	WIPE_DISP_MAIN,		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_DISP_SUB		// ã‚µãƒ–é¢
  *
  */
 //-----------------------------------------------------------------------------
@@ -401,70 +401,70 @@ void WIPE_Reset( int disp )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒEƒBƒ“ƒhƒEƒ}ƒXƒNó‘Ô‚ğ‰ğœ‚·‚é
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯çŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹
  *
- *	@param	disp	‰ğœ‚µ‚½‚¢‰æ–Ê
+ *	@param	disp	è§£é™¤ã—ãŸã„ç”»é¢
  *
  *	@return
  *
  * disp
-	WIPE_DISP_MAIN,		// ƒƒCƒ“–Ê
-	WIPE_DISP_SUB		// ƒTƒu–Ê
+	WIPE_DISP_MAIN,		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_DISP_SUB		// ã‚µãƒ–é¢
  *
- * –‚±‚ÌŠÖ”‚Í
- *	 ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒE‚ğg—p‚µ‚½ƒƒCƒv‚©‚ç
- * @ƒuƒ‰ƒCƒgƒlƒX‚ğg—p‚µ‚½ƒƒCƒv‚ÉˆÚs‚·‚é‚ÉA
- * @ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒE‚Ìİ’è‚ğ‰ğœ‚·‚éˆ×‚Ég—p‚µ‚Ü‚·B
+ * ï¼Šã“ã®é–¢æ•°ã¯
+ *	 ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—ã‹ã‚‰
+ * ã€€ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—ã«ç§»è¡Œã™ã‚‹æ™‚ã«ã€
+ * ã€€ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¨­å®šã‚’è§£é™¤ã™ã‚‹ç‚ºã«ä½¿ç”¨ã—ã¾ã™ã€‚
  * 
  */
 //-----------------------------------------------------------------------------
 void WIPE_ResetWndMask( int disp )
 {
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒN‰ğœ
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯è§£é™¤
 	WNDP_SetVisibleWnd(GX_WNDMASK_NONE, disp);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒuƒ‰ƒCƒgƒlƒXó‘Ô‚ğ‰ğœ
+ *	@brief	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹çŠ¶æ…‹ã‚’è§£é™¤
  *
- *	@param	disp	‰ğœ‚µ‚½‚¢‰æ–Ê
+ *	@param	disp	è§£é™¤ã—ãŸã„ç”»é¢
  *
  *	@return	none
  *
  * disp
-	WIPE_DISP_MAIN,		// ƒƒCƒ“–Ê
-	WIPE_DISP_SUB		// ƒTƒu–Ê
+	WIPE_DISP_MAIN,		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_DISP_SUB		// ã‚µãƒ–é¢
  *
- * –‚±‚ÌŠÖ”‚Í
- *	 ƒuƒ‰ƒCƒgƒlƒX‚ğg—p‚µ‚½ƒƒCƒv‚©‚ç
- * @ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒE‚ğg—p‚µ‚½ƒƒCƒv‚ÉˆÚs‚·‚é‚ÉA
- * @ƒuƒ‰ƒCƒgƒlƒX‚Ìİ’è‚ğ‰ğœ‚·‚éˆ×‚Ég—p‚µ‚Ü‚·B
+ * ï¼Šã“ã®é–¢æ•°ã¯
+ *	 ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—ã‹ã‚‰
+ * ã€€ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—ã«ç§»è¡Œã™ã‚‹æ™‚ã«ã€
+ * ã€€ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã®è¨­å®šã‚’è§£é™¤ã™ã‚‹ç‚ºã«ä½¿ç”¨ã—ã¾ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 void WIPE_ResetBrightness( int disp )
 {
-	// ƒuƒ‰ƒCƒgƒlƒX‰ğœ
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è§£é™¤
 	WIPE_SetMstBrightness( disp, BRIGHTNESS_NORMAL );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒvƒuƒ‰ƒCƒgƒlƒXó‘Ô‚ğİ’è
+ *	@brief	ãƒ¯ã‚¤ãƒ—ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹çŠ¶æ…‹ã‚’è¨­å®š
  *
- *	@param	disp	İ’è‚·‚é‰æ–Ê
- *	@param	color	ƒuƒ‰ƒCƒgƒlƒXƒJƒ‰[
+ *	@param	disp	è¨­å®šã™ã‚‹ç”»é¢
+ *	@param	color	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚«ãƒ©ãƒ¼
  *
  *	@return	none
  *
  * disp
-	WIPE_DISP_MAIN,		// ƒƒCƒ“–Ê
-	WIPE_DISP_SUB		// ƒTƒu–Ê
+	WIPE_DISP_MAIN,		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_DISP_SUB		// ã‚µãƒ–é¢
 
  *	color
-			#define WIPE_FADE_WHITE		(0x7fff)	// ƒzƒƒCƒgƒCƒ“EƒAƒEƒg
-			#define WIPE_FADE_BLACK		(0x0000)	// ƒuƒ‰ƒbƒNƒCƒ“EƒAƒEƒg
+			#define WIPE_FADE_WHITE		(0x7fff)	// ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+			#define WIPE_FADE_BLACK		(0x0000)	// ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
  */
 //-----------------------------------------------------------------------------
 void WIPE_SetBrightness( int disp, u16 color )
@@ -486,8 +486,8 @@ void WIPE_SetBrightness( int disp, u16 color )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—¼‰æ–Ê‚Éˆê“x‚Éİ’è‚·‚éƒ‚[ƒh‚Å‚·B
- *			—¼‰æ–Ê“¯‚¶ƒJƒ‰[‚Åİ’è‚·‚éê‡‚Ío—ˆ‚é‚¾‚¯‚±‚¿‚ç‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢
+ *	@brief	ä¸¡ç”»é¢ã«ä¸€åº¦ã«è¨­å®šã™ã‚‹ãƒ¢ãƒ¼ãƒ‰ã§ã™ã€‚
+ *			ä¸¡ç”»é¢åŒã˜ã‚«ãƒ©ãƒ¼ã§è¨­å®šã™ã‚‹å ´åˆã¯å‡ºæ¥ã‚‹ã ã‘ã“ã¡ã‚‰ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„
  */
 //-----------------------------------------------------------------------------
 void WIPE_SetBrightnessFadeOut( u16 color )
@@ -507,29 +507,29 @@ void WIPE_SetBrightnessFadeOut( u16 color )
 	WIPE_SetMstBrightness( WIPE_DISP_MAIN, color_msk);
 	WIPE_SetMstBrightness( WIPE_DISP_SUB, color_msk);
 
-	// ƒtƒF[ƒhƒAƒEƒgƒJƒ‰[‚ğ•Û‘¶
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚«ãƒ©ãƒ¼ã‚’ä¿å­˜
 	WipeSysWork.fade_color = color;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒvƒEƒBƒ“ƒhƒEƒ}ƒXƒNó‘Ô‚ğİ’è
+ *	@brief	ãƒ¯ã‚¤ãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯çŠ¶æ…‹ã‚’è¨­å®š
  *
- *	@param	disp		İ’è‚·‚é‰æ–Ê
- *	@param	color		ƒJƒ‰[
+ *	@param	disp		è¨­å®šã™ã‚‹ç”»é¢
+ *	@param	color		ã‚«ãƒ©ãƒ¼
  *
  * disp
-	WIPE_DISP_MAIN,		// ƒƒCƒ“–Ê
-	WIPE_DISP_SUB		// ƒTƒu–Ê
+	WIPE_DISP_MAIN,		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_DISP_SUB		// ã‚µãƒ–é¢
 
  *	color
-			#define WIPE_FADE_WHITE		(0x7fff)	// ƒzƒƒCƒgƒCƒ“EƒAƒEƒg
-			#define WIPE_FADE_BLACK		(0x0000)	// ƒuƒ‰ƒbƒNƒCƒ“EƒAƒEƒg
-			#define WIPE_FADE_OUTCOLOR	(0xffff)	// 1‚Â‘O‚ÌƒtƒF[ƒhƒAƒEƒgƒJƒ‰[‚ÅƒCƒ“EƒAƒEƒg
+			#define WIPE_FADE_WHITE		(0x7fff)	// ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+			#define WIPE_FADE_BLACK		(0x0000)	// ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+			#define WIPE_FADE_OUTCOLOR	(0xffff)	// 1ã¤å‰ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚«ãƒ©ãƒ¼ã§ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- *	‚±‚ÌŠÖ”‚ÍA
- *		ƒ^ƒbƒ`ƒyƒ“g—p‰æ–Ê‚Ìê‡‚ÉAƒtƒF[ƒhƒCƒ“‘O‚Éƒ^ƒbƒ`ƒyƒ“‚ğ
- *		o‚·‚È‚ÇA—áŠOˆ—‚ª‚ ‚è‚Ü‚·B‚»‚Ì‚Æ‚«—p‚ÌŠÖ”‚Å‚·
+ *	ã“ã®é–¢æ•°ã¯ã€
+ *		ã‚¿ãƒƒãƒãƒšãƒ³ä½¿ç”¨ç”»é¢ã®å ´åˆã«ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å‰ã«ã‚¿ãƒƒãƒãƒšãƒ³ã‚’
+ *		å‡ºã™ãªã©ã€ä¾‹å¤–å‡¦ç†ãŒã‚ã‚Šã¾ã™ã€‚ãã®ã¨ãç”¨ã®é–¢æ•°ã§ã™
  *
  *	@return	none
  */
@@ -540,14 +540,14 @@ void WIPE_SetWndMask( int disp, u16 color )
 		color = WipeSysWork.fade_color;
 	}
 	
-	// ƒoƒbƒNƒhƒƒbƒvcolor‚Ìw’è
+	// ãƒãƒƒã‚¯ãƒ‰ãƒ­ãƒƒãƒ—colorã®æŒ‡å®š
 	if( disp == WIPE_DISP_MAIN ){
 		GX_LoadBGPltt((void*)&color, 0, sizeof(short));
 	}else{
 		GXS_LoadBGPltt((void*)&color, 0, sizeof(short));
 	}
 	
-	// ƒEƒBƒ“ƒhƒE‚O–Ê‚Å‰æ–Ê‚ğ•¢‚¤
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼é¢ã§ç”»é¢ã‚’è¦†ã†
 	WNDP_V_SetVisibleWnd(&WipeSysWork.wnd_sys, GX_WNDMASK_W0, disp);
 	WNDP_V_SetWndInsidePlane(&WipeSysWork.wnd_sys, GX_BLEND_ALL, FALSE, 0, disp);
 	WNDP_V_SetWndPosition(&WipeSysWork.wnd_sys, 0,0,0,0,0, disp);	
@@ -559,33 +559,33 @@ void WIPE_SetWndMask( int disp, u16 color )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒi–ÊƒpƒŒƒbƒgF‚ğİ’è
+ *	@brief	èƒŒæ™¯é¢ãƒ‘ãƒ¬ãƒƒãƒˆè‰²ã‚’è¨­å®š
  *
- *	@param	color	ƒJƒ‰[
+ *	@param	color	ã‚«ãƒ©ãƒ¼
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void WIPE_SetBackDropColor( u16 color )
 {
-	// ƒoƒbƒNƒhƒƒbƒvcolor‚Ìw’è
+	// ãƒãƒƒã‚¯ãƒ‰ãƒ­ãƒƒãƒ—colorã®æŒ‡å®š
 	GX_LoadBGPltt((void*)&color, 0, sizeof(short));
 	GXS_LoadBGPltt((void*)&color, 0, sizeof(short));
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒuƒ‰ƒCƒgƒlƒX’lİ’èŠÖ”
+ *	@brief	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤è¨­å®šé–¢æ•°
  *
- *	@param	disp	‰æ–Ê
- *	@param	no		İ’è’l
+ *	@param	disp	ç”»é¢
+ *	@param	no		è¨­å®šå€¤
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void WIPE_SetMstBrightness( int disp, int no )
 {
-	// ƒuƒ‰ƒCƒgƒlƒX‰ğœ
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è§£é™¤
 	if( disp == WIPE_DISP_MAIN ){
 		GX_SetMasterBrightness(no);
 	}else{
@@ -595,9 +595,9 @@ void WIPE_SetMstBrightness( int disp, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ÅV‚ÌƒƒCƒvƒAƒEƒg‚µ‚½ó‘Ô‚ÌF‚ğ•Ô‚·
+ *	@brief		æœ€æ–°ã®ãƒ¯ã‚¤ãƒ—ã‚¢ã‚¦ãƒˆã—ãŸçŠ¶æ…‹ã®è‰²ã‚’è¿”ã™
  *
- *	@return		ÅV‚ÌƒƒCƒvƒAƒEƒgƒJƒ‰[
+ *	@return		æœ€æ–°ã®ãƒ¯ã‚¤ãƒ—ã‚¢ã‚¦ãƒˆã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 u16 WIPE_GetWipeOutColor( void )
@@ -608,30 +608,30 @@ u16 WIPE_GetWipeOutColor( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰æ–ÊØ‚è‘Ö‚¦ƒtƒF[ƒh‚ğI—¹‚·‚é
+ *@brief	ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚’çµ‚äº†ã™ã‚‹
  *
- *@param	scchg	‰æ–ÊØ‚è‘Ö‚¦ƒf[ƒ^
+ *@param	scchg	ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
  *
- * I—¹‚É•K‚¸ŒÄ‚Ô•K—v‚ª‚ ‚è‚Ü‚·B
+ * çµ‚äº†æ™‚ã«å¿…ãšå‘¼ã¶å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
 static void endWipe(WIPE_SYS_DATA* scchg)
 {
-	scchg->move_flg = FALSE;	// “®ìOFF
+	scchg->move_flg = FALSE;	// å‹•ä½œOFF
 	
-	// ƒƒCƒvƒJƒ‰[‚Ì•Û‘¶
+	// ãƒ¯ã‚¤ãƒ—ã‚«ãƒ©ãƒ¼ã®ä¿å­˜
 	scchg->fade_color = getSaveWiepColor( scchg );
 
-	// ‚à‚µƒtƒF[ƒhƒAƒEƒg‚Ì@••@”’•‚Ì‚Æ‚«@••@ƒEƒBƒ“ƒhƒE‚ğg—p‚µ‚½ƒƒCƒv
-	// ‚È‚ç‚ÎAÏ½À°ÌŞ×²ÄÈ½‚ğİ’è‚µ‚ÄƒEƒBƒ“ƒhƒE”jŠü
+	// ã‚‚ã—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®æ™‚ã€€ï¼†ï¼†ã€€ç™½é»’ã®ã¨ãã€€ï¼†ï¼†ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—
+	// ãªã‚‰ã°ã€ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’è¨­å®šã—ã¦ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	if( scchg->wipe_pattern_data.wipe_exist_m_check ){
 		chgWnd_MstBrightnessCheck_Do( &scchg->wipe_m );
 
-		// ƒtƒF[ƒhƒCƒ“‚È‚çeffect_flg‚ğ”jŠü
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã‚‰effect_flgã‚’ç ´æ£„
 		if( scchg->wipe_m.fade_inout == WIPE_FADE_IN ){
 			WipeSysWork.effect_flg_m = FALSE;
 		}
@@ -639,13 +639,13 @@ static void endWipe(WIPE_SYS_DATA* scchg)
 	if( scchg->wipe_pattern_data.wipe_exist_s_check ){
 		chgWnd_MstBrightnessCheck_Do( &scchg->wipe_s );
 
-		// ƒtƒF[ƒhƒCƒ“‚È‚çeffect_flg‚ğ”jŠü
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã‚‰effect_flgã‚’ç ´æ£„
 		if( scchg->wipe_m.fade_inout == WIPE_FADE_IN ){
 			WipeSysWork.effect_flg_s = FALSE;
 		}
 	}
 
-	// ƒ[ƒN‚ÌƒNƒŠƒA
+	// ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
 	cleanWipeData( scchg );
 }
 
@@ -653,13 +653,13 @@ static void endWipe(WIPE_SYS_DATA* scchg)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰æ–ÊØ‚è‘Ö‚¦ƒTƒuŠÖ”
+ *@brief	ç”»é¢åˆ‡ã‚Šæ›¿ãˆã‚µãƒ–é–¢æ•°
  *
- *@param	pattern		Ø‚è‘Ö‚¦ƒpƒ^[ƒ“
- *@param	wipe_m		ƒƒCƒvƒƒCƒ“
- *@param	wipe_s		ƒƒCƒvƒTƒu
+ *@param	pattern		åˆ‡ã‚Šæ›¿ãˆãƒ‘ã‚¿ãƒ¼ãƒ³
+ *@param	wipe_m		ãƒ¯ã‚¤ãƒ—ãƒ¡ã‚¤ãƒ³
+ *@param	wipe_s		ãƒ¯ã‚¤ãƒ—ã‚µãƒ–
  *
- *@return	BOOL	TRUEFI—¹		FALSEF‘±s
+ *@return	BOOL	TRUEï¼šçµ‚äº†		FALSEï¼šç¶šè¡Œ
  *
  *
  */
@@ -667,19 +667,19 @@ static void endWipe(WIPE_SYS_DATA* scchg)
 static BOOL screenChangeSub(WIPE_SYS_PATTERN_DATA* pattern, WIPE_SYS_WIPE_WORK* wipe_m, WIPE_SYS_WIPE_WORK* wipe_s)
 {	
 	switch(pattern->wipe_pattern){
-	case WIPE_THE_SAME_TIME:	// “¯
+	case WIPE_THE_SAME_TIME:	// åŒæ™‚
 		wipeFuncPack(&pattern->wipe_exist_m, wipe_m);
 		wipeFuncPack(&pattern->wipe_exist_s, wipe_s);
 		break;	
 		
-	case WIPE_START_MAIN:		// ƒƒCƒ“‚ªæ
+	case WIPE_START_MAIN:		// ãƒ¡ã‚¤ãƒ³ãŒå…ˆ
 		if(pattern->wipe_exist_m){
 			wipeFuncPack(&pattern->wipe_exist_m, wipe_m);
 		}else{
 			wipeFuncPack(&pattern->wipe_exist_s, wipe_s);
 		}
 		break;	
-	case WIPE_START_SUB:		// ƒTƒu‚ªæ
+	case WIPE_START_SUB:		// ã‚µãƒ–ãŒå…ˆ
 		if(pattern->wipe_exist_s){
 			wipeFuncPack(&pattern->wipe_exist_s, wipe_s);
 		}else{
@@ -688,7 +688,7 @@ static BOOL screenChangeSub(WIPE_SYS_PATTERN_DATA* pattern, WIPE_SYS_WIPE_WORK* 
 		break;	
 	}
 	
-	// —¼•û‚ÌƒƒCƒv‚Ì‘¶İƒtƒ‰ƒO‚ªFALSE‚É‚È‚Á‚½‚çI—¹
+	// ä¸¡æ–¹ã®ãƒ¯ã‚¤ãƒ—ã®å­˜åœ¨ãƒ•ãƒ©ã‚°ãŒFALSEã«ãªã£ãŸã‚‰çµ‚äº†
 	if((pattern->wipe_exist_m == FALSE) &&
 		(pattern->wipe_exist_s == FALSE)){
 		return TRUE;
@@ -700,10 +700,10 @@ static BOOL screenChangeSub(WIPE_SYS_PATTERN_DATA* pattern, WIPE_SYS_WIPE_WORK* 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒƒCƒv“®ìŠÖ”‚ğƒpƒbƒN‚µ‚½ŠÖ”
+ *@brief	ãƒ¯ã‚¤ãƒ—å‹•ä½œé–¢æ•°ã‚’ãƒ‘ãƒƒã‚¯ã—ãŸé–¢æ•°
  *	
- *@param	exist	‘¶İƒtƒ‰ƒOiWIPE_SYS_PATTERN_DATA“àj
- *@param	wipe	ƒƒCƒvƒ[ƒN
+ *@param	exist	å­˜åœ¨ãƒ•ãƒ©ã‚°ï¼ˆWIPE_SYS_PATTERN_DATAå†…ï¼‰
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *@return
  *
@@ -727,11 +727,11 @@ static void wipeFuncPack(BOOL* exist, WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒƒCƒvŠÖ”‚ğÀs
+ *@brief	ãƒ¯ã‚¤ãƒ—é–¢æ•°ã‚’å®Ÿè¡Œ
  *
- *@param	wipe	ƒƒCƒvƒf[ƒ^
+ *@param	wipe	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
- *@return	BOOL	TRUEFI—¹		FALSEF‘±s
+ *@return	BOOL	TRUEï¼šçµ‚äº†		FALSEï¼šç¶šè¡Œ
  *
  *
  */
@@ -744,10 +744,10 @@ static BOOL wipeFunc(WIPE_SYS_WIPE_WORK* wipe)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰æ–Ê•ÏXƒpƒ^[ƒ“ƒf[ƒ^‚ğì¬
+ *@brief	ç”»é¢å¤‰æ›´ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
  *
- *@param	no			ƒpƒ^[ƒ“ƒiƒ“ƒo[
- *@param	pattern_m	ƒƒCƒ“‚Ìƒpƒ^[ƒ“ƒf[ƒ^Ši”[—Ìˆæ
+ *@param	no			ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *@param	pattern_m	ãƒ¡ã‚¤ãƒ³ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ ¼ç´é ˜åŸŸ
  *
  *@return	none
  *
@@ -782,12 +782,12 @@ static void setScreenChangePattern(int no, WIPE_SYS_PATTERN_DATA* pattern)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒpƒ^[ƒ“ƒf[ƒ^‚ğİ’è
+ *@brief	ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *@param	pattern_data	ƒpƒ^[ƒ“ƒf[ƒ^İ’èæ
- *@param	pattern			ƒpƒ^[ƒ“
- *@param	exist_m			ƒƒCƒ“ƒƒCƒv‘¶İƒtƒ‰ƒO
- *@param	exist_s			ƒTƒuƒƒCƒv‘¶İƒtƒ‰ƒO
+ *@param	pattern_data	ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¨­å®šå…ˆ
+ *@param	pattern			ãƒ‘ã‚¿ãƒ¼ãƒ³
+ *@param	exist_m			ãƒ¡ã‚¤ãƒ³ãƒ¯ã‚¤ãƒ—å­˜åœ¨ãƒ•ãƒ©ã‚°
+ *@param	exist_s			ã‚µãƒ–ãƒ¯ã‚¤ãƒ—å­˜åœ¨ãƒ•ãƒ©ã‚°
  *
  *@return	none
  *
@@ -806,18 +806,18 @@ static void patternDataSet(WIPE_SYS_PATTERN_DATA* pattern_data, int pattern, BOO
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒƒCƒvƒ[ƒNƒf[ƒ^‚ğİ’è
+ *@brief	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *@param	wipe_w		İ’èæ
- *@param	wipe_no		ƒƒCƒvƒiƒ“ƒo[
- *@param	division	ˆ—•ªŠ„”
- *@param	piece_sync	•ªŠ„‚P•Ğ‚ÌƒVƒ“ƒN”
- *@param	sequence	ƒV[ƒPƒ“ƒX
- *@param	work		ƒ[ƒN—Ìˆæ
- *@param	disp		–Ê
- *@param	wnd_sys		ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- *@param	heap		g—p‚·‚éƒq[ƒv
- *@param	color		F
+ *@param	wipe_w		è¨­å®šå…ˆ
+ *@param	wipe_no		ãƒ¯ã‚¤ãƒ—ãƒŠãƒ³ãƒãƒ¼
+ *@param	division	å‡¦ç†åˆ†å‰²æ•°
+ *@param	piece_sync	åˆ†å‰²ï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°
+ *@param	sequence	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *@param	work		ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
+ *@param	disp		é¢
+ *@param	wnd_sys		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *@param	color		è‰²
  *
  *@return
  *
@@ -844,7 +844,7 @@ static void setWipeWork(WIPE_SYS_WIPE_WORK* wipe_w, int wipe_no, int division, i
 //----------------------------------------------------------------------------
 //
 //
-//	ƒGƒtƒFƒNƒg—pHƒuƒ‰ƒ“ƒNŠÖ”ŒS
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°éƒ¡
 //
 //
 //============================================================================
@@ -852,9 +852,9 @@ static void setWipeWork(WIPE_SYS_WIPE_WORK* wipe_w, int wipe_no, int division, i
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Hƒuƒ‰ƒ“ƒNƒ[ƒN‚Ì‰Šú‰»’l‚ğİ’è
+ *	@brief	Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–å€¤ã‚’è¨­å®š
  *
- *	@param	p_wipehb	ƒƒCƒvHƒuƒ‰ƒ“ƒNƒ[ƒN
+ *	@param	p_wipehb	ãƒ¯ã‚¤ãƒ—Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -874,7 +874,7 @@ static void scchg_HBlankWorkSet( WIPE_HBLANK* p_wipehb )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	HBlankŠÖ”
+ *@brief	HBlanké–¢æ•°
  *
  *@param	none
  *
@@ -885,7 +885,7 @@ static void scchg_HBlankWorkSet( WIPE_HBLANK* p_wipehb )
 //-----------------------------------------------------------------------------
 static void scchg_HBlankFunc(void * work)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	WIPE_HBLANK* p_wipehb = work;
 
 	for(i=0;i<2;i++){
@@ -896,12 +896,12 @@ static void scchg_HBlankFunc(void * work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Hƒuƒ‰ƒ“ƒNŠÖ”‚ğİ’è
+ *@brief	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚’è¨­å®š
  *
- *@param	p_wipehb	ƒƒCƒvƒVƒXƒeƒ€‚ÌHƒuƒ‰ƒ“ƒNƒ[ƒN\‘¢‘Ì
- *@param	work		ƒ[ƒN
- *@param	func		Hƒuƒ‰ƒ“ƒNŠÖ”
- *@param	disp		•\¦–ÊiƒƒCƒ“ƒTƒuj
+ *@param	p_wipehb	ãƒ¯ã‚¤ãƒ—ã‚·ã‚¹ãƒ†ãƒ ã®Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ *@param	work		ãƒ¯ãƒ¼ã‚¯
+ *@param	func		Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
+ *@param	disp		è¡¨ç¤ºé¢ï¼ˆãƒ¡ã‚¤ãƒ³ã‚µãƒ–ï¼‰
  *
  *@return	none
  *
@@ -912,11 +912,11 @@ void WIPE_HBlankInit(WIPE_HBLANK* p_wipehb, void* work, pHBFunc func, int disp)
 {
 	u8	result=TRUE;
 	GF_ASSERT((p_wipehb->flg[disp] == 0));
-	GF_ASSERT( p_wipehb->func[disp] != NULL );	// NULL‚¾‚Æ‚¨‚©‚µ‚¢
+	GF_ASSERT( p_wipehb->func[disp] != NULL );	// NULLã ã¨ãŠã‹ã—ã„
 
 	if((p_wipehb->flg[0] == 0) &&
 		(p_wipehb->flg[1] == 0)){
-		result = sys_HBlankIntrSet(scchg_HBlankFunc, p_wipehb);		// ŠÖ”İ’è
+		result = sys_HBlankIntrSet(scchg_HBlankFunc, p_wipehb);		// é–¢æ•°è¨­å®š
 	}
 	GF_ASSERT(result == TRUE);
 
@@ -934,10 +934,10 @@ void WIPE_HBlankInit(WIPE_HBLANK* p_wipehb, void* work, pHBFunc func, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Hƒuƒ‰ƒ“ƒN”jŠü
+ *@brief	Hãƒ–ãƒ©ãƒ³ã‚¯ç ´æ£„
  *
- *@param	p_wipehb	ƒƒCƒv‚ÌHƒuƒ‰ƒ“ƒNƒ[ƒN
- *@param	disp		•\¦–Ê	ƒƒCƒ“EƒTƒu
+ *@param	p_wipehb	ãƒ¯ã‚¤ãƒ—ã®Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *@param	disp		è¡¨ç¤ºé¢	ãƒ¡ã‚¤ãƒ³ãƒ»ã‚µãƒ–
  *
  *@return	none
  *
@@ -950,7 +950,7 @@ void WIPE_HBlankDelete(WIPE_HBLANK* p_wipehb, int disp)
 
 	if((p_wipehb->flg[0] == 0) &&
 		(p_wipehb->flg[1] == 0)){
-		sys_HBlankIntrStop();		//HBlankŠ„‚è‚İ’â~
+		sys_HBlankIntrStop();		//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 	}
 	
 	p_wipehb->func[disp] = defaultHFunc;
@@ -960,12 +960,12 @@ void WIPE_HBlankDelete(WIPE_HBLANK* p_wipehb, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Vƒuƒ‰ƒ“ƒNŠúŠÔ’†‚ÉHƒuƒ‰ƒ“ƒNŠÖ”‚ğİ’è
+ *@brief	Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚’è¨­å®š
  *
- *@param	work		ƒ[ƒN
- *@param	func		Hƒuƒ‰ƒ“ƒNŠÖ”
- *@param	disp		•\¦–Ê
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	work		ãƒ¯ãƒ¼ã‚¯
+ *@param	func		Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
+ *@param	disp		è¡¨ç¤ºé¢
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
@@ -986,10 +986,10 @@ void WIPE_V_HBlankInit(WIPE_HBLANK* p_wipehb, void* work, pHBFunc func, int disp
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Hƒuƒ‰ƒ“ƒN”jŠü
+ *@brief	Hãƒ–ãƒ©ãƒ³ã‚¯ç ´æ£„
  *
- *@param	disp		•\¦–Ê	ƒƒCƒ“EƒTƒu
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	disp		è¡¨ç¤ºé¢	ãƒ¡ã‚¤ãƒ³ãƒ»ã‚µãƒ–
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
@@ -1007,10 +1007,10 @@ void WIPE_V_HBlankDelete(WIPE_HBLANK* p_wipehb, int disp, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	VblankŠúŠÔ’†‚ÉHblank‚ğ‰Šú‰»‚·‚éƒ^ƒXƒN
+ *@brief	VblankæœŸé–“ä¸­ã«Hblankã‚’åˆæœŸåŒ–ã™ã‚‹ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- *@param	work	‰Šú‰»ƒf[ƒ^	
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ *@param	work	åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿	
  *
  *@return	none
  *
@@ -1030,10 +1030,10 @@ static void scchg_v_HBlankInit(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	VblankŠúŠÔ’†‚ÉHblank‚ğ”jŠü‚·‚éŠÖ”
+ *@brief	VblankæœŸé–“ä¸­ã«Hblankã‚’ç ´æ£„ã™ã‚‹é–¢æ•°
  *
- *@param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- *@param	work	”jŠüƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ *@param	work	ç ´æ£„ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1053,9 +1053,9 @@ static void scchg_v_HBlankDelete(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Hƒuƒ‰ƒ“ƒNŠÖ”	NULL‚ª“n‚³‚ê‚½‚çİ’è‚³‚ê‚éŠÖ”
+ *	@brief	Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°	NULLãŒæ¸¡ã•ã‚ŒãŸã‚‰è¨­å®šã•ã‚Œã‚‹é–¢æ•°
  *
- *	@param	work	ƒ[ƒN
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1069,10 +1069,10 @@ static void defaultHFunc( void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒvƒJƒ‰[æ“¾
+ *	@brief	ãƒ¯ã‚¤ãƒ—ã‚«ãƒ©ãƒ¼å–å¾—
  *
- *	@param	p_data	ƒƒCƒvƒf[ƒ^
- *	@param	color	ƒJƒ‰[ƒpƒ‰ƒ[ƒ^
+ *	@param	p_data	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
+ *	@param	color	ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  *	@return	
  */
@@ -1087,35 +1087,35 @@ static u16 getSetColor( WIPE_SYS_DATA* p_data, u16 color )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‰ñ‚ÌƒƒCƒvƒf[ƒ^‚Ì•Û‘¶
+ *	@brief	ä»Šå›ã®ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
  *
- *	@param	cp_data	ƒ[ƒN
+ *	@param	cp_data	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	•Û‘¶‚·‚éƒJƒ‰[
+ *	@return	ä¿å­˜ã™ã‚‹ã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static u16 getSaveWiepColor( const WIPE_SYS_DATA* cp_data )
 {
 	const WIPE_SYS_WIPE_WORK* cp_wipe_w;
 	
-	// ƒƒCƒv‚Å‚ÌƒtƒF[ƒhƒAƒEƒg‚Ìê‡
-	// F‚ğ•Û‘¶
+	// ãƒ¯ã‚¤ãƒ—ã§ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ™‚ã®å ´åˆ
+	// è‰²ã‚’ä¿å­˜
 	if( cp_data->wipe_pattern_data.wipe_exist_m_check == TRUE ){
 		cp_wipe_w = &cp_data->wipe_m;
 	}else{
 		cp_wipe_w = &cp_data->wipe_s;
 	}
 
-	// ƒƒCƒvF•Û‘¶
+	// ãƒ¯ã‚¤ãƒ—è‰²ä¿å­˜
 	if( cp_wipe_w->fade_inout == WIPE_FADE_OUT ){
 		return cp_wipe_w->color;
 	}
-	return cp_data->fade_color;	// ‚»‚Ì‚Ü‚Ü
+	return cp_data->fade_color;	// ãã®ã¾ã¾
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Vƒuƒ‰ƒ“ƒNÏ½À°‹P“xƒŠƒZƒbƒgTCB
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯ãƒã‚¹ã‚¿ãƒ¼è¼åº¦ãƒªã‚»ãƒƒãƒˆTCB
  */
 //-----------------------------------------------------------------------------
 static void resetMstBrightnessVblank( TCB_PTR tcb, void* work )
@@ -1127,15 +1127,15 @@ static void resetMstBrightnessVblank( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒXƒ^[ÌŞ×²ÄÈ½ó‘Ô‚ğƒŠƒZƒbƒg‚·‚é
+ *	@brief	ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void resetMstBrightnessCheck_Do( WIPE_SYS_WIPE_WORK* p_data )
 {
-	// ‚à‚µƒtƒF[ƒhƒCƒ“‚Ì@••@”’•‚Ì‚Æ‚«@••@ƒEƒBƒ“ƒhƒE‚ğg—p‚µ‚½ƒƒCƒv
-	// ‚È‚ç‚ÎAÌŞ×²ÄÈ½İ’è‚ğOFF‚·‚é
+	// ã‚‚ã—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®æ™‚ã€€ï¼†ï¼†ã€€ç™½é»’ã®ã¨ãã€€ï¼†ï¼†ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—
+	// ãªã‚‰ã°ã€ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è¨­å®šã‚’OFFã™ã‚‹
 	if( (p_data->fade_inout == WIPE_FADE_IN) &&
 		((p_data->color == WIPE_FADE_WHITE) || (p_data->color == WIPE_FADE_BLACK)) &&
 		(p_data->wnd_br == WIPE_USE_WND) ){
@@ -1146,34 +1146,34 @@ static void resetMstBrightnessCheck_Do( WIPE_SYS_WIPE_WORK* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒAƒEƒg‚ÅƒEƒBƒ“ƒhƒEİ’è‚É”’•‚Ì‚Æ‚«‚ÍAÏ½À[ÌŞ×²ÄÈ½‚É‚·‚é
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®šæ™‚ã«ç™½é»’ã®ã¨ãã¯ã€ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã«ã™ã‚‹
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void chgWnd_MstBrightnessCheck_Do( WIPE_SYS_WIPE_WORK* p_data )
 {
-	// ‚à‚µƒtƒF[ƒhƒAƒEƒg‚Ì@••@”’•‚Ì‚Æ‚«@••@ƒEƒBƒ“ƒhƒE‚ğg—p‚µ‚½ƒƒCƒv
-	// ‚È‚ç‚ÎAÏ½À°ÌŞ×²ÄÈ½‚ğİ’è‚µ‚ÄƒEƒBƒ“ƒhƒE”jŠü
+	// ã‚‚ã—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®æ™‚ã€€ï¼†ï¼†ã€€ç™½é»’ã®ã¨ãã€€ï¼†ï¼†ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—
+	// ãªã‚‰ã°ã€ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’è¨­å®šã—ã¦ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	if( (p_data->fade_inout == WIPE_FADE_OUT) &&
 		((p_data->color == WIPE_FADE_WHITE) || (p_data->color == WIPE_FADE_BLACK)) &&
 		(p_data->wnd_br == WIPE_USE_WND) ){
 
-		// ÌŞ×²ÄÈ½İ’è
+		// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è¨­å®š
 		WIPE_SetBrightness( p_data->disp, p_data->color );
 
-		// ƒEƒBƒ“ƒhƒE”jŠü
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		WIPE_ResetWndMask( p_data->disp);
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒvƒf[ƒ^‚ğ‹ó‚É‚·‚é
+ *	@brief	ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’ç©ºã«ã™ã‚‹
  *
- *	@param	p_wipe_data		ƒƒCƒvƒf[ƒ^
+ *	@param	p_wipe_data		ãƒ¯ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -1189,17 +1189,17 @@ static void cleanWipeData( WIPE_SYS_DATA* p_wipe_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒCƒ“Áª¯¸
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯
  *
- *	@param	wipe_type	ƒƒCƒvÀ²Ìß
+ *	@param	wipe_type	ãƒ¯ã‚¤ãƒ—ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	ƒtƒF[ƒhƒCƒ“
- *	@retval	FALSE	ƒtƒF[ƒhƒAƒEƒg
+ *	@retval	TRUE	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+ *	@retval	FALSE	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static BOOL WipeFadeInCheck( u32 wipe_type )
 {
-	// ƒz[ƒ‹ƒAƒEƒgƒCƒ“–¢–‚ÌÀ²Ìß‚ÍAŠï”‚ªƒtƒF[ƒhƒCƒ“
+	// ãƒ›ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆã‚¤ãƒ³æœªæº€ã®ã‚¿ã‚¤ãƒ—ã¯ã€å¥‡æ•°ãŒãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	if( (wipe_type % 2) ){
 		return TRUE;
 	}

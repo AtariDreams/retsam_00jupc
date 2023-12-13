@@ -15,7 +15,7 @@
   indent source
 
   Revision 1.1  2007/01/18 04:05:21  okubata_ryoma
-  FX_AsinIdx, FX_AcosIdx �֐��̒ǉ�
+  FX_AsinIdx, FX_AcosIdx 関数の追加
 
 
   $NoKeywords: $
@@ -52,13 +52,13 @@ u16 FX_AsinIdx(fx32 x)
 
     SDK_MINMAX_ASSERT(x, FX32_SIN270, FX32_SIN90);
 
-    /* x�����̏ꍇ��0-90�Ńo�C�i���T�[�` */
+    /* xが正の場合は0-90でバイナリサーチ */
     if (x >= 0)
     {
         left = 0;
         right = ARRAY_SIZE_90;
     }
-    /* x�����̏ꍇ��270-360�Ńo�C�i���T�[�` */
+    /* xが負の場合は270-360でバイナリサーチ */
     else
     {
         left = ARRAY_SIZE_270;
@@ -67,7 +67,7 @@ u16 FX_AsinIdx(fx32 x)
 
     value = (fx16)x;
 
-    /* �o�C�i���T�[�` */
+    /* バイナリサーチ */
     while (left <= right)
     {
         mid = (left + right) / 2;      /* calc of middle key */
@@ -107,13 +107,13 @@ u16 FX_AcosIdx(fx32 x)
 
     SDK_MINMAX_ASSERT(x, FX32_COS180, FX32_COS0);
 
-    /* x�����̏ꍇ��0-90�Ńo�C�i���T�[�` */
+    /* xが正の場合は0-90でバイナリサーチ */
     if (x >= 0)
     {
         left = 0;
         right = ARRAY_SIZE_90;
     }
-    /* x�����̏ꍇ��90-180�Ńo�C�i���T�[�` */
+    /* xが負の場合は90-180でバイナリサーチ */
     else
     {
         left = ARRAY_SIZE_90;
@@ -122,7 +122,7 @@ u16 FX_AcosIdx(fx32 x)
 
     value = (fx16)x;
 
-    /* �o�C�i���T�[�` */
+    /* バイナリサーチ */
     while (left <= right)
     {
         mid = (left + right) / 2;

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_fight_text.h
- *	@brief		�}�Ӑ퓬��̃e�L�X�g�f�[�^�\���V�X�e��
+ *	@brief		図鑑戦闘語のテキストデータ表示システム
  *	@author		tomoya takahashi
  *	@data		2006.03.22
  *
@@ -27,36 +27,36 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
-// ����Ă���^�X�N�̗D�揇��
-#define ZKN_FIGHT_TCB_PRI		( 0 ) // �^�X�N�o�^���ꂽ�t���[���̓^�X�N�̃��C�����ʂ�Ȃ��悤�ɂ��Ă����K�v������܂�
+// 回っているタスクの優先順位
+#define ZKN_FIGHT_TCB_PRI		( 0 ) // タスク登録されたフレームはタスクのメインが通らないようにしておく必要があります
 
-// �|�P�����O���t�B�b�N���W
+// ポケモングラフィック座標
 #define ZKN_FIGHT_POKEGRA_MAT_X	( ZKN_ZUKAN_POKEGRA_MAT_X )
 #define ZKN_FIGHT_POKEGRA_MAT_Y	( ZKN_ZUKAN_POKEGRA_MAT_Y )
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	�}�Ӄt�@�C�g�e�L�X�g�\���^�X�N
+//	図鑑ファイトテキスト表示タスク
 //=====================================
 typedef struct {
-	GF_BGL_INI*			p_bgl;		// BGL	(BG�R���g���[���͍Đݒ肵�܂�)
-	PALETTE_FADE_PTR	p_pfd;		// �p���b�g�t�F�[�h
-	SOFT_SPRITE_MANAGER* p_ssm;		// �\�t�g�E�F�A�X�v���C�g
-	int					heap;		// �g�p����q�[�v
-	POKEMON_PARAM*		p_pp;		// �|�P�����p�����[�^
-	int					pokenum_mode;// �|�P�����i���o�[���[�h
-	// PM_NUMBER_SHINOU:�V���I�E   PM_NUMBER_ZENKOKU:�S��
+	GF_BGL_INI*			p_bgl;		// BGL	(BGコントロールは再設定します)
+	PALETTE_FADE_PTR	p_pfd;		// パレットフェード
+	SOFT_SPRITE_MANAGER* p_ssm;		// ソフトウェアスプライト
+	int					heap;		// 使用するヒープ
+	POKEMON_PARAM*		p_pp;		// ポケモンパラメータ
+	int					pokenum_mode;// ポケモンナンバーモード
+	// PM_NUMBER_SHINOU:シンオウ   PM_NUMBER_ZENKOKU:全国
 	
 
 
-/*	SOFT_SPRITE* p_ssp;				// �\�t�g�X�v���C�g�}�l�[�W��
+/*	SOFT_SPRITE* p_ssp;				// ソフトスプライトマネージャ
 	int monsno;//*/
 } ZKN_FIGHT_TEXT_PARAM;
 
@@ -66,24 +66,24 @@ typedef struct _ZKN_FIGHT_TEXT_DRAW		ZKN_FIGHT_TEXT_DRAW;
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
-// �^�X�N����
-// �u���b�N�A�E�g��Ԃœn���Ă�������
+// タスク生成
+// ブラックアウト状態で渡してください
 GLOBAL ZKN_FIGHT_TEXT_DRAW* ZKN_FIGHT_TextDrawReq( const ZKN_FIGHT_TEXT_PARAM* cp_param );
 
-// �j��
-// �Ă΂ꂽ�u�Ԃɔj������܂�
+// 破棄
+// 呼ばれた瞬間に破棄されます
 GLOBAL void ZKN_FIGHT_TextDrawDelete( ZKN_FIGHT_TEXT_DRAW* p_data );
 
-// �t�F�[�h�C���܂Ŋ����������`�F�b�N
+// フェードインまで完了したかチェック
 GLOBAL BOOL ZKN_FIGHT_TexDrawEndCheck( const ZKN_FIGHT_TEXT_DRAW* cp_data );
 
-// �\�t�g�E�F�A�X�v���C�g���擾
+// ソフトウェアスプライトを取得
 GLOBAL SOFT_SPRITE* ZKN_FIGHT_TexDrawGetSsp( ZKN_FIGHT_TEXT_DRAW* p_data );
 
-// �p���b�g�A�j��ONOFF�t���O
+// パレットアニメONOFFフラグ
 GLOBAL void ZKN_FIGHT_PalAnmFlagSet( ZKN_FIGHT_TEXT_DRAW* p_data, BOOL flag );
 GLOBAL BOOL ZKN_FIGHT_PalAnmFlagGet( const ZKN_FIGHT_TEXT_DRAW* cp_data );
 

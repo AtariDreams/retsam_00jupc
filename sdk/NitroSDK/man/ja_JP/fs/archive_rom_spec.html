@@ -2,63 +2,63 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<title>ROM �A�[�J�C�u</title>
+<title>ROM アーカイブ</title>
 <LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
 </head>
 
 <body>
 
-<h1 align="left">ROM �A�[�J�C�u</h1>
-<h2>�T�v</h2>
+<h1 align="left">ROM アーカイブ</h1>
+<h2>概要</h2>
 <p>
-���̍��ł́A�t�@�C���V�X�e���Ƀf�t�H���g�ŗp�ӂ����uROM �A�[�J�C�u�v�ɂ��Đ������܂��B
+この項では、ファイルシステムにデフォルトで用意される「ROM アーカイブ」について説明します。
 </p>
-<H2>�d�l</H2>
+<H2>仕様</H2>
 <P>
-ROM �A�[�J�C�u�̊�{�I�ȓ���͈ȉ��̒ʂ�ł��B<br>
+ROM アーカイブの基本的な動作は以下の通りです。<br>
 <br>
-�E�t�@�C���V�X�e���ɂ���ė\�񂳂ꂽ���O "rom" ���g�p���A<br>
- <a href="file/FS_Init.html">FS_Init<a>�֐��̌Ăяo�����Ɏ����I�Ƀ��[�h����܂��B<br>
+・ファイルシステムによって予約された名前 "rom" を使用し、<br>
+ <a href="file/FS_Init.html">FS_Init<a>関数の呼び出し時に自動的にロードされます。<br>
 <br>
-�ECARD �֐����g�p���ēK�X CARD ROM �փA�N�Z�X���邱�Ƃɂ���āA<br>
-  CARD ROM ��ɍ\�z���ꂽNitroROM�t�H�[�}�b�g�̃A�[�J�C�u����񋟂��܂��B<br>
+・CARD 関数を使用して適宜 CARD ROM へアクセスすることによって、<br>
+  CARD ROM 上に構築されたNitroROMフォーマットのアーカイブ情報を提供します。<br>
 <br>
-�E�I�[�o�[���C�e�[�u���փA�N�Z�X����FS�֐�����g�p����܂��B<br>
+・オーバーレイテーブルへアクセスするFS関数から使用されます。<br>
 <br>
 <BR>
 </p>
-<H2>����</H2>
+<H2>実装</H2>
 <P>
-ROM�A�[�J�C�u�̋�̓I�Ȏ����͈ȉ��̒ʂ�ł��B<br>
+ROMアーカイブの具体的な実装は以下の通りです。<br>
 <br>
-[���[�h�R�[���o�b�N]<br>
-<a href="../card/rom/CARD_ReadRomAsync.html">CARD_ReadRomAsync</a>�֐��ɂ���� CARD ROM ����f�[�^��ǂݏo���܂��B<br>
-�����J�n���� FS_RESULT_PROC_ASYNC ��Ԃ��A�������� FS_RESULT_SUCCESS ���������܂��B<br>
+[リードコールバック]<br>
+<a href="../card/rom/CARD_ReadRomAsync.html">CARD_ReadRomAsync</a>関数によって CARD ROM からデータを読み出します。<br>
+処理開始時に FS_RESULT_PROC_ASYNC を返し、完了時に FS_RESULT_SUCCESS を応答します。<br>
 <br>
-[���C�g�R�[���o�b�N]<br>
-�Ή������A���FS_RESULT_FAILURE��Ԃ��܂��B<br>
+[ライトコールバック]<br>
+対応せず、常にFS_RESULT_FAILUREを返します。<br>
 <br>
-[���[�U�v���V�[�W��]<br>
+[ユーザプロシージャ]<br>
 <TABLE border="0" height="310">
   <TBODY>
     <TR>
       <TD width="207" height="10"><A href="command/fs_command_activate_spec.html">FS_COMMAND_ACTIVATE</A></TD>
-      <TD height="10">�㑱�� CARD ROM �A�N�Z�X�̂��߂�<a href="../card/rom/CARD_LockRom.html">CARD_LockRom</a>���Ăяo���܂��B</TD>
+      <TD height="10">後続の CARD ROM アクセスのために<a href="../card/rom/CARD_LockRom.html">CARD_LockRom</a>を呼び出します。</TD>
     </TR>
     <TR>
       <TD width="207" height="3"><A href="command/fs_command_idle_spec.html">FS_COMMAND_IDLE</A></TD>
-      <TD height="3">CARD ROM �A�N�Z�X�̏I���ɔ���<a href="../card/rom/CARD_UnlockRom.html">CARD_UnlockRom</a>���Ăяo���܂��B</TD>
+      <TD height="3">CARD ROM アクセスの終了に伴い<a href="../card/rom/CARD_UnlockRom.html">CARD_UnlockRom</a>を呼び出します。</TD>
     </TR>
     <TR>
       <TD width="207" height="5"><A href="command/fs_command_writefile_spec.html">FS_COMMAND_WRITEFILE</A></TD>
-      <TD height="5">���̃R�}���h�ɂ͑Ή������A��� FS_RESULT_UNSUPPORTED ��Ԃ��܂��B</TD>
+      <TD height="5">このコマンドには対応せず、常に FS_RESULT_UNSUPPORTED を返します。</TD>
     </TR>
     <TR>
-      <TD width="207" height="15" style="background-color : white;">���̑�</TD>
-      <TD height="15">FS_RESULT_PROC_UNKNOWN��Ԃ��A�f�t�H���g�̃R�}���h�����ɔC���܂��B</TD>
+      <TD width="207" height="15" style="background-color : white;">その他</TD>
+      <TD height="15">FS_RESULT_PROC_UNKNOWNを返し、デフォルトのコマンド実装に任せます。</TD>
     </TR>
 
   </TBODY>
@@ -66,7 +66,7 @@ ROM�A�[�J�C�u�̋�̓I�Ȏ����͈ȉ��̒ʂ�ł��B<br>
 
 </P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="fs_archive_type.html">FSArchive</A>
 <A href="fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
@@ -74,9 +74,9 @@ ROM�A�[�J�C�u�̋�̓I�Ȏ����͈ȉ��̒ʂ�ł��B<br>
 <A href="archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/09/24 ����<br>
+2004/09/24 初版<br>
 </P>
 </body>
 </html>

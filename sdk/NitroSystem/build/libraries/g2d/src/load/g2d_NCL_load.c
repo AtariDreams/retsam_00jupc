@@ -63,10 +63,10 @@ BOOL NNS_G2dGetUnpackedPaletteData( void* pNclrFile, NNSG2dPaletteData** ppPltDa
     NNS_G2D_NULL_ASSERT( pNclrFile );
     NNS_G2D_NULL_ASSERT( ppPltData );
     
-    // ƒtƒ@ƒCƒ‹Ž¯•ÊŽq‚ª³‚µ‚¢‚©
+    // ãƒ•ã‚¡ã‚¤ãƒ«è­˜åˆ¥å­ãŒæ­£ã—ã„ã‹
     {
         const NNSG2dBinaryFileHeader*   pBinFile = pNclrFile;
-        // Ž¯•ÊŽq‚Í‰ß‹Ž‚Ì•¨‚àƒTƒ|[ƒg‚·‚éŽ–‚Æ‚·‚éB
+        // è­˜åˆ¥å­ã¯éŽåŽ»ã®ç‰©ã‚‚ã‚µãƒãƒ¼ãƒˆã™ã‚‹äº‹ã¨ã™ã‚‹ã€‚
         NNS_G2D_ASSERTMSG( pBinFile->signature == NNS_G2D_BINFILE_SIG_PALETTEDATA ||
                            pBinFile->signature == NNS_G2D_BINFILE_SIG_PALETTEDATA_OLD, 
                            "Input file signature is invalid for this method." );
@@ -109,10 +109,10 @@ BOOL NNS_G2dGetUnpackedPaletteCompressInfo( void* pNclrFile, NNSG2dPaletteCompre
     NNS_G2D_NULL_ASSERT( pNclrFile );
     NNS_G2D_NULL_ASSERT( ppPltCmpInfo );
     
-    // ƒtƒ@ƒCƒ‹Ž¯•ÊŽq‚ª³‚µ‚¢‚©
+    // ãƒ•ã‚¡ã‚¤ãƒ«è­˜åˆ¥å­ãŒæ­£ã—ã„ã‹
     {
         const NNSG2dBinaryFileHeader*   pBinFile = pNclrFile;
-        // Ž¯•ÊŽq‚Í‰ß‹Ž‚Ì•¨‚àƒTƒ|[ƒg‚·‚éŽ–‚Æ‚·‚éB
+        // è­˜åˆ¥å­ã¯éŽåŽ»ã®ç‰©ã‚‚ã‚µãƒãƒ¼ãƒˆã™ã‚‹äº‹ã¨ã™ã‚‹ã€‚
         NNS_G2D_ASSERTMSG( pBinFile->signature == NNS_G2D_BINFILE_SIG_PALETTEDATA ||
                            pBinFile->signature == NNS_G2D_BINFILE_SIG_PALETTEDATA_OLD, 
                            "Input file signature is invalid for this method." );

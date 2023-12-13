@@ -24,7 +24,7 @@
   fix Copyright header.
 
   Revision 1.14  2005/01/21 10:40:39  takano_makoto
-  DC_Unlockdown, DC_UnlockdownAll, IC_Unlockdown, IC_UnlockdownAll‚ğ’Ç‰Á
+  DC_Unlockdown, DC_UnlockdownAll, IC_Unlockdown, IC_UnlockdownAllã‚’è¿½åŠ 
 
   Revision 1.13  2004/11/02 09:58:29  yada
   just fix comment
@@ -33,11 +33,11 @@
   (none)
 
   Revision 1.11  2004/04/07 05:29:40  yada
-  (1.10‚ÌƒRƒƒ“ƒg‚ÍŠÔˆá‚Á‚Ä‚¢‚Ü‚µ‚½)
+  (1.10ã®ã‚³ãƒ¡ãƒ³ãƒˆã¯é–“é•ã£ã¦ã„ã¾ã—ãŸ)
   add explanation for function
 
   Revision 1.10  2004/04/07 05:05:02  yada
-  axf¨nef
+  axfâ†’nef
 
   Revision 1.9  2004/04/07 02:03:17  yada
   fix header comment
@@ -49,22 +49,22 @@
   convert 'inline' to 'static inline' in header files
 
   Revision 1.6  2004/01/14 08:41:52  yada
-  ƒLƒƒƒbƒVƒ…ŠÖ”‚Ì•Ê–¼‚ğ’è‹`
+  ã‚­ãƒ£ãƒƒã‚·ãƒ¥é–¢æ•°ã®åˆ¥åã‚’å®šç¾©
 
   Revision 1.5  2003/12/18 01:53:12  yada
-  C³
+  ä¿®æ­£
 
   Revision 1.4  2003/12/17 11:29:49  yada
-  ƒf[ƒ^ƒLƒƒƒbƒVƒ…ŠÖ”‹Lq
+  ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥é–¢æ•°è¨˜è¿°
 
   Revision 1.3  2003/12/17 09:39:34  nishida_kenji
   small bug fix
 
   Revision 1.2  2003/12/17 09:28:20  yada
-  ƒf[ƒ^ƒLƒƒƒbƒVƒ…‚Ì–½—ß‚ğ’è‹`‚µ‚½(’†g‚Í‚Ü‚¾‚Å‚·)
+  ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®å‘½ä»¤ã‚’å®šç¾©ã—ãŸ(ä¸­èº«ã¯ã¾ã ã§ã™)
 
   Revision 1.1  2003/12/08 12:22:34  yada
-  ‰”Å
+  åˆç‰ˆ
 
 
   $NoKeywords: $

@@ -9,10 +9,10 @@ typedef struct MAP_HEIGHT_INFO_tag const * MHI_CONST_PTR;
 typedef struct EX_HEIGHT_LIST_tag * EHL_PTR;
 typedef struct EX_HEIGHT_LIST_tag const * EHL_CONST_PTR;
 
-//ƒƒ‚ƒŠŠm•Û
+//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 extern MHI_PTR	AllocMapHeightInfo(void);
 
-//ƒ[ƒhŠÖ˜A
+//ãƒ­ãƒ¼ãƒ‰é–¢é€£
 extern void SetupHeightData(const char  *path,
 							MHI_PTR	outMapHeightInfo,
 							u8 *inHeightMem);
@@ -39,7 +39,7 @@ extern VecFx32 MoveRevise(fx32 inMoveVal, VecFx32 inNewVec, VecFx32 inOldVec);
 
 extern void SetInvalidHeightData(MHI_PTR outMap3DInfo);
 
-//‚‚³æ“¾
+//é«˜ã•å–å¾—
 extern BOOL GetHeightForBlock(	const fx32 inNowY, const fx32 inX, const fx32 inZ,
 								MHI_CONST_PTR inMap3DInfo,fx32 *outY);
 
@@ -47,27 +47,27 @@ extern BOOL GetInvalidHeightDataFlg(MHI_CONST_PTR inMap3DInfo);
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ìƒƒ‚ƒŠƒAƒƒP[ƒg
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ãƒˆ
  *
- * @param	inNum		Šm•Û‚·‚éƒf[ƒ^ŒÂ”
- * @param	inHeapID	Šm•Û‚·‚éƒq[ƒvID
+ * @param	inNum		ç¢ºä¿ã™ã‚‹ãƒ‡ãƒ¼ã‚¿å€‹æ•°
+ * @param	inHeapID	ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	EHL_PTR	Šm•Û‚µ‚½—Ìˆæ‚Ìæ“ªƒ|ƒCƒ“ƒ^
+ * @return	EHL_PTR	ç¢ºä¿ã—ãŸé ˜åŸŸã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 extern EHL_PTR EXH_AllocExHeightList(const u8 inNum, const u8 inHeapID);
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚ÌƒZƒbƒgƒAƒbƒv
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param	inIndex		æ“¾‚·‚é‚‚³ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param	inStX			—ÌˆæŠJnƒOƒŠƒbƒhXÀ•W
- * @param	instZ			—ÌˆæŠJnƒOƒŠƒbƒhZÀ•W
- * @param	inSizX			—ÌˆæƒOƒŠƒbƒh‰¡•
- * @param	inSizZ			—ÌˆæƒOƒŠƒbƒhc•
- * @param	inHeight		—Ìˆæ“à‚‚³
- * @param	outExHeightList	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIndex		å–å¾—ã™ã‚‹é«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inStX			é ˜åŸŸé–‹å§‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	instZ			é ˜åŸŸé–‹å§‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inSizX			é ˜åŸŸã‚°ãƒªãƒƒãƒ‰æ¨ªå¹…
+ * @param	inSizZ			é ˜åŸŸã‚°ãƒªãƒƒãƒ‰ç¸¦å¹…
+ * @param	inHeight		é ˜åŸŸå†…é«˜ã•
+ * @param	outExHeightList	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -82,9 +82,9 @@ extern void EXH_SetUpExHeightData(	const u8 inIndex,
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‰ğ•ú
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿è§£æ”¾
  *
- * @param	outExHeightData	Šg’£‚‚³ƒf[ƒ^‚Ìæ“ªƒ|ƒCƒ“ƒ^
+ * @param	outExHeightData	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -93,13 +93,13 @@ extern void EXH_FreeExHeightList(EHL_PTR outExHeightList);
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ìƒqƒbƒgƒ`ƒFƒbƒN
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  *
- * @param	inGridX			ƒ`ƒFƒbƒN‚·‚éƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ			ƒ`ƒFƒbƒN‚·‚éƒOƒŠƒbƒhZÀ•W
- * @param	inExHeightList	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inGridX			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inExHeightList	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:ƒqƒbƒg	FALSE:ƒm[ƒqƒbƒg
+ * @return	BOOL	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒãƒ¼ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL EXH_HitCheckExHeight(	const int inGridX, const int inGridZ,
@@ -108,23 +108,23 @@ extern BOOL EXH_HitCheckExHeight(	const int inGridX, const int inGridZ,
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚©‚ç‚‚³‚ğæ“¾(ƒŠƒXƒg)
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰é«˜ã•ã‚’å–å¾—(ãƒªã‚¹ãƒˆ)
  *
- * @param	inIndex	Šg’£‚‚³ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	inExHeightList	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIndex	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inExHeightList	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	fx32	‚‚³
+ * @return	fx32	é«˜ã•
  */
 //--------------------------------------------------------------------------------------------
 extern fx32 EXH_GetExHeight(const u8 inIndex, EHL_CONST_PTR inExHeightList);
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ì‚‚³ƒZƒbƒg(ƒŠƒXƒg)
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®é«˜ã•ã‚»ãƒƒãƒˆ(ãƒªã‚¹ãƒˆ)
  *
- * @param	inIndex	Šg’£‚‚³ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	inHeight		—Ìˆæ“à‚‚³
- * @param	outExHeightList	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIndex	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inHeight		é ˜åŸŸå†…é«˜ã•
+ * @param	outExHeightList	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -133,11 +133,11 @@ extern void EXH_SetExHeight(	const u8 inIndex, const fx32 inHeight, EHL_PTR outE
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šg’£‚‚³ƒf[ƒ^‚Ì—LŒøE–³Œø‰»(ƒŠƒXƒg)
+ * æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹åŒ–(ãƒªã‚¹ãƒˆ)
  *
- * @param	inIndex	Šg’£‚‚³ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	inValid			TRUE:—LŒø	FALSE:–³Œø
- * @param	outExHeightData	Šg’£‚‚³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIndex	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inValid			TRUE:æœ‰åŠ¹	FALSE:ç„¡åŠ¹
+ * @param	outExHeightData	æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */

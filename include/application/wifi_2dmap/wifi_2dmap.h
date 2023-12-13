@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_2dmap.h
- *	@brief		�}�b�v�����蔻��Ǘ��f�[�^
+ *	@brief		マップ当たり判定管理データ
  *	@author		tomoya takahashi
  *	@data		2007.03.05
  *
@@ -22,65 +22,65 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
-#define		WF_MAP_AREAOVER_MAP		(0xffffffff)	// �͈͊O�̃}�b�v
+#define		WF_MAP_AREAOVER_MAP		(0xffffffff)	// 範囲外のマップ
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�}�b�v�Ǘ��V�X�e��
+///	マップ管理システム
 //=====================================
 typedef struct _WF_MAP_SYS WF_MAP_SYS;
 
 
 //-------------------------------------
-///	�Ǘ��}�b�v�f�[�^
+///	管理マップデータ
 //=====================================
 typedef union {
 	u32	data;
 	struct {
-		u16 flag;	// �}�b�v�t���O
-		u8 param;	// �p�����[�^
-		u8 event;	// �C�x���g�f�[�^
+		u16 flag;	// マップフラグ
+		u8 param;	// パラメータ
+		u8 event;	// イベントデータ
 	};
 } WF_MAP;
-#define WF_MAP_PARAM_SHIFT	(16)	// �}�b�v�p�����[�^�V�t�g
-#define WF_MAP_EVENT_SHIFT	(24)	// �}�b�v�C�x���g�V�t�g
+#define WF_MAP_PARAM_SHIFT	(16)	// マップパラメータシフト
+#define WF_MAP_EVENT_SHIFT	(24)	// マップイベントシフト
 
 /*
- *	�Ǘ��}�b�v�f�[�^�̐���
- *		flag	�����蔻��Ɏg�p����ϐ��ł��B
- *				�������ɐl������Ƃ��A�����ɂ͕ǂ�����Ȃǂ��`�F�b�N����Ƃ��Ɏg�p���܂��B
- *		param	�Ԃ��������̂𔻕ʂ��邽�߂̃p�����[�^�ł��B
- *				�l�Ƃ̓����蔻��̂Ƃ��́Aparam�ɂ��̐l�����ʂ��鐔�������Ă����āA
- *				�Ԃ������l����肵�܂��B
- *		event	��l�������̏�ɏ�����Ƃ��ɉ������N�����������Ɏg�p���܂��B
- *				�o����A������ȂȂǂ����ʂ��鐔�������Ă����A������������`�F�b�N����
- *				���ʂɂ�艽���C�x���g�𔭍s���Ă��������B
+ *	管理マップデータの説明
+ *		flag	当たり判定に使用する変数です。
+ *				今そこに人がいるとか、ここには壁があるなどをチェックするときに使用します。
+ *		param	ぶつかったものを判別するためのパラメータです。
+ *				人との当たり判定のときは、paramにその人を識別する数字を入れておいて、
+ *				ぶつかった人を特定します。
+ *		event	主人公がその上に乗ったときに何かを起こしたい時に使用します。
+ *				出口や、何かわななどを識別する数字を入れておき、乗っかったかチェックした
+ *				結果により何かイベントを発行してください。
  *
- *		data	���������邽�߂̃}�b�v�f�[�^���쐬����Ƃ���R�s�[����Ƃ��Ɏg�p���܂��B
- *				flag/param/event���܂Ƃ߂ăR�s�[���邱�Ƃ��ł��܂��B
+ *		data	初期化するためのマップデータを作成するときやコピーするときに使用します。
+ *				flag/param/eventをまとめてコピーすることができます。
  */
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 
-// �V�X�e���쐬�j��
+// システム作成破棄
 GLOBAL WF_MAP_SYS* WF_MAP_SysInit( u16 xgrid, u16 ygrid, u32 heapID );
 GLOBAL void WF_MAP_SysExit( WF_MAP_SYS* p_sys );
 
-// �������}�b�v�f�[�^�œ����o�b�t�@������������
+// 初期化マップデータで内部バッファを初期化する
 GLOBAL void WF_MAP_SysDataSet( WF_MAP_SYS* p_sys, const WF_MAP* cp_def );
 
-// �f�[�^�ݒ�擾
+// データ設定取得
 GLOBAL WF_MAP WF_MAP_DataGet( const WF_MAP_SYS* cp_sys, u16 x, u16 y );
 GLOBAL void WF_MAP_DataSet( WF_MAP_SYS* p_sys, u16 x, u16 y, u16 mapflag, u8 param );
 GLOBAL void WF_MAP_EventSet( WF_MAP_SYS* p_sys, u16 x, u16 y, u8 event );

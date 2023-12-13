@@ -13,31 +13,31 @@
 #
 # $Log: Makefile,v $
 # Revision 1.9  2006/03/10 09:21:49  kitase_hirotake
-# tests ˆÈ‰º‚Ì make ‚ğíœ
+# tests ä»¥ä¸‹ã® make ã‚’å‰Šé™¤
 #
 # Revision 1.8  2006/01/29 23:54:49  okubata_ryoma
-# Copyright‚ÌC³
+# Copyrightã®ä¿®æ­£
 #
 # Revision 1.7  2006/01/27 08:13:31  seiki_masashi
-# tools ‚ğ build ƒpƒX‚É’Ç‰Á
+# tools ã‚’ build ãƒ‘ã‚¹ã«è¿½åŠ 
 #
 # Revision 1.6  2005/08/19 12:28:20  yasu
-# add-ins ‚ÌƒTƒ|[ƒg
+# add-ins ã®ã‚µãƒãƒ¼ãƒˆ
 #
 # Revision 1.5  2005/06/28 04:51:18  yasu
-# buildsetup/versions ‚Ìƒrƒ‹ƒhğŒ‚ÌC³
+# buildsetup/versions ã®ãƒ“ãƒ«ãƒ‰æ¡ä»¶ã®ä¿®æ­£
 #
 # Revision 1.4  2005/06/28 04:46:24  yasu
-# buildsetup/versions ‚Ì’Ç‰Á
+# buildsetup/versions ã®è¿½åŠ 
 #
 # Revision 1.3  2005/06/28 04:06:30  yasu
-# NITROWIFI_NOSUPPORT ƒtƒ‰ƒO‚Ì’Ç‰Á
+# NITROWIFI_NOSUPPORT ãƒ•ãƒ©ã‚°ã®è¿½åŠ 
 #
 # Revision 1.2  2005/06/23 11:13:17  yasu
-# NitroWiFi ‚Ì commondefs, modulerules ‚ğ“Ç‚İ‚Ş
+# NitroWiFi ã® commondefs, modulerules ã‚’èª­ã¿è¾¼ã‚€
 #
 # Revision 1.1  2005/06/22 11:07:57  yasu
-# ƒ\[ƒXƒcƒŠ[ƒeƒ“ƒvƒŒ[ƒgì¬
+# ã‚½ãƒ¼ã‚¹ãƒ„ãƒªãƒ¼ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆä½œæˆ
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

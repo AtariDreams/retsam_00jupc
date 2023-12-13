@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_179.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			179@‚Ë‚ª‚¢‚²‚Æ‚ð‚µ‚½ŽŸ‚Ìƒ^[ƒ“I—¹ŽžAŽ©•ª‚Ì‚g‚o‚Ì”¼•ª‚Ì’l‚ð‰ñ•œ‚·‚éBƒ|ƒPƒ‚ƒ“‚ª“ü‚ê‘Ö‚í‚Á‚Ä‚àŒø‰Ê‚ª‚ ‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			179ã€€ã­ãŒã„ã”ã¨ã‚’ã—ãŸæ¬¡ã®ã‚¿ãƒ¼ãƒ³çµ‚äº†æ™‚ã€è‡ªåˆ†ã®ï¼¨ï¼°ã®åŠåˆ†ã®å€¤ã‚’å›žå¾©ã™ã‚‹ã€‚ãƒã‚±ãƒ¢ãƒ³ãŒå…¥ã‚Œæ›¿ã‚ã£ã¦ã‚‚åŠ¹æžœãŒã‚ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2006.02.07

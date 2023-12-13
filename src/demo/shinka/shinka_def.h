@@ -6,7 +6,7 @@
 
 // -----------------------------------------
 //
-//	 ƒp[ƒeƒBƒNƒ‹“o˜^—pƒ[ƒN
+//	â–¡ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç™»éŒ²ç”¨ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
@@ -21,7 +21,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	 ƒp[ƒeƒBƒNƒ‹ŠÇ—
+//	â–¡ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç®¡ç†
 //
 // -----------------------------------------
 typedef struct  {
@@ -34,15 +34,15 @@ typedef struct  {
 } SHINKA_PARTICLE_SYS;
 
 
-///<i‰»ƒfƒ‚—pƒ[ƒN\‘¢‘ÌéŒ¾
+///<é€²åŒ–ãƒ‡ãƒ¢ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“å®£è¨€
 struct shinka_work
 {
 	GF_BGL_INI			*bgl;
 	GF_BGL_BMPWIN		*win;
 	MSGDATA_MANAGER		*msg_man;
-	WORDSET				*wordset;					///<í“¬ƒƒbƒZ[ƒW—p’PŒêƒoƒbƒtƒ@
-	STRBUF				*msg_buf;					///<ƒƒbƒZ[ƒW—p‚ÉŠm•Û‚µ‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	PALETTE_FADE_PTR	pfd;						///<ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	WORDSET				*wordset;					///<æˆ¦é—˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨å˜èªãƒãƒƒãƒ•ã‚¡
+	STRBUF				*msg_buf;					///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ã«ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	PALETTE_FADE_PTR	pfd;						///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	SOFT_SPRITE_MANAGER	*ssm;
 	SOFT_SPRITE			*ss[2];
 	POKEPARTY			*ppt;
@@ -67,10 +67,10 @@ struct shinka_work
 	u8					wait;
 	u8					end_flag;
 
-	int					waza_cnt;					///<‹ZŠo‚¦ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
+	int					waza_cnt;					///<æŠ€è¦šãˆãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	u16					waza_no;					///<Šo‚¦‚é‹Zƒiƒ“ƒo[
-	u8					waza_pos;					///<‹Z‚ğ–Y‚ê‚é‚Ìƒ|ƒWƒVƒ‡ƒ“
+	u16					waza_no;					///<è¦šãˆã‚‹æŠ€ãƒŠãƒ³ãƒãƒ¼
+	u8					waza_pos;					///<æŠ€ã‚’å¿˜ã‚Œã‚‹æ™‚ã®ãƒã‚¸ã‚·ãƒ§ãƒ³
 	u8					dummy;
 
 	u8					morph_flag;

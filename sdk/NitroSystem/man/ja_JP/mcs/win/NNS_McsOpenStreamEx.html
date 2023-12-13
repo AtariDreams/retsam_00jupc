@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_McsOpenStreamEx</title>
 <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
@@ -11,7 +11,7 @@
 <body>
 
 <h1 align="left">NNS_McsOpenStreamEx</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl> 
  <dd> 
@@ -29,59 +29,59 @@ HANDLE NNS_McsOpenStreamEx(
            NNSMcsStreamInfo* pStreamInfo);</CODE></pre>
  </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">channel</font></strong></em></td>
     
-  <td width="87%">�X�g���[�������ʂ��邽�߂̒l�B0�`0x3FFF�̒l���w��ł��܂��B0x4000�`0x7FFF��NITRO-System�A�v���P�[�V�����p�A0x8000�`0xFFFF��mcs�V�X�e���p�ɗ\�񂵂Ă��܂��B</td>
+  <td width="87%">ストリームを識別するための値。0〜0x3FFFの値を指定できます。0x4000〜0x7FFFはNITRO-Systemアプリケーション用、0x8000〜0xFFFFはmcsシステム用に予約しています。</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">flags</font></strong></em></td>
     
-  <td width="87%">�I�[�v�����Ɏw�肷��t���O(�ڍׂ͐������Q��)�B</td>
+  <td width="87%">オープン時に指定するフラグ(詳細は説明を参照)。</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pStreamInfo</font></strong></em></td>
     
-  <td width="87%">�I�[�v�������X�g���[���Ɋւ���⑫�����i�[����\���̂ւ̃|�C���^�B</td>
+  <td width="87%">オープンしたストリームに関する補足情報を格納する構造体へのポインタ。</td>
   </tr>
 </table>
-<h2>�Ԃ�l</h2>
-<p>�I�[�v���ɐ��������ꍇ�A�X�g���[���̃n���h����Ԃ��܂��B
-���s�����ꍇ�AINVALID_HANDLE_VALUE ��Ԃ��܂��B�G���[�̏ڍׂ� GetLastError() �Ŏ擾�ł��܂��B</p>
-<H2>����</H2>
-<p>Multiple Channel Stream �p�X�g���[�����I�[�v�����܂��B�X�g���[���͎��ۂɂ�Win32�V�X�e���ɂ����郁�b�Z�[�W�^�C�v�̖��O�t���p�C�v�ł���A�Ԃ�l�͂��̖��O�t���p�C�v�̃n���h���ƂȂ�܂��B�֐�<code>NNS_McsOpenStream</code>�̓��b�Z�[�W�^�C�v�̖��O�t���p�C�v���I�[�v�����A����channel�Ŏw�肳�ꂽ�X�g���[�������ʂ���l��mcs�T�[�o�ɓo�^���܂��B</P>
-<p>�X�g���[���ւ̓ǂݏ������s���ɂ́AWin32 API ��<code>ReadFile(Ex)</code>, <code>WriteFile(Ex)</code>��p���܂��B</P>
-<p>����flag�ɂ�0���A���Ɏ����l���w��ł��܂��B���̒l��Win32 API��CreateFile�̑�6����(dwFlagsAndAttributes)�ɓn����܂��B</p>
+<h2>返り値</h2>
+<p>オープンに成功した場合、ストリームのハンドルを返します。
+失敗した場合、INVALID_HANDLE_VALUE を返します。エラーの詳細は GetLastError() で取得できます。</p>
+<H2>説明</H2>
+<p>Multiple Channel Stream 用ストリームをオープンします。ストリームは実際にはWin32システムにおけるメッセージタイプの名前付きパイプであり、返り値はこの名前付きパイプのハンドルとなります。関数<code>NNS_McsOpenStream</code>はメッセージタイプの名前付きパイプをオープンし、引数channelで指定されたストリームを識別する値をmcsサーバに登録します。</P>
+<p>ストリームへの読み書きを行うには、Win32 API の<code>ReadFile(Ex)</code>, <code>WriteFile(Ex)</code>を用います。</P>
+<p>引数flagには0か、次に示す値が指定できます。この値はWin32 APIのCreateFileの第6引数(dwFlagsAndAttributes)に渡されます。</p>
 <table border="1">
   <tbody>
     <tr>
       <td><em><strong><font face="Courier New">FILE_FLAG_OVERLAPPED</font></strong></em></td>
-      <td>�񓯊��œ��o�͂��s���܂�(�I�[�o�[���b�v�hI/O)�B�ڍׂɂ��Ă� Win32 API ��CreateFile�̉�����Q�Ƃ��Ă��������B</td>
+      <td>非同期で入出力を行います(オーバーラップドI/O)。詳細については Win32 API のCreateFileの解説を参照してください。</td>
     </tr>
   </tbody>
 </table>
-<p>pStreamInfo�Ŏw�肵��NNSMcsStreamInfo�\���̂ɃI�[�v�������X�g���[���Ɋւ���⑫��񂪃Z�b�g����܂��B NNSMcsStreamInfo�\���̃����o�̏ڍׂ͎��̂Ƃ���ł��B</p>
+<p>pStreamInfoで指定したNNSMcsStreamInfo構造体にオープンしたストリームに関する補足情報がセットされます。 NNSMcsStreamInfo構造体メンバの詳細は次のとおりです。</p>
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">structBytes</font></strong></em></td>
     
-  <td width="87%">�\���̂̃T�C�Y��\���܂��B�֐����Ăяo���O�ɁAsizeof(NNSMcsStreamInfo)���Z�b�g����悤�ɂ��Ă��������B</td>
+  <td width="87%">構造体のサイズを表します。関数を呼び出す前に、sizeof(NNSMcsStreamInfo)をセットするようにしてください。</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">deviceType</font></strong></em></td>
     
-  <td width="87%">�f�o�C�X�̃^�C�v��\���l���Z�b�g����܂��B</td>
+  <td width="87%">デバイスのタイプを表す値がセットされます。</td>
   </tr>
 </table>
-<p>deviceType�ɃZ�b�g�����f�o�C�X�̃^�C�v�͎��̂Ƃ���ł��B</p>
+<p>deviceTypeにセットされるデバイスのタイプは次のとおりです。</p>
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">NNS_MCS_DEVICE_TYPE_UNKNOWN</font></strong></em></td>
     
-  <td width="87%">���m�̃f�o�C�X</td>
+  <td width="87%">未知のデバイス</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">NNS_MCS_DEVICE_TYPE_NITRO_DEBUGGER</font></strong></em></td>
@@ -98,11 +98,11 @@ HANDLE NNS_McsOpenStreamEx(
       <td width="87%">ensata</td>
   </tr>
 </table>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><code><a href="NNS_McsOpenStream.html">NNS_McsOpenStream</a></code></p>
-<H2>����</H2>
-<P>2005/01/11 ������ǉ��B�f�o�C�X�̎�ނ���IS-CGB-EMULATOR���폜���Aensata��ǉ��B<br>
-2004/10/08 ����channel�̉����ǉ��B<br>
-2004/07/20 ����</P>
+<H2>履歴</H2>
+<P>2005/01/11 説明を追加。デバイスの種類からIS-CGB-EMULATORを削除し、ensataを追加。<br>
+2004/10/08 引数channelの解説を追加。<br>
+2004/07/20 初版</P>
 </body>
 </html>

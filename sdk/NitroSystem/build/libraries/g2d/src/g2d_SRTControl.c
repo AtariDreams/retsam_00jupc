@@ -26,17 +26,17 @@
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSrtcSetTrans TODO:
 
-  Description:  NNSG2dSRTControl ‚Ì•½sˆÚ“®’l‚ğİ’è‚µ‚Ü‚·
+  Description:  NNSG2dSRTControl ã®å¹³è¡Œç§»å‹•å€¤ã‚’è¨­å®šã—ã¾ã™
                 
                 
   Arguments:    pCtrl:         NNSG2dSRTControl
-                    x:         •½sˆÚ“®’l x
-                    y:         •½sˆÚ“®’l y
+                    x:         å¹³è¡Œç§»å‹•å€¤ x
+                    y:         å¹³è¡Œç§»å‹•å€¤ y
                     
-                    NNSG2dSRTControlType ‚ª 
-                    NNS_G2D_SRTCONTROLTYPE_SRT‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+                    NNSG2dSRTControlType ãŒ 
+                    NNS_G2D_SRTCONTROLTYPE_SRTã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
                     
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNSi_G2dSrtcSetTrans( NNSG2dSRTControl* pCtrl, s16 x, s16 y )
@@ -60,16 +60,16 @@ void NNSi_G2dSrtcSetTrans( NNSG2dSRTControl* pCtrl, s16 x, s16 y )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSrtcSetSRTRotZ TODO:
 
-  Description:  NNSG2dSRTControl ‚Ì‰ñ“]’l‚ğİ’è‚µ‚Ü‚·
+  Description:  NNSG2dSRTControl ã®å›è»¢å€¤ã‚’è¨­å®šã—ã¾ã™
                 
                 
   Arguments:    pCtrl:         NNSG2dSRTControl
-                 rotZ:         Z²‰ñ“]
+                 rotZ:         Zè»¸å›è»¢
                     
-                    NNSG2dSRTControlType ‚ª 
-                    NNS_G2D_SRTCONTROLTYPE_SRT‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+                    NNSG2dSRTControlType ãŒ 
+                    NNS_G2D_SRTCONTROLTYPE_SRTã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
                     
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNSi_G2dSrtcSetSRTRotZ( NNSG2dSRTControl* pCtrl, u16 rotZ )
@@ -87,17 +87,17 @@ void NNSi_G2dSrtcSetSRTRotZ( NNSG2dSRTControl* pCtrl, u16 rotZ )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSrtcSetSRTScale TODO:
 
-  Description:  NNSG2dSRTControl ‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚µ‚Ü‚·
+  Description:  NNSG2dSRTControl ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã—ã¾ã™
                 
                 
   Arguments:    pCtrl:         NNSG2dSRTControl
-                    x:         ƒXƒP[ƒ‹’l x
-                    y:         ƒXƒP[ƒ‹’l y
+                    x:         ã‚¹ã‚±ãƒ¼ãƒ«å€¤ x
+                    y:         ã‚¹ã‚±ãƒ¼ãƒ«å€¤ y
                     
-                    NNSG2dSRTControlType ‚ª 
-                    NNS_G2D_SRTCONTROLTYPE_SRT‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+                    NNSG2dSRTControlType ãŒ 
+                    NNS_G2D_SRTCONTROLTYPE_SRTã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
                     
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNSi_G2dSrtcSetSRTScale( NNSG2dSRTControl* pCtrl, fx32 x, fx32 y )
@@ -118,14 +118,14 @@ void NNSi_G2dSrtcSetSRTScale( NNSG2dSRTControl* pCtrl, fx32 x, fx32 y )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSrtcInitControl TODO:
 
-  Description:  NNSG2dSRTControl ‚ğ‰Šú‰»‚µ‚Ü‚·
+  Description:  NNSG2dSRTControl ã‚’åˆæœŸåŒ–ã—ã¾ã™
                 
                 
   Arguments:    pCtrl:         NNSG2dSRTControl
-                 type:         NNSG2dSRTControl‚Ìƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
+                 type:         NNSG2dSRTControlã®ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
                     
                     
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNSi_G2dSrtcInitControl( NNSG2dSRTControl* pCtrl, NNSG2dSRTControlType type )
@@ -141,15 +141,15 @@ void NNSi_G2dSrtcInitControl( NNSG2dSRTControl* pCtrl, NNSG2dSRTControlType type
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSrtcSetInitialValue TODO:
 
-  Description:  NNSG2dSRTControl ‚É‰Šú’l‚ğİ’è‚µ‚Ü‚·
+  Description:  NNSG2dSRTControl ã«åˆæœŸå€¤ã‚’è¨­å®šã—ã¾ã™
                 
                 
   Arguments:    pCtrl:         NNSG2dSRTControl
                     
-                    NNSG2dSRTControlType ‚ª 
-                    NNS_G2D_SRTCONTROLTYPE_SRT‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+                    NNSG2dSRTControlType ãŒ 
+                    NNS_G2D_SRTCONTROLTYPE_SRTã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
                     
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNSi_G2dSrtcSetInitialValue    ( NNSG2dSRTControl* pCtrl )
@@ -166,16 +166,16 @@ void NNSi_G2dSrtcSetInitialValue    ( NNSG2dSRTControl* pCtrl )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSrtcBuildMatrixFromSRT_2D TODO:
 
-  Description:  NNSG2dSRTControl ‚Ì SR î•ñ‚ğ 2D Graphics Engine —ps—ñ‚Æ‚µ‚ÄZo‚µ‚Ü‚·
+  Description:  NNSG2dSRTControl ã® SR æƒ…å ±ã‚’ 2D Graphics Engine ç”¨è¡Œåˆ—ã¨ã—ã¦ç®—å‡ºã—ã¾ã™
                 
                 
   Arguments:    pCtrl:         NNSG2dSRTControl
-                 pDst:         o—Ís—ñ
+                 pDst:         å‡ºåŠ›è¡Œåˆ—
                     
-                    NNSG2dSRTControlType ‚ª 
-                    NNS_G2D_SRTCONTROLTYPE_SRT‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+                    NNSG2dSRTControlType ãŒ 
+                    NNS_G2D_SRTCONTROLTYPE_SRTã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
                     
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNSi_G2dSrtcBuildMatrixFromSRT_2D( const NNSG2dSRTControl* pCtrl , MtxFx22* pDst )
@@ -197,16 +197,16 @@ void NNSi_G2dSrtcBuildMatrixFromSRT_2D( const NNSG2dSRTControl* pCtrl , MtxFx22*
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSrtcBuildMatrixFromSRT_3D TODO:
 
-  Description:  NNSG2dSRTControl ‚Ì SR î•ñ‚ğ 3D Graphics Engine —p‚ÉZo‚µ‚Ü‚·
+  Description:  NNSG2dSRTControl ã® SR æƒ…å ±ã‚’ 3D Graphics Engine ç”¨ã«ç®—å‡ºã—ã¾ã™
                 
                 
   Arguments:    pCtrl:         NNSG2dSRTControl
-                 pDst:         o—Ís—ñ
+                 pDst:         å‡ºåŠ›è¡Œåˆ—
                     
-                    NNSG2dSRTControlType ‚ª 
-                    NNS_G2D_SRTCONTROLTYPE_SRT‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+                    NNSG2dSRTControlType ãŒ 
+                    NNS_G2D_SRTCONTROLTYPE_SRTã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
                     
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNSi_G2dSrtcBuildMatrixFromSRT_3D( const NNSG2dSRTControl* pCtrl , MtxFx22* pDst )

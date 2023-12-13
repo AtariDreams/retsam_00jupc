@@ -13,10 +13,10 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// •ûŒü
+// æ–¹å‘
 #define 	WF2DMAP_WAY_C_UP	(0) 
 #define 	WF2DMAP_WAY_C_DOWN	(1) 
 #define 	WF2DMAP_WAY_C_LEFT	(2) 
@@ -24,19 +24,19 @@
 #define 	WF2DMAP_WAY_C_NUM	(4) 
 
 
-//ƒRƒ}ƒ“ƒh
-#define 	WF2DMAP_CMD_C_NONE			(0) 	// ‚È‚É‚à‚È‚µ
-#define 	WF2DMAP_CMD_C_TURN			(1) 	// ƒ^[ƒ“ƒRƒ}ƒ“ƒh
-#define 	WF2DMAP_CMD_C_WALK			(2) 	// •à‚­ƒRƒ}ƒ“ƒh
-#define 	WF2DMAP_CMD_C_RUN			(3) 	// ‘–‚éƒRƒ}ƒ“ƒh
-#define 	WF2DMAP_CMD_C_BUSY			(4) 	// –Z‚µ‚¢ó‘Ô
-#define 	WF2DMAP_CMD_C_WALLWALK		(5) 	// •Ç•ûŒü•à‚«ƒRƒ}ƒ“ƒh
-#define 	WF2DMAP_CMD_C_SLOWWALK		(6) 	// ‚ä‚Á‚­‚è•à‚«ƒRƒ}ƒ“ƒh
-#define 	WF2DMAP_CMD_C_WALK4			(7) 	// ‘•à‚«ƒRƒ}ƒ“ƒh
-#define 	WF2DMAP_CMD_C_STAYWALK2		(8) 	// ‚»‚Ìê•à‚«ƒRƒ}ƒ“ƒh
-#define 	WF2DMAP_CMD_C_STAYWALK4		(9) 	// ‚»‚Ìê•à‚«ƒRƒ}ƒ“ƒh
-#define 	WF2DMAP_CMD_C_STAYWALK8		(10) 	// ‚»‚Ìê•à‚«ƒRƒ}ƒ“ƒh
-#define 	WF2DMAP_CMD_C_STAYWALK16	(11) 	// ‚ä‚Á‚­‚è‚»‚Ìê•à‚«ƒRƒ}ƒ“ƒh
+//ã‚³ãƒžãƒ³ãƒ‰
+#define 	WF2DMAP_CMD_C_NONE			(0) 	// ãªã«ã‚‚ãªã—
+#define 	WF2DMAP_CMD_C_TURN			(1) 	// ã‚¿ãƒ¼ãƒ³ã‚³ãƒžãƒ³ãƒ‰
+#define 	WF2DMAP_CMD_C_WALK			(2) 	// æ­©ãã‚³ãƒžãƒ³ãƒ‰
+#define 	WF2DMAP_CMD_C_RUN			(3) 	// èµ°ã‚‹ã‚³ãƒžãƒ³ãƒ‰
+#define 	WF2DMAP_CMD_C_BUSY			(4) 	// å¿™ã—ã„çŠ¶æ…‹
+#define 	WF2DMAP_CMD_C_WALLWALK		(5) 	// å£æ–¹å‘æ­©ãã‚³ãƒžãƒ³ãƒ‰
+#define 	WF2DMAP_CMD_C_SLOWWALK		(6) 	// ã‚†ã£ãã‚Šæ­©ãã‚³ãƒžãƒ³ãƒ‰
+#define 	WF2DMAP_CMD_C_WALK4			(7) 	// æ—©æ­©ãã‚³ãƒžãƒ³ãƒ‰
+#define 	WF2DMAP_CMD_C_STAYWALK2		(8) 	// ãã®å ´æ­©ãã‚³ãƒžãƒ³ãƒ‰
+#define 	WF2DMAP_CMD_C_STAYWALK4		(9) 	// ãã®å ´æ­©ãã‚³ãƒžãƒ³ãƒ‰
+#define 	WF2DMAP_CMD_C_STAYWALK8		(10) 	// ãã®å ´æ­©ãã‚³ãƒžãƒ³ãƒ‰
+#define 	WF2DMAP_CMD_C_STAYWALK16	(11) 	// ã‚†ã£ãã‚Šãã®å ´æ­©ãã‚³ãƒžãƒ³ãƒ‰
 #define 	WF2DMAP_CMD_C_NUM			(12) 
 
 #endif		// __WF2DMAP_COMMON_C_H__

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wbr_draw.c
- *	@brief		wifi	ƒoƒgƒ‹ƒ‹[ƒ€
+ *	@brief		wifi	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.02.15
  *
@@ -19,28 +19,28 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒƒCƒ“ƒV[ƒPƒ“ƒX
+///	ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	WBR_MAINSEQ_WIPEIN,	
@@ -50,25 +50,25 @@ enum{
 	WBR_MAINSEQ_WIPEOUT_WAIT,
 };
 
-#define WBR_CHARMAN_CONTNUM	( 32 )	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒŠÇ—”
-#define WBR_PLTTMAN_CONTNUM	( 32 )	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒŠÇ—”
-#define WBR_CLACT_CONTNUM	( 64 )	// ƒZƒ‹ƒAƒNƒ^[ŠÇ—”
-#define WBR_CHARVRAM_MSIZE	( 128*1024 )	// OAMƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
-#define WBR_CHARVRAM_SSIZE	( 16*1024 )	// OAMƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
-#define WBR_BGFRAME_BACK	( GF_BGL_FRAME0_M )	// ”wŒi–Ê
-#define WBR_BGFRAME_MSG		( GF_BGL_FRAME1_M )	// ƒƒbƒZ[ƒW–Ê
+#define WBR_CHARMAN_CONTNUM	( 32 )	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ç®¡ç†æ•°
+#define WBR_PLTTMAN_CONTNUM	( 32 )	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ç®¡ç†æ•°
+#define WBR_CLACT_CONTNUM	( 64 )	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†æ•°
+#define WBR_CHARVRAM_MSIZE	( 128*1024 )	// OAMã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
+#define WBR_CHARVRAM_SSIZE	( 16*1024 )	// OAMã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
+#define WBR_BGFRAME_BACK	( GF_BGL_FRAME0_M )	// èƒŒæ™¯é¢
+#define WBR_BGFRAME_MSG		( GF_BGL_FRAME1_M )	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¢
 
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒOƒ‰ƒtƒBƒbƒNŠÖŒWƒ[ƒN
+///	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢ä¿‚ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	GF_BGL_INI*	p_bgl;
@@ -78,21 +78,21 @@ typedef struct {
 
 
 //-------------------------------------
-///	wifi	ƒoƒgƒ‹ƒ‹[ƒ€	ƒ[ƒN
+///	wifi	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ 	ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	WBR_GRAPHIC	graphic;	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+	WBR_GRAPHIC	graphic;	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 } WBR_WK;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void Wbr_Vblank( void* p_wk );
 
 
-// ƒOƒ‰ƒtƒBƒbƒNŠÖŒW
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢ä¿‚
 static void Wbr_GraphicInit( WBR_GRAPHIC* p_gra, u32 heapID );
 static void Wbr_GraphicExit( WBR_GRAPHIC* p_gra );
 static void Wbr_GraphicVblank( WBR_GRAPHIC* p_gra );
@@ -109,13 +109,13 @@ static void Wbr_ClactRelease( WBR_GRAPHIC* p_gra );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒZƒX‰Šú‰»
+ *	@brief	ãƒ—ãƒ­ã‚»ã‚¹åˆæœŸåŒ–
  *
- *	@param	proc	ƒ[ƒN
- *	@param	seq		ƒV[ƒPƒ“ƒXƒ|ƒCƒ“ƒ^
+ *	@param	proc	ãƒ¯ãƒ¼ã‚¯
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval	PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval	PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval	PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WbrProc_Init( PROC *proc,int *seq)
@@ -123,15 +123,15 @@ PROC_RESULT WbrProc_Init( PROC *proc,int *seq)
 	WBR_WK* p_wk = NULL;
 	WBR_PROC_PARAM* p_pp = (WBR_PROC_PARAM*)PROC_GetParentWork(proc);
 
-	// ƒvƒƒZƒXƒ[ƒNì¬
+	// ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk = PROC_AllocWork(proc,sizeof(WBR_WK),HEAPID_WIFI_BATTLEROOM);
 	MI_CpuClear8(p_wk,sizeof(WBR_WK));
 	
-	// Š„‚èž‚ÝÝ’è
-	sys_VBlankFuncChange( Wbr_Vblank, p_pp );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	// å‰²ã‚Šè¾¼ã¿è¨­å®š
+	sys_VBlankFuncChange( Wbr_Vblank, p_pp );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 	Wbr_GraphicInit( &p_wk->graphic, HEAPID_WIFI_BATTLEROOM );
 
 	return PROC_RES_FINISH;
@@ -139,13 +139,13 @@ PROC_RESULT WbrProc_Init( PROC *proc,int *seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒZƒXƒƒCƒ“
+ *	@brief	ãƒ—ãƒ­ã‚»ã‚¹ãƒ¡ã‚¤ãƒ³
  *
- *	@param	proc	ƒ[ƒN
- *	@param	seq		ƒV[ƒPƒ“ƒXƒ|ƒCƒ“ƒ^
+ *	@param	proc	ãƒ¯ãƒ¼ã‚¯
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval	PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval	PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval	PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WbrProc_Main( PROC *proc,int *seq)
@@ -193,13 +193,13 @@ PROC_RESULT WbrProc_Main( PROC *proc,int *seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒZƒXI—¹
+ *	@brief	ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
  *
- *	@param	proc	ƒ[ƒN
- *	@param	seq		ƒV[ƒPƒ“ƒXƒ|ƒCƒ“ƒ^
+ *	@param	proc	ãƒ¯ãƒ¼ã‚¯
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval	PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval	PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval	PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WbrProc_End( PROC *proc,int *seq)
@@ -208,10 +208,10 @@ PROC_RESULT WbrProc_End( PROC *proc,int *seq)
 	WBR_PROC_PARAM* p_pp = (WBR_PROC_PARAM*)PROC_GetParentWork(proc);
 
 
-	// ƒOƒ‰ƒtƒBƒbƒN”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
 	Wbr_GraphicExit( &p_wk->graphic );	
 
-	// ƒvƒƒZƒXƒ[ƒN”jŠü
+	// ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	PROC_FreeWork(proc);
 
 	return PROC_RES_FINISH;
@@ -221,149 +221,149 @@ PROC_RESULT WbrProc_End( PROC *proc,int *seq)
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”ŒS
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°éƒ¡
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankŠÖ”
+ *	@brief	VBlanké–¢æ•°
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void Wbr_Vblank( void* p_wk )
 {
 	WBR_WK* p_wbr = p_wk;
 
-	// ƒOƒ‰ƒtƒBƒbƒNVƒuƒ‰ƒ“ƒNŠÖ”
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
 	Wbr_GraphicVblank( &p_wbr->graphic );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  *
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void Wbr_GraphicInit( WBR_GRAPHIC* p_gra, u32 heapID )
 {
-	// ƒoƒ“ƒNÝ’è
+	// ãƒãƒ³ã‚¯è¨­å®š
 	Wbr_BankInit();
 
-	// BGL‰Šú‰»
+	// BGLåˆæœŸåŒ–
 	Wbr_BgInit( p_gra, heapID );
 
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	Wbr_ClactInit( p_gra, heapID );
 
-	// BG“Ç‚Ýž‚Ý
+	// BGèª­ã¿è¾¼ã¿
 	Wbr_BgLoad( p_gra, heapID );
 
-	// ƒZƒ‹ƒAƒNƒ^[“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼èª­ã¿è¾¼ã¿
 	Wbr_ClactLoad( p_gra, heapID );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN”jŠü
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
  *
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void Wbr_GraphicExit( WBR_GRAPHIC* p_gra )
 {
-	// BG“Ç‚Ýž‚Ý
+	// BGèª­ã¿è¾¼ã¿
 	Wbr_BgRelease( p_gra );
 
-	// ƒZƒ‹ƒAƒNƒ^[“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼èª­ã¿è¾¼ã¿
 	Wbr_ClactRelease( p_gra );
 
-	// BGL‰Šú‰»
+	// BGLåˆæœŸåŒ–
 	Wbr_BgExit( p_gra );
 
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	Wbr_ClactExit( p_gra );
 
-	// ƒoƒ“ƒNÝ’è
+	// ãƒãƒ³ã‚¯è¨­å®š
 	Wbr_BankExit();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankŠÖ”
+ *	@brief	VBlanké–¢æ•°
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void Wbr_GraphicVblank( WBR_GRAPHIC* p_gra )
 {
-    // BG‘‚«Š·‚¦
+    // BGæ›¸ãæ›ãˆ
 	GF_BGL_VBlankFunc( p_gra->p_bgl );
 
-    // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+    // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
     REND_OAMTrans();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒ“ƒNÝ’è
+ *	@brief	ãƒãƒ³ã‚¯è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void Wbr_BankInit( void )
 {
     GF_BGL_DISPVRAM tbl = {
-        GX_VRAM_BG_256_AC,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-        GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-        GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-        GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-        GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-        GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-        GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-        GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-        GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+        GX_VRAM_BG_256_AC,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+        GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+        GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+        GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+        GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+        GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+        GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+        GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+        GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
     GF_Disp_SetBank( &tbl );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒ“ƒNÝ’è”jŠü
+ *	@brief	ãƒãƒ³ã‚¯è¨­å®šç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void Wbr_BankExit( void )
 {
-	// VRAMÝ’èƒŠƒZƒbƒg
-	GX_ResetBankForBG();			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_ResetBankForBGExtPltt();		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_ResetBankForSubBG();			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_ResetBankForSubBGExtPltt();	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_ResetBankForOBJ();			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_ResetBankForOBJExtPltt();	// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_ResetBankForSubOBJ();		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_ResetBankForSubOBJExtPltt();	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_ResetBankForTex();			// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒW
-	GX_ResetBankForTexPltt();		// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg
+	// VRAMè¨­å®šãƒªã‚»ãƒƒãƒˆ
+	GX_ResetBankForBG();			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_ResetBankForBGExtPltt();		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_ResetBankForSubBG();			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_ResetBankForSubBGExtPltt();	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_ResetBankForOBJ();			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_ResetBankForOBJExtPltt();	// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_ResetBankForSubOBJ();		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_ResetBankForSubOBJExtPltt();	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_ResetBankForTex();			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸
+	GX_ResetBankForTexPltt();		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆ
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGÝ’è
+ *	@brief	BGè¨­å®š
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void Wbr_BgInit( WBR_GRAPHIC* p_gra, u32 heapID )
 {
 	GF_ASSERT( p_gra->p_bgl == NULL );
 	
-	// BGLì¬
+	// BGLä½œæˆ
 	p_gra->p_bgl = GF_BGL_BglIniAlloc( heapID );
 
 	
@@ -374,7 +374,7 @@ static void Wbr_BgInit( WBR_GRAPHIC* p_gra, u32 heapID )
 		GF_BGL_InitBG(&BGsys_data);
 	}
 
-	{	// ”wŒi
+	{	// èƒŒæ™¯
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0xc000, GX_BG_CHARBASE_0x20000, GX_BG_EXTPLTT_01,
@@ -385,7 +385,7 @@ static void Wbr_BgInit( WBR_GRAPHIC* p_gra, u32 heapID )
 		GF_BGL_ScrClear( p_gra->p_bgl, WBR_BGFRAME_BACK );
 	}
 
-	{	// ƒƒbƒZ[ƒW
+	{	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xc000, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -399,9 +399,9 @@ static void Wbr_BgInit( WBR_GRAPHIC* p_gra, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGÝ’è”jŠü
+ *	@brief	BGè¨­å®šç ´æ£„
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void Wbr_BgExit( WBR_GRAPHIC* p_gra )
@@ -414,10 +414,10 @@ static void Wbr_BgExit( WBR_GRAPHIC* p_gra )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒf[ƒ^“Ç‚Ýž‚Ý
+ *	@brief	BGãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void Wbr_BgLoad( WBR_GRAPHIC* p_gra, u32 heapID )
@@ -426,9 +426,9 @@ static void Wbr_BgLoad( WBR_GRAPHIC* p_gra, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒf[ƒ^”jŠü
+ *	@brief	BGãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void Wbr_BgRelease( WBR_GRAPHIC* p_gra )
@@ -437,28 +437,28 @@ static void Wbr_BgRelease( WBR_GRAPHIC* p_gra )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void Wbr_ClactInit( WBR_GRAPHIC* p_gra, u32 heapID )
 {
-	// OAMƒ}ƒl[ƒWƒƒ‰Šú‰»
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
     NNS_G2dInitOamManagerModule();
 
-    // ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-    // ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-    // ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+    // å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
     REND_OAMInit(
-        0, 124,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-        0, 124,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+        0, 124,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+        0, 124,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 		heapID );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			WBR_CHARMAN_CONTNUM,
@@ -469,47 +469,47 @@ static void Wbr_ClactInit( WBR_GRAPHIC* p_gra, u32 heapID )
 		cm.heap = heapID;
 		InitCharManagerReg(&cm, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K );
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(WBR_PLTTMAN_CONTNUM, heapID);
 
-	// “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 
-	// ’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	// é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
     p_gra->p_clset = CLACT_U_SetEasyInit( WBR_CLACT_CONTNUM, &p_gra->renddata, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒN
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void Wbr_ClactExit( WBR_GRAPHIC* p_gra )
 {
-    //OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+    //OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
     REND_OAM_Delete();
 
-    // ƒŠƒ\[ƒX‰ð•ú
+    // ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
     DeleteCharManager();
     DeletePlttManager();
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
     CLACT_DestSet(p_gra->p_clset);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^“Ç‚Ýž‚Ý
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */	
 //-----------------------------------------------------------------------------
 static void Wbr_ClactLoad( WBR_GRAPHIC* p_gra, u32 heapID )
@@ -518,9 +518,9 @@ static void Wbr_ClactLoad( WBR_GRAPHIC* p_gra, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒN
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void Wbr_ClactRelease( WBR_GRAPHIC* p_gra )

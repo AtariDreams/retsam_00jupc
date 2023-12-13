@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	castle_sys.h
- * @brief	uƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹vƒVƒXƒeƒ€ƒwƒbƒ_[
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€ã‚·ã‚¹ãƒ†ãƒ ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	07.07.05
  */
@@ -15,7 +15,7 @@
 
 //==============================================================================================
 //
-//	ƒ^ƒNƒgƒ[ƒN‚Ö‚Ì•sŠ®‘SŒ^ƒ|ƒCƒ“ƒ^
+//	ã‚¿ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ä¸å®Œå…¨åž‹ãƒã‚¤ãƒ³ã‚¿
 //
 //==============================================================================================
 typedef	struct _CASTLE_MINE_WORK CASTLE_MINE_WORK;
@@ -25,82 +25,82 @@ typedef	struct _CASTLE_RANK_WORK CASTLE_RANK_WORK;
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒpƒŒƒbƒg’è‹`
-#define BC_TALKWIN_PAL			(10)				//‰ï˜bƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BC_MENU_PAL				(11)				//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BC_MSGFONT_PAL			(12)				//MSGƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BC_FONT_PAL				(13)				//SYSTEMƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
+//ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
+#define BC_TALKWIN_PAL			(10)				//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BC_MENU_PAL				(11)				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BC_MSGFONT_PAL			(12)				//MSGãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BC_FONT_PAL				(13)				//SYSTEMãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 
-#define CASTLE_VANISH_ON		(0)					//”ñ•\Ž¦
-#define CASTLE_VANISH_OFF		(1)					//•\Ž¦
+#define CASTLE_VANISH_ON		(0)					//éžè¡¨ç¤º
+#define CASTLE_VANISH_OFF		(1)					//è¡¨ç¤º
 
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒIƒuƒWƒFƒNƒgƒiƒ“ƒo[
+//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
 enum{
-	RES_OBJ_CSR = 0,								//ƒJ[ƒ\ƒ‹
-	RES_OBJ_ITEMICON,								//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
-	RES_OBJ_ITEMKEEP,								//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	RES_OBJ_ICON1,									//ƒAƒCƒRƒ“1
-	RES_OBJ_ICON2,									//ƒAƒCƒRƒ“2
-	RES_OBJ_ICON3,									//ƒAƒCƒRƒ“3
-	RES_OBJ_ICON4,									//ƒAƒCƒRƒ“4
-	RES_OBJ_MAX,									//Å‘å”(ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚Í1‚ÂA‚ ‚Æ‚ÍƒAƒCƒRƒ“)
+	RES_OBJ_CSR = 0,								//ã‚«ãƒ¼ã‚½ãƒ«
+	RES_OBJ_ITEMICON,								//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
+	RES_OBJ_ITEMKEEP,								//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	RES_OBJ_ICON1,									//ã‚¢ã‚¤ã‚³ãƒ³1
+	RES_OBJ_ICON2,									//ã‚¢ã‚¤ã‚³ãƒ³2
+	RES_OBJ_ICON3,									//ã‚¢ã‚¤ã‚³ãƒ³3
+	RES_OBJ_ICON4,									//ã‚¢ã‚¤ã‚³ãƒ³4
+	RES_OBJ_MAX,									//æœ€å¤§æ•°(ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¯1ã¤ã€ã‚ã¨ã¯ã‚¢ã‚¤ã‚³ãƒ³)
 };
 
-//ŠÇ—CHAR_ID
+//ç®¡ç†CHAR_ID
 enum{
-	ID_CHAR_CSR = 0,								//ƒJ[ƒ\ƒ‹
-	ID_CHAR_ITEMICON,								//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
-	ID_CHAR_ITEMKEEP,								//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	ID_CHAR_ICON1,									//ƒAƒCƒRƒ“1
-	ID_CHAR_ICON2,									//ƒAƒCƒRƒ“2
-	ID_CHAR_ICON3,									//ƒAƒCƒRƒ“3
-	ID_CHAR_ICON4,									//ƒAƒCƒRƒ“4
+	ID_CHAR_CSR = 0,								//ã‚«ãƒ¼ã‚½ãƒ«
+	ID_CHAR_ITEMICON,								//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
+	ID_CHAR_ITEMKEEP,								//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	ID_CHAR_ICON1,									//ã‚¢ã‚¤ã‚³ãƒ³1
+	ID_CHAR_ICON2,									//ã‚¢ã‚¤ã‚³ãƒ³2
+	ID_CHAR_ICON3,									//ã‚¢ã‚¤ã‚³ãƒ³3
+	ID_CHAR_ICON4,									//ã‚¢ã‚¤ã‚³ãƒ³4
 	ID_CHAR_MAX,									//
 };
 
-//ŠÇ—PLTT_ID
+//ç®¡ç†PLTT_ID
 enum{
-	ID_PLTT_CSR = 0,								//ƒJ[ƒ\ƒ‹
-	ID_PLTT_ITEMICON,								//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
-	ID_PLTT_ITEMKEEP,								//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	ID_PLTT_ICON,									//ƒAƒCƒRƒ“
+	ID_PLTT_CSR = 0,								//ã‚«ãƒ¼ã‚½ãƒ«
+	ID_PLTT_ITEMICON,								//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
+	ID_PLTT_ITEMKEEP,								//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	ID_PLTT_ICON,									//ã‚¢ã‚¤ã‚³ãƒ³
 	ID_PLTT_MAX,									//
 };
 
-//ŠÇ—CELL_ID
+//ç®¡ç†CELL_ID
 enum{
-	ID_CELL_CSR = 0,								//ƒJ[ƒ\ƒ‹
-	ID_CELL_ITEMICON,								//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
-	ID_CELL_ITEMKEEP,								//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	ID_CELL_ICON,									//ƒAƒCƒRƒ“
+	ID_CELL_CSR = 0,								//ã‚«ãƒ¼ã‚½ãƒ«
+	ID_CELL_ITEMICON,								//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
+	ID_CELL_ITEMKEEP,								//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	ID_CELL_ICON,									//ã‚¢ã‚¤ã‚³ãƒ³
 	ID_CELL_MAX,									//
 };
 
-//ŠÇ—CELLANM_ID
+//ç®¡ç†CELLANM_ID
 enum{
-	ID_CELLANM_CSR = 0,								//ƒJ[ƒ\ƒ‹
-	ID_CELLANM_ITEMICON,							//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
-	ID_CELLANM_ITEMKEEP,							//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	ID_CELLANM_ICON,								//ƒAƒCƒRƒ“
+	ID_CELLANM_CSR = 0,								//ã‚«ãƒ¼ã‚½ãƒ«
+	ID_CELLANM_ITEMICON,							//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
+	ID_CELLANM_ITEMKEEP,							//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	ID_CELLANM_ICON,								//ã‚¢ã‚¤ã‚³ãƒ³
 	ID_CELLANM_MAX,									//
 };
 
-//ŠÇ—ID
+//ç®¡ç†ID
 enum{
-	ID_OBJ_CSR = 0,									//ƒJ[ƒ\ƒ‹
-	ID_OBJ_ITEMICON,								//ƒAƒCƒeƒ€ƒAƒCƒRƒ“
-	ID_OBJ_ITEMKEEP,								//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	//ID_OBJ_ITEMKEEP1,								//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“1
-	//ID_OBJ_ITEMKEEP2,								//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“2
-	//ID_OBJ_ITEMKEEP3,								//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“3
-	//ID_OBJ_ITEMKEEP4,								//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“4
-	ID_OBJ_ICON1,									//ƒAƒCƒRƒ“1
-	ID_OBJ_ICON2,									//ƒAƒCƒRƒ“2
-	ID_OBJ_ICON3,									//ƒAƒCƒRƒ“3
-	ID_OBJ_ICON4,									//ƒAƒCƒRƒ“4
+	ID_OBJ_CSR = 0,									//ã‚«ãƒ¼ã‚½ãƒ«
+	ID_OBJ_ITEMICON,								//ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
+	ID_OBJ_ITEMKEEP,								//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	//ID_OBJ_ITEMKEEP1,								//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³1
+	//ID_OBJ_ITEMKEEP2,								//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³2
+	//ID_OBJ_ITEMKEEP3,								//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³3
+	//ID_OBJ_ITEMKEEP4,								//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³4
+	ID_OBJ_ICON1,									//ã‚¢ã‚¤ã‚³ãƒ³1
+	ID_OBJ_ICON2,									//ã‚¢ã‚¤ã‚³ãƒ³2
+	ID_OBJ_ICON3,									//ã‚¢ã‚¤ã‚³ãƒ³3
+	ID_OBJ_ICON4,									//ã‚¢ã‚¤ã‚³ãƒ³4
 	ID_OBJ_MAX,
 };
 
@@ -108,12 +108,12 @@ enum{
 //ENEMY:POKEICON 4 + ITEMKEEP 4 + CSR 2 + SCR 2 + POKESEL 1 + EFF 1 + HP 4				= 
 //RANK:CSR 2 + POKESEL 1 + EFF 1 + HATA 2*(3*3)											= 22
 
-//ƒAƒCƒRƒ“4 + ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“4 + ƒJ[ƒ\ƒ‹2 + ƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹2
-//ƒ|ƒP‘I‘ðƒJ[ƒ\ƒ‹1 + ƒGƒtƒFƒNƒg1 + HPƒo[4 + Šø2*(3*3)
-//#define CLACT_OBJ_MAX	(12)//(8)							//ƒZƒ‹ƒAƒNƒ^[‚ÉÝ’è‚·‚éÅ‘åƒAƒNƒ^[”
-#define CLACT_OBJ_MAX	(40)//(8)							//ƒZƒ‹ƒAƒNƒ^[‚ÉÝ’è‚·‚éÅ‘åƒAƒNƒ^[”
+//ã‚¢ã‚¤ã‚³ãƒ³4 + ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³4 + ã‚«ãƒ¼ã‚½ãƒ«2 + ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«2
+//ãƒã‚±é¸æŠžã‚«ãƒ¼ã‚½ãƒ«1 + ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ1 + HPãƒãƒ¼4 + æ——2*(3*3)
+//#define CLACT_OBJ_MAX	(12)//(8)							//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®šã™ã‚‹æœ€å¤§ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
+#define CLACT_OBJ_MAX	(40)//(8)							//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®šã™ã‚‹æœ€å¤§ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
 
-//ƒAƒjƒƒiƒ“ƒo[
+//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
 enum{
 	CASTLE_ANM_MODORU_ZIBUN = 0,
 	CASTLE_ANM_SELECT_ZIBUN,
@@ -137,35 +137,35 @@ enum{
 
 #define BC_FRAME_WIN	(GF_BGL_FRAME1_M)
 #define BC_FRAME_TYPE	(GF_BGL_FRAME0_M)
-#define BC_FRAME_SLIDE	(GF_BGL_FRAME2_M)			//MULTI‚ÆƒŒƒ“ƒ^ƒ‹Œˆ’èŽž
+#define BC_FRAME_SLIDE	(GF_BGL_FRAME2_M)			//MULTIã¨ãƒ¬ãƒ³ã‚¿ãƒ«æ±ºå®šæ™‚
 #define BC_FRAME_BG		(GF_BGL_FRAME3_M)			//SINGLE,DOUBLE
-#define BC_FRAME_SUB	(GF_BGL_FRAME0_S)			//ƒ{[ƒ‹
+#define BC_FRAME_SUB	(GF_BGL_FRAME0_S)			//ãƒœãƒ¼ãƒ«
 
 typedef struct{
 	s16  x;
 	s16  y;
 }POS;
 
-//Œˆ’è–³Œø‚Ì’è‹`
+//æ±ºå®šç„¡åŠ¹ã®å®šç¾©
 #define CASTLE_DECIDE_TYPE_NONE	(0xff)
 
-#define CASTLE_RANK_MAX			(3)					//Å‘åƒ‰ƒ“ƒN3
+#define CASTLE_RANK_MAX			(3)					//æœ€å¤§ãƒ©ãƒ³ã‚¯3
 
-//#define CASTLE_COMM_WAIT		(60)				//’ÊMƒEƒFƒCƒg
-#define CASTLE_COMM_WAIT		(30)				//’ÊMƒEƒFƒCƒg
+//#define CASTLE_COMM_WAIT		(60)				//é€šä¿¡ã‚¦ã‚§ã‚¤ãƒˆ
+#define CASTLE_COMM_WAIT		(30)				//é€šä¿¡ã‚¦ã‚§ã‚¤ãƒˆ
 
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
-extern const PROC_DATA CastleProcData;				//ƒvƒƒZƒX’è‹`ƒf[ƒ^
+extern const PROC_DATA CastleProcData;				//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT CastleProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT CastleProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT CastleProc_End( PROC * proc, int * seq );
 
-//’ÊM
+//é€šä¿¡
 extern void CastleMine_CommRecvBufBasicData(int id_no,int size,void *pData,void *work);
 extern void CastleMine_CommRecvBufRankUpType(int id_no,int size,void *pData,void *work);
 extern void CastleMine_CommRecvBufCsrPos(int id_no,int size,void *pData,void *work);

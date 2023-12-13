@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_p2pmatchroom_map.h
- *	@brief		wifi	�}�b�`���O���[��	�}�b�v�f�[�^
+ *	@brief		wifi	マッチングルーム	マップデータ
  *	@author		tomoya takahashi
  *	@data		2007.03.30
  *
@@ -23,28 +23,28 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�}�b�v�p�����[�^
+///	マップパラメータ
 //=====================================
 enum {
 	MCR_MAPPM_NONE,
-	MCR_MAPPM_BLOCK,	// �����Ȃ��Ƃ���
+	MCR_MAPPM_BLOCK,	// いけないところ
 	MCR_MAPPM_PC,		// Personal Computer
-	MCR_MAPPM_MAP00,	// �΃}�b�g
-	MCR_MAPPM_MAP01,	// ���F�}�b�g
-	MCR_MAPPM_MAP02,	// �}�b�g
-	MCR_MAPPM_MAP03,	// �ԃ}�b�g
-	MCR_MAPPM_OBJ00,	// �I�u�W�F�z�u�ʒu00
-	MCR_MAPPM_OBJ01,	// �I�u�W�F�z�u�ʒu01
-	MCR_MAPPM_OBJ02,	// �I�u�W�F�z�u�ʒu02
-	MCR_MAPPM_OBJ03,	// �I�u�W�F�z�u�ʒu03
-	MCR_MAPPM_OBJ04,	// �I�u�W�F�z�u�ʒu04
-	MCR_MAPPM_OBJ05,	// �I�u�W�F�z�u�ʒu05
-	MCR_MAPPM_OBJ06,	// �I�u�W�F�z�u�ʒu06
-	MCR_MAPPM_OBJ07,	// �I�u�W�F�z�u�ʒu07
+	MCR_MAPPM_MAP00,	// 緑マット
+	MCR_MAPPM_MAP01,	// 黄色マット
+	MCR_MAPPM_MAP02,	// 青マット
+	MCR_MAPPM_MAP03,	// 赤マット
+	MCR_MAPPM_OBJ00,	// オブジェ配置位置00
+	MCR_MAPPM_OBJ01,	// オブジェ配置位置01
+	MCR_MAPPM_OBJ02,	// オブジェ配置位置02
+	MCR_MAPPM_OBJ03,	// オブジェ配置位置03
+	MCR_MAPPM_OBJ04,	// オブジェ配置位置04
+	MCR_MAPPM_OBJ05,	// オブジェ配置位置05
+	MCR_MAPPM_OBJ06,	// オブジェ配置位置06
+	MCR_MAPPM_OBJ07,	// オブジェ配置位置07
 	MCR_MAPPM_EXIT,
 };
 #define WCR_MAPDATA_BLOCK	(WF2DMAP_MAPDATA(1,MCR_MAPPM_BLOCK))
@@ -63,18 +63,18 @@ enum {
 #define WCR_MAPDATA_OBJ06	(WF2DMAP_MAPDATA(0,MCR_MAPPM_OBJ06))
 #define WCR_MAPDATA_OBJ07	(WF2DMAP_MAPDATA(0,MCR_MAPPM_OBJ07))
 
-#define WCR_MAPDATA_1BLOCKOBJNUM	( 8 )	// 1BLOCK�ɓ���l���̐�
+#define WCR_MAPDATA_1BLOCKOBJNUM	( 8 )	// 1BLOCKに入る人物の数
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 GLOBAL WF2DMAP_POS WcrMapGridSizGet( u32 no );

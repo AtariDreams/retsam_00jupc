@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_big.c
- *	@brief		‘å‚«‚³”ä‚×ƒAƒvƒŠƒP[ƒVƒ‡ƒ“	‚‚³”ä‚×
+ *	@brief		å¤§ãã•æ¯”ã¹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³	é«˜ã•æ¯”ã¹
  *	@author		tomoya takahashi
  *	@data		2006.01.20
  *
@@ -36,19 +36,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
@@ -57,25 +57,25 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #ifdef PM_DEBUG
-#define ZKN_BIG_EVENT_NUM ( 1 )	// ƒCƒxƒ“ƒg”
-#define ZKN_BIG_EVENT_CHANGE_DEBUG	(0x1 << 1)	// DEBUG‚ª‚ß‚ñ‚Ö
+#define ZKN_BIG_EVENT_NUM ( 1 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
+#define ZKN_BIG_EVENT_CHANGE_DEBUG	(0x1 << 1)	// DEBUGãŒã‚ã‚“ã¸
 #else
-#define ZKN_BIG_EVENT_NUM ( 0 )	// ƒCƒxƒ“ƒg”
-//#define ZKN_BIG_EVENT_CHANGE_ZUKAN	(0x1 << 1)	// }ŠÓ‚Ö
+#define ZKN_BIG_EVENT_NUM ( 0 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
+//#define ZKN_BIG_EVENT_CHANGE_ZUKAN	(0x1 << 1)	// å›³é‘‘ã¸
 #endif
 
 #define ZKN_BIG_OAM_BG_PRI	( 1 )
 #define ZKN_BIG_OAM_PRI	( 31 )
 
-// ƒtƒF[ƒh—p
+// ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 #define ZKN_BIG_FADE_PLANEMSK	( GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD )
 
 //-------------------------------------
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_BIG_SEQINIT_ALLOC,
@@ -91,71 +91,71 @@ enum{
 	ZKN_BIG_SEQDELETE_END,
 };
 
-// Šm•Û•¶Žš—ñƒoƒbƒtƒ@ƒTƒCƒY
+// ç¢ºä¿æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define ZKN_BIG_HEIGHT_NUM_STR	( 32 )
 
-// •¶Žš—ñ•`‰æˆÊ’u
+// æ–‡å­—åˆ—æç”»ä½ç½®
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/05
-// ƒ^ƒCƒgƒ‹‚Ì•\Ž¦ˆÊ’u‚ðA‰æ–Ê’†‰›‚ÉŽ©“®’²®
-#define ZKN_BIG_HEIGHT_TITLE_WIDTH	( 256 )		// ƒ^ƒCƒgƒ‹
+// ã‚¿ã‚¤ãƒˆãƒ«ã®è¡¨ç¤ºä½ç½®ã‚’ã€ç”»é¢ä¸­å¤®ã«è‡ªå‹•èª¿æ•´
+#define ZKN_BIG_HEIGHT_TITLE_WIDTH	( 256 )		// ã‚¿ã‚¤ãƒˆãƒ«
 // ----------------------------------------------------------------------------
 #define ZKN_BIG_HEIGHT_TITLE_Y	( 24 )
-#define ZKN_BIG_HEIGHT_TAKASA_Y	( 168 )		// "‚‚³"
+#define ZKN_BIG_HEIGHT_TAKASA_Y	( 168 )		// "é«˜ã•"
 #define ZKN_BIG_HEIGHT_TAKASA1_X	( 32 )
 #define ZKN_BIG_HEIGHT_TAKASA2_X	( 152 )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/05
-// ‚‚³‚Ì’l‚Ì•\Ž¦ˆÊ’u‚ðA‰E’[Žw’è‚É•ÏX
-#define ZKN_BIG_HEIGHT_NUM_OFS_X	( 78 )	// ŽÀÛ‚Ì’l‚ð•\Ž¦‚·‚éu‚½‚©‚³v‚©‚ç‚ÌˆÊ’u
+// é«˜ã•ã®å€¤ã®è¡¨ç¤ºä½ç½®ã‚’ã€å³ç«¯æŒ‡å®šã«å¤‰æ›´
+#define ZKN_BIG_HEIGHT_NUM_OFS_X	( 78 )	// å®Ÿéš›ã®å€¤ã‚’è¡¨ç¤ºã™ã‚‹ã€ŒãŸã‹ã•ã€ã‹ã‚‰ã®ä½ç½®
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/05
-// ŽålŒö‚Ìg’·‚Ì’PˆÊ‚ðA’l‚ðŠi”[‚µ‚½ƒƒbƒZ[ƒW‚É“‡
+// ä¸»äººå…¬ã®èº«é•·ã®å˜ä½ã‚’ã€å€¤ã‚’æ ¼ç´ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«çµ±åˆ
 // MatchComment: show removed define
-//#define ZKN_BIG_HEIGHT__M__OFS_X	( 30 )	// M‚ð•\Ž¦‚·‚é’l‚©‚ç‚ÌˆÊ’u
+//#define ZKN_BIG_HEIGHT__M__OFS_X	( 30 )	// Mã‚’è¡¨ç¤ºã™ã‚‹å€¤ã‹ã‚‰ã®ä½ç½®
 // ----------------------------------------------------------------------------
 #define ZKN_BIG_HEIGHT_NAME_Y		( 152 )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/05
-// ƒ|ƒPƒ‚ƒ“–¼‚ð‘‚«o‚·ˆÊ’u‚ðAŽålŒö–¼‚Æ“ˆê
+// ãƒã‚±ãƒ¢ãƒ³åã‚’æ›¸ãå‡ºã™ä½ç½®ã‚’ã€ä¸»äººå…¬åã¨çµ±ä¸€
 #define ZKN_BIG_HEIGHT_MONSNAME_X	( 26 )
 // ----------------------------------------------------------------------------
 #define ZKN_BIG_HEIGHT_HERO_X		( 146 )
 
-// ŽålŒöŠî–{•\Ž¦ˆÊ’u
+// ä¸»äººå…¬åŸºæœ¬è¡¨ç¤ºä½ç½®
 #define ZKN_BIG_HEIGHT_HERO_DEF_X	( 168 )
 #define ZKN_BIG_HEIGHT_HERO_DEF_Y	( 88 )
 #define ZKN_BIG_HEIGHT_HERO_ANM_SEQ_MAN		( 5 )
 #define ZKN_BIG_HEIGHT_HERO_ANM_SEQ_GIRL	( 6 )
 
-// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN
+// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 #define ZKN_BIG_HEIGHT_POKEGRA_DEF_X	( 88 )
 #define ZKN_BIG_HEIGHT_POKEGRA_DEF_Y	( ZKN_BIG_HEIGHT_HERO_DEF_Y )
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	‘å‚«‚³”ä‚×‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	å¤§ãã•æ¯”ã¹ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	int* p_event_key;		// ƒCƒxƒ“ƒgƒL[
+	int* p_event_key;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	
-	ZKN_GLB_DATA*		p_glb;				// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DATA*		p_glb;				// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
-	// ƒƒCƒ“ƒRƒ‚ƒ“ƒOƒ[ƒoƒ‹
-	ZKN_APL_DATA*	p_main_common;	// ƒAƒvƒŠƒf[ƒ^
+	// ãƒ¡ã‚¤ãƒ³ã‚³ãƒ¢ãƒ³ã‚°ãƒ­ãƒ¼ãƒãƒ«
+	ZKN_APL_DATA*	p_main_common;	// ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 } ZKN_BIG_GLB;
 
 //-------------------------------------
-//	‘å‚«‚³”ä‚×‰æ–Ê	•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	å¤§ãã•æ¯”ã¹ç”»é¢	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DRAWDATA*	p_drawglb;			// •`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DRAWDATA*	p_drawglb;			// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
 #ifdef PM_DEBUG
 	short hero_scale;
@@ -166,28 +166,28 @@ typedef struct {
 } ZKN_BIG_DRAWGLB;
 
 //-------------------------------------
-//	‘å‚«‚³”ä‚×‰æ–Ê@“à•”ƒ[ƒN
+//	å¤§ãã•æ¯”ã¹ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	int dummy;
 } ZKN_BIG_WORK;
 
 //-------------------------------------
-//	‘å‚«‚³”ä‚×‰æ–Ê@“à•”ƒ[ƒN
+//	å¤§ãã•æ¯”ã¹ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ResourceƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// Resourceã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
 	CLACT_WORK_PTR hero;
 } ZKN_BIG_DRAW;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_BIG_GLB* MakeBigGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -202,7 +202,7 @@ static int BigEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknBigProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -212,13 +212,13 @@ static int ZknBigProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawda
 static int ZknBigProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 static int ZknBigProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
-// ƒtƒF[ƒhˆ—
+// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknBigOamFadeInit( ZKN_BIG_DRAW* p_draw );
 static void ZknBigOamFadeDelete( ZKN_BIG_DRAW* p_draw );
 static void ZknBigFadeInit( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, const ZKN_BIG_GLB* cp_glb, BOOL fadein_out );
 static BOOL ZknBigFadeMain( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, const ZKN_BIG_GLB* cp_glb, BOOL fadein_out );
 
-// “Ç‚Ýž‚Ýˆ—
+// èª­ã¿è¾¼ã¿å‡¦ç†
 static void ZknBigLoadRes( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, const ZKN_BIG_GLB* cp_glb, const ZKN_BIG_WORK* cp_datawork, int heap );
 static void ZknBigDeleteRes( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb );
 static void ZknBigSetUpBg( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN_BIG_GLB* cp_glb, int heap );
@@ -234,7 +234,7 @@ static void ZknBigSetUpFontBgHeroPokeData( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN
 static void ZknBigPokeGraOn( ZKN_BIG_DRAWGLB* p_draw, const ZKN_BIG_GLB* cp_glb );
 static void ZknBigPokeGraOff( ZKN_BIG_DRAWGLB* p_draw );
 
-// Šgk’lÝ’è—pŠÖ”ŒS
+// æ‹¡ç¸®å€¤è¨­å®šç”¨é–¢æ•°éƒ¡
 static void ZknBigHeroYOfsSet( CLACT_WORK_PTR p_act, short yofs );
 static void ZknBigPokeGraYOfsSet( SOFT_SPRITE* p_pokegra, short yofs );
 static void ZknBigHeroScaleSet( CLACT_WORK_PTR p_act, short scale );
@@ -244,11 +244,11 @@ static void ZknBigPokeGraScaleSet( SOFT_SPRITE* p_pokegra, short scale );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒAƒvƒŠì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		Žg—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -281,9 +281,9 @@ void ZKN_BigAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	ƒTƒu‰æ–Ê@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã‚µãƒ–ç”»é¢ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -302,7 +302,7 @@ void ZKN_BigAplDelete( ZKN_APL_DATA* p_data )
 #ifdef PM_DEBUG
 //----------------------------------------------------------------------------
 /**
- *	@brief	Îß¹¸Þ×Šgk’l‚ðÝ’è
+ *	@brief	ãƒã‚±ã‚°ãƒ©æ‹¡ç¸®å€¤ã‚’è¨­å®š
  *
  *	@param	p_data
  *	@param	scale 
@@ -319,7 +319,7 @@ void ZKN_BigAplPokeGraScaleSet( ZKN_APL_DATA* p_data, short scale )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒöŠgk’l‚ðÝ’è
+ *	@brief	ä¸»äººå…¬æ‹¡ç¸®å€¤ã‚’è¨­å®š
  *
  *	@param	p_data	
  *	@param	scale 
@@ -337,7 +337,7 @@ void ZKN_BigAplHeroGraScaleSet( ZKN_APL_DATA* p_data, short scale )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Îß¹¸Þ×YƒIƒtƒZƒbƒgÝ’è
+ *	@brief	ãƒã‚±ã‚°ãƒ©Yã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
  *
  *	@param	p_data
  *	@param	yofs 
@@ -354,7 +354,7 @@ void ZKN_BigAplPokeGraYofsSet( ZKN_APL_DATA* p_data, short yofs )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒöYƒIƒtƒZƒbƒgÝ’è
+ *	@brief	ä¸»äººå…¬Yã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
  *
  *	@param	p_data
  *	@param	yofs 
@@ -374,18 +374,18 @@ void ZKN_BigAplHeroGraYofsSet( ZKN_APL_DATA* p_data, short yofs )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -398,13 +398,13 @@ static ZKN_BIG_GLB* MakeBigGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_BIG_GLB) );
 
-	// ƒCƒxƒ“ƒgƒL[
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrMain( zkn_sys );
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
-	// ‚ß‚¢‚ñƒOƒ[ƒoƒ‹ƒAƒvƒŠƒf[ƒ^Žæ“¾
+	// ã‚ã„ã‚“ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_glb->p_main_common = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_COMMON );
 	
 	return p_glb;
@@ -412,12 +412,12 @@ static ZKN_BIG_GLB* MakeBigGlb( int heap, ZKN_SYS_PTR zkn_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒOƒ[ƒoƒ‹ì¬
+ *	@brief	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ä½œæˆ
  *
- *	@param	heap	ƒq[ƒv
- *	@param	zkn_sys	}ŠÓƒVƒXƒeƒ€
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys	å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ì¬ƒf[ƒ^
+ *	@return	ä½œæˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 ZKN_BIG_DRAWGLB* MakeBigDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
@@ -429,7 +429,7 @@ ZKN_BIG_DRAWGLB* MakeBigDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_BIG_DRAWGLB) );
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 	return p_glb;
@@ -438,12 +438,12 @@ ZKN_BIG_DRAWGLB* MakeBigDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒCƒxƒ“ƒgì¬
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		Žg—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -454,7 +454,7 @@ static ZKN_EVENT_DATA* MakeBigEvent( int heap, ZKN_SYS_PTR zkn_sys )
 	ZKN_EVENT_DATA* p_event_tbl;
 	int event_num = BigEventDataNumGet();
 
-	// ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_event_tbl = sys_AllocMemory( heap, sizeof(ZKN_EVENT_DATA) * event_num );
 	GF_ASSERT( p_event_tbl );
 	memset( p_event_tbl, 0, sizeof(ZKN_EVENT_DATA) * event_num );
@@ -470,9 +470,9 @@ static ZKN_EVENT_DATA* MakeBigEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -488,9 +488,9 @@ static void DeleteBigGlb( ZKN_BIG_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -506,9 +506,9 @@ static void DeleteBigDrawGlb( ZKN_BIG_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒg@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -530,11 +530,11 @@ static void DeleteBigEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŒŸõƒ\[ƒgƒAƒvƒŠ@ƒCƒxƒ“ƒg”Žæ“¾
+ *	@brief	æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	ŒŸõƒ\[ƒgƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -547,19 +547,19 @@ static int BigEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -569,7 +569,7 @@ static int ZknBigProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 	ZKN_BIG_GLB* p_glb = p_glbdata;
 	ZKN_BIG_WORK* p_work;
 	
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_BIG_WORK) );
 	GF_ASSERT( p_work );
 	memset( p_work, 0, sizeof(ZKN_BIG_WORK) );
@@ -580,14 +580,14 @@ static int ZknBigProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -597,7 +597,7 @@ static int ZknBigProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 	ZKN_BIG_GLB* p_glb = p_glbdata;
 	ZKN_BIG_WORK*	p_work = p_dodata->p_work;
 	
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -608,7 +608,7 @@ static int ZknBigProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 	}
 
 #ifdef PM_DEBUG
-	// LR“¯Žž‰Ÿ‚µ‚ÅDEBUG‚ª‚ß‚ñ‚Ö
+	// LRåŒæ™‚æŠ¼ã—ã§DEBUGãŒã‚ã‚“ã¸
 	if( ((sys.cont & PAD_BUTTON_L) != 0) &&
 		((sys.cont & PAD_BUTTON_R) != 0) ){
 		*p_glb->p_event_key |= ZKN_BIG_EVENT_CHANGE_DEBUG;
@@ -620,14 +620,14 @@ static int ZknBigProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -645,17 +645,17 @@ static int ZknBigProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -678,7 +678,7 @@ static int ZknBigProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawda
 	case ZKN_BIG_SEQINIT_LOAD:
 		ZknBigLoadRes( p_drawwork, p_drawglb, cp_dataglb, cp_datawork, p_drawdata->heap );
 
-		// ƒtƒF[ƒh‰Šú‰»
+		// ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
 		ZknBigFadeInit( p_drawwork, p_drawglb, cp_dataglb, TRUE );
 		p_drawdata->seq++;
 		break;
@@ -698,17 +698,17 @@ static int ZknBigProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawda
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -737,17 +737,17 @@ static int ZknBigProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawda
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—ŽÒ‚©‚çŽó‚¯Žæ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		ŽŸ‚Ìˆ—‚Öi‚Ý‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚Ý‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -794,9 +794,9 @@ static int ZknBigProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒh‰Šú‰»
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -808,9 +808,9 @@ static void ZknBigOamFadeInit( ZKN_BIG_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒhƒŠƒZƒbƒg
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -822,29 +822,29 @@ static void ZknBigOamFadeDelete( ZKN_BIG_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—‰Šú‰»
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†åˆæœŸåŒ–
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigFadeInit( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, const ZKN_BIG_GLB* cp_glb, BOOL fadein_out )
 {
-	// ”¼“§–¾OAMÝ’è
+	// åŠé€æ˜ŽOAMè¨­å®š
 	ZknBigOamFadeInit( p_draw );
 
-	// ƒuƒ‰ƒCƒgƒlƒXˆ—‚ðs‚Á‚Ä‚æ‚¢‚©
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å‡¦ç†ã‚’è¡Œã£ã¦ã‚ˆã„ã‹
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_BIG_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_BIG_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}
@@ -853,32 +853,32 @@ static void ZknBigFadeInit( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, co
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—ƒƒCƒ“
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
- *	@retval	TRUE	ƒtƒF[ƒhI—¹
- *	@retval	FALSE	ƒtƒF[ƒh“r’†
+ *	@retval	TRUE	ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
+ *	@retval	FALSE	ãƒ•ã‚§ãƒ¼ãƒ‰é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknBigFadeMain( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, const ZKN_BIG_GLB* cp_glb, BOOL fadein_out )
 {
 	BOOL check;
 
-	// ƒuƒ‰ƒCƒgƒlƒX‚µ‚æ‚¤‹–‰Â‚Å‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã—ã‚ˆã†è¨±å¯ã§ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		check = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade );
 	}else{
 		check = ZKN_GLB_ChangeFadeEndCheck( &p_drawglb->p_drawglb->fade );
 	}
 
-	// I‚í‚Á‚½‚çI—¹ˆ—
+	// çµ‚ã‚ã£ãŸã‚‰çµ‚äº†å‡¦ç†
 	if( check ){
 		if( fadein_out ){
-			// ”¼“§–¾OAM”jŠü
+			// åŠé€æ˜ŽOAMç ´æ£„
 			ZknBigOamFadeDelete( p_draw );
 		}
 
@@ -891,45 +891,45 @@ static BOOL ZknBigFadeMain( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, co
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource“Ç‚Ýž‚Ý•‰æ–Ê\’z
+ *	@brief	Resourceèª­ã¿è¾¼ã¿ï¼†ç”»é¢æ§‹ç¯‰
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_datawork	ƒf[ƒ^ƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_datawork	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigLoadRes( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, const ZKN_BIG_GLB* cp_glb, const ZKN_BIG_WORK* cp_datawork, int heap )
 {
-	// BGÝ’è
+	// BGè¨­å®š
 	ZknBigSetUpBg( p_drawglb, cp_glb, heap );
 
-	// ƒtƒHƒ“ƒgBGÝ’è
-	ZknBigSetUpFontBgNormal( p_drawglb, heap );	// ‹¤’Ê‚Ì•¶Žš—ñ
-	ZknBigSetUpFontBgHeroPokeData( p_drawglb, cp_glb, heap );	// ƒf[ƒ^
+	// ãƒ•ã‚©ãƒ³ãƒˆBGè¨­å®š
+	ZknBigSetUpFontBgNormal( p_drawglb, heap );	// å…±é€šã®æ–‡å­—åˆ—
+	ZknBigSetUpFontBgHeroPokeData( p_drawglb, cp_glb, heap );	// ãƒ‡ãƒ¼ã‚¿
 
-	// OAMƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	// OAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	ZknBigOamResLoad( p_draw, p_drawglb, heap );
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	ZknBigOamInit( p_draw, p_drawglb, cp_glb, heap );
 
 	// FONTOAM
 	ZknBigFontOamInit( p_draw, p_drawglb, cp_glb, heap );
 
-	// ƒ|ƒPƒOƒ‰•\Ž¦
+	// ãƒã‚±ã‚°ãƒ©è¡¨ç¤º
 	ZknBigPokeGraOn( p_drawglb, cp_glb );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource”jŠü
+ *	@brief	Resourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -940,31 +940,31 @@ static void ZknBigDeleteRes( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb )
 	// FONTOAM
 	ZknBigFontOamDelete( p_draw );
 	
-	// ƒAƒNƒ^[”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	ZknBigOamDelete( p_draw );
 
-	// OAMƒŠƒ\[ƒX”jŠü
+	// OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	ZknBigOamResDelete( p_draw, p_drawglb );
 
-	// bmp”jŠü
+	// bmpç ´æ£„
 	GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
 	GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M );
 
-	// ƒ|ƒPƒOƒ‰”ñ•\Ž¦
+	// ãƒã‚±ã‚°ãƒ©éžè¡¨ç¤º
 	ZknBigPokeGraOff( p_drawglb );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒi–ÊƒZƒbƒg	
+ *	@brief	èƒŒæ™¯é¢ã‚»ãƒƒãƒˆ	
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
- * [ƒCƒxƒ“ƒg‚Åo‚Ä‚­‚é“‡‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«Š·‚¦‚à‚±‚Ì’†]
+ * [ã‚¤ãƒ™ãƒ³ãƒˆã§å‡ºã¦ãã‚‹å³¶ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãæ›ãˆã‚‚ã“ã®ä¸­]
  */
 //-----------------------------------------------------------------------------
 static void ZknBigSetUpBg( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN_BIG_GLB* cp_glb, int heap )
@@ -972,30 +972,30 @@ static void ZknBigSetUpBg( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN_BIG_GLB* cp_glb
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_main_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M, 0, 0, TRUE, heap );
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_height_bg_main1_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«ž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResource“Ç‚Ýž‚Ý
+ *	@brief	OAMResourceèª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1005,38 +1005,38 @@ static void ZknBigOamResLoad(  ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb,
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_draw_glb );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCGR + ZKN_BIG_WEIGHT_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			NARC_zukan_zkn_data_oam3_NCLR, FALSE, 
 			NARC_zukan_zkn_data_oam3_NCLR + ZKN_BIG_WEIGHT_RES_ID, 
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			ZKN_BIG_PLTT_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_draw->res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCER, TRUE,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCER + ZKN_BIG_WEIGHT_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_data_oam_main3_lzh_NANR, TRUE,
@@ -1046,11 +1046,11 @@ static void ZknBigOamResLoad(  ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResource”jŠü
+ *	@brief	OAMResourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1063,7 +1063,7 @@ static void ZknBigOamResDelete( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -1080,11 +1080,11 @@ static void ZknBigOamResDelete( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒAƒNƒ^[ƒoƒbƒtƒ@ì¬
+ *	@brief	OAMã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -1099,7 +1099,7 @@ static void ZknBigOamInit( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, con
 	short				scale_num;	
 	int monsno = ZKN_GLBDATA_PokeMonsNoGet( cp_glb->p_glb );
 
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCGR + ZKN_BIG_WEIGHT_RES_ID,
 			NARC_zukan_zkn_data_oam3_NCLR + ZKN_BIG_WEIGHT_RES_ID, 
@@ -1112,7 +1112,7 @@ static void ZknBigOamInit( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, con
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ðÝ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= ZKN_BIG_OAM_PRI;
@@ -1120,11 +1120,11 @@ static void ZknBigOamInit( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, con
 	add.heap		= heap;
 	
 
-	// ŽålŒöƒf[ƒ^Žæ“¾
+	// ä¸»äººå…¬ãƒ‡ãƒ¼ã‚¿å–å¾—
 	ofs_y = ZKN_HEIGHTGRAM_GetHeightY_hero( cp_glb->p_glb->height_gram, monsno );
 	scale_num = ZKN_HEIGHTGRAM_GetHeightScale_hero( cp_glb->p_glb->height_gram, monsno );	
 
-	// ŽålŒö
+	// ä¸»äººå…¬
 	add.mat.x = ZKN_BIG_HEIGHT_HERO_DEF_X << FX32_SHIFT;
 	add.mat.y = (ZKN_BIG_HEIGHT_HERO_DEF_Y + ofs_y) << FX32_SHIFT;
 	p_draw->hero = CLACT_AddSimple( &add );
@@ -1135,16 +1135,16 @@ static void ZknBigOamInit( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb, con
 		CLACT_AnmChg( p_draw->hero, ZKN_BIG_HEIGHT_HERO_ANM_SEQ_GIRL );
 	}
 
-	// Šgk’l‚ÆÀ•W‚ðÝ’è
+	// æ‹¡ç¸®å€¤ã¨åº§æ¨™ã‚’è¨­å®š
 	ZknBigHeroYOfsSet( p_draw->hero, ofs_y );
 	ZknBigHeroScaleSet( p_draw->hero, scale_num );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒAƒNƒ^[ƒoƒbƒtƒ@”jŠü
+ *	@brief	OAMã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1157,12 +1157,12 @@ static void ZknBigOamDelete( ZKN_BIG_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAMì¬
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1173,9 +1173,9 @@ static void ZknBigFontOamInit( ZKN_BIG_DRAW* p_draw, ZKN_BIG_DRAWGLB* p_drawglb,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
  *
- *	@param	p_draw •`‰æƒ[ƒN
+ *	@param	p_draw æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1186,10 +1186,10 @@ static void ZknBigFontOamDelete( ZKN_BIG_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	FONTBG‚ÌƒZƒbƒgƒAƒbƒv
+ *	@brief	FONTBGã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1199,22 +1199,22 @@ static void ZknBigSetUpFontBgNormal( ZKN_BIG_DRAWGLB* p_drawglb, int heap )
 	STRBUF* str = STRBUF_Create(ZKN_BIG_HEIGHT_NUM_STR, heap);
 	MSGDATA_MANAGER* man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_zkn_dat, heap);
 
-	// ‚½‚©‚³‚­‚ç‚×
+	// ãŸã‹ã•ãã‚‰ã¹
 	MSGMAN_GetString( man, ZNK_BIG_00, str );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
-	// ƒ^ƒCƒgƒ‹‚Ì•\Ž¦ˆÊ’u‚ðA‰æ–Ê’†‰›‚ÉŽ©“®’²®
+	// ã‚¿ã‚¤ãƒˆãƒ«ã®è¡¨ç¤ºä½ç½®ã‚’ã€ç”»é¢ä¸­å¤®ã«è‡ªå‹•èª¿æ•´
 	{
 		u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, str, 0, ZKN_BIG_HEIGHT_TITLE_WIDTH);
 		GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, xofs, ZKN_BIG_HEIGHT_TITLE_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	}
 	// ----------------------------------------------------------------------------
 	
-	// ‚½‚©‚³
+	// ãŸã‹ã•
 	MSGMAN_GetString( man, ZNK_ZUKAN_01, str );
 	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_BIG_HEIGHT_TAKASA1_X, ZKN_BIG_HEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 
-	// ‚½‚©‚³
+	// ãŸã‹ã•
 	MSGMAN_GetString( man, ZNK_ZUKAN_01, str );
 	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_BIG_HEIGHT_TAKASA2_X, ZKN_BIG_HEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 
@@ -1226,11 +1226,11 @@ static void ZknBigSetUpFontBgNormal( ZKN_BIG_DRAWGLB* p_drawglb, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“–¼@ŽålŒö–¼@‚‚³ƒf[ƒ^@•\Ž¦
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åã€€ä¸»äººå…¬åã€€é«˜ã•ãƒ‡ãƒ¼ã‚¿ã€€è¡¨ç¤º
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1246,14 +1246,14 @@ static void ZknBigSetUpFontBgHeroPokeData( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN
 	height_idx = ZKN_GIRA_GetHeightGmm();
 	man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, height_idx, heap);
 	
-	// ƒ|ƒPƒ‚ƒ“–¼
+	// ãƒã‚±ãƒ¢ãƒ³å
 	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, monsname_str, ZKN_BIG_HEIGHT_MONSNAME_X, ZKN_BIG_HEIGHT_NAME_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	
-	//	ƒ|ƒPƒ‚ƒ“‚Ì‚‚³
+	//	ãƒã‚±ãƒ¢ãƒ³ã®é«˜ã•
 	MSGMAN_GetString( man, mons_no, str );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
-	// ‚‚³‚Ì’l‚Ì•\Ž¦ˆÊ’u‚ðA‰E’[Žw’è‚É•ÏX
+	// é«˜ã•ã®å€¤ã®è¡¨ç¤ºä½ç½®ã‚’ã€å³ç«¯æŒ‡å®šã«å¤‰æ›´
 	{
 		u32 xofs = ZKN_BIG_HEIGHT_TAKASA1_X + ZKN_BIG_HEIGHT_NUM_OFS_X - FontProc_GetPrintStrWidth(FONT_SYSTEM, str, 0);
 		GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, xofs, ZKN_BIG_HEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
@@ -1264,16 +1264,16 @@ static void ZknBigSetUpFontBgHeroPokeData( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN
 
 	MSGMAN_Delete(man);
 
-	// ˆá‚¤ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒƒI[ƒvƒ“
+	// é•ã†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ã‚ªãƒ¼ãƒ—ãƒ³
 	man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_zkn_dat, heap);
 
-	// ŽålŒö–¼
+	// ä¸»äººå…¬å
 	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, 
 			ZKN_GLBDATA_HeroNameGet( cp_glb->p_glb ),
 			ZKN_BIG_HEIGHT_HERO_X, ZKN_BIG_HEIGHT_NAME_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	
 	
-	// ŽålŒö‚Ì‚‚³
+	// ä¸»äººå…¬ã®é«˜ã•
 	if( ZKN_GLBDATA_HeroSexGet( cp_glb->p_glb ) == 0 ){
 		MSGMAN_GetString( man, ZNK_HEIGHT_00, str );
 	}else{
@@ -1281,7 +1281,7 @@ static void ZknBigSetUpFontBgHeroPokeData( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN
 	}
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
-	// ‚‚³‚Ì’l‚Ì•\Ž¦ˆÊ’u‚ðA‰E’[Žw’è‚É•ÏX
+	// é«˜ã•ã®å€¤ã®è¡¨ç¤ºä½ç½®ã‚’ã€å³ç«¯æŒ‡å®šã«å¤‰æ›´
 	{
 		u32 xofs = ZKN_BIG_HEIGHT_TAKASA2_X + ZKN_BIG_HEIGHT_NUM_OFS_X - FontProc_GetPrintStrWidth(FONT_SYSTEM, str, 0);
 		GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, xofs, ZKN_BIG_HEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
@@ -1290,7 +1290,7 @@ static void ZknBigSetUpFontBgHeroPokeData( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN
 
     // ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
-	// ŽålŒö‚Ìg’·‚Ì’PˆÊ‚ðA’l‚ðŠi”[‚µ‚½ƒƒbƒZ[ƒW‚É“‡
+	// ä¸»äººå…¬ã®èº«é•·ã®å˜ä½ã‚’ã€å€¤ã‚’æ ¼ç´ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«çµ±åˆ
     // MatchComment: show removed code
 	//// M
 	//MSGMAN_GetString( man, ZNK_ZUKAN_03, str );
@@ -1303,48 +1303,48 @@ static void ZknBigSetUpFontBgHeroPokeData( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\Ž¦
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤º
  *
- *	@param	p_draw	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_draw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigPokeGraOn( ZKN_BIG_DRAWGLB* p_draw, const ZKN_BIG_GLB* cp_glb )
 {
-	// ^‚Á•‚¢ƒ|ƒPƒOƒ‰•\Ž¦
+	// çœŸã£é»’ã„ãƒã‚±ã‚°ãƒ©è¡¨ç¤º
 	SOFT_SPRITE* p_pokegra = ZKN_GlbPokemonGraphicGet( p_draw->p_drawglb );
 	short ofs_y;
 	short scale_num;
 	int monsno = ZKN_GLBDATA_PokeMonsNoGet( cp_glb->p_glb );
 
 
-	// ƒ|ƒPƒ‚ƒ“•\Ž¦ƒf[ƒ^Žæ“¾
+	// ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿å–å¾—
 	ofs_y = ZKN_HEIGHTGRAM_GetHeightY_poke( cp_glb->p_glb->height_gram, monsno );
 	scale_num = ZKN_HEIGHTGRAM_GetHeightScale_poke( cp_glb->p_glb->height_gram, monsno );
 	
 	
-	// ƒ|ƒPƒ‚ƒ“Ý’è
+	// ãƒã‚±ãƒ¢ãƒ³è¨­å®š
 	ZKN_UTIL_PokemonGraphicSet( p_draw->p_drawglb, cp_glb->p_glb, monsno,
 			PARA_FRONT, ZKN_BIG_HEIGHT_POKEGRA_DEF_X, ZKN_BIG_HEIGHT_POKEGRA_DEF_Y + ofs_y );
 	
-	// •\Ž¦
+	// è¡¨ç¤º
 	SoftSpriteParaSet( p_pokegra, SS_PARA_VANISH, FALSE );
 
-	// ƒpƒŒƒbƒg•ÏŠ·‚Å^‚Á•‚É
+	// ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›ã§çœŸã£é»’ã«
 	SoftSpritePalFadeSet( p_pokegra, 15, 15, 0, 0 );
 
-	// YƒIƒtƒZƒbƒg‚ÆŠg‘åk¬’lÝ’è
+	// Yã‚ªãƒ•ã‚»ãƒƒãƒˆã¨æ‹¡å¤§ç¸®å°å€¤è¨­å®š
 	ZknBigPokeGraYOfsSet( p_pokegra, ofs_y );
 	ZknBigPokeGraScaleSet( p_pokegra, scale_num );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN”ñ•\Ž¦
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯éžè¡¨ç¤º
  *
- *	@param	p_draw	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1353,20 +1353,20 @@ static void ZknBigPokeGraOff( ZKN_BIG_DRAWGLB* p_draw )
 {
 	SOFT_SPRITE* p_pokegra = ZKN_GlbPokemonGraphicGet( p_draw->p_drawglb );
 
-	// •\Ž¦OFF
+	// è¡¨ç¤ºOFF
 	SoftSpriteParaSet( p_pokegra, SS_PARA_VANISH, TRUE );
 
-	// ƒ\ƒtƒgƒpƒŒƒbƒgƒtƒF[ƒh‚ª‚©‚©‚Á‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅOFF
+	// ã‚½ãƒ•ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãŒã‹ã‹ã£ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§OFF
 	SoftSpritePalFadeOff( p_pokegra );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YƒIƒtƒZƒbƒg‚ÆƒXƒP[ƒ‹‚ðÝ’è
+ *	@brief	Yã‚ªãƒ•ã‚»ãƒƒãƒˆã¨ã‚¹ã‚±ãƒ¼ãƒ«ã‚’è¨­å®š
  *
- *	@param	p_act		ƒAƒNƒ^[
- *	@param	yofs		YƒIƒtƒZƒbƒg
- *	@param	scale		Šgk’lƒpƒ‰ƒ[ƒ^
+ *	@param	p_act		ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	yofs		Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	scale		æ‹¡ç¸®å€¤ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -1375,7 +1375,7 @@ static void ZknBigHeroYOfsSet( CLACT_WORK_PTR p_act, short yofs )
 {
 	VecFx32				matrix;
 
-	// À•W
+	// åº§æ¨™
 	matrix.x = ZKN_BIG_HEIGHT_HERO_DEF_X << FX32_SHIFT;
 	matrix.y = (ZKN_BIG_HEIGHT_HERO_DEF_Y + yofs) << FX32_SHIFT;
 	CLACT_SetMatrix( p_act, &matrix );
@@ -1383,23 +1383,23 @@ static void ZknBigHeroYOfsSet( CLACT_WORK_PTR p_act, short yofs )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YƒIƒtƒZƒbƒg‚ÆƒXƒP[ƒ‹‚ðÝ’è
+ *	@brief	Yã‚ªãƒ•ã‚»ãƒƒãƒˆã¨ã‚¹ã‚±ãƒ¼ãƒ«ã‚’è¨­å®š
  *
- *	@param	p_pokegra	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN
- *	@param	yofs		YƒIƒtƒZƒbƒg
+ *	@param	p_pokegra	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+ *	@param	yofs		Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigPokeGraYOfsSet( SOFT_SPRITE* p_pokegra, short yofs )
 {
-	// YÀ•W
+	// Yåº§æ¨™
 	SoftSpriteParaSet( p_pokegra, SS_PARA_POS_Y, ZKN_BIG_HEIGHT_POKEGRA_DEF_Y + yofs );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒö‚ÉŠgk’l‚ðÝ’è
+ *	@brief	ä¸»äººå…¬ã«æ‹¡ç¸®å€¤ã‚’è¨­å®š
  *
  *	@param	p_act
  *	@param	scale 
@@ -1411,7 +1411,7 @@ static void ZknBigHeroScaleSet( CLACT_WORK_PTR p_act, short scale )
 {
 	VecFx32				vec_scale;
 
-	// Šgk’l‚ðÝ’è
+	// æ‹¡ç¸®å€¤ã‚’è¨­å®š
 	vec_scale.x = FX_Div( ZKN_HEIGHT_SCALDE_DEF << FX32_SHIFT, scale << FX32_SHIFT );
 	vec_scale.y = vec_scale.x;
 	CLACT_SetScaleAffine( p_act, &vec_scale, CLACT_AFFINE_DOUBLE );
@@ -1419,7 +1419,7 @@ static void ZknBigHeroScaleSet( CLACT_WORK_PTR p_act, short scale )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Îß¹¸Þ×‚ÉŠgk’l‚ðÝ’è
+ *	@brief	ãƒã‚±ã‚°ãƒ©ã«æ‹¡ç¸®å€¤ã‚’è¨­å®š
  *
  *	@param	p_pokegra
  *	@param	scale 
@@ -1431,12 +1431,12 @@ static void ZknBigPokeGraScaleSet( SOFT_SPRITE* p_pokegra, short scale )
 {
 	fx32 fx_scale;
 
-	// scale_num‚Í0x100‚ðŠ„‚é”‚É‚È‚Á‚Ä‚¢‚éiOAM—p‚ÌŠgkj
-	// ‚»‚ê‚ð0x100‚ÅŠ„‚é”‚É•ÏX
+	// scale_numã¯0x100ã‚’å‰²ã‚‹æ•°ã«ãªã£ã¦ã„ã‚‹ï¼ˆOAMç”¨ã®æ‹¡ç¸®ï¼‰
+	// ãã‚Œã‚’0x100ã§å‰²ã‚‹æ•°ã«å¤‰æ›´
 	fx_scale = FX_Div( ZKN_HEIGHT_SCALDE_DEF << FX32_SHIFT, scale << FX32_SHIFT );
 	scale = FX_Mul( fx_scale, ZKN_HEIGHT_SCALDE_DEF << FX32_SHIFT ) >> FX32_SHIFT;
 	
-	// ŠgkÝ’è
+	// æ‹¡ç¸®è¨­å®š
 	SoftSpriteParaSet( p_pokegra, SS_PARA_AFF_X, scale );
 	SoftSpriteParaSet( p_pokegra, SS_PARA_AFF_Y, scale );
 }

@@ -2,7 +2,7 @@
 /**
  * 
  * @file	guru2_main.c
- * @brief	‚®‚é‚®‚éŒğŠ·@ƒQ[ƒ€ƒƒCƒ“
+ * @brief	ãã‚‹ãã‚‹äº¤æ›ã€€ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³
  * @author	kagaya
  * @data	05.07.13
  *
@@ -33,8 +33,8 @@
 #include "itemtool/myitem.h"
 #include "poketool/poke_memo.h"
 
-#include "system/font_arc.h"	//ƒtƒHƒ“ƒgƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
-#include "../../demo/egg/data/egg_data_def.h" //—‘ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+#include "system/font_arc.h"	//ãƒ•ã‚©ãƒ³ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+#include "../../demo/egg/data/egg_data_def.h" //åµã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 #include "../nutmixer/nutmixer.naix"
 
 //==============================================================================
@@ -56,19 +56,19 @@
 
 //----DEBUG_ONLY_FOR_kagaya
 #ifdef DEBUG_ONLY_FOR_kagaya
-#define DEBUG_GURU2_PRINTF 			//’è‹`‚ÅOS_Printf()—LŒø
+#define DEBUG_GURU2_PRINTF 			//å®šç¾©ã§OS_Printf()æœ‰åŠ¹
 #endif
 //----DEBUG_ONLY_FOR_kagaya END
 
-#define DEBUG_GURU2_PRINTF_FORCE	//‘¼‚ÌŠÂ‹«‚Å‚ào‚·Printf()
+#define DEBUG_GURU2_PRINTF_FORCE	//ä»–ã®ç’°å¢ƒã§ã‚‚å‡ºã™Printf()
 
 #endif
 //----PM_DEBUG END
 
 //--------------------------------------------------------------
-//	ƒQ[ƒ€ƒVƒ“ƒ{ƒ‹
+//	ã‚²ãƒ¼ãƒ ã‚·ãƒ³ãƒœãƒ«
 //--------------------------------------------------------------
-#define FRAME_SEC (30)	///<•b
+#define FRAME_SEC (30)	///<ç§’
 
 
 #define GURU2_GAME_FRAME (FRAME_SEC*20)
@@ -82,17 +82,17 @@
 #define GURU2_RESULT_NAME_WAIT_FRAME (FRAME_SEC*4)
 #define GURU2_RESULT_MSG_WAIT_FRAME (FRAME_SEC*4)
 
-#define GURU2_KINOMI_MAX (1)	//–Ø‚ÌÀÅ‘å
+#define GURU2_KINOMI_MAX (1)	//æœ¨ã®å®Ÿæœ€å¤§
 
-///aƒtƒŒ[ƒ€‚Åb‚É“’B‚·‚é‘¬“x‚ÉcƒtƒŒ[ƒ€‚Å’B‚·‚éˆ×‚Ì‰Á‘¬“x‚ğŠ„‚èo‚·
+///aãƒ•ãƒ¬ãƒ¼ãƒ ã§bã«åˆ°é”ã™ã‚‹é€Ÿåº¦ã«cãƒ•ãƒ¬ãƒ¼ãƒ ã§é”ã™ã‚‹ç‚ºã®åŠ é€Ÿåº¦ã‚’å‰²ã‚Šå‡ºã™
 #define ACCEL_ARRIVAL_FX(a,b,c) (((NUM_FX32(b)/a)/c)
-///aƒtƒŒ[ƒ€‚Åb‚É“’B‚·‚é‘¬“x‚ğo‚·
+///aãƒ•ãƒ¬ãƒ¼ãƒ ã§bã«åˆ°é”ã™ã‚‹é€Ÿåº¦ã‚’å‡ºã™
 #define ACCEL_FRAME_FX(a,b) ((NUM_FX32(b)/a))
 
 //--------------------------------------------------------------
-///	VRAMƒ}ƒl[ƒWƒƒ
+///	VRAMãƒãƒãƒ¼ã‚¸ãƒ£
 //--------------------------------------------------------------
-#define GURU2_VRAMTRANSFER_MANAGER_NUM (8)	//<VRAM“]‘—ƒ}ƒl[ƒWƒƒÅ‘å”
+#define GURU2_VRAMTRANSFER_MANAGER_NUM (8)	//<VRAMè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£æœ€å¤§æ•°
 
 #define CHAR_MANAGER_MAX (32)
 #define PLTT_MANAGER_MAX (16) 
@@ -100,14 +100,14 @@
 #define CHAR_VRAMTRANS_S_SIZE (0x4000)	//512
 
 //--------------------------------------------------------------
-///	3DƒJƒ‰[
+///	3Dã‚«ãƒ©ãƒ¼
 //--------------------------------------------------------------
-#define EDGE_COLOR_MAX (8)	///<3D@ƒGƒbƒWƒJƒ‰[
-#define EDGE_COLOR_R (4)	///<3D@ƒGƒbƒWƒJƒ‰[R
+#define EDGE_COLOR_MAX (8)	///<3Dã€€ã‚¨ãƒƒã‚¸ã‚«ãƒ©ãƒ¼
+#define EDGE_COLOR_R (4)	///<3Dã€€ã‚¨ãƒƒã‚¸ã‚«ãƒ©ãƒ¼R
 #define EDGE_COLOR_G (4)
 #define EDGE_COLOR_B (4)
 
-#define CLEAR_COLOR_R (31)	///<3D@ƒNƒŠƒAƒJƒ‰[R
+#define CLEAR_COLOR_R (31)	///<3Dã€€ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼R
 #define CLEAR_COLOR_G (31)
 #define CLEAR_COLOR_B (31)
 
@@ -119,39 +119,39 @@
 #define BGF_M_BG		(GF_BGL_FRAME3_M)
 #define BGF_S_BG		(GF_BGL_FRAME3_S)
 
-#define BGF_PLTT_M_SIZE (32*2)	///<BGƒpƒŒƒbƒg
+#define BGF_PLTT_M_SIZE (32*2)	///<BGãƒ‘ãƒ¬ãƒƒãƒˆ
 #define BGF_PLTT_M_OFFS (32*0)
 #define BGF_PLTT_S_SIZE (32*2)
 #define BGF_PLTT_S_OFFS (32*0)
 
-#define BGF_BG3_M_CHAR_OFFS (32*0)	///<BGƒLƒƒƒ‰ƒIƒtƒZƒbƒg
+#define BGF_BG3_M_CHAR_OFFS (32*0)	///<BGã‚­ãƒ£ãƒ©ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define BGF_BG2_S_CHAR_OFFS (32*0)
 #define BGF_BG3_S_CHAR_OFFS (32*0)
 
-#define BGF_PANO_MENU_WIN	(15)	///<ƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg
-#define BGF_PANO_TALK_WIN	(14)	///<‰ï˜bƒEƒBƒ“ƒhƒEƒpƒŒƒbƒg
+#define BGF_PANO_MENU_WIN	(15)	///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define BGF_PANO_TALK_WIN	(14)	///<ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆ
 
-#define BGF_CHSIZE_NAME (4*10)		///<–¼‘O“ü—ÍƒIƒtƒZƒbƒg
+#define BGF_CHSIZE_NAME (4*10)		///<åå‰å…¥åŠ›ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-///<ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ŠJnˆÊ’u
+///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é–‹å§‹ä½ç½®
 #define BGF_CHARNO_MENU (1)	
-///<‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ŠJnˆÊ’u
+///<ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é–‹å§‹ä½ç½®
 #define BGF_CHARNO_TALK (BGF_CHARNO_MENU+MENU_WIN_CGX_SIZ)
-///<ƒrƒbƒgƒ}ƒbƒvƒLƒƒƒ‰ƒx[ƒX
+///<ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚­ãƒ£ãƒ©ãƒ™ãƒ¼ã‚¹
 #define BGF_BMPCHAR_BASE (BGF_CHARNO_TALK+TALK_WIN_CGX_SIZ)
 
-///‰ï˜bƒEƒBƒ“ƒhƒEƒrƒbƒgƒ}ƒbƒv
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
 #define BGF_BMPCHAR_TALK (BGF_BMPCHAR_BASE)
-///‰ï˜bƒEƒBƒ“ƒhƒEƒrƒbƒgƒ}ƒbƒvƒTƒCƒY
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚µã‚¤ã‚º
 #define BGF_BMPCHAR_SIZE (FLD_MSG_WIN_SX*FLD_MSG_WIN_SY)
 
-///ƒl[ƒ€ƒEƒBƒ“ƒhƒEƒrƒbƒgƒ}ƒbƒv
+///ãƒãƒ¼ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
 #define BGF_BMPCHAR_NAME_BASE (BGF_BMPCHAR_TALK+BGF_BMPCHAR_SIZE)
 
-///ƒl[ƒ€ƒEƒBƒ“ƒhƒEZo
+///ãƒãƒ¼ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç®—å‡º
 #define BGF_BMPCHAR_NAME(a) (BGF_BMPCHAR_NAME_BASE+(BGF_CHSIZE_NAME*(a)))
 
-#define DOTCHAR(a)	(((a)/8)*8)	///<ƒhƒbƒgƒTƒCƒY->ƒLƒƒƒ‰ƒTƒCƒY
+#define DOTCHAR(a)	(((a)/8)*8)	///<ãƒ‰ãƒƒãƒˆã‚µã‚¤ã‚º->ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
 ///	BMP
@@ -202,7 +202,7 @@
 #define NAME_COL_MINE (GF_PRINTCOLOR_MAKE(FBMP_COL_RED,FBMP_COL_RED_SDW,0))
 	
 //--------------------------------------------------------------
-///	ƒZƒ‹ID
+///	ã‚»ãƒ«ID
 //--------------------------------------------------------------
 enum
 {
@@ -217,15 +217,15 @@ enum
 };
 
 //--------------------------------------------------------------
-///	‰ï˜bƒEƒBƒ“ƒhƒE
+///	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
-enum							///<‰ï˜bƒEƒBƒ“ƒhƒEƒŠƒXƒg
+enum							///<ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒªã‚¹ãƒˆ
 {
-	GURU2TALK_WIN_TALK = 0,		///<‰ï˜b
-	GURU2TALKWIN_MAX,			///<Å‘å”
+	GURU2TALK_WIN_TALK = 0,		///<ä¼šè©±
+	GURU2TALKWIN_MAX,			///<æœ€å¤§æ•°
 };
 
-enum							///<ƒl[ƒ€ƒEƒBƒ“ƒhƒE
+enum							///<ãƒãƒ¼ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 {
 	GURU2NAME_WIN_NAME_0,
 	GURU2NAME_WIN_NAME_1,
@@ -235,20 +235,20 @@ enum							///<ƒl[ƒ€ƒEƒBƒ“ƒhƒE
 	GURU2NAME_WIN_MAX,
 };
 
-#define STR_BUF_SIZE (0x0100)	///<•¶šƒoƒbƒtƒ@ƒTƒCƒY
+#define STR_BUF_SIZE (0x0100)	///<æ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	ƒJƒƒ‰
+///	ã‚«ãƒ¡ãƒ©
 //--------------------------------------------------------------
-#define CAMERA_TARGET_X (FX32_ONE*0)		///<ƒJƒƒ‰ƒ^[ƒQƒbƒg
+#define CAMERA_TARGET_X (FX32_ONE*0)		///<ã‚«ãƒ¡ãƒ©ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
 #define CAMERA_TARGET_Y (FX32_ONE*0)
 #define CAMERA_TARGET_Z (FX32_ONE*0)
 
-#define CM_ANGLE_X (-32)					///<ƒJƒƒ‰ƒAƒ“ƒOƒ‹
+#define CM_ANGLE_X (-32)					///<ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«
 #define CM_ANGLE_Y (0)
 #define CM_ANGLE_Z (0)
-//#define CM_PERSP (10)						///<ƒJƒƒ‰ƒp[ƒX
-#define CM_PERSP (6)						///<ƒJƒƒ‰ƒp[ƒX
+//#define CM_PERSP (10)						///<ã‚«ãƒ¡ãƒ©ãƒ‘ãƒ¼ã‚¹
+#define CM_PERSP (6)						///<ã‚«ãƒ¡ãƒ©ãƒ‘ãƒ¼ã‚¹
 #define CM_DISTANCE (0x143)
 
 #define CAMERA_ANGLE_X (FX_GET_ROTA_NUM(CM_ANGLE_X))
@@ -258,17 +258,17 @@ enum							///<ƒl[ƒ€ƒEƒBƒ“ƒhƒE
 #define CAMERA_DISTANCE (CM_DISTANCE<<FX32_SHIFT)
 
 //--------------------------------------------------------------
-///	ƒ^ƒbƒ`ƒpƒlƒ‹
+///	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«
 //--------------------------------------------------------------
-#define TP_SYNC (4)	///<ƒ^ƒbƒ`ƒpƒlƒ‹ƒTƒ“ƒvƒŠƒ“ƒOƒoƒbƒtƒ@”
+#define TP_SYNC (4)	///<ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡æ•°
 
-#define TP_BTN_CX (128)		///<ƒ{ƒ^ƒ“’†SÀ•W
-#define TP_BTN_CY (96)		///<ƒ{ƒ^ƒ“’†SÀ•W
-#define TP_BTN_HSX (128/2)	///<ƒ{ƒ^ƒ“ƒTƒCƒY1/2
-#define TP_BTN_HSY (128/2)	///<ƒ{ƒ^ƒ“ƒTƒCƒY1/2
+#define TP_BTN_CX (128)		///<ãƒœã‚¿ãƒ³ä¸­å¿ƒåº§æ¨™
+#define TP_BTN_CY (96)		///<ãƒœã‚¿ãƒ³ä¸­å¿ƒåº§æ¨™
+#define TP_BTN_HSX (128/2)	///<ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º1/2
+#define TP_BTN_HSY (128/2)	///<ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º1/2
 
 //--------------------------------------------------------------
-///	Šp“x
+///	è§’åº¦
 //--------------------------------------------------------------
 #define ROT16_ONE (0x10000/256)
 #define ROT16_360 (ROT16_ONE*256)
@@ -276,19 +276,19 @@ enum							///<ƒl[ƒ€ƒEƒBƒ“ƒhƒE
 #define ROT16_AG_FX(a) NUM_FX32(ROT16_AG(a))
 
 //--------------------------------------------------------------
-//	M
+//	çš¿
 //--------------------------------------------------------------
 #if 0
-#define DISC_POS_X_FX32 (FX32_ONE*0)		///<M‰ŠúˆÊ’u
+#define DISC_POS_X_FX32 (FX32_ONE*0)		///<çš¿åˆæœŸä½ç½®
 #define DISC_POS_Y_FX32 (FX32_ONE*-10)
 #define DISC_POS_Z_FX32 (FX32_ONE*0)
 #else
-#define DISC_POS_X_FX32 (NUM_FX32(0))		///<M‰ŠúˆÊ’u
+#define DISC_POS_X_FX32 (NUM_FX32(0))		///<çš¿åˆæœŸä½ç½®
 #define DISC_POS_Y_FX32 (NUM_FX32(-36))
 #define DISC_POS_Z_FX32 (NUM_FX32(0))
 #endif
 
-#define DISC_ROTATE_X (0)					///<M‰ñ“]Šp“xX
+#define DISC_ROTATE_X (0)					///<çš¿å›è»¢è§’åº¦X
 #define DISC_ROTATE_Y (0)
 #define DISC_ROTATE_Z (0)
 #define DISC_ROTATE_DRAW_OFFS_FX_2 (NUM_FX32(-72))
@@ -296,10 +296,10 @@ enum							///<ƒl[ƒ€ƒEƒBƒ“ƒhƒE
 #define DISC_ROTATE_DRAW_OFFS_FX_4 (NUM_FX32(-181))
 #define DISC_ROTATE_DRAW_OFFS_FX_5 (NUM_FX32(0))
 
-#define DISC_ROTATE_SPEED_MAX_FX (NUM_FX32(-4))	///<‰ñ“]‘¬“x
-#define EGG_ROTATE_SPEED_MAX_FX (NUM_FX32(4))	///<‰ñ“]‘¬“x
-#define DISC_ROTATE_SPEED_LOW_FX (NUM_FX32(-1))	///<‰ñ“]‘¬“x
-#define EGG_ROTATE_SPEED_LOW_FX (NUM_FX32(1))	///<‰ñ“]‘¬“x
+#define DISC_ROTATE_SPEED_MAX_FX (NUM_FX32(-4))	///<å›è»¢é€Ÿåº¦
+#define EGG_ROTATE_SPEED_MAX_FX (NUM_FX32(4))	///<å›è»¢é€Ÿåº¦
+#define DISC_ROTATE_SPEED_LOW_FX (NUM_FX32(-1))	///<å›è»¢é€Ÿåº¦
+#define EGG_ROTATE_SPEED_LOW_FX (NUM_FX32(1))	///<å›è»¢é€Ÿåº¦
 
 #define EGG_ATARI_HABA_L_FX (NUM_FX32(-4))
 #define EGG_ATARI_HABA_R_FX (NUM_FX32(5))
@@ -313,24 +313,24 @@ enum							///<ƒl[ƒ€ƒEƒBƒ“ƒhƒE
 #define DISC_LAST_RANGE_FX (NUM_FX32(16))
 
 //--------------------------------------------------------------
-//	—‘
+//	åµ
 //--------------------------------------------------------------
 #if 0
-#define EGG_DISC_CX_FX (NUM_FX32(128))			///<—‘M’†SˆÊ’u
+#define EGG_DISC_CX_FX (NUM_FX32(128))			///<åµçš¿ä¸­å¿ƒä½ç½®
 #define EGG_DISC_CY_FX (NUM_FX32(100))
-#define EGG_DISC_CXS (60)						///<—‘MƒTƒCƒY
+#define EGG_DISC_CXS (60)						///<åµçš¿ã‚µã‚¤ã‚º
 #define EGG_DISC_CYS (40)
 #else
-#define EGG_DISC_CX_FX (NUM_FX32(0))			///<—‘M’†SˆÊ’u
+#define EGG_DISC_CX_FX (NUM_FX32(0))			///<åµçš¿ä¸­å¿ƒä½ç½®
 #define EGG_DISC_CY_FX (NUM_FX32(-6))
 #define EGG_DISC_CZ_FX (NUM_FX32(0))
-#define EGG_DISC_CXS (22)						///<—‘M”¼ŒaƒTƒCƒY
+#define EGG_DISC_CXS (22)						///<åµçš¿åŠå¾„ã‚µã‚¤ã‚º
 #define EGG_DISC_CZS (22)
 #endif
 
-#define EGG_START_OFFS_Y_FX (NUM_FX32(192))		///<—‘“oêƒIƒtƒZƒbƒg
-#define EGG_ADD_NEXT_FRAME (15)					///<—‘’Ç‰Á‚Ì‘Ò‚¿ŠÔ
-#define EGG_ADD_END_WAIT (30)					///<—‘’Ç‰ÁŒã‚Ì‘Ò‚¿ŠÔ
+#define EGG_START_OFFS_Y_FX (NUM_FX32(192))		///<åµç™»å ´ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define EGG_ADD_NEXT_FRAME (15)					///<åµè¿½åŠ æ™‚ã®å¾…ã¡æ™‚é–“
+#define EGG_ADD_END_WAIT (30)					///<åµè¿½åŠ å¾Œã®å¾…ã¡æ™‚é–“
 
 #define EGG_JUMP_TOPSPEED 		(4)
 #define EGG_JUMP_TOPSPEED_FX	NUM_FX32(EGG_JUMP_TOPSPEED)
@@ -354,7 +354,7 @@ enum							///<ƒl[ƒ€ƒEƒBƒ“ƒhƒE
 #define EGG_SHAKE_TOPSPEED_FX NUM_FX32(EGG_SHAKE_TOPSPEED)
 
 //--------------------------------------------------------------
-//	ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒƒbƒZ[ƒW
+//	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //--------------------------------------------------------------
 #define CDOWN_CX (128)
 #define CDOWN_CY (100)
@@ -362,14 +362,14 @@ enum							///<ƒl[ƒ€ƒEƒBƒ“ƒhƒE
 #define CDOWN_SE_FRAME (30)
 
 //--------------------------------------------------------------
-//	ƒ{ƒ^ƒ“
+//	ãƒœã‚¿ãƒ³
 //--------------------------------------------------------------
 #define BTN_ANM_FRAME_START (2)
 #define BTN_ANM_FRAME_ON	(4)
 #define BTN_ANM_FRAME_BACK	(2)
 
 //--------------------------------------------------------------
-//	ƒƒbƒZ[ƒW
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //--------------------------------------------------------------
 #define MSG_WAIT					(msg_guru2_00)
 #define MSG_NICKNAME				(msg_guru2_01)
@@ -386,29 +386,29 @@ enum							///<ƒl[ƒ€ƒEƒBƒ“ƒhƒE
 #define MSG_COMM_ERROR_DAME_TAMAGO	(msg_guru2_12)
 
 //--------------------------------------------------------------
-//	ƒ{ƒ^ƒ“
+//	ãƒœã‚¿ãƒ³
 //--------------------------------------------------------------
 typedef enum
 {
-	BTN_OFF = 0,					///<ƒ{ƒ^ƒ“‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢
-	BTN_ON,							///<ƒ{ƒ^ƒ“‰Ÿ‚³‚ê‚Ä‚¢‚é
+	BTN_OFF = 0,					///<ãƒœã‚¿ãƒ³æŠ¼ã•ã‚Œã¦ã„ãªã„
+	BTN_ON,							///<ãƒœã‚¿ãƒ³æŠ¼ã•ã‚Œã¦ã„ã‚‹
 }BTN;
 
-///ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½Û‚ÌƒEƒFƒCƒgƒtƒŒ[ƒ€
+///ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸéš›ã®ã‚¦ã‚§ã‚¤ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 #define BTN_PUSH_WAIT_FRAME (FRAME_SEC*3)
 
 //--------------------------------------------------------------
-///	ƒƒCƒ“ŠÖ”–ß‚è’l
+///	ãƒ¡ã‚¤ãƒ³é–¢æ•°æˆ»ã‚Šå€¤
 //--------------------------------------------------------------
 typedef enum
 {
-	RET_NON = 0,	///<“Á‚É‚È‚µ
-	RET_CONT,		///<Œp‘±
-	RET_END,		///<I—¹
+	RET_NON = 0,	///<ç‰¹ã«ãªã—
+	RET_CONT,		///<ç¶™ç¶š
+	RET_END,		///<çµ‚äº†
 }RET;
 
 //--------------------------------------------------------------
-///	ƒƒCƒ“ˆ—ƒV[ƒPƒ“ƒX
+///	ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //--------------------------------------------------------------
 enum
 {
@@ -498,7 +498,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	—‘“oêˆ—ƒV[ƒPƒ“ƒX
+///	åµç™»å ´å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //--------------------------------------------------------------
 enum
 {
@@ -509,7 +509,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒ^ƒXƒNƒvƒ‰ƒCƒIƒŠƒeƒB
+///	ã‚¿ã‚¹ã‚¯ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum
 {
@@ -548,8 +548,8 @@ typedef struct
 	VecFx32 pos;
 	VecFx32 draw_pos;
 	VecFx32 scale;
-	VecFx32 offs;		//M‚É‚Ì‚İ‰e‹¿‚ğ—^‚¦‚éƒIƒtƒZƒbƒg
-	VecFx32 offs_egg;	//—‘‚É‚à‰e‹¿‚ğ—^‚¦‚éƒIƒtƒZƒbƒg
+	VecFx32 offs;		//çš¿ã«ã®ã¿å½±éŸ¿ã‚’ä¸ãˆã‚‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	VecFx32 offs_egg;	//åµã«ã‚‚å½±éŸ¿ã‚’ä¸ãˆã‚‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	fx32	rotate_fx;
 	fx32	rotate_offs_fx;
 	fx32	rotate_draw_offs_fx;
@@ -781,8 +781,8 @@ typedef struct
 typedef struct
 {
 	int seq_no;
-	int jump_flag;		//ƒWƒƒƒ“ƒv’†
-	int jump_proc_flag;	//ƒWƒƒƒ“ƒvˆ—’†
+	int jump_flag;		//ã‚¸ãƒ£ãƒ³ãƒ—ä¸­
+	int jump_proc_flag;	//ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†ä¸­
 	int shake_count;
 	fx32 shake_fx;
 }EGGDISCJUMPTCB_WORK;
@@ -1068,11 +1068,11 @@ extern void DEBUG_DiscTest( GURU2MAIN_WORK *g2m );
 #endif
 
 //==============================================================================
-//	‚®‚é‚®‚éŒğŠ·@ƒƒCƒ“ˆ—
+//	ãã‚‹ãã‚‹äº¤æ›ã€€ãƒ¡ã‚¤ãƒ³å‡¦ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éƒƒCƒ“ˆ—‰Šú‰»
+ * ãã‚‹ãã‚‹ãƒ¡ã‚¤ãƒ³å‡¦ç†åˆæœŸåŒ–
  * @param	proc	PROC *
  * @param	seq		seq
  * @retval	PROC_RESULT	PROC_RES_CONTINUE,PROC_RES_FINISH
@@ -1083,20 +1083,20 @@ PROC_RESULT Guru2Main_Init( PROC *proc, int *seq )
 	GURU2MAIN_WORK *g2m;
 	GURU2PROC_WORK *g2p = PROC_GetParentWork( proc );
 	
-	//Ø’f‹Ö~
+	//åˆ‡æ–­ç¦æ­¢
 	CommStateSetErrorCheck( TRUE, TRUE );
 	
-	//H,Vƒuƒ‰ƒ“ƒN’â~
+	//H,Vãƒ–ãƒ©ãƒ³ã‚¯åœæ­¢
 	sys_VBlankFuncChange( NULL, NULL );
 	sys_HBlankIntrStop();
 	
-	//ƒ\ƒtƒgƒŠƒZƒbƒg‹Ö~
+	//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆç¦æ­¢
 	sys_SoftResetNG( SOFTRESET_TYPE_TRADE );
 	
-	//ƒq[ƒvì¬
+	//ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_GURU2, GURU2_HEAPSIZE );
 	
-	//ƒ[ƒNŠm•Û
+	//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	g2m = PROC_AllocWork( proc, sizeof(GURU2MAIN_WORK), HEAPID_GURU2 );
 	memset( g2m, 0, sizeof(GURU2MAIN_WORK) );
 	
@@ -1104,33 +1104,33 @@ PROC_RESULT Guru2Main_Init( PROC *proc, int *seq )
 	g2m->g2p = g2p;
 	g2m->g2c = g2p->g2c;
 	
-	//ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£
 	g2m->my_poke_party = SaveData_GetTemotiPokemon( g2m->g2p->param.sv );
 	
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	g2m->arc_handle = ArchiveDataHandleOpen( ARC_GURU2, HEAPID_GURU2 );
 	
-	//VRAM“]‘—ƒ}ƒl[ƒWƒƒ‰Šú‰»
+	//VRAMè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 	initVramTransferManagerHeap(
 			GURU2_VRAMTRANSFER_MANAGER_NUM, HEAPID_GURU2 );
 	
-	//ƒ^ƒbƒ`ƒpƒlƒ‹‰Šú‰»
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆæœŸåŒ–
 	InitTPSystem();
 //	while( InitTPNoBuff(4) == TP_OK );
 //	if( InitTPNoBuff(TP_SYNC) != TP_OK ){ GF_ASSERT(0); }
 	InitTPNoBuff( TP_SYNC );
 	
-	//ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+	//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 	guru2_DrawInit( g2m );
 	
-	//VBlankƒZƒbƒg
+	//VBlankã‚»ãƒƒãƒˆ
 	sys_VBlankFuncChange( guru2_VBlankFunc, g2m );
 	
-	//ƒAƒNƒ^[‰Šú‰»
+	//ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	Disc_Init( g2m );
 	Egg_Init( g2m );
 	
-	{ //Œ»İ‚ÌID‚ÆQ‰Ál”‚ÅƒfƒBƒXƒNŠp“xƒZƒbƒg
+	{ //ç¾åœ¨ã®IDã¨å‚åŠ äººæ•°ã§ãƒ‡ã‚£ã‚¹ã‚¯è§’åº¦ã‚»ãƒƒãƒˆ
 		int id = 0, count = 0;
 		int my_id = CommGetCurrentID();
 		DISCWORK *disc = &g2m->disc;
@@ -1151,10 +1151,10 @@ PROC_RESULT Guru2Main_Init( PROC *proc, int *seq )
 			DATA_DiscOffsetAngle[g2m->g2p->receipt_num][count] );
 	}
 	
-	//Œ»İÄ¶’†‚ÌBGM No‚ğ•Û‘¶
+	//ç¾åœ¨å†ç”Ÿä¸­ã®BGM Noã‚’ä¿å­˜
 	g2m->before_bgm_no = Snd_NowBgmNoGet();
 	
-	//ƒ^ƒXƒN‰Šú‰»
+	//ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
 	EggJumpTcb_Init( g2m );
 	EggSpinTcb_Init( g2m );
 	EggShakeTcb_Init( g2m );
@@ -1162,12 +1162,12 @@ PROC_RESULT Guru2Main_Init( PROC *proc, int *seq )
 	BtnAnmTcb_Init( g2m );
 	OmakeEggJumpTcb_Init( g2m );
 	
-	//ƒfƒoƒbƒO
+	//ãƒ‡ãƒãƒƒã‚°
 	#ifdef GURU2_DEBUG_ON
 	DEBUG_WorkInit( g2m );
 	#endif
 	
-	//ƒƒCƒvŠJn
+	//ãƒ¯ã‚¤ãƒ—é–‹å§‹
 	WIPE_SYS_Start( WIPE_PATTERN_WMS,
 		WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN,
 		WIPE_FADE_BLACK, 8, 1, HEAPID_GURU2 );
@@ -1177,7 +1177,7 @@ PROC_RESULT Guru2Main_Init( PROC *proc, int *seq )
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éƒƒCƒ“ˆ—@I—¹
+ * ãã‚‹ãã‚‹ãƒ¡ã‚¤ãƒ³å‡¦ç†ã€€çµ‚äº†
  * @param	proc	PROC *
  * @param	seq		seq
  * @retval	PROC_RESULT	PROC_RES_CONTINUE,PROC_RES_FINISH
@@ -1187,12 +1187,12 @@ PROC_RESULT Guru2Main_End( PROC *proc, int *seq )
 {
 	GURU2MAIN_WORK *g2m = PROC_GetWork( proc );
 	
-	//ƒ[ƒN”½‰f
+	//ãƒ¯ãƒ¼ã‚¯åæ˜ 
 	
-	//ƒ^ƒbƒ`ƒpƒlƒ‹I—¹
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµ‚äº†
 	if( StopTP() != TP_OK ){ GF_ASSERT(0) };
 	
-	//ƒ^ƒXƒNíœ
+	//ã‚¿ã‚¹ã‚¯å‰Šé™¤
 	EggJumpTcb_Delete( g2m );
 	EggSpinTcb_Delete( g2m );
 	EggShakeTcb_Delete( g2m );
@@ -1200,23 +1200,23 @@ PROC_RESULT Guru2Main_End( PROC *proc, int *seq )
 	BtnAnmTcb_Delete( g2m );
 	OmakeEggJumpTcb_Delete( g2m );
 	
-	//ƒAƒNƒ^[íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 	Disc_Delete( g2m );
 	Egg_Delete( g2m );
 	
-	//ƒOƒ‰ƒtƒBƒbƒNíœ
+	//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
 	guru2_DrawDelete( g2m );
 	sys_VBlankFuncChange( NULL, NULL );
 	DellVramTransferManager();
 	
-	//ƒA[ƒJƒCƒuƒNƒ[ƒY
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( g2m->arc_handle );
 	
-	//ƒ[ƒNŠJ•ú
+	//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	PROC_FreeWork( proc );
 	sys_DeleteHeap( HEAPID_GURU2 );
 	
-	//ƒ\ƒtƒgƒŠƒZƒbƒg—LŒø‚É–ß‚·
+	//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆæœ‰åŠ¹ã«æˆ»ã™
 	sys_SoftResetOK( SOFTRESET_TYPE_TRADE );
 	
 	return( PROC_RES_FINISH );
@@ -1224,7 +1224,7 @@ PROC_RESULT Guru2Main_End( PROC *proc, int *seq )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†
  * @param	proc	PROC *
  * @param	seq		seq
  * @retval	PROC_RESULT	PROC_RES_CONTINUE,PROC_RES_FINISH
@@ -1258,7 +1258,7 @@ PROC_RESULT Guru2Main_Main( PROC *proc, int *seq )
 
 //--------------------------------------------------------------
 /**
- * 1ƒtƒŒ[ƒ€–ˆ‚ÉƒNƒŠƒA‚·‚éƒ[ƒN
+ * 1ãƒ•ãƒ¬ãƒ¼ãƒ æ¯ã«ã‚¯ãƒªã‚¢ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  * @param
  * @retval
  */
@@ -1270,11 +1270,11 @@ static void guru2Main_FrameWorkClear( GURU2MAIN_WORK *g2m )
 }
 
 //==============================================================================
-//	‚®‚é‚®‚éŒğŠ·@ƒƒCƒ“ˆ—
+//	ãã‚‹ãã‚‹äº¤æ›ã€€ãƒ¡ã‚¤ãƒ³å‡¦ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³ã€€åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1288,7 +1288,7 @@ static RET Guru2Proc_Init( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“ eq‹¤’Ê ƒtƒF[ƒhƒCƒ“‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ è¦ªå­å…±é€š ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1310,16 +1310,16 @@ static RET Guru2Proc_FadeInWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@e@Q‰Á‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€è¦ªã€€å‚åŠ å¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
 //--------------------------------------------------------------
 static RET Guru2Proc_OyaSignalJoinWait( GURU2MAIN_WORK *g2m )
 {
-	if( Guru2MainCommJoinNumCheck(g2m) ){		//Q‰Á”ƒ`ƒFƒbƒN
+	if( Guru2MainCommJoinNumCheck(g2m) ){		//å‚åŠ æ•°ãƒã‚§ãƒƒã‚¯
 		#ifdef DEBUG_GURU2_PRINTF
-		OS_Printf( "‚®‚é‚®‚é e Q‰Á‘Ò‚¿ ‘SˆõQ‰Á\n" );
+		OS_Printf( "ãã‚‹ãã‚‹ è¦ª å‚åŠ å¾…ã¡ å…¨å“¡å‚åŠ \n" );
 		#endif
 		g2m->seq_no = SEQNO_MAIN_OYA_SEND_JOIN_CLOSE;
 		return( RET_CONT );
@@ -1330,7 +1330,7 @@ static RET Guru2Proc_OyaSignalJoinWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@e@Q‰Á’÷‚ßØ‚è
+ * ãƒ¡ã‚¤ãƒ³ã€€è¦ªã€€å‚åŠ ç· ã‚åˆ‡ã‚Š
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1341,7 +1341,7 @@ static RET Guru2Proc_OyaSendJoinClose( GURU2MAIN_WORK *g2m )
 	
 	if( Guru2Comm_SendData(g2m->g2c,G2COMM_GM_SIGNAL,&bit,2) == TRUE ){
 		#ifdef DEBUG_GURU2_PRINTF
-		OS_Printf( "‚®‚é‚®‚é e Q‰Á’÷‚ßØ‚è\n" );
+		OS_Printf( "ãã‚‹ãã‚‹ è¦ª å‚åŠ ç· ã‚åˆ‡ã‚Š\n" );
 		#endif
 		g2m->seq_no = SEQNO_MAIN_OYA_CONNECT_NUM_CHECK;
 		return( RET_CONT );
@@ -1352,14 +1352,14 @@ static RET Guru2Proc_OyaSendJoinClose( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@e@Ú‘±l”ˆê’v‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€è¦ªã€€æ¥ç¶šäººæ•°ä¸€è‡´å¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
 //--------------------------------------------------------------
 static RET Guru2Proc_OyaConnectNumCheck( GURU2MAIN_WORK *g2m )
 {
-	int count = Guru2MainCommJoinNumGet( g2m ) + 1; //+1=©g
+	int count = Guru2MainCommJoinNumGet( g2m ) + 1; //+1=è‡ªèº«
 	
 	if( count != CommGetConnectNum() ){
 		return( RET_NON );
@@ -1371,7 +1371,7 @@ static RET Guru2Proc_OyaConnectNumCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@e@ƒvƒŒƒCl”Å‘å‚ğ“]‘—
+ * ãƒ¡ã‚¤ãƒ³ã€€è¦ªã€€ãƒ—ãƒ¬ã‚¤äººæ•°æœ€å¤§ã‚’è»¢é€
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1380,7 +1380,7 @@ static RET Guru2Proc_OyaSendPlayMax( GURU2MAIN_WORK *g2m )
 {
 	int ret;
 	
-	g2m->comm.play_max = Guru2MainCommJoinNumGet(g2m) + 1; //+1=©g
+	g2m->comm.play_max = Guru2MainCommJoinNumGet(g2m) + 1; //+1=è‡ªèº«
 	
 	ret = Guru2Comm_SendData(
 		g2m->g2c, G2COMM_GM_PLAYMAX, &g2m->comm.play_max, 4 );
@@ -1389,7 +1389,7 @@ static RET Guru2Proc_OyaSendPlayMax( GURU2MAIN_WORK *g2m )
 		g2m->play_send_count = 0;
 		g2m->seq_no = SEQNO_MAIN_OYA_SEND_PLAY_NO;
 		#ifdef DEBUG_GURU2_PRINTF_FORCE
-		OS_Printf( "‚®‚é‚®‚é Q‰Á” max=%d\n", g2m->comm.play_max );
+		OS_Printf( "ãã‚‹ãã‚‹ å‚åŠ æ•° max=%d\n", g2m->comm.play_max );
 		#endif
 	}
 	
@@ -1398,7 +1398,7 @@ static RET Guru2Proc_OyaSendPlayMax( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@e@ƒQ[ƒ€”Ô†“]‘—
+ * ãƒ¡ã‚¤ãƒ³ã€€è¦ªã€€ã‚²ãƒ¼ãƒ ç•ªå·è»¢é€
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1408,7 +1408,7 @@ static RET Guru2Proc_OyaSendPlayNo( GURU2MAIN_WORK *g2m )
 	int ret;
 	GURU2COMM_PLAYNO play;
 	
-	if( g2m->play_send_count == 0 ){	//‰‰ñ e
+	if( g2m->play_send_count == 0 ){	//åˆå› è¦ª
 		play.comm_id = 0;
 		play.play_no = 0;
 		
@@ -1419,7 +1419,7 @@ static RET Guru2Proc_OyaSendPlayNo( GURU2MAIN_WORK *g2m )
 			g2m->play_send_count++;
 			
 			#ifdef DEBUG_GURU2_PRINTF_FORCE
-			OS_Printf( "‚®‚é‚®‚é q‚ÖeƒvƒŒƒC”Ô†(%d)“]‘—\n",
+			OS_Printf( "ãã‚‹ãã‚‹ å­ã¸è¦ªãƒ—ãƒ¬ã‚¤ç•ªå·(%d)è»¢é€\n",
 				play.comm_id, play.play_no );
 			#endif
 		}
@@ -1428,7 +1428,7 @@ static RET Guru2Proc_OyaSendPlayNo( GURU2MAIN_WORK *g2m )
 	}
 	
 #if	0
-	{	//qƒvƒŒƒCƒf[ƒ^‘—M
+	{	//å­ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 		int id = 1, count = 1;
 		u32 join = g2m->g2c->comm_game_join_bit;
 		
@@ -1444,8 +1444,8 @@ static RET Guru2Proc_OyaSendPlayNo( GURU2MAIN_WORK *g2m )
 					if( ret == TRUE ){
 						g2m->play_send_count++;
 						#ifdef DEBUG_GURU2_PRINTF_FORCE
-						OS_Printf( "‚®‚é‚®‚é q(ID:%d)‚Ö", id );
-						OS_Printf( "ƒvƒŒƒC”Ô†“]‘— no=%d\n", count );
+						OS_Printf( "ãã‚‹ãã‚‹ å­(ID:%d)ã¸", id );
+						OS_Printf( "ãƒ—ãƒ¬ã‚¤ç•ªå·è»¢é€ no=%d\n", count );
 						#endif
 					}
 					
@@ -1460,7 +1460,7 @@ static RET Guru2Proc_OyaSendPlayNo( GURU2MAIN_WORK *g2m )
 		}
 	}
 #else
-	{	//qƒvƒŒƒCƒf[ƒ^‘—M
+	{	//å­ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 		int id = 1, count = 1;
 		u32 join = g2m->g2c->comm_game_join_bit;
 		
@@ -1475,8 +1475,8 @@ static RET Guru2Proc_OyaSendPlayNo( GURU2MAIN_WORK *g2m )
 					if( ret == TRUE ){
 						g2m->play_send_count++;
 						#ifdef DEBUG_GURU2_PRINTF_FORCE
-						OS_Printf( "‚®‚é‚®‚é q(ID:%d)‚Ö", id );
-						OS_Printf( "ƒvƒŒƒC”Ô†“]‘— no=%d\n", count );
+						OS_Printf( "ãã‚‹ãã‚‹ å­(ID:%d)ã¸", id );
+						OS_Printf( "ãƒ—ãƒ¬ã‚¤ç•ªå·è»¢é€ no=%d\n", count );
 						#endif
 					}
 					
@@ -1505,7 +1505,7 @@ static RET Guru2Proc_OyaSendPlayNo( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@e@ƒ^ƒ}ƒS’Ç‰ÁŠJnƒVƒOƒiƒ‹“]‘—
+ * ãƒ¡ã‚¤ãƒ³ã€€è¦ªã€€ã‚¿ãƒã‚´è¿½åŠ é–‹å§‹ã‚·ã‚°ãƒŠãƒ«è»¢é€
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1515,7 +1515,7 @@ static RET Guru2Proc_OyaSignalEggAddStart( GURU2MAIN_WORK *g2m )
 	u16 bit = G2COMM_GMSBIT_EGG_ADD_START;
 	
 	if( Guru2Comm_SendData(g2m->g2c,G2COMM_GM_SIGNAL,&bit,2) == TRUE ){
-		g2m->seq_no = SEQNO_MAIN_EGG_DATA_SEND_INIT; //ƒ^ƒ}ƒS’Ç‰Á‚Ö
+		g2m->seq_no = SEQNO_MAIN_EGG_DATA_SEND_INIT; //ã‚¿ãƒã‚´è¿½åŠ ã¸
 	}
 	
 	return( RET_NON );
@@ -1523,7 +1523,7 @@ static RET Guru2Proc_OyaSignalEggAddStart( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@q@Q‰ÁƒVƒOƒiƒ‹‘—M
+ * ãƒ¡ã‚¤ãƒ³ã€€å­ã€€å‚åŠ ã‚·ã‚°ãƒŠãƒ«é€ä¿¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1535,7 +1535,7 @@ static RET Guru2Proc_KoSendSignalJoin( GURU2MAIN_WORK *g2m )
 	ret = Guru2Comm_SendData( g2m->g2c, G2COMM_GM_JOIN, NULL, 0 );
 	
 	if( ret == TRUE ){
-		g2m->comm_wait_frame = 0; //ƒGƒ‰[ŠÔ‚ğˆê’UƒNƒŠƒA
+		g2m->comm_wait_frame = 0; //ã‚¨ãƒ©ãƒ¼æ™‚é–“ã‚’ä¸€æ—¦ã‚¯ãƒªã‚¢
 		g2m->seq_no = SEQNO_MAIN_KO_EGG_ADD_START_WAIT;
 		return( RET_NON );
 	}
@@ -1543,11 +1543,11 @@ static RET Guru2Proc_KoSendSignalJoin( GURU2MAIN_WORK *g2m )
 	#if 0
 	{
 		g2m->comm_wait_frame++;
-		if( g2m->comm_wait_frame >= COMM_WAIT_ERROR_FRAME ){ //‘Ò‚¿ŠÔ’´‚¦
+		if( g2m->comm_wait_frame >= COMM_WAIT_ERROR_FRAME ){ //å¾…ã¡æ™‚é–“è¶…ãˆ
 			g2m->force_end_flag = TRUE;
 			g2m->seq_no = SEQNO_MAIN_KO_SEND_JOIN_TIME_OVER_CANCEL;
 			#ifdef DEBUG_GURU2_PRINTF
-			OS_Printf( "‚®‚é‚®‚é@q@ŠÔØ‚ê‚É‚æ‚éƒLƒƒƒ“ƒZƒ‹\n" );
+			OS_Printf( "ãã‚‹ãã‚‹ã€€å­ã€€æ™‚é–“åˆ‡ã‚Œã«ã‚ˆã‚‹ã‚­ãƒ£ãƒ³ã‚»ãƒ«\n" );
 			#endif
 			return( RET_CONT );
 		}
@@ -1559,7 +1559,7 @@ static RET Guru2Proc_KoSendSignalJoin( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@q@ƒ^ƒ}ƒS’Ç‰ÁŠJn‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€å­ã€€ã‚¿ãƒã‚´è¿½åŠ é–‹å§‹å¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1577,7 +1577,7 @@ static RET Guru2Proc_KoEggAddStartWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@‚½‚Ü‚²ƒf[ƒ^“]‘—@‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³ã€€ãŸã¾ã”ãƒ‡ãƒ¼ã‚¿è»¢é€ã€€åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1585,7 +1585,7 @@ static RET Guru2Proc_KoEggAddStartWait( GURU2MAIN_WORK *g2m )
 static RET Guru2Proc_EggDataSendInit( GURU2MAIN_WORK *g2m )
 {
 	#ifdef DEBUG_GURU2_PRINTF
-	OS_Printf( "‚®‚é‚®‚é@‚½‚Ü‚²ƒf[ƒ^“]‘—ŠJn\n" );
+	OS_Printf( "ãã‚‹ãã‚‹ã€€ãŸã¾ã”ãƒ‡ãƒ¼ã‚¿è»¢é€é–‹å§‹\n" );
 	#endif
 	
 	CommTimingSyncStart( COMM_GURU2_TIMINGSYNC_NO );
@@ -1595,7 +1595,7 @@ static RET Guru2Proc_EggDataSendInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@‚½‚Ü‚²ƒf[ƒ^“]‘—@“¯Šú‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€ãŸã¾ã”ãƒ‡ãƒ¼ã‚¿è»¢é€ã€€åŒæœŸå¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1611,7 +1611,7 @@ static RET Guru2Proc_EggDataSendTimingWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒ^ƒ}ƒSˆÊ’u‚ğ‘—M
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚¿ãƒã‚´ä½ç½®ã‚’é€ä¿¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1628,7 +1628,7 @@ static RET Guru2Proc_EggDataTradePosSend( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@‚½‚Ü‚²ƒf[ƒ^“]‘—
+ * ãƒ¡ã‚¤ãƒ³ã€€ãŸã¾ã”ãƒ‡ãƒ¼ã‚¿è»¢é€
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1652,7 +1652,7 @@ static RET Guru2Proc_EggDataSend( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@‚½‚Ü‚²ƒf[ƒ^óM‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€ãŸã¾ã”ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1660,18 +1660,18 @@ static RET Guru2Proc_EggDataSend( GURU2MAIN_WORK *g2m )
 static RET Guru2Proc_EggDataRecvWait( GURU2MAIN_WORK *g2m )
 {
 	if( Guru2MainCommEggDataNumGet(g2m) == g2m->comm.play_max ){
-		//ƒ^ƒ}ƒSƒf[ƒ^óMŠ®—¹@ƒ_ƒƒ^ƒ}ƒSƒ`ƒFƒbƒN
+		//ã‚¿ãƒã‚´ãƒ‡ãƒ¼ã‚¿å—ä¿¡å®Œäº†ã€€ãƒ€ãƒ¡ã‚¿ãƒã‚´ãƒã‚§ãƒƒã‚¯
 		if( Guru2MainDameTamagoCheck(g2m) == TRUE ){
 			Guru2Comm_SendData( g2m->g2c, G2COMM_GM_EGG_DATA_NG, NULL, 0 );
 			g2m->seq_no = SEQNO_MAIN_COMM_ERROR_DAME_TAMAGO_MSG;
 			#ifdef DEBUG_GURU2_PRINTF
-			OS_Printf( "ƒ_ƒƒ^ƒ}ƒS‚ğ”­Œ©\n" );
+			OS_Printf( "ãƒ€ãƒ¡ã‚¿ãƒã‚´ã‚’ç™ºè¦‹\n" );
 			#endif
 		}else{
 			Guru2Comm_SendData( g2m->g2c, G2COMM_GM_EGG_DATA_OK, NULL, 0 );
 			g2m->seq_no = SEQNO_MAIN_EGG_DATA_CHECK_WAIT;
 			#ifdef DEBUG_GURU2_PRINTF
-			OS_Printf( "‚®‚é‚®‚é@ƒ^ƒ}ƒSƒf[ƒ^óMŠ®—¹\n" );
+			OS_Printf( "ãã‚‹ãã‚‹ã€€ã‚¿ãƒã‚´ãƒ‡ãƒ¼ã‚¿å—ä¿¡å®Œäº†\n" );
 			#endif
 		}
 	}
@@ -1681,7 +1681,7 @@ static RET Guru2Proc_EggDataRecvWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@‘Sˆõ‚Ì—‘ƒ`ƒFƒbƒNI—¹‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€å…¨å“¡ã®åµãƒã‚§ãƒƒã‚¯çµ‚äº†å¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1699,7 +1699,7 @@ static RET Guru2Proc_DameTamagoCheckWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@—‘’Ç‰Á‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³ã€€åµè¿½åŠ åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1709,11 +1709,11 @@ static RET Guru2Proc_EggAddInit( GURU2MAIN_WORK *g2m )
 	int i;
 	EGGADDWORK *wk = Guru2MainTempWorkInit( g2m, sizeof(EGGADDWORK) );
 	
-	wk->no = g2m->comm.my_play_no;	//©g‚Ì—‘‚©‚ç’Ç‰Á
+	wk->no = g2m->comm.my_play_no;	//è‡ªèº«ã®åµã‹ã‚‰è¿½åŠ 
 	wk->max = g2m->comm.play_max;
 	wk->offs = DATA_DiscOffsetAngle[wk->max][g2m->comm.my_play_no];
 	
-	//BTS:0187 ‚Ü‚í‚·”‚ª‘«‚è‚Ä‚È‚©‚Á‚½‚Ì‚Å’ÊMÅ‘å’l‚É•ÏX
+	//BTS:0187 ã¾ã‚ã™æ•°ãŒè¶³ã‚Šã¦ãªã‹ã£ãŸã®ã§é€šä¿¡æœ€å¤§å€¤ã«å¤‰æ›´
 	for( i = 0; i < COMM_MACHINE_MAX; i++ ){
 		if( Guru2MainCommIDPlayCheck(g2m,i) ){
 			g2m->comm.my_status[i] = CommInfoGetMyStatus( i );
@@ -1725,7 +1725,7 @@ static RET Guru2Proc_EggAddInit( GURU2MAIN_WORK *g2m )
 	g2m->disc.rotate_offs_fx = NUM_FX32( wk->offs );
 	g2m->seq_no = SEQNO_MAIN_EGG_ADD;
 	
-	//BGMØ‚è‘Ö‚¦
+	//BGMåˆ‡ã‚Šæ›¿ãˆ
 	Snd_DataSetByScene( SND_SCENE_GURUGURU, SEQ_PL_GURUGURU, 1 );
 	
 	Guru2TalkWin_Clear( g2m );
@@ -1734,7 +1734,7 @@ static RET Guru2Proc_EggAddInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@—‘’Ç‰Á
+ * ãƒ¡ã‚¤ãƒ³ã€€åµè¿½åŠ 
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1759,7 +1759,7 @@ static RET Guru2Proc_EggAdd( GURU2MAIN_WORK *g2m )
 		
 		wk->no++;
 		wk->no %= wk->max; 
-		wk->count++; 							//ƒ^ƒ}ƒS’Ç‰ÁƒJƒEƒ“ƒg
+		wk->count++; 							//ã‚¿ãƒã‚´è¿½åŠ ã‚«ã‚¦ãƒ³ãƒˆ
 		
 		if( wk->count == wk->max ){
 			g2m->frame = 0;
@@ -1772,7 +1772,7 @@ static RET Guru2Proc_EggAdd( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@—‘’Ç‰Á‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€åµè¿½åŠ å¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1800,7 +1800,7 @@ static RET Guru2Proc_EggAddWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@—‘’Ç‰ÁŒã‚Ìˆê¡‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€åµè¿½åŠ å¾Œã®ä¸€å¯¸å¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1824,7 +1824,7 @@ static RET Guru2Proc_EggAddEndWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@e@ƒQ[ƒ€ŠJnƒtƒ‰ƒO“]‘—
+ * ãƒ¡ã‚¤ãƒ³ã€€è¦ªã€€ã‚²ãƒ¼ãƒ é–‹å§‹ãƒ•ãƒ©ã‚°è»¢é€
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET GURU2RET
  */
@@ -1846,7 +1846,7 @@ static RET Guru2Proc_SendGameStartFlag( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@q@ƒQ[ƒ€ŠJnƒtƒ‰ƒO‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€å­ã€€ã‚²ãƒ¼ãƒ é–‹å§‹ãƒ•ãƒ©ã‚°å¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET GURU2RET
  */
@@ -1875,7 +1875,7 @@ static RET Guru2Proc_RecvGameStartFlag( GURU2MAIN_WORK *g2m )
 #ifdef DEBUG_DISP_CHECK
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@q@ƒfƒoƒbƒO@‰æ–ÊƒeƒXƒg
+ * ãƒ¡ã‚¤ãƒ³ã€€å­ã€€ãƒ‡ãƒãƒƒã‚°ã€€ç”»é¢ãƒ†ã‚¹ãƒˆ
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET GURU2RET
  */
@@ -1899,7 +1899,7 @@ static RET DEBUG_Guru2Proc_DispCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒJƒEƒ“ƒgƒ_ƒEƒ“’¼‘O‚Ì“¯ŠúŠJn
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ç›´å‰ã®åŒæœŸé–‹å§‹
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1913,7 +1913,7 @@ static RET Guru2Proc_CountDownBeforeTimingInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒJƒEƒ“ƒgƒ_ƒEƒ“’¼‘O‚Ì“¯Šú‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ç›´å‰ã®åŒæœŸå¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1929,7 +1929,7 @@ static RET Guru2Proc_CountDownBeforeTimingWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒJƒEƒ“ƒgƒ_ƒEƒ“‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1945,7 +1945,7 @@ static RET Guru2Proc_CountDownInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒJƒEƒ“ƒgƒ_ƒEƒ“
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1971,7 +1971,7 @@ static RET Guru2Proc_CountDown( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒQ[ƒ€@‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚²ãƒ¼ãƒ ã€€åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -1989,7 +1989,7 @@ static RET Guru2Proc_GameInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@e@ƒQ[ƒ€
+ * ãƒ¡ã‚¤ãƒ³ã€€è¦ªã€€ã‚²ãƒ¼ãƒ 
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2029,7 +2029,7 @@ static RET Guru2Proc_GameOya( GURU2MAIN_WORK *g2m )
 		}
 	}
 	
-	{	//M‰ñ‚µ
+	{	//çš¿å›ã—
 		fx32 speed;
 		DISCWORK *disc = &g2m->disc;
 		
@@ -2070,14 +2070,14 @@ static RET Guru2Proc_GameOya( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@q@ƒQ[ƒ€
+ * ãƒ¡ã‚¤ãƒ³ã€€å­ã€€ã‚²ãƒ¼ãƒ 
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
 //--------------------------------------------------------------
 static RET Guru2Proc_GameKo( GURU2MAIN_WORK *g2m )
 {
-	if( g2m->comm.game_data_send_flag == TRUE ){	//ƒQ[ƒ€ƒf[ƒ^óM
+	if( g2m->comm.game_data_send_flag == TRUE ){	//ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å—ä¿¡
 		g2m->disc.rotate_fx = NUM_FX32( g2m->comm.game_data.disc_angle );
 		g2m->disc.speed_fx = NUM_FX32( g2m->comm.game_data.disc_speed );
 		g2m->game_frame = g2m->comm.game_data.game_time;
@@ -2127,7 +2127,7 @@ static RET Guru2Proc_GameKo( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒQ[ƒ€I—¹@‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚²ãƒ¼ãƒ çµ‚äº†ã€€åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2150,7 +2150,7 @@ static RET Guru2Proc_GameEndInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒQ[ƒ€I—¹@©ƒ^ƒ}‚É‚æ‚é‰ñ“]
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚²ãƒ¼ãƒ çµ‚äº†ã€€è‡ªã‚¿ãƒã«ã‚ˆã‚‹å›è»¢
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2172,7 +2172,7 @@ static RET Guru2Proc_GameEndErrorRotate( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒQ[ƒ€I—¹@ÅŒã‚Ì‰ñ“]
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚²ãƒ¼ãƒ çµ‚äº†ã€€æœ€å¾Œã®å›è»¢
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2218,7 +2218,7 @@ static RET Guru2Proc_GameEndLastRotate( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒQ[ƒ€I—¹@’ÊM“¯ŠúŠJn
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚²ãƒ¼ãƒ çµ‚äº†ã€€é€šä¿¡åŒæœŸé–‹å§‹
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2232,7 +2232,7 @@ static RET Guru2Proc_GameEndTimingInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒQ[ƒ€I—¹@’ÊM“¯Šú
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚²ãƒ¼ãƒ çµ‚äº†ã€€é€šä¿¡åŒæœŸ
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2252,7 +2252,7 @@ static RET Guru2Proc_GameEndTimingWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@e@ƒQ[ƒ€I—¹@ƒQ[ƒ€Œ‹‰Ê‚ğ‘—M
+ * ãƒ¡ã‚¤ãƒ³ã€€è¦ªã€€ã‚²ãƒ¼ãƒ çµ‚äº†ã€€ã‚²ãƒ¼ãƒ çµæœã‚’é€ä¿¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2294,7 +2294,7 @@ static RET Guru2Proc_OyaGameEndDataSend( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@q@ƒQ[ƒ€I—¹@e‚©‚çƒQ[ƒ€Œ‹‰Êó‚¯æ‚è
+ * ãƒ¡ã‚¤ãƒ³ã€€å­ã€€ã‚²ãƒ¼ãƒ çµ‚äº†ã€€è¦ªã‹ã‚‰ã‚²ãƒ¼ãƒ çµæœå—ã‘å–ã‚Š
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2320,9 +2320,9 @@ static RET Guru2Proc_KoGameEndDataRecv( GURU2MAIN_WORK *g2m )
 		
 		g2m->omake_bit = res->omake_bit;
 		
-		Disc_Update( g2m );		//MXV
-		EggAct_Update( g2m );	//ƒ^ƒ}ƒSXV
-		g2m->front_eggact = EggAct_FrontEggActGet( g2m ); //³–Êƒ^ƒ}ƒSæ“¾
+		Disc_Update( g2m );		//çš¿æ›´æ–°
+		EggAct_Update( g2m );	//ã‚¿ãƒã‚´æ›´æ–°
+		g2m->front_eggact = EggAct_FrontEggActGet( g2m ); //æ­£é¢ã‚¿ãƒã‚´å–å¾—
 		
 		g2m->seq_no = SEQNO_MAIN_RESULT_INIT;
 	}
@@ -2332,7 +2332,7 @@ static RET Guru2Proc_KoGameEndDataRecv( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@Œ‹‰Ê”­•\@–¼‘O•\¦
+ * ãƒ¡ã‚¤ãƒ³ã€€çµæœç™ºè¡¨ã€€åå‰è¡¨ç¤º
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2357,7 +2357,7 @@ static RET Guru2Proc_ResultInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@Œ‹‰Ê”­•\@–¼‘O•\¦‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€çµæœç™ºè¡¨ã€€åå‰è¡¨ç¤ºå¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2386,7 +2386,7 @@ static RET Guru2Proc_ResultNameWait( GURU2MAIN_WORK *g2m )
 			g2m, msg_guru2_02, g2m->comm.my_status[id] );
 	}
 	
-	{	//—‘æ“¾ƒtƒ@ƒ“ƒtƒ@[ƒŒ
+	{	//åµå–å¾—ãƒ•ã‚¡ãƒ³ãƒ•ã‚¡ãƒ¼ãƒ¬
 		Snd_MePlay( SEQ_FANFA4 );
 	}
 	
@@ -2396,7 +2396,7 @@ static RET Guru2Proc_ResultNameWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@Œ‹‰Ê”­•\@Œ‹‰ÊƒƒbƒZ[ƒW•\¦‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€çµæœç™ºè¡¨ã€€çµæœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2415,7 +2415,7 @@ static RET Guru2Proc_ResultMsgWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@‚¨‚Ü‚¯ƒGƒŠƒA ƒ`ƒFƒbƒN
+ * ãƒ¡ã‚¤ãƒ³ã€€ãŠã¾ã‘ã‚¨ãƒªã‚¢ ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2436,14 +2436,14 @@ static RET Guru2Proc_OmakeAreaCheck( GURU2MAIN_WORK *g2m )
 		id = DATA_KinomiTbl[g2m->comm.play_max][0];
 		id += gf_rand() % (DATA_KinomiTbl[g2m->comm.play_max][1] - id + 1);
 		
-		if( id < DATA_KinomiTbl[g2m->comm.play_max][0] ){	//”O‚Ìˆ×
+		if( id < DATA_KinomiTbl[g2m->comm.play_max][0] ){	//å¿µã®ç‚º
 			#ifdef DEBUG_GURU2_PRINTF 			
-			OS_Printf( "–Ø‚ÌÀ‚Ì’l‚ª•Ï\n" );
+			OS_Printf( "æœ¨ã®å®Ÿã®å€¤ãŒå¤‰\n" );
 			#endif
 			id = DATA_KinomiTbl[g2m->comm.play_max][0];
 		}else if( id > DATA_KinomiTbl[g2m->comm.play_max][1] ){
 			#ifdef DEBUG_GURU2_PRINTF 			
-			OS_Printf( "–Ø‚ÌÀ‚Ì’l‚ª•Ï\n" );
+			OS_Printf( "æœ¨ã®å®Ÿã®å€¤ãŒå¤‰\n" );
 			#endif
 			id = DATA_KinomiTbl[g2m->comm.play_max][1];
 		}
@@ -2453,11 +2453,11 @@ static RET Guru2Proc_OmakeAreaCheck( GURU2MAIN_WORK *g2m )
 		ret = MyItem_AddItem(
 			SaveData_GetMyItem(g2m->g2p->param.sv), id, 1, HEAPID_GURU2 ); 
 		
-		Snd_MePlay( SEQ_FANFA4 );	//ƒtƒ@ƒ“ƒtƒ@[ƒŒ
+		Snd_MePlay( SEQ_FANFA4 );	//ãƒ•ã‚¡ãƒ³ãƒ•ã‚¡ãƒ¼ãƒ¬
 		
-		if( ret == TRUE ){	//¬Œ÷
+		if( ret == TRUE ){	//æˆåŠŸ
 			g2m->seq_no = SEQNO_MAIN_OMAKE_MSG_WAIT;
-		}else{				//¸”s
+		}else{				//å¤±æ•—
 			g2m->seq_no = SEQNO_MAIN_OMAKE_ERROR_MSG_START_WAIT;
 		}
 	}
@@ -2486,14 +2486,14 @@ static RET Guru2Proc_OmakeAreaCheck( GURU2MAIN_WORK *g2m )
 		id = DATA_KinomiTbl[g2m->comm.play_max][0];
 		id += gf_rand() % (DATA_KinomiTbl[g2m->comm.play_max][1] - id + 1);
 		
-		if( id < DATA_KinomiTbl[g2m->comm.play_max][0] ){	//”O‚Ìˆ×
+		if( id < DATA_KinomiTbl[g2m->comm.play_max][0] ){	//å¿µã®ç‚º
 			#ifdef DEBUG_GURU2_PRINTF 			
-			OS_Printf( "–Ø‚ÌÀ‚Ì’l‚ª•Ï\n" );
+			OS_Printf( "æœ¨ã®å®Ÿã®å€¤ãŒå¤‰\n" );
 			#endif
 			id = DATA_KinomiTbl[g2m->comm.play_max][0];
 		}else if( id > DATA_KinomiTbl[g2m->comm.play_max][1] ){
 			#ifdef DEBUG_GURU2_PRINTF 			
-			OS_Printf( "–Ø‚ÌÀ‚Ì’l‚ª•Ï\n" );
+			OS_Printf( "æœ¨ã®å®Ÿã®å€¤ãŒå¤‰\n" );
 			#endif
 			id = DATA_KinomiTbl[g2m->comm.play_max][1];
 		}
@@ -2503,11 +2503,11 @@ static RET Guru2Proc_OmakeAreaCheck( GURU2MAIN_WORK *g2m )
 		ret = MyItem_AddItem(
 			SaveData_GetMyItem(g2m->g2p->param.sv), id, 1, HEAPID_GURU2 ); 
 		
-		Snd_MePlay( SEQ_FANFA4 );	//ƒtƒ@ƒ“ƒtƒ@[ƒŒ
+		Snd_MePlay( SEQ_FANFA4 );	//ãƒ•ã‚¡ãƒ³ãƒ•ã‚¡ãƒ¼ãƒ¬
 		
-		if( ret == TRUE ){	//¬Œ÷
+		if( ret == TRUE ){	//æˆåŠŸ
 			g2m->seq_no = SEQNO_MAIN_OMAKE_MSG_WAIT;
-		}else{				//¸”s
+		}else{				//å¤±æ•—
 			g2m->seq_no = SEQNO_MAIN_OMAKE_ERROR_MSG_START_WAIT;
 		}
 	}
@@ -2518,7 +2518,7 @@ static RET Guru2Proc_OmakeAreaCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@‚¨‚Ü‚¯ƒGƒŠƒA@–Ø‚ÌÀæ“¾Œã‚ÌƒƒbƒZ[ƒW•\¦‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€ãŠã¾ã‘ã‚¨ãƒªã‚¢ã€€æœ¨ã®å®Ÿå–å¾—å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2537,7 +2537,7 @@ static RET Guru2Proc_OmakeAreaMsgWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@‚¨‚Ü‚¯ƒGƒŠƒA@–Ø‚ÌÀæ“¾¸”sƒƒbƒZ[ƒW•\¦ŠJn
+ * ãƒ¡ã‚¤ãƒ³ã€€ãŠã¾ã‘ã‚¨ãƒªã‚¢ã€€æœ¨ã®å®Ÿå–å¾—å¤±æ•—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–‹å§‹
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2557,7 +2557,7 @@ static RET Guru2Proc_OmakeAreaErrorMsgStartWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@‚¨‚Ü‚¯ƒGƒŠƒA@–Ø‚ÌÀæ“¾¸”sƒƒbƒZ[ƒW•\¦‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€ãŠã¾ã‘ã‚¨ãƒªã‚¢ã€€æœ¨ã®å®Ÿå–å¾—å¤±æ•—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2576,7 +2576,7 @@ static RET Guru2Proc_OmakeAreaErrorMsgWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒZ[ƒu@ƒZ[ƒu‘O‚Ì“¯Šú‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚»ãƒ¼ãƒ–ã€€ã‚»ãƒ¼ãƒ–å‰ã®åŒæœŸåˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2594,18 +2594,18 @@ static RET Guru2Proc_SaveBeforeTimingInit( GURU2MAIN_WORK *g2m )
 	Guru2TalkWin_Write( g2m, MSG_SAVE );
 	CommTimingSyncStart( COMM_GURU2_TIMINGSYNC_NO );
 	
-	sys.DontSoftReset = 1; //ƒ\ƒtƒgƒŠƒZƒbƒg•s‰Â
+	sys.DontSoftReset = 1; //ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆä¸å¯
 	g2m->seq_no = SEQNO_MAIN_SAVE_BEFORE_TIMING_WAIT;
 	
 	#ifdef DEBUG_GURU2_PRINTF
-	OS_Printf( "‚®‚é‚®‚éŒğŠ·@ƒZ[ƒuŠJn\n" );
+	OS_Printf( "ãã‚‹ãã‚‹äº¤æ›ã€€ã‚»ãƒ¼ãƒ–é–‹å§‹\n" );
 	#endif
 	return( RET_NON );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒZ[ƒu@ƒZ[ƒu‘O‚Ì“¯Šú
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚»ãƒ¼ãƒ–ã€€ã‚»ãƒ¼ãƒ–å‰ã®åŒæœŸ
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2625,7 +2625,7 @@ static RET Guru2Proc_SaveBeforeTimingWait( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒZ[ƒu@ƒZ[ƒuƒf[ƒ^”½‰f
+ * ãƒ¡ã‚¤ãƒ³ã€€ã‚»ãƒ¼ãƒ–ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åæ˜ 
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2647,7 +2647,7 @@ static RET Guru2Proc_Save( GURU2MAIN_WORK *g2m )
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@’ÊMƒGƒ‰[ƒƒbƒZ[ƒW@’ÊMƒGƒ‰[
+ * ãƒ¡ã‚¤ãƒ³ã€€é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€€é€šä¿¡ã‚¨ãƒ©ãƒ¼
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2661,7 +2661,7 @@ static RET Guru2Proc_CommErrorMsg( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@’ÊMƒGƒ‰[ƒƒbƒZ[ƒW@ƒƒ“ƒo[‚Ì“s‡‚ª‚Â‚©‚È‚¢
+ * ãƒ¡ã‚¤ãƒ³ã€€é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€€ãƒ¡ãƒ³ãƒãƒ¼ã®éƒ½åˆãŒã¤ã‹ãªã„
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2675,7 +2675,7 @@ static RET Guru2Proc_CommErrorMember( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@’ÊMƒGƒ‰[ƒƒbƒZ[ƒW@eƒLƒƒƒ“ƒZƒ‹
+ * ãƒ¡ã‚¤ãƒ³ã€€é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€€è¦ªã‚­ãƒ£ãƒ³ã‚»ãƒ«
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2689,7 +2689,7 @@ static RET Guru2Proc_CommErrorOyaCancelMsg( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@’ÊMƒGƒ‰[ƒƒbƒZ[ƒW@Q‰Á’÷‚ßØ‚è
+ * ãƒ¡ã‚¤ãƒ³ã€€é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€€å‚åŠ ç· ã‚åˆ‡ã‚Š
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2704,7 +2704,7 @@ static RET Guru2Proc_CommErrorJoinCloseMsg( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@’ÊMƒGƒ‰[ƒƒbƒZ[ƒW@ƒ_ƒƒ^ƒ}ƒS‚ª‘¶İ
+ * ãƒ¡ã‚¤ãƒ³ã€€é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€€ãƒ€ãƒ¡ã‚¿ãƒã‚´ãŒå­˜åœ¨
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2718,7 +2718,7 @@ static RET Guru2Proc_CommErrorDameTamagoMsg( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@ƒƒbƒZ[ƒWI—¹‘Ò‚¿ -> ƒQ[ƒ€I—¹‚Ö
+ * ãƒ¡ã‚¤ãƒ³ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡ -> ã‚²ãƒ¼ãƒ çµ‚äº†ã¸
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2738,7 +2738,7 @@ static RET Guru2Proc_MsgWaitNextEnd( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@I—¹@’ÊM“¯Šú‘Ò‚¿ŠJn
+ * ãƒ¡ã‚¤ãƒ³ã€€çµ‚äº†ã€€é€šä¿¡åŒæœŸå¾…ã¡é–‹å§‹
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET GURU2RET
  */
@@ -2756,7 +2756,7 @@ static RET Guru2Proc_EndTimingSyncInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@I—¹@’ÊM“¯Šú‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã€€çµ‚äº†ã€€é€šä¿¡åŒæœŸå¾…ã¡
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET GURU2RET
  */
@@ -2765,7 +2765,7 @@ static RET Guru2Proc_EndTimingSync( GURU2MAIN_WORK *g2m )
 {
 	if( g2m->force_end_flag == FALSE ){
 		if( CommIsTimingSync(COMM_GURU2_TIMINGSYNC_NO) ){
-			CommStateSetErrorCheck( FALSE, FALSE ); //Ø’f‰Â”\‚É
+			CommStateSetErrorCheck( FALSE, FALSE ); //åˆ‡æ–­å¯èƒ½ã«
 			CommStateSetLimitNum( 1 );
 			CommStateUnionBconCollectionRestart();
 			g2m->seq_no = SEQNO_MAIN_END_CONNECT_CHECK;
@@ -2791,7 +2791,7 @@ static RET Guru2Proc_EndTimingSync( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@I—¹@’ÊMl”Šm”F
+ * ãƒ¡ã‚¤ãƒ³ã€€çµ‚äº†ã€€é€šä¿¡äººæ•°ç¢ºèª
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2808,7 +2808,7 @@ static RET Guru2Proc_EndConnectCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@I—¹@ƒtƒF[ƒhƒAƒEƒgŠJn
+ * ãƒ¡ã‚¤ãƒ³ã€€çµ‚äº†ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2829,7 +2829,7 @@ static RET Guru2Proc_EndFadeOutStart( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@I—¹@ƒtƒF[ƒhƒAƒEƒg
+ * ãƒ¡ã‚¤ãƒ³ã€€çµ‚äº†ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2846,7 +2846,7 @@ static RET Guru2Proc_EndFadeOut( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“@I—¹
+ * ãƒ¡ã‚¤ãƒ³ã€€çµ‚äº†
  * @param	g2m	GURU2MAIN_WORK
  * @retval	GURU2RET	GURU2RET
  */
@@ -2857,7 +2857,7 @@ static RET Guru2Proc_End( GURU2MAIN_WORK *g2m )
 }
 
 //--------------------------------------------------------------
-///	ƒƒCƒ“ˆ—ƒe[ƒuƒ‹
+///	ãƒ¡ã‚¤ãƒ³å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static RET (* const DATA_Guru2ProcTbl[SEQNO_MAIN_MAX])( GURU2MAIN_WORK *g2m ) =
 {
@@ -2948,7 +2948,7 @@ static RET (* const DATA_Guru2ProcTbl[SEQNO_MAIN_MAX])( GURU2MAIN_WORK *g2m ) =
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·@VBlankŠÖ”
+ * ãã‚‹ãã‚‹äº¤æ›ã€€VBlanké–¢æ•°
  * @param	wk		work
  * @retval	nothing
  */
@@ -2964,33 +2964,33 @@ static void guru2_VBlankFunc( void *wk )
 }
 
 //==============================================================================
-//	ƒOƒ‰ƒtƒBƒbƒN
+//	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •`‰æ‰Šú‰»
+ * æç”»åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK 
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void guru2_DrawInit( GURU2MAIN_WORK *g2m )
 {
-	guru2_DispInit( g2m );			//‰æ–Ê‰Šú‰»
-	guru2_3DDrawInit( g2m );		//3D•`‰æ‰Šú‰»
-	guru2_CameraInit( g2m );		//ƒJƒƒ‰‰Šú‰»
-	guru2_BGInit( g2m );			//BG‰Šú‰»
-	guru2_PlttFadeInit( g2m );		//ƒpƒŒƒbƒgƒtƒF[ƒh‰Šú‰»
-	guru2_ClActInit( g2m );			//ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	guru2_DispInit( g2m );			//ç”»é¢åˆæœŸåŒ–
+	guru2_3DDrawInit( g2m );		//3Dæç”»åˆæœŸåŒ–
+	guru2_CameraInit( g2m );		//ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
+	guru2_BGInit( g2m );			//BGåˆæœŸåŒ–
+	guru2_PlttFadeInit( g2m );		//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
+	guru2_ClActInit( g2m );			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	
-	guru2_BGResLoad( g2m );			//BGƒŠƒ\[ƒXƒ[ƒh
-	guru2_TalkWinFontInit( g2m );	//ƒtƒHƒ“ƒg‰Šú‰»
-	guru2_ClActResLoad( g2m );		//ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒ[ƒh
-	guru2_DispON( g2m );			//‰æ–ÊON
+	guru2_BGResLoad( g2m );			//BGãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰
+	guru2_TalkWinFontInit( g2m );	//ãƒ•ã‚©ãƒ³ãƒˆåˆæœŸåŒ–
+	guru2_ClActResLoad( g2m );		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰
+	guru2_DispON( g2m );			//ç”»é¢ON
 }
 
 //--------------------------------------------------------------
 /**
- * •`‰æíœ
+ * æç”»å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3008,20 +3008,20 @@ static void guru2_DrawDelete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * •`‰æˆ—
+ * æç”»å‡¦ç†
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void guru2_DrawProc( GURU2MAIN_WORK *g2m )
 {
-	//----3D•`‰æ
+	//----3Dæç”»
 	GF_G3X_Reset();
 	
-	//ƒJƒƒ‰İ’è
+	//ã‚«ãƒ¡ãƒ©è¨­å®š
 	GFC_CameraLookAt();
 	
-	//ƒ‰ƒCƒgİ’è
+	//ãƒ©ã‚¤ãƒˆè¨­å®š
 	NNS_G3dGlbLightVector( 0, 0, -FX32_ONE, 0 );
 	NNS_G3dGlbLightColor( 0, GX_RGB(31,31,31) );
 	NNS_G3dGlbMaterialColorDiffAmb(
@@ -3029,41 +3029,41 @@ static void guru2_DrawProc( GURU2MAIN_WORK *g2m )
 	NNS_G3dGlbMaterialColorSpecEmi(
 		GX_RGB(31,31,31), GX_RGB(31,31,31), FALSE );
 	
-	//M•`‰æ
+	//çš¿æç”»
 	Disc_Draw( g2m );
-	//—‘•`‰æ
+	//åµæç”»
 	EggAct_Draw( g2m );
 	
-	//ƒWƒIƒƒgƒŠ•ƒŒƒ“ƒ_ƒŠƒ“ƒOƒGƒ“ƒWƒ“ŠÖ˜Aƒƒ‚ƒŠ‚ÌƒXƒƒbƒv
+	//ã‚¸ã‚ªãƒ¡ãƒˆãƒªï¼†ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ãƒ¡ãƒ¢ãƒªã®ã‚¹ãƒ¯ãƒƒãƒ—
 	GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);	
 	
-	//----2D•`‰æ
+	//----2Dæç”»
 	CATS_Draw( g2m->crp );
 }
 
 //==============================================================================
-//	‰æ–Ê
+//	ç”»é¢
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰æ–Ê‰Šú‰»
+ * ç”»é¢åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void guru2_DispInit( GURU2MAIN_WORK *g2m )
 {
-	GF_BGL_DISPVRAM tbl = {				//ƒfƒBƒXƒvƒŒƒC@ƒoƒ“ƒN‰Šú‰»
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_80_EF,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0_G				// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+	GF_BGL_DISPVRAM tbl = {				//ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã€€ãƒãƒ³ã‚¯åˆæœŸåŒ–
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_80_EF,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0_G				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 		
 	GF_Disp_SetBank( &tbl );
@@ -3071,7 +3071,7 @@ static void guru2_DispInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ‰æ–ÊON
+ * ç”»é¢ON
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3098,7 +3098,7 @@ static void guru2_DispON( GURU2MAIN_WORK *g2m )
 	G2S_SetBG2Priority( 2 );
 	G2S_SetBG3Priority( 3 );
 	
-	{	//ƒAƒ‹ƒtƒ@•ÏX
+	{	//ã‚¢ãƒ«ãƒ•ã‚¡å¤‰æ›´
 		G2_SetBlendAlpha(
 			GX_BLEND_PLANEMASK_BG2,
 			GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD,
@@ -3108,7 +3108,7 @@ static void guru2_DispON( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ‰æ–ÊOFF
+ * ç”»é¢OFF
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3129,11 +3129,11 @@ static void guru2_DispOFF( GURU2MAIN_WORK *g2m )
 
 
 //==============================================================================
-//	3D•`‰æ
+//	3Dæç”»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * 3D•`‰æ‰Šú‰»
+ * 3Dæç”»åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3142,16 +3142,16 @@ static void guru2_3DDrawInit( GURU2MAIN_WORK *g2m )
 {
 	int i;
 		
-	NNS_G3dInit();						//3DƒGƒ“ƒWƒ“‰Šú‰»
-    G3X_InitMtxStack();					//ƒ}ƒgƒŠƒNƒX‰Šú‰»
+	NNS_G3dInit();						//3Dã‚¨ãƒ³ã‚¸ãƒ³åˆæœŸåŒ–
+    G3X_InitMtxStack();					//ãƒãƒˆãƒªã‚¯ã‚¹åˆæœŸåŒ–
 	
-	G3X_SetShading( GX_SHADING_TOON );	//ƒVƒF[ƒh
-	G3X_AntiAlias( TRUE);				//ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX
-	G3X_AlphaTest( FALSE, 0 );			//ƒAƒ‹ƒtƒ@ƒeƒXƒg@
-	G3X_AlphaBlend( TRUE );				//ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh
+	G3X_SetShading( GX_SHADING_TOON );	//ã‚·ã‚§ãƒ¼ãƒ‰
+	G3X_AntiAlias( TRUE);				//ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹
+	G3X_AlphaTest( FALSE, 0 );			//ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€
+	G3X_AlphaBlend( TRUE );				//ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰
 	
 	G3X_EdgeMarking( TRUE );
-										//ƒGƒbƒWì¬
+										//ã‚¨ãƒƒã‚¸ä½œæˆ
 	for( i = 0; i < EDGE_COLOR_MAX; i++ ){
 		g2m->edge_color_tbl[i] =
 			GX_RGB( EDGE_COLOR_R, EDGE_COLOR_G, EDGE_COLOR_B );
@@ -3159,25 +3159,25 @@ static void guru2_3DDrawInit( GURU2MAIN_WORK *g2m )
 	
 	G3X_SetEdgeColorTable( g2m->edge_color_tbl );
 	
-    G3X_SetClearColor(		//ƒNƒŠƒAƒJƒ‰[
+    G3X_SetClearColor(		//ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼
 		GX_RGB(CLEAR_COLOR_R,CLEAR_COLOR_G,CLEAR_COLOR_B),
-		0,					//ƒNƒŠƒAƒJƒ‰[ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh’l
-		0x7fff,				//ƒNƒŠƒAƒJƒ‰[ƒfƒvƒX’l
-		63,					//ƒAƒgƒŠƒrƒ…[ƒgƒoƒbƒtƒ@ƒ|ƒŠƒSƒ“ID‰Šú’l
-		FALSE );			//ƒAƒgƒŠƒrƒ…[ƒgƒoƒbƒtƒ@ƒtƒHƒOON,OFF
+		0,					//ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰å€¤
+		0x7fff,				//ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ—ã‚¹å€¤
+		63,					//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒƒãƒ•ã‚¡ãƒãƒªã‚´ãƒ³IDåˆæœŸå€¤
+		FALSE );			//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒƒãƒ•ã‚¡ãƒ•ã‚©ã‚°ON,OFF
 	
-	//ƒŒƒ“ƒ_ƒŠƒ“ƒOƒGƒ“ƒWƒ“‚Ö‚ÌƒXƒƒbƒv
+	//ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¨ãƒ³ã‚¸ãƒ³ã¸ã®ã‚¹ãƒ¯ãƒƒãƒ—
     G3_SwapBuffers( GX_SORTMODE_AUTO, GX_BUFFERMODE_W );
 	
-	//ƒrƒ…[ƒ|[ƒg
+	//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆ
     G3_ViewPort( 0, 0, 255, 191 );
 	
-	//ƒeƒNƒXƒ`ƒƒVRAMƒ}ƒl[ƒWƒƒ‰Šú‰»
-	//VRAMƒXƒƒbƒg1, VRAMƒ}ƒl[ƒWƒƒ‚ğƒfƒtƒHƒ‹ƒg‚Åg—p
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
+	//VRAMã‚¹ãƒ­ãƒƒãƒˆ1, VRAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ä½¿ç”¨
 	NNS_GfdInitFrmTexVramManager( 1, TRUE );
 	
-	//ƒpƒŒƒbƒgVRAMƒ}ƒl[ƒWƒƒ‰Šú‰»
-	//ƒpƒŒƒbƒgRAM=0x4000=16kb,VRAMƒ}ƒl[ƒWƒƒ‚ğƒfƒtƒHƒ‹ƒg‚Åg—p
+	//ãƒ‘ãƒ¬ãƒƒãƒˆVRAMãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
+	//ãƒ‘ãƒ¬ãƒƒãƒˆRAM=0x4000=16kb,VRAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ä½¿ç”¨
 	NNS_GfdInitFrmPlttVramManager(0x4000, TRUE);
 }
 
@@ -3186,7 +3186,7 @@ static void guru2_3DDrawInit( GURU2MAIN_WORK *g2m )
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BG‰Šú‰»
+ * BGåˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3196,16 +3196,16 @@ static void guru2_BGInit( GURU2MAIN_WORK *g2m )
 	g2m->bgl = GF_BGL_BglIniAlloc( HEAPID_GURU2 );
 	GX_SetDispSelect( GX_DISP_SELECT_MAIN_SUB );
 	
-	{	//BG‰Šú‰»
+	{	//BGåˆæœŸåŒ–
 		GF_BGL_SYS_HEADER bg_head = {
 			GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BGMODE_0, GX_BG0_AS_3D };
 		GF_BGL_InitBG( &bg_head );
 	}
 	
-	{	//main BG0 ƒ|ƒŠƒSƒ“–Ê
+	{	//main BG0 ãƒãƒªã‚´ãƒ³é¢
 	}
 	
-	{	//main BG1	‰ï˜bƒEƒBƒ“ƒhƒE
+	{	//main BG1	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -3218,7 +3218,7 @@ static void guru2_BGInit( GURU2MAIN_WORK *g2m )
 		GF_BGL_ClearCharSet( GF_BGL_FRAME1_M, 32, 0, HEAPID_GURU2 );
 	}
 		
-	{	//main BG2	”wŒi‚»‚Ì1
+	{	//main BG2	èƒŒæ™¯ãã®1
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -3230,7 +3230,7 @@ static void guru2_BGInit( GURU2MAIN_WORK *g2m )
 		GF_BGL_ScrClear( g2m->bgl, GF_BGL_FRAME2_M );
 	}
 	
-	{	//main BG3 ”wŒi‚»‚Ì‚Q
+	{	//main BG3 èƒŒæ™¯ãã®ï¼’
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -3242,7 +3242,7 @@ static void guru2_BGInit( GURU2MAIN_WORK *g2m )
 		GF_BGL_ScrClear( g2m->bgl, GF_BGL_FRAME3_M );
 	}
 	
-	{	//sub BG2@ƒ{ƒ^ƒ“
+	{	//sub BG2ã€€ãƒœã‚¿ãƒ³
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
@@ -3253,7 +3253,7 @@ static void guru2_BGInit( GURU2MAIN_WORK *g2m )
 		GF_BGL_ScrClear( g2m->bgl, GF_BGL_FRAME2_S );
 	}
 	
-	{	//sub BG3@ƒ{ƒ^ƒ“”wŒi
+	{	//sub BG3ã€€ãƒœã‚¿ãƒ³èƒŒæ™¯
 		GF_BGL_BGCNT_HEADER bg_cnt_header = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x1800, GX_BG_CHARBASE_0x1c000, GX_BG_EXTPLTT_01,
@@ -3267,7 +3267,7 @@ static void guru2_BGInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * BGƒOƒ‰ƒtƒBƒbƒNƒŠƒ\[ƒXƒ[ƒh
+ * BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3276,45 +3276,45 @@ static void guru2_BGResLoad( GURU2MAIN_WORK *g2m )
 {
 	void *buf;
 	
-	//BGƒpƒŒƒbƒg main
+	//BGãƒ‘ãƒ¬ãƒƒãƒˆ main
 	buf = Guru2Arc_DataLoad( g2m, NARC_guru2_guruguru_bg_NCLR, FALSE );
 	NNS_G2dGetUnpackedPaletteData( buf, &g2m->bg_pPltt );
 	PaletteWorkSet( g2m->pfd, g2m->bg_pPltt->pRawData,
 		FADE_MAIN_BG, BGF_PLTT_M_OFFS, BGF_PLTT_M_SIZE );
 	sys_FreeMemoryEz( buf );
 	
-	//BGƒpƒŒƒbƒg sub
+	//BGãƒ‘ãƒ¬ãƒƒãƒˆ sub
 	buf = Guru2Arc_DataLoad( g2m, NARC_guru2_guruguru_sub_NCLR, FALSE );
 	NNS_G2dGetUnpackedPaletteData( buf, &g2m->bg_pPltt );
 	PaletteWorkSet( g2m->pfd, g2m->bg_pPltt->pRawData,
 		FADE_SUB_BG, BGF_PLTT_S_OFFS, BGF_PLTT_S_SIZE );
 	sys_FreeMemoryEz( buf );
 	
-	//BGƒpƒŒƒbƒg sub –‘O‚ÉˆÃ‚­‚µ‚Ä‚¨‚­
+	//BGãƒ‘ãƒ¬ãƒƒãƒˆ sub äº‹å‰ã«æš—ãã—ã¦ãŠã
 	ColorConceChangePfd( g2m->pfd, FADE_SUB_BG, 0xffff, 8, 0 );
 	
-	//BGƒLƒƒƒ‰ MAIN BG3
+	//BGã‚­ãƒ£ãƒ© MAIN BG3
 	buf = Guru2Arc_DataLoad( g2m, NARC_guru2_guruguru_bg_NCGR, FALSE );
 	NNS_G2dGetUnpackedCharacterData( buf, &g2m->bg_pChar );
 	GF_BGL_LoadCharacter( g2m->bgl, GF_BGL_FRAME3_M,
 		g2m->bg_pChar->pRawData, g2m->bg_pChar->szByte, BGF_BG3_M_CHAR_OFFS );
 	sys_FreeMemoryEz( buf );
 	
-	//BGƒLƒƒƒ‰ SUB BG2
+	//BGã‚­ãƒ£ãƒ© SUB BG2
 	buf = Guru2Arc_DataLoad( g2m, NARC_guru2_guruguru_but_NCGR, FALSE );
 	NNS_G2dGetUnpackedCharacterData( buf, &g2m->bg_pChar );
 	GF_BGL_LoadCharacter( g2m->bgl, GF_BGL_FRAME2_S,
 		g2m->bg_pChar->pRawData, g2m->bg_pChar->szByte, BGF_BG2_S_CHAR_OFFS );
 	sys_FreeMemoryEz( buf );
 	
-	//BGƒLƒƒƒ‰ SUB BG3
+	//BGã‚­ãƒ£ãƒ© SUB BG3
 	buf = Guru2Arc_DataLoad( g2m, NARC_guru2_guruguru_sub_bg_NCGR, FALSE );
 	NNS_G2dGetUnpackedCharacterData( buf, &g2m->bg_pChar );
 	GF_BGL_LoadCharacter( g2m->bgl, GF_BGL_FRAME3_S,
 		g2m->bg_pChar->pRawData, g2m->bg_pChar->szByte, BGF_BG3_S_CHAR_OFFS );
 	sys_FreeMemoryEz( buf );
 	
-	//BGƒXƒNƒŠ[ƒ“ MAIN BG2
+	//BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³ MAIN BG2
 	buf = Guru2Arc_DataLoad( g2m, NARC_guru2_guruguru_bg1_NSCR, FALSE );
 	NNS_G2dGetUnpackedScreenData( buf, &g2m->bg_pScr );
 	GF_BGL_ScreenBufSet( g2m->bgl, GF_BGL_FRAME2_M,
@@ -3322,7 +3322,7 @@ static void guru2_BGResLoad( GURU2MAIN_WORK *g2m )
 	GF_BGL_LoadScreenReq( g2m->bgl, GF_BGL_FRAME2_M );
 	sys_FreeMemoryEz( buf );
 	
-	//BGƒXƒNƒŠ[ƒ“ MAIN BG3
+	//BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³ MAIN BG3
 	buf = Guru2Arc_DataLoad( g2m, NARC_guru2_guruguru_bg0_NSCR, FALSE );
 	NNS_G2dGetUnpackedScreenData( buf, &g2m->bg_pScr );
 	GF_BGL_ScreenBufSet( g2m->bgl, GF_BGL_FRAME3_M,
@@ -3330,7 +3330,7 @@ static void guru2_BGResLoad( GURU2MAIN_WORK *g2m )
 	GF_BGL_LoadScreenReq( g2m->bgl, GF_BGL_FRAME3_M );
 	sys_FreeMemoryEz( buf );
 	
-	//BGƒXƒNƒŠ[ƒ“ SUB BG2
+	//BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³ SUB BG2
 	buf = Guru2Arc_DataLoad( g2m, NARC_guru2_guruguru_but0_NSCR, FALSE );
 	NNS_G2dGetUnpackedScreenData( buf, &g2m->bg_pScr );
 	GF_BGL_ScreenBufSet( g2m->bgl, GF_BGL_FRAME2_S,
@@ -3338,7 +3338,7 @@ static void guru2_BGResLoad( GURU2MAIN_WORK *g2m )
 	GF_BGL_LoadScreenReq( g2m->bgl, GF_BGL_FRAME2_S );
 	sys_FreeMemoryEz( buf );
 	
-	//BGƒXƒNƒŠ[ƒ“ SUB BG3
+	//BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³ SUB BG3
 	buf = Guru2Arc_DataLoad( g2m, NARC_guru2_guruguru_sub_bg_NSCR, FALSE );
 	NNS_G2dGetUnpackedScreenData( buf, &g2m->bg_pScr );
 	GF_BGL_ScreenBufSet( g2m->bgl, GF_BGL_FRAME3_S,
@@ -3349,7 +3349,7 @@ static void guru2_BGResLoad( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * BGƒRƒ“ƒgƒ[ƒ‹íœ
+ * BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3366,9 +3366,9 @@ static void guru2_BGDelete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * BG SUB ƒ{ƒ^ƒ“ƒXƒNƒŠ[ƒ“‚ğ“]‘—
+ * BG SUB ãƒœã‚¿ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’è»¢é€
  * @param	g2m	GURU2MAIN_WORK
- * @param	idx	ƒ{ƒ^ƒ“ƒCƒ“ƒfƒbƒNƒX
+ * @param	idx	ãƒœã‚¿ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3386,7 +3386,7 @@ static void Guru2BG_ButtonScreenSet( GURU2MAIN_WORK *g2m, u32 idx )
 
 //--------------------------------------------------------------
 /**
- * BG@ƒ{ƒ^ƒ“ƒXƒNƒŠ[ƒ“ ON‚ğ“]‘—
+ * BGã€€ãƒœã‚¿ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ ONã‚’è»¢é€
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3398,7 +3398,7 @@ static void Guru2BG_ButtonONSet( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * BG@ƒ{ƒ^ƒ“ƒXƒNƒŠ[ƒ“ OFF‚ğ“]‘—
+ * BGã€€ãƒœã‚¿ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ OFFã‚’è»¢é€
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3410,7 +3410,7 @@ static void Guru2BG_ButtonOFFSet( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * BG@ƒ{ƒ^ƒ“ƒXƒNƒŠ[ƒ“ ‰Ÿ‚µn‚ß‚ğ“]‘—
+ * BGã€€ãƒœã‚¿ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ æŠ¼ã—å§‹ã‚ã‚’è»¢é€
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3421,11 +3421,11 @@ static void Guru2BG_ButtonMiddleSet( GURU2MAIN_WORK *g2m )
 }
 
 //==============================================================================
-//	ƒpƒŒƒbƒgƒtƒF[ƒh
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒtƒF[ƒh‰Šú‰»
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3442,7 +3442,7 @@ static void guru2_PlttFadeInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒtƒF[ƒhíœ
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3458,7 +3458,7 @@ static void guru2_PlttFadeDelete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Êƒ{ƒ^ƒ“@‹P“xƒZƒbƒg
+ * ä¸‹ç”»é¢ãƒœã‚¿ãƒ³ã€€è¼åº¦ã‚»ãƒƒãƒˆ
  * @param	g2m	GURU2MAIN_WORK
  * @param	evy	EVY
  * @retval	nothing
@@ -3470,24 +3470,24 @@ static void Guru2PlttFade_BtnFade( GURU2MAIN_WORK *g2m, u32 evy )
 }
 
 //==============================================================================
-//	ƒZƒ‹ƒAƒNƒ^[
+//	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void guru2_ClActInit( GURU2MAIN_WORK *g2m )
 {
-	{	//ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	{	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 		const TCATS_OAM_INIT ED_OamInit = {
 			0, 128, 0, 32,
 			0, 128, 0, 32,
 		};
 		const TCATS_CHAR_MANAGER_MAKE ED_Ccmm = {
-			48 + 48,			///< IDŠÇ— main + sub
+			48 + 48,			///< IDç®¡ç† main + sub
 			1024 * 0x40,		///< 64k
 			512 * 0x20,			///< 32k
 			GX_OBJVRAMMODE_CHAR_1D_64K,
@@ -3498,15 +3498,15 @@ static void guru2_ClActInit( GURU2MAIN_WORK *g2m )
 		CATS_SystemInit( g2m->csp, &ED_OamInit, &ED_Ccmm, 16+16);
 	}
 	
-	{	//ƒZƒ‹ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	{	//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 		BOOL active;
 		const TCATS_RESOURCE_NUM_LIST ED_ResList = {
-			48 + 48,	///< ƒLƒƒƒ‰“o˜^” 	main + sub
-			16 + 16,	///< ƒpƒŒƒbƒg“o˜^”	main + sub
-			64,			///< ƒZƒ‹
-			64,			///< ƒZƒ‹ƒAƒjƒ
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+			48 + 48,	///< ã‚­ãƒ£ãƒ©ç™»éŒ²æ•° 	main + sub
+			16 + 16,	///< ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æ•°	main + sub
+			64,			///< ã‚»ãƒ«
+			64,			///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		};
 		
 		g2m->crp = CATS_ResourceCreate( g2m->csp );
@@ -3520,7 +3520,7 @@ static void guru2_ClActInit( GURU2MAIN_WORK *g2m )
 //--------------------------------------------------------------
 //
 /**
- * ƒZƒ‹ƒAƒNƒ^[@ƒŠƒ\[ƒXƒ[ƒh
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰
  * @param	g2m
  * @retval	nothing
  */
@@ -3532,13 +3532,13 @@ static void guru2_ClActResLoad( GURU2MAIN_WORK *g2m )
 	PALETTE_FADE_PTR pfd = g2m->pfd;
 	ARCHANDLE *hdl = g2m->arc_handle;
 	
-	//’ÊMƒAƒCƒRƒ“—pƒpƒŒƒbƒg—Ìˆæ‚ğæ‚ÉŠm•Û
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆé ˜åŸŸã‚’å…ˆã«ç¢ºä¿
 	{
 		CLACT_U_WmIcon_SetReserveAreaPlttManager( NNS_G2D_VRAM_TYPE_2DMAIN );
 	}
 	
-	//—‘
-#if 0	//3Dƒ‚ƒfƒ‹d—l
+	//åµ
+#if 0	//3Dãƒ¢ãƒ‡ãƒ«ä»•æ§˜
 	CATS_LoadResourceCharArc( csp, crp,
 		ARC_EGGDEMO_GRA, EGG_DATA_EGG_NORMAL_NCGR_BIN, TRUE,
 		NNS_G2D_VRAM_TYPE_2DMAIN, EDID_EGG_NCGR );
@@ -3551,8 +3551,8 @@ static void guru2_ClActResLoad( GURU2MAIN_WORK *g2m )
 		EGG_DATA_EGG_NORMAL_NANR_BIN, TRUE, EDID_EGG_NANR );
 #endif
 	
-	//ƒJƒEƒ“ƒgƒ_ƒEƒ“
-#if 0	//‰¼ŠG
+	//ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
+#if 0	//ä»®çµµ
 	CATS_LoadResourceCharArcH( csp, crp,
 		hdl, NARC_guru2_guru2_obj_count_NCGR, FALSE,
 		NNS_G2D_VRAM_TYPE_2DMAIN, EDID_CDOWN_NCGR );
@@ -3564,7 +3564,7 @@ static void guru2_ClActResLoad( GURU2MAIN_WORK *g2m )
 	CATS_LoadResourceCellAnmArcH( csp, crp, hdl,
 		NARC_guru2_guru2_obj_count_NANR, FALSE, EDID_CDOWN_NANR);	
 #else
-	{	//‚Ü‚º‚Ü‚º—¬—p
+	{	//ã¾ãœã¾ãœæµç”¨
 		ARCHANDLE *n_hdl;
 		n_hdl = ArchiveDataHandleOpen( ARC_NUTMIXER_GRA, HEAPID_GURU2 );
 		
@@ -3582,11 +3582,11 @@ static void guru2_ClActResLoad( GURU2MAIN_WORK *g2m )
 		ArchiveDataHandleClose( n_hdl );
 	}
 	
-	{	//ƒAƒCƒRƒ“ƒZƒbƒg
+	{	//ã‚¢ã‚¤ã‚³ãƒ³ã‚»ãƒƒãƒˆ
 		WirelessIconEasy();
 	}
 	
-	{	//ƒpƒŒƒbƒgƒtƒF[ƒh‚É’ÊMƒAƒCƒRƒ“ƒpƒŒƒbƒg“]‘—
+	{	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã«é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		NNSG2dPaletteData *palData;
 		void *pal = WirelessIconPlttResGet( HEAPID_GURU2 );
 		NNS_G2dGetUnpackedPaletteData( pal, &palData );
@@ -3599,7 +3599,7 @@ static void guru2_ClActResLoad( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[@íœ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3612,7 +3612,7 @@ static void guru2_ClActDelete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[@ƒAƒNƒ^[’Ç‰Á
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param	g2m	GURU2MAIN_WORK
  * @param	param	TCATS_OBJECT_ADD_PARAM_S
  * @retval	CATS_ACT_PTR CATS_ACT_PTR
@@ -3626,11 +3626,11 @@ static CATS_ACT_PTR Guru2ClAct_Add(
 }
 
 //==============================================================================
-//	ƒtƒHƒ“ƒg
+//	ãƒ•ã‚©ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒg@‰Šú‰»
+ * ãƒ•ã‚©ãƒ³ãƒˆã€€åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3683,7 +3683,7 @@ static void guru2_TalkWinFontInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒg@íœ
+ * ãƒ•ã‚©ãƒ³ãƒˆã€€å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3711,9 +3711,9 @@ static void guru2_TalkWinFontDelete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE•\¦
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  * @param	g2m	GURU2MAIN_WORK
- * @param	msgno	ƒƒbƒZ[ƒW”Ô†	
+ * @param	msgno	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç•ªå·	
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3738,9 +3738,9 @@ static void Guru2TalkWin_Write( GURU2MAIN_WORK *g2m, u32 msgno )
 
 //--------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE•\¦@ƒvƒŒƒCƒ„[ƒl[ƒ€w’è
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã€€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒãƒ¼ãƒ æŒ‡å®š
  * @param	g2m	GURU2MAIN_WORK
- * @param	msgno	ƒƒbƒZ[ƒW”Ô†	
+ * @param	msgno	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç•ªå·	
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3751,7 +3751,7 @@ static void Guru2TalkWin_WritePlayer(
 	MSGWORK *msg = &g2m->msgwork;
 	GF_BGL_BMPWIN *bmpwin = &msg->bmpwin_talk[GURU2TALK_WIN_TALK];
 	
-	//•¶š—ñ¶¬
+	//æ–‡å­—åˆ—ç”Ÿæˆ
 	WORDSET_RegisterPlayerName( msg->wordset, 1,
 			CommInfoGetMyStatus(CommGetCurrentID()) );
 	WORDSET_RegisterPlayerName( msg->wordset, 2, status );
@@ -3774,9 +3774,9 @@ static void Guru2TalkWin_WritePlayer(
 
 //--------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE•\¦@ƒAƒCƒeƒ€IDw’è
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã€€ã‚¢ã‚¤ãƒ†ãƒ IDæŒ‡å®š
  * @param	g2m	GURU2MAIN_WORK
- * @param	msgno	ƒƒbƒZ[ƒW”Ô†	
+ * @param	msgno	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç•ªå·	
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3787,7 +3787,7 @@ static void Guru2TalkWin_WriteItem(
 	MSGWORK *msg = &g2m->msgwork;
 	GF_BGL_BMPWIN *bmpwin = &msg->bmpwin_talk[GURU2TALK_WIN_TALK];
 	
-	//•¶š—ñ¶¬
+	//æ–‡å­—åˆ—ç”Ÿæˆ
 	WORDSET_RegisterItemName( msg->wordset, 0, id );
 	
 	str = STRBUF_Create( STR_BUF_SIZE, HEAPID_GURU2 );
@@ -3808,7 +3808,7 @@ static void Guru2TalkWin_WriteItem(
 
 //--------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒEƒNƒŠƒA
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3825,7 +3825,7 @@ static void Guru2TalkWin_Clear( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒl[ƒ€ƒEƒBƒ“ƒhƒE‰Šú‰»
+ * ãƒãƒ¼ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3848,7 +3848,7 @@ static void Guru2NameWin_Init( GURU2MAIN_WORK *g2m, int max )
 
 //--------------------------------------------------------------
 /**
- * ƒl[ƒ€ƒEƒBƒ“ƒhƒEíœ
+ * ãƒãƒ¼ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3866,11 +3866,11 @@ static void Guru2NameWin_Delete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒl[ƒ€ƒEƒBƒ“ƒhƒE•\¦
+ * ãƒãƒ¼ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  * @param	g2m	GURU2MAIN_WORK
  * @param	name	STRBUF
- * @param	no	ƒEƒBƒ“ƒhƒE”Ô†
- * @param	col	•¶šF
+ * @param	no	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
+ * @param	col	æ–‡å­—è‰²
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3889,11 +3889,11 @@ static void Guru2NameWin_Write(
 
 //--------------------------------------------------------------
 /**
- * ƒl[ƒ€ƒEƒBƒ“ƒhƒE•\¦@ID‚©‚çFİ’è
+ * ãƒãƒ¼ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã€€IDã‹ã‚‰è‰²è¨­å®š
  * @param	g2m	GURU2MAIN_WORK
  * @param	name	STRBUF
- * @param	no	ƒEƒBƒ“ƒhƒE”Ô†
- * @param	id	’ÊMID
+ * @param	no	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
+ * @param	id	é€šä¿¡ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3907,9 +3907,9 @@ static void Guru2NameWin_WriteIDColor(
 
 //--------------------------------------------------------------
 /**
- * ƒl[ƒ€ƒEƒBƒ“ƒhƒEƒNƒŠƒA
+ * ãƒãƒ¼ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
  * @param	g2m	GURU2MAIN_WORK
- * @param	no	ƒEƒBƒ“ƒhƒE”Ô†
+ * @param	no	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3924,11 +3924,11 @@ static void Guru2NameWin_Clear( GURU2MAIN_WORK *g2m, int no )
 }
 
 //==============================================================================
-//	ƒJƒƒ‰
+//	ã‚«ãƒ¡ãƒ©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰‰Šú‰»
+ * ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3958,7 +3958,7 @@ static void guru2_CameraInit( GURU2MAIN_WORK *g2m )
 			cm->distance,
 			&cm->angle,
 			cm->persp,
-			GF_CAMERA_PERSPECTIV, //PERSPECTIV=“§‹Ë‰e ORTHO=³Ë‰e
+			GF_CAMERA_PERSPECTIV, //PERSPECTIV=é€è¦–å°„å½± ORTHO=æ­£å°„å½±
 			TRUE,
 			cm->gf_camera );	
 		
@@ -3973,7 +3973,7 @@ static void guru2_CameraInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰@íœ
+ * ã‚«ãƒ¡ãƒ©ã€€å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -3986,7 +3986,7 @@ static void guru2_CameraDelete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰”½‰f
+ * ã‚«ãƒ¡ãƒ©åæ˜ 
  * @param
  * @retval
  */
@@ -4001,11 +4001,11 @@ static void guru2_CameraSet( GURU2MAIN_WORK *g2m )
 }
 
 //==============================================================================
-//	ƒ^ƒbƒ`ƒpƒlƒ‹
+//	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹ˆ— 
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å‡¦ç† 
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4033,9 +4033,9 @@ static void guru2_TPProc( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹@ƒ{ƒ^ƒ“”ÍˆÍƒ`ƒFƒbƒN
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã€€ãƒœã‚¿ãƒ³ç¯„å›²ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=ƒqƒbƒg
+ * @retval	BOOL	TRUE=ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static BOOL guru2_TPPosButtonCheck( TPWORK *tp )
@@ -4058,9 +4058,9 @@ static BOOL guru2_TPPosButtonCheck( TPWORK *tp )
 
 //--------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹@ƒ{ƒ^ƒ“”ÍˆÍ“àƒgƒŠƒKƒ`ƒFƒbƒN
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã€€ãƒœã‚¿ãƒ³ç¯„å›²å†…ãƒˆãƒªã‚¬ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=ƒqƒbƒg
+ * @retval	BOOL	TRUE=ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static BOOL Guru2TP_ButtonHitTrgCheck( GURU2MAIN_WORK *g2m )
@@ -4078,9 +4078,9 @@ static BOOL Guru2TP_ButtonHitTrgCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹@ƒ{ƒ^ƒ“”ÍˆÍ“àƒRƒ“ƒeƒBƒjƒ…[ƒ`ƒFƒbƒN
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã€€ãƒœã‚¿ãƒ³ç¯„å›²å†…ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=ƒqƒbƒg
+ * @retval	BOOL	TRUE=ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static BOOL Guru2TP_ButtonHitContCheck( GURU2MAIN_WORK *g2m )
@@ -4097,11 +4097,11 @@ static BOOL Guru2TP_ButtonHitContCheck( GURU2MAIN_WORK *g2m )
 }
 
 //==============================================================================
-//	M
+//	çš¿
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * M‰Šú‰»
+ * çš¿åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4139,7 +4139,7 @@ static void Disc_Init( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * Míœ
+ * çš¿å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4152,7 +4152,7 @@ static void Disc_Delete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * MXV
+ * çš¿æ›´æ–°
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4163,7 +4163,7 @@ static void Disc_Update( GURU2MAIN_WORK *g2m )
 	fx32 fa = disc->rotate_fx;
 	AngleAdd( &fa, disc->rotate_offs_fx );
 	AngleAdd( &fa, disc->rotate_draw_offs_fx );
-	disc->rotate.y = (360 - FX32_NUM( fa )) % 360;		//”½“]‚³‚¹Œv‰ñ‚è‚É
+	disc->rotate.y = (360 - FX32_NUM( fa )) % 360;		//åè»¢ã•ã›æ™‚è¨ˆå›ã‚Šã«
 	
 	disc->draw_pos.x = disc->pos.x + disc->offs_egg.x + disc->offs.x;
 	disc->draw_pos.y = disc->pos.y + disc->offs_egg.y + disc->offs.y;
@@ -4172,7 +4172,7 @@ static void Disc_Update( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * M•`‰æ
+ * çš¿æç”»
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4189,9 +4189,9 @@ static void Disc_Draw( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * M@‰ñ“]
+ * çš¿ã€€å›è»¢
  * @param	disc	DISCWORK
- * @param	add		‰ñ“]Šp“x
+ * @param	add		å›è»¢è§’åº¦
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4201,11 +4201,11 @@ static void Disc_Rotate( DISCWORK *disc, fx32 add )
 }
 
 //==============================================================================
-//	—‘
+//	åµ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * —‘@‰Šú‰»
+ * åµã€€åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4218,7 +4218,7 @@ static void Egg_Init( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘@íœ
+ * åµã€€å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4242,7 +4242,7 @@ static void Egg_Delete( GURU2MAIN_WORK *g2m )
 }
 
 //==============================================================================
-//	—‘ƒOƒ‰ƒtƒBƒbƒN
+//	åµã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 static const u32 DATA_EggCursorMdlArcIDTbl[G2MEMBER_MAX] =
 {
@@ -4264,7 +4264,7 @@ static const u32 DATA_EggCursorAnmArcIDTbl[G2MEMBER_MAX] =
 
 //--------------------------------------------------------------
 /**
- * —‘ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * åµã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	GURU2MAIN_WORK *g2m
  * @retval	nothing
  */
@@ -4276,12 +4276,12 @@ static void Egg_MdlInit( GURU2MAIN_WORK *g2m )
 	
 	EGGWORK *egg = &g2m->egg;
 	
-	FRO_MDL_ResSetArcLoad(	//ƒƒCƒ“ƒŠƒ\[ƒX‚Æ‚µ‚Äˆµ‚¤
+	FRO_MDL_ResSetArcLoad(	//ãƒ¡ã‚¤ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã¨ã—ã¦æ‰±ã†
 		&egg->m_rmdl, 0, g2m->arc_handle,
 		NARC_guru2_g_egg_nsbmd, HEAPID_GURU2, 0 );
 	FRO_MDL_TexTransBindVTaskAdd( &egg->m_rmdl );
 	
-	FRO_MDL_ResSetArcLoad(	//ƒƒCƒ“ƒŠƒ\[ƒX‚Æ‚µ‚Äˆµ‚¤
+	FRO_MDL_ResSetArcLoad(	//ãƒ¡ã‚¤ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã¨ã—ã¦æ‰±ã†
 		&egg->m_rmdl_kage, 0, g2m->arc_handle,
 		NARC_guru2_g_egg_kage_nsbmd, HEAPID_GURU2, 0 );
 	FRO_MDL_TexTransBindVTaskAdd( &egg->m_rmdl_kage );
@@ -4308,7 +4308,7 @@ static void Egg_MdlInit( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘ƒOƒ‰ƒtƒBƒbƒNíœ
+ * åµã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	GURU2MAIN_WORK *g2m
  * @retval	nothing
  */
@@ -4329,7 +4329,7 @@ static void Egg_MdlDelete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘ƒAƒNƒ^[@OBJ‰Šú‰»
+ * åµã‚¢ã‚¯ã‚¿ãƒ¼ã€€OBJåˆæœŸåŒ–
  * @param	GURU2MAIN_WORK *g2m
  * @param	act	EGGACTOR*
  * @retval	nothing
@@ -4346,11 +4346,11 @@ static void Egg_MdlActInit( GURU2MAIN_WORK *g2m, EGGACTOR *act )
 }
 
 //==============================================================================
-//	—‘ƒAƒNƒ^[
+//	åµã‚¢ã‚¯ã‚¿ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * —‘ƒAƒNƒ^[XV
+ * åµã‚¢ã‚¯ã‚¿ãƒ¼æ›´æ–°
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4379,7 +4379,7 @@ static void EggAct_Update( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘ƒAƒNƒ^[@•`‰æ
+ * åµã‚¢ã‚¯ã‚¿ãƒ¼ã€€æç”»
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4416,7 +4416,7 @@ static void EggAct_Draw( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘ƒAƒNƒ^[@‰ñ“]
+ * åµã‚¢ã‚¯ã‚¿ãƒ¼ã€€å›è»¢
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4437,7 +4437,7 @@ static void EggAct_Rotate( GURU2MAIN_WORK *g2m, fx32 add )
 
 //--------------------------------------------------------------
 /**
- * —‘@Šp“x‚©‚çÀ•WAŠgk—¦Œˆ’è
+ * åµã€€è§’åº¦ã‹ã‚‰åº§æ¨™ã€æ‹¡ç¸®ç‡æ±ºå®š
  * @param
  * @retval
  */
@@ -4465,9 +4465,9 @@ static void EggAct_AnglePosSet( EGGACTOR *eact, const VecFx32 *offs )
 
 //--------------------------------------------------------------
 /**
- * ‰æ–Êè‘O‚Ì—‘ƒAƒNƒ^[‚ğ•Ô‚·
+ * ç”»é¢æ‰‹å‰ã®åµã‚¢ã‚¯ã‚¿ãƒ¼ã‚’è¿”ã™
  * @param	g2m	GURU2MAIN_WORK
- * @retval	int	ƒAƒNƒ^[”z—ñ—v‘f”
+ * @retval	int	ã‚¢ã‚¯ã‚¿ãƒ¼é…åˆ—è¦ç´ æ•°
  */
 //--------------------------------------------------------------
 static EGGACTOR * EggAct_FrontEggActGet( GURU2MAIN_WORK *g2m )
@@ -4506,13 +4506,13 @@ static EGGACTOR * EggAct_FrontEggActGet( GURU2MAIN_WORK *g2m )
 }
 
 //==============================================================================
-//	—‘‰e
+//	åµå½±
 //==============================================================================
 #define EGGKAGE_OFFS_Y_FX (FX32_ONE*2)
 
 //--------------------------------------------------------------
 /**
- * —‘‰e@ƒZƒbƒg
+ * åµå½±ã€€ã‚»ãƒƒãƒˆ
  * @param
  * @retval
  */
@@ -4530,7 +4530,7 @@ static void EggKage_Init( GURU2MAIN_WORK *g2m, EGGACTOR *act )
 
 //--------------------------------------------------------------
 /**
- * —‘‰e@XV
+ * åµå½±ã€€æ›´æ–°
  * @param
  * @retval
  */
@@ -4566,13 +4566,13 @@ static void EggKage_Update( GURU2MAIN_WORK *g2m, EGGKAGE *ekage )
 }
 
 //==============================================================================
-//	—‘ƒJ[ƒ\ƒ‹
+//	åµã‚«ãƒ¼ã‚½ãƒ«
 //==============================================================================
 #define EGGCURSOR_OFFS_Y_FX (FX32_ONE*20)
 
 //--------------------------------------------------------------
 /**
- * —‘ƒJ[ƒ\ƒ‹@ƒZƒbƒg
+ * åµã‚«ãƒ¼ã‚½ãƒ«ã€€ã‚»ãƒƒãƒˆ
  * @param
  * @retval
  */
@@ -4592,7 +4592,7 @@ static void EggCursor_Init( GURU2MAIN_WORK *g2m, EGGACTOR *act )
 
 //--------------------------------------------------------------
 /**
- * —‘ƒJ[ƒ\ƒ‹@XV
+ * åµã‚«ãƒ¼ã‚½ãƒ«ã€€æ›´æ–°
  * @param
  * @retval
  */
@@ -4607,17 +4607,17 @@ static void EggCursor_Update( GURU2MAIN_WORK *g2m, EGGCURSOR *ecs )
 }
 
 //==============================================================================
-//	—‘“oêƒ^ƒXƒN
+//	åµç™»å ´ã‚¿ã‚¹ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * —‘“oêƒ^ƒXƒN’Ç‰Á
+ * åµç™»å ´ã‚¿ã‚¹ã‚¯è¿½åŠ 
  * @param	g2m	GURU2MAIN_WORK
- * @param	id	—‘ID
- * @param	no	—‘”Ô†
- * @param	name_no	–¼‘OƒEƒBƒ“ƒhƒE”Ô†
- * @param	angle	Šp“x
- * @param	offset	Šp“xƒIƒtƒZƒbƒg
+ * @param	id	åµID
+ * @param	no	åµç•ªå·
+ * @param	name_no	åå‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
+ * @param	angle	è§’åº¦
+ * @param	offset	è§’åº¦ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  * @param	eact	EGGACTOR
  * @retval	TCB_PTR	TCB_PTR
  */
@@ -4652,7 +4652,7 @@ static TCB_PTR EggAct_StartTcbSet(
 
 //--------------------------------------------------------------
 /**
- * —‘“oêƒ^ƒXƒN
+ * åµç™»å ´ã‚¿ã‚¹ã‚¯
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work
  * @retval	nothing
@@ -4676,9 +4676,9 @@ static void EggActStartTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * —‘“oêƒ^ƒXƒN@‰Šú‰»
+ * åµç™»å ´ã‚¿ã‚¹ã‚¯ã€€åˆæœŸåŒ–
  * @param	work	EGGSTARTWORK
- * @retval	BOOL	TRUE=Ä‹N
+ * @retval	BOOL	TRUE=å†èµ·
  */
 //--------------------------------------------------------------
 static RET EggActStart_Init( EGGSTARTWORK *work )
@@ -4721,9 +4721,9 @@ static RET EggActStart_Init( EGGSTARTWORK *work )
 
 //--------------------------------------------------------------
 /**
- * —‘“oêƒ^ƒXƒN@—‰º
+ * åµç™»å ´ã‚¿ã‚¹ã‚¯ã€€è½ä¸‹
  * @param	work	EGGSTARTWORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static RET EggStart_Fall( EGGSTARTWORK *work )
@@ -4732,7 +4732,7 @@ static RET EggStart_Fall( EGGSTARTWORK *work )
 	
 	eact->offs.y -= work->fall_speed;
 	
-	if( work->fall_se_play == FALSE ){		//—‰ºSE–Â‚ç‚·ƒ^ƒCƒ~ƒ“ƒO’²®
+	if( work->fall_se_play == FALSE ){		//è½ä¸‹SEé³´ã‚‰ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°èª¿æ•´
 		if( eact->offs.y <= NUM_FX32(104) ){
 			work->fall_se_play = TRUE;
 			Snd_SePlay( GURU2_SE_EGG_FALL );
@@ -4749,9 +4749,9 @@ static RET EggStart_Fall( EGGSTARTWORK *work )
 
 //--------------------------------------------------------------
 /**
- * —‘“oêƒ^ƒXƒN@—‰ºI—¹
+ * åµç™»å ´ã‚¿ã‚¹ã‚¯ã€€è½ä¸‹çµ‚äº†
  * @param	work	EGGSTARTWORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static RET EggStart_FallEnd( EGGSTARTWORK *work )
@@ -4783,7 +4783,7 @@ static RET EggStart_FallEnd( EGGSTARTWORK *work )
 }
 
 //--------------------------------------------------------------
-///	—‘“oêƒ^ƒXƒN@ˆ—ƒe[ƒuƒ‹
+///	åµç™»å ´ã‚¿ã‚¹ã‚¯ã€€å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static RET (* const DATA_EggStartTbl[SEQNO_EGGSTART_MAX])( EGGSTARTWORK *work ) =
 {
@@ -4793,11 +4793,11 @@ static RET (* const DATA_EggStartTbl[SEQNO_EGGSTART_MAX])( EGGSTARTWORK *work ) 
 };
 
 //==============================================================================
-//	—‘•‚‚«ã‚ª‚èƒ^ƒXƒN
+//	åµæµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * —‘•‚‚«ã‚ª‚è“®ì
+ * åµæµ®ãä¸ŠãŒã‚Šå‹•ä½œ
  * @param	g2m		GURU2MAIN_WORK
  * @param	work	EGGJUMP_WORK
  * @retval	nothing
@@ -4838,7 +4838,7 @@ static void EggJump( GURU2MAIN_WORK *g2m, EGGJUMP_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * —‘•‚‚«ã‚ª‚èƒ^ƒXƒN
+ * åµæµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -4860,7 +4860,7 @@ static void EggJumpTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * —‘•‚‚«ã‚ª‚èƒ^ƒXƒN‰Šú‰»
+ * åµæµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4878,7 +4878,7 @@ static void EggJumpTcb_Init( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘•‚‚«ã‚ª‚èƒ^ƒXƒNíœ
+ * åµæµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4890,7 +4890,7 @@ static void EggJumpTcb_Delete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘•‚‚«ã‚ª‚èƒ^ƒXƒN‚É—‘ƒAƒNƒ^[ƒZƒbƒg
+ * åµæµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯ã«åµã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  * @param	g2m	GURU2MAIN_WORK
  * @param	act	EGGACTOR
  * @retval	nothing
@@ -4915,7 +4915,7 @@ static void EggJumpTcb_EggSet( GURU2MAIN_WORK *g2m, EGGACTOR *act )
 
 //--------------------------------------------------------------
 /**
- * —‘•‚‚«ã‚ª‚èƒ^ƒXƒN‚É‘S‚Ä‚Ì—‘ƒAƒNƒ^[ƒZƒbƒg
+ * åµæµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯ã«å…¨ã¦ã®åµã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -4935,9 +4935,9 @@ static void EggJumpTcb_EggSetAll( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘•‚‚«ã‚ª‚èƒ^ƒXƒNƒ`ƒFƒbƒN
+ * åµæµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=ƒWƒƒƒ“ƒv’†
+ * @retval	BOOL	TRUE=ã‚¸ãƒ£ãƒ³ãƒ—ä¸­
  */
 //--------------------------------------------------------------
 static BOOL EggJumpTcb_JumpCheck( GURU2MAIN_WORK *g2m )
@@ -4956,11 +4956,11 @@ static BOOL EggJumpTcb_JumpCheck( GURU2MAIN_WORK *g2m )
 }
 
 //==============================================================================
-///	—‘‰ñ“]ƒ^ƒXƒN
+///	åµå›è»¢ã‚¿ã‚¹ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * —‘‰ñ“]
+ * åµå›è»¢
  * @param	spin	EGGSPIN_WORK
  * @retval	nothing
  */
@@ -4992,7 +4992,7 @@ static void EggSpin( EGGSPIN_WORK *spin )
 
 //--------------------------------------------------------------
 /**
- * —‘‰ñ“]ƒ^ƒXƒN
+ * åµå›è»¢ã‚¿ã‚¹ã‚¯
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -5014,7 +5014,7 @@ static void EggSpinTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * —‘‰ñ“]ƒ^ƒXƒN‰Šú‰»
+ * åµå›è»¢ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5032,7 +5032,7 @@ static void EggSpinTcb_Init( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘‰ñ“]ƒ^ƒXƒNíœ
+ * åµå›è»¢ã‚¿ã‚¹ã‚¯å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5044,7 +5044,7 @@ static void EggSpinTcb_Delete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘‰ñ“]ƒ^ƒXƒN‚É—‘ƒAƒNƒ^[ƒZƒbƒg
+ * åµå›è»¢ã‚¿ã‚¹ã‚¯ã«åµã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  * @param	g2m	GURU2MAIN_WORK
  * @param	act	EGGACTOR
  * @retval	nothing
@@ -5056,7 +5056,7 @@ static void EggSpinTcb_EggSet( GURU2MAIN_WORK *g2m, EGGACTOR *act )
 	EGGSPINTCB_WORK *work = &g2m->egg_spin_tcb_work;
 	EGGSPIN_WORK *spin = work->spin_work;
 	
-	for( i = 0; i < G2MEMBER_MAX; i++, spin++ ){ //Às’†‚Å‚ ‚ê‚ÎÄ‹N“®
+	for( i = 0; i < G2MEMBER_MAX; i++, spin++ ){ //å®Ÿè¡Œä¸­ã§ã‚ã‚Œã°å†èµ·å‹•
 		if( spin->use_flag == TRUE && spin->eact == act ){
 			spin->seq_no = 0;
 			return;
@@ -5075,11 +5075,11 @@ static void EggSpinTcb_EggSet( GURU2MAIN_WORK *g2m, EGGACTOR *act )
 }
 
 //==============================================================================
-//	—‘—h‚êƒ^ƒXƒN
+//	åµæºã‚Œã‚¿ã‚¹ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * —‘—h‚ê
+ * åµæºã‚Œ
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work
  * @retval	nothing
@@ -5119,7 +5119,7 @@ static void EggShake( EGGSHAKE_WORK *shake )
 
 //--------------------------------------------------------------
 /**
- * —‘—h‚êƒ^ƒXƒN
+ * åµæºã‚Œã‚¿ã‚¹ã‚¯
  * @param	tcb	TCB_PTR
  * @param	wk	tcb	work
  * @retval	nothing
@@ -5141,7 +5141,7 @@ static void EggShakeTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * —‘—h‚êƒ^ƒXƒN‰Šú‰»
+ * åµæºã‚Œã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5159,7 +5159,7 @@ static void EggShakeTcb_Init( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘—h‚êƒ^ƒXƒNíœ
+ * åµæºã‚Œã‚¿ã‚¹ã‚¯å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK	
  * @retval	nothing
  */
@@ -5171,7 +5171,7 @@ static void EggShakeTcb_Delete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘—h‚êƒ^ƒXƒN‚É—‘ƒAƒNƒ^[ƒZƒbƒg
+ * åµæºã‚Œã‚¿ã‚¹ã‚¯ã«åµã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  * @param	g2m	GURU2MAIN_WORK
  * @param	act	EGGACTOR
  * @retval	nothing
@@ -5183,7 +5183,7 @@ static void EggShakeTcb_EggSet( GURU2MAIN_WORK *g2m, EGGACTOR *act )
 	EGGSHAKETCB_WORK *work = &g2m->egg_shake_tcb_work;
 	EGGSHAKE_WORK *shake = work->shake_work;
 	
-	for( i = 0; i < G2MEMBER_MAX; i++, shake++ ){ //Às’†‚Å‚ ‚ê‚ÎÄ‹N“®
+	for( i = 0; i < G2MEMBER_MAX; i++, shake++ ){ //å®Ÿè¡Œä¸­ã§ã‚ã‚Œã°å†èµ·å‹•
 		if( shake->use_flag == TRUE && shake->eact == act ){
 			shake->seq_no = 0;
 			return;
@@ -5202,11 +5202,11 @@ static void EggShakeTcb_EggSet( GURU2MAIN_WORK *g2m, EGGACTOR *act )
 }
 
 //==============================================================================
-//	—‘MƒWƒƒƒ“ƒvƒ^ƒXƒN
+//	åµçš¿ã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¹ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * —‘M•‚‚«ã‚ª‚èˆ—
+ * åµçš¿æµ®ãä¸ŠãŒã‚Šå‡¦ç†
  * @param	g2m	GURU2MAIN_WORK
  * @param	work	EGGDISCJUMPTCB_WORK
  * @retval	nothing
@@ -5267,7 +5267,7 @@ static void EggDiscJump( GURU2MAIN_WORK *g2m, EGGDISCJUMPTCB_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * —‘M•‚‚«ã‚ª‚èƒ^ƒXƒN
+ * åµçš¿æµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -5282,7 +5282,7 @@ static void EggDiscJumpTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * —‘M•‚‚«ã‚ª‚èƒWƒƒƒ“ƒvƒ^ƒXƒN‰Šú‰» 
+ * åµçš¿æµ®ãä¸ŠãŒã‚Šã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¹ã‚¯åˆæœŸåŒ– 
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5301,7 +5301,7 @@ static void EggDiscJumpTcb_Init( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘M•‚‚«ã‚ª‚èƒ^ƒXƒNíœ
+ * åµçš¿æµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5313,7 +5313,7 @@ static void EggDiscJumpTcb_Delete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘M•‚‚«ã‚ª‚èƒ^ƒXƒN‹N“®
+ * åµçš¿æµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯èµ·å‹•
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5330,9 +5330,9 @@ static void EggDiscJumpTcb_JumpSet( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘M•‚‚«ã‚ª‚èƒ^ƒXƒN@ƒWƒƒƒ“ƒvƒ`ƒFƒbƒN
+ * åµçš¿æµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯ã€€ã‚¸ãƒ£ãƒ³ãƒ—ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=ƒWƒƒƒ“ƒv’†
+ * @retval	BOOL	TRUE=ã‚¸ãƒ£ãƒ³ãƒ—ä¸­
  */
 //--------------------------------------------------------------
 static BOOL EggDiscJumpTcb_JumpCheck( GURU2MAIN_WORK *g2m )
@@ -5344,9 +5344,9 @@ static BOOL EggDiscJumpTcb_JumpCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘M•‚‚«ã‚ª‚èƒ^ƒXƒN@ˆ—’†ƒ`ƒFƒbƒN
+ * åµçš¿æµ®ãä¸ŠãŒã‚Šã‚¿ã‚¹ã‚¯ã€€å‡¦ç†ä¸­ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=ƒWƒƒƒ“ƒv’†
+ * @retval	BOOL	TRUE=ã‚¸ãƒ£ãƒ³ãƒ—ä¸­
  */
 //--------------------------------------------------------------
 static BOOL EggDiscJumpTcb_JumpProcCheck( GURU2MAIN_WORK *g2m )
@@ -5357,7 +5357,7 @@ static BOOL EggDiscJumpTcb_JumpProcCheck( GURU2MAIN_WORK *g2m )
 }
 
 //==============================================================================
-//	ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒ^ƒXƒN
+//	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚¿ã‚¹ã‚¯
 //==============================================================================
 
 //--------------------------------------------------------------
@@ -5375,7 +5375,7 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒJƒEƒ“ƒgƒ_ƒEƒ“TCB
+ * ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³TCB
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work
  * @retval	nothing
@@ -5413,7 +5413,7 @@ static void CountDownTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒ^ƒXƒN’Ç‰Á
+ * ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚¿ã‚¹ã‚¯è¿½åŠ 
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5452,11 +5452,11 @@ static TCB_PTR guru2_CountDownTcbSet( GURU2MAIN_WORK *g2m )
 }
 
 //==============================================================================
-//	ƒ{ƒ^ƒ“ƒAƒjƒƒ^ƒXƒN
+//	ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒ“®ì
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡å‹•ä½œ
  * @param	g2m	GURU2MAIN_WORK
  * @param	work	BTNANMTCB_WORK
  * @retval	nothing
@@ -5465,14 +5465,14 @@ static TCB_PTR guru2_CountDownTcbSet( GURU2MAIN_WORK *g2m )
 static void BtnAnm( GURU2MAIN_WORK *g2m, BTNANMTCB_WORK *work )
 {
 	switch( work->seq_no ){
-	case 0:	//‘Ò‹@
+	case 0:	//å¾…æ©Ÿ
 		break;
-	case 1:	//‰Ÿ‚·ŠJn
+	case 1:	//æŠ¼ã™é–‹å§‹
 		Guru2BG_ButtonONSet( g2m );
 		Snd_SePlay( GURU2_SE_BTN_PUSH );
 		work->frame = 0;
 		work->seq_no++;
-	case 2:	//ƒ{ƒ^ƒ“‰Ÿ‚µ‚İ
+	case 2:	//ãƒœã‚¿ãƒ³æŠ¼ã—è¾¼ã¿
 		work->frame++;
 		if( work->frame >= BTN_ANM_FRAME_START ){
 			work->frame = 0;
@@ -5501,7 +5501,7 @@ static void BtnAnm( GURU2MAIN_WORK *g2m, BTNANMTCB_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒƒ^ƒXƒN
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -5516,7 +5516,7 @@ static void BtnAnmTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒƒ^ƒXƒN‰Šú‰»
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5532,7 +5532,7 @@ static void BtnAnmTcb_Init( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒƒ^ƒXƒNíœ
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5544,9 +5544,9 @@ static void BtnAnmTcb_Delete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒƒ^ƒXƒN@‰Ÿ‚µ‚İƒ`ƒFƒbƒN
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯ã€€æŠ¼ã—è¾¼ã¿ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=‰Ÿ‚µ‚İ’†
+ * @retval	BOOL	TRUE=æŠ¼ã—è¾¼ã¿ä¸­
  */
 //--------------------------------------------------------------
 static BOOL BtnAnmTcb_PushCheck( GURU2MAIN_WORK *g2m )
@@ -5558,7 +5558,7 @@ static BOOL BtnAnmTcb_PushCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒƒ^ƒXƒN@‰Ÿ‚·
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯ã€€æŠ¼ã™
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5573,11 +5573,11 @@ static void BtnAnmTcb_PushSet( GURU2MAIN_WORK *g2m )
 }
 
 //==============================================================================
-//	‚¨‚Ü‚¯ƒ][ƒ“—‘ƒWƒƒƒ“ƒvƒ^ƒXƒN
+//	ãŠã¾ã‘ã‚¾ãƒ¼ãƒ³åµã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¹ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚¨‚Ü‚¯—‘ƒWƒƒƒ“ƒv
+ * ãŠã¾ã‘åµã‚¸ãƒ£ãƒ³ãƒ—
  * @param	g2m	GURU2MAIN_WORK
  * @param	work	OMAKEJUMP_WORK
  * @retval	nothing
@@ -5616,7 +5616,7 @@ static void OmakeEggJump( GURU2MAIN_WORK *g2m, OMAKEJUMP_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‚¨‚Ü‚¯—‘ƒWƒƒƒ“ƒvƒ^ƒXƒN
+ * ãŠã¾ã‘åµã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¹ã‚¯
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -5636,7 +5636,7 @@ static void OmakeEggJumpTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ‚¨‚Ü‚¯—‘ƒWƒƒƒ“ƒvƒ^ƒXƒN‰Šú‰»
+ * ãŠã¾ã‘åµã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5652,7 +5652,7 @@ static void OmakeEggJumpTcb_Init( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ‚¨‚Ü‚¯—‘ƒWƒƒƒ“ƒvƒ^ƒXƒNíœ
+ * ãŠã¾ã‘åµã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¹ã‚¯å‰Šé™¤
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5664,7 +5664,7 @@ static void OmakeEggJumpTcb_Delete( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ‚¨‚Ü‚¯—‘ƒWƒƒƒ“ƒvƒ^ƒXƒN‚É—‘“o˜^
+ * ãŠã¾ã‘åµã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¹ã‚¯ã«åµç™»éŒ²
  * @param	g2m	GURU2MAIN_WORK
  * @param	act	EGGACTOR
  * @retval	nothing
@@ -5685,7 +5685,7 @@ static void OmakeEggJumpTcb_EggSet( GURU2MAIN_WORK *g2m, EGGACTOR *act )
 
 //--------------------------------------------------------------
 /**
- * omake_bit—§‚¿—‘‚ÉƒWƒƒƒ“ƒvƒZƒbƒg
+ * omake_bitç«‹ã¡åµã«ã‚¸ãƒ£ãƒ³ãƒ—ã‚»ãƒƒãƒˆ
  * @param	
  * @retval
  */
@@ -5727,11 +5727,11 @@ static void OmakeEggJumpTcb_AllSet( GURU2MAIN_WORK *g2m )
 #endif
 
 //==============================================================================
-//	ƒ{ƒ^ƒ“–¾ˆÃ
+//	ãƒœã‚¿ãƒ³æ˜æš—
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“‚ğ–¾ˆÃ‚·‚éƒ^ƒXƒN
+ * ãƒœã‚¿ãƒ³ã‚’æ˜æš—ã™ã‚‹ã‚¿ã‚¹ã‚¯
  * @param	g2m	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5741,7 +5741,7 @@ static void BtnFadeTcb( TCB_PTR tcb, void *wk )
 	int end = FALSE;
 	BTNFADE_WORK *work = wk;
 	
-	if( work->light_flag == TRUE ){		//–¾‚é‚­
+	if( work->light_flag == TRUE ){		//æ˜ã‚‹ã
 		work->evy--;
 		
 		if( (int)work->evy <= 0 ){
@@ -5767,9 +5767,9 @@ static void BtnFadeTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“–¾ˆÃƒ^ƒXƒN’Ç‰Á
+ * ãƒœã‚¿ãƒ³æ˜æš—ã‚¿ã‚¹ã‚¯è¿½åŠ 
  * @param	g2m		GURU2MAIN_WORK
- * @param	light	TURE=–¾‚é‚­ FALSE=ˆÃ‚­
+ * @param	light	TURE=æ˜ã‚‹ã FALSE=æš—ã
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5790,13 +5790,13 @@ static void BtnFadeTcbAdd( GURU2MAIN_WORK *g2m, int light )
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Šp“x‘Œ¸
- * @param	angle	Šp“x
- * @param	add		‘Œ¸’l
+ * è§’åº¦å¢—æ¸›
+ * @param	angle	è§’åº¦
+ * @param	add		å¢—æ¸›å€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5809,7 +5809,7 @@ static void AngleAdd( fx32 *angle, fx32 add )
 
 //--------------------------------------------------------------
 /**
- * M‚ğ‰ñ“]‚³‚¹A—‘‚ğ“®‚©‚·B
+ * çš¿ã‚’å›è»¢ã•ã›ã€åµã‚’å‹•ã‹ã™ã€‚
  * @param	gm	GURU2MAIN_WORK
  * @retval	nothing
  */
@@ -5822,9 +5822,9 @@ static void DiscRotateEggMove( GURU2MAIN_WORK *g2m, fx32 speed )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€ŠÔ‚Ìis
+ * ã‚²ãƒ¼ãƒ æ™‚é–“ã®é€²è¡Œ
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL Guru2GameTimeCount( GURU2MAIN_WORK *g2m )
@@ -5841,11 +5841,11 @@ static BOOL Guru2GameTimeCount( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^æ‚èo‚µ
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿å–ã‚Šå‡ºã—
  * @param	g2m		GURU2MAIN_WORK
- * @param	idx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	fb		TRUE=‘O,FALSE=Œã‚ë‚©‚ç—ÌˆæŠm•Û
- * @retval	void*	ƒ[ƒhƒf[ƒ^
+ * @param	idx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	fb		TRUE=å‰,FALSE=å¾Œã‚ã‹ã‚‰é ˜åŸŸç¢ºä¿
+ * @retval	void*	ãƒ­ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 static void * Guru2Arc_DataLoad( GURU2MAIN_WORK *g2m, u32 idx, BOOL fb )
@@ -5865,9 +5865,9 @@ static void * Guru2Arc_DataLoad( GURU2MAIN_WORK *g2m, u32 idx, BOOL fb )
 
 //--------------------------------------------------------------
 /**
- * ƒL[ƒgƒŠƒKƒ`ƒFƒbƒN
- * @param	pad		PAD_BUTTON_A“™
- * @retval	BOOL	TRUE=ƒqƒbƒg
+ * ã‚­ãƒ¼ãƒˆãƒªã‚¬ãƒã‚§ãƒƒã‚¯
+ * @param	pad		PAD_BUTTON_Aç­‰
+ * @retval	BOOL	TRUE=ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static BOOL Guru2Pad_TrgCheck( u32 pad )
@@ -5879,9 +5879,9 @@ static BOOL Guru2Pad_TrgCheck( u32 pad )
 
 //--------------------------------------------------------------
 /**
- * ƒL[ƒRƒ“ƒeƒjƒ…[ƒ`ƒFƒbƒN
- * @param	pad		PAD_BUTTON_A“™
- * @retval	BOOL	TRUE=ƒqƒbƒg
+ * ã‚­ãƒ¼ã‚³ãƒ³ãƒ†ãƒ‹ãƒ¥ãƒ¼ãƒã‚§ãƒƒã‚¯
+ * @param	pad		PAD_BUTTON_Aç­‰
+ * @retval	BOOL	TRUE=ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static BOOL Guru2Pad_ContCheck( u32 pad )
@@ -5893,9 +5893,9 @@ static BOOL Guru2Pad_ContCheck( u32 pad )
 
 //--------------------------------------------------------------
 /**
- * ’ÊM‚©‚ç‘—‚ç‚ê‚Ä‚­‚éƒ{ƒ^ƒ“î•ñ‚ğŠi”[
+ * é€šä¿¡ã‹ã‚‰é€ã‚‰ã‚Œã¦ãã‚‹ãƒœã‚¿ãƒ³æƒ…å ±ã‚’æ ¼ç´
  * @param	g2m		GURU2MAIN_WORK
- * @param	btn		ƒ{ƒ^ƒ“î•ñ
+ * @param	btn		ãƒœã‚¿ãƒ³æƒ…å ±
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5908,7 +5908,7 @@ void Guru2Main_CommButtonSet( GURU2MAIN_WORK *g2m, u32 btn )
 
 //--------------------------------------------------------------
 /**
- * ’ÊM‚©‚ç‘—‚ç‚ê‚Ä‚­‚éƒQ[ƒ€î•ñ‚ğŠi”[
+ * é€šä¿¡ã‹ã‚‰é€ã‚‰ã‚Œã¦ãã‚‹ã‚²ãƒ¼ãƒ æƒ…å ±ã‚’æ ¼ç´
  * @param	g2m	GURU2MAIN
  * @param	data	GURU2COMM_GAMEDATA
  * @retval	nothing
@@ -5923,7 +5923,7 @@ void Guru2Main_CommGameDataSet(
 
 //--------------------------------------------------------------
 /**
- * ƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒN‰Šú‰»
+ * ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  * @param	g2m	GURU2MAIN_WORK
  * @retval	void*
  */
@@ -5937,7 +5937,7 @@ static void * Guru2MainTempWorkInit( GURU2MAIN_WORK *g2m, u32 size )
 
 //--------------------------------------------------------------
 /**
- * ƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒNæ“¾
+ * ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯å–å¾—
  * @param	g2m	GURU2MAIN_WORK
  * @retval	void*
  */
@@ -5949,9 +5949,9 @@ static void * Guru2MainTempWorkGet( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * e‚ª‘—‚éƒVƒOƒiƒ‹ƒrƒbƒgƒ`ƒFƒbƒN
+ * è¦ªãŒé€ã‚‹ã‚·ã‚°ãƒŠãƒ«ãƒ“ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=’÷‚ßØ‚è
+ * @retval	BOOL	TRUE=ç· ã‚åˆ‡ã‚Š
  */
 //--------------------------------------------------------------
 static BOOL Guru2MainCommSignalCheck(GURU2MAIN_WORK *g2m, u16 bit)
@@ -5964,9 +5964,9 @@ static BOOL Guru2MainCommSignalCheck(GURU2MAIN_WORK *g2m, u16 bit)
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€Q‰Á’÷‚ßØ‚èƒ`ƒFƒbƒN
+ * ã‚²ãƒ¼ãƒ å‚åŠ ç· ã‚åˆ‡ã‚Šãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=’÷‚ßØ‚è
+ * @retval	BOOL	TRUE=ç· ã‚åˆ‡ã‚Š
  */
 //--------------------------------------------------------------
 static BOOL Guru2MainCommJoinCloseCheck( GURU2MAIN_WORK *g2m )
@@ -5983,15 +5983,15 @@ static BOOL Guru2MainCommJoinCloseCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€Q‰Ál”ƒ`ƒFƒbƒN
+ * ã‚²ãƒ¼ãƒ å‚åŠ äººæ•°ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE Q‰Ál”ˆê’v
+ * @retval	BOOL	TRUE å‚åŠ äººæ•°ä¸€è‡´
  */
 //--------------------------------------------------------------
 static BOOL Guru2MainCommJoinNumCheck( GURU2MAIN_WORK *g2m )
 {
 	int in = 0;
-	int max = g2m->g2p->receipt_num - 1;	//-1=©g
+	int max = g2m->g2p->receipt_num - 1;	//-1=è‡ªèº«
 	u32 bit = g2m->g2c->comm_game_join_bit;
 	
 	while( bit ){
@@ -6008,15 +6008,15 @@ static BOOL Guru2MainCommJoinNumCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€Q‰Ál”æ“¾
+ * ã‚²ãƒ¼ãƒ å‚åŠ äººæ•°å–å¾—
  * @param	g2m	GURU2MAIN_WORK
- * @retval	int TRUE Q‰Ál”ˆê’v
+ * @retval	int TRUE å‚åŠ äººæ•°ä¸€è‡´
  */
 //--------------------------------------------------------------
 static int Guru2MainCommJoinNumGet( GURU2MAIN_WORK *g2m )
 {
 	int in = 0;
-	u32 bit = g2m->g2c->comm_game_join_bit;	//q‚ÌQ‰ÁÒ
+	u32 bit = g2m->g2c->comm_game_join_bit;	//å­ã®å‚åŠ è€…
 	
 	while( bit ){
 		in += (bit&0x01);
@@ -6029,9 +6029,9 @@ static int Guru2MainCommJoinNumGet( GURU2MAIN_WORK *g2m )
 #if 0
 //--------------------------------------------------------------
 /**
- * eƒQ[ƒ€ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN
+ * è¦ªã‚²ãƒ¼ãƒ ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL	TRUE=eƒLƒƒƒ“ƒZƒ‹
+ * @retval	BOOL	TRUE=è¦ªã‚­ãƒ£ãƒ³ã‚»ãƒ«
  */
 //--------------------------------------------------------------
 static BOOL Guru2MainCommOyaCancelCheck( GURU2MAIN_WORK *g2m )
@@ -6046,7 +6046,7 @@ static BOOL Guru2MainCommOyaCancelCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ‘—‚ç‚ê‚Ä‚«‚½ƒvƒŒƒC”Ô†‚ğƒZƒbƒg
+ * é€ã‚‰ã‚Œã¦ããŸãƒ—ãƒ¬ã‚¤ç•ªå·ã‚’ã‚»ãƒƒãƒˆ
  * @param	g2m		GURU2MAIN_WORK
  * @param	no	GURU2COMM_PLAYNO
  * @retval	nothing
@@ -6060,16 +6060,16 @@ void Guru2Main_CommPlayNoDataSet(
 	if( no->comm_id == CommGetCurrentID() ){
 		g2m->comm.my_play_no = no->play_no;
 		#ifdef DEBUG_GURU2_PRINTF
-		OS_Printf( "‚®‚é‚®‚é@©•ª‚ÌƒvƒŒƒC”Ô†(%d)óM\n", no->play_no );
+		OS_Printf( "ãã‚‹ãã‚‹ã€€è‡ªåˆ†ã®ãƒ—ãƒ¬ã‚¤ç•ªå·(%d)å—ä¿¡\n", no->play_no );
 		#endif
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ‘—‚ç‚ê‚Ä‚«‚½ƒvƒŒƒCÅ‘ål”‚ğƒZƒbƒg
+ * é€ã‚‰ã‚Œã¦ããŸãƒ—ãƒ¬ã‚¤æœ€å¤§äººæ•°ã‚’ã‚»ãƒƒãƒˆ
  * @param	g2m		GURU2MAIN_WORK
- * @param	max 	ƒvƒŒƒCÅ‘ål”
+ * @param	max 	ãƒ—ãƒ¬ã‚¤æœ€å¤§äººæ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -6080,7 +6080,7 @@ void Guru2Main_CommPlayMaxSet( GURU2MAIN_WORK *g2m, int max )
 
 //--------------------------------------------------------------
 /**
- * w’èID‚ªƒQ[ƒ€Q‰ÁÒ‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ * æŒ‡å®šIDãŒã‚²ãƒ¼ãƒ å‚åŠ è€…ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  * @param	g2m
  * @param	id
  * @retval	nothing
@@ -6088,7 +6088,7 @@ void Guru2Main_CommPlayMaxSet( GURU2MAIN_WORK *g2m, int max )
 //--------------------------------------------------------------
 static BOOL Guru2MainCommIDPlayCheck( GURU2MAIN_WORK *g2m, int id )
 {
-	if( id != 0 ){ //e‚Í–³ğŒ‚ÅQ‰Á
+	if( id != 0 ){ //è¦ªã¯ç„¡æ¡ä»¶ã§å‚åŠ 
 		u32 bit = 1 << (u32)id;
 		if( (g2m->g2c->comm_game_join_bit&bit) == 0 ){
 			return( FALSE );
@@ -6100,9 +6100,9 @@ static BOOL Guru2MainCommIDPlayCheck( GURU2MAIN_WORK *g2m, int id )
 
 //--------------------------------------------------------------
 /**
- * ‚½‚Ü‚²ƒf[ƒ^ŒğŠ·
+ * ãŸã¾ã”ãƒ‡ãƒ¼ã‚¿äº¤æ›
  * @param	g2m		GURU2MAIN_WORK
- * @param	id		id=ŒğŠ·æ‚ÌID
+ * @param	id		id=äº¤æ›å…ˆã®ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -6129,12 +6129,12 @@ static void Guru2MainFriendEggExchange( GURU2MAIN_WORK *g2m, int id )
 		0,
 		HEAPID_WORLD );
 	
-	PokeCopyPPtoPP( f_pp, m_pp );	//ƒRƒs[Œ³,ƒRƒs[æ
+	PokeCopyPPtoPP( f_pp, m_pp );	//ã‚³ãƒ”ãƒ¼å…ƒ,ã‚³ãƒ”ãƒ¼å…ˆ
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ^ƒ}ƒSƒf[ƒ^óM”æ“¾
+ * ã‚¿ãƒã‚´ãƒ‡ãƒ¼ã‚¿å—ä¿¡æ•°å–å¾—
  * @param	g2m	GURU2MAIN_WORK
  * @retval	int
  */
@@ -6154,7 +6154,7 @@ static int Guru2MainCommEggDataNumGet( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * ŒğŠ·ˆÊ’uƒZƒbƒg
+ * äº¤æ›ä½ç½®ã‚»ãƒƒãƒˆ
  * @param	g2m	GURU2MAIN_WORK
  * @retval	int
  */
@@ -6166,7 +6166,7 @@ void Guru2Main_TradeNoSet( GURU2MAIN_WORK *g2m, int id, int no )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€Œ‹‰ÊƒZƒbƒg
+ * ã‚²ãƒ¼ãƒ çµæœã‚»ãƒƒãƒˆ
  * @param	g2m	GURU2MAIN_WORK
  * @param	result	GURU2COMM_GAMERESULT
  * @retval	int
@@ -6181,11 +6181,11 @@ void Guru2Main_GameResultSet(
 
 //--------------------------------------------------------------
 /**
- * ‚¨‚Ü‚¯ƒ][ƒ“ƒ`ƒFƒbƒN
+ * ãŠã¾ã‘ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒƒã‚¯
  * @param	g2m		GURU2MAIN_WORK
- * @param	pos_fx	Šp“x0-359
- * @param	max		ƒvƒŒƒCl”Å‘å
- * @retval	BOOL	TRUE=‚ ‚½‚è
+ * @param	pos_fx	è§’åº¦0-359
+ * @param	max		ãƒ—ãƒ¬ã‚¤äººæ•°æœ€å¤§
+ * @retval	BOOL	TRUE=ã‚ãŸã‚Š
  */
 //--------------------------------------------------------------
 static BOOL Guru2MainOmakeZoneCheck(
@@ -6201,7 +6201,7 @@ static BOOL Guru2MainOmakeZoneCheck(
 	max = DEBUG_DISC_NO;
 	#endif
 	
-	AngleAdd( &pos_fx, -g2m->disc.rotate_fx );		//ƒfƒBƒXƒNˆÚ“®•ª•â³
+	AngleAdd( &pos_fx, -g2m->disc.rotate_fx );		//ãƒ‡ã‚£ã‚¹ã‚¯ç§»å‹•åˆ†è£œæ­£
 	
 	d_pos = pos_fx;
 	AngleAdd( &d_pos, EGG_ATARI_HABA_L_FX );
@@ -6212,7 +6212,7 @@ static BOOL Guru2MainOmakeZoneCheck(
 	pos1 = FX32_NUM( d_pos );
 	
 	#ifndef DEBUG_DISP_CHECK
-	OS_Printf("‚®‚é‚®‚é ‚¨‚Ü‚¯ƒGƒŠƒAƒ`ƒFƒbƒN " );
+	OS_Printf("ãã‚‹ãã‚‹ ãŠã¾ã‘ã‚¨ãƒªã‚¢ãƒã‚§ãƒƒã‚¯ " );
 	OS_Printf( "pos0=%d,pos1=%d,max=%d\n",pos0,max);
 	#endif
 	
@@ -6233,7 +6233,7 @@ static BOOL Guru2MainOmakeZoneCheck(
 	return( FALSE );
 }
 
-#if 0	//ˆê“_ƒ`ƒFƒbƒN‚Ì‚İ
+#if 0	//ä¸€ç‚¹ãƒã‚§ãƒƒã‚¯ã®ã¿
 static BOOL Guru2MainOmakeZoneCheck(
 		GURU2MAIN_WORK *g2m, fx32 pos_fx, int max )
 {
@@ -6247,11 +6247,11 @@ static BOOL Guru2MainOmakeZoneCheck(
 	max = DEBUG_DISC_NO;
 	#endif
 	
-	AngleAdd( &pos_fx, -g2m->disc.rotate_fx );		//ƒfƒBƒXƒNˆÚ“®•ª•â³
+	AngleAdd( &pos_fx, -g2m->disc.rotate_fx );		//ãƒ‡ã‚£ã‚¹ã‚¯ç§»å‹•åˆ†è£œæ­£
 	pos = FX32_NUM( pos_fx );
 	
 	#ifndef DEBUG_DISP_CHECK
-	OS_Printf("‚®‚é‚®‚é ‚¨‚Ü‚¯ƒGƒŠƒAƒ`ƒFƒbƒN pos=%d,max=%d\n",pos,max);
+	OS_Printf("ãã‚‹ãã‚‹ ãŠã¾ã‘ã‚¨ãƒªã‚¢ãƒã‚§ãƒƒã‚¯ pos=%d,max=%d\n",pos,max);
 	#endif
 	
 	tbl = &DATA_OmakeAreaTbl[max];
@@ -6273,9 +6273,9 @@ static BOOL Guru2MainOmakeZoneCheck(
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒƒ^ƒ}ƒSƒ`ƒFƒbƒN 
+ * ãƒ€ãƒ¡ã‚¿ãƒã‚´ãƒã‚§ãƒƒã‚¯ 
  * @param	ppty	POKEPARTY 
- * @retval	BOOL	TRUE==ƒ_ƒƒ^ƒ}ƒS—L‚è
+ * @retval	BOOL	TRUE==ãƒ€ãƒ¡ã‚¿ãƒã‚´æœ‰ã‚Š
  */
 //--------------------------------------------------------------
 static BOOL Guru2MainPokePartyDameTamagoCheck( POKEPARTY *ppty )
@@ -6300,19 +6300,19 @@ static BOOL Guru2MainPokePartyDameTamagoCheck( POKEPARTY *ppty )
 
 //--------------------------------------------------------------
 /**
- * è‚¿‚Æ‘Šè‚Ìƒ_ƒƒ^ƒ}ƒSƒ`ƒFƒbƒN
+ * æ‰‹æŒã¡ã¨ç›¸æ‰‹ã®ãƒ€ãƒ¡ã‚¿ãƒã‚´ãƒã‚§ãƒƒã‚¯
  * @param	g2m	GURU2MAIN_WORK
- * @retval	BOOL TRUE==ƒ_ƒƒ^ƒ}ƒS—L‚è
+ * @retval	BOOL TRUE==ãƒ€ãƒ¡ã‚¿ãƒã‚´æœ‰ã‚Š
  */
 //--------------------------------------------------------------
 static BOOL Guru2MainDameTamagoCheck( GURU2MAIN_WORK *g2m )
 {
-	//è‚¿
+	//æ‰‹æŒã¡
 	if( Guru2MainPokePartyDameTamagoCheck(g2m->my_poke_party) == TRUE ){
 		return( TRUE );
 	}
 	
-	{	//‘Šè
+	{	//ç›¸æ‰‹
 		int id;
 		POKEPARTY *pty;
 		
@@ -6331,9 +6331,9 @@ static BOOL Guru2MainDameTamagoCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘ƒf[ƒ^ƒ`ƒFƒbƒN@OK”‚ğæ“¾
+ * åµãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯ã€€OKæ•°ã‚’å–å¾—
  * @param	g2m	GURU2MAIN_WORK *
- * @retval	int OKóM”
+ * @retval	int OKå—ä¿¡æ•°
  */
 //--------------------------------------------------------------
 static int Guru2MainCommEggDataOKCountCheck( GURU2MAIN_WORK *g2m )
@@ -6351,9 +6351,9 @@ static int Guru2MainCommEggDataOKCountCheck( GURU2MAIN_WORK *g2m )
 
 //--------------------------------------------------------------
 /**
- * —‘ƒf[ƒ^ƒ`ƒFƒbƒN@ƒGƒ‰[”»’è
+ * åµãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯ã€€ã‚¨ãƒ©ãƒ¼åˆ¤å®š
  * @param	g2m	GURU2MAIN_WORK *
- * @retval	BOOL TRUE=ƒ_ƒƒ^ƒ}ƒS‚¿‚ª‘¶İ‚µ‚Ä‚¢‚é
+ * @retval	BOOL TRUE=ãƒ€ãƒ¡ã‚¿ãƒã‚´æŒã¡ãŒå­˜åœ¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL Guru2MainCommEggDataNGCheck( GURU2MAIN_WORK *g2m )
@@ -6372,7 +6372,7 @@ static BOOL Guru2MainCommEggDataNGCheck( GURU2MAIN_WORK *g2m )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE@‰ï˜b
+///	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ä¼šè©±
 //--------------------------------------------------------------
 static const BMPWIN_DAT DATA_Guru2BmpTalkWinList[GURU2TALKWIN_MAX] =
 {
@@ -6381,7 +6381,7 @@ static const BMPWIN_DAT DATA_Guru2BmpTalkWinList[GURU2TALKWIN_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE@–¼‘O@l” 2
+///	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€åå‰ã€€äººæ•° 2
 //--------------------------------------------------------------
 static const BMPWIN_DAT DATA_Guru2BmpNameWin_2[2] =
 {
@@ -6400,7 +6400,7 @@ static const BMPWIN_DAT DATA_Guru2BmpNameWin_2[2] =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE@–¼‘O@l” 3
+///	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€åå‰ã€€äººæ•° 3
 //--------------------------------------------------------------
 static const BMPWIN_DAT DATA_Guru2BmpNameWin_3[3] =
 {
@@ -6425,7 +6425,7 @@ static const BMPWIN_DAT DATA_Guru2BmpNameWin_3[3] =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE@–¼‘O@l” 4
+///	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€åå‰ã€€äººæ•° 4
 //--------------------------------------------------------------
 static const BMPWIN_DAT DATA_Guru2BmpNameWin_4[4] =
 {
@@ -6456,7 +6456,7 @@ static const BMPWIN_DAT DATA_Guru2BmpNameWin_4[4] =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE@–¼‘O@l” 5
+///	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€åå‰ã€€äººæ•° 5
 //--------------------------------------------------------------
 static const BMPWIN_DAT DATA_Guru2BmpNameWin_5[5] =
 {
@@ -6493,13 +6493,13 @@ static const BMPWIN_DAT DATA_Guru2BmpNameWin_5[5] =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE@–¼‘O@l”•Ê
+///	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€åå‰ã€€äººæ•°åˆ¥
 //--------------------------------------------------------------
 static const BMPWIN_DAT * const
 	DATA_Guru2BmpNameWinTbl[G2MEMBER_MAX+1] =
 {
-	NULL,					//ƒ_ƒ~[ƒf[ƒ^
-	NULL,					//ƒ_ƒ~[ƒf[ƒ^
+	NULL,					//ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
+	NULL,					//ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 	DATA_Guru2BmpNameWin_2,
 	DATA_Guru2BmpNameWin_3,
 	DATA_Guru2BmpNameWin_4,
@@ -6507,12 +6507,12 @@ static const BMPWIN_DAT * const
 };
 
 //--------------------------------------------------------------
-//	l”•ÊM‰ŠúŠp“x
+//	äººæ•°åˆ¥çš¿åˆæœŸè§’åº¦
 //--------------------------------------------------------------
 static const u16 DATA_DiscOffsetAngle[G2MEMBER_MAX+1][G2MEMBER_MAX] =
 {
-	{0,0,0,0,0},		//0 ƒ_ƒ~[
-	{0,0,0,0,0},		//1 ƒ_ƒ~[
+	{0,0,0,0,0},		//0 ãƒ€ãƒŸãƒ¼
+	{0,0,0,0,0},		//1 ãƒ€ãƒŸãƒ¼
 	{0,180,0,0,0},		//2
 	{0,240,120,0,0},	//3
 	{0,270,180,90,0},	//4
@@ -6520,12 +6520,12 @@ static const u16 DATA_DiscOffsetAngle[G2MEMBER_MAX+1][G2MEMBER_MAX] =
 };
 
 //--------------------------------------------------------------
-//	l”•Ê—‘‰ŠúˆÊ’u
+//	äººæ•°åˆ¥åµåˆæœŸä½ç½®
 //--------------------------------------------------------------
 static const u16 DATA_EggStartAngle[G2MEMBER_MAX+1][G2MEMBER_MAX] =
 {
-	{0,0,0,0,0},			//0 ƒ_ƒ~[
-	{0,0,0,0,0},			//1 ƒ_ƒ~[
+	{0,0,0,0,0},			//0 ãƒ€ãƒŸãƒ¼
+	{0,0,0,0,0},			//1 ãƒ€ãƒŸãƒ¼
 	{90,270,0,0,0},			//2
 	{90,210,330,0,0},		//3
 	{90,180,270,0,0},		//4 
@@ -6533,12 +6533,12 @@ static const u16 DATA_EggStartAngle[G2MEMBER_MAX+1][G2MEMBER_MAX] =
 };
 
 //--------------------------------------------------------------
-///	l”•Ê–¼‘O•\¦ƒIƒtƒZƒbƒg
+///	äººæ•°åˆ¥åå‰è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const int DATA_NameWinNoOffset[G2MEMBER_MAX+1][G2MEMBER_MAX] =
 {
-	{0,0,0,0,0},			//0 ƒ_ƒ~[
-	{0,0,0,0,0},			//1 ƒ_ƒ~[
+	{0,0,0,0,0},			//0 ãƒ€ãƒŸãƒ¼
+	{0,0,0,0,0},			//1 ãƒ€ãƒŸãƒ¼
 	{0,1,0,0,0},			//2
 	{0,2,1,0,0},			//3
 	{0,0,0,0,0},			//4
@@ -6547,12 +6547,12 @@ static const int DATA_NameWinNoOffset[G2MEMBER_MAX+1][G2MEMBER_MAX] =
 
 #if 0
 //--------------------------------------------------------------
-///	I—¹Šp“xŒ“Šp“x‘‘å—¦
+///	çµ‚äº†è§’åº¦å…¼è§’åº¦å¢—å¤§ç‡
 //--------------------------------------------------------------
 static const u16 DATA_GameEndAngle[G2MEMBER_MAX+1] =
 {
-	0,		//0@ƒ_ƒ~[
-	0,		//1@ƒ_ƒ~[
+	0,		//0ã€€ãƒ€ãƒŸãƒ¼
+	0,		//1ã€€ãƒ€ãƒŸãƒ¼
 	180,	//2
 	120,	//3
 	90,		//4
@@ -6561,30 +6561,30 @@ static const u16 DATA_GameEndAngle[G2MEMBER_MAX+1] =
 #endif
 
 //--------------------------------------------------------------
-///	‚¨‚Ü‚¯ƒGƒŠƒA
+///	ãŠã¾ã‘ã‚¨ãƒªã‚¢
 //--------------------------------------------------------------
-static const OMAKE_AREA DATA_OmakeArea2 =	///<“ñl
+static const OMAKE_AREA DATA_OmakeArea2 =	///<äºŒäºº
 { 0, 180 };
 
-static const OMAKE_AREA DATA_OmakeArea3[2] =	///<Ol
+static const OMAKE_AREA DATA_OmakeArea3[2] =	///<ä¸‰äºº
 {
 	{ 0, 198 },
 	{ 342, 359 },
 };
 
-static const OMAKE_AREA DATA_OmakeArea4[2] =	///<ll
+static const OMAKE_AREA DATA_OmakeArea4[2] =	///<å››äºº
 {
 	{ 37, 142 },
 	{ 215, 323 },
 };
 
-static const OMAKE_AREA DATA_OmakeArea5[2] =	///<ŒÜl
+static const OMAKE_AREA DATA_OmakeArea5[2] =	///<äº”äºº
 {
 	{ 0, 215 },
 	{ 323, 359 },
 };
 
-///‚¨‚Ü‚¯ƒGƒŠƒA‚Ü‚Æ‚ß
+///ãŠã¾ã‘ã‚¨ãƒªã‚¢ã¾ã¨ã‚
 static const OMAKE_AREA_TBL DATA_OmakeAreaTbl[G2MEMBER_MAX+1] =
 {
 	{ 0, NULL },			//dummy
@@ -6596,7 +6596,7 @@ static const OMAKE_AREA_TBL DATA_OmakeAreaTbl[G2MEMBER_MAX+1] =
 };
 
 //--------------------------------------------------------------
-///	–Ø‚ÌÀƒe[ƒuƒ‹
+///	æœ¨ã®å®Ÿãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const u32 DATA_KinomiTbl[G2MEMBER_MAX+1][2] =
 {
@@ -6609,7 +6609,7 @@ static const u32 DATA_KinomiTbl[G2MEMBER_MAX+1][2] =
 };
 
 //--------------------------------------------------------------
-///	l”•ÊMƒ‚ƒfƒ‹ƒA[ƒJƒCƒuID
+///	äººæ•°åˆ¥çš¿ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 //--------------------------------------------------------------
 static const u32 DATA_SaraArcIdxTbl[G2MEMBER_MAX+1] =
 {
@@ -6622,7 +6622,7 @@ static const u32 DATA_SaraArcIdxTbl[G2MEMBER_MAX+1] =
 };
 
 //--------------------------------------------------------------
-///	l”•ÊM•`‰æŠp“xƒIƒtƒZƒbƒg
+///	äººæ•°åˆ¥çš¿æç”»è§’åº¦ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const fx32 DATA_DiscRotateDrawOffset[G2MEMBER_MAX+1] =
 {
@@ -6666,9 +6666,9 @@ static void DEBUG_Proc( GURU2MAIN_WORK *g2m )
 		dw->type %=3;
 		
 		switch( dw->type ){
-		case 0:	OS_Printf( "‚®‚é‚®‚é@ƒJƒƒ‰ƒeƒXƒg\n" ); break;
-		case 1:	OS_Printf( "‚®‚é‚®‚é@MƒeƒXƒg\n" ); break;
-		case 2: OS_Printf( "‚®‚é‚®‚é@‚¨‚Ü‚¯ƒGƒŠƒAƒeƒXƒg\n" );
+		case 0:	OS_Printf( "ãã‚‹ãã‚‹ã€€ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆ\n" ); break;
+		case 1:	OS_Printf( "ãã‚‹ãã‚‹ã€€çš¿ãƒ†ã‚¹ãƒˆ\n" ); break;
+		case 2: OS_Printf( "ãã‚‹ãã‚‹ã€€ãŠã¾ã‘ã‚¨ãƒªã‚¢ãƒ†ã‚¹ãƒˆ\n" );
 		}
 	}
 	
@@ -6685,14 +6685,14 @@ static void DEBUG_Proc( GURU2MAIN_WORK *g2m )
 
 #ifdef DEBUG_DISP_CHECK
 //--------------------------------------------------------------
-//	ƒJƒƒ‰ƒeƒXƒg
+//	ã‚«ãƒ¡ãƒ©ãƒ†ã‚¹ãƒˆ
 //--------------------------------------------------------------
 static void DEBUG_CameraTest( GURU2MAIN_WORK *g2m )
 {
 	DEBUGWORK *dw = &g2m->debug;
 	CAMERAWORK *cm = &g2m->camera;
 	
-	if( Guru2Pad_ContCheck(PAD_BUTTON_Y) ){		//ƒJƒƒ‰ƒAƒ“ƒOƒ‹
+	if( Guru2Pad_ContCheck(PAD_BUTTON_Y) ){		//ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«
 		if( Guru2Pad_ContCheck(PAD_BUTTON_R) ){
 			if( Guru2Pad_ContCheck(PAD_KEY_UP) ){
 				dw->angle_z -= 1;
@@ -6710,13 +6710,13 @@ static void DEBUG_CameraTest( GURU2MAIN_WORK *g2m )
 				dw->angle_x += 1;
 			}
 		}
-	}else if( Guru2Pad_ContCheck(PAD_BUTTON_A) ){		//ƒJƒƒ‰‹——£
+	}else if( Guru2Pad_ContCheck(PAD_BUTTON_A) ){		//ã‚«ãƒ¡ãƒ©è·é›¢
 		if( Guru2Pad_ContCheck(PAD_KEY_UP) ){
 			cm->distance -= FX32_ONE;
 		}else if( Guru2Pad_ContCheck(PAD_KEY_DOWN) ){
 			cm->distance += FX32_ONE;
 		}
-	}else if( Guru2Pad_ContCheck(PAD_BUTTON_B) ){		//ƒJƒƒ‰ƒp[ƒX
+	}else if( Guru2Pad_ContCheck(PAD_BUTTON_B) ){		//ã‚«ãƒ¡ãƒ©ãƒ‘ãƒ¼ã‚¹
 		if( Guru2Pad_ContCheck(PAD_KEY_UP) ){
 			dw->persp -= 1;
 		}else if( Guru2Pad_ContCheck(PAD_KEY_DOWN) ){
@@ -6730,7 +6730,7 @@ static void DEBUG_CameraTest( GURU2MAIN_WORK *g2m )
 	dw->persp %= 360;
 	
 	if( Guru2Pad_TrgCheck(PAD_BUTTON_X) ){
-		OS_Printf( "‚®‚é‚®‚é@ƒJƒƒ‰İ’è ID=%d ", CommGetCurrentID() );
+		OS_Printf( "ãã‚‹ãã‚‹ã€€ã‚«ãƒ¡ãƒ©è¨­å®š ID=%d ", CommGetCurrentID() );
 		OS_Printf( "angle X=%d, Y=%d, Z=%d, ",
 			dw->angle_x,dw->angle_y,dw->angle_z );
 		OS_Printf( "distance 0x%x : ", cm->distance );
@@ -6751,7 +6751,7 @@ void DEBUG_DiscTest( GURU2MAIN_WORK *g2m )
 {
 	DISCWORK *disc = &g2m->disc;
 	
-	if( Guru2Pad_ContCheck(PAD_BUTTON_Y) ){	//MŠp“x
+	if( Guru2Pad_ContCheck(PAD_BUTTON_Y) ){	//çš¿è§’åº¦
 		if( Guru2Pad_ContCheck(PAD_BUTTON_R) ){
 			if( Guru2Pad_ContCheck(PAD_KEY_UP) ){
 				disc->rotate.z -= 1;
@@ -6769,7 +6769,7 @@ void DEBUG_DiscTest( GURU2MAIN_WORK *g2m )
 				disc->rotate.x += 1;
 			}
 		}
-	}else{										//MÀ•W
+	}else{										//çš¿åº§æ¨™
 		if( Guru2Pad_ContCheck(PAD_BUTTON_R) ){
 			if( Guru2Pad_ContCheck(PAD_KEY_UP) ){
 				disc->pos.z -= FX32_ONE;
@@ -6794,7 +6794,7 @@ void DEBUG_DiscTest( GURU2MAIN_WORK *g2m )
 	disc->rotate.z %= 360;
 	
 	if( Guru2Pad_TrgCheck(PAD_BUTTON_X) ){
-		OS_Printf( "‚®‚é‚®‚é@Mİ’è ID=%d ", CommGetCurrentID() );
+		OS_Printf( "ãã‚‹ãã‚‹ã€€çš¿è¨­å®š ID=%d ", CommGetCurrentID() );
 		OS_Printf( "disc X=%d, Y=%d, Z=%d, AX=%d, AY=%d, AZ=%d\n",
 			disc->pos.x/FX32_ONE,disc->pos.y/FX32_ONE,disc->pos.z/FX32_ONE,
 			disc->rotate.x,FX32_NUM(disc->rotate_fx),disc->rotate.z );
@@ -6810,7 +6810,7 @@ static void DEBUG_OmakeCheck( GURU2MAIN_WORK *g2m )
 	EGGACTOR *eact;
 	DISCWORK *disc = &g2m->disc;
 	
-	if( Guru2Pad_ContCheck(PAD_BUTTON_Y) ){		//MŠp“x
+	if( Guru2Pad_ContCheck(PAD_BUTTON_Y) ){		//çš¿è§’åº¦
 		if( Guru2Pad_ContCheck(PAD_KEY_UP) ){
 			Disc_Rotate( disc, NUM_FX32(1) );
 		}else if( Guru2Pad_ContCheck(PAD_KEY_DOWN) ){
@@ -6827,9 +6827,9 @@ static void DEBUG_OmakeCheck( GURU2MAIN_WORK *g2m )
 		fx32 dmy;
 		
 		if( hit == TRUE ){
-			OS_Printf( "‚®‚é‚®‚é@‚¨‚Ü‚¯ƒGƒŠƒA@‚ ‚½‚èI@" );
+			OS_Printf( "ãã‚‹ãã‚‹ã€€ãŠã¾ã‘ã‚¨ãƒªã‚¢ã€€ã‚ãŸã‚Šï¼ã€€" );
 		}else{
-			OS_Printf( "‚®‚é‚®‚é@‚¨‚Ü‚¯ƒGƒŠƒA@‚Í‚¸‚êc@" );
+			OS_Printf( "ãã‚‹ãã‚‹ã€€ãŠã¾ã‘ã‚¨ãƒªã‚¢ã€€ã¯ãšã‚Œâ€¦ã€€" );
 		}
 		
 		d_pos = FX32_NUM( disc->rotate_fx );

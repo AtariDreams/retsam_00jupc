@@ -314,7 +314,7 @@ static void EffectCallback(
 /*---------------------------------------------------------------------------*
   Name:         NothingProc
 
-  Description:  ’²¿’¤â’¤·’¤Ê’¤¤’¥¨’¥Õ’¥§’¥¯’¥È
+  Description:  èª¿ã‚½å½«ç«°ã€ã‚­å½«ãƒå½«ã€å¾´ã‚£å¾´ãƒ¦å¾´ã‚¡å¾´ãƒƒå¾´ãƒ
 
   Arguments:    bufferL_p - L buffer
                 bufferR_p - R buffer

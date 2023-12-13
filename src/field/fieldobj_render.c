@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fieldobj_render.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ‚ÌƒŒƒ“ƒ_OBJŠÇ—
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ãƒ¬ãƒ³ãƒ€OBJç®¡ç†
  * @author	kagaya
  * @data	05.07.13
  *
@@ -20,7 +20,7 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	RDOBJDATA\‘¢‘Ì
+///	RDOBJDATAæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -33,7 +33,7 @@ typedef struct
 #define RDOBJDATA_SIZE (sizeof(RDOBJDATA))
 
 //--------------------------------------------------------------
-///	FLDOBJ_rdcont\‘¢‘Ì
+///	FLDOBJ_rdcontæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FIELD_OBJ_RENDER_CONT
 {
@@ -46,7 +46,7 @@ typedef struct _TAG_FIELD_OBJ_RENDER_CONT
 #define FIELD_OBJ_RENDER_CONT_SIZE (sizeof(FIELD_OBJ_RENDER_CONT)) 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static FIELD_OBJ_RENDER_CONT_PTR FldOBJRdC_AllocMemory( int heap_id );
 static void FldOBJRdC_FreeMemory( FIELD_OBJ_RENDER_CONT_PTR rdcont );
@@ -59,14 +59,14 @@ static RDOBJDATA * RdC_CodeSearch( RDOBJDATA *data, int code, int max );
 static void RdC_Delete( RDOBJDATA *data );
 
 //==============================================================================
-//	ƒŒƒ“ƒ_OBJŠÇ—@ƒVƒXƒeƒ€
+//	ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒŒƒ“ƒ_OBJŠÇ—‰Šú‰»
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ¬ãƒ³ãƒ€OBJç®¡ç†åˆæœŸåŒ–
  * @param	fes		SYS_PTR
- * @param	heap_id	ƒq[ƒvID
- * @retval	FIELD_OBJ_RENDER_CONT_PTR ‰Šú‰»‚³‚ê‚½FIELD_OBJ_RENDER_CONT_PTR
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
+ * @retval	FIELD_OBJ_RENDER_CONT_PTR åˆæœŸåŒ–ã•ã‚ŒãŸFIELD_OBJ_RENDER_CONT_PTR
  */
 //--------------------------------------------------------------
 FIELD_OBJ_RENDER_CONT_PTR FieldOBJ_RenderCont_Init( CONST_FIELD_OBJ_SYS_PTR fos, u32 heap_id )
@@ -84,7 +84,7 @@ FIELD_OBJ_RENDER_CONT_PTR FieldOBJ_RenderCont_Init( CONST_FIELD_OBJ_SYS_PTR fos,
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—íœ
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†å‰Šé™¤
  * @param	rdcont		FIELD_OBJ_RENDER_CONT_PTR
  * @retval	nothing
  */
@@ -96,26 +96,26 @@ void FieldOBJ_RenderCont_Delete( FIELD_OBJ_RENDER_CONT_PTR rdcont )
 }
 
 //==============================================================================
-//	ƒŒƒ“ƒ_OBJŠÇ—	ƒp[ƒc
+//	ãƒ¬ãƒ³ãƒ€OBJç®¡ç†	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—ƒƒ‚ƒŠŠm•Û
- * @param	heap_id		ƒq[ƒvID
- * @retval	FIELD_OBJ_RENDER_CONT_PTR	Šm•Û‚µ‚½FIELD_OBJ_RENDER_CONT_PTR
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ãƒ¡ãƒ¢ãƒªç¢ºä¿
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
+ * @retval	FIELD_OBJ_RENDER_CONT_PTR	ç¢ºä¿ã—ãŸFIELD_OBJ_RENDER_CONT_PTR
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_RENDER_CONT_PTR FldOBJRdC_AllocMemory( int heap_id )
 {
 	FIELD_OBJ_RENDER_CONT_PTR rdcont = sys_AllocMemory( heap_id, FIELD_OBJ_RENDER_CONT_SIZE );
-	GF_ASSERT( rdcont != NULL && "FldOBJrdcont_AllocMemory()ƒƒ‚ƒŠŠm•Û¸”s" );
+	GF_ASSERT( rdcont != NULL && "FldOBJrdcont_AllocMemory()ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—" );
 	memset( rdcont, 0, FIELD_OBJ_RENDER_CONT_SIZE );
 	return( rdcont );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—ƒƒ‚ƒŠíœ
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ãƒ¡ãƒ¢ãƒªå‰Šé™¤
  * @param	rdcont		FIELD_OBJ_RENDER_CONT_PTR
  * @retval	nothing
  */
@@ -126,11 +126,11 @@ static void FldOBJRdC_FreeMemory( FIELD_OBJ_RENDER_CONT_PTR rdcont )
 }
 
 //==============================================================================
-//	ƒŒƒ“ƒ_OBJŠÇ—@ƒOƒ‰ƒtƒBƒbƒN
+//	ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ— ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç† ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	rdcont		FIELD_OBJ_RENDER_CONT_PTR
  * @retval	nothing
  */
@@ -141,7 +141,7 @@ static void FldOBJRdC_GraphicInit( FIELD_OBJ_RENDER_CONT_PTR rdcont )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	rdcont		FIELD_OBJ_RENDER_CONT_PTR
  * @retval	nothing
  */
@@ -165,13 +165,13 @@ static void FldOBJRdC_GraphicDelete( FIELD_OBJ_RENDER_CONT_PTR rdcont )
 }
 
 //==============================================================================
-//	ƒŒƒ“ƒ_OBJŠÇ—@ŠÇ—ˆ—
+//	ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€ç®¡ç†å‡¦ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—@ŠÇ—ˆ—‰Šú‰»
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€ç®¡ç†å‡¦ç†åˆæœŸåŒ–
  * @param	fes		SYS_PTR
- * @param	max		OBJŠÇ—Å‘å”
+ * @param	max		OBJç®¡ç†æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -180,16 +180,16 @@ void FieldOBJ_RenderCont_RegistInit( FIELD_OBJ_RENDER_CONT_PTR rdcont, int max )
 	rdcont->obj_max = max;
 	max *= RDOBJDATA_SIZE;
 	rdcont->rdobjdata = sys_AllocMemory( rdcont->heap_id, max );
-	GF_ASSERT( rdcont->rdobjdata != NULL && "FieldOBJ_RenderContRegistInit()ƒƒ‚ƒŠŠm•Û¸”s" );
+	GF_ASSERT( rdcont->rdobjdata != NULL && "FieldOBJ_RenderContRegistInit()ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—" );
 	memset( rdcont->rdobjdata, NULL, max );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—@simple_3DModelSetResFileAlready()‚É‚æ‚éOBJ“o˜^
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€simple_3DModelSetResFileAlready()ã«ã‚ˆã‚‹OBJç™»éŒ²
  * @param	fes		SYS_PTR
- * @param	max		OBJŠÇ—Å‘å”
- * @retval	int		TRUE=“o˜^Š®—¹ FALSE=“o˜^‚Å‚«‚È‚¢
+ * @param	max		OBJç®¡ç†æœ€å¤§æ•°
+ * @retval	int		TRUE=ç™»éŒ²å®Œäº† FALSE=ç™»éŒ²ã§ããªã„
  */
 //--------------------------------------------------------------
 int FieldOBJ_RenderCont_OBJRegSimple( FIELD_OBJ_RENDER_CONT_PTR rdcont, 
@@ -205,10 +205,10 @@ int FieldOBJ_RenderCont_OBJRegSimple( FIELD_OBJ_RENDER_CONT_PTR rdcont,
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—@w’è‚³‚ê‚½code‚ğíœ
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€æŒ‡å®šã•ã‚ŒãŸcodeã‚’å‰Šé™¤
  * @param	fes		SYS_PTR
- * @param	max		OBJŠÇ—Å‘å”
- * @retval	int		TRUE=“o˜^Š®—¹ FALSE=“o˜^‚Å‚«‚È‚¢
+ * @param	max		OBJç®¡ç†æœ€å¤§æ•°
+ * @retval	int		TRUE=ç™»éŒ²å®Œäº† FALSE=ç™»éŒ²ã§ããªã„
  */
 //--------------------------------------------------------------
 void FieldOBJ_RenderCont_OBJRegFree( FIELD_OBJ_RENDER_CONT_PTR rdcont, int code )
@@ -219,10 +219,10 @@ void FieldOBJ_RenderCont_OBJRegFree( FIELD_OBJ_RENDER_CONT_PTR rdcont, int code 
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—@w’è‚³‚ê‚½code‚ÌƒŒƒ“ƒ_æ“¾
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€æŒ‡å®šã•ã‚ŒãŸcodeã®ãƒ¬ãƒ³ãƒ€å–å¾—
  * @param	fes		SYS_PTR
- * @param	max		OBJŠÇ—Å‘å”
- * @retval	int		TRUE=“o˜^Š®—¹ FALSE=“o˜^‚Å‚«‚È‚¢
+ * @param	max		OBJç®¡ç†æœ€å¤§æ•°
+ * @retval	int		TRUE=ç™»éŒ²å®Œäº† FALSE=ç™»éŒ²ã§ããªã„
  */
 //--------------------------------------------------------------
 NNSG3dRenderObj * FieldOBJ_RenderCont_OBJRenderGet( FIELD_OBJ_RENDER_CONT_PTR rdcont, int code )
@@ -233,10 +233,10 @@ NNSG3dRenderObj * FieldOBJ_RenderCont_OBJRenderGet( FIELD_OBJ_RENDER_CONT_PTR rd
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—@w’è‚³‚ê‚½code‚Ìƒ‚ƒfƒ‹æ“¾
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€æŒ‡å®šã•ã‚ŒãŸcodeã®ãƒ¢ãƒ‡ãƒ«å–å¾—
  * @param	fes		SYS_PTR
- * @param	max		OBJŠÇ—Å‘å”
- * @retval	int		TRUE=“o˜^Š®—¹ FALSE=“o˜^‚Å‚«‚È‚¢
+ * @param	max		OBJç®¡ç†æœ€å¤§æ•°
+ * @retval	int		TRUE=ç™»éŒ²å®Œäº† FALSE=ç™»éŒ²ã§ããªã„
  */
 //--------------------------------------------------------------
 NNSG3dResMdl * FldOBJrdcont_OBJModelGet( FIELD_OBJ_RENDER_CONT_PTR rdcont, int code )
@@ -246,45 +246,45 @@ NNSG3dResMdl * FldOBJrdcont_OBJModelGet( FIELD_OBJ_RENDER_CONT_PTR rdcont, int c
 }
 
 //==============================================================================
-//	ƒŒƒ“ƒ_OBJ@ƒp[ƒc
+//	ãƒ¬ãƒ³ãƒ€OBJã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—@ƒXƒy[ƒX’T‚µ
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€ã‚¹ãƒšãƒ¼ã‚¹æ¢ã—
  * @param	data	RDOBJDATA
- * @param	max		data—v‘f”
- * @retval	RDOBJDATA*	‹ó‚«RDOBJDATA *
+ * @param	max		dataè¦ç´ æ•°
+ * @retval	RDOBJDATA*	ç©ºãRDOBJDATA *
  */
 //--------------------------------------------------------------
 static RDOBJDATA * RdC_SpaceSearch( RDOBJDATA *data, int max )
 {
 	int i = 0;
 	while( i < max ){ if(data->res_file == NULL){return(data);} i++; data++; }
-	GF_ASSERT( 0 && "rdcont_SpaceSeach()‹ó‚«‚È‚µ" );
+	GF_ASSERT( 0 && "rdcont_SpaceSeach()ç©ºããªã—" );
 	return( NULL );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—@ƒR[ƒh’T‚µ
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€ã‚³ãƒ¼ãƒ‰æ¢ã—
  * @param	data	RDOBJDATA
- * @param	code	ŒŸõƒR[ƒh
- * @param	max		data—v‘f”
- * @retval	RDOBJDATA*	code‚Éˆê’v‚·‚éRDOBJDATA *
+ * @param	code	æ¤œç´¢ã‚³ãƒ¼ãƒ‰
+ * @param	max		dataè¦ç´ æ•°
+ * @retval	RDOBJDATA*	codeã«ä¸€è‡´ã™ã‚‹RDOBJDATA *
  */
 //--------------------------------------------------------------
 static RDOBJDATA * RdC_CodeSearch( RDOBJDATA *data, int code, int max )
 {
 	int i = 0;
 	while( i < max ){ if(data->code == code){return(data);} i++; data++; }
-	GF_ASSERT( 0 && "rdcont_CodeSearch()“o˜^‚³‚ê‚Ä‚¢‚È‚¢ƒR[ƒh‚Å‚·" );
+	GF_ASSERT( 0 && "rdcont_CodeSearch()ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ã‚³ãƒ¼ãƒ‰ã§ã™" );
 	return( NULL );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_OBJŠÇ—@íœ
- * @param	data	íœ‚·‚éRDOBJDATA
+ * ãƒ¬ãƒ³ãƒ€OBJç®¡ç†ã€€å‰Šé™¤
+ * @param	data	å‰Šé™¤ã™ã‚‹RDOBJDATA
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -295,6 +295,6 @@ static void RdC_Delete( RDOBJDATA *data )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒŒƒ“ƒ_OBJ
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ãƒ¬ãƒ³ãƒ€OBJ
 //==============================================================================
 

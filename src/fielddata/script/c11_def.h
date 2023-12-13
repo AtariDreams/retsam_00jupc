@@ -1,7 +1,7 @@
 #ifndef _C11_DEF_H_
 #define _C11_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C11_RIVAL		(1)
 #define	SCRID_C11_MAN3		(2)
 #define	SCRID_C11_WOMAN3		(3)
@@ -27,6 +27,6 @@
 #define	SCRID_C11_GALLERY_04		(23)
 #define	SCRID_C11_GALLERY_05		(24)
 #define	SCRID_C11_SEVEN2		(25)
-#define	SCRID_C11_DATA_MAX		(25)		//最大数
+#define	SCRID_C11_DATA_MAX		(25)		//譛螟ｧ謨ｰ
 
 #endif //_C11_DEF_H_

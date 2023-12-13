@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_t04r0201evc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_t04r0201_bringw
 _EVENT_DATA		ev_t04r0201_cowgirl
@@ -33,8 +33,8 @@ _EVENT_DATA_END
 ev_t04r0201_bringw:
 	_TALK_OBJ_START
 
-	_FRONT_POKEMON		SCWK_ANSWER					/*�^�}�S�𔲂������擪�̈ʒu�擾*/
-	_GET_POKE_SEIKAKU	SCWK_TEMP0,SCWK_ANSWER		/*���i�擾*/
+	_FRONT_POKEMON		SCWK_ANSWER					/*タマゴを抜かした先頭の位置取得*/
+	_GET_POKE_SEIKAKU	SCWK_TEMP0,SCWK_ANSWER		/*性格取得*/
 	_SEIKAKU_NAME		0,SCWK_TEMP0
 
 	_TALKMSG		msg_t04r0201_bringw_01

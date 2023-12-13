@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_070.s
- *@brief	�퓬�V�[�P���X
- *			���Ȃ��΂���ʔ����V�[�P���X
+ *@brief	戦闘シーケンス
+ *			かなしばり効果発動シーケンス
 
  *@author	HisashiSogabe
  *@data		2006.01.19
@@ -16,7 +16,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_070:
-	//�������ŊO��Ă��鎞�́A���܂����܂��ɂ���
+	//命中率で外れている時は、うまくきまらんにする
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
 	KANASIBARI		Umakukimaran
 	GOSUB			SUB_SEQ_WAZA_OUT_EFF

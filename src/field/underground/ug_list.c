@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_list.c
- * @brief	SELECTƒ{ƒ^ƒ“‚Å BMPLIST_DATA‚ğ“ü‚ê‘Ö‚¦‚Ä‚µ‚Ü‚¤‹@”\•t‚Ìbmplist
+ * @brief	SELECTãƒœã‚¿ãƒ³ã§ BMPLIST_DATAã‚’å…¥ã‚Œæ›¿ãˆã¦ã—ã¾ã†æ©Ÿèƒ½ä»˜ã®bmplist
  * @author	k.ohno
  * @date    2006.06.11
  */
@@ -16,13 +16,13 @@
 
 //--------------------------------------------------------------------------------------------
 /**
- * İ’èŠÖ”
- * @param	bmplist		•\¦ƒŠƒXƒgƒwƒbƒ_ƒ|ƒCƒ“ƒ^
- * @param	list_p		ƒŠƒXƒg‰ŠúˆÊ’u
- * @param	cursor_p	ƒJ[ƒ\ƒ‹‰ŠúˆÊ’u
- * @param	mode		ƒƒ‚ƒŠæ“¾ƒ‚[ƒh
- * @return	BMPƒŠƒXƒgƒ[ƒN
- * @li	BMPƒŠƒXƒgƒ[ƒN‚Ísys_AllocMemory‚ÅŠm•Û
+ * è¨­å®šé–¢æ•°
+ * @param	bmplist		è¡¨ç¤ºãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒã‚¤ãƒ³ã‚¿
+ * @param	list_p		ãƒªã‚¹ãƒˆåˆæœŸä½ç½®
+ * @param	cursor_p	ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸä½ç½®
+ * @param	mode		ãƒ¡ãƒ¢ãƒªå–å¾—ãƒ¢ãƒ¼ãƒ‰
+ * @return	BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @li	BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯ã¯sys_AllocMemoryã§ç¢ºä¿
  */
 //--------------------------------------------------------------------------------------------
 UG_BMPLIST_WORK * Ug_BmpListSet(BMPLIST_HEADER * bmplist, u16 list_p, u16 cursor_p,
@@ -62,22 +62,22 @@ UG_BMPLIST_WORK * Ug_BmpListSet(BMPLIST_HEADER * bmplist, u16 list_p, u16 cursor
 
 //--------------------------------------------------------------------------------------------
 /**
- * SELECTƒJ[ƒ\ƒ‹‚Ì•\¦
- * @param	pUg		UGBMPƒŠƒXƒgƒ[ƒN
+ * SELECTã‚«ãƒ¼ã‚½ãƒ«ã®è¡¨ç¤º
+ * @param	pUg		UGBMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  * @retval	none
  */
 //--------------------------------------------------------------------------------------------
 
 static void _cursorDisp(u16 lp,u16 cp, UG_BMPLIST_WORK* pUg)
 {
-    u16 pos = pUg->lp + pUg->cp;   // ‘I‘ğ‚µ‚Ä‚éˆÊ’u
+    u16 pos = pUg->lp + pUg->cp;   // é¸æŠã—ã¦ã‚‹ä½ç½®
     u16 line = BmpListParamGet(pUg->pBmpList,BMPLIST_ID_LINE);
     
     if((pUg->bklp != lp) || (pUg->bkcp != cp)){
         pUg->bklp = lp;
         pUg->bkcp = cp;
         if(((lp + line) < pos) || (lp > pos)){
-            return;  // ”ÍˆÍŠO‚Í•`‰æ‚µ‚È‚¢
+            return;  // ç¯„å›²å¤–ã¯æç”»ã—ãªã„
         }
     }
     else{
@@ -88,20 +88,20 @@ static void _cursorDisp(u16 lp,u16 cp, UG_BMPLIST_WORK* pUg)
         u8	yblk = BmpListParamGet(pUg->pBmpList, BMPLIST_ID_LINE_YBLK);
         int y =  (pos-lp) * yblk + BmpListParamGet(pUg->pBmpList, BMPLIST_ID_LINE_Y);
         GF_BGL_BMPWIN* pWin = (GF_BGL_BMPWIN*)BmpListParamGet(pUg->pBmpList, BMPLIST_ID_WIN);
-        OHNO_PRINT("sel •\¦  %d %d \n",x,y);
+        OHNO_PRINT("sel è¡¨ç¤º  %d %d \n",x,y);
         BMPCURSOR_Print( pUg->pCursor, pWin, x, y );
     }
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ŠÖ”
+ * ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- * @param	pUg		UGBMPƒŠƒXƒgƒ[ƒN
+ * @param	pUg		UGBMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"param = ‘I‘ğƒpƒ‰ƒ[ƒ^"
- * @retval	"BMPLIST_NULL = ‘I‘ğ’†"
- * @retval	"BMPLIST_CANCEL	= ƒLƒƒƒ“ƒZƒ‹(‚aƒ{ƒ^ƒ“)"
+ * @retval	"param = é¸æŠãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿"
+ * @retval	"BMPLIST_NULL = é¸æŠä¸­"
+ * @retval	"BMPLIST_CANCEL	= ã‚­ãƒ£ãƒ³ã‚»ãƒ«(ï¼¢ãƒœã‚¿ãƒ³)"
  */
 //--------------------------------------------------------------------------------------------
 u32 Ug_BmpListMain( UG_BMPLIST_WORK* pUg )
@@ -119,25 +119,25 @@ u32 Ug_BmpListMain( UG_BMPLIST_WORK* pUg )
             _cursorDisp(lp,cp,pUg);
             if( (sys.trg & PAD_BUTTON_DECIDE) || (sys.trg & PAD_BUTTON_SELECT) ){
 				Snd_SePlay( SEQ_SE_DP_SELECT );
-                if(lp + cp == count - 1){  //ƒLƒƒƒ“ƒZƒ‹‚Æ‚Í“ü‚ê‘Ö‚¦‚È‚¢
+                if(lp + cp == count - 1){  //ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã¨ã¯å…¥ã‚Œæ›¿ãˆãªã„
                     return BMPLIST_NULL;
                 }
-                if(lp + cp == pUg->lp + pUg->cp){  //“¯‚¶êŠ‚Æ‚Í“ü‚ê‘Ö‚¦‚È‚¢
+                if(lp + cp == pUg->lp + pUg->cp){  //åŒã˜å ´æ‰€ã¨ã¯å…¥ã‚Œæ›¿ãˆãªã„
                     return BMPLIST_NULL;
                 }
-                // ƒf[ƒ^ŒğŠ·
+                // ãƒ‡ãƒ¼ã‚¿äº¤æ›
                 pUg->pChangeFunc(pUg->pUGData,pUg->lp + pUg->cp,lp + cp);
                 tempList = BMP_MENULIST_Create(count,pUg->heapID);
                 j = 0;
                 for(i = 0 ; i < count; i++){
-                    if(i == (pUg->lp + pUg->cp)){  // ”²‚«o‚µƒ|ƒCƒ“ƒg
+                    if(i == (pUg->lp + pUg->cp)){  // æŠœãå‡ºã—ãƒã‚¤ãƒ³ãƒˆ
                         j++;
                     }
                     else{
                         BMP_MENULIST_AddLinkList(tempList, &pUg->pLinkMenuData[j]);
                         j++;
                     }
-                    if((i) == (lp + cp)){  // ‘}“üƒ|ƒCƒ“ƒg
+                    if((i) == (lp + cp)){  // æŒ¿å…¥ãƒã‚¤ãƒ³ãƒˆ
                         BMP_MENULIST_AddLinkList(tempList, &pUg->pLinkMenuData[pUg->lp + pUg->cp]);
                     }
                 }
@@ -146,9 +146,9 @@ u32 Ug_BmpListMain( UG_BMPLIST_WORK* pUg )
                     for(i=0; i < count-1 ; i++){
                         int flg;
                         int check = UnderGroundIsEntryGoodsPCItem(pUg->pUGData, i);
-                        if (!check){//”z’u‚³‚ê‚Ä‚¢‚È‚¢
+                        if (!check){//é…ç½®ã•ã‚Œã¦ã„ãªã„
                             flg = 1;
-                        }else{		//”z’uÏ‚İ
+                        }else{		//é…ç½®æ¸ˆã¿
                             flg = 0;
                         }
                         param = (i<<1)+flg;
@@ -159,24 +159,24 @@ u32 Ug_BmpListMain( UG_BMPLIST_WORK* pUg )
                 }
                 else{
                      for(i = 0 ; i < count-1; i++){
-                         tempList[i].param = i;  // ‚Ó‚è‚È‚¨‚µ
+                         tempList[i].param = i;  // ãµã‚ŠãªãŠã—
                      }
                 }
                 sys_FreeMemoryEz(pUg->pLinkMenuData);
                 pUg->pLinkMenuData = tempList;
                 BmpListSetMenuListData(lw, tempList);
-                // ƒŠƒXƒg·‚µ‘Ö‚¦Š®—¹
+                // ãƒªã‚¹ãƒˆå·®ã—æ›¿ãˆå®Œäº†
                 pUg->bPush = FALSE;
                 BmpListRewrite(lw);
 
-                OHNO_PRINT("SEL ‚³‚µ‚©‚¦\n");
+                OHNO_PRINT("SEL ã•ã—ã‹ãˆ\n");
                 return BMPLIST_NULL;
             }
         }
         else{
             if( sys.trg & PAD_BUTTON_SELECT ){
 				Snd_SePlay( SEQ_SE_DP_SELECT );
-                if(lp + cp == count - 1){  //ƒLƒƒƒ“ƒZƒ‹‚Í‘I‘ğ‚µ‚È‚¢
+                if(lp + cp == count - 1){  //ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã¯é¸æŠã—ãªã„
                     return BMPLIST_NULL;
                 }
                 pUg->lp = lp;
@@ -184,7 +184,7 @@ u32 Ug_BmpListMain( UG_BMPLIST_WORK* pUg )
                 pUg->bklp = lp;
                 pUg->bkcp = cp;
                 pUg->bPush = TRUE;
-                OHNO_PRINT("SEL ‘I‘ğ\n");
+                OHNO_PRINT("SEL é¸æŠ\n");
                 return BMPLIST_NULL;
             }
         }
@@ -198,11 +198,11 @@ u32 Ug_BmpListMain( UG_BMPLIST_WORK* pUg )
 
     ret = BmpListMain( lw );
 
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ğæ“¾
-	tmp_pos_bak = pUg->pos_bak;		//‘Ş”ğ
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = pUg->pos_bak;		//é€€é¿
 	BmpListDirectPosGet( lw, &pUg->pos_bak );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != pUg->pos_bak ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 		//OS_Printf( "tmp_pos_bak = %d\n", tmp_pos_bak );
@@ -229,16 +229,16 @@ u32 Ug_BmpListMain( UG_BMPLIST_WORK* pUg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * I—¹ŠÖ”
+ * çµ‚äº†é–¢æ•°
  *
- * @param	lw			BMPƒŠƒXƒgƒ[ƒN
- * @param	list_bak	ƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	cursor_bak	ƒJ[ƒ\ƒ‹ˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	lw			BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	list_bak	ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	cursor_bak	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
- * @li	lw‚ğsys_FreeMemory‚ÅŠJ•ú
- * @li	ƒoƒbƒNƒAƒbƒvƒ[ƒN‚ÍANULLw’è‚Å•Û‘¶‚µ‚È‚¢
+ * @li	lwã‚’sys_FreeMemoryã§é–‹æ”¾
+ * @li	ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ã¯ã€NULLæŒ‡å®šã§ä¿å­˜ã—ãªã„
  */
 //--------------------------------------------------------------------------------------------
 void Ug_BmpListExit( UG_BMPLIST_WORK* pUg, u16 * list_bak, u16 * cursor_bak )

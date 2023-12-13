@@ -1,249 +1,249 @@
 
-/// PPW_LobbySend*StringMessageŠÖ”‚Å‘—M‚Å‚«‚éÅ‘å‚Ì•¶Žš”B(I’[ŠÜ‚Þ)
+/// PPW_LobbySend*StringMessageé–¢æ•°ã§é€ä¿¡ã§ãã‚‹æœ€å¤§ã®æ–‡å­—æ•°ã€‚(çµ‚ç«¯å«ã‚€)
 #define PPW_LOBBY_MAX_STRING_SIZE               400
 
-/// PPW_LobbySend*BinaryMessageŠÖ”‚Å‘—M‚Å‚«‚éÅ‘å‚Ìƒf[ƒ^’·B
+/// PPW_LobbySend*BinaryMessageé–¢æ•°ã§é€ä¿¡ã§ãã‚‹æœ€å¤§ã®ãƒ‡ãƒ¼ã‚¿é•·ã€‚
 #define PPW_LOBBY_MAX_BINARY_SIZE               300
 
-/// ::PPW_LobbyRecruitInfo\‘¢‘Ì‚ÌparamBufƒƒ“ƒo‚ÉŽw’è‚Å‚«‚éƒf[ƒ^’·B
+/// ::PPW_LobbyRecruitInfoæ§‹é€ ä½“ã®paramBufãƒ¡ãƒ³ãƒã«æŒ‡å®šã§ãã‚‹ãƒ‡ãƒ¼ã‚¿é•·ã€‚
 #define PPW_LOBBY_MAX_MATCHMAKING_BUF_SIZE      32
 
-/// ::PPW_LobbyRecruitInfo\‘¢‘Ì‚ÌmatchMakingStringƒƒ“ƒo‚ÉŽw’è‚³‚ê‚éƒ}ƒbƒ`ƒƒCƒLƒ“ƒOŽw•W•¶Žš—ñ‚Ì•¶Žš”(I’[ŠÜ‚Þ)B
+/// ::PPW_LobbyRecruitInfoæ§‹é€ ä½“ã®matchMakingStringãƒ¡ãƒ³ãƒã«æŒ‡å®šã•ã‚Œã‚‹ãƒžãƒƒãƒãƒ¡ã‚¤ã‚­ãƒ³ã‚°æŒ‡æ¨™æ–‡å­—åˆ—ã®æ–‡å­—æ•°(çµ‚ç«¯å«ã‚€)ã€‚
 #define PPW_LOBBY_MAX_MATCHMAKING_STRING_LENGTH 20
 
-/// ::PPW_LobbyQuestionnaireRecord\‘¢‘Ì‚ÌquestionSentenceƒƒ“ƒo‚ÌÅ‘å•¶Žš”(I’[ŠÜ‚Þ)B
+/// ::PPW_LobbyQuestionnaireRecordæ§‹é€ ä½“ã®questionSentenceãƒ¡ãƒ³ãƒã®æœ€å¤§æ–‡å­—æ•°(çµ‚ç«¯å«ã‚€)ã€‚
 #define PPW_LOBBY_MAX_QUESTION_SENTENCE_LENGTH 110
 
-/// ::PPW_LobbyQuestionnaireRecord\‘¢‘Ì‚Ìanswerƒƒ“ƒo‚ÌÅ‘å•¶Žš”(I’[ŠÜ‚Þ)B
+/// ::PPW_LobbyQuestionnaireRecordæ§‹é€ ä½“ã®answerãƒ¡ãƒ³ãƒã®æœ€å¤§æ–‡å­—æ•°(çµ‚ç«¯å«ã‚€)ã€‚
 #define PPW_LOBBY_MAX_ANSWER_LENGTH             18
 
-/// ƒAƒ“ƒP[ƒg‹@”\‚Å‚Ì‘I‘ðŽˆ‚Ì”
+/// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæ©Ÿèƒ½ã§ã®é¸æŠžè‚¢ã®æ•°
 #define PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM      3
 
-/// ”CˆÓŽ¿–â‚ÌŠJŽnŽ¿–â”Ô†
+/// ä»»æ„è³ªå•ã®é–‹å§‹è³ªå•ç•ªå·
 #define PPW_LOBBY_FREE_QUESTION_START_NO        1000
 
-/// ”CˆÓŽ¿–â”Ô†‚ÌŒÂ”
+/// ä»»æ„è³ªå•ç•ªå·ã®å€‹æ•°
 #define PPW_LOBBY_FREE_QUESTION_NUM             10
 
-/// ƒAƒ“ƒP[ƒg‚ªŠJÃ‚³‚ê‚Ä‚¢‚È‚¢‚±‚Æ‚ðŽ¦‚·Ž¿–â”Ô†
+/// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãŒé–‹å‚¬ã•ã‚Œã¦ã„ãªã„ã“ã¨ã‚’ç¤ºã™è³ªå•ç•ªå·
 #define PPW_LOBBY_INVALID_QUESTION_NO           0xffffffff
 
-/// ƒ‰ƒCƒuƒ‰ƒŠ‚ªƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹‚Ì‘—ŽóM‚ÉŽg‚¤"ŠeƒvƒŒƒCƒ„[‚ÉŠ„‚è“–‚Ä‚ç‚ê‚é"ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^ƒL[B(ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å‚ÍŽg—p‚µ‚È‚¢‚Å‚­‚¾‚³‚¢)
+/// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®é€å—ä¿¡ã«ä½¿ã†"å„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å‰²ã‚Šå½“ã¦ã‚‰ã‚Œã‚‹"ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ¼ã€‚(ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯ä½¿ç”¨ã—ãªã„ã§ãã ã•ã„)
 #define PPW_LOBBY_CHANNEL_KEY_SYSTEM            "b_lib_u_system"
     
-/// ƒ‰ƒCƒuƒ‰ƒŠ‚ªƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹‚Ì‘—ŽóM‚ÉŽg‚¤"ŠeƒvƒŒƒCƒ„[‚ÉŠ„‚è“–‚Ä‚ç‚ê‚é"ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^ƒL[B(ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å‚ÍŽg—p‚µ‚È‚¢‚Å‚­‚¾‚³‚¢)
+/// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®é€å—ä¿¡ã«ä½¿ã†"å„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å‰²ã‚Šå½“ã¦ã‚‰ã‚Œã‚‹"ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ¼ã€‚(ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯ä½¿ç”¨ã—ãªã„ã§ãã ã•ã„)
 #define PPW_LOBBY_CHANNEL_KEY_USER              "b_lib_u_user"
 
-/// ƒ‰ƒCƒuƒ‰ƒŠ‚ªƒ`ƒƒƒ“ƒlƒ‹‚ÌŠÇ—‚ÉŽg‚¤"ƒ`ƒƒƒ“ƒlƒ‹Ž©‘Ì‚ÉŠ„‚è“–‚Ä‚ç‚ê‚é"ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^ƒL[B(ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å‚ÍŽg—p‚µ‚È‚¢‚Å‚­‚¾‚³‚¢)
+/// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒãƒãƒ£ãƒ³ãƒãƒ«ã®ç®¡ç†ã«ä½¿ã†"ãƒãƒ£ãƒ³ãƒãƒ«è‡ªä½“ã«å‰²ã‚Šå½“ã¦ã‚‰ã‚Œã‚‹"ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ¼ã€‚(ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯ä½¿ç”¨ã—ãªã„ã§ãã ã•ã„)
 #define PPW_LOBBY_CHANNEL_KEY_CHANNEL_TIME      "b_lib_c_time"
 
-/// ƒ‰ƒCƒuƒ‰ƒŠ‚ªƒ`ƒƒƒ“ƒlƒ‹‚ÌŠÇ—‚ÉŽg‚¤"ƒ`ƒƒƒ“ƒlƒ‹Ž©‘Ì‚ÉŠ„‚è“–‚Ä‚ç‚ê‚é"ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^ƒL[B(ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å‚ÍŽg—p‚µ‚È‚¢‚Å‚­‚¾‚³‚¢)
+/// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒãƒãƒ£ãƒ³ãƒãƒ«ã®ç®¡ç†ã«ä½¿ã†"ãƒãƒ£ãƒ³ãƒãƒ«è‡ªä½“ã«å‰²ã‚Šå½“ã¦ã‚‰ã‚Œã‚‹"ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ¼ã€‚(ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯ä½¿ç”¨ã—ãªã„ã§ãã ã•ã„)
 #define PPW_LOBBY_CHANNEL_KEY_CHANNEL_LOBBY     "b_lib_c_lobby"
 
-/// ƒ~ƒjƒQ[ƒ€•åW‚ÅŽg—p‚·‚éƒ}ƒbƒ`ƒƒCƒNŽw•WƒL[B
+/// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†ã§ä½¿ç”¨ã™ã‚‹ãƒžãƒƒãƒãƒ¡ã‚¤ã‚¯æŒ‡æ¨™ã‚­ãƒ¼ã€‚
 #define PPW_LOBBY_MATCHMAKING_KEY               "ppw_lobby"
 
-// ƒ‰ƒCƒuƒ‰ƒŠ“à•”‚ÅŽg—p‚·‚éƒf[ƒ^ŠÇ—ƒT[ƒo‚Ö‚ÌƒŠƒNƒGƒXƒg‚Ìƒo[ƒWƒ‡ƒ“
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚µãƒ¼ãƒã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 #define PPW_LOBBY_ENC_REQUEST_VERSION           1
 
-#define PPW_LOBBY_MAX_PLAYER_NUM_MAIN       20                          ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚ê‚éÅ‘ål”B
-#define PPW_LOBBY_MAX_PLAYER_NUM_FOOT       8                           ///< ‘«Õƒ{[ƒh“ü‚ê‚éÅ‘ål”B
-#define PPW_LOBBY_MAX_PLAYER_NUM_CLOCK      4                           ///< ¢ŠEŽžŒv‚É“ü‚ê‚éÅ‘ål”B
-#define PPW_LOBBY_MAX_PLAYER_NUM_NEWS       4                           ///< ƒƒr[ƒjƒ…[ƒX‚É“ü‚ê‚éÅ‘ål”B
+#define PPW_LOBBY_MAX_PLAYER_NUM_MAIN       20                          ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã‚Œã‚‹æœ€å¤§äººæ•°ã€‚
+#define PPW_LOBBY_MAX_PLAYER_NUM_FOOT       8                           ///< è¶³è·¡ãƒœãƒ¼ãƒ‰å…¥ã‚Œã‚‹æœ€å¤§äººæ•°ã€‚
+#define PPW_LOBBY_MAX_PLAYER_NUM_CLOCK      4                           ///< ä¸–ç•Œæ™‚è¨ˆã«å…¥ã‚Œã‚‹æœ€å¤§äººæ•°ã€‚
+#define PPW_LOBBY_MAX_PLAYER_NUM_NEWS       4                           ///< ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ã«å…¥ã‚Œã‚‹æœ€å¤§äººæ•°ã€‚
 
-#define PPW_LOBBY_INVALID_USER_ID           DWC_LOBBY_INVALID_USER_ID   ///< –³Œø‚Èƒ†[ƒUIDB
-#define PPW_LOBBY_INVALID_TIME              DWC_LOBBY_INVALID_TIME      ///< –³Œø‚ÈŽžŠÔB
+#define PPW_LOBBY_INVALID_USER_ID           DWC_LOBBY_INVALID_USER_ID   ///< ç„¡åŠ¹ãªãƒ¦ãƒ¼ã‚¶IDã€‚
+#define PPW_LOBBY_INVALID_TIME              DWC_LOBBY_INVALID_TIME      ///< ç„¡åŠ¹ãªæ™‚é–“ã€‚
 
 
-/// ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠó‘Ôƒtƒ‰ƒOB
+/// ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªçŠ¶æ…‹ãƒ•ãƒ©ã‚°ã€‚
 typedef enum PPW_LOBBY_STATE
 {
-    PPW_LOBBY_STATE_NOTINITIALIZED,         ///< ƒ‰ƒCƒuƒ‰ƒŠ‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢B
-    PPW_LOBBY_STATE_CONNECTING,             ///< ƒ`ƒƒƒbƒgƒT[ƒo‚ÉÚ‘±’†B
-    PPW_LOBBY_STATE_CONNECTED,              ///< ƒ`ƒƒƒbƒgƒT[ƒo‚ÉÚ‘±Š®—¹B
-    PPW_LOBBY_STATE_DOWNLOAD,               ///< ƒT[ƒo‚©‚çÝ’è‚ðƒ_ƒEƒ“ƒ[ƒhŠJŽnB
-    PPW_LOBBY_STATE_DOWNLOAD_WAIT,          ///< ƒT[ƒo‚©‚çÝ’è‚ðƒ_ƒEƒ“ƒ[ƒh’†B
-    PPW_LOBBY_STATE_SEARCHINGCHANNEL,       ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚ðŒŸõ’†B
-    PPW_LOBBY_STATE_ENTERMAINCHANNEL,       ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽºŠJŽnB
-    PPW_LOBBY_STATE_PREPARINGMAINCHANNEL,   ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽº‹y‚Ñ€”õ’†B
-    PPW_LOBBY_STATE_READY,                  ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽºŠ®—¹B
-    PPW_LOBBY_STATE_CLOSING,                ///< ƒ‰ƒCƒuƒ‰ƒŠI—¹ˆ—’†B
-    PPW_LOBBY_STATE_ERROR                   ///< ƒ‰ƒCƒuƒ‰ƒŠ‚É’v–½“I‚ÈƒGƒ‰[‚ª”­¶’†B::PPW_LobbyGetLastErrorŠÖ”‚ÅƒGƒ‰[‚ðŽæ“¾ŒãƒVƒƒƒbƒgƒ_ƒEƒ“‚µ‚Ä‚­‚¾‚³‚¢B
+    PPW_LOBBY_STATE_NOTINITIALIZED,         ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã€‚
+    PPW_LOBBY_STATE_CONNECTING,             ///< ãƒãƒ£ãƒƒãƒˆã‚µãƒ¼ãƒã«æŽ¥ç¶šä¸­ã€‚
+    PPW_LOBBY_STATE_CONNECTED,              ///< ãƒãƒ£ãƒƒãƒˆã‚µãƒ¼ãƒã«æŽ¥ç¶šå®Œäº†ã€‚
+    PPW_LOBBY_STATE_DOWNLOAD,               ///< ã‚µãƒ¼ãƒã‹ã‚‰è¨­å®šã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰é–‹å§‹ã€‚
+    PPW_LOBBY_STATE_DOWNLOAD_WAIT,          ///< ã‚µãƒ¼ãƒã‹ã‚‰è¨­å®šã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­ã€‚
+    PPW_LOBBY_STATE_SEARCHINGCHANNEL,       ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æ¤œç´¢ä¸­ã€‚
+    PPW_LOBBY_STATE_ENTERMAINCHANNEL,       ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤é–‹å§‹ã€‚
+    PPW_LOBBY_STATE_PREPARINGMAINCHANNEL,   ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤åŠã³æº–å‚™ä¸­ã€‚
+    PPW_LOBBY_STATE_READY,                  ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤å®Œäº†ã€‚
+    PPW_LOBBY_STATE_CLOSING,                ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªçµ‚äº†å‡¦ç†ä¸­ã€‚
+    PPW_LOBBY_STATE_ERROR                   ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«è‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿä¸­ã€‚::PPW_LobbyGetLastErroré–¢æ•°ã§ã‚¨ãƒ©ãƒ¼ã‚’å–å¾—å¾Œã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã—ã¦ãã ã•ã„ã€‚
 }
 PPW_LOBBY_STATE;
 
-/// ƒ`ƒƒƒ“ƒlƒ‹ó‘Ôƒtƒ‰ƒOB
+/// ãƒãƒ£ãƒ³ãƒãƒ«çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã€‚
 typedef enum PPW_LOBBY_CHANNEL_STATE
 {
-    PPW_LOBBY_CHANNEL_STATE_NONE,           ///< ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚È‚¢B
-    PPW_LOBBY_CHANNEL_STATE_UNAVAILABLE,    ///< ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽº€”õ’†B
-    PPW_LOBBY_CHANNEL_STATE_AVAILABLE,      ///< ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽºÏ‚ÝB
-    PPW_LOBBY_CHANNEL_STATE_ERROR           ///< ƒ`ƒƒƒ“ƒlƒ‹ó‘Ô‚ðŽæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B
+    PPW_LOBBY_CHANNEL_STATE_NONE,           ///< ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ãªã„ã€‚
+    PPW_LOBBY_CHANNEL_STATE_UNAVAILABLE,    ///< ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤æº–å‚™ä¸­ã€‚
+    PPW_LOBBY_CHANNEL_STATE_AVAILABLE,      ///< ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤æ¸ˆã¿ã€‚
+    PPW_LOBBY_CHANNEL_STATE_ERROR           ///< ãƒãƒ£ãƒ³ãƒãƒ«çŠ¶æ…‹ã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚
 }
 PPW_LOBBY_CHANNEL_STATE;
 
-/// ˆ—Œ‹‰Êƒtƒ‰ƒOB
+/// å‡¦ç†çµæžœãƒ•ãƒ©ã‚°ã€‚
 typedef enum PPW_LOBBY_RESULT
 {
-    PPW_LOBBY_RESULT_SUCCESS,               ///< ¬Œ÷B
-    PPW_LOBBY_RESULT_ERROR_ALLOC,           ///< ƒƒ‚ƒŠŠm•Û‚ÉŽ¸”sB
-    PPW_LOBBY_RESULT_ERROR_SESSION,         ///< ’v–½“I‚È’ÊMƒGƒ‰[B
-    PPW_LOBBY_RESULT_ERROR_PARAM,           ///< Žw’è‚µ‚½ˆø”‚ª•s³B
-    PPW_LOBBY_RESULT_ERROR_STATE,           ///< ŒÄ‚Ño‚µ‚Ä‚Í‚¢‚¯‚È‚¢ó‘Ô‚ÅŠÖ”‚ðŒÄ‚Ño‚µ‚½B
-    PPW_LOBBY_RESULT_ERROR_CHANNEL,         ///< Žw’è‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚È‚¢B
-    PPW_LOBBY_RESULT_ERROR_NODATA,          ///< Žw’è‚µ‚½î•ñ‚Í‘¶Ý‚µ‚È‚¢B
-    PPW_LOBBY_RESULT_ERROR_CONDITION,       ///< ’v–½“IƒGƒ‰[‚ª”­¶’†‚È‚Ì‚Å‚±‚ÌŠÖ”‚ðŒÄ‚Ño‚¹‚È‚¢B
-    PPW_LOBBY_RESULT_MAX                    ///< ƒ‰ƒCƒuƒ‰ƒŠ“à•”‚ÅŽg—p‚³‚ê‚Ü‚·B
+    PPW_LOBBY_RESULT_SUCCESS,               ///< æˆåŠŸã€‚
+    PPW_LOBBY_RESULT_ERROR_ALLOC,           ///< ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã€‚
+    PPW_LOBBY_RESULT_ERROR_SESSION,         ///< è‡´å‘½çš„ãªé€šä¿¡ã‚¨ãƒ©ãƒ¼ã€‚
+    PPW_LOBBY_RESULT_ERROR_PARAM,           ///< æŒ‡å®šã—ãŸå¼•æ•°ãŒä¸æ­£ã€‚
+    PPW_LOBBY_RESULT_ERROR_STATE,           ///< å‘¼ã³å‡ºã—ã¦ã¯ã„ã‘ãªã„çŠ¶æ…‹ã§é–¢æ•°ã‚’å‘¼ã³å‡ºã—ãŸã€‚
+    PPW_LOBBY_RESULT_ERROR_CHANNEL,         ///< æŒ‡å®šã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ãªã„ã€‚
+    PPW_LOBBY_RESULT_ERROR_NODATA,          ///< æŒ‡å®šã—ãŸæƒ…å ±ã¯å­˜åœ¨ã—ãªã„ã€‚
+    PPW_LOBBY_RESULT_ERROR_CONDITION,       ///< è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿä¸­ãªã®ã§ã“ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã›ãªã„ã€‚
+    PPW_LOBBY_RESULT_MAX                    ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
 }
 PPW_LOBBY_RESULT;
 
-/// ƒ`ƒƒƒ“ƒlƒ‹‚ÌŽí—ÞB
+/// ãƒãƒ£ãƒ³ãƒãƒ«ã®ç¨®é¡žã€‚
 typedef enum PPW_LOBBY_CHANNEL_KIND
 {
-    PPW_LOBBY_CHANNEL_KIND_MAIN,            ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹B
-    PPW_LOBBY_CHANNEL_KIND_FOOT1,           ///< ‘«Õƒ{[ƒh1B
-    PPW_LOBBY_CHANNEL_KIND_FOOT2,           ///< ‘«Õƒ{[ƒh2B
-    PPW_LOBBY_CHANNEL_KIND_CLOCK,           ///< ¢ŠEŽžŒvB
-    PPW_LOBBY_CHANNEL_KIND_NEWS,            ///< ƒƒr[ƒjƒ…[ƒXB
-    PPW_LOBBY_CHANNEL_KIND_INVALID          ///< –³Œø‚Èƒ`ƒƒƒ“ƒlƒ‹B
+    PPW_LOBBY_CHANNEL_KIND_MAIN,            ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã€‚
+    PPW_LOBBY_CHANNEL_KIND_FOOT1,           ///< è¶³è·¡ãƒœãƒ¼ãƒ‰1ã€‚
+    PPW_LOBBY_CHANNEL_KIND_FOOT2,           ///< è¶³è·¡ãƒœãƒ¼ãƒ‰2ã€‚
+    PPW_LOBBY_CHANNEL_KIND_CLOCK,           ///< ä¸–ç•Œæ™‚è¨ˆã€‚
+    PPW_LOBBY_CHANNEL_KIND_NEWS,            ///< ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ã€‚
+    PPW_LOBBY_CHANNEL_KIND_INVALID          ///< ç„¡åŠ¹ãªãƒãƒ£ãƒ³ãƒãƒ«ã€‚
 }
 PPW_LOBBY_CHANNEL_KIND;
 
-/// ƒGƒ‰[ƒtƒ‰ƒOB
+/// ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°ã€‚
 typedef enum PPW_LOBBY_ERROR
 {
-    PPW_LOBBY_ERROR_NONE,                   ///< ƒGƒ‰[–³‚µB
-    PPW_LOBBY_ERROR_UNKNOWN,                ///< •s–¾‚ÈƒGƒ‰[B
-    PPW_LOBBY_ERROR_ALLOC,                  ///< ƒƒ‚ƒŠŠm•Û‚ÉŽ¸”sB
-    PPW_LOBBY_ERROR_SESSION,                ///< ’v–½“I‚È’ÊMƒGƒ‰[(ƒ`ƒƒƒbƒgƒT[ƒo)B
-    PPW_LOBBY_ERROR_STATS_SESSION,          ///< ’v–½“I‚È’ÊMƒGƒ‰[(ƒ‹[ƒ€Ý’èƒT[ƒo)B
-    PPW_LOBBY_ERROR_MAX                     ///< ƒ‰ƒCƒuƒ‰ƒŠ“à•”‚ÅŽg—p‚³‚ê‚Ü‚·B
+    PPW_LOBBY_ERROR_NONE,                   ///< ã‚¨ãƒ©ãƒ¼ç„¡ã—ã€‚
+    PPW_LOBBY_ERROR_UNKNOWN,                ///< ä¸æ˜Žãªã‚¨ãƒ©ãƒ¼ã€‚
+    PPW_LOBBY_ERROR_ALLOC,                  ///< ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã€‚
+    PPW_LOBBY_ERROR_SESSION,                ///< è‡´å‘½çš„ãªé€šä¿¡ã‚¨ãƒ©ãƒ¼(ãƒãƒ£ãƒƒãƒˆã‚µãƒ¼ãƒ)ã€‚
+    PPW_LOBBY_ERROR_STATS_SESSION,          ///< è‡´å‘½çš„ãªé€šä¿¡ã‚¨ãƒ©ãƒ¼(ãƒ«ãƒ¼ãƒ è¨­å®šã‚µãƒ¼ãƒ)ã€‚
+    PPW_LOBBY_ERROR_MAX                     ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
 }
 PPW_LOBBY_ERROR;
 
-/// ƒ^ƒCƒ€ƒCƒxƒ“ƒg‚ÌŽí—ÞB::PPW_LobbyScheduleProgressCallbackƒR[ƒ‹ƒoƒbƒN‚ÅŽg—p‚³‚ê‚Ü‚·B
+/// ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡žã€‚::PPW_LobbyScheduleProgressCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
 typedef enum PPW_LOBBY_TIME_EVENT
 {
-    PPW_LOBBY_TIME_EVENT_LOCK,              ///< •”‰®‚ÌƒƒbƒNB
-    PPW_LOBBY_TIME_EVENT_NEON_A0,           ///< Žº“àƒlƒIƒ“æ~’²0B
-    PPW_LOBBY_TIME_EVENT_NEON_A1,           ///< Žº“àƒlƒIƒ“æ~’²1B
-    PPW_LOBBY_TIME_EVENT_NEON_A2,           ///< Žº“àƒlƒIƒ“æ~’²2B
-    PPW_LOBBY_TIME_EVENT_NEON_A3,           ///< Žº“àƒlƒIƒ“æ~’²3B
-    PPW_LOBBY_TIME_EVENT_NEON_A4,           ///< Žº“àƒlƒIƒ“æ~’²4B
-    PPW_LOBBY_TIME_EVENT_NEON_A5,           ///< Žº“àƒlƒIƒ“æ~’²5B
-    PPW_LOBBY_TIME_EVENT_NEON_B0,           ///< °ƒlƒIƒ“æ~’²0B
-    PPW_LOBBY_TIME_EVENT_NEON_B1,           ///< °ƒlƒIƒ“æ~’²1B
-    PPW_LOBBY_TIME_EVENT_NEON_B2,           ///< °ƒlƒIƒ“æ~’²2B
-    PPW_LOBBY_TIME_EVENT_NEON_B3,           ///< °ƒlƒIƒ“æ~’²3B
-    PPW_LOBBY_TIME_EVENT_NEON_C0,           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²0B
-    PPW_LOBBY_TIME_EVENT_NEON_C1,           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²1B
-    PPW_LOBBY_TIME_EVENT_NEON_C2,           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²2B
-    PPW_LOBBY_TIME_EVENT_NEON_C3,           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²3B
-    PPW_LOBBY_TIME_EVENT_MINIGAME_END,      ///< ƒ~ƒjƒQ[ƒ€I—¹B
-    PPW_LOBBY_TIME_EVENT_FIRE_WORKS_START,  ///< ƒtƒ@ƒCƒA[ƒ[ƒNƒXŠJŽnB
-    PPW_LOBBY_TIME_EVENT_FIRE_WORKS_END,    ///< ƒtƒ@ƒCƒA[ƒ[ƒNƒXI—¹B
-    PPW_LOBBY_TIME_EVENT_PARADE,            ///< ƒpƒŒ[ƒhB
-    PPW_LOBBY_TIME_EVENT_CLOSE              ///< I—¹B
+    PPW_LOBBY_TIME_EVENT_LOCK,              ///< éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_A0,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿0ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_A1,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿1ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_A2,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿2ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_A3,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿3ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_A4,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿4ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_A5,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿5ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_B0,           ///< åºŠãƒã‚ªãƒ³è«§èª¿0ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_B1,           ///< åºŠãƒã‚ªãƒ³è«§èª¿1ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_B2,           ///< åºŠãƒã‚ªãƒ³è«§èª¿2ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_B3,           ///< åºŠãƒã‚ªãƒ³è«§èª¿3ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_C0,           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿0ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_C1,           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿1ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_C2,           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿2ã€‚
+    PPW_LOBBY_TIME_EVENT_NEON_C3,           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿3ã€‚
+    PPW_LOBBY_TIME_EVENT_MINIGAME_END,      ///< ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµ‚äº†ã€‚
+    PPW_LOBBY_TIME_EVENT_FIRE_WORKS_START,  ///< ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚¹é–‹å§‹ã€‚
+    PPW_LOBBY_TIME_EVENT_FIRE_WORKS_END,    ///< ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚¹çµ‚äº†ã€‚
+    PPW_LOBBY_TIME_EVENT_PARADE,            ///< ãƒ‘ãƒ¬ãƒ¼ãƒ‰ã€‚
+    PPW_LOBBY_TIME_EVENT_CLOSE              ///< çµ‚äº†ã€‚
 }
 PPW_LOBBY_TIME_EVENT;
 
-/// ::PPW_LobbySchedule\‘¢‘Ì‚ÌroomFlagƒƒ“ƒo‚É‘Î‰ž‚·‚é•”‰®Ý’èƒtƒ‰ƒO
+/// ::PPW_LobbyScheduleæ§‹é€ ä½“ã®roomFlagãƒ¡ãƒ³ãƒã«å¯¾å¿œã™ã‚‹éƒ¨å±‹è¨­å®šãƒ•ãƒ©ã‚°
 typedef enum PPW_LOBBY_ROOM_FLAG
 {
-    PPW_LOBBY_ROOM_FLAG_ARCEUS  = 0x00000001    ///< ƒAƒ‹ƒZƒEƒX‚ð‹–‰Â‚·‚é‚©
+    PPW_LOBBY_ROOM_FLAG_ARCEUS  = 0x00000001    ///< ã‚¢ãƒ«ã‚»ã‚¦ã‚¹ã‚’è¨±å¯ã™ã‚‹ã‹
 }
 PPW_LOBBY_ROOM_FLAG;
 
-/// ƒXƒPƒWƒ…[ƒ‹‚âVIPÝ’è‚Ìƒ_ƒEƒ“ƒ[ƒhŒ‹‰Ê
+/// ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚„VIPè¨­å®šã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çµæžœ
 typedef enum PPW_LOBBY_STATS_RESULT
 {
-    PPW_LOBBY_STATS_RESULT_SUCCESS,         ///< ¬Œ÷B
-    PPW_LOBBY_STATS_RESULT_INVALID_PARAM,   ///< ‘—M‚µ‚½ƒpƒ‰ƒ[ƒ^‚ª•s³‚Å‚·B
-    PPW_LOBBY_STATS_RESULT_SERVER_ERROR     ///< ƒT[ƒo‚ªƒGƒ‰[‚ð•Ô‚µ‚Ü‚µ‚½B
+    PPW_LOBBY_STATS_RESULT_SUCCESS,         ///< æˆåŠŸã€‚
+    PPW_LOBBY_STATS_RESULT_INVALID_PARAM,   ///< é€ä¿¡ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒä¸æ­£ã§ã™ã€‚
+    PPW_LOBBY_STATS_RESULT_SERVER_ERROR     ///< ã‚µãƒ¼ãƒãŒã‚¨ãƒ©ãƒ¼ã‚’è¿”ã—ã¾ã—ãŸã€‚
 }
 PPW_LOBBY_STATS_RESULT;
 
 
-/// ƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹B
+/// ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã€‚
 typedef struct PPW_LobbySystemProfile
 {
-    s64 enterTime;                          ///< ƒƒr[‚É“ü‚Á‚½ŽžB
-    PPW_LOBBY_CHANNEL_KIND subChannelKind;  ///< ŽQ‰Á‚µ‚Ä‚¢‚éƒTƒuƒ`ƒƒƒ“ƒlƒ‹B
+    s64 enterTime;                          ///< ãƒ­ãƒ“ãƒ¼ã«å…¥ã£ãŸæ™‚åˆ»ã€‚
+    PPW_LOBBY_CHANNEL_KIND subChannelKind;  ///< å‚åŠ ã—ã¦ã„ã‚‹ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã€‚
 }
 PPW_LobbySystemProfile;
 
-/// ƒ~ƒjƒQ[ƒ€•åW—v€B
+/// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†è¦é …ã€‚
 typedef struct PPW_LobbyRecruitInfo
 {
-    s32 gameKind;                           ///< •åW‚·‚éƒ~ƒjƒQ[ƒ€‚ÌŽí—ÞB
-    u32 maxNum;                             ///< •åW‚·‚éÅ‘ål”B
-    u32 currentNum;                         ///< Œ»ÝW‚Ü‚Á‚Ä‚¢‚él”B
-    u32 paramVal;                           ///< ƒ†[ƒU’è‹`ƒf[ƒ^1B
-    u8 paramBuf[PPW_LOBBY_MAX_MATCHMAKING_BUF_SIZE];    ///< ƒ†[ƒU’è‹`ƒf[ƒ^2B
+    s32 gameKind;                           ///< å‹Ÿé›†ã™ã‚‹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®ç¨®é¡žã€‚
+    u32 maxNum;                             ///< å‹Ÿé›†ã™ã‚‹æœ€å¤§äººæ•°ã€‚
+    u32 currentNum;                         ///< ç¾åœ¨é›†ã¾ã£ã¦ã„ã‚‹äººæ•°ã€‚
+    u32 paramVal;                           ///< ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ‡ãƒ¼ã‚¿1ã€‚
+    u8 paramBuf[PPW_LOBBY_MAX_MATCHMAKING_BUF_SIZE];    ///< ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ‡ãƒ¼ã‚¿2ã€‚
     
-    /// ƒ}ƒbƒ`ƒ“ƒOŽw•W•¶Žš—ñB::PPW_LobbyStartRecruitŠÖ”“à•”‚É‚ÄƒZƒbƒg‚³‚ê‚Ü‚·‚Ì‚Å•ÏX‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+    /// ãƒžãƒƒãƒãƒ³ã‚°æŒ‡æ¨™æ–‡å­—åˆ—ã€‚::PPW_LobbyStartRecruité–¢æ•°å†…éƒ¨ã«ã¦ã‚»ãƒƒãƒˆã•ã‚Œã¾ã™ã®ã§å¤‰æ›´ã—ãªã„ã§ãã ã•ã„ã€‚
     char matchMakingString[PPW_LOBBY_MAX_MATCHMAKING_STRING_LENGTH];
 }
 PPW_LobbyRecruitInfo;
 
-/// Žžî•ñB
+/// æ™‚åˆ»æƒ…å ±ã€‚
 typedef struct PPW_LobbyTimeInfo
 {
-    s64 currentTime;                        ///< Œ»Ý‚ÌŽžB
-    s64 openedTime;                         ///< •”‰®‚ðì¬‚µ‚½ŽžB
-    s64 lockedTime;                         ///< •”‰®‚ðƒƒbƒN‚µ‚½ŽžB
+    s64 currentTime;                        ///< ç¾åœ¨ã®æ™‚åˆ»ã€‚
+    s64 openedTime;                         ///< éƒ¨å±‹ã‚’ä½œæˆã—ãŸæ™‚åˆ»ã€‚
+    s64 lockedTime;                         ///< éƒ¨å±‹ã‚’ãƒ­ãƒƒã‚¯ã—ãŸæ™‚åˆ»ã€‚
 }
 PPW_LobbyTimeInfo;
 
-/// ƒXƒPƒWƒ…[ƒ‹ƒŒƒR[ƒhB
+/// ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ã€‚
 typedef struct PPW_LobbyScheduleRecord
 {
-    s32 time;                               ///< ƒCƒxƒ“ƒg‚ª‹N“®‚·‚éŽž(ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚ðƒƒbƒN‚µ‚½‚Æ‚«‚©‚ç‚ÌŽžŠÔ)B
-    PPW_LOBBY_TIME_EVENT event;             ///< ‹N“®‚·‚éƒCƒxƒ“ƒgB
+    s32 time;                               ///< ã‚¤ãƒ™ãƒ³ãƒˆãŒèµ·å‹•ã™ã‚‹æ™‚åˆ»(ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ãƒ­ãƒƒã‚¯ã—ãŸã¨ãã‹ã‚‰ã®æ™‚é–“)ã€‚
+    PPW_LOBBY_TIME_EVENT event;             ///< èµ·å‹•ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã€‚
 }
 PPW_LobbyScheduleRecord;
 
-/// ƒT[ƒo‚©‚çŽæ“¾‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚ÌÝ’èî•ñ‚Å‚·B‰Â•Ï’·\‘¢‘Ì‚Å‚·B
+/// ã‚µãƒ¼ãƒã‹ã‚‰å–å¾—ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã®è¨­å®šæƒ…å ±ã§ã™ã€‚å¯å¤‰é•·æ§‹é€ ä½“ã§ã™ã€‚
 typedef struct PPW_LobbySchedule
 {
-    u32 lockTime;                           ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚ðƒI[ƒvƒ“‚µ‚Ä‚©‚çƒƒbƒN‚·‚é‚Ü‚Å‚ÌŽžŠÔ(•b)B
-    u32 random;                             ///< ƒT[ƒo‚Å¶¬‚³‚ê‚é32bit”ÍˆÍ‚Ìƒ‰ƒ“ƒ_ƒ€’lB
-    u32 roomFlag;                           ///< ::PPW_LOBBY_ROOM_FLAG‚É‘Î‰ž‚·‚éŠeŽíbitƒtƒ‰ƒOB
-    u8 roomType;                            ///< •”‰®‚ÌŽí—ÞB
-    u8 season;                              ///< ‹Gß”Ô†B
-    u16 scheduleRecordNum;                  ///< ƒXƒPƒWƒ…[ƒ‹ƒŒƒR[ƒh‚Ì”B
-    PPW_LobbyScheduleRecord scheduleRecords[1]; ///< ƒXƒPƒWƒ…[ƒ‹ƒŒƒR[ƒh‚Ì”z—ñ(‰Â•Ï’·)B
+    u32 lockTime;                           ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã‹ã‚‰ãƒ­ãƒƒã‚¯ã™ã‚‹ã¾ã§ã®æ™‚é–“(ç§’)ã€‚
+    u32 random;                             ///< ã‚µãƒ¼ãƒã§ç”Ÿæˆã•ã‚Œã‚‹32bitç¯„å›²ã®ãƒ©ãƒ³ãƒ€ãƒ å€¤ã€‚
+    u32 roomFlag;                           ///< ::PPW_LOBBY_ROOM_FLAGã«å¯¾å¿œã™ã‚‹å„ç¨®bitãƒ•ãƒ©ã‚°ã€‚
+    u8 roomType;                            ///< éƒ¨å±‹ã®ç¨®é¡žã€‚
+    u8 season;                              ///< å­£ç¯€ç•ªå·ã€‚
+    u16 scheduleRecordNum;                  ///< ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ã®æ•°ã€‚
+    PPW_LobbyScheduleRecord scheduleRecords[1]; ///< ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ã®é…åˆ—(å¯å¤‰é•·)ã€‚
 }
 PPW_LobbySchedule;
 
-/// VIPƒŒƒR[ƒhB
+/// VIPãƒ¬ã‚³ãƒ¼ãƒ‰ã€‚
 typedef struct PPW_LobbyVipRecord
 {
-    s32 profileId;                          ///< VIP‚ÌProfileIDB
-    s32 key;                                ///< ‡Œ¾—t¶¬—pƒL[B‡Œ¾—t–³‚µ‚Ìê‡‚Í0‚É‚È‚è‚Ü‚·B
+    s32 profileId;                          ///< VIPã®ProfileIDã€‚
+    s32 key;                                ///< åˆè¨€è‘‰ç”Ÿæˆç”¨ã‚­ãƒ¼ã€‚åˆè¨€è‘‰ç„¡ã—ã®å ´åˆã¯0ã«ãªã‚Šã¾ã™ã€‚
 }
 PPW_LobbyVipRecord;
 
-/// ƒAƒ“ƒP[ƒg“à—e
+/// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆå†…å®¹
 typedef struct PPW_LobbyQuestionnaireRecord
 {
-    s32 questionSerialNo;                   ///< Ž¿–â’Ê‚µ”Ô†B0‚©‚çƒXƒ^[ƒgB
-    s32 questionNo;                         ///< Ž¿–â”Ô†BROM“àŽ¿–â:0`59 ”CˆÓŽ¿–â:PPW_LOBBY_FREE_QUESTION_START_NO`PPW_LOBBY_FREE_QUESTION_START_NO+PPW_LOBBY_FREE_QUESTION_NUM
-    u16 questionSentence[PPW_LOBBY_MAX_QUESTION_SENTENCE_LENGTH];   ///< ”CˆÓŽ¿–âBŽ¿–â”Ô†‚ª”CˆÓŽ¿–â‚Ì”ÍˆÍ‚¾‚Á‚½‚Æ‚«‚Ì‚ÝŠi”[‚³‚ê‚Ü‚·B
-    u16 answer[PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM][PPW_LOBBY_MAX_ANSWER_LENGTH];    ///< ”CˆÓŽ¿–â‚Ì‰ñ“šBŽ¿–â”Ô†‚ª”CˆÓŽ¿–â‚Ì”ÍˆÍ‚¾‚Á‚½‚Æ‚«‚Ì‚ÝŠi”[‚³‚ê‚Ü‚·B
-    u8 multiLanguageSummarizeFlags[12];     ///< WŒvŒ¾ŒêB0‚Í–¢WŒvA1‚ÍWŒv‚µ‚½‚±‚Æ‚ðŽ¦‚µ‚Ü‚·BƒCƒ“ƒfƒbƒNƒX‚É‚ÍŒ¾ŒêƒR[ƒh‚É‘Î‰ž‚µ‚Ü‚·B[0]‚Æ[6]‚Æ[9]ˆÈ~‚Íí‚É0‚É‚È‚è‚Ü‚·B
-    BOOL isSpecialWeek;                     ///< ƒXƒyƒVƒƒƒ‹ƒEƒB[ƒN‚©
+    s32 questionSerialNo;                   ///< è³ªå•é€šã—ç•ªå·ã€‚0ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆã€‚
+    s32 questionNo;                         ///< è³ªå•ç•ªå·ã€‚ROMå†…è³ªå•:0ã€œ59 ä»»æ„è³ªå•:PPW_LOBBY_FREE_QUESTION_START_NOã€œPPW_LOBBY_FREE_QUESTION_START_NO+PPW_LOBBY_FREE_QUESTION_NUM
+    u16 questionSentence[PPW_LOBBY_MAX_QUESTION_SENTENCE_LENGTH];   ///< ä»»æ„è³ªå•ã€‚è³ªå•ç•ªå·ãŒä»»æ„è³ªå•ã®ç¯„å›²ã ã£ãŸã¨ãã®ã¿æ ¼ç´ã•ã‚Œã¾ã™ã€‚
+    u16 answer[PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM][PPW_LOBBY_MAX_ANSWER_LENGTH];    ///< ä»»æ„è³ªå•ã®å›žç­”ã€‚è³ªå•ç•ªå·ãŒä»»æ„è³ªå•ã®ç¯„å›²ã ã£ãŸã¨ãã®ã¿æ ¼ç´ã•ã‚Œã¾ã™ã€‚
+    u8 multiLanguageSummarizeFlags[12];     ///< é›†è¨ˆè¨€èªžã€‚0ã¯æœªé›†è¨ˆã€1ã¯é›†è¨ˆã—ãŸã“ã¨ã‚’ç¤ºã—ã¾ã™ã€‚ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã¯è¨€èªžã‚³ãƒ¼ãƒ‰ã«å¯¾å¿œã—ã¾ã™ã€‚[0]ã¨[6]ã¨[9]ä»¥é™ã¯å¸¸ã«0ã«ãªã‚Šã¾ã™ã€‚
+    BOOL isSpecialWeek;                     ///< ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯ã‹
 }
 PPW_LobbyQuestionnaireRecord;
 
-/// ƒAƒ“ƒP[ƒgî•ñ
+/// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±
 typedef struct PPW_LobbyQuestionnaire
 {
-    PPW_LobbyQuestionnaireRecord currentQuestionnaireRecord;    ///< Œ»Ý‚ÌƒAƒ“ƒP[ƒgî•ñ
-    PPW_LobbyQuestionnaireRecord lastQuestionnaireRecord;       ///< ‘O‰ñ‚ÌƒAƒ“ƒP[ƒgî•ñ
-    s32 lastResult[PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM];         ///< ‘O‰ñ‚ÌŽ©•ª‚ÌŒ¾Œê‚ÌŒ‹‰Ê
-    s32 lastMultiResult[PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM];    ///< ‘O‰ñ‚Ì•¡”WŒvŒ¾Œê‚Å‚ÌWŒvŒ‹‰ÊB::lastQuestionnaireRecord\‘¢‘Ì‚ÌmultiLanguageSummarizeFlagsƒƒ“ƒo‚Å•\‚³‚ê‚éŒ¾Œê‚Å‚ÌWŒvŒ‹‰Ê‚Å‚·B
+    PPW_LobbyQuestionnaireRecord currentQuestionnaireRecord;    ///< ç¾åœ¨ã®ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±
+    PPW_LobbyQuestionnaireRecord lastQuestionnaireRecord;       ///< å‰å›žã®ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±
+    s32 lastResult[PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM];         ///< å‰å›žã®è‡ªåˆ†ã®è¨€èªžã®çµæžœ
+    s32 lastMultiResult[PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM];    ///< å‰å›žã®è¤‡æ•°é›†è¨ˆè¨€èªžã§ã®é›†è¨ˆçµæžœã€‚::lastQuestionnaireRecordæ§‹é€ ä½“ã®multiLanguageSummarizeFlagsãƒ¡ãƒ³ãƒã§è¡¨ã•ã‚Œã‚‹è¨€èªžã§ã®é›†è¨ˆçµæžœã§ã™ã€‚
 }
 PPW_LobbyQuestionnaire;
 
@@ -263,7 +263,7 @@ typedef enum LANGUAGE
 }
 LANGUAGE;
 
-/// Ž¿–âðŒ
+/// è³ªå•æ¡ä»¶
 typedef struct PPW_LobbyQuestionCondition
 {
     s32 questionNo;
@@ -271,7 +271,7 @@ typedef struct PPW_LobbyQuestionCondition
 }
 PPW_LobbyQuestionCondition;
 
-/// ƒXƒyƒVƒƒƒ‹ƒEƒB[ƒNƒŒƒR[ƒh
+/// ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯ãƒ¬ã‚³ãƒ¼ãƒ‰
 typedef struct PPW_LobbySpecialWeekRecord
 {
     s32 questionSerialNo;
@@ -279,12 +279,12 @@ typedef struct PPW_LobbySpecialWeekRecord
 }
 PPW_LobbySpecialWeekRecord;
 
-/// ”CˆÓŽ¿–â
+/// ä»»æ„è³ªå•
 typedef struct PPW_LobbyFreeQuestion
 {
-    s32 language;                       ///< “o˜^‚·‚éŒ¾Œê
-    s32 questionNo;                         ///< ƒXƒƒbƒg”Ô†(Ž¿–â”Ô†-1000)
-    u16 questionSentence[PPW_LOBBY_MAX_QUESTION_SENTENCE_LENGTH];   ///< ”CˆÓŽ¿–âB
-    u16 answer[PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM][PPW_LOBBY_MAX_ANSWER_LENGTH];    ///< ”CˆÓŽ¿–â‚Ì‰ñ“šB
+    s32 language;                       ///< ç™»éŒ²ã™ã‚‹è¨€èªž
+    s32 questionNo;                         ///< ã‚¹ãƒ­ãƒƒãƒˆç•ªå·(è³ªå•ç•ªå·-1000)
+    u16 questionSentence[PPW_LOBBY_MAX_QUESTION_SENTENCE_LENGTH];   ///< ä»»æ„è³ªå•ã€‚
+    u16 answer[PPW_LOBBY_QUESTIONNAIRE_ANSWER_NUM][PPW_LOBBY_MAX_ANSWER_LENGTH];    ///< ä»»æ„è³ªå•ã®å›žç­”ã€‚
 }
 PPW_LobbyFreeQuestion;

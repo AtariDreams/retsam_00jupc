@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_shop.c
- * @brief	’n‰º‚Ì‚¨“X‚Ì’†g‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹ã®ãŠåº—ã®ä¸­èº«ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2006.3.9
  */
@@ -52,7 +52,7 @@
 
 
 /*
-	//ƒAƒCƒeƒ€Aƒgƒ‰ƒbƒv‰®‚³‚ñ‚ÌˆÊ’u‚ğ’²®
+	//ã‚¢ã‚¤ãƒ†ãƒ ã€ãƒˆãƒ©ãƒƒãƒ—å±‹ã•ã‚“ã®ä½ç½®ã‚’èª¿æ•´
 	_SXY_POS_CHANGE		UG_ITEM_SHOP_01,72,104
 	_SXY_POS_CHANGE		UG_ITEM_SHOP_02,424,87
 	_SXY_POS_CHANGE		UG_ITEM_SHOP_03,200,185
@@ -115,12 +115,12 @@ _ShopListS _shopList[]={
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define	_SUB_MENU_MAX		( 7 )					// €–ÚÅ‘å”
+#define	_SUB_MENU_MAX		( 7 )					// é …ç›®æœ€å¤§æ•°
 
 #define	_TRAP_BAG_MAX      (20)
 #define	_STONE_BAG_MAX     (20)
@@ -134,18 +134,18 @@ _ShopListS _shopList[]={
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 
 
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
 
 
 //==============================================================================
-//	static’è‹`
+//	staticå®šç¾©
 //==============================================================================
 
 static const BMPWIN_DAT _yesNoBmpDat = {
@@ -161,8 +161,8 @@ static void _ugMenuShopEnd(_START_WORK* pShop);
 
 //==============================================================================
 /**
- * ‚í‚È‚Ì¤•iƒƒjƒ…[‚ğì¬
- * @param   pShop   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * ã‚ãªã®å•†å“ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½œæˆ
+ * @param   pShop   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  void
  */
 //==============================================================================
@@ -194,13 +194,13 @@ static void _trapShopListCreate(_START_WORK* pShop,int personal)
         min = TrapShopGetChangeStoneCaratMin(type);
         max = TrapShopGetChangeStoneCaratMax(type);
         if((min == 0) && (max == 0)){
-            OHNO_PRINT("”Ì”„’†~\n");
+            OHNO_PRINT("è²©å£²ä¸­æ­¢\n");
             i--;
             continue;
         }
         pShop->item[i] = type;
         pShop->stone[i] = TrapShopGetChangeStoneType(type);
-        if(pShop->stone[i] == STONE_TYPE_MAX){  // ƒ‰ƒ“ƒ_ƒ€‚¾‚Á‚½
+        if(pShop->stone[i] == STONE_TYPE_MAX){  // ãƒ©ãƒ³ãƒ€ãƒ ã ã£ãŸ
             pShop->stone[i] = MATH_Rand16(&rand,STONE_TYPE_MAX-1)+1;
         }
         pShop->carat[i] = MATH_Rand16(&rand, max-min)+min;
@@ -210,8 +210,8 @@ static void _trapShopListCreate(_START_WORK* pShop,int personal)
 
 //==============================================================================
 /**
- * ƒOƒbƒY‚Ì¤•iƒƒjƒ…[‚ğì¬
- * @param   pShop   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * ã‚°ãƒƒã‚ºã®å•†å“ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½œæˆ
+ * @param   pShop   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  void
  */
 //==============================================================================
@@ -239,15 +239,15 @@ static void _goodsShopListCreate(_START_WORK* pShop,int personal)
         }
         pShop->item[i] = type;
         pShop->stone[i] = GOODS_GetGoodsChangeStoneType(type);
-        if((bZenkoku==FALSE) && (1==GOODS_GetZenkokuMode(type))){  // ‚Ü‚¾”„‚Á‚Ä‚Í‚¢‚¯‚È‚¢
+        if((bZenkoku==FALSE) && (1==GOODS_GetZenkokuMode(type))){  // ã¾ã å£²ã£ã¦ã¯ã„ã‘ãªã„
             i--;
             continue;
         }
-        if(pShop->stone[i] == STONE_TYPE_NONE){  // ‚¨“X‚Å‚Í”„‚Á‚Ä‚¢‚È‚¢‚à‚Ì‚¾‚Á‚½
+        if(pShop->stone[i] == STONE_TYPE_NONE){  // ãŠåº—ã§ã¯å£²ã£ã¦ã„ãªã„ã‚‚ã®ã ã£ãŸ
             i--;
             continue;
         }
-        else if(pShop->stone[i] == STONE_TYPE_MAX){  // ƒ‰ƒ“ƒ_ƒ€‚¾‚Á‚½
+        else if(pShop->stone[i] == STONE_TYPE_MAX){  // ãƒ©ãƒ³ãƒ€ãƒ ã ã£ãŸ
             pShop->stone[i] = MATH_Rand16(&rand,STONE_TYPE_MAX-1)+1;
         }
         min = GOODS_GetGoodsChangeStoneCaratMin(type);
@@ -258,8 +258,8 @@ static void _goodsShopListCreate(_START_WORK* pShop,int personal)
 
 //==============================================================================
 /**
- * ‚½‚Ü‚Æ•¨‚ÌŒğŠ·ˆ—
- * @param   pShop   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * ãŸã¾ã¨ç‰©ã®äº¤æ›å‡¦ç†
+ * @param   pShop   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  void
  */
 //==============================================================================
@@ -284,7 +284,7 @@ static int _shopExec(_START_WORK* pShop, int selectIndex,int stoneIndex)
     else if(pShop->ShopID == UG_SHOP_TREASURE){
         result = UnderGroundAddTreasureBagItem(pUGData, pShop->item[selectIndex]);
     }
-    if(result){   // ‚½‚Ü‚ğ‚Æ‚é
+    if(result){   // ãŸã¾ã‚’ã¨ã‚‹
         UnderGroundDelStoneBagItem(pUGData ,stoneIndex);
     }
     else{
@@ -295,9 +295,9 @@ static int _shopExec(_START_WORK* pShop, int selectIndex,int stoneIndex)
 
 //==============================================================================
 /**
- * ‚í‚È‚©ƒOƒbƒY‚©‚Ìƒƒjƒ…[‚ğo‚·
- * @param   pTalk   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
- * @retval  ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * ã‚ãªã‹ã‚°ãƒƒã‚ºã‹ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‡ºã™
+ * @param   pTalk   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+ * @retval  ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 
@@ -307,7 +307,7 @@ static int _shopExec(_START_WORK* pShop, int selectIndex,int stoneIndex)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/25
-// ƒEƒBƒ“ƒhƒEØ‚èŠ·‚¦‚ÌƒSƒ~‚ğ–h~
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ‡ã‚Šæ›ãˆæ™‚ã®ã‚´ãƒŸã‚’é˜²æ­¢
 
 #define _SELECTMENU_SIZE_Y	(6)
 #define _SHOPMENU_SIZE_Y	(12)
@@ -321,14 +321,14 @@ static int _shopExec(_START_WORK* pShop, int selectIndex,int stoneIndex)
 static void* _shopSelectMenuInit( _START_WORK* pShop )
 {
     BMPLIST_HEADER list_h;
-    int LISTMAX = 3;  // ƒŠƒXƒg‚ÌÅ‘å
+    int LISTMAX = 3;  // ãƒªã‚¹ãƒˆã®æœ€å¤§
 
     if(pShop->ShopID == UG_SHOP_TREASURE){
         LISTMAX = 2;
     }
     
     _startMenuEnd(pShop);
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pShop->menulist = BMP_MENULIST_Create( LISTMAX, HEAPID_FIELD );
     GF_BGL_BmpWinAdd(pShop->pFSys->bgl, &pShop->win,
                      GF_BGL_FRAME3_M, _TRAPMENU_POSX, _TRAPMENU_POSY, _TRAPMENU_SIZE_X, LISTMAX*2, FLD_SYSFONT_PAL,
@@ -379,8 +379,8 @@ static void* _shopSelectMenuInit( _START_WORK* pShop )
 
 //==============================================================================
 /**
- * ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚É‚½‚Ü‚ÌƒƒbƒZ[ƒW‚ğ•Ï‚¦‚é
- * @param   pTalk   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸæ™‚ã«ãŸã¾ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰ãˆã‚‹
+ * @param   pTalk   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -431,8 +431,8 @@ static void _cursorChangeDisp(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 //==============================================================================
 /**
- * ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚É‚½‚Ü‚ÌƒƒbƒZ[ƒW‚ğ•Ï‚¦‚é
- * @param   pTalk   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸæ™‚ã«ãŸã¾ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰ãˆã‚‹
+ * @param   pTalk   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -453,7 +453,7 @@ static void _recycleShopDisp(BMPLIST_WORK * wk,u32 param,u8 mode)
             type = _underBagGetTrapID(idx, pShop);
             MATH_InitRand16(&rand, UnderGroundGetDayRandSeed(pUGData) + pShop->personal + type);
             stone = TrapShopGetChangeStoneType(type);
-            if(stone == STONE_TYPE_MAX){  // ƒ‰ƒ“ƒ_ƒ€‚¾‚Á‚½
+            if(stone == STONE_TYPE_MAX){  // ãƒ©ãƒ³ãƒ€ãƒ ã ã£ãŸ
                 stone= MATH_Rand16(&rand,STONE_TYPE_MAX-1)+1;
             }
             min = TrapShopGetChangeStoneCaratMin(type);
@@ -465,7 +465,7 @@ static void _recycleShopDisp(BMPLIST_WORK * wk,u32 param,u8 mode)
             type = _underBagGetGoodsID(idx, pShop);
             MATH_InitRand16(&rand, UnderGroundGetDayRandSeed(pUGData) + pShop->personal + type);
             stone = GOODS_GetGoodsChangeStoneType(type);
-            if(stone == STONE_TYPE_MAX){  // ƒ‰ƒ“ƒ_ƒ€‚¾‚Á‚½
+            if(stone == STONE_TYPE_MAX){  // ãƒ©ãƒ³ãƒ€ãƒ ã ã£ãŸ
                 stone= MATH_Rand16(&rand,STONE_TYPE_MAX-1)+1;
             }
             min = GOODS_GetGoodsChangeStoneCaratMin(type);
@@ -477,7 +477,7 @@ static void _recycleShopDisp(BMPLIST_WORK * wk,u32 param,u8 mode)
             type = _underBagGetTreasureID(idx, pShop);
             MATH_InitRand16(&rand, UnderGroundGetDayRandSeed(pUGData) + pShop->personal + type);
             stone = TrShopGetChangeStoneType(type);
-            if(stone == STONE_TYPE_MAX){  // ƒ‰ƒ“ƒ_ƒ€‚¾‚Á‚½
+            if(stone == STONE_TYPE_MAX){  // ãƒ©ãƒ³ãƒ€ãƒ ã ã£ãŸ
                 stone= MATH_Rand16(&rand,STONE_TYPE_MAX-1)+1;
             }
             min = TrShopGetChangeStoneCaratMin(type);
@@ -523,8 +523,8 @@ static void _recycleShopDisp(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 //==============================================================================
 /**
- * ‚¨“X‚Ì¤•i‚ğindex‚©‚ç’†g‚ğ“n‚·
- * @param   pTalk   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * ãŠåº—ã®å•†å“ã‚’indexã‹ã‚‰ä¸­èº«ã‚’æ¸¡ã™
+ * @param   pTalk   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -541,8 +541,8 @@ static int _shopGetType(int index, void* work)
 
 //==============================================================================
 /**
- * ‚¨“X‚Ìƒƒjƒ…[‚ğo‚·
- * @param   pTalk   ƒ[ƒNƒƒjƒ…[ƒ|ƒCƒ“ƒ^
+ * ãŠåº—ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‡ºã™
+ * @param   pTalk   ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -550,17 +550,17 @@ static int _shopGetType(int index, void* work)
 static void _shopMenuInit(_START_WORK* pShop)
 {
     BMPLIST_HEADER list_h;
-    const int LISTMAX = _SHOP_BUY_LIST_MAX + 1;  // ƒŠƒXƒg‚ÌÅ‘å
+    const int LISTMAX = _SHOP_BUY_LIST_MAX + 1;  // ãƒªã‚¹ãƒˆã®æœ€å¤§
 
 //    if(GF_BGL_BmpWinAddCheck(&pShop->win)){
   //      BmpMenuWinClear(&pShop->win, WINDOW_TRANS_ON );
     //}
     _startMenuEnd(pShop);
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pShop->menulist = BMP_MENULIST_Create( LISTMAX, HEAPID_FIELD );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/25
-	// ƒEƒBƒ“ƒhƒEØ‚èŠ·‚¦‚ÌƒSƒ~‚ğ–h~
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ‡ã‚Šæ›ãˆæ™‚ã®ã‚´ãƒŸã‚’é˜²æ­¢
      GF_BGL_BmpWinAdd(pShop->pFSys->bgl, &pShop->win,
                      GF_BGL_FRAME3_M, _TRAPMENU_POSX, _TRAPMENU_POSY, _TRAPMENU_SIZE_X, LISTMAX*2, FLD_SYSFONT_PAL,
                      _SHOPMENU_CGX);
@@ -611,7 +611,7 @@ static void _shopMenuInit(_START_WORK* pShop)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n‰º‚Ì‚¨“X‚Ìƒƒjƒ…[‚ğI—¹
+ * @brief   åœ°ä¸‹ã®ãŠåº—ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’çµ‚äº†
  * @param   none
  * @retval  noen
  */
@@ -627,8 +627,8 @@ static void  _shopMenuEnd(_START_WORK* pShop, BOOL bSubWin)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŒğŠ·‚·‚é‚©‚ÌŠm”Fƒƒjƒ…[‚ğo‚·
- * @param   index  ‘I‘ğ‚µ‚½êŠ
+ * @brief   äº¤æ›ã™ã‚‹ã‹ã®ç¢ºèªãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‡ºã™
+ * @param   index  é¸æŠã—ãŸå ´æ‰€
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -655,9 +655,9 @@ static void _yesNoWindowOpen(int index, _START_WORK* pShop)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”„‚éÀsˆ—
- * @param   pShop  ‚±‚Ìƒƒjƒ…[‚Ìƒ[ƒNƒ|ƒCƒ“ƒ^
- * @retval  Œ‹‰Ê‚Ì”Ô†
+ * @brief   å£²ã‚‹å®Ÿè¡Œå‡¦ç†
+ * @param   pShop  ã“ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @retval  çµæœã®ç•ªå·
  */
 //--------------------------------------------------------------
 
@@ -682,9 +682,9 @@ static u32 _sellExec(_START_WORK* pShop)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n‰º‚Ì‚¨“X‚Ìƒƒjƒ…[‚Ìó‘Ô‚ğ“¾‚é
- * @param   pWork  ‚±‚Ìƒƒjƒ…[‚Ìƒ[ƒNƒ|ƒCƒ“ƒ^
- * @retval  Œ‹‰Ê‚Ì”Ô† UgShopReturnCode_e
+ * @brief   åœ°ä¸‹ã®ãŠåº—ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®çŠ¶æ…‹ã‚’å¾—ã‚‹
+ * @param   pWork  ã“ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @retval  çµæœã®ç•ªå· UgShopReturnCode_e
  */
 //--------------------------------------------------------------
 #if 0
@@ -701,8 +701,8 @@ int UgShopMenuFuncAndCheck(void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠJ•úˆ—
- * @param   pShop   ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   é–‹æ”¾å‡¦ç†
+ * @param   pShop   ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -717,11 +717,11 @@ static void _ugMenuShopEnd(_START_WORK* pShop)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚¨“X‚Ì¤•iƒƒjƒ…[‚ğŠJ‚­
+ * @brief   ãŠåº—ã®å•†å“ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã
  * @param   ShopID   UG_SHOP_TRAP, UG_SHOP_GOODS, UG_SHOP_TREASURE
- * @param   FIELDSYS_WORK   ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   ˜A”Ô
- * @retval  ‚±‚Ìƒƒjƒ…[‚Ìƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   FIELDSYS_WORK   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   é€£ç•ª
+ * @retval  ã“ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 
@@ -730,7 +730,7 @@ void* UgShopMenuInit2(int ShopID, FIELDSYS_WORK* pFSys,int no)
     _START_WORK* pShop=NULL;
     /*
     BMPLIST_HEADER list_h;
-    const int LISTMAX = 6;  // ƒŠƒXƒg‚ÌÅ‘å
+    const int LISTMAX = 6;  // ãƒªã‚¹ãƒˆã®æœ€å¤§
 
     UgMgrOpenRecordKey(_KEY_NAME_SHOP_GOODS + ShopID);
     pShop = sys_AllocMemory(HEAPID_FIELD, sizeof(_START_WORK));
@@ -749,9 +749,9 @@ void* UgShopMenuInit2(int ShopID, FIELDSYS_WORK* pFSys,int no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚¨“X‚Ì‰ï˜bŠJn
- * @param   messageNo   gmmƒ‰ƒxƒ‹
- * @retval  ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @brief   ãŠåº—ã®ä¼šè©±é–‹å§‹
+ * @param   messageNo   gmmãƒ©ãƒ™ãƒ«
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------
 
@@ -767,7 +767,7 @@ int UgShopTalkStart(int messageNo)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚¨“X‚Ì‰ï˜bI—¹
+ * @brief   ãŠåº—ã®ä¼šè©±çµ‚äº†
  * @param   none
  * @retval  none
  */
@@ -780,9 +780,9 @@ void UgShopTalkEnd(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€‚Ì–¼‘O‚ğ‚¨“X‚Ì‰ï˜b‚É“o˜^
- * @param   index    ‰½”Ô‚Éregist‚·‚é‚Ì‚©
- * @param   type     gmm”Ô†
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã®åå‰ã‚’ãŠåº—ã®ä¼šè©±ã«ç™»éŒ²
+ * @param   index    ä½•ç•ªã«registã™ã‚‹ã®ã‹
+ * @param   type     gmmç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -794,9 +794,9 @@ void UgShopTalkRegisterItemName(int index,int type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ã©‚Ì–¼‘O‚ğ‚¨“X‚Ì‰ï˜b‚É“o˜^
- * @param   index    ‰½”Ô‚Éregist‚·‚é‚Ì‚©
- * @param   type     gmm”Ô†
+ * @brief   ç½ ã®åå‰ã‚’ãŠåº—ã®ä¼šè©±ã«ç™»éŒ²
+ * @param   index    ä½•ç•ªã«registã™ã‚‹ã®ã‹
+ * @param   type     gmmç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -808,9 +808,9 @@ void UgShopTalkRegisterTrapName(int index,int type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒOƒbƒY‚Ì–¼‘O‚ğ‚¨“X‚Ì‰ï˜b‚É“o˜^
- * @param   index    ‰½”Ô‚Éregist‚·‚é‚Ì‚©
- * @param   type     gmm”Ô†
+ * @brief   ã‚°ãƒƒã‚ºã®åå‰ã‚’ãŠåº—ã®ä¼šè©±ã«ç™»éŒ²
+ * @param   index    ä½•ç•ªã«registã™ã‚‹ã®ã‹
+ * @param   type     gmmç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -822,7 +822,7 @@ void UgShopTalkRegisterGoodsName(int index,int type)
 
 //==============================================================================
 /**
- * ‚à‚ç‚¦‚éƒ^ƒ} •K—v‚Èƒ^ƒ} ƒEƒCƒ“ƒhƒE
+ * ã‚‚ã‚‰ãˆã‚‹ã‚¿ãƒ å¿…è¦ãªã‚¿ãƒ ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
  * @param   none
  * @retval  none
  */
@@ -842,7 +842,7 @@ static void _shopStoneDispWindow(_START_WORK* pShop)
 
 //==============================================================================
 /**
- * ‚Ä‚à‚¿‚Ì‚½‚Ü  ƒEƒCƒ“ƒhƒE
+ * ã¦ã‚‚ã¡ã®ãŸã¾  ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
  * @param   none
  * @retval  none
  */
@@ -850,7 +850,7 @@ static void _shopStoneDispWindow(_START_WORK* pShop)
 
 void UgShopMiniInfoDispWindow(_START_WORK* pShop, int msg)
 {
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     GF_BGL_BmpWinAdd(pShop->pFSys->bgl, &pShop->winSub2,
                      GF_BGL_FRAME3_M, 1, 1, 7, 4, FLD_SYSFONT_PAL, 51);
     BmpMenuWinWrite(&pShop->winSub2, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL );
@@ -866,7 +866,7 @@ void UgShopMiniInfoDispWindow(_START_WORK* pShop, int msg)
 
 //==============================================================================
 /**
- * ‚Ä‚à‚¿‚Ì‚½‚Ü  ƒEƒCƒ“ƒhƒE
+ * ã¦ã‚‚ã¡ã®ãŸã¾  ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
  * @param   none
  * @retval  none
  */
@@ -882,7 +882,7 @@ void UgShopMiniInfoDispWindowDel(_START_WORK* pShop)
 
 //==============================================================================
 /**
- * ‚Ä‚à‚¿‚Ì‚½‚Ü  ƒEƒCƒ“ƒhƒE
+ * ã¦ã‚‚ã¡ã®ãŸã¾  ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
  * @param   none
  * @retval  none
  */
@@ -899,7 +899,7 @@ void UgShopMiniInfoDispWindowDelOn(_START_WORK* pShop)
 
 //==============================================================================
 /**
- * ˆÊ’u‚©‚çƒVƒ‡ƒbƒv‚Ìƒ^ƒCƒv‚ğ“¾‚é
+ * ä½ç½®ã‹ã‚‰ã‚·ãƒ§ãƒƒãƒ—ã®ã‚¿ã‚¤ãƒ—ã‚’å¾—ã‚‹
  * @param   none
  * @retval  none
  */
@@ -909,14 +909,14 @@ static int UgShopGetType(int x,int z, int* personal)
 {
     int i,tblMax = NELEMS(_shopList);
 
-    OHNO_PRINT("“Xƒe[ƒuƒ‹%d\n",tblMax);
+    OHNO_PRINT("åº—ãƒ†ãƒ¼ãƒ–ãƒ«%d\n",tblMax);
     for(i = 0 ; i < tblMax; i++){
         if((_shopList[i].x == x ) && (_shopList[i].z == z)){
             *personal = i;
             return _shopList[i].type;
         }
     }
-    GF_ASSERT(0);  // ˆÊ’u‚ª‚¨‚©‚µ‚¢
+    GF_ASSERT(0);  // ä½ç½®ãŒãŠã‹ã—ã„
     return 0;
 }
 
@@ -925,9 +925,9 @@ static int UgShopGetType(int x,int z, int* personal)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n‰º‚Ì‚¨“X‚Ìƒƒjƒ…[‚Ìó‘Ô‚ğ“¾‚é
- * @param   pWork  ‚±‚Ìƒƒjƒ…[‚Ìƒ[ƒNƒ|ƒCƒ“ƒ^
- * @retval  Œ‹‰Ê‚Ì”Ô† UgShopReturnCode_e
+ * @brief   åœ°ä¸‹ã®ãŠåº—ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®çŠ¶æ…‹ã‚’å¾—ã‚‹
+ * @param   pWork  ã“ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @retval  çµæœã®ç•ªå· UgShopReturnCode_e
  */
 //--------------------------------------------------------------
 
@@ -986,11 +986,11 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
         UgMgrSetRecordKey(_KEY_MENU_SHOP_MAIN, cursor, line);
 
 #if 1
-		//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ğæ“¾
-		tmp_pos_bak = pShop->pos_bak;		//‘Ş”ğ
+		//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+		tmp_pos_bak = pShop->pos_bak;		//é€€é¿
 		BmpListDirectPosGet( pShop->lw, &pShop->pos_bak );
 
-		//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+		//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 		if( tmp_pos_bak != pShop->pos_bak ){
 			Snd_SePlay( SEQ_SE_DP_SELECT );
 		}
@@ -1011,11 +1011,11 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
             }
             else{
                 pShop->bBuy = ret;
-                if(ret == 0){  // ”ƒ‚¤
+                if(ret == 0){  // è²·ã†
 					Snd_SePlay( SEQ_SE_DP_SELECT );
                     pShop->seq = _SHOP_MENU_OPEN;
                 }
-                else{  // ”„‚é
+                else{  // å£²ã‚‹
 					Snd_SePlay( SEQ_SE_DP_SELECT );
                     pShop->seq = _BAG_MENU_OPEN;
                 }
@@ -1034,11 +1034,11 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
         UgMgrSetRecordKey(_KEY_MENU_SHOP_GOODS + pShop->ShopID, cursor, line);
 
 #if 1
-		//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ğæ“¾
-		tmp_pos_bak = pShop->pos_bak;		//‘Ş”ğ
+		//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+		tmp_pos_bak = pShop->pos_bak;		//é€€é¿
 		BmpListDirectPosGet( pShop->lw, &pShop->pos_bak );
 
-		//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+		//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 		if( tmp_pos_bak != pShop->pos_bak ){
 			Snd_SePlay( SEQ_SE_DP_SELECT );
 		}
@@ -1060,7 +1060,7 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
             break;
           default:
 		    Snd_SePlay( SEQ_SE_DP_SELECT );
-            pShop->work = ret;  // pShop->item‚Ìindex‚ª“ü‚Á‚Ä‚¢‚é
+            pShop->work = ret;  // pShop->itemã®indexãŒå…¥ã£ã¦ã„ã‚‹
 
             if(pShop->ShopID == UG_SHOP_TRAP){
                 UgShopTalkRegisterTrapName(2,pShop->item[pShop->work]);
@@ -1071,7 +1071,7 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
 
             UgShopTalkStart(mes_uw_buy_02);
             pShop->seq = _STONE_MENU_BEFORE;
-            OHNO_PRINT("Îƒƒjƒ…[ŠJ‚­\n");
+            OHNO_PRINT("çŸ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‹ã\n");
             break;
         }
         break;
@@ -1153,7 +1153,7 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
                     UgShopTalkRegisterGoodsName(2,pShop->work);
                 }
                 UgShopTalkStart(mes_uw_buy_07_1);
-                // ŒğŠ·Š®—¹
+                // äº¤æ›å®Œäº†
                 Snd_SePlay(UG_SE_FANFA);
                 //_ugMenuShopEnd(pShop);
                 pShop->seq = _DESIDE_MSG_WAIT2;
@@ -1204,7 +1204,7 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
           default:
             if(pShop->stone[0] != STONE_TYPE_NONE){
                 CommMsgTalkWindowEnd(CommUnderGetMsgUnderItem());
-                pShop->work = ret;  // pShop->item‚Ìindex‚ª“ü‚Á‚Ä‚¢‚é
+                pShop->work = ret;  // pShop->itemã®indexãŒå…¥ã£ã¦ã„ã‚‹
                 _shopMenuEnd(pShop,TRUE);
                 UgShopMiniInfoDispWindowDel(pShop);
                 _yesNoWindowOpen(ret, pShop);
@@ -1224,9 +1224,9 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
         break;
       case _YESNO_CHECK_WAIT:
         ret = BmpYesNoSelectMain(pShop->pYesNoWork, HEAPID_FIELD);
-        if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+        if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
             return;
-        }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+        }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
             ret = _sellExec(pShop);
             if(ret == UG_SHOP_BAG_FULL){
                 UgShopTalkStart(mes_uw_buy_04);
@@ -1237,7 +1237,7 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
                 pShop->seq = _SELL_MESSAGE_WAIT;
             }
         }
-        else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+        else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
             pShop->seq = _UG_SHOP_CANCEL;
         }
         pShop->pYesNoWork = NULL;
@@ -1248,7 +1248,7 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
                 CommMsgRegisterNumber2(CommUnderGetMsgUnderShop(),pShop->carat[0]);
                 UgShopTalkRegisterItemName(2,pShop->stone[0]);
                 UgShopTalkStart(mes_uw_buy_07_2);
-                // ŒğŠ·Š®—¹
+                // äº¤æ›å®Œäº†
                 Snd_SePlay(UG_SE_FANFA);
 
                 pShop->seq = _DESIDE_MSG_WAIT2;
@@ -1271,7 +1271,7 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
         }
         break;
       default:
-        OHNO_PRINT("ƒWƒƒƒ“ƒv”Ô† %d \n",pShop->seq);
+        OHNO_PRINT("ã‚¸ãƒ£ãƒ³ãƒ—ç•ªå· %d \n",pShop->seq);
         break;
     }
     //return retcode;
@@ -1281,7 +1281,7 @@ static void _ugShopMenuFuncAndCheck(TCB_PTR tcb, void* pWork)
 
 //==============================================================================
 /**
- * ’n‰ºƒVƒ‡ƒbƒv“Xˆõƒ^ƒXƒN
+ * åœ°ä¸‹ã‚·ãƒ§ãƒƒãƒ—åº—å“¡ã‚¿ã‚¹ã‚¯
  * @param   none
  * @retval  none
  */
@@ -1294,7 +1294,7 @@ void UgShopManInit(FIELDSYS_WORK* pFSys)
     int z = CommPlayerGetPosZDirAdd(CommGetCurrentID());
     int dir = CommPlayerGetReverseDir(CommPlayerGetDir(CommGetCurrentID()));
     _START_WORK* pShop;
-    const int LISTMAX = 6;  // ƒŠƒXƒg‚ÌÅ‘å
+    const int LISTMAX = 6;  // ãƒªã‚¹ãƒˆã®æœ€å¤§
     int no;
     int ShopID = UgShopGetType(x,z,&no);
     
@@ -1316,7 +1316,7 @@ void UgShopManInit(FIELDSYS_WORK* pFSys)
     {
         int num,i;
         const FIELD_OBJ_H* pFObj;
-        FIELD_OBJ_PTR fldobj;		//‘ÎÛ‚ÌƒtƒB[ƒ‹ƒhOBJ‚Ìƒ|ƒCƒ“ƒ^
+        FIELD_OBJ_PTR fldobj;		//å¯¾è±¡ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ãƒã‚¤ãƒ³ã‚¿
         num = EventData_GetNpcCount(pShop->pFSys);
         pFObj = EventData_GetNpcData(pShop->pFSys);
         for(i = 0; i < num; i++){

@@ -29,7 +29,7 @@ extern "C" {
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �֐��̐錾
+// 関数の宣言
 //
 
 void NNSi_G3dSendJointSRTBasic(const NNSG3dJntAnmResult* result);

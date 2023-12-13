@@ -15,7 +15,7 @@
   indent source
 
   Revision 1.20  2006/05/22 07:01:44  okubata_ryoma
-  Š„‚è‚İ‹Ö~’†‚Å‚àPM‚Ì“¯ŠúŠÖ”‚ª“®ì‚·‚é‚æ‚¤‚ÉC³
+  å‰²ã‚Šè¾¼ã¿ç¦æ­¢ä¸­ã§ã‚‚PMã®åŒæœŸé–¢æ•°ãŒå‹•ä½œã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.19  2006/05/01 01:14:54  yada
   add NITRO_FIFO_TAG_CTRDG_PHI
@@ -24,13 +24,13 @@
   do-indent
 
   Revision 1.17  2005/11/01 01:17:36  okubata_ryoma
-  PXI_FIFO_TAG_CTRDG_Ex‚Ì’Ç‰Á
+  PXI_FIFO_TAG_CTRDG_Exã®è¿½åŠ 
 
   Revision 1.16  2005/02/28 05:26:03  yosizaki
   do-indent.
 
   Revision 1.15  2004/12/20 00:42:41  terui
-  WVRƒ‰ƒCƒuƒ‰ƒŠ—p‚ÌTAG‚ğ’Ç‰ÁB
+  WVRãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ã®TAGã‚’è¿½åŠ ã€‚
 
   Revision 1.14  2004/09/27 13:39:56  yada
   add PXI_FIFO_TAG_CARD

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SNDPlayerInfo</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>SNDPlayerInfo</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcsynopsisinfo"><code>typedef struct SNDPlayerInfo
@@ -29,7 +29,7 @@
 <dd><pre class="funcprototype"></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAPLWT"></a>
-      <h2>�v�f</h2>
+      <h2>要素</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -37,13 +37,13 @@
 <tbody>
 <tr>
 <td><em><strong><code>activeFlag</code></strong></em></td>
-<td>�A�N�e�B�u�t���O�ł��B�v���C���[�����쒆���ǂ�����\���܂��B</td>
+<td>アクティブフラグです。プレイヤーが動作中かどうかを表します。</td>
 </tr>
 </tbody>
 </table>
 </div>
       
-      <p>�ȉ��̃����o�́AactiveFlag��TRUE�̎��̂ݗL���ł��B</p>
+      <p>以下のメンバは、activeFlagがTRUEの時のみ有効です。</p>
       
       <div class="variablelist">
 <table border="0">
@@ -51,46 +51,46 @@
 <tbody>
 <tr>
 <td><em><strong><code>pauseFlag</code></strong></em></td>
-<td>�|�[�Y�t���O�ł��B�|�[�Y�����ǂ�����\���܂��B</td>
+<td>ポーズフラグです。ポーズ中かどうかを表します。</td>
 </tr>
 <tr>
 <td><em><strong><code>trackBitMask</code></strong></em></td>
-<td>�L���ȃg���b�N�̃r�b�g�}�X�N�ł��B���ʃr�b�g���珇�ɁA�g���b�N0�A�g���b�N1�A�A�A�g���b�N15��\���܂��B</td>
+<td>有効なトラックのビットマスクです。下位ビットから順に、トラック0、トラック1、、、トラック15を表します。</td>
 </tr>
 <tr>
 <td><em><strong><code>tempo</code></strong></em></td>
-<td>�e���|�̒l�ł��B</td>
+<td>テンポの値です。</td>
 </tr>
 <tr>
 <td><em><strong><code>volume</code></strong></em></td>
-<td>�v���C���[�{�����[���̒l�ł��B�l�͈̔͂�0�`127�ł��B</td>
+<td>プレイヤーボリュームの値です。値の範囲は0〜127です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDA5MWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�v���C���[���\���̂ł��B�P�̃v���C���[�̏���ێ����Ă��܂��B
+プレイヤー情報構造体です。１つのプレイヤーの情報を保持しています。
 </p>
       <p>
-���̍\���̂̓��e�́A
-<tt class="function"><a href="../snd/NNS_SndPlayerReadDriverPlayerInfo.html">NNS_SndPlayerReadDriverPlayerInfo</a></tt>�֐��Ŏ擾���邱�Ƃ��ł��܂��B
+この構造体の内容は、
+<tt class="function"><a href="../snd/NNS_SndPlayerReadDriverPlayerInfo.html">NNS_SndPlayerReadDriverPlayerInfo</a></tt>関数で取得することができます。
 </p>
       
 <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-���̍\���̂̃T�C�Y�ƁA�e�����o�̕��я��́A�����ύX�����\��������܂��B
+この構造体のサイズと、各メンバの並び順は、将来変更される可能性があります。
         </p>
 </div>
 
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="../snd/NNS_SndPlayerReadDriverPlayerInfo.html">NNS_SndPlayerReadDriverPlayerInfo</a></p>
-<h2>����</h2>
-<p>2005/02/17 ����<br></p>
+<h2>履歴</h2>
+<p>2005/02/17 初版<br></p>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fd_shop.c
- * @brief	ƒtƒŒƒ“ƒhƒŠƒBƒVƒ‡ƒbƒv ƒoƒbƒO§Œä
+ * @brief	ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚£ã‚·ãƒ§ãƒƒãƒ— ãƒãƒƒã‚°åˆ¶å¾¡
  * @author	Hiroyuki Nakamura
  * @date	2006.07.12
  */
@@ -25,7 +25,7 @@
 
 
 //=================================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //=================================================================================================
 static u8 ShopSaleWaitSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk );
 static void ShopSaleRetSeq( GMEVENT_CONTROL * event );
@@ -33,10 +33,10 @@ static void ShopSaleRetSeq( GMEVENT_CONTROL * event );
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒgFƒVƒ‡ƒbƒv”„‹pˆ—ƒoƒbƒO§Œä
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
- * @retval	TRUE	ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE	ƒCƒxƒ“ƒgŒp‘±
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆï¼šã‚·ãƒ§ãƒƒãƒ—å£²å´å‡¦ç†ãƒãƒƒã‚°åˆ¶å¾¡
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @retval	TRUE	ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE	ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //--------------------------------------------------------------------------------------------
 BOOL GMEVENT_ShopSale( GMEVENT_CONTROL * event )
@@ -48,11 +48,11 @@ BOOL GMEVENT_ShopSale( GMEVENT_CONTROL * event )
 	wk = FieldEvent_GetSpecialWork(event);
 
 	switch( wk->seq ){
-	case SHOP_SEQ_SALE_WAIT:		// u”„‚évI—¹‘Ò‚¿
+	case SHOP_SEQ_SALE_WAIT:		// ã€Œå£²ã‚‹ã€çµ‚äº†å¾…ã¡
 		wk->seq = ShopSaleWaitSeq( fsys, wk );
 		break;
 
-	case SHOP_SEQ_SALE_RET:			// u”„‚évI—¹ -> ƒtƒF[ƒhƒCƒ“
+	case SHOP_SEQ_SALE_RET:			// ã€Œå£²ã‚‹ã€çµ‚äº† -> ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		ShopSaleRetSeq( event );
 		break;
 	}
@@ -61,17 +61,17 @@ BOOL GMEVENT_ShopSale( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒO‰æ–ÊI—¹‘Ò‚¿
+ * ãƒãƒƒã‚°ç”»é¢çµ‚äº†å¾…ã¡
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopSaleWaitSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 {
-	// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd( fsys ) ) {
 		return SHOP_SEQ_SALE_WAIT;
 	}
@@ -87,11 +87,11 @@ static u8 ShopSaleWaitSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒ‡ƒbƒv•œ‹A‘Ò‚¿
+ * ã‚·ãƒ§ãƒƒãƒ—å¾©å¸°å¾…ã¡
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static void ShopSaleRetSeq( GMEVENT_CONTROL * event )
@@ -102,7 +102,7 @@ static void ShopSaleRetSeq( GMEVENT_CONTROL * event )
 	fsys = FieldEvent_GetFieldSysWork(event);
 	wk = FieldEvent_GetSpecialWork(event);
 
-	// ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXŠJn‘Ò‚¿
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹å¾…ã¡
 	if( FieldEvent_Cmd_WaitMapProcStart(fsys) ){
 		FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );
 		FieldEvent_Change( event, GMEVENT_Shop, wk );

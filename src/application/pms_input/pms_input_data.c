@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pms_input_data.c
- * @bfief	ŠÈˆÕ‰ï˜b“ü—Í‰æ–ÊiƒJƒeƒSƒŠEƒCƒjƒVƒƒƒ‹“™‚Ìƒf[ƒ^ŠÇ—j
+ * @bfief	ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢ï¼ˆã‚«ãƒ†ã‚´ãƒªãƒ»ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ç­‰ã®ãƒ‡ãƒ¼ã‚¿ç®¡ç†ï¼‰
  * @author	taya
  * @date	06.01.28
  */
@@ -20,14 +20,14 @@
 #include "pms_input.res"
 
 
-#define  WORD_ENABLE_FLAG_SIZE		((PMS_WORDNUM_MAX>>3)+1)	// ’PŒê‚P‚Â =1bitŠ·Z‚Å
+#define  WORD_ENABLE_FLAG_SIZE		((PMS_WORDNUM_MAX>>3)+1)	// å˜èªï¼‘ã¤ =1bitæ›ç®—ã§
 
 #define  INITIAL_MAX	(NELEMS(PMS_InitialTable))
 
 
 //--------------------------------------------------------------
 /**
- *	ƒf[ƒ^ŠÇ—ƒIƒuƒWƒFƒNƒgÀ‘Ì
+ *	ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå®Ÿä½“
  */
 //--------------------------------------------------------------
 struct _PMS_INPUT_DATA {
@@ -64,12 +64,12 @@ static u32 CountupInitialWord( PMS_INPUT_DATA* pmsi, const PMS_WORD* src_tbl, PM
 
 /*====================================================================================================*/
 /*                                                                                                    */
-/*  ƒIƒuƒWƒFƒNƒg‚Ì\’zE”jŠü                                                                          */
+/*  ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹ç¯‰ãƒ»ç ´æ£„                                                                          */
 /*                                                                                                    */
 /*====================================================================================================*/
 //------------------------------------------------------------------
 /**
- * ƒf[ƒ^ŠÇ—ƒIƒuƒWƒFƒNƒg\’z
+ * ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹ç¯‰
  *
  * @param   heapID		
  *
@@ -98,7 +98,7 @@ PMS_INPUT_DATA* PMSI_DATA_Create( u32 heapID, const PMSI_PARAM* input_param )
 }
 //------------------------------------------------------------------
 /**
- * ƒf[ƒ^ŠÇ—ƒIƒuƒWƒFƒNƒg”jŠü
+ * ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
  *
  * @param   heapID		
  *
@@ -117,33 +117,33 @@ void PMSI_DATA_Delete( PMS_INPUT_DATA* pmsi )
 
 /*====================================================================================================*/
 /*                                                                                                    */
-/*  ƒJƒeƒSƒŠ‚²‚Æ‚Ì—LŒø’PŒêƒJƒEƒ“ƒgŠÖ”ƒe[ƒuƒ‹                                                        */
+/*  ã‚«ãƒ†ã‚´ãƒªã”ã¨ã®æœ‰åŠ¹å˜èªã‚«ã‚¦ãƒ³ãƒˆé–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«                                                        */
 /*                                                                                                    */
 /*====================================================================================================*/
 typedef u32 (*CountupFunc)( PMS_INPUT_DATA*, const PMS_WORD*, u32, PMS_WORD* );
 
 static const struct {
-	CountupFunc      func;			///< ’PŒêƒJƒEƒ“ƒgŠÖ”
-	const PMS_WORD*  src_tbl;		///< ’PŒêƒe[ƒuƒ‹ƒAƒhƒŒƒX
-	u32              tbl_elems;		///< ’PŒêƒe[ƒuƒ‹—v‘f”
+	CountupFunc      func;			///< å˜èªã‚«ã‚¦ãƒ³ãƒˆé–¢æ•°
+	const PMS_WORD*  src_tbl;		///< å˜èªãƒ†ãƒ¼ãƒ–ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
+	u32              tbl_elems;		///< å˜èªãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°
 }EnableWordCountupParam[] = {
-	{ CountupGruopPokemon,  PMS_CategoryTable_01,  PMS_Category_01_MaxNum },	// ƒ|ƒPƒ‚ƒ“
-	{ CountupGruopPokemon,  PMS_CategoryTable_02,  PMS_Category_02_MaxNum },	// ƒ|ƒPƒ‚ƒ“‚Q
-	{ CountupGruopSkill,    PMS_CategoryTable_03,  PMS_Category_03_MaxNum },	// ‚í‚´
-	{ CountupGruopSkill,    PMS_CategoryTable_04,  PMS_Category_04_MaxNum },	// ‚í‚´‚Q
-	{ CountupGruopDefault,  PMS_CategoryTable_05,  PMS_Category_05_MaxNum },	// ƒXƒe[ƒ^ƒX
-	{ CountupGruopDefault,  PMS_CategoryTable_06,  PMS_Category_06_MaxNum },	// ƒgƒŒ[ƒi[
-	{ CountupGruopDefault,  PMS_CategoryTable_07,  PMS_Category_07_MaxNum },	// ‚Ğ‚Æ
-	{ CountupGroupAisatsu,  PMS_CategoryTable_08,  PMS_Category_08_MaxNum },	// ‚ ‚¢‚³‚Â
-	{ CountupGruopDefault,  PMS_CategoryTable_09,  PMS_Category_09_MaxNum },	// ‚¹‚¢‚©‚Â
-	{ CountupGruopDefault,  PMS_CategoryTable_10,  PMS_Category_10_MaxNum },	// ‚«‚à‚¿
-	{ CountupGroupNankai,   PMS_CategoryTable_11,  PMS_Category_11_MaxNum },	// ‚È‚ñ‚©‚¢‚±‚Æ‚Î
-	{ CountupGruopDefault,  PMS_CategoryTable_12,  PMS_Category_12_MaxNum },	// ƒ†ƒjƒIƒ“
+	{ CountupGruopPokemon,  PMS_CategoryTable_01,  PMS_Category_01_MaxNum },	// ãƒã‚±ãƒ¢ãƒ³
+	{ CountupGruopPokemon,  PMS_CategoryTable_02,  PMS_Category_02_MaxNum },	// ãƒã‚±ãƒ¢ãƒ³ï¼’
+	{ CountupGruopSkill,    PMS_CategoryTable_03,  PMS_Category_03_MaxNum },	// ã‚ã–
+	{ CountupGruopSkill,    PMS_CategoryTable_04,  PMS_Category_04_MaxNum },	// ã‚ã–ï¼’
+	{ CountupGruopDefault,  PMS_CategoryTable_05,  PMS_Category_05_MaxNum },	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	{ CountupGruopDefault,  PMS_CategoryTable_06,  PMS_Category_06_MaxNum },	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+	{ CountupGruopDefault,  PMS_CategoryTable_07,  PMS_Category_07_MaxNum },	// ã²ã¨
+	{ CountupGroupAisatsu,  PMS_CategoryTable_08,  PMS_Category_08_MaxNum },	// ã‚ã„ã•ã¤
+	{ CountupGruopDefault,  PMS_CategoryTable_09,  PMS_Category_09_MaxNum },	// ã›ã„ã‹ã¤
+	{ CountupGruopDefault,  PMS_CategoryTable_10,  PMS_Category_10_MaxNum },	// ãã‚‚ã¡
+	{ CountupGroupNankai,   PMS_CategoryTable_11,  PMS_Category_11_MaxNum },	// ãªã‚“ã‹ã„ã“ã¨ã°
+	{ CountupGruopDefault,  PMS_CategoryTable_12,  PMS_Category_12_MaxNum },	// ãƒ¦ãƒ‹ã‚ªãƒ³
 };
 
 /*====================================================================================================*/
 /*                                                                                                    */
-/*  ƒJƒeƒSƒŠ‚²‚Æ‚Ì—LŒø’PŒê”ƒJƒEƒ“ƒg•’PŒêIDƒe[ƒuƒ‹‰»                                                */
+/*  ã‚«ãƒ†ã‚´ãƒªã”ã¨ã®æœ‰åŠ¹å˜èªæ•°ã‚«ã‚¦ãƒ³ãƒˆï¼†å˜èªIDãƒ†ãƒ¼ãƒ–ãƒ«åŒ–                                                */
 /*                                                                                                    */
 /*====================================================================================================*/
 //------------------------------------------------------------------
@@ -204,7 +204,7 @@ static u32 CountupGruopSkill( PMS_INPUT_DATA* pmsi,  const PMS_WORD* src_tbl, u3
 {
 	u32 i;
 
-	// ƒNƒŠƒA‚µ‚Ä‚½‚ç‘S•”OK
+	// ã‚¯ãƒªã‚¢ã—ã¦ãŸã‚‰å…¨éƒ¨OK
 	if( PMSI_PARAM_GetGameClearFlag(pmsi->input_param) )
 	{
 		for(i=0; i<tbl_elems; i++)
@@ -227,7 +227,7 @@ static u32 CountupGroupNankai( PMS_INPUT_DATA* pmsi,  const PMS_WORD* src_tbl, u
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/30
-	// ‚È‚ñ‚©‚¢‚±‚Æ‚Î‚Ì•\¦‡‚Ægmm‚Ì•À‚Ñ‡‚ğ•ÏŠ·
+	// ãªã‚“ã‹ã„ã“ã¨ã°ã®è¡¨ç¤ºé †ã¨gmmã®ä¸¦ã³é †ã‚’å¤‰æ›
 	PMS_WORD nankai_top;
 	nankai_top = PMSW_GetWordNumberByGmmID( NARC_msg_pms_word11_dat, 0 );
 	// ----------------------------------------------------------------------------
@@ -236,7 +236,7 @@ static u32 CountupGroupNankai( PMS_INPUT_DATA* pmsi,  const PMS_WORD* src_tbl, u
 	{
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/30
-		// ‚È‚ñ‚©‚¢‚±‚Æ‚Î‚Ì•\¦‡‚Ægmm‚Ì•À‚Ñ‡‚ğ•ÏŠ·
+		// ãªã‚“ã‹ã„ã“ã¨ã°ã®è¡¨ç¤ºé †ã¨gmmã®ä¸¦ã³é †ã‚’å¤‰æ›
 		if( PMSW_GetNankaiFlag(sv, src_tbl[i]-nankai_top) )
 		// ----------------------------------------------------------------------------
 		{
@@ -313,8 +313,8 @@ static u32 CountCategoryZero( PMS_INPUT_DATA* pmsi,  const PMS_WORD* src_tbl, u3
 
 /*====================================================================================================*/
 /*                                                                                                    */
-/*  “ª•¶š‚²‚Æ‚Ì—LŒø’PŒê”ƒJƒEƒ“ƒg•’PŒêIDƒe[ƒuƒ‹‰»                                                  */
-/*  iƒJƒeƒSƒŠƒe[ƒuƒ‹ì¬‚Éì‚Á‚½’PŒê—LŒøƒtƒ‰ƒO‚ğQÆ‚·‚éj                                        */
+/*  é ­æ–‡å­—ã”ã¨ã®æœ‰åŠ¹å˜èªæ•°ã‚«ã‚¦ãƒ³ãƒˆï¼†å˜èªIDãƒ†ãƒ¼ãƒ–ãƒ«åŒ–                                                  */
+/*  ï¼ˆã‚«ãƒ†ã‚´ãƒªãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆæ™‚ã«ä½œã£ãŸå˜èªæœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’å‚ç…§ã™ã‚‹ï¼‰                                        */
 /*                                                                                                    */
 /*====================================================================================================*/
 static void SetupInitialEnableFlag( PMS_INPUT_DATA* pmsi )
@@ -369,18 +369,18 @@ static u32 CountupInitialWord( PMS_INPUT_DATA* pmsi, const PMS_WORD* src_tbl, PM
 
 /*====================================================================================================*/
 /*                                                                                                    */
-/*  ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ö‚Ìî•ñ’ñ‹Ÿ                                                                      */
+/*  ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¸ã®æƒ…å ±æä¾›                                                                      */
 /*                                                                                                    */
 /*====================================================================================================*/
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠƒOƒ‹[ƒv‚ÉŠÜ‚Ü‚ê‚é—LŒø’PŒê”
+ * ã‚«ãƒ†ã‚´ãƒªã‚°ãƒ«ãƒ¼ãƒ—ã«å«ã¾ã‚Œã‚‹æœ‰åŠ¹å˜èªæ•°
  *
- * @param   pmsi		ƒf[ƒ^ŠÇ—ƒIƒuƒWƒFƒNƒg
- * @param   group		ƒOƒ‹[ƒvƒiƒ“ƒo[
+ * @param   pmsi		ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   group		ã‚°ãƒ«ãƒ¼ãƒ—ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  u32			—LŒø’PŒê”i‚O‚¾‚Á‚½‚ç‚»‚ÌƒJƒeƒSƒŠ©‘Ì‚ª–³Œøj
+ * @retval  u32			æœ‰åŠ¹å˜èªæ•°ï¼ˆï¼ã ã£ãŸã‚‰ãã®ã‚«ãƒ†ã‚´ãƒªè‡ªä½“ãŒç„¡åŠ¹ï¼‰
  */
 //------------------------------------------------------------------
 u32 PMSI_DATA_GetGroupEnableWordCount( const PMS_INPUT_DATA* pmsi, u32 group )
@@ -389,11 +389,11 @@ u32 PMSI_DATA_GetGroupEnableWordCount( const PMS_INPUT_DATA* pmsi, u32 group )
 }
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠƒOƒ‹[ƒv‚Ì—LŒø’PŒê‚ğ•¶š—ñ‰»‚µ‚Äƒoƒbƒtƒ@‚ÉƒRƒs[
+ * ã‚«ãƒ†ã‚´ãƒªã‚°ãƒ«ãƒ¼ãƒ—ã®æœ‰åŠ¹å˜èªã‚’æ–‡å­—åˆ—åŒ–ã—ã¦ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
  *
- * @param   pmsi			ƒf[ƒ^ŠÇ—ƒIƒuƒWƒFƒNƒg
- * @param   group			ƒOƒ‹[ƒvƒiƒ“ƒo[
- * @param   word_idx		’PŒêƒCƒ“ƒfƒbƒNƒXi0`j
+ * @param   pmsi			ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   group			ã‚°ãƒ«ãƒ¼ãƒ—ãƒŠãƒ³ãƒãƒ¼
+ * @param   word_idx		å˜èªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆ0ã€œï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -405,13 +405,13 @@ void PMSI_DATA_GetGroupEnableWord( const PMS_INPUT_DATA* pmsi, u32 group, u32 wo
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠƒOƒ‹[ƒv‚Ì—LŒø’PŒê‚Ì“àAw’è”Ô‚Ì’PŒêƒR[ƒh‚ğ•Ô‚·
+ * ã‚«ãƒ†ã‚´ãƒªã‚°ãƒ«ãƒ¼ãƒ—ã®æœ‰åŠ¹å˜èªã®å†…ã€æŒ‡å®šç•ªã®å˜èªã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
  *
- * @param   pmsi			ƒf[ƒ^ŠÇ—ƒIƒuƒWƒFƒNƒg
- * @param   group			ƒOƒ‹[ƒvƒiƒ“ƒo[
- * @param   word_idx		’PŒêƒCƒ“ƒfƒbƒNƒX
+ * @param   pmsi			ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   group			ã‚°ãƒ«ãƒ¼ãƒ—ãƒŠãƒ³ãƒãƒ¼
+ * @param   word_idx		å˜èªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @retval  PMS_WORD		’PŒêƒR[ƒh
+ * @retval  PMS_WORD		å˜èªã‚³ãƒ¼ãƒ‰
  */
 //------------------------------------------------------------------
 PMS_WORD  PMSI_DATA_GetGroupEnableWordCode( const PMS_INPUT_DATA* pmsi, u32 group, u32 word_idx )
@@ -422,12 +422,12 @@ PMS_WORD  PMSI_DATA_GetGroupEnableWordCode( const PMS_INPUT_DATA* pmsi, u32 grou
 
 //------------------------------------------------------------------
 /**
- * ƒCƒjƒVƒƒƒ‹ƒOƒ‹[ƒv‚ÉŠÜ‚Ü‚ê‚é—LŒø’PŒê”
+ * ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚°ãƒ«ãƒ¼ãƒ—ã«å«ã¾ã‚Œã‚‹æœ‰åŠ¹å˜èªæ•°
  *
- * @param   pmsi			ƒf[ƒ^ŠÇ—ƒIƒuƒWƒFƒNƒg
- * @param   initial			ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @param   pmsi			ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   initial			ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  u32			—LŒø’PŒê”i‚O‚¾‚Á‚½‚ç‚»‚ÌƒCƒjƒVƒƒƒ‹©‘Ì‚ª–³Œøj
+ * @retval  u32			æœ‰åŠ¹å˜èªæ•°ï¼ˆï¼ã ã£ãŸã‚‰ãã®ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«è‡ªä½“ãŒç„¡åŠ¹ï¼‰
  */
 //------------------------------------------------------------------
 u32 PMSI_DATA_GetInitialEnableWordCount( const PMS_INPUT_DATA* pmsi, u32 initial )
@@ -437,11 +437,11 @@ u32 PMSI_DATA_GetInitialEnableWordCount( const PMS_INPUT_DATA* pmsi, u32 initial
 
 //------------------------------------------------------------------
 /**
- * ƒCƒjƒVƒƒƒ‹ƒOƒ‹[ƒv‚Ì—LŒø’PŒê‚ğ•¶š—ñ‰»‚µ‚Äƒoƒbƒtƒ@‚ÉƒRƒs[
+ * ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚°ãƒ«ãƒ¼ãƒ—ã®æœ‰åŠ¹å˜èªã‚’æ–‡å­—åˆ—åŒ–ã—ã¦ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
  *
- * @param   pmsi			ƒf[ƒ^ŠÇ—ƒIƒuƒWƒFƒNƒg
- * @param   initial			ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
- * @param   word_idx		’PŒêƒCƒ“ƒfƒbƒNƒXi0`j
+ * @param   pmsi			ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   initial			ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
+ * @param   word_idx		å˜èªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆ0ã€œï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -456,11 +456,11 @@ void PMSI_DATA_GetInitialEnableWord( const PMS_INPUT_DATA* pmsi, u32 initial, u3
 
 //------------------------------------------------------------------
 /**
- * ƒCƒjƒVƒƒƒ‹ƒOƒ‹[ƒv‚Ì—LŒø’PŒê‚Ì“àAw’è”Ô‚Ì’PŒêƒR[ƒh‚ğ•Ô‚·
+ * ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚°ãƒ«ãƒ¼ãƒ—ã®æœ‰åŠ¹å˜èªã®å†…ã€æŒ‡å®šç•ªã®å˜èªã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
  *
- * @param   pmsi			ƒf[ƒ^ŠÇ—ƒIƒuƒWƒFƒNƒg
- * @param   initial			ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
- * @param   word_idx		’PŒêƒCƒ“ƒfƒbƒNƒXi0`j
+ * @param   pmsi			ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   initial			ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
+ * @param   word_idx		å˜èªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆ0ã€œï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -480,7 +480,7 @@ PMS_WORD PMSI_DATA_GetInitialEnableWordCode( const PMS_INPUT_DATA* pmsi, u32 ini
 
 
 //======================================================================================
-// ƒ{ƒbƒNƒX•Ç†ƒpƒXƒ[ƒh—pˆ—
+// ãƒœãƒƒã‚¯ã‚¹å£ç´™ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ç”¨å‡¦ç†
 //======================================================================================
 static const u8 BoxPwdSrcGroup[] = {
 	CATEGORY_GROUP_STATUS,

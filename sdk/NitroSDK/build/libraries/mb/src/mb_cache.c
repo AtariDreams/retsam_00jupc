@@ -41,10 +41,10 @@
 /*---------------------------------------------------------------------------*
   Name:         MBi_InitCache
 
-  Description:  ƒLƒƒƒbƒVƒ…ƒŠƒXƒg‚ð‰Šú‰»‚·‚é.
+  Description:  ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹.
                 
 
-  Arguments:    pl         ƒLƒƒƒbƒVƒ…ƒŠƒXƒg
+  Arguments:    pl         ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -56,14 +56,14 @@ void MBi_InitCache(MBiCacheList * pl)
 /*---------------------------------------------------------------------------*
   Name:         MBi_AttachCacheBuffer
 
-  Description:  ƒLƒƒƒbƒVƒ…ƒŠƒXƒg‚Öƒoƒbƒtƒ@‚ðŠ„‚è“–‚Ä‚é.
+  Description:  ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆã¸ãƒãƒƒãƒ•ã‚¡ã‚’å‰²ã‚Šå½“ã¦ã‚‹.
                 
-  Arguments:    pl         ƒLƒƒƒbƒVƒ…ƒŠƒXƒg
-                ptr        Š„‚è“–‚Ä‚éƒoƒbƒtƒ@
-                src        ptr ‚Ìƒ\[ƒXƒAƒhƒŒƒX
-                len        ptr ‚ÌƒoƒCƒgƒTƒCƒY
-                state      Žw’è‚·‚é‰Šúó‘Ô
-                           (MB_CACHE_STATE_READY ‚© MB_CACHE_STATE_LOCKED)
+  Arguments:    pl         ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ
+                ptr        å‰²ã‚Šå½“ã¦ã‚‹ãƒãƒƒãƒ•ã‚¡
+                src        ptr ã®ã‚½ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        ptr ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+                state      æŒ‡å®šã™ã‚‹åˆæœŸçŠ¶æ…‹
+                           (MB_CACHE_STATE_READY ã‹ MB_CACHE_STATE_LOCKED)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -71,7 +71,7 @@ void MBi_AttachCacheBuffer(MBiCacheList * pl, u32 src, u32 len, void *ptr, u32 s
 {
     OSIntrMode bak_cpsr = OS_DisableInterrupts();
     {
-        /* –¢“o˜^‚Ìƒy[ƒW‚ðŒŸõ */
+        /* æœªç™»éŒ²ã®ãƒšãƒ¼ã‚¸ã‚’æ¤œç´¢ */
         MBiCacheInfo *pi = pl->list;
         for (;; ++pi)
         {
@@ -95,31 +95,31 @@ void MBi_AttachCacheBuffer(MBiCacheList * pl, u32 src, u32 len, void *ptr, u32 s
 /*---------------------------------------------------------------------------*
   Name:         MBi_ReadFromCache
 
-  Description:  Žw’è‚µ‚½ƒAƒhƒŒƒX‚Ì“à—e‚ðƒLƒƒƒbƒVƒ…‚©‚çƒŠ[ƒh‚·‚é.
+  Description:  æŒ‡å®šã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹ã®å†…å®¹ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰ãƒªãƒ¼ãƒ‰ã™ã‚‹.
 
-  Arguments:    pl         ƒLƒƒƒbƒVƒ…ƒŠƒXƒg
-                src        ƒŠ[ƒhŒ³ƒAƒhƒŒƒX
-                len        ƒŠ[ƒhƒTƒCƒY (BYTE)
-                dst        ƒŠ[ƒhæƒAƒhƒŒƒX.
+  Arguments:    pl         ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ
+                src        ãƒªãƒ¼ãƒ‰å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        ãƒªãƒ¼ãƒ‰ã‚µã‚¤ã‚º (BYTE)
+                dst        ãƒªãƒ¼ãƒ‰å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹.
 
-  Returns:      ƒLƒƒƒbƒVƒ…‚Éƒqƒbƒg‚·‚ê‚ÎƒŠ[ƒh‚µ‚Ä TRUE, ‚»‚¤‚Å‚È‚¯‚ê‚Î FALSE.
+  Returns:      ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ãƒ’ãƒƒãƒˆã™ã‚Œã°ãƒªãƒ¼ãƒ‰ã—ã¦ TRUE, ãã†ã§ãªã‘ã‚Œã° FALSE.
  *---------------------------------------------------------------------------*/
 BOOL MBi_ReadFromCache(MBiCacheList * pl, u32 src, void *dst, u32 len)
 {
     BOOL    ret = FALSE;
     OSIntrMode bak_cpsr = OS_DisableInterrupts();
     {
-        /* Žg—p‰Â”\‚Èƒy[ƒW‚Ì‚Ý‚ðŒŸõ */
+        /* ä½¿ç”¨å¯èƒ½ãªãƒšãƒ¼ã‚¸ã®ã¿ã‚’æ¤œç´¢ */
         const MBiCacheInfo *pi = pl->list;
         for (; pi < &pl->list[MB_CACHE_INFO_MAX]; ++pi)
         {
             if (pi->state >= MB_CACHE_STATE_READY)
             {
-                /* ‘ÎÛƒAƒhƒŒƒX‚ª”ÍˆÍ“à‚©”»’è */
+                /* å¯¾è±¡ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒç¯„å›²å†…ã‹åˆ¤å®š */
                 const int ofs = (int)(src - pi->src);
                 if ((ofs >= 0) && (ofs + len <= pi->len))
                 {
-                    /* ƒLƒƒƒbƒVƒ…ƒqƒbƒg‚µ‚½‚Ì‚ÅƒŠ[ƒh */
+                    /* ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ’ãƒƒãƒˆã—ãŸã®ã§ãƒªãƒ¼ãƒ‰ */
                     MI_CpuCopy8(pi->ptr + ofs, dst, len);
                     pl->lifetime = 0;
                     ret = TRUE;
@@ -135,40 +135,40 @@ BOOL MBi_ReadFromCache(MBiCacheList * pl, u32 src, void *dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         MBi_TryLoadCache
 
-  Description:  Žw’è‚µ‚½ƒAƒhƒŒƒX‚Ì“à—e‚ðƒLƒƒƒbƒVƒ…‚Öƒ[ƒh‚·‚é.
-                Å‚à”Ô’n‚Ì¬‚³‚¢ READY ‚Ìƒy[ƒWƒLƒƒƒbƒVƒ…‚ª”jŠü‚³‚ê‚é.
+  Description:  æŒ‡å®šã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹ã®å†…å®¹ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¸ãƒ­ãƒ¼ãƒ‰ã™ã‚‹.
+                æœ€ã‚‚ç•ªåœ°ã®å°ã•ã„ READY ã®ãƒšãƒ¼ã‚¸ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒç ´æ£„ã•ã‚Œã‚‹.
 
-  Arguments:    pl         ƒLƒƒƒbƒVƒ…ƒŠƒXƒg
-                src        ƒŠƒ[ƒhŒ³ƒAƒhƒŒƒX
-                len        ƒŠƒ[ƒhƒTƒCƒY (BYTE)
+  Arguments:    pl         ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ
+                src        ãƒªãƒ­ãƒ¼ãƒ‰å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        ãƒªãƒ­ãƒ¼ãƒ‰ã‚µã‚¤ã‚º (BYTE)
 
-  Returns:      ƒŠƒ[ƒh‚ªŠJŽn‚Å‚«‚ê‚Î TRUE, ‚»‚¤‚Å‚È‚¯‚ê‚Î FALSE.
-                (ƒŠƒ[ƒhˆ—‚ÌƒGƒ“ƒWƒ“‚ªƒVƒXƒeƒ€“à‚Å’Pˆê‚Ìê‡,
-                 ‘O‰ñ‚Ìˆ—‚ð–¢—¹‚È‚ç‚±‚ÌŠÖ”‚Í FALSE ‚ð•Ô‚·‚Å‚ ‚ë‚¤)
+  Returns:      ãƒªãƒ­ãƒ¼ãƒ‰ãŒé–‹å§‹ã§ãã‚Œã° TRUE, ãã†ã§ãªã‘ã‚Œã° FALSE.
+                (ãƒªãƒ­ãƒ¼ãƒ‰å‡¦ç†ã®ã‚¨ãƒ³ã‚¸ãƒ³ãŒã‚·ã‚¹ãƒ†ãƒ å†…ã§å˜ä¸€ã®å ´åˆ,
+                 å‰å›žã®å‡¦ç†ã‚’æœªäº†ãªã‚‰ã“ã®é–¢æ•°ã¯ FALSE ã‚’è¿”ã™ã§ã‚ã‚ã†)
  *---------------------------------------------------------------------------*/
 BOOL MBi_TryLoadCache(MBiCacheList * pl, u32 src, u32 len)
 {
     BOOL    ret = FALSE;
     OSIntrMode bak_cpsr = OS_DisableInterrupts();
     {
-        /* ƒŠƒ[ƒh‰Â”\‚Èƒy[ƒW‚Ì‚Ý‚ðŒŸõ */
+        /* ãƒªãƒ­ãƒ¼ãƒ‰å¯èƒ½ãªãƒšãƒ¼ã‚¸ã®ã¿ã‚’æ¤œç´¢ */
         MBiCacheInfo *trg = NULL;
         MBiCacheInfo *pi = pl->list;
         for (; pi < &pl->list[MB_CACHE_INFO_MAX]; ++pi)
         {
             if (pi->state == MB_CACHE_STATE_READY)
             {
-                /* Å‚à”Ô’n‚ª¬‚³‚¯‚ê‚ÎŒó•â‚ÉŽc‚· */
+                /* æœ€ã‚‚ç•ªåœ°ãŒå°ã•ã‘ã‚Œã°å€™è£œã«æ®‹ã™ */
                 if (!trg || (trg->src > pi->src))
                 {
                     trg = pi;
                 }
             }
         }
-        /* ƒŠƒ[ƒh‘ÎÛ‚Ìƒy[ƒW‚ªŒ©‚Â‚©‚ê‚Îˆ——v‹ */
+        /* ãƒªãƒ­ãƒ¼ãƒ‰å¯¾è±¡ã®ãƒšãƒ¼ã‚¸ãŒè¦‹ã¤ã‹ã‚Œã°å‡¦ç†è¦æ±‚ */
         if (trg)
         {
-            /* ‚±‚±‚Éƒ^ƒXƒNƒXƒŒƒbƒh‚Ö‚Ìˆ——v‹‚ð‹Lq */
+            /* ã“ã“ã«ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®å‡¦ç†è¦æ±‚ã‚’è¨˜è¿° */
             (void)src;
             (void)len;
         }

@@ -2,7 +2,7 @@
 /**
  *
  *@file		wipe.h
- *@brief	DP‰æ–ÊØ‚è‘Ö‚¦ƒVƒXƒeƒ€
+ *@brief	DPç”»é¢åˆ‡ã‚Šæ›¿ãˆã‚·ã‚¹ãƒ†ãƒ 
  *@author	tomoya takahashi
  *@data		2005.08.18
  *
@@ -19,140 +19,140 @@
 #endif
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	‰æ–ÊØ‚è‘Ö‚¦ƒpƒ^[ƒ“”Ô†
+//	ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ‘ã‚¿ãƒ¼ãƒ³ç•ªå·
 //	
 //=====================================
-#define 	WIPE_PATTERN_WMS		(0)		// “¯Žž
-#define 	WIPE_PATTERN_FMAS		(1)		// ƒƒCƒ“‰æ–Ê‚©‚çƒTƒu‰æ–Ê
-#define 	WIPE_PATTERN_FSAM		(2)		// ƒTƒu‰æ–Ê‚©‚çƒƒCƒ“‰æ–Ê
-#define 	WIPE_PATTERN_M			(3)		// ƒƒCƒ“‰æ–Ê‚Ì‚Ý
-#define 	WIPE_PATTERN_S			(4)		// ƒTƒu‰æ–Ê‚Ì‚Ý
+#define 	WIPE_PATTERN_WMS		(0)		// åŒæ™‚
+#define 	WIPE_PATTERN_FMAS		(1)		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‹ã‚‰ã‚µãƒ–ç”»é¢
+#define 	WIPE_PATTERN_FSAM		(2)		// ã‚µãƒ–ç”»é¢ã‹ã‚‰ãƒ¡ã‚¤ãƒ³ç”»é¢
+#define 	WIPE_PATTERN_M			(3)		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã¿
+#define 	WIPE_PATTERN_S			(4)		// ã‚µãƒ–ç”»é¢ã®ã¿
 
 //-------------------------------------
 //	
-//	ƒƒCƒvƒpƒ^[ƒ“—ñ‹“	
-//	ƒ|ƒPƒ‚ƒ“DP/DP:Šé‰æ•Žd—l/‰æ–ÊØ‚è‘Ö‚¦Žd—lŽQÆ
+//	ãƒ¯ã‚¤ãƒ—ãƒ‘ã‚¿ãƒ¼ãƒ³åˆ—æŒ™	
+//	ãƒã‚±ãƒ¢ãƒ³DP/DP:ä¼ç”»ï¼†ä»•æ§˜/ç”»é¢åˆ‡ã‚Šæ›¿ãˆä»•æ§˜å‚ç…§
 //	
 //=====================================
-#define 	WIPE_TYPE_FADEOUT				(0)// ƒtƒF[ƒhƒAƒEƒg	•					ƒuƒ‰ƒCƒgƒlƒXŽg—p
-#define 	WIPE_TYPE_FADEIN				(1)// ƒtƒF[ƒhƒCƒ“		•					ƒuƒ‰ƒCƒgƒlƒXŽg—p
-#define 	WIPE_TYPE_SHUTTEROUT_DOWN		(2)// ƒVƒƒƒbƒ^[ƒAƒEƒg	ã‚©‚ç‰º			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SHUTTERIN_DOWN		(3)// ƒVƒƒƒbƒ^[ƒCƒ“	ã‚©‚ç‰º			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SHUTTEROUT_UP			(4)// ƒVƒƒƒbƒ^[ƒAƒEƒg	‰º‚©‚çã			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SHUTTERIN_UP			(5)// ƒVƒƒƒbƒ^[ƒCƒ“	‰º‚©‚çã			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SLIDEOUT				(6)// ƒXƒ‰ƒCƒhƒAƒEƒg	‰E‚©‚ç¶			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p	
-#define 	WIPE_TYPE_SLIDEIN				(7)// ƒXƒ‰ƒCƒhƒCƒ“		‰E‚©‚ç¶			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SPLITOUT_VSIDE		(8)// ƒXƒvƒŠƒbƒgƒAƒEƒg	c@‰æ–Êã‰º‚©‚ç	ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SPLITIN_VCENTER		(9)// ƒXƒvƒŠƒbƒgƒCƒ“	c@‰æ–Ê’†‰›‚©‚ç	ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SPLITOUT_VCENTER		(10)// ƒXƒvƒŠƒbƒgƒAƒEƒg	c	‰æ–Ê’†‰›‚©‚ç	ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SPLITIN_VSIDE			(11)// ƒXƒvƒŠƒbƒgƒCƒ“	c	‰æ–Êã‰º‚©‚ç	ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SPLITOUT_HSIDE		(12)// ƒXƒvƒŠƒbƒgƒAƒEƒg	‰¡	‰æ–Ê¶‰E‚©‚ç	ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SPLITIN_HCENTER		(13)// ƒXƒvƒŠƒbƒgƒCƒ“	‰¡	‰æ–Ê’†‰›‚©‚ç	ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SPLITOUT_HCENTER		(14)// ƒXƒvƒŠƒbƒgƒAƒEƒg	‰¡	‰æ–Ê’†‰›‚©‚ç	ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SPLITIN_HSIDE			(15)// ƒXƒvƒŠƒbƒgƒCƒ“	‰¡	‰æ–Ê¶‰E‚©‚ç	ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_HOLEOUT				(16)// ƒz[ƒ‹ƒAƒEƒg							ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_HOLEIN				(17)// ƒz[ƒ‹ƒCƒ“							ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_TUNNELOUT				(18)// ƒgƒ“ƒlƒ‹ƒAƒEƒg						ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_TUNNELIN				(19)// ƒgƒ“ƒlƒ‹ƒCƒ“							ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_CURTAINOUT			(20)// ƒJ[ƒeƒ“ƒAƒEƒg						ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_CURTAININ				(21)// ƒJ[ƒeƒ“ƒCƒ“							ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_BOXOUT_OUTSIDE		(22)// ƒ{ƒbƒNƒXƒAƒEƒg	ŠO‚©‚ç’†			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_BOXIN_INSIDE			(23)// ƒ{ƒbƒNƒXƒCƒ“		’†‚©‚çŠO			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_BOXOUT_INSIDE			(24)// ƒ{ƒbƒNƒXƒAƒEƒg	’†‚©‚çŠO			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_BOXIN_OUTSIDE			(25)// ƒ{ƒbƒNƒXƒCƒ“		ŠO‚©‚ç’†			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_DOOROUT				(26)// ƒhƒAƒAƒEƒg							ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_DOORIN				(27)// ƒhƒAƒCƒ“								ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_ALTERNATEOUT_H		(28)// ƒIƒ‹ƒ^ƒl[ƒgƒAƒEƒg	‰¡				ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_ALTERNATEIN_H			(29)// ƒIƒ‹ƒ^ƒl[ƒgƒCƒ“		‰¡				ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_BLINDOUT_H			(30)// ƒuƒ‰ƒCƒ“ƒhƒAƒEƒg		‰¡				ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_BLINDIN_H				(31)// ƒuƒ‰ƒCƒ“ƒhƒCƒ“		‰¡				ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SCREWOUT				(32)// ƒXƒNƒŠƒ…[ƒAƒEƒg						ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SCREWIN				(33)// ƒXƒNƒŠƒ…[ƒCƒ“                       ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_FLASHOUT_FOREWAY		(34)// ƒtƒ‰ƒbƒVƒ…ƒAƒEƒg	‚S•ûŒü				ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_FLASHIN_FOREWAY		(35)// ƒtƒ‰ƒbƒVƒ…ƒCƒ“	‚S•ûŒü              ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_TUNNELOUT_TOP			(36)// ƒgƒ“ƒlƒ‹ƒAƒEƒg						ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_TUNNELIN_TOP			(37)// ƒgƒ“ƒlƒ‹ƒCƒ“							ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SLIDEOUT_LR			(38)// ƒXƒ‰ƒCƒhƒAƒEƒg@¶‚©‚ç‰E 			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_SLIDEIN_LR			(39)// ƒXƒ‰ƒCƒhƒCƒ“	@ ¶‚©‚ç‰E				ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_PESOCOMOUT			(40)// ƒpƒ\ƒRƒ“ƒAƒEƒg 			ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_PESOCOMIN				(41)// ƒpƒ\ƒRƒ“ƒCƒ“					ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒEŽg—p
-#define 	WIPE_TYPE_MAX					(42)// Å‘å”
+#define 	WIPE_TYPE_FADEOUT				(0)// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ	é»’					ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ä½¿ç”¨
+#define 	WIPE_TYPE_FADEIN				(1)// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³		é»’					ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ä½¿ç”¨
+#define 	WIPE_TYPE_SHUTTEROUT_DOWN		(2)// ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¢ã‚¦ãƒˆ	ä¸Šã‹ã‚‰ä¸‹			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SHUTTERIN_DOWN		(3)// ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¤ãƒ³	ä¸Šã‹ã‚‰ä¸‹			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SHUTTEROUT_UP			(4)// ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¢ã‚¦ãƒˆ	ä¸‹ã‹ã‚‰ä¸Š			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SHUTTERIN_UP			(5)// ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã‚¤ãƒ³	ä¸‹ã‹ã‚‰ä¸Š			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SLIDEOUT				(6)// ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¢ã‚¦ãƒˆ	å³ã‹ã‚‰å·¦			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨	
+#define 	WIPE_TYPE_SLIDEIN				(7)// ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³		å³ã‹ã‚‰å·¦			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SPLITOUT_VSIDE		(8)// ã‚¹ãƒ—ãƒªãƒƒãƒˆã‚¢ã‚¦ãƒˆ	ç¸¦ã€€ç”»é¢ä¸Šä¸‹ã‹ã‚‰	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SPLITIN_VCENTER		(9)// ã‚¹ãƒ—ãƒªãƒƒãƒˆã‚¤ãƒ³	ç¸¦ã€€ç”»é¢ä¸­å¤®ã‹ã‚‰	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SPLITOUT_VCENTER		(10)// ã‚¹ãƒ—ãƒªãƒƒãƒˆã‚¢ã‚¦ãƒˆ	ç¸¦	ç”»é¢ä¸­å¤®ã‹ã‚‰	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SPLITIN_VSIDE			(11)// ã‚¹ãƒ—ãƒªãƒƒãƒˆã‚¤ãƒ³	ç¸¦	ç”»é¢ä¸Šä¸‹ã‹ã‚‰	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SPLITOUT_HSIDE		(12)// ã‚¹ãƒ—ãƒªãƒƒãƒˆã‚¢ã‚¦ãƒˆ	æ¨ª	ç”»é¢å·¦å³ã‹ã‚‰	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SPLITIN_HCENTER		(13)// ã‚¹ãƒ—ãƒªãƒƒãƒˆã‚¤ãƒ³	æ¨ª	ç”»é¢ä¸­å¤®ã‹ã‚‰	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SPLITOUT_HCENTER		(14)// ã‚¹ãƒ—ãƒªãƒƒãƒˆã‚¢ã‚¦ãƒˆ	æ¨ª	ç”»é¢ä¸­å¤®ã‹ã‚‰	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SPLITIN_HSIDE			(15)// ã‚¹ãƒ—ãƒªãƒƒãƒˆã‚¤ãƒ³	æ¨ª	ç”»é¢å·¦å³ã‹ã‚‰	ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_HOLEOUT				(16)// ãƒ›ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆ							ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_HOLEIN				(17)// ãƒ›ãƒ¼ãƒ«ã‚¤ãƒ³							ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_TUNNELOUT				(18)// ãƒˆãƒ³ãƒãƒ«ã‚¢ã‚¦ãƒˆ						ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_TUNNELIN				(19)// ãƒˆãƒ³ãƒãƒ«ã‚¤ãƒ³							ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_CURTAINOUT			(20)// ã‚«ãƒ¼ãƒ†ãƒ³ã‚¢ã‚¦ãƒˆ						ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_CURTAININ				(21)// ã‚«ãƒ¼ãƒ†ãƒ³ã‚¤ãƒ³							ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_BOXOUT_OUTSIDE		(22)// ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¦ãƒˆ	å¤–ã‹ã‚‰ä¸­			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_BOXIN_INSIDE			(23)// ãƒœãƒƒã‚¯ã‚¹ã‚¤ãƒ³		ä¸­ã‹ã‚‰å¤–			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_BOXOUT_INSIDE			(24)// ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¦ãƒˆ	ä¸­ã‹ã‚‰å¤–			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_BOXIN_OUTSIDE			(25)// ãƒœãƒƒã‚¯ã‚¹ã‚¤ãƒ³		å¤–ã‹ã‚‰ä¸­			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_DOOROUT				(26)// ãƒ‰ã‚¢ã‚¢ã‚¦ãƒˆ							ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_DOORIN				(27)// ãƒ‰ã‚¢ã‚¤ãƒ³								ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_ALTERNATEOUT_H		(28)// ã‚ªãƒ«ã‚¿ãƒãƒ¼ãƒˆã‚¢ã‚¦ãƒˆ	æ¨ª				ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_ALTERNATEIN_H			(29)// ã‚ªãƒ«ã‚¿ãƒãƒ¼ãƒˆã‚¤ãƒ³		æ¨ª				ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_BLINDOUT_H			(30)// ãƒ–ãƒ©ã‚¤ãƒ³ãƒ‰ã‚¢ã‚¦ãƒˆ		æ¨ª				ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_BLINDIN_H				(31)// ãƒ–ãƒ©ã‚¤ãƒ³ãƒ‰ã‚¤ãƒ³		æ¨ª				ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SCREWOUT				(32)// ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ã‚¢ã‚¦ãƒˆ						ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SCREWIN				(33)// ã‚¹ã‚¯ãƒªãƒ¥ãƒ¼ã‚¤ãƒ³                       ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_FLASHOUT_FOREWAY		(34)// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆ	ï¼”æ–¹å‘				ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_FLASHIN_FOREWAY		(35)// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¤ãƒ³	ï¼”æ–¹å‘              ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_TUNNELOUT_TOP			(36)// ãƒˆãƒ³ãƒãƒ«ã‚¢ã‚¦ãƒˆ						ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_TUNNELIN_TOP			(37)// ãƒˆãƒ³ãƒãƒ«ã‚¤ãƒ³							ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SLIDEOUT_LR			(38)// ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¢ã‚¦ãƒˆã€€å·¦ã‹ã‚‰å³ 			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_SLIDEIN_LR			(39)// ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³	ã€€ å·¦ã‹ã‚‰å³				ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_PESOCOMOUT			(40)// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ã‚¦ãƒˆ 			ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_PESOCOMIN				(41)// ãƒ‘ã‚½ã‚³ãƒ³ã‚¤ãƒ³					ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨
+#define 	WIPE_TYPE_MAX					(42)// æœ€å¤§æ•°
 
 //-------------------------------------
 //	
-//	ƒtƒF[ƒhƒCƒ“EƒAƒEƒgƒJƒ‰[
+//	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆã‚«ãƒ©ãƒ¼
 //	
 //=====================================
-#define WIPE_FADE_WHITE		(0x7fff)	// ƒzƒƒCƒgƒCƒ“EƒAƒEƒg
-#define WIPE_FADE_BLACK		(0x0000)	// ƒuƒ‰ƒbƒNƒCƒ“EƒAƒEƒg
-#define WIPE_FADE_OUTCOLOR	(0xffff)	// 1‚Â‘O‚ÌƒtƒF[ƒhƒAƒEƒgƒJƒ‰[‚ÅƒCƒ“EƒAƒEƒg
+#define WIPE_FADE_WHITE		(0x7fff)	// ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+#define WIPE_FADE_BLACK		(0x0000)	// ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+#define WIPE_FADE_OUTCOLOR	(0xffff)	// 1ã¤å‰ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚«ãƒ©ãƒ¼ã§ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
 
 //-------------------------------------
 //	
-//	ƒƒCƒ“‰æ–Ê‚©@ƒTƒu‰æ–Ê‚©
+//	ãƒ¡ã‚¤ãƒ³ç”»é¢ã‹ã€€ã‚µãƒ–ç”»é¢ã‹
 //	
 //=====================================
-#define 	WIPE_DISP_MAIN		(0)		// ƒƒCƒ“–Ê
-#define 	WIPE_DISP_SUB		(1)		// ƒTƒu–Ê
+#define 	WIPE_DISP_MAIN		(0)		// ãƒ¡ã‚¤ãƒ³é¢
+#define 	WIPE_DISP_SUB		(1)		// ã‚µãƒ–é¢
 
 //-------------------------------------
-//	Šî–{“I‚ÉŽg—p‚·‚é•ªŠ„”‚ÆƒVƒ“ƒN”
+//	åŸºæœ¬çš„ã«ä½¿ç”¨ã™ã‚‹åˆ†å‰²æ•°ã¨ã‚·ãƒ³ã‚¯æ•°
 //=====================================
 #define WIPE_DEF_DIV	( 6 )
 #define WIPE_DEF_SYNC	( 1 )
 
 
 //-------------------------------------
-//	TCB@ƒ^ƒXƒN—Dæ‡ˆÊ
+//	TCBã€€ã‚¿ã‚¹ã‚¯å„ªå…ˆé †ä½
 //=====================================
-#define WIPE_VBLANK_WND_SWAP_TCB	( 1023 )	// ƒEƒBƒ“ƒhƒEƒXƒƒbƒv
-#define WIPE_HBLANK_INIT_TCB	( 1024 )	//Hƒuƒ‰ƒ“ƒN‰Šú‰»
-#define WIPE_HBLANK_DELETE_TCB	( 1024 )	//Hƒuƒ‰ƒ“ƒN”jŠü
-#define WIPE_VBLANK_WND_DELETE_TCB	( 1025 )	// Hƒuƒ‰ƒ“ƒNƒEƒBƒ“ƒhƒEƒf[ƒ^”jŠü
-#define WIPE_VBLANK_BR_RESET_TCB	( 1024 )	// Vƒuƒ‰ƒ“ƒNÌÞ×²ÄÈ½ƒŠƒZƒbƒg
+#define WIPE_VBLANK_WND_SWAP_TCB	( 1023 )	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ãƒ¯ãƒƒãƒ—
+#define WIPE_HBLANK_INIT_TCB	( 1024 )	//Hãƒ–ãƒ©ãƒ³ã‚¯åˆæœŸåŒ–
+#define WIPE_HBLANK_DELETE_TCB	( 1024 )	//Hãƒ–ãƒ©ãƒ³ã‚¯ç ´æ£„
+#define WIPE_VBLANK_WND_DELETE_TCB	( 1025 )	// Hãƒ–ãƒ©ãƒ³ã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ç ´æ£„
+#define WIPE_VBLANK_BR_RESET_TCB	( 1024 )	// Vãƒ–ãƒ©ãƒ³ã‚¯ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒªã‚»ãƒƒãƒˆ
 	
 
 
-//ƒAƒZƒ“ƒuƒ‰‚Åinclude‚³‚ê‚Ä‚¢‚éê‡‚ÍA‰º‚ÌéŒ¾‚ð–³Ž‹‚Å‚«‚é‚æ‚¤‚Éifndef‚ÅˆÍ‚ñ‚Å‚ ‚é
+//ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§includeã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€ä¸‹ã®å®£è¨€ã‚’ç„¡è¦–ã§ãã‚‹ã‚ˆã†ã«ifndefã§å›²ã‚“ã§ã‚ã‚‹
 #ifndef	__ASM_NO_DEF_
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒv‚ðŠJŽn
+ *@brief	ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ¯ã‚¤ãƒ—ã‚’é–‹å§‹
  *
- *@param	pattern		Ø‚è‘Ö‚¦ƒpƒ^[ƒ“”Ô†
- *@param	wipe_m		ƒƒCƒv@ƒƒCƒ“‰æ–ÊƒƒCƒvƒpƒ^[ƒ“
- *@param	wipe_s		ƒƒCƒv@ƒTƒu‰æ–ÊƒƒCƒvƒpƒ^[ƒ“
- *@param	color		ƒƒCƒv‚ÌF	
- *@param	division	ŠeƒƒCƒvˆ—‚Ì•ªŠ„”	(1.2.3.4.....)
- *@param	piece_sync	ŠeƒƒCƒv‚Ìˆ—‚ð•ªŠ„‚µ‚½‚P•Ð‚ÌƒVƒ“ƒN”	(1.2.3.4.....)
- *@param	heap		Žg—p‚·‚éƒq[ƒv
+ *@param	pattern		åˆ‡ã‚Šæ›¿ãˆãƒ‘ã‚¿ãƒ¼ãƒ³ç•ªå·
+ *@param	wipe_m		ãƒ¯ã‚¤ãƒ—ã€€ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ¯ã‚¤ãƒ—ãƒ‘ã‚¿ãƒ¼ãƒ³
+ *@param	wipe_s		ãƒ¯ã‚¤ãƒ—ã€€ã‚µãƒ–ç”»é¢ãƒ¯ã‚¤ãƒ—ãƒ‘ã‚¿ãƒ¼ãƒ³
+ *@param	color		ãƒ¯ã‚¤ãƒ—ã®è‰²	
+ *@param	division	å„ãƒ¯ã‚¤ãƒ—å‡¦ç†ã®åˆ†å‰²æ•°	(1.2.3.4.....)
+ *@param	piece_sync	å„ãƒ¯ã‚¤ãƒ—ã®å‡¦ç†ã‚’åˆ†å‰²ã—ãŸï¼‘ç‰‡ã®ã‚·ãƒ³ã‚¯æ•°	(1.2.3.4.....)
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
  *	color
- *		ƒƒCƒv‚ÌF‚ÍÔ5bit —Î5bit Â5bit‚Å‚·B
- *		ƒtƒF[ƒhƒCƒ“EƒAƒEƒgŽž‚Í•‚©”’‚µ‚©‚ ‚è‚Ü‚¹‚ñ‚Ì‚Å
-			#define WIPE_FADE_WHITE		(0x7fff)	// ƒzƒƒCƒgƒCƒ“EƒAƒEƒg
-			#define WIPE_FADE_BLACK		(0x0000)	// ƒuƒ‰ƒbƒNƒCƒ“EƒAƒEƒg
-			#define WIPE_FADE_OUTCOLOR	(0xffff)	// 1‚Â‘O‚ÌƒtƒF[ƒhƒAƒEƒgƒJƒ‰[‚ÅƒCƒ“EƒAƒEƒg
-		‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢B
+ *		ãƒ¯ã‚¤ãƒ—ã®è‰²ã¯èµ¤5bit ç·‘5bit é’5bitã§ã™ã€‚
+ *		ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆæ™‚ã¯é»’ã‹ç™½ã—ã‹ã‚ã‚Šã¾ã›ã‚“ã®ã§
+			#define WIPE_FADE_WHITE		(0x7fff)	// ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+			#define WIPE_FADE_BLACK		(0x0000)	// ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+			#define WIPE_FADE_OUTCOLOR	(0xffff)	// 1ã¤å‰ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚«ãƒ©ãƒ¼ã§ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+		ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -160,39 +160,39 @@ GLOBAL void WIPE_SYS_Start(int pattern, int wipe_m, int wipe_s, u16 color, int d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒvƒƒCƒ“ŠÖ”
+ *	@brief	ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ¯ã‚¤ãƒ—ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	–‚±‚ÌŠÖ”‚ÍAsystem/main.c‚ÅŒÄ‚Î‚ê‚Ä‚¢‚Ü‚·‚Ì‚ÅA
- *	@ŒÄ‚Ô•K—v‚Í‚ ‚è‚Ü‚¹‚ñB
+ *	ï¼Šã“ã®é–¢æ•°ã¯ã€system/main.cã§å‘¼ã°ã‚Œã¦ã„ã¾ã™ã®ã§ã€
+ *	ã€€å‘¼ã¶å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
  */
 //-----------------------------------------------------------------------------
 GLOBAL void WIPE_SYS_Main( void );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰æ–ÊØ‚è‘Ö‚¦ƒƒCƒv@I—¹ƒ`ƒFƒbƒN
+ *	@brief	ç”»é¢åˆ‡ã‚Šæ›¿ãˆãƒ¯ã‚¤ãƒ—ã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
  *	@param	none
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 GLOBAL BOOL WIPE_SYS_EndCheck( void );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒv‚Ì‹­§I—¹
+ *	@brief	ãƒ¯ã‚¤ãƒ—ã®å¼·åˆ¶çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 GLOBAL void WIPE_SYS_ExeEnd( void );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒv‚ª‰æ–Ê‚É‰e‹¿‚ð—^‚¦‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¯ã‚¤ãƒ—ãŒç”»é¢ã«å½±éŸ¿ã‚’ä¸Žãˆã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	TRUE	ƒƒCƒvó‘ÔƒNƒŠƒA‚µ‚Ä‚¢‚é
- *	@retval	FALSE	ƒƒCƒvó‘ÔƒNƒŠƒA‚³‚ê‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ãƒ¯ã‚¤ãƒ—çŠ¶æ…‹ã‚¯ãƒªã‚¢ã—ã¦ã„ã‚‹
+ *	@retval	FALSE	ãƒ¯ã‚¤ãƒ—çŠ¶æ…‹ã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 GLOBAL BOOL WIPE_SYS_EffectCheck( void );
@@ -200,22 +200,22 @@ GLOBAL BOOL WIPE_SYS_EffectCheck( void );
 //----------------------------------------------------------------------------
 /**
  *
- * œŽÀs‚³‚ê‚½uŠÔ”½‰f‚³‚ê‚Ü‚·B
+ * â—å®Ÿè¡Œã•ã‚ŒãŸçž¬é–“åæ˜ ã•ã‚Œã¾ã™ã€‚
  *
- *	@brief	ƒEƒBƒ“ƒhƒEƒ}ƒXƒNó‘Ô‚ð‰ðœ‚·‚é
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯çŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹
  *
- *	@param	disp	‰ðœ‚µ‚½‚¢‰æ–Ê
+ *	@param	disp	è§£é™¤ã—ãŸã„ç”»é¢
  *
  *	@return
  *
  * disp
-	WIPE_DISP_MAIN,		// ƒƒCƒ“–Ê
-	WIPE_DISP_SUB		// ƒTƒu–Ê
+	WIPE_DISP_MAIN,		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_DISP_SUB		// ã‚µãƒ–é¢
  *
- * –‚±‚ÌŠÖ”‚Í
- *	 ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒE‚ðŽg—p‚µ‚½ƒƒCƒv‚©‚ç
- * @ƒuƒ‰ƒCƒgƒlƒX‚ðŽg—p‚µ‚½ƒƒCƒv‚ÉˆÚs‚·‚éŽž‚ÉA
- * @ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒE‚ÌÝ’è‚ð‰ðœ‚·‚éˆ×‚ÉŽg—p‚µ‚Ü‚·B
+ * ï¼Šã“ã®é–¢æ•°ã¯
+ *	 ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—ã‹ã‚‰
+ * ã€€ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—ã«ç§»è¡Œã™ã‚‹æ™‚ã«ã€
+ * ã€€ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¨­å®šã‚’è§£é™¤ã™ã‚‹ç‚ºã«ä½¿ç”¨ã—ã¾ã™ã€‚
  * 
  */
 //-----------------------------------------------------------------------------
@@ -224,43 +224,43 @@ GLOBAL void WIPE_ResetWndMask( int disp );
 //----------------------------------------------------------------------------
 /**
  *
- * œŽÀs‚³‚ê‚½uŠÔ”½‰f‚³‚ê‚Ü‚·B
+ * â—å®Ÿè¡Œã•ã‚ŒãŸçž¬é–“åæ˜ ã•ã‚Œã¾ã™ã€‚
  *
- *	@brief	ƒuƒ‰ƒCƒgƒlƒXó‘Ô‚ð‰ðœ
+ *	@brief	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹çŠ¶æ…‹ã‚’è§£é™¤
  *
- *	@param	disp	‰ðœ‚µ‚½‚¢‰æ–Ê
+ *	@param	disp	è§£é™¤ã—ãŸã„ç”»é¢
  *
  *	@return	none
  *
  * disp
-	WIPE_DISP_MAIN,		// ƒƒCƒ“–Ê
-	WIPE_DISP_SUB		// ƒTƒu–Ê
+	WIPE_DISP_MAIN,		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_DISP_SUB		// ã‚µãƒ–é¢
  *
- * –‚±‚ÌŠÖ”‚Í
- *	 ƒuƒ‰ƒCƒgƒlƒX‚ðŽg—p‚µ‚½ƒƒCƒv‚©‚ç
- * @ƒn[ƒhƒEƒFƒAƒEƒBƒ“ƒhƒE‚ðŽg—p‚µ‚½ƒƒCƒv‚ÉˆÚs‚·‚éŽž‚ÉA
- * @ƒuƒ‰ƒCƒgƒlƒX‚ÌÝ’è‚ð‰ðœ‚·‚éˆ×‚ÉŽg—p‚µ‚Ü‚·B
+ * ï¼Šã“ã®é–¢æ•°ã¯
+ *	 ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—ã‹ã‚‰
+ * ã€€ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ãŸãƒ¯ã‚¤ãƒ—ã«ç§»è¡Œã™ã‚‹æ™‚ã«ã€
+ * ã€€ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã®è¨­å®šã‚’è§£é™¤ã™ã‚‹ç‚ºã«ä½¿ç”¨ã—ã¾ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 GLOBAL void WIPE_ResetBrightness( int disp );
 
 //----------------------------------------------------------------------------
 /**
- * œŽÀs‚³‚ê‚½uŠÔ”½‰f‚³‚ê‚Ü‚·B
+ * â—å®Ÿè¡Œã•ã‚ŒãŸçž¬é–“åæ˜ ã•ã‚Œã¾ã™ã€‚
  *
- *	@brief	ƒƒCƒvó‘Ô‚ð‰ðœ‚·‚é
+ *	@brief	ãƒ¯ã‚¤ãƒ—çŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹
  *
- *	@param	disp	‰ðœ‚µ‚½‚¢‰æ–Ê
- *	@param	heap	Žg—p‚·‚éƒq[ƒv
+ *	@param	disp	è§£é™¤ã—ãŸã„ç”»é¢
+ *	@param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
  * disp
-	WIPE_DISP_MAIN,		// ƒƒCƒ“–Ê
-	WIPE_DISP_SUB		// ƒTƒu–Ê
+	WIPE_DISP_MAIN,		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_DISP_SUB		// ã‚µãƒ–é¢
  *
- *	‚Ç‚¤‚µ‚Ä‚àƒtƒF[ƒhƒCƒ“‚ÉWIPE‚ÌƒVƒXƒeƒ€‚ðŽg—p‚Å‚«‚È‚¢ŽžA
- *	ƒuƒ‰ƒCƒgƒlƒX‚ÆƒEƒBƒ“ƒhƒEƒ}ƒXƒNó‘Ô‚ð‰ðœ‚·‚éŠÖ”‚Å‚·B
+ *	ã©ã†ã—ã¦ã‚‚ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã«WIPEã®ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½¿ç”¨ã§ããªã„æ™‚ã€
+ *	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯çŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹é–¢æ•°ã§ã™ã€‚
  * 
  */
 //-----------------------------------------------------------------------------
@@ -268,57 +268,57 @@ GLOBAL void WIPE_Reset( int disp );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒvƒuƒ‰ƒCƒgƒlƒXó‘Ô‚ðÝ’è
+ *	@brief	ãƒ¯ã‚¤ãƒ—ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹çŠ¶æ…‹ã‚’è¨­å®š
  *
- *	@param	disp	Ý’è‚·‚é‰æ–Ê
- *	@param	color	ƒuƒ‰ƒCƒgƒlƒXƒJƒ‰[
+ *	@param	disp	è¨­å®šã™ã‚‹ç”»é¢
+ *	@param	color	ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚«ãƒ©ãƒ¼
  *
  *	@return	none
  *
  * disp
-	WIPE_DISP_MAIN,		// ƒƒCƒ“–Ê
-	WIPE_DISP_SUB		// ƒTƒu–Ê
+	WIPE_DISP_MAIN,		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_DISP_SUB		// ã‚µãƒ–é¢
 
  *	color
-			#define WIPE_FADE_WHITE		(0x7fff)	// ƒzƒƒCƒgƒCƒ“EƒAƒEƒg
-			#define WIPE_FADE_BLACK		(0x0000)	// ƒuƒ‰ƒbƒNƒCƒ“EƒAƒEƒg
-			#define WIPE_FADE_OUTCOLOR	(0xffff)	// 1‚Â‘O‚ÌƒtƒF[ƒhƒAƒEƒgƒJƒ‰[‚ÅƒCƒ“EƒAƒEƒg
+			#define WIPE_FADE_WHITE		(0x7fff)	// ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+			#define WIPE_FADE_BLACK		(0x0000)	// ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+			#define WIPE_FADE_OUTCOLOR	(0xffff)	// 1ã¤å‰ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚«ãƒ©ãƒ¼ã§ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- * ‚±‚ÌŠÖ”‚ÍA‚Ç‚¤‚µ‚Ä‚àWIPE‚ÌƒVƒXƒeƒ€‚ðŽg—p‚Å‚«‚È‚¢l‚ªA
- * ƒtƒF[ƒhƒAƒEƒgŒãAƒ}ƒXƒ^[ƒuƒ‰ƒCƒgƒlƒX’l‚ðÝ’è‚·‚é‚½‚ß‚ÌŠÖ”‚Å‚·B
+ * ã“ã®é–¢æ•°ã¯ã€ã©ã†ã—ã¦ã‚‚WIPEã®ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½¿ç”¨ã§ããªã„äººãŒã€
+ * ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾Œã€ãƒžã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤ã‚’è¨­å®šã™ã‚‹ãŸã‚ã®é–¢æ•°ã§ã™ã€‚
  *
- * ƒpƒŒƒbƒgƒtƒF[ƒh‚È‚Ç‚ðŽg—p‚µ‚½Œã‚ÉA‚±‚ÌŠÖ”‚Åƒ}ƒXƒ^[‹P“x‚ðÝ’è‚µA
- * ƒpƒŒƒbƒgƒtƒF[ƒh‚Ì‰ðœ‚ð‚µ‚Ä‚­‚¾‚³‚¢B
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãªã©ã‚’ä½¿ç”¨ã—ãŸå¾Œã«ã€ã“ã®é–¢æ•°ã§ãƒžã‚¹ã‚¿ãƒ¼è¼åº¦ã‚’è¨­å®šã—ã€
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã®è§£é™¤ã‚’ã—ã¦ãã ã•ã„ã€‚
  */
 //-----------------------------------------------------------------------------
 GLOBAL void WIPE_SetBrightness( int disp, u16 color );
 //----------------------------------------------------------------------------
 /**
- *	@brief	—¼‰æ–Ê‚Éˆê“x‚ÉÝ’è‚·‚éƒ‚[ƒh‚Å‚·B
- *			—¼‰æ–Ê“¯‚¶ƒJƒ‰[‚ÅÝ’è‚·‚éê‡‚Ío—ˆ‚é‚¾‚¯‚±‚¿‚ç‚ðŽg—p‚µ‚Ä‚­‚¾‚³‚¢
+ *	@brief	ä¸¡ç”»é¢ã«ä¸€åº¦ã«è¨­å®šã™ã‚‹ãƒ¢ãƒ¼ãƒ‰ã§ã™ã€‚
+ *			ä¸¡ç”»é¢åŒã˜ã‚«ãƒ©ãƒ¼ã§è¨­å®šã™ã‚‹å ´åˆã¯å‡ºæ¥ã‚‹ã ã‘ã“ã¡ã‚‰ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„
  */
 //-----------------------------------------------------------------------------
 GLOBAL void WIPE_SetBrightnessFadeOut( u16 color );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒvƒEƒBƒ“ƒhƒEƒ}ƒXƒNó‘Ô‚ðÝ’è
+ *	@brief	ãƒ¯ã‚¤ãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯çŠ¶æ…‹ã‚’è¨­å®š
  *
- *	@param	disp		Ý’è‚·‚é‰æ–Ê
- *	@param	color		ƒJƒ‰[
+ *	@param	disp		è¨­å®šã™ã‚‹ç”»é¢
+ *	@param	color		ã‚«ãƒ©ãƒ¼
  *
  * disp
-	WIPE_DISP_MAIN,		// ƒƒCƒ“–Ê
-	WIPE_DISP_SUB		// ƒTƒu–Ê
+	WIPE_DISP_MAIN,		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_DISP_SUB		// ã‚µãƒ–é¢
 
  *	color
-			#define WIPE_FADE_WHITE		(0x7fff)	// ƒzƒƒCƒgƒCƒ“EƒAƒEƒg
-			#define WIPE_FADE_BLACK		(0x0000)	// ƒuƒ‰ƒbƒNƒCƒ“EƒAƒEƒg
-			#define WIPE_FADE_OUTCOLOR	(0xffff)	// 1‚Â‘O‚ÌƒtƒF[ƒhƒAƒEƒgƒJƒ‰[‚ÅƒCƒ“EƒAƒEƒg
+			#define WIPE_FADE_WHITE		(0x7fff)	// ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+			#define WIPE_FADE_BLACK		(0x0000)	// ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+			#define WIPE_FADE_OUTCOLOR	(0xffff)	// 1ã¤å‰ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚«ãƒ©ãƒ¼ã§ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- *	‚±‚ÌŠÖ”‚ÍA
- *		ƒ^ƒbƒ`ƒyƒ“Žg—p‰æ–Ê‚Ìê‡‚ÉAƒtƒF[ƒhƒCƒ“‘O‚Éƒ^ƒbƒ`ƒyƒ“‚ð
- *		o‚·‚È‚ÇA—áŠOˆ—‚ª‚ ‚è‚Ü‚·B‚»‚Ì‚Æ‚«—p‚ÌŠÖ”‚Å‚·
+ *	ã“ã®é–¢æ•°ã¯ã€
+ *		ã‚¿ãƒƒãƒãƒšãƒ³ä½¿ç”¨ç”»é¢ã®å ´åˆã«ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å‰ã«ã‚¿ãƒƒãƒãƒšãƒ³ã‚’
+ *		å‡ºã™ãªã©ã€ä¾‹å¤–å‡¦ç†ãŒã‚ã‚Šã¾ã™ã€‚ãã®ã¨ãç”¨ã®é–¢æ•°ã§ã™
  *
  *	@return	none
  */
@@ -328,9 +328,9 @@ GLOBAL void WIPE_SetWndMask( int disp, u16 color );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ÅV‚ÌƒƒCƒvƒAƒEƒg‚µ‚½ó‘Ô‚ÌF‚ð•Ô‚·
+ *	@brief		æœ€æ–°ã®ãƒ¯ã‚¤ãƒ—ã‚¢ã‚¦ãƒˆã—ãŸçŠ¶æ…‹ã®è‰²ã‚’è¿”ã™
  *
- *	@return		ÅV‚ÌƒƒCƒvƒAƒEƒgƒJƒ‰[
+ *	@return		æœ€æ–°ã®ãƒ¯ã‚¤ãƒ—ã‚¢ã‚¦ãƒˆã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 GLOBAL u16 WIPE_GetWipeOutColor( void );

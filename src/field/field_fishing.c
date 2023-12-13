@@ -2,7 +2,7 @@
 /**
  *
  * @file	field_fishing.c
- * @brief	ƒtƒB[ƒ‹ƒh@ƒCƒxƒ“ƒg@’Ş‚è
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ã‚¤ãƒ™ãƒ³ãƒˆã€€é‡£ã‚Š
  * @author	kagaya
  * @data	05.08.03
  *
@@ -36,15 +36,15 @@
 //==============================================================================
 //	define
 //==============================================================================
-///’Ş‚è“®ì TCBƒvƒ‰ƒCƒIƒŠƒeƒB
+///é‡£ã‚Šå‹•ä½œ TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_FISHING	(128)
 
-//’è‹`‚ÅƒMƒ‡ƒG[ƒAƒNƒ^[‘¦íœB‚½‚¾‚µA•\¦‚µ‚½‚Ü‚Ü
-//VRAMî•ñ‚ğíœ‚·‚éˆ×ƒ^ƒCƒ~ƒ“ƒO‚É‚æ‚Á‚Ä‚ÍƒSƒ~‚ª•\¦‚³‚ê‚é
+//å®šç¾©ã§ã‚®ãƒ§ã‚¨ãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼å³å‰Šé™¤ã€‚ãŸã ã—ã€è¡¨ç¤ºã—ãŸã¾ã¾
+//VRAMæƒ…å ±ã‚’å‰Šé™¤ã™ã‚‹ç‚ºã‚¿ã‚¤ãƒŸãƒ³ã‚°ã«ã‚ˆã£ã¦ã¯ã‚´ãƒŸãŒè¡¨ç¤ºã•ã‚Œã‚‹
 //#define GYOE_EOA_DEL_QUICK
 
 //--------------------------------------------------------------
-///	’Ş‚è“®ìƒV[ƒPƒ“ƒX
+///	é‡£ã‚Šå‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //--------------------------------------------------------------
 enum
 {
@@ -75,7 +75,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒƒbƒZ[ƒWID
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 //--------------------------------------------------------------
 #define MSGFISH_TURENAI 	msg_fishing_01
 #define MSGFISH_NIGERARETA	msg_fishing_02
@@ -86,7 +86,7 @@ enum
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	EVFISHWORK GMEVENT_Fishing()ˆø”
+///	EVFISHWORK GMEVENT_Fishing()å¼•æ•°
 //--------------------------------------------------------------
 typedef struct
 {
@@ -145,15 +145,15 @@ static u16 Fish_RodItemNoGet( FISHINGROD_TYPE type );
 const int DATA_TuriageFrameTbl[];
 
 //==============================================================================
-//	’Ş‚è@ƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+//	é‡£ã‚Šã€€ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’Ş‚èƒCƒxƒ“ƒg—pƒ[ƒNƒZƒbƒg
+ * é‡£ã‚Šã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
  * @param	fsys		FIELDSYS_WORK *
- * @param	heap_id		ƒ[ƒN‚ğŠm•Û‚·‚éƒq[ƒvID
+ * @param	heap_id		ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
  * @param	type		FISHINGROD_TYPE
- * @retval	void*		’Ş‚èƒCƒxƒ“ƒgƒ[ƒN *
+ * @retval	void*		é‡£ã‚Šã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ *
  */
 //--------------------------------------------------------------
 void * EventWorkSet_Fishing( FIELDSYS_WORK *fsys, u32 heap_id, FISHINGROD_TYPE type )
@@ -169,9 +169,9 @@ void * EventWorkSet_Fishing( FIELDSYS_WORK *fsys, u32 heap_id, FISHINGROD_TYPE t
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚èƒCƒxƒ“ƒg
+ * é‡£ã‚Šã‚¤ãƒ™ãƒ³ãƒˆ
  * @param	event	GMEVENT_CONTROL *
- * @retval	int		TRUE=I—¹
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL GMEVENT_Fishing( GMEVENT_CONTROL *event )
@@ -181,7 +181,7 @@ BOOL GMEVENT_Fishing( GMEVENT_CONTROL *event )
 	
 	switch( work->seq_no ){
 	case 0:
-		//ƒtƒB[ƒ‹ƒh‚n‚a‚i‘S‘Ìƒ|[ƒY
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼¯ï¼¢ï¼ªå…¨ä½“ãƒãƒ¼ã‚º
 		FieldOBJSys_MovePauseAll( fsys->fldobjsys );
 		work->bt_param = NULL;
 		work->hit = SetFishingEncount( fsys, work->rod_type, &work->bt_param );
@@ -193,7 +193,7 @@ BOOL GMEVENT_Fishing( GMEVENT_CONTROL *event )
 			int result = FieldFishing_ResultGet( work->tcb );
 			FieldFishing_Delete( work->tcb );
 			
-			if( result == TRUE ){	//ƒqƒbƒg‚Í’Ş‚èó‘Ô‚Ì‚Ü‚Ü->ƒqƒbƒg‚Éó‘Ô–ß‚·060726
+			if( result == TRUE ){	//ãƒ’ãƒƒãƒˆæ™‚ã¯é‡£ã‚ŠçŠ¶æ…‹ã®ã¾ã¾->ãƒ’ãƒƒãƒˆæ™‚ã«çŠ¶æ…‹æˆ»ã™060726
 #if 0
 				{
 					PLAYER_STATE_PTR jiki = fsys->player;
@@ -222,7 +222,7 @@ BOOL GMEVENT_Fishing( GMEVENT_CONTROL *event )
 				BattleParam_Delete( work->bt_param );
 			}
 			
-			//ƒtƒB[ƒ‹ƒh‚n‚a‚i‘S‘Ìƒ|[ƒY‰ğœ
+			//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼¯ï¼¢ï¼ªå…¨ä½“ãƒãƒ¼ã‚ºè§£é™¤
 			FieldOBJSys_MovePauseAllClear( fsys->fldobjsys );
 			sys_FreeMemoryEz( work );
 			return( TRUE );
@@ -235,14 +235,14 @@ BOOL GMEVENT_Fishing( GMEVENT_CONTROL *event )
 }
 
 //==============================================================================
-//	’Ş‚è
+//	é‡£ã‚Š
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’Ş‚èŠJn
+ * é‡£ã‚Šé–‹å§‹
  * @param	fsys		FIELDSYS_WORK *
  * @param	type		FISHINGROD_TYPE
- * @retval	TCB_PTR		’Ş‚è“®ìTCB_PTR
+ * @retval	TCB_PTR		é‡£ã‚Šå‹•ä½œTCB_PTR
  */
 //--------------------------------------------------------------
 TCB_PTR FieldFishing_Init( FIELDSYS_WORK *fsys, FISHINGROD_TYPE type, BOOL hit )
@@ -259,9 +259,9 @@ TCB_PTR FieldFishing_Init( FIELDSYS_WORK *fsys, FISHINGROD_TYPE type, BOOL hit )
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚èI—¹ƒ`ƒFƒbƒN
- * @param	tcb			FieldFishing_Init()–ß‚è’l
- * @retval	int			TRUE=I—¹
+ * é‡£ã‚Šçµ‚äº†ãƒã‚§ãƒƒã‚¯
+ * @param	tcb			FieldFishing_Init()æˆ»ã‚Šå€¤
+ * @retval	int			TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 int FieldFishing_EndCheck( TCB_PTR tcb )
@@ -272,9 +272,9 @@ int FieldFishing_EndCheck( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è¬”Ûæ“¾@FieldFishing_EndCheck()Œã‚ÉŒÄ‚Ô
- * @param	tcb			FieldFishing_Init()–ß‚è’l
- * @retval	int			TRUE=¬Œ÷ FALSE=¸”s
+ * é‡£ã‚Šæˆå¦å–å¾—ã€€FieldFishing_EndCheck()å¾Œã«å‘¼ã¶
+ * @param	tcb			FieldFishing_Init()æˆ»ã‚Šå€¤
+ * @retval	int			TRUE=æˆåŠŸ FALSE=å¤±æ•—
  */
 //--------------------------------------------------------------
 int FieldFishing_ResultGet( TCB_PTR tcb )
@@ -285,8 +285,8 @@ int FieldFishing_ResultGet( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚èI—¹
- * @param	tcb			FieldFishing_Init()–ß‚è’l
+ * é‡£ã‚Šçµ‚äº†
+ * @param	tcb			FieldFishing_Init()æˆ»ã‚Šå€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -298,11 +298,11 @@ void FieldFishing_Delete( TCB_PTR tcb )
 }
 
 //==============================================================================
-//	’Ş‚è“®ì
+//	é‡£ã‚Šå‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’Ş‚è“®ì tcb
+ * é‡£ã‚Šå‹•ä½œ tcb
  * @param	tcb		TCB_PTR
  * @param	wk		FISHWORK
  * @retval	nothing
@@ -319,11 +319,11 @@ static void Fish_TCBUpdate( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@‰Šú‰»
+ * é‡£ã‚Šã€€åˆæœŸåŒ–
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_Init(
@@ -337,11 +337,11 @@ static int FishMove_Init(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@’Ş‚èŠJnA©‹@“®ìI—¹‘Ò‚¿
+ * é‡£ã‚Šã€€é‡£ã‚Šé–‹å§‹ã€è‡ªæ©Ÿå‹•ä½œçµ‚äº†å¾…ã¡
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_StartJikiMoveEndWait(
@@ -360,11 +360,11 @@ static int FishMove_StartJikiMoveEndWait(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@’Ş‚èŠJnA©‹@’Ş‚èƒAƒjƒI—¹‘Ò‚¿
+ * é‡£ã‚Šã€€é‡£ã‚Šé–‹å§‹ã€è‡ªæ©Ÿé‡£ã‚Šã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishStartAnimeWait(
@@ -392,11 +392,11 @@ static int FishMove_JikiFishStartAnimeWait(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@ƒqƒbƒg@ŠJn
+ * é‡£ã‚Šã€€ãƒ’ãƒƒãƒˆã€€é–‹å§‹
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishONStart(
@@ -410,11 +410,11 @@ static int FishMove_JikiFishONStart(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@ƒJƒEƒ“ƒg
+ * é‡£ã‚Šã€€ã‚«ã‚¦ãƒ³ãƒˆ
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishONCount(
@@ -439,11 +439,11 @@ static int FishMove_JikiFishONCount(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@’İ‚èã‚°
+ * é‡£ã‚Šã€€åŠã‚Šä¸Šã’
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishONTuriage(
@@ -466,11 +466,11 @@ static int FishMove_JikiFishONTuriage(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@’İ‚èã‚°¬Œ÷
+ * é‡£ã‚Šã€€åŠã‚Šä¸Šã’æˆåŠŸ
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishONHit(
@@ -491,11 +491,11 @@ static int FishMove_JikiFishONHit(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@’İ‚èã‚°¬Œ÷ƒAƒjƒI—¹‘Ò‚¿
+ * é‡£ã‚Šã€€åŠã‚Šä¸Šã’æˆåŠŸã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishONHitAnimeWait(
@@ -521,11 +521,11 @@ static int FishMove_JikiFishONHitAnimeWait(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@’İ‚èã‚°¬Œ÷ƒƒbƒZ[ƒW•\¦‘Ò‚¿
+ * é‡£ã‚Šã€€åŠã‚Šä¸Šã’æˆåŠŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾…ã¡
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishONHitMsgWait(
@@ -541,11 +541,11 @@ static int FishMove_JikiFishONHitMsgWait(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@’İ‚èã‚°¬Œ÷@I—¹
+ * é‡£ã‚Šã€€åŠã‚Šä¸Šã’æˆåŠŸã€€çµ‚äº†
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishONHitEnd(
@@ -558,11 +558,11 @@ static int FishMove_JikiFishONHitEnd(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@‘‚·‚¬ŠJn
+ * é‡£ã‚Šã€€æ—©ã™ãé–‹å§‹
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_HayasugiStart( 
@@ -577,11 +577,11 @@ static int FishMove_HayasugiStart(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@“¦‚°‚ç‚ê‚½ŠJn
+ * é‡£ã‚Šã€€é€ƒã’ã‚‰ã‚ŒãŸé–‹å§‹
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_NigeStart( 
@@ -596,7 +596,7 @@ static int FishMove_NigeStart(
 		RECORD *rc = SaveData_GetRecord( work->fsys->savedata );
 		RECORD_Inc( rc, RECID_FISHING_FAILURE );
 	}
-	//‚Â‚è¸”sƒeƒŒƒrƒgƒsƒbƒNì¬
+	//ã¤ã‚Šå¤±æ•—ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ä½œæˆ
 	TVTOPIC_Entry_Watch_Fishing( work->fsys, FALSE,
 			Fish_RodItemNoGet(work->rod_type), NULL);
 	
@@ -606,11 +606,11 @@ static int FishMove_NigeStart(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@‚Â‚ê‚È‚¢ŠJn
+ * é‡£ã‚Šã€€ã¤ã‚Œãªã„é–‹å§‹
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishNoHitStart( 
@@ -623,11 +623,11 @@ static int FishMove_JikiFishNoHitStart(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@‚Â‚ê‚È‚¢‘Ò‚¿
+ * é‡£ã‚Šã€€ã¤ã‚Œãªã„å¾…ã¡
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishNoHitWait( 
@@ -654,11 +654,11 @@ static int FishMove_JikiFishNoHitWait(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@ƒ~ƒXƒƒbƒZ[ƒW•\¦‘Ò‚¿@¸”sŒn‹¤’Ê
+ * é‡£ã‚Šã€€ãƒŸã‚¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾…ã¡ã€€å¤±æ•—ç³»å…±é€š
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFishMissMsgWait( 
@@ -682,11 +682,11 @@ static int FishMove_JikiFishMissMsgWait(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@íœ
+ * é‡£ã‚Šã€€å‰Šé™¤
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_Delete(
@@ -719,11 +719,11 @@ static int FishMove_Delete(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@©‹@‚ğ–ß‚·
+ * é‡£ã‚Šã€€è‡ªæ©Ÿã‚’æˆ»ã™
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_JikiFormBackWait(
@@ -740,11 +740,11 @@ static int FishMove_JikiFormBackWait(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚è@I—¹
+ * é‡£ã‚Šã€€çµ‚äº†
  * @param	work	FISHWORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	©‹@FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A—v‹
+ * @param	fldobj	è‡ªæ©ŸFIELD_OBJ_PTR
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int FishMove_End(
@@ -762,7 +762,7 @@ static int FishMove_End(
 }
 
 //--------------------------------------------------------------
-///	“®ìƒe[ƒuƒ‹
+///	å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_FishMoveTbl[])(
 		FISHWORK *work, PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj ) =
@@ -794,13 +794,13 @@ static int (* const DATA_FishMoveTbl[])(
 };
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’Ş‚è—p—ÌˆæŠm•Û
- * @param	size	Šm•Û‚·‚éƒTƒCƒY	
- * @retval	void*	Šm•Û‚µ‚½—Ìˆæ
+ * é‡£ã‚Šç”¨é ˜åŸŸç¢ºä¿
+ * @param	size	ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º	
+ * @retval	void*	ç¢ºä¿ã—ãŸé ˜åŸŸ
  */
 //--------------------------------------------------------------
 static void * Fish_AllocMemory( u32 size )
@@ -813,9 +813,9 @@ static void * Fish_AllocMemory( u32 size )
 
 //--------------------------------------------------------------
 /**
- * Aƒ{ƒ^ƒ““ü—Íæ“¾
+ * Aãƒœã‚¿ãƒ³å…¥åŠ›å–å¾—
  * @param	nothing	
- * @retval	int		TRUE=A‚ª‰Ÿ‚³‚ê‚½
+ * @retval	int		TRUE=AãŒæŠ¼ã•ã‚ŒãŸ
  */
 //--------------------------------------------------------------
 static int Fish_AButtonPushCheck( void )
@@ -829,9 +829,9 @@ static int Fish_AButtonPushCheck( void )
 
 //--------------------------------------------------------------
 /**
- * Aƒ{ƒ^ƒ““ü—Íæ“¾
+ * Aãƒœã‚¿ãƒ³å…¥åŠ›å–å¾—
  * @param	nothing	
- * @retval	int		TRUE=A‚ª‰Ÿ‚³‚ê‚½
+ * @retval	int		TRUE=AãŒæŠ¼ã•ã‚ŒãŸ
  */
 //--------------------------------------------------------------
 static int Fish_ABButtonPushCheck( void )
@@ -844,11 +844,11 @@ static int Fish_ABButtonPushCheck( void )
 }
 
 //==============================================================================
-//	ƒƒbƒZ[ƒWƒp[ƒc
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‰Šú‰»
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  * @param	work	FISHWORK
  * @retval	nothing
  */
@@ -866,9 +866,9 @@ static void Fish_MsgManInit( FISHWORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒíœ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£å‰Šé™¤
  * @param	work	FISHWORK
- * @retval	int		TRUE=I—¹
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static void Fish_MsgManDelete( FISHWORK *work )
@@ -881,7 +881,7 @@ static void Fish_MsgManDelete( FISHWORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE•`‰æ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
  * @param	work	
  * @retval
  */
@@ -895,7 +895,7 @@ static void Fish_MsgWinPut( FISHWORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•\¦
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  * @param	work	
  * @retval
  */
@@ -915,9 +915,9 @@ static void Fish_TalkMsgStart( FISHWORK *work, u32 msg_id )
 
 //--------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
  * @param	work	FISHWORK
- * @retval	int		TRUE=I—¹
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static int Fish_TalkMsgEndCheck( FISHWORK *work )
@@ -932,12 +932,12 @@ static int Fish_TalkMsgEndCheck( FISHWORK *work )
 }
 
 //==============================================================================
-//	ƒAƒCƒeƒ€ƒiƒ“ƒo[•ÏŠ·
+//	ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼å¤‰æ›
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * @brief	type	FISHINGROD_TYPE
- * @return	u16		type‚É‘Î‰‚µ‚½ƒAƒCƒeƒ€ƒiƒ“ƒo[
+ * @return	u16		typeã«å¯¾å¿œã—ãŸã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------
 static u16 Fish_RodItemNoGet( FISHINGROD_TYPE type )
@@ -955,7 +955,7 @@ static u16 Fish_RodItemNoGet( FISHINGROD_TYPE type )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	’ŞŠÆ•Ê@’İ‚èã‚°ƒtƒŒ[ƒ€
+///	é‡£ç«¿åˆ¥ã€€åŠã‚Šä¸Šã’ãƒ•ãƒ¬ãƒ¼ãƒ 
 //--------------------------------------------------------------
 static const int DATA_TuriageFrameTbl[] =
 {

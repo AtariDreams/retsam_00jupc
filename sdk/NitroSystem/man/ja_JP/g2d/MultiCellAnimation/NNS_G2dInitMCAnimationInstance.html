@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dInitMCAnimationInstance</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_G2dInitMCAnimationInstance</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -28,44 +28,44 @@ void NNS_G2dInitMCAnimationInstance
 );
   </CODE></pre>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pMultiCellAnim</font></strong></em></td>
-    <td width="87%">[OUT] �}���`�Z���A�j���[�V����</td>
+    <td width="87%">[OUT] マルチセルアニメーション</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pWork</font></strong></em></td>
-    <td width="87%">[IN] �}���`�Z�����̂̎g�p���郏�[�N�̈�</td>
+    <td width="87%">[IN] マルチセル実体の使用するワーク領域</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pAnimBank</font></strong></em></td>
-    <td width="87%">[IN] �}���`�Z�����\������ �Z���A�j���[�V��������`����Ă��� �A�j���o���N</td>
+    <td width="87%">[IN] マルチセルを構成する セルアニメーションが定義されている アニメバンク</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pCellDataBank</font></strong></em></td>
-    <td width="87%">[IN] �Z���f�[�^�o���N</td>
+    <td width="87%">[IN] セルデータバンク</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pMultiCellDataBank</font></strong></em></td>
-    <td width="87%">[IN] �}���`�Z���f�[�^�o���N</td>
+    <td width="87%">[IN] マルチセルデータバンク</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">mcType</font></strong></em></td>
-    <td width="87%">[IN] �}���`�Z�����̂̎�ށiNNSG2dMCType�^�j</td>
+    <td width="87%">[IN] マルチセル実体の種類（NNSG2dMCType型）</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�<BR>
+<h2>返り値</h2>
+<p>なし<BR>
 </p>
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�}���`�Z���A�j���[�V���������������܂��B<BR>
-pWork�͎��̂̓����Ń��[�N�̈�Ƃ��Ďg�p����郁�����̈�ւ̃|�C���^�ł��B
-���̂̏������ɕK�v�ȁA���[�N�̈�T�C�Y��NNS_G2dGetMCWorkAreaSize() �֐����g�p���āA�擾���܂��B<BR>
-mcType�̓}���`�Z���A�j���[�V�������̂̎�ނ�\���A�񋓎q NNSG2dMCType �ł��B
-NNSG2dMCType �̒�`���ȉ��Ɏ����܂��B
+マルチセルアニメーションを初期化します。<BR>
+pWorkは実体の内部でワーク領域として使用されるメモリ領域へのポインタです。
+実体の初期化に必要な、ワーク領域サイズはNNS_G2dGetMCWorkAreaSize() 関数を使用して、取得します。<BR>
+mcTypeはマルチセルアニメーション実体の種類を表す、列挙子 NNSG2dMCType です。
+NNSG2dMCType の定義を以下に示します。
 
 <CODE><pre>
 typedef enum 
@@ -75,28 +75,28 @@ typedef enum
     
 }NNSG2dMCType;
 </CODE></pre>
-mcType �Ƃ��āANNS_G2D_MCTYPE_DONOT_SHARE_CELLANIM���w�肷��Ɖߋ��̃o�[�W�����Ɠ���̃f�[�^�\���Ŏ��̂�
-����������A�����悤�ɏ�������܂��B<BR>
-�v���O���}���}���`�Z���̍\���m�[�h�ɃA�N�Z�X���A�f�[�^��������������Ȃǂ̏������s��Ȃ�����A
-NNS_G2D_MCTYPE_SHARE_CELLANIM���w�肵�Ď��̂������������ق����A����������ʁA���������̓_����L���ł��B
+mcType として、NNS_G2D_MCTYPE_DONOT_SHARE_CELLANIMを指定すると過去のバージョンと同一のデータ構造で実体が
+初期化され、同じように処理されます。<BR>
+プログラマがマルチセルの構成ノードにアクセスし、データ等を書き換えるなどの処理を行わない限り、
+NNS_G2D_MCTYPE_SHARE_CELLANIMを指定して実体を初期化したほうが、メモリ消費量、処理効率の点から有利です。
 <BR>
-mcType�Ƃ��āANNS_G2D_MCTYPE_SHARE_CELLANIM���w�肳�ꂽ�ꍇ�A
-�}���`�Z����̕����̃m�[�h�œ���̃A�j���[�V�����V�[�P���X�Đ����s���悤�ȃf�[�^�̓��͂��������ꍇ�ɁA
-�Z���A�j���[�V�����̎��̂𕡐��m�[�h�Ԃŋ��L���܂��B���̂��߁A����������ʂ�A�A�j���[�V�����X�V�̏������ׂ��������܂��B<BR>
+mcTypeとして、NNS_G2D_MCTYPE_SHARE_CELLANIMが指定された場合、
+マルチセル上の複数のノードで同一のアニメーションシーケンス再生を行うようなデータの入力があった場合に、
+セルアニメーションの実体を複数ノード間で共有します。そのため、メモリ消費量や、アニメーション更新の処理負荷が減少します。<BR>
 <BR>
-�܂��ANNS_G2D_MCTYPE_SHARE_CELLANIM���w�肳�ꂽ�ꍇ�A�}���`�Z���̃����^�C�����̂̓m�[�h�ɑ����������ێ����܂���B<BR>
-���̂��߁A�m�[�h�P�ʂ̈ʒu�̕ύX�A�A�t�B���ϊ��A���T�|�[�g����܂���B
-�������A��L�����ɂ���ē���Z���A�j���[�V�������Đ�����m�[�h�ł͕K������̃A�t�B���p�����[�^���Q�Ƃ��邱�Ƃ��ۏႳ��邽�߁A
-����2D �O���t�B�b�N�X�G���W�����g�p�����`��̍ۂɁANNS_G2D_MCTYPE_DONOT_SHARE_CELLANIM ���w�肵���ꍇ�ɔ�ׂāA���n�[�h�E�F�A����(���g�p����A�t�B���p�����[�^)��ߖ񂷂邱�Ƃ��\�ł��B
+また、NNS_G2D_MCTYPE_SHARE_CELLANIMが指定された場合、マルチセルのランタイム実体はノードに相当する情報を保持しません。<BR>
+そのため、ノード単位の位置の変更、アフィン変換、がサポートされません。
+ただし、上記制限によって同一セルアニメーションを再生するノードでは必ず同一のアフィンパラメータを参照することが保障されるため、
+特に2D グラフィックスエンジンを使用した描画の際に、NNS_G2D_MCTYPE_DONOT_SHARE_CELLANIM を指定した場合に比べて、よりハードウェア資源(＝使用するアフィンパラメータ)を節約することが可能です。
 
 <BR>
-�{�֐���NNS_G2dInitMCAnimation(), NNS_G2dInitMCInstance(), NNS_G2dSetMCDataToMCInstance() �̑�֊֐��Ƃ��ėp�ӂ���܂����B
-�ȑO�̊֐��́A�݊����ێ��̂��ߕʖ��Ƃ��Ďc����Ă��܂��B<BR>
+本関数はNNS_G2dInitMCAnimation(), NNS_G2dInitMCInstance(), NNS_G2dSetMCDataToMCInstance() の代替関数として用意されました。
+以前の関数は、互換性維持のため別名として残されています。<BR>
 <BR>
-�V�K�ɂ����p�̂����́A������̊֐��������p���������B
+新規にご利用のかたは、こちらの関数をご利用ください。
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <CODE><A href="NNS_G2dGetMCWorkAreaSize.html">NNS_G2dGetMCWorkAreaSize</A><br></CODE>
 <br>
@@ -105,7 +105,7 @@ mcType�Ƃ��āANNS_G2D_MCTYPE_SHARE_CELLANIM���w�肳�ꂽ�ꍇ�A
 <CODE><A href="NNS_G2dSetMCDataToMCInstance.html">NNS_G2dSetMCDataToMCInstance</A><br></CODE>
 
 </p>
-<H2>����</H2>
-<P>2005/01/31 ����</P>
+<H2>履歴</H2>
+<P>2005/01/31 初版</P>
 </body>
 </html>

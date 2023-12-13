@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_fire.c
- *	@brief		WiFiLê‰Ô‰Îˆ—
+ *	@brief		WiFiåºƒå ´èŠ±ç«å‡¦ç†
  *	@author		tomoya takahashi
  *	@data		2008.03.18
  *
@@ -19,29 +19,29 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ŒğŒİ“®ì‚Ì’è”
+///	äº¤äº’å‹•ä½œã®å®šæ•°
 //=====================================
 #define WFLBY_FIRE_CONT_KOUGO_ONEANM_FRAME	( 14 )
 #define WFLBY_FIRE_CONT_KOUGO_ANM_SPEED		( FX32_ONE )
@@ -52,12 +52,12 @@ enum{
 	WFLBY_FIRE_CONT_KOUGO_FLAG_NUM,
 };
 
-// ŒğŒİ—p‰Ô‰ÎƒCƒ“ƒfƒbƒNƒX
-// ŒğŒİ‰Ô‰Î‚ªˆê”Ô‚«‚ê‚¢‚ÉŒ©‚¦‚é‚æ‚¤‚É’²®‚µ‚½ƒCƒ“ƒfƒbƒNƒX
-// ƒ}ƒbƒvî•ñ‚ªXV‚³‚ê‚½‚ç®‡«‚ª•Ï‚í‚é‚Ì‚Å’ˆÓ‚ª•K—v‚Å‚·B
-// ”Ä—p«‚Ì‚Ü‚Á‚½‚­–³‚¢ƒe[ƒuƒ‹‚Å‚·B
+// äº¤äº’ç”¨èŠ±ç«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+// äº¤äº’èŠ±ç«ãŒä¸€ç•ªãã‚Œã„ã«è¦‹ãˆã‚‹ã‚ˆã†ã«èª¿æ•´ã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+// ãƒãƒƒãƒ—æƒ…å ±ãŒæ›´æ–°ã•ã‚ŒãŸã‚‰æ•´åˆæ€§ãŒå¤‰ã‚ã‚‹ã®ã§æ³¨æ„ãŒå¿…è¦ã§ã™ã€‚
+// æ±ç”¨æ€§ã®ã¾ã£ãŸãç„¡ã„ãƒ†ãƒ¼ãƒ–ãƒ«ã§ã™ã€‚
 //
-// [‰Ô‰Î”z’u}]
+// [èŠ±ç«é…ç½®å›³]
 //
 //    1			2		0
 //	9	 10
@@ -68,7 +68,7 @@ enum{
 //  11					12
 //		5 13 6	7 14 8
 //
-//			“ü‚èŒû
+//			å…¥ã‚Šå£
 static const u8 sc_WFLBY_FIRE_CONT_KOUGO_FIRE_IDX[] = {
 	6, 13, 5, 11,
 	7, 14, 8, 12,
@@ -80,7 +80,7 @@ static const u8 sc_WFLBY_FIRE_CONT_KOUGO_FIRE_IDX[] = {
 
 
 //-------------------------------------
-///	”gó”­Ë’è”
+///	æ³¢çŠ¶ç™ºå°„å®šæ•°
 //=====================================
 #define WFLBY_FIRE_CONT_NAMI_ONEANM_FRAME	( 6 )
 #define WFLBY_FIRE_CONT_NAMI_SEQ_NUM		( 7 )
@@ -89,8 +89,8 @@ enum{
 	WFLBY_FIRE_CONT_NAMI_OFF,
 	WFLBY_FIRE_CONT_NAMI_FLAG_NUM,
 };
-// ”g—p‰Ô‰Î”­Ëƒf[ƒ^
-// [‰Ô‰Î”z’u}]QÆ
+// æ³¢ç”¨èŠ±ç«ç™ºå°„ãƒ‡ãƒ¼ã‚¿
+// [èŠ±ç«é…ç½®å›³]å‚ç…§
 static const u8 sc_WFLBY_FIRE_CONT_NAMI_00_IDX[] = {
 	5,  13, 6, 7, 14, 8,
 };
@@ -112,7 +112,7 @@ static const u8 sc_WFLBY_FIRE_CONT_NAMI_05_IDX[] = {
 static const u8 sc_WFLBY_FIRE_CONT_NAMI_06_IDX[] = {
 	1, 2, 0,
 };
-// ”gƒV[ƒPƒ“ƒX‚²‚Æ‚Ì@”­Ë@’â~@ƒtƒ‰ƒO
+// æ³¢ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã”ã¨ã®ã€€ç™ºå°„ã€€åœæ­¢ã€€ãƒ•ãƒ©ã‚°
 static const u8 sc_WFLBY_FIRE_CONT_NAMI_ONOFF_FLAG[ WFLBY_FIRE_CONT_NAMI_SEQ_NUM ][ WFLBY_FIRE_CONT_NAMI_FLAG_NUM ] = {
 	{ 0, 5 },
 	{ 1, 6 },
@@ -127,9 +127,9 @@ static const u8 sc_WFLBY_FIRE_CONT_NAMI_ONOFF_FLAG[ WFLBY_FIRE_CONT_NAMI_SEQ_NUM
 
 
 //-------------------------------------
-///	ƒNƒ‰ƒCƒ}ƒbƒNƒX
+///	ã‚¯ãƒ©ã‚¤ãƒãƒƒã‚¯ã‚¹
 //=====================================
-// Ä¶ƒf[ƒ^
+// å†ç”Ÿãƒ‡ãƒ¼ã‚¿
 typedef struct {
 	u32		start_count;
 	fx32	anm_speed;
@@ -144,11 +144,11 @@ static const WFLBY_FIRECONT_CLIMAX_ANMDATA sc_WFLBY_FIRECONT_CLIMAX_ANMDATA[WFLB
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	Še“®ìƒ^ƒCƒv‚Ìƒ[ƒN
+///	å„å‹•ä½œã‚¿ã‚¤ãƒ—ã®ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef union {
 	struct{
@@ -165,7 +165,7 @@ typedef union {
 } WFLBY_FIRECONT_WK;
 
 //-------------------------------------
-///	”gƒe[ƒuƒ‹ƒf[ƒ^
+///	æ³¢ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	const u8* cp_tbl;
@@ -175,7 +175,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	‰Ô‰ÎŠÇ—ƒVƒXƒeƒ€
+///	èŠ±ç«ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _WFLBY_FIRE_CONT {
 	const WFLBY_SYSTEM*		cp_system;
@@ -185,12 +185,12 @@ typedef struct _WFLBY_FIRE_CONT {
 	u8	fire_se;
 	u16 last_hanabi_st;
 
-	WFLBY_FIRECONT_WK move_wk;	// “®ìƒ[ƒN
+	WFLBY_FIRECONT_WK move_wk;	// å‹•ä½œãƒ¯ãƒ¼ã‚¯
 } WFLBY_FIRE_CONT;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WFLBY_FIRE_CONT_Move( WFLBY_FIRE_CONT* p_sys, u32 move_type, u32 count );
@@ -210,13 +210,13 @@ static void WFLBY_FIRE_CONT_InitClimax( WFLBY_FIRE_CONT* p_sys, u32 count );
 
 
 //-------------------------------------
-///	”gó”­Ë
+///	æ³¢çŠ¶ç™ºå°„
 //=====================================
 static void WFLBY_FIRE_CONT_Nami_GetTblData( u32 idx, WFLBY_FIRECONT_NAMI_TBL* p_buff );
 
 
 //-------------------------------------
-///	‰Ô‰Î‚Ì‰¹ŠÇ—
+///	èŠ±ç«ã®éŸ³ç®¡ç†
 //=====================================
 static void WFLBY_FIRE_CONT_StartFireSe( WFLBY_FIRE_CONT* p_wk );
 static void WFLBY_FIRE_CONT_StopFireSe( WFLBY_FIRE_CONT* p_wk );
@@ -224,13 +224,13 @@ static void WFLBY_FIRE_CONT_StopFireSe( WFLBY_FIRE_CONT* p_wk );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰ÎƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€		‰Šú‰»
+ *	@brief	èŠ±ç«ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 		åˆæœŸåŒ–
  *
- *	@param	cp_system		ƒVƒXƒeƒ€	
- *	@param	p_mapobjcont	”z’uƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€
- *	@param	heapID			ƒq[ƒvID
+ *	@param	cp_system		ã‚·ã‚¹ãƒ†ãƒ 	
+ *	@param	p_mapobjcont	é…ç½®ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ì¬‚µ‚½ƒVƒXƒeƒ€
+ *	@return	ä½œæˆã—ãŸã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 WFLBY_FIRE_CONT* WFLBY_FIRECONT_Init( const WFLBY_SYSTEM* cp_system, WFLBY_3DMAPOBJ_CONT* p_mapobjcont, u32 heapID )
@@ -244,20 +244,20 @@ WFLBY_FIRE_CONT* WFLBY_FIRECONT_Init( const WFLBY_SYSTEM* cp_system, WFLBY_3DMAP
 	p_wk->cp_system		= cp_system;
 	p_wk->p_mapobjcont	= p_mapobjcont;
 
-	// ‰Ô‰Î’†‚Ì‚Æ‚«‚¾‚¯‰Šú‰»
+	// èŠ±ç«ä¸­ã®ã¨ãã ã‘åˆæœŸåŒ–
 	move_type				= WFLBY_SYSTEM_FIRE_GetType( cp_system );
 	p_wk->last_hanabi_st	= WFLBY_SYSTEM_Event_GetHanabi( cp_system );
 	if( (WFLBY_EVENT_HANABI_BEFORE != p_wk->last_hanabi_st) && (move_type != WFLBY_FIRE_END) ){
 
 		u32 count;
 
-		// “º‘œ‚©‚ç‰Ô‰Î‚ğo‚·
+		// éŠ…åƒã‹ã‚‰èŠ±ç«ã‚’å‡ºã™
 		WFLBY_3DMAPOBJCONT_MAP_SetDouzouFire( p_mapobjcont, TRUE );
 
 		//SE
 		WFLBY_FIRE_CONT_StartFireSe( p_wk );
 
-		// ¡‚Ìó‘Ô‚ğŒ©‚ÄA‰Šú‰»‚·‚é
+		// ä»Šã®çŠ¶æ…‹ã‚’è¦‹ã¦ã€åˆæœŸåŒ–ã™ã‚‹
 		count		= WFLBY_SYSTEM_FIRE_GetTypeMoveCount( cp_system );
 		WFLBY_FIRE_CONT_Init( p_wk, move_type, count );
 	}
@@ -267,9 +267,9 @@ WFLBY_FIRE_CONT* WFLBY_FIRECONT_Init( const WFLBY_SYSTEM* cp_system, WFLBY_3DMAP
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰ÎƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€		”jŠü
+ *	@brief	èŠ±ç«ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 		ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_FIRECONT_Exit( WFLBY_FIRE_CONT* p_wk )
@@ -280,9 +280,9 @@ void WFLBY_FIRECONT_Exit( WFLBY_FIRE_CONT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰ÎƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€	ƒƒCƒ“
+ *	@brief	èŠ±ç«ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_FIRECONT_Main( WFLBY_FIRE_CONT* p_wk )
@@ -295,18 +295,18 @@ void WFLBY_FIRECONT_Main( WFLBY_FIRE_CONT* p_wk )
 	count		= WFLBY_SYSTEM_FIRE_GetTypeMoveCount( p_wk->cp_system );
 	hanabi_st	= WFLBY_SYSTEM_Event_GetHanabi( p_wk->cp_system );
 
-	// ‰Ô‰Îó‘Ô‚ª•ÏX‚µ‚½‚©ƒ`ƒFƒbƒN
+	// èŠ±ç«çŠ¶æ…‹ãŒå¤‰æ›´ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( p_wk->last_hanabi_st != hanabi_st ){
 		p_wk->last_hanabi_st = hanabi_st;
 
 		if( hanabi_st == WFLBY_EVENT_HANABI_PLAY ){
 
-			// ‰Ô‰Î‚ªŠJn‚³‚ê‚½
+			// èŠ±ç«ãŒé–‹å§‹ã•ã‚ŒãŸ
 
-			// “º‘œ‚©‚ç‰Ô‰Î‚ğo‚·
+			// éŠ…åƒã‹ã‚‰èŠ±ç«ã‚’å‡ºã™
 			WFLBY_3DMAPOBJCONT_MAP_SetDouzouFire( p_wk->p_mapobjcont, TRUE );
 
-			// “®ì‰Šú‰»
+			// å‹•ä½œåˆæœŸåŒ–
 			WFLBY_FIRE_CONT_Init( p_wk, move_type, count );
 
 			//SE
@@ -316,18 +316,18 @@ void WFLBY_FIRECONT_Main( WFLBY_FIRE_CONT* p_wk )
 
 
 
-	// ‰Ô‰Î‘OˆÈŠO‚Ìó‘Ô‚Ìê‡‚¾‚¯
-	// ƒƒCƒ““®ì‚³‚¹‚é
-	// move_type‚ªI‚í‚è‚É‚È‚Á‚½‚çŸè‚ÉI‚í‚é
+	// èŠ±ç«å‰ä»¥å¤–ã®çŠ¶æ…‹ã®å ´åˆã ã‘
+	// ãƒ¡ã‚¤ãƒ³å‹•ä½œã•ã›ã‚‹
+	// move_typeãŒçµ‚ã‚ã‚Šã«ãªã£ãŸã‚‰å‹æ‰‹ã«çµ‚ã‚ã‚‹
 	if( hanabi_st != WFLBY_EVENT_HANABI_BEFORE ){
 
-		// “®ì‚ª•Ï‚í‚Á‚½‚ç‰Šú‰»
+		// å‹•ä½œãŒå¤‰ã‚ã£ãŸã‚‰åˆæœŸåŒ–
 		if( p_wk->now_move_type != move_type ){
-			// “®ì‰Šú‰»
+			// å‹•ä½œåˆæœŸåŒ–
 			WFLBY_FIRE_CONT_Init( p_wk, move_type, count );
 		}
 
-		// “®ì
+		// å‹•ä½œ
 		WFLBY_FIRE_CONT_Move( p_wk, move_type, count );
 	}
 	
@@ -335,9 +335,9 @@ void WFLBY_FIRECONT_Main( WFLBY_FIRE_CONT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰ÎƒCƒxƒ“ƒgŠÇ—	SE’â~
+ *	@brief	èŠ±ç«ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†	SEåœæ­¢
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_FIRECONT_StopFireSe( WFLBY_FIRE_CONT* p_wk )
@@ -352,16 +352,16 @@ void WFLBY_FIRECONT_StopFireSe( WFLBY_FIRE_CONT* p_wk )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰Î‚Ì“®ì
+ *	@brief	èŠ±ç«ã®å‹•ä½œ
  *
- *	@param	p_sys		ƒ[ƒN
- *	@param	move_type	“®ìƒ^ƒCƒv
- *	@param	count		ƒJƒEƒ“ƒ^
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	move_type	å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	count		ã‚«ã‚¦ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FIRE_CONT_Move( WFLBY_FIRE_CONT* p_sys, u32 move_type, u32 count )
@@ -382,21 +382,21 @@ static void WFLBY_FIRE_CONT_Move( WFLBY_FIRE_CONT* p_sys, u32 move_type, u32 cou
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰Îƒ^ƒCƒv‚É‘Î‰‚µ‚½“®ìŠÖ”
+ *	@brief	èŠ±ç«ã‚¿ã‚¤ãƒ—ã«å¯¾å¿œã—ãŸå‹•ä½œé–¢æ•°
  *
- *	@param	p_sys			ƒ[ƒN
- *	@param	count			¡‚Ì“®ìƒJƒEƒ“ƒ^
+ *	@param	p_sys			ãƒ¯ãƒ¼ã‚¯
+ *	@param	count			ä»Šã®å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
-// “®‚«‚È‚µ
+// å‹•ããªã—
 static void WFLBY_FIRE_CONT_MoveNone( WFLBY_FIRE_CONT* p_sys, u32 count )
 {
 }
-// ’Êí‚ ‚É‚ß
+// é€šå¸¸ã‚ã«ã‚
 static void WFLBY_FIRE_CONT_MoveNormal( WFLBY_FIRE_CONT* p_sys, u32 count )
 {
 }
-//  ŒğŒİ”­Ë
+//  äº¤äº’ç™ºå°„
 static void WFLBY_FIRE_CONT_MoveKougo( WFLBY_FIRE_CONT* p_sys, u32 count )
 {
 	BOOL result;
@@ -412,7 +412,7 @@ static void WFLBY_FIRE_CONT_MoveKougo( WFLBY_FIRE_CONT* p_sys, u32 count )
 	};
 
 #if 0
-	// w’è‚µ‚½ˆÊ’u‚Ì‰Ô‰Î‚ğ‚Â‚¯‚é
+	// æŒ‡å®šã—ãŸä½ç½®ã®èŠ±ç«ã‚’ã¤ã‘ã‚‹
 	if( sys.trg & PAD_BUTTON_R ){
 		static s32 hanabi_no;
 		static s32 last_hanabi_no;
@@ -439,14 +439,14 @@ static void WFLBY_FIRE_CONT_MoveKougo( WFLBY_FIRE_CONT* p_sys, u32 count )
 	if( (count % WFLBY_FIRE_CONT_KOUGO_ONEANM_FRAME) == 0 ){
 
 
-		// ƒAƒjƒİ’è
+		// ã‚¢ãƒ‹ãƒ¡è¨­å®š
 		idx = 0;
 		do{
 			
-			// ‰Ô‰Î‚Ì‘€ì‚ğs‚¤‚©
+			// èŠ±ç«ã®æ“ä½œã‚’è¡Œã†ã‹
 			set_fire_flag = FALSE;
 
-			// seq‚Å ”­ËA‚»‚Ì‚Ü‚ÜA‚Æ‚ß‚é ‚ğØ‚è‘Ö‚¦‚é
+			// seqã§ ç™ºå°„ã€ãã®ã¾ã¾ã€ã¨ã‚ã‚‹ ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 			if( (idx % WFLBY_FIRE_CONT_KOUGO_ANM_SEQ_NUM) == sc_Flag[ p_sys->move_wk.kougo.seq ][ WFLBY_FIRE_CONT_KOUGO_ON ] ){
 				flag = TRUE;
 				set_fire_flag = TRUE;
@@ -458,13 +458,13 @@ static void WFLBY_FIRE_CONT_MoveKougo( WFLBY_FIRE_CONT* p_sys, u32 count )
 			
 			if( set_fire_flag == TRUE ){
 
-				// ƒCƒ“ƒfƒbƒNƒX‚ğŒğŒİ‰Ô‰Î\¬ƒCƒ“ƒfƒbƒNƒX‚É•ÏX
+				// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’äº¤äº’èŠ±ç«æ§‹æˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«å¤‰æ›´
 				if( idx < NELEMS(sc_WFLBY_FIRE_CONT_KOUGO_FIRE_IDX) ){
 					kougo_idx = sc_WFLBY_FIRE_CONT_KOUGO_FIRE_IDX[idx];
 					
 					result = WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFireIdx( p_sys->p_mapobjcont, 
 							kougo_idx, flag, WFLBY_FIRE_CONT_KOUGO_ANM_SPEED );
-					GF_ASSERT( result == TRUE );	// ‰Ô‰Î\¬ƒf[ƒ^‚ª‚ ‚Á‚Ä‚¢‚È‚¢
+					GF_ASSERT( result == TRUE );	// èŠ±ç«æ§‹æˆãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ã¦ã„ãªã„
 				}else{
 					result = FALSE;
 				}
@@ -479,50 +479,50 @@ static void WFLBY_FIRE_CONT_MoveKougo( WFLBY_FIRE_CONT* p_sys, u32 count )
 	}
 #endif
 }
-// ”gó”­Ë
+// æ³¢çŠ¶ç™ºå°„
 static void WFLBY_FIRE_CONT_MoveNami( WFLBY_FIRE_CONT* p_sys, u32 count )
 {
 	int i;
 	u32	off, on;
-	WFLBY_FIRECONT_NAMI_TBL nami_tbl;	// ”gƒe[ƒuƒ‹ƒf[ƒ^
+	WFLBY_FIRECONT_NAMI_TBL nami_tbl;	// æ³¢ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
 	BOOL result;
 	
 	if( (count % WFLBY_FIRE_CONT_NAMI_ONEANM_FRAME) == 0 ){
 
 
-		// ON/OFFî•ñæ“¾
+		// ON/OFFæƒ…å ±å–å¾—
 		off = sc_WFLBY_FIRE_CONT_NAMI_ONOFF_FLAG[ p_sys->move_wk.nami.seq ][ WFLBY_FIRE_CONT_NAMI_OFF ];
 		on	= sc_WFLBY_FIRE_CONT_NAMI_ONOFF_FLAG[ p_sys->move_wk.nami.seq ][ WFLBY_FIRE_CONT_NAMI_ON ];
 
 		
-		// ƒAƒjƒİ’è
-		// ƒAƒjƒOFF
+		// ã‚¢ãƒ‹ãƒ¡è¨­å®š
+		// ã‚¢ãƒ‹ãƒ¡OFF
 		WFLBY_FIRE_CONT_Nami_GetTblData( off, &nami_tbl );
 		for( i=0; i<nami_tbl.tblnum; i++ ){
 			result = WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFireIdx( p_sys->p_mapobjcont, 
 					nami_tbl.cp_tbl[i], FALSE, WFLBY_FIRE_CONT_KOUGO_ANM_SPEED );
-			GF_ASSERT( result == TRUE );	// ‰Ô‰Î\¬ƒf[ƒ^‚ª‚ ‚Á‚Ä‚¢‚È‚¢
+			GF_ASSERT( result == TRUE );	// èŠ±ç«æ§‹æˆãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ã¦ã„ãªã„
 		}
 
-		// ƒAƒjƒON
+		// ã‚¢ãƒ‹ãƒ¡ON
 		WFLBY_FIRE_CONT_Nami_GetTblData( on, &nami_tbl );
 		for( i=0; i<nami_tbl.tblnum; i++ ){
 			result = WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFireIdx( p_sys->p_mapobjcont, 
 					nami_tbl.cp_tbl[i], TRUE, WFLBY_FIRE_CONT_KOUGO_ANM_SPEED );
-			GF_ASSERT( result == TRUE );	// ‰Ô‰Î\¬ƒf[ƒ^‚ª‚ ‚Á‚Ä‚¢‚È‚¢
+			GF_ASSERT( result == TRUE );	// èŠ±ç«æ§‹æˆãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ã¦ã„ãªã„
 		}
 		
 		p_sys->move_wk.nami.seq = (p_sys->move_wk.nami.seq + 1) % WFLBY_FIRE_CONT_NAMI_SEQ_NUM;
 
 	}
 }
-// ƒNƒ‰ƒCƒ}ƒbƒNƒX
+// ã‚¯ãƒ©ã‚¤ãƒãƒƒã‚¯ã‚¹
 static void WFLBY_FIRE_CONT_MoveClimax( WFLBY_FIRE_CONT* p_sys, u32 count )
 {
 	if( p_sys->move_wk.climax.anmidx < WFLBY_FIRECONT_CLIMAX_ANMNUM ){
 		
 		if( sc_WFLBY_FIRECONT_CLIMAX_ANMDATA[p_sys->move_wk.climax.anmidx].start_count < count ){
-			// ”­ËI
+			// ç™ºå°„ï¼
 			WFLBY_3DMAPOBJCONT_MAP_SetFloorLightBigFire( p_sys->p_mapobjcont, 
 					sc_WFLBY_FIRECONT_CLIMAX_ANMDATA[p_sys->move_wk.climax.anmidx].anm_speed );
 
@@ -531,7 +531,7 @@ static void WFLBY_FIRE_CONT_MoveClimax( WFLBY_FIRE_CONT* p_sys, u32 count )
 
 			Snd_SePlay( WFLBY_SND_FIREWORKS02 );
 
-			// Ÿ‚ÌƒAƒjƒ‚Ö
+			// æ¬¡ã®ã‚¢ãƒ‹ãƒ¡ã¸
 			p_sys->move_wk.climax.anmidx ++;
 		}
 		
@@ -542,11 +542,11 @@ static void WFLBY_FIRE_CONT_MoveClimax( WFLBY_FIRE_CONT* p_sys, u32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰Î‚Ì‰Šú‰»
+ *	@brief	èŠ±ç«ã®åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒ[ƒN		
- *	@param	move_type	“®ìƒ^ƒCƒv
- *	@param	count		ƒJƒEƒ“ƒ^
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯		
+ *	@param	move_type	å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	count		ã‚«ã‚¦ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FIRE_CONT_Init( WFLBY_FIRE_CONT* p_sys, u32 move_type, u32 count )
@@ -563,7 +563,7 @@ static void WFLBY_FIRE_CONT_Init( WFLBY_FIRE_CONT* p_sys, u32 move_type, u32 cou
 	GF_ASSERT( move_type < WFLBY_FIRE_NUM );
 	if( move_type < WFLBY_FIRE_NUM ){
 
-		// ƒ[ƒN‚ÌƒNƒŠƒA
+		// ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
 		memset( &p_sys->move_wk, 0, sizeof(WFLBY_FIRECONT_WK) );
 		
 		pFunc[ move_type ]( p_sys, count );
@@ -573,42 +573,42 @@ static void WFLBY_FIRE_CONT_Init( WFLBY_FIRE_CONT* p_sys, u32 move_type, u32 cou
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰Î“®ìƒ^ƒCƒv‚É‘Î‰‚µ‚½“®‚«‚Ì‰Šú‰»
+ *	@brief	èŠ±ç«å‹•ä½œã‚¿ã‚¤ãƒ—ã«å¯¾å¿œã—ãŸå‹•ãã®åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	count		ƒJƒEƒ“ƒg’l
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	count		ã‚«ã‚¦ãƒ³ãƒˆå€¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FIRE_CONT_InitNone( WFLBY_FIRE_CONT* p_sys, u32 count )
 {
-	// ‘SƒAƒjƒ‚ğ‚Æ‚ß‚é
+	// å…¨ã‚¢ãƒ‹ãƒ¡ã‚’ã¨ã‚ã‚‹
 	WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFire( p_sys->p_mapobjcont, FALSE, FX32_ONE );
 }
-// ’ÊíƒAƒjƒ
+// é€šå¸¸ã‚¢ãƒ‹ãƒ¡
 static void WFLBY_FIRE_CONT_InitNormal( WFLBY_FIRE_CONT* p_sys, u32 count )
 {
-	// ‘SƒAƒjƒ”­Ë
+	// å…¨ã‚¢ãƒ‹ãƒ¡ç™ºå°„
 	WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFire( p_sys->p_mapobjcont, TRUE, FX32_ONE );
 }
-// ŒğŒİ”­Ë
+// äº¤äº’ç™ºå°„
 static void WFLBY_FIRE_CONT_InitKougo( WFLBY_FIRE_CONT* p_sys, u32 count )
 {
-	// ‚»‚Ì‚¤‚¿”­Ë‚³‚ê‚é‚Í‚¸‚È‚Ì‚Å¡‚Í‘S‰Ô‰Î‚ğOFF
+	// ãã®ã†ã¡ç™ºå°„ã•ã‚Œã‚‹ã¯ãšãªã®ã§ä»Šã¯å…¨èŠ±ç«ã‚’OFF
 	WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFire( p_sys->p_mapobjcont, FALSE, FX32_ONE );
 }
-// ”gó
+// æ³¢çŠ¶
 static void WFLBY_FIRE_CONT_InitNami( WFLBY_FIRE_CONT* p_sys, u32 count )
 {
-	// ‚»‚Ì‚¤‚¿”­Ë‚³‚ê‚é‚Í‚¸‚È‚Ì‚Å¡‚Í‘S‰Ô‰Î‚ğOFF
+	// ãã®ã†ã¡ç™ºå°„ã•ã‚Œã‚‹ã¯ãšãªã®ã§ä»Šã¯å…¨èŠ±ç«ã‚’OFF
 	WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFire( p_sys->p_mapobjcont, FALSE, FX32_ONE );
 }
-// ƒNƒ‰ƒCƒ}ƒbƒNƒX
+// ã‚¯ãƒ©ã‚¤ãƒãƒƒã‚¯ã‚¹
 static void WFLBY_FIRE_CONT_InitClimax( WFLBY_FIRE_CONT* p_sys, u32 count )
 {
 	//SE
 	WFLBY_FIRE_CONT_StopFireSe( p_sys );
 	
-	// ‚»‚Ì‚¤‚¿”­Ë‚³‚ê‚é‚Í‚¸‚È‚Ì‚Å¡‚Í‘S‰Ô‰Î‚ğOFF
+	// ãã®ã†ã¡ç™ºå°„ã•ã‚Œã‚‹ã¯ãšãªã®ã§ä»Šã¯å…¨èŠ±ç«ã‚’OFF
 	WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFire( p_sys->p_mapobjcont, FALSE, FX32_ONE );
 	WFLBY_3DMAPOBJCONT_MAP_SetDouzouFire( p_sys->p_mapobjcont, FALSE );
 }
@@ -618,10 +618,10 @@ static void WFLBY_FIRE_CONT_InitClimax( WFLBY_FIRE_CONT* p_sys, u32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”gƒe[ƒuƒ‹ƒf[ƒ^æ“¾ŠÖ”
+ *	@brief	æ³¢ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—é–¢æ•°
  *
- *	@param	idx		”gƒCƒ“ƒfƒbƒNƒX
- *	@param	p_buff	Ši”[æ
+ *	@param	idx		æ³¢ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	p_buff	æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FIRE_CONT_Nami_GetTblData( u32 idx, WFLBY_FIRECONT_NAMI_TBL* p_buff )
@@ -671,9 +671,9 @@ static void WFLBY_FIRE_CONT_Nami_GetTblData( u32 idx, WFLBY_FIRECONT_NAMI_TBL* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰ÎSEÄ¶
+ *	@brief	èŠ±ç«SEå†ç”Ÿ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FIRE_CONT_StartFireSe( WFLBY_FIRE_CONT* p_wk )
@@ -686,9 +686,9 @@ static void WFLBY_FIRE_CONT_StartFireSe( WFLBY_FIRE_CONT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰ÎSE’â~
+ *	@brief	èŠ±ç«SEåœæ­¢
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_FIRE_CONT_StopFireSe( WFLBY_FIRE_CONT* p_wk )

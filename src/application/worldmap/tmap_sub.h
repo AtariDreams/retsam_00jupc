@@ -1,6 +1,6 @@
 /**
  *	@file	tmap_sub.h
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒv@ƒTƒuƒc[ƒ‹ŒQ
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ã€€ã‚µãƒ–ãƒ„ãƒ¼ãƒ«ç¾¤
  *	@author	Miyuki Iwasawa
  *	@date	06.04.01
  */
@@ -9,15 +9,15 @@
 #define __H_TMAP_SUB_H__
 
 ////////////////////////////////////////////////////////////////
-///ƒ^ƒEƒ“View—pƒf[ƒ^\‘¢‘Ì
+///ã‚¿ã‚¦ãƒ³Viewç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct _TOWN_VIEW{
-	int		zoneID;	//<ƒ][ƒ“ID
-	int		sysflag;	//<ƒVƒXƒeƒ€ƒtƒ‰ƒOQÆID
-	u8		ptn;	//<‰æ‘œƒpƒ^[ƒ“	
-	u8		typ;	//<‰æ‘œƒpƒ^[ƒ“	
-	u16		r;	//<‰ñ“]Šp
-	fx32	x;	//<xÀ•W
-	fx32	z;	//<yÀ•W
+	int		zoneID;	//<ã‚¾ãƒ¼ãƒ³ID
+	int		sysflag;	//<ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°å‚ç…§ID
+	u8		ptn;	//<ç”»åƒãƒ‘ã‚¿ãƒ¼ãƒ³	
+	u8		typ;	//<ç”»åƒãƒ‘ã‚¿ãƒ¼ãƒ³	
+	u16		r;	//<å›è»¢è§’
+	fx32	x;	//<xåº§æ¨™
+	fx32	z;	//<yåº§æ¨™
 }TOWN_VIEW;
 
 typedef struct _TMAP_VIEW_OBJ{
@@ -36,86 +36,86 @@ typedef struct _TMAP_VIEW_DAT{
 }TMAP_VIEW_DAT;
 
 //////////////////////////////////////////////////////////////
-///ƒ^ƒEƒ“ƒ}ƒbƒv—pƒf[ƒ^Œ^
+///ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ç”¨ãƒ‡ãƒ¼ã‚¿å‹
 typedef struct _TMAP_GDAT{
-	u16	x;			//<ƒOƒŠƒbƒhÀ•WX
-	u16	z;			//<ƒOƒŠƒbƒhÀ•WZ
-	u16	kType;		//<ŠÅ”Âƒ^ƒCƒv’è‹`
-	u16 kIdx;		//<ŠÅ”ÂIndexNo
-	u16	gmes01;		//<ƒKƒCƒhƒƒbƒZ[ƒW01ƒCƒ“ƒfƒbƒNƒX
-	u16	gmes02;		//<ƒKƒCƒhƒƒbƒZ[ƒW02ƒCƒ“ƒfƒbƒNƒX
-	u16	gmes01_ox;	//<ƒKƒCƒhƒƒbƒZ[ƒW01•\¦ƒIƒtƒZƒbƒgX
-	u16	gmes01_oy;	//<ƒKƒCƒhƒƒbƒZ[ƒW01•\¦ƒIƒtƒZƒbƒgY
-	u16	gmes02_ox;	//<ƒKƒCƒhƒƒbƒZ[ƒW02•\¦ƒIƒtƒZƒbƒgX
-	u16	gmes02_oy;	//<ƒKƒCƒhƒƒbƒZ[ƒW02•\¦ƒIƒtƒZƒbƒgY
-	u16	view;		//<Viewƒtƒ‰ƒO
+	u16	x;			//<ã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+	u16	z;			//<ã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
+	u16	kType;		//<çœ‹æ¿ã‚¿ã‚¤ãƒ—å®šç¾©
+	u16 kIdx;		//<çœ‹æ¿IndexNo
+	u16	gmes01;		//<ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸01ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u16	gmes02;		//<ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸02ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u16	gmes01_ox;	//<ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸01è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆX
+	u16	gmes01_oy;	//<ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸01è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
+	u16	gmes02_ox;	//<ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸02è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆX
+	u16	gmes02_oy;	//<ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸02è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
+	u16	view;		//<Viewãƒ•ãƒ©ã‚°
 	u16	id;			//<ID
 }TMAP_GDAT;
 
 typedef struct _TMAP_GDAT_LIST{
-	int	num;	///<ƒf[ƒ^”
-	TMAP_GDAT *pDat;	//ƒf[ƒ^”z—ñ
+	int	num;	///<ãƒ‡ãƒ¼ã‚¿æ•°
+	TMAP_GDAT *pDat;	//ãƒ‡ãƒ¼ã‚¿é…åˆ—
 }TMAP_GDAT_LIST;
 
 
 //========================================================================
-//ƒTƒuƒc[ƒ‹ŒQŠO•”QÆ’è‹`ƒGƒŠƒA
+//ã‚µãƒ–ãƒ„ãƒ¼ãƒ«ç¾¤å¤–éƒ¨å‚ç…§å®šç¾©ã‚¨ãƒªã‚¢
 //
 
 /**
- *	@brief	ƒ^ƒEƒ“ViewƒŠƒ\[ƒXì¬
+ *	@brief	ã‚¿ã‚¦ãƒ³Viewãƒªã‚½ãƒ¼ã‚¹ä½œæˆ
  *
- *	@param	actSys	‰Šú‰»Ï‚İƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€
- *	@param	actRes	‰Šú‰»Ï‚İƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX
+ *	@param	actSys	åˆæœŸåŒ–æ¸ˆã¿ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	actRes	åˆæœŸåŒ–æ¸ˆã¿ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹
  *
- *	@param	dat_num	ƒf[ƒ^”
- *	@param	heapID	ƒq[ƒvID
+ *	@param	dat_num	ãƒ‡ãƒ¼ã‚¿æ•°
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 extern TMAP_VIEW_DAT* TownViewDataCreate(CATS_SYS_PTR actSys,CATS_RES_PTR actRes,
 		u8 *arrive,short dat_num,int heapID);
 
 /**
- *	@brief	ƒ^ƒEƒ“ViewƒŠƒ\[ƒX‰ğ•ú
+ *	@brief	ã‚¿ã‚¦ãƒ³Viewãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 extern void TownViewDataRelease(TMAP_VIEW_DAT* wp);
 
 /**
- *	@brief	ƒ^ƒEƒ“View Šî–{•`‰æ
+ *	@brief	ã‚¿ã‚¦ãƒ³View åŸºæœ¬æç”»
  */
 extern void TownViewDataDraw(TMAP_VIEW_DAT* wp,int mode);
 
 /**
- *	ƒ^ƒEƒ“View ƒf[ƒ^’†‚©‚ç“Á’è‚ÌZoneID‚ğ‚Â‚à‚Ì‚ğ’T‚·
+ *	ã‚¿ã‚¦ãƒ³View ãƒ‡ãƒ¼ã‚¿ä¸­ã‹ã‚‰ç‰¹å®šã®ZoneIDã‚’æŒã¤ã‚‚ã®ã‚’æ¢ã™
  */
 extern TMAP_VIEW_OBJ* TownViewDataSearchPos(TMAP_VIEW_DAT* wp,int zoneID,int x,int z);
 
 /**
- *	@brief	ƒ^ƒEƒ“View
+ *	@brief	ã‚¿ã‚¦ãƒ³View
  */
 extern int TownViewDataSelectPos(TMAP_VIEW_DAT* wp,int zoneID,int x,int z);
 
 //============================================================
-//ƒ}ƒbƒvƒuƒƒbƒNƒf[ƒ^QÆŠÖ˜A
+//ãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å‚ç…§é–¢é€£
 //============================================================
 /**
- *	@brief	ƒ}ƒbƒvƒuƒƒbƒNƒf[ƒ^ƒ[ƒh
+ *	@brief	ãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
  */
 extern TMAP_GDAT_LIST* TMapBlockDataLoad(const char* path,int heapID);
 
 /**
- *	@brief	ƒ}ƒbƒvƒuƒƒbƒNƒf[ƒ^‰ğ•ú
+ *	@brief	ãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾
  */
 extern void TMapBlockDataRelease(TMAP_GDAT_LIST* pWork);
 
 /**
- *	@brief	ƒ}ƒbƒvƒuƒƒbƒNƒf[ƒ^@ƒuƒƒbƒNƒf[ƒ^æ“¾
+ *	@brief	ãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã€€ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	pWork	ƒf[ƒ^ƒŠƒXƒg”z—ñ‚Ìæ“ªƒ|ƒCƒ“ƒ^
- *	@param	x		ŒŸõ‚·‚éƒuƒƒbƒN‚ÌXÀ•W
- *	@param	z		ŒŸõ‚·‚éƒuƒƒbƒN‚ÌZÀ•W
- *	@param	mapView	”z•zƒ}ƒbƒv•`‰æƒtƒ‰ƒO
- *	ƒuƒƒbƒN‚Ìx,zÀ•W‚©‚çƒuƒƒbƒNƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
- *	Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡NULL‚ğ•Ô‚·
+ *	@param	pWork	ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆé…åˆ—ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
+ *	@param	x		æ¤œç´¢ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®Xåº§æ¨™
+ *	@param	z		æ¤œç´¢ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®Zåº§æ¨™
+ *	@param	mapView	é…å¸ƒãƒãƒƒãƒ—æç”»ãƒ•ãƒ©ã‚°
+ *	ãƒ–ãƒ­ãƒƒã‚¯ã®x,zåº§æ¨™ã‹ã‚‰ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
+ *	è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆNULLã‚’è¿”ã™
  */
 extern TMAP_GDAT* TMapBlockDataGet(TMAP_GDAT_LIST* pWork,int x,int z,u16 mapView);
 

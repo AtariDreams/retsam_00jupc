@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	scr_boxpwd.c
- * @brief	ƒ{ƒbƒNƒXƒpƒXƒ[ƒh•Ç†ŠÖ˜Aˆ—
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å£ç´™é–¢é€£å‡¦ç†
  * @author	taya
  * @date	2006/06/01
  */
@@ -17,7 +17,7 @@ enum {
 	EX_WALLPAPER_MAX = 8,
 };
 
-///ŒÅ’è’l
+///å›ºå®šå€¤
 #define BOXPWD_MAGIC_NUMBER		(6)
 
 
@@ -137,9 +137,9 @@ static int hitcheck( const PMSW_AIKOTOBA_TBL* cp_pmsw_tbl, u16 player_id, PMS_WO
 
 	OS_TPrintf("id = %d\n", ((bit[1]<<8) | (bit[2])));
 
-	if( (((bit[1]<<8) | (bit[2])) == player_id)		//ƒvƒŒƒCƒ„[IDˆê’v
-		&& (((bit[0] & 0xf0)>>4) == BOXPWD_MAGIC_NUMBER)	//ŒÅ’è’lˆê’v
-		&& (bit[3] == (((bit[0]+bit[1])*bit[2]) & 0xff)))	//ƒ`ƒFƒbƒNƒTƒ€ˆê’v
+	if( (((bit[1]<<8) | (bit[2])) == player_id)		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼IDä¸€è‡´
+		&& (((bit[0] & 0xf0)>>4) == BOXPWD_MAGIC_NUMBER)	//å›ºå®šå€¤ä¸€è‡´
+		&& (bit[3] == (((bit[0]+bit[1])*bit[2]) & 0xff)))	//ãƒã‚§ãƒƒã‚¯ã‚µãƒ ä¸€è‡´
 	{
 		OS_TPrintf("ok wp= %d\n", bit[0] & 0x0f );
 		return bit[0] & 0x0f;
@@ -154,17 +154,17 @@ static int hitcheck( const PMSW_AIKOTOBA_TBL* cp_pmsw_tbl, u16 player_id, PMS_WO
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‰B‚µ•Ç†‚ÌƒpƒXƒ[ƒhƒ`ƒFƒbƒN
+ * ãƒœãƒƒã‚¯ã‚¹éš ã—å£ç´™ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
  *
- * @param   mystatus	ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒXiIDQÆ—pj
- * @param   word1		“ü—Í‚³‚ê‚½’PŒê‚P
- * @param   word2		“ü—Í‚³‚ê‚½’PŒê‚Q
- * @param   word3		“ü—Í‚³‚ê‚½’PŒê‚R
- * @param   word4		“ü—Í‚³‚ê‚½’PŒê‚S
- * @param	heapID		ƒq[ƒvID
+ * @param   mystatus	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼ˆIDå‚ç…§ç”¨ï¼‰
+ * @param   word1		å…¥åŠ›ã•ã‚ŒãŸå˜èªï¼‘
+ * @param   word2		å…¥åŠ›ã•ã‚ŒãŸå˜èªï¼’
+ * @param   word3		å…¥åŠ›ã•ã‚ŒãŸå˜èªï¼“
+ * @param   word4		å…¥åŠ›ã•ã‚ŒãŸå˜èªï¼”
+ * @param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  int			ƒpƒXƒ[ƒh‚ª³‚µ‚¯‚ê‚ÎA•Ç†IDi0`EX_WALLPAPER_MAX-1)
- *						ƒpƒXƒ[ƒh‚ªŠÔˆá‚¢‚È‚çABOXPWD_RESULT_ERROR
+ * @retval  int			ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒæ­£ã—ã‘ã‚Œã°ã€å£ç´™IDï¼ˆ0ã€œEX_WALLPAPER_MAX-1)
+ *						ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé–“é•ã„ãªã‚‰ã€BOXPWD_RESULT_ERROR
  */
 //------------------------------------------------------------------
 int  BOXPWD_HitCheck( const MYSTATUS* mystatus, PMS_WORD word1, PMS_WORD word2, PMS_WORD word3, PMS_WORD word4, u32 heapID )
@@ -173,7 +173,7 @@ int  BOXPWD_HitCheck( const MYSTATUS* mystatus, PMS_WORD word1, PMS_WORD word2, 
 	u16  player_id;
 	PMSW_AIKOTOBA_TBL* p_pmsw_tbl;
 
-	// ‡Œ¾—t—pA’PŒêƒŠƒXƒgƒe[ƒuƒ‹æ“¾
+	// åˆè¨€è‘‰ç”¨ã€å˜èªãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	p_pmsw_tbl = PMSW_AIKOTOBATBL_Init( heapID );
 
 	player_id = MyStatus_GetID_Low(mystatus);

@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_154.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			154�@���Ԃ̃|�P�����̐��i����������čő�U��j�����G���U������A
- *				 �퓬�s�\������ԁi�ǂ��A�˂ނ蓙�j�̃|�P�����͐��ɂ���Ȃ�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			154　仲間のポケモンの数（自分も入れて最大６回）だけ敵を攻撃する、
+ *				 戦闘不能や特殊状態（どく、ねむり等）のポケモンは数にいれない
  *
  *@author	HisashiSogabe
  *@data		2006.02.02
@@ -16,7 +16,7 @@
 	.include	"waza_seq_def.h"
 
 BE_154:
-	//�^�C�v�𖳑����ɂ���
+	//タイプを無属性にする
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_TYPE_NONE
 	CRITICAL_CHECK
 	HUKURODATAKI

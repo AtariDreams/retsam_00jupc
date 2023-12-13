@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	gauge.h
- * @brief	í“¬‰æ–ÊFHPƒQ[ƒW‚Ìƒwƒbƒ_
+ * @brief	æˆ¦é—˜ç”»é¢ï¼šHPã‚²ãƒ¼ã‚¸ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2005.09.27(‰Î)
+ * @date	2005.09.27(ç«)
  */
 //==============================================================================
 #ifndef __GAUGE_H__
@@ -15,16 +15,16 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒQ[ƒW‚Ì•W€BGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚²ãƒ¼ã‚¸ã®æ¨™æº–BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define GAUGE_DEFAULT_BGPRI			(0)
 
 //--------------------------------------------------------------
-//	ƒQ[ƒWƒ^ƒCƒv
-//		ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚ª”’l‚ª•ÏX‚³‚ê‚Ä‚àƒe[ƒuƒ‹‚Ì•À‚Ñ‚É‰e‹¿‚ªo‚È‚¢‚æ‚¤‚ÉA
-//		ƒQ[ƒWƒ^ƒCƒv‚ð•Ê‚É’è‹`BƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚©‚ç“KØ‚ÈƒQ[ƒWƒ^ƒCƒv‚ðŽæ‚èo‚·‚æ‚¤‚É‚·‚é
-//		ƒe[ƒuƒ‹“™‚ÍƒQ[ƒWƒ^ƒCƒv‚Ì•À‚Ñ‚É]‚Á‚Ä‚¨‚¯‚ÎˆÀ‘S‚Éƒf[ƒ^Žæ“¾‚ªs‚¦‚é
+//	ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
+//		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ãŒæ•°å€¤ãŒå¤‰æ›´ã•ã‚Œã¦ã‚‚ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä¸¦ã³ã«å½±éŸ¿ãŒå‡ºãªã„ã‚ˆã†ã«ã€
+//		ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—ã‚’åˆ¥ã«å®šç¾©ã€‚ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã‹ã‚‰é©åˆ‡ãªã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—ã‚’å–ã‚Šå‡ºã™ã‚ˆã†ã«ã™ã‚‹
+//		ãƒ†ãƒ¼ãƒ–ãƒ«ç­‰ã¯ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—ã®ä¸¦ã³ã«å¾“ã£ã¦ãŠã‘ã°å®‰å…¨ã«ãƒ‡ãƒ¼ã‚¿å–å¾—ãŒè¡Œãˆã‚‹
 //--------------------------------------------------------------
 enum{
 	GAUGE_TYPE_AA,
@@ -37,127 +37,127 @@ enum{
 	GAUGE_TYPE_PARK,
 };
 
-///ƒQ[ƒWƒXƒNƒ[ƒ‹•ûŒü
+///ã‚²ãƒ¼ã‚¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ–¹å‘
 enum{
-	GAUGE_SCROLL_IN,		///<ƒXƒNƒ[ƒ‹IN
-	GAUGE_SCROLL_OUT,		///<ƒXƒNƒ[ƒ‹OUT
+	GAUGE_SCROLL_IN,		///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«IN
+	GAUGE_SCROLL_OUT,		///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«OUT
 };
 
 
 //--------------------------------------------------------------
-//	ƒQ[ƒWƒp[ƒc•`‰æ
+//	ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»
 //--------------------------------------------------------------
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFHPƒo[
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šHPãƒãƒ¼
 #define GAUGE_DRAW_HPBAR		(1 << 0)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFŒ»ÝHP(”’l)
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šç¾åœ¨HP(æ•°å€¤)
 #define GAUGE_DRAW_HPNUM		(1 << 1)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFÅ‘åHP(”’l)
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šæœ€å¤§HP(æ•°å€¤)
 #define GAUGE_DRAW_HPNUMMAX		(1 << 2)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFƒŒƒxƒ‹
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šãƒ¬ãƒ™ãƒ«
 #define GAUGE_DRAW_LEVEL		(1 << 3)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOF–¼‘O
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šåå‰
 #define GAUGE_DRAW_NAME			(1 << 4)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFŒoŒ±’l
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šçµŒé¨“å€¤
 #define GAUGE_DRAW_EXP			(1 << 5)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOF«•Ê
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šæ€§åˆ¥
 #define GAUGE_DRAW_SEX			(1 << 6)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFƒŒƒxƒ‹•¶Žš
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šãƒ¬ãƒ™ãƒ«æ–‡å­—
 #define GAUGE_DRAW_LEVEL_FONT	(1 << 7)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFó‘ÔˆÙí
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šçŠ¶æ…‹ç•°å¸¸
 #define GAUGE_DRAW_STATUS		(1 << 8)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFƒQƒbƒgÏ‚Ýƒ}[ƒN
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šã‚²ãƒƒãƒˆæ¸ˆã¿ãƒžãƒ¼ã‚¯
 #define GAUGE_DRAW_GETBALL		(1 << 9)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFuƒTƒtƒ@ƒŠƒ{[ƒ‹v
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šã€Œã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã€
 #define GAUGE_DRAW_SAFARIBALL	(1 << 10)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFu‚Ì‚±‚è@››‚±v
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€
 #define GAUGE_DRAW_SAFARI_NOKORI	(1 << 11)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFuƒp[ƒNƒ{[ƒ‹v
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šã€Œãƒ‘ãƒ¼ã‚¯ãƒœãƒ¼ãƒ«ã€
 #define GAUGE_DRAW_PARKBALL	(1 << 12)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOFu‚Ì‚±‚è@››‚±v
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€
 #define GAUGE_DRAW_PARK_NOKORI	(1 << 13)
 
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOF‘S‚Ä
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šå…¨ã¦
 #define GAUGE_DRAW_ALL			(0xffffffff)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOF‘S‚Ä(ƒTƒtƒ@ƒŠ—p‚Ì‘Sƒrƒbƒg)
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šå…¨ã¦(ã‚µãƒ•ã‚¡ãƒªç”¨ã®å…¨ãƒ“ãƒƒãƒˆ)
 #define GAUGE_DRAW_ALL_SAFARI	(GAUGE_DRAW_SAFARIBALL | GAUGE_DRAW_SAFARI_NOKORI)
-///ƒQ[ƒWƒp[ƒc•`‰æƒtƒ‰ƒOF‘S‚Ä(ƒ|ƒPƒp[ƒN—p‚Ì‘Sƒrƒbƒg)
+///ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ãƒ•ãƒ©ã‚°ï¼šå…¨ã¦(ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã®å…¨ãƒ“ãƒƒãƒˆ)
 #define GAUGE_DRAW_ALL_PARK	(GAUGE_DRAW_PARKBALL | GAUGE_DRAW_PARK_NOKORI)
 
 
 //--------------------------------------------------------------
-//	ƒQ[ƒW‚Ìƒp[ƒcƒOƒ‰ƒtƒBƒbƒN‚Ì”z’u”Ô†
+//	ã‚²ãƒ¼ã‚¸ã®ãƒ‘ãƒ¼ãƒ„ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®é…ç½®ç•ªå·
 //--------------------------------------------------------------
 enum{
-	GP_HPBAR_GREEN = 2,			///<HPƒo[—Î
-	GP_HPBAR_YELLOW = 0x0b,		///<HPƒo[‰©F
-	GP_HPBAR_RED = 0x14,		///<HPƒo[Ô
+	GP_HPBAR_GREEN = 2,			///<HPãƒãƒ¼ç·‘
+	GP_HPBAR_YELLOW = 0x0b,		///<HPãƒãƒ¼é»„è‰²
+	GP_HPBAR_RED = 0x14,		///<HPãƒãƒ¼èµ¤
 	
-	GP_EXP = 0x1d,				///<ŒoŒ±’l
+	GP_EXP = 0x1d,				///<çµŒé¨“å€¤
 	
-	GP_NON_GETBALL = 0x26,		///<ƒQƒbƒgÏ‚Ýƒ}[ƒN‚È‚µ
-	GP_GETBALL = 0x3b,			///<ƒQƒbƒgÏ‚Ýƒ}[ƒN
+	GP_NON_GETBALL = 0x26,		///<ã‚²ãƒƒãƒˆæ¸ˆã¿ãƒžãƒ¼ã‚¯ãªã—
+	GP_GETBALL = 0x3b,			///<ã‚²ãƒƒãƒˆæ¸ˆã¿ãƒžãƒ¼ã‚¯
 	
-	GP_SEX_FEMALE_TOP = 0x3c,	///<«•ÊFŽ“(ã’i)
-	GP_SEX_MALE_TOP = 0x3e,		///<«•ÊF—Y(ã’i)
-	GP_SEX_UNK_TOP = 0x40,		///<«•ÊF‚È‚µ(ã’i)
+	GP_SEX_FEMALE_TOP = 0x3c,	///<æ€§åˆ¥ï¼šé›Œ(ä¸Šæ®µ)
+	GP_SEX_MALE_TOP = 0x3e,		///<æ€§åˆ¥ï¼šé›„(ä¸Šæ®µ)
+	GP_SEX_UNK_TOP = 0x40,		///<æ€§åˆ¥ï¼šãªã—(ä¸Šæ®µ)
 	
-	GP_NON_STATUS = 0x26,		///<ó‘ÔˆÙí‚È‚µ
-	GP_MAHI = 0x29,				///<–ƒáƒ
-	GP_KOORI = 0x2c,			///<•X
-	GP_NEMURI = 0x2f,			///<–°‚è
-	GP_DOKU = 0x32,				///<“Å
-	GP_YAKEDO = 0x35,			///<‚â‚¯‚Ç
+	GP_NON_STATUS = 0x26,		///<çŠ¶æ…‹ç•°å¸¸ãªã—
+	GP_MAHI = 0x29,				///<éº»ç—º
+	GP_KOORI = 0x2c,			///<æ°·
+	GP_NEMURI = 0x2f,			///<çœ ã‚Š
+	GP_DOKU = 0x32,				///<æ¯’
+	GP_YAKEDO = 0x35,			///<ã‚„ã‘ã©
 	
-	GP_SPACE = 0x38,			///<–³’nƒLƒƒƒ‰
+	GP_SPACE = 0x38,			///<ç„¡åœ°ã‚­ãƒ£ãƒ©
 	
-	GP_HPBAR_HEAD = 0x42,		///<HPƒo[‚Ìƒ^ƒCƒgƒ‹
-	GP_HPBAR_CAP = 0x44,		///<HPƒo[‚ÌŠW
-	GP_HPBAR_HEAD_CLEAR = GP_SPACE,	///<HPƒo[‚Ìƒ^ƒCƒgƒ‹‚È‚µ
-	GP_HPBAR_CAP_CLEAR = GP_SPACE,		///<HPƒo[‚ÌŠW‚È‚µ
-	GP_SLASH = 0x45,			///<HP”’l‚ÌƒXƒ‰ƒbƒVƒ…
+	GP_HPBAR_HEAD = 0x42,		///<HPãƒãƒ¼ã®ã‚¿ã‚¤ãƒˆãƒ«
+	GP_HPBAR_CAP = 0x44,		///<HPãƒãƒ¼ã®è“‹
+	GP_HPBAR_HEAD_CLEAR = GP_SPACE,	///<HPãƒãƒ¼ã®ã‚¿ã‚¤ãƒˆãƒ«ãªã—
+	GP_HPBAR_CAP_CLEAR = GP_SPACE,		///<HPãƒãƒ¼ã®è“‹ãªã—
+	GP_SLASH = 0x45,			///<HPæ•°å€¤ã®ã‚¹ãƒ©ãƒƒã‚·ãƒ¥
 	
-	GP_HPBAR_CLEAR = 0x26,		///<HPƒo[‚ÌF‚Ì–³’n
-	GP_HPBAR_NUM_LEFT = 0x46,	///<HP”’l•\Ž¦ƒ‚[ƒhŽž‚ÌHPƒo[‚Ì•\Ž¦Ø‚ê’[¶‘¤
-	GP_HPBAR_NUM_RIGHT = 0x47,	///<HP”’l•\Ž¦ƒ‚[ƒhŽž‚ÌHPƒo[‚Ì•\Ž¦Ø‚ê’[‰E‘¤
+	GP_HPBAR_CLEAR = 0x26,		///<HPãƒãƒ¼ã®è‰²ã®ç„¡åœ°
+	GP_HPBAR_NUM_LEFT = 0x46,	///<HPæ•°å€¤è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰æ™‚ã®HPãƒãƒ¼ã®è¡¨ç¤ºåˆ‡ã‚Œç«¯å·¦å´
+	GP_HPBAR_NUM_RIGHT = 0x47,	///<HPæ•°å€¤è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰æ™‚ã®HPãƒãƒ¼ã®è¡¨ç¤ºåˆ‡ã‚Œç«¯å³å´
 
-	GP_SEX_FEMALE = 0x48,		///<«•ÊFŽ“(‰º’i)
-	GP_SEX_MALE = 0x4a,			///<«•ÊF—Y(‰º’i)
-	GP_SEX_UNK = 0x4c,			///<«•ÊF‚È‚µ(‰º’i)
+	GP_SEX_FEMALE = 0x48,		///<æ€§åˆ¥ï¼šé›Œ(ä¸‹æ®µ)
+	GP_SEX_MALE = 0x4a,			///<æ€§åˆ¥ï¼šé›„(ä¸‹æ®µ)
+	GP_SEX_UNK = 0x4c,			///<æ€§åˆ¥ï¼šãªã—(ä¸‹æ®µ)
 };
 
 
 //--------------------------------------------------------------
-//	‹ŒFƒQ[ƒWŒvŽZƒ‹[ƒ`ƒ“‚ÅŽg—p
+//	æ—§ï¼šã‚²ãƒ¼ã‚¸è¨ˆç®—ãƒ«ãƒ¼ãƒãƒ³ã§ä½¿ç”¨
 //--------------------------------------------------------------
-///ƒ|ƒPƒ‚ƒ“–¼‚Ì•¶ŽšŠÔŠuX
+///ãƒã‚±ãƒ¢ãƒ³åã®æ–‡å­—é–“éš”X
 #define GAUGE_FONT_MARGIN	(0)
 
-///1ƒLƒƒƒ‰‚Ì’†‚É“ü‚Á‚Ä‚¢‚éƒQ[ƒW‚Ìƒhƒbƒg”
+///1ã‚­ãƒ£ãƒ©ã®ä¸­ã«å…¥ã£ã¦ã„ã‚‹ã‚²ãƒ¼ã‚¸ã®ãƒ‰ãƒƒãƒˆæ•°
 #define GAUGE_DOTTO			(8)
 
-///HPƒo[‚ÌƒLƒƒƒ‰”
+///HPãƒãƒ¼ã®ã‚­ãƒ£ãƒ©æ•°
 #define BAR_HP_CHARMAX		(6)
-///EXPƒo[‚ÌƒLƒƒƒ‰”
+///EXPãƒãƒ¼ã®ã‚­ãƒ£ãƒ©æ•°
 #define BAR_EXP_CHARMAX		(12)
-///ƒQ[ƒWƒo[‚Åˆê”Ô‘å‚«‚¢ƒQ[ƒW‚ÌƒLƒƒƒ‰”
+///ã‚²ãƒ¼ã‚¸ãƒãƒ¼ã§ä¸€ç•ªå¤§ãã„ã‚²ãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒ©æ•°
 #define BAR_ALL_MAX			(BAR_EXP_CHARMAX)
 
-///HPƒQ[ƒW‚Ìƒhƒbƒg”
+///HPã‚²ãƒ¼ã‚¸ã®ãƒ‰ãƒƒãƒˆæ•°
 #define GAUGE_HP_DOTTOMAX	(GAUGE_DOTTO * BAR_HP_CHARMAX)
 
-///ì‹Æ—pƒ[ƒN‚Ì‰Šú’l‚Æ‚µ‚ÄŽg—p
+///ä½œæ¥­ç”¨ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸå€¤ã¨ã—ã¦ä½¿ç”¨
 #define HP_WORK_INIT_VALUE	(-2147483648)
 
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   HPƒQ[ƒWFƒTƒuƒpƒ‰ƒ[ƒ^
+ * @brief   HPã‚²ãƒ¼ã‚¸ï¼šã‚µãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * ƒNƒ‰ƒCƒAƒ“ƒg‚©‚ç–½—ß‚ðŽó‚¯‚é–ˆ‚ÉAƒNƒŠƒAAXV‚³‚ê‚éƒpƒ‰ƒ[ƒ^ŒQ
+ * ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‹ã‚‰å‘½ä»¤ã‚’å—ã‘ã‚‹æ¯Žã«ã€ã‚¯ãƒªã‚¢ã€æ›´æ–°ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¾¤
  */
 //--------------------------------------------------------------
 typedef struct{
@@ -166,59 +166,59 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   HPƒQ[ƒW\‘¢‘Ì
+ * @brief   HPã‚²ãƒ¼ã‚¸æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 typedef struct{
-	GAUGE_SUB_PARAM param;	///<ƒTƒuƒpƒ‰ƒ[ƒ^
-	CATS_ACT_PTR cap;		///<ƒQ[ƒW–{‘Ì‚Ìƒwƒbƒ_[•t‚«ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	CATS_ACT_PTR arrow_cap;	///<–îˆó‚Ìƒwƒbƒ_[•t‚«ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	BATTLE_WORK	*bw;		///<í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
-	TCB_PTR tcb;			///<“®ì’†‚ÌTCB
-	GF_BGL_BMPWIN name_bmpwin;	///<–¼‘OBITMAPŒ`¬—p
+	GAUGE_SUB_PARAM param;	///<ã‚µãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	CATS_ACT_PTR cap;		///<ã‚²ãƒ¼ã‚¸æœ¬ä½“ã®ãƒ˜ãƒƒãƒ€ãƒ¼ä»˜ãã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	CATS_ACT_PTR arrow_cap;	///<çŸ¢å°ã®ãƒ˜ãƒƒãƒ€ãƒ¼ä»˜ãã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	BATTLE_WORK	*bw;		///<æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+	TCB_PTR tcb;			///<å‹•ä½œä¸­ã®TCB
+	GF_BGL_BMPWIN name_bmpwin;	///<åå‰BITMAPå½¢æˆç”¨
 
 	u8			client_no;
-	u8 			type;		///<ƒQ[ƒWƒ^ƒCƒv(GAUGE_TYPE_???)
-	u8			sel_mons_no;	///<‰½”Ô–Ú‚Ìƒ|ƒPƒ‚ƒ“‚ª‘I‘ð‚³‚ê‚Ä‚¢‚é‚©
+	u8 			type;		///<ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—(GAUGE_TYPE_???)
+	u8			sel_mons_no;	///<ä½•ç•ªç›®ã®ãƒã‚±ãƒ¢ãƒ³ãŒé¸æŠžã•ã‚Œã¦ã„ã‚‹ã‹
 
-	u8			safari_nokori;		///<ƒTƒtƒ@ƒŠFŽc‚èƒ{[ƒ‹”
+	u8			safari_nokori;		///<ã‚µãƒ•ã‚¡ãƒªï¼šæ®‹ã‚Šãƒœãƒ¼ãƒ«æ•°
 	
-	s32			hp;			///<Œ»ÝHP(be_hpŒvŽZ‘OB@¦³Šm‚É‚Í hp+be_hp ‚ªÅV‚ÌŒ»ÝHP‚ÆŒ¾‚¦‚é)
-	s32			hpmax;		///<Å‘åHP
-	s32			damage;		///<Žó‚¯‚½ƒ_ƒ[ƒW(-‚Åƒ_ƒ[ƒWA+‚È‚ç‰ñ•œ)
-	s32			hp_work;	///<ƒQ[ƒW‘Œ¸ì‹Æ—pƒ[ƒN
+	s32			hp;			///<ç¾åœ¨HP(be_hpè¨ˆç®—å‰ã€‚ã€€â€»æ­£ç¢ºã«ã¯ hp+be_hp ãŒæœ€æ–°ã®ç¾åœ¨HPã¨è¨€ãˆã‚‹)
+	s32			hpmax;		///<æœ€å¤§HP
+	s32			damage;		///<å—ã‘ãŸãƒ€ãƒ¡ãƒ¼ã‚¸(-ã§ãƒ€ãƒ¡ãƒ¼ã‚¸ã€+ãªã‚‰å›žå¾©)
+	s32			hp_work;	///<ã‚²ãƒ¼ã‚¸å¢—æ¸›ä½œæ¥­ç”¨ãƒ¯ãƒ¼ã‚¯
 	
-	s32			exp;		///<Œ»Ý‚ÌEXP(add_expŒvŽZ‘O) ¦Œ»Ý‚ÌƒŒƒxƒ‹‚ÌŠJŽnEXP‚ðˆø‚¢‚½’l
-	s32			max_exp;	///<ŽŸ‚ÌƒŒƒxƒ‹ƒAƒbƒv‚Ü‚Å‚ÌEXP ¦Œ»Ý‚ÌƒŒƒxƒ‹‚ÌŠJŽnEXP‚ðˆø‚¢‚½’l
-	s32			add_exp;	///<‰ÁŽZ‚·‚éEXP
-	s32			exp_work;	///<ƒQ[ƒW‘Œ¸ì‹Æ—pƒ[ƒN
+	s32			exp;		///<ç¾åœ¨ã®EXP(add_expè¨ˆç®—å‰) â€»ç¾åœ¨ã®ãƒ¬ãƒ™ãƒ«ã®é–‹å§‹EXPã‚’å¼•ã„ãŸå€¤
+	s32			max_exp;	///<æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã¾ã§ã®EXP â€»ç¾åœ¨ã®ãƒ¬ãƒ™ãƒ«ã®é–‹å§‹EXPã‚’å¼•ã„ãŸå€¤
+	s32			add_exp;	///<åŠ ç®—ã™ã‚‹EXP
+	s32			exp_work;	///<ã‚²ãƒ¼ã‚¸å¢—æ¸›ä½œæ¥­ç”¨ãƒ¯ãƒ¼ã‚¯
 	
-	u8			level;		///<ƒŒƒxƒ‹
-	u8			sex;		///<«•Ê
-	u8			status;		///<ó‘ÔˆÙí
-	u8			getball;	///<ƒQƒbƒgÏ‚Ýƒ}[ƒN
+	u8			level;		///<ãƒ¬ãƒ™ãƒ«
+	u8			sex;		///<æ€§åˆ¥
+	u8			status;		///<çŠ¶æ…‹ç•°å¸¸
+	u8			getball;	///<ã‚²ãƒƒãƒˆæ¸ˆã¿ãƒžãƒ¼ã‚¯
 	
 	u8			command_code;
-	u8			in_wait;			///<INƒGƒtƒFƒNƒg‚ð‚·‚é‘O‚ÌƒEƒFƒCƒg
-	u8			se_wait;			///<SEƒEƒFƒCƒg
+	u8			in_wait;			///<INã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã™ã‚‹å‰ã®ã‚¦ã‚§ã‚¤ãƒˆ
+	u8			se_wait;			///<SEã‚¦ã‚§ã‚¤ãƒˆ
 	
-	u8			in_out_dir:1;		///<ƒXƒNƒ[ƒ‹•ûŒü(GAUGE_SCROLL_IN or GAUGE_SCROLL_OUT)
-	u8			eff_wait_in_out:1;	///<ƒGƒtƒFƒNƒg‘Ò‚¿ƒtƒ‰ƒO(TRUE=I—¹)FƒXƒNƒ[ƒ‹IN or OUT
-	u8			eff_wait_lvup:1;	///<ƒGƒtƒFƒNƒg‘Ò‚¿ƒtƒ‰ƒO(TRUE=I—¹)FƒŒƒxƒ‹ƒAƒbƒv
-	u8			num_mode:1;			///<TRUE:HP”’l•\Ž¦ƒ‚[ƒh(2vs2ƒQ[ƒW‚ÅŽ©‹@‘¤‚Ì‚Ý)
+	u8			in_out_dir:1;		///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ–¹å‘(GAUGE_SCROLL_IN or GAUGE_SCROLL_OUT)
+	u8			eff_wait_in_out:1;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡ãƒ•ãƒ©ã‚°(TRUE=çµ‚äº†)ï¼šã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«IN or OUT
+	u8			eff_wait_lvup:1;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡ãƒ•ãƒ©ã‚°(TRUE=çµ‚äº†)ï¼šãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
+	u8			num_mode:1;			///<TRUE:HPæ•°å€¤è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰(2vs2ã‚²ãƒ¼ã‚¸ã§è‡ªæ©Ÿå´ã®ã¿)
 	
-	TCB_PTR		sin_tcb;		///<SinƒJ[ƒuFƒGƒtƒFƒNƒgŽÀsƒ^ƒXƒN
-	u16			sin_sec;		///<SinƒJ[ƒuF•b
+	TCB_PTR		sin_tcb;		///<Sinã‚«ãƒ¼ãƒ–ï¼šã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œã‚¿ã‚¹ã‚¯
+	u16			sin_sec;		///<Sinã‚«ãƒ¼ãƒ–ï¼šç§’
 	
 #ifdef PM_DEBUG
-	u8			debug_hp_put;	///<TRUE:“G‚ÌHP‚ð”’l‚Å‚à•\Ž¦
+	u8			debug_hp_put;	///<TRUE:æ•µã®HPã‚’æ•°å€¤ã§ã‚‚è¡¨ç¤º
 #endif
 }GAUGE_WORK;
 
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void Gauge_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* hdl, PALETTE_FADE_PTR pfd, 
 	int gauge_type);

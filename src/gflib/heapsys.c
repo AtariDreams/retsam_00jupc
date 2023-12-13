@@ -2,7 +2,7 @@
 /**
  *
  *@file		heapsys.c
- *@brief	�q�[�v�̈�Ǘ�
+ *@brief	ヒープ領域管理
  *@author	taya
  *@date		2005.08.25
  *
@@ -14,24 +14,24 @@
 
 #ifdef PM_DEBUG
 #include  "system/heapdefine.h"
-//#define  ALLOCINFO_PRINT_HEAPID   HEAPID_FIELD	// ���̃q�[�v�h�c�Ɋւ��Ă̂ݏڍׂȏ����o��
+//#define  ALLOCINFO_PRINT_HEAPID   HEAPID_FIELD	// このヒープＩＤに関してのみ詳細な情報を出力
 #endif
 
 
 
 //----------------------------------------------------------------
 /**
- *	�萔
+ *	定数
  */
 //----------------------------------------------------------------
-#define DEFAULT_ALIGN					(4)		// �������m�ێ��̃A���C�����g�l
-#define MEMBLOCK_FILENAME_AREASIZE		(12)	// �f�o�b�O�p�w�b�_�Ɋi�[����t�@�C�����̈�T�C�Y
-#define USER_HEAP_MAX					(24)	// ��x�ɍ쐬�\�ȃ��[�U�[�q�[�v�̐�
+#define DEFAULT_ALIGN					(4)		// メモリ確保時のアライメント値
+#define MEMBLOCK_FILENAME_AREASIZE		(12)	// デバッグ用ヘッダに格納するファイル名領域サイズ
+#define USER_HEAP_MAX					(24)	// 一度に作成可能なユーザーヒープの数
 
 
 //----------------------------------------------------------------
 /**
- *	�}�N��
+ *	マクロ
  */
 //----------------------------------------------------------------
 #define ASSERT_IRQ_ENABLED()		GF_ASSERT(OS_GetProcMode() != OS_PROCMODE_IRQ)
@@ -39,7 +39,7 @@
 
 //----------------------------------------------------------------
 /**
- *	���[�N��`
+ *	ワーク定義
  */
 //----------------------------------------------------------------
 typedef struct {
@@ -60,19 +60,19 @@ typedef struct {
 
 //----------------------------------------------------------------
 /**
- *	�������u���b�N�w�b�_��`
+ *	メモリブロックヘッダ定義
  */
 //----------------------------------------------------------------
 typedef struct {
-	char	filename[ MEMBLOCK_FILENAME_AREASIZE ];	///< �Ăяo����\�[�X��
+	char	filename[ MEMBLOCK_FILENAME_AREASIZE ];	///< 呼び出し先ソース名
 	u32		heapID  : 8;							///< u32
-	u32		lineNum : 24;							///< �Ăяo���\�[�X�s�ԍ�
+	u32		lineNum : 24;							///< 呼び出しソース行番号
 }MEMORY_BLOCK_HEADER;
 
 
 //----------------------------------------------------------------
 /**
- *	�O���[�o��
+ *	グローバル
  */
 //----------------------------------------------------------------
 static HEAP_SYS  HeapSys = { 0 };
@@ -80,7 +80,7 @@ static HEAP_SYS  HeapSys = { 0 };
 
 //----------------------------------------------------------------
 /**
- *	�n���h���擾�}�N��
+ *	ハンドル取得マクロ
  */
 //----------------------------------------------------------------
 #define GetHeapHandle(idx)			(HeapSys.handle[ HeapSys.handleIdxTbl[ (idx) ] ])
@@ -121,21 +121,21 @@ static void PrintUnreleasedMemoryInfo( u32 heapID );
 
 //------------------------------------------------------------------------------
 /**
- * Description:  �V�X�e���q�[�v�ƃA�v���P�[�V�����q�[�v���쐬���܂��B���q�[�v
- * 				�ɂ�NITRO-System�̊g���q�[�v���g�p���Ă��܂��B
+ * Description:  システムヒープとアプリケーションヒープを作成します。両ヒープ
+ * 				にはNITRO-Systemの拡張ヒープを使用しています。
  *
- * 				�V�X�e���q�[�v�p�̃������Ƃ��āASYSTEM_HEAP_SIZE�������C���A
- * 				���[�i����m�ۂ��A���C���A���[�i�̎c���S�ăA�v���P�[�V����
- * 				�q�[�v�p�̃������Ɋm�ۂ��Ă��܂��B
+ * 				システムヒープ用のメモリとして、SYSTEM_HEAP_SIZE分をメインア
+ * 				リーナから確保し、メインアリーナの残りを全てアプリケーション
+ * 				ヒープ用のメモリに確保しています。
  *
- * 				�V�X�e���q�[�v�́A�Q�[���V�X�e�����̃V�X�e���v���O�����Ŏg�p
- * 				���邱�Ƃ�z�肵�Ă��܂��B�A�v���P�[�V�����q�[�v�ɂ́A�Q�[��
- * 				�Ŏg�p����f�[�^�����[�h����ׂɎg�p���܂��B
+ * 				システムヒープは、ゲームシステム等のシステムプログラムで使用
+ * 				することを想定しています。アプリケーションヒープには、ゲーム
+ * 				で使用するデータをロードする為に使用します。
  *
- * @param   header			���������
- * @param   baseHeapMax		��{�q�[�v�G���A��
- * @param   totalHeapMax	�S�q�[�v�G���A��
- * @param   startOffset		�^����ꂽ�o�C�g�������S�̂̊J�n�ʒu�����炷
+ * @param   header			初期化情報
+ * @param   baseHeapMax		基本ヒープエリア数
+ * @param   totalHeapMax	全ヒープエリア数
+ * @param   startOffset		与えられたバイト数だけ全体の開始位置をずらす
  *
  */
 //------------------------------------------------------------------------------
@@ -150,7 +150,7 @@ void sys_InitHeapSystem(const HEAP_INIT_HEADER* header, u32 baseHeapMax, u32 tot
 		totalHeapMax = usableHeapMax;
 	}
 
-	// �q�[�v�A�h���X�����炷
+	// ヒープアドレスをずらす
 	if( startOffset )
 	{
 		while( startOffset & 3 )
@@ -161,8 +161,8 @@ void sys_InitHeapSystem(const HEAP_INIT_HEADER* header, u32 baseHeapMax, u32 tot
 	}
 
 	/*
-	 * �q�[�v�n���h���̈�́A�쐬�\�q�[�v���{�P�@�쐬�B
-	 * �Ō�̂P�͖����l�����Ă����āA���쐬�q�[�v�̃C���f�b�N�X�e�[�u���͂������w���悤�ɂ���B
+	 * ヒープハンドル領域は、作成可能ヒープ数＋１　作成。
+	 * 最後の１は無効値を入れておいて、未作成ヒープのインデックステーブルはそこを指すようにする。
 	 */
 	HeapSys.handle = OS_AllocFromMainArenaLo(
 									sizeof(NNSFndHeapHandle) * (usableHeapMax + 1)
@@ -182,7 +182,7 @@ void sys_InitHeapSystem(const HEAP_INIT_HEADER* header, u32 baseHeapMax, u32 tot
 	HeapSys.usableHeapMax = usableHeapMax;
 
 
-	// ��{�q�[�v���C���f�b�N�X�쐬
+	// 基本ヒープ＆インデックス作成
 	for(i = 0; i < baseHeapMax; i++)
 	{
         OS_TPrintf("remains of MainRAM = 0x%08x bytes.\n", (u32)(OS_GetMainArenaHi())-(u32)(OS_GetMainArenaLo()));
@@ -203,11 +203,11 @@ void sys_InitHeapSystem(const HEAP_INIT_HEADER* header, u32 baseHeapMax, u32 tot
 		}
 		else
 		{
-			GF_ASSERT_MSG(0, "%x���m�ۂł��Ȃ����� size=%x\n" ,header[i].size, mem);
+			GF_ASSERT_MSG(0, "%xが確保できなかった size=%x\n" ,header[i].size, mem);
 		}
 	}
 
-	// ���[�U�[�q�[�v�̈�͖����l�ŃN���A���Ă���
+	// ユーザーヒープ領域は無効値でクリアしておく
 	for(i = baseHeapMax; i < (usableHeapMax + 1); i++ )
 	{
 		HeapSys.handle[i] = NNS_FND_HEAP_INVALID_HANDLE;
@@ -218,7 +218,7 @@ void sys_InitHeapSystem(const HEAP_INIT_HEADER* header, u32 baseHeapMax, u32 tot
 		HeapSys.handleIdxTbl[i++] = HeapSys.invalidHandleIdx;
 	}
 
-	// Alloc�J�E���^�N���A
+	// Allocカウンタクリア
 	for(i = 0; i < totalHeapMax; i++)
 	{
 		HeapSys.count[i] = 0;
@@ -230,16 +230,16 @@ void sys_InitHeapSystem(const HEAP_INIT_HEADER* header, u32 baseHeapMax, u32 tot
 
 //------------------------------------------------------------------
 /**
- * �n���h���̈�̋󂫂�����
+ * ハンドル領域の空きを検索
  *
- * @retval  int		�󂫂�����΃C���f�b�N�X�i���o�[�^�Ȃ����-1
+ * @retval  int		空きがあればインデックスナンバー／なければ-1
  */
 //------------------------------------------------------------------
 static int SearchEmptyHandleIndex( void )
 {
 	int i;
 
-	// ��{�q�[�v�͉������Ȃ��n�Y�Ȃ̂Łc
+	// 基本ヒープは解放されないハズなので…
 	for( i = HeapSys.baseHeapMax; i < HeapSys.usableHeapMax; i++ )
 	{
 		if(HeapSys.handle[i] == NNS_FND_HEAP_INVALID_HANDLE)
@@ -252,13 +252,13 @@ static int SearchEmptyHandleIndex( void )
 
 //------------------------------------------------------------------
 /**
- * �q�[�v�쐬
+ * ヒープ作成
  *
- * @param   parentHeapID		�������̈�m�ۗp�q�[�v�h�c�i���ɗL���ł���K�v������j
- * @param   childHeapID			�V�K�ɍ쐬����q�[�v�h�c
- * @param   size				�q�[�v�T�C�Y
+ * @param   parentHeapID		メモリ領域確保用ヒープＩＤ（既に有効である必要がある）
+ * @param   childHeapID			新規に作成するヒープＩＤ
+ * @param   size				ヒープサイズ
  *
- * @retval	BOOL				TRUE�ō쐬�����^FALSE�Ŏ��s
+ * @retval	BOOL				TRUEで作成成功／FALSEで失敗
  */
 //------------------------------------------------------------------
 BOOL sys_CreateHeap( u32 parentHeapID, u32 childHeapID, u32 size )
@@ -268,13 +268,13 @@ BOOL sys_CreateHeap( u32 parentHeapID, u32 childHeapID, u32 size )
 
 //------------------------------------------------------------------
 /**
- * �q�[�v�쐬�i�������������m�ہj
+ * ヒープ作成（メモリ後方から確保）
  *
- * @param   parentHeapID		�������̈�m�ۗp�q�[�v�h�c�i���ɗL���ł���K�v������j
- * @param   childHeapID			�V�K�ɍ쐬����q�[�v�h�c
- * @param   size				�q�[�v�T�C�Y
+ * @param   parentHeapID		メモリ領域確保用ヒープＩＤ（既に有効である必要がある）
+ * @param   childHeapID			新規に作成するヒープＩＤ
+ * @param   size				ヒープサイズ
  *
- * @retval	BOOL				TRUE�ō쐬�����^FALSE�Ŏ��s
+ * @retval	BOOL				TRUEで作成成功／FALSEで失敗
  */
 //------------------------------------------------------------------
 BOOL sys_CreateHeapLo( u32 parentHeapID, u32 childHeapID, u32 size )
@@ -284,14 +284,14 @@ BOOL sys_CreateHeapLo( u32 parentHeapID, u32 childHeapID, u32 size )
 
 //------------------------------------------------------------------
 /**
- * �q�[�v�쐬������
+ * ヒープ作成実処理
  *
- * @param   parentHeapID	�������̈�m�ۗp�q�[�v�h�c�i���ɗL���ł���K�v������j
- * @param   childHeapID		�V�K�ɍ쐬����q�[�v�h�c
- * @param   size			�q�[�v�T�C�Y
- * @param   align			�A���C�����g�i�}�C�i�X�Ȃ烁�����������m�ہj
+ * @param   parentHeapID	メモリ領域確保用ヒープＩＤ（既に有効である必要がある）
+ * @param   childHeapID		新規に作成するヒープＩＤ
+ * @param   size			ヒープサイズ
+ * @param   align			アライメント（マイナスならメモリ後方から確保）
  *
- * @retval  BOOL		TRUE�ō쐬�����^FALSE�Ŏ��s
+ * @retval  BOOL		TRUEで作成成功／FALSEで失敗
  */
 //------------------------------------------------------------------
 static BOOL CreateHeapCore( u32 parentHeapID, u32 childHeapID, u32 size, s32 align )
@@ -334,13 +334,13 @@ static BOOL CreateHeapCore( u32 parentHeapID, u32 childHeapID, u32 size, s32 ali
 					}
 					else
 					{
-						GF_ASSERT_MSG(0, "�q�[�v�쐬�Ɏ��s");
+						GF_ASSERT_MSG(0, "ヒープ作成に失敗");
 					}
 
 				}
 				else
 				{
-					GF_ASSERT_MSG(0, "�q�[�v�Ǘ��e�[�u���ɋ󂫂�����");
+					GF_ASSERT_MSG(0, "ヒープ管理テーブルに空きが無い");
 				}
 			}
 			else
@@ -348,28 +348,28 @@ static BOOL CreateHeapCore( u32 parentHeapID, u32 childHeapID, u32 size, s32 ali
 #ifdef PM_DEBUG
 				GF_ASSERT_Printf("Heap(%d) Create FAILED (size:%x bytes)\n", childHeapID, size);
 				GF_ASSERT_Printf("ParentHeap(%d) %x bytes\n", parentHeapID, NNS_FndGetTotalFreeSizeForExpHeap( parentHeap ) );
-                PrintUnreleasedMemoryInfo( parentHeapID );  //�eHEAP�̏����o��
+                PrintUnreleasedMemoryInfo( parentHeapID );  //親HEAPの情報を出す
 #endif
                 GF_ASSERT(0);
 			}
 		}
 		else
 		{
-			GF_ASSERT_MSG(0, "�쐬���q�[�v�h�c������");
+			GF_ASSERT_MSG(0, "作成元ヒープＩＤが無効");
 		}
 	}
 	else
 	{
-		GF_ASSERT_MSG(0, "�q�[�v���Q�d�ɍ���悤�Ƃ���");
+		GF_ASSERT_MSG(0, "ヒープが２重に作られようとした");
 	}
 	return FALSE;
 }
 
 //------------------------------------------------------------------
 /**
- * �q�[�v�j��
+ * ヒープ破棄
  *
- * @param   heapID		�q�[�vID
+ * @param   heapID		ヒープID
  *
  */
 //------------------------------------------------------------------
@@ -388,7 +388,7 @@ void sys_DeleteHeap( u32 heapID )
 			NNSFndHeapHandle  parentHandle;
 			void* heapMemBlock;
 
-		// �f�o�b�O���͖�����������̏����o��
+		// デバッグ時は未解放メモリの情報を出力
 			#ifdef PM_DEBUG
 			if( HeapSys.count[heapID] )
 			{
@@ -441,14 +441,14 @@ void sys_DeleteHeap( u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * �������A���P�[�g�{�́i�f�o�b�O�ŁA���i�łƂ��R�C�c���Ăяo���j
+ * メモリアロケート本体（デバッグ版、製品版ともコイツを呼び出す）
  *
- * @param   heapHandle		�g���q�[�v�n���h��
- * @param   size			�A���P�[�g�T�C�Y
- * @param   alignment		�A���C�����g
- * @param   heapID			�w�b�_�ɕۑ�����q�[�vID
+ * @param   heapHandle		拡張ヒープハンドル
+ * @param   size			アロケートサイズ
+ * @param   alignment		アライメント
+ * @param   heapID			ヘッダに保存するヒープID
  *
- * @retval  void*			�m�ۂ����������i�w�b�_���͔�΂��Ă���j
+ * @retval  void*			確保したメモリ（ヘッダ分は飛ばしてある）
  */
 //------------------------------------------------------------------
 static void* AllocMemoryCore( NNSFndHeapHandle heapHandle, u32 size, s32 alignment, u32 heapID )
@@ -479,7 +479,7 @@ static void* AllocMemoryCore( NNSFndHeapHandle heapHandle, u32 size, s32 alignme
 
 //------------------------------------------------------------------
 /**
- * �ʐM���Ƀ������m�ۂɎ��s�����ꍇ�A�����I�ɃG���[��ʂ֔�΂�
+ * 通信中にメモリ確保に失敗した場合、強制的にエラー画面へ飛ばす
  *
  */
 //------------------------------------------------------------------
@@ -494,12 +494,12 @@ static void WarningResetCall(void)
 
 //------------------------------------------------------------------
 /**
- * �q�[�v���烁�������m�ۂ���
+ * ヒープからメモリを確保する
  *
- * @param   heapID		�q�[�v�h�c
- * @param   size		�m�ۃT�C�Y
+ * @param   heapID		ヒープＩＤ
+ * @param   size		確保サイズ
  *
- * @retval  void*		�m�ۂ����̈�A�h���X�i���s�Ȃ�NULL�j
+ * @retval  void*		確保した領域アドレス（失敗ならNULL）
  */
 //------------------------------------------------------------------
 void* sys_AllocMemory( u32 heapID, u32 size )
@@ -525,12 +525,12 @@ void* sys_AllocMemory( u32 heapID, u32 size )
 }
 //------------------------------------------------------------------
 /**
- * �q�[�v������烁�������m�ۂ���i�e���|�����̈�p�j
+ * ヒープ後方からメモリを確保する（テンポラリ領域用）
  *
- * @param   heapID		�q�[�v�h�c
- * @param   size		�m�ۃT�C�Y
+ * @param   heapID		ヒープＩＤ
+ * @param   size		確保サイズ
  *
- * @retval  void*		�m�ۂ����̈�A�h���X�i���s�Ȃ�NULL�j
+ * @retval  void*		確保した領域アドレス（失敗ならNULL）
  */
 //------------------------------------------------------------------
 void* sys_AllocMemoryLo( u32 heapID, u32 size )
@@ -558,11 +558,11 @@ void* sys_AllocMemoryLo( u32 heapID, u32 size )
 
 //------------------------------------------------------------------
 /**
- * �������m�ێ��̏ڍ׏��\��
+ * メモリ確保時の詳細情報表示
  *
- * @param   header		�������u���b�N�w�b�_
- * @param   handle		�������u���b�N���܂܂��q�[�v�̃n���h��
- * @param   size		�m�ۃT�C�Y�i���N�G�X�g���ꂽ�T�C�Y�j
+ * @param   header		メモリブロックヘッダ
+ * @param   handle		メモリブロックが含まれるヒープのハンドル
+ * @param   size		確保サイズ（リクエストされたサイズ）
  *
  */
 //------------------------------------------------------------------
@@ -579,13 +579,13 @@ static void PrintAllocInfo( const MEMORY_BLOCK_HEADER* header, NNSFndHeapHandle 
 
 //------------------------------------------------------------------
 /**
- * ������������̏ڍ׏��\��
+ * メモリ解放時の詳細情報表示
  *
- * @param   heapID			�q�[�vID
- * @param   size			�m�ۂ����T�C�Y
- * @param   handle			�q�[�v�n���h��
- * @param   filename		�Ăяo�����\�[�X�t�@�C����
- * @param   line			�Ăяo�����\�[�X�t�@�C���s�ԍ�
+ * @param   heapID			ヒープID
+ * @param   size			確保したサイズ
+ * @param   handle			ヒープハンドル
+ * @param   filename		呼び出し元ソースファイル名
+ * @param   line			呼び出し元ソースファイル行番号
  *
  */
 //------------------------------------------------------------------
@@ -598,7 +598,7 @@ static void PrintFreeInfo( const MEMORY_BLOCK_HEADER* header, NNSFndHeapHandle h
 
 	blockSize = NNS_FndGetSizeForMBlockExpHeap(header) + sizeof(NNSiFndExpHeapMBlockHead);
 
-	// �c��T�C�Y�͌��T�C�Y�{���ꂩ�������悤�Ƃ��郁�����u���b�N�̃T�C�Y�ɂȂ�͂�
+	// 残りサイズは現サイズ＋これから解放しようとするメモリブロックのサイズになるはず
 	restSize = NNS_FndGetTotalFreeSizeForExpHeap(handle) + blockSize;
 
 	OS_TPrintf("[HEAP] FREE  count=%3d rest=0x%08x adrs:0x%08x size:0x%05x %s(%d)\n",
@@ -610,14 +610,14 @@ static void PrintFreeInfo( const MEMORY_BLOCK_HEADER* header, NNSFndHeapHandle h
 
 //------------------------------------------------------------------
 /**
- * sys_AllocMemory�̃f�o�b�O�p���b�p�[�֐�
+ * sys_AllocMemoryのデバッグ用ラッパー関数
  *
- * @param   heapID			�q�[�vID
- * @param   size			�m�ۃT�C�Y
- * @param   filename		�Ăяo���\�[�X�̃t�@�C����
- * @param   line_num		�Ăяo���\�[�X�̍s�ԍ�
+ * @param   heapID			ヒープID
+ * @param   size			確保サイズ
+ * @param   filename		呼び出しソースのファイル名
+ * @param   line_num		呼び出しソースの行番号
  *
- * @retval  void*			�m�ۂ����̈�A�h���X�i���s�Ȃ�NULL�j
+ * @retval  void*			確保した領域アドレス（失敗ならNULL）
  */
 //------------------------------------------------------------------
 void* sys_AllocMemoryDebug( u32 heapID, u32 size, const char* filename, u32 line_num )
@@ -660,14 +660,14 @@ void* sys_AllocMemoryDebug( u32 heapID, u32 size, const char* filename, u32 line
 }
 //------------------------------------------------------------------
 /**
- * sys_AllocMemoryLo�̃f�o�b�O�p���b�p�[�֐�
+ * sys_AllocMemoryLoのデバッグ用ラッパー関数
  *
- * @param   heapID			�q�[�vID
- * @param   size			�m�ۃT�C�Y
- * @param   filename		�Ăяo���\�[�X�̃t�@�C����
- * @param   line_num		�Ăяo���\�[�X�̍s�ԍ�
+ * @param   heapID			ヒープID
+ * @param   size			確保サイズ
+ * @param   filename		呼び出しソースのファイル名
+ * @param   line_num		呼び出しソースの行番号
  *
- * @retval  void*			�m�ۂ����̈�A�h���X�i���s�Ȃ�NULL�j
+ * @retval  void*			確保した領域アドレス（失敗ならNULL）
  */
 //------------------------------------------------------------------
 void* sys_AllocMemoryLoDebug( u32 heapID, u32 size, const char* filename, u32 line_num )
@@ -709,11 +709,11 @@ void* sys_AllocMemoryLoDebug( u32 heapID, u32 size, const char* filename, u32 li
 }
 //------------------------------------------------------------------
 /**
- * �u���b�N�w�b�_�Ƀf�o�b�O������������
+ * ブロックヘッダにデバッグ情報を書き込む
  *
- * @param   header		�w�b�_�A�h���X
- * @param   filename	�t�@�C����
- * @param   line_no		�s�ԍ�
+ * @param   header		ヘッダアドレス
+ * @param   filename	ファイル名
+ * @param   line_no		行番号
  *
  */
 //------------------------------------------------------------------
@@ -730,10 +730,10 @@ static void HeaderDebugParamSet( MEMORY_BLOCK_HEADER* header, const char* filena
 
 //------------------------------------------------------------------
 /**
- * �c�胁�������s�����Ċm�ۂł��Ȃ����b�Z�[�W�擾
+ * 残りメモリが不足して確保できないメッセージ取得
  *
- * @param   heapID		�q�[�v�h�c
- * @param   size		�m�ۂ��悤�Ƃ����T�C�Y
+ * @param   heapID		ヒープＩＤ
+ * @param   size		確保しようとしたサイズ
  *
  */
 //------------------------------------------------------------------
@@ -759,9 +759,9 @@ static void PrintShortHeap( u32 heapID, u32 size, const char* filename, u32 line
 
 //------------------------------------------------------------------
 /**
- * �q�[�v����m�ۂ������������������
+ * ヒープから確保したメモリを解放する
  *
- * @param   memory		�m�ۂ����������A�h���X
+ * @param   memory		確保したメモリアドレス
  *
  */
 //------------------------------------------------------------------
@@ -823,13 +823,13 @@ void sys_FreeMemoryEz( void* memory )
 }
 //------------------------------------------------------------------
 /**
- * �q�[�v����m�ۂ������������������i�q�[�vID�w��Łj
+ * ヒープから確保したメモリを解放する（ヒープID指定版）
  *
- * ��������������q�[�vID���w�肷�鍇���I�ȗ��R�����邩������Ȃ��̂�
- *   �c���Ă����B���ʂ� FreeMemoryEz ���g���Ζ��Ȃ��͂��B
+ * ※もしかしたらヒープIDを指定する合理的な理由があるかもしれないので
+ *   残しておく。普通は FreeMemoryEz を使えば問題ないはず。
  *
- * @param   heapID		�q�[�vID
- * @param   memory		�m�ۂ����������|�C���^
+ * @param   heapID		ヒープID
+ * @param   memory		確保したメモリポインタ
  *
  */
 //------------------------------------------------------------------
@@ -846,7 +846,7 @@ void sys_FreeMemory( u32 heapID, void* memory )
 		(u8*)memory -= sizeof(MEMORY_BLOCK_HEADER);
 		if( ((MEMORY_BLOCK_HEADER*)memory)->heapID != heapID )
 		{
-			GF_ASSERT_MSG(0, "�m�ێ��ƈႤ�q�[�vID�ŉ������悤�Ƃ��Ă���\n");
+			GF_ASSERT_MSG(0, "確保時と違うヒープIDで解放されようとしている\n");
 		}
 		NNS_FndFreeToExpHeap( h, memory );
 
@@ -869,11 +869,11 @@ void sys_FreeMemory( u32 heapID, void* memory )
 }
 //------------------------------------------------------------------
 /**
- * �q�[�v�̋󂫗̈�T�C�Y��Ԃ�
+ * ヒープの空き領域サイズを返す
  *
- * @param   heapID	�q�[�vID
+ * @param   heapID	ヒープID
  *
- * @retval  u32		�󂫗̈�T�C�Y�i�o�C�g�P�ʁj
+ * @retval  u32		空き領域サイズ（バイト単位）
  */
 //------------------------------------------------------------------
 u32 sys_GetHeapFreeSize( u32 heapID )
@@ -888,11 +888,11 @@ u32 sys_GetHeapFreeSize( u32 heapID )
 }
 //------------------------------------------------------------------
 /**
- * NitroSystem ���C�u�����n�֐����v������A���P�[�^���쐬����
+ * NitroSystem ライブラリ系関数が要求するアロケータを作成する
  *
- * @param   pAllocator		NNSFndAllocator�\���̂̃A�h���X
- * @param   heapID			�q�[�vID
- * @param   alignment		�m�ۂ��郁�����u���b�N�ɓK�p����A���C�����g
+ * @param   pAllocator		NNSFndAllocator構造体のアドレス
+ * @param   heapID			ヒープID
+ * @param   alignment		確保するメモリブロックに適用するアライメント
  *
  */
 //------------------------------------------------------------------
@@ -911,18 +911,18 @@ void sys_InitAllocator( NNSFndAllocator* pAllocator, u32 heapID, int alignment)
 
 //------------------------------------------------------------------
 /**
- * �m�ۂ����������u���b�N�̃T�C�Y���k������B
+ * 確保したメモリブロックのサイズを縮小する。
  *
- * @param   memBlock		�������u���b�N�|�C���^
- * @param   newSize			�k����̃T�C�Y�i�o�C�g�P�ʁj
+ * @param   memBlock		メモリブロックポインタ
+ * @param   newSize			縮小後のサイズ（バイト単位）
  *
  *
- * �k���́A�������u���b�N�̌��������烁������������邱�Ƃōs���B
- * ������ꂽ���̓V�X�e���ɕԊ҂���A�V���ȃA���P�[�g�̈�Ƃ��Ďg�p�ł���B
+ * 縮小は、メモリブロックの後ろ方向からメモリを解放することで行う。
+ * 解放された分はシステムに返還され、新たなアロケート領域として使用できる。
  *
- * �Ⴆ�΁y�w�b�_�{���́z�̂悤�Ȍ`���̃O���t�B�b�N�o�C�i�����q�`�l�ɓǂݍ��݁A
- * ���̕���VRAM�ɓ]��������A�w�b�_�݂̂��c�������Ƃ����P�[�X�ȂǂŎg�p���邱�Ƃ�
- * �z�肵�Ă���B�g�p�͐T�d�ɁB
+ * 例えば【ヘッダ＋実体】のような形式のグラフィックバイナリをＲＡＭに読み込み、
+ * 実体部をVRAMに転送した後、ヘッダのみを残したいというケースなどで使用することを
+ * 想定している。使用は慎重に。
  *
  */
 //------------------------------------------------------------------
@@ -935,7 +935,7 @@ void sys_CutMemoryBlockSize( void* memBlock, u32 newSize )
 
 		(u8*)memBlock -= sizeof(MEMORY_BLOCK_HEADER);
 		oldSize = NNS_FndGetSizeForMBlockExpHeap( memBlock );
-		newSize += sizeof(MEMORY_BLOCK_HEADER);	// �Ăяo�����̓w�b�_���ӎ����Ă��Ȃ��̂�
+		newSize += sizeof(MEMORY_BLOCK_HEADER);	// 呼び出し側はヘッダを意識していないので
 
 		if( oldSize >= newSize )
 		{
@@ -958,11 +958,11 @@ void sys_CutMemoryBlockSize( void* memBlock, u32 newSize )
 
 //------------------------------------------------------------------
 /**
- * �q�[�v�̈悪�j�󂳂�Ă��Ȃ����`�F�b�N�i�f�o�b�O�p�j
+ * ヒープ領域が破壊されていないかチェック（デバッグ用）
  *
- * @param   heapID		�q�[�vID
+ * @param   heapID		ヒープID
  *
- * @retval  BOOL		�j�󂳂�Ă��Ȃ����TRUE���Ԃ�
+ * @retval  BOOL		破壊されていなければTRUEが返る
  */
 //------------------------------------------------------------------
 BOOL sys_CheckHeapSafe( u32 heapID )
@@ -979,10 +979,10 @@ BOOL sys_CheckHeapSafe( u32 heapID )
 	return TRUE;
 	#else
 
-	// �{�����i�łɂ͑��݂��Ȃ��͂��̊֐������A
-	// GF_ASSERT�𐻕i�łł��L���ɂ������߁AASSERT�`�F�b�N���ɌĂ΂�邱�Ƃ̂���
-	// ���̊֐����폜�ł��Ȃ��Ȃ����B���̂��߁A���ASSERT���X���[�ł���悤��
-	// TRUE��Ԃ��֐��Ƃ��Ďc���Ă����B
+	// 本来製品版には存在しないはずの関数だが、
+	// GF_ASSERTを製品版でも有効にしたため、ASSERTチェック中に呼ばれることのある
+	// この関数を削除できなくなった。そのため、常にASSERTをスルーできるように
+	// TRUEを返す関数として残しておく。
 	return TRUE;
 	#endif
 }
@@ -990,10 +990,10 @@ BOOL sys_CheckHeapSafe( u32 heapID )
 #ifdef PM_DEBUG
 //------------------------------------------------------------------
 /**
- * �S�������u���b�N��������Ă��邩�`�F�b�N�i�f�o�b�O�p�j
- *�i�����̊֐����Ă΂ꂽ���ɂ܂��g�p���������c���Ă����ASSERT�Ŏ~�܂�j
+ * 全メモリブロックを解放してあるかチェック（デバッグ用）
+ *（※この関数が呼ばれた時にまだ使用メモリが残っているとASSERTで止まる）
  *
- * @param   heapID		�q�[�v�h�c
+ * @param   heapID		ヒープＩＤ
  *
  */
 //------------------------------------------------------------------
@@ -1007,11 +1007,11 @@ void sys_CheckHeapFullReleased( u32 heapID )
 }
 //------------------------------------------------------------------
 /**
- * �q�[�v����m�ۂ����������u���b�N�̎��T�C�Y�擾�i�f�o�b�O�p�j
+ * ヒープから確保したメモリブロックの実サイズ取得（デバッグ用）
  *
  * @param   memBlock		
  *
- * @retval  u32		�������u���b�N�T�C�Y
+ * @retval  u32		メモリブロックサイズ
  */
 //------------------------------------------------------------------
 u32 sys_GetMemoryBlockSize( const void* memBlock )
@@ -1022,10 +1022,10 @@ u32 sys_GetMemoryBlockSize( const void* memBlock )
 
 //------------------------------------------------------------------
 /**
- * �w��q�[�v�̃������A���P�[�g�񐔁��󂫗̈�T�C�Y��64bit�Ƀp�b�N���ĕԂ�
- *�i�q�[�v�j�����Ƃ͕ʂɃ��[�N�`�F�b�N���s�����߁j
+ * 指定ヒープのメモリアロケート回数＆空き領域サイズを64bitにパックして返す
+ *（ヒープ破棄時とは別にリークチェックを行うため）
  *
- * @param   heapID		�q�[�vID
+ * @param   heapID		ヒープID
  *
  * @retval  u64		
  */
@@ -1046,12 +1046,12 @@ u64 sys_GetHeapState( u32 heapID )
 }
 
 /*---------------------------------------------------------------------------*
- * @brief	�f�o�b�O�p�������󋵕\��
+ * @brief	デバッグ用メモリ状況表示
 *---------------------------------------------------------------------------*/
 
 //------------------------------------------------------------------
 /**
- * ����q�[�v�̃������󂫗e�ʍ��v��\��
+ * 特定ヒープのメモリ空き容量合計を表示
  *
  * @param   heapID		
  *
@@ -1067,7 +1067,7 @@ void sys_PrintHeapFreeSize( u32 heapID )
 }
 //------------------------------------------------------------------
 /**
- * ����q�[�v�̎g�p���������u���b�N����\��
+ * 特定ヒープの使用中メモリブロック情報を表示
  *
  * @param   heapID		
  *
@@ -1079,9 +1079,9 @@ void sys_PrintHeapExistMemoryInfo( u32 heapID )
 }
 //------------------------------------------------------------------
 /**
- * ����q�[�v�̑S�������u���b�N����\��
+ * 特定ヒープの全メモリブロック情報を表示
  *
- * @param   heapID				�q�[�vID
+ * @param   heapID				ヒープID
  *
  */
 //------------------------------------------------------------------
@@ -1092,8 +1092,8 @@ static void PrintExistMemoryBlocks( u32 heapID )
 }
 //------------------------------------------------------------------
 /**
- * sys_PrintHeapConflict�̃`�F�b�N���ʂ��G���[�Ȃ�A
- * �S�������u���b�N���������ɂ��Ă��̊֐����Ă΂��
+ * sys_PrintHeapConflictのチェック結果がエラーなら、
+ * 全メモリブロック情報を引数にしてこの関数が呼ばれる
  *
  * @param   memBlock		
  * @param   heapHandle		
@@ -1118,10 +1118,10 @@ static void HeapConflictVisitorFunc(void* memBlock, NNSFndHeapHandle heapHandle,
 
 //------------------------------------------------------------------
 /**
- * �������u���b�N�w�b�_�ɕۑ�����Ă���t�@�C�������o�b�t�@�ɃR�s�[
+ * メモリブロックヘッダに保存されているファイル名をバッファにコピー
  *
- * @param   dst			�R�s�[��o�b�t�@
- * @param   header		�������u���b�N�w�b�_
+ * @param   dst			コピー先バッファ
+ * @param   header		メモリブロックヘッダ
  *
  */
 //------------------------------------------------------------------
@@ -1129,8 +1129,8 @@ static void CopyFileName( char* dst, const MEMORY_BLOCK_HEADER* header )
 {
 	int i;
 
-	// �I�[�R�[�h�i�V�ŗ̈�߂����ς��t�@�C�����Ɏg���Ă邽��
-	// ���������������K�v...
+	// 終端コードナシで領域めいっぱいファイル名に使ってるため
+	// こういう処理が必要...
 	for(i = 0; i < MEMBLOCK_FILENAME_AREASIZE; i++)
 	{
 		if( header->filename[i] == '\0' ){ break; }
@@ -1142,7 +1142,7 @@ static void CopyFileName( char* dst, const MEMORY_BLOCK_HEADER* header )
 
 //------------------------------------------------------------------
 /**
- * ������������̏����v�����g
+ * 未解放メモリの情報をプリント
  *
  * @param   heapID		
  *
@@ -1163,7 +1163,7 @@ static void PrintUnreleasedMemoryInfo( u32 heapID )
 }
 
 //==============================================================================================
-// �f�o�b�O�p�q�[�v��ԃX�^�b�N
+// デバッグ用ヒープ状態スタック
 //==============================================================================================
 
 struct _HEAP_STATE_STACK {
@@ -1175,12 +1175,12 @@ struct _HEAP_STATE_STACK {
 
 //------------------------------------------------------------------
 /**
- * �q�[�v��ԃX�^�b�N��V�K�쐬
+ * ヒープ状態スタックを新規作成
  *
- * @param   heapID			�`�F�b�N����q�[�vID
- * @param   stackNum		�X�^�b�N�v�f��
+ * @param   heapID			チェックするヒープID
+ * @param   stackNum		スタック要素数
  *
- * @retval  HEAP_STATE_STACK*		�쐬�����X�^�b�N�ւ̃|�C���^
+ * @retval  HEAP_STATE_STACK*		作成したスタックへのポインタ
  */
 //------------------------------------------------------------------
 HEAP_STATE_STACK*  HSS_Create( u32 heapID, u32 stackNum )
@@ -1197,9 +1197,9 @@ HEAP_STATE_STACK*  HSS_Create( u32 heapID, u32 stackNum )
 
 //------------------------------------------------------------------
 /**
- * �q�[�v��� Push
+ * ヒープ状態 Push
  *
- * @param   hss		�X�^�b�N�ւ̃|�C���^
+ * @param   hss		スタックへのポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1211,9 +1211,9 @@ void HSS_Push( HEAP_STATE_STACK* hss )
 
 //------------------------------------------------------------------
 /**
- * �q�[�v��� Pop
+ * ヒープ状態 Pop
  *
- * @param   hss		�X�^�b�N�ւ̃|�C���^
+ * @param   hss		スタックへのポインタ
  *
  */
 //------------------------------------------------------------------
@@ -1227,9 +1227,9 @@ void HSS_Pop( HEAP_STATE_STACK* hss )
 
 //------------------------------------------------------------------
 /**
- * �q�[�v��ԃX�^�b�N��j������
+ * ヒープ状態スタックを破棄する
  *
- * @param   hss		�X�^�b�N�ւ̃|�C���^
+ * @param   hss		スタックへのポインタ
  *
  */
 //------------------------------------------------------------------

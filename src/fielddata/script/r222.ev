@@ -1,6 +1,6 @@
 //====================================================================
 //						r222.gmm
-//					ƒtƒB[ƒ‹ƒhEƒ[ƒh222
+//					ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ãƒ­ãƒ¼ãƒ‰222
 //====================================================================
 	.text
 
@@ -8,11 +8,11 @@
 	.include	"../../../include/msgdata/msg_r222.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r222_fishing1
 _EVENT_DATA		ev_r222_gorggeousm
@@ -22,13 +22,13 @@ _EVENT_DATA		ev_r222_sign3
 _EVENT_DATA		ev_r222_sign4
 _EVENT_DATA		ev_r222_police6
 _EVENT_DATA		ev_r222_flag_change
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_r222_flag_change:
-	/*ŽžŠÔ‘Ñ‚É‚æ‚Á‚Ä•ªŠò*/
+	/*æ™‚é–“å¸¯ã«ã‚ˆã£ã¦åˆ†å²*/
 	_GET_TIME_ZONE	LOCALWORK0
 	_IFVAL_JUMP		LOCALWORK0,EQ,TIMEZONE_MORNING,ev_r222_fc_morning
 	_IFVAL_JUMP		LOCALWORK0,EQ,TIMEZONE_NOON,ev_r222_fc_noon
@@ -52,31 +52,31 @@ ev_r222_fc_midnight:
 
 
 /********************************************************************/
-/*						ƒS[ƒWƒƒƒXŒZ‚³‚ñ							*/
+/*						ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹å…„ã•ã‚“							*/
 /********************************************************************/
 ev_r222_gorggeousm:
 	_TALK_OBJ_START
 
-	/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_WAZAMASIN56_GET,ev_r222_gorggeousm_02
 
 	_TALK_KEYWAIT	msg_r222_gorggeousm_01
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_WAZAMASIN56
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r222_gorggeousm_item_event_fail
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_FLAG_SET		FE_WAZAMASIN56_GET
 	_JUMP			ev_r222_gorggeousm_02
 
-/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 ev_r222_gorggeousm_02:
 	_TALKMSG		msg_r222_gorggeousm_02
 	_LAST_KEYWAIT
@@ -84,9 +84,9 @@ ev_r222_gorggeousm_02:
 	_TALK_OBJ_END
 	_END
 
-/*ƒAƒCƒeƒ€“üŽèŽ¸”s*/
+/*ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹å¤±æ•—*/
 ev_r222_gorggeousm_item_event_fail:
-	//ƒAƒCƒeƒ€Žæ“¾Ž¸”sƒCƒxƒ“ƒg(‹¤’ÊƒƒbƒZ[ƒW‚ðo‚·Aê—p‚ðŽg—p‚·‚é‚Æ‚«‚Í‚¢‚ç‚È‚¢)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¤±æ•—ã‚¤ãƒ™ãƒ³ãƒˆ(å…±é€šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™ã€å°‚ç”¨ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã¯ã„ã‚‰ãªã„)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
 	_TALK_CLOSE
 	_TALK_OBJ_END
@@ -94,21 +94,21 @@ ev_r222_gorggeousm_item_event_fail:
 
 
 /********************************************************************/
-/*							’Þ‚èl									*/
+/*							é‡£ã‚Šäºº									*/
 /********************************************************************/
 ev_r222_fishing1:
 	_EASY_OBJ_MSG	msg_r222_fishing1_01
 	_END
 
 /********************************************************************/
-/*							•WŽ¯									*/
+/*							æ¨™è­˜									*/
 /********************************************************************/
 ev_r222_sign1:
 	_EASY_BOARD_MSG	msg_r222_sign1_01,BOARD_TYPE_ROAD,0
 	_END
 
 /********************************************************************/
-/*							•WŽ¯									*/
+/*							æ¨™è­˜									*/
 /********************************************************************/
 ev_r222_sign2:
 	_EASY_BOARD_MSG	msg_r222_sign2_01,BOARD_TYPE_ROAD,0
@@ -129,7 +129,7 @@ ev_r222_sign4:
 	_END
 
 /********************************************************************/
-/*							‚¨„‚è‚³‚ñ								*/
+/*							ãŠå·¡ã‚Šã•ã‚“								*/
 /********************************************************************/
 ev_r222_police6:
 	_EASY_OBJ_MSG	msg_r222_police_06_01

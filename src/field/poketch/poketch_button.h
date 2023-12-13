@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_button.h
- * @bfief	ƒ{ƒ^ƒ“ó‘ÔŠÇ—ƒ}ƒl[ƒWƒƒ
+ * @bfief	ãƒœã‚¿ãƒ³çŠ¶æ…‹ç®¡ç†ãƒžãƒãƒ¼ã‚¸ãƒ£
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -16,23 +16,23 @@ enum BMN_EVENT {
 	BMN_EVENT_NULL = 0,
 	BMN_EVENT_TOUCH,		
 	BMN_EVENT_OUT,			
-	BMN_EVENT_TAP,			// ƒVƒ“ƒOƒ‹ƒ^ƒbƒvŠm’è‚Å”­¶
-	BMN_EVENT_DOUBLETAP,	// ƒ_ƒuƒ‹ƒ^ƒbƒvŠm’è‚Å”­¶
+	BMN_EVENT_TAP,			// ã‚·ãƒ³ã‚°ãƒ«ã‚¿ãƒƒãƒ—ç¢ºå®šã§ç™ºç”Ÿ
+	BMN_EVENT_DOUBLETAP,	// ãƒ€ãƒ–ãƒ«ã‚¿ãƒƒãƒ—ç¢ºå®šã§ç™ºç”Ÿ
 	BMN_EVENT_TIMER0,
 	BMN_EVENT_TIMER1,
 	BMN_EVENT_REPEAT,
 };
 
 enum  BMN_TOUCH {
-	BMN_TOUCH_OFF,			// ‘OƒtƒŒ[ƒ€G‚ê‚Ä‚È‚¢¨¡ƒtƒŒ[ƒ€G‚ê‚½
-	BMN_TOUCH_ON,			// ‘OƒtƒŒ[ƒ€G‚ê‚Ä‚¢‚½¨¡ƒtƒŒ[ƒ€G‚ê‚Ä‚È‚¢
-	BMN_TOUCH_CONT,			// ‘OƒtƒŒ[ƒ€‚Æ•Ï‚í‚ç‚¸
+	BMN_TOUCH_OFF,			// å‰ãƒ•ãƒ¬ãƒ¼ãƒ è§¦ã‚Œã¦ãªã„â†’ä»Šãƒ•ãƒ¬ãƒ¼ãƒ è§¦ã‚ŒãŸ
+	BMN_TOUCH_ON,			// å‰ãƒ•ãƒ¬ãƒ¼ãƒ è§¦ã‚Œã¦ã„ãŸâ†’ä»Šãƒ•ãƒ¬ãƒ¼ãƒ è§¦ã‚Œã¦ãªã„
+	BMN_TOUCH_CONT,			// å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã¨å¤‰ã‚ã‚‰ãš
 };
 
 
 //---------------------------------------------------------------------
 /**
- *	ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒŒ^éŒ¾
+ *	ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£åž‹å®£è¨€
  */
 //---------------------------------------------------------------------
 typedef struct _POKETCH_BUTTON_MAN	POKETCH_BUTTON_MAN;
@@ -40,12 +40,12 @@ typedef struct _POKETCH_BUTTON_MAN	POKETCH_BUTTON_MAN;
 
 //---------------------------------------------------------------------
 /**
- *	ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^Bˆø”‚Ì“à—e‚ÍˆÈ‰º‚Ì‡B
+ *	ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£ã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚å¼•æ•°ã®å†…å®¹ã¯ä»¥ä¸‹ã®é †ã€‚
  *
- *	u32		ƒ{ƒ^ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX
- *	u32		”­¶‚µ‚½ƒCƒxƒ“ƒgiBMN_EVENTj
- *	u32		ÚGó‹µ‚ÌXViBMN_TOUCHj
-*	void*	PBTN_Create‚Å“n‚µ‚½ƒ[ƒNƒ|ƒCƒ“ƒ^
+ *	u32		ãƒœã‚¿ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	u32		ç™ºç”Ÿã—ãŸã‚¤ãƒ™ãƒ³ãƒˆï¼ˆBMN_EVENTï¼‰
+ *	u32		æŽ¥è§¦çŠ¶æ³ã®æ›´æ–°ï¼ˆBMN_TOUCHï¼‰
+*	void*	PBTN_Createã§æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //---------------------------------------------------------------------

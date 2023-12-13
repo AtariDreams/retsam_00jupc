@@ -1,6 +1,6 @@
 /**
  *	@file	config.c
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–Ê
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢
  *	@date	06.01.30
  *	@author	Miyuki Iwasawa
  */
@@ -113,15 +113,15 @@ enum{
 };
 
 enum{
-	CONFIG_SEQ_INITFADEIN,			// ‰æ–Ê‚Ì‰Šú‰»‚ÆƒtƒF[ƒhƒCƒ“
-	CONFIG_SEQ_INITFADEINWAIT,		// ƒtƒF[ƒhƒCƒ“‚Ü‚¿
-	CONFIG_SEQ_MAIN,				// ƒƒCƒ“
-	CONFIG_SEQ_SETCHECKINIT,		// •ÏX‚ð”½‰f‚³‚¹‚é‚©ƒ`ƒFƒbƒN@ƒƒbƒZ[ƒW•\Ž¦
-	CONFIG_SEQ_SETCHECK,			// •ÏX‚ð”½‰f‚³‚¹‚é‚©ƒ`ƒFƒbƒN@YESNOƒEƒBƒ“ƒhƒE•\Ž¦
-	CONFIG_SEQ_SETWAIT,				// •ÏX‚ð”½‰f‚³‚¹‚é‚©ƒ`ƒFƒbƒN@YESNOƒZƒŒƒNƒg
-	CONFIG_SEQ_FADEOUT,				// ƒtƒF[ƒhƒAƒEƒg
-	CONFIG_SEQ_FADEOUTWAIT,			// ƒtƒF[ƒhƒAƒEƒg‚Ü‚¿
-	CONFIG_SEQ_RELEASE,				// ‰æ–Ê‚ÌŠJ•ú
+	CONFIG_SEQ_INITFADEIN,			// ç”»é¢ã®åˆæœŸåŒ–ã¨ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+	CONFIG_SEQ_INITFADEINWAIT,		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã¾ã¡
+	CONFIG_SEQ_MAIN,				// ãƒ¡ã‚¤ãƒ³
+	CONFIG_SEQ_SETCHECKINIT,		// å¤‰æ›´ã‚’åæ˜ ã•ã›ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	CONFIG_SEQ_SETCHECK,			// å¤‰æ›´ã‚’åæ˜ ã•ã›ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã€€YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
+	CONFIG_SEQ_SETWAIT,				// å¤‰æ›´ã‚’åæ˜ ã•ã›ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã€€YESNOã‚»ãƒ¬ã‚¯ãƒˆ
+	CONFIG_SEQ_FADEOUT,				// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+	CONFIG_SEQ_FADEOUTWAIT,			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã¾ã¡
+	CONFIG_SEQ_RELEASE,				// ç”»é¢ã®é–‹æ”¾
 };
 
 typedef struct _CONFIG_MENU_DAT{
@@ -151,37 +151,37 @@ typedef struct _CONFIG_MAIN_DAT
 	CONFIG_PARAM	param;
 	CONFIG			*save;
 
-	///ƒƒbƒZ[ƒWƒŠƒ\[ƒX
+	///ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹
 	MSGDATA_MANAGER*	pMsg;
 	
 	void*	pScrBuf;
 	NNSG2dScreenData*	pScr01;
 
-	GF_BGL_BMPWIN	win[WIN_MAX];	///<BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_BMPWIN	win[WIN_MAX];	///<BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 	CONFIG_MENU		menu[MENU_LINE_MAX];
 
-	BMPMENU_WORK* pYesNoWork;	///<BMPYESNOƒEƒBƒ“ƒhƒEƒf[ƒ^
+	BMPMENU_WORK* pYesNoWork;	///<BMPYESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 	u32	msg_no;
 
-	CATS_SYS_PTR	pCActSys;	///<ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€
-	CATS_RES_PTR	pCActRes;	///<ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX
-	CATS_ACT_PTR	pCAct;		///<ƒAƒNƒg
+	CATS_SYS_PTR	pCActSys;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+	CATS_RES_PTR	pCActRes;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹
+	CATS_ACT_PTR	pCAct;		///<ã‚¢ã‚¯ãƒˆ
 }CONFIG_MAIN_DAT;
 
-//ƒvƒƒgƒ^ƒCƒvéŒ¾@ƒ[ƒJƒ‹
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ã€€ãƒ­ãƒ¼ã‚«ãƒ«
 //================================================================
-///ƒI[ƒo[ƒŒƒCƒvƒƒZƒX
+///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹
 PROC_RESULT ConfigProc_Init( PROC *proc,int *seq);
 PROC_RESULT ConfigProc_Main( PROC *proc,int *seq);
 PROC_RESULT ConfigProc_End( PROC *proc,int *seq);
 
-///VBlankŠÖ˜A
+///VBlanké–¢é€£
 static void ConfigVBlank(void * work);
-///VRAMƒoƒ“ƒN’è‹`
+///VRAMãƒãƒ³ã‚¯å®šç¾©
 static void ConfigVramBankSet(void);
 
 //================================================================
-///ƒvƒƒgƒ^ƒCƒvƒGƒŠƒA
+///ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã‚¨ãƒªã‚¢
 //================================================================
 static int ConfigInitCommon(CONFIG_MAIN_DAT* wk);
 static int ConfigReleaseCommon(CONFIG_MAIN_DAT* wk);
@@ -204,22 +204,22 @@ static void ConfigYesNoWinInit( CONFIG_MAIN_DAT* p_wk );
 static u32 ConfigYesNoWinMain( CONFIG_MAIN_DAT* p_wk );
 
 //================================================================
-///ƒf[ƒ^’è‹`ƒGƒŠƒA
+///ãƒ‡ãƒ¼ã‚¿å®šç¾©ã‚¨ãƒªã‚¢
 //================================================================
 
-//ƒXƒNƒŠ[ƒ“ƒTƒCƒYŽæ“¾ƒ}ƒNƒ
+//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚ºå–å¾—ãƒžã‚¯ãƒ­
 #define SCWS_GET(p)	((p)->screenWidth/8)
 #define SCHS_GET(p)	((p)->screenHeight/8)
 
 //--------------------------------------------------
-///ƒvƒƒOƒ‰ƒ€ƒGƒŠƒA
+///ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¨ãƒªã‚¢
 //----------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO ƒvƒƒZƒX‰Šú‰»
- *	@param	proc	ƒvƒƒZƒXƒf[ƒ^
- *	@param	seq		ƒV[ƒPƒ“ƒX
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚° ãƒ—ãƒ­ã‚»ã‚¹åˆæœŸåŒ–
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  */
 PROC_RESULT ConfigProc_Init( PROC *proc,int *seq)
 {
@@ -228,16 +228,16 @@ PROC_RESULT ConfigProc_Init( PROC *proc,int *seq)
 	
 	sp = (CONFIG*)PROC_GetParentWork(proc);
 
-	//ƒ[ƒNƒGƒŠƒAŽæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢å–å¾—
 	HeapStatePush();
 
-	//ƒq[ƒvì¬
+	//ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_CONFIG,0x10000);
 	
 	wk = PROC_AllocWork( proc,sizeof(CONFIG_MAIN_DAT),HEAPID_CONFIG);
 	memset(wk,0,sizeof(CONFIG_MAIN_DAT));
 	
-	//ƒpƒ‰ƒ[ƒ^ˆøŒp‚¬
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¼•ç¶™ãŽ
 	wk->param.msg_spd		= CONFIG_GetMsgSpeed(sp);
 	wk->param.btl_eff		= CONFIG_GetWazaEffectMode(sp);
 	wk->param.btl_rule		= CONFIG_GetBattleRule(sp);
@@ -249,24 +249,24 @@ PROC_RESULT ConfigProc_Init( PROC *proc,int *seq)
 	wk->save = sp;
 
 
-	// ƒƒbƒZ[ƒW•\Ž¦ŠÖŒW‚ðÝ’è
-	MsgPrintSkipFlagSet(MSG_SKIP_OFF);	// ƒXƒLƒbƒv‚Å‚«‚È‚¢
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–¢ä¿‚ã‚’è¨­å®š
+	MsgPrintSkipFlagSet(MSG_SKIP_OFF);	// ã‚¹ã‚­ãƒƒãƒ—ã§ããªã„
 
 	return PROC_RES_FINISH;
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO ƒvƒƒZƒXI—¹
- *	@param	proc	ƒvƒƒZƒXƒf[ƒ^
- *	@param	seq		ƒV[ƒPƒ“ƒX
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚° ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  */
 PROC_RESULT ConfigProc_End( PROC *proc,int *seq)
 {
 	CONFIG_MAIN_DAT* wk = PROC_GetWork(proc);
 
-	//ƒZ[ƒuƒpƒ‰ƒ[ƒ^‘‚«o‚µ
+	//ã‚»ãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 	if(wk->end_f == CONFIG_DECIDE_END){
 		wk->param.msg_spd = wk->menu[MENU_MSG_SPD].sel;
 		wk->param.btl_eff = wk->menu[MENU_BTL_EFF].sel;
@@ -276,8 +276,8 @@ PROC_RESULT ConfigProc_End( PROC *proc,int *seq)
 		wk->param.win_type	 = wk->menu[MENU_WIN].sel;
 	}
 
-	// Œ»Ý‚ÌÝ’è‚ð”½‰f
-	// ƒRƒ“ƒtƒBƒO“à‚ÅÝ’è‚³‚ê‚½’l‚àŒ³‚É–ß‚é
+	// ç¾åœ¨ã®è¨­å®šã‚’åæ˜ 
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚°å†…ã§è¨­å®šã•ã‚ŒãŸå€¤ã‚‚å…ƒã«æˆ»ã‚‹
 	CONFIG_SetMsgSpeed(wk->save,wk->param.msg_spd);
 	CONFIG_SetWazaEffectMode(wk->save,wk->param.btl_eff);
 	CONFIG_SetBattleRule(wk->save,wk->param.btl_rule);
@@ -287,10 +287,10 @@ PROC_RESULT ConfigProc_End( PROC *proc,int *seq)
 	Snd_SetMonoFlag(wk->param.sound);
 	CONFIG_SetKeyConfig(wk->param.input_mode);
 
-	// ƒƒbƒZ[ƒW•\Ž¦ŠÖŒW‚ðÝ’è
-	MsgPrintSkipFlagSet(MSG_SKIP_ON);	// ƒXƒLƒbƒv‚Å‚«‚é
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–¢ä¿‚ã‚’è¨­å®š
+	MsgPrintSkipFlagSet(MSG_SKIP_ON);	// ã‚¹ã‚­ãƒƒãƒ—ã§ãã‚‹
 
-	//ƒ[ƒNƒGƒŠƒA‰ð•ú
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢è§£æ”¾
 	PROC_FreeWork(proc);
 
 	HeapStatePop();
@@ -301,11 +301,11 @@ PROC_RESULT ConfigProc_End( PROC *proc,int *seq)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO ƒvƒƒZƒXƒƒCƒ“
- *	@param	proc	ƒvƒƒZƒXƒf[ƒ^
- *	@param	seq		ƒV[ƒPƒ“ƒX
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚° ãƒ—ãƒ­ã‚»ã‚¹ãƒ¡ã‚¤ãƒ³
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  */
 PROC_RESULT ConfigProc_Main( PROC *proc,int *seq)
 {
@@ -329,13 +329,13 @@ PROC_RESULT ConfigProc_Main( PROC *proc,int *seq)
 		}
 		break;
 	case CONFIG_SEQ_MAIN:
-		//ƒƒCƒ“
+		//ãƒ¡ã‚¤ãƒ³
 		if( ((sys.trg & PAD_BUTTON_DECIDE) && (wk->line == (MENU_LINE_MAX-1))) ||
 			(sys.trg & PAD_BUTTON_CANCEL) ){
 
 			result = ConfigDiffParam( wk );
 			
-			// •ÏX‚ª‚ ‚Á‚½‚©ƒ`ƒFƒbƒN
+			// å¤‰æ›´ãŒã‚ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
 			if( result == TRUE ){
 				wk->seq = CONFIG_SEQ_SETCHECKINIT;
 			}else{
@@ -349,26 +349,26 @@ PROC_RESULT ConfigProc_Main( PROC *proc,int *seq)
 		return PROC_RES_CONTINUE;
 		
 	case CONFIG_SEQ_SETCHECKINIT:
-		// ”½‰f‚³‚¹‚é‚©•·‚­
-		MsgPrintSkipFlagSet(MSG_SKIP_ON);	// ƒXƒLƒbƒv‚Å‚«‚é
+		// åæ˜ ã•ã›ã‚‹ã‹èžã
+		MsgPrintSkipFlagSet(MSG_SKIP_ON);	// ã‚¹ã‚­ãƒƒãƒ—ã§ãã‚‹
 		ConfigBmpWinWriteMessege( wk, mes_config_comment07, FALSE );
 		break;
 
 	case CONFIG_SEQ_SETCHECK:
-		// YESNO‚ðo‚·
+		// YESNOã‚’å‡ºã™
 		if( ConfigBmpWinWriteMessegeEndCheck( wk ) ){
-			MsgPrintSkipFlagSet(MSG_SKIP_OFF);	// ƒXƒLƒbƒv‚Å‚«‚é
+			MsgPrintSkipFlagSet(MSG_SKIP_OFF);	// ã‚¹ã‚­ãƒƒãƒ—ã§ãã‚‹
 			ConfigYesNoWinInit( wk );
 			wk->seq = CONFIG_SEQ_SETWAIT;
 		}
 		return PROC_RES_CONTINUE;
 		
 	case CONFIG_SEQ_SETWAIT:
-		// ‘I‘ð‚µ‚Ä‚à‚ç‚¤
+		// é¸æŠžã—ã¦ã‚‚ã‚‰ã†
 		yesno_res = ConfigYesNoWinMain( wk );
 		if( yesno_res != BMPMENU_NULL ){
-			if( yesno_res == 0 ){	// ƒZ[ƒu‚·‚é‚È‚ç
-				Snd_SeStopBySeqNo(SEQ_SE_DP_SELECT,0);		//“¯Žž‚É–Â‚é‚Ì‚ð‰ñ”ð‚·‚é
+			if( yesno_res == 0 ){	// ã‚»ãƒ¼ãƒ–ã™ã‚‹ãªã‚‰
+				Snd_SeStopBySeqNo(SEQ_SE_DP_SELECT,0);		//åŒæ™‚ã«é³´ã‚‹ã®ã‚’å›žé¿ã™ã‚‹
 				Snd_SePlay(SEQ_SE_DP_SAVE);
 				wk->end_f = CONFIG_DECIDE_END;
 			}else{
@@ -379,7 +379,7 @@ PROC_RESULT ConfigProc_Main( PROC *proc,int *seq)
 		return PROC_RES_CONTINUE;
 	
 	case CONFIG_SEQ_FADEOUT:
-		//add pl MSGƒtƒŠ[ƒY‘Îô ƒƒbƒZ[ƒW•\Ž¦ƒ^ƒXƒN‹­§’âŽ~ 080701 kaga
+		//add pl MSGãƒ•ãƒªãƒ¼ã‚ºå¯¾ç­– ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚¿ã‚¹ã‚¯å¼·åˆ¶åœæ­¢ 080701 kaga
 		if( GF_MSG_PrintEndCheck(wk->msg_no) ){
 			GF_STR_PrintForceStop( wk->msg_no );
 		}
@@ -395,7 +395,7 @@ PROC_RESULT ConfigProc_Main( PROC *proc,int *seq)
 		}
 		break;
 	case CONFIG_SEQ_RELEASE:
-		//I—¹ˆ—
+		//çµ‚äº†å‡¦ç†
 		if(!ConfigReleaseCommon(wk)){
 			return PROC_RES_CONTINUE;
 		}
@@ -406,34 +406,34 @@ PROC_RESULT ConfigProc_Main( PROC *proc,int *seq)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–ÊVramBankƒZƒbƒg
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢VramBankã‚»ãƒƒãƒˆ
  */
 static void ConfigVramBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_16_G,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_16_G,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–ÊVBlank
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢VBlank
  */
 static void ConfigVBlank(void * work)
 {
 	CONFIG_MAIN_DAT* wk = work;
 
-	//‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ƒNƒ^‚ÌÄ“]‘—
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®å†è»¢é€
 	if(wk->wincgx_f){
 		TalkWinGraphicSet(wk->bgl,BMPL_SUM_FRM,
 			BMPL_TALK_WIN_CGX, BMPL_TALK_WIN_PAL, wk->menu[MENU_WIN].sel, wk->heapID);
@@ -441,13 +441,13 @@ static void ConfigVBlank(void * work)
 		wk->wincgx_f = 0;
 	}
 	CATS_RenderOamTrans();
-	NNS_GfdDoVramTransfer();	//VRam“]‘—ƒ}ƒl[ƒWƒƒŽÀs
+	NNS_GfdDoVramTransfer();	//VRamè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£å®Ÿè¡Œ
 	GF_BGL_VBlankFunc( wk->bgl );
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK);
 }
 
 /**
- *	@brief	ŠeŽí‰Šú‰»ˆ—
+ *	@brief	å„ç¨®åˆæœŸåŒ–å‡¦ç†
  */
 static int ConfigInitCommon(CONFIG_MAIN_DAT *wk)
 {
@@ -461,20 +461,20 @@ static int ConfigInitCommon(CONFIG_MAIN_DAT *wk)
 		GX_SetVisiblePlane(0);
 		GXS_SetVisiblePlane(0);
 
-		//BankƒZƒbƒg
+		//Bankã‚»ãƒƒãƒˆ
 		ConfigVramBankSet();
 
 		WIPE_ResetWndMask(WIPE_DISP_MAIN);
 		WIPE_ResetWndMask(WIPE_DISP_SUB);
 
-		//BGLƒZƒbƒg
+		//BGLã‚»ãƒƒãƒˆ
 		ConfigBGLInit(wk);
 		break;
 	case 1:
-		//2DƒŠƒ\[ƒXŽæ“¾
+		//2Dãƒªã‚½ãƒ¼ã‚¹å–å¾—
 		Config2DGraInit(wk);
 
-		//ƒƒbƒZ[ƒWƒŠƒ\[ƒXŽæ“¾
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 		wk->pMsg = MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,
 				NARC_msg_config_dat,wk->heapID);
 		ConfigMenuStrGet(wk);
@@ -482,12 +482,12 @@ static int ConfigInitCommon(CONFIG_MAIN_DAT *wk)
 	case 2:
 		ConfigBmpWinInit(wk);
 		ConfigBmpWinWriteFirst(wk);
-		//’ÊMƒAƒCƒRƒ“—p‚ÉOBJ–ÊON
+		//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«OBJé¢ON
 		initVramTransferManagerHeap(32,wk->heapID);
 		GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,VISIBLE_ON);
 
-		// ŽóM‹­“xƒAƒCƒRƒ“‚ð’ÊMÚ‘±’†‚È‚ç•\Ž¦‚·‚é‚µA
-		// ƒ†ƒjƒIƒ“‚Ì‚æ‚¤‚É’ÊM‰ñ˜H‚Í“®ì‚µ‚Ä‚¢‚é‚ªÚ‘±‚Í‚µ‚Ä‚¢‚È‚¢ó‘Ô‚È‚ço‚³‚È‚¢
+		// å—ä¿¡å¼·åº¦ã‚¢ã‚¤ã‚³ãƒ³ã‚’é€šä¿¡æŽ¥ç¶šä¸­ãªã‚‰è¡¨ç¤ºã™ã‚‹ã—ã€
+		// ãƒ¦ãƒ‹ã‚ªãƒ³ã®ã‚ˆã†ã«é€šä¿¡å›žè·¯ã¯å‹•ä½œã—ã¦ã„ã‚‹ãŒæŽ¥ç¶šã¯ã—ã¦ã„ãªã„çŠ¶æ…‹ãªã‚‰å‡ºã•ãªã„
 		// Change by Mori 2006/07/19
 		WirelessIconEasyUnion();
 
@@ -501,7 +501,7 @@ static int ConfigInitCommon(CONFIG_MAIN_DAT *wk)
 }
 
 /**
- *	@brief	ŠeŽíI—¹ˆ—
+ *	@brief	å„ç¨®çµ‚äº†å‡¦ç†
  */
 static int ConfigReleaseCommon(CONFIG_MAIN_DAT *wk)
 {
@@ -510,16 +510,16 @@ static int ConfigReleaseCommon(CONFIG_MAIN_DAT *wk)
 	switch(wk->sub_seq){
 	case 0:
 		DellVramTransferManager();
-		//BmpƒEƒBƒ“ƒhƒE”jŠü
+		//Bmpã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		ConfigBmpWinRelease(wk);
-		//ƒƒbƒZ[ƒWƒŠƒ\[ƒX‰ð•ú
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 		for(i = 0;i < MENU_LINE_MAX;i++){
 			for(j = 0;j < wk->menu[i].num;j++){
 				STRBUF_Delete(wk->menu[i].dat[j]);
 			}
 		}
 		MSGMAN_Delete(wk->pMsg);
-		//2DƒŠƒ\[ƒXŽæ“¾
+		//2Dãƒªã‚½ãƒ¼ã‚¹å–å¾—
 		Config2DGraRelease(wk);
 		ConfigBGLRelease(wk);
 		break;
@@ -539,7 +539,7 @@ static int ConfigReleaseCommon(CONFIG_MAIN_DAT *wk)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–ÊBGLƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢BGLã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  */
 static void ConfigBGLInit(CONFIG_MAIN_DAT* wk)
 {
@@ -590,7 +590,7 @@ static void ConfigBGLInit(CONFIG_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–ÊBGLƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢BGLã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  */
 static void ConfigBGLRelease(CONFIG_MAIN_DAT* wk)
 {
@@ -604,7 +604,7 @@ static void ConfigBGLRelease(CONFIG_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–Ê 2DƒŠƒ\[ƒXŽæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢ 2Dãƒªã‚½ãƒ¼ã‚¹å–å¾—
  */
 static void Config2DGraInit(CONFIG_MAIN_DAT* wk)
 {
@@ -617,7 +617,7 @@ static void Config2DGraInit(CONFIG_MAIN_DAT* wk)
 	
 	handle = ArchiveDataHandleOpen(ARC_CONFIG_GRA,wk->heapID);
 
-	//ƒLƒƒƒ‰ƒNƒ^“]‘—
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	size = ArchiveDataSizeGetByHandle(handle,NARC_config_gra_config01_ncgr);
 	pSrc = sys_AllocMemoryLo(wk->heapID,size);
 	ArchiveDataLoadByHandle(handle,NARC_config_gra_config01_ncgr,(void*)pSrc);
@@ -629,7 +629,7 @@ static void Config2DGraInit(CONFIG_MAIN_DAT* wk)
 			pChar->pRawData,pChar->szByte,0);
 	sys_FreeMemoryEz(pSrc);
 
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	size = ArchiveDataSizeGetByHandle(handle,NARC_config_gra_config01_nclr);
 	pSrc = sys_AllocMemoryLo(wk->heapID,size);
 	ArchiveDataLoadByHandle(handle,NARC_config_gra_config01_nclr,(void*)pSrc);
@@ -639,7 +639,7 @@ static void Config2DGraInit(CONFIG_MAIN_DAT* wk)
 	GF_BGL_PaletteSet(GF_BGL_FRAME0_S,pPal->pRawData,0x20*1,0);
 	sys_FreeMemoryEz(pSrc);
 
-	//ƒXƒNƒŠ[ƒ“Žæ“¾
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å–å¾—
 	size = ArchiveDataSizeGetByHandle(handle,NARC_config_gra_config01_nscr);
 	wk->pScrBuf = sys_AllocMemory(wk->heapID,size);
 	ArchiveDataLoadByHandle(handle,NARC_config_gra_config01_nscr,(void*)wk->pScrBuf);
@@ -650,7 +650,7 @@ static void Config2DGraInit(CONFIG_MAIN_DAT* wk)
 	GF_BGL_ScrFill(wk->bgl,GF_BGL_FRAME2_M,0x0001,0,0,32,32,GF_BGL_SCRWRT_PALIN );
 	GF_BGL_ScrFill(wk->bgl,GF_BGL_FRAME0_S,0x0001,0,0,32,32,GF_BGL_SCRWRT_PALIN );
 	
-	//BG•`‰æ
+	//BGæç”»
 	GF_BGL_ScrWriteFree(wk->bgl,GF_BGL_FRAME0_M,
 			0,0,32,2,
 			wk->pScr01->rawData,
@@ -664,7 +664,7 @@ static void Config2DGraInit(CONFIG_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–Ê 2DƒŠƒ\[ƒX‰ð•ú
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢ 2Dãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 static void Config2DGraRelease(CONFIG_MAIN_DAT* wk)
 {
@@ -672,7 +672,7 @@ static void Config2DGraRelease(CONFIG_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–Ê BMPƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢ BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  */
 static void ConfigBmpWinInit(CONFIG_MAIN_DAT* wk)
 {
@@ -691,21 +691,21 @@ static void ConfigBmpWinInit(CONFIG_MAIN_DAT* wk)
 		BMPL_SUM_PX, BMPL_SUM_PY,
 		BMPL_SUM_SX, BMPL_SUM_SY, BMPL_SUM_PAL, BMPL_SUM_CGX );
 
-	//ƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(wk->bgl, BMPL_MENU_FRM,
 			BMPL_MENU_WIN_CGX, BMPL_MENU_WIN_PAL, MENU_TYPE_SYSTEM, wk->heapID);
 
 	TalkWinGraphicSet(wk->bgl,BMPL_SUM_FRM,
 			BMPL_TALK_WIN_CGX, BMPL_TALK_WIN_PAL, wk->param.win_type, wk->heapID);
 	
-	//ƒtƒHƒ“ƒg—pƒpƒŒƒbƒgƒZƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	SystemFontPaletteLoad(PALTYPE_MAIN_BG,FONT_SYS_PAL*32,wk->heapID);
 	SystemFontPaletteLoad(PALTYPE_SUB_BG,FONT_SYS_PAL*32,wk->heapID);
 	TalkFontPaletteLoad(PALTYPE_MAIN_BG,FONT_TALK_PAL*32,wk->heapID);
 	TalkFontPaletteLoad(PALTYPE_SUB_BG,FONT_TALK_PAL*32,wk->heapID);
 
 
-	//BMPƒEƒBƒ“ƒhƒEƒNƒŠƒA
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill(&(wk->win[WIN_TITLE]),WINCLR_COL(FBMP_COL_NULL));
 	GF_BGL_BmpWinDataFill(&(wk->win[WIN_MENU]),WINCLR_COL(FBMP_COL_WHITE));
 	GF_BGL_BmpWinDataFill(&(wk->win[WIN_SUM]),WINCLR_COL(FBMP_COL_WHITE));
@@ -713,19 +713,19 @@ static void ConfigBmpWinInit(CONFIG_MAIN_DAT* wk)
 	GF_BGL_BmpWinClearScrn(&(wk->win[WIN_MENU]));
 	GF_BGL_BmpWinClearScrn(&(wk->win[WIN_TITLE]));
 	
-	//ƒEƒBƒ“ƒhƒE•`‰æ
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 	BmpMenuWinWrite( &wk->win[WIN_MENU], WINDOW_TRANS_OFF, BMPL_MENU_WIN_CGX, BMPL_MENU_WIN_PAL );
 	BmpTalkWinWrite( &wk->win[WIN_SUM], WINDOW_TRANS_OFF, BMPL_TALK_WIN_CGX, BMPL_TALK_WIN_PAL);
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–Ê BMPƒEƒBƒ“ƒhƒE‰ð•ú
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢ BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
  */
 static void ConfigBmpWinRelease(CONFIG_MAIN_DAT* wk)
 {
 	u16	i;
 	
-	//ƒEƒBƒ“ƒhƒEƒNƒŠƒA
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
 	BmpMenuWinClear(&(wk->win[WIN_MENU]),WINDOW_TRANS_ON);
 	BmpTalkWinClear(&(wk->win[WIN_SUM]),WINDOW_TRANS_ON);
 
@@ -738,7 +738,7 @@ static void ConfigBmpWinRelease(CONFIG_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–Ê BMPƒEƒBƒ“ƒhƒE‰Šú•`‰æ
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢ BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸæç”»
  */
 static void ConfigBmpWinWriteFirst(CONFIG_MAIN_DAT* wk)
 {
@@ -763,7 +763,7 @@ static void ConfigBmpWinWriteFirst(CONFIG_MAIN_DAT* wk)
 
 	buf = STRBUF_Create(SUM_STRSIZ,wk->heapID);
 
-	//‚¹‚Á‚Ä‚¢‚ð‚©‚¦‚é
+	//ã›ã£ã¦ã„ã‚’ã‹ãˆã‚‹
 	MSGMAN_GetString(wk->pMsg,mes_config_title,buf);
 
 	ofs = 2;
@@ -771,7 +771,7 @@ static void ConfigBmpWinWriteFirst(CONFIG_MAIN_DAT* wk)
 						ofs,2,
 						MSG_ALLPUT,tcol,NULL );
 	
-	//ƒƒjƒ…[
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 	ofs = 4;
 	for(i = 0;i < MENU_LINE_MAX;i++){
 		STRBUF_Clear(buf);
@@ -785,7 +785,7 @@ static void ConfigBmpWinWriteFirst(CONFIG_MAIN_DAT* wk)
 		ConfigBmpWinWriteMenu(wk,i);
 	}
 
-	//ƒTƒ€ƒlƒCƒ‹
+	//ã‚µãƒ ãƒã‚¤ãƒ«
 	ConfigBmpWinWriteSum( wk, 0, TRUE );
 	
 	GF_BGL_BmpWinOn(&wk->win[WIN_TITLE]);
@@ -795,7 +795,7 @@ static void ConfigBmpWinWriteFirst(CONFIG_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–Ê ƒZƒŒƒNƒgƒƒjƒ…[•¶Žš—ñŽæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢ ã‚»ãƒ¬ã‚¯ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼æ–‡å­—åˆ—å–å¾—
  */
 static void ConfigMenuStrGet(CONFIG_MAIN_DAT* wk)
 {
@@ -825,7 +825,7 @@ static void ConfigMenuStrGet(CONFIG_MAIN_DAT* wk)
 			wk->menu[i].dat[j] = MSGMAN_AllocString(wk->pMsg,sc_selMsg_start[i]+j);
 		}
 	}
-	//Œ»Ý‚Ì‘I‘ðƒiƒ“ƒo[Žæ“¾
+	//ç¾åœ¨ã®é¸æŠžãƒŠãƒ³ãƒãƒ¼å–å¾—
 	wk->menu[MENU_MSG_SPD].sel = wk->param.msg_spd;
 	wk->menu[MENU_BTL_EFF].sel = wk->param.btl_eff;
 	wk->menu[MENU_BTL_RULE].sel = wk->param.btl_rule;
@@ -835,7 +835,7 @@ static void ConfigMenuStrGet(CONFIG_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–Ê ƒZƒŒƒNƒgƒƒjƒ…[•`‰æ
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢ ã‚»ãƒ¬ã‚¯ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼æç”»
  */
 static void ConfigBmpWinWriteMenu(CONFIG_MAIN_DAT* wk,u16 idx)
 {
@@ -848,12 +848,12 @@ static void ConfigBmpWinWriteMenu(CONFIG_MAIN_DAT* wk,u16 idx)
 	fcol = GF_PRINTCOLOR_MAKE(FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_WHITE);
 	rcol = GF_PRINTCOLOR_MAKE(FBMP_COL_RED,FBMP_COL_RED_SDW,FBMP_COL_WHITE);
 	
-	//ˆê’UƒNƒŠƒA
+	//ä¸€æ—¦ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinFill( &(wk->win[WIN_MENU]),
 		WINCLR_COL(FBMP_COL_WHITE),
 		MENU_SEL_OFSX+ofs[idx], MENU_SEL_OFSY+idx*MENU_SEL_ASIZY,MENU_SEL_ASIZX,MENU_SEL_ASIZY);
 
-	//‚¹‚Á‚Ä‚¢‚ð‚©‚¦‚é
+	//ã›ã£ã¦ã„ã‚’ã‹ãˆã‚‹
 	if(idx == MENU_WIN){
 		GF_STR_PrintColor(	&wk->win[WIN_MENU],FONT_SYSTEM,
 						wk->menu[idx].dat[wk->menu[idx].sel],
@@ -862,24 +862,24 @@ static void ConfigBmpWinWriteMenu(CONFIG_MAIN_DAT* wk,u16 idx)
 						MSG_NO_PUT,rcol,NULL );
 		GF_BGL_BmpWinOn(&wk->win[WIN_MENU]);
 
-		//ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ƒNƒ^Ä‘—ƒtƒ‰ƒOOn
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å†é€ãƒ•ãƒ©ã‚°On
 		wk->wincgx_f = 1;
 		return;
 	}
 
-	//ƒTƒEƒ“ƒhƒ‚[ƒh‚Ìê‡AƒXƒeƒŒƒI‚Æƒ‚ƒmƒ‰ƒ‹‚ðØ‚è‘Ö‚¦‚é
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã€ã‚¹ãƒ†ãƒ¬ã‚ªã¨ãƒ¢ãƒŽãƒ©ãƒ«ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	if(idx == MENU_SOUND){
 		Snd_SetMonoFlag(wk->menu[idx].sel);
 	}
-	// ƒ{ƒ^ƒ“ƒ‚[ƒh”½‰f
+	// ãƒœã‚¿ãƒ³ãƒ¢ãƒ¼ãƒ‰åæ˜ 
 	else if(idx == MENU_BTN_MODE){
 		CONFIG_SetKeyConfig(wk->menu[idx].sel);
 	}
-	// ƒƒbƒZ[ƒWƒXƒs[ƒh”½‰f
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰åæ˜ 
 	else if(idx == MENU_MSG_SPD ){
 		CONFIG_SetMsgSpeed( wk->save, wk->menu[idx].sel );
 
-		//ƒTƒ€ƒlƒCƒ‹‚ðÄ•`‰æ
+		//ã‚µãƒ ãƒã‚¤ãƒ«ã‚’å†æç”»
 		ConfigBmpWinWriteSum( wk, idx, FALSE );
 	}
 	x_ofs = 0;
@@ -915,11 +915,11 @@ static void ConfigBmpWinWriteMenu(CONFIG_MAIN_DAT* wk,u16 idx)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW‚Ì•\Ž¦
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *
- *	@param	wk		ƒ[ƒN
- *	@param	msg_idx	ƒƒbƒZ[ƒWID
- *	@param	allput	ˆê‹C‚É•\Ž¦‚·‚é‚©
+ *	@param	wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	msg_idx	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ *	@param	allput	ä¸€æ°—ã«è¡¨ç¤ºã™ã‚‹ã‹
  */
 //-----------------------------------------------------------------------------
 static void ConfigBmpWinWriteMessege( CONFIG_MAIN_DAT* wk, u16 msg_idx, BOOL allput )
@@ -928,25 +928,25 @@ static void ConfigBmpWinWriteMessege( CONFIG_MAIN_DAT* wk, u16 msg_idx, BOOL all
 	STRBUF	*buf;
 	u8 msg_speed;
 
-	// ˜b“r’†‚Ì‚Æ‚«‚Ííœ‚·‚é
+	// è©±é€”ä¸­ã®ã¨ãã¯å‰Šé™¤ã™ã‚‹
 	if( ConfigBmpWinWriteMessegeEndCheck( wk ) == FALSE ){
-		// ‹­§I—¹
+		// å¼·åˆ¶çµ‚äº†
 		GF_STR_PrintForceStop( wk->msg_no );
 	}
 
-	// Œ»Ý‚ÌƒƒbƒZ[ƒWƒXƒs[ƒhÝ’è
+	// ç¾åœ¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰è¨­å®š
 	msg_speed = CONFIG_GetMsgPrintSpeed( wk->save );
 
-	// BMP‚ÌƒNƒŠ[ƒ“
+	// BMPã®ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( &(wk->win[WIN_SUM]), FBMP_COL_WHITE);
 
-	// ƒJƒ‰[ì¬
+	// ã‚«ãƒ©ãƒ¼ä½œæˆ
 	fcol = GF_PRINTCOLOR_MAKE(FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_WHITE);
 
-	// STRBUFì¬
+	// STRBUFä½œæˆ
 	buf = STRBUF_Create(SUM_STRSIZ,wk->heapID);
 
-	// •ÏX‚µ‚½ƒƒbƒZ[ƒWƒXƒs[ƒh‚Å‘‚«ž‚Ý
+	// å¤‰æ›´ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰ã§æ›¸ãè¾¼ã¿
 	MSGMAN_GetString(wk->pMsg,msg_idx,buf);
 
 	if( allput == FALSE ){
@@ -960,18 +960,18 @@ static void ConfigBmpWinWriteMessege( CONFIG_MAIN_DAT* wk, u16 msg_idx, BOOL all
 		GF_BGL_BmpWinOnVReq( &wk->win[WIN_SUM] );
 	}
 
-	// STRBUF”jŠü
+	// STRBUFç ´æ£„
 	STRBUF_Delete( buf );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒƒbƒZ[ƒWI—¹
- *	@retval	FALSE	ƒƒbƒZ[ƒW“r’†
+ *	@retval	TRUE	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†
+ *	@retval	FALSE	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ConfigBmpWinWriteMessegeEndCheck( const CONFIG_MAIN_DAT* cp_wk )
@@ -983,14 +983,14 @@ static BOOL ConfigBmpWinWriteMessegeEndCheck( const CONFIG_MAIN_DAT* cp_wk )
 }
 
 /**
- *	@brief	Ý’è‰æ–ÊƒL[Žæ“¾
+ *	@brief	è¨­å®šç”»é¢ã‚­ãƒ¼å–å¾—
  */
 static void ConfigKeyIn(CONFIG_MAIN_DAT* wk)
 {
 	CONFIG_MENU *mp;
 	
 	mp = &(wk->menu[wk->line]);
-	if(wk->line != MENU_MAX){	//Œˆ’èƒ‰ƒCƒ“‚ÌŽž‚Í¶‰EƒL[“ü—Í–³Œø
+	if(wk->line != MENU_MAX){	//æ±ºå®šãƒ©ã‚¤ãƒ³ã®æ™‚ã¯å·¦å³ã‚­ãƒ¼å…¥åŠ›ç„¡åŠ¹
 		if(sys.trg & PAD_KEY_RIGHT){
 			mp->sel = (mp->sel+1)%mp->num;	
 			ConfigBmpWinWriteMenu(wk,wk->line);
@@ -1006,7 +1006,7 @@ static void ConfigKeyIn(CONFIG_MAIN_DAT* wk)
 		GF_BGL_ScrollReq(wk->bgl,GF_BGL_FRAME0_M,GF_BGL_SCROLL_Y_SET,
 				-(wk->line*MENU_SEL_ASIZY+MENU_WIN_OFSY));
 
-		//ƒTƒ€ƒlƒCƒ‹
+		//ã‚µãƒ ãƒã‚¤ãƒ«
 		ConfigBmpWinWriteSum( wk, wk->line, TRUE );
 		Snd_SePlay(SEQ_SE_DP_SELECT);
 	}else if(sys.trg & PAD_KEY_DOWN){
@@ -1014,7 +1014,7 @@ static void ConfigKeyIn(CONFIG_MAIN_DAT* wk)
 		GF_BGL_ScrollReq(wk->bgl,GF_BGL_FRAME0_M,GF_BGL_SCROLL_Y_SET,
 				-(wk->line*MENU_SEL_ASIZY+MENU_WIN_OFSY));
 
-		//ƒTƒ€ƒlƒCƒ‹
+		//ã‚µãƒ ãƒã‚¤ãƒ«
 		ConfigBmpWinWriteSum( wk, wk->line, TRUE );
 		Snd_SePlay(SEQ_SE_DP_SELECT);
 	}
@@ -1022,12 +1022,12 @@ static void ConfigKeyIn(CONFIG_MAIN_DAT* wk)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ý’èƒpƒ‰ƒ[ƒ^‚É•ÏX‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	è¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¤‰æ›´ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Ý’èƒpƒ‰ƒ[ƒ^‚É•ÏX‚ ‚è
- *	@retval	FALSE	Ý’èƒpƒ‰ƒ[ƒ^‚É•ÏX‚È‚µ
+ *	@retval	TRUE	è¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¤‰æ›´ã‚ã‚Š
+ *	@retval	FALSE	è¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¤‰æ›´ãªã—
  */
 //-----------------------------------------------------------------------------
 static BOOL ConfigDiffParam( CONFIG_MAIN_DAT* p_wk )
@@ -1045,9 +1045,9 @@ static BOOL ConfigDiffParam( CONFIG_MAIN_DAT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ConfigYesNoWinInit( CONFIG_MAIN_DAT* p_wk )
@@ -1064,13 +1064,13 @@ static void ConfigYesNoWinInit( CONFIG_MAIN_DAT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒEƒƒCƒ“
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"BMPMENU_NULL	‘I‘ð‚³‚ê‚Ä‚¢‚È‚¢"
- * @retval	"0				‚Í‚¢‚ð‘I‘ð"
- * @retval	"BMPMENU_CANCEL	‚¢‚¢‚¦orƒLƒƒƒ“ƒZƒ‹"
+ * @retval	"BMPMENU_NULL	é¸æŠžã•ã‚Œã¦ã„ãªã„"
+ * @retval	"0				ã¯ã„ã‚’é¸æŠž"
+ * @retval	"BMPMENU_CANCEL	ã„ã„ãˆorã‚­ãƒ£ãƒ³ã‚»ãƒ«"
  */
 //-----------------------------------------------------------------------------
 static u32 ConfigYesNoWinMain( CONFIG_MAIN_DAT* p_wk )
@@ -1080,11 +1080,11 @@ static u32 ConfigYesNoWinMain( CONFIG_MAIN_DAT* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒ€ƒlƒCƒ‹•`‰æ
+ *	@brief	ã‚µãƒ ãƒã‚¤ãƒ«æç”»
  *
- *	@param	wk		ƒ[ƒN
- *	@param	line	ƒ‰ƒCƒ“
- *	@param	allput	ˆê‹C‚É‚Ð‚å‚¤‚¶‚·‚é‚©
+ *	@param	wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	line	ãƒ©ã‚¤ãƒ³
+ *	@param	allput	ä¸€æ°—ã«ã²ã‚‡ã†ã˜ã™ã‚‹ã‹
  */
 //-----------------------------------------------------------------------------
 static void ConfigBmpWinWriteSum( CONFIG_MAIN_DAT* wk,u16 line, BOOL allput )
@@ -1099,6 +1099,6 @@ static void ConfigBmpWinWriteSum( CONFIG_MAIN_DAT* wk,u16 line, BOOL allput )
 		mes_config_comment10,
 	};
 	
-	//ƒTƒ€ƒlƒCƒ‹
+	//ã‚µãƒ ãƒã‚¤ãƒ«
 	ConfigBmpWinWriteMessege( wk, line_msg[line], allput );
 }

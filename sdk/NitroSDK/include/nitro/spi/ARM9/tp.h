@@ -18,19 +18,19 @@
   do-indent.
 
   Revision 1.13  2004/12/29 03:59:49  takano_makoto
-  TP_RequestSetStabilityŠÖ”‚Ìˆø”‚É‰ß‹Ž‚Æ‚ÌŒÝŠ·‚Ì‚½‚ßretryƒpƒ‰ƒ[ƒ^‚ð’Ç‰Á(“à•”‚Å‚ÍŽg—p‚³‚ê‚È‚¢)
+  TP_RequestSetStabilityé–¢æ•°ã®å¼•æ•°ã«éŽåŽ»ã¨ã®äº’æ›ã®ãŸã‚retryãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ (å†…éƒ¨ã§ã¯ä½¿ç”¨ã•ã‚Œãªã„)
 
   Revision 1.12  2004/12/29 02:09:11  takano_makoto
-  SetStabilityŠÖ”‚Ìretryƒpƒ‰ƒ[ƒ^‚ð”pŽ~
+  SetStabilityé–¢æ•°ã®retryãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å»ƒæ­¢
 
   Revision 1.11  2004/06/10 05:27:03  yasu
   Add TP_GetCalibratedResult
 
   Revision 1.10  2004/06/02 06:15:27  takano_makoto
-  TP_RequestAutoSamplingStart(), TP_SetCallback()‚Ìˆø”•ÏX
+  TP_RequestAutoSamplingStart(), TP_SetCallback()ã®å¼•æ•°å¤‰æ›´
 
   Revision 1.9  2004/05/21 09:52:51  takano_makoto
-  TP_GetUserInfo()‚Ì’Ç‰Á
+  TP_GetUserInfo()ã®è¿½åŠ 
 
   Revision 1.8  2004/05/14 00:41:48  takano_makoto
   Modify Calibrate Parameter format.
@@ -70,57 +70,57 @@ extern "C" {
 #endif
 
 
-#define     TP_SAMPLING_FREQUENCY_MAX   16      // ƒTƒ“ƒvƒŠƒ“ƒO•p“x‚ÌŒÀ“x
+#define     TP_SAMPLING_FREQUENCY_MAX   16      // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é »åº¦ã®é™åº¦
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌÚG³”Û
-#define     TP_TOUCH_OFF                0       // G‚ê‚Ä‚¢‚È‚¢
-#define     TP_TOUCH_ON                 1       // G‚ê‚Ä‚¢‚é
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®æŽ¥è§¦æ­£å¦
+#define     TP_TOUCH_OFF                0       // è§¦ã‚Œã¦ã„ãªã„
+#define     TP_TOUCH_ON                 1       // è§¦ã‚Œã¦ã„ã‚‹
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒf[ƒ^—LŒø«³”Û
-#define     TP_VALIDITY_VALID           0       // —LŒø
-#define     TP_VALIDITY_INVALID_X       1       // XÀ•W‚ª–³Œø‚Èƒf[ƒ^
-#define     TP_VALIDITY_INVALID_Y       2       // YÀ•W‚ª–³Œø‚Èƒf[ƒ^
-#define     TP_VALIDITY_INVALID_XY      (TP_VALIDITY_INVALID_X | TP_VALIDITY_INVALID_Y) // XYÀ•W‹¤‚É–³Œø‚Èƒf[ƒ^
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿æœ‰åŠ¹æ€§æ­£å¦
+#define     TP_VALIDITY_VALID           0       // æœ‰åŠ¹
+#define     TP_VALIDITY_INVALID_X       1       // Xåº§æ¨™ãŒç„¡åŠ¹ãªãƒ‡ãƒ¼ã‚¿
+#define     TP_VALIDITY_INVALID_Y       2       // Yåº§æ¨™ãŒç„¡åŠ¹ãªãƒ‡ãƒ¼ã‚¿
+#define     TP_VALIDITY_INVALID_XY      (TP_VALIDITY_INVALID_X | TP_VALIDITY_INVALID_Y) // XYåº§æ¨™å…±ã«ç„¡åŠ¹ãªãƒ‡ãƒ¼ã‚¿
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ö”­s‚·‚é–½—ßŽí•Ê
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã¸ç™ºè¡Œã™ã‚‹å‘½ä»¤ç¨®åˆ¥
 typedef enum
 {
-    TP_REQUEST_COMMAND_SAMPLING = 0x0, // ƒTƒ“ƒvƒŠƒ“ƒO‚ð‚P‰ñŽÀs
-    TP_REQUEST_COMMAND_AUTO_ON = 0x1,  // ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒOŠJŽn
-    TP_REQUEST_COMMAND_AUTO_OFF = 0x2, // ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO’âŽ~
-    TP_REQUEST_COMMAND_SET_STABILITY = 0x3,     // ƒ`ƒƒƒ^ƒŠƒ“ƒO‘Îô’l‚ÌÝ’è
-    TP_REQUEST_COMMAND_AUTO_SAMPLING = 0x10     // ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO‚ÌŒ‹‰ÊŽóM
+    TP_REQUEST_COMMAND_SAMPLING = 0x0, // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’ï¼‘å›žå®Ÿè¡Œ
+    TP_REQUEST_COMMAND_AUTO_ON = 0x1,  // ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹
+    TP_REQUEST_COMMAND_AUTO_OFF = 0x2, // ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°åœæ­¢
+    TP_REQUEST_COMMAND_SET_STABILITY = 0x3,     // ãƒãƒ£ã‚¿ãƒªãƒ³ã‚°å¯¾ç­–å€¤ã®è¨­å®š
+    TP_REQUEST_COMMAND_AUTO_SAMPLING = 0x10     // ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã®çµæžœå—ä¿¡
 }
 TPRequestCommand;
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ö‚ÌƒRƒ}ƒ“ƒhƒtƒ‰ƒO
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã¸ã®ã‚³ãƒžãƒ³ãƒ‰ãƒ•ãƒ©ã‚°
 typedef enum
 {
-    TP_REQUEST_COMMAND_FLAG_SAMPLING = 1 << TP_REQUEST_COMMAND_SAMPLING,        // ƒTƒ“ƒvƒŠƒ“ƒO‚ð‚P‰ñŽÀs
-    TP_REQUEST_COMMAND_FLAG_AUTO_ON = 1 << TP_REQUEST_COMMAND_AUTO_ON,  // ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒOŠJŽn
-    TP_REQUEST_COMMAND_FLAG_AUTO_OFF = 1 << TP_REQUEST_COMMAND_AUTO_OFF,        // ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO’âŽ~
-    TP_REQUEST_COMMAND_FLAG_SET_STABILITY = 1 << TP_REQUEST_COMMAND_SET_STABILITY       // ƒ`ƒƒƒ^ƒŠƒ“ƒO‘Îô’l‚ÌÝ’è
+    TP_REQUEST_COMMAND_FLAG_SAMPLING = 1 << TP_REQUEST_COMMAND_SAMPLING,        // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’ï¼‘å›žå®Ÿè¡Œ
+    TP_REQUEST_COMMAND_FLAG_AUTO_ON = 1 << TP_REQUEST_COMMAND_AUTO_ON,  // ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹
+    TP_REQUEST_COMMAND_FLAG_AUTO_OFF = 1 << TP_REQUEST_COMMAND_AUTO_OFF,        // ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°åœæ­¢
+    TP_REQUEST_COMMAND_FLAG_SET_STABILITY = 1 << TP_REQUEST_COMMAND_SET_STABILITY       // ãƒãƒ£ã‚¿ãƒªãƒ³ã‚°å¯¾ç­–å€¤ã®è¨­å®š
 }
 TPRequestCommandFlag;
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹‚©‚ç‚ÌŒ‹‰ÊŽí•Ê
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‹ã‚‰ã®çµæžœç¨®åˆ¥
 typedef enum
 {
-    TP_RESULT_SUCCESS = 0,             // ¬Œ÷
-    TP_RESULT_INVALID_PARAMETER,       // ƒpƒ‰ƒ[ƒ^‚ªˆÙí
-    TP_RESULT_ILLEGAL_STATUS,          // –½—ß‚ðŽó‚¯•t‚¯‚ç‚ê‚È‚¢ó‘Ô
-    TP_RESULT_EXCLUSIVE,               // SPIƒfƒoƒCƒX‚ªƒrƒW[’†
-    TP_RESULT_PXI_BUSY                 // ARM7‚Æ‚ÌPXI’ÊM‚ªƒrƒW[’†
+    TP_RESULT_SUCCESS = 0,             // æˆåŠŸ
+    TP_RESULT_INVALID_PARAMETER,       // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒç•°å¸¸
+    TP_RESULT_ILLEGAL_STATUS,          // å‘½ä»¤ã‚’å—ã‘ä»˜ã‘ã‚‰ã‚Œãªã„çŠ¶æ…‹
+    TP_RESULT_EXCLUSIVE,               // SPIãƒ‡ãƒã‚¤ã‚¹ãŒãƒ“ã‚¸ãƒ¼ä¸­
+    TP_RESULT_PXI_BUSY                 // ARM7ã¨ã®PXIé€šä¿¡ãŒãƒ“ã‚¸ãƒ¼ä¸­
 }
 TPRequestResult;
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ìó‘Ô
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çŠ¶æ…‹
 typedef enum
 {
-    TP_STATE_READY = 0,                // ƒŒƒfƒBó‘Ô
-    TP_STATE_SAMPLING,                 // ƒTƒ“ƒvƒŠƒ“ƒOƒŠƒNƒGƒXƒg’†
-    TP_STATE_AUTO_SAMPLING,            // ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO’†
-    TP_STATE_AUTO_WAIT_END             // ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒOI—¹‘Ò‚¿
+    TP_STATE_READY = 0,                // ãƒ¬ãƒ‡ã‚£çŠ¶æ…‹
+    TP_STATE_SAMPLING,                 // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒªã‚¯ã‚¨ã‚¹ãƒˆä¸­
+    TP_STATE_AUTO_SAMPLING,            // ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ä¸­
+    TP_STATE_AUTO_WAIT_END             // ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°çµ‚äº†å¾…ã¡
 }
 TPState;
 
@@ -128,32 +128,32 @@ TPState;
     Structures definition
  *---------------------------------------------------------------------------*/
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹“ü—Í\‘¢‘Ì
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å…¥åŠ›æ§‹é€ ä½“
 typedef struct
 {
-    u16     x;                         // xÀ•W( 0 ` 4095 )
-    u16     y;                         // yÀ•W( 0 ` 4095 )
-    u16     touch;                     // ÚG³”Û
-    u16     validity;                  // —LŒø«³”Û
+    u16     x;                         // xåº§æ¨™( 0 ã€œ 4095 )
+    u16     y;                         // yåº§æ¨™( 0 ã€œ 4095 )
+    u16     touch;                     // æŽ¥è§¦æ­£å¦
+    u16     validity;                  // æœ‰åŠ¹æ€§æ­£å¦
 }
 TPData;
 
 
-#define TP_CALIBRATE_DOT_SCALE_SHIFT        8   // XƒhƒbƒgƒTƒCƒY‚Ì¸“x
-#define TP_CALIBRATE_ORIGIN_SCALE_SHIFT     2   // Œ´“_À•W‚Ì¸“x
+#define TP_CALIBRATE_DOT_SCALE_SHIFT        8   // Xãƒ‰ãƒƒãƒˆã‚µã‚¤ã‚ºã®ç²¾åº¦
+#define TP_CALIBRATE_ORIGIN_SCALE_SHIFT     2   // åŽŸç‚¹åº§æ¨™ã®ç²¾åº¦
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹ƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 typedef struct NvTpData
 {
-    s16     x0;                        // XŒ´“_À•W
-    s16     y0;                        // YŒ´“_À•W
-    s16     xDotSize;                  // XƒhƒbƒgƒTƒCƒY
-    s16     yDotSize;                  // YƒhƒbƒgƒTƒCƒY
+    s16     x0;                        // XåŽŸç‚¹åº§æ¨™
+    s16     y0;                        // YåŽŸç‚¹åº§æ¨™
+    s16     xDotSize;                  // Xãƒ‰ãƒƒãƒˆã‚µã‚¤ã‚º
+    s16     yDotSize;                  // Yãƒ‰ãƒƒãƒˆã‚µã‚¤ã‚º
 }
 TPCalibrateParam;                      // 8byte
 
 
-// ƒ†[ƒUƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ãƒ¦ãƒ¼ã‚¶ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 typedef void (*TPRecvCallback) (TPRequestCommand command, TPRequestResult result, u16 index);
 
 /*===========================================================================*
@@ -193,16 +193,16 @@ void    TP_GetUnCalibratedPoint(u16 *raw_x, u16 *raw_y, u16 dx, u16 dy);
 /*---------------------------------------------------------------------------*
   Name:         TP_RequestSetStability
 
-  Description:  ƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ`ƒƒƒ^ƒŠƒ“ƒO‘Îôƒpƒ‰ƒ[ƒ^‚ðÝ’è‚·‚éB
-                ’l‚ªˆÀ’è‚·‚é‚Ü‚Å‚ÌƒŠƒgƒ‰ƒCƒTƒ“ƒvƒŠƒ“ƒO‰ñ”‚ÆA
-                ’l‚ªˆÀ’è‚µ‚½‚Æ”»’è‚·‚é‚½‚ß‚ÌƒŒƒ“ƒW‚ðÝ’èB
+  Description:  ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ãƒãƒ£ã‚¿ãƒªãƒ³ã‚°å¯¾ç­–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
+                å€¤ãŒå®‰å®šã™ã‚‹ã¾ã§ã®ãƒªãƒˆãƒ©ã‚¤ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å›žæ•°ã¨ã€
+                å€¤ãŒå®‰å®šã—ãŸã¨åˆ¤å®šã™ã‚‹ãŸã‚ã®ãƒ¬ãƒ³ã‚¸ã‚’è¨­å®šã€‚
 
-  Arguments:    retry -  ‚±‚Ìˆø”‚Í“à•”‚Å‚ÍŽg—p‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB
-                range -  ’l‚ªˆÀ’è‚µ‚½‚©‚Ç‚¤‚©‚ð”»’è‚·‚é‚½‚ß‚ÌƒŒƒ“ƒW.
-                         (”ÍˆÍ:0`255, ƒfƒtƒHƒ‹ƒg’l:20)
+  Arguments:    retry -  ã“ã®å¼•æ•°ã¯å†…éƒ¨ã§ã¯ä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚
+                range -  å€¤ãŒå®‰å®šã—ãŸã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹ãŸã‚ã®ãƒ¬ãƒ³ã‚¸.
+                         (ç¯„å›²:0ã€œ255, ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤:20)
                 
-  Returns:      u32  - ƒŠƒNƒGƒXƒg‚ª¬Œ÷‚·‚ê‚Î 0
-                       Ž¸”s‚µ‚Ä‚¢‚ê‚Î 0ˆÈŠO.
+  Returns:      u32  - ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæˆåŠŸã™ã‚Œã° 0
+                       å¤±æ•—ã—ã¦ã„ã‚Œã° 0ä»¥å¤–.
  *---------------------------------------------------------------------------*/
 static inline u32 TP_RequestSetStability(u8 retry, u16 range)
 {
@@ -215,18 +215,18 @@ static inline u32 TP_RequestSetStability(u8 retry, u16 range)
 /*---------------------------------------------------------------------------*
   Name:         TP_RequestAutoSamplingStart
 
-  Description:  ARM7‚É‘Î‚µ‚Äƒ^ƒbƒ`ƒpƒlƒ‹’l‚ÌƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒOŠJŽn—v‹‚ðo‚·B
-                1ƒtƒŒ[ƒ€‚Éfrequence‰ñ‚Ìƒf[ƒ^‚ª‹Ï“™‚ÈŠÔŠu‚ÅƒTƒ“ƒvƒŠƒ“ƒO‚³‚êA
-                Œ‹‰Ê‚ðsamplingBus‚ÅŽw’è‚µ‚½”z—ñ‚ÖŠi”[‚·‚éB
+  Description:  ARM7ã«å¯¾ã—ã¦ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å€¤ã®ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹è¦æ±‚ã‚’å‡ºã™ã€‚
+                1ãƒ•ãƒ¬ãƒ¼ãƒ ã«frequenceå›žã®ãƒ‡ãƒ¼ã‚¿ãŒå‡ç­‰ãªé–“éš”ã§ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã•ã‚Œã€
+                çµæžœã‚’samplingBusã§æŒ‡å®šã—ãŸé…åˆ—ã¸æ ¼ç´ã™ã‚‹ã€‚
 
-  Arguments:    vcount       - ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO‚ðs‚¤Šî€‚Æ‚È‚éVCOUNT’l‚ðÝ’èB
-                frequence    - ‚PƒtƒŒ[ƒ€‚É‰½‰ñ‚ÌƒTƒ“ƒvƒŠƒ“ƒO‚ðs‚¤‚©‚ÌÝ’èB
-                samplingBufs - ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO‚µ‚½ƒf[ƒ^‚ðŠi”[‚·‚é—Ìˆæ‚ðÝ’èB
-                               Å’á‚Å‚àfrequence‚Ì‘å‚«‚³•ª‚Ì—Ìˆæ—pˆÓ‚·‚é•K—v‚ª
-                               ‚ ‚éB
+  Arguments:    vcount       - ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’è¡Œã†åŸºæº–ã¨ãªã‚‹VCOUNTå€¤ã‚’è¨­å®šã€‚
+                frequence    - ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä½•å›žã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’è¡Œã†ã‹ã®è¨­å®šã€‚
+                samplingBufs - ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹é ˜åŸŸã‚’è¨­å®šã€‚
+                               æœ€ä½Žã§ã‚‚frequenceã®å¤§ãã•åˆ†ã®é ˜åŸŸç”¨æ„ã™ã‚‹å¿…è¦ãŒ
+                               ã‚ã‚‹ã€‚
 
-  Returns:      u32  - ƒŠƒNƒGƒXƒg‚ª¬Œ÷‚·‚ê‚Î 0
-                       Ž¸”s‚µ‚Ä‚¢‚ê‚Î 0ˆÈŠO.
+  Returns:      u32  - ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæˆåŠŸã™ã‚Œã° 0
+                       å¤±æ•—ã—ã¦ã„ã‚Œã° 0ä»¥å¤–.
  *---------------------------------------------------------------------------*/
 static inline u32 TP_RequestAutoSamplingStart(u16 vcount, u16 frequence, TPData samplingBufs[],
                                               u16 bufSize)
@@ -240,12 +240,12 @@ static inline u32 TP_RequestAutoSamplingStart(u16 vcount, u16 frequence, TPData 
 /*---------------------------------------------------------------------------*
   Name:         TP_RequestAutoSamplingStop
 
-  Description:  ARM7‚É‘Î‚µ‚Äƒ^ƒbƒ`ƒpƒlƒ‹’l‚ÌƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO’âŽ~—v‹‚ðo‚·B
+  Description:  ARM7ã«å¯¾ã—ã¦ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å€¤ã®ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°åœæ­¢è¦æ±‚ã‚’å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      u32  - ƒŠƒNƒGƒXƒg‚ª¬Œ÷‚·‚ê‚Î 0
-                       Ž¸”s‚µ‚Ä‚¢‚ê‚Î 0ˆÈŠO.
+  Returns:      u32  - ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæˆåŠŸã™ã‚Œã° 0
+                       å¤±æ•—ã—ã¦ã„ã‚Œã° 0ä»¥å¤–.
  *---------------------------------------------------------------------------*/
 static inline u32 TP_RequestAutoSamplingStop(void)
 {
@@ -258,18 +258,18 @@ static inline u32 TP_RequestAutoSamplingStop(void)
 /*---------------------------------------------------------------------------*
   Name:         TP_RequestRawSampling
 
-  Description:  ARM7‚É‘Î‚µ‚Äƒ^ƒbƒ`ƒpƒlƒ‹’l‚ð—v‹‚µAƒLƒƒƒŠƒuƒŒ[ƒg‚³‚ê‚Ä‚¢‚È‚¢
-                ¶‚Ì’l‚ð“Ç‚Ýo‚·B
-                ‚±‚±‚Å“¾‚ç‚ê‚é’l‚Íƒ`ƒƒƒ^ƒŠƒ“ƒO‘ÎôÏ‚ÝB
-                ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO’†‚ÍŽg—p‚Å‚«‚È‚¢B
+  Description:  ARM7ã«å¯¾ã—ã¦ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å€¤ã‚’è¦æ±‚ã—ã€ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ãƒˆã•ã‚Œã¦ã„ãªã„
+                ç”Ÿã®å€¤ã‚’èª­ã¿å‡ºã™ã€‚
+                ã“ã“ã§å¾—ã‚‰ã‚Œã‚‹å€¤ã¯ãƒãƒ£ã‚¿ãƒªãƒ³ã‚°å¯¾ç­–æ¸ˆã¿ã€‚
+                ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ä¸­ã¯ä½¿ç”¨ã§ããªã„ã€‚
                 
   Arguments:    None.
 
-  Returns:      result - ƒ^ƒbƒ`ƒpƒlƒ‹’l‚ðŽæ“¾‚·‚é‚½‚ß‚Ì•Ï”‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                         x,yÀ•W‚ÍƒLƒƒƒŠƒuƒŒ[ƒg‚³‚ê‚Ä‚¢‚È‚¢’l(0`4095)‚ð‚Æ‚éB
+  Returns:      result - ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å€¤ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®å¤‰æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                         x,yåº§æ¨™ã¯ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ãƒˆã•ã‚Œã¦ã„ãªã„å€¤(0ã€œ4095)ã‚’ã¨ã‚‹ã€‚
                 
-                u32    - ƒŠƒNƒGƒXƒg‚ª¬Œ÷‚·‚ê‚Î 0
-                         Ž¸”s‚µ‚Ä‚¢‚ê‚Î 0ˆÈŠO.
+                u32    - ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæˆåŠŸã™ã‚Œã° 0
+                         å¤±æ•—ã—ã¦ã„ã‚Œã° 0ä»¥å¤–.
  *---------------------------------------------------------------------------*/
 static inline u32 TP_RequestRawSampling(TPData *result)
 {
@@ -280,20 +280,20 @@ static inline u32 TP_RequestRawSampling(TPData *result)
 /*---------------------------------------------------------------------------*
   Name:         TP_RequestCalibratedSampling
 
-  Description:  ARM7‚É‘Î‚µ‚Äƒ^ƒbƒ`ƒpƒlƒ‹’l‚ð—v‹‚µAƒLƒƒƒŠƒuƒŒ[ƒg‚³‚ê‚½
-                ‰æ–ÊÀ•W‚É‘Î‰ž‚µ‚½’l‚ð“Ç‚Ýo‚·B
-                ‚±‚±‚Å“¾‚ç‚ê‚é’l‚Íƒ`ƒƒƒ^ƒŠƒ“ƒO‘ÎôÏ‚ÝB
-                ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO’†‚ÍŽg—p‚Å‚«‚È‚¢B
+  Description:  ARM7ã«å¯¾ã—ã¦ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å€¤ã‚’è¦æ±‚ã—ã€ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ãƒˆã•ã‚ŒãŸ
+                ç”»é¢åº§æ¨™ã«å¯¾å¿œã—ãŸå€¤ã‚’èª­ã¿å‡ºã™ã€‚
+                ã“ã“ã§å¾—ã‚‰ã‚Œã‚‹å€¤ã¯ãƒãƒ£ã‚¿ãƒªãƒ³ã‚°å¯¾ç­–æ¸ˆã¿ã€‚
+                ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ä¸­ã¯ä½¿ç”¨ã§ããªã„ã€‚
                 
   Arguments:    None.
 
-  Returns:      result - ƒ^ƒbƒ`ƒpƒlƒ‹’l‚ðŽæ“¾‚·‚é‚½‚ß‚Ì•Ï”‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                         x,yÀ•W‚Í‰æ–ÊÀ•W‚É‘Î‰ž‚µ‚½’l‚ð‚Æ‚éB
-                         ‚à‚µ‚àƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“ƒpƒ‰ƒ[ƒ^‚ªÝ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡
-                         ‚É‚Í(0`4095)‚Ìƒ^ƒbƒ`ƒpƒlƒ‹’l‚ª“¾‚ç‚ê‚éB
+  Returns:      result - ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å€¤ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®å¤‰æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                         x,yåº§æ¨™ã¯ç”»é¢åº§æ¨™ã«å¯¾å¿œã—ãŸå€¤ã‚’ã¨ã‚‹ã€‚
+                         ã‚‚ã—ã‚‚ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆ
+                         ã«ã¯(0ã€œ4095)ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å€¤ãŒå¾—ã‚‰ã‚Œã‚‹ã€‚
                 
-                u32    - ƒŠƒNƒGƒXƒg‚ª¬Œ÷‚·‚ê‚Î 0
-                         Ž¸”s‚µ‚Ä‚¢‚ê‚Î 0ˆÈŠO.
+                u32    - ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæˆåŠŸã™ã‚Œã° 0
+                         å¤±æ•—ã—ã¦ã„ã‚Œã° 0ä»¥å¤–.
  *---------------------------------------------------------------------------*/
 static inline u32 TP_RequestCalibratedSampling(TPData *result)
 {

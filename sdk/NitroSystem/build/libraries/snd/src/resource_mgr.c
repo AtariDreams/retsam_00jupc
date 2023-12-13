@@ -32,11 +32,11 @@ static u32 sAlarmLock;
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndLockChannel
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒƒbƒN
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ­ãƒƒã‚¯
 
-  Arguments:    chBitFlag - ƒ`ƒƒƒ“ƒlƒ‹ƒrƒbƒgƒtƒ‰ƒO
+  Arguments:    chBitFlag - ãƒãƒ£ãƒ³ãƒãƒ«ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
 
-  Returns:      ƒƒbƒN‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ­ãƒƒã‚¯ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndLockChannel( u32 chBitFlag )
 {
@@ -54,9 +54,9 @@ BOOL NNS_SndLockChannel( u32 chBitFlag )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndUnlockChannel
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒAƒ“ƒƒbƒN
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«ã®ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 
-  Arguments:    chBitFlag - ƒ`ƒƒƒ“ƒlƒ‹ƒrƒbƒgƒtƒ‰ƒO
+  Arguments:    chBitFlag - ãƒãƒ£ãƒ³ãƒãƒ«ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -74,11 +74,11 @@ void NNS_SndUnlockChannel( u32 chBitFlag )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndLockCapture
 
-  Description:  ƒLƒƒƒvƒ`ƒƒ[‚ÌƒƒbƒN
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã®ãƒ­ãƒƒã‚¯
 
-  Arguments:    capBitFlag - ƒLƒƒƒvƒ`ƒƒ[ƒrƒbƒgƒtƒ‰ƒO
+  Arguments:    capBitFlag - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
 
-  Returns:      ƒƒbƒN‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ­ãƒƒã‚¯ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndLockCapture( u32 capBitFlag )
 {
@@ -92,9 +92,9 @@ BOOL NNS_SndLockCapture( u32 capBitFlag )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndUnlockCapture
 
-  Description:  ƒLƒƒƒvƒ`ƒƒ[‚ÌƒAƒ“ƒƒbƒN
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 
-  Arguments:    capBitFlag - ƒLƒƒƒvƒ`ƒƒ[ƒrƒbƒgƒtƒ‰ƒO
+  Arguments:    capBitFlag - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -108,12 +108,12 @@ void NNS_SndUnlockCapture( u32 capBitFlag )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndAllocAlarm
 
-  Description:  ƒAƒ‰[ƒ€‚ÌŠm•Û
+  Description:  ã‚¢ãƒ©ãƒ¼ãƒ ã®ç¢ºä¿
 
   Arguments:    None.
 
-  Returns:      Šm•Û‚É¬Œ÷‚µ‚½‚çAƒAƒ‰[ƒ€”Ô†‚ğ•Ô‚·
-                Šm•Û‚É¸”s‚µ‚½‚çA-1‚ğ•Ô‚·
+  Returns:      ç¢ºä¿ã«æˆåŠŸã—ãŸã‚‰ã€ã‚¢ãƒ©ãƒ¼ãƒ ç•ªå·ã‚’è¿”ã™
+                ç¢ºä¿ã«å¤±æ•—ã—ãŸã‚‰ã€-1ã‚’è¿”ã™
  *---------------------------------------------------------------------------*/
 int NNS_SndAllocAlarm( void )
 {
@@ -134,9 +134,9 @@ int NNS_SndAllocAlarm( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndFreeAlarm
 
-  Description:  ƒAƒ‰[ƒ€‚Ì‰ğ•ú
+  Description:  ã‚¢ãƒ©ãƒ¼ãƒ ã®è§£æ”¾
 
-  Arguments:    alarmNo - ƒAƒ‰[ƒ€”Ô†
+  Arguments:    alarmNo - ã‚¢ãƒ©ãƒ¼ãƒ ç•ªå·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -155,7 +155,7 @@ void NNS_SndFreeAlarm( int alarmNo )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndInitResourceMgr
 
-  Description:  ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ì‰Šú‰»
+  Description:  ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®åˆæœŸåŒ–
 
   Arguments:    None.
 
@@ -171,11 +171,11 @@ void NNSi_SndInitResourceMgr( void )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_GetLockedChannel
 
-  Description:  ƒƒbƒNÏ‚İƒ`ƒƒƒ“ƒlƒ‹”Ô†‚Ìæ“¾
+  Description:  ãƒ­ãƒƒã‚¯æ¸ˆã¿ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·ã®å–å¾—
 
   Arguments:    None.
 
-  Returns:      ƒƒbƒNÏ‚İƒ`ƒƒƒ“ƒlƒ‹‚Ìƒrƒbƒgƒtƒ‰ƒO
+  Returns:      ãƒ­ãƒƒã‚¯æ¸ˆã¿ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
  *---------------------------------------------------------------------------*/
 u32 NNSi_GetLockedChannel( void )
 {

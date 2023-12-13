@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	roulette_clact.c
- * @brief	uƒoƒgƒ‹ƒ‹[ƒŒƒbƒgvƒZƒ‹ƒAƒNƒ^[
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
  * @author	Satoshi Nohara
  * @date	06.09.05
  */
@@ -25,11 +25,11 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒLƒƒƒ‰ƒNƒ^[ƒ}ƒl[ƒWƒƒ[
-#define CHAR_CONT_NUM						(32)//(8)//(6)//(16)//(3)		//ƒLƒƒƒ‰ƒNƒ^§Œä”
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+#define CHAR_CONT_NUM						(32)//(8)//(6)//(16)//(3)		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ¶å¾¡æ•°
 #if 0
 #define CHAR_VRAMTRANS_MAIN_SIZE			(2048)
 #define CHAR_VRAMTRANS_SUB_SIZE				(2048)
@@ -40,8 +40,8 @@
 //#define CHAR_VRAMTRANS_SUB_SIZE				(4096)
 #endif
 
-//ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[
-#define PLTT_ITEMKEEP_NUM					(1)			//ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“ƒpƒŒƒbƒg
+//ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+#define PLTT_ITEMKEEP_NUM					(1)			//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆ
 
 enum{
 	DISP_MAIN_OBJ_PAL = 8,								//
@@ -51,32 +51,32 @@ enum{
 
 //==============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//ƒŠƒ\[ƒXƒ^ƒCƒv—ñ‹“‚É‡‚í‚¹‚é(include/system/clact_util_res.h)
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[“o˜^”ƒe[ƒuƒ‹
+//ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—åˆ—æŒ™ã«åˆã‚ã›ã‚‹(include/system/clact_util_res.h)
+//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç™»éŒ²æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 ResEntryNumTbl[ROULETTE_RESOURCE_NUM] = {
 #if 0
-	2,			//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	3,			//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	2,			//ƒZƒ‹ƒŠƒ\[ƒX
-	2,			//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	2,			//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	3,			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	2,			//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	2,			//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 #else
-	ROULETTE_RES_OBJ_MAX,		//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	ROULETTE_RES_OBJ_MAX,		//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	ROULETTE_RES_OBJ_MAX,		//ƒZƒ‹ƒŠƒ\[ƒX
-	ROULETTE_RES_OBJ_MAX,		//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	ROULETTE_RES_OBJ_MAX,		//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	ROULETTE_RES_OBJ_MAX,		//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	ROULETTE_RES_OBJ_MAX,		//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	ROULETTE_RES_OBJ_MAX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 #endif
 };
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
-//RouletteClactŠÖ”
+//RouletteClacté–¢æ•°
 //void			RouletteClact_InitCellActor( ROULETTE_CLACT* wk );
 void			RouletteClact_InitCellActor( ROULETTE_CLACT* wk, POKEPARTY* m_party, POKEPARTY* e_pary, u8 type );
 CLACT_WORK_PTR	RouletteClact_SetActor( ROULETTE_CLACT* wk, u32 char_no, u32 pltt_no, u32 cell_no, u32 anm_no, u32 pri, int bg_pri, u8 disp );
@@ -92,15 +92,15 @@ static void		RouletteClact_ButtonLoad( ROULETTE_CLACT* wk );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		ROULETTE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -112,62 +112,62 @@ void RouletteClact_InitCellActor( ROULETTE_CLACT* wk, POKEPARTY* m_party, POKEPA
 
 	initVramTransferManagerHeap( 32, HEAPID_ROULETTE );
 
-	//ƒLƒƒƒ‰ƒNƒ^[EƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitCharPlttManager();
 
-	//OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	//OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	//‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	//ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	//‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
-	REND_OAMInit(	0, 128,				//ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-					0, 32,				//ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-					0, 128,				//ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-					0, 32,				//ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+	//å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	//ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	//ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
+	REND_OAMInit(	0, 128,				//ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+					0, 32,				//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+					0, 128,				//ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+					0, 32,				//ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 					HEAPID_ROULETTE);
 	
-	//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚ÌŠÈ’P‰Šú‰»(ì¬‚³‚ê‚½ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚ª•Ô‚é)
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ç°¡å˜åˆæœŸåŒ–(ä½œæˆã•ã‚ŒãŸã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãŒè¿”ã‚‹)
 	wk->ClactSet = CLACT_U_SetEasyInit( ROULETTE_CLACT_OBJ_MAX, &wk->RendData, HEAPID_ROULETTE );
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for( i=0; i < ROULETTE_RESOURCE_NUM ;i++ ){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for( i=0; i < ROULETTE_RESOURCE_NUM ;i++ ){		//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->ResMan[i] = CLACT_U_ResManagerInit( ResEntryNumTbl[i], i, HEAPID_ROULETTE );
 	}
 
 	/***************/
-	//	‰º‰æ–Ê
+	//	ä¸‹ç”»é¢
 	/***************/
 	RouletteClact_ButtonLoad( wk );
 
 	/***************/
-	//	ã‰æ–Ê
+	//	ä¸Šç”»é¢
 	/***************/
 	RouletteClact_Load( wk );
 
 	/******************************/
-	//	ã‰æ–Ê(ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“)
+	//	ä¸Šç”»é¢(ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³)
 	/******************************/
 	RouletteClact_ItemKeepLoad( wk );
 
 	/******************************/
-	//	ã‰æ–Ê(ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“)
+	//	ä¸Šç”»é¢(ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³)
 	/******************************/
 	RouletteClact_IconLoad( wk, m_party, e_party, type );
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 	//for( i=0; i < ROULETTE_RES_OBJ_MAX ;i++ ){
 	for( i=0; i < ROULETTE_ID_CHAR_MAX ;i++ ){
-		CLACT_U_CharManagerSet( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );	//Char“]‘—
-		//CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ƒpƒŒƒbƒg“]‘—
+		CLACT_U_CharManagerSet( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );	//Charè»¢é€
+		//CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	}
 
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 	//for( i=0; i < ROULETTE_RES_OBJ_MAX ;i++ ){
 	for( i=0; i < ROULETTE_ID_PLTT_MAX ;i++ ){
-		CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ƒpƒŒƒbƒg“]‘—
+		CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	}
 
 
@@ -179,9 +179,9 @@ void RouletteClact_InitCellActor( ROULETTE_CLACT* wk, POKEPARTY* m_party, POKEPA
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‚ðƒZƒbƒg
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -194,13 +194,13 @@ CLACT_WORK_PTR	RouletteClact_SetActor( ROULETTE_CLACT* wk, u32 char_no, u32 pltt
 	
 	//OS_Printf( "cell_no = %d\n", cell_no );
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬	
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ	
 	CLACT_U_MakeHeader(	&cl_act_header,
-						//“o˜^‚µ‚½ƒŠƒ\[ƒX‚ÌID(ResObjTbl[id])
+						//ç™»éŒ²ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã®ID(ResObjTbl[id])
 						//data_no, data_no, data_no, data_no,
 						char_no, pltt_no, cell_no, cell_no,
 						CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
-						0, bg_pri,						//VRAM“]‘—‚©ƒtƒ‰ƒOABG‚Æ‚Ì—Dæ‡ˆÊ
+						0, bg_pri,						//VRAMè»¢é€ã‹ãƒ•ãƒ©ã‚°ã€BGã¨ã®å„ªå…ˆé †ä½
 						wk->ResMan[CLACT_U_CHAR_RES],
 						wk->ResMan[CLACT_U_PLTT_RES],
 						wk->ResMan[CLACT_U_CELL_RES],
@@ -208,16 +208,16 @@ CLACT_WORK_PTR	RouletteClact_SetActor( ROULETTE_CLACT* wk, u32 char_no, u32 pltt
 						NULL,NULL);
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 
 		add.ClActSet	= wk->ClactSet;
 		add.ClActHeader	= &cl_act_header;
 
 		//add.mat.x		= 0;//FX32_CONST(32) ;
-		//add.mat.y		= 0;//FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		//add.mat.y		= 0;//FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.x		= 0;
-		add.mat.y		= 0;						//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		add.mat.y		= 0;						//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.z		= 0;
 		add.sca.x		= FX32_ONE;
 		add.sca.y		= FX32_ONE;
@@ -230,15 +230,15 @@ CLACT_WORK_PTR	RouletteClact_SetActor( ROULETTE_CLACT* wk, u32 char_no, u32 pltt
 			add.DrawArea= NNS_G2D_VRAM_TYPE_2DMAIN;
 		}else{
 			add.DrawArea= NNS_G2D_VRAM_TYPE_2DSUB;
-			add.mat.y += SUB_SURFACE_Y;				//À•W‚ð•â³
+			add.mat.y += SUB_SURFACE_Y;				//åº§æ¨™ã‚’è£œæ­£
 		}
 
-		//ƒZƒ‹ƒAƒNƒ^[•\Ž¦ŠJŽn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 		act = CLACT_Add(&add);
-		//CLACT_SetAnmFlag( act, 0 );				//”ñƒAƒjƒ
-		CLACT_SetAnmFlag( act, 1 );					//ƒI[ƒgƒAƒjƒ
-		CLACT_SetAnmFrame( act, FX32_ONE );			//ƒI[ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ðÝ’è
-		CLACT_AnmChg( act, anm_no );				//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ðƒ`ƒFƒ“ƒW‚·‚é
+		//CLACT_SetAnmFlag( act, 0 );				//éžã‚¢ãƒ‹ãƒ¡
+		CLACT_SetAnmFlag( act, 1 );					//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
+		CLACT_SetAnmFrame( act, FX32_ONE );			//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®š
+		CLACT_AnmChg( act, anm_no );				//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸ã™ã‚‹
 	}	
 
 	return act;
@@ -246,9 +246,9 @@ CLACT_WORK_PTR	RouletteClact_SetActor( ROULETTE_CLACT* wk, u32 char_no, u32 pltt
 
 //--------------------------------------------------------------
 /**
- * @brief	2DƒZƒ‹ƒIƒuƒWƒFƒNƒg‰ð•ú
+ * @brief	2Dã‚»ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè§£æ”¾
  *
- * @param	wk		ROULETTE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -257,26 +257,26 @@ void RouletteClact_DeleteCellObject(ROULETTE_CLACT* wk)
 {
 	u8 i;
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ð•ú
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	//for( i=0; i < ROULETTE_RES_OBJ_MAX ;i++ ){
 	for( i=0; i < ROULETTE_ID_CHAR_MAX ;i++ ){
-		CLACT_U_CharManagerDelete( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );//char“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		CLACT_U_CharManagerDelete( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );//charè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	}
 
 	//for( i=0; i < ROULETTE_RES_OBJ_MAX ;i++ ){
 	for( i=0; i < ROULETTE_ID_PLTT_MAX ;i++ ){
-		CLACT_U_PlttManagerDelete( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );//pltt“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		CLACT_U_PlttManagerDelete( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );//plttè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	}
 		
-	//ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	//ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for( i=0; i < ROULETTE_RESOURCE_NUM ;i++ ){
 		CLACT_U_ResManagerDelete( wk->ResMan[i] );
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->ClactSet);
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
 	DeleteCharManager();
@@ -294,7 +294,7 @@ void RouletteClact_DeleteCellObject(ROULETTE_CLACT* wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰ƒNƒ^[EƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+ * @brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -303,23 +303,23 @@ void RouletteClact_DeleteCellObject(ROULETTE_CLACT* wk)
 //--------------------------------------------------------------
 static void InitCharPlttManager(void)
 {
-	//ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
-			CHAR_CONT_NUM,						//ƒLƒƒƒ‰ƒNƒ^§Œä”
-			CHAR_VRAMTRANS_MAIN_SIZE,			//ƒƒCƒ“‰æ–Ê‚ÌVram“]‘——p‚É—pˆÓ‚·‚éVramƒTƒCƒY
-			CHAR_VRAMTRANS_SUB_SIZE,			//ƒTƒu‰æ–Ê‚ÌVram“]‘——p‚É—pˆÓ‚·‚éVramƒTƒCƒY
-			HEAPID_ROULETTE						//Žg—p‚·‚éƒq[ƒv
+			CHAR_CONT_NUM,						//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ¶å¾¡æ•°
+			CHAR_VRAMTRANS_MAIN_SIZE,			//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®Vramè»¢é€ç”¨ã«ç”¨æ„ã™ã‚‹Vramã‚µã‚¤ã‚º
+			CHAR_VRAMTRANS_SUB_SIZE,			//ã‚µãƒ–ç”»é¢ã®Vramè»¢é€ç”¨ã«ç”¨æ„ã™ã‚‹Vramã‚µã‚¤ã‚º
+			HEAPID_ROULETTE						//ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 		};
 		InitCharManagerReg( &cm, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K );
 	}
 
-	//ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	//InitPlttManager((DISP_MAIN_OBJ_PAL + PLTT_ITEMKEEP_NUM + POKEICON_PAL_MAX), HEAPID_ROULETTE);
 	InitPlttManager( (DISP_MAIN_OBJ_PAL + DISP_SUB_OBJ_PAL + 
 						PLTT_ITEMKEEP_NUM + POKEICON_PAL_MAX), HEAPID_ROULETTE );
 
-	//“Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+	//èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 
@@ -328,35 +328,35 @@ static void InitCharPlttManager(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ‹[ƒŒƒbƒgƒf[ƒ^‚Ìƒ[ƒh
+ * ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void RouletteClact_Load( ROULETTE_CLACT* wk )
 {
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_CSR][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 					wk->ResMan[CLACT_U_CHAR_RES],
 					ARC_FRONTIER_OBJ, BR_OBJ_NCGR_BIN,
 					1, ROULETTE_ID_OBJ_CSR, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_ROULETTE);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_CSR][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 					wk->ResMan[CLACT_U_PLTT_RES],
 					ARC_FRONTIER_OBJ, BR_OBJ_NCLR,
 					FALSE, ROULETTE_ID_OBJ_CSR, NNS_G2D_VRAM_TYPE_2DMAIN, 
 					DISP_MAIN_OBJ_PAL,HEAPID_ROULETTE);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_CSR][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELL_RES],
 					ARC_FRONTIER_OBJ, BR_OBJ_NCER_BIN,
 					1, ROULETTE_ID_OBJ_CSR, CLACT_U_CELL_RES, HEAPID_ROULETTE);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_CSR][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELLANM_RES],
 					ARC_FRONTIER_OBJ, BR_OBJ_NANR_BIN,
@@ -367,9 +367,9 @@ static void RouletteClact_Load( ROULETTE_CLACT* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚Ìƒ[ƒh
+ * ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -381,25 +381,25 @@ static void RouletteClact_ItemKeepLoad( ROULETTE_CLACT* wk )
 	
 	p_handle = ArchiveDataHandleOpen( ARC_PLIST_GRA,  HEAPID_ROULETTE ); 
 	
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_ITEMKEEP][CLACT_U_CHAR_RES] = 
 		CLACT_U_ResManagerResAddArcChar_ArcHandle(
 		wk->ResMan[CLACT_U_CHAR_RES], p_handle, Pokelist_ItemIconCgxArcGet(),
 		0, ROULETTE_ID_OBJ_ITEMKEEP, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_ROULETTE );
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_ITEMKEEP][CLACT_U_PLTT_RES] = 
 		CLACT_U_ResManagerResAddArcPltt(
 		wk->ResMan[CLACT_U_PLTT_RES], ARC_PLIST_GRA, Pokelist_ItemIconPalArcGet(),
 		FALSE, ROULETTE_ID_OBJ_ITEMKEEP, NNS_G2D_VRAM_TYPE_2DMAIN,POKEICON_PAL_MAX,HEAPID_ROULETTE );
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_ITEMKEEP][CLACT_U_CELL_RES] =
 		CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 		wk->ResMan[CLACT_U_CELL_RES], p_handle, Pokelist_ItemIconCellArcGet(),
 		0, ROULETTE_ID_OBJ_ITEMKEEP, CLACT_U_CELL_RES, HEAPID_ROULETTE );
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_ITEMKEEP][CLACT_U_CELLANM_RES] = 
 		CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 		wk->ResMan[CLACT_U_CELLANM_RES], p_handle, Pokelist_ItemIconCAnmArcGet(),
@@ -411,9 +411,9 @@ static void RouletteClact_ItemKeepLoad( ROULETTE_CLACT* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ìƒ[ƒh
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -425,10 +425,10 @@ static void RouletteClact_IconLoad( ROULETTE_CLACT* wk, POKEPARTY* m_party, POKE
 	ARCHANDLE* p_handle;
 	u32	i;
 
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	p_handle = ArchiveDataHandleOpen( ARC_POKEICON, HEAPID_ROULETTE );	
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_ICON1][CLACT_U_PLTT_RES] = 
 			CLACT_U_ResManagerResAddArcPltt(
 				wk->ResMan[CLACT_U_PLTT_RES],
@@ -436,7 +436,7 @@ static void RouletteClact_IconLoad( ROULETTE_CLACT* wk, POKEPARTY* m_party, POKE
 				FALSE, ROULETTE_ID_PLTT_ICON, NNS_G2D_VRAM_TYPE_2DMAIN,
 				POKEICON_PAL_MAX,HEAPID_ROULETTE);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_ICON1][CLACT_U_CELL_RES] = 
 			CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 				wk->ResMan[CLACT_U_CELL_RES],
@@ -445,7 +445,7 @@ static void RouletteClact_IconLoad( ROULETTE_CLACT* wk, POKEPARTY* m_party, POKE
 				p_handle, PokeIconAnmCellArcIndexGet(),
 				0, ROULETTE_ID_CELL_ICON, CLACT_U_CELL_RES, HEAPID_ROULETTE);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_ICON1][CLACT_U_CELLANM_RES] = 
 			CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 				wk->ResMan[CLACT_U_CELLANM_RES],
@@ -454,14 +454,14 @@ static void RouletteClact_IconLoad( ROULETTE_CLACT* wk, POKEPARTY* m_party, POKE
 				p_handle, PokeIconAnmCellAnmArcIndexGet(),
 				0, ROULETTE_ID_CELLANM_ICON, CLACT_U_CELLANM_RES, HEAPID_ROULETTE);
 
-	//’ÊM‘ÎíŽž‚Ì–¡•û2+2 “G2+2‚ÌÅ‘å8•C
+	//é€šä¿¡å¯¾æˆ¦æ™‚ã®å‘³æ–¹2+2 æ•µ2+2ã®æœ€å¤§8åŒ¹
 	for( i=0; i < ROULETTE_COMM_POKE_TOTAL_NUM ;i++ ){
 
 		if( i == 3 ){
-			//’ÊMƒ^ƒCƒv‚Å‚È‚¢Žž
+			//é€šä¿¡ã‚¿ã‚¤ãƒ—ã§ãªã„æ™‚
 			if( type == FALSE ){
-				m_poke = PokeParty_GetMemberPointer( m_party, 0 );	//Žg—p‚µ‚È‚¢‚ª‘ã“ü‚Ì‚Ý‚µ‚Ä‚¨‚­
-				e_poke = PokeParty_GetMemberPointer( e_party, 0 );	//Žg—p‚µ‚È‚¢‚ª‘ã“ü‚Ì‚Ý‚µ‚Ä‚¨‚­
+				m_poke = PokeParty_GetMemberPointer( m_party, 0 );	//ä½¿ç”¨ã—ãªã„ãŒä»£å…¥ã®ã¿ã—ã¦ãŠã
+				e_poke = PokeParty_GetMemberPointer( e_party, 0 );	//ä½¿ç”¨ã—ãªã„ãŒä»£å…¥ã®ã¿ã—ã¦ãŠã
 			}else{
 				m_poke = PokeParty_GetMemberPointer( m_party, i );
 				e_poke = PokeParty_GetMemberPointer( e_party, i );
@@ -490,35 +490,35 @@ static void RouletteClact_IconLoad( ROULETTE_CLACT* wk, POKEPARTY* m_party, POKE
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ‹[ƒŒƒbƒg’âŽ~ƒ{ƒ^ƒ“ƒf[ƒ^‚Ìƒ[ƒh
+ * ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆåœæ­¢ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void RouletteClact_ButtonLoad( ROULETTE_CLACT* wk )
 {
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_BUTTON][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 					wk->ResMan[CLACT_U_CHAR_RES],
 					ARC_FRONTIER_OBJ, BR_BUTTON_NCGR_BIN,
 					1, ROULETTE_ID_OBJ_BUTTON, NNS_G2D_VRAM_TYPE_2DSUB, HEAPID_ROULETTE);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_BUTTON][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 					wk->ResMan[CLACT_U_PLTT_RES],
 					ARC_FRONTIER_OBJ, BR_BUTTON_NCLR,
 					FALSE, ROULETTE_ID_OBJ_BUTTON, NNS_G2D_VRAM_TYPE_2DSUB, 
 					DISP_SUB_OBJ_PAL,HEAPID_ROULETTE);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_BUTTON][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELL_RES],
 					ARC_FRONTIER_OBJ, BR_BUTTON_NCER_BIN,
 					1, ROULETTE_ID_OBJ_BUTTON, CLACT_U_CELL_RES, HEAPID_ROULETTE);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[ROULETTE_RES_OBJ_BUTTON][CLACT_U_CELLANM_RES]=CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELLANM_RES],
 					ARC_FRONTIER_OBJ, BR_BUTTON_NANR_BIN,

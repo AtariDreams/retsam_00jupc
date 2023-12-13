@@ -32,25 +32,25 @@ static NNSG2dRndCoreInstance*     pTheInstance_ = NULL;
 static const MtxFx32              mtxIdentity_ = { FX32_ONE,        0, 
                                                           0, FX32_ONE, 
                                                           0,        0 };
-// ŠÖ”‚ª Begin - End Rendering ƒuƒƒbƒN ‚Ì’†‚ÅŒÄ‚Î‚ê‚Ä‚¢‚é‚© 
+// é–¢æ•°ãŒ Begin - End Rendering ãƒ–ãƒ­ãƒƒã‚¯ ã®ä¸­ã§å‘¼ã°ã‚Œã¦ã„ã‚‹ã‹ 
 #define NNS_G2D_RND_BETWEEN_BEGINEND_ASSERT(  ) \
        NNS_G2D_ASSERTMSG( pTheInstance_ != NULL, "Please call this method between Begin - End Rendering" ) 
 
-// ŠÖ”‚ª Begin - End Rendering ƒuƒƒbƒN ‚ÌŠO‚ÅŒÄ‚Î‚ê‚Ä‚¢‚é‚© 
+// é–¢æ•°ãŒ Begin - End Rendering ãƒ–ãƒ­ãƒƒã‚¯ ã®å¤–ã§å‘¼ã°ã‚Œã¦ã„ã‚‹ã‹ 
 #define NNS_G2D_RND_OUTSIDE_BEGINEND_ASSERT(  ) \
        NNS_G2D_ASSERTMSG( pTheInstance_ == NULL, "Please call this method outside Begin - End Rendering" ) 
 
 
 
 //------------------------------------------------------------------------------
-// MtxChache affine Index ƒAƒNƒZƒT
+// MtxChache affine Index ã‚¢ã‚¯ã‚»ã‚µ
 // 
-//    NNS_G2D_SURFACETYPE_MAIN3D = 0x00,  // 3D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“   ‚ğg—p
-//    NNS_G2D_SURFACETYPE_MAIN2D = 0x01,  // 2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“ A ‚ğg—p
-//    NNS_G2D_SURFACETYPE_SUB2D  = 0x02,  // 2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“ B ‚ğg—p
+//    NNS_G2D_SURFACETYPE_MAIN3D = 0x00,  // 3D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³   ã‚’ä½¿ç”¨
+//    NNS_G2D_SURFACETYPE_MAIN2D = 0x01,  // 2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ A ã‚’ä½¿ç”¨
+//    NNS_G2D_SURFACETYPE_SUB2D  = 0x02,  // 2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ B ã‚’ä½¿ç”¨
 //    NNS_G2D_SURFACETYPE_MAX    = 0x03
 //
-// ’ˆÓFEnum ’l ‚Æ–§Ú‚É ˆË‘¶‚µ‚Ä‚¢‚éˆ—‚Å‚· 
+// æ³¨æ„ï¼šEnum å€¤ ã¨å¯†æ¥ã« ä¾å­˜ã—ã¦ã„ã‚‹å‡¦ç†ã§ã™ 
 //
 static NNS_G2D_INLINE u16 GetMtxCacheAffineIndex_
 ( 
@@ -77,7 +77,7 @@ static NNS_G2D_INLINE void SetMtxCacheAffineIndex_
 }
 
 //------------------------------------------------------------------------------
-// “o˜^‘O‚ÉˆÈ‘O‚É“o˜^‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚Ü‚·B‚±‚Ì‚±‚Æ‚É‚æ‚Á‚Äd•¡“o˜^‚ğ”ğ‚¯‚Ä‚¢‚Ü‚·B
+// ç™»éŒ²å‰ã«ä»¥å‰ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚ã“ã®ã“ã¨ã«ã‚ˆã£ã¦é‡è¤‡ç™»éŒ²ã‚’é¿ã‘ã¦ã„ã¾ã™ã€‚
 // 
 static NNS_G2D_INLINE BOOL IsMtxCacheRegisteredAsAffineParams_
 (
@@ -95,19 +95,19 @@ static NNS_G2D_INLINE const MtxFx32* RndCoreGetCurrentMtx_()
     if( pTheInstance_->pCurrentMxt )
     { 
         //if( pTheInstance_->flipFlag != NNS_G2D_RENDERERFLIP_NONE )
-        // TODO:Œx‚ğ•\¦‚·‚é
-        // İ’è‚³‚ê‚½s—ñ
+        // TODO:è­¦å‘Šã‚’è¡¨ç¤ºã™ã‚‹
+        // è¨­å®šã•ã‚ŒãŸè¡Œåˆ—
         return pTheInstance_->pCurrentMxt;
     }else{
         //
-        // ’PˆÊs—ñ
+        // å˜ä½è¡Œåˆ—
         //    
         return &mtxIdentity_;
     }
 }
 
 //------------------------------------------------------------------------------
-// Œ»İƒŒƒ“ƒ_ƒ‰‚ÍƒAƒtƒBƒ“•ÏŠ·(2D)‚ª“K—p‚³‚ê‚Ä‚¢‚éó‘Ô‚©H
+// ç¾åœ¨ãƒ¬ãƒ³ãƒ€ãƒ©ã¯ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›(2D)ãŒé©ç”¨ã•ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ã‹ï¼Ÿ
 static NNS_G2D_INLINE BOOL IsRndCore2DAffineTransformed_
 (
     const NNSG2dRndCoreInstance* pRnd 
@@ -118,8 +118,8 @@ static NNS_G2D_INLINE BOOL IsRndCore2DAffineTransformed_
 }
 
 //------------------------------------------------------------------------------
-// ƒ}ƒbƒsƒ“ƒOƒ^ƒCƒv‚È‚Ç‚©‚ç
-// ƒoƒCƒgƒTƒCƒY‚ğƒLƒƒƒ‰ƒNƒ^”‚É•ÏŠ·‚·‚éƒVƒtƒg’l‚ğ‹‚ß‚Ü‚·
+// ãƒãƒƒãƒ”ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ãªã©ã‹ã‚‰
+// ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°ã«å¤‰æ›ã™ã‚‹ã‚·ãƒ•ãƒˆå€¤ã‚’æ±‚ã‚ã¾ã™
 static NNS_G2D_INLINE int GetShiftToConvByteTo2DChar_( GXOBJVRamModeChar mappingType )
 {
     int shift = ( REG_GX_DISPCNT_EXOBJ_MASK & mappingType ) >> REG_GX_DISPCNT_EXOBJ_SHIFT;
@@ -128,7 +128,7 @@ static NNS_G2D_INLINE int GetShiftToConvByteTo2DChar_( GXOBJVRamModeChar mapping
 }
 
 //------------------------------------------------------------------------------
-// ƒVƒtƒg‚·‚é’l‚ªƒVƒtƒg•‚Ì‹«ŠEã‚©”»’è‚µ‚Ü‚·
+// ã‚·ãƒ•ãƒˆã™ã‚‹å€¤ãŒã‚·ãƒ•ãƒˆå¹…ã®å¢ƒç•Œä¸Šã‹åˆ¤å®šã—ã¾ã™
 static NNS_G2D_INLINE BOOL IsAlignedShiftValueBoundary_( u32 sizeByte, int shiftBit )
 {
     const int mask = (0x1 << shiftBit) - 1;
@@ -136,8 +136,8 @@ static NNS_G2D_INLINE BOOL IsAlignedShiftValueBoundary_( u32 sizeByte, int shift
 }
 
 //------------------------------------------------------------------------------
-// ƒoƒCƒg”Aƒ}ƒbƒsƒ“ƒOƒ^ƒCƒv‚È‚Ç‚©‚ç
-// ƒLƒƒƒ‰ƒNƒ^”‚ğZo‚µ‚Ü‚·
+// ãƒã‚¤ãƒˆæ•°ã€ãƒãƒƒãƒ”ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ãªã©ã‹ã‚‰
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°ã‚’ç®—å‡ºã—ã¾ã™
 static NNS_G2D_INLINE u32 GetNum2DCharacter_( u32 sizeByte, GXOBJVRamModeChar mappingType )
 {
    
@@ -150,7 +150,7 @@ static NNS_G2D_INLINE u32 GetNum2DCharacter_( u32 sizeByte, GXOBJVRamModeChar ma
 }
 
 //------------------------------------------------------------------------------
-// 3D Graphics Engine ‚ÌƒeƒNƒXƒ`ƒƒİ’è‚ğæ“¾‚µ‚Ü‚·
+// 3D Graphics Engine ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£è¨­å®šã‚’å–å¾—ã—ã¾ã™
 // 
 static NNS_G2D_INLINE u32 GetTexBaseAddr3D_( const NNSG2dImageProxy* pImgProxy )
 {
@@ -159,13 +159,13 @@ static NNS_G2D_INLINE u32 GetTexBaseAddr3D_( const NNSG2dImageProxy* pImgProxy )
     {
         return NNS_G2dGetImageLocation( pImgProxy, NNS_G2D_VRAM_TYPE_3DMAIN );
     }else{
-        // TODO:Œx
+        // TODO:è­¦å‘Š
         return 0;
     }
 }
 
 //------------------------------------------------------------------------------
-// 3D Graphics Engine ‚ÌƒpƒŒƒbƒgİ’è‚ğs‚¢‚Ü‚·
+// 3D Graphics Engine ã®ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®šã‚’è¡Œã„ã¾ã™
 //
 static NNS_G2D_INLINE u32 GetPltBaseAddr3D_( const NNSG2dImagePaletteProxy* pPltProxy )
 {
@@ -174,21 +174,21 @@ static NNS_G2D_INLINE u32 GetPltBaseAddr3D_( const NNSG2dImagePaletteProxy* pPlt
     {
         return NNS_G2dGetImagePaletteLocation( pPltProxy, NNS_G2D_VRAM_TYPE_3DMAIN );
     }else{
-        // TODO:Œx
+        // TODO:è­¦å‘Š
         return 0;
     }
 }
 
 
 //------------------------------------------------------------------------------
-// Œ»İ‚Í‚½‚¾ƒLƒƒƒXƒg‚·‚é‚¾‚¯‚Å‚·
+// ç¾åœ¨ã¯ãŸã ã‚­ãƒ£ã‚¹ãƒˆã™ã‚‹ã ã‘ã§ã™
 static NNS_G2D_INLINE NNS_G2D_VRAM_TYPE SurfaceTypeToVramType_( NNSG2dSurfaceType   surfaceType )
 {
     return (NNS_G2D_VRAM_TYPE)surfaceType;
 }
 
 //------------------------------------------------------------------------------
-// 2D Graphics Engine ‚ÌƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg‚ğæ“¾‚µ‚Ü‚·
+// 2D Graphics Engine ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—ã—ã¾ã™
 // 
 static NNS_G2D_INLINE u32 GetCharacterBase2D_
 ( 
@@ -212,7 +212,7 @@ static NNS_G2D_INLINE u32 GetCharacterBase2D_
             return GetNum2DCharacter_( baseAddr, pImgProxy->attr.mappingType );     
             
         }else{
-            // TODO:Œx
+            // TODO:è­¦å‘Š
             return 0;
         }
     }
@@ -234,9 +234,9 @@ static NNS_G2D_INLINE void HandleCellCallBackFunc_
 ) 
 {
     //
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚ğs‚¤
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—ã‚’è¡Œã†
     //
-    // ˆø”‚És—ñ‚Í‚Æ‚ç‚È‚¢‚±‚Æ‚Æ‚µ‚½ theInstance_ ‚ğ “n‚µ‚Ä‚¢‚é‚Ì‚¾‚µc
+    // å¼•æ•°ã«è¡Œåˆ—ã¯ã¨ã‚‰ãªã„ã“ã¨ã¨ã—ãŸ theInstance_ ã‚’ æ¸¡ã—ã¦ã„ã‚‹ã®ã ã—â€¦
     if( pFunc )
     {
         (*pFunc)( pTheInstance_, pCell ); 
@@ -252,9 +252,9 @@ static NNS_G2D_INLINE void HandleCellOamBackFunc_
 ) 
 {
     //
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚ğs‚¤
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—ã‚’è¡Œã†
     //
-    // ˆø”‚És—ñ‚Í‚Æ‚ç‚È‚¢‚±‚Æ‚Æ‚µ‚½ theInstance_ ‚ğ “n‚µ‚Ä‚¢‚é‚Ì‚¾‚µc
+    // å¼•æ•°ã«è¡Œåˆ—ã¯ã¨ã‚‰ãªã„ã“ã¨ã¨ã—ãŸ theInstance_ ã‚’ æ¸¡ã—ã¦ã„ã‚‹ã®ã ã—â€¦
     // 
     if( pFunc )
     {
@@ -263,8 +263,8 @@ static NNS_G2D_INLINE void HandleCellOamBackFunc_
 }
 
 //------------------------------------------------------------------------------
-// ƒtƒŠƒbƒvs—ñ‚ğì¬‚µ‚Ü‚·
-// ƒ[ƒh‚Ì’¼‘O‚Éì¬‚³‚ê‚é—l‚É“®ì‚ª•ÏX‚É‚È‚è‚Ü‚µ‚½B
+// ãƒ•ãƒªãƒƒãƒ—è¡Œåˆ—ã‚’ä½œæˆã—ã¾ã™
+// ãƒ­ãƒ¼ãƒ‰ã®ç›´å‰ã«ä½œæˆã•ã‚Œã‚‹æ§˜ã«å‹•ä½œãŒå¤‰æ›´ã«ãªã‚Šã¾ã—ãŸã€‚
 static NNS_G2D_INLINE void MakeFlipMtx_
 ( 
     const MtxFx22*    pMtxSrc, 
@@ -304,14 +304,14 @@ static NNS_G2D_INLINE u16 LoadMtxCacheAsAffineParams_
     u16    affineIdx  = GetMtxCacheAffineIndex_( pMtxCache, pSurface->type, type );
     
     //
-    // ‚à‚µˆÈ‘O‚É Affine ƒpƒ‰ƒ[ƒ^‚Æ‚µ‚Ä‰ºˆÊƒ‚ƒWƒ…[ƒ‹‚É“o˜^‚³‚ê‚Ä‚¢‚È‚¢s—ñ‚È‚ç‚Î...
+    // ã‚‚ã—ä»¥å‰ã« Affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨ã—ã¦ä¸‹ä½ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã«ç™»éŒ²ã•ã‚Œã¦ã„ãªã„è¡Œåˆ—ãªã‚‰ã°...
     //
     if( !IsMtxCacheRegisteredAsAffineParams_( affineIdx ) )
     {
         NNS_G2D_NULL_ASSERT( pTheInstance_->pFuncOamAffineRegister );        
         
         //
-        // “o˜^‚ğs‚¢A‚»‚ÌŒ‹‰Ê‚ğƒLƒƒƒbƒVƒ…‚ÉŠi”[‚·‚é 
+        // ç™»éŒ²ã‚’è¡Œã„ã€ãã®çµæœã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ ¼ç´ã™ã‚‹ 
         //
         {
             if( type == OAM_FLIP_NONE )
@@ -359,7 +359,7 @@ static NNS_G2D_INLINE void OverwriteOamFlipFlag_( GXOamAttr* pOam )
     NNS_G2D_NULL_ASSERT( pOam );
     {
         //
-        // ƒtƒŠƒbƒvî•ñ‚ğ‘€ì‚·‚é
+        // ãƒ•ãƒªãƒƒãƒ—æƒ…å ±ã‚’æ“ä½œã™ã‚‹
         //        
         const BOOL bFlipH = 
            NNS_G2dIsRndCoreFlipH( pTheInstance_ ) ^ NNSi_G2dGetOamFlipH( pOam );
@@ -390,22 +390,22 @@ static void DoAffineTransforme_
     NNS_G2dGetOamTransFx32( pOam, &objTrans );
     
     //
-    // ”{ŠpƒAƒtƒBƒ“‚ªİ’è‚³‚ê‚Ä‚¢‚éOBJ‚Ìê‡A
-    // ’Êí‚ÌOBJ•\¦ˆÊ’u‚É‘Î‚µ‚ÄAˆÊ’u•â³’l‚ğ•t‰Á‚µ‚Ä‚¢‚é‚Ì‚ÅA
-    // •â³’l‚ğˆê’UAæ‚è‹‚è‚Ü‚·
+    // å€è§’ã‚¢ãƒ•ã‚£ãƒ³ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹OBJã®å ´åˆã€
+    // é€šå¸¸ã®OBJè¡¨ç¤ºä½ç½®ã«å¯¾ã—ã¦ã€ä½ç½®è£œæ­£å€¤ã‚’ä»˜åŠ ã—ã¦ã„ã‚‹ã®ã§ã€
+    // è£œæ­£å€¤ã‚’ä¸€æ—¦ã€å–ã‚Šå»ã‚Šã¾ã™
     //
     NNSi_G2dRemovePositionAdjustmentFromDoubleAffineOBJ( pOam, &objTrans );               
                         
-    // ƒAƒtƒBƒ“•ÏŠ·‚ğs‚¢‚Ü‚·
+    // ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã‚’è¡Œã„ã¾ã™
     MulMtx22( pMtxSR, &objTrans, &objTrans );
     
     //
-    // ƒAƒtƒBƒ“•ÏŠ·‚³‚ê‚Ä‚¢‚é‚È‚çAƒAƒtƒBƒ“ƒ‚[ƒhw’è(”{Šp or •’Ê)
-    // i’ˆÓF]—ˆ‚Ìƒo[ƒWƒ‡ƒ“‚Å‚Í‰ºˆÊƒ‚ƒWƒ…[ƒ‹‚Ås‚Á‚Ä‚¢‚½ˆ—‚Å‚·j
+    // ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã€ã‚¢ãƒ•ã‚£ãƒ³ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š(å€è§’ or æ™®é€š)
+    // ï¼ˆæ³¨æ„ï¼šå¾“æ¥ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã¯ä¸‹ä½ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§è¡Œã£ã¦ã„ãŸå‡¦ç†ã§ã™ï¼‰
     // 
-    // ƒAƒtƒBƒ“ƒ‚[ƒh‚Ì‚İ‚ğİ’è‚µ‚½‚¢‚Ì‚ÅƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^”Ô†‚É‚Í“K“–‚È’l‚ğİ’è‚µ‚Ä‚¢‚Ü‚·B
-    // “K“–‚ÈAPI‚ªGX‚É—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢‚½‚ß‚Å‚·B
-    // ‚¢‚¸‚ê‘Îô‚ğ‚·‚é—\’è‚Å‚·B
+    // ã‚¢ãƒ•ã‚£ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®ã¿ã‚’è¨­å®šã—ãŸã„ã®ã§ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç•ªå·ã«ã¯é©å½“ãªå€¤ã‚’è¨­å®šã—ã¦ã„ã¾ã™ã€‚
+    // é©å½“ãªAPIãŒGXã«ç”¨æ„ã•ã‚Œã¦ã„ãªã„ãŸã‚ã§ã™ã€‚
+    // ã„ãšã‚Œå¯¾ç­–ã‚’ã™ã‚‹äºˆå®šã§ã™ã€‚
     //
     if( pTheInstance_->affineOverwriteMode != NNS_G2D_RND_AFFINE_OVERWRITE_NONE )
     {
@@ -420,12 +420,12 @@ static void DoAffineTransforme_
     }
     
     //
-    // ”{ŠpƒAƒtƒBƒ“ƒ‚[ƒh‚Æ’ÊíƒAƒtƒBƒ“•ÏŠ·ƒ‚[ƒh‚Å‚Í•\¦ˆÊ’u‚ªˆÙ‚È‚é‚½‚ß
-    // ”{ŠpƒAƒtƒBƒ“ƒ‚[ƒh•ÏŠ·‚ªw’è‚³‚ê‚Ä‚¢‚éOBJ‚Ìê‡‚Í
-    // –{ŠÖ”‚Å•â³‚ğs‚¢‚Ü‚·B
+    // å€è§’ã‚¢ãƒ•ã‚£ãƒ³ãƒ¢ãƒ¼ãƒ‰ã¨é€šå¸¸ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ãƒ¢ãƒ¼ãƒ‰ã§ã¯è¡¨ç¤ºä½ç½®ãŒç•°ãªã‚‹ãŸã‚
+    // å€è§’ã‚¢ãƒ•ã‚£ãƒ³ãƒ¢ãƒ¼ãƒ‰å¤‰æ›ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹OBJã®å ´åˆã¯
+    // æœ¬é–¢æ•°ã§è£œæ­£ã‚’è¡Œã„ã¾ã™ã€‚
     // 
     {
-        // ”{ŠpƒAƒtƒBƒ“‚È‚ç”{ŠpƒAƒtƒBƒ“OBJ‚Ì‚½‚ß‚ÌˆÊ’u•â³‚ğ‚¨‚±‚È‚¤
+        // å€è§’ã‚¢ãƒ•ã‚£ãƒ³ãªã‚‰å€è§’ã‚¢ãƒ•ã‚£ãƒ³OBJã®ãŸã‚ã®ä½ç½®è£œæ­£ã‚’ãŠã“ãªã†
         const BOOL bShouldAdjust = G2_GetOBJEffect( pOam ) == GX_OAM_EFFECT_AFFINE_DOUBLE;
                                  
         NNSi_G2dAdjustDifferenceOfRotateOrientation( pOam, 
@@ -444,7 +444,7 @@ static void DoAffineTransforme_
 static NNS_G2D_INLINE void DoFlipTransforme_( GXOamAttr* pOam, NNSG2dFVec2* pBaseTrans )
 {    
     //
-    // ƒtƒŠƒbƒvˆ—
+    // ãƒ•ãƒªãƒƒãƒ—å‡¦ç†
     //
     if( pTheInstance_->flipFlag != NNS_G2D_RENDERERFLIP_NONE )
     {    
@@ -472,15 +472,15 @@ static NNS_G2D_INLINE void DoFlipTransforme_( GXOamAttr* pOam, NNSG2dFVec2* pBas
 
 
 //------------------------------------------------------------------------------
-// ƒŒƒ“ƒ_ƒ‰‚ªA•`‰æŠJn‚Ì€”õ‚ª®‚Á‚Ä‚¢‚é‚©‚ğ’²¸‚µ‚Ü‚·B
-// ƒfƒoƒbƒNƒrƒ‹ƒh‚ÉƒAƒT[ƒg•¶‚Ì’†‚Å‚Ì‚İg—p‚³‚ê‚Ü‚·B
+// ãƒ¬ãƒ³ãƒ€ãƒ©ãŒã€æç”»é–‹å§‹ã®æº–å‚™ãŒæ•´ã£ã¦ã„ã‚‹ã‹ã‚’èª¿æŸ»ã—ã¾ã™ã€‚
+// ãƒ‡ãƒãƒƒã‚¯ãƒ“ãƒ«ãƒ‰æ™‚ã«ã‚¢ã‚µãƒ¼ãƒˆæ–‡ã®ä¸­ã§ã®ã¿ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
 //
 static BOOL IsRndCoreReadyForBeginRendering_( NNSG2dRndCoreInstance* pRnd )
 {
     NNS_G2D_NULL_ASSERT( pRnd );
     {
        //
-       // ‰æ‘œƒvƒƒNƒV‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©H
+       // ç”»åƒãƒ—ãƒ­ã‚¯ã‚·ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ï¼Ÿ
        //
        if( !(pRnd->pImgProxy && pRnd->pPltProxy) )
        {
@@ -489,23 +489,23 @@ static BOOL IsRndCoreReadyForBeginRendering_( NNSG2dRndCoreInstance* pRnd )
        }
        
        //
-       // •`‰æ‘ÎÛƒT[ƒtƒFƒX‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©H
+       // æç”»å¯¾è±¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ï¼Ÿ
        //
        if( pRnd->pCurrentTargetSurface == NULL )
        {
            OS_Warning("RendererCore:TragetSurface isn't ready.");
            return FALSE;
        }else{
-           // ƒT[ƒtƒFƒX‚ÍƒAƒNƒeƒBƒu‚©H
+           // ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‹ï¼Ÿ
            if( !pRnd->pCurrentTargetSurface->bActive )
            {
                OS_Warning("RendererCore:The current tragetSurface isn't active. Is it OK?");
-               // Œx‚Ì‚İAFALSE ‚Æ‚Í‚µ‚È‚¢B
+               // è­¦å‘Šã®ã¿ã€FALSE ã¨ã¯ã—ãªã„ã€‚
            }
        }
        
        //
-       // 2D •`‰æ‚Ìê‡OAM“o˜^ŠÖ”‚ª³‚µ‚­İ’è‚³‚ê‚Ä‚¢‚é‚©?       
+       // 2D æç”»ã®å ´åˆOAMç™»éŒ²é–¢æ•°ãŒæ­£ã—ãè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹?       
        //
        if( pRnd->pCurrentTargetSurface->type == NNS_G2D_SURFACETYPE_MAIN2D ||
            pRnd->pCurrentTargetSurface->type == NNS_G2D_SURFACETYPE_SUB2D  )
@@ -521,14 +521,14 @@ static BOOL IsRndCoreReadyForBeginRendering_( NNSG2dRndCoreInstance* pRnd )
            }
        }
     }
-    // ŒŸ¸‡Ši
+    // æ¤œæŸ»åˆæ ¼
     return TRUE;
 }
 
 //------------------------------------------------------------------------------
-// Cell ‚ğ 2D Graphics Engine ‚ğg—p‚µ‚Ä •`‰æ‚µ‚Ü‚·
+// Cell ã‚’ 2D Graphics Engine ã‚’ä½¿ç”¨ã—ã¦ æç”»ã—ã¾ã™
 //
-// 2D Graphics Engine ƒŒƒ“ƒ^ƒŠƒ“ƒOê—p‚Ìˆ—‚Å‚·B
+// 2D Graphics Engine ãƒ¬ãƒ³ã‚¿ãƒªãƒ³ã‚°å°‚ç”¨ã®å‡¦ç†ã§ã™ã€‚
 //
 static void DrawCellToSurface2D_
 ( 
@@ -547,7 +547,7 @@ static void DrawCellToSurface2D_
     // get current Mtx for affine transformation.
     NNSi_G2dGetMtxTrans( pCurrMtx, &baseTrans );  
     //
-    // ƒrƒ…[ƒ[ƒJƒ‹Œn‚Ö‚Ì•ÏŠ·
+    // ãƒ“ãƒ¥ãƒ¼ãƒ­ãƒ¼ã‚«ãƒ«ç³»ã¸ã®å¤‰æ›
     //                  
     baseTrans.x -= pSurface->viewRect.posTopLeft.x;
     baseTrans.y -= pSurface->viewRect.posTopLeft.y;
@@ -563,7 +563,7 @@ static void DrawCellToSurface2D_
         for( i = 0; i < pCell->numOAMAttrs; i++ )
         {
             //
-            // OamƒAƒgƒŠƒrƒ…[ƒg•`‰æ‘OƒR[ƒ‹ƒoƒbƒN
+            // Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæç”»å‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
             //
             pTheInstance_->bDrawEnable = TRUE;
             NNS_G2dCopyCellAsOamAttr( pCell, i, pTempOam );
@@ -571,7 +571,7 @@ static void DrawCellToSurface2D_
             HandleCellOamBackFunc_( pSurface->pBeforeDrawOamBackFunc, pCell, i );
             
             //
-            // •`‰æƒXƒLƒbƒv”»’è
+            // æç”»ã‚¹ã‚­ãƒƒãƒ—åˆ¤å®š
             //
             if( !pTheInstance_->bDrawEnable )
             {
@@ -581,21 +581,21 @@ static void DrawCellToSurface2D_
             
             
             //
-            // ƒLƒƒƒ‰ƒNƒ^”Ô†ƒIƒtƒZƒbƒg‚Ì‰ÁZ
+            // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆã®åŠ ç®—
             //
             pTempOam->charNo += baseCharOffset;
                 
             
             //
-            // À•W•ÏŠ·:ƒtƒŠƒbƒvˆ—‚©ƒAƒtƒBƒ“•ÏŠ·ˆ—
+            // åº§æ¨™å¤‰æ›:ãƒ•ãƒªãƒƒãƒ—å‡¦ç†ã‹ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›å‡¦ç†
             //
             if( bAffined )
             {       
                 //
-                // ƒJƒŒƒ“ƒgs—ñƒXƒ^ƒbƒN‚ªƒ[ƒh‚Ì•K—v‚ª‚ ‚é‚©”»’f‚µA
-                // ƒ[ƒh‚µ‚ÄƒCƒ“ƒfƒbƒNƒX‚ğ•Ô‚·ŠÖ”
-                // OBJ‚ÌƒtƒŠƒbƒvƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN‚µA“KØ‚ÈƒAƒtƒBƒ“•ÏŠ·s—ñ‚ğì¬‚·‚é‚Ì‚Å
-                // OBJ–ˆ‚Ìƒ‹[ƒv“à‚Å–ˆ‰ñÀs‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+                // ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ã‚¹ã‚¿ãƒƒã‚¯ãŒãƒ­ãƒ¼ãƒ‰ã®å¿…è¦ãŒã‚ã‚‹ã‹åˆ¤æ–­ã—ã€
+                // ãƒ­ãƒ¼ãƒ‰ã—ã¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã™é–¢æ•°
+                // OBJã®ãƒ•ãƒªãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯ã—ã€é©åˆ‡ãªã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹ã®ã§
+                // OBJæ¯ã®ãƒ«ãƒ¼ãƒ—å†…ã§æ¯å›å®Ÿè¡Œã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 //
                 oamAffinIdx = 
                 LoadMtxCacheAsAffineParams_( pTheInstance_->pCurrentMtxCacheFor2D, 
@@ -610,8 +610,8 @@ static void DrawCellToSurface2D_
             }
 
             //
-            // •`‰æ“o˜^ŠÖ”‚æ‚Ñ‚¾‚µ
-            // ‘æOˆø”‚Íg—p‚³‚ê‚Ä‚¢‚È‚¢‚½‚ßAƒ_ƒ~[ˆø”‚ğ—^‚¦‚Ä‚¢‚Ü‚·B
+            // æç”»ç™»éŒ²é–¢æ•°ã‚ˆã³ã ã—
+            // ç¬¬ä¸‰å¼•æ•°ã¯ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„ãŸã‚ã€ãƒ€ãƒŸãƒ¼å¼•æ•°ã‚’ä¸ãˆã¦ã„ã¾ã™ã€‚
             //
             NNS_G2D_NULL_ASSERT( pTheInstance_->pFuncOamRegister );
             
@@ -625,7 +625,7 @@ static void DrawCellToSurface2D_
             }
              
             //
-            // OamƒAƒgƒŠƒrƒ…[ƒg•`‰æŒãƒR[ƒ‹ƒoƒbƒN
+            // Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæç”»å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
             //
             HandleCellOamBackFunc_( pSurface->pAfterDrawOamBackFunc, pCell, i );
         }
@@ -638,7 +638,7 @@ static void DrawOamToSurface3D_
     GXOamAttr*                     pOam
 )
 {
-    // s—ñİ’è
+    // è¡Œåˆ—è¨­å®š
     G3_LoadMtx43( &pTheInstance_->mtxFor3DGE );
         
     if( pTheInstance_->flipFlag != NNS_G2D_RENDERERFLIP_NONE )
@@ -646,14 +646,14 @@ static void DrawOamToSurface3D_
         const GXOamShape shape = NNS_G2dGetOAMSize( pOam );
     
         //
-        // OBJ ‚Ì •`‰æˆÊ’u‚ğæ“¾‚·‚é
+        // OBJ ã® æç”»ä½ç½®ã‚’å–å¾—ã™ã‚‹
         //
     	const s16 posX = (s16)GetFlipedOBJPosX_( pOam, shape );
         const s16 posY = (s16)GetFlipedOBJPosY_( pOam, shape );
         const s16 posZ = -1;      
         
         //
-        // ƒtƒŠƒbƒvî•ñ‚ğ‘€ì‚·‚é
+        // ãƒ•ãƒªãƒƒãƒ—æƒ…å ±ã‚’æ“ä½œã™ã‚‹
         //        
         OverwriteOamFlipFlag_( pOam );
         
@@ -677,7 +677,7 @@ static void DrawOamToSurface3D_
     
 }
 //------------------------------------------------------------------------------
-// Cell ‚ğ 3D Graphics Engine ‚ğg—p‚µ‚Ä •`‰æ‚µ‚Ü‚·
+// Cell ã‚’ 3D Graphics Engine ã‚’ä½¿ç”¨ã—ã¦ æç”»ã—ã¾ã™
 // 
 static void DrawCellToSurface3D_
 ( 
@@ -698,7 +698,7 @@ static void DrawCellToSurface3D_
     for( i = 0; i < pCell->numOAMAttrs; i++ )
     {
         //
-        // OamƒAƒgƒŠƒrƒ…[ƒg•`‰æ‘OƒR[ƒ‹ƒoƒbƒN
+        // Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæç”»å‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
         //
         pTheInstance_->bDrawEnable = TRUE;
         NNS_G2dCopyCellAsOamAttr( pCell, i, pTempOam );
@@ -706,11 +706,11 @@ static void DrawCellToSurface3D_
         HandleCellOamBackFunc_( pSurface->pBeforeDrawOamBackFunc, pCell, i );
         if( pTheInstance_->bDrawEnable )            
         {            
-            // •`‰æ
+            // æç”»
             DrawOamToSurface3D_( pTempOam );
         }
         //
-        // OamƒAƒgƒŠƒrƒ…[ƒg•`‰æ‘OƒR[ƒ‹ƒoƒbƒN
+        // Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæç”»å‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
         //
         HandleCellOamBackFunc_( pSurface->pAfterDrawOamBackFunc, pCell, i );
     }
@@ -728,20 +728,20 @@ static NNS_G2D_INLINE void DrawCellImpl_
     const NNSG2dRndCoreSurface*   pSurface = pTheInstance_->pCurrentTargetSurface;
     
     //
-    // ƒAƒNƒeƒBƒu‚Å‚È‚¯‚ê‚Î•`‰æˆ—‚Í‰½‚à‚µ‚È‚¢
+    // ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ãªã‘ã‚Œã°æç”»å‡¦ç†ã¯ä½•ã‚‚ã—ãªã„
     //
     if( !pSurface->bActive )
     {
         return;
     }
     
-    // ƒJƒŠƒ“ƒOAƒ}ƒgƒŠƒNƒXƒ[ƒh‚àƒR[ƒ‹ƒoƒbƒN‚ÉŠÜ‚Ü‚ê‚é
+    // ã‚«ãƒªãƒ³ã‚°ã€ãƒãƒˆãƒªã‚¯ã‚¹ãƒ­ãƒ¼ãƒ‰ã‚‚ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«å«ã¾ã‚Œã‚‹
     pTheInstance_->bDrawEnable = TRUE;
     HandleCellCallBackFunc_( pSurface->pBeforeDrawCellBackFunc, pCell );
     if( pTheInstance_->bDrawEnable )
     {        
         //
-        // VRAM “]‘—ƒZƒ‹‚È‚ç‚ÎAƒZƒ‹‚Ì•`‰æ‚ªs‚í‚ê‚½‚±‚Æ‚ğVRAM“]‘—ó‘ÔƒIƒuƒWƒFƒNƒg‚É‹L˜^‚·‚é
+        // VRAM è»¢é€ã‚»ãƒ«ãªã‚‰ã°ã€ã‚»ãƒ«ã®æç”»ãŒè¡Œã‚ã‚ŒãŸã“ã¨ã‚’VRAMè»¢é€çŠ¶æ…‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«è¨˜éŒ²ã™ã‚‹
         //
         if( cellVramTransferHandle != NNS_G2D_INVALID_CELL_TRANSFER_STATE_HANDLE )
         {
@@ -754,7 +754,7 @@ static NNS_G2D_INLINE void DrawCellImpl_
         }
         
         //
-        // ƒT[ƒtƒFƒX‚Ìí—Ş‚²‚Æ‚É...
+        // ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ç¨®é¡ã”ã¨ã«...
         //
         switch( pSurface->type )
         {
@@ -777,13 +777,13 @@ static NNS_G2D_INLINE void DrawCellImpl_
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitRndCore
 
-  Description:  ƒŒƒ“ƒ_ƒ‰ƒRƒAƒ‚ƒWƒ…[ƒ‹‚ğ‰Šú‰»‚µ‚Ü‚·B
-                NNSG2dRndCoreInstance‚ğ—˜—p‚·‚é‘O‚É•K‚¸Às‚·‚é‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
+                NNSG2dRndCoreInstanceã‚’åˆ©ç”¨ã™ã‚‹å‰ã«å¿…ãšå®Ÿè¡Œã™ã‚‹ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚
                 
                 
-  Arguments:    pRnd          [OUT] ƒŒƒ“ƒ_ƒ‰ƒRƒA
+  Arguments:    pRnd          [OUT] ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitRndCore( NNSG2dRndCoreInstance* pRnd )
@@ -807,13 +807,13 @@ void NNS_G2dInitRndCore( NNSG2dRndCoreInstance* pRnd )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitRndCoreSurface
 
-  Description:  ƒŒƒ“ƒ_ƒ‰ƒRƒA•`‰æ‘ÎÛƒT[ƒtƒFƒX‚ğ‰Šú‰»‚µ‚Ü‚·B
-                NNSG2dRndCoreSurface‚ğ—˜—p‚·‚é‘O‚É•K‚¸Às‚·‚é‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢æç”»å¯¾è±¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
+                NNSG2dRndCoreSurfaceã‚’åˆ©ç”¨ã™ã‚‹å‰ã«å¿…ãšå®Ÿè¡Œã™ã‚‹ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚
                 
                 
-  Arguments:    pSurface          [OUT] ƒŒƒ“ƒ_ƒ‰ƒRƒA•`‰æ‘ÎÛƒT[ƒtƒFƒX
+  Arguments:    pSurface          [OUT] ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢æç”»å¯¾è±¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitRndCoreSurface( NNSG2dRndCoreSurface* pSurface )
@@ -827,20 +827,20 @@ void NNS_G2dInitRndCoreSurface( NNSG2dRndCoreSurface* pSurface )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetRndCoreImageProxy
 
-  Description:  ƒŒƒ“ƒ_ƒ‰ƒRƒAƒ‚ƒWƒ…[ƒ‹‚ª•`‰æ‚ÌÛ‚ÉQÆ‚·‚é‰æ‘œƒvƒƒNƒV‚ğİ’è‚µ‚Ü‚·B
-                ƒŒƒ“ƒ_ƒ‰ƒ‚ƒWƒ…[ƒ‹‚Æ‚ÍˆÙ‚È‚èABegin-EndRenderingƒuƒƒbƒN“à‚Å
-                ‰æ‘œƒvƒƒNƒV‚ğ•ÏX‚·‚é‚±‚Æ‚Í•s³‚Å‚·B
-                ‚±‚ê‚ÍAƒŒƒ“ƒ_ƒ‰ƒRƒAƒ‚ƒWƒ…[ƒ‹‚ª
-                BeginRendering‚Ìƒ^ƒCƒ~ƒ“ƒO‚Åƒpƒ‰ƒ[ƒ^ŒvZ‚ğs‚¤‚½‚ß‚Å‚·B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒæç”»ã®éš›ã«å‚ç…§ã™ã‚‹ç”»åƒãƒ—ãƒ­ã‚¯ã‚·ã‚’è¨­å®šã—ã¾ã™ã€‚
+                ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¨ã¯ç•°ãªã‚Šã€Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯å†…ã§
+                ç”»åƒãƒ—ãƒ­ã‚¯ã‚·ã‚’å¤‰æ›´ã™ã‚‹ã“ã¨ã¯ä¸æ­£ã§ã™ã€‚
+                ã“ã‚Œã¯ã€ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒ
+                BeginRenderingã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨ˆç®—ã‚’è¡Œã†ãŸã‚ã§ã™ã€‚
                 
                 
-                –{ŠÖ”‚ÍABegin-EndRenderingƒuƒƒbƒN‚ÌŠO‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+                æœ¬é–¢æ•°ã¯ã€Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å¤–ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                                 
-  Arguments:    pRnd                      [OUT] ƒŒƒ“ƒ_ƒ‰ƒRƒA
-                pImgProxy                 [IN]  ‰æ‘œƒvƒƒNƒV
-                pPltProxy                 [IN]  ‰æ‘œƒpƒŒƒbƒgƒvƒƒNƒV
+  Arguments:    pRnd                      [OUT] ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢
+                pImgProxy                 [IN]  ç”»åƒãƒ—ãƒ­ã‚¯ã‚·
+                pPltProxy                 [IN]  ç”»åƒãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetRndCoreImageProxy
@@ -862,26 +862,26 @@ void NNS_G2dSetRndCoreImageProxy
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetRndCoreOamRegisterFunc
 
-  Description:  ƒŒƒ“ƒ_ƒ‰ƒRƒAƒ‚ƒWƒ…[ƒ‹‚ª•`‰æOBJ‚ğ•\‚·OAM‚ğŠO•”ƒ‚ƒWƒ…[ƒ‹‚É“o˜^‚·‚éÛ‚Ég—p‚·‚é
-                ŠÖ”ƒ|ƒCƒ“ƒ^ŒQ‚ğİ’è‚µ‚Ü‚·B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒæç”»OBJã‚’è¡¨ã™OAMã‚’å¤–éƒ¨ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã«ç™»éŒ²ã™ã‚‹éš›ã«ä½¿ç”¨ã™ã‚‹
+                é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ç¾¤ã‚’è¨­å®šã—ã¾ã™ã€‚
                 
-                OAM“o˜^ŠÖ”‚ÍAİ’è‚³‚ê‚Ä‚¢‚éƒT[ƒtƒFƒX‚ªA
-                2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“•`‰æƒT[ƒtƒFƒX‚Å‚ ‚éê‡A
-                •K‚¸İ’è‚³‚ê‚Ä‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B
+                OAMç™»éŒ²é–¢æ•°ã¯ã€è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒã€
+                2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³æç”»ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã§ã‚ã‚‹å ´åˆã€
+                å¿…ãšè¨­å®šã•ã‚Œã¦ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-                –{ŠÖ”‚Í•Ê‚ÉAOAM“o˜^ŠÖ”‚Æ‚µ‚ÄƒuƒƒbƒN“]‘—“o˜^ŠÖ”‚ğİ’è‚·‚é
-                NNS_G2dSetRndCoreOamRegisterFuncEx()‚à—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B
+                æœ¬é–¢æ•°ã¯åˆ¥ã«ã€OAMç™»éŒ²é–¢æ•°ã¨ã—ã¦ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ç™»éŒ²é–¢æ•°ã‚’è¨­å®šã™ã‚‹
+                NNS_G2dSetRndCoreOamRegisterFuncEx()ã‚‚ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚
                 
-                ’ˆÓF–{ŠÖ”‚ğŒÄ‚Ño‚·‚ÆAƒuƒƒbƒN“]‘—“o˜^ŠÖ”‚ªƒŠƒZƒbƒg‚³‚ê‚Ü‚·B
+                æ³¨æ„ï¼šæœ¬é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã¨ã€ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ç™»éŒ²é–¢æ•°ãŒãƒªã‚»ãƒƒãƒˆã•ã‚Œã¾ã™ã€‚
                 
                 
-                –{ŠÖ”‚ÍABegin-EndRenderingƒuƒƒbƒN‚ÌŠO‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+                æœ¬é–¢æ•°ã¯ã€Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å¤–ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                                 
-  Arguments:    pRnd                             [OUT] ƒŒƒ“ƒ_ƒ‰ƒRƒA
-                pFuncOamRegister                 [IN]  OAM“o˜^ŠÖ”
-                pFuncOamAffineRegister           [IN]  ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^“o˜^ŠÖ”
+  Arguments:    pRnd                             [OUT] ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢
+                pFuncOamRegister                 [IN]  OAMç™»éŒ²é–¢æ•°
+                pFuncOamAffineRegister           [IN]  ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç™»éŒ²é–¢æ•°
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetRndCoreOamRegisterFunc
@@ -904,27 +904,27 @@ void NNS_G2dSetRndCoreOamRegisterFunc
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetRndCoreAffineOverwriteMode
 
-  Description:  ƒAƒtƒBƒ“•ÏŠ·ƒ‚[ƒh‚Ìã‘‚«“®ì‚ğİ’è‚µ‚Ü‚·B
+  Description:  ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ãƒ¢ãƒ¼ãƒ‰ã®ä¸Šæ›¸ãå‹•ä½œã‚’è¨­å®šã—ã¾ã™ã€‚
                 
-                ã‘‚«“®ì‚Ìí—Ş‚ğ•\‚·—ñ‹“q‚Ì’è‹`‚ÍˆÈ‰º‚Ì‚Æ‚¨‚è‚Å‚·B
+                ä¸Šæ›¸ãå‹•ä½œã®ç¨®é¡ã‚’è¡¨ã™åˆ—æŒ™å­ã®å®šç¾©ã¯ä»¥ä¸‹ã®ã¨ãŠã‚Šã§ã™ã€‚
                 
                 typedef enum NNSG2dRendererAffineTypeOverwiteMode
                 {
-                    NNS_G2D_RND_AFFINE_OVERWRITE_NONE,  // ã‘‚«‚µ‚È‚¢
-                    NNS_G2D_RND_AFFINE_OVERWRITE_NORMAL,// ’Êí‚ÌƒAƒtƒBƒ“•ÏŠ·•û®‚Éİ’è
-                    NNS_G2D_RND_AFFINE_OVERWRITE_DOUBLE // ”{ŠpƒAƒtƒBƒ“•ÏŠ·•û®‚Éİ’è
+                    NNS_G2D_RND_AFFINE_OVERWRITE_NONE,  // ä¸Šæ›¸ãã—ãªã„
+                    NNS_G2D_RND_AFFINE_OVERWRITE_NORMAL,// é€šå¸¸ã®ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›æ–¹å¼ã«è¨­å®š
+                    NNS_G2D_RND_AFFINE_OVERWRITE_DOUBLE // å€è§’ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›æ–¹å¼ã«è¨­å®š
                   
                 }NNSG2dRendererAffineTypeOverwiteMode;
                 
                 
-                –{ŠÖ”‚ÍABegin-EndRenderingƒuƒƒbƒN‚Ì“àŠO‚ÅŒÄ‚Ño‚µ‚ª‰Â”\‚Å‚·B
+                æœ¬é–¢æ•°ã¯ã€Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å†…å¤–ã§å‘¼ã³å‡ºã—ãŒå¯èƒ½ã§ã™ã€‚
                 
                 
-  Arguments:    pCurrentMxt         [IN]  ƒAƒtƒBƒ“•ÏŠ·s—ñ
-                mode                [IN]  ƒAƒtƒBƒ“•ÏŠ·ƒ‚[ƒh‚Ìã‘‚«“®ì‚ğ‚ ‚ç‚í‚·—ñ‹“q
-                                         iNNSG2dRendererAffineTypeOverwiteModej
+  Arguments:    pCurrentMxt         [IN]  ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—
+                mode                [IN]  ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ãƒ¢ãƒ¼ãƒ‰ã®ä¸Šæ›¸ãå‹•ä½œã‚’ã‚ã‚‰ã‚ã™åˆ—æŒ™å­
+                                         ï¼ˆNNSG2dRendererAffineTypeOverwiteModeï¼‰
                                     
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetRndCoreAffineOverwriteMode
@@ -941,27 +941,27 @@ void NNS_G2dSetRndCoreAffineOverwriteMode
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetRndCoreCurrentMtx3D
 
-  Description:  ƒAƒtƒBƒ“•ÏŠ·s—ñ‚ğİ’è‚µ‚Ü‚·B
-                ƒAƒtƒBƒ“•ÏŠ·s—ñ‚ÍA
-                 E3D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“•`‰æ‚ÉƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‚Éİ’è‚³‚ê‚éƒJƒŒƒ“ƒgs—ñ
-                ‚Ég—p‚³‚ê‚Ü‚·B
+  Description:  ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—ã‚’è¨­å®šã—ã¾ã™ã€‚
+                ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—ã¯ã€
+                 ãƒ»3D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³æç”»æ™‚ã«ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³ã«è¨­å®šã•ã‚Œã‚‹ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—
+                ã«ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
                 
-                İ’è‚µ‚½•ÏŠ·s—ñ‚ÍBegin-EndRenderingƒuƒƒbƒN“à‚Å—LŒø‚Å‚·B
-                NNS_G2dRndCoreEndRendering()ŒÄ‚Ño‚µ‚Éİ’è‚ªƒŠƒZƒbƒg‚³‚ê‚Ü‚·‚Ì‚ÅA
-                V‚½‚É•`‰æˆ—‚ğs‚¤Û‚É‚ÍAÄ“x–{ŠÖ”‚ğŒÄ‚Ño‚µ‚Äİ’è‚ğs‚¤•K—v‚ª‚ ‚è‚Ü‚·B
-                
-                
-                “à•”‚ÅAƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‚ÌƒJƒŒƒ“ƒgs—ñ‚Éİ’è‚·‚é4x3 s—ñ‚ğŒvZ‚µ‚Ü‚·B
-                –{ŠÖ”‚ÍA3D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“•`‰æ‚Ì‚İ‚Ég—p‚³‚ê‚Ü‚·B
-                2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“•`‰æ‚É–{ŠÖ”‚ğŒÄ‚Ño‚µ‚½ê‡
-                Œx‚ªƒƒbƒZ[ƒW‚ªo—Í‚³‚ê‚Ü‚·B
-                
-                –{ŠÖ”‚ÍABegin-EndRenderingƒuƒƒbƒN‚Ì“à‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+                è¨­å®šã—ãŸå¤‰æ›è¡Œåˆ—ã¯Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯å†…ã§æœ‰åŠ¹ã§ã™ã€‚
+                NNS_G2dRndCoreEndRendering()å‘¼ã³å‡ºã—æ™‚ã«è¨­å®šãŒãƒªã‚»ãƒƒãƒˆã•ã‚Œã¾ã™ã®ã§ã€
+                æ–°ãŸã«æç”»å‡¦ç†ã‚’è¡Œã†éš›ã«ã¯ã€å†åº¦æœ¬é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¦è¨­å®šã‚’è¡Œã†å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
                 
-  Arguments:    pCurrentMxt         [IN]  ƒJƒŒƒ“ƒg•ÏŠ·s—ñ
+                å†…éƒ¨ã§ã€ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³ã®ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ã«è¨­å®šã™ã‚‹4x3 è¡Œåˆ—ã‚’è¨ˆç®—ã—ã¾ã™ã€‚
+                æœ¬é–¢æ•°ã¯ã€3D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³æç”»æ™‚ã®ã¿ã«ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
+                2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³æç”»æ™‚ã«æœ¬é–¢æ•°ã‚’å‘¼ã³å‡ºã—ãŸå ´åˆ
+                è­¦å‘ŠãŒãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå‡ºåŠ›ã•ã‚Œã¾ã™ã€‚
                 
-  Returns:      ‚È‚µ
+                æœ¬é–¢æ•°ã¯ã€Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å†…ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+                
+                
+  Arguments:    pCurrentMxt         [IN]  ã‚«ãƒ¬ãƒ³ãƒˆå¤‰æ›è¡Œåˆ—
+                
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetRndCoreCurrentMtx3D
@@ -980,14 +980,14 @@ void NNS_G2dSetRndCoreCurrentMtx3D
        pRnd->pCurrentMxt            = pCurrentMxt;
         
        //
-       // 3D Graphics Engine ‚Å•`‰æ‚·‚éê‡AƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‚ÌƒJƒŒƒ“ƒgs—ñ‚Éİ’è‚·‚é
-       // 4x3 s—ñ‚ğŒvZ‚µ‚Ä‚¨‚­B
-       // 2D Graphics Engine ‚Å•`‰æ‚·‚éê‡‚ÍA
-       // pRnd->pCurrentMxt‚ÍAƒZƒ‹‚ÌƒAƒtƒBƒ“•ÏŠ·‚Ég—p‚·‚é‚¾‚¯‚È‚Ì‚Å 3x2 s—ñ‚Ì‚Ü‚Ü‚Å\•ª‚Å‚ ‚éB
+       // 3D Graphics Engine ã§æç”»ã™ã‚‹å ´åˆã€ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³ã®ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ã«è¨­å®šã™ã‚‹
+       // 4x3 è¡Œåˆ—ã‚’è¨ˆç®—ã—ã¦ãŠãã€‚
+       // 2D Graphics Engine ã§æç”»ã™ã‚‹å ´åˆã¯ã€
+       // pRnd->pCurrentMxtã¯ã€ã‚»ãƒ«ã®ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã«ä½¿ç”¨ã™ã‚‹ã ã‘ãªã®ã§ 3x2 è¡Œåˆ—ã®ã¾ã¾ã§ååˆ†ã§ã‚ã‚‹ã€‚
        //
        {
            //
-           // ƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‚Éƒ[ƒh‚·‚é4x3s—ñ‚Ì¶¬
+           // ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³ã«ãƒ­ãƒ¼ãƒ‰ã™ã‚‹4x3è¡Œåˆ—ã®ç”Ÿæˆ
            //
            {
               pRnd->mtxFor3DGE._00 = pCurrentMxt->_00;
@@ -1013,32 +1013,32 @@ void NNS_G2dSetRndCoreCurrentMtx3D
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetRndCoreCurrentMtx2D
 
-  Description:  2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“•`‰æ‚ÌÛ‚ÌOBJ‚É“K—p‚·‚éƒAƒtƒBƒ“•ÏŠ·s—ñ‚Æ
-                ƒAƒtƒBƒ“•ÏŠ·ƒpƒ‰ƒ[ƒ^‚ğİ’è‚µ‚Ü‚·B
-                ƒAƒtƒBƒ“•ÏŠ·s—ñ‚ÍA
-                 E2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“•`‰æ‚ÉCPUã‚Ås‚í‚ê‚éOBJˆÊ’u‚ÌÀ•W•ÏŠ·
-                ‚Ég—p‚³‚ê‚Ü‚·B
+  Description:  2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³æç”»ã®éš›ã®OBJã«é©ç”¨ã™ã‚‹ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—ã¨
+                ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã—ã¾ã™ã€‚
+                ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—ã¯ã€
+                 ãƒ»2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³æç”»æ™‚ã«CPUä¸Šã§è¡Œã‚ã‚Œã‚‹OBJä½ç½®ã®åº§æ¨™å¤‰æ›
+                ã«ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
                 
-                ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚Ís—ñƒLƒƒƒbƒVƒ…‚ğg—p‚µ‚Äİ’è‚µ‚Ü‚·B
-                s—ñƒLƒƒƒbƒVƒ…‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Æ‚µ‚ÄNULL‚ªw’è‚³‚ê‚½ê‡‚ÍƒAƒtƒBƒ“•ÏŠ·‚ğs‚í‚È‚¢‚à‚Ì‚Æ‚µ‚Ä
-                ”»’f‚µ‚Ü‚·B
+                ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯è¡Œåˆ—ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ä½¿ç”¨ã—ã¦è¨­å®šã—ã¾ã™ã€‚
+                è¡Œåˆ—ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦NULLãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã‚’è¡Œã‚ãªã„ã‚‚ã®ã¨ã—ã¦
+                åˆ¤æ–­ã—ã¾ã™ã€‚
                 
-                İ’è‚µ‚½ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚ÍBegin-EndRenderingƒuƒƒbƒN“à‚Å—LŒø‚Å‚·B
-                NNS_G2dRndCoreEndRendering()ŒÄ‚Ño‚µ‚Éİ’è‚ªƒŠƒZƒbƒg‚³‚ê‚Ü‚·‚Ì‚ÅA
-                Ä“x–{ŠÖ”‚ğŒÄ‚Ño‚µ‚Äİ’è‚ğs‚¤•K—v‚ª‚ ‚è‚Ü‚·B
-                
-                
-                –{ŠÖ”‚ÍA2D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“•`‰æ‚Ì‚İ‚Ég—p‚³‚ê‚Ü‚·B
-                3D ƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“•`‰æ‚É–{ŠÖ”‚ğŒÄ‚Ño‚µ‚½ê‡
-                Œx‚ªƒƒbƒZ[ƒW‚ªo—Í‚³‚ê‚Ü‚·B
-                
-                –{ŠÖ”‚ÍABegin-EndRenderingƒuƒƒbƒN‚Ì“à‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+                è¨­å®šã—ãŸã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯å†…ã§æœ‰åŠ¹ã§ã™ã€‚
+                NNS_G2dRndCoreEndRendering()å‘¼ã³å‡ºã—æ™‚ã«è¨­å®šãŒãƒªã‚»ãƒƒãƒˆã•ã‚Œã¾ã™ã®ã§ã€
+                å†åº¦æœ¬é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¦è¨­å®šã‚’è¡Œã†å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
                 
-  Arguments:    pMtx                          [IN]  ƒJƒŒƒ“ƒg•ÏŠ·s—ñ
-                pCurrentMtxCacheFor2D         [IN]  ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚ğŠi”[‚µ‚½s—ñƒLƒƒƒbƒVƒ…
+                æœ¬é–¢æ•°ã¯ã€2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³æç”»æ™‚ã®ã¿ã«ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
+                3D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³æç”»æ™‚ã«æœ¬é–¢æ•°ã‚’å‘¼ã³å‡ºã—ãŸå ´åˆ
+                è­¦å‘ŠãŒãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå‡ºåŠ›ã•ã‚Œã¾ã™ã€‚
                 
-  Returns:      ‚È‚µ
+                æœ¬é–¢æ•°ã¯ã€Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å†…ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+                
+                
+  Arguments:    pMtx                          [IN]  ã‚«ãƒ¬ãƒ³ãƒˆå¤‰æ›è¡Œåˆ—
+                pCurrentMtxCacheFor2D         [IN]  ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸè¡Œåˆ—ã‚­ãƒ£ãƒƒã‚·ãƒ¥
+                
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 static BOOL CheckMtx2DParamsValid
@@ -1058,7 +1058,7 @@ static BOOL CheckMtx2DParamsValid
        }
     }else{
        //
-       // ‚Æ‚è‚ ‚¦‚¸AŒx‚Ís‚í‚È‚¢–‚Æ‚·‚é
+       // ã¨ã‚Šã‚ãˆãšã€è­¦å‘Šã¯è¡Œã‚ãªã„äº‹ã¨ã™ã‚‹
        //
        /*
        if( pCurrentMtxCacheFor2D != NULL )
@@ -1098,12 +1098,12 @@ void NNS_G2dSetRndCoreCurrentMtx2D
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetRndCore3DSoftSpriteZvalue
 
-  Description:  ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æ‚ÌÛ‚Ég—p‚³‚ê‚éƒXƒvƒ‰ƒCƒg‚ÌZ’l‚ğİ’è‚µ‚Ü‚·B
+  Description:  ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã®éš›ã«ä½¿ç”¨ã•ã‚Œã‚‹ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Zå€¤ã‚’è¨­å®šã—ã¾ã™ã€‚
                 
-  Arguments:    pRnd        [OUT] ƒŒƒ“ƒ_ƒ‰ƒRƒA
-                z           [IN]  ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æ‚Ég—p‚³‚ê‚éz’l
+  Arguments:    pRnd        [OUT] ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢
+                z           [IN]  ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã«ä½¿ç”¨ã•ã‚Œã‚‹zå€¤
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetRndCore3DSoftSpriteZvalue( NNSG2dRndCoreInstance* pRnd, fx32 z )
@@ -1114,14 +1114,14 @@ void NNS_G2dSetRndCore3DSoftSpriteZvalue( NNSG2dRndCoreInstance* pRnd, fx32 z )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetRndCoreSurface
 
-  Description:  ƒŒƒ“ƒ_ƒ‰ƒRƒA‚É•`‰æ‘ÎÛƒT[ƒtƒFƒX‚ğİ’è‚µ‚Ü‚·B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ã«æç”»å¯¾è±¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’è¨­å®šã—ã¾ã™ã€‚
   
-                Begin-EndRenderingƒuƒƒbƒN‚ÌŠO‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+                Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å¤–ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-  Arguments:    pRnd        [OUT] ƒŒƒ“ƒ_ƒ‰ƒRƒA
-                pSurface    [IN]  •`‰æ‘ÎÛƒT[ƒtƒFƒX
+  Arguments:    pRnd        [OUT] ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢
+                pSurface    [IN]  æç”»å¯¾è±¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹
                 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetRndCoreSurface
@@ -1134,7 +1134,7 @@ void NNS_G2dSetRndCoreSurface
     NNS_G2D_NULL_ASSERT( pRnd );
     NNS_G2D_NULL_ASSERT( pSurface );
     //
-    // TODO:ƒAƒNƒeƒBƒu‚©‚Ç‚¤‚©’²¸‚µAŒxƒƒbƒZ[ƒW‚ğ•\¦‚·‚é
+    // TODO:ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‹ã©ã†ã‹èª¿æŸ»ã—ã€è­¦å‘Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹
     //
     pRnd->pCurrentTargetSurface = pSurface;
 }
@@ -1143,11 +1143,11 @@ void NNS_G2dSetRndCoreSurface
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dIsRndCoreFlipH
 
-  Description:  ƒŒƒ“ƒ_ƒ‰ƒRƒA‚Ì•`‰æƒtƒŠƒbƒvó‘Ô‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ã®æç”»ãƒ•ãƒªãƒƒãƒ—çŠ¶æ…‹ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pRnd        [IN]  ƒŒƒ“ƒ_ƒ‰ƒRƒA
+  Arguments:    pRnd        [IN]  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢
                 
-  Returns:      …•½•ûŒüƒtƒŠƒbƒvó‹µ ON ‚Ì‚Æ‚« TRUE
+  Returns:      æ°´å¹³æ–¹å‘ãƒ•ãƒªãƒƒãƒ—çŠ¶æ³ ON ã®ã¨ã TRUE
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dIsRndCoreFlipH( const NNSG2dRndCoreInstance* pRnd )
@@ -1159,11 +1159,11 @@ BOOL NNS_G2dIsRndCoreFlipH( const NNSG2dRndCoreInstance* pRnd )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dIsRndCoreFlipV
 
-  Description:  ƒŒƒ“ƒ_ƒ‰ƒRƒA‚Ì•`‰æƒtƒŠƒbƒvó‘Ô‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ã®æç”»ãƒ•ãƒªãƒƒãƒ—çŠ¶æ…‹ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pRnd        [IN]  ƒŒƒ“ƒ_ƒ‰ƒRƒA
+  Arguments:    pRnd        [IN]  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢
                 
-  Returns:      ‚’¼•ûŒüƒtƒŠƒbƒvó‹µ ON ‚Ì‚Æ‚« TRUE
+  Returns:      å‚ç›´æ–¹å‘ãƒ•ãƒªãƒƒãƒ—çŠ¶æ³ ON ã®ã¨ã TRUE
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dIsRndCoreFlipV( const NNSG2dRndCoreInstance* pRnd )
@@ -1177,15 +1177,15 @@ BOOL NNS_G2dIsRndCoreFlipV( const NNSG2dRndCoreInstance* pRnd )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetRndCoreFlipMode
 
-  Description:  ƒŒƒ“ƒ_ƒ‰ƒRƒA‚Ì•`‰æƒtƒŠƒbƒvó‘Ô‚ğİ’è‚µ‚Ü‚·B
-                Begin-EndRenderingƒuƒƒbƒN‚Ì“àŠO‚Ç‚¿‚ç‚Å‚àŒÄ‚Ño‚µ‰Â”\‚Å‚·B
-                ƒAƒtƒBƒ“•ÏŠ·‹@”\—˜—p‚Ì–{ŠÖ”‚ÌŒÄ‚Ño‚µ‚Í‹Ö~‚³‚ê‚Ä‚¨‚èAƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ã®æç”»ãƒ•ãƒªãƒƒãƒ—çŠ¶æ…‹ã‚’è¨­å®šã—ã¾ã™ã€‚
+                Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å†…å¤–ã©ã¡ã‚‰ã§ã‚‚å‘¼ã³å‡ºã—å¯èƒ½ã§ã™ã€‚
+                ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›æ©Ÿèƒ½åˆ©ç”¨æ™‚ã®æœ¬é–¢æ•°ã®å‘¼ã³å‡ºã—ã¯ç¦æ­¢ã•ã‚Œã¦ãŠã‚Šã€ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-  Arguments:    pRnd        [OUT] ƒŒƒ“ƒ_ƒ‰ƒRƒA
-                bFlipH      [IN]  …•½•ûŒüƒtƒŠƒbƒv
-                bFlipV      [IN]  ‚’¼•ûŒüƒtƒŠƒbƒv
+  Arguments:    pRnd        [OUT] ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢
+                bFlipH      [IN]  æ°´å¹³æ–¹å‘ãƒ•ãƒªãƒƒãƒ—
+                bFlipV      [IN]  å‚ç›´æ–¹å‘ãƒ•ãƒªãƒƒãƒ—
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetRndCoreFlipMode
@@ -1196,7 +1196,7 @@ void NNS_G2dSetRndCoreFlipMode
 )
 {
     //
-    // Œ»İSR•ÏŠ·‚³‚ê‚Ä‚¢‚È‚¢‚©’²¸‚·‚é
+    // ç¾åœ¨SRå¤‰æ›ã•ã‚Œã¦ã„ãªã„ã‹èª¿æŸ»ã™ã‚‹
     // 
     NNS_G2D_NULL_ASSERT( pRnd );
     NNS_G2D_WARNING( pRnd->pCurrentMtxCacheFor2D == NULL, 
@@ -1222,18 +1222,18 @@ void NNS_G2dSetRndCoreFlipMode
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dRndCoreBeginRendering
 
-  Description:  ƒŒƒ“ƒ_ƒ‰ƒRƒA‚Ì•`‰æ‚ğŠJn‚µ‚Ü‚·B
-                Šeí•`‰æŠJn‚Ì‚½‚ß‚Ì‘Oˆ—‚ğs‚¢‚Ü‚·B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ã®æç”»ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+                å„ç¨®æç”»é–‹å§‹ã®ãŸã‚ã®å‰å‡¦ç†ã‚’è¡Œã„ã¾ã™ã€‚
                 
-                –{ŠÖ”‚ğŒÄ‚Ño‚µ‚½Œã‚ÍA‰æ‘œƒvƒƒNƒVA‘ÎÛƒŒƒ“ƒ_ƒT[ƒtƒFƒX‚Ìƒpƒ‰ƒ[ƒ^‚Ì
-                •ÏX‚Ís‚¦‚Ü‚¹‚ñ‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
-                –{ŠÖ”‚ğŒÄ‚ñ‚¾ŒãA•`‰æI—¹Œã‚É•K‚¸ NNS_G2dRndCoreEndRendering() ‚ğŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+                æœ¬é–¢æ•°ã‚’å‘¼ã³å‡ºã—ãŸå¾Œã¯ã€ç”»åƒãƒ—ãƒ­ã‚¯ã‚·ã€å¯¾è±¡ãƒ¬ãƒ³ãƒ€ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®
+                å¤‰æ›´ã¯è¡Œãˆã¾ã›ã‚“ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
+                æœ¬é–¢æ•°ã‚’å‘¼ã‚“ã å¾Œã€æç”»çµ‚äº†å¾Œã«å¿…ãš NNS_G2dRndCoreEndRendering() ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
                 
-                Begin-EndRenderingƒuƒƒbƒN“à‚Å‚ÌBegin-EndRenderingŠÖ”‚ÌŒÄ‚Ño‚µ(“ü‚êqŒÄ‚Ño‚µ)
-                ‚Í‹Ö~‚³‚ê‚Ä‚¨‚èAŒÄ‚Ño‚µ‚ğs‚Á‚½ê‡‚ÍAƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·B
+                Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯å†…ã§ã®Begin-EndRenderingé–¢æ•°ã®å‘¼ã³å‡ºã—(å…¥ã‚Œå­å‘¼ã³å‡ºã—)
+                ã¯ç¦æ­¢ã•ã‚Œã¦ãŠã‚Šã€å‘¼ã³å‡ºã—ã‚’è¡Œã£ãŸå ´åˆã¯ã€ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-  Arguments:    pRnd        [IN]  ƒŒƒ“ƒ_ƒ‰ƒRƒA
-  Returns:      ‚È‚µ
+  Arguments:    pRnd        [IN]  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dRndCoreBeginRendering( NNSG2dRndCoreInstance* pRnd )
@@ -1246,11 +1246,11 @@ void NNS_G2dRndCoreBeginRendering( NNSG2dRndCoreInstance* pRnd )
     pTheInstance_ = pRnd;
     
     //
-    // 3D •`‰æŒÅ—L‘Oˆ—
+    // 3D æç”»å›ºæœ‰å‰å‡¦ç†
     //
     if( pRnd->pCurrentTargetSurface->type == NNS_G2D_SURFACETYPE_MAIN3D )
     {
-        // ƒJƒƒ‰İ’è    
+        // ã‚«ãƒ¡ãƒ©è¨­å®š    
         G3_MtxMode( GX_MTXMODE_PROJECTION );
         G3_PushMtx();
         G3_Translate( -pRnd->pCurrentTargetSurface->viewRect.posTopLeft.x, 
@@ -1258,14 +1258,14 @@ void NNS_G2dRndCoreBeginRendering( NNSG2dRndCoreInstance* pRnd )
         G3_MtxMode( GX_MTXMODE_POSITION );
         
         //
-        // ƒx[ƒXƒAƒhƒŒƒX‚ÌŒvZ
+        // ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹ã®è¨ˆç®—
         //
         pRnd->baseTexAddr3D = GetTexBaseAddr3D_( pTheInstance_->pImgProxy );
         pRnd->basePltAddr3D = GetPltBaseAddr3D_( pTheInstance_->pPltProxy );
         
     }else{
     //
-    // 2D •`‰æŒÅ—L‘Oˆ—
+    // 2D æç”»å›ºæœ‰å‰å‡¦ç†
     //
         pTheInstance_->base2DCharOffset 
            = GetCharacterBase2D_( pTheInstance_->pImgProxy, 
@@ -1276,19 +1276,19 @@ void NNS_G2dRndCoreBeginRendering( NNSG2dRndCoreInstance* pRnd )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dRndCoreEndRendering
 
-  Description:  ƒŒƒ“ƒ_ƒ‰ƒRƒA‚Ì•`‰æ‚ğI—¹‚µ‚Ü‚·B
-                Šeí•`‰æI—¹‚Ì‚½‚ß‚ÌŒãˆ—‚ğs‚¢‚Ü‚·B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+                å„ç¨®æç”»çµ‚äº†ã®ãŸã‚ã®å¾Œå‡¦ç†ã‚’è¡Œã„ã¾ã™ã€‚
                 
-                OAM“o˜^ŠÖ”‚Æ‚µ‚ÄOAMƒuƒƒbƒN“]‘—ŠÖ”‚ªİ’è‚³‚ê‚Ä‚¢‚éê‡‚Í
-                –{ŠÖ”“à‚ÅAƒuƒƒbƒN“]‘—ŠÖ”‚ğg—p‚µ‚ÄAŠO•”ƒ‚ƒWƒ…[ƒ‹‚Ö‚Æ“à•”OAMƒoƒbƒtƒ@‚Ì
-                “à—e‚ªƒRƒs[‚³‚ê‚Ü‚·B
-                “]‘—‚Í•K‚¸¬Œ÷‚·‚é‚±‚Æ‚ªŠú‘Ò‚³‚ê‚Ä‚¨‚èA“]‘—‚É¸”s‚µ‚½ê‡‚Í
-                ƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·B
-                i“]‘—‚É¸”s‚·‚éê‡‚ÍA“à•”OAMƒoƒbƒtƒ@‚Ìƒoƒbƒtƒ@ƒTƒCƒY‚Ìİ’è‚É
-                Œë‚è‚ª‚ ‚é‚±‚Æ‚ª—\‘z‚³‚ê‚Ü‚·Bj
+                OAMç™»éŒ²é–¢æ•°ã¨ã—ã¦OAMãƒ–ãƒ­ãƒƒã‚¯è»¢é€é–¢æ•°ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹å ´åˆã¯
+                æœ¬é–¢æ•°å†…ã§ã€ãƒ–ãƒ­ãƒƒã‚¯è»¢é€é–¢æ•°ã‚’ä½¿ç”¨ã—ã¦ã€å¤–éƒ¨ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¸ã¨å†…éƒ¨OAMãƒãƒƒãƒ•ã‚¡ã®
+                å†…å®¹ãŒã‚³ãƒ”ãƒ¼ã•ã‚Œã¾ã™ã€‚
+                è»¢é€ã¯å¿…ãšæˆåŠŸã™ã‚‹ã“ã¨ãŒæœŸå¾…ã•ã‚Œã¦ãŠã‚Šã€è»¢é€ã«å¤±æ•—ã—ãŸå ´åˆã¯
+                ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™ã€‚
+                ï¼ˆè»¢é€ã«å¤±æ•—ã™ã‚‹å ´åˆã¯ã€å†…éƒ¨OAMãƒãƒƒãƒ•ã‚¡ã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã®è¨­å®šã«
+                èª¤ã‚ŠãŒã‚ã‚‹ã“ã¨ãŒäºˆæƒ³ã•ã‚Œã¾ã™ã€‚ï¼‰
                 
-  Arguments:    ‚È‚µ
-  Returns:      ‚È‚µ
+  Arguments:    ãªã—
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dRndCoreEndRendering( void )
@@ -1296,22 +1296,22 @@ void NNS_G2dRndCoreEndRendering( void )
     NNS_G2D_NULL_ASSERT( pTheInstance_ );
      
     //
-    // 3D •`‰æŒÅ—LŒãˆ—
+    // 3D æç”»å›ºæœ‰å¾Œå‡¦ç†
     //
     if( pTheInstance_->pCurrentTargetSurface->type == NNS_G2D_SURFACETYPE_MAIN3D )
     {
-        // ƒJƒƒ‰İ’è(restore)
+        // ã‚«ãƒ¡ãƒ©è¨­å®š(restore)
         G3_MtxMode( GX_MTXMODE_PROJECTION );
         G3_PopMtx(1);
         G3_MtxMode( GX_MTXMODE_POSITION );
         
     }else{
     //
-    // 2D •`‰æŒÅ—LŒãˆ—
+    // 2D æç”»å›ºæœ‰å¾Œå‡¦ç†
     //    
         pTheInstance_->base2DCharOffset = 0;
         //
-        // ƒAƒtƒBƒ“•ÏŠ·İ’è‚ÌƒŠƒZƒbƒg
+        // ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¨­å®šã®ãƒªã‚»ãƒƒãƒˆ
         //
         pTheInstance_->pCurrentMxt = NULL;
         pTheInstance_->pCurrentMtxCacheFor2D = NULL;
@@ -1322,12 +1322,12 @@ void NNS_G2dRndCoreEndRendering( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dRndCoreDrawCell
 
-  Description:  ƒZƒ‹‚ğ•`‰æ‚µ‚Ü‚·B
-                Begin-EndRenderingƒuƒƒbƒN‚Ì“à‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+  Description:  ã‚»ãƒ«ã‚’æç”»ã—ã¾ã™ã€‚
+                Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å†…ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-  Arguments:    pCell:                    [IN]  ƒZƒ‹ƒf[ƒ^
+  Arguments:    pCell:                    [IN]  ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dRndCoreDrawCell( const NNSG2dCellData* pCell )
@@ -1341,13 +1341,13 @@ void NNS_G2dRndCoreDrawCell( const NNSG2dCellData* pCell )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dRndCoreDrawCellVramTransfer
 
-  Description:  VRAM“]‘—ƒZƒ‹‚ğ•`‰æ‚µ‚Ü‚·B
-                Begin-EndRenderingƒuƒƒbƒN‚Ì“à‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+  Description:  VRAMè»¢é€ã‚»ãƒ«ã‚’æç”»ã—ã¾ã™ã€‚
+                Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å†…ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-  Arguments:    pCell:                    [IN]  ƒZƒ‹ƒf[ƒ^
-                cellVramTransferHandle:   [IN]  ƒZƒ‹VRAM“]‘—ó‘ÔƒIƒuƒWƒFƒNƒg‚Ìƒnƒ“ƒhƒ‹   
+  Arguments:    pCell:                    [IN]  ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+                cellVramTransferHandle:   [IN]  ã‚»ãƒ«VRAMè»¢é€çŠ¶æ…‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«   
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dRndCoreDrawCellVramTransfer( const NNSG2dCellData* pCell, u32 cellVramTransferHandle )
@@ -1362,17 +1362,17 @@ void NNS_G2dRndCoreDrawCellVramTransfer( const NNSG2dCellData* pCell, u32 cellVr
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dRndCoreDrawCellFast2D
 
-  Description:  2D ƒOƒ‰ƒtƒBƒbƒNƒGƒ“ƒWƒ“(OBJ‹@”\)‚ğ—˜—p‚µ‚ÄƒZƒ‹‚ğ‚‘¬‚É•`‰æ‚µ‚Ü‚·B
+  Description:  2D ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¨ãƒ³ã‚¸ãƒ³(OBJæ©Ÿèƒ½)ã‚’åˆ©ç”¨ã—ã¦ã‚»ãƒ«ã‚’é«˜é€Ÿã«æç”»ã—ã¾ã™ã€‚
                 
-                –{ŠÖ”‚ÍAƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µAƒZƒ‹‚ÌƒAƒtƒBƒ“•ÏŠ·‚ğƒTƒ|[ƒg‚µ‚Ü‚¹‚ñB
-                2D—pƒAƒtƒBƒ“•ÏŠ·s—ñipCurrentMtxCacheFor2Dj‚ªİ’è‚³‚ê‚½ó‘Ô‚ÅA
-                –{ŠÖ”‚ğŒÄ‚Ño‚µ‚½ê‡AƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·B
+                æœ¬é–¢æ•°ã¯ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—ã€ã‚»ãƒ«ã®ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¾ã›ã‚“ã€‚
+                2Dç”¨ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—ï¼ˆpCurrentMtxCacheFor2Dï¼‰ãŒè¨­å®šã•ã‚ŒãŸçŠ¶æ…‹ã§ã€
+                æœ¬é–¢æ•°ã‚’å‘¼ã³å‡ºã—ãŸå ´åˆã€ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-                Begin-EndRenderingƒuƒƒbƒN‚Ì“à‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+                Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å†…ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-  Arguments:    pCell:      [IN]  ƒZƒ‹ƒf[ƒ^
+  Arguments:    pCell:      [IN]  ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dRndCoreDrawCellFast2D( const NNSG2dCellData* pCell )
@@ -1393,28 +1393,28 @@ void NNS_G2dRndCoreDrawCellFast2D( const NNSG2dCellData* pCell )
                       "You can't use this method using affine transfomation." );
     NNS_G2D_NULL_ASSERT( pCell );   
     //------------------------------------------------------------------------------
-    // ƒZƒ‹ ‚ğ 2D Graphics Engine ‚ğg—p‚µ‚Ä •`‰æ‚µ‚Ü‚·
-    // ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ‚È‚Ç‚ğƒTƒ|[ƒg‚µ‚Ü‚¹‚ñ‚ª‚‘¬‚É“®ì‚·‚éƒo[ƒWƒ‡ƒ“‚Å‚·B
+    // ã‚»ãƒ« ã‚’ 2D Graphics Engine ã‚’ä½¿ç”¨ã—ã¦ æç”»ã—ã¾ã™
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—ãªã©ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¾ã›ã‚“ãŒé«˜é€Ÿã«å‹•ä½œã™ã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã™ã€‚
     // 
 
     // get current Mtx for affine transformation.
     NNSi_G2dGetMtxTrans( pCurrMtx, &baseTrans );  
        
     //
-    // ƒrƒ…[ƒ[ƒJƒ‹Œn‚Ö‚Ì•ÏŠ·
+    // ãƒ“ãƒ¥ãƒ¼ãƒ­ãƒ¼ã‚«ãƒ«ç³»ã¸ã®å¤‰æ›
     //                  
     baseTrans.x -= pSurface->viewRect.posTopLeft.x;
     baseTrans.y -= pSurface->viewRect.posTopLeft.y;
     //
-    // NNS_G2dMakeCellToOams() ‚Æ‚Ù‚Ú“¯‚¶ˆ—‚ğs‚¢‚Ü‚·B
-    // i‚½‚¾‚µAƒtƒŠƒbƒv‚ğƒTƒ|[ƒg‚µ‚Ü‚·Bj
+    // NNS_G2dMakeCellToOams() ã¨ã»ã¼åŒã˜å‡¦ç†ã‚’è¡Œã„ã¾ã™ã€‚
+    // ï¼ˆãŸã ã—ã€ãƒ•ãƒªãƒƒãƒ—ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¾ã™ã€‚ï¼‰
     //
     //
-    // ƒuƒƒbƒN“]‘—‚ğg—p‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-    // OBJ“o˜^‚Ì“x‚ÉA•`‰æ“o˜^ŠÖ”‚æ‚Ñ‚¾‚µ‚ÌƒI[ƒo[ƒwƒbƒh‚ª”­¶‚µ‚Ü‚·B
-    // ƒuƒƒbƒN“]‘—‚ğg—p‚·‚éƒo[ƒWƒ‡ƒ“‚Æ”ä‚×‚ÄAƒpƒtƒH[ƒ}ƒ“ƒX“I‚É‚Í•s—˜‚Å‚·‚ªA
-    // ‚à‚Æ‚à‚Æ–{ŠÖ”‚Ì•`‰æ“o˜^ˆ—‚Ì1ƒtƒŒ[ƒ€‚Éè‚ß‚éŠ„‡‚Í¬‚³‚¢‚Ì‚Å
-    // i128 ŒÂX2 ‚ÌOBJ‚ğ“o˜^‚µ‚½‚Æ‚µ‚Ä‚àjA–â‘è‚Í‚È‚¢‚Æ”»’f‚µ–{•û®‚ğÌ—p‚·‚é‚±‚Æ‚Æ‚µ‚Ü‚·B
+    // ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ã‚’ä½¿ç”¨ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+    // OBJç™»éŒ²ã®åº¦ã«ã€æç”»ç™»éŒ²é–¢æ•°ã‚ˆã³ã ã—ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ˜ãƒƒãƒ‰ãŒç™ºç”Ÿã—ã¾ã™ã€‚
+    // ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ã‚’ä½¿ç”¨ã™ã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¨æ¯”ã¹ã¦ã€ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹çš„ã«ã¯ä¸åˆ©ã§ã™ãŒã€
+    // ã‚‚ã¨ã‚‚ã¨æœ¬é–¢æ•°ã®æç”»ç™»éŒ²å‡¦ç†ã®1ãƒ•ãƒ¬ãƒ¼ãƒ ã«å ã‚ã‚‹å‰²åˆã¯å°ã•ã„ã®ã§
+    // ï¼ˆ128 å€‹X2 ã®OBJã‚’ç™»éŒ²ã—ãŸã¨ã—ã¦ã‚‚ï¼‰ã€å•é¡Œã¯ãªã„ã¨åˆ¤æ–­ã—æœ¬æ–¹å¼ã‚’æ¡ç”¨ã™ã‚‹ã“ã¨ã¨ã—ã¾ã™ã€‚
     // 
     {
        u16          i;
@@ -1432,7 +1432,7 @@ void NNS_G2dRndCoreDrawCellFast2D( const NNSG2dCellData* pCell )
            pTempOam->charNo += baseCharOffset;
                         
            //
-           // •`‰æ“o˜^ŠÖ”‚æ‚Ñ‚¾‚µ
+           // æç”»ç™»éŒ²é–¢æ•°ã‚ˆã³ã ã—
            //
            NNS_G2D_NULL_ASSERT( pTheInstance_->pFuncOamRegister );
            if( FALSE == (*pTheInstance_->pFuncOamRegister)( pTempOam, NNS_G2D_OAM_AFFINE_IDX_NONE, FALSE ) )
@@ -1447,21 +1447,21 @@ void NNS_G2dRndCoreDrawCellFast2D( const NNSG2dCellData* pCell )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetRndCoreCellCloneSource3D
 
-  Description:  NNS_G2dRndCoreDrawCellClone3D()‚ÅQÆ‚³‚ê‚éAUVƒpƒ‰ƒ[ƒ^‚ğ–‘OŒvZ‚µA
-                UVƒpƒ‰ƒ[ƒ^ƒLƒƒƒbƒVƒ…‚Æ‚µ‚Ä•Û‘¶‚µ‚Ü‚·B
-                “ü—Í‚³‚ê‚½AƒZƒ‹‚ª“¯ˆê‚Ì‰æ‘œƒf[ƒ^‚ğ‚ÂOBJ‚©‚ç\¬‚³‚ê‚Ä‚¢‚é‚Æ‘z’è‚µ‚ÄA
-                ƒCƒ“ƒfƒbƒNƒX0”Ô‚ÌOBJ‚É‚Â‚¢‚ÄUV’l‚ğŒvZ‚µAƒLƒƒƒbƒVƒ…‚Æ‚µ‚Ä•Û‘¶‚µ‚Ü‚·B
+  Description:  NNS_G2dRndCoreDrawCellClone3D()ã§å‚ç…§ã•ã‚Œã‚‹ã€UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’äº‹å‰è¨ˆç®—ã—ã€
+                UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¨ã—ã¦ä¿å­˜ã—ã¾ã™ã€‚
+                å…¥åŠ›ã•ã‚ŒãŸã€ã‚»ãƒ«ãŒåŒä¸€ã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æŒã¤OBJã‹ã‚‰æ§‹æˆã•ã‚Œã¦ã„ã‚‹ã¨æƒ³å®šã—ã¦ã€
+                ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹0ç•ªã®OBJã«ã¤ã„ã¦UVå€¤ã‚’è¨ˆç®—ã—ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¨ã—ã¦ä¿å­˜ã—ã¾ã™ã€‚
                 
-                ’ˆÓFƒtƒŠƒbƒv‚³‚ê‚½ƒXƒvƒ‰ƒCƒg‚ÌUVƒpƒ‰ƒ[ƒ^‚Í’Êí‚ÌUVƒpƒ‰ƒ[ƒ^‚Æ‚ÍˆÙ‚È‚è‚Ü‚·B
-                ‚µ‚½‚ª‚Á‚Ä“¯ˆê‚Ì‰æ‘œƒf[ƒ^‚ğ‚ÂOBJ‚Æ‚Í‚İ‚È‚¹‚È‚¢‚±‚Æ‚É‚È‚è‚Ü‚·B
-                3D ƒT[ƒtƒFƒXê—p‚Ìˆ—‚Å‚·BŒ»İ‚ÌƒT[ƒtƒFƒXí—Ş‚ªA
-                NNS_G2D_SURFACETYPE_MAIN3DˆÈŠO‚Ìê‡‚ÍƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·B
+                æ³¨æ„ï¼šãƒ•ãƒªãƒƒãƒ—ã•ã‚ŒãŸã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯é€šå¸¸ã®UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨ã¯ç•°ãªã‚Šã¾ã™ã€‚
+                ã—ãŸãŒã£ã¦åŒä¸€ã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æŒã¤OBJã¨ã¯ã¿ãªã›ãªã„ã“ã¨ã«ãªã‚Šã¾ã™ã€‚
+                3D ã‚µãƒ¼ãƒ•ã‚§ã‚¹å°‚ç”¨ã®å‡¦ç†ã§ã™ã€‚ç¾åœ¨ã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ç¨®é¡ãŒã€
+                NNS_G2D_SURFACETYPE_MAIN3Dä»¥å¤–ã®å ´åˆã¯ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-                Begin-EndRenderingƒuƒƒbƒN‚Ì“à‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+                Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å†…ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-  Arguments:    pCell:      [IN]  ƒZƒ‹ƒf[ƒ^
+  Arguments:    pCell:      [IN]  ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetRndCoreCellCloneSource3D( const NNSG2dCellData* pCell )
@@ -1474,15 +1474,15 @@ void NNS_G2dSetRndCoreCellCloneSource3D( const NNSG2dCellData* pCell )
     
     {   
         GXOamAttr*            pOam = &pTheInstance_->currentOam;
-        // æ“ª‚ÌOBJ‚ğ‘ã•\‚Æ‚µ‚Ä...
+        // å…ˆé ­ã®OBJã‚’ä»£è¡¨ã¨ã—ã¦...
         NNS_G2dCopyCellAsOamAttr( pCell, 0, pOam );
-        // ƒpƒ‰ƒ[ƒ^ƒLƒƒƒbƒVƒ…‚Æ‚µ‚Äİ’è‚µ‚Ü‚·
-        // ‚±‚ÌŒã‚Ì•`‰æ‚É‚Â‚¢‚ÄA
-        // ƒeƒNƒXƒ`ƒƒƒpƒ‰ƒ[ƒ^‚Í‚±‚Ì’l‚ªQÆ‚³‚ê‚Ü‚·B
+        // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¨ã—ã¦è¨­å®šã—ã¾ã™
+        // ã“ã®å¾Œã®æç”»ã«ã¤ã„ã¦ã€
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ã“ã®å€¤ãŒå‚ç…§ã•ã‚Œã¾ã™ã€‚
         
         
         //
-        // ƒŒƒ“ƒ_ƒ‰‚ÌƒtƒŠƒbƒvİ’è‚ğOAMƒAƒgƒŠƒrƒ…[ƒg‚É”½‰f‚·‚é
+        // ãƒ¬ãƒ³ãƒ€ãƒ©ã®ãƒ•ãƒªãƒƒãƒ—è¨­å®šã‚’OAMã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã«åæ˜ ã™ã‚‹
         //        
         OverwriteOamFlipFlag_( pOam );
                
@@ -1500,34 +1500,34 @@ void NNS_G2dSetRndCoreCellCloneSource3D( const NNSG2dCellData* pCell )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dRndCoreDrawCellClone3D
 
-  Description:  “¯ˆê‚Ì‰æ‘œƒf[ƒ^‚ğ‚ÂOBJ‚©‚ç\¬‚³‚ê‚éƒZƒ‹‚ğƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚ğ
-                g—p‚µ‚Ä‚‘¬‚É•`‰æ‚µ‚Ü‚·B
+  Description:  åŒä¸€ã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æŒã¤OBJã‹ã‚‰æ§‹æˆã•ã‚Œã‚‹ã‚»ãƒ«ã‚’ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’
+                ä½¿ç”¨ã—ã¦é«˜é€Ÿã«æç”»ã—ã¾ã™ã€‚
                 
-                “¯ˆê‚Ì‰æ‘œƒf[ƒ^‚ğ‚ÂOBJ‚Æ‚Íƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgiƒeƒNƒXƒ`ƒƒ•tlŠpƒ|ƒŠƒSƒ“j
-                ‚Æ‚µ‚Ä•`‰æ‚·‚éÛ‚ÉUV’l‚ª“¯ˆê‚É‚È‚éOBJ‚Ì‚±‚Æ‚Å‚·B
+                åŒä¸€ã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æŒã¤OBJã¨ã¯ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ä»˜å››è§’ãƒãƒªã‚´ãƒ³ï¼‰
+                ã¨ã—ã¦æç”»ã™ã‚‹éš›ã«UVå€¤ãŒåŒä¸€ã«ãªã‚‹OBJã®ã“ã¨ã§ã™ã€‚
                 
-                “¯ˆê‚Ì‰æ‘œƒf[ƒ^‚ğ‚ÂOBJ‚Å‚ ‚ê‚ÎAƒZƒ‹’†‚ÌOBJ‚Í’P”‚Å‚à•¡”‚Å‚à‚©‚Ü‚¢‚Ü‚¹‚ñB
-                –{ŠÖ”‚ÍA–‘O‚ÉŒvZ‚³‚ê‚½AUVƒpƒ‰ƒ[ƒ^ƒLƒƒƒbƒVƒ…‚ğ—˜—p‚µ‚Ä•`‰æ‚ğ‚¨‚±‚È‚¢‚Ü‚·B
-                ’Êí‚Ìƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æ‚Å•K—v‚Æ‚È‚éAUV’l‚ÌŒvZˆ—‚ğÈ‚­‚±‚Æ‚ª‰Â”\‚É‚È‚é‚½‚ß
-                A‚‘¬‚É“®ì‚µ‚Ü‚·B
-                UVƒpƒ‰ƒ[ƒ^ƒLƒƒƒbƒVƒ…‚ğİ’è‚·‚é‚½‚ß‚ÉA
-                Às‘O‚ÉNNS_G2dSetRndCoreCellCloneSource3D()‚ğŒÄ‚Ño‚µ‚ÄAƒpƒ‰ƒ[ƒ^‚Ì‰Šú‰»
-                ‚ğÏ‚Ü‚¹‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·B
+                åŒä¸€ã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æŒã¤OBJã§ã‚ã‚Œã°ã€ã‚»ãƒ«ä¸­ã®OBJã¯å˜æ•°ã§ã‚‚è¤‡æ•°ã§ã‚‚ã‹ã¾ã„ã¾ã›ã‚“ã€‚
+                æœ¬é–¢æ•°ã¯ã€äº‹å‰ã«è¨ˆç®—ã•ã‚ŒãŸã€UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’åˆ©ç”¨ã—ã¦æç”»ã‚’ãŠã“ãªã„ã¾ã™ã€‚
+                é€šå¸¸ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã§å¿…è¦ã¨ãªã‚‹ã€UVå€¤ã®è¨ˆç®—å‡¦ç†ã‚’çœãã“ã¨ãŒå¯èƒ½ã«ãªã‚‹ãŸã‚
+                ã€é«˜é€Ÿã«å‹•ä½œã—ã¾ã™ã€‚
+                UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’è¨­å®šã™ã‚‹ãŸã‚ã«ã€
+                å®Ÿè¡Œå‰ã«NNS_G2dSetRndCoreCellCloneSource3D()ã‚’å‘¼ã³å‡ºã—ã¦ã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+                ã‚’æ¸ˆã¾ã›ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-                ’ˆÓFƒtƒŠƒbƒv‚³‚ê‚½ƒXƒvƒ‰ƒCƒg‚ÌUVƒpƒ‰ƒ[ƒ^‚Í’Êí‚ÌUVƒpƒ‰ƒ[ƒ^‚Æ‚ÍˆÙ‚È‚è‚Ü‚·B
-                ‚µ‚½‚ª‚Á‚Ä“¯ˆê‚Ì‰æ‘œƒf[ƒ^‚ğ‚ÂOBJ‚Æ‚Í‚İ‚È‚¹‚È‚¢‚±‚Æ‚É‚È‚è‚Ü‚·B
+                æ³¨æ„ï¼šãƒ•ãƒªãƒƒãƒ—ã•ã‚ŒãŸã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯é€šå¸¸ã®UVãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨ã¯ç•°ãªã‚Šã¾ã™ã€‚
+                ã—ãŸãŒã£ã¦åŒä¸€ã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æŒã¤OBJã¨ã¯ã¿ãªã›ãªã„ã“ã¨ã«ãªã‚Šã¾ã™ã€‚
                 
                 
-                –{ŠÖ”‚ÍƒAƒtƒBƒ“•ÏŠ·‚ğƒTƒ|[ƒg‚µ‚Ü‚·BŠeíƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ‚ğƒTƒ|[ƒg‚µ‚Ü‚¹‚ñB
+                æœ¬é–¢æ•°ã¯ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¾ã™ã€‚å„ç¨®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¾ã›ã‚“ã€‚
                 
-                3D ƒT[ƒtƒFƒXê—p‚Ìˆ—‚Å‚·BŒ»İ‚ÌƒT[ƒtƒFƒXí—Ş‚ªA
-                NNS_G2D_SURFACETYPE_MAIN3DˆÈŠO‚Ìê‡‚ÍƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·B
+                3D ã‚µãƒ¼ãƒ•ã‚§ã‚¹å°‚ç”¨ã®å‡¦ç†ã§ã™ã€‚ç¾åœ¨ã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ç¨®é¡ãŒã€
+                NNS_G2D_SURFACETYPE_MAIN3Dä»¥å¤–ã®å ´åˆã¯ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-                Begin-EndRenderingƒuƒƒbƒN‚Ì“à‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+                Begin-EndRenderingãƒ–ãƒ­ãƒƒã‚¯ã®å†…ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-  Arguments:    pCell:      [IN]  ƒZƒ‹ƒf[ƒ^
+  Arguments:    pCell:      [IN]  ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dRndCoreDrawCellClone3D( const NNSG2dCellData* pCell )
@@ -1545,28 +1545,28 @@ void NNS_G2dRndCoreDrawCellClone3D( const NNSG2dCellData* pCell )
     if( pTheInstance_->flipFlag != NNS_G2D_RENDERERFLIP_NONE )
     {
         //
-        // ƒtƒŠƒbƒv•`‰æ
+        // ãƒ•ãƒªãƒƒãƒ—æç”»
         //
         for( i = 0; i < pCell->numOAMAttrs; i++ )
         {
            NNS_G2dCopyCellAsOamAttr( pCell, i, pOam );
            
-           // s—ñİ’è
+           // è¡Œåˆ—è¨­å®š
            G3_LoadMtx43( &pTheInstance_->mtxFor3DGE );
     
-           // •`‰æ
+           // æç”»
            {               
                const GXOamShape shape = NNS_G2dGetOAMSize( pOam );
                 
                //
-               // OBJ ‚Ì •`‰æˆÊ’u‚ğæ“¾‚·‚é
+               // OBJ ã® æç”»ä½ç½®ã‚’å–å¾—ã™ã‚‹
                //
                const s16 posX = (s16)GetFlipedOBJPosX_( pOam, shape );
                const s16 posY = (s16)GetFlipedOBJPosY_( pOam, shape );
                const s16 posZ = -1;      
                 
                //
-               // ƒŒƒ“ƒ_ƒ‰‚ÌƒtƒŠƒbƒvİ’è‚ğOAMƒAƒgƒŠƒrƒ…[ƒg‚É”½‰f‚·‚é
+               // ãƒ¬ãƒ³ãƒ€ãƒ©ã®ãƒ•ãƒªãƒƒãƒ—è¨­å®šã‚’OAMã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã«åæ˜ ã™ã‚‹
                //        
                OverwriteOamFlipFlag_( pOam );
                
@@ -1576,13 +1576,13 @@ void NNS_G2dRndCoreDrawCellClone3D( const NNSG2dCellData* pCell )
         }
     }else{
         //
-        // ƒtƒŠƒbƒv–³‚µ•`‰æ
+        // ãƒ•ãƒªãƒƒãƒ—ç„¡ã—æç”»
         //
         for( i = 0; i < pCell->numOAMAttrs; i++ )
         {
            NNS_G2dCopyCellAsOamAttr( pCell, i, pOam );
            
-           // s—ñİ’è
+           // è¡Œåˆ—è¨­å®š
            G3_LoadMtx43( &pTheInstance_->mtxFor3DGE );
     
            {

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	contype_icon.c
- * @brief	ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
  * @author	matsuda
- * @date	2005.12.02(‹à)
+ * @date	2005.12.02(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -16,16 +16,16 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÅŽg—p‚·‚éƒpƒŒƒbƒg–{”
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°
 #define CTI_PLTT_NUM		(2)
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒv–ˆ‚ÌCGRID
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—æ¯Žã®CGRID
 ALIGN4 static const u32 ConTypeCgrNo[] = {
 	CTYPE_STYLE_NCGR_BIN,			//CONTYPE_STYLE
 	CTYPE_BEAUTIFUL_NCGR_BIN,		//CONTYPE_BEAUTIFUL
@@ -34,7 +34,7 @@ ALIGN4 static const u32 ConTypeCgrNo[] = {
 	CTYPE_STRONG_NCGR_BIN, 		//CONTYPE_STRONG
 };
 
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒv–ˆ‚ÌƒpƒŒƒbƒgƒIƒtƒZƒbƒg”Ô†
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—æ¯Žã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 ConTypePlttOffset[] = {
 	1,		//CONTYPE_STYLE
 	1,		//CONTYPE_BEAUTIFUL
@@ -47,14 +47,14 @@ ALIGN4 static const u8 ConTypePlttOffset[] = {
 
 //==============================================================================
 //
-//	ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“
+//	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   Žw’èƒRƒ“ƒeƒXƒgƒ^ƒCƒv‚ÌCGRID‚ðŽæ“¾‚µ‚Ü‚·
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
- * @retval  CGRID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŒ‡å®šã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã®CGRIDã‚’å–å¾—ã—ã¾ã™
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
+ * @retval  CGRID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 ConTypeIcon_CgrIDGet(int con_type)
@@ -65,8 +65,8 @@ u32 ConTypeIcon_CgrIDGet(int con_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒgID‚ðŽæ“¾‚µ‚Ü‚·
- * @retval  ƒpƒŒƒbƒgID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆIDã‚’å–å¾—ã—ã¾ã™
+ * @retval  ãƒ‘ãƒ¬ãƒƒãƒˆID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 ConTypeIcon_PlttIDGet(void)
@@ -76,8 +76,8 @@ u32 ConTypeIcon_PlttIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’èƒRƒ“ƒeƒXƒgƒ^ƒCƒv‚ÌƒZƒ‹ID‚ðŽæ“¾‚µ‚Ü‚·
- * @retval  ƒZƒ‹ID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŒ‡å®šã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã®ã‚»ãƒ«IDã‚’å–å¾—ã—ã¾ã™
+ * @retval  ã‚»ãƒ«ID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 ConTypeIcon_CellIDGet(void)
@@ -87,8 +87,8 @@ u32 ConTypeIcon_CellIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’èƒRƒ“ƒeƒXƒgƒ^ƒCƒv‚ÌƒZƒ‹ƒAƒjƒID‚ðŽæ“¾‚µ‚Ü‚·
- * @retval  ƒZƒ‹ƒAƒjƒID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŒ‡å®šã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã®ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡IDã‚’å–å¾—ã—ã¾ã™
+ * @retval  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 ConTypeIcon_CellAnmIDGet(void)
@@ -98,9 +98,9 @@ u32 ConTypeIcon_CellAnmIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’èƒRƒ“ƒeƒXƒgƒ^ƒCƒv‚ÌƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg‚ðŽæ“¾‚µ‚Ü‚·
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
- * @retval  ƒpƒŒƒbƒg”Ô†‚ÌƒIƒtƒZƒbƒg
+ * @brief   æŒ‡å®šã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—ã—ã¾ã™
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
+ * @retval  ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 u8 ConTypeIcon_PlttOffsetGet(int con_type)
@@ -111,8 +111,8 @@ u8 ConTypeIcon_PlttOffsetGet(int con_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒA[ƒJƒCƒuINDEX‚ðŽæ“¾‚µ‚Ü‚·
- * @retval  ƒA[ƒJƒCƒuINDEX
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–INDEXã‚’å–å¾—ã—ã¾ã™
+ * @retval  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–INDEX
  */
 //--------------------------------------------------------------
 u32 ConTypeIcon_ArcIDGet(void)
@@ -125,13 +125,13 @@ u32 ConTypeIcon_ArcIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’èƒRƒ“ƒeƒXƒgƒ^ƒCƒv‚ÌƒLƒƒƒ‰ƒŠƒ\[ƒX‚ðƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŒ‡å®šã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã®ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   csp				csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp				crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vram_type		NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
- * @param   char_id			“o˜^‚·‚éƒLƒƒƒ‰ID
+ * @param   csp				cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp				crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vram_type		NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
+ * @param   char_id			ç™»éŒ²ã™ã‚‹ã‚­ãƒ£ãƒ©ID
  */
 //--------------------------------------------------------------
 void ConTypeIcon_CharResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, 
@@ -143,14 +143,14 @@ void ConTypeIcon_CharResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒg‚ðƒ[ƒh‚µ‚Ü‚·
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   csp			csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param   pltt_id		“o˜^‚·‚éƒpƒŒƒbƒgID
+ * @param   csp			cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param   pltt_id		ç™»éŒ²ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆID
  *
- * ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÅŽg—p‚·‚éƒpƒŒƒbƒg‘S‚Ä‚ðƒZƒbƒg‚µ‚Ü‚·B
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆå…¨ã¦ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void ConTypeIcon_PlttResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, 
@@ -162,16 +162,16 @@ void ConTypeIcon_PlttResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒg‚ðƒpƒŒƒbƒgƒ[ƒN‚Öƒ[ƒh‚µ‚Ü‚·
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ãƒ‘ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã¸ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   PALETTE_FADE_PTR		ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req						ƒŠƒNƒGƒXƒgƒf[ƒ^”Ô†(FADE_MAIN_BG“™)
- * @param   csp			csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param   pltt_id		“o˜^‚·‚éƒpƒŒƒbƒgID
+ * @param   PALETTE_FADE_PTR		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req						ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç•ªå·(FADE_MAIN_BGç­‰)
+ * @param   csp			cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param   pltt_id		ç™»éŒ²ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆID
  *
- * ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÅŽg—p‚·‚éƒpƒŒƒbƒg‘S‚Ä‚ðƒZƒbƒg‚µ‚Ü‚·B
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆå…¨ã¦ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void ConTypeIcon_PlttWorkResourceLoad(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_SYS_PTR csp, 
@@ -184,16 +184,16 @@ void ConTypeIcon_PlttWorkResourceLoad(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_SY
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒZƒ‹‚ÆƒAƒjƒ‚ðƒ[ƒh‚µ‚Ü‚·
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚»ãƒ«ã¨ã‚¢ãƒ‹ãƒ¡ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   csp			csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   cell_id		“o˜^‚·‚éƒZƒ‹ID
- * @param   anm_id		“o˜^‚·‚éƒAƒjƒID
+ * @param   csp			cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   cell_id		ç™»éŒ²ã™ã‚‹ã‚»ãƒ«ID
+ * @param   anm_id		ç™»éŒ²ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ID
  *
- * ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‹¤’Ê‚ÌƒZƒ‹‚ÆƒAƒjƒ‚ðƒ[ƒh‚µ‚Ü‚·B
- * ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚Í‘S‚ÄƒZƒ‹‚ÆƒAƒjƒ‚ª‹¤’Ê‚È‚Ì‚ÅA1‚Â‚¾‚¯“o˜^‚µ‚Ä‚¨‚¯‚ÎOK‚Å‚·B
- * (•¡”‚ÌƒAƒCƒRƒ“‚ð¶¬‚·‚éŽž‚Å‚àA‘S‚Ä‚±‚±‚Å“o˜^‚µ‚½ƒZƒ‹AƒAƒjƒID‚ðŽw’è‚·‚é‚æ‚¤‚É‚µ‚Ü‚·)
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³å…±é€šã®ã‚»ãƒ«ã¨ã‚¢ãƒ‹ãƒ¡ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™ã€‚
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã¯å…¨ã¦ã‚»ãƒ«ã¨ã‚¢ãƒ‹ãƒ¡ãŒå…±é€šãªã®ã§ã€1ã¤ã ã‘ç™»éŒ²ã—ã¦ãŠã‘ã°OKã§ã™ã€‚
+ * (è¤‡æ•°ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ç”Ÿæˆã™ã‚‹æ™‚ã§ã‚‚ã€å…¨ã¦ã“ã“ã§ç™»éŒ²ã—ãŸã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡IDã‚’æŒ‡å®šã™ã‚‹ã‚ˆã†ã«ã—ã¾ã™)
  */
 //--------------------------------------------------------------
 void ConTypeIcon_CellAnmResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, u32 cell_id, u32 anm_id)
@@ -206,9 +206,9 @@ void ConTypeIcon_CellAnmResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, u32 cel
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒŠƒ\[ƒX‚ð‰ð•ú‚µ‚Ü‚·
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   char_id		‰ð•ú‚·‚éƒLƒƒƒ‰ID
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã¾ã™
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   char_id		è§£æ”¾ã™ã‚‹ã‚­ãƒ£ãƒ©ID
  */
 //--------------------------------------------------------------
 void ConTypeIcon_CharResourceFree(CATS_RES_PTR crp, u32 char_id)
@@ -218,9 +218,9 @@ void ConTypeIcon_CharResourceFree(CATS_RES_PTR crp, u32 char_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒgƒŠƒ\[ƒX‚ð‰ð•ú‚µ‚Ü‚·
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pltt_id		‰ð•ú‚·‚éƒpƒŒƒbƒgID
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã¾ã™
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pltt_id		è§£æ”¾ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆID
  */
 //--------------------------------------------------------------
 void ConTypeIcon_PlttResourceFree(CATS_RES_PTR crp, u32 pltt_id)
@@ -230,10 +230,10 @@ void ConTypeIcon_PlttResourceFree(CATS_RES_PTR crp, u32 pltt_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒZƒ‹AƒAƒjƒƒŠƒ\[ƒX‚ð‰ð•ú‚µ‚Ü‚·
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   char_id		‰ð•ú‚·‚éƒZƒ‹ID
- * @param   char_id		‰ð•ú‚·‚éƒAƒjƒID
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã¾ã™
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   char_id		è§£æ”¾ã™ã‚‹ã‚»ãƒ«ID
+ * @param   char_id		è§£æ”¾ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ID
  */
 //--------------------------------------------------------------
 void ConTypeIcon_CellAnmResourceFree(CATS_RES_PTR crp, u32 cell_id, u32 anm_id)
@@ -245,14 +245,14 @@ void ConTypeIcon_CellAnmResourceFree(CATS_RES_PTR crp, u32 cell_id, u32 anm_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“ƒAƒNƒ^[‚ð¶¬‚·‚é
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   csp				csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp				crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
- * @param   obj_data		ƒAƒNƒ^[ƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   csp				cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp				crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
+ * @param   obj_data		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR ConTypeIcon_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int con_type, 
@@ -270,8 +270,8 @@ CATS_ACT_PTR ConTypeIcon_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int con
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“ƒAƒNƒ^[‚ðíœ
- * @param   cap		ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤
+ * @param   cap		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ConTypeIcon_ActorDelete(CATS_ACT_PTR cap)

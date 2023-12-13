@@ -26,9 +26,9 @@
 /*---------------------------------------------------------------------------*
     NNS_G3dDraw1Mat1Shp
 
-    matID‚ÆshpID‚ğw’è‚µ‚Ä•`‰æ‚µ‚Ü‚·B’Pƒ‚Èƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚é‚Ì‚½‚ß‚ÌŠÖ”‚Å‚·B
-    sendMat‚ğFALSE‚É‚·‚é‚Æƒ}ƒeƒŠƒAƒ‹‚Ì‘—M‚ğÈ—ª‚µ‚Ü‚·B
-    g—p•û–@‚É‚Â‚¢‚Ä‚ÍA1mat1shpƒTƒ“ƒvƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+    matIDã¨shpIDã‚’æŒ‡å®šã—ã¦æç”»ã—ã¾ã™ã€‚å˜ç´”ãªãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹ã®ãŸã‚ã®é–¢æ•°ã§ã™ã€‚
+    sendMatã‚’FALSEã«ã™ã‚‹ã¨ãƒãƒ†ãƒªã‚¢ãƒ«ã®é€ä¿¡ã‚’çœç•¥ã—ã¾ã™ã€‚
+    ä½¿ç”¨æ–¹æ³•ã«ã¤ã„ã¦ã¯ã€1mat1shpã‚µãƒ³ãƒ—ãƒ«ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
@@ -40,7 +40,7 @@ NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
 
     if (pResMdl->info.posScale != FX32_ONE)
     {
-        // pos_scale‚É‚æ‚éƒXƒP[ƒ‹•â³‚ª•K—v‚Èê‡
+        // pos_scaleã«ã‚ˆã‚‹ã‚¹ã‚±ãƒ¼ãƒ«è£œæ­£ãŒå¿…è¦ãªå ´åˆ
         NNS_G3dGeScale(pResMdl->info.posScale,
                        pResMdl->info.posScale,
                        pResMdl->info.posScale);
@@ -52,24 +52,24 @@ NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
         if (matID < pResMdl->info.numMat)
         {
             //
-            // ƒ}ƒeƒŠƒAƒ‹‚ğ‘—M‚·‚éê‡:
-            // Eƒ}ƒeƒŠƒAƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶‚Í•s‰Â”\‚Å‚·iƒ‚ƒfƒ‹ƒf[ƒ^‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^‚ğ
-            //   ‘‚«Š·‚¦‚ê‚Î“¯—l‚ÌŒø‰Ê‚Ío‚¹‚Ü‚·jB
-            // ENNS_G3dGlb\‘¢‘Ì‚ÉŠi”[‚³‚ê‚Ä‚¢‚éAƒOƒ[ƒoƒ‹‚Ìƒ}ƒeƒŠƒAƒ‹î•ñ‚Í”½‰f‚³‚ê‚Ü‚¹‚ñBƒ‚ƒfƒ‹ƒf[ƒ^‚É
-            //   Ši”[‚³‚ê‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^‚ª”½‰f‚³‚ê‚Ü‚·B
+            // ãƒãƒ†ãƒªã‚¢ãƒ«ã‚’é€ä¿¡ã™ã‚‹å ´åˆ:
+            // ãƒ»ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿã¯ä¸å¯èƒ½ã§ã™ï¼ˆãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’
+            //   æ›¸ãæ›ãˆã‚Œã°åŒæ§˜ã®åŠ¹æœã¯å‡ºã›ã¾ã™ï¼‰ã€‚
+            // ãƒ»NNS_G3dGlbæ§‹é€ ä½“ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã€ã‚°ãƒ­ãƒ¼ãƒãƒ«ã®ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±ã¯åæ˜ ã•ã‚Œã¾ã›ã‚“ã€‚ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã«
+            //   æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒåæ˜ ã•ã‚Œã¾ã™ã€‚
             //
             const NNSG3dResMatData* mat;
             u32 cmd[7];
             
             {
-                // NNSG3dResMatData‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+                // NNSG3dResMatDataã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
                 const NNSG3dResMat* p = NNS_G3dGetMat(pResMdl);
                 NNS_G3D_NULL_ASSERT(p);
                 mat = NNS_G3dGetMatDataByIdx(p, matID);
                 NNS_G3D_NULL_ASSERT(mat);
             }
 
-            // “§–¾‚È‚ç•`‰æ‚¹‚¸–ß‚éB
+            // é€æ˜ãªã‚‰æç”»ã›ãšæˆ»ã‚‹ã€‚
             if (!(mat->polyAttr & REG_G3_POLYGON_ATTR_ALPHA_MASK))
                 return;
 
@@ -83,8 +83,8 @@ NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
 
             if (mat->flag & NNS_G3D_MATFLAG_WIREFRAME)
             {
-                // ƒƒCƒ„[ƒtƒŒ[ƒ€•\¦‚Ìê‡‚ÍƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‚É‘—‚éƒ¿‚Í0‚É‚È‚é
-                // ALPHA‚Ìƒrƒbƒg‚ğ0‚É‚µ‚Ä‚¨‚­B
+                // ãƒ¯ã‚¤ãƒ¤ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤ºã®å ´åˆã¯ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³ã«é€ã‚‹Î±ã¯0ã«ãªã‚‹
+                // ALPHAã®ãƒ“ãƒƒãƒˆã‚’0ã«ã—ã¦ãŠãã€‚
                 cmd[3] &= ~REG_G3_POLYGON_ATTR_ALPHA_MASK;
             }
 
@@ -94,16 +94,16 @@ NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
             cmd[5] = mat->texImageParam;
             cmd[6] = mat->texPlttBase;
 
-            // ‚Ü‚Æ‚ß‚ÄFIFO‚É‘—M
+            // ã¾ã¨ã‚ã¦FIFOã«é€ä¿¡
             NNS_G3dGeBufferData_N(&cmd[0], 7);
 
             if (mat->flag & NNS_G3D_MATFLAG_TEXMTX_USE)
             {
-                // ƒeƒNƒXƒ`ƒƒs—ñ‚ğƒZƒbƒg
+                // ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆ
                 NNSG3dSendTexSRT func;
                 NNSG3dMatAnmResult dummy;
 
-                // NNSG3dResMatData‚ÌŒã‚ë‚ÉSRTƒf[ƒ^‚ªmat->flag‚Ì’l‚É‚æ‚Á‚Ä“ü‚Á‚Ä‚¢‚é
+                // NNSG3dResMatDataã®å¾Œã‚ã«SRTãƒ‡ãƒ¼ã‚¿ãŒmat->flagã®å€¤ã«ã‚ˆã£ã¦å…¥ã£ã¦ã„ã‚‹
                 const u8* p = (const u8*)mat + sizeof(NNSG3dResMatData);
                 
                 dummy.flag = NNS_G3D_MATANM_RESULTFLAG_TEXMTX_SET;
@@ -113,10 +113,10 @@ NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
                 dummy.magH = mat->magH;
 
                 //
-                // ˆÈ‰ºNNSG3dResMatDataŒã•”‚Ìƒf[ƒ^(SRT)‚ğƒtƒ‰ƒO‚Ì’l‚ğŒ©‚È‚ª‚çæ“¾‚µ‚Ä‚¢‚­
+                // ä»¥ä¸‹NNSG3dResMatDataå¾Œéƒ¨ã®ãƒ‡ãƒ¼ã‚¿(SRT)ã‚’ãƒ•ãƒ©ã‚°ã®å€¤ã‚’è¦‹ãªãŒã‚‰å–å¾—ã—ã¦ã„ã
                 //
 
-                // ƒeƒNƒXƒ`ƒƒs—ñ‚ÌScaleİ’è
+                // ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã®Scaleè¨­å®š
                 if (!(mat->flag & NNS_G3D_MATFLAG_TEXMTX_SCALEONE))
                 {
                     const fx32* p_fx32 = (const fx32*)p;
@@ -130,7 +130,7 @@ NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
                     dummy.flag |= NNS_G3D_MATANM_RESULTFLAG_TEXMTX_SCALEONE;
                 }
 
-                // ƒeƒNƒXƒ`ƒƒs—ñ‚ÌRotationİ’è
+                // ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã®Rotationè¨­å®š
                 if (!(mat->flag & NNS_G3D_MATFLAG_TEXMTX_ROTZERO))
                 {
                     const fx16* p_fx16 = (const fx16*)p;
@@ -144,7 +144,7 @@ NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
                     dummy.flag |= NNS_G3D_MATANM_RESULTFLAG_TEXMTX_ROTZERO;
                 }
 
-                // ƒeƒNƒXƒ`ƒƒs—ñ‚ÌTranslationİ’è
+                // ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã®Translationè¨­å®š
                 if (!(mat->flag & NNS_G3D_MATFLAG_TEXMTX_TRANSZERO))
                 {
                     const fx32* p_fx32 = (const fx32*)p;
@@ -161,8 +161,8 @@ NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
                 NNS_G3D_NULL_ASSERT(func);
                 if (func)
                 {
-                    // ƒeƒNƒXƒ`ƒƒs—ñ‚ğƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‚Éİ’è
-                    // ƒ‚ƒfƒ‹ì¬‚É—˜—p‚³‚ê‚½CGƒc[ƒ‹–ˆ‚Ìİ’è‚ğs‚¤
+                    // ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã‚’ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³ã«è¨­å®š
+                    // ãƒ¢ãƒ‡ãƒ«ä½œæˆã«åˆ©ç”¨ã•ã‚ŒãŸCGãƒ„ãƒ¼ãƒ«æ¯ã®è¨­å®šã‚’è¡Œã†
                     (*func)(&dummy);
                 }
             }
@@ -172,7 +172,7 @@ NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
     NNS_G3D_ASSERT(shpID < pResMdl->info.numShp);
     if (shpID < pResMdl->info.numShp)
     {
-        // Shp‚ğ‘—M
+        // Shpã‚’é€ä¿¡
         const NNSG3dResShp* p;
         const NNSG3dResShpData* shp;
         
@@ -186,7 +186,7 @@ NNS_G3dDraw1Mat1Shp(const NNSG3dResMdl* pResMdl,
 
     if (pResMdl->info.invPosScale != FX32_ONE)
     {
-        // pos_scale‚É‚æ‚éƒXƒP[ƒ‹•â³‚ª‚©‚©‚Á‚Ä‚¢‚éê‡‚ÍŒ³‚É–ß‚·
+        // pos_scaleã«ã‚ˆã‚‹ã‚¹ã‚±ãƒ¼ãƒ«è£œæ­£ãŒã‹ã‹ã£ã¦ã„ã‚‹å ´åˆã¯å…ƒã«æˆ»ã™
         NNS_G3dGeScale(pResMdl->info.invPosScale,
                        pResMdl->info.invPosScale,
                        pResMdl->info.invPosScale);

@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm_b011_3.s
- * @brief	ƒoƒEƒ“ƒhƒXƒ‚[ƒ‹
+ * @brief	ãƒã‚¦ãƒ³ãƒ‰ã‚¹ãƒ¢ãƒ¼ãƒ«
  * @author	
  * @date	
  *
@@ -18,46 +18,46 @@
 // =============================================================================
 //
 //
-//	”w–Ê	ƒoƒEƒ“ƒhƒXƒ‚[ƒ‹ƒXƒ[
+//	èƒŒé¢	ãƒã‚¦ãƒ³ãƒ‰ã‚¹ãƒ¢ãƒ¼ãƒ«ã‚¹ãƒ­ãƒ¼
 //
 //
 // =============================================================================
 PAST_ANIME_B011_3:
-	//‚wU•0x4@‚xU•0x6@ˆ—‰ñ”32
+	//ï¼¸æŒ¯å¹…0x4ã€€ï¼¹æŒ¯å¹…0x6ã€€å‡¦ç†å›žæ•°32
 	
-	//0‹`90‹
-	//dy‚Ì’l‚ð0x6‚ÉƒZƒbƒg
+	//0Â°ã€œ90Â°
+	//dyã®å€¤ã‚’0x6ã«ã‚»ãƒƒãƒˆ
 	SET_ADD_PARAM		PARAM_DY,USE_VAL,0x6,PARAM_SET
-	//8‰ñ‚Ìˆ—‚Å90‹‚ðˆ—
+	//8å›žã®å‡¦ç†ã§90Â°ã‚’å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DX,0x4,0x4000,0,8
 	CALL_MF_CURVE_DIVTIME	APPLY_ADD,0,CURVE_SIN,TARGET_DY,0x6,0x4000,0xc000,8
 	HOLD_CMD
-	//dx‚Ì’l‚ð-0x4‚ÉƒZƒbƒg
+	//dxã®å€¤ã‚’-0x4ã«ã‚»ãƒƒãƒˆ
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,-0x4,PARAM_SET
 	APPLY_TRANS
 	
-	//90‹`270‹
-	//dy‚Ì’l‚ð0x6‚ÉƒZƒbƒg
+	//90Â°ã€œ270Â°
+	//dyã®å€¤ã‚’0x6ã«ã‚»ãƒƒãƒˆ
 	SET_ADD_PARAM		PARAM_DY,USE_VAL,0x6,PARAM_SET
-	//16‰ñ‚Ìˆ—‚Å180‹ˆ—
+	//16å›žã®å‡¦ç†ã§180Â°å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DX,0x4,0x8000,0x4000,16
 	CALL_MF_CURVE_DIVTIME	APPLY_ADD,0,CURVE_SIN,TARGET_DY,0x6,0x8000,0x8000,16
 	HOLD_CMD
-	//dx‚Ì’l‚ð0x4‚ÉƒZƒbƒg
+	//dxã®å€¤ã‚’0x4ã«ã‚»ãƒƒãƒˆ
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,0x4,PARAM_SET
 	APPLY_TRANS
 		
-	//270‹`360‹
-	//dy‚Ì’l‚ð0x6‚ÉƒZƒbƒg
+	//270Â°ã€œ360Â°
+	//dyã®å€¤ã‚’0x6ã«ã‚»ãƒƒãƒˆ
 	SET_ADD_PARAM		PARAM_DY,USE_VAL,0x6,PARAM_SET
-	//8‰ñ‚Ìˆ—‚Å90‹ˆ—
+	//8å›žã®å‡¦ç†ã§90Â°å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DX,0x4,0x4000,0xc000,8
 	CALL_MF_CURVE_DIVTIME	APPLY_ADD,0,CURVE_SIN,TARGET_DY,0x6,0x4000,0x8000,8
 	HOLD_CMD
-	//X‚Ì’l‚ð0‚ÉƒZƒbƒg
+	//Xã®å€¤ã‚’0ã«ã‚»ãƒƒãƒˆ
 	SET_ADD_PARAM		PARAM_X,USE_VAL,0,PARAM_SET
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET
-	//dy‚Ì’l‚ð0‚ÉƒZƒbƒg
+	//dyã®å€¤ã‚’0ã«ã‚»ãƒƒãƒˆ
 	SET_ADD_PARAM		PARAM_DY,USE_VAL,0,PARAM_SET
 	APPLY_TRANS
 

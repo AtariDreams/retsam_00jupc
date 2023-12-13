@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_060.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			060@“Gƒ|ƒPƒ‚ƒ“‚Ìu‚·‚Î‚â‚³v‚ğ‚Q’iŠK‰º‚°‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			060ã€€æ•µãƒã‚±ãƒ¢ãƒ³ã®ã€Œã™ã°ã‚„ã•ã€ã‚’ï¼’æ®µéšä¸‹ã’ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2005.10.27

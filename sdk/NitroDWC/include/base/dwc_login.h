@@ -12,13 +12,13 @@
 
   $Log: dwc_login.h,v $
   Revision 1.18  2007/04/04 08:46:56  nakata
-  ���O�C�������ŐV�K�A�J�E���g�쐬���Ƀ��O�C�����O�A�E�g���s��Ȃ��悤�ɕύX
+  ログイン処理で新規アカウント作成時にログインログアウトを行わないように変更
 
   Revision 1.17  2006/03/07 01:18:16  nakata
-  NAS�Ɋ֘A����@�\�ǉ���dwc_nasfunc.c/dwc_nasfunc.h�ɏW�񂷂�ۂɕK�v�ȕύX���s�����B
+  NASに関連する機能追加をdwc_nasfunc.c/dwc_nasfunc.hに集約する際に必要な変更を行った。
 
   Revision 1.16  2006/01/23 04:50:43  arakit
-  ����p��ɍ��킹�ăR�����g���C��
+  統一用語に合わせてコメントを修正
 
   Revision 1.15  2005/12/26 06:57:44  nakata
   Changed DWC_AUTH_INGAMESN_NOTCHECKED to DWC_AUTH_INGAMESN_NOT_CHECKED.
@@ -28,38 +28,38 @@
   Moved ingamesn check functions from dwc_common.c to dwc_login.c.
 
   Revision 1.13  2005/12/21 03:08:54  arakit
-  ���O�C���̍ۂɃT�[�o�ɃQ�[�����X�N���[���l�[����n����悤�ɂ����B
+  ログインの際にサーバにゲーム内スクリーンネームを渡せるようにした。
 
   Revision 1.12  2005/11/04 05:04:49  arakit
-  �F�ؗp�f�[�^���擾��������֐�DWCi_GetAuthInfo()��ǉ������B
+  認証用データを取得する内部関数DWCi_GetAuthInfo()を追加した。
 
   Revision 1.11  2005/11/02 02:49:33  arakit
-  �t�@�C���̃C���N���[�h�֌W�𒲐������B
+  ファイルのインクルード関係を調整した。
 
   Revision 1.10  2005/10/07 06:48:45  sasakit
-  gpConnect�̃^�C���A�E�g����ꂽ�B
+  gpConnectのタイムアウトを入れた。
 
   Revision 1.9  2005/10/06 00:15:11  sasakit
-  �ڑ�����Ԃ��擾�ł���悤�ɂ����B
+  接続中状態を取得できるようにした。
 
   Revision 1.8  2005/10/01 10:30:49  sasakit
-  ���O�C�����ɁAGS��AvailableCheck�Ɏ��s����ƁA�t���[�Y��������C���B
+  ログイン時に、GSのAvailableCheckに失敗すると、フリーズする問題を修正。
 
   Revision 1.7  2005/09/05 13:42:15  sasakit
-  Login���̔F�؃G���[�̏�����ǉ��B
+  Login時の認証エラーの処理を追加。
 
   Revision 1.6  2005/08/26 08:15:22  arakit
-  �EASSERT�ƃ��W���[������ϐ��̃`�F�b�N�𐮗������B
-  �E�O���֐�DWC_ShutdownFriendsMatch()�̈������Ƃ�Ȃ��悤�ɕύX�����B
-  �܂��A���֐�����e���W���[���̐���ϐ���NULL�N���A����悤�ɂ����B
-  �E�G���[�����֐���ύX���A�G���[�Z�b�g�A�G���[�`�F�b�N��K�v�ȉӏ��ɓ��ꂽ�B
+  ・ASSERTとモジュール制御変数のチェックを整理した。
+  ・外部関数DWC_ShutdownFriendsMatch()の引数をとらないように変更した。
+  また、同関数から各モジュールの制御変数をNULLクリアするようにした。
+  ・エラー処理関数を変更し、エラーセット、エラーチェックを必要な箇所に入れた。
 
   Revision 1.5  2005/08/20 07:01:19  sasakit
-  �w�b�_�C���N���[�h�K�[�h�̏����𓝈ꂵ���B
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
-  �w�b�_��Copyright�������B
-  �\���̖̂��O��Ԃ��ł��邾�����[���ɂ����Â����B
-  util_wifiidtool.h��dwc_backup.h�̊֌W���኱�C���B
+  ヘッダインクルードガードの書式を統一した。
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
+  ヘッダにCopyrightをつけた。
+  構造体の名前空間をできるだけルールにちかづけた。
+  util_wifiidtool.hとdwc_backup.hの関係を若干修正。
 
 
   $NoKeywords: $
@@ -84,14 +84,14 @@ extern "C" {
 //----------------------------------------------------------------------------
 // enum
 //----------------------------------------------------------------------------
-// ���O�C���i�s�󋵗񋓎q
+// ログイン進行状況列挙子
 typedef enum {
-    DWC_LOGIN_STATE_INIT = 0,         // �������
-    DWC_LOGIN_STATE_REMOTE_AUTH,      // �����[�g�F�ؒ�
-    DWC_LOGIN_STATE_CONNECTING,       // GP�T�[�o�ڑ���
-    DWC_LOGIN_STATE_GPGETINFO,        // GP��login�����Ƃ���lastname�擾��
-    DWC_LOGIN_STATE_GPSETINFO,        // GP�ɏ��߂�login�����Ƃ���lastname�ݒ�
-    DWC_LOGIN_STATE_CONNECTED,        // �R�l�N�g�������
+    DWC_LOGIN_STATE_INIT = 0,         // 初期状態
+    DWC_LOGIN_STATE_REMOTE_AUTH,      // リモート認証中
+    DWC_LOGIN_STATE_CONNECTING,       // GPサーバ接続中
+    DWC_LOGIN_STATE_GPGETINFO,        // GPにloginしたときのlastname取得時
+    DWC_LOGIN_STATE_GPSETINFO,        // GPに初めてloginしたときのlastname設定
+    DWC_LOGIN_STATE_CONNECTED,        // コネクト完了状態
     DWC_LOGIN_STATE_NUM
 } DWCLoginState;
 
@@ -99,11 +99,11 @@ typedef enum {
 // typedef - function
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  ���O�C�������R�[���o�b�N�^
-  �����@�Ferror     DWC�G���[���
-          profileID �擾�ł��������̃v���t�@�C��ID
-          param     �R�[���o�b�N�p�p�����[�^
-  �߂�l�F�Ȃ�
+  ログイン完了コールバック型
+  引数　：error     DWCエラー種別
+          profileID 取得できた自分のプロファイルID
+          param     コールバック用パラメータ
+  戻り値：なし
  *---------------------------------------------------------------------------*/
 typedef void (*DWCLoginCallback)(DWCError error, int profileID, void *param);
 
@@ -111,20 +111,20 @@ typedef void (*DWCLoginCallback)(DWCError error, int profileID, void *param);
 //----------------------------------------------------------------------------
 // struct
 //----------------------------------------------------------------------------
-// ���O�C������\����
+// ログイン制御構造体
 typedef struct DWCstLoginControl
 {
-    GPConnection* pGpObj;       // gp�R�l�N�V�����\���̃|�C���^�ւ̃|�C���^
-    DWCLoginState state;        // ���O�C���i�s��
-    int  productID;             // GameSpy���z�z����Q�[���̃v���_�N�gID
-    u32  gamecode;              // �C�V�����Q�[���Ɋ��蓖�Ă�gamecode
-    //const char* userID;         // �F�ؗp���[�UID
-    //const char* password;       // �F�ؗp�p�X���[�h
-    const u16* playerName;      // �v���C���[���i�Q�[�����X�N���[���l�[���j�ւ̃|�C���^
-    DWCLoginCallback callback;  // ���O�C�������R�[���o�b�N
-    void *param;                // ��L�R�[���o�b�N�p�p�����[�^
+    GPConnection* pGpObj;       // gpコネクション構造体ポインタへのポインタ
+    DWCLoginState state;        // ログイン進行状況
+    int  productID;             // GameSpyが配布するゲームのプロダクトID
+    u32  gamecode;              // 任天堂がゲームに割り当てるgamecode
+    //const char* userID;         // 認証用ユーザID
+    //const char* password;       // 認証用パスワード
+    const u16* playerName;      // プレイヤー名（ゲーム内スクリーンネーム）へのポインタ
+    DWCLoginCallback callback;  // ログイン完了コールバック
+    void *param;                // 上記コールバック用パラメータ
 
-    DWCUserData* userdata;      // ���[�U�f�[�^�ւ̃|�C���^
+    DWCUserData* userdata;      // ユーザデータへのポインタ
 
     // working
     void* bmwork;
@@ -135,12 +135,12 @@ typedef struct DWCstLoginControl
 
     DWCAccLoginId tempLoginId;
 
-    char authToken[GP_AUTHTOKEN_LEN];  // �F�ؗp�g�[�N��
-    char partnerChallenge[GP_PARTNERCHALLENGE_LEN];  // �F�ؗp�`�������W�l
+    char authToken[GP_AUTHTOKEN_LEN];  // 認証用トークン
+    char partnerChallenge[GP_PARTNERCHALLENGE_LEN];  // 認証用チャレンジ値
 
     char username[DWC_ACC_USERNAME_STRING_BUFSIZE];
     
-    // [nakata] GP���O�C�������̑ޔ��ꏊ
+    // [nakata] GPログイン時情報の退避場所
     GPConnectResponseArg    gpconnectresponsearg;
 
 } DWCLoginControl;

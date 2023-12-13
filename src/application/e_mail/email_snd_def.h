@@ -1,11 +1,11 @@
 //==============================================================================
 /**
- * @file	ƒtƒ@ƒCƒ‹–¼
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @file	ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	matsuda
- * @date	2008.01.16(…)
+ * @date	2008.01.16(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -14,11 +14,11 @@
 
 #include "system/snd_tool.h"
 
-///Eƒ[ƒ‹‰æ–ÊFƒJ[ƒ\ƒ‹ˆÚ“®‰¹
+///Eãƒ¡ãƒ¼ãƒ«ç”»é¢ï¼šã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•éŸ³
 #define EMAIL_SE_MOVE			(SEQ_SE_DP_SELECT)
-///Eƒ[ƒ‹‰æ–ÊFƒJ[ƒ\ƒ‹Œˆ’è‰¹
+///Eãƒ¡ãƒ¼ãƒ«ç”»é¢ï¼šã‚«ãƒ¼ã‚½ãƒ«æ±ºå®šéŸ³
 #define EMAIL_SE_DECIDE			(SEQ_SE_DP_SELECT)
-///Eƒ[ƒ‹‰æ–ÊFƒJ[ƒ\ƒ‹ƒLƒƒƒ“ƒZƒ‹‰¹
+///Eãƒ¡ãƒ¼ãƒ«ç”»é¢ï¼šã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 #define EMAIL_SE_CANCEL			(SEQ_SE_DP_SELECT)
 
 

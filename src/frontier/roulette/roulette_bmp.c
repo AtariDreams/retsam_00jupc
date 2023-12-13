@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	roulette_bmp.c
- * @brief	uƒoƒgƒ‹ƒ‹[ƒŒƒbƒgvBMP
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€BMP
  * @author	Satoshi Nohara
  * @date	07.09.05
  */
@@ -19,30 +19,30 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define BR_MENU_CGX_NUM		(1024-MENU_WIN_CGX_SIZ)
 
-//‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	BR_TALKWIN_CGX_SIZE	(TALK_WIN_CGX_SIZ)
 #define	BR_TALKWIN_CGX_NUM	(BR_MENU_CGX_NUM - BR_TALKWIN_CGX_SIZE)
 
 
 //==============================================================================================
 //
-//	ƒ‰ƒ“ƒNƒAƒbƒv‰æ–Êƒf[ƒ^
+//	ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ç”»é¢ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//u‰ï˜bv
+//ã€Œä¼šè©±ã€
 #define RANK_WIN_TALK_PX			(2)
 #define RANK_WIN_TALK_PY			(19)
 #define RANK_WIN_TALK_SX			(27)
 #define RANK_WIN_TALK_SY			(4)
 #define RANK_WIN_TALK_CGX			(1)
 
-//u‚Í‚¢E‚¢‚¢‚¦v
+//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 #define RANK_WIN_YESNO_PX			(24)
 #define RANK_WIN_YESNO_PY			(13)
 #define RANK_WIN_YESNO_SX			(7)
@@ -51,11 +51,11 @@
 
 static const BMPWIN_DAT RouletteBmpData[] =
 {
-	{	// 0:u‰ï˜bv
+	{	// 0:ã€Œä¼šè©±ã€
 		BR_FRAME_WIN, RANK_WIN_TALK_PX, RANK_WIN_TALK_PY,
 		RANK_WIN_TALK_SX, RANK_WIN_TALK_SY, BR_MSGFONT_PAL, RANK_WIN_TALK_CGX
 	},
-	{	// 1:u‚Í‚¢E‚¢‚¢‚¦v
+	{	// 1:ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 		BR_FRAME_WIN, RANK_WIN_YESNO_PX, RANK_WIN_YESNO_PY,
 		RANK_WIN_YESNO_SX, RANK_WIN_YESNO_SY, BR_FONT_PAL, RANK_WIN_YESNO_CGX
 	},
@@ -64,7 +64,7 @@ static const BMPWIN_DAT RouletteBmpData[] =
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 void RouletteAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
@@ -73,31 +73,31 @@ void RouletteOffBmpWin( GF_BGL_BMPWIN* win );
 void RouletteWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
 void RouletteTalkWinPut( GF_BGL_BMPWIN * win, WINTYPE wintype );
 
-//‚Í‚¢A‚¢‚¢‚¦ƒEƒBƒ“ƒhƒE’è‹`
-#define YESNO_PX		(23)			//ŠJn‚w
-#define YESNO_PY		(19)			//ŠJn‚x
-#define YESNO_SX		(8)				//•‚w
-#define YESNO_SY		(4)				//•‚x
+//ã¯ã„ã€ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+#define YESNO_PX		(23)			//é–‹å§‹ï¼¸
+#define YESNO_PY		(19)			//é–‹å§‹ï¼¹
+#define YESNO_SX		(8)				//å¹…ï¼¸
+#define YESNO_SY		(4)				//å¹…ï¼¹
 
-//‰ï˜bƒEƒBƒ“ƒhƒE’è‹`
-#define TALK_PX			(2)				//ŠJn‚w
-#define TALK_PY			(19)			//ŠJn‚x
-#define TALK_SX			(17)			//•‚w
-#define TALK_SY			(4)				//•‚x
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+#define TALK_PX			(2)				//é–‹å§‹ï¼¸
+#define TALK_PY			(19)			//é–‹å§‹ï¼¹
+#define TALK_SX			(17)			//å¹…ï¼¸
+#define TALK_SY			(4)				//å¹…ï¼¹
 
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -107,10 +107,10 @@ void RouletteAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 	u8 i;
 	const BMPWIN_DAT* dat = RouletteBmpData;
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 	for( i=0; i < ROULETTE_BMPWIN_MAX; i++ ){
 		GF_BGL_BmpWinAddEx( bgl, &win[i], &dat[i] );
-		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//“h‚è‚Â‚Ô‚µ
+		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//å¡—ã‚Šã¤ã¶ã—
 	}
 
 	return;
@@ -118,9 +118,9 @@ void RouletteAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü	
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„	
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -138,9 +138,9 @@ void RouletteExitBmpWin( GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒIƒt
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -158,31 +158,31 @@ void RouletteOffBmpWin( GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒEƒBƒ“ƒhƒE•\¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
 //--------------------------------------------------------------
 void RouletteWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 {
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	//MenuWinGraphicSet( bgl, BR_FRAME_WIN, BR_MENU_CGX_NUM, BR_MENU_PAL, 0, HEAPID_ROULETTE );
 	MenuWinGraphicSet(	bgl, GF_BGL_BmpWinGet_Frame(win), 
 						BR_MENU_CGX_NUM, BR_MENU_PAL, 0, HEAPID_ROULETTE );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_OFF, BR_MENU_CGX_NUM, BR_MENU_PAL );
 	return;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒE•\¦
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	win		BMPƒf[ƒ^
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */

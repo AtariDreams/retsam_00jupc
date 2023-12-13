@@ -2,7 +2,7 @@
 /**
  *
  *	@file		nmix_game_snd_def.h
- *	@brief		‚Ü‚º‚Ü‚º‰¹
+ *	@brief		ã¾ãœã¾ãœéŸ³
  *	@author		tomoya takahashi
  *	@data		2006.06.06
  *
@@ -22,31 +22,31 @@
 #endif
 
 
-// ƒX[ƒvó‘Ô
-#define NMIXGAME_SE_SOOP_ROTA		(SEQ_SE_DP_NM01)			// ƒX[ƒv‚©‚«¬‚º
-#define NMIXGAME_SE_SOOP_KOBORE		(SEQ_SE_DP_NM02)			// ƒX[ƒv‚±‚Ú‚ê
-#define NMIXGAME_SE_SOOP_KOGE		(SEQ_SE_DP_NM03)			// ƒX[ƒv‚±‚°‚é‰¹
+// ã‚¹ãƒ¼ãƒ—çŠ¶æ…‹
+#define NMIXGAME_SE_SOOP_ROTA		(SEQ_SE_DP_NM01)			// ã‚¹ãƒ¼ãƒ—ã‹ãæ··ãœ
+#define NMIXGAME_SE_SOOP_KOBORE		(SEQ_SE_DP_NM02)			// ã‚¹ãƒ¼ãƒ—ã“ã¼ã‚Œ
+#define NMIXGAME_SE_SOOP_KOGE		(SEQ_SE_DP_NM03)			// ã‚¹ãƒ¼ãƒ—ã“ã’ã‚‹éŸ³
 
-// ƒNƒŠ[ƒ€ó‘Ô
-//#define NMIXGAME_SE_CREAM_ROTA	(SEQ_SE_DP_NM04)			// ƒNƒŠ[ƒ€‚©‚«¬‚º
-#define NMIXGAME_SE_CREAM_ROTA		(SEQ_SE_DP_NM04_2)			// ƒNƒŠ[ƒ€‚©‚«¬‚º
-#define NMIXGAME_SE_CREAM_KOBORE	(SEQ_SE_DP_NM05)			// ƒNƒŠ[ƒ€‚±‚Ú‚ê
-#define NMIXGAME_SE_CREAM_KOGE		(SEQ_SE_DP_NM03)			// ƒNƒŠ[ƒ€‚±‚°‚é‰¹
+// ã‚¯ãƒªãƒ¼ãƒ çŠ¶æ…‹
+//#define NMIXGAME_SE_CREAM_ROTA	(SEQ_SE_DP_NM04)			// ã‚¯ãƒªãƒ¼ãƒ ã‹ãæ··ãœ
+#define NMIXGAME_SE_CREAM_ROTA		(SEQ_SE_DP_NM04_2)			// ã‚¯ãƒªãƒ¼ãƒ ã‹ãæ··ãœ
+#define NMIXGAME_SE_CREAM_KOBORE	(SEQ_SE_DP_NM05)			// ã‚¯ãƒªãƒ¼ãƒ ã“ã¼ã‚Œ
+#define NMIXGAME_SE_CREAM_KOGE		(SEQ_SE_DP_NM03)			// ã‚¯ãƒªãƒ¼ãƒ ã“ã’ã‚‹éŸ³
 
-// ‚»‚Ú‚ëó‘Ô
-//#define NMIXGAME_SE_SOBORO_ROTA	(SEQ_SE_DP_NM07)			// ‚»‚Ú‚ë‚©‚«¬‚º
-#define NMIXGAME_SE_SOBORO_ROTA		(SEQ_SE_DP_NM07_2)			// ‚»‚Ú‚ë‚©‚«¬‚º
-#define NMIXGAME_SE_SOBORO_KOGE		(SEQ_SE_DP_NM08)			// ‚»‚Ú‚ë‚±‚°‚é‰¹
+// ãã¼ã‚çŠ¶æ…‹
+//#define NMIXGAME_SE_SOBORO_ROTA	(SEQ_SE_DP_NM07)			// ãã¼ã‚ã‹ãæ··ãœ
+#define NMIXGAME_SE_SOBORO_ROTA		(SEQ_SE_DP_NM07_2)			// ãã¼ã‚ã‹ãæ··ãœ
+#define NMIXGAME_SE_SOBORO_KOGE		(SEQ_SE_DP_NM08)			// ãã¼ã‚ã“ã’ã‚‹éŸ³
 
-// ‚»‚Ì‘¼‚Ì‰¹
-#define NMIXGAME_SE_NUTS_SOOP_IN	(SEQ_SE_DP_NM09)			// –Ø‚ÌŽÀƒX[ƒvƒCƒ“
-#define NMIXGAME_SE_COUNT_DOWN		(SEQ_SE_DP_NM10)			// ƒJƒEƒ“ƒgƒ_ƒEƒ“
-#define NMIXGAME_SE_GAME_START		(SEQ_SE_DP_NM10_2)			// ŠJŽn‰¹
-#define NMIXGAME_SE_GAME_KIRAKIRA	(SEQ_SE_DP_NM11)			// ƒLƒ‰ƒLƒ‰ƒGƒtƒFƒNƒg‰¹
-//#define NMIXGAME_SE_GAME_ROTAWAY_ON	(SEQ_SE_DP_NM12)		// ‰ñ“]•ûŒü•ÏX‰¹
-#define NMIXGAME_SE_GAME_ROTAWAY_ON	(SEQ_SE_DP_NM12_2)			// ‰ñ“]•ûŒü•ÏX‰¹
-#define NMIXGAME_SE_GAME_END		(SEQ_SE_DP_NM13)			// I—¹‰¹
-#define NMIXGAME_SE_GAME_RESULT_ON	(SEQ_SE_DP_NM14)			// Œ‹‰Ê•\Ž¦ƒeƒLƒXƒg‚ªo‚é‚Æ‚«‚Éo‚·‰¹
+// ãã®ä»–ã®éŸ³
+#define NMIXGAME_SE_NUTS_SOOP_IN	(SEQ_SE_DP_NM09)			// æœ¨ã®å®Ÿã‚¹ãƒ¼ãƒ—ã‚¤ãƒ³
+#define NMIXGAME_SE_COUNT_DOWN		(SEQ_SE_DP_NM10)			// ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
+#define NMIXGAME_SE_GAME_START		(SEQ_SE_DP_NM10_2)			// é–‹å§‹éŸ³
+#define NMIXGAME_SE_GAME_KIRAKIRA	(SEQ_SE_DP_NM11)			// ã‚­ãƒ©ã‚­ãƒ©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆéŸ³
+//#define NMIXGAME_SE_GAME_ROTAWAY_ON	(SEQ_SE_DP_NM12)		// å›žè»¢æ–¹å‘å¤‰æ›´éŸ³
+#define NMIXGAME_SE_GAME_ROTAWAY_ON	(SEQ_SE_DP_NM12_2)			// å›žè»¢æ–¹å‘å¤‰æ›´éŸ³
+#define NMIXGAME_SE_GAME_END		(SEQ_SE_DP_NM13)			// çµ‚äº†éŸ³
+#define NMIXGAME_SE_GAME_RESULT_ON	(SEQ_SE_DP_NM14)			// çµæžœè¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆãŒå‡ºã‚‹ã¨ãã«å‡ºã™éŸ³
 
 
 

@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ ƒ†[ƒeƒBƒŠƒeƒBƒwƒbƒ_
+ * @brief Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef DWCi_LOBBY_UTIL_H_
@@ -31,14 +31,14 @@
 #define DWC_SAFE_FREE(ptr) if(ptr){ DWC_Free((DWCAllocType)0, ptr, 0); ptr=NULL; }
 #define DWC_SAFE_DELETE(ptr) if(ptr){ delete ptr; ptr = NULL; }
 
-// ƒ‰ƒCƒuƒ‰ƒŠ“à•”‚Åg—p‚·‚éƒAƒƒP[ƒ^
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 template <class T> class DWCi_Allocator;
 
-// ƒ‰ƒCƒuƒ‰ƒŠ“à•”‚Åg—p‚·‚é•¶š—ñ
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹æ–‡å­—åˆ—
 typedef std::basic_string<char, std::char_traits<char>, DWCi_Allocator<char> > DWCi_String;
 
-// Ã“IƒAƒT[ƒg
-// Œ^ˆø”‚ªfalse‚É‚È‚é‚ÆƒRƒ“ƒpƒCƒ‹ƒGƒ‰[‚É‚È‚é
+// é™çš„ã‚¢ã‚µãƒ¼ãƒˆ
+// å‹å¼•æ•°ãŒfalseã«ãªã‚‹ã¨ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹
 template<bool>
 class DWCi_StaticAssert;
 template<>
@@ -46,7 +46,7 @@ class DWCi_StaticAssert<true>{};
 #define DWCi_STATIC_ASSERT(exp) DWCi_StaticAssert<(exp)>()
 
 
-// vector‚Ìƒf[ƒ^ƒoƒbƒtƒ@‚ğæ“¾‚·‚éBvector::data()
+// vectorã®ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—ã™ã‚‹ã€‚vector::data()
 template <class T, class AllocatorT>
 T* DWCi_GetVectorBuffer(const std::vector<T, AllocatorT>& vec)
 {
@@ -57,28 +57,28 @@ T* DWCi_GetVectorBuffer(const std::vector<T, AllocatorT>& vec)
     return const_cast<T*>(&vec[0]);
 }
 
-// DWCi_String‚ğ‘å•¶š¬•¶š‚ğ–³‹‚µ‚Ä”äŠr‚·‚é
+// DWCi_Stringã‚’å¤§æ–‡å­—å°æ–‡å­—ã‚’ç„¡è¦–ã—ã¦æ¯”è¼ƒã™ã‚‹
 template <class T>
 s32 DWCi_Stricmp(T lhs, T rhs)
 {
-    // ŠÖ”Œ^‚Ì’è‹`B(char (*)(char))‚È‚Ç“¯‚¶B
+    // é–¢æ•°å‹ã®å®šç¾©ã€‚(char (*)(char))ãªã©åŒã˜ã€‚
     typedef typename T::value_type (*ValueTypeToLower)(typename T::value_type);
     
-    // ¬•¶š‚É•ÏŠ·‚µ‚Ä‚©‚ç”äŠr
-    // std::tolower‚ÍƒVƒOƒlƒ`ƒƒ‚ğƒLƒƒƒXƒg‚µ‚È‚¢‚Æwarning‚ªo‚éB
+    // å°æ–‡å­—ã«å¤‰æ›ã—ã¦ã‹ã‚‰æ¯”è¼ƒ
+    // std::tolowerã¯ã‚·ã‚°ãƒãƒãƒ£ã‚’ã‚­ãƒ£ã‚¹ãƒˆã—ãªã„ã¨warningãŒå‡ºã‚‹ã€‚
     std::transform(lhs.begin(), lhs.end(), rhs.begin(), (ValueTypeToLower)std::tolower);
     std::transform(rhs.begin(), rhs.end(), rhs.begin(), (ValueTypeToLower)std::tolower);
     return lhs.compare(rhs);
 }
 
-// DWCi_String‚ğ‘å•¶š¬•¶š‚ğ–³‹‚µ•¶š”‚ğw’è‚µ‚Ä”äŠr‚·‚é
+// DWCi_Stringã‚’å¤§æ–‡å­—å°æ–‡å­—ã‚’ç„¡è¦–ã—æ–‡å­—æ•°ã‚’æŒ‡å®šã—ã¦æ¯”è¼ƒã™ã‚‹
 template <class T>
 s32 DWCi_Strnicmp(T lhs, T rhs, std::size_t n)
 {
-    // ŠÖ”Œ^‚Ì’è‹`B(char (*)(char))‚È‚Ç“¯‚¶B
+    // é–¢æ•°å‹ã®å®šç¾©ã€‚(char (*)(char))ãªã©åŒã˜ã€‚
     typedef typename T::value_type (*ValueTypeToLower)(typename T::value_type);
     
-    // ¬•¶š‚É•ÏŠ·‚µ‚Ä‚©‚ç”äŠr
+    // å°æ–‡å­—ã«å¤‰æ›ã—ã¦ã‹ã‚‰æ¯”è¼ƒ
     std::transform(lhs.begin(), lhs.end(), lhs.begin(), (ValueTypeToLower)std::tolower);
     std::transform(rhs.begin(), rhs.end(), rhs.begin(), (ValueTypeToLower)std::tolower);
     return lhs.compare(0, n, rhs);
@@ -89,8 +89,8 @@ inline s32 DWCi_StrnicmpChar(const char* lhs, const char* rhs, std::size_t n)
     return DWCi_Strnicmp(DWCi_String(lhs), DWCi_String(rhs), n);
 }
 
-// DWCi_String‚È‚Ç‚Ìchar•¶š—ñ—p‚Ìsprintf
-// T‚Ístd::stringŒİŠ·‚ÌŒ^
+// DWCi_Stringãªã©ã®charæ–‡å­—åˆ—ç”¨ã®sprintf
+// Tã¯std::stringäº’æ›ã®å‹
 template <typename T>
 T DWCi_SPrintf(const char* format, ...)
 {
@@ -105,14 +105,14 @@ T DWCi_SPrintf(const char* format, ...)
     buffer.resize((std::size_t)length);
     int result = DWCi_Np_VSNPrintf(DWCi_GetVectorBuffer(buffer), (std::size_t)length, format, arguments);
     DWC_ASSERTMSG(result > 0, format);
-    buffer[(std::size_t)length-1]    = '\0';    // •ÛŒ¯
+    buffer[(std::size_t)length-1]    = '\0';    // ä¿é™º
 
     va_end(arguments);
     return T(DWCi_GetVectorBuffer(buffer));
 }
 
-// DWCi_String‚È‚Ç‚Ìchar•¶š—ñ—p‚Ìsnprintf
-// size‚É‚Ísnprintf“¯—lƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğ—^‚¦‚éBsize-1”Ô–Ú‚É‚Í•K‚¸'\0'‚ª‘‚«‚Ü‚ê‚éB
+// DWCi_Stringãªã©ã®charæ–‡å­—åˆ—ç”¨ã®snprintf
+// sizeã«ã¯snprintfåŒæ§˜ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’ä¸ãˆã‚‹ã€‚size-1ç•ªç›®ã«ã¯å¿…ãš'\0'ãŒæ›¸ãè¾¼ã¾ã‚Œã‚‹ã€‚
 template <class T>
 T DWCi_SNPrintf(std::size_t size, const char* format, ...)
 {
@@ -127,13 +127,13 @@ T DWCi_SNPrintf(std::size_t size, const char* format, ...)
 }
 
 /**
- * splitŠÖ”
+ * splité–¢æ•°
  *
- * @param inStr •ªŠ„‚µ‚½‚¢•¶š—ñ
- * @param delims ƒfƒŠƒ~ƒ^(•¶š‚Ì”z—ñ)
- * @param limit •ªŠ„‚·‚éÅ‘å”Bæ“ª‚©‚çlimitŒÂ•ªŠ„‚·‚éB1‚È‚ç•ªŠ„‚³‚ê‚¸‚»‚Ì‚Ü‚Ü‚Ìstring‚ª“ü‚éB0ˆÈ‰º‚Ü‚½‚ÍÈ—ª‚·‚é‚Æ‘S‚Ä•ªŠ„‚·‚éB
+ * @param inStr åˆ†å‰²ã—ãŸã„æ–‡å­—åˆ—
+ * @param delims ãƒ‡ãƒªãƒŸã‚¿(æ–‡å­—ã®é…åˆ—)
+ * @param limit åˆ†å‰²ã™ã‚‹æœ€å¤§æ•°ã€‚å…ˆé ­ã‹ã‚‰limitå€‹åˆ†å‰²ã™ã‚‹ã€‚1ãªã‚‰åˆ†å‰²ã•ã‚Œãšãã®ã¾ã¾ã®stringãŒå…¥ã‚‹ã€‚0ä»¥ä¸‹ã¾ãŸã¯çœç•¥ã™ã‚‹ã¨å…¨ã¦åˆ†å‰²ã™ã‚‹ã€‚
  * 
- * @retval •ªŠ„‚³‚ê‚½•¶š—ñ
+ * @retval åˆ†å‰²ã•ã‚ŒãŸæ–‡å­—åˆ—
 */
 template <class T>
 std::vector<T, DWCi_Allocator<T> > DWCi_SplitByChars(const T& inStr, const T& delims, std::size_t limit=0)
@@ -160,13 +160,13 @@ std::vector<T, DWCi_Allocator<T> > DWCi_SplitByChars(const T& inStr, const T& de
 }
 
 /**
- * splitŠÖ”
+ * splité–¢æ•°
  *
- * @param inStr •ªŠ„‚µ‚½‚¢•¶š—ñ
- * @param delim ƒfƒŠƒ~ƒ^(•¶š—ñ)
- * @param limit •ªŠ„‚·‚éÅ‘å”Bæ“ª‚©‚çlimitŒÂ•ªŠ„‚·‚éB1‚È‚ç•ªŠ„‚³‚ê‚¸‚»‚Ì‚Ü‚Ü‚Ìstring‚ª“ü‚éB0ˆÈ‰º‚Ü‚½‚ÍÈ—ª‚·‚é‚Æ‘S‚Ä•ªŠ„‚·‚éB
+ * @param inStr åˆ†å‰²ã—ãŸã„æ–‡å­—åˆ—
+ * @param delim ãƒ‡ãƒªãƒŸã‚¿(æ–‡å­—åˆ—)
+ * @param limit åˆ†å‰²ã™ã‚‹æœ€å¤§æ•°ã€‚å…ˆé ­ã‹ã‚‰limitå€‹åˆ†å‰²ã™ã‚‹ã€‚1ãªã‚‰åˆ†å‰²ã•ã‚Œãšãã®ã¾ã¾ã®stringãŒå…¥ã‚‹ã€‚0ä»¥ä¸‹ã¾ãŸã¯çœç•¥ã™ã‚‹ã¨å…¨ã¦åˆ†å‰²ã™ã‚‹ã€‚
  * 
- * @retval •ªŠ„‚³‚ê‚½•¶š—ñ
+ * @retval åˆ†å‰²ã•ã‚ŒãŸæ–‡å­—åˆ—
 */
 template <class T>
 std::vector<T, DWCi_Allocator<T> > DWCi_SplitByStr(const T& inStr, const T& delim, std::size_t limit=0)
@@ -192,8 +192,8 @@ std::vector<T, DWCi_Allocator<T> > DWCi_SplitByStr(const T& inStr, const T& deli
     return result;
 }
 
-// Base64ƒfƒR[ƒh
-template <class charT, class AllocatorT>  // charT‚É‚Í1byte‚ÌŒ^‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
+// Base64ãƒ‡ã‚³ãƒ¼ãƒ‰
+template <class charT, class AllocatorT>  // charTã«ã¯1byteã®å‹ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚
 BOOL DWCi_Base64Decode(const char* value, std::vector<charT, AllocatorT >& buf)
 {
     DWCi_STATIC_ASSERT(sizeof(charT) == 1);
@@ -202,7 +202,7 @@ BOOL DWCi_Base64Decode(const char* value, std::vector<charT, AllocatorT >& buf)
     buf.resize(size);
     if(size == 0)
     {
-        // ƒTƒCƒY0‚Ì•¶š—ñ‚ª—^‚¦‚ç‚ê‚½‚Æ‚«‚ÍƒTƒCƒY0‚Ìvector‚ğ•Ô‚·
+        // ã‚µã‚¤ã‚º0ã®æ–‡å­—åˆ—ãŒä¸ãˆã‚‰ã‚ŒãŸã¨ãã¯ã‚µã‚¤ã‚º0ã®vectorã‚’è¿”ã™
         return TRUE;
     }
     int retSize = DWC_Base64Decode(value, strlen(value), (char*)DWCi_GetVectorBuffer(buf), buf.size());
@@ -214,9 +214,9 @@ BOOL DWCi_Base64Decode(const char* value, std::vector<charT, AllocatorT >& buf)
     return TRUE;
 }
 
-// •ÏX‚ğŒŸ’m‚·‚éƒNƒ‰ƒX
-// ’l‚ª•ÏX‚³‚ê‚½‚Ì‚ğŒŸ’m‚µAConfirm()‚ªŒÄ‚Î‚ê‚½‚Æ‚«‚ÉŠm”F‚µ‚½‚à‚Ì‚Æ‚·‚é
-// T‚Í’l‚ª•ÏX‚³‚ê‚½‚©‚ğƒ`ƒFƒbƒN‚·‚é‚½‚ß‚É==‰‰Zq‚ğƒI[ƒo[ƒ[ƒh‚·‚é•K—v‚ª‚ ‚éB
+// å¤‰æ›´ã‚’æ¤œçŸ¥ã™ã‚‹ã‚¯ãƒ©ã‚¹
+// å€¤ãŒå¤‰æ›´ã•ã‚ŒãŸã®ã‚’æ¤œçŸ¥ã—ã€Confirm()ãŒå‘¼ã°ã‚ŒãŸã¨ãã«ç¢ºèªã—ãŸã‚‚ã®ã¨ã™ã‚‹
+// Tã¯å€¤ãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãŸã‚ã«==æ¼”ç®—å­ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 template <class T>
 class DWCi_ChangeDetectable : public DWCi_Base
 {
@@ -231,19 +231,19 @@ public:
         , changed(TRUE)
     {}
     
-    // value_type‚©‚ç‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^
+    // value_typeã‹ã‚‰ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     DWCi_ChangeDetectable(const T& _value)
         : value(_value)
         , changed(TRUE)
     {}
     
-    // ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+    // ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     DWCi_ChangeDetectable(const DWCi_ChangeDetectable& src)
     {
         *this = src;
     }
     
-    // ‘ã“ü
+    // ä»£å…¥
     DWCi_ChangeDetectable& operator=(const DWCi_ChangeDetectable& rhs)
     {
         if(!(value == rhs.value))
@@ -254,13 +254,13 @@ public:
         return *this;
     }
     
-    // value_type‚©‚ç‚Ì‘ã“ü
+    // value_typeã‹ã‚‰ã®ä»£å…¥
     DWCi_ChangeDetectable& operator=(const T& _value)
     {
         return *this = DWCi_ChangeDetectable<T>(_value);
     }
     
-    // ‘ã“ü‚Æ“¯‚¶‚¾‚ªforce‚ªTRUE‚Ì‚Æ‚«‚Í‹­§“I‚É•ÏX‚·‚é
+    // ä»£å…¥ã¨åŒã˜ã ãŒforceãŒTRUEã®ã¨ãã¯å¼·åˆ¶çš„ã«å¤‰æ›´ã™ã‚‹
     const DWCi_ChangeDetectable& Change(const DWCi_ChangeDetectable& src, BOOL force)
     {
         if(force)
@@ -270,13 +270,13 @@ public:
         return *this = src;
     }
     
-    // value_type‚©‚ç‚ÌChange
+    // value_typeã‹ã‚‰ã®Change
     const DWCi_ChangeDetectable& Change(const T& _value, BOOL force)
     {
         return this->Change(DWCi_ChangeDetectable<T>(_value), force);
     }
     
-    // value_type‚Ì‰‰Zq‚ğƒGƒ~ƒ…ƒŒ[ƒg
+    // value_typeã®æ¼”ç®—å­ã‚’ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ãƒˆ
     bool operator==(const T& _value) const
     {
         return value == _value;
@@ -286,20 +286,20 @@ public:
         return value < _value;
     }
     
-    // •ÏX‚³‚ê‚½‚©’²‚×‚é
+    // å¤‰æ›´ã•ã‚ŒãŸã‹èª¿ã¹ã‚‹
     BOOL IsChanged() const
     {
         return changed;
     }
     
-    // •ÏX‚ğŠm”F‚µ‚Äæ“¾‚·‚é
+    // å¤‰æ›´ã‚’ç¢ºèªã—ã¦å–å¾—ã™ã‚‹
     const T& Confirm() const
     {
         changed = FALSE;
         return value;
     }
     
-    // ’l‚ğæ“¾‚·‚é
+    // å€¤ã‚’å–å¾—ã™ã‚‹
     const T& Get() const
     {
         return value;

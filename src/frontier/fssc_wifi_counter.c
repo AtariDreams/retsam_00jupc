@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fssc_wifi_counter.c
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFWiFiŽó•t
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šWiFiå—ä»˜
  * @author	Satoshi Nohara
  * @date	07.07.31
  */
@@ -17,7 +17,7 @@
 
 #include "field/eventflag.h"
 #include "field/evwkdef.h"
-#include "gflib/strbuf_family.h"				//‹–‰Â§
+#include "gflib/strbuf_family.h"				//è¨±å¯åˆ¶
 
 #include "../field/field_subproc.h"				//TestBattleProcData
 
@@ -49,7 +49,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL FSSC_WiFiCounterWorkAlloc( FSS_TASK * core );
@@ -72,15 +72,15 @@ BOOL FSSC_WiFiCounterTowerCallAfter( FSS_TASK * core );
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒžãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒƒ“ƒeƒBƒAWiFiŽó•tƒ[ƒNŠm•Û
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -95,15 +95,15 @@ BOOL FSSC_WiFiCounterWorkAlloc( FSS_TASK * core )
 	wk = FrWiFiCounterScr_WorkAlloc( ex_param->savedata );
 	Frontier_SysWorkSet( core->fss->fmain, wk );
 
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒtƒƒ“ƒeƒBƒAWiFiŽó•tƒ[ƒNŠm•Û\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜ãƒ¯ãƒ¼ã‚¯ç¢ºä¿\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒƒ“ƒeƒBƒAWiFiŽó•tƒ[ƒNŠJ•ú
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -113,15 +113,15 @@ BOOL FSSC_WiFiCounterWorkFree( FSS_TASK * core )
 	FRWIFI_SCRWORK* wifi_scr_wk;
 	wifi_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	FrWiFiCounterScr_WorkFree( wifi_scr_wk );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒtƒƒ“ƒeƒBƒAWiFiŽó•tƒ[ƒNŠJ•ú\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜ãƒ¯ãƒ¼ã‚¯é–‹æ”¾\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * ‘—M
+ * é€ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -142,9 +142,9 @@ BOOL FSSC_WiFiCounterSendBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * ŽóM
+ * å—ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -153,18 +153,18 @@ BOOL FSSC_WiFiCounterRecvBuf( FSS_TASK * core )
 {
 	u16 wk_id = FSSTGetU16( core );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ðŠi”[
+	//ä»®æƒ³ãƒžã‚·ãƒ³ã®æ±Žç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	FSST_SetWait( core, WaitWiFiCounterRecvBuf );
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitWiFiCounterRecvBuf( FSS_TASK * core )
 {
 	FRWIFI_SCRWORK* wifi_scr_wk;
-	//u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//’ˆÓI
+	//u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//æ³¨æ„ï¼
 
 	wifi_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
@@ -179,9 +179,9 @@ static BOOL WaitWiFiCounterRecvBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * Ž{ÝNo‚Ì”äŠr
+ * æ–½è¨­Noã®æ¯”è¼ƒ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -195,9 +195,9 @@ BOOL FSSC_WiFiCounterBFNoCheck( FSS_TASK * core )
 	wifi_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
 	if( bf_no == wifi_scr_wk->pair_bf_no ){
-		*ret_wk = 1;							//“¯‚¶(OK)
+		*ret_wk = 1;							//åŒã˜(OK)
 	}else{
-		*ret_wk = 0;							//ˆá‚¤(NG)
+		*ret_wk = 0;							//é•ã†(NG)
 	}
 
 	return 0;
@@ -205,9 +205,9 @@ BOOL FSSC_WiFiCounterBFNoCheck( FSS_TASK * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg
+ * ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -224,11 +224,11 @@ BOOL FSSC_WiFiCounterPokeList( FSS_TASK * core )
 	ex_param = Frontier_ExParamGet( core->fss->fmain );
 
 #if 0
-	//ƒXƒe[ƒW
+	//ã‚¹ãƒ†ãƒ¼ã‚¸
 	if( bf_no == FRONTIER_NO_STAGE ){
 		//wifi_scr_wk->mode = PL_MODE_BATTLE_STAGE;
 
-	//ƒLƒƒƒbƒXƒ‹
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 	}else if( bf_no == FRONTIER_NO_CASTLE ){
 		//wifi_scr_wk->mode = PL_MODE_BATTLE_CASTLE;
 
@@ -237,7 +237,7 @@ BOOL FSSC_WiFiCounterPokeList( FSS_TASK * core )
 	}
 #endif
 
-	//(‰¼)ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ‚Éfsys‚ª•K—v
+	//(ä»®)ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—ã«fsysãŒå¿…è¦
 	wifi_scr_wk->fsys	= ex_param->fsys;
 	//wifi_scr_wk->bf_no	= bf_no;
 	wifi_scr_wk->ret_wk = ret_wk;
@@ -248,7 +248,7 @@ BOOL FSSC_WiFiCounterPokeList( FSS_TASK * core )
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL EvWaitFrWifiCounterPokeList(FSS_TASK * core)
 {
 	FRWIFI_SCRWORK* wifi_scr_wk;
@@ -262,9 +262,9 @@ static BOOL EvWaitFrWifiCounterPokeList(FSS_TASK * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ÌŒ‹‰Ê‚ðŽæ“¾
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®çµæžœã‚’å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	0
  */
@@ -279,28 +279,28 @@ BOOL FSSC_WiFiCounterPokeListGetResult(FSS_TASK * core)
 
 	wifi_scr_wk = Frontier_SysWorkGet( core->fss->fmain );
 
-	if( wifi_scr_wk->pld->ret_sel == PL_SEL_POS_EXIT ){				//–ß‚é
+	if( wifi_scr_wk->pld->ret_sel == PL_SEL_POS_EXIT ){				//æˆ»ã‚‹
 
 		*ret_wk = 0xff;
 
-		//ŽQ‰Á‚·‚éŽ{Ý‚ðÄ“x‘I‚Ô‚±‚Æ‚ªo—ˆ‚é‚Ì‚ÅAƒ[ƒN‚ðƒNƒŠƒA‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢I
-		//‘I‘ð‚µ‚Ä‚¢‚éˆÊ’uƒNƒŠƒA(š)
+		//å‚åŠ ã™ã‚‹æ–½è¨­ã‚’å†åº¦é¸ã¶ã“ã¨ãŒå‡ºæ¥ã‚‹ã®ã§ã€ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã—ãªã„ã¨ã„ã‘ãªã„ï¼
+		//é¸æŠžã—ã¦ã„ã‚‹ä½ç½®ã‚¯ãƒªã‚¢(â˜…)
 		for( i=0; i < WIFI_COUNTER_ENTRY_POKE_MAX ;i++ ){
 			wifi_scr_wk->sel[i] = 0;
 		}
 
-	}else if( wifi_scr_wk->pld->ret_sel == PL_SEL_POS_ENTER ){		//Œˆ’è
+	}else if( wifi_scr_wk->pld->ret_sel == PL_SEL_POS_ENTER ){		//æ±ºå®š
 
-		OS_Printf( "ƒtƒƒ“ƒeƒBƒAWiFiŽó•t@ƒ|ƒPƒ‚ƒ“‘I‘ðŒ‹‰Ê\n" );
+		OS_Printf( "ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜ã€€ãƒã‚±ãƒ¢ãƒ³é¸æŠžçµæžœ\n" );
 
-		//Œ»Ý‘I‚Î‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ð•Û‘¶
+		//ç¾åœ¨é¸ã°ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ä¿å­˜
 		*ret_wk = wifi_scr_wk->pld->in_num[0];
-		*ret_wk -= 1;												//0-5‚É•ÏX
+		*ret_wk -= 1;												//0-5ã«å¤‰æ›´
 		OS_Printf( "*ret_wk = %d\n", *ret_wk );
 
 		*ret2_wk = wifi_scr_wk->pld->in_num[1];
 		if( *ret2_wk > 0 ){
-			*ret2_wk -= 1;										//0-5‚É•ÏX
+			*ret2_wk -= 1;										//0-5ã«å¤‰æ›´
 		}
 	}
 
@@ -312,9 +312,9 @@ BOOL FSSC_WiFiCounterPokeListGetResult(FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * ‘ŠŽè‚ª‘I‚ñ‚¾ƒƒjƒ…[‚ðŽæ“¾
+ * ç›¸æ‰‹ãŒé¸ã‚“ã ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -331,9 +331,9 @@ BOOL FSSC_WiFiCounterPairYameruCheck( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFFRWIFI_SCRWORK‚ÌƒZƒbƒgAƒQƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šFRWIFI_SCRWORKã®ã‚»ãƒƒãƒˆã€ã‚²ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -356,27 +356,27 @@ BOOL FSSC_WiFiCounterScrWork( FSS_TASK * core )
 
 	switch( code ){
 
-	//’ÊMÝ’è
+	//é€šä¿¡è¨­å®š
 	case FWIFI_ID_COMM_COMMAND_INITIALIZE:
 		CommCommandFrontierInitialize( wifi_scr_wk );
 		break;
 
-	//ƒp[ƒgƒi[‚ªƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ðƒLƒƒƒ“ƒZƒ‹‚µ‚½‚©Žæ“¾
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸã‹å–å¾—
 	case FWIFI_ID_GET_PAIR_POKELIST_CANCEL:
 		*work = wifi_scr_wk->pair_monsno[0];
 		break;
 
-	//Ž{Ý‚²‚Æ‚Ì‚¨ŒÝ‚¢‚Ìƒ|ƒPƒ‚ƒ“‚ªðŒ‚ð–ž‚½‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	//æ–½è¨­ã”ã¨ã®ãŠäº’ã„ã®ãƒã‚±ãƒ¢ãƒ³ãŒæ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	case FWIFI_ID_CHECK_ENTRY:
 
-		//ƒoƒgƒ‹ƒ^ƒ[
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 		if( param1 == FRONTIER_NO_TOWER ){
 
 			*work = 0;				//OK
 
-			//ƒAƒCƒeƒ€‚Ì”í‚èƒ`ƒFƒbƒN‚Í‚Ç‚±‚Å‚µ‚Ä‚¢‚é‚©HH
+			//ã‚¢ã‚¤ãƒ†ãƒ ã®è¢«ã‚Šãƒã‚§ãƒƒã‚¯ã¯ã©ã“ã§ã—ã¦ã„ã‚‹ã‹ï¼Ÿï¼Ÿ
 	
-			//oêƒ|ƒPƒ‚ƒ“‚ª‚©‚Ô‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			//å‡ºå ´ãƒã‚±ãƒ¢ãƒ³ãŒã‹ã¶ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( (wifi_scr_wk->monsno[0] == wifi_scr_wk->pair_monsno[0]) ||
 				(wifi_scr_wk->monsno[0] == wifi_scr_wk->pair_monsno[1]) ){
 				*work+=1;			//NG
@@ -387,24 +387,24 @@ BOOL FSSC_WiFiCounterScrWork( FSS_TASK * core )
 				*work+=2;			//NG
 			}
 
-		//ƒoƒgƒ‹ƒXƒe[ƒW
+		//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 		}else if( param1 == FRONTIER_NO_STAGE ){
 
-			//“¯‚¶ƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚Å‚¢‚é‚©ƒ`ƒFƒbƒN
+			//åŒã˜ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã§ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( wifi_scr_wk->monsno[0] == wifi_scr_wk->pair_monsno[0] ){
 				*work = 0;			//OK
 			}else{
 				*work = 1;			//NG
 			}
 
-		//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
-		//ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
+		//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+		//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 		//}else if( param1 == FRONTIER_NO_CASTLE ){
 		}else if( (param1 == FRONTIER_NO_CASTLE) || (param1 == FRONTIER_NO_ROULETTE) ){
 
 			*work = 0;				//OK
 
-			//oêƒ|ƒPƒ‚ƒ“‚ª‚©‚Ô‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			//å‡ºå ´ãƒã‚±ãƒ¢ãƒ³ãŒã‹ã¶ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( (wifi_scr_wk->monsno[0] == wifi_scr_wk->pair_monsno[0]) ||
 				(wifi_scr_wk->monsno[0] == wifi_scr_wk->pair_monsno[1]) ){
 				*work+=1;			//NG
@@ -417,7 +417,7 @@ BOOL FSSC_WiFiCounterScrWork( FSS_TASK * core )
 		}
 		break;
 		
-	//ƒoƒgƒ‹ƒXƒe[ƒWF˜AŸ’†‚©Žæ“¾
+	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šé€£å‹ä¸­ã‹å–å¾—
 	case FWIFI_ID_STAGE_GET_CLEAR_FLAG:
 #if 0
 		*work = (u16)STAGESCORE_GetScoreData(	SaveData_GetStageScore(ex_param->savedata), 
@@ -430,60 +430,60 @@ BOOL FSSC_WiFiCounterScrWork( FSS_TASK * core )
 #endif
 		break;
 
-	//ƒoƒgƒ‹ƒXƒe[ƒWF˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ðŽæ“¾
+	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šé€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	case FWIFI_ID_STAGE_GET_CLEAR_MONSNO:
 		*work = FrontierRecord_Get(	SaveData_GetFrontier(ex_param->savedata), 
 					StageScr_GetMonsNoRecordID(STAGE_TYPE_WIFI_MULTI),
 					Frontier_GetFriendIndex(StageScr_GetMonsNoRecordID(STAGE_TYPE_WIFI_MULTI)) );
 		break;
 
-	//‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ðŽæ“¾
+	//é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	case FWIFI_ID_GET_ENTRY_MONSNO:
 		*work = wifi_scr_wk->monsno[param1]; 
 		break;
 
-	//ƒoƒgƒ‹ƒXƒe[ƒWF˜AŸ’†ƒtƒ‰ƒOƒNƒŠƒAA˜AŸƒŒƒR[ƒhƒNƒŠƒAAƒ^ƒCƒvƒJƒEƒ“ƒgƒNƒŠƒA
+	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šé€£å‹ä¸­ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢ã€é€£å‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚¯ãƒªã‚¢ã€ã‚¿ã‚¤ãƒ—ã‚«ã‚¦ãƒ³ãƒˆã‚¯ãƒªã‚¢
 	case FWIFI_ID_STAGE_SET_NEW_CHALLENGE:
 		BattleStageSetNewChallenge( ex_param->savedata, SaveData_GetStageScore(ex_param->savedata),
 									STAGE_TYPE_WIFI_MULTI );
 		break;
 
-	//Ž{ÝNoƒZƒbƒg
+	//æ–½è¨­Noã‚»ãƒƒãƒˆ
 	case FWIFI_ID_SET_BF_NO:
-		OS_Printf( "ƒZƒbƒg‚·‚éŽ{ÝNo = %d\n", param1 );
+		OS_Printf( "ã‚»ãƒƒãƒˆã™ã‚‹æ–½è¨­No = %d\n", param1 );
 		wifi_scr_wk->bf_no	= param1;
 		break;
 
-	//ƒXƒe[ƒW‚Ì‹L˜^‚ðÁ‚µ‚Ä‚¢‚¢‚©‚Ìƒp[ƒgƒi[‚Ì‘I‘ð‚ðŽæ“¾
+	//ã‚¹ãƒ†ãƒ¼ã‚¸ã®è¨˜éŒ²ã‚’æ¶ˆã—ã¦ã„ã„ã‹ã®ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®é¸æŠžã‚’å–å¾—
 	case FWIFI_ID_GET_PAIR_STAGE_RECORD_DEL:
 		*work = wifi_scr_wk->pair_stage_del;
 		break;
 
-	//Ž{ÝNoŽæ“¾
+	//æ–½è¨­Noå–å¾—
 	case FWIFI_ID_GET_BF_NO:
 		*work = wifi_scr_wk->bf_no;
 		break;
 
-	//ƒp[ƒgƒi[‚ª‘±‚¯‚Ä—V‚Ô‚©Žæ“¾
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒç¶šã‘ã¦éŠã¶ã‹å–å¾—
 	case FWIFI_ID_GET_PAIR_GAME_CONTINUE:
 		*work = wifi_scr_wk->pair_game_continue;
 		break;
 
-	//ƒp[ƒgƒi[‚Æ‚Ì˜AŸ”‚ð”äŠr
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã¨ã®é€£å‹æ•°ã‚’æ¯”è¼ƒ
 	case FWIFI_ID_CHECK_PAIR_RENSYOU:
 		*work = 1;
 		id = WifiCounterRensyouRecordIDGet( wifi_scr_wk->bf_no );
 		my_rensyou = FrontierRecord_Get(SaveData_GetFrontier(wifi_scr_wk->sv), id, 
 										Frontier_GetFriendIndex(id) );
 
-		//˜AŸ”‚ªH‚¢ˆá‚Á‚Ä‚¢‚½‚çƒNƒŠƒA‚·‚é
+		//é€£å‹æ•°ãŒé£Ÿã„é•ã£ã¦ã„ãŸã‚‰ã‚¯ãƒªã‚¢ã™ã‚‹
 		OS_Printf( "my_rensyou = %d\n", my_rensyou );
 		OS_Printf( "pair_rensyou = %d\n", wifi_scr_wk->pair_rensyou );
 		if( my_rensyou != wifi_scr_wk->pair_rensyou ){
 			FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv), 
 								id, Frontier_GetFriendIndex(id), 0 );
 
-			//ƒNƒŠƒAƒtƒ‰ƒO—Ž‚Æ‚·
+			//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°è½ã¨ã™
 			id = WifiCounterClearRecordIDGet( wifi_scr_wk->bf_no );
 			FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv), 
 								id, Frontier_GetFriendIndex(id), 0 );
@@ -494,65 +494,65 @@ BOOL FSSC_WiFiCounterScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//ƒNƒŠƒAƒtƒ‰ƒO‚ðŽæ“¾‚µ‚ÄAƒNƒŠƒA
+	//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã—ã¦ã€ã‚¯ãƒªã‚¢
 	case FWIFI_ID_GET_CLEAR_FLAG:
 		id = WifiCounterClearRecordIDGet( wifi_scr_wk->bf_no );
-		*work = FrontierRecord_Get(	SaveData_GetFrontier(wifi_scr_wk->sv),		//ƒNƒŠƒAƒtƒ‰ƒOŽæ“¾
+		*work = FrontierRecord_Get(	SaveData_GetFrontier(wifi_scr_wk->sv),		//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°å–å¾—
 									id, Frontier_GetFriendIndex(id) );
 
-		//ƒNƒŠƒAƒtƒ‰ƒO‚ðŽæ“¾‚µ‚ÄA0‚¾‚Á‚½‚çA˜AŸƒŒƒR[ƒh‚ð0‚É‚µ‚Ä‚¨‚­(—F’BŽè’ ‚Ì‹L˜^‚Ì‚½‚ß)
+		//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã—ã¦ã€0ã ã£ãŸã‚‰ã€é€£å‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’0ã«ã—ã¦ãŠã(å‹é”æ‰‹å¸³ã®è¨˜éŒ²ã®ãŸã‚)
 		if( *work == 0 ){
 			id = WifiCounterRensyouRecordIDGet( wifi_scr_wk->bf_no );
 			FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv), 
 								id, Frontier_GetFriendIndex(id), 0 );
 
 #if 1
-			//ƒ^ƒ[‚ÌŽž‚ÍŽü‰ñ”‚ðƒNƒŠƒA
+			//ã‚¿ãƒ¯ãƒ¼ã®æ™‚ã¯å‘¨å›žæ•°ã‚’ã‚¯ãƒªã‚¢
 			if( wifi_scr_wk->bf_no == FRONTIER_NO_TOWER ){
 
-				//Œ»Ý‚ÌŽü‰ñ”ƒŠƒZƒbƒg
+				//ç¾åœ¨ã®å‘¨å›žæ•°ãƒªã‚»ãƒƒãƒˆ
 				scoreSave = SaveData_GetTowerScoreData( wifi_scr_wk->sv );
 				TowerScoreData_SetStage( scoreSave, BTWR_MODE_WIFI_MULTI, BTWR_DATA_reset );
 			}
 
-			//ƒLƒƒƒbƒXƒ‹‚ÌŽž‚ÍCPƒNƒŠƒA
+			//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã®æ™‚ã¯CPã‚¯ãƒªã‚¢
 			if( wifi_scr_wk->bf_no == FRONTIER_NO_CASTLE ){
 
 				FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv), 
-									FRID_CASTLE_MULTI_WIFI_CP,				//Œ»ÝCP
+									FRID_CASTLE_MULTI_WIFI_CP,				//ç¾åœ¨CP
 									Frontier_GetFriendIndex(id), 0 );
 
 				FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv), 
-									FRID_CASTLE_MULTI_WIFI_USED_CP,			//Žg—p‚µ‚½CP
+									FRID_CASTLE_MULTI_WIFI_USED_CP,			//ä½¿ç”¨ã—ãŸCP
 									Frontier_GetFriendIndex(id), 0 );
 			}
 
-			//ƒtƒ@ƒNƒgƒŠ[LV50‚ÌŽž‚ÍŒðŠ·‰ñ”ƒNƒŠƒA
+			//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼LV50ã®æ™‚ã¯äº¤æ›å›žæ•°ã‚¯ãƒªã‚¢
 			if( wifi_scr_wk->bf_no == FRONTIER_NO_FACTORY_LV50 ){
-				FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv),	//ŒðŠ·‰ñ”
+				FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv),	//äº¤æ›å›žæ•°
 				FactoryScr_GetTradeRecordID(0,FACTORY_TYPE_WIFI_MULTI),
 				Frontier_GetFriendIndex(FactoryScr_GetTradeRecordID(0,FACTORY_TYPE_WIFI_MULTI)), 0);
 			}
 
-			//ƒtƒ@ƒNƒgƒŠ[LV100‚ÌŽž‚ÍŒðŠ·‰ñ”ƒNƒŠƒA
+			//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼LV100ã®æ™‚ã¯äº¤æ›å›žæ•°ã‚¯ãƒªã‚¢
 			if( wifi_scr_wk->bf_no == FRONTIER_NO_FACTORY_LV100 ){
-				FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv),	//ŒðŠ·‰ñ”
+				FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv),	//äº¤æ›å›žæ•°
 				FactoryScr_GetTradeRecordID(1,FACTORY_TYPE_WIFI_MULTI),
 				Frontier_GetFriendIndex(FactoryScr_GetTradeRecordID(1,FACTORY_TYPE_WIFI_MULTI)), 0);
 			}
 #endif
 
 		}else{
-			//ƒNƒŠƒAƒtƒ‰ƒO‚ð—Ž‚Æ‚µ‚Ä‚©‚çAƒZ[ƒu‚És‚­‚æ‚¤‚É‚·‚é(•s³‚ÈI—¹‚Ì‘Îˆ)
-			FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv),			//ƒNƒŠƒA(ID’ˆÓ)
+			//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã—ã¦ã‹ã‚‰ã€ã‚»ãƒ¼ãƒ–ã«è¡Œãã‚ˆã†ã«ã™ã‚‹(ä¸æ­£ãªçµ‚äº†ã®å¯¾å‡¦)
+			FrontierRecord_Set(	SaveData_GetFrontier(wifi_scr_wk->sv),			//ã‚¯ãƒªã‚¢(IDæ³¨æ„)
 								id, Frontier_GetFriendIndex(id), 0 );
 		}
 
-		OS_Printf( "˜AŸ = %d\n", *work );
-		OS_Printf( "ƒNƒŠƒAƒtƒ‰ƒO = %d\n", *work );
+		OS_Printf( "é€£å‹ = %d\n", *work );
+		OS_Printf( "ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚° = %d\n", *work );
 		break;
 
-	//ƒŠƒXƒg—pƒ[ƒN‚ðƒNƒŠƒA(š)
+	//ãƒªã‚¹ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢(â˜…)
 	case FWIFI_ID_POKELIST_SEL_CLEAR:
 		for( i=0; i < WIFI_COUNTER_ENTRY_POKE_MAX ;i++ ){
 			wifi_scr_wk->sel[i] = 0;
@@ -567,9 +567,9 @@ BOOL FSSC_WiFiCounterScrWork( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ^ƒ[ŒÄ‚Ño‚µ‘O‚Ì€”õ
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‘¼ã³å‡ºã—å‰ã®æº–å‚™
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -585,27 +585,27 @@ BOOL FSSC_WiFiCounterTowerCallBefore( FSS_TASK * core )
 	ex_param = Frontier_ExParamGet( core->fss->fmain );
 	wifi_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	tmp_wifi_scr_wk = *wifi_scr_wk;				//ƒRƒs[
+	tmp_wifi_scr_wk = *wifi_scr_wk;				//ã‚³ãƒ”ãƒ¼
 	FrWiFiCounterScr_WorkFree( wifi_scr_wk );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒtƒƒ“ƒeƒBƒAWiFiŽó•tƒ[ƒNŠJ•ú\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜ãƒ¯ãƒ¼ã‚¯é–‹æ”¾\n" );
 
 	////////////////////////////
-	//ŒÄ‚Ño‚µƒ‚[ƒh‚ðŠm”F‚·‚éI
+	//å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰ã‚’ç¢ºèªã™ã‚‹ï¼
 	////////////////////////////
 	
-	//ƒ[ƒNƒGƒŠƒA‚ðŽæ“¾‚µ‚Ä‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’å–å¾—ã—ã¦åˆæœŸåŒ–
 	//wk = TowerScr_WorkInit( ex_param->savedata, BTWR_PLAY_NEW, BTWR_MODE_COMM_MULTI );
 	wk = TowerScr_WorkInit( ex_param->savedata, BTWR_PLAY_NEW, BTWR_MODE_WIFI_MULTI );
 	Frontier_SysWorkSet( core->fss->fmain, wk );
 
-	//’n‹…‹V“o˜^
-	//(ƒ}ƒ‹ƒ`‚ÍA‚Ü‚¾’ÊM‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅAƒXƒNƒŠƒvƒg(d32r0201.ev)‚ÅƒZƒbƒg‚µ‚Ä‚¢‚é)
+	//åœ°çƒå„€ç™»éŒ²
+	//(ãƒžãƒ«ãƒã¯ã€ã¾ã é€šä¿¡ã—ã¦ã„ãªã„ã®ã§ã€ã‚¹ã‚¯ãƒªãƒ—ãƒˆ(d32r0201.ev)ã§ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹)
 	//if(	(wk->play_mode == BTWR_MODE_COMM_MULTI) || (wk->play_mode == BTWR_MODE_WIFI_MULTI) ){
 	if(	wk->play_mode == BTWR_MODE_WIFI_MULTI ){
 		FrontierTool_WifiHistory( ex_param->savedata );
 	}
 
-	//oêƒƒ“ƒo[‚ðƒZƒbƒg
+	//å‡ºå ´ãƒ¡ãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	for( i=0; i < wk->member_num ;i++ ){
 		wk->member[i] = tmp_wifi_scr_wk.mine_poke_pos[i];
 		wk->mem_poke[i] = tmp_wifi_scr_wk.monsno[i];	
@@ -620,34 +620,34 @@ BOOL FSSC_WiFiCounterTowerCallBefore( FSS_TASK * core )
 	wk->pare_stage = recv_buf[3];
 #endif
 
-	//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á‚³‚ê‚½WIFIƒ}ƒ‹ƒ`‚Í’Êí‚Ìƒ‰ƒ“ƒ_ƒ€‚ðŽg—p‚·‚é‚Ì‚ÅXV‚µ‚È‚¢
-	//ƒvƒŒƒCƒ‰ƒ“ƒ_ƒ€ƒV[ƒh‚ðXV‚·‚é
+	//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ ã•ã‚ŒãŸWIFIãƒžãƒ«ãƒã¯é€šå¸¸ã®ãƒ©ãƒ³ãƒ€ãƒ ã‚’ä½¿ç”¨ã™ã‚‹ã®ã§æ›´æ–°ã—ãªã„
+	//ãƒ—ãƒ¬ã‚¤ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰ã‚’æ›´æ–°ã™ã‚‹
 	//TowerScr_PlayRandUpdate( wk, ex_param->savedata );
 
-	//e‹@‚¾‚Á‚½‚ç‘ÎíƒgƒŒ[ƒi[No’Š‘I
+	//è¦ªæ©Ÿã ã£ãŸã‚‰å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼NoæŠ½é¸
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		TowerScr_BtlTrainerNoSet( wk, ex_param->savedata );
 	}
 
-	//e‚Í‘ÎíƒgƒŒ[ƒi[No‘—M
-	//Žq‚Ì‚ÝŽóM
+	//è¦ªã¯å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noé€ä¿¡
+	//å­ã®ã¿å—ä¿¡
 	
-	//ŽèŽ‚¿‘S‰ñ•œ
+	//æ‰‹æŒã¡å…¨å›žå¾©
 	PokeParty_RecoverAll( SaveData_GetTemotiPokemon(ex_param->savedata) );
 
-	//BTOWER_SCRWORK‚ÉØ‚è‘Ö‚¦
+	//BTOWER_SCRWORKã«åˆ‡ã‚Šæ›¿ãˆ
 	CommCommandFrontierInitialize( wk );
 	wk->recieve_count = 0;
 
-	OS_Printf( "*********FSSC_WiFiCounterTowerCallBefore I—¹\n" );
+	OS_Printf( "*********FSSC_WiFiCounterTowerCallBefore çµ‚äº†\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ^ƒ[@’ÊMƒ}ƒ‹ƒ`@’Š‘I‚µ‚½ƒgƒŒ[ƒi[No‚ðŽq‹@‚É‘—M
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€šä¿¡ãƒžãƒ«ãƒã€€æŠ½é¸ã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noã‚’å­æ©Ÿã«é€ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -657,7 +657,7 @@ BOOL FSSC_WiFiCounterTowerSendTrainerData( FSS_TASK * core )
 	BTOWER_SCRWORK* wk;
 	u16* ret_wk	= FSSTGetWork( core );
 
-	OS_Printf( "\n]]]]]]]]]]]]\nƒtƒƒ“ƒeƒBƒAWiFiŽó•t ƒoƒgƒ‹ƒ^ƒ[@ƒgƒŒ[ƒi[No‚ð‘—MŠJŽn\n" );
+	OS_Printf( "\n]]]]]]]]]]]]\nãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜ ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noã‚’é€ä¿¡é–‹å§‹\n" );
 	wk =  Frontier_SysWorkGet( core->fss->fmain );
 
 	*ret_wk = CommFrWiFiCounterTowerSendBufTrainerData( wk );
@@ -666,16 +666,16 @@ BOOL FSSC_WiFiCounterTowerSendTrainerData( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ^ƒ[@‘—‚ç‚ê‚Ä‚«‚½ƒgƒŒ[ƒi[ƒf[ƒ^‚ðŽóMˆ—‘Ò‚¿
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€ã‚‰ã‚Œã¦ããŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡å‡¦ç†å¾…ã¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
 //--------------------------------------------------------------
 BOOL FSSC_WiFiCounterTowerRecvTrainerData( FSS_TASK * core )
 {
-	OS_Printf( "\n***********\nƒtƒƒ“ƒeƒBƒAWiFiŽó•t ƒoƒgƒ‹ƒ^ƒ[@ƒgƒŒ[ƒi[No‚ðŽóMŠJŽn\n" );
+	OS_Printf( "\n***********\nãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜ ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noã‚’å—ä¿¡é–‹å§‹\n" );
 	FSST_SetWait( core, EvWaitWiFiCounterTowerRecvTrainerData );
 	return 1;
 }
@@ -685,7 +685,7 @@ static BOOL EvWaitWiFiCounterTowerRecvTrainerData(FSS_TASK * core)
 	BTOWER_SCRWORK* wk;
 	wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	//ŽóMl”‚ðƒ`ƒFƒbƒN
+	//å—ä¿¡äººæ•°ã‚’ãƒã‚§ãƒƒã‚¯
 	if( wk->recieve_count < FRONTIER_COMM_PLAYER_NUM ){
 		return FALSE;
 	}
@@ -696,9 +696,9 @@ static BOOL EvWaitWiFiCounterTowerRecvTrainerData(FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ^ƒ[ŒÄ‚Ño‚µŒã‚ÌŒãŽn––
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‘¼ã³å‡ºã—å¾Œã®å¾Œå§‹æœ«
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -708,10 +708,10 @@ BOOL FSSC_WiFiCounterTowerCallAfter( FSS_TASK * core )
 	BTOWER_SCRWORK* btower_wk;
 	btower_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	//ƒ[ƒN—Ìˆæ‰ð•ú
+	//ãƒ¯ãƒ¼ã‚¯é ˜åŸŸè§£æ”¾
 	TowerScr_WorkRelease( btower_wk );
 	btower_wk = NULL;
-	OS_Printf( "ƒoƒgƒ‹ƒ^ƒ[ƒNŠJ•ú\n" );
+	OS_Printf( "ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¯é–‹æ”¾\n" );
 	return 0;
 }
 

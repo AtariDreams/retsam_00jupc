@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	wpcd_field
- * @brief	ƒtƒB[ƒ‹ƒh‘€ìŒn ƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æ“ä½œç³» ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  * @author	goto
- * @date	2006.02.10(‹à)
+ * @date	2006.02.10(é‡‘)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -23,14 +23,14 @@
 
 // -----------------------------------------
 //
-//	ƒTƒ|[ƒgŠÖ”
+//	ã‚µãƒãƒ¼ãƒˆé–¢æ•°
 //
 // -----------------------------------------
 static void FOT_ExDataGet(ECB_OPERATOR_DATA* odp, int data[]);
 
 // -----------------------------------------
 //
-//	ƒtƒB[ƒ‹ƒh‘€ìŠÖ”
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æ“ä½œé–¢æ•°
 //
 // -----------------------------------------
 static BOOL FOT_None(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);
@@ -51,7 +51,7 @@ static BOOL FOT_Convergence_Ratio(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);
 //--------------------------------------------------------------
 /**
  *
- * @brief	ƒtƒB[ƒ‹ƒh‘€ìŠÖ”ƒe[ƒuƒ‹
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æ“ä½œé–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  */
 //--------------------------------------------------------------
@@ -76,13 +76,13 @@ static BOOL (* const FieldOperatorTool[])(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 // =============================================================================
 //
 //
-//	¡ private
+//	â–  private
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	Šg’£ƒf[ƒ^æ“¾
+ * @brief	æ‹¡å¼µãƒ‡ãƒ¼ã‚¿å–å¾—
  *
  * @param	odp	
  * @param	data[]	
@@ -99,7 +99,7 @@ static void FOT_ExDataGet(ECB_OPERATOR_DATA* odp, int data[])
 
 //--------------------------------------------------------------
 /**
- * @brief	‰½‚à‘€ì‚µ‚È‚¢
+ * @brief	ä½•ã‚‚æ“ä½œã—ãªã„
  *
  * @param	emit	
  * @param	odp	
@@ -116,12 +116,12 @@ static BOOL FOT_None(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 // =============================================================
 //
-//	 d—Í‘€ì
+//	â–¡é‡åŠ›æ“ä½œ
 //
 // =============================================================
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Grabity_Mag ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Grabity_Mag ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -145,7 +145,7 @@ static BOOL FOT_Grabity_Mag(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	switch(data[0]){
 	case OPERATOR_FLD_DEFAULT:
 		{
-			SplSub_SetSPLField_GravityPos(emit, &pos);		///< W‘©ˆÊ’uæ“¾
+			SplSub_SetSPLField_GravityPos(emit, &pos);		///< é›†æŸä½ç½®å–å¾—
 			pos.x *= odp->reverce_flag;
 			pos.y *= odp->reverce_flag;
 			pos.z *= odp->reverce_flag;
@@ -182,12 +182,12 @@ static BOOL FOT_Grabity_Mag(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 // =============================================================
 //
-//	 ƒ‰ƒ“ƒ_ƒ€‘€ì
+//	â–¡ãƒ©ãƒ³ãƒ€ãƒ æ“ä½œ
 //
 // =============================================================
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Random_Mag ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Random_Mag ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -201,7 +201,7 @@ static BOOL FOT_Random_Mag(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 #ifdef WPCB_NONE_DATA_MSG
 
-	OS_Printf("–¢À‘•\n");
+	OS_Printf("æœªå®Ÿè£…\n");
 
 #endif	
 
@@ -211,7 +211,7 @@ static BOOL FOT_Random_Mag(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Random_IntVl ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Random_IntVl ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -225,7 +225,7 @@ static BOOL FOT_Random_IntVl(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 #ifdef WPCB_NONE_DATA_MSG
 
-	OS_Printf("–¢À‘•\n");
+	OS_Printf("æœªå®Ÿè£…\n");
 
 #endif	
 
@@ -235,12 +235,12 @@ static BOOL FOT_Random_IntVl(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 // =============================================================
 //
-//	 ƒ}ƒOƒlƒbƒg‘€ì
+//	â–¡ãƒã‚°ãƒãƒƒãƒˆæ“ä½œ
 //
 // =============================================================
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Magnet_Pos ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Magnet_Pos ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -264,7 +264,7 @@ static BOOL FOT_Magnet_Pos(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	switch(data[0]){
 	case OPERATOR_FLD_DEFAULT:
 		{
-			SplSub_GetSPLField_MagnetPos(emit, &pos);			///< W‘©ˆÊ’uæ“¾
+			SplSub_GetSPLField_MagnetPos(emit, &pos);			///< é›†æŸä½ç½®å–å¾—
 			pos.x *= odp->reverce_flag;
 			pos.y *= odp->reverce_flag;
 			pos.z *= odp->reverce_flag;
@@ -304,7 +304,7 @@ static BOOL FOT_Magnet_Pos(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Magnet_Mag ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Magnet_Mag ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -354,12 +354,12 @@ static BOOL FOT_Magnet_Mag(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 // =============================================================
 //
-//	 ƒXƒsƒ“‘€ì
+//	â–¡ã‚¹ãƒ”ãƒ³æ“ä½œ
 //
 // =============================================================
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Spin_Rad ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Spin_Rad ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -409,7 +409,7 @@ static BOOL FOT_Spin_Rad(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Spin_AxisType ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Spin_AxisType ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -457,12 +457,12 @@ static BOOL FOT_Spin_AxisType(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 // =============================================================
 //
-//	 ƒVƒ“ƒvƒ‹ƒRƒŠƒWƒ‡ƒ“‘€ì
+//	â–¡ã‚·ãƒ³ãƒ—ãƒ«ã‚³ãƒªã‚¸ãƒ§ãƒ³æ“ä½œ
 //
 // =============================================================
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Simple_Cls_Ypos ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Simple_Cls_Ypos ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -476,7 +476,7 @@ static BOOL FOT_Simple_Cls_Ypos(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 #ifdef WPCB_NONE_DATA_MSG
 
-	OS_Printf("–¢À‘•\n");
+	OS_Printf("æœªå®Ÿè£…\n");
 
 #endif	
 
@@ -486,7 +486,7 @@ static BOOL FOT_Simple_Cls_Ypos(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Simple_Cls_CoeffBounce ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Simple_Cls_CoeffBounce ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -500,7 +500,7 @@ static BOOL FOT_Simple_Cls_CoeffBounce(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 #ifdef WPCB_NONE_DATA_MSG
 
-	OS_Printf("–¢À‘•\n");
+	OS_Printf("æœªå®Ÿè£…\n");
 
 #endif	
 
@@ -510,7 +510,7 @@ static BOOL FOT_Simple_Cls_CoeffBounce(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Simple_Cls_EventType ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Simple_Cls_EventType ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -524,7 +524,7 @@ static BOOL FOT_Simple_Cls_EventType(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 #ifdef WPCB_NONE_DATA_MSG
 
-	OS_Printf("–¢À‘•\n");
+	OS_Printf("æœªå®Ÿè£…\n");
 
 #endif	
 
@@ -534,7 +534,7 @@ static BOOL FOT_Simple_Cls_EventType(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Simple_Cls_Global ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Simple_Cls_Global ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -548,7 +548,7 @@ static BOOL FOT_Simple_Cls_Global(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 #ifdef WPCB_NONE_DATA_MSG
 
-	OS_Printf("–¢À‘•\n");
+	OS_Printf("æœªå®Ÿè£…\n");
 
 #endif	
 
@@ -558,12 +558,12 @@ static BOOL FOT_Simple_Cls_Global(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 // =============================================================
 //
-//	 ƒRƒ“ƒo[ƒWƒFƒ“ƒX‘€ì
+//	â–¡ã‚³ãƒ³ãƒãƒ¼ã‚¸ã‚§ãƒ³ã‚¹æ“ä½œ
 //
 // =============================================================
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Convergence_Pos ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Convergence_Pos ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -587,7 +587,7 @@ static BOOL FOT_Convergence_Pos(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	switch(data[0]){
 	case OPERATOR_FLD_DEFAULT:
 		{
-			SplSub_GetSPLField_ConvergencePos(emit, &pos);		///< W‘©ˆÊ’uæ“¾
+			SplSub_GetSPLField_ConvergencePos(emit, &pos);		///< é›†æŸä½ç½®å–å¾—
 			pos.x *= odp->reverce_flag;
 			pos.y *= odp->reverce_flag;
 			pos.z *= odp->reverce_flag;
@@ -633,7 +633,7 @@ static BOOL FOT_Convergence_Pos(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 //--------------------------------------------------------------
 /**
- * @brief	FOT_Convergence_Ratio ‚ğ‘€ì‚·‚é
+ * @brief	FOT_Convergence_Ratio ã‚’æ“ä½œã™ã‚‹
  *
  * @param	emit	
  * @param	odp	
@@ -657,7 +657,7 @@ static BOOL FOT_Convergence_Ratio(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	switch(data[0]){
 	case OPERATOR_FLD_DEFAULT:
 		{
-			SplSub_GetSPLField_ConvergenceRatio(emit, &ratio);	///< W‘©—Í
+			SplSub_GetSPLField_ConvergenceRatio(emit, &ratio);	///< é›†æŸåŠ›
 			ratio *= odp->reverce_flag;
 		}
 		break;
@@ -686,13 +686,13 @@ static BOOL FOT_Convergence_Ratio(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 // =============================================================================
 //
 //
-//	¡ public
+//	â–  public
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒpƒ‰ƒ[ƒ^[ÀsŠÖ”
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼å®Ÿè¡Œé–¢æ•°
  *
  * @param	no	
  * @param	emit	
@@ -716,7 +716,7 @@ void FieldOperator_Executed(int no, EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 //--------------------------------------------------------------
 /**
- * @brief	BITæ“¾
+ * @brief	BITå–å¾—
  *
  * @param	no	
  *
@@ -750,7 +750,7 @@ int	FieldOperator_BitGet(int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	BITƒf[ƒ^”‚ğæ“¾
+ * @brief	BITãƒ‡ãƒ¼ã‚¿æ•°ã‚’å–å¾—
  *
  * @param	none	
  *

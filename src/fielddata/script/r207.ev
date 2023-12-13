@@ -1,6 +1,6 @@
 //====================================================================
 //						r207.gmm
-//					ƒtƒB[ƒ‹ƒhEƒ[ƒh207
+//					ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ãƒ­ãƒ¼ãƒ‰207
 //====================================================================
 	.text
 
@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_r207evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r207_flag_change
 _EVENT_DATA		pos_r207_support
@@ -22,30 +22,30 @@ _EVENT_DATA		ev_r207_cyclem
 _EVENT_DATA		ev_r207_sign1
 _EVENT_DATA		ev_r207_sign2
 _EVENT_DATA		ev_r207_sign3
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_r207_flag_change:
-	//WKOBJCHR‚ÉƒTƒ|[ƒg‚ÌƒLƒƒƒ‰ƒR[ƒh‚ðƒZƒbƒg‚·‚é
+	//WKOBJCHRã«ã‚µãƒãƒ¼ãƒˆã®ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	_GET_MY_SEX		LOCALWORK0
-	_IFVAL_JUMP		LOCALWORK0,EQ,0,r207_male_flag_change_01	//ƒTƒ|[ƒg—
-	_IFVAL_JUMP		LOCALWORK0,EQ,1,r207_female_flag_change_01	//ƒTƒ|[ƒg’j
+	_IFVAL_JUMP		LOCALWORK0,EQ,0,r207_male_flag_change_01	//ã‚µãƒãƒ¼ãƒˆå¥³
+	_IFVAL_JUMP		LOCALWORK0,EQ,1,r207_female_flag_change_01	//ã‚µãƒãƒ¼ãƒˆç”·
 	_END
 
-r207_male_flag_change_01:	//ƒTƒ|[ƒg—
+r207_male_flag_change_01:	//ã‚µãƒãƒ¼ãƒˆå¥³
 	_LDVAL			OBJCHRWORK0,HEROINE
 	_END
 
-r207_female_flag_change_01:	//ƒTƒ|[ƒg’j
+r207_female_flag_change_01:	//ã‚µãƒãƒ¼ãƒˆç”·
 	_LDVAL			OBJCHRWORK0,HERO
 	_END
 
 
 /********************************************************************/
-/*							ƒTƒ|[ƒg(POS)							*/
+/*							ã‚µãƒãƒ¼ãƒˆ(POS)							*/
 /********************************************************************/
 #define POS_R207_SUPPORT_Y1	(712)
 #define POS_R207_SUPPORT_Y2	(713)
@@ -54,16 +54,16 @@ r207_female_flag_change_01:	//ƒTƒ|[ƒg’j
 pos_r207_support:
 	_EVENT_START
 
-	//ŽålŒö‚ÌˆÊ’uî•ñŽæ“¾
+	//ä¸»äººå…¬ã®ä½ç½®æƒ…å ±å–å¾—
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_SXY_POS_CHANGE	R207_SUPPORT,331,SCWK_TEMP1
 
-	/*ƒTƒ|[ƒg	‹ß‚Ã‚¢‚Ä‚­‚é*/
+	/*ã‚µãƒãƒ¼ãƒˆ	è¿‘ã¥ã„ã¦ãã‚‹*/
 	_CALL			common_r207_support_50
 	_OBJ_ANIME		R207_SUPPORT,anm_r207_support_01_0
 	_OBJ_ANIME_WAIT
 
-	_CHG_COMMON_SCR SCRID_THE_BOY_GIRL_PLAY				/*ƒTƒ|[ƒg‹ÈÄ¶*/
+	_CHG_COMMON_SCR SCRID_THE_BOY_GIRL_PLAY				/*ã‚µãƒãƒ¼ãƒˆæ›²å†ç”Ÿ*/
 
 	_OBJ_ANIME		R207_SUPPORT,anm_r207_support_01
 	_OBJ_ANIME_WAIT
@@ -79,81 +79,81 @@ common_r207_support_50:
 	_OBJ_PAUSE		R207_SUPPORT
 	_RET
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 pos_r207_support_common:
 	_GET_MY_SEX		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,r207_male_01	//ƒTƒ|[ƒg—
-	_JUMP			r207_female_01					//ƒTƒ|[ƒg’j
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,r207_male_01	//ã‚µãƒãƒ¼ãƒˆå¥³
+	_JUMP			r207_female_01					//ã‚µãƒãƒ¼ãƒˆç”·
 
-//ƒTƒ|[ƒg—
+//ã‚µãƒãƒ¼ãƒˆå¥³
 r207_male_01:
 	_PLAYER_NAME	0
 	_TALKMSG		msg_r207_heroine_01
-	_BMPLIST_INIT		24,13,0,0,SCWK_ANSWER		//BƒLƒƒƒ“ƒZƒ‹–³Œø
+	_BMPLIST_INIT		24,13,0,0,SCWK_ANSWER		//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹
 	_BMPLIST_MAKE_LIST	msg_ev_win_133,EV_WIN_TALK_MSG_NONE,0
 	_BMPLIST_MAKE_LIST	msg_ev_win_134,EV_WIN_TALK_MSG_NONE,1
 	_BMPLIST_START
 
 	_TALK_KEYWAIT	msg_r207_heroine_02
 
-	//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[“üŽè
+	//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼å…¥æ‰‹
 	_CALL			r207_btl_searcher_get
 
 	_TALK_KEYWAIT	msg_r207_heroine_03
 
-	//ƒ_ƒEƒ“ƒWƒOƒ}ƒVƒ““üŽè
+	//ãƒ€ã‚¦ãƒ³ã‚¸ã‚°ãƒžã‚·ãƒ³å…¥æ‰‹
 	_CALL			r207_dowsing_get
 
 	_TALK_KEYWAIT	msg_r207_heroine_04
 	_JUMP			common_r207_support_10
 
-//ƒTƒ|[ƒg’j
+//ã‚µãƒãƒ¼ãƒˆç”·
 r207_female_01:
 	_PLAYER_NAME	0
 	_TALKMSG		msg_r207_hero_01
-	_BMPLIST_INIT		24,13,0,0,SCWK_ANSWER		//BƒLƒƒƒ“ƒZƒ‹–³Œø
+	_BMPLIST_INIT		24,13,0,0,SCWK_ANSWER		//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹
 	_BMPLIST_MAKE_LIST	msg_ev_win_133,EV_WIN_TALK_MSG_NONE,0
 	_BMPLIST_MAKE_LIST	msg_ev_win_134,EV_WIN_TALK_MSG_NONE,1
 	_BMPLIST_START
 
 	_TALK_KEYWAIT	msg_r207_hero_02
 
-	//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[“üŽè
+	//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼å…¥æ‰‹
 	_CALL			r207_btl_searcher_get
 
 	_TALK_KEYWAIT	msg_r207_hero_03
 
-	//ƒ_ƒEƒ“ƒWƒOƒ}ƒVƒ““üŽè
+	//ãƒ€ã‚¦ãƒ³ã‚¸ã‚°ãƒžã‚·ãƒ³å…¥æ‰‹
 	_CALL			r207_dowsing_get
 
 	_TALK_KEYWAIT	msg_r207_hero_04
 	_JUMP			common_r207_support_10
 
-//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[“üŽè
+//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼å…¥æ‰‹
 r207_btl_searcher_get:
 	_FLAG_SET		SYS_FLAG_BS_LV1
 	_LDVAL			SCWK_TEMP0,ITEM_BATORUSAATYAA
 	_LDVAL			SCWK_TEMP1,1
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*‘—‚èƒJ[ƒ\ƒ‹‘Ò‚¿‚ ‚è*/
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«å¾…ã¡ã‚ã‚Š*/
 	_RET
 
-//ƒ_ƒEƒ“ƒWƒOƒ}ƒVƒ““üŽè
+//ãƒ€ã‚¦ãƒ³ã‚¸ã‚°ãƒžã‚·ãƒ³å…¥æ‰‹
 r207_dowsing_get:
 	_LDVAL			SCWK_TEMP0,POKETCH_APPID_DOWSING
 	_CHG_COMMON_SCR	SCRID_POKETCH_SOFT_GET
 	_POKETCH_NAME	1,POKETCH_APPID_DOWSING
 	_RET
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 common_r207_support_10:
 	_TALK_CLOSE
 
-	/*‹Ž‚Á‚Ä‚¢‚­*/
+	/*åŽ»ã£ã¦ã„ã*/
 	_OBJ_ANIME		R207_SUPPORT,anm_r207_support_20
 	_OBJ_ANIME_WAIT
 	_OBJ_DEL		R207_SUPPORT
 
-	_CHG_COMMON_SCR SCRID_THE_BOY_GIRL_STOP				/*ƒTƒ|[ƒg‹È’âŽ~*/
+	_CHG_COMMON_SCR SCRID_THE_BOY_GIRL_STOP				/*ã‚µãƒãƒ¼ãƒˆæ›²åœæ­¢*/
 
 	_LDVAL			WK_SCENE_R207,1
 
@@ -161,7 +161,7 @@ common_r207_support_10:
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒTƒ|[ƒg‚Ì•û‚ðŒ©‚é
+//ä¸»äººå…¬	ã‚µãƒãƒ¼ãƒˆã®æ–¹ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r207_player_01
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -173,7 +173,7 @@ _ANIME_LABEL	anm_r207_player_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒTƒ|[ƒgŒ©‘—‚é
+//ä¸»äººå…¬	ã‚µãƒãƒ¼ãƒˆè¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r207_player_10
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -181,7 +181,7 @@ _ANIME_LABEL	anm_r207_player_10
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒTƒ|[ƒg	‰æ–Ê‰º‚©‚ç‹ß‚Ã‚­
+//ã‚µãƒãƒ¼ãƒˆ	ç”»é¢ä¸‹ã‹ã‚‰è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r207_support_01_0
 	_ANIME_DATA	AC_WALK_R_8F,3
@@ -193,7 +193,7 @@ _ANIME_LABEL	anm_r207_support_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒTƒ|[ƒg	‰æ–Êã‚É‹Ž‚Á‚Ä‚¢‚­
+//ã‚µãƒãƒ¼ãƒˆ	ç”»é¢ä¸Šã«åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r207_support_20
 	_ANIME_DATA	AC_WALK_L_8F,8
@@ -201,19 +201,19 @@ _ANIME_LABEL	anm_r207_support_20
 
 
 /********************************************************************/
-/*							­—									*/
+/*							å°‘å¥³									*/
 /********************************************************************/
 ev_r207_girl1a:
 	_EASY_OBJ_MSG	msg_r207_girl1a_01
 	_END
 
 /********************************************************************/
-/*							Ž©“]ŽÔ									*/
+/*							è‡ªè»¢è»Š									*/
 /********************************************************************/
 ev_r207_cyclem:
 	_TALK_OBJ_START
 
-	/*Ž©“]ŽÔ“üŽè‚µ‚Ä‚¢‚½‚ç*/
+	/*è‡ªè»¢è»Šå…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_CYCLE_GET,ev_r207_cyclem_02
 
 	_TALKMSG		msg_r207_cyclem_01
@@ -222,7 +222,7 @@ ev_r207_cyclem:
 	_TALK_OBJ_END
 	_END
 
-/*Ž©“]ŽÔ“üŽè‚µ‚Ä‚¢‚½‚ç*/
+/*è‡ªè»¢è»Šå…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 ev_r207_cyclem_02:
 	_TALKMSG		msg_r207_cyclem_02
 	_LAST_KEYWAIT
@@ -232,21 +232,21 @@ ev_r207_cyclem_02:
 
 
 /********************************************************************/
-/*							“¹ŠÅ”Â									*/
+/*							é“çœ‹æ¿									*/
 /********************************************************************/
 ev_r207_sign1:
 	_EASY_BOARD_MSG	msg_r207_sign1_01,BOARD_TYPE_ROAD,0
 	_END
 
 /********************************************************************/
-/*							“¹ŠÅ”Â									*/
+/*							é“çœ‹æ¿									*/
 /********************************************************************/
 ev_r207_sign2:
 	_EASY_BOARD_MSG	msg_r207_sign2_01,BOARD_TYPE_ROAD,0
 	_END
 
 /********************************************************************/
-/*							ŒfŽ¦”Â									*/
+/*							æŽ²ç¤ºæ¿									*/
 /********************************************************************/
 ev_r207_sign3:
 	_EASY_INFOBOARD_MSG	msg_r207_sign3_01,BOARD_TYPE_INFO,0

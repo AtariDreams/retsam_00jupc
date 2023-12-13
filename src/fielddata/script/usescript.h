@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	usescript.h
- * @brief	ƒXƒNƒŠƒvƒg‚Åg—p‚·‚éƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh‚È‚Ç
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ä½¿ç”¨ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãªã©
  * @author	Satoshi Nohara
  * @date	2005.10.04
  */
@@ -20,11 +20,11 @@
 //
 //==============================================================================================
 //#ifdef PM_DEBUG
-#define SCRIPT_PM_DEBUG					//*.ev“à‚ÅPM_DEBUG‚ª–³Œø‚È‚Ì‚Å
+#define SCRIPT_PM_DEBUG					//*.evå†…ã§PM_DEBUGãŒç„¡åŠ¹ãªã®ã§
 //#endif
 
 //----------------------------------------------------------------------------------------------
-//(ƒGƒƒ‰ƒ‹ƒh‚Å‚Ívmstat.h‚É’è‹`‚µ‚Ä‚ ‚Á‚½)
+//(ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ã§ã¯vmstat.hã«å®šç¾©ã—ã¦ã‚ã£ãŸ)
 //----------------------------------------------------------------------------------------------
 #define	LT				0				/* <	*/
 #define	EQ				1				/* ==	*/
@@ -41,59 +41,59 @@
 #define	FLGON			1
 #define	FLGOFF			0
 
-//nitro/type.h‚Å’è‹`‚³‚ê‚Ä‚¢‚é‚ªƒCƒ“ƒNƒ‹[ƒh‚Å‚«‚È‚¢‚Ì‚Å©—Í‚Å’è‹`
+//nitro/type.hã§å®šç¾©ã•ã‚Œã¦ã„ã‚‹ãŒã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã§ããªã„ã®ã§è‡ªåŠ›ã§å®šç¾©
 #define	TRUE			1
 #define	FALSE			0
 
-//ƒXƒNƒŠƒvƒg’ÊMó•t‚Ì”»•Ê’è‹`
-#define SCR_COMM_ID_NOTHING	(0)			//‰½‚à‚È‚µ
-#define SCR_COMM_ID_BATTLE	(1)			//ƒoƒgƒ‹
-#define SCR_COMM_ID_UNION	(2)			//ƒ†ƒjƒIƒ“
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆé€šä¿¡å—ä»˜ã®åˆ¤åˆ¥å®šç¾©
+#define SCR_COMM_ID_NOTHING	(0)			//ä½•ã‚‚ãªã—
+#define SCR_COMM_ID_BATTLE	(1)			//ãƒãƒˆãƒ«
+#define SCR_COMM_ID_UNION	(2)			//ãƒ¦ãƒ‹ã‚ªãƒ³
 #define SCR_COMM_ID_WIFI	(3)			//WiFi
-#define SCR_COMM_ID_RECORD	(4)			//ƒŒƒR[ƒh(sp_***.ev‚É–„‚ß‚ñ‚Å‚µ‚Ü‚Á‚½‚Ì‚Åc‚µ‚Ä‚¢‚é)
-#define SCR_COMM_ID_CONTEST	(5)			//ƒRƒ“ƒeƒXƒg
+#define SCR_COMM_ID_RECORD	(4)			//ãƒ¬ã‚³ãƒ¼ãƒ‰(sp_***.evã«åŸ‹ã‚è¾¼ã‚“ã§ã—ã¾ã£ãŸã®ã§æ®‹ã—ã¦ã„ã‚‹)
+#define SCR_COMM_ID_CONTEST	(5)			//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 #define SCR_COMM_ID_GTC		(6)			//GTC
 
 //----------------------------------------------------------------------------------------------
-//*.ev‚Ì’†‚Åg—p‚·‚é’è‹`
+//*.evã®ä¸­ã§ä½¿ç”¨ã™ã‚‹å®šç¾©
 //----------------------------------------------------------------------------------------------
-//ƒXƒNƒŠƒvƒg‚ÆƒvƒƒOƒ‰ƒ€‚Ìƒf[ƒ^ŒğŠ·—p
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ãƒ‡ãƒ¼ã‚¿äº¤æ›ç”¨
 #define	SCWK_PARAM0		( 0x8000 )
 #define SCWK_PARAM1		( 0x8001 )
 #define SCWK_PARAM2		( 0x8002 )
 #define SCWK_PARAM3		( 0x8003 )
 
-//ƒXƒNƒŠƒvƒg‚Å‚Ìƒeƒ“ƒ|ƒ‰ƒŠ
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ã®ãƒ†ãƒ³ãƒãƒ©ãƒª
 #define SCWK_TEMP0		( 0x8004 )
 #define SCWK_TEMP1		( 0x8005 )
 #define SCWK_TEMP2		( 0x8006 )
 #define SCWK_TEMP3		( 0x8007 )
 
-//ƒXƒNƒŠƒvƒg“à•”‚Å‚Ìˆ——p
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…éƒ¨ã§ã®å‡¦ç†ç”¨
 #define SCWK_REG0		( 0x8008 )
 #define SCWK_REG1		( 0x8009 )
 #define SCWK_REG2		( 0x800a )
 #define SCWK_REG3		( 0x800b )
 
-//ƒXƒNƒŠƒvƒg‚É“š‚¦‚ğ•Ô‚·”Ä—pƒ[ƒN
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ç­”ãˆã‚’è¿”ã™æ±ç”¨ãƒ¯ãƒ¼ã‚¯
 #define SCWK_ANSWER		( 0x800c )
 
-//˜b‚µ‚©‚¯‘ÎÛOBJIDƒ[ƒN(•ÏX•s‰Â)
+//è©±ã—ã‹ã‘å¯¾è±¡OBJIDãƒ¯ãƒ¼ã‚¯(å¤‰æ›´ä¸å¯)
 #define SCWK_TARGET_OBJID	( 0x800d )
 
 /*
-	// ˜b‚©‚¯‚½•ûŒü‚ğ•Û‚·‚éƒ[ƒN
+	// è©±ã‹ã‘ãŸæ–¹å‘ã‚’ä¿æŒã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 	u16 TalkSiteWork = 0;
 
-	// è‚¿‚ª‚¢‚Á‚Ï‚¢‚Å‚o‚b‚É“]‘—‚³‚ê‚½
-	u16 BoxNoWork = 0;			//‰½”Ô‚ÌBOX‚©
-	u16 PasoNoWork = 0;			//‚»‚ÌBOX‚Ì‰½”Ô–Ú‚©
+	// æ‰‹æŒã¡ãŒã„ã£ã±ã„ã§ï¼°ï¼£ã«è»¢é€ã•ã‚ŒãŸæ™‚
+	u16 BoxNoWork = 0;			//ä½•ç•ªã®BOXã‹
+	u16 PasoNoWork = 0;			//ãã®BOXã®ä½•ç•ªç›®ã‹
 
-	//ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Å‚ÌƒCƒxƒ“ƒgó‘Ô§Œä—pƒ[ƒN
+	//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ã®ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯
 	u16 UnionRoomWork = 0;
 */
 
-/*ƒAƒ“ƒm[ƒ“‚¢‚¹‚«*/
+/*ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã„ã›ã*/
 #define ANOON_SEE_NUM_1	(10)
 #define ANOON_SEE_NUM_2	(26)
 
@@ -103,89 +103,89 @@
 //	
 //
 //==============================================================================================
-#include "common_scr_def.h"							//‹¤’ÊƒXƒNƒŠƒvƒgƒf[ƒ^ID
+#include "common_scr_def.h"							//å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ID
 
-#include "saveflag.h"								//ƒtƒ‰ƒOAƒ[ƒN’è‹`
+#include "saveflag.h"								//ãƒ•ãƒ©ã‚°ã€ãƒ¯ãƒ¼ã‚¯å®šç¾©
 #include "savework.h"
 
 #include "../../../include/pm_version.h"
 
 //include/field
 #include "../../../include/field/evwkdef.h"
-#include "../../../include/field/poketch_app_no.h"	//ƒ|ƒPƒbƒ`ƒAƒvƒŠƒiƒ“ƒo[
-#include "../../../include/field/weather_no.h"		//“VŒóƒiƒ“ƒo[
+#include "../../../include/field/poketch_app_no.h"	//ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼
+#include "../../../include/field/weather_no.h"		//å¤©å€™ãƒŠãƒ³ãƒãƒ¼
 
-#include "../../../include/system/brightness.h"		//‹P“x
-#include "../../../include/system/window.h"			//ƒEƒBƒ“ƒhƒE
-#include "../../../include/system/wipe.h"			//ƒƒCƒv
-#include "../../../include/system/timezone.h"		//ŠÔ‘Ñ
+#include "../../../include/system/brightness.h"		//è¼åº¦
+#include "../../../include/system/window.h"			//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#include "../../../include/system/wipe.h"			//ãƒ¯ã‚¤ãƒ—
+#include "../../../include/system/timezone.h"		//æ™‚é–“å¸¯
 
-#include "../../../include/poketool/monsno.h"		//ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-#include "../../../include/battle/battle_common.h"	//í“¬ŠÖ˜A
-#include "../../../include/battle/trno_def.h"		//ƒgƒŒ[ƒi[ƒiƒ“ƒo[’è‹`
+#include "../../../include/poketool/monsno.h"		//ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#include "../../../include/battle/battle_common.h"	//æˆ¦é—˜é–¢é€£
+#include "../../../include/battle/trno_def.h"		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒŠãƒ³ãƒãƒ¼å®šç¾©
 
-#include "../../../include/application/br_sys_def.h"//GDS’è‹`
-#include "../../../include/application/wifi_p2pmatch_def.h"	//P2P‘Îíƒ}ƒbƒ`ƒ“ƒOƒ{[ƒh
-#include "../../../include/application/imageClip/imc_itemid_define.h"	//ƒCƒ[ƒWƒNƒŠƒbƒv’è‹`
-#include "../../../include/application/box_mode.h"	//ƒ{ƒbƒNƒXƒ‚[ƒh’è‹`
-#include "../../../include/application/bag_def.h"	//ƒ|ƒPƒbƒg’è‹`
-#include "../../../include/application/seal_id.h"	//ƒV[ƒ‹’è‹`
-#include "../../../include/contest/contest_def.h"	//ƒRƒ“ƒeƒXƒg
-#include "../../../include/itemtool/itemsym.h"		//ƒAƒCƒeƒ€ƒiƒ“ƒo[’è‹`
-#include "../../../include/communication/comm_def.h"//’ÊM
+#include "../../../include/application/br_sys_def.h"//GDSå®šç¾©
+#include "../../../include/application/wifi_p2pmatch_def.h"	//P2På¯¾æˆ¦ãƒãƒƒãƒãƒ³ã‚°ãƒœãƒ¼ãƒ‰
+#include "../../../include/application/imageClip/imc_itemid_define.h"	//ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å®šç¾©
+#include "../../../include/application/box_mode.h"	//ãƒœãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰å®šç¾©
+#include "../../../include/application/bag_def.h"	//ãƒã‚±ãƒƒãƒˆå®šç¾©
+#include "../../../include/application/seal_id.h"	//ã‚·ãƒ¼ãƒ«å®šç¾©
+#include "../../../include/contest/contest_def.h"	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+#include "../../../include/itemtool/itemsym.h"		//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼å®šç¾©
+#include "../../../include/communication/comm_def.h"//é€šä¿¡
 
-#include "../../../include/battle/wazano_def.h"		//ƒƒUNo
-#include "../../../include/battle/battle_server.h"	//ƒtƒHƒ‹ƒ€No
+#include "../../../include/battle/wazano_def.h"		//ãƒ¯ã‚¶No
+#include "../../../include/battle/battle_server.h"	//ãƒ•ã‚©ãƒ«ãƒ No
 
 //include/savedata
-#include "../../../include/savedata/fnote_mem.h"	//–`Œ¯ƒm[ƒg
-#include "../../../include/savedata/score_def.h"	//ƒXƒRƒA
-#include "../../../include/savedata/record.h"	//ƒXƒRƒA
+#include "../../../include/savedata/fnote_mem.h"	//å†’é™ºãƒãƒ¼ãƒˆ
+#include "../../../include/savedata/score_def.h"	//ã‚¹ã‚³ã‚¢
+#include "../../../include/savedata/record.h"	//ã‚¹ã‚³ã‚¢
 
 //src/field
-#include "../../field/script_def.h"					//“ÁêƒXƒNƒŠƒvƒg’è‹`
-#include "../../field/ev_win.h"						//ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE’è‹`
-#include "../../field/comm_union_def.h"				//ƒ†ƒjƒIƒ“’è‹`
-#include "../../field/comm_union_beacon.h"			//ƒ†ƒjƒIƒ“ƒ‹[ƒ€—pƒr[ƒRƒ“’è‹`
-#include "../../field/comm_direct_counter_def.h"	//’ÊMƒ_ƒCƒŒƒNƒgƒR[ƒi[
-#include "../../field/fieldobj_code.h"				//ƒtƒB[ƒ‹ƒhOBJ‚Åg—p‚·‚éƒVƒ“ƒ{ƒ‹AƒR[ƒhéŒ¾
+#include "../../field/script_def.h"					//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆå®šç¾©
+#include "../../field/ev_win.h"						//ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+#include "../../field/comm_union_def.h"				//ãƒ¦ãƒ‹ã‚ªãƒ³å®šç¾©
+#include "../../field/comm_union_beacon.h"			//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ãƒ“ãƒ¼ã‚³ãƒ³å®šç¾©
+#include "../../field/comm_direct_counter_def.h"	//é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼
+#include "../../field/fieldobj_code.h"				//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã§ä½¿ç”¨ã™ã‚‹ã‚·ãƒ³ãƒœãƒ«ã€ã‚³ãƒ¼ãƒ‰å®£è¨€
 #include "../../field/player_code.h"				//REQBIT
-#include "../../field/board.h"						//ŠÅ”Â
-#include "../../field/honey_tree_def.h"				//–¨–ØƒXƒe[ƒg’è‹`
-#include "../../field/sysflag_def.h"				//ƒVƒXƒeƒ€ƒtƒ‰ƒO’è‹`
-#include "../../field/syswork_def.h"				//ƒVƒXƒeƒ€ƒ[ƒN’è‹`
-#include "../../field/gym_def.h"					//ƒWƒ€ŠÖ˜A’è‹`
+#include "../../field/board.h"						//çœ‹æ¿
+#include "../../field/honey_tree_def.h"				//èœœæœ¨ã‚¹ãƒ†ãƒ¼ãƒˆå®šç¾©
+#include "../../field/sysflag_def.h"				//ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°å®šç¾©
+#include "../../field/syswork_def.h"				//ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯å®šç¾©
+#include "../../field/gym_def.h"					//ã‚¸ãƒ é–¢é€£å®šç¾©
 #include "../../field/safari_train_def.h"
-#include "../../field/field_trade.h"				//ƒQ[ƒ€“àŒğŠ·
-#include "../../field/scr_cycling.h"				//ƒTƒCƒNƒŠƒ“ƒOƒ[ƒhÀ•W
+#include "../../field/field_trade.h"				//ã‚²ãƒ¼ãƒ å†…äº¤æ›
+#include "../../field/scr_cycling.h"				//ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰åº§æ¨™
 
-#include "../../data/sound/pl_sound_data.sadl"		//ƒTƒEƒ“ƒhƒiƒ“ƒo[’è‹`
-#include "../../../include/system/snd_def.h"		//ƒTƒEƒ“ƒh’è‹`‚Ì’u‚«Š·‚¦’è‹`
-#include "../maptable/zone_id.h"					//ƒ][ƒ“ID’è‹`
-#include "../shopdata/fs_item_def.h"				//ŒÅ’èƒAƒCƒeƒ€ƒVƒ‡ƒbƒv’è‹`
-#include "../shopdata/fs_goods_def.h"				//ŒÅ’èƒOƒbƒYƒVƒ‡ƒbƒv’è‹`
-#include "../shopdata/fs_seal_def.h"				//ŒÅ’èƒV[ƒ‹ƒVƒ‡ƒbƒv’è‹`
+#include "../../data/sound/pl_sound_data.sadl"		//ã‚µã‚¦ãƒ³ãƒ‰ãƒŠãƒ³ãƒãƒ¼å®šç¾©
+#include "../../../include/system/snd_def.h"		//ã‚µã‚¦ãƒ³ãƒ‰å®šç¾©ã®ç½®ãæ›ãˆå®šç¾©
+#include "../maptable/zone_id.h"					//ã‚¾ãƒ¼ãƒ³IDå®šç¾©
+#include "../shopdata/fs_item_def.h"				//å›ºå®šã‚¢ã‚¤ãƒ†ãƒ ã‚·ãƒ§ãƒƒãƒ—å®šç¾©
+#include "../shopdata/fs_goods_def.h"				//å›ºå®šã‚°ãƒƒã‚ºã‚·ãƒ§ãƒƒãƒ—å®šç¾©
+#include "../shopdata/fs_seal_def.h"				//å›ºå®šã‚·ãƒ¼ãƒ«ã‚·ãƒ§ãƒƒãƒ—å®šç¾©
 
-#include "../../field/move_pokemon_def.h"			//ˆÚ“®ƒ|ƒPƒ‚ƒ“’è‹`
-#include "../../field/elevator_anm_def.h"			//ƒGƒŒƒx[ƒ^ŠÖ˜A’è‹`
-#include "../../field/ship_demo_def.h"				//‘Dƒfƒ‚ŠÖ˜A’è‹`
+#include "../../field/move_pokemon_def.h"			//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å®šç¾©
+#include "../../field/elevator_anm_def.h"			//ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿é–¢é€£å®šç¾©
+#include "../../field/ship_demo_def.h"				//èˆ¹ãƒ‡ãƒ¢é–¢é€£å®šç¾©
 
-#include "../../frontier/factory_def.h"				//ƒtƒ@ƒNƒgƒŠ[’è‹`
-#include "../../frontier/stage_def.h"				//ƒXƒe[ƒW’è‹`
-#include "../../frontier/castle_def.h"				//ƒLƒƒƒbƒXƒ‹’è‹`
-#include "../../frontier/roulette_def.h"			//ƒ‹[ƒŒƒbƒg’è‹`
-#include "../../frontier/fss_scene.h"				//ƒtƒƒ“ƒeƒBƒAƒV[ƒ“’è‹`
-#include "../../frontier/frontier_def.h"			//ƒtƒƒ“ƒeƒBƒA’è‹`
+#include "../../frontier/factory_def.h"				//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å®šç¾©
+#include "../../frontier/stage_def.h"				//ã‚¹ãƒ†ãƒ¼ã‚¸å®šç¾©
+#include "../../frontier/castle_def.h"				//ã‚­ãƒ£ãƒƒã‚¹ãƒ«å®šç¾©
+#include "../../frontier/roulette_def.h"			//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆå®šç¾©
+#include "../../frontier/fss_scene.h"				//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ãƒ¼ãƒ³å®šç¾©
+#include "../../frontier/frontier_def.h"			//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å®šç¾©
 
 
-//ƒƒCƒvƒtƒF[ƒh‚ÌŠî–{‚Ì’l
+//ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã®åŸºæœ¬ã®å€¤
 #define SCR_WIPE_DIV				(WIPE_DEF_DIV)
 #define SCR_WIPE_SYNC				(WIPE_DEF_SYNC)
 
 
 //==============================================================================================
 //
-//	‹¤’ÊƒƒbƒZ[ƒWŠÖ˜A
+//	å…±é€šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£
 //
 //==============================================================================================
 #include "../../../include/msgdata/msg_common_scr.h"

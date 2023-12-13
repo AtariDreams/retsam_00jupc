@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_gflash.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@’n–Êƒtƒ‰ƒbƒVƒ…
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
  * @author	k.ohno
  * @data	06.05.05
  *
@@ -28,12 +28,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_GFLASHŒ^
+///	FE_GFLASHå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GFLASH * FE_GFLASH_PTR;
 
 //--------------------------------------------------------------
-///	FE_GFLASH\‘¢‘Ì
+///	FE_GFLASHæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GFLASH
 {
@@ -43,10 +43,10 @@ typedef struct _TAG_FE_GFLASH
 	FRO_ANM m_ranm;
 }FE_GFLASH;
 
-#define FE_GFLASH_SIZE (sizeof(FE_GFLASH)) ///<FE_GFLASHƒTƒCƒY
+#define FE_GFLASH_SIZE (sizeof(FE_GFLASH)) ///<FE_GFLASHã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	GFLASH_ADD_H\‘¢‘Ì
+///	GFLASH_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -54,22 +54,22 @@ typedef struct
 	FE_GFLASH_PTR gflash;		///<FE_GFLASH_PTR
 }GFLASH_ADD_H;
 
-#define GFLASH_ADD_H_SIZE (sizeof(GFLASH_ADD_H)) ///<GFLASH_ADD_HƒTƒCƒY
+#define GFLASH_ADD_H_SIZE (sizeof(GFLASH_ADD_H)) ///<GFLASH_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	GFLASH_WORK\‘¢‘Ì
+///	GFLASH_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	FRO_ANM ranm;
 	FRO_OBJ robj;
-	GFLASH_ADD_H head;						///<’Ç‰Á‚ÌGFLASH_ADD_H
+	GFLASH_ADD_H head;						///<è¿½åŠ æ™‚ã®GFLASH_ADD_H
 }GFLASH_WORK;
 
-#define GFLASH_WORK_SIZE (sizeof(GFLASH_WORK))	///<GFLASH_WORKƒTƒCƒY
+#define GFLASH_WORK_SIZE (sizeof(GFLASH_WORK))	///<GFLASH_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static FE_GFLASH_PTR GFlash_AllocMemory( int heap_id );
 static void GFlash_FreeMemory( FE_GFLASH_PTR gflash );
@@ -80,13 +80,13 @@ static void GFlash_GraphicDelete( FE_GFLASH_PTR gflash );
 static const EOA_H_NPP DATA_EoaH_GFlash;
 
 //==============================================================================
-//	’n–Êƒtƒ‰ƒbƒVƒ…@ƒVƒXƒeƒ€
+//	åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’n–Êƒtƒ‰ƒbƒVƒ…‰Šú‰»
+ * åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
- * @param	heap_id	ƒq[ƒvID
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
  * @retval	FE_GFLASH_PTR	FE_GFLASH_PTR
  */
 //--------------------------------------------------------------
@@ -103,7 +103,7 @@ void * FE_GFlash_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ’n–Êƒtƒ‰ƒbƒVƒ…íœ
+ * åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‰Šé™¤
  * @param	gflash		FE_GFLASH_PTR
  * @retval	nothing
  */
@@ -116,15 +116,15 @@ void FE_GFlash_Delete( void *work )
 }
 
 //==============================================================================
-//	’n–Êƒtƒ‰ƒbƒVƒ…	ƒp[ƒc
+//	åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	’n–Êƒtƒ‰ƒbƒVƒ…@ƒOƒ‰ƒtƒBƒbƒN
+//	åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’n–Êƒtƒ‰ƒbƒVƒ… ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	gflash	FE_GFLASH_PTR
  * @retval	nothing
  */
@@ -133,14 +133,14 @@ static void GFlash_GraphicInit( FE_GFLASH_PTR gflash )
 {
 	FE_FROMdl_ResSetArcLoadTexTrans(
 		gflash->fes, &gflash->m_rmdl, 0, NARC_fldeff_ug_ef_gflash_nsbmd, ALLOC_FR );
-	//ƒƒCƒ“ƒŠƒ\[ƒX‚Ì‚İƒ[ƒh
+	//ãƒ¡ã‚¤ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã®ã¿ãƒ­ãƒ¼ãƒ‰
 	FE_FROAnm_AnmResSetArcLoad(
 		gflash->fes, &gflash->m_ranm, 0, NARC_fldeff_ug_ef_gflash_nsbtp, ALLOC_FR );
 }
 
 //--------------------------------------------------------------
 /**
- * ’n–Êƒtƒ‰ƒbƒVƒ… ƒOƒ‰ƒtƒBƒbƒNíœ
+ * åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	gflash	FE_GFLASH_PTR
  * @retval	nothing
  */
@@ -152,14 +152,14 @@ static void GFlash_GraphicDelete( FE_GFLASH_PTR gflash )
 }
 
 //==============================================================================
-//	’n–Êƒtƒ‰ƒbƒVƒ…EOA
+//	åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’n–Êƒtƒ‰ƒbƒVƒ…’Ç‰Á
- * @param	fldobj	‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR
- * @param	gx		•\¦‚·‚éƒOƒŠƒbƒhXÀ•W
- * @param	gz		•\¦‚·‚éƒOƒŠƒbƒhZÀ•W
+ * åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥è¿½åŠ 
+ * @param	fldobj	å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR
+ * @param	gx		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	gz		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
  * @retval	none
  */
 //--------------------------------------------------------------
@@ -184,10 +184,10 @@ void FE_FldOBJGFlashSet( FIELDSYS_WORK *fsys, int gx, int gz )
 
 //--------------------------------------------------------------
 /**
- * EOA ’n–Êƒtƒ‰ƒbƒVƒ…@‰Šú‰»
+ * EOA åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaGFlash_Init( EOA_PTR eoa, void *wk )
@@ -205,7 +205,7 @@ static int EoaGFlash_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’n–Êƒtƒ‰ƒbƒVƒ…@íœ
+ * EOA åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -219,7 +219,7 @@ static void EoaGFlash_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’n–Êƒtƒ‰ƒbƒVƒ…@“®ì
+ * EOA åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -239,7 +239,7 @@ static void EoaGFlash_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’n–Êƒtƒ‰ƒbƒVƒ…@•`‰æ
+ * EOA åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -257,7 +257,7 @@ static void EoaGFlash_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	’n–Êƒtƒ‰ƒbƒVƒ…EOA_H
+///	åœ°é¢ãƒ•ãƒ©ãƒƒã‚·ãƒ¥EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_GFlash =
 {

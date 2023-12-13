@@ -11,11 +11,11 @@
   in whole or in part, without the prior written consent of Nintendo.
 
   Revision 1.5  2005/08/20 07:01:18  sasakit
-  �w�b�_�C���N���[�h�K�[�h�̏����𓝈ꂵ���B
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
-  �w�b�_��Copyright�������B
-  �\���̖̂��O��Ԃ��ł��邾�����[���ɂ����Â����B
-  util_wifiidtool.h��dwc_backup.h�̊֌W���኱�C���B
+  ヘッダインクルードガードの書式を統一した。
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
+  ヘッダにCopyrightをつけた。
+  構造体の名前空間をできるだけルールにちかづけた。
+  util_wifiidtool.hとdwc_backup.hの関係を若干修正。
 
 
   $NoKeywords: $
@@ -29,97 +29,97 @@ extern "C" {
 
 /*---------------------------------------------------------------------------*
  *	Project		: Wi-Fi Connection
- *	Description	: �l�b�g���[�N�ւ̎����ڑ����C�u�����p�w�b�_
+ *	Description	: ネットワークへの自動接続ライブラリ用ヘッダ
  *	File		: dwc_ac.h
  *	Version		: 0.0
  *	Auther		: Uemura
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
- *	��`
+ *	定義
  *---------------------------------------------------------------------------*/
-// �����ڑ����̏��( DWC_AC_GetStatus�̖߂�l )
+// 自動接続中の状態( DWC_AC_GetStatusの戻り値 )
 enum{
-	// -10000 �ȏ�̃G���[�̓R�����g�̕\�����K�v�ɂȂ�܂�
-	// -2xxxx NetCheck���̃G���[�R�[�h�A��ɔF�،n�̃G���[
-	// -5xxxx AC��NetCheck���̃G���[�R�[�h�A�ڑ����s���̃G���[�i�ڍׂ͉��L�j
-	// -5xxxx��xxxx�ɂ͍ł��C���^�[�l�b�g�ڑ��ɋ߂Â����ڑ���̃^�C�v�ƃG���[�ԍ�������܂��B
-	// ��񌅂ɂ̓G���[�ԍ�������A���񌅂͐ڑ���^�C�v�������܂��B
-	// ���  ���� �G���[���e
-	// 00      XX     �ʐM���ؒf���ꂽ�B
-	// 00      99     �`�o�̃r�[�R�����S���݂���Ȃ��B
-	// 10      99     �`�o�̃r�[�R���͌����������ASSID����v������̂��Ȃ��B
-	// 11      XX     WEP�L�[�ԈႢ�A���[�h�Ⴂ
-	// 12      XX     AP�̐ڑ����������I�[�o�[�����B
-	// 13      XX     �`�o�ɐڑ��ł��Ȃ��B
-	// 20      XX     DHCP�G���[�B
-	// 21      XX     ���O�����ł��Ȃ��BDNS�G���[�B
-	// 22      XX     �C���^�[�l�b�g�ɐڑ��ł��Ȃ�1 Test Blacklist Site ����HTTPExcluding 200/302 or Timeout)
-	// 23      XX     �C���^�[�l�b�g�ɐڑ��ł��Ȃ�2 (call Account Creates ���� HTTP Excluding 200 or Timeout or  CAinvalid)
-	// 30      XX     �C���^�[�l�b�g�ɐڑ��ł��Ȃ�3 (hot spot error : Post203HTML and SSID to NAS�@���Ɂ@HTTPExcluding200 or Timeout or  CAinvalid)
-	// 31      XX     �C���^�[�l�b�g�ɐڑ��ł��Ȃ�4 (hot spot error : Postto Hotspot Auth Server (HTTPS) ����Timeout  CAinvalid)
-	// 32      XX     �C���^�[�l�b�g�ɐڑ��ł��Ȃ�5 (hot spot error : �Q�x�ڂ�Test Blacklist site ���Ɂ@HTTP302)
+	// -10000 以上のエラーはコメントの表示が必要になります
+	// -2xxxx NetCheck中のエラーコード、主に認証系のエラー
+	// -5xxxx ACとNetCheck中のエラーコード、接続失敗時のエラー（詳細は下記）
+	// -5xxxxのxxxxには最もインターネット接続に近づいた接続先のタイプとエラー番号が入ります。
+	// 上二桁にはエラー番号が入り、下二桁は接続先タイプを示します。
+	// 上二桁  下二桁 エラー内容
+	// 00      XX     通信が切断された。
+	// 00      99     ＡＰのビーコンが全くみつからない。
+	// 10      99     ＡＰのビーコンは見つかったが、SSIDが一致するものがない。
+	// 11      XX     WEPキー間違い、モード違い
+	// 12      XX     APの接続制限数をオーバーした。
+	// 13      XX     ＡＰに接続できない。
+	// 20      XX     DHCPエラー。
+	// 21      XX     名前解決できない。DNSエラー。
+	// 22      XX     インターネットに接続できない1 Test Blacklist Site 時にHTTPExcluding 200/302 or Timeout)
+	// 23      XX     インターネットに接続できない2 (call Account Creates 時に HTTP Excluding 200 or Timeout or  CAinvalid)
+	// 30      XX     インターネットに接続できない3 (hot spot error : Post203HTML and SSID to NAS　時に　HTTPExcluding200 or Timeout or  CAinvalid)
+	// 31      XX     インターネットに接続できない4 (hot spot error : Postto Hotspot Auth Server (HTTPS) 時にTimeout  CAinvalid)
+	// 32      XX     インターネットに接続できない5 (hot spot error : ２度目のTest Blacklist site 時に　HTTP302)
 
-	// �ȉ��̓v���O�����I�ȃG���[�Q
-	DWC_AC_STATE_ERROR_FATAL            = -10,				// �G���[ �����ʐM�ɒv���I�ȃG���[������
-	DWC_AC_STATE_ERROR_START_UP,							// �G���[ �ڑ��J�n�iWCM_StartupAsync�j���s
-	DWC_AC_STATE_ERROR_SOCKET_START,						// �G���[ �\�P�b�g�J�n�iSOC_Startup�j���s
-	DWC_AC_STATE_ERROR_NETCHECK_CREATE,						// �G���[ �ڑ����e�X�g�J�n�iDWC_Netcheck_Create�j���s
-	DWC_AC_STATE_ERROR_IRREGULAR,							// �G���[ WCM_GetPhase�̖߂�l���uWCM_PHASE_IRREGULAR�v�ɂȂ����ꍇ
+	// 以下はプログラム的なエラー群
+	DWC_AC_STATE_ERROR_FATAL            = -10,				// エラー 無線通信に致命的なエラーが発生
+	DWC_AC_STATE_ERROR_START_UP,							// エラー 接続開始（WCM_StartupAsync）失敗
+	DWC_AC_STATE_ERROR_SOCKET_START,						// エラー ソケット開始（SOC_Startup）失敗
+	DWC_AC_STATE_ERROR_NETCHECK_CREATE,						// エラー 接続性テスト開始（DWC_Netcheck_Create）失敗
+	DWC_AC_STATE_ERROR_IRREGULAR,							// エラー WCM_GetPhaseの戻り値が「WCM_PHASE_IRREGULAR」になった場合
 
-	// �ȉ���DWC_AC_Process���̏��
-	DWC_AC_STATE_NULL                   = 0,				// �������
-	DWC_AC_STATE_SEARCH,									// ������
-	DWC_AC_STATE_CONNECT,									// �`�o�֐ڑ���
-	DWC_AC_STATE_TEST,										// �C���^�[�l�b�g�ւ̐ڑ��m�F��
-	DWC_AC_STATE_RETRY,										// �ʂ̂`�o�֍Đڑ���
-	DWC_AC_STATE_COMPLETE									// �ڑ�����
+	// 以下はDWC_AC_Process中の状態
+	DWC_AC_STATE_NULL                   = 0,				// 初期状態
+	DWC_AC_STATE_SEARCH,									// 検索中
+	DWC_AC_STATE_CONNECT,									// ＡＰへ接続中
+	DWC_AC_STATE_TEST,										// インターネットへの接続確認中
+	DWC_AC_STATE_RETRY,										// 別のＡＰへ再接続中
+	DWC_AC_STATE_COMPLETE									// 接続完了
 };
 
-// �A�N�Z�X�|�C���g�̎��( DWC_AC_GetApType�̖߂�l )
+// アクセスポイントの種類( DWC_AC_GetApTypeの戻り値 )
 enum{
-	DWC_AC_AP_TYPE_USER1,									// ���[�U�[�ݒ�P
-	DWC_AC_AP_TYPE_USER2,									// ���[�U�[�ݒ�Q
-	DWC_AC_AP_TYPE_USER3,									// ���[�U�[�ݒ�R
-	DWC_AC_AP_TYPE_USB,										// �j���e���h�[Wi-Fi USB�R�l�N�^
-	DWC_AC_AP_TYPE_SHOP,									// �j���e���h�[Wi-Fi �X�e�[�V����
+	DWC_AC_AP_TYPE_USER1,									// ユーザー設定１
+	DWC_AC_AP_TYPE_USER2,									// ユーザー設定２
+	DWC_AC_AP_TYPE_USER3,									// ユーザー設定３
+	DWC_AC_AP_TYPE_USB,										// ニンテンドーWi-Fi USBコネクタ
+	DWC_AC_AP_TYPE_SHOP,									// ニンテンドーWi-Fi ステーション
 	DWC_AC_AP_TYPE_FREESPOT,								// FreeSpot
 	DWC_AC_AP_TYPE_WAYPORT,									// WayPort
 	DWC_AC_AP_TYPE_NINTENDOWFC,								// NINTENDOWFC
 	DWC_AC_AP_TYPE_NINTENDOSPOT,							// nintendo spot
-	DWC_AC_AP_TYPE_UNKNOWN = 99,							// �s��(�߂�l�Ƃ��Ă͕Ԃ���܂���)
-	DWC_AC_AP_TYPE_FALSE = 0xff								// �擾���s
+	DWC_AC_AP_TYPE_UNKNOWN = 99,							// 不明(戻り値としては返されません)
+	DWC_AC_AP_TYPE_FALSE = 0xff								// 取得失敗
 };
 
-// WDS�p�o�b�t�@�T�C�Y
+// WDS用バッファサイズ
 #define	DWC_WDS_SSID_BUF_SIZE				32
 #define DWC_WDS_WEPKEY_BUF_SIZE             32
 
-// WDS�p�X�e�[�g
+// WDS用ステート
 typedef enum
 {
     DWC_WDS_STATE_IDLE      = 0,
     DWC_WDS_STATE_PROCESS   = 1,
-    DWC_WDS_STATE_COMPLETED = 2, // AP�̃f�[�^���擾�ł����B
-    DWC_WDS_STATE_FAILED    = 3, // �擾�ł��Ȃ������B
+    DWC_WDS_STATE_COMPLETED = 2, // APのデータを取得できた。
+    DWC_WDS_STATE_FAILED    = 3, // 取得できなかった。
     DWC_WDS_STATE_ERROR     = 4
 } DWCWDSState;
 
 
 /*---------------------------------------------------------------------------*
- *	�\���̒�`
+ *	構造体定義
  *---------------------------------------------------------------------------*/
-typedef struct tagDWCACOption{								// AC�p�I�v�V�����ݒ�
-	u8          connectType;								// �ڑ���^�C�v�̎w��i�O�F�w�薳���@�P�`�W�F�ڑ���w��j
-	u8          skipNetCheck;								// �l�b�g�`�F�b�N�̃X�L�b�v�i�P�F�`�F�b�N���@�O�F�`�F�b�N�L�j
+typedef struct tagDWCACOption{								// AC用オプション設定
+	u8          connectType;								// 接続先タイプの指定（０：指定無し　１〜８：接続先指定）
+	u8          skipNetCheck;								// ネットチェックのスキップ（１：チェック無　０：チェック有）
 } DWCACOption;
 
-typedef struct tagDWCACConfig{								// DWC_AC�֐��Q�p�R���t�B�O
-	void*       (* alloc )( u32 name, s32 size );			// alloc�֐��ւ̃|�C���^
-	void        (* free  )( u32 name, void *ptr, s32 size );// free �֐��ւ̃|�C���^
-	u8          dmaNo;										// �O�`�R
-	u8          powerMode;									// �P�FACTIVE�@�O�FSAVE
-	DWCACOption option;										// �I�v�V�����ݒ�
+typedef struct tagDWCACConfig{								// DWC_AC関数群用コンフィグ
+	void*       (* alloc )( u32 name, s32 size );			// alloc関数へのポインタ
+	void        (* free  )( u32 name, void *ptr, s32 size );// free 関数へのポインタ
+	u8          dmaNo;										// ０〜３
+	u8          powerMode;									// １：ACTIVE　０：SAVE
+	DWCACOption option;										// オプション設定
 } DWCACConfig;
 
 typedef struct tagDWCWDSData{
@@ -130,114 +130,114 @@ typedef struct tagDWCWDSData{
 } DWCWDSData;
 
 /*---------------------------------------------------------------------------*
- *	�֐���`
+ *	関数定義
  *---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_Create
- * Description	: �������֐��@�������̊m�ہADWC_AC�AWCM�̏��������s���܂�
- * Arguments	: *config - DWC_AC�p�R���t�B�O�f�[�^
- * Returns		: BOOL    - TRUE  �F ����
- *				:           FALSE �F ���s
+ * Description	: 初期化関数　メモリの確保、DWC_AC、WCMの初期化を行います
+ * Arguments	: *config - DWC_AC用コンフィグデータ
+ * Returns		: BOOL    - TRUE  ： 成功
+ *				:           FALSE ： 失敗
  *---------------------------------------------------------------------------*/
 BOOL DWC_AC_Create( DWCACConfig *config );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_Process
- * Description	: �����ڑ��̃��C���֐��ł�
- *				: �O�ȊO���߂�܂Ŗ��t���[���R�[�����Ă�������
+ * Description	: 自動接続のメイン関数です
+ *				: ０以外が戻るまで毎フレームコールしてください
  * Arguments	: None.
- * Returns		: int -  0 : ������
- *				:        1 : �ڑ�����
- *				:        2 : �ڑ������A������������SSID�𕡐�����(���[�U�[�ݒ�AP�Ɍ���)
- *				:       -1 : �G���[����
+ * Returns		: int -  0 : 処理中
+ *				:        1 : 接続完了
+ *				:        2 : 接続完了、ただし同名のSSIDを複数発見(ユーザー設定APに限る)
+ *				:       -1 : エラー発生
  *---------------------------------------------------------------------------*/
 int  DWC_AC_Process( void );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_GetStatus
- * Description	: �����ڑ�����DWC_AC���C�u������Ԃ��擾���܂�
+ * Description	: 自動接続中のDWC_ACライブラリ状態を取得します
  * Arguments	: None.
- * Returns		: int - ���̒l : ���݂̏������e
- *				:       �s�̒l : �G���[�ڍ�
+ * Returns		: int - 正の値 : 現在の処理内容
+ *				:       不の値 : エラー詳細
  *---------------------------------------------------------------------------*/
 int  DWC_AC_GetStatus( void );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_GetApType
- * Description	: �ڑ�����AP�̃^�C�v���擾���܂�
- *				: DWC_AC_Process������������łȂ���Ύ擾�͐������܂���
+ * Description	: 接続したAPのタイプを取得します
+ *				: DWC_AC_Processが成功した後でなければ取得は成功しません
  * Arguments	: None.
- * Returns		: u8 - 0 �` 7 �F �ڑ�����AP�̃^�C�v
- *				:        0xff �F �擾���s
+ * Returns		: u8 - 0 〜 7 ： 接続したAPのタイプ
+ *				:        0xff ： 取得失敗
  *---------------------------------------------------------------------------*/
 u8   DWC_AC_GetApType( void );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_GetApSpotInfo
- * Description	: �ڑ�����AP�̏ꏊ�����擾���܂�
- *				: DWC_AC_Process������������łȂ���Ύ擾�͐������܂���
- * Arguments	: *apSpotInfo - �����i�[����o�b�t�@(10�o�C�g�K�v�ł�)
- * Returns		: BOOL    - TRUE  �F ����
- *				:           FALSE �F ���s
+ * Description	: 接続したAPの場所情報を取得します
+ *				: DWC_AC_Processが成功した後でなければ取得は成功しません
+ * Arguments	: *apSpotInfo - 情報を格納するバッファ(10バイト必要です)
+ * Returns		: BOOL    - TRUE  ： 成功
+ *				:           FALSE ： 失敗
  *---------------------------------------------------------------------------*/
 BOOL DWC_AC_GetApSpotInfo( u8 *apSpotInfo );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_Destroy
- * Description	: �I���֐��A�ؒf�����A�o�b�t�@�̊J�����s���܂�
- *				: TRUE�ɂȂ�܂Ŗ��t���[���R�[�����Ă�������
+ * Description	: 終了関数、切断処理、バッファの開放を行います
+ *				: TRUEになるまで毎フレームコールしてください
  * Arguments	: None.
- * Returns		: BOOL - TRUE  �F ����
- *				:        FALSE �F ���s
+ * Returns		: BOOL - TRUE  ： 成功
+ *				:        FALSE ： 失敗
  *---------------------------------------------------------------------------*/
 BOOL DWC_AC_Destroy( void );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_SetSpecifyAp
- * Description	: �w�肳�ꂽAP�ւ̐ڑ��ݒ���s��
- * Arguments	: *ssid   - �ڑ�����AP��SSID
- *              : *wep    - �ڑ�����AP��Wep�L�[
- *              : wepMode - Wep�L�[�̃��[�h
+ * Description	: 指定されたAPへの接続設定を行う
+ * Arguments	: *ssid   - 接続するAPのSSID
+ *              : *wep    - 接続するAPのWepキー
+ *              : wepMode - Wepキーのモード
  * Returns		: None.
  *---------------------------------------------------------------------------*/
 void DWC_AC_SetSpecifyAp( const void *ssid, const void *wep, int wepMode );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_SetSpecifyApEx
- * Description	: �w�肳�ꂽAP�ւ̐ڑ��ݒ���s��(�ꏊ���t)
- * Arguments	: *ssid        - �ڑ�����AP��SSID
- *              : *wep         - �ڑ�����AP��Wep�L�[
- *              : wepMode      - Wep�L�[�̃��[�h
- *              : apSpotInfo   - 10������AP�ꏊ���(�s�v�Ȃ�NULL���w��)
- *              :                10�o�C�g�Œ�œǂݏo���܂�
- *              : overrideType - �㏑������ڑ���^�C�v
+ * Description	: 指定されたAPへの接続設定を行う(場所情報付)
+ * Arguments	: *ssid        - 接続するAPのSSID
+ *              : *wep         - 接続するAPのWepキー
+ *              : wepMode      - Wepキーのモード
+ *              : apSpotInfo   - 10文字のAP場所情報(不要ならNULLを指定)
+ *              :                10バイト固定で読み出します
+ *              : overrideType - 上書きする接続先タイプ
  * Returns		: None.
  *---------------------------------------------------------------------------*/
 void DWC_AC_SetSpecifyApEx( const void *ssid, const void *wep, int wepMode, const char *apSpotInfo, int overrideType );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_CheckWiFiStation
- * Description	: AP��SSID����Wi-Fi�X�e�[�V�������ǂ������m�F����
- * Arguments	: *ssid - ��������AP��SSID
- *              : len   - SSID�̒���
- * Returns		: BOOL  - TRUE  �F ����
- *				:         FALSE �F ���s
+ * Description	: APのSSIDからWi-Fiステーションかどうかを確認する
+ * Arguments	: *ssid - 調査するAPのSSID
+ *              : len   - SSIDの長さ
+ * Returns		: BOOL  - TRUE  ： 成功
+ *				:         FALSE ： 失敗
  *---------------------------------------------------------------------------*/
 BOOL DWC_AC_CheckWiFiStation( const void *ssid, u16 len );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_StartupGetWDSInfo
- * Description	: nintendo spot�̐ڑ����邽�߂̏����擾����@������
+ * Description	: nintendo spotの接続するための情報を取得する　初期化
  * Arguments	: DWCWDSData
  *              : 
- * Returns		: BOOL  - TRUE  �F ����
- *				:         FALSE �F ���s
+ * Returns		: BOOL  - TRUE  ： 成功
+ *				:         FALSE ： 失敗
  *---------------------------------------------------------------------------*/
 BOOL DWC_AC_StartupGetWDSInfo( DWCWDSData* nspotInfo );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_ProcessGetWDSInfo
- * Description	: nintendo spot�ւ̐ڑ����邽�߂̏����擾����@������i�߂�
+ * Description	: nintendo spotへの接続するための情報を取得する　処理を進める
  * Arguments	: 
  *              : 
  * Returns		: DWCWDSResult
@@ -246,7 +246,7 @@ DWCWDSState DWC_AC_ProcessGetWDSInfo( void );
 
 /*---------------------------------------------------------------------------*
  * Name			: DWC_AC_CleanupGetWDSInfo
- * Description	: nintendo spot�ւ̐ڑ����邽�߂̏����擾����@�J��
+ * Description	: nintendo spotへの接続するための情報を取得する　開放
  * Arguments	: 
  *              : 
  * Returns		: None.

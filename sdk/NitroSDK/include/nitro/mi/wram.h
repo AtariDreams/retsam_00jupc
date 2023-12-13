@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.16  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.15  2005/02/28 05:26:02  yosizaki
   do-indent.
@@ -24,10 +24,10 @@
   fix header comment
 
   Revision 1.13  2004/03/30 04:50:46  yada
-  ASSERT‚ğ.h ‚©‚ç.c ‚ÉˆÚ“®
+  ASSERTã‚’.h ã‹ã‚‰.c ã«ç§»å‹•
 
   Revision 1.12  2004/03/25 02:54:10  yada
-  MI_GetWramBank() ‚ğ ARM9 ‘¤‚É‚àŒöŠJ‚µ‚½B
+  MI_GetWramBank() ã‚’ ARM9 å´ã«ã‚‚å…¬é–‹ã—ãŸã€‚
 
   Revision 1.11  2004/02/19 08:44:41  yada
   only arrange tab
@@ -36,10 +36,10 @@
   if SDK_ARM9 -> ifdef SDK_ARM9
 
   Revision 1.9  2004/02/13 07:03:35  yada
-  MI_GetWramBank’Ç‰Á
+  MI_GetWramBankè¿½åŠ 
 
   Revision 1.8  2004/02/13 01:10:39  yada
-  ARM7—p‚Ì’è‹`’Ç‰Á
+  ARM7ç”¨ã®å®šç¾©è¿½åŠ 
 
   Revision 1.7  2004/02/12 13:33:09  yasu
   include nitro/ioreg.h
@@ -51,16 +51,16 @@
   change SDK prefix iris -> nitro
 
   Revision 1.4  2003/12/26 05:52:45  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.3  2003/12/25 10:28:08  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏXBMI_WRAM¨ MIWram ‚ÉB
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´ã€‚MI_WRAMâ†’ MIWram ã«ã€‚
 
   Revision 1.2  2003/12/24 08:08:56  yada
-  assert C³
+  assert ä¿®æ­£
 
   Revision 1.1  2003/12/24 07:57:53  yada
-  GX‚©‚çMI ‚É WRAMŠÖ˜AˆÚŠÇ
+  GXã‹ã‚‰MI ã« WRAMé–¢é€£ç§»ç®¡
 
 
   $NoKeywords: $

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_preview.c
- *	@brief		preview‰æ–Ê
+ *	@brief		previewç”»é¢
  *	@author		tomoya takahashi
  *	@data		2006.06.05
  *
@@ -26,7 +26,7 @@
 
 #include "src/contest/con_tool.h"
 
-// sub‰æ–ÊƒOƒ‰ƒtƒBƒbƒN
+// subç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 #include "src/field/poketch/poketch_arc.h"
 
 
@@ -35,24 +35,24 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define IMC_PREV_MAIN_FRAME_PL	( 3 )
@@ -73,7 +73,7 @@ enum{
 	IMC_PREV_OAM_TV,
 };
 
-// ƒ‚ƒWƒƒ“ƒrƒbƒgƒ}ƒbƒvİ’è
+// ãƒ¢ã‚¸ãƒ¡ãƒ³ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¨­å®š
 #define IMC_PREV_FONTBMP_X	( 0 )
 #define IMC_PREV_FONTBMP_Y	( 18 )
 #define IMC_PREV_FONTBMP_SX	( 32 )
@@ -82,27 +82,27 @@ enum{
 #define IMC_PREV_FONTBMP_COF ( 1 )
 #define IMC_PREV_FONTBMP_COLOR		( GF_PRINTCOLOR_MAKE( 1,2,0 ) )
 
-// ƒeƒŒƒr•¶š•\¦
-#define IMC_PREV_FONTBMP_TV_TR_CX	( 128 )	// ƒgƒŒ[ƒi[–¼’†SÀ•W
+// ãƒ†ãƒ¬ãƒ“æ–‡å­—è¡¨ç¤º
+#define IMC_PREV_FONTBMP_TV_TR_CX	( 128 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åä¸­å¿ƒåº§æ¨™
 #define IMC_PREV_FONTBMP_TV_TR_Y	( 7 )
 #define IMC_PREV_FONTBMP_TV_POKE_X	( 128 )
 #define IMC_PREV_FONTBMP_TV_POKE_Y	( 27 )
 
-#define IMC_PREV_FONTBMP_CON_CON_CX	( 128 )	// ƒgƒŒ[ƒi[–¼’†SÀ•W
+#define IMC_PREV_FONTBMP_CON_CON_CX	( 128 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åä¸­å¿ƒåº§æ¨™
 #define IMC_PREV_FONTBMP_CON_CON_Y	( 7 )
 #define IMC_PREV_FONTBMP_CON_TR_CX	( 128 )
 #define IMC_PREV_FONTBMP_CON_TR_Y	( 27 )
  
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^
+//	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒZ[ƒu—Ìˆæ
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚»ãƒ¼ãƒ–é ˜åŸŸ
 	const IMC_TELEVISION_SAVEDATA* p_imc_tv_data;
 	const IMC_CONTEST_SAVEDATA* p_imc_con_data;
 	u32 data_idx;
@@ -118,7 +118,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void IMC_Prev_Vblank( void* p_work );
@@ -132,25 +132,25 @@ static void IMC_PrevTypeDrawSet( IMC_PREV_WORK* p_ip );
 static void IMC_PrevTypeTvDrawSet( IMC_PREV_WORK* p_ip );
 static void IMC_PrevTypeConDrawSet( IMC_PREV_WORK* p_ip );
 
-// ƒ`ƒFƒbƒN—pƒvƒƒbƒN
+// ãƒã‚§ãƒƒã‚¯ç”¨ãƒ—ãƒ­ãƒƒã‚¯
 PROC_RESULT IMC_Prev_ProcInit( PROC* proc, int* seq )
 {
 	IMC_PREV_WORK* p_ip;
 	IMC_PROC_PREV_WORK* p_proc_w;
 	
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_IMAGECLIP_DATA, 0x20000 );
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_IMAGECLIP_DRAW, 0x40000 );
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒNì¬
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_ip = PROC_AllocWork( proc, sizeof( IMC_PREV_WORK ), HEAPID_IMAGECLIP_DATA );
 	memset( p_ip, 0, sizeof( IMC_PREV_WORK ) );
 
-	// Vƒuƒ‰ƒ“ƒNHƒuƒ‰ƒ“ƒNŠÖ”İ’è
-	sys_VBlankFuncChange( IMC_Prev_Vblank, p_ip );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	// Vãƒ–ãƒ©ãƒ³ã‚¯Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°è¨­å®š
+	sys_VBlankFuncChange( IMC_Prev_Vblank, p_ip );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ŠO•”‚©‚ç‚Ìƒf[ƒ^‚ğæ“¾
+	// å¤–éƒ¨ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	p_proc_w = PROC_GetParentWork( proc );
 
 	if( p_proc_w->prev_type == IMC_PREV_TV ){
@@ -161,14 +161,14 @@ PROC_RESULT IMC_Prev_ProcInit( PROC* proc, int* seq )
 	p_ip->data_idx		= p_proc_w->data_idx;
 	p_ip->prev_type		= p_proc_w->prev_type;
 
-	// •`‰æŠÖŒW
+	// æç”»é–¢ä¿‚
 	IMC_DRAW_SetUp();
 
-	// •`‰ææ‚ğ•ÏX
+	// æç”»å…ˆã‚’å¤‰æ›´
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 	
-	// •`‰æƒf[ƒ^İ’è
+	// æç”»ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	IMC_DRAW_InitSysPrev( &p_ip->draw_data, HEAPID_IMAGECLIP_DRAW );
 
 	{
@@ -185,13 +185,13 @@ PROC_RESULT IMC_Prev_ProcInit( PROC* proc, int* seq )
 		}
 	}
 
-	// ƒƒCƒ“‰æ–Ê‚ÆƒTƒu‰æ–Ê‚ÉƒtƒŒ[ƒ€‚ğ”wŒiİ’è
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã¨ã‚µãƒ–ç”»é¢ã«ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’èƒŒæ™¯è¨­å®š
 	IMC_PrevMainFrameSet( p_ip );
 	IMC_PrevSubBackSet( p_ip );
 	IMC_PrevOamWndSet( p_ip );
 	IMC_PrevBmpInit( p_ip );
 
-	//@‚»‚ê‚¼‚ê‚Ì•¶š‚âƒEƒBƒ“ƒhƒE•\¦İ’è
+	//ã€€ãã‚Œãã‚Œã®æ–‡å­—ã‚„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºè¨­å®š
 	IMC_PrevTypeDrawSet( p_ip );
 	
 
@@ -203,14 +203,14 @@ PROC_RESULT IMC_Prev_ProcMain( PROC* proc, int* seq )
 	IMC_PREV_WORK* p_ip = PROC_GetWork( proc );
 	
 	{
-		//‚R‚c•`‰æŠJn
+		//ï¼“ï¼¤æç”»é–‹å§‹
 		GF_G3X_Reset();
 
 		NNS_G2dSetupSoftwareSpriteCamera();
 
 		IMC_PlayerMain( p_ip->p_player );
 
-		/* ƒWƒIƒƒgƒŠ•ƒŒƒ“ƒ_ƒŠƒ“ƒOƒGƒ“ƒWƒ“ŠÖ˜Aƒƒ‚ƒŠ‚ÌƒXƒƒbƒv */
+		/* ã‚¸ã‚ªãƒ¡ãƒˆãƒªï¼†ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ãƒ¡ãƒ¢ãƒªã®ã‚¹ãƒ¯ãƒƒãƒ— */
 		GF_G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 	}
 	IMC_DRAW_DrawSysPrev( &p_ip->draw_data );
@@ -271,24 +271,24 @@ PROC_RESULT IMC_Prev_ProcEnd( PROC* proc, int* seq )
 
 	IMC_PlayerEnd( p_ip->p_player );
 
-	// OAM”jŠü
+	// OAMç ´æ£„
 	IMC_PrevOamWndDel( p_ip );
 	IMC_PrevBmpDel( p_ip );
 
-	// •`‰æƒVƒXƒeƒ€”jŠü
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	IMC_DRAW_DeleteSysPrev( &p_ip->draw_data );
 
 
-	// •`‰æ–Êİ’è”jŠü
+	// æç”»é¢è¨­å®šç ´æ£„
 	IMC_DRAW_PutBack();
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	PROC_FreeWork( proc );
 
-	// ƒq[ƒv”jŠü
+	// ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_IMAGECLIP_DATA );
 	sys_DeleteHeap( HEAPID_IMAGECLIP_DRAW );
 
@@ -301,7 +301,7 @@ PROC_RESULT IMC_Prev_ProcEnd( PROC* proc, int* seq )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒg
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆ
  */
 //-----------------------------------------------------------------------------
 // VBlank
@@ -315,9 +315,9 @@ static void IMC_Prev_Vblank( void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+ *	@brief	ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
  *
- *	@param	p_ip	ƒ[ƒN
+ *	@param	p_ip	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void IMC_PrevMainFrameSet( IMC_PREV_WORK* p_ip )
@@ -327,7 +327,7 @@ static void IMC_PrevMainFrameSet( IMC_PREV_WORK* p_ip )
 	int scrn_idx;
 	int pltt_no;
 
-	// ƒtƒŒ[ƒ€İ’è
+	// ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	ArcUtil_HDL_PalSet( p_ip->draw_data.p_handle, 
 			NARC_imageclip_imgclip_frame_contv_NCLR, 
 			PALTYPE_MAIN_BG, IMC_PREV_MAIN_FRAME_PL * 32, 64,
@@ -349,12 +349,12 @@ static void IMC_PrevMainFrameSet( IMC_PREV_WORK* p_ip )
 			scrn_idx, FALSE,
 			&p_scrn, HEAPID_IMAGECLIP_DRAW );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_ip->draw_data.BG_Ini, GF_BGL_FRAME1_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
-	// ƒpƒŒƒbƒg‚ğ‚ ‚í‚¹‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚ã‚ã›ã‚‹
 	GF_BGL_ScrPalChange( p_ip->draw_data.BG_Ini, GF_BGL_FRAME1_M,
 			0, 0,
 			p_scrn->screenWidth / 8,
@@ -364,13 +364,13 @@ static void IMC_PrevMainFrameSet( IMC_PREV_WORK* p_ip )
 
 	sys_FreeMemoryEz( p_scrn_buff );
 
-	// ƒXƒNƒŠ[ƒ““]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	GF_BGL_LoadScreenV_Req( p_ip->draw_data.BG_Ini, GF_BGL_FRAME1_M );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	sub‰æ–Ê@”wŒiİ’è
+ *	@brief	subç”»é¢ã€€èƒŒæ™¯è¨­å®š
  *
  *	@param	p_ip 
  */
@@ -392,14 +392,14 @@ static void IMC_PrevSubBackSet( IMC_PREV_WORK* p_ip )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒŒ[ƒ€İ’è
+ *	@brief	OAMãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
  *
- *	@param	p_ip	ƒ[ƒN
+ *	@param	p_ip	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void IMC_PrevOamWndSet( IMC_PREV_WORK* p_ip )
 {
-	// ƒtƒŒ[ƒ€“Ç‚İ‚İ
+	// ãƒ•ãƒ¬ãƒ¼ãƒ èª­ã¿è¾¼ã¿
 	IMC_DRAW_CLACT_LoadCharData( &p_ip->draw_data, p_ip->draw_data.p_handle,
 			NARC_imageclip_imgclip_win_contv_NCGR, FALSE, 
 			NNS_G2D_VRAM_TYPE_2DMAIN, IMC_PREV_MAIN_FRAME_OAM_CONT_ID );
@@ -429,9 +429,9 @@ static void IMC_PrevOamWndSet( IMC_PREV_WORK* p_ip )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒŒ[ƒ€”jŠü
+ *	@brief	OAMãƒ•ãƒ¬ãƒ¼ãƒ ç ´æ£„
  *
- *	@param	p_ip	ƒ[ƒN
+ *	@param	p_ip	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void IMC_PrevOamWndDel( IMC_PREV_WORK* p_ip )
@@ -446,14 +446,14 @@ static void IMC_PrevOamWndDel( IMC_PREV_WORK* p_ip )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  *
- *	@param	p_ip	ƒ[ƒN
+ *	@param	p_ip	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void IMC_PrevBmpInit( IMC_PREV_WORK* p_ip )
 {
-	// ƒ‚ƒWƒƒ“ƒrƒbƒgƒ}ƒbƒvì¬
+	// ãƒ¢ã‚¸ãƒ¡ãƒ³ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ä½œæˆ
 	p_ip->p_fontbmp = GF_BGL_BmpWinAllocGet( HEAPID_IMAGECLIP_DRAW, 1 );
 	GF_BGL_BmpWinAdd(
 			p_ip->draw_data.BG_Ini,
@@ -463,7 +463,7 @@ static void IMC_PrevBmpInit( IMC_PREV_WORK* p_ip )
 			IMC_PREV_FONTBMP_SX, IMC_PREV_FONTBMP_SY,
 			IMC_PREV_FONTBMP_PL, IMC_PREV_FONTBMP_COF );
 
-	// •¶šƒpƒŒƒbƒg“Ç‚İ‚İ
+	// æ–‡å­—ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, IMC_PREV_FONTBMP_PL*32, HEAPID_IMAGECLIP_DRAW );
 
 	GF_BGL_PrioritySet( GF_BGL_FRAME3_M, 0 );
@@ -471,16 +471,16 @@ static void IMC_PrevBmpInit( IMC_PREV_WORK* p_ip )
 	GF_BGL_PrioritySet( GF_BGL_FRAME1_M, 1 );
 
 
-	// ƒXƒNƒ[ƒ‹‰Šú‰»
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–
 	GF_BGL_ScrollSet( p_ip->draw_data.BG_Ini, GF_BGL_FRAME3_M, 
 			GF_BGL_SCROLL_Y_SET, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	p_ip	ƒ[ƒN
+ *	@param	p_ip	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void IMC_PrevBmpDel( IMC_PREV_WORK* p_ip )
@@ -492,19 +492,19 @@ static void IMC_PrevBmpDel( IMC_PREV_WORK* p_ip )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv@İ’è
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—ã€€è¨­å®š
  *
- *	@param	p_ip	ƒ[ƒN
+ *	@param	p_ip	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void IMC_PrevTypeDrawSet( IMC_PREV_WORK* p_ip )
 {
 
-	// ƒrƒbƒgƒ}ƒbƒv
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
 	GF_BGL_BmpWinDataFill( p_ip->p_fontbmp, 0 );
 	
-	// ‚»‚ê‚¼‚ê‚Ìƒ^ƒCƒv‚©‚ç@
-	// •¶š•\¦@˜gİ’è‚ğs‚¤
+	// ãã‚Œãã‚Œã®ã‚¿ã‚¤ãƒ—ã‹ã‚‰ã€€
+	// æ–‡å­—è¡¨ç¤ºã€€æ è¨­å®šã‚’è¡Œã†
 	if( p_ip->prev_type == IMC_PREV_TV ){
 		
 		IMC_PrevTypeTvDrawSet( p_ip );
@@ -518,9 +518,9 @@ static void IMC_PrevTypeDrawSet( IMC_PREV_WORK* p_ip )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒr•`‰æİ’è
+ *	@brief	ãƒ†ãƒ¬ãƒ“æç”»è¨­å®š
  *
- *	@param	p_ip	ƒ[ƒN
+ *	@param	p_ip	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void IMC_PrevTypeTvDrawSet( IMC_PREV_WORK* p_ip )
@@ -542,14 +542,14 @@ static void IMC_PrevTypeTvDrawSet( IMC_PREV_WORK* p_ip )
 	word_set = WORDSET_Create( HEAPID_IMAGECLIP_DATA );
 	
 
-	// ˜gİ’è
+	// æ è¨­å®š
 	CLACT_AnmChg( p_ip->window, IMC_PREV_OAM_TV );
 	matrix.x = IMC_PREV_MAIN_FRAME_OAMTV_X << FX32_SHIFT;
 	matrix.y = IMC_PREV_MAIN_FRAME_OAM_Y << FX32_SHIFT;
 	matrix.z = 0;
 	CLACT_SetMatrix( p_ip->window, &matrix );
 
-	// ƒgƒŒ[ƒi[–¼ì•i–¼•`‰æ
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åä½œå“åæç”»
 	p_str = STRBUF_Create( IMC_SAVEDATA_STRBUF_NUM, HEAPID_IMAGECLIP_DATA );
 	ImcSaveData_GetTelevisionPokeOyaName( p_ip->p_imc_tv_data, p_str );
 
@@ -560,13 +560,13 @@ static void IMC_PrevTypeTvDrawSet( IMC_PREV_WORK* p_ip )
 			x, y, 0,
 			IMC_PREV_FONTBMP_COLOR, NULL );
 
-	// •¶š—ñ”jŠü
+	// æ–‡å­—åˆ—ç ´æ£„
 	STRBUF_Delete( p_str );
 
-	// ì•i–¼
+	// ä½œå“å
 	word = ImcSaveData_GetTelevisionTitlePmsWord( p_ip->p_imc_tv_data );
 
-	// ƒ[ƒhƒZƒbƒgİ’è
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆè¨­å®š
 	WORDSET_RegisterPMSWord( word_set, 0, word );
 	p_str = STRBUF_Create( 200, HEAPID_IMAGECLIP_DATA );
 	p_expand = MSGMAN_AllocString( msg_data, contesttitle_03 );
@@ -579,7 +579,7 @@ static void IMC_PrevTypeTvDrawSet( IMC_PREV_WORK* p_ip )
 			x, y, 0,
 			IMC_PREV_FONTBMP_COLOR, NULL );
 
-	// •¶š—ñ”jŠü
+	// æ–‡å­—åˆ—ç ´æ£„
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_expand );
 	MSGMAN_Delete( msg_data );
@@ -588,9 +588,9 @@ static void IMC_PrevTypeTvDrawSet( IMC_PREV_WORK* p_ip )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg•`‰æİ’è
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæç”»è¨­å®š
  *
- *	@param	p_ip	ƒ[ƒN
+ *	@param	p_ip	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void IMC_PrevTypeConDrawSet( IMC_PREV_WORK* p_ip )
@@ -606,29 +606,29 @@ static void IMC_PrevTypeConDrawSet( IMC_PREV_WORK* p_ip )
 	int x, y;
 	int width;
 
-	// ˜gİ’è
+	// æ è¨­å®š
 	CLACT_AnmChg( p_ip->window, p_ip->data_idx );
 
-	// ƒRƒ“ƒeƒXƒg–¼@ƒ‰ƒ“ƒN
-	// ƒgƒŒ[ƒi[–¼@ƒ|ƒPƒ‚ƒ“–¼•`‰æ
+	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆåã€€ãƒ©ãƒ³ã‚¯
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã€€ãƒã‚±ãƒ¢ãƒ³åæç”»
 	contest_rank = ImcSaveData_GetContestRank( p_ip->p_imc_con_data );
 
-	// ƒ[ƒhƒZƒbƒgì¬
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆä½œæˆ
 	word_set = WORDSET_Create( HEAPID_IMAGECLIP_DATA );
 	p_str = STRBUF_Create( 200, HEAPID_IMAGECLIP_DATA );
 
-	// ƒRƒ“ƒeƒXƒg–¼
+	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå
 	WORDSET_RegisterContestType( word_set, 0, ConTool_IMCGetTypeMsgID( p_ip->data_idx ) );
 	
-	// ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN
+	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯
 	WORDSET_RegisterContestRank( word_set, 1, ConTool_IMCGetRankMsgID( contest_rank ) );
 	
-	// ƒgƒŒ[ƒi[–¼
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	sex = ImcSaveData_GetContestPokeOyaSex( p_ip->p_imc_con_data );
 	ImcSaveData_GetContestPokeOyaName( p_ip->p_imc_con_data, p_str );
 	WORDSET_RegisterWord( word_set, 3, p_str, sex, TRUE, PM_LANG );
 
-	// ƒ|ƒPƒ‚ƒ“ƒjƒbƒNƒl[ƒ€
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
 	p_pp = PokemonParam_AllocWork( HEAPID_IMAGECLIP_DATA );
 	ImcSaveData_GetContestPokePara( p_ip->p_imc_con_data, p_pp );
 	p_ppp = PPPPointerGet( p_pp );
@@ -639,7 +639,7 @@ static void IMC_PrevTypeConDrawSet( IMC_PREV_WORK* p_ip )
 			NARC_msg_imageclip_dat, HEAPID_IMAGECLIP_DATA );
 	GF_ASSERT( msg_data );
 
-	//ƒRƒ“ƒeƒXƒgî•ñ
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæƒ…å ±
 	p_expand = MSGMAN_AllocString( msg_data, contesttitle_01 );
 	WORDSET_ExpandStr( word_set, p_str, p_expand );
 	STRBUF_Delete( p_expand );
@@ -650,7 +650,7 @@ static void IMC_PrevTypeConDrawSet( IMC_PREV_WORK* p_ip )
 			x, y, 0,
 			IMC_PREV_FONTBMP_COLOR, NULL );
 
-	//ƒgƒŒ[ƒi[î•ñ
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±
 	p_expand = MSGMAN_AllocString( msg_data, contesttitle_02 );
 	WORDSET_ExpandStr( word_set, p_str, p_expand );
 	STRBUF_Delete( p_expand );

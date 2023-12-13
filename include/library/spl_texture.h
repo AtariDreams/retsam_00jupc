@@ -2,15 +2,15 @@
   Project:  simple particle library
   File:     spl_texture.h
 
-  �e�N�X�`��
+  テクスチャ
 
-  �e�N�X�`�����\�[�X�Ƃ��Ă͈��k�e�N�X�`���p�̃f�[�^������
-  ���C�u�����ł͎g�p���Ȃ�
+  テクスチャリソースとしては圧縮テクスチャ用のデータを持つが
+  ライブラリでは使用しない
 
   $Id: spl_texture.h,v 1.3 2005/11/09 09:53:26 matsuda Exp $
   $Log: spl_texture.h,v $
   Revision 1.3  2005/11/09 09:53:26  matsuda
-  SPL���C�u�������X�V���ꂽ�̂ōX�V
+  SPLライブラリが更新されたので更新
 
   Revision 1.3  2005/03/17 08:27:13  okane_shinji
   (none)
@@ -19,7 +19,7 @@
   ver.1.20
 
   Revision 1.2  2004/08/19 08:46:39  okane_shinji
-  �e�N�X�`����VRAM�ɓǂݍ��񂾌�A���\�[�X�̃e�N�X�`���������J�����Ă����v�Ȃ悤�ɏC��
+  テクスチャをVRAMに読み込んだ後、リソースのテクスチャ部分を開放しても大丈夫なように修正
 
   Revision 1.1  2004/04/08 00:23:26  konoh
   (none)
@@ -29,9 +29,9 @@
 #ifndef __SPL_TEXTURE_H__
 #define __SPL_TEXTURE_H__
 
-/* �\���� ------------------------------------------------------------------ */
+/* 構造体 ------------------------------------------------------------------ */
 
-// �e�N�X�`���p�����[�^
+// テクスチャパラメータ
 typedef union
 {
     u32 all;
@@ -50,7 +50,7 @@ typedef union
     };
 } SPLTexParam;
 
-// �e�N�X�`���w�b�_
+// テクスチャヘッダ
 typedef struct SPLTexHdr
 {
     u32 id;
@@ -65,10 +65,10 @@ typedef struct SPLTexHdr
     u32 total_size;
 } SPLTexHdr;
 
-// �e�N�X�`���\����
+// テクスチャ構造体
 typedef struct SPLTexture
 {
-    // VRAM�m�ی�͎g�p����Ȃ����ƑO��
+    // VRAM確保後は使用されないこと前提
     const void* p_obj;
 
     u32 tex_addr;
@@ -82,9 +82,9 @@ typedef struct SPLTexture
 
 /* ------------------------------------------------------------------------- */
 
-/* �萔�Ȃ� ---------------------------------------------------------------- */
+/* 定数など ---------------------------------------------------------------- */
 
-// �e�N�X�`���h�c
+// テクスチャＩＤ
 #define SPL_TEX_ID    'SPT '
 
 /* ------------------------------------------------------------------------- */

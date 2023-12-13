@@ -1,12 +1,12 @@
 //====================================================================
 //							ug.gmm
 //
-//	’ˆÓI
+//	æ³¨æ„ï¼
 //
-//	ƒƒbƒZ[ƒW‚Ìƒ‰ƒxƒ‹‚É‚Â‚¢‚Ä
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ©ãƒ™ãƒ«ã«ã¤ã„ã¦
 //
-//	ug‚Å‚Í‚È‚­Auuwv
-//	msg‚Å‚Í‚È‚­Aumesv
+//	ugã§ã¯ãªãã€ã€Œuwã€
+//	msgã§ã¯ãªãã€ã€Œmesã€
 //
 //====================================================================
 	.text
@@ -18,11 +18,11 @@
 	.include	"../eventdata/zone_ugevc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_ug_flag_change
 _EVENT_DATA		ev_ug_obj_change
@@ -39,7 +39,7 @@ _EVENT_DATA_END
 ev_ug_flag_change:
 	_UG_MAN_SHOP_NPC_RAND_PLACE
 
-	//ƒAƒCƒeƒ€Aƒgƒ‰ƒbƒv‰®‚³‚ñ‚ÌˆÊ’u‚ð’²®
+	//ã‚¢ã‚¤ãƒ†ãƒ ã€ãƒˆãƒ©ãƒƒãƒ—å±‹ã•ã‚“ã®ä½ç½®ã‚’èª¿æ•´
 	_SXY_POS_CHANGE		UG_ITEM_SHOP_01,72,104
 	_SXY_POS_CHANGE		UG_ITEM_SHOP_02,424,87
 	_SXY_POS_CHANGE		UG_ITEM_SHOP_03,200,185
@@ -63,12 +63,12 @@ ev_ug_flag_change:
 	_SXY_POS_CHANGE		UG_TREASURE_SHOP_03,471,471
 	_SXY_POS_CHANGE		UG_TREASURE_SHOP_04,40,72
 
-	//‰‰ñƒCƒxƒ“ƒg‚ÌÀ•WƒZƒbƒg
+	//åˆå›žã‚¤ãƒ™ãƒ³ãƒˆã®åº§æ¨™ã‚»ãƒƒãƒˆ
 	//_IFVAL_JUMP		WK_SCENE_UG,EQ,0,ev_ug_first_pos_set
 
 	_END
 
-//‰‰ñƒCƒxƒ“ƒg‚ÌÀ•WƒZƒbƒg
+//åˆå›žã‚¤ãƒ™ãƒ³ãƒˆã®åº§æ¨™ã‚»ãƒƒãƒˆ
 //ev_ug_first_pos_set:
 	//_PLAYER_POS_GET	LOCALWORK0,LOCALWORK1
 	//_SXY_POS_CHANGE	UG_MOUNT,LOCALWORK0,LOCALWORK1
@@ -80,38 +80,38 @@ ev_ug_flag_change:
 /*						OBJ_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_ug_obj_change:
-	//‰‰ñƒCƒxƒ“ƒg‚ÌÀ•WƒZƒbƒg
+	//åˆå›žã‚¤ãƒ™ãƒ³ãƒˆã®åº§æ¨™ã‚»ãƒƒãƒˆ
 	_IFVAL_JUMP		WK_SCENE_UG,EQ,0,ev_ug_first_pos_set
 
 	_END
 
-//‰‰ñƒCƒxƒ“ƒg‚ÌÀ•WƒZƒbƒg
+//åˆå›žã‚¤ãƒ™ãƒ³ãƒˆã®åº§æ¨™ã‚»ãƒƒãƒˆ
 ev_ug_first_pos_set:
 	_PLAYER_POS_GET	LOCALWORK0,LOCALWORK1
 	//_SXY_POS_CHANGE	UG_MOUNT,LOCALWORK0,LOCALWORK1
 	//_SXY_POS_CHANGE	UG_MOUNT,20,20
-	_ADD_WK			LOCALWORK0,1		//ŽålŒö‚Ì‰E‘¤‚É”z’u
+	_ADD_WK			LOCALWORK0,1		//ä¸»äººå…¬ã®å³å´ã«é…ç½®
 	_OBJ_POS_CHANGE	UG_MOUNT,LOCALWORK0,1,LOCALWORK1,DIR_DOWN
 	_END
 
 
 /********************************************************************/
-/*						ƒgƒ‰ƒbƒvƒVƒ‡ƒbƒv							*/
+/*						ãƒˆãƒ©ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒ—							*/
 //
-//	SCWK_TEMP0	ƒƒjƒ…[‘I‘ð‚ÌŒ‹‰Ê
+//	SCWK_TEMP0	ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠžã®çµæžœ
 /********************************************************************/
 ev_ug_trap_shop:
-	//u‚È‚ñ‚©@‚©‚Á‚Ä‚¢‚­‚©Hv
-	_UG_SHOP_TALK_START		mes_uw_buy_01			//‰ï˜bŠJŽn
+	//ã€Œãªã‚“ã‹ã€€ã‹ã£ã¦ã„ãã‹ï¼Ÿã€
+	_UG_SHOP_TALK_START		mes_uw_buy_01			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_trap_shop_next
 	_END
 
 ev_ug_trap_shop_next:
-	_UG_SHOP_MENU_INIT		UG_SHOP_TRAP,SCWK_ANSWER//ƒgƒ‰ƒbƒv
+	_UG_SHOP_MENU_INIT		UG_SHOP_TRAP,SCWK_ANSWER//ãƒˆãƒ©ãƒƒãƒ—
 
-	_LDWK			SCWK_TEMP0,SCWK_ANSWER			//‘Þ”ð
+	_LDWK			SCWK_TEMP0,SCWK_ANSWER			//é€€é¿
 
-	//Œ‹‰Ê‚Å•ªŠò
+	//çµæžœã§åˆ†å²
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP      UG_SHOP_CARAT_SMALL,ev_ug_shop_bag_small
 	_CASE_JUMP		UG_SHOP_BAG_FULL,ev_ug_shop_bag_full
@@ -120,50 +120,50 @@ ev_ug_trap_shop_next:
 	_JUMP			ev_ug_shop_others_trap
 	_END
 
-// ‘I‘ð‚µ‚½ƒ^ƒ}‚Ì‘å‚«‚³‚ª‘«‚è‚È‚¢
+// é¸æŠžã—ãŸã‚¿ãƒžã®å¤§ãã•ãŒè¶³ã‚Šãªã„
 ev_ug_shop_bag_small:
-	//u"‚¤[‚ñ‚¨‚¨‚«‚³‚ª@‚½‚è‚È‚¢‚È‚Ÿcc"v
-	_UG_SHOP_TALK_START		mes_uw_buy_06			//‰ï˜bŠJŽn
+	//ã€Œ"ã†ãƒ¼ã‚“ãŠãŠãã•ãŒã€€ãŸã‚Šãªã„ãªãâ€¦â€¦"ã€
+	_UG_SHOP_TALK_START		mes_uw_buy_06			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_trap_shop_ret
 	_END
 
 
-//ƒoƒbƒO‚ª‚¢‚Á‚Ï‚¢
+//ãƒãƒƒã‚°ãŒã„ã£ã±ã„
 ev_ug_shop_bag_full:
-	//u‚Ä‚à‚¿‚ª@‚¢‚Á‚Ï‚¢‚¶‚á‚È‚¢‚©Iv
-	_UG_SHOP_TALK_START		mes_uw_buy_04			//‰ï˜bŠJŽn
+	//ã€Œã¦ã‚‚ã¡ãŒã€€ã„ã£ã±ã„ã˜ã‚ƒãªã„ã‹ï¼ã€
+	_UG_SHOP_TALK_START		mes_uw_buy_04			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_trap_shop_ret
 	_END
 
-//‘I‘ð‚µ‚½ƒ^ƒ}‚ªˆÙ‚È‚é
+//é¸æŠžã—ãŸã‚¿ãƒžãŒç•°ãªã‚‹
 ev_ug_shop_miss_select:
-	//uƒ^ƒ}‚Ì@‚µ‚ã‚é‚¢‚ª@‚¿‚ª‚¤‚¼Iv
-	_UG_SHOP_TALK_START		mes_uw_buy_05			//‰ï˜bŠJŽn
+	//ã€Œã‚¿ãƒžã®ã€€ã—ã‚…ã‚‹ã„ãŒã€€ã¡ãŒã†ãžï¼ã€
+	_UG_SHOP_TALK_START		mes_uw_buy_05			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_trap_shop_ret
 	_END
 
-//ƒLƒƒƒ“ƒZƒ‹
+//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_ug_shop_cancel:
-	//u‚¶‚á‚ @‚Ü‚½‚ÈIv
-	_UG_SHOP_TALK_START		mes_uw_buy_09			//‰ï˜bŠJŽn
+	//ã€Œã˜ã‚ƒã‚ã€€ã¾ãŸãªï¼ã€
+	_UG_SHOP_TALK_START		mes_uw_buy_09			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_shop_common
 	_END
 
-// ‚à‚¤ˆê“xƒƒjƒ…[‚És‚­
+// ã‚‚ã†ä¸€åº¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«è¡Œã
 ev_ug_trap_shop_ret:
 	_AB_KEYWAIT
-	_UG_SHOP_TALK_START		mes_uw_buy_08			//‰ï˜bŠJŽn
+	_UG_SHOP_TALK_START		mes_uw_buy_08			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_trap_shop_next
 	_END
 
 
-//ƒgƒ‰ƒbƒvƒiƒ“ƒo[
+//ãƒˆãƒ©ãƒƒãƒ—ãƒŠãƒ³ãƒãƒ¼
 ev_ug_shop_others_trap:
 	_AB_KEYWAIT
 	_JUMP			ev_ug_trap_shop_ret
 	_END
 
-//‹¤’ÊI—¹
+//å…±é€šçµ‚äº†
 ev_ug_shop_common:
 	_AB_KEYWAIT
 	_UG_SHOP_TALK_END
@@ -171,22 +171,22 @@ ev_ug_shop_common:
 
 
 /********************************************************************/
-/*						ƒAƒCƒeƒ€ƒVƒ‡ƒbƒv							*/
+/*						ã‚¢ã‚¤ãƒ†ãƒ ã‚·ãƒ§ãƒƒãƒ—							*/
 //
-//	SCWK_TEMP0	ƒƒjƒ…[‘I‘ð‚ÌŒ‹‰Ê
+//	SCWK_TEMP0	ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠžã®çµæžœ
 /********************************************************************/
 ev_ug_item_shop:
-	//u‚È‚ñ‚©@‚©‚Á‚Ä‚¢‚­‚©Hv
-	_UG_SHOP_TALK_START		mes_uw_buy_01			//‰ï˜bŠJŽn
+	//ã€Œãªã‚“ã‹ã€€ã‹ã£ã¦ã„ãã‹ï¼Ÿã€
+	_UG_SHOP_TALK_START		mes_uw_buy_01			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_item_shop_next
 	_END
 
 ev_ug_item_shop_next:
-	_UG_SHOP_MENU_INIT	UG_SHOP_GOODS,SCWK_ANSWER	//ƒAƒCƒeƒ€
+	_UG_SHOP_MENU_INIT	UG_SHOP_GOODS,SCWK_ANSWER	//ã‚¢ã‚¤ãƒ†ãƒ 
 
-	_LDWK			SCWK_TEMP0,SCWK_ANSWER			//‘Þ”ð
+	_LDWK			SCWK_TEMP0,SCWK_ANSWER			//é€€é¿
 
-	//Œ‹‰Ê‚Å•ªŠò
+	//çµæžœã§åˆ†å²
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP      UG_SHOP_CARAT_SMALL,ev_ug_item_shop_bag_small
 	_CASE_JUMP		UG_SHOP_BAG_FULL,ev_ug_item_shop_bag_full
@@ -195,108 +195,108 @@ ev_ug_item_shop_next:
 	_JUMP			ev_ug_shop_others_item
 	_END
 
-//ƒoƒbƒO‚ª‚¢‚Á‚Ï‚¢
+//ãƒãƒƒã‚°ãŒã„ã£ã±ã„
 ev_ug_item_shop_bag_full:
-	//u‚Ä‚à‚¿‚ª@‚¢‚Á‚Ï‚¢‚¶‚á‚È‚¢‚©Iv
-	_UG_SHOP_TALK_START		mes_uw_buy_04			//‰ï˜bŠJŽn
+	//ã€Œã¦ã‚‚ã¡ãŒã€€ã„ã£ã±ã„ã˜ã‚ƒãªã„ã‹ï¼ã€
+	_UG_SHOP_TALK_START		mes_uw_buy_04			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_item_shop_ret
 	_END
 
-//‘I‘ð‚µ‚½ƒ^ƒ}‚ªˆÙ‚È‚é
+//é¸æŠžã—ãŸã‚¿ãƒžãŒç•°ãªã‚‹
 ev_ug_item_shop_miss_select:
-	//uƒ^ƒ}‚Ì@‚µ‚ã‚é‚¢‚ª@‚¿‚ª‚¤‚¼Iv
-	_UG_SHOP_TALK_START		mes_uw_buy_05			//‰ï˜bŠJŽn
+	//ã€Œã‚¿ãƒžã®ã€€ã—ã‚…ã‚‹ã„ãŒã€€ã¡ãŒã†ãžï¼ã€
+	_UG_SHOP_TALK_START		mes_uw_buy_05			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_item_shop_ret
 	_END
 
-// ‘I‘ð‚µ‚½ƒ^ƒ}‚Ì‘å‚«‚³‚ª‘«‚è‚È‚¢
+// é¸æŠžã—ãŸã‚¿ãƒžã®å¤§ãã•ãŒè¶³ã‚Šãªã„
 ev_ug_item_shop_bag_small:
-	//u"‚¤[‚ñ‚¨‚¨‚«‚³‚ª@‚½‚è‚È‚¢‚È‚Ÿcc"v
-	_UG_SHOP_TALK_START		mes_uw_buy_06			//‰ï˜bŠJŽn
+	//ã€Œ"ã†ãƒ¼ã‚“ãŠãŠãã•ãŒã€€ãŸã‚Šãªã„ãªãâ€¦â€¦"ã€
+	_UG_SHOP_TALK_START		mes_uw_buy_06			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_item_shop_ret
 	_END
 
-//ƒAƒCƒeƒ€ƒiƒ“ƒo[
+//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
 ev_ug_shop_others_item:
 	_AB_KEYWAIT
 	_JUMP			ev_ug_item_shop_ret
 	_END
 
 
-// ‚à‚¤ˆê“xƒƒjƒ…[‚És‚­
+// ã‚‚ã†ä¸€åº¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«è¡Œã
 ev_ug_item_shop_ret:
 	_AB_KEYWAIT
-	_UG_SHOP_TALK_START		mes_uw_buy_08			//‰ï˜bŠJŽn
+	_UG_SHOP_TALK_START		mes_uw_buy_08			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_item_shop_next
 	_END
 
 /********************************************************************/
-/*							•óƒVƒ‡ƒbƒv								*/
+/*							å®ã‚·ãƒ§ãƒƒãƒ—								*/
 //
-//	SCWK_TEMP0	ƒƒjƒ…[‘I‘ð‚ÌŒ‹‰Ê
+//	SCWK_TEMP0	ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠžã®çµæžœ
 /********************************************************************/
 ev_ug_treasure_shop:
-	//u‚È‚ñ‚©@‚©‚Á‚Ä‚¢‚­‚©Hv
-	_UG_SHOP_TALK_START		mes_uw_buy_27			//‰ï˜bŠJŽn
+	//ã€Œãªã‚“ã‹ã€€ã‹ã£ã¦ã„ãã‹ï¼Ÿã€
+	_UG_SHOP_TALK_START		mes_uw_buy_27			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_treasure_shop_next
 	_END
 
 ev_ug_treasure_shop_next:
-	_UG_SHOP_MENU_INIT	UG_SHOP_TREASURE,SCWK_ANSWER	//•ó
+	_UG_SHOP_MENU_INIT	UG_SHOP_TREASURE,SCWK_ANSWER	//å®
 
-	_LDWK			SCWK_TEMP0,SCWK_ANSWER			//‘Þ”ð
+	_LDWK			SCWK_TEMP0,SCWK_ANSWER			//é€€é¿
 
-	//Œ‹‰Ê‚Å•ªŠò
+	//çµæžœã§åˆ†å²
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP		UG_SHOP_BAG_FULL,ev_ug_treasure_shop_bag_full
 	_CASE_JUMP		UG_SHOP_CANCEL,ev_ug_shop_cancel
 	_JUMP			ev_ug_shop_others_treasure
 	_END
 
-//ƒoƒbƒO‚ª‚¢‚Á‚Ï‚¢
+//ãƒãƒƒã‚°ãŒã„ã£ã±ã„
 ev_ug_treasure_shop_bag_full:
-	//u‚Ä‚à‚¿‚ª@‚¢‚Á‚Ï‚¢‚¶‚á‚È‚¢‚©Iv
-	_UG_SHOP_TALK_START		mes_uw_buy_04			//‰ï˜bŠJŽn
+	//ã€Œã¦ã‚‚ã¡ãŒã€€ã„ã£ã±ã„ã˜ã‚ƒãªã„ã‹ï¼ã€
+	_UG_SHOP_TALK_START		mes_uw_buy_04			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_treasure_shop_ret
 	_END
 
-//ƒAƒCƒeƒ€ƒiƒ“ƒo[
+//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
 ev_ug_shop_others_treasure:
 	_AB_KEYWAIT
 	_JUMP			ev_ug_treasure_shop_ret
 	_END
 
 
-// ‚à‚¤ˆê“xƒƒjƒ…[‚És‚­
+// ã‚‚ã†ä¸€åº¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«è¡Œã
 ev_ug_treasure_shop_ret:
 	_AB_KEYWAIT
-	_UG_SHOP_TALK_START		mes_uw_buy_08			//‰ï˜bŠJŽn
+	_UG_SHOP_TALK_START		mes_uw_buy_08			//ä¼šè©±é–‹å§‹
 	_JUMP			ev_ug_treasure_shop_next
 	_END
 
 
 /********************************************************************/
-/*							‰‰ñƒCƒxƒ“ƒg							*/
+/*							åˆå›žã‚¤ãƒ™ãƒ³ãƒˆ							*/
 /********************************************************************/
 ev_ug_first:
 	//_EVENT_START
 
-	//ŽR’juIv
+	//å±±ç”·ã€Œï¼ã€
 	_OBJ_ANIME		UG_MOUNT,anm_ug_mount_00
 	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_ug_player_00
 	_OBJ_ANIME_WAIT
 
-	//ŽålŒö‰E‚ðŒü‚­
+	//ä¸»äººå…¬å³ã‚’å‘ã
 	_COMM_PLAYER_SET_DIR	DIR_RIGHT
 
 	//_TALK_KEYWAIT	msg_uw_mount_01
 	//_TALK_CLOSE
-	//_UG_SHOP_TALK_START		mes_uw_buy_01			//‰ï˜bŠJŽn
-	_UG_SHOP_TALK_START		msg_uw_mount_01			//‰ï˜bŠJŽn
+	//_UG_SHOP_TALK_START		mes_uw_buy_01			//ä¼šè©±é–‹å§‹
+	_UG_SHOP_TALK_START		msg_uw_mount_01			//ä¼šè©±é–‹å§‹
 	_AB_KEYWAIT
 	_UG_SHOP_TALK_END
 
-	//‹Ž‚Á‚Ä‚¢‚­
+	//åŽ»ã£ã¦ã„ã
 	_OBJ_ANIME		UG_MOUNT,anm_ug_mount_01
 	_OBJ_ANIME_WAIT
 
@@ -313,7 +313,7 @@ ev_ug_first:
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	‰E‚ðŒü‚­
+//ä¸»äººå…¬	å³ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_ug_player_00
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -321,7 +321,7 @@ _ANIME_LABEL	anm_ug_player_00
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽR’j	uIv
+//å±±ç”·	ã€Œï¼ã€
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_ug_mount_00
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -330,7 +330,7 @@ _ANIME_LABEL	anm_ug_mount_00
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽR’j	‹Ž‚Á‚Ä‚¢‚­1
+//å±±ç”·	åŽ»ã£ã¦ã„ã1
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_ug_mount_01
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -338,7 +338,7 @@ _ANIME_LABEL	anm_ug_mount_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽR’j	‹Ž‚Á‚Ä‚¢‚­2
+//å±±ç”·	åŽ»ã£ã¦ã„ã2
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_ug_mount_02
 	_ANIME_DATA	AC_DIR_R,1

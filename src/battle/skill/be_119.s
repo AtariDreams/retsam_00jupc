@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_119.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			119�@�g�p����x�ɋZ�̈З͂��{�ɂȂ��Ă����A�U�����P�x�ł��͂����ƈЗ͖͂߂�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			119　使用する度に技の威力が倍になっていく、攻撃を１度でもはずすと威力は戻る
  *
  *@author	HisashiSogabe
  *@data		2005.01.31

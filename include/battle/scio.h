@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	scio.h
- * @bfief	í“¬ƒT[ƒoAƒNƒ‰ƒCƒAƒ“ƒgƒf[ƒ^‘—óMŠÖ”
+ * @bfief	æˆ¦é—˜ã‚µãƒ¼ãƒã€ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿é€å—ä¿¡é–¢æ•°
  * @author	HisashiSogabe
  * @date	05.07.19
  */
@@ -15,7 +15,7 @@
 #include	"battle/fight.h"
 #include	"system/clact_tool.h"
 
-#define	REC_DATA_SEND_SIZE	(28)	//‘Îí˜^‰æƒf[ƒ^‘—Mƒoƒbƒtƒ@ƒTƒCƒY
+#define	REC_DATA_SEND_SIZE	(28)	//å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 enum{
 	SCIO_SERVER=0,
@@ -23,20 +23,20 @@ enum{
 	SCIO_SERVER_QUE
 };
 
-//ENCOUNT_EFFECT—p
+//ENCOUNT_EFFECTç”¨
 typedef struct{
-	int	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u32	rand_temp;			//ƒ‰ƒ“ƒ_ƒ€‚Ìíƒeƒ“ƒ|ƒ‰ƒŠ
+	int	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u32	rand_temp;			//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ãƒ†ãƒ³ãƒãƒ©ãƒª
 }ENCOUNT_EFFECT_PARAM;
 
-//POKEMON_ENCOUNT—p
+//POKEMON_ENCOUNTç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	sex		:2;			//«•Ê
-	u8	rare	:1;			//ƒŒƒA‚©‚Ç‚¤‚©H
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	sex		:2;			//æ€§åˆ¥
+	u8	rare	:1;			//ãƒ¬ã‚¢ã‹ã©ã†ã‹ï¼Ÿ
 	u8	form_no	:5;
-	u16	monsno;				//ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-	u32	personal_rnd;		//ŒÂ«—”
+	u16	monsno;				//ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+	u32	personal_rnd;		//å€‹æ€§ä¹±æ•°
 	int	voice;
 	u16	wazano[WAZA_TEMOTI_MAX];
 	u16	pp[WAZA_TEMOTI_MAX];
@@ -44,14 +44,14 @@ typedef struct{
 	STRCODE	nickname[MONS_NAME_SIZE+EOM_SIZE];
 }POKEMON_ENCOUNT_PARAM;
 
-//POKEMON_APPEAR—p
+//POKEMON_APPEARç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	sex			:2;		//«•Ê
-	u8	rare		:1;		//ƒŒƒA‚©‚Ç‚¤‚©H
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	sex			:2;		//æ€§åˆ¥
+	u8	rare		:1;		//ãƒ¬ã‚¢ã‹ã©ã†ã‹ï¼Ÿ
 	u8	form_no		:5;		//FormNo
-	u16	monsno;				//ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-	u32	personal_rnd;		//ŒÂ«—”
+	u16	monsno;				//ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+	u32	personal_rnd;		//å€‹æ€§ä¹±æ•°
 	int	voice;
 	int	sel_mons_no;		//SelMonsNo
 	int	ballID;
@@ -60,8 +60,8 @@ typedef struct{
 	u16	pp[WAZA_TEMOTI_MAX];
 	u16	ppmax[WAZA_TEMOTI_MAX];
 	STRCODE	nickname[MONS_NAME_SIZE+EOM_SIZE];
-	int	pair_sel_mons_no;	//ƒp[ƒgƒi[‚ÌSelMonsNo
-	//‚±‚±‚©‚ç‰º‚ÍA‚İ‚ª‚í‚è‚Ì‚½‚ß‚É•K—v
+	int	pair_sel_mons_no;	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®SelMonsNo
+	//ã“ã“ã‹ã‚‰ä¸‹ã¯ã€ã¿ãŒã‚ã‚Šã®ãŸã‚ã«å¿…è¦
 	int	migawari_flag;
 	u16	wep_mons_no[CLIENT_MAX];
 	u8	wep_sex[CLIENT_MAX];
@@ -70,14 +70,14 @@ typedef struct{
 	u32	wep_personal_rnd[CLIENT_MAX];
 }POKEMON_APPEAR_PARAM;
 
-//POKEMON_RETURN—p
+//POKEMON_RETURNç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	height;				//ƒ|ƒPƒ‚ƒ“‚‚³î•ñ
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	height;				//ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±
 	u16	ballID;
 	int	migawari_flag;
 
-	//‚±‚±‚©‚ç‰º‚ÍA‚İ‚ª‚í‚è‚Ì‚½‚ß‚É•K—v
+	//ã“ã“ã‹ã‚‰ä¸‹ã¯ã€ã¿ãŒã‚ã‚Šã®ãŸã‚ã«å¿…è¦
 	u16	mons_no[CLIENT_MAX];
 	u8	sex[CLIENT_MAX];
 	u8	rare[CLIENT_MAX];
@@ -85,38 +85,38 @@ typedef struct{
 	u32	personal_rnd[CLIENT_MAX];
 }POKEMON_RETURN_PARAM;
 
-//POKEMON_INHALE—p
+//POKEMON_INHALEç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	height;				//ƒ|ƒPƒ‚ƒ“‚‚³î•ñ
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	height;				//ãƒã‚±ãƒ¢ãƒ³é«˜ã•æƒ…å ±
 	u16	ballID;
 }POKEMON_INHALE_PARAM;
 
-//TRAINER_ENCOUNT—p
+//TRAINER_ENCOUNTç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	tr_sex;				//ƒgƒŒ[ƒi[‚Ì«•Ê
-	u16	trtype;				//ƒgƒŒ[ƒi[ID
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	tr_sex;				//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æ€§åˆ¥
+	u16	trtype;				//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
 }TRAINER_ENCOUNT_PARAM;
 
-//TRAINER_THROW—p
+//TRAINER_THROWç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	type;				//ƒGƒtƒFƒNƒgƒ^ƒCƒv
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	type;				//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
 	u16	pair_sel_mons_no;
 }TRAINER_THROW_PARAM;
 
-//TRAINER_IN—p
+//TRAINER_INç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	tr_sex;				//ƒgƒŒ[ƒi[‚Ì«•Ê
-	u16	trtype;				//ƒgƒŒ[ƒi[ID
-	int	pos;				//“oêˆÊ’uî•ñ
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	tr_sex;				//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æ€§åˆ¥
+	u16	trtype;				//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+	int	pos;				//ç™»å ´ä½ç½®æƒ…å ±
 }TRAINER_IN_PARAM;
 
-//WAZA_SELECT—p
+//WAZA_SELECTç”¨
 typedef struct{
-	u8			command_code;				//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8			command_code;				//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8			sel_mons_no;
 	u16			wazabit;
 	u16			wazano[WAZA_TEMOTI_MAX];	//wazano
@@ -124,41 +124,41 @@ typedef struct{
 	u8			ppmax[WAZA_TEMOTI_MAX];		//ppmax
 }WAZA_SELECT_PARAM;
 
-//DIR_SELECT—p
+//DIR_SELECTç”¨
 typedef struct{
-	u8		sel_mons_no;				//PokemonParam‚Ì‰½”Ô–Ú‚©
-	u8		sex		:2;					//«•Ê
-	u8		exist	:1;					//‘I‘ğ‰Â”Û
-	u8				:5;					//‘I‘ğ‰Â”Û
+	u8		sel_mons_no;				//PokemonParamã®ä½•ç•ªç›®ã‹
+	u8		sex		:2;					//æ€§åˆ¥
+	u8		exist	:1;					//é¸æŠå¯å¦
+	u8				:5;					//é¸æŠå¯å¦
 
 	u8		status;
-	u8		dummy;						//4ƒoƒCƒg‹«ŠEƒ_ƒ~[
+	u8		dummy;						//4ãƒã‚¤ãƒˆå¢ƒç•Œãƒ€ãƒŸãƒ¼
 	
-	s16		hp;						//Œ»İ‚ÌHP
-	u16		hpmax;					//Œ»İ‚ÌHPMAX
+	s16		hp;						//ç¾åœ¨ã®HP
+	u16		hpmax;					//ç¾åœ¨ã®HPMAX
 }DIR_SELECT_POKE_PARAM;
 
 typedef struct{
-	u8						command_code;	//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8						flag;			//1F“ü—Í‰æ–Ê”wŒi‚ğ–¾‚é‚­‚µ‚Ä‚­‚¾‚³‚¢
-	u16						range;			//Œø‰Ê”ÍˆÍ
+	u8						command_code;	//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8						flag;			//1ï¼šå…¥åŠ›ç”»é¢èƒŒæ™¯ã‚’æ˜ã‚‹ãã—ã¦ãã ã•ã„
+	u16						range;			//åŠ¹æœç¯„å›²
 	DIR_SELECT_POKE_PARAM	dspp[CLIENT_MAX];	
 }DIR_SELECT_PARAM;
 
-//ITEM_SELECT—p
+//ITEM_SELECTç”¨
 typedef struct{
-	u8				command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8				enc_double;			//–ì¶2vs2í‚Åƒ{[ƒ‹‚ğ“Š‚°‚ê‚é‚©ƒtƒ‰ƒO
-	u8				waza_vanish;		//Á‚¦‚Ä‚¢‚é‚©ƒtƒ‰ƒO
-	u8				waza_migawari;		//‚İ‚ª‚í‚è‚ğ‚¾‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO
+	u8				command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8				enc_double;			//é‡ç”Ÿ2vs2æˆ¦ã§ãƒœãƒ¼ãƒ«ã‚’æŠ•ã’ã‚Œã‚‹ã‹ãƒ•ãƒ©ã‚°
+	u8				waza_vanish;		//æ¶ˆãˆã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	u8				waza_migawari;		//ã¿ãŒã‚ã‚Šã‚’ã ã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
 	u8				sel_mons_no[CLIENT_MAX];
 	u8				list_row[CLIENT_MAX][POKEMON_TEMOTI_MAX];
 	u8				shutout_flag[CLIENT_MAX];
 }ITEM_SELECT_PARAM;
 
-//POKEMON_SELECT—p
+//POKEMON_SELECTç”¨
 typedef struct{
-	u8				command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8				command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8				client_no;
 	u8				list_mode;
 	u8				double_sel;
@@ -171,29 +171,29 @@ typedef struct{
 	u8				dummy[3];
 }POKEMON_SELECT_PARAM;
 
-//HP_GAUGE_IN—p
+//HP_GAUGE_INç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	level;
-	s16	hp;					//Œ»İ‚ÌHP
+	s16	hp;					//ç¾åœ¨ã®HP
 
-	u16	hpmax;				//Œ»İ‚ÌHPMAX
-	u8	sel_mons_no;		//‘I‘ğƒiƒ“ƒo[
-	u8	status	:5;			//ó‘ÔˆÙí
-	u8	sex		:2;			//«•Ê
-	u8	get_mark:1;			//•ßŠlƒtƒ‰ƒO
+	u16	hpmax;				//ç¾åœ¨ã®HPMAX
+	u8	sel_mons_no;		//é¸æŠãƒŠãƒ³ãƒãƒ¼
+	u8	status	:5;			//çŠ¶æ…‹ç•°å¸¸
+	u8	sex		:2;			//æ€§åˆ¥
+	u8	get_mark:1;			//æ•ç²ãƒ•ãƒ©ã‚°
 
-	u32	now_exp;			//Œ»İ‚ÌEXP
-	u32	max_exp;			//Å‘åEXP
+	u32	now_exp;			//ç¾åœ¨ã®EXP
+	u32	max_exp;			//æœ€å¤§EXP
 
-	int	safari_ball;		//ƒTƒtƒ@ƒŠƒ{[ƒ‹‚Ì”iƒTƒtƒ@ƒŠƒ][ƒ“ê—pj
+	int	safari_ball;		//ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®æ•°ï¼ˆã‚µãƒ•ã‚¡ãƒªã‚¾ãƒ¼ãƒ³å°‚ç”¨ï¼‰
 
 	u8	wait;
 }HP_GAUGE_IN_PARAM;
 
-//COMMAND_SELECT—p
+//COMMAND_SELECTç”¨
 typedef struct{
-	u8		command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8		command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8		sel_mons_no;
 	u8		motivation[POKEMON_TEMOTI_MAX];
 	u8		status[2][POKEMON_TEMOTI_MAX];
@@ -202,60 +202,60 @@ typedef struct{
 	u8		pp[WAZA_TEMOTI_MAX];		//pp
 	u8		ppmax[WAZA_TEMOTI_MAX];		//ppmax
 
-	s16		icon_hp;				//Œ»İ‚ÌHP
-	u16		icon_hpmax;				//Œ»İ‚ÌHPMAX
+	s16		icon_hp;				//ç¾åœ¨ã®HP
+	u16		icon_hpmax;				//ç¾åœ¨ã®HPMAX
 
 	u8		icon_status;
 	u8		no_reshuffle_client;
 	u16		dummy;
 }COMMAND_SELECT_PARAM;
 
-//YES_NO_SELECT—p
+//YES_NO_SELECTç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	flag;				///<ƒZƒŒƒNƒgƒ^ƒCƒv
-	u16	msg_id;				///<•\¦‚·‚éƒƒbƒZ[ƒWƒiƒ“ƒo[
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	flag;				///<ã‚»ãƒ¬ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
+	u16	msg_id;				///<è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒŠãƒ³ãƒãƒ¼
 	int	waza_no;
 	int	nickname;
 }YES_NO_SELECT_PARAM;
 
-//ATTACK_MESSAGE—p
+//ATTACK_MESSAGEç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	sel_mons_no;		//æ“ª‚©‚ç‰½”Ô–Ú‚Ìƒ|ƒPƒ‚ƒ“H
-	u16	waza_no;			///<ƒƒbƒZ[ƒW‚ğo‚·‹Zƒiƒ“ƒo[
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	sel_mons_no;		//å…ˆé ­ã‹ã‚‰ä½•ç•ªç›®ã®ãƒã‚±ãƒ¢ãƒ³ï¼Ÿ
+	u16	waza_no;			///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™æŠ€ãƒŠãƒ³ãƒãƒ¼
 }ATTACK_MESSAGE_PARAM;
 
-//MESSAGE—p
+//MESSAGEç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	msg_tag;
-	u16	msg_id;				///<ƒƒbƒZ[ƒWID
+	u16	msg_id;				///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 	int	msg_para[6];
 	int	msg_keta;
 	int	msg_client;
 }MESSAGE_PARAM;
 
-//WAZA_EFFECT—p
+//WAZA_EFFECTç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	mode;				///< í“¬EƒRƒ“ƒeƒXƒgEƒRƒ“ƒN[ƒ‹H
-	u16	waza_no;			///<ƒGƒtƒFƒNƒg‚ğo‚·‹Zƒiƒ“ƒo[
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	mode;				///< æˆ¦é—˜ãƒ»ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ»ã‚³ãƒ³ã‚¯ãƒ¼ãƒ«ï¼Ÿ
+	u16	waza_no;			///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™æŠ€ãƒŠãƒ³ãƒãƒ¼
 
-	s32 waza_eff_damage;	///< ‹Z‚Åó‚¯‚éƒ_ƒ[ƒW(‰ñ•œ‚Ì‚Í[ - ])
+	s32 waza_eff_damage;	///< æŠ€ã§å—ã‘ã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸(å›å¾©ã®æ™‚ã¯[ - ])
 
-	u16	waza_eff_power;		///< o‚Ä‚¢‚é‹Z‚ÌˆĞ—Í
-	u16 waza_eff_cnt;		///< ‹ZƒGƒtƒFƒNƒg‚ÌƒJƒEƒ“ƒ^(‹ó‚ğ”ò‚Ô‚Æ‚©)
+	u16	waza_eff_power;		///< å‡ºã¦ã„ã‚‹æŠ€ã®å¨åŠ›
+	u16 waza_eff_cnt;		///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚«ã‚¦ãƒ³ã‚¿(ç©ºã‚’é£›ã¶ã¨ã‹)
 
-	u16	waza_eff_natuki;	///< ‚È‚Â‚«“x
-	u16	migawari_flag	:1;	///< ‚İ‚ª‚í‚èƒtƒ‰ƒO			
+	u16	waza_eff_natuki;	///< ãªã¤ãåº¦
+	u16	migawari_flag	:1;	///< ã¿ãŒã‚ã‚Šãƒ•ãƒ©ã‚°			
 	u16	henshin_flag	:1;				
 	u16					:14;				
 
-	u32	waza_eff_weather;	///< “VŒó
+	u32	waza_eff_weather;	///< å¤©å€™
 	
-	u16	at_client_no;		///< UŒ‚‘¤‚ÌƒNƒ‰ƒCƒAƒ“ƒg”Ô†
-	u16	df_client_no;		///< –hŒä‘¤‚ÌƒNƒ‰ƒCƒAƒ“ƒg”Ô†
+	u16	at_client_no;		///< æ”»æ’ƒå´ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·
+	u16	df_client_no;		///< é˜²å¾¡å´ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·
 
 	u16	mons_no[CLIENT_MAX];
 	u8	sex[CLIENT_MAX];
@@ -268,37 +268,37 @@ typedef struct{
 	int	ground_id;
 }WAZA_EFFECT_PARAM;
 
-//HP_GAUGE_CALC—p
+//HP_GAUGE_CALCç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	level;
-	s16	hp;					//Œ»İ‚ÌHP
+	s16	hp;					//ç¾åœ¨ã®HP
 
-	u16	hpmax;				//Œ»İ‚ÌHPMAX
+	u16	hpmax;				//ç¾åœ¨ã®HPMAX
 	u8	dummy;				
-	u8	sex;				//«•Ê
+	u8	sex;				//æ€§åˆ¥
 
-	int	damage;				//ƒ_ƒ[ƒW—Ê
+	int	damage;				//ãƒ€ãƒ¡ãƒ¼ã‚¸é‡
 
-	u32	now_exp;			//Œ»İ‚ÌEXP
-	u32	max_exp;			//Å‘åEXP
+	u32	now_exp;			//ç¾åœ¨ã®EXP
+	u32	max_exp;			//æœ€å¤§EXP
 
 }HP_GAUGE_CALC_PARAM;
 
-//EXP_GAUGE_CALC—p
+//EXP_GAUGE_CALCç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	dummy[3];
-	u32	now_exp;			//Œ»İ‚ÌEXP
-	u32	next_exp;			//Ÿ‚ÌEXP
-	u32	max_exp;			//Å‘åEXP
+	u32	now_exp;			//ç¾åœ¨ã®EXP
+	u32	next_exp;			//æ¬¡ã®EXP
+	u32	max_exp;			//æœ€å¤§EXP
 }EXP_GAUGE_CALC_PARAM;
 
-//KIZETSU_EFFECT—p
+//KIZETSU_EFFECTç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	sex;
-	u16	monsno;				//‹Câƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+	u16	monsno;				//æ°—çµ¶ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
 	u32	personal_rnd;
 
@@ -306,7 +306,7 @@ typedef struct{
 	u8	migawari_flag;
 	u8	henshin_flag;
 	u8	dummy;
-	//‚±‚±‚©‚ç‰º‚ÍA‚İ‚ª‚í‚è‚Ì‚½‚ß‚É•K—v
+	//ã“ã“ã‹ã‚‰ä¸‹ã¯ã€ã¿ãŒã‚ã‚Šã®ãŸã‚ã«å¿…è¦
 	u16	wep_mons_no[CLIENT_MAX];
 	u8	wep_sex[CLIENT_MAX];
 	u8	wep_rare[CLIENT_MAX];
@@ -314,20 +314,20 @@ typedef struct{
 	u32	wep_personal_rnd[CLIENT_MAX];
 }KIZETSU_EFFECT_PARAM;
 
-//SE_PLAY—p
+//SE_PLAYç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	dummy;
-	u16	se_no;				///<–Â‚ç‚·SENo
+	u16	se_no;				///<é³´ã‚‰ã™SENo
 }SE_PLAY_PARAM;
 
-//POKEMON_VANISH_ON_OFF—p
+//POKEMON_VANISH_ON_OFFç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	sw;					//ON/OFFƒtƒ‰ƒO
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	sw;					//ON/OFFãƒ•ãƒ©ã‚°
 	u8	migawari_flag;
 	u8	dummy;
-	//‚±‚±‚©‚ç‰º‚ÍA‚İ‚ª‚í‚è‚Ì‚½‚ß‚É•K—v
+	//ã“ã“ã‹ã‚‰ä¸‹ã¯ã€ã¿ãŒã‚ã‚Šã®ãŸã‚ã«å¿…è¦
 	u16	wep_mons_no[CLIENT_MAX];
 	u8	wep_sex[CLIENT_MAX];
 	u8	wep_rare[CLIENT_MAX];
@@ -335,75 +335,75 @@ typedef struct{
 	u32	wep_personal_rnd[CLIENT_MAX];
 }POKEMON_VANISH_ON_OFF;
 
-//HP_GAUGE_STATUS_SET—p
+//HP_GAUGE_STATUS_SETç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	status;				//ó‘ÔˆÙíƒiƒ“ƒo[
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	status;				//çŠ¶æ…‹ç•°å¸¸ãƒŠãƒ³ãƒãƒ¼
 	u16	dummy;				
 }HP_GAUGE_STATUS_SET_PARAM;
 
-//TRAINER_MESSAGE_SET—p
+//TRAINER_MESSAGE_SETç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	type;				//ƒƒbƒZ[ƒWƒ^ƒCƒv
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	type;				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
 	u16	dummy;				
 }TRAINER_MESSAGE_PARAM;
 
-//STATUS_EFFECT—p
+//STATUS_EFFECTç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	status;				//ó‘ÔˆÙíƒiƒ“ƒo[
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	status;				//çŠ¶æ…‹ç•°å¸¸ãƒŠãƒ³ãƒãƒ¼
 	u16	dummy;				
 }STATUS_EFFECT_PARAM;
 
-//MODOSU_MESSAGE—p
+//MODOSU_MESSAGEç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	sel_mons_no;
-	u16	rate;				//ƒƒbƒZ[ƒW•ÏŠ·‚É•K—v‚Èƒpƒ‰ƒ[ƒ^
+	u16	rate;				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¤‰æ›ã«å¿…è¦ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 }MODOSU_MESSAGE_PARAM;
 
-//KURIDASU_MESSAGE—p
+//KURIDASU_MESSAGEç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	sel_mons_no;
-	u16	rate;				//ƒƒbƒZ[ƒW•ÏŠ·‚É•K—v‚Èƒpƒ‰ƒ[ƒ^
+	u16	rate;				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¤‰æ›ã«å¿…è¦ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 }KURIDASU_MESSAGE_PARAM;
 
-//ENCOUNT_KURIDASU_MESSAGE—p
+//ENCOUNT_KURIDASU_MESSAGEç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	dummy[3];
 	u8	sel_mons_no[CLIENT_MAX];
 }ENCOUNT_KURIDASU_MESSAGE_PARAM;
 
-//ALERT_MESSAGE—p
+//ALERT_MESSAGEç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	dummy[3];
 	MESSAGE_PARAM	mp;				
 }ALERT_MESSAGE_PARAM;
 
-//HP_GAUGE_REFRESH—p
+//HP_GAUGE_REFRESHç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	level;
-	s16	hp;					//Œ»İ‚ÌHP
+	s16	hp;					//ç¾åœ¨ã®HP
 
-	u16	hpmax;				//Œ»İ‚ÌHPMAX
-	u8	sel_mons_no;		//‘I‘ğƒiƒ“ƒo[
-	u8	status	:5;			//ó‘ÔˆÙí
-	u8	sex		:2;			//«•Ê
-	u8	get_mark:1;			//•ßŠlƒtƒ‰ƒO
+	u16	hpmax;				//ç¾åœ¨ã®HPMAX
+	u8	sel_mons_no;		//é¸æŠãƒŠãƒ³ãƒãƒ¼
+	u8	status	:5;			//çŠ¶æ…‹ç•°å¸¸
+	u8	sex		:2;			//æ€§åˆ¥
+	u8	get_mark:1;			//æ•ç²ãƒ•ãƒ©ã‚°
 
-	u32	now_exp;			//Œ»İ‚ÌEXP
-	u32	max_exp;			//Å‘åEXP
-	int	safari_ball;		//ƒTƒtƒ@ƒŠƒ{[ƒ‹‚Ì”iƒTƒtƒ@ƒŠƒ][ƒ“ê—pj
+	u32	now_exp;			//ç¾åœ¨ã®EXP
+	u32	max_exp;			//æœ€å¤§EXP
+	int	safari_ball;		//ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®æ•°ï¼ˆã‚µãƒ•ã‚¡ãƒªã‚¾ãƒ¼ãƒ³å°‚ç”¨ï¼‰
 }HP_GAUGE_REFRESH_PARAM;
 
-//PSP_TO_PP_COPY—p
+//PSP_TO_PP_COPYç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	sel_mons_no	:4;
 	u8	monomane_bit:4;
 	s16	hp;
@@ -413,52 +413,52 @@ typedef struct{
 	u16	waza[WAZA_TEMOTI_MAX];		//waza
 	u8	pp[WAZA_TEMOTI_MAX];		//pp
 	u32	condition2;	
-	//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
+	//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
 	u16	form_no;
 	int	speabi;
 	u16	calc_flag;
 	u16	form_flag;
 }PSP_TO_PP_COPY_PARAM;
 
-//POKEMON_REFRESH_SET—p
+//POKEMON_REFRESH_SETç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	speabi;
 	u16	waza_no;			//waza
 }POKEMON_REFRESH_PARAM;
 
-//SERVER_QUE_CLEAR—p
+//SERVER_QUE_CLEARç”¨
 typedef struct{
 	u8	index;
 	u8	id;
 	u16	dummy;
 }SERVER_QUE_CLEAR_PARAM;
 
-//WAZA_WASURE—p
+//WAZA_WASUREç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	sel_mons_no;
 	u16	waza_no;			//waza
 }WAZA_WASURE_PARAM;
 
-//ITEM_SELECT_RETURN_SET—p
+//ITEM_SELECT_RETURN_SETç”¨
 typedef struct{
 	u16	item_no;
 	u8	page;
 	u8	sel_mons_no;
 }ITEM_SELECT_RETURN_PARAM;
 
-//MOSAIC_SET_PARAM—p
+//MOSAIC_SET_PARAMç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	mosaic;
 	u8	wait;				//waza
 	u8	dummy;
 }MOSAIC_SET_PARAM;
 
-//FORM_CHG_PARAM—p
+//FORM_CHG_PARAMç”¨
 typedef struct{
-	u8	command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8	command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8	form_no;
 	u16	mons_no;
 
@@ -469,7 +469,7 @@ typedef struct{
 	u32 personal_rnd;
 }FORM_CHG_PARAM;
 
-//WIN_LOSE_SET—p
+//WIN_LOSE_SETç”¨
 typedef struct{
 	u8		command_code;
 	u8		dummy;
@@ -478,59 +478,59 @@ typedef struct{
 	u8		buf[REC_DATA_SEND_SIZE];
 }WIN_LOSE_SET_PARAM;
 
-//BALL_GAUGE_SET—p
+//BALL_GAUGE_SETç”¨
 typedef struct{
-	u8		command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8		command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8		dummy;
 	u8		status[POKEMON_TEMOTI_MAX];
 }BALL_GAUGE_PARAM;
 
-//INC_RECORD_PARAM—p
+//INC_RECORD_PARAMç”¨
 typedef struct{
-	u8		command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8		command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8		flag;
 	u16		id;
 }INC_RECORD_PARAM;
 
-//ESCAPE_MESSAGE—p
+//ESCAPE_MESSAGEç”¨
 typedef struct{
-	u8		command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8		command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8		escape_flag;
 	u16		size;
 	u8		buf[REC_DATA_SEND_SIZE];
 }ESCAPE_MESSAGE_PARAM;
 
-//GIVEUP_MESSAGE—p
+//GIVEUP_MESSAGEç”¨
 typedef struct{
-	u8		command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8		command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8		dummy;
 	u16		size;
 	u8		buf[REC_DATA_SEND_SIZE];
 }GIVEUP_MESSAGE_PARAM;
 
-//WAZAKOUKA_SE—p
+//WAZAKOUKA_SEç”¨
 typedef struct{
-	u8		command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8		command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8		kouka;
 	u16		dummy;
 }WAZAKOUKA_SE_PARAM;
 
-//BGM_PLAY—p
+//BGM_PLAYç”¨
 typedef struct{
-	u8		command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8		command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8		dummy;
 	u16		bgm_no;
 }BGM_PLAY_PARAM;
 
-//SCIO_SioWaitMessageWithRecData—p
+//SCIO_SioWaitMessageWithRecDataç”¨
 typedef struct{
-	u8		command_code;		//–½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
+	u8		command_code;		//å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	u8		dummy;
 	u16		size;
 	u8		buf[REC_DATA_SEND_SIZE];
 }WITH_REC_DATA;
 
-//ŠÖ”externéŒ¾
+//é–¢æ•°externå®£è¨€
 extern	void	SCIO_EncountEffectSet(BATTLE_WORK *bw,int send_client);
 extern	void	SCIO_PokemonEncountSet(BATTLE_WORK *bw,int send_client);
 extern	void	SCIO_PokemonEncountAppearSet(BATTLE_WORK *bw,int send_client);

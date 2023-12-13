@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	gym_init.c
- * @bfief	ƒWƒ€dŠ|‚¯‰Šú‰»‚Æ‚©
+ * @bfief	ã‚¸ãƒ ä»•æ›ã‘åˆæœŸåŒ–ã¨ã‹
  * @author	Nozomu Saito
  *
  */
@@ -23,8 +23,8 @@
 
 static void SetBit(const u8 inBit, const u8 inVal, int *outData);
 
-//|ƒŠƒtƒgƒfƒtƒHƒ‹ƒgˆÊ’uî•ñ
-//0:ƒfƒtƒHƒ‹ƒgˆÊ’u@1:ˆÚ“®æ	ã‰º‚Í‰ºAè‘O‰œ‚Í‰œA¶‰E‚Í¶‚ªƒfƒtƒHƒ‹ƒg
+//é‹¼ãƒªãƒ•ãƒˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®æƒ…å ±
+//0:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®ã€€1:ç§»å‹•å…ˆ	ä¸Šä¸‹ã¯ä¸‹ã€æ‰‹å‰å¥¥ã¯å¥¥ã€å·¦å³ã¯å·¦ãŒãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
 static const u8 SteelLiftDefault[STEEL_LIFT_MAX] =
 {
 	0, 0, 0, 0, 0, 0,
@@ -34,8 +34,8 @@ static const u8 SteelLiftDefault[STEEL_LIFT_MAX] =
 };
 
 #if 0	//DP
-//‚µ‚«‚èˆÊ’uî•ñ
-//0:ƒfƒtƒHƒ‹ƒgˆÊ’u@1:ˆÚ“®æ	¶‚ªƒfƒtƒHƒ‹ƒg
+//ã—ãã‚Šä½ç½®æƒ…å ±
+//0:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®ã€€1:ç§»å‹•å…ˆ	å·¦ãŒãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
 static const u8 WallDefault[COMBAT_WALL_MAX] =
 {
 	0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1,
@@ -44,9 +44,9 @@ static const u8 WallDefault[COMBAT_WALL_MAX] =
 
 //---------------------------------------------------------------------------
 /**
- * @brief	…ƒWƒ€:‰Šú‰»
+ * @brief	æ°´ã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -64,9 +64,9 @@ void GYM_InitWaterGym(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒS[ƒXƒgƒWƒ€:‰Šú‰»
+ * @brief	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -80,24 +80,24 @@ void GYM_InitGhostGym(FIELDSYS_WORK *fsys)
 
 	ghost_gym_work = (GHOST_GYM_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_GHOST_GYM);
 
-	//“ü‚Á‚Ä‚«‚½êŠ‚ÌZÀ•W‚ÅAƒŠƒtƒg‚ÌˆÊ’u‚ğŒˆ’èi‚·‚é‚±‚Æ‚É‚·‚éj
-	//¦’nŒ`‚ÉˆË‘¶‚µ‚½”»’è‚È‚Ì‚ÅA’nŒ`‚ª•Ï‚í‚Á‚½ê‡‚Í’ˆÓ‚ª•K—v
+	//å…¥ã£ã¦ããŸå ´æ‰€ã®Zåº§æ¨™ã§ã€ãƒªãƒ•ãƒˆã®ä½ç½®ã‚’æ±ºå®šï¼ˆã™ã‚‹ã“ã¨ã«ã™ã‚‹ï¼‰
+	//â€»åœ°å½¢ã«ä¾å­˜ã—ãŸåˆ¤å®šãªã®ã§ã€åœ°å½¢ãŒå¤‰ã‚ã£ãŸå ´åˆã¯æ³¨æ„ãŒå¿…è¦
 	if (fsys->location->grid_z == GHOST_LIFT_ROOM_START_Z){
 /**		
 		MYSTATUS *my_st  = SaveData_GetMyStatus(GameSystem_GetSaveData(fsys));
-		//ƒVƒiƒŠƒIis‚É‚æ‚Á‚ÄAƒŠƒtƒg‚ÌˆÊ’u‚ğ•ªŠò(‚b7ƒgƒoƒŠ‚Æ‚b6ƒmƒ‚ƒZ‚ÌƒoƒbƒWƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN)
+		//ã‚·ãƒŠãƒªã‚ªé€²è¡Œã«ã‚ˆã£ã¦ã€ãƒªãƒ•ãƒˆã®ä½ç½®ã‚’åˆ†å²(ï¼£7ãƒˆãƒãƒªã¨ï¼£6ãƒãƒ¢ã‚»ã®ãƒãƒƒã‚¸ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯)
 		if ( MyStatus_GetBadgeFlag(my_st, BADGE_ID_C07) &&
 				MyStatus_GetBadgeFlag(my_st, BADGE_ID_C06) ){
-			ghost_gym_work->Lift = GYM_GHOST_LIFT_LV1;	//ƒŠƒtƒg‰ºiƒWƒ€’§í‰Âj
+			ghost_gym_work->Lift = GYM_GHOST_LIFT_LV1;	//ãƒªãƒ•ãƒˆä¸‹ï¼ˆã‚¸ãƒ æŒ‘æˆ¦å¯ï¼‰
 		}else{
-			ghost_gym_work->Lift = GYM_GHOST_LIFT_LV2;	//ƒŠƒtƒgãiƒWƒ€’§í•s‰Âj
+			ghost_gym_work->Lift = GYM_GHOST_LIFT_LV2;	//ãƒªãƒ•ãƒˆä¸Šï¼ˆã‚¸ãƒ æŒ‘æˆ¦ä¸å¯ï¼‰
 		}
-*/	//<<ƒVƒiƒŠƒI•ÏX‚É‚æ‚èA‚±‚Ìˆ—‚Í•s—v‚É‚È‚è‚Ü‚µ‚½@20060626
-		//ƒVƒiƒŠƒIis‚É‚æ‚Á‚ÄAƒŠƒtƒg‚ÌˆÊ’u‚ğ•ªŠò(ƒJƒ“ƒiƒM‚ÅƒMƒ“ƒK’cƒ{ƒX‚Æ˜b‚ğ‚µ‚Ä‚¢‚é‚©‚ğƒ`ƒFƒbƒN)
+*/	//<<ã‚·ãƒŠãƒªã‚ªå¤‰æ›´ã«ã‚ˆã‚Šã€ã“ã®å‡¦ç†ã¯ä¸è¦ã«ãªã‚Šã¾ã—ãŸã€€20060626
+		//ã‚·ãƒŠãƒªã‚ªé€²è¡Œã«ã‚ˆã£ã¦ã€ãƒªãƒ•ãƒˆã®ä½ç½®ã‚’åˆ†å²(ã‚«ãƒ³ãƒŠã‚®ã§ã‚®ãƒ³ã‚¬å›£ãƒœã‚¹ã¨è©±ã‚’ã—ã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯)
 		if ( SysFlag_T05GingaEventCheck( SaveData_GetEventWork( fsys->savedata ) ) ){
-			ghost_gym_work->Lift = GYM_GHOST_LIFT_LV1;	//ƒŠƒtƒg‰ºiƒWƒ€’§í‰Âj
+			ghost_gym_work->Lift = GYM_GHOST_LIFT_LV1;	//ãƒªãƒ•ãƒˆä¸‹ï¼ˆã‚¸ãƒ æŒ‘æˆ¦å¯ï¼‰
 		}else{
-			ghost_gym_work->Lift = GYM_GHOST_LIFT_LV2;	//ƒŠƒtƒgãiƒWƒ€’§í•s‰Âj
+			ghost_gym_work->Lift = GYM_GHOST_LIFT_LV2;	//ãƒªãƒ•ãƒˆä¸Šï¼ˆã‚¸ãƒ æŒ‘æˆ¦ä¸å¯ï¼‰
 		}
 	}else{
 		ghost_gym_work->Lift = GYM_GHOST_LIFT_LV2;
@@ -106,9 +106,9 @@ void GYM_InitGhostGym(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	|ƒWƒ€:‰Šú‰»
+ * @brief	é‹¼ã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -122,7 +122,7 @@ void GYM_InitSteelGym(FIELDSYS_WORK *fsys)
 
 	steel_gym_work = (STEEL_GYM_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_STEEL_GYM);
 
-	//ƒŠƒtƒgˆÊ’u‰Šú‰»
+	//ãƒªãƒ•ãƒˆä½ç½®åˆæœŸåŒ–
 	{
 		int i;
 		for(i=0;i<STEEL_LIFT_MAX;i++){
@@ -134,9 +134,9 @@ void GYM_InitSteelGym(FIELDSYS_WORK *fsys)
 #if 0	//DP
 //---------------------------------------------------------------------------
 /**
- * @brief	Ši“¬ƒWƒ€:‰Šú‰»
+ * @brief	æ ¼é—˜ã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -150,7 +150,7 @@ void GYM_InitCombatGym(FIELDSYS_WORK *fsys)
 
 	combat_gym_work = (COMBAT_GYM_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_COMBAT_GYM);
 
-	//‚µ‚«‚èˆÊ’u‰Šú‰»
+	//ã—ãã‚Šä½ç½®åˆæœŸåŒ–
 	{
 		int i;
 		for(i=0;i<COMBAT_WALL_MAX;i++){
@@ -162,10 +162,10 @@ void GYM_InitCombatGym(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“d‹CƒWƒ€:‰Šú‰»
+ * @brief	é›»æ°—ã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inRoomNo	•”‰®ƒiƒ“ƒo[	
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inRoomNo	éƒ¨å±‹ãƒŠãƒ³ãƒãƒ¼	
  * 
  * @return	none
  */
@@ -186,15 +186,15 @@ void GYM_InitElecGym(FIELDSYS_WORK *fsys, const u8 inRoomNo)
 	elec_gym_work->RoomNo = inRoomNo;
 	
 	switch(elec_gym_work->RoomNo){
-	case ELEC_GYM_ROOM1:			//1•”‰®–Ú
+	case ELEC_GYM_ROOM1:			//1éƒ¨å±‹ç›®
 		elec_gym_work->GearRotateCode = GEAR_ROT_ST_180;
 		start_z = ELEC_ROOM1_START_Z;
 		break;
-	case ELEC_GYM_ROOM2:			//2•”‰®–Ú
+	case ELEC_GYM_ROOM2:			//2éƒ¨å±‹ç›®
 		elec_gym_work->GearRotateCode = GEAR_ROT_ST_90;
 		start_z = ELEC_ROOM2_START_Z;
 		break;
-	case ELEC_GYM_ROOM3:			//3•”‰®–Ú‚Ís‚«~‚Ü‚è‚È‚Ì‚ÅA‚Ç‚ñ‚Èê‡‚Å‚àƒfƒtƒHƒ‹ƒg‚ğƒZƒbƒg
+	case ELEC_GYM_ROOM3:			//3éƒ¨å±‹ç›®ã¯è¡Œãæ­¢ã¾ã‚Šãªã®ã§ã€ã©ã‚“ãªå ´åˆã§ã‚‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚’ã‚»ãƒƒãƒˆ
 		elec_gym_work->GearRotateCode = GEAR_ROT_ST_0;
 		start_z = ELEC_ROOM3_START_Z;
 		break;
@@ -209,11 +209,11 @@ void GYM_InitElecGym(FIELDSYS_WORK *fsys, const u8 inRoomNo)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	PL ‘ƒWƒ€:‰Šú‰» kaga
+ * @brief	PL è‰ã‚¸ãƒ :åˆæœŸåŒ– kaga
  * 
- * @param	inBit				‘ÎÛƒrƒbƒg
- * @param	inVal				’l
- * @param	outData			ƒf[ƒ^
+ * @param	inBit				å¯¾è±¡ãƒ“ãƒƒãƒˆ
+ * @param	inVal				å€¤
+ * @param	outData			ãƒ‡ãƒ¼ã‚¿
  * 
  * @return	none
  */
@@ -229,14 +229,14 @@ void GYM_InitPLGrassGym( FIELDSYS_WORK *fsys )
 	gymwork = GIMMICKWORK_Get( work, FLD_GIMMICK_PL_GRASS_GYM );
 	memset( gymwork, 0, sizeof(FLD_GIMMICK_PL_GRASS_GYM) );
 	
-	//ƒ[ƒN‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	PLŠi“¬ƒWƒ€:‰Šú‰»
+ * @brief	PLæ ¼é—˜ã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -251,15 +251,15 @@ void GYM_InitPLFightGym(FIELDSYS_WORK *fsys)
 	
 	gym = (PLFIGHT_GYM_WORK*)GIMMICKWORK_Get( work, FLD_GIMMICK_COMBAT_GYM );
 	
-	//ƒ[ƒN‰Šú‰»
-	gym->init_flag = FALSE;	//–¢‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+	gym->init_flag = FALSE;	//æœªåˆæœŸåŒ–
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	PLƒS[ƒXƒgƒWƒ€:‰Šú‰»
+ * @brief	PLã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ :åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -274,12 +274,12 @@ void GYM_InitPLGhostGym(FIELDSYS_WORK *fsys)
 	
 	gym = (PLGHOST_GYM_WORK*)GIMMICKWORK_Get( work, FLD_GIMMICK_GHOST_GYM );
 	
-	//ƒ[ƒN‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 }
 
 //--------------------------------------------------------------
 /**
- * •Ê‘‘@‰Šú‰»
+ * åˆ¥è˜ã€€åˆæœŸåŒ–
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -295,12 +295,12 @@ void FldVilla_Init( FIELDSYS_WORK *fsys )
 	gmc_villa = GIMMICKWORK_Get( gmc, FLD_GIMMICK_VILLA );
 	memset( gmc_villa, 0, sizeof(FLD_VILLA_WORK) );
 	
-	//ˆÈ‰º‰Šú‰»
+	//ä»¥ä¸‹åˆæœŸåŒ–
 }
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@‰Šú‰»
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€åˆæœŸåŒ–
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -315,16 +315,16 @@ void FldTornWorld_Init( FIELDSYS_WORK *fsys )
 	
 	gmc_torn = GIMMICKWORK_Get( gmc, FLD_GIMMICK_TORNWORLD );
 	memset( gmc_torn, 0, sizeof(FLD_TORNWORLD_WORK) );
-	//ƒ[ƒN‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	§ŒäƒrƒbƒgƒZƒbƒg
+ * @brief	åˆ¶å¾¡ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆ
  * 
- * @param	inBit				‘ÎÛƒrƒbƒg
- * @param	inVal				’l
- * @param	outData			ƒf[ƒ^
+ * @param	inBit				å¯¾è±¡ãƒ“ãƒƒãƒˆ
+ * @param	inVal				å€¤
+ * @param	outData			ãƒ‡ãƒ¼ã‚¿
  * 
  * @return	none
  */
@@ -332,7 +332,7 @@ void FldTornWorld_Init( FIELDSYS_WORK *fsys )
 static void SetBit(const u8 inBit, const u8 inVal, int *outData)
 {
 	int u,m,d;
-	GF_ASSERT((inVal<=1)&&"2ˆÈã‚Ì’l‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚·");
+	GF_ASSERT((inVal<=1)&&"2ä»¥ä¸Šã®å€¤ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã¾ã™");
 	
 	u = (*outData) & (0xffffffff<<(inBit+1));
 	d = (*outData) & (0xffffffff>>(32-inBit));
@@ -342,23 +342,23 @@ static void SetBit(const u8 inBit, const u8 inVal, int *outData)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒMƒ~ƒbƒNƒR[ƒh‚ªw’èID‚ÌƒR[ƒh‚Æ“¯ˆê‚©ƒ`ƒFƒbƒN
+ * @brief   ã‚®ãƒŸãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ãŒæŒ‡å®šIDã®ã‚³ãƒ¼ãƒ‰ã¨åŒä¸€ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   gimmick_id		ƒMƒ~ƒbƒNƒR[ƒh
+ * @param   gimmick_id		ã‚®ãƒŸãƒƒã‚¯ã‚³ãƒ¼ãƒ‰
  *
- * @retval  TRUE:ˆê’vB@FALSE:•sˆê’v
+ * @retval  TRUE:ä¸€è‡´ã€‚ã€€FALSE:ä¸ä¸€è‡´
  *
- * gym.c‚ğê—p‚ÌƒI[ƒo[ƒŒƒC—Ìˆæ(fieldmap_sub_gym)‚ÉˆÚ‚µ‚½ˆ×A
- * gym.c‚ÌŠÖ”‚ğŒÄ‚Ô‘O‚É‚±‚ê‚Åƒ`ƒFƒbƒN‚·‚é
+ * gym.cã‚’å°‚ç”¨ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸ(fieldmap_sub_gym)ã«ç§»ã—ãŸç‚ºã€
+ * gym.cã®é–¢æ•°ã‚’å‘¼ã¶å‰ã«ã“ã‚Œã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  */
 //--------------------------------------------------------------
 BOOL GYM_GimmickCodeCheck(FIELDSYS_WORK *fsys, int gimmick_id)
 {
 	GIMMICKWORK *work;
 	
-	//ƒMƒ~ƒbƒNƒ[ƒNæ“¾
+	//ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯å–å¾—
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
-	//ƒMƒ~ƒbƒNƒR[ƒh‚ğæ“¾
+	//ã‚®ãƒŸãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	if(gimmick_id == GIMMICKWORK_GetAssignID(work)){
 		return TRUE;
 	}

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	email_input.c
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	matsuda
- * @date	2007.10.19(‹à)
+ * @date	2007.10.19(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -45,15 +45,15 @@
 #include "savedata/config.h"
 #include "savedata/system_data.h"
 
-#include "../wifi_p2pmatch/wifip2pmatch.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "../wifi_p2pmatch/wifip2pmatch.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 //==============================================================================
 /**
- * $brief   ¢ŠEŒğŠ·“ü‚èŒû‰æ–Ê‰Šú‰»
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢åˆæœŸåŒ–
  *
  * @param   wk		
  * @param   seq		
@@ -67,7 +67,7 @@ PROC_RESULT EmailAddress_Init( PROC * proc, int * seq )
 	
 	esys = PROC_GetParentWork(proc);
 
-	//Eƒ[ƒ‹‰æ–Ê—pƒq[ƒvì¬
+	//Eãƒ¡ãƒ¼ãƒ«ç”»é¢ç”¨ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_EMAIL, 0x70000 );
 	
 	Email_Ascii_to_Strcode("matsuda@gamefreak.co.jp", Email_AddressStrbufGet(esys), HEAPID_EMAIL);
@@ -79,7 +79,7 @@ PROC_RESULT EmailAddress_Init( PROC * proc, int * seq )
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒğŠ·“ü‚èŒû‰æ–ÊƒƒCƒ“
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  * @param   seq		
@@ -95,7 +95,7 @@ PROC_RESULT EmailAddress_Main( PROC * proc, int * seq )
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒğŠ·“ü‚èŒû‰æ–ÊI—¹
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -108,7 +108,7 @@ PROC_RESULT EmailAddress_End(PROC *proc, int *seq)
 	EMAIL_SYSWORK *esys;
 
 	esys = PROC_GetParentWork(proc);
-	//ƒTƒuPROC‚ğƒŠƒXƒg‚É–ß‚·‚½‚ß‚ÉƒZƒbƒg
+	//ã‚µãƒ–PROCã‚’ãƒªã‚¹ãƒˆã«æˆ»ã™ãŸã‚ã«ã‚»ãƒƒãƒˆ
 	Email_SubProcessChange( esys, EMAIL_SUBPROC_MENU, 0 );
 
 

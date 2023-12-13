@@ -1,15 +1,15 @@
-/* system/clact_util*.c��ROM�w�b�_�[�p�萔 */
+/* system/clact_util*.cのROMヘッダー用定数 */
 enum{
-	// clact_util�\�[�X�œǂݍ��ރt�@�C���p
-	// �}���`�Z���t�@�C���A�}���`�Z���A�j���t�@�C���������Ƃ��Ɏw�肷��
+	// clact_utilソースで読み込むファイル用
+	// マルチセルファイル、マルチセルアニメファイルが無いときに指定する
 	n = 4294967295,		
-	// �e�w�b�_�[�̏I���R�[�h
+	// 各ヘッダーの終了コード
 	e = 4294967294,
-	// Vram�^�C�v
+	// Vramタイプ
 	VRAM_MAIN = 1,
 	VRAM_SUB = 2,
 	VRAM_DOUBLE = 3,
-	// TRUE�@FALSE
+	// TRUE　FALSE
 	TRUE = 1,
 	FALSE = 0,
 };

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>VCT_EnableEchoCancel</title>
 <LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
@@ -11,7 +11,7 @@
 <body>
 
 <h1 align="left">VCT_EnableEchoCancel</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -19,30 +19,30 @@
   <PRE><code>void VCT_EnableEchoCancel( BOOL flag );</code></PRE></dd> 
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%" height="17"><EM><STRONG>flag</STRONG></EM></TD>
-      <TD width="87%" height="17">TRUE�ŃG�R�[�L�����Z�����I���AFALSE�ŃI�t</TD>
+      <TD width="87%" height="17">TRUEでエコーキャンセルをオン、FALSEでオフ</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�</p>
+<h2>返り値</h2>
+<p>なし</p>
 
-<H2>����</H2>
-<p>�G�R�[�L�����Z���@�\����L���A�܂��͖����ɂ��܂��B�f�t�H���g�ł́A�����ɂȂ��Ă��܂��B</p>
-<p>�G�R�[�L�����Z���@�\�𗘗p����ۂ́A�ȉ��̓_�ɒ��ӂ��Ă��������B</p>
+<H2>説明</H2>
+<p>エコーキャンセル機能をを有効、または無効にします。デフォルトでは、無効になっています。</p>
+<p>エコーキャンセル機能を利用する際は、以下の点に注意してください。</p>
 <ul>
-<li>�}�C�N�̃Q�C����160db�Ƃ��Ă��������B
-<li>�����̍Đ���1ch�������p����悤�ɂ��Ă��������i<code><a href="VCT_ReceiveAudio.html">VCT_ReceiveAudio</a></code>�Ŏ擾�����f�[�^�𕡐��`�����l���ɃR�s�[���čĐ�������傫������悤�Ȃ��Ƃ͂��Ȃ��ł��������j�B
-<li><code><a href="VCT_Main.html">VCT_Main</a></code>�֐���<b>�K���P�s�N�`���[�t���[���ɂP��</b>�Ăяo���Ă��������B
+<li>マイクのゲインは160dbとしてください。
+<li>音声の再生は1chだけ利用するようにしてください（<code><a href="VCT_ReceiveAudio.html">VCT_ReceiveAudio</a></code>で取得したデータを複数チャンネルにコピーして再生音声を大きくするようなことはしないでください）。
+<li><code><a href="VCT_Main.html">VCT_Main</a></code>関数を<b>必ず１ピクチャーフレームに１回</b>呼び出してください。
 </ul>
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2006/08/31 ����
+2006/08/31 初版
 </P>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /**
  *	@file	nutmixer_def.h
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@’è”’è‹`
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€å®šæ•°å®šç¾©
  *	@author	Miyuki Iwasawa
  *	@date	06.04.06
  */
@@ -8,25 +8,25 @@
 #ifndef __H_NUTMIXER_DEF_H__
 #define __H_NUTMIXER_DEF_H__
 
-///ƒvƒŒƒCƒ‚[ƒh’è‹`
+///ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰å®šç¾©
 #define NUTMIXER_PLAY_LOCAL	(0)
 #define NUTMIXER_PLAY_COMM	(1)
 
-///ƒƒ“ƒo[”’è‹`
+///ãƒ¡ãƒ³ãƒãƒ¼æ•°å®šç¾©
 #define NUTMIXER_MEMBER_MAX	(4)
 
-///’ÊM“¯Šú‘Ò‚¿@ƒAƒ“ƒo[
+///é€šä¿¡åŒæœŸå¾…ã¡ã€€ã‚¢ãƒ³ãƒãƒ¼
 typedef enum{
-	SYNCHROID_NONE,				///<’ÊM“¯ŠúƒiƒV
-	SYNCHROID_BAG_END,			///<ƒoƒbƒNI—¹‘Ò‚¿
-	SYNCHROID_GAME_START,		///<ƒQ[ƒ€ŠJn
-	SYNCHROID_GAME_END,			///<ƒQ[ƒ€I—¹
+	SYNCHROID_NONE,				///<é€šä¿¡åŒæœŸãƒŠã‚·
+	SYNCHROID_BAG_END,			///<ãƒãƒƒã‚¯çµ‚äº†å¾…ã¡
+	SYNCHROID_GAME_START,		///<ã‚²ãƒ¼ãƒ é–‹å§‹
+	SYNCHROID_GAME_END,			///<ã‚²ãƒ¼ãƒ çµ‚äº†
 
-	SYNCHROID_PROC_END,			///<ƒvƒƒZƒX‚ÌI—¹
+	SYNCHROID_PROC_END,			///<ãƒ—ãƒ­ã‚»ã‚¹ã®çµ‚äº†
 };
 
 #ifdef PM_DEBUG
-///< AUTOƒ~ƒLƒT[ˆ—
+///< AUTOãƒŸã‚­ã‚µãƒ¼å‡¦ç†
 //#define DEBUG_NUTMIXER_AUTO	
 #endif
 

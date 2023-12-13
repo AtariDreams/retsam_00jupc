@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	debug_3d_draw_count.h
- * @brief	�f�o�b�O�p�`��֘A�J�E���g�i�|���S�����Ƃ��j
+ * @brief	デバッグ用描画関連カウント（ポリゴン数とか）
  */
 //=============================================================================================
 #ifdef PM_DEBUG
@@ -11,22 +11,22 @@
 
 #include <nitro.h>
 #include <nnsys.h>
-#define DEBUG_3DDRAW_COUNT	//�L���ɂ���ƃ|���S���`��̉񐔁A�`��Ăяo���̐����グ���s���܂�
+#define DEBUG_3DDRAW_COUNT	//有効にするとポリゴン描画の回数、描画呼び出しの数え上げを行います
 
-//----TextureVRAM�}�l�[�W���[�̊Ǘ��\���̂̓��C�u�������ɉB����Ă���̂ŃR�s�y���Ă��܂���
+//----TextureVRAMマネージャーの管理構造体はライブラリ内に隠されているのでコピペしてきました
 typedef struct 
 {
-    u32                         addr;       // �̈�J�n�A�h���X
-    u32                         szByte;     // �̈�T�C�Y(�[���͕s���ł�)
+    u32                         addr;       // 領域開始アドレス
+    u32                         szByte;     // 領域サイズ(ゼロは不正です)
     
-    u32        pBlkPrev;   // �O�̗̈�(�A�h���X�ʒu�I�Ȋ֘A�͂Ȃ�)
-    u32        pBlkNext;   // ���̗̈�(�A�h���X�ʒu�I�Ȋ֘A�͂Ȃ�)
+    u32        pBlkPrev;   // 前の領域(アドレス位置的な関連はない)
+    u32        pBlkNext;   // 次の領域(アドレス位置的な関連はない)
     
 }NNSiGfdLnkVramBlock;
 
 //------------------------------------------------------------------
 /**
- * 3D�`��̂��߂ɒ��ׂ����l��ޔ�
+ * 3D描画のために調べた数値を退避
  *
 */
 //------------------------------------------------------------------
@@ -34,39 +34,39 @@ extern void D_3D_DC_DrawPolygonCountUp(void);
 
 //------------------------------------------------------------------
 /**
- * NITROSYSTEM�ɓn�����|���S���̐���Ԃ�
+ * NITROSYSTEMに渡したポリゴンの数を返す
  *
- * @param	int �|���S����
+ * @param	int ポリゴン数
 */
 //------------------------------------------------------------------
 extern int D_3D_DC_DrawPolygonGet(void);
 
 //------------------------------------------------------------------
 /**
- * NITROSYSTEM�ɓn�������_�̐���Ԃ�
+ * NITROSYSTEMに渡した頂点の数を返す
  *
- * @param	int	���_��
+ * @param	int	頂点数
 */
 //------------------------------------------------------------------
 extern int D_3D_DC_DrawVertexGet(void);
 
 //------------------------------------------------------------------
 /**
- * NITROSYSTEM����|���S���`�悵���񐔂�Ԃ�
+ * NITROSYSTEMからポリゴン描画した回数を返す
  *
- * @return	int	�`�搔
+ * @return	int	描画数
 */
 //------------------------------------------------------------------
 extern int D_3D_DC_DrawNumGet(void);
 
 //==============================================================================
 /**
- * �����N�h�u�q�`�l�}�l�[�W���[�ƃp���b�g�}�l�[�W���[�̃|�C���^��ۑ�
+ * リンクドＶＲＡＭマネージャーとパレットマネージャーのポインタを保存
  *
- * @param   texp			�e�N�X�`���}�l�[�W���[
- * @param   palp			�p���b�g�}�l�[�W���[
- * @param	inTexBlock		�e�N�X�`���u���b�N�T�C�Y
- * @param	inPlttBlockSize	�p���b�g�u���b�N�T�C�Y
+ * @param   texp			テクスチャマネージャー
+ * @param   palp			パレットマネージャー
+ * @param	inTexBlock		テクスチャブロックサイズ
+ * @param	inPlttBlockSize	パレットブロックサイズ
  *
  * @retval  none		
  */
@@ -76,29 +76,29 @@ extern void D_3D_DC_VramManPSet(NNSiGfdLnkVramBlock *texp, NNSiGfdLnkVramBlock *
 
 //==============================================================================
 /**
- * VRAM�ւ̃e�N�X�`��]����Ԃ��擾����
+ * VRAMへのテクスチゃ転送状態を取得する
  *
  *
- * @retval  int		�g�p���Ă���u�q�`�l�e��
+ * @retval  int		使用しているＶＲＡＭ容量
  */
 //==============================================================================
 extern int  D_3D_DC_VramTexSizeGet(void);
 
 //==============================================================================
 /**
- * �����N�hPAL�}�l�[�W���[�̓]����Ԃ��擾����
+ * リンクドPALマネージャーの転送状態を取得する
  *
  *
- * @retval  int		�����N�hPAL�}�l�[�W���[�̓]���o�C�g��
+ * @retval  int		リンクドPALマネージャーの転送バイト数
  */
 //==============================================================================
 extern int  D_3D_DC_VramPalSizeGet(void);
 
 //==============================================================================
 /**
- * �J�E���g�A�b�v
+ * カウントアップ
  *
- * @param   object_p		�����_�[�n�a�i		
+ * @param   object_p		レンダーＯＢＪ		
  *
  * @retval  none
  */

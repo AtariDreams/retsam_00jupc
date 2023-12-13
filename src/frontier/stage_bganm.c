@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	stage_bg.c
- * @brief	ƒoƒgƒ‹ƒXƒe[ƒWFBGƒAƒjƒ
+ * @brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šBGã‚¢ãƒ‹ãƒ¡
  * @author	matsuda
- * @date	2007.08.07(‰Î)
+ * @date	2007.08.07(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -16,113 +16,113 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
-//	BGƒAƒjƒ
+//	BGã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
-///BGƒAƒjƒƒpƒ^[ƒ“”
+///BGã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°
 #define STAGE_BG_ANIME_PATTERN		(2)
-///ƒXƒNƒŠ[ƒ“ƒoƒCƒgƒTƒCƒY
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 #define STAGE_BG_SCREEN_SIZE		(0x1000)
-///ƒLƒƒƒ‰ƒNƒ^ƒoƒCƒgƒTƒCƒY
+///ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 #define STAGE_BG_CHAR_SIZE		(0x10000)
-///BGƒAƒjƒƒEƒFƒCƒg
+///BGã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 #define STAGE_BG_ANIME_WAIT			(12)
 
 //--------------------------------------------------------------
-//	ƒpƒŒƒbƒgƒAƒjƒ
+//	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
-///ƒpƒŒƒbƒgƒAƒjƒŠJŽnƒpƒŒƒbƒg”Ô†
+///ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡é–‹å§‹ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define PALANM_START_PALETTE		(5)
-///ƒpƒŒƒbƒgƒAƒjƒ‚ÌƒpƒŒƒbƒg–{”
+///ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°
 #define PALANM_PALETTE_NUM			(3)
-///ƒpƒŒƒbƒgƒAƒjƒƒEƒFƒCƒg
+///ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 #define PALANM_ANIME_WAIT			(8)
-///ƒpƒŒƒbƒg“]‘—ˆÊ’u
-#define PALANM_TRANS_POS			(6)	//ƒXƒNƒŠ[ƒ“‚ª6”ÔƒpƒŒƒbƒg‚Å•`‚©‚ê‚Ä‚¢‚é‚Ì‚Å
-///ƒpƒŒƒbƒgƒAƒjƒŠJŽn”Ô†
-#define PALANM_START_ANMNO			(2)	//ƒXƒNƒŠ[ƒ“‚ªPALANM_START_PALETTE‚ÅŽn‚Ü‚Á‚Ä‚¢‚È‚¢‚Ì‚Å
+///ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ä½ç½®
+#define PALANM_TRANS_POS			(6)	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒ6ç•ªãƒ‘ãƒ¬ãƒƒãƒˆã§æã‹ã‚Œã¦ã„ã‚‹ã®ã§
+///ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡é–‹å§‹ç•ªå·
+#define PALANM_START_ANMNO			(2)	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒPALANM_START_PALETTEã§å§‹ã¾ã£ã¦ã„ãªã„ã®ã§
 
 //--------------------------------------------------------------
-//	ƒ‰ƒXƒ^[
+//	ãƒ©ã‚¹ã‚¿ãƒ¼
 //--------------------------------------------------------------
-///ƒ‰ƒXƒ^[ŠJŽnƒ‰ƒCƒ“(YƒhƒbƒgˆÊ’u)
+///ãƒ©ã‚¹ã‚¿ãƒ¼é–‹å§‹ãƒ©ã‚¤ãƒ³(Yãƒ‰ãƒƒãƒˆä½ç½®)
 #define LASTER_START_LINE	(0x13 * 8 - 1)
-///ƒ‰ƒXƒ^[I—¹ƒ‰ƒCƒ“(YƒhƒbƒgˆÊ’u)
+///ãƒ©ã‚¹ã‚¿ãƒ¼çµ‚äº†ãƒ©ã‚¤ãƒ³(Yãƒ‰ãƒƒãƒˆä½ç½®)
 #define LASTER_END_LINE		(0x1d * 8 + 1)
 
-///ƒ‰ƒXƒ^[‰ÁŽZX’l(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒ©ã‚¹ã‚¿ãƒ¼åŠ ç®—Xå€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define LASTER_ADD_X		(0x0200)
-///Å‘åXˆÊ’u(‚±‚±‚Ü‚Å—ˆ‚½‚çÜ‚è•Ô‚µ)
+///æœ€å¤§Xä½ç½®(ã“ã“ã¾ã§æ¥ãŸã‚‰æŠ˜ã‚Šè¿”ã—)
 #define LASTER_MAX_X		(256 - 80)
-///Ü‚è•Ô‚µ’n“_‚É—ˆ‚Ä‚©‚çÄ“x“®‚«o‚·‚Ü‚Å‚ÌƒEƒFƒCƒg
+///æŠ˜ã‚Šè¿”ã—åœ°ç‚¹ã«æ¥ã¦ã‹ã‚‰å†åº¦å‹•ãå‡ºã™ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define LASTER_RETURN_WAIT	(0)
 
 //--------------------------------------------------------------
-//	”¼“§–¾
+//	åŠé€æ˜Ž
 //--------------------------------------------------------------
-///”¼“§–¾‘æ1‘ÎÛ–Ê
+///åŠé€æ˜Žç¬¬1å¯¾è±¡é¢
 #define STAGE_BLD_PLANE_1		(GX_BLEND_PLANEMASK_BG2)
-///”¼“§–¾‘æ2‘ÎÛ–Ê
+///åŠé€æ˜Žç¬¬2å¯¾è±¡é¢
 #define STAGE_BLD_PLANE_2		(GX_BLEND_BGALL | GX_BLEND_PLANEMASK_OBJ)
-///‘æ1‘ÎÛ–Ê‚É‘Î‚·‚éƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒOŒW”
+///ç¬¬1å¯¾è±¡é¢ã«å¯¾ã™ã‚‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¿‚æ•°
 #define STAGE_BLD_ALPHA_1		(8)
-///‘æ2‘ÎÛ–Ê‚É‘Î‚·‚éƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒOŒW”
+///ç¬¬2å¯¾è±¡é¢ã«å¯¾ã™ã‚‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¿‚æ•°
 #define STAGE_BLD_ALPHA_2		(9)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///BGƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN
+///BGã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯
 typedef struct _STAGE_BGANM_WORK{
-	TCB_PTR tcb;				///<§Œäƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	TCB_PTR tcb;				///<åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	GF_BGL_INI *bgl;
-	u16 scrn[STAGE_BG_ANIME_PATTERN][STAGE_BG_SCREEN_SIZE / 2];	///<“]‘—ƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	u8 charcter[STAGE_BG_ANIME_PATTERN][STAGE_BG_CHAR_SIZE];	///<“]‘—ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-	u8 wait;					///<ƒAƒjƒƒEƒFƒCƒg
-	u8 work_no;					///<“]‘—‚·‚éƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚Ì”Ô†
+	u16 scrn[STAGE_BG_ANIME_PATTERN][STAGE_BG_SCREEN_SIZE / 2];	///<è»¢é€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u8 charcter[STAGE_BG_ANIME_PATTERN][STAGE_BG_CHAR_SIZE];	///<è»¢é€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	u8 wait;					///<ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
+	u8 work_no;					///<è»¢é€ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã®ç•ªå·
 }STAGE_BGANM_WORK;
 
-///ƒpƒŒƒbƒgƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN
+///ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	TCB_PTR tcb;				///<§Œäƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	PALETTE_FADE_PTR pfd;		///<PFD‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u16 palette[PALANM_PALETTE_NUM][16];	///<ƒpƒŒƒbƒgƒoƒbƒtƒ@
-	u8 anm_no;					///<ƒAƒjƒ[ƒVƒ‡ƒ“”Ô†
-	u8 wait;					///<ƒAƒjƒƒEƒFƒCƒg
+	TCB_PTR tcb;				///<åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	PALETTE_FADE_PTR pfd;		///<PFDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u16 palette[PALANM_PALETTE_NUM][16];	///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡
+	u8 anm_no;					///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·
+	u8 wait;					///<ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 }STAGE_PALANM_WORK;
 
-///ƒ‰ƒXƒ^[ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN
+///ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	TCB_PTR tcb;				///<§Œäƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TCB_PTR v_tcb;				///<Vƒuƒ‰ƒ“ƒN§Œäƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	GF_BGL_INI *bgl;			///<BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int default_x;				///<ƒ‰ƒXƒ^[‚µ‚È‚¢ó‘Ô‚ÌXÀ•W
-	int calc_x;					///<ƒ‰ƒXƒ^[XÀ•WŒvŽZ—Ìˆæ
-	int set_x;					///<ƒ‰ƒXƒ^[‚ÅƒZƒbƒg‚·‚éXÀ•W
-	u8 move_seq;				///<ƒV[ƒPƒ“ƒX”Ô†
-	u8 wait;					///<ƒEƒFƒCƒg
-	u8 init;					///<1‰ñˆÈãƒRƒ“ƒgƒ[ƒ‹ƒ^ƒXƒN‚ªŽÀs‚³‚ê‚½
+	TCB_PTR tcb;				///<åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR v_tcb;				///<Vãƒ–ãƒ©ãƒ³ã‚¯åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	GF_BGL_INI *bgl;			///<BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int default_x;				///<ãƒ©ã‚¹ã‚¿ãƒ¼ã—ãªã„çŠ¶æ…‹ã®Xåº§æ¨™
+	int calc_x;					///<ãƒ©ã‚¹ã‚¿ãƒ¼Xåº§æ¨™è¨ˆç®—é ˜åŸŸ
+	int set_x;					///<ãƒ©ã‚¹ã‚¿ãƒ¼ã§ã‚»ãƒƒãƒˆã™ã‚‹Xåº§æ¨™
+	u8 move_seq;				///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u8 wait;					///<ã‚¦ã‚§ã‚¤ãƒˆ
+	u8 init;					///<1å›žä»¥ä¸Šã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯ãŒå®Ÿè¡Œã•ã‚ŒãŸ
 }STAGE_LASTER_WORK;
 
 //--------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒXƒe[ƒWƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN
+ *	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 typedef struct _STAGE_ANIMATION_WORK{
-	STAGE_BGANM_WORK *bganm;		///<BGƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN
-	STAGE_PALANM_WORK *palanm;	///<ƒpƒŒƒbƒgƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN
-	STAGE_LASTER_WORK *laster;	///<ƒ‰ƒXƒ^[ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN
+	STAGE_BGANM_WORK *bganm;		///<BGã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯
+	STAGE_PALANM_WORK *palanm;	///<ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯
+	STAGE_LASTER_WORK *laster;	///<ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯
 }STAGE_ANIMATION_WORK;
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ƒXƒNƒŠ[ƒ““]‘—ƒAƒjƒ‚ÌƒXƒNƒŠ[ƒ“ƒA[ƒJƒCƒuID
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ã‚¢ãƒ‹ãƒ¡ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 static const u16 AnimeScreenIndex[] = {
 	BS_STAGE_01_A_NSCR_BIN,
 	BS_STAGE_02_A_NSCR_BIN,
@@ -130,7 +130,7 @@ static const u16 AnimeScreenIndex[] = {
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static STAGE_BGANM_WORK * StageBGAnime_Init(GF_BGL_INI *bgl);
 static void StageBGAnime_End(STAGE_BGANM_WORK *sbw);
@@ -154,12 +154,12 @@ static void StageLaster_HBlank(void *work);
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWFƒAƒjƒ[ƒVƒ‡ƒ“ƒVƒXƒeƒ€ì¬
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- * @param   bgl		BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pfd		PFD‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pfd		PFDã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ƒXƒe[ƒWƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 STAGE_ANIMATION_WORK_PTR StageAnimation_Init(GF_BGL_INI *bgl, PALETTE_FADE_PTR pfd)
@@ -173,7 +173,7 @@ STAGE_ANIMATION_WORK_PTR StageAnimation_Init(GF_BGL_INI *bgl, PALETTE_FADE_PTR p
 	anmsys->palanm = StagePaletteAnime_Init(pfd);
 //	anmsys->laster = StageLasterAnime_Init(bgl);
 
-	//ƒuƒŒƒ“ƒhÝ’è
+	//ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®š
 	G2_SetBlendAlpha(STAGE_BLD_PLANE_1, STAGE_BLD_PLANE_2, STAGE_BLD_ALPHA_1, STAGE_BLD_ALPHA_2);
 	
 	return anmsys;
@@ -181,9 +181,9 @@ STAGE_ANIMATION_WORK_PTR StageAnimation_Init(GF_BGL_INI *bgl, PALETTE_FADE_PTR p
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWFƒAƒjƒ[ƒVƒ‡ƒ“ƒVƒXƒeƒ€I—¹
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
  *
- * @param   anmsys		ƒXƒe[ƒWƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param   anmsys		ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void StageAnimation_End(STAGE_ANIMATION_WORK_PTR anmsys)
@@ -197,15 +197,15 @@ void StageAnimation_End(STAGE_ANIMATION_WORK_PTR anmsys)
 
 
 //==============================================================================
-//	BGƒAƒjƒ
+//	BGã‚¢ãƒ‹ãƒ¡
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWBGƒAƒjƒƒVƒXƒeƒ€ì¬
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸BGã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- * @param   bgl				BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl				BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BGƒAƒjƒ§Œäƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  BGã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static STAGE_BGANM_WORK * StageBGAnime_Init(GF_BGL_INI *bgl)
@@ -218,7 +218,7 @@ static STAGE_BGANM_WORK * StageBGAnime_Init(GF_BGL_INI *bgl)
 	MI_CpuClear8(sbw, sizeof(STAGE_BGANM_WORK));
 	sbw->bgl = bgl;
 	
-	//ƒXƒNƒŠ[ƒ““]‘—ƒAƒjƒ‚Ì€”õ
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ã‚¢ãƒ‹ãƒ¡ã®æº–å‚™
 	{
 		ARCHANDLE* hdl_bg;
 		void* arc_data;
@@ -235,7 +235,7 @@ static STAGE_BGANM_WORK * StageBGAnime_Init(GF_BGL_INI *bgl)
 		ArchiveDataHandleClose( hdl_bg );
 	}
 
-	//ƒLƒƒƒ‰ƒNƒ^“]‘—ƒAƒjƒ‚Ì€”õ
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€ã‚¢ãƒ‹ãƒ¡ã®æº–å‚™
 	{
 		ARCHANDLE *hdl_bg;
 		void *arc_data;
@@ -256,7 +256,7 @@ static STAGE_BGANM_WORK * StageBGAnime_Init(GF_BGL_INI *bgl)
 		ArchiveDataHandleClose(hdl_bg);
 	}
 
-	//ƒXƒNƒŠ[ƒ““]‘—ƒAƒjƒŠÇ—ƒ^ƒXƒNAdd
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ã‚¢ãƒ‹ãƒ¡ç®¡ç†ã‚¿ã‚¹ã‚¯Add
 	sbw->tcb = TCB_Add(StageBG_AnimeControl, sbw, TCBPRI_STAGE_BGANIME_CONTROL);
 	
 	return sbw;
@@ -264,9 +264,9 @@ static STAGE_BGANM_WORK * StageBGAnime_Init(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWBGƒAƒjƒƒVƒXƒeƒ€I—¹
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸BGã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
  *
- * @param   sbw		BGƒAƒjƒ§Œäƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sbw		BGã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void StageBGAnime_End(STAGE_BGANM_WORK *sbw)
@@ -277,10 +277,10 @@ static void StageBGAnime_End(STAGE_BGANM_WORK *sbw)
 
 //--------------------------------------------------------------
 /**
- * @brief   BGƒAƒjƒƒRƒ“ƒgƒ[ƒ‹ƒ^ƒXƒN
+ * @brief   BGã‚¢ãƒ‹ãƒ¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		STAGE_BGANM_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		STAGE_BGANM_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void StageBG_AnimeControl(TCB_PTR tcb, void *work)
@@ -306,15 +306,15 @@ static void StageBG_AnimeControl(TCB_PTR tcb, void *work)
 
 
 //==============================================================================
-//	ƒpƒŒƒbƒgƒAƒjƒ
+//	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWƒpƒŒƒbƒgƒAƒjƒƒVƒXƒeƒ€ì¬
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- * @param   pfd				PFD‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pfd				PFDã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ƒpƒŒƒbƒgƒAƒjƒ§Œäƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static STAGE_PALANM_WORK * StagePaletteAnime_Init(PALETTE_FADE_PTR pfd)
@@ -326,7 +326,7 @@ static STAGE_PALANM_WORK * StagePaletteAnime_Init(PALETTE_FADE_PTR pfd)
 	pw->pfd = pfd;
 	pw->anm_no = PALANM_START_ANMNO;
 	
-	//ƒpƒŒƒbƒg‚ðƒoƒbƒtƒ@‚ÉƒRƒs[
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
 	{
 		u16 *src_pal;
 		src_pal = PaletteWorkDefaultWorkGet(pfd, FADE_MAIN_BG);
@@ -334,7 +334,7 @@ static STAGE_PALANM_WORK * StagePaletteAnime_Init(PALETTE_FADE_PTR pfd)
 			pw->palette, PALANM_PALETTE_NUM * 16 * sizeof(u16));
 	}
 	
-	//ƒpƒŒƒbƒgƒAƒjƒŠÇ—ƒ^ƒXƒNAdd
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ç®¡ç†ã‚¿ã‚¹ã‚¯Add
 	pw->tcb = TCB_Add(StagePalette_AnimeControl, pw, TCBPRI_STAGE_PALANIME_CONTROL);
 	
 	return pw;
@@ -342,9 +342,9 @@ static STAGE_PALANM_WORK * StagePaletteAnime_Init(PALETTE_FADE_PTR pfd)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWBGƒAƒjƒƒVƒXƒeƒ€I—¹
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸BGã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
  *
- * @param   pw		BGƒAƒjƒ§Œäƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pw		BGã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void StagePaletteAnime_End(STAGE_PALANM_WORK *pw)
@@ -355,10 +355,10 @@ static void StagePaletteAnime_End(STAGE_PALANM_WORK *pw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒŒƒbƒgƒAƒjƒƒRƒ“ƒgƒ[ƒ‹ƒ^ƒXƒN
+ * @brief   ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		STAGE_PALANM_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		STAGE_PALANM_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void StagePalette_AnimeControl(TCB_PTR tcb, void *work)
@@ -380,15 +380,15 @@ static void StagePalette_AnimeControl(TCB_PTR tcb, void *work)
 
 
 //==============================================================================
-//	ƒ‰ƒXƒ^[ƒAƒjƒ
+//	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWƒ‰ƒXƒ^[ƒAƒjƒƒVƒXƒeƒ€ì¬
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- * @param   bgl				BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl				BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ƒ‰ƒXƒ^[ƒAƒjƒ§Œäƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static STAGE_LASTER_WORK * StageLasterAnime_Init(GF_BGL_INI *bgl)
@@ -410,9 +410,9 @@ static STAGE_LASTER_WORK * StageLasterAnime_Init(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWƒ‰ƒXƒ^[ƒAƒjƒƒVƒXƒeƒ€I—¹
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
  *
- * @param   laster		ƒ‰ƒXƒ^[ƒAƒjƒ§Œäƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param   laster		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void StageLasterAnime_End(STAGE_LASTER_WORK *laster)
@@ -420,22 +420,22 @@ static void StageLasterAnime_End(STAGE_LASTER_WORK *laster)
 	TCB_Delete(laster->tcb);
 	TCB_Delete(laster->v_tcb);
 	sys_FreeMemoryEz(laster);
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒWFƒ‰ƒXƒ^[ƒAƒjƒ§Œäƒ^ƒXƒN
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		STAGE_LASTER_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		STAGE_LASTER_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void StageLaster_AnimeControl(TCB_PTR tcb, void *work)
 {
 	STAGE_LASTER_WORK *laster = work;
 	
-	//ƒ‰ƒXƒ^[XÀ•WŒvŽZ
+	//ãƒ©ã‚¹ã‚¿ãƒ¼Xåº§æ¨™è¨ˆç®—
 	{
 		enum{
 			SEQ_MOVE,
@@ -478,12 +478,12 @@ static void StageLaster_AnimeControl(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ‰ƒXƒ^[ƒAƒjƒVƒuƒ‰ƒ“ƒNƒ^ƒXƒN
+ * @brief   ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡Vãƒ–ãƒ©ãƒ³ã‚¯ã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		STAGE_LASTER_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		STAGE_LASTER_WORKæ§‹é€ ä½“
  *
- * ¦Vƒuƒ‰ƒ“ƒNƒ^ƒXƒN
+ * â€»Vãƒ–ãƒ©ãƒ³ã‚¯ã‚¿ã‚¹ã‚¯
  */
 //--------------------------------------------------------------
 static void StageLaster_VIntrTCB(TCB_PTR tcb, void *work)
@@ -495,7 +495,7 @@ static void StageLaster_VIntrTCB(TCB_PTR tcb, void *work)
 	laster->default_x = 0;//GF_BGL_ScrollGetX(laster->bgl, FRMAP_FRAME_EFF);
 	laster->set_x = -(laster->calc_x >> 8);
 	
-	//ƒ‰ƒXƒ^[ŠJŽnƒ‰ƒCƒ“‚ª‰æ–Êã•”‚És‚Á‚Ä‚¢‚éê‡‚Ìˆ—
+	//ãƒ©ã‚¹ã‚¿ãƒ¼é–‹å§‹ãƒ©ã‚¤ãƒ³ãŒç”»é¢ä¸Šéƒ¨ã«è¡Œã£ã¦ã„ã‚‹å ´åˆã®å‡¦ç†
 	scr_y = GF_BGL_ScrollGetY(laster->bgl, FRMAP_FRAME_EFF);
 	start = LASTER_START_LINE - scr_y;
 	end = LASTER_END_LINE - scr_y;
@@ -509,9 +509,9 @@ static void StageLaster_VIntrTCB(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ‰ƒXƒ^[ƒAƒjƒFHƒuƒ‰ƒ“ƒN‚Å‚ÌƒXƒNƒ[ƒ‹À•WÝ’è
+ * @brief   ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ï¼šHãƒ–ãƒ©ãƒ³ã‚¯ã§ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™è¨­å®š
  *
- * @param   work		STAGE_LASTER_WORK\‘¢‘Ì
+ * @param   work		STAGE_LASTER_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void StageLaster_HBlank(void *work)
@@ -521,7 +521,7 @@ static void StageLaster_HBlank(void *work)
 	int scr_y, start, end;
 	
 	if(laster->init == 0){
-		return;	//‚Ü‚¾ƒRƒ“ƒgƒ[ƒ‹ƒ^ƒXƒN‚ªˆê“x‚àŽÀs‚³‚ê‚Ä‚¢‚È‚¢
+		return;	//ã¾ã ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯ãŒä¸€åº¦ã‚‚å®Ÿè¡Œã•ã‚Œã¦ã„ãªã„
 	}
 	
 	v_count = GX_GetVCount();

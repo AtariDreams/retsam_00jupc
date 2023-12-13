@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_seq_def.h
- * @brief	ƒtƒƒ“ƒeƒBƒA—pƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒh‚Ìƒ}ƒNƒ’è‹`ƒtƒ@ƒCƒ‹
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ã®ãƒžã‚¯ãƒ­å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	matsuda
- * @date	2007.03.28(…)
+ * @date	2007.03.28(æ°´)
  */
 //==============================================================================
 
@@ -24,7 +24,7 @@
 #define __ASM_ONLY_INC_
 	.include	"../fs_usescript.h"
 
-//ƒf[ƒ^‚ðŽ©‘R‚È‹«ŠE‚ÉƒAƒ‰ƒCƒ“‚·‚é‚©‚ÌÝ’è
+//ãƒ‡ãƒ¼ã‚¿ã‚’è‡ªç„¶ãªå¢ƒç•Œã«ã‚¢ãƒ©ã‚¤ãƒ³ã™ã‚‹ã‹ã®è¨­å®š
 	.option alignment off
 
 	.macro	INIT_CMD
@@ -36,7 +36,7 @@ DEF_CMD_COUNT	=	0
 DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
-//–½—ßƒVƒ“ƒ{ƒ‹éŒ¾
+//å‘½ä»¤ã‚·ãƒ³ãƒœãƒ«å®£è¨€
 	INIT_CMD
 	DEF_CMD	FR_DUMMY
 	DEF_CMD	FR_END
@@ -99,8 +99,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	FR_ABKEY_WAIT
 	DEF_CMD	FR_ABKEY_TIMEWAIT
 	DEF_CMD	FR_LOSE_CHECK
-	DEF_CMD	FR_SAVE_EVENT_WORK_SET			//ƒZ[ƒuƒ[ƒN‚É’l‚ðƒZƒbƒg
-	DEF_CMD	FR_SAVE_EVENT_WORK_GET			//ƒZ[ƒuƒ[ƒN‚Ì’l‚ðŽæ“¾
+	DEF_CMD	FR_SAVE_EVENT_WORK_SET			//ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’ã‚»ãƒƒãƒˆ
+	DEF_CMD	FR_SAVE_EVENT_WORK_GET			//ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’å–å¾—
 	DEF_CMD FR_ENCOUNT_EFFECT
 	DEF_CMD FR_GET_MINE_OBJ
 	DEF_CMD FR_PARTICLE_SPA_LOAD
@@ -119,14 +119,14 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD FR_WND_SET
 	DEF_CMD FR_WND_WAIT
 	
-	//CPƒEƒBƒ“ƒhƒE
+	//CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	DEF_CMD	FR_CP_WIN_WRITE
 	DEF_CMD	FR_CP_WIN_DEL
 	DEF_CMD	FR_CP_WRITE
-	//OBJ“®ìƒR[ƒh
+	//OBJå‹•ä½œã‚³ãƒ¼ãƒ‰
 	DEF_CMD FR_OBJMOVE_RESET
 	DEF_CMD FR_OBJMOVE_KYORO
-	//ƒTƒEƒ“ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰
 	DEF_CMD	FR_SE_PLAY
 	DEF_CMD	FR_SE_STOP
 	DEF_CMD	FR_SE_WAIT
@@ -134,24 +134,24 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	FR_ME_WAIT
 	DEF_CMD	FR_BGM_PLAY
 	DEF_CMD	FR_BGM_STOP
-	//ƒtƒ@ƒNƒgƒŠ[	
-	DEF_CMD	FR_FACTORY_WORK_ALLOC		//ƒ[ƒNŠm•Û
-	DEF_CMD	FR_FACTORY_WORK_INIT		//ƒ[ƒN‰Šú‰»
-	DEF_CMD	FR_FACTORY_WORK_FREE		//ƒ[ƒNŠJ•ú
-	DEF_CMD	FR_FACTORY_RENTAL_CALL		//ƒtƒ@ƒNƒgƒŠ[ƒŒƒ“ƒ^ƒ‹ŒÄ‚Ño‚µ
-	DEF_CMD	FR_FACTORY_CALL_GET_RESULT	//ƒtƒ@ƒNƒgƒŠ[ŒÄ‚Ño‚µŒ‹‰ÊŽæ“¾
-	DEF_CMD	FR_FACTORY_BATTLE_CALL		//ƒtƒ@ƒNƒgƒŠ[í“¬ŒÄ‚Ño‚µ
-	DEF_CMD	FR_FACTORY_TRADE_CALL		//ƒtƒ@ƒNƒgƒŠ[ŒðŠ·ŒÄ‚Ño‚µ
-	DEF_CMD	FR_FACTORY_RENTAL_PARTY_SET			//ƒtƒ@ƒNƒgƒŠ[ƒŒƒ“ƒ^ƒ‹POKEPARTY‚ÌƒZƒbƒg
-	DEF_CMD	FR_FACTORY_BTL_AFTER_PARTY_SET		//ƒtƒ@ƒNƒgƒŠ[í“¬Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
-	DEF_CMD	FR_FACTORY_TRADE_POKE_CHANGE		//ƒtƒ@ƒNƒgƒŠ[ƒgƒŒ[ƒhŒã‚Ìƒ|ƒPƒ‚ƒ“•ÏX
-	DEF_CMD	FR_FACTORY_TRADE_AFTER_PARTY_SET	//ƒtƒ@ƒNƒgƒŠ[ƒgƒŒ[ƒhŒã‚ÌPOKEPARTY‚ÌƒZƒbƒg
-	DEF_CMD	FR_FACTORY_TOOL				//ƒtƒ@ƒNƒgƒŠ[FACTORY_SCRWORK‚Ì‘€ì
-	DEF_CMD	FR_FACTORY_LOSE_CHECK		//ƒtƒ@ƒNƒgƒŠ[”s–kƒ`ƒFƒbƒN
-	DEF_CMD	FR_FACTORY_SEND_BUF				//ƒtƒ@ƒNƒgƒŠ[’ÊMsend_buf
-	DEF_CMD	FR_FACTORY_RECV_BUF				//ƒtƒ@ƒNƒgƒŠ[’ÊMrecv_buf
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼	
+	DEF_CMD	FR_FACTORY_WORK_ALLOC		//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+	DEF_CMD	FR_FACTORY_WORK_INIT		//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+	DEF_CMD	FR_FACTORY_WORK_FREE		//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
+	DEF_CMD	FR_FACTORY_RENTAL_CALL		//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¬ãƒ³ã‚¿ãƒ«å‘¼ã³å‡ºã—
+	DEF_CMD	FR_FACTORY_CALL_GET_RESULT	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å‘¼ã³å‡ºã—çµæžœå–å¾—
+	DEF_CMD	FR_FACTORY_BATTLE_CALL		//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼æˆ¦é—˜å‘¼ã³å‡ºã—
+	DEF_CMD	FR_FACTORY_TRADE_CALL		//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼äº¤æ›å‘¼ã³å‡ºã—
+	DEF_CMD	FR_FACTORY_RENTAL_PARTY_SET			//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¬ãƒ³ã‚¿ãƒ«POKEPARTYã®ã‚»ãƒƒãƒˆ
+	DEF_CMD	FR_FACTORY_BTL_AFTER_PARTY_SET		//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼æˆ¦é—˜å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
+	DEF_CMD	FR_FACTORY_TRADE_POKE_CHANGE		//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒˆãƒ¬ãƒ¼ãƒ‰å¾Œã®ãƒã‚±ãƒ¢ãƒ³å¤‰æ›´
+	DEF_CMD	FR_FACTORY_TRADE_AFTER_PARTY_SET	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒˆãƒ¬ãƒ¼ãƒ‰å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
+	DEF_CMD	FR_FACTORY_TOOL				//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼FACTORY_SCRWORKã®æ“ä½œ
+	DEF_CMD	FR_FACTORY_LOSE_CHECK		//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼æ•—åŒ—ãƒã‚§ãƒƒã‚¯
+	DEF_CMD	FR_FACTORY_SEND_BUF				//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼é€šä¿¡send_buf
+	DEF_CMD	FR_FACTORY_RECV_BUF				//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼é€šä¿¡recv_buf
 	DEF_CMD	FR_FACTORY_APPEAR_MSG
-	//˜^‰æ
+	//éŒ²ç”»
 	DEF_CMD	FR_BATTLE_REC_INIT
 	DEF_CMD	FR_BATTLE_REC_SAVE
 	DEF_CMD	FR_BATTLE_REC_LOAD
@@ -159,7 +159,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	FR_BATTLE_REC_DATA_OCC_CHECK
 	DEF_CMD	FR_BATTLE_REC_SERVER_VER_CHK
 
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 	DEF_CMD	FR_REPORT_SAVE
 	DEF_CMD	FR_REPORT_DIV_SAVE
 	DEF_CMD	FR_EXTRA_SAVE_INIT
@@ -167,7 +167,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	FR_STAGE_RENSHOU_COPY_EXTRA
 	DEF_CMD FR_WAITICON_ADD
 	DEF_CMD FR_WAITICON_DEL
-	//ƒ[ƒhƒZƒbƒg
+	//ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 	DEF_CMD	FR_ITEM_NAME
 	DEF_CMD	FR_NUMBER_NAME
 	DEF_CMD	FR_PLAYER_NAME
@@ -176,83 +176,83 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	FR_POKEMON_NAME_EXTRA
 	DEF_CMD	FR_TYPE_NAME
 	DEF_CMD	FR_RIVAL_NAME
-	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒg
+	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆ
 	DEF_CMD	FR_GET_BTL_POINT
 	DEF_CMD	FR_BTL_POINT_ADD
 	DEF_CMD	FR_BTL_POINT_SUB
-	//ƒoƒgƒ‹ƒ^ƒ[
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 	DEF_CMD	FR_BTOWER_TOOLS
 	DEF_CMD	FR_BTOWER_APPEAR_MSG
-	DEF_CMD	FR_BTOWER_WORK_RELEASE		//ƒoƒgƒ‹ƒ^ƒ[ƒ[ƒN‰ð•ú
+	DEF_CMD	FR_BTOWER_WORK_RELEASE		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	DEF_CMD	FR_BTOWER_BATTLE_CALL
-	DEF_CMD	FR_BTOWER_CALL_GET_RESULT	//ƒoƒgƒ‹ƒ^ƒ[ŒÄ‚Ño‚µŒ‹‰ÊŽæ“¾
-	DEF_CMD	FR_BTOWER_SEND_BUF			//ƒoƒgƒ‹ƒ^ƒ[”Ä—pƒf[ƒ^‘—M
-	DEF_CMD	FR_BTOWER_RECV_BUF			//ƒoƒgƒ‹ƒ^ƒ[”Ä—pƒf[ƒ^ŽóM
-	//ƒXƒe[ƒW
-	DEF_CMD	FR_STAGE_WORK_ALLOC			//ƒ[ƒNŠm•Û
-	DEF_CMD	FR_STAGE_WORK_ENEMY_SET		//“GƒgƒŒ[ƒi[A“Gƒ|ƒPƒ‚ƒ“ƒZƒbƒg
-	DEF_CMD	FR_STAGE_WORK_FREE			//ƒ[ƒNŠJ•ú
-	DEF_CMD	FR_STAGE_POKE_TYPE_SEL_CALL	//ƒXƒe[ƒWƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‘I‘ð‰æ–ÊŒÄ‚Ño‚µ
-	DEF_CMD	FR_STAGE_CALL_GET_RESULT	//ƒXƒe[ƒWŒÄ‚Ño‚µŒ‹‰ÊŽæ“¾
-	DEF_CMD	FR_STAGE_BATTLE_CALL		//ƒXƒe[ƒWí“¬ŒÄ‚Ño‚µ
-	DEF_CMD	FR_STAGE_TOOL				//ƒXƒe[ƒWFACTORY_SCRWORK‚Ì‘€ì
-	DEF_CMD	FR_STAGE_LOSE_CHECK			//ƒXƒe[ƒW”s–kƒ`ƒFƒbƒN
-	DEF_CMD	FR_STAGE_SEND_BUF			//ƒXƒe[ƒW’ÊMsend_buf
-	DEF_CMD	FR_STAGE_RECV_BUF			//ƒXƒe[ƒW’ÊMrecv_buf
+	DEF_CMD	FR_BTOWER_CALL_GET_RESULT	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‘¼ã³å‡ºã—çµæžœå–å¾—
+	DEF_CMD	FR_BTOWER_SEND_BUF			//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æ±Žç”¨ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	DEF_CMD	FR_BTOWER_RECV_BUF			//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æ±Žç”¨ãƒ‡ãƒ¼ã‚¿å—ä¿¡
+	//ã‚¹ãƒ†ãƒ¼ã‚¸
+	DEF_CMD	FR_STAGE_WORK_ALLOC			//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+	DEF_CMD	FR_STAGE_WORK_ENEMY_SET		//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€æ•µãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
+	DEF_CMD	FR_STAGE_WORK_FREE			//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
+	DEF_CMD	FR_STAGE_POKE_TYPE_SEL_CALL	//ã‚¹ãƒ†ãƒ¼ã‚¸ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—é¸æŠžç”»é¢å‘¼ã³å‡ºã—
+	DEF_CMD	FR_STAGE_CALL_GET_RESULT	//ã‚¹ãƒ†ãƒ¼ã‚¸å‘¼ã³å‡ºã—çµæžœå–å¾—
+	DEF_CMD	FR_STAGE_BATTLE_CALL		//ã‚¹ãƒ†ãƒ¼ã‚¸æˆ¦é—˜å‘¼ã³å‡ºã—
+	DEF_CMD	FR_STAGE_TOOL				//ã‚¹ãƒ†ãƒ¼ã‚¸FACTORY_SCRWORKã®æ“ä½œ
+	DEF_CMD	FR_STAGE_LOSE_CHECK			//ã‚¹ãƒ†ãƒ¼ã‚¸æ•—åŒ—ãƒã‚§ãƒƒã‚¯
+	DEF_CMD	FR_STAGE_SEND_BUF			//ã‚¹ãƒ†ãƒ¼ã‚¸é€šä¿¡send_buf
+	DEF_CMD	FR_STAGE_RECV_BUF			//ã‚¹ãƒ†ãƒ¼ã‚¸é€šä¿¡recv_buf
 	DEF_CMD	FR_STAGE_APPEAR_MSG
 	//
 	DEF_CMD	FR_DEBUG_PRINT
-	//ƒLƒƒƒbƒXƒ‹
-	DEF_CMD	FR_CASTLE_WORK_ALLOC		//ƒ[ƒNŠm•Û
-	DEF_CMD	FR_CASTLE_WORK_INIT			//ƒ[ƒN‰Šú‰»
-	DEF_CMD	FR_CASTLE_WORK_FREE			//ƒ[ƒNŠJ•ú
-	DEF_CMD	FR_CASTLE_MINE_CALL			//ŽèŽ‚¿‰æ–ÊŒÄ‚Ño‚µ
-	DEF_CMD	FR_CASTLE_CALL_GET_RESULT	//ƒLƒƒƒbƒXƒ‹ŒÄ‚Ño‚µŒ‹‰ÊŽæ“¾
-	DEF_CMD	FR_CASTLE_BATTLE_CALL		//ƒLƒƒƒbƒXƒ‹í“¬ŒÄ‚Ño‚µ
-	DEF_CMD	FR_CASTLE_ENEMY_CALL		//“GƒgƒŒ[ƒi[ŒÄ‚Ño‚µ
-	DEF_CMD	FR_CASTLE_BTL_BEFORE_PARTY_SET	//ƒLƒƒƒbƒXƒ‹í“¬‘O‚ÌPOKEPARTY‚ÌƒZƒbƒg
-	DEF_CMD	FR_CASTLE_BTL_AFTER_PARTY_SET	//ƒLƒƒƒbƒXƒ‹í“¬Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
-	DEF_CMD	FR_CASTLE_TOOL				//ƒLƒƒƒbƒXƒ‹CASTLE_SCRWORK‚Ì‘€ì
-	DEF_CMD	FR_CASTLE_LOSE_CHECK		//ƒLƒƒƒbƒXƒ‹”s–kƒ`ƒFƒbƒN
-	DEF_CMD	FR_CASTLE_SEND_BUF				//ƒLƒƒƒbƒXƒ‹’ÊMsend_buf
-	DEF_CMD	FR_CASTLE_RECV_BUF				//ƒLƒƒƒbƒXƒ‹’ÊMrecv_buf
-	DEF_CMD	FR_CASTLE_RANKUP_CALL		//ƒ‰ƒ“ƒNƒAƒbƒvŒÄ‚Ño‚µ
-	DEF_CMD	FR_CASTLE_PARENT_CHECK_WAIT		//e‚ÌŒˆ’è‘Ò‚¿
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+	DEF_CMD	FR_CASTLE_WORK_ALLOC		//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+	DEF_CMD	FR_CASTLE_WORK_INIT			//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+	DEF_CMD	FR_CASTLE_WORK_FREE			//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
+	DEF_CMD	FR_CASTLE_MINE_CALL			//æ‰‹æŒã¡ç”»é¢å‘¼ã³å‡ºã—
+	DEF_CMD	FR_CASTLE_CALL_GET_RESULT	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«å‘¼ã³å‡ºã—çµæžœå–å¾—
+	DEF_CMD	FR_CASTLE_BATTLE_CALL		//ã‚­ãƒ£ãƒƒã‚¹ãƒ«æˆ¦é—˜å‘¼ã³å‡ºã—
+	DEF_CMD	FR_CASTLE_ENEMY_CALL		//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å‘¼ã³å‡ºã—
+	DEF_CMD	FR_CASTLE_BTL_BEFORE_PARTY_SET	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«æˆ¦é—˜å‰ã®POKEPARTYã®ã‚»ãƒƒãƒˆ
+	DEF_CMD	FR_CASTLE_BTL_AFTER_PARTY_SET	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«æˆ¦é—˜å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
+	DEF_CMD	FR_CASTLE_TOOL				//ã‚­ãƒ£ãƒƒã‚¹ãƒ«CASTLE_SCRWORKã®æ“ä½œ
+	DEF_CMD	FR_CASTLE_LOSE_CHECK		//ã‚­ãƒ£ãƒƒã‚¹ãƒ«æ•—åŒ—ãƒã‚§ãƒƒã‚¯
+	DEF_CMD	FR_CASTLE_SEND_BUF				//ã‚­ãƒ£ãƒƒã‚¹ãƒ«é€šä¿¡send_buf
+	DEF_CMD	FR_CASTLE_RECV_BUF				//ã‚­ãƒ£ãƒƒã‚¹ãƒ«é€šä¿¡recv_buf
+	DEF_CMD	FR_CASTLE_RANKUP_CALL		//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—å‘¼ã³å‡ºã—
+	DEF_CMD	FR_CASTLE_PARENT_CHECK_WAIT		//è¦ªã®æ±ºå®šå¾…ã¡
 	DEF_CMD	FR_CASTLE_GET_CP
 	DEF_CMD	FR_CASTLE_SUB_CP
 	DEF_CMD	FR_CASTLE_ADD_CP
 	DEF_CMD	FR_CASTLE_APPEAR_MSG
-	//WiFiŽó•t
+	//WiFiå—ä»˜
 	DEF_CMD	FR_WIFI_COUNTER_WORK_ALLOC			//
 	DEF_CMD	FR_WIFI_COUNTER_WORK_FREE			//
-	DEF_CMD	FR_WIFI_COUNTER_SEND_BUF			//WiFiŽó•t’ÊMsend_buf
-	DEF_CMD	FR_WIFI_COUNTER_RECV_BUF			//WiFiŽó•t’ÊMrecv_buf
+	DEF_CMD	FR_WIFI_COUNTER_SEND_BUF			//WiFiå—ä»˜é€šä¿¡send_buf
+	DEF_CMD	FR_WIFI_COUNTER_RECV_BUF			//WiFiå—ä»˜é€šä¿¡recv_buf
 	DEF_CMD	FR_WIFI_COUNTER_BFNO_CHECK			//
 	DEF_CMD	FR_WIFI_COUNTER_POKELIST			//
 	DEF_CMD	FR_WIFI_COUNTER_POKELIST_GET_RESULT	//
 	DEF_CMD	FR_WIFI_COUNTER_YAMERU_CHECK		//
-	DEF_CMD	FR_WIFI_COUNTER_TOOL				//FRWIFI_SCRWORK‚Ì‘€ì
+	DEF_CMD	FR_WIFI_COUNTER_TOOL				//FRWIFI_SCRWORKã®æ“ä½œ
 	DEF_CMD	FR_WIFI_COUNTER_TOWER_CALL_BEFORE	//
 	DEF_CMD	FR_WIFI_COUNTER_TOWER_SEND_TR_DATA	//
 	DEF_CMD	FR_WIFI_COUNTER_TOWER_RECV_TR_DATA	//
 	DEF_CMD	FR_WIFI_COUNTER_TOWER_CALL_AFTER	//
 	DEF_CMD	FR_WIFI_COUNTER_LIST_SET_LAST_PLAY_DATE	//
-	//ƒ‹[ƒŒƒbƒg
-	DEF_CMD	FR_ROULETTE_WORK_ALLOC				//ƒ[ƒNŠm•Û
-	DEF_CMD	FR_ROULETTE_WORK_INIT				//ƒ[ƒN‰Šú‰»
-	DEF_CMD	FR_ROULETTE_WORK_FREE				//ƒ[ƒNŠJ•ú
-	DEF_CMD	FR_ROULETTE_CALL_GET_RESULT			//ƒ‹[ƒŒƒbƒgŒÄ‚Ño‚µŒ‹‰ÊŽæ“¾
-	DEF_CMD	FR_ROULETTE_BATTLE_CALL				//ƒ‹[ƒŒƒbƒgí“¬ŒÄ‚Ño‚µ
-	DEF_CMD	FR_ROULETTE_BTL_BEFORE_PARTY_SET	//ƒ‹[ƒŒƒbƒgí“¬‘O‚ÌPOKEPARTY‚ÌƒZƒbƒg
-	DEF_CMD	FR_ROULETTE_BTL_AFTER_PARTY_SET		//ƒ‹[ƒŒƒbƒgí“¬Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
-	DEF_CMD	FR_ROULETTE_TOOL					//ƒ‹[ƒŒƒbƒgCASTLE_SCRWORK‚Ì‘€ì
-	DEF_CMD	FR_ROULETTE_LOSE_CHECK				//ƒ‹[ƒŒƒbƒg”s–kƒ`ƒFƒbƒN
-	DEF_CMD	FR_ROULETTE_SEND_BUF				//ƒ‹[ƒŒƒbƒg’ÊMsend_buf
-	DEF_CMD	FR_ROULETTE_RECV_BUF				//ƒ‹[ƒŒƒbƒg’ÊMrecv_buf
-	DEF_CMD	FR_ROULETTE_CALL					//ƒ‹[ƒŒƒbƒg‰æ–ÊŒÄ‚Ño‚µ
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+	DEF_CMD	FR_ROULETTE_WORK_ALLOC				//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+	DEF_CMD	FR_ROULETTE_WORK_INIT				//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+	DEF_CMD	FR_ROULETTE_WORK_FREE				//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
+	DEF_CMD	FR_ROULETTE_CALL_GET_RESULT			//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆå‘¼ã³å‡ºã—çµæžœå–å¾—
+	DEF_CMD	FR_ROULETTE_BATTLE_CALL				//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆæˆ¦é—˜å‘¼ã³å‡ºã—
+	DEF_CMD	FR_ROULETTE_BTL_BEFORE_PARTY_SET	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆæˆ¦é—˜å‰ã®POKEPARTYã®ã‚»ãƒƒãƒˆ
+	DEF_CMD	FR_ROULETTE_BTL_AFTER_PARTY_SET		//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆæˆ¦é—˜å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
+	DEF_CMD	FR_ROULETTE_TOOL					//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆCASTLE_SCRWORKã®æ“ä½œ
+	DEF_CMD	FR_ROULETTE_LOSE_CHECK				//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆæ•—åŒ—ãƒã‚§ãƒƒã‚¯
+	DEF_CMD	FR_ROULETTE_SEND_BUF				//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€šä¿¡send_buf
+	DEF_CMD	FR_ROULETTE_RECV_BUF				//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€šä¿¡recv_buf
+	DEF_CMD	FR_ROULETTE_CALL					//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆç”»é¢å‘¼ã³å‡ºã—
 	DEF_CMD	FR_ROULETTE_APPEAR_MSG
-	DEF_CMD	FR_ROULETTE_DECIDE_EV_NO_FUNC		//Œˆ’è‚µ‚½ƒpƒlƒ‹ƒCƒxƒ“ƒgˆ—ŽÀs
-	DEF_CMD	FR_ROULETTE_CHG_ITEMKEEP_VANISH		//ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚ÌƒoƒjƒbƒVƒ…
+	DEF_CMD	FR_ROULETTE_DECIDE_EV_NO_FUNC		//æ±ºå®šã—ãŸãƒ‘ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†å®Ÿè¡Œ
+	DEF_CMD	FR_ROULETTE_CHG_ITEMKEEP_VANISH		//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥
 
 	DEF_CMD	FR_TV_TEMP_STAGE_SET
 	DEF_CMD	FR_TV_TEMP_FRIEND_SET
@@ -260,13 +260,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	ƒCƒxƒ“ƒgƒf[ƒ^ŠÖ˜A
+ *	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿é–¢é€£
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒCƒxƒ“ƒgƒf[ƒ^@ƒe[ƒuƒ‹éŒ¾
+ *	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã€€ãƒ†ãƒ¼ãƒ–ãƒ«å®£è¨€
  */
 //-----------------------------------------------------------------------------
 	.macro	_EVENT_DATA	adrs
@@ -275,7 +275,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒCƒxƒ“ƒgƒf[ƒ^@ƒe[ƒuƒ‹I—¹
+ *	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã€€ãƒ†ãƒ¼ãƒ–ãƒ«çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 	.macro	_EVENT_DATA_END
@@ -284,12 +284,12 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //==============================================================================
 //
-//	ƒŠƒ\[ƒXŠÖ˜A
+//	ãƒªã‚½ãƒ¼ã‚¹é–¢é€£
 //
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒŠƒ\[ƒXƒf[ƒ^ƒ‰ƒxƒ‹
+ *	ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ©ãƒ™ãƒ«
  */
 //-----------------------------------------------------------------------------
 	.macro	_RESOURCE_LABEL label
@@ -299,7 +299,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒf[ƒ^
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 	.macro	_CHAR_RESOURCE_DATA	charid, movetype
@@ -309,7 +309,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒvƒŒƒCƒ„[ƒLƒƒƒ‰(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXƒf[ƒ^
+ * ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 	.macro	_PLAYER_RESOURCE_DATA
@@ -318,7 +318,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ’ÊM‘ŠŽè‚ÌƒvƒŒƒCƒ„[ƒLƒƒƒ‰(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXƒf[ƒ^
+ * é€šä¿¡ç›¸æ‰‹ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 	.macro	_SIO_PLAYER_RESOURCE_DATA
@@ -327,7 +327,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒf[ƒ^I’[
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿çµ‚ç«¯
  */
 //--------------------------------------------------------------
 	.macro	_CHAR_RESOURCE_DATA_END
@@ -336,7 +336,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  */
 //--------------------------------------------------------------
 	.macro	_CHAR_RESOURCE_SET	adrs
@@ -346,7 +346,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXíœ
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
  */
 //--------------------------------------------------------------
 	.macro	_CHAR_RESOURCE_FREE	charid
@@ -357,12 +357,12 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //==============================================================================
 //
-//	ƒAƒNƒ^[ŠÖ˜A
+//	ã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£
 //
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒAƒNƒ^[ƒf[ƒ^ƒ‰ƒxƒ‹
+ *	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ©ãƒ™ãƒ«
  */
 //-----------------------------------------------------------------------------
 	.macro	_ACTOR_LABEL label
@@ -372,22 +372,22 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[ƒf[ƒ^(PLAYIDŽw’è)
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿(PLAYIDæŒ‡å®š)
  */
 //--------------------------------------------------------------
 	.macro	_ACTOR_DATA		objid, charid, way, x, y, visible, event_id
 	.short	\objid
 	.short	\charid
 	.byte	\way
-	.short	\x			//X‚Í‘Ì‚Ì’†S
-	.short	\y			//Y‚Í‘«Œ³
+	.short	\x			//Xã¯ä½“ã®ä¸­å¿ƒ
+	.short	\y			//Yã¯è¶³å…ƒ
 	.byte	\visible
 	.byte	\event_id
 	.endm
 
 //--------------------------------------------------------------
 /**
- * ƒvƒŒƒCƒ„[ƒLƒƒƒ‰(HEROorHEROINE)‚ÌƒAƒNƒ^[ƒf[ƒ^
+ * ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©(HEROorHEROINE)ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 	.macro	_PLAYER_ACTOR_DATA	objid, way, x, y, visible
@@ -396,15 +396,15 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ’ÊMƒLƒƒƒ‰ƒNƒ^‚ÌƒAƒNƒ^[ƒf[ƒ^
+ * é€šä¿¡ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 	.macro	_SIO_PLAYER_ACTOR_DATA	netid, objid, way, x, y, visible
 	.short	\objid
 	.short	FSS_CODE_SIO_PLAYER
 	.byte	\way
-	.short	\x			//X‚Í‘Ì‚Ì’†S
-	.short	\y			//Y‚Í‘«Œ³
+	.short	\x			//Xã¯ä½“ã®ä¸­å¿ƒ
+	.short	\y			//Yã¯è¶³å…ƒ
 	.byte	\visible
 	.byte	0
 	.byte	\netid
@@ -412,7 +412,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[ƒf[ƒ^I’[
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿çµ‚ç«¯
  */
 //--------------------------------------------------------------
 	.macro	_ACTOR_DATA_END
@@ -421,7 +421,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[“o˜^
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  */
 //--------------------------------------------------------------
 	.macro	_ACTOR_SET	adrs
@@ -431,7 +431,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[íœ
+ * ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  */
 //--------------------------------------------------------------
 	.macro	_ACTOR_FREE		objid
@@ -441,7 +441,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[•\Ž¦E”ñ•\Ž¦Ý’è
+ * ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºãƒ»éžè¡¨ç¤ºè¨­å®š
  */
 //--------------------------------------------------------------
 	.macro	_ACTOR_VISIBLE_SET		objid, visible_flg
@@ -452,7 +452,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[BG—DæÝ’è
+ * ã‚¢ã‚¯ã‚¿ãƒ¼BGå„ªå…ˆè¨­å®š
  */
 //--------------------------------------------------------------
 	.macro	_ACTOR_BG_PRI_SET		objid, pri
@@ -464,12 +464,12 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //==============================================================================
 //
-//	OBJƒAƒjƒ
+//	OBJã‚¢ãƒ‹ãƒ¡
 //
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒAƒjƒ
+ *	ã‚¢ãƒ‹ãƒ¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_ANIME	obj_id,adrs
@@ -480,7 +480,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒ‰ƒxƒ‹
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ©ãƒ™ãƒ«
  */
 //-----------------------------------------------------------------------------
 	.macro	_ANIME_LABEL label
@@ -490,7 +490,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 	.macro	_ANIME_DATA	code,num
@@ -500,7 +500,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- *	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^I—¹
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿çµ‚äº†
  */
 //--------------------------------------------------------------
 	.macro	_ANIME_DATA_END
@@ -509,7 +509,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒAƒjƒƒEƒFƒCƒg
+ *	ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_ANIME_WAIT
@@ -519,12 +519,12 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //==============================================================================
 //
-//	”z’u•¨ƒŠƒ\[ƒXŠÖ˜A
+//	é…ç½®ç‰©ãƒªã‚½ãƒ¼ã‚¹é–¢é€£
 //
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	”z’u•¨ƒŠƒ\[ƒXƒf[ƒ^ƒ‰ƒxƒ‹
+ *	é…ç½®ç‰©ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ©ãƒ™ãƒ«
  */
 //-----------------------------------------------------------------------------
 	.macro	_ARTICLE_RESOURCE_LABEL label
@@ -534,7 +534,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒŠƒ\[ƒXƒf[ƒ^
+ * é…ç½®ç‰©ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_RESOURCE_DATA	act_id
@@ -543,7 +543,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒŠƒ\[ƒXƒf[ƒ^I’[
+ * é…ç½®ç‰©ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿çµ‚ç«¯
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_RESOURCE_DATA_END
@@ -552,7 +552,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒŠƒ\[ƒX“o˜^
+ * é…ç½®ç‰©ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_RESOURCE_SET	adrs
@@ -562,7 +562,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒŠƒ\[ƒXíœ
+ * é…ç½®ç‰©ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_RESOURCE_FREE	act_id
@@ -573,12 +573,12 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //==============================================================================
 //
-//	”z’u•¨ƒAƒNƒ^[ŠÖ˜A
+//	é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£
 //
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	”z’u•¨ƒAƒNƒ^[ƒf[ƒ^ƒ‰ƒxƒ‹
+ *	é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ©ãƒ™ãƒ«
  */
 //-----------------------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_LABEL label
@@ -588,7 +588,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[ƒf[ƒ^
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_DATA		act_id, x, y, visible, anm_start, set_actwork_no
@@ -602,7 +602,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[ƒf[ƒ^I’[
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿çµ‚ç«¯
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_DATA_END
@@ -611,7 +611,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[“o˜^
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_SET	adrs
@@ -621,7 +621,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[íœ
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_FREE		actwork_no
@@ -631,7 +631,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[•\Ž¦E”ñ•\Ž¦Ý’è
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºãƒ»éžè¡¨ç¤ºè¨­å®š
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_VISIBLE_SET		actwork_no, visible_flg
@@ -642,7 +642,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[HƒtƒŠƒbƒvÝ’è
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼Hãƒ•ãƒªãƒƒãƒ—è¨­å®š
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_FLIP_H_SET		actwork_no
@@ -652,7 +652,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[OBJƒ‚[ƒhÝ’è(0=’Êí,1=”¼“§–¾)
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼OBJãƒ¢ãƒ¼ãƒ‰è¨­å®š(0=é€šå¸¸,1=åŠé€æ˜Ž)
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_OBJ_MODE_SET		actwork_no,flag
@@ -663,7 +663,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[FƒAƒjƒŠJŽn
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ï¼šã‚¢ãƒ‹ãƒ¡é–‹å§‹
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_ANIME_START		actwork_no, seq_no
@@ -674,7 +674,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[FƒAƒjƒ’âŽ~
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ï¼šã‚¢ãƒ‹ãƒ¡åœæ­¢
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_ANIME_STOP		actwork_no
@@ -684,7 +684,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- * ”z’u•¨ƒAƒNƒ^[FƒAƒjƒI—¹‘Ò‚¿
+ * é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ï¼šã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
  */
 //--------------------------------------------------------------
 	.macro	_ARTICLE_ACTOR_ANIME_WAIT		actwork_no
@@ -695,13 +695,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //==============================================================================
 //
-//	Šî–{ƒRƒ}ƒ“ƒh
+//	åŸºæœ¬ã‚³ãƒžãƒ³ãƒ‰
 //
 //==============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ_ƒ~[
+ *	ãƒ€ãƒŸãƒ¼
  */
 //-----------------------------------------------------------------------------
 	.macro	_DUMMY
@@ -710,7 +710,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒNƒŠƒvƒg‚ÌI—¹
+ *	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 	.macro	_END
@@ -719,7 +719,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	2Dƒ}ƒbƒv‚ÌI—¹
+ *	2Dãƒžãƒƒãƒ—ã®çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 	.macro	_SCRIPT_FINISH
@@ -728,7 +728,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ}ƒbƒvØ‚è‘Ö‚¦
+ *	ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_MAP_CHANGE		scene_id
@@ -738,9 +738,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ}ƒbƒvØ‚è‘Ö‚¦(ƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹‚Ü‚é‚²‚ÆØ‚è‘Ö‚¦)
+ *	ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ(ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã¾ã‚‹ã”ã¨åˆ‡ã‚Šæ›¿ãˆ)
  *
- * param_work, answer‚Ì’l‚Í•ÛŽ‚³‚ê‚Ü‚·Blocal_work, register‚Í”jŠü‚³‚ê‚Ü‚·
+ * param_work, answerã®å€¤ã¯ä¿æŒã•ã‚Œã¾ã™ã€‚local_work, registerã¯ç ´æ£„ã•ã‚Œã¾ã™
  */
 //-----------------------------------------------------------------------------
 	.macro	_MAP_CHANGE_EX	scene_id, event_id
@@ -751,7 +751,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒEƒFƒCƒg
+ *	ã‚¦ã‚§ã‚¤ãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_TIME_WAIT time,ret_wk
@@ -762,9 +762,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	“WŠJƒƒbƒZ[ƒW‚ð•\Ž¦(2byte)(ˆêŠ‡•\Ž¦)
+ *	å±•é–‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º(2byte)(ä¸€æ‹¬è¡¨ç¤º)
  *
- *	@param	msg_id	•\Ž¦‚·‚éƒƒbƒZ[ƒWID
+ *	@param	msg_id	è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_ALL_PUT msg_id
@@ -774,9 +774,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	“WŠJƒƒbƒZ[ƒW‚ð•\Ž¦(2byte)(ƒXƒLƒbƒv‚È‚µ)
+ *	å±•é–‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º(2byte)(ã‚¹ã‚­ãƒƒãƒ—ãªã—)
  *
- *	@param	msg_id	•\Ž¦‚·‚éƒƒbƒZ[ƒWID
+ *	@param	msg_id	è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_NOSKIP msg_id
@@ -786,9 +786,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	“WŠJƒƒbƒZ[ƒW‚ð•\Ž¦(2byte)
+ *	å±•é–‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º(2byte)
  *
- *	@param	msg_id	•\Ž¦‚·‚éƒƒbƒZ[ƒWID
+ *	@param	msg_id	è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG msg_id
@@ -798,7 +798,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	‰ï˜bƒEƒBƒ“ƒhƒE•Â‚¶‚é
+ *	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‰ã˜ã‚‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALK_CLOSE
@@ -806,13 +806,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	ƒƒCƒv
+//	ãƒ¯ã‚¤ãƒ—
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒƒCƒvƒtƒF[ƒhƒXƒ^[ƒg
+ *	ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- *	’ˆÓI@ƒtƒF[ƒh‚É‚©‚©‚éLCDABG–Ê‚ÌÝ’è‚ÍŒÅ’è‚É‚µ‚Ä‚¢‚é
+ *	æ³¨æ„ï¼ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã«ã‹ã‹ã‚‹LCDã€BGé¢ã®è¨­å®šã¯å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIPE_FADE_START		div,sync,type,color
@@ -825,9 +825,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒƒCƒvƒtƒF[ƒhI—¹ƒ`ƒFƒbƒN
+ *	ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	’ˆÓI@ƒ`ƒFƒbƒN‚·‚éLCD‚ÌÝ’è‚ÍŒÅ’è‚É‚µ‚Ä‚¢‚é
+ *	æ³¨æ„ï¼ã€€ãƒã‚§ãƒƒã‚¯ã™ã‚‹LCDã®è¨­å®šã¯å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIPE_FADE_END_CHECK
@@ -836,9 +836,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒuƒ‰ƒbƒNƒAƒEƒg
+ *	ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
  *
- *	’ˆÓI@ƒtƒF[ƒh‚É‚©‚©‚éLCDABG–Ê‚ÌÝ’è‚ÍŒÅ’è‚É‚µ‚Ä‚¢‚é
+ *	æ³¨æ„ï¼ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã«ã‹ã‹ã‚‹LCDã€BGé¢ã®è¨­å®šã¯å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_BLACK_OUT	div,sync
@@ -847,9 +847,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒuƒ‰ƒbƒNƒCƒ“
+ *	ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
  *
- *	’ˆÓI@ƒtƒF[ƒh‚É‚©‚©‚éLCDABG–Ê‚ÌÝ’è‚ÍŒÅ’è‚É‚µ‚Ä‚¢‚é
+ *	æ³¨æ„ï¼ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã«ã‹ã‹ã‚‹LCDã€BGé¢ã®è¨­å®šã¯å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_BLACK_IN	div,sync
@@ -858,9 +858,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒzƒƒCƒgƒAƒEƒg
+ *	ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
  *
- *	’ˆÓI@ƒtƒF[ƒh‚É‚©‚©‚éLCDABG–Ê‚ÌÝ’è‚ÍŒÅ’è‚É‚µ‚Ä‚¢‚é
+ *	æ³¨æ„ï¼ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã«ã‹ã‹ã‚‹LCDã€BGé¢ã®è¨­å®šã¯å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_WHITE_OUT	div,sync
@@ -869,9 +869,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒzƒƒCƒgƒCƒ“
+ *	ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
  *
- *	’ˆÓI@ƒtƒF[ƒh‚É‚©‚©‚éLCDABG–Ê‚ÌÝ’è‚ÍŒÅ’è‚É‚µ‚Ä‚¢‚é
+ *	æ³¨æ„ï¼ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã«ã‹ã‹ã‚‹LCDã€BGé¢ã®è¨­å®šã¯å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_WHITE_IN	div,sync
@@ -883,7 +883,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	‚Í‚¢A‚¢‚¢‚¦‘I‘ð
+ *	ã¯ã„ã€ã„ã„ãˆé¸æŠž
  */
 //-----------------------------------------------------------------------------
 	//.macro	_YES_NO_WIN ret_wk
@@ -906,11 +906,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	BMPƒƒjƒ…[
+//	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	BMPƒƒjƒ…[@‰Šú‰»
+ *	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_INIT x,y,cursor,cancel,ret_wk
@@ -924,7 +924,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMPƒƒjƒ…[@‰Šú‰»(“Ç‚Ýž‚ñ‚Å‚¢‚égmmƒtƒ@ƒCƒ‹‚ðŽg—p‚·‚é)
+ *	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€åˆæœŸåŒ–(èª­ã¿è¾¼ã‚“ã§ã„ã‚‹gmmãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_INIT_EX x,y,cursor,cancel,ret_wk
@@ -938,7 +938,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMPƒƒjƒ…[@ƒŠƒXƒgì¬(shortƒo[ƒWƒ‡ƒ“)
+ *	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ãƒªã‚¹ãƒˆä½œæˆ(shortãƒãƒ¼ã‚¸ãƒ§ãƒ³)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_MAKE_LIST msg_id,param
@@ -949,7 +949,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMPƒƒjƒ…[@ƒŠƒXƒgì¬(shortƒo[ƒWƒ‡ƒ“)(‰ï˜bƒEƒBƒ“ƒƒbƒZ[ƒWŽw’è‚ ‚è)
+ *	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ãƒªã‚¹ãƒˆä½œæˆ(shortãƒãƒ¼ã‚¸ãƒ§ãƒ³)(ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æŒ‡å®šã‚ã‚Š)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_MAKE_LIST_TALK_MSG msg_id,talk_msg_id,param
@@ -961,7 +961,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMPƒƒjƒ…[@ŠJŽn
+ *	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_START
@@ -969,11 +969,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	BMPƒŠƒXƒg
+//	BMPãƒªã‚¹ãƒˆ
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	BMPƒŠƒXƒg@‰Šú‰»
+ *	BMPãƒªã‚¹ãƒˆã€€åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_INIT x,y,cursor,cancel,ret_wk
@@ -987,7 +987,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMPƒŠƒXƒg@‰Šú‰»(“Ç‚Ýž‚ñ‚Å‚¢‚égmmƒtƒ@ƒCƒ‹‚ðŽg—p‚·‚é)
+ *	BMPãƒªã‚¹ãƒˆã€€åˆæœŸåŒ–(èª­ã¿è¾¼ã‚“ã§ã„ã‚‹gmmãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_INIT_EX x,y,cursor,cancel,ret_wk
@@ -1001,7 +1001,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMPƒŠƒXƒg@ƒŠƒXƒgì¬(shortƒo[ƒWƒ‡ƒ“)
+ *	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆä½œæˆ(shortãƒãƒ¼ã‚¸ãƒ§ãƒ³)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_MAKE_LIST msg_id,talk_msg_id,param
@@ -1013,7 +1013,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMPƒŠƒXƒg@ŠJŽn
+ *	BMPãƒªã‚¹ãƒˆã€€é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_START
@@ -1022,7 +1022,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMPƒŠƒXƒg@‹­§íœ	ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹‚Ì‚Ý‚ÅŽg—p
+ *	BMPãƒªã‚¹ãƒˆã€€å¼·åˆ¶å‰Šé™¤	ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã®ã¿ã§ä½¿ç”¨
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_DEL
@@ -1030,11 +1030,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	‘ã“ü
+//	ä»£å…¥
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒ[ƒN‚É’l‚ð‘ã“ü
+ *	ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’ä»£å…¥
  */
 //-----------------------------------------------------------------------------
 	.macro	_LDVAL	wk,val
@@ -1045,7 +1045,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ[ƒN‚Éƒ[ƒN‚Ì’l‚ð‘ã“ü
+ *	ãƒ¯ãƒ¼ã‚¯ã«ãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’ä»£å…¥
  */
 //-----------------------------------------------------------------------------
 	.macro	_LDWK	wk1,wk2
@@ -1056,7 +1056,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ[ƒN‚É’l‚ð‘«‚·
+ *	ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’è¶³ã™
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_WK wk,num
@@ -1067,7 +1067,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ[ƒN‚É’l‚ð’e‚­
+ *	ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’å¼¾ã
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_WK wk,num
@@ -1077,11 +1077,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	”äŠr
+//	æ¯”è¼ƒ
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒ[ƒN‚Æ’l‚Ì”äŠr
+ *	ãƒ¯ãƒ¼ã‚¯ã¨å€¤ã®æ¯”è¼ƒ
  */
 //-----------------------------------------------------------------------------
 	.macro	_CMPVAL	wk,val
@@ -1092,7 +1092,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ[ƒN‚Æƒ[ƒN‚Ì”äŠr
+ *	ãƒ¯ãƒ¼ã‚¯ã¨ãƒ¯ãƒ¼ã‚¯ã®æ¯”è¼ƒ
  */
 //-----------------------------------------------------------------------------
 	.macro	_CMPWK	wk1,wk2
@@ -1102,11 +1102,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	ƒWƒƒƒ“ƒv–½—ß
+//	ã‚¸ãƒ£ãƒ³ãƒ—å‘½ä»¤
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒWƒƒƒ“ƒv
+ *	ã‚¸ãƒ£ãƒ³ãƒ—
  */
 //-----------------------------------------------------------------------------
 	.macro	_JUMP adrs
@@ -1116,7 +1116,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	IFƒWƒƒƒ“ƒv
+ *	IFã‚¸ãƒ£ãƒ³ãƒ—
  */
 //-----------------------------------------------------------------------------
 	.macro	_IF_JUMP cond,adrs
@@ -1127,7 +1127,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	’l‚ð”äŠrAðŒ‚Ç‚¨‚è‚Ìê‡•ªŠò(ƒWƒƒƒ“ƒv)
+ *	å€¤ã‚’æ¯”è¼ƒã€æ¡ä»¶ã©ãŠã‚Šã®å ´åˆåˆ†å²(ã‚¸ãƒ£ãƒ³ãƒ—)
  */
 //-----------------------------------------------------------------------------
 	.macro	_IFVAL_JUMP wk,cond,val,adrs
@@ -1139,7 +1139,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	’l‚ð”äŠrAðŒ‚Ç‚¨‚è‚Ìê‡•ªŠò(ƒR[ƒ‹)
+ *	å€¤ã‚’æ¯”è¼ƒã€æ¡ä»¶ã©ãŠã‚Šã®å ´åˆåˆ†å²(ã‚³ãƒ¼ãƒ«)
  */
 //-----------------------------------------------------------------------------
 	.macro	_IFVAL_CALL wk,cond,val,adrs
@@ -1151,7 +1151,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ[ƒN‚ð”äŠrAðŒ‚Ç‚¨‚è‚Ìê‡•ªŠò(ƒWƒƒƒ“ƒv)
+ *	ãƒ¯ãƒ¼ã‚¯ã‚’æ¯”è¼ƒã€æ¡ä»¶ã©ãŠã‚Šã®å ´åˆåˆ†å²(ã‚¸ãƒ£ãƒ³ãƒ—)
  */
 //-----------------------------------------------------------------------------
 	.macro	_IFWK_JUMP wk,cond,wk2,adrs
@@ -1163,7 +1163,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒR[ƒ‹
+ *	ã‚³ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 	.macro	_CALL adrs
@@ -1173,7 +1173,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒR[ƒ‹‚ðŒÄ‚Ño‚µ‚½ƒAƒhƒŒƒX‚É–ß‚é
+ *	ã‚³ãƒ¼ãƒ«ã‚’å‘¼ã³å‡ºã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹ã«æˆ»ã‚‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_RET
@@ -1182,7 +1182,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	IFƒR[ƒ‹
+ *	IFã‚³ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 	.macro	_IF_CALL cond,adrs
@@ -1193,11 +1193,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	switch ` case \•¶
+ *	switch ã€œ case æ§‹æ–‡
  *
- *  ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚ÅŠm•Û‚³‚ê‚éƒ[ƒN(SCWK_REG0)‚ðŽg—p‚µ‚Ä‚¢‚é‚Ì‚ÅA
- *	FLAG_CHANGE,INIT_CHANGE‚È‚Ç‚Å‚ÍŽg—p‚Å‚«‚Ü‚¹‚ñI
- *	SCENE_CHANGE‚ÍŽg—p‚Å‚«‚Ü‚·B
+ *  ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã§ç¢ºä¿ã•ã‚Œã‚‹ãƒ¯ãƒ¼ã‚¯(SCWK_REG0)ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã€
+ *	FLAG_CHANGE,INIT_CHANGEãªã©ã§ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“ï¼
+ *	SCENE_CHANGEã¯ä½¿ç”¨ã§ãã¾ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 	.macro		_SWITCH wk
@@ -1211,7 +1211,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgƒEƒBƒ“ƒhƒE•\Ž¦’†‚ÉBƒLƒƒƒ“ƒZƒ‹
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä¸­ã«Bã‚­ãƒ£ãƒ³ã‚»ãƒ«
  */
 //-----------------------------------------------------------------------------
 	.macro		_CASE_CANCEL	adr
@@ -1221,7 +1221,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	–¼‘O“ü—Í‰æ–ÊŒÄ‚Ño‚µ
+ *	åå‰å…¥åŠ›ç”»é¢å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_NAMEIN_PROC
@@ -1230,13 +1230,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	’ÊM
+ *	é€šä¿¡
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	“¯Šú
+ *	åŒæœŸ
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_SYNCHRONIZE	no
@@ -1246,7 +1246,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * @ƒŠƒZƒbƒg	
+ * ã€€ãƒªã‚»ãƒƒãƒˆ	
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_RESET
@@ -1255,7 +1255,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * @’ÊMØ’f
+ * ã€€é€šä¿¡åˆ‡æ–­
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_DIRECT_END
@@ -1264,7 +1264,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‰ƒ“ƒ_ƒ€”Žæ“¾
+ *	ãƒ©ãƒ³ãƒ€ãƒ æ•°å–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_RND ret_wk,num
@@ -1275,7 +1275,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ|ƒPƒZƒ“‰ñ•œ
+ *	ãƒã‚±ã‚»ãƒ³å›žå¾©
  */
 //-----------------------------------------------------------------------------
 	.macro	_PC_KAIFUKU
@@ -1284,7 +1284,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒL[‘Ò‚¿
+ *	ã‚­ãƒ¼å¾…ã¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_AB_KEYWAIT
@@ -1293,7 +1293,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ƒL[‘Ò‚¿@OR@ŽžŠÔ‘Ò‚¿
+ * ã‚­ãƒ¼å¾…ã¡ã€€ORã€€æ™‚é–“å¾…ã¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_AB_TIME_KEYWAIT	wait
@@ -1303,7 +1303,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒgƒŒ[ƒi[”s–kƒ`ƒFƒbƒN
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ•—åŒ—ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_LOSE_CHECK ret_wk
@@ -1313,7 +1313,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ƒZ[ƒuƒ[ƒN‚É’l‚ðƒZƒbƒg
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_SAVE_EVENT_WORK_SET	work_no,param
@@ -1324,7 +1324,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ƒZ[ƒuƒ[ƒN‚Ì’l‚ðŽæ“¾
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_SAVE_EVENT_WORK_GET	work_no,work
@@ -1335,7 +1335,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_ENCOUNT_EFFECT		effect_no
@@ -1345,7 +1345,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ŽålŒö‚Ìl•¨OBJƒR[ƒh‚ðŽæ“¾
+ *	ä¸»äººå…¬ã®äººç‰©OBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_MINE_OBJ		ret_wk
@@ -1355,11 +1355,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 
 //==============================================================================
-//	ƒp[ƒeƒBƒNƒ‹
+//	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	SPAƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	SPAãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  */
 //-----------------------------------------------------------------------------
 	.macro	_PARTICLE_SPA_LOAD		work_id, spa_no, camera_type
@@ -1371,7 +1371,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	SPAƒŠƒ\[ƒX‰ð•ú
+ *	SPAãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 //-----------------------------------------------------------------------------
 	.macro	_PARTICLE_SPA_EXIT		work_id
@@ -1381,7 +1381,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒGƒ~ƒbƒ^¶¬
+ *	ã‚¨ãƒŸãƒƒã‚¿ç”Ÿæˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_PARTICLE_ADD_EMITTER		work_id, emit_no
@@ -1392,7 +1392,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒp[ƒeƒBƒNƒ‹I—¹‘Ò‚¿
+ *	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«çµ‚äº†å¾…ã¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_PARTICLE_WAIT
@@ -1401,7 +1401,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[•\Ž¦
+ *	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_POKE_ACT_ADD	pos,x,y,id,evy,next_rgb
@@ -1416,7 +1416,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[íœ
+ *	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_POKE_ACT_DEL	id
@@ -1426,7 +1426,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒƒ“ƒeƒBƒAƒuƒŒ[ƒ“í‚ÌƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg”­“®
+ *	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ãƒ¼ãƒ³æˆ¦ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•
  */
 //-----------------------------------------------------------------------------
 	.macro	_BRAIN_ENCOUNT_EFFECT	effect_no
@@ -1436,7 +1436,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒŒƒR[ƒhƒCƒ“ƒNƒŠƒƒ“ƒg
+ *	ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_RECORD_INC	recid
@@ -1446,7 +1446,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒŒƒR[ƒh’Ç‰Á
+ *	ãƒ¬ã‚³ãƒ¼ãƒ‰è¿½åŠ 
  */
 //-----------------------------------------------------------------------------
 	.macro	_RECORD_ADD	recid,val
@@ -1457,7 +1457,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒRƒA’Ç‰Á
+ *	ã‚¹ã‚³ã‚¢è¿½åŠ 
  */
 //-----------------------------------------------------------------------------
 	.macro	_SCORE_ADD	recid
@@ -1467,7 +1467,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	Ž©•ªA‘ŠŽè‚Ì‚Ç‚¿‚ç‚©‚ªDP‚©ƒ`ƒFƒbƒN
+ *	è‡ªåˆ†ã€ç›¸æ‰‹ã®ã©ã¡ã‚‰ã‹ãŒDPã‹ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHECK_DP_ROM_CODE	ret_wk
@@ -1477,7 +1477,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	’nkƒZƒbƒg
+ *	åœ°éœ‡ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_SHAKE_SET	x, y, wait, loop
@@ -1490,7 +1490,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	’nkI—¹‘Ò‚¿
+ *	åœ°éœ‡çµ‚äº†å¾…ã¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_SHAKE_WAIT
@@ -1499,7 +1499,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	Window‹@”\ƒZƒbƒg
+ *	Windowæ©Ÿèƒ½ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_WND_SET	x1, y1, x2, y2, wait, on_off
@@ -1514,7 +1514,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	Window‹@”\I—¹‘Ò‚¿
+ *	Windowæ©Ÿèƒ½çµ‚äº†å¾…ã¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_WND_WAIT
@@ -1523,7 +1523,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	CPƒEƒBƒ“ƒhƒE•\Ž¦
+ *	CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 	.macro	_CP_WIN_WRITE
@@ -1532,7 +1532,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	CPƒEƒBƒ“ƒhƒEíœ
+ *	CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  */
 //-----------------------------------------------------------------------------
 	.macro	_CP_WIN_DEL
@@ -1541,7 +1541,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	CP•\Ž¦
+ *	CPè¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 	.macro	_CP_WRITE
@@ -1549,11 +1549,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	OBJ“®ìƒR[ƒh‚¹‚Á‚Ä‚¢
+//	OBJå‹•ä½œã‚³ãƒ¼ãƒ‰ã›ã£ã¦ã„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- *	OBJ“®ìƒR[ƒhÝ’èFƒŠƒZƒbƒg‚·‚é(OBJ“®ì‚È‚µ‚É‚·‚é)
+ *	OBJå‹•ä½œã‚³ãƒ¼ãƒ‰è¨­å®šï¼šãƒªã‚»ãƒƒãƒˆã™ã‚‹(OBJå‹•ä½œãªã—ã«ã™ã‚‹)
  */
 //--------------------------------------------------------------
 	.macro	_OBJMOVE_RESET		objid
@@ -1563,24 +1563,24 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //--------------------------------------------------------------
 /**
- *	OBJ“®ìƒR[ƒhÝ’èF‚«‚å‚ë‚«‚å‚ë
+ *	OBJå‹•ä½œã‚³ãƒ¼ãƒ‰è¨­å®šï¼šãã‚‡ã‚ãã‚‡ã‚
  */
 //--------------------------------------------------------------
 	.macro	_OBJMOVE_KYORO		objid, front_dir, dir_flg, first_wait
 	.short	FR_OBJMOVE_KYORO
 	.short	\objid
 	.short	\front_dir			//FC_DIR_???
-	.short	\dir_flg			//0 or 1B@front‚ªDOWN‚Ìê‡A0‚¾‚ÆA¶„‰EA1‚¾‚ÆA‰E„¶
-	.short	\first_wait			//‰ŠúƒEƒFƒCƒg
+	.short	\dir_flg			//0 or 1ã€‚ã€€frontãŒDOWNã®å ´åˆã€0ã ã¨ã€å·¦ï¼žå³ã€1ã ã¨ã€å³ï¼žå·¦
+	.short	\first_wait			//åˆæœŸã‚¦ã‚§ã‚¤ãƒˆ
 	.endm
 
 
 //=============================================================================
-//	ƒTƒEƒ“ƒh
+//	ã‚µã‚¦ãƒ³ãƒ‰
 //=============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	SE‚ð–Â‚ç‚·
+ *	SEã‚’é³´ã‚‰ã™
  */
 //-----------------------------------------------------------------------------
 	.macro	_SE_PLAY no
@@ -1590,7 +1590,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	SE‚ðŽ~‚ß‚é
+ *	SEã‚’æ­¢ã‚ã‚‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_SE_STOP no
@@ -1600,7 +1600,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	SEI—¹‘Ò‚¿
+ *	SEçµ‚äº†å¾…ã¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_SE_WAIT	no
@@ -1610,7 +1610,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ME‚ð–Â‚ç‚·
+ *	MEã‚’é³´ã‚‰ã™
  */
 //-----------------------------------------------------------------------------
 	.macro	_ME_PLAY no
@@ -1620,7 +1620,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	MEI—¹‘Ò‚¿
+ *	MEçµ‚äº†å¾…ã¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_ME_WAIT
@@ -1629,7 +1629,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BGM‚ð–Â‚ç‚·
+ *	BGMã‚’é³´ã‚‰ã™
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_PLAY no
@@ -1639,7 +1639,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BGM‚ðŽ~‚ß‚é
+ *	BGMã‚’æ­¢ã‚ã‚‹
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_STOP no
@@ -1649,11 +1649,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 
 //==============================================================================
-//	ƒtƒ@ƒNƒgƒŠ[
+//	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ƒ[ƒNŠm•Û
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_WORK_ALLOC	init,type,level
@@ -1665,7 +1665,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ƒ[ƒN‰Šú‰»
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_WORK_INIT	init
@@ -1675,7 +1675,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ƒ[ƒNŠJ•ú
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_WORK_FREE
@@ -1684,7 +1684,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ƒŒƒ“ƒ^ƒ‹ŒÄ‚Ño‚µ
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¬ãƒ³ã‚¿ãƒ«å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_RENTAL_CALL
@@ -1693,7 +1693,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ŒÄ‚Ño‚µŒ‹‰ÊŽæ“¾
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å‘¼ã³å‡ºã—çµæžœå–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_CALL_GET_RESULT
@@ -1702,7 +1702,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[í“¬ŒÄ‚Ño‚µ
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼æˆ¦é—˜å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_BATTLE_CALL
@@ -1711,7 +1711,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ŒðŠ·ŒÄ‚Ño‚µ
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼äº¤æ›å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_TRADE_CALL
@@ -1720,7 +1720,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ƒŒƒ“ƒ^ƒ‹POKEPARTY‚ÌƒZƒbƒg
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¬ãƒ³ã‚¿ãƒ«POKEPARTYã®ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_RENTAL_PARTY_SET
@@ -1729,7 +1729,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_BTL_AFTER_PARTY_SET
@@ -1738,7 +1738,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ŒðŠ·Œã‚Ìƒ|ƒPƒ‚ƒ“•ÏX
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼äº¤æ›å¾Œã®ãƒã‚±ãƒ¢ãƒ³å¤‰æ›´
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_TRADE_POKE_CHANGE
@@ -1747,7 +1747,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[ŒðŠ·Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼äº¤æ›å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_TRADE_AFTER_PARTY_SET
@@ -1756,7 +1756,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[FACTORY_SCRWORK‚Ì‘€ì
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼FACTORY_SCRWORKã®æ“ä½œ
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_TOOL	code,param1,param2,ret_work
@@ -1769,7 +1769,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[”s–kƒ`ƒFƒbƒN
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼æ•—åŒ—ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_LOSE_CHECK	ret_wk
@@ -1779,7 +1779,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[’ÊMsend_buf
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼é€šä¿¡send_buf
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_SEND_BUF	type,param,ret_wk
@@ -1791,7 +1791,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[’ÊMrecv_buf(wk‚Étype‚ð‘ã“ü‚µ‚Ä“n‚µ‚Ä‰º‚³‚¢)
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼é€šä¿¡recv_buf(wkã«typeã‚’ä»£å…¥ã—ã¦æ¸¡ã—ã¦ä¸‹ã•ã„)
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_RECV_BUF	wk
@@ -1801,8 +1801,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ@ƒNƒgƒŠ[‘Îí‘OƒƒbƒZ[ƒW‚ð•\Ž¦(tr_idx)
- *  @param	tr_idx	ˆêl–Ú‚©“ñl–Ú‚©H
+ *	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å¯¾æˆ¦å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º(tr_idx)
+ *  @param	tr_idx	ä¸€äººç›®ã‹äºŒäººç›®ã‹ï¼Ÿ
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_FACTORY_APPEAR	tr_id	
@@ -1811,11 +1811,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	˜^‰æ
+//	éŒ²ç”»
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒf[ƒ^‰Šú‰»
+ *	ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 	.macro	_BATTLE_REC_INIT
@@ -1824,7 +1824,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒZ[ƒu
+ *	ã‚»ãƒ¼ãƒ–
  */
 //-----------------------------------------------------------------------------
 	.macro	_BATTLE_REC_SAVE	fr_no,type,rensyou,ret_wk
@@ -1837,7 +1837,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ[ƒh
+ *	ãƒ­ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 	.macro	_BATTLE_REC_LOAD
@@ -1846,7 +1846,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	”jŠü
+ *	ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 	.macro	_BATTLE_REC_EXIT
@@ -1855,7 +1855,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	˜^‰æƒf[ƒ^‚ª‚·‚Å‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒã™ã§ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 	.macro	_BATTLE_REC_DATA_OCC_CHECK	ret_wk
@@ -1865,7 +1865,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	Ž©•ª‚ÌROM‚æ‚è‚àƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚ª‚‚¢‚©Žæ“¾
+ *	è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒé«˜ã„ã‹å–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_BATTLE_REC_SERVER_VER_CHK	ret_wk
@@ -1874,11 +1874,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	ƒZ[ƒu
+//	ã‚»ãƒ¼ãƒ–
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒŒƒ|[ƒg‘‚«ž‚Ý
+ *	ãƒ¬ãƒãƒ¼ãƒˆæ›¸ãè¾¼ã¿
  */
 //-----------------------------------------------------------------------------
 	.macro	_REPORT_SAVE	ret_wk
@@ -1888,7 +1888,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒŒƒ|[ƒg‘‚«ž‚Ý(•ªŠ„)
+ *	ãƒ¬ãƒãƒ¼ãƒˆæ›¸ãè¾¼ã¿(åˆ†å‰²)
  */
 //-----------------------------------------------------------------------------
 	.macro	_REPORT_DIV_SAVE	ret_wk
@@ -1898,7 +1898,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ŠO•”ƒZ[ƒu‰Šú‰»
+ *	å¤–éƒ¨ã‚»ãƒ¼ãƒ–åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 	.macro	_EXTRA_SAVE_INIT
@@ -1907,7 +1907,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ŠO•”ƒZ[ƒu‰Šú‰»Ï‚Ý‚©ƒ`ƒFƒbƒN
+ *	å¤–éƒ¨ã‚»ãƒ¼ãƒ–åˆæœŸåŒ–æ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 	.macro	_EXTRA_SAVE_INIT_CHECK	ret_wk
@@ -1917,7 +1917,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒXƒe[ƒW‚ÌŠO•”˜AŸ‹L˜^‚ð‘‚«ž‚ÝAƒZ[ƒu‚ðs‚¤
+ *	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã®å¤–éƒ¨é€£å‹è¨˜éŒ²ã‚’æ›¸ãè¾¼ã¿ã€ã‚»ãƒ¼ãƒ–ã‚’è¡Œã†
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_RENSHOU_COPY_EXTRA	ret_wk
@@ -1927,7 +1927,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	‘Ò‹@ƒAƒCƒRƒ“•\Ž¦
+ *	å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_WAITICON
@@ -1936,7 +1936,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	‘Ò‹@ƒAƒCƒRƒ“Á‹Ž
+ *	å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³æ¶ˆåŽ»
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEL_WAITICON
@@ -1944,12 +1944,12 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	ƒ[ƒhƒZƒbƒg
+//	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 //==============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒAƒCƒeƒ€–¼‚ðƒZƒbƒg
+ *	ã‚¢ã‚¤ãƒ†ãƒ åã‚’ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_ITEM_NAME	idx,itemno
@@ -1960,7 +1960,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	”’l‚ðƒZƒbƒg
+ *	æ•°å€¤ã‚’ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_NUMBER_NAME	idx,number
@@ -1971,7 +1971,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ŽålŒö–¼
+ *	ä¸»äººå…¬å
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_NAME	idx
@@ -1981,7 +1981,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒp[ƒgƒi[–¼
+ *	ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼å
  */
 //-----------------------------------------------------------------------------
 	.macro	_PAIR_NAME	idx
@@ -1991,7 +1991,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	‹Z–¼
+ *	æŠ€å
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_NAME	idx,waza
@@ -2002,7 +2002,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©‚çƒ|ƒPƒ‚ƒ“–¼
+ *	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³å
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKEMON_NAME_EXTRA	idx,mons,sex,flag
@@ -2015,7 +2015,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ^ƒCƒv‚Ì–¼‘O
+ *	ã‚¿ã‚¤ãƒ—ã®åå‰
  */
 //-----------------------------------------------------------------------------
 	.macro	_TYPE_NAME	idx,type
@@ -2026,7 +2026,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‰ƒCƒoƒ‹–¼
+ *	ãƒ©ã‚¤ãƒãƒ«å
  */
 //-----------------------------------------------------------------------------
 	.macro	_RIVAL_NAME	idx
@@ -2035,11 +2035,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	ƒoƒgƒ‹ƒ|ƒCƒ“ƒg
+//	ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆ
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ŠŽƒoƒgƒ‹ƒ|ƒCƒ“ƒgŽæ“¾
+ *	æ‰€æŒãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆå–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_BTL_POINT	ret_wk
@@ -2049,7 +2049,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ŠŽƒoƒgƒ‹ƒ|ƒCƒ“ƒg‰ÁŽZ
+ *	æ‰€æŒãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåŠ ç®—
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTL_POINT_ADD	value
@@ -2059,7 +2059,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ŠŽƒoƒgƒ‹ƒ|ƒCƒ“ƒgŒ¸ŽZ
+ *	æ‰€æŒãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆæ¸›ç®—
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTL_POINT_SUB	value
@@ -2068,11 +2068,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	ƒoƒgƒ‹ƒ^ƒ[
+//	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ ƒRƒ}ƒ“ƒhƒc[ƒ‹ŒÄ‚Ño‚µ
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ ã‚³ãƒžãƒ³ãƒ‰ãƒ„ãƒ¼ãƒ«å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_TOOLS	cmd,param,ret_wk
@@ -2084,8 +2084,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ^ƒ[‘Îí‘OƒƒbƒZ[ƒW‚ð•\Ž¦(tr_idx)
- *  @param	tr_idx	ˆêl–Ú‚©“ñl–Ú‚©H
+ *	ã‚¿ãƒ¯ãƒ¼å¯¾æˆ¦å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º(tr_idx)
+ *  @param	tr_idx	ä¸€äººç›®ã‹äºŒäººç›®ã‹ï¼Ÿ
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_BTOWER_APPEAR	tr_id	
@@ -2095,7 +2095,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ƒ[ƒN‰ð•ú
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_WORK_RELEASE
@@ -2104,7 +2104,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ^ƒ[í“¬ŒÄ‚Ño‚µ
+ *	ã‚¿ãƒ¯ãƒ¼æˆ¦é—˜å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_BATTLE_CALL
@@ -2113,7 +2113,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ^ƒ[ŒÄ‚Ño‚µŒ‹‰ÊŽæ“¾
+ *	ã‚¿ãƒ¯ãƒ¼å‘¼ã³å‡ºã—çµæžœå–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_CALL_GET_RESULT	ret_wk
@@ -2123,7 +2123,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ ”Ä—pƒf[ƒ^‘—M
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ æ±Žç”¨ãƒ‡ãƒ¼ã‚¿é€ä¿¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_SEND_BUF	mode,param,ret_wk
@@ -2135,9 +2135,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ ”Ä—pƒf[ƒ^ŽóM
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ æ±Žç”¨ãƒ‡ãƒ¼ã‚¿å—ä¿¡
  *
- *	(ƒ‚[ƒh‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒ[ƒN‚ÌID‚ÆA–ß‚è’l‚ðŠi”[‚·‚éƒ[ƒN‚ÌID‚ð“n‚·)
+ *	(ãƒ¢ãƒ¼ãƒ‰ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã®IDã¨ã€æˆ»ã‚Šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ¸¡ã™)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_RECV_BUF	mode,ret_wk
@@ -2147,11 +2147,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	ƒXƒe[ƒW
+//	ã‚¹ãƒ†ãƒ¼ã‚¸
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒe[ƒWƒ[ƒNŠm•Û
+ *	ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_WORK_ALLOC	init,type,pos,pos2
@@ -2164,7 +2164,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	“GƒgƒŒ[ƒi[A“Gƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+ *	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€æ•µãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_WORK_ENEMY_SET	init
@@ -2174,7 +2174,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒe[ƒWƒ[ƒNŠJ•ú
+ *	ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_WORK_FREE
@@ -2183,7 +2183,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒe[ƒWƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‘I‘ðŒÄ‚Ño‚µ
+ *	ã‚¹ãƒ†ãƒ¼ã‚¸ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—é¸æŠžå‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_POKE_TYPE_SEL_CALL
@@ -2192,7 +2192,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒe[ƒWŒÄ‚Ño‚µŒ‹‰ÊŽæ“¾
+ *	ã‚¹ãƒ†ãƒ¼ã‚¸å‘¼ã³å‡ºã—çµæžœå–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_CALL_GET_RESULT
@@ -2201,7 +2201,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒe[ƒWí“¬ŒÄ‚Ño‚µ
+ *	ã‚¹ãƒ†ãƒ¼ã‚¸æˆ¦é—˜å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_BATTLE_CALL
@@ -2210,7 +2210,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒe[ƒWSTAGE_SCRWORK‚Ì‘€ì
+ *	ã‚¹ãƒ†ãƒ¼ã‚¸STAGE_SCRWORKã®æ“ä½œ
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_TOOL	code,param1,param2,ret_work
@@ -2223,7 +2223,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒe[ƒW”s–kƒ`ƒFƒbƒN
+ *	ã‚¹ãƒ†ãƒ¼ã‚¸æ•—åŒ—ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_LOSE_CHECK	ret_wk
@@ -2233,7 +2233,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒe[ƒW’ÊMsend_buf
+ *	ã‚¹ãƒ†ãƒ¼ã‚¸é€šä¿¡send_buf
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_SEND_BUF	type,param,ret_work
@@ -2245,7 +2245,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒe[ƒW’ÊMrecv_buf(wk‚Étype‚ð‘ã“ü‚µ‚Ä“n‚µ‚Ä‰º‚³‚¢)
+ *	ã‚¹ãƒ†ãƒ¼ã‚¸é€šä¿¡recv_buf(wkã«typeã‚’ä»£å…¥ã—ã¦æ¸¡ã—ã¦ä¸‹ã•ã„)
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_RECV_BUF	wk
@@ -2255,8 +2255,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒXƒe[ƒW‘Îí‘OƒƒbƒZ[ƒW‚ð•\Ž¦(tr_idx)
- *  @param	tr_idx	ˆêl–Ú‚©“ñl–Ú‚©H
+ *	ã‚¹ãƒ†ãƒ¼ã‚¸å¯¾æˆ¦å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º(tr_idx)
+ *  @param	tr_idx	ä¸€äººç›®ã‹äºŒäººç›®ã‹ï¼Ÿ
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_STAGE_APPEAR	tr_id	
@@ -2266,7 +2266,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒfƒoƒbƒN
+ *	ãƒ‡ãƒãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_PRINT	wk_id
@@ -2275,11 +2275,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //==============================================================================
-//	ƒLƒƒƒbƒXƒ‹
+//	ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 //==============================================================================
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹ƒ[ƒNŠm•Û
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_WORK_ALLOC	init,type,pos1,pos2,pos3,work
@@ -2294,7 +2294,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹ƒ[ƒN‰Šú‰»
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_WORK_INIT	init
@@ -2304,7 +2304,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹ƒ[ƒNŠJ•ú
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_WORK_FREE
@@ -2313,7 +2313,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹ŽèŽ‚¿‰æ–ÊŒÄ‚Ño‚µ
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«æ‰‹æŒã¡ç”»é¢å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_MINE_CALL
@@ -2322,7 +2322,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹ŒÄ‚Ño‚µŒ‹‰ÊŽæ“¾
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«å‘¼ã³å‡ºã—çµæžœå–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_CALL_GET_RESULT
@@ -2331,7 +2331,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹í“¬ŒÄ‚Ño‚µ
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«æˆ¦é—˜å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_BATTLE_CALL
@@ -2340,7 +2340,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹“GƒgƒŒ[ƒi[ŒÄ‚Ño‚µ
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_ENEMY_CALL
@@ -2349,7 +2349,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹í“¬‘O‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«æˆ¦é—˜å‰ã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_BTL_BEFORE_PARTY_SET
@@ -2358,7 +2358,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹ƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_BTL_AFTER_PARTY_SET
@@ -2367,7 +2367,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹CASTLE_SCRWORK‚Ì‘€ì
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«CASTLE_SCRWORKã®æ“ä½œ
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_TOOL	code,param1,param2,ret_work
@@ -2380,7 +2380,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹”s–kƒ`ƒFƒbƒN
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«æ•—åŒ—ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_LOSE_CHECK	ret_wk
@@ -2390,7 +2390,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹’ÊMsend_buf
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«é€šä¿¡send_buf
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_SEND_BUF	type,param,ret_work
@@ -2402,7 +2402,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹’ÊMrecv_buf(wk‚Étype‚ð‘ã“ü‚µ‚Ä“n‚µ‚Ä‰º‚³‚¢)
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«é€šä¿¡recv_buf(wkã«typeã‚’ä»£å…¥ã—ã¦æ¸¡ã—ã¦ä¸‹ã•ã„)
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_RECV_BUF	wk
@@ -2412,7 +2412,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹ƒ‰ƒ“ƒNƒAƒbƒvŒÄ‚Ño‚µ
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_RANKUP_CALL
@@ -2421,7 +2421,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	e‚ÌŒˆ’è‘Ò‚¿
+ *	è¦ªã®æ±ºå®šå¾…ã¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_PARENT_WAIT	ret_wk
@@ -2431,7 +2431,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	CPŽæ“¾
+ *	CPå–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_GET_CP	type,ret_wk
@@ -2442,7 +2442,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	CPŒ¸‚ç‚·
+ *	CPæ¸›ã‚‰ã™
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_SUB_CP	type,num
@@ -2453,7 +2453,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	CP‘‚â‚·
+ *	CPå¢—ã‚„ã™
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_ADD_CP	type,num
@@ -2464,8 +2464,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒLƒƒƒbƒXƒ‹‘Îí‘OƒƒbƒZ[ƒW‚ð•\Ž¦(tr_idx)
- *  @param	tr_idx	ˆêl–Ú‚©“ñl–Ú‚©H
+ *	ã‚­ãƒ£ãƒƒã‚¹ãƒ«å¯¾æˆ¦å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º(tr_idx)
+ *  @param	tr_idx	ä¸€äººç›®ã‹äºŒäººç›®ã‹ï¼Ÿ
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_CASTLE_APPEAR	tr_id	
@@ -2475,7 +2475,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WiFiŽó•tƒ[ƒNŠm•Û
+ *	WiFiå—ä»˜ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_WORK_ALLOC
@@ -2484,7 +2484,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WiFiŽó•tƒ[ƒNŠJ•ú
+ *	WiFiå—ä»˜ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_WORK_FREE
@@ -2493,7 +2493,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WiFiŽó•t’ÊMsend_buf
+ *	WiFiå—ä»˜é€šä¿¡send_buf
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_SEND_BUF	type,param,param2,ret_work
@@ -2506,7 +2506,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WiFiŽó•t’ÊMrecv_buf(wk‚Étype‚ð‘ã“ü‚µ‚Ä“n‚µ‚Ä‰º‚³‚¢)
+ *	WiFiå—ä»˜é€šä¿¡recv_buf(wkã«typeã‚’ä»£å…¥ã—ã¦æ¸¡ã—ã¦ä¸‹ã•ã„)
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_RECV_BUF	wk
@@ -2516,7 +2516,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WiFiŽó•t Ž{ÝNo”äŠr
+ *	WiFiå—ä»˜ æ–½è¨­Noæ¯”è¼ƒ
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_BFNO_CHECK	no,wk
@@ -2527,7 +2527,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WiFiŽó•t ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg
+ *	WiFiå—ä»˜ ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_POKELIST	bf_no,type,ret_wk
@@ -2539,7 +2539,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WiFiŽó•t ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‘I‘ðŒ‹‰ÊŽæ“¾
+ *	WiFiå—ä»˜ ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆé¸æŠžçµæžœå–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_POKELIST_GET_RESULT	ret_wk,ret_wk2
@@ -2550,7 +2550,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WiFiŽó•t ‚â‚ß‚é@‘I‘ðƒ`ƒFƒbƒN
+ *	WiFiå—ä»˜ ã‚„ã‚ã‚‹ã€€é¸æŠžãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_YAMERU_CHECK	ret_wk
@@ -2560,7 +2560,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	FRWIFI_SCRWORK‚Ì‘€ì
+ *	FRWIFI_SCRWORKã®æ“ä½œ
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_TOOL	code,param1,param2,ret_work
@@ -2573,7 +2573,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ^ƒ[ŒÄ‚Ño‚µ‘O‚Ì€”õ
+ *	ã‚¿ãƒ¯ãƒ¼å‘¼ã³å‡ºã—å‰ã®æº–å‚™
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_TOWER_CALL_BEFORE
@@ -2582,7 +2582,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ^ƒ[ƒgƒŒ[ƒi[ƒf[ƒ^‘—M
+ *	ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿é€ä¿¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_TOWER_SEND_TR_DATA	ret_wk
@@ -2592,7 +2592,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ^ƒ[ƒgƒŒ[ƒi[ƒf[ƒ^ŽóM
+ *	ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿å—ä¿¡
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_TOWER_RECV_TR_DATA
@@ -2601,7 +2601,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ^ƒ[ŒÄ‚Ño‚µŒã‚ÌŒãŽn––
+ *	ã‚¿ãƒ¯ãƒ¼å‘¼ã³å‡ºã—å¾Œã®å¾Œå§‹æœ«
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_TOWER_CALL_AFTER
@@ -2610,7 +2610,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	“úŽž‚Ì‹L˜^‚ð‚Â‚¯‚é(ƒtƒƒ“ƒeƒBƒAê—p)
+ *	æ—¥æ™‚ã®è¨˜éŒ²ã‚’ã¤ã‘ã‚‹(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å°‚ç”¨)
  */
 //-----------------------------------------------------------------------------
 	.macro	_FR_WIFI_COUNTER_LIST_SET_LAST_PLAY_DATE
@@ -2619,12 +2619,12 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 
 //==============================================================================
-//	ƒ‹[ƒŒƒbƒg
+//	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 //==============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒgƒ[ƒNŠm•Û
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_WORK_ALLOC	init,type,pos1,pos2,pos3,work
@@ -2639,7 +2639,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒgƒ[ƒN‰Šú‰»
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_WORK_INIT	init
@@ -2649,7 +2649,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒgƒ[ƒNŠJ•ú
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯é–‹æ”¾
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_WORK_FREE
@@ -2658,7 +2658,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒgŒÄ‚Ño‚µŒ‹‰ÊŽæ“¾
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆå‘¼ã³å‡ºã—çµæžœå–å¾—
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_CALL_GET_RESULT
@@ -2667,7 +2667,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒgí“¬ŒÄ‚Ño‚µ
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆæˆ¦é—˜å‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_BATTLE_CALL
@@ -2676,7 +2676,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒgí“¬‘O‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆæˆ¦é—˜å‰ã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_BTL_BEFORE_PARTY_SET
@@ -2685,7 +2685,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒgƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_BTL_AFTER_PARTY_SET
@@ -2694,7 +2694,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒgROULETTE_SCRWORK‚Ì‘€ì
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆROULETTE_SCRWORKã®æ“ä½œ
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_TOOL	code,param1,param2,ret_work
@@ -2707,7 +2707,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒg”s–kƒ`ƒFƒbƒN
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆæ•—åŒ—ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_LOSE_CHECK	ret_wk
@@ -2717,7 +2717,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒg’ÊMsend_buf
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€šä¿¡send_buf
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_SEND_BUF	type,param,ret_work
@@ -2729,7 +2729,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒg’ÊMrecv_buf(wk‚Étype‚ð‘ã“ü‚µ‚Ä“n‚µ‚Ä‰º‚³‚¢)
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€šä¿¡recv_buf(wkã«typeã‚’ä»£å…¥ã—ã¦æ¸¡ã—ã¦ä¸‹ã•ã„)
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_RECV_BUF	wk
@@ -2739,7 +2739,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒgŒÄ‚Ño‚µ
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆå‘¼ã³å‡ºã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_CALL
@@ -2748,8 +2748,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒ‹[ƒŒƒbƒg‘Îí‘OƒƒbƒZ[ƒW‚ð•\Ž¦(tr_idx)
- *  @param	tr_idx	ˆêl–Ú‚©“ñl–Ú‚©H
+ *	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆå¯¾æˆ¦å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º(tr_idx)
+ *  @param	tr_idx	ä¸€äººç›®ã‹äºŒäººç›®ã‹ï¼Ÿ
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_ROULETTE_APPEAR	tr_id	
@@ -2759,7 +2759,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	Œˆ’è‚µ‚½ƒCƒxƒ“ƒgƒpƒlƒ‹ˆ—‚ðŽÀs
+ *	æ±ºå®šã—ãŸã‚¤ãƒ™ãƒ³ãƒˆãƒ‘ãƒãƒ«å‡¦ç†ã‚’å®Ÿè¡Œ
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_DECIDE_EV_NO_FUNC
@@ -2768,7 +2768,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚ÌƒoƒjƒbƒVƒ…
+ *	ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_CHG_ITEMKEEP_VANISH	param1,param2,param3
@@ -2780,7 +2780,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	TV:ƒXƒe[ƒW
+ *	TV:ã‚¹ãƒ†ãƒ¼ã‚¸
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_TEMP_STAGE_SET
@@ -2789,7 +2789,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	TV:ƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µ
+ *	TV:ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_TEMP_FRIEND_SET		no
@@ -2799,7 +2799,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * WIFI‚Åˆê‹C‚Éƒf[ƒ^‚ð‘—‚éŽž‚Ì‘Î‰ž
+ * WIFIã§ä¸€æ°—ã«ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹æ™‚ã®å¯¾å¿œ
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_SET_WIFI_BOTH_NET	flag

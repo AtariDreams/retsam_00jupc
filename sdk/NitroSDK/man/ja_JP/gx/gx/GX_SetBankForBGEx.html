@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>GX_SetBankForBGEx</title>
@@ -12,124 +12,124 @@
 <body>
 
 <h1 align="left">GX_SetBankForBGEx</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
 <CODE>#include &lt;nitro/gx/gx_vramcnt.h&gt;</CODE><BR>
   <BR>
   <CODE>void GX_SetBankForBGEx(GXVRamBG bg1, GXVRamBG bg2);</CODE></dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
 
     <tr>
     <td width="13%"><em><strong><font face="Courier New">bg1</font></strong></em></td>
-    <td width="87%">���C��2D�G���W����BG-VRAM��0x6000000-0x6017FFF�Ɋ��蓖�Ă���VRAM�o���N���w�肵�܂��BVRAM-E,F,G�̑g�ݍ��킹�݂̂��ݒ�\�ł��B</td>
+    <td width="87%">メイン2DエンジンのBG-VRAMの0x6000000-0x6017FFFに割り当てられるVRAMバンクを指定します。VRAM-E,F,Gの組み合わせのみが設定可能です。</td>
   </tr>
     <TR>
       <TD><em><strong><font face="Courier New">bg2</font></strong></em></TD>
-      <TD>���C��2D�G���W����BG-VRAM��0x6020000-0x607FFFF�Ɋ��蓖�Ă���VRAM�o���N���w�肵�܂��BVRAM-A,B,C,D�̑g�ݍ��킹�݂̂��ݒ�\�ŁA�ő�384KB�ł��B</TD>
+      <TD>メイン2DエンジンのBG-VRAMの0x6020000-0x607FFFFに割り当てられるVRAMバンクを指定します。VRAM-A,B,C,Dの組み合わせのみが設定可能で、最大384KBです。</TD>
     </TR>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
-<H2>����</H2>
-<P>BG-VRAM��ŘA�������A�h���X�Ƀ}�b�s���O���邱�Ƃ��ł��Ȃ��o���N�̑g�ݍ��킹��ݒ肵�܂��B</P>
-<P>���̊֐����g�p����VRAM�̃o���N�ݒ�������ꍇ�AVRAM-E,F,G��BG-VRAM�̐擪0x6000000����̘A�������A�h���X�Ƀ}�b�s���O����A�܂�VRAM-A,B,C,D��BG-VRAM��0x6020000����̘A�������A�h���X�Ƀ}�b�s���O����܂��B<BR>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>BG-VRAM上で連続したアドレスにマッピングすることができないバンクの組み合わせを設定します。</P>
+<P>この関数を使用してVRAMのバンク設定をした場合、VRAM-E,F,GはBG-VRAMの先頭0x6000000からの連続したアドレスにマッピングされ、またVRAM-A,B,C,DはBG-VRAMの0x6020000からの連続したアドレスにマッピングされます。<BR>
 </P>
 <TABLE border="1">
   <TBODY>
-    <TR><TD colspan="2"><B>�������Ŏw��ł���p�����[�^</B></TD></TR>
+    <TR><TD colspan="2"><B>第一引数で指定できるパラメータ</B></TD></TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_16_F</CODE></TD>
-      <TD>BG��16KBytes�m�ۂ��܂��BVRAM-F�����蓖�Ă܂��B</TD>
+      <TD>BGに16KBytes確保します。VRAM-Fを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_16_G</CODE></TD>
-      <TD>BG��16KBytes�m�ۂ��܂��BVRAM-G�����蓖�Ă܂��B</TD>
+      <TD>BGに16KBytes確保します。VRAM-Gを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_32_FG</CODE></TD>
-      <TD>BG��32KBytes�m�ۂ��܂��BVRAM-F,G�����蓖�Ă܂��B</TD>
+      <TD>BGに32KBytes確保します。VRAM-F,Gを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_64_E</CODE></TD>
-      <TD>BG��64KBytes�m�ۂ��܂��BVRAM-E�����蓖�Ă܂��B</TD>
+      <TD>BGに64KBytes確保します。VRAM-Eを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_80_EF</CODE></TD>
-      <TD>BG��80KBytes�m�ۂ��܂��BVRAM-E,F�����蓖�Ă܂��B</TD>
+      <TD>BGに80KBytes確保します。VRAM-E,Fを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_96_EFG</CODE></TD>
-      <TD>BG��96KBytes�m�ۂ��܂��BVRAM-E,F,G�����蓖�Ă܂��B</TD>
+      <TD>BGに96KBytes確保します。VRAM-E,F,Gを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_80_EG</CODE></TD>
-      <TD>BG��80KBytes�m�ۂ��܂��BVRAM-E,G�����蓖�Ă܂��B</TD>
+      <TD>BGに80KBytes確保します。VRAM-E,Gを割り当てます。</TD>
     </TR>
-    <TR><TD colspan="2"><B>�������Ŏw��ł���p�����[�^</B></TD></TR>
+    <TR><TD colspan="2"><B>第二引数で指定できるパラメータ</B></TD></TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_128_A</CODE></TD>
-      <TD>BG��128KBytes�m�ۂ��܂��BVRAM-A�����蓖�Ă܂��B</TD>
+      <TD>BGに128KBytes確保します。VRAM-Aを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_128_B</CODE></TD>
-      <TD>BG��128KBytes�m�ۂ��܂��BVRAM-B�����蓖�Ă܂��B</TD>
+      <TD>BGに128KBytes確保します。VRAM-Bを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_128_C</CODE></TD>
-      <TD>BG��128KBytes�m�ۂ��܂��BVRAM-C�����蓖�Ă܂��B</TD>
+      <TD>BGに128KBytes確保します。VRAM-Cを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_128_D</CODE></TD>
-      <TD>BG��128KBytes�m�ۂ��܂��BVRAM-D�����蓖�Ă܂��B</TD>
+      <TD>BGに128KBytes確保します。VRAM-Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_256_AB</CODE></TD>
-      <TD>BG��256KBytes�m�ۂ��܂��BVRAM-A,B�����蓖�Ă܂��B</TD>
+      <TD>BGに256KBytes確保します。VRAM-A,Bを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_256_BC</CODE></TD>
-      <TD>BG��256KBytes�m�ۂ��܂��BVRAM-B,C�����蓖�Ă܂��B</TD>
+      <TD>BGに256KBytes確保します。VRAM-B,Cを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_256_CD</CODE></TD>
-      <TD>BG��256KBytes�m�ۂ��܂��BVRAM-C,D�����蓖�Ă܂��B</TD>
+      <TD>BGに256KBytes確保します。VRAM-C,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_384_ABC</CODE></TD>
-      <TD>BG��384KBytes�m�ۂ��܂��BVRAM-A,B,C�����蓖�Ă܂��B</TD>
+      <TD>BGに384KBytes確保します。VRAM-A,B,Cを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_384_BCD</CODE></TD>
-      <TD>BG��384KBytes�m�ۂ��܂��BVRAM-B,C,D�����蓖�Ă܂��B</TD>
+      <TD>BGに384KBytes確保します。VRAM-B,C,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_256_AC</CODE></TD>
-      <TD>BG��256KBytes�m�ۂ��܂��BVRAM-A,C�����蓖�Ă܂��B</TD>
+      <TD>BGに256KBytes確保します。VRAM-A,Cを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_256_AD</CODE></TD>
-      <TD>BG��256KBytes�m�ۂ��܂��BVRAM-A,D�����蓖�Ă܂��B</TD>
+      <TD>BGに256KBytes確保します。VRAM-A,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_256_BD</CODE></TD>
-      <TD>BG��256KBytes�m�ۂ��܂��BVRAM-B,D�����蓖�Ă܂��B</TD>
+      <TD>BGに256KBytes確保します。VRAM-B,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_384_ABD</CODE></TD>
-      <TD>BG��384KBytes�m�ۂ��܂��BVRAM-A,B,D�����蓖�Ă܂��B</TD>
+      <TD>BGに384KBytes確保します。VRAM-A,B,Dを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_BG_384_ACD</CODE></TD>
-      <TD>BG��384KBytes�m�ۂ��܂��BVRAM-A,C,D�����蓖�Ă܂��B</TD>
+      <TD>BGに384KBytes確保します。VRAM-A,C,Dを割り当てます。</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-�ȉ���<CODE>GXVRamBG</CODE>�^�̌^��`�������Ă����܂��B</P>
+以下に<CODE>GXVRamBG</CODE>型の型定義を示しておきます。</P>
 <PRE><CODE>
 typedef enum
 {
@@ -161,12 +161,12 @@ typedef enum
 }
 GXVRamBG;
 </CODE></PRE>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><A href="GX_GetBankForBG.html">GX_GetBankForBG</A>, <A href="GX_ResetBankForBG.html">GX_ResetBankForBG</A>, <A href="GX_DisableBankForBG.html">GX_DisableBankForBG</A>, <A href="GX_GetSizeOfBG.html">GX_GetSizeOfBG</A>,<A href="GX_SetBankForBG.html">GX_SetBankForBG</A></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/05/12 �w��\�ȗ񋓒l�ꗗ���� GX_VRAM_BG_512_ABCD ���폜�BGXVRamBG �̈��p���C���B<br>
-2004/11/25 ����o�^<br>
+2005/05/12 指定可能な列挙値一覧から GX_VRAM_BG_512_ABCD を削除。GXVRamBG の引用を修正。<br>
+2004/11/25 初回登録<br>
 </P>
 </body>
 </html>

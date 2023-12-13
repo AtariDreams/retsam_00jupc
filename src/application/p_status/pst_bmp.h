@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pst_bmp.h
- * @brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–ÊBMP
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢BMP
  * @author	Hiroyuki Nakamura
  * @date	2005.11.15
  */
@@ -17,35 +17,35 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	PST_MSG_PRMNONE	( 0xfe )	// ƒƒbƒZ[ƒWIDFu‚È‚É‚à@‚©‚í‚ç‚È‚©‚Á‚½Iv
-#define	PST_MSG_EATNONE	( 0xff )	// ƒƒbƒZ[ƒWIDFu‚à‚¤@‚±‚ê‚¢‚¶‚å‚¤@‚½‚×‚È‚¢@‚İ‚½‚¢v
+#define	PST_MSG_PRMNONE	( 0xfe )	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDï¼šã€Œãªã«ã‚‚ã€€ã‹ã‚ã‚‰ãªã‹ã£ãŸï¼ã€
+#define	PST_MSG_EATNONE	( 0xff )	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDï¼šã€Œã‚‚ã†ã€€ã“ã‚Œã„ã˜ã‚‡ã†ã€€ãŸã¹ãªã„ã€€ã¿ãŸã„ã€
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
-GLOBAL void PokeStatusBmpAdd( PST_WORK * wk );				// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusBmpExit( PST_WORK * wk );				// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusTitlePut( PST_WORK * wk );			// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusNamePut( PST_WORK * wk );				// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusLvPut( PST_WORK * wk );				// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusItemPut( PST_WORK * wk );				// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusTagParamMsgPut( PST_WORK * wk );		// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusInfoParamPut( PST_WORK * wk );		// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusPageMemoPut( PST_WORK * wk );			// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusPageParamPut( PST_WORK * wk );		// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusPageConditionPut( PST_WORK * wk );	// íœ‚³‚ê‚Ü‚µ‚½
-GLOBAL void PokeStatusPageSkillPut( PST_WORK * wk );		// íœ‚³‚ê‚Ü‚µ‚½
+GLOBAL void PokeStatusBmpAdd( PST_WORK * wk );				// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusBmpExit( PST_WORK * wk );				// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusTitlePut( PST_WORK * wk );			// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusNamePut( PST_WORK * wk );				// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusLvPut( PST_WORK * wk );				// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusItemPut( PST_WORK * wk );				// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusTagParamMsgPut( PST_WORK * wk );		// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusInfoParamPut( PST_WORK * wk );		// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusPageMemoPut( PST_WORK * wk );			// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusPageParamPut( PST_WORK * wk );		// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusPageConditionPut( PST_WORK * wk );	// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
+GLOBAL void PokeStatusPageSkillPut( PST_WORK * wk );		// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zî•ñ•\¦
+ * æŠ€æƒ…å ±è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	waza	‹Z”Ô†
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
  *
  * @return	none
  */
@@ -54,9 +54,9 @@ GLOBAL void PokeStatus_WazaInfoPut( PST_WORK * wk, u32 waza );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zî•ñ”ñ•\¦
+ * æŠ€æƒ…å ±éè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -65,10 +65,10 @@ GLOBAL void PokeStatus_WazaInfoOff( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Zî•ñ•\¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€æƒ…å ±è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	waza	‹Z”Ô†
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
  *
  * @return	none
  */
@@ -77,22 +77,22 @@ GLOBAL void PokeStatus_ContestWazaInfoPut( PST_WORK * wk, u32 waza );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Zî•ñ”ñ•\¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€æƒ…å ±éè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void PokeStatus_ContestWazaInfoOff( PST_WORK * wk );
 
-GLOBAL void PokeStatusPageReturnPut( PST_WORK * wk );			// íœ‚³‚ê‚Ü‚µ‚½
+GLOBAL void PokeStatusPageReturnPut( PST_WORK * wk );			// å‰Šé™¤ã•ã‚Œã¾ã—ãŸ
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‚Ì‚T‚Â–Ú‚Ì€–Ú•\¦
+ * æŠ€ã®ï¼•ã¤ç›®ã®é …ç›®è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -101,9 +101,9 @@ GLOBAL void PokeStatus_SkillCancelPut( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‚Ì‚T‚Â–Ú‚Ì€–Ú”ñ•\¦
+ * æŠ€ã®ï¼•ã¤ç›®ã®é …ç›®éè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -112,9 +112,9 @@ GLOBAL void PokeStatus_SkillCancelDel( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦‚½‹Z‚ğÄ•\¦
+ * å…¥ã‚Œæ›¿ãˆãŸæŠ€ã‚’å†è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -123,9 +123,9 @@ GLOBAL void PokeStatus_SkillChgRewrite( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ZŠo‚¦ƒGƒ‰[ƒƒbƒZ[ƒW•\¦
+ * æŠ€è¦šãˆã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -134,10 +134,10 @@ GLOBAL void PokeStatus_WazaOboeErrorMsgPut( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒKƒCƒhƒƒbƒZ[ƒW•\¦
+ * ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	midx	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	midx	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  */
@@ -146,9 +146,9 @@ GLOBAL void PokeStatus_GuideStrPut( PST_WORK * wk, u32 midx );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒjƒbƒNƒl[ƒ€E«•Ê•\¦
+ * ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãƒ»æ€§åˆ¥è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -157,9 +157,9 @@ GLOBAL void PokeStatus_NickNamePut( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹•\¦
+ * ãƒ¬ãƒ™ãƒ«è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -168,9 +168,9 @@ GLOBAL void PokeStatus_LvPut( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€•\¦
+ * ã‚¢ã‚¤ãƒ†ãƒ è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -179,9 +179,9 @@ GLOBAL void PokeStatus_ItemPut( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘Sƒy[ƒW‹¤’Ê‚ÌBMP’Ç‰Á
+ * å…¨ãƒšãƒ¼ã‚¸å…±é€šã®BMPè¿½åŠ 
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -190,9 +190,9 @@ GLOBAL void PokeStatus_DefaultBmpAdd( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚²‚Æ‚ÌBMP’Ç‰Á
+ * ãƒšãƒ¼ã‚¸ã”ã¨ã®BMPè¿½åŠ 
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -201,9 +201,9 @@ GLOBAL void PokeStatus_PageBmpAdd( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚²‚Æ‚ÌBMPíœ
+ * ãƒšãƒ¼ã‚¸ã”ã¨ã®BMPå‰Šé™¤
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -212,9 +212,9 @@ GLOBAL void PokeStatus_PageBmpFree( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘SBMPíœ
+ * å…¨BMPå‰Šé™¤
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -223,9 +223,9 @@ GLOBAL void PokeStatus_BmpFreeAll( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚²‚Æ‚ÌBMP•\¦
+ * ãƒšãƒ¼ã‚¸ã”ã¨ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -234,9 +234,9 @@ GLOBAL void PokeStatus_PageBmpPut( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“”•\¦
+ * ãƒªãƒœãƒ³æ•°è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -245,9 +245,9 @@ GLOBAL void PokeStatus_RibbonPosNumPut( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“î•ñ
+ * ãƒªãƒœãƒ³æƒ…å ±
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -256,10 +256,10 @@ GLOBAL void PokeStatus_RibbonInfoPut( PST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒAƒbƒvƒƒbƒZ[ƒW•\¦
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚¢ãƒƒãƒ—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	num		ƒAƒbƒv‚µ‚½ƒRƒ“ƒfƒBƒVƒ‡ƒ“
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ã‚¢ãƒƒãƒ—ã—ãŸã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³
  *
  * @return	none
  */

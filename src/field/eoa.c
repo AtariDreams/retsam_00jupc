@@ -2,7 +2,7 @@
 /**
  * 
  * @file	eoa.c
- * @brief	ƒGƒtƒFƒNƒgƒIƒuƒWƒFƒNƒgƒAƒNƒ^[
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼
  * @author	kagaya
  * @data	05.07.13
  *
@@ -18,15 +18,15 @@
 //	debug
 //--------------------------------------------------------------
 #ifdef PM_DEBUG
-//#define DEBUG_EOA_USE_COUNT		//’è‹`‚ÅEOAg—p”‚ğOS_Print()“f‚«o‚µ
+//#define DEBUG_EOA_USE_COUNT		//å®šç¾©ã§EOAä½¿ç”¨æ•°ã‚’OS_Print()åãå‡ºã—
 #endif
 
 //--------------------------------------------------------------
-//	EOAƒXƒe[ƒ^ƒXƒrƒbƒg
+//	EOAã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ
 //--------------------------------------------------------------
-#define EOA_STA_BIT_NON			(0)							///<–³‚µ
-#define EOA_STA_BIT_USE			(1<<0)						///<g—p’†
-#define EOA_STA_BIT_INIT_COMP	(1<<1)						///<‰Šú‰»Š®—¹
+#define EOA_STA_BIT_NON			(0)							///<ç„¡ã—
+#define EOA_STA_BIT_USE			(1<<0)						///<ä½¿ç”¨ä¸­
+#define EOA_STA_BIT_INIT_COMP	(1<<1)						///<åˆæœŸåŒ–å®Œäº†
 
 #define EOA_STA_BIT_USE_INIT_CHECK (EOA_STA_BIT_USE|EOA_STA_BIT_INIT_COMP)
 
@@ -34,7 +34,7 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	EOA\‘¢‘Ì
+///	EOAæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_EOA
 {
@@ -59,10 +59,10 @@ typedef struct _TAG_EOA
 	EOA_PROC_POP  proc_pop;
 }EOA;
 
-#define EOA_SIZE (sizeof(EOA))	///<EOAƒTƒCƒY
+#define EOA_SIZE (sizeof(EOA))	///<EOAã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	EOA_SYS\‘¢‘Ì
+///	EOA_SYSæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_EOA_SYS
 {
@@ -72,10 +72,10 @@ typedef struct _TAG_EOA_SYS
 	EOA_PTR eoa;
 }EOA_SYS;
 
-#define EOA_SYS_SIZE (sizeof(EOA_SYS))	///<EOA_SYSƒTƒCƒY
+#define EOA_SYS_SIZE (sizeof(EOA_SYS))	///<EOA_SYSã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static TCB_PTR eoa_MoveProcTCBAdd( EOA_PTR eoa, int pri );
 static void eoa_MoveProcTCB( TCB_PTR tcb, void *wk );
@@ -100,14 +100,14 @@ static TCB_PTR eoa_TCBGet( EOA_PTR eoa );
 static void eoa_EoaSysSet( EOA_PTR eoa, CONST_EOA_SYS_PTR es );
 
 //==============================================================================
-//	eoa	ƒVƒXƒeƒ€
+//	eoa	ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA‰Šú‰»
- * @param	heap_id		EOAƒ[ƒN‚Ég—p‚·‚éƒq[ƒvID
- * @param	max			EOAÅ‘å”
- * @retval	EOA_SYS_PTR	’Ç‰Á‚³‚ê‚½EOA_SYS_PTR
+ * EOAåˆæœŸåŒ–
+ * @param	heap_id		EOAãƒ¯ãƒ¼ã‚¯ã«ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
+ * @param	max			EOAæœ€å¤§æ•°
+ * @retval	EOA_SYS_PTR	è¿½åŠ ã•ã‚ŒãŸEOA_SYS_PTR
  */
 //--------------------------------------------------------------
 EOA_SYS_PTR EOA_SysInit( int heap_id, int max )
@@ -125,7 +125,7 @@ EOA_SYS_PTR EOA_SysInit( int heap_id, int max )
 
 //--------------------------------------------------------------
 /**
- * EOAƒVƒXƒeƒ€íœ
+ * EOAã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
  * @param	es		EOA_SYS_PTR
  * @retval	nothing
  */
@@ -138,7 +138,7 @@ void EOA_SysDelete( EOA_SYS_PTR es )
 
 //--------------------------------------------------------------
 /**
- * EOA‘Síœ&EOAƒVƒXƒeƒ€íœ
+ * EOAå…¨å‰Šé™¤&EOAã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
  * @param	es		EOA_SYS_PTR
  * @retval	nothing
  */
@@ -150,18 +150,18 @@ void EOA_SysDeleteAll( EOA_SYS_PTR es )
 }
 
 //==============================================================================
-//	eoa	’Ç‰Áíœ
+//	eoa	è¿½åŠ å‰Šé™¤
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA’Ç‰Á
+ * EOAè¿½åŠ 
  * @param	es			EOA_SYS_PTR
- * @param	EOA_H		’Ç‰Á‚³‚ê‚éî•ñ‚ª“Z‚ß‚ç‚ê‚½EOA_H
- * @param	mtx			‰ŠúˆÊ’u@w’è‚µ‚È‚¢ê‡‚ÍNULL
- * @param	prm			’Ç‰Á‚·‚éEOA‚Öw’è‚·‚éƒpƒ‰ƒƒ^
- * @param	ptr			’Ç‰Á‚·‚éEOA‚Öw’è‚·‚éƒ|ƒCƒ“ƒ^
- * @param	pri			’Ç‰Á‚·‚éEOA‚Ì“®ìƒvƒ‰ƒCƒIƒŠƒeƒB
- * @retval	EOA_PTR		’Ç‰Á‚³‚ê‚½EOA_PTR NULL=’Ç‰Á¸”s
+ * @param	EOA_H		è¿½åŠ ã•ã‚Œã‚‹æƒ…å ±ãŒçºã‚ã‚‰ã‚ŒãŸEOA_H
+ * @param	mtx			åˆæœŸä½ç½®ã€€æŒ‡å®šã—ãªã„å ´åˆã¯NULL
+ * @param	prm			è¿½åŠ ã™ã‚‹EOAã¸æŒ‡å®šã™ã‚‹ãƒ‘ãƒ©ãƒ¡ã‚¿
+ * @param	ptr			è¿½åŠ ã™ã‚‹EOAã¸æŒ‡å®šã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
+ * @param	pri			è¿½åŠ ã™ã‚‹EOAã®å‹•ä½œãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @retval	EOA_PTR		è¿½åŠ ã•ã‚ŒãŸEOA_PTR NULL=è¿½åŠ å¤±æ•—
  */
 //--------------------------------------------------------------
 EOA_PTR EOA_Add( EOA_SYS_PTR es, const EOA_H *head,
@@ -225,8 +225,8 @@ EOA_PTR EOA_Add( EOA_SYS_PTR es, const EOA_H *head,
 #ifdef DEBUG_EOA_USE_COUNT
 	{
 		int space = es->max - es->add_count;
-		OS_Printf("EOA‚ª’Ç‰Á‚³‚ê‚Ü‚µ‚½...");
-		OS_Printf("EOAg—p”=%d, EOA‹ó‚«=%d, EOAÅ‘å”=%d\n",es->add_count,space,es->max);
+		OS_Printf("EOAãŒè¿½åŠ ã•ã‚Œã¾ã—ãŸ...");
+		OS_Printf("EOAä½¿ç”¨æ•°=%d, EOAç©ºã=%d, EOAæœ€å¤§æ•°=%d\n",es->add_count,space,es->max);
 	}
 #endif
 	
@@ -235,14 +235,14 @@ EOA_PTR EOA_Add( EOA_SYS_PTR es, const EOA_H *head,
 
 //--------------------------------------------------------------
 /**
- * EOA’Ç‰Á EOA_H_NPPŒ^ ‘Ş”ğA•œ‹AŠÖ”‚Íƒ_ƒ~[ŠÖ”‚É‚È‚é
+ * EOAè¿½åŠ  EOA_H_NPPå‹ é€€é¿ã€å¾©å¸°é–¢æ•°ã¯ãƒ€ãƒŸãƒ¼é–¢æ•°ã«ãªã‚‹
  * @param	es			EOA_SYS_PTR
- * @param	EOA_H_NPP	’Ç‰Á‚³‚ê‚éî•ñ‚ª“Z‚ß‚ç‚ê‚½EOA_H_NPP
- * @param	mtx			‰ŠúˆÊ’u@w’è‚µ‚È‚¢ê‡‚ÍNULL
- * @param	prm			’Ç‰Á‚·‚éEOA‚Öw’è‚·‚éƒpƒ‰ƒƒ^
- * @param	ptr			’Ç‰Á‚·‚éEOA‚Öw’è‚·‚éƒ|ƒCƒ“ƒ^
- * @param	pri			’Ç‰Á‚·‚éEOA‚Ì“®ìƒvƒ‰ƒCƒIƒŠƒeƒB
- * @retval	EOA_PTR		’Ç‰Á‚³‚ê‚½EOA_PTR NULL=’Ç‰Á¸”s
+ * @param	EOA_H_NPP	è¿½åŠ ã•ã‚Œã‚‹æƒ…å ±ãŒçºã‚ã‚‰ã‚ŒãŸEOA_H_NPP
+ * @param	mtx			åˆæœŸä½ç½®ã€€æŒ‡å®šã—ãªã„å ´åˆã¯NULL
+ * @param	prm			è¿½åŠ ã™ã‚‹EOAã¸æŒ‡å®šã™ã‚‹ãƒ‘ãƒ©ãƒ¡ã‚¿
+ * @param	ptr			è¿½åŠ ã™ã‚‹EOAã¸æŒ‡å®šã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
+ * @param	pri			è¿½åŠ ã™ã‚‹EOAã®å‹•ä½œãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @retval	EOA_PTR		è¿½åŠ ã•ã‚ŒãŸEOA_PTR NULL=è¿½åŠ å¤±æ•—
  */
 //--------------------------------------------------------------
 EOA_PTR EOA_Add_NPP( EOA_SYS_PTR es, const EOA_H_NPP *head,
@@ -259,14 +259,14 @@ EOA_PTR EOA_Add_NPP( EOA_SYS_PTR es, const EOA_H_NPP *head,
 
 //--------------------------------------------------------------
 /**
- * EOAíœ
- * @param	eoa			íœ‚·‚éEOA_PTR
+ * EOAå‰Šé™¤
+ * @param	eoa			å‰Šé™¤ã™ã‚‹EOA_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
 void EOA_Delete( EOA_PTR eoa )
 {
-	GF_ASSERT( eoa != NULL && "EOA_Delete()eoa==NULL‚ª“n‚³‚ê‚Ü‚µ‚½" );
+	GF_ASSERT( eoa != NULL && "EOA_Delete()eoa==NULLãŒæ¸¡ã•ã‚Œã¾ã—ãŸ" );
 	
 	if( EOA_StatusBit_UseCheck(eoa) == FALSE ){
 		return;
@@ -283,8 +283,8 @@ void EOA_Delete( EOA_PTR eoa )
 	{
 		EOA_SYS_PTR es = (EOA_SYS_PTR)eoa->es;
 		int space = es->max - es->add_count;
-		OS_Printf("EOA‚ªíœ‚³‚ê‚Ü‚µ‚½...");
-		OS_Printf("EOAg—p”=%d, EOA‹ó‚«=%d, EOAÅ‘å”=%d\n",es->add_count,space,es->max);
+		OS_Printf("EOAãŒå‰Šé™¤ã•ã‚Œã¾ã—ãŸ...");
+		OS_Printf("EOAä½¿ç”¨æ•°=%d, EOAç©ºã=%d, EOAæœ€å¤§æ•°=%d\n",es->add_count,space,es->max);
 	}
 #endif
 	
@@ -299,11 +299,11 @@ void EOA_Delete( EOA_PTR eoa )
 	eoa_Clear( eoa );
 }
 
-//old eoa‚Ì’l‚ğ‚»‚Ì‚Ü‚ÜM—p
+//old eoaã®å€¤ã‚’ãã®ã¾ã¾ä¿¡ç”¨
 #if 0
 void EOA_Delete( EOA_PTR eoa )
 {
-	GF_ASSERT( eoa != NULL && "EOA_Delete()eoa==NULL‚ª“n‚³‚ê‚Ü‚µ‚½" );
+	GF_ASSERT( eoa != NULL && "EOA_Delete()eoa==NULLãŒæ¸¡ã•ã‚Œã¾ã—ãŸ" );
 	
 	EOA_DeleteProcCall( eoa );
 	
@@ -316,8 +316,8 @@ void EOA_Delete( EOA_PTR eoa )
 	{
 		EOA_SYS_PTR es = (EOA_SYS_PTR)eoa->es;
 		int space = es->max - es->add_count;
-		OS_Printf("EOA‚ªíœ‚³‚ê‚Ü‚µ‚½...");
-		OS_Printf("EOAg—p”=%d, EOA‹ó‚«=%d, EOAÅ‘å”=%d\n",es->add_count,space,es->max);
+		OS_Printf("EOAãŒå‰Šé™¤ã•ã‚Œã¾ã—ãŸ...");
+		OS_Printf("EOAä½¿ç”¨æ•°=%d, EOAç©ºã=%d, EOAæœ€å¤§æ•°=%d\n",es->add_count,space,es->max);
 	}
 #endif
 	
@@ -328,7 +328,7 @@ void EOA_Delete( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ”­¶‚µ‚Ä‚¢‚é‘S‚Ä‚ÌEOA‚Éíœ–½—ß
+ * ç™ºç”Ÿã—ã¦ã„ã‚‹å…¨ã¦ã®EOAã«å‰Šé™¤å‘½ä»¤
  * @param	es		EOA_SYS_PTR
  * @retval	nothing
  */
@@ -351,11 +351,11 @@ void EOA_DeleteAll( EOA_SYS_PTR es )
 }
 
 //==============================================================================
-//	eoa •`‰æ
+//	eoa æç”»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA •`‰æŠÖ”ŒÄ‚Ño‚µ
+ * EOA æç”»é–¢æ•°å‘¼ã³å‡ºã—
  * @param	es		EOA_SYS_PTR
  * @retval	nothing
  */
@@ -382,13 +382,13 @@ void EOA_SysDraw( EOA_SYS_PTR es )
 }
 
 //==============================================================================
-//	eoa	TCB“®ì
+//	eoa	TCBå‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA TCB“®ìŠÖ”ƒZƒbƒg
+ * EOA TCBå‹•ä½œé–¢æ•°ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
- * @param	pri		TCBƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param	pri		TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -397,14 +397,14 @@ static TCB_PTR eoa_MoveProcTCBAdd( EOA_PTR eoa, int pri )
 	TCB_PTR tcb;
 	
 	tcb = TCB_Add( eoa_MoveProcTCB, eoa, pri );
-	GF_ASSERT( tcb != NULL && "eoa_MoveProcTCBAdd TCBˆê”t" );
+	GF_ASSERT( tcb != NULL && "eoa_MoveProcTCBAdd TCBä¸€æ¯" );
 	
 	return( tcb );
 }
 
 //--------------------------------------------------------------
 /**
- * EOA TCB“®ìŠÖ”
+ * EOA TCBå‹•ä½œé–¢æ•°
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work *
  * @retval	nothing
@@ -419,13 +419,13 @@ static void eoa_MoveProcTCB( TCB_PTR tcb, void *wk )
 }
 
 //==============================================================================
-//	eoa	ƒp[ƒc
+//	eoa	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOAƒVƒXƒeƒ€ƒƒ‚ƒŠŠm•Û
+ * EOAã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªç¢ºä¿
  * @param	heap_id			HEAP ID
- * @retval	EOA_SYS_PTR		Šm•Û‚µ‚½EOA_SYS_PTR
+ * @retval	EOA_SYS_PTR		ç¢ºä¿ã—ãŸEOA_SYS_PTR
  */
 //--------------------------------------------------------------
 static EOA_SYS_PTR eoa_SysAllocMemory( int heap_id )
@@ -433,7 +433,7 @@ static EOA_SYS_PTR eoa_SysAllocMemory( int heap_id )
 	EOA_SYS_PTR es;
 	
 	es = sys_AllocMemory( heap_id, EOA_SYS_SIZE );
-	GF_ASSERT( es != NULL && "eoa_SysAllocMemoryƒƒ‚ƒŠŠm•ÛƒGƒ‰[" );
+	GF_ASSERT( es != NULL && "eoa_SysAllocMemoryãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚¨ãƒ©ãƒ¼" );
 	
 	memset( es, 0, EOA_SYS_SIZE );
 	return( es );
@@ -441,7 +441,7 @@ static EOA_SYS_PTR eoa_SysAllocMemory( int heap_id )
 
 //--------------------------------------------------------------
 /**
- * EOAƒVƒXƒeƒ€ƒƒ‚ƒŠŠJ•ú
+ * EOAã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªé–‹æ”¾
  * @param	es			EOA_SYS_PTR
  * @retval	nothing
  */
@@ -453,10 +453,10 @@ static void eoa_SysFreeMemory( EOA_SYS_PTR es )
 
 //--------------------------------------------------------------
 /**
- * EOAƒƒ‚ƒŠŠm•Û
+ * EOAãƒ¡ãƒ¢ãƒªç¢ºä¿
  * @param	heap_id		HEAP ID
- * @param	max			EOAÅ‘å”
- * @retval	eoa			Šm•Û‚µ‚½EOA_PTR
+ * @param	max			EOAæœ€å¤§æ•°
+ * @retval	eoa			ç¢ºä¿ã—ãŸEOA_PTR
  */
 //--------------------------------------------------------------
 static EOA_PTR eoa_AllocMemory( int heap_id, int max )
@@ -465,7 +465,7 @@ static EOA_PTR eoa_AllocMemory( int heap_id, int max )
 	
 	max *= EOA_SIZE;
 	eoa = sys_AllocMemory( heap_id, max );
-	GF_ASSERT( eoa != NULL && "eoa_AllocMemoryƒƒ‚ƒŠŠm•ÛƒGƒ‰[" );
+	GF_ASSERT( eoa != NULL && "eoa_AllocMemoryãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚¨ãƒ©ãƒ¼" );
 	
 	memset( eoa, 0, max );
 	return( eoa );
@@ -473,7 +473,7 @@ static EOA_PTR eoa_AllocMemory( int heap_id, int max )
 
 //--------------------------------------------------------------
 /**
- * EOAƒƒ‚ƒŠŠJ•ú
+ * EOAãƒ¡ãƒ¢ãƒªé–‹æ”¾
  * @param	es			EOA_SYS_PTR
  * @retval	nothing
  */
@@ -485,7 +485,7 @@ static void eoa_FreeMemory( EOA_SYS_PTR es )
 
 //--------------------------------------------------------------
 /**
- * EOAƒNƒŠƒA
+ * EOAã‚¯ãƒªã‚¢
  * @param	eoa			EOA_PTR
  * @retval	nothing
  */
@@ -501,7 +501,7 @@ static void eoa_Clear( EOA_PTR eoa )
 	EOA_PopProcSet( eoa, EOA_PopProcDummy );
 }
 
-//old 0 clear‚Ì‚İ
+//old 0 clearã®ã¿
 #if 0
 static void eoa_Clear( EOA_PTR eoa )
 {
@@ -510,13 +510,13 @@ static void eoa_Clear( EOA_PTR eoa )
 #endif
 
 //==============================================================================
-//	EOA_SYSQÆ
+//	EOA_SYSå‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOAÅ‘å”æ“¾
+ * EOAæœ€å¤§æ•°å–å¾—
  * @param	es		EOA_SYS_PTR
- * @retval	int		Å‘å”
+ * @retval	int		æœ€å¤§æ•°
  */
 //--------------------------------------------------------------
 static int eoa_SysEoaMaxGet( CONST_EOA_SYS_PTR es )
@@ -526,7 +526,7 @@ static int eoa_SysEoaMaxGet( CONST_EOA_SYS_PTR es )
 
 //--------------------------------------------------------------
 /**
- * EOAƒ[ƒNƒ|ƒCƒ“ƒ^æ“¾
+ * EOAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿å–å¾—
  * @param	es		EOA_SYS_PTR
  * @retval	EOA_PTR	EOA_PTR
  */
@@ -537,13 +537,13 @@ static EOA_PTR eoa_SysEoaGet( CONST_EOA_SYS_PTR es )
 }
 
 //==============================================================================
-//	eoa	QÆ
+//	eoa	å‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * eoa g—p’†ƒ`ƒFƒbƒN
+ * eoa ä½¿ç”¨ä¸­ãƒã‚§ãƒƒã‚¯
  * @param	eoa		EOA_PTR
- * @retval	int		TRUE=g—p’†BFALSE=–¢g—p
+ * @retval	int		TRUE=ä½¿ç”¨ä¸­ã€‚FALSE=æœªä½¿ç”¨
  */
 //--------------------------------------------------------------
 int EOA_StatusBit_UseCheck( CONST_EOA_PTR eoa )
@@ -557,9 +557,9 @@ int EOA_StatusBit_UseCheck( CONST_EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * eoa ƒXƒe[ƒ^ƒXƒrƒbƒg@g—p’†ƒZƒbƒg
+ * eoa ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã€€ä½¿ç”¨ä¸­ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
- * @retval	int		TRUE=g—p’†BFALSE=–¢g—p
+ * @retval	int		TRUE=ä½¿ç”¨ä¸­ã€‚FALSE=æœªä½¿ç”¨
  */
 //--------------------------------------------------------------
 static void eoa_StatusBit_UseSet( EOA_PTR eoa )
@@ -569,10 +569,10 @@ static void eoa_StatusBit_UseSet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * eoa ƒXƒe[ƒ^ƒXƒrƒbƒg@ƒZƒbƒg
+ * eoa ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã€€ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
- * @param	bit		EOA_STA_BIT_NON“™
- * @retval	int		TRUE=g—p’†BFALSE=–¢g—p
+ * @param	bit		EOA_STA_BIT_NONç­‰
+ * @retval	int		TRUE=ä½¿ç”¨ä¸­ã€‚FALSE=æœªä½¿ç”¨
  */
 //--------------------------------------------------------------
 static void eoa_StatusBit_Set( EOA_PTR eoa, u32 bit )
@@ -582,10 +582,10 @@ static void eoa_StatusBit_Set( EOA_PTR eoa, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * eoa ƒXƒe[ƒ^ƒXƒrƒbƒg@ON
+ * eoa ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã€€ON
  * @param	eoa		EOA_PTR
- * @param	bit		EOA_STA_BIT_NON“™
- * @retval	int		TRUE=g—p’†BFALSE=–¢g—p
+ * @param	bit		EOA_STA_BIT_NONç­‰
+ * @retval	int		TRUE=ä½¿ç”¨ä¸­ã€‚FALSE=æœªä½¿ç”¨
  */
 //--------------------------------------------------------------
 static void eoa_StatusBit_ON( EOA_PTR eoa, u32 bit )
@@ -595,10 +595,10 @@ static void eoa_StatusBit_ON( EOA_PTR eoa, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * eoa ƒXƒe[ƒ^ƒXƒrƒbƒg@ƒ`ƒFƒbƒN
+ * eoa ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã€€ãƒã‚§ãƒƒã‚¯
  * @param	eoa		EOA_PTR
- * @param	bit		EOA_STA_BIT_NON“™
- * @retval	u32		TRUE=g—p’†BFALSE=–¢g—p
+ * @param	bit		EOA_STA_BIT_NONç­‰
+ * @retval	u32		TRUE=ä½¿ç”¨ä¸­ã€‚FALSE=æœªä½¿ç”¨
  */
 //--------------------------------------------------------------
 static u32 eoa_StatusBit_Check( EOA_PTR eoa, u32 bit )
@@ -608,7 +608,7 @@ static u32 eoa_StatusBit_Check( EOA_PTR eoa, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ‰Šú‰»ŠÖ”ƒZƒbƒg
+ * åˆæœŸåŒ–é–¢æ•°ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
  * @param	proc	EOA_PROC_INIT
  * @retval	nothing
@@ -621,9 +621,9 @@ void EOA_InitProcSet( EOA_PTR eoa, EOA_PROC_INIT proc )
 
 //--------------------------------------------------------------
 /**
- * ‰Šú‰»ŠÖ”ŒÄ‚Ño‚µ
+ * åˆæœŸåŒ–é–¢æ•°å‘¼ã³å‡ºã—
  * @param	eoa		EOA_PTR
- * @retval	int		TRUE=³í‰Šú‰»@FALSE=‰Šú‰»¸”s
+ * @retval	int		TRUE=æ­£å¸¸åˆæœŸåŒ–ã€€FALSE=åˆæœŸåŒ–å¤±æ•—
  */
 //--------------------------------------------------------------
 int EOA_InitProcCall( EOA_PTR eoa )
@@ -634,7 +634,7 @@ int EOA_InitProcCall( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”ƒZƒbƒg
+ * å‹•ä½œé–¢æ•°ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
  * @param	proc	EOA_PROC_MOVE
  * @retval	nothing
@@ -647,7 +647,7 @@ void EOA_MoveProcSet( EOA_PTR eoa, EOA_PROC_MOVE proc )
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”ŒÄ‚Ño‚µ
+ * å‹•ä½œé–¢æ•°å‘¼ã³å‡ºã—
  * @param	eoa		EOA_PTR
  * @retval	nothing
  */
@@ -660,7 +660,7 @@ void EOA_MoveProcCall( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * •`‰æŠÖ”ƒZƒbƒg
+ * æç”»é–¢æ•°ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
  * @param	proc	EOA_PROC_MOVE
  * @retval	nothing
@@ -673,7 +673,7 @@ void EOA_DrawProcSet( EOA_PTR eoa, EOA_PROC_DRAW proc )
 
 //--------------------------------------------------------------
 /**
- * •`‰æŠÖ”ŒÄ‚Ño‚µ
+ * æç”»é–¢æ•°å‘¼ã³å‡ºã—
  * @param	eoa		EOA_PTR
  * @retval	nothing
  */
@@ -686,7 +686,7 @@ void EOA_DrawProcCall( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * íœŠÖ”ƒZƒbƒg
+ * å‰Šé™¤é–¢æ•°ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
  * @param	proc	EOA_PROC_DEL
  * @retval	nothing
@@ -699,7 +699,7 @@ void EOA_DeleteProcSet( EOA_PTR eoa, EOA_PROC_DEL proc )
 
 //--------------------------------------------------------------
 /**
- * íœŠÖ”ŒÄ‚Ño‚µ
+ * å‰Šé™¤é–¢æ•°å‘¼ã³å‡ºã—
  * @param	eoa		EOA_PTR
  * @retval	nothing
  */
@@ -712,7 +712,7 @@ void EOA_DeleteProcCall( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ‘Ş”ğŠÖ”ƒZƒbƒg
+ * é€€é¿é–¢æ•°ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
  * @param	proc	EOA_PROC_PUSH
  * @retval	nothing
@@ -725,7 +725,7 @@ void EOA_PushProcSet( EOA_PTR eoa, EOA_PROC_PUSH proc )
 
 //--------------------------------------------------------------
 /**
- * ‘Ş”ğŠÖ”ŒÄ‚Ño‚µ
+ * é€€é¿é–¢æ•°å‘¼ã³å‡ºã—
  * @param	eoa		EOA_PTR
  * @param	proc	EOA_PROC_PUSH
  * @retval	nothing
@@ -739,7 +739,7 @@ void EOA_PushProcCall( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * •œ‹AŠÖ”ƒZƒbƒg
+ * å¾©å¸°é–¢æ•°ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
  * @param	proc	EOA_PROC_POP
  * @retval	nothing
@@ -752,7 +752,7 @@ void EOA_PopProcSet( EOA_PTR eoa, EOA_PROC_POP proc )
 
 //--------------------------------------------------------------
 /**
- * ‘Ş”ğŠÖ”ŒÄ‚Ño‚µ
+ * é€€é¿é–¢æ•°å‘¼ã³å‡ºã—
  * @param	eoa		EOA_PTR
  * @param	proc	EOA_PROC_POP
  * @retval	nothing
@@ -766,9 +766,9 @@ void EOA_PopProcCall( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒJƒ‹ƒ[ƒNæ“¾
+ * ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯å–å¾—
  * @param	eoa		EOA_PTR
- * @retval	void*	ƒ[ƒN*
+ * @retval	void*	ãƒ¯ãƒ¼ã‚¯*
  */
 //--------------------------------------------------------------
 void * EOA_LocalWorkGet( EOA_PTR eoa )
@@ -778,9 +778,9 @@ void * EOA_LocalWorkGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒJƒ‹ƒ[ƒN‰Šú‰»
+ * ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
- * @param	size	‰Šú‰»ƒTƒCƒY@EOA_LOCAL_WORK_SIZEˆÈã=ASSERT
+ * @param	size	åˆæœŸåŒ–ã‚µã‚¤ã‚ºã€€EOA_LOCAL_WORK_SIZEä»¥ä¸Š=ASSERT
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -790,8 +790,8 @@ void EOA_LocalWorkInit( EOA_PTR eoa, int size )
 	
 #ifdef PM_DEBUG
 	if( size > EOA_LOCAL_WORK_SIZE ){
-		OS_Printf( "EOA ƒ[ƒNƒTƒCƒYƒI[ƒo[" );
-		OS_Printf( "Å‘åƒTƒCƒY=0x%x, w’èƒTƒCƒY=0x%x\n", EOA_LOCAL_WORK_SIZE, size );
+		OS_Printf( "EOA ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼" );
+		OS_Printf( "æœ€å¤§ã‚µã‚¤ã‚º=0x%x, æŒ‡å®šã‚µã‚¤ã‚º=0x%x\n", EOA_LOCAL_WORK_SIZE, size );
 		GF_ASSERT( 0 );
 	}
 #endif
@@ -802,9 +802,9 @@ void EOA_LocalWorkInit( EOA_PTR eoa, int size )
 
 //--------------------------------------------------------------
 /**
- * ’Ç‰Áw’èƒpƒ‰ƒƒ^ƒZƒbƒg
+ * è¿½åŠ æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
- * @param	prm		ƒpƒ‰ƒƒ^
+ * @param	prm		ãƒ‘ãƒ©ãƒ¡ã‚¿
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -815,9 +815,9 @@ static void eoa_AddParamSet( EOA_PTR eoa, int prm )
 
 //--------------------------------------------------------------
 /**
- * ’Ç‰Áw’èƒpƒ‰ƒƒ^æ“¾ 
+ * è¿½åŠ æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿å–å¾— 
  * @param	eoa		EOA_PTR
- * @retval	int		EOA_Add()‚Éw’è‚³‚ê‚½ƒpƒ‰ƒƒ^
+ * @retval	int		EOA_Add()æ™‚ã«æŒ‡å®šã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ã‚¿
  */
 //--------------------------------------------------------------
 int EOA_AddParamGet( CONST_EOA_PTR eoa )
@@ -827,9 +827,9 @@ int EOA_AddParamGet( CONST_EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ’Ç‰Áw’èƒ|ƒCƒ“ƒ^ƒZƒbƒg
+ * è¿½åŠ æŒ‡å®šãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
- * @param	ptr		ƒ|ƒCƒ“ƒ^
+ * @param	ptr		ãƒã‚¤ãƒ³ã‚¿
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -840,9 +840,9 @@ static void eoa_AddPtrSet( EOA_PTR eoa, const void *ptr )
 
 //--------------------------------------------------------------
 /**
- * ’Ç‰Áw’èƒ|ƒCƒ“ƒ^æ“¾
+ * è¿½åŠ æŒ‡å®šãƒã‚¤ãƒ³ã‚¿å–å¾—
  * @param	eoa		EOA_PTR
- * @retval	void*	EOA_Add()‚Éw’è‚³‚ê‚½ƒ|ƒCƒ“ƒ^
+ * @retval	void*	EOA_Add()æ™‚ã«æŒ‡å®šã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 const void * EOA_AddPtrGet( CONST_EOA_PTR eoa )
@@ -852,9 +852,9 @@ const void * EOA_AddPtrGet( CONST_EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ‰ñ“šƒZƒbƒg
+ * å›ç­”ã‚»ãƒƒãƒˆ
  * @param	eoa			EOA_PTR
- * @param	answer		“š‚¦
+ * @param	answer		ç­”ãˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -865,9 +865,9 @@ void EOA_AnswerSet( EOA_PTR eoa, int answer )
 
 //--------------------------------------------------------------
 /**
- * ‰ñ“šæ“¾
+ * å›ç­”å–å¾—
  * @param	eoa			EOA_PTR
- * @retval	int			‰ñ“š
+ * @retval	int			å›ç­”
  */
 //--------------------------------------------------------------
 int EOA_AnswerGet( CONST_EOA_PTR eoa )
@@ -877,7 +877,7 @@ int EOA_AnswerGet( CONST_EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * tcbƒ|ƒCƒ“ƒ^ƒZƒbƒg
+ * tcbãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
  * @param	eoa			EOA_PTR
  * @param	tcb			TCB_PTR
  * @retval	nothing
@@ -890,7 +890,7 @@ static void eoa_TCBSet( EOA_PTR eoa, TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * tcbƒ|ƒCƒ“ƒ^æ“¾
+ * tcbãƒã‚¤ãƒ³ã‚¿å–å¾—
  * @param	eoa			EOA_PTR
  * @retval	tcb			TCB_PTR
  */
@@ -902,7 +902,7 @@ static TCB_PTR eoa_TCBGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA_SYS_PTRƒZƒbƒg
+ * EOA_SYS_PTRã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
  * @param	es		EOA_SYS_PTR
  * @retval	nothing
@@ -915,7 +915,7 @@ static void eoa_EoaSysSet( EOA_PTR eoa, CONST_EOA_SYS_PTR es )
 
 //--------------------------------------------------------------
 /**
- * EOA_SYS_PTRæ“¾
+ * EOA_SYS_PTRå–å¾—
  * @param	eoa		EOA_PTR
  * @retval	es		EOA_SYS_PTR
  */
@@ -927,9 +927,9 @@ CONST_EOA_SYS_PTR EOA_EoaSysGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * XÀ•WƒZƒbƒg
+ * Xåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
- * @param	x		À•W
+ * @param	x		åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -940,9 +940,9 @@ void EOA_XSet( EOA_PTR eoa, int x )
 
 //--------------------------------------------------------------
 /**
- * XÀ•Wæ“¾
+ * Xåº§æ¨™å–å¾—
  * @param	eoa		EOA_PTR
- * @retval	int		À•W
+ * @retval	int		åº§æ¨™
  */
 //--------------------------------------------------------------
 int EOA_XGet( EOA_PTR eoa )
@@ -952,9 +952,9 @@ int EOA_XGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * YÀ•WƒZƒbƒg
+ * Yåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
- * @param	y		À•W
+ * @param	y		åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -965,9 +965,9 @@ void EOA_YSet( EOA_PTR eoa, int y )
 
 //--------------------------------------------------------------
 /**
- * YÀ•Wæ“¾
+ * Yåº§æ¨™å–å¾—
  * @param	eoa		EOA_PTR
- * @retval	int		À•W
+ * @retval	int		åº§æ¨™
  */
 //--------------------------------------------------------------
 int EOA_YGet( EOA_PTR eoa )
@@ -977,9 +977,9 @@ int EOA_YGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ZÀ•WƒZƒbƒg
+ * Zåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
- * @param	z		À•W
+ * @param	z		åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -990,9 +990,9 @@ void EOA_ZSet( EOA_PTR eoa, int z )
 
 //--------------------------------------------------------------
 /**
- * ZÀ•Wæ“¾
+ * Zåº§æ¨™å–å¾—
  * @param	eoa		EOA_PTR
- * @retval	int		À•W
+ * @retval	int		åº§æ¨™
  */
 //--------------------------------------------------------------
 int EOA_ZGet( EOA_PTR eoa )
@@ -1002,9 +1002,9 @@ int EOA_ZGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒgƒŠƒNƒXÀ•WƒZƒbƒg
+ * ãƒãƒˆãƒªã‚¯ã‚¹åº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
- * @param	mtx		ƒZƒbƒg‚·‚éÀ•W
+ * @param	mtx		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1015,9 +1015,9 @@ void EOA_MatrixSet( EOA_PTR eoa, const VecFx32 *mtx )
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒgƒŠƒNƒXÀ•Wæ“¾
+ * ãƒãƒˆãƒªã‚¯ã‚¹åº§æ¨™å–å¾—
  * @param	eoa		EOA_PTR
- * @param	mtx		ƒZƒbƒg‚·‚éÀ•W
+ * @param	mtx		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1027,11 +1027,11 @@ void EOA_MatrixGet( EOA_PTR eoa, VecFx32 *mtx )
 }
 
 //==============================================================================
-//	ƒ_ƒ~[ŠÖ”
+//	ãƒ€ãƒŸãƒ¼é–¢æ•°
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰Šú‰»ŠÖ”@ƒ_ƒ~[
+ * åˆæœŸåŒ–é–¢æ•°ã€€ãƒ€ãƒŸãƒ¼
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	int		TRUE
@@ -1044,7 +1044,7 @@ int EOA_InitProcDummy( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”@ƒ_ƒ~[
+ * å‹•ä½œé–¢æ•°ã€€ãƒ€ãƒŸãƒ¼
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -1056,7 +1056,7 @@ void EOA_MoveProcDummy( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * •`‰æŠÖ”@ƒ_ƒ~[
+ * æç”»é–¢æ•°ã€€ãƒ€ãƒŸãƒ¼
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -1068,7 +1068,7 @@ void EOA_DrawProcDummy( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * íœŠÖ”@ƒ_ƒ~[
+ * å‰Šé™¤é–¢æ•°ã€€ãƒ€ãƒŸãƒ¼
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -1080,7 +1080,7 @@ void EOA_DeleteProcDummy( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ‘Ş”ğŠÖ”@ƒ_ƒ~[
+ * é€€é¿é–¢æ•°ã€€ãƒ€ãƒŸãƒ¼
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -1092,7 +1092,7 @@ void EOA_PushProcDummy( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * •œ‹AŠÖ”@ƒ_ƒ~[
+ * å¾©å¸°é–¢æ•°ã€€ãƒ€ãƒŸãƒ¼
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing

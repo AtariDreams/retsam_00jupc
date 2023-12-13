@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	finger_cursor.c
- * @brief	wƒJ[ƒ\ƒ‹
+ * @brief	æŒ‡ã‚«ãƒ¼ã‚½ãƒ«
  * @author	matsuda
- * @date	2006.06.13(‰Î)
+ * @date	2006.06.13(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -18,26 +18,26 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///SinŠp“x‰ÁZ’l(®”100”{)
+///Sinè§’åº¦åŠ ç®—å€¤(æ•´æ•°100å€)
 #define FINGER_ADD_ANGLE		(10 * 100)
-///SinˆÚ“®‚Ó‚è•
+///Sinç§»å‹•ãµã‚Šå¹…
 #define FINGER_FURIHABA			(14)
 
-///ƒ^ƒbƒ`ƒAƒjƒ‚µ‚½‚ÌÀ•WƒIƒtƒZƒbƒgY
+///ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡ã—ãŸæ™‚ã®åº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define FINGER_TOUCH_OFFSET_Y	(8)
-///ƒ^ƒbƒ`ƒAƒjƒ‚µ‚½‚ÌÀ•W–ß‚èƒIƒtƒZƒbƒgY
+///ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡ã—ãŸæ™‚ã®åº§æ¨™æˆ»ã‚Šã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define FINGER_TOUCH_BACK_Y		(2)
-///ƒ^ƒbƒ`ƒAƒjƒ‚ğ‚·‚é‘O‚Ì’â~ƒEƒFƒCƒg
+///ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡ã‚’ã™ã‚‹å‰ã®åœæ­¢ã‚¦ã‚§ã‚¤ãƒˆ
 #define FINGER_TOUCH_ANIME_BEFORE_WAIT	(3)
-///ƒ^ƒbƒ`ƒAƒjƒ‚µ‚½‚ÌƒAƒjƒƒEƒFƒCƒg
+///ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡ã—ãŸæ™‚ã®ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 #define FINGER_TOUCH_ANIME_WAIT	(2)
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///wƒJ[ƒ\ƒ‹ƒ[ƒN
+///æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯
 typedef struct _FINGER_WORK{
 	CATS_ACT_PTR cap;
 	TCB_PTR update_tcb;
@@ -56,27 +56,27 @@ typedef struct _FINGER_WORK{
 }FINGER_WORK;
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///AA—pƒQ[ƒWƒAƒNƒ^[ƒwƒbƒ_
+///AAç”¨ã‚²ãƒ¼ã‚¸ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S FingerObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 0, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		0,	//ƒLƒƒƒ‰
-		0,	//ƒpƒŒƒbƒg
-		0,	//ƒZƒ‹
-		0,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 0, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		0,	//ã‚­ãƒ£ãƒ©
+		0,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		0,	//ã‚»ãƒ«
+		0,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	0,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	0,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 void FINGER_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, u32 heap, PALETTE_FADE_PTR pfd, 
 	u32 char_id, u32 pal_id, u32 cell_id, u32 anm_id);
@@ -93,15 +93,15 @@ static void FINGER_SubWorkClear(FINGER_PTR finger);
 
 //--------------------------------------------------------------
 /**
- * @brief   wƒJ[ƒ\ƒ‹‚ÌƒŠƒ\[ƒX‚ğƒ[ƒh‚·‚é
+ * @brief   æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param   csp			
  * @param   crp			
  * @param   pfd			
- * @param   char_id		ƒLƒƒƒ‰ID
- * @param   pal_id		ƒpƒŒƒbƒgID
- * @param   cell_id		ƒZƒ‹ID
- * @param   anm_id		ƒAƒjƒID
+ * @param   char_id		ã‚­ãƒ£ãƒ©ID
+ * @param   pal_id		ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   cell_id		ã‚»ãƒ«ID
+ * @param   anm_id		ã‚¢ãƒ‹ãƒ¡ID
  */
 //--------------------------------------------------------------
 void FINGER_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, u32 heap, PALETTE_FADE_PTR pfd, 
@@ -125,13 +125,13 @@ void FINGER_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, u32 heap, PALETTE_F
 
 //--------------------------------------------------------------
 /**
- * @brief   wƒJ[ƒ\ƒ‹‚ÌƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
+ * @brief   æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
  *
  * @param   crp			
- * @param   char_id		ƒLƒƒƒ‰ID
- * @param   pal_id		ƒpƒŒƒbƒgID
- * @param   cell_id		ƒZƒ‹ID
- * @param   anm_id		ƒAƒjƒID
+ * @param   char_id		ã‚­ãƒ£ãƒ©ID
+ * @param   pal_id		ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   cell_id		ã‚»ãƒ«ID
+ * @param   anm_id		ã‚¢ãƒ‹ãƒ¡ID
  */
 //--------------------------------------------------------------
 void FINGER_ResourceFree(CATS_RES_PTR crp, u32 char_id, u32 pal_id, u32 cell_id, u32 anm_id)
@@ -144,22 +144,22 @@ void FINGER_ResourceFree(CATS_RES_PTR crp, u32 char_id, u32 pal_id, u32 cell_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   wƒJ[ƒ\ƒ‹‚ÌƒAƒNƒ^[‚ğ¶¬‚µ‚Ü‚·
+ * @brief   æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã—ã¾ã™
  *
  * @param   csp		
  * @param   crp		
- * @param   heap_id		ƒq[ƒvID
- * @param   char_id		ƒLƒƒƒ‰ID
- * @param   pal_id		ƒpƒŒƒbƒgID
- * @param   cell_id		ƒZƒ‹ID
- * @param   anm_id		ƒAƒjƒID
- * @param   soft_pri	ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param   bg_pri		BGƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID
+ * @param   char_id		ã‚­ãƒ£ãƒ©ID
+ * @param   pal_id		ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   cell_id		ã‚»ãƒ«ID
+ * @param   anm_id		ã‚¢ãƒ‹ãƒ¡ID
+ * @param   soft_pri	ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param   bg_pri		BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  *
- * @retval  ¶¬‚³‚ê‚½wƒJ[ƒ\ƒ‹ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã•ã‚ŒãŸæŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * wƒJ[ƒ\ƒ‹ƒ[ƒN‚Ì¶¬‚ÆUpdate—pTCB‚Ì¶¬‚à“¯‚És‚¢‚Ü‚·
- * ¶¬‚Í•\¦OFF‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+ * æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã®ç”Ÿæˆã¨Updateç”¨TCBã®ç”Ÿæˆã‚‚åŒæ™‚ã«è¡Œã„ã¾ã™
+ * ç”Ÿæˆæ™‚ã¯è¡¨ç¤ºOFFã«ãªã£ã¦ã„ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 FINGER_PTR FINGER_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int heap_id,
@@ -189,11 +189,11 @@ FINGER_PTR FINGER_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int heap_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   wƒJ[ƒ\ƒ‹ƒAƒNƒ^[‚ğíœ‚µ‚Ü‚·
+ * @brief   æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã—ã¾ã™
  *
- * @param   finger		wƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   finger		æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * wƒJ[ƒ\ƒ‹ƒ[ƒN‚Ì‰ğ•ú‚ÆAUpdate—pTCB‚Ìíœ‚às‚¢‚Ü‚·
+ * æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾ã¨ã€Updateç”¨TCBã®å‰Šé™¤ã‚‚è¡Œã„ã¾ã™
  */
 //--------------------------------------------------------------
 void FINGER_ActorDelete(FINGER_PTR finger)
@@ -206,13 +206,13 @@ void FINGER_ActorDelete(FINGER_PTR finger)
 
 //--------------------------------------------------------------
 /**
- * @brief   wƒJ[ƒ\ƒ‹‚ÌÀ•WƒZƒbƒg‚Æ•\¦‚ÌON‚ğs‚¢‚Ü‚·(ƒT[ƒtƒF[ƒXw’è)
+ * @brief   æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ã‚»ãƒƒãƒˆã¨è¡¨ç¤ºã®ONã‚’è¡Œã„ã¾ã™(ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹æŒ‡å®š)
  *
- * @param   finger		wƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   left		¶À•W
- * @param   right		‰EÀ•W
- * @param   top			ãÀ•W
- * @param   bottom		‰ºÀ•W
+ * @param   finger		æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   left		å·¦åº§æ¨™
+ * @param   right		å³åº§æ¨™
+ * @param   top			ä¸Šåº§æ¨™
+ * @param   bottom		ä¸‹åº§æ¨™
  */
 //--------------------------------------------------------------
 void FINGER_PosSetON_Surface(FINGER_PTR finger, int x, int y, fx32 surface_y)
@@ -228,13 +228,13 @@ void FINGER_PosSetON_Surface(FINGER_PTR finger, int x, int y, fx32 surface_y)
 
 //--------------------------------------------------------------
 /**
- * @brief   wƒJ[ƒ\ƒ‹‚ÌÀ•WƒZƒbƒg‚Æ•\¦‚ÌON‚ğs‚¢‚Ü‚·
+ * @brief   æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ã‚»ãƒƒãƒˆã¨è¡¨ç¤ºã®ONã‚’è¡Œã„ã¾ã™
  *
- * @param   finger		wƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   left		¶À•W
- * @param   right		‰EÀ•W
- * @param   top			ãÀ•W
- * @param   bottom		‰ºÀ•W
+ * @param   finger		æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   left		å·¦åº§æ¨™
+ * @param   right		å³åº§æ¨™
+ * @param   top			ä¸Šåº§æ¨™
+ * @param   bottom		ä¸‹åº§æ¨™
  */
 //--------------------------------------------------------------
 void FINGER_PosSetON(FINGER_PTR finger, int x, int y)
@@ -244,8 +244,8 @@ void FINGER_PosSetON(FINGER_PTR finger, int x, int y)
 
 //--------------------------------------------------------------
 /**
- * @brief   wƒJ[ƒ\ƒ‹‚ğ‘S‚Ä•\¦OFF‚·‚é
- * @param   finger		wƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ã‚’å…¨ã¦è¡¨ç¤ºOFFã™ã‚‹
+ * @param   finger		æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void FINGER_OFF(FINGER_PTR finger)
@@ -256,13 +256,13 @@ void FINGER_OFF(FINGER_PTR finger)
 
 //--------------------------------------------------------------
 /**
- * @brief   wƒJ[ƒ\ƒ‹‚Éƒ^ƒbƒ`ƒAƒjƒƒŠƒNƒGƒXƒg‚ğ”­s‚·‚é
+ * @brief   æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ã«ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ç™ºè¡Œã™ã‚‹
  *
- * @param   finger		wƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wait		ƒ^ƒbƒ`ƒAƒjƒ‚ğ”­“®‚·‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+ * @param   finger		æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wait		ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡ã‚’ç™ºå‹•ã™ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
  *
- * ƒ^ƒbƒ`ƒAƒjƒ‚ª”­“®‚µ‚½‚©‚Ç‚¤‚©‚ÍAFINGER_TouchAnimeCheck‚ÅŠm”Fo—ˆ‚Ü‚·B
- * ƒ^ƒbƒ`ƒAƒjƒ‚Íwait‚ª0‚É‚È‚Á‚Ä‚¢‚ÄA‚È‚¨‚©‚ÂSinƒJ[ƒuˆÚ“®‚Åˆê”Ô‰º‚ğw‚µ‚Ä‚¢‚é‚É”­“®‚µ‚Ü‚·B
+ * ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡ãŒç™ºå‹•ã—ãŸã‹ã©ã†ã‹ã¯ã€FINGER_TouchAnimeCheckã§ç¢ºèªå‡ºæ¥ã¾ã™ã€‚
+ * ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡ã¯waitãŒ0ã«ãªã£ã¦ã„ã¦ã€ãªãŠã‹ã¤Sinã‚«ãƒ¼ãƒ–ç§»å‹•ã§ä¸€ç•ªä¸‹ã‚’æŒ‡ã—ã¦ã„ã‚‹æ™‚ã«ç™ºå‹•ã—ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void FINGER_TouchReq(FINGER_PTR finger, int wait)
@@ -272,11 +272,11 @@ void FINGER_TouchReq(FINGER_PTR finger, int wait)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒAƒjƒ‚ª”­“®‚µ‚½‚©ƒ`ƒFƒbƒN
+ * @brief   ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡ãŒç™ºå‹•ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   finger		wƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   finger		æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:”­“®‚µ‚½B@FALSE:”­“®‚µ‚Ä‚¢‚È‚¢
+ * @retval  TRUE:ç™ºå‹•ã—ãŸã€‚ã€€FALSE:ç™ºå‹•ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 BOOL FINGER_TouchAnimeCheck(FINGER_PTR finger)
@@ -286,9 +286,9 @@ BOOL FINGER_TouchAnimeCheck(FINGER_PTR finger)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ƒAƒjƒUpdateˆ—
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡Updateå‡¦ç†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void FINGER_ObjectUpdate(TCB_PTR tcb, void *work)
@@ -310,7 +310,7 @@ static void FINGER_ObjectUpdate(TCB_PTR tcb, void *work)
 		return;
 	}
 	
-	//SinƒJ[ƒuˆÚ“®
+	//Sinã‚«ãƒ¼ãƒ–ç§»å‹•
 	if(finger->touch_anime_flag == FALSE){
 		int offset_y;
 		
@@ -331,7 +331,7 @@ static void FINGER_ObjectUpdate(TCB_PTR tcb, void *work)
 		}
 	}
 	
-	//ƒ^ƒbƒ`ƒAƒjƒ
+	//ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡
 	if(finger->touch_anime_flag == TRUE){
 		switch(finger->touch_anime_seq){
 		case 0:
@@ -374,8 +374,8 @@ static void FINGER_ObjectUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   FX‚ÈƒTƒuƒpƒ‰ƒ[ƒ^‚ğƒNƒŠƒA‚·‚é
- * @param   finger		wƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è‰²ã€…ãªã‚µãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+ * @param   finger		æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void FINGER_SubWorkClear(FINGER_PTR finger)

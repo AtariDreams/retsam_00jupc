@@ -23,7 +23,7 @@
 /*---------------------------------------------------------------------------*
     NNSi_G3dModifyMatFlag
 
-    ƒ‚ƒfƒ‹“à‚Ì‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒtƒ‰ƒO‚É‘Î‚µ‚Äflag‚Åw’è‚µ‚½ƒtƒ‰ƒO‚ğON/OFF‚·‚é.
+    ãƒ¢ãƒ‡ãƒ«å†…ã®å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ•ãƒ©ã‚°ã«å¯¾ã—ã¦flagã§æŒ‡å®šã—ãŸãƒ•ãƒ©ã‚°ã‚’ON/OFFã™ã‚‹.
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dModifyMatFlag(NNSG3dResMdl* pMdl, BOOL isOn, NNSG3dMatFlag flag)
@@ -56,7 +56,7 @@ NNSi_G3dModifyMatFlag(NNSG3dResMdl* pMdl, BOOL isOn, NNSG3dMatFlag flag)
 /*---------------------------------------------------------------------------*
     NNSi_G3dModifyPolygonAttrMask
 
-    ƒ‚ƒfƒ‹“à‚Ì‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌPolygonAttr‚É‘Î‚µ‚Ämask‚ğON/OFF‚·‚é
+    ãƒ¢ãƒ‡ãƒ«å†…ã®å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®PolygonAttrã«å¯¾ã—ã¦maskã‚’ON/OFFã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dModifyPolygonAttrMask(NNSG3dResMdl* pMdl, BOOL isOn, u32 mask)
@@ -89,7 +89,7 @@ NNSi_G3dModifyPolygonAttrMask(NNSG3dResMdl* pMdl, BOOL isOn, u32 mask)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlDiff
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìdiffuse‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®diffuseã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlDiff(NNSG3dResMdl* pMdl, u32 matID, GXRgb col)
@@ -111,7 +111,7 @@ NNS_G3dMdlSetMdlDiff(NNSG3dResMdl* pMdl, u32 matID, GXRgb col)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlAmb
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìambient‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ambientã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlAmb(NNSG3dResMdl* pMdl, u32 matID, GXRgb col)
@@ -133,7 +133,7 @@ NNS_G3dMdlSetMdlAmb(NNSG3dResMdl* pMdl, u32 matID, GXRgb col)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlSpec
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìspecular‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®specularã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlSpec(NNSG3dResMdl* pMdl, u32 matID, GXRgb col)
@@ -155,7 +155,7 @@ NNS_G3dMdlSetMdlSpec(NNSG3dResMdl* pMdl, u32 matID, GXRgb col)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlEmi
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìemission‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®emissionã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlEmi(NNSG3dResMdl* pMdl, u32 matID, GXRgb col)
@@ -177,7 +177,7 @@ NNS_G3dMdlSetMdlEmi(NNSG3dResMdl* pMdl, u32 matID, GXRgb col)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlLightEnableFlag
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ‰ƒCƒgƒCƒl[ƒuƒ‹ƒtƒ‰ƒO‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ©ã‚¤ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlLightEnableFlag(NNSG3dResMdl* pMdl, u32 matID, int light)
@@ -199,7 +199,7 @@ NNS_G3dMdlSetMdlLightEnableFlag(NNSG3dResMdl* pMdl, u32 matID, int light)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlPolygonMode
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒŠƒSƒ“ƒ‚[ƒh‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒãƒªã‚´ãƒ³ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlPolygonMode(NNSG3dResMdl* pMdl, u32 matID, GXPolygonMode polyMode)
@@ -221,7 +221,7 @@ NNS_G3dMdlSetMdlPolygonMode(NNSG3dResMdl* pMdl, u32 matID, GXPolygonMode polyMod
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlCullMode
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒJƒ‹ƒ‚[ƒh‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚«ãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlCullMode(NNSG3dResMdl* pMdl, u32 matID, GXCull cullMode)
@@ -243,7 +243,7 @@ NNS_G3dMdlSetMdlCullMode(NNSG3dResMdl* pMdl, u32 matID, GXCull cullMode)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlPolygonID
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒŠƒSƒ“‚h‚c‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒãƒªã‚´ãƒ³ï¼©ï¼¤ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlPolygonID(NNSG3dResMdl* pMdl, u32 matID, int polygonID)
@@ -265,7 +265,7 @@ NNS_G3dMdlSetMdlPolygonID(NNSG3dResMdl* pMdl, u32 matID, int polygonID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlAlpha
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ¿‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®Î±ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlAlpha(NNSG3dResMdl* pMdl, u32 matID, int alpha)
@@ -287,7 +287,7 @@ NNS_G3dMdlSetMdlAlpha(NNSG3dResMdl* pMdl, u32 matID, int alpha)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetFogEnableFlag
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚ÌƒtƒHƒOƒCƒl[ƒuƒ‹ƒtƒ‰ƒO‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒ•ã‚©ã‚°ã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlFogEnableFlag(NNSG3dResMdl* pMdl, u32 matID, BOOL flag)
@@ -310,7 +310,7 @@ NNS_G3dMdlSetMdlFogEnableFlag(NNSG3dResMdl* pMdl, u32 matID, BOOL flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetDepthTestCond
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚ÌƒfƒvƒXƒeƒXƒgğŒ‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒ‡ãƒ—ã‚¹ãƒ†ã‚¹ãƒˆæ¡ä»¶ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlDepthTestCond(NNSG3dResMdl* pMdl, u32 matID, BOOL flag)
@@ -333,7 +333,7 @@ NNS_G3dMdlSetMdlDepthTestCond(NNSG3dResMdl* pMdl, u32 matID, BOOL flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdl1Dot
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ì‚Pƒhƒbƒgƒ|ƒŠƒSƒ“•\¦w’è‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ï¼‘ãƒ‰ãƒƒãƒˆãƒãƒªã‚´ãƒ³è¡¨ç¤ºæŒ‡å®šã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdl1Dot(NNSG3dResMdl* pMdl, u32 matID, BOOL flag)
@@ -356,7 +356,7 @@ NNS_G3dMdlSetMdl1Dot(NNSG3dResMdl* pMdl, u32 matID, BOOL flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlFarClip
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚ÌFAR–ÊŒğ·ƒ|ƒŠƒSƒ“•\¦w’è‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®FARé¢äº¤å·®ãƒãƒªã‚´ãƒ³è¡¨ç¤ºæŒ‡å®šã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlFarClip(NNSG3dResMdl* pMdl, u32 matID, BOOL flag)
@@ -379,7 +379,7 @@ NNS_G3dMdlSetMdlFarClip(NNSG3dResMdl* pMdl, u32 matID, BOOL flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlXLDepthUpdate
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ì”¼“§–¾ƒ|ƒŠƒSƒ“‚ÌƒfƒvƒX’lXVƒCƒl[ƒuƒ‹ƒtƒ‰ƒO‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®åŠé€æ˜ãƒãƒªã‚´ãƒ³ã®ãƒ‡ãƒ—ã‚¹å€¤æ›´æ–°ã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlXLDepthUpdate(NNSG3dResMdl* pMdl, u32 matID, BOOL flag)
@@ -401,7 +401,7 @@ NNS_G3dMdlSetMdlXLDepthUpdate(NNSG3dResMdl* pMdl, u32 matID, BOOL flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlDiff
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìdiffuse‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®diffuseã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 GXRgb
 NNS_G3dMdlGetMdlDiff(const NNSG3dResMdl* pMdl, u32 matID)
@@ -420,7 +420,7 @@ NNS_G3dMdlGetMdlDiff(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlAmb
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìambient‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ambientã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 GXRgb
 NNS_G3dMdlGetMdlAmb(const NNSG3dResMdl* pMdl, u32 matID)
@@ -439,7 +439,7 @@ NNS_G3dMdlGetMdlAmb(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlSpec
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìspecular‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®specularã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 GXRgb
 NNS_G3dMdlGetMdlSpec(const NNSG3dResMdl* pMdl, u32 matID)
@@ -458,7 +458,7 @@ NNS_G3dMdlGetMdlSpec(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlEmi
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìemission‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®emissionã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 GXRgb
 NNS_G3dMdlGetMdlEmi(const NNSG3dResMdl* pMdl, u32 matID)
@@ -477,7 +477,7 @@ NNS_G3dMdlGetMdlEmi(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlLightEnableFlag
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ‰ƒCƒgƒCƒl[ƒuƒ‹ƒtƒ‰ƒO‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ©ã‚¤ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°ã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 int
 NNS_G3dMdlGetMdlLightEnableFlag(const NNSG3dResMdl* pMdl, u32 matID)
@@ -496,7 +496,7 @@ NNS_G3dMdlGetMdlLightEnableFlag(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlPolygonMode
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒŠƒSƒ“ƒ‚[ƒh‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒãƒªã‚´ãƒ³ãƒ¢ãƒ¼ãƒ‰ã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 GXPolygonMode
 NNS_G3dMdlGetMdlPolygonMode(const NNSG3dResMdl* pMdl, u32 matID)
@@ -515,7 +515,7 @@ NNS_G3dMdlGetMdlPolygonMode(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlCullMode
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒJƒ‹ƒ‚[ƒh‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚«ãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 GXCull
 NNS_G3dMdlGetMdlCullMode(const NNSG3dResMdl* pMdl, u32 matID)
@@ -534,7 +534,7 @@ NNS_G3dMdlGetMdlCullMode(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlPolygonID
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒŠƒSƒ“‚h‚c‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒãƒªã‚´ãƒ³ï¼©ï¼¤ã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 int
 NNS_G3dMdlGetMdlPolygonID(const NNSG3dResMdl* pMdl, u32 matID)
@@ -553,7 +553,7 @@ NNS_G3dMdlGetMdlPolygonID(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlAlpha
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ¿‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®Î±ã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 int
 NNS_G3dMdlGetMdlAlpha(const NNSG3dResMdl* pMdl, u32 matID)
@@ -572,7 +572,7 @@ NNS_G3dMdlGetMdlAlpha(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlFogEnableFlag
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒtƒHƒOƒCƒl[ƒuƒ‹ƒtƒ‰ƒO‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ•ã‚©ã‚°ã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°ã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dMdlGetMdlFogEnableFlag(const NNSG3dResMdl* pMdl, u32 matID)
@@ -590,7 +590,7 @@ NNS_G3dMdlGetMdlFogEnableFlag(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlDepthTestCond
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒvƒXƒeƒXƒgğŒ‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒ—ã‚¹ãƒ†ã‚¹ãƒˆæ¡ä»¶ã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dMdlGetMdlDepthTestCond(const NNSG3dResMdl* pMdl, u32 matID)
@@ -608,7 +608,7 @@ NNS_G3dMdlGetMdlDepthTestCond(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdl1Dot
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì‚Pƒhƒbƒgƒ|ƒŠƒSƒ“•\¦w’è‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ï¼‘ãƒ‰ãƒƒãƒˆãƒãƒªã‚´ãƒ³è¡¨ç¤ºæŒ‡å®šã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dMdlGetMdl1Dot(const NNSG3dResMdl* pMdl, u32 matID)
@@ -626,7 +626,7 @@ NNS_G3dMdlGetMdl1Dot(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlFarClip
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌFAR–ÊŒğ·ƒ|ƒŠƒSƒ“•\¦w’è‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®FARé¢äº¤å·®ãƒãƒªã‚´ãƒ³è¡¨ç¤ºæŒ‡å®šã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dMdlGetMdlFarClip(const NNSG3dResMdl* pMdl, u32 matID)
@@ -644,8 +644,8 @@ NNS_G3dMdlGetMdlFarClip(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlGetMdlXLDepthUpdate
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌmatID”Ô–Ú‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì”¼“§–¾ƒ|ƒŠƒSƒ“‚ÌƒfƒvƒX’lXVƒCƒl[ƒuƒ‹
-    ƒtƒ‰ƒO‚ğ“¾‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®matIDç•ªç›®ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®åŠé€æ˜ãƒãƒªã‚´ãƒ³ã®ãƒ‡ãƒ—ã‚¹å€¤æ›´æ–°ã‚¤ãƒãƒ¼ãƒ–ãƒ«
+    ãƒ•ãƒ©ã‚°ã‚’å¾—ã‚‹
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dMdlGetMdlXLDepthUpdate(const NNSG3dResMdl* pMdl, u32 matID)
@@ -662,7 +662,7 @@ NNS_G3dMdlGetMdlXLDepthUpdate(const NNSG3dResMdl* pMdl, u32 matID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlDiffAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìdiffuse‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®diffuseå…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlDiffAll(NNSG3dResMdl* pMdl, GXRgb col)
@@ -678,7 +678,7 @@ NNS_G3dMdlSetMdlDiffAll(NNSG3dResMdl* pMdl, GXRgb col)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlAmbAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìambient‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ambientå…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlAmbAll(NNSG3dResMdl* pMdl, GXRgb col)
@@ -694,7 +694,7 @@ NNS_G3dMdlSetMdlAmbAll(NNSG3dResMdl* pMdl, GXRgb col)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlSpecAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìspecular‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®specularå…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlSpecAll(NNSG3dResMdl* pMdl, GXRgb col)
@@ -710,7 +710,7 @@ NNS_G3dMdlSetMdlSpecAll(NNSG3dResMdl* pMdl, GXRgb col)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlEmiAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìemission‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®emissionå…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlEmiAll(NNSG3dResMdl* pMdl, GXRgb col)
@@ -726,7 +726,7 @@ NNS_G3dMdlSetMdlEmiAll(NNSG3dResMdl* pMdl, GXRgb col)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlLightEnableFlagAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ‰ƒCƒgƒCƒl[ƒuƒ‹ƒtƒ‰ƒO‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ©ã‚¤ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°å…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlLightEnableFlagAll(NNSG3dResMdl* pMdl, int light)
@@ -742,7 +742,7 @@ NNS_G3dMdlSetMdlLightEnableFlagAll(NNSG3dResMdl* pMdl, int light)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlPolygonModeAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒŠƒSƒ“ƒ‚[ƒh‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒãƒªã‚´ãƒ³ãƒ¢ãƒ¼ãƒ‰å…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlPolygonModeAll(NNSG3dResMdl* pMdl, GXPolygonMode polyMode)
@@ -758,7 +758,7 @@ NNS_G3dMdlSetMdlPolygonModeAll(NNSG3dResMdl* pMdl, GXPolygonMode polyMode)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlCullModeAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒJƒ‹ƒ‚[ƒh‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚«ãƒ«ãƒ¢ãƒ¼ãƒ‰å…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlCullModeAll(NNSG3dResMdl* pMdl, GXCull cullMode)
@@ -774,7 +774,7 @@ NNS_G3dMdlSetMdlCullModeAll(NNSG3dResMdl* pMdl, GXCull cullMode)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlPolygonIDAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ|ƒŠƒSƒ“‚h‚c‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒãƒªã‚´ãƒ³ï¼©ï¼¤å…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlPolygonIDAll(NNSG3dResMdl* pMdl, int polygonID)
@@ -790,7 +790,7 @@ NNS_G3dMdlSetMdlPolygonIDAll(NNSG3dResMdl* pMdl, int polygonID)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlAlphaAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ¿‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®Î±å…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlAlphaAll(NNSG3dResMdl* pMdl, int alpha)
@@ -806,7 +806,7 @@ NNS_G3dMdlSetMdlAlphaAll(NNSG3dResMdl* pMdl, int alpha)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlFogEnableFlagAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒtƒHƒOƒCƒl[ƒuƒ‹ƒtƒ‰ƒO‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ•ã‚©ã‚°ã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°å…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlFogEnableFlagAll(NNSG3dResMdl* pMdl, BOOL flag)
@@ -822,7 +822,7 @@ NNS_G3dMdlSetMdlFogEnableFlagAll(NNSG3dResMdl* pMdl, BOOL flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlDepthTestCondAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒvƒXƒeƒXƒgğŒ‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒ—ã‚¹ãƒ†ã‚¹ãƒˆæ¡ä»¶å…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlDepthTestCondAll(NNSG3dResMdl* pMdl, BOOL flag)
@@ -838,7 +838,7 @@ NNS_G3dMdlSetMdlDepthTestCondAll(NNSG3dResMdl* pMdl, BOOL flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdl1DotAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì‚Pƒhƒbƒgƒ|ƒŠƒSƒ“•\¦w’è‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ï¼‘ãƒ‰ãƒƒãƒˆãƒãƒªã‚´ãƒ³è¡¨ç¤ºæŒ‡å®šå…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdl1DotAll(NNSG3dResMdl* pMdl, BOOL flag)
@@ -854,7 +854,7 @@ NNS_G3dMdlSetMdl1DotAll(NNSG3dResMdl* pMdl, BOOL flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetFarClipAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌFAR–ÊŒğ·ƒ|ƒŠƒSƒ“•\¦w’è‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®FARé¢äº¤å·®ãƒãƒªã‚´ãƒ³è¡¨ç¤ºæŒ‡å®šå…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlFarClipAll(NNSG3dResMdl* pMdl, BOOL flag)
@@ -870,8 +870,8 @@ NNS_G3dMdlSetMdlFarClipAll(NNSG3dResMdl* pMdl, BOOL flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dMdlSetMdlXLDepthUpdateAll
 
-    ƒ‚ƒfƒ‹ƒŠƒ\[ƒX“à‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì”¼“§–¾ƒ|ƒŠƒSƒ“‚ÌƒfƒvƒX’lXVƒCƒl[ƒuƒ‹ƒtƒ‰ƒO
-    ‘S‚Ä‚ğİ’è‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®åŠé€æ˜ãƒãƒªã‚´ãƒ³ã®ãƒ‡ãƒ—ã‚¹å€¤æ›´æ–°ã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°
+    å…¨ã¦ã‚’è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dMdlSetMdlXLDepthUpdateAll(NNSG3dResMdl* pMdl, BOOL flag)

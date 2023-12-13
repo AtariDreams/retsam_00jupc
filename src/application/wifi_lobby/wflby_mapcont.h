@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_mapcont.h
- *	@brief		ƒ}ƒbƒvŠÇ—ƒVƒXƒeƒ€
+ *	@brief		ãƒãƒƒãƒ—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya	takahashi
  *	@data		2007.11.13
  *
@@ -17,45 +17,45 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒ}ƒbƒvƒVƒXƒeƒ€‰Šú‰»
+///	ãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 //=====================================
 typedef struct _WFLBY_MAPCONT WFLBY_MAPCONT;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒVƒXƒeƒ€ì¬
+// ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 extern WFLBY_MAPCONT* WFLBY_MAPCONT_Init( u32 heapID );
 extern void WFLBY_MAPCONT_Exit( WFLBY_MAPCONT* p_sys );
 
-// ƒ}ƒbƒv‚Ì‘å‚«‚³æ“¾
+// ãƒãƒƒãƒ—ã®å¤§ãã•å–å¾—
 extern u16 WFLBY_MAPCONT_GridXGet( const WFLBY_MAPCONT* cp_sys );
 extern u16 WFLBY_MAPCONT_GridYGet( const WFLBY_MAPCONT* cp_sys );
 
-// ƒ}ƒbƒvƒf[ƒ^æ“¾
+// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å–å¾—
 extern WF2DMAP_MAP WFLBY_MAPCONT_DataGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid );
 extern BOOL WFLBY_MAPCONT_HitGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid );
 extern u32 WFLBY_MAPCONT_ObjIDGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid );
 extern u32 WFLBY_MAPCONT_EventGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid );
 
-// ƒ}ƒbƒvƒf[ƒ^ŒŸõ
+// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿æ¤œç´¢
 extern BOOL WFLBY_MAPCONT_SarchObjID( const WFLBY_MAPCONT* cp_sys, u32 objid, u16* p_gridx, u16* p_gridy, u32 no );
 extern u32 WFLBY_MAPCONT_CountObjID( const WFLBY_MAPCONT* cp_sys, u32 objid );
 
-// ƒCƒxƒ“ƒg‹N“®ƒ^ƒCƒvƒ`ƒFƒbƒN
+// ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
 extern BOOL WFLBY_MAPCONT_Event_CheckMount( u32 event );
 extern BOOL WFLBY_MAPCONT_Event_CheckFrontKey( u32 event );
 extern BOOL WFLBY_MAPCONT_Event_CheckFrontDecide( u32 event );
@@ -63,7 +63,7 @@ extern BOOL WFLBY_MAPCONT_Event_CheckFrontDouzou( u32 event );
 
 
 
-//  o—ˆ‚é‚¾‚¯‚Â‚©‚í‚È‚¢‚Ù‚¤‚ª‚¢‚¢ŠÖ”
+//  å‡ºæ¥ã‚‹ã ã‘ã¤ã‹ã‚ãªã„ã»ã†ãŒã„ã„é–¢æ•°
 extern const WF2DMAP_MAPSYS* WFLBY_MAPCONT_GetMapCoreSys( const WFLBY_MAPCONT* cp_sys );
 
 #endif		// __WFLBY_MAPCONT_H__

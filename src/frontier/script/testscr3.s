@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	testscr3.s
- * @brief	�ȒP�Ȑ���������
+ * @brief	簡単な説明を書く
  * @author	matsuda
- * @date	2007.03.30(��)
+ * @date	2007.03.30(金)
  */
 //==============================================================================
 
@@ -14,13 +14,13 @@
 
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
-_EVENT_DATA		test_article		//��ԏ��EVENT_DATA�͎������s
+_EVENT_DATA		test_article		//一番上のEVENT_DATAは自動実行
 _EVENT_DATA		test_scr_obj0		
 _EVENT_DATA		test_scr_obj1		//SCRID_TEST_SCR_OBJ1
 _EVENT_DATA		test_scr_obj2		//SCRID_TEST_SCR_OBJ2
-_EVENT_DATA_END						//�I��
+_EVENT_DATA_END						//終了
 
 #define EVENTID_TEST_SCR_ARTICLE	(0)
 #define EVENTID_TEST_SCR_OBJ0		(1)
@@ -29,17 +29,17 @@ _EVENT_DATA_END						//�I��
 
 
 //==============================================================================
-//	�z�u���A�N�^�[
+//	配置物アクター
 //==============================================================================
 //--------------------------------------------------------------
-//	�z�u�����\�[�X���x��
+//	配置物リソースラベル
 //--------------------------------------------------------------
 _ARTICLE_RESOURCE_LABEL	article_ball_resource
 	_ARTICLE_RESOURCE_DATA	ACTID_TEST_BALL
 	_ARTICLE_RESOURCE_DATA_END
 
 //--------------------------------------------------------------
-//	�z�u���A�N�^�[
+//	配置物アクター
 //--------------------------------------------------------------
 _ARTICLE_ACTOR_LABEL	article_ball_actor
 	_ARTICLE_ACTOR_DATA		ACTID_TEST_BALL, 50, 50, ON, OFF, ACTWORK_0
@@ -49,13 +49,13 @@ _ARTICLE_ACTOR_LABEL	article_ball_actor
 
 
 //==============================================================================
-//	�z�u���A�N�^�[�e�X�g
+//	配置物アクターテスト
 //==============================================================================
 test_article:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//���\�[�X���A�N�^�[�o�^
+	//リソース＆アクター登録
 	_ARTICLE_RESOURCE_SET	article_ball_resource
 	_ARTICLE_ACTOR_SET		article_ball_actor
 	
@@ -64,36 +64,36 @@ test_article:
 
 	//--------------------------------------------------------------
 	//
-	//	�A�j������e�X�g
+	//	アニメ動作テスト
 	//
 	//--------------------------------------------------------------
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_0, 1	//1�Ԃ̃A�j�����s
-	_ARTICLE_ACTOR_ANIME_WAIT	ACTWORK_0		//�A�j���I���҂�
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_0, 1	//1番のアニメ実行
+	_ARTICLE_ACTOR_ANIME_WAIT	ACTWORK_0		//アニメ終了待ち
 	
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_1, 2	//2�Ԃ̃A�j�����s
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_1, 2	//2番のアニメ実行
 	_TIME_WAIT		60, FSW_LOCAL3
-	_ARTICLE_ACTOR_ANIME_STOP	ACTWORK_1		//�A�j����~
+	_ARTICLE_ACTOR_ANIME_STOP	ACTWORK_1		//アニメ停止
 	
 //	_TIME_WAIT		60, FSW_LOCAL3
 
-	//�ʉ�ʂɍs���Ă����݂̏�Ԃ̑ޔ��A���A���Ȃ��Ă��邩�m�F
+	//別画面に行っても現在の状態の退避、復帰がなっているか確認
 	_NAMEIN_PROC
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_0, 1		//�A�j���J�n
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_0, 1		//アニメ開始
 	_TIME_WAIT		60, FSW_LOCAL3
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_1, 2		//�A�j���J�n
-	_ARTICLE_ACTOR_ANIME_STOP	ACTWORK_0		//�A�j����~
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_1, 0		//�A�j���J�n
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_1, 2		//アニメ開始
+	_ARTICLE_ACTOR_ANIME_STOP	ACTWORK_0		//アニメ停止
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_1, 0		//アニメ開始
 	_TIME_WAIT		60, FSW_LOCAL3
 	
 	//--------------------------------------------------------------
-	//	���\�[�X�ƃA�N�^�[�̍폜�e�X�g
-	//		���ۂ̉^�p����_SCRIPT_FINISH�̃^�C�~���O�Ŏ�����������̂�
-	//		VRAM��A�N�^�[���[�N���g���񂷕K�v���Ȃ��Ȃ�A�폜�͂��Ȃ���OK
+	//	リソースとアクターの削除テスト
+	//		実際の運用時は_SCRIPT_FINISHのタイミングで自動解放されるので
+	//		VRAMやアクターワークを使い回す必要がないなら、削除はしなくてOK
 	//--------------------------------------------------------------
 /*	
-	//���X�ƃA�N�^�[�폜
+	//次々とアクター削除
 	_ARTICLE_ACTOR_FREE		ACTWORK_1
 	_TIME_WAIT		30, FSW_LOCAL3
 	_ARTICLE_ACTOR_FREE		ACTWORK_2
@@ -101,14 +101,14 @@ test_article:
 	_ARTICLE_ACTOR_FREE		ACTWORK_0
 	_TIME_WAIT		30, FSW_LOCAL3
 	
-	//���\�[�X���(�A�N�^�[�̓��[�N�ԍ��A���\�[�X��ACTID�ŉ�����鎖�ɒ���)
+	//リソース解放(アクターはワーク番号、リソースはACTIDで解放する事に注意)
 	_ARTICLE_RESOURCE_FREE	ACTID_TEST_BALL
 */	
 	_SCRIPT_FINISH
 
 
 //==============================================================================
-//	�}�b�v�؂�ւ��e�X�g
+//	マップ切り替えテスト
 //==============================================================================
 test_scr_obj0:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_scroll.h
- *	@brief		ƒXƒNƒ[ƒ‹ƒf[ƒ^ŠÇ—+ƒXƒNƒ[ƒ‹À•WŠÇ—ƒ‚ƒWƒ…[ƒ‹
+ *	@brief		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ç®¡ç†+ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
  *	@author		tomoya takahashi
  *	@data		2007.03.19
  *
@@ -25,36 +25,36 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒXƒNƒ[ƒ‹î•ñ
+///	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æƒ…å ±
 //=====================================
 typedef struct _WF2DMAP_SCROLL {
-	s16 draw_top;		// •\Ž¦‹éŒ`ãÀ•W
-	s16 draw_left;		// •\Ž¦‹éŒ`¶À•W
+	s16 draw_top;		// è¡¨ç¤ºçŸ©å½¢ä¸Šåº§æ¨™
+	s16 draw_left;		// è¡¨ç¤ºçŸ©å½¢å·¦åº§æ¨™
 }WF2DMAP_SCROLL;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
-// ƒXƒNƒ[ƒ‹ŠÇ—ŠÖ”
+// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç®¡ç†é–¢æ•°
 GLOBAL void WF2DMAP_SCRContSysMain( WF2DMAP_SCROLL* p_data, const WF2DMAP_OBJWK* cp_objwk );
 
 
 
-// ƒf[ƒ^Ý’è•Žæ“¾
+// ãƒ‡ãƒ¼ã‚¿è¨­å®šï¼†å–å¾—
 GLOBAL void WF2DMAP_SCROLLSysDataInit( WF2DMAP_SCROLL* p_sys );
 GLOBAL void WF2DMAP_SCROLLSysDataSet( WF2DMAP_SCROLL* p_sys, s16 draw_top, s16 draw_left );
 GLOBAL s16 WF2DMAP_SCROLLSysTopGet( const WF2DMAP_SCROLL* cp_sys );

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pmsi_initial_data.c
- * @bfief	ŠÈˆÕ‰ï˜b“ü—Í‰æ–ÊiƒJƒeƒSƒŠƒCƒjƒVƒƒƒ‹ƒ‚[ƒh—p‚Ìƒf[ƒ^ƒe[ƒuƒ‹ˆ—j
+ * @bfief	ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢ï¼ˆã‚«ãƒ†ã‚´ãƒªã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒ¢ãƒ¼ãƒ‰ç”¨ã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«å‡¦ç†ï¼‰
  * @author	taya
  * @date	06.02.14
  */
@@ -23,40 +23,40 @@
 #include "pmsi_initial_data.h"
 
 //======================================================================
-// ƒCƒjƒVƒƒƒ‹ƒ‚[ƒhŽž‚Ì‘I‘ð•¶Žšƒe[ƒuƒ‹iŒ¾Œê‚²‚Æ‚ÉÝ’èj
+// ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒ¢ãƒ¼ãƒ‰æ™‚ã®é¸æŠžæ–‡å­—ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆè¨€èªžã”ã¨ã«è¨­å®šï¼‰
 //======================================================================
 
 //-------------------------------------------------------------
 /**
- *  Še•¶Žš‚Ì•`‰æ•
+ *  å„æ–‡å­—ã®æç”»å¹…
  */
 //-------------------------------------------------------------
 enum {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/09
-	// “ª•¶ŽšƒpƒŒƒbƒg‚ÌƒŒƒCƒAƒEƒg’²®
-	INITIAL_WRITE_X_MARGIN = 16,		// ‚P•¶Žš‚²‚Æ‚Ì•`‰æ•
-	INITIAL_WRITE_Y_MARGIN = 16,		// ‚P•¶Žš‚²‚Æ‚Ì•`‰æ‚‚³
-	INITIAL_WRITE_X_OFFSET = 28,		// ¶ã‚Ì•¶Žš‚ÌXÀ•W
-	INITIAL_WRITE_Y_OFFSET = 12,		// ¶ã‚Ì•¶Žš‚ÌYÀ•W
+	// é ­æ–‡å­—ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆèª¿æ•´
+	INITIAL_WRITE_X_MARGIN = 16,		// ï¼‘æ–‡å­—ã”ã¨ã®æç”»å¹…
+	INITIAL_WRITE_Y_MARGIN = 16,		// ï¼‘æ–‡å­—ã”ã¨ã®æç”»é«˜ã•
+	INITIAL_WRITE_X_OFFSET = 28,		// å·¦ä¸Šã®æ–‡å­—ã®Xåº§æ¨™
+	INITIAL_WRITE_Y_OFFSET = 12,		// å·¦ä¸Šã®æ–‡å­—ã®Yåº§æ¨™
 	// ----------------------------------------------------------------------------
 };
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/09
-// “ª•¶ŽšƒpƒŒƒbƒg‚ÌƒŒƒCƒAƒEƒg’²®
+// é ­æ–‡å­—ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆèª¿æ•´
 #define INITIAL_XPOS(n)	((n)*INITIAL_WRITE_X_MARGIN+INITIAL_WRITE_X_OFFSET)
 #define INITIAL_YPOS(n)	((n)*INITIAL_WRITE_Y_MARGIN+INITIAL_WRITE_Y_OFFSET)
 // ----------------------------------------------------------------------------
 
 //-------------------------------------------------------------
 /**
- *  Še•¶Žš‚ÌƒCƒ“ƒfƒbƒNƒX
+ *  å„æ–‡å­—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/09
-// “ª•¶ŽšƒpƒŒƒbƒg‚ÌƒŒƒCƒAƒEƒg’²®
+// é ­æ–‡å­—ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆèª¿æ•´
 enum {
 	INI_A = 0,
 	INI_B,
@@ -102,7 +102,7 @@ static const struct {
 	u8			col_bottom;
 }InitialParamTbl[] = {
 
-	// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 ‰¼‘Î‰žB
+	// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 ä»®å¯¾å¿œã€‚
 	{ h_A__,  INITIAL_XPOS(0), INITIAL_YPOS(0), INI_BACK,   INI_K,      INI_J,      INI_B,      INI_A,      INI_U,      },
 	{ h_B__,  INITIAL_XPOS(1), INITIAL_YPOS(0), INI_BACK,   INI_L,      INI_A,      INI_C,      INI_B,      INI_V,      },
 	{ h_C__,  INITIAL_XPOS(2), INITIAL_YPOS(0), INI_BACK,   INI_M,      INI_B,      INI_D,      INI_C,      INI_W,      },
@@ -140,7 +140,7 @@ static const struct {
 
 //------------------------------------------------------------------
 /**
- * ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[Å‘å‚ð•Ô‚·
+ * ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼æœ€å¤§ã‚’è¿”ã™
  *
  * @retval  u32		
  */
@@ -152,10 +152,10 @@ u32 PMSI_INITIAL_DAT_GetInitialMax( void )
 
 //------------------------------------------------------------------
 /**
- * ‚P•¶Žš‚Ì•¶ŽšƒR[ƒh‚ðƒoƒbƒtƒ@‚ÉƒRƒs[
+ * ï¼‘æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
  *
- * @param   initial		ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
- * @param   buf			ƒRƒs[æƒoƒbƒtƒ@
+ * @param   initial		ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
+ * @param   buf			ã‚³ãƒ”ãƒ¼å…ˆãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -168,11 +168,11 @@ void PMSI_INITIAL_DAT_GetStr( u32 initial, STRBUF* buf )
 
 //------------------------------------------------------------------
 /**
- * •`‰æ—pŠî€ˆÊ’uiƒhƒbƒg’PˆÊj‚ðŽæ“¾
+ * æç”»ç”¨åŸºæº–ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰ã‚’å–å¾—
  *
- * @param   initial		ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
- * @param   x			•`‰æˆÊ’u‚w
- * @param   y			•`‰æˆÊ’u‚x
+ * @param   initial		ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
+ * @param   x			æç”»ä½ç½®ï¼¸
+ * @param   y			æç”»ä½ç½®ï¼¹
  *
  */
 //------------------------------------------------------------------
@@ -186,11 +186,11 @@ void PMSI_INITIAL_DAT_GetPrintPos( u32 initial, u32* x, u32* y )
 
 //------------------------------------------------------------------
 /**
- * ãƒL[‰Ÿ‰ºŽž‚ÌˆÚ“®æƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[‚ð•Ô‚·
+ * ä¸Šã‚­ãƒ¼æŠ¼ä¸‹æ™‚ã®ç§»å‹•å…ˆã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   initial		ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @param   initial		ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  int		ˆÚ“®æƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @retval  int		ç§»å‹•å…ˆã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 int PMSI_INITIAL_DAT_GetUpCode( u32 initial )
@@ -201,11 +201,11 @@ int PMSI_INITIAL_DAT_GetUpCode( u32 initial )
 
 //------------------------------------------------------------------
 /**
- * ‰ºƒL[‰Ÿ‰ºŽž‚ÌˆÚ“®æƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[‚ð•Ô‚·
+ * ä¸‹ã‚­ãƒ¼æŠ¼ä¸‹æ™‚ã®ç§»å‹•å…ˆã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   initial		ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @param   initial		ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  int		ˆÚ“®æƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @retval  int		ç§»å‹•å…ˆã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 int PMSI_INITIAL_DAT_GetDownCode( u32 initial )
@@ -216,11 +216,11 @@ int PMSI_INITIAL_DAT_GetDownCode( u32 initial )
 
 //------------------------------------------------------------------
 /**
- * ¶ƒL[‰Ÿ‰ºŽž‚ÌˆÚ“®æƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[‚ð•Ô‚·
+ * å·¦ã‚­ãƒ¼æŠ¼ä¸‹æ™‚ã®ç§»å‹•å…ˆã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   initial		ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @param   initial		ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  int		ˆÚ“®æƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @retval  int		ç§»å‹•å…ˆã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 int PMSI_INITIAL_DAT_GetLeftCode( u32 initial )
@@ -231,11 +231,11 @@ int PMSI_INITIAL_DAT_GetLeftCode( u32 initial )
 
 //------------------------------------------------------------------
 /**
- * ‰EƒL[‰Ÿ‰ºŽž‚ÌˆÚ“®æƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[‚ð•Ô‚·
+ * å³ã‚­ãƒ¼æŠ¼ä¸‹æ™‚ã®ç§»å‹•å…ˆã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   initial		ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @param   initial		ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  int		ˆÚ“®æƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @retval  int		ç§»å‹•å…ˆã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 int PMSI_INITIAL_DAT_GetRightCode( u32 initial )
@@ -246,11 +246,11 @@ int PMSI_INITIAL_DAT_GetRightCode( u32 initial )
 
 //------------------------------------------------------------------
 /**
- * Žw’èƒL[‚Ì‚ ‚é—ñ‚ÌÅã’iƒiƒ“ƒo[‚ð•Ô‚·
+ * æŒ‡å®šã‚­ãƒ¼ã®ã‚ã‚‹åˆ—ã®æœ€ä¸Šæ®µãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   initial		ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @param   initial		ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  int		ˆÚ“®æƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @retval  int		ç§»å‹•å…ˆã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 int PMSI_INITIAL_DAT_GetColTopCode( u32 initial )
@@ -261,11 +261,11 @@ int PMSI_INITIAL_DAT_GetColTopCode( u32 initial )
 
 //------------------------------------------------------------------
 /**
- * Žw’èƒL[‚Ì‚ ‚é—ñ‚ÌÅ‰º’iƒiƒ“ƒo[‚ð•Ô‚·
+ * æŒ‡å®šã‚­ãƒ¼ã®ã‚ã‚‹åˆ—ã®æœ€ä¸‹æ®µãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   initial		ƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @param   initial		ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  int		ˆÚ“®æƒCƒjƒVƒƒƒ‹ƒiƒ“ƒo[
+ * @retval  int		ç§»å‹•å…ˆã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 int PMSI_INITIAL_DAT_GetColBottomCode( u32 initial )

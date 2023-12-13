@@ -24,25 +24,25 @@
   only change comment
 
   Revision 1.7  2004/03/01 12:17:27  yada
-  �p��̊֐�comment�쐬
+  英語の関数comment作成
 
   Revision 1.6  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.5  2004/02/04 07:33:57  yada
-  �֐����ŁA�`OsReserved�`�@��Os���폜
+  関数名で、〜OsReserved〜　のOsを削除
 
   Revision 1.4  2004/02/03 11:40:50  yada
-  assert�~�X�C��
+  assertミス修正
 
   Revision 1.3  2004/02/03 11:21:45  yada
-  �V�X�e���\�񂩂ǂ�����assert��ǉ�
+  システム予約かどうかのassertを追加
 
   Revision 1.2  2004/02/02 05:30:34  yada
-  �^�C�}�̃V�X�e���\��@�\�𓱓�
+  タイマのシステム予約機構を導入
 
   Revision 1.1  2004/01/27 01:47:32  yada
-  inline�������ɔ���firstRelease
+  inline見直しに伴いfirstRelease
 
 
   $NoKeywords: $

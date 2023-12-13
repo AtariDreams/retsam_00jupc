@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pokegra_get.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNæ“¾ˆ—
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å–å¾—å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2005.05.09
  */
@@ -15,23 +15,23 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	STR_LEN_NUM		( 5 )	// ŠJ”­ƒiƒ“ƒo[‚Ì•¶šƒTƒCƒY ( "_001" + '\0' )
+#define	STR_LEN_NUM		( 5 )	// é–‹ç™ºãƒŠãƒ³ãƒãƒ¼ã®æ–‡å­—ã‚µã‚¤ã‚º ( "_001" + '\0' )
 
-// ƒpƒX–¼‚ÌÅ‘åƒTƒCƒY ( "/data/pokeicon/pmpl_XXXX_000_X.XXXX" + '\0' )
+// ãƒ‘ã‚¹åã®æœ€å¤§ã‚µã‚¤ã‚º ( "/data/pokeicon/pmpl_XXXX_000_X.XXXX" + '\0' )
 #define	STR_LEN_PATH	( 36 )
 
-#define	MONS_NUM_MASK		( 0x0000ffff )	// ƒpƒ‰ƒ[ƒ^ƒ}ƒXƒNFŠJ”­ƒiƒ“ƒo[
-#define	EX_CODE_MASK		( 0x00ff0000 )	// ƒpƒ‰ƒ[ƒ^ƒ}ƒXƒNF“Áêƒ|ƒPƒ‚ƒ“
-#define	FILE_TYPE_MASK		( 0x03000000 )	// ƒpƒ‰ƒ[ƒ^ƒ}ƒXƒNFƒtƒ@ƒCƒ‹ƒ^ƒCƒv
-#define	GRAPHIC_TYPE_MASK	( 0x0c000000 )	// ƒpƒ‰ƒ[ƒ^ƒ}ƒXƒNFƒOƒ‰ƒtƒBƒbƒNƒ^ƒCƒv
-#define	MONS_SEX_MASK		( 0x10000000 )	// ƒpƒ‰ƒ[ƒ^ƒ}ƒXƒNF«•Ê
-#define	MONS_COLOR_MASK		( 0x20000000 )	// ƒpƒ‰ƒ[ƒ^ƒ}ƒXƒNFƒJƒ‰[
+#define	MONS_NUM_MASK		( 0x0000ffff )	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚¹ã‚¯ï¼šé–‹ç™ºãƒŠãƒ³ãƒãƒ¼
+#define	EX_CODE_MASK		( 0x00ff0000 )	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚¹ã‚¯ï¼šç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³
+#define	FILE_TYPE_MASK		( 0x03000000 )	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚¹ã‚¯ï¼šãƒ•ã‚¡ã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+#define	GRAPHIC_TYPE_MASK	( 0x0c000000 )	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚¹ã‚¯ï¼šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
+#define	MONS_SEX_MASK		( 0x10000000 )	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚¹ã‚¯ï¼šæ€§åˆ¥
+#define	MONS_COLOR_MASK		( 0x20000000 )	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚¹ã‚¯ï¼šã‚«ãƒ©ãƒ¼
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void GraphicTypeSet( char * path, u32 param );
 static void MonsNumberSet( char * path, u32 param );
@@ -40,7 +40,7 @@ static void FileTypeSet( char * path, u32 param );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 static const char * AnnoonTbl[] = {
 	"unb", "unc", "und", "une", "unf", "ung", "unh", "uni", "unj",
@@ -51,43 +51,43 @@ static const char * AnnoonTbl[] = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒX–¼ì¬
+ * ãƒ‘ã‚¹åä½œæˆ
  *
- * @param	path	ƒpƒX–¼Ši”[êŠ
- * @param	param	ƒpƒ‰ƒ[ƒ^
+ * @param	path	ãƒ‘ã‚¹åæ ¼ç´å ´æ‰€
+ * @param	param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	none
  *
- * @li	ì¬‚³‚ê‚éƒpƒX–¼‚Ì—áF"/data/pmpl_frnt_001_m.ncgr"iƒtƒVƒMƒ_ƒl‰‚Ì‘O–Ê‚ÌƒLƒƒƒ‰j
+ * @li	ä½œæˆã•ã‚Œã‚‹ãƒ‘ã‚¹åã®ä¾‹ï¼š"/data/pmpl_frnt_001_m.ncgr"ï¼ˆãƒ•ã‚·ã‚®ãƒ€ãƒâ™‚ã®å‰é¢ã®ã‚­ãƒ£ãƒ©ï¼‰
  *
- *	—á‚PjƒLƒ‚ƒŠ‰‚Ì‘O–ÊƒLƒƒƒ‰
+ *	ä¾‹ï¼‘ï¼‰ã‚­ãƒ¢ãƒªâ™‚ã®å‰é¢ã‚­ãƒ£ãƒ©
  *	  PokeGraGetPath( path, MONSNO_KIMORI | POKEGRA_CGX | POKEGRA_FRNT | POKEGRA_MALE );
- *	—á‚QjƒLƒ‚ƒŠ‰‚ÌƒpƒŒƒbƒg
+ *	ä¾‹ï¼’ï¼‰ã‚­ãƒ¢ãƒªâ™‚ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
  *	  PokeGraGetPath( path, MONSNO_KIMORI | POKEGRA_PAL | POKEGRA_FRNT | POKEGRA_N_COL );
- *	—á‚RjƒLƒ‚ƒŠ‚ÌƒAƒCƒRƒ“ƒLƒƒƒ‰
+ *	ä¾‹ï¼“ï¼‰ã‚­ãƒ¢ãƒªã®ã‚¢ã‚¤ã‚³ãƒ³ã‚­ãƒ£ãƒ©
  *	  PokeGraGetPath( path, MONSNO_KIMORI | POKEGRA_CGX | POKEGRA_ICON );
- *	—á‚SjƒLƒ‚ƒŠ‚ÌƒAƒCƒRƒ“ƒpƒŒƒbƒg
+ *	ä¾‹ï¼”ï¼‰ã‚­ãƒ¢ãƒªã®ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆ
  *	  PokeGraGetPath( path, MONSNO_KIMORI | POKEGRA_PAL | POKEGRA_ICON );
  */
 //--------------------------------------------------------------------------------------------
 void PokeGraGetPath( char * path, u32 param )
 {
-	GraphicTypeSet( path, param );		// ƒOƒ‰ƒtƒBƒbƒNƒ^ƒCƒvi‘O–ÊA”w–ÊAƒAƒCƒRƒ“‚È‚Çj
-	MonsNumberSet( path, param );		// ŠJ”­ƒiƒ“ƒo[
-	CodeSet( path, param );				// ¯•ÊƒR[ƒh
-	FileTypeSet( path, param );			// Šg’£q
+	GraphicTypeSet( path, param );		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¿ã‚¤ãƒ—ï¼ˆå‰é¢ã€èƒŒé¢ã€ã‚¢ã‚¤ã‚³ãƒ³ãªã©ï¼‰
+	MonsNumberSet( path, param );		// é–‹ç™ºãƒŠãƒ³ãƒãƒ¼
+	CodeSet( path, param );				// è­˜åˆ¥ã‚³ãƒ¼ãƒ‰
+	FileTypeSet( path, param );			// æ‹¡å¼µå­
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^æ“¾
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param	param	ƒpƒ‰ƒ[ƒ^
- * @param	mode	ƒƒ‚ƒŠæ“¾ƒ‚[ƒh
+ * @param	param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	mode	ãƒ¡ãƒ¢ãƒªå–å¾—ãƒ¢ãƒ¼ãƒ‰
  *
- * @return	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+ * @return	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- * @li	malloc‚ğg—p‚·‚é‚Ì‚ÅAŠJ•ú‚ğ–Y‚ê‚¸‚ÉI
+ * @li	mallocã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ã€é–‹æ”¾ã‚’å¿˜ã‚Œãšã«ï¼
  */
 //--------------------------------------------------------------------------------------------
 void * PokeGraGet( u32 param, u8 mode )
@@ -106,10 +106,10 @@ void * PokeGraGet( u32 param, u8 mode )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶š—ñì¬FƒOƒ‰ƒtƒBƒbƒNƒ^ƒCƒvi‘O–ÊA”w–ÊAƒAƒCƒRƒ“‚È‚Çj
+ * æ–‡å­—åˆ—ä½œæˆï¼šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¿ã‚¤ãƒ—ï¼ˆå‰é¢ã€èƒŒé¢ã€ã‚¢ã‚¤ã‚³ãƒ³ãªã©ï¼‰
  *
- * @param	path	•¶š—ñŠi”[êŠ
- * @param	param	ƒpƒ‰ƒ[ƒ^
+ * @param	path	æ–‡å­—åˆ—æ ¼ç´å ´æ‰€
+ * @param	param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -117,13 +117,13 @@ void * PokeGraGet( u32 param, u8 mode )
 static void GraphicTypeSet( char * path, u32 param )
 {
 	switch( ( param & GRAPHIC_TYPE_MASK ) ){
-	case POKEGRA_FRNT:	// ‘O–Ê
+	case POKEGRA_FRNT:	// å‰é¢
 		strcpy( path, "/data/pokegra/pmpl_frnt" );
 		break;
-	case POKEGRA_BACK:	// ”w–Ê
+	case POKEGRA_BACK:	// èƒŒé¢
 		strcpy( path, "/data/pokegra/pmpl_back" );
 		break;
-	case POKEGRA_ICON:	// ƒAƒCƒRƒ“
+	case POKEGRA_ICON:	// ã‚¢ã‚¤ã‚³ãƒ³
 		strcpy( path, "/data/pokeicon/pmpl_icon" );
 		break;
 	}
@@ -131,10 +131,10 @@ static void GraphicTypeSet( char * path, u32 param )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶š—ñì¬FŠJ”­ƒiƒ“ƒo[
+ * æ–‡å­—åˆ—ä½œæˆï¼šé–‹ç™ºãƒŠãƒ³ãƒãƒ¼
  *
- * @param	path	•¶š—ñŠi”[êŠ
- * @param	param	ƒpƒ‰ƒ[ƒ^
+ * @param	path	æ–‡å­—åˆ—æ ¼ç´å ´æ‰€
+ * @param	param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -150,7 +150,7 @@ static void MonsNumberSet( char * path, u32 param )
 
 	strcat( path, "_" );
 
-	// ƒAƒ“ƒm[ƒ“iAˆÈŠO‚ÌƒLƒƒƒ‰æ“¾j
+	// ã‚¢ãƒ³ãƒãƒ¼ãƒ³ï¼ˆAä»¥å¤–ã®ã‚­ãƒ£ãƒ©å–å¾—ï¼‰
 	if( ( mons == MONSNO_ANNOON ) && ( type != 0 ) &&
 		( ( param & FILE_TYPE_MASK ) == POKEGRA_CGX ) ){
 
@@ -162,24 +162,24 @@ static void MonsNumberSet( char * path, u32 param )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶š—ñì¬F¯•ÊƒR[ƒh
+ * æ–‡å­—åˆ—ä½œæˆï¼šè­˜åˆ¥ã‚³ãƒ¼ãƒ‰
  *
- * @param	path	•¶š—ñŠi”[êŠ
- * @param	param	ƒpƒ‰ƒ[ƒ^
+ * @param	path	æ–‡å­—åˆ—æ ¼ç´å ´æ‰€
+ * @param	param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void CodeSet( char * path, u32 param )
 {
-	// ƒAƒCƒRƒ“‚Í–³‹
+	// ã‚¢ã‚¤ã‚³ãƒ³ã¯ç„¡è¦–
 	if( ( param & GRAPHIC_TYPE_MASK ) == POKEGRA_ICON ){
 		return;
 	}
 
 	switch( ( param & FILE_TYPE_MASK ) ){
-	case POKEGRA_CGX:	// ƒLƒƒƒ‰
-		// Œ»ó‚Í‰‚µ‚©‚È‚¢‚Ì‚ÅAŠ‚Ìê‡‚Í«•Ê•s–¾‚Ìƒtƒ@ƒCƒ‹‚É‚·‚é
+	case POKEGRA_CGX:	// ã‚­ãƒ£ãƒ©
+		// ç¾çŠ¶ã¯â™‚ã—ã‹ãªã„ã®ã§ã€â™€ã®å ´åˆã¯æ€§åˆ¥ä¸æ˜ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ã™ã‚‹
 		if( ( param & MONS_SEX_MASK ) == POKEGRA_MALE ){
 			strcat( path, "_m" );
 		}else{
@@ -188,7 +188,7 @@ static void CodeSet( char * path, u32 param )
 		}
 		break;
 
-	case POKEGRA_PAL:	// ƒpƒŒƒbƒg
+	case POKEGRA_PAL:	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 		if( ( param & MONS_COLOR_MASK ) == POKEGRA_N_COL ){
 			strcat( path, "_n" );
 		}else{
@@ -200,10 +200,10 @@ static void CodeSet( char * path, u32 param )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶š—ñì¬FŠg’£q
+ * æ–‡å­—åˆ—ä½œæˆï¼šæ‹¡å¼µå­
  *
- * @param	path	•¶š—ñŠi”[êŠ
- * @param	param	ƒpƒ‰ƒ[ƒ^
+ * @param	path	æ–‡å­—åˆ—æ ¼ç´å ´æ‰€
+ * @param	param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	none
  */

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_269.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			269�@�G�ɗ^�����_���[�W�̂Q���̂P���������󂯂�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			269　敵に与えたダメージの２分の１を自分が受ける
  *
  *@author	HisashiSogabe
  *@data		2006.05.05
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_269:
-	//�������Ắ݂A�����_���[�W�n���󂯂�Z�̈З͂�2����������
+	//特性すてみは、反動ダメージ系を受ける技の威力を2割増しする
 	TOKUSEI_CHECK	TOKUSEI_NO_HAVE,SIDE_ATTACK,TOKUSYU_SUTEMI,BE_269_NEXT
 	VALUE			VAL_SET,BUF_PARA_DAMAGE_VALUE,12
 BE_269_NEXT:

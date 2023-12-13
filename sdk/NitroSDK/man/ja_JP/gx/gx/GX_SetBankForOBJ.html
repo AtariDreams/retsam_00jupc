@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>GX_SetBankForOBJ</title>
@@ -12,76 +12,76 @@
 <body>
 
 <h1 align="left">GX_SetBankForOBJ</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
 <CODE>#include &lt;nitro/gx/gx_vramcnt.h&gt;</CODE><BR>
   <BR>
   <CODE>void GX_SetBankForOBJ(GXVRamOBJ obj);</CODE></dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">obj</font></strong></em></td>
-    <td width="87%">���C��2D�G���W����OBJ�Ɋ��蓖�Ă�VRAM�o���N���w��</td>
+    <td width="87%">メイン2DエンジンのOBJに割り当てるVRAMバンクを指定</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
-<H2>����</H2>
-<P>�w�肳�ꂽVRAM�o���N�����C��2D�G���W����OBJ�Ɋ��蓖�Ă܂��B�w�肳�ꂽVRAM�o���N��Disable�ɂȂ��Ă��邩�ALCDC�Ɋ��蓖�Ă��Ă���ꍇ�ɁA����VRAM�o���N�����C��2D�G���W����OBJ�Ɋ��蓖�Ă܂��B<BR>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>指定されたVRAMバンクをメイン2DエンジンのOBJに割り当てます。指定されたVRAMバンクがDisableになっているか、LCDCに割り当てられている場合に、そのVRAMバンクをメイン2DエンジンのOBJに割り当てます。<BR>
 </P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_NONE</CODE></TD>
-      <TD>OBJ��VRAM�o���N�����蓖�Ă܂���B</TD>
+      <TD>OBJにVRAMバンクを割り当てません。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_16_F</CODE></TD>
-      <TD>OBJ��16KBytes�m�ۂ��܂��BVRAM-F�����蓖�Ă܂��B</TD>
+      <TD>OBJに16KBytes確保します。VRAM-Fを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_16_G</CODE></TD>
-      <TD>OBJ��16KBytes�m�ۂ��܂��BVRAM-G�����蓖�Ă܂��B</TD>
+      <TD>OBJに16KBytes確保します。VRAM-Gを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_32_FG</CODE></TD>
-      <TD>OBJ��32KBytes�m�ۂ��܂��BVRAM-F,G�����蓖�Ă܂��B</TD>
+      <TD>OBJに32KBytes確保します。VRAM-F,Gを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_64_E</CODE></TD>
-      <TD>OBJ��64KBytes�m�ۂ��܂��BVRAM-E�����蓖�Ă܂��B</TD>
+      <TD>OBJに64KBytes確保します。VRAM-Eを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_80_EF</CODE></TD>
-      <TD>OBJ��80KBytes�m�ۂ��܂��BVRAM-E,F�����蓖�Ă܂��B</TD>
+      <TD>OBJに80KBytes確保します。VRAM-E,Fを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_80_EG</CODE></TD>
-      <TD>OBJ��80KBytes�m�ۂ��܂��BVRAM-E,G�����蓖�Ă܂��B</TD>
+      <TD>OBJに80KBytes確保します。VRAM-E,Gを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_96_EFG</CODE></TD>
-      <TD>OBJ��96KBytes�m�ۂ��܂��BVRAM-E,F,G�����蓖�Ă܂��B</TD>
+      <TD>OBJに96KBytes確保します。VRAM-E,F,Gを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_128_A</CODE></TD>
-      <TD>OBJ��128KBytes�m�ۂ��܂��BVRAM-A�����蓖�Ă܂��B</TD>
+      <TD>OBJに128KBytes確保します。VRAM-Aを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_128_B</CODE></TD>
-      <TD>OBJ��128KBytes�m�ۂ��܂��BVRAM-B�����蓖�Ă܂��B</TD>
+      <TD>OBJに128KBytes確保します。VRAM-Bを割り当てます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_VRAM_OBJ_256_AB</CODE></TD>
-      <TD>OBJ��256KBytes�m�ۂ��܂��BVRAM-A,B�����蓖�Ă܂��B</TD>
+      <TD>OBJに256KBytes確保します。VRAM-A,Bを割り当てます。</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-�ȉ���<CODE>GXVRamOBJ</CODE>�^�̌^��`�������Ă����܂��B</P>
+以下に<CODE>GXVRamOBJ</CODE>型の型定義を示しておきます。</P>
 <PRE><CODE>typedef enum
 {
     GX_VRAM_OBJ_NONE   = 0x0000,
@@ -97,9 +97,9 @@
     GX_VRAM_OBJ_256_AB = GX_VRAM_A | GX_VRAM_B           // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_A_SIZE + HW_VRAM_B_SIZE
 }
 GXVRamOBJ;</CODE></PRE>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><A href="GX_GetBankForOBJ.html">GX_GetBankForOBJ</A>, <A href="GX_ResetBankForOBJ.html">GX_ResetBankForOBJ</A>, <A href="GX_DisableBankForOBJ.html">GX_DisableBankForOBJ</A>, <A href="GX_GetSizeOfOBJ.html">GX_GetSizeOfOBJ</A></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>Ver. 2004/01/19</P>
 </body>
 </html>

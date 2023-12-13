@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_032.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			032@‚g‚o‚ğÅ‘å’l‚Ì”¼•ª‚Ì’l‚¾‚¯‰ñ•œ‚·‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			032ã€€ï¼¨ï¼°ã‚’æœ€å¤§å€¤ã®åŠåˆ†ã®å€¤ã ã‘å›å¾©ã™ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2006.01.17

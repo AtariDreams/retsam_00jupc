@@ -2,11 +2,11 @@
 /**
  *
  *	@file		imc_accessorie.h
- *	@brief		ƒAƒNƒZƒTƒŠ[ŠÇ—ƒVƒXƒeƒ€
+ *	@brief		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2005.09.20
  *
- * ƒAƒNƒZƒTƒŠ‚ðƒŠƒXƒg‚ÅŠÇ—‚·‚éƒVƒXƒeƒ€
+ * ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’ãƒªã‚¹ãƒˆã§ç®¡ç†ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
  * 
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -26,31 +26,31 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒAƒNƒZƒTƒŠŠÇ—ƒf[ƒ^
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªç®¡ç†ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct IMC_ACCESSORIE_OBJ_tag{
-	int accessorie_no;			// ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+	int accessorie_no;			// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
 	
 	
-	SWSP_OBJ_PTR drawObj;	// •\Ž¦ƒf[ƒ^
+	SWSP_OBJ_PTR drawObj;	// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿
 
 } IMC_ACCESSORIE_OBJ;
 
 //-------------------------------------
 //	
-//	ƒAƒNƒZƒTƒŠŠÇ—\‘¢‘Ì
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªç®¡ç†æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct IMC_ACCESSORIE_OBJ_TBL_tag{
@@ -62,34 +62,34 @@ typedef struct IMC_ACCESSORIE_OBJ_TBL_tag{
 
 //-------------------------------------
 //	
-//	ƒAƒNƒZƒTƒŠƒf[ƒ^“o˜^ŠÖ”
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ç™»éŒ²é–¢æ•°
 //	
 //=====================================
 typedef struct {
-	IMC_ACCESSORIE_OBJ_TBL* objTbl;	// ƒIƒuƒWƒFƒNƒgƒe[ƒuƒ‹
-	SWSP_SYS_PTR	SWSPsys;	// ƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€ƒf[ƒ^
-	SWSP_CHAR_PTR	SWSPchar;	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-	SWSP_PLTT_PTR	SWSPpltt;	// ƒpƒŒƒbƒgƒf[ƒ^
-	int					m_x;	// À•W‚˜
-	int					m_y;	// À•W‚™
-	u32					accessorie_no;	// ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
-	u32					pltt_offs;	// ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+	IMC_ACCESSORIE_OBJ_TBL* objTbl;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+	SWSP_SYS_PTR	SWSPsys;	// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+	SWSP_CHAR_PTR	SWSPchar;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	SWSP_PLTT_PTR	SWSPpltt;	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+	int					m_x;	// åº§æ¨™ï½˜
+	int					m_y;	// åº§æ¨™ï½™
+	u32					accessorie_no;	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+	u32					pltt_offs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 } IMC_ACCE_ADD;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒIƒuƒWƒFƒNƒgƒe[ƒuƒ‹‚ðì¬
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆ
  *
- *	@param	obj_num		ƒAƒNƒZƒTƒŠ”
- *	@param	heap		ƒq[ƒv”
+ *	@param	obj_num		ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—æ•°
  *
- *	@return	IMC_ACCESSORIE_OBJ_TBL*	ƒIƒuƒWƒFƒNƒgƒe[ƒuƒ‹
+ *	@return	IMC_ACCESSORIE_OBJ_TBL*	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *
  */
@@ -99,12 +99,12 @@ GLOBAL IMC_ACCESSORIE_OBJ_TBL* IMC_ACCE_ObjTblInit( int obj_num, int heap );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒIƒuƒWƒFƒNƒgƒe[ƒuƒ‹‚ðì¬
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆ
  *
- *	@param	obj_num		ƒAƒNƒZƒTƒŠ”
- *	@param	heap		ƒq[ƒv”
+ *	@param	obj_num		ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—æ•°
  *
- *	@return	IMC_ACCESSORIE_OBJ_TBL*	ƒIƒuƒWƒFƒNƒgƒe[ƒuƒ‹
+ *	@return	IMC_ACCESSORIE_OBJ_TBL*	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *
  */
@@ -114,11 +114,11 @@ GLOBAL void IMC_ACCE_ObjTblDelete( IMC_ACCESSORIE_OBJ_TBL* obj_tbl );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠì¬
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªä½œæˆ
  *
- *	@param	data	ƒIƒuƒWƒFƒNƒg“o˜^ƒf[ƒ^
+ *	@param	data	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	IMC_ACCESSORIE_OBJ*	ƒAƒNƒZƒTƒŠƒIƒuƒWƒF
+ *	@return	IMC_ACCESSORIE_OBJ*	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§
  *
  *
  */
@@ -127,13 +127,13 @@ GLOBAL IMC_ACCESSORIE_OBJ* IMC_ACCE_ObjAdd( IMC_ACCE_ADD* data );
 
 //----------------------------------------------------------------------------
 /**
- * œBGƒTƒ€ƒlƒCƒ‹“o˜^—p
+ * â—BGã‚µãƒ ãƒã‚¤ãƒ«ç™»éŒ²ç”¨
  *
- *	@brief	ƒAƒNƒZƒTƒŠì¬		ƒAƒNƒZƒTƒŠˆÈŠO‚ÌƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF—p
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªä½œæˆ		ã‚¢ã‚¯ã‚»ã‚µãƒªä»¥å¤–ã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§ç”¨
  *
- *	@param	data	ƒIƒuƒWƒFƒNƒg“o˜^ƒf[ƒ^
+ *	@param	data	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	IMC_ACCESSORIE_OBJ*	ƒAƒNƒZƒTƒŠƒIƒuƒWƒF
+ *	@return	IMC_ACCESSORIE_OBJ*	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§
  *
  *
  */
@@ -142,13 +142,13 @@ GLOBAL IMC_ACCESSORIE_OBJ* IMC_ACCE_ObjAddBGThum( IMC_ACCE_ADD* data );
 
 //----------------------------------------------------------------------------
 /**
- * œSNDƒTƒ€ƒlƒCƒ‹“o˜^—p
+ * â—SNDã‚µãƒ ãƒã‚¤ãƒ«ç™»éŒ²ç”¨
  *
- *	@brief	ƒAƒNƒZƒTƒŠì¬		ƒAƒNƒZƒTƒŠˆÈŠO‚ÌƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF—p
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªä½œæˆ		ã‚¢ã‚¯ã‚»ã‚µãƒªä»¥å¤–ã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§ç”¨
  *
- *	@param	data	ƒIƒuƒWƒFƒNƒg“o˜^ƒf[ƒ^
+ *	@param	data	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	IMC_ACCESSORIE_OBJ*	ƒAƒNƒZƒTƒŠƒIƒuƒWƒF
+ *	@return	IMC_ACCESSORIE_OBJ*	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§
  *
  *
  */
@@ -158,9 +158,9 @@ GLOBAL IMC_ACCESSORIE_OBJ* IMC_ACCE_ObjAddSNDThum( IMC_ACCE_ADD* data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒIƒuƒWƒFƒNƒgƒf[ƒ^”jŠü
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	obj		”jŠü‚·‚éƒIƒuƒWƒFƒNƒg
+ *	@param	obj		ç ´æ£„ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
  *	@return	none
  *
@@ -172,9 +172,9 @@ GLOBAL void IMC_ACCE_ObjDelete( IMC_ACCESSORIE_OBJ* obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒIƒuƒWƒFƒNƒgƒe[ƒuƒ‹“à‚ÌƒAƒNƒZƒTƒŠ”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å†…ã®ã‚¢ã‚¯ã‚»ã‚µãƒªç ´æ£„
  *
- *	@param	obj_tbl		ƒIƒuƒWƒFƒNƒgƒe[ƒuƒ‹
+ *	@param	obj_tbl		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *	@return	none
  *
@@ -186,11 +186,11 @@ GLOBAL void IMC_ACCE_ObjDeleteAll( IMC_ACCESSORIE_OBJ_TBL* obj_tbl );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	À•W‚ðÝ’è	i“¯Žž‚ÉƒXƒvƒ‰ƒCƒg‚àˆÚ“®j
+ *	@brief	åº§æ¨™ã‚’è¨­å®š	ï¼ˆåŒæ™‚ã«ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚‚ç§»å‹•ï¼‰
  *
- *	@param	obj	ƒAƒNƒZƒTƒŠƒIƒuƒWƒF
- *	@param	x	xÀ•W
- *	@param	y	yÀ•W
+ *	@param	obj	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§
+ *	@param	x	xåº§æ¨™
+ *	@param	y	yåº§æ¨™
  *
  *	@return	none
  *
@@ -202,11 +202,11 @@ GLOBAL void IMC_ACCE_ObjSetMat( IMC_ACCESSORIE_OBJ* obj, s16 x, s16 y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	À•W‚ðŽæ“¾
+ *	@brief	åº§æ¨™ã‚’å–å¾—
  *
- *	@param	obj		ƒAƒNƒZƒTƒŠƒIƒuƒWƒFƒNƒg
- *	@param	x		‚˜À•WŽæ“¾æ
- *	@param	y		‚™À•WŽæ“¾æ
+ *	@param	obj		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	x		ï½˜åº§æ¨™å–å¾—å…ˆ
+ *	@param	y		ï½™åº§æ¨™å–å¾—å…ˆ
  *
  *	@return	none
  *
@@ -218,11 +218,11 @@ GLOBAL void IMC_ACCE_ObjGetMat( IMC_ACCESSORIE_OBJ* obj, int* x, int* y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒgƒTƒCƒY‚ðŽæ“¾
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	@param	obj		ƒAƒNƒZƒTƒŠƒIƒuƒWƒFƒNƒg
- *	@param	x		‚˜ƒTƒCƒYŽæ“¾æ
- *	@param	y		‚™ƒTƒCƒYŽæ“¾æ
+ *	@param	obj		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	x		ï½˜ã‚µã‚¤ã‚ºå–å¾—å…ˆ
+ *	@param	y		ï½™ã‚µã‚¤ã‚ºå–å¾—å…ˆ
  *
  *	@return	none
  *
@@ -234,12 +234,12 @@ GLOBAL void IMC_ACCE_ObjGetSize( IMC_ACCESSORIE_OBJ* obj, int* x, int* y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚Æ‚Ì“–‚½‚è”»’è‚ðs‚¤
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  *
- *	@param	obj		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	‚ ‚½‚Á‚½
- *	@retval	FALSE	‚ ‚½‚ç‚È‚©‚Á‚½
+ *	@retval	TRUE	ã‚ãŸã£ãŸ
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã‹ã£ãŸ
  *
  *
  */
@@ -249,15 +249,15 @@ GLOBAL BOOL IMC_ACCE_ObjTpHit( IMC_ACCESSORIE_OBJ* obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚Æ‚Ì“–‚½‚è”»’è‚ð×‚©‚­s‚¤
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’ç´°ã‹ãè¡Œã†
  *
- *	@param	obj			ƒIƒuƒWƒFƒNƒgƒf[ƒ^
- *	@param	offs_x		¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg‚˜À•W
- *	@param	offs_y		¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg‚™À•W
- *	@param	drawData	ƒ`ƒFƒbƒN‚·‚éƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@param	obj			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	offs_x		å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï½˜åº§æ¨™
+ *	@param	offs_y		å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï½™åº§æ¨™
+ *	@param	drawData	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	‚ ‚½‚Á‚½
- *	@retval	FALSE	‚ ‚½‚ç‚È‚©‚Á‚½	iƒIƒtƒZƒbƒgÀ•W•s’èj
+ *	@retval	TRUE	ã‚ãŸã£ãŸ
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã‹ã£ãŸ	ï¼ˆã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™ä¸å®šï¼‰
  *
  *
  */
@@ -267,14 +267,14 @@ GLOBAL BOOL IMC_ACCE_ObjTpHitEx( IMC_ACCESSORIE_OBJ* obj, int* offs_x, int* offs
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚Æ‚Ì“–‚½‚è”»’è‚ðs‚¤
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  *
- *	@param	obj		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
- *	@param	x		”»’è‚˜À•W
- *	@param	y		”»’è‚™À•W
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	x		åˆ¤å®šï½˜åº§æ¨™
+ *	@param	y		åˆ¤å®šï½™åº§æ¨™
  *
- *	@retval	TRUE	‚ ‚½‚Á‚½
- *	@retval	FALSE	‚ ‚½‚ç‚È‚©‚Á‚½
+ *	@retval	TRUE	ã‚ãŸã£ãŸ
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã‹ã£ãŸ
  *
  *
  */
@@ -284,10 +284,10 @@ GLOBAL BOOL IMC_ACCE_ObjTpHitSelf( IMC_ACCESSORIE_OBJ* obj, int x, int y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒŠƒXƒg‚ÌƒAƒNƒZƒTƒŠ‚Ì•`‰æON@OFF@Ý’è
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã®ã‚¢ã‚¯ã‚»ã‚µãƒªã®æç”»ONã€€OFFã€€è¨­å®š
  *
- *	@param	obj		ƒAƒNƒZƒTƒŠƒIƒuƒWƒFƒNƒgƒf[ƒ^
- *	@param	flag	ON@OFF@ƒtƒ‰ƒO
+ *	@param	obj		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	flag	ONã€€OFFã€€ãƒ•ãƒ©ã‚°
  *			
  *	@return	none
  *
@@ -299,10 +299,10 @@ GLOBAL void IMC_ACCE_ObjListDrawSet( IMC_ACCESSORIE_OBJ* obj, BOOL flag );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒŠƒXƒg‚Ì•\Ž¦—Dæ‡ˆÊ‚ðÝ’è
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã®è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’è¨­å®š
  *
- *	@param	obj			ƒAƒNƒZƒTƒŠƒIƒuƒWƒF
- *	@param	priority	•\Ž¦—Dæ‡ˆÊ
+ *	@param	obj			ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§
+ *	@param	priority	è¡¨ç¤ºå„ªå…ˆé †ä½
  *
  *	@return	none
  *
@@ -315,11 +315,11 @@ GLOBAL int IMC_ACCE_ObjDrawPriorityGet( IMC_ACCESSORIE_OBJ* obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	H‚¢ž‚ñ‚Å—Ç‚¢ƒTƒCƒY‚ðŽæ“¾
+ *	@brief	é£Ÿã„è¾¼ã‚“ã§è‰¯ã„ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	@param	obj		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
- *	@param	ins_x	H‚¢ž‚ñ‚Å—Ç‚¢ƒTƒCƒYX
- *	@param	ins_y	H‚¢ž‚ñ‚Å—Ç‚¢ƒTƒCƒYY
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	ins_x	é£Ÿã„è¾¼ã‚“ã§è‰¯ã„ã‚µã‚¤ã‚ºX
+ *	@param	ins_y	é£Ÿã„è¾¼ã‚“ã§è‰¯ã„ã‚µã‚¤ã‚ºY
  *
  *	@return	none
  *
@@ -331,11 +331,11 @@ GLOBAL void IMC_ACCE_ObjInSizeGet( IMC_ACCESSORIE_OBJ* obj, int* ins_x, int* ins
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Šgk’l‚ðÝ’è‚·‚é
+ *	@brief	æ‹¡ç¸®å€¤ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	obj			ƒAƒNƒZƒTƒŠƒIƒuƒWƒF
- *	@param	scale_x		‚˜Šgk’l
- *	@param	scale_y		‚™Šgk’l
+ *	@param	obj			ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§
+ *	@param	scale_x		ï½˜æ‹¡ç¸®å€¤
+ *	@param	scale_y		ï½™æ‹¡ç¸®å€¤
  *
  *	@return	none
  *

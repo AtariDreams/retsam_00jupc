@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	plist_item.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊƒAƒCƒeƒ€Žg—pˆ—
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	05.12.12
  */
@@ -41,53 +41,53 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	RCV_FLG_SLEEP		( 0x01 )	// –°‚è‰ñ•œ
-#define	RCV_FLG_POISON		( 0x02 )	// “Å‰ñ•œ
-#define	RCV_FLG_BURN		( 0x04 )	// ‰Î‰ñ•œ
-#define	RCV_FLG_ICE			( 0x08 )	// •X‰ñ•œ
-#define	RCV_FLG_PARALYZE	( 0x10 )	// –ƒáƒ‰ñ•œ
-#define	RCV_FLG_PANIC		( 0x20 )	// ¬—‰ñ•œ
-#define	RCV_FLG_ALL			( 0x3f )	// ‘S‰õ
+#define	RCV_FLG_SLEEP		( 0x01 )	// çœ ã‚Šå›žå¾©
+#define	RCV_FLG_POISON		( 0x02 )	// æ¯’å›žå¾©
+#define	RCV_FLG_BURN		( 0x04 )	// ç«å‚·å›žå¾©
+#define	RCV_FLG_ICE			( 0x08 )	// æ°·å›žå¾©
+#define	RCV_FLG_PARALYZE	( 0x10 )	// éº»ç—ºå›žå¾©
+#define	RCV_FLG_PANIC		( 0x20 )	// æ··ä¹±å›žå¾©
+#define	RCV_FLG_ALL			( 0x3f )	// å…¨å¿«
 
 enum {
-	ITEM_TYPE_BTL_ST_UP = 0,	// í“¬—pƒXƒe[ƒ^ƒXƒAƒbƒvŒn
-	ITEM_TYPE_ALLDETH_RCV,		// ‘Sˆõ•mŽ€‰ñ•œ
-	ITEM_TYPE_LV_UP,			// LvUpŒn
-	ITEM_TYPE_NEMURI_RCV,		// –°‚è‰ñ•œ
-	ITEM_TYPE_DOKU_RCV,			// “Å‰ñ•œ
-	ITEM_TYPE_YAKEDO_RCV,		// ‰Î‰ñ•œ
-	ITEM_TYPE_KOORI_RCV,		// •X‰ñ•œ
-	ITEM_TYPE_MAHI_RCV,			// –ƒáƒ‰ñ•œ
-	ITEM_TYPE_KONRAN_RCV,		// ¬—‰ñ•œ
-	ITEM_TYPE_ALL_ST_RCV,		// ‘S‰õ
-	ITEM_TYPE_MEROMERO_RCV,		// ƒƒƒƒ‰ñ•œ
-	ITEM_TYPE_HP_RCV,			// HP‰ñ•œ ( •mŽ€‚à )
-	ITEM_TYPE_HP_UP,			// HP“w—Í’lUP
-	ITEM_TYPE_ATC_UP,			// UŒ‚“w—Í’lUP
-	ITEM_TYPE_DEF_UP,			// –hŒä“w—Í’lUP
-	ITEM_TYPE_AGL_UP,			// ‘f‘‚³“w—Í’lUP
-	ITEM_TYPE_SPA_UP,			// “ÁU“w—Í’lUP
-	ITEM_TYPE_SPD_UP,			// “Á–h“w—Í’lUP
+	ITEM_TYPE_BTL_ST_UP = 0,	// æˆ¦é—˜ç”¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¢ãƒƒãƒ—ç³»
+	ITEM_TYPE_ALLDETH_RCV,		// å…¨å“¡ç€•æ­»å›žå¾©
+	ITEM_TYPE_LV_UP,			// LvUpç³»
+	ITEM_TYPE_NEMURI_RCV,		// çœ ã‚Šå›žå¾©
+	ITEM_TYPE_DOKU_RCV,			// æ¯’å›žå¾©
+	ITEM_TYPE_YAKEDO_RCV,		// ç«å‚·å›žå¾©
+	ITEM_TYPE_KOORI_RCV,		// æ°·å›žå¾©
+	ITEM_TYPE_MAHI_RCV,			// éº»ç—ºå›žå¾©
+	ITEM_TYPE_KONRAN_RCV,		// æ··ä¹±å›žå¾©
+	ITEM_TYPE_ALL_ST_RCV,		// å…¨å¿«
+	ITEM_TYPE_MEROMERO_RCV,		// ãƒ¡ãƒ­ãƒ¡ãƒ­å›žå¾©
+	ITEM_TYPE_HP_RCV,			// HPå›žå¾© ( ç€•æ­»ã‚‚ )
+	ITEM_TYPE_HP_UP,			// HPåŠªåŠ›å€¤UP
+	ITEM_TYPE_ATC_UP,			// æ”»æ’ƒåŠªåŠ›å€¤UP
+	ITEM_TYPE_DEF_UP,			// é˜²å¾¡åŠªåŠ›å€¤UP
+	ITEM_TYPE_AGL_UP,			// ç´ æ—©ã•åŠªåŠ›å€¤UP
+	ITEM_TYPE_SPA_UP,			// ç‰¹æ”»åŠªåŠ›å€¤UP
+	ITEM_TYPE_SPD_UP,			// ç‰¹é˜²åŠªåŠ›å€¤UP
 
-	ITEM_TYPE_HP_DOWN,			// HP“w—Í’lDOWN
-	ITEM_TYPE_ATC_DOWN,			// UŒ‚“w—Í’lDOWN
-	ITEM_TYPE_DEF_DOWN,			// –hŒä“w—Í’lDOWN
-	ITEM_TYPE_AGL_DOWN,			// ‘f‘‚³“w—Í’lDOWN
-	ITEM_TYPE_SPA_DOWN,			// “ÁU“w—Í’lDOWN
-	ITEM_TYPE_SPD_DOWN,			// “Á–h“w—Í’lDOWN
+	ITEM_TYPE_HP_DOWN,			// HPåŠªåŠ›å€¤DOWN
+	ITEM_TYPE_ATC_DOWN,			// æ”»æ’ƒåŠªåŠ›å€¤DOWN
+	ITEM_TYPE_DEF_DOWN,			// é˜²å¾¡åŠªåŠ›å€¤DOWN
+	ITEM_TYPE_AGL_DOWN,			// ç´ æ—©ã•åŠªåŠ›å€¤DOWN
+	ITEM_TYPE_SPA_DOWN,			// ç‰¹æ”»åŠªåŠ›å€¤DOWN
+	ITEM_TYPE_SPD_DOWN,			// ç‰¹é˜²åŠªåŠ›å€¤DOWN
 
-	ITEM_TYPE_EVO,				// i‰»Œn
-	ITEM_TYPE_PP_UP,			// ppUpŒn
-	ITEM_TYPE_PP_3UP,			// pp3UpŒn
-	ITEM_TYPE_PP_RCV,			// pp‰ñ•œŒn
-	ITEM_TYPE_ETC,				// ‚»‚Ì‘¼
+	ITEM_TYPE_EVO,				// é€²åŒ–ç³»
+	ITEM_TYPE_PP_UP,			// ppUpç³»
+	ITEM_TYPE_PP_3UP,			// pp3Upç³»
+	ITEM_TYPE_PP_RCV,			// ppå›žå¾©ç³»
+	ITEM_TYPE_ETC,				// ãã®ä»–
 };
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static int NormalRecover( void * work );
 static int PrmExpDown_Recover( void * work );
@@ -107,11 +107,11 @@ static u16 PL_PlaceIDGet( PLIST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ•œƒ^ƒCƒvƒ`ƒFƒbƒN
+ * å›žå¾©ã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @return	‰ñ•œƒ^ƒCƒv
+ * @return	å›žå¾©ã‚¿ã‚¤ãƒ—
  */
 //--------------------------------------------------------------------------------------------
 static u8 ItemRecoverCheck( u16 item )
@@ -121,13 +121,13 @@ static u8 ItemRecoverCheck( u16 item )
 
 	dat = GetItemArcData( item, ITEM_GET_DATA, HEAPID_POKELIST );
 
-	// ƒpƒ‰ƒ[ƒ^‚ðŽ‚Á‚Ä‚¢‚È‚¢ƒAƒCƒeƒ€‚Í‚»‚Ì‘¼
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æŒã£ã¦ã„ãªã„ã‚¢ã‚¤ãƒ†ãƒ ã¯ãã®ä»–
 	if( ItemBufParamGet( dat, ITEM_PRM_W_TYPE ) != ITEM_WKTYPE_POKEUSE ){
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_ETC;
 	}
 
-	// í“¬—pƒXƒe[ƒ^ƒXƒAƒbƒvŒn
+	// æˆ¦é—˜ç”¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¢ãƒƒãƒ—ç³»
 	if( ItemBufParamGet( dat, ITEM_PRM_ATTACK_UP ) != 0 ||
 		ItemBufParamGet( dat, ITEM_PRM_DEFENCE_UP ) != 0 ||
 		ItemBufParamGet( dat, ITEM_PRM_SP_ATTACK_UP ) != 0 ||
@@ -140,67 +140,67 @@ static u8 ItemRecoverCheck( u16 item )
 		return ITEM_TYPE_BTL_ST_UP;
 	}
 
-	// ‘Sˆõ•mŽ€‰ñ•œ
+	// å…¨å“¡ç€•æ­»å›žå¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_ALL_DEATH_RCV ) != 0 ){
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_ALLDETH_RCV;
 	}
 
-	// LvUpŒn
+	// LvUpç³»
 	if( ItemBufParamGet( dat, ITEM_PRM_LV_UP ) != 0 ){
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_LV_UP;
 	}
 
-	// Status‰ñ•œŒn
-	prm = ItemBufParamGet( dat, ITEM_PRM_SLEEP_RCV );				// –°‚è
-	prm += ( ItemBufParamGet( dat, ITEM_PRM_POISON_RCV ) << 1 );	// “Å
-	prm += ( ItemBufParamGet( dat, ITEM_PRM_BURN_RCV ) << 2 );		// ‰Î
-	prm += ( ItemBufParamGet( dat, ITEM_PRM_ICE_RCV ) << 3 );		// •X
-	prm += ( ItemBufParamGet( dat, ITEM_PRM_PARALYZE_RCV ) << 4 );	// –ƒáƒ
-	prm += ( ItemBufParamGet( dat, ITEM_PRM_PANIC_RCV ) << 5 );		// ¬—
+	// Statuså›žå¾©ç³»
+	prm = ItemBufParamGet( dat, ITEM_PRM_SLEEP_RCV );				// çœ ã‚Š
+	prm += ( ItemBufParamGet( dat, ITEM_PRM_POISON_RCV ) << 1 );	// æ¯’
+	prm += ( ItemBufParamGet( dat, ITEM_PRM_BURN_RCV ) << 2 );		// ç«å‚·
+	prm += ( ItemBufParamGet( dat, ITEM_PRM_ICE_RCV ) << 3 );		// æ°·
+	prm += ( ItemBufParamGet( dat, ITEM_PRM_PARALYZE_RCV ) << 4 );	// éº»ç—º
+	prm += ( ItemBufParamGet( dat, ITEM_PRM_PANIC_RCV ) << 5 );		// æ··ä¹±
 	switch( prm ){
-	case RCV_FLG_SLEEP:		// –°‚è
+	case RCV_FLG_SLEEP:		// çœ ã‚Š
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_NEMURI_RCV;
-	case RCV_FLG_POISON:	// “Å
+	case RCV_FLG_POISON:	// æ¯’
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_DOKU_RCV;
-	case RCV_FLG_BURN:		// ‰Î
+	case RCV_FLG_BURN:		// ç«å‚·
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_YAKEDO_RCV;
-	case RCV_FLG_ICE:		// •X
+	case RCV_FLG_ICE:		// æ°·
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_KOORI_RCV;
-	case RCV_FLG_PARALYZE:	// –ƒáƒ
+	case RCV_FLG_PARALYZE:	// éº»ç—º
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_MAHI_RCV;
-	case RCV_FLG_PANIC:		// ¬—
+	case RCV_FLG_PANIC:		// æ··ä¹±
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_KONRAN_RCV;
-	case RCV_FLG_ALL:		// ‘S‰õ
+	case RCV_FLG_ALL:		// å…¨å¿«
 		if( ItemBufParamGet( dat, ITEM_PRM_HP_RCV ) != 0 ){
 			sys_FreeMemoryEz( dat );
-			return ITEM_TYPE_HP_RCV;	// HP‰ñ•œ ( •mŽ€‚à )
+			return ITEM_TYPE_HP_RCV;	// HPå›žå¾© ( ç€•æ­»ã‚‚ )
 		}else{
 			sys_FreeMemoryEz( dat );
 			return ITEM_TYPE_ALL_ST_RCV;
 		}
 	}
-	// ƒƒƒƒ‰ñ•œ
+	// ãƒ¡ãƒ­ãƒ¡ãƒ­å›žå¾©
 	if( ItemBufParamGet( dat, ITEM_PRM_MEROMERO_RCV ) != 0 ){
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_MEROMERO_RCV;
 	}
 
-	// HP‰ñ•œ ( •mŽ€‚à )
+	// HPå›žå¾© ( ç€•æ­»ã‚‚ )
 	if( ItemBufParamGet( dat, ITEM_PRM_HP_RCV ) != 0 ){
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_HP_RCV;
 	}
 
-	// ƒh[ƒsƒ“ƒOŒn
-	// HP“w—Í’l
+	// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ç³»
+	// HPåŠªåŠ›å€¤
 	prm = ItemBufParamGet( dat, ITEM_PRM_HP_EXP_POINT );
 	if( prm > 0 ){
 		sys_FreeMemoryEz( dat );
@@ -210,7 +210,7 @@ static u8 ItemRecoverCheck( u16 item )
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_HP_DOWN;
 	}
-	// UŒ‚“w—Í’l
+	// æ”»æ’ƒåŠªåŠ›å€¤
 	prm = ItemBufParamGet( dat, ITEM_PRM_POWER_EXP_POINT );
 	if( prm > 0 ){
 		sys_FreeMemoryEz( dat );
@@ -220,7 +220,7 @@ static u8 ItemRecoverCheck( u16 item )
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_ATC_DOWN;
 	}
-	// –hŒä“w—Í’l
+	// é˜²å¾¡åŠªåŠ›å€¤
 	prm = ItemBufParamGet( dat, ITEM_PRM_DEFENCE_EXP_POINT );
 	if( prm > 0 ){
 		sys_FreeMemoryEz( dat );
@@ -230,7 +230,7 @@ static u8 ItemRecoverCheck( u16 item )
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_DEF_DOWN;
 	}
-	// ‘f‘‚³“w—Í’l
+	// ç´ æ—©ã•åŠªåŠ›å€¤
 	prm = ItemBufParamGet( dat, ITEM_PRM_AGILITY_EXP_POINT );
 	if( prm > 0 ){
 		sys_FreeMemoryEz( dat );
@@ -240,7 +240,7 @@ static u8 ItemRecoverCheck( u16 item )
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_AGL_DOWN;
 	}
-	// “ÁU“w—Í’l
+	// ç‰¹æ”»åŠªåŠ›å€¤
 	prm = ItemBufParamGet( dat, ITEM_PRM_SP_ATTACK_EXP_POINT );
 	if( prm > 0 ){
 		sys_FreeMemoryEz( dat );
@@ -250,7 +250,7 @@ static u8 ItemRecoverCheck( u16 item )
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_SPA_DOWN;
 	}
-	// “Á–h“w—Í’l
+	// ç‰¹é˜²åŠªåŠ›å€¤
 	prm = ItemBufParamGet( dat, ITEM_PRM_SP_DEFENCE_EXP_POINT );
 	if( prm > 0 ){
 		sys_FreeMemoryEz( dat );
@@ -261,25 +261,25 @@ static u8 ItemRecoverCheck( u16 item )
 		return ITEM_TYPE_SPD_DOWN;
 	}
 
-	// i‰»Œn
+	// é€²åŒ–ç³»
 	if( ItemBufParamGet( dat, ITEM_PRM_EVOLUTION ) != 0 ){
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_EVO;
 	}
 
-	// ppUpŒn
+	// ppUpç³»
 	if( ItemBufParamGet( dat, ITEM_PRM_PP_UP ) != 0 ){
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_PP_UP;
 	}
 
-	// pp3UpŒn
+	// pp3Upç³»
 	if( ItemBufParamGet( dat, ITEM_PRM_PP_3UP ) != 0 ){
 		sys_FreeMemoryEz( dat );
 		return ITEM_TYPE_PP_3UP;
 	}
 
-	// pp‰ñ•œŒn
+	// ppå›žå¾©ç³»
 	if( ItemBufParamGet( dat, ITEM_PRM_PP_RCV ) != 0 ||
 		ItemBufParamGet( dat, ITEM_PRM_ALL_PP_RCV ) != 0 ){
 
@@ -293,11 +293,11 @@ static u8 ItemRecoverCheck( u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ•œƒƒbƒZ[ƒWƒZƒbƒg
+ * å›žå¾©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	itemno	ƒAƒCƒeƒ€”Ô†
- * @param	tmp		”Ä—pƒpƒ‰ƒ[ƒ^
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	itemno	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	tmp		æ±Žç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -311,113 +311,113 @@ static void SetStatusRecoverMsg( PLIST_WORK * wk, u16 itemno, u32 tmp )
 	WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 
 	switch( ItemRecoverCheck( itemno ) ){
-	case ITEM_TYPE_DOKU_RCV:	// “Å‰ñ•œ
+	case ITEM_TYPE_DOKU_RCV:	// æ¯’å›žå¾©
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_15 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_NEMURI_RCV:	// –°‚è‰ñ•œ
+	case ITEM_TYPE_NEMURI_RCV:	// çœ ã‚Šå›žå¾©
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_35 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_YAKEDO_RCV:	// ‰Î‰ñ•œ
+	case ITEM_TYPE_YAKEDO_RCV:	// ç«å‚·å›žå¾©
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_17 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_KOORI_RCV:	// •X‰ñ•œ
+	case ITEM_TYPE_KOORI_RCV:	// æ°·å›žå¾©
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_18 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_MAHI_RCV:	// –ƒáƒ‰ñ•œ
+	case ITEM_TYPE_MAHI_RCV:	// éº»ç—ºå›žå¾©
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_16 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_KONRAN_RCV:	// ¬—‰ñ•œ
+	case ITEM_TYPE_KONRAN_RCV:	// æ··ä¹±å›žå¾©
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_23 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_MEROMERO_RCV:	// ƒƒƒƒ‰ñ•œ
+	case ITEM_TYPE_MEROMERO_RCV:	// ãƒ¡ãƒ­ãƒ¡ãƒ­å›žå¾©
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_24 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_ALL_ST_RCV:	// ƒXƒe[ƒ^ƒXˆÙí‘S‰õ
+	case ITEM_TYPE_ALL_ST_RCV:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸å…¨å¿«
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_21 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_HP_UP:		// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ HP“w—Í’lUP
+	case ITEM_TYPE_HP_UP:		// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  HPåŠªåŠ›å€¤UP
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_25 );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 0 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_ATC_UP:		// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ UŒ‚“w—Í’lUP
+	case ITEM_TYPE_ATC_UP:		// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  æ”»æ’ƒåŠªåŠ›å€¤UP
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_25 );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 1 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_DEF_UP:		// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ –hŒä“w—Í’lUP
+	case ITEM_TYPE_DEF_UP:		// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  é˜²å¾¡åŠªåŠ›å€¤UP
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_25 );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 2 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_AGL_UP:		// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ ‘f‘‚³“w—Í’lUP
+	case ITEM_TYPE_AGL_UP:		// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  ç´ æ—©ã•åŠªåŠ›å€¤UP
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_25 );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 3 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_SPA_UP:		// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ “ÁU“w—Í’lUP
+	case ITEM_TYPE_SPA_UP:		// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  ç‰¹æ”»åŠªåŠ›å€¤UP
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_25 );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 4 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_SPD_UP:		// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ “Á–h“w—Í’lUP
+	case ITEM_TYPE_SPD_UP:		// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  ç‰¹é˜²åŠªåŠ›å€¤UP
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_25 );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 5 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_HP_DOWN:		// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ HP“w—Í’l
+	case ITEM_TYPE_HP_DOWN:		// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  HPåŠªåŠ›å€¤
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_51+tmp );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 0 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_ATC_DOWN:	// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ UŒ‚“w—Í’lDOWN
+	case ITEM_TYPE_ATC_DOWN:	// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  æ”»æ’ƒåŠªåŠ›å€¤DOWN
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_51+tmp );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 1 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_DEF_DOWN:	// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ –hŒä“w—Í’lDOWN
+	case ITEM_TYPE_DEF_DOWN:	// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  é˜²å¾¡åŠªåŠ›å€¤DOWN
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_51+tmp );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 2 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_AGL_DOWN:	// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ ‘f‘‚³“w—Í’lDOWN
+	case ITEM_TYPE_AGL_DOWN:	// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  ç´ æ—©ã•åŠªåŠ›å€¤DOWN
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_51+tmp );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 3 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_SPA_DOWN:	// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ “ÁU“w—Í’lDOWN
+	case ITEM_TYPE_SPA_DOWN:	// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  ç‰¹æ”»åŠªåŠ›å€¤DOWN
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_51+tmp );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 4 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_SPD_DOWN:	// ƒh[ƒsƒ“ƒOƒAƒCƒeƒ€ “Á–h“w—Í’lDOWN
+	case ITEM_TYPE_SPD_DOWN:	// ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚¢ã‚¤ãƒ†ãƒ  ç‰¹é˜²åŠªåŠ›å€¤DOWN
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_51+tmp );
 		WORDSET_RegisterPokeStatusName( wk->wset, 1, 5 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
@@ -430,7 +430,7 @@ static void SetStatusRecoverMsg( PLIST_WORK * wk, u16 itemno, u32 tmp )
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		break;
-	case ITEM_TYPE_PP_RCV:		// PP‰ñ•œ
+	case ITEM_TYPE_PP_RCV:		// PPå›žå¾©
 		MSGMAN_GetString( wk->msg_man, mes_pokelist_04_19, wk->msg_buf );
 		break;
 	default:
@@ -440,9 +440,9 @@ static void SetStatusRecoverMsg( PLIST_WORK * wk, u16 itemno, u32 tmp )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€Žg—pƒƒCƒ“
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -450,54 +450,54 @@ static void SetStatusRecoverMsg( PLIST_WORK * wk, u16 itemno, u32 tmp )
 void PokeList_ItemUseMain( PLIST_WORK * wk )
 {
 	switch( ItemRecoverCheck( wk->dat->item ) ){
-	case ITEM_TYPE_BTL_ST_UP:		// í“¬—pƒXƒe[ƒ^ƒXƒAƒbƒvŒn
-	case ITEM_TYPE_ETC:				// ‚»‚Ì‘¼
-		// ƒƒbƒZ[ƒW•\Ž¦‚µ‚ÄI—¹
+	case ITEM_TYPE_BTL_ST_UP:		// æˆ¦é—˜ç”¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¢ãƒƒãƒ—ç³»
+	case ITEM_TYPE_ETC:				// ãã®ä»–
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã—ã¦çµ‚äº†
 		break;
 
-	case ITEM_TYPE_ALLDETH_RCV:		// ‘Sˆõ•mŽ€‰ñ•œ
-		// ‘S‘Ì‰ñ•œˆ—
+	case ITEM_TYPE_ALLDETH_RCV:		// å…¨å“¡ç€•æ­»å›žå¾©
+		// å…¨ä½“å›žå¾©å‡¦ç†
 		break;
 
-	case ITEM_TYPE_LV_UP:			// LvUpŒn
-		// ƒƒbƒZ[ƒW•\Ž¦ -> ƒpƒ‰ƒ[ƒ^•\Ž¦
+	case ITEM_TYPE_LV_UP:			// LvUpç³»
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º -> ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤º
 		wk->strcv_func = LvUp_Recover;
 		break;
 
-	case ITEM_TYPE_NEMURI_RCV:		// –°‚è‰ñ•œ
-	case ITEM_TYPE_DOKU_RCV:		// “Å‰ñ•œ
-	case ITEM_TYPE_YAKEDO_RCV:		// ‰Î‰ñ•œ
-	case ITEM_TYPE_KOORI_RCV:		// •X‰ñ•œ
-	case ITEM_TYPE_MAHI_RCV:		// –ƒáƒ‰ñ•œ
-	case ITEM_TYPE_KONRAN_RCV:		// ¬—‰ñ•œ
-	case ITEM_TYPE_ALL_ST_RCV:		// ‘S‰õ
-	case ITEM_TYPE_MEROMERO_RCV:	// ƒƒƒƒ‰ñ•œ
-	case ITEM_TYPE_HP_UP:			// HP“w—Í’lUP
-	case ITEM_TYPE_ATC_UP:			// UŒ‚“w—Í’lUP
-	case ITEM_TYPE_DEF_UP:			// –hŒä“w—Í’lUP
-	case ITEM_TYPE_AGL_UP:			// ‘f‘‚³“w—Í’lUP
-	case ITEM_TYPE_SPA_UP:			// “ÁU“w—Í’lUP
-	case ITEM_TYPE_SPD_UP:			// “Á–h“w—Í’lUP
-	case ITEM_TYPE_PP_UP:			// ppUpŒn
-	case ITEM_TYPE_PP_3UP:			// pp3UpŒn
-	case ITEM_TYPE_PP_RCV:			// pp‰ñ•œŒn
+	case ITEM_TYPE_NEMURI_RCV:		// çœ ã‚Šå›žå¾©
+	case ITEM_TYPE_DOKU_RCV:		// æ¯’å›žå¾©
+	case ITEM_TYPE_YAKEDO_RCV:		// ç«å‚·å›žå¾©
+	case ITEM_TYPE_KOORI_RCV:		// æ°·å›žå¾©
+	case ITEM_TYPE_MAHI_RCV:		// éº»ç—ºå›žå¾©
+	case ITEM_TYPE_KONRAN_RCV:		// æ··ä¹±å›žå¾©
+	case ITEM_TYPE_ALL_ST_RCV:		// å…¨å¿«
+	case ITEM_TYPE_MEROMERO_RCV:	// ãƒ¡ãƒ­ãƒ¡ãƒ­å›žå¾©
+	case ITEM_TYPE_HP_UP:			// HPåŠªåŠ›å€¤UP
+	case ITEM_TYPE_ATC_UP:			// æ”»æ’ƒåŠªåŠ›å€¤UP
+	case ITEM_TYPE_DEF_UP:			// é˜²å¾¡åŠªåŠ›å€¤UP
+	case ITEM_TYPE_AGL_UP:			// ç´ æ—©ã•åŠªåŠ›å€¤UP
+	case ITEM_TYPE_SPA_UP:			// ç‰¹æ”»åŠªåŠ›å€¤UP
+	case ITEM_TYPE_SPD_UP:			// ç‰¹é˜²åŠªåŠ›å€¤UP
+	case ITEM_TYPE_PP_UP:			// ppUpç³»
+	case ITEM_TYPE_PP_3UP:			// pp3Upç³»
+	case ITEM_TYPE_PP_RCV:			// ppå›žå¾©ç³»
 		wk->strcv_func = NormalRecover;
 		break;
 
-	case ITEM_TYPE_HP_DOWN:			// HP“w—Í’lDOWN
-	case ITEM_TYPE_ATC_DOWN:		// UŒ‚“w—Í’lDOWN
-	case ITEM_TYPE_DEF_DOWN:		// –hŒä“w—Í’lDOWN
-	case ITEM_TYPE_AGL_DOWN:		// ‘f‘‚³“w—Í’lDOWN
-	case ITEM_TYPE_SPA_DOWN:		// “ÁU“w—Í’lDOWN
-	case ITEM_TYPE_SPD_DOWN:		// “Á–h“w—Í’lDOWN
+	case ITEM_TYPE_HP_DOWN:			// HPåŠªåŠ›å€¤DOWN
+	case ITEM_TYPE_ATC_DOWN:		// æ”»æ’ƒåŠªåŠ›å€¤DOWN
+	case ITEM_TYPE_DEF_DOWN:		// é˜²å¾¡åŠªåŠ›å€¤DOWN
+	case ITEM_TYPE_AGL_DOWN:		// ç´ æ—©ã•åŠªåŠ›å€¤DOWN
+	case ITEM_TYPE_SPA_DOWN:		// ç‰¹æ”»åŠªåŠ›å€¤DOWN
+	case ITEM_TYPE_SPD_DOWN:		// ç‰¹é˜²åŠªåŠ›å€¤DOWN
 		wk->strcv_func = PrmExpDown_Recover;
 		break;
 
-	case ITEM_TYPE_HP_RCV:			// HP‰ñ•œ ( •mŽ€‚à )
+	case ITEM_TYPE_HP_RCV:			// HPå›žå¾© ( ç€•æ­»ã‚‚ )
 		wk->strcv_func = HP_RecoverFuncInit;
 		break;
 /*
-	case ITEM_TYPE_EVO:				// i‰»Œn
+	case ITEM_TYPE_EVO:				// é€²åŒ–ç³»
 		wk->strcv_func = ShinkaRecover;
 		break;
 */
@@ -506,11 +506,11 @@ void PokeList_ItemUseMain( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€Žg—pƒƒbƒZ[ƒWƒEƒFƒCƒg
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
  *
- * @param	work		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	work		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 int PokeList_ItemUseMsgWait( void * work )
@@ -539,11 +539,11 @@ int PokeList_ItemUseMsgWait( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’Êí‰ñ•œ
+ * é€šå¸¸å›žå¾©
  *
- * @param	work		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	work		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int NormalRecover( void * work )
@@ -556,7 +556,7 @@ static int NormalRecover( void * work )
 	PokeList_PanelPPDataMake( wk, wk->pos );
 	PokeListParamPut( wk, wk->pos );
 	PokeListParamBmpCgxOn( wk, wk->pos );
-	PokeList_StatusIconChg( wk, wk->pos, wk->panel[wk->pos].st );	// ó‘ÔˆÙíƒAƒCƒRƒ“
+	PokeList_StatusIconChg( wk, wk->pos, wk->panel[wk->pos].st );	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³
 
 	SetStatusRecoverMsg( wk, wk->dat->item, 0 );
 
@@ -571,11 +571,11 @@ static int NormalRecover( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “w—Í’lƒ_ƒEƒ“
+ * åŠªåŠ›å€¤ãƒ€ã‚¦ãƒ³
  *
- * @param	work		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	work		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PrmExpDown_Recover( void * work )
@@ -601,7 +601,7 @@ static int PrmExpDown_Recover( void * work )
 	PokeList_PanelPPDataMake( wk, wk->pos );
 	PokeListParamPut( wk, wk->pos );
 	PokeListParamBmpCgxOn( wk, wk->pos );
-	PokeList_StatusIconChg( wk, wk->pos, wk->panel[wk->pos].st );	// ó‘ÔˆÙíƒAƒCƒRƒ“
+	PokeList_StatusIconChg( wk, wk->pos, wk->panel[wk->pos].st );	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³
 
 	if( prm[0] != PokeParaGet( pp, ID_PARA_hp_exp, NULL ) ||
 		prm[1] != PokeParaGet( pp, ID_PARA_pow_exp, NULL ) ||
@@ -627,11 +627,11 @@ static int PrmExpDown_Recover( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * HP‰ñ•œ
+ * HPå›žå¾©
  *
- * @param	work		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	work		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int HP_RecoverFuncInit( void * work )
@@ -663,7 +663,7 @@ static int HP_RecoverFuncInit( void * work )
 	STRBUF_Delete( str );
 
 	st = BadStatusIconAnmGet( pp );
-	PokeList_StatusIconChg( wk, wk->pos, st );	// ó‘ÔˆÙíƒAƒCƒRƒ“
+	PokeList_StatusIconChg( wk, wk->pos, st );	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³
 	if( st == ST_ICON_NONE ){
 		wk->panel[wk->pos].st = PL_ST_NONE;
 		PokeListLvPut( wk, wk->pos );
@@ -680,11 +680,11 @@ static int HP_RecoverFuncInit( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * HP‰ñ•œƒƒCƒ“
+ * HPå›žå¾©ãƒ¡ã‚¤ãƒ³
  *
- * @param	work		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	work		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int HP_RecoverFuncMain( void * work )
@@ -717,12 +717,12 @@ static int HP_RecoverFuncMain( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘S‘Ì•mŽ€‰ñ•œƒAƒCƒeƒ€ƒ`ƒFƒbƒN
+ * å…¨ä½“ç€•æ­»å›žå¾©ã‚¢ã‚¤ãƒ†ãƒ ãƒã‚§ãƒƒã‚¯
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @retval	"TRUE = ‘S‘Ì•mŽ€‰ñ•œƒAƒCƒeƒ€"
- * @retval	"FALSE = ‚»‚êˆÈŠO"
+ * @retval	"TRUE = å…¨ä½“ç€•æ­»å›žå¾©ã‚¢ã‚¤ãƒ†ãƒ "
+ * @retval	"FALSE = ãã‚Œä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 BOOL PL_ALLDeathRcvItemCheck( u16 item )
@@ -735,13 +735,13 @@ BOOL PL_ALLDeathRcvItemCheck( u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •mŽ€ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©
+ * ç€•æ­»ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	start	ŒŸõŠJŽnˆÊ’u
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	start	æ¤œç´¢é–‹å§‹ä½ç½®
  *
- * @retval	"0xff = ‚¢‚È‚¢"
- * @retval	"0xff != ŒŸõˆÊ’u"
+ * @retval	"0xff = ã„ãªã„"
+ * @retval	"0xff != æ¤œç´¢ä½ç½®"
  */
 //--------------------------------------------------------------------------------------------
 static u8 PL_AllDeathRcvCheck( PLIST_WORK * wk, u8 start )
@@ -760,11 +760,11 @@ static u8 PL_AllDeathRcvCheck( PLIST_WORK * wk, u8 start )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘S‘Ì•mŽ€‰ñ•œƒƒCƒ“
+ * å…¨ä½“ç€•æ­»å›žå¾©ãƒ¡ã‚¤ãƒ³
  *
- * @param	work		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	work		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 int PokeList_AllDeathRcvMain( PLIST_WORK * wk )
@@ -775,7 +775,7 @@ int PokeList_AllDeathRcvMain( PLIST_WORK * wk )
 	u8	pos;
 
 	switch( wk->next_seq ){
-	case 0:			// Žg—pƒ`ƒFƒbƒN
+	case 0:			// ä½¿ç”¨ãƒã‚§ãƒƒã‚¯
 		wk->pos = PL_AllDeathRcvCheck( wk, 0 );
 		if( wk->pos == 0xff ){
 			MSGMAN_GetString( wk->msg_man, mes_pokelist_04_45, wk->msg_buf );
@@ -788,7 +788,7 @@ int PokeList_AllDeathRcvMain( PLIST_WORK * wk )
 		if( wk->pos != 0 ){
 			PokeListPanelPaletteSet( wk, 0 );
 		}
-	case 1:			// ‰Šú‰»
+	case 1:			// åˆæœŸåŒ–
 /*
 		pos = wk->pos;
 		wk->pos = PL_AllDeathRcvCheck( wk, pos );
@@ -812,7 +812,7 @@ int PokeList_AllDeathRcvMain( PLIST_WORK * wk )
 		wk->next_seq++;
 		break;
 
-	case 2:			// HPƒQ[ƒW‰ñ•œ
+	case 2:			// HPã‚²ãƒ¼ã‚¸å›žå¾©
 		pp     = PokeParty_GetMemberPointer( wk->dat->pp, wk->pos );
 		now_hp = PokeParaGet( pp, ID_PARA_hp, NULL );
 
@@ -828,7 +828,7 @@ int PokeList_AllDeathRcvMain( PLIST_WORK * wk )
 		}
 		break;
 
-	case 3:			// ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+	case 3:			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) != 0 ){ break; }
 
 		if( sys.trg & ( PAD_BUTTON_A|PAD_BUTTON_B ) ){
@@ -854,18 +854,18 @@ int PokeList_AllDeathRcvMain( PLIST_WORK * wk )
 
 
 //============================================================================================
-//	•sŽv‹c‚ÈƒAƒ
+//	ä¸æ€è­°ãªã‚¢ãƒ¡
 //============================================================================================
 enum {
-	LVUP_SEQ_PLUSPUT = 0,		// ƒƒbƒZ[ƒWI—¹‘Ò‚¿ -> ƒEƒBƒ“ƒhƒE•\Ž¦
-	LVUP_SEQ_PARMPUT,			// ƒ{ƒ^ƒ“‘Ò‚¿ -> ƒEƒBƒ“ƒhƒE‘‚«Š·‚¦
-	LVUP_SEQ_WINEXIT,			// ƒ{ƒ^ƒ“‘Ò‚¿ -> ƒEƒBƒ“ƒhƒE”ñ•\Ž¦
-	LVUP_SEQ_WAZACHECK,			// ‹ZŠo‚¦ƒ`ƒFƒbƒN
+	LVUP_SEQ_PLUSPUT = 0,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡ -> ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
+	LVUP_SEQ_PARMPUT,			// ãƒœã‚¿ãƒ³å¾…ã¡ -> ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›¸ãæ›ãˆ
+	LVUP_SEQ_WINEXIT,			// ãƒœã‚¿ãƒ³å¾…ã¡ -> ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦éžè¡¨ç¤º
+	LVUP_SEQ_WAZACHECK,			// æŠ€è¦šãˆãƒã‚§ãƒƒã‚¯
 
-	LVUP_SEQ_WAZASET,			// ‹ZŠo‚¦Fƒ{ƒ^ƒ“‘Ò‚¿iŠo‚¦‚½j
-	LVUP_SEQ_WAZAADD,			// ‹ZŠo‚¦Fƒ{ƒ^ƒ“‘Ò‚¿i–Y‚ê‚ÄŠo‚¦‚½j
+	LVUP_SEQ_WAZASET,			// æŠ€è¦šãˆï¼šãƒœã‚¿ãƒ³å¾…ã¡ï¼ˆè¦šãˆãŸï¼‰
+	LVUP_SEQ_WAZAADD,			// æŠ€è¦šãˆï¼šãƒœã‚¿ãƒ³å¾…ã¡ï¼ˆå¿˜ã‚Œã¦è¦šãˆãŸï¼‰
 
-	LVUP_SEQ_SHINKACHECK,		// i‰»ƒ`ƒFƒbƒN
+	LVUP_SEQ_SHINKACHECK,		// é€²åŒ–ãƒã‚§ãƒƒã‚¯
 };
 
 static int PL_LvUpNewWazaSetYes( void * work );
@@ -875,11 +875,11 @@ static int PL_LvUpNewWazaSetCancelNo( void * work );
 
 //--------------------------------------------------------------------------------------------
 /**
- * •sŽv‹c‚ÈƒAƒ
+ * ä¸æ€è­°ãªã‚¢ãƒ¡
  *
- * @param	work		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	work		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int LvUp_Recover( void * work )
@@ -916,7 +916,7 @@ static int LvUp_Recover( void * work )
 	STRBUF_Delete( str );
 
 	st = BadStatusIconAnmGet( pp );
-	PokeList_StatusIconChg( wk, wk->pos, st );	// ó‘ÔˆÙíƒAƒCƒRƒ“
+	PokeList_StatusIconChg( wk, wk->pos, st );	// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³
 	if( st == ST_ICON_NONE ){
 		wk->panel[wk->pos].st = PL_ST_NONE;
 		PokeListLvPut( wk, wk->pos );
@@ -937,11 +937,11 @@ static int LvUp_Recover( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •sŽv‹c‚ÈƒAƒƒƒCƒ“
+ * ä¸æ€è­°ãªã‚¢ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- * @param	work		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	work		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int LvUp_RecoverMain( void * work )
@@ -953,7 +953,7 @@ static int LvUp_RecoverMain( void * work )
 	wk = work;
 
 	switch( wk->lv_seq ){
-	case LVUP_SEQ_PLUSPUT:		// ƒƒbƒZ[ƒWI—¹‘Ò‚¿ -> ƒEƒBƒ“ƒhƒE•\Ž¦
+	case LVUP_SEQ_PLUSPUT:		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡ -> ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 0 ){
 			if( sys.trg & (PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL) ){
 				Snd_SePlay( PLIST_SE_ENTER );
@@ -963,7 +963,7 @@ static int LvUp_RecoverMain( void * work )
 		}
 		break;
 
-	case LVUP_SEQ_PARMPUT:		// ƒ{ƒ^ƒ“‘Ò‚¿ -> ƒEƒBƒ“ƒhƒE‘‚«Š·‚¦
+	case LVUP_SEQ_PARMPUT:		// ãƒœã‚¿ãƒ³å¾…ã¡ -> ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›¸ãæ›ãˆ
 		if( sys.trg & (PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL) ){
 			Snd_SePlay( PLIST_SE_ENTER );
 			PokeList_LvUpParamPut( wk );
@@ -971,7 +971,7 @@ static int LvUp_RecoverMain( void * work )
 		}
 		break;
 
-	case LVUP_SEQ_WINEXIT:		// ƒ{ƒ^ƒ“‘Ò‚¿ -> ƒEƒBƒ“ƒhƒE”ñ•\Ž¦
+	case LVUP_SEQ_WINEXIT:		// ãƒœã‚¿ãƒ³å¾…ã¡ -> ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦éžè¡¨ç¤º
 		if( sys.trg & (PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL) ){
 			Snd_SePlay( PLIST_SE_ENTER );
 			PokeList_LvUpWinExit( wk );
@@ -980,15 +980,15 @@ static int LvUp_RecoverMain( void * work )
 		}
 		break;
 
-	case LVUP_SEQ_WAZACHECK:	// ‹ZŠo‚¦ƒ`ƒFƒbƒN
+	case LVUP_SEQ_WAZACHECK:	// æŠ€è¦šãˆãƒã‚§ãƒƒã‚¯
 		pp = PokeParty_GetMemberPointer( wk->dat->pp, wk->pos );
 
 		switch( PokeWazaOboeCheck( pp, &wk->dat->lv_cnt, &wk->dat->waza ) ){
-		case NO_WAZA_OBOE:		// Šo‚¦‚ç‚ê‚é‹Z‚È‚µ
+		case NO_WAZA_OBOE:		// è¦šãˆã‚‰ã‚Œã‚‹æŠ€ãªã—
 			wk->lv_seq = LVUP_SEQ_SHINKACHECK;
 			break;
 
-		case NO_WAZA_SET:		// ‹ó‚«‚ª‚È‚¢
+		case NO_WAZA_SET:		// ç©ºããŒãªã„
 			WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 			WORDSET_RegisterWazaName( wk->wset, 1, wk->dat->waza );
 			str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_06 );
@@ -1000,10 +1000,10 @@ static int LvUp_RecoverMain( void * work )
 			wk->next_seq = SEQ_YESNO_INIT;
 			return SEQ_MSG_WAIT;
 
-		case SAME_WAZA_SET:		// ‚·‚Å‚ÉŠo‚¦‚Ä‚¢‚é
+		case SAME_WAZA_SET:		// ã™ã§ã«è¦šãˆã¦ã„ã‚‹
 			break;
 
-		default:				// Šo‚¦‚½
+		default:				// è¦šãˆãŸ
 			WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 			WORDSET_RegisterWazaName( wk->wset, 1, wk->dat->waza );
 			str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_08_10 );
@@ -1015,7 +1015,7 @@ static int LvUp_RecoverMain( void * work )
 		}
 		break;
 
-	case LVUP_SEQ_WAZASET:			// ‹ZŠo‚¦Fƒ{ƒ^ƒ“‘Ò‚¿iŠo‚¦‚½j
+	case LVUP_SEQ_WAZASET:			// æŠ€è¦šãˆï¼šãƒœã‚¿ãƒ³å¾…ã¡ï¼ˆè¦šãˆãŸï¼‰
 		if( GF_MSG_PrintEndCheck( wk->msg_index ) == 0 ){
 			if( sys.trg & (PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL) ){
 				Snd_SePlay( PLIST_SE_ENTER );
@@ -1024,7 +1024,7 @@ static int LvUp_RecoverMain( void * work )
 		}
 		break;
 
-	case LVUP_SEQ_WAZAADD:			// ‹ZŠo‚¦Fƒ{ƒ^ƒ“‘Ò‚¿i–Y‚ê‚ÄŠo‚¦‚½j
+	case LVUP_SEQ_WAZAADD:			// æŠ€è¦šãˆï¼šãƒœã‚¿ãƒ³å¾…ã¡ï¼ˆå¿˜ã‚Œã¦è¦šãˆãŸï¼‰
 		if( sys.trg & (PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL) ){
 			pp  = PokeParty_GetMemberPointer( wk->dat->pp, wk->pos );
 
@@ -1038,7 +1038,7 @@ static int LvUp_RecoverMain( void * work )
 		}
 		break;
 
-	case LVUP_SEQ_SHINKACHECK:	// i‰»ƒ`ƒFƒbƒN
+	case LVUP_SEQ_SHINKACHECK:	// é€²åŒ–ãƒã‚§ãƒƒã‚¯
 		{
 			POKEMON_PARAM * pp;
 			FIELDSYS_WORK * fsys;
@@ -1064,11 +1064,11 @@ static int LvUp_RecoverMain( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹ƒAƒbƒv‹ZŠo‚¦
+ * ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æŠ€è¦šãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 int PokeList_LvUpWazaSetRetInit( PLIST_WORK * wk )
@@ -1103,11 +1103,11 @@ int PokeList_LvUpWazaSetRetInit( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹ƒAƒbƒv‹ZŠo‚¦u‹Z‚ðŠo‚¦‚éHv@‚Í‚¢
+ * ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æŠ€è¦šãˆã€ŒæŠ€ã‚’è¦šãˆã‚‹ï¼Ÿã€ã€€ã¯ã„
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PL_LvUpNewWazaSetYes( void * work )
@@ -1127,11 +1127,11 @@ static int PL_LvUpNewWazaSetYes( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹ƒAƒbƒv‹ZŠo‚¦u‹Z‚ðŠo‚¦‚éHv@‚¢‚¢‚¦
+ * ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æŠ€è¦šãˆã€ŒæŠ€ã‚’è¦šãˆã‚‹ï¼Ÿã€ã€€ã„ã„ãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PL_LvUpNewWazaSetNo( void * work )
@@ -1152,11 +1152,11 @@ static int PL_LvUpNewWazaSetNo( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹ƒAƒbƒv‹ZŠo‚¦u‹Z‚ðŠo‚¦‚é‚Ì‚ð’ú‚ß‚éHv@‚Í‚¢
+ * ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æŠ€è¦šãˆã€ŒæŠ€ã‚’è¦šãˆã‚‹ã®ã‚’è«¦ã‚ã‚‹ï¼Ÿã€ã€€ã¯ã„
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PL_LvUpNewWazaSetCancelYes( void * work )
@@ -1176,11 +1176,11 @@ static int PL_LvUpNewWazaSetCancelYes( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹ƒAƒbƒv‹ZŠo‚¦u‹Z‚ðŠo‚¦‚é‚Ì‚ð’ú‚ß‚éHv@‚¢‚¢‚¦
+ * ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—æŠ€è¦šãˆã€ŒæŠ€ã‚’è¦šãˆã‚‹ã®ã‚’è«¦ã‚ã‚‹ï¼Ÿã€ã€€ã„ã„ãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PL_LvUpNewWazaSetCancelNo( void * work )
@@ -1205,15 +1205,15 @@ static int PL_LvUpNewWazaSetCancelNo( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“Žg—pƒ`ƒFƒbƒN
+ * æŠ€ãƒžã‚·ãƒ³ä½¿ç”¨ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  * @param	pp		POKEMON_PARAM
  *
- * @retval	"0-3 = ‹ZˆÊ’u"
- * @retval	"0xfd = ‚·‚Å‚ÉŠo‚¦‚Ä‚¢‚é"
- * @retval	"0xfe = ‹Z‚ª‚¢‚Á‚Ï‚¢"
- * @retval	"0xff = ‘Š«‚ªˆ«‚¢"
+ * @retval	"0-3 = æŠ€ä½ç½®"
+ * @retval	"0xfd = ã™ã§ã«è¦šãˆã¦ã„ã‚‹"
+ * @retval	"0xfe = æŠ€ãŒã„ã£ã±ã„"
+ * @retval	"0xff = ç›¸æ€§ãŒæ‚ªã„"
  */
 //--------------------------------------------------------------------------------------------
 u8 PokeList_WazaOboeCheck( PLIST_WORK * wk, POKEMON_PARAM * pp )
@@ -1221,7 +1221,7 @@ u8 PokeList_WazaOboeCheck( PLIST_WORK * wk, POKEMON_PARAM * pp )
 	u16	waza;
 	u8	i;
 
-	// ‚·‚Å‚ÉŠo‚¦‚Ä‚¢‚é‚©
+	// ã™ã§ã«è¦šãˆã¦ã„ã‚‹ã‹
 	for( i=0; i<4; i++ ){
 		waza = (u16)PokeParaGet( pp, ID_PARA_waza1+i, NULL );
 		if( waza == wk->dat->waza ){
@@ -1230,12 +1230,12 @@ u8 PokeList_WazaOboeCheck( PLIST_WORK * wk, POKEMON_PARAM * pp )
 		if( waza == 0 ){ break; }
 	}
 
-	// Šo‚¦‚ç‚ê‚é‚©
+	// è¦šãˆã‚‰ã‚Œã‚‹ã‹
 	if( PokeParaWazaMachineCheck( pp, WazaMashineNoGet(wk->dat->item) ) == FALSE ){
 		return 0xff;
 	}
 
-	// ‹ó‚«‚ª‚ ‚é‚©
+	// ç©ºããŒã‚ã‚‹ã‹
 	if( i == 4 ){
 		return 0xfe;
 	}
@@ -1246,11 +1246,11 @@ u8 PokeList_WazaOboeCheck( PLIST_WORK * wk, POKEMON_PARAM * pp )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“
+ * æŠ€ãƒžã‚·ãƒ³
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 int PokeList_WazaOboeInit( PLIST_WORK * wk )
@@ -1279,7 +1279,7 @@ int PokeList_WazaOboeInit( PLIST_WORK * wk )
 		wk->next_seq = SEQ_ENDTRG_WAIT;
 		break;
 
-	case 0xfd:		// Šo‚¦‚Ä‚¢‚é
+	case 0xfd:		// è¦šãˆã¦ã„ã‚‹
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_13 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
@@ -1288,7 +1288,7 @@ int PokeList_WazaOboeInit( PLIST_WORK * wk )
 		wk->next_seq = SEQ_ENDTRG_WAIT;
 		break;
 
-	case 0xfe:		// ‹ó‚«‚È‚µ
+	case 0xfe:		// ç©ºããªã—
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_06 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
@@ -1298,7 +1298,7 @@ int PokeList_WazaOboeInit( PLIST_WORK * wk )
 		wk->next_seq = SEQ_YESNO_INIT;
 		break;
 
-	case 0xff:		// ‘Š«‚ªˆ«‚¢
+	case 0xff:		// ç›¸æ€§ãŒæ‚ªã„
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_04_12 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
@@ -1313,11 +1313,11 @@ int PokeList_WazaOboeInit( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z–Y‚ê->Šo‚¦
+ * æŠ€å¿˜ã‚Œ->è¦šãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 int PokeList_WazaSetRetInit( PLIST_WORK * wk )
@@ -1347,11 +1347,11 @@ int PokeList_WazaSetRetInit( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ZŠo‚¦ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+ * æŠ€è¦šãˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 int PokeList_WazaSetRetSet( PLIST_WORK * wk )
@@ -1377,11 +1377,11 @@ int PokeList_WazaSetRetSet( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“‹ZŠo‚¦u‹Z‚ðŠo‚¦‚éHv@‚Í‚¢
+ * æŠ€ãƒžã‚·ãƒ³æŠ€è¦šãˆã€ŒæŠ€ã‚’è¦šãˆã‚‹ï¼Ÿã€ã€€ã¯ã„
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PL_NewWazaSetYes( void * work )
@@ -1401,11 +1401,11 @@ static int PL_NewWazaSetYes( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“‹ZŠo‚¦u‹Z‚ðŠo‚¦‚éHv@‚¢‚¢‚¦
+ * æŠ€ãƒžã‚·ãƒ³æŠ€è¦šãˆã€ŒæŠ€ã‚’è¦šãˆã‚‹ï¼Ÿã€ã€€ã„ã„ãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PL_NewWazaSetNo( void * work )
@@ -1426,11 +1426,11 @@ static int PL_NewWazaSetNo( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“‹ZŠo‚¦u‹Z‚ðŠo‚¦‚é‚Ì‚ð’ú‚ß‚éHv@‚Í‚¢
+ * æŠ€ãƒžã‚·ãƒ³æŠ€è¦šãˆã€ŒæŠ€ã‚’è¦šãˆã‚‹ã®ã‚’è«¦ã‚ã‚‹ï¼Ÿã€ã€€ã¯ã„
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PL_NewWazaSetCancelYes( void * work )
@@ -1450,11 +1450,11 @@ static int PL_NewWazaSetCancelYes( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“‹ZŠo‚¦u‹Z‚ðŠo‚¦‚é‚Ì‚ð’ú‚ß‚éHv@‚¢‚¢‚¦
+ * æŠ€ãƒžã‚·ãƒ³æŠ€è¦šãˆã€ŒæŠ€ã‚’è¦šãˆã‚‹ã®ã‚’è«¦ã‚ã‚‹ï¼Ÿã€ã€€ã„ã„ãˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PL_NewWazaSetCancelNo( void * work )
@@ -1475,11 +1475,11 @@ static int PL_NewWazaSetCancelNo( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ZƒZƒbƒg
+ * æŠ€ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  * @param	pp		POKEMON_PARAM
- * @param	pos		‹ZˆÊ’u
+ * @param	pos		æŠ€ä½ç½®
  *
  * @return	none
  */
@@ -1506,18 +1506,18 @@ static void PL_WazaSet( PLIST_WORK * wk, POKEMON_PARAM * pp, u32 pos )
 
 
 //============================================================================================
-//	‹Z‰ñ•œ
+//	æŠ€å›žå¾©
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‘I‘ðƒƒjƒ…[€–Úì¬
+ * æŠ€é¸æŠžãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ä½œæˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	pos		‰½”Ô–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•ç•ªç›®ã‹
  *
- * @retval	"0 = ‹Z‚È‚µ"
- * @retval	"1 = ‹ZƒZƒbƒg"
+ * @retval	"0 = æŠ€ãªã—"
+ * @retval	"1 = æŠ€ã‚»ãƒƒãƒˆ"
  */
 //--------------------------------------------------------------------------------------------
 static u8 PL_WazaMenuParamSet( PLIST_WORK * wk, u8 pos )
@@ -1542,9 +1542,9 @@ static u8 PL_WazaMenuParamSet( PLIST_WORK * wk, u8 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‘I‘ðƒƒjƒ…[ì¬
+ * æŠ€é¸æŠžãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  * @param	type	0 = PP Up, 1 = PP Rcv
  *
  * @return	none
@@ -1586,11 +1586,11 @@ void PokeList_WazaMenuInit( PLIST_WORK * wk, u8 type )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‘I‘ðƒƒjƒ…[ƒƒCƒ“
+ * æŠ€é¸æŠžãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 int PokeList_WazaMenuMain( PLIST_WORK * wk )
@@ -1602,7 +1602,7 @@ int PokeList_WazaMenuMain( PLIST_WORK * wk )
 		break;
 
 	case BMPMENU_CANCEL:
-		// ƒ|ƒPƒ‚ƒ“‘I‘ð‚Ö
+		// ãƒã‚±ãƒ¢ãƒ³é¸æŠžã¸
 		BmpTalkWinClear( &wk->win[WIN_M_MSG], WINDOW_TRANS_OFF );
 		BmpMenuWinClear( &wk->win[WIN_WAZA_MENU], WINDOW_TRANS_OFF );
 		BmpMenuExit( wk->mw, NULL );
@@ -1635,14 +1635,14 @@ int PokeList_WazaMenuMain( PLIST_WORK * wk )
 
 
 //============================================================================================
-//	ƒ[ƒ‹ƒ{ƒbƒNƒX‚©‚çƒ[ƒ‹‚ðŽ‚½‚¹‚é
+//	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒ¡ãƒ¼ãƒ«ã‚’æŒãŸã›ã‚‹
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒ‹ƒ{ƒbƒNƒX‚©‚çƒ[ƒ‹‚ðŽ‚½‚¹‚é
+ * ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒ¡ãƒ¼ãƒ«ã‚’æŒãŸã›ã‚‹
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1667,11 +1667,11 @@ void PokeList_MailBoxAdd( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Œ»Ý’nŽæ“¾
+ * ç¾åœ¨åœ°å–å¾—
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Œ»Ý’n
+ * @return	ç¾åœ¨åœ°
  */
 //--------------------------------------------------------------------------------------------
 static u16 PL_PlaceIDGet( PLIST_WORK * wk )

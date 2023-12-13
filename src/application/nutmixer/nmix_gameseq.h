@@ -1,6 +1,6 @@
 /**
  *	@file	nmix_gameseq.h
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@ƒQ[ƒ€ƒV[ƒPƒ“ƒXƒRƒ}ƒ“ƒh’è‹`
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚³ãƒžãƒ³ãƒ‰å®šç¾©
  *	@author	Miyuki Iwasawa
  *	@date	06.04.08
  */
@@ -8,22 +8,22 @@
 #ifndef __H_NMIX_GAMESEQ_H__
 #define __H_NMIX_GAMESEQ_H__
 
-// ƒQ[ƒ€“àˆ—ƒV[ƒPƒ“ƒX
+// ã‚²ãƒ¼ãƒ å†…å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
-	NMIX_GAME_MIANSEQ_INIT,				// ƒQ[ƒ€Šî–{•`‰æƒVƒXƒeƒ€‚Ì‰Šú‰»
-	NMIX_GAME_MAINSEQ_SYSSTART,			// ƒQ[ƒ€ˆ—‚ÌŠJŽn	e[„ŽqŠJŽn–½—ß
-	NMIX_GAME_MAINSEQ_SYSSTART_WAIT,	// ƒQ[ƒ€ƒVƒXƒeƒ€ŠJŽn“¯Šú‘Ò‚¿
-	NMIX_GAME_MAINSEQ_BEFORE,			// ƒQ[ƒ€ŠJŽn‘Oˆ—
-	NMIX_GAME_MAINSEQ_BEFORE_WAIT,		// ƒQ[ƒ€ŠJŽn‘Oˆ—I—¹ƒEƒGƒCƒg
-	NMIX_GAME_MAINSEQ_RES_LOAD,			// ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
-	NMIX_GAME_MAINSEQ_GAMESTART,		// ƒQ[ƒ€ŠJŽn
-	NMIX_GAME_MAINSEQ_GAMEMAIN,			// ƒQ[ƒ€ƒƒCƒ“
-	NMIX_GAME_MAINSEQ_GAMEEND,			// ƒQ[ƒ€”jŠüˆ—
-	NMIX_GAME_MAINSEQ_RESULT_WAIT,		// ƒQ[ƒ€ƒŠƒUƒ‹ƒgî•ñ‘Ò‚¿
-	NMIX_GAME_MAINSEQ_RESULT,			// ƒQ[ƒ€ƒŠƒUƒ‹ƒgˆ—
-	NMIX_GAME_MAINSEQ_SYSEND_WAIT,		// ƒQ[ƒ€I—¹‘Ò‚¿
-	NMIX_GAME_MIANSEQ_RES_RELEASE,		// ƒŠƒ\[ƒX”jŠü
-	NMIX_GAME_MAINSEQ_SYSEND,			// I—¹ˆ—
+	NMIX_GAME_MIANSEQ_INIT,				// ã‚²ãƒ¼ãƒ åŸºæœ¬æç”»ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
+	NMIX_GAME_MAINSEQ_SYSSTART,			// ã‚²ãƒ¼ãƒ å‡¦ç†ã®é–‹å§‹	è¦ªãƒ¼ï¼žå­é–‹å§‹å‘½ä»¤
+	NMIX_GAME_MAINSEQ_SYSSTART_WAIT,	// ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ é–‹å§‹åŒæœŸå¾…ã¡
+	NMIX_GAME_MAINSEQ_BEFORE,			// ã‚²ãƒ¼ãƒ é–‹å§‹å‰å‡¦ç†
+	NMIX_GAME_MAINSEQ_BEFORE_WAIT,		// ã‚²ãƒ¼ãƒ é–‹å§‹å‰å‡¦ç†çµ‚äº†ã‚¦ã‚¨ã‚¤ãƒˆ
+	NMIX_GAME_MAINSEQ_RES_LOAD,			// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+	NMIX_GAME_MAINSEQ_GAMESTART,		// ã‚²ãƒ¼ãƒ é–‹å§‹
+	NMIX_GAME_MAINSEQ_GAMEMAIN,			// ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³
+	NMIX_GAME_MAINSEQ_GAMEEND,			// ã‚²ãƒ¼ãƒ ç ´æ£„å‡¦ç†
+	NMIX_GAME_MAINSEQ_RESULT_WAIT,		// ã‚²ãƒ¼ãƒ ãƒªã‚¶ãƒ«ãƒˆæƒ…å ±å¾…ã¡
+	NMIX_GAME_MAINSEQ_RESULT,			// ã‚²ãƒ¼ãƒ ãƒªã‚¶ãƒ«ãƒˆå‡¦ç†
+	NMIX_GAME_MAINSEQ_SYSEND_WAIT,		// ã‚²ãƒ¼ãƒ çµ‚äº†å¾…ã¡
+	NMIX_GAME_MIANSEQ_RES_RELEASE,		// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
+	NMIX_GAME_MAINSEQ_SYSEND,			// çµ‚äº†å‡¦ç†
 };
 
 #endif	//__H_NMIX_GAMESEQ_H___

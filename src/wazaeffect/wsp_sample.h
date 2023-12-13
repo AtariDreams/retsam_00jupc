@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	wsp_sample.h
- * @brief	ƒTƒ|[ƒgƒTƒ“ƒvƒ‹
+ * @brief	ã‚µãƒãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒ«
  * @author	goto
- * @date	2005.07.14(–Ø)
+ * @date	2005.07.14(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -17,7 +17,7 @@
 
 // -----------------------------------------
 //
-//	‹ZƒGƒtƒFƒNƒg OAM—˜—p
+//	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ OAMåˆ©ç”¨
 //
 // -----------------------------------------
 extern void WestSp_CAT_SampleTCB(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);
@@ -25,8 +25,8 @@ extern void WestSp_CAT_SampleTCB(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_P
 
 // -----------------------------------------
 //
-//	ƒTƒ|[ƒgƒTƒ“ƒvƒ‹ŠÖ”
-//		‚½‚¾‚ÌŠÖ”ŒÄ‚Ño‚µ
+//	ã‚µãƒãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒ«é–¢æ•°
+//		ãŸã ã®é–¢æ•°å‘¼ã³å‡ºã—
 //
 // -----------------------------------------
 extern void WestSp_Sample(WE_SYS_PTR we_sys);
@@ -34,8 +34,8 @@ extern void WestSp_Sample(WE_SYS_PTR we_sys);
 
 // -----------------------------------------
 //
-//	ƒTƒ|[ƒgƒTƒ“ƒvƒ‹ŠÖ”
-//		ƒGƒtƒFƒNƒg—p‚ÌTCB‚Ìì¬ƒTƒ“ƒvƒ‹
+//	ã‚µãƒãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒ«é–¢æ•°
+//		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã®TCBã®ä½œæˆã‚µãƒ³ãƒ—ãƒ«
 //
 // -----------------------------------------
 extern void WestSp_SampleEffectTCB(WE_SYS_PTR we_sys);
@@ -43,8 +43,8 @@ extern void WestSp_SampleEffectTCB(WE_SYS_PTR we_sys);
 
 // -----------------------------------------
 //
-//	ƒTƒ|[ƒgƒTƒ“ƒvƒ‹ŠÖ”
-//		ƒTƒEƒ“ƒh—p‚ÌTCB‚Ìì¬ƒTƒ“ƒvƒ‹
+//	ã‚µãƒãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒ«é–¢æ•°
+//		ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®TCBã®ä½œæˆã‚µãƒ³ãƒ—ãƒ«
 //
 // -----------------------------------------
 extern void WestSp_SampleSoundTCB(WE_SYS_PTR we_sys);
@@ -52,8 +52,8 @@ extern void WestSp_SampleSoundTCB(WE_SYS_PTR we_sys);
 
 // -----------------------------------------
 //
-//	ƒTƒ|[ƒgƒTƒ“ƒvƒ‹ŠÖ”
-//		’Êí‚ÌTCB‚Ìì¬ƒTƒ“ƒvƒ‹
+//	ã‚µãƒãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒ«é–¢æ•°
+//		é€šå¸¸ã®TCBã®ä½œæˆã‚µãƒ³ãƒ—ãƒ«
 //
 // -----------------------------------------
 extern void WestSp_SampleTCB(WE_SYS_PTR we_sys);

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_271.s
- *@brief	戦闘シーケンス
- *			フィールド天候で雨
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			繝輔ぅ繝ｼ繝ｫ繝牙､ｩ蛟吶〒髮ｨ
  *@author	HisashiSogabe
  *@data		2006.06.10
  *

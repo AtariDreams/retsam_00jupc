@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		lobby_news_data.h
- *	@brief		ƒƒr[ƒjƒ…[ƒX	ƒf[ƒ^Ši”[•”•ª
+ *	@brief		ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹	ãƒ‡ãƒ¼ã‚¿æ ¼ç´éƒ¨åˆ†
  *	@author		tomoya takahashi
  *	@data		2007.10.09
  *
@@ -20,11 +20,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ROOM•\¦@“Áêó‘Ô
+///	ROOMè¡¨ç¤ºã€€ç‰¹æ®ŠçŠ¶æ…‹
 //=====================================
 typedef enum {
 	NEWS_ROOMSP_NONE	= 0,
@@ -33,23 +33,23 @@ typedef enum {
 } NEWS_ROOMSP;
 
 //-------------------------------------
-///	ROOMƒCƒxƒ“ƒg
+///	ROOMã‚¤ãƒ™ãƒ³ãƒˆ
 //=====================================
 typedef enum {
 	NEWS_ROOMEV_NONE,
-	NEWS_ROOMEV_IN,		// ’N‚©“ü‚Á‚Ä‚«‚½
-	NEWS_ROOMEV_OUT,	// ’N‚©o‚Äs‚Á‚½
+	NEWS_ROOMEV_IN,		// èª°ã‹å…¥ã£ã¦ããŸ
+	NEWS_ROOMEV_OUT,	// èª°ã‹å‡ºã¦è¡Œã£ãŸ
 } NEWS_ROOMEV;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	WiFiƒƒr[ƒjƒ…[ƒXƒf[ƒ^ƒx[ƒX
+///	WiFiãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
 //=====================================
 typedef struct _NEWS_DATA NEWS_DATA;
 
@@ -58,9 +58,9 @@ typedef struct _NEWS_DATA NEWS_DATA;
 
 
 //-------------------------------------
-///	ƒƒr[ƒgƒsƒbƒNİ’è\‘¢‘ÌŒS
+///	ãƒ­ãƒ“ãƒ¼ãƒˆãƒ”ãƒƒã‚¯è¨­å®šæ§‹é€ ä½“éƒ¡
 //=====================================
-// ‰ï˜bƒf[ƒ^
+// ä¼šè©±ãƒ‡ãƒ¼ã‚¿
 typedef struct {
 	const MYSTATUS* cp_p1;
 	const MYSTATUS* cp_p2;
@@ -68,7 +68,7 @@ typedef struct {
 	u16				idx_p2;
 } NEWS_DATA_SET_CONNECT;
 
-// ƒKƒWƒFƒbƒgŒğŠ·ƒf[ƒ^
+// ã‚¬ã‚¸ã‚§ãƒƒãƒˆäº¤æ›ãƒ‡ãƒ¼ã‚¿
 typedef struct {
 	const MYSTATUS* cp_p1;
 	const MYSTATUS* cp_p2;
@@ -77,7 +77,7 @@ typedef struct {
 	WFLBY_ITEMTYPE	item;
 } NEWS_DATA_SET_ITEM;
 
-// ƒ~ƒjƒQ[ƒ€ƒf[ƒ^
+// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
 typedef struct {
 	WFLBY_GAMETYPE minigame;
 	u32 num;
@@ -92,7 +92,7 @@ typedef struct {
 	BOOL play;
 } NEWS_DATA_SET_MINIGAME;
 
-// ‘«Õƒ{[ƒh
+// è¶³è·¡ãƒœãƒ¼ãƒ‰
 typedef struct {
 	WFLBY_GAMETYPE board;
 	u32 num;
@@ -100,7 +100,7 @@ typedef struct {
 	u16				idx_p1;
 } NEWS_DATA_SET_FOOTBOARD;
 
-// ¢ŠEŒv
+// ä¸–ç•Œæ™‚è¨ˆ
 typedef struct {
 	u32 num;
 	const MYSTATUS* cp_p1;
@@ -113,7 +113,7 @@ typedef struct {
 	u16				idx_p4;
 } NEWS_DATA_SET_WORLDTIMER;
 
-// ƒƒr[ƒjƒ…[ƒX
+// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
 typedef struct {
 	u32 num;
 	const MYSTATUS* cp_p1;
@@ -126,18 +126,18 @@ typedef struct {
 	u16				idx_p4;
 } NEWS_DATA_SET_LOBBYNEWS;
 
-// ƒCƒxƒ“ƒg
+// ã‚¤ãƒ™ãƒ³ãƒˆ
 typedef struct {
 	const WFLBY_TIME*	cp_time;
 	WFLBY_EVENTTYPE		event_no;
 } NEWS_DATA_SET_TIMEEVENT;
 
-// VIP“üê
+// VIPå…¥å ´
 typedef struct {
 	u32	vip_plidx;
 } NEWS_DATA_SET_VIPIN;
 
-// ƒ~ƒjƒQ[ƒ€Œ‹‰Ê
+// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµæœ
 typedef struct {
 	WFLBY_GAMETYPE minigame;
 	u32 num;
@@ -155,35 +155,35 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 extern NEWS_DATA* NEWS_DSET_Init( u32 heapID );
 extern void NEWS_DSET_Exit( NEWS_DATA* p_data );
-extern void NEWS_DSET_Main( NEWS_DATA* p_data );	// ƒgƒsƒbƒN‚Ì”jŠüˆ—‚È‚Ç‚ğs‚¤
-	// NEWS_DSET_Main‚ÆŠeƒf[ƒ^İ’è‚Ìƒ^ƒCƒ~ƒ“ƒO‚É’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
-	// MainŠÖ”“à‚ÅA“üºƒCƒxƒ“ƒgƒtƒ‰ƒO‚Ì”jŠü‚È‚Ç‚ğs‚¤ˆ×
-	// •`‰æ‚É”½‰f‚³‚ê‚È‚­‚È‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B
+extern void NEWS_DSET_Main( NEWS_DATA* p_data );	// ãƒˆãƒ”ãƒƒã‚¯ã®ç ´æ£„å‡¦ç†ãªã©ã‚’è¡Œã†
+	// NEWS_DSET_Mainã¨å„ãƒ‡ãƒ¼ã‚¿è¨­å®šã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã«æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
+	// Mainé–¢æ•°å†…ã§ã€å…¥å®¤ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ç ´æ£„ãªã©ã‚’è¡Œã†ç‚º
+	// æç”»ã«åæ˜ ã•ã‚Œãªããªã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚
 	//
-	// ƒf[ƒ^İ’èŒã‚PƒVƒ“ƒNMain‚ªŒÄ‚Î‚ê‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·B
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®šå¾Œï¼‘ã‚·ãƒ³ã‚¯MainãŒå‘¼ã°ã‚Œãªã„ã‚ˆã†ã«ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 	//
 	// Main
-	// b
-	// ƒf[ƒ^İ’è
-	// b
-	// •`‰æˆ—
+	// ï½œ
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
+	// ï½œ
+	// æç”»å‡¦ç†
 	//
-	// ‚±‚Ì—¬‚ê‚ª—‘z‚Å‚·B
+	// ã“ã®æµã‚ŒãŒç†æƒ³ã§ã™ã€‚
 
-// ŠÔƒf[ƒ^İ’è
+// æ™‚é–“ãƒ‡ãƒ¼ã‚¿è¨­å®š
 extern void NEWS_DSET_SetLockTime( NEWS_DATA* p_data, const WFLBY_TIME* cp_time );
 
-// “ü‘Şºİ’è
+// å…¥é€€å®¤è¨­å®š
 extern void NEWS_DSET_SetRoomIn( NEWS_DATA* p_data, u32 player,  u32 sex, NEWS_ROOMSP special_msk );
 extern BOOL NEWS_DSET_SetRoomOut( NEWS_DATA* p_data, u32 player );
 extern void NEWS_DSET_SetRoomOld( NEWS_DATA* p_data, u32 player );
 
-// ƒgƒsƒbƒNƒXİ’è
+// ãƒˆãƒ”ãƒƒã‚¯ã‚¹è¨­å®š
 extern void NEWS_DSET_SetConnect( NEWS_DATA* p_data,  const NEWS_DATA_SET_CONNECT* cp_data );
 extern void NEWS_DSET_SetItem( NEWS_DATA* p_data, const NEWS_DATA_SET_ITEM* cp_data );
 extern void NEWS_DSET_SetMiniGame( NEWS_DATA* p_data, const NEWS_DATA_SET_MINIGAME* cp_data );
@@ -194,13 +194,13 @@ extern void NEWS_DSET_SetTimeEvent( NEWS_DATA* p_data, const NEWS_DATA_SET_TIMEE
 extern void NEWS_DSET_SetVipIn( NEWS_DATA* p_data, const NEWS_DATA_SET_VIPIN* cp_data, const WFLBY_VIPFLAG* cp_vip );
 extern void NEWS_DSET_SetMgResult( NEWS_DATA* p_data, const NEWS_DATA_SET_MGRESULT* cp_data );
 
-// ƒgƒsƒbƒNƒX‚Ì”jŠü
+// ãƒˆãƒ”ãƒƒã‚¯ã‚¹ã®ç ´æ£„
 extern void NEWS_DSET_RemoveTopTopic( NEWS_DATA* p_data );
 
-// LOCKŠÔæ“¾
+// LOCKæ™‚é–“å–å¾—
 extern BOOL NEWS_DSET_GetLockTime( const NEWS_DATA* cp_data, WFLBY_TIME* p_time );
 
-// ƒvƒŒƒCƒ„[ƒf[ƒ^æ“¾
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿å–å¾—
 extern BOOL NEWS_DSET_CheckPlayerInside( const NEWS_DATA* cp_wk, u32 player );
 extern u32 NEWS_DSET_GetPlayerSex( const NEWS_DATA* cp_wk, u32 player );
 extern BOOL NEWS_DSET_GetPlayerSpecialMy( const NEWS_DATA* cp_wk, u32 player );
@@ -208,8 +208,8 @@ extern BOOL NEWS_DSET_GetPlayerSpecialOld( const NEWS_DATA* cp_wk, u32 player );
 extern BOOL NEWS_DSET_GetPlayerNewPlayer( const NEWS_DATA* cp_wk, u32 player );
 extern NEWS_ROOMEV NEWS_DSET_GetPlayerEvent( const NEWS_DATA* cp_wk );
 
-// ƒgƒsƒbƒNƒf[ƒ^æ“¾
-// ƒgƒsƒbƒNƒf[ƒ^‚Í•¶š—ñ‚ÌŒ`‚É‚È‚Á‚Äæ“¾‚³‚ê‚é
+// ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
+// ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¯æ–‡å­—åˆ—ã®å½¢ã«ãªã£ã¦å–å¾—ã•ã‚Œã‚‹
 extern BOOL NEWS_DSET_CheckToppic( const NEWS_DATA* cp_wk );
 extern NEWS_TOPICTYPE NEWS_DSET_GetTopicType( const NEWS_DATA* cp_wk ); 
 extern BOOL NEWS_DSET_GetTopicData( const NEWS_DATA* cp_wk, const WFLBY_VIPFLAG* cp_vip, NEWS_TOPICTYPE type, STRBUF* p_str, u32 heapID );

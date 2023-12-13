@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^ƒwƒbƒ_
+ * @brief Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef DWCi_LOBBY_CALLBACK_H_
@@ -40,7 +40,7 @@ protected:
         operationId = nextOperationId++;
     }
 public:
-    // ŒŸõ—pƒIƒuƒWƒFƒNƒg¶¬—p
+    // æ¤œç´¢ç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆç”¨
     DWCi_AbstractCallback(u32 _operationId, void*)
         : operationId(_operationId)
         , param(0)

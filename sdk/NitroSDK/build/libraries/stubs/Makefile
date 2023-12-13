@@ -13,10 +13,10 @@
 #
 # $Log: Makefile,v $
 # Revision 1.7  2006/05/14 23:52:58  yasu
-# ����N�x�̕ύX
+# 著作年度の変更
 #
 # Revision 1.6  2006/05/11 04:08:32  yasu
-# vsprintf.o �̃r���h��~
+# vsprintf.o のビルド停止
 #
 # Revision 1.5  2004/05/06 10:18:18  yasu
 # fix typo
@@ -31,7 +31,7 @@
 # change SDK prefix iris -> nitro
 #
 # Revision 1.1  2003/12/10 12:19:03  yasu
-# ISD ���C�u�����̖������̂��߂ɋ�̊֐����_�~�[�ŗp�ӂ��Astubs ���ɒu�����D
+# ISD ライブラリの無い環境のために空の関数をダミーで用意し、stubs 下に置いた．
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

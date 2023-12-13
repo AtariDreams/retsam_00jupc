@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_glbdata.h
- *	@brief		}ŠÓƒAƒvƒŠƒP[ƒVƒ‡ƒ“‹¤—Lƒf[ƒ^
+ *	@brief		å›³é‘‘ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å…±æœ‰ãƒ‡ãƒ¼ã‚¿
  *	@author		tomoya takahashi
  *	@data		2006.01.19
  *
@@ -26,42 +26,42 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv
+//	ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—
 //=====================================
 enum{
-	ZKN_POKELIST_TYPE_NONE,	// ‚í‚©‚ç‚È‚¢
-	ZKN_POKELIST_TYPE_SEE,	// Œ©‚Â‚¯‚½
-	ZKN_POKELIST_TYPE_GET,	// •ß‚Ü‚¦‚½
+	ZKN_POKELIST_TYPE_NONE,	// ã‚ã‹ã‚‰ãªã„
+	ZKN_POKELIST_TYPE_SEE,	// è¦‹ã¤ã‘ãŸ
+	ZKN_POKELIST_TYPE_GET,	// æ•ã¾ãˆãŸ
 };
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ
 //=====================================
-#define POKEMON_LIST_TBL_NUM	(MONSNO_END)	// ƒe[ƒuƒ‹” = ‘Sƒ|ƒPƒ‚ƒ“‚Ì”
+#define POKEMON_LIST_TBL_NUM	(MONSNO_END)	// ãƒ†ãƒ¼ãƒ–ãƒ«æ•° = å…¨ãƒã‚±ãƒ¢ãƒ³ã®æ•°
 #define POKEMON_LIST_DRAWTBL_DUMMY	( POKEMON_LIST_TBL_NUM + 1 )
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ\[ƒg
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚½ãƒ¼ãƒˆ
 //=====================================
 enum{
-	ZKN_POKELIST_SORT_NORMAL,		// ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-	ZKN_POKELIST_SORT_GOZYUUON,		// ŒÜ\‰¹
-	ZKN_POKELIST_SORT_GRAM_L,		// d‚¢
-	ZKN_POKELIST_SORT_GRAM_S,		// Œy‚¢
-	ZKN_POKELIST_SORT_HIGH_L,		// ‚‚¢
-	ZKN_POKELSIT_SOTT_HIGH_S,		// ’á‚¢
+	ZKN_POKELIST_SORT_NORMAL,		// ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+	ZKN_POKELIST_SORT_GOZYUUON,		// äº”åéŸ³
+	ZKN_POKELIST_SORT_GRAM_L,		// é‡ã„
+	ZKN_POKELIST_SORT_GRAM_S,		// è»½ã„
+	ZKN_POKELIST_SORT_HIGH_L,		// é«˜ã„
+	ZKN_POKELSIT_SOTT_HIGH_S,		// ä½Žã„
 	ZKN_POKELIST_SORT_NUM,
 };
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ŒŸõƒ}ƒXƒN
+//	ãƒã‚±ãƒ¢ãƒ³æ¤œç´¢ãƒžã‚¹ã‚¯
 //=====================================
-// –¼‘O
+// åå‰
 enum{
 	ZKN_POKELIST_SEARCH_NAME_NONE,
 	ZKN_POKELIST_SEARCH_NAME_A,
@@ -78,7 +78,7 @@ enum{
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/18
-// ƒ\[ƒg‚ðŒÜ\‰¹‚©‚çƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚É
+// ã‚½ãƒ¼ãƒˆã‚’äº”åéŸ³ã‹ã‚‰ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«
 
 #define ZKN_POKELIST_SEARCH_NAME_ABC	ZKN_POKELIST_SEARCH_NAME_A
 #define ZKN_POKELIST_SEARCH_NAME_DEF	ZKN_POKELIST_SEARCH_NAME_KA
@@ -93,7 +93,7 @@ enum{
 // ----------------------------------------------------------------------------
 
 
-// ƒ^ƒCƒv
+// ã‚¿ã‚¤ãƒ—
 enum{
 	ZKN_POKELIST_SEARCH_TYPE_NONE,
 	ZKN_POKELIST_SEARCH_TYPE_NORMAL,
@@ -115,7 +115,7 @@ enum{
 	ZKN_POKELIST_SEARCH_TYPE_AKU,	
 	ZKN_POKELIST_SEARCH_TYPE_NUM
 };
-// Œ`
+// å½¢
 enum{
 	ZKN_POKELIST_SEARCH_FORM_NONE,
 	ZKN_POKELIST_SEARCH_FORM_FOUR_LEGS,
@@ -136,16 +136,16 @@ enum{
 };
 
 //-------------------------------------
-//	}ŠÓƒ‚[ƒh
+//	å›³é‘‘ãƒ¢ãƒ¼ãƒ‰
 //=====================================
 enum {
-	ZKN_MODE_SHINOH,	// ƒVƒ“ƒIƒE}ŠÓ
-	ZKN_MODE_ZENKOKU,	// ‘S‘}ŠÓ
-	ZKN_MODE_NAZO,		// •s–¾	i‚Ü‚¾1‰ñ‚à}ŠÓ‚ðŠJ‚¢‚Ä‚¢‚È‚¢‚Æ‚«j
+	ZKN_MODE_SHINOH,	// ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘
+	ZKN_MODE_ZENKOKU,	// å…¨å›½å›³é‘‘
+	ZKN_MODE_NAZO,		// ä¸æ˜Ž	ï¼ˆã¾ã 1å›žã‚‚å›³é‘‘ã‚’é–‹ã„ã¦ã„ãªã„ã¨ãï¼‰
 } ;
 
 //-------------------------------------
-//	ŒŸõƒ\[ƒgØ‚è‘Ö‚¦‚æ‚¤
+//	æ¤œç´¢ã‚½ãƒ¼ãƒˆåˆ‡ã‚Šæ›¿ãˆã‚ˆã†
 //=====================================
 enum {
 	ZKN_SORTSEARCH_NONE,
@@ -153,7 +153,7 @@ enum {
 } ;
 
 //-------------------------------------
-//	ƒ^ƒbƒ`ƒpƒlƒ‹@ƒJ[ƒ\ƒ‹ƒtƒ‰ƒO
+//	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã€€ã‚«ãƒ¼ã‚½ãƒ«ãƒ•ãƒ©ã‚°
 //=====================================
 enum{
 	ZKN_TCHCUSO_TOUCHPANEL,
@@ -163,82 +163,82 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg\‘¢‘Ì
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæ§‹é€ ä½“
 //=====================================
 typedef struct {
-	int mons_no;	// ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-	int type;		// Œ©‚Â‚¯‚½ •ß‚Ü‚¦‚½
+	int mons_no;	// ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+	int type;		// è¦‹ã¤ã‘ãŸ æ•ã¾ãˆãŸ
 } ZKN_POKELIST_DATA;
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹\‘¢‘Ì
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«æ§‹é€ ä½“
 //=====================================
 typedef struct {
 	ZKN_POKELIST_DATA zkn_pokelist_tbl[ POKEMON_LIST_TBL_NUM ];
-	int	tbl_no;			// ¡‘I‘ð’†‚Ìƒe[ƒuƒ‹ƒiƒ“ƒo[
-	int tbl_poke_num;	// ¡‚Ìƒe[ƒuƒ‹‚Ì‘”
+	int	tbl_no;			// ä»Šé¸æŠžä¸­ã®ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
+	int tbl_poke_num;	// ä»Šã®ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç·æ•°
 
-	// •\Ž¦—p
+	// è¡¨ç¤ºç”¨
 	int zkn_pokelistdraw_tbl[ POKEMON_LIST_TBL_NUM ];
-	int	draw_tbl_no;			// ¡‘I‘ð’†‚Ìƒe[ƒuƒ‹ƒiƒ“ƒo[
-	int draw_tbl_poke_num;		// ¡‚Ìƒe[ƒuƒ‹‚Ì‘”
+	int	draw_tbl_no;			// ä»Šé¸æŠžä¸­ã®ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
+	int draw_tbl_poke_num;		// ä»Šã®ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç·æ•°
 } ZKN_POKELIST_TBL;
 
 
 //-------------------------------------
-//	}ŠÓƒOƒ[ƒoƒ‹ƒf[ƒ^
+//	å›³é‘‘ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 //
-//	•¡”ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å‹¤—L‚µ‚½‚¢ƒf[ƒ^
+//	è¤‡æ•°ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§å…±æœ‰ã—ãŸã„ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct{
-	// }ŠÓ‰æ–Êƒf[ƒ^
+	// å›³é‘‘ç”»é¢ãƒ‡ãƒ¼ã‚¿
 	const ZUKAN_WORK*	cp_zukansave_data;
 	
-	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹\‘¢‘Ì
-	ZKN_POKELIST_TBL poke_list;			// •\Ž¦ƒf[ƒ^
+	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«æ§‹é€ ä½“
+	ZKN_POKELIST_TBL poke_list;			// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿
 
-	// }ŠÓƒ‚[ƒh
+	// å›³é‘‘ãƒ¢ãƒ¼ãƒ‰
 	int zkn_mode;
 
-	// ‘S‘}ŠÓŠŽƒtƒ‰ƒO
+	// å…¨å›½å›³é‘‘æ‰€æŒãƒ•ãƒ©ã‚°
 	BOOL zkn_allmap_get;
 
-	// ”­Œ©”
+	// ç™ºè¦‹æ•°
 	int	see_num;
 
-	// •ßŠl”
+	// æ•ç²æ•°
 	int get_num;
 
-	// ŒŸõƒ\[ƒgØ‚è‘Ö‚¦‚æ‚¤
+	// æ¤œç´¢ã‚½ãƒ¼ãƒˆåˆ‡ã‚Šæ›¿ãˆã‚ˆã†
 	int sort_search_flag;
 
-	// }ŠÓ‚ðŠJ‚¢‚½‚Æ‚«‚ÌŽžŠÔ‘Ñ
+	// å›³é‘‘ã‚’é–‹ã„ãŸã¨ãã®æ™‚é–“å¸¯
 	int time_zone;
 
-	// ‚‚³d‚³ƒf[ƒ^
+	// é«˜ã•é‡ã•ãƒ‡ãƒ¼ã‚¿
 	ZKN_HEIGHT_GRAM_PTR height_gram;
 
-	// ROMƒR[ƒh
+	// ROMã‚³ãƒ¼ãƒ‰
 	u32 rom_code;
 	
-	// ŽålŒö‚ª’j‚©—‚©
+	// ä¸»äººå…¬ãŒç”·ã‹å¥³ã‹
 	u32 hero_sex; 
 	
-	// ŽålŒö‚Ì–¼‘O
+	// ä¸»äººå…¬ã®åå‰
 	STRBUF*	hero_name;
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹@ƒJ[ƒ\ƒ‹ƒtƒ‰ƒO
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã€€ã‚«ãƒ¼ã‚½ãƒ«ãƒ•ãƒ©ã‚°
 	int touch_cursor_flag;
 	
-	// ÅŒã‚É}ŠÓƒeƒLƒXƒg‚ðŒ©‚½ƒ|ƒPƒ‚ƒ“
+	// æœ€å¾Œã«å›³é‘‘ãƒ†ã‚­ã‚¹ãƒˆã‚’è¦‹ãŸãƒã‚±ãƒ¢ãƒ³
 	u16 last_see_monsno;
 	u16 last_see_zkn_mode;
 
-	// ‰B‚µƒ}ƒbƒv
+	// éš ã—ãƒžãƒƒãƒ—
 	BOOL hidemap_id_D15;
 	BOOL hidemap_id_D30;
 	BOOL hidemap_id_L04;
@@ -247,7 +247,7 @@ typedef struct{
 
 
 //-------------------------------------
-//	ƒOƒ[ƒoƒ‹ƒf[ƒ^‰Šú‰»\‘¢‘Ì
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–æ§‹é€ ä½“
 //=====================================
 typedef struct {
 	const ZUKAN_WORK* cp_zukansave_data;
@@ -264,7 +264,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 

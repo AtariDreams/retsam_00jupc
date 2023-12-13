@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ƒoƒgƒ‹ƒ^ƒ[ƒf[ƒ^
+# Project:  ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ‡ãƒ¼ã‚¿
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -15,7 +15,7 @@ TRDATA:=$(wildcard btd_tr_*.s)
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#Make‚Å¶¬‚³‚ê‚é*.bin/*.narc‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.bin/*.narcã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(PMDATA) $(TRDATA) btdpm.narc btdtr.narc
 
 #----------------------------------------------------------------------------

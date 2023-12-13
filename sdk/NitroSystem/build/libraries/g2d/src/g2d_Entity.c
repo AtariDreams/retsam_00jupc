@@ -28,7 +28,7 @@ static NNS_G2D_INLINE void ResetPaletteTbl_( NNSG2dEntity* pEntity )
     
     NNS_G2D_NULL_ASSERT( pEntity );
     
-    // ƒJƒ‰[ƒpƒŒƒbƒg•ÏŠ·ƒe[ƒuƒ‹‚ÌƒŠƒZƒbƒg
+    // ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒªã‚»ãƒƒãƒˆ
     NNS_G2dResetEntityPaletteTable( pEntity );
 }
 
@@ -63,15 +63,15 @@ static NNS_G2D_INLINE void SetCurrentAnimation_( NNSG2dEntity* pEntity )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitEntity
 
-  Description:  Entity À‘Ì‚ğ‰Šú‰»‚µ‚Ü‚·
+  Description:  Entity å®Ÿä½“ã‚’åˆæœŸåŒ–ã—ã¾ã™
                 
                 
-  Arguments:    pEntity         [OUT] ƒGƒ“ƒeƒBƒeƒB 
-                pDrawStuff      [IN]  •`‰æ—pƒf[ƒ^( NNSG2dCellAnimation or NNSG2dMultiCellAnimation ) 
-                pEntityData     [IN]  ƒGƒ“ƒeƒBƒeƒB’è‹`ƒf[ƒ^ 
-                pAnimDataBank   [IN]  ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒoƒ“ƒN 
+  Arguments:    pEntity         [OUT] ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ 
+                pDrawStuff      [IN]  æç”»ç”¨ãƒ‡ãƒ¼ã‚¿( NNSG2dCellAnimation or NNSG2dMultiCellAnimation ) 
+                pEntityData     [IN]  ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£å®šç¾©ãƒ‡ãƒ¼ã‚¿ 
+                pAnimDataBank   [IN]  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯ 
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitEntity
@@ -94,7 +94,7 @@ void NNS_G2dInitEntity
     pEntity->pEntityData            = pEntityData;
     pEntity->currentSequenceIdx     = 0;
      
-    // ƒJƒ‰[ƒpƒŒƒbƒg•ÏŠ·ƒe[ƒuƒ‹‚ğ‰Šú‰»‚·‚é
+    // ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
     ResetPaletteTbl_( pEntity );
 }
 
@@ -103,16 +103,16 @@ void NNS_G2dInitEntity
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetEntityCurrentAnimation
 
-  Description:  NNSG2dEntity ‚ÌŒ»İ‚ÌÄ¶ƒAƒjƒ[ƒVƒ‡ƒ“‚ğİ’è‚·‚é
+  Description:  NNSG2dEntity ã®ç¾åœ¨ã®å†ç”Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¨­å®šã™ã‚‹
                 
                 
-  Arguments:    pEntity:            [OUT] NNSG2dEntity À‘Ì
-                idx:                [IN]  NNSG2dEntity “à‚Å‚Ì AnimationSequence Index
+  Arguments:    pEntity:            [OUT] NNSG2dEntity å®Ÿä½“
+                idx:                [IN]  NNSG2dEntity å†…ã§ã® AnimationSequence Index
                 
-                ƒAƒjƒ[ƒVƒ‡ƒ“‚Íƒ[ƒhÏ‚İ‚Å‚ ‚é‚±‚ÆB
-                ƒ[ƒh‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î‚È‚É‚à‚µ‚Ü‚¹‚ñB
+                ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã¯ãƒ­ãƒ¼ãƒ‰æ¸ˆã¿ã§ã‚ã‚‹ã“ã¨ã€‚
+                ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ãªã«ã‚‚ã—ã¾ã›ã‚“ã€‚
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetEntityCurrentAnimation( NNSG2dEntity* pEntity, u16 idx )
@@ -124,10 +124,10 @@ void NNS_G2dSetEntityCurrentAnimation( NNSG2dEntity* pEntity, u16 idx )
     if( pEntity->pEntityData->animData.numAnimSequence > idx )
     {
         pEntity->currentSequenceIdx = pEntity->pEntityData->animData.pAnimSequenceIdxArray[idx];
-        // TODO:‚±‚Ìˆ—‚Í‰Šú‰»‚É ƒV[ƒPƒ“ƒX”Ô†”z—ñ‚Ì—v‘f‘S•”‚É‘Î‚µ‚Äs‚¤‚×‚«I
+        // TODO:ã“ã®å‡¦ç†ã¯åˆæœŸåŒ–æ™‚ã« ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·é…åˆ—ã®è¦ç´ å…¨éƒ¨ã«å¯¾ã—ã¦è¡Œã†ã¹ãï¼
         NNS_G2D_ASSERT( pEntity->pAnimDataBank->numSequences > pEntity->currentSequenceIdx );
         //
-        // ƒAƒjƒ[ƒVƒ‡ƒ“Ø‚è‘Ö‚¦ˆ—
+        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ‡ã‚Šæ›¿ãˆå‡¦ç†
         //
         SetCurrentAnimation_( pEntity );
     }else{
@@ -138,14 +138,14 @@ void NNS_G2dSetEntityCurrentAnimation( NNSG2dEntity* pEntity, u16 idx )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetColorPaletteTable
 
-  Description:  NNSG2dEntity ‚É ƒJƒ‰[ƒpƒŒƒbƒg•ÏŠ·ƒe[ƒuƒ‹‚ğİ’è‚·‚é
+  Description:  NNSG2dEntity ã« ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’è¨­å®šã™ã‚‹
                 
                 
-  Arguments:    pEntity:            [OUT] NNSG2dEntity À‘Ì
-                pPlttTbl:           [IN]  ƒJƒ‰[ƒpƒŒƒbƒg•ÏŠ·ƒe[ƒuƒ‹
+  Arguments:    pEntity:            [OUT] NNSG2dEntity å®Ÿä½“
+                pPlttTbl:           [IN]  ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetEntityPaletteTable
@@ -163,13 +163,13 @@ void NNS_G2dSetEntityPaletteTable
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dResetEntityPaletteTable
 
-  Description:  NNSG2dEntity ‚Ì ƒJƒ‰[ƒpƒŒƒbƒg•ÏŠ·ƒe[ƒuƒ‹‚ğ–³Œø‚Éİ’è‚·‚é
+  Description:  NNSG2dEntity ã® ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç„¡åŠ¹ã«è¨­å®šã™ã‚‹
                 
                 
-  Arguments:    pEntity:            [OUT] NNSG2dEntity À‘Ì
+  Arguments:    pEntity:            [OUT] NNSG2dEntity å®Ÿä½“
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dResetEntityPaletteTable
@@ -184,14 +184,14 @@ void NNS_G2dResetEntityPaletteTable
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dIsEntityPaletteTblEnable
 
-  Description:  NNSG2dEntity ‚Ì ƒJƒ‰[ƒpƒŒƒbƒg‚ª—LŒø‚©’²¸‚·‚é
+  Description:  NNSG2dEntity ã® ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆãŒæœ‰åŠ¹ã‹èª¿æŸ»ã™ã‚‹
                 
                 
-  Arguments:    pEntity:            [IN]  NNSG2dEntity À‘Ì
+  Arguments:    pEntity:            [IN]  NNSG2dEntity å®Ÿä½“
                 
                 
                 
-  Returns:      ƒJƒ‰[ƒpƒŒƒbƒg‚ª—LŒø‚È‚çTRUE
+  Returns:      ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆãŒæœ‰åŠ¹ãªã‚‰TRUE
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dIsEntityPaletteTblEnable( const NNSG2dEntity* pEntity )
@@ -204,14 +204,14 @@ BOOL NNS_G2dIsEntityPaletteTblEnable( const NNSG2dEntity* pEntity )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dTickEntity
 
-  Description:  NNSG2dEntity ‚ğXV‚·‚é
+  Description:  NNSG2dEntity ã‚’æ›´æ–°ã™ã‚‹
                 
                 
-  Arguments:    pEntity:            [OUT] NNSG2dEntity À‘Ì
-                dt:                 [IN]  i‚ß‚éŠÔiƒtƒŒ[ƒ€j
+  Arguments:    pEntity:            [OUT] NNSG2dEntity å®Ÿä½“
+                dt:                 [IN]  é€²ã‚ã‚‹æ™‚é–“ï¼ˆãƒ•ãƒ¬ãƒ¼ãƒ ï¼‰
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void  NNS_G2dTickEntity( NNSG2dEntity*    pEntity, fx32 dt )
@@ -235,14 +235,14 @@ void  NNS_G2dTickEntity( NNSG2dEntity*    pEntity, fx32 dt )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetEntityCurrentFrame
 
-  Description:  NNSG2dEntity ‚ÌÄ¶ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ğİ’è‚µ‚Ü‚·
+  Description:  NNSG2dEntity ã®å†ç”Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®šã—ã¾ã™
                 
                 
-  Arguments:    pEntity:            [OUT] NNSG2dEntity À‘Ì
-                frameIndex:         [IN]  ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”Ô†
+  Arguments:    pEntity:            [OUT] NNSG2dEntity å®Ÿä½“
+                frameIndex:         [IN]  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void  NNS_G2dSetEntityCurrentFrame
@@ -272,14 +272,14 @@ void  NNS_G2dSetEntityCurrentFrame
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetEntitySpeed
 
-  Description:  NNSG2dEntity ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒs[ƒh‚ğİ’è‚·‚é
+  Description:  NNSG2dEntity ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
                 
                 
-  Arguments:    pEntity:            [OUT] NNSG2dEntity À‘Ì
-                speed:              [IN]  ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒs[ƒh
+  Arguments:    pEntity:            [OUT] NNSG2dEntity å®Ÿä½“
+                speed:              [IN]  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ”ãƒ¼ãƒ‰
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetEntitySpeed
@@ -309,13 +309,13 @@ void NNS_G2dSetEntitySpeed
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dIsEntityValid
 
-  Description:  NNSG2dEntity ‚ª —LŒø‚Èó‘Ô‚©’²¸‚µ‚Ü‚·
+  Description:  NNSG2dEntity ãŒ æœ‰åŠ¹ãªçŠ¶æ…‹ã‹èª¿æŸ»ã—ã¾ã™
                 
                 
-  Arguments:    pEntity:            [IN]  NNSG2dEntity À‘Ì
+  Arguments:    pEntity:            [IN]  NNSG2dEntity å®Ÿä½“
                 
                 
-  Returns:      —LŒø‚Èó‘Ô‚È‚çTRUE‚ğ‚©‚¦‚·
+  Returns:      æœ‰åŠ¹ãªçŠ¶æ…‹ãªã‚‰TRUEã‚’ã‹ãˆã™
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dIsEntityValid( NNSG2dEntity*    pEntity )
@@ -335,13 +335,13 @@ BOOL NNS_G2dIsEntityValid( NNSG2dEntity*    pEntity )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetEntityAnimCtrl
 
-  Description:  ƒGƒ“ƒeƒBƒeƒB‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
                 
-  Arguments:    pEntity:            [IN]  NNSG2dEntity À‘Ì
+  Arguments:    pEntity:            [IN]  NNSG2dEntity å®Ÿä½“
                 
                 
-  Returns:      ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰
+  Returns:      ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
   
  *---------------------------------------------------------------------------*/
 NNSG2dAnimController* NNS_G2dGetEntityAnimCtrl( NNSG2dEntity*    pEntity )

@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_173.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			173�@�t�B�[���h�ɂ���ďo��Z���Ⴄ�@�C���Ȃ݂̂�@���ނ灁�͂��σJ�b�^�[�@���A������Ȃ���
- *				�u������̂�����́@�Ȃ݂̂�Ɂ@�Ȃ����I�v
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			173　フィールドによって出る技が違う　海＝なみのり　草むら＝はっぱカッター　洞窟＝いわなだれ
+ *				「しぜんのちからは　なみのりに　なった！」
  *
  *@author	HisashiSogabe
  *@data		2006.03.02

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_194.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			194�@�Ώۂ̑���̋Z�̃_���[�W�ŕm����ԂɂȂ����ꍇ�A���̋Z�̂o�o���O�ɂ���B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			194　対象の相手の技のダメージで瀕死状態になった場合、その技のＰＰを０にする。
  *
  *@author	HisashiSogabe
  *@data		2006.02.09

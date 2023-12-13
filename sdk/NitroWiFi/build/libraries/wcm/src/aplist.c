@@ -15,30 +15,30 @@
   INDENT SOURCE
 
   Revision 1.3  2005/07/19 13:05:09  terui
-  AP ��񂩂�]���ȃG�������g����鏈�����폜
+  AP 情報から余分なエレメントを削る処理を削除
 
   Revision 1.2  2005/07/11 12:03:29  terui
-  AP ��񃊃X�g�A�b�v���ɁAWMBssDesc�\���̓���length�����o���㏑���C������悤�ɏC���B
+  AP 情報リストアップ時に、WMBssDesc構造体内のlengthメンバを上書き修正するように修正。
 
   Revision 1.1  2005/07/07 10:45:52  terui
-  �V�K�ǉ�
+  新規追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
 #include "wcm_private.h"
 
 /*---------------------------------------------------------------------------*
-    �萔��`
+    定数定義
  *---------------------------------------------------------------------------*/
 #if WCM_DEBUG
 
-// �x�����p�e�L�X�g���`
+// 警告文用テキスト雛形
 static const char   aplistWarningText_NotInit[] = { "WCM library is not initialized yet.\n" };
 static const char   aplistWarningText_NoIndexData[] = { "Could not found AP information that have index %d." };
 #endif
 
 /*---------------------------------------------------------------------------*
-    �����֐��v���g�^�C�v
+    内部関数プロトタイプ
  *---------------------------------------------------------------------------*/
 static WCMApList*   WcmAllocApList(void);
 static void         WcmFreeApList(WCMApList* aplist);
@@ -51,8 +51,8 @@ static void         WcmAppendApList(WCMApList* aplist);
 /*---------------------------------------------------------------------------*
   Name:         WCM_ClearApList
 
-  Description:  AP ���ێ����X�g�̓��e���������ď�����Ԃɖ߂��B
-                ���b�N��Ԕ@���Ɋւ�炸���ێ��̈���N���A����B
+  Description:  AP 情報保持リストの内容を消去して初期状態に戻す。
+                ロック状態如何に関わらず情報保持領域をクリアする。
 
   Arguments:    None.
 
@@ -63,7 +63,7 @@ void WCM_ClearApList(void)
     OSIntrMode  e = OS_DisableInterrupts();
     WCMWork*    w = WCMi_GetSystemWork();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (w == NULL)
     {
         WCMi_Warning(aplistWarningText_NotInit);
@@ -71,7 +71,7 @@ void WCM_ClearApList(void)
         return;
     }
 
-    // AP ���ێ����X�g�p�o�b�t�@��K�v�ɉ����ăN���A
+    // AP 情報保持リスト用バッファを必要に応じてクリア
     if ((w->config.pbdbuffer != NULL) && (w->config.nbdbuffer > 0))
     {
         MI_CpuClear8(w->config.pbdbuffer, (u32) (w->config.nbdbuffer));
@@ -83,15 +83,15 @@ void WCM_ClearApList(void)
 /*---------------------------------------------------------------------------*
   Name:         WCM_CountApList
 
-  Description:  AP ���ێ����X�g���ŕێ�����Ă��� AP ���Ǘ��u���b�N����
-                �擾����B
-    NOTICE:     WCM_LockApList�֐��ɂă��b�N����Ă��Ȃ��ꍇ�ɂ͊֐��ďo�����
-                ���荞�݂ɂ���ău���b�N���͑�������\��������_�ɒ��ӁB
+  Description:  AP 情報保持リスト内で保持されている AP 情報管理ブロック数を
+                取得する。
+    NOTICE:     WCM_LockApList関数にてロックされていない場合には関数呼出し後に
+                割り込みによってブロック数は増減する可能性がある点に注意。
 
   Arguments:    None.
 
-  Returns:      s32     -   AP ���Ǘ��u���b�N����Ԃ��B
-                            ����Ƀu���b�N�����擾�ł��Ȃ��ꍇ�ɂ� 0 ��Ԃ��B
+  Returns:      s32     -   AP 情報管理ブロック数を返す。
+                            正常にブロック数を取得できない場合には 0 を返す。
  *---------------------------------------------------------------------------*/
 s32 WCM_CountApList(void)
 {
@@ -100,7 +100,7 @@ s32 WCM_CountApList(void)
     s32         count = 0;
     WCMApListHeader*    pHeader;
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (w == NULL)
     {
         WCMi_Warning(aplistWarningText_NotInit);
@@ -108,14 +108,14 @@ s32 WCM_CountApList(void)
         return 0;
     }
 
-    // AP ���ێ����X�g����A�ێ����Ă��� AP ���Ǘ��u���b�N�����擾
+    // AP 情報保持リストから、保持している AP 情報管理ブロック数を取得
     pHeader = (WCMApListHeader *) (w->config.pbdbuffer);
     if ((pHeader != NULL) && (w->config.nbdbuffer > sizeof(WCMApListHeader)))
     {
         count = (s32) (pHeader->count);
     }
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return count;
 }
@@ -123,24 +123,24 @@ s32 WCM_CountApList(void)
 /*---------------------------------------------------------------------------*
   Name:         WCM_LockApList
 
-  Description:  AP ���ێ����X�g�̃��b�N��Ԃ�ύX����B
-    NOTICE:     ���b�N���͊��荞�݂ɂ���� AP �𔭌������ꍇ�ł� AP ���ێ�
-                ���X�g�̓��e�͕ύX���ꂸ�A�������� AP ���͔j�������_�ɒ��ӁB
+  Description:  AP 情報保持リストのロック状態を変更する。
+    NOTICE:     ロック中は割り込みによって AP を発見した場合でも AP 情報保持
+                リストの内容は変更されず、発見した AP 情報は破棄される点に注意。
 
-  Arguments:    lock    -   WCM_APLIST_LOCK     : ���b�N����B
-                            WCM_APLIST_UNLOCK   : ���b�N���������B
-                            ���̑�              : WCM_APLIST_LOCK �Ƃ݂Ȃ��B
+  Arguments:    lock    -   WCM_APLIST_LOCK     : ロックする。
+                            WCM_APLIST_UNLOCK   : ロックを解放する。
+                            その他              : WCM_APLIST_LOCK とみなす。
 
-  Returns:      s32     -   �Ăяo���O�̃��b�N��Ԃ�Ԃ��B
-                            WCM_APLIST_LOCK     : ���b�N����Ă����B
-                            WCM_APLIST_UNLOCK   : ���b�N�͉������Ă����B
+  Returns:      s32     -   呼び出し前のロック状態を返す。
+                            WCM_APLIST_LOCK     : ロックされていた。
+                            WCM_APLIST_UNLOCK   : ロックは解放されていた。
  *---------------------------------------------------------------------------*/
 s32 WCM_LockApList(s32 lock)
 {
     OSIntrMode  e = OS_DisableInterrupts();
     WCMWork*    w = WCMi_GetSystemWork();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (w == NULL)
     {
         WCMi_Warning(aplistWarningText_NotInit);
@@ -148,7 +148,7 @@ s32 WCM_LockApList(s32 lock)
         return 0;
     }
 
-    // �����ɍ��킹�ă��b�N��Ԃ�ύX
+    // 引数に合わせてロック状態を変更
     if (lock != WCM_APLIST_UNLOCK)
     {
         lock = (w->apListLock ? WCM_APLIST_LOCK : WCM_APLIST_UNLOCK);
@@ -160,7 +160,7 @@ s32 WCM_LockApList(s32 lock)
         w->apListLock = WCM_APLIST_UNLOCK;
     }
 
-    // ����I��
+    // 正常終了
     (void)OS_RestoreInterrupts(e);
     return lock;
 }
@@ -168,17 +168,17 @@ s32 WCM_LockApList(s32 lock)
 /*---------------------------------------------------------------------------*
   Name:         WCM_PointApList
 
-  Description:  AP ���ێ����X�g������A�w�肳�ꂽ index �����蓖�Ă��Ă���
-                AP ���𒊏o����B
-    NOTICE:     WCM_LockApList�֐��ɂ���ă��b�N����Ă��Ȃ��ꍇ�ɂ͊֐��ďo��
-                ��Ɋ��荞�݂ɂ���Ď擾�����|�C���^�������o�b�t�@�̓��e������
-                �����\��������_�ɒ��ӁB
+  Description:  AP 情報保持リスト内から、指定された index が割り当てられている
+                AP 情報を抽出する。
+    NOTICE:     WCM_LockApList関数によってロックされていない場合には関数呼出し
+                後に割り込みによって取得したポインタが示すバッファの内容が書き
+                換わる可能性がある点に注意。
 
-  Arguments:    index       -   index ���w�肷��BWCM_CountApList�֐��ɂ����
-                                �����鐔 ������ index ���w�肷��K�v������B
+  Arguments:    index       -   index を指定する。WCM_CountApList関数によって
+                                得られる数 未満の index を指定する必要がある。
 
-  Returns:      WMBssDesc*  -   ���o���� AP ���ւ̃|�C���^��Ԃ��B
-                                ���o�Ɏ��s�����ꍇ�� NULL ��Ԃ��B
+  Returns:      WMBssDesc*  -   抽出した AP 情報へのポインタを返す。
+                                抽出に失敗した場合は NULL を返す。
  *---------------------------------------------------------------------------*/
 WMBssDesc* WCM_PointApList(s32 index)
 {
@@ -187,7 +187,7 @@ WMBssDesc* WCM_PointApList(s32 index)
     WMBssDesc*  bd = NULL;
     WCMApList*  p;
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (w == NULL)
     {
         WCMi_Warning(aplistWarningText_NotInit);
@@ -195,10 +195,10 @@ WMBssDesc* WCM_PointApList(s32 index)
         return NULL;
     }
 
-    // index �Ŏw�肳�ꂽ AP ���Ǘ��u���b�N������
+    // index で指定された AP 情報管理ブロックを検索
     p = WcmSearchIndexedApList((u32) index);
 
-    // ������Ȃ������ꍇ�ُ͈�I��
+    // 見つからなかった場合は異常終了
     if (p == NULL)
     {
         WCMi_Warning(aplistWarningText_NoIndexData, index);
@@ -206,7 +206,7 @@ WMBssDesc* WCM_PointApList(s32 index)
         return NULL;
     }
 
-    // ����I��
+    // 正常終了
     bd = (WMBssDesc *) (p->data);
     (void)OS_RestoreInterrupts(e);
     return bd;
@@ -215,14 +215,14 @@ WMBssDesc* WCM_PointApList(s32 index)
 /*---------------------------------------------------------------------------*
   Name:         WCM_PointApListLinkLevel
 
-  Description:  AP ���ێ����X�g������A�w�肳�ꂽ index �����蓖�Ă��Ă���
-                AP ��񂪓o�^���ꂽ�ۂ̓d�g���x�𒊏o����B
+  Description:  AP 情報保持リスト内から、指定された index が割り当てられている
+                AP 情報が登録された際の電波強度を抽出する。
 
-  Arguments:    index       -   index ���w�肷��BWCM_CountApList�֐��ɂ����
-                                �����鐔 ������ index ���w�肷��K�v������B
+  Arguments:    index       -   index を指定する。WCM_CountApList関数によって
+                                得られる数 未満の index を指定する必要がある。
 
-  Returns:      WMLinkLevel -   ���o���� AP ���o�^���̓d�g���x��Ԃ��B
-                                ���o�Ɏ��s�����ꍇ�� WM_LINK_LEVEL_0 ��Ԃ��B
+  Returns:      WMLinkLevel -   抽出した AP 情報登録時の電波強度を返す。
+                                抽出に失敗した場合は WM_LINK_LEVEL_0 を返す。
  *---------------------------------------------------------------------------*/
 WMLinkLevel WCM_PointApListLinkLevel(s32 index)
 {
@@ -231,7 +231,7 @@ WMLinkLevel WCM_PointApListLinkLevel(s32 index)
     WMLinkLevel ll = WM_LINK_LEVEL_0;
     WCMApList*  p;
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (w == NULL)
     {
         WCMi_Warning(aplistWarningText_NotInit);
@@ -239,10 +239,10 @@ WMLinkLevel WCM_PointApListLinkLevel(s32 index)
         return WM_LINK_LEVEL_0;
     }
 
-    // index �Ŏw�肳�ꂽ AP ���Ǘ��u���b�N������
+    // index で指定された AP 情報管理ブロックを検索
     p = WcmSearchIndexedApList((u32) index);
 
-    // ������Ȃ������ꍇ�ُ͈�I��
+    // 見つからなかった場合は異常終了
     if (p == NULL)
     {
         WCMi_Warning(aplistWarningText_NoIndexData, index);
@@ -250,7 +250,7 @@ WMLinkLevel WCM_PointApListLinkLevel(s32 index)
         return WM_LINK_LEVEL_0;
     }
 
-    // ����I��
+    // 正常終了
     ll = (WMLinkLevel) (p->linkLevel);
     (void)OS_RestoreInterrupts(e);
     return ll;
@@ -259,14 +259,14 @@ WMLinkLevel WCM_PointApListLinkLevel(s32 index)
 /*---------------------------------------------------------------------------*
   Name:         WCMi_EntryApList
 
-  Description:  �X�L�����̌��� AP ���������ꂽ�ۂɌĂяo���������֐��B
-                ���b�N���������Ă����Ԃł���΁AAP ���ێ����X�g��
-                config �ݒ�ɏ]���ĕҏW����B
-    NOTICE:     ���荞�݋֎~���ɌĂяo����邱�Ƃ�O��Ƃ��Ă��邽�߁A�C�ӂ�
-                �ꏊ����̌Ăяo���͋֎~�B
+  Description:  スキャンの結果 AP が発見された際に呼び出される内部関数。
+                ロックが解放されている状態であれば、AP 情報保持リストを
+                config 設定に従って編集する。
+    NOTICE:     割り込み禁止中に呼び出されることを前提としているため、任意の
+                場所からの呼び出しは禁止。
 
-  Arguments:    bssDesc     -   �������ꂽ AP ���ւ̃|�C���^�B
-                linkLevel   -   AP ���������ꂽ�ۂ̓d�g���x�B
+  Arguments:    bssDesc     -   発見された AP 情報へのポインタ。
+                linkLevel   -   AP が発見された際の電波強度。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -275,53 +275,53 @@ void WCMi_EntryApList(WMBssDesc* bssDesc, u16 linkLevel)
     WCMWork*    w = WCMi_GetSystemWork();
     WCMApList*  aplist;
 
-    // �������m�F
+    // 初期化確認
     if (w == NULL)
     {
         return;
     }
 
-    // AP ���X�g�ҏW���m�F
+    // AP リスト編集許可確認
     if (w->apListLock != WCM_APLIST_UNLOCK)
     {
         return;
     }
 
-    // AP �ȊO�� NITRO �e�@�̏ꍇ�̓X�L�b�v
+    // AP 以外の NITRO 親機の場合はスキップ
     if (bssDesc->gameInfoLength != 0)
     {
         return;
     }
 
-    // �ҏW���ׂ� AP ���ێ��o�b�t�@�ւ̃|�C���^���擾
+    // 編集すべき AP 情報保持バッファへのポインタを取得
     {
-        // ���ɏ���ێ�����Ă��� AP ���ǂ����𔻒�
+        // 既に情報を保持されている AP かどうかを判定
         aplist = WcmSearchApList(bssDesc->bssid);
 
-        // ���̕ێ�����Ă��Ȃ� AP �ł������ꍇ
+        // 情報の保持されていない AP であった場合
         if (aplist == NULL)
         {
-            // �V�K�ɏ���ێ����郁�����G���A���m��
+            // 新規に情報を保持するメモリエリアを確保
             aplist = WcmAllocApList();
         }
 
-        // ����ێ�����o�b�t�@����t�ŁA����"����"�ݒ�ɂȂ��Ă���ꍇ
+        // 情報を保持するバッファが一杯で、かつ"交換"設定になっている場合
         if ((aplist == NULL) && (w->config.nbdmode == WCM_APLIST_MODE_EXCHANGE))
         {
-            // �ł���񂪌Â� AP ��񂪕ێ�����Ă��郁�����G���A���擾
+            // 最も情報が古い AP 情報が保持されているメモリエリアを取得
             aplist = WcmGetOldestApList();
         }
     }
 
-    // AP ���ێ��o�b�t�@��ҏW
+    // AP 情報保持バッファを編集
     if (aplist != NULL)
     {
         aplist->linkLevel = linkLevel;
 
-        /* src , dst ���� 4 �o�C�g�A���C�����ꂽ�ʒu�̂͂� */
+        /* src , dst 共に 4 バイトアラインされた位置のはず */
         MI_CpuCopyFast(bssDesc, aplist->data, WCM_APLIST_SIZE);
 
-        // ���X�g�̍Ō�� ( = �ŐV�� AP ��� ) �Ɉړ�
+        // リストの最後尾 ( = 最新の AP 情報 ) に移動
         WcmAppendApList(aplist);
     }
 }
@@ -329,13 +329,13 @@ void WCMi_EntryApList(WMBssDesc* bssDesc, u16 linkLevel)
 /*---------------------------------------------------------------------------*
   Name:         WcmAllocApList
 
-  Description:  AP ���ێ����X�g�̈悩��A�V���� AP �����Ǘ�����u���b�N��
-                ���蓖�Ă�B�m�ۂ���u���b�N�� index �� 0 ���珇�ԂƂ���B
+  Description:  AP 情報保持リスト領域から、新たな AP 情報を管理するブロックを
+                割り当てる。確保するブロックの index は 0 から順番とする。
 
   Arguments:    None.
 
-  Returns:      WCMApList*  -   ���蓖�Ă� AP ���Ǘ��u���b�N�ւ̃|�C���^�B
-                                ���蓖�ĂɎ��s�����ꍇ�� NULL ��Ԃ��B
+  Returns:      WCMApList*  -   割り当てた AP 情報管理ブロックへのポインタ。
+                                割り当てに失敗した場合は NULL を返す。
  *---------------------------------------------------------------------------*/
 static WCMApList* WcmAllocApList(void)
 {
@@ -343,21 +343,21 @@ static WCMApList* WcmAllocApList(void)
     WCMApListHeader*    pHeader = (WCMApListHeader *) (w->config.pbdbuffer);
     WCMApList*          p = NULL;
 
-    // AP ���ێ����X�g���g�p�\�ȏ�Ԃɂ��邱�Ƃ��m�F
+    // AP 情報保持リストが使用可能な状態にあることを確認
     if ((pHeader != NULL) && (w->config.nbdbuffer > sizeof(WCMApListHeader)))
     {
-        // �����u���b�N���m�ۉ\���v�Z
+        // いくつブロックを確保可能か計算
         u32 maxBlock = (w->config.nbdbuffer - sizeof(WCMApListHeader)) / sizeof(WCMApList);
 
-        // �ЂƂł��u���b�N���m�ۉ\��
+        // ひとつでもブロックを確保可能か
         if (maxBlock > 0)
         {
             s32 i;
 
-            // �]�胁�����u���b�N�����邩
+            // 余剰メモリブロックがあるか
             if (maxBlock > pHeader->count)
             {
-                // �]�胁�����u���b�N������
+                // 余剰メモリブロックを検索
                 for (i = 0; i < maxBlock; i++)
                 {
                     p = (WCMApList *) ((u32) pHeader + sizeof(WCMApListHeader) + (i * sizeof(WCMApList)));
@@ -369,11 +369,11 @@ static WCMApList* WcmAllocApList(void)
 
                 if (i < maxBlock)
                 {
-                    // �������u���b�N��"�g�p��"�ɕύX
+                    // メモリブロックを"使用中"に変更
                     p->state = WCM_APLIST_BLOCK_OCCUPY;
                     p->index = pHeader->count;
 
-                    // ���X�g�̍Ō���ɐV�K�Ɋm�ۂ����u���b�N��ǉ�
+                    // リストの最後尾に新規に確保したブロックを追加
                     p->next = NULL;
                     p->previous = pHeader->tail;
                     pHeader->tail = p;
@@ -386,7 +386,7 @@ static WCMApList* WcmAllocApList(void)
                         pHeader->head = p;
                     }
 
-                    // ���X�g�����C���N�������g
+                    // リスト数をインクリメント
                     pHeader->count++;
                 }
             }
@@ -399,13 +399,13 @@ static WCMApList* WcmAllocApList(void)
 /*---------------------------------------------------------------------------*
   Name:         WcmFreeApList
 
-  Description:  AP ���ێ����X�g�̈悩�犄�蓖�Ă��Ă��� AP �����Ǘ�����
-                �u���b�N��������čė��p�ł����Ԃɖ߂��B
-                �w�肳�ꂽ�u���b�N�����݂��Ȃ��ꍇ�ȂǁA����Ƀu���b�N���������
-                �s���Ȃ��ꍇ�ł������ʒm���Ȃ��B
-    NOTICE:     ���X�g�Ǘ��̗���������߂ɑ��݂��A�����ł͎g�p����Ă��Ȃ��B
+  Description:  AP 情報保持リスト領域から割り当てられている AP 情報を管理する
+                ブロックを解放して再利用できる状態に戻す。
+                指定されたブロックが存在しない場合など、正常にブロック解放処理を
+                行えない場合でも何も通知しない。
+    NOTICE:     リスト管理の例を示すために存在し、内部では使用されていない。
 
-  Arguments:    aplist  -   ������� AP ���Ǘ��u���b�N�ւ̃|�C���^�B
+  Arguments:    aplist  -   解放する AP 情報管理ブロックへのポインタ。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -415,22 +415,22 @@ static void WcmFreeApList(WCMApList* aplist)
     WCMApListHeader*    pHeader = (WCMApListHeader *) (w->config.pbdbuffer);
     WCMApList*          p;
 
-    // �p�����[�^���m�F
+    // パラメータを確認
     if (aplist == NULL)
     {
-        return; // �p�����[�^�ُ�
+        return; // パラメータ異常
     }
 
-    // AP ���ێ����X�g���g�p�\�ȏ�Ԃɂ��邱�Ƃ��m�F
+    // AP 情報保持リストが使用可能な状態にあることを確認
     if ((pHeader != NULL) && (w->config.nbdbuffer > sizeof(WCMApListHeader)))
     {
-        // �|�C���^�̈�v���� AP���Ǘ��u���b�N�����X�g���猟��
+        // ポインタの一致する AP情報管理ブロックをリストから検索
         p = pHeader->head;
         while (p)
         {
             if (p == aplist)
             {
-                // ���X�g���珜��
+                // リストから除去
                 if (aplist->previous)
                 {
                     ((WCMApList *) (aplist->previous))->next = aplist->next;
@@ -449,7 +449,7 @@ static void WcmFreeApList(WCMApList* aplist)
                     pHeader->tail = aplist->previous;
                 }
 
-                // ���������u���b�N�� index �������p��( index �̎�������h���� )
+                // 除去したブロックの index を引き継ぎ( index の歯抜けを防ぐ為 )
                 if (pHeader->count > 0)
                 {
                     u32 index = aplist->index;
@@ -463,7 +463,7 @@ static void WcmFreeApList(WCMApList* aplist)
                     pHeader->count--;
                 }
 
-                // �g�p���Ă����u���b�N�����
+                // 使用していたブロックを解放
                 MI_CpuClear8(aplist, sizeof(WCMApList));
             }
 
@@ -475,71 +475,71 @@ static void WcmFreeApList(WCMApList* aplist)
 /*---------------------------------------------------------------------------*
   Name:         WcmGetOldestApList
 
-  Description:  AP ���ێ����X�g�̈���ɊǗ�����Ă��� AP ��񂩂�A�ł��Â���
-                �o�^���ꂽ AP ���Ǘ��u���b�N����������B
+  Description:  AP 情報保持リスト領域内に管理されている AP 情報から、最も古くに
+                登録された AP 情報管理ブロックを検索する。
 
   Arguments:    None.
 
-  Returns:      WCMApList*  -   AP ���Ǘ��u���b�N�ւ̃|�C���^��Ԃ��B
-                                ���X�g�Ɉ�� AP ��񂪓o�^����Ă��Ȃ��ꍇ�ɂ�
-                                NULL ��Ԃ��B
+  Returns:      WCMApList*  -   AP 情報管理ブロックへのポインタを返す。
+                                リストに一つも AP 情報が登録されていない場合には
+                                NULL を返す。
  *---------------------------------------------------------------------------*/
 static WCMApList* WcmGetOldestApList(void)
 {
     WCMWork*        w = WCMi_GetSystemWork();
     WCMApListHeader*    pHeader = (WCMApListHeader *) (w->config.pbdbuffer);
 
-    // AP ���ێ����X�g���g�p�\�ȏ�Ԃɂ��邱�Ƃ��m�F
+    // AP 情報保持リストが使用可能な状態にあることを確認
     if ((pHeader != NULL) && (w->config.nbdbuffer > sizeof(WCMApListHeader)))
     {
-        // ���X�g�̐擪�� AP ���Ǘ��u���b�N���Ō�
+        // リストの先頭の AP 情報管理ブロックが最古
         return pHeader->head;
     }
 
-    // �ُ�I��
+    // 異常終了
     return NULL;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WcmGetLastApList
 
-  Description:  AP ���ێ����X�g�̈���ɊǗ�����Ă��� AP ��񂩂�A�ł��V����
-                �o�^���ꂽ AP ���Ǘ��u���b�N����������B
-    NOTICE:     ���X�g�Ǘ��̗���������߂ɑ��݂��A�����ł͎g�p����Ă��Ȃ��B
+  Description:  AP 情報保持リスト領域内に管理されている AP 情報から、最も新しく
+                登録された AP 情報管理ブロックを検索する。
+    NOTICE:     リスト管理の例を示すために存在し、内部では使用されていない。
 
   Arguments:    None.
 
-  Returns:      WCMApList*  -   AP ���Ǘ��u���b�N�ւ̃|�C���^��Ԃ��B
-                                ���X�g�Ɉ�� AP ��񂪓o�^����Ă��Ȃ��ꍇ�ɂ�
-                                NULL ��Ԃ��B
+  Returns:      WCMApList*  -   AP 情報管理ブロックへのポインタを返す。
+                                リストに一つも AP 情報が登録されていない場合には
+                                NULL を返す。
  *---------------------------------------------------------------------------*/
 static WCMApList* WcmGetLastApList(void)
 {
     WCMWork*        w = WCMi_GetSystemWork();
     WCMApListHeader*    pHeader = (WCMApListHeader *) (w->config.pbdbuffer);
 
-    // AP ���ێ����X�g���g�p�\�ȏ�Ԃɂ��邱�Ƃ��m�F
+    // AP 情報保持リストが使用可能な状態にあることを確認
     if ((pHeader != NULL) && (w->config.nbdbuffer > sizeof(WCMApListHeader)))
     {
-        // ���X�g�̍Ō���� AP ���Ǘ��u���b�N���ŐV
+        // リストの最後尾の AP 情報管理ブロックが最新
         return pHeader->tail;
     }
 
-    // �ُ�I��
+    // 異常終了
     return NULL;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WcmSearchApList
 
-  Description:  AP ���ێ����X�g�̈���ɊǗ�����Ă��� AP ��񂩂�A�w�肳�ꂽ
-                BSSID ������ AP ���Ǘ��u���b�N����������B
+  Description:  AP 情報保持リスト領域内に管理されている AP 情報から、指定された
+                BSSID を持つ AP 情報管理ブロックを検索する。
 
-  Arguments:    bssid       -   ���������� BSSID �ւ̃|�C���^���w�肷��B
+  Arguments:    bssid       -   検索条件の BSSID へのポインタを指定する。
 
-  Returns:      WCMApList*  -   AP ���Ǘ��u���b�N�ւ̃|�C���^��Ԃ��B
-                                BSSID �̍��v���� AP ��񂪑��݂��Ȃ��ꍇ�ɂ�
-                                NULL ��Ԃ��B
+  Returns:      WCMApList*  -   AP 情報管理ブロックへのポインタを返す。
+                                BSSID の合致する AP 情報が存在しない場合には
+                                NULL を返す。
  *---------------------------------------------------------------------------*/
 static WCMApList* WcmSearchApList(u8* bssid)
 {
@@ -547,16 +547,16 @@ static WCMApList* WcmSearchApList(u8* bssid)
     WCMApListHeader*    pHeader = (WCMApListHeader *) (w->config.pbdbuffer);
     WCMApList*          p = NULL;
 
-    // �p�����[�^�m�F
+    // パラメータ確認
     if (bssid == NULL)
     {
-        return NULL;    // �p�����[�^�ُ�
+        return NULL;    // パラメータ異常
     }
 
-    // AP ���ێ����X�g���g�p�\�ȏ�Ԃɂ��邱�Ƃ��m�F
+    // AP 情報保持リストが使用可能な状態にあることを確認
     if ((pHeader != NULL) && (w->config.nbdbuffer > sizeof(WCMApListHeader)))
     {
-        // BSSID �̈�v���� AP ���Ǘ��u���b�N������
+        // BSSID の一致する AP 情報管理ブロックを検索
         p = pHeader->head;
         while (p)
         {
@@ -575,14 +575,14 @@ static WCMApList* WcmSearchApList(u8* bssid)
 /*---------------------------------------------------------------------------*
   Name:         WcmSearchIndexedApList
 
-  Description:  AP ���ێ����X�g�̈���ɊǗ�����Ă��� AP ��񂩂�A�w�肳�ꂽ
-                index ������ AP ���Ǘ��u���b�N����������B
+  Description:  AP 情報保持リスト領域内に管理されている AP 情報から、指定された
+                index を持つ AP 情報管理ブロックを検索する。
 
-  Arguments:    index       -   index ���w�肷��B
+  Arguments:    index       -   index を指定する。
 
-  Returns:      WCMApList*  -   AP ���Ǘ��u���b�N�ւ̃|�C���^��Ԃ��B
-                                index �̍��v���� AP ��񂪑��݂��Ȃ��ꍇ�ɂ�
-                                NULL ��Ԃ��B
+  Returns:      WCMApList*  -   AP 情報管理ブロックへのポインタを返す。
+                                index の合致する AP 情報が存在しない場合には
+                                NULL を返す。
  *---------------------------------------------------------------------------*/
 static WCMApList* WcmSearchIndexedApList(u32 index)
 {
@@ -590,13 +590,13 @@ static WCMApList* WcmSearchIndexedApList(u32 index)
     WCMApListHeader*    pHeader = (WCMApListHeader *) (w->config.pbdbuffer);
     WCMApList*          p = NULL;
 
-    // AP ���ێ����X�g���g�p�\�ȏ�Ԃɂ��邱�Ƃ��m�F
+    // AP 情報保持リストが使用可能な状態にあることを確認
     if ((pHeader != NULL) && (w->config.nbdbuffer > sizeof(WCMApListHeader)))
     {
         p = pHeader->head;
         while (p)
         {
-            // index �̈�v���� AP ���Ǘ��u���b�N������
+            // index の一致する AP 情報管理ブロックを検索
             if (p->index == index)
             {
                 break;
@@ -612,12 +612,12 @@ static WCMApList* WcmSearchIndexedApList(u32 index)
 /*---------------------------------------------------------------------------*
   Name:         WcmAppendApList
 
-  Description:  AP ���ێ����X�g���ŊǗ�����Ă��� AP ���Ǘ��u���b�N���ŐV
-                ���Ƃ��ēo�^�������B���̍ہA�u���b�N�ɗ^�����Ă��� index ��
-                �ύX����Ȃ��B���X�g�ɊǗ�����Ă��Ȃ��ꍇ�ɂ͐V�K�ɒǉ����ꂽ
-                �u���b�N�Ƃ��Ĉ����B
+  Description:  AP 情報保持リスト内で管理されている AP 情報管理ブロックを最新
+                情報として登録し直す。この際、ブロックに与えられている index は
+                変更されない。リストに管理されていない場合には新規に追加された
+                ブロックとして扱う。
 
-  Arguments:    aplist  -   �o�^������ AP ���Ǘ��u���b�N�ւ̃|�C���^���w��B
+  Arguments:    aplist  -   登録し直す AP 情報管理ブロックへのポインタを指定。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -627,22 +627,22 @@ static void WcmAppendApList(WCMApList* aplist)
     WCMApListHeader*    pHeader = (WCMApListHeader *) (w->config.pbdbuffer);
     WCMApList*          p = NULL;
 
-    // �p�����[�^�m�F
+    // パラメータ確認
     if (aplist == NULL)
     {
-        return; // �p�����[�^�ُ�
+        return; // パラメータ異常
     }
 
-    // AP ���ێ����X�g���g�p�\�ȏ�Ԃɂ��邱�Ƃ��m�F
+    // AP 情報保持リストが使用可能な状態にあることを確認
     if ((pHeader != NULL) && (w->config.nbdbuffer > sizeof(WCMApListHeader)))
     {
-        // ���Ƀ��X�g�ɑ��݂��邱�Ƃ��m�F
+        // 既にリストに存在することを確認
         p = pHeader->head;
         while (p)
         {
             if (p == aplist)
             {
-                // ��U���X�g���珜��
+                // 一旦リストから除去
                 if (p->previous)
                 {
                     ((WCMApList *) (p->previous))->next = p->next;
@@ -666,7 +666,7 @@ static void WcmAppendApList(WCMApList* aplist)
             p = p->next;
         }
 
-        // ���X�g�̍Ō���ɒǉ�
+        // リストの最後尾に追加
         aplist->next = NULL;
         aplist->previous = pHeader->tail;
         pHeader->tail = aplist;
@@ -679,7 +679,7 @@ static void WcmAppendApList(WCMApList* aplist)
             pHeader->head = aplist;
         }
 
-        // �V�K�ɒǉ������ꍇ�̓��X�g�����C���N�������g
+        // 新規に追加した場合はリスト数もインクリメント
         if (p == NULL)
         {
             aplist->index = pHeader->count;

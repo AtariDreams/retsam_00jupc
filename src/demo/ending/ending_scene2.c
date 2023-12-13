@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_scene2.c
- * @brief	ƒV[ƒ“‚QFƒƒCƒ“
+ * @brief	ã‚·ãƒ¼ãƒ³ï¼’ï¼šãƒ¡ã‚¤ãƒ³
  * @author	matsuda
- * @date	2008.04.10(–Ø)
+ * @date	2008.04.10(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -29,54 +29,54 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///”wŒiƒXƒNƒ[ƒ‹‘¬“xX(fx32)
+///èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦X(fx32)
 #define MAP_SCENE2_BG_SPEED			(0x60)
 
-///EVY‰ÁZ’l(‰ºˆÊ8ƒrƒbƒg¬”)
+///EVYåŠ ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define MAP_SCENE2_ADD_EVY			(0x0200)
 
-///ƒpƒŒƒbƒgƒAƒjƒ“]‘—ˆÊ’u
+///ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡è»¢é€ä½ç½®
 #define MAP_SCENE2_PALANM_NO		(2*16)
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒLƒƒƒ‚ƒ“®ì§Œä\‘¢‘Ì
+///ã‚­ãƒ£ãƒ¢ãƒ¡å‹•ä½œåˆ¶å¾¡æ§‹é€ ä½“
 typedef struct{
-	s32 start_wait;		///<“oê‚Ü‚Å‚ÌƒEƒFƒCƒg
-	fx32 start_furihaba_x;		///<“oê‚Ì‚Ó‚è•X
-	fx32 start_furihaba_y;		///<“oê‚Ì‚Ó‚è•Y
-	fx32 start_add_theta;		///<“oê‚Ì‘¬“x
-	fx32 start_theta;			///<“oê‚Ìtheta‰Šú’l
-	fx32 start_sub_theta_time;	///<theta‚ª‚±‚ÌŠÔ‚ğ‰z‚¦‚½‚çadd_theta‚ğŒ¸‘¬‚µn‚ß‚é
-	fx32 start_end_theta;		///<theta‚ª‚±‚Ì’l‚ğ’´‚¦‚½‚ç’â~
-	fx32 start_sub_theta;		///<“oê‚ÌŒ¸‘¬—Í
-	fx32 start_low_theta;		///<“oê‚ÌÅ’á‘¬“x
+	s32 start_wait;		///<ç™»å ´ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+	fx32 start_furihaba_x;		///<ç™»å ´æ™‚ã®ãµã‚Šå¹…X
+	fx32 start_furihaba_y;		///<ç™»å ´æ™‚ã®ãµã‚Šå¹…Y
+	fx32 start_add_theta;		///<ç™»å ´æ™‚ã®é€Ÿåº¦
+	fx32 start_theta;			///<ç™»å ´æ™‚ã®thetaåˆæœŸå€¤
+	fx32 start_sub_theta_time;	///<thetaãŒã“ã®æ™‚é–“ã‚’è¶ŠãˆãŸã‚‰add_thetaã‚’æ¸›é€Ÿã—å§‹ã‚ã‚‹
+	fx32 start_end_theta;		///<thetaãŒã“ã®å€¤ã‚’è¶…ãˆãŸã‚‰åœæ­¢
+	fx32 start_sub_theta;		///<ç™»å ´æ™‚ã®æ¸›é€ŸåŠ›
+	fx32 start_low_theta;		///<ç™»å ´æ™‚ã®æœ€ä½é€Ÿåº¦
 	
-	fx32 move_furihaba_x;		///<’â‘Ø“®ì‚Ì‚Ó‚è•X
-	fx32 move_furihaba_y;		///<’â‘Ø“®ì‚Ì‚Ó‚è•Y
-	fx32 move_add_theta_x;		///<’â‘Ø“®ì‚Ìtheta‘¬“xX
-	fx32 move_add_theta_y;		///<’â‘Ø“®ì‚Ìtheta‘¬“xY
+	fx32 move_furihaba_x;		///<åœæ»å‹•ä½œã®ãµã‚Šå¹…X
+	fx32 move_furihaba_y;		///<åœæ»å‹•ä½œã®ãµã‚Šå¹…Y
+	fx32 move_add_theta_x;		///<åœæ»å‹•ä½œã®thetaé€Ÿåº¦X
+	fx32 move_add_theta_y;		///<åœæ»å‹•ä½œã®thetaé€Ÿåº¦Y
 
-	fx32 escape_furihaba_x;		///<“¦‚°‚é‚Ì‚Ó‚è•X
-	fx32 escape_furihaba_y;		///<“¦‚°‚é‚Ì‚Ó‚è•Y
-	fx32 escape_add_theta;		///<“¦‚°‚é‚Ì‘¬“x
+	fx32 escape_furihaba_x;		///<é€ƒã’ã‚‹æ™‚ã®ãµã‚Šå¹…X
+	fx32 escape_furihaba_y;		///<é€ƒã’ã‚‹æ™‚ã®ãµã‚Šå¹…Y
+	fx32 escape_add_theta;		///<é€ƒã’ã‚‹æ™‚ã®é€Ÿåº¦
 	
-	fx32 end_x;			///<“’…À•WX
-	fx32 end_y;			///<“’…À•WY
+	fx32 end_x;			///<åˆ°ç€åº§æ¨™X
+	fx32 end_y;			///<åˆ°ç€åº§æ¨™Y
 	
-	fx32 add_up;				///<–ˆƒtƒŒ[ƒ€­‚µ‚¸‚Âã‚ÉˆÚ“®‚³‚¹‚Ä‚¢‚­
+	fx32 add_up;				///<æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å°‘ã—ãšã¤ä¸Šã«ç§»å‹•ã•ã›ã¦ã„ã
 	
-	s32 add_rotate;		///<‰ñ“]‰ÁZ’l
-	u16 add_rotate_num;	///<‰½ƒtƒŒ[ƒ€‰ñ“]‚ğ‰ÁZ‚µ‚½‚çˆø‚«•Ô‚·‚©
+	s32 add_rotate;		///<å›è»¢åŠ ç®—å€¤
+	u16 add_rotate_num;	///<ä½•ãƒ•ãƒ¬ãƒ¼ãƒ å›è»¢ã‚’åŠ ç®—ã—ãŸã‚‰å¼•ãè¿”ã™ã‹
 	
 	u16 padding;
 }KYAMOME_MOVE_DATA;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void MapScene2_KyamomeInit(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2);
 static void MapScene2_KyamomeUpdate(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2);
@@ -85,68 +85,68 @@ static void MapScene2_BGPalAnm(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2);
 static void KyamomeMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2, CATS_ACT_PTR cap, int no);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ƒLƒƒƒ‚ƒ“®ìƒf[ƒ^
+///ã‚­ãƒ£ãƒ¢ãƒ¡å‹•ä½œãƒ‡ãƒ¼ã‚¿
 static const KYAMOME_MOVE_DATA KyamomeMoveData[] = {
 	{
-		90,							//“oê‚Ü‚Å‚ÌƒEƒFƒCƒg
-		160 * FX32_ONE,						///<“oê‚Ì‚Ó‚è•X
-		32 * FX32_ONE,							///<“oê‚Ì‚Ó‚è•Y
-		0x2700,						///<“oê‚Ì‘¬“x
-		0*FX32_ONE,				///<“oê‚Ìtheta‰Šú’l
-		70*FX32_ONE,				///<theta‚ª‚±‚ÌŠÔ‚ğ‰z‚¦‚½‚çadd_theta‚ğŒ¸‘¬‚µn‚ß‚é
-		90*FX32_ONE,				///<theta‚ª‚±‚Ì’l‚ğ’´‚¦‚½‚ç’â~
-		0x200,						///<“oê‚ÌŒ¸‘¬—Í
-		0x1800,						///<“oê‚ÌÅ’á‘¬“x
-		-24*FX32_ONE,				///<’â‘Ø“®ì‚Ì‚Ó‚è•X
-		7*FX32_ONE,				///<’â‘Ø“®ì‚Ì‚Ó‚è•Y
-		0x1b00,						///<’â‘Ø“®ì‚Ìtheta‘¬“xX
-		0x7800,						///<’â‘Ø“®ì‚Ìtheta‘¬“xY
-		160 * FX32_ONE,				///<“¦‚°‚é‚Ì‚Ó‚è•X
-		60 * FX32_ONE,				///<“¦‚°‚é‚Ì‚Ó‚è•Y
-		0x3000,						///<“¦‚°‚é‚Ì‘¬“x
+		90,							//ç™»å ´ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+		160 * FX32_ONE,						///<ç™»å ´æ™‚ã®ãµã‚Šå¹…X
+		32 * FX32_ONE,							///<ç™»å ´æ™‚ã®ãµã‚Šå¹…Y
+		0x2700,						///<ç™»å ´æ™‚ã®é€Ÿåº¦
+		0*FX32_ONE,				///<ç™»å ´æ™‚ã®thetaåˆæœŸå€¤
+		70*FX32_ONE,				///<thetaãŒã“ã®æ™‚é–“ã‚’è¶ŠãˆãŸã‚‰add_thetaã‚’æ¸›é€Ÿã—å§‹ã‚ã‚‹
+		90*FX32_ONE,				///<thetaãŒã“ã®å€¤ã‚’è¶…ãˆãŸã‚‰åœæ­¢
+		0x200,						///<ç™»å ´æ™‚ã®æ¸›é€ŸåŠ›
+		0x1800,						///<ç™»å ´æ™‚ã®æœ€ä½é€Ÿåº¦
+		-24*FX32_ONE,				///<åœæ»å‹•ä½œã®ãµã‚Šå¹…X
+		7*FX32_ONE,				///<åœæ»å‹•ä½œã®ãµã‚Šå¹…Y
+		0x1b00,						///<åœæ»å‹•ä½œã®thetaé€Ÿåº¦X
+		0x7800,						///<åœæ»å‹•ä½œã®thetaé€Ÿåº¦Y
+		160 * FX32_ONE,				///<é€ƒã’ã‚‹æ™‚ã®ãµã‚Šå¹…X
+		60 * FX32_ONE,				///<é€ƒã’ã‚‹æ™‚ã®ãµã‚Šå¹…Y
+		0x3000,						///<é€ƒã’ã‚‹æ™‚ã®é€Ÿåº¦
 
-		(128-54) * FX32_ONE,		//“’…À•WX
-		(96+16) * FX32_ONE,			//“’…À•WY
-		0x0080,						///<–ˆƒtƒŒ[ƒ€­‚µ‚¸‚Âã‚ÉˆÚ“®‚³‚¹‚Ä‚¢‚­
-		80,				///<‰ñ“]‰ÁZ’l
-		30,				///<‰½ƒtƒŒ[ƒ€‰ñ“]‚ğ‰ÁZ‚µ‚½‚çˆø‚«•Ô‚·‚©
+		(128-54) * FX32_ONE,		//åˆ°ç€åº§æ¨™X
+		(96+16) * FX32_ONE,			//åˆ°ç€åº§æ¨™Y
+		0x0080,						///<æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å°‘ã—ãšã¤ä¸Šã«ç§»å‹•ã•ã›ã¦ã„ã
+		80,				///<å›è»¢åŠ ç®—å€¤
+		30,				///<ä½•ãƒ•ãƒ¬ãƒ¼ãƒ å›è»¢ã‚’åŠ ç®—ã—ãŸã‚‰å¼•ãè¿”ã™ã‹
 	},
 	{
-		100,							//“oê‚Ü‚Å‚ÌƒEƒFƒCƒg
-		-160 * FX32_ONE,						///<“oê‚Ì‚Ó‚è•X
-		-48 * FX32_ONE,							///<“oê‚Ì‚Ó‚è•Y
-		0x2400,						///<“oê‚Ì‘¬“x
-		0*FX32_ONE,				///<“oê‚Ìtheta‰Šú’l
-		80*FX32_ONE,				///<theta‚ª‚±‚ÌŠÔ‚ğ‰z‚¦‚½‚çadd_theta‚ğŒ¸‘¬‚µn‚ß‚é
-		90*FX32_ONE,				///<theta‚ª‚±‚Ì’l‚ğ’´‚¦‚½‚ç’â~
-		0x40,						///<“oê‚ÌŒ¸‘¬—Í
-		0x1800,						///<“oê‚ÌÅ’á‘¬“x
-		24*FX32_ONE,				///<’â‘Ø“®ì‚Ì‚Ó‚è•X
-		6*FX32_ONE,				///<’â‘Ø“®ì‚Ì‚Ó‚è•Y
-		0x1d00,						///<’â‘Ø“®ì‚Ìtheta‘¬“xX
-		0x7000,						///<’â‘Ø“®ì‚Ìtheta‘¬“xY
-		-160 * FX32_ONE,			///<“¦‚°‚é‚Ì‚Ó‚è•X
-		-52 * FX32_ONE,				///<“¦‚°‚é‚Ì‚Ó‚è•Y
-		0x2800,						///<“¦‚°‚é‚Ì‘¬“x
+		100,							//ç™»å ´ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+		-160 * FX32_ONE,						///<ç™»å ´æ™‚ã®ãµã‚Šå¹…X
+		-48 * FX32_ONE,							///<ç™»å ´æ™‚ã®ãµã‚Šå¹…Y
+		0x2400,						///<ç™»å ´æ™‚ã®é€Ÿåº¦
+		0*FX32_ONE,				///<ç™»å ´æ™‚ã®thetaåˆæœŸå€¤
+		80*FX32_ONE,				///<thetaãŒã“ã®æ™‚é–“ã‚’è¶ŠãˆãŸã‚‰add_thetaã‚’æ¸›é€Ÿã—å§‹ã‚ã‚‹
+		90*FX32_ONE,				///<thetaãŒã“ã®å€¤ã‚’è¶…ãˆãŸã‚‰åœæ­¢
+		0x40,						///<ç™»å ´æ™‚ã®æ¸›é€ŸåŠ›
+		0x1800,						///<ç™»å ´æ™‚ã®æœ€ä½é€Ÿåº¦
+		24*FX32_ONE,				///<åœæ»å‹•ä½œã®ãµã‚Šå¹…X
+		6*FX32_ONE,				///<åœæ»å‹•ä½œã®ãµã‚Šå¹…Y
+		0x1d00,						///<åœæ»å‹•ä½œã®thetaé€Ÿåº¦X
+		0x7000,						///<åœæ»å‹•ä½œã®thetaé€Ÿåº¦Y
+		-160 * FX32_ONE,			///<é€ƒã’ã‚‹æ™‚ã®ãµã‚Šå¹…X
+		-52 * FX32_ONE,				///<é€ƒã’ã‚‹æ™‚ã®ãµã‚Šå¹…Y
+		0x2800,						///<é€ƒã’ã‚‹æ™‚ã®é€Ÿåº¦
 
-		(128+62) * FX32_ONE,		//“’…À•WX
-		(96+10) * FX32_ONE,			//“’…À•WY
-		0x0080,						///<–ˆƒtƒŒ[ƒ€­‚µ‚¸‚Âã‚ÉˆÚ“®‚³‚¹‚Ä‚¢‚­
-		70,				///<‰ñ“]‰ÁZ’l
-		35,				///<‰½ƒtƒŒ[ƒ€‰ñ“]‚ğ‰ÁZ‚µ‚½‚çˆø‚«•Ô‚·‚©
+		(128+62) * FX32_ONE,		//åˆ°ç€åº§æ¨™X
+		(96+10) * FX32_ONE,			//åˆ°ç€åº§æ¨™Y
+		0x0080,						///<æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å°‘ã—ãšã¤ä¸Šã«ç§»å‹•ã•ã›ã¦ã„ã
+		70,				///<å›è»¢åŠ ç®—å€¤
+		35,				///<ä½•ãƒ•ãƒ¬ãƒ¼ãƒ å›è»¢ã‚’åŠ ç®—ã—ãŸã‚‰å¼•ãè¿”ã™ã‹
 	},
 };
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“‚QFƒƒCƒ“
+ * @brief   ã‚·ãƒ¼ãƒ³ï¼’ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   emw		ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sw		ƒV[ƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   emw		ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sw		ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:Œp‘±’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ç¶™ç¶šä¸­
  */
 //--------------------------------------------------------------
 BOOL MapScene2_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
@@ -195,7 +195,7 @@ BOOL MapScene2_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒ‚ƒ‰Šúİ’è
+ * @brief   ã‚­ãƒ£ãƒ¢ãƒ¡åˆæœŸè¨­å®š
  *
  * @param   emw		
  */
@@ -225,13 +225,13 @@ static void MapScene2_KyamomeInit(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map
 			sw_map2->kyamome_work[tblno].x + sw_map2->kyamome_work[tblno].offset_x, 
 			sw_map2->kyamome_work[tblno].y + sw_map2->kyamome_work[tblno].offset_y,
 			ENDING_SUB_ACTOR_DISTANCE);
-		CATS_ObjectAffineSetCap(emw->cap[i], CLACT_AFFINE_DOUBLE);	//”{ŠpƒAƒtƒBƒ“
+		CATS_ObjectAffineSetCap(emw->cap[i], CLACT_AFFINE_DOUBLE);	//å€è§’ã‚¢ãƒ•ã‚£ãƒ³
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒ‚ƒXVˆ—
+ * @brief   ã‚­ãƒ£ãƒ¢ãƒ¡æ›´æ–°å‡¦ç†
  *
  * @param   emw		
  */
@@ -247,12 +247,12 @@ static void MapScene2_KyamomeUpdate(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_m
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒ‚ƒ“®ìˆ—
+ * @brief   ã‚­ãƒ£ãƒ¢ãƒ¡å‹•ä½œå‡¦ç†
  *
  * @param   emw			
  * @param   sw_map2		
- * @param   cap			‘ÎÛ‚Ìƒtƒƒ“ƒeƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   no			ƒtƒƒ“ƒe”Ô†
+ * @param   cap			å¯¾è±¡ã®ãƒ•ãƒ¯ãƒ³ãƒ†ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no			ãƒ•ãƒ¯ãƒ³ãƒ†ç•ªå·
  */
 //--------------------------------------------------------------
 static void KyamomeMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2, CATS_ACT_PTR cap, int no)
@@ -267,11 +267,11 @@ static void KyamomeMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2, CATS_AC
 	}
 	
 	switch(kyamome->seq){
-	case 0:		//“oê
+	case 0:		//ç™»å ´
 		kyamome->seq++;
 		//break;
-	case 1:		//“oê“®ì
-		if(kyamome->theta > movedata->start_sub_theta_time){	//Œ¸‘¬
+	case 1:		//ç™»å ´å‹•ä½œ
+		if(kyamome->theta > movedata->start_sub_theta_time){	//æ¸›é€Ÿ
 			kyamome->add_theta -= movedata->start_sub_theta;
 			if(kyamome->add_theta < movedata->start_low_theta){
 				kyamome->add_theta = movedata->start_low_theta;
@@ -285,7 +285,7 @@ static void KyamomeMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2, CATS_AC
 		kyamome->offset_x = FX_Mul(Sin360FX(kyamome->theta), movedata->start_furihaba_x);
 		kyamome->offset_y = FX_Mul(Cos360FX(kyamome->theta), movedata->start_furihaba_y);
 		break;
-	case 2:		//ƒWƒOƒUƒO
+	case 2:		//ã‚¸ã‚°ã‚¶ã‚°
 		kyamome->x += kyamome->offset_x;
 		kyamome->y += kyamome->offset_y;
 		kyamome->offset_x = 0;
@@ -294,7 +294,7 @@ static void KyamomeMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2, CATS_AC
 		kyamome->add_theta_y = movedata->move_add_theta_y;
 		kyamome->seq++;
 		//break;
-	case 3:		//ƒWƒOƒUƒO“®ì
+	case 3:		//ã‚¸ã‚°ã‚¶ã‚°å‹•ä½œ
 		kyamome->theta_x += kyamome->add_theta_x;
 		kyamome->theta_y += kyamome->add_theta_y;
 		if(kyamome->theta_x >= (360 << FX32_SHIFT)){
@@ -306,7 +306,7 @@ static void KyamomeMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2, CATS_AC
 		kyamome->offset_x = FX_Mul(Sin360FX(kyamome->theta_x), movedata->move_furihaba_x);
 		kyamome->offset_y = FX_Mul(Sin360FX(kyamome->theta_y), movedata->move_furihaba_y);
 		if(emw->main_counter >= ENDING_COUNTER_SCENE2_KYAMOME_ESCAPE){
-			//“¦‚°‚é‘O‚É¡‚ÌƒWƒOƒUƒOˆÚ“®‚ğŒ¸‘¬‚³‚¹‚é
+			//é€ƒã’ã‚‹å‰ã«ä»Šã®ã‚¸ã‚°ã‚¶ã‚°ç§»å‹•ã‚’æ¸›é€Ÿã•ã›ã‚‹
 			kyamome->add_theta_x -= movedata->move_add_theta_x / 20;
 			kyamome->add_theta_y -= movedata->move_add_theta_y / 20;
 			if(kyamome->add_theta_x <= movedata->move_add_theta_x / 20){
@@ -314,7 +314,7 @@ static void KyamomeMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2, CATS_AC
 			}
 		}
 		break;
-	case 4:		//“¦‚°‚é
+	case 4:		//é€ƒã’ã‚‹
 		kyamome->x = (kyamome->x + kyamome->offset_x) - movedata->escape_furihaba_x;
 		kyamome->y = kyamome->y + kyamome->offset_y;
 		kyamome->theta = 0;
@@ -325,7 +325,7 @@ static void KyamomeMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2, CATS_AC
 
 		kyamome->seq++;
 		//break;
-	case 5:		//“¦‚°‚é“®ì
+	case 5:		//é€ƒã’ã‚‹å‹•ä½œ
 		kyamome->theta += kyamome->add_theta;
 		kyamome->offset_x = FX_Mul(Cos360FX(kyamome->theta), movedata->escape_furihaba_x);
 		kyamome->offset_y = FX_Mul(Sin360FX(kyamome->theta), movedata->escape_furihaba_y);
@@ -337,7 +337,7 @@ static void KyamomeMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2, CATS_AC
 		break;
 	}
 
-	//ƒAƒtƒBƒ“İ’è
+	//ã‚¢ãƒ•ã‚£ãƒ³è¨­å®š
 	if(kyamome->rotate_dir == 0){
 		CATS_ObjectRotationAddCap(cap, movedata->add_rotate);
 	}
@@ -359,10 +359,10 @@ static void KyamomeMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2, CATS_AC
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiBGƒXƒNƒ[ƒ‹
+ * @brief   èƒŒæ™¯BGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
  * @param   emw			
- * @param   sw_map2		ƒ}ƒbƒvƒV[ƒ“0ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sw_map2		ãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³0ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void MapScene2_BGScroll(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2)
@@ -374,7 +374,7 @@ static void MapScene2_BGScroll(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP2 *sw_map2)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiƒpƒŒƒbƒgƒAƒjƒ
+ * @brief   èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
  *
  * @param   emw		
  * @param   sw_map2		

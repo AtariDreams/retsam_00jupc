@@ -40,20 +40,20 @@ extern "C" {
 //------------------------------------------------------------------------------
 //
 // NNSGfdPlttKey:
-// 32bit�̒l�ŁA8�o�C�g�P�ʂŃe�N�X�`���p���b�g�X���b�g�̗̈���w��ł���B
-// 0-0xffff�̒l�̓G���[�l�Ƃ��ė��p���邱�Ƃ��ł���i�T�C�Y��0�Ȃ��߁j
+// 32bitの値で、8バイト単位でテクスチャパレットスロットの領域を指定できる。
+// 0-0xffffの値はエラー値として利用することができる（サイズが0なため）
 //
 // 31                    16  15                         0
-// 3bit�E�V�t�g���ꂽ�T�C�Y  3bit�E�V�t�g���ꂽ�I�t�Z�b�g
+// 3bit右シフトされたサイズ  3bit右シフトされたオフセット
 //------------------------------------------------------------------------------
 typedef u32 NNSGfdPlttKey;
 
 
 //------------------------------------------------------------------------------
 // NNSGfdFuncAllocPlttVram
-// szByte:  �m�ۂ���T�C�Y���o�C�g�P�ʂŎw��
-// is4pltt: 4�F�p���b�g�̊i�[���\�łȂ���΂����Ȃ����ǂ���
-// opt:     �����ˑ��̈���(ex �O����m�ۂ���Ƃ���납��m�ۂ���Ƃ�)
+// szByte:  確保するサイズをバイト単位で指定
+// is4pltt: 4色パレットの格納が可能でなければいけないかどうか
+// opt:     実装依存の引数(ex 前から確保するとか後ろから確保するとか)
 //------------------------------------------------------------------------------
 typedef NNSGfdPlttKey (*NNSGfdFuncAllocPlttVram)(u32 szByte, BOOL is4pltt, u32 opt);
 
@@ -62,16 +62,16 @@ typedef NNSGfdPlttKey (*NNSGfdFuncAllocPlttVram)(u32 szByte, BOOL is4pltt, u32 o
 
 //------------------------------------------------------------------------------
 // NNSGfdFuncFreePlttVram
-// �L�[���w�肵�ăe�N�X�`���C���[�W�X���b�g�̈�̉�����s���B
-// is4pltt�̎w������Ȃ��Ă��B���ɂȂ�Ȃ��悤�Ȏ����ł���K�v������B
-// �Ԃ�l��0�Ő��탊�^�[���B���̑��͎����ˑ��̃G���[�B
+// キーを指定してテクスチャイメージスロット領域の解放を行う。
+// is4plttの指定をしなくても曖昧にならないような実装である必要がある。
+// 返り値は0で正常リターン。その他は実装依存のエラー。
 //------------------------------------------------------------------------------
 typedef int (*NNSGfdFuncFreePlttVram)(NNSGfdPlttKey plttKey);
 
 
 //------------------------------------------------------------------------------
 //
-// ���[�U�[�ɂ���ĕύX����邱�Ƃ�����B
+// ユーザーによって変更されることもある。
 //
 //------------------------------------------------------------------------------
 extern NNSGfdFuncAllocPlttVram  NNS_GfdDefaultFuncAllocPlttVram; 
@@ -80,7 +80,7 @@ extern NNSGfdFuncFreePlttVram   NNS_GfdDefaultFuncFreePlttVram;
 
 //------------------------------------------------------------------------------
 //
-// ���C�u�����R�[�h�͂��̊֐��o�R�ł̂݃A�N�Z�X���邱�ƂɂȂ�܂��B
+// ライブラリコードはこの関数経由でのみアクセスすることになります。
 //
 //------------------------------------------------------------------------------
 NNS_GFD_INLINE NNSGfdPlttKey
@@ -98,14 +98,14 @@ NNS_GfdFreePlttVram(NNSGfdPlttKey plttKey)
 
 //------------------------------------------------------------------------------
 //
-// NNSGfdPlttKey ���� �֘A
+// NNSGfdPlttKey 操作 関連
 //
 //
 //------------------------------------------------------------------------------
 
 
 //------------------------------------------------------------------------------
-// NNSGfdPlttKey �� �\���\�Ȃ悤�ɁA�؂�グ���T�C�Y���擾���܂��B
+// NNSGfdPlttKey が 表現可能なように、切り上げたサイズを取得します。
 NNS_GFD_INLINE u32
 NNSi_GfdGetPlttKeyRoundupSize( u32 size )
 {
@@ -121,11 +121,11 @@ NNSi_GfdGetPlttKeyRoundupSize( u32 size )
 NNS_GFD_INLINE NNSGfdPlttKey
 NNS_GfdMakePlttKey( u32 addr, u32 size )
 {
-    // �؎̂Č덷���������Ă��Ȃ����H
+    // 切捨て誤差が発生していないか？
     SDK_ASSERT( (addr & (u32)((0x1 << NNS_GFD_PLTTKEY_ADDR_SHIFT) - 1 )) == 0 );
     SDK_ASSERT( (size & (u32)((0x1 << NNS_GFD_PLTTKEY_SIZE_SHIFT) - 1 )) == 0 );
     
-    // �I�[�o�[�t���[�͔������Ă��Ȃ����H
+    // オーバーフローは発生していないか？
     SDK_ASSERT( ( (size >> NNS_GFD_PLTTKEY_SIZE_SHIFT) & ~NNS_GFD_PLTTMASK_16BIT ) == 0 );
     SDK_ASSERT( ( (addr >> NNS_GFD_PLTTKEY_ADDR_SHIFT) & ~NNS_GFD_PLTTMASK_16BIT ) == 0 );
     

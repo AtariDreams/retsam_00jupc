@@ -1,6 +1,6 @@
 /**
  *	@file	nmix_bag.c
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@–Ø‚ÌŽÀ‘ÜŽQÆ 
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€æœ¨ã®å®Ÿè¢‹å‚ç…§ 
  *	@author	Miyuki Iwasawa
  *	@date	06.04.07
  */
@@ -16,22 +16,22 @@
 #endif
 
 /**
- *	@brief	ƒƒCƒ“ƒRƒ}ƒ“ƒh@–Ø‚ÌŽÀ‘I‘ðƒtƒ[
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã€€æœ¨ã®å®Ÿé¸æŠžãƒ•ãƒ­ãƒ¼
  */
 GLOBAL int NMixMainSeq_Bag(NUTMIXER_WORK* mp,int* seq);
 
 /**
- *	@brief	ƒƒCƒ“ƒRƒ}ƒ“ƒh@ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXƒR[ƒ‹
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã€€ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ã‚³ãƒ¼ãƒ«
  */
 GLOBAL int NMixMainSeq_GameCall(NUTMIXER_WORK* mp,int* seq);
 
 /**
- *	@brief	ƒƒCƒ“ƒRƒ}ƒ“ƒh@ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXI—¹‘Ò‚¿
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã€€ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
  */
 GLOBAL int NMixMainSeq_GameWait(NUTMIXER_WORK* mp,int *seq);
 
 /**
- *	@brief	ƒƒCƒ“ƒRƒ}ƒ“ƒh@ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXI—¹ˆ—
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã€€ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å‡¦ç†
  */
 GLOBAL int NMixMainSeq_GameEnd(NUTMIXER_WORK* mp,int *seq);
 

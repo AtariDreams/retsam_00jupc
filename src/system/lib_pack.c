@@ -2,7 +2,7 @@
   Project:  PokemonDS
   File:     lib_pack.c
 
-  ƒ‰ƒCƒuƒ‰ƒŠƒpƒbƒP[ƒW
+  ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ‘ãƒƒã‚±ãƒ¼ã‚¸
 
  *---------------------------------------------------------------------------*/
 #include "common.h"
@@ -15,7 +15,7 @@
 //===========================================================================
 /**
  * 
- * ƒ^ƒXƒNİ’è
+ * ã‚¿ã‚¹ã‚¯è¨­å®š
  *
  */
 //===========================================================================
@@ -24,7 +24,7 @@ TCB_PTR	PMDS_taskAdd(TCB_FUNC func, int work_size, u32 pri, const u32 heap_id)
 	void*	work_memory;
 
 	if( work_size ){
-		// ƒƒ‚ƒŠŠm•Û
+		// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		work_memory = sys_AllocMemory( heap_id, work_size );
 		if (work_memory == NULL){
 			OS_Printf("cannot get RAM for task! no enough memory.\n");
@@ -32,7 +32,7 @@ TCB_PTR	PMDS_taskAdd(TCB_FUNC func, int work_size, u32 pri, const u32 heap_id)
 		}
 		memset( work_memory, 0, work_size );
 	}else{
-		// ƒƒ‚ƒŠŠm•Û‚È‚µ
+		// ãƒ¡ãƒ¢ãƒªç¢ºä¿ãªã—
 		work_memory = NULL;
 	}
 	return TCB_Add( func, work_memory, pri);
@@ -41,7 +41,7 @@ TCB_PTR	PMDS_taskAdd(TCB_FUNC func, int work_size, u32 pri, const u32 heap_id)
 //===========================================================================
 /**
  * 
- * ƒ^ƒXƒNÁ‹
+ * ã‚¿ã‚¹ã‚¯æ¶ˆå»
  *
  */
 //===========================================================================
@@ -51,7 +51,7 @@ void	PMDS_taskDel(TCB_PTR tcb)
 
 	work_memory = TCB_GetWork(tcb);
 	if( work_memory != NULL ){
-		// ƒƒ‚ƒŠŠJ•ú
+		// ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 		sys_FreeMemoryEz(work_memory);
 	}
 	TCB_Delete(tcb);

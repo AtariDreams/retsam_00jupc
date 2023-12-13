@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	codein.h
- * @brief	•¶š“ü—ÍƒCƒ“ƒ^[ƒtƒF[ƒX
+ * @brief	æ–‡å­—å…¥åŠ›ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  * @author	goto
- * @date	2007.07.11(…)
+ * @date	2007.07.11(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -16,23 +16,23 @@
 #include "savedata/config.h"
 #include "gflib/button_man.h"
 
-#define CODE_BLOCK_MAX		( 4 )		///< “ü—ÍƒuƒƒbƒNÅ‘å”
+#define CODE_BLOCK_MAX		( 4 )		///< å…¥åŠ›ãƒ–ãƒ­ãƒƒã‚¯æœ€å¤§æ•°
 
 // -----------------------------------------
 //
-//	ŒÄ‚Ño‚µ‘¤‚ÅŠÇ—‚·‚éƒ[ƒN
+//	å‘¼ã³å‡ºã—å´ã§ç®¡ç†ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
 	
-//	int			heap_id;					///< g—p‚·‚éHEAPID
-	int			word_len;					///< “ü—Í•¶š”	// 0x3b8
-	int			block[ CODE_BLOCK_MAX + 1 ];///< “ü—ÍƒuƒƒbƒN@xx-xxxx-xxx ‚Æ‚© // 0x3bc
+//	int			heap_id;					///< ä½¿ç”¨ã™ã‚‹HEAPID
+	int			word_len;					///< å…¥åŠ›æ–‡å­—æ•°	// 0x3b8
+	int			block[ CODE_BLOCK_MAX + 1 ];///< å…¥åŠ›ãƒ–ãƒ­ãƒƒã‚¯ã€€xx-xxxx-xxx ã¨ã‹ // 0x3bc
 	
-	int			end_state;					///< I—¹‚Ìó‘Ô // 0x3d0
-	STRBUF*		strbuf;						///< ‹ó—“‚È‚çƒoƒbƒtƒ@‚»‚¤‚Å‚È‚¯‚ê‚ÎƒfƒtƒHƒ‹ƒg’l // 0x3d4
+	int			end_state;					///< çµ‚äº†æ™‚ã®çŠ¶æ…‹ // 0x3d0
+	STRBUF*		strbuf;						///< ç©ºæ¬„ãªã‚‰ãƒãƒƒãƒ•ã‚¡ãã†ã§ãªã‘ã‚Œã°ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ // 0x3d4
 	
-	CONFIG*		cfg;						///< window_typeæ“¾—p // 0x3d8
+	CONFIG*		cfg;						///< window_typeå–å¾—ç”¨ // 0x3d8
 
 	int unk24; // 0x3dc
     u32 unk28; // 0x3e0
@@ -51,7 +51,7 @@ extern CODEIN_PARAM* sub_208941C( int heap_id, int word_len, int block[], CONFIG
 
 //--------------------------------------------------------------
 /**
- * @brief	xxxx-xxxx-xxxx ‚ÌƒuƒƒbƒN’è‹`‚ğì‚é
+ * @brief	xxxx-xxxx-xxxx ã®ãƒ–ãƒ­ãƒƒã‚¯å®šç¾©ã‚’ä½œã‚‹
  *
  * @param	block[]	
  *
@@ -76,7 +76,7 @@ static inline void CodeIn_BlockDataMake_4_4_4( int block[] )
 
 //--------------------------------------------------------------
 /**
- * @brief	xx-xxxxx-xxxxx ‚ÌƒuƒƒbƒN’è‹`‚ğì‚é
+ * @brief	xx-xxxxx-xxxxx ã®ãƒ–ãƒ­ãƒƒã‚¯å®šç¾©ã‚’ä½œã‚‹
  *
  * @param	block[]	
  *

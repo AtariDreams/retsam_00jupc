@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	factory_savedata.h
- * @brief	ファクトリーセーブデータ用ヘッダー
+ * @brief	繝輔ぃ繧ｯ繝医Μ繝ｼ繧ｻ繝ｼ繝悶ョ繝ｼ繧ｿ逕ｨ繝倥ャ繝繝ｼ
  * @author	Satoshi Nohara
  * @date	2007.03.28
  */
@@ -12,33 +12,33 @@
 
 //============================================================================================
 //
-//	定義
+//	螳夂ｾｩ
 //
 //============================================================================================
 enum{
 	FACTORYDATA_ID_LEVEL = 0,
 	FACTORYDATA_ID_TYPE,
 	FACTORYDATA_ID_ROUND,
-	//トレーナー
+	//繝医Ξ繝ｼ繝翫�ｼ
 	FACTORYDATA_ID_TR_INDEX,
-	//手持ち
+	//謇区戟縺｡
 	FACTORYDATA_ID_TEMOTI_POKE_INDEX,
 	FACTORYDATA_ID_TEMOTI_POW_RND,
 	FACTORYDATA_ID_TEMOTI_PERSONAL_RND,
-	//敵
+	//謨ｵ
 	FACTORYDATA_ID_ENEMY_POKE_INDEX,
 	FACTORYDATA_ID_ENEMY_POW_RND,
 	FACTORYDATA_ID_ENEMY_PERSONAL_RND,
 
 	/////////
-	//成績
+	//謌千ｸｾ
 	/////////
 	FACTORYSCORE_ID_CLEAR_FLAG,
 };
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ファクトリーセーブデータへの不完全型定義
+ * @brief	繝輔ぃ繧ｯ繝医Μ繝ｼ繧ｻ繝ｼ繝悶ョ繝ｼ繧ｿ縺ｸ縺ｮ荳榊ｮ悟�ｨ蝙句ｮ夂ｾｩ
  */
 //---------------------------------------------------------------------------
 typedef struct _FACTORYDATA FACTORYDATA;
@@ -64,7 +64,7 @@ extern void FACTORYDATA_SetSaveFlag( FACTORYDATA* wk, BOOL flag );
 extern void FACTORYDATA_PutPlayData( FACTORYDATA* wk, u8 id, u8 param, const void* buf );
 extern u32 FACTORYDATA_GetPlayData( FACTORYDATA* wk, u8 id, u8 param, void* buf );
 
-//成績
+//謌千ｸｾ
 extern void FACTORYSCORE_Init( FACTORYSCORE* wk );
 extern int FACTORYSCORE_GetWorkSize( void );
 extern void FACTORYSCORE_PutScoreData( FACTORYSCORE* wk, u8 id, u8 param, const void* buf );

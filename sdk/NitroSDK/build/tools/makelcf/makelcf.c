@@ -12,13 +12,13 @@
 
   $Log: makelcf.c,v $
   Revision 1.13  2007/07/09 12:17:54  yasu
-  TARGET_NAME ‚ÌƒTƒ|[ƒg
+  TARGET_NAME ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.12  2007/02/20 00:28:10  kitase_hirotake
   indent source
 
   Revision 1.11  2006/05/10 02:06:00  yasu
-  CodeWarrior 2.x ‚Ö‚Ì‘Î‰
+  CodeWarrior 2.x ã¸ã®å¯¾å¿œ
 
   Revision 1.10  2006/01/18 02:11:19  kitase_hirotake
   do-indent
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
             if (t >= 1)
             {
                 char    str[128];
-                sprintf(str, "NITRO_LCFSPEC=%d", t);    // NITRO_LCFSPEC ‚ª’è‹`‚³‚ê‚é
+                sprintf(str, "NITRO_LCFSPEC=%d", t);    // NITRO_LCFSPEC ãŒå®šç¾©ã•ã‚Œã‚‹
                 AddDefVal(str);
             }
             else

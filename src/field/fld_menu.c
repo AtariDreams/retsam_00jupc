@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fld_menu.c
- * @brief	ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[èàóù
+ * @brief	„Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„ÉºÂá¶ÁêÜ
  * @author	Hiroyuki Nakamura
  * @date	2004.11.05
  */
@@ -30,7 +30,7 @@
 #include "application/nuts_tag.h"
 #include "msgdata/msg.naix"
 #include "msgdata/msg_fieldmenu.h"
-#include "msgdata/msg_place_name.h"		// â¸í˘î≈Ç≈í«â¡ 2006/10/24 by nakahiro
+#include "msgdata/msg_place_name.h"		// ÊîπË®ÇÁâà„ÅßËøΩÂä† 2006/10/24 by nakahiro
 #include "savedata/mystatus.h"
 #include "savedata/config.h"
 #include "savedata/sp_ribbon.h"
@@ -56,9 +56,9 @@
 #include "b_tower_ev.h"
 #include "zonedata.h"
 
-#include "communication/communication.h"	// ä»à’âÔòbèëÇ´ä∑Ç¶ÇÃÇΩÇﬂÇ…ïKóv
+#include "communication/communication.h"	// Á∞°Êòì‰ºöË©±Êõ∏„ÅçÊèõ„Åà„ÅÆ„Åü„ÇÅ„Å´ÂøÖË¶Å
 #include "communication/comm_state.h"
-#include "comm_union_beacon.h"				// ä»à’âÔòbèëÇ´ä∑Ç¶ÇÃÇΩÇﬂÇ…ïKóv
+#include "comm_union_beacon.h"				// Á∞°Êòì‰ºöË©±Êõ∏„ÅçÊèõ„Åà„ÅÆ„Åü„ÇÅ„Å´ÂøÖË¶Å
 #include "field/comm_union_view_common.h"
 
 #include "script.h"
@@ -73,7 +73,7 @@
 
 
 //============================================================================================
-//	íËêîíËã`
+//	ÂÆöÊï∞ÂÆöÁæ©
 //============================================================================================
 enum {
 	MENU_POS_ZUKAN = 0,
@@ -87,13 +87,13 @@ enum {
 	MENU_POS_RETIRE,
 };
 
-// ãZégóp
+// ÊäÄ‰ΩøÁî®
 typedef struct {
-	u16	poke;	// É|ÉPÉÇÉìà íu
-	u16	waza;	// ãZ
+	u16	poke;	// „Éù„Ç±„É¢„É≥‰ΩçÁΩÆ
+	u16	waza;	// ÊäÄ
 }SKILL_USE;
 
-// ÉÅÅ[ÉãçÏê¨
+// „É°„Éº„É´‰ΩúÊàê
 typedef struct {
 	u16	item;
 	u8	pos;
@@ -101,72 +101,72 @@ typedef struct {
 }FM_MAIL_WORK;
 
 
-#define	FLDMENU_CLA_CHR_RES_MAX		( 8 )	// ÉZÉãÉAÉNÉ^Å[ÇÃÉLÉÉÉâêî
-#define	FLDMENU_CLA_PAL_RES_MAX		( 1 )	// ÉZÉãÉAÉNÉ^Å[ÇÃÉpÉåÉbÉgêî
-#define	FLDMENU_CLA_CEL_RES_MAX		( 2 )	// ÉZÉãÉAÉNÉ^Å[ÇÃÉZÉãêî
-#define	FLDMENU_CLA_ANM_RES_MAX		( 2 )	// ÉZÉãÉAÉNÉ^Å[ÇÃÉZÉãÉAÉjÉÅêî
+#define	FLDMENU_CLA_CHR_RES_MAX		( 8 )	// „Çª„É´„Ç¢„ÇØ„Çø„Éº„ÅÆ„Ç≠„É£„É©Êï∞
+#define	FLDMENU_CLA_PAL_RES_MAX		( 1 )	// „Çª„É´„Ç¢„ÇØ„Çø„Éº„ÅÆ„Éë„É¨„ÉÉ„ÉàÊï∞
+#define	FLDMENU_CLA_CEL_RES_MAX		( 2 )	// „Çª„É´„Ç¢„ÇØ„Çø„Éº„ÅÆ„Çª„É´Êï∞
+#define	FLDMENU_CLA_ANM_RES_MAX		( 2 )	// „Çª„É´„Ç¢„ÇØ„Çø„Éº„ÅÆ„Çª„É´„Ç¢„Éã„É°Êï∞
 
-// ÉZÉãÉAÉNÉ^Å[ÇÃÉLÉÉÉâID
+// „Çª„É´„Ç¢„ÇØ„Çø„Éº„ÅÆ„Ç≠„É£„É©ID
 enum {
-	FLDMENU_CLA_CHR_H_ID_CURSOR	= 13528,	// ëIëÉJÅ[É\Éã
-	FLDMENU_CLA_CHR_H_ID_ICON,				// ÉAÉCÉRÉì
+	FLDMENU_CLA_CHR_H_ID_CURSOR	= 13528,	// ÈÅ∏Êäû„Ç´„Éº„ÇΩ„É´
+	FLDMENU_CLA_CHR_H_ID_ICON,				// „Ç¢„Ç§„Ç≥„É≥
 };
-// ÉZÉãÉAÉNÉ^Å[ÇÃÉpÉåÉbÉgID
+// „Çª„É´„Ç¢„ÇØ„Çø„Éº„ÅÆ„Éë„É¨„ÉÉ„ÉàID
 enum {
-	FLDMENU_CLA_PAL_H_ID = 13528,			// ëIëÉJÅ[É\ÉãÅïÉAÉCÉRÉì
+	FLDMENU_CLA_PAL_H_ID = 13528,			// ÈÅ∏Êäû„Ç´„Éº„ÇΩ„É´ÔºÜ„Ç¢„Ç§„Ç≥„É≥
 };
-// ÉZÉãÉAÉNÉ^Å[ÇÃÉZÉãID
+// „Çª„É´„Ç¢„ÇØ„Çø„Éº„ÅÆ„Çª„É´ID
 enum {
-	FLDMENU_CLA_CEL_H_ID_CURSOR	= 13528,	// ëIëÉJÅ[É\Éã
-	FLDMENU_CLA_CEL_H_ID_ICON,				// ÉAÉCÉRÉì
+	FLDMENU_CLA_CEL_H_ID_CURSOR	= 13528,	// ÈÅ∏Êäû„Ç´„Éº„ÇΩ„É´
+	FLDMENU_CLA_CEL_H_ID_ICON,				// „Ç¢„Ç§„Ç≥„É≥
 };
-// ÉZÉãÉAÉNÉ^Å[ÇÃÉZÉãÉAÉjÉÅID
+// „Çª„É´„Ç¢„ÇØ„Çø„Éº„ÅÆ„Çª„É´„Ç¢„Éã„É°ID
 enum {
-	FLDMENU_CLA_ANM_H_ID_CURSOR	= 13528,	// ëIëÉJÅ[É\Éã
-	FLDMENU_CLA_ANM_H_ID_ICON,				// ÉAÉCÉRÉì
-};
-
-// ÉAÉCÉRÉìID
-enum {
-	ICON_ZUKAN,		// ê}ä”ÉAÉCÉRÉì
-	ICON_POKEMON,	// É|ÉPÉÇÉìÉäÉXÉgÉAÉCÉRÉì
-	ICON_BAG,		// ÉoÉbÉOÉAÉCÉRÉì
-	ICON_HERO,		// ÉgÉåÅ[ÉiÅ[ÉJÅ[ÉhÉAÉCÉRÉì
-	ICON_REPORT,	// ÉåÉ|Å[ÉgÉAÉCÉRÉì
-	ICON_CONFIG,	// ê›íËÉAÉCÉRÉì
-	ICON_CLOSE,		// ï¬Ç∂ÇÈÉAÉCÉRÉì
-	ICON_CHAT,		// É`ÉÉÉbÉg
-	ICON_RETIRE,	// ÉäÉ^ÉCÉA
-	ICON_BAG_F,		// ÉoÉbÉOÅièóÅjÅ@Å© àÍî‘â∫Ç…íuÇ≠Ç±Ç∆
+	FLDMENU_CLA_ANM_H_ID_CURSOR	= 13528,	// ÈÅ∏Êäû„Ç´„Éº„ÇΩ„É´
+	FLDMENU_CLA_ANM_H_ID_ICON,				// „Ç¢„Ç§„Ç≥„É≥
 };
 
-// ÉZÉãÉAÉNÉ^Å[ìoò^èÍèä
-#define	CLA_SET_CURSOR	( 0 )	// ëIëÉJÅ[É\Éã
-#define	CLA_SET_ICON	( 1 )	// ÉAÉCÉRÉì
-
-#define	CLA_CURSOR_PX	( 204 )		// ëIëÉJÅ[É\Éãï\é¶Xç¿ïW
-#define	CLA_CURSOR_PY	( 20 )		// ëIëÉJÅ[É\Éãï\é¶Yç¿ïW
-#define	CLA_ICON_PX		( 174 )		// ÉAÉCÉRÉìï\é¶Xç¿ïW
-#define	CLA_ICON_PY		( 20 )		// ÉAÉCÉRÉìï\é¶Yç¿ïW
-#define	CLA_ICON_SPC_Y	( 24 )		// ÉAÉCÉRÉìÇÃYÉXÉyÅ[ÉX
-
-// ÉAÉCÉRÉìÉAÉjÉÅID
+// „Ç¢„Ç§„Ç≥„É≥ID
 enum {
-	ICON_ANM_STOP = 0,	// í‚é~
-	ICON_ANM_CHANGE,	// ëIëÇ≥ÇÍÇΩèuä‘
-	ICON_ANM_SELECT,	// ëIëíÜ
+	ICON_ZUKAN,		// Âõ≥Èëë„Ç¢„Ç§„Ç≥„É≥
+	ICON_POKEMON,	// „Éù„Ç±„É¢„É≥„É™„Çπ„Éà„Ç¢„Ç§„Ç≥„É≥
+	ICON_BAG,		// „Éê„ÉÉ„Ç∞„Ç¢„Ç§„Ç≥„É≥
+	ICON_HERO,		// „Éà„É¨„Éº„Éä„Éº„Ç´„Éº„Éâ„Ç¢„Ç§„Ç≥„É≥
+	ICON_REPORT,	// „É¨„Éù„Éº„Éà„Ç¢„Ç§„Ç≥„É≥
+	ICON_CONFIG,	// Ë®≠ÂÆö„Ç¢„Ç§„Ç≥„É≥
+	ICON_CLOSE,		// Èñâ„Åò„Çã„Ç¢„Ç§„Ç≥„É≥
+	ICON_CHAT,		// „ÉÅ„É£„ÉÉ„Éà
+	ICON_RETIRE,	// „É™„Çø„Ç§„Ç¢
+	ICON_BAG_F,		// „Éê„ÉÉ„Ç∞ÔºàÂ•≥Ôºâ„ÄÄ‚Üê ‰∏ÄÁï™‰∏ã„Å´ÁΩÆ„Åè„Åì„Å®
 };
 
-// écÇËÉ{Å[ÉãÉEÉBÉìÉhÉE
-#define	BALL_NAME_PX		( 0 )		// É{Å[Éãñºï\é¶X
-#define	BALL_NAME_PY		( 0 )		// É{Å[Éãñºï\é¶Y
-#define	BALL_VAL_PX			( 0 )		// É{Å[Éãå¬êîï\é¶X
-#define	BALL_VAL_PY			( 16 )		// É{Å[Éãå¬êîï\é¶Y
-#define	BALL_VAL_MSG_SIZ	( 32 )		// É{Å[Éãå¬êîìWäJï∂éöêîÅiìKìñÅj
+// „Çª„É´„Ç¢„ÇØ„Çø„ÉºÁôªÈå≤Â†¥ÊâÄ
+#define	CLA_SET_CURSOR	( 0 )	// ÈÅ∏Êäû„Ç´„Éº„ÇΩ„É´
+#define	CLA_SET_ICON	( 1 )	// „Ç¢„Ç§„Ç≥„É≥
+
+#define	CLA_CURSOR_PX	( 204 )		// ÈÅ∏Êäû„Ç´„Éº„ÇΩ„É´Ë°®Á§∫XÂ∫ßÊ®ô
+#define	CLA_CURSOR_PY	( 20 )		// ÈÅ∏Êäû„Ç´„Éº„ÇΩ„É´Ë°®Á§∫YÂ∫ßÊ®ô
+#define	CLA_ICON_PX		( 174 )		// „Ç¢„Ç§„Ç≥„É≥Ë°®Á§∫XÂ∫ßÊ®ô
+#define	CLA_ICON_PY		( 20 )		// „Ç¢„Ç§„Ç≥„É≥Ë°®Á§∫YÂ∫ßÊ®ô
+#define	CLA_ICON_SPC_Y	( 24 )		// „Ç¢„Ç§„Ç≥„É≥„ÅÆY„Çπ„Éö„Éº„Çπ
+
+// „Ç¢„Ç§„Ç≥„É≥„Ç¢„Éã„É°ID
+enum {
+	ICON_ANM_STOP = 0,	// ÂÅúÊ≠¢
+	ICON_ANM_CHANGE,	// ÈÅ∏Êäû„Åï„Çå„ÅüÁû¨Èñì
+	ICON_ANM_SELECT,	// ÈÅ∏Êäû‰∏≠
+};
+
+// ÊÆã„Çä„Éú„Éº„É´„Ç¶„Ç£„É≥„Éâ„Ç¶
+#define	BALL_NAME_PX		( 0 )		// „Éú„Éº„É´ÂêçË°®Á§∫X
+#define	BALL_NAME_PY		( 0 )		// „Éú„Éº„É´ÂêçË°®Á§∫Y
+#define	BALL_VAL_PX			( 0 )		// „Éú„Éº„É´ÂÄãÊï∞Ë°®Á§∫X
+#define	BALL_VAL_PY			( 16 )		// „Éú„Éº„É´ÂÄãÊï∞Ë°®Á§∫Y
+#define	BALL_VAL_MSG_SIZ	( 32 )		// „Éú„Éº„É´ÂÄãÊï∞Â±ïÈñãÊñáÂ≠óÊï∞ÔºàÈÅ©ÂΩìÔºâ
 
 
 //============================================================================================
-//	ÉvÉçÉgÉ^ÉCÉvêÈåæ
+//	„Éó„É≠„Éà„Çø„Ç§„ÉóÂÆ£Ë®Ä
 //============================================================================================
 static FLD_MENU * MenuWorkAllocSet(void);
 static u32 FieldMenuParamSet( FIELDSYS_WORK * repw );
@@ -238,25 +238,25 @@ static BOOL FldMenu_RetireInit( GMEVENT_CONTROL * event );
 
 
 //============================================================================================
-//	ÉOÉçÅ[ÉoÉãïœêî
+//	„Ç∞„É≠„Éº„Éê„É´Â§âÊï∞
 //============================================================================================
 static const u32 FldMenuData[][2] =
 {
-	{ msg_menu_00, (u32)FldMenu_ZukanInit },		// Ç∏Ç©ÇÒ
-	{ msg_menu_01, (u32)FldMenu_PokeListInit },		// É|ÉPÉÇÉì
-	{ msg_menu_02, (u32)FldMenu_BagInit },			// ÉoÉbÉO
-	{ msg_menu_03, (u32)FldMenu_TrCardInit },		// éÂêlåˆ
-	{ msg_menu_04, (u32)FldMenu_ReportInit },		// ÉåÉ|Å[Ég
-	{ msg_menu_05, (u32)FldMenu_ConfigInit },		// ÇπÇ¡ÇƒÇ¢
-	{ msg_menu_06, (u32)BMPMENU_CANCEL },			// Ç∆Ç∂ÇÈ
-	{ msg_menu_07, (u32)FldMenu_ChatInit },			// É`ÉÉÉbÉg
-	{ msg_menu_08, (u32)FldMenu_RetireInit },		// ÉäÉ^ÉCÉA
+	{ msg_menu_00, (u32)FldMenu_ZukanInit },		// „Åö„Åã„Çì
+	{ msg_menu_01, (u32)FldMenu_PokeListInit },		// „Éù„Ç±„É¢„É≥
+	{ msg_menu_02, (u32)FldMenu_BagInit },			// „Éê„ÉÉ„Ç∞
+	{ msg_menu_03, (u32)FldMenu_TrCardInit },		// ‰∏ª‰∫∫ÂÖ¨
+	{ msg_menu_04, (u32)FldMenu_ReportInit },		// „É¨„Éù„Éº„Éà
+	{ msg_menu_05, (u32)FldMenu_ConfigInit },		// „Åõ„Å£„Å¶„ÅÑ
+	{ msg_menu_06, (u32)BMPMENU_CANCEL },			// „Å®„Åò„Çã
+	{ msg_menu_07, (u32)FldMenu_ChatInit },			// „ÉÅ„É£„ÉÉ„Éà
+	{ msg_menu_08, (u32)FldMenu_RetireInit },		// „É™„Çø„Ç§„Ç¢
 };
 
-// ÉZÉãÉAÉNÉ^Å[ÉfÅ[É^
+// „Çª„É´„Ç¢„ÇØ„Çø„Éº„Éá„Éº„Çø
 static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 {
-	{	// ÉJÅ[É\Éã
+	{	// „Ç´„Éº„ÇΩ„É´
 		CLA_CURSOR_PX, CLA_CURSOR_PY, 0,
 		0, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{
@@ -265,7 +265,7 @@ static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 		},
 		0, 0
 	},
-	{	// ÉAÉCÉRÉìÇP
+	{	// „Ç¢„Ç§„Ç≥„É≥Ôºë
 		CLA_ICON_PX, CLA_ICON_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{
@@ -276,47 +276,47 @@ static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 	},
 };
 
-// É|ÉPÉÇÉìÉäÉXÉgÅuÇ‡ÇΩÇπÇÈÅvÇ©ÇÁåƒÇŒÇÍÇÈÉoÉbÉOÇÃÉfÅ[É^
+// „Éù„Ç±„É¢„É≥„É™„Çπ„Éà„Äå„ÇÇ„Åü„Åõ„Çã„Äç„Åã„ÇâÂëº„Å∞„Çå„Çã„Éê„ÉÉ„Ç∞„ÅÆ„Éá„Éº„Çø
 static const u8 PokeList_ItemSetBagList[] = {
 	BAG_POKE_NORMAL, BAG_POKE_DRUG, BAG_POKE_BALL, BAG_POKE_WAZA,
 	BAG_POKE_NUTS, BAG_POKE_SEAL, BAG_POKE_BATTLE, BAG_POKE_EVENT, 0xff
 };
 
-// í èÌÇÃÉXÉeÅ[É^ÉXâÊñ ÉyÅ[ÉW
+// ÈÄöÂ∏∏„ÅÆ„Çπ„ÉÜ„Éº„Çø„ÇπÁîªÈù¢„Éö„Éº„Ç∏
 const u8 PST_PageTbl_Normal[] = {
-	PST_PAGE_INFO,			// ÅuÉ|ÉPÉÇÉìÇ∂ÇÂÇ§ÇŸÇ§Åv
-	PST_PAGE_MEMO,			// ÅuÉgÉåÅ[ÉiÅ[ÉÅÉÇÅv
-	PST_PAGE_PARAM,			// ÅuÉ|ÉPÉÇÉìÇÃÇ§ÇËÇÂÇ≠Åv
-	PST_PAGE_CONDITION,		// ÅuÉRÉìÉfÉBÉVÉáÉìÅv
-	PST_PAGE_B_SKILL,		// ÅuÇΩÇΩÇ©Ç§ÇÌÇ¥Åv
-	PST_PAGE_C_SKILL,		// ÅuÉRÉìÉeÉXÉgÇÌÇ¥Åv
-	PST_PAGE_RIBBON,		// ÅuÇ´ÇÀÇÒÉäÉ{ÉìÅv
-	PST_PAGE_RET,			// ÅuÇ‡Ç«ÇÈÅv
+	PST_PAGE_INFO,			// „Äå„Éù„Ç±„É¢„É≥„Åò„Çá„ÅÜ„Åª„ÅÜ„Äç
+	PST_PAGE_MEMO,			// „Äå„Éà„É¨„Éº„Éä„Éº„É°„É¢„Äç
+	PST_PAGE_PARAM,			// „Äå„Éù„Ç±„É¢„É≥„ÅÆ„ÅÜ„Çä„Çá„Åè„Äç
+	PST_PAGE_CONDITION,		// „Äå„Ç≥„É≥„Éá„Ç£„Ç∑„Éß„É≥„Äç
+	PST_PAGE_B_SKILL,		// „Äå„Åü„Åü„Åã„ÅÜ„Çè„Åñ„Äç
+	PST_PAGE_C_SKILL,		// „Äå„Ç≥„É≥„ÉÜ„Çπ„Éà„Çè„Åñ„Äç
+	PST_PAGE_RIBBON,		// „Äå„Åç„Å≠„Çì„É™„Éú„É≥„Äç
+	PST_PAGE_RET,			// „Äå„ÇÇ„Å©„Çã„Äç
 	PST_PAGE_MAX
 };
 
-// ãZäoÇ¶ópÉXÉeÅ[É^ÉXâÊñ ÉyÅ[ÉW
+// ÊäÄË¶ö„ÅàÁî®„Çπ„ÉÜ„Éº„Çø„ÇπÁîªÈù¢„Éö„Éº„Ç∏
 static const u8 PST_PageTbl_WazaSet[] = {
-	PST_PAGE_B_SKILL,		// ÅuÇΩÇΩÇ©Ç§ÇÌÇ¥Åv
-	PST_PAGE_C_SKILL,		// ÅuÉRÉìÉeÉXÉgÇÌÇ¥Åv
+	PST_PAGE_B_SKILL,		// „Äå„Åü„Åü„Åã„ÅÜ„Çè„Åñ„Äç
+	PST_PAGE_C_SKILL,		// „Äå„Ç≥„É≥„ÉÜ„Çπ„Éà„Çè„Åñ„Äç
 	PST_PAGE_MAX
 };
 
 
 //============================================================================================
-//	åƒÇ—èoÇµ
+//	Âëº„Å≥Âá∫„Åó
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[ãNìÆÉ`ÉFÉbÉN
+ * „Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„ÉºËµ∑Âãï„ÉÅ„Çß„ÉÉ„ÇØ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
- * @retval	"TRUE = ãNìÆâ¬"
- * @retval	"FALSE = ãNìÆïsâ¬"
+ * @retval	"TRUE = Ëµ∑ÂãïÂèØ"
+ * @retval	"FALSE = Ëµ∑Âãï‰∏çÂèØ"
  *
- * @li	ÅuÇ»ÇºÇÃÇŒÇµÇÂÅvÇ≈ÉÅÉjÉÖÅ[ÇäJÇØÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈÉ`ÉFÉbÉN
+ * @li	„Äå„Å™„Åû„ÅÆ„Å∞„Åó„Çá„Äç„Åß„É°„Éã„É•„Éº„ÇíÈñã„Åë„Å™„ÅÑ„Çà„ÅÜ„Å´„Åô„Çã„ÉÅ„Çß„ÉÉ„ÇØ
  *
  *	2006/10/24 by nakahiro
  */
@@ -331,9 +331,9 @@ BOOL FieldMenuCallCheck( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[ãNìÆèàóùÅií èÌÅj
+ * „Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„ÉºËµ∑ÂãïÂá¶ÁêÜÔºàÈÄöÂ∏∏Ôºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
@@ -343,13 +343,13 @@ void FieldMenuInit( FIELDSYS_WORK * repw )
 	FLD_MENU * wk = MenuWorkAllocSet();
 
 	if( SysFlag_SafariCheck( SaveData_GetEventWork(repw->savedata) ) == TRUE ){
-		wk->ev_flg = FieldMenuParamSetSafari( repw );	// ÉTÉtÉ@Éä
+		wk->ev_flg = FieldMenuParamSetSafari( repw );	// „Çµ„Éï„Ç°„É™
 	}else if( SysFlag_PokeParkCheck( SaveData_GetEventWork(repw->savedata) ) == TRUE ){
-		wk->ev_flg = FieldMenuParamSetPokePark( repw );	// É|ÉPÉpÅ[ÉN
+		wk->ev_flg = FieldMenuParamSetPokePark( repw );	// „Éù„Ç±„Éë„Éº„ÇØ
 	}else if( BtlTower_IsSalon(repw) == TRUE ){
-		wk->ev_flg = FieldMenuParamSetBtlTowerSalon( repw );	// ÉoÉgÉãÉ^ÉèÅ[ÉTÉçÉì
+		wk->ev_flg = FieldMenuParamSetBtlTowerSalon( repw );	// „Éê„Éà„É´„Çø„ÉØ„Éº„Çµ„É≠„É≥
 	}else{
-		wk->ev_flg = FieldMenuParamSet( repw );			// í èÌÉÅÉjÉÖÅ[
+		wk->ev_flg = FieldMenuParamSet( repw );			// ÈÄöÂ∏∏„É°„Éã„É•„Éº
 	}
 	wk->union_flg = FALSE;
 
@@ -362,9 +362,9 @@ void FieldMenuInit( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[ãNìÆèàóùÅiÉÜÉjÉIÉìÉãÅ[ÉÄópÅj
+ * „Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„ÉºËµ∑ÂãïÂá¶ÁêÜÔºà„É¶„Éã„Ç™„É≥„É´„Éº„É†Áî®Ôºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
@@ -385,9 +385,9 @@ void FieldMenuInitUnion( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[ãNìÆèàóùÅiëŒêÌïîâÆópÅj
+ * „Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„ÉºËµ∑ÂãïÂá¶ÁêÜÔºàÂØæÊà¶ÈÉ®Â±ãÁî®Ôºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
@@ -408,41 +408,41 @@ void FieldMenuInitVS( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[ãNìÆäÑÇËçûÇ›èàóùÅií èÌÅj
+ * „Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„ÉºËµ∑ÂãïÂâ≤„ÇäËæº„ÅøÂá¶ÁêÜÔºàÈÄöÂ∏∏Ôºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
  * @return	none
  *
- *	ä≈î¬Ç»Ç«ÇÃèàóùÇíÜífÇµÇƒåƒÇ—èoÇ∑èàóù
+ *	ÁúãÊùø„Å™„Å©„ÅÆÂá¶ÁêÜ„Çí‰∏≠Êñ≠„Åó„Å¶Âëº„Å≥Âá∫„ÅôÂá¶ÁêÜ
  */
 //--------------------------------------------------------------------------------------------
 void FieldMenuEvChg( FIELDSYS_WORK * repw )
 {
 	FLD_MENU * wk;
 	
-	// å≥ÇÃÉèÅ[ÉNÇâï˙
+	// ÂÖÉ„ÅÆ„ÉØ„Éº„ÇØ„ÇíËß£Êîæ
 	//sys_FreeMemoryEz( FieldEvent_GetSpecialWork(repw->event) );
 	
-	// ÉÅÉjÉÖÅ[ÉèÅ[ÉNçÏê¨
+	// „É°„Éã„É•„Éº„ÉØ„Éº„ÇØ‰ΩúÊàê
 	Snd_SePlay( SE_WIN_OPEN );
 	wk = MenuWorkAllocSet();
 
 	wk->union_flg = FALSE;
 
 	if( SysFlag_SafariCheck( SaveData_GetEventWork(repw->savedata) ) == TRUE ){
-		wk->ev_flg = FieldMenuParamSetSafari( repw );	// ÉTÉtÉ@Éä
+		wk->ev_flg = FieldMenuParamSetSafari( repw );	// „Çµ„Éï„Ç°„É™
 	}else if( SysFlag_PokeParkCheck( SaveData_GetEventWork(repw->savedata) ) == TRUE ){
-		wk->ev_flg = FieldMenuParamSetPokePark( repw );	// É|ÉPÉpÅ[ÉN
+		wk->ev_flg = FieldMenuParamSetPokePark( repw );	// „Éù„Ç±„Éë„Éº„ÇØ
 	}else if( BtlTower_IsSalon(repw) == TRUE ){
-		wk->ev_flg = FieldMenuParamSetBtlTowerSalon( repw );	// ÉoÉgÉãÉ^ÉèÅ[ÉTÉçÉì
+		wk->ev_flg = FieldMenuParamSetBtlTowerSalon( repw );	// „Éê„Éà„É´„Çø„ÉØ„Éº„Çµ„É≠„É≥
 	}else if( repw->MapMode == MAP_MODE_COLOSSEUM) {
-		wk->ev_flg = FieldMenuParamSetVS( repw );		// ëŒêÌïîâÆ
+		wk->ev_flg = FieldMenuParamSetVS( repw );		// ÂØæÊà¶ÈÉ®Â±ã
 	}else if( repw->MapMode == MAP_MODE_UNION ) {
-		wk->ev_flg = FieldMenuParamSetUnion( repw );	// ÉÜÉjÉIÉì
+		wk->ev_flg = FieldMenuParamSetUnion( repw );	// „É¶„Éã„Ç™„É≥
 		wk->union_flg = TRUE;
 	}else{
-		wk->ev_flg = FieldMenuParamSet( repw );			// í èÌÉÅÉjÉÖÅ[
+		wk->ev_flg = FieldMenuParamSet( repw );			// ÈÄöÂ∏∏„É°„Éã„É•„Éº
 	}
 
 	FieldEvent_Change( repw->event, GMEVENT_FieldMenu, wk );
@@ -450,23 +450,23 @@ void FieldMenuEvChg( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[ãNìÆäÑÇËçûÇ›èàóùÅiÉÜÉjÉIÉìÉãÅ[ÉÄópÅj
+ * „Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„ÉºËµ∑ÂãïÂâ≤„ÇäËæº„ÅøÂá¶ÁêÜÔºà„É¶„Éã„Ç™„É≥„É´„Éº„É†Áî®Ôºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
  * @return	none
  *
- *	ä≈î¬Ç»Ç«ÇÃèàóùÇíÜífÇµÇƒåƒÇ—èoÇ∑èàóù
+ *	ÁúãÊùø„Å™„Å©„ÅÆÂá¶ÁêÜ„Çí‰∏≠Êñ≠„Åó„Å¶Âëº„Å≥Âá∫„ÅôÂá¶ÁêÜ
  */
 //--------------------------------------------------------------------------------------------
 void FieldMenuEvChgUnion( FIELDSYS_WORK * repw )
 {
 	FLD_MENU * wk;
 	
-	// å≥ÇÃÉèÅ[ÉNÇâï˙
+	// ÂÖÉ„ÅÆ„ÉØ„Éº„ÇØ„ÇíËß£Êîæ
 	//sys_FreeMemoryEz( FieldEvent_GetSpecialWork(repw->event) );
 	
-	// ÉÅÉjÉÖÅ[ÉèÅ[ÉNçÏê¨
+	// „É°„Éã„É•„Éº„ÉØ„Éº„ÇØ‰ΩúÊàê
 	Snd_SePlay( SE_WIN_OPEN );
 	wk = MenuWorkAllocSet();
 	wk->ev_flg    = FieldMenuParamSetUnion( repw );
@@ -476,7 +476,7 @@ void FieldMenuEvChgUnion( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[ÉèÅ[ÉNämï€
+ * „Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„Éº„ÉØ„Éº„ÇØÁ¢∫‰øù
  *
  * @param	none
  *
@@ -497,11 +497,11 @@ static FLD_MENU * MenuWorkAllocSet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^çÏê¨Åií èÌÅj
+ * Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø‰ΩúÊàêÔºàÈÄöÂ∏∏Ôºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
- * @return	ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^
+ * @return	Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø
  */
 //--------------------------------------------------------------------------------------------
 static u32 FieldMenuParamSet( FIELDSYS_WORK * repw )
@@ -517,7 +517,7 @@ static u32 FieldMenuParamSet( FIELDSYS_WORK * repw )
 	if( SysFlag_BagCheck(SaveData_GetEventWork(repw->savedata)) == 0 ){
 		prm |= FLD_MENU_VANISH_BAG;
 	}
-	// é©ëRåˆâÄÇ©Ç«Ç§Ç©ÇÃÉ`ÉFÉbÉN
+	// Ëá™ÁÑ∂ÂÖ¨Âúí„Åã„Å©„ÅÜ„Åã„ÅÆ„ÉÅ„Çß„ÉÉ„ÇØ
 	if( ZoneData_IsNaturalPark( repw->location->zone_id ) == TRUE ){
 		prm |= FLD_MENU_VANISH_PLIST;
 		prm |= FLD_MENU_VANISH_BAG;
@@ -530,11 +530,11 @@ static u32 FieldMenuParamSet( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^çÏê¨ÅiÉTÉtÉ@ÉäÅj
+ * Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø‰ΩúÊàêÔºà„Çµ„Éï„Ç°„É™Ôºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
- * @return	ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^
+ * @return	Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø
  */
 //--------------------------------------------------------------------------------------------
 static u32 FieldMenuParamSetSafari( FIELDSYS_WORK * repw )
@@ -544,11 +544,11 @@ static u32 FieldMenuParamSetSafari( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^çÏê¨ÅiÉ|ÉPÉpÅ[ÉNÅj
+ * Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø‰ΩúÊàêÔºà„Éù„Ç±„Éë„Éº„ÇØÔºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
- * @return	ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^
+ * @return	Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø
  */
 //--------------------------------------------------------------------------------------------
 static u32 FieldMenuParamSetPokePark( FIELDSYS_WORK * repw )
@@ -558,11 +558,11 @@ static u32 FieldMenuParamSetPokePark( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^çÏê¨ÅiÉoÉgÉãÉ^ÉèÅ[ÉTÉçÉìÅj
+ * Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø‰ΩúÊàêÔºà„Éê„Éà„É´„Çø„ÉØ„Éº„Çµ„É≠„É≥Ôºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
- * @return	ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^
+ * @return	Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø
  */
 //--------------------------------------------------------------------------------------------
 static u32 FieldMenuParamSetBtlTowerSalon( FIELDSYS_WORK * repw )
@@ -572,11 +572,11 @@ static u32 FieldMenuParamSetBtlTowerSalon( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^çÏê¨ÅiÉÜÉjÉIÉìÅj
+ * Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø‰ΩúÊàêÔºà„É¶„Éã„Ç™„É≥Ôºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
- * @return	ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^
+ * @return	Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø
  */
 //--------------------------------------------------------------------------------------------
 static u32 FieldMenuParamSetUnion( FIELDSYS_WORK * repw )
@@ -586,11 +586,11 @@ static u32 FieldMenuParamSetUnion( FIELDSYS_WORK * repw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^çÏê¨ÅiëŒêÌïîâÆÅj
+ * Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø‰ΩúÊàêÔºàÂØæÊà¶ÈÉ®Â±ãÔºâ
  *
- * @param	repw	ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
+ * @param	repw	„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
  *
- * @return	ï\é¶çÄñ⁄êßå‰ÉpÉâÉÅÅ[É^
+ * @return	Ë°®Á§∫È†ÖÁõÆÂà∂Âæ°„Éë„É©„É°„Éº„Çø
  */
 //--------------------------------------------------------------------------------------------
 static u32 FieldMenuParamSetVS( FIELDSYS_WORK * repw )
@@ -600,15 +600,15 @@ static u32 FieldMenuParamSetVS( FIELDSYS_WORK * repw )
 
 
 //============================================================================================
-//	êßå‰
+//	Âà∂Âæ°
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgÅFÉÅÉjÉÖÅ[êßå‰
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
- * @retval	TRUE	ÉCÉxÉìÉgèIóπ
- * @retval	FALSE	ÉCÉxÉìÉgåpë±
+ * @brief	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÔºö„É°„Éã„É•„ÉºÂà∂Âæ°
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
+ * @retval	TRUE	„Ç§„Éô„É≥„ÉàÁµÇ‰∫Ü
+ * @retval	FALSE	„Ç§„Éô„É≥„ÉàÁ∂ôÁ∂ö
  */
 //--------------------------------------------------------------------------------------------
 static BOOL GMEVENT_FieldMenu(GMEVENT_CONTROL * event)
@@ -620,7 +620,7 @@ static BOOL GMEVENT_FieldMenu(GMEVENT_CONTROL * event)
 	wk = FieldEvent_GetSpecialWork(event);
 
 	switch( wk->seq ){
-	case FLD_MENU_SEQ_INIT:		// èâä˙âª
+	case FLD_MENU_SEQ_INIT:		// ÂàùÊúüÂåñ
 		FieldOBJSys_MovePauseAll( fsys->fldobjsys );
 		ItemUse_CheckWorkMake( fsys, &wk->item_check );
 		FieldSkill_CheckWorkMake( fsys, &wk->skill_check );
@@ -629,17 +629,17 @@ static BOOL GMEVENT_FieldMenu(GMEVENT_CONTROL * event)
 		wk->seq = FLD_MENU_SEQ_SELECT;
 		break;
 
-	case FLD_MENU_SEQ_SELECT:	// ÉÅÉjÉÖÅ[ëIë
+	case FLD_MENU_SEQ_SELECT:	// „É°„Éã„É•„ÉºÈÅ∏Êäû
 		if( FieldMenuSelect( event ) == FALSE ){
 			return FALSE;
 		}
 		break;
 
-	case FLD_MENU_SEQ_APP_CALL:	// ÉAÉvÉäåƒÇ—èoÇµ
+	case FLD_MENU_SEQ_APP_CALL:	// „Ç¢„Éó„É™Âëº„Å≥Âá∫„Åó
 		FldMenu_AppCall( event );
 		break;
 
-	case FLD_MENU_SEQ_APP_WAIT:	// ÉAÉvÉäèIóπë“Çø
+	case FLD_MENU_SEQ_APP_WAIT:	// „Ç¢„Éó„É™ÁµÇ‰∫ÜÂæÖ„Å°
 		FldMenu_AppWait( event );
 		break;
 
@@ -650,30 +650,30 @@ static BOOL GMEVENT_FieldMenu(GMEVENT_CONTROL * event)
 		FldMenu_ReportWait( event );
 		break;
 
-	case FLD_MENU_SEQ_SHINKA_INIT:	// êiâªâÊñ åƒÇ—èoÇµ
+	case FLD_MENU_SEQ_SHINKA_INIT:	// ÈÄ≤ÂåñÁîªÈù¢Âëº„Å≥Âá∫„Åó
 		FldMenu_ShinkaInit( event );
 		break;
 
-	case FLD_MENU_SEQ_SHINKA_MAIN:	// êiâªâÊñ ë“Çø
+	case FLD_MENU_SEQ_SHINKA_MAIN:	// ÈÄ≤ÂåñÁîªÈù¢ÂæÖ„Å°
 		FldMenu_ShinkaMain( event );
 		break;
 
-	case FLD_MENU_SEQ_AGAIN:	// ÅúÅúÅúÅúÅúÅúÅúÅúÅú
-		//ÉtÉBÅ[ÉãÉhÉ}ÉbÉvÉvÉçÉZÉXäJénë“Çø
+	case FLD_MENU_SEQ_AGAIN:	// ‚óè‚óè‚óè‚óè‚óè‚óè‚óè‚óè‚óè
+		//„Éï„Ç£„Éº„É´„Éâ„Éû„ÉÉ„Éó„Éó„É≠„Çª„ÇπÈñãÂßãÂæÖ„Å°
 		if (FieldEvent_Cmd_WaitMapProcStart(fsys)) {
 			FieldOBJSys_MovePauseAll( fsys->fldobjsys );
 			FieldMenuSet( event );
 			FieldBallWinSet( event );
-			//ÉuÉâÉbÉNÉCÉìÉäÉNÉGÉXÉg
+			//„Éñ„É©„ÉÉ„ÇØ„Ç§„É≥„É™„ÇØ„Ç®„Çπ„Éà
 			FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );
 			wk->seq = FLD_MENU_SEQ_WAIT_BLACK_IN;
 		}
 		break;
 
 	case FLD_MENU_SEQ_BLACK_IN_END:
-		//ÉtÉBÅ[ÉãÉhÉ}ÉbÉvÉvÉçÉZÉXäJénë“Çø
+		//„Éï„Ç£„Éº„É´„Éâ„Éû„ÉÉ„Éó„Éó„É≠„Çª„ÇπÈñãÂßãÂæÖ„Å°
 		if(FieldEvent_Cmd_WaitMapProcStart(fsys)) {
-			//ÉuÉâÉbÉNÉCÉìÉäÉNÉGÉXÉg
+			//„Éñ„É©„ÉÉ„ÇØ„Ç§„É≥„É™„ÇØ„Ç®„Çπ„Éà
 			FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );
 			wk->seq = FLD_MENU_SEQ_BLACK_IN_END_WAIT;
 		}
@@ -689,7 +689,7 @@ static BOOL GMEVENT_FieldMenu(GMEVENT_CONTROL * event)
 		break;
 
 	case FLD_MENU_SEQ_BLACK_IN_EVCHG:
-		//ÉtÉBÅ[ÉãÉhÉ}ÉbÉvÉvÉçÉZÉXäJénë“Çø
+		//„Éï„Ç£„Éº„É´„Éâ„Éû„ÉÉ„Éó„Éó„É≠„Çª„ÇπÈñãÂßãÂæÖ„Å°
 		if(FieldEvent_Cmd_WaitMapProcStart(fsys)) {
 			FieldOBJSys_MovePauseAll( fsys->fldobjsys );
 			FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );
@@ -707,7 +707,7 @@ static BOOL GMEVENT_FieldMenu(GMEVENT_CONTROL * event)
 		break;
 
 	case FLD_MENU_SEQ_END_NOMENU:
-		//ÉÅÉjÉÖÅ[Ç™Ç∑Ç≈Ç…ï¬Ç∂ÇƒÇ¢ÇÈèÛë‘Ç≈èIóπ
+		//„É°„Éã„É•„Éº„Åå„Åô„Åß„Å´Èñâ„Åò„Å¶„ÅÑ„ÇãÁä∂ÊÖã„ÅßÁµÇ‰∫Ü
 		sys_FreeMemoryEz( wk );
 		FieldOBJSys_MovePauseAllClear( fsys->fldobjsys );
 		return TRUE;
@@ -740,9 +740,9 @@ static BOOL GMEVENT_FieldMenu(GMEVENT_CONTROL * event)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[çÏê¨
+ * „Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„Éº‰ΩúÊàê
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -823,59 +823,59 @@ static void FieldMenuSet( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉÅÉjÉÖÅ[ÉäÉXÉgçÏê¨
+ * „É°„Éã„É•„Éº„É™„Çπ„Éà‰ΩúÊàê
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
- * @param	list	ÉäÉXÉgçÏê¨èÍèä
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
+ * @param	list	„É™„Çπ„Éà‰ΩúÊàêÂ†¥ÊâÄ
  *
- * @return	çÄñ⁄êî
+ * @return	È†ÖÁõÆÊï∞
  */
 //--------------------------------------------------------------------------------------------
 static u32 FieldMenuListMake( FLD_MENU * wk, u8 * list )
 {
 	u32	max = 0;
 
-	// ÉäÉ^ÉCÉA
+	// „É™„Çø„Ç§„Ç¢
 	if( ( wk->ev_flg & FLD_MENU_VANISH_RETIRE ) == 0 ){
 		list[max] = MENU_POS_RETIRE;
 		max++;
 	}
-	// É`ÉÉÉbÉg
+	// „ÉÅ„É£„ÉÉ„Éà
 	if( ( wk->ev_flg & FLD_MENU_VANISH_CHAT ) == 0 ){
 		list[max] = MENU_POS_CHAT;
 		max++;
 	}
-	// ê}ä”
+	// Âõ≥Èëë
 	if( ( wk->ev_flg & FLD_MENU_VANISH_ZUKAN ) == 0 ){
 		list[max] = MENU_POS_ZUKAN;
 		max++;
 	}
-	// É|ÉPÉÇÉìÉäÉXÉg
+	// „Éù„Ç±„É¢„É≥„É™„Çπ„Éà
 	if( ( wk->ev_flg & FLD_MENU_VANISH_PLIST ) == 0 ){
 		list[max] = MENU_POS_POKEMON;
 		max++;
 	}
-	// ÉoÉbÉO
+	// „Éê„ÉÉ„Ç∞
 	if( ( wk->ev_flg & FLD_MENU_VANISH_BAG ) == 0 ){
 		list[max] = MENU_POS_BAG;
 		max++;
 	}
-	// ÉgÉåÅ[ÉiÅ[ÉJÅ[Éh
+	// „Éà„É¨„Éº„Éä„Éº„Ç´„Éº„Éâ
 	if( ( wk->ev_flg & FLD_MENU_VANISH_TRCARD ) == 0 ){
 		list[max] = MENU_POS_HERO;
 		max++;
 	}
-	// ÉåÉ|Å[Ég
+	// „É¨„Éù„Éº„Éà
 	if( ( wk->ev_flg & FLD_MENU_VANISH_REPORT ) == 0 ){
 		list[max] = MENU_POS_REPORT;
 		max++;
 	}
-	// ê›íË
+	// Ë®≠ÂÆö
 	if( ( wk->ev_flg & FLD_MENU_VANISH_CONFIG ) == 0 ){
 		list[max] = MENU_POS_CONFIG;
 		max++;
 	}
-	// ï¬Ç∂ÇÈ
+	// Èñâ„Åò„Çã
 	if( ( wk->ev_flg & FLD_MENU_VANISH_CLOSE ) == 0 ){
 		list[max] = MENU_POS_EXIT;
 		max++;
@@ -886,9 +886,9 @@ static u32 FieldMenuListMake( FLD_MENU * wk, u8 * list )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉÅÉjÉÖÅ[çÌèú
+ * „É°„Éã„É•„ÉºÂâäÈô§
  *
- * @param	wk		ÉÅÉjÉÖÅ[ÉèÅ[ÉN
+ * @param	wk		„É°„Éã„É•„Éº„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
@@ -906,9 +906,9 @@ static void FieldMenuListExit( FLD_MENU * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉTÉtÉ@ÉäÅiÉpÅ[ÉNÅjÉ{Å[ÉãÇÃå¬êîÉEÉBÉìÉhÉEçÏê¨
+ * „Çµ„Éï„Ç°„É™Ôºà„Éë„Éº„ÇØÔºâ„Éú„Éº„É´„ÅÆÂÄãÊï∞„Ç¶„Ç£„É≥„Éâ„Ç¶‰ΩúÊàê
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -948,9 +948,9 @@ static void FieldBallWinSet( GMEVENT_CONTROL * event )
 
 	man  = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_fieldmenu_dat, HEAPID_WORLD );
 	if( flg == 0 ){
-		strb = MSGMAN_AllocString( man, msg_menu_09 );	// ÉTÉtÉ@ÉäÉ{Å[Éã
+		strb = MSGMAN_AllocString( man, msg_menu_09 );	// „Çµ„Éï„Ç°„É™„Éú„Éº„É´
 	}else{
-		strb = MSGMAN_AllocString( man, msg_menu_10 );	// ÉpÅ[ÉNÉ{Å[Éã
+		strb = MSGMAN_AllocString( man, msg_menu_10 );	// „Éë„Éº„ÇØ„Éú„Éº„É´
 	}
 	GF_STR_PrintSimple(
 		&wk->ball_win, FONT_SYSTEM, strb, BALL_NAME_PX, BALL_NAME_PY, MSG_NO_PUT, NULL );
@@ -980,9 +980,9 @@ static void FieldBallWinSet( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉTÉtÉ@ÉäÅiÉpÅ[ÉNÅjÉ{Å[ÉãÇÃå¬êîÉEÉBÉìÉhÉEçÌèú
+ * „Çµ„Éï„Ç°„É™Ôºà„Éë„Éº„ÇØÔºâ„Éú„Éº„É´„ÅÆÂÄãÊï∞„Ç¶„Ç£„É≥„Éâ„Ç¶ÂâäÈô§
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -1007,9 +1007,9 @@ static void FieldBallWinExit( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ëIëèàóù
+ * ÈÅ∏ÊäûÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -1055,18 +1055,18 @@ static BOOL FieldMenuSelect( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉÜÉjÉIÉìÉãÅ[ÉÄÇ≈òbÇµÇ©ÇØâ¬î\ÇÃèÛë‘Ç…Ç∑ÇÈ
+ * „É¶„Éã„Ç™„É≥„É´„Éº„É†„ÅßË©±„Åó„Åã„ÅëÂèØËÉΩ„ÅÆÁä∂ÊÖã„Å´„Åô„Çã
  *
- * @param	wk		ÉèÅ[ÉN
+ * @param	wk		„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void FldMenu_UnionBeaconChg( FLD_MENU * wk, FIELDSYS_WORK *fsys )
 {
-	// í êMÉèÅ[ÉNÇ™ë∂ç›ÇµÇƒÇ¢ÇÈÇ»ÇÁ
+	// ÈÄö‰ø°„ÉØ„Éº„ÇØ„ÅåÂ≠òÂú®„Åó„Å¶„ÅÑ„Çã„Å™„Çâ
 	if( CommMPIsInitialize() ){
-		// ÉÜÉjÉIÉìÉãÅ[ÉÄÇ»ÇÁ
+		// „É¶„Éã„Ç™„É≥„É´„Éº„É†„Å™„Çâ
 	    if( wk->union_flg ){
 			UnionRoomView_ObjAllRise( fsys->union_view );
 //			UnionRoomView_ObjInit( fsys->union_view );
@@ -1078,17 +1078,17 @@ static void FldMenu_UnionBeaconChg( FLD_MENU * wk, FIELDSYS_WORK *fsys )
 
 
 //============================================================================================
-//	ÉZÉãÉAÉNÉ^Å[
+//	„Çª„É´„Ç¢„ÇØ„Çø„Éº
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉZÉãÉAÉNÉ^Å[ÉZÉbÉg
+ * „Çª„É´„Ç¢„ÇØ„Çø„Éº„Çª„ÉÉ„Éà
  *
- * @param	wk		ÉèÅ[ÉN
- * @param	list	ÉÅÉjÉÖÅ[ÉäÉXÉg
- * @param	max		ÉÅÉjÉÖÅ[êî
- * @param	sex		éÂêlåˆÇÃê´ï 
+ * @param	wk		„ÉØ„Éº„ÇØ
+ * @param	list	„É°„Éã„É•„Éº„É™„Çπ„Éà
+ * @param	max		„É°„Éã„É•„ÉºÊï∞
+ * @param	sex		‰∏ª‰∫∫ÂÖ¨„ÅÆÊÄßÂà•
  *
  * @return	none
  */
@@ -1106,12 +1106,12 @@ static void CellActSet( FLD_MENU * wk, u8 * list, u32 max, u8 sex )
 
 	p_handle = ArchiveDataHandleOpen( ARC_MENU_GRA, HEAPID_WORLD );
 
-	// ã§í ÉpÉåÉbÉgì«Ç›çûÇ›
+	// ÂÖ±ÈÄö„Éë„É¨„ÉÉ„ÉàË™≠„ÅøËæº„Åø
 	FldClact_LoadResPlttArcH(
 		&wk->fcat, p_handle,
 		NARC_menu_gra_fmenu_obj_NCLR, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, FLDMENU_CLA_PAL_H_ID );
 
-	// ëIëÉJÅ[É\Éã
+	// ÈÅ∏Êäû„Ç´„Éº„ÇΩ„É´
 	FldClact_LoadResCellArcH(
 		&wk->fcat, p_handle, NARC_menu_gra_fmenu_cur_NCER, 0, FLDMENU_CLA_CEL_H_ID_CURSOR );
 
@@ -1126,7 +1126,7 @@ static void CellActSet( FLD_MENU * wk, u8 * list, u32 max, u8 sex )
 
 	CursorMove( wk->cap[CLA_SET_CURSOR]->act, wk->pos );
 
-	// ÉAÉCÉRÉì
+	// „Ç¢„Ç§„Ç≥„É≥
 	FldClact_LoadResCellArcH(
 		&wk->fcat, p_handle, NARC_menu_gra_fmenu_obj_NCER, 0, FLDMENU_CLA_CEL_H_ID_ICON );
 
@@ -1158,7 +1158,7 @@ static void CellActSet( FLD_MENU * wk, u8 * list, u32 max, u8 sex )
 	}
 	IconAnmChange( wk->cap[CLA_SET_ICON+wk->pos]->act, ICON_ANM_SELECT, 1 );
 
-	wk->clact_max = max + 1;	// ÉZÉãÉAÉNÉ^Å[êîÅiçÄñ⁄êîÅ{ëIëÉJÅ[É\ÉãÅj
+	wk->clact_max = max + 1;	// „Çª„É´„Ç¢„ÇØ„Çø„ÉºÊï∞ÔºàÈ†ÖÁõÆÊï∞ÔºãÈÅ∏Êäû„Ç´„Éº„ÇΩ„É´Ôºâ
 
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
@@ -1167,9 +1167,9 @@ static void CellActSet( FLD_MENU * wk, u8 * list, u32 max, u8 sex )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉZÉãÉAÉNÉ^Å[çÌèú
+ * „Çª„É´„Ç¢„ÇØ„Çø„ÉºÂâäÈô§
  *
- * @param	wk		ÉèÅ[ÉN
+ * @param	wk		„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
@@ -1186,9 +1186,9 @@ static void CellActDelete( FLD_MENU * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉZÉãÉAÉNÉ^Å[ÉAÉjÉÅ
+ * „Çª„É´„Ç¢„ÇØ„Çø„Éº„Ç¢„Éã„É°
  *
- * @param	wk		ÉèÅ[ÉN
+ * @param	wk		„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
@@ -1204,10 +1204,10 @@ static void CellActAnm( FLD_MENU * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉJÅ[É\Éãà⁄ìÆ
+ * „Ç´„Éº„ÇΩ„É´ÁßªÂãï
  *
- * @param	cwp			ÉZÉãÉAÉNÉ^Å[ÉèÅ[ÉN
- * @param	cur_pos		ÉJÅ[É\Éãà íu
+ * @param	cwp			„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉØ„Éº„ÇØ
+ * @param	cur_pos		„Ç´„Éº„ÇΩ„É´‰ΩçÁΩÆ
  *
  * @return	none
  */
@@ -1223,11 +1223,11 @@ static void CursorMove( CLACT_WORK_PTR cwp, u32 cur_pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉAÉCÉRÉìÉAÉjÉÅïœçX
+ * „Ç¢„Ç§„Ç≥„É≥„Ç¢„Éã„É°Â§âÊõ¥
  *
- * @param	cwp		ÉZÉãÉAÉNÉ^Å[ÉèÅ[ÉN
- * @param	anm		ÉAÉjÉÅî‘çÜ
- * @param	pal		ÉpÉåÉbÉgî‘çÜ
+ * @param	cwp		„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉØ„Éº„ÇØ
+ * @param	anm		„Ç¢„Éã„É°Áï™Âè∑
+ * @param	pal		„Éë„É¨„ÉÉ„ÉàÁï™Âè∑
  *
  * @return	none
  */
@@ -1242,11 +1242,11 @@ static void IconAnmChange( CLACT_WORK_PTR cwp, u16 anm, u16 pal )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉJÅ[É\Éãà⁄ìÆéûÇÃÉAÉCÉRÉìÉAÉjÉÅïœçX
+ * „Ç´„Éº„ÇΩ„É´ÁßªÂãïÊôÇ„ÅÆ„Ç¢„Ç§„Ç≥„É≥„Ç¢„Éã„É°Â§âÊõ¥
  *
- * @param	wk			ÉèÅ[ÉN
- * @param	old_pos		ëOâÒëIëÇ≥ÇÍÇƒÇ¢ÇΩÉAÉCÉRÉìà íu
- * @param	new_pos		êVÇµÇ≠ëIëÇ≥ÇÍÇƒÇ¢ÇΩÉAÉCÉRÉìà íu
+ * @param	wk			„ÉØ„Éº„ÇØ
+ * @param	old_pos		ÂâçÂõûÈÅ∏Êäû„Åï„Çå„Å¶„ÅÑ„Åü„Ç¢„Ç§„Ç≥„É≥‰ΩçÁΩÆ
+ * @param	new_pos		Êñ∞„Åó„ÅèÈÅ∏Êäû„Åï„Çå„Å¶„ÅÑ„Åü„Ç¢„Ç§„Ç≥„É≥‰ΩçÁΩÆ
  *
  * @return	none
  */
@@ -1259,9 +1259,9 @@ static void MoveIconAnmChg( FLD_MENU * wk, u16 old_pos, u16 new_pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ëIëÇ≥ÇÍÇΩÉAÉCÉRÉìÇÃÉAÉjÉÅäƒéã
+ * ÈÅ∏Êäû„Åï„Çå„Åü„Ç¢„Ç§„Ç≥„É≥„ÅÆ„Ç¢„Éã„É°Áõ£Ë¶ñ
  *
- * @param	cwp			ÉZÉãÉAÉNÉ^Å[ÉèÅ[ÉN
+ * @param	cwp			„Çª„É´„Ç¢„ÇØ„Çø„Éº„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
@@ -1278,14 +1278,14 @@ static void SelectIconAnmCheck( CLACT_WORK_PTR cwp )
 
 
 //============================================================================================
-//	çÄñ⁄Ç≤Ç∆ÇÃèàóù
+//	È†ÖÁõÆ„Åî„Å®„ÅÆÂá¶ÁêÜ
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉAÉvÉäåƒÇ—èoÇµ
+ * „Ç¢„Éó„É™Âëº„Å≥Âá∫„Åó
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -1310,9 +1310,9 @@ static void FldMenu_AppCall( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉAÉvÉäèIóπë“Çø
+ * „Ç¢„Éó„É™ÁµÇ‰∫ÜÂæÖ„Å°
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -1325,7 +1325,7 @@ static void FldMenu_AppWait( GMEVENT_CONTROL * event )
 	fsys = FieldEvent_GetFieldSysWork( event );
 	wk   = FieldEvent_GetSpecialWork( event );
 
-	// ÉTÉuÉvÉçÉZÉXèIóπë“Çø
+	// „Çµ„Éñ„Éó„É≠„Çª„ÇπÁµÇ‰∫ÜÂæÖ„Å°
 	if( FieldEvent_Cmd_WaitSubProcEnd( fsys ) ) {
 		return;
 	}
@@ -1335,10 +1335,10 @@ static void FldMenu_AppWait( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉAÉvÉäèIóπë“ÇøèàóùÉZÉbÉg
+ * „Ç¢„Éó„É™ÁµÇ‰∫ÜÂæÖ„Å°Âá¶ÁêÜ„Çª„ÉÉ„Éà
  *
- * @param	wk		ÉèÅ[ÉN
- * @param	func	èIóπë“Çøèàóù
+ * @param	wk		„ÉØ„Éº„ÇØ
+ * @param	func	ÁµÇ‰∫ÜÂæÖ„Å°Âá¶ÁêÜ
  *
  * @return	none
  */
@@ -1351,14 +1351,14 @@ void FldMenu_AppWaitFuncSet( FLD_MENU * wk, void * func )
 
 
 //============================================================================================
-//	ÉÅÉjÉÖÅ[ÅFÇ∏Ç©ÇÒ
+//	„É°„Éã„É•„ÉºÔºö„Åö„Åã„Çì
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ê}ä”åƒÇ—èoÇµê›íË
+ * Âõ≥ÈëëÂëº„Å≥Âá∫„ÅóË®≠ÂÆö
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	TRUE
  */
@@ -1379,9 +1379,9 @@ static BOOL FldMenu_ZukanInit( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ê}ä”åƒÇ—èoÇµ
+ * Âõ≥ÈëëÂëº„Å≥Âá∫„Åó
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -1420,9 +1420,9 @@ static BOOL FldMenu_ZukanCall( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ê}ä”èIóπèàóù
+ * Âõ≥ÈëëÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -1435,7 +1435,7 @@ static BOOL FldMenu_ZukanEnd( GMEVENT_CONTROL * event )
 	fsys = FieldEvent_GetFieldSysWork( event );
 	wk   = FieldEvent_GetSpecialWork( event );
 
-	//ÉtÉBÅ[ÉãÉhÉ}ÉbÉvÉvÉçÉZÉXïúãA
+	//„Éï„Ç£„Éº„É´„Éâ„Éû„ÉÉ„Éó„Éó„É≠„Çª„ÇπÂæ©Â∏∞
 	FieldEvent_Cmd_SetMapProc( fsys );
 
 	if( wk->app_wk != NULL ){
@@ -1449,7 +1449,7 @@ static BOOL FldMenu_ZukanEnd( GMEVENT_CONTROL * event )
 
 
 //=============================================================================================
-//	ÉÅÉjÉÖÅ[ÅFÉ|ÉPÉÇÉì
+//	„É°„Éã„É•„ÉºÔºö„Éù„Ç±„É¢„É≥
 //=============================================================================================
 typedef struct {
 	u8	pos;
@@ -1474,9 +1474,9 @@ typedef struct {
 
 //--------------------------------------------------------------------------------------------
 /**
- * É|ÉPÉÇÉìÉäÉXÉgåƒÇ—èoÇµê›íË
+ * „Éù„Ç±„É¢„É≥„É™„Çπ„ÉàÂëº„Å≥Âá∫„ÅóË®≠ÂÆö
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	TRUE
  */
@@ -1497,9 +1497,9 @@ static BOOL FldMenu_PokeListInit( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * É|ÉPÉÇÉìÉäÉXÉgåƒÇ—èoÇµ
+ * „Éù„Ç±„É¢„É≥„É™„Çπ„ÉàÂëº„Å≥Âá∫„Åó
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -1520,9 +1520,9 @@ static BOOL FldMenu_PokeListCall( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * É|ÉPÉÇÉìÉäÉXÉgèIóπèàóù
+ * „Éù„Ç±„É¢„É≥„É™„Çπ„ÉàÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -1541,7 +1541,7 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 	sys_FreeMemoryEz( wk->app_wk );
 
 	switch( dat->ret_mode ){
-	case PL_RET_STATUS:		// ã≠Ç≥Çå©ÇÈ
+	case PL_RET_STATUS:		// Âº∑„Åï„ÇíË¶ã„Çã
 		{
 			PSTATUS_DATA * psd = sys_AllocMemory( HEAPID_WORLD, sizeof(PSTATUS_DATA) );
 
@@ -1565,7 +1565,7 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case PL_RET_WAZASET:		// ãZñYÇÍÅiãZÉ}ÉVÉìÅj
+	case PL_RET_WAZASET:		// ÊäÄÂøò„ÇåÔºàÊäÄ„Éû„Ç∑„É≥Ôºâ
 		{
 			PSTATUS_DATA * psd = sys_AllocMemory( HEAPID_WORLD, sizeof(PSTATUS_DATA) );
 
@@ -1594,7 +1594,7 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case PL_RET_LVUP_WAZASET:	// ãZñYÇÍÅiïsévãcÇ»ÉAÉÅÅj
+	case PL_RET_LVUP_WAZASET:	// ÊäÄÂøò„ÇåÔºà‰∏çÊÄùË≠∞„Å™„Ç¢„É°Ôºâ
 		{
 			PSTATUS_DATA * psd = sys_AllocMemory( HEAPID_WORLD, sizeof(PSTATUS_DATA) );
 
@@ -1623,7 +1623,7 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case PL_RET_MAILSET:	// ÉÅÅ[ÉãÇéùÇΩÇπÇÈ
+	case PL_RET_MAILSET:	// „É°„Éº„É´„ÇíÊåÅ„Åü„Åõ„Çã
 		{
 			MAIL_PARAM * mail;
 
@@ -1642,7 +1642,7 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case PL_RET_MAILREAD:	// ÉÅÅ[ÉãÇì«Çﬁ
+	case PL_RET_MAILREAD:	// „É°„Éº„É´„ÇíË™≠„ÇÄ
 		{
 			MAIL_PARAM * mail;
 			POKEMON_PARAM * pp;
@@ -1656,13 +1656,13 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case PL_RET_ITEMSET:	// ÉoÉbÉOÇÃéùÇΩÇπÇÈÉAÉCÉeÉÄëIëÇ÷
+	case PL_RET_ITEMSET:	// „Éê„ÉÉ„Ç∞„ÅÆÊåÅ„Åü„Åõ„Çã„Ç¢„Ç§„ÉÜ„É†ÈÅ∏Êäû„Å∏
 		{
 			MYITEM * myitem;
 			void * myst;
 			u32 * sel_pos;
 
-			// ëIëÇµÇΩÉ|ÉPÉÇÉìà íuÇëﬁî
+			// ÈÅ∏Êäû„Åó„Åü„Éù„Ç±„É¢„É≥‰ΩçÁΩÆ„ÇíÈÄÄÈÅø
 			sel_pos = (u32 *)sys_AllocMemory( HEAPID_WORLD, 4 );
 			*sel_pos = dat->ret_sel;
 			wk->tmp_wk = (void *)sel_pos;
@@ -1677,7 +1677,7 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 		FldMenu_AppWaitFuncSet( wk, FldMenu_BagEnd );
 		break;
 
-	case PL_RET_ITEMSHINKA:		// êiâªâÊñ Ç÷ÅiÉAÉCÉeÉÄêiâªÅj
+	case PL_RET_ITEMSHINKA:		// ÈÄ≤ÂåñÁîªÈù¢„Å∏Ôºà„Ç¢„Ç§„ÉÜ„É†ÈÄ≤ÂåñÔºâ
 		{
 			FLDMENU_SHINKA_WORK * swk = sys_AllocMemory(HEAPID_WORLD,sizeof(FLDMENU_SHINKA_WORK));
 
@@ -1691,7 +1691,7 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case PL_RET_LVUPSHINKA:		// êiâªâÊñ Ç÷ÅiÉåÉxÉãÉAÉbÉvêiâªÅj
+	case PL_RET_LVUPSHINKA:		// ÈÄ≤ÂåñÁîªÈù¢„Å∏Ôºà„É¨„Éô„É´„Ç¢„ÉÉ„ÉóÈÄ≤ÂåñÔºâ
 		{
 			FLDMENU_SHINKA_WORK * swk = sys_AllocMemory(HEAPID_WORLD,sizeof(FLDMENU_SHINKA_WORK));
 
@@ -1705,19 +1705,19 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case PL_RET_IWAKUDAKI:		// ÉÅÉjÉÖÅ[ ãZÅFÇ¢ÇÌÇ≠ÇæÇ´
-	case PL_RET_IAIGIRI:		// ÉÅÉjÉÖÅ[ ãZÅFÇ¢Ç†Ç¢Ç¨ÇË
-	case PL_RET_SORAWOTOBU:		// ÉÅÉjÉÖÅ[ ãZÅFÇªÇÁÇÇ∆Ç‘
-	case PL_RET_KIRIBARAI:		// ÉÅÉjÉÖÅ[ ãZÅFÇ´ÇËÇŒÇÁÇ¢
-	case PL_RET_KAIRIKI:		// ÉÅÉjÉÖÅ[ ãZÅFÇ©Ç¢ÇËÇ´
-	case PL_RET_NAMINORI:		// ÉÅÉjÉÖÅ[ ãZÅFÇ»Ç›ÇÃÇË
-	case PL_RET_ROCKCLIMB:		// ÉÅÉjÉÖÅ[ ãZÅFÉçÉbÉNÉNÉâÉCÉÄ
-	case PL_RET_TAKINOBORI:		// ÉÅÉjÉÖÅ[ ãZÅFÇΩÇ´ÇÃÇ⁄ÇË
-	case PL_RET_FLASH:			// ÉÅÉjÉÖÅ[ ãZÅFÉtÉâÉbÉVÉÖ
-	case PL_RET_TELEPORT:		// ÉÅÉjÉÖÅ[ ãZÅFÉeÉåÉ|Å[Ég
-	case PL_RET_ANAWOHORU:		// ÉÅÉjÉÖÅ[ ãZÅFÇ†Ç»ÇÇŸÇÈ
-	case PL_RET_AMAIKAORI:		// ÉÅÉjÉÖÅ[ ãZÅFÇ†Ç‹Ç¢Ç©Ç®ÇË
-	case PL_RET_OSYABERI:		// ÉÅÉjÉÖÅ[ ãZÅFÇ®ÇµÇ·Ç◊ÇË
+	case PL_RET_IWAKUDAKI:		// „É°„Éã„É•„Éº ÊäÄÔºö„ÅÑ„Çè„Åè„Å†„Åç
+	case PL_RET_IAIGIRI:		// „É°„Éã„É•„Éº ÊäÄÔºö„ÅÑ„ÅÇ„ÅÑ„Åé„Çä
+	case PL_RET_SORAWOTOBU:		// „É°„Éã„É•„Éº ÊäÄÔºö„Åù„Çâ„Çí„Å®„Å∂
+	case PL_RET_KIRIBARAI:		// „É°„Éã„É•„Éº ÊäÄÔºö„Åç„Çä„Å∞„Çâ„ÅÑ
+	case PL_RET_KAIRIKI:		// „É°„Éã„É•„Éº ÊäÄÔºö„Åã„ÅÑ„Çä„Åç
+	case PL_RET_NAMINORI:		// „É°„Éã„É•„Éº ÊäÄÔºö„Å™„Åø„ÅÆ„Çä
+	case PL_RET_ROCKCLIMB:		// „É°„Éã„É•„Éº ÊäÄÔºö„É≠„ÉÉ„ÇØ„ÇØ„É©„Ç§„É†
+	case PL_RET_TAKINOBORI:		// „É°„Éã„É•„Éº ÊäÄÔºö„Åü„Åç„ÅÆ„Åº„Çä
+	case PL_RET_FLASH:			// „É°„Éã„É•„Éº ÊäÄÔºö„Éï„É©„ÉÉ„Ç∑„É•
+	case PL_RET_TELEPORT:		// „É°„Éã„É•„Éº ÊäÄÔºö„ÉÜ„É¨„Éù„Éº„Éà
+	case PL_RET_ANAWOHORU:		// „É°„Éã„É•„Éº ÊäÄÔºö„ÅÇ„Å™„Çí„Åª„Çã
+	case PL_RET_AMAIKAORI:		// „É°„Éã„É•„Éº ÊäÄÔºö„ÅÇ„Åæ„ÅÑ„Åã„Åä„Çä
+	case PL_RET_OSYABERI:		// „É°„Éã„É•„Éº ÊäÄÔºö„Åä„Åó„ÇÉ„Åπ„Çä
 		{
 			SKILLUSE_FUNC func;
 			SKILLUSE_WORK suwk;
@@ -1731,12 +1731,12 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case PL_RET_BAG:			// ÉoÉbÉOÇ÷ñﬂÇÈ
+	case PL_RET_BAG:			// „Éê„ÉÉ„Ç∞„Å∏Êàª„Çã
 		wk->app_wk = FieldBag_SetProc( fsys, &wk->item_check );
 		FldMenu_AppWaitFuncSet( wk, FldMenu_BagEnd );
 		break;
 
-	default:	// ÇªÇÃëº
+	default:	// „Åù„ÅÆ‰ªñ
 /*
 		if( dat->mode == PL_MODE_ITEMUSE || dat->mode == PL_MODE_ITEMSET ||
 			dat->mode == PL_MODE_WAZASET || dat->mode == PL_MODE_WAZASET_RET ||
@@ -1759,7 +1759,7 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 			FldMenu_AppWaitFuncSet( wk, FldMenu_BagEnd );
 
 		}else{
-			//ÉtÉBÅ[ÉãÉhÉ}ÉbÉvÉvÉçÉZÉXïúãA
+			//„Éï„Ç£„Éº„É´„Éâ„Éû„ÉÉ„Éó„Éó„É≠„Çª„ÇπÂæ©Â∏∞
 			FieldEvent_Cmd_SetMapProc( fsys );
 			wk->seq = FLD_MENU_SEQ_AGAIN;
 		}
@@ -1775,15 +1775,15 @@ BOOL FldMenu_PokeListEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉÅÉjÉÖÅ[ÅFÉoÉbÉO
+//	„É°„Éã„É•„ÉºÔºö„Éê„ÉÉ„Ç∞
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉoÉbÉOåƒÇ—èoÇµê›íË
+ * „Éê„ÉÉ„Ç∞Âëº„Å≥Âá∫„ÅóË®≠ÂÆö
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	TRUE
  */
@@ -1804,9 +1804,9 @@ static BOOL FldMenu_BagInit( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉoÉbÉOåƒÇ—èoÇµ
+ * „Éê„ÉÉ„Ç∞Âëº„Å≥Âá∫„Åó
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -1823,7 +1823,7 @@ static BOOL FldMenu_BagCall( GMEVENT_CONTROL * event )
 	Bag_UsePokeSet( wk->app_wk, 0 );
 	wk->app_func = FldMenu_BagEnd;
 
-	//ÉrÉfÉIÇÃèâéãíÆÅAçÌèúÇ≈ÉZÅ[ÉuÇ™çsÇÌÇÍÇÈÇÃÇ≈éñëOÇ…ÉpÉâÉÅÅ[É^ÉZÉbÉg 2008.05.12(åé) matsuda
+	//„Éì„Éá„Ç™„ÅÆÂàùË¶ñËÅ¥„ÄÅÂâäÈô§„Åß„Çª„Éº„Éñ„ÅåË°å„Çè„Çå„Çã„ÅÆ„Åß‰∫ãÂâç„Å´„Éë„É©„É°„Éº„Çø„Çª„ÉÉ„Éà 2008.05.12(Êúà) matsuda
 	Field_SaveParam_BattleRecorder(fsys);
 	
 	return 0;
@@ -1831,9 +1831,9 @@ static BOOL FldMenu_BagCall( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉoÉbÉOèIóπèàóù
+ * „Éê„ÉÉ„Ç∞ÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -1852,7 +1852,7 @@ static BOOL FldMenu_BagEnd( GMEVENT_CONTROL * event )
 	sys_FreeMemoryEz( wk->app_wk );
 
 	switch( BagSysReturnModeGet( dat ) ){
-	case BAG_RET_USE:		// Ç¬Ç©Ç§
+	case BAG_RET_USE:		// „Å§„Åã„ÅÜ
 		{
 			ITEMUSE_FUNC func;
 			ITEMUSE_WORK iuwk;
@@ -1867,11 +1867,11 @@ static BOOL FldMenu_BagEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case BAG_RET_TAG:		// É^ÉOÇÇ›ÇÈ
+	case BAG_RET_TAG:		// „Çø„Ç∞„Çí„Åø„Çã
 		FldMenu_NutsTagCall( event, BagSysReturnItemGet(dat) );
 		break;
 
-	case BAG_RET_ITEMSET:	// Ç‡ÇΩÇπÇÈ
+	case BAG_RET_ITEMSET:	// „ÇÇ„Åü„Åõ„Çã
 		{
 			PLIST_DATA * pld;
 
@@ -1893,7 +1893,7 @@ static BOOL FldMenu_BagEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case BAG_RET_POKEITEMSET:	// É|ÉPÉÇÉìÉäÉXÉgÅuÇ‡ÇΩÇπÇÈÅv
+	case BAG_RET_POKEITEMSET:	// „Éù„Ç±„É¢„É≥„É™„Çπ„Éà„Äå„ÇÇ„Åü„Åõ„Çã„Äç
 		{
 			POKEPARTY * party;
 			POKEMON_PARAM * pp;
@@ -1945,7 +1945,7 @@ static BOOL FldMenu_BagEnd( GMEVENT_CONTROL * event )
 
 	case BAG_RET_CANCEL:
 	default:
-		//ÉtÉBÅ[ÉãÉhÉ}ÉbÉvÉvÉçÉZÉXïúãA
+		//„Éï„Ç£„Éº„É´„Éâ„Éû„ÉÉ„Éó„Éó„É≠„Çª„ÇπÂæ©Â∏∞
 		FieldEvent_Cmd_SetMapProc( fsys );
 		wk->seq = FLD_MENU_SEQ_AGAIN;
 	}
@@ -1956,14 +1956,14 @@ static BOOL FldMenu_BagEnd( GMEVENT_CONTROL * event )
 
 
 //=============================================================================================
-//	ÉÅÉjÉÖÅ[ÅFÅiéÂêlåˆÅj
+//	„É°„Éã„É•„ÉºÔºöÔºà‰∏ª‰∫∫ÂÖ¨Ôºâ
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉgÉåÅ[ÉiÅ[ÉJÅ[ÉhåƒÇ—èoÇµê›íË
+ * „Éà„É¨„Éº„Éä„Éº„Ç´„Éº„ÉâÂëº„Å≥Âá∫„ÅóË®≠ÂÆö
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -1984,9 +1984,9 @@ static BOOL FldMenu_TrCardInit( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉgÉåÅ[ÉiÅ[ÉJÅ[ÉhåƒÇ—èoÇµ
+ * „Éà„É¨„Éº„Éä„Éº„Ç´„Éº„ÉâÂëº„Å≥Âá∫„Åó
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2012,9 +2012,9 @@ static BOOL FldMenu_TrCardCall( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉgÉåÅ[ÉiÅ[ÉJÅ[ÉhèIóπèàóù
+ * „Éà„É¨„Éº„Éä„Éº„Ç´„Éº„ÉâÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2027,10 +2027,10 @@ static BOOL FldMenu_TrCardEnd( GMEVENT_CONTROL * event )
 	fsys = FieldEvent_GetFieldSysWork( event );
 	wk   = FieldEvent_GetSpecialWork( event );
 
-	//ÉoÉbÉWñÅÇ´âÒêîçXêV
+	//„Éê„ÉÉ„Ç∏Á£®„ÅçÂõûÊï∞Êõ¥Êñ∞
 	TRCSET_UpdateBadgeScruchCount(fsys, (TR_CARD_DATA *)wk->app_wk);
 	TRCSET_FreeTrainerCardData( (TR_CARD_DATA *)wk->app_wk );
-	//ÉtÉBÅ[ÉãÉhÉ}ÉbÉvÉvÉçÉZÉXïúãA
+	//„Éï„Ç£„Éº„É´„Éâ„Éû„ÉÉ„Éó„Éó„É≠„Çª„ÇπÂæ©Â∏∞
 	FieldEvent_Cmd_SetMapProc( fsys );
 	wk->seq = FLD_MENU_SEQ_AGAIN;
 
@@ -2040,20 +2040,20 @@ static BOOL FldMenu_TrCardEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉÅÉjÉÖÅ[ÅFÉåÉ|Å[Ég
+//	„É°„Éã„É•„ÉºÔºö„É¨„Éù„Éº„Éà
 //=============================================================================================
 //=============================================================================================
 typedef struct {
-	void * infowin;		///<ÉZÅ[ÉuèÓïÒÉEÉBÉìÉhÉEópÉ|ÉCÉìÉ^
-//	int result;			///<ÉZÅ[Éuåãâ éÛÇØéÊÇËópÉèÅ[ÉN
-	u16 result;			///<ÉZÅ[Éuåãâ éÛÇØéÊÇËópÉèÅ[ÉN
+	void * infowin;		///<„Çª„Éº„ÉñÊÉÖÂ†±„Ç¶„Ç£„É≥„Éâ„Ç¶Áî®„Éù„Ç§„É≥„Çø
+//	int result;			///<„Çª„Éº„ÉñÁµêÊûúÂèó„ÅëÂèñ„ÇäÁî®„ÉØ„Éº„ÇØ
+	u16 result;			///<„Çª„Éº„ÉñÁµêÊûúÂèó„ÅëÂèñ„ÇäÁî®„ÉØ„Éº„ÇØ
 }FLDMENU_REPORT_WORK;
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉÅÉjÉÖÅ[çÄñ⁄ÅFÉåÉ|Å[ÉgÅFèâä˙âª
+ * „É°„Éã„É•„ÉºÈ†ÖÁõÆÔºö„É¨„Éù„Éº„ÉàÔºöÂàùÊúüÂåñ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	TRUE
  */
@@ -2062,7 +2062,7 @@ static BOOL FldMenu_ReportInit( GMEVENT_CONTROL * event )
 {
 	FLD_MENU * wk   = FieldEvent_GetSpecialWork( event );
 
-	//ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[è¡ãé
+	//„Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„ÉºÊ∂àÂéª
 	FieldMenuListExit( wk );
 	BmpMenuWinClear( &wk->win, WINDOW_TRANS_OFF );
 	GF_BGL_LoadScreenV_Req( wk->win.ini, wk->win.frmnum );
@@ -2076,9 +2076,9 @@ static BOOL FldMenu_ReportInit( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉÅÉjÉÖÅ[çÄñ⁄ÅFÉåÉ|Å[ÉgÅFåƒÇ—èoÇµ
+ * „É°„Éã„É•„ÉºÈ†ÖÁõÆÔºö„É¨„Éù„Éº„ÉàÔºöÂëº„Å≥Âá∫„Åó
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -2092,10 +2092,10 @@ static void FldMenu_ReportCall( GMEVENT_CONTROL * event )
 	if (SaveData_IsOverwritingOtherData(fsys->savedata)) {
 		EventCall_Script( event, SCRID_REPORT_NG, NULL, NULL );
 	} else {
-		//ÉåÉ|Å[ÉgèÓïÒê∂ê¨
+		//„É¨„Éù„Éº„ÉàÊÉÖÂ†±ÁîüÊàê
 		wk->app_wk = sys_AllocMemory(HEAPID_EVENT, sizeof(FLDMENU_REPORT_WORK));
 		repwk = wk->app_wk;
-		//åãâ éÛÇØéÊÇËópÉèÅ[ÉNèâä˙âª
+		//ÁµêÊûúÂèó„ÅëÂèñ„ÇäÁî®„ÉØ„Éº„ÇØÂàùÊúüÂåñ
 		repwk->result = FALSE;
 		
 		EventCall_Script( event, SCRID_REPORT, NULL, &repwk->result );
@@ -2106,9 +2106,9 @@ static void FldMenu_ReportCall( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉÅÉjÉÖÅ[çÄñ⁄ÅFÉåÉ|Å[ÉgÅFåãâ èàóù
+ * „É°„Éã„É•„ÉºÈ†ÖÁõÆÔºö„É¨„Éù„Éº„ÉàÔºöÁµêÊûúÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -2122,9 +2122,9 @@ static void FldMenu_ReportWait( GMEVENT_CONTROL * event )
 	if (SaveData_IsOverwritingOtherData(fsys->savedata)) {
 		wk->seq = FLD_MENU_SEQ_INIT;
 	} else {
-		if( repwk->result == FALSE ){		//ÉZÅ[ÉuÇµÇƒÇ¢Ç»Ç¢
+		if( repwk->result == FALSE ){		//„Çª„Éº„Éñ„Åó„Å¶„ÅÑ„Å™„ÅÑ
 			wk->seq = FLD_MENU_SEQ_INIT;
-		}else{								//ÉZÅ[ÉuÇµÇΩ
+		}else{								//„Çª„Éº„Éñ„Åó„Åü
 			wk->seq = FLD_MENU_SEQ_END_NOMENU;
 		}
 		sys_FreeMemoryEz(repwk);
@@ -2133,14 +2133,14 @@ static void FldMenu_ReportWait( GMEVENT_CONTROL * event )
 
 
 //=============================================================================================
-//	ÉÅÉjÉÖÅ[ÅFÇπÇ¡ÇƒÇ¢
+//	„É°„Éã„É•„ÉºÔºö„Åõ„Å£„Å¶„ÅÑ
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉRÉìÉtÉBÉOâÊñ åƒÇ—èoÇµê›íË
+ * „Ç≥„É≥„Éï„Ç£„Ç∞ÁîªÈù¢Âëº„Å≥Âá∫„ÅóË®≠ÂÆö
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -2161,9 +2161,9 @@ static BOOL FldMenu_ConfigInit( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉRÉìÉtÉBÉOâÊñ åƒÇ—èoÇµ
+ * „Ç≥„É≥„Éï„Ç£„Ç∞ÁîªÈù¢Âëº„Å≥Âá∫„Åó
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2184,9 +2184,9 @@ static BOOL FldMenu_ConfigCall( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉRÉìÉtÉBÉOâÊñ èIóπèàóù
+ * „Ç≥„É≥„Éï„Ç£„Ç∞ÁîªÈù¢ÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2199,9 +2199,9 @@ static BOOL FldMenu_ConfigEnd( GMEVENT_CONTROL * event )
 	fsys = FieldEvent_GetFieldSysWork( event );
 	wk   = FieldEvent_GetSpecialWork( event );
 
-	//ÉÅÉÇÉäâï˙
+	//„É°„É¢„É™Ëß£Êîæ
 	sys_FreeMemoryEz( wk->app_wk );
-	//ÉtÉBÅ[ÉãÉhÉ}ÉbÉvÉvÉçÉZÉXïúãA
+	//„Éï„Ç£„Éº„É´„Éâ„Éû„ÉÉ„Éó„Éó„É≠„Çª„ÇπÂæ©Â∏∞
 	FieldEvent_Cmd_SetMapProc( fsys );
 	wk->seq = FLD_MENU_SEQ_AGAIN;
 
@@ -2211,15 +2211,15 @@ static BOOL FldMenu_ConfigEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉÅÉjÉÖÅ[ÅFÉ`ÉÉÉbÉg
+//	„É°„Éã„É•„ÉºÔºö„ÉÅ„É£„ÉÉ„Éà
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * É`ÉÉÉbÉgâÊñ åƒÇ—èoÇµê›íË
+ * „ÉÅ„É£„ÉÉ„ÉàÁîªÈù¢Âëº„Å≥Âá∫„ÅóË®≠ÂÆö
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -2240,9 +2240,9 @@ static BOOL FldMenu_ChatInit( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * É`ÉÉÉbÉgâÊñ åƒÇ—èoÇµ
+ * „ÉÅ„É£„ÉÉ„ÉàÁîªÈù¢Âëº„Å≥Âá∫„Åó
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2269,9 +2269,9 @@ static BOOL FldMenu_ChatCall( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * É`ÉÉÉbÉgâÊñ èIóπèàóù
+ * „ÉÅ„É£„ÉÉ„ÉàÁîªÈù¢ÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2286,29 +2286,29 @@ static BOOL FldMenu_ChatEnd( GMEVENT_CONTROL * event )
 	fsys = FieldEvent_GetFieldSysWork( event );
 	wk   = FieldEvent_GetSpecialWork( event );
 
-	// ä»à’âÔòbÇçXêVÇµÇΩÇ©ÅH
+	// Á∞°Êòì‰ºöË©±„ÇíÊõ¥Êñ∞„Åó„Åü„ÅãÔºü
 	if ( PMSI_PARAM_CheckCanceled( wk->app_wk )==0 ){
 
-		// ä»à’âÔòbéÊìæ
+		// Á∞°Êòì‰ºöË©±ÂèñÂæó
 		PMSI_PARAM_GetInputDataSentence( wk->app_wk,  &pmsdata);
 
-		// í êMÉèÅ[ÉNÇ™ë∂ç›ÇµÇƒÇ¢ÇÈÇ»ÇÁ
+		// ÈÄö‰ø°„ÉØ„Éº„ÇØ„ÅåÂ≠òÂú®„Åó„Å¶„ÅÑ„Çã„Å™„Çâ
 		if(CommMPIsInitialize()){
-			// ÉrÅ[ÉRÉìÉfÅ[É^ÇÃä»à’âÔòbÇèëÇ´ä∑Ç¶ÇÈ & í êMÉfÅ[É^Ç…îΩâf
+			// „Éì„Éº„Ç≥„É≥„Éá„Éº„Çø„ÅÆÁ∞°Êòì‰ºöË©±„ÇíÊõ∏„ÅçÊèõ„Åà„Çã & ÈÄö‰ø°„Éá„Éº„Çø„Å´ÂèçÊò†
 //			CommMPSetMyPMS( &pmsdata );
 //			CommMPFlashMyBss();
-			Union_PMSReWrite( &pmsdata );							// ÉrÅ[ÉRÉìÉfÅ[É^Ç…îΩâfÇ≥ÇπÇÈ
-			Union_SetMyPmsData( fsys->union_work, &pmsdata );		// ÉÜÉjÉIÉìÉèÅ[ÉNÇ≈ï€ë∂ÇµÇƒÇ®Ç´â∫âÊñ Ç…ï\é¶Ç≥ÇπÇÈ
+			Union_PMSReWrite( &pmsdata );							// „Éì„Éº„Ç≥„É≥„Éá„Éº„Çø„Å´ÂèçÊò†„Åï„Åõ„Çã
+			Union_SetMyPmsData( fsys->union_work, &pmsdata );		// „É¶„Éã„Ç™„É≥„ÉØ„Éº„ÇØ„Åß‰øùÂ≠ò„Åó„Å¶„Åä„Åç‰∏ãÁîªÈù¢„Å´Ë°®Á§∫„Åï„Åõ„Çã
 		}
 		wk->seq = FLD_MENU_SEQ_BLACK_IN_END;
 	}else{
 		wk->seq = FLD_MENU_SEQ_AGAIN;
 	}
 	
-	//ÉÅÉÇÉäâï˙
+	//„É°„É¢„É™Ëß£Êîæ
 	PMSI_PARAM_Delete( (PMSI_PARAM*)wk->app_wk );
 
-	//ÉtÉBÅ[ÉãÉhÉ}ÉbÉvÉvÉçÉZÉXïúãA
+	//„Éï„Ç£„Éº„É´„Éâ„Éû„ÉÉ„Éó„Éó„É≠„Çª„ÇπÂæ©Â∏∞
 	FieldEvent_Cmd_SetMapProc( fsys );
 //	UnionRoomView_ObjInit( fsys->union_view );
 	UnionRoomView_ObjAllRise( fsys->union_view );
@@ -2319,15 +2319,15 @@ static BOOL FldMenu_ChatEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉÅÉjÉÖÅ[ÅFÉäÉ^ÉCÉA
+//	„É°„Éã„É•„ÉºÔºö„É™„Çø„Ç§„Ç¢
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉäÉ^ÉCÉAèàóù
+ * „É™„Çø„Ç§„Ç¢Âá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	FALSE
  */
@@ -2340,7 +2340,7 @@ static BOOL FldMenu_RetireInit( GMEVENT_CONTROL * event )
 	fsys = FieldEvent_GetFieldSysWork( event );
 	wk   = FieldEvent_GetSpecialWork( event );
 
-	//ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[è¡ãé
+	//„Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„ÉºÊ∂àÂéª
 	FieldMenuListExit( wk );
 	BmpMenuWinClear( &wk->win, WINDOW_TRANS_OFF );
 	GF_BGL_LoadScreenV_Req( wk->win.ini, wk->win.frmnum );
@@ -2360,15 +2360,15 @@ static BOOL FldMenu_RetireInit( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉTÉuÉAÉvÉäÅFÉXÉeÅ[É^ÉXâÊñ 
+//	„Çµ„Éñ„Ç¢„Éó„É™Ôºö„Çπ„ÉÜ„Éº„Çø„ÇπÁîªÈù¢
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉXÉeÅ[É^ÉXâÊñ èIóπèàóù
+ * „Çπ„ÉÜ„Éº„Çø„ÇπÁîªÈù¢ÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2388,7 +2388,7 @@ static BOOL FldMenu_PokeStatusEnd( GMEVENT_CONTROL * event )
 	sys_FreeMemoryEz( wk->app_wk );
 
 	switch( dat->mode ){
-	case PST_MODE_WAZAADD:	// ãZäoÇ¶/ãZñYÇÍ
+	case PST_MODE_WAZAADD:	// ÊäÄË¶ö„Åà/ÊäÄÂøò„Çå
 		{
 			PLIST_DATA * pld;
 			FLDMENU_WAZADEL_WORK * del;
@@ -2422,7 +2422,7 @@ static BOOL FldMenu_PokeStatusEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	default:	// ÇªÇÃëº
+	default:	// „Åù„ÅÆ‰ªñ
 		wk->app_wk = FieldPokeList_SetProc( fsys, &wk->skill_check, dat->pos );
 		FldMenu_AppWaitFuncSet( wk, FldMenu_PokeListEnd );
 	}
@@ -2434,15 +2434,15 @@ static BOOL FldMenu_PokeStatusEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉTÉuÉAÉvÉäÅFñÿÇÃé¿É^ÉO
+//	„Çµ„Éñ„Ç¢„Éó„É™ÔºöÊú®„ÅÆÂÆü„Çø„Ç∞
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ñÿÇÃé¿É^ÉOåƒÇ—èoÇµ
+ * Êú®„ÅÆÂÆü„Çø„Ç∞Âëº„Å≥Âá∫„Åó
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -2478,9 +2478,9 @@ static void FldMenu_NutsTagCall( GMEVENT_CONTROL * event, u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ñÿÇÃé¿É^ÉOèIóπèàóù
+ * Êú®„ÅÆÂÆü„Çø„Ç∞ÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2508,15 +2508,15 @@ static BOOL FldMenu_NutsTagEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉTÉuÉAÉvÉäÅFÉ^ÉEÉìÉ}ÉbÉv
+//	„Çµ„Éñ„Ç¢„Éó„É™Ôºö„Çø„Ç¶„É≥„Éû„ÉÉ„Éó
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * É^ÉEÉìÉ}ÉbÉvèIóπèàóùÅií èÌÅj
+ * „Çø„Ç¶„É≥„Éû„ÉÉ„ÉóÁµÇ‰∫ÜÂá¶ÁêÜÔºàÈÄöÂ∏∏Ôºâ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2538,9 +2538,9 @@ BOOL FldMenu_TownMapEnd( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * É^ÉEÉìÉ}ÉbÉvèIóπèàóùÅiãÛÇîÚÇ‘Åj
+ * „Çø„Ç¶„É≥„Éû„ÉÉ„ÉóÁµÇ‰∫ÜÂá¶ÁêÜÔºàÁ©∫„ÇíÈ£õ„Å∂Ôºâ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2591,15 +2591,15 @@ BOOL FldMenu_SorawotobuEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉTÉuÉAÉvÉäÅFñ`åØÉmÅ[Ég
+//	„Çµ„Éñ„Ç¢„Éó„É™ÔºöÂÜíÈô∫„Éé„Éº„Éà
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ñ`åØÉmÅ[ÉgèIóπèàóù
+ * ÂÜíÈô∫„Éé„Éº„ÉàÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2621,20 +2621,20 @@ BOOL FldMenu_FantasyNoteEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉTÉuÉAÉvÉäÅFÉÅÅ[Éã
+//	„Çµ„Éñ„Ç¢„Éó„É™Ôºö„É°„Éº„É´
 //=============================================================================================
 //=============================================================================================
 static void FM_MailMakeTrue( FIELDSYS_WORK * fsys, FLD_MENU * wk, u8 list_mode );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉÅÅ[ÉãÉèÅ[ÉNçÏê¨
+ * „É°„Éº„É´„ÉØ„Éº„ÇØ‰ΩúÊàê
  *
- * @param	item		ÉAÉCÉeÉÄî‘çÜ
- * @param	mode		èàóùÉÇÅ[Éh
- * @param	poke_pos	éËéùÇøÉ|ÉPÉÇÉìÇÃâΩïCñ⁄Ç…éùÇΩÇπÇÈÇ©
+ * @param	item		„Ç¢„Ç§„ÉÜ„É†Áï™Âè∑
+ * @param	mode		Âá¶ÁêÜ„É¢„Éº„Éâ
+ * @param	poke_pos	ÊâãÊåÅ„Å°„Éù„Ç±„É¢„É≥„ÅÆ‰ΩïÂåπÁõÆ„Å´ÊåÅ„Åü„Åõ„Çã„Åã
  *
- * @return	éÊìæÇµÇΩÉÅÅ[ÉãÉèÅ[ÉN
+ * @return	ÂèñÂæó„Åó„Åü„É°„Éº„É´„ÉØ„Éº„ÇØ
  */
 //--------------------------------------------------------------------------------------------
 void * FieldMenu_MailWorkMake( u16 item, u8 mode, u8 poke_pos )
@@ -2649,9 +2649,9 @@ void * FieldMenu_MailWorkMake( u16 item, u8 mode, u8 poke_pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉÅÅ[ÉãâÊñ èIóπèàóù
+ * „É°„Éº„É´ÁîªÈù¢ÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2667,19 +2667,19 @@ BOOL FldMenu_MailEnd( GMEVENT_CONTROL * event )
 	mw   = wk->tmp_wk;
 
 	switch( mw->mode ){
-	case FM_MAIL_MODE_VIEW:		// ÉÅÅ[ÉãÇå©ÇÈ
+	case FM_MAIL_MODE_VIEW:		// „É°„Éº„É´„ÇíË¶ã„Çã
 		MailSys_ReleaseCallWork( wk->app_wk );
 		wk->app_wk = FieldBag_SetProc( fsys, &wk->item_check );
 		FldMenu_AppWaitFuncSet( wk, FldMenu_BagEnd );
 		break;
 
-	case FM_MAIL_MODE_READ:		// ÉÅÅ[ÉãÇì«Çﬁ
+	case FM_MAIL_MODE_READ:		// „É°„Éº„É´„ÇíË™≠„ÇÄ
 		MailSys_ReleaseCallWork( wk->app_wk );
 		wk->app_wk = FieldPokeList_SetProc( fsys, &wk->skill_check, mw->pos );
 		FldMenu_AppWaitFuncSet( wk, FldMenu_PokeListEnd );
 		break;
 
-	case FM_MAIL_MODE_MAKE_LIST:	// ÉÅÅ[ÉãÇéùÇΩÇπÇÈÅiÉ|ÉPÉÇÉìÉäÉXÉgÇ©ÇÁÅj
+	case FM_MAIL_MODE_MAKE_LIST:	// „É°„Éº„É´„ÇíÊåÅ„Åü„Åõ„ÇãÔºà„Éù„Ç±„É¢„É≥„É™„Çπ„Éà„Åã„ÇâÔºâ
 		if( MailSys_IsDataCreate( wk->app_wk ) == TRUE ){
 			FM_MailMakeTrue( fsys, wk, PL_MODE_MAILSET_BAG );
 		}else{
@@ -2689,7 +2689,7 @@ BOOL FldMenu_MailEnd( GMEVENT_CONTROL * event )
 		}
 		break;
 
-	case FM_MAIL_MODE_MAKE_BAG:		// ÉÅÅ[ÉãÇéùÇΩÇπÇÈÅiÉoÉbÉOÇ©ÇÁÅj
+	case FM_MAIL_MODE_MAKE_BAG:		// „É°„Éº„É´„ÇíÊåÅ„Åü„Åõ„ÇãÔºà„Éê„ÉÉ„Ç∞„Åã„ÇâÔºâ
 		if( MailSys_IsDataCreate( wk->app_wk ) == TRUE ){
 			FM_MailMakeTrue( fsys, wk, PL_MODE_MAILSET );
 		}else{
@@ -2705,11 +2705,11 @@ BOOL FldMenu_MailEnd( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉÅÅ[ÉãâÊñ  -> É|ÉPÉÇÉìÉäÉXÉg
+ * „É°„Éº„É´ÁîªÈù¢ -> „Éù„Ç±„É¢„É≥„É™„Çπ„Éà
  *
- * @param	fsys		ÉtÉBÅ[ÉãÉhÉèÅ[ÉN
- * @param	wk			ÉtÉBÅ[ÉãÉhÉÅÉjÉÖÅ[ÉèÅ[ÉN
- * @param	list_mode	É|ÉPÉÇÉìÉäÉXÉgÇÃèàóùÉÇÅ[Éh
+ * @param	fsys		„Éï„Ç£„Éº„É´„Éâ„ÉØ„Éº„ÇØ
+ * @param	wk			„Éï„Ç£„Éº„É´„Éâ„É°„Éã„É•„Éº„ÉØ„Éº„ÇØ
+ * @param	list_mode	„Éù„Ç±„É¢„É≥„É™„Çπ„Éà„ÅÆÂá¶ÁêÜ„É¢„Éº„Éâ
  *
  * @return	none
  */
@@ -2744,15 +2744,15 @@ static void FM_MailMakeTrue( FIELDSYS_WORK * fsys, FLD_MENU * wk, u8 list_mode )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉTÉuÉAÉvÉäÅFÉ|ÉãÉgÉPÅ[ÉX
+//	„Çµ„Éñ„Ç¢„Éó„É™Ôºö„Éù„É´„Éà„Ç±„Éº„Çπ
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * É|ÉãÉgÉPÅ[ÉXèIóπèàóù
+ * „Éù„É´„Éà„Ç±„Éº„ÇπÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2776,15 +2776,15 @@ BOOL FldMenu_PorutoCaseEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉTÉuÉAÉvÉäÅFóFíBéËí†
+//	„Çµ„Éñ„Ç¢„Éó„É™ÔºöÂèãÈÅîÊâãÂ∏≥
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * óFíBéËí†èIóπèàóù
+ * ÂèãÈÅîÊâãÂ∏≥ÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2805,15 +2805,15 @@ BOOL FldMenu_FriendBookEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉTÉuÉAÉvÉäÅFÉoÉgÉãÉåÉRÅ[É_Å[
+//	„Çµ„Éñ„Ç¢„Éó„É™Ôºö„Éê„Éà„É´„É¨„Ç≥„Éº„ÉÄ„Éº
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉoÉgÉãÉåÉRÅ[É_Å[èIóπèàóù
+ * „Éê„Éà„É´„É¨„Ç≥„Éº„ÉÄ„ÉºÁµÇ‰∫ÜÂá¶ÁêÜ
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	0
  */
@@ -2835,15 +2835,15 @@ BOOL FldMenu_BattleRecoderEnd( GMEVENT_CONTROL * event )
 
 //=============================================================================================
 //=============================================================================================
-//	ÉTÉuÉAÉvÉäÅFêiâªâÊñ Åiì¡éÍÅj
+//	„Çµ„Éñ„Ç¢„Éó„É™ÔºöÈÄ≤ÂåñÁîªÈù¢ÔºàÁâπÊÆäÔºâ
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * êiâªâÊñ åƒÇ—èoÇµ
+ * ÈÄ≤ÂåñÁîªÈù¢Âëº„Å≥Âá∫„Åó
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -2861,7 +2861,7 @@ static void FldMenu_ShinkaInit( GMEVENT_CONTROL * event )
 	wk   = FieldEvent_GetSpecialWork( event );
 	swk  = wk->app_wk;
 
-	Snd_Stop();	//ÉTÉEÉìÉhëSí‚é~
+	Snd_Stop();	//„Çµ„Ç¶„É≥„ÉâÂÖ®ÂÅúÊ≠¢
 
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_ITEMSHINKA, 0x30000 );
 
@@ -2908,9 +2908,9 @@ static void FldMenu_ShinkaInit( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * êiâªâÊñ èIóπë“Çø
+ * ÈÄ≤ÂåñÁîªÈù¢ÁµÇ‰∫ÜÂæÖ„Å°
  *
- * @param	event	ÉtÉBÅ[ÉãÉhÉCÉxÉìÉgópÉpÉâÉÅÅ[É^
+ * @param	event	„Éï„Ç£„Éº„É´„Éâ„Ç§„Éô„É≥„ÉàÁî®„Éë„É©„É°„Éº„Çø
  *
  * @return	none
  */
@@ -2927,8 +2927,8 @@ static void FldMenu_ShinkaMain( GMEVENT_CONTROL * event )
 		ShinkaEnd( wk->app_wk );
 		sys_DeleteHeap( HEAPID_ITEMSHINKA );
 
-		Snd_BgmStop( SEQ_SHINKA, 0 );				//êiâªã»Çé~ÇﬂÇÈ
-		Snd_SceneSet( SND_SCENE_DUMMY );			//ïKÇ∏ÉtÉBÅ[ÉãÉhÉfÅ[É^ÇçƒÉçÅ[ÉhÇ≥ÇπÇÈÅI
+		Snd_BgmStop( SEQ_SHINKA, 0 );				//ÈÄ≤ÂåñÊõ≤„ÇíÊ≠¢„ÇÅ„Çã
+		Snd_SceneSet( SND_SCENE_DUMMY );			//ÂøÖ„Åö„Éï„Ç£„Éº„É´„Éâ„Éá„Éº„Çø„ÇíÂÜç„É≠„Éº„Éâ„Åï„Åõ„ÇãÔºÅ
 		Snd_FieldMapInitBgmPlay( fsys, fsys->location->zone_id );
 
 		wk->app_wk = FieldBag_SetProc( fsys, &wk->item_check );

@@ -2,7 +2,7 @@
 /**
  *
  * @file	player.c
- * @brief	©‹@
+ * @brief	è‡ªæ©Ÿ
  * @author	kagaya
  * @data	05.08.03
  *
@@ -23,37 +23,37 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-///	“®ìƒrƒbƒg
+///	å‹•ä½œãƒ“ãƒƒãƒˆ
 //--------------------------------------------------------------
-#define JIKI_MOVE_BIT_NON				(0)			///<‰½‚à–³‚µ
-#define JIKI_MOVE_BIT_FORCE 			(1<<0)		///<‹­§ˆÚ“®’†
-#define JIKI_MOVE_BIT_UNDER_OFF			(1<<1)		///<‘«Œ³–³Œø‰»
-#define JIKI_MOVE_BIT_CYCLE_BRAKE		(1<<2)		///<©“]ÔƒuƒŒ[ƒL
-#define JIKI_MOVE_BIT_CYCLING_ROAD		(1<<3)		///<©“]ÔƒTƒCƒNƒŠƒ“ƒOƒ[ƒh
-#define JIKI_MOVE_BIT_DEEPSWAMP_OFF		(1<<4)		///<À›Æ‚è–³Œø
-#define JIKI_MOVE_BIT_SAND_FLOAT		(1<<5)		///<—¬»‚Å—¬‚ê‚é
-#define JIKI_MOVE_BIT_STEP				(1<<6)		///<ˆê•àˆÚ“®
-#define JIKI_MOVE_BIT_FORCE_SAVE_SPEED	(1<<7)		///<‹­§ˆÚ“®’†@ˆÚ“®Œã‚Ì‘¬“xƒNƒŠƒA–³‚µ
-#define JIKI_MOVE_BIT_TWORLD			(1<<8)		///<”j‚ê‚½¢ŠE“®ì
+#define JIKI_MOVE_BIT_NON				(0)			///<ä½•ã‚‚ç„¡ã—
+#define JIKI_MOVE_BIT_FORCE 			(1<<0)		///<å¼·åˆ¶ç§»å‹•ä¸­
+#define JIKI_MOVE_BIT_UNDER_OFF			(1<<1)		///<è¶³å…ƒç„¡åŠ¹åŒ–
+#define JIKI_MOVE_BIT_CYCLE_BRAKE		(1<<2)		///<è‡ªè»¢è»Šãƒ–ãƒ¬ãƒ¼ã‚­
+#define JIKI_MOVE_BIT_CYCLING_ROAD		(1<<3)		///<è‡ªè»¢è»Šã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰
+#define JIKI_MOVE_BIT_DEEPSWAMP_OFF		(1<<4)		///<æ²¼åµŒã‚Šç„¡åŠ¹
+#define JIKI_MOVE_BIT_SAND_FLOAT		(1<<5)		///<æµç ‚ã§æµã‚Œã‚‹
+#define JIKI_MOVE_BIT_STEP				(1<<6)		///<ä¸€æ­©ç§»å‹•
+#define JIKI_MOVE_BIT_FORCE_SAVE_SPEED	(1<<7)		///<å¼·åˆ¶ç§»å‹•ä¸­ã€€ç§»å‹•å¾Œã®é€Ÿåº¦ã‚¯ãƒªã‚¢ç„¡ã—
+#define JIKI_MOVE_BIT_TWORLD			(1<<8)		///<ç ´ã‚ŒãŸä¸–ç•Œå‹•ä½œ
 #define JIKI_MOVE_BIT_TWORLD_GROUND		(1<<9)
-#define JIKI_MOVE_BIT_TWORLD_WLEFT		(1<<10)		///<”j‚ê‚½¢ŠE ¶•Ç“®ì
-#define JIKI_MOVE_BIT_TWORLD_WRIGHT		(1<<11)		///<”j‚ê‚½¢ŠE ‰E•Ç“®ì
-#define JIKI_MOVE_BIT_TWORLD_ROOF		(1<<12)		///<”j‚ê‚½¢ŠE “Vˆä“®ì
+#define JIKI_MOVE_BIT_TWORLD_WLEFT		(1<<10)		///<ç ´ã‚ŒãŸä¸–ç•Œ å·¦å£å‹•ä½œ
+#define JIKI_MOVE_BIT_TWORLD_WRIGHT		(1<<11)		///<ç ´ã‚ŒãŸä¸–ç•Œ å³å£å‹•ä½œ
+#define JIKI_MOVE_BIT_TWORLD_ROOF		(1<<12)		///<ç ´ã‚ŒãŸä¸–ç•Œ å¤©äº•å‹•ä½œ
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJ‰Šú‰»‚Éw’è‚·‚éƒXƒe[ƒ^ƒXƒrƒbƒg
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJåˆæœŸåŒ–æ™‚ã«æŒ‡å®šã™ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ
 //--------------------------------------------------------------
-///‰Šú‰»Aƒ[ƒh‚É—§‚Ä‚éƒrƒbƒg
+///åˆæœŸåŒ–ã€ãƒ­ãƒ¼ãƒ‰æ™‚ã«ç«‹ã¦ã‚‹ãƒ“ãƒƒãƒˆ
 #define JIKI_FLDOBJ_INIT_STA_BIT_ON \
 (FLDOBJ_STA_BIT_ZONE_DEL_NOT|FLDOBJ_STA_BIT_HEIGHT_VANISH_OFF)
-///‰Šú‰»Aƒ[ƒh‚É‰º‚ë‚·ƒrƒbƒg
+///åˆæœŸåŒ–ã€ãƒ­ãƒ¼ãƒ‰æ™‚ã«ä¸‹ã‚ã™ãƒ“ãƒƒãƒˆ
 #define JIKI_FLDOBJ_INIT_STA_BIT_OFF \
 (FLDOBJ_STA_BIT_PAUSE_DIR|FLDOBJ_STA_BIT_PAUSE_ANM)
 
 //--------------------------------------------------------------
-///	”j‚ê‚½¢ŠEŠÖ˜A
+///	ç ´ã‚ŒãŸä¸–ç•Œé–¢é€£
 //--------------------------------------------------------------
-///”j‚ê‚½¢ŠEŠÖ˜Aƒrƒbƒg
+///ç ´ã‚ŒãŸä¸–ç•Œé–¢é€£ãƒ“ãƒƒãƒˆ
 #define JIKI_MOVE_BIT_TWORLD_ALL \
 (JIKI_MOVE_BIT_TWORLD|JIKI_MOVE_BIT_TWORLD_GROUND|JIKI_MOVE_BIT_TWORLD_WLEFT|JIKI_MOVE_BIT_TWORLD_WRIGHT|JIKI_MOVE_BIT_TWORLD_ROOF)
 
@@ -61,26 +61,26 @@
 //	struct
 //==============================================================================
 //--------------------------------------------------------------
-//	PLAYER_STATE\‘¢‘Ì
+//	PLAYER_STATEæ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_PLAYER_STATE
 {
-	u32 move_bit;					///<“®ìƒtƒ‰ƒO
-	u32 request_bit;				///<ƒŠƒNƒGƒXƒg
-	u32 set_ac;						///<ƒZƒbƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh
+	u32 move_bit;					///<å‹•ä½œãƒ•ãƒ©ã‚°
+	u32 request_bit;				///<ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	u32 set_ac;						///<ã‚»ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
 	HEROACTYPE set_ac_type;
-	u32 se_walk_lr;					///<‘«‰¹¶‰E
-	int move_value;					///<“®ìó‘Ô OBJ_MOVE_VALUE_STOP“™
-	int move_state;					///<“®ìó‹µ OBJ_MOVE_STATE_OFF“™
-	int form;						///<Œ`‘Ô HERO_FORM_NORMAL“™
-	int sex;						///<«•Ê PM_MALE“™
-	int speed;						///<©‹@ƒXƒs[ƒh
-	int input_key_dir_x;			///<ƒL[“ü—Í•ûŒü
-	int input_key_dir_z;			///<ƒL[“ü—Í•ûŒü
-	FIELD_OBJ_PTR fldobj;			///<©‹@—pƒtƒB[ƒ‹ƒhOBJ *
-	EOA_PTR joint_eoa;				///<Ú‘±EOA
+	u32 se_walk_lr;					///<è¶³éŸ³å·¦å³
+	int move_value;					///<å‹•ä½œçŠ¶æ…‹ OBJ_MOVE_VALUE_STOPç­‰
+	int move_state;					///<å‹•ä½œçŠ¶æ³ OBJ_MOVE_STATE_OFFç­‰
+	int form;						///<å½¢æ…‹ HERO_FORM_NORMALç­‰
+	int sex;						///<æ€§åˆ¥ PM_MALEç­‰
+	int speed;						///<è‡ªæ©Ÿã‚¹ãƒ”ãƒ¼ãƒ‰
+	int input_key_dir_x;			///<ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+	int input_key_dir_z;			///<ã‚­ãƒ¼å…¥åŠ›æ–¹å‘
+	FIELD_OBJ_PTR fldobj;			///<è‡ªæ©Ÿç”¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ *
+	EOA_PTR joint_eoa;				///<æ¥ç¶šEOA
 	PLAYER_SAVE_DATA *savedata;
-	const PLAYER_SAVE_DATA *save;	///<ƒZ[ƒuƒf[ƒ^QÆ*
+	const PLAYER_SAVE_DATA *save;	///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å‚ç…§*
 }PLAYER_STATE;
 
 #define PLAYER_STATE_SIZE (sizeof(PLAYER_STATE))
@@ -105,20 +105,20 @@ static void Jiki_SaveDataPtrSet( PLAYER_STATE_PTR jiki, PLAYER_SAVE_DATA *save )
 //==============================================================================
 
 //==============================================================================
-//	©‹@
+//	è‡ªæ©Ÿ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@‰Šú‰»
+ * è‡ªæ©ŸåˆæœŸåŒ–
  * @param	fos			CONST_FIELD_OBJ_SYS_PTR
- * @param	x			’Ç‰Á‚·‚éƒOƒŠƒbƒhXÀ•W
- * @param	z			’Ç‰Á‚·‚éƒOƒŠƒbƒhYÀ•W
- * @param	dir			‰Šú•ûŒü DIR_UP“™
- * @param	form		©‹@Œ`‘Ô@HERO_FORM_NORMAL“™
- * @param	sex			«•Ê@PM_MALE“™
+ * @param	x			è¿½åŠ ã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	z			è¿½åŠ ã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Yåº§æ¨™
+ * @param	dir			åˆæœŸæ–¹å‘ DIR_UPç­‰
+ * @param	form		è‡ªæ©Ÿå½¢æ…‹ã€€HERO_FORM_NORMALç­‰
+ * @param	sex			æ€§åˆ¥ã€€PM_MALEç­‰
  * @param	ver			HEROVER
- * @param	save		PLAYER_SAVE_DATA * NULL=QÆ‚µ‚È‚¢
- * @retval	PLAYER_STATE_PTR	’Ç‰Á‚³‚ê‚½PLAYER_STATE_PTR
+ * @param	save		PLAYER_SAVE_DATA * NULL=å‚ç…§ã—ãªã„
+ * @retval	PLAYER_STATE_PTR	è¿½åŠ ã•ã‚ŒãŸPLAYER_STATE_PTR
  */
 //--------------------------------------------------------------
 PLAYER_STATE_PTR Player_Init( CONST_FIELD_OBJ_SYS_PTR fos,
@@ -154,10 +154,10 @@ PLAYER_STATE_PTR Player_Init( CONST_FIELD_OBJ_SYS_PTR fos,
 
 //--------------------------------------------------------------
 /**
- * ©‹@@ƒtƒB[ƒ‹ƒhOBJ‚ğg—p‚µ‚Ä•œŒ³
+ * è‡ªæ©Ÿã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚’ä½¿ç”¨ã—ã¦å¾©å…ƒ
  * @param	fos			CONST_FIELD_OBJ_SYS_PTR
  * @param	save		PLAYER_SAVE_DATA *
- * @retval	PLAYER_STATE_PTR	’Ç‰Á‚³‚ê‚½PLAYER_STATE_PTR
+ * @retval	PLAYER_STATE_PTR	è¿½åŠ ã•ã‚ŒãŸPLAYER_STATE_PTR
  */
 //--------------------------------------------------------------
 PLAYER_STATE_PTR Player_FieldOBJUseRecover(
@@ -187,7 +187,7 @@ PLAYER_STATE_PTR Player_FieldOBJUseRecover(
 
 //--------------------------------------------------------------
 /**
- * ©‹@@•`‰æ‰Šú‰»
+ * è‡ªæ©Ÿã€€æç”»åˆæœŸåŒ–
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -199,7 +199,7 @@ void Player_DrawInit( PLAYER_STATE_PTR jiki, int g_id )
 	CONST_FIELD_OBJ_SYS_PTR fos;
 	
 	fldobj = Player_FieldOBJGet( jiki );
-	GF_ASSERT( fldobj != NULL && "Player_DrawInit() ©‹@ƒtƒB[ƒ‹ƒhOBJ‚ª‚ ‚è‚Ü‚¹‚ñ" );
+	GF_ASSERT( fldobj != NULL && "Player_DrawInit() è‡ªæ©Ÿãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒã‚ã‚Šã¾ã›ã‚“" );
 	
 	fos = FieldOBJ_FieldOBJSysGet( fldobj );
 	
@@ -218,10 +218,10 @@ void Player_DrawInit( PLAYER_STATE_PTR jiki, int g_id )
 		EOA_PTR eoa =  FE_FldOBJNamiPokeSet( fldobj, gx, gz, dir, TRUE );
 		Player_JointEoaSet( jiki, eoa );
 	}
-	#elif 0		//”j‚ê‚½¢ŠE‚ğl—¶
-	/* •œ‹A‚ÍMOVE_BIT‚ªƒNƒŠƒA‚³‚ê‚Ä‚¢‚éB
-	 * ”j‚ê‚½¢ŠE‚Å‚à•œ‹A’¼Œã‚ÍHEROTWTYPE_NON‚Ìˆ×A
-	 * ’Êí”gæ‚èƒ|ƒPƒ‚ƒ“‚ğo‚»‚¤‚Æ‚·‚éˆ×ƒGƒ‰[‚ª”­¶
+	#elif 0		//ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®
+	/* å¾©å¸°æ™‚ã¯MOVE_BITãŒã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ã‚‹ã€‚
+	 * ç ´ã‚ŒãŸä¸–ç•Œã§ã‚‚å¾©å¸°ç›´å¾Œã¯HEROTWTYPE_NONã®ç‚ºã€
+	 * é€šå¸¸æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã‚’å‡ºãã†ã¨ã™ã‚‹ç‚ºã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ
 	 */
 	if( Player_FormGet(jiki) == HERO_FORM_SWIM ){
 		EOA_PTR eoa;
@@ -239,7 +239,7 @@ void Player_DrawInit( PLAYER_STATE_PTR jiki, int g_id )
 		Player_JointEoaSet( jiki, eoa );
 	}
 	#else
-	/*	”j‚ê‚½¢ŠE‚Ì”gæ‚èƒ|ƒPƒ‚ƒ“‚Í”j‚ê‚½¢ŠE‘¤‚ÅƒZƒbƒg‚µ‚Ä‚à‚ç‚¤*/
+	/*	ç ´ã‚ŒãŸä¸–ç•Œæ™‚ã®æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã¯ç ´ã‚ŒãŸä¸–ç•Œå´ã§ã‚»ãƒƒãƒˆã—ã¦ã‚‚ã‚‰ã†*/
 	if( Player_FormGet(jiki) == HERO_FORM_SWIM ){
 		if( g_id != FLD_GIMMICK_TORNWORLD ){
 			int gx = Player_NowGPosXGet( jiki );
@@ -254,8 +254,8 @@ void Player_DrawInit( PLAYER_STATE_PTR jiki, int g_id )
 
 //--------------------------------------------------------------
 /**
- * ©‹@íœ
- * @param	player			ŠJ•ú‚·‚éPLAYER_STATE_PTR
+ * è‡ªæ©Ÿå‰Šé™¤
+ * @param	player			é–‹æ”¾ã™ã‚‹PLAYER_STATE_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -266,8 +266,8 @@ void Player_Delete( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚·‚×‚Äíœ
- * @param	player			ŠJ•ú‚·‚éPLAYER_STATE_PTR
+ * è‡ªæ©Ÿã™ã¹ã¦å‰Šé™¤
+ * @param	player			é–‹æ”¾ã™ã‚‹PLAYER_STATE_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -280,9 +280,9 @@ void Player_DeleteAll( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@—pƒ[ƒNƒƒ‚ƒŠŠm•Û
+ * è‡ªæ©Ÿç”¨ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç¢ºä¿
  * @param	nothing
- * @retval	PLAYER_STATE_PTR	Šm•Û‚µ‚½PLAYER_STATE_PTR
+ * @retval	PLAYER_STATE_PTR	ç¢ºä¿ã—ãŸPLAYER_STATE_PTR
  */
 //--------------------------------------------------------------
 static PLAYER_STATE_PTR Jiki_WorkAlloc( void )
@@ -298,10 +298,10 @@ static PLAYER_STATE_PTR Jiki_WorkAlloc( void )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒ[ƒN‰Šú‰»
+ * è‡ªæ©Ÿãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  * @param	jiki	PLAYER_STATE_PTR
- * @param	form	HERO_FORM_NORMAL“™
- * @param	sex		PM_MALE“™
+ * @param	form	HERO_FORM_NORMALç­‰
+ * @param	sex		PM_MALEç­‰
  * @param	save	PLAYER_SAVE_DATA *
  * @retval	nothing
  */
@@ -326,13 +326,13 @@ static void Jiki_WorkInit( PLAYER_STATE_PTR jiki, int form, int sex, PLAYER_SAVE
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒtƒB[ƒ‹ƒhOBJ’Ç‰Á
+ * è‡ªæ©Ÿãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ 
  * @param	jiki		PLAYER_STATE_PTR
  * @param	fos			FIELD_OBJ_SYS_PTR
- * @param	obj			OBJƒR[ƒhBHERO“™
- * @param	dir			‰Šú•ûŒüBDIR_UP“™
- * @param	x			ƒOƒŠƒbƒhXÀ•W
- * @param	y			ƒOƒŠƒbƒhYÀ•W
+ * @param	obj			OBJã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
+ * @param	dir			åˆæœŸæ–¹å‘ã€‚DIR_UPç­‰
+ * @param	x			ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	y			ã‚°ãƒªãƒƒãƒ‰Yåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -362,9 +362,9 @@ static void Jiki_FieldOBJAdd(
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚ç©‹@ƒtƒB[ƒ‹ƒhOBJŒŸõ@ŠO•”
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰è‡ªæ©Ÿãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJæ¤œç´¢ã€€å¤–éƒ¨
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @retval	FIELD_OBJ_PTR	©‹@ƒtƒB[ƒ‹ƒhOBJ
+ * @retval	FIELD_OBJ_PTR	è‡ªæ©Ÿãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ
  */
 //--------------------------------------------------------------
 FIELD_OBJ_PTR Player_FieldOBJSearch( CONST_FIELD_OBJ_SYS_PTR fos )
@@ -383,26 +383,26 @@ FIELD_OBJ_PTR Player_FieldOBJSearch( CONST_FIELD_OBJ_SYS_PTR fos )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚ç©‹@ƒtƒB[ƒ‹ƒhOBJŒŸõ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰è‡ªæ©Ÿãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJæ¤œç´¢
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @retval	FIELD_OBJ_PTR	©‹@ƒtƒB[ƒ‹ƒhOBJ
+ * @retval	FIELD_OBJ_PTR	è‡ªæ©Ÿãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_PTR Jiki_FieldOBJSearch( CONST_FIELD_OBJ_SYS_PTR fos )
 {
 	FIELD_OBJ_PTR fldobj = Player_FieldOBJSearch( fos );
-	GF_ASSERT( fldobj != NULL && "Jiki_FieldOBJSearch()©‹@ƒtƒB[ƒ‹ƒhOBJ‚ª–³‚¢" );
+	GF_ASSERT( fldobj != NULL && "Jiki_FieldOBJSearch()è‡ªæ©Ÿãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒç„¡ã„" );
 	return( fldobj );
 }
 
 //==============================================================================
-//	PLAYER_STATE@QÆ
+//	PLAYER_STATEã€€å‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌŒü‚«‚ğæ“¾
+ * è‡ªæ©Ÿã®å‘ãã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		DIR_UP“™
+ * @retval	int		DIR_UPç­‰
  */
 //--------------------------------------------------------------
 int Player_DirGet( const PLAYER_STATE_PTR jiki )
@@ -412,9 +412,9 @@ int Player_DirGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌŒü‚«‚ğƒZƒbƒg
+ * è‡ªæ©Ÿã®å‘ãã‚’ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		DIR_UP“™
+ * @param	dir		DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -425,9 +425,9 @@ void Player_DirSet( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌˆÚ“®•ûŒü‚ğæ“¾
+ * è‡ªæ©Ÿã®ç§»å‹•æ–¹å‘ã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		DIR_UP“™
+ * @retval	int		DIR_UPç­‰
  */
 //--------------------------------------------------------------
 int Player_DirMoveGet( const PLAYER_STATE_PTR jiki )
@@ -437,9 +437,9 @@ int Player_DirMoveGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌŒü‚«‚ğæ“¾B”j‚ê‚½¢ŠE‚ğl—¶‚·‚é
+ * è‡ªæ©Ÿã®å‘ãã‚’å–å¾—ã€‚ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®ã™ã‚‹
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		DIR_UP“™
+ * @retval	int		DIR_UPç­‰
  */
 //--------------------------------------------------------------
 int Player_TwThinkDirGet( const PLAYER_STATE_PTR jiki )
@@ -453,9 +453,9 @@ int Player_TwThinkDirGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@Œ»İƒOƒŠƒbƒhXÀ•W‚ğæ“¾
+ * è‡ªæ©Ÿç¾åœ¨ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™ã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		ƒOƒŠƒbƒhXÀ•W
+ * @retval	int		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
  */
 //--------------------------------------------------------------
 int Player_NowGPosXGet( const PLAYER_STATE_PTR jiki )
@@ -465,9 +465,9 @@ int Player_NowGPosXGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@Œ»İƒOƒŠƒbƒhZÀ•W‚ğæ“¾
+ * è‡ªæ©Ÿç¾åœ¨ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™ã‚’å–å¾—
  * @param	jiki		PLAYER_STATE_PTR
- * @retval	int		ƒOƒŠƒbƒhZÀ•W
+ * @retval	int		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
  */
 //--------------------------------------------------------------
 int Player_NowGPosZGet( const PLAYER_STATE_PTR jiki )
@@ -477,9 +477,9 @@ int Player_NowGPosZGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‰ß‹ƒOƒŠƒbƒhXÀ•W‚ğæ“¾
+ * è‡ªæ©Ÿéå»ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™ã‚’å–å¾—
  * @param	jiki		PLAYER_STATE_PTR
- * @retval	int		ƒOƒŠƒbƒhXÀ•W
+ * @retval	int		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
  */
 //--------------------------------------------------------------
 int Player_OldGPosXGet( const PLAYER_STATE_PTR jiki )
@@ -489,9 +489,9 @@ int Player_OldGPosXGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‰ß‹ƒOƒŠƒbƒhZÀ•W‚ğæ“¾
+ * è‡ªæ©Ÿéå»ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™ã‚’å–å¾—
  * @param	jiki		PLAYER_STATE_PTR
- * @retval	int		ƒOƒŠƒbƒhZÀ•W
+ * @retval	int		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
  */
 //--------------------------------------------------------------
 int Player_OldGPosZGet( const PLAYER_STATE_PTR jiki )
@@ -501,9 +501,9 @@ int Player_OldGPosZGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@3DÀ•W‚ğæ“¾
+ * è‡ªæ©Ÿ3Dåº§æ¨™ã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	vec		À•WŠi”[æ
+ * @param	vec		åº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -514,9 +514,9 @@ void Player_VecPosGet( const PLAYER_STATE_PTR jiki, VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * ©‹@3DÀ•Wƒ|ƒCƒ“ƒ^‚ğæ“¾
+ * è‡ªæ©Ÿ3Dåº§æ¨™ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	VecFx32	©‹@À•W*
+ * @retval	VecFx32	è‡ªæ©Ÿåº§æ¨™*
  */
 //--------------------------------------------------------------
 const VecFx32 * Player_VecPosPtrGet( const PLAYER_STATE_PTR jiki )
@@ -526,9 +526,9 @@ const VecFx32 * Player_VecPosPtrGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@3DƒIƒtƒZƒbƒgÀ•Wƒ|ƒCƒ“ƒ^‚ğæ“¾
+ * è‡ªæ©Ÿ3Dã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	VecFx32	©‹@À•W*
+ * @retval	VecFx32	è‡ªæ©Ÿåº§æ¨™*
  */
 //--------------------------------------------------------------
 VecFx32 * Player_VecDrawOffsPtrGet( PLAYER_STATE_PTR jiki )
@@ -538,9 +538,9 @@ VecFx32 * Player_VecDrawOffsPtrGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìó‘Ô‚ğƒZƒbƒg
+ * è‡ªæ©Ÿå‹•ä½œçŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆ
  * @param	jiki		PLAYER_STATE_PTR
- * @param	val		OBJ_MOVE_VALUE_STOP“™
+ * @param	val		OBJ_MOVE_VALUE_STOPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -551,9 +551,9 @@ void Player_MoveValueSet( PLAYER_STATE_PTR jiki, int val )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìó‘Ô‚ğæ“¾
+ * è‡ªæ©Ÿå‹•ä½œçŠ¶æ…‹ã‚’å–å¾—
  * @param	jiki		PLAYER_STATE_PTR
- * @retval	int		OBJ_MOVE_VALUE_STOP“™
+ * @retval	int		OBJ_MOVE_VALUE_STOPç­‰
  */
 //--------------------------------------------------------------
 int Player_MoveValueGet( const PLAYER_STATE_PTR jiki )
@@ -563,9 +563,9 @@ int Player_MoveValueGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìó‹µ‚ğƒZƒbƒg
+ * è‡ªæ©Ÿå‹•ä½œçŠ¶æ³ã‚’ã‚»ãƒƒãƒˆ
  * @param	jiki		PLAYER_STATE_PTR
- * @param	state OBJ_MOVE_STATE_OFF“™
+ * @param	state OBJ_MOVE_STATE_OFFç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -576,9 +576,9 @@ void Player_MoveStateSet( PLAYER_STATE_PTR jiki, int state )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìó‹µ‚ğæ“¾
+ * è‡ªæ©Ÿå‹•ä½œçŠ¶æ³ã‚’å–å¾—
  * @param	jiki		PLAYER_STATE_PTR
- * @retval	int		OBJ_MOVE_STATE_OFF“™
+ * @retval	int		OBJ_MOVE_STATE_OFFç­‰
  */
 //--------------------------------------------------------------
 int Player_MoveStateGet( const PLAYER_STATE_PTR jiki )
@@ -588,9 +588,9 @@ int Player_MoveStateGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚Ì•\¦ON,OFF‚ğw’è
+ * è‡ªæ©Ÿã®è¡¨ç¤ºON,OFFã‚’æŒ‡å®š
  * @param	jiki		PLAYER_STATE_PTR
- * @param	flag		TRUE=•\¦AFALSE=”ñ•\¦
+ * @param	flag		TRUE=è¡¨ç¤ºã€FALSE=éè¡¨ç¤º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -609,9 +609,9 @@ void Player_DispON_OFF_Set( PLAYER_STATE_PTR jiki, int flag )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚Ì•\¦ON,OFFƒtƒ‰ƒO‚ğæ“¾
+ * è‡ªæ©Ÿã®è¡¨ç¤ºON,OFFãƒ•ãƒ©ã‚°ã‚’å–å¾—
  * @param	jiki		PLAYER_STATE_PTR
- * @retval	int			TRUE=•\¦AFALSE=”ñ•\¦
+ * @retval	int			TRUE=è¡¨ç¤ºã€FALSE=éè¡¨ç¤º
  */
 //--------------------------------------------------------------
 int Player_DispON_OFF_Get( const PLAYER_STATE_PTR jiki )
@@ -629,7 +629,7 @@ int Player_DispON_OFF_Get( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌƒtƒB[ƒ‹ƒhOBJ *ƒZƒbƒg
+ * è‡ªæ©Ÿã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ *ã‚»ãƒƒãƒˆ
  * @param	jiki			PLAYER_STATE_PTR
  * @param	fldobj			FIELD_OBJ_PTR
  * @retval	nothing
@@ -642,7 +642,7 @@ void Player_FieldOBJSet( PLAYER_STATE_PTR jiki, FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌƒtƒB[ƒ‹ƒhOBJ *‚ğæ“¾
+ * è‡ªæ©Ÿã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ *ã‚’å–å¾—
  * @param	jiki			PLAYER_STATE_PTR
  * @retval	FIELD_OBJ_PTR 	FIELD_OBJ_PTR
  */
@@ -656,7 +656,7 @@ FIELD_OBJ_PTR Player_FieldOBJGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌƒtƒB[ƒ‹ƒhOBJ *‚ğæ“¾ const
+ * è‡ªæ©Ÿã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ *ã‚’å–å¾— const
  * @param	jiki			PLAYER_STATE_PTR
  * @retval	FIELD_OBJ_PTR 	FIELD_OBJ_PTR
  */
@@ -668,9 +668,9 @@ CONST_FIELD_OBJ_PTR Player_ConstFieldOBJGet( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌŒ`‘ÔƒZƒbƒg
+ * è‡ªæ©Ÿã®å½¢æ…‹ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	form	HERO_FORM_NORMAL“™
+ * @param	form	HERO_FORM_NORMALç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -683,22 +683,22 @@ void Player_FormSet( PLAYER_STATE_PTR jiki, int form )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌŒ`‘Ô‚ğæ“¾
+ * è‡ªæ©Ÿã®å½¢æ…‹ã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		HERO_FORM_NORMAL“™
+ * @retval	int		HERO_FORM_NORMALç­‰
  */
 //--------------------------------------------------------------
 int Player_FormGet( PLAYER_STATE_PTR jiki )
 {
-	GF_ASSERT( jiki != NULL && "Player_FormGet()©‹@‰Šú‰»‚ªs‚í‚ê‚Ä‚¢‚È‚¢" );
+	GF_ASSERT( jiki != NULL && "Player_FormGet()è‡ªæ©ŸåˆæœŸåŒ–ãŒè¡Œã‚ã‚Œã¦ã„ãªã„" );
 	return( jiki->form );
 }
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒgƒrƒbƒgON
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆON
  * @param	jiki	PLAYER_STATE_PTR
- * @param	bit		HERO_REQBIT_NORMAL“™
+ * @param	bit		HERO_REQBIT_NORMALç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -709,9 +709,9 @@ void Player_RequestBit_ON( PLAYER_STATE_PTR jiki, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒgƒrƒbƒgƒZƒbƒg
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	bit		HERO_REQBIT_NORMAL“™
+ * @param	bit		HERO_REQBIT_NORMALç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -722,9 +722,9 @@ void Player_RequestBit_Set( PLAYER_STATE_PTR jiki, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒgƒrƒbƒgæ“¾
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆå–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @param	bit		HERO_REQBIT_NORMAL“™
+ * @param	bit		HERO_REQBIT_NORMALç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -735,9 +735,9 @@ u32 Player_RequestBit_Get( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * «•ÊƒZƒbƒg
+ * æ€§åˆ¥ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	sex		PM_MALE“™
+ * @param	sex		PM_MALEç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -748,9 +748,9 @@ void Player_SexSet( PLAYER_STATE_PTR jiki, int sex )
 
 //--------------------------------------------------------------
 /**
- * «•Êæ“¾
+ * æ€§åˆ¥å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		PM_MALE“™
+ * @retval	int		PM_MALEç­‰
  */
 //--------------------------------------------------------------
 int Player_SexGet( PLAYER_STATE_PTR jiki )
@@ -760,9 +760,9 @@ int Player_SexGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@ƒZƒbƒg
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€ã‚»ãƒƒãƒˆ
  * @param	jiki	PLYAER_STATE_PTR
- * @param	bit		ƒZƒbƒg‚·‚é’l JIKI_MOVE_BIT_NON“™
+ * @param	bit		ã‚»ãƒƒãƒˆã™ã‚‹å€¤ JIKI_MOVE_BIT_NONç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -773,9 +773,9 @@ static void Jiki_MoveBitSet( PLAYER_STATE_PTR jiki, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg‚ğON
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã‚’ON
  * @param	jiki	PLAYER_STATE_PTR
- * @param	bit		JIKI_MOVE_BIT_FORCE“™
+ * @param	bit		JIKI_MOVE_BIT_FORCEç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -786,9 +786,9 @@ static void Jiki_MoveBitON( PLAYER_STATE_PTR jiki, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg‚ğOFF
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã‚’OFF
  * @param	jiki	PLAYER_STATE_PTR
- * @param	bit		JIKI_MOVE_BIT_FORCE“™
+ * @param	bit		JIKI_MOVE_BIT_FORCEç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -799,10 +799,10 @@ static void Jiki_MoveBitOFF( PLAYER_STATE_PTR jiki, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg‚Ìƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã®ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @param	bit		JIKI_MOVE_BIT_FORCE“™
- * @retval	u32		“®ìƒrƒbƒg&bit
+ * @param	bit		JIKI_MOVE_BIT_FORCEç­‰
+ * @retval	u32		å‹•ä½œãƒ“ãƒƒãƒˆ&bit
  */
 //--------------------------------------------------------------
 static u32 Jiki_MoveBitCheck( PLAYER_STATE_PTR jiki, u32 bit )
@@ -812,9 +812,9 @@ static u32 Jiki_MoveBitCheck( PLAYER_STATE_PTR jiki, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‘¬“x‚ğæ“¾
+ * è‡ªæ©Ÿé€Ÿåº¦ã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		JIKI_SPEED_0“™
+ * @retval	int		JIKI_SPEED_0ç­‰
  */
 //--------------------------------------------------------------
 int Player_MoveSpeedGet( PLAYER_STATE_PTR jiki )
@@ -824,9 +824,9 @@ int Player_MoveSpeedGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‘¬“x‚ğƒZƒbƒg
+ * è‡ªæ©Ÿé€Ÿåº¦ã‚’ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	speed	JIKI_SPEED_0“™
+ * @param	speed	JIKI_SPEED_0ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -837,9 +837,9 @@ void Player_MoveSpeedSet( PLAYER_STATE_PTR jiki, int speed )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‘¬“x‚ğƒZƒbƒg•ƒuƒŒ[ƒLƒNƒŠƒA
+ * è‡ªæ©Ÿé€Ÿåº¦ã‚’ã‚»ãƒƒãƒˆï¼†ãƒ–ãƒ¬ãƒ¼ã‚­ã‚¯ãƒªã‚¢
  * @param	jiki	PLAYER_STATE_PTR
- * @param	speed	JIKI_SPEED_0“™
+ * @param	speed	JIKI_SPEED_0ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -851,11 +851,11 @@ void Player_MoveSpeedClear( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‘¬“x‚Ì‘Œ¸@Å‘å’lw’è
+ * è‡ªæ©Ÿé€Ÿåº¦ã®å¢—æ¸›ã€€æœ€å¤§å€¤æŒ‡å®š
  * @param	jiki	PLAYER_STATE_PTR
- * @param	add		‘Œ¸’l
- * @param	max		‘¬“xÅ‘å
- * @retval	int		‘Œ¸Œã‚Ì‘¬“x
+ * @param	add		å¢—æ¸›å€¤
+ * @param	max		é€Ÿåº¦æœ€å¤§
+ * @retval	int		å¢—æ¸›å¾Œã®é€Ÿåº¦
  */
 //--------------------------------------------------------------
 int Player_MoveSpeedAdd( PLAYER_STATE_PTR jiki, int add, int max )
@@ -867,9 +867,9 @@ int Player_MoveSpeedAdd( PLAYER_STATE_PTR jiki, int add, int max )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒL[“ü—ÍX•ûŒüƒZƒbƒg
+ * è‡ªæ©Ÿã‚­ãƒ¼å…¥åŠ›Xæ–¹å‘ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		DIR_UP“™
+ * @param	dir		DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -880,9 +880,9 @@ void Player_InputKeyDirXSet( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒL[“ü—ÍX•ûŒüæ“¾
+ * è‡ªæ©Ÿã‚­ãƒ¼å…¥åŠ›Xæ–¹å‘å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		DIR_UP“™
+ * @retval	int		DIR_UPç­‰
  */
 //--------------------------------------------------------------
 int Player_InputKeyDirXGet( PLAYER_STATE_PTR jiki )
@@ -892,9 +892,9 @@ int Player_InputKeyDirXGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒL[“ü—ÍZ•ûŒüƒZƒbƒg
+ * è‡ªæ©Ÿã‚­ãƒ¼å…¥åŠ›Zæ–¹å‘ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		DIR_UP“™
+ * @param	dir		DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -905,9 +905,9 @@ void Player_InputKeyDirZSet( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒL[“ü—ÍZ•ûŒüæ“¾
+ * è‡ªæ©Ÿã‚­ãƒ¼å…¥åŠ›Zæ–¹å‘å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		DIR_UP“™
+ * @retval	int		DIR_UPç­‰
  */
 //--------------------------------------------------------------
 int Player_InputKeyDirZGet( PLAYER_STATE_PTR jiki )
@@ -917,10 +917,10 @@ int Player_InputKeyDirZGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒL[“ü—ÍX,Z•ûŒüƒZƒbƒg
+ * è‡ªæ©Ÿã‚­ãƒ¼å…¥åŠ›X,Zæ–¹å‘ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir_x	DIR_UP“™
- * @param	dir_z	DIR_UP“™
+ * @param	dir_x	DIR_UPç­‰
+ * @param	dir_z	DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -932,9 +932,9 @@ void Player_InputKeyDirSet( PLAYER_STATE_PTR jiki, int dir_x, int dir_z )
 
 //--------------------------------------------------------------
 /**
- * ©‹@Ú‘±EOAƒZƒbƒg
+ * è‡ªæ©Ÿæ¥ç¶šEOAã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	eoa		Ú‘±EOA_PTR
+ * @param	eoa		æ¥ç¶šEOA_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -945,9 +945,9 @@ void Player_JointEoaSet( PLAYER_STATE_PTR jiki, EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ©‹@Ú‘±EOAæ“¾
+ * è‡ªæ©Ÿæ¥ç¶šEOAå–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	EOA_PTR	Ú‘±EOA_PTR
+ * @retval	EOA_PTR	æ¥ç¶šEOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR Player_JointEoaGet( PLAYER_STATE_PTR jiki )
@@ -957,7 +957,7 @@ EOA_PTR Player_JointEoaGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * PLAYER_SAVE_DATAƒZƒbƒg
+ * PLAYER_SAVE_DATAã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
  * @param	save	PLAYER_SAVE_DATA *
  * @retval	nothing
@@ -970,7 +970,7 @@ static void Jiki_SaveDataPtrSet( PLAYER_STATE_PTR jiki, PLAYER_SAVE_DATA *save )
 
 //--------------------------------------------------------------
 /**
- * PLAYER_SAVE_DATAæ“¾
+ * PLAYER_SAVE_DATAå–å¾—
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	PLAYER_SAVE_DATA PLAYER_SAVE_DATA*
  */
@@ -982,9 +982,9 @@ PLAYER_SAVE_DATA * Player_SaveDataPtrGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒhƒZƒbƒg
+ * è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	ac		ƒAƒjƒƒR[ƒhAC_DIR_U“™
+ * @param	ac		ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰AC_DIR_Uç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -995,9 +995,9 @@ void Player_AcmdCodeSet( PLAYER_STATE_PTR jiki, u32 ac )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒhæ“¾
+ * è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	u32		ƒAƒjƒƒR[ƒh AC_DIR_U“™
+ * @retval	u32		ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰ AC_DIR_Uç­‰
  */
 //--------------------------------------------------------------
 u32 Player_AcmdCodeGet( PLAYER_STATE_PTR jiki )
@@ -1007,9 +1007,9 @@ u32 Player_AcmdCodeGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒ^ƒCƒvƒZƒbƒg
+ * è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	ac		ƒAƒjƒƒR[ƒhAC_DIR_U“™
+ * @param	ac		ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰AC_DIR_Uç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1020,9 +1020,9 @@ void Player_AcmdTypeSet( PLAYER_STATE_PTR jiki, HEROACTYPE type )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒ^ƒCƒvæ“¾
+ * è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	u32		JIKIACTYPE_NON“™
+ * @retval	u32		JIKIACTYPE_NONç­‰
  */
 //--------------------------------------------------------------
 HEROACTYPE Player_AcmdTypeGet( PLAYER_STATE_PTR jiki )
@@ -1032,9 +1032,9 @@ HEROACTYPE Player_AcmdTypeGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒhAƒ^ƒCƒvƒZƒbƒg
+ * è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã€ã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	ac		ƒAƒjƒƒR[ƒhAC_DIR_U“™
+ * @param	ac		ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰AC_DIR_Uç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1046,7 +1046,7 @@ void Player_AcmdCodeTypeSet( PLAYER_STATE_PTR jiki, u32 ac, HEROACTYPE type )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‘«‰¹”Ô†‚ğæ“¾
+ * è‡ªæ©Ÿè¶³éŸ³ç•ªå·ã‚’å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	u32		0,1
  */
@@ -1058,7 +1058,7 @@ u32 Player_SEWalkLRNumGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‘«‰¹”Ô†is
+ * è‡ªæ©Ÿè¶³éŸ³ç•ªå·é€²è¡Œ
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	u32		0,1
  */
@@ -1069,11 +1069,11 @@ void Player_SEWalkLRNumInc( PLAYER_STATE_PTR jiki )
 }
 
 //==============================================================================
-//	ƒvƒŒƒCƒ„[ƒZ[ƒuƒf[ƒ^
+//	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * PLAYER_SAVE_DATA‰Šú‰»
+ * PLAYER_SAVE_DATAåˆæœŸåŒ–
  * @param	jikisave	PLAYER_SAVE_DATA *
  * @retval	nothing
  */
@@ -1087,9 +1087,9 @@ void Player_SaveDataInit( PLAYER_SAVE_DATA *save )
 
 //--------------------------------------------------------------
 /**
- * PLAYER_SAVE_DATA‚©‚çƒ_ƒbƒVƒ…ƒ`ƒFƒbƒN
+ * PLAYER_SAVE_DATAã‹ã‚‰ãƒ€ãƒƒã‚·ãƒ¥ãƒã‚§ãƒƒã‚¯
  * @param	jikisave	PLAYER_SAVE_DATA *
- * @retval	int			TRUE=ƒ_ƒbƒVƒ…‚Å‚«‚é@FALSE=o—ˆ‚È‚¢
+ * @retval	int			TRUE=ãƒ€ãƒƒã‚·ãƒ¥ã§ãã‚‹ã€€FALSE=å‡ºæ¥ãªã„
  */
 //--------------------------------------------------------------
 int Player_SaveDataDashCheck( PLAYER_SAVE_DATA *save )
@@ -1105,9 +1105,9 @@ int Player_SaveDataDashCheck( PLAYER_SAVE_DATA *save )
 
 //--------------------------------------------------------------
 /**
- * PLAYER_SAVE_DATA‚©‚çƒ_ƒbƒVƒ…ƒtƒ‰ƒO‚ğƒZƒbƒg
+ * PLAYER_SAVE_DATAã‹ã‚‰ãƒ€ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  * @param	jikisave	PLAYER_SAVE_DATA *
- * @param	flag		TRUE=ƒ_ƒbƒVƒ…‚Å‚«‚é FALSE=o—ˆ‚È‚¢
+ * @param	flag		TRUE=ãƒ€ãƒƒã‚·ãƒ¥ã§ãã‚‹ FALSE=å‡ºæ¥ãªã„
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1122,9 +1122,9 @@ void Player_SaveDataDashSet( PLAYER_SAVE_DATA *save, int flag )
 
 //--------------------------------------------------------------
 /**
- * PLAYER_SAVE_DATA‚©‚çƒMƒAƒ^ƒCƒvæ“¾
+ * PLAYER_SAVE_DATAã‹ã‚‰ã‚®ã‚¢ã‚¿ã‚¤ãƒ—å–å¾—
  * @param	jikisave	PLAYER_SAVE_DATA *
- * @retval	int			GEAR_3,GEAR4“™
+ * @retval	int			GEAR_3,GEAR4ç­‰
  */
 //--------------------------------------------------------------
 int Player_SaveDataGearCheck( PLAYER_SAVE_DATA *save )
@@ -1138,9 +1138,9 @@ int Player_SaveDataGearCheck( PLAYER_SAVE_DATA *save )
 
 //--------------------------------------------------------------
 /**
- * PLAYER_SAVE_DATA‚©‚çƒMƒAƒ^ƒCƒvƒZƒbƒg
+ * PLAYER_SAVE_DATAã‹ã‚‰ã‚®ã‚¢ã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
  * @param	jikisave	PLAYER_SAVE_DATA *
- * @param	gear		GEAR_3,GEAR4“™
+ * @param	gear		GEAR_3,GEAR4ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1153,9 +1153,9 @@ void Player_SaveDataGearSet( PLAYER_SAVE_DATA *save, int gear )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚©‚çƒZ[ƒuƒf[ƒ^ƒMƒAƒZƒbƒg
+ * è‡ªæ©Ÿã‹ã‚‰ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚®ã‚¢ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	gear	GEAR_3“™
+ * @param	gear	GEAR_3ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1167,9 +1167,9 @@ void Player_SaveDataGetGearSet( PLAYER_STATE_PTR jiki, int gear )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚©‚çƒZ[ƒuƒf[ƒ^ƒMƒAæ“¾
+ * è‡ªæ©Ÿã‹ã‚‰ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚®ã‚¢å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		GEAR_3“™
+ * @retval	int		GEAR_3ç­‰
  */
 //--------------------------------------------------------------
 int Player_SaveDataGetGearGet( PLAYER_STATE_PTR jiki )
@@ -1180,9 +1180,9 @@ int Player_SaveDataGetGearGet( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * PLAYER_SAVE_DATA‚©‚ç©‹@Œ`‘Ô‚ğæ“¾
+ * PLAYER_SAVE_DATAã‹ã‚‰è‡ªæ©Ÿå½¢æ…‹ã‚’å–å¾—
  * @param	jikisave	PLAYER_SAVE_DATA *
- * @retval	u32			HERO_FORM_NORMAL“™
+ * @retval	u32			HERO_FORM_NORMALç­‰
  */
 //--------------------------------------------------------------
 u32 Player_SaveDataFormGet( PLAYER_SAVE_DATA *save )
@@ -1196,9 +1196,9 @@ u32 Player_SaveDataFormGet( PLAYER_SAVE_DATA *save )
 
 //--------------------------------------------------------------
 /**
- * PLAYER_SAVE_DATA‚©‚ç©‹@Œ`‘Ô‚ğƒZƒbƒg
+ * PLAYER_SAVE_DATAã‹ã‚‰è‡ªæ©Ÿå½¢æ…‹ã‚’ã‚»ãƒƒãƒˆ
  * @param	jikisave	PLAYER_SAVE_DATA *
- * @param	form		HERO_FORM_NORMAL“™
+ * @param	form		HERO_FORM_NORMALç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1211,9 +1211,9 @@ void Player_SaveDataFormSet( PLAYER_SAVE_DATA *save, u32 form )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚©‚çƒZ[ƒuƒf[ƒ^Œ`‘Ô‚ğƒZƒbƒg
+ * è‡ªæ©Ÿã‹ã‚‰ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å½¢æ…‹ã‚’ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	form	HERO_FORM_NORMAL“™
+ * @param	form	HERO_FORM_NORMALç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1225,9 +1225,9 @@ void Player_SaveDataGetFormSet( PLAYER_STATE_PTR jiki, u32 form )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚©‚çƒZ[ƒuƒf[ƒ^Œ`‘Ôæ“¾
+ * è‡ªæ©Ÿã‹ã‚‰ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å½¢æ…‹å–å¾—
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		GEAR_3“™
+ * @retval	int		GEAR_3ç­‰
  */
 //--------------------------------------------------------------
 u32 Player_SaveDataGetFormGet( PLAYER_STATE_PTR jiki )
@@ -1237,11 +1237,11 @@ u32 Player_SaveDataGetFormGet( PLAYER_STATE_PTR jiki )
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@À•WXV	Œ»İˆÊ’u‚ÅXV
+ * è‡ªæ©Ÿåº§æ¨™æ›´æ–°	ç¾åœ¨ä½ç½®ã§æ›´æ–°
  * @param	jiki			PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -1253,9 +1253,9 @@ void Player_GPosNowUpdate( const PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@À•WXV	•ûŒü
+ * è‡ªæ©Ÿåº§æ¨™æ›´æ–°	æ–¹å‘
  * @param	jiki			PLAYER_STATE_PTR
- * @param	dir			ˆÚ“®‚·‚é•ûŒü
+ * @param	dir			ç§»å‹•ã™ã‚‹æ–¹å‘
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1266,10 +1266,10 @@ void Player_GPosAddDir( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©‹@À•WA•ûŒü‚ğ‰Šú‰»@FX32Œ^
+ * è‡ªæ©Ÿåº§æ¨™ã€æ–¹å‘ã‚’åˆæœŸåŒ–ã€€FX32å‹
  * @param	jiki	PLAYER_STATE_PTR
- * @param	vec		‰Šú‰»À•W
- * @param	dir		•ûŒü DIR_UP“™
+ * @param	vec		åˆæœŸåŒ–åº§æ¨™
+ * @param	dir		æ–¹å‘ DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1286,11 +1286,11 @@ void Player_VecPosInit( PLAYER_STATE_PTR jiki, const VecFx32 *vec, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©‹@À•WA•ûŒü‚ğ‰Šú‰» ƒOƒŠƒbƒhÀ•WŒ^
+ * è‡ªæ©Ÿåº§æ¨™ã€æ–¹å‘ã‚’åˆæœŸåŒ– ã‚°ãƒªãƒƒãƒ‰åº§æ¨™å‹
  * @param	jiki	PLAYER_STATE_PTR
- * @param	x		ƒOƒŠƒbƒhXÀ•W
- * @param	z		ƒOƒŠƒbƒhZÀ•W
- * @param	dir		•ûŒü DIR_UP“™
+ * @param	x		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	z		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	dir		æ–¹å‘ DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1307,9 +1307,9 @@ void Player_GPosInit( PLAYER_STATE_PTR jiki, int x, int z, int dir )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ÌYÀ•W‚ğƒZƒbƒg‚·‚éBÀÀ•W‚Å
+ * è‡ªæ©Ÿã®Yåº§æ¨™ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚å®Ÿåº§æ¨™ã§
  * @param	jiki	PLAYER_STATE_PTR
- * @param	y		‚‚³
+ * @param	y		é«˜ã•
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1326,9 +1326,9 @@ void Player_VecPosYSet( PLAYER_STATE_PTR jiki, fx32 y )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚Ì‚‚³©“®æ“¾‚ÌON OFF‚ğs‚¤
+ * è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã®ON OFFã‚’è¡Œã†
  * @param	jiki	PLAYER_STATE_PTR
- * @param	flag	TRUE=©“®æ“¾@FALSE=æ“¾‚µ‚È‚¢
+ * @param	flag	TRUE=è‡ªå‹•å–å¾—ã€€FALSE=å–å¾—ã—ãªã„
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1345,9 +1345,9 @@ void Player_HeightGet_ON_OFF( PLAYER_STATE_PTR jiki, int flag )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚Ì‚‚³©“®æ“¾‚ÌON OFF‚ğs‚¤BON‚Ìê‡‚Í‘¦”½‰f
+ * è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã®ON OFFã‚’è¡Œã†ã€‚ONã®å ´åˆã¯å³åæ˜ 
  * @param	jiki	PLAYER_STATE_PTR
- * @param	flag	TRUE=©“®æ“¾@FALSE=æ“¾‚µ‚È‚¢
+ * @param	flag	TRUE=è‡ªå‹•å–å¾—ã€€FALSE=å–å¾—ã—ãªã„
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1365,9 +1365,9 @@ void Player_HeightGetSet_ON_OFF( PLAYER_STATE_PTR jiki, int flag )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒh‚©‚ç«•Êæ“¾
- * @param	code	HERO“™
- * @retval	int		PM_MALE“™
+ * OBJã‚³ãƒ¼ãƒ‰ã‹ã‚‰æ€§åˆ¥å–å¾—
+ * @param	code	HEROç­‰
+ * @retval	int		PM_MALEç­‰
  */
 //--------------------------------------------------------------
 int Player_OBJCodeSexGet( int code )
@@ -1383,10 +1383,10 @@ int Player_OBJCodeSexGet( int code )
 
 //--------------------------------------------------------------
 /**
- * Œ`‘Ô‚Æ«•Ê‚©‚ç©‹@OBJƒR[ƒh‚ğæ“¾
- * @param	form	HERO_FORM_NORMAL“™
- * @param	sex		PM_MALE“™
- * @retval	int		HERO“™
+ * å½¢æ…‹ã¨æ€§åˆ¥ã‹ã‚‰è‡ªæ©ŸOBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
+ * @param	form	HERO_FORM_NORMALç­‰
+ * @param	sex		PM_MALEç­‰
+ * @retval	int		HEROç­‰
  */
 //--------------------------------------------------------------
 int Player_FormSexOBJCodeGet( int form, int sex )
@@ -1435,15 +1435,15 @@ int Player_FormSexOBJCodeGet( int form, int sex )
 		}
 	}
 	
-	GF_ASSERT( 0 && "Player_FormSexOBJCodeGet() form•s³" );
+	GF_ASSERT( 0 && "Player_FormSexOBJCodeGet() formä¸æ­£" );
 	return( HERO );
 }
 
 //--------------------------------------------------------------
 /**
- * Œ`‘Ô‚©‚çƒŠƒNƒGƒXƒg‚ğæ“¾
- * @param	form	HERO_FORM_NORMAL“™
- * @retval	u32		HERO_REQBIT_NORMAL“™
+ * å½¢æ…‹ã‹ã‚‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å–å¾—
+ * @param	form	HERO_FORM_NORMALç­‰
+ * @retval	u32		HERO_REQBIT_NORMALç­‰
  */
 //--------------------------------------------------------------
 u32 Player_FormRequestGet( int form )
@@ -1465,9 +1465,9 @@ u32 Player_FormRequestGet( int form )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒh‚©‚ç©‹@Œ`‘Ô‚ğæ“¾
- * @param	code	HERO“™
- * @retval	int		HERO_FORM_NORMAL“™
+ * OBJã‚³ãƒ¼ãƒ‰ã‹ã‚‰è‡ªæ©Ÿå½¢æ…‹ã‚’å–å¾—
+ * @param	code	HEROç­‰
+ * @retval	int		HERO_FORM_NORMALç­‰
  */
 //--------------------------------------------------------------
 int Player_OBJCodeFormGet( int code )
@@ -1480,13 +1480,13 @@ int Player_OBJCodeFormGet( int code )
 	case CYCLEHEROINE:			return( HERO_FORM_CYCLE );
 	}
 		
-	GF_ASSERT( 0 && "Player_OBJCodeFormGet() code•s³" );
+	GF_ASSERT( 0 && "Player_OBJCodeFormGet() codeä¸æ­£" );
 	return( HERO_FORM_NORMAL );
 }
 
 //--------------------------------------------------------------
 /**
- * FIELDSYS_WORK‚©‚çPLAYER_STATE_PTRæ“¾
+ * FIELDSYS_WORKã‹ã‚‰PLAYER_STATE_PTRå–å¾—
  * @param	fsys	FIELDSYS_WORK *
  * @retval	PLAYER_STATE_PTR	PLAYER_STATE_PTR
  */
@@ -1497,11 +1497,11 @@ PLAYER_STATE_PTR Player_FieldSysWorkPlayerGet( FIELDSYS_WORK *fsys )
 }
 
 //==============================================================================
-//	©‹@“®ìƒrƒbƒg
+//	è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@‹­§ˆÚ“®‚ğ‘€ì‚·‚é
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€å¼·åˆ¶ç§»å‹•ã‚’æ“ä½œã™ã‚‹
  * @param	jiki	PLAYER_STATE_PTR
  * @param	flag	TRUE=ON,FALSE=OFF
  * @retval	nothing
@@ -1518,9 +1518,9 @@ void Player_MoveBitSet_Force( PLAYER_STATE_PTR jiki, int flag )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@‹­§ˆÚ“®ƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€å¼·åˆ¶ç§»å‹•ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=‹­§ˆÚ“®’†
+ * @retval	int		TRUE=å¼·åˆ¶ç§»å‹•ä¸­
  */
 //--------------------------------------------------------------
 int Player_MoveBitCheck_Force( PLAYER_STATE_PTR jiki )
@@ -1534,7 +1534,7 @@ int Player_MoveBitCheck_Force( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@‘«Œ³–³Œø‚ğ‘€ì‚·‚é
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€è¶³å…ƒç„¡åŠ¹ã‚’æ“ä½œã™ã‚‹
  * @param	jiki	PLAYER_STATE_PTR
  * @param	flag	TRUE=ON,FALSE=OFF
  * @retval	nothing
@@ -1551,9 +1551,9 @@ void Player_MoveBitSet_UnderOFF( PLAYER_STATE_PTR jiki, int flag )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@‘«Œ³–³Œøƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€è¶³å…ƒç„¡åŠ¹ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=‘«Œ³–³Œø
+ * @retval	int		TRUE=è¶³å…ƒç„¡åŠ¹
  */
 //--------------------------------------------------------------
 int Player_MoveBitCheck_UnderOFF( PLAYER_STATE_PTR jiki )
@@ -1567,9 +1567,9 @@ int Player_MoveBitCheck_UnderOFF( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@©“]ÔƒuƒŒ[ƒLƒZƒbƒg
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€è‡ªè»¢è»Šãƒ–ãƒ¬ãƒ¼ã‚­ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	flag	TRUE=ƒuƒŒ[ƒL@FALSE=–³‚µ
+ * @param	flag	TRUE=ãƒ–ãƒ¬ãƒ¼ã‚­ã€€FALSE=ç„¡ã—
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1584,9 +1584,9 @@ void Player_MoveBitSet_CycleBrake( PLAYER_STATE_PTR jiki, int flag )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@©“]ÔƒuƒŒ[ƒLƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€è‡ªè»¢è»Šãƒ–ãƒ¬ãƒ¼ã‚­ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=ƒuƒŒ[ƒLƒAƒŠ@FALSE=ƒuƒŒ[ƒL–³‚µ
+ * @retval	int		TRUE=ãƒ–ãƒ¬ãƒ¼ã‚­ã‚¢ãƒªã€€FALSE=ãƒ–ãƒ¬ãƒ¼ã‚­ç„¡ã—
  */
 //--------------------------------------------------------------
 int Player_MoveBitCheck_CycleBrake( PLAYER_STATE_PTR jiki )
@@ -1600,9 +1600,9 @@ int Player_MoveBitCheck_CycleBrake( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@ƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒZƒbƒg
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	flag	TRUE=ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh@FALSE=–³‚µ
+ * @param	flag	TRUE=ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã€€FALSE=ç„¡ã—
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1617,9 +1617,9 @@ void Player_MoveBitSet_CyclingRoad( PLAYER_STATE_PTR jiki, int flag )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@©“]ÔƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€è‡ªè»¢è»Šã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh@FALSE=–³‚µ
+ * @retval	int		TRUE=ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã€€FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 int Player_MoveBitCheck_CyclingRoad( PLAYER_STATE_PTR jiki )
@@ -1633,7 +1633,7 @@ int Player_MoveBitCheck_CyclingRoad( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@[‚¢À‚ğ‘€ì‚·‚é
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€æ·±ã„æ²¼ã‚’æ“ä½œã™ã‚‹
  * @param	jiki	PLAYER_STATE_PTR
  * @param	flag	TRUE=ON,FALSE=OFF
  * @retval	nothing
@@ -1650,9 +1650,9 @@ void Player_MoveBitSet_DeepSwampOFF( PLAYER_STATE_PTR jiki, int flag )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@©“]ÔƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€è‡ªè»¢è»Šã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh@FALSE=–³‚µ
+ * @retval	int		TRUE=ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã€€FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 int Player_MoveBitCheck_DeepSwampOFF( PLAYER_STATE_PTR jiki )
@@ -1666,7 +1666,7 @@ int Player_MoveBitCheck_DeepSwampOFF( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@—¬»ˆÚ“®
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€æµç ‚ç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
  * @param	flag	TRUE=ON,FALSE=OFF
  * @retval	nothing
@@ -1683,9 +1683,9 @@ void Player_MoveBitSet_SandFloatSet( PLAYER_STATE_PTR jiki, int flag )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@—¬»ˆÚ“®ƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€æµç ‚ç§»å‹•ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=—¬»ˆÚ“®
+ * @retval	int		TRUE=æµç ‚ç§»å‹•
  */
 //--------------------------------------------------------------
 int Player_MoveBitCheck_SandFloat( PLAYER_STATE_PTR jiki )
@@ -1699,7 +1699,7 @@ int Player_MoveBitCheck_SandFloat( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@ˆê•àˆÚ“®ƒZƒbƒg
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€ä¸€æ­©ç§»å‹•ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
  * @param	flag	TRUE=ON,FALSE=OFF
  * @retval	nothing
@@ -1712,7 +1712,7 @@ void Player_MoveBitSet_StepON( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@ˆê•àˆÚ“®OFF
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€ä¸€æ­©ç§»å‹•OFF
  * @param	jiki	PLAYER_STATE_PTR
  * @param	flag	TRUE=ON,FALSE=OFF
  * @retval	nothing
@@ -1725,9 +1725,9 @@ void Player_MoveBitSet_StepOFF( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@ˆê•àˆÚ“®
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€ä¸€æ­©ç§»å‹•
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=ˆê•àˆÚ“®
+ * @retval	int		TRUE=ä¸€æ­©ç§»å‹•
  */
 //--------------------------------------------------------------
 int Player_MoveBitCheck_Step( PLAYER_STATE_PTR jiki )
@@ -1741,7 +1741,7 @@ int Player_MoveBitCheck_Step( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@‹­§ˆÚ“®@‘¬“x•Û‘¶ƒZƒbƒg
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€å¼·åˆ¶ç§»å‹•ã€€é€Ÿåº¦ä¿å­˜ã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
  * @param	flag	TRUE=ON,FALSE=OFF
  * @retval	nothing
@@ -1758,7 +1758,7 @@ void Player_MoveBitSet_ForceSaveSpeed( PLAYER_STATE_PTR jiki, int flag )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@‹­§ˆÚ“®@‘¬“x•Û‘¶ƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€å¼·åˆ¶ç§»å‹•ã€€é€Ÿåº¦ä¿å­˜ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	int		TRUE=ON
  */
@@ -1770,7 +1770,7 @@ int Player_MoveBitCheck_ForceSaveSpeed( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒg@”j‚ê‚½¢ŠE@
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆã€€ç ´ã‚ŒãŸä¸–ç•Œã€€
  * @param	jiki	PLAYER_STATE_PTR
  * @param	type	HEROTWTYPE
  * @retval	nothing
@@ -1778,7 +1778,7 @@ int Player_MoveBitCheck_ForceSaveSpeed( PLAYER_STATE_PTR jiki )
 //--------------------------------------------------------------
 void Player_MoveBitSet_TWorld( PLAYER_STATE_PTR jiki, HEROTWTYPE type )
 {
-	Jiki_MoveBitOFF( jiki, JIKI_MOVE_BIT_TWORLD_ALL );	//ˆê’UÁ‹
+	Jiki_MoveBitOFF( jiki, JIKI_MOVE_BIT_TWORLD_ALL );	//ä¸€æ—¦æ¶ˆå»
 	
 	switch( type ){
 	case HEROTWTYPE_NON:
@@ -1800,7 +1800,7 @@ void Player_MoveBitSet_TWorld( PLAYER_STATE_PTR jiki, HEROTWTYPE type )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒgƒ`ƒFƒbƒN@”j‚ê‚½¢ŠE
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ã€€ç ´ã‚ŒãŸä¸–ç•Œ
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	HEROTWTYPE
  */
@@ -1833,9 +1833,9 @@ HEROTWTYPE Player_MoveBitCheck_TWorld( CONST_PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒgƒ`ƒFƒbƒN@”j‚ê‚½¢ŠE“Áê’nŒ`
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ã€€ç ´ã‚ŒãŸä¸–ç•Œç‰¹æ®Šåœ°å½¢
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	BOOL	”j‚ê‚½¢ŠE“Áê’nŒ`‚Å‚ ‚é
+ * @retval	BOOL	ç ´ã‚ŒãŸä¸–ç•Œç‰¹æ®Šåœ°å½¢ã§ã‚ã‚‹
  */
 //--------------------------------------------------------------
 BOOL Player_MoveBitCheck_TWorldSp( CONST_PLAYER_STATE_PTR jiki )
@@ -1851,9 +1851,9 @@ BOOL Player_MoveBitCheck_TWorldSp( CONST_PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ìƒrƒbƒgƒ`ƒFƒbƒN@•½–Êƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿå‹•ä½œãƒ“ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ã€€å¹³é¢ãƒã‚§ãƒƒã‚¯
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	BOOL	TRUE=•½–Ê‚Å‚ ‚é
+ * @retval	BOOL	TRUE=å¹³é¢ã§ã‚ã‚‹
  */
 //--------------------------------------------------------------
 BOOL Player_MoveBitCheck_Flat( CONST_PLAYER_STATE_PTR jiki )

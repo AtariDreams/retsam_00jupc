@@ -1,7 +1,7 @@
 #ifdef PM_DEBUG
 //============================================================================================
 /**
- *	ÉfÉoÉbÉOÉÅÉjÉÖÅ[ÅuÇ»Ç©ÇﬁÇÁÅvÇÃèàóù
+ *	„Éá„Éê„ÉÉ„Ç∞„É°„Éã„É•„Éº„Äå„Å™„Åã„ÇÄ„Çâ„Äç„ÅÆÂá¶ÁêÜ
  */
 //============================================================================================
 #include "common.h"
@@ -54,7 +54,7 @@
 
 
 //============================================================================================
-//	ÉÅÉCÉì
+//	„É°„Ç§„É≥
 //============================================================================================
 #define	TCB_WK_SIZE		( 4*16 )
 
@@ -72,23 +72,23 @@ typedef struct {
 	GF_BGL_BMPWIN	win;
 
 	BMPLIST_WORK * lw;
-	BMP_MENULIST_DATA * ld;	// BMPÉäÉXÉgÉfÅ[É^
+	BMP_MENULIST_DATA * ld;	// BMP„É™„Çπ„Éà„Éá„Éº„Çø
 
-	MSGDATA_MANAGER * mman;	// ÉÅÉbÉZÅ[ÉWÉfÅ[É^É}ÉlÅ[ÉWÉÉ
+	MSGDATA_MANAGER * mman;	// „É°„ÉÉ„Çª„Éº„Ç∏„Éá„Éº„Çø„Éû„Éç„Éº„Ç∏„É£
 
 	u32	work[WK_MAX];
 }D_NAKAHIRO_PARAM;
 
 typedef void (*pHNfunc)(void *);
 
-// ÉJÉâÅ[ÉeÅ[ÉuÉã
+// „Ç´„É©„Éº„ÉÜ„Éº„Éñ„É´
 /*
 enum {
-	COL_W_BLACK = 0,	// çïÅiîwåiîíÅj
-	COL_W_BLUE,			// ê¬ÅiîwåiîíÅj
-	COL_W_RED,			// ê‘ÅiîwåiîíÅj
-	COL_W_PINK,			// ÉsÉìÉNÅiîwåiîíÅj
-	COL_W_GREEN,		// óŒÅiîwåiîíÅj
+	COL_W_BLACK = 0,	// ÈªíÔºàËÉåÊôØÁôΩÔºâ
+	COL_W_BLUE,			// ÈùíÔºàËÉåÊôØÁôΩÔºâ
+	COL_W_RED,			// Ëµ§ÔºàËÉåÊôØÁôΩÔºâ
+	COL_W_PINK,			// „Éî„É≥„ÇØÔºàËÉåÊôØÁôΩÔºâ
+	COL_W_GREEN,		// Á∑ëÔºàËÉåÊôØÁôΩÔºâ
 };
 */
 
@@ -141,7 +141,7 @@ void DebugPokemonChangeInit( void * fsys );
 void DebugDameTamagoSet( void * fsys );
 //============================================================================================
 //============================================================================================
-//	ÉäÉ{ÉìÉZÉbÉg
+//	„É™„Éú„É≥„Çª„ÉÉ„Éà
 //============================================================================================
 //============================================================================================
 typedef struct {
@@ -170,7 +170,7 @@ static const BMPLIST_HEADER RibbonListH = {
 
 
 
-// èâä˙âª
+// ÂàùÊúüÂåñ
 void DebugRibbonSetInit( void * fsys )
 {
 	D_RibbonMakeInit( fsys, 1 );
@@ -208,7 +208,7 @@ static void D_RibbonMakeInit( void * fsys, u8 mode )
 	wk->lwk = BmpListSet( &list_h, 0, 0, HEAPID_BASE_APP );
 }
 
-// ÉÅÉCÉìèàóù
+// „É°„Ç§„É≥Âá¶ÁêÜ
 static void D_RibbonMakeMain( TCB_PTR _tcb, void * work )
 {
 	D_RIBBON_SET * wk;
@@ -294,41 +294,41 @@ static const u32 d_menu_list[][2] =
 };
 
 static const BMPLIST_HEADER d_menu_list_h = {
-	NULL,				// ï\é¶ï∂éöÉfÅ[É^É|ÉCÉìÉ^
-	NULL,				// ÉJÅ[É\Éãà⁄ìÆÇ≤Ç∆ÇÃÉRÅ[ÉãÉoÉbÉNä÷êî
-	NULL,				// àÍóÒï\é¶Ç≤Ç∆ÇÃÉRÅ[ÉãÉoÉbÉNä÷êî
+	NULL,				// Ë°®Á§∫ÊñáÂ≠ó„Éá„Éº„Çø„Éù„Ç§„É≥„Çø
+	NULL,				// „Ç´„Éº„ÇΩ„É´ÁßªÂãï„Åî„Å®„ÅÆ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
+	NULL,				// ‰∏ÄÂàóË°®Á§∫„Åî„Å®„ÅÆ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
 	NULL,
-	MAIN_BMPLIST_MAX,	// ÉäÉXÉgçÄñ⁄êî
-	6,						// ï\é¶ç≈ëÂçÄñ⁄êî
-	0,						// ÉâÉxÉãï\é¶Çwç¿ïW
-	12,						// çÄñ⁄ï\é¶Çwç¿ïW
-	0,						// ÉJÅ[É\Éãï\é¶Çwç¿ïW
-	0,						// ï\é¶Çxç¿ïW
-	FBMP_COL_WHITE,			//ï∂éöêF
-	FBMP_COL_BLACK,			//îwåiêF
-	FBMP_COL_BLK_SDW,		//ï∂éöâeêF
-	0,						// ï∂éöä‘äuÇw
-	16,						// ï∂éöä‘äuÇx
-	BMPLIST_LRKEY_SKIP,		// ÉyÅ[ÉWÉXÉLÉbÉvÉ^ÉCÉv
-	FONT_SYSTEM,			// ï∂éöéwíË(ñ{óàÇÕ u8 ÇæÇØÇ«ÅAÇªÇÒÇ»Ç…çÏÇÁÇ»Ç¢Ç∆évÇ§ÇÃÇ≈)
-	0						// ÇaÇfÉJÅ[É\Éã(allow)ï\é¶ÉtÉâÉO(0:ON,1:OFF)
+	MAIN_BMPLIST_MAX,	// „É™„Çπ„ÉàÈ†ÖÁõÆÊï∞
+	6,						// Ë°®Á§∫ÊúÄÂ§ßÈ†ÖÁõÆÊï∞
+	0,						// „É©„Éô„É´Ë°®Á§∫Ôº∏Â∫ßÊ®ô
+	12,						// È†ÖÁõÆË°®Á§∫Ôº∏Â∫ßÊ®ô
+	0,						// „Ç´„Éº„ÇΩ„É´Ë°®Á§∫Ôº∏Â∫ßÊ®ô
+	0,						// Ë°®Á§∫ÔºπÂ∫ßÊ®ô
+	FBMP_COL_WHITE,			//ÊñáÂ≠óËâ≤
+	FBMP_COL_BLACK,			//ËÉåÊôØËâ≤
+	FBMP_COL_BLK_SDW,		//ÊñáÂ≠óÂΩ±Ëâ≤
+	0,						// ÊñáÂ≠óÈñìÈöîÔº∏
+	16,						// ÊñáÂ≠óÈñìÈöîÔºπ
+	BMPLIST_LRKEY_SKIP,		// „Éö„Éº„Ç∏„Çπ„Ç≠„ÉÉ„Éó„Çø„Ç§„Éó
+	FONT_SYSTEM,			// ÊñáÂ≠óÊåáÂÆö(Êú¨Êù•„ÅØ u8 „Å†„Åë„Å©„ÄÅ„Åù„Çì„Å™„Å´‰Ωú„Çâ„Å™„ÅÑ„Å®ÊÄù„ÅÜ„ÅÆ„Åß)
+	0						// Ôº¢Ôºß„Ç´„Éº„ÇΩ„É´(allow)Ë°®Á§∫„Éï„É©„Ç∞(0:ON,1:OFF)
 };
 
-// ÉtÉHÉìÉgÉJÉâÅ[ÉeÅ[ÉuÉã
+// „Éï„Ç©„É≥„Éà„Ç´„É©„Éº„ÉÜ„Éº„Éñ„É´
 static const u8 ColorTbl[][3] =
 {
-	{ 15, 1, 2 },	// çïÅiîwåiîíÅj
-	{ 15, 3, 4 },	// ê¬ÅiîwåiîíÅj
-	{ 15, 5, 6 },	// ê‘ÅiîwåiîíÅj
-	{ 15, 7, 8 },	// ÉsÉìÉNÅiîwåiîíÅj
-	{ 15, 9, 10 },	// óŒÅiîwåiîíÅj
+	{ 15, 1, 2 },	// ÈªíÔºàËÉåÊôØÁôΩÔºâ
+	{ 15, 3, 4 },	// ÈùíÔºàËÉåÊôØÁôΩÔºâ
+	{ 15, 5, 6 },	// Ëµ§ÔºàËÉåÊôØÁôΩÔºâ
+	{ 15, 7, 8 },	// „Éî„É≥„ÇØÔºàËÉåÊôØÁôΩÔºâ
+	{ 15, 9, 10 },	// Á∑ëÔºàËÉåÊôØÁôΩÔºâ
 };
 
-#define	COL_W_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )	// ÉtÉHÉìÉgÉJÉâÅ[ÅFçï
-#define	COL_W_BLUE	( GF_PRINTCOLOR_MAKE( 3, 4, 15 ) )	// ÉtÉHÉìÉgÉJÉâÅ[ÅFê¬
-#define	COL_W_RED	( GF_PRINTCOLOR_MAKE( 5, 6, 15 ) )	// ÉtÉHÉìÉgÉJÉâÅ[ÅFê‘
-#define	COL_W_PINK	( GF_PRINTCOLOR_MAKE( 7, 8, 15 ) )	// ÉtÉHÉìÉgÉJÉâÅ[ÅFê‘
-#define	COL_W_GREEN	( GF_PRINTCOLOR_MAKE( 9, 10, 15 ) )	// ÉtÉHÉìÉgÉJÉâÅ[ÅFê‘
+#define	COL_W_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )	// „Éï„Ç©„É≥„Éà„Ç´„É©„ÉºÔºöÈªí
+#define	COL_W_BLUE	( GF_PRINTCOLOR_MAKE( 3, 4, 15 ) )	// „Éï„Ç©„É≥„Éà„Ç´„É©„ÉºÔºöÈùí
+#define	COL_W_RED	( GF_PRINTCOLOR_MAKE( 5, 6, 15 ) )	// „Éï„Ç©„É≥„Éà„Ç´„É©„ÉºÔºöËµ§
+#define	COL_W_PINK	( GF_PRINTCOLOR_MAKE( 7, 8, 15 ) )	// „Éï„Ç©„É≥„Éà„Ç´„É©„ÉºÔºöËµ§
+#define	COL_W_GREEN	( GF_PRINTCOLOR_MAKE( 9, 10, 15 ) )	// „Éï„Ç©„É≥„Éà„Ç´„É©„ÉºÔºöËµ§
 
 
 
@@ -418,7 +418,7 @@ static void DN_MenuExit( D_NAKAHIRO_PARAM * wk )
 
 
 //============================================================================================
-//	ÉXÉeÅ[É^ÉXâÊñ 
+//	„Çπ„ÉÜ„Éº„Çø„ÇπÁîªÈù¢
 //============================================================================================
 typedef struct {
 //	void * fsys;
@@ -430,7 +430,7 @@ typedef struct {
 static BOOL D_PokeStatusTask( GMEVENT_CONTROL * event );
 
 
-// í èÌ
+// ÈÄöÂ∏∏
 static void DebugFieldPokeStatus( FIELDSYS_WORK * fsys )
 {
 	DEBUG_P_STATUS * wk;
@@ -465,7 +465,7 @@ static void DebugFieldPokeStatus( FIELDSYS_WORK * fsys )
 	FieldEvent_Set( fsys, D_PokeStatusTask, wk );
 }
 
-// ãZäoÇ¶
+// ÊäÄË¶ö„Åà
 static void DebugWazaSetPokeStatus( FIELDSYS_WORK * fsys )
 {
 	DEBUG_P_STATUS * wk;
@@ -496,7 +496,7 @@ static void DebugWazaSetPokeStatus( FIELDSYS_WORK * fsys )
 	FieldEvent_Set( fsys, D_PokeStatusTask, wk );
 }
 
-// ãZñYÇÍ
+// ÊäÄÂøò„Çå
 static void DebugWazaDelPokeStatus( FIELDSYS_WORK * fsys )
 {
 	DEBUG_P_STATUS * wk;
@@ -527,7 +527,7 @@ static void DebugWazaDelPokeStatus( FIELDSYS_WORK * fsys )
 	FieldEvent_Set( fsys, D_PokeStatusTask, wk );
 }
 
-// É|ÉãÉgégóp
+// „Éù„É´„Éà‰ΩøÁî®
 static void DebugPorutoPokeStatus( FIELDSYS_WORK * fsys )
 {
 	DEBUG_P_STATUS * wk;
@@ -558,7 +558,7 @@ static void DebugPorutoPokeStatus( FIELDSYS_WORK * fsys )
 	FieldEvent_Set( fsys, D_PokeStatusTask, wk );
 }
 
-// ÉRÉìÉfÉBÉVÉáÉìïœçXÉfÉÇ
+// „Ç≥„É≥„Éá„Ç£„Ç∑„Éß„É≥Â§âÊõ¥„Éá„É¢
 static void DebugConditionPokeStatus( FIELDSYS_WORK * fsys )
 {
 	DEBUG_P_STATUS * wk;
@@ -636,7 +636,7 @@ static BOOL D_PokeStatusTask( GMEVENT_CONTROL * event )
 }
 
 //--------------------------------------------------------------------------------------------
-//	ÉäÉ{Éìí«â¡
+//	„É™„Éú„É≥ËøΩÂä†
 //--------------------------------------------------------------------------------------------
 static void DebugRibbonAdd( void * fsys )
 {
@@ -658,7 +658,7 @@ static void DebugRibbonAdd( void * fsys )
 
 
 //============================================================================================
-//	VSÉfÉÇ
+//	VS„Éá„É¢
 //============================================================================================
 extern PROC_RESULT D_VsDemoProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT D_VsDemoProc_End( PROC * proc, int * seq );
@@ -723,7 +723,7 @@ static void DebugVSDemoCall7( FIELDSYS_WORK * fsys )
 
 static void DebugVSDProcSet( FIELDSYS_WORK * fsys, D_VSD_WORK * wk )
 {
-	// ÉIÅ[ÉoÅ[ÉåÉCIDêÈåæ
+	// „Ç™„Éº„Éê„Éº„É¨„Ç§IDÂÆ£Ë®Ä
 	FS_EXTERN_OVERLAY(vs_demo);
 
 	const PROC_DATA D_VSDProcData[] =
@@ -786,7 +786,7 @@ static BOOL D_VSDemoEvent( GMEVENT_CONTROL * event )
 
 
 //============================================================================================
-//	ãZã≥Ç¶
+//	ÊäÄÊïô„Åà
 //============================================================================================
 extern void WazaOshie_ProcSet( FIELDSYS_WORK * fsys , WAZAOSHIE_DATA * wk );
 
@@ -985,7 +985,7 @@ static void DebugDispCheckMain( TCB_PTR _tcb, void * work )
 
 
 //============================================================================================
-//	ÉAÉCÉeÉÄMAX
+//	„Ç¢„Ç§„ÉÜ„É†MAX
 //============================================================================================
 static void DebugItemAdd( MYITEM * myitem, u32 id, u32 add_max )
 {
@@ -997,7 +997,7 @@ static void DebugItemAdd( MYITEM * myitem, u32 id, u32 add_max )
 }
 
 //--------------------------------------------------------------------------------------------
-//	ñÿÇÃé¿MAX
+//	Êú®„ÅÆÂÆüMAX
 //--------------------------------------------------------------------------------------------
 static void DebugNutsMax( void * fsys )
 {
@@ -1013,7 +1013,7 @@ static void DebugNutsMax( void * fsys )
 }
 
 //--------------------------------------------------------------------------------------------
-//	ãZÉ}ÉVÉìMAX
+//	ÊäÄ„Éû„Ç∑„É≥MAX
 //--------------------------------------------------------------------------------------------
 static void DebugWazaMachineMax( void * fsys )
 {
@@ -1035,9 +1035,9 @@ static void DebugWazaMachineMax( void * fsys )
 
 
 //============================================================================================
-//	ñ`åØÉmÅ[ÉgÉZÉbÉg
+//	ÂÜíÈô∫„Éé„Éº„Éà„Çª„ÉÉ„Éà
 //============================================================================================
-// í«â¡
+// ËøΩÂä†
 static void DebugFNoteSet( void * fsys )
 {
 	MYITEM * myitem;
@@ -1061,7 +1061,7 @@ static void DebugFNoteSet( void * fsys )
 	FieldSystemProc_SeqHoldEnd();
 }
 
-// èâä˙âª
+// ÂàùÊúüÂåñ
 static void DebugFNoteClear( void * fsys )
 {
 	FNOTE_InitAll( SaveData_GetFNote(((FIELDSYS_WORK *)fsys)->savedata) );
@@ -1070,7 +1070,7 @@ static void DebugFNoteClear( void * fsys )
 
 
 //============================================================================================
-//	ÉXÉäÅ[ÉvÉÇÅ[Éh
+//	„Çπ„É™„Éº„Éó„É¢„Éº„Éâ
 //============================================================================================
 static void B_SleepCallBack( void * arg )
 {
@@ -1131,7 +1131,7 @@ void GF_BmpPrintObj(
 
 //============================================================================================
 //============================================================================================
-//	É|ÉPÉEÉBÉì
+//	„Éù„Ç±„Ç¶„Ç£„É≥
 //============================================================================================
 //============================================================================================
 typedef struct {
@@ -1167,7 +1167,7 @@ static void DebugPokeWinInit( void * fsys )
 	wk->flg = 0;
 }
 
-// ÉÅÉCÉìèàóù
+// „É°„Ç§„É≥Âá¶ÁêÜ
 static void D_PokeWinMain( TCB_PTR _tcb, void * work )
 {
 	D_POKEWIN * wk = work;
@@ -1197,7 +1197,7 @@ static void D_PokeWinMain( TCB_PTR _tcb, void * work )
 
 //============================================================================================
 //============================================================================================
-//	ÉGÉìÉJÉEÉìÉgêßå‰
+//	„Ç®„É≥„Ç´„Ç¶„É≥„ÉàÂà∂Âæ°
 //============================================================================================
 //============================================================================================
 typedef struct {
@@ -1208,7 +1208,7 @@ typedef struct {
 static void D_EncountSetMain( TCB_PTR _tcb, void * work );
 static void D_EncountStrPut( D_ENCOUNT * wk );
 
-// èâä˙âª
+// ÂàùÊúüÂåñ
 void DebugEncountSetInit( void * fsys )
 {
 	D_ENCOUNT * wk;
@@ -1229,7 +1229,7 @@ void DebugEncountSetInit( void * fsys )
 	D_EncountStrPut( wk );
 }
 
-// ÉÅÉCÉìèàóù
+// „É°„Ç§„É≥Âá¶ÁêÜ
 static void D_EncountSetMain( TCB_PTR _tcb, void * work )
 {
 	D_ENCOUNT * wk = (D_ENCOUNT *)work;
@@ -1275,7 +1275,7 @@ static void D_EncountStrPut( D_ENCOUNT * wk )
 
 //============================================================================================
 //============================================================================================
-//	É|ÉPÉAÉCÉRÉìÉ`ÉFÉbÉN
+//	„Éù„Ç±„Ç¢„Ç§„Ç≥„É≥„ÉÅ„Çß„ÉÉ„ÇØ
 //============================================================================================
 //============================================================================================
 #define	PICON_MAX		( 12 )
@@ -1301,7 +1301,7 @@ static void CellActSet( D_POKEICON * wk );
 static void CellActDelete( D_POKEICON * wk );
 static void CellActAnm( D_POKEICON * wk );
 
-// èâä˙âª
+// ÂàùÊúüÂåñ
 static void DebugPokeIconCheckInit( void * fsys )
 {
 	D_POKEICON * wk;
@@ -1328,7 +1328,7 @@ static void DebugPokeIconCheckInit( void * fsys )
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 }
 
-// ÉÅÉCÉìèàóù
+// „É°„Ç§„É≥Âá¶ÁêÜ
 static void D_PokeIconCheckMain( TCB_PTR _tcb, void * work )
 {
 	D_POKEICON * wk = (D_POKEICON *)work;
@@ -1459,7 +1459,7 @@ static void D_PokeIconFormChg( D_POKEICON * wk, s8 mv )
 	if( flg == 0 ){ wk->form = old; }
 }
 
-// ï∂éöóÒï\é¶
+// ÊñáÂ≠óÂàóË°®Á§∫
 static void D_PokeIconStrPut( D_POKEICON * wk )
 {
 	NUMFONT * nfnt;
@@ -1518,15 +1518,15 @@ static void D_PokeIconStrPut( D_POKEICON * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉZÉãÉAÉNÉ^Å[ÉZÉbÉg
+ * „Çª„É´„Ç¢„ÇØ„Çø„Éº„Çª„ÉÉ„Éà
  *
- * @param	wk		ÉèÅ[ÉN
+ * @param	wk		„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 
-// ÉZÉãÉAÉNÉ^Å[ÉfÅ[É^
+// „Çª„É´„Ç¢„ÇØ„Çø„Éº„Éá„Éº„Çø
 static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 {
 	{	24, 16, 0,		1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1585,9 +1585,9 @@ static void CellActSet( D_POKEICON * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉZÉãÉAÉNÉ^Å[çÌèú
+ * „Çª„É´„Ç¢„ÇØ„Çø„ÉºÂâäÈô§
  *
- * @param	wk		ÉèÅ[ÉN
+ * @param	wk		„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
@@ -1604,9 +1604,9 @@ static void CellActDelete( D_POKEICON * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ÉZÉãÉAÉNÉ^Å[ÉAÉjÉÅ
+ * „Çª„É´„Ç¢„ÇØ„Çø„Éº„Ç¢„Éã„É°
  *
- * @param	wk		ÉèÅ[ÉN
+ * @param	wk		„ÉØ„Éº„ÇØ
  *
  * @return	none
  */
@@ -1625,7 +1625,7 @@ static void CellActAnm( D_POKEICON * wk )
 
 //============================================================================================
 //============================================================================================
-//	ÉAÉCÉeÉÄÉAÉCÉRÉìÉ`ÉFÉbÉN
+//	„Ç¢„Ç§„ÉÜ„É†„Ç¢„Ç§„Ç≥„É≥„ÉÅ„Çß„ÉÉ„ÇØ
 //============================================================================================
 //============================================================================================
 static void D_ItemIconChgAll( D_POKEICON * wk );
@@ -1635,7 +1635,7 @@ static void D_ItemIconStrPut( D_POKEICON * wk );
 static void D_ItemIconCheckMain( TCB_PTR _tcb, void * work );
 static void D_ItemIconCellActSet( D_POKEICON * wk );
 
-// èâä˙âª
+// ÂàùÊúüÂåñ
 static void DebugItemIconCheckInit( void * fsys )
 {
 	D_POKEICON * wk;
@@ -1662,7 +1662,7 @@ static void DebugItemIconCheckInit( void * fsys )
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 }
 
-// ÉÅÉCÉìèàóù
+// „É°„Ç§„É≥Âá¶ÁêÜ
 static void D_ItemIconCheckMain( TCB_PTR _tcb, void * work )
 {
 	D_POKEICON * wk = (D_POKEICON *)work;
@@ -1738,7 +1738,7 @@ static void D_ItemIconChg( D_POKEICON * wk, u8 pos )
 		GetItemIndex(item,ITEM_GET_ICON_PAL), 0, DHN_CLA_ID+pos );
 }
 
-// ï∂éöóÒï\é¶
+// ÊñáÂ≠óÂàóË°®Á§∫
 static void D_ItemIconStrPut( D_POKEICON * wk )
 {
 	NUMFONT * nfnt;
@@ -1791,7 +1791,7 @@ static void D_ItemIconStrPut( D_POKEICON * wk )
 	GF_BGL_BmpWinOnVReq( &wk->win[1] );
 }
 
-// ÉZÉãÉAÉNÉ^Å[ÉfÅ[É^
+// „Çª„É´„Ç¢„ÇØ„Çø„Éº„Éá„Éº„Çø
 static const TCATS_OBJECT_ADD_PARAM_S ItemIconActAddParam_S[] =
 {
 	{	16, 16+8, 0,		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1857,7 +1857,7 @@ static void D_ItemIconCellActSet( D_POKEICON * wk )
 
 //============================================================================================
 //============================================================================================
-//	Ç«Ç§ÇÆÇÇ¬Ç≠ÇÈ
+//	„Å©„ÅÜ„Åê„Çí„Å§„Åè„Çã
 //============================================================================================
 //============================================================================================
 typedef struct {
@@ -1874,7 +1874,7 @@ static u8 D_ItemIDSel( D_ITEMMAKE * wk );
 static u8 D_ItemNumSel( D_ITEMMAKE * wk );
 
 
-// èâä˙âª
+// ÂàùÊúüÂåñ
 void DebugItemMakeInit( void * fsys )
 {
 	D_ITEMMAKE * wk;
@@ -1898,7 +1898,7 @@ void DebugItemMakeInit( void * fsys )
 	D_ItemStrPut( wk );
 }
 
-// ï∂éöóÒï\é¶
+// ÊñáÂ≠óÂàóË°®Á§∫
 static void D_ItemStrPut( D_ITEMMAKE * wk )
 {
 	GF_BGL_BMPWIN * win;
@@ -1953,13 +1953,13 @@ static void D_ItemStrPut( D_ITEMMAKE * wk )
 	WORDSET_Delete( wset );
 }
 
-// ÉÅÉCÉìèàóù
+// „É°„Ç§„É≥Âá¶ÁêÜ
 static void D_ItemMakeMain( TCB_PTR _tcb, void * work )
 {
 	D_ITEMMAKE * wk = (D_ITEMMAKE *)work;
 
 	switch( wk->seq ){
-	case 0:		// ÉAÉCÉeÉÄëIë
+	case 0:		// „Ç¢„Ç§„ÉÜ„É†ÈÅ∏Êäû
 		if( D_ItemIDSel( wk ) == TRUE ){
 			D_ItemMakeBmpExit( wk );
 			PMDS_taskDel( _tcb );
@@ -1974,7 +1974,7 @@ static void D_ItemMakeMain( TCB_PTR _tcb, void * work )
 	}
 }
 
-// IDïœçX
+// IDÂ§âÊõ¥
 static void D_ItemIDSet( D_ITEMMAKE * wk, s8 plus )
 {
 	s16	id = wk->item.id;
@@ -1990,7 +1990,7 @@ static void D_ItemIDSet( D_ITEMMAKE * wk, s8 plus )
 	}
 }
 
-// IDïœçXèàóù
+// IDÂ§âÊõ¥Âá¶ÁêÜ
 static u8 D_ItemIDSel( D_ITEMMAKE * wk )
 {
 	if( sys.repeat & PAD_KEY_UP ){
@@ -2027,7 +2027,7 @@ static u8 D_ItemIDSel( D_ITEMMAKE * wk )
 	return FALSE;
 }
 
-// å¬êîïœçX
+// ÂÄãÊï∞Â§âÊõ¥
 static void D_ItemNumSet( D_ITEMMAKE * wk, s8 plus )
 {
 	s16	num = wk->item.no;
@@ -2043,7 +2043,7 @@ static void D_ItemNumSet( D_ITEMMAKE * wk, s8 plus )
 	}
 }
 
-// å¬êîïœçX
+// ÂÄãÊï∞Â§âÊõ¥
 static u8 D_ItemNumSel( D_ITEMMAKE * wk )
 {
 	if( sys.repeat & PAD_KEY_UP ){
@@ -2097,12 +2097,12 @@ static void D_ItemMakeBmpExit( D_ITEMMAKE * wk )
 
 //============================================================================================
 //============================================================================================
-//	É|ÉPÉÇÉìÇÇ¬Ç≠ÇÈ
+//	„Éù„Ç±„É¢„É≥„Çí„Å§„Åè„Çã
 //============================================================================================
 //============================================================================================
 enum {
-	POKEMAKE_MODE_DEBUG = 0,	// í èÌçÏê¨ÅiêeñºÅFÉfÉoÉbÉOÉ|ÉPÅj
-	POKEMAKE_MODE_CHANGE,		// èëÇ´ä∑Ç¶
+	POKEMAKE_MODE_DEBUG = 0,	// ÈÄöÂ∏∏‰ΩúÊàêÔºàË¶™ÂêçÔºö„Éá„Éê„ÉÉ„Ç∞„Éù„Ç±Ôºâ
+	POKEMAKE_MODE_CHANGE,		// Êõ∏„ÅçÊèõ„Åà
 };
 
 typedef struct {
@@ -2145,8 +2145,8 @@ typedef struct {
 	FIELDSYS_WORK * fsys;
 	GF_BGL_BMPWIN	win;
 	GF_BGL_BMPWIN	win_title;
-	MSGDATA_MANAGER * mman;	// ÉÅÉbÉZÅ[ÉWÉfÅ[É^É}ÉlÅ[ÉWÉÉ
-	WORDSET * wset;			// íPåÍÉZÉbÉg
+	MSGDATA_MANAGER * mman;	// „É°„ÉÉ„Çª„Éº„Ç∏„Éá„Éº„Çø„Éû„Éç„Éº„Ç∏„É£
+	WORDSET * wset;			// ÂçòË™û„Çª„ÉÉ„Éà
 	BMPCURSOR * cursor;
 	PokeMakeWork	pmw;
 	u32	seq;
@@ -2154,62 +2154,62 @@ typedef struct {
 }D_POKEMONMAKE;
 
 
-#define	PMAKE_NAME			( 0 )	//É|ÉPÉÇÉìÉiÉìÉoÅ[Åi16bitÅj
-#define	PMAKE_LEVEL			( 1 )	//ÉåÉxÉãÅi8bitÅj
-#define	PMAKE_EXP			( 2 )	//åoå±ílÅi32bitÅj
-#define	PMAKE_ID			( 3 )	//ÇhÇcÅi32bitÅj
-#define	PMAKE_PERRND		( 4 )	//å¬ëÃóêêîÅi32bitÅj
-#define	PMAKE_SEX			( 5 )	//ê´ï Åi8bitÅj
-#define	PMAKE_PERSONAL		( 6 )	//ê´äiÅi8bitÅj
-#define	PMAKE_WAZA1			( 7 )	//éùÇ¡ÇƒÇ¢ÇÈãZÇPÅi8bitÅj
-#define	PMAKE_WAZA2			( 8 )	//éùÇ¡ÇƒÇ¢ÇÈãZÇQÅi8bitÅj
-#define	PMAKE_WAZA3			( 9 )	//éùÇ¡ÇƒÇ¢ÇÈãZÇRÅi8bitÅj
-#define	PMAKE_WAZA4			( 10 )	//éùÇ¡ÇƒÇ¢ÇÈãZÇSÅi8bitÅj
-#define	PMAKE_ITEM			( 11 )	//èäéùÉAÉCÉeÉÄÅi8bitÅj
-#define	PMAKE_SPABI			( 12 )	//ì¡éÍî\óÕÅi1bitÅj
-#define	PMAKE_HP_RND		( 13 )	//ÇgÇoóêêîÅi5bitÅj
-#define	PMAKE_HP_EXP		( 14 )	//ÇgÇoåoå±ílÅi8bitÅj
-#define	PMAKE_POW_RND		( 15 )	//Ç±Ç§Ç∞Ç´óêêîÅi5bitÅj
-#define	PMAKE_POW_EXP		( 16 )	//Ç±Ç§Ç∞Ç´åoå±ílÅi8bitÅj
-#define	PMAKE_DEF_RND		( 17 )	//Ç⁄Ç§Ç¨ÇÂóêêîÅi5bitÅj
-#define	PMAKE_DEF_EXP		( 18 )	//Ç⁄Ç§Ç¨ÇÂåoå±ílÅi8bitÅj
-#define	PMAKE_AGI_RND		( 19 )	//Ç∑ÇŒÇ‚Ç≥óêêîÅi5bitÅj
-#define	PMAKE_AGI_EXP		( 20 )	//Ç∑ÇŒÇ‚Ç≥åoå±ílÅi8bitÅj
-#define	PMAKE_EXPOW_RND		( 21 )	//ì¡éÍÇ±Ç§Ç∞Ç´óêêîÅi5bitÅj
-#define	PMAKE_EXPOW_EXP		( 22 )	//ì¡éÍÇ±Ç§Ç∞Ç´åoå±ílÅi8bitÅj
-#define	PMAKE_EXDEF_RND		( 23 )	//ì¡éÍÇ⁄Ç§Ç¨ÇÂóêêîÅi5bitÅj
-#define	PMAKE_EXDEF_EXP		( 24 )	//ì¡éÍÇ⁄Ç§Ç¨ÇÂåoå±ílÅi8bitÅj
-#define	PMAKE_STYLE			( 25 )	//Ç©Ç¡Ç±ÇÊÇ≥Åi8bitÅj
-#define	PMAKE_BEAUTIFUL		( 26 )	//Ç§Ç¬Ç≠ÇµÇ≥Åi8bitÅj
-#define	PMAKE_CUTE			( 27 )	//Ç©ÇÌÇ¢Ç≥Åi8bitÅj
-#define	PMAKE_CLEVER		( 28 )	//Ç©ÇµÇ±Ç≥Åi8bitÅj
-#define	PMAKE_STRONG		( 29 )	//ÇΩÇ≠Ç‹ÇµÇ≥Åi8bitÅj
-#define	PMAKE_FUR			( 30 )	//ñ—âêÅi8bitÅj
-#define	PMAKE_FRIEND		( 31 )	//Ç»Ç¬Ç´ìxÅi8bitÅj
-#define	PMAKE_POKERUS		( 32 )	//É|ÉPÉãÉXÅi8bitÅj
-#define	PMAKE_TAMAGO		( 33 )	//É^É}ÉSèÛë‘ÉtÉâÉOÅi1bitÅj
-#define	PMAKE_CONDITION		( 34 )	//Ç©ÇÁÇæÇÃèÛë‘Åi32bitÅj
-#define	PMAKE_HP			( 35 )	//ÇgÇo
-#define	PMAKE_POW			( 36 )	//Ç±Ç§Ç∞Ç´
-#define	PMAKE_DEF			( 37 )	//Ç⁄Ç§Ç¨ÇÂ
-#define	PMAKE_AGI			( 38 )	//Ç∑ÇŒÇ‚Ç≥
-#define	PMAKE_EXPOW			( 39 )	//ì¡éÍÇ±Ç§Ç∞Ç´
-#define	PMAKE_EXDEF			( 40 )	//ì¡éÍÇ⁄Ç§Ç¨ÇÂ
-#define	PMAKE_EVGET			( 41 )	//ÉCÉxÉìÉgîzïzÉrÉbÉgÅi1bitÅj
-#define	PMAKE_GETPLACE		( 42 )	//ïﬂälèÍèäÇPÅi10bitÅj
-#define	PMAKE_GETLEVEL		( 43 )	//ïﬂälÉåÉxÉãÅi7bitÅj
-#define	PMAKE_GETCASSETTE	( 44 )	//ïﬂälÉJÉZÉbÉgÅi4bitÅj
-#define	PMAKE_GETBALL		( 45 )	//ïﬂälÉ{Å[ÉãÅi8bitÅj
-#define	PMAKE_CONTRY_CODE	( 46 )	//çëÉRÅ[ÉhÅi8bitÅj
-#define	PMAKE_FORM_NO		( 47 )	//ÉtÉHÉãÉÄNoÅi8bitÅj
-#define	PMAKE_GETPLACE_Y	( 48 )	//ïﬂälèÍèäÇPÇÃîN
-#define	PMAKE_GETPLACE_M	( 49 )	//ïﬂälèÍèäÇPÇÃåé
-#define	PMAKE_GETPLACE_D	( 50 )	//ïﬂälèÍèäÇPÇÃì˙
-#define	PMAKE_GETPLACE2		( 51 )	//ïﬂälèÍèäÇQÅi10bitÅj
-#define	PMAKE_GETPLACE2_Y	( 52 )	//ïﬂälèÍèäÇQÇÃîN
-#define	PMAKE_GETPLACE2_M	( 53 )	//ïﬂälèÍèäÇQÇÃåé
-#define	PMAKE_GETPLACE2_D	( 54 )	//ïﬂälèÍèäÇQÇÃì˙
-#define	PMAKE_NICKNAME		( 55 )	//ÉjÉbÉNÉlÅ[ÉÄÉtÉâÉO
+#define	PMAKE_NAME			( 0 )	//„Éù„Ç±„É¢„É≥„Éä„É≥„Éê„ÉºÔºà16bitÔºâ
+#define	PMAKE_LEVEL			( 1 )	//„É¨„Éô„É´Ôºà8bitÔºâ
+#define	PMAKE_EXP			( 2 )	//ÁµåÈ®ìÂÄ§Ôºà32bitÔºâ
+#define	PMAKE_ID			( 3 )	//Ôº©Ôº§Ôºà32bitÔºâ
+#define	PMAKE_PERRND		( 4 )	//ÂÄã‰Ωì‰π±Êï∞Ôºà32bitÔºâ
+#define	PMAKE_SEX			( 5 )	//ÊÄßÂà•Ôºà8bitÔºâ
+#define	PMAKE_PERSONAL		( 6 )	//ÊÄßÊ†ºÔºà8bitÔºâ
+#define	PMAKE_WAZA1			( 7 )	//ÊåÅ„Å£„Å¶„ÅÑ„ÇãÊäÄÔºëÔºà8bitÔºâ
+#define	PMAKE_WAZA2			( 8 )	//ÊåÅ„Å£„Å¶„ÅÑ„ÇãÊäÄÔºíÔºà8bitÔºâ
+#define	PMAKE_WAZA3			( 9 )	//ÊåÅ„Å£„Å¶„ÅÑ„ÇãÊäÄÔºìÔºà8bitÔºâ
+#define	PMAKE_WAZA4			( 10 )	//ÊåÅ„Å£„Å¶„ÅÑ„ÇãÊäÄÔºîÔºà8bitÔºâ
+#define	PMAKE_ITEM			( 11 )	//ÊâÄÊåÅ„Ç¢„Ç§„ÉÜ„É†Ôºà8bitÔºâ
+#define	PMAKE_SPABI			( 12 )	//ÁâπÊÆäËÉΩÂäõÔºà1bitÔºâ
+#define	PMAKE_HP_RND		( 13 )	//Ôº®Ôº∞‰π±Êï∞Ôºà5bitÔºâ
+#define	PMAKE_HP_EXP		( 14 )	//Ôº®Ôº∞ÁµåÈ®ìÂÄ§Ôºà8bitÔºâ
+#define	PMAKE_POW_RND		( 15 )	//„Åì„ÅÜ„Åí„Åç‰π±Êï∞Ôºà5bitÔºâ
+#define	PMAKE_POW_EXP		( 16 )	//„Åì„ÅÜ„Åí„ÅçÁµåÈ®ìÂÄ§Ôºà8bitÔºâ
+#define	PMAKE_DEF_RND		( 17 )	//„Åº„ÅÜ„Åé„Çá‰π±Êï∞Ôºà5bitÔºâ
+#define	PMAKE_DEF_EXP		( 18 )	//„Åº„ÅÜ„Åé„ÇáÁµåÈ®ìÂÄ§Ôºà8bitÔºâ
+#define	PMAKE_AGI_RND		( 19 )	//„Åô„Å∞„ÇÑ„Åï‰π±Êï∞Ôºà5bitÔºâ
+#define	PMAKE_AGI_EXP		( 20 )	//„Åô„Å∞„ÇÑ„ÅïÁµåÈ®ìÂÄ§Ôºà8bitÔºâ
+#define	PMAKE_EXPOW_RND		( 21 )	//ÁâπÊÆä„Åì„ÅÜ„Åí„Åç‰π±Êï∞Ôºà5bitÔºâ
+#define	PMAKE_EXPOW_EXP		( 22 )	//ÁâπÊÆä„Åì„ÅÜ„Åí„ÅçÁµåÈ®ìÂÄ§Ôºà8bitÔºâ
+#define	PMAKE_EXDEF_RND		( 23 )	//ÁâπÊÆä„Åº„ÅÜ„Åé„Çá‰π±Êï∞Ôºà5bitÔºâ
+#define	PMAKE_EXDEF_EXP		( 24 )	//ÁâπÊÆä„Åº„ÅÜ„Åé„ÇáÁµåÈ®ìÂÄ§Ôºà8bitÔºâ
+#define	PMAKE_STYLE			( 25 )	//„Åã„Å£„Åì„Çà„ÅïÔºà8bitÔºâ
+#define	PMAKE_BEAUTIFUL		( 26 )	//„ÅÜ„Å§„Åè„Åó„ÅïÔºà8bitÔºâ
+#define	PMAKE_CUTE			( 27 )	//„Åã„Çè„ÅÑ„ÅïÔºà8bitÔºâ
+#define	PMAKE_CLEVER		( 28 )	//„Åã„Åó„Åì„ÅïÔºà8bitÔºâ
+#define	PMAKE_STRONG		( 29 )	//„Åü„Åè„Åæ„Åó„ÅïÔºà8bitÔºâ
+#define	PMAKE_FUR			( 30 )	//ÊØõËâ∂Ôºà8bitÔºâ
+#define	PMAKE_FRIEND		( 31 )	//„Å™„Å§„ÅçÂ∫¶Ôºà8bitÔºâ
+#define	PMAKE_POKERUS		( 32 )	//„Éù„Ç±„É´„ÇπÔºà8bitÔºâ
+#define	PMAKE_TAMAGO		( 33 )	//„Çø„Éû„Ç¥Áä∂ÊÖã„Éï„É©„Ç∞Ôºà1bitÔºâ
+#define	PMAKE_CONDITION		( 34 )	//„Åã„Çâ„Å†„ÅÆÁä∂ÊÖãÔºà32bitÔºâ
+#define	PMAKE_HP			( 35 )	//Ôº®Ôº∞
+#define	PMAKE_POW			( 36 )	//„Åì„ÅÜ„Åí„Åç
+#define	PMAKE_DEF			( 37 )	//„Åº„ÅÜ„Åé„Çá
+#define	PMAKE_AGI			( 38 )	//„Åô„Å∞„ÇÑ„Åï
+#define	PMAKE_EXPOW			( 39 )	//ÁâπÊÆä„Åì„ÅÜ„Åí„Åç
+#define	PMAKE_EXDEF			( 40 )	//ÁâπÊÆä„Åº„ÅÜ„Åé„Çá
+#define	PMAKE_EVGET			( 41 )	//„Ç§„Éô„É≥„ÉàÈÖçÂ∏É„Éì„ÉÉ„ÉàÔºà1bitÔºâ
+#define	PMAKE_GETPLACE		( 42 )	//ÊçïÁç≤Â†¥ÊâÄÔºëÔºà10bitÔºâ
+#define	PMAKE_GETLEVEL		( 43 )	//ÊçïÁç≤„É¨„Éô„É´Ôºà7bitÔºâ
+#define	PMAKE_GETCASSETTE	( 44 )	//ÊçïÁç≤„Ç´„Çª„ÉÉ„ÉàÔºà4bitÔºâ
+#define	PMAKE_GETBALL		( 45 )	//ÊçïÁç≤„Éú„Éº„É´Ôºà8bitÔºâ
+#define	PMAKE_CONTRY_CODE	( 46 )	//ÂõΩ„Ç≥„Éº„ÉâÔºà8bitÔºâ
+#define	PMAKE_FORM_NO		( 47 )	//„Éï„Ç©„É´„É†NoÔºà8bitÔºâ
+#define	PMAKE_GETPLACE_Y	( 48 )	//ÊçïÁç≤Â†¥ÊâÄÔºë„ÅÆÂπ¥
+#define	PMAKE_GETPLACE_M	( 49 )	//ÊçïÁç≤Â†¥ÊâÄÔºë„ÅÆÊúà
+#define	PMAKE_GETPLACE_D	( 50 )	//ÊçïÁç≤Â†¥ÊâÄÔºë„ÅÆÊó•
+#define	PMAKE_GETPLACE2		( 51 )	//ÊçïÁç≤Â†¥ÊâÄÔºíÔºà10bitÔºâ
+#define	PMAKE_GETPLACE2_Y	( 52 )	//ÊçïÁç≤Â†¥ÊâÄÔºí„ÅÆÂπ¥
+#define	PMAKE_GETPLACE2_M	( 53 )	//ÊçïÁç≤Â†¥ÊâÄÔºí„ÅÆÊúà
+#define	PMAKE_GETPLACE2_D	( 54 )	//ÊçïÁç≤Â†¥ÊâÄÔºí„ÅÆÊó•
+#define	PMAKE_NICKNAME		( 55 )	//„Éã„ÉÉ„ÇØ„Éç„Éº„É†„Éï„É©„Ç∞
 
 #define PMAKE_BATTLEPARAM1	( 0xfe )
 #define PMAKE_BATTLEPARAM2	( 0xfd )
@@ -2286,13 +2286,13 @@ static const PmakeParamData	PMakelabelTable[] =
 
 static const u32 CondTable[][2] =
 {
-	{ msg_pmcnname_01, 0x00000000 },	// í èÌ
-	{ msg_pmcnname_02, 0x00000001 },	// ñ∞ÇË		( 0x00000007 )
-	{ msg_pmcnname_03, 0x00000008 },	// ì≈		( 0x00000008 )
-	{ msg_pmcnname_04, 0x00000010 },	// Ç‚ÇØÇ«	( 0x00000010 )
-	{ msg_pmcnname_05, 0x00000020 },	// Ç±Ç®ÇË	( 0x00000020 )
-	{ msg_pmcnname_06, 0x00000040 },	// Ç‹Ç–		( 0x00000040 )
-	{ msg_pmcnname_07, 0x00000080 },	// Ç«Ç≠Ç«Ç≠	( 0x00000080 )
+	{ msg_pmcnname_01, 0x00000000 },	// ÈÄöÂ∏∏
+	{ msg_pmcnname_02, 0x00000001 },	// Áú†„Çä		( 0x00000007 )
+	{ msg_pmcnname_03, 0x00000008 },	// ÊØí		( 0x00000008 )
+	{ msg_pmcnname_04, 0x00000010 },	// „ÇÑ„Åë„Å©	( 0x00000010 )
+	{ msg_pmcnname_05, 0x00000020 },	// „Åì„Åä„Çä	( 0x00000020 )
+	{ msg_pmcnname_06, 0x00000040 },	// „Åæ„Å≤		( 0x00000040 )
+	{ msg_pmcnname_07, 0x00000080 },	// „Å©„Åè„Å©„Åè	( 0x00000080 )
 };
 
 
@@ -2379,7 +2379,7 @@ static void PokeMake_MonsNamePut( GF_BGL_BMPWIN * win, u32 mons, u32 x, u32 y, u
 
 static void PokeMakePokeParaWorkPutAll( PokeMakeWork * dpw );
 
-// èâä˙âªÅiÉ|ÉPÉÇÉìÇÇ¬Ç≠ÇÈÅj
+// ÂàùÊúüÂåñÔºà„Éù„Ç±„É¢„É≥„Çí„Å§„Åè„ÇãÔºâ
 void DebugPokemonMakeInit( void * fsys )
 {
 	D_POKEMONMAKE * wk;
@@ -2392,7 +2392,7 @@ void DebugPokemonMakeInit( void * fsys )
 
 	wk->fsys = fsys;
 	wk->seq  = 0;
-	wk->mode = POKEMAKE_MODE_DEBUG;		// í èÌçÏê¨ÅiêeñºÅFÉfÉoÉbÉOÉ|ÉPÅj
+	wk->mode = POKEMAKE_MODE_DEBUG;		// ÈÄöÂ∏∏‰ΩúÊàêÔºàË¶™ÂêçÔºö„Éá„Éê„ÉÉ„Ç∞„Éù„Ç±Ôºâ
 
 	wk->mman = MSGMAN_Create(
 				MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_debug_nakahiro_dat, HEAPID_BASE_APP );
@@ -2410,7 +2410,7 @@ void DebugPokemonMakeInit( void * fsys )
 	PokeMakeInit( wk );
 }
 
-// èâä˙âªÅiÉ|ÉPÉÇÉìèëÇ´ä∑Ç¶Åj
+// ÂàùÊúüÂåñÔºà„Éù„Ç±„É¢„É≥Êõ∏„ÅçÊèõ„ÅàÔºâ
 void DebugPokemonChangeInit( void * fsys )
 {
 	D_POKEMONMAKE * wk;
@@ -2423,7 +2423,7 @@ void DebugPokemonChangeInit( void * fsys )
 
 	wk->fsys = fsys;
 	wk->seq  = 0;
-	wk->mode = POKEMAKE_MODE_CHANGE;	// èëÇ´ä∑Ç¶
+	wk->mode = POKEMAKE_MODE_CHANGE;	// Êõ∏„ÅçÊèõ„Åà
 
 	wk->mman = MSGMAN_Create(
 				MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_debug_nakahiro_dat, HEAPID_BASE_APP );
@@ -2451,10 +2451,10 @@ void DebugPokemonChangeInit( void * fsys )
 
 static void D_PokemonTrainerMemoPut( D_POKEMONMAKE * wk, BOOL orner_flag )
 {
-	// É|ÉPÉÇÉìÇÇ¬Ç≠ÇÈ
+	// „Éù„Ç±„É¢„É≥„Çí„Å§„Åè„Çã
 	if( wk->mode != POKEMAKE_MODE_CHANGE ){
 		PokeMakePokeParaCalcEnd( wk, &wk->pmw );
-	// É|ÉPÉÇÉìÇ©Ç´Ç©Ç¶
+	// „Éù„Ç±„É¢„É≥„Åã„Åç„Åã„Åà
 	}else{
 		PokeMakePokeParaWorkPutAll( &wk->pmw );
 	}
@@ -2474,32 +2474,32 @@ static void D_PokemonTrainerMemoPut( D_POKEMONMAKE * wk, BOOL orner_flag )
 }
 
 /********************************************************************/
-/*				äÓèÄÉ|ÉPÉÇÉìëIë									*/
+/*				Âü∫Ê∫ñ„Éù„Ç±„É¢„É≥ÈÅ∏Êäû									*/
 /********************************************************************/
-// ÉÅÉCÉìèàóù
+// „É°„Ç§„É≥Âá¶ÁêÜ
 static void D_PokemonMakeMain( TCB_PTR _tcb, void * work )
 {
 	D_POKEMONMAKE * wk = (D_POKEMONMAKE *)work;
 
 	switch( wk->seq ){
-	case 0:	// ÉyÅ[ÉWï\é¶
+	case 0:	// „Éö„Éº„Ç∏Ë°®Á§∫
 		PokeMakeSeq_PagePut( wk );
 		break;
-	case 1:	// çÄñ⁄ëIë
+	case 1:	// È†ÖÁõÆÈÅ∏Êäû
 		PokeMakeSeq_ParamSelect( wk );
 		break;
-	case 2:	// çÄñ⁄ïœçX
+	case 2:	// È†ÖÁõÆÂ§âÊõ¥
 		PokeMakeSeq_ParamChange( wk );
 		break;
-	case 3:	// É{É^Éìì¸óÕë“Çø
+	case 3:	// „Éú„Çø„É≥ÂÖ•ÂäõÂæÖ„Å°
 		PokeMakeSeq_ButtonWait( wk );
 		break;
-	case 4:	// èIóπèàóù
+	case 4:	// ÁµÇ‰∫ÜÂá¶ÁêÜ
 		PmakeExitTaskSeq( wk );
 		PMDS_taskDel( _tcb );
 		FieldSystemProc_SeqHoldEnd();
 		break;
-	case 5:	// ÉgÉåÅ[ÉiÅ[ÉÅÉÇ
+	case 5:	// „Éà„É¨„Éº„Éä„Éº„É°„É¢
 		if( sys.trg & ( PAD_BUTTON_X|PAD_BUTTON_Y) ){
 			wk->seq = 0;
 		}
@@ -2507,7 +2507,7 @@ static void D_PokemonMakeMain( TCB_PTR _tcb, void * work )
 	}
 }
 
-// ÉXÉNÉäÅ[Éìï`âÊ
+// „Çπ„ÇØ„É™„Éº„É≥ÊèèÁîª
 static void PokeMakeSeq_PagePut( D_POKEMONMAKE * wk )
 {
 	PagePut( wk );
@@ -2515,13 +2515,13 @@ static void PokeMakeSeq_PagePut( D_POKEMONMAKE * wk )
 	wk->seq = 1;
 }
 
-// çÄñ⁄ëIë
+// È†ÖÁõÆÈÅ∏Êäû
 static void	PokeMakeSeq_ParamSelect( D_POKEMONMAKE * wk )
 {
 	u8	ret;
 
 	if( sys.trg & PAD_BUTTON_A ){
-		//ïœçX
+		//Â§âÊõ¥
 		wk->pmw.data_bak = wk->pmw.PMD[ PageTable[wk->pmw.page_p].page[wk->pmw.cursor_p] ];
 		wk->pmw.value_p = 0;
 		PageValuePut( wk );
@@ -2536,10 +2536,10 @@ static void	PokeMakeSeq_ParamSelect( D_POKEMONMAKE * wk )
 
 	if( sys.trg & PAD_BUTTON_START ){
 //		SePlay(SE_SELECT);
-		// É|ÉPÉÇÉìÇÇ¬Ç≠ÇÈ
+		// „Éù„Ç±„É¢„É≥„Çí„Å§„Åè„Çã
 		if( wk->mode != POKEMAKE_MODE_CHANGE ){
 			PokeMakePokeParaCalcEnd( wk, &wk->pmw );
-		// É|ÉPÉÇÉìÇÇ©Ç´Ç©Ç¶ÇÈ
+		// „Éù„Ç±„É¢„É≥„Çí„Åã„Åç„Åã„Åà„Çã
 		}else{
 			PokeMakePokeParaWorkPutAll( &wk->pmw );
 		}
@@ -2590,7 +2590,7 @@ static void	PokeMakeSeq_ParamSelect( D_POKEMONMAKE * wk )
 	}
 }
 
-// çÄñ⁄ïœçX
+// È†ÖÁõÆÂ§âÊõ¥
 static void	PokeMakeSeq_ParamChange( D_POKEMONMAKE * wk )
 {
 	u8	data_id;
@@ -2635,7 +2635,7 @@ static void	PokeMakeSeq_ParamChange( D_POKEMONMAKE * wk )
 	}
 }
 
-// É{É^Éìì¸óÕë“Çø
+// „Éú„Çø„É≥ÂÖ•ÂäõÂæÖ„Å°
 static void	PokeMakeSeq_ButtonWait( D_POKEMONMAKE * wk )
 {
 	if( sys.trg & PAD_BUTTON_A ){
@@ -2643,7 +2643,7 @@ static void	PokeMakeSeq_ButtonWait( D_POKEMONMAKE * wk )
 	}
 }
 
-// èIóπèàóù
+// ÁµÇ‰∫ÜÂá¶ÁêÜ
 static void PmakeExitTaskSeq( D_POKEMONMAKE * wk )
 {
 	sys_FreeMemoryEz( wk->pmw.PokeMakeData );
@@ -2663,7 +2663,7 @@ static void PmakeExitTaskSeq( D_POKEMONMAKE * wk )
 
 
 /********************************************************************/
-/*				èâä˙âª												*/
+/*				ÂàùÊúüÂåñ												*/
 /********************************************************************/
 static void PokeMakePokeParaWorkGetAll( PokeMakeWork * dpw );
 
@@ -2674,10 +2674,10 @@ static void PokeMakeInit( D_POKEMONMAKE * wk )
 
 	wk->pmw.PokeMakeData = PokemonParam_AllocWork( HEAPID_BASE_APP );
 
-	// É|ÉPÉÇÉìÇÇ¬Ç≠ÇÈ
+	// „Éù„Ç±„É¢„É≥„Çí„Å§„Åè„Çã
 	if( wk->mode == POKEMAKE_MODE_DEBUG ){
 		PokeMakeWorkInit( &wk->pmw );
-	// É|ÉPÉÇÉìÇÇ©Ç´Ç©Ç¶ÇÈ
+	// „Éù„Ç±„É¢„É≥„Çí„Åã„Åç„Åã„Åà„Çã
 	}else if( wk->mode == POKEMAKE_MODE_CHANGE ){
 		POKEPARTY* temoti = SaveData_GetTemotiPokemon( wk->fsys->savedata);
 		POKEMON_PARAM* change_poke =  PokeParty_GetMemberPointer( temoti, 0 );
@@ -2692,11 +2692,11 @@ static void PokeMakeInit( D_POKEMONMAKE * wk )
 }
 
 /********************************************************************/
-/*				éËéùÇøÉ|ÉPÉÇÉìÉZÉbÉg								*/
+/*				ÊâãÊåÅ„Å°„Éù„Ç±„É¢„É≥„Çª„ÉÉ„Éà								*/
 /********************************************************************/
 static u8 PokeMakeCopy( D_POKEMONMAKE * wk )
 {
-	// É|ÉPÉÇÉìÇÇ¬Ç≠ÇÈ
+	// „Éù„Ç±„É¢„É≥„Çí„Å§„Åè„Çã
 	if( wk->mode == POKEMAKE_MODE_DEBUG ){
 
 //		ZukanCheck(dpw->PMD[PMAKE_NAME],Z_SEE_SET);
@@ -2708,23 +2708,23 @@ static u8 PokeMakeCopy( D_POKEMONMAKE * wk )
 			return 0;
 		}
 
-		// éËéùÇøÇ™Ç¢Ç¡ÇœÇ¢Ç»ÇÃÇ≈ÅAÉ{ÉbÉNÉXì]ëó
+		// ÊâãÊåÅ„Å°„Åå„ÅÑ„Å£„Å±„ÅÑ„Å™„ÅÆ„Åß„ÄÅ„Éú„ÉÉ„ÇØ„ÇπËª¢ÈÄÅ
 		BOXDAT_PutPokemon(
 			SaveData_GetBoxData(wk->fsys->savedata), PPPPointerGet(wk->pmw.PokeMakeData) );
 		return 1;
 
-	// É|ÉPÉÇÉìÇÇ©Ç´Ç©Ç¶ÇÈ
+	// „Éù„Ç±„É¢„É≥„Çí„Åã„Åç„Åã„Åà„Çã
 	}else if( wk->mode == POKEMAKE_MODE_CHANGE ){
 		POKEPARTY* temoti = SaveData_GetTemotiPokemon(wk->fsys->savedata);
 
-		// ñºëOÇ…ÅuÉ^É}ÉSÅvÉZÉbÉg
+		// ÂêçÂâç„Å´„Äå„Çø„Éû„Ç¥„Äç„Çª„ÉÉ„Éà
 		if( wk->pmw.PMD[PMAKE_TAMAGO] ){
 			STRBUF * strb;
 			strb = MSGMAN_AllocString( wk->mman, msg_pmtname );
 			PokeParaPut( wk->pmw.PokeMakeData, ID_PARA_nickname_buf, strb );
 			STRBUF_Delete( strb );
 		}
-		// êeà¯åpÇ¨
+		// Ë¶™ÂºïÁ∂ô„Åé
 		{
 			POKEMON_PARAM * pp;
 			STRBUF * str;
@@ -2732,12 +2732,12 @@ static u8 PokeMakeCopy( D_POKEMONMAKE * wk )
 			
 			pp  = PokeParty_GetMemberPointer( temoti, 0 );
 
-#if 1		// êeñºÇà¯Ç´åpÇÆ
+#if 1		// Ë¶™Âêç„ÇíÂºï„ÅçÁ∂ô„Åê
 			str = STRBUF_Create( 16, HEAPID_BASE_APP );
 			PokeParaGet( pp, ID_PARA_oyaname_buf, str );
 			PokeParaPut( wk->pmw.PokeMakeData, ID_PARA_oyaname_buf, str );
 			STRBUF_Delete( str );
-#else		// êeñºÇ…ÅuÉfÉoÉbÉOÉ|ÉPÇPÅvÉZÉbÉg
+#else		// Ë¶™Âêç„Å´„Äå„Éá„Éê„ÉÉ„Ç∞„Éù„Ç±Ôºë„Äç„Çª„ÉÉ„Éà
 			str = MSGMAN_AllocString( wk->mman, msg_pmdname );
 			PokeParaPut( wk->pmw.PokeMakeData, ID_PARA_oyaname_buf, str );
 			STRBUF_Delete( str );
@@ -2754,7 +2754,7 @@ static u8 PokeMakeCopy( D_POKEMONMAKE * wk )
 }
 
 /********************************************************************/
-/*				çÏê¨ÉfÅ[É^èâä˙âª									*/
+/*				‰ΩúÊàê„Éá„Éº„ÇøÂàùÊúüÂåñ									*/
 /********************************************************************/
 static void PokeMakeWorkInit( PokeMakeWork * dpw )
 {
@@ -2763,14 +2763,14 @@ static void PokeMakeWorkInit( PokeMakeWork * dpw )
 	for( i=0; i<64; i++ ){
 		dpw->PMD[i]	= 0;
 	}
-	// É|ÉPÉÇÉìÉiÉìÉoÅ[ÅiçÏê¨íÜÇÕëSçëê}ä”ÉiÉìÉoÅ[Åj
+	// „Éù„Ç±„É¢„É≥„Éä„É≥„Éê„ÉºÔºà‰ΩúÊàê‰∏≠„ÅØÂÖ®ÂõΩÂõ≥Èëë„Éä„É≥„Éê„ÉºÔºâ
 	dpw->PMD[ PMAKE_NAME ] = 1;	
-	//ÇhÇc
+	//Ôº©Ôº§
 //	dpw->PMD[PMAKE_ID] = (myd->ID[0]<<0)|(myd->ID[1]<<8)|(myd->ID[2]<<16)|(myd->ID[3]<<24);
 
-	//å¬ëÃóêêî
+	//ÂÄã‰Ωì‰π±Êï∞
 	dpw->PMD[ PMAKE_PERRND ] = (gf_rand()<<16) | (gf_rand());
-	//åoå±ílÅïÉåÉxÉã
+	//ÁµåÈ®ìÂÄ§ÔºÜ„É¨„Éô„É´
 	dpw->PMD[ PMAKE_LEVEL ]       = 1;	
 	dpw->PMD[ PMAKE_EXP ]         = 1;	
 //	dpw->PMD[ PMAKE_GETPLACE ]    = 0;
@@ -2789,16 +2789,16 @@ static void PokeMakeWorkInit( PokeMakeWork * dpw )
 	dpw->PMD[ PMAKE_GETPLACE2_M ] = 9;
 	dpw->PMD[ PMAKE_GETPLACE2_D ] = 28;
 
-	//éùÇ¡ÇƒÇ¢ÇÈãZ
-	//ÉRÉìÉeÉXÉgópÉpÉâÉÅÅ[É^
-	//êÌì¨ópÉpÉâÉÅÅ[É^
-	//ÇªÇÃëºèÛë‘
+	//ÊåÅ„Å£„Å¶„ÅÑ„ÇãÊäÄ
+	//„Ç≥„É≥„ÉÜ„Çπ„ÉàÁî®„Éë„É©„É°„Éº„Çø
+	//Êà¶ÈóòÁî®„Éë„É©„É°„Éº„Çø
+	//„Åù„ÅÆ‰ªñÁä∂ÊÖã
 	PokeMakePokeParaCalcInit( dpw );
 }
 
 
 /********************************************************************/
-/*				ÉfÅ[É^åvéZ											*/
+/*				„Éá„Éº„ÇøË®àÁÆó											*/
 /********************************************************************/
 static void PokeMakePokeParaCalcInit( PokeMakeWork * dpw )
 {
@@ -2808,13 +2808,13 @@ static void PokeMakePokeParaCalcInit( PokeMakeWork * dpw )
 	*/
 /*
   int
-	ID_PARA_get_place,							//ïﬂÇ‹Ç¶ÇΩèÍèä
-	ID_PARA_birth_place,						//ê∂Ç‹ÇÍÇΩèÍèä
+	ID_PARA_get_place,							//Êçï„Åæ„Åà„ÅüÂ†¥ÊâÄ
+	ID_PARA_birth_place,						//Áîü„Åæ„Çå„ÅüÂ†¥ÊâÄ
 
-	ID_PARA_pokerus,							//É|ÉPÉãÉX
-	ID_PARA_get_ball,							//ïﬂÇ‹Ç¶ÇΩÉ{Å[Éã
-	ID_PARA_get_level,							//ïﬂÇ‹Ç¶ÇΩÉåÉxÉã
-	ID_PARA_get_ground_id,						//ïﬂÇ‹Ç¶ÇΩèÍèäÇÃínå`ÉAÉgÉäÉrÉÖÅ[ÉgÅiÉ~ÉmÉbÉ`ópÅj
+	ID_PARA_pokerus,							//„Éù„Ç±„É´„Çπ
+	ID_PARA_get_ball,							//Êçï„Åæ„Åà„Åü„Éú„Éº„É´
+	ID_PARA_get_level,							//Êçï„Åæ„Åà„Åü„É¨„Éô„É´
+	ID_PARA_get_ground_id,						//Êçï„Åæ„Åà„ÅüÂ†¥ÊâÄ„ÅÆÂú∞ÂΩ¢„Ç¢„Éà„É™„Éì„É•„Éº„ÉàÔºà„Éü„Éé„ÉÉ„ÉÅÁî®Ôºâ
 */
 	u32	pow_rnd;
 /*
@@ -2831,12 +2831,12 @@ static void PokeMakePokeParaCalcInit( PokeMakeWork * dpw )
 
 /*
 	u8
-	ID_PARA_get_year,							//ïﬂÇ‹Ç¶ÇΩîN
-	ID_PARA_get_month,							//ïﬂÇ‹Ç¶ÇΩåé
-	ID_PARA_get_day,							//ïﬂÇ‹Ç¶ÇΩì˙
-	ID_PARA_birth_year,							//ê∂Ç‹ÇÍÇΩîN
-	ID_PARA_birth_month,						//ê∂Ç‹ÇÍÇΩåé
-	ID_PARA_birth_day,							//ê∂Ç‹ÇÍÇΩì˙
+	ID_PARA_get_year,							//Êçï„Åæ„Åà„ÅüÂπ¥
+	ID_PARA_get_month,							//Êçï„Åæ„Åà„ÅüÊúà
+	ID_PARA_get_day,							//Êçï„Åæ„Åà„ÅüÊó•
+	ID_PARA_birth_year,							//Áîü„Åæ„Çå„ÅüÂπ¥
+	ID_PARA_birth_month,						//Áîü„Åæ„Çå„ÅüÊúà
+	ID_PARA_birth_day,							//Áîü„Åæ„Çå„ÅüÊó•
 */
 
 	pow_rnd = ( (dpw->PMD[PMAKE_HP_RND]&0x0000001f) << 0 )
@@ -2884,7 +2884,7 @@ static void PokeMakePokeParaCalcGetExp( PokeMakeWork * dpw )
 	u32	nulldata = 0;
 
 	PokeParaPut( dpw->PokeMakeData, ID_PARA_exp, &dpw->PMD[PMAKE_EXP] );
-	//ãZÉNÉäÉA
+	//ÊäÄ„ÇØ„É™„Ç¢
 	PokeParaPut( dpw->PokeMakeData, ID_PARA_waza1, &nulldata );
 	PokeParaPut( dpw->PokeMakeData, ID_PARA_waza2, &nulldata );
 	PokeParaPut( dpw->PokeMakeData, ID_PARA_waza3, &nulldata );
@@ -3000,13 +3000,13 @@ static void PokeMakePokeParaCalcEnd( D_POKEMONMAKE * wk, PokeMakeWork * dpw )
 	PokeParaPut(
 		dpw->PokeMakeData, ID_PARA_condition, &CondTable[ dpw->PMD[PMAKE_CONDITION] ][1] );
 
-	if ( dpw->PMD[ PMAKE_TAMAGO ] ){				///< É^É}ÉSÇÃèÍçáÅAGETPLACEÇèâä˙âª
+	if ( dpw->PMD[ PMAKE_TAMAGO ] ){				///< „Çø„Éû„Ç¥„ÅÆÂ†¥Âêà„ÄÅGETPLACE„ÇíÂàùÊúüÂåñ
 		dpw->PMD[PMAKE_GETPLACE] = 0;
 		dpw->PMD[PMAKE_GETPLACE_Y] = 0;
 		dpw->PMD[PMAKE_GETPLACE_M] = 0;
 		dpw->PMD[PMAKE_GETPLACE_D] = 0;		
 		
-		if ( dpw->PMD[ PMAKE_GETPLACE2 ] == 0 ){	///< GETPLACE2Ç™ñ¢ê›íËÇ»ÇÁÅAâºÇ≈1Çì¸ÇÍÇÈ
+		if ( dpw->PMD[ PMAKE_GETPLACE2 ] == 0 ){	///< GETPLACE2„ÅåÊú™Ë®≠ÂÆö„Å™„Çâ„ÄÅ‰ªÆ„Åß1„ÇíÂÖ•„Çå„Çã
 			dpw->PMD[ PMAKE_GETPLACE2 ] = 1;
 		}
 	}
@@ -3024,13 +3024,13 @@ static void PokeMakePokeParaCalcEnd( D_POKEMONMAKE * wk, PokeMakeWork * dpw )
 	{
 		STRBUF * strb;
 
-		// ñºëOÇ…ÅuÉ^É}ÉSÅvÉZÉbÉg
+		// ÂêçÂâç„Å´„Äå„Çø„Éû„Ç¥„Äç„Çª„ÉÉ„Éà
 		if( dpw->PMD[PMAKE_TAMAGO] ){
 			strb = MSGMAN_AllocString( wk->mman, msg_pmtname );
 			PokeParaPut( dpw->PokeMakeData, ID_PARA_nickname_buf, strb );
 			STRBUF_Delete( strb );
 		}
-		// êeñºÇ…ÅuÉfÉoÉbÉOÉ|ÉPÇPÅvÉZÉbÉg
+		// Ë¶™Âêç„Å´„Äå„Éá„Éê„ÉÉ„Ç∞„Éù„Ç±Ôºë„Äç„Çª„ÉÉ„Éà
 		strb = MSGMAN_AllocString( wk->mman, msg_pmdname );
 		PokeParaPut( dpw->PokeMakeData, ID_PARA_oyaname_buf, strb );
 		STRBUF_Delete( strb );
@@ -3050,10 +3050,10 @@ static void D_PokeWazaSetPos( POKEMON_PARAM * pokeparam, u16 waza, u16 pos )
 
 
 /********************************************************************/
-/*				äeçÄñ⁄ï\é¶êßå‰										*/
-/*				äeçÄñ⁄ê›íËêßå‰										*/
+/*				ÂêÑÈ†ÖÁõÆË°®Á§∫Âà∂Âæ°										*/
+/*				ÂêÑÈ†ÖÁõÆË®≠ÂÆöÂà∂Âæ°										*/
 /********************************************************************/
-//ï\é¶ÉfÅ[É^çÏê¨
+//Ë°®Á§∫„Éá„Éº„Çø‰ΩúÊàê
 static u8 putproc( D_POKEMONMAKE * wk, u8 id, u32 pal, u8 y )
 {
 	PokeMakeWork * dpw;
@@ -3112,15 +3112,15 @@ static u8 putproc( D_POKEMONMAKE * wk, u8 id, u32 pal, u8 y )
 
 	case PMAKE_SEX:
 		switch(dpw->PMD[id]){
-		case 0:	// ÉIÉX
+		case 0:	// „Ç™„Çπ
 			PokeMake_StrPrint(
 				&wk->win, wk->mman, msg_pmstr_01, 12+72+24, y, MSG_NO_PUT, COL_W_BLACK );
 			break;
-		case 1:	// ÉÅÉX
+		case 1:	// „É°„Çπ
 			PokeMake_StrPrint(
 				&wk->win, wk->mman, msg_pmstr_02, 12+72+24, y, MSG_NO_PUT, COL_W_BLACK );
 			break;
-		case 2:	// Ç»Çµ
+		case 2:	// „Å™„Åó
 			PokeMake_StrPrint(
 				&wk->win, wk->mman, msg_pmstr_00, 12+72+24, y, MSG_NO_PUT, COL_W_BLACK );
 			break;
@@ -3225,7 +3225,7 @@ static u8 putproc( D_POKEMONMAKE * wk, u8 id, u32 pal, u8 y )
 	return	0;
 }
 
-//ÉfÅ[É^éÊìæ
+//„Éá„Éº„ÇøÂèñÂæó
 static u32 getproc( PokeMakeWork * dpw, u8 id )
 {
 	u32	dat;
@@ -3238,7 +3238,7 @@ static u32 getproc( PokeMakeWork * dpw, u8 id )
 	return dat;
 }
 
-//ÉfÅ[É^ÉZÉbÉg
+//„Éá„Éº„Çø„Çª„ÉÉ„Éà
 static void setproc( PokeMakeWork * dpw, u32 dat, u8 id )
 {
 	switch( id ){
@@ -3284,7 +3284,7 @@ static void setproc( PokeMakeWork * dpw, u32 dat, u8 id )
 
 
 /********************************************************************/
-/*				ÉTÉu												*/
+/*				„Çµ„Éñ												*/
 /********************************************************************/
 static const u32 PmakeValueTable[] = {
 	1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000
@@ -3411,7 +3411,7 @@ static void NumPutBufferSet( PokeMakeWork * dpw, u16 * buf, u8 num, u8 pal, u8 c
 	buf++;
 	*buf = n0_ + num;
 }
-//ÉiÉìÉoÅ[ÉfÅ[É^çÏê¨
+//„Éä„É≥„Éê„Éº„Éá„Éº„Çø‰ΩúÊàê
 static void NumPutBuffer( PokeMakeWork * dpw, u16 * buf, u32 num, u8 cnt, u8 pal )
 {
 	u8	i;
@@ -3516,7 +3516,7 @@ static u32 NumPutColorGet( PokeMakeWork * dpw, u8 cp, u32 col )
 	return COL_W_BLACK;
 }
 
-//ÉiÉìÉoÅ[ÉfÅ[É^çÏê¨
+//„Éä„É≥„Éê„Éº„Éá„Éº„Çø‰ΩúÊàê
 static void PokeMake_NumPrint(
 			GF_BGL_BMPWIN * win, MSGDATA_MANAGER * man, WORDSET * wset,
 			PokeMakeWork * dpw, u32 num, u32 keta, u32 x, u32 y, u32 wait, u32 col )
@@ -3729,12 +3729,12 @@ static void PokeMakePokeParaWorkPutAll( PokeMakeWork * dpw )
 	PARAMPUT( PMAKE_CONTRY_CODE, ID_PARA_country_code )
 	PARAMPUT( PMAKE_FORM_NO, ID_PARA_form_no )
 
-	if ( dpw->PMD[ PMAKE_TAMAGO ] ){				///< É^É}ÉSÇÃèÍçáÅAGETPLACEÇèâä˙âª
+	if ( dpw->PMD[ PMAKE_TAMAGO ] ){				///< „Çø„Éû„Ç¥„ÅÆÂ†¥Âêà„ÄÅGETPLACE„ÇíÂàùÊúüÂåñ
 		PARAMCLS( PMAKE_GETPLACE )
 		PARAMCLS( PMAKE_GETPLACE_Y )
 		PARAMCLS( PMAKE_GETPLACE_M )
 		PARAMCLS( PMAKE_GETPLACE_D )		
-		if ( dpw->PMD[ PMAKE_GETPLACE2 ] == 0 ){	///< GETPLACE2Ç™ñ¢ê›íËÇ»ÇÁÅAâºÇ≈1Çì¸ÇÍÇÈ
+		if ( dpw->PMD[ PMAKE_GETPLACE2 ] == 0 ){	///< GETPLACE2„ÅåÊú™Ë®≠ÂÆö„Å™„Çâ„ÄÅ‰ªÆ„Åß1„ÇíÂÖ•„Çå„Çã
 			dpw->PMD[ PMAKE_GETPLACE2 ] = 1;
 		}
 	}
@@ -3757,7 +3757,7 @@ static void PokeMakePokeParaWorkPutAll( PokeMakeWork * dpw )
 
 //============================================================================================
 //============================================================================================
-//	É_ÉÅÉ^É}ÉS
+//	„ÉÄ„É°„Çø„Éû„Ç¥
 //============================================================================================
 //============================================================================================
 void DebugDameTamagoSet( void * fsys )

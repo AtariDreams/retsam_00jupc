@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_ev_anketo.c
- *	@brief		ƒAƒ“ƒP[ƒgŠÖŒW‚ÌƒCƒxƒ“ƒg
+ *	@brief		ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆé–¢ä¿‚ã®ã‚¤ãƒ™ãƒ³ãƒˆ
  *	@author		tomoya takahashi
  *	@data		2008.05.30
  *
@@ -24,53 +24,53 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒV[ƒPƒ“ƒX
+///	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
-	WFLBY_EV_ANKETO_CHECK,			// ‰½‚Í‚È‚·‚©Œˆ‚ß‚é
-	WFLBY_EV_ANKETO_BEFORE_YESNO,	// à–¾‚ğ•·‚­‚©H
-	WFLBY_EV_ANKETO_BEFORE_YESNOWAIT,// à–¾‚ğ•·‚­‚©H
-	WFLBY_EV_ANKETO_BEFORE_MSG00,	// ƒAƒ“ƒP[ƒg“š‚¦‚é‘O
+	WFLBY_EV_ANKETO_CHECK,			// ä½•ã¯ãªã™ã‹æ±ºã‚ã‚‹
+	WFLBY_EV_ANKETO_BEFORE_YESNO,	// èª¬æ˜ã‚’èãã‹ï¼Ÿ
+	WFLBY_EV_ANKETO_BEFORE_YESNOWAIT,// èª¬æ˜ã‚’èãã‹ï¼Ÿ
+	WFLBY_EV_ANKETO_BEFORE_MSG00,	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆç­”ãˆã‚‹å‰
 
-	WFLBY_EV_ANKETO_END,			// I—¹
+	WFLBY_EV_ANKETO_END,			// çµ‚äº†
 	
-	WFLBY_EV_ANKETO_MSGWAIT,		// ƒAƒ“ƒP[ƒg“š‚¦‚é‘O
+	WFLBY_EV_ANKETO_MSGWAIT,		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆç­”ãˆã‚‹å‰
 } ;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒgƒsƒGƒƒ[ƒN
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ”ã‚¨ãƒ­ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	u32 ret_seq;
@@ -79,7 +79,7 @@ typedef struct {
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒsƒGƒ‚Í‚È‚µ‚©‚¯		Š„‚è‚İƒCƒxƒ“ƒg
+ *	@brief	ãƒ”ã‚¨ãƒ­ã¯ãªã—ã‹ã‘		å‰²ã‚Šè¾¼ã¿ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_EV_TALK_Piero( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
@@ -98,7 +98,7 @@ BOOL WFLBY_EV_TALK_Piero( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 	p_player	= WFLBY_3DOBJCONT_GetPlayer( p_objcont );
 
 	switch( WFLBY_EVENTWK_GetSeq( p_wk ) ){
-	case WFLBY_EV_ANKETO_CHECK:			// ‰½‚Í‚È‚·‚©Œˆ‚ß‚é
+	case WFLBY_EV_ANKETO_CHECK:			// ä½•ã¯ãªã™ã‹æ±ºã‚ã‚‹
 
 		p_evwk = WFLBY_EVENTWK_AllocWk( p_wk, sizeof(WFLBY_EV_ANKETO_PIERO) );
 
@@ -112,16 +112,16 @@ BOOL WFLBY_EV_TALK_Piero( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			way			= WFLBY_3DOBJCONT_GetWkObjData( p_player,  WF2DMAP_OBJPM_WAY );
 			way			= WF2DMPA_OBJToolRetWayGet( way );
 
-			// ƒsƒGƒ‚ğ©•ª‚Ì‚Ù‚¤‚ÉŒü‚¯‚Á‚ÄA‚³‚ç‚É“®‚«‚ğ~‚ß‚é
+			// ãƒ”ã‚¨ãƒ­ã‚’è‡ªåˆ†ã®ã»ã†ã«å‘ã‘ã£ã¦ã€ã•ã‚‰ã«å‹•ãã‚’æ­¢ã‚ã‚‹
 			WFLBY_3DOBJCONT_SetWkMove( p_objcont, p_pierrot, WFLBY_3DOBJCONT_MOVENONE );
 			WFLBY_3DOBJCONT_DRAW_SetUpdata( p_pierrot, FALSE );
 			WFLBY_3DOBJCONT_DRAW_SetWay( p_pierrot, way );
 		}
 
 
-		// LêCMI—¹
+		// åºƒå ´CMçµ‚äº†æ™‚
 		if( WFLBY_SYSTEM_Event_GetEndCM( p_system ) ){
-			// ƒƒbƒZ[ƒW•\¦‚µ‚ÄI‚í‚è
+			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã—ã¦çµ‚ã‚ã‚Š
 			p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_hiroba_infoa_04 );
 			p_evwk->ret_seq = WFLBY_EV_ANKETO_END;
 			WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
@@ -129,16 +129,16 @@ BOOL WFLBY_EV_TALK_Piero( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 			break;
 		}
 
-		// Œ‹‰Ê”­•\’†‚©ƒ`ƒFƒbƒN
+		// çµæœç™ºè¡¨ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 		if( (WFLBY_SYSTEM_Event_GetNeon( p_system ) == TRUE) ){
-			// ƒƒbƒZ[ƒW•\¦‚µ‚ÄI‚í‚è
+			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã—ã¦çµ‚ã‚ã‚Š
 			p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_survey_guide_a_02 );
 			p_evwk->ret_seq = WFLBY_EV_ANKETO_END;
 			WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 			WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_ANKETO_MSGWAIT );
 			break;
 		}else{
-			// “Š•[‚¸‚İH
+			// æŠ•ç¥¨ãšã¿ï¼Ÿ
 			if( WFLBY_SYSTEM_FLAG_GetAnketoInput( p_system ) == TRUE ){
 				p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_survey_guide_a_01 );
 				p_evwk->ret_seq = WFLBY_EV_ANKETO_END;
@@ -156,55 +156,55 @@ BOOL WFLBY_EV_TALK_Piero( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno )
 		
 		break;
 
-	case WFLBY_EV_ANKETO_BEFORE_YESNO:	// à–¾‚ğ•·‚­‚©H
+	case WFLBY_EV_ANKETO_BEFORE_YESNO:	// èª¬æ˜ã‚’èãã‹ï¼Ÿ
 		WFLBY_ROOM_YESNOWIN_Start( p_rmwk );
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_ANKETO_BEFORE_YESNOWAIT );
 		break;
 
-	case WFLBY_EV_ANKETO_BEFORE_YESNOWAIT:// à–¾‚ğ•·‚­‚©H
+	case WFLBY_EV_ANKETO_BEFORE_YESNOWAIT:// èª¬æ˜ã‚’èãã‹ï¼Ÿ
 		{
 			WFLBY_ROOM_YESNO_RET result;
 			
 			result = WFLBY_ROOM_YESNOWIN_Main( p_rmwk );
 			switch( result ){
-			case WFLBY_ROOM_YESNO_OK:	// ‚Í‚¢
+			case WFLBY_ROOM_YESNO_OK:	// ã¯ã„
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_ANKETO_BEFORE_MSG00 );
 				WFLBY_ROOM_YESNOWIN_End( p_rmwk );
 				break;
 				
-			case WFLBY_ROOM_YESNO_NO:	// ‚¢‚¢‚¦
+			case WFLBY_ROOM_YESNO_NO:	// ã„ã„ãˆ
 				WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_ANKETO_END );
 				WFLBY_ROOM_YESNOWIN_End( p_rmwk );
 				break;
 				
 			default:
-			case WFLBY_ROOM_YESNO_WAIT:	// ‘I‚Ñ’†
+			case WFLBY_ROOM_YESNO_WAIT:	// é¸ã³ä¸­
 				break;
 			}
 		}
 		break;
 
-	case WFLBY_EV_ANKETO_BEFORE_MSG00:	// ƒAƒ“ƒP[ƒg“š‚¦‚é‘O
+	case WFLBY_EV_ANKETO_BEFORE_MSG00:	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆç­”ãˆã‚‹å‰
 		p_str = WFLBY_ROOM_MSG_Get( p_rmwk, WFLBY_DEFMSG_TYPE_HIROBA, msg_survey_guide_b_05 );
 		p_evwk->ret_seq = WFLBY_EV_ANKETO_END;
 		WFLBY_ROOM_TALKWIN_PrintStr( p_rmwk, p_str );
 		WFLBY_EVENTWK_SetSeq( p_wk, WFLBY_EV_ANKETO_MSGWAIT );
 		break;
 
-	case WFLBY_EV_ANKETO_END:			// I—¹
+	case WFLBY_EV_ANKETO_END:			// çµ‚äº†
 		WFLBY_ROOM_TALKWIN_Off( p_rmwk );
 		WFLBY_ROOM_YESNOWIN_End( p_rmwk );
 		WFLBY_3DOBJCONT_SetWkMove( p_objcont, p_player, WFLBY_3DOBJCONT_MOVEPLAYER );
 		WFLBY_EVENTWK_DeleteWk( p_wk );
 
-		// ƒsƒGƒ“®ì•œ‹A
+		// ãƒ”ã‚¨ãƒ­å‹•ä½œå¾©å¸°
 		WFLBY_3DOBJCONT_DRAW_SetUpdata( p_pierrot, TRUE );
-		// ‰ºŒü‚¯‚é
+		// ä¸‹å‘ã‘ã‚‹
 		WFLBY_3DOBJCONT_SetWkActCmd( p_objcont, p_pierrot, WF2DMAP_CMD_NONE, WF2DMAP_WAY_DOWN );
 		return TRUE;
 
-	case WFLBY_EV_ANKETO_MSGWAIT:		// ƒAƒ“ƒP[ƒg“š‚¦‚é‘O
-		// ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+	case WFLBY_EV_ANKETO_MSGWAIT:		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆç­”ãˆã‚‹å‰
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( WFLBY_ROOM_TALKWIN_WaitEnd( p_rmwk ) == TRUE ){
 
 			WFLBY_EVENTWK_SetSeq( p_wk, p_evwk->ret_seq );

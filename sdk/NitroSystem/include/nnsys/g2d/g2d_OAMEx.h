@@ -24,8 +24,8 @@ extern "C" {
 
 
 //
-// ‰ü–¼‚ğs‚Á‚½ŠÖ”‚Ì•Ê–¼
-// ŒİŠ·«ˆÛ‚Ì‚½‚ß•Ê–¼‚Æ‚µ‚ÄˆÈ‘O‚ÌŠÖ”‚ğéŒ¾‚µ‚Ü‚·B
+// æ”¹åã‚’è¡Œã£ãŸé–¢æ•°ã®åˆ¥å
+// äº’æ›æ€§ç¶­æŒã®ãŸã‚åˆ¥åã¨ã—ã¦ä»¥å‰ã®é–¢æ•°ã‚’å®£è¨€ã—ã¾ã™ã€‚
 // 
 #define NNS_G2dEntryNewOamEx                   NNS_G2dEntryOamManExOam
 #define NNS_G2dEntryNewOamWithAffineIdxEx      NNS_G2dEntryOamManExOamWithAffineIdx
@@ -40,26 +40,26 @@ extern "C" {
 
 
 //
-// HW OAM Affine ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
-// NNSG2dAffineParamProxy.affineHWIndex ‚Ì ‰Šú’l‚Å‚·B
+// HW OAM Affine ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
+// NNSG2dAffineParamProxy.affineHWIndex ã® åˆæœŸå€¤ã§ã™ã€‚
 //
 #define NNS_G2D_OAMEX_HW_ID_NOT_INIT       0xFFFF
 
 
 //------------------------------------------------------------------------------
 //
-// •`‰æ“o˜^‡‚Ìí—Ş
+// æç”»ç™»éŒ²é †ã®ç¨®é¡
 //
 typedef enum NNSG2dOamExDrawOrder
 {
-    NNSG2D_OAMEX_DRAWORDER_BACKWARD = 0x0, // “o˜^‚µ‚½‡”Ô‚Æ‹t‚Ì‡”Ô‚ÉŠO•”ƒ‚ƒWƒ…[ƒ‹‚Ö‚Ì“o˜^‚ª‚¨‚±‚È‚í‚ê‚é
-    NNSG2D_OAMEX_DRAWORDER_FORWARD  = 0x1  // “o˜^‚µ‚½‡”Ô‚Æ“¯‚¶‚Ì‡”Ô‚ÉŠO•”ƒ‚ƒWƒ…[ƒ‹‚Ö‚Ì“o˜^‚ª‚¨‚±‚È‚í‚ê‚é
+    NNSG2D_OAMEX_DRAWORDER_BACKWARD = 0x0, // ç™»éŒ²ã—ãŸé †ç•ªã¨é€†ã®é †ç•ªã«å¤–éƒ¨ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¸ã®ç™»éŒ²ãŒãŠã“ãªã‚ã‚Œã‚‹
+    NNSG2D_OAMEX_DRAWORDER_FORWARD  = 0x1  // ç™»éŒ²ã—ãŸé †ç•ªã¨åŒã˜ã®é †ç•ªã«å¤–éƒ¨ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¸ã®ç™»éŒ²ãŒãŠã“ãªã‚ã‚Œã‚‹
 
 }NNSG2dOamExDrawOrder;
 
 
 //------------------------------------------------------------------------------
-// Šeí“o˜^ŠÖ”
+// å„ç¨®ç™»éŒ²é–¢æ•°
 typedef u16     (*NNSG2dGetOamCpacityFuncPtr)(); 
 typedef u16     (*NNSG2dGetOamAffineCpacityFuncPtr)(); 
 typedef BOOL    (*NNSG2dEntryNewOamFuncPtr)( const GXOamAttr* pOam, u16 index ); 
@@ -77,38 +77,38 @@ typedef struct NNSG2dOamExEntryFunctions
 
 
 //------------------------------------------------------------------------------
-// “à•”‚Åg—p‚·‚é
-// OAMƒAƒgƒŠƒrƒ…[ƒgŠÇ—\‘¢
+// å†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹
+// OAMã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç®¡ç†æ§‹é€ 
 typedef struct NNSG2dOamChunk
 {
     
-    GXOamAttr               oam;             // OAMƒAƒgƒŠƒrƒ…[ƒg
-    u16                     affineProxyIdx;  // Oam ‚ª QÆ‚·‚é NNSG2dAffineParamProxy Index ’l
-    u16                     pad16_;          // ƒpƒfƒBƒ“ƒO
-    struct NNSG2dOamChunk*  pNext;           // ƒŠƒXƒg\‘¢‚ğ\’z‚·‚é‚½‚ß‚ÌƒŠƒ“ƒN
+    GXOamAttr               oam;             // OAMã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+    u16                     affineProxyIdx;  // Oam ãŒ å‚ç…§ã™ã‚‹ NNSG2dAffineParamProxy Index å€¤
+    u16                     pad16_;          // ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
+    struct NNSG2dOamChunk*  pNext;           // ãƒªã‚¹ãƒˆæ§‹é€ ã‚’æ§‹ç¯‰ã™ã‚‹ãŸã‚ã®ãƒªãƒ³ã‚¯
     
 }NNSG2dOamChunk; 
 
 //------------------------------------------------------------------------------
-// NNSG2dOamChunk ‚ğ‚Ü‚Æ‚ß‚é ŠT”O
-// –{\‘¢‚Ì”z—ñ‚ª•`‰æ—Dæ“x‡‚É‚È‚ç‚ñ‚Å ƒI[ƒ_ƒŠƒ“ƒOƒe[ƒuƒ‹‚Æ‚È‚è‚Ü‚·
+// NNSG2dOamChunk ã‚’ã¾ã¨ã‚ã‚‹ æ¦‚å¿µ
+// æœ¬æ§‹é€ ã®é…åˆ—ãŒæç”»å„ªå…ˆåº¦é †ã«ãªã‚‰ã‚“ã§ ã‚ªãƒ¼ãƒ€ãƒªãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã¨ãªã‚Šã¾ã™
 //
-// “à•”‚Í‚Q‚Â‚Ì NNSG2dOamChunk ƒŠƒXƒg‚ğ‚¿‚Ü‚·B
-// ‚Ğ‚Æ‚Â‚Í ’Êí‚Ì OBJ —p ‚Ğ‚Æ‚Â‚Í affine•ÏŠ·‚³‚ê‚½ OBJ —p ‚Å‚·
+// å†…éƒ¨ã¯ï¼’ã¤ã® NNSG2dOamChunk ãƒªã‚¹ãƒˆã‚’æŒã¡ã¾ã™ã€‚
+// ã²ã¨ã¤ã¯ é€šå¸¸ã® OBJ ç”¨ ã²ã¨ã¤ã¯ affineå¤‰æ›ã•ã‚ŒãŸ OBJ ç”¨ ã§ã™
 //
 typedef struct NNSG2dOamChunkList
 {
-    u16                 numChunks;         // pChunks ƒŠƒXƒg‚ÌNNSG2dOamChunk‘”
-    u16                 numLastFrameDrawn; // ‘OƒtƒŒ[ƒ€‚Å•`‰æ“o˜^‚³‚ê‚½ NNSG2dOamChunk ”Ô†
+    u16                 numChunks;         // pChunks ãƒªã‚¹ãƒˆã®NNSG2dOamChunkç·æ•°
+    u16                 numLastFrameDrawn; // å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã§æç”»ç™»éŒ²ã•ã‚ŒãŸ NNSG2dOamChunk ç•ªå·
     
-    u16                 numDrawn;          // •`‰æ‚·‚×‚«ƒ`ƒƒƒ“ƒN”
-    u16                 bDrawn;            // •`‰æ“o˜^‚·‚×‚«ChunkList‚©‚Ç‚¤‚©H
+    u16                 numDrawn;          // æç”»ã™ã¹ããƒãƒ£ãƒ³ã‚¯æ•°
+    u16                 bDrawn;            // æç”»ç™»éŒ²ã™ã¹ãChunkListã‹ã©ã†ã‹ï¼Ÿ
     
-    NNSG2dOamChunk*     pChunks;           // NNSG2dOamChunk ƒŠƒXƒg
-    NNSG2dOamChunk*     pAffinedChunks;    // affine•ÏŠ·‚³‚ê‚½ NNSG2dOamChunk ƒŠƒXƒg
+    NNSG2dOamChunk*     pChunks;           // NNSG2dOamChunk ãƒªã‚¹ãƒˆ
+    NNSG2dOamChunk*     pAffinedChunks;    // affineå¤‰æ›ã•ã‚ŒãŸ NNSG2dOamChunk ãƒªã‚¹ãƒˆ
     
-    NNSG2dOamChunk*     pLastChunk;        // NNSG2dOamChunk ƒŠƒXƒg‚ÌI’[
-    NNSG2dOamChunk*     pLastAffinedChunk; // affine•ÏŠ·‚³‚ê‚½ NNSG2dOamChunk ƒŠƒXƒg‚ÌI’[
+    NNSG2dOamChunk*     pLastChunk;        // NNSG2dOamChunk ãƒªã‚¹ãƒˆã®çµ‚ç«¯
+    NNSG2dOamChunk*     pLastAffinedChunk; // affineå¤‰æ›ã•ã‚ŒãŸ NNSG2dOamChunk ãƒªã‚¹ãƒˆã®çµ‚ç«¯
     
 }NNSG2dOamChunkList;
 
@@ -116,46 +116,46 @@ typedef struct NNSG2dOamChunkList
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAffineParamProxy
 
-  Description:  OAMEx “à•”ƒoƒbƒtƒ@ ‚Å Affine ƒpƒ‰ƒ[ƒ^‚ğ‚ ‚ç‚í‚·ƒf[ƒ^\‘¢
+  Description:  OAMEx å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ ã§ Affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚ã‚‰ã‚ã™ãƒ‡ãƒ¼ã‚¿æ§‹é€ 
                 
-                NNSG2dAffineParamProxy.affineHWIndex ‚Ì ‰Šú’l‚Í NNS_G2D_OAMEX_HW_ID_NOT_INIT ‚Å‚·B
-                NNSG2dAffineParamProxy.affineHWIndex ‚Í CopyAffineToOamManager_() ‚Å HW‚Éƒ[ƒh‚³‚ê‚½Œã‚É             
-                ÀÛ‚ÉHW‚Éƒ[ƒh‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚Éã‘‚«‚³‚ê‚Ü‚·
+                NNSG2dAffineParamProxy.affineHWIndex ã® åˆæœŸå€¤ã¯ NNS_G2D_OAMEX_HW_ID_NOT_INIT ã§ã™ã€‚
+                NNSG2dAffineParamProxy.affineHWIndex ã¯ CopyAffineToOamManager_() ã§ HWã«ãƒ­ãƒ¼ãƒ‰ã•ã‚ŒãŸå¾Œã«             
+                å®Ÿéš›ã«HWã«ãƒ­ãƒ¼ãƒ‰ã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸Šæ›¸ãã•ã‚Œã¾ã™
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dAffineParamProxy
 {
     MtxFx22             mtxAffine;          // Affine Paramaters
-    u16                 affineHWIndex;      // HW ‚Éƒ[ƒh‚³‚ê‚½‚ÌAffineIndex’l
-    u16                 pad16_;             // ƒpƒfƒBƒ“ƒO
+    u16                 affineHWIndex;      // HW ã«ãƒ­ãƒ¼ãƒ‰ã•ã‚ŒãŸæ™‚ã®AffineIndexå€¤
+    u16                 pad16_;             // ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
 }
 NNSG2dAffineParamProxy;
 
 //------------------------------------------------------------------------------
-// Šg’£ƒ}ƒl[ƒWƒƒ‚QÀ‘Ì
+// æ‹¡å¼µãƒãƒãƒ¼ã‚¸ãƒ£ï¼’å®Ÿä½“
 typedef struct NNSG2dOamManagerInstanceEx
 {
     
-    NNSG2dOamChunkList*             pOamOrderingTbl;     // •`‰æ—Dæ“xƒe[ƒuƒ‹æ“ª‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    NNSG2dOamChunkList*             pOamOrderingTbl;     // æç”»å„ªå…ˆåº¦ãƒ†ãƒ¼ãƒ–ãƒ«å…ˆé ­ã¸ã®ãƒã‚¤ãƒ³ã‚¿
     
-    u16                             numPooledOam;        // OamChunks ‘”
-    u16                             numUsedOam;          // g—pÏ‚İOamChunks ”
-    NNSG2dOamChunk*                 pPoolOamChunks;      // ‹¤—L OamChunks ”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    u16                             numPooledOam;        // OamChunks ç·æ•°
+    u16                             numUsedOam;          // ä½¿ç”¨æ¸ˆã¿OamChunks æ•°
+    NNSG2dOamChunk*                 pPoolOamChunks;      // å…±æœ‰ OamChunks é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
     
-    u16                             lengthOfOrderingTbl; // •`‰æ—Dæ“xƒe[ƒuƒ‹‚Ì’·‚³:( 0 - 255 Fu8 ’l‚Å‰Šú‰»‚³‚ê‚Ü‚·j
-    u16                             lengthAffineBuffer;  // NNSG2dAffineParamProxy ‘”
-    u16                             numAffineBufferUsed; // g—pÏ‚İAffineParamProxy ”
-    u16                             lastFrameAffineIdx;  // ‘OƒtƒŒ[ƒ€ “o˜^ NNSG2dAffineParamProxy ”Ô†
-    NNSG2dAffineParamProxy*         pAffineBuffer;       // ‹¤—L AffineParamProxy ”z—ñ
+    u16                             lengthOfOrderingTbl; // æç”»å„ªå…ˆåº¦ãƒ†ãƒ¼ãƒ–ãƒ«ã®é•·ã•:( 0 - 255 ï¼šu8 å€¤ã§åˆæœŸåŒ–ã•ã‚Œã¾ã™ï¼‰
+    u16                             lengthAffineBuffer;  // NNSG2dAffineParamProxy ç·æ•°
+    u16                             numAffineBufferUsed; // ä½¿ç”¨æ¸ˆã¿AffineParamProxy æ•°
+    u16                             lastFrameAffineIdx;  // å‰ãƒ•ãƒ¬ãƒ¼ãƒ  ç™»éŒ² NNSG2dAffineParamProxy ç•ªå·
+    NNSG2dAffineParamProxy*         pAffineBuffer;       // å…±æœ‰ AffineParamProxy é…åˆ—
     
-    NNSG2dOamExEntryFunctions       oamEntryFuncs;       // “o˜^ŠÖ”
+    NNSG2dOamExEntryFunctions       oamEntryFuncs;       // ç™»éŒ²é–¢æ•°
     
     
     
     u16                             lastRenderedOrderingTblIdx;
     u16                             lastRenderedChunkIdx;
-    NNSG2dOamExDrawOrder            drawOrderType;       // •`‰æ‡ƒ^ƒCƒv
-                                                         // (‰ß‹‚Ìƒo[ƒWƒ‡ƒ“‚Æ‚ÌŒİŠ·«ˆÛ‚Ì‚½‚ß‚ÉAƒfƒtƒHƒ‹ƒg‚Í‹t‡)
+    NNSG2dOamExDrawOrder            drawOrderType;       // æç”»é †ã‚¿ã‚¤ãƒ—
+                                                         // (éå»ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¨ã®äº’æ›æ€§ç¶­æŒã®ãŸã‚ã«ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯é€†é †)
 
 }NNSG2dOamManagerInstanceEx;
 

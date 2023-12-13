@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	visual_order.c
- * @brief	ƒrƒWƒ…ƒAƒ‹•”–åF–½—ß‘—óM
+ * @brief	ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ï¼šå‘½ä»¤é€å—ä¿¡
  * @author	matsuda
- * @date	2005.12.13(‰Î)
+ * @date	2005.12.13(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -45,85 +45,85 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///‚Ç‚ñ‚¿‚å‚¤‚Ìã¸‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ã©ã‚“ã¡ã‚‡ã†ã®ä¸Šæ˜‡é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define DONCHOU_UP_SPEED			(8)
-///‚Ç‚ñ‚¿‚å‚¤‚ª‚±‚ê‚¾‚¯ƒXƒNƒ[ƒ‹‚µ‚½‚ç’â~‚³‚¹‚é(‰ºˆÊ8ƒrƒbƒg¬”)
+///ã©ã‚“ã¡ã‚‡ã†ãŒã“ã‚Œã ã‘ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã—ãŸã‚‰åœæ­¢ã•ã›ã‚‹(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define DONCHOU_STOP_SCROLL			(200 << 8)
-///‚Ç‚ñ‚¿‚å‚¤‚Ì‰º~‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ã©ã‚“ã¡ã‚‡ã†ã®ä¸‹é™é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define DONCHOU_DOWN_SPEED			(-(DONCHOU_UP_SPEED))
 
-///‚Ç‚ñ‚¿‚å‚¤ƒAƒjƒƒEƒFƒCƒg
+///ã©ã‚“ã¡ã‚‡ã†ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 #define DONCHOU_ANM_WAIT		(1)
-///‚Ç‚ñ‚¿‚å‚¤‚ğ1’i•ªƒAƒjƒI—¹‚·‚é–ˆ‚É‚à‚¤‚¯‚éƒAƒjƒƒEƒFƒCƒg
+///ã©ã‚“ã¡ã‚‡ã†ã‚’1æ®µåˆ†ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã™ã‚‹æ¯ã«ã‚‚ã†ã‘ã‚‹ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 #define DONCHOU_DANSA_ANM_WAIT		(0)
-///‚Ç‚ñ‚¿‚å‚¤‚ÌƒAƒjƒ“]‘——p‚ÌƒLƒƒƒ‰ƒNƒ^‚ª‰¡‚É‰½ƒLƒƒƒ‰“ü‚Á‚Ä‚¢‚é‚©
+///ã©ã‚“ã¡ã‚‡ã†ã®ã‚¢ãƒ‹ãƒ¡è»¢é€ç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒæ¨ªã«ä½•ã‚­ãƒ£ãƒ©å…¥ã£ã¦ã„ã‚‹ã‹
 #define DONCHOU_ANM_DATA_X_LEN	(8)
-///‚Ç‚ñ‚¿‚å‚¤‚ÌƒAƒjƒ“]‘——p‚ÌƒLƒƒƒ‰ƒNƒ^‚ªc‚É‰½ƒLƒƒƒ‰“ü‚Á‚Ä‚¢‚é‚©
+///ã©ã‚“ã¡ã‚‡ã†ã®ã‚¢ãƒ‹ãƒ¡è»¢é€ç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒç¸¦ã«ä½•ã‚­ãƒ£ãƒ©å…¥ã£ã¦ã„ã‚‹ã‹
 #define DONCHOU_ANM_DATA_Y_LEN	(4)
 
-///ƒgƒŒ[ƒi[“oê‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define TRAINER_IN_SPEED_X		(0x0400)
-///ƒgƒŒ[ƒi[‘Şê‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define TRAINER_OUT_SPEED_X		(0x0400)
 
-///ƒ|ƒPƒ‚ƒ““oêƒGƒtƒFƒNƒg‚Ìƒ|ƒPƒ‚ƒ“‚ª‘å‚«‚­‚È‚éƒXƒs[ƒh
+///ãƒã‚±ãƒ¢ãƒ³ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒã‚±ãƒ¢ãƒ³ãŒå¤§ãããªã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰
 #define	POKE_AFF_SPEED		(0x20)
-///ƒ|ƒPƒ‚ƒ““oêƒGƒtƒFƒNƒg‚Ìƒ|ƒPƒ‚ƒ“‚ª‘å‚«‚­‚È‚éƒXƒs[ƒh(fx32”Å)
+///ãƒã‚±ãƒ¢ãƒ³ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒã‚±ãƒ¢ãƒ³ãŒå¤§ãããªã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰(fx32ç‰ˆ)
 #define POKE_AFF_SPEED_FX32	(FX32_ONE / (0x100 / POKE_AFF_SPEED))
 
-///ƒ{[ƒ‹ƒGƒtƒFƒNƒg“®ìŠJn‚·‚é‘O‚ÌƒEƒFƒCƒg
+///ãƒœãƒ¼ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œé–‹å§‹ã™ã‚‹å‰ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define BALL_START_WAIT		(1)
 
-///ƒgƒŒ[ƒi[‚ª‘Şê“®ìŠJn‚·‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒé€€å ´å‹•ä½œé–‹å§‹ã™ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define TRAINER_MOVE_START_WAIT		(1)
-///ƒgƒŒ[ƒi[‚ªƒ{[ƒ‹‚ğ“Š‚°‚é‚Ì—h‚ê•
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒœãƒ¼ãƒ«ã‚’æŠ•ã’ã‚‹æ™‚ã®æºã‚Œå¹…
 #define TRAINER_BALL_SHAKE_Y		(3)
-///ƒgƒŒ[ƒi[‚ªƒ{[ƒ‹‚ğ“Š‚°‚é‚Ì—h‚ç‚·‰ñ”(Šï”‚¾‚ÆŒ³‚ÌˆÊ’u‚É–ß‚Á‚ÄI—¹‚·‚é‚Ì‚ÅŠï”‚É‚·‚é–I)
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒœãƒ¼ãƒ«ã‚’æŠ•ã’ã‚‹æ™‚ã®æºã‚‰ã™å›æ•°(å¥‡æ•°ã ã¨å…ƒã®ä½ç½®ã«æˆ»ã£ã¦çµ‚äº†ã™ã‚‹ã®ã§å¥‡æ•°ã«ã™ã‚‹äº‹ï¼)
 #define TRAINER_BALL_SHAKE_LOOP		(3)
-///ƒgƒŒ[ƒi[‚ªƒ{[ƒ‹‚ğ“Š‚°‚éA—h‚ê‚½ŒãA‘Şê‚·‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒœãƒ¼ãƒ«ã‚’æŠ•ã’ã‚‹æ™‚ã€æºã‚ŒãŸå¾Œã€é€€å ´ã™ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define TRAINER_BALL_OUT_WAIT		(7)
 
-///ŠÏ‹qƒn[ƒg‚ğo‚µn‚ß‚é‘O‚ÌƒEƒFƒCƒg
+///è¦³å®¢ãƒãƒ¼ãƒˆã‚’å‡ºã—å§‹ã‚ã‚‹å‰ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define EVALUATE_HEART_START_WAIT		(15)	//(30)
-///ƒn[ƒg‚ğŸXo‚µ‚Ä‚¢‚­‚ÉŠJ‚¯‚éŠÔŠu
+///ãƒãƒ¼ãƒˆã‚’æ¬¡ã€…å‡ºã—ã¦ã„ãæ™‚ã«é–‹ã‘ã‚‹é–“éš”
 #define EVALUATE_HEART_WAIT		3//(5)
-///ƒn[ƒg‚ğ‘S‚Äo‚µI‚í‚Á‚½ŒãAI—¹‚Ì•Ô–‚ğ•Ô‚·‚Ü‚Å‚ÌƒEƒFƒCƒg
+///ãƒãƒ¼ãƒˆã‚’å…¨ã¦å‡ºã—çµ‚ã‚ã£ãŸå¾Œã€çµ‚äº†ã®è¿”äº‹ã‚’è¿”ã™ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define EVALUATE_HEART_END_WAIT	30//(60)
-///ƒn[ƒg•\¦ˆÊ’u¶’[ŒÀŠEÀ•W(‚±‚±‚æ‚è¶‚É‚Í•\¦‚µ‚È‚¢)
+///ãƒãƒ¼ãƒˆè¡¨ç¤ºä½ç½®å·¦ç«¯é™ç•Œåº§æ¨™(ã“ã“ã‚ˆã‚Šå·¦ã«ã¯è¡¨ç¤ºã—ãªã„)
 #define EVALUATE_HEART_X_L		(32)
-///ƒn[ƒg•\¦ˆÊ’u‰E’[ŒÀŠEÀ•W(‚±‚±‚æ‚è‰E‚É‚Í•\¦‚µ‚È‚¢)
+///ãƒãƒ¼ãƒˆè¡¨ç¤ºä½ç½®å³ç«¯é™ç•Œåº§æ¨™(ã“ã“ã‚ˆã‚Šå³ã«ã¯è¡¨ç¤ºã—ãªã„)
 #define EVALUATE_HEART_X_R		(32)
-///ƒn[ƒg•\¦ˆÊ’uƒ‰ƒ“ƒ_ƒ€•X
+///ãƒãƒ¼ãƒˆè¡¨ç¤ºä½ç½®ãƒ©ãƒ³ãƒ€ãƒ å¹…X
 #define EVALUATE_HEART_X_RND	((256 - EVALUATE_HEART_X_L - EVALUATE_HEART_X_R) / 2)
-///ƒn[ƒg•\¦ˆÊ’u¶’[ŒÀŠEÀ•W(‚±‚±‚æ‚è¶‚É‚Í•\¦‚µ‚È‚¢)
+///ãƒãƒ¼ãƒˆè¡¨ç¤ºä½ç½®å·¦ç«¯é™ç•Œåº§æ¨™(ã“ã“ã‚ˆã‚Šå·¦ã«ã¯è¡¨ç¤ºã—ãªã„)
 #define EVALUATE_HEART_Y_U		(32)
-///ƒn[ƒg•\¦ˆÊ’u‰E’[ŒÀŠEÀ•W(‚±‚±‚æ‚è‰E‚É‚Í•\¦‚µ‚È‚¢)
+///ãƒãƒ¼ãƒˆè¡¨ç¤ºä½ç½®å³ç«¯é™ç•Œåº§æ¨™(ã“ã“ã‚ˆã‚Šå³ã«ã¯è¡¨ç¤ºã—ãªã„)
 #define EVALUATE_HEART_Y_D		(32)
-///ƒn[ƒg•\¦ˆÊ’uƒ‰ƒ“ƒ_ƒ€•X
+///ãƒãƒ¼ãƒˆè¡¨ç¤ºä½ç½®ãƒ©ãƒ³ãƒ€ãƒ å¹…X
 #define EVALUATE_HEART_Y_RND	((192 - EVALUATE_HEART_Y_U - EVALUATE_HEART_Y_D) / 2)
 
-///‚Ç‚ñ‚¿‚å‚¤ƒGƒtƒFƒNƒgã¸Fã¸‘¬“x‚ğã‚°‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+///ã©ã‚“ã¡ã‚‡ã†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸Šæ˜‡ï¼šä¸Šæ˜‡é€Ÿåº¦ã‚’ä¸Šã’ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define DEU_SPEED_LVUP_WAIT			(30)
-///‚Ç‚ñ‚¿‚å‚¤ƒGƒtƒFƒNƒgã¸Fã¸‘¬“x‚ğã‚°‚éƒEƒFƒCƒg‚É’B‚µ‚½‚É”­¶‚·‚é‘Ò‚¿ŠÔ
+///ã©ã‚“ã¡ã‚‡ã†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸Šæ˜‡ï¼šä¸Šæ˜‡é€Ÿåº¦ã‚’ä¸Šã’ã‚‹ã‚¦ã‚§ã‚¤ãƒˆã«é”ã—ãŸæ™‚ã«ç™ºç”Ÿã™ã‚‹å¾…ã¡æ™‚é–“
 #define DEU_SPEED_LVUP_STOP_WAIT	(30)
 
-///‘S‘ÌƒtƒF[ƒhƒAƒEƒgF‘ÎÛƒrƒbƒg(BG)
-#define DFO_FADE_BIT		(0x1fff)	//‰ï˜bƒEƒBƒ“ƒhƒEAƒƒbƒZ[ƒWAƒ[ƒJƒ‰ƒCƒY—pƒpƒŒƒbƒgœ‚­
-///‘S‘ÌƒtƒF[ƒhƒAƒEƒgF‘ÎÛƒrƒbƒg(OBJ)
-#define DFO_FADE_BIT_OBJ	(CONTEST_MAIN_OBJPAL_FADEBIT)//’ÊMƒAƒCƒRƒ“Aƒ[ƒJƒ‰ƒCƒY—pƒpƒŒƒbƒgœ‚­
-///‘S‘ÌƒpƒŒƒbƒgƒNƒŠƒAF‘ÎÛƒJƒ‰[”(BG)
-#define DFO_FADE_COLOR_NUM	(13 * 16)	//‰ï˜bƒEƒBƒ“ƒhƒEAƒƒbƒZ[ƒWAƒ[ƒJƒ‰ƒCƒY—pƒpƒŒƒbƒgœ‚­
-///‘S‘ÌƒpƒŒƒbƒgƒNƒŠƒAF‘ÎÛƒJƒ‰[”(OBJ)
-#define DFO_FADE_COLOR_NUM_OBJ	(CONTEST_MAIN_OBJPAL_COLOR_NUM)//’ÊMƒAƒCƒRƒ“Aƒ[ƒJƒ‰ƒCƒY—pƒpƒŒƒbƒgœ‚­
+///å…¨ä½“ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆï¼šå¯¾è±¡ãƒ“ãƒƒãƒˆ(BG)
+#define DFO_FADE_BIT		(0x1fff)	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ãƒ‘ãƒ¬ãƒƒãƒˆé™¤ã
+///å…¨ä½“ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆï¼šå¯¾è±¡ãƒ“ãƒƒãƒˆ(OBJ)
+#define DFO_FADE_BIT_OBJ	(CONTEST_MAIN_OBJPAL_FADEBIT)//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã€ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ãƒ‘ãƒ¬ãƒƒãƒˆé™¤ã
+///å…¨ä½“ãƒ‘ãƒ¬ãƒƒãƒˆã‚¯ãƒªã‚¢ï¼šå¯¾è±¡ã‚«ãƒ©ãƒ¼æ•°(BG)
+#define DFO_FADE_COLOR_NUM	(13 * 16)	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ãƒ‘ãƒ¬ãƒƒãƒˆé™¤ã
+///å…¨ä½“ãƒ‘ãƒ¬ãƒƒãƒˆã‚¯ãƒªã‚¢ï¼šå¯¾è±¡ã‚«ãƒ©ãƒ¼æ•°(OBJ)
+#define DFO_FADE_COLOR_NUM_OBJ	(CONTEST_MAIN_OBJPAL_COLOR_NUM)//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã€ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ãƒ‘ãƒ¬ãƒƒãƒˆé™¤ã
 
-///ƒ|ƒPƒ‚ƒ““oêŒã‚ÌƒEƒFƒCƒg
+///ãƒã‚±ãƒ¢ãƒ³ç™»å ´å¾Œã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define POKE_APPEAR_WAIT		10//(45)
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static int Request_Sample(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work);
 static void Recieve_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data);
@@ -178,11 +178,11 @@ static void VOTCB_Finish(TCB_PTR tcb, void *work);
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///–½—ß‘—óM—pŠÖ”ƒ|ƒCƒ“ƒ^\‘¢‘Ìƒe[ƒuƒ‹	¦‚±‚±‚É’Ç‰Á‚µ‚½‚ç•K‚¸.h‚Ìenum‚É‚à’Ç‰Á‚·‚é–!!
+///å‘½ä»¤é€å—ä¿¡ç”¨é–¢æ•°ãƒã‚¤ãƒ³ã‚¿æ§‹é€ ä½“ãƒ†ãƒ¼ãƒ–ãƒ«	â€»ã“ã“ã«è¿½åŠ ã—ãŸã‚‰å¿…ãš.hã®enumã«ã‚‚è¿½åŠ ã™ã‚‹äº‹!!
 static const CON_ORDER_FUNC OrderFuncTbl[] = {
-	{//VORDER_NO_SAMPLE		ƒTƒ“ƒvƒ‹
+	{//VORDER_NO_SAMPLE		ã‚µãƒ³ãƒ—ãƒ«
 		Request_Sample, 
 		Recieve_Sample, 
 		Answer_Sample, 
@@ -273,25 +273,25 @@ static const CON_ORDER_FUNC OrderFuncTbl[] = {
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///‚Ç‚ñ‚¿‚å‚¤ƒAƒjƒ‚ÌƒXƒNƒŠ[ƒ“‘‚«Š·‚¦ƒx[ƒXˆÊ’u
+///ã©ã‚“ã¡ã‚‡ã†ã‚¢ãƒ‹ãƒ¡ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆãƒ™ãƒ¼ã‚¹ä½ç½®
 ALIGN4 static const s8 DonchouAnmLineData[] = {
 	13, 9, 5, 1, -3
 };
 
-///‚Ç‚ñ‚¿‚å‚¤‚ÌƒAƒjƒƒpƒ^[ƒ“–ˆ‚ÌƒLƒƒƒ‰ƒNƒ^NoŠJnˆÊ’u
+///ã©ã‚“ã¡ã‚‡ã†ã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ¯ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noé–‹å§‹ä½ç½®
 ALIGN4 static const u16 DonchouAnmPaternStartCharNo[] = {
 	0x20, 0x28, 0x30, 0x38,
 	0xa0, 0xa8, 0xb0, 0xb8,
 	0x120, 0x128, 0x130, 0x138,
 };
-///‚Ç‚ñ‚¿‚å‚¤‚Ì”²‚«‚È‚µ‚‚ê–‹Å‰º’i‚ÌƒLƒƒƒ‰ƒNƒ^No
+///ã©ã‚“ã¡ã‚‡ã†ã®æŠœããªã—å‚ã‚Œå¹•æœ€ä¸‹æ®µã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿No
 #define DONCHOU_NUKINASHI_MAKU		(0x200)
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒrƒWƒ…ƒAƒ‹•”–åFƒRƒ“ƒeƒXƒg‘—óMƒ[ƒN‰Šú‰»
- * @param   vpw		ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€å—ä¿¡ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+ * @param   vpw		ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void VisualOrder_WorkInit(VISUAL_PROC_WORK *vpw)
@@ -313,12 +313,12 @@ void VisualOrder_WorkInit(VISUAL_PROC_WORK *vpw)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒTƒ“ƒvƒ‹
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚µãƒ³ãƒ—ãƒ«
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_Sample(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -327,45 +327,45 @@ static int Request_Sample(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, 
 	int bit_no;
 	
 	bit_no = CO_REQUEST_TransmitBufferSet(cow, CSELECT_ALL, order_no, NULL, 0);
-	OS_TPrintf("–½—ß‘—MFƒTƒ“ƒvƒ‹\n");
+	OS_TPrintf("å‘½ä»¤é€ä¿¡ï¼šã‚µãƒ³ãƒ—ãƒ«\n");
 	return bit_no;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒTƒ“ƒvƒ‹
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã‚µãƒ³ãƒ—ãƒ«
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
 {
 	VISUAL_PROC_WORK *vpw = syswork;
 	
-	//•Ô–‚ğ•Ô‚·	ƒoƒbƒtƒ@‚Í“Á‚É“n‚·‚à‚Ì‚ª‚È‚¢‚Ì‚ÅNULLw’è
+	//è¿”äº‹ã‚’è¿”ã™	ãƒãƒƒãƒ•ã‚¡ã¯ç‰¹ã«æ¸¡ã™ã‚‚ã®ãŒãªã„ã®ã§NULLæŒ‡å®š
 	CO_ANSWER_TransmitBufferSet(cow, req_head, NULL, 0);
 
-	OS_TPrintf("–½—ßóMFƒTƒ“ƒvƒ‹\n");
+	OS_TPrintf("å‘½ä»¤å—ä¿¡ï¼šã‚µãƒ³ãƒ—ãƒ«\n");
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   •Ô–óM(‘—MŒ³)FƒTƒ“ƒvƒ‹
+ * @brief   è¿”äº‹å—ä¿¡(é€ä¿¡å…ƒ)ï¼šã‚µãƒ³ãƒ—ãƒ«
  *
- * @param   vpw				ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   answer_head		•Ô–ƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   ansdat			óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   net_id			•Ô–‘—MÒ‚ÌƒlƒbƒgID
+ * @param   vpw				ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   answer_head		è¿”äº‹ãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   ansdat			å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   net_id			è¿”äº‹é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
  */
 //--------------------------------------------------------------
 static void Answer_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *answer_head, CO_ANSDAT *ansdat, int net_id)
 {
 	VISUAL_PROC_WORK *vpw = syswork;
 	
-	OS_TPrintf("–½—ß•ÔMFƒTƒ“ƒvƒ‹\n");
-	//•Ô–‚ğó‚¯æ‚é‚¾‚¯‚È‚Ì‚Å“Á‚É‚·‚é–‚ª‚È‚¢
+	OS_TPrintf("å‘½ä»¤è¿”ä¿¡ï¼šã‚µãƒ³ãƒ—ãƒ«\n");
+	//è¿”äº‹ã‚’å—ã‘å–ã‚‹ã ã‘ãªã®ã§ç‰¹ã«ã™ã‚‹äº‹ãŒãªã„
 	return;
 }
 
@@ -375,12 +375,12 @@ static void Answer_Sample(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_H
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒrƒWƒ…ƒAƒ‹•”–åI—¹
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€çµ‚äº†
  *
- * @param   vpw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_VisualExit(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -388,29 +388,29 @@ static int Request_VisualExit(CONTEST_ORDER_WORK *cow, void *syswork, int order_
 	VISUAL_PROC_WORK *vpw = syswork;
 	int bit_no;
 	
-	OS_TPrintf("–½—ß‘—MFƒrƒWƒ…ƒAƒ‹•”–åI—¹\n");
+	OS_TPrintf("å‘½ä»¤é€ä¿¡ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€çµ‚äº†\n");
 	bit_no = CO_REQUEST_TransmitBufferSet(cow, CSELECT_ALL, order_no, NULL, 0);
 	return bit_no;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒrƒWƒ…ƒAƒ‹•”–åI—¹
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€çµ‚äº†
  *
- * @param   vpw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_VisualExit(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
 {
 	VISUAL_PROC_WORK *vpw = syswork;
 
-	OS_TPrintf("–½—ßóMFƒrƒWƒ…ƒAƒ‹•”–åI—¹\n");
+	OS_TPrintf("å‘½ä»¤å—ä¿¡ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€çµ‚äº†\n");
 
 	vpw->main_end = TRUE;
 	
-	//•Ô–‚ğ•Ô‚·	ƒoƒbƒtƒ@‚Í“Á‚É“n‚·‚à‚Ì‚ª‚È‚¢‚Ì‚ÅNULLw’è
+	//è¿”äº‹ã‚’è¿”ã™	ãƒãƒƒãƒ•ã‚¡ã¯ç‰¹ã«æ¸¡ã™ã‚‚ã®ãŒãªã„ã®ã§NULLæŒ‡å®š
 	if(ConTool_ServerMineCheck(vpw->consys) == FALSE){
 		CO_ANSWER_TransmitBufferSet(cow, req_head, NULL, 0);
 	}
@@ -422,12 +422,12 @@ static void Recieve_VisualExit(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ|ƒPƒ‚ƒ““oê
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒã‚±ãƒ¢ãƒ³ç™»å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_PokeAppear(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -435,7 +435,7 @@ static int Request_PokeAppear(CONTEST_ORDER_WORK *cow, void *syswork, int order_
 	VISUAL_PROC_WORK *vpw = syswork;
 	int bit_no;
 	
-	OS_TPrintf("–½—ß‘—MFƒ|ƒPƒ‚ƒ““oê\n");
+	OS_TPrintf("å‘½ä»¤é€ä¿¡ï¼šãƒã‚±ãƒ¢ãƒ³ç™»å ´\n");
 	bit_no = CO_REQUEST_TransmitBufferSet(cow, CSELECT_ALL, order_no, 
 		work, sizeof(VISUAL_ADVANCE_PARAM));
 	return bit_no;
@@ -443,11 +443,11 @@ static int Request_PokeAppear(CONTEST_ORDER_WORK *cow, void *syswork, int order_
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ|ƒPƒ‚ƒ““oê
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒã‚±ãƒ¢ãƒ³ç™»å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_PokeAppear(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -458,7 +458,7 @@ static void Recieve_PokeAppear(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 	s32 height;
 	int i;
 	
-	OS_TPrintf("–½—ßóMFƒ|ƒPƒ‚ƒ““oê\n");
+	OS_TPrintf("å‘½ä»¤å—ä¿¡ï¼šãƒã‚±ãƒ¢ãƒ³ç™»å ´\n");
 
 	pa = sys_AllocMemory(HEAPID_VISUAL, sizeof(VOLOCAL_ADVANCE));
 	MI_CpuClear8(pa, sizeof(VOLOCAL_ADVANCE));
@@ -469,7 +469,7 @@ static void Recieve_PokeAppear(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 	pa->breeder_no = vap->now_breeder;
 	
 
-	//Šù‚É¶¬‚³‚ê‚Ä‚¢‚éƒCƒ[ƒWƒNƒŠƒbƒv‚Ííœ(PokeOut‚ª‚³‚ê‚È‚­‚È‚Á‚½‚Ì‚Å)
+	//æ—¢ã«ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã¯å‰Šé™¤(PokeOutãŒã•ã‚Œãªããªã£ãŸã®ã§)
 	for(i = 0; i < BREEDER_MAX; i++){
 		if(pa->vpw->imcwork[i].imc_ptr != NULL){
 			IMC_PlayerEnd(pa->vpw->imcwork[i].imc_ptr);
@@ -487,7 +487,7 @@ static void Recieve_PokeAppear(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 	
 	SoftSpriteParaSet(vpw->sys.ss[vap->now_breeder], SS_PARA_VANISH, FALSE);
 #else
-	{//ƒCƒ[ƒWƒNƒŠƒbƒv¶¬(d‚¢‚Ì‚Åæ‚É¶¬‚µ‚Ä”ñ•\¦‚É‚µ‚Ä‚¨‚­)
+	{//ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”Ÿæˆ(é‡ã„ã®ã§å…ˆã«ç”Ÿæˆã—ã¦éè¡¨ç¤ºã«ã—ã¦ãŠã)
 		IMC_PLAYERSYS_INIT imc_init;
 		
 		MI_CpuClear8(&imc_init, sizeof(IMC_PLAYERSYS_INIT));
@@ -499,11 +499,11 @@ static void Recieve_PokeAppear(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 		vpw->imcwork[vap->now_breeder].imc_ptr = 
 			IMC_ContestPlayerInit_NoBG(&imc_init, 
 			vpw->consys->c_game.imc_data[vap->now_breeder]);
-		//•\¦OFF
+		//è¡¨ç¤ºOFF
 		IMC_Player_SetDrawFlag(vpw->imcwork[vap->now_breeder].imc_ptr, FALSE);
 	}
 	
-	//ƒEƒBƒ“ƒhƒE‚ÅˆÍ‚Á‚Ä‹P“x‚ğ—‚Æ‚·
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å›²ã£ã¦è¼åº¦ã‚’è½ã¨ã™
 	{
 		G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2
 			| GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
@@ -518,7 +518,7 @@ static void Recieve_PokeAppear(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 	}
 #endif
 
-	//‚Ç‚ñ‚¿‚å‚¤‚ÌƒXƒNƒŠ[ƒ““]‘—
+	//ã©ã‚“ã¡ã‚‡ã†ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_ScrnSet(ARC_CONTEST_BG, CON_VISUAL_DONCHOU_NSCR_BIN, vpw->sys.bgl, 
 		VISUAL_FRAME_EFF, 0, 0, 1, HEAPID_VISUAL);
 
@@ -527,7 +527,7 @@ static void Recieve_PokeAppear(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ““oê
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ç™»å ´
  *
  * @param   tcb		
  * @param   work		
@@ -539,13 +539,13 @@ static void VOTCB_PokeAppear(TCB_PTR tcb, void *work)
 	int height;
 	
 	switch(pa->seq){
-	case 0:	//IMC¶¬‚µ‚Ä‚©‚ç1ƒtƒŒ[ƒ€ŠJ‚¯‚Ä‚©‚çDrawFlag‚ğƒZƒbƒg‚·‚é‚æ‚¤‚É‚·‚é‚½‚ßA
-			//‚±‚±‚Å‚Í‚Ü‚¾‰½‚à‚µ‚È‚¢B
+	case 0:	//IMCç”Ÿæˆã—ã¦ã‹ã‚‰1ãƒ•ãƒ¬ãƒ¼ãƒ é–‹ã‘ã¦ã‹ã‚‰DrawFlagã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã€
+			//ã“ã“ã§ã¯ã¾ã ä½•ã‚‚ã—ãªã„ã€‚
 		pa->seq++;
 		break;
 	case 1:
-		//‚È‚ñ‚©Å‰‚Ì1‘Ì–Ú‚¾‚¯Aˆêuƒ|ƒPƒ‚ƒ“‚ª^lŠp‚Å•\¦‚³‚ê‚é‚Ì‚ÅA
-		//ƒEƒBƒ“ƒhƒE“à‚ğ3D•\¦‚ğOFF‚µ‚Ä‚¨‚­	¦check
+		//ãªã‚“ã‹æœ€åˆã®1ä½“ç›®ã ã‘ã€ä¸€ç¬ãƒã‚±ãƒ¢ãƒ³ãŒçœŸå››è§’ã§è¡¨ç¤ºã•ã‚Œã‚‹ã®ã§ã€
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã‚’3Dè¡¨ç¤ºã‚’OFFã—ã¦ãŠã	â€»check
 		G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2
 			| GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
 
@@ -561,12 +561,12 @@ static void VOTCB_PokeAppear(TCB_PTR tcb, void *work)
 		pa->seq++;
 		break;
 	case 3:
-		//‚È‚ñ‚©Å‰‚Ì1‘Ì–Ú‚¾‚¯Aˆêuƒ|ƒPƒ‚ƒ“‚ª^lŠp‚Å•\¦‚³‚ê‚é‚Ì‚ÅA
-		//ƒEƒBƒ“ƒhƒE“à‚ğ3D•\¦‚ğOFF‚µ‚Ä‚¨‚­	¦check
+		//ãªã‚“ã‹æœ€åˆã®1ä½“ç›®ã ã‘ã€ä¸€ç¬ãƒã‚±ãƒ¢ãƒ³ãŒçœŸå››è§’ã§è¡¨ç¤ºã•ã‚Œã‚‹ã®ã§ã€
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã‚’3Dè¡¨ç¤ºã‚’OFFã—ã¦ãŠã	â€»check
 		G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2
 			| GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
 
-		//ƒtƒF[ƒhOFF
+		//ãƒ•ã‚§ãƒ¼ãƒ‰OFF
 		ColorConceChangePfd(pa->vpw->sys.pfd, FADE_MAIN_BG, DFO_FADE_BIT, 0, 0x0000);
 		ColorConceChangePfd(pa->vpw->sys.pfd, FADE_MAIN_OBJ, DFO_FADE_BIT_OBJ, 0, 0x0000);
 		
@@ -596,12 +596,12 @@ static void VOTCB_PokeAppear(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ|ƒPƒ‚ƒ“‘Oi
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒã‚±ãƒ¢ãƒ³å‰é€²
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_Advance(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -616,11 +616,11 @@ static int Request_Advance(CONTEST_ORDER_WORK *cow, void *syswork, int order_no,
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ|ƒPƒ‚ƒ“‘Oi
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒã‚±ãƒ¢ãƒ³å‰é€²
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_Advance(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -642,10 +642,10 @@ static void Recieve_Advance(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‘Oi
+ * @brief   ãƒã‚±ãƒ¢ãƒ³å‰é€²
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_ADVANCE\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_ADVANCEæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_Advance(TCB_PTR tcb, void *work)
@@ -687,12 +687,12 @@ static void VOTCB_Advance(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FŠÏ‹q•]‰¿
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šè¦³å®¢è©•ä¾¡
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_AudienceEvaluate(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -707,11 +707,11 @@ static int Request_AudienceEvaluate(CONTEST_ORDER_WORK *cow, void *syswork, int 
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FŠÏ‹q•]‰¿(BP)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šè¦³å®¢è©•ä¾¡(BP)
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_AudienceEvaluateBP(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -735,11 +735,11 @@ static void Recieve_AudienceEvaluateBP(CONTEST_ORDER_WORK *cow, void *syswork, c
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FŠÏ‹q•]‰¿(ƒNƒŠƒbƒv)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šè¦³å®¢è©•ä¾¡(ã‚¯ãƒªãƒƒãƒ—)
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_AudienceEvaluateClip(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -763,11 +763,11 @@ static void Recieve_AudienceEvaluateClip(CONTEST_ORDER_WORK *cow, void *syswork,
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FŠÏ‹q•]‰¿(BP & ƒNƒŠƒbƒv)
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šè¦³å®¢è©•ä¾¡(BP & ã‚¯ãƒªãƒƒãƒ—)
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_AudienceEvaluateAll(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -794,10 +794,10 @@ static void Recieve_AudienceEvaluateAll(CONTEST_ORDER_WORK *cow, void *syswork, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠÏ‹q•]‰¿(BPACLIPA—¼•û‚Æ‚à‚±‚Ìƒ^ƒXƒN‚ğg—p‚·‚é‚Ì‚ÅC³‚Í’ˆÓ)
+ * @brief   è¦³å®¢è©•ä¾¡(BPã€CLIPã€ä¸¡æ–¹ã¨ã‚‚ã“ã®ã‚¿ã‚¹ã‚¯ã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ä¿®æ­£æ™‚ã¯æ³¨æ„)
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_EVALUATE\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_EVALUATEæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_AudienceEvaluate(TCB_PTR tcb, void *work)
@@ -831,7 +831,7 @@ static void VOTCB_AudienceEvaluate(TCB_PTR tcb, void *work)
 		
 		eva->wait = EVALUATE_HEART_WAIT;
 		
-		//ƒn[ƒg•\¦
+		//ãƒãƒ¼ãƒˆè¡¨ç¤º
 		{
 			s16 x, y, rnd_x, rnd_y;
 			
@@ -849,7 +849,7 @@ static void VOTCB_AudienceEvaluate(TCB_PTR tcb, void *work)
 			else{
 				y = 96 - rnd_y;
 			}
-			//ƒn[ƒg‚ª‹ß‚¢êŠ‚ÉŒÅ‚Ü‚ç‚È‚¢‚æ‚¤‚É‹ŒÀ•W‚Æ”äŠr‚µ‚Ä“K“x‚ÉU‚ç‚·
+			//ãƒãƒ¼ãƒˆãŒè¿‘ã„å ´æ‰€ã«å›ºã¾ã‚‰ãªã„ã‚ˆã†ã«æ—§åº§æ¨™ã¨æ¯”è¼ƒã—ã¦é©åº¦ã«æ•£ã‚‰ã™
 			if(eva->put_count > 0){
 				if(((eva->old_x < 128 && x < 128) || (eva->old_x > 128 && x > 128))
 						&& ((eva->old_y < 96 && y < 96) || (eva->old_y > 96 && y > 96))){
@@ -906,12 +906,12 @@ static void VOTCB_AudienceEvaluate(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)Fƒ|ƒPƒ‚ƒ“‘Şê
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒã‚±ãƒ¢ãƒ³é€€å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_PokeOut(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -926,11 +926,11 @@ static int Request_PokeOut(CONTEST_ORDER_WORK *cow, void *syswork, int order_no,
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)Fƒ|ƒPƒ‚ƒ“‘Şê
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒã‚±ãƒ¢ãƒ³é€€å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_PokeOut(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -952,10 +952,10 @@ static void Recieve_PokeOut(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‘Şê
+ * @brief   ãƒã‚±ãƒ¢ãƒ³é€€å ´
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_POKEOUT\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_POKEOUTæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_PokeOut(TCB_PTR tcb, void *work)
@@ -1002,12 +1002,12 @@ static void VOTCB_PokeOut(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‚Ç‚ñ‚¿‚å‚¤ã‚°‚é
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã©ã‚“ã¡ã‚‡ã†ä¸Šã’ã‚‹
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_DonchouUp(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1021,11 +1021,11 @@ static int Request_DonchouUp(CONTEST_ORDER_WORK *cow, void *syswork, int order_n
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‚Ç‚ñ‚¿‚å‚¤ã‚°‚é
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã©ã‚“ã¡ã‚‡ã†ä¸Šã’ã‚‹
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_DonchouUp(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1045,10 +1045,10 @@ static void Recieve_DonchouUp(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚Ç‚ñ‚¿‚å‚¤‚ğã‚°‚é
+ * @brief   ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸Šã’ã‚‹
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_DONCHOU_UP\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_DONCHOU_UPæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_DonchouUp(TCB_PTR tcb, void *work)
@@ -1057,7 +1057,7 @@ static void VOTCB_DonchouUp(TCB_PTR tcb, void *work)
 	
 	switch(du->seq){
 	case 0:
-		//ƒAƒjƒƒEƒFƒCƒg
+		//ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 		if(du->anm_dansa_wait > 0){
 			du->anm_dansa_wait--;
 			break;
@@ -1068,7 +1068,7 @@ static void VOTCB_DonchouUp(TCB_PTR tcb, void *work)
 		}
 		du->anm_wait = DONCHOU_ANM_WAIT;
 		
-		//ƒAƒjƒ‘‚«Š·‚¦
+		//ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆ
 		{
 			u16 *scrn_buf, *dest_scrn;
 			int x, y, pos_x, s, base_charno;
@@ -1083,21 +1083,21 @@ static void VOTCB_DonchouUp(TCB_PTR tcb, void *work)
 				pos_x = 0;
 				for(s = 0; s < 32 / DONCHOU_ANM_DATA_X_LEN; s++){
 					for(x = 0; x < DONCHOU_ANM_DATA_X_LEN; x++){
-						dest_scrn[pos_x + x] &= 0xfc00;		//ƒLƒƒƒ‰ƒNƒ^No‚Ì‚İƒNƒŠƒA
+						dest_scrn[pos_x + x] &= 0xfc00;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã®ã¿ã‚¯ãƒªã‚¢
 						dest_scrn[pos_x + x] |= base_charno + x;
 					}
 					pos_x += DONCHOU_ANM_DATA_X_LEN;
 				}
 			}
 			
-			//2’i–ÚˆÈ~‚Ì‚Ç‚ñ‚¿‚å‚¤‚Å‚ÍÅŒã‚ÌƒAƒjƒ‚ªˆêƒ‰ƒCƒ“c‚Á‚½‚â‚Â‚È‚Ì‚ÅA
-			//‘O‚Ì‚Ç‚ñ‚¿‚å‚¤‚Ìc‚Á‚½•”•ª‚ğƒNƒŠƒA‚µ‚Ä‚â‚é
-			//ˆÓ–¡‚ª‚í‚©‚ç‚È‚¢ê‡‚Í‚Æ‚è‚ ‚¦‚¸‚±‚±‚Ìop“à‚ğ‚Ü‚é‚²‚ÆƒRƒƒ“ƒgƒAƒEƒg‚µ‚Ä‚İ‚ê‚Î•ª‚©‚é
+			//2æ®µç›®ä»¥é™ã®ã©ã‚“ã¡ã‚‡ã†ã§ã¯æœ€å¾Œã®ã‚¢ãƒ‹ãƒ¡ãŒä¸€ãƒ©ã‚¤ãƒ³æ®‹ã£ãŸã‚„ã¤ãªã®ã§ã€
+			//å‰ã®ã©ã‚“ã¡ã‚‡ã†ã®æ®‹ã£ãŸéƒ¨åˆ†ã‚’ã‚¯ãƒªã‚¢ã—ã¦ã‚„ã‚‹
+			//æ„å‘³ãŒã‚ã‹ã‚‰ãªã„å ´åˆã¯ã¨ã‚Šã‚ãˆãšã“ã“ã®ï½›ï½å†…ã‚’ã¾ã‚‹ã”ã¨ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã¦ã¿ã‚Œã°åˆ†ã‹ã‚‹
 			{
 				if(du->anm_line > 0 && du->anm_no == 0){
 					dest_scrn = &scrn_buf[32 * DonchouAnmLineData[du->anm_line - 1]];
 					for(s = 0; s < 32; s++){
-						dest_scrn[s] &= 0xfc00;		//ƒLƒƒƒ‰ƒNƒ^No‚Ì‚İƒNƒŠƒA
+						dest_scrn[s] &= 0xfc00;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã®ã¿ã‚¯ãƒªã‚¢
 					}
 				}
 			}
@@ -1130,12 +1130,12 @@ static void VOTCB_DonchouUp(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‚Ç‚ñ‚¿‚å‚¤‰º‚°‚é
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã©ã‚“ã¡ã‚‡ã†ä¸‹ã’ã‚‹
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_DonchouDown(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1149,11 +1149,11 @@ static int Request_DonchouDown(CONTEST_ORDER_WORK *cow, void *syswork, int order
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‚Ç‚ñ‚¿‚å‚¤‰º‚°‚é
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã©ã‚“ã¡ã‚‡ã†ä¸‹ã’ã‚‹
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_DonchouDown(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1173,10 +1173,10 @@ static void Recieve_DonchouDown(CONTEST_ORDER_WORK *cow, void *syswork, const CO
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚Ç‚ñ‚¿‚å‚¤‚ğ‰º‚°‚é
+ * @brief   ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸‹ã’ã‚‹
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_DONCHOU_DOWN\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_DONCHOU_DOWNæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_DonchouDown(TCB_PTR tcb, void *work)
@@ -1185,7 +1185,7 @@ static void VOTCB_DonchouDown(TCB_PTR tcb, void *work)
 	
 	switch(dd->seq){
 	case 0:
-		//ƒAƒjƒƒEƒFƒCƒg
+		//ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 		if(dd->anm_dansa_wait > 0){
 			dd->anm_dansa_wait--;
 			break;
@@ -1196,7 +1196,7 @@ static void VOTCB_DonchouDown(TCB_PTR tcb, void *work)
 		}
 		dd->anm_wait = DONCHOU_ANM_WAIT;
 		
-		//ƒAƒjƒ‘‚«Š·‚¦
+		//ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆ
 		{
 			u16 *scrn_buf, *dest_scrn;
 			int x, y, pos_x, s, base_charno;
@@ -1213,23 +1213,23 @@ static void VOTCB_DonchouDown(TCB_PTR tcb, void *work)
 				pos_x = 0;
 				for(s = 0; s < 32 / DONCHOU_ANM_DATA_X_LEN; s++){
 					for(x = 0; x < DONCHOU_ANM_DATA_X_LEN; x++){
-						dest_scrn[pos_x + x] &= 0xfc00;		//ƒLƒƒƒ‰ƒNƒ^No‚Ì‚İƒNƒŠƒA
+						dest_scrn[pos_x + x] &= 0xfc00;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã®ã¿ã‚¯ãƒªã‚¢
 						dest_scrn[pos_x + x] |= base_charno + x;
 					}
 					pos_x += DONCHOU_ANM_DATA_X_LEN;
 				}
 			}
 			
-			//ˆê”Ô‰º‚Ìƒ‰ƒCƒ“ˆÈŠO‚ÍÅŒã‚Ü‚Å‰º‚ª‚Á‚½•”•ª‚ÌƒAƒjƒ‚ª”²‚«‚Â‚«‚Ì‚‚ê–‹‚È‚Ì‚ÅA
-			//Ÿ‚Ì’i‚ÌƒAƒjƒ‚ªÀs‚³‚ê‚½ƒ^ƒCƒ~ƒ“ƒO‚Å”²‚«‚È‚µ‚ÌƒAƒjƒ‚É•Ï‚¦‚Ä‚â‚é
-			//ˆÓ–¡‚ª‚í‚©‚ç‚È‚¢ê‡‚Í‚Æ‚è‚ ‚¦‚¸‚±‚±‚Ìop“à‚ğ‚Ü‚é‚²‚ÆƒRƒƒ“ƒgƒAƒEƒg‚µ‚Ä‚İ‚ê‚Î•ª‚©‚é
+			//ä¸€ç•ªä¸‹ã®ãƒ©ã‚¤ãƒ³ä»¥å¤–ã¯æœ€å¾Œã¾ã§ä¸‹ãŒã£ãŸéƒ¨åˆ†ã®ã‚¢ãƒ‹ãƒ¡ãŒæŠœãã¤ãã®å‚ã‚Œå¹•ãªã®ã§ã€
+			//æ¬¡ã®æ®µã®ã‚¢ãƒ‹ãƒ¡ãŒå®Ÿè¡Œã•ã‚ŒãŸã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§æŠœããªã—ã®ã‚¢ãƒ‹ãƒ¡ã«å¤‰ãˆã¦ã‚„ã‚‹
+			//æ„å‘³ãŒã‚ã‹ã‚‰ãªã„å ´åˆã¯ã¨ã‚Šã‚ãˆãšã“ã“ã®ï½›ï½å†…ã‚’ã¾ã‚‹ã”ã¨ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã¦ã¿ã‚Œã°åˆ†ã‹ã‚‹
 			{
 				if(dd->anm_line > 0 && dd->anm_no == 0){
 					base_line = DonchouAnmLineData[NELEMS(DonchouAnmLineData) - 1 - dd->anm_line + 1];
 					base_line += DONCHOU_ANM_DATA_Y_LEN - 1;
 					dest_scrn = &scrn_buf[base_line * 32];
 					for(s = 0; s < 32; s++){
-						dest_scrn[s] &= 0xfc00;		//ƒLƒƒƒ‰ƒNƒ^No‚Ì‚İƒNƒŠƒA
+						dest_scrn[s] &= 0xfc00;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã®ã¿ã‚¯ãƒªã‚¢
 						dest_scrn[s] |= DONCHOU_NUKINASHI_MAKU + (s % DONCHOU_ANM_DATA_X_LEN);
 					}
 				}
@@ -1263,12 +1263,12 @@ static void VOTCB_DonchouDown(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒgƒŒ[ƒi[“oê
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_TrainerIn(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1278,17 +1278,17 @@ static int Request_TrainerIn(CONTEST_ORDER_WORK *cow, void *syswork, int order_n
 	
 	bit_no = CO_REQUEST_TransmitBufferSet(cow, CSELECT_ALL, order_no, 
 		work, sizeof(VISUAL_ADVANCE_PARAM));
-	OS_TPrintf("–½—ß‘—MFƒgƒŒ[ƒi[“oê\n");
+	OS_TPrintf("å‘½ä»¤é€ä¿¡ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´\n");
 	return bit_no;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒgƒŒ[ƒi[“oê
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_TrainerIn(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1297,7 +1297,7 @@ static void Recieve_TrainerIn(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 	VISUAL_ADVANCE_PARAM *vap = data;
 	VOLOCAL_TRAINER_INOUT *tio;
 	
-	OS_TPrintf("–½—ßóMFƒgƒŒ[ƒi[“oê\n");
+	OS_TPrintf("å‘½ä»¤å—ä¿¡ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´\n");
 	
 	tio = sys_AllocMemory(HEAPID_VISUAL, sizeof(VOLOCAL_TRAINER_INOUT));
 	MI_CpuClear8(tio, sizeof(VOLOCAL_TRAINER_INOUT));
@@ -1312,9 +1312,9 @@ static void Recieve_TrainerIn(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[“oê
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_TRAINER_INOUT\‘¢‘Ì
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_TRAINER_INOUTæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_TrainerIn(TCB_PTR tcb, void *work)
@@ -1352,12 +1352,12 @@ static void VOTCB_TrainerIn(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒgƒŒ[ƒi[‘Şê
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_TrainerOut(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1367,17 +1367,17 @@ static int Request_TrainerOut(CONTEST_ORDER_WORK *cow, void *syswork, int order_
 	
 	bit_no = CO_REQUEST_TransmitBufferSet(cow, CSELECT_ALL, order_no, 
 		work, sizeof(VISUAL_ADVANCE_PARAM));
-	OS_TPrintf("–½—ß‘—MFƒgƒŒ[ƒi[‘Şê\n");
+	OS_TPrintf("å‘½ä»¤é€ä¿¡ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´\n");
 	return bit_no;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒgƒŒ[ƒi[‘Şê
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_TrainerOut(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1386,7 +1386,7 @@ static void Recieve_TrainerOut(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 	VISUAL_ADVANCE_PARAM *vap = data;
 	VOLOCAL_TRAINER_INOUT *tio;
 	
-	OS_TPrintf("–½—ßóMFƒgƒŒ[ƒi[‘Şê\n");
+	OS_TPrintf("å‘½ä»¤å—ä¿¡ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´\n");
 	
 	tio = sys_AllocMemory(HEAPID_VISUAL, sizeof(VOLOCAL_TRAINER_INOUT));
 	MI_CpuClear8(tio, sizeof(VOLOCAL_TRAINER_INOUT));
@@ -1401,9 +1401,9 @@ static void Recieve_TrainerOut(CONTEST_ORDER_WORK *cow, void *syswork, const COR
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[‘Şê
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_TRAINER_INOUT\‘¢‘Ì
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_TRAINER_INOUTæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_TrainerOut(TCB_PTR tcb, void *work)
@@ -1444,12 +1444,12 @@ static void VOTCB_TrainerOut(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F“oêƒGƒtƒFƒNƒg
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_AppearEffect(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1464,11 +1464,11 @@ static int Request_AppearEffect(CONTEST_ORDER_WORK *cow, void *syswork, int orde
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F“oêƒGƒtƒFƒNƒg
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_AppearEffect(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1496,9 +1496,9 @@ static void Recieve_AppearEffect(CONTEST_ORDER_WORK *cow, void *syswork, const C
 
 //--------------------------------------------------------------
 /**
- * @brief   “oêƒGƒtƒFƒNƒgÀsƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_APPEAR_EFF\‘¢‘Ì
+ * @brief   ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_APPEAR_EFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_AppearEffect(TCB_PTR tcb, void *work)
@@ -1510,7 +1510,7 @@ static void VOTCB_AppearEffect(TCB_PTR tcb, void *work)
 		TCB_Add(VOTCB_Sub_BallMove, &ae->ball_move, TCBPRI_VISUAL_ORDERSUB_SUB);
 		TCB_Add(VOTCB_Sub_TrainerOut, &ae->tr_eff, TCBPRI_VISUAL_ORDERSUB_SUB);
 
-		{//ƒCƒ[ƒWƒNƒŠƒbƒv¶¬(d‚¢‚Ì‚Åæ‚É¶¬‚µ‚Ä”ñ•\¦‚É‚µ‚Ä‚¨‚­)
+		{//ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”Ÿæˆ(é‡ã„ã®ã§å…ˆã«ç”Ÿæˆã—ã¦éè¡¨ç¤ºã«ã—ã¦ãŠã)
 			IMC_PLAYERSYS_INIT imc_init;
 			int height;
 			height = PokeParaHeightGet_IMC(
@@ -1522,7 +1522,7 @@ static void VOTCB_AppearEffect(TCB_PTR tcb, void *work)
 			ae->poke_eff.vpw->imcwork[ae->poke_eff.breeder_no].imc_ptr = 
 				IMC_ContestPlayerInit_NoBG(&imc_init, 
 				ae->poke_eff.vpw->consys->c_game.imc_data[ae->poke_eff.breeder_no]);
-			//•\¦OFF
+			//è¡¨ç¤ºOFF
 			IMC_Player_SetDrawFlag(
 				ae->poke_eff.vpw->imcwork[ae->poke_eff.breeder_no].imc_ptr, FALSE);
 		}
@@ -1553,7 +1553,7 @@ static void VOTCB_AppearEffect(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”(‚Æ‚è‚ ‚¦‚¸À•W‚ğ‡‚í‚¹‚éˆ×‚¾‚¯‚Ìb’è)
+ * @brief	ãƒœãƒ¼ãƒ«ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°(ã¨ã‚Šã‚ãˆãšåº§æ¨™ã‚’åˆã‚ã›ã‚‹ç‚ºã ã‘ã®æš«å®š)
  * @param	emit	
  */
 //--------------------------------------------------------------
@@ -1572,9 +1572,9 @@ static void BallEffect_CallBack(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{[ƒ‹ƒGƒtƒFƒNƒgÀs
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_SUB_BALL_EFF\‘¢‘Ì
+ * @brief   ãƒœãƒ¼ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_SUB_BALL_EFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_Sub_BallEffect(TCB_PTR tcb, void *work)
@@ -1606,9 +1606,9 @@ static void VOTCB_Sub_BallEffect(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{[ƒ‹ˆÚ“®
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_SUB_BALL_MOVE\‘¢‘Ì
+ * @brief   ãƒœãƒ¼ãƒ«ç§»å‹•
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_SUB_BALL_MOVEæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_Sub_BallMove(TCB_PTR tcb, void *work)
@@ -1654,9 +1654,9 @@ static void VOTCB_Sub_BallMove(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‚ªŠg‘å‚µ‚È‚ª‚ç“oê
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_SUB_POKE_EFF\‘¢‘Ì
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãŒæ‹¡å¤§ã—ãªãŒã‚‰ç™»å ´
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_SUB_POKE_EFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_Sub_PokeAppear(TCB_PTR tcb, void *work)
@@ -1673,7 +1673,7 @@ static void VOTCB_Sub_PokeAppear(TCB_PTR tcb, void *work)
 	case 0:
 		{
 		#if 1
-			//k¬
+			//ç¸®å°
 			poke_eff->aff_x = 0;
 			poke_eff->aff_y = 0;
 			IMC_Player_SetScale(poke_eff->vpw->imcwork[poke_eff->breeder_no].imc_ptr, 
@@ -1691,7 +1691,7 @@ static void VOTCB_Sub_PokeAppear(TCB_PTR tcb, void *work)
 			
 			SoftSpriteParaSet(ss, SS_PARA_VANISH, FALSE);
 
-			//k¬
+			//ç¸®å°
 			SoftSpriteParaSet(ss, SS_PARA_AFF_X, AFF_APPEAR_X_S);
 			SoftSpriteParaSet(ss, SS_PARA_AFF_Y, AFF_APPEAR_Y_S);
 			SoftSpriteOYCalc(ss, height);
@@ -1750,9 +1750,9 @@ static void VOTCB_Sub_PokeAppear(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[‘Şê
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_SUB_TRAINER_EFF\‘¢‘Ì
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_SUB_TRAINER_EFFæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_Sub_TrainerOut(TCB_PTR tcb, void *work)
@@ -1820,12 +1820,12 @@ static void VOTCB_Sub_TrainerOut(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‰ï˜bƒƒbƒZ[ƒW‚Ì•\¦
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_Talk(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1840,11 +1840,11 @@ static int Request_Talk(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, vo
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‰ï˜bƒƒbƒZ[ƒW‚Ì•\¦
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_Talk(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1871,9 +1871,9 @@ static void Recieve_Talk(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HE
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒƒbƒZ[ƒW‚Ì•\¦
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_TALK_PUT\‘¢‘Ì
+ * @brief   ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_TALK_PUTæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_TalkPut(TCB_PTR tcb, void *work)
@@ -1925,12 +1925,12 @@ static void VOTCB_TalkPut(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‰æ–Ê‘S‘ÌƒtƒF[ƒhƒCƒ“EƒAƒEƒg
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šç”»é¢å…¨ä½“ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_FadeInOut(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -1944,11 +1944,11 @@ static int Request_FadeInOut(CONTEST_ORDER_WORK *cow, void *syswork, int order_n
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‰æ–Ê‘S‘ÌƒtƒF[ƒhƒCƒ“EƒAƒEƒg
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šç”»é¢å…¨ä½“ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_FadeInOut(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -1974,10 +1974,10 @@ static void Recieve_FadeInOut(CONTEST_ORDER_WORK *cow, void *syswork, const CORD
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰æ–Ê‘S‘ÌƒtƒF[ƒhƒCƒ“EƒAƒEƒg
+ * @brief   ç”»é¢å…¨ä½“ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_DFO\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_DFOæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_FadeInOut(TCB_PTR tcb, void *work)
@@ -1988,7 +1988,7 @@ static void VOTCB_FadeInOut(TCB_PTR tcb, void *work)
 	switch(dfo->seq){
 	case 0:
 		if(dfo->vpw->consys->sio_flag == TRUE){
-			//óM‹­“xƒAƒCƒRƒ“‚ÉƒtƒF[ƒh‚ª‚©‚©‚ç‚È‚¢‚æ‚¤‚ÉƒEƒBƒ“ƒhƒE‚P‚ÅˆÍ‚Ş
+			//å—ä¿¡å¼·åº¦ã‚¢ã‚¤ã‚³ãƒ³ã«ãƒ•ã‚§ãƒ¼ãƒ‰ãŒã‹ã‹ã‚‰ãªã„ã‚ˆã†ã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼‘ã§å›²ã‚€
 			G2_SetWnd1InsidePlane(
 				GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2
 				| GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, FALSE);
@@ -2035,12 +2035,12 @@ static void VOTCB_FadeInOut(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)F‚Ç‚ñ‚¿‚å‚¤ƒGƒtƒFƒNƒgã¸
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šã©ã‚“ã¡ã‚‡ã†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸Šæ˜‡
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_DonchouEffectUp(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2054,11 +2054,11 @@ static int Request_DonchouEffectUp(CONTEST_ORDER_WORK *cow, void *syswork, int o
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)F‚Ç‚ñ‚¿‚å‚¤ƒGƒtƒFƒNƒgã¸
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šã©ã‚“ã¡ã‚‡ã†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸Šæ˜‡
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_DonchouEffectUp(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2078,10 +2078,10 @@ static void Recieve_DonchouEffectUp(CONTEST_ORDER_WORK *cow, void *syswork, cons
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚Ç‚ñ‚¿‚å‚¤ƒGƒtƒFƒNƒgã¸
+ * @brief   ã©ã‚“ã¡ã‚‡ã†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸Šæ˜‡
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_DONCHOU_EFFECT_UP\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_DONCHOU_EFFECT_UPæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_DonchouEffectUp(TCB_PTR tcb, void *work)
@@ -2097,7 +2097,7 @@ static void VOTCB_DonchouEffectUp(TCB_PTR tcb, void *work)
 	}
 	if(deu->vpw->consys->sio_flag == FALSE && deu->lvup_wait < DEU_SPEED_LVUP_WAIT 
 			&& ((sys.trg & PAD_BUTTON_DECIDE) || (sys.tp_trg))){
-		deu->lvup_wait = DEU_SPEED_LVUP_WAIT;	//Œˆ’èƒ{ƒ^ƒ“‚Å–³—–î—ƒŒƒxƒ‹ƒAƒbƒv‚µ‚½‚Ìˆ×
+		deu->lvup_wait = DEU_SPEED_LVUP_WAIT;	//æ±ºå®šãƒœã‚¿ãƒ³ã§ç„¡ç†çŸ¢ç†ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã—ãŸæ™‚ã®ç‚º
 		set_anm_wait = 0;
 		deu->anm_wait = 0;
 		deu->lvup_se_req = TRUE;
@@ -2111,7 +2111,7 @@ static void VOTCB_DonchouEffectUp(TCB_PTR tcb, void *work)
 	
 	switch(deu->seq){
 	case 0:
-		//ƒAƒjƒƒEƒFƒCƒg
+		//ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 		if(deu->anm_dansa_wait > 0){
 			deu->anm_dansa_wait--;
 			break;
@@ -2126,7 +2126,7 @@ static void VOTCB_DonchouEffectUp(TCB_PTR tcb, void *work)
 			deu->lvup_se_req = FALSE;
 		}
 		
-		//ƒAƒjƒ‘‚«Š·‚¦
+		//ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆ
 		{
 			u16 *scrn_buf, *dest_scrn;
 			int x, y, pos_x, s, base_charno;
@@ -2141,21 +2141,21 @@ static void VOTCB_DonchouEffectUp(TCB_PTR tcb, void *work)
 				pos_x = 0;
 				for(s = 0; s < 32 / DONCHOU_ANM_DATA_X_LEN; s++){
 					for(x = 0; x < DONCHOU_ANM_DATA_X_LEN; x++){
-						dest_scrn[pos_x + x] &= 0xfc00;		//ƒLƒƒƒ‰ƒNƒ^No‚Ì‚İƒNƒŠƒA
+						dest_scrn[pos_x + x] &= 0xfc00;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã®ã¿ã‚¯ãƒªã‚¢
 						dest_scrn[pos_x + x] |= base_charno + x;
 					}
 					pos_x += DONCHOU_ANM_DATA_X_LEN;
 				}
 			}
 			
-			//2’i–ÚˆÈ~‚Ì‚Ç‚ñ‚¿‚å‚¤‚Å‚ÍÅŒã‚ÌƒAƒjƒ‚ªˆêƒ‰ƒCƒ“c‚Á‚½‚â‚Â‚È‚Ì‚ÅA
-			//‘O‚Ì‚Ç‚ñ‚¿‚å‚¤‚Ìc‚Á‚½•”•ª‚ğƒNƒŠƒA‚µ‚Ä‚â‚é
-			//ˆÓ–¡‚ª‚í‚©‚ç‚È‚¢ê‡‚Í‚Æ‚è‚ ‚¦‚¸‚±‚±‚Ìop“à‚ğ‚Ü‚é‚²‚ÆƒRƒƒ“ƒgƒAƒEƒg‚µ‚Ä‚İ‚ê‚Î•ª‚©‚é
+			//2æ®µç›®ä»¥é™ã®ã©ã‚“ã¡ã‚‡ã†ã§ã¯æœ€å¾Œã®ã‚¢ãƒ‹ãƒ¡ãŒä¸€ãƒ©ã‚¤ãƒ³æ®‹ã£ãŸã‚„ã¤ãªã®ã§ã€
+			//å‰ã®ã©ã‚“ã¡ã‚‡ã†ã®æ®‹ã£ãŸéƒ¨åˆ†ã‚’ã‚¯ãƒªã‚¢ã—ã¦ã‚„ã‚‹
+			//æ„å‘³ãŒã‚ã‹ã‚‰ãªã„å ´åˆã¯ã¨ã‚Šã‚ãˆãšã“ã“ã®ï½›ï½å†…ã‚’ã¾ã‚‹ã”ã¨ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ã¦ã¿ã‚Œã°åˆ†ã‹ã‚‹
 			{
 				if(deu->anm_line > 0 && deu->anm_no == 0){
 					dest_scrn = &scrn_buf[32 * DonchouAnmLineData[deu->anm_line - 1]];
 					for(s = 0; s < 32; s++){
-						dest_scrn[s] &= 0xfc00;		//ƒLƒƒƒ‰ƒNƒ^No‚Ì‚İƒNƒŠƒA
+						dest_scrn[s] &= 0xfc00;		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã®ã¿ã‚¯ãƒªã‚¢
 					}
 				}
 			}
@@ -2163,7 +2163,7 @@ static void VOTCB_DonchouEffectUp(TCB_PTR tcb, void *work)
 			GF_BGL_LoadScreenV_Req(deu->vpw->sys.bgl, VISUAL_FRAME_EFF);
 		}
 
-		//ƒEƒBƒ“ƒhƒEƒ}ƒXƒNİ’è
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯è¨­å®š
 		{
 			deu->vpw->wnd0_y2 = (DonchouAnmLineData[deu->anm_line] + DONCHOU_ANM_DATA_Y_LEN) * 8 
 				- (deu->anm_no * (DONCHOU_ANM_DATA_Y_LEN*8) / NELEMS(DonchouAnmPaternStartCharNo));
@@ -2201,12 +2201,12 @@ static void VOTCB_DonchouEffectUp(TCB_PTR tcb, void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M(‘—MŒ³)FƒrƒWƒ…ƒAƒ‹•”–åI—¹‚Ìˆ—
+ * @brief   å‘½ä»¤é€ä¿¡(é€ä¿¡å…ƒ)ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€çµ‚äº†æ™‚ã®å‡¦ç†
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval  ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static int Request_VisualFinish(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -2220,11 +2220,11 @@ static int Request_VisualFinish(CONTEST_ORDER_WORK *cow, void *syswork, int orde
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßóM(‘—Mæ)FƒrƒWƒ…ƒAƒ‹•”–åI—¹‚Ìˆ—
+ * @brief   å‘½ä»¤å—ä¿¡(é€ä¿¡å…ˆ)ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€çµ‚äº†æ™‚ã®å‡¦ç†
  *
- * @param   vpw			ƒrƒWƒ…ƒAƒ‹•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head	ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   vpw			ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head	ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Recieve_VisualFinish(CONTEST_ORDER_WORK *cow, void *syswork, const CORDER_HEAD *req_head, void *data)
@@ -2247,10 +2247,10 @@ static void Recieve_VisualFinish(CONTEST_ORDER_WORK *cow, void *syswork, const C
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰æ–Ê‘S‘ÌƒtƒF[ƒhƒCƒ“EƒAƒEƒg
+ * @brief   ç”»é¢å…¨ä½“ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		VOLOCAL_FINISH\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		VOLOCAL_FINISHæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void VOTCB_Finish(TCB_PTR tcb, void *work)

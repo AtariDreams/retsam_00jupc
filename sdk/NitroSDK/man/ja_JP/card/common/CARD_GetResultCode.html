@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>CARD_GetResultCode</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">CARD_GetResultCode</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,20 +22,20 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
-�Ȃ�
+<h2>引数</h2>
+なし
 
-<h2>�Ԃ�l</h2>
-<p>CARD ROM �f�o�C�X����уo�b�N�A�b�v�f�o�C�X�փA�N�Z�X����֐����Ō�ɍs���������̌��ʂ�Ԃ��܂��B</p>
-<H2>����</H2>
-<P>CARD ROM �f�o�C�X����уo�b�N�A�b�v�f�o�C�X�փA�N�Z�X����֐����Ō�ɍs���������̌��ʂ�Ԃ��܂��B<BR>
-���̊֐��œ����錋�ʒl����A�����̐��ۂ���ю��s���̏ڍׂȌ����𔻒肷�邱�Ƃ��ł��܂��B<br>
+<h2>返り値</h2>
+<p>CARD ROM デバイスおよびバックアップデバイスへアクセスする関数が最後に行った処理の結果を返します。</p>
+<H2>説明</H2>
+<P>CARD ROM デバイスおよびバックアップデバイスへアクセスする関数が最後に行った処理の結果を返します。<BR>
+この関数で得られる結果値から、処理の成否および失敗時の詳細な原因を判定することができます。<br>
 <br>
-���̊֐��Ō��ʒl�𓾂邱�Ƃ̂ł���֐��͈ȉ��̂Ƃ���ł��B<br>
-�������A<font color="#008000">�ΐF</font>�ŋL�ڂ��ꂽ�֐��͏�� CARD_RESULT_SUCCESS �ƂȂ�܂��̂ŁA<br>
-�����ɂ��Ė����I�Ɍ��ʒl�𔻒肷��K�v�͂���܂���B<br>
+この関数で結果値を得ることのできる関数は以下のとおりです。<br>
+ただし、<font color="#008000">緑色</font>で記載された関数は常に CARD_RESULT_SUCCESS となりますので、<br>
+これらについて明示的に結果値を判定する必要はありません。<br>
 <pre>
-�E�o�b�N�A�b�v�f�o�C�X�փA�N�Z�X����֐�
+・バックアップデバイスへアクセスする関数
 
   -[EEPROM]-
   CARD_ReadEeprom 
@@ -57,23 +57,23 @@
   CARD_WriteAndVerifyFlash 
   CARD_WriteAndVerifyFlashAsync 
 
-  -[����]-
+  -[共通]-
   CARD_IdentifyBackup
   <font color="#008000">CARD_LockBackup</font>
   <font color="#008000">CARD_UnlockBackup</font>
 
-�EROM �f�o�C�X�փA�N�Z�X����֐�
+・ROM デバイスへアクセスする関数
 
   <font color="#008000">CARD_LockRom </font>
   <font color="#008000">CARD_UnlockRom </font>
   <font color="#008000">CARD_ReadRom </font>
   <font color="#008000">CARD_ReadRomAsync </font>
 </pre>
-��L�֐��̂����Ō�ɌĂяo�����֐������̌��ʒl���A���̊֐��̕Ԃ�l�ɂȂ�܂��B<br>
-��L�ȊO��CARD�֐��̌Ăяo���ł́A���̕Ԃ�l�͕ύX����܂���B<br>
+上記関数のうち最後に呼び出した関数処理の結果値が、この関数の返り値になります。<br>
+上記以外のCARD関数の呼び出しでは、この返り値は変更されません。<br>
 <br>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../card_result_const.html">CARDResult</A> 
 <A href="../rom/CARD_ReadRom.html">CARD_ReadRom</A> 
@@ -83,11 +83,11 @@
 <A href="../eeprom/CARD_WriteAndVerifyEeprom.html">CARD_WriteAndVerifyEeprom</A> 
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/11/02 ���͌�L����<BR>
-2004/08/31 �֐�������啝�ɏC���A���ʒl���X�V����֐��ɂ��Ă̋L�q��ǉ�<BR>
-2004/07/28 ����<BR>
+2004/11/02 文章誤記訂正<BR>
+2004/08/31 関数説明を大幅に修正、結果値を更新する関数についての記述を追加<BR>
+2004/07/28 初版<BR>
 </P>
 </body>
 </html>

@@ -1,7 +1,7 @@
 #ifndef _C05R1101_DEF_H_
 #define _C05R1101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C05R1101_JUDGE		(1)
 #define	SCRID_C05R1101_DRESS_PREV_00		(2)
 #define	SCRID_C05R1101_DRESS_PREV_01		(3)
@@ -13,6 +13,6 @@
 #define	SCRID_C05R1101_GIRL3		(9)
 #define	SCRID_C05R1101_GERGGEOUSM1		(10)
 #define	SCRID_C05R1101_LEADER		(11)
-#define	SCRID_C05R1101_DATA_MAX		(11)		//最大数
+#define	SCRID_C05R1101_DATA_MAX		(11)		//譛螟ｧ謨ｰ
 
 #endif //_C05R1101_DEF_H_

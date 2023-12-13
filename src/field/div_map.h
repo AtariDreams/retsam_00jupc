@@ -26,16 +26,16 @@ typedef enum {
 }DML_SEQUENS;
 
 typedef enum {
-	BLOCKMODE_OVERLOAD = 0,		//’Êí‚Ì”ÍˆÍŠO“Ç‚İ‚İ—L‚èŒ^
-	BLOCKMODE_2x2,				//2x2ƒuƒƒbƒNŒÅ’èŒ^
+	BLOCKMODE_OVERLOAD = 0,		//é€šå¸¸ã®ç¯„å›²å¤–èª­ã¿è¾¼ã¿æœ‰ã‚Šå‹
+	BLOCKMODE_2x2,				//2x2ãƒ–ãƒ­ãƒƒã‚¯å›ºå®šå‹
 }DIV_BLOCK_MODE;
 
 typedef enum {
-	DIVM3DO_SET,				//”z’uƒ‚ƒfƒ‹‚ğ“WŠJ
-	DIVM3DO_OFF,				//”z’uƒ‚ƒfƒ‹‚ğ“WŠJ‚µ‚È‚¢
+	DIVM3DO_SET,				//é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚’å±•é–‹
+	DIVM3DO_OFF,				//é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚’å±•é–‹ã—ãªã„
 }DIV_M3DO_FLAG;
 
-//ƒuƒƒbƒNƒ[ƒhI—¹Œã‚ÌƒR[ƒ‹ƒoƒbƒN
+//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰çµ‚äº†å¾Œã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 typedef void (*DIV_LOAD_CALL_BACK)(	void *work, const int inBlockIndex, const M3DOL_PTR inObjList );
 
 extern void DivMapBindTarget(VecFx32 const *inTarget, DMC_PTR outDivMapCont);
@@ -71,18 +71,18 @@ extern void FreeDivMapCont(DMC_PTR outDivMapCont);
 //extern u32 GetZoneIDFromGrid(const int inGrid,DMC_CONST_PTR inDivMapCont);
 ///extern u32 GetBlockIdxFromGridXZ(const int inGridX, const int inGridZ, const int inMapBlockW);
 
-//w’èƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚©‚ç‚n‚a‚iƒŠƒXƒg‚ğæ“¾
+//æŒ‡å®šãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ï¼¯ï¼¢ï¼ªãƒªã‚¹ãƒˆã‚’å–å¾—
 extern void Get3DObjListFromLocalIdx(	const u8 inIdx,
 										DMC_CONST_PTR inDivMapCont,
 										M3DOL_PTR *outObjList);
 
-//Œ»İ‚ÌƒuƒƒbƒNƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+//ç¾åœ¨ã®ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 extern u8 GetNowLocalIndex(DMC_CONST_PTR inDivMapCont);
-//Œ»İ‚ÌƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+//ç¾åœ¨ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 extern int GetNowBlockIndex(DMC_CONST_PTR inDivMapCont);
-//ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚©‚çƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 extern int GetBlockIndexFromLocalIndex(DMC_CONST_PTR inDivMapCont, const u8 inLocalIndex);
-//ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚©‚ç’nŒ`ƒIƒtƒZƒbƒg‚ğŒvZ
+//ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰åœ°å½¢ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨ˆç®—
 extern u8 CalcPositionInBlockFromGridNo(const u32 inGridNo, const int inMapGridW);
 extern u8 CalcLocalIdxFromBlockIdx(	const int inBlockIndex,
 									const u8 inPosInBlock,
@@ -145,7 +145,7 @@ extern void LoadBlockListSetUp( DMC_PTR outDivMapCont,
 extern void LoadBlockListNoNonAlloc(
 	DMC_PTR outDivMapCont, int list_no, int block_no );
 extern void DivMapLoad_CleanM3DObj( DMC_PTR ioDivMapCont );
-//pl ’Ç‰Áî•ñ
+//pl è¿½åŠ æƒ…å ±
 extern void SetDivMapOriginGridPos( DMC_PTR dmc, int x, int y, int z );
 extern void SetDivMapBlockMode( DMC_PTR dmc, DIV_BLOCK_MODE mode );
 extern int GetDivMapOriginGridX( DMC_CONST_PTR dmc );

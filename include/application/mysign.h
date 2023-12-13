@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	mysign.h
- * @bfief	Ž©•ªƒTƒCƒ“ì¬ˆ—
+ * @bfief	è‡ªåˆ†ã‚µã‚¤ãƒ³ä½œæˆå‡¦ç†
  * @author	Akito Mori
  * @date	06.03.11
  */
@@ -10,15 +10,15 @@
 #define _MYSIGN_H_
 
 //============================================================================================
-//	’è‹`
+//	å®šç¾©
 //============================================================================================
 
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT MySignProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT MySignProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT MySignProc_End( PROC * proc, int * seq );
 
-// ƒ|ƒCƒ“ƒ^ŽQÆ‚¾‚¯‚Å‚«‚é‚¨ŠG‚©‚«ƒ{[ƒhƒ[ƒN\‘¢‘Ì
+// ãƒã‚¤ãƒ³ã‚¿å‚ç…§ã ã‘ã§ãã‚‹ãŠçµµã‹ããƒœãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct MYSIGN_WORK MYSIGN_WORK;	
 
 

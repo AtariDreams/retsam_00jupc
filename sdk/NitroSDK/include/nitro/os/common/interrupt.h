@@ -21,7 +21,7 @@
   add irq stack check
 
   Revision 1.59  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.58  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -79,14 +79,14 @@
   fix header comment
 
   Revision 1.40  2004/04/06 09:00:49  yada
-  add OS_ClearIrqFlag(),@OS_GetIrqFlag()
+  add OS_ClearIrqFlag(),ã€€OS_GetIrqFlag()
   add function comments
 
   Revision 1.39  2004/03/18 12:55:26  yada
-  include‚·‚éƒtƒ@ƒCƒ‹‚ğnitro.h‚Å‚Í‚È‚­A•K—v‚È‚à‚Ì‚Ì‚İ‚É‚µ‚½
+  includeã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’nitro.hã§ã¯ãªãã€å¿…è¦ãªã‚‚ã®ã®ã¿ã«ã—ãŸ
 
   Revision 1.38  2004/03/16 07:08:38  yada
-  IRQƒe[ƒuƒ‹C³Bƒ_ƒ~[‚ğ’Ç‰Á
+  IRQãƒ†ãƒ¼ãƒ–ãƒ«ä¿®æ­£ã€‚ãƒ€ãƒŸãƒ¼ã‚’è¿½åŠ 
 
   Revision 1.37  2004/03/04 12:37:04  yasu
   add some aliases ARM7 to ARM9
@@ -101,25 +101,25 @@
   merge ARM7's register list
 
   Revision 1.33  2004/02/13 01:29:19  yada
-  ARM9‚ÆAMR7 ‚ÅƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹ê‡‚í‚¯
+  ARM9ã¨AMR7 ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å ´åˆã‚ã‘
 
   Revision 1.32  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.31  2004/02/03 11:19:37  yada
-  OSi_EnterTimerCallback() ’Ç‰Á
+  OSi_EnterTimerCallback() è¿½åŠ 
 
   Revision 1.30  2004/02/02 05:33:46  yada
-  •Ï”EŠÖ”‚É–¼Ì•ÏX‚ ‚è
+  å¤‰æ•°ãƒ»é–¢æ•°ã«åç§°å¤‰æ›´ã‚ã‚Š
 
   Revision 1.29  2004/01/29 08:26:05  yada
   (none)
 
   Revision 1.28  2004/01/18 04:47:31  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.27  2004/01/17 11:44:20  yada
-  DMA “]‘—‚É Async ƒ‚[ƒh‚ğì¬
+  DMA è»¢é€ã« Async ãƒ¢ãƒ¼ãƒ‰ã‚’ä½œæˆ
 
   Revision 1.26  2004/01/17 02:28:38  nishida_kenji
   convert 'inline' to 'static inline' in header files
@@ -128,76 +128,76 @@
   *** empty log message ***
 
   Revision 1.24  2004/01/09 10:38:42  yada
-  Š„‚İƒ`ƒFƒbƒNƒtƒ‰ƒO‚ÌƒNƒŠƒAƒCƒ“ƒ^ƒtƒF[ƒX’Ç‰Á
+  å‰²è¾¼ã¿ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹è¿½åŠ 
 
   Revision 1.23  2003/12/25 07:29:22  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.22  2003/12/25 00:19:29  nishida_kenji
   convert INLINE to inline
 
   Revision 1.21  2003/12/16 05:29:41  yasu
-  Š„‚è‚İƒxƒNƒ^”C³
+  å‰²ã‚Šè¾¼ã¿ãƒ™ã‚¯ã‚¿æ•°ä¿®æ­£
 
   Revision 1.20  2003/12/11 05:29:01  yada
-  OS_ResetRequestIRQMask() ‚Ì–ß‚èŒ^‚ğ u32 ‚©‚ç OS_IntrMask ‚ÉC³
+  OS_ResetRequestIRQMask() ã®æˆ»ã‚Šå‹ã‚’ u32 ã‹ã‚‰ OS_IntrMask ã«ä¿®æ­£
 
   Revision 1.19  2003/12/08 12:12:12  yada
-  ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹•ÏX
+  ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å¤‰æ›´
 
   Revision 1.18  2003/11/30 04:18:22  yasu
-  CPU CPSR İ’èŠÖŒW‚Ì‹Lq‚ğ cpsr.h ‚Ö
+  CPU CPSR è¨­å®šé–¢ä¿‚ã®è¨˜è¿°ã‚’ cpsr.h ã¸
 
   Revision 1.17  2003/11/28 12:18:18  yasu
-  OS_IRQHandler ‚ÌƒTƒCƒYƒ`ƒFƒbƒN—p define ‚Ì’Ç‰Á
+  OS_IRQHandler ã®ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯ç”¨ define ã®è¿½åŠ 
 
   Revision 1.16  2003/11/25 10:59:59  yada
   (none)
 
   Revision 1.15  2003/11/18 12:44:27  yada
-  OS_GetRequestInterruptsMask ¨ OS_GetRequestInterruptMask (s‚ğæ‚Á‚½)
+  OS_GetRequestInterruptsMask â†’ OS_GetRequestInterruptMask (sã‚’å–ã£ãŸ)
 
   Revision 1.14  2003/11/14 04:58:11  yada
-  ƒŒƒWƒXƒ^‚ÌƒAƒNƒZƒXƒ}ƒNƒ REG_XXX ¨ reg_XXX ‚Æ‚µ‚½B
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®ã‚¢ã‚¯ã‚»ã‚¹ãƒã‚¯ãƒ­ REG_XXX â†’ reg_XXX ã¨ã—ãŸã€‚
 
   Revision 1.13  2003/11/13 04:04:10  yada
-  misc.h ‚É’è‹`‚³‚ê‚Ä‚¢‚é SDK_ASSERT() ‚È‚Ç‚Ì’è‹`‚Í‚±‚±‚©‚çŠO‚µ‚½B
+  misc.h ã«å®šç¾©ã•ã‚Œã¦ã„ã‚‹ SDK_ASSERT() ãªã©ã®å®šç¾©ã¯ã“ã“ã‹ã‚‰å¤–ã—ãŸã€‚
 
   Revision 1.12  2003/11/12 06:36:06  yada
-  Šô‚Â‚©ƒXƒyƒ‹ƒ~ƒX‚ª‚ ‚Á‚½‚Ì‚ÅC³‚µ‚½Bå‚Éu Interrupt v‚Ìƒ~ƒXB
+  å¹¾ã¤ã‹ã‚¹ãƒšãƒ«ãƒŸã‚¹ãŒã‚ã£ãŸã®ã§ä¿®æ­£ã—ãŸã€‚ä¸»ã«ã€Œ Interrupt ã€ã®ãƒŸã‚¹ã€‚
 
   Revision 1.11  2003/11/11 12:56:42  yada
   (none)
 
   Revision 1.10  2003/11/11 12:27:28  yada
-  ƒVƒXƒeƒ€ƒR[ƒ‹•”•ª‚ğ‚¢‚­‚Â‚© interrupt.h ‚©‚ç systemCall.h ‚ÉˆÚ‚µ‚½B
+  ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«éƒ¨åˆ†ã‚’ã„ãã¤ã‹ interrupt.h ã‹ã‚‰ systemCall.h ã«ç§»ã—ãŸã€‚
 
   Revision 1.9  2003/11/11 05:47:24  yada
-  ƒ}ƒXƒ^[ƒCƒl[ƒuƒ‹‚Ìˆµ‚¢‚ğ BOOL‚Ås‚¤‚æ‚¤‚É‚µ‚½B
+  ãƒã‚¹ã‚¿ãƒ¼ã‚¤ãƒãƒ¼ãƒ–ãƒ«ã®æ‰±ã„ã‚’ BOOLã§è¡Œã†ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.8  2003/11/10 04:15:12  yasu
-  Š„‚è‚İƒrƒbƒg‚ğ OS_InterruptBit ‚É
+  å‰²ã‚Šè¾¼ã¿ãƒ“ãƒƒãƒˆã‚’ OS_InterruptBit ã«
 
   Revision 1.7  2003/11/10 02:33:00  yasu
-  interrupt table ‚Ì’Ç‰Á
+  interrupt table ã®è¿½åŠ 
 
   Revision 1.6  2003/11/07 07:51:46  yada
-  OS_IME_DISABLE‚Ì’lC³
+  OS_IME_DISABLEã®å€¤ä¿®æ­£
 
   Revision 1.5  2003/11/06 13:36:01  yasu
-  (u32)1 ‚Æ‚¢‚¤•\Œ»‚ğ 1UL ‚É•ÏX
+  (u32)1 ã¨ã„ã†è¡¨ç¾ã‚’ 1UL ã«å¤‰æ›´
 
   Revision 1.4  2003/11/06 10:36:16  yada
-  Š„ƒrƒbƒg’è‹`‚Ìƒ~ƒXC³
+  å‰²è¾¼ãƒ“ãƒƒãƒˆå®šç¾©ã®ãƒŸã‚¹ä¿®æ­£
 
   Revision 1.3  2003/11/05 01:03:18  yada
-  ƒLƒƒƒXƒg‚ğŒµ‚µ‚­B‚Æ‚è‚ ‚¦‚¸warning ‚ªo‚È‚¢‚æ‚¤‚ÉB
+  ã‚­ãƒ£ã‚¹ãƒˆã‚’å³ã—ãã€‚ã¨ã‚Šã‚ãˆãšwarning ãŒå‡ºãªã„ã‚ˆã†ã«ã€‚
 
   Revision 1.2  2003/11/04 09:08:43  yada
   (none)
 
   Revision 1.1  2003/10/31 04:12:03  yada
-  ‰”Åì¬
+  åˆç‰ˆä½œæˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

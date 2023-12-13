@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	poke_tool_def.h
- * @bfief	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^ƒc[ƒ‹ŒS
+ * @bfief	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ„ãƒ¼ãƒ«éƒ¡
  * @author	HisashiSogabe
  * @date	05.05.30
  */
@@ -15,183 +15,183 @@
 #ifndef __POKE_TOOL_DEF_H_
 #define __POKE_TOOL_DEF_H_
 
-#define	ID_TOOIBASYO	(3002)		//‚Æ‚¨‚¢‚Î‚µ‚å‚ÌIDƒiƒ“ƒo[i‚È‚¼‚ÌêŠ‘Î‰—pj
+#define	ID_TOOIBASYO	(3002)		//ã¨ãŠã„ã°ã—ã‚‡ã®IDãƒŠãƒ³ãƒãƒ¼ï¼ˆãªãã®å ´æ‰€å¯¾å¿œç”¨ï¼‰
 
 struct pokemon_paso_param1
 {
-	u16	monsno;								//02h	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-	u16 item;								//04h	ŠƒAƒCƒeƒ€ƒiƒ“ƒo[
+	u16	monsno;								//02h	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u16 item;								//04h	æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
 	u32	id_no;								//08h	IDNo
-	u32	exp;								//0ch	ŒoŒ±’l
-	u8	friend;								//0dh	‚È‚Â‚«“x
-	u8	speabino;							//0eh	“Áê”\—Í
-	u8	mark;								//0fh	ƒ|ƒPƒ‚ƒ“‚É‚Â‚¯‚éƒ}[ƒNiƒ{ƒbƒNƒXj
-	u8	country_code;						//10h	‘ƒR[ƒh
-	u8	hp_exp;								//11h	HP“w—Í’l
-	u8	pow_exp;							//12h	UŒ‚—Í“w—Í’l
-	u8	def_exp;							//13h	–hŒä—Í“w—Í’l
-	u8	agi_exp;							//14h	‘f‘‚³“w—Í’l
-	u8	spepow_exp;							//15h	“ÁU“w—Í’l
-	u8	spedef_exp;							//16h	“Á–h“w—Í’l
-	u8	style;								//17h	‚©‚Á‚±‚æ‚³
-	u8	beautiful;							//18h	‚¤‚Â‚­‚µ‚³
-	u8	cute;								//19h	‚©‚í‚¢‚³
-	u8	clever;								//1ah	‚©‚µ‚±‚³
-	u8	strong;								//1bh	‚½‚­‚Ü‚µ‚³
-	u8	fur;								//1ch	–Ñ‰
-	u32	sinou_ribbon;						//20h	ƒVƒ“ƒIƒEŒnƒŠƒ{ƒ“iƒrƒbƒgƒtƒB[ƒ‹ƒh‚ÅƒAƒNƒZƒX‚·‚é‚ÆƒvƒƒOƒ‰ƒ€ƒƒ‚ƒŠ‚ğÁ”ï‚·‚é‚Ì‚ÅAƒrƒbƒgƒVƒtƒg‚É•ÏXj
-//ˆÈ‰º“à–ó
+	u32	exp;								//0ch	çµŒé¨“å€¤
+	u8	friend;								//0dh	ãªã¤ãåº¦
+	u8	speabino;							//0eh	ç‰¹æ®Šèƒ½åŠ›
+	u8	mark;								//0fh	ãƒã‚±ãƒ¢ãƒ³ã«ã¤ã‘ã‚‹ãƒãƒ¼ã‚¯ï¼ˆãƒœãƒƒã‚¯ã‚¹ï¼‰
+	u8	country_code;						//10h	å›½ã‚³ãƒ¼ãƒ‰
+	u8	hp_exp;								//11h	HPåŠªåŠ›å€¤
+	u8	pow_exp;							//12h	æ”»æ’ƒåŠ›åŠªåŠ›å€¤
+	u8	def_exp;							//13h	é˜²å¾¡åŠ›åŠªåŠ›å€¤
+	u8	agi_exp;							//14h	ç´ æ—©ã•åŠªåŠ›å€¤
+	u8	spepow_exp;							//15h	ç‰¹æ”»åŠªåŠ›å€¤
+	u8	spedef_exp;							//16h	ç‰¹é˜²åŠªåŠ›å€¤
+	u8	style;								//17h	ã‹ã£ã“ã‚ˆã•
+	u8	beautiful;							//18h	ã†ã¤ãã—ã•
+	u8	cute;								//19h	ã‹ã‚ã„ã•
+	u8	clever;								//1ah	ã‹ã—ã“ã•
+	u8	strong;								//1bh	ãŸãã¾ã—ã•
+	u8	fur;								//1ch	æ¯›è‰¶
+	u32	sinou_ribbon;						//20h	ã‚·ãƒ³ã‚ªã‚¦ç³»ãƒªãƒœãƒ³ï¼ˆãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ¡ãƒ¢ãƒªã‚’æ¶ˆè²»ã™ã‚‹ã®ã§ã€ãƒ“ãƒƒãƒˆã‚·ãƒ•ãƒˆã«å¤‰æ›´ï¼‰
+//ä»¥ä¸‹å†…è¨³
 #if 0
-	u32	sinou_champ_ribbon					:1;	//ƒVƒ“ƒIƒEƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
-	u32	sinou_battle_tower_ttwin_first		:1;	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜1‰ñ–Ú
-	u32	sinou_battle_tower_ttwin_second		:1;	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜1‰ñ–Ú
-	u32	sinou_battle_tower_2vs2_win50		:1;	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ_ƒuƒ‹50˜AŸ
-	u32	sinou_battle_tower_aimulti_win50	:1;	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[AIƒ}ƒ‹ƒ`50˜AŸ
-	u32	sinou_battle_tower_siomulti_win50	:1;	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[’ÊMƒ}ƒ‹ƒ`50˜AŸ
-	u32	sinou_battle_tower_wifi_rank5		:1;	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[Wifiƒ‰ƒ“ƒN‚T“ü‚è
-	u32	sinou_syakki_ribbon					:1;	//ƒVƒ“ƒIƒE‚µ‚á‚Á‚«ƒŠƒ{ƒ“
-	u32	sinou_dokki_ribbon					:1;	//ƒVƒ“ƒIƒE‚Ç‚Á‚«ƒŠƒ{ƒ“
-	u32	sinou_syonbo_ribbon					:1;	//ƒVƒ“ƒIƒE‚µ‚å‚ñ‚ÚƒŠƒ{ƒ“
+	u32	sinou_champ_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
+	u32	sinou_battle_tower_ttwin_first		:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©1å›ç›®
+	u32	sinou_battle_tower_ttwin_second		:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©1å›ç›®
+	u32	sinou_battle_tower_2vs2_win50		:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ãƒ€ãƒ–ãƒ«50é€£å‹
+	u32	sinou_battle_tower_aimulti_win50	:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼AIãƒãƒ«ãƒ50é€£å‹
+	u32	sinou_battle_tower_siomulti_win50	:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒãƒ«ãƒ50é€£å‹
+	u32	sinou_battle_tower_wifi_rank5		:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼Wifiãƒ©ãƒ³ã‚¯ï¼•å…¥ã‚Š
+	u32	sinou_syakki_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚ƒã£ããƒªãƒœãƒ³
+	u32	sinou_dokki_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ã©ã£ããƒªãƒœãƒ³
+	u32	sinou_syonbo_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚‡ã‚“ã¼ãƒªãƒœãƒ³
 
-	u32	sinou_ukka_ribbon					:1;	//ƒVƒ“ƒIƒE‚¤‚Á‚©ƒŠƒ{ƒ“
-	u32	sinou_sukki_ribbon					:1;	//ƒVƒ“ƒIƒE‚·‚Á‚«ƒŠƒ{ƒ“
-	u32	sinou_gussu_ribbon					:1;	//ƒVƒ“ƒIƒE‚®‚Á‚·ƒŠƒ{ƒ“
-	u32	sinou_nikko_ribbon					:1;	//ƒVƒ“ƒIƒE‚É‚Á‚±ƒŠƒ{ƒ“
-	u32	sinou_gorgeous_ribbon				:1;	//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒŠƒ{ƒ“
-	u32	sinou_royal_ribbon					:1;	//ƒVƒ“ƒIƒEƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-	u32	sinou_gorgeousroyal_ribbon			:1;	//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-	u32	sinou_ashiato_ribbon				:1;	//ƒVƒ“ƒIƒE‚ ‚µ‚ ‚ÆƒŠƒ{ƒ“
-	u32	sinou_record_ribbon					:1;	//ƒVƒ“ƒIƒEƒŒƒR[ƒhƒŠƒ{ƒ“
-	u32	sinou_history_ribbon				:1;	//ƒVƒ“ƒIƒEƒqƒXƒgƒŠ[ƒŠƒ{ƒ“
+	u32	sinou_ukka_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ã†ã£ã‹ãƒªãƒœãƒ³
+	u32	sinou_sukki_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ã™ã£ããƒªãƒœãƒ³
+	u32	sinou_gussu_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ãã£ã™ãƒªãƒœãƒ³
+	u32	sinou_nikko_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ã«ã£ã“ãƒªãƒœãƒ³
+	u32	sinou_gorgeous_ribbon				:1;	//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒªãƒœãƒ³
+	u32	sinou_royal_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+	u32	sinou_gorgeousroyal_ribbon			:1;	//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+	u32	sinou_ashiato_ribbon				:1;	//ã‚·ãƒ³ã‚ªã‚¦ã‚ã—ã‚ã¨ãƒªãƒœãƒ³
+	u32	sinou_record_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒªãƒœãƒ³
+	u32	sinou_history_ribbon				:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒ’ã‚¹ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
 
-	u32	sinou_legend_ribbon					:1;	//ƒVƒ“ƒIƒEƒŒƒWƒFƒ“ƒhƒŠƒ{ƒ“
-	u32	sinou_red_ribbon					:1;	//ƒVƒ“ƒIƒEƒŒƒbƒhƒŠƒ{ƒ“
-	u32	sinou_green_ribbon					:1;	//ƒVƒ“ƒIƒEƒOƒŠ[ƒ“ƒŠƒ{ƒ“
-	u32	sinou_blue_ribbon					:1;	//ƒVƒ“ƒIƒEƒuƒ‹[ƒŠƒ{ƒ“
-	u32	sinou_festival_ribbon				:1;	//ƒVƒ“ƒIƒEƒtƒFƒXƒeƒBƒoƒ‹ƒŠƒ{ƒ“
-	u32	sinou_carnival_ribbon				:1;	//ƒVƒ“ƒIƒEƒJ[ƒjƒoƒ‹ƒŠƒ{ƒ“
-	u32	sinou_classic_ribbon				:1;	//ƒVƒ“ƒIƒEƒNƒ‰ƒVƒbƒNƒŠƒ{ƒ“
-	u32	sinou_premiere_ribbon				:1;	//ƒVƒ“ƒIƒEƒvƒŒƒ~ƒAƒŠƒ{ƒ“
+	u32	sinou_legend_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ã‚¸ã‚§ãƒ³ãƒ‰ãƒªãƒœãƒ³
+	u32	sinou_red_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒ¬ãƒƒãƒ‰ãƒªãƒœãƒ³
+	u32	sinou_green_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ã‚°ãƒªãƒ¼ãƒ³ãƒªãƒœãƒ³
+	u32	sinou_blue_ribbon					:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒ–ãƒ«ãƒ¼ãƒªãƒœãƒ³
+	u32	sinou_festival_ribbon				:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒ•ã‚§ã‚¹ãƒ†ã‚£ãƒãƒ«ãƒªãƒœãƒ³
+	u32	sinou_carnival_ribbon				:1;	//ã‚·ãƒ³ã‚ªã‚¦ã‚«ãƒ¼ãƒ‹ãƒãƒ«ãƒªãƒœãƒ³
+	u32	sinou_classic_ribbon				:1;	//ã‚·ãƒ³ã‚ªã‚¦ã‚¯ãƒ©ã‚·ãƒƒã‚¯ãƒªãƒœãƒ³
+	u32	sinou_premiere_ribbon				:1;	//ã‚·ãƒ³ã‚ªã‚¦ãƒ—ãƒ¬ãƒŸã‚¢ãƒªãƒœãƒ³
 
-	u32	sinou_amari_ribbon					:4;	//20h	‚ ‚Ü‚è
+	u32	sinou_amari_ribbon					:4;	//20h	ã‚ã¾ã‚Š
 #endif
 };
 	
 struct pokemon_paso_param2
 {
-	u16	waza[WAZA_TEMOTI_MAX];				//08h	Š‹Z
-	u8	pp[WAZA_TEMOTI_MAX];				//0ch	Š‹ZPP
-	u8	pp_count[WAZA_TEMOTI_MAX];			//10h	Š‹ZPP_COUNT
-	u32	hp_rnd			:5;					//		HP—”
-	u32	pow_rnd			:5;					//		UŒ‚—Í—”
-	u32	def_rnd			:5;					//		–hŒä—Í—”
-	u32	agi_rnd			:5;					//		‘f‘‚³—”
-	u32	spepow_rnd		:5;					//		“ÁU—”
-	u32	spedef_rnd		:5;					//		“Á–h—”
-	u32	tamago_flag		:1;					//		ƒ^ƒ}ƒSƒtƒ‰ƒOi0:ƒ^ƒ}ƒS‚¶‚á‚È‚¢@1:ƒ^ƒ}ƒS‚¾‚æj
-	u32	nickname_flag	:1;					//14h	ƒjƒbƒNƒl[ƒ€‚ğ‚Â‚¯‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒOi0:‚Â‚¯‚Ä‚¢‚È‚¢@1:‚Â‚¯‚½j
+	u16	waza[WAZA_TEMOTI_MAX];				//08h	æ‰€æŒæŠ€
+	u8	pp[WAZA_TEMOTI_MAX];				//0ch	æ‰€æŒæŠ€PP
+	u8	pp_count[WAZA_TEMOTI_MAX];			//10h	æ‰€æŒæŠ€PP_COUNT
+	u32	hp_rnd			:5;					//		HPä¹±æ•°
+	u32	pow_rnd			:5;					//		æ”»æ’ƒåŠ›ä¹±æ•°
+	u32	def_rnd			:5;					//		é˜²å¾¡åŠ›ä¹±æ•°
+	u32	agi_rnd			:5;					//		ç´ æ—©ã•ä¹±æ•°
+	u32	spepow_rnd		:5;					//		ç‰¹æ”»ä¹±æ•°
+	u32	spedef_rnd		:5;					//		ç‰¹é˜²ä¹±æ•°
+	u32	tamago_flag		:1;					//		ã‚¿ãƒã‚´ãƒ•ãƒ©ã‚°ï¼ˆ0:ã‚¿ãƒã‚´ã˜ã‚ƒãªã„ã€€1:ã‚¿ãƒã‚´ã ã‚ˆï¼‰
+	u32	nickname_flag	:1;					//14h	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ã¤ã‘ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ï¼ˆ0:ã¤ã‘ã¦ã„ãªã„ã€€1:ã¤ã‘ãŸï¼‰
 
-	u32	old_ribbon;							//18h	‰ß‹ì‚ÌƒŠƒ{ƒ“ŒniƒrƒbƒgƒtƒB[ƒ‹ƒh‚ÅƒAƒNƒZƒX‚·‚é‚ÆƒvƒƒOƒ‰ƒ€ƒƒ‚ƒŠ‚ğÁ”ï‚·‚é‚Ì‚ÅAƒrƒbƒgƒVƒtƒg‚É•ÏXj
-//ˆÈ‰º“à–ó
+	u32	old_ribbon;							//18h	éå»ä½œã®ãƒªãƒœãƒ³ç³»ï¼ˆãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ¡ãƒ¢ãƒªã‚’æ¶ˆè²»ã™ã‚‹ã®ã§ã€ãƒ“ãƒƒãƒˆã‚·ãƒ•ãƒˆã«å¤‰æ›´ï¼‰
+//ä»¥ä¸‹å†…è¨³
 #if 0
-	u32	stylemedal_normal		:1;			//	‚©‚Á‚±‚æ‚³ŒMÍ(ƒm[ƒ}ƒ‹)(AGBƒRƒ“ƒeƒXƒg)
-	u32	stylemedal_super		:1;			//	‚©‚Á‚±‚æ‚³ŒMÍ(ƒX[ƒp[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	stylemedal_hyper		:1;			//	‚©‚Á‚±‚æ‚³ŒMÍ(ƒnƒCƒp[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	stylemedal_master		:1;			//	‚©‚Á‚±‚æ‚³ŒMÍ(ƒ}ƒXƒ^[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	beautifulmedal_normal	:1;			//	‚¤‚Â‚­‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)(AGBƒRƒ“ƒeƒXƒg)
-	u32	beautifulmedal_super	:1;			//	‚¤‚Â‚­‚µ‚³ŒMÍ(ƒX[ƒp[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	beautifulmedal_hyper	:1;			//	‚¤‚Â‚­‚µ‚³ŒMÍ(ƒnƒCƒp[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	beautifulmedal_master	:1;			//	‚¤‚Â‚­‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	cutemedal_normal		:1;			//	‚©‚í‚¢‚³ŒMÍ(ƒm[ƒ}ƒ‹)(AGBƒRƒ“ƒeƒXƒg)
-	u32	cutemedal_super			:1;			//	‚©‚í‚¢‚³ŒMÍ(ƒX[ƒp[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	cutemedal_hyper			:1;			//	‚©‚í‚¢‚³ŒMÍ(ƒnƒCƒp[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	cutemedal_master		:1;			//	‚©‚í‚¢‚³ŒMÍ(ƒ}ƒXƒ^[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	clevermedal_normal		:1;			//	‚©‚µ‚±‚³ŒMÍ(ƒm[ƒ}ƒ‹)(AGBƒRƒ“ƒeƒXƒg)
-	u32	clevermedal_super		:1;			//	‚©‚µ‚±‚³ŒMÍ(ƒX[ƒp[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	clevermedal_hyper		:1;			//	‚©‚µ‚±‚³ŒMÍ(ƒnƒCƒp[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	clevermedal_master		:1;			//	‚©‚µ‚±‚³ŒMÍ(ƒ}ƒXƒ^[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	strongmedal_normal		:1;			//	‚½‚­‚Ü‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)(AGBƒRƒ“ƒeƒXƒg)
-	u32	strongmedal_super		:1;			//	‚½‚­‚Ü‚µ‚³ŒMÍ(ƒX[ƒp[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	strongmedal_hyper		:1;			//	‚½‚­‚Ü‚µ‚³ŒMÍ(ƒnƒCƒp[)(AGBƒRƒ“ƒeƒXƒg)
-	u32	strongmedal_master		:1;			//	‚½‚­‚Ü‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)(AGBƒRƒ“ƒeƒXƒg)
+	u32	stylemedal_normal		:1;			//	ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	stylemedal_super		:1;			//	ã‹ã£ã“ã‚ˆã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	stylemedal_hyper		:1;			//	ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	stylemedal_master		:1;			//	ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	beautifulmedal_normal	:1;			//	ã†ã¤ãã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	beautifulmedal_super	:1;			//	ã†ã¤ãã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	beautifulmedal_hyper	:1;			//	ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	beautifulmedal_master	:1;			//	ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	cutemedal_normal		:1;			//	ã‹ã‚ã„ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	cutemedal_super			:1;			//	ã‹ã‚ã„ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	cutemedal_hyper			:1;			//	ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	cutemedal_master		:1;			//	ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	clevermedal_normal		:1;			//	ã‹ã—ã“ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	clevermedal_super		:1;			//	ã‹ã—ã“ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	clevermedal_hyper		:1;			//	ã‹ã—ã“ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	clevermedal_master		:1;			//	ã‹ã—ã“ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	strongmedal_normal		:1;			//	ãŸãã¾ã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	strongmedal_super		:1;			//	ãŸãã¾ã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	strongmedal_hyper		:1;			//	ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
+	u32	strongmedal_master		:1;			//	ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)(AGBã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
 
-	u32	champ_ribbon	:1;					//		ƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
-	u32	winning_ribbon	:1;					//		ƒEƒBƒjƒ“ƒOƒŠƒ{ƒ“
-	u32	victory_ribbon	:1;					//		ƒrƒNƒgƒŠ[ƒŠƒ{ƒ“
-	u32	bromide_ribbon	:1;					//		ƒuƒƒ}ƒCƒhƒŠƒ{ƒ“
-	u32	ganba_ribbon	:1;					//		‚ª‚ñ‚ÎƒŠƒ{ƒ“
-	u32	marine_ribbon	:1;					//		ƒ}ƒŠƒ“ƒŠƒ{ƒ“
-	u32	land_ribbon		:1;					//		ƒ‰ƒ“ƒhƒŠƒ{ƒ“
-	u32	sky_ribbon		:1;					//		ƒXƒJƒCƒŠƒ{ƒ“
-	u32	country_ribbon	:1;					//		ƒJƒ“ƒgƒŠ[ƒŠƒ{ƒ“
-	u32	national_ribbon	:1;					//		ƒiƒVƒ‡ƒiƒ‹ƒŠƒ{ƒ“
-	u32	earth_ribbon	:1;					//		ƒA[ƒXƒŠƒ{ƒ“
-	u32	world_ribbon	:1;					//		ƒ[ƒ‹ƒhƒŠƒ{ƒ“
+	u32	champ_ribbon	:1;					//		ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
+	u32	winning_ribbon	:1;					//		ã‚¦ã‚£ãƒ‹ãƒ³ã‚°ãƒªãƒœãƒ³
+	u32	victory_ribbon	:1;					//		ãƒ“ã‚¯ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+	u32	bromide_ribbon	:1;					//		ãƒ–ãƒ­ãƒã‚¤ãƒ‰ãƒªãƒœãƒ³
+	u32	ganba_ribbon	:1;					//		ãŒã‚“ã°ãƒªãƒœãƒ³
+	u32	marine_ribbon	:1;					//		ãƒãƒªãƒ³ãƒªãƒœãƒ³
+	u32	land_ribbon		:1;					//		ãƒ©ãƒ³ãƒ‰ãƒªãƒœãƒ³
+	u32	sky_ribbon		:1;					//		ã‚¹ã‚«ã‚¤ãƒªãƒœãƒ³
+	u32	country_ribbon	:1;					//		ã‚«ãƒ³ãƒˆãƒªãƒ¼ãƒªãƒœãƒ³
+	u32	national_ribbon	:1;					//		ãƒŠã‚·ãƒ§ãƒŠãƒ«ãƒªãƒœãƒ³
+	u32	earth_ribbon	:1;					//		ã‚¢ãƒ¼ã‚¹ãƒªãƒœãƒ³
+	u32	world_ribbon	:1;					//		ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒªãƒœãƒ³
 #endif
 
-	u8	event_get_flag	:1;					//		ƒCƒxƒ“ƒg‚Å”z•z‚µ‚½‚±‚Æ‚ğ¦‚·ƒtƒ‰ƒO
-	u8	sex				:2;					//   	ƒ|ƒPƒ‚ƒ“‚Ì«•Ê
-	u8	form_no			:5;					//19h	Œ`óƒiƒ“ƒo[iƒAƒ“ƒm[ƒ“AƒfƒIƒLƒVƒXAƒ~ƒmƒƒX‚È‚Ç—pj
-	u8	dummy_p2_1;							//1ah	‚ ‚Ü‚è
-	u16	dummy_p2_2;							//1ch	‚ ‚Ü‚è
-	u16	new_get_place;						//1eh	•ß‚Ü‚¦‚½êŠi‚È‚¼‚ÌêŠ‘Î‰—pj
-	u16	new_birth_place;					//20h	¶‚Ü‚ê‚½êŠi‚È‚¼‚ÌêŠ‘Î‰—pj
+	u8	event_get_flag	:1;					//		ã‚¤ãƒ™ãƒ³ãƒˆã§é…å¸ƒã—ãŸã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°
+	u8	sex				:2;					//   	ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥
+	u8	form_no			:5;					//19h	å½¢çŠ¶ãƒŠãƒ³ãƒãƒ¼ï¼ˆã‚¢ãƒ³ãƒãƒ¼ãƒ³ã€ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã€ãƒŸãƒãƒ¡ã‚¹ãªã©ç”¨ï¼‰
+	u8	dummy_p2_1;							//1ah	ã‚ã¾ã‚Š
+	u16	dummy_p2_2;							//1ch	ã‚ã¾ã‚Š
+	u16	new_get_place;						//1eh	æ•ã¾ãˆãŸå ´æ‰€ï¼ˆãªãã®å ´æ‰€å¯¾å¿œç”¨ï¼‰
+	u16	new_birth_place;					//20h	ç”Ÿã¾ã‚ŒãŸå ´æ‰€ï¼ˆãªãã®å ´æ‰€å¯¾å¿œç”¨ï¼‰
 };
 	
 struct pokemon_paso_param3
 {
-	STRCODE	nickname[MONS_NAME_SIZE+EOM_SIZE];	//16h	ƒjƒbƒNƒl[ƒ€(MONS_NAME_SIZE=10)+(EOM_SIZE=1)=11
-	u8	pref_code;								//18h	“s“¹•{Œ§ƒR[ƒh
-	u8	get_cassette;							//		•ß‚Ü‚¦‚½ƒJƒZƒbƒgƒo[ƒWƒ‡ƒ“
-	u64	new_ribbon;								//20h	VƒŠƒ{ƒ“ŒniƒrƒbƒgƒtƒB[ƒ‹ƒh‚ÅƒAƒNƒZƒX‚·‚é‚ÆƒvƒƒOƒ‰ƒ€ƒƒ‚ƒŠ‚ğÁ”ï‚·‚é‚Ì‚ÅAƒrƒbƒgƒVƒtƒg‚É•ÏXj
-//ˆÈ‰º“à–ó
+	STRCODE	nickname[MONS_NAME_SIZE+EOM_SIZE];	//16h	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ (MONS_NAME_SIZE=10)+(EOM_SIZE=1)=11
+	u8	pref_code;								//18h	éƒ½é“åºœçœŒã‚³ãƒ¼ãƒ‰
+	u8	get_cassette;							//		æ•ã¾ãˆãŸã‚«ã‚»ãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	u64	new_ribbon;								//20h	æ–°ãƒªãƒœãƒ³ç³»ï¼ˆãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ¡ãƒ¢ãƒªã‚’æ¶ˆè²»ã™ã‚‹ã®ã§ã€ãƒ“ãƒƒãƒˆã‚·ãƒ•ãƒˆã«å¤‰æ›´ï¼‰
+//ä»¥ä¸‹å†…è¨³
 #if 0
-	u32	trial_stylemedal_normal			:1;		//	‚©‚Á‚±‚æ‚³ŒMÍ(ƒm[ƒ}ƒ‹)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_stylemedal_super			:1;		//	‚©‚Á‚±‚æ‚³ŒMÍ(ƒX[ƒp[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_stylemedal_hyper			:1;		//	‚©‚Á‚±‚æ‚³ŒMÍ(ƒnƒCƒp[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_stylemedal_master			:1;		//	‚©‚Á‚±‚æ‚³ŒMÍ(ƒ}ƒXƒ^[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_beautifulmedal_normal		:1;		//	‚¤‚Â‚­‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_beautifulmedal_super		:1;		//	‚¤‚Â‚­‚µ‚³ŒMÍ(ƒX[ƒp[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_beautifulmedal_hyper		:1;		//	‚¤‚Â‚­‚µ‚³ŒMÍ(ƒnƒCƒp[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_beautifulmedal_master		:1;		//	‚¤‚Â‚­‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_cutemedal_normal			:1;		//	‚©‚í‚¢‚³ŒMÍ(ƒm[ƒ}ƒ‹)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_cutemedal_super			:1;		//	‚©‚í‚¢‚³ŒMÍ(ƒX[ƒp[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_cutemedal_hyper			:1;		//	‚©‚í‚¢‚³ŒMÍ(ƒnƒCƒp[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_cutemedal_master			:1;		//	‚©‚í‚¢‚³ŒMÍ(ƒ}ƒXƒ^[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_clevermedal_normal		:1;		//	‚©‚µ‚±‚³ŒMÍ(ƒm[ƒ}ƒ‹)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_clevermedal_super			:1;		//	‚©‚µ‚±‚³ŒMÍ(ƒX[ƒp[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_clevermedal_hyper			:1;		//	‚©‚µ‚±‚³ŒMÍ(ƒnƒCƒp[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_clevermedal_master		:1;		//	‚©‚µ‚±‚³ŒMÍ(ƒ}ƒXƒ^[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_strongmedal_normal		:1;		//	‚½‚­‚Ü‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_strongmedal_super			:1;		//	‚½‚­‚Ü‚µ‚³ŒMÍ(ƒX[ƒp[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_strongmedal_hyper			:1;		//	‚½‚­‚Ü‚µ‚³ŒMÍ(ƒnƒCƒp[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32	trial_strongmedal_master		:1;		//	‚½‚­‚Ü‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)(ƒgƒ‰ƒCƒAƒ‹)
-	u32 amari_ribbon					:12;	//20h	‚ ‚Ü‚è
-	u32	amari;									//20h	‚ ‚Ü‚è
+	u32	trial_stylemedal_normal			:1;		//	ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_stylemedal_super			:1;		//	ã‹ã£ã“ã‚ˆã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_stylemedal_hyper			:1;		//	ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_stylemedal_master			:1;		//	ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_beautifulmedal_normal		:1;		//	ã†ã¤ãã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_beautifulmedal_super		:1;		//	ã†ã¤ãã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_beautifulmedal_hyper		:1;		//	ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_beautifulmedal_master		:1;		//	ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_cutemedal_normal			:1;		//	ã‹ã‚ã„ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_cutemedal_super			:1;		//	ã‹ã‚ã„ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_cutemedal_hyper			:1;		//	ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_cutemedal_master			:1;		//	ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_clevermedal_normal		:1;		//	ã‹ã—ã“ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_clevermedal_super			:1;		//	ã‹ã—ã“ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_clevermedal_hyper			:1;		//	ã‹ã—ã“ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_clevermedal_master		:1;		//	ã‹ã—ã“ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_strongmedal_normal		:1;		//	ãŸãã¾ã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_strongmedal_super			:1;		//	ãŸãã¾ã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_strongmedal_hyper			:1;		//	ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32	trial_strongmedal_master		:1;		//	ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)(ãƒˆãƒ©ã‚¤ã‚¢ãƒ«)
+	u32 amari_ribbon					:12;	//20h	ã‚ã¾ã‚Š
+	u32	amari;									//20h	ã‚ã¾ã‚Š
 #endif
 };
 	
 struct pokemon_paso_param4
 {
-	STRCODE	oyaname[7+EOM_SIZE];				//10h	e‚Ì–¼‘O(PERSON_NAME_SIZE=7)+(EOM_SIZE_=1)=8*2(STRCODE=u16)
+	STRCODE	oyaname[7+EOM_SIZE];				//10h	è¦ªã®åå‰(PERSON_NAME_SIZE=7)+(EOM_SIZE_=1)=8*2(STRCODE=u16)
 
-	u8	get_year;								//11h	•ß‚Ü‚¦‚½”N
-	u8	get_month;								//12h	•ß‚Ü‚¦‚½Œ
-	u8	get_day;								//13h	•ß‚Ü‚¦‚½“ú
-	u8	birth_year;								//14h	¶‚Ü‚ê‚½”N
+	u8	get_year;								//11h	æ•ã¾ãˆãŸå¹´
+	u8	get_month;								//12h	æ•ã¾ãˆãŸæœˆ
+	u8	get_day;								//13h	æ•ã¾ãˆãŸæ—¥
+	u8	birth_year;								//14h	ç”Ÿã¾ã‚ŒãŸå¹´
 
-	u8	birth_month;							//15h	¶‚Ü‚ê‚½Œ
-	u8	birth_day;								//16h	¶‚Ü‚ê‚½“ú
-	u16	get_place;								//18h	•ß‚Ü‚¦‚½êŠ
+	u8	birth_month;							//15h	ç”Ÿã¾ã‚ŒãŸæœˆ
+	u8	birth_day;								//16h	ç”Ÿã¾ã‚ŒãŸæ—¥
+	u16	get_place;								//18h	æ•ã¾ãˆãŸå ´æ‰€
 
-	u16	birth_place;							//1ah	¶‚Ü‚ê‚½êŠ
-	u8	pokerus;								//1bh	ƒ|ƒPƒ‹ƒX
-	u8	get_ball;								//1ch	•ß‚Ü‚¦‚½ƒ{[ƒ‹
+	u16	birth_place;							//1ah	ç”Ÿã¾ã‚ŒãŸå ´æ‰€
+	u8	pokerus;								//1bh	ãƒã‚±ãƒ«ã‚¹
+	u8	get_ball;								//1ch	æ•ã¾ãˆãŸãƒœãƒ¼ãƒ«
 
-	u8	get_level		:7;						//1dh	•ß‚Ü‚¦‚½ƒŒƒxƒ‹
-	u8	oyasex			:1;						//1dh	e‚Ì«•Ê
-	u8	get_ground_id;							//1eh	•ß‚Ü‚¦‚½êŠ‚Ì’nŒ`ƒAƒgƒŠƒrƒ…[ƒgiƒ~ƒmƒbƒ`—pj
-	u16	dummy_p4_1;								//20h	‚ ‚Ü‚è
+	u8	get_level		:7;						//1dh	æ•ã¾ãˆãŸãƒ¬ãƒ™ãƒ«
+	u8	oyasex			:1;						//1dh	è¦ªã®æ€§åˆ¥
+	u8	get_ground_id;							//1eh	æ•ã¾ãˆãŸå ´æ‰€ã®åœ°å½¢ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆï¼ˆãƒŸãƒãƒƒãƒç”¨ï¼‰
+	u16	dummy_p4_1;								//20h	ã‚ã¾ã‚Š
 };
 
 struct pokemon_para_data11
@@ -386,15 +386,15 @@ struct pokemon_para_data46
 	POKEMON_PASO_PARAM1	ppp1;
 };
 
-///<ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“•ª‚Ì\‘¢‘ÌéŒ¾
+///<ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³åˆ†ã®æ§‹é€ ä½“å®£è¨€
 struct pokemon_paso_param
 {
-	u32	personal_rnd;							//04h	ŒÂ«—”
-	u16	pp_fast_mode		:1;					//06h	ˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€¶¬‚ğŒã‰ñ‚µ‚É‚µ‚ÄAˆ—‚ğ‚‘¬‰»ƒ‚[ƒh
-	u16	ppp_fast_mode		:1;					//06h	ˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€¶¬‚ğŒã‰ñ‚µ‚É‚µ‚ÄAˆ—‚ğ‚‘¬‰»ƒ‚[ƒh
-	u16	fusei_tamago_flag	:1;					//06h	ƒ_ƒƒ^ƒ}ƒSƒtƒ‰ƒO
+	u32	personal_rnd;							//04h	å€‹æ€§ä¹±æ•°
+	u16	pp_fast_mode		:1;					//06h	æš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ç”Ÿæˆã‚’å¾Œå›ã—ã«ã—ã¦ã€å‡¦ç†ã‚’é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰
+	u16	ppp_fast_mode		:1;					//06h	æš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ç”Ÿæˆã‚’å¾Œå›ã—ã«ã—ã¦ã€å‡¦ç†ã‚’é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰
+	u16	fusei_tamago_flag	:1;					//06h	ãƒ€ãƒ¡ã‚¿ãƒã‚´ãƒ•ãƒ©ã‚°
 	u16						:13;				//06h
-	u16	checksum;								//08h	ƒ`ƒFƒbƒNƒTƒ€
+	u16	checksum;								//08h	ãƒã‚§ãƒƒã‚¯ã‚µãƒ 
 
 	u8	paradata[sizeof(POKEMON_PASO_PARAM1)+
 				 sizeof(POKEMON_PASO_PARAM2)+
@@ -402,74 +402,74 @@ struct pokemon_paso_param
 				 sizeof(POKEMON_PASO_PARAM4)];	//88h
 };
 
-///<ƒ{ƒbƒNƒXƒ|ƒPƒ‚ƒ“•ªˆÈŠO‚Ì\‘¢‘ÌéŒ¾
+///<ãƒœãƒƒã‚¯ã‚¹ãƒã‚±ãƒ¢ãƒ³åˆ†ä»¥å¤–ã®æ§‹é€ ä½“å®£è¨€
 struct pokemon_calc_param
 {
-	u32			condition;							//04h	ƒRƒ“ƒfƒBƒVƒ‡ƒ“
-	u8			level;								//05h	ƒŒƒxƒ‹
-	u8			cb_id;								//06h	ƒJƒXƒ^ƒ€ƒ{[ƒ‹ID
+	u32			condition;							//04h	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³
+	u8			level;								//05h	ãƒ¬ãƒ™ãƒ«
+	u8			cb_id;								//06h	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ID
 	u16			hp;									//08h	HP
 	u16			hpmax;								//0ah	HPMAX
-	u16			pow;								//0ch	UŒ‚—Í
-	u16			def;								//0eh	–hŒä—Í
-	u16			agi;								//10h	‘f‘‚³
-	u16			spepow;								//12h	“ÁU
-	u16			spedef;								//14h	“Á–h
-	_MAIL_DATA	mail_data;							//3ch	ƒ|ƒPƒ‚ƒ“‚É‚à‚½‚¹‚éƒ[ƒ‹ƒf[ƒ^
-	CB_CORE		cb_core;							//54h	ƒJƒXƒ^ƒ€ƒ{[ƒ‹
+	u16			pow;								//0ch	æ”»æ’ƒåŠ›
+	u16			def;								//0eh	é˜²å¾¡åŠ›
+	u16			agi;								//10h	ç´ æ—©ã•
+	u16			spepow;								//12h	ç‰¹æ”»
+	u16			spedef;								//14h	ç‰¹é˜²
+	_MAIL_DATA	mail_data;							//3ch	ãƒã‚±ãƒ¢ãƒ³ã«ã‚‚ãŸã›ã‚‹ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
+	CB_CORE		cb_core;							//54h	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
 };
 
-///<è‚¿ƒ|ƒPƒ‚ƒ“‚Ì\‘¢‘ÌéŒ¾
+///<æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®æ§‹é€ ä½“å®£è¨€
 struct	pokemon_param
 {
 	POKEMON_PASO_PARAM	ppp;				//88h
 	POKEMON_CALC_PARAM	pcp;				//dch 220
 };
 
-///<ƒ|ƒPƒ‚ƒ“ƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚Ì\‘¢‘ÌéŒ¾
+///<ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ§‹é€ ä½“å®£è¨€
 struct	pokemon_personal_data
 {
-	u8		basic_hp;			//Šî–{‚g‚o
-	u8		basic_pow;			//Šî–{UŒ‚—Í
-	u8		basic_def;			//Šî–{–hŒä—Í
-	u8		basic_agi;			//Šî–{‘f‘‚³
+	u8		basic_hp;			//åŸºæœ¬ï¼¨ï¼°
+	u8		basic_pow;			//åŸºæœ¬æ”»æ’ƒåŠ›
+	u8		basic_def;			//åŸºæœ¬é˜²å¾¡åŠ›
+	u8		basic_agi;			//åŸºæœ¬ç´ æ—©ã•
 
-	u8		basic_spepow;		//Šî–{“ÁêUŒ‚—Í
-	u8		basic_spedef;		//Šî–{“Áê–hŒä—Í
-	u8		type1;				//‘®«‚P
-	u8		type2;				//‘®«‚Q
+	u8		basic_spepow;		//åŸºæœ¬ç‰¹æ®Šæ”»æ’ƒåŠ›
+	u8		basic_spedef;		//åŸºæœ¬ç‰¹æ®Šé˜²å¾¡åŠ›
+	u8		type1;				//å±æ€§ï¼‘
+	u8		type2;				//å±æ€§ï¼’
 
-	u8		get_rate;			//•ßŠl—¦
-	u8		give_exp;			//‘¡—^ŒoŒ±’l
+	u8		get_rate;			//æ•ç²ç‡
+	u8		give_exp;			//è´ˆä¸çµŒé¨“å€¤
 
-	u16		pains_hp	:2;		//‘¡—^“w—Í’l‚g‚o
-	u16		pains_pow	:2;		//‘¡—^“w—Í’lUŒ‚—Í
-	u16		pains_def	:2;		//‘¡—^“w—Í’l–hŒä—Í
-	u16		pains_agi	:2;		//‘¡—^“w—Í’l‘f‘‚³
-	u16		pains_spepow:2;		//‘¡—^“w—Í’l“ÁêUŒ‚—Í
-	u16		pains_spedef:2;		//‘¡—^“w—Í’l“Áê–hŒä—Í
-	u16					:4;		//‘¡—^“w—Í’l—\”õ
+	u16		pains_hp	:2;		//è´ˆä¸åŠªåŠ›å€¤ï¼¨ï¼°
+	u16		pains_pow	:2;		//è´ˆä¸åŠªåŠ›å€¤æ”»æ’ƒåŠ›
+	u16		pains_def	:2;		//è´ˆä¸åŠªåŠ›å€¤é˜²å¾¡åŠ›
+	u16		pains_agi	:2;		//è´ˆä¸åŠªåŠ›å€¤ç´ æ—©ã•
+	u16		pains_spepow:2;		//è´ˆä¸åŠªåŠ›å€¤ç‰¹æ®Šæ”»æ’ƒåŠ›
+	u16		pains_spedef:2;		//è´ˆä¸åŠªåŠ›å€¤ç‰¹æ®Šé˜²å¾¡åŠ›
+	u16					:4;		//è´ˆä¸åŠªåŠ›å€¤äºˆå‚™
 
-	u16		item1;				//ƒAƒCƒeƒ€‚P
-	u16		item2;				//ƒAƒCƒeƒ€‚Q
+	u16		item1;				//ã‚¢ã‚¤ãƒ†ãƒ ï¼‘
+	u16		item2;				//ã‚¢ã‚¤ãƒ†ãƒ ï¼’
 
-	u8		sex;				//«•ÊƒxƒNƒgƒ‹
-	u8		egg_birth;			//ƒ^ƒ}ƒS‚Ì›z‰»•à”
-	u8		friend;				//‚È‚Â‚«“x‰Šú’l
-	u8		grow;				//¬’·‹Èü¯•Ê
+	u8		sex;				//æ€§åˆ¥ãƒ™ã‚¯ãƒˆãƒ«
+	u8		egg_birth;			//ã‚¿ãƒã‚´ã®å­µåŒ–æ­©æ•°
+	u8		friend;				//ãªã¤ãåº¦åˆæœŸå€¤
+	u8		grow;				//æˆé•·æ›²ç·šè­˜åˆ¥
 
-	u8		egg_group1;			//‚±‚Ã‚­‚èƒOƒ‹[ƒv1
-	u8		egg_group2;			//‚±‚Ã‚­‚èƒOƒ‹[ƒv2
-	u8		speabi1;			//“Áê”\—Í‚P
-	u8		speabi2;			//“Áê”\—Í‚Q
+	u8		egg_group1;			//ã“ã¥ãã‚Šã‚°ãƒ«ãƒ¼ãƒ—1
+	u8		egg_group2;			//ã“ã¥ãã‚Šã‚°ãƒ«ãƒ¼ãƒ—2
+	u8		speabi1;			//ç‰¹æ®Šèƒ½åŠ›ï¼‘
+	u8		speabi2;			//ç‰¹æ®Šèƒ½åŠ›ï¼’
 
-	u8		escape;				//“¦‚°‚é—¦
-	u8		color	:7;			//Fi}ŠÓ‚Åg—pj
-	u8		reverse	:1;			//”½“]ƒtƒ‰ƒO
-	u32		machine1;			//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚P
-	u32		machine2;			//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚Q
-	u32		machine3;			//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚Q
-	u32		machine4;			//‹Zƒ}ƒVƒ“ƒtƒ‰ƒO‚Q
+	u8		escape;				//é€ƒã’ã‚‹ç‡
+	u8		color	:7;			//è‰²ï¼ˆå›³é‘‘ã§ä½¿ç”¨ï¼‰
+	u8		reverse	:1;			//åè»¢ãƒ•ãƒ©ã‚°
+	u32		machine1;			//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼‘
+	u32		machine2;			//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼’
+	u32		machine3;			//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼’
+	u32		machine4;			//æŠ€ãƒã‚·ãƒ³ãƒ•ãƒ©ã‚°ï¼’
 };
 
 struct pokemon_shinka_data{
@@ -496,15 +496,15 @@ typedef struct{
 
 // -----------------------------------------
 //
-//	¡ƒ|ƒPƒ‚ƒ“ƒAƒjƒƒf[ƒ^	•Ğ–Ê—p
+//	â– ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿	ç‰‡é¢ç”¨
 //
 // -----------------------------------------
 struct TPoke_Anime_Data {
 	
-	u8					voice_wait;					///< –Â‚«ºŠJn‚ÌƒEƒFƒCƒg
-	u8					prg_anm;					///< ƒvƒƒOƒ‰ƒ€ƒAƒjƒ
-	u8					prg_anm_wait;				///< ƒvƒƒOƒ‰ƒ€ƒAƒjƒŠJnƒEƒFƒCƒg
-	SOFT_SPRITE_ANIME	ssanm[ SS_ANM_SEQ_MAX ];	///< ƒpƒ^[ƒ“ƒAƒjƒƒf[ƒ^
+	u8					voice_wait;					///< é³´ãå£°é–‹å§‹ã®ã‚¦ã‚§ã‚¤ãƒˆ
+	u8					prg_anm;					///< ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡
+	u8					prg_anm_wait;				///< ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡é–‹å§‹ã‚¦ã‚§ã‚¤ãƒˆ
+	SOFT_SPRITE_ANIME	ssanm[ SS_ANM_SEQ_MAX ];	///< ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 	
 };// POKE_ANIME_DATA;
 
@@ -512,16 +512,16 @@ typedef struct TPoke_Anime_Data POKE_ANIME_DATA;
 
 // -----------------------------------------
 //
-//	¡ƒ|ƒPƒ‚ƒ“ƒAƒjƒƒf[ƒ^	•Û‘¶—p
+//	â– ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿	ä¿å­˜ç”¨
 //
 // -----------------------------------------
 typedef struct {
 	
-	POKE_ANIME_DATA		poke_anime[ 2 ];			///< ƒ|ƒPƒ‚ƒ“ƒAƒjƒƒf[ƒ^ 0 = ³–Ê 1 = ”w–Ê
+	POKE_ANIME_DATA		poke_anime[ 2 ];			///< ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ 0 = æ­£é¢ 1 = èƒŒé¢
 	
-	s8					height;						///< ‚‚³î•ñ
-	s8					shadow_ofx;					///< ‰e‚ÌƒIƒtƒZƒbƒg
-	u8					shadow_size;				///< ‰e‚ÌƒTƒCƒY
+	s8					height;						///< é«˜ã•æƒ…å ±
+	s8					shadow_ofx;					///< å½±ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u8					shadow_size;				///< å½±ã®ã‚µã‚¤ã‚º
 
 } POKE_ANM_EDIT_DATA;
 
@@ -531,110 +531,110 @@ typedef struct {
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘Îí˜^‰æ—p‚ÉƒJƒXƒ^ƒ}ƒCƒY‚³‚ê‚½ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * å¯¾æˆ¦éŒ²ç”»ç”¨ã«ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 struct rec_pokepara{
 	//--------------------------------------------------------------
 	//	pokemon_paso_param
 	//--------------------------------------------------------------
-	u32	personal_rnd;							//04h	ŒÂ«—”
-	u16	pp_fast_mode		:1;					//06h	ˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€¶¬‚ğŒã‰ñ‚µ‚É‚µ‚ÄAˆ—‚ğ‚‘¬‰»ƒ‚[ƒh
-	u16	ppp_fast_mode		:1;					//06h	ˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€¶¬‚ğŒã‰ñ‚µ‚É‚µ‚ÄAˆ—‚ğ‚‘¬‰»ƒ‚[ƒh
-	u16	fusei_tamago_flag	:1;					//06h	ƒ_ƒƒ^ƒ}ƒSƒtƒ‰ƒO
+	u32	personal_rnd;							//04h	å€‹æ€§ä¹±æ•°
+	u16	pp_fast_mode		:1;					//06h	æš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ç”Ÿæˆã‚’å¾Œå›ã—ã«ã—ã¦ã€å‡¦ç†ã‚’é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰
+	u16	ppp_fast_mode		:1;					//06h	æš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ç”Ÿæˆã‚’å¾Œå›ã—ã«ã—ã¦ã€å‡¦ç†ã‚’é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰
+	u16	fusei_tamago_flag	:1;					//06h	ãƒ€ãƒ¡ã‚¿ãƒã‚´ãƒ•ãƒ©ã‚°
 	u16						:13;				//06h
-//	u16	checksum;								//08h	ƒ`ƒFƒbƒNƒTƒ€
+//	u16	checksum;								//08h	ãƒã‚§ãƒƒã‚¯ã‚µãƒ 
 	
 	//--------------------------------------------------------------
 	//	pokemon_paso_param1
 	//--------------------------------------------------------------
-	u16	monsno;								//02h	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-	u16 item;								//04h	ŠƒAƒCƒeƒ€ƒiƒ“ƒo[
+	u16	monsno;								//02h	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u16 item;								//04h	æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
 	u32	id_no;								//08h	IDNo
-	u32	exp;								//0ch	ŒoŒ±’l
-	u8	friend;								//0dh	‚È‚Â‚«“x
-	u8	speabino;							//0eh	“Áê”\—Í
-//	u8	mark;								//0fh	ƒ|ƒPƒ‚ƒ“‚É‚Â‚¯‚éƒ}[ƒNiƒ{ƒbƒNƒXj
-//	u8	country_code;						//10h	‘ƒR[ƒh
-	u8	hp_exp;								//11h	HP“w—Í’l
-	u8	pow_exp;							//12h	UŒ‚—Í“w—Í’l
-	u8	def_exp;							//13h	–hŒä—Í“w—Í’l
-	u8	agi_exp;							//14h	‘f‘‚³“w—Í’l
-	u8	spepow_exp;							//15h	“ÁU“w—Í’l
-	u8	spedef_exp;							//16h	“Á–h“w—Í’l
-//	u8	style;								//17h	‚©‚Á‚±‚æ‚³
-//	u8	beautiful;							//18h	‚¤‚Â‚­‚µ‚³
-//	u8	cute;								//19h	‚©‚í‚¢‚³
-//	u8	clever;								//1ah	‚©‚µ‚±‚³
-//	u8	strong;								//1bh	‚½‚­‚Ü‚µ‚³
-//	u8	fur;								//1ch	–Ñ‰
-//	u32	sinou_ribbon;						//20h	ƒVƒ“ƒIƒEŒnƒŠƒ{ƒ“
+	u32	exp;								//0ch	çµŒé¨“å€¤
+	u8	friend;								//0dh	ãªã¤ãåº¦
+	u8	speabino;							//0eh	ç‰¹æ®Šèƒ½åŠ›
+//	u8	mark;								//0fh	ãƒã‚±ãƒ¢ãƒ³ã«ã¤ã‘ã‚‹ãƒãƒ¼ã‚¯ï¼ˆãƒœãƒƒã‚¯ã‚¹ï¼‰
+//	u8	country_code;						//10h	å›½ã‚³ãƒ¼ãƒ‰
+	u8	hp_exp;								//11h	HPåŠªåŠ›å€¤
+	u8	pow_exp;							//12h	æ”»æ’ƒåŠ›åŠªåŠ›å€¤
+	u8	def_exp;							//13h	é˜²å¾¡åŠ›åŠªåŠ›å€¤
+	u8	agi_exp;							//14h	ç´ æ—©ã•åŠªåŠ›å€¤
+	u8	spepow_exp;							//15h	ç‰¹æ”»åŠªåŠ›å€¤
+	u8	spedef_exp;							//16h	ç‰¹é˜²åŠªåŠ›å€¤
+//	u8	style;								//17h	ã‹ã£ã“ã‚ˆã•
+//	u8	beautiful;							//18h	ã†ã¤ãã—ã•
+//	u8	cute;								//19h	ã‹ã‚ã„ã•
+//	u8	clever;								//1ah	ã‹ã—ã“ã•
+//	u8	strong;								//1bh	ãŸãã¾ã—ã•
+//	u8	fur;								//1ch	æ¯›è‰¶
+//	u32	sinou_ribbon;						//20h	ã‚·ãƒ³ã‚ªã‚¦ç³»ãƒªãƒœãƒ³
 
 	//--------------------------------------------------------------
 	//	pokemon_paso_param2
 	//--------------------------------------------------------------
-	u16	waza[WAZA_TEMOTI_MAX];				//08h	Š‹Z
-	u8	pp[WAZA_TEMOTI_MAX];				//0ch	Š‹ZPP
-	u8	pp_count[WAZA_TEMOTI_MAX];			//10h	Š‹ZPP_COUNT
-	u32	hp_rnd			:5;					//		HP—”
-	u32	pow_rnd			:5;					//		UŒ‚—Í—”
-	u32	def_rnd			:5;					//		–hŒä—Í—”
-	u32	agi_rnd			:5;					//		‘f‘‚³—”
-	u32	spepow_rnd		:5;					//		“ÁU—”
-	u32	spedef_rnd		:5;					//		“Á–h—”
-	u32	tamago_flag		:1;					//		ƒ^ƒ}ƒSƒtƒ‰ƒOi0:ƒ^ƒ}ƒS‚¶‚á‚È‚¢@1:ƒ^ƒ}ƒS‚¾‚æj
-	u32	nickname_flag	:1;					//14h	ƒjƒbƒNƒl[ƒ€‚ğ‚Â‚¯‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-//	u32	old_ribbon;							//18h	‰ß‹ì‚ÌƒŠƒ{ƒ“Œn
-	u8	event_get_flag	:1;					//		ƒCƒxƒ“ƒg‚Å”z•z‚µ‚½‚±‚Æ‚ğ¦‚·ƒtƒ‰ƒO
-	u8	sex				:2;					//   	ƒ|ƒPƒ‚ƒ“‚Ì«•Ê
-	u8	form_no			:5;					//19h	Œ`óƒiƒ“ƒo[
-//	u8	dummy_p2_1;							//1ah	‚ ‚Ü‚è
-//	u16	dummy_p2_2;							//1ch	‚ ‚Ü‚è
-//	u32	dummy_p2_3;							//20h	‚ ‚Ü‚è
+	u16	waza[WAZA_TEMOTI_MAX];				//08h	æ‰€æŒæŠ€
+	u8	pp[WAZA_TEMOTI_MAX];				//0ch	æ‰€æŒæŠ€PP
+	u8	pp_count[WAZA_TEMOTI_MAX];			//10h	æ‰€æŒæŠ€PP_COUNT
+	u32	hp_rnd			:5;					//		HPä¹±æ•°
+	u32	pow_rnd			:5;					//		æ”»æ’ƒåŠ›ä¹±æ•°
+	u32	def_rnd			:5;					//		é˜²å¾¡åŠ›ä¹±æ•°
+	u32	agi_rnd			:5;					//		ç´ æ—©ã•ä¹±æ•°
+	u32	spepow_rnd		:5;					//		ç‰¹æ”»ä¹±æ•°
+	u32	spedef_rnd		:5;					//		ç‰¹é˜²ä¹±æ•°
+	u32	tamago_flag		:1;					//		ã‚¿ãƒã‚´ãƒ•ãƒ©ã‚°ï¼ˆ0:ã‚¿ãƒã‚´ã˜ã‚ƒãªã„ã€€1:ã‚¿ãƒã‚´ã ã‚ˆï¼‰
+	u32	nickname_flag	:1;					//14h	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ã¤ã‘ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+//	u32	old_ribbon;							//18h	éå»ä½œã®ãƒªãƒœãƒ³ç³»
+	u8	event_get_flag	:1;					//		ã‚¤ãƒ™ãƒ³ãƒˆã§é…å¸ƒã—ãŸã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°
+	u8	sex				:2;					//   	ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥
+	u8	form_no			:5;					//19h	å½¢çŠ¶ãƒŠãƒ³ãƒãƒ¼
+//	u8	dummy_p2_1;							//1ah	ã‚ã¾ã‚Š
+//	u16	dummy_p2_2;							//1ch	ã‚ã¾ã‚Š
+//	u32	dummy_p2_3;							//20h	ã‚ã¾ã‚Š
 	
 	//--------------------------------------------------------------
 	//	pokemon_paso_param3
 	//--------------------------------------------------------------
-	STRCODE	nickname[MONS_NAME_SIZE+EOM_SIZE];	//16h	ƒjƒbƒNƒl[ƒ€
-//	u8	pref_code;								//18h	“s“¹•{Œ§ƒR[ƒh
-//	u8	get_cassette;							//		•ß‚Ü‚¦‚½ƒJƒZƒbƒgƒo[ƒWƒ‡ƒ“
-//	u64	new_ribbon;								//20h	VƒŠƒ{ƒ“Œn
+	STRCODE	nickname[MONS_NAME_SIZE+EOM_SIZE];	//16h	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+//	u8	pref_code;								//18h	éƒ½é“åºœçœŒã‚³ãƒ¼ãƒ‰
+//	u8	get_cassette;							//		æ•ã¾ãˆãŸã‚«ã‚»ãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³
+//	u64	new_ribbon;								//20h	æ–°ãƒªãƒœãƒ³ç³»
 	
 	//--------------------------------------------------------------
 	//	pokemon_paso_param4
 	//--------------------------------------------------------------
-	STRCODE	oyaname[PERSON_NAME_SIZE+EOM_SIZE];	//10h	e‚Ì–¼‘O
-//	u8	get_year;								//11h	•ß‚Ü‚¦‚½”N
-//	u8	get_month;								//12h	•ß‚Ü‚¦‚½Œ
-//	u8	get_day;								//13h	•ß‚Ü‚¦‚½“ú
-//	u8	birth_year;								//14h	¶‚Ü‚ê‚½”N
-//	u8	birth_month;							//15h	¶‚Ü‚ê‚½Œ
-//	u8	birth_day;								//16h	¶‚Ü‚ê‚½“ú
-//	u16	get_place;								//18h	•ß‚Ü‚¦‚½êŠ
-//	u16	birth_place;							//1ah	¶‚Ü‚ê‚½êŠ
-//	u8	pokerus;								//1bh	ƒ|ƒPƒ‹ƒX
-	u8	get_ball;								//1ch	•ß‚Ü‚¦‚½ƒ{[ƒ‹
-//	u8	get_level		:7;						//1dh	•ß‚Ü‚¦‚½ƒŒƒxƒ‹
-//	u8	oyasex			:1;						//1dh	e‚Ì«•Ê
-//	u8	get_ground_id;							//1eh	•ß‚Ü‚¦‚½êŠ‚Ì’nŒ`ƒAƒgƒŠƒrƒ…[ƒg
-//	u16	dummy_p4_1;								//20h	‚ ‚Ü‚è
-	u8  language;								//Œ¾ŒêƒR[ƒh
+	STRCODE	oyaname[PERSON_NAME_SIZE+EOM_SIZE];	//10h	è¦ªã®åå‰
+//	u8	get_year;								//11h	æ•ã¾ãˆãŸå¹´
+//	u8	get_month;								//12h	æ•ã¾ãˆãŸæœˆ
+//	u8	get_day;								//13h	æ•ã¾ãˆãŸæ—¥
+//	u8	birth_year;								//14h	ç”Ÿã¾ã‚ŒãŸå¹´
+//	u8	birth_month;							//15h	ç”Ÿã¾ã‚ŒãŸæœˆ
+//	u8	birth_day;								//16h	ç”Ÿã¾ã‚ŒãŸæ—¥
+//	u16	get_place;								//18h	æ•ã¾ãˆãŸå ´æ‰€
+//	u16	birth_place;							//1ah	ç”Ÿã¾ã‚ŒãŸå ´æ‰€
+//	u8	pokerus;								//1bh	ãƒã‚±ãƒ«ã‚¹
+	u8	get_ball;								//1ch	æ•ã¾ãˆãŸãƒœãƒ¼ãƒ«
+//	u8	get_level		:7;						//1dh	æ•ã¾ãˆãŸãƒ¬ãƒ™ãƒ«
+//	u8	oyasex			:1;						//1dh	è¦ªã®æ€§åˆ¥
+//	u8	get_ground_id;							//1eh	æ•ã¾ãˆãŸå ´æ‰€ã®åœ°å½¢ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+//	u16	dummy_p4_1;								//20h	ã‚ã¾ã‚Š
+	u8  language;								//è¨€èªã‚³ãƒ¼ãƒ‰
 	
 	//--------------------------------------------------------------
 	//	pokemon_calc_param
 	//--------------------------------------------------------------
-	u32			condition;							//04h	ƒRƒ“ƒfƒBƒVƒ‡ƒ“
-	u8			level;								//05h	ƒŒƒxƒ‹
-	u8			cb_id;								//06h	ƒJƒXƒ^ƒ€ƒ{[ƒ‹ID
+	u32			condition;							//04h	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³
+	u8			level;								//05h	ãƒ¬ãƒ™ãƒ«
+	u8			cb_id;								//06h	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ID
 	u16			hp;									//08h	HP
 	u16			hpmax;								//0ah	HPMAX
-	u16			pow;								//0ch	UŒ‚—Í
-	u16			def;								//0eh	–hŒä—Í
-	u16			agi;								//10h	‘f‘‚³
-	u16			spepow;								//12h	“ÁU
-	u16			spedef;								//14h	“Á–h
-//	_MAIL_DATA	mail_data;							//3ch	ƒ|ƒPƒ‚ƒ“‚É‚à‚½‚¹‚éƒ[ƒ‹ƒf[ƒ^
-//	CB_CORE		cb_core;							//54h	ƒJƒXƒ^ƒ€ƒ{[ƒ‹
+	u16			pow;								//0ch	æ”»æ’ƒåŠ›
+	u16			def;								//0eh	é˜²å¾¡åŠ›
+	u16			agi;								//10h	ç´ æ—©ã•
+	u16			spepow;								//12h	ç‰¹æ”»
+	u16			spedef;								//14h	ç‰¹é˜²
+//	_MAIL_DATA	mail_data;							//3ch	ãƒã‚±ãƒ¢ãƒ³ã«ã‚‚ãŸã›ã‚‹ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
+//	CB_CORE		cb_core;							//54h	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
 	
 };
 

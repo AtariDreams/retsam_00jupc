@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief ƒ|ƒPƒ‚ƒ“ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ “à•”ŒöŠJƒwƒbƒ_
+ * @brief ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª å†…éƒ¨å…¬é–‹ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef PPW_SENDER_H_
@@ -23,14 +23,14 @@
 #include <lobby/dwci_lobby.h>
 #include "ppw_parser.h"
 
-// ƒ`ƒƒƒ“ƒlƒ‹Ý’è
+// ãƒãƒ£ãƒ³ãƒãƒ«è¨­å®š
 const DWCi_LobbyChannelMode PPW_LOBBY_CHANNEL_MODE_MAIN_OPEN    = {FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, PPW_LOBBY_MAX_PLAYER_NUM_MAIN};
 const DWCi_LobbyChannelMode PPW_LOBBY_CHANNEL_MODE_MAIN_LOCK    = {FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, PPW_LOBBY_MAX_PLAYER_NUM_MAIN};
 const DWCi_LobbyChannelMode PPW_LOBBY_CHANNEL_MODE_FOOT         = {FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, PPW_LOBBY_MAX_PLAYER_NUM_FOOT};
 const DWCi_LobbyChannelMode PPW_LOBBY_CHANNEL_MODE_CLOCK        = {FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, PPW_LOBBY_MAX_PLAYER_NUM_CLOCK};
 const DWCi_LobbyChannelMode PPW_LOBBY_CHANNEL_MODE_NEWS         = {FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, PPW_LOBBY_MAX_PLAYER_NUM_NEWS};
 
-// ƒVƒXƒeƒ€‚ÅŽg—p‚·‚éƒƒbƒZ[ƒWƒ^ƒCƒv
+// ã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
 typedef enum PPW_LOBBY_MESSAGE_TYPE
 {
     PPW_LOBBY_MESSAGE_TYPE_LOCK,
@@ -39,7 +39,7 @@ typedef enum PPW_LOBBY_MESSAGE_TYPE
 }
 PPW_LOBBY_MESSAGE_TYPE;
 
-// ‘—M‚·‚éƒf[ƒ^‚ª‚È‚¢ê‡‚ÉŽw’è‚·‚éƒ_ƒ~[ƒf[ƒ^
+// é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã«æŒ‡å®šã™ã‚‹ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 typedef struct PPW_LobbyDummyData
 {
     u32 dummy;

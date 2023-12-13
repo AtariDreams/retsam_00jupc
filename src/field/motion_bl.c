@@ -2,7 +2,7 @@
 /**
  *
  *@file		motion_bl.c
- *@brief	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[
+ *@brief	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼
  *@author	 tomoya takahashi
  *@data		2005.07.27
  *
@@ -15,22 +15,22 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒIƒuƒWƒFƒNƒg
+//	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //	
 //=====================================
 typedef struct _MOTION_BL_TASK{
-	GXVRamLCDC		lcdc;		// Œ³‚ÌLCDC
+	GXVRamLCDC		lcdc;		// å…ƒã®LCDC
 	MOTION_BL_DATA	data;
 	BOOL			init_flg;
 	TCB_PTR			tcb;	
@@ -39,11 +39,11 @@ typedef struct _MOTION_BL_TASK{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-static void VBlankLCDCChange(TCB_PTR tcb, void* work);	// LCDC‚Ìó‘Ô‚ðÝ’è‚·‚éƒ^ƒXƒN
-static void MOTION_BL_Task(TCB_PTR tcb, void* work);		// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒ^ƒXƒN
+static void VBlankLCDCChange(TCB_PTR tcb, void* work);	// LCDCã®çŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹ã‚¿ã‚¹ã‚¯
+static void MOTION_BL_Task(TCB_PTR tcb, void* work);		// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚¿ã‚¹ã‚¯
 static void MOTION_BL_Capture( MOTION_BL_DATA* p_data );
 
 
@@ -51,11 +51,11 @@ static void MOTION_BL_Capture( MOTION_BL_DATA* p_data );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[‚ðŽg‚¦‚éó‘Ô‚É‰Šú‰»
+ *@brief	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚’ä½¿ãˆã‚‹çŠ¶æ…‹ã«åˆæœŸåŒ–
  *
- *@param	init		‰Šú‰»ƒf[ƒ^
+ *@param	init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
- *@return	MOTION_BL_PTR	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒIƒuƒWƒFƒNƒg
+ *@return	MOTION_BL_PTR	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
  *
  */
@@ -65,7 +65,7 @@ MOTION_BL_PTR MOTION_BL_Init(MOTION_BL_DATA* init)
 	TCB_PTR task;
 	MOTION_BL_PTR mb;
 	
-	// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒ^ƒXƒN‚ðƒZƒbƒg
+	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚¿ã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	task = PMDS_taskAdd(MOTION_BL_Task, sizeof(MOTION_BL_TASK), 5, init->heap_id);
 	mb = TCB_GetWork(task);
 
@@ -77,7 +77,7 @@ MOTION_BL_PTR MOTION_BL_Init(MOTION_BL_DATA* init)
 
 	MOTION_BL_Capture( &mb->data );
 
-	// LCDCƒ`ƒFƒ“ƒW
+	// LCDCãƒã‚§ãƒ³ã‚¸
 	VWaitTCB_Add( VBlankLCDCChange, mb, 0 );
 //	addVBlankData(mb, VBlankLCDCChange);
 
@@ -89,12 +89,12 @@ MOTION_BL_PTR MOTION_BL_Init(MOTION_BL_DATA* init)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[‚Ì‰ðœ
+ *@brief	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã®è§£é™¤
  *
- *@param	data		ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒIƒuƒWƒF
- *@param	dispMode	‰ðœŒã‚ÌƒfƒBƒXƒvƒŒƒCƒ‚[ƒh
- *@param	bgMode		‰ðœŒã‚ÌBGƒ‚[ƒh
- *@param	bg0_2d3d	‰ðœŒã‚ÌBG‚O‚ð‚RD‚ÉŽg—p‚·‚é‚©
+ *@param	data		ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚ªãƒ–ã‚¸ã‚§
+ *@param	dispMode	è§£é™¤å¾Œã®ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰
+ *@param	bgMode		è§£é™¤å¾Œã®BGãƒ¢ãƒ¼ãƒ‰
+ *@param	bg0_2d3d	è§£é™¤å¾Œã®BGï¼ã‚’ï¼“Dã«ä½¿ç”¨ã™ã‚‹ã‹
  *
  *@return	none
  *
@@ -105,7 +105,7 @@ void MOTION_BL_Delete(MOTION_BL_PTR* data, GXDispMode dispMode, GXBGMode bgMode,
 {
 	
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒ‚[ƒh‚ð–ß‚·
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¢ãƒ¼ãƒ‰ã‚’æˆ»ã™
 	GX_SetGraphicsMode(dispMode, bgMode,bg0_2d3d);
 
 	GX_SetBankForLCDC((*data)->lcdc);
@@ -129,7 +129,7 @@ void MOTION_BL_Delete(MOTION_BL_PTR* data, GXDispMode dispMode, GXBGMode bgMode,
 	}
 		
 	
-	// ƒ^ƒXƒN”jŠü
+	// ã‚¿ã‚¹ã‚¯ç ´æ£„
 	PMDS_taskDel((*data)->tcb);
 	*data = NULL;
 }
@@ -137,11 +137,11 @@ void MOTION_BL_Delete(MOTION_BL_PTR* data, GXDispMode dispMode, GXBGMode bgMode,
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“r’†‚Åƒpƒ‰ƒ[ƒ^‚ð•ÏX
+ *@brief	é€”ä¸­ã§ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´
  *
- *@param	data	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒIƒuƒWƒF
- *@param	eva		ƒuƒŒƒ“ƒhŒW”A
- *@param	evb		ƒuƒŒƒ“ƒhŒW”B
+ *@param	data	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚ªãƒ–ã‚¸ã‚§
+ *@param	eva		ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°A
+ *@param	evb		ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°B
  *
  *@return	none
  *
@@ -158,10 +158,10 @@ void MOTION_BL_ParamChg(MOTION_BL_PTR data, int eva, int evb)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[@ƒLƒƒƒvƒ`ƒƒƒ^ƒXƒN
+ *@brief	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã€€ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- *@param	work	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ *@param	work	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -172,25 +172,25 @@ static void MOTION_BL_Task(TCB_PTR tcb, void* work)
 {
 	MOTION_BL_PTR mb = work;
 	
-	//‰Šú‰»Š®—¹‘Ò‚¿
+	//åˆæœŸåŒ–å®Œäº†å¾…ã¡
 	if( mb->init_flg ){
 		GX_SetCapture(
-				mb->data.sz,			// ƒLƒƒƒvƒ`ƒƒƒTƒCƒY
-				mb->data.mode,			// ƒLƒƒƒvƒ`ƒƒƒ‚[ƒh
-				mb->data.a,				// ƒLƒƒƒvƒ`ƒƒƒuƒŒƒ“ƒhA
-				mb->data.b,				// ƒLƒƒƒvƒ`ƒƒƒuƒŒƒ“ƒhB
-				mb->data.dest,			// “]‘—Vram
-				mb->data.eva,			// ƒuƒŒƒ“ƒhŒW”A
-				mb->data.evb);			// ƒuƒŒƒ“ƒhŒW”B
+				mb->data.sz,			// ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚µã‚¤ã‚º
+				mb->data.mode,			// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¢ãƒ¼ãƒ‰
+				mb->data.a,				// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ–ãƒ¬ãƒ³ãƒ‰A
+				mb->data.b,				// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ–ãƒ¬ãƒ³ãƒ‰B
+				mb->data.dest,			// è»¢é€Vram
+				mb->data.eva,			// ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°A
+				mb->data.evb);			// ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°B
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	LCDC‚Ìó‘Ô‚ðÝ’è‚·‚éƒ^ƒXƒN
+ *@brief	LCDCã®çŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹ã‚¿ã‚¹ã‚¯
  *
- *@param	work	Ý’è‚·‚é’l‚ª“ü‚Á‚Ä‚¢‚é
+ *@param	work	è¨­å®šã™ã‚‹å€¤ãŒå…¥ã£ã¦ã„ã‚‹
  *
  *@return	none
  *
@@ -201,7 +201,7 @@ static void VBlankLCDCChange(TCB_PTR tcb, void* work)
 {
 	MOTION_BL_PTR mb = (MOTION_BL_PTR)work;
 
-	// •`‰æVramÝ’è
+	// æç”»Vramè¨­å®š
 	switch(mb->data.dispMode){
 	case GX_DISPMODE_VRAM_A:
 		GX_SetBankForLCDC(GX_VRAM_LCDC_A);
@@ -220,10 +220,10 @@ static void VBlankLCDCChange(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒ‚[ƒhÝ’è
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	GX_SetGraphicsMode(mb->data.dispMode, mb->data.bgMode,mb->data.bg0_2d3d);	
 
-	// ‰Šú‰»Š®—¹
+	// åˆæœŸåŒ–å®Œäº†
 	mb->init_flg = TRUE;
 
 	TCB_Delete( tcb );
@@ -231,7 +231,7 @@ static void VBlankLCDCChange(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CaptureŠÖ”
+ *	@brief	Captureé–¢æ•°
  *
  *	@param	p_data 
  *
@@ -240,7 +240,7 @@ static void VBlankLCDCChange(TCB_PTR tcb, void* work)
 //-----------------------------------------------------------------------------
 static void MOTION_BL_Capture( MOTION_BL_DATA* p_data )
 {
-	// •`‰æVram‰Šú‰»
+	// æç”»VramåˆæœŸåŒ–
 	switch(p_data->dispMode){
 	case GX_DISPMODE_VRAM_A:
 		MI_CpuClearFast( (void*)HW_LCDC_VRAM_A, HW_VRAM_A_SIZE );
@@ -259,11 +259,11 @@ static void MOTION_BL_Capture( MOTION_BL_DATA* p_data )
 	}
 
 	GX_SetCapture(
-			p_data->sz,			// ƒLƒƒƒvƒ`ƒƒƒTƒCƒY
-			p_data->mode,			// ƒLƒƒƒvƒ`ƒƒƒ‚[ƒh
-			p_data->a,				// ƒLƒƒƒvƒ`ƒƒƒuƒŒƒ“ƒhA
-			p_data->b,				// ƒLƒƒƒvƒ`ƒƒƒuƒŒƒ“ƒhB
-			p_data->dest,			// “]‘—Vram
-			16,						// ƒuƒŒƒ“ƒhŒW”A
-			0);						// ƒuƒŒƒ“ƒhŒW”B	
+			p_data->sz,			// ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚µã‚¤ã‚º
+			p_data->mode,			// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¢ãƒ¼ãƒ‰
+			p_data->a,				// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ–ãƒ¬ãƒ³ãƒ‰A
+			p_data->b,				// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ–ãƒ¬ãƒ³ãƒ‰B
+			p_data->dest,			// è»¢é€Vram
+			16,						// ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°A
+			0);						// ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°B	
 }

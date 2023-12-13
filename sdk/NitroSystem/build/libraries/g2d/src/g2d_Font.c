@@ -28,14 +28,14 @@
 /*---------------------------------------------------------------------------*
   Name:         GetGlyphIndex
 
-  Description:  �����R�[�h�}�b�v�u���b�N���� c �ɑΉ�����O���t�C���f�b�N�X��
-                �擾���܂��B
+  Description:  文字コードマップブロックから c に対応するグリフインデックスを
+                取得します。
 
-  Arguments:    pMap:   �t�H���g�̕����R�[�h�}�b�v�u���b�N�B
-                c:      �����R�[�h�B
+  Arguments:    pMap:   フォントの文字コードマップブロック。
+                c:      文字コード。
 
-  Returns:      c �ɑΉ�����O���t�C���f�b�N�X�B
-                ���݂��Ȃ��ꍇ�� NNS_G2D_GLYPH_INDEX_NOT_FOUND�B
+  Returns:      c に対応するグリフインデックス。
+                存在しない場合は NNS_G2D_GLYPH_INDEX_NOT_FOUND。
  *---------------------------------------------------------------------------*/
 static u16 GetGlyphIndex(const NNSG2dFontCodeMap* pMap, u16 c)
 {
@@ -47,7 +47,7 @@ static u16 GetGlyphIndex(const NNSG2dFontCodeMap* pMap, u16 c)
     switch( pMap->mappingMethod )
     {
     //-----------------------------------------------------------
-    // �C���f�b�N�X = �����R�[�h - �I�t�Z�b�g
+    // インデックス = 文字コード - オフセット
     case NNS_G2D_MAPMETHOD_DIRECT:
         {
             u16 offset = pMap->mapInfo[0];
@@ -56,7 +56,7 @@ static u16 GetGlyphIndex(const NNSG2dFontCodeMap* pMap, u16 c)
         break;
 
     //-----------------------------------------------------------
-    // �C���f�b�N�X = table[�����R�[�h - �����R�[�h�I�t�Z�b�g]
+    // インデックス = table[文字コード - 文字コードオフセット]
     case NNS_G2D_MAPMETHOD_TABLE:
         {
             const int table_index = c - pMap->ccodeBegin;
@@ -66,7 +66,7 @@ static u16 GetGlyphIndex(const NNSG2dFontCodeMap* pMap, u16 c)
         break;
 
     //-----------------------------------------------------------
-    // �C���f�b�N�X = �񕪒T��(�����R�[�h)
+    // インデックス = 二分探索(文字コード)
     case NNS_G2D_MAPMETHOD_SCAN:
         {
             const NNSG2dCMapInfoScan* const ws = (NNSG2dCMapInfoScan*)(pMap->mapInfo);
@@ -108,14 +108,14 @@ static u16 GetGlyphIndex(const NNSG2dFontCodeMap* pMap, u16 c)
 /*---------------------------------------------------------------------------*
   Name:         GetCharWidthsFromIndex
 
-  Description:  �������u���b�N����O���t�C���f�b�N�X�ɑΉ����镶��������
-                �擾���܂��B
+  Description:  文字幅ブロックからグリフインデックスに対応する文字幅情報を
+                取得します。
 
-  Arguments:    pWidth: �t�H���g�̕������u���b�N�ւ̃|�C���^�B
-                idx:    �O���t�C���f�b�N�X�B
+  Arguments:    pWidth: フォントの文字幅ブロックへのポインタ。
+                idx:    グリフインデックス。
 
-  Returns:      idx �ɑΉ����镶�������B
-                idx �� pWidth �Ɋ܂܂�Ȃ��C���f�b�N�X�ł���ꍇ�̓���͕s��ł��B
+  Returns:      idx に対応する文字幅情報。
+                idx が pWidth に含まれないインデックスである場合の動作は不定です。
  *---------------------------------------------------------------------------*/
 static NNS_G2D_INLINE const NNSG2dCharWidths* GetCharWidthsFromIndex( const NNSG2dFontWidth* const pWidth, int idx )
 {
@@ -136,12 +136,12 @@ static NNS_G2D_INLINE const NNSG2dCharWidths* GetCharWidthsFromIndex( const NNSG
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dFontInit*
 
-  Description:  �t�H���g���\�[�X����t�H���g���\�z���܂��B
+  Description:  フォントリソースからフォントを構築します。
 
-  Arguments:    pFont:      �t�H���g�ւ̃|�C���^�B
-                pNftrFile:  �t�H���g���\�[�X�ւ̃|�C���^�B
+  Arguments:    pFont:      フォントへのポインタ。
+                pNftrFile:  フォントリソースへのポインタ。
 
-  Returns:      �t�H���g�̍\�z�ɐ��������ꍇ��FALSE�ȊO��Ԃ��܂��B
+  Returns:      フォントの構築に成功した場合はFALSE以外を返します。
  *---------------------------------------------------------------------------*/
 
 void NNS_G2dFontInitAuto(NNSG2dFont* pFont, void* pNftrFile)
@@ -193,13 +193,13 @@ NNS_G2D_DEFINE_FONT_INIT(CP1252, CP1252, 1Byte)
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dFontFindGlyphIndex
 
-  Description:  �����R�[�h����Ή�����O���t�̃C���f�b�N�X���擾���܂��B
+  Description:  文字コードから対応するグリフのインデックスを取得します。
 
-  Arguments:    pFont:  �t�H���g�ւ̃|�C���^�B
-                c:      �O���t�C���f�b�N�X���擾���镶���R�[�h�B
+  Arguments:    pFont:  フォントへのポインタ。
+                c:      グリフインデックスを取得する文字コード。
 
-  Returns:      c �ɑΉ�����O���t�����݂���ꍇ�͂��̃C���f�b�N�X�B
-                ���݂��Ȃ��ꍇ�� NNS_G2D_GLYPH_INDEX_NOT_FOUND�B
+  Returns:      c に対応するグリフが存在する場合はそのインデックス。
+                存在しない場合は NNS_G2D_GLYPH_INDEX_NOT_FOUND。
  *---------------------------------------------------------------------------*/
 u16 NNS_G2dFontFindGlyphIndex( const NNSG2dFont* pFont, u16 c )
 {
@@ -209,7 +209,7 @@ u16 NNS_G2dFontFindGlyphIndex( const NNSG2dFont* pFont, u16 c )
 
     pMap = pFont->pRes->pMap;
 
-    // CMAP�u���b�N�̃��X�g����`�T��
+    // CMAPブロックのリストを線形探索
     while( pMap != NULL )
     {
         if( (pMap->ccodeBegin <= c) && (c <= pMap->ccodeEnd) )
@@ -220,7 +220,7 @@ u16 NNS_G2dFontFindGlyphIndex( const NNSG2dFont* pFont, u16 c )
         pMap = pMap->pNext;
     }
 
-    // ������Ȃ�����
+    // 見つからなかった
     return NNS_G2D_GLYPH_INDEX_NOT_FOUND;
 }
 
@@ -229,14 +229,14 @@ u16 NNS_G2dFontFindGlyphIndex( const NNSG2dFont* pFont, u16 c )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dFontGetCharWidthsFromIndex
 
-  Description:  �O���t�C���f�b�N�X���當�������𓾂܂��B
+  Description:  グリフインデックスから文字幅情報を得ます。
 
-  Arguments:    pFont:  �t�H���g�ւ̃|�C���^�B
-                idx:    �O���t�C���f�b�N�X�B
+  Arguments:    pFont:  フォントへのポインタ。
+                idx:    グリフインデックス。
 
-  Returns:      idx �ɑΉ����镶������񂪑��݂���ꍇ��
-                �t�H���g���Ɋi�[����Ă��镶�������ւ̃|�C���^�B
-                ���݂��Ȃ��ꍇ�̓t�H���g�̃f�t�H���g�����ւ̃|�C���^�B
+  Returns:      idx に対応する文字幅情報が存在する場合は
+                フォント内に格納されている文字幅情報へのポインタ。
+                存在しない場合はフォントのデフォルト幅情報へのポインタ。
  *---------------------------------------------------------------------------*/
 const NNSG2dCharWidths* NNS_G2dFontGetCharWidthsFromIndex( const NNSG2dFont* pFont, u16 idx )
 {
@@ -246,7 +246,7 @@ const NNSG2dCharWidths* NNS_G2dFontGetCharWidthsFromIndex( const NNSG2dFont* pFo
 
     pWidth = pFont->pRes->pWidth;
 
-    // �����u���b�N�̃��X�g����`�T��
+    // 幅情報ブロックのリストを線形探索
     while( pWidth != NULL )
     {
         if( (pWidth->indexBegin <= idx) && (idx <= pWidth->indexEnd) )
@@ -258,7 +258,7 @@ const NNSG2dCharWidths* NNS_G2dFontGetCharWidthsFromIndex( const NNSG2dFont* pFo
         pWidth = pWidth->pNext;
     }
 
-    // ������Ȃ���΃f�t�H���g��Ԃ��B
+    // 見つからなければデフォルトを返す。
     return &(pFont->pRes->defaultWidth);
 }
 
@@ -277,24 +277,24 @@ const NNSG2dCharWidths* NNS_G2dFontGetCharWidthsFromIndex( const NNSG2dFont* pFo
 
 
 //----------------------------------------------------------------------------
-// �T�C�Y�擾
+// サイズ取得
 //----------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dFontGetStringWidth
 
-  Description:  �������1�s���`�悵���ꍇ�̕������߂܂��B
-                i.e. txt ������s�����������͏I�[�����܂ł�`�悵���ꍇ��
-                �����񕝂����߂܂��B
+  Description:  文字列を1行分描画した場合の幅を求めます。
+                i.e. txt から改行文字もしくは終端文字までを描画した場合の
+                文字列幅を求めます。
 
-  Arguments:    pTxn:   �e�L�X�g�X�N���[���\���̂ւ̃|�C���^�B
-                txt:    NUL�I�[������ւ̃|�C���^�B
-                pPos:   txt �����s�������܂ޏꍇ�ɍŏ��̉��s�����̎��̕����ւ�
-                        �|�C���^���i�[����o�b�t�@�ւ̃|�C���^�B
-                        txt �����s�������܂܂Ȃ��ꍇ�� NULL ���i�[����܂��B
-                        �s�v�ȏꍇ�� NULL ���w�肷�邱�Ƃ��ł��܂��B
+  Arguments:    pTxn:   テキストスクリーン構造体へのポインタ。
+                txt:    NUL終端文字列へのポインタ。
+                pPos:   txt が改行文字を含む場合に最初の改行文字の次の文字への
+                        ポインタを格納するバッファへのポインタ。
+                        txt が改行文字を含まない場合は NULL が格納されます。
+                        不要な場合は NULL を指定することができます。
 
-  Returns:      txt �̕��B
+  Returns:      txt の幅。
  *---------------------------------------------------------------------------*/
 int NNSi_G2dFontGetStringWidth(
     const NNSG2dFont* pFont,
@@ -339,12 +339,12 @@ int NNSi_G2dFontGetStringWidth(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dFontGetTextHeight
 
-  Description:  ���s���܂ޕ������`�悵���ꍇ�̍��������߂܂��B
+  Description:  改行を含む文字列を描画した場合の高さを求めます。
 
-  Arguments:    pTxn:   �e�L�X�g�X�N���[���\���̂ւ̃|�C���^�B
-                txt:    NUL�I�[������ւ̃|�C���^�B
+  Arguments:    pTxn:   テキストスクリーン構造体へのポインタ。
+                txt:    NUL終端文字列へのポインタ。
 
-  Returns:      txt �̍����B
+  Returns:      txt の高さ。
  *---------------------------------------------------------------------------*/
 int NNSi_G2dFontGetTextHeight(
     const NNSG2dFont* pFont,
@@ -379,13 +379,13 @@ int NNSi_G2dFontGetTextHeight(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dFontGetTextWidth
 
-  Description:  �������`�悵���ꍇ�̕������߂܂��B
-                ����͊e�s�̕��̍ő�l�ɂȂ�܂��B
+  Description:  文字列を描画した場合の幅を求めます。
+                これは各行の幅の最大値になります。
 
-  Arguments:    pTxn:   �v�Z�̊�ƂȂ� Font �ւ̃|�C���^�B
-                txt:    ������B
+  Arguments:    pTxn:   計算の基準となる Font へのポインタ。
+                txt:    文字列。
 
-  Returns:      �������`�悵���ꍇ�̕��B
+  Returns:      文字列を描画した場合の幅。
  *---------------------------------------------------------------------------*/
 int NNSi_G2dFontGetTextWidth(
     const NNSG2dFont* pFont,
@@ -415,12 +415,12 @@ int NNSi_G2dFontGetTextWidth(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dFontGetTextRect
 
-  Description:  ���s���܂ޕ������`�悵���ꍇ�̍ő啝�ƍ��������߂܂��B
+  Description:  改行を含む文字列を描画した場合の最大幅と高さを求めます。
 
-  Arguments:    pTxn:   �e�L�X�g�X�N���[���\���̂ւ̃|�C���^�B
-                txt:    NUL�I�[������ւ̃|�C���^�B
+  Arguments:    pTxn:   テキストスクリーン構造体へのポインタ。
+                txt:    NUL終端文字列へのポインタ。
 
-  Returns:      txt ������ŏ��̋�`�̕��ƍ����B
+  Returns:      txt を内包する最小の矩形の幅と高さ。
  *---------------------------------------------------------------------------*/
 NNSG2dTextRect NNSi_G2dFontGetTextRect(
     const NNSG2dFont* pFont,
@@ -445,7 +445,7 @@ NNSG2dTextRect NNSi_G2dFontGetTextRect(
         lines++;
     }
 
-    // ���� = �s�� x (�s�� + �s��) - �s��
+    // 高さ = 行数 x (行高 + 行間) - 行間
     rect.height = ((lines - 1) * (NNS_G2dFontGetLineFeed(pFont) + vSpace) - vSpace);
 
     return rect;

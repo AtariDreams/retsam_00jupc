@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_poke_obj.c
- *	@brief		ƒCƒ[ƒWƒNƒŠƒbƒv@ƒ|ƒPƒ‚ƒ“ƒf[ƒ^	
+ *	@brief		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿	
  *	@author		tomoya takahashi 
  *	@data		2005.09.26
  *
@@ -20,7 +20,7 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 /*
@@ -36,13 +36,13 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static int GetInSize_SizeX( char* buff, int pokegra_x );
@@ -56,17 +56,17 @@ static void GetInSize_SizeRect( char* buff, int pokegra_x, int pokegra_y, IMC_PO
 
 //-----------------------------------------------------------------------------
 /**
-*	¡‚¾‚¯ƒOƒ[ƒoƒ‹•Ï”
+*	ä»Šã ã‘ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ð•`‰æƒVƒXƒeƒ€‚É“o˜^
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’æç”»ã‚·ã‚¹ãƒ†ãƒ ã«ç™»éŒ²
  *
- *	@param	drawData		•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	arc_data		ƒA[ƒJƒCƒuƒf[ƒ^
+ *	@param	drawData		æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	arc_data		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return
  *
@@ -75,7 +75,7 @@ static void GetInSize_SizeRect( char* buff, int pokegra_x, int pokegra_y, IMC_PO
 //-----------------------------------------------------------------------------
 void IMC_POKE_CharSet( IMC_DRAW_DATA* drawData, SOFT_SPRITE_ARC* arc_data )
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ð“o˜^
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²
 	void* buff;
 	NNSG2dCharacterData* p_char;
 	
@@ -88,12 +88,12 @@ void IMC_POKE_CharSet( IMC_DRAW_DATA* drawData, SOFT_SPRITE_ARC* arc_data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒv@ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	poke			ƒCƒ[ƒWƒNƒŠƒbƒv@ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- *	@param	sprite_man		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ
- *	@param	poke_para		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- *	@param	arc_data		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^
+ *	@param	poke			ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	sprite_man		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£
+ *	@param	poke_para		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ *	@param	arc_data		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -107,24 +107,24 @@ void IMC_POKE_Init( IMC_POKE* poke, SOFT_SPRITE_MANAGER* sprite_man, POKEMON_PAR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ð“o˜^	Ú×ƒo[ƒWƒ‡ƒ“
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚’ç™»éŒ²	è©³ç´°ãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *
- *	@param	poke			ƒCƒ[ƒWƒNƒŠƒbƒv@ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- *	@param	sprite_man		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ
- *	@param	poke_para		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- *	@param	arc_data		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^
+ *	@param	poke			ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	sprite_man		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£
+ *	@param	poke_para		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ *	@param	arc_data		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	heap
- *	@param	contest			ƒRƒ“ƒeƒXƒg‚©‚Ç‚¤‚©
+ *	@param	contest			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‹ã©ã†ã‹
  */
 //-----------------------------------------------------------------------------
 void IMC_POKE_InitEx( IMC_POKE* poke,  SOFT_SPRITE_MANAGER* sprite_man, POKEMON_PARAM* poke_para, SOFT_SPRITE_ARC* arc_data, int heap, BOOL contest )
 {
 	int monsno = PokeParaGet( poke_para, ID_PARA_monsno, NULL );
 
-	// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNŽæ“¾
+	// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å–å¾—
 	PokeGraArcDataGetPP_IMC(arc_data, poke_para, PARA_FRONT);
 	
-	// •\Ž¦Ý’è
+	// è¡¨ç¤ºè¨­å®š
 	poke->sprite = SoftSpriteAdd( 
 			sprite_man,
 			arc_data,
@@ -132,7 +132,7 @@ void IMC_POKE_InitEx( IMC_POKE* poke,  SOFT_SPRITE_MANAGER* sprite_man, POKEMON_
 			IMC_POKE_DEFAULT_PRI, 0, NULL, NULL);
 
 
-	// ƒf[ƒ^ì¬
+	// ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	{
 		int x, y;
 		IMC_POKE_SizeGet( poke, &x, &y );
@@ -146,10 +146,10 @@ void IMC_POKE_InitEx( IMC_POKE* poke,  SOFT_SPRITE_MANAGER* sprite_man, POKEMON_
 		SetPokeHitTbl( &poke->hit_tbl, IMC_POKE_INIT_X, IMC_POKE_INIT_Y, x, y );
 	}
 
-	// H‚¢ž‚ñ‚Å—Ç‚¢ƒTƒCƒYÝ’è
+	// é£Ÿã„è¾¼ã‚“ã§è‰¯ã„ã‚µã‚¤ã‚ºè¨­å®š
 	{
 		u8 height = PokeParaHeightGet_IMC( poke_para, PARA_FRONT );
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ð“o˜^
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²
 		void* buff;
 		NNSG2dCharacterData* p_char;
 		
@@ -162,7 +162,7 @@ void IMC_POKE_InitEx( IMC_POKE* poke,  SOFT_SPRITE_MANAGER* sprite_man, POKEMON_
 		if( contest == FALSE ){
 			GetInSize_SizeRect( p_char->pRawData, p_char->W*8, p_char->H*8, &poke->rect );
 		}else{
-			// ƒRƒ“ƒeƒXƒg‚Ì‚Æ‚«‚ÍDP‚Æˆê‚É‚·‚é
+			// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ã¨ãã¯DPã¨ä¸€ç·’ã«ã™ã‚‹
 			poke->rect.left		= GetInSize_SizeX( p_char->pRawData, p_char->W*8 );
 			poke->rect.right	= poke->rect.left;
 			poke->rect.bottom	= height;
@@ -178,16 +178,16 @@ void IMC_POKE_InitEx( IMC_POKE* poke,  SOFT_SPRITE_MANAGER* sprite_man, POKEMON_
 		sys_FreeMemoryEz( buff );
 	}
 
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^•ÛŽ
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä¿æŒ
 	poke->poke_para = poke_para;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒv@ƒ|ƒPƒ‚ƒ“ƒf[ƒ^”jŠü
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	poke			ƒCƒ[ƒWƒNƒŠƒbƒv@ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ *	@param	poke			ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -203,10 +203,10 @@ void IMC_POKE_Delete( IMC_POKE* poke )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•\Ž¦—Dæ‡ˆÊ‚ðÝ’è
+ *	@brief	è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’è¨­å®š
  *
- *	@param	poke		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- *	@param	priority	—Dæ‡ˆÊ
+ *	@param	poke		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	priority	å„ªå…ˆé †ä½
  *
  *	@return	none
  *
@@ -221,9 +221,9 @@ void IMC_POKE_DrawPrioritySet( IMC_POKE* poke, int priority )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•\Ž¦—Dæ‡ˆÊ‚ðŽæ“¾
+ *	@brief	è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’å–å¾—
  *
- *	@param	poke		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ *	@param	poke		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -238,11 +238,11 @@ int IMC_POKE_DrawPriorityGet( IMC_POKE* poke )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	À•W‚ðÝ’è
+ *	@brief	åº§æ¨™ã‚’è¨­å®š
  *
- *	@param	poke		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
+ *	@param	poke		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
  *
  *	@return	none
  *
@@ -265,12 +265,12 @@ void IMC_POKE_MatrixSet( IMC_POKE* poke, int x, int y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“‚Æƒ^ƒbƒ`ƒpƒlƒ‹‚Ì“–‚½‚è”»’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã¨ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å½“ãŸã‚Šåˆ¤å®š
  *
- *	@param	poke	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ *	@param	poke	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	‚ ‚½‚è
- *	@retval	FALSE	‚ ‚½‚ç‚È‚¢
+ *	@retval	TRUE	ã‚ãŸã‚Š
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã„
  *
  *
  */
@@ -283,14 +283,14 @@ BOOL IMC_POKE_TPHit( IMC_POKE* poke )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ÆŽw’èÀ•W‚Ì“–‚½‚è”»’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã¨æŒ‡å®šåº§æ¨™ã®å½“ãŸã‚Šåˆ¤å®š
  *
- *	@param	poke	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	poke	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  *
- *	@retval	TRUE	‚ ‚½‚è
- *	@retval	FALSE	‚ ‚½‚ç‚È‚¢
+ *	@retval	TRUE	ã‚ãŸã‚Š
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã„
  *
  *
  */
@@ -304,11 +304,11 @@ BOOL IMC_POKE_TPHitSelf( IMC_POKE* poke, int x, int y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“À•W‚ðŽæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åº§æ¨™ã‚’å–å¾—
  *
- *	@param	poke		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
+ *	@param	poke		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
  *
  *	@return	none
  *
@@ -324,11 +324,11 @@ void IMC_POKE_MatrixGet( IMC_POKE* poke, int* x, int* y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒTƒCƒY‚ðŽæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	@param	poke		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
+ *	@param	poke		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
  *
  *	@return	none
  *
@@ -345,47 +345,47 @@ void IMC_POKE_SizeGet( IMC_POKE* poke, int* x, int* y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚Æ‚Ì“–‚½‚è”»’è‚ð×‚©‚­s‚¤
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’ç´°ã‹ãè¡Œã†
  *
- *	@param	poke		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
- *	@param	offs_x		¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg‚˜À•W
- *	@param	offs_y		¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg‚™À•W
- *	@param	char_data	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^	
+ *	@param	poke		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	offs_x		å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï½˜åº§æ¨™
+ *	@param	offs_y		å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï½™åº§æ¨™
+ *	@param	char_data	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿	
  *
- *	@retval	TRUE	‚ ‚½‚Á‚½
- *	@retval	FALSE	‚ ‚½‚ç‚È‚©‚Á‚½	iƒIƒtƒZƒbƒgÀ•W•s’èj
+ *	@retval	TRUE	ã‚ãŸã£ãŸ
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã‹ã£ãŸ	ï¼ˆã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™ä¸å®šï¼‰
  *
  *
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_POKE_TPHitEx( IMC_POKE* poke, int* offs_x, int* offs_y, NNSG2dCharacterData* char_data )
 {
-	int check;		// ƒ`ƒFƒbƒN—p
-	int size_x, size_y;	// ƒTƒCƒY	
-	int x, y;		// Œ»Ý‚Ì’†SÀ•W
+	int check;		// ãƒã‚§ãƒƒã‚¯ç”¨
+	int size_x, size_y;	// ã‚µã‚¤ã‚º	
+	int x, y;		// ç¾åœ¨ã®ä¸­å¿ƒåº§æ¨™
 	
-	// ‚Ü‚¸“–‚½‚è”»’è‚ð•’Ê‚És‚¤
+	// ã¾ãšå½“ãŸã‚Šåˆ¤å®šã‚’æ™®é€šã«è¡Œã†
 	check = IMC_POKE_TPHit( poke );
 	if( check == FALSE ){
 		return FALSE;
 	}
 
-	// ¶ãÀ•WŽæ“¾
+	// å·¦ä¸Šåº§æ¨™å–å¾—
 	IMC_POKE_MatrixGet( poke, &x, &y );
 	IMC_POKE_SizeGet( poke, &size_x, &size_y );
 	x -= (size_x / 2);
 	y -= (size_y / 2);
 
-	// ƒIƒtƒZƒbƒg’l‚ðŽæ“¾
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’å–å¾—
 	*offs_x = sys.tp_x - x;
 	*offs_y = sys.tp_y - y;
 
 
-	// ‚»‚ÌˆÊ’u‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ðƒ`ƒFƒbƒN
-	// ”²‚¯F‚Å‚È‚¢‚©‚ðƒ`ƒFƒbƒN
+	// ãã®ä½ç½®ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚§ãƒƒã‚¯
+	// æŠœã‘è‰²ã§ãªã„ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	check = IMC_DRAW_CharCheck( char_data, *offs_x, *offs_y, 0 );
 
-	// colorƒiƒ“ƒo[‚ª‚O‚È‚ç•Ô‚·
+	// colorãƒŠãƒ³ãƒãƒ¼ãŒï¼ãªã‚‰è¿”ã™
 	if(check == IMC_DRAW_CHAR_CHECK_FALSE){
 		return TRUE;
 	}
@@ -396,46 +396,46 @@ BOOL IMC_POKE_TPHitEx( IMC_POKE* poke, int* offs_x, int* offs_y, NNSG2dCharacter
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚Æ‚Ì“–‚½‚è”»’è‚ð×‚©‚­s‚¤	À•WŽw’è
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’ç´°ã‹ãè¡Œã†	åº§æ¨™æŒ‡å®š
  *
- *	@param	poke		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
- *	@param	x			¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg‚˜À•W
- *	@param	y			¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg‚™À•W
- *	@param	char_data	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^	
+ *	@param	poke		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	x			å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï½˜åº§æ¨™
+ *	@param	y			å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï½™åº§æ¨™
+ *	@param	char_data	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿	
  *
- *	@retval	TRUE	‚ ‚½‚Á‚½
- *	@retval	FALSE	‚ ‚½‚ç‚È‚©‚Á‚½	iƒIƒtƒZƒbƒgÀ•W•s’èj
+ *	@retval	TRUE	ã‚ãŸã£ãŸ
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã‹ã£ãŸ	ï¼ˆã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™ä¸å®šï¼‰
  *
  *
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_POKE_TPHitExSelf( IMC_POKE* poke, int x, int y, NNSG2dCharacterData* char_data )
 {
-	int check;		// ƒ`ƒFƒbƒN—p
-	int size_x, size_y;	// ƒTƒCƒY	
-	int cx, cy;		// Œ»Ý‚Ì’†SÀ•W
+	int check;		// ãƒã‚§ãƒƒã‚¯ç”¨
+	int size_x, size_y;	// ã‚µã‚¤ã‚º	
+	int cx, cy;		// ç¾åœ¨ã®ä¸­å¿ƒåº§æ¨™
 	
-	// ‚Ü‚¸“–‚½‚è”»’è‚ð•’Ê‚És‚¤
+	// ã¾ãšå½“ãŸã‚Šåˆ¤å®šã‚’æ™®é€šã«è¡Œã†
 	check = IMC_POKE_TPHitSelf( poke, x, y );
 	if( check == FALSE ){
 		return FALSE;
 	}
 
-	// ¶ãÀ•WŽæ“¾
+	// å·¦ä¸Šåº§æ¨™å–å¾—
 	IMC_POKE_MatrixGet( poke, &cx, &cy );
 	IMC_POKE_SizeGet( poke, &size_x, &size_y );
 	cx -= (size_x / 2);
 	cy -= (size_y / 2);
 
-	// ƒIƒtƒZƒbƒg’l‚ðŽæ“¾
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’å–å¾—
 	x -= cx;
 	y -= cy;
 
-	// ‚»‚ÌˆÊ’u‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ðƒ`ƒFƒbƒN
-	// ”²‚¯F‚Å‚È‚¢‚©‚ðƒ`ƒFƒbƒN
+	// ãã®ä½ç½®ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚§ãƒƒã‚¯
+	// æŠœã‘è‰²ã§ãªã„ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	check = IMC_DRAW_CharCheck( char_data, x, y, 0 );
 
-	// colorƒiƒ“ƒo[‚ª‚O‚È‚ç•Ô‚·
+	// colorãƒŠãƒ³ãƒãƒ¼ãŒï¼ãªã‚‰è¿”ã™
 	if(check == IMC_DRAW_CHAR_CHECK_FALSE){
 		return TRUE;
 	}
@@ -447,11 +447,11 @@ BOOL IMC_POKE_TPHitExSelf( IMC_POKE* poke, int x, int y, NNSG2dCharacterData* ch
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ÌH‚¢ž‚ñ‚Å‚æ‚¢ƒTƒCƒY‚ðŽæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã®é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	@param	poke		ƒIƒuƒWƒFƒNƒgƒf[ƒ^
- *	@param	ins_x		H‚¢ž‚ñ‚Å‚æ‚¢ƒTƒCƒYŽæ“¾—Ìˆæ
- *	@param	ins_y		H‚¢ž‚ñ‚Å‚æ‚¢ƒTƒCƒYŽæ“¾—Ìˆæ
+ *	@param	poke		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	ins_x		é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºå–å¾—é ˜åŸŸ
+ *	@param	ins_y		é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºå–å¾—é ˜åŸŸ
  *
  *	@return	none
  *
@@ -476,21 +476,21 @@ void IMC_POKE_InSizeGet( IMC_POKE* poke, int* ins_x, int* ins_y )
 
 //-----------------------------------------------------------------------------
 /**
-*	ƒvƒ‰ƒCƒx[ƒgŠÖ”
+*	ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚©‚ç¶’[‚©‚çÅ‰‚Ì“_‚Ì‘å‚«‚³‚ð‹‚ß‚é
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å·¦ç«¯ã‹ã‚‰æœ€åˆã®ç‚¹ã®å¤§ãã•ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	buff	ƒoƒbƒtƒ@
+ *	@param	buff	ãƒãƒƒãƒ•ã‚¡
  *
- *	@return	¶’[‚©‚çƒ|ƒPƒ‚ƒ“‚Ü‚Å‚ÌƒTƒCƒY
+ *	@return	å·¦ç«¯ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã¾ã§ã®ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
-#define IMC_POKE_CHAR_FMT_BIT	(4)	// 1ƒsƒNƒZƒ‹‚Ìƒrƒbƒg”
-#define IMC_POKE_CHAR_FMT_NUM	(2)	// 1byte‚É“ü‚é”
+#define IMC_POKE_CHAR_FMT_BIT	(4)	// 1ãƒ”ã‚¯ã‚»ãƒ«ã®ãƒ“ãƒƒãƒˆæ•°
+#define IMC_POKE_CHAR_FMT_NUM	(2)	// 1byteã«å…¥ã‚‹æ•°
 static int GetInSize_SizeX( char* buff, int pokegra_x )
 {
 	int i, j;
@@ -515,7 +515,7 @@ static int GetInSize_SizeX( char* buff, int pokegra_x )
 #if PLFIX_S2407
 //----------------------------------------------------------------------------
 /**
- *	@brieif	ƒOƒ‰ƒtƒBƒbƒN‚©‚ç‹éŒ`ƒf[ƒ^‚ðŽæ“¾‚·‚é
+ *	@brieif	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‹ã‚‰çŸ©å½¢ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  *	@param	buff
  *	@param	pokegra_x
@@ -530,7 +530,7 @@ static void GetInSize_SizeRect( char* buff, int pokegra_x, int pokegra_y, IMC_PO
 	int ofs_idx;
 	u8 msk;
 
-	// ’†S‚Ü‚ÅH‚¢ž‚Þ’l‚Å‰Šú‰»
+	// ä¸­å¿ƒã¾ã§é£Ÿã„è¾¼ã‚€å€¤ã§åˆæœŸåŒ–
 	p_rect->left = SOFT_SPRITE_SIZE_X/2;
 	p_rect->right = SOFT_SPRITE_SIZE_X/2;
 	p_rect->top = SOFT_SPRITE_SIZE_Y/2;
@@ -543,7 +543,7 @@ static void GetInSize_SizeRect( char* buff, int pokegra_x, int pokegra_y, IMC_PO
 			ofs_idx = ((j * pokegra_x) + i)%IMC_POKE_CHAR_FMT_NUM;
 			msk = 0xf << (IMC_POKE_CHAR_FMT_BIT * ofs_idx);
 			if( (buff[ c_idx ] & msk) != 0 ){
-				// ã‰º¶‰E‚Åˆê”ÔH‚¢ž‚ñ‚Å‚¢‚È‚¢ˆÊ’u‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+				// ä¸Šä¸‹å·¦å³ã§ä¸€ç•ªé£Ÿã„è¾¼ã‚“ã§ã„ãªã„ä½ç½®ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if( p_rect->left > i ){
 					p_rect->left = i;
 				}
@@ -584,13 +584,13 @@ static void GetInSize_Draw( char* buff )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“–‚½‚è”»’èƒe[ƒuƒ‹‚Éƒf[ƒ^Ý’è
+ *	@brief	å½“ãŸã‚Šåˆ¤å®šãƒ†ãƒ¼ãƒ–ãƒ«ã«ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *	
- *	@param	p_tbl		ƒe[ƒuƒ‹ƒ[ƒN
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	size_hx		ƒn[ƒtƒTƒCƒY‚˜
- *	@param	size_hy		ƒn[ƒtƒTƒCƒY‚™
+ *	@param	p_tbl		ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	size_hx		ãƒãƒ¼ãƒ•ã‚µã‚¤ã‚ºï½˜
+ *	@param	size_hy		ãƒãƒ¼ãƒ•ã‚µã‚¤ã‚ºï½™
  *
  *	@return	none
  */
@@ -632,7 +632,7 @@ void IMC_POKE_DEBUG_ChangePoke( IMC_POKE* poke, int heap, IMC_DRAW_DATA* drawDat
 	POKEMON_PARAM*		p_pp;
 	BOOL chenge = FALSE;
 
-	// •ÏXˆ—
+	// å¤‰æ›´å‡¦ç†
 	if( sys.trg & PAD_BUTTON_START ){
 		DEBUG_poke = (1+DEBUG_poke) % MONSNO_END;
 		chenge = TRUE;
@@ -645,16 +645,16 @@ void IMC_POKE_DEBUG_ChangePoke( IMC_POKE* poke, int heap, IMC_DRAW_DATA* drawDat
 		chenge = TRUE;
 	}
 
-	// •ÏX
+	// å¤‰æ›´
 	if( chenge ){	
 		p_pp = PokemonParam_AllocWork( heap );
 		
-		// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+		// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		PokeParaSet( p_pp, DEBUG_poke, 10, POW_RND, RND_NO_SET, 0, ID_NO_SET, 0 );
 		IMC_POKE_Delete( poke );
 		IMC_POKE_Init( poke, drawData->SSM_drawSys, p_pp, &arc, heap );
 
-		// “–‚½‚è”»’è—pƒLƒƒƒ‰ƒNƒ^ƒ[ƒN”jŠü
+		// å½“ãŸã‚Šåˆ¤å®šç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		RESM_DeleteResID( drawData->SWSP_charRes, IMC_DRAW_POKE_CHAR_ID );
 		IMC_POKE_CharSet( drawData, &arc );
 		sys_FreeMemoryEz( p_pp );

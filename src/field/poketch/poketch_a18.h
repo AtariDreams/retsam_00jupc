@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_a18.h
- * @bfief	ƒ|ƒPƒbƒ`iƒAƒvƒŠNo18:‚í‚´‘Š«ƒ`ƒFƒbƒJ[j@“à•”ƒwƒbƒ_
+ * @bfief	ãƒã‚±ãƒƒãƒï¼ˆã‚¢ãƒ—ãƒªNo18:ã‚ã–ç›¸æ€§ãƒã‚§ãƒƒã‚«ãƒ¼ï¼‰ã€€å†…éƒ¨ãƒ˜ãƒƒãƒ€
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -11,7 +11,7 @@
 #include "battle/battle_common.h"
 
 //====================================================
-// •`‰æƒRƒ}ƒ“ƒh
+// æç”»ã‚³ãƒžãƒ³ãƒ‰
 //====================================================
 enum {
 	CMD_INIT,
@@ -22,7 +22,7 @@ enum {
 };
 
 //====================================================
-// ƒ{ƒ^ƒ“‚h‚c
+// ãƒœã‚¿ãƒ³ï¼©ï¼¤
 //====================================================
 enum {
 	BUTTON_ID_ATTACK_L,
@@ -33,14 +33,14 @@ enum {
 	BUTTON_ID_DEFENCE1_R,
 };
 //====================================================
-// ƒ{ƒ^ƒ“ƒŒƒCƒAƒEƒg
+// ãƒœã‚¿ãƒ³ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
 //====================================================
 enum {
-	// ƒ{ƒ^ƒ“ƒTƒCƒYiƒhƒbƒgj
+	// ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚ºï¼ˆãƒ‰ãƒƒãƒˆï¼‰
 	BUTTON_WIDTH = 24,
 	BUTTON_HEIGHT = 32,
 
-	// ƒ{ƒ^ƒ“’†SiƒAƒNƒ^[”z’u—pj
+	// ãƒœã‚¿ãƒ³ä¸­å¿ƒï¼ˆã‚¢ã‚¯ã‚¿ãƒ¼é…ç½®ç”¨ï¼‰
 	BUTTON_ATTACK_L_X = 28,
 	BUTTON_ATTACK_L_Y = 128,
 	BUTTON_ATTACK_R_X = 116,
@@ -56,7 +56,7 @@ enum {
 	BUTTON_DEFENCE1_R_X = 196,
 	BUTTON_DEFENCE1_R_Y = 72,
 
-	// ƒ{ƒ^ƒ“”½‰ž”ÍˆÍiƒ^ƒbƒ`ƒpƒlƒ‹—pj
+	// ãƒœã‚¿ãƒ³åå¿œç¯„å›²ï¼ˆã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ç”¨ï¼‰
 	BUTTON_ATTACK_L_TOP    = BUTTON_ATTACK_L_Y - (BUTTON_HEIGHT/2),
 	BUTTON_ATTACK_L_BOTTOM = BUTTON_ATTACK_L_Y + (BUTTON_HEIGHT/2),
 	BUTTON_ATTACK_L_LEFT   = BUTTON_ATTACK_L_X - (BUTTON_WIDTH/2),
@@ -86,16 +86,16 @@ enum {
 
 };
 //====================================================
-// ‚»‚Ì‘¼‚Ì’è”
+// ãã®ä»–ã®å®šæ•°
 //====================================================
 enum {
-	AISYOU_TYPE_MAX = AKU_TYPE + 1,		///< ƒ^ƒCƒvÅ‘å’l
-	AISYOU_TYPE_NULL = AISYOU_TYPE_MAX,	///< ƒ^ƒCƒv–³Œø’l
+	AISYOU_TYPE_MAX = AKU_TYPE + 1,		///< ã‚¿ã‚¤ãƒ—æœ€å¤§å€¤
+	AISYOU_TYPE_NULL = AISYOU_TYPE_MAX,	///< ã‚¿ã‚¤ãƒ—ç„¡åŠ¹å€¤
 };
 
 
 //====================================================
-// •`‰æƒpƒ‰ƒ[ƒ^
+// æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //====================================================
 typedef struct {
 
@@ -110,12 +110,12 @@ typedef struct {
 }VIEWPARAM;
 
 //====================================================
-// •`‰æƒpƒ‰ƒ[ƒ^
+// æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //====================================================
 typedef	struct _POKETCH_A18_VIEWWORK  VIEWWORK;
 
 //====================================================
-// ŠÖ”ƒvƒƒgƒ^ƒCƒv
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //====================================================
 extern BOOL Poketch_A18_SetViewWork( VIEWWORK** wk_ptr, const VIEWPARAM* vpara, GF_BGL_INI* bgl );
 extern void Poketch_A18_SetViewCommand(VIEWWORK* wk, u32 cmd);

@@ -1,7 +1,7 @@
 #ifndef _T06R0101_DEF_H_
 #define _T06R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T06R0101_OLDMAN1		(1)
 #define	SCRID_T06R0101_SEVEN2		(2)
 #define	SCRID_T06R0101_OLDMAN1_AUTO		(3)
@@ -10,6 +10,6 @@
 #define	SCRID_T06R0101_TR2		(6)
 #define	SCRID_T06R0101_TR3		(7)
 #define	SCRID_T06R0101_TR4		(8)
-#define	SCRID_T06R0101_DATA_MAX		(8)		//最大数
+#define	SCRID_T06R0101_DATA_MAX		(8)		//譛螟ｧ謨ｰ
 
 #endif //_T06R0101_DEF_H_

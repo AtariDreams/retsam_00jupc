@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ookisa.c
- * @bfief	‚¨‚¨‚«‚³‚­‚ç‚×—pŠÖ”
+ * @bfief	ãŠãŠãã•ãã‚‰ã¹ç”¨é–¢æ•°
  * @author	Tomomichi Ohta
  * @date	06.03.23
  */
@@ -41,28 +41,28 @@
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-// ‰pŒê”Å‚Ì‚İƒ|ƒPƒ‚ƒ“‚Ì‘å‚«‚³‚ğƒCƒ“ƒ`Œn‚É•ÏŠ·
+// è‹±èªç‰ˆã®ã¿ãƒã‚±ãƒ¢ãƒ³ã®å¤§ãã•ã‚’ã‚¤ãƒ³ãƒç³»ã«å¤‰æ›
 #include "localize.h"
 // ----------------------------------------------------------------------------
 
 //============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //============================================================================================
 
 
 //============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //============================================================================================
 
 
 typedef struct MONS_SCALE_ST {
-	u16	T1;		//Šî€
-	u16	T2;		//ŒÂ‘Ì’l•â³ŒW”
-	u16	T3;		//ŒÂ‘Ì’lŠî€
+	u16	T1;		//åŸºæº–
+	u16	T2;		//å€‹ä½“å€¤è£œæ­£ä¿‚æ•°
+	u16	T3;		//å€‹ä½“å€¤åŸºæº–
 	u16	dummy;
 } MONS_SCALE;
 
@@ -87,9 +87,9 @@ static const MONS_SCALE mons_scale[] =
 };
 
 //----------------------------------------------------------
-//	ŒÂ‘Ì’l‚ÌZo
-//	<ˆø”>	pp		ƒ|ƒPƒ‚ƒ“\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-//	<–ß‚è’l>		ŒÂ‘Ì’l
+//	å€‹ä½“å€¤ã®ç®—å‡º
+//	<å¼•æ•°>	pp		ãƒã‚±ãƒ¢ãƒ³æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+//	<æˆ»ã‚Šå€¤>		å€‹ä½“å€¤
 //----------------------------------------------------------
 static int calc_size_value( POKEMON_PARAM * poke)
 {
@@ -114,7 +114,7 @@ static int calc_size_value( POKEMON_PARAM * poke)
 //SYS_WORK_OOKISA_RECORD
 
 //----------------------------------------------------------
-//	g—pƒe[ƒuƒ‹Œˆ’è
+//	ä½¿ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«æ±ºå®š
 //----------------------------------------------------------
 static u8 get_size_level( u16 value )
 {
@@ -128,23 +128,23 @@ static u8 get_size_level( u16 value )
 
 
 //----------------------------------------------------------
-//	‘å‚«‚³Zo
-//	<ˆø”>	monsno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-//			value		ŒÂ‘Ì’l
-//	<–ß‚è’l>			‘å‚«‚³‚Ì’l
+//	å¤§ãã•ç®—å‡º
+//	<å¼•æ•°>	monsno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+//			value		å€‹ä½“å€¤
+//	<æˆ»ã‚Šå€¤>			å¤§ãã•ã®å€¤
 //----------------------------------------------------------
 static u32 get_mons_size(u16 monsno, u16 value)
 {
 	u64 T1, T2, T3;
-	u32 zukan_size;		//‘å‚«‚³ŒW”
+	u32 zukan_size;		//å¤§ãã•ä¿‚æ•°
 	u64 size;
-	u8 level;			//g—pƒe[ƒuƒ‹w’è
+	u8 level;			//ä½¿ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«æŒ‡å®š
 	ZKN_HEIGHT_GRAM_PTR		zp;
 
-	//ZukanPokeDataGet‚Åæ“¾‚Å‚«‚é‚Ì‚Í}ŠÓ‚Å‚Ì‘å‚«‚³iƒ[ƒgƒ‹’PˆÊj~‚P‚O‚Ì’l
+	//ZukanPokeDataGetã§å–å¾—ã§ãã‚‹ã®ã¯å›³é‘‘ã§ã®å¤§ãã•ï¼ˆãƒ¡ãƒ¼ãƒˆãƒ«å˜ä½ï¼‰Ã—ï¼‘ï¼ã®å€¤
 	zp = ZKN_HEIGHTGRAM_Alloc( HEAPID_FIELD  );
 	ZKN_HEIGHTGRAM_Load( zp, ZKN_HEIGHT_GRAM_TYPE_MAN, HEAPID_FIELD );
-	zukan_size = ZKN_HEIGHTGRAM_GetHeight( (CONST_ZKN_HEIGHT_GRAM_PTR)zp, monsno );	//‚‚³æ“¾
+	zukan_size = ZKN_HEIGHTGRAM_GetHeight( (CONST_ZKN_HEIGHT_GRAM_PTR)zp, monsno );	//é«˜ã•å–å¾—
 	ZKN_HEIGHTGRAM_Release( zp );
 	ZKN_HEIGHTGRAM_Free( zp );
 
@@ -155,18 +155,18 @@ static u32 get_mons_size(u16 monsno, u16 value)
 
 	size = T1 + (value - T3) / T2 ;
 
-	/* ‘å‚«‚³ŒW”‚Ì’PˆÊ ‚ğ•ÏŠ· */
+	/* å¤§ãã•ä¿‚æ•°ã®å˜ä½ ã‚’å¤‰æ› */
 	return zukan_size * size / 10;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- *@‚¨‚¨‚«‚³‚ğ”ä‚×‚é
+ *ã€€ãŠãŠãã•ã‚’æ¯”ã¹ã‚‹
  *
- * @param	fsys		FIELDSYS_WORK\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	num			‘I‚ñ‚¾è‚¿”Ô†
+ * @param	fsys		FIELDSYS_WORKæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	num			é¸ã‚“ã æ‰‹æŒã¡ç•ªå·
  *
- * @return	"0:XV‚¹‚¸A1:“¯‚¶A2=‹L˜^XV"
+ * @return	"0:æ›´æ–°ã›ãšã€1:åŒã˜ã€2=è¨˜éŒ²æ›´æ–°"
  */
 //--------------------------------------------------------------------------------------------
 u8 OokisaRecordChk( FIELDSYS_WORK* fsys,u16 num)
@@ -179,7 +179,7 @@ u8 OokisaRecordChk( FIELDSYS_WORK* fsys,u16 num)
 
 	pp = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), num);
 
-	//ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[æ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼å–å¾—
 	monsno = PokeParaGet( pp, ID_PARA_monsno, NULL );
 
 	value = calc_size_value(pp);
@@ -190,34 +190,34 @@ u8 OokisaRecordChk( FIELDSYS_WORK* fsys,u16 num)
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-	// ‰pŒê”Å‚Ì‚İƒ|ƒPƒ‚ƒ“‚Ì‘å‚«‚³‚ğƒCƒ“ƒ`Œn‚É•ÏŠ·‚µ‚Ä”äŠr
+	// è‹±èªç‰ˆã®ã¿ãƒã‚±ãƒ¢ãƒ³ã®å¤§ãã•ã‚’ã‚¤ãƒ³ãƒç³»ã«å¤‰æ›ã—ã¦æ¯”è¼ƒ
 #if (PM_LANG == LANG_ENGLISH)
 	{
 		u32 now_size_inch    = PG5_CM_TO_INCH(now_size);
 		u32 record_size_inch = PG5_CM_TO_INCH(record_size);
 
 		if (now_size_inch == record_size_inch) {
-			return 1;		//“¯‚¶
+			return 1;		//åŒã˜
 		}else{
 			if (now_size_inch > record_size_inch) {
-				//ƒeƒŒƒrƒgƒsƒbƒN¶¬
+				//ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 				TVTOPIC_Entry_Record_Ookisa(fsys, now_size, pp);
-				return 2;		//‹L˜^XV‚µ‚½I
+				return 2;		//è¨˜éŒ²æ›´æ–°ã—ãŸï¼
 			}else{
-				return 0;		//XV‚Å‚«‚¸
+				return 0;		//æ›´æ–°ã§ããš
 			}
 		}
 	}
 #else
 	if (now_size == record_size) {
-		return 1;		//“¯‚¶
+		return 1;		//åŒã˜
 	}else{
 		if (now_size > record_size) {
-			//ƒeƒŒƒrƒgƒsƒbƒN¶¬
+			//ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 			TVTOPIC_Entry_Record_Ookisa(fsys, now_size, pp);
-			return 2;		//‹L˜^XV‚µ‚½I
+			return 2;		//è¨˜éŒ²æ›´æ–°ã—ãŸï¼
 		}else{
-			return 0;		//XV‚Å‚«‚¸
+			return 0;		//æ›´æ–°ã§ããš
 		}
 	}
 #endif
@@ -226,10 +226,10 @@ u8 OokisaRecordChk( FIELDSYS_WORK* fsys,u16 num)
 
 //--------------------------------------------------------------------------------------------
 /**
- *@‚¨‚¨‚«‚³‚ÌƒŒƒR[ƒh(ŒÂ‘Ì’l)‚ğXV
+ *ã€€ãŠãŠãã•ã®ãƒ¬ã‚³ãƒ¼ãƒ‰(å€‹ä½“å€¤)ã‚’æ›´æ–°
  *
- * @param	fsys		FIELDSYS_WORK\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	num			‘I‚ñ‚¾è‚¿”Ô†
+ * @param	fsys		FIELDSYS_WORKæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	num			é¸ã‚“ã æ‰‹æŒã¡ç•ªå·
  *
  * @return	0
  */
@@ -247,12 +247,12 @@ void OokisaRecordSet(FIELDSYS_WORK* fsys,u16 num)
 
 //--------------------------------------------------------------------------------------------
 /**
- *@ŒÂ‘Ì’l•ƒ|ƒPƒ‚ƒ“”Ô†‚©‚çŒÂX‚Ì‚‚³‚É•ÏŠ·B•¶šƒoƒbƒtƒ@‚ÖƒZƒbƒg
+ *ã€€å€‹ä½“å€¤ï¼†ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‹ã‚‰å€‹ã€…ã®é«˜ã•ã«å¤‰æ›ã€‚æ–‡å­—ãƒãƒƒãƒ•ã‚¡ã¸ã‚»ãƒƒãƒˆ
  *
- * @param	buf_no1		•¶šƒoƒbƒtƒ@‚P
- * @param	buf_no2		•¶šƒoƒbƒtƒ@‚Q
- * @param	monsno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param	value		ŒÂ‘Ì’l
+ * @param	buf_no1		æ–‡å­—ãƒãƒƒãƒ•ã‚¡ï¼‘
+ * @param	buf_no2		æ–‡å­—ãƒãƒƒãƒ•ã‚¡ï¼’
+ * @param	monsno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param	value		å€‹ä½“å€¤
  *
  * @return	0
  */
@@ -265,7 +265,7 @@ static void OokisaValue2Buffer(FIELDSYS_WORK* fsys,u8 buf_no1,u8 buf_no2,u16 mon
 	size = get_mons_size(monsno, value);
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-	// ‰pŒê”Å‚Ì‚İƒ|ƒPƒ‚ƒ“‚Ì‘å‚«‚³‚ğƒCƒ“ƒ`Œn‚É•ÏŠ·
+	// è‹±èªç‰ˆã®ã¿ãƒã‚±ãƒ¢ãƒ³ã®å¤§ãã•ã‚’ã‚¤ãƒ³ãƒç³»ã«å¤‰æ›
 #if (PM_LANG == LANG_ENGLISH)
 	{
 		u32 size_cm = size;
@@ -281,12 +281,12 @@ static void OokisaValue2Buffer(FIELDSYS_WORK* fsys,u8 buf_no1,u8 buf_no2,u16 mon
 
 //--------------------------------------------------------------------------------------------
 /**
- *@ƒŒƒR[ƒh‚ğ”š‚É•ÏŠ·‚µ‚ÄA•¶šƒoƒbƒtƒ@‚ÖƒZƒbƒg
+ *ã€€ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’æ•°å­—ã«å¤‰æ›ã—ã¦ã€æ–‡å­—ãƒãƒƒãƒ•ã‚¡ã¸ã‚»ãƒƒãƒˆ
  *
- * @param	fsys		FIELDSYS_WORK\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	buf_no1		•¶šƒoƒbƒtƒ@‚P
- * @param	buf_no2		•¶šƒoƒbƒtƒ@‚Q
- * @param	monsno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ * @param	fsys		FIELDSYS_WORKæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	buf_no1		æ–‡å­—ãƒãƒƒãƒ•ã‚¡ï¼‘
+ * @param	buf_no2		æ–‡å­—ãƒãƒƒãƒ•ã‚¡ï¼’
+ * @param	monsno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	0
  */
@@ -301,12 +301,12 @@ void OokisaRecordBufSet(FIELDSYS_WORK* fsys,u8 buf_no1,u8 buf_no2,u16 monsno)
 
 //--------------------------------------------------------------------------------------------
 /**
- *@è‚¿ƒ|ƒPƒ‚ƒ“‚‚³‚ğ”š‚É•ÏŠ·‚µ‚ÄA•¶šƒoƒbƒtƒ@‚ÖƒZƒbƒg
+ *ã€€æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³é«˜ã•ã‚’æ•°å­—ã«å¤‰æ›ã—ã¦ã€æ–‡å­—ãƒãƒƒãƒ•ã‚¡ã¸ã‚»ãƒƒãƒˆ
  *
- * @param	fsys		FIELDSYS_WORK\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	buf_no1		•¶šƒoƒbƒtƒ@‚P
- * @param	buf_no2		•¶šƒoƒbƒtƒ@‚Q
- * @param	num			è‚¿”Ô†
+ * @param	fsys		FIELDSYS_WORKæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	buf_no1		æ–‡å­—ãƒãƒƒãƒ•ã‚¡ï¼‘
+ * @param	buf_no2		æ–‡å­—ãƒãƒƒãƒ•ã‚¡ï¼’
+ * @param	num			æ‰‹æŒã¡ç•ªå·
  *
  * @return	0
  */
@@ -317,7 +317,7 @@ void OokisaTemotiBufSet(FIELDSYS_WORK* fsys,u8 buf_no1,u8 buf_no2,u16 num)
 	u16 monsno;
 	vu16 value;
 
-	//ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[æ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼å–å¾—
 	pp = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), num);
 	monsno = PokeParaGet( pp, ID_PARA_monsno, NULL );
 

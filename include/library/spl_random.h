@@ -2,12 +2,12 @@
   Project:  simple particle library
   File:     spl_random.h
 
-  —”ˆ—
+  ä¹±æ•°å‡¦ç†
 
   $Id: spl_random.h,v 1.3 2005/11/09 09:53:26 matsuda Exp $
   $Log: spl_random.h,v $
   Revision 1.3  2005/11/09 09:53:26  matsuda
-  SPLƒ‰ƒCƒuƒ‰ƒŠ‚ªXV‚³‚ê‚½‚Ì‚ÅXV
+  SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒæ›´æ–°ã•ã‚ŒãŸã®ã§æ›´æ–°
 
   Revision 1.1  2004/04/08 00:23:26  konoh
   (none)
@@ -17,17 +17,17 @@
 #ifndef __SPL_RANDOM_H__
 #define __SPL_RANDOM_H__
 
-/* —”¶¬ ---------------------------------------------------------------- */
+/* ä¹±æ•°ç”Ÿæˆ ---------------------------------------------------------------- */
 
 extern u32 spl_rndm_seed;
 #define SPL_SRND(x) ((spl_rndm_seed)=(x))
 #define SPL_RNDI()  ((spl_rndm_seed)=(spl_rndm_seed*1592653589UL)+453816691UL)
-#define SPL_RNDF()  (SPL_RNDI() >> 20) // ¬”•”‚P‚Qƒrƒbƒg•ª‚Å‚OˆÈã‚P–¢–H
+#define SPL_RNDF()  (SPL_RNDI() >> 20) // å°æ•°éƒ¨ï¼‘ï¼’ãƒ“ãƒƒãƒˆåˆ†ã§ï¼ä»¥ä¸Šï¼‘æœªæº€ï¼Ÿ
 
 /* ------------------------------------------------------------------------- */
 
 
-/* ”CˆÓƒxƒNƒgƒ‹‚Ìæ“¾ ------------------------------------------------------ */
+/* ä»»æ„ãƒ™ã‚¯ãƒˆãƒ«ã®å–å¾— ------------------------------------------------------ */
 
 extern void spl_rndm_get_arb_vec_xyz(VecFx32* p_vec);
 extern void spl_rndm_get_arb_vec_xy(VecFx32* p_vec);
@@ -35,7 +35,7 @@ extern void spl_rndm_get_arb_vec_xy(VecFx32* p_vec);
 /* ------------------------------------------------------------------------- */
 
 
-/* Šeí‚Ì”ÍˆÍ—”irange‚Í‚Wƒrƒbƒg‚Å‚O`‚P‚Ì”ÍˆÍ‚Ì”‚Æ‚·‚éj---------------- */
+/* å„ç¨®ã®ç¯„å›²ä¹±æ•°ï¼ˆrangeã¯ï¼˜ãƒ“ãƒƒãƒˆã§ï¼ã€œï¼‘ã®ç¯„å›²ã®æ•°ã¨ã™ã‚‹ï¼‰---------------- */
 
 // [num * (1 - range), num)
 #define SPL_RNDM_GET_01(num, range)\

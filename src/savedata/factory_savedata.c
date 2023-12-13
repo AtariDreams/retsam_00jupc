@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	factory_savedata.c
- * @brief	�u�o�g���t�@�N�g���[�v�Z�[�u�f�[�^
+ * @brief	「バトルファクトリー」セーブデータ
  * @author	Satoshi Nohara
  * @date	2007.03.28
  */
@@ -20,7 +20,7 @@
 
 //============================================================================================
 //
-//	�Z�[�u�f�[�^�V�X�e�����ˑ�����֐�
+//	セーブデータシステムが依存する関数
 //
 //============================================================================================
 int FACTORYDATA_GetWorkSize( void );
@@ -28,7 +28,7 @@ void FACTORYDATA_Init( FACTORYDATA* wk );
 //FACTORYDATA* FACTORYDATA_AllocWork( int heapID );
 FACTORYDATA * SaveData_GetFactoryData( SAVEDATA * sv );
 
-//����
+//成績
 int FACTORYSCORE_GetWorkSize( void );
 void FACTORYSCORE_Init( FACTORYSCORE* wk );
 void FACTORYSCORE_PutScoreData( FACTORYSCORE* wk, u8 id, u8 param, const void* buf );
@@ -37,11 +37,11 @@ FACTORYSCORE * SaveData_GetFactoryScore( SAVEDATA * sv );
 
 //----------------------------------------------------------
 /**
- * @brief	(���f�f�[�^)�t�@�N�g���[�Z�[�u���[�N�̃T�C�Y�擾
+ * @brief	(中断データ)ファクトリーセーブワークのサイズ取得
  *
  * @param	none
  *
- * @return	int		�T�C�Y(�o�C�g�P��)
+ * @return	int		サイズ(バイト単位)
  */
 //----------------------------------------------------------
 int FACTORYDATA_GetWorkSize( void )
@@ -51,9 +51,9 @@ int FACTORYDATA_GetWorkSize( void )
 
 //----------------------------------------------------------
 /**
- * @brief	(���f�f�[�^)�t�@�N�g���[���[�N�̏�����
+ * @brief	(中断データ)ファクトリーワークの初期化
  *
- * @param	wk		FACTORYDATA�ւ̃|�C���^
+ * @param	wk		FACTORYDATAへのポインタ
  *
  * @return	none
  */
@@ -70,11 +70,11 @@ void FACTORYDATA_Init( FACTORYDATA* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	�t�@�N�g���[���[�N�̏�����
+ * @brief	ファクトリーワークの初期化
  *
- * @param	heapID		�������m�ۂ������Ȃ��q�[�v�w��
+ * @param	heapID		メモリ確保をおこなうヒープ指定
  *
- * @return	wk			�擾�������[�N�ւ̃|�C���^
+ * @return	wk			取得したワークへのポインタ
  */
 //----------------------------------------------------------
 #if 0
@@ -89,11 +89,11 @@ FACTORYDATA* FACTORYDATA_AllocWork( int heapID )
 
 //----------------------------------------------------------
 /**
- * @brief	�t�@�N�g���[�Z�[�u�f�[�^�̎擾(�v���C�f�[�^)
+ * @brief	ファクトリーセーブデータの取得(プレイデータ)
  *
- * @param	sv		�Z�[�u�f�[�^�ւ̃|�C���^
+ * @param	sv		セーブデータへのポインタ
  *
- * @return	FACTORYDATA�ւ̃|�C���^
+ * @return	FACTORYDATAへのポインタ
  */
 //----------------------------------------------------------
 FACTORYDATA * SaveData_GetFactoryData( SAVEDATA * sv )
@@ -109,7 +109,7 @@ FACTORYDATA * SaveData_GetFactoryData( SAVEDATA * sv )
 
 //============================================================================================
 //
-//	�����o�A�N�Z�X
+//	メンバアクセス
 //
 //============================================================================================
 BOOL FACTORYDATA_GetSaveFlag( FACTORYDATA* wk );
@@ -119,12 +119,12 @@ u32 FACTORYDATA_GetPlayData( FACTORYDATA* wk, u8 id, u8 param, void* buf );
 
 //----------------------------------------------------------
 /**
- * @brief	�v���C�f�[�^�@�������Z�[�u�ς݂��ǂ����H
+ * @brief	プレイデータ　正しくセーブ済みかどうか？
  *
- * @param	wk		FACTORYDATA�^�̃|�C���^
+ * @param	wk		FACTORYDATA型のポインタ
  *
- * @retval	TRUE	�������Z�[�u����Ă���
- * @retval	FALSE	�Z�[�u����Ă��Ȃ�
+ * @retval	TRUE	正しくセーブされている
+ * @retval	FALSE	セーブされていない
  */
 //----------------------------------------------------------
 BOOL FACTORYDATA_GetSaveFlag( FACTORYDATA* wk )
@@ -134,10 +134,10 @@ BOOL FACTORYDATA_GetSaveFlag( FACTORYDATA* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	�v���C�f�[�^�@�Z�[�u��ԃt���O���Z�b�g
+ * @brief	プレイデータ　セーブ状態フラグをセット
  *
- * @param	wk		FACTORYDATA�^�̃|�C���^
- * @param	flag	TRUE�AFALSE
+ * @param	wk		FACTORYDATA型のポインタ
+ * @param	flag	TRUE、FALSE
  *
  * @retval	none
  */
@@ -153,11 +153,11 @@ void FACTORYDATA_SetSaveFlag( FACTORYDATA* wk, BOOL flag )
 
 //----------------------------------------------------------
 /**
- * @brief	�v���C�f�[�^�@�Z�b�g
+ * @brief	プレイデータ　セット
  *
- * @param	wk		FACTORYDATA�^�̃|�C���^
- * @param	id		�擾����f�[�^ID
- * @param	buf		void*:�f�[�^���i�[�����o�b�t�@�ւ̃|�C���^
+ * @param	wk		FACTORYDATA型のポインタ
+ * @param	id		取得するデータID
+ * @param	buf		void*:データを格納したバッファへのポインタ
  *
  * @retval	none
  */
@@ -170,17 +170,17 @@ void FACTORYDATA_PutPlayData( FACTORYDATA* wk, u8 id, u8 param, const void* buf 
 
 	switch( id ){
 
-	//LV50�A�I�[�v��
+	//LV50、オープン
 	case FACTORYDATA_ID_LEVEL:
 		wk->level = buf8[0];
 		break;
 
-	//�V���O���A�_�u���A�}���`�Awifi�}���`
+	//シングル、ダブル、マルチ、wifiマルチ
 	case FACTORYDATA_ID_TYPE:
 		wk->type = buf8[0];
 		break;
 
-	//�����l�ځH
+	//今何人目？
 	case FACTORYDATA_ID_ROUND:
 		wk->round = buf8[0];
 		//OS_Printf( "buf8[0] = %d\n", buf8[0] );
@@ -192,7 +192,7 @@ void FACTORYDATA_PutPlayData( FACTORYDATA* wk, u8 id, u8 param, const void* buf 
 		wk->tr_index[param] = buf16[0];
 		break;
 
-	//�莝��
+	//手持ち
 	case FACTORYDATA_ID_TEMOTI_POKE_INDEX:
 		wk->temoti_poke_index[param] = buf16[0];
 		break;
@@ -205,7 +205,7 @@ void FACTORYDATA_PutPlayData( FACTORYDATA* wk, u8 id, u8 param, const void* buf 
 		wk->temoti_personal_rnd[param] = buf32[0];
 		break;
 
-	//�G
+	//敵
 	case FACTORYDATA_ID_ENEMY_POKE_INDEX:
 		wk->enemy_poke_index[param] = buf16[0];
 		break;
@@ -229,15 +229,15 @@ void FACTORYDATA_PutPlayData( FACTORYDATA* wk, u8 id, u8 param, const void* buf 
 
 //----------------------------------------------------------
 /**
- * @brief	�v���C�f�[�^�@�擾
+ * @brief	プレイデータ　取得
  *
- * @param	wk		FACTORYDATA�^�̃|�C���^
- * @param	id		�擾����f�[�^ID
- * @param	buf		void*:�f�[�^�擾�|�C���^
+ * @param	wk		FACTORYDATA型のポインタ
+ * @param	id		取得するデータID
+ * @param	buf		void*:データ取得ポインタ
  *
  * @retval	none
  *
- * �߂�l���擾���鎞�Ɍ^�L���X�g���g�p���Ă���̂ŃR�s�y���ӁI
+ * 戻り値を取得する時に型キャストを使用しているのでコピペ注意！
  */
 //----------------------------------------------------------
 u32 FACTORYDATA_GetPlayData( FACTORYDATA* wk, u8 id, u8 param, void* buf )
@@ -256,7 +256,7 @@ u32 FACTORYDATA_GetPlayData( FACTORYDATA* wk, u8 id, u8 param, void* buf )
 	case FACTORYDATA_ID_TR_INDEX:
 		return (u32)wk->tr_index[param];
 
-	//�莝��
+	//手持ち
 	case FACTORYDATA_ID_TEMOTI_POKE_INDEX:
 		return (u32)wk->temoti_poke_index[param];
 
@@ -266,7 +266,7 @@ u32 FACTORYDATA_GetPlayData( FACTORYDATA* wk, u8 id, u8 param, void* buf )
 	case FACTORYDATA_ID_TEMOTI_PERSONAL_RND:
 		return (u32)wk->temoti_personal_rnd[param];
 
-	//�G
+	//敵
 	case FACTORYDATA_ID_ENEMY_POKE_INDEX:
 		return (u32)wk->enemy_poke_index[param];
 
@@ -284,17 +284,17 @@ u32 FACTORYDATA_GetPlayData( FACTORYDATA* wk, u8 id, u8 param, void* buf )
 
 //==============================================================================================
 //
-//	���ъ֘A
+//	成績関連
 //
 //==============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	(���уf�[�^)�t�@�N�g���[�Z�[�u���[�N�̃T�C�Y�擾
+ * @brief	(成績データ)ファクトリーセーブワークのサイズ取得
  *
  * @param	none
  *
- * @return	int		�T�C�Y(�o�C�g�P��)
+ * @return	int		サイズ(バイト単位)
  */
 //----------------------------------------------------------
 int FACTORYSCORE_GetWorkSize( void )
@@ -304,9 +304,9 @@ int FACTORYSCORE_GetWorkSize( void )
 
 //----------------------------------------------------------
 /**
- * @brief	(���уf�[�^)�t�@�N�g���[���[�N�̏�����
+ * @brief	(成績データ)ファクトリーワークの初期化
  *
- * @param	wk		FACTORYDATA�ւ̃|�C���^
+ * @param	wk		FACTORYDATAへのポインタ
  *
  * @return	none
  */
@@ -323,11 +323,11 @@ void FACTORYSCORE_Init( FACTORYSCORE* wk )
 
 //----------------------------------------------------------
 /**
- * @brief	���уf�[�^�@�Z�b�g
+ * @brief	成績データ　セット
  *
- * @param	wk		FACTORYSCORE�^�̃|�C���^
- * @param	id		�擾����f�[�^ID
- * @param	buf		void*:�f�[�^���i�[�����o�b�t�@�ւ̃|�C���^
+ * @param	wk		FACTORYSCORE型のポインタ
+ * @param	id		取得するデータID
+ * @param	buf		void*:データを格納したバッファへのポインタ
  *
  * @retval	none
  */
@@ -340,14 +340,14 @@ void FACTORYSCORE_PutScoreData( FACTORYSCORE* wk, u8 id, u8 param, const void* b
 
 	switch( id ){
 
-	//7�A��(�N���A)�������t���O
+	//7連勝(クリア)したかフラグ
 	case FACTORYSCORE_ID_CLEAR_FLAG:
 		//wk->clear_flag = buf8[0];
 		OS_Printf( "before clear_flag = %d\n", wk->clear_flag );
 		if( buf8[0] >= 1 ){
-			wk->clear_flag |= (1 << param);					//�Z�b�g
+			wk->clear_flag |= (1 << param);					//セット
 		}else{
-			wk->clear_flag &= (0xff ^ (1 << param));		//���Z�b�g
+			wk->clear_flag &= (0xff ^ (1 << param));		//リセット
 		}
 		OS_Printf( "after clear_flag = %d\n", wk->clear_flag );
 		break;
@@ -362,15 +362,15 @@ void FACTORYSCORE_PutScoreData( FACTORYSCORE* wk, u8 id, u8 param, const void* b
 
 //----------------------------------------------------------
 /**
- * @brief	���уf�[�^�@�擾
+ * @brief	成績データ　取得
  *
- * @param	wk		FACTORYSCORE�^�̃|�C���^
- * @param	id		�擾����f�[�^ID
- * @param	buf		void*:�f�[�^�擾�|�C���^
+ * @param	wk		FACTORYSCORE型のポインタ
+ * @param	id		取得するデータID
+ * @param	buf		void*:データ取得ポインタ
  *
  * @retval	none
  *
- * �߂�l���擾���鎞�Ɍ^�L���X�g���g�p���Ă���̂ŃR�s�y���ӁI
+ * 戻り値を取得する時に型キャストを使用しているのでコピペ注意！
  */
 //----------------------------------------------------------
 u32 FACTORYSCORE_GetScoreData( FACTORYSCORE* wk, u8 id, u8 param, void* buf )
@@ -392,11 +392,11 @@ u32 FACTORYSCORE_GetScoreData( FACTORYSCORE* wk, u8 id, u8 param, void* buf )
 
 //----------------------------------------------------------
 /**
- * @brief	�t�@�N�g���[�Z�[�u�f�[�^�̎擾(���уf�[�^)
+ * @brief	ファクトリーセーブデータの取得(成績データ)
  *
- * @param	sv		�Z�[�u�f�[�^�ւ̃|�C���^
+ * @param	sv		セーブデータへのポインタ
  *
- * @return	FACTORYSCORE�ւ̃|�C���^
+ * @return	FACTORYSCOREへのポインタ
  */
 //----------------------------------------------------------
 FACTORYSCORE * SaveData_GetFactoryScore( SAVEDATA * sv )

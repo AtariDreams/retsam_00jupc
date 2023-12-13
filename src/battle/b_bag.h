@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_bag.h
- * @brief	�퓬�p�o�b�O��� �O�����J�t�@�C��
+ * @brief	戦闘用バッグ画面 外部公開ファイル
  * @author	Hiroyuki Nakamura
  * @date	05.02.10
  */
@@ -17,65 +17,65 @@
 
 
 //============================================================================================
-//	�萔��`
+//	定数定義
 //============================================================================================
-// �������[�h
+// 処理モード
 enum {
-	BBAG_MODE_NORMAL = 0,	// �ʏ탂�[�h
-	BBAG_MODE_GETDEMO,		// �ߊl�f�����[�h
+	BBAG_MODE_NORMAL = 0,	// 通常モード
+	BBAG_MODE_GETDEMO,		// 捕獲デモモード
 };
 
-// �|�P�b�gID
+// ポケットID
 enum {
-	BBAG_POKE_HPRCV = 0,	// HP�񕜃|�P�b�g
-	BBAG_POKE_STRCV,		// ��ԉ񕜃|�P�b�g
-	BBAG_POKE_BALL,			// �{�[���|�P�b�g
-	BBAG_POKE_BATTLE,		// �퓬�p�|�P�b�g
+	BBAG_POKE_HPRCV = 0,	// HP回復ポケット
+	BBAG_POKE_STRCV,		// 状態回復ポケット
+	BBAG_POKE_BALL,			// ボールポケット
+	BBAG_POKE_BATTLE,		// 戦闘用ポケット
 	BBAG_POKE_MAX
 };
 
-// �O���ݒ�f�[�^
+// 外部設定データ
 typedef struct {
-	BATTLE_WORK * bw;	// �퓬�p���[�N
+	BATTLE_WORK * bw;	// 戦闘用ワーク
 
-	MYSTATUS * myst;	// �v���[���[�f�[�^
-	MYITEM * myitem;	// �A�C�e���f�[�^
+	MYSTATUS * myst;	// プレーヤーデータ
+	MYITEM * myitem;	// アイテムデータ
 
-	u32	heap;			// �q�[�vID
-	s32 client_no;		// �N���C�A���gNo
+	u32	heap;			// ヒープID
+	s32 client_no;		// クライアントNo
 
-	u32	mode;			// ���䃂�[�h
+	u32	mode;			// 制御モード
 
-	u32	skill_item_use;	// �Z�Ŏg�p�s��
+	u32	skill_item_use;	// 技で使用不可
 
-	u16	ret_item;		// �g�p�����A�C�e��
-	u8	ret_page;		// �g�p�����A�C�e���̃|�P�b�g
+	u16	ret_item;		// 使用したアイテム
+	u8	ret_page;		// 使用したアイテムのポケット
 
-	u8	used_poke;		// �O��g�p�����A�C�e���̃|�P�b�g
-	u16	used_item;		// �O��g�p�����A�C�e��
+	u8	used_poke;		// 前回使用したアイテムのポケット
+	u16	used_item;		// 前回使用したアイテム
 
-	u8	enc_double;		// �쐶2vs2�Ń{�[�����������Ȃ��ꍇ�͂P
-	u8	waza_vanish;	// ���肪�u������Ƃԁv�ȂǂŌ����Ȃ��ꍇ�͂P
-	u8	waza_migawari;	// ���肪�u�݂����v���g�p���Ă���ꍇ�͂P
+	u8	enc_double;		// 野生2vs2でボールが投げられない場合は１
+	u8	waza_vanish;	// 相手が「そらをとぶ」などで見えない場合は１
+	u8	waza_migawari;	// 相手が「みがわり」を使用している場合は１
 
-	u8	cursor_flg;		// �J�[�\���\���t���O
+	u8	cursor_flg;		// カーソル表示フラグ
 
-	u8	end_flg;		// �I���t���O
+	u8	end_flg;		// 終了フラグ
 
-	u8	item_pos[5];	// �A�C�e���ʒu
-	u8	item_scr[5];	// �A�C�e���X�N���[���J�E���^
+	u8	item_pos[5];	// アイテム位置
+	u8	item_scr[5];	// アイテムスクロールカウンタ
 }BBAG_DATA;
 
 
 //============================================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �퓬�p�o�b�O�^�X�N�ǉ�
+ * 戦闘用バッグタスク追加
  *
- * @param	dat		�o�b�O�f�[�^
+ * @param	dat		バッグデータ
  *
  * @return	none
  */

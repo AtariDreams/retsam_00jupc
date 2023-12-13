@@ -32,21 +32,21 @@
 
 
 /* ========================================================================
-    �萔
+    定数
    ======================================================================== */
 
 static int const SEND_RETRY_MAX = 10;
 
 
 /* ========================================================================
-    static�ϐ�
+    static変数
    ======================================================================== */
 
 static NNSiMcsFileIOWork*   spFileIOWork = NULL;
 
 
 /* ========================================================================
-    static�֐�
+    static関数
    ======================================================================== */
 
 static NNS_MCS_INLINE
@@ -170,7 +170,7 @@ OnFind(
 
     if (cmd->result == NNS_MCS_FILEIO_ERROR_SUCCESS)
     {
-        // ���������� FindData �̃����o���Z�b�g
+        // 成功したら FindData のメンバをセット
         cmd->pFindData->size        = cmd->filesize;
         cmd->pFindData->attribute   = cmd->attribute;
         CopyPathString(cmd->pFindData->name, cmd->pFilename);
@@ -190,7 +190,7 @@ RecvCallback(
 {
     const u16 cmd = *(u16*)pRecv;
 
-    NNS_ASSERT(offset == 0);    // ��������Ă��Ȃ�����
+    NNS_ASSERT(offset == 0);    // 分割されていないこと
     (void)offset;
 
     switch (cmd)
@@ -207,8 +207,8 @@ RecvCallback(
 }
 
 /*
-    �f�[�^�𑗐M
-        ��������܂Ő��񃊃g���C
+    データを送信
+        成功するまで数回リトライ
 */
 static BOOL
 WriteStream(
@@ -245,7 +245,7 @@ WriteStream(
 }
 
 /*
-    ��M�҂������܂��B
+    受信待ちをします。
 */
 static void
 DoLoop(NNSMcsFile* pFindInfo)
@@ -261,17 +261,17 @@ DoLoop(NNSMcsFile* pFindInfo)
 
 
 /* ========================================================================
-    �O���֐�
+    外部関数
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsInitFileIO
 
-  Description:  File I/O API�̏������B
+  Description:  File I/O APIの初期化。
 
-  Arguments:    workMem:  MCS���g�p���郏�[�N�p�������B
+  Arguments:    workMem:  MCSが使用するワーク用メモリ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_McsInitFileIO(void* workMem)
@@ -291,13 +291,13 @@ NNS_McsInitFileIO(void* workMem)
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsOpenFile
 
-  Description:  �����̃t�@�C�����I�[�v�����邢�͐V�K�̃t�@�C�����쐬���ăI�[�v���B
+  Description:  既存のファイルをオープンあるいは新規のファイルを作成してオープン。
 
-  Arguments:    pFile:     �t�@�C�����\���̂ւ̃|�C���^�B
-                fileName:  �t�@�C�����B
-                openFlag:  �t�@�C���̍쐬�A�I�[�v�����@����ѓǂݏ����̎�ނ̎w��B
+  Arguments:    pFile:     ファイル情報構造体へのポインタ。
+                fileName:  ファイル名。
+                openFlag:  ファイルの作成、オープン方法および読み書きの種類の指定。
 
-  Returns:      �֐������������� 0�A���s������ 0�ȊO�̒l��Ԃ��B
+  Returns:      関数が成功したら 0、失敗したら 0以外の値を返す。
  *---------------------------------------------------------------------------*/
 u32
 NNS_McsOpenFile(
@@ -319,7 +319,7 @@ NNS_McsOpenFile(
     pCmd->pFile     = pFile;
     pCmd->flag      = openFlag;
 
-    // �t�@�C������NULL�̏ꍇ�́A�_�C�A���O���J���ăt�@�C����I��������B
+    // ファイル名がNULLの場合は、ダイアログを開いてファイルを選択させる。
     if (fileName != NULL)
     {
         CopyPathString(pCmd->filename, fileName);
@@ -343,11 +343,11 @@ NNS_McsOpenFile(
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsCloseFile
 
-  Description:  �t�@�C���̃N���[�Y�B
+  Description:  ファイルのクローズ。
 
-  Arguments:    pFile:  �t�@�C�����\���̂ւ̃|�C���^�B
+  Arguments:    pFile:  ファイル情報構造体へのポインタ。
 
-  Returns:      �֐������������� 0�A���s������ 0�ȊO�̒l��Ԃ��B
+  Returns:      関数が成功したら 0、失敗したら 0以外の値を返す。
  *---------------------------------------------------------------------------*/
 u32
 NNS_McsCloseFile(NNSMcsFile* pFile)
@@ -380,14 +380,14 @@ NNS_McsCloseFile(NNSMcsFile* pFile)
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsReadFile
 
-  Description:  �t�@�C������̓ǂݍ��݁B
+  Description:  ファイルからの読み込み。
 
-  Arguments:    pFile:       �t�@�C�����\���̂ւ̃|�C���^�B
-                buffer:      �ǂݍ��ނ��߂̃o�b�t�@�B
-                length:      �ǂݍ��ރo�C�g���B
-                pReadBytes:  ���ۂɓǂݍ��񂾃o�C�g����Ԃ��ϐ��ւ̃|�C���^�B
+  Arguments:    pFile:       ファイル情報構造体へのポインタ。
+                buffer:      読み込むためのバッファ。
+                length:      読み込むバイト数。
+                pReadBytes:  実際に読み込んだバイト数を返す変数へのポインタ。
 
-  Returns:      �֐������������� 0�A���s������ 0�ȊO�̒l��Ԃ��B
+  Returns:      関数が成功したら 0、失敗したら 0以外の値を返す。
  *---------------------------------------------------------------------------*/
 u32
 NNS_McsReadFile(
@@ -413,18 +413,18 @@ NNS_McsReadFile(
     pCmd->pBuffer   = buffer;
     pCmd->size      = length;
 
-    // �R�}���h���M
+    // コマンド送信
     if (! WriteStream(pFile, pCmd, sizeof(*pCmd)))
     {
         return pFile->errCode = NNS_MCS_FILEIO_ERROR_COMERROR;
     }
 
-    // �R�}���h���ʑ҂�
+    // コマンド結果待ち
     DoLoop(pFile);
 
     if (! pFile->errCode)
     {
-        *pReadBytes = pFile->tempData;  // �ǂݍ��݃o�C�g��
+        *pReadBytes = pFile->tempData;  // 読み込みバイト数
     }
 
     return pFile->errCode;
@@ -433,13 +433,13 @@ NNS_McsReadFile(
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsWriteFile
 
-  Description:  �t�@�C���ւ̏������݁B
+  Description:  ファイルへの書き込み。
 
-  Arguments:    pFile:   �t�@�C�����\���̂ւ̃|�C���^�B
-                buffer:  �������ޓ��e��ێ�����o�b�t�@�ւ̃|�C���^�B
-                length:  �������ރo�C�g���B
+  Arguments:    pFile:   ファイル情報構造体へのポインタ。
+                buffer:  書き込む内容を保持するバッファへのポインタ。
+                length:  書き込むバイト数。
 
-  Returns:      �֐������������� 0�A���s������ 0�ȊO�̒l��Ԃ��B
+  Returns:      関数が成功したら 0、失敗したら 0以外の値を返す。
  *---------------------------------------------------------------------------*/
 u32
 NNS_McsWriteFile(
@@ -478,7 +478,7 @@ NNS_McsWriteFile(
 
         DoLoop(pFile);
 
-        // �G���[�����������甲����
+        // エラーが発生したら抜ける
         if (pFile->errCode)
         {
             return pFile->errCode;
@@ -494,14 +494,14 @@ NNS_McsWriteFile(
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsSeekFile
 
-  Description:  �w�肳�ꂽ�ʒu�Ƀt�@�C�� �|�C���^���ړ����܂��B
+  Description:  指定された位置にファイル ポインタを移動します。
 
-  Arguments:    pFile:            �t�@�C�����\���̂ւ̃|�C���^�B
-                distanceToMove:   �t�@�C���|�C���^���ړ�����o�C�g��
-                moveMethod:       �t�@�C���|�C���^�̈ړ����J�n����ʒu
-                pNewFilePointer:  �V�����t�@�C���|�C���^���󂯎��ϐ��ւ̃|�C���^
+  Arguments:    pFile:            ファイル情報構造体へのポインタ。
+                distanceToMove:   ファイルポインタを移動するバイト数
+                moveMethod:       ファイルポインタの移動を開始する位置
+                pNewFilePointer:  新しいファイルポインタを受け取る変数へのポインタ
 
-  Returns:      �֐������������� 0�A���s������ 0�ȊO�̒l��Ԃ��B
+  Returns:      関数が成功したら 0、失敗したら 0以外の値を返す。
  *---------------------------------------------------------------------------*/
 u32
 NNS_McsSeekFile(
@@ -536,7 +536,7 @@ NNS_McsSeekFile(
 
     if (! pFile->errCode && pNewFilePointer)
     {
-        *pNewFilePointer = pFile->tempData;     // �V�����t�@�C���|�C���^�ʒu
+        *pNewFilePointer = pFile->tempData;     // 新しいファイルポインタ位置
     }
 
     return pFile->errCode;
@@ -545,13 +545,13 @@ NNS_McsSeekFile(
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsFindFirstFile
 
-  Description:  �w�肳�ꂽ�t�@�C�����Ɉ�v����t�@�C�����A�f�B���N�g�����Ō�������B
+  Description:  指定されたファイル名に一致するファイルを、ディレクトリ内で検索する。
 
-  Arguments:    pFile:      �t�@�C�����\���̂ւ̃|�C���^�B
-                pFindData:  ���������t�@�C���Ɋւ�������i�[����\���̂ւ̃|�C���^�B
-                pattern:    ��������t�@�C�����p�^�[���B
+  Arguments:    pFile:      ファイル情報構造体へのポインタ。
+                pFindData:  見つかったファイルに関する情報を格納する構造体へのポインタ。
+                pattern:    検索するファイル名パターン。
 
-  Returns:      �֐������������� 0�A���s������ 0�ȊO�̒l��Ԃ��B
+  Returns:      関数が成功したら 0、失敗したら 0以外の値を返す。
  *---------------------------------------------------------------------------*/
 u32
 NNS_McsFindFirstFile(
@@ -588,12 +588,12 @@ NNS_McsFindFirstFile(
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsFindNextFile
 
-  Description:  NNS_McsFindFirstFile()�Ŏw�肵���p�^�[���Ɉ�v����t�@�C���̑�������������B
+  Description:  NNS_McsFindFirstFile()で指定したパターンに一致するファイルの続きを検索する。
 
-  Arguments:    pFile:      �t�@�C�����\���̂ւ̃|�C���^�B
-                pFindData:  ���������t�@�C���Ɋւ�������i�[����\���̂ւ̃|�C���^�B
+  Arguments:    pFile:      ファイル情報構造体へのポインタ。
+                pFindData:  見つかったファイルに関する情報を格納する構造体へのポインタ。
 
-  Returns:      �֐������������� 0�A���s������ 0�ȊO�̒l��Ԃ��B
+  Returns:      関数が成功したら 0、失敗したら 0以外の値を返す。
  *---------------------------------------------------------------------------*/
 u32
 NNS_McsFindNextFile(
@@ -629,11 +629,11 @@ NNS_McsFindNextFile(
 /*---------------------------------------------------------------------------*
   Name:         NNS_McsCloseFind
 
-  Description:  NNS_McsFindFirstFile()�ŊJ�n�����������I������B
+  Description:  NNS_McsFindFirstFile()で開始した検索を終了する。
 
-  Arguments:    pFile:  �t�@�C�����\���̂ւ̃|�C���^�B
+  Arguments:    pFile:  ファイル情報構造体へのポインタ。
 
-  Returns:      �֐������������� 0�A���s������ 0�ȊO�̒l��Ԃ��B
+  Returns:      関数が成功したら 0、失敗したら 0以外の値を返す。
  *---------------------------------------------------------------------------*/
 u32
 NNS_McsCloseFind(NNSMcsFile* pFile)

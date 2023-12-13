@@ -1,13 +1,13 @@
 //============================================================================================
 /**
  * @file	regulation_data.c
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒAƒNƒZƒX—pƒ\[ƒX
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚½ãƒ¼ã‚¹
  * @author	k.ohno
  * @date	2006.5.24
  */
 //============================================================================================
 
-#include "savedata/savedata_def.h"	//SAVEDATAŽQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "common.h"
 
@@ -33,94 +33,94 @@
 
 REGULATION _cup[] = {
     {
-        {EOM_},  //  // ƒXƒ^ƒ“ƒ_[ƒhƒJƒbƒv –¼‘O‚Ígmm‚©‚çŽæ‚Á‚Ä‚­‚é
-        0,     // ‡Œv‚È‚µ
-        3,      // 3•C
+        {EOM_},  //  // ã‚¹ã‚¿ãƒ³ãƒ€ãƒ¼ãƒ‰ã‚«ãƒƒãƒ— åå‰ã¯gmmã‹ã‚‰å–ã£ã¦ãã‚‹
+        0,     // åˆè¨ˆãªã—
+        3,      // 3åŒ¹
         50,     // LV50
-        0,      // g’·§ŒÀ‚È‚µ
-        0,      // ‘Ìd§ŒÀ‚È‚µ
-        1,      // i‰»ƒ|ƒPƒ‚ƒ“OK
-        0,      // “ÁŽê•s‰Â
-        0,      // “¯‚¶ƒ|ƒPƒ‚ƒ“•s‰Â
-        0,      // “¯‚¶“¹‹ï•s‰Â
-        0,// ŒÅ’èƒ_ƒ[ƒW‹Z‚ª•K‚¸Ž¸”s
+        0,      // èº«é•·åˆ¶é™ãªã—
+        0,      // ä½“é‡åˆ¶é™ãªã—
+        1,      // é€²åŒ–ãƒã‚±ãƒ¢ãƒ³OK
+        0,      // ç‰¹æ®Šä¸å¯
+        0,      // åŒã˜ãƒã‚±ãƒ¢ãƒ³ä¸å¯
+        0,      // åŒã˜é“å…·ä¸å¯
+        0,// å›ºå®šãƒ€ãƒ¡ãƒ¼ã‚¸æŠ€ãŒå¿…ãšå¤±æ•—
     },
     {
-        {EOM_},//œ ƒtƒ@ƒ“ƒV[ƒJƒbƒv
-        80,//ƒŒƒxƒ‹‚Ì‡Œv‚W‚O‚Ü‚Å
-        3,//‚R•C
-        30,//ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚R‚O‚Ü‚Å
-        -20,//g’·§ŒÀ‚QD‚O‚‚¢‚©
-        -20,// ‘Ìd§ŒÀ‚Q‚O‚‹‚‡‚¢‚©
-        0,// i‰»ƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,// “Á•Ê‚Èƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,// “¯‚¶ƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,// “¯‚¶“¹‹ïŽ‚½‚¹‚ç‚ê‚È‚¢
-        0,// ŒÅ’èƒ_ƒ[ƒW‹Z‚ª•K‚¸Ž¸”s
+        {EOM_},//â— ãƒ•ã‚¡ãƒ³ã‚·ãƒ¼ã‚«ãƒƒãƒ—
+        80,//ãƒ¬ãƒ™ãƒ«ã®åˆè¨ˆï¼˜ï¼ã¾ã§
+        3,//ï¼“åŒ¹
+        30,//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ï¼“ï¼ã¾ã§
+        -20,//èº«é•·åˆ¶é™ï¼’ï¼Žï¼ï½ã„ã‹
+        -20,// ä½“é‡åˆ¶é™ï¼’ï¼ï½‹ï½‡ã„ã‹
+        0,// é€²åŒ–ãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,// ç‰¹åˆ¥ãªãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,// åŒã˜ãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,// åŒã˜é“å…·æŒãŸã›ã‚‰ã‚Œãªã„
+        0,// å›ºå®šãƒ€ãƒ¡ãƒ¼ã‚¸æŠ€ãŒå¿…ãšå¤±æ•—
     },
     {
-        {EOM_},//œ ƒŠƒgƒ‹ƒJƒbƒv
-        0,//ƒŒƒxƒ‹‚Ì‡Œv§ŒÀ‚È‚µ
-        3,//‚R•C
-        5,//ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚T‚Ü‚Å
-        0,// g’·§ŒÀ‚È‚µ
-        0,// ‘Ìd§ŒÀ‚È‚µ
-        0,// i‰»ƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,// “Á•Ê‚Èƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,// “¯‚¶ƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,// “¯‚¶“¹‹ïŽ‚½‚¹‚ç‚ê‚È‚¢ 
-        1,//“Á•Êƒ‹[ƒ‹F‚è‚ã‚¤‚Ì‚¢‚©‚èAƒ\ƒjƒbƒNƒu[ƒ€‚Ì–½’†—¦‚ª‚O‚É‚È‚éB
+        {EOM_},//â— ãƒªãƒˆãƒ«ã‚«ãƒƒãƒ—
+        0,//ãƒ¬ãƒ™ãƒ«ã®åˆè¨ˆåˆ¶é™ãªã—
+        3,//ï¼“åŒ¹
+        5,//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ï¼•ã¾ã§
+        0,// èº«é•·åˆ¶é™ãªã—
+        0,// ä½“é‡åˆ¶é™ãªã—
+        0,// é€²åŒ–ãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,// ç‰¹åˆ¥ãªãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,// åŒã˜ãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,// åŒã˜é“å…·æŒãŸã›ã‚‰ã‚Œãªã„ 
+        1,//ç‰¹åˆ¥ãƒ«ãƒ¼ãƒ«ï¼šã‚Šã‚…ã†ã®ã„ã‹ã‚Šã€ã‚½ãƒ‹ãƒƒã‚¯ãƒ–ãƒ¼ãƒ ã®å‘½ä¸­çŽ‡ãŒï¼ã«ãªã‚‹ã€‚
     },
     {
-        {EOM_},//œ ƒ‰ƒCƒgƒJƒbƒv
-        0,//ƒŒƒxƒ‹‚Ì‡Œv§ŒÀ‚È‚µ
-        3,//‚R•C
-        50,//ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚T‚O‚Ü‚Å
-        0,// g’·§ŒÀ‚È‚µ
-        -99,// ‘Ìd‚X‚X‚‹‚‡‚¢‚©
-        0,// i‰»ƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,// “Á•Ê‚Èƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,// “¯‚¶ƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,// “¯‚¶“¹‹ïŽ‚½‚¹‚ç‚ê‚È‚¢
-        0,// ŒÅ’èƒ_ƒ[ƒW‹Z‚ª•K‚¸Ž¸”s
+        {EOM_},//â— ãƒ©ã‚¤ãƒˆã‚«ãƒƒãƒ—
+        0,//ãƒ¬ãƒ™ãƒ«ã®åˆè¨ˆåˆ¶é™ãªã—
+        3,//ï¼“åŒ¹
+        50,//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ï¼•ï¼ã¾ã§
+        0,// èº«é•·åˆ¶é™ãªã—
+        -99,// ä½“é‡ï¼™ï¼™ï½‹ï½‡ã„ã‹
+        0,// é€²åŒ–ãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,// ç‰¹åˆ¥ãªãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,// åŒã˜ãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,// åŒã˜é“å…·æŒãŸã›ã‚‰ã‚Œãªã„
+        0,// å›ºå®šãƒ€ãƒ¡ãƒ¼ã‚¸æŠ€ãŒå¿…ãšå¤±æ•—
     },
     {
-        {EOM_},//œ ƒ_ƒuƒ‹ƒJƒbƒv
-        0,//@EƒŒƒxƒ‹‚Ì‡Œv§ŒÀ–³‚µ
-        4,//E4•C
-        50,//@Eƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚T‚O‚Ü‚Å
-        0,//E g’·§ŒÀ‚È‚µ
-        0,//E ‘Ìd§ŒÀ‚È‚µ
-        1,//E i‰»ƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚é
-        0,//E “Á•Ê‚Èƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,//E “¯‚¶ƒ|ƒPƒ‚ƒ“ŽQ‰Á‚Å‚«‚È‚¢
-        0,//E “¯‚¶“¹‹ïŽ‚½‚¹‚ç‚ê‚È‚¢
-        0,// ŒÅ’èƒ_ƒ[ƒW‹Z‚ª•K‚¸Ž¸”s
+        {EOM_},//â— ãƒ€ãƒ–ãƒ«ã‚«ãƒƒãƒ—
+        0,//ã€€ãƒ»ãƒ¬ãƒ™ãƒ«ã®åˆè¨ˆåˆ¶é™ç„¡ã—
+        4,//ãƒ»4åŒ¹
+        50,//ã€€ãƒ»ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ï¼•ï¼ã¾ã§
+        0,//ãƒ» èº«é•·åˆ¶é™ãªã—
+        0,//ãƒ» ä½“é‡åˆ¶é™ãªã—
+        1,//ãƒ» é€²åŒ–ãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ãã‚‹
+        0,//ãƒ» ç‰¹åˆ¥ãªãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,//ãƒ» åŒã˜ãƒã‚±ãƒ¢ãƒ³å‚åŠ ã§ããªã„
+        0,//ãƒ» åŒã˜é“å…·æŒãŸã›ã‚‰ã‚Œãªã„
+        0,// å›ºå®šãƒ€ãƒ¡ãƒ¼ã‚¸æŠ€ãŒå¿…ãšå¤±æ•—
     },
 };
 
-//ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“§ŒÀ–³‚µ(GDS‚Ì˜^‰æƒwƒbƒ_[‚ÉŠÜ‚ß‚éˆ×‚Ìƒ_ƒ~[—p)
+//ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³åˆ¶é™ç„¡ã—(GDSã®éŒ²ç”»ãƒ˜ãƒƒãƒ€ãƒ¼ã«å«ã‚ã‚‹ç‚ºã®ãƒ€ãƒŸãƒ¼ç”¨)
 REGULATION no_limit_cup = {
     {EOM_},  //
-    0,     // ‡Œv‚È‚µ
-    6,      // 6•C
+    0,     // åˆè¨ˆãªã—
+    6,      // 6åŒ¹
     100,     // LV100
-    0,      // g’·§ŒÀ‚È‚µ
-    0,      // ‘Ìd§ŒÀ‚È‚µ
-    1,      // i‰»ƒ|ƒPƒ‚ƒ“OK
-    1,      // “ÁŽê‰Â
-    1,      // “¯‚¶ƒ|ƒPƒ‚ƒ“‰Â
-    1,      // “¯‚¶“¹‹ï‰Â
-    0,		// ŒÅ’èƒ_ƒ[ƒW‹Z‰e‹¿‚È‚µ
+    0,      // èº«é•·åˆ¶é™ãªã—
+    0,      // ä½“é‡åˆ¶é™ãªã—
+    1,      // é€²åŒ–ãƒã‚±ãƒ¢ãƒ³OK
+    1,      // ç‰¹æ®Šå¯
+    1,      // åŒã˜ãƒã‚±ãƒ¢ãƒ³å¯
+    1,      // åŒã˜é“å…·å¯
+    0,		// å›ºå®šãƒ€ãƒ¡ãƒ¼ã‚¸æŠ€å½±éŸ¿ãªã—
 };
 
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^Žæ“¾
- * @param	ƒZ[ƒuƒf[ƒ^•ÛŽƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	‰½–{–Ú‚ÌƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚©
- * @return	REGULATION	ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ä½•æœ¬ç›®ã®ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹
+ * @return	REGULATION	ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 const REGULATION* Data_GetRegulation(SAVEDATA* pSave, int regNo)
@@ -131,15 +131,15 @@ const REGULATION* Data_GetRegulation(SAVEDATA* pSave, int regNo)
         return &_cup[regNo];
     }
     pRegData = SaveData_Get(pSave, GMDATA_ID_REGULATION);
-    return &pRegData->regulation_buff[0];  // Œ»óƒZ[ƒuƒf[ƒ^‚É‚Í1–{‚µ‚©‚È‚¢
+    return &pRegData->regulation_buff[0];  // ç¾çŠ¶ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ã¯1æœ¬ã—ã‹ãªã„
 }
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^Žæ“¾
- * @param	ƒZ[ƒuƒf[ƒ^•ÛŽƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	‰½–{–Ú‚ÌƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚©
- * @param	REGULATION	ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ä½•æœ¬ç›®ã®ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹
+ * @param	REGULATION	ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void Data_GetRegulationName(SAVEDATA* pSave, int regNo, STRBUF* pStrBuff, int HeapID)
@@ -159,10 +159,10 @@ void Data_GetRegulationName(SAVEDATA* pSave, int regNo, STRBUF* pStrBuff, int He
 
 //----------------------------------------------------------
 /**
- * @brief	§ŒÀ–³‚µ‚ÌƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^Žæ“¾
- * @param	ƒZ[ƒuƒf[ƒ^•ÛŽƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	‰½–{–Ú‚ÌƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚©
- * @return	REGULATION	ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åˆ¶é™ç„¡ã—ã®ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ä½•æœ¬ç›®ã®ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹
+ * @return	REGULATION	ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 const REGULATION* Data_GetNoLimitRegulation(void)
@@ -172,11 +172,11 @@ const REGULATION* Data_GetNoLimitRegulation(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚©‚çƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“NO‚ðŽæ“¾‚·‚é
+ * @brief   ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³NOã‚’å–å¾—ã™ã‚‹
  *
- * @param   reg		ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   reg		ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“No(REGULATION_NO_???)
+ * @retval  ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³No(REGULATION_NO_???)
  */
 //--------------------------------------------------------------
 int Data_GetRegulationNo(const REGULATION *reg)
@@ -191,5 +191,5 @@ int Data_GetRegulationNo(const REGULATION *reg)
 			return reg_no;
 		}
 	}
-	return REGULATION_NO_ETC;	//ƒJƒXƒ^ƒ€
+	return REGULATION_NO_ETC;	//ã‚«ã‚¹ã‚¿ãƒ 
 }

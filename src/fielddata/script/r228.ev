@@ -1,6 +1,6 @@
 //====================================================================
 //						r228
-//					ƒtƒB[ƒ‹ƒhEƒ[ƒh228
+//					ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ãƒ­ãƒ¼ãƒ‰228
 //====================================================================
 
 	.text
@@ -11,11 +11,11 @@
 	.include	"../eventdata/zone_r228evd.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r228_sign1
 _EVENT_DATA		ev_r228_sign2
@@ -29,16 +29,16 @@ _EVENT_DATA_END
 /********************************************************************/
 ev_r228_flag_change:
 
-	/*ƒŒƒWƒƒbƒNÄí*/
+	/*ãƒ¬ã‚¸ãƒ­ãƒƒã‚¯å†æˆ¦*/
 	_IFVAL_CALL		SYS_WORK_D35R0106_REZI,NE,REZI_WORK_CAPTURE_OK,ev_rezirokku_retry_ok
 
-	/*ŽèŽ‚¿‚É”z•zƒŒƒWƒMƒKƒX‚ª‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN*/
+	/*æ‰‹æŒã¡ã«é…å¸ƒãƒ¬ã‚¸ã‚®ã‚¬ã‚¹ãŒã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯*/
 	_D35_HAIHU_REZI_CHECK	LOCALWORK1
 	_IFVAL_JUMP		LOCALWORK1,EQ,0,ev_r228_exit_move_0
 	_IFVAL_JUMP		LOCALWORK1,EQ,1,ev_r228_exit_move_1
 	_END
 
-/*ƒŒƒWƒƒbƒNÄí*/
+/*ãƒ¬ã‚¸ãƒ­ãƒƒã‚¯å†æˆ¦*/
 ev_rezirokku_retry_ok:
 	_LDVAL			SYS_WORK_D35R0106_REZI,0
 	_RET
@@ -49,32 +49,32 @@ ev_rezirokku_retry_ok:
 /********************************************************************/
 ev_r228_init_change:
 
-	/*ŽèŽ‚¿‚É”z•zƒŒƒWƒMƒKƒX‚ª‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN*/
+	/*æ‰‹æŒã¡ã«é…å¸ƒãƒ¬ã‚¸ã‚®ã‚¬ã‚¹ãŒã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯*/
 	_D35_HAIHU_REZI_CHECK	LOCALWORK1
 	_IFVAL_JUMP		LOCALWORK1,EQ,0,ev_r228_exit_move_0
 	_IFVAL_JUMP		LOCALWORK1,EQ,1,ev_r228_exit_move_1
 	_END
 
-/*‚¢‚È‚¢*/
+/*ã„ãªã„*/
 ev_r228_exit_move_0:
-	_SXY_EXIT_POS_CHANGE	R228_SPDOOR02,783,339					/*“ü‚ê‚È‚¢‚æ‚¤‚É‚·‚é*/
+	_SXY_EXIT_POS_CHANGE	R228_SPDOOR02,783,339					/*å…¥ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹*/
 	_END
 
-/*‚¢‚é*/
+/*ã„ã‚‹*/
 ev_r228_exit_move_1:
-	_SXY_EXIT_POS_CHANGE	R228_SPDOOR01,783,339					/*“ü‚ê‚È‚¢‚æ‚¤‚É‚·‚é*/
+	_SXY_EXIT_POS_CHANGE	R228_SPDOOR01,783,339					/*å…¥ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*							“¹˜HŠÅ”Â								*/
+/*							é“è·¯çœ‹æ¿								*/
 /********************************************************************/
 ev_r228_sign1:
 	_EASY_BOARD_MSG	msg_r228_sign1_01,BOARD_TYPE_ROAD,0
 	_END
 
 /********************************************************************/
-/*							“¹˜HŠÅ”Â								*/
+/*							é“è·¯çœ‹æ¿								*/
 /********************************************************************/
 ev_r228_sign2:
 	_EASY_BOARD_MSG	msg_r228_sign2_01,BOARD_TYPE_ROAD,0

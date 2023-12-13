@@ -1,7 +1,7 @@
 #ifndef _R222_DEF_H_
 #define _R222_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R222_FISHING1		(1)
 #define	SCRID_R222_GORGGEOUSM		(2)
 #define	SCRID_R222_SIGN1		(3)
@@ -10,6 +10,6 @@
 #define	SCRID_R222_SIGN4		(6)
 #define	SCRID_R222_POLICE6		(7)
 #define	SCRID_R222_FLAG_CHANGE		(8)
-#define	SCRID_R222_DATA_MAX		(8)		//最大数
+#define	SCRID_R222_DATA_MAX		(8)		//譛螟ｧ謨ｰ
 
 #endif //_R222_DEF_H_

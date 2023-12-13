@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_amaikaori.c
- * @brief	ƒtƒB[ƒ‹ƒh‹ZFŠÃ‚¢‚è
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æŠ€ï¼šç”˜ã„é¦™ã‚Š
  * @author	Nozomu Saito
  * @date	2006.06.01
  */
@@ -32,12 +32,12 @@ BOOL GMEVENT_Amakikaori( GMEVENT_CONTROL *event )
 
 	switch(*seq){
 	case 0:
-		//ƒXƒLƒ‹ŒÅ—Lƒƒ‚ƒŠŠm•Û
+		//ã‚¹ã‚­ãƒ«å›ºæœ‰ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		work->Work = sys_AllocMemoryLo( HEAPID_WORLD, sizeof(AMAIKAORI_WORK) );
 		(*seq)++;
 		break;
 	case 1:
-		//ŠÃ‚¢‚èƒGƒtƒFƒNƒgƒCƒxƒ“ƒg“à‚Å‰ð•ú‚µ‚Ä‚­‚ê‚é‚Ì‚ÅAŠm•Û‚¾‚¯
+		//ç”˜ã„é¦™ã‚Šã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¤ãƒ™ãƒ³ãƒˆå†…ã§è§£æ”¾ã—ã¦ãã‚Œã‚‹ã®ã§ã€ç¢ºä¿ã ã‘
 		{
 			int size = FLDMAP_Amaikaori_WorkSize();
 			skill_work->EffWork = sys_AllocMemoryLo( HEAPID_WORLD, size );
@@ -45,24 +45,24 @@ BOOL GMEVENT_Amakikaori( GMEVENT_CONTROL *event )
 		}
 		(*seq)++;
 		break;
-	case 2:		//ƒJƒbƒgƒCƒ“
+	case 2:		//ã‚«ãƒƒãƒˆã‚¤ãƒ³
 		{
 			int sex = Player_SexGet( fsys->player );
 			skill_work->TcbCutIn = FieldCutIn_Init( fsys, CUTIN_TYPE_HIDEN, work->PokeParam, sex );
 		}
 		(*seq)++;
 		break;
-	case 3:		//ƒJƒbƒgƒCƒ“‘Ò‚¿
+	case 3:		//ã‚«ãƒƒãƒˆã‚¤ãƒ³å¾…ã¡
 		if( FieldCutIn_EndCheck(skill_work->TcbCutIn) ){
-			FieldCutIn_End( skill_work->TcbCutIn );	//ƒJƒbƒgƒCƒ“I—¹
+			FieldCutIn_End( skill_work->TcbCutIn );	//ã‚«ãƒƒãƒˆã‚¤ãƒ³çµ‚äº†
 			(*seq)++;
 		}
 		break;
-	case 4:		//ƒGƒtƒFƒNƒgƒR[ƒ‹
+	case 4:		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚³ãƒ¼ãƒ«
 		FieldEvent_Call(event, FLDMAP_AmaikaoriEvent, skill_work->EffWork);
 		(*seq)++;
 		break;	
-	case 5:		//ƒ[ƒN‰ð•ú
+	case 5:		//ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 		sys_FreeMemoryEz(work->Work);
 		sys_FreeMemoryEz(work);
 		return TRUE;

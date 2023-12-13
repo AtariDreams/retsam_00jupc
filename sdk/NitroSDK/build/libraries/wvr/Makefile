@@ -13,19 +13,19 @@
 #
 # $Log: Makefile,v $
 # Revision 1.6  2005/02/16 10:35:24  terui
-# SUBDIRS‚ÉARM9‚ğ’Ç‰ÁB
+# SUBDIRSã«ARM9ã‚’è¿½åŠ ã€‚
 #
 # Revision 1.5  2005/01/14 06:18:44  terui
-# ARM9‚ğSUBDIRS‚ÉŠÜ‚ß‚éğŒ‚ğ’Ç‰ÁB
+# ARM9ã‚’SUBDIRSã«å«ã‚ã‚‹æ¡ä»¶ã‚’è¿½åŠ ã€‚
 #
 # Revision 1.4  2005/01/13 01:47:01  terui
-# SUBDIRS ‚©‚ç ARM9 ‚ğˆê’UíœB
+# SUBDIRS ã‹ã‚‰ ARM9 ã‚’ä¸€æ—¦å‰Šé™¤ã€‚
 #
 # Revision 1.3  2005/01/11 07:46:29  takano_makoto
 # fix copyright header.
 #
 # Revision 1.2  2005/01/05 07:28:36  terui
-# ARM9‚ğSUB_DIR‚É’Ç‰ÁB
+# ARM9ã‚’SUB_DIRã«è¿½åŠ ã€‚
 #
 # Revision 1.1  2004/12/06 10:18:24  terui
 # Initial upload.

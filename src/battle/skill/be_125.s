@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_125.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			125�@�₯�ǂ̒ǉ����ʁ{�������Ԃ��Ƃ���B�������������Ԃł��Z���o����B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			125　やけどの追加効果＋こおり状態がとける。自分がこおり状態でも技が出せる。
  *
  *@author	HisashiSogabe
  *@data		2005.12.05

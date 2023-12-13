@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.16  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL の判定部分に SDK_WIN32 での判定も追加
+  SDK_FROM_TOOL 縺ｮ蛻､螳夐Κ蛻�縺ｫ SDK_WIN32 縺ｧ縺ｮ蛻､螳壹ｂ霑ｽ蜉
 
   Revision 1.15  2005/04/12 06:15:07  ida
-  SNDをNITRO-SDKへ移設
+  SND繧誰ITRO-SDK縺ｸ遘ｻ險ｭ
 
   Revision 1.13  2005/04/12 00:52:11  ida
   for SDK_FROM_TOOL
 
   Revision 1.12  2005/02/02 05:31:58  ida
-  著作権年次表記を更新
+  闡嶺ｽ懈ｨｩ蟷ｴ谺｡陦ｨ險倥ｒ譖ｴ譁ｰ
 
   Revision 1.11  2005/02/02 05:10:47  ida
   for SDK_FROM_TOOL

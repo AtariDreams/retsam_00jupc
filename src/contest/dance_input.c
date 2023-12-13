@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	dance_input.c
- * @brief	‰‰‹Z—Í•”–å“ü—Í‰æ–Êˆ—
+ * @brief	æ¼”æŠ€åŠ›éƒ¨é–€å…¥åŠ›ç”»é¢å‡¦ç†
  * @author	matsuda
- * @date	2005.12.02(‹à)
+ * @date	2005.12.02(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -51,15 +51,15 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///‚PƒtƒHƒ“ƒgOBJ‚Ìˆ—‚ªd‚¢‚Ì‚ÅÅ‰‚É¶¬‚µ‚ÄAˆÈŒãAƒoƒjƒbƒVƒ…‚ÌON,OFF‘€ì‚Ås‚¤
-///‚O¡‚Ü‚Å’Ê‚è•K—v‚ÈŽž‚É¶¬‚µ‚ÄA•K—v‚È‚­‚È‚Á‚½‚çíœ‚·‚é
+///ï¼‘ï¼ãƒ•ã‚©ãƒ³ãƒˆOBJã®å‡¦ç†ãŒé‡ã„ã®ã§æœ€åˆã«ç”Ÿæˆã—ã¦ã€ä»¥å¾Œã€ãƒãƒ‹ãƒƒã‚·ãƒ¥ã®ON,OFFæ“ä½œã§è¡Œã†
+///ï¼ï¼ä»Šã¾ã§é€šã‚Šå¿…è¦ãªæ™‚ã«ç”Ÿæˆã—ã¦ã€å¿…è¦ãªããªã£ãŸã‚‰å‰Šé™¤ã™ã‚‹
 #define FONTOBJ_VANISH		(1)
 
 
 //--------------------------------------------------------------
-//	ƒ[ƒJƒ‹TCBƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ãƒ­ãƒ¼ã‚«ãƒ«TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 #define VWAIT_TCBPRI_CGR_REQ			(8)
 #define VWAIT_TCBPRI_FRAMEVISIBLE		(10)
@@ -71,48 +71,48 @@
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///BGŽw’è‚È‚µ
+///BGæŒ‡å®šãªã—
 #define NONE_ID			(0xffff)
 
-///BGŽg—p–Ê”
+///BGä½¿ç”¨é¢æ•°
 #define DCI_BG_NUM		(4)
 
-///BGƒLƒƒƒ‰ƒNƒ^‚ÌVRAMŽg—pƒTƒCƒY
+///BGã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®VRAMä½¿ç”¨ã‚µã‚¤ã‚º
 #define BG_VRAM_SIZE	(0x8000 - (0x800 * DCI_BG_NUM))
 
-///•W€ƒpƒŒƒbƒgƒf[ƒ^Žg—p–{”
+///æ¨™æº–ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ä½¿ç”¨æœ¬æ•°
 #define BASE_PLTT_NUM	(16)
 
-///makedata_no‰Šú’l(–¢Žg—pó‘Ô)
+///makedata_noåˆæœŸå€¤(æœªä½¿ç”¨çŠ¶æ…‹)
 #define MAKEDATA_NO_INIT	(-1)
 
-///ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê‚ÅŽg—po—ˆ‚éBG‚ÌCGRƒTƒCƒY
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ã§ä½¿ç”¨å‡ºæ¥ã‚‹BGã®CGRã‚µã‚¤ã‚º
 #define DCI_BG_CGR_SIZE			(0x6000)
 
-///BGƒXƒNƒŠ[ƒ“‚ÌƒNƒŠƒAƒR[ƒh
+///BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 #define BG_CLEAR_CODE			(0)
 
-///”¼“§–¾‘æ1‘ÎÛ–Ê
+///åŠé€æ˜Žç¬¬1å¯¾è±¡é¢
 #define BLD_PLANE_1		(GX_BLEND_PLANEMASK_BG0)
-///”¼“§–¾‘æ2‘ÎÛ–Ê
+///åŠé€æ˜Žç¬¬2å¯¾è±¡é¢
 #define BLD_PLANE_2		(GX_BLEND_BGALL)
-///‘æ1‘ÎÛ–Ê‚É‘Î‚·‚éƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒOŒW”
+///ç¬¬1å¯¾è±¡é¢ã«å¯¾ã™ã‚‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¿‚æ•°
 #define BLD_ALPHA_1		(9)
-///‘æ2‘ÎÛ–Ê‚É‘Î‚·‚éƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒOŒW”
+///ç¬¬2å¯¾è±¡é¢ã«å¯¾ã™ã‚‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¿‚æ•°
 #define BLD_ALPHA_2		(8)
 
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNAƒ^ƒCƒv‚ð•\Ž¦‚·‚éƒvƒŒ[ƒg•”•ª‚ÌƒpƒŒƒbƒg”Ô†
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ã€ã‚¿ã‚¤ãƒ—ã‚’è¡¨ç¤ºã™ã‚‹ãƒ—ãƒ¬ãƒ¼ãƒˆéƒ¨åˆ†ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define PLATE_PALNO		(2)
 
-///ƒ{ƒ^ƒ“ƒJƒ‰[ŠJŽnˆÊ’u(ƒJƒ‰[’PˆÊ)
+///ãƒœã‚¿ãƒ³ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®(ã‚«ãƒ©ãƒ¼å˜ä½)
 #define BUTTON_COLOR_START		(0*16)
-///ƒ{ƒ^ƒ“ƒJƒ‰[‚Ì”(ƒJƒ‰[’PˆÊ)
+///ãƒœã‚¿ãƒ³ã‚«ãƒ©ãƒ¼ã®æ•°(ã‚«ãƒ©ãƒ¼å˜ä½)
 #define BUTTON_COLOR_NUM		(16 * 4)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒLƒƒƒ‰ƒNƒ^“WŠJ—ÌˆæID
+///ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å±•é–‹é ˜åŸŸID
 enum{
 	EXPAND_CHAR_WALL,
 	EXPAND_CHAR_COMMAND,
@@ -122,7 +122,7 @@ enum{
 	EXPAND_CHAR_MAX,
 };
 
-///ƒpƒŒƒbƒg“WŠJ—ÌˆæID
+///ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹é ˜åŸŸID
 enum{
 	EXPAND_PALETTE_WALL,
 	EXPAND_PALETTE_COMMAND,
@@ -130,7 +130,7 @@ enum{
 	EXPAND_PALETTE_MAX,
 };
 
-///ƒXƒNƒŠ[ƒ““WŠJ—ÌˆæID
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å±•é–‹é ˜åŸŸID
 enum{
 	EXPAND_SCREEN_WALL_PANEL,
 	EXPAND_SCREEN_WALL_BF,
@@ -141,33 +141,33 @@ enum{
 };
 
 //--------------------------------------------------------------
-//	ƒXƒNƒŠ[ƒ“ƒXƒNƒ[ƒ‹’l
+//	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
 //--------------------------------------------------------------
-///TYPE_A‚ÌBG•\Ž¦Žž‚Éƒ^ƒbƒ`ƒpƒlƒ‹‚ª‰Ÿ‚³‚ê‚½Žž‚ÉY•ûŒü‚ÉƒXƒNƒ[ƒ‹‚³‚¹‚é’l(ƒGƒtƒFƒNƒg–Ê)
+///TYPE_Aã®BGè¡¨ç¤ºæ™‚ã«ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãŒæŠ¼ã•ã‚ŒãŸæ™‚ã«Yæ–¹å‘ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹å€¤(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢)
 #define SCRN_SCROLL_A_EFF_Y				(16)//(-2)
-///TYPE_A‚ÌBG•\Ž¦Žž‚Éƒ^ƒbƒ`ƒpƒlƒ‹‚ª‰Ÿ‚³‚ê‚½Žž‚ÉY•ûŒü‚ÉƒXƒNƒ[ƒ‹‚³‚¹‚é’l(ƒGƒtƒFƒNƒg–Ê)
+///TYPE_Aã®BGè¡¨ç¤ºæ™‚ã«ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãŒæŠ¼ã•ã‚ŒãŸæ™‚ã«Yæ–¹å‘ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹å€¤(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢)
 #define SCRN_SCROLL_BACK_A_EFF_Y		(-4)//(1)
-///SCRN_SCROLL_BACK_A_EFF_Y‚ÌŒã‚É’èˆÊ’u‚É–ß‚·‚Ü‚Å‚ÌƒXƒNƒ[ƒ‹’l
+///SCRN_SCROLL_BACK_A_EFF_Yã®å¾Œã«å®šä½ç½®ã«æˆ»ã™ã¾ã§ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
 #define SCRN_SCROLL_RESET_A_EFF_Y		(-(SCRN_SCROLL_A_EFF_Y + SCRN_SCROLL_BACK_A_EFF_Y))
 
 //--------------------------------------------------------------
-//	ƒtƒHƒ“ƒgOBJ
+//	ãƒ•ã‚©ãƒ³ãƒˆOBJ
 //--------------------------------------------------------------
-///ƒtƒHƒ“ƒgOBJ‚Ì•¶ŽšŠÔŠuX
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®æ–‡å­—é–“éš”X
 #define PANEL_MSG_MARGIN		(0)
-///ƒtƒHƒ“ƒgOBJ‚ÌÅ‘åŽg—pOAM”
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®æœ€å¤§ä½¿ç”¨OAMæ•°
 #define PANEL_MSG_MAXOAM		(8)
-///ƒtƒHƒ“ƒgOBJ‚ÌƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define PANEL_MSG_SOFTPRI		(100)
-///ƒtƒHƒ“ƒgOBJ‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define PANEL_MSG_BGPRI			(0)
 
 enum{
-	FONTOAM_LEFT,		///<X¶’[À•W
-	FONTOAM_CENTER,		///<X’†SÀ•W
+	FONTOAM_LEFT,		///<Xå·¦ç«¯åº§æ¨™
+	FONTOAM_CENTER,		///<Xä¸­å¿ƒåº§æ¨™
 };
 
-///ƒtƒHƒ“ƒgOBJƒAƒNƒ^[ƒ[ƒN‚ÅŽg—p‚·‚é“Y‚¦Žš‚ÌˆÊ’u
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã§ä½¿ç”¨ã™ã‚‹æ·»ãˆå­—ã®ä½ç½®
 enum{
 	//WALL
 	FA_NO_CONRANK = 0,
@@ -177,76 +177,76 @@ enum{
 #if FONTOBJ_VANISH
 	FA_NO_FORWARD,
 #else
-	FA_NO_FORWARD = 0,			///<‚Ü‚¦
+	FA_NO_FORWARD = 0,			///<ã¾ãˆ
 #endif
-	FA_NO_BACK,					///<‚¤‚µ‚ë
-	FA_NO_LEFT,					///<‚Ð‚¾‚è
-	FA_NO_RIGHT,				///<‚Ý‚¬
+	FA_NO_BACK,					///<ã†ã—ã‚
+	FA_NO_LEFT,					///<ã²ã ã‚Š
+	FA_NO_RIGHT,				///<ã¿ãŽ
 	
 	
-	FA_NO_MAX = FA_NO_RIGHT + 1,		///<ƒtƒHƒ“ƒgOBJ‚ðˆê“x‚Éo‚¹‚éÅ‘å”
+	FA_NO_MAX = FA_NO_RIGHT + 1,		///<ãƒ•ã‚©ãƒ³ãƒˆOBJã‚’ä¸€åº¦ã«å‡ºã›ã‚‹æœ€å¤§æ•°
 };
 
-///ƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•W
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™
 enum{
-	//-- ‰æ–ÊCOMMAND --//
-	FA_POS_FORWARD_X = 0x10 * 8,	//X‚Í’†SÀ•W
+	//-- ç”»é¢COMMAND --//
+	FA_POS_FORWARD_X = 0x10 * 8,	//Xã¯ä¸­å¿ƒåº§æ¨™
 	FA_POS_FORWARD_Y = 0x3 * 8,
-	FA_POS_BACK_X = 0x10 * 8,	//X‚Í’†SÀ•W
+	FA_POS_BACK_X = 0x10 * 8,	//Xã¯ä¸­å¿ƒåº§æ¨™
 	FA_POS_BACK_Y = 0xf * 8,
-	FA_POS_LEFT_X = 0x6 * 8,	//X‚Í’†SÀ•W
+	FA_POS_LEFT_X = 0x6 * 8,	//Xã¯ä¸­å¿ƒåº§æ¨™
 	FA_POS_LEFT_Y = 0x8 * 8,
-	FA_POS_RIGHT_X = 0x1a * 8,	//X‚Í’†SÀ•W
+	FA_POS_RIGHT_X = 0x1a * 8,	//Xã¯ä¸­å¿ƒåº§æ¨™
 	FA_POS_RIGHT_Y = 0x8 * 8,
 };
 
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•WX
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™X
 #define FONT_CONRANK_POS_X		(128)
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•WY
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™Y
 #define FONT_CONRANK_POS_Y		(8*0x10-1)
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•WX
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™X
 #define FONT_CONTYPE_POS_X		(128)
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•WY
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™Y
 #define FONT_CONTYPE_POS_Y		(8*0x14-1)
 
 //--------------------------------------------------------------
-//	ƒpƒŒƒbƒgŠÖ˜A’è‹`
+//	ãƒ‘ãƒ¬ãƒƒãƒˆé–¢é€£å®šç¾©
 //--------------------------------------------------------------
-///ƒtƒHƒ“ƒgOBJ‚ÌƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 enum{
 	PALOFS_COMMAND = 0,
 	PALOFS_CONRANK = 0,
 };
 
 #define MSGCOLOR_COMMAND		(GF_PRINTCOLOR_MAKE(1, 1, 0xb))
-#define MSGCOLOR_CONRANK		(GF_PRINTCOLOR_MAKE(1, 2, 0))	//FONT_SYSTEM‚È‚Ì‚Å”wŒi”²‚«FŽw’è
+#define MSGCOLOR_CONRANK		(GF_PRINTCOLOR_MAKE(1, 2, 0))	//FONT_SYSTEMãªã®ã§èƒŒæ™¯æŠœãè‰²æŒ‡å®š
 
 //--------------------------------------------------------------
-//	ƒGƒtƒFƒNƒgTCB
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCB
 //--------------------------------------------------------------
-///ƒpƒlƒ‹‚ðƒ^ƒbƒ`‚µ‚½ŒãAƒGƒtƒFƒNƒg‚Å‘Ò‚ÂƒtƒŒ[ƒ€”
+///ãƒ‘ãƒãƒ«ã‚’ã‚¿ãƒƒãƒã—ãŸå¾Œã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§å¾…ã¤ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define SCRN_TOUCH_WAIT	(2)
-///ƒpƒlƒ‹‚ðƒ^ƒbƒ`‚µ‚½ŒãAƒGƒtƒFƒNƒg‚Å‘Ò‚ÂƒtƒŒ[ƒ€”
+///ãƒ‘ãƒãƒ«ã‚’ã‚¿ãƒƒãƒã—ãŸå¾Œã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§å¾…ã¤ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define SCRN_TOUCH_ANM_WAIT	(2)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒ{ƒ^ƒ“ƒLƒƒƒ‰“]‘——p‚ÌƒTƒCƒYX(ƒLƒƒƒ‰ƒNƒ^’PˆÊ)
+///ãƒœã‚¿ãƒ³ã‚­ãƒ£ãƒ©è»¢é€ç”¨ã®ã‚µã‚¤ã‚ºX(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½)
 #define BUTTON_CGR_SIZE_X		(6)
-///ƒ{ƒ^ƒ“ƒLƒƒƒ‰“]‘——p‚ÌƒTƒCƒYY(ƒLƒƒƒ‰ƒNƒ^’PˆÊ)
+///ãƒœã‚¿ãƒ³ã‚­ãƒ£ãƒ©è»¢é€ç”¨ã®ã‚µã‚¤ã‚ºY(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½)
 #define BUTTON_CGR_SIZE_Y		(12)
-///ƒ{ƒ^ƒ“ƒLƒƒƒ‰“]‘——pƒOƒ‰ƒtƒBƒbƒN‚ÌƒAƒjƒƒpƒ^[ƒ“”
+///ãƒœã‚¿ãƒ³ã‚­ãƒ£ãƒ©è»¢é€ç”¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°
 #define BUTTON_ANM_NUM	(3)
 
-///paracgr\‘¢‘Ì‚ÅŽg—p‚·‚éƒAƒNƒ^[ƒ|ƒCƒ“ƒ^‚Ì”
+///paracgræ§‹é€ ä½“ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿ã®æ•°
 #define PARACGR_CAP_MAX			(3)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦Žž‚Ì”ÍˆÍŽw’è\‘¢‘Ì
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆæ™‚ã®ç¯„å›²æŒ‡å®šæ§‹é€ ä½“
 typedef struct{
 	s32 top;
 	s32 bottom;
@@ -254,84 +254,84 @@ typedef struct{
 	s32 right;
 }REWRITE_SCRN_RECT;
 
-///CGR“]‘—ƒAƒjƒŽÀsŽž‚Ì”ÍˆÍƒf[ƒ^
+///CGRè»¢é€ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œæ™‚ã®ç¯„å›²ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	u16 dest_x;			///<“]‘—æXŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 dest_y;			///<“]‘—æYŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 src_x;			///<“]‘—Œ³XŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 src_y;			///<“]‘—Œ³YŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 size_x;			///<X“]‘—ƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)
-	u16 size_y;			///<Y“]‘—ƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)
+	u16 dest_x;			///<è»¢é€å…ˆXé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 dest_y;			///<è»¢é€å…ˆYé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 src_x;			///<è»¢é€å…ƒXé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 src_y;			///<è»¢é€å…ƒYé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 size_x;			///<Xè»¢é€ã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 size_y;			///<Yè»¢é€ã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)
 }CGR_TRANS_RECTDATA;
 
-///CGR“]‘—ƒAƒjƒŽÀsŽž‚Ìƒpƒ‰ƒ[ƒ^
+///CGRè»¢é€ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œæ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	TCB_PTR v_tcb;		///<Vƒuƒ‰ƒ“ƒN“]‘—‚ðŽÀs‚·‚éTCB‚Ìƒ|ƒCƒ“ƒ^
-	u8 *dest_vram;		///<VRAM“]‘—æƒAƒhƒŒƒX
-	void *arc_data;		///<ƒA[ƒJƒCƒu‚µ‚½ƒLƒƒƒ‰ƒtƒ@ƒCƒ‹‚Ìƒ|ƒCƒ“ƒ^
-	u8 *raw_data;		///<ƒA[ƒJƒCƒu‚µ‚½ƒLƒƒƒ‰ƒtƒ@ƒCƒ‹‚ÌƒLƒƒƒ‰ƒf[ƒ^æ“ªƒAƒhƒŒƒX
-	CGR_TRANS_RECTDATA rd;	///<CGR“]‘—ƒAƒjƒŽÀsŽž‚Ì”ÍˆÍƒf[ƒ^
-	u16 x_len;			///<ƒLƒƒƒ‰ƒtƒ@ƒCƒ‹‚ÌX•(ƒoƒCƒg’PˆÊ)
+	TCB_PTR v_tcb;		///<Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ã‚’å®Ÿè¡Œã™ã‚‹TCBã®ãƒã‚¤ãƒ³ã‚¿
+	u8 *dest_vram;		///<VRAMè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
+	void *arc_data;		///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã—ãŸã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 *raw_data;		///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã—ãŸã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+	CGR_TRANS_RECTDATA rd;	///<CGRè»¢é€ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œæ™‚ã®ç¯„å›²ãƒ‡ãƒ¼ã‚¿
+	u16 x_len;			///<ã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã®Xå¹…(ãƒã‚¤ãƒˆå˜ä½)
 }CGR_TRANS_PARAM;
 
-///ƒGƒtƒFƒNƒgTCB—p‚Ìƒ[ƒN
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBç”¨ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	s16 seq;
 	s16 wait;
 	union{
-		struct{		//CGR“]‘——p(”Ä—p)
+		struct{		//CGRè»¢é€ç”¨(æ±Žç”¨)
 			CGR_TRANS_PARAM *ctp;
 			const CGR_TRANS_RECTDATA *ctp_rd_ptr[BUTTON_ANM_NUM];
-			CATS_ACT_PTR cap[PARACGR_CAP_MAX];	///<ˆê‚ÉƒXƒNƒ[ƒ‹‚³‚¹‚éƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+			CATS_ACT_PTR cap[PARACGR_CAP_MAX];	///<ä¸€ç·’ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 			u32 transcgr_id[BUTTON_ANM_NUM];
 			int tp_ret;
 			u16 arc_id;
 			u16 char_x_len;
-			u8 fa_no;						///<‘ÎÛƒtƒHƒ“ƒgOBJƒAƒNƒ^[ƒ[ƒN‚Ì“Y‚¦Žš
+			u8 fa_no;						///<å¯¾è±¡ãƒ•ã‚©ãƒ³ãƒˆOBJã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®æ·»ãˆå­—
 		}paracgr;
 	};
 }DCI_EFFECT_WORK;
 
-///ƒGƒtƒFƒNƒgBG‘‚«Š·‚¦ƒpƒ‰ƒ[ƒ^
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGæ›¸ãæ›ãˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	const REWRITE_SCRN_RECT *rsr;	///<ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦”ÍˆÍƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 rsr_num;						///<rsrƒf[ƒ^ŒÂ”
-	s8 add_charname;				///<ƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg’l
+	const REWRITE_SCRN_RECT *rsr;	///<ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆç¯„å›²ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 rsr_num;						///<rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+	s8 add_charname;				///<ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 }EFFBG_WRITE_PARAM;
 
-///ƒtƒHƒ“ƒgƒAƒNƒ^[ƒ[ƒN
+///ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	FONTOAM_OBJ_PTR fontoam;
 	CHAR_MANAGER_ALLOCDATA cma;
 	u16 font_len;
 }FONT_ACTOR;
 
-///ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê§Œäƒ[ƒN
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 typedef struct _DCI_PARAM{
 	CONTEST_SYSTEM *consys;
 	DANCE_SYSTEM_PARAM *sys;
-	void *scene_work;	///<ƒV[ƒ“–ˆ‚ÉˆÙ‚È‚é•K—v‚Æ‚È‚éƒf[ƒ^—Þ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TCB_PTR effect_tcb;	///<ƒGƒtƒFƒNƒg“®ìTCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	EFFBG_WRITE_PARAM ewp;	///<ƒGƒtƒFƒNƒgBG‘‚«Š·‚¦ƒpƒ‰ƒ[ƒ^
+	void *scene_work;	///<ã‚·ãƒ¼ãƒ³æ¯Žã«ç•°ãªã‚‹å¿…è¦ã¨ãªã‚‹ãƒ‡ãƒ¼ã‚¿é¡žã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR effect_tcb;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œTCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	EFFBG_WRITE_PARAM ewp;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGæ›¸ãæ›ãˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	//ƒtƒHƒ“ƒgOAM
-	FONTOAM_SYS_PTR fontoam_sys;	///<ƒtƒHƒ“ƒgƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	FONT_ACTOR font_actor[FA_NO_MAX];	///<ƒtƒHƒ“ƒgƒAƒNƒ^[ƒ[ƒN
+	//ãƒ•ã‚©ãƒ³ãƒˆOAM
+	FONTOAM_SYS_PTR fontoam_sys;	///<ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	FONT_ACTOR font_actor[FA_NO_MAX];	///<ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 	
-	u16 cgr_trans_req;		///<Vƒuƒ‰ƒ“ƒN“]‘—CGRƒŠƒNƒGƒXƒg
-	s8 makedata_no;		///<Œ»ÝŽg—p‚µ‚Ä‚¢‚éBgMakeData‚Ì”Ô†
+	u16 cgr_trans_req;		///<Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€CGRãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	s8 makedata_no;		///<ç¾åœ¨ä½¿ç”¨ã—ã¦ã„ã‚‹BgMakeDataã®ç•ªå·
 	
-	DCI_EFFECT_WORK effect_work;	///<ƒGƒtƒFƒNƒgTCB—pƒ[ƒN
+	DCI_EFFECT_WORK effect_work;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBç”¨ãƒ¯ãƒ¼ã‚¯
 	
 	u8 *expand_char[EXPAND_CHAR_MAX];
 	u16 *expand_screen[EXPAND_SCREEN_MAX];
 	u16 *expand_palette[EXPAND_PALETTE_MAX];
 }DCI_PARAM;
 
-///BGì¬ƒf[ƒ^\‘¢‘Ì
+///BGä½œæˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct{
-	u16 cgr_id;			///<Žg—pCGR‚ÌƒA[ƒJƒCƒuID
-	u16 pal_id;			///<Žg—pƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuID
+	u16 cgr_id;			///<ä½¿ç”¨CGRã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+	u16 pal_id;			///<ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 	union{
 		struct{
 			u16 scr0_id;
@@ -339,30 +339,30 @@ typedef struct{
 			u16 scr2_id;
 			u16 scr3_id;
 		};
-		u16 scr_id[DCI_BG_NUM];		///<Žg—pƒXƒNƒŠ[ƒ“‚ÌƒA[ƒJƒCƒuID
+		u16 scr_id[DCI_BG_NUM];		///<ä½¿ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 	};
 	union{
 		struct{
-			u16 pri0;		///<BG0–Ê‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
-			u16 pri1;		///<BG1–Ê‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+			u16 pri0;		///<BG0é¢ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+			u16 pri1;		///<BG1é¢ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 			u16 pri2;
 			u16 pri3;
 		};
-		u16 pri[DCI_BG_NUM];		///<BG‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+		u16 pri[DCI_BG_NUM];		///<BGã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 	};
 	
-	//ƒ^ƒbƒ`ƒpƒlƒ‹
-	const RECT_HIT_TBL *tpd;	///<Žg—p‚·‚éƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	const int *tpd_ret;			///<ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŒ‹‰Ê
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«
+	const RECT_HIT_TBL *tpd;	///<ä½¿ç”¨ã™ã‚‹ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	const int *tpd_ret;			///<ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµæžœ
 	
-	//ŠÖ”ƒ|ƒCƒ“ƒ^
-	void (*callback_bg)(DCI_PARAM_PTR, int, int);	///<BGCreateŽž‚ÉŒÄ‚Ño‚·ŠÖ”
-	int (*callback_tp)(DCI_PARAM_PTR, int);			///<ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚·ŠÖ”
+	//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+	void (*callback_bg)(DCI_PARAM_PTR, int, int);	///<BGCreateæ™‚ã«å‘¼ã³å‡ºã™é–¢æ•°
+	int (*callback_tp)(DCI_PARAM_PTR, int);			///<ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã™é–¢æ•°
 }BG_MAKE_DATA;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void Sub_ScrnErase(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL_INI *bgl, 
 	int frame_no, u16 clear_code);
@@ -402,9 +402,9 @@ static void DINPUT_DefaultExpandBGFree(DCI_PARAM_PTR dci);
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê—p‚ÌBGƒtƒŒ[ƒ€\¬
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ç”¨ã®BGãƒ•ãƒ¬ãƒ¼ãƒ æ§‹æˆ
 static const GF_BGL_BGCNT_HEADER AciBgCntDat[] = {
 	{//GF_BGL_FRAME0_S
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -430,12 +430,12 @@ static const GF_BGL_BGCNT_HEADER AciBgCntDat[] = {
 
 
 //============================================================================================
-//	ƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+//	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 //============================================================================================
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///‹Z‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+///æŠ€é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL CommandSelectTouchData[] = {
 	//TOP BOTTOM LEFT RIGHT
 	{0*8, 10*8, 11*8, 0x15*8},		//DANCE_TP_JUMP
@@ -444,14 +444,14 @@ static const RECT_HIT_TBL CommandSelectTouchData[] = {
 	{5*8, 15*8, 0x15*8, 0x1f*8},	//DANCE_TP_RIGHT
 	{ RECT_HIT_END, 0, 0, 0 }
 };
-///‹Z‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`Œ‹‰Ê•ÔŽ–
+///æŠ€é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒçµæžœè¿”äº‹
 static const int CommandSelectTouchRet[NELEMS(CommandSelectTouchData) - 1] = {
 	DANCE_TP_JUMP,
 	DANCE_TP_ADVANCE,
 	DANCE_TP_LEFT,
 	DANCE_TP_RIGHT,
 };
-///‹Z‘I‘ð‚Ìƒ^ƒbƒ`ƒpƒlƒ‹INDEX(CommandSelectTouchRet‚Ì‡”Ô)
+///æŠ€é¸æŠžã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«INDEX(CommandSelectTouchRetã®é †ç•ª)
 enum{
 	DANCE_INDEX_JUMP,
 	DANCE_INDEX_ADVANCE,
@@ -463,37 +463,37 @@ enum{
 //==============================================================================
 //	
 //==============================================================================
-///BGì¬ƒf[ƒ^(¦‚±‚±‚Ì•À‚Ñ‚ð’Ç‰ÁA•ÏX‚µ‚½‚çDINPUT_TYPE_???‚Ì’è‹`‚à•ÏX‚·‚é‚±‚ÆII)
+///BGä½œæˆãƒ‡ãƒ¼ã‚¿(â€»ã“ã“ã®ä¸¦ã³ã‚’è¿½åŠ ã€å¤‰æ›´ã—ãŸã‚‰DINPUT_TYPE_???ã®å®šç¾©ã‚‚å¤‰æ›´ã™ã‚‹ã“ã¨ï¼ï¼)
 static const BG_MAKE_DATA BgMakeData[] = {
 	{//WALL
 		EXPAND_CHAR_WALL,	//CON_SUB_NCGR_BIN,
 		EXPAND_PALETTE_WALL,	//CONTEST_SUB_NCLR,
 		{
-			EXPAND_SCREEN_WALL_PANEL,	//CON_TIT_NSCR_BIN,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			EXPAND_SCREEN_WALL_BF,	//CON_SUB_BG_NSCR_BIN,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			EXPAND_SCREEN_WALL_PANEL,	//CON_TIT_NSCR_BIN,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			EXPAND_SCREEN_WALL_BF,	//CON_SUB_BG_NSCR_BIN,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		BGCallback_Wall,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		BGCallback_Wall,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//COMMAND
 		EXPAND_CHAR_COMMAND,	//CON_DANCE_BUT_NCGR_BIN,
 		EXPAND_PALETTE_COMMAND,	//CONTEST_DANCE_SUB_BG_NCLR,
 		{
-			EXPAND_SCREEN_COMMAND_PANEL,	//CON_DANCE_BUT_NSCR_BIN,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			EXPAND_SCREEN_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			EXPAND_SCREEN_COMMAND_PANEL,	//CON_DANCE_BUT_NSCR_BIN,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			EXPAND_SCREEN_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		CommandSelectTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		CommandSelectTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		BGCallback_CommandSelect,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_CommandSelect,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		CommandSelectTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		CommandSelectTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		BGCallback_CommandSelect,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_CommandSelect,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 };
 
@@ -504,7 +504,7 @@ static const BG_MAKE_DATA BgMakeData[] = {
 //	
 //
 //==============================================================================
-///ƒRƒ}ƒ“ƒh‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚ÌCGRƒAƒjƒ“]‘—”ÍˆÍ
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®CGRã‚¢ãƒ‹ãƒ¡è»¢é€ç¯„å›²
 static const CGR_TRANS_RECTDATA CommandSelectCgrTransRect[][WAZA_TEMOTI_MAX] = {
 	{
 		{0, 0, 12, 0, BUTTON_CGR_SIZE_X, BUTTON_CGR_SIZE_Y},		//DANCE_TP_JUMP
@@ -535,9 +535,9 @@ static const CGR_TRANS_RECTDATA CommandSelectCgrTransRect[][WAZA_TEMOTI_MAX] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   DIƒVƒXƒeƒ€ƒ[ƒN‚ÌŠm•Û‚Æ‰Šú‰»
+ * @brief   DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿ã¨åˆæœŸåŒ–
  *
- * @retval  Šm•Û‚µ‚½DIƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç¢ºä¿ã—ãŸDIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void * DINPUT_WorkInit(void)
@@ -554,8 +554,8 @@ static void * DINPUT_WorkInit(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   BG\¬‚ð•W€ƒtƒŒ[ƒ€\¬‚ÅÝ’è‚·‚é
- * @param   bgl		BGLƒf[ƒ^
+ * @brief   BGæ§‹æˆã‚’æ¨™æº–ãƒ•ãƒ¬ãƒ¼ãƒ æ§‹æˆã§è¨­å®šã™ã‚‹
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void DINPUT_DefaultFrameSet(GF_BGL_INI *bgl)
@@ -572,8 +572,8 @@ void DINPUT_DefaultFrameSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   BGƒtƒŒ[ƒ€I—¹ˆ—
- * @param   bgl		BGLƒf[ƒ^
+ * @brief   BGãƒ•ãƒ¬ãƒ¼ãƒ çµ‚äº†å‡¦ç†
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void DINPUT_FrameExit(GF_BGL_INI *bgl)
@@ -588,27 +588,27 @@ void DINPUT_FrameExit(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê‚ÌƒVƒXƒeƒ€‚ð‰Šú‰»
- * @param   bgl		BGLƒf[ƒ^
- * @retval  Alloc‚µ‚½ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê‚ÌƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿
+ * @retval  Allocã—ãŸã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void * DINPUT_SystemInit(CONTEST_SYSTEM *consys, DANCE_SYSTEM_PARAM *sys)
 {
 	DCI_PARAM *dci;
 	
-	//ƒ[ƒNŠm•Û
+	//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	dci = DINPUT_WorkInit();
 	dci->consys = consys;
 	dci->sys = sys;
 	
-	//ƒtƒŒ[ƒ€\¬Ý’è	‚±‚±‚Å‚â‚é‚©‚Í”÷–­H
+	//ãƒ•ãƒ¬ãƒ¼ãƒ æ§‹æˆè¨­å®š	ã“ã“ã§ã‚„ã‚‹ã‹ã¯å¾®å¦™ï¼Ÿ
 //	DINPUT_DefaultFrameSet(bgl);
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€ì¬
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	dci->fontoam_sys = FONTOAM_SysInit(FA_NO_MAX, HEAPID_DANCE);
 
-	//BG“WŠJ
+	//BGå±•é–‹
 	DINPUT_DefaultExpandBGSet(dci);
 
 	return dci;
@@ -616,8 +616,8 @@ void * DINPUT_SystemInit(CONTEST_SYSTEM *consys, DANCE_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê‚ÌƒVƒXƒeƒ€‚ð‰ð•ú‚·‚é
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’è§£æ”¾ã™ã‚‹
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void DINPUT_SystemFree(DCI_PARAM_PTR dci)
@@ -631,8 +631,8 @@ void DINPUT_SystemFree(DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê‚ÅÅ‰‚ÉƒZƒbƒg‚µ‚Ä‚¨‚­í’“ƒAƒNƒ^[‚Ì“o˜^‚ðs‚¤
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ã§æœ€åˆã«ã‚»ãƒƒãƒˆã—ã¦ãŠãå¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void DINPUT_DefaultActorSet(DCI_PARAM_PTR dci)
@@ -646,8 +646,8 @@ void DINPUT_DefaultActorSet(DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   “ü—Í‰æ–Ê‚ÅŽg—p‚·‚éBGŠÖ˜Aƒf[ƒ^‚ð‘S‚Ä“WŠJ—Ìˆæ‚Éƒ[ƒh‚µ‚Ä‚¨‚­
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¥åŠ›ç”»é¢ã§ä½¿ç”¨ã™ã‚‹BGé–¢é€£ãƒ‡ãƒ¼ã‚¿ã‚’å…¨ã¦å±•é–‹é ˜åŸŸã«ãƒ­ãƒ¼ãƒ‰ã—ã¦ãŠã
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DINPUT_DefaultExpandBGSet(DCI_PARAM_PTR dci)
@@ -669,7 +669,7 @@ static void DINPUT_DefaultExpandBGSet(DCI_PARAM_PTR dci)
 	dci->expand_palette[EXPAND_PALETTE_WALL] = sys_AllocMemory(HEAPID_DANCE, 0x200);
 	dci->expand_palette[EXPAND_PALETTE_COMMAND] = sys_AllocMemory(HEAPID_DANCE, 0x200);
 	
-	//-- ƒLƒƒƒ‰ƒNƒ^ --//
+	//-- ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ --//
 	arc_data = ArcUtil_CharDataGet(ARC_CONTEST_BG, CON_SUB_NCGR_BIN, 1, &char_data, HEAPID_DANCE);
 	MI_CpuCopy32(char_data->pRawData, dci->expand_char[EXPAND_CHAR_WALL], BG_VRAM_SIZE);
 	sys_FreeMemoryEz(arc_data);
@@ -685,7 +685,7 @@ static void DINPUT_DefaultExpandBGSet(DCI_PARAM_PTR dci)
 		BUTTON_CGR_SIZE_X * BUTTON_CGR_SIZE_Y * 0x20 * BUTTON_ANM_NUM);
 	sys_FreeMemoryEz(arc_data);
 	
-	//-- ƒXƒNƒŠ[ƒ“ --//
+	//-- ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ --//
 	arc_data = ArcUtil_ScrnDataGet(ARC_CONTEST_BG, CON_TIT_NSCR_BIN, 1, &scrn_data, HEAPID_DANCE);
 	MI_CpuCopy32(scrn_data->rawData, dci->expand_screen[EXPAND_SCREEN_WALL_PANEL], 0x800);
 	sys_FreeMemoryEz(arc_data);
@@ -705,10 +705,10 @@ static void DINPUT_DefaultExpandBGSet(DCI_PARAM_PTR dci)
 	MI_CpuCopy32(scrn_data->rawData, dci->expand_screen[EXPAND_SCREEN_BACKGROUND], 0x800);
 	sys_FreeMemoryEz(arc_data);
 
-	//-- ƒpƒŒƒbƒg --//
+	//-- ãƒ‘ãƒ¬ãƒƒãƒˆ --//
 	PaletteWorkSetEx_ArcWork(ARC_CONTEST_BG, CONTEST_SUB_NCLR, HEAPID_DANCE, 0x200, 0, 
 		dci->expand_palette[EXPAND_PALETTE_WALL]);
-	//ƒvƒŒ[ƒg•”•ª‚¾‚¯ã‘‚«
+	//ãƒ—ãƒ¬ãƒ¼ãƒˆéƒ¨åˆ†ã ã‘ä¸Šæ›¸ã
 	PaletteWorkSetEx_ArcWork(ARC_CONTEST_BG, CONTEST_SUBTIT_NCLR, HEAPID_DANCE, 32, 
 		16 * dci->sys->c_game->type, 
 		&dci->expand_palette[EXPAND_PALETTE_WALL][PLATE_PALNO * 16]);
@@ -719,8 +719,8 @@ static void DINPUT_DefaultExpandBGSet(DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ[ƒh‚µ‚Ä‚¨‚¢‚½BGŠÖŒWƒf[ƒ^‚ð‘S‚Ä‰ð•ú‚·‚é
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ­ãƒ¼ãƒ‰ã—ã¦ãŠã„ãŸBGé–¢ä¿‚ãƒ‡ãƒ¼ã‚¿ã‚’å…¨ã¦è§£æ”¾ã™ã‚‹
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DINPUT_DefaultExpandBGFree(DCI_PARAM_PTR dci)
@@ -740,12 +740,12 @@ static void DINPUT_DefaultExpandBGFree(DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’èƒ^ƒCƒv‚ÌBG‰æ–Ê‚ðŒ`¬‚·‚é
+ * @brief   æŒ‡å®šã‚¿ã‚¤ãƒ—ã®BGç”»é¢ã‚’å½¢æˆã™ã‚‹
  *
- * @param   dci				DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(DINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
- * @param   work			ƒV[ƒ“–ˆ‚ÉˆÙ‚È‚é•K—v‚Èƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dci				DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(DINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
+ * @param   work			ã‚·ãƒ¼ãƒ³æ¯Žã«ç•°ãªã‚‹å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void DINPUT_CreateBG(DCI_PARAM_PTR dci, int select_bg, int force_put, void *scene_work)
@@ -770,10 +770,10 @@ void DINPUT_CreateBG(DCI_PARAM_PTR dci, int select_bg, int force_put, void *scen
 	}
 	bmd = &BgMakeData[select_bg];
 
-	//”wŒiˆÈŠO‚Í‘S‚Ä”ñ•\Ž¦
+	//èƒŒæ™¯ä»¥å¤–ã¯å…¨ã¦éžè¡¨ç¤º
 //	Sub_BackScrnOnlyVisible();
 	
-	//ŠeBG–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒBXV
+	//å„BGé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£æ›´æ–°
 	{
 		for(i = 0; i < DCI_BG_NUM; i++){
 			GF_BGL_PrioritySet(GF_BGL_FRAME0_S + i, bmd->pri[i]);
@@ -781,7 +781,7 @@ void DINPUT_CreateBG(DCI_PARAM_PTR dci, int select_bg, int force_put, void *scen
 	}
 	
 	//CGR
-	if(1){	//CGR“]‘—ƒAƒjƒ‚ðs‚¤‚È‚çƒLƒƒƒ‰ID‚ª“¯‚¶‚Å‚à•K‚¸“]‘—‚µ‚Ä‚¨‚©‚È‚¢‚ÆƒAƒjƒ‚ª–ß‚ç‚È‚¢
+	if(1){	//CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’è¡Œã†ãªã‚‰ã‚­ãƒ£ãƒ©IDãŒåŒã˜ã§ã‚‚å¿…ãšè»¢é€ã—ã¦ãŠã‹ãªã„ã¨ã‚¢ãƒ‹ãƒ¡ãŒæˆ»ã‚‰ãªã„
 //	if(bmd->cgr_id != NONE_ID && (force_put == TRUE || bmd->cgr_id != old_bmd->cgr_id)){
 	//	ArcUtil_BgCharSet(ARC_CONTEST_BG, bmd->cgr_id, bgl, GF_BGL_FRAME0_S, 
 	//		0, DCI_BG_CGR_SIZE, 1, HEAPID_DANCE);
@@ -811,7 +811,7 @@ void DINPUT_CreateBG(DCI_PARAM_PTR dci, int select_bg, int force_put, void *scen
 //	G2S_SetBlendAlpha(BLD_PLANE_1, BLD_PLANE_2, BLD_ALPHA_1, BLD_ALPHA_2);
 
 	Sub_SceneOBJDelete(dci, FALSE);
-	//ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—
 	if(bmd->callback_bg != NULL){
 		bmd->callback_bg(dci, select_bg, force_put);
 	}
@@ -821,9 +821,9 @@ void DINPUT_CreateBG(DCI_PARAM_PTR dci, int select_bg, int force_put, void *scen
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹ó‘Ô‚ð’²‚×‚é
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çŠ¶æ…‹ã‚’èª¿ã¹ã‚‹
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 int DINPUT_TouchCheck(DCI_PARAM_PTR dci)
@@ -843,7 +843,7 @@ int DINPUT_TouchCheck(DCI_PARAM_PTR dci)
 	hit = GF_TP_RectHitTrg(bmd->tpd);
 	if(hit == RECT_HIT_NONE){
 		if(bmd->tpd_ret == CommandSelectTouchRet){
-			//ƒL[“ü—Íƒ`ƒFƒbƒN
+			//ã‚­ãƒ¼å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 			if(sys.trg & (PAD_BUTTON_A | PAD_KEY_RIGHT)){
 				hit = DANCE_INDEX_RIGHT;
 			}
@@ -866,7 +866,7 @@ int DINPUT_TouchCheck(DCI_PARAM_PTR dci)
 		tp_ret = bmd->tpd_ret[hit];
 	}
 	
-	//ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—
 	if(bmd->callback_tp != NULL){
 		tp_ret = bmd->callback_tp(dci, tp_ret);
 	}
@@ -876,9 +876,9 @@ int DINPUT_TouchCheck(DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒgTCB‚ªI—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:I—¹‚µ‚Ä‚¢‚éB@FALSE:I—¹‚µ‚Ä‚¢‚È‚¢
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:çµ‚äº†ã—ã¦ã„ã‚‹ã€‚ã€€FALSE:çµ‚äº†ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 BOOL DINPUT_EffectEndCheck(DCI_PARAM_PTR dci)
@@ -891,8 +891,8 @@ BOOL DINPUT_EffectEndCheck(DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»ÝŽg—p‚µ‚Ä‚¢‚éBgMakeData‚Ì”Ô†‚ðŽæ“¾‚·‚é
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç¾åœ¨ä½¿ç”¨ã—ã¦ã„ã‚‹BgMakeDataã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 int DINPUT_MakeDataNoGet(DCI_PARAM_PTR dci)
@@ -903,16 +903,16 @@ int DINPUT_MakeDataNoGet(DCI_PARAM_PTR dci)
 
 //==============================================================================
 //
-//	BGì¬Žž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+//	BGä½œæˆæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   DINPUT_TYPE_WALL‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   DINPUT_TYPE_WALLã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   dci				DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(DINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   dci				DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(DINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_Wall(DCI_PARAM_PTR dci, int select_bg, int force_put)
@@ -926,8 +926,8 @@ static void BGCallback_Wall(DCI_PARAM_PTR dci, int select_bg, int force_put)
 
 //--------------------------------------------------------------
 /**
- * @brief   DINPUT_TYPE_WALL‚ÅŽg—p‚·‚éƒtƒHƒ“ƒgOBJ‚ð¶¬‚·‚é
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   DINPUT_TYPE_WALLã§ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆOBJã‚’ç”Ÿæˆã™ã‚‹
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void WallFontObjCreate(DCI_PARAM_PTR dci)
@@ -936,7 +936,7 @@ static void WallFontObjCreate(DCI_PARAM_PTR dci)
 	u32 rank_id, type_id;
 	MSGDATA_MANAGER *man;
 	
-	//‰‰‹Z—Í•”–å‚ÌƒƒbƒZ[ƒWƒtƒ@ƒCƒ‹‚É“ü‚Á‚Ä‚¢‚é‚Ì‚Å‚±‚±‚ÅˆêŽž“I‚Éƒ}ƒl[ƒWƒƒ[ì¬
+	//æ¼”æŠ€åŠ›éƒ¨é–€ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ã«å…¥ã£ã¦ã„ã‚‹ã®ã§ã“ã“ã§ä¸€æ™‚çš„ã«ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_cmsg_acting_dat, HEAPID_DANCE);
 
 	rank_id = ConTool_GetRankMsgID(dci->sys->c_game->rank, dci->sys->c_game->mode, 
@@ -963,11 +963,11 @@ static void WallFontObjCreate(DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   DINPUT_TYPE_A‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   DINPUT_TYPE_Aã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   dci				DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(DINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   dci				DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(DINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_CommandSelect(DCI_PARAM_PTR dci, int select_bg, int force_put)
@@ -981,8 +981,8 @@ static void BGCallback_CommandSelect(DCI_PARAM_PTR dci, int select_bg, int force
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ}ƒ“ƒh‘I‘ð‰æ–Ê‚ÌƒtƒHƒ“ƒgOBJ‚ð¶¬‚·‚é
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢ã®ãƒ•ã‚©ãƒ³ãƒˆOBJã‚’ç”Ÿæˆã™ã‚‹
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void CommandFontObjCreate(DCI_PARAM_PTR dci)
@@ -1024,17 +1024,17 @@ static void CommandFontObjCreate(DCI_PARAM_PTR dci)
 
 //==============================================================================
 //
-//	ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+//	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   DINPUT_TYPE_COMMAND‚Åƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   DINPUT_TYPE_COMMANDã§ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   dci			DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tp_ret		ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê(bmd->tpd_ret‚Ì’l‚©RECT_HIT_NONE)
+ * @param   dci			DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tp_ret		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ(bmd->tpd_retã®å€¤ã‹RECT_HIT_NONE)
  * 
- * @retval  tp_ret‚ð•Ô‚·(ˆ—‚Ì’†‚Å•ÏX‚·‚é•K—v‚ª‚È‚¢‚È‚çAˆø”‚Å“n‚³‚ê‚½’l‚ð‚»‚Ì‚Ü‚Ü•Ô‚·)
+ * @retval  tp_retã‚’è¿”ã™(å‡¦ç†ã®ä¸­ã§å¤‰æ›´ã™ã‚‹å¿…è¦ãŒãªã„ãªã‚‰ã€å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸå€¤ã‚’ãã®ã¾ã¾è¿”ã™)
  */
 //--------------------------------------------------------------
 static int TPCallback_CommandSelect(DCI_PARAM_PTR dci, int tp_ret)
@@ -1078,18 +1078,18 @@ static int TPCallback_CommandSelect(DCI_PARAM_PTR dci, int tp_ret)
 
 //==============================================================================
 //
-//	ƒTƒuŠÖ”
+//	ã‚µãƒ–é–¢æ•°
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   Žw’è”ÍˆÍ‚ÌƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ðŽw’èƒR[ƒh‚ÅƒNƒŠƒA‚·‚é
+ * @brief   æŒ‡å®šç¯„å›²ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã‚³ãƒ¼ãƒ‰ã§ã‚¯ãƒªã‚¢ã™ã‚‹
  *
- * @param   rsr[]			ƒNƒŠƒA”ÍˆÍ
- * @param   rsr_num			rsrƒf[ƒ^ŒÂ”
- * @param   bgl				BGLƒf[ƒ^
- * @param   frame_no		ƒtƒŒ[ƒ€”Ô†
- * @param   clear_code		ƒNƒŠƒA[ƒR[ƒh
+ * @param   rsr[]			ã‚¯ãƒªã‚¢ç¯„å›²
+ * @param   rsr_num			rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+ * @param   bgl				BGLãƒ‡ãƒ¼ã‚¿
+ * @param   frame_no		ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param   clear_code		ã‚¯ãƒªã‚¢ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 static void Sub_ScrnErase(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL_INI *bgl, 
@@ -1111,17 +1111,17 @@ static void Sub_ScrnErase(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL_INI
 
 //--------------------------------------------------------------
 /**
- * @brief   CGR“]‘—ƒAƒjƒ‚ðs‚¤‚½‚ß‚Ìƒpƒ‰ƒ[ƒ^‚ðƒZƒbƒg‚µ‚Ü‚·
+ * @brief   CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’è¡Œã†ãŸã‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™
  *
- * @param   dci				DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   frame_no		ƒtƒŒ[ƒ€NO
- * @param   arc_id			ARCƒCƒ“ƒfƒbƒNƒX
- * @param   cgr_id			“]‘—ƒOƒ‰ƒtƒBƒbƒN‚ÌCGRID(0xffffffff‚Ìê‡‚ÍƒNƒŠƒA‚µ‚Ü‚·)
- * @param   rd				“]‘—”ÍˆÍƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^(cgr_id‚ª0xffffffff‚Ìê‡‚Ísrc‚Ì’l‚Í“K“–‚ÅOK)
- * @param   char_len_x		“]‘—ƒOƒ‰ƒtƒBƒbƒN‚Ì‰¡ƒTƒCƒY(ƒLƒƒƒ‰ƒNƒ^’PˆÊ)
- *							cgr_id‚ª0xfffffffff‚Ìê‡‚Í0‚Å\‚¢‚Ü‚¹‚ñ
+ * @param   dci				DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   frame_no		ãƒ•ãƒ¬ãƒ¼ãƒ NO
+ * @param   arc_id			ARCã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   cgr_id			è»¢é€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®CGRID(0xffffffffã®å ´åˆã¯ã‚¯ãƒªã‚¢ã—ã¾ã™)
+ * @param   rd				è»¢é€ç¯„å›²ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿(cgr_idãŒ0xffffffffã®å ´åˆã¯srcã®å€¤ã¯é©å½“ã§OK)
+ * @param   char_len_x		è»¢é€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æ¨ªã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½)
+ *							cgr_idãŒ0xfffffffffã®å ´åˆã¯0ã§æ§‹ã„ã¾ã›ã‚“
  *
- * @retval  CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CGR_TRANS_PARAM * Sub_CgrTransParamSet(DCI_PARAM_PTR dci, int frame_no, u16 arc_id, 
@@ -1135,7 +1135,7 @@ static CGR_TRANS_PARAM * Sub_CgrTransParamSet(DCI_PARAM_PTR dci, int frame_no, u
 	MI_CpuClear8(ctp, sizeof(CGR_TRANS_PARAM));
 	
 	if(cgr_id != 0xffffffff){
-		//Šù‚ÉexpandÏ‚Ý‚È‚Ì‚Å•K—v‚È‚­‚È‚Á‚½ 2006.04.06(–Ø)
+		//æ—¢ã«expandæ¸ˆã¿ãªã®ã§å¿…è¦ãªããªã£ãŸ 2006.04.06(æœ¨)
 		//ctp->arc_data = ArcUtil_CharDataGet(arc_id, cgr_id, 1, &char_data, HEAPID_DANCE);
 		//ctp->raw_data = char_data->pRawData;
 		ctp->raw_data = dci->expand_char[cgr_id];
@@ -1150,19 +1150,19 @@ static CGR_TRANS_PARAM * Sub_CgrTransParamSet(DCI_PARAM_PTR dci, int frame_no, u
 
 //--------------------------------------------------------------
 /**
- * @brief   CGR“]‘—ƒAƒjƒ‚ðs‚¤ƒ^ƒXƒN‚ð¶¬‚µ‚Ü‚·
+ * @brief   CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’è¡Œã†ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã—ã¾ã™
  *
- * @param   frame_no		ƒtƒŒ[ƒ€NO
- * @param   arc_id			ARCƒCƒ“ƒfƒbƒNƒX
- * @param   cgr_id			“]‘—ƒOƒ‰ƒtƒBƒbƒN‚ÌCGRID(0xffffffff‚Ìê‡‚ÍƒNƒŠƒA‚µ‚Ü‚·)
- * @param   rd				“]‘—”ÍˆÍƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^(cgr_id‚ª0xffffffff‚Ìê‡‚Ísrc‚Ì’l‚Í“K“–‚ÅOK)
- * @param   char_len_x		“]‘—ƒOƒ‰ƒtƒBƒbƒN‚Ì‰¡ƒTƒCƒY(ƒLƒƒƒ‰ƒNƒ^’PˆÊ)
- *							cgr_id‚ª0xfffffffff‚Ìê‡‚Í0‚Å\‚¢‚Ü‚¹‚ñ
+ * @param   frame_no		ãƒ•ãƒ¬ãƒ¼ãƒ NO
+ * @param   arc_id			ARCã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   cgr_id			è»¢é€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®CGRID(0xffffffffã®å ´åˆã¯ã‚¯ãƒªã‚¢ã—ã¾ã™)
+ * @param   rd				è»¢é€ç¯„å›²ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿(cgr_idãŒ0xffffffffã®å ´åˆã¯srcã®å€¤ã¯é©å½“ã§OK)
+ * @param   char_len_x		è»¢é€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æ¨ªã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½)
+ *							cgr_idãŒ0xfffffffffã®å ´åˆã¯0ã§æ§‹ã„ã¾ã›ã‚“
  *
- * @retval  CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ‚±‚ÌŠÖ”Žg—pŒãA•K‚¸Sub_CgrTransEndCheckŠÖ”‚ðŽg—p‚µAI—¹Šm”F‚ðs‚Á‚Ä‚­‚¾‚³‚¢B
- * Sub_CgrTransEndCheckŠÖ”“à‚Åƒ[ƒN‚Ì‰ð•úˆ—‚È‚Ç‚ðs‚Á‚Ä‚¢‚Ü‚·B
+ * ã“ã®é–¢æ•°ä½¿ç”¨å¾Œã€å¿…ãšSub_CgrTransEndChecké–¢æ•°ã‚’ä½¿ç”¨ã—ã€çµ‚äº†ç¢ºèªã‚’è¡Œã£ã¦ãã ã•ã„ã€‚
+ * Sub_CgrTransEndChecké–¢æ•°å†…ã§ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†ãªã©ã‚’è¡Œã£ã¦ã„ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 static CGR_TRANS_PARAM * Sub_CgrTransTaskSet(DCI_PARAM_PTR dci, int frame_no, u16 arc_id, 
@@ -1177,11 +1177,11 @@ static CGR_TRANS_PARAM * Sub_CgrTransTaskSet(DCI_PARAM_PTR dci, int frame_no, u1
 
 //--------------------------------------------------------------
 /**
- * @brief   CGR“]‘—ƒAƒjƒƒ^ƒXƒN‚ªI—¹‚µ‚Ä‚¢‚é‚©Šm”F
- * @param   ctp		CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:I—¹B@FALSE:‘±s’†
+ * @brief   CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯ãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ç¢ºèª
+ * @param   ctp		CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ç¶šè¡Œä¸­
  *
- * TRUE‚ð•Ô‚·ŽžA“¯Žž‚ÉCGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ì‰ð•úˆ—‚às‚¢‚Ü‚·B
+ * TRUEã‚’è¿”ã™æ™‚ã€åŒæ™‚ã«CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†ã‚‚è¡Œã„ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 static BOOL Sub_CgrTransEndCheck(CGR_TRANS_PARAM *ctp)
@@ -1198,19 +1198,19 @@ static BOOL Sub_CgrTransEndCheck(CGR_TRANS_PARAM *ctp)
 
 //--------------------------------------------------------------
 /**
- * @brief   CGR“]‘—ƒAƒjƒ‚ðVƒuƒ‰ƒ“ƒNƒ^ƒXƒN‚ð—˜—p‚¹‚¸‚É‚·‚®ŽÀs‚µ‚Ü‚·
+ * @brief   CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’Vãƒ–ãƒ©ãƒ³ã‚¯ã‚¿ã‚¹ã‚¯ã‚’åˆ©ç”¨ã›ãšã«ã™ãå®Ÿè¡Œã—ã¾ã™
  *
- * @param   frame_no		ƒtƒŒ[ƒ€NO
- * @param   arc_id			ARCƒCƒ“ƒfƒbƒNƒX
- * @param   cgr_id			“]‘—ƒOƒ‰ƒtƒBƒbƒN‚ÌCGRID(0xffffffff‚Ìê‡‚ÍƒNƒŠƒA‚µ‚Ü‚·)
- * @param   rd				“]‘—”ÍˆÍƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^(cgr_id‚ª0xffffffff‚Ìê‡‚Ísrc‚Ì’l‚Í“K“–‚ÅOK)
- * @param   char_len_x		“]‘—ƒOƒ‰ƒtƒBƒbƒN‚Ì‰¡ƒTƒCƒY(ƒLƒƒƒ‰ƒNƒ^’PˆÊ)
- *							cgr_id‚ª0xfffffffff‚Ìê‡‚Í0‚Å\‚¢‚Ü‚¹‚ñ
+ * @param   frame_no		ãƒ•ãƒ¬ãƒ¼ãƒ NO
+ * @param   arc_id			ARCã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   cgr_id			è»¢é€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®CGRID(0xffffffffã®å ´åˆã¯ã‚¯ãƒªã‚¢ã—ã¾ã™)
+ * @param   rd				è»¢é€ç¯„å›²ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿(cgr_idãŒ0xffffffffã®å ´åˆã¯srcã®å€¤ã¯é©å½“ã§OK)
+ * @param   char_len_x		è»¢é€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æ¨ªã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½)
+ *							cgr_idãŒ0xfffffffffã®å ´åˆã¯0ã§æ§‹ã„ã¾ã›ã‚“
  *
- * @retval  CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ‚±‚ÌŠÖ”Žg—pŒãA•K‚¸Sub_CgrTransEndCheckŠÖ”‚ðŽg—p‚µAI—¹Šm”F‚ðs‚Á‚Ä‚­‚¾‚³‚¢B
- * Sub_CgrTransEndCheckŠÖ”“à‚Åƒ[ƒN‚Ì‰ð•úˆ—‚È‚Ç‚ðs‚Á‚Ä‚¢‚Ü‚·B
+ * ã“ã®é–¢æ•°ä½¿ç”¨å¾Œã€å¿…ãšSub_CgrTransEndChecké–¢æ•°ã‚’ä½¿ç”¨ã—ã€çµ‚äº†ç¢ºèªã‚’è¡Œã£ã¦ãã ã•ã„ã€‚
+ * Sub_CgrTransEndChecké–¢æ•°å†…ã§ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†ãªã©ã‚’è¡Œã£ã¦ã„ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 static void Sub_CgrTransNowCopy(DCI_PARAM_PTR dci, int frame_no, u16 arc_id, u32 cgr_id, 
@@ -1228,8 +1228,8 @@ static void Sub_CgrTransNowCopy(DCI_PARAM_PTR dci, int frame_no, u16 arc_id, u32
 
 //--------------------------------------------------------------
 /**
- * @brief   CGR“]‘—ƒAƒjƒ‚ðs‚¢‚Ü‚·
- * @param   ctp		CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’è¡Œã„ã¾ã™
+ * @param   ctp		CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_CgrParamTrans(CGR_TRANS_PARAM *ctp)
@@ -1257,18 +1257,18 @@ static void Sub_CgrParamTrans(CGR_TRANS_PARAM *ctp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒHƒ“ƒgOAM‚ðì¬‚·‚é
+ * @brief   ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’ä½œæˆã™ã‚‹
  *
- * @param   dci			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_actor	¶¬‚µ‚½ƒtƒHƒ“ƒgOAMŠÖ˜A‚Ìƒ[ƒN‘ã“üæ
- * @param   str			•¶Žš—ñ
- * @param   font_type	ƒtƒHƒ“ƒgƒ^ƒCƒv(FONT_SYSTEM“™)
- * @param   color		ƒtƒHƒ“ƒgƒJƒ‰[\¬
- * @param   pal_offset	ƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
- * @param   pal_id		“o˜^ŠJŽnƒpƒŒƒbƒgID
- * @param   x			À•WX
- * @param   y			À•WY
- * @param   pos_center  FONTOAM_LEFT(X¶’[À•W) or FONTOAM_CENTER(X’†SÀ•W)
+ * @param   dci			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_actor	ç”Ÿæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆOAMé–¢é€£ã®ãƒ¯ãƒ¼ã‚¯ä»£å…¥å…ˆ
+ * @param   str			æ–‡å­—åˆ—
+ * @param   font_type	ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—(FONT_SYSTEMç­‰)
+ * @param   color		ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼æ§‹æˆ
+ * @param   pal_offset	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   pal_id		ç™»éŒ²é–‹å§‹ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   x			åº§æ¨™X
+ * @param   y			åº§æ¨™Y
+ * @param   pos_center  FONTOAM_LEFT(Xå·¦ç«¯åº§æ¨™) or FONTOAM_CENTER(Xä¸­å¿ƒåº§æ¨™)
  */
 //--------------------------------------------------------------
 static void Sub_FontOamCreate(DCI_PARAM_PTR dci, FONT_ACTOR *font_actor, const STRBUF *str, 
@@ -1289,7 +1289,7 @@ static void Sub_FontOamCreate(DCI_PARAM_PTR dci, FONT_ACTOR *font_actor, const S
 	bgl = dci->sys->bgl;
 	crp = dci->sys->crp;
 	
-	//•¶Žš—ñ‚Ìƒhƒbƒg•‚©‚çAŽg—p‚·‚éƒLƒƒƒ‰”‚ðŽZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	{
 		font_len = FontProc_GetPrintStrWidth(font_type, str, PANEL_MSG_MARGIN);
 		char_len = font_len / 8;
@@ -1298,7 +1298,7 @@ static void Sub_FontOamCreate(DCI_PARAM_PTR dci, FONT_ACTOR *font_actor, const S
 		}
 	}
 
-	//BMPì¬
+	//BMPä½œæˆ
 	{
 		GF_BGL_BmpWinInit(&bmpwin);
 		GF_BGL_BmpWinObjAdd(bgl, &bmpwin, char_len, 16 / 8, 0, 0);
@@ -1310,7 +1310,7 @@ static void Sub_FontOamCreate(DCI_PARAM_PTR dci, FONT_ACTOR *font_actor, const S
 	vram_size = FONTOAM_NeedCharSize(&bmpwin, NNS_G2D_VRAM_TYPE_2DSUB,  HEAPID_DANCE);
 	CharVramAreaAlloc(vram_size, CHARM_CONT_AREACONT, NNS_G2D_VRAM_TYPE_2DSUB, &cma);
 	
-	//À•WˆÊ’uC³
+	//åº§æ¨™ä½ç½®ä¿®æ­£
 	if(pos_center == FONTOAM_CENTER){
 		x -= font_len / 2;
 	}
@@ -1335,7 +1335,7 @@ static void Sub_FontOamCreate(DCI_PARAM_PTR dci, FONT_ACTOR *font_actor, const S
 	FONTOAM_SetPaletteOffsetAddTransPlttNo(fontoam, pal_offset);
 	FONTOAM_SetMat(fontoam, x, y);
 	
-	//‰ð•úˆ—
+	//è§£æ”¾å‡¦ç†
 	GF_BGL_BmpWinDel(&bmpwin);
 	
 	font_actor->fontoam = fontoam;
@@ -1345,8 +1345,8 @@ static void Sub_FontOamCreate(DCI_PARAM_PTR dci, FONT_ACTOR *font_actor, const S
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶¬‚³‚ê‚Ä‚¢‚éƒtƒHƒ“ƒgOAM‚ð‘S‚Äíœ‚ð‚·‚é
- * @param   dci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’å…¨ã¦å‰Šé™¤ã‚’ã™ã‚‹
+ * @param   dci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_FontOamDeleteAll(DCI_PARAM_PTR dci)
@@ -1364,9 +1364,9 @@ static void Sub_FontOamDeleteAll(DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶¬‚³‚ê‚Ä‚¢‚éƒtƒHƒ“ƒgOBJ‘S‚Ä‚ÌƒoƒjƒbƒVƒ…ƒtƒ‰ƒO‚ð‘€ì‚·‚é
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vanish	ƒoƒjƒbƒVƒ…ƒtƒ‰ƒO(TRUE(•\Ž¦) or FALSE(”ñ•\Ž¦))
+ * @brief   ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ãƒ³ãƒˆOBJå…¨ã¦ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ã‚’æ“ä½œã™ã‚‹
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vanish	ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°(TRUE(è¡¨ç¤º) or FALSE(éžè¡¨ç¤º))
  */
 //--------------------------------------------------------------
 static void Sub_FontOamVanishAll(DCI_PARAM_PTR dci, int vanish)
@@ -1400,7 +1400,7 @@ static void Sub_FontOamVanishAll(DCI_PARAM_PTR dci, int vanish)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiˆÈŠO‚ÌƒtƒŒ[ƒ€‚ð‘S‚Ä”ñ•\Ž¦‚É‚·‚é
+ * @brief   èƒŒæ™¯ä»¥å¤–ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å…¨ã¦éžè¡¨ç¤ºã«ã™ã‚‹
  */
 //--------------------------------------------------------------
 static void Sub_BackScrnOnlyVisible(void)
@@ -1419,8 +1419,8 @@ static void Sub_BackScrnOnlyVisible(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒlƒ‹ƒ^ƒbƒ`ƒGƒtƒFƒNƒgI—¹ŒãA”wŒi‚Ì‚Ý‚É‚·‚é‚½‚ß‚Ìˆ—‚ðFX‚·‚é(ƒtƒHƒ“ƒgOBJ‚Ìíœ‚Æ‚©)
- * @param   none		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ãƒãƒ«ã‚¿ãƒƒãƒã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾Œã€èƒŒæ™¯ã®ã¿ã«ã™ã‚‹ãŸã‚ã®å‡¦ç†ã‚’è‰²ã€…ã™ã‚‹(ãƒ•ã‚©ãƒ³ãƒˆOBJã®å‰Šé™¤ã¨ã‹)
+ * @param   none		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_TouchEndDelete(DCI_PARAM_PTR dci)
@@ -1431,9 +1431,9 @@ static void Sub_TouchEndDelete(DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   BGƒ^ƒCƒv‚ªØ‚è‘Ö‚í‚é–ˆ‚Éíœ‚·‚é•K—v‚Ì‚ ‚éOBJ‚ÌDeleteˆ—
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sys_exit	TRUE:ƒVƒXƒeƒ€‚ÌI—¹‚É‚æ‚éíœB@FALSE:‰æ–Ê•ÏXAƒGƒtƒFƒNƒg‚Å‚Ìíœ“™
+ * @brief   BGã‚¿ã‚¤ãƒ—ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹æ¯Žã«å‰Šé™¤ã™ã‚‹å¿…è¦ã®ã‚ã‚‹OBJã®Deleteå‡¦ç†
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sys_exit	TRUE:ã‚·ã‚¹ãƒ†ãƒ ã®çµ‚äº†ã«ã‚ˆã‚‹å‰Šé™¤ã€‚ã€€FALSE:ç”»é¢å¤‰æ›´ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§ã®å‰Šé™¤ç­‰
  */
 //--------------------------------------------------------------
 static void Sub_SceneOBJDelete(DCI_PARAM_PTR dci, int sys_exit)
@@ -1454,15 +1454,15 @@ static void Sub_SceneOBJDelete(DCI_PARAM_PTR dci, int sys_exit)
 
 //==============================================================================
 //
-//	ƒGƒtƒFƒNƒgTCB
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCB
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒgTCB‚ð¶¬‚·‚é
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   func		TCB‚ÉƒZƒbƒg‚·‚éŠÖ”ƒ|ƒCƒ“ƒ^
- * @param   dci			DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   func		TCBã«ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+ * @param   dci			DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void EffectTCB_Add(TCB_FUNC func, DCI_PARAM_PTR dci)
@@ -1475,8 +1475,8 @@ static void EffectTCB_Add(TCB_FUNC func, DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒgTCB‚ðíœ‚·‚é
- * @param   dci		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBã‚’å‰Šé™¤ã™ã‚‹
+ * @param   dci		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void EffectTCB_Delete(DCI_PARAM_PTR dci)
@@ -1491,11 +1491,11 @@ static void EffectTCB_Delete(DCI_PARAM_PTR dci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒlƒ‹•”•ª‚ðƒLƒƒƒ‰“]‘—ƒAƒjƒ‚ðŽÀs‚µ‚Ä‘‚«Š·‚¦‚Ü‚·B
- *          1‚Â‚Ìƒpƒlƒ‹‚É‘Î‚µ‚Ä1‚Â‚ÌƒtƒHƒ“ƒgOBJ‚ªƒZƒbƒg‚É‚È‚Á‚Ä‚¢‚é‚à‚Ì—p‚Ì”Ä—pƒ^ƒXƒN‚Å‚·
+ * @brief   ãƒ‘ãƒãƒ«éƒ¨åˆ†ã‚’ã‚­ãƒ£ãƒ©è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’å®Ÿè¡Œã—ã¦æ›¸ãæ›ãˆã¾ã™ã€‚
+ *          1ã¤ã®ãƒ‘ãƒãƒ«ã«å¯¾ã—ã¦1ã¤ã®ãƒ•ã‚©ãƒ³ãƒˆOBJãŒã‚»ãƒƒãƒˆã«ãªã£ã¦ã„ã‚‹ã‚‚ã®ç”¨ã®æ±Žç”¨ã‚¿ã‚¹ã‚¯ã§ã™
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Effect_ButtonDown(TCB_PTR tcb, void *work)
@@ -1631,15 +1631,15 @@ static void Effect_ButtonDown(TCB_PTR tcb, void *work)
 
 //==============================================================================
 //
-//	Vƒuƒ‰ƒ“ƒNˆ—
+//	Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ŠeƒtƒŒ[ƒ€‚ÌVisibleÝ’è‚ðs‚¤
+ * @brief   å„ãƒ•ãƒ¬ãƒ¼ãƒ ã®Visibleè¨­å®šã‚’è¡Œã†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VWait_FrameVisibleUpdate(TCB_PTR tcb, void *work)
@@ -1650,7 +1650,7 @@ static void VWait_FrameVisibleUpdate(TCB_PTR tcb, void *work)
 
 	bmd = &BgMakeData[dci->makedata_no];
 	
-	//ŠeBG–Ê‚Ì•\Ž¦E”ñ•\Ž¦Ý’è
+	//å„BGé¢ã®è¡¨ç¤ºãƒ»éžè¡¨ç¤ºè¨­å®š
 	for(i = 0; i < DCI_BG_NUM; i++){
 		if(bmd->scr_id[i] == NONE_ID){
 			GF_BGL_VisibleSet(GF_BGL_FRAME0_S + i, VISIBLE_OFF);
@@ -1665,10 +1665,10 @@ static void VWait_FrameVisibleUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŠƒNƒGƒXƒgCGR“]‘—
+ * @brief   ãƒªã‚¯ã‚¨ã‚¹ãƒˆCGRè»¢é€
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VWait_CgrRequest(TCB_PTR tcb, void *work)
@@ -1685,10 +1685,10 @@ static void VWait_CgrRequest(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiˆÈŠO‚ÌƒtƒŒ[ƒ€‘S‚Ä‚ð”ñ•\Ž¦‚É‚·‚é
+ * @brief   èƒŒæ™¯ä»¥å¤–ã®ãƒ•ãƒ¬ãƒ¼ãƒ å…¨ã¦ã‚’éžè¡¨ç¤ºã«ã™ã‚‹
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  
  *
@@ -1705,10 +1705,10 @@ static void VWait_BackScrnOnlyVisible(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vƒuƒ‰ƒ“ƒN’†‚ÉCGR“]‘—ƒAƒjƒ‚ðŽÀs‚µ‚Ü‚·
+ * @brief   Vãƒ–ãƒ©ãƒ³ã‚¯ä¸­ã«CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’å®Ÿè¡Œã—ã¾ã™
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VWait_CgrParamTrans(TCB_PTR tcb, void *work)
@@ -1727,16 +1727,16 @@ static void VWait_CgrParamTrans(TCB_PTR tcb, void *work)
 
 //==============================================================================
 //
-//	ƒc[ƒ‹
+//	ãƒ„ãƒ¼ãƒ«
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ^ƒ“ƒtƒF[ƒh
+ * @brief   ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰
  *
- * @param   dci			DIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   color		•ÏXŒã‚ÌƒJƒ‰[
- * @param   evy			EVY’l
+ * @param   dci			DIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   color		å¤‰æ›´å¾Œã®ã‚«ãƒ©ãƒ¼
+ * @param   evy			EVYå€¤
  */
 //--------------------------------------------------------------
 void DINPUT_FadeSet(DCI_PARAM_PTR dci, u16 color, u8 evy)

@@ -12,7 +12,7 @@
 
   $Log: systemCall.h,v $
   Revision 1.24  2006/03/13 05:59:37  okubata_ryoma
-  �}�N���̔��C��
+  マクロの微修正
 
   Revision 1.23  2006/01/18 02:12:28  kitase_hirotake
   do-indent
@@ -21,13 +21,13 @@
   Reconstruct SVC_WaitVBlankIntr definition.
 
   Revision 1.21  2005/10/24 00:49:42  adachi_hiroaki
-  SVC_WaitVBlankIntr()��SDK_WEAK_SYMBOL�w����O����
+  SVC_WaitVBlankIntr()のSDK_WEAK_SYMBOL指定を外した
 
   Revision 1.20  2005/10/21 09:00:02  yada
   let SVC_WaitVBlankIntr be weak symbol.
 
   Revision 1.19  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.18  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -51,37 +51,37 @@
   #if SDK_ARM7 -> #ifdef SDK_ARM7
 
   Revision 1.11  2004/03/25 09:43:20  yada
-  ARM7�� SVC_Halt(), SVC_WaitByLoop() �ǉ�
+  ARM7の SVC_Halt(), SVC_WaitByLoop() 追加
 
   Revision 1.10  2004/03/17 10:36:50  yasu
   fix SVC_CpuCopyFast
 
   Revision 1.9  2004/02/10 11:34:05  yada
-  SystemCall() ���폜
+  SystemCall() を削除
 
   Revision 1.8  2004/02/05 07:27:19  yada
-  ���𕶎����IRIS���������̂� NITRO ���� IRIS�ɖ߂����B
+  履歴文字列のIRISだったものを NITRO から IRISに戻した。
 
   Revision 1.7  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.6  2004/02/05 00:19:53  yada
-  #define �ŁA{ } �݂̂ň͂��Ă�����̂� do{ }while(0) �ɂ����B
+  #define で、{ } のみで囲われているものを do{ }while(0) にした。
 
   Revision 1.5  2004/01/19 06:14:09  yada
-  SVC_CpuSet() �����̒萔��MI_ �����Ă��Ȃ������������̂��C��
+  SVC_CpuSet() 内部の定数にMI_ をつけていない所があったのを修正
 
   Revision 1.4  2003/12/11 00:35:20  yasu
-  IRIS_TS -> SDK_TS �Ȃǂ̏C��
+  IRIS_TS -> SDK_TS などの修正
 
   Revision 1.3  2003/11/28 01:54:54  yada
-  REDSDK��03-11-27���f
+  REDSDKの03-11-27反映
 
   Revision 1.2  2003/11/11 12:27:28  yada
-  �V�X�e���R�[�������������� interrupt.h ���� systemCall.h �Ɉڂ����B
+  システムコール部分をいくつか interrupt.h から systemCall.h に移した。
 
   Revision 1.1  2003/11/07 07:55:16  yada
-  �b��łł��B�����Ƒ傫���ύX�ɂȂ�܂��B
+  暫定版です。きっと大きく変更になります。
 
 
   $NoKeywords: $
@@ -106,15 +106,15 @@ extern "C" {
 
   Description:  wait for VBlank
 
-              �EV�u�����N���荞�݂���������܂Ńz�[���g��Ԃő҂������܂��B
-              �E���荞�ݏ����ɂ�INTR_CHECK_BUF (DTCM_END - 0x8) �֊Y��
-                ����t���O���Z�b�g���ĉ������B
-              �E�����̊��荞�݂𕹗p�������ASVC_Halt()���J��Ԃ��Ăяo�����
-                �ꍇ�Ɣ�ׂăV�X�e���R�[���Ăяo���̃I�[�o�[�w�b�h���y������
-                ���Ƃ��ł��܂��B
-              �E�X���b�h�g�p���Ƀz�[���g�֓���܂��ƁA���荞�݂���������܂�
-                ���̃X���b�h���~�܂��Ă��܂����ƂɂȂ�܂��̂ŁA�A�C�h���X���b�h
-                �ȊO��OS_WaitIrq(1, OS_IE_V_BLANK)�̎g�p�𐄏����܂��B
+              ・Vブランク割り込みが発生するまでホールト状態で待ち続けます。
+              ・割り込み処理にてINTR_CHECK_BUF (DTCM_END - 0x8) へ該当
+                するフラグをセットして下さい。
+              ・複数の割り込みを併用した時、SVC_Halt()が繰り返し呼び出される
+                場合と比べてシステムコール呼び出しのオーバーヘッドを軽減する
+                ことができます。
+              ・スレッド使用時にホールトへ入りますと、割り込みが発生するまで
+                他のスレッドも止まってしまうことになりますので、アイドルスレッド
+                以外はOS_WaitIrq(1, OS_IE_V_BLANK)の使用を推奨します。
 
   Arguments:    None
 
@@ -132,18 +132,18 @@ void    SVC_WaitVBlankIntr(void);
 
   Description:  loop specified times
 
-              �E�V�X�e��ROM��Ŏw��񐔃��[�v�������s���܂��B
-              �E1��̃��[�v��4�T�C�N��������܂��B
-              �E�ʏ펞�̃T�u�v���Z�b�T�����C���������ւ̗D�挠�������Ă����Ԃɂ����ẮA
-                �T�u�v���Z�b�T���V�X�e��ROM��Ńv���O�����𓮍삳���邱�Ƃɂ����
-                ���C���v���Z�b�T���X�g�[������̂��y�����邱�Ƃ��ł��܂��B
-              �E���C���������\�����[�h�Ȃǃ��C���v���Z�b�T�֗D�挠��^����
-                �K�v������ꍇ�ɂ́A���C���v���Z�b�T���ŌĂяo�����Ƃ�
-                �L���ȏ󋵂����邩������܂��񂪁A�قƂ�ǂ̊��Ԃ��L���b�V����
-                TCM��œ��삵�Ă���΃��C���v���Z�b�T����Ăяo���K�v�͂���܂���B
+              ・システムROM上で指定回数ループ処理を行います。
+              ・1回のループに4サイクルかかります。
+              ・通常時のサブプロセッサがメインメモリへの優先権を持っている状態においては、
+                サブプロセッサをシステムROM上でプログラムを動作させることによって
+                メインプロセッサがストールするのを軽減することができます。
+              ・メインメモリ表示モードなどメインプロセッサへ優先権を与える
+                必要がある場合には、メインプロセッサ側で呼び出すことが
+                有効な状況があるかもしれませんが、ほとんどの期間がキャッシュや
+                TCM上で動作していればメインプロセッサから呼び出す必要はありません。
 
-              �E�����F
-                  count  :     ���[�v��
+              ・引数：
+                  count  :     ループ回数
 
   Arguments:    count : times to loop 
 
@@ -157,20 +157,20 @@ void    SVC_WaitByLoop(s32 count);
 
   Description:  clear or copy memory by cpu
 
-               �EDmaSet�}�N���݊��̃p�����[�^��RAM�N���A�܂��̓R�s�[���܂��B
-               �E32bit�]���ł͋����I��4Byte���E�ɂăA�N�Z�X����܂����A
-                 16bit�]���ł͈�����2Byte���E�֍��킹�ēn���K�v������܂��B
+               ・DmaSetマクロ互換のパラメータでRAMクリアまたはコピーします。
+               ・32bit転送では強制的に4Byte境界にてアクセスされますが、
+                 16bit転送では引数を2Byte境界へ合わせて渡す必要があります。
 
-               �E�����F
-                   srcp          �\�[�X�A�h���X
-                   destp         �f�X�e�B�l�[�V�����A�h���X
-                   dmaCntData    MI_DMA_SRC_FIX�^MI_DMA_32BIT_BUS�^MI_DMA_COUNT_MASK�̂ݗL��
+               ・引数：
+                   srcp          ソースアドレス
+                   destp         デスティネーションアドレス
+                   dmaCntData    MI_DMA_SRC_FIX／MI_DMA_32BIT_BUS／MI_DMA_COUNT_MASKのみ有効
 
-                         MI_DMA_SRC_FIX(  0, 1) = (�\�[�X�A�h���X�E�C���N�������g, �\�[�X�A�h���X�Œ�)
-                         MI_DMA_32BIT_BUS(0, 1) = (16bit�]��, 32bit�]��)
-                         MI_DMA_COUNT_MASK & dmaCntData = �]����
+                         MI_DMA_SRC_FIX(  0, 1) = (ソースアドレス・インクリメント, ソースアドレス固定)
+                         MI_DMA_32BIT_BUS(0, 1) = (16bit転送, 32bit転送)
+                         MI_DMA_COUNT_MASK & dmaCntData = 転送回数
 
-               �E��ʃ}�N���F
+               ・上位マクロ：
                    SVC_CpuClear, SVC_CpuClearArray, SVC_CpuCopy, SVC_CpuCopyArray
 
   Arguments:    srcp :       source address
@@ -189,20 +189,20 @@ void    SVC_CpuSet(const void *srcp, void *destp, u32 dmaCntData);
 
   Description:  clear or copy memory by cpu quickly
 
-              �EDmaSet�}�N���݊��̃p�����[�^�ō�����RAM�N���A�܂��̓R�s�[���܂��B
-              �E32Byte�P�ʂŃA�N�Z�X�\�Ȏ��ɂ͕������[�h�^�X�g�A���߂��g�p����A
-                �[����4Byte�P�ʂŃA�N�Z�X����܂��B
-              �E4Byte���E�ȊO�ň�����^���Ă������I��4Byte���E�ł̃A�N�Z�X�ɂȂ�܂��B
+              ・DmaSetマクロ互換のパラメータで高速にRAMクリアまたはコピーします。
+              ・32Byte単位でアクセス可能な時には複数ロード／ストア命令が使用され、
+                端数は4Byte単位でアクセスされます。
+              ・4Byte境界以外で引数を与えても強制的に4Byte境界でのアクセスになります。
 
-              �E�����F
-                  srcp          �\�[�X�A�h���X
-                  destp         �f�X�e�B�l�[�V�����A�h���X
-                  dmaCntData     MI_DMA_SRC_FIX�^MI_DMA_COUNT_MASK�̂ݗL��
+              ・引数：
+                  srcp          ソースアドレス
+                  destp         デスティネーションアドレス
+                  dmaCntData     MI_DMA_SRC_FIX／MI_DMA_COUNT_MASKのみ有効
 
-                        MI_DMA_SRC_FIX(0, 1) = (�\�[�X�A�h���X�E�C���N�������g, �\�[�X�A�h���X�Œ�)
-                        MI_DMA_COUNT_MASK & dmaCntData = �]����
+                        MI_DMA_SRC_FIX(0, 1) = (ソースアドレス・インクリメント, ソースアドレス固定)
+                        MI_DMA_COUNT_MASK & dmaCntData = 転送回数
 
-              �E��ʃ}�N���F
+              ・上位マクロ：
                   SVC_CpuClearFast, SVC_CpuClearArrayFast, SVC_CpuCopyFast, SVC_CpuCopyArrayFast
 
   Arguments:    srcp :       source address
@@ -221,14 +221,14 @@ void    SVC_CpuSetFast(const void *srcp, void *destp, u32 dmaCntData);
 
   Description:  clear memory by SVC_CpuSet
 
-              �ECPU��RAM�N���A����V�X�e���R�[�����Ăяo���܂��B
-              �E�N���A�f�[�^�̓X�^�b�N�ɒu����A������f�X�e�B�l�[�V�����փR�s�[���܂��B
+              ・CPUでRAMクリアするシステムコールを呼び出します。
+              ・クリアデータはスタックに置かれ、それをデスティネーションへコピーします。
 
-              �E�����F
-                  data        �N���A�f�[�^
-                  destp       �f�X�e�B�l�[�V�����A�h���X
-                  size        �N���A�o�C�g��
-                  bit         �]���r�b�g���i16|32�j
+              ・引数：
+                  data        クリアデータ
+                  destp       デスティネーションアドレス
+                  size        クリアバイト数
+                  bit         転送ビット幅（16|32）
 
   Arguments:    data  : clear data
                 destp : destination address
@@ -251,14 +251,14 @@ do{                                                             \
 
   Description:  clear memory by SVC_CpuSet
 
-              �ECPU��RAM�N���A����V�X�e���R�[�����Ăяo���܂��B
-              �E�N���A�f�[�^�̓X�^�b�N�ɒu����A������f�X�e�B�l�[�V�����փR�s�[���܂��B
-              �ESVC_CpuClearArray�̓f�X�e�B�l�[�V�����z��S�̂��N���A���܂��B
+              ・CPUでRAMクリアするシステムコールを呼び出します。
+              ・クリアデータはスタックに置かれ、それをデスティネーションへコピーします。
+              ・SVC_CpuClearArrayはデスティネーション配列全体をクリアします。
 
-              �E�����F
-                  data        �N���A�f�[�^
-                  destp       �f�X�e�B�l�[�V�����A�h���X
-                  bit         �]���r�b�g���i16|32�j
+              ・引数：
+                  data        クリアデータ
+                  destp       デスティネーションアドレス
+                  bit         転送ビット幅（16|32）
 
   Arguments:    data  : clear data
                 destp : destination address
@@ -275,14 +275,14 @@ do{                                                             \
 
   Description:  copy memory by SVC_CpuSet
 
-              �ECPU�ŃR�s�[����V�X�e���R�[�����Ăяo���܂��B
-              �ESVC_CpuCopyArray�̓\�[�X�z��S�̂��R�s�[���܂��B
+              ・CPUでコピーするシステムコールを呼び出します。
+              ・SVC_CpuCopyArrayはソース配列全体をコピーします。
 
-              �E�����F
-                  srcp      :  �\�[�X�A�h���X
-                  destp     :  �f�X�e�B�l�[�V�����A�h���X
-                  size      :  �]���o�C�g��
-                  bit       :  �]���r�b�g���i16|32�j
+              ・引数：
+                  srcp      :  ソースアドレス
+                  destp     :  デスティネーションアドレス
+                  size      :  転送バイト数
+                  bit       :  転送ビット幅（16|32）
 
   Arguments:    srcp      : source address
                 destp     : destination address
@@ -303,13 +303,13 @@ do{                                                             \
 
   Description:  copy memory by SVC_CpuSet
 
-              �ECPU�ŃR�s�[����V�X�e���R�[�����Ăяo���܂��B
-              �ESVC_CpuCopyArray�̓\�[�X�z��S�̂��R�s�[���܂��B
+              ・CPUでコピーするシステムコールを呼び出します。
+              ・SVC_CpuCopyArrayはソース配列全体をコピーします。
 
-              �E�����F
-                  srcp      :  �\�[�X�A�h���X
-                  destp     :  �f�X�e�B�l�[�V�����A�h���X
-                  bit       :  �]���r�b�g���i16|32�j
+              ・引数：
+                  srcp      :  ソースアドレス
+                  destp     :  デスティネーションアドレス
+                  bit       :  転送ビット幅（16|32）
 
   Arguments:    srcp      : source address
                 destp     : destination address
@@ -326,15 +326,15 @@ do{                                                             \
 
   Description:  clear memory by SVC_CpuSetFast quickly
 
-              �ECPU�ō�����RAM�N���A����V�X�e���R�[�����Ăяo���܂��B
-              �E�N���A�f�[�^�̓X�^�b�N�ɒu����A������f�X�e�B�l�[�V�����փR�s�[���܂��B
-              �E32Byte�P�ʂŃA�N�Z�X�\�Ȏ��ɂ�32Byte�P�ʂ̕����X�g�A���߂��g�p����A
-                �[����4Byte�P�ʂŃA�N�Z�X����܂��B
+              ・CPUで高速にRAMクリアするシステムコールを呼び出します。
+              ・クリアデータはスタックに置かれ、それをデスティネーションへコピーします。
+              ・32Byte単位でアクセス可能な時には32Byte単位の複数ストア命令が使用され、
+                端数は4Byte単位でアクセスされます。
 
-              �E�����F
-                  data        �N���A�f�[�^
-                  destp       �f�X�e�B�l�[�V�����A�h���X
-                  size        �N���A�o�C�g��
+              ・引数：
+                  data        クリアデータ
+                  destp       デスティネーションアドレス
+                  size        クリアバイト数
 
   Arguments:    data  : clear data
                 destp : destination address
@@ -355,15 +355,15 @@ do{                                                             \
 
   Description:  clear memory by SVC_CpuSetFast quickly
 
-              �ECPU�ō�����RAM�N���A����V�X�e���R�[�����Ăяo���܂��B
-              �E�N���A�f�[�^�̓X�^�b�N�ɒu����A������f�X�e�B�l�[�V�����փR�s�[���܂��B
-              �E32Byte�P�ʂŃA�N�Z�X�\�Ȏ��ɂ͕����X�g�A���߂��g�p����A
-                �[����4Byte�P�ʂŃA�N�Z�X����܂��B
-              �ESVC_CpuClearArrayFast�̓f�X�e�B�l�[�V�����z��S�̂��N���A���܂��B
+              ・CPUで高速にRAMクリアするシステムコールを呼び出します。
+              ・クリアデータはスタックに置かれ、それをデスティネーションへコピーします。
+              ・32Byte単位でアクセス可能な時には複数ストア命令が使用され、
+                端数は4Byte単位でアクセスされます。
+              ・SVC_CpuClearArrayFastはデスティネーション配列全体をクリアします。
 
-              �E�����F
-                  data        �N���A�f�[�^
-                  destp       �f�X�e�B�l�[�V�����A�h���X
+              ・引数：
+                  data        クリアデータ
+                  destp       デスティネーションアドレス
 
   Arguments:    data  : clear data
                 size  : size to clear ( by byte )
@@ -378,14 +378,14 @@ do{                                                             \
 
   Description:  clear memory by SVC_CpuSetFast quickly
 
-              �ECPU�ō����ɃR�s�[����V�X�e���R�[�����Ăяo���܂��B
-              �E32Byte�P�ʂŃA�N�Z�X�\�Ȏ��ɂ͕������[�h�^�X�g�A���߂��g�p����A
-                �[����4Byte�P�ʂŃA�N�Z�X����܂��B
+              ・CPUで高速にコピーするシステムコールを呼び出します。
+              ・32Byte単位でアクセス可能な時には複数ロード／ストア命令が使用され、
+                端数は4Byte単位でアクセスされます。
 
-              �E�����F
-                  srcp        �\�[�X�A�h���X
-                  destp       �f�X�e�B�l�[�V�����A�h���X
-                  size        �]���o�C�g��
+              ・引数：
+                  srcp        ソースアドレス
+                  destp       デスティネーションアドレス
+                  size        転送バイト数
 
   Arguments:    srcp  : source address
                 destp : destination address
@@ -404,14 +404,14 @@ do{                                                             \
 
   Description:  clear memory by SVC_CpuSetFast quickly
 
-              �ECPU�ō����ɃR�s�[����V�X�e���R�[�����Ăяo���܂��B
-              �E32Byte�P�ʂŃA�N�Z�X�\�Ȏ��ɂ͕������[�h�^�X�g�A���߂��g�p����A
-                �[����4Byte�P�ʂŃA�N�Z�X����܂��B
-              �ESVC_CpuCopyArrayFast�̓\�[�X�z��S�̂��R�s�[���܂��B
+              ・CPUで高速にコピーするシステムコールを呼び出します。
+              ・32Byte単位でアクセス可能な時には複数ロード／ストア命令が使用され、
+                端数は4Byte単位でアクセスされます。
+              ・SVC_CpuCopyArrayFastはソース配列全体をコピーします。
 
-              �E�����F
-                  srcp        �\�[�X�A�h���X
-                  destp       �f�X�e�B�l�[�V�����A�h���X
+              ・引数：
+                  srcp        ソースアドレス
+                  destp       デスティネーションアドレス
 
   Arguments:    srcp  : source address
                 destp : destination address
@@ -427,20 +427,20 @@ do{                                                             \
 
   Description:  unpack bits
 
-              �E0�Œ��bit���l�߂��f�[�^��W�J���܂��B
-              �E�f�X�e�B�l�[�V�����A�h���X��4Byte���E�ɍ��킹�ĉ������B
+              ・0固定のbitを詰めたデータを展開します。
+              ・デスティネーションアドレスは4Byte境界に合わせて下さい。
 
-              �E�����F
-                   srcp          �\�[�X�A�h���X
-                   destp         �f�X�e�B�l�[�V�����A�h���X
-                   paramp        MIUnpackBitsParam�\���̂̃A�h���X
+              ・引数：
+                   srcp          ソースアドレス
+                   destp         デスティネーションアドレス
+                   paramp        MIUnpackBitsParam構造体のアドレス
 
-              �EMIUnpackBitsParam�\����
-                    u16 srcNum              �\�[�X�f�[�^�E�o�C�g��
-                    u8  srcBitNum           �P�\�[�X�f�[�^�E�r�b�g��
-                    u8  destBitNum          �P�f�X�e�B�l�[�V�����f�[�^�E�r�b�g��
-                    u32 destOffset:31       �\�[�X�f�[�^�ɉ��Z����I�t�Z�b�g��
-                        destOffset0_On:1    �O�̃f�[�^�ɃI�t�Z�b�g�����Z���邩�ۂ��̃t���O
+              ・MIUnpackBitsParam構造体
+                    u16 srcNum              ソースデータ・バイト数
+                    u8  srcBitNum           １ソースデータ・ビット数
+                    u8  destBitNum          １デスティネーションデータ・ビット数
+                    u32 destOffset:31       ソースデータに加算するオフセット数
+                        destOffset0_On:1    ０のデータにオフセットを加算するか否かのフラグ
 
   Arguments:    srcp   : source address
                 destp  : destination address
@@ -456,27 +456,27 @@ void    SVC_UnpackBits(const void *srcp, void *destp, const MIUnpackBitsParam *p
 
   Description:  uncompress LZ77
 
-              �ELZ77���k�f�[�^��W�J���A8bit�P�ʂŏ������݂܂��B
-              �E�o�C�g�A�N�Z�X�ł��Ȃ�VRAM���ɒ��ړW�J���邱�Ƃ͂ł��܂���B
-              �E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-                �o���邾��0�ŋl�߂Ē������ĉ������B
-              �E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+              ・LZ77圧縮データを展開し、8bit単位で書き込みます。
+              ・バイトアクセスできないVRAM等に直接展開することはできません。
+              ・圧縮データのサイズが4の倍数にならなかった場合は
+                出来るだけ0で詰めて調整して下さい。
+              ・ソースアドレスは4Byte境界に合わせて下さい。
 
-              �E�����F
-                   srcp          �\�[�X�A�h���X
-                   destp         �f�X�e�B�l�[�V�����A�h���X
+              ・引数：
+                   srcp          ソースアドレス
+                   destp         デスティネーションアドレス
 
-               �E�f�[�^�w�b�_
-                   u32 :4                  �\��
-                        compType:4          ���k�^�C�v�i = 1�j
-                        destSize:24         �W�J��̃f�[�^�T�C�Y
+               ・データヘッダ
+                   u32 :4                  予約
+                        compType:4          圧縮タイプ（ = 1）
+                        destSize:24         展開後のデータサイズ
 
-               �E�t���O�f�[�^�t�H�[�}�b�g
-                    u8  flags               ���k�^�����k�t���O
-                                            �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
-               �E�R�[�h�f�[�^�t�H�[�}�b�g�iBig Endian�j
-                    u16 length:4            �W�J�f�[�^�� - 3�i��v��3Byte�ȏ㎞�݈̂��k�j
-                        offset:12           ��v�f�[�^�I�t�Z�b�g - 1
+               ・フラグデータフォーマット
+                    u8  flags               圧縮／無圧縮フラグ
+                                            （0, 1） = （無圧縮データ, 圧縮データ）
+               ・コードデータフォーマット（Big Endian）
+                    u16 length:4            展開データ長 - 3（一致長3Byte以上時のみ圧縮）
+                        offset:12           一致データオフセット - 1
 
   Arguments:    srcp  : source address
                 destp : destination address
@@ -491,25 +491,25 @@ void    SVC_UncompressLZ8(const void *srcp, void *destp);
 
   Description:  uncompress run length
 
-              �E���������O�X���k�f�[�^��W�J���A8bit�P�ʂŏ������݂܂��B
-              �E�o�C�g�A�N�Z�X�ł��Ȃ�VRAM���ɒ��ړW�J���邱�Ƃ͂ł��܂���B
-              �E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-                �o���邾��0�ŋl�߂Ē������ĉ������B
-              �E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+              ・ランレングス圧縮データを展開し、8bit単位で書き込みます。
+              ・バイトアクセスできないVRAM等に直接展開することはできません。
+              ・圧縮データのサイズが4の倍数にならなかった場合は
+                出来るだけ0で詰めて調整して下さい。
+              ・ソースアドレスは4Byte境界に合わせて下さい。
 
-              �E�����F
-                   srcp          �\�[�X�A�h���X
-                   destp         �f�X�e�B�l�[�V�����A�h���X
+              ・引数：
+                   srcp          ソースアドレス
+                   destp         デスティネーションアドレス
 
-              �E�f�[�^�w�b�_
-                   u32 :4                  �\��
-                       compType:4          ���k�^�C�v�i = 3�j
-                       destSize:24         �W�J��̃f�[�^�T�C�Y
+              ・データヘッダ
+                   u32 :4                  予約
+                       compType:4          圧縮タイプ（ = 3）
+                       destSize:24         展開後のデータサイズ
 
-              �E�t���O�f�[�^�t�H�[�}�b�g
-                   u8  length:7            �W�J�f�[�^�� - 1�i�����k���j
-                                           �W�J�f�[�^�� - 3�i�A����3Byte�ȏ㎞�݈̂��k�j
-                       flag:1              �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
+              ・フラグデータフォーマット
+                   u8  length:7            展開データ長 - 1（無圧縮時）
+                                           展開データ長 - 3（連続長3Byte以上時のみ圧縮）
+                       flag:1              （0, 1） = （無圧縮データ, 圧縮データ）
 
   Arguments:    srcp  : source address
                 destp : destination address
@@ -525,37 +525,37 @@ void    SVC_UncompressRL8(const void *srcp, void *destp);
 
   Description:  uncompress LZ77 from device
 
-              �ELZ77���k�f�[�^��W�J���A16bit�P�ʂŏ������݂܂��B
-              �E�������}�b�s���O����Ă��Ȃ��f�o�C�X��̈��k�f�[�^��
-                �e���|�����o�b�t�@���g�킸�ɒ��ړW�J���邱�Ƃ��ł��܂��B
-              �E�o�C�g�A�N�Z�X�ł��Ȃ�RAM�ɂ��W�J�ł��܂����A
-                SVC_UncompressLZ8()���ᑬ�ł��B
-              �E���k�f�[�^�͈�v�������2Byte�ȑO��茟���������̂ɂ��ĉ������B
-              �E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-                �o���邾��0�ŋl�߂Ē������ĉ������B
-              �E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
-              �E�������͓W�J��̃T�C�Y��Ԃ��A���s���͕��̒l��Ԃ��܂��B
-                initStream/terminateStream�R�[���o�b�N�֐����ŃG���[��
-                ���o�����ꍇ�͕��̒l��Ԃ��ĉ������B
+              ・LZ77圧縮データを展開し、16bit単位で書き込みます。
+              ・メモリマッピングされていないデバイス上の圧縮データを
+                テンポラリバッファを使わずに直接展開することができます。
+              ・バイトアクセスできないRAMにも展開できますが、
+                SVC_UncompressLZ8()より低速です。
+              ・圧縮データは一致文字列を2Byte以前より検索したものにして下さい。
+              ・圧縮データのサイズが4の倍数にならなかった場合は
+                出来るだけ0で詰めて調整して下さい。
+              ・ソースアドレスは4Byte境界に合わせて下さい。
+              ・成功時は展開後のサイズを返し、失敗時は負の値を返します。
+                initStream/terminateStreamコールバック関数内でエラーを
+                検出した場合は負の値を返して下さい。
 
-              �E�����F
-                   srcp          �\�[�X�A�h���X
-                   destp         �f�X�e�B�l�[�V�����A�h���X
-                   paramp        MIReadStreamCallbacks�\���̂�initStream�֐��֓n���p�����[�^�̃A�h���X
-                   callbacks     MIReadStreamCallbacks�\���̂̃A�h���X
+              ・引数：
+                   srcp          ソースアドレス
+                   destp         デスティネーションアドレス
+                   paramp        MIReadStreamCallbacks構造体のinitStream関数へ渡すパラメータのアドレス
+                   callbacks     MIReadStreamCallbacks構造体のアドレス
 
-               �E�f�[�^�w�b�_
-                   u32 :4                  �\��
-                       compType:4          ���k�^�C�v�i = 1�j
-                       destSize:23         �W�J��̃f�[�^�T�C�Y
-                       :1                  �g�p�s��
+               ・データヘッダ
+                   u32 :4                  予約
+                       compType:4          圧縮タイプ（ = 1）
+                       destSize:23         展開後のデータサイズ
+                       :1                  使用不可
 
-               �E�t���O�f�[�^�t�H�[�}�b�g
-                    u8  flags               ���k�^�����k�t���O
-                                            �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
-               �E�R�[�h�f�[�^�t�H�[�}�b�g�iBig Endian�j
-                    u16 length:4            �W�J�f�[�^�� - 3�i��v��3Byte�ȏ㎞�݈̂��k�j
-                        offset:12           ��v�f�[�^�I�t�Z�b�g - 1
+               ・フラグデータフォーマット
+                    u8  flags               圧縮／無圧縮フラグ
+                                            （0, 1） = （無圧縮データ, 圧縮データ）
+               ・コードデータフォーマット（Big Endian）
+                    u16 length:4            展開データ長 - 3（一致長3Byte以上時のみ圧縮）
+                        offset:12           一致データオフセット - 1
 
   Arguments:    srcp      : source address
                 destp     : destination address
@@ -573,34 +573,34 @@ s32     SVC_UncompressLZ16FromDevice(const void *srcp, void *destp, const void *
 
   Description:  uncompress run length from device
 
-              �E���������O�X���k�f�[�^��W�J���A16bit�P�ʂŏ������݂܂��B
-              �E�������}�b�s���O����Ă��Ȃ��f�o�C�X��̈��k�f�[�^��
-                �e���|�����o�b�t�@���g�킸�ɒ��ړW�J���邱�Ƃ��ł��܂��B
-              �E�o�C�g�A�N�Z�X�ł��Ȃ�RAM�ɂ��W�J�ł��܂����A
-                SVC_UncompressRL8()���ᑬ�ł��B
-              �E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-                �o���邾��0�ŋl�߂Ē������ĉ������B
-              �E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
-              �E�������͓W�J��̃T�C�Y��Ԃ��A���s���͕��̒l��Ԃ��܂��B
-                initStream/terminateStream�R�[���o�b�N�֐����ŃG���[��
-                ���o�����ꍇ�͕��̒l��Ԃ��ĉ������B
+              ・ランレングス圧縮データを展開し、16bit単位で書き込みます。
+              ・メモリマッピングされていないデバイス上の圧縮データを
+                テンポラリバッファを使わずに直接展開することができます。
+              ・バイトアクセスできないRAMにも展開できますが、
+                SVC_UncompressRL8()より低速です。
+              ・圧縮データのサイズが4の倍数にならなかった場合は
+                出来るだけ0で詰めて調整して下さい。
+              ・ソースアドレスは4Byte境界に合わせて下さい。
+              ・成功時は展開後のサイズを返し、失敗時は負の値を返します。
+                initStream/terminateStreamコールバック関数内でエラーを
+                検出した場合は負の値を返して下さい。
 
-              �E�����F
-                   srcp          �\�[�X�A�h���X
-                   destp         �f�X�e�B�l�[�V�����A�h���X
-                   paramp        MIReadStreamCallbacks�\���̂�initStream�֐��֓n���p�����[�^�̃A�h���X
-                   callbacks     MIReadStreamCallbacks�\���̂̃A�h���X
+              ・引数：
+                   srcp          ソースアドレス
+                   destp         デスティネーションアドレス
+                   paramp        MIReadStreamCallbacks構造体のinitStream関数へ渡すパラメータのアドレス
+                   callbacks     MIReadStreamCallbacks構造体のアドレス
 
-              �E�f�[�^�w�b�_
-                   u32 :4                  �\��
-                       compType:4          ���k�^�C�v�i = 3�j
-                       destSize:23         �W�J��̃f�[�^�T�C�Y
-                       :1                  �g�p�s��
+              ・データヘッダ
+                   u32 :4                  予約
+                       compType:4          圧縮タイプ（ = 3）
+                       destSize:23         展開後のデータサイズ
+                       :1                  使用不可
 
-              �E�t���O�f�[�^�t�H�[�}�b�g
-                   u8  length:7            �W�J�f�[�^�� - 1�i�����k���j
-                                           �W�J�f�[�^�� - 3�i�A����3Byte�ȏ㎞�݈̂��k�j
-                       flag:1              �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
+              ・フラグデータフォーマット
+                   u8  length:7            展開データ長 - 1（無圧縮時）
+                                           展開データ長 - 3（連続長3Byte以上時のみ圧縮）
+                       flag:1              （0, 1） = （無圧縮データ, 圧縮データ）
 
   Arguments:    srcp      : source address
                 destp     : destination address
@@ -618,55 +618,55 @@ s32     SVC_UncompressRL16FromDevice(const void *srcp, void *destp, const void *
 
   Description:  uncompress huffman from device
 
-              �E�n�t�}�����k�f�[�^��W�J���A32bit�P�ʂŏ������݂܂��B
-              �E�������}�b�s���O����Ă��Ȃ��f�o�C�X��̈��k�f�[�^��
-                �e���|�����o�b�t�@���g�킸�ɒ��ړW�J���邱�Ƃ��ł��܂��B
-              �E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-                �o���邾��0�ŋl�߂Ē������ĉ������B
-              �E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
-              �E�������͓W�J��̃T�C�Y��Ԃ��A���s���͕��̒l��Ԃ��܂��B
-                initStream/terminateStream�R�[���o�b�N�֐����ŃG���[��
-                ���o�����ꍇ�͕��̒l��Ԃ��ĉ������B
+              ・ハフマン圧縮データを展開し、32bit単位で書き込みます。
+              ・メモリマッピングされていないデバイス上の圧縮データを
+                テンポラリバッファを使わずに直接展開することができます。
+              ・圧縮データのサイズが4の倍数にならなかった場合は
+                出来るだけ0で詰めて調整して下さい。
+              ・ソースアドレスは4Byte境界に合わせて下さい。
+              ・成功時は展開後のサイズを返し、失敗時は負の値を返します。
+                initStream/terminateStreamコールバック関数内でエラーを
+                検出した場合は負の値を返して下さい。
 
-              �E�����F
-                   srcp          �\�[�X�A�h���X
-                   destp         �f�X�e�B�l�[�V�����A�h���X
-                   tableBufp     �c���[�e�[�u���i�[�o�b�t�@�i�ő�512Byte�j
-                                 MIReadStreamCallbacks�\���̂�initStream�֐��փp�����[�^��n�������ꍇ�A
-                                 ���̃o�b�t�@�o�R���ēn�����Ƃ��ł��܂��B
-                                 �������AinitStream�֐��Ăяo����̓c���[�e�[�u���ŏ㏑������܂��B
-                   callbacks     MIReadStreamCallbacks�\���̂̃A�h���X
+              ・引数：
+                   srcp          ソースアドレス
+                   destp         デスティネーションアドレス
+                   tableBufp     ツリーテーブル格納バッファ（最大512Byte）
+                                 MIReadStreamCallbacks構造体のinitStream関数へパラメータを渡したい場合、
+                                 このバッファ経由して渡すことができます。
+                                 ただし、initStream関数呼び出し後はツリーテーブルで上書きされます。
+                   callbacks     MIReadStreamCallbacks構造体のアドレス
 
-              �E�f�[�^�w�b�_
-                   u32 bitSize:4           �P�f�[�^�E�r�b�g�T�C�Y�i�ʏ� 4|8�j
-                       compType:4          ���k�^�C�v�i = 2�j
-                       destSize:23         �W�J��̃f�[�^�T�C�Y
-                       :1                  �g�p�s��
+              ・データヘッダ
+                   u32 bitSize:4           １データ・ビットサイズ（通常 4|8）
+                       compType:4          圧縮タイプ（ = 2）
+                       destSize:23         展開後のデータサイズ
+                       :1                  使用不可
 
-              �E�c���[�e�[�u��
-                   u8           treeSize        �c���[�e�[�u���T�C�Y/2 - 1
-                   TreeNodeData nodeRoot        ���[�g�m�[�h
+              ・ツリーテーブル
+                   u8           treeSize        ツリーテーブルサイズ/2 - 1
+                   TreeNodeData nodeRoot        ルートノード
 
-                   TreeNodeData nodeLeft        ���[�g���m�[�h
-                   TreeNodeData nodeRight       ���[�g�E�m�[�h
+                   TreeNodeData nodeLeft        ルート左ノード
+                   TreeNodeData nodeRight       ルート右ノード
 
-                   TreeNodeData nodeLeftLeft    �����m�[�h
-                   TreeNodeData nodeLeftRight   ���E�m�[�h
+                   TreeNodeData nodeLeftLeft    左左ノード
+                   TreeNodeData nodeLeftRight   左右ノード
 
-                   TreeNodeData nodeRightLeft   �E���m�[�h
-                   TreeNodeData nodeRightRight  �E�E�m�[�h
+                   TreeNodeData nodeRightLeft   右左ノード
+                   TreeNodeData nodeRightRight  右右ノード
 
-                           �E
-                           �E
+                           ・
+                           ・
 
-                ���̌�Ɉ��k�f�[�^�{��
+                この後に圧縮データ本体
 
-              �ETreeNodeData�\����
-                  u8  nodeNextOffset:6    ���m�[�h�f�[�^�ւ̃I�t�Z�b�g - 1�i2Byte�P�ʁj
-                      rightEndFlag:1      �E�m�[�h�I���t���O
-                      leftEndflag:1       ���m�[�h�I���t���O
-                                          �I���t���O���Z�b�g����Ă���ꍇ
-                                          ���m�[�h�Ƀf�[�^������
+              ・TreeNodeData構造体
+                  u8  nodeNextOffset:6    次ノードデータへのオフセット - 1（2Byte単位）
+                      rightEndFlag:1      右ノード終了フラグ
+                      leftEndflag:1       左ノード終了フラグ
+                                          終了フラグがセットされている場合
+                                          次ノードにデータがある
 
   Arguments:    srcp      : source address
                 destp     : destination address
@@ -684,13 +684,13 @@ s32     SVC_UncompressHuffmanFromDevice(const void *srcp, void *destp, u8 *table
 
   Description:  calculate CRC-16
 
-              �ECRC-16���Z�o���܂��B
-              �E�f�[�^�A�h���X�ƃT�C�Y��2Byte���E�ɍ��킹�ĉ������B
+              ・CRC-16を算出します。
+              ・データアドレスとサイズは2Byte境界に合わせて下さい。
 
-              �E�����F
-                   start         �����l
-                   datap         �f�[�^�A�h���X
-                   size          �T�C�Y�i�o�C�g���j
+              ・引数：
+                   start         初期値
+                   datap         データアドレス
+                   size          サイズ（バイト数）
 
   Arguments:    start  : start value
                 datap  : data address
@@ -706,9 +706,9 @@ u16     SVC_GetCRC16(u32 start, const void *datap, u32 size);
 
   Description:  check if main memory is expanded
 
-              �E���C����������8M�o�C�g�֊g������Ă��邩�ǂ����𒲂ׂ܂��B
-              �EARM9���ł�0x023FFFF8�Ԓn��0x027FFFF8�Ԓn���L���b�V�������̐ݒ��
-                ���Ă����K�v������܂��B
+              ・メインメモリが8Mバイトへ拡張されているかどうかを調べます。
+              ・ARM9側では0x023FFFF8番地と0x027FFFF8番地をキャッシュ無効の設定に
+                しておく必要があります。
 
   Arguments:    None
 
@@ -725,14 +725,14 @@ BOOL    SVC_IsMmemExpanded(void);
 
   Description:  quotient of division
 
-              �Enumer/denom���Z�o���܂��B
-              �E���W�X�^�̒l�́Ar0=numer/denom, r1=number%denom, 
-                r3=|numer/denom|�ŕ��A���܂��B
-              �E�R�[�h�T�C�Y��}���Ă��邽�߁A���܂荂���ł͂���܂���B
+              ・numer/denomを算出します。
+              ・レジスタの値は、r0=numer/denom, r1=number%denom, 
+                r3=|numer/denom|で復帰します。
+              ・コードサイズを抑えているため、あまり高速ではありません。
 
-              �E�����F
-                   number        ���q
-                   denom         ����
+              ・引数：
+                   number        分子
+                   denom         分母
 
   Arguments:    numer  : 
                 denom  : 
@@ -747,14 +747,14 @@ s32     SVC_Div(s32 number, s32 denom);
 
   Description:  remainder of division
 
-              �Enumer%denom���Z�o���܂��B
-              �E���W�X�^�̒l�́Ar0=number%denom, r1=number%denom, 
-                r3=|numer/denom|�ŕ��A���܂��B
-              �E�R�[�h�T�C�Y��}���Ă��邽�߁A���܂荂���ł͂���܂���B
+              ・numer%denomを算出します。
+              ・レジスタの値は、r0=number%denom, r1=number%denom, 
+                r3=|numer/denom|で復帰します。
+              ・コードサイズを抑えているため、あまり高速ではありません。
 
-              �E�����F
-                   number        ���q
-                   denom         ����
+              ・引数：
+                   number        分子
+                   denom         分母
 
   Arguments:    numer  : 
                 denom  : 
@@ -769,10 +769,10 @@ s32     SVC_DivRem(s32 number, s32 denom);
 
   Description:  square root
 
-              �E���������Z�o���܂��B
-              �E���x��ǂ����邽�߂Ɉ�����2�̔{���������V�t�g���ēn���A
-                �߂�l���V�t�g���Č����킹���s�Ȃ��ĉ������B
-              �E�R�[�h�T�C�Y��}���Ă��邽�߁A���܂荂���ł͂���܂���B
+              ・平方根を算出します。
+              ・精度を良くするために引数を2の倍数だけ左シフトして渡し、
+                戻り値もシフトして桁合わせを行なって下さい。
+              ・コードサイズを抑えているため、あまり高速ではありません。
 
   Arguments:    src  : 
 
@@ -786,14 +786,14 @@ u16     SVC_Sqrt(u32 src);
 
   Description:  halt
 
-                �ECPU�R�A�̂ݒ�~�����܂��B
-                �E�Y�����銄�荞�݂����iIE�ɃZ�b�g�j����Ă���
-                  ���荞�ݗv���iIF�Z�b�g�j�ɂĕ��A���܂��B
-                �ECPSR��IRQ�f�B�Z�[�u���t���O���Z�b�g����Ă���ꍇ
-                  �iOS_DisableInterrupts�j�ɂ́A�z�[���g���畜�A���܂���
-                  ���荞�݂͔������܂���B
-                �EIME���N���A���ꂽ��ԂŃz�[���g�ɓ���܂��ƁiOS_DisableIrq�j
-                  ���A�ł��Ȃ��Ȃ�܂��B
+                ・CPUコアのみ停止させます。
+                ・該当する割り込みが許可（IEにセット）されている
+                  割り込み要求（IFセット）にて復帰します。
+                ・CPSRのIRQディセーブルフラグがセットされている場合
+                  （OS_DisableInterrupts）には、ホールトから復帰しますが
+                  割り込みは発生しません。
+                ・IMEがクリアされた状態でホールトに入りますと（OS_DisableIrq）
+                  復帰できなくなります。
 
   Arguments:    None
 
@@ -810,19 +810,19 @@ void    SVC_Halt(void);
 
   Description:  sleep
 
-              �E�����U���~���܂��B
-              �ERTC�^�L�[�^�J�[�h�^�J�[�g���b�W�^�{�̃I�[�v���̂����ꂩ��
-                ���荞�݂����iIE�ɃZ�b�g�j����Ă���ꍇ�A�Y�����銄�荞�ݗv������
-                �̔����ɂ���ĕ��A���܂��B
-              �E�����U����~���Ă��܂��̂ŕ��A�����IF�t���O�̓Z�b�g����܂��񂪁A
-                CPU�ċN�����܂Œ[�q�֊��荞�ݗv���M�����������܂܂ɂȂ��Ă���ꍇ�ɂ�
-                ���̎��_��IF�t���O���Z�b�g����܂��B
-              �E���炩���ߗ��v���Z�b�T�Ƃ���POWCNT���W�X�^��0�N���A����
-                �S�u���b�N���~�����A�T�E���h�A���v�△�����W���[������~�A
-                ARM9�̓z�[���g��Ԃɂ��Ă���Ăяo���ĉ������B
-              �EPOWCNT���W�X�^��LCD�C�l�[�u���t���O�́A���̊֐����Ăяo��
-                100ms�ȏ�O��0�֗��Ƃ��ĉ������B����Ă��Ȃ��ꍇ��
-                �{�̂��V���b�g�_�E�����Ă��܂��\��������܂��B
+              ・原発振を停止します。
+              ・RTC／キー／カード／カートリッジ／本体オープンのいずれかの
+                割り込みが許可（IEにセット）されている場合、該当する割り込み要求条件
+                の発生によって復帰します。
+              ・原発振が停止していますので復帰直後はIFフラグはセットされませんが、
+                CPU再起動時まで端子へ割り込み要求信号が入ったままになっている場合には
+                その時点でIFフラグがセットされます。
+              ・あらかじめ両プロセッサともにPOWCNTレジスタを0クリアして
+                全ブロックを停止させ、サウンドアンプや無線モジュールも停止、
+                ARM9はホールト状態にしてから呼び出して下さい。
+              ・POWCNTレジスタのLCDイネーブルフラグは、この関数を呼び出す
+                100ms以上前に0へ落として下さい。守られていない場合は
+                本体がシャットダウンしてしまう可能性があります。
 
   Arguments:    None
 
@@ -836,11 +836,11 @@ void    SVC_Sleep(void);
 
   Description:  set sound bias
 
-              �E�T�E���hBIAS��0���璆�Ԓl�i0x200�j�ֈڍs���܂��B
+              ・サウンドBIASを0から中間値（0x200）へ移行します。
 
-              �E�����F
-                   stepLoops     �T�E���h�o�C�A�X�ύX�P�X�e�b�v�Ԃ̃��[�v���i�S�T�C�N���^���[�v�j�B
-                                 �l���傫���قǃT�E���h�o�C�A�X���ɂ₩�ɕω������܂��B
+              ・引数：
+                   stepLoops     サウンドバイアス変更１ステップ間のループ数（４サイクル／ループ）。
+                                 値が大きいほどサウンドバイアスを緩やかに変化させます。
 
   Arguments:    stepLoops : 
 
@@ -854,11 +854,11 @@ void    SVC_SetSoundBias(s32 stepLoops);
 
   Description:  set sound bias
 
-              �E�T�E���hBIAS�𒆊Ԓl�i0x200�j����0�ֈڍs���܂��B
+              ・サウンドBIASを中間値（0x200）から0へ移行します。
 
-              �E�����F
-                   stepLoops     �T�E���h�o�C�A�X�ύX�P�X�e�b�v�Ԃ̃��[�v���i�S�T�C�N���^���[�v�j�B
-                                 �l���傫���قǃT�E���h�o�C�A�X���ɂ₩�ɕω������܂��B
+              ・引数：
+                   stepLoops     サウンドバイアス変更１ステップ間のループ数（４サイクル／ループ）。
+                                 値が大きいほどサウンドバイアスを緩やかに変化させます。
 
   Arguments:    stepLoops : 
 
@@ -875,10 +875,10 @@ void    SVC_ResetSoundBias(s32 stepLoops);
 
   Description:  get sound table data
 
-              �E�T�E���h�֘A�̃e�[�u�����Q�Ƃ��Ēl��Ԃ��܂��B
+              ・サウンド関連のテーブルを参照して値を返します。
 
-              �E�����F
-                   index         �C���f�b�N�X
+              ・引数：
+                   index         インデックス
 
   Arguments:    index : 
 

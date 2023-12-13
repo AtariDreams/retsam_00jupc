@@ -1,14 +1,14 @@
 //============================================================================================
 /**
  * @file	namein.c
- * @bfief	–¼‘O“ü—Í‰æ–Êˆ—
+ * @bfief	åå‰å…¥åŠ›ç”»é¢å‡¦ç†
  * @author	Akito Mori
  * @date	05.10.05
  */
 //============================================================================================
-#define USE_PARAM_STR		// NAMEIN_PARAM‚É u16 str[20]‚ª•K—v‚ÈŠÔ—LŒø‚É‚·‚é
+#define USE_PARAM_STR		// NAMEIN_PARAMã« u16 str[20]ãŒå¿…è¦ãªé–“æœ‰åŠ¹ã«ã™ã‚‹
 
-//#define DEBUG_OAM_POSPRINT	// —LŒø‚É‚·‚é‚Æƒ^ƒbƒ`ƒpƒlƒ‹‚Ì“–‚½‚è—Ìˆæ‚ğŠm”F‚Å‚«‚é
+//#define DEBUG_OAM_POSPRINT	// æœ‰åŠ¹ã«ã™ã‚‹ã¨ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å½“ãŸã‚Šé ˜åŸŸã‚’ç¢ºèªã§ãã‚‹
 
 
 #include "common.h"
@@ -42,30 +42,30 @@
 #include "msgdata/msg_opening_name.h"
 #include "namein_snd_def.h"
 
-// —LŒø‚É‚·‚é‚ÆLCD‚ğã‰º‹t‚É‚µ‚Äƒ^ƒbƒ`ƒpƒlƒ‹‚Å“ü—Í‚Å‚«‚é‚æ‚¤‚É‚È‚é
+// æœ‰åŠ¹ã«ã™ã‚‹ã¨LCDã‚’ä¸Šä¸‹é€†ã«ã—ã¦ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§å…¥åŠ›ã§ãã‚‹ã‚ˆã†ã«ãªã‚‹
 #define NAMEIN_MAINUSE_TOUCHPANEL
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/03
-// ƒŒƒCƒAƒEƒg•ÏX‚É”º‚¢Aƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì“]‘—ˆÊ’u‚ğC³
+// ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå¤‰æ›´ã«ä¼´ã„ã€ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®è»¢é€ä½ç½®ã‚’ä¿®æ­£
 #define POKEICON_VRAM_OFFSET (21*32+31)
 // ----------------------------------------------------------------------------
 #define POKEICON_PAL_OFFSET	 ( 6 )
 
-// CLACT‚Å’è‹`‚µ‚Ä‚¢‚éƒZƒ‹‚ª‘å‚«‚·‚¬‚ÄƒTƒu‰æ–Ê‚É‰e‹¿‚ª‚Å‚Ä‚µ‚Ü‚¤‚Ì‚Å—£‚µ‚Ä‚İ‚é
+// CLACTã§å®šç¾©ã—ã¦ã„ã‚‹ã‚»ãƒ«ãŒå¤§ãã™ãã¦ã‚µãƒ–ç”»é¢ã«å½±éŸ¿ãŒã§ã¦ã—ã¾ã†ã®ã§é›¢ã—ã¦ã¿ã‚‹
 #define NAMEIN_SUB_ACTOR_DISTANCE 	(256*FX32_ONE)
 
 
-// “ü—Í‚µ‚½•¶š—ñ‚ğ•\¦‚·‚éÛ‚ÌŠÔŠu
+// å…¥åŠ›ã—ãŸæ–‡å­—åˆ—ã‚’è¡¨ç¤ºã™ã‚‹éš›ã®é–“éš”
 #define INPUT_WORD_SPACE (12)		
 
-// •¶šƒpƒlƒ‹‚Ì•¶š‚ÌŠÔŠu
+// æ–‡å­—ãƒ‘ãƒãƒ«ã®æ–‡å­—ã®é–“éš”
 #define WORDPANEL_WORD_SPACE (16)		
 
-// •¶ší—Şƒpƒlƒ‹‚ª‚n‚m‚É‚È‚é‚Ü‚Åƒ^ƒbƒ`‚ª—LŒø‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚ÌƒEƒFƒCƒg
+// æ–‡å­—ç¨®é¡ãƒ‘ãƒãƒ«ãŒï¼¯ï¼®ã«ãªã‚‹ã¾ã§ã‚¿ãƒƒãƒãŒæœ‰åŠ¹ã«ãªã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define TOUCH_START_WAIT	 ( 5 )
 
-#include "namein.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "namein.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 #include "../../field/poketch/poketch_arc.h"
 
 #ifdef DEBUG_OAM_POSPRINT
@@ -76,7 +76,7 @@ static int              testclact_no = 0;
 #endif
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 enum {
 	SEQ_IN = 0,
@@ -87,34 +87,34 @@ enum {
 
 
 typedef struct {
-	int x;			// Œ»İˆÊ’u
+	int x;			// ç¾åœ¨ä½ç½®
 	int y;			//
-	int oldx;		// 1STEP‘O‚ÌˆÊ’u
+	int oldx;		// 1STEPå‰ã®ä½ç½®
 	int oldy;		//
-	int lastxarrow;	// ÅŒã‚ÌˆÚ“®•ûŒü
+	int lastxarrow;	// æœ€å¾Œã®ç§»å‹•æ–¹å‘
 
-	int on;			// •\¦ONEOFF
-	int decide;		// Œˆ’èƒAƒjƒ’†H
+	int on;			// è¡¨ç¤ºONãƒ»OFF
+	int decide;		// æ±ºå®šã‚¢ãƒ‹ãƒ¡ä¸­ï¼Ÿ
 }NAMEIN_CURSOR;
 
 #define INPUT_SCREEN_MAX	( 5)	
 #define INPUT_WORD_W		(13)
 #define INPUT_WORD_H		( 6)
 #define INPUT_WORD_WH		(INPUT_WORD_W*INPUT_WORD_H)
-#define INPUT_WORD_MAX		(32)	//ª‹’‚Í–³‚¢
+#define INPUT_WORD_MAX		(32)	//æ ¹æ‹ ã¯ç„¡ã„
 
-// CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ìí—Ş‚Ì”iƒ}ƒ‹ƒ`ƒZƒ‹Eƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚Íg—p‚µ‚È‚¢j
+// CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®ç¨®é¡ã®æ•°ï¼ˆï¼ãƒãƒ«ãƒã‚»ãƒ«ãƒ»ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã¯ä½¿ç”¨ã—ãªã„ï¼‰
 #define CLACT_RESOURCE_NUM		(  4 )
 #define NAMEIN_OAM_NUM			( 14 )
 #define NAMELINE_OAM_NUM		( 12 )
 
-// ƒJ[ƒ\ƒ‹‚ÌCLACT_WORKƒiƒ“ƒo[
+// ã‚«ãƒ¼ã‚½ãƒ«ã®CLACT_WORKãƒŠãƒ³ãƒãƒ¼
 #define CLACT_CURSOR_NUM		(  8 )
 
-// •¶šƒpƒlƒ‹‚Ì“]‘——Ê
+// æ–‡å­—ãƒ‘ãƒãƒ«ã®è»¢é€é‡
 #define WORDPANEL_TRANS_SIZE	( 32*14*2 )
 
-// •¶šƒpƒlƒ‹‚ÌˆÊ’u’è‹`
+// æ–‡å­—ãƒ‘ãƒãƒ«ã®ä½ç½®å®šç¾©
 #define WORDPANEL_POS_REGX		(  -11 )
 #define WORDPANEL_POS_REGY		(  -80 )
 #define HIDDENPANEL_POS_REGX	(  238 )
@@ -123,22 +123,22 @@ typedef struct {
 #define WORDPANEL_IN_SPEED		( 24 )
 #define WORDPANEL_OUT_SPEED		( 10 )
 
-// “ü—ÍÏ‚İ•¶š‚Ì‰ºüOBJ
+// å…¥åŠ›æ¸ˆã¿æ–‡å­—ã®ä¸‹ç·šOBJ
 #define NAMELINE_POS_X			( 10*8   )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/10
-// g ‚â y ‚Ì‰º‘¤‚ª‰B‚ê‚È‚¢‚æ‚¤‚ÉA‰ºüOBJ‚ğ2ƒsƒNƒZƒ‹‰º‚É
+// g ã‚„ y ã®ä¸‹å´ãŒéš ã‚Œãªã„ã‚ˆã†ã«ã€ä¸‹ç·šOBJã‚’2ãƒ”ã‚¯ã‚»ãƒ«ä¸‹ã«
 #define NAMELINE_POS_Y			(  4*8+7 )
 // ----------------------------------------------------------------------------
 
-// ƒpƒ\ƒRƒ“E©‹@Eƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“OBJˆÊ’u
+// ãƒ‘ã‚½ã‚³ãƒ³ãƒ»è‡ªæ©Ÿãƒ»ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³OBJä½ç½®
 #define NAMEIN_MYICON_X			( 24 )
 #define NAMEIN_MYICON_Y			( 16-8 )
 
-// ƒ|ƒPƒ‚ƒ“‚Ì«•ÊƒAƒCƒRƒ“‚ÌˆÊ’u
+// ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ã‚¢ã‚¤ã‚³ãƒ³ã®ä½ç½®
 #define NAMEIN_SEXICON_Y		( NAMELINE_POS_Y - 12)
 
-// –¼‘O“ü—Íî•ñˆÊ’u’è‹`i‚ ‚È‚½‚Ì‚È‚Ü‚¦‚ÍHj
+// åå‰å…¥åŠ›æƒ…å ±ä½ç½®å®šç¾©ï¼ˆã‚ãªãŸã®ãªã¾ãˆã¯ï¼Ÿï¼‰
 #define NAME_INFO_POSX			(  7 )
 #define NAME_INFO_POSY			(  2 )
 #define NAME_INFO_POSW			( 22 )
@@ -146,14 +146,14 @@ typedef struct {
 #define NAMEINFO_WIN_SIZE		( NAME_INFO_POSW*NAME_INFO_POSH )
 
 
-// –¼‘O“ü—ÍŒ‹‰Ê•\¦ˆÊ’u’è‹`
+// åå‰å…¥åŠ›çµæœè¡¨ç¤ºä½ç½®å®šç¾©
 #define NAME_RESULT_POSX		( 10   )
 #define NAME_RESULT_POSY		(  3   )
 #define NAME_RESULT_POSW		( 9*2  )
 #define NAME_RESULT_POSH		(  2   )
 #define NAME_RESULT_WIN_SIZE	( NAME_RESULT_POSW*NAME_RESULT_POSH )
 
-// uƒOƒ‹[ƒvv•¶š—ñ•\¦—p’è‹`
+// ã€Œã‚°ãƒ«ãƒ¼ãƒ—ã€æ–‡å­—åˆ—è¡¨ç¤ºç”¨å®šç¾©
 #define GROUP_TEXT_POSX			(  10+9 )
 #define GROUP_TEXT_POSY			(  NAME_RESULT_POSY )
 #define GROUP_TEXT_POSW			(  7  )
@@ -161,25 +161,25 @@ typedef struct {
 #define GROUP_TEXT_WIN_SIZE		( GROUP_TEXT_POSW*GROUP_TEXT_POSH )
 
 
-#define FLD_MESFRAME_PAL     ( 10 )         //  ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEƒpƒŒƒbƒg
-#define FLD_MESFONT_PAL      ( 12 )         //  ƒƒbƒZ[ƒWƒtƒHƒ“ƒgƒpƒŒƒbƒg
+#define FLD_MESFRAME_PAL     ( 10 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define FLD_MESFONT_PAL      ( 12 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
 
 
-// ‰ï˜bƒEƒCƒ“ƒhƒEˆÊ’u’è‹`(ƒtƒB[ƒ‹ƒh‚©‚ç‚ÌƒRƒs[)
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½ç½®å®šç¾©(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰ã®ã‚³ãƒ”ãƒ¼)
 #define	TALK_MSG_WIN_PX		(  2 )
 #define	TALK_MSG_WIN_PY		( 19 )
 #define	TALK_MSG_WIN_SX		( 27 )
 #define	TALK_MSG_WIN_SY		(  4 )
 #define	TALK_MSG_WIN_PAL	( FLD_MESFONT_PAL )
 
-// BG2‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒTƒCƒY‚Æ‰ï˜bƒEƒCƒ“ƒhƒEƒLƒƒƒ‰ƒf[ƒ^‚ÌŠJnˆÊ’u
+// BG2ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã¨ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹ä½ç½®
 #define NAMEIN_BG2GRAPHIC_NUM	  ( 32*8 )
 #define NAMEIN_BG2GRAPHIC_SIZE	  ( NAMEIN_BG2GRAPHIC_NUM*0x20 )
 #define NAMEIN_TALKWIN_CGX_OFFSET ( NAMEIN_BG2GRAPHIC_NUM )
 
 
 
-// •¶šƒpƒlƒ‹‚Ì‘JˆÚ—p
+// æ–‡å­—ãƒ‘ãƒãƒ«ã®é·ç§»ç”¨
 enum{
 	NAMEIN_MODE_REQ  = 0, 
 	NAMEIN_MODE_SET,
@@ -191,7 +191,7 @@ enum{
 	NAMEIN_MODE_BOXMSG_END_WAIT,
 };
 
-// ‹@”\ƒ{ƒ^ƒ“’è‹`
+// æ©Ÿèƒ½ãƒœã‚¿ãƒ³å®šç¾©
 enum{
 	NAMEIN_MODE_HIRA = 0,
 	NAMEIN_MODE_KANA,
@@ -200,18 +200,18 @@ enum{
 	NAMEIN_MODE_NUMCODE,
 };
 
-// ã‰º‰æ–Êw’è’è‹`
+// ä¸Šä¸‹ç”»é¢æŒ‡å®šå®šç¾©
 #define BOTH_LCD	( 2 )
-#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// —v‚Í‚O‚Æ
-#define SUB_LCD		( GF_BGL_SUB_DISP )		// ‚P‚È‚ñ‚Å‚·‚ªB
+#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// è¦ã¯ï¼ã¨
+#define SUB_LCD		( GF_BGL_SUB_DISP )		// ï¼‘ãªã‚“ã§ã™ãŒã€‚
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ğ’è‹`‚·‚é‚Æ‚«‚Ég‚¤
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’å®šç¾©ã™ã‚‹ã¨ãã«ä½¿ã†
 #define PANEL_X		( 28 )
 #define PANEL_Y		( 88 )
 #define PANEL_H		( 19 )
 
 
-// BMPWINw’è
+// BMPWINæŒ‡å®š
 enum{
 	BMP_WORDPANEL_BG0=0,
 	BMP_WORDPANEL_BG1,
@@ -226,80 +226,80 @@ enum{
 	BMP_NAMEIN_MAX,
 };
 
-// ‹@”\ƒ{ƒ^ƒ“—p’è‹`
-#define FUNCBUTTON_NUM	( 7 ) 		// ‹@”\ƒ{ƒ^ƒ“‚Ì”
+// æ©Ÿèƒ½ãƒœã‚¿ãƒ³ç”¨å®šç¾©
+#define FUNCBUTTON_NUM	( 7 ) 		// æ©Ÿèƒ½ãƒœã‚¿ãƒ³ã®æ•°
 
-// Šeƒf[ƒ^’è‹`
+// å„ãƒ‡ãƒ¼ã‚¿å®šç¾©
 
 #include "namein.dat"
 
 //============================================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //============================================================================================
 
 struct NAMEIN_WORK{
 
-	int    inputmode;										// “ü—Íƒ‚[ƒhi0:ålŒö,1:ƒ|ƒPƒ‚ƒ“,2:ƒ{ƒbƒNƒX
-	int    inputinfo;										// “ü—Íî•ñi’j—Aƒ|ƒPƒ‚ƒ“NO‚È‚Ç
-	int    inputform;										// “ü‹ß‚­î•ñiƒ|ƒPƒ‚ƒ“Œ`ój
-	int    inputmax;										// “ü—Í•¶šÅ‘å”
-	int    inputsex;										// ƒ|ƒPƒ‚ƒ“‚Ì‚Í«•Ê‚ğ•\¦‚·‚é
-	int    endmode;											// 1‚Ì‚Íƒ|ƒPƒ‚ƒ“‚ğBOX‚É“]‘—‚·‚é|‚ÌƒƒbƒZ[ƒW‚ª‚Å‚é
+	int    inputmode;										// å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ï¼ˆ0:ä¸»äººå…¬,1:ãƒã‚±ãƒ¢ãƒ³,2:ãƒœãƒƒã‚¯ã‚¹
+	int    inputinfo;										// å…¥åŠ›æƒ…å ±ï¼ˆç”·å¥³ã€ãƒã‚±ãƒ¢ãƒ³NOãªã©
+	int    inputform;										// å…¥è¿‘ãæƒ…å ±ï¼ˆãƒã‚±ãƒ¢ãƒ³å½¢çŠ¶ï¼‰
+	int    inputmax;										// å…¥åŠ›æ–‡å­—æœ€å¤§æ•°
+	int    inputsex;										// ãƒã‚±ãƒ¢ãƒ³ã®æ™‚ã¯æ€§åˆ¥ã‚’è¡¨ç¤ºã™ã‚‹
+	int    endmode;											// 1ã®æ™‚ã¯ãƒã‚±ãƒ¢ãƒ³ã‚’BOXã«è»¢é€ã™ã‚‹æ—¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã§ã‚‹
 	CONFIG *config;
 
-	NAMEIN_CURSOR 	Cursor;									// ƒJ[ƒ\ƒ‹î•ñ@XEYE‰ß‹XE•\¦ON
+	NAMEIN_CURSOR 	Cursor;									// ã‚«ãƒ¼ã‚½ãƒ«æƒ…å ±ã€€Xãƒ»Yãƒ»éå»Xãƒ»è¡¨ç¤ºON
 	u16				CursorPal;
-	u16 			wordmap[INPUT_WORD_H][INPUT_WORD_W];	// •¶š”Õƒ}ƒbƒv
-	u16 			nowmap;									// Œ»İ‚Ì•¶šƒ}ƒbƒv
-	u16 			inputword[INPUT_WORD_MAX];				// “ü—Í‚µ‚½•¶š—ñ
-	u16 			paramstr[INPUT_WORD_MAX];				// ˆø”•¶š—ñ(ŒÄ‚Ño‚µ‚ÉŠi”[‚³‚ê‚Ä‚¢‚½•¶š—ñi”äŠr‚Ég—pjj
-	u16				nowinput;								// Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
-	u16				subtouchword[3];						// ‚R‚Â‚Ì‰ºƒ{ƒ^ƒ“‚É”z’u‚³‚ê‚Ä‚¢‚é•¶šƒR[ƒh
+	u16 			wordmap[INPUT_WORD_H][INPUT_WORD_W];	// æ–‡å­—ç›¤ãƒãƒƒãƒ—
+	u16 			nowmap;									// ç¾åœ¨ã®æ–‡å­—ãƒãƒƒãƒ—
+	u16 			inputword[INPUT_WORD_MAX];				// å…¥åŠ›ã—ãŸæ–‡å­—åˆ—
+	u16 			paramstr[INPUT_WORD_MAX];				// å¼•æ•°æ–‡å­—åˆ—(å‘¼ã³å‡ºã—æ™‚ã«æ ¼ç´ã•ã‚Œã¦ã„ãŸæ–‡å­—åˆ—ï¼ˆæ¯”è¼ƒã«ä½¿ç”¨ï¼‰ï¼‰
+	u16				nowinput;								// ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u16				subtouchword[3];						// ï¼“ã¤ã®ä¸‹ãƒœã‚¿ãƒ³ã«é…ç½®ã•ã‚Œã¦ã„ã‚‹æ–‡å­—ã‚³ãƒ¼ãƒ‰
 	GF_BGL_INI		*bgl;
-	BOOL			wipe_end;								// ƒƒCƒvˆ—I—¹ŒŸoƒtƒ‰ƒO
+	BOOL			wipe_end;								// ãƒ¯ã‚¤ãƒ—å‡¦ç†çµ‚äº†æ¤œå‡ºãƒ•ãƒ©ã‚°
 
-	WORDSET			*WordSet;								// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *MsgManager;							// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *MsgDefaultName;						// ©•ª‚Ì–¼‘OŒó•âƒƒbƒZ[ƒWƒf[ƒ^
-	MSGDATA_MANAGER *FightMsgManager;						// ƒ|ƒPƒ‚ƒ“•ßŠl‚Ì‚ÌƒƒbƒZ[ƒWƒf[ƒ^‚ğí“¬‚©‚çQÆ
-	STRBUF			*TitleStr;								// –¼‘O“ü—Íƒ^ƒCƒgƒ‹
-	STRBUF			*ChangeWordStr;							// u‚à‚¶‚ğ ‚©‚¦‚év
-	STRBUF			*BoxMessage;							// uƒ|ƒPƒ‚ƒ“‚Í››‚É“]‘—‚³‚ê‚½v
-	STRBUF			*GroupString;							// uƒOƒ‹[ƒvv•¶š—ñ
+	WORDSET			*WordSet;								// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *MsgManager;							// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *MsgDefaultName;						// è‡ªåˆ†ã®åå‰å€™è£œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+	MSGDATA_MANAGER *FightMsgManager;						// ãƒã‚±ãƒ¢ãƒ³æ•ç²ã®æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æˆ¦é—˜ã‹ã‚‰å‚ç…§
+	STRBUF			*TitleStr;								// åå‰å…¥åŠ›ã‚¿ã‚¤ãƒˆãƒ«
+	STRBUF			*ChangeWordStr;							// ã€Œã‚‚ã˜ã‚’ ã‹ãˆã‚‹ã€
+	STRBUF			*BoxMessage;							// ã€Œãƒã‚±ãƒ¢ãƒ³ã¯â—‹â—‹ã«è»¢é€ã•ã‚ŒãŸã€
+	STRBUF			*GroupString;							// ã€Œã‚°ãƒ«ãƒ¼ãƒ—ã€æ–‡å­—åˆ—
 
-	CLACT_SET_PTR 			clactSet;								// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	renddata;								// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR 	resObjTbl[BOTH_LCD][CLACT_RESOURCE_NUM];// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-	CLACT_HEADER			clActHeader_m;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-	CLACT_HEADER			clActHeader_s;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-	CLACT_WORK_PTR			clActWork[NAMEIN_OAM_NUM];				// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ
-	CLACT_WORK_PTR			NameLineActWork[NAMELINE_OAM_NUM];		// “ü—ÍŒ‹‰Ê•\¦•¶š—ñ‚Ì‰ºƒAƒ“ƒ_[ƒ‰ƒCƒ“
-	CLACT_WORK_PTR			NameIconActWork[2];						// “ü—Í‰æ–Êà–¾ƒAƒCƒRƒ“i©‹@Eƒpƒ\ƒRƒ“^«•Ê‰EŠj
+	CLACT_SET_PTR 			clactSet;								// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	renddata;								// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR 	resObjTbl[BOTH_LCD][CLACT_RESOURCE_NUM];// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+	CLACT_HEADER			clActHeader_m;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_HEADER			clActHeader_s;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_WORK_PTR			clActWork[NAMEIN_OAM_NUM];				// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—
+	CLACT_WORK_PTR			NameLineActWork[NAMELINE_OAM_NUM];		// å…¥åŠ›çµæœè¡¨ç¤ºæ–‡å­—åˆ—ã®ä¸‹ã‚¢ãƒ³ãƒ€ãƒ¼ãƒ©ã‚¤ãƒ³
+	CLACT_WORK_PTR			NameIconActWork[2];						// å…¥åŠ›ç”»é¢èª¬æ˜ã‚¢ã‚¤ã‚³ãƒ³ï¼ˆè‡ªæ©Ÿãƒ»ãƒ‘ã‚½ã‚³ãƒ³ï¼æ€§åˆ¥â™‚ãƒ»â™€ï¼‰
 	TCB_PTR					FuncButtonTask[FUNCBUTTON_NUM];
 
-	GF_BGL_BMPWIN 			NameInWin[BMP_NAMEIN_MAX];				// –¼‘O“ü—Í—pBMPƒEƒCƒ“ƒhƒE
+	GF_BGL_BMPWIN 			NameInWin[BMP_NAMEIN_MAX];				// åå‰å…¥åŠ›ç”¨BMPã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 	int						msg_index;
 
 
-	int						seq;									// Œ»İ‚Ì•¶š“ü—Íó‘Ôi“ü—ÍOK/ƒAƒjƒ’†j‚È‚Ç
-	int						mode;									// Œ»İÅ‘O–Ê‚Ì•¶šƒpƒlƒ‹
+	int						seq;									// ç¾åœ¨ã®æ–‡å­—å…¥åŠ›çŠ¶æ…‹ï¼ˆå…¥åŠ›OK/ã‚¢ãƒ‹ãƒ¡ä¸­ï¼‰ãªã©
+	int						mode;									// ç¾åœ¨æœ€å‰é¢ã®æ–‡å­—ãƒ‘ãƒãƒ«
 
-	int						front;									// è‘O‚É—ˆ‚Ä‚¢‚éBG–Ê
-	VecFx32					panelpos[2];							// ˆÚ“®‚·‚é2‚Â‚ÌBG–Ê—pÀ•Wƒ[ƒN(ŒÅ’è­”‚Å‚Íg‚Á‚Ä‚¢‚È‚¢j
+	int						front;									// æ‰‹å‰ã«æ¥ã¦ã„ã‚‹BGé¢
+	VecFx32					panelpos[2];							// ç§»å‹•ã™ã‚‹2ã¤ã®BGé¢ç”¨åº§æ¨™ãƒ¯ãƒ¼ã‚¯(å›ºå®šå°‘æ•°ã§ã¯ä½¿ã£ã¦ã„ãªã„ï¼‰
 
 	int						word;									
 
-	int						old_subbutton;							// ‘O‰ñ‚Ì‰º‰æ–Êƒ{ƒ^ƒ“î•ñ
+	int						old_subbutton;							// å‰å›ã®ä¸‹ç”»é¢ãƒœã‚¿ãƒ³æƒ…å ±
 	int						subbutton_mode;
 	int						subbutton_work;
 
-	int						funcbutton[FUNCBUTTON_NUM];				// ƒ{ƒ^ƒ“‰Ÿ‚µó‘Ôƒtƒ‰ƒO
+	int						funcbutton[FUNCBUTTON_NUM];				// ãƒœã‚¿ãƒ³æŠ¼ã—çŠ¶æ…‹ãƒ•ãƒ©ã‚°
 
 	void*					BgCharaBuf;
 	NNSG2dCharacterData*	BgCharaDat;
 
-	void*					PokeIconBuf;							// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒf[ƒ^
+	void*					PokeIconBuf;							// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿
 	NNSG2dCharacterData*	PokeIconCharaDat;						
 
 	void*					PokeIconPalBuf;
@@ -320,7 +320,7 @@ struct NAMEIN_WORK{
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static PROC_RESULT NameInProc_Init( PROC * proc, int * seq );
 static PROC_RESULT NameInProc_Main( PROC * proc, int * seq );
@@ -376,9 +376,9 @@ static testclact_set( void );
 
 #endif
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 const PROC_DATA NameInProcData = {
 	NameInProc_Init,
 	NameInProc_Main,
@@ -389,17 +389,17 @@ const PROC_DATA NameInProcData = {
 
 static NAMEIN_WORK *debug_namein;
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT NameInProc_Init( PROC * proc, int * seq )
@@ -409,8 +409,8 @@ static PROC_RESULT NameInProc_Init( PROC * proc, int * seq )
 
 	switch(*seq){
 	case 0:
-		sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-		sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -424,11 +424,11 @@ static PROC_RESULT NameInProc_Init( PROC * proc, int * seq )
 		wk->bgl = GF_BGL_BglIniAlloc( HEAPID_NAMEIN );
 
 
-		// ƒq[ƒvƒnƒ“ƒhƒ‹ì¬
+		// ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«ä½œæˆ
 		p_handle = ArchiveDataHandleOpen( ARC_NAMEIN_GRA, HEAPID_NAMEIN );
 		
 		
-		// •¶š—ñƒ}ƒl[ƒWƒƒ[¶¬
+		// æ–‡å­—åˆ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”Ÿæˆ
 		wk->WordSet          = WORDSET_Create( HEAPID_NAMEIN );
 		wk->MsgManager       = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_namein_dat, HEAPID_NAMEIN );
 		wk->MsgDefaultName   = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_opening_name_dat, HEAPID_NAMEIN );
@@ -438,51 +438,51 @@ static PROC_RESULT NameInProc_Init( PROC * proc, int * seq )
 
 		VramBankSet();
 		
-		// BGLƒŒƒWƒXƒ^İ’è
+		// BGLãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
 		BgInit( wk->bgl );					
 
-		// ‹P“x•ÏXƒZƒbƒg
+		// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 
 //		ChangeBrightnessRequest(
 //			8, 0, -16, PLANEMASK_ALL, MASK_DOUBLE_DISPLAY );
 
 		
-		// ˆø”‚ğ•Û‘¶
+		// å¼•æ•°ã‚’ä¿å­˜
 		SetNameInWorkParameter(wk, (NAMEIN_PARAM*)PROC_GetParentWork(proc));
 
-		//BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+		//BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 		BgGraphicSet( wk, p_handle );
 
-//		InitTPSystem();						// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+//		InitTPSystem();						// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 //		InitTPNoBuff(4);
   
-		// ƒ{ƒ^ƒ“—pƒtƒHƒ“ƒg‚ğ“Ç‚İ‚İ
+		// ãƒœã‚¿ãƒ³ç”¨ãƒ•ã‚©ãƒ³ãƒˆã‚’èª­ã¿è¾¼ã¿
 		FontProc_LoadFont( FONT_BUTTON, HEAPID_NAMEIN );
   	
  
-		// VBlankŠÖ”ƒZƒbƒg
+		// VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
 		sys_VBlankFuncChange( VBlankFunc, NULL );	
   
-		// ƒ[ƒN‰Šú‰»
+		// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		InitWork(wk,proc);
 
-		// ƒVƒXƒeƒ€ƒtƒHƒ“ƒgí’“
+		// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆå¸¸é§
 		FontProc_LoadBitData(FONT_SYSTEM,HEAPID_NAMEIN);
 
-		// OBJƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+		// OBJã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 		char_pltt_manager_init();
 
-		// CellActorƒVƒXƒeƒ€‰Šú‰»
+		// CellActorã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 		InitCellActor(wk, p_handle);
 		
-		// CellActro•\¦“o˜^
+		// CellActroè¡¨ç¤ºç™»éŒ²
 		SetCellActor(wk);
 
-		// BMPWIN“o˜^E•`‰æ
+		// BMPWINç™»éŒ²ãƒ»æç”»
 		BmpMessageSet(wk,proc, p_handle);
 
 
-		// ‰ºƒ{ƒ^ƒ“OBJƒtƒHƒ“ƒg“]‘—
+		// ä¸‹ãƒœã‚¿ãƒ³OBJãƒ•ã‚©ãƒ³ãƒˆè»¢é€
 		SubPanelButton_CharaChange(&wk->NameInWin[BMP_SUB_BUTTON1],
 									wk->inputword,
 									wk->nowinput,
@@ -490,7 +490,7 @@ static PROC_RESULT NameInProc_Init( PROC * proc, int * seq )
 									wk->ObjTransWork,
 									wk->ChangeWordStr);
 
-		// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(–¼‘O“ü—Í)(BGMˆøŒp‚¬)
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(åå‰å…¥åŠ›)(BGMå¼•ç¶™ã)
 		Snd_DataSetByScene( SND_SCENE_SUB_NAMEIN, 0, 0 );
 
 		WIPE_SYS_Start(WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 16, 1, HEAPID_NAMEIN );
@@ -498,20 +498,20 @@ static PROC_RESULT NameInProc_Init( PROC * proc, int * seq )
 
 #ifdef NAMEIN_MAINUSE_TOUCHPANEL
 		{
-			//‰æ–Ê”½“]	add by tetsu
+			//ç”»é¢åè»¢	add by tetsu
 			sys.disp3DSW = DISP_3D_TO_SUB;
 			GF_Disp_DispSelect();
 		}
 #endif
 
-		// ƒq[ƒvƒnƒ“ƒhƒ‹”jŠü
+		// ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«ç ´æ£„
 		ArchiveDataHandleClose( p_handle );
 		(*seq)++;
 		break;
 	case 1:
 		wk = PROC_GetWork( proc );
 		if(wk->inputmode==NAMEIN_POKEMON){
-			// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒf[ƒ^‚ğVRAM‚É“]‘—
+			// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’VRAMã«è»¢é€
 			TransPokeIconCharaPal(wk->PokeIconCharaDat, wk->PokeIconPalDat, wk->inputinfo, wk->inputform );
 		}
 		debug_namein = wk;
@@ -528,11 +528,11 @@ static PROC_RESULT NameInProc_Init( PROC * proc, int * seq )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ğ“]‘—‚·‚éiƒ|ƒPƒ‚ƒ“‚Ì–¼‘O‚Ì‚¾‚¯j
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚’è»¢é€ã™ã‚‹ï¼ˆãƒã‚±ãƒ¢ãƒ³ã®åå‰ã®æ™‚ã ã‘ï¼‰
  *
- * @param   chara	ƒLƒƒƒ‰ƒNƒ^[ƒtƒ@ƒCƒ‹ƒAƒhƒŒƒX
- * @param   pal		ƒpƒŒƒbƒgƒtƒ@ƒCƒ‹ƒAƒhƒŒƒX
- * @param   pokeno	ƒ|ƒPƒ‚ƒ“‚ÌŠJ”­NO
+ * @param   chara	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   pal		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   pokeno	ãƒã‚±ãƒ¢ãƒ³ã®é–‹ç™ºNO
  *
  * @retval  none		
  */
@@ -541,10 +541,10 @@ static void TransPokeIconCharaPal( NNSG2dCharacterData *chara, NNSG2dPaletteData
 {
 	u8 *pokepal;
 
-	// ƒLƒƒƒ‰ƒNƒ^[“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è»¢é€
 	GX_LoadOBJ(chara->pRawData, POKEICON_VRAM_OFFSET*0x20, 0x20*4*4);
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	pokepal = (u8*)pal->pRawData;
 	GX_LoadOBJPltt((void*)(pokepal + PokeIconPalNumGet(pokeno, form, 0)*0x20), 
 					POKEICON_PAL_OFFSET*0x20, 0x20);
@@ -555,12 +555,12 @@ static void TransPokeIconCharaPal( NNSG2dCharacterData *chara, NNSG2dPaletteData
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 
@@ -579,9 +579,9 @@ static PROC_RESULT NameInProc_Main( PROC * proc, int * seq )
 
 	case SEQ_WAIT:
 		wk->wait++;
-		// ƒJ[ƒ\ƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“§Œä
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ¶å¾¡
 		CursorAnimationControl( wk );
-		// ‹@”\ƒ{ƒ^ƒ“‚ÌƒAƒjƒˆ—
+		// æ©Ÿèƒ½ãƒœã‚¿ãƒ³ã®ã‚¢ãƒ‹ãƒ¡å‡¦ç†
 		FuncButtonAnimation(wk->funcbutton, wk->clActWork, wk->mode);
 		if(wk->wait > TOUCH_START_WAIT){
 			*seq     = SEQ_MAIN;
@@ -590,29 +590,29 @@ static PROC_RESULT NameInProc_Main( PROC * proc, int * seq )
 		break;
 
 	case SEQ_MAIN:
-		// ƒJ[ƒ\ƒ‹ˆÚ“®
+		// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 
 		switch(wk->seq){
 		case NAMEIN_MODE:
 
 #if 0
-			// ’Êí“ü—Í§Œä
+			// é€šå¸¸å…¥åŠ›åˆ¶å¾¡
 			if(!wk->Cursor.decide){
-				// “ü—ÍƒAƒjƒ’†‚Í“®‚©‚¹‚È‚¢
+				// å…¥åŠ›ã‚¢ãƒ‹ãƒ¡ä¸­ã¯å‹•ã‹ã›ãªã„
 				*seq = NameInputMainMode(wk, *seq);
 			}
 #else
-			// “ü—ÍƒAƒjƒ’†‚Å‚à“®‚©‚¹‚é
+			// å…¥åŠ›ã‚¢ãƒ‹ãƒ¡ä¸­ã§ã‚‚å‹•ã‹ã›ã‚‹
 			*seq = NameInputMainMode(wk, *seq);
 #endif
 
-			// ƒJ[ƒ\ƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“§Œä
+			// ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ¶å¾¡
 			CursorAnimationControl( wk );
 
 			break;
 		case NAMEIN_MODE_BOXMSG:
 
-			// ƒ|ƒPƒ‚ƒ“‚Íƒ{ƒbƒNƒX‚ÉŠi”[‚³‚ê‚½‚æƒƒbƒZ[ƒW
+			// ãƒã‚±ãƒ¢ãƒ³ã¯ãƒœãƒƒã‚¯ã‚¹ã«æ ¼ç´ã•ã‚ŒãŸã‚ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 			SetBoxMessage( wk, proc );
 			GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_TALK_WIN], 0x0f0f );
 			BmpTalkWinWrite( &wk->NameInWin[BMP_TALK_WIN], WINDOW_TRANS_ON, NAMEIN_TALKWIN_CGX_OFFSET, FLD_MESFRAME_PAL );
@@ -622,7 +622,7 @@ static PROC_RESULT NameInProc_Main( PROC * proc, int * seq )
 			wk->seq = NAMEIN_MODE_BOXMSG_END;
 			break;
 		case NAMEIN_MODE_BOXMSG_END:
-			// ƒ{ƒbƒNƒXs‚«ƒƒbƒZ[ƒW•\¦‘Ò‚¿
+			// ãƒœãƒƒã‚¯ã‚¹è¡Œããƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾…ã¡
 			if(GF_MSG_PrintEndCheck( wk->msg_index )==0){
 				Snd_SePlay( NAMEIN_SE_END );
 				wk->funcbutton[6]++;
@@ -631,7 +631,7 @@ static PROC_RESULT NameInProc_Main( PROC * proc, int * seq )
 			}
 			break;
 		case NAMEIN_MODE_BOXMSG_END_WAIT:
-			// ƒ{ƒbƒNƒXƒƒbƒZ[ƒW•\¦‘Ò‚¿
+			// ãƒœãƒƒã‚¯ã‚¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾…ã¡
 			wk->wait++;
 			if(wk->wait>30){
 				WIPE_SYS_Start(WIPE_PATTERN_FSAM, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, 16, 1, HEAPID_NAMEIN );
@@ -640,10 +640,10 @@ static PROC_RESULT NameInProc_Main( PROC * proc, int * seq )
 			break;
 		}
 
-		// ƒŠƒNƒGƒXƒg–ˆ‚É•¶šƒpƒlƒ‹‚ğ“ü‚ê‘Ö‚¦‚é
+		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ¯ã«æ–‡å­—ãƒ‘ãƒãƒ«ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
 		PanelFunc(wk->bgl, &wk->NameInWin[BMP_WORDPANEL_BG0], &wk->seq, wk->mode, &wk->front, wk->panelpos, wk->clActWork, wk->BgCharaDat->pRawData);
 
-		// ‹@”\ƒ{ƒ^ƒ“‚ÌƒAƒjƒˆ—
+		// æ©Ÿèƒ½ãƒœã‚¿ãƒ³ã®ã‚¢ãƒ‹ãƒ¡å‡¦ç†
 		FuncButtonAnimation(wk->funcbutton, wk->clActWork, wk->mode);
 
 		CursorColTrans(&wk->CursorPal);
@@ -657,7 +657,7 @@ static PROC_RESULT NameInProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	}
-	CLACT_Draw( wk->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+	CLACT_Draw( wk->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 
 	return PROC_RES_CONTINUE;
 }
@@ -665,7 +665,7 @@ static PROC_RESULT NameInProc_Main( PROC * proc, int * seq )
 
 //------------------------------------------------------------------
 /**
- * @brief   –¼‘O“ü—Í’ÊíƒƒCƒ“§Œä
+ * @brief   åå‰å…¥åŠ›é€šå¸¸æ™‚ãƒ¡ã‚¤ãƒ³åˆ¶å¾¡
  *
  * @param   wk		
  *
@@ -681,45 +681,45 @@ static int NameInputMainMode( NAMEIN_WORK *wk, int seq )
 					CLACT_SetDrawFlag( wk->clActWork[8], 1);
 					return seq;
 				}
-				// ƒtƒŒƒ“ƒhƒR[ƒh“ü—Í‚Ì‚Íƒpƒlƒ‹Ø‚è‘Ö‚¦‚Í‚Å‚«‚È‚¢
+				// ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰å…¥åŠ›ã®æ™‚ã¯ãƒ‘ãƒãƒ«åˆ‡ã‚Šæ›¿ãˆã¯ã§ããªã„
 				if(wk->inputmode!=NAMEIN_FRIENDCODE){
-					// ƒpƒlƒ‹Ø‚è‘Ö‚¦
+					// ãƒ‘ãƒãƒ«åˆ‡ã‚Šæ›¿ãˆ
 					wk->seq = NAMEIN_MODE_REQ;
 					wk->mode++;
 					// ----------------------------------------------------------------------------
 					// localize_spec_mark(LANG_ALL) imatake 2006/10/03
-					// •¶šíƒ{ƒ^ƒ“‚ğ3í—Ş‚É•ÏX
+					// æ–‡å­—ç¨®ãƒœã‚¿ãƒ³ã‚’3ç¨®é¡ã«å¤‰æ›´
 					if(wk->mode>=FONT_BUTTON_NUM){
 						wk->mode=NAMEIN_MODE_HIRA;
 					}
 					// ----------------------------------------------------------------------------
 					wk->funcbutton[wk->mode]++;
-					MakeWordMap(wk->wordmap, wk->mode);		// •¶š“ü—Íƒ}ƒbƒv·‚µ‘Ö‚¦
-					Snd_SePlay( NAMEIN_SE_CHANGEPANEL );// “ü—ÍŒãƒJ[ƒ\ƒ‹‚ğ•\¦‚·‚é
+					MakeWordMap(wk->wordmap, wk->mode);		// æ–‡å­—å…¥åŠ›ãƒãƒƒãƒ—å·®ã—æ›¿ãˆ
+					Snd_SePlay( NAMEIN_SE_CHANGEPANEL );// å…¥åŠ›å¾Œã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
 					wk->Cursor.on = 1;
-				//	CursorAppearUpDate( wk, 0 );		// ˆÚ“®‚ÌŒ‹‰ÊƒJ[ƒ\ƒ‹‚ÌŒ`ó‚ª‚Ç‚Ì‚æ‚¤‚É•Ï‚í‚é‚©‚ğŒˆ’è‚·‚é
+				//	CursorAppearUpDate( wk, 0 );		// ç§»å‹•ã®çµæœã‚«ãƒ¼ã‚½ãƒ«ã®å½¢çŠ¶ãŒã©ã®ã‚ˆã†ã«å¤‰ã‚ã‚‹ã‹ã‚’æ±ºå®šã™ã‚‹
 				}
 				wk->funcbutton[wk->mode]++;
-				MakeWordMap(wk->wordmap, wk->mode);		// •¶š“ü—Íƒ}ƒbƒv·‚µ‘Ö‚¦
+				MakeWordMap(wk->wordmap, wk->mode);		// æ–‡å­—å…¥åŠ›ãƒãƒƒãƒ—å·®ã—æ›¿ãˆ
 				Snd_SePlay( NAMEIN_SE_CHANGEPANEL );
 #ifdef NAMEIN_MAINUSE_TOUCHPANEL
 			}else if( sys.trg & PAD_BUTTON_A){
-				// •¶š“ü—Í
+				// æ–‡å­—å…¥åŠ›
 									
 				seq = DecideMainButton(wk,wk->wordmap[wk->Cursor.y][wk->Cursor.x], 1);
 
-				// “ü—ÍŒãƒJ[ƒ\ƒ‹‚ğ•\¦‚·‚é
+				// å…¥åŠ›å¾Œã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
 				wk->Cursor.on = 1;
 			}else if( wk->TP_decide == TRUE ){
 				seq = DecideMainButton(wk,wk->wordmap[wk->Cursor.y][wk->Cursor.x], 0);
 
-				// “ü—ÍŒãƒJ[ƒ\ƒ‹‚ğ‚n‚e‚e‚·‚é
+				// å…¥åŠ›å¾Œã‚«ãƒ¼ã‚½ãƒ«ã‚’ï¼¯ï¼¦ï¼¦ã™ã‚‹
 				wk->Cursor.on = 0;
 #else
 			}else if( sys.trg & PAD_BUTTON_A){
 #endif
 			}else if( sys.trg & PAD_BUTTON_B ){
-				// •¶šÁ‹
+				// æ–‡å­—æ¶ˆå»
 				seq = DecideMainButton(wk,NAMEIN_MODORU,1);
 			}
 			else if( sys.trg & PAD_BUTTON_R){
@@ -731,7 +731,7 @@ static int NameInputMainMode( NAMEIN_WORK *wk, int seq )
 
 #define DEFAULT_NAME_MAX		18
 
-// ƒ_ƒCƒ„Eƒp[ƒ‹‚Å•Ï‚í‚é
+// ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ã§å¤‰ã‚ã‚‹
 #if (PM_VERSION == VERSION_PLATINUM || PM_VERSION==VERSION_DIAMOND)
 
 #define MALE_NAME_START			( msg_opening_name_01 )
@@ -750,8 +750,8 @@ static int NameInputMainMode( NAMEIN_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * @brief   “ü—Í–³‚µ‚ÅI—¹‚·‚é‚ÉƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é‚©
- *			ƒfƒtƒHƒ‹ƒgƒl[ƒ€‚ğ“ü‚ê‚é‚©
+ * @brief   å…¥åŠ›ç„¡ã—ã§çµ‚äº†ã™ã‚‹æ™‚ã«ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹ã‹
+ *			ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ¼ãƒ ã‚’å…¥ã‚Œã‚‹ã‹
  *
  * @param   wk		
  *
@@ -760,7 +760,7 @@ static int NameInputMainMode( NAMEIN_WORK *wk, int seq )
 //------------------------------------------------------------------
 static void InputCancelFunc( NAMEIN_WORK *wk, NAMEIN_PARAM *param )
 {
-	// ©•ª‚Ì–¼‘O“ü—Í‚Ì‚ÍƒLƒƒƒ“ƒZƒ‹‚Í–³‚¢
+	// è‡ªåˆ†ã®åå‰å…¥åŠ›ã®æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã¯ç„¡ã„
 	if(wk->inputmode==NAMEIN_MYNAME){
 		STRBUF *DefaultName;
 		if(wk->inputinfo==PM_MALE){
@@ -774,7 +774,7 @@ static void InputCancelFunc( NAMEIN_WORK *wk, NAMEIN_PARAM *param )
 		STRBUF_GetStringCode( param->strbuf, param->str, 10 );
 #endif
 
-	// ƒ‰ƒCƒoƒ‹–¼‚Ì‚ÍƒLƒƒƒ“ƒZƒ‹‚Å‚Í‚È‚­ƒfƒtƒHƒ‹ƒgƒl[ƒ€‚ğ“ü‚ê‚é
+	// ãƒ©ã‚¤ãƒãƒ«åã®æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã§ã¯ãªããƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ¼ãƒ ã‚’å…¥ã‚Œã‚‹
 	}else if(wk->inputmode==NAMEIN_RIVALNAME){
 		STRBUF *rivalName;
 		rivalName = MSGMAN_AllocString( wk->MsgDefaultName, RIVAL_NAME_NO + ( gf_rand() % 2 ) );
@@ -785,9 +785,9 @@ static void InputCancelFunc( NAMEIN_WORK *wk, NAMEIN_PARAM *param )
 #endif
 
 	}else{
-		OS_Printf("“ü—Í‚ÍƒLƒƒƒ“ƒZƒ‹\n");
+		OS_Printf("å…¥åŠ›ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«\n");
 		
-		// ƒLƒƒƒ“ƒZƒ‹
+		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		param->cancel = 1;
 	}
 
@@ -795,17 +795,17 @@ static void InputCancelFunc( NAMEIN_WORK *wk, NAMEIN_PARAM *param )
 
 //------------------------------------------------------------------
 /**
- * @brief   “ü—Í•¶š—ñ‚ª‘S‚ÄƒXƒy[ƒX‚È‚çƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚éƒ`ƒFƒbƒN
+ * @brief   å…¥åŠ›æ–‡å­—åˆ—ãŒå…¨ã¦ã‚¹ãƒšãƒ¼ã‚¹ãªã‚‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   str		
  *
- * @retval  int		‘S‚ÄƒXƒy[ƒX‚¾‚Á‚½‚ç1,ˆá‚Á‚½‚ç0
+ * @retval  int		å…¨ã¦ã‚¹ãƒšãƒ¼ã‚¹ã ã£ãŸã‚‰1,é•ã£ãŸã‚‰0
  */
 //------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-// ŠCŠO”Å‚Å“ü—Í‚³‚ê‚é‹ó”’‚Í”¼Šp
+// æµ·å¤–ç‰ˆã§å…¥åŠ›ã•ã‚Œã‚‹ç©ºç™½ã¯åŠè§’
 #if PM_LANG == LANG_JAPAN
 #define DEFAULT_SPC		spc_
 #else
@@ -823,7 +823,7 @@ static int SpaceCheck( STRCODE *str )
 		}
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/10
-		// ŠCŠO”Å‚Å“ü—Í‚³‚ê‚é‹ó”’‚Í”¼Šp
+		// æµ·å¤–ç‰ˆã§å…¥åŠ›ã•ã‚Œã‚‹ç©ºç™½ã¯åŠè§’
 		if(str[i]!=DEFAULT_SPC){
 			flag = 0;
 		}
@@ -835,12 +835,12 @@ static int SpaceCheck( STRCODE *str )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT NameInProc_End( PROC * proc, int * seq )
@@ -849,12 +849,12 @@ static PROC_RESULT NameInProc_End( PROC * proc, int * seq )
 	NAMEIN_PARAM *param = (NAMEIN_PARAM*)PROC_GetParentWork(proc);
 	int i;
 
-	// “ü—Í•¶š—ñ‚ÌÅŒã‚ÉEOM‚ğ“ü‚ê‚Ä‚¨‚­
+	// å…¥åŠ›æ–‡å­—åˆ—ã®æœ€å¾Œã«EOMã‚’å…¥ã‚Œã¦ãŠã
 	wk->inputword[wk->nowinput] = EOM_;
 
-	// ƒ|ƒPƒ‚ƒ“–¼‘O“ü—Í‚Ì‚ÌƒLƒƒƒ“ƒZƒ‹”»’è‚Ì‚½‚ß‚Ì€”õ
+	// ãƒã‚±ãƒ¢ãƒ³åå‰å…¥åŠ›ã®æ™‚ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«åˆ¤å®šã®ãŸã‚ã®æº–å‚™
 	if(wk->inputmode==NAMEIN_POKEMON){
-		// wk->paramstr‚ÉƒfƒtƒHƒ‹ƒgƒ|ƒPƒ‚ƒ“–¼‚ğ‚¢‚ê‚é‚©H
+		// wk->paramstrã«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒã‚±ãƒ¢ãƒ³åã‚’ã„ã‚Œã‚‹ã‹ï¼Ÿ
 		STRCODE comparestr[MONS_NAME_SIZE+EOM_SIZE];
 		POKEMON_PARAM *pp;
 
@@ -869,13 +869,13 @@ static PROC_RESULT NameInProc_End( PROC * proc, int * seq )
 
 	}
 
-	// ƒLƒƒƒ“ƒZƒ‹‚¶‚á‚È‚¢‚©H
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã˜ã‚ƒãªã„ã‹ï¼Ÿ
 	if(wk->nowinput==0 || (PM_strcmp( wk->inputword, wk->paramstr)==0) || SpaceCheck(wk->inputword)){
 
 		InputCancelFunc( wk, param );
 
 	}else{
-		// “ü—Í•¶š—ñ‚ğˆø”ƒ[ƒN‚É”½‰f
+		// å…¥åŠ›æ–‡å­—åˆ—ã‚’å¼•æ•°ãƒ¯ãƒ¼ã‚¯ã«åæ˜ 
 		PM_strcpy(wk->paramstr,wk->inputword);
 #ifdef USE_PARAM_STR
 		PM_strcpy(param->str,wk->inputword);
@@ -886,85 +886,85 @@ static PROC_RESULT NameInProc_End( PROC * proc, int * seq )
 	
 	STRBUF_Delete(wk->GroupString);
 
-	// ‹@”\ƒ{ƒ^ƒ“ˆÊ’u§Œäƒ^ƒXƒN‰ğ•ú
+	// æ©Ÿèƒ½ãƒœã‚¿ãƒ³ä½ç½®åˆ¶å¾¡ã‚¿ã‚¹ã‚¯è§£æ”¾
 	for(i=0;i<FUNCBUTTON_NUM;i++){
 		PMDS_taskDel(wk->FuncButtonTask[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ğ•ú
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 
-	// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_CharManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES]);
 	CLACT_U_CharManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES]);
 
-	// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_PlttManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES]);
 	CLACT_U_PlttManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES]);
 		
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for(i=0;i<CLACT_RESOURCE_NUM;i++){
 		CLACT_U_ResManagerDelete(wk->resMan[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->clactSet);
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
-	// BMPWIN—pƒLƒƒƒ‰ƒf[ƒ^‰ğ•ú
+	// BMPWINç”¨ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	sys_FreeMemory( HEAPID_NAMEIN, wk->BgCharaBuf );
 
-	// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‰ğ•ú
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è§£æ”¾
 	if(wk->inputmode==NAMEIN_POKEMON){
 		sys_FreeMemory( HEAPID_NAMEIN,wk->PokeIconBuf );
 		sys_FreeMemory( HEAPID_NAMEIN,wk->PokeIconPalBuf );	
 	}
 
-	//‰ï˜bƒEƒCƒ“ƒhƒE—pƒoƒbƒtƒ@‰ğ•ú
+	//ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨ãƒãƒƒãƒ•ã‚¡è§£æ”¾
 	GF_BGL_BGControlExit(wk->bgl, GF_BGL_FRAME3_S);
 
 	DeleteCharManager();
 	DeletePlttManager();
 
-	// BMPƒEƒBƒ“ƒhƒEŠJ•ú
+	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
 	BgExit(wk->bgl,wk->NameInWin);
-	// BGLíœ
+	// BGLå‰Šé™¤
 
-	// í’“ƒVƒXƒeƒ€ƒtƒHƒ“ƒg‰ğ•ú
+	// å¸¸é§ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆè§£æ”¾
 	FontProc_UnloadBitData(FONT_SYSTEM);
 
 
-	GX_SetVisibleWnd( GX_WNDMASK_NONE );	//ƒn[ƒhƒEƒFƒAƒEƒCƒ“ƒhƒE‰ğœ
+	GX_SetVisibleWnd( GX_WNDMASK_NONE );	//ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è§£é™¤
 
-	// ƒ{ƒ^ƒ“—pƒtƒHƒ“ƒg‰ğ•ú
+	// ãƒœã‚¿ãƒ³ç”¨ãƒ•ã‚©ãƒ³ãƒˆè§£æ”¾
 	FontProc_UnloadFont( FONT_BUTTON );
 
-//	StopTP();							// ƒ^ƒbƒ`ƒpƒlƒ‹I—¹
+//	StopTP();							// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµ‚äº†
 
-	//ƒ|ƒPƒ‚ƒ““]‘—•¶š—ñƒoƒbƒtƒ@‚ªŠm•Û‚µ‚Ä‚ ‚Á‚½‚ç‰ğ•ú
+	//ãƒã‚±ãƒ¢ãƒ³è»¢é€æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã—ã¦ã‚ã£ãŸã‚‰è§£æ”¾
 	if(wk->BoxMessage){
 		STRBUF_Delete(wk->BoxMessage);
 	}
 
-	// u`‚Ì‚È‚Ü‚¦‚ÍHv‰ğ•ú
+	// ã€Œã€œã®ãªã¾ãˆã¯ï¼Ÿã€è§£æ”¾
 	STRBUF_Delete(wk->TitleStr);
-	//u‚©‚½‚¿‚ğ‚©‚¦‚év‰ğ•ú
+	//ã€Œã‹ãŸã¡ã‚’ã‹ãˆã‚‹ã€è§£æ”¾
 	STRBUF_Delete(wk->ChangeWordStr);
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ğ•ú
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	MSGMAN_Delete( wk->FightMsgManager );
 	MSGMAN_Delete( wk->MsgDefaultName );
 	MSGMAN_Delete( wk->MsgManager );
 	WORDSET_Delete( wk->WordSet );
 
-	PROC_FreeWork( proc );				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
 	sys_DeleteHeap( HEAPID_NAMEIN );
 
 #ifdef NAMEIN_MAINUSE_TOUCHPANEL
 	{
-		//‰æ–Ê”½“]	add by tetsu
+		//ç”»é¢åè»¢	add by tetsu
 		sys.disp3DSW = DISP_3D_TO_MAIN;
 		GF_Disp_DispSelect();
 	}
@@ -974,14 +974,14 @@ static PROC_RESULT NameInProc_End( PROC * proc, int * seq )
 
 //==============================================================================
 /**
- * –¼‘O“ü—Í‚É“n‚·ƒpƒ‰ƒ[ƒ^‚ğŠm•Û‚·‚éi–¼‘O“ü—Í‚ÌŒ‹‰Ê‚à“ü‚é‚Ì‚ÅAŒÄ‚Ño‚·‘¤‚ÌHEAPID‚ª•K—vj
+ * åå‰å…¥åŠ›ã«æ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç¢ºä¿ã™ã‚‹ï¼ˆåå‰å…¥åŠ›ã®çµæœã‚‚å…¥ã‚‹ã®ã§ã€å‘¼ã³å‡ºã™å´ã®HEAPIDãŒå¿…è¦ï¼‰
  *
- * @param   HeapId		ŒÄ‚Ño‚·‘¤‚ÌHEAPID
- * @param   mode		–¼‘O“ü—Íƒ‚[ƒh(NAMEIN_MYNAME,NAMEIN_BOX,NAMEIN_POKEMON)
- * @param   info		NAMEIN_MYNAME‚Ì‚Í0=’j1=—, NAMEIN_POKEMON‚Ì‚ÍŠJ”­NO
- * @param   wordmax		“ü—Í•¶šÅ‘å”‚Ìw’è
+ * @param   HeapId		å‘¼ã³å‡ºã™å´ã®HEAPID
+ * @param   mode		åå‰å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰(NAMEIN_MYNAME,NAMEIN_BOX,NAMEIN_POKEMON)
+ * @param   info		NAMEIN_MYNAMEã®æ™‚ã¯0=ç”·1=å¥³, NAMEIN_POKEMONã®æ™‚ã¯é–‹ç™ºNO
+ * @param   wordmax		å…¥åŠ›æ–‡å­—æœ€å¤§æ•°ã®æŒ‡å®š
  *
- * @retval  NAMEIN_PARAM *		Šm•Û‚³‚ê‚½–¼‘O“ü—Íƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  NAMEIN_PARAM *		ç¢ºä¿ã•ã‚ŒãŸåå‰å…¥åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 NAMEIN_PARAM *NameIn_ParamAllocMake(int HeapId, int mode, int info, int wordmax, CONFIG *config)
@@ -991,22 +991,22 @@ NAMEIN_PARAM *NameIn_ParamAllocMake(int HeapId, int mode, int info, int wordmax,
 	
 	param = (NAMEIN_PARAM*)sys_AllocMemory(HeapId, sizeof(NAMEIN_PARAM));
 
-	param->mode    = mode;		// “ü—Íƒ‚[ƒhi©•ª‚Ì–¼‘OAƒ|ƒPƒ‚ƒ“Aƒ{ƒbƒNƒXj
-	param->info    = info;		// i’jE—Aƒ|ƒPƒ‚ƒ“‚ÌŠJ”­NO)
-	param->wordmax = wordmax;	// “ü—Í•¶šÅ‘å”
-	param->cancel  = 0;			// ƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO
+	param->mode    = mode;		// å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ï¼ˆè‡ªåˆ†ã®åå‰ã€ãƒã‚±ãƒ¢ãƒ³ã€ãƒœãƒƒã‚¯ã‚¹ï¼‰
+	param->info    = info;		// ï¼ˆç”·ãƒ»å¥³ã€ãƒã‚±ãƒ¢ãƒ³ã®é–‹ç™ºNO)
+	param->wordmax = wordmax;	// å…¥åŠ›æ–‡å­—æœ€å¤§æ•°
+	param->cancel  = 0;			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°
 #ifdef USE_PARAM_STR
 	param->str[0]  = EOM_;
 #endif
 
-	// •¶š—ñÅ‘å’·{EOM‚Å•¶š—ñƒoƒbƒtƒ@‚ğì¬
+	// æ–‡å­—åˆ—æœ€å¤§é•·ï¼‹EOMã§æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
     // MatchComment: change wordmax+1 to 32
 	param->strbuf = STRBUF_Create( 32, HeapId );
 
 
-	// ƒ|ƒPƒ‚ƒ“•ßŠl‚Ì‚Éƒ{ƒbƒNƒX“]‘—‚ª”­¶‚µ‚½‚É‚Íg—p‚³‚ê‚éƒƒ“ƒo
-	param->get_msg_id  = 0;		// ƒ|ƒPƒ‚ƒ“•ßŠlƒƒbƒZ[ƒWID
-	param->boxdata     = NULL;	// ƒ|ƒPƒ‚ƒ“ƒ{ƒbƒNƒXƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	// ãƒã‚±ãƒ¢ãƒ³æ•ç²ã®æ™‚ã«ãƒœãƒƒã‚¯ã‚¹è»¢é€ãŒç™ºç”Ÿã—ãŸæ™‚ã«ã¯ä½¿ç”¨ã•ã‚Œã‚‹ãƒ¡ãƒ³ãƒ
+	param->get_msg_id  = 0;		// ãƒã‚±ãƒ¢ãƒ³æ•ç²ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+	param->boxdata     = NULL;	// ãƒã‚±ãƒ¢ãƒ³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	param->sex		   = 0;
 	param->config      = config;
 	param->form		   = 0;
@@ -1016,7 +1016,7 @@ NAMEIN_PARAM *NameIn_ParamAllocMake(int HeapId, int mode, int info, int wordmax,
 
 //==============================================================================
 /**
- * –¼‘O“ü—Íƒpƒ‰ƒ[ƒ^‚Ì‰ğ•úi–¼‘O“ü—ÍŒã‚Éƒ†[ƒU[‚ª–¼‘Oæ“¾‚µ‚½‚ç‰ğ•ú‚µ‚Ä‚à‚ç‚¤j
+ * åå‰å…¥åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è§£æ”¾ï¼ˆåå‰å…¥åŠ›å¾Œã«ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒåå‰å–å¾—ã—ãŸã‚‰è§£æ”¾ã—ã¦ã‚‚ã‚‰ã†ï¼‰
  *
  * @param   param		
  *
@@ -1034,7 +1034,7 @@ void NameIn_ParamDelete(NAMEIN_PARAM *param)
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -1043,11 +1043,11 @@ void NameIn_ParamDelete(NAMEIN_PARAM *param)
 //--------------------------------------------------------------------------------------------
 static void VBlankFunc( void * work )
 {
-	// ƒZƒ‹ƒAƒNƒ^[
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 	
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -1055,12 +1055,12 @@ static void VBlankFunc( void * work )
 
 //==============================================================================
 /**
- * ŠO•”‚©‚ç–¼‘O“ü—Í‰Šú‰»ƒpƒ‰ƒ[ƒ^[‚ğ‚à‚ç‚¤
+ * å¤–éƒ¨ã‹ã‚‰åå‰å…¥åŠ›åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ã‚‚ã‚‰ã†
  *
- * @param   wk			–¼‘O“ü—Íƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param   mode		“ü—Íƒ‚[ƒhinamein.h‚ÌenumQÆ
- * @param   info		“ü—Íî•ñi’j—Eƒ|ƒPƒ‚ƒ“‚m‚n‚È‚Ç
- * @param   wordmax		“ü—Í•¶šÅ‘å”
+ * @param   wk			åå‰å…¥åŠ›ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   mode		å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ï¼ˆnamein.hã®enumå‚ç…§
+ * @param   info		å…¥åŠ›æƒ…å ±ï¼ˆç”·å¥³ãƒ»ãƒã‚±ãƒ¢ãƒ³ï¼®ï¼¯ãªã©
+ * @param   wordmax		å…¥åŠ›æ–‡å­—æœ€å¤§æ•°
  *
  * @retval  none		
  */
@@ -1077,7 +1077,7 @@ static void SetNameInWorkParameter(NAMEIN_WORK *wk, NAMEIN_PARAM *param)
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMİ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -1087,29 +1087,29 @@ static void SetNameInWorkParameter(NAMEIN_WORK *wk, NAMEIN_PARAM *param)
 static void VramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGİ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1124,7 +1124,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	// ã‰æ–Ê•¶š”Å0
+	// ä¸Šç”»é¢æ–‡å­—ç‰ˆ0
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
@@ -1137,7 +1137,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 	}
 
-	// ã‰æ–Ê•¶š”Å1
+	// ä¸Šç”»é¢æ–‡å­—ç‰ˆ1
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
@@ -1148,7 +1148,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME1_M );
 	}
 
-	// ”wŒi
+	// èƒŒæ™¯
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1159,7 +1159,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME2_M );
 	}
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒEBG
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦BG
 //	{	
 //		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 //			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1199,7 +1199,7 @@ static void BgInit( GF_BGL_INI * ini )
 	GF_BGL_ClearCharSet( GF_BGL_FRAME0_M, 32, 0, HEAPID_NAMEIN );
 	GF_BGL_ClearCharSet( GF_BGL_FRAME0_S, 32, 0, HEAPID_NAMEIN );
 
-	// ã‰æ–Ê‚Ìƒn[ƒhƒEƒFƒAƒEƒCƒ“ƒhƒE0‚ğ‚n‚m‚É
+	// ä¸Šç”»é¢ã®ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦0ã‚’ï¼¯ï¼®ã«
 	GX_SetVisibleWnd( GX_WNDMASK_W0 );
 	G2_SetWnd0InsidePlane( GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ,1);
 	G2_SetWndOutsidePlane(   GX_WND_PLANEMASK_BG0 
@@ -1209,10 +1209,10 @@ static void BgInit( GF_BGL_INI * ini )
 	                       | GX_WND_PLANEMASK_OBJ,1);
 	G2_SetWnd0Position(0, 0, 255, 64);
 
-/* ƒ{ƒbƒNƒX‚Å‰º‰æ–Ê‘€ì‚ğs‚Á‚Ä‚©‚ç–¼‘OC³‚ğs‚¤‚Æ–¼‘O“ü—Í‚Ìã‰æ–Ê‚ªÁ‚¦‚Ä‚µ‚Ü‚¤ƒoƒO‘Îˆ */
+/* ãƒœãƒƒã‚¯ã‚¹ã§ä¸‹ç”»é¢æ“ä½œã‚’è¡Œã£ã¦ã‹ã‚‰åå‰ä¿®æ­£ã‚’è¡Œã†ã¨åå‰å…¥åŠ›ã®ä¸Šç”»é¢ãŒæ¶ˆãˆã¦ã—ã¾ã†ãƒã‚°å¯¾å‡¦ */
 #if S2427_060821_FIX
 
-	// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒhw’è‰ğœ
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰æŒ‡å®šè§£é™¤
 	G2S_BlendNone();
 
 #endif
@@ -1222,7 +1222,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 //------------------------------------------------------------------
 /**
- * $brief   –¼‘O“ü—Í‰æ–Ê‚Ì•\¦‚n‚mE‚n‚e‚e
+ * $brief   åå‰å…¥åŠ›ç”»é¢ã®è¡¨ç¤ºï¼¯ï¼®ãƒ»ï¼¯ï¼¦ï¼¦
  *
  * @param   flag		
  *
@@ -1246,7 +1246,7 @@ static void Namein_LCDOnOff( int flag)
 
 //------------------------------------------------------------------
 /**
- * –¼‘O“ü—Íƒ[ƒN‰Šú‰»
+ * åå‰å…¥åŠ›ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		NAMEIN_WORK*
  *
@@ -1276,7 +1276,7 @@ static void InitWork(NAMEIN_WORK *wk, PROC * proc)
 #endif
 
 	wk->paramstr[0] = EOM_;
-	// ƒpƒ‰ƒ[ƒ^[‚Å–á‚Á‚Ä‚¢‚éSTRBUF‚Ì“WŠJ
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã§è²°ã£ã¦ã„ã‚‹STRBUFã®å±•é–‹
 	if(param->strbuf){
 		STRBUF_GetStringCode(param->strbuf, wk->paramstr, INPUT_WORD_MAX);
 	}
@@ -1284,7 +1284,7 @@ static void InitWork(NAMEIN_WORK *wk, PROC * proc)
 	MI_CpuFill16( wk->inputword, spc_,  INPUT_WORD_MAX*2 );
 
 
-	// u`‚Ì‚È‚Ü‚¦‚ÍHv•¶š—ñ“WŠJ
+	// ã€Œã€œã®ãªã¾ãˆã¯ï¼Ÿã€æ–‡å­—åˆ—å±•é–‹
 	if(wk->inputmode==NAMEIN_POKEMON){
 		POKEMON_PARAM *pp;
 
@@ -1294,50 +1294,50 @@ static void InitWork(NAMEIN_WORK *wk, PROC * proc)
 		sys_FreeMemoryEz(pp);
 	}
 
-	// I—¹‚ÉƒƒbƒZ[ƒW•\¦‚ğs‚¤‚©iƒ|ƒPƒ‚ƒ“•ßŠlj
+	// çµ‚äº†æ™‚ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚’è¡Œã†ã‹ï¼ˆãƒã‚±ãƒ¢ãƒ³æ•ç²æ™‚ï¼‰
 	if(param->get_msg_id!=0){
 		wk->endmode       = 1;
 		OS_Printf("BOXDATA Addr = %08x\n",param->boxdata);
 	}
 
-	// u`‚Ì‚È‚Ü‚¦‚ÍHv•¶š—ñæ“¾(ƒ|ƒPƒ‚ƒ“‚Ì–¼‘O‚à‚±‚±‚Å“WŠJ‚³‚ê‚é)
+	// ã€Œã€œã®ãªã¾ãˆã¯ï¼Ÿã€æ–‡å­—åˆ—å–å¾—(ãƒã‚±ãƒ¢ãƒ³ã®åå‰ã‚‚ã“ã“ã§å±•é–‹ã•ã‚Œã‚‹)
 	wk->TitleStr      = MSGDAT_UTIL_AllocExpandString( wk->WordSet, wk->MsgManager, 
 														NameinTitleStrTable[wk->inputmode], HEAPID_NAMEIN );
 	
-	// ‚©‚½‚¿‚ğ‚©‚¦‚é
+	// ã‹ãŸã¡ã‚’ã‹ãˆã‚‹
 	wk->ChangeWordStr = MSGDAT_UTIL_AllocExpandString( wk->WordSet, wk->MsgManager, 
 														NAMEIN_MSG_CHANGEWORD, HEAPID_NAMEIN );
 
 
-	// uƒOƒ‹[ƒvv
+	// ã€Œã‚°ãƒ«ãƒ¼ãƒ—ã€
 	wk->GroupString   = MSGMAN_AllocString( wk->MsgManager, NAMEIN_MSG_TITLEINFO7 );
 
-	// NAMEIN_PARAM.str‚ÉƒfƒtƒHƒ‹ƒg•¶š—ñ“ü‚Á‚Ä‚¢‚ê‚ÎƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚Í0‚Å‚Í‚È‚­‚È‚é
+	// NAMEIN_PARAM.strã«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—åˆ—å…¥ã£ã¦ã„ã‚Œã°ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã¯0ã§ã¯ãªããªã‚‹
 	wk->nowinput       = PM_strlen( wk->paramstr ); 
-	wk->Cursor.x       = 0;	// ‰ŠúˆÊ’u‚ğu‚ v‚ÌˆÊ’u‚É
+	wk->Cursor.x       = 0;	// åˆæœŸä½ç½®ã‚’ã€Œã‚ã€ã®ä½ç½®ã«
 	wk->Cursor.y       = 1;	
 	wk->Cursor.oldx    = -1;
 	wk->Cursor.oldy    = -1;
 	wk->Cursor.on      = 0;	
 	wk->Cursor.decide  = 0;	
-	wk->old_subbutton  = RECT_HIT_NONE;							// ‘O‰ñ‚Ì‰º‰æ–Êƒ{ƒ^ƒ“î•ñ
+	wk->old_subbutton  = RECT_HIT_NONE;							// å‰å›ã®ä¸‹ç”»é¢ãƒœã‚¿ãƒ³æƒ…å ±
 	wk->subbutton_mode = 0;
 	wk->subbutton_work = 0;
 	wk->inputword[wk->inputmax] = EOM_;
 
 
-	// ‹@”\ƒ{ƒ^ƒ“‰Ÿ‚µó‘Ôƒ[ƒN‰Šú‰»
+	// æ©Ÿèƒ½ãƒœã‚¿ãƒ³æŠ¼ã—çŠ¶æ…‹ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	{
 		int i;
 		for(i=0;i<FUNCBUTTON_NUM;i++){
 			wk->funcbutton[i]	= 0;
 		}
 
-		// •¶š“ü—Íƒ{ƒ^ƒ“‚Ì‰Šúİ’è
+		// æ–‡å­—å…¥åŠ›ãƒœã‚¿ãƒ³ã®åˆæœŸè¨­å®š
 		switch(wk->inputmode){
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/10/03
-		// ‰Šú•¶ší‚ÍŠî–{“I‚É‘å•¶š‚É
+		// åˆæœŸæ–‡å­—ç¨®ã¯åŸºæœ¬çš„ã«å¤§æ–‡å­—ã«
 		case NAMEIN_FRIENDCODE:
             wk->funcbutton[NAMEIN_MODE_KIGOU]   = 1;
 			break;
@@ -1352,7 +1352,7 @@ static void InitWork(NAMEIN_WORK *wk, PROC * proc)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ|ƒPƒ‚ƒ“•ßŠl‚Åƒ{ƒbƒNƒX‚És‚­ƒƒbƒZ[ƒW‚ğo‚·‚½‚ß‚Ì€”õ
+ * $brief   ãƒã‚±ãƒ¢ãƒ³æ•ç²ã§ãƒœãƒƒã‚¯ã‚¹ã«è¡Œããƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™ãŸã‚ã®æº–å‚™
  *
  * @param   wk		
  * @param   proc		
@@ -1367,23 +1367,23 @@ static void SetBoxMessage( NAMEIN_WORK *wk, PROC * proc )
 	NAMEIN_PARAM *param = (NAMEIN_PARAM*)PROC_GetParentWork(proc);
 
 
-	// í“¬‚©‚çƒƒbƒZ[ƒWID‚ğ–á‚Á‚Ä‚¢‚é‚È‚ç‚Î
+	// æˆ¦é—˜ã‹ã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’è²°ã£ã¦ã„ã‚‹ãªã‚‰ã°
 	if(param->get_msg_id!=0){
 		int setbox,newbox;
 
 		name = STRBUF_Create(200,HEAPID_NAMEIN);
 
-		// ››‚Íƒ{ƒbƒNƒXuHHHv‚É“]‘—‚³‚ê‚Ü‚µ‚½
+		// â—‹â—‹ã¯ãƒœãƒƒã‚¯ã‚¹ã€Œï¼Ÿï¼Ÿï¼Ÿã€ã«è»¢é€ã•ã‚Œã¾ã—ãŸ
 		wk->BoxMessage = NULL;
 
 		setbox = BOXDAT_GetCureentTrayNumber(param->boxdata);
 		newbox = BOXDAT_GetEmptyTrayNumber(param->boxdata);
 		
-		// “]‘—æƒ{ƒbƒNƒX–¼İ’è
+		// è»¢é€å…ˆãƒœãƒƒã‚¯ã‚¹åè¨­å®š
 		WORDSET_RegisterBoxTrayName( wk->WordSet, 1, param->boxdata, setbox );
 
 
-		// Œ»İ“]‘—æ‚ÆAÀÛ‚Ì“]‘—æ‚ªˆá‚¤ê‡‚ÍV‚µ‚¢“]‘—æ–¼‚àæ“¾‚·‚é
+		// ç¾åœ¨è»¢é€å…ˆã¨ã€å®Ÿéš›ã®è»¢é€å…ˆãŒé•ã†å ´åˆã¯æ–°ã—ã„è»¢é€å…ˆåã‚‚å–å¾—ã™ã‚‹
 		if(setbox!=newbox){
 			WORDSET_RegisterBoxTrayName( wk->WordSet, 2, param->boxdata, newbox );
 			param->get_msg_id+=2;
@@ -1391,15 +1391,15 @@ static void SetBoxMessage( NAMEIN_WORK *wk, PROC * proc )
 			WORDSET_RegisterBoxTrayName( wk->WordSet, 2, param->boxdata, setbox );
 		}
 
-		// “ü—Í•¶š—ñ‚ğ–¼‘Oƒoƒbƒtƒ@‚É”½‰f
+		// å…¥åŠ›æ–‡å­—åˆ—ã‚’åå‰ãƒãƒƒãƒ•ã‚¡ã«åæ˜ 
 		if(wk->nowinput==0 || SpaceCheck(wk->inputword)){
-			// –¼‘O‚ğ“ü—Í‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅAƒfƒtƒHƒ‹ƒgƒl[ƒ€‚ğ“ü‚ê‚é
+			// åå‰ã‚’å…¥åŠ›ã—ã¦ã„ãªã„ã®ã§ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ¼ãƒ ã‚’å…¥ã‚Œã‚‹
 			POKEMON_PARAM	*poke = PokemonParam_AllocWork(HEAPID_NAMEIN);
 			PokeParaSet( poke, wk->inputinfo,1,0,0,0,0,0);
 			WORDSET_RegisterPokeMonsName( wk->WordSet,  0, PPPPointerGet(poke) );
 			sys_FreeMemoryEz(poke);
 		}else{
-			// –¼‘O‚ğ“ü—Í‚µ‚Ä‚¢‚½
+			// åå‰ã‚’å…¥åŠ›ã—ã¦ã„ãŸæ™‚
 			wk->inputword[wk->nowinput] = EOM_;
 			STRBUF_SetStringCode( name, wk->inputword );
 			WORDSET_RegisterWord( wk->WordSet, 0, name, 0, 0, 0 );
@@ -1415,9 +1415,9 @@ static void SetBoxMessage( NAMEIN_WORK *wk, PROC * proc )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1449,9 +1449,9 @@ static void BgExit( GF_BGL_INI * ini, GF_BGL_BMPWIN *win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1460,29 +1460,29 @@ static void BgGraphicSet( NAMEIN_WORK * wk, ARCHANDLE* p_handle )
 {
 	GF_BGL_INI *bgl = wk->bgl;
 
-	// ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_HDL_PalSet(    p_handle,  NARC_namein_name_bg_NCLR, PALTYPE_MAIN_BG, 0, 16*3*2,  HEAPID_NAMEIN);
 //	ArcUtil_PalSet(    ARC_NAMEIN_GRA,  NARC_namein_name_bg_NCLR, PALTYPE_SUB_BG,  0, 16*3*2,  HEAPID_NAMEIN);
 	ArcUtil_PalSet(    ARC_POKETCH_IMG, NARC_poketch_before_nclr, PALTYPE_SUB_BG, 0, 16*2,  HEAPID_NAMEIN);
 	
-	// ƒoƒbƒNƒhƒƒbƒvƒpƒŒƒbƒg‚ğ‚OƒNƒŠƒA
+	// ãƒãƒƒã‚¯ãƒ‰ãƒ­ãƒƒãƒ—ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ï¼ã‚¯ãƒªã‚¢
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0 );
 
-	// ã‰æ–ÊBG2ƒLƒƒƒ‰“]‘—
+	// ä¸Šç”»é¢BG2ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_namein_name_bg_m_lz_NCGR, bgl, GF_BGL_FRAME2_M, 0, NAMEIN_BG2GRAPHIC_SIZE, 1, HEAPID_NAMEIN);
 
-	// ã‰æ–ÊBG2ƒXƒNƒŠ[ƒ““]‘—
+	// ä¸Šç”»é¢BG2ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_namein_name_bg_m_lz_NSCR, bgl, GF_BGL_FRAME2_M, 0, 32*24*2, 1, HEAPID_NAMEIN);
 
 
-	// ã‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ä¸Šç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_namein_name_bg_m_lz_NCGR, bgl, GF_BGL_FRAME1_M, 0, 32*8*0x20, 1, HEAPID_NAMEIN);
-	// ã‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ä¸Šç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_namein_name_screen1_lz_NSCR, bgl, GF_BGL_FRAME1_M, 0, WORDPANEL_TRANS_SIZE, 1, HEAPID_NAMEIN);
-	// ã‰æ–ÊBG0ƒXƒNƒŠ[ƒ““]‘—
+	// ä¸Šç”»é¢BG0ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_namein_name_screen2_lz_NSCR, bgl, GF_BGL_FRAME0_M, 0, WORDPANEL_TRANS_SIZE, 1, HEAPID_NAMEIN);
 	
-	// ‰ï˜bƒEƒCƒ“ƒhƒEƒLƒƒƒ‰ƒf[ƒ^“]‘—
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿è»¢é€
 //	TalkWinGraphicSet( wk->bgl, GF_BGL_FRAME3_M, NAMEIN_TALKWIN_CGX_OFFSET, FLD_MESFRAME_PAL, 0, HEAPID_NAMEIN );
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, TALK_MSG_WIN_PAL*32, HEAPID_NAMEIN );
 
@@ -1490,8 +1490,8 @@ static void BgGraphicSet( NAMEIN_WORK * wk, ARCHANDLE* p_handle )
 						FLD_MESFRAME_PAL, CONFIG_GetWindowType(wk->config), HEAPID_NAMEIN );
 	TalkFontPaletteLoad( PALTYPE_SUB_BG, TALK_MSG_WIN_PAL*32, HEAPID_NAMEIN );
 
-	// ‰º‰æ–ÊBG0ƒLƒƒƒ‰“]‘—
-	// ‰º‰æ–ÊBG0ƒXƒNƒŠ[ƒ““]‘—
+	// ä¸‹ç”»é¢BG0ã‚­ãƒ£ãƒ©è»¢é€
+	// ä¸‹ç”»é¢BG0ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 //	ArcUtil_HDL_BgCharSet( p_handle, NARC_namein_name_bg_s_lz_NCGR, bgl, GF_BGL_FRAME0_S, 0, 32*2*0x20, 1, HEAPID_NAMEIN);
 //	ArcUtil_HDL_ScrnSet(   p_handle, NARC_namein_name_bg_s_lz_NSCR, bgl, GF_BGL_FRAME0_S, 0, 32*24*2, 1, HEAPID_NAMEIN);
 
@@ -1499,13 +1499,13 @@ static void BgGraphicSet( NAMEIN_WORK * wk, ARCHANDLE* p_handle )
 //	ArcUtil_ScrnSet(   ARC_POKETCH_IMG, NARC_poketch_before_lz_nscr, bgl, GF_BGL_FRAME0_S, 0, 0, 1, HEAPID_NAMEIN);
 
 
-	// BMPWIN“]‘——pƒLƒƒƒ‰—pˆÓ(BgCharaBuf‚Í–¼‘O“ü—ÍI—¹‚É‰ğ•ú‚·‚é•K—v‚ ‚èj
+	// BMPWINè»¢é€ç”¨ã‚­ãƒ£ãƒ©ç”¨æ„(BgCharaBufã¯åå‰å…¥åŠ›çµ‚äº†æ™‚ã«è§£æ”¾ã™ã‚‹å¿…è¦ã‚ã‚Šï¼‰
 	wk->BgCharaBuf = ArcUtil_HDL_CharDataGet( p_handle, NARC_namein_name_bg_prog_lz_NCGR, 1, &wk->BgCharaDat, HEAPID_NAMEIN );
 
 }
 
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define NAMEIN_CHAR_CONT_NUM				(20)
 #define NAMEIN_CHAR_VRAMTRANS_MAIN_SIZE		(2048)
 #define NAMEIN_CHAR_VRAMTRANS_SUB_SIZE		(2048)
@@ -1513,13 +1513,13 @@ static void BgGraphicSet( NAMEIN_WORK * wk, ARCHANDLE* p_handle )
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 void char_pltt_manager_init(void)
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			NAMEIN_CHAR_CONT_NUM,
@@ -1529,10 +1529,10 @@ void char_pltt_manager_init(void)
 		};
 		InitCharManager(&cm);
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(NAMEIN_PLTT_CONT_NUM, HEAPID_NAMEIN);
 
-	// “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 }
@@ -1540,9 +1540,9 @@ void char_pltt_manager_init(void)
 
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‰æ–Ê—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param   wk		ƒŒ[ƒ_[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¬ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -1552,52 +1552,52 @@ static void InitCellActor(NAMEIN_WORK *wk, ARCHANDLE* p_handle)
 	int i;
 	
 	
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			0, 128,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 128,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 128,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 128,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_NAMEIN);
 	
 	
 	
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->clactSet = CLACT_U_SetEasyInit( 40+4, &wk->renddata, HEAPID_NAMEIN );
 	
 	CLACT_U_SetSubSurfaceMatrix( &wk->renddata, 0, NAMEIN_SUB_ACTOR_DISTANCE );
 
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->resMan[i] = CLACT_U_ResManagerInit(2, i, HEAPID_NAMEIN);
 	}
 
 
-	//---------ã‰æ–Ê—p-------------------
+	//---------ä¸Šç”»é¢ç”¨-------------------
 
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 							p_handle, NARC_namein_name_obj_m_lz_NCGR, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_NAMEIN);
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 							p_handle, NARC_namein_name_obj_NCLR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 9, HEAPID_NAMEIN);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 							p_handle, NARC_namein_name_obj_m_lz_NCER, 1, 0, CLACT_U_CELL_RES,HEAPID_NAMEIN);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 							p_handle, NARC_namein_name_obj_m_lz_NANR, 1, 0, CLACT_U_CELLANM_RES,HEAPID_NAMEIN);
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì–¼‘O“ü—Í‚Ìê‡‚ÍƒAƒCƒRƒ“ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+	// ãƒã‚±ãƒ¢ãƒ³ã®åå‰å…¥åŠ›ã®å ´åˆã¯ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	if(wk->inputmode==NAMEIN_POKEMON){
 		wk->PokeIconBuf    = ArcUtil_CharDataGet( ARC_POKEICON, 
 								PokeIconCgxArcIndexGetByMonsNumber( wk->inputinfo, 0, wk->inputform ), 
@@ -1610,33 +1610,33 @@ static void InitCellActor(NAMEIN_WORK *wk, ARCHANDLE* p_handle)
 	}
 //	ArcUtil_PalDataGet( u32 fileIdx, u32 dataIdx, NNSG2dPaletteData** palData, u32 heapID );
 
-	//---------‰º‰æ–Ê—p-------------------
+	//---------ä¸‹ç”»é¢ç”¨-------------------
 
 
 
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 							p_handle, NARC_namein_name_obj_s_lz_NCGR, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAPID_NAMEIN);
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 							p_handle, NARC_namein_name_obj_NCLR, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAPID_NAMEIN);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 							p_handle, NARC_namein_name_obj_s_lz_NCER, 1, 1, CLACT_U_CELL_RES,HEAPID_NAMEIN);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 							p_handle, NARC_namein_name_obj_s_lz_NANR, 1, 1, CLACT_U_CELLANM_RES,HEAPID_NAMEIN);
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] );
 	CLACT_U_CharManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] );
 	CLACT_U_PlttManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] );
 
@@ -1652,7 +1652,7 @@ typedef struct{
 
 //------------------------------------------------------------------
 /**
- * ‹@”\ƒ{ƒ^ƒ“‚ªƒpƒlƒ‹ƒtƒŒ[ƒ€‚Æ“¯Šú‚·‚é‚æ‚¤‚É‚·‚éˆ—
+ * æ©Ÿèƒ½ãƒœã‚¿ãƒ³ãŒãƒ‘ãƒãƒ«ãƒ•ãƒ¬ãƒ¼ãƒ ã¨åŒæœŸã™ã‚‹ã‚ˆã†ã«ã™ã‚‹å‡¦ç†
  *
  * @param   tcb		
  * @param   work	
@@ -1677,7 +1677,7 @@ static void FuncButtonTaskFunc( TCB_PTR tcb, void *work )
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   wk			NAMEIN_WORK*
  *
@@ -1687,7 +1687,7 @@ static void FuncButtonTaskFunc( TCB_PTR tcb, void *work )
 static void SetCellActor(NAMEIN_WORK *wk)
 {
 	int i;
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 	CLACT_U_MakeHeader(&wk->clActHeader_m, 0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 	0, 1,
 	wk->resMan[CLACT_U_CHAR_RES],
@@ -1705,14 +1705,14 @@ static void SetCellActor(NAMEIN_WORK *wk)
 	NULL,NULL);
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 
 		add.ClActSet	= wk->clactSet;
 		add.ClActHeader	= &wk->clActHeader_m;
 
 		add.mat.x		= FX32_CONST(32) ;
-		add.mat.y		= FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		add.mat.y		= FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.z		= 0;
 		add.sca.x		= FX32_ONE;
 		add.sca.y		= FX32_ONE;
@@ -1722,22 +1722,22 @@ static void SetCellActor(NAMEIN_WORK *wk)
 		add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 		add.heap		= HEAPID_NAMEIN;
 
-		//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-		// ã‰æ–Ê—p
+		// ä¸Šç”»é¢ç”¨
 		for(i=0;i<9;i++){
 			add.mat.x = FX32_ONE*main_button_info[i][0];
 			add.mat.y = FX32_ONE*main_button_info[i][1];
 			wk->clActWork[i] = CLACT_Add(&add);
 			CLACT_SetAnmFlag(wk->clActWork[i],1);
 			CLACT_AnmChg( wk->clActWork[i], main_button_info[i][2] );
-			CLACT_DrawPriorityChg(wk->clActWork[i], main_button_info[i][3]);	// ‚»‚ê‚¼‚ê‚ÌƒAƒNƒ^[‚Ìƒvƒ‰ƒCƒIƒŠƒeƒBİ’è
+			CLACT_DrawPriorityChg(wk->clActWork[i], main_button_info[i][3]);	// ãã‚Œãã‚Œã®ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£è¨­å®š
 			
 		}
 		CLACT_SetDrawFlag( wk->clActWork[4], 0);
 		CLACT_SetDrawFlag( wk->clActWork[8], 0);
 		
-		// ‹@”\ƒ{ƒ^ƒ“‚ªƒpƒlƒ‹ƒo[‚É“¯Šú‚µ‚Ä“®‚­ˆ—‚ğ“o˜^
+		// æ©Ÿèƒ½ãƒœã‚¿ãƒ³ãŒãƒ‘ãƒãƒ«ãƒãƒ¼ã«åŒæœŸã—ã¦å‹•ãå‡¦ç†ã‚’ç™»éŒ²
 		for(i=0;i<7;i++){
 			FUNC_BUTTON_TASK_WORK *twk;
 			wk->FuncButtonTask[i] = PMDS_taskAdd(FuncButtonTaskFunc, 16, 5, HEAPID_NAMEIN);
@@ -1748,7 +1748,7 @@ static void SetCellActor(NAMEIN_WORK *wk)
 			twk->id     = i;
 		}
 
-		//–¼‘O“ü—ÍŒ‹‰ÊƒAƒ“ƒ_[ƒ‰ƒCƒ“
+		//åå‰å…¥åŠ›çµæœã‚¢ãƒ³ãƒ€ãƒ¼ãƒ©ã‚¤ãƒ³
 		for(i=0;i<wk->inputmax;i++){
 			add.mat.x = FX32_ONE*(NAMELINE_POS_X+i*12);
 			add.mat.y = FX32_ONE*NAMELINE_POS_Y;
@@ -1756,14 +1756,14 @@ static void SetCellActor(NAMEIN_WORK *wk)
 			CLACT_SetAnmFlag(wk->NameLineActWork[i],1);
 			CLACT_AnmChg( wk->NameLineActWork[i], 43 );
 		}
-		// ‚P•¶š–Ú‚ÌƒAƒ“ƒ_[ƒ‰ƒCƒ“‚ğã‰º‚É“®‚©‚·
+		// ï¼‘æ–‡å­—ç›®ã®ã‚¢ãƒ³ãƒ€ãƒ¼ãƒ©ã‚¤ãƒ³ã‚’ä¸Šä¸‹ã«å‹•ã‹ã™
 		InputResultUnderLineMove(wk->NameLineActWork, wk->nowinput, wk->inputmax);
 
-		// –¼‘O“ü—ÍƒAƒCƒRƒ“•\¦“o˜^iƒ‚[ƒh‚É‚æ‚Á‚ÄØ‚è‘Ö‚¦‚éj
+		// åå‰å…¥åŠ›ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºç™»éŒ²ï¼ˆãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦åˆ‡ã‚Šæ›¿ãˆã‚‹ï¼‰
 		NameinIconAdd( wk, &add );
 		
 #ifdef DEBUG_OAM_POSPRINT
-		// ƒ|ƒCƒ“ƒgŠm”F—p
+		// ãƒã‚¤ãƒ³ãƒˆç¢ºèªç”¨
 		for(i=0;i<4;i++){
 			testclact[i] = CLACT_Add(&add);
 			CLACT_AnmChg( testclact[i], 56+i );
@@ -1773,7 +1773,7 @@ static void SetCellActor(NAMEIN_WORK *wk)
 
 
 #ifndef NAMEIN_MAINUSE_TOUCHPANEL
-		// ‰º‰æ–Ê—p
+		// ä¸‹ç”»é¢ç”¨
 		for(i=0;i<2;i++){
 			add.ClActHeader	= &wk->clActHeader_s;
 			add.mat.x = FX32_ONE*sub_button_info[i][0];
@@ -1785,61 +1785,61 @@ static void SetCellActor(NAMEIN_WORK *wk)
 		}
 #endif		
 	}	
-	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
-	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
+	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 	
 }
 
 static void NameinIconAdd(NAMEIN_WORK *wk, CLACT_ADD *add )
 {
-		// “ü—Íà–¾—pƒAƒCƒRƒ“i©‹@A«•ÊAƒpƒ\ƒRƒ“Aƒ|ƒPƒ‚ƒ“‚È‚Çj
+		// å…¥åŠ›èª¬æ˜ç”¨ã‚¢ã‚¤ã‚³ãƒ³ï¼ˆè‡ªæ©Ÿã€æ€§åˆ¥ã€ãƒ‘ã‚½ã‚³ãƒ³ã€ãƒã‚±ãƒ¢ãƒ³ãªã©ï¼‰
 		add->mat.x = FX32_ONE*NAMEIN_MYICON_X;
 		add->mat.y = FX32_ONE*NAMEIN_MYICON_Y;
 		wk->NameIconActWork[0] = CLACT_Add(add);
 		CLACT_SetAnmFlag(wk->NameIconActWork[0],1);
 		switch(wk->inputmode){
-		// ålŒö
+		// ä¸»äººå…¬
 		case NAMEIN_MYNAME:
 			if(wk->inputinfo==PM_MALE){
-				CLACT_AnmChg( wk->NameIconActWork[0], 48 );	//’j‚©—‚©
+				CLACT_AnmChg( wk->NameIconActWork[0], 48 );	//ç”·ã‹å¥³ã‹
 			}else{
-				CLACT_AnmChg( wk->NameIconActWork[0], 49 );	//’j‚©—‚©
+				CLACT_AnmChg( wk->NameIconActWork[0], 49 );	//ç”·ã‹å¥³ã‹
 			}
 			break;
-		// ƒ‰ƒCƒoƒ‹
+		// ãƒ©ã‚¤ãƒãƒ«
 		case NAMEIN_RIVALNAME:
 			CLACT_AnmChg( wk->NameIconActWork[0], 51 );	
 			break;
-		// Î”è
+		// çŸ³ç¢‘
 		case NAMEIN_STONE:
 			CLACT_AnmChg( wk->NameIconActWork[0], 55 );	
 			break;
-		// ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒv
+		// ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—
 		case NAMEIN_RANDOMGROUP:
 			CLACT_AnmChg( wk->NameIconActWork[0], 54 );	
 			break;
-		// ‚Æ‚à‚¾‚¿ƒR[ƒh
+		// ã¨ã‚‚ã ã¡ã‚³ãƒ¼ãƒ‰
 		case NAMEIN_FRIENDCODE:
 		case NAMEIN_FRIENDNAME:
 			CLACT_AnmChg( wk->NameIconActWork[0], 53 );	
 			break;
-		// ƒpƒ\ƒRƒ“
+		// ãƒ‘ã‚½ã‚³ãƒ³
 		case NAMEIN_BOX:
 //			wk->NameIconActWork[0] = CLACT_Add(add);
 			CLACT_AnmChg( wk->NameIconActWork[0], 47 );
 			break;
-		// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+		// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 		case NAMEIN_POKEMON:
 			CLACT_AnmChg( wk->NameIconActWork[0], 50 );
-			// «•ÊƒAƒCƒRƒ“(«•Ê–³‚µ‚Å‚È‚¯‚ê‚Îj
+			// æ€§åˆ¥ã‚¢ã‚¤ã‚³ãƒ³(æ€§åˆ¥ç„¡ã—ã§ãªã‘ã‚Œã°ï¼‰
 			if(wk->inputsex!=PARA_UNK){
 				add->mat.x = FX32_ONE*(NAMELINE_POS_X + wk->inputmax * 13);
 				add->mat.y = FX32_ONE*NAMEIN_SEXICON_Y;
 				wk->NameIconActWork[1] = CLACT_Add(add);
 				if(wk->inputsex==PARA_MALE){
-					CLACT_AnmChg( wk->NameIconActWork[1], 45 );	// ‰
+					CLACT_AnmChg( wk->NameIconActWork[1], 45 );	// â™‚
 				}else{
-					CLACT_AnmChg( wk->NameIconActWork[1], 46 );	// Š
+					CLACT_AnmChg( wk->NameIconActWork[1], 46 );	// â™€
 				}
 			}
 			break;
@@ -1888,11 +1888,11 @@ static void QuakeFrameTaskFunc( TCB_PTR tcb, void *work )
 
 //------------------------------------------------------------------
 /**
- * •¶šƒpƒlƒ‹‚ğƒŠƒNƒGƒXƒg‚ª—ˆ‚½‚ç“ü‚ê‘Ö‚¦‚é
+ * æ–‡å­—ãƒ‘ãƒãƒ«ã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ¥ãŸã‚‰å…¥ã‚Œæ›¿ãˆã‚‹
  *
- * @param   seq			‘JˆÚî•ñ
- * @param   mode		•¶š“ü—Íƒ‚[ƒhi‚©‚ÈEƒJƒiE‚`‚a‚bE‹L†j
- * @param   front		‘O‚É—ˆ‚Ä‚¢‚é‚a‚f–Ê‚ğ•Û‘¶‚µ‚Ä‚¢‚éƒ[ƒN
+ * @param   seq			é·ç§»æƒ…å ±
+ * @param   mode		æ–‡å­—å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ï¼ˆã‹ãªãƒ»ã‚«ãƒŠãƒ»ï¼¡ï¼¢ï¼£ãƒ»è¨˜å·ï¼‰
+ * @param   front		å‰ã«æ¥ã¦ã„ã‚‹ï¼¢ï¼§é¢ã‚’ä¿å­˜ã—ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯
  *
  * @retval  none		
  */
@@ -1907,7 +1907,7 @@ static void PanelFunc(GF_BGL_INI *bgl,GF_BGL_BMPWIN *win, int *seq, int mode, in
 	case NAMEIN_MODE_REQ:
 		{
 			u16 bgcol = wordpanel_bg_col[mode]|(wordpanel_bg_col[mode]<<4);
-			// V‚µ‚­‚â‚Á‚Ä‚­‚é•¶šƒpƒlƒ‹–Ê‚ğ“]‘—
+			// æ–°ã—ãã‚„ã£ã¦ãã‚‹æ–‡å­—ãƒ‘ãƒãƒ«é¢ã‚’è»¢é€
 			ArcUtil_ScrnSet( ARC_NAMEIN_GRA, NARC_namein_name_screen1_lz_NSCR+mode, bgl, GF_BGL_FRAME0_M+front, 0, WORDPANEL_TRANS_SIZE, 1, HEAPID_NAMEIN);
 			SetPanelFirstPos(panelpos, front);
 
@@ -1918,19 +1918,19 @@ static void PanelFunc(GF_BGL_INI *bgl,GF_BGL_BMPWIN *win, int *seq, int mode, in
 		break;
     	
 	case NAMEIN_MODE_SET:
-		// ‚Q–‡‚ÌBG–Ê‚Ì‰ŠúÀ•W‚ğƒZƒbƒg
+		// ï¼’æšã®BGé¢ã®åˆæœŸåº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 		GF_BGL_ScrollSet( bgl, GF_BGL_FRAME0_M+front, GF_BGL_SCROLL_X_SET, HIDDENPANEL_POS_REGX );
 		GF_BGL_ScrollSet( bgl, GF_BGL_FRAME0_M+front, GF_BGL_SCROLL_Y_SET, WORDPANEL_POS_REGY   );
 		(*seq)++;
 		break;
     	
 	case NAMEIN_MODE_ANIM:
-		// BG–Ê‚ğˆÚ“®‚³‚¹‚éB
-		// ’èˆÊ’u‚Ü‚Å‚«‚½‚çƒXƒgƒbƒviVƒpƒlƒ‹“’…‚ÍƒtƒŒ[ƒ€‚ª—h‚ê‚éj
+		// BGé¢ã‚’ç§»å‹•ã•ã›ã‚‹ã€‚
+		// å®šä½ç½®ã¾ã§ããŸã‚‰ã‚¹ãƒˆãƒƒãƒ—ï¼ˆæ–°ãƒ‘ãƒãƒ«åˆ°ç€æ™‚ã¯ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæºã‚Œã‚‹ï¼‰
 		
 		
 		panelpos[front].x-=WORDPANEL_IN_SPEED;
-		if(panelpos[front].x < WORDPANEL_POS_REGX+10){		// ƒtƒŒ[ƒ€‚ğ—h‚ç‚·
+		if(panelpos[front].x < WORDPANEL_POS_REGX+10){		// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æºã‚‰ã™
 			QUAKE_FRAME_TASK_WORK *qtfw;
 			TCB_PTR qt;
 			
@@ -1944,7 +1944,7 @@ static void PanelFunc(GF_BGL_INI *bgl,GF_BGL_BMPWIN *win, int *seq, int mode, in
 			panelpos[front].x=WORDPANEL_POS_REGX;
 			(*seq)++;
 		}
-		// ’èˆÊ’u‚Ü‚Å—ˆ‚½‚çƒXƒgƒbƒv
+		// å®šä½ç½®ã¾ã§æ¥ãŸã‚‰ã‚¹ãƒˆãƒƒãƒ—
 		panelpos[back].y-=WORDPANEL_OUT_SPEED;
 		if(panelpos[back].y < DOWNPANEL_POS_REGY){
 			panelpos[back].y=DOWNPANEL_POS_REGY;
@@ -1957,7 +1957,7 @@ static void PanelFunc(GF_BGL_INI *bgl,GF_BGL_BMPWIN *win, int *seq, int mode, in
 		break;
     	
     case NAMEIN_MODE_ANIM_WAIT:
-		// ’èˆÊ’u‚Ü‚Å—ˆ‚½‚çƒXƒgƒbƒv
+		// å®šä½ç½®ã¾ã§æ¥ãŸã‚‰ã‚¹ãƒˆãƒƒãƒ—
 		panelpos[back].y-=WORDPANEL_OUT_SPEED;
 		if(panelpos[back].y < DOWNPANEL_POS_REGY){
 			panelpos[back].y=DOWNPANEL_POS_REGY;
@@ -1966,10 +1966,10 @@ static void PanelFunc(GF_BGL_INI *bgl,GF_BGL_BMPWIN *win, int *seq, int mode, in
 
 		GF_BGL_ScrollSet( bgl, GF_BGL_FRAME0_M+front, GF_BGL_SCROLL_X_SET, panelpos[front].x );
 		GF_BGL_ScrollSet( bgl, GF_BGL_FRAME0_M+back,  GF_BGL_SCROLL_Y_SET, panelpos[back].y );
-		// —¼•û‚ÌBG–Ê‚ªˆÚ“®I—¹‚µ‚½‚çƒV[ƒPƒ“ƒXI—¹
+		// ä¸¡æ–¹ã®BGé¢ãŒç§»å‹•çµ‚äº†ã—ãŸã‚‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚äº†
 		if(panelpos[front].x==WORDPANEL_POS_REGX && panelpos[back].y==DOWNPANEL_POS_REGY){
 			(*seq)++;
-			(*frontBG) ^=1;			//‚a‚f–Ê‚Ìã‰º‚ğ“ü‚ê‘Ö‚¦‚é
+			(*frontBG) ^=1;			//ï¼¢ï¼§é¢ã®ä¸Šä¸‹ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
 			FrontBackBG_RegSet(bgl, *frontBG, panelpos);
 			Snd_SePlay( SEQ_SE_DP_NAMEIN_01 );
 		}
@@ -1984,7 +1984,7 @@ static void PanelFunc(GF_BGL_INI *bgl,GF_BGL_BMPWIN *win, int *seq, int mode, in
 
 //------------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒE‚É•`‰æ‚ğs‚¤
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«æç”»ã‚’è¡Œã†
  *
  * @param   bmp		
  * @param   inputmode		
@@ -2004,10 +2004,10 @@ static void PrintTalkInfoStr( GF_BGL_BMPWIN *bmp, int inputmode, STRBUF *Title )
 }
 //------------------------------------------------------------------
 /**
- * u`‚Ì‚È‚Ü‚¦‚ÍHv•¶š—ñ‚ğ•`‰æ‚·‚é
+ * ã€Œã€œã®ãªã¾ãˆã¯ï¼Ÿã€æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
  *
- * @param   bmp			•¶š—ñ•`‰æ—pBMPWIN\‘¢‘Ì
- * @param   inputmode	“ü—Íƒ‚[ƒhiMYNAME,POKEMON,BOX)
+ * @param   bmp			æ–‡å­—åˆ—æç”»ç”¨BMPWINæ§‹é€ ä½“
+ * @param   inputmode	å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ï¼ˆMYNAME,POKEMON,BOX)
  *
  * @retval  none		
  */
@@ -2018,7 +2018,7 @@ static void PrintTitleInfoStr(GF_BGL_BMPWIN *bmp, int inputmode, STRBUF *Title)
 
 	int length = FontProc_GetPrintStrWidth( FONT_SYSTEM, Title, 0 );
 
-	// ’·‚¢•¶š—ñ‚Í‚O‚©‚ç•`‰æ‚·‚é‚ªA’Z‚¢•¶š—ñ‚Í­‚µ‰E‚É“®‚©‚·
+	// é•·ã„æ–‡å­—åˆ—ã¯ï¼ã‹ã‚‰æç”»ã™ã‚‹ãŒã€çŸ­ã„æ–‡å­—åˆ—ã¯å°‘ã—å³ã«å‹•ã‹ã™
 	if(length>130){
 		x = 0;
 	}
@@ -2033,7 +2033,7 @@ static void PrintTitleInfoStr(GF_BGL_BMPWIN *bmp, int inputmode, STRBUF *Title)
 
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶šƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -2042,28 +2042,28 @@ static void PrintTitleInfoStr(GF_BGL_BMPWIN *bmp, int inputmode, STRBUF *Title)
 //------------------------------------------------------------------
 static void BmpMessageSet(NAMEIN_WORK *wk, PROC* proc, ARCHANDLE* p_handle)
 {
-	// BG0–Ê—pi•¶šƒpƒlƒ‹1—pjBMPƒEƒCƒ“ƒhƒEŠm•Û
+	// BG0é¢ç”¨ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«1ç”¨ï¼‰BMPã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->NameInWin[BMP_WORDPANEL_BG0], GF_BGL_FRAME0_M,
 						WORDPANEL_WIN_POSX, WORDPANEL_WIN_POSY, WORDPANEL_WIN_W, WORDPANEL_WIN_H, 1,  WORDPANEL0_WIN_OFFSET);
 
-	// BG1–Ê—pi•¶šƒpƒlƒ‹2—pjBMPƒEƒCƒ“ƒhƒEŠm•Û
+	// BG1é¢ç”¨ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«2ç”¨ï¼‰BMPã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->NameInWin[BMP_WORDPANEL_BG1], GF_BGL_FRAME1_M,
 						WORDPANEL_WIN_POSX, WORDPANEL_WIN_POSY, WORDPANEL_WIN_W, WORDPANEL_WIN_H, 1,  WORDPANEL1_WIN_OFFSET);
 
-	//Å‰‚ÉŒ©‚¦‚Ä‚¢‚é–Ê‚È‚Ì‚Å•¶šƒpƒlƒ‹•`‰æ‚Æ“]‘—‚às‚¤
-	// •¶šƒpƒlƒ‹‰Šú‰»E“o˜^
+	//æœ€åˆã«è¦‹ãˆã¦ã„ã‚‹é¢ãªã®ã§æ–‡å­—ãƒ‘ãƒãƒ«æç”»ã¨è»¢é€ã‚‚è¡Œã†
+	// æ–‡å­—ãƒ‘ãƒãƒ«åˆæœŸåŒ–ãƒ»ç™»éŒ²
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/10/03
-	// ‰Šú•¶ší‚ÍŠî–{“I‚É‘å•¶š‚É
+	// åˆæœŸæ–‡å­—ç¨®ã¯åŸºæœ¬çš„ã«å¤§æ–‡å­—ã«
 	if(wk->inputmode==NAMEIN_FRIENDCODE){
 		ArcUtil_HDL_ScrnSet( p_handle, NARC_namein_name_screen1_lz_NSCR+3, wk->bgl, GF_BGL_FRAME1_M, 0, WORDPANEL_TRANS_SIZE, 1, HEAPID_NAMEIN);
 		wk->mode = NAMEIN_MODE_NUMCODE;
-		MakeWordMap(wk->wordmap,4);			// ”š‚Ì‚İ•¶šƒ}ƒbƒv“WŠJ
+		MakeWordMap(wk->wordmap,4);			// æ•°å­—ã®ã¿æ–‡å­—ãƒãƒƒãƒ—å±•é–‹
 		WordPanelSetUp( &wk->NameInWin[BMP_WORDPANEL_BG1],0x0a0a, 4, 
 						GF_PRINTCOLOR_MAKE(0xe,0xf,0/*wordpanel_bg_col[3]*/),wk->BgCharaDat->pRawData);
 	}else{
 		wk->mode = NAMEIN_MODE_HIRA;
-		MakeWordMap(wk->wordmap,0);			// ‚Ğ‚ç‚ª‚È•¶šƒ}ƒbƒv“WŠJ
+		MakeWordMap(wk->wordmap,0);			// ã²ã‚‰ãŒãªæ–‡å­—ãƒãƒƒãƒ—å±•é–‹
 		WordPanelSetUp( &wk->NameInWin[BMP_WORDPANEL_BG1],0x0404, 0, 
 						GF_PRINTCOLOR_MAKE(0xe,0xf,0/*wordpanel_bg_col[0]*/),wk->BgCharaDat->pRawData);
 	}
@@ -2072,22 +2072,22 @@ static void BmpMessageSet(NAMEIN_WORK *wk, PROC* proc, ARCHANDLE* p_handle)
 
 
 
-	// ‰æ–Êã•”ƒƒbƒZ[ƒW—pBMPWINŠm•Û
+	// ç”»é¢ä¸Šéƒ¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨BMPWINç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->NameInWin[BMP_TITLE_MES], GF_BGL_FRAME2_M,
 						NAME_INFO_POSX, NAME_INFO_POSY, NAME_INFO_POSW, NAME_INFO_POSH, 0,  NAMEINFO_WIN_OFFSET);
 
 
 
 	{
-		int w =  ( (wk->inputmax*12) /8 )+1;	// 12dot•¶š‚Å•K—v‚ÈƒLƒƒƒ‰”‚ÌZo
+		int w =  ( (wk->inputmax*12) /8 )+1;	// 12dotæ–‡å­—ã§å¿…è¦ãªã‚­ãƒ£ãƒ©æ•°ã®ç®—å‡º
 
-		// –¼‘O•\¦—pBMPWINŠm•Û
+		// åå‰è¡¨ç¤ºç”¨BMPWINç¢ºä¿
 		GF_BGL_BmpWinAdd(wk->bgl, &wk->NameInWin[BMP_RESULT_NAME], GF_BGL_FRAME2_M,
 							NAME_RESULT_POSX, NAME_RESULT_POSY, w, NAME_RESULT_POSH, 0,  NAMERESULT_WIN_OFFSET);
 		GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_RESULT_NAME], 0x0101 );
 
 
-		// uƒOƒ‹[ƒvv•¶š—ñ
+		// ã€Œã‚°ãƒ«ãƒ¼ãƒ—ã€æ–‡å­—åˆ—
 		GF_BGL_BmpWinAdd(wk->bgl, &wk->NameInWin[BMP_GROUP_STRING], GF_BGL_FRAME2_M,
 						NAME_RESULT_POSX+w-1, GROUP_TEXT_POSY, GROUP_TEXT_POSW, GROUP_TEXT_POSH, 0,  GROUP_TEXT_WIN_OFFSET);
 		GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_GROUP_STRING], 0x0101 );
@@ -2099,17 +2099,17 @@ static void BmpMessageSet(NAMEIN_WORK *wk, PROC* proc, ARCHANDLE* p_handle)
 	}
 
 
-	// BOX—a‚¯—p‚É‰ï˜bƒEƒCƒ“ƒhƒE—Ìˆæ‚ğŠm•Û‚·‚é
+	// BOXé ã‘ç”¨ã«ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->NameInWin[BMP_TALK_WIN], GF_BGL_FRAME0_S,
 						TALK_MSG_WIN_PX, TALK_MSG_WIN_PY, TALK_MSG_WIN_SX, TALK_MSG_WIN_SY, TALK_MSG_WIN_PAL, BOX_MESAGGE_WIN_OFFSET);
 	GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_TALK_WIN], 0x0f0f );
 	
 
-	// u`‚Ì‚È‚Ü‚¦‚ÍHv•¶š—ñ‚ğ•\¦
+	// ã€Œã€œã®ãªã¾ãˆã¯ï¼Ÿã€æ–‡å­—åˆ—ã‚’è¡¨ç¤º
 	PrintTalkInfoStr(&wk->NameInWin[BMP_TALK_WIN], wk->inputmode, wk->TitleStr);
 
 
-	// NAMEIN_PARAM‚ÉƒfƒtƒHƒ‹ƒg•¶š—ñ‚ª“ü‚Á‚Ä‚¢‚½‚ç”½‰f‚³‚¹‚é
+	// NAMEIN_PARAMã«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—åˆ—ãŒå…¥ã£ã¦ã„ãŸã‚‰åæ˜ ã•ã›ã‚‹
 	{
 		NAMEIN_PARAM* param = (NAMEIN_PARAM*)PROC_GetParentWork(proc);
 
@@ -2121,18 +2121,18 @@ static void BmpMessageSet(NAMEIN_WORK *wk, PROC* proc, ARCHANDLE* p_handle)
 		}
 	}
 	
-	// ‰º‰æ–Êƒ{ƒ^ƒ“—pBMPŠm•Û
+	// ä¸‹ç”»é¢ãƒœã‚¿ãƒ³ç”¨BMPç¢ºä¿
 	{
 		int i;
-		// u‚Í@‚Î@‚Ïv‚È‚Ç
+		// ã€Œã¯ã€€ã°ã€€ã±ã€ãªã©
 		for(i=0;i<3;i++){
-			// ‚Ç‚¤‚¹OBJVRAM‚É“]‘—‚·‚é‚Ì‚ÅABG–Ê‚Í‚Ç‚±‚Å‚à‚¢‚¢
+			// ã©ã†ã›OBJVRAMã«è»¢é€ã™ã‚‹ã®ã§ã€BGé¢ã¯ã©ã“ã§ã‚‚ã„ã„
 			GF_BGL_BmpWinAdd(wk->bgl, &wk->NameInWin[BMP_SUB_BUTTON1+i], GF_BGL_FRAME2_M,	0, 0, 2, 2, 0,  SUB_BUTTON_WORD_OFFSET);
 			GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_SUB_BUTTON1+i], 0 );
 		}
 
-		// u‚©‚½‚¿‚ğ‚©‚¦‚év
-		// ‚Ç‚¤‚¹OBJVRAM‚É“]‘—‚·‚é‚Ì‚ÅABG–Ê‚Í‚Ç‚±‚Å‚à‚¢‚¢
+		// ã€Œã‹ãŸã¡ã‚’ã‹ãˆã‚‹ã€
+		// ã©ã†ã›OBJVRAMã«è»¢é€ã™ã‚‹ã®ã§ã€BGé¢ã¯ã©ã“ã§ã‚‚ã„ã„
 		GF_BGL_BmpWinAdd(wk->bgl, &wk->NameInWin[BMP_SUB_STRING], GF_BGL_FRAME2_M,	0, 0, 16, 2, 0,  SUB_BUTTON_STRING_OFFSET);
 		GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_SUB_STRING], 0 );
 
@@ -2142,9 +2142,9 @@ static void BmpMessageSet(NAMEIN_WORK *wk, PROC* proc, ARCHANDLE* p_handle)
 
 //------------------------------------------------------------------
 /**
- * Bg0–Ê‚ÆBG1–Ê‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ªƒRƒƒRƒ•Ï‚í‚é‚Ì‚ÅŠÖ”‰»
+ * Bg0é¢ã¨BG1é¢ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãŒã‚³ãƒ­ã‚³ãƒ­å¤‰ã‚ã‚‹ã®ã§é–¢æ•°åŒ–
  *
- * @param   front	‚Ç‚¿‚ç‚Ì–Ê‚ªã‚É—ˆ‚é‚©(0 or 1)
+ * @param   front	ã©ã¡ã‚‰ã®é¢ãŒä¸Šã«æ¥ã‚‹ã‹(0 or 1)
  *
  * @retval  none	
  */
@@ -2158,10 +2158,10 @@ static void FrontBackBG_RegSet(GF_BGL_INI *bgl, int front, VecFx32 panelpos[])
 
 //------------------------------------------------------------------
 /**
- * •¶šƒpƒlƒ‹‚Ì‰ŠúÀ•W•Û‘¶
+ * æ–‡å­—ãƒ‘ãƒãƒ«ã®åˆæœŸåº§æ¨™ä¿å­˜
  *
- * @param   panelpos[]		•¶šƒpƒlƒ‹‚ÌˆÊ’u
- * @param   front				BG0–Ê‚ÆBG1–Ê‚Ì‚Ç‚¿‚ç‚ªã‚©(0‚¾‚ÆBG0‚ªã)
+ * @param   panelpos[]		æ–‡å­—ãƒ‘ãƒãƒ«ã®ä½ç½®
+ * @param   front				BG0é¢ã¨BG1é¢ã®ã©ã¡ã‚‰ãŒä¸Šã‹(0ã ã¨BG0ãŒä¸Š)
  *
  * @retval  none		
  */
@@ -2178,7 +2178,7 @@ static void SetPanelFirstPos(VecFx32 panelpos[], int front)
 #ifdef PM_DEBUG
 //------------------------------------------------------------------
 /**
- * ƒfƒoƒbƒO•\¦—p‚ÉOBJ‚âBG‚ğ“®‚©‚·
+ * ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºç”¨ã«OBJã‚„BGã‚’å‹•ã‹ã™
  *
  * @param   wk		
  *
@@ -2248,10 +2248,10 @@ static int AroundWork(int w, int min, int max)
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹ˆÚ“®•”
+ * ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•éƒ¨
  *
  * @param   wk		NAMEIN_WORK*
- * @param   arrow	ˆÚ“®•ûŒüƒtƒ‰ƒO
+ * @param   arrow	ç§»å‹•æ–¹å‘ãƒ•ãƒ©ã‚°
  *
  * @retval  none	
  */
@@ -2265,34 +2265,34 @@ static void CursorMove(NAMEIN_WORK *wk, int arrow)
 		return;
 	}
 	
-	// cˆê—ñ‚ªSKIP‚Ì—ñ‚¾‚ÆA–³ŒÀƒ‹[ƒv‚É“ü‚é‚Ì‚Å—vC³i‚Æ‚È‚è‚Ì—ñ‚ğŒŸõ‚·‚é‚È‚Çj
+	// ç¸¦ä¸€åˆ—ãŒSKIPã®åˆ—ã ã¨ã€ç„¡é™ãƒ«ãƒ¼ãƒ—ã«å…¥ã‚‹ã®ã§è¦ä¿®æ­£ï¼ˆã¨ãªã‚Šã®åˆ—ã‚’æ¤œç´¢ã™ã‚‹ãªã©ï¼‰
 	old  = wk->wordmap[wk->Cursor.y][wk->Cursor.x];
 	x    = AroundWork((wk->Cursor.x + arrowtbl[arrow][0]), 0, INPUT_WORD_W);
 	y    = AroundWork((wk->Cursor.y + arrowtbl[arrow][1]), 0, INPUT_WORD_H);
 
-	// X•ûŒü‚ÌˆÚ“®i‹@”\ƒ{ƒ^ƒ“EƒXƒLƒbƒv—ñˆ—‚İj
+	// Xæ–¹å‘ã®ç§»å‹•ï¼ˆæ©Ÿèƒ½ãƒœã‚¿ãƒ³ãƒ»ã‚¹ã‚­ãƒƒãƒ—åˆ—å‡¦ç†è¾¼ã¿ï¼‰
 	while(wk->wordmap[y][x]==SKIP_ || (wk->wordmap[y][x]==old && wk->wordmap[y][x]>NAMEIN_BUTTON)){
 //		OS_Printf(" %d, %d, \n",wk->wordmap[y][x], old, );
 
-		if(wk->Cursor.oldy==0 && wk->wordmap[y][x]==SKIP_ && arrowtbl[arrow][1]!=0){	// ƒ{ƒ^ƒ“‚Ìã‚É‚¢‚ÄA‰º‚Ìs‚ÉSKIP‚ª
-			x += wk->Cursor.lastxarrow;													// ‚ ‚Á‚½ê‡‚Ìˆ—iÅŒã‚Ì‰¡ˆÚ“®‚ğ
-			x = AroundWork(x, 0, INPUT_WORD_W);											// ‚Æ‚Á‚Ä‚¨‚¢‚Ä‚»‚Ì•ûŒü‚É‚¸‚ç‚·j
+		if(wk->Cursor.oldy==0 && wk->wordmap[y][x]==SKIP_ && arrowtbl[arrow][1]!=0){	// ãƒœã‚¿ãƒ³ã®ä¸Šã«ã„ã¦ã€ä¸‹ã®è¡Œã«SKIPãŒ
+			x += wk->Cursor.lastxarrow;													// ã‚ã£ãŸå ´åˆã®å‡¦ç†ï¼ˆæœ€å¾Œã®æ¨ªç§»å‹•ã‚’
+			x = AroundWork(x, 0, INPUT_WORD_W);											// ã¨ã£ã¦ãŠã„ã¦ãã®æ–¹å‘ã«ãšã‚‰ã™ï¼‰
 		}else{
-			x += arrowtbl[arrow][0];													// ˆÚ“®æ‚ªSKIP_‚¾‚Á‚½ê‡‚Í
-			x = AroundWork(x, 0, INPUT_WORD_W);											// SKIP_‚¶‚á‚È‚­‚È‚é‚Ü‚ÅˆÚ“®‚ğŒJ‚è•Ô‚·
+			x += arrowtbl[arrow][0];													// ç§»å‹•å…ˆãŒSKIP_ã ã£ãŸå ´åˆã¯
+			x = AroundWork(x, 0, INPUT_WORD_W);											// SKIP_ã˜ã‚ƒãªããªã‚‹ã¾ã§ç§»å‹•ã‚’ç¹°ã‚Šè¿”ã™
 			y += arrowtbl[arrow][1];
 			y = AroundWork(y, 0, INPUT_WORD_H);
 		}
 	}
 	
-	// ÅIˆÚ“®æ‚ğŠi”[
+	// æœ€çµ‚ç§»å‹•å…ˆã‚’æ ¼ç´
 	wk->Cursor.x = x;	
 	wk->Cursor.y = y;
 }
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹ˆÚ“®ˆ—
+ * ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å‡¦ç†
  *
  * @param   wk		NAMEIN_WORK*
  *
@@ -2309,13 +2309,13 @@ static void ControlCursor(NAMEIN_WORK *wk)
 	
 	BOOL bTouch = FALSE;
 	
-	// ’¼‘O‚Ü‚Åƒ^ƒbƒ`‚Å‘€ì‚µ‚Ä‚¢‚½‚©‚ğ’²‚×‚é
+	// ç›´å‰ã¾ã§ã‚¿ãƒƒãƒã§æ“ä½œã—ã¦ã„ãŸã‹ã‚’èª¿ã¹ã‚‹
 	if ( CLACT_GetDrawFlag( wk->clActWork[8] ) == 0 ){
 		
 		bTouch = TRUE;
 	}
 
-	// ƒL[“ü—Í‚É‘Î‚µ‚ÄˆÚ“®‚·‚é‚S•ûŒü‚Ì‚¤‚¿‚Ìˆê‚Â‚ğŒˆ’è
+	// ã‚­ãƒ¼å…¥åŠ›ã«å¯¾ã—ã¦ç§»å‹•ã™ã‚‹ï¼”æ–¹å‘ã®ã†ã¡ã®ä¸€ã¤ã‚’æ±ºå®š
 	if( sys.repeat & PAD_KEY_UP){
 		Snd_SePlay(NAMEIN_SE_MOVE);
 		CLACT_SetDrawFlag( wk->clActWork[8], 1);
@@ -2341,7 +2341,7 @@ static void ControlCursor(NAMEIN_WORK *wk)
 		move++;
 	}
 	
-	// I—¹ƒ{ƒ^ƒ“ˆÊ’u‚Ö
+	// çµ‚äº†ãƒœã‚¿ãƒ³ä½ç½®ã¸
 	if( sys.trg & PAD_BUTTON_START){
 		Snd_SePlay(NAMEIN_SE_MOVE);
 		CLACT_SetDrawFlag( wk->clActWork[8], 1);
@@ -2363,10 +2363,10 @@ static void ControlCursor(NAMEIN_WORK *wk)
 		CursorAppearUpDate( wk, arrow );
 	}
 
-	// ˆÚ“®‚ª”­¶‚µ‚½‚ç•ÏX
+	// ç§»å‹•ãŒç™ºç”Ÿã—ãŸã‚‰å¤‰æ›´
 	if(move){
-		CursorMove(wk,arrow);				// ƒJ[ƒ\ƒ‹‚ÌˆÚ“®æ‚ğŒˆ’è‚·‚é
-		CursorAppearUpDate(wk,arrow);	// ˆÚ“®‚ÌŒ‹‰ÊƒJ[ƒ\ƒ‹‚ÌŒ`ó‚ª‚Ç‚Ì‚æ‚¤‚É•Ï‚í‚é‚©‚ğŒˆ’è‚·‚é
+		CursorMove(wk,arrow);				// ã‚«ãƒ¼ã‚½ãƒ«ã®ç§»å‹•å…ˆã‚’æ±ºå®šã™ã‚‹
+		CursorAppearUpDate(wk,arrow);	// ç§»å‹•ã®çµæœã‚«ãƒ¼ã‚½ãƒ«ã®å½¢çŠ¶ãŒã©ã®ã‚ˆã†ã«å¤‰ã‚ã‚‹ã‹ã‚’æ±ºå®šã™ã‚‹
 	}
 
 }
@@ -2374,25 +2374,25 @@ static void ControlCursor(NAMEIN_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * ˆÚ“®‚ÌŒ‹‰ÊƒJ[ƒ\ƒ‹‚ÌŒ`ó‚ª‚Ç‚Ì‚æ‚¤‚É•Ï‚í‚é‚©‚ğŒˆ’è‚·‚é
- * •¶š‚Ìã‚Å‚ ‚ê‚ÎA³•ûŒ`‚ÌƒJ[ƒ\ƒ‹Aƒ{ƒ^ƒ“‚Ìã‚Å‚ ‚ê‚Î’·•ûŒ`‚ÌƒJ[ƒ\ƒ‹
- * •¶š‚ÌXV‚ªs‚í‚ê‚é‚±‚Æ‚ÅAƒTƒu‰æ–Ê‚Ì’†‚ÌƒtƒHƒ“ƒg‚ÌXV‚às‚í‚ê‚é
+ * ç§»å‹•ã®çµæœã‚«ãƒ¼ã‚½ãƒ«ã®å½¢çŠ¶ãŒã©ã®ã‚ˆã†ã«å¤‰ã‚ã‚‹ã‹ã‚’æ±ºå®šã™ã‚‹
+ * æ–‡å­—ã®ä¸Šã§ã‚ã‚Œã°ã€æ­£æ–¹å½¢ã®ã‚«ãƒ¼ã‚½ãƒ«ã€ãƒœã‚¿ãƒ³ã®ä¸Šã§ã‚ã‚Œã°é•·æ–¹å½¢ã®ã‚«ãƒ¼ã‚½ãƒ«
+ * æ–‡å­—ã®æ›´æ–°ãŒè¡Œã‚ã‚Œã‚‹ã“ã¨ã§ã€ã‚µãƒ–ç”»é¢ã®ä¸­ã®ãƒ•ã‚©ãƒ³ãƒˆã®æ›´æ–°ã‚‚è¡Œã‚ã‚Œã‚‹
  *
  * @param   wk			NAMEIN_WORK*
- * @param   arrow		ˆÚ“®•ûŒü
+ * @param   arrow		ç§»å‹•æ–¹å‘
  *
  * @retval  none		
  */
 //------------------------------------------------------------------
 static void CursorAppearUpDate(NAMEIN_WORK *wk, int arrow)
 {
-	// ƒJ[ƒ\ƒ‹‚ª•¶š‚Ì—ñ‚É‚¢‚é‚©H
+	// ã‚«ãƒ¼ã‚½ãƒ«ãŒæ–‡å­—ã®åˆ—ã«ã„ã‚‹ã‹ï¼Ÿ
 	if(wk->Cursor.y!=0){
 		VecFx32 tmpVex;
 
-		// •¶š‚Ì—ñ‚É‚¢‚é
-		if(wk->Cursor.oldy==0 && wk->Cursor.oldy != wk->Cursor.y){		// ’¼‘O‚Éƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ƒ{ƒ^ƒ“‚Ìã‚É‚¢‚½‚ç
-			CLACT_AnmChg( wk->clActWork[8], NAMEIN_CURSOR_ANM_START );	// ’ÊíƒJ[ƒ\ƒ‹‚ÉƒAƒNƒ^[•ÏX
+		// æ–‡å­—ã®åˆ—ã«ã„ã‚‹
+		if(wk->Cursor.oldy==0 && wk->Cursor.oldy != wk->Cursor.y){		// ç›´å‰ã«ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ãƒœã‚¿ãƒ³ã®ä¸Šã«ã„ãŸã‚‰
+			CLACT_AnmChg( wk->clActWork[8], NAMEIN_CURSOR_ANM_START );	// é€šå¸¸ã‚«ãƒ¼ã‚½ãƒ«ã«ã‚¢ã‚¯ã‚¿ãƒ¼å¤‰æ›´
 		}
 		tmpVex.x = FX32_ONE*(MAIN_CURSOR_POSX+wk->Cursor.x*16);
 		tmpVex.y = FX32_ONE*(MAIN_CURSOR_POSY+(wk->Cursor.y-1)*PANEL_H);
@@ -2400,17 +2400,17 @@ static void CursorAppearUpDate(NAMEIN_WORK *wk, int arrow)
 	}else{
 		VecFx32 tmpVex;
 
-		// ƒ{ƒ^ƒ“‚Ì—ñ‚É‚¢‚é
+		// ãƒœã‚¿ãƒ³ã®åˆ—ã«ã„ã‚‹
 		int func_type = wk->wordmap[wk->Cursor.y][wk->Cursor.x]-NAMEIN_HIRA;
 		tmpVex.x = FX32_ONE*func_button_pos_tbl[func_type];
 		tmpVex.y = FX32_ONE*FUNC_BUTTON_POS_Y;
-		CLACT_AnmChg( wk->clActWork[8], func_button_appear[func_type] );// ƒ{ƒ^ƒ“‚É‘Î‰‚µ‚½ƒJ[ƒ\ƒ‹‚É•ÏX
+		CLACT_AnmChg( wk->clActWork[8], func_button_appear[func_type] );// ãƒœã‚¿ãƒ³ã«å¯¾å¿œã—ãŸã‚«ãƒ¼ã‚½ãƒ«ã«å¤‰æ›´
 		CLACT_SetMatrix(wk->clActWork[CLACT_CURSOR_NUM], &tmpVex);
 
 		
 	}
-	wk->CursorPal = 180;							// ˆÚ“®‚µ‚½‚çƒJ[ƒ\ƒ‹‚ÌƒpƒŒƒbƒg‚ÍÔ‚¢ó‘Ô‚É–ß‚·
-	CLACT_AnmFrameSet( wk->clActWork[8], 0 );		// ˆÚ“®‚µ‚½‚çƒJ[ƒ\ƒ‹‚ÌƒAƒjƒ‚ÍÅ‰‚ÌƒtƒŒ[ƒ€‚É–ß‚·
+	wk->CursorPal = 180;							// ç§»å‹•ã—ãŸã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆã¯èµ¤ã„çŠ¶æ…‹ã«æˆ»ã™
+	CLACT_AnmFrameSet( wk->clActWork[8], 0 );		// ç§»å‹•ã—ãŸã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¢ãƒ‹ãƒ¡ã¯æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«æˆ»ã™
 
 
 	wk->Cursor.oldx       = wk->Cursor.x;
@@ -2423,7 +2423,7 @@ static void CursorAppearUpDate(NAMEIN_WORK *wk, int arrow)
 
 //------------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“‚É‚ ‚í‚¹‚Ä‰º‰æ–Ê‚Ìƒ{ƒ^ƒ“BG‚ÌƒXƒNƒŠ[ƒ“‚ğ‘‚«Š·‚¦‚é
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«ã‚ã‚ã›ã¦ä¸‹ç”»é¢ã®ãƒœã‚¿ãƒ³BGã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’æ›¸ãæ›ãˆã‚‹
  *
  * @param   mode		
  * @param   work		
@@ -2437,23 +2437,23 @@ static void SubButtonBGFunc(int *mode, int *work, GF_BGL_INI *bgl)
 
 	switch(*work){
 	case 1:	case 5:
-	// ‰º‰æ–ÊBG0ƒXƒNƒŠ[ƒ““]‘—
+	// ä¸‹ç”»é¢BG0ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 		ArcUtil_ScrnSet(   ARC_NAMEIN_GRA, NARC_namein_name_bg_s2_lz_NSCR, bgl, GF_BGL_FRAME0_S, 0, 32*24*2, 1, HEAPID_NAMEIN);
 		break;
 	case 3:	
-	// ‰º‰æ–ÊBG0ƒXƒNƒŠ[ƒ““]‘—
+	// ä¸‹ç”»é¢BG0ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 		ArcUtil_ScrnSet(   ARC_NAMEIN_GRA, NARC_namein_name_bg_s3_lz_NSCR, bgl, GF_BGL_FRAME0_S, 0, 32*24*2, 1, HEAPID_NAMEIN);
 		break;
 	case 7:	
-	// ‰º‰æ–ÊBG0ƒXƒNƒŠ[ƒ““]‘—
+	// ä¸‹ç”»é¢BG0ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 		ArcUtil_ScrnSet(   ARC_NAMEIN_GRA, NARC_namein_name_bg_s_lz_NSCR, bgl, GF_BGL_FRAME0_S, 0, 32*24*2, 1, HEAPID_NAMEIN);
 		break;
 	}
 
 
-	// u‰Ÿ‚µv‚©u—£‚µv‚ÌÛ‚É‚Íwork‚ğã‚°‰º‚°‚·‚é
+	// ã€ŒæŠ¼ã—ã€ã‹ã€Œé›¢ã—ã€ã®éš›ã«ã¯workã‚’ä¸Šã’ä¸‹ã’ã™ã‚‹
 	if(mode!=0){		// 
-		if(*work > 9 ){	// 6ˆÈã‚É‚Í‚È‚ç‚È‚¢‚æ‚¤‚É
+		if(*work > 9 ){	// 6ä»¥ä¸Šã«ã¯ãªã‚‰ãªã„ã‚ˆã†ã«
 			*work = 0;
 			*mode  = 0;
 		}
@@ -2464,9 +2464,9 @@ static void SubButtonBGFunc(int *mode, int *work, GF_BGL_INI *bgl)
 
 //------------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹‚Å‰Ÿ‚µ‚½ƒ{ƒ^ƒ“‚ª‚Ö‚±‚Ş
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§æŠ¼ã—ãŸãƒœã‚¿ãƒ³ãŒã¸ã“ã‚€
  *
- * @param   wk		NAMEIN_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		NAMEIN_WORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -2476,17 +2476,17 @@ static void TouchFunc(NAMEIN_WORK *wk)
 #ifndef NAMEIN_MAINUSE_TOUCHPANEL
 	int button=-1,i;
 
-	// “ü—Íˆ—
+	// å…¥åŠ›å‡¦ç†
 	button=GF_TP_RectHitTrg( sub_button_hittbl );
 	if(button != RECT_HIT_NONE && wk->subtouchword[button] != spc_){
 //		DecideMainButton(wk,wk->subtouchword[button]);
-		DecideMainButton(wk,NAMEIN_KOMOJI,1);				// •ÏŠ·ƒ{ƒ^ƒ“ON
-		CLACT_AnmChg( wk->clActWork[10], sub_button_info[0][2] );	// ‰º‰æ–Ê‚Ì•¶š‚ğBG‚É‡‚í‚¹‚Äã‰º‚É“®‚©‚·
-		CLACT_AnmChg( wk->clActWork[11], sub_button_info[1][2]+1 );	// ‰º‰æ–Ê‚Ì•¶š‚ğBG‚É‡‚í‚¹‚Äã‰º‚É“®‚©‚·
+		DecideMainButton(wk,NAMEIN_KOMOJI,1);				// å¤‰æ›ãƒœã‚¿ãƒ³ON
+		CLACT_AnmChg( wk->clActWork[10], sub_button_info[0][2] );	// ä¸‹ç”»é¢ã®æ–‡å­—ã‚’BGã«åˆã‚ã›ã¦ä¸Šä¸‹ã«å‹•ã‹ã™
+		CLACT_AnmChg( wk->clActWork[11], sub_button_info[1][2]+1 );	// ä¸‹ç”»é¢ã®æ–‡å­—ã‚’BGã«åˆã‚ã›ã¦ä¸Šä¸‹ã«å‹•ã‹ã™
 		wk->subbutton_mode=1;
 	}
 
-	// Œ©‚½–Ú‚Ìˆ—
+	// è¦‹ãŸç›®ã®å‡¦ç†
 //	button=GF_TP_RectHitCont( sub_button_hittbl );
 
 	SubButtonBGFunc(&wk->subbutton_mode, &wk->subbutton_work, wk->bgl);
@@ -2496,9 +2496,9 @@ static void TouchFunc(NAMEIN_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹‚ÌƒpƒŒƒbƒg•ÏXi“_–Åj
+ * ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ï¼ˆç‚¹æ»…ï¼‰
  *
- * @param   CursorCol	sin‚É“n‚·ƒpƒ‰ƒ[ƒ^i360‚Ü‚Åj
+ * @param   CursorCol	sinã«æ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆ360ã¾ã§ï¼‰
  *
  * @retval  none		
  */
@@ -2526,18 +2526,18 @@ static void CursorColTrans(u16 *CursorCol)
 
 //------------------------------------------------------------------
 /**
- * •¶šƒpƒlƒ‹‚É‹Ï“™‚ÈŠÔŠu‚É•¶š‚ğ”z’u‚·‚é
- * ƒvƒƒ|[ƒVƒ‡ƒiƒ‹ƒtƒHƒ“ƒg‚È‚Ì‚Å‰¡•‚ğŠm”F‚µ‚È‚ª‚çˆê•¶š‚¸‚Â”z’u‚·‚é
+ * æ–‡å­—ãƒ‘ãƒãƒ«ã«å‡ç­‰ãªé–“éš”ã«æ–‡å­—ã‚’é…ç½®ã™ã‚‹
+ * ãƒ—ãƒ­ãƒãƒ¼ã‚·ãƒ§ãƒŠãƒ«ãƒ•ã‚©ãƒ³ãƒˆãªã®ã§æ¨ªå¹…ã‚’ç¢ºèªã—ãªãŒã‚‰ä¸€æ–‡å­—ãšã¤é…ç½®ã™ã‚‹
  *
- * uhvuKvu[s]v‚É‘Î‰(CODE‚ÍDAKUTEN_,HANDAKUTEN_,SPACE_j
- * ‰¡•‚Í12ƒhƒbƒg‚¸‚Â”z’u‚³‚ê‚é–‚É‚·‚éB
+ * ã€Œâ€ã€ã€Œã‚œã€ã€Œ[s]ã€ã«å¯¾å¿œ(CODEã¯DAKUTEN_,HANDAKUTEN_,SPACE_ï¼‰
+ * æ¨ªå¹…ã¯12ãƒ‰ãƒƒãƒˆãšã¤é…ç½®ã•ã‚Œã‚‹äº‹ã«ã™ã‚‹ã€‚
  *
  * @param   win		bmp
- * @param   str		•¶š—ñ
- * @param   x		ŠJnXi¶ãj
- * @param   y		ŠJnYi¶ãj
- * @param   sw		MSG_ALLPUT‚©MSG_NO_PUT
- * @param   color	5bitx3‚ÌƒJƒ‰[w’è
+ * @param   str		æ–‡å­—åˆ—
+ * @param   x		é–‹å§‹Xï¼ˆå·¦ä¸Šï¼‰
+ * @param   y		é–‹å§‹Yï¼ˆå·¦ä¸Šï¼‰
+ * @param   sw		MSG_ALLPUTã‹MSG_NO_PUT
+ * @param   color	5bitx3ã®ã‚«ãƒ©ãƒ¼æŒ‡å®š
  *
  * @retval  none		
  */
@@ -2549,29 +2549,29 @@ static void NameinWordPanelPrint(GF_BGL_BMPWIN *win, const u16 *str, int x,int y
 	STRBUF *strbuf_word;
 	
 	strbuf_word = STRBUF_Create( 2, HEAPID_NAMEIN );
-	// ˆê•¶š‚¸‚Âæ‚èo‚·
+	// ä¸€æ–‡å­—ãšã¤å–ã‚Šå‡ºã™
 	while(str[i]!=EOM_){
-		// “Áê•¶š‚¾‚Á‚½ê‡‚Ìˆ—
+		// ç‰¹æ®Šæ–‡å­—ã ã£ãŸå ´åˆã®å‡¦ç†
 		if(str[i]==DAKU_ || str[i]==HANDAKU_ || str[i]==SPACE_){
 			u16 tmp = str[i] - NAMEIN_CODE;
 
 
-			//12x12‚Ì“Áê•¶š‚ğ•`‰æ
+			//12x12ã®ç‰¹æ®Šæ–‡å­—ã‚’æç”»
 			GF_BGL_BmpWinPrint(	win, (void*)&dakuten_Character[tmp*8*8*4/2],
 				0, 0, 12, 12,
 				x+i*space, y+2, 12, 12 );
 
 		}else{
-		// ’Êí•¶šˆ—
+		// é€šå¸¸æ–‡å­—å‡¦ç†
 
-			if(str[i]==SKIP_){		//ƒXƒLƒbƒv‹L†‚Í•`‰æ‚µ‚È‚¢
+			if(str[i]==SKIP_){		//ã‚¹ã‚­ãƒƒãƒ—è¨˜å·ã¯æç”»ã—ãªã„
 				i++;
 				continue;
 			}
 			word[0] = str[i];
 			word[1] = EOM_;
 
-			//ƒtƒHƒ“ƒg‚Ì‰¡•‚ğæ“¾‚µA12ƒhƒbƒg‚¸‚Â”z’u‚·‚é‚Æ‚«‚Ì·‚ğZo‚µ‚Ä•`‰æ
+			//ãƒ•ã‚©ãƒ³ãƒˆã®æ¨ªå¹…ã‚’å–å¾—ã—ã€12ãƒ‰ãƒƒãƒˆãšã¤é…ç½®ã™ã‚‹ã¨ãã®å·®ã‚’ç®—å‡ºã—ã¦æç”»
 			w=FontProc_GetStrWidth( FONT_SYSTEM, word, 0 );
 			dx = x+i*space+((space-w)/2);
 			STRBUF_SetStringCode( strbuf_word, word );
@@ -2599,11 +2599,11 @@ static void *GF_STR_PrintCGXOnly(GF_BGL_BMPWIN * win, STRBUF *msg, u8 fnt_index,
 
 //------------------------------------------------------------------
 /**
- * ‰º‰æ–Ê‚Ìƒ{ƒ^ƒ“‚É‘‚©‚ê‚Ä‚¢‚é•¶šƒLƒƒƒ‰ƒNƒ^[‚ğ“]‘—
+ * ä¸‹ç”»é¢ã®ãƒœã‚¿ãƒ³ã«æ›¸ã‹ã‚Œã¦ã„ã‚‹æ–‡å­—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’è»¢é€
  *
- * @param   win		•¶š‚ğ“WŠJ‚·‚éBMPWIN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   tbl		u‚Í‚Î‚Ïv‚È‚Ç‚Ì•ÏŠ·Œã‚à•¶š‚à“ü‚Á‚½ƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^B–³‚¢‚ÍNULL
- * @param   code	•ÏŠ·Œó•â‚Ì–³‚¢•¶š‚Í‚±‚±‚É“ü‚ê‚éBtbl‚ª‚ ‚é‚Æ‚«‚Í0
+ * @param   win		æ–‡å­—ã‚’å±•é–‹ã™ã‚‹BMPWINæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tbl		ã€Œã¯ã°ã±ã€ãªã©ã®å¤‰æ›å¾Œã‚‚æ–‡å­—ã‚‚å…¥ã£ãŸãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿ã€‚ç„¡ã„æ™‚ã¯NULL
+ * @param   code	å¤‰æ›å€™è£œã®ç„¡ã„æ–‡å­—ã¯ã“ã“ã«å…¥ã‚Œã‚‹ã€‚tblãŒã‚ã‚‹ã¨ãã¯0
  *
  * @retval  none		
  */
@@ -2616,10 +2616,10 @@ static void ChangeSubPanelButtonWord(GF_BGL_BMPWIN *win, const u16 *tbl, u8 *Tra
 
 	GF_BGL_BmpWinDataFill( &win[3], 0 );
 	
-	// u‚©‚½‚¿‚ğ‚©‚¦‚év•`‰æ
+	// ã€Œã‹ãŸã¡ã‚’ã‹ãˆã‚‹ã€æç”»
 	objcharaadr=GF_STR_PrintCGXOnly(&win[3], ChangeWordStr, FONT_BUTTON, GF_PRINTCOLOR_MAKE(0xd,0x0e,0xf));
 
-	// BMPˆ—‚Å•`‰æ‚µ‚½ƒoƒbƒtƒ@‚ğOBJ‚É“]‘—‚µ‚Ä”½‰f‚³‚¹‚é
+	// BMPå‡¦ç†ã§æç”»ã—ãŸãƒãƒƒãƒ•ã‚¡ã‚’OBJã«è»¢é€ã—ã¦åæ˜ ã•ã›ã‚‹
 	DC_FlushRange(objcharaadr,0x20*4*16);	
 	for(i=0;i<4;i++){						
 		FONTOAM_BmpCutOamSize( &win[3], 4, 2, 4*i, 0,  (char*)TransWork);
@@ -2628,20 +2628,20 @@ static void ChangeSubPanelButtonWord(GF_BGL_BMPWIN *win, const u16 *tbl, u8 *Tra
 	}
 
 
-	// STRBUFì¬
+	// STRBUFä½œæˆ
 	strbuf_word = STRBUF_Create(SUB_BUTTON_STRING_MAX+1, HEAPID_NAMEIN);
 	
-	// BMPWIN‚Å•¶šƒLƒƒƒ‰ƒNƒ^‚ğì¬‚µ‚½ŒãAOBJVRAM‚É“]‘—‚·‚éˆ—‚ğ‚R‰ñŒJ‚è•Ô‚·
+	// BMPWINã§æ–‡å­—ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’ä½œæˆã—ãŸå¾Œã€OBJVRAMã«è»¢é€ã™ã‚‹å‡¦ç†ã‚’ï¼“å›ç¹°ã‚Šè¿”ã™
 	for(i=0;i<3;i++){
 		word[0] = tbl[i];
 		word[1] = EOM_;
 		GF_BGL_BmpWinDataFill( &win[i], 0 );
 
-		// STRBUF‚É•ÏŠ·ABMPˆ—‚ÅƒLƒƒƒ‰ƒNƒ^[•`‰æ
+		// STRBUFã«å¤‰æ›ã€BMPå‡¦ç†ã§ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æç”»
 		STRBUF_SetStringCode( strbuf_word, word );
 		objcharaadr=GF_STR_PrintCGXOnly(&win[i], strbuf_word, FONT_BUTTON, GF_PRINTCOLOR_MAKE(0xd,0x0e,0xf));
 
-		// BMPˆ—‚Å•`‰æ‚µ‚½ƒoƒbƒtƒ@‚ğOBJ‚É“]‘—‚µ‚Ä”½‰f‚³‚¹‚é
+		// BMPå‡¦ç†ã§æç”»ã—ãŸãƒãƒƒãƒ•ã‚¡ã‚’OBJã«è»¢é€ã—ã¦åæ˜ ã•ã›ã‚‹
 		DC_FlushRange(objcharaadr,0x20*4);	
 		GXS_LoadOBJ(objcharaadr, obj_word_offset[i]*0x20, 0x20*4);
 
@@ -2652,10 +2652,10 @@ static void ChangeSubPanelButtonWord(GF_BGL_BMPWIN *win, const u16 *tbl, u8 *Tra
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹‚ªˆÚ“®‚µ‚½‚ÉA‰º‰æ–Êƒ{ƒ^ƒ“‚Ì’†‚Ì•¶š‚ğ‘‚«Š·‚¦‚é
+ * ã‚«ãƒ¼ã‚½ãƒ«ãŒç§»å‹•ã—ãŸæ™‚ã«ã€ä¸‹ç”»é¢ãƒœã‚¿ãƒ³ã®ä¸­ã®æ–‡å­—ã‚’æ›¸ãæ›ãˆã‚‹
  *
  * @param   win		GF_BGL_BMPWIN*
- * @param   code	•¶šƒR[ƒh
+ * @param   code	æ–‡å­—ã‚³ãƒ¼ãƒ‰
  * @param   words	NAMEIN_WORK.subtouchword
  *
  * @retval  none		
@@ -2673,7 +2673,7 @@ static void SubPanelButton_CharaChange(GF_BGL_BMPWIN *win, STRCODE *str,int pos,
 		code = str[pos-1];
 	}
 
-	// “Áê•¶šEƒ{ƒ^ƒ“‚ÌƒR[ƒh‚Í‘S‚Ä‹ó”’•¶š‚Æ‚µ‚Ä•\¦
+	// ç‰¹æ®Šæ–‡å­—ãƒ»ãƒœã‚¿ãƒ³ã®ã‚³ãƒ¼ãƒ‰ã¯å…¨ã¦ç©ºç™½æ–‡å­—ã¨ã—ã¦è¡¨ç¤º
 	switch(code){
 	case DAKU_			:	case HANDAKU_		:	case SPACE_			:	case SKIP_			:
 	case NAMEIN_HIRA	:	case NAMEIN_KANA	:	case NAMEIN_ALPHA	:	case NAMEIN_KIGOU	:
@@ -2682,32 +2682,32 @@ static void SubPanelButton_CharaChange(GF_BGL_BMPWIN *win, STRCODE *str,int pos,
 	break;
 	}
 	
-	for(i=0;i<3;i++){		// ˆê’U‰Šú‰»
+	for(i=0;i<3;i++){		// ä¸€æ—¦åˆæœŸåŒ–
 		words[i] = spc_;
 	}
-	words[0] = code;		// Œ³ƒR[ƒh‘ã“ü
+	words[0] = code;		// å…ƒã‚³ãƒ¼ãƒ‰ä»£å…¥
 
 	if(code!=spc_){	
-		// •ÏŠ·ƒe[ƒuƒ‹‚ğŒŸõ‚µ‚Ä‘÷‰¹E”¼‘÷‰¹E¬•¶š‚ğ‚Â•¶š‚ğ’T‚·
+		// å¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¤œç´¢ã—ã¦æ¿éŸ³ãƒ»åŠæ¿éŸ³ãƒ»å°æ–‡å­—ã‚’æŒã¤æ–‡å­—ã‚’æ¢ã™
 		for(i=0;i<sizeof(convert_tbl)/(3*2);i++){
-			// •ÏŠ·‘O‚Ì•¶š
+			// å¤‰æ›å‰ã®æ–‡å­—
 			if(convert_tbl[i][0]==code){
 				for(r=0;r<3;r++){
-					words[r] =  convert_tbl[i][r];	// Œ©‚Â‚©‚Á‚½‚çƒe[ƒuƒ‹‚ğƒRƒs[
+					words[r] =  convert_tbl[i][r];	// è¦‹ã¤ã‹ã£ãŸã‚‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚³ãƒ”ãƒ¼
 				}
 				break;
 			}
-			// •ÏŠ·Œã‚Ì¬•¶ši¬•¶š‚à’¼Ú“ü—Í‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚½‚Ì‚Åj
+			// å¤‰æ›å¾Œã®å°æ–‡å­—ï¼ˆå°æ–‡å­—ã‚‚ç›´æ¥å…¥åŠ›ã§ãã‚‹ã‚ˆã†ã«ãªã£ãŸã®ã§ï¼‰
 			if(convert_tbl[i][2]==code){
 				for(r=0;r<3;r++){
-					words[r] =  convert_tbl[i][r];	// Œ©‚Â‚©‚Á‚½‚çƒe[ƒuƒ‹‚ğƒRƒs[
+					words[r] =  convert_tbl[i][r];	// è¦‹ã¤ã‹ã£ãŸã‚‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚³ãƒ”ãƒ¼
 				}
 				break;
 			}
 		}
 	}
 
-	// WINBMPã‚Åˆ—AOBJVRAM‚É“]‘—
+	// WINBMPä¸Šã§å‡¦ç†ã€OBJVRAMã«è»¢é€
 	ChangeSubPanelButtonWord(win, words, TransWork, ChangeWordStr);
 }
 
@@ -2715,10 +2715,10 @@ static void SubPanelButton_CharaChange(GF_BGL_BMPWIN *win, STRCODE *str,int pos,
 
 //------------------------------------------------------------------
 /**
- * Œ»İ“ü—Í•¶šƒpƒlƒ‹ƒ}ƒbƒv‚ğì¬‚·‚é
+ * ç¾åœ¨å…¥åŠ›æ–‡å­—ãƒ‘ãƒãƒ«ãƒãƒƒãƒ—ã‚’ä½œæˆã™ã‚‹
  *
- * @param   map[][INPUT_WORD_W]		‘‚«‚Ş•¶šƒ}ƒbƒvƒ[ƒN
- * @param   no						•¶šƒpƒlƒ‹”Ô†(0-3)
+ * @param   map[][INPUT_WORD_W]		æ›¸ãè¾¼ã‚€æ–‡å­—ãƒãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ * @param   no						æ–‡å­—ãƒ‘ãƒãƒ«ç•ªå·(0-3)
  *
  * @retval  none		
  */
@@ -2727,7 +2727,7 @@ static void MakeWordMap(u16 map[][INPUT_WORD_W], const int no)
 {
 	int i,j;
 	
-	//‰æ–ÊÅã’i‚Ìƒ{ƒ^ƒ“”z’uİ’è
+	//ç”»é¢æœ€ä¸Šæ®µã®ãƒœã‚¿ãƒ³é…ç½®è¨­å®š
 	for(i=0;i<INPUT_WORD_W;i++){
 		map[0][i] = str_func_b[no][i];
 	}
@@ -2741,22 +2741,22 @@ static void MakeWordMap(u16 map[][INPUT_WORD_W], const int no)
 
 //------------------------------------------------------------------
 /**
- * •¶š“ü—ÍŒˆ’è
+ * æ–‡å­—å…¥åŠ›æ±ºå®š
  *
  * @param   wk		NAMEIN_WORK*
- * @param   code	•¶šƒR[ƒh(ƒ{ƒ^ƒ“E“Áê•¶š‚àŠÜ‚Ş)
+ * @param   code	æ–‡å­—ã‚³ãƒ¼ãƒ‰(ãƒœã‚¿ãƒ³ãƒ»ç‰¹æ®Šæ–‡å­—ã‚‚å«ã‚€)
  *
- * @retval  int		’Êí‚ÍSEQ_MAINBI—¹‚ÍSEQ_OUT
+ * @retval  int		é€šå¸¸ã¯SEQ_MAINã€‚çµ‚äº†æ™‚ã¯SEQ_OUT
  */
 //------------------------------------------------------------------
 static int DecideMainButton(NAMEIN_WORK *wk,u16 code, int pad)
 {
-	// “Áê•¶šEƒ{ƒ^ƒ“‚ÌƒR[ƒh‚Í‘S‚Ä‹ó”’•¶š‚Æ‚µ‚Ä•\¦
+	// ç‰¹æ®Šæ–‡å­—ãƒ»ãƒœã‚¿ãƒ³ã®ã‚³ãƒ¼ãƒ‰ã¯å…¨ã¦ç©ºç™½æ–‡å­—ã¨ã—ã¦è¡¨ç¤º
 	if(code==SPACE_ || code == SKIP_){
 		code = spc_;
 	}
 
-	// ƒtƒŒƒ“ƒhƒR[ƒh“ü—Í‚Ì‚Ì§ŒÀ
+	// ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰å…¥åŠ›ã®æ™‚ã®åˆ¶é™
 	if(wk->inputmode==NAMEIN_FRIENDCODE){
 		if(code==NAMEIN_HIRA || code==NAMEIN_KANA || code==NAMEIN_ALPHA || code==NAMEIN_KIGOU ){
 			code = spc_;
@@ -2770,7 +2770,7 @@ static int DecideMainButton(NAMEIN_WORK *wk,u16 code, int pad)
 	}
 
 	switch(code){
-	// ‘÷‰¹ 
+	// æ¿éŸ³ 
 	case DAKU_			:	
 		if(ConvertWord(DAKU_WORD_START,DAKU_WORD_NUM,1,DAKU_,wk->inputword,wk->nowinput)){
 			GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_RESULT_NAME], 0x0101 );
@@ -2779,7 +2779,7 @@ static int DecideMainButton(NAMEIN_WORK *wk,u16 code, int pad)
 			Snd_SePlay(NAMEIN_SE_DECIDE);
 		}
 		break;
-	// ”¼‘÷‰¹
+	// åŠæ¿éŸ³
 	case HANDAKU_		:	
 		if(ConvertWord(HANDAKU_WORD_START,HANDAKU_WORD_NUM,2,HANDAKU_,wk->inputword,wk->nowinput)){
 			GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_RESULT_NAME], 0x0101 );
@@ -2788,7 +2788,7 @@ static int DecideMainButton(NAMEIN_WORK *wk,u16 code, int pad)
 			Snd_SePlay(NAMEIN_SE_DECIDE);
 		}
 		break;
-	// ¬•¶š
+	// å°æ–‡å­—
 	case NAMEIN_KOMOJI	:
 		if(RotateConvertWord(BIGSMALL_WORD_START,HANDAKU_WORD_NUM,wk->inputword,wk->nowinput)){
 			GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_RESULT_NAME], 0x0101 );
@@ -2799,27 +2799,27 @@ static int DecideMainButton(NAMEIN_WORK *wk,u16 code, int pad)
 		}
 		break;
 
-	// •¶šƒpƒlƒ‹Ø‚è‘Ö‚¦ƒ{ƒ^ƒ“
+	// æ–‡å­—ãƒ‘ãƒãƒ«åˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³
 	case NAMEIN_HIRA	:	case NAMEIN_KANA	:	case NAMEIN_ALPHA	:	case NAMEIN_KIGOU	:
-		// ƒpƒlƒ‹Ø‚è‘Ö‚¦
+		// ãƒ‘ãƒãƒ«åˆ‡ã‚Šæ›¿ãˆ
 		if(wk->mode!=code-NAMEIN_HIRA){
 			wk->seq  = NAMEIN_MODE_REQ;
 			wk->mode = code-NAMEIN_HIRA;
-			MakeWordMap(wk->wordmap, wk->mode);		// •¶š“ü—Íƒ}ƒbƒv·‚µ‘Ö‚¦
+			MakeWordMap(wk->wordmap, wk->mode);		// æ–‡å­—å…¥åŠ›ãƒãƒƒãƒ—å·®ã—æ›¿ãˆ
 			wk->funcbutton[code-NAMEIN_HIRA]++;
 			Snd_SePlay( NAMEIN_SE_CHANGEPANEL );
 			CLACT_SetDrawFlag( wk->clActWork[8], pad);
 		}
 		break;
 
-	// 1•¶š–ß‚é
+	// 1æ–‡å­—æˆ»ã‚‹
 	case NAMEIN_MODORU	:
 		if(wk->nowinput!=0){
 			wk->inputword[wk->nowinput-1] = EOM_;
 			wk->nowinput--;
 			GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_RESULT_NAME], 0x0101 );
 			if(wk->nowinput==0){
-				// 0•¶š‚¾‚Æ•¶šƒvƒŠƒ“ƒg‚ª¬—§‚µ‚È‚¢‚Ì‚Å
+				// 0æ–‡å­—ã ã¨æ–‡å­—ãƒ—ãƒªãƒ³ãƒˆãŒæˆç«‹ã—ãªã„ã®ã§
 				GF_BGL_BmpWinOn( &wk->NameInWin[BMP_RESULT_NAME] );
 			}else{
 				NameinWordPanelPrint(&wk->NameInWin[BMP_RESULT_NAME], wk->inputword, 0,0, 
@@ -2837,16 +2837,16 @@ static int DecideMainButton(NAMEIN_WORK *wk,u16 code, int pad)
 			CLACT_SetDrawFlag( wk->clActWork[8], pad);
 		}
 		break;
-	// –¼‘O“ü—ÍI—¹
+	// åå‰å…¥åŠ›çµ‚äº†
 	case NAMEIN_OWARI	:		
-		// ƒiƒrƒQ[ƒVƒ‡ƒ“ƒAƒCƒRƒ“ƒAƒjƒI—¹
+		// ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 //		MSG_DsIconFlashReq( wk->dsicon_task, MSG_DSI_REQ_FREE );
 
-		// ‚±‚Á‚¿‚Ì•û‚ª‚·‚®Á‚¦‚é‚Ì‚ÅˆÀ‘S
+		// ã“ã£ã¡ã®æ–¹ãŒã™ãæ¶ˆãˆã‚‹ã®ã§å®‰å…¨
 		MSG_DsIconFlashDelete( wk->dsicon_task );
 		CLACT_SetDrawFlag( wk->clActWork[8], pad);
 
-		// “ü—ÍI—¹
+		// å…¥åŠ›çµ‚äº†
 		if(wk->endmode==0){
 			Snd_SePlay( NAMEIN_SE_END );
 			wk->funcbutton[6]++;
@@ -2857,12 +2857,12 @@ static int DecideMainButton(NAMEIN_WORK *wk,u16 code, int pad)
 		}
 	break;
 
-	// ’Êí‚Ì•¶š“ü—Í
+	// é€šå¸¸ã®æ–‡å­—å…¥åŠ›
 	default:
 		if(wk->mode==NAMEIN_MODE_NUMCODE && code==spc_){
 			return SEQ_MAIN;
 		}
-		if(wk->nowinput!=wk->inputmax){				//Max‚Ü‚Ås‚Á‚Ä‚È‚©‚Á‚½‚ç“ü—Í
+		if(wk->nowinput!=wk->inputmax){				//Maxã¾ã§è¡Œã£ã¦ãªã‹ã£ãŸã‚‰å…¥åŠ›
 			wk->inputword[wk->nowinput] = code;
 			GF_BGL_BmpWinDataFill( &wk->NameInWin[BMP_RESULT_NAME], 0x0101 );
 			NameinWordPanelPrint( &wk->NameInWin[BMP_RESULT_NAME], wk->inputword, 0,0, 
@@ -2871,7 +2871,7 @@ static int DecideMainButton(NAMEIN_WORK *wk,u16 code, int pad)
 			InputResultUnderLineMove(wk->NameLineActWork,wk->nowinput, wk->inputmax);
 			Snd_SePlay(NAMEIN_SE_DECIDE);
 
-				// ”¼“§–¾‚É‚µ‚ÄÔ‚¢ŠÛ‚ÌƒAƒjƒ‚ÉØ‚è‘Ö‚¦‚é
+				// åŠé€æ˜ã«ã—ã¦èµ¤ã„ä¸¸ã®ã‚¢ãƒ‹ãƒ¡ã«åˆ‡ã‚Šæ›¿ãˆã‚‹
 				CLACT_SetDrawFlag( wk->clActWork[8], 1);
 				CLACT_ObjModeSet( wk->clActWork[8], GX_OAM_MODE_XLU );
 				G2_SetBlendAlpha( 0,GX_BLEND_PLANEMASK_BG0|GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG2,8,8 );
@@ -2893,8 +2893,8 @@ static int DecideMainButton(NAMEIN_WORK *wk,u16 code, int pad)
 
 //------------------------------------------------------------------
 /**
- * ¬•¶šE‘÷“_E”¼‘÷“_‚ª•À‚ñ‚Å‚¢‚éƒe[ƒuƒ‹‚É‡Ÿ“ü‚ê‘Ö‚¦‚½•¶š‚ğ•Ô‚·
- * u‚ v‚È‚çu‚Ÿ¨‚ vAu‚Ív‚È‚çu‚Î¨‚Ï¨‚Ív
+ * å°æ–‡å­—ãƒ»æ¿ç‚¹ãƒ»åŠæ¿ç‚¹ãŒä¸¦ã‚“ã§ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã«é †æ¬¡å…¥ã‚Œæ›¿ãˆãŸæ–‡å­—ã‚’è¿”ã™
+ * ã€Œã‚ã€ãªã‚‰ã€Œãâ†’ã‚ã€ã€ã€Œã¯ã€ãªã‚‰ã€Œã°â†’ã±â†’ã¯ã€
  * @param   tbl		
  * @param   pos		
  *
@@ -2915,14 +2915,14 @@ static u16 GetConvertWord(const u16 *tbl, int pos)
 
 //------------------------------------------------------------------
 /**
- * u‚©‚½‚¿‚ğ‚©‚¦‚évƒ{ƒ^ƒ“ˆ—
+ * ã€Œã‹ãŸã¡ã‚’ã‹ãˆã‚‹ã€ãƒœã‚¿ãƒ³å‡¦ç†
  *
- * @param   start	convert_tbl‚ğŒŸõŠJn‚·‚éˆÊ’u
- * @param   num		convert_tbl‚ğŒŸõI—¹‚·‚éˆÊ’u
- * @param   str		•¶š—ñƒoƒbƒtƒ@
- * @param   pos		Œ»İ‚ÌƒJ[ƒ\ƒ‹
+ * @param   start	convert_tblã‚’æ¤œç´¢é–‹å§‹ã™ã‚‹ä½ç½®
+ * @param   num		convert_tblã‚’æ¤œç´¢çµ‚äº†ã™ã‚‹ä½ç½®
+ * @param   str		æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
+ * @param   pos		ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«
  *
- * @retval  int		0‚È‚ç¸”s	1‚È‚ç¬Œ÷istr‚Í‘‚«Š·‚í‚Á‚Ä‚¢‚é)
+ * @retval  int		0ãªã‚‰å¤±æ•—	1ãªã‚‰æˆåŠŸï¼ˆstrã¯æ›¸ãæ›ã‚ã£ã¦ã„ã‚‹)
  */
 //------------------------------------------------------------------
 static int RotateConvertWord(int start, int num, u16 *str, int pos)
@@ -2948,16 +2948,16 @@ static int RotateConvertWord(int start, int num, u16 *str, int pos)
 
 //------------------------------------------------------------------
 /**
- * “ü—ÍÏ‚İ•¶š•ÏŠ·ˆ—
+ * å…¥åŠ›æ¸ˆã¿æ–‡å­—å¤‰æ›å‡¦ç†
  *
- * @param   start	convert_tbl‚ÌŒŸõŠJnˆÊ’u
- * @param   num		convert_tbl‚ÌŒŸõI—¹ˆÊ’u
- * @param   target	convert_tbl‚Ì‚O•¶š–Ú‚Æ”äŠr‚·‚é‚Ì‚Í‚P”Ô–Ú‚©‚Q”Ô–Ú‚©i1or2)
- * @param   flag	DAKU_,HANDAKU_,NAMEIN_KOMOJI‚Ì‚Ç‚ê‚©
- * @param   str		“ü—ÍÏ‚İ•¶š—ñ
- * @param   pos		Œ»İ“ü—Í‘Ò‚¿‚ÌêŠ
+ * @param   start	convert_tblã®æ¤œç´¢é–‹å§‹ä½ç½®
+ * @param   num		convert_tblã®æ¤œç´¢çµ‚äº†ä½ç½®
+ * @param   target	convert_tblã®ï¼æ–‡å­—ç›®ã¨æ¯”è¼ƒã™ã‚‹ã®ã¯ï¼‘ç•ªç›®ã‹ï¼’ç•ªç›®ã‹ï¼ˆ1or2)
+ * @param   flag	DAKU_,HANDAKU_,NAMEIN_KOMOJIã®ã©ã‚Œã‹
+ * @param   str		å…¥åŠ›æ¸ˆã¿æ–‡å­—åˆ—
+ * @param   pos		ç¾åœ¨å…¥åŠ›å¾…ã¡ã®å ´æ‰€
  *
- * @retval  int		0=•ÏŠ·–³‚µ	1=•ÏŠ·‚ ‚è
+ * @retval  int		0=å¤‰æ›ç„¡ã—	1=å¤‰æ›ã‚ã‚Š
  */
 //------------------------------------------------------------------
 static int ConvertWord(int start, int num, int target, int flag, u16 *str, int pos)
@@ -2965,12 +2965,12 @@ static int ConvertWord(int start, int num, int target, int flag, u16 *str, int p
 	int i;
 	u16 code;
 
-	// 1•¶š‚à“ü—Í‚µ‚Ä‚¢‚È‚¢ê‡‚Í•ÏŠ·‚Í”­¶‚µ‚È‚¢
+	// 1æ–‡å­—ã‚‚å…¥åŠ›ã—ã¦ã„ãªã„å ´åˆã¯å¤‰æ›ã¯ç™ºç”Ÿã—ãªã„
 	if(pos==0 || str[pos-1]==spc_){
 		return 0;
 	}	
 
-	// Œ³‚Ì•¶š‚ğ•ÏŠ·‚·‚é
+	// å…ƒã®æ–‡å­—ã‚’å¤‰æ›ã™ã‚‹
 	code=str[pos-1];
 	for(i=start;i<num;i++){
 		if(convert_tbl[i][0]==code){
@@ -2979,7 +2979,7 @@ static int ConvertWord(int start, int num, int target, int flag, u16 *str, int p
 		}
 	}
 
-	// •ÏŠ·Ï‚İ‚Ì•¶š‚ğŒ³‚É–ß‚·
+	// å¤‰æ›æ¸ˆã¿ã®æ–‡å­—ã‚’å…ƒã«æˆ»ã™
 	for(i=start;i<num;i++){
 		if(convert_tbl[i][target]==code){
 			str[pos-1]=convert_tbl[i][0];
@@ -2987,7 +2987,7 @@ static int ConvertWord(int start, int num, int target, int flag, u16 *str, int p
 		}
 	}
 
-	//“Áêˆ—u‚Î¨‚Ïvu‚Ã¨‚Áv‚È‚Ç
+	//ç‰¹æ®Šå‡¦ç†ã€Œã°â†’ã±ã€ã€Œã¥â†’ã£ã€ãªã©
 
 	switch(flag){
 	case DAKU_:
@@ -3018,18 +3018,18 @@ static int ConvertWord(int start, int num, int target, int flag, u16 *str, int p
 		break;
 	}	
 
-	// •ÏŠ·•¶š‚Å‚Í‚È‚©‚Á‚½
+	// å¤‰æ›æ–‡å­—ã§ã¯ãªã‹ã£ãŸ
 	return 0;
 }
 
 
 //------------------------------------------------------------------
 /**
- * “ü—ÍÏ‚İ•¶š—ñ‚Ì‰º‚ÌƒAƒ“ƒ_[ƒ‰ƒCƒ“‚ğ“®‚©‚·w’è‚ğs‚¤
+ * å…¥åŠ›æ¸ˆã¿æ–‡å­—åˆ—ã®ä¸‹ã®ã‚¢ãƒ³ãƒ€ãƒ¼ãƒ©ã‚¤ãƒ³ã‚’å‹•ã‹ã™æŒ‡å®šã‚’è¡Œã†
  *
- * @param   lineact		ƒAƒ“ƒ_[ƒ‰ƒCƒ“‚ÌƒZƒ‹ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
- * @param   pos			ˆÊ’u
- * @param   max			•¶šÅ‘å”
+ * @param   lineact		ã‚¢ãƒ³ãƒ€ãƒ¼ãƒ©ã‚¤ãƒ³ã®ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos			ä½ç½®
+ * @param   max			æ–‡å­—æœ€å¤§æ•°
  *
  * @retval  none		
  */
@@ -3038,17 +3038,17 @@ static void InputResultUnderLineMove(CLACT_WORK_PTR *lineact,int pos, int max)
 {
 	int i;
 	for(i=0;i<max;i++){
-		CLACT_AnmChg( lineact[i], 43 );		// ‘S‚ÄƒAƒ“ƒ_[ƒ‰ƒCƒ“‚ª“®‚©‚È‚¢ó‘Ô‚ÉƒNƒŠƒA
+		CLACT_AnmChg( lineact[i], 43 );		// å…¨ã¦ã‚¢ãƒ³ãƒ€ãƒ¼ãƒ©ã‚¤ãƒ³ãŒå‹•ã‹ãªã„çŠ¶æ…‹ã«ã‚¯ãƒªã‚¢
 	}
 	if(pos!=max){
-		CLACT_AnmChg( lineact[pos], 44 );	// w’è‚Ì•¶š‚ğã‰º‚É“®‚©‚·
+		CLACT_AnmChg( lineact[pos], 44 );	// æŒ‡å®šã®æ–‡å­—ã‚’ä¸Šä¸‹ã«å‹•ã‹ã™
 	}
 }
 
 
 #define PLATE_CHARA_OFFSET1	( 12 )
 #define PLATE_CHARA_OFFSET2	( 16 )
-#define PLATE_H_CHARASIZE	(  8 )	// •¶šƒpƒlƒ‹“à‚ÌBMP‘‚«‚İ•”•ªƒLƒƒƒ‰c•
+#define PLATE_H_CHARASIZE	(  8 )	// æ–‡å­—ãƒ‘ãƒãƒ«å†…ã®BMPæ›¸ãè¾¼ã¿éƒ¨åˆ†ã‚­ãƒ£ãƒ©ç¸¦å¹…
 
 static const u8 plate_num[]={2,2,3,2,2};
 static const u8 plate_table[][3]={
@@ -3075,11 +3075,11 @@ static const u8 plate_wall_col[]={3,6,0xc,9,9};
 
 //------------------------------------------------------------------
 /**
- * •¶šƒpƒlƒ‹‚Ì•¶š”z’uE˜g•`‰æ‚È‚Ç‚ğs‚¤
+ * æ–‡å­—ãƒ‘ãƒãƒ«ã®æ–‡å­—é…ç½®ãƒ»æ æç”»ãªã©ã‚’è¡Œã†
  *
  * @param   win			GF_BGL_WINBMP*
- * @param   bgchara		•¶šƒpƒlƒ‹‚Ì”wŒiƒLƒƒƒ‰
- * @param   frame		‚O`‚R‚Ì•¶šƒpƒlƒ‹”Ô†
+ * @param   bgchara		æ–‡å­—ãƒ‘ãƒãƒ«ã®èƒŒæ™¯ã‚­ãƒ£ãƒ©
+ * @param   frame		ï¼ã€œï¼“ã®æ–‡å­—ãƒ‘ãƒãƒ«ç•ªå·
  * @param   color		GF_PRINTCOLOR
  *
  * @retval  none		
@@ -3089,10 +3089,10 @@ static void WordPanelSetUp(GF_BGL_BMPWIN *win,u16 bgchara, int frame, GF_PRINTCO
 {
 	int i,r,h;
 
-	// ‚»‚ê‚¼‚ê‚Ì•¶šƒpƒlƒ‹‚Ì”wŒiF‚ÅƒNƒŠƒA
+	// ãã‚Œãã‚Œã®æ–‡å­—ãƒ‘ãƒãƒ«ã®èƒŒæ™¯è‰²ã§ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( win, bgchara );
 
-	// •¶šƒpƒlƒ‹“à‚ÌdØ‚è‚ğ•`‰æ
+	// æ–‡å­—ãƒ‘ãƒãƒ«å†…ã®ä»•åˆ‡ã‚Šã‚’æç”»
 //	for(r=0;r<plate_num[frame];r++){
 //		for(i=0;i<PLATE_H_CHARASIZE;i++){
 //			GF_BGL_BmpWinPrint(	win, (void*)&dakuten_Character[(plate_chara_no[frame][r]+plate_chara_pos[frame])*8*8/2],
@@ -3101,7 +3101,7 @@ static void WordPanelSetUp(GF_BGL_BMPWIN *win,u16 bgchara, int frame, GF_PRINTCO
 //		}
 //	}
 
-	// •¶šƒpƒlƒ‹‚És¼–Í—l‚ğ•`‚­
+	// æ–‡å­—ãƒ‘ãƒãƒ«ã«å¸‚æ¾æ¨¡æ§˜ã‚’æã
 	for(i=0;i<6;i++){
 		GF_BGL_BmpWinFill( win, plate_wall_col[frame], 16+32*i, 0,  16,   PANEL_H );		
 		GF_BGL_BmpWinFill( win, plate_wall_col[frame], 16+32*i, 19*2, 16, PANEL_H );		
@@ -3112,23 +3112,23 @@ static void WordPanelSetUp(GF_BGL_BMPWIN *win,u16 bgchara, int frame, GF_PRINTCO
 		GF_BGL_BmpWinFill( win, plate_wall_col[frame], 32*i, 19*3, 16, PANEL_H );		
 	}
 
-	// •`‰æ
+	// æç”»
 	for(i=0;i<5;i++){
 		NameinWordPanelPrint(win,str_nametbl[frame][i],0,i*PANEL_H+4,
 								WORDPANEL_WORD_SPACE, MSG_NO_PUT,color,dakuten_Character);
 	}
-	// “]‘—
+	// è»¢é€
 	GF_BGL_BmpWinOn( win );
 
 }
 
 //------------------------------------------------------------------
 /**
- * ‹@”\ƒ{ƒ^ƒ“i‚©‚ÈEƒJƒiEABCE‚«‚²‚¤^¬•¶š^‚à‚Ç‚é‚¨‚í‚éj‚ÌƒAƒjƒˆ—
+ * æ©Ÿèƒ½ãƒœã‚¿ãƒ³ï¼ˆã‹ãªãƒ»ã‚«ãƒŠãƒ»ABCãƒ»ãã”ã†ï¼å°æ–‡å­—ï¼ã‚‚ã©ã‚‹ãŠã‚ã‚‹ï¼‰ã®ã‚¢ãƒ‹ãƒ¡å‡¦ç†
  *
- * @param   funcbutton[]	ƒ{ƒ^ƒ“‰Ÿ‚µó‘Ôƒtƒ‰ƒO—ñ
+ * @param   funcbutton[]	ãƒœã‚¿ãƒ³æŠ¼ã—çŠ¶æ…‹ãƒ•ãƒ©ã‚°åˆ—
  * @param   ButtonAct		CLACT_WORK_PTR
- * @param   frame			Œ»İ‚Ì•¶šƒpƒlƒ‹”Ô†
+ * @param   frame			ç¾åœ¨ã®æ–‡å­—ãƒ‘ãƒãƒ«ç•ªå·
  *
  * @retval  none		
  */
@@ -3139,9 +3139,9 @@ static void FuncButtonAnimation(int funcbutton[], CLACT_WORK_PTR *ButtonAct, int
     
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/10/03
-	// •¶šíƒ{ƒ^ƒ“‚ğ3í—Ş‚É•ÏX
+	// æ–‡å­—ç¨®ãƒœã‚¿ãƒ³ã‚’3ç¨®é¡ã«å¤‰æ›´
 
-	// ABC abc !?ô ƒ{ƒ^ƒ“
+	// ABC abc !?â™ª ãƒœã‚¿ãƒ³
 	for(i=0;i<FONT_BUTTON_NUM;i++){
 		if(funcbutton[i]){
 			for(r=0;r<FONT_BUTTON_NUM;r++){
@@ -3154,19 +3154,19 @@ static void FuncButtonAnimation(int funcbutton[], CLACT_WORK_PTR *ButtonAct, int
 
 	// ----------------------------------------------------------------------------
 
-	// ¬•¶š‰»ƒ{ƒ^ƒ“i‚©‚È ƒJƒi ABC‚É‚æ‚Á‚ÄƒZƒ‹ƒAƒjƒ‚ªˆá‚¤j
+	// å°æ–‡å­—åŒ–ãƒœã‚¿ãƒ³ï¼ˆã‹ãª ã‚«ãƒŠ ABCã«ã‚ˆã£ã¦ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãŒé•ã†ï¼‰
 //	if(funcbutton[4]){
-//		CLACT_AnmChg( ButtonAct[4], main_button_info[4][2] + frame);	// u‹L†v‚Ì¬•¶š‰»ƒ{ƒ^ƒ“‚Í‘¶İ‚µ‚È‚¢
+//		CLACT_AnmChg( ButtonAct[4], main_button_info[4][2] + frame);	// ã€Œè¨˜å·ã€ã®å°æ–‡å­—åŒ–ãƒœã‚¿ãƒ³ã¯å­˜åœ¨ã—ãªã„
 //	}
 
-	// ‚à‚Ç‚é ‚¨‚í‚éƒ{ƒ^ƒ“
+	// ã‚‚ã©ã‚‹ ãŠã‚ã‚‹ãƒœã‚¿ãƒ³
 	for(i=5;i<7;i++){
 		if(funcbutton[i]){
 			CLACT_AnmChg( ButtonAct[i], main_button_info[i][2]+1);
 		}
 	}
 	
-	// ƒAƒjƒ‚ª”½‰f‚³‚ê‚½‚çƒNƒŠƒA
+	// ã‚¢ãƒ‹ãƒ¡ãŒåæ˜ ã•ã‚ŒãŸã‚‰ã‚¯ãƒªã‚¢
 	for(i=0;i<7;i++){
 		funcbutton[i] = 0;
 	}
@@ -3176,7 +3176,7 @@ static void FuncButtonAnimation(int funcbutton[], CLACT_WORK_PTR *ButtonAct, int
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“§Œä
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ¶å¾¡
  *
  * @param   wk		
  *
@@ -3185,26 +3185,26 @@ static void FuncButtonAnimation(int funcbutton[], CLACT_WORK_PTR *ButtonAct, int
 //------------------------------------------------------------------
 static void CursorAnimationControl( NAMEIN_WORK *wk )
 {
-	// ƒJ[ƒ\ƒ‹‚ªƒAƒjƒI—¹ó‘Ô‚É‚È‚Á‚Ä‚¢‚éê‡‚Í’ÊíƒJ[ƒ\ƒ‹‚É•Ï‰»‚³‚¹‚é
+	// ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚¢ãƒ‹ãƒ¡çµ‚äº†çŠ¶æ…‹ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯é€šå¸¸ã‚«ãƒ¼ã‚½ãƒ«ã«å¤‰åŒ–ã•ã›ã‚‹
 	if(!CLACT_AnmActiveCheck( wk->clActWork[8] )){
-		if(wk->nowinput==wk->inputmax){			// •¶š“ü—Íƒ}ƒbƒNƒX‚Ü‚Å‚«‚½‚çuI‚í‚èvƒ{ƒ^ƒ“‚Ö
+		if(wk->nowinput==wk->inputmax){			// æ–‡å­—å…¥åŠ›ãƒãƒƒã‚¯ã‚¹ã¾ã§ããŸã‚‰ã€Œçµ‚ã‚ã‚Šã€ãƒœã‚¿ãƒ³ã¸
 			wk->Cursor.x = 12;
 			wk->Cursor.y = 0;
 			CLACT_AnmChg( wk->clActWork[8], NAMEIN_CURSOR_ANM_START);
-			OS_Printf("‘‚«Š·‚¦‚½\n");
+			OS_Printf("æ›¸ãæ›ãˆãŸ\n");
 		}else{
 			CLACT_AnmChg( wk->clActWork[8], NAMEIN_CURSOR_ANM_START);
 		}
 
-		// •\¦‚n‚m‚È‚çƒJ[ƒ\ƒ‹Œ`ó‚ğ–ß‚·E•\¦‚n‚e‚e‚È‚çƒJ[ƒ\ƒ‹‚ğ‰B‚·
+		// è¡¨ç¤ºï¼¯ï¼®ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«å½¢çŠ¶ã‚’æˆ»ã™ãƒ»è¡¨ç¤ºï¼¯ï¼¦ï¼¦ãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã‚’éš ã™
 		if(wk->Cursor.on==0){
 			CLACT_SetDrawFlag( wk->clActWork[8], 0);
 		}else{
-			CursorAppearUpDate(wk,0);		// ˆÚ“®‚ÌŒ‹‰ÊƒJ[ƒ\ƒ‹‚ÌŒ`ó‚ª‚Ç‚Ì‚æ‚¤‚É•Ï‚í‚é‚©‚ğŒˆ’è‚·‚é
+			CursorAppearUpDate(wk,0);		// ç§»å‹•ã®çµæœã‚«ãƒ¼ã‚½ãƒ«ã®å½¢çŠ¶ãŒã©ã®ã‚ˆã†ã«å¤‰ã‚ã‚‹ã‹ã‚’æ±ºå®šã™ã‚‹
 		}
 		wk->Cursor.decide = 0;
 
-		// ”¼“§–¾‚n‚a‚i‚ğ‰ğœ
+		// åŠé€æ˜ï¼¯ï¼¢ï¼ªã‚’è§£é™¤
 		CLACT_ObjModeSet( wk->clActWork[8], GX_OAM_MODE_NORMAL );
 	}
 
@@ -3213,13 +3213,13 @@ static void CursorAnimationControl( NAMEIN_WORK *wk )
 #ifdef NAMEIN_MAINUSE_TOUCHPANEL
 //------------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹”»’èˆ—
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆ¤å®šå‡¦ç†
  *
  * @param   wk
  * @return  
  */
 //------------------------------------------------------------------
-//ƒf[ƒ^İ’è\‘¢‘Ìi‘ƒoƒCƒiƒŠƒf[ƒ^j
+//ãƒ‡ãƒ¼ã‚¿è¨­å®šæ§‹é€ ä½“ï¼ˆå›½ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ï¼‰
 typedef struct NM_TP_DATA_tag
 {
 	u8 x;
@@ -3230,16 +3230,16 @@ typedef struct NM_TP_DATA_tag
 }NM_TP_DATA;
 
 enum {
-	CTYPE_S1 = 0,		// ‚©‚½‚È‚©E‚Ğ‚ç‚ª‚ÈE‚`‚a‚bE‚«‚²‚¤
-	CTYPE_S2 = 1,		// ‚à‚Ç‚éE‚¨‚í‚è
-	CTYPE_WD = 2,		// •¶š
+	CTYPE_S1 = 0,		// ã‹ãŸãªã‹ãƒ»ã²ã‚‰ãŒãªãƒ»ï¼¡ï¼¢ï¼£ãƒ»ãã”ã†
+	CTYPE_S2 = 1,		// ã‚‚ã©ã‚‹ãƒ»ãŠã‚ã‚Š
+	CTYPE_WD = 2,		// æ–‡å­—
 };
 
 
 static const NM_TP_DATA TouchPanelDataTable[] = {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/10/03
-	// •¶šíƒ{ƒ^ƒ“‚ğ3í—Ş‚É•ÏX
+	// æ–‡å­—ç¨®ãƒœã‚¿ãƒ³ã‚’3ç¨®é¡ã«å¤‰æ›´
 	{ MAIN_BUTTON1_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S1, 0,0},
 	{ MAIN_BUTTON2_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S1, 2,0},	
 	{ MAIN_BUTTON3_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S1, 4,0},
@@ -3283,7 +3283,7 @@ static const NM_TP_DATA TouchPanelDataTable[] = {
 
 //------------------------------------------------------------------
 /**
- * @brief   •¶š”Õ‚É‘Î‰‚µ‚½ƒ^ƒbƒ`”»’èƒ‹[ƒ`ƒ“
+ * @brief   æ–‡å­—ç›¤ã«å¯¾å¿œã—ãŸã‚¿ãƒƒãƒåˆ¤å®šãƒ«ãƒ¼ãƒãƒ³
  *
  * @param   wk		
  *
@@ -3295,14 +3295,14 @@ static BOOL TouchPanelCheck( NAMEIN_WORK *wk )
 	int	i,start=0;
 	u8	x,y,start_x,start_y,size_x,size_y;
 
-	// ƒtƒŒƒ“ƒhƒR[ƒh“ü—Í‚Ì‚Í•¶š”ÕØ‚è‘Ö‚¦ƒ{ƒ^ƒ“‚ğ–³Œø‚É‚·‚é
+	// ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰å…¥åŠ›ã®æ™‚ã¯æ–‡å­—ç›¤åˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 	if(wk->inputmode==NAMEIN_FRIENDCODE){
 		start = 4;
 	}
 
 	if( sys.tp_trg ){
 
-		//Š„‚è‚İ‚Å’l‚ª•Ï‚í‚ç‚È‚¢‚æ‚¤‚É
+		//å‰²ã‚Šè¾¼ã¿ã§å€¤ãŒå¤‰ã‚ã‚‰ãªã„ã‚ˆã†ã«
 		x = sys.tp_x;
 		y = sys.tp_y;
 
@@ -3310,13 +3310,13 @@ static BOOL TouchPanelCheck( NAMEIN_WORK *wk )
 			start_x = TouchPanelDataTable[i].x;
 			start_y = TouchPanelDataTable[i].y;
 
-			// ƒ{ƒ^ƒ“•‚ğæ“¾
+			// ãƒœã‚¿ãƒ³å¹…ã‚’å–å¾—
 			switch( TouchPanelDataTable[i].type ){
 
 			case CTYPE_S1:
 				// ----------------------------------------------------------------------------
 				// localize_spec_mark(LANG_ALL) imatake 2006/10/03
-				// •¶šíƒ{ƒ^ƒ“‚ğ3í—Ş‚É•ÏX
+				// æ–‡å­—ç¨®ãƒœã‚¿ãƒ³ã‚’3ç¨®é¡ã«å¤‰æ›´
 				size_x = 32-1;
 				// ----------------------------------------------------------------------------
 				size_y = 22;
@@ -3331,7 +3331,7 @@ static BOOL TouchPanelCheck( NAMEIN_WORK *wk )
 				break;
 			}
 			
-			// “–‚½‚è”»’è
+			// å½“ãŸã‚Šåˆ¤å®š
 			if((x >= start_x)&&(y >= start_y)&&(x <= (start_x+size_x))&&(y <= (start_y+size_y))){
 				wk->Cursor.x = TouchPanelDataTable[i].cx;
 				wk->Cursor.y = TouchPanelDataTable[i].cy;
@@ -3345,7 +3345,7 @@ static BOOL TouchPanelCheck( NAMEIN_WORK *wk )
 #ifdef DEBUG_OAM_POSPRINT
 //------------------------------------------------------------------
 /**
- * @brief   À•WŠm”F—p‚n‚`‚l‚Ì•\¦
+ * @brief   åº§æ¨™ç¢ºèªç”¨ï¼¯ï¼¡ï¼­ã®è¡¨ç¤º
  *
  * @param   none		
  *
@@ -3362,7 +3362,7 @@ static testclact_set( void )
 	case CTYPE_S1:
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/10/03
-		// •¶šíƒ{ƒ^ƒ“‚ğ3í—Ş‚É•ÏX
+		// æ–‡å­—ç¨®ãƒœã‚¿ãƒ³ã‚’3ç¨®é¡ã«å¤‰æ›´
 		size_x = 32-1;
 		// ----------------------------------------------------------------------------
 		size_y = 22;

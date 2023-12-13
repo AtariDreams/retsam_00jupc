@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_081.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			081�@�Z���o�������A�G�̍U����������ƋZ�̈З͂��オ��
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			081　技を出した時、敵の攻撃が当たると技の威力が上がる
  *
  *@author	HisashiSogabe
  *@data		2006.01.19

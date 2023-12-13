@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_data.h
- * @bfief	ƒ|ƒPƒbƒ`ƒf[ƒ^ƒAƒNƒZƒX—pƒwƒbƒ_
+ * @bfief	ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ˜ãƒƒãƒ€
  * @author	taya GAME FREAK inc.
  * @date	2005.10.27
  */
@@ -9,7 +9,7 @@
 #ifndef _POKETCH_DATA_H_
 #define _POKETCH_DATA_H_
 
-#include "system/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "system/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 #include "poketool/poke_tool.h"
 
 #include "poketch_app_no.h"
@@ -19,7 +19,7 @@
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒbƒ`ƒf[ƒ^Œ^’è‹`
+ * @brief	ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿å‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct _POKETCH_DATA POKETCH_DATA;
@@ -27,7 +27,7 @@ typedef struct _POKETCH_DATA POKETCH_DATA;
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒbƒ`‰æ–ÊƒJƒ‰[ƒ^ƒCƒv
+ * @brief	ãƒã‚±ãƒƒãƒç”»é¢ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
  */
 //----------------------------------------------------------
 enum {
@@ -45,27 +45,27 @@ enum {
 
 //----------------------------------------------------------
 /**
- * @brief	ŠÖ˜A’è”
+ * @brief	é–¢é€£å®šæ•°
  */
 //----------------------------------------------------------
 enum {
-	POKETCH_MAP_MARK_MAX = 6,		///< ƒ}[ƒLƒ“ƒOƒ}ƒbƒv‚Åˆµ‚¤ƒ}[ƒN‚Ìí—Ş
-	POKETCH_DOTART_DATA_BYTESIZE = 120,		// ƒhƒbƒgƒA[ƒgƒf[ƒ^ƒTƒCƒYi24*20*2bitj
+	POKETCH_MAP_MARK_MAX = 6,		///< ãƒãƒ¼ã‚­ãƒ³ã‚°ãƒãƒƒãƒ—ã§æ‰±ã†ãƒãƒ¼ã‚¯ã®ç¨®é¡
+	POKETCH_DOTART_DATA_BYTESIZE = 120,		// ãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆ24*20*2bitï¼‰
 
-	POKETCH_POKE_HISTORY_COUNT_MAX = 12,	// ƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[‚Ì‹L˜^Œ”
+	POKETCH_POKE_HISTORY_COUNT_MAX = 12,	// ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼ã®è¨˜éŒ²ä»¶æ•°
 };
 
 
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //----------------------------------------------------------
 extern int PoketchData_GetWorkSize(void);
 extern POKETCH_DATA * PoketchData_AllocWork(u32 heapID);
 
 //----------------------------------------------------------
-//	POKETCH_DATA‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	POKETCH_DATAæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern void PoketchData_Init(POKETCH_DATA* poketch_data);
 extern void PoketchData_SetPoketchGetFlag( POKETCH_DATA* poketch_data );
@@ -97,24 +97,24 @@ extern BOOL PoketchData_Calendar_GetMark( const POKETCH_DATA* poketch_data, u32 
 extern void PoketchData_MarkMap_SetMarkPos( POKETCH_DATA* poketch_data, int id, u8 x, u8 y );
 extern void PoketchData_MarkMap_GetMarkPos( const POKETCH_DATA* poketch_data, int id, u8* x, u8* y );
 
-// ƒhƒbƒgƒA[ƒg
+// ãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆ
 extern BOOL PoketchData_DotArt_GetModifiedFlag( const POKETCH_DATA* poketch_data );
 extern void PoketchData_DotArt_GetBitData( const POKETCH_DATA* poketch_data, u8* dst );
 extern void PoketchData_DotArt_SetBitData( POKETCH_DATA* poketch_data, const u8* src );
 
-// ƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[
+// ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼
 extern void PoketchData_PokeHistory_Add( POKETCH_DATA* poketch_data, const POKEMON_PASO_PARAM* ppp );
 extern int PoketchData_PokeHistory_GetRecordCount( const POKETCH_DATA* poketch_data );
 extern void PoketchData_PokeHistory_GetRecord( const POKETCH_DATA* poketch_data, int index, int* monsno, int* iconPattern );
 extern u32 PoketchData_PokeHistory_GetFormNo( const POKETCH_DATA* poketch_data, int index );
 
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^æ“¾‚Ì‚½‚ß‚ÌŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern POKETCH_DATA * SaveData_GetPoketchData(SAVEDATA * sv);
 
 //----------------------------------------------------------
-//	ƒfƒoƒbƒO—p
+//	ãƒ‡ãƒãƒƒã‚°ç”¨
 //----------------------------------------------------------
 #ifdef PM_DEBUG
 extern void PoketchData_AddAllApplication( POKETCH_DATA* poketch_data );

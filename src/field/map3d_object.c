@@ -1,10 +1,10 @@
 //============================================================================================
 /**
  * @file	map3d_object.c
- * @bfief	ƒ}ƒbƒv3DƒIƒuƒWƒFƒNƒgi”z’uƒ‚ƒfƒ‹jˆ—
+ * @bfief	ãƒãƒƒãƒ—3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆé…ç½®ãƒ¢ãƒ‡ãƒ«ï¼‰å‡¦ç†
  * @author	Nozomu Saitou
  *
- * 2005.12.18	field_encount.c‚©‚çƒGƒ“ƒJƒEƒ“ƒg”»’è•”•ª‚ğˆÚ“®
+ * 2005.12.18	field_encount.cã‹ã‚‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆåˆ¤å®šéƒ¨åˆ†ã‚’ç§»å‹•
  */
 //============================================================================================
 
@@ -35,27 +35,27 @@ static void DrawModelQuick(	const NNSG3dResMdl* pResMdl,
 							const int inObjID);
 
 typedef	struct	{
-	int	id;			//ƒf[ƒ^‚h‚c
+	int	id;			//ãƒ‡ãƒ¼ã‚¿ï¼©ï¼¤
 
-	VecFx32  global;	//ƒOƒ[ƒoƒ‹À•W
-	VecFx32  rotate;	//‰ñ“]
-	VecFx32  scale;		//ƒXƒP[ƒ‹
+	VecFx32  global;	//ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
+	VecFx32  rotate;	//å›è»¢
+	VecFx32  scale;		//ã‚¹ã‚±ãƒ¼ãƒ«
 
 	int		dummy[2];	//
 }MAP3D_OBJECT_HEADER;
 
 typedef	struct	MAP3D_OBJECT_DATA_tag{
-	int	id;			//ƒf[ƒ^‚h‚c
-	BOOL	valid;	//ƒf[ƒ^‚Ì—LŒø«
-	BOOL	Vanish;	//ƒoƒjƒbƒVƒ…ƒtƒ‰ƒO
-	BOOL	RotateFlg;	//‰ñ“]‚·‚é‚©ƒtƒ‰ƒO
+	int	id;			//ãƒ‡ãƒ¼ã‚¿ï¼©ï¼¤
+	BOOL	valid;	//ãƒ‡ãƒ¼ã‚¿ã®æœ‰åŠ¹æ€§
+	BOOL	Vanish;	//ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°
+	BOOL	RotateFlg;	//å›è»¢ã™ã‚‹ã‹ãƒ•ãƒ©ã‚°
 	NNSG3dRenderObj	objectdata;
-///	NNSG3dAnmObj*   objectanime;				//ƒ‚ƒfƒ‹ƒAƒjƒƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NNSG3dResMdl* 	objectmodel;				//ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^ƒ|ƒCƒ“ƒ^
+///	NNSG3dAnmObj*   objectanime;				//ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NNSG3dResMdl* 	objectmodel;				//ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
-	VecFx32  global;	//ƒOƒ[ƒoƒ‹À•W
-	VecFx32  rotate;	//‰ñ“]
-	VecFx32  scale;		//ƒXƒP[ƒ‹
+	VecFx32  global;	//ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
+	VecFx32  rotate;	//å›è»¢
+	VecFx32  scale;		//ã‚¹ã‚±ãƒ¼ãƒ«
 ///	NNSG3dResTex*	p_defaultTex;	20060117del
 }MAP3D_OBJECT_DATA;
 
@@ -66,12 +66,12 @@ typedef	struct	MAP3D_OBJECT_LIST_tag{
 
 //==============================================================================
 /**
- * 3DOBJ‰Šú‰»
+ * 3DOBJåˆæœŸåŒ–
  *
- * @param	inNum		ì¬ŒÂ”
- * @param	inHeapID	ƒq[ƒvID
+ * @param	inNum		ä½œæˆå€‹æ•°
+ * @param	inHeapID	ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	M3DO_PTR	Šm•Û‚³‚ê‚½3DOBJ‚Ìæ“ªƒ|ƒCƒ“ƒ^
+ * @return	M3DO_PTR	ç¢ºä¿ã•ã‚ŒãŸ3DOBJã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 M3DOL_PTR M3DO_AllocMap3DObjList(const u8 inHeapID)
@@ -84,9 +84,9 @@ M3DOL_PTR M3DO_AllocMap3DObjList(const u8 inHeapID)
 
 //==============================================================================
 /**
- * 3DOBJ‰ğ•ú
+ * 3DOBJè§£æ”¾
  *
- * @param	outMap3DObjList		3DOBJƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outMap3DObjList		3DOBJãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -99,9 +99,9 @@ void M3DO_FreeMap3DObjList(M3DOL_PTR outMap3DObjList)
 
 //==============================================================================
 /**
- * 3DOBJƒNƒŠ[ƒ“
+ * 3DOBJã‚¯ãƒªãƒ¼ãƒ³
  *
- * @param	outMap3DObjList		3DOBJƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outMap3DObjList		3DOBJãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -112,7 +112,7 @@ void M3DO_CleanMap3DObjList(M3DOL_PTR outMap3DObjList)
 	for(i=0;i<MAP_READ_OBJ_3D_MAX;i++){
 		VecFx32 init_data = {0,0,0};
 		outMap3DObjList->Map3DObjectData[i].id			= 0;// =OFF
-		outMap3DObjList->Map3DObjectData[i].valid		= FALSE;// ƒf[ƒ^–³Œø
+		outMap3DObjList->Map3DObjectData[i].valid		= FALSE;// ãƒ‡ãƒ¼ã‚¿ç„¡åŠ¹
 		outMap3DObjList->Map3DObjectData[i].Vanish		= FALSE;
 		outMap3DObjList->Map3DObjectData[i].RotateFlg	= FALSE;
 		outMap3DObjList->Map3DObjectData[i].global		= init_data;
@@ -124,21 +124,21 @@ void M3DO_CleanMap3DObjList(M3DOL_PTR outMap3DObjList)
 
 //==============================================================================
 /**
- * w’èƒCƒ“ƒfƒbƒNƒX‚Ì3DOBJƒNƒŠ[ƒ“
+ * æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®3DOBJã‚¯ãƒªãƒ¼ãƒ³
  *
- * @param	inIndex				“o˜^ƒCƒ“ƒfƒbƒNƒX
- * @param	outMap3DObjList		3DOBJƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIndex				ç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	outMap3DObjList		3DOBJãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //==============================================================================
 void M3DO_CleanMap3DObj(const int inIndex, M3DOL_PTR outMap3DObjList)
 {
-	GF_ASSERT(inIndex<MAP_READ_OBJ_3D_MAX&&"ƒCƒ“ƒfƒbƒNƒXƒI[ƒo[");
+	GF_ASSERT(inIndex<MAP_READ_OBJ_3D_MAX&&"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚ªãƒ¼ãƒãƒ¼");
 	{
 		VecFx32 init_data = {0,0,0};
 		outMap3DObjList->Map3DObjectData[inIndex].id		= 0;// =OFF
-		outMap3DObjList->Map3DObjectData[inIndex].valid		= FALSE;// ƒf[ƒ^–³Œø
+		outMap3DObjList->Map3DObjectData[inIndex].valid		= FALSE;// ãƒ‡ãƒ¼ã‚¿ç„¡åŠ¹
 		outMap3DObjList->Map3DObjectData[inIndex].Vanish	= FALSE;
 		outMap3DObjList->Map3DObjectData[inIndex].RotateFlg	= FALSE;
 		outMap3DObjList->Map3DObjectData[inIndex].global	= init_data;
@@ -155,12 +155,12 @@ void M3DO_CleanMap3DObj(const int inIndex, M3DOL_PTR outMap3DObjList)
 
 //==============================================================================
 /**
- * 3DOBJƒ[ƒh
+ * 3DOBJãƒ­ãƒ¼ãƒ‰
  *
- * @param	inMapResource		ƒ}ƒbƒvƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- * @param	inFileName			ƒtƒ@ƒCƒ‹–¼
- * @param	outMap3DObjList		3DOBJƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	field_3d_anime_ptr	3DƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	inMapResource		ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ * @param	inFileName			ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @param	outMap3DObjList		3DOBJãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	field_3d_anime_ptr	3Dã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -174,7 +174,7 @@ void M3DO_LoadArc3DObjData(	ARCHANDLE *ioHandle,
 	MAP3D_OBJECT_HEADER * obj_dat = NULL;
 	u32	obj_max;
 	int i;
-	//ƒA[ƒJƒCƒuƒf[ƒ^“Ç‚İ‚İ
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	if (inDataSize != 0){
 		obj_dat = sys_AllocMemoryLo(HEAPID_FIELD, inDataSize);
 		ArchiveDataLoadByHandleContinue( ioHandle, inDataSize, obj_dat );
@@ -197,23 +197,23 @@ void M3DO_LoadArc3DObjData(	ARCHANDLE *ioHandle,
 		M3DO_PTR ptr;
 		ptr = &(outMap3DObjList->Map3DObjectData[i]);
 		if(i < obj_max){
-			ptr->id		    = obj_dat[i].id;		//‚h‚c
-			ptr->valid		= TRUE;					//ƒf[ƒ^—LŒø
-			ptr->RotateFlg  = FALSE;				//‰ñ“]–³Œø
-			ptr->global	    = obj_dat[i].global;	//À•W
-			ptr->rotate	    = obj_dat[i].rotate;	//‰ñ“]
-			ptr->scale	    = obj_dat[i].scale;		//ƒXƒP[ƒ‹
+			ptr->id		    = obj_dat[i].id;		//ï¼©ï¼¤
+			ptr->valid		= TRUE;					//ãƒ‡ãƒ¼ã‚¿æœ‰åŠ¹
+			ptr->RotateFlg  = FALSE;				//å›è»¢ç„¡åŠ¹
+			ptr->global	    = obj_dat[i].global;	//åº§æ¨™
+			ptr->rotate	    = obj_dat[i].rotate;	//å›è»¢
+			ptr->scale	    = obj_dat[i].scale;		//ã‚¹ã‚±ãƒ¼ãƒ«
 #ifdef DEBUG_ONLY_FOR_saitou
 		///OS_Printf("local_print obj_id = %d\n",obj_dat[i].id);
 #endif
-			// “Ç‚İ‚ñ‚¾ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ğƒZƒbƒg
+			// èª­ã¿è¾¼ã‚“ã ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 			SetMap3DModel(
 					ptr->id,
 					inMapResource,
 					&(ptr->objectdata),
 					&(ptr->objectmodel) );
 			if (CheckResourceEntry(inMapResource, ptr->id) == FALSE){
-				OS_Printf("ƒ_ƒ~[•\¦‚Ì‚½‚ßA”z’uƒ‚ƒfƒ‹ID‚ğ‘‚«Š·‚¦‚Ü‚·%d¨0\n",ptr->id);
+				OS_Printf("ãƒ€ãƒŸãƒ¼è¡¨ç¤ºã®ãŸã‚ã€é…ç½®ãƒ¢ãƒ‡ãƒ«IDã‚’æ›¸ãæ›ãˆã¾ã™%dâ†’0\n",ptr->id);
 				ptr->id = 0;
 			}
 			
@@ -234,7 +234,7 @@ void M3DO_LoadArc3DObjData(	ARCHANDLE *ioHandle,
 			VecFx32 init_data = {0,0,0};
 
 			ptr->id		    = 0;		// =OFF
-			ptr->valid		= FALSE;	//ƒf[ƒ^–³Œø
+			ptr->valid		= FALSE;	//ãƒ‡ãƒ¼ã‚¿ç„¡åŠ¹
 			ptr->RotateFlg	= FALSE;
 			ptr->global     = init_data;
 			ptr->rotate     = init_data;
@@ -249,13 +249,13 @@ void M3DO_LoadArc3DObjData(	ARCHANDLE *ioHandle,
 
 //==============================================================================
 /**
- * 3DOBJ•`‰æ
+ * 3DOBJæç”»
  *
- * @param	inOffset			•`‰æƒIƒtƒZƒbƒg
- * @param	inMapResource		ƒ}ƒbƒvƒŠƒ\[ƒX
- * @param	inLightValid		ƒ‰ƒCƒg—L–³
- * @param	glst_data			ƒOƒ[ƒoƒ‹ƒXƒe[ƒg
- * @param	outMap3DObjList		3DOBJƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inOffset			æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	inMapResource		ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹
+ * @param	inLightValid		ãƒ©ã‚¤ãƒˆæœ‰ç„¡
+ * @param	glst_data			ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆ
+ * @param	outMap3DObjList		3DOBJãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -266,7 +266,7 @@ void M3DO_DrawMap3DObj(	const VecFx32 *inOffset,
 						const GLST_DATA_PTR	glst_data,
 						M3DOL_PTR ioMap3DObjList)
 {
-	//ƒIƒuƒWƒFƒNƒg‚R‚c•`‰æ
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼“ï¼¤æç”»
 	
 	int	i;
 	VecFx32 obj_trans;
@@ -275,20 +275,20 @@ void M3DO_DrawMap3DObj(	const VecFx32 *inOffset,
 		M3DO_PTR ptr;
 		ptr = &(ioMap3DObjList->Map3DObjectData[i]);
 		if( ptr->valid != FALSE ){
-			if (ptr->Vanish){	//ƒoƒjƒbƒVƒ…ƒ`ƒFƒbƒN
+			if (ptr->Vanish){	//ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒã‚§ãƒƒã‚¯
 				continue;
 			}
 			//
-			// ƒJƒŠƒ“ƒOƒ`ƒFƒbƒN
+			// ã‚«ãƒªãƒ³ã‚°ãƒã‚§ãƒƒã‚¯
 			// 
-			// ƒ‚ƒfƒ‹‚Ìƒ{ƒbƒNƒXƒeƒXƒgƒf[ƒ^ƒZƒbƒg
+			// ãƒ¢ãƒ‡ãƒ«ã®ãƒœãƒƒã‚¯ã‚¹ãƒ†ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 
-			//«‰ñ“]s—ñ‚ÌŒvZ‚Í‚µ‚È‚¢‚±‚Æ‚É‚·‚éi‰ñ“]‚ÍƒTƒ|[ƒg‚µ‚È‚¢j
+			//â†“å›è»¢è¡Œåˆ—ã®è¨ˆç®—ã¯ã—ãªã„ã“ã¨ã«ã™ã‚‹ï¼ˆå›è»¢ã¯ã‚µãƒãƒ¼ãƒˆã—ãªã„ï¼‰
 			///VecFx32_to_MtxFx33( &rot, &(inDivMapCont->BlockNodeList[inLocalIndex]->ObjData[i].rotate));
 			obj_trans = ptr->global;
 			obj_trans.x += inOffset->x;
 			obj_trans.z += inOffset->z;
-			//ƒJƒŠƒ“ƒOƒ`ƒFƒbƒN
+			//ã‚«ãƒªãƒ³ã‚°ãƒã‚§ãƒƒã‚¯
 			if (BB_CullingCheck3DModel(	ptr->objectmodel,
 										&(obj_trans),
 										&rot,
@@ -299,7 +299,7 @@ void M3DO_DrawMap3DObj(	const VecFx32 *inOffset,
 				mat_shp_data = GetMatShpDataPtr(inMapResource);
 					
 				if (inLightValid == TRUE){
-					//ƒ}ƒeƒŠƒAƒ‹•ÏX
+					//ãƒãƒ†ãƒªã‚¢ãƒ«å¤‰æ›´
 					GLST_ReflectMdl(glst_data,
 									ptr->objectmodel,
 									FIELD_LIGHT_MASK);
@@ -327,11 +327,11 @@ void M3DO_DrawMap3DObj(	const VecFx32 *inOffset,
 
 //==============================================================================
 /**
- * æ“¾ŠÖ”@‰ñ“]ƒxƒNƒgƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * å–å¾—é–¢æ•°ã€€å›è»¢ãƒ™ã‚¯ãƒˆãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @param	inMap3DObjData		3DOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inMap3DObjData		3DOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	VecFx32				‰ñ“]ƒxƒNƒgƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	VecFx32				å›è»¢ãƒ™ã‚¯ãƒˆãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 VecFx32 *M3DO_GetRotateVecPtr(M3DO_PTR inMap3DObjData)
@@ -341,11 +341,11 @@ VecFx32 *M3DO_GetRotateVecPtr(M3DO_PTR inMap3DObjData)
 
 //==============================================================================
 /**
- * æ“¾ŠÖ”@ƒOƒ[ƒoƒ‹À•W
+ * å–å¾—é–¢æ•°ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
  *
- * @param	inMap3DObjData		3DOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inMap3DObjData		3DOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	VecFx32				ƒOƒ[ƒoƒ‹À•W
+ * @return	VecFx32				ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
  */
 //==============================================================================
 VecFx32 M3DO_GetGlobalVec(M3DO_CONST_PTR inMap3DObjData)
@@ -354,10 +354,10 @@ VecFx32 M3DO_GetGlobalVec(M3DO_CONST_PTR inMap3DObjData)
 }
 //==============================================================================
 /**
- * ƒZƒbƒgŠÖ”@ƒOƒ[ƒoƒ‹À•W
+ * ã‚»ãƒƒãƒˆé–¢æ•°ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
  *
- * @param	outMap3DObjData		3DOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inVec				ƒOƒ[ƒoƒ‹À•W
+ * @param	outMap3DObjData		3DOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inVec				ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
  *
  * @return	none
  */
@@ -369,10 +369,10 @@ void M3DO_SetGlobalVec(M3DO_PTR outMap3DObjData, const VecFx32 *inVec)
 
 //==============================================================================
 /**
- * ƒZƒbƒgŠÖ”@ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOƒZƒbƒg
+ * ã‚»ãƒƒãƒˆé–¢æ•°ã€€ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  *
- * @param	outMap3DObjData		3DOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inVanish				ƒoƒjƒbƒVƒ…ƒtƒ‰ƒO
+ * @param	outMap3DObjData		3DOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inVanish				ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -384,9 +384,9 @@ void M3DO_SetVanish(M3DO_PTR outMap3DObjData, const BOOL inVanish)
 
 //==============================================================================
 /**
- * æ“¾ŠÖ”@ID
+ * å–å¾—é–¢æ•°ã€€ID
  *
- * @param	inMap3DObjData		3DOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inMap3DObjData		3DOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	int					ID
  */
@@ -398,11 +398,11 @@ int M3DO_GetObjID(M3DO_CONST_PTR inMap3DObjData)
 
 //==============================================================================
 /**
- * æ“¾ŠÖ”@ƒŒƒ“ƒ_[OBJƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * å–å¾—é–¢æ•°ã€€ãƒ¬ãƒ³ãƒ€ãƒ¼OBJãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @param	inMap3DObjData		3DOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inMap3DObjData		3DOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	NNSG3dRenderObj*	ƒŒƒ“ƒ_[OBJƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	NNSG3dRenderObj*	ãƒ¬ãƒ³ãƒ€ãƒ¼OBJãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 NNSG3dRenderObj *M3DO_GetRenderObj(M3DO_CONST_PTR inMap3DObjData)
@@ -412,11 +412,11 @@ NNSG3dRenderObj *M3DO_GetRenderObj(M3DO_CONST_PTR inMap3DObjData)
 
 //==============================================================================
 /**
- * æ“¾ŠÖ”@ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * å–å¾—é–¢æ•°ã€€ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @param	inMap3DObjData		3DOBJ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inMap3DObjData		3DOBJã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	NNSG3dResMdl*		ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	NNSG3dResMdl*		ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 NNSG3dResMdl *M3DO_GetObjModel(M3DO_CONST_PTR inMap3DObjData)
@@ -426,12 +426,12 @@ NNSG3dResMdl *M3DO_GetObjModel(M3DO_CONST_PTR inMap3DObjData)
 
 //==============================================================================
 /**
- * ƒCƒ“ƒfƒbƒNƒX‚Åw’è‚µ‚½ƒ}ƒbƒv3DOBJ‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§æŒ‡å®šã—ãŸãƒãƒƒãƒ—3DOBJã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
- * @param	inMap3DObjList		3DOBJ‚Ìæ“ª‚Ìƒ|ƒCƒ“ƒ^
- * @param	inIndex				ƒCƒ“ƒfƒbƒNƒX
+ * @param	inMap3DObjList		3DOBJã®å…ˆé ­ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inIndex				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @return	NNSG3dResMdl*		ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	NNSG3dResMdl*		ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 M3DO_PTR M3DO_GetMap3DObjData(M3DOL_PTR inMap3DObjList, const u8 inIndex)
@@ -441,12 +441,12 @@ M3DO_PTR M3DO_GetMap3DObjData(M3DOL_PTR inMap3DObjList, const u8 inIndex)
 
 //==============================================================================
 /**
- * w’è‚µ‚½OBJID‚ğ‚à‚Â3DOBJ‚ğ•Ô‚·ŠÖ”in‚ß‚Éƒqƒbƒg‚µ‚½1‚Â‚Ì‚İ•Ô‚·j
+ * æŒ‡å®šã—ãŸOBJIDã‚’ã‚‚ã¤3DOBJã‚’è¿”ã™é–¢æ•°ï¼ˆå§‹ã‚ã«ãƒ’ãƒƒãƒˆã—ãŸ1ã¤ã®ã¿è¿”ã™ï¼‰
  *
- * @param	outMap3DObjList		3DOBJƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outMap3DObjList		3DOBJãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	inObjID				OBJID
  *
- * @return	M3DO_PTR			ƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^
+ * @return	M3DO_PTR			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 M3DO_PTR M3DO_GetMap3DObjDataFromID(M3DOL_PTR inMap3DObjList, const int inObjID)
@@ -464,35 +464,35 @@ M3DO_PTR M3DO_GetMap3DObjDataFromID(M3DOL_PTR inMap3DObjList, const int inObjID)
 
 //==============================================================================
 /**
- * w’è‚µ‚½“o˜^ƒCƒ“ƒfƒbƒNƒX‚ÌDOBJ‚ğ•Ô‚·ŠÖ”
+ * æŒ‡å®šã—ãŸç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®DOBJã‚’è¿”ã™é–¢æ•°
  *
- * @param	outMap3DObjList		3DOBJƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inIndex				“o˜^ƒCƒ“ƒfƒbƒNƒX
+ * @param	outMap3DObjList		3DOBJãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inIndex				ç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @return	M3DO_PTR			ƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^
+ * @return	M3DO_PTR			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 M3DO_PTR M3DO_GetMap3DObjDataFromIndex(M3DOL_PTR inMap3DObjList, const int inIndex)
 {
 	M3DO_PTR ptr;
-	GF_ASSERT(inIndex<MAP_READ_OBJ_3D_MAX&&"ƒCƒ“ƒfƒbƒNƒXƒI[ƒo[‚Å‚·");
+	GF_ASSERT(inIndex<MAP_READ_OBJ_3D_MAX&&"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚ªãƒ¼ãƒãƒ¼ã§ã™");
 	
 	ptr = &inMap3DObjList->Map3DObjectData[inIndex];
 	
-	GF_ASSERT(ptr->valid&&"ƒf[ƒ^‚Í–³Œø‚Å‚·");
+	GF_ASSERT(ptr->valid&&"ãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹ã§ã™");
 
 	return ptr;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒZƒbƒg
+ * ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆ
  *
- * @param	inID			ƒ‚ƒfƒ‹‚h‚c
- * @param	inMapResource	ƒ}ƒbƒvƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- * @param	* object_p		ƒ‚ƒfƒ‹ƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^
- * @param	** model		ƒ‚ƒfƒ‹ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	** pp_res_tex	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inID			ãƒ¢ãƒ‡ãƒ«ï¼©ï¼¤
+ * @param	inMapResource	ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ * @param	* object_p		ãƒ¢ãƒ‡ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param	** model		ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	** pp_res_tex	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -510,13 +510,13 @@ static void SetMap3DModel(	const int inID,
 
 //==============================================================================
 /**
- * 3DOBJ‚‘¬•`‰æ
+ * 3DOBJé«˜é€Ÿæç”»
  *
- * @param	pResMdl			ƒŠƒ\[ƒX
- * @param	trans_p			ˆÚ“®À•W
- * @param	rot_p			‰ñ“]ƒ}ƒgƒŠƒNƒX
- * @param	scale_p			Šgkƒ}ƒgƒŠƒNƒX
- * @param	inMatShpData	ƒ}ƒbƒgƒVƒFƒCƒvƒf[ƒ^
+ * @param	pResMdl			ãƒªã‚½ãƒ¼ã‚¹
+ * @param	trans_p			ç§»å‹•åº§æ¨™
+ * @param	rot_p			å›è»¢ãƒãƒˆãƒªã‚¯ã‚¹
+ * @param	scale_p			æ‹¡ç¸®ãƒãƒˆãƒªã‚¯ã‚¹
+ * @param	inMatShpData	ãƒãƒƒãƒˆã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
  * @param	inObjID			OBJID
  *
  * @return	none
@@ -535,16 +535,16 @@ static void DrawModelQuick(	const NNSG3dResMdl* pResMdl,
 	u8 mat_id;
 	BOOL send_flg;
 	MAT_SHP const *mat_shp;
-	//«ƒJƒŠƒ“ƒOƒ`ƒFƒbƒNŒã‚É‚·‚®‚É•`‰æ‚·‚é‚È‚ç‚ÎA‚·‚Å‚ÉƒZƒbƒgÏ‚İ‚È‚Ì‚Å•s—v
+	//â†“ã‚«ãƒªãƒ³ã‚°ãƒã‚§ãƒƒã‚¯å¾Œã«ã™ãã«æç”»ã™ã‚‹ãªã‚‰ã°ã€ã™ã§ã«ã‚»ãƒƒãƒˆæ¸ˆã¿ãªã®ã§ä¸è¦
 
-	// ˆÊ’uİ’è
+	// ä½ç½®è¨­å®š
 	NNS_G3dGlbSetBaseTrans(trans_p);	
-	// Šp“xİ’è
+	// è§’åº¦è¨­å®š
 	NNS_G3dGlbSetBaseRot(rot_p);
-	// ƒXƒP[ƒ‹İ’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
 	NNS_G3dGlbSetBaseScale(scale_p);
 	
-	NNS_G3dGlbFlush();	//ƒ}ƒgƒŠƒNƒX”½‰f
+	NNS_G3dGlbFlush();	//ãƒãƒˆãƒªã‚¯ã‚¹åæ˜ 
 
 	GetMatShpNumAndIdx(	inObjID,
 						inMatShpData,
@@ -567,22 +567,22 @@ static void DrawModelQuick(	const NNSG3dResMdl* pResMdl,
 							);
 		
 	}
-	//«ƒWƒIƒƒgƒŠƒRƒ}ƒ“ƒhƒoƒbƒtƒ@‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅA•s—v
+	//â†“ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚³ãƒãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ã®ã§ã€ä¸è¦
 	//NNS_G3dGeFlushBuffer();
 }
 
 //==============================================================================
 /**
- * Šg’£ƒ}ƒbƒv3DOBJ‚ÌƒZƒbƒg
+ * æ‹¡å¼µãƒãƒƒãƒ—3DOBJã®ã‚»ãƒƒãƒˆ
  *
- * @param	outMap3DObjList		3DOBJƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inMapResource		ƒ}ƒbƒvƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ * @param	outMap3DObjList		3DOBJãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMapResource		ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  * @param	inObjID				OBJID
- * @param	inTrans				ˆÊ’uÀ•W
- * @param	inRotate			‰ñ“]
- * @param	field_3d_anime_ptr	ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	inTrans				ä½ç½®åº§æ¨™
+ * @param	inRotate			å›è»¢
+ * @param	field_3d_anime_ptr	ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u8				“o˜^ƒCƒ“ƒfƒbƒNƒX
+ * @return	u8				ç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //==============================================================================
 u8 M3DO_SetMap3DObjExp(	M3DOL_PTR outMap3DObjList,
@@ -599,23 +599,23 @@ u8 M3DO_SetMap3DObjExp(	M3DOL_PTR outMap3DObjList,
 		M3DO_PTR ptr;
 		ptr = &(outMap3DObjList->Map3DObjectData[i]);
 		if (ptr->valid == FALSE){
-			ptr->valid = TRUE;	//ƒf[ƒ^‚Ì—LŒø«
-			ptr->global = (*inTrans);	//ƒOƒ[ƒoƒ‹À•W
-			//‰ñ“]
+			ptr->valid = TRUE;	//ãƒ‡ãƒ¼ã‚¿ã®æœ‰åŠ¹æ€§
+			ptr->global = (*inTrans);	//ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
+			//å›è»¢
 			if (inRotate != NULL){
 				ptr->RotateFlg = TRUE;
 				ptr->rotate = (*inRotate);
 			}else{
 				ptr->RotateFlg = FALSE;
 			}
-			ptr->scale = scale;		//ƒXƒP[ƒ‹
+			ptr->scale = scale;		//ã‚¹ã‚±ãƒ¼ãƒ«
 			ptr->id = inObjID;
 			SetMap3DModel(
 					ptr->id,
 					inMapResource,
 					&(ptr->objectdata),
 					&(ptr->objectmodel) );
-			//ƒAƒjƒƒZƒbƒg
+			//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 			F3DA_SetFld3DAnime(	ptr->id, 0, FALSE,
 								&(ptr->objectdata),
 								field_3d_anime_ptr);
@@ -626,16 +626,16 @@ u8 M3DO_SetMap3DObjExp(	M3DOL_PTR outMap3DObjList,
 		}
 	}
 	
-	GF_ASSERT(0&&"“o˜^¸”s");
+	GF_ASSERT(0&&"ç™»éŒ²å¤±æ•—");
 	return MAP_READ_OBJ_3D_MAX;
 }
 
 //==============================================================================
 /**
- * Šg’£ƒ}ƒbƒv3DOBJ‚Ì•`‰æ
+ * æ‹¡å¼µãƒãƒƒãƒ—3DOBJã®æç”»
  *
- * @param	inMap3DObjList	3DOBJƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inMapResource	ƒ}ƒbƒvƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ * @param	inMap3DObjList	3DOBJãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMapResource	ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -653,7 +653,7 @@ void M3DO_DrawMap3DObjExp(M3DOL_PTR inMap3DObjList, const MAP_RESOURCE_PTR inMap
 		M3DO_PTR ptr;
 		ptr = &(inMap3DObjList->Map3DObjectData[i]);
 		if ( ptr->valid ){
-			if (ptr->Vanish){	//ƒoƒjƒbƒVƒ…ƒ`ƒFƒbƒN
+			if (ptr->Vanish){	//ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒã‚§ãƒƒã‚¯
 				continue;
 			}
 			{

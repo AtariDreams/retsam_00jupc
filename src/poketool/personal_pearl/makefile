@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ƒp[ƒ\ƒiƒ‹ƒf[ƒ^
+# Project:  ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -17,7 +17,7 @@ PMSFILES:=$(wildcard pms_*.bin)
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#Make‚Å¶¬‚³‚ê‚é*.bin/*.narc‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.bin/*.narcã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(PERFILES:.s=.bin) $(WOTFILES:.s=.bin) $(EVOFILES:.s=.bin) $(PMSFILES) growtbl.narc personal.narc wotbl.narc evo.narc pms.narc
 
 #----------------------------------------------------------------------------
@@ -26,22 +26,22 @@ include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 
 .SUFFIXES: .s .bin
 
-#¬’·‹Èüƒe[ƒuƒ‹¶¬
+#æˆé•·æ›²ç·šãƒ†ãƒ¼ãƒ–ãƒ«ç”Ÿæˆ
 do-build: growtbl.narc
 growtbl.narc: grow_*.bin
 	nnsarc -c -l -n growtbl.narc grow_*.bin
 
-#ƒp[ƒ\ƒiƒ‹ƒf[ƒ^¶¬
+#ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 do-build: personal.narc
 personal.narc: $(PERFILES:.s=.bin)
 	nnsarc -c -l -n personal.narc per_*.bin
 
-#‹ZŠo‚¦ƒe[ƒuƒ‹ƒf[ƒ^¶¬
+#æŠ€è¦šãˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 do-build: wotbl.narc
 wotbl.narc: $(WOTFILES:.s=.bin)
 	nnsarc -c -l -n wotbl.narc wot_*.bin
 
-#i‰»ƒe[ƒuƒ‹ƒf[ƒ^¶¬
+#é€²åŒ–ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 do-build: evo.narc
 evo.narc: $(EVOFILES:.s=.bin)
 	nnsarc -c -l -n evo.narc evo_*.bin

@@ -1,4 +1,4 @@
-//���̃t�@�C���̓R���o�[�^�ɂ�萶������܂�
+//このファイルはコンバータにより生成されます
 enum {
 	AREA_ID_FIELD,
 	AREA_ID_ROOM,

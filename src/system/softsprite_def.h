@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	softsprite_def.h
- * @bfief	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ğg—p‚µ‚½•\¦ƒvƒƒOƒ‰ƒ€
+ * @bfief	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ä½¿ç”¨ã—ãŸè¡¨ç¤ºãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.06.08
  */
@@ -13,61 +13,61 @@
 #ifndef __SOFTSPRITE_DEF_H_
 #define __SOFTSPRITE_DEF_H_
 
-///<•\¦—p\‘¢‘ÌéŒ¾
+///<è¡¨ç¤ºç”¨æ§‹é€ ä½“å®£è¨€
 struct soft_sprite
 {
-	u32						exist			:1;			///<”z’uƒtƒ‰ƒOi0:–¢”z’u@1:”z’uÏ‚İj
-	u32						poly_id			:6;			///<ƒ|ƒŠƒSƒ“ID
-	u32						make_req		:1;			///<ƒeƒNƒXƒ`ƒƒMAKEƒŠƒNƒGƒXƒg
-	u32						pal_req			:1;			///<ƒpƒŒƒbƒgMAKEƒŠƒNƒGƒXƒg
-	u32										:23;		///<‚ ‚Ü‚è
+	u32						exist			:1;			///<é…ç½®ãƒ•ãƒ©ã‚°ï¼ˆ0:æœªé…ç½®ã€€1:é…ç½®æ¸ˆã¿ï¼‰
+	u32						poly_id			:6;			///<ãƒãƒªã‚´ãƒ³ID
+	u32						make_req		:1;			///<ãƒ†ã‚¯ã‚¹ãƒãƒ£MAKEãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	u32						pal_req			:1;			///<ãƒ‘ãƒ¬ãƒƒãƒˆMAKEãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	u32										:23;		///<ã‚ã¾ã‚Š
 
-	SOFT_SPRITE_ARC			ssa;						///<“Ç‚İ‚ŞƒLƒƒƒ‰ƒNƒ^AƒpƒŒƒbƒgƒf[ƒ^‚ÌƒA[ƒJƒCƒoî•ñŠi”[—Ìˆæ
-	SOFT_SPRITE_ARC			ssa_push;					///<“Ç‚İ‚ŞƒLƒƒƒ‰ƒNƒ^AƒpƒŒƒbƒgƒf[ƒ^‚ÌƒA[ƒJƒCƒoî•ñŠi”[—ÌˆæiƒXƒ^ƒbƒNj
-	SOFT_SPRITE_PARAM		ssp;						///<ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^
+	SOFT_SPRITE_ARC			ssa;						///<èª­ã¿è¾¼ã‚€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒæƒ…å ±æ ¼ç´é ˜åŸŸ
+	SOFT_SPRITE_ARC			ssa_push;					///<èª­ã¿è¾¼ã‚€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒæƒ…å ±æ ¼ç´é ˜åŸŸï¼ˆã‚¹ã‚¿ãƒƒã‚¯ï¼‰
+	SOFT_SPRITE_PARAM		ssp;						///<ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	u8						anm_no;						///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-	u8						anm_seq;					///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒXƒiƒ“ƒo[
-	u8						anm_wait;					///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒEƒGƒCƒg
-	u8						anm_pat;					///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒpƒ^[ƒ“ƒiƒ“ƒo[
+	u8						anm_no;						///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+	u8						anm_seq;					///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
+	u8						anm_wait;					///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¦ã‚¨ã‚¤ãƒˆ
+	u8						anm_pat;					///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
-	u8						anm_loop[SS_ANM_SEQ_MAX];	///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒ‹[ƒvƒJƒEƒ“ƒ^
+	u8						anm_loop[SS_ANM_SEQ_MAX];	///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ«ãƒ¼ãƒ—ã‚«ã‚¦ãƒ³ã‚¿
 	u8						dummy[2];
 
-	SOFT_SPRITE_MOVE_FUNC	*move;						///<ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg“®ìŠÖ”
+	SOFT_SPRITE_MOVE_FUNC	*move;						///<ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå‹•ä½œé–¢æ•°
 
-	SOFT_SPRITE_SHADOW		sss;						///<ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‰e\‘¢‘Ì
-	SOFT_SPRITE_SHADOW		sss_push;					///<ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‰e\‘¢‘Ì‘Ş”ğ—Ìˆæ
+	SOFT_SPRITE_SHADOW		sss;						///<ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå½±æ§‹é€ ä½“
+	SOFT_SPRITE_SHADOW		sss_push;					///<ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå½±æ§‹é€ ä½“é€€é¿é ˜åŸŸ
 
-	SOFT_SPRITE_ANIME		ssanm[SS_ANM_SEQ_MAX];		///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+	SOFT_SPRITE_ANIME		ssanm[SS_ANM_SEQ_MAX];		///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 };
 
-///<•\¦—pƒ}ƒl[ƒWƒƒ\‘¢‘ÌéŒ¾
+///<è¡¨ç¤ºç”¨ãƒãƒãƒ¼ã‚¸ãƒ£æ§‹é€ ä½“å®£è¨€
 struct soft_sprite_manager
 {
-	SOFT_SPRITE				ss[SOFT_SPRITE_MAX];	///<”z’u‚µ‚½ƒXƒvƒ‰ƒCƒg‚ğŠÇ—‚·‚é—Ìˆæ
-	NNSG2dImageProxy		imgp;					///<ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒeƒNƒXƒ`ƒƒ‚ÌVRAMî•ñ‚ğó‚¯æ‚é‰æ‘œƒvƒƒNƒV
-	NNSG2dImagePaletteProxy	pltp;					///<ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg‚ÌVRAMî•ñ‚ğó‚¯æ‚éƒpƒŒƒbƒgƒvƒƒNƒV
-	int						heap_id;				///<ƒeƒNƒXƒ`ƒƒ‚ğ“WŠJ‚·‚é‚Éƒeƒ“ƒ|ƒ‰ƒŠ‚ğŠm•Û‚·‚éƒq[ƒv—Ìˆæ‚ÌID
+	SOFT_SPRITE				ss[SOFT_SPRITE_MAX];	///<é…ç½®ã—ãŸã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ç®¡ç†ã™ã‚‹é ˜åŸŸ
+	NNSG2dImageProxy		imgp;					///<ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®VRAMæƒ…å ±ã‚’å—ã‘å–ã‚‹ç”»åƒãƒ—ãƒ­ã‚¯ã‚·
+	NNSG2dImagePaletteProxy	pltp;					///<ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã®VRAMæƒ…å ±ã‚’å—ã‘å–ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·
+	int						heap_id;				///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å±•é–‹ã™ã‚‹æ™‚ã«ãƒ†ãƒ³ãƒãƒ©ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ID
 
-	u32						texture_trans_ofs;		///<ƒeƒNƒXƒ`ƒƒ‚Ì“]‘—æƒAƒhƒŒƒX‚ÌƒIƒtƒZƒbƒg
-	u32						texture_trans_size;		///<ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—ƒTƒCƒY
-	u32						palette_trans_ofs;		///<ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg‚Ì“]‘—æƒAƒhƒŒƒX‚ÌƒIƒtƒZƒbƒg
-	u32						palette_trans_size;		///<ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒf[ƒ^“]‘—ƒTƒCƒY
+	u32						texture_trans_ofs;		///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32						texture_trans_size;		///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€ã‚µã‚¤ã‚º
+	u32						palette_trans_ofs;		///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã®è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32						palette_trans_size;		///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€ã‚µã‚¤ã‚º
 
-	u8						*dest_chr;				///<‰¼‘zƒeƒNƒXƒ`ƒƒ“WŠJ—Ìˆæ
-	u16						*dest_col;				///<‰¼‘zƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg“WŠJ—Ìˆæ
-	u16						*dest_col_temp;			///<‰¼‘zƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg“WŠJ—Ìˆæ
+	u8						*dest_chr;				///<ä»®æƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£å±•é–‹é ˜åŸŸ
+	u16						*dest_col;				///<ä»®æƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹é ˜åŸŸ
+	u16						*dest_col_temp;			///<ä»®æƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹é ˜åŸŸ
 
 	NNSG2dCharacterData		cd_dest;
 	NNSG2dPaletteData		pd_dest;
 
-	u8						cnt;					///<“o˜^‚µ‚½ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒJƒEƒ“ƒ^
-	u8						texture_trans_req;		///<ƒeƒNƒXƒ`ƒƒ“]‘—ƒŠƒNƒGƒXƒgƒtƒ‰ƒO
-	u8						palette_trans_req;		///<ƒpƒŒƒbƒg“]‘—ƒŠƒNƒGƒXƒgƒtƒ‰ƒO
-	u8						mode;					///<ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg•`‰æƒ‚[ƒh
+	u8						cnt;					///<ç™»éŒ²ã—ãŸã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ã‚«ã‚¦ãƒ³ã‚¿
+	u8						texture_trans_req;		///<ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°
+	u8						palette_trans_req;		///<ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°
+	u8						mode;					///<ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ãƒ¢ãƒ¼ãƒ‰
 
-	u32						ss_system_flag;			///<ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€ƒtƒ‰ƒO
+	u32						ss_system_flag;			///<ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°
 };
 
 #endif __POKEGRA_DEF_H_

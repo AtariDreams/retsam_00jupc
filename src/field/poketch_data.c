@@ -1,13 +1,13 @@
 //============================================================================================
 /**
  * @file	poketch_data.c
- * @bfief	ƒ|ƒPƒbƒ`ƒf[ƒ^ƒAƒNƒZƒX—pƒ\[ƒX
+ * @bfief	ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚½ãƒ¼ã‚¹
  * @author	taya GAME FREAK inc.
  * @date	2005.10.27
  */
 //============================================================================================
 
-#include "system/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "system/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "common.h"
 #include "gflib/system.h"
@@ -21,8 +21,8 @@
 //============================================================================================
 //============================================================================================
 enum {
-	APP_REGIST_MAX = 32,	///< ƒAƒvƒŠ‚ÌÅ‘å”‚Æ‡‚í‚È‚¢‚ªAƒZ[ƒuƒf[ƒ^ƒTƒCƒY‚ğ‚¢‚¶‚è‚½‚­‚È‚¢‚Ì‚Å‚±‚Ì‚Ü‚Ü
-	POKETCH_DEFAULT_APPNO = POKETCH_APPID_DWATCH,	// ƒfƒtƒHƒ‹ƒg‚Å“o˜^‚³‚ê‚Ä‚éƒAƒvƒŠ
+	APP_REGIST_MAX = 32,	///< ã‚¢ãƒ—ãƒªã®æœ€å¤§æ•°ã¨åˆã‚ãªã„ãŒã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’ã„ã˜ã‚ŠãŸããªã„ã®ã§ã“ã®ã¾ã¾
+	POKETCH_DEFAULT_APPNO = POKETCH_APPID_DWATCH,	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ç™»éŒ²ã•ã‚Œã¦ã‚‹ã‚¢ãƒ—ãƒª
 };
 
 
@@ -30,41 +30,41 @@ enum {
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒbƒ`ƒf[ƒ^—p\‘¢‘Ì’è‹`
+ * @brief	ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ç”¨æ§‹é€ ä½“å®šç¾©
  */
 //----------------------------------------------------------
 struct _POKETCH_DATA {
-	u8		get_flag : 1;		///< ƒ|ƒPƒbƒ`‚ğæ“¾‚µ‚½ƒtƒ‰ƒO
-	u8		pedometer_flag : 1;	///< ƒAƒvƒŠw–œ•àŒvx‚ğæ“¾‚µ‚½ƒtƒ‰ƒO
-	u8		dotart_modified_flag : 1;	///< ƒAƒvƒŠwƒhƒbƒgƒA[ƒgx•ÒW‚µ‚½ƒtƒ‰ƒO
-	u8		color_type : 3;		///< ƒJƒ‰[ƒ^ƒCƒvi0`7j
+	u8		get_flag : 1;		///< ãƒã‚±ãƒƒãƒã‚’å–å¾—ã—ãŸãƒ•ãƒ©ã‚°
+	u8		pedometer_flag : 1;	///< ã‚¢ãƒ—ãƒªã€ä¸‡æ­©è¨ˆã€ã‚’å–å¾—ã—ãŸãƒ•ãƒ©ã‚°
+	u8		dotart_modified_flag : 1;	///< ã‚¢ãƒ—ãƒªã€ãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆã€ç·¨é›†ã—ãŸãƒ•ãƒ©ã‚°
+	u8		color_type : 3;		///< ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ï¼ˆ0ã€œ7ï¼‰
 	u8		 : 2;
 
-	s8		app_count;			///< “o˜^‚³‚ê‚Ä‚¢‚éƒAƒvƒŠ”
-	s8		app_index;			///< Œ»İ•\¦’†‚ÌƒAƒvƒŠi“o˜^ƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒXj
+	s8		app_count;			///< ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ—ãƒªæ•°
+	s8		app_index;			///< ç¾åœ¨è¡¨ç¤ºä¸­ã®ã‚¢ãƒ—ãƒªï¼ˆç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼‰
 
 
-	u8		app_flag[APP_REGIST_MAX];	///< æ“¾‚µ‚½ƒAƒvƒŠID“o˜^ƒe[ƒuƒ‹
+	u8		app_flag[APP_REGIST_MAX];	///< å–å¾—ã—ãŸã‚¢ãƒ—ãƒªIDç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«
 
-	u32		pedometer;			///< w–œ•àŒvx•à”
+	u32		pedometer;			///< ã€ä¸‡æ­©è¨ˆã€æ­©æ•°
 
-	u16		alarm_switch : 1;		///< ƒAƒvƒŠwƒAƒ‰[ƒ€ŒvxƒXƒCƒbƒ`
-	u16		alarm_hour   : 5;		///< ƒAƒvƒŠwƒAƒ‰[ƒ€Œvx
-	u16		alarm_minute : 6;		///< ƒAƒvƒŠwƒAƒ‰[ƒ€Œvx•ª
+	u16		alarm_switch : 1;		///< ã‚¢ãƒ—ãƒªã€ã‚¢ãƒ©ãƒ¼ãƒ æ™‚è¨ˆã€ã‚¹ã‚¤ãƒƒãƒ
+	u16		alarm_hour   : 5;		///< ã‚¢ãƒ—ãƒªã€ã‚¢ãƒ©ãƒ¼ãƒ æ™‚è¨ˆã€æ™‚
+	u16		alarm_minute : 6;		///< ã‚¢ãƒ—ãƒªã€ã‚¢ãƒ©ãƒ¼ãƒ æ™‚è¨ˆã€åˆ†
 	u16		 : 4;
 
 	//-------------------
-	u8		dotart_data[POKETCH_DOTART_DATA_BYTESIZE];	///< wƒhƒbƒgƒA[ƒgx•Û‘¶ƒf[ƒ^
+	u8		dotart_data[POKETCH_DOTART_DATA_BYTESIZE];	///< ã€ãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆã€ä¿å­˜ãƒ‡ãƒ¼ã‚¿
 
 	//-------------------
-	u32		calendar_markbit;	///< wƒJƒŒƒ“ƒ_[xƒ}[ƒNƒrƒbƒgƒtƒ‰ƒO
-	u8		calendar_month;		///< wƒJƒŒƒ“ƒ_[xƒ}[ƒN‚µ‚½Œ
+	u32		calendar_markbit;	///< ã€ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã€ãƒãƒ¼ã‚¯ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
+	u8		calendar_month;		///< ã€ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã€ãƒãƒ¼ã‚¯ã—ãŸæœˆ
 
 	//-------------------
 	struct {
 		u8   x;
 		u8   y;
-	}mark_map_pos[ POKETCH_MAP_MARK_MAX ];	///< wƒ}ƒbƒvƒ}[ƒLƒ“ƒOxƒ}[ƒNˆÊ’u
+	}mark_map_pos[ POKETCH_MAP_MARK_MAX ];	///< ã€ãƒãƒƒãƒ—ãƒãƒ¼ã‚­ãƒ³ã‚°ã€ãƒãƒ¼ã‚¯ä½ç½®
 
 	//--------------------
 	struct {
@@ -76,14 +76,14 @@ struct _POKETCH_DATA {
 };
 
 //============================================================================================
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //============================================================================================
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNƒTƒCƒYæ“¾
+ * ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
  *
- * @retval  int		ƒ[ƒNƒTƒCƒY
+ * @retval  int		ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
  */
 //------------------------------------------------------------------
 int PoketchData_GetWorkSize(void)
@@ -92,11 +92,11 @@ int PoketchData_GetWorkSize(void)
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN—pƒƒ‚ƒŠ‚ğƒAƒƒP[ƒg•‰Šú‰»‚µ‚Ä•Ô‚·
+ * ãƒ¯ãƒ¼ã‚¯ç”¨ãƒ¡ãƒ¢ãƒªã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆï¼†åˆæœŸåŒ–ã—ã¦è¿”ã™
  *
- * @param   heapID		ƒAƒƒP[ƒg—pƒq[ƒv‚h‚c
+ * @param   heapID		ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆç”¨ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- * @retval  POKETCH_DATA *		‰Šú‰»Ï‚İƒ[ƒN—Ìˆæ‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  POKETCH_DATA *		åˆæœŸåŒ–æ¸ˆã¿ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 POKETCH_DATA * PoketchData_AllocWork(u32 heapID)
@@ -108,14 +108,14 @@ POKETCH_DATA * PoketchData_AllocWork(u32 heapID)
 }
 
 //============================================================================================
-//	POKETCH_DATA‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	POKETCH_DATAæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //============================================================================================
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN—Ìˆæ‰Šú‰»
+ * ãƒ¯ãƒ¼ã‚¯é ˜åŸŸåˆæœŸåŒ–
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -136,20 +136,20 @@ void PoketchData_Init(POKETCH_DATA* poketch_data)
 	poketch_data->get_flag = FALSE;
 	poketch_data->color_type = POKETCH_COLOR_TYPE0;
 
-	// –œ•àŒv
+	// ä¸‡æ­©è¨ˆ
 	poketch_data->pedometer_flag = FALSE;
 	poketch_data->pedometer = 0;
 
-	// ƒAƒ‰[ƒ€Œv
+	// ã‚¢ãƒ©ãƒ¼ãƒ æ™‚è¨ˆ
 	poketch_data->alarm_switch = FALSE;
 	poketch_data->alarm_hour = 0;
 	poketch_data->alarm_minute = 0;
 
-	// ƒJƒŒƒ“ƒ_[
+	// ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼
 	poketch_data->calendar_month = 1;
 	poketch_data->calendar_markbit = 0;
 
-	// ƒ}[ƒLƒ“ƒOƒ}ƒbƒv
+	// ãƒãƒ¼ã‚­ãƒ³ã‚°ãƒãƒƒãƒ—
 	{
 		static const struct {
 			u8  x;
@@ -165,7 +165,7 @@ void PoketchData_Init(POKETCH_DATA* poketch_data)
 		}
 	}
 
-	// ƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼
 	for(i=0; i<POKETCH_POKE_HISTORY_COUNT_MAX; i++)
 	{
 		poketch_data->poke_history[i].monsno = 0;
@@ -173,7 +173,7 @@ void PoketchData_Init(POKETCH_DATA* poketch_data)
 		poketch_data->poke_history[i].formno = 0;
 	}
 
-	// ƒhƒbƒgƒA[ƒg
+	// ãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆ
 	poketch_data->dotart_modified_flag = 0;
 
 
@@ -185,9 +185,9 @@ void PoketchData_Init(POKETCH_DATA* poketch_data)
 }
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒ`‚ğè‚É“ü‚ê‚½ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+ * ãƒã‚±ãƒƒãƒã‚’æ‰‹ã«å…¥ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -200,9 +200,9 @@ void PoketchData_SetPoketchGetFlag( POKETCH_DATA* poketch_data )
 }
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒ`‚ğè‚É“ü‚ê‚½ƒtƒ‰ƒO‚ğæ“¾‚·‚é
+ * ãƒã‚±ãƒƒãƒã‚’æ‰‹ã«å…¥ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -212,11 +212,11 @@ BOOL PoketchData_GetPoketchGetFlag( POKETCH_DATA* poketch_data )
 }
 //------------------------------------------------------------------
 /**
- * “o˜^‚³‚ê‚Ä‚¢‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì”‚ğæ“¾
+ * ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°ã‚’å–å¾—
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int		“o˜^‚³‚ê‚Ä‚¢‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì”
+ * @retval  int		ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°
  */
 //------------------------------------------------------------------
 int PoketchData_GetApplicationCount(const POKETCH_DATA * poketch_data)
@@ -225,11 +225,11 @@ int PoketchData_GetApplicationCount(const POKETCH_DATA * poketch_data)
 }
 //------------------------------------------------------------------
 /**
- * ‚ ‚Æ‚¢‚­‚ÂƒAƒvƒŠ‚ğ“o˜^‚Å‚«‚é‚©æ“¾
+ * ã‚ã¨ã„ãã¤ã‚¢ãƒ—ãƒªã‚’ç™»éŒ²ã§ãã‚‹ã‹å–å¾—
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int		‚¢‚­‚Â“o˜^‚Å‚«‚é‚©
+ * @retval  int		ã„ãã¤ç™»éŒ²ã§ãã‚‹ã‹
  */
 //------------------------------------------------------------------
 int PoketchData_GetRestApplicationSpace( POKETCH_DATA* poketch_data )
@@ -238,12 +238,12 @@ int PoketchData_GetRestApplicationSpace( POKETCH_DATA* poketch_data )
 }
 //------------------------------------------------------------------
 /**
- * ‚·‚Å‚ÉƒAƒvƒŠ‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * ã™ã§ã«ã‚¢ãƒ—ãƒªãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   poketch_data	ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   app_id			ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ID
+ * @param   poketch_data	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   app_id			ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ID
  *
- * @retval  BOOL	TRUE‚Å“o˜^Ï‚İ
+ * @retval  BOOL	TRUEã§ç™»éŒ²æ¸ˆã¿
  */
 //------------------------------------------------------------------
 BOOL PoketchData_CheckApplicationRegisterd( POKETCH_DATA* poketch_data, int app_id )
@@ -252,12 +252,12 @@ BOOL PoketchData_CheckApplicationRegisterd( POKETCH_DATA* poketch_data, int app_
 }
 //------------------------------------------------------------------
 /**
- * V‚µ‚¢ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğ’Ç‰Á
+ * æ–°ã—ã„ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ 
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   app_id				ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ID
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   app_id				ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ID
  *
- * @retval  BOOL		TRUE‚Å“o˜^¬Œ÷^FALSE‚Å¸”si‚à‚¤‚¢‚Á‚Ï‚¢j
+ * @retval  BOOL		TRUEã§ç™»éŒ²æˆåŠŸï¼FALSEã§å¤±æ•—ï¼ˆã‚‚ã†ã„ã£ã±ã„ï¼‰
  */
 //------------------------------------------------------------------
 BOOL PoketchData_AddApplication(POKETCH_DATA * poketch_data, int app_id)
@@ -287,13 +287,13 @@ BOOL PoketchData_AddApplication(POKETCH_DATA * poketch_data, int app_id)
 }
 //------------------------------------------------------------------
 /**
- * Œ»İ•\¦’†‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ID‚ğæ“¾
+ * ç¾åœ¨è¡¨ç¤ºä¸­ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³IDã‚’å–å¾—
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ID
+ * @retval  int		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ID
  *
- * ¦ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ID = ŒvAƒƒ‚’ “™AƒAƒvƒŠ‚Ìí—Ş‚ğ¯•Ê‚·‚éID.
+ * â€»ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ID = æ™‚è¨ˆã€ãƒ¡ãƒ¢å¸³ç­‰ã€ã‚¢ãƒ—ãƒªã®ç¨®é¡ã‚’è­˜åˆ¥ã™ã‚‹ID.
  */
 //------------------------------------------------------------------
 int PoketchData_GetNowApplication(const POKETCH_DATA* poketch_data)
@@ -302,11 +302,11 @@ int PoketchData_GetNowApplication(const POKETCH_DATA* poketch_data)
 }
 //------------------------------------------------------------------
 /**
- * •\¦’†ƒAƒvƒŠ‚ğ‚P‚Â‘O‚ÖØ‚è‘Ö‚¦‚é
+ * è¡¨ç¤ºä¸­ã‚¢ãƒ—ãƒªã‚’ï¼‘ã¤å‰ã¸åˆ‡ã‚Šæ›¿ãˆã‚‹
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int		Ø‚è‘Ö‚¦Œã‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“”Ô†
+ * @retval  int		åˆ‡ã‚Šæ›¿ãˆå¾Œã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·
  */
 //------------------------------------------------------------------
 int PoketchData_SetApplicationPosNext( POKETCH_DATA* poketch_data )
@@ -336,11 +336,11 @@ int PoketchData_SetApplicationPosNext( POKETCH_DATA* poketch_data )
 }
 //------------------------------------------------------------------
 /**
- * •\¦’†ƒAƒvƒŠ‚ğ‚P‚ÂŒã‚ë‚ÖØ‚è‘Ö‚¦‚é
+ * è¡¨ç¤ºä¸­ã‚¢ãƒ—ãƒªã‚’ï¼‘ã¤å¾Œã‚ã¸åˆ‡ã‚Šæ›¿ãˆã‚‹
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int		Ø‚è‘Ö‚¦Œã‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“”Ô†
+ * @retval  int		åˆ‡ã‚Šæ›¿ãˆå¾Œã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·
  */
 //------------------------------------------------------------------
 int PoketchData_SetApplicationPosPrev( POKETCH_DATA* poketch_data )
@@ -370,10 +370,10 @@ int PoketchData_SetApplicationPosPrev( POKETCH_DATA* poketch_data )
 }
 //------------------------------------------------------------------
 /**
- * •\¦’†ƒAƒvƒŠ‚ğw’è“o˜^”Ô†‚Ì•¨‚ÉØ‚è‘Ö‚¦‚é
+ * è¡¨ç¤ºä¸­ã‚¢ãƒ—ãƒªã‚’æŒ‡å®šç™»éŒ²ç•ªå·ã®ç‰©ã«åˆ‡ã‚Šæ›¿ãˆã‚‹
  *
- * @param   poketch_data	ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   pos				“o˜^”Ô†
+ * @param   poketch_data	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos				ç™»éŒ²ç•ªå·
  *
  */
 //------------------------------------------------------------------
@@ -410,11 +410,11 @@ void PoketchData_SetApplicationPos( POKETCH_DATA* poketch_data, int pos )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒ‰[ƒ^ƒCƒv‚ğæ“¾
+ * ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		ƒJƒ‰[ƒ^ƒCƒv
+ * @retval  u32		ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
  */
 //------------------------------------------------------------------
 u32 PoketchData_GetColorType( const POKETCH_DATA* poketch_data )
@@ -424,9 +424,9 @@ u32 PoketchData_GetColorType( const POKETCH_DATA* poketch_data )
 }
 //------------------------------------------------------------------
 /**
- * ƒJƒ‰[ƒ^ƒCƒv‚ğİ’è
+ * ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’è¨­å®š
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void PoketchData_SetColorType( POKETCH_DATA* poketch_data, u32 color_type )
@@ -444,11 +444,11 @@ void PoketchData_SetColorType( POKETCH_DATA* poketch_data, u32 color_type )
 
 //------------------------------------------------------------------
 /**
- * w–œ•àŒvx‚Ì•à”‚ğæ“¾
+ * ã€ä¸‡æ­©è¨ˆã€ã®æ­©æ•°ã‚’å–å¾—
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		–œ•àŒv•à”
+ * @retval  u32		ä¸‡æ­©è¨ˆæ­©æ•°
  */
 //------------------------------------------------------------------
 u32 PoketchData_GetPedometer( const POKETCH_DATA* poketch_data )
@@ -457,10 +457,10 @@ u32 PoketchData_GetPedometer( const POKETCH_DATA* poketch_data )
 }
 //------------------------------------------------------------------
 /**
- * w–œ•àŒvx‚Ì•à”‚ğƒZƒbƒg
+ * ã€ä¸‡æ­©è¨ˆã€ã®æ­©æ•°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   pos					ƒZƒbƒg‚·‚é•à”
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos					ã‚»ãƒƒãƒˆã™ã‚‹æ­©æ•°
  */
 //------------------------------------------------------------------
 void PoketchData_SetPedometer( POKETCH_DATA* poketch_data, u32 count )
@@ -479,9 +479,9 @@ void PoketchData_SetPedometer( POKETCH_DATA* poketch_data, u32 count )
 
 //------------------------------------------------------------------
 /**
- * wƒAƒ‰[ƒ€Œvx‚ÌƒXƒCƒbƒ`ƒIƒ“^ƒIƒtƒtƒ‰ƒO‚ğæ“¾
+ * ã€ã‚¢ãƒ©ãƒ¼ãƒ æ™‚è¨ˆã€ã®ã‚¹ã‚¤ãƒƒãƒã‚ªãƒ³ï¼ã‚ªãƒ•ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  BOOL			
  */
@@ -492,11 +492,11 @@ BOOL PoketchData_GetAlarmSwitchFlag( const POKETCH_DATA* poketch_data )
 }
 //------------------------------------------------------------------
 /**
- * wƒAƒ‰[ƒ€Œvx‚Ìİ’è‚ğæ“¾
+ * ã€ã‚¢ãƒ©ãƒ¼ãƒ æ™‚è¨ˆã€ã®è¨­å®šæ™‚åˆ»ã‚’å–å¾—
  *
- * @param   poketch_data		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   hour				İ’èij‚ğó‚¯æ‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param   min					İ’èi•ªj‚ğó‚¯æ‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   hour				è¨­å®šæ™‚åˆ»ï¼ˆæ™‚ï¼‰ã‚’å—ã‘å–ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   min					è¨­å®šæ™‚åˆ»ï¼ˆåˆ†ï¼‰ã‚’å—ã‘å–ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -507,12 +507,12 @@ void PoketchData_GetAlarmTime( const POKETCH_DATA* poketch_data, u32* hour, u32*
 }
 //------------------------------------------------------------------
 /**
- * wƒAƒ‰[ƒ€Œvx‚Ìİ’èXV
+ * ã€ã‚¢ãƒ©ãƒ¼ãƒ æ™‚è¨ˆã€ã®è¨­å®šæ›´æ–°
  *
- * @param   poketch_data	ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   switch_flag		ƒXƒCƒbƒ`ƒIƒ“^ƒIƒtƒtƒ‰ƒO
- * @param   hour			İ’èij
- * @param   min				İ’èi•ªj
+ * @param   poketch_data	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   switch_flag		ã‚¹ã‚¤ãƒƒãƒã‚ªãƒ³ï¼ã‚ªãƒ•ãƒ•ãƒ©ã‚°
+ * @param   hour			è¨­å®šæ™‚åˆ»ï¼ˆæ™‚ï¼‰
+ * @param   min				è¨­å®šæ™‚åˆ»ï¼ˆåˆ†ï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -531,11 +531,11 @@ void PoketchData_SetAlarm( POKETCH_DATA* poketch_data, BOOL switch_flag, u32 hou
 
 //------------------------------------------------------------------
 /**
- * ƒJƒŒƒ“ƒ_[‚Ì“ú•tƒrƒbƒg‚ğƒZƒbƒg
+ * ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã®æ—¥ä»˜ãƒ“ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   poketch_data	ƒ|ƒPƒbƒ`ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   month			ƒZƒbƒg‚·‚éŒ
- * @param   day				ƒZƒbƒg‚·‚é“ú
+ * @param   poketch_data	ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   month			ã‚»ãƒƒãƒˆã™ã‚‹æœˆ
+ * @param   day				ã‚»ãƒƒãƒˆã™ã‚‹æ—¥
  *
  */
 //------------------------------------------------------------------
@@ -556,11 +556,11 @@ void PoketchData_Calendar_SetMark( POKETCH_DATA* poketch_data, u32 month, u32 da
 }
 //------------------------------------------------------------------
 /**
- * ƒJƒŒƒ“ƒ_[‚Ì“ú•tƒrƒbƒg‚ğƒNƒŠƒA
+ * ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã®æ—¥ä»˜ãƒ“ãƒƒãƒˆã‚’ã‚¯ãƒªã‚¢
  *
- * @param   poketch_data	ƒ|ƒPƒbƒ`ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   month			ƒNƒŠƒA‚·‚éŒ
- * @param   day				ƒNƒŠƒA‚·‚é“ú
+ * @param   poketch_data	ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   month			ã‚¯ãƒªã‚¢ã™ã‚‹æœˆ
+ * @param   day				ã‚¯ãƒªã‚¢ã™ã‚‹æ—¥
  *
  */
 //------------------------------------------------------------------
@@ -581,13 +581,13 @@ void PoketchData_Calendar_ClearMark( POKETCH_DATA* poketch_data, u32 month, u32 
 }
 //------------------------------------------------------------------
 /**
- * ƒJƒŒƒ“ƒ_[‚Ì“ú•tƒrƒbƒg‚ğæ“¾
+ * ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã®æ—¥ä»˜ãƒ“ãƒƒãƒˆã‚’å–å¾—
  *
- * @param   poketch_data	ƒ|ƒPƒbƒ`ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   month			Œ
- * @param   day				“ú
+ * @param   poketch_data	ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   month			æœˆ
+ * @param   day				æ—¥
  *
- * @retval  BOOL		TRUE‚È‚çƒrƒbƒgON
+ * @retval  BOOL		TRUEãªã‚‰ãƒ“ãƒƒãƒˆON
  */
 //------------------------------------------------------------------
 BOOL PoketchData_Calendar_GetMark( const POKETCH_DATA* poketch_data, u32 month, u32 day )
@@ -629,11 +629,11 @@ void PoketchData_MarkMap_GetMarkPos( const POKETCH_DATA* poketch_data, int id, u
 
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠwƒhƒbƒgƒA[ƒgx@ˆê“x‚Å‚à“à—e‚ª•ÒW‚³‚ê‚½‚±‚Æ‚ª‚ ‚é‚©H
+ * ã‚¢ãƒ—ãƒªã€ãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆã€ã€€ä¸€åº¦ã§ã‚‚å†…å®¹ãŒç·¨é›†ã•ã‚ŒãŸã“ã¨ãŒã‚ã‚‹ã‹ï¼Ÿ
  *
- * @param   poketch_data		ƒ|ƒPƒbƒ`ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚Å•ÒW‚³‚ê‚½‚±‚Æ‚ ‚è
+ * @retval  BOOL		TRUEã§ç·¨é›†ã•ã‚ŒãŸã“ã¨ã‚ã‚Š
  */
 //------------------------------------------------------------------
 BOOL PoketchData_DotArt_GetModifiedFlag( const POKETCH_DATA* poketch_data )
@@ -642,10 +642,10 @@ BOOL PoketchData_DotArt_GetModifiedFlag( const POKETCH_DATA* poketch_data )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠwƒhƒbƒgƒA[ƒgx	ƒrƒbƒgƒf[ƒ^æ“¾
+ * ã‚¢ãƒ—ãƒªã€ãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆã€	ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param   poketch_data		ƒ|ƒPƒbƒ`ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   dst					ƒf[ƒ^æ“¾æƒoƒbƒtƒ@
+ * @param   poketch_data		ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   dst					ãƒ‡ãƒ¼ã‚¿å–å¾—å…ˆãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -658,10 +658,10 @@ void PoketchData_DotArt_GetBitData( const POKETCH_DATA* poketch_data, u8* dst )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠwƒhƒbƒgƒA[ƒgx	•ÒW‚µ‚½ƒrƒbƒgƒf[ƒ^•Û‘¶
+ * ã‚¢ãƒ—ãƒªã€ãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆã€	ç·¨é›†ã—ãŸãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ä¿å­˜
  *
- * @param   poketch_data		ƒ|ƒPƒbƒ`ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   src					ƒrƒbƒgƒf[ƒ^ƒAƒhƒŒƒX
+ * @param   poketch_data		ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   src					ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -677,16 +677,16 @@ void PoketchData_DotArt_SetBitData( POKETCH_DATA* poketch_data, const u8* src )
 
 
 //==============================================================================================
-// ƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[iè‚É“ü‚ê‚½ƒ|ƒPƒ‚ƒ“‚ğ‹L˜^j
+// ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼ï¼ˆæ‰‹ã«å…¥ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã‚’è¨˜éŒ²ï¼‰
 //==============================================================================================
 
 
 //------------------------------------------------------------------
 /**
- * wƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[x‹L˜^’Ç‰Á
+ * ã€ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼ã€è¨˜éŒ²è¿½åŠ 
  *
- * @param   poketch_data		ƒ|ƒPƒbƒ`ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   ppp					ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   poketch_data		ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   ppp					ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -715,11 +715,11 @@ void PoketchData_PokeHistory_Add( POKETCH_DATA* poketch_data, const POKEMON_PASO
 
 //------------------------------------------------------------------
 /**
- * wƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[x‹L˜^Œ”‚ğ•Ô‚·
+ * ã€ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼ã€è¨˜éŒ²ä»¶æ•°ã‚’è¿”ã™
  *
- * @param   poketch_data		ƒ|ƒPƒbƒ`ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param   poketch_data		ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int		‹L˜^Œ”
+ * @retval  int		è¨˜éŒ²ä»¶æ•°
  */
 //------------------------------------------------------------------
 int PoketchData_PokeHistory_GetRecordCount( const POKETCH_DATA* poketch_data )
@@ -737,12 +737,12 @@ int PoketchData_PokeHistory_GetRecordCount( const POKETCH_DATA* poketch_data )
 
 //------------------------------------------------------------------
 /**
- * wƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[x‹L˜^‚³‚ê‚½ƒf[ƒ^‚ğæ“¾
+ * ã€ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼ã€è¨˜éŒ²ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param   poketch_data	ƒ|ƒPƒbƒ`ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   index			‹Œ‚¢‡ 0origin ƒCƒ“ƒfƒbƒNƒX
- * @param   monsno			[out]ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ğó‚¯æ‚é
- * @param   iconPattern		[out]ƒAƒCƒRƒ“ƒpƒ^[ƒ“ƒiƒ“ƒo[‚ğó‚¯æ‚é
+ * @param   poketch_data	ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   index			æ—§ã„é † 0origin ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   monsno			[out]ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’å—ã‘å–ã‚‹
+ * @param   iconPattern		[out]ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å—ã‘å–ã‚‹
  *
  */
 //------------------------------------------------------------------
@@ -757,10 +757,10 @@ void PoketchData_PokeHistory_GetRecord( const POKETCH_DATA* poketch_data, int in
 
 //------------------------------------------------------------------
 /**
- * wƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[x‹L˜^‚³‚ê‚½ƒf[ƒ^‚ğæ“¾@ƒtƒH[ƒ€
+ * ã€ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼ã€è¨˜éŒ²ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã€€ãƒ•ã‚©ãƒ¼ãƒ 
  *
- * @param   poketch_data	ƒ|ƒPƒbƒ`ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   index			‹Œ‚¢‡ 0origin ƒCƒ“ƒfƒbƒNƒX
+ * @param   poketch_data	ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   index			æ—§ã„é † 0origin ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -773,7 +773,7 @@ u32 PoketchData_PokeHistory_GetFormNo( const POKETCH_DATA* poketch_data, int ind
 
 
 //============================================================================================
-//	ƒZ[ƒuƒf[ƒ^æ“¾‚Ì‚½‚ß‚ÌŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®é–¢æ•°
 //============================================================================================
 POKETCH_DATA * SaveData_GetPoketchData(SAVEDATA * sv)
 {
@@ -788,7 +788,7 @@ POKETCH_DATA * SaveData_GetPoketchData(SAVEDATA * sv)
 
 
 //============================================================================================
-//	ƒfƒoƒbƒO—p
+//	ãƒ‡ãƒãƒƒã‚°ç”¨
 //============================================================================================
 #ifdef PM_DEBUG
 void PoketchData_AddAllApplication( POKETCH_DATA* poketch_data )

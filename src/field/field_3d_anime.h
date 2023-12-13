@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_3d_anime.h
- * @brief   ƒtƒB[ƒ‹ƒh3DƒAƒjƒ[ƒVƒ‡ƒ“ŠÖ˜Aˆ—
+ * @brief   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰3Dã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢é€£å‡¦ç†
  * @author	nozomu saito
  * @date	2006.02.13
  */
@@ -12,28 +12,28 @@
 #include "field_common.h"
 
 
-#define FLD_3D_ANIME_MAX	(16)		//ƒtƒB[ƒ‹ƒh‚Å“¯Žž‚É“®‚­ƒAƒjƒ‚Ì”
+#define FLD_3D_ANIME_MAX	(16)		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§åŒæ™‚ã«å‹•ãã‚¢ãƒ‹ãƒ¡ã®æ•°
 
 #define LOOP_INFINIT		(-1)
 /**
 enum{
-	FLD_3D_ANIME_NON = 0,		//ƒAƒjƒ‚È‚µ
-	FLD_3D_ANIME_STATION,		//í’“ƒAƒjƒ
-	FLD_3D_ANIME_NO_STATION,	//”ñí’“ƒAƒjƒ
-	FLD_3D_ANIME_STATION_SUB,	//ðŒ”­“®í’“ƒAƒjƒ
+	FLD_3D_ANIME_NON = 0,		//ã‚¢ãƒ‹ãƒ¡ãªã—
+	FLD_3D_ANIME_STATION,		//å¸¸é§ã‚¢ãƒ‹ãƒ¡
+	FLD_3D_ANIME_NO_STATION,	//éžå¸¸é§ã‚¢ãƒ‹ãƒ¡
+	FLD_3D_ANIME_STATION_SUB,	//æ¡ä»¶ç™ºå‹•å¸¸é§ã‚¢ãƒ‹ãƒ¡
 };
 */
 #define F3DA_CONDITIONAL			(1)
 #define F3DA_NO_CONDITIONAL			(0)
 
-#define F3DA_ADD_CONDITIONAL	(0x01)	//ðŒ‚ ‚è’Ç‰Á
-#define F3DA_SET_CONDITIONAL	(0x02)	//ðŒ‚ ‚èƒZƒbƒg
+#define F3DA_ADD_CONDITIONAL	(0x01)	//æ¡ä»¶ã‚ã‚Šè¿½åŠ 
+#define F3DA_SET_CONDITIONAL	(0x02)	//æ¡ä»¶ã‚ã‚Šã‚»ãƒƒãƒˆ
 
-//í’“ƒAƒjƒiADDASET‚ÉðŒ‚Í‚È‚µj
+//å¸¸é§ã‚¢ãƒ‹ãƒ¡ï¼ˆADDã€SETã«æ¡ä»¶ã¯ãªã—ï¼‰
 #define FLD_3D_ANIME_STATION	(0)
-//ðŒ‚Â‚«ƒAƒjƒiADDASET‚ÉðŒ‚ ‚èj
+//æ¡ä»¶ã¤ãã‚¢ãƒ‹ãƒ¡ï¼ˆADDã€SETã«æ¡ä»¶ã‚ã‚Šï¼‰
 #define FLD_3D_ANIME_ALL_COND	(F3DA_ADD_CONDITIONAL|F3DA_SET_CONDITIONAL)
-//SETŽž‚Ì‚ÝðŒ‚ª‚ ‚éƒAƒjƒ(ADD‚ÍðŒ–³‚µ)
+//SETæ™‚ã®ã¿æ¡ä»¶ãŒã‚ã‚‹ã‚¢ãƒ‹ãƒ¡(ADDã¯æ¡ä»¶ç„¡ã—)
 #define FLD_3D_ANIME_SET_COND	(F3DA_SET_CONDITIONAL)
 
 typedef struct FLD_3D_ANIME_MANAGER_tag*	FLD_3D_ANM_MNG_PTR;

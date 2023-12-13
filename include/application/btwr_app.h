@@ -1,6 +1,6 @@
 /**
  *	@file	btwr_app.h
- *	@brief	バトルタワー関連アプリ
+ *	@brief	繝舌ヨ繝ｫ繧ｿ繝ｯ繝ｼ髢｢騾｣繧｢繝励Μ
  *	@author	Miyuki Iwasawa
  *	@date	06.05.26
  */
@@ -9,7 +9,7 @@
 #define __H_BTWR_APP_H__
 
 #include "savedata/savedata_def.h"
-///外部公開パラメータ引継ぎワーク
+///螟夜Κ蜈ｬ髢九ヱ繝ｩ繝｡繝ｼ繧ｿ蠑慕ｶ吶℃繝ｯ繝ｼ繧ｯ
 typedef struct _BTOWER_APP_PARAM{
 	SAVEDATA* save;
 	u16	mainMode;

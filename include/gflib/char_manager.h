@@ -1,7 +1,7 @@
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
 /**
  *	@file		char_manager.h
- *	@brief		�L�����N�^�f�[�^�}�l�[�W���[�w�b�_
+ *	@brief		キャラクタデータマネージャーヘッダ
  *	@author		tomoya takahashi
  *	@data		2004.11.22
  */
@@ -23,179 +23,179 @@
 
 //-----------------------------------------------------------------------------
 /**
-*		OBJ�}�b�s���O���[�h�̐���
+*		OBJマッピングモードの説明
 *
-���n�a�i�}�b�s���O���[�h�ɂ��Ă̐���
-	�n�`�l�A�g���r���[�g�̐擪�L�����N�^�l�[���̃��W�X�^��10bit�ŁA0~1023�̒l�����邱�Ƃ��o���܂��B
-	����ŁA�擪����32KByte�܂łɓ������L�����N�^�f�[�^�͎Q�Əo���܂��B
+■ＯＢＪマッピングモードについての説明
+	ＯＡＭアトリビュートの先頭キャラクタネームのレジスタは10bitで、0~1023の値を入れることが出来ます。
+	これで、先頭から32KByteまでに入ったキャラクタデータは参照出来ます。
 
-	�������c�r�ł́A�X�v���C�g�̃L�����N�^�f�[�^��16KByte~256KByte�w��ł��܂��B
-	16Kbyte 32Kbyte�͑��v�ł����A64KByte~256KByte�͐擪����I�[�܂ł̑S�ẴL�����N�^�f�[�^��
-	�O�`�P�O�Q�R�ł͎Q�Ƃ��邱�Ƃ��o���Ȃ��Ȃ��Ă��܂��܂��B
+	しかしＤＳでは、スプライトのキャラクタデータに16KByte~256KByte指定できます。
+	16Kbyte 32Kbyteは大丈夫ですが、64KByte~256KByteは先頭から終端までの全てのキャラクタデータを
+	０〜１０２３では参照することが出来なくなってしまいます。
 
-	�����������邽�߂ɁA�n�a�i�}�b�s���O���[�h�ŁA�L�����N�^���E���w�肵�܂��B
-	��jOBJ�}�b�s���O���[�h�@�P�Q�W�jb yte�@�̎�
-	�L�����N�^���E�@�� �@128Byte�@���@�S�L�����N�^
-	�S�L�����N�^���擪�L�����N�^�l�[����ݒ�o���܂��B
-	�O		�|���O�L�����N�^����Q��	�i���W�X�^�̒l�@�[���@���ۂ̎Q�Ɛ�̃L�����N�^�i���o�[�j
-	�P		�|���S�L�����N�^����Q��
-	�Q		�[���W�L�����N�^����Q��
-	�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
-	�P�O�Q�R	�[���W�P�W�S�L�����N�^����Q��
+	それを回避するために、ＯＢＪマッピングモードで、キャラクタ境界を指定します。
+	例）OBJマッピングモード　１２８Ｋb yte　の時
+	キャラクタ境界　＝ 　128Byte　＝　４キャラクタ
+	４キャラクタずつ先頭キャラクタネームを設定出来ます。
+	０		−＞０キャラクタから参照	（レジスタの値　ー＞　実際の参照先のキャラクタナンバー）
+	１		−＞４キャラクタから参照
+	２		ー＞８キャラクタから参照
+	・・・・・・・・・・・・・・・・
+	１０２３	ー＞８１８４キャラクタから参照
 
-	����ŁA�O�`�P�O�Q�R�̒l�ŁA�P�Q�W�j�a�������̗̈���w�肷�邱�Ƃ��o����悤�ɂȂ�܂��B
-	���̑���ɁA�P�L�����N�^�T�C�Y�̃L�����N�^�f�[�^���g�p�������ł��A�S�L�����N�^����
-	�u�������ɔz�u���Ă����K�v������܂��B
+	これで、０〜１０２３の値で、１２８ＫＢｙｔｅの領域を指定することが出来るようになります。
+	その代わりに、１キャラクタサイズのキャラクタデータを使用した時でも、４キャラクタずつ
+	Ｖｒａｍに配置していく必要があります。
 
-	��̎�����AVram�T�C�Y�ɍ��킹�āA�K�؂Ȃn�a�i�}�b�s���O���[�h��ݒ肷��K�v������܂��B
+	上の事から、Vramサイズに合わせて、適切なＯＢＪマッピングモードを設定する必要があります。
 
 *
-*	�ENitroCharacter�ł́A��̂��Ƃ��l�������L�����N�^�f�[�^�������o���Ă���Ă��܂�
-*	�@�̂ŁA�Z���f�[�^�쐬����OBJ�}�b�s���O���[�h�ݒ�����Ă��������B
-*	�E�ȉ�NitroSDK�w���v
+*	・NitroCharacterでは、上のことを考慮したキャラクタデータを書き出してくれています
+*	　ので、セルデータ作成時のOBJマッピングモード設定をしてください。
+*	・以下NitroSDKヘルプ
 *	GX_OBJVRAMMODE_CHAR_2D	
-*		2�����}�b�s���O���[�h��I�����܂��B 
+*		2次元マッピングモードを選択します。 
 *		
 *	GX_OBJVRAMMODE_CHAR_1D_32K
-*		�P�����}�b�s���O���[�h�ŁA�擪�L�����N�^���E��32�o�C�g�Ƃ��܂��B
-*		���p�\��OBJ-VRAM�̍ő�e�ʂ�32KB�ɂȂ�܂��B 
+*		１次元マッピングモードで、先頭キャラクタ境界を32バイトとします。
+*		利用可能なOBJ-VRAMの最大容量は32KBになります。 
 *		
 *	 GX_OBJVRAMMODE_CHAR_1D_64K
-*		�P�����}�b�s���O���[�h�ŁA�擪�L�����N�^���E��64�o�C�g�Ƃ��܂��B
-*		���p�\��OBJ-VRAM�̍ő�e�ʂ�64KB�ɂȂ�܂��B 
+*		１次元マッピングモードで、先頭キャラクタ境界を64バイトとします。
+*		利用可能なOBJ-VRAMの最大容量は64KBになります。 
 *		
 *	 GX_OBJVRAMMODE_CHAR_1D_128K
-*		�P�����}�b�s���O���[�h�ŁA�擪�L�����N�^���E��128�o�C�g�Ƃ��܂��B
-*		���p�\��OBJ-VRAM�̍ő�e�ʂ�128KB�ɂȂ�܂��B 
+*		１次元マッピングモードで、先頭キャラクタ境界を128バイトとします。
+*		利用可能なOBJ-VRAMの最大容量は128KBになります。 
 *		
 *	 GX_OBJVRAMMODE_CHAR_1D_256K
-*		�P�����}�b�s���O���[�h�ŁA�擪�L�����N�^���E��256�o�C�g�Ƃ��܂��B
-*		���p�\��OBJ-VRAM�̍ő�e�ʂ�256KB�ɂȂ�܂��B 
+*		１次元マッピングモードで、先頭キャラクタ境界を256バイトとします。
+*		利用可能なOBJ-VRAMの最大容量は256KBになります。 
 *
 *
-*	�Q��Vram�Ǘ����@�ɂ���
+*	２つのVram管理方法について
 *	
-*	��CharSet-CharSets�̓���
-*		Vram�̐擪����L�����N�^�f�[�^�Â�Offset�����炵��
-*		�]�����Ă����܂��BDelChar�֐����g�p���Ă�
-*		Offset��߂��Ȃǂ̏������o���Ȃ����߁A
-*		�ēx�g�p�����̈���g���Ƃ������Ƃ��o���܂���B
+*	■CharSet-CharSetsの動作
+*		Vramの先頭からキャラクタデータづつOffsetをずらして
+*		転送していきます。DelChar関数を使用しても
+*		Offsetを戻すなどの処理が出来ないため、
+*		再度使用した領域を使うということが出来ません。
 *
-*	��CharSetAreaCont-CharSetsAreaCont�̓���
-*		Vram�̊Ǘ��̈���쐬���āA�g�p�󋵂��Ǘ����܂��B
-*		�T�C�Y���̃L�����N�^�f�[�^��]������̈悪�󂢂Ă��邩��
-*		�`�F�b�N���Ă���L�����N�^�f�[�^��]�����܂��B
-*		DelChar������Ǝg�p�̈����ɂ��܂��̂ŁA
-*		�̈���ė��p���邱�Ƃ��o���܂��B
+*	■CharSetAreaCont-CharSetsAreaContの動作
+*		Vramの管理領域を作成して、使用状況を管理します。
+*		サイズ分のキャラクタデータを転送する領域が空いているかを
+*		チェックしてからキャラクタデータを転送します。
+*		DelCharをすると使用領域を空にしますので、
+*		領域を再利用することが出来ます。
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
-*		�萔��`
+*		定数定義
 */
 //-----------------------------------------------------------------------------
-// �萔
-// �L�����N�^�f�[�^�R���g���[���^�C�v
-// �R���g���[���^�C�v
-//		�I�t�Z�b�g�[�[�[�[�[�擪����I�t�Z�b�g�����炵�āA
-//							�]���I�t�Z�b�g�����߂�
-//		�G���A�R���g���[���[Vram�̈�Ǘ��z�񂩂�󂢂Ă���̈���`�F�b�N����
-//							�]���I�t�Z�b�g�����߂�
+// 定数
+// キャラクタデータコントロールタイプ
+// コントロールタイプ
+//		オフセットーーーーー先頭からオフセットをずらして、
+//							転送オフセットを求める
+//		エリアコントロールーVram領域管理配列から空いている領域をチェックして
+//							転送オフセットを求める
 enum{
-	CHARM_CONT_OFFSET,		// �I�t�Z�b�g�^�C�v
-	CHARM_CONT_AREACONT,	// �G���A�R���g���[���^�C�v
+	CHARM_CONT_OFFSET,		// オフセットタイプ
+	CHARM_CONT_AREACONT,	// エリアコントロールタイプ
 };
 
 //----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	�L�����N�^�}�l�[�W���[�쐬
-//	�\����
+//	キャラクタマネージャー作成
+//	構造体
 //	
 //=====================================
 typedef struct {
-	int CharDataNum;		// �L�����N�^���䐔
-	int VramTransAreaMain;	// ���C����ʂ�AreaCont�p�ɗp�ӂ���Vram�T�C�Y
-	int VramTransAreaSub;	// �T�u��ʂ�AreaCont�p�ɗp�ӂ���Vram�T�C�Y
-	int heap;				// �g�p����q�[�v
+	int CharDataNum;		// キャラクタ制御数
+	int VramTransAreaMain;	// メイン画面のAreaCont用に用意するVramサイズ
+	int VramTransAreaSub;	// サブ画面のAreaCont用に用意するVramサイズ
+	int heap;				// 使用するヒープ
 } CHAR_MANAGER_MAKE;
 
 
 //-------------------------------------
 //	
-//	�L�����N�^�f�[�^�w�b�_�[
+//	キャラクタデータヘッダー
 //	
 //=====================================
 typedef struct {
-	NNSG2dCharacterData*	res_file;		// �L�����N�^���\�[�X
-	u32		type;			// �o�^�^�C�v
-							// main�ɓo�^�FNNS_G2D_VRAM_TYPE_2DMAIN
-							// sub�ɓo�^ �FNNS_G2D_VRAM_TYPE_2DSUB
-							// �����ɓo�^�FNNS_G2D_VRAM_TYPE_2DMAX
-	u32		id;				// ���̃L�����N�^�f�[�^��ID
+	NNSG2dCharacterData*	res_file;		// キャラクタリソース
+	u32		type;			// 登録タイプ
+							// mainに登録：NNS_G2D_VRAM_TYPE_2DMAIN
+							// subに登録 ：NNS_G2D_VRAM_TYPE_2DSUB
+							// 両方に登録：NNS_G2D_VRAM_TYPE_2DMAX
+	u32		id;				// このキャラクタデータのID
 
-	u32		cont_type;		// Vram�R���g���[���^�C�v
-							// CHARM_CONT_OFFSET	�I�t�Z�b�g�^�C�v
-							// CHARM_CONT_AREACONT	�G���A�R���g���[���^�C�v
+	u32		cont_type;		// Vramコントロールタイプ
+							// CHARM_CONT_OFFSET	オフセットタイプ
+							// CHARM_CONT_AREACONT	エリアコントロールタイプ
 } CHAR_MANAGER_HEADER;
 
 //-------------------------------------
 //	
-//	�L�����N�^�]�������̃V�X�e����
-//	�g�p���Ȃ��Ƃ���VRAM�̗̈�̂݊m�ۂ���
-//	�V�X�e���̊m�ۗ̈�f�[�^
+//	キャラクタ転送をこのシステムを
+//	使用しないときにVRAMの領域のみ確保する
+//	システムの確保領域データ
 //	
 //=====================================
 typedef struct {
 	u32 alloc_size;
 	u32 alloc_ofs;
-	u16	type;		// Vram�m�ۂ����\����
-	// main�ɓo�^�FNNS_G2D_VRAM_TYPE_2DMAIN = 1
-	// sub�ɓo�^ �FNNS_G2D_VRAM_TYPE_2DSUB = 2
-	u16 conttype;	// �Ǘ����@
+	u16	type;		// Vram確保した表示面
+	// mainに登録：NNS_G2D_VRAM_TYPE_2DMAIN = 1
+	// subに登録 ：NNS_G2D_VRAM_TYPE_2DSUB = 2
+	u16 conttype;	// 管理方法
 } CHAR_MANAGER_ALLOCDATA;
 
 
 //----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *	�y�L�����N�^�}�l�[�W���������̓���z		
+ *	【キャラクタマネージャ初期化の動作】		
  *	typedef struct {
- *		int CharDataNum;		// �L�����N�^���䐔
- *		int VramTransAreaMain;	// ���C����ʂ�AreaCont�p�ɗp�ӂ���Vram�T�C�Y
- *		int VramTransAreaSub;	// �T�u��ʂ�AreaCont�p�ɗp�ӂ���Vram�T�C�Y
- *		int heap;				// �g�p����q�[�v
+ *		int CharDataNum;		// キャラクタ制御数
+ *		int VramTransAreaMain;	// メイン画面のAreaCont用に用意するVramサイズ
+ *		int VramTransAreaSub;	// サブ画面のAreaCont用に用意するVramサイズ
+ *		int heap;				// 使用するヒープ
  *	} CHAR_MANAGER_MAKE;
  *	
- *	��̃f�[�^�ŏ��������܂��B
- *	CharDataNum			�o�^����L�����N�^�̐���n���Ă��������B
- *						CharDataNum���̃��[�N���쐬���܂��B
+ *	上のデータで初期化します。
+ *	CharDataNum			登録するキャラクタの数を渡してください。
+ *						CharDataNum分のワークを作成します。
  *
- *	VramTransAreaMain	AreaCont�֐��Ŏg�p����Vram�Ǘ��̈�T�C�Y�ł��B
- *	VramTransAreaSub	���̃T�C�Y�����Ǘ����܂��B
+ *	VramTransAreaMain	AreaCont関数で使用するVram管理領域サイズです。
+ *	VramTransAreaSub	このサイズ分を管理します。
  *	
- *	heap				�g�p����q�[�vID
+ *	heap				使用するヒープID
  *
  *
- *	���̃f�[�^�ŏ����������Vram�Ǘ����
- *		�����AVram�̍ő傪0x20000��VramTransAreaMain��0x10000
- *		��ݒ肵���Ƃ��́A�ȉ��̂悤�ȊǗ���ԂɂȂ�܂��B
- *		Vram�̈�
+ *	このデータで初期化されるVram管理状態
+ *		もし、Vramの最大が0x20000でVramTransAreaMainに0x10000
+ *		を設定したときは、以下のような管理状態になります。
+ *		Vram領域
  *		offset
  *		0x00000000
- *					�I�t�Z�b�g�Â炵�p�̈�		CharSet CharSets
+ *					オフセットづらし用領域		CharSet CharSets
  *		0x00010000
- *					AreaCont�p�̈�		CharSetAreaCont CharSetsAreaCont
+ *					AreaCont用領域		CharSetAreaCont CharSetsAreaCont
  *		0x00020000
  */
 //-----------------------------------------------------------------------------
@@ -203,17 +203,17 @@ typedef struct {
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	  �L�����N�^�}�l�[�W���[��������
+ *@brief	  キャラクタマネージャーを初期化
  
- *@param	CharMakeData	�L�����N�^�}�l�[�W���[�쐬�f�[�^
+ *@param	CharMakeData	キャラクタマネージャー作成データ
  *
  *@return	none
  *
- * ���ݒ肳��Ă���L�����N�^���[�h�����āAVram�̊Ǘ��̈�Ȃǂ̍쐬��
- * �s���܂��B
- * �L�����N�^���[�h���ꏏ�ɐݒ肷�鏉�����֐����쐬���܂����̂ŁA
- * �ꏏ�ɐݒ肵�����Ƃ��́A����������g�����������B
- *	InitCharManagerReg�֐�
+ * 今設定されているキャラクタモードを見て、Vramの管理領域などの作成を
+ * 行います。
+ * キャラクタモードを一緒に設定する初期化関数も作成しましたので、
+ * 一緒に設定したいときは、そちらをお使いください。
+ *	InitCharManagerReg関数
  * 
  */
 //-----------------------------------------------------------------------------
@@ -222,23 +222,23 @@ GLOBAL void InitCharManager( const CHAR_MANAGER_MAKE* CharMakeData );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�L�����N�^�}�l�[�W����������
+ *	@brief	キャラクタマネージャを初期化
  *
- *	@param	CharMakeData	�L�����N�^�}�l�[�W���쐬�f�[�^
- *	@param	modeMain		�L�����N�^�}�b�s���O���[�h�@���C�����
- *	@param	modeSub			�L�����N�^�}�b�s���O���[�h�@�T�u���
+ *	@param	CharMakeData	キャラクタマネージャ作成データ
+ *	@param	modeMain		キャラクタマッピングモード　メイン画面
+ *	@param	modeSub			キャラクタマッピングモード　サブ画面
  *
  *	@return	none
  *
- *	GX_OBJVRAMMODE_CHAR_2D			2�����}�b�s���O���[�h��I�����܂��B 
- *	GX_OBJVRAMMODE_CHAR_1D_32K		�P�����}�b�s���O���[�h�ŁA�擪�L�����N�^���E��32�o�C�g�Ƃ��܂��B
- *									���p�\��OBJ-VRAM�̍ő�e�ʂ�32KB�ɂȂ�܂��B 
- *	GX_OBJVRAMMODE_CHAR_1D_64K		�P�����}�b�s���O���[�h�ŁA�擪�L�����N�^���E��64�o�C�g�Ƃ��܂��B
- *									���p�\��OBJ-VRAM�̍ő�e�ʂ�64KB�ɂȂ�܂��B 
- *	GX_OBJVRAMMODE_CHAR_1D_128K		�P�����}�b�s���O���[�h�ŁA�擪�L�����N�^���E��128�o�C�g�Ƃ��܂��B
- *									���p�\��OBJ-VRAM�̍ő�e�ʂ�128KB�ɂȂ�܂��B 
- *	GX_OBJVRAMMODE_CHAR_1D_256K		�P�����}�b�s���O���[�h�ŁA�擪�L�����N�^���E��256�o�C�g�Ƃ��܂��B
- *									���p�\��OBJ-VRAM�̍ő�e�ʂ�256KB�ɂȂ�܂��B 
+ *	GX_OBJVRAMMODE_CHAR_2D			2次元マッピングモードを選択します。 
+ *	GX_OBJVRAMMODE_CHAR_1D_32K		１次元マッピングモードで、先頭キャラクタ境界を32バイトとします。
+ *									利用可能なOBJ-VRAMの最大容量は32KBになります。 
+ *	GX_OBJVRAMMODE_CHAR_1D_64K		１次元マッピングモードで、先頭キャラクタ境界を64バイトとします。
+ *									利用可能なOBJ-VRAMの最大容量は64KBになります。 
+ *	GX_OBJVRAMMODE_CHAR_1D_128K		１次元マッピングモードで、先頭キャラクタ境界を128バイトとします。
+ *									利用可能なOBJ-VRAMの最大容量は128KBになります。 
+ *	GX_OBJVRAMMODE_CHAR_1D_256K		１次元マッピングモードで、先頭キャラクタ境界を256バイトとします。
+ *									利用可能なOBJ-VRAMの最大容量は256KBになります。 
  *
  * 
  *
@@ -249,7 +249,7 @@ GLOBAL void InitCharManagerReg( const CHAR_MANAGER_MAKE* CharMakeData, GXOBJVRam
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�[�W���[�����S�ɔj�����܂��B
+ *@brief	キャラクタマネージャーを完全に破棄します。
  *
  *@param	none
  *
@@ -263,9 +263,9 @@ GLOBAL void DeleteCharManager(void);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	  ���[�h���J�n����֐�	(�����Ǘ��̃I�t�Z�b�g��������)
+ *@brief	  ロードを開始する関数	(内部管理のオフセットを初期化)
  *
- *@param	  start_offset�F�ǂݍ��݊J�noffset
+ *@param	  start_offset：読み込み開始offset
  *
  *@return	  none
  */
@@ -276,7 +276,7 @@ GLOBAL void CharLoadStartSub( u32 start_offset );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	AreaCont�p�̃��C���A�T�u�̗��Ǘ��̈��������
+ *@brief	AreaCont用のメイン、サブの両管理領域を初期化
  *
  *@param	none
  *
@@ -288,8 +288,8 @@ GLOBAL void TransAreaInitAll( void );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	  ���[�h���J�n����֐�	�O�Ń��C���A�T�u�ʂ̃I�t�Z�b�g������������
- *				AreaCont�pVram�G���A�̏��������s���Ă��܂��B
+ *@brief	  ロードを開始する関数	０でメイン、サブ面のオフセットを初期化する
+ *				AreaCont用Vramエリアの初期化も行っています。
  *
  *@param	  none
  *
@@ -300,23 +300,23 @@ GLOBAL void CharLoadStartAll( void );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	AreaCont�֐��p	�g�p�֎~�̈�ݒ�
+ *	@brief	AreaCont関数用	使用禁止領域設定
  *
- *	@param	offset		�g�p�֎~�I�t�Z�b�g�ʒu
- *	@param	size		�g�p�֎~�T�C�Y
- *	@param	disp		���
+ *	@param	offset		使用禁止オフセット位置
+ *	@param	size		使用禁止サイズ
+ *	@param	disp		画面
  *
  *	disp
- *		main�ɓo�^�FNNS_G2D_VRAM_TYPE_2DMAIN = 1
- *		sub�ɓo�^ �FNNS_G2D_VRAM_TYPE_2DSUB = 2
+ *		mainに登録：NNS_G2D_VRAM_TYPE_2DMAIN = 1
+ *		subに登録 ：NNS_G2D_VRAM_TYPE_2DSUB = 2
  *
  *	@return	none
  *	
- *	���g�p��̒���
+ *	＊使用上の注意
  *	GLOBAL void TransAreaInitAll( void );
  *	GLOBAL void CharLoadStartAll( void );
- *	���g�p������ɂ��̐ݒ�����Ă��������B
- *	��̂Q�̊֐��̒��ŁA�֎~�̈�̏��������s���Ă��܂��܂�	
+ *	を使用した後にこの設定をしてください。
+ *	上の２つの関数の中で、禁止領域の初期化も行ってしまいます	
  */
 //-----------------------------------------------------------------------------
 GLOBAL void SetReserveAreaContCharManager( u32 offset, u32 size, u32 disp );
@@ -324,12 +324,12 @@ GLOBAL void SetReserveAreaContCharManager( u32 offset, u32 size, u32 disp );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief		�L�����N�^�f�[�^�P�̂��Z�b�g���ă��[�h
+ *@brief		キャラクタデータ単体をセットしてロード
  *
- *@param		pChatData�F�L�����N�^ENTRY�f�[�^
+ *@param		pChatData：キャラクタENTRYデータ
  *
- *@retval		TRUE �F�Z�b�g�ł���  
- *@retval		FALSE�F�Z�b�g�ł��Ȃ�����
+ *@retval		TRUE ：セットできた  
+ *@retval		FALSE：セットできなかった
  *
  */
 //-----------------------------------------------------------------------------
@@ -338,12 +338,12 @@ GLOBAL BOOL CharSet( const CHAR_MANAGER_HEADER* pCharData );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief		�L�����N�^�f�[�^�𕡐��Z�b�g
+ *@brief		キャラクタデータを複数セット
  *
- *@param		pChatData	�L�����N�^�f�[�^�z��
- *@param		num			�z��v�f��
+ *@param		pChatData	キャラクタデータ配列
+ *@param		num			配列要素数
  *
- *@return		�����o�^����������
+ *@return		いくつ登録成功したか
  */
 //-----------------------------------------------------------------------------
 GLOBAL u16 CharSets( const CHAR_MANAGER_HEADER* pCharData, int num );
@@ -351,19 +351,19 @@ GLOBAL u16 CharSets( const CHAR_MANAGER_HEADER* pCharData, int num );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief		�L�����N�^�f�[�^�P�̂��Z�b�g���ă��[�h
- *				�}�b�s���O���[�h�����̃��W�X�^��ԂɕύX���郂�[�h
+ *@brief		キャラクタデータ単体をセットしてロード
+ *				マッピングモードを今のレジスタ状態に変更するモード
  *
- *@param		pChatData�F�L�����N�^ENTRY�f�[�^
+ *@param		pChatData：キャラクタENTRYデータ
  *
- *@retval		TRUE �F�Z�b�g�ł���  
- *@retval		FALSE�F�Z�b�g�ł��Ȃ�����
+ *@retval		TRUE ：セットできた  
+ *@retval		FALSE：セットできなかった
  *
- * ���̊֐��̈Ӗ�
- *	�@CharSet�֐����ŁA�I�u�W�F�L�����N�^�̃}�b�s���O���[�h�̕ύX�����Ă��܂��Ă��邽�߁A
- *	2D�}�b�s���O���[�h�ŃR���o�[�g�����L�����N�^�f�[�^��1D�œ]������ȂǏo���܂���B
- *	�@�����������邽�߂ɍ��ݒ肳��Ă���}�b�s���O���[�h���L�����N�^�f�[�^�ɐݒ肵�āA
- *	�]������֐����쐬���܂����B
+ * この関数の意味
+ *	　CharSet関数内で、オブジェキャラクタのマッピングモードの変更をしてしまっているため、
+ *	2Dマッピングモードでコンバートしたキャラクタデータを1Dで転送するなど出来ません。
+ *	　それを回避するために今設定されているマッピングモードをキャラクタデータに設定して、
+ *	転送する関数を作成しました。
  *
  */
 //-----------------------------------------------------------------------------
@@ -372,13 +372,13 @@ GLOBAL BOOL CharSetCharModeAdjust( const CHAR_MANAGER_HEADER* pCharData );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief		�L�����N�^�f�[�^�𕡐��Z�b�g
- *				�}�b�s���O���[�h�����̃��W�X�^��ԂɕύX���郂�[�h
+ *@brief		キャラクタデータを複数セット
+ *				マッピングモードを今のレジスタ状態に変更するモード
  *
- *@param		pChatData	�L�����N�^�f�[�^�z��
- *@param		num			�z��v�f��
+ *@param		pChatData	キャラクタデータ配列
+ *@param		num			配列要素数
  *
- *@return		�����o�^����������
+ *@return		いくつ登録成功したか
  */
 //-----------------------------------------------------------------------------
 GLOBAL u16 CharSetsCharModeAdjust( const CHAR_MANAGER_HEADER* pCharData, int num );
@@ -386,14 +386,14 @@ GLOBAL u16 CharSetsCharModeAdjust( const CHAR_MANAGER_HEADER* pCharData, int num
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�Ǘ�ID��Vram�ɃL�����N�^�f�[�^��]������
+ *	@brief	管理IDのVramにキャラクタデータを転送する
  *
- *	@param	id				�]����̃f�[�^�Ǘ�ID
- *	@param	pCharData		�]������L�����N�^�f�[�^
+ *	@param	id				転送先のデータ管理ID
+ *	@param	pCharData		転送するキャラクタデータ
  *
  *	@return	none
  *
- * �L�����N�^�f�[�^�̃T�C�Y���ꏏ�ł���K�v������܂�
+ * キャラクタデータのサイズが一緒である必要があります
  *
  */
 //-----------------------------------------------------------------------------
@@ -402,12 +402,12 @@ GLOBAL void CharDataChg( int id, NNSG2dCharacterData* pCharData );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	id�̃L�����N�^�f�[�^�������o�^����Ă��邩�`�F�b�N
+ *@brief	idのキャラクタデータがもう登録されているかチェック
  *
- *@param	id		�`�F�b�N����id
+ *@param	id		チェックするid
  *
- *@retval	TRUE	�o�^����Ă���
- *@retval	FALSE	�o�^����Ă��Ȃ�
+ *@retval	TRUE	登録されている
+ *@retval	FALSE	登録されていない
  *
  *
  */
@@ -417,11 +417,11 @@ GLOBAL BOOL CheckCharID(int id);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���Ƃ����o�^�ł���̂���Ԃ�
+ *@brief	あといくつ登録できるのかを返す
  *
  *@param	none
  *
- *@return	int		�c��o�^�\��
+ *@return	int		残り登録可能数
  *
  *
  */
@@ -431,9 +431,9 @@ GLOBAL int CheckCharRest(void);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�f�[�^��j��
+ *@brief	キャラクタデータを破棄
  *
- *@param	�L�����N�^�f�[�^ID
+ *@param	キャラクタデータID
  *
  *@return	none
  */
@@ -443,7 +443,7 @@ GLOBAL void DelChar( int id );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�S�L�����N�^�f�[�^��j��
+ *@brief	全キャラクタデータを破棄
  *
  *@param	none
  *
@@ -455,11 +455,11 @@ GLOBAL void DelCharAll( void );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID�̃C���[�W�v���N�V���擾
+ *@brief	IDのイメージプロクシを取得
  *
- *@param	�L�����N�^�f�[�^ID
+ *@param	キャラクタデータID
  *
- *@return	ID�̃v���N�V
+ *@return	IDのプロクシ
  */
 //-----------------------------------------------------------------------------
 GLOBAL NNSG2dImageProxy* GetCharIDProxy( int id );
@@ -467,11 +467,11 @@ GLOBAL NNSG2dImageProxy* GetCharIDProxy( int id );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�v���N�V�̃L�����N�^�f�[�^���擾
+ *@brief	プロクシのキャラクタデータを取得
  *
- *@param	pImage�F�C���[�W�v���N�V�|�C���^
+ *@param	pImage：イメージプロクシポインタ
  *
- *@return	�L�����N�^�f�[�^
+ *@return	キャラクタデータ
  */
 //-----------------------------------------------------------------------------
 GLOBAL NNSG2dCharacterData* GetCharIDData( const NNSG2dImageProxy* pImage );
@@ -479,15 +479,15 @@ GLOBAL NNSG2dCharacterData* GetCharIDData( const NNSG2dImageProxy* pImage );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�Z��Vram�]���A�j���[�V�����p�̃L�����N�^�v���N�V���擾
+ *@brief	セルVram転送アニメーション用のキャラクタプロクシを取得
  *
- *@param	id		�L�����N�^�f�[�^ID
- *@param	szByte	�g�p�T�C�Y
+ *@param	id		キャラクタデータID
+ *@param	szByte	使用サイズ
  *
- *@return	�C���[�W�v���N�V
- *@return	NULL		���s
+ *@return	イメージプロクシ
+ *@return	NULL		失敗
  *	
- *	NULL���A�����Ƃ��̓I���W�i���f�[�^���g�p���Ƃ������ƂȂ̂ŁA�R�s�[���쐬���Ă��������B�i���̊֐��j
+ *	NULLが帰ったときはオリジナルデータが使用中ということなので、コピーを作成してください。（下の関数）
  *	
  */
 //-----------------------------------------------------------------------------
@@ -496,12 +496,12 @@ GLOBAL NNSG2dImageProxy* GetCharVramTransData( int id, u32 szByte );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�Z��Vram�]���A�j���[�V�����p�̃L�����N�^�v���N�V���R�s�[���Ď擾
+ *@brief	セルVram転送アニメーション用のキャラクタプロクシをコピーして取得
  *
- *@param	Orig	�I���W�i���C���[�W�v���N�V
+ *@param	Orig	オリジナルイメージプロクシ
  *
- *@return	�R�s�[����Vram�]���I�t�Z�b�g���擾�����C���[�W�v���N�V
- *@return	NULL	�I���W�i�����g�p���łȂ��\��������܂��B
+ *@return	コピーしてVram転送オフセットを取得したイメージプロクシ
+ *@return	NULL	オリジナルが使用中でない可能性があります。
  */
 //-----------------------------------------------------------------------------
 GLOBAL NNSG2dImageProxy* GetCharVramTransProxyCopy( const NNSG2dImageProxy* Orig );
@@ -509,10 +509,10 @@ GLOBAL NNSG2dImageProxy* GetCharVramTransProxyCopy( const NNSG2dImageProxy* Orig
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�Z��Vram�]���A�j����Vram�̈���J��
+ *@brief	セルVram転送アニメのVram領域を開放
  *
- *@param	pImage�F�j������L�����N�^�̈��
- *			�C���[�W�v���N�V
+ *@param	pImage：破棄するキャラクタ領域の
+ *			イメージプロクシ
  *
  *@return	none
  */
@@ -522,11 +522,11 @@ GLOBAL void DelVramTransData( const NNSG2dImageProxy* pImage );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OBJ�L�����N�^�}�b�s���O���[�h����L�����N�^���E���擾
+ *	@brief	OBJキャラクタマッピングモードからキャラクタ境界を取得
  *
- *	@param	mode	OBJ�L�����N�^�}�b�s���O���[�h
+ *	@param	mode	OBJキャラクタマッピングモード
  *
- *	@return	�L�����N�^���E
+ *	@return	キャラクタ境界
  *
  *
  */
@@ -536,25 +536,25 @@ GLOBAL int CharModeMinNum( int mode );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	NNSG2dCharacterData���g�p���Ȃ��Ƃ���Vram�G���A�m�ۗp
+ *	@brief	NNSG2dCharacterDataを使用しないときのVramエリア確保用
  *
- *	@param	szByte		�L�����N�^�f�[�^�T�C�Y
- *	@param	cont_type	Vram�R���g���[���^�C�v
- *	@param	type		�o�^���
- *	@param	allocData	�m�ۃf�[�^�i�[��
+ *	@param	szByte		キャラクタデータサイズ
+ *	@param	cont_type	Vramコントロールタイプ
+ *	@param	type		登録画面
+ *	@param	allocData	確保データ格納先
  *
- *	@retval	TRUE	�̈�m�ۂł���
- *	@retval	FALSE	�̈�m�ۂł��Ȃ�����
+ *	@retval	TRUE	領域確保できた
+ *	@retval	FALSE	領域確保できなかった
  *
  *	cont_type
- *		CHARM_CONT_OFFSET	�I�t�Z�b�g�^�C�v
- *		CHARM_CONT_AREACONT	�G���A�R���g���[���^�C�v
+ *		CHARM_CONT_OFFSET	オフセットタイプ
+ *		CHARM_CONT_AREACONT	エリアコントロールタイプ
  *
  *	type
- *		NNS_G2D_VRAM_TYPE_2DMAIN	���C�����VRAM
- *		NNS_G2D_VRAM_TYPE_2DSUB		�T�u���VRAM
+ *		NNS_G2D_VRAM_TYPE_2DMAIN	メイン画面VRAM
+ *		NNS_G2D_VRAM_TYPE_2DSUB		サブ画面VRAM
  *
- *		**����ʂ͎w�肵�Ȃ��ł�������
+ *		**両画面は指定しないでください
  *
  */
 //-----------------------------------------------------------------------------
@@ -563,14 +563,14 @@ GLOBAL BOOL CharVramAreaAlloc( int szByte, int cont_type, int type, CHAR_MANAGER
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	NNSG2dCharacterData���g�p���Ȃ��Ƃ���Vram�G���A�j���p
- *			cont_type = CHARM_CONT_AREACONT�̂Ƃ��悤
+ *	@brief	NNSG2dCharacterDataを使用しないときのVramエリア破棄用
+ *			cont_type = CHARM_CONT_AREACONTのときよう
  *
- *	@param	allocData	�o�^�f�[�^
+ *	@param	allocData	登録データ
  * 
  *	@return	none
  *
- * �I�t�Z�b�g���炵���[�h�Ŋm�ۂ������͉̂���ł��܂���
+ * オフセットずらしモードで確保したものは解放できません
  *
  */
 //-----------------------------------------------------------------------------
@@ -579,19 +579,19 @@ GLOBAL void CharVramAreaFree( CHAR_MANAGER_ALLOCDATA* allocData );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�L�����N�^�}�l�[�W���|�C���^�̎擾
+ *	@brief	キャラクタマネージャポインタの取得
  *
  *	@param	none
  *
- *	@return	�L�����N�^�}�l�[�W���|�C���^
+ *	@return	キャラクタマネージャポインタ
  */
 //-----------------------------------------------------------------------------
 GLOBAL void* CharManagerPtrGet( void );
 //----------------------------------------------------------------------------
 /**
- *	@brief	�L�����N�^�}�l�[�W���|�C���^��ݒ�
+ *	@brief	キャラクタマネージャポインタを設定
  *
- *	@param	pdata	�L�����N�^�}�l�[�W���|�C���^
+ *	@param	pdata	キャラクタマネージャポインタ
  *
  *	@return	none
  */
@@ -600,7 +600,7 @@ GLOBAL void CharManagerPtrSet( void* pdata );
 
 //----------------------------------------------------------------------------
 /**
- *					�O���[�o���ϐ��錾
+ *					グローバル変数宣言
  */
 //-----------------------------------------------------------------------------
 #undef	GLOBAL

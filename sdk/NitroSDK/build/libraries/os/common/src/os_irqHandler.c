@@ -26,7 +26,7 @@
   rollback to 1.49
 
   Revision 1.50  2006/04/04 08:36:03  yosizaki
-  ƒR[ƒ‹ƒXƒ^ƒbƒN‚Ì8ƒoƒCƒg®‡‚ÉŠÖ‚·‚éC³.
+  ã‚³ãƒ¼ãƒ«ã‚¹ã‚¿ãƒƒã‚¯ã®8ãƒã‚¤ãƒˆæ•´åˆã«é–¢ã™ã‚‹ä¿®æ­£.
 
   Revision 1.49  2006/01/18 02:11:30  kitase_hirotake
   do-indent
@@ -103,17 +103,17 @@
   Fix irqHandler when IE & IF == 0 && NO_THREAD
 
   Revision 1.25  2004/04/08 02:36:40  yada
-  Š„‚İƒnƒ“ƒhƒ‰“à‚ÅAIE&IF==0‚Ì‚Æ‚«‚ÍIF=0‚Æ‚µ‚Ä”²‚¯‚é‚æ‚¤‚É‚µ‚½B
+  å‰²è¾¼ã¿ãƒãƒ³ãƒ‰ãƒ©å†…ã§ã€IE&IF==0ã®ã¨ãã¯IF=0ã¨ã—ã¦æŠœã‘ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.24  2004/03/31 09:25:14  yada
   add thread switch callback function
 
   Revision 1.23  2004/03/30 06:09:29  yada
-  ldconst ‚â lda ‚ğ ldr = ‚ğg—p‚·‚é‹Lq‚É‚µ‚½B
+  ldconst ã‚„ lda ã‚’ ldr = ã‚’ä½¿ç”¨ã™ã‚‹è¨˜è¿°ã«ã—ãŸã€‚
 
   Revision 1.22  2004/02/26 09:44:12  yada
-  ƒXƒŒƒbƒh‚ğA—Dæ“xƒŠƒXƒgŠÇ—‚·‚é‚æ‚¤‚É•ÏXB
-  ‚»‚ê‚É”º‚¤C³
+  ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ã€å„ªå…ˆåº¦ãƒªã‚¹ãƒˆç®¡ç†ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚
+  ãã‚Œã«ä¼´ã†ä¿®æ­£
 
   Revision 1.21  2004/02/16 00:17:55  yada
   only add comment
@@ -125,77 +125,77 @@
   change directory of ioreg_OS.h
 
   Revision 1.18  2004/02/12 11:08:30  yada
-  ARM9/ARM7 U‚è•ª‚¯ì‹Æ
+  ARM9/ARM7 æŒ¯ã‚Šåˆ†ã‘ä½œæ¥­
 
   Revision 1.17  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.16  2004/01/18 02:25:37  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.15  2003/12/25 07:31:26  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.14  2003/12/22 13:38:56  yasu
-  ARCH5 ƒR[ƒh‚ğ‰ğ‹Ö
+  ARCH5 ã‚³ãƒ¼ãƒ‰ã‚’è§£ç¦
 
   Revision 1.13  2003/12/17 08:20:20  yasu
-  ARM7 ‚Æ‚Ì‹¤—pƒR[ƒh‰»
+  ARM7 ã¨ã®å…±ç”¨ã‚³ãƒ¼ãƒ‰åŒ–
 
   Revision 1.12  2003/12/17 06:27:44  yasu
-  ARCH4 —pƒR[ƒh‚Ì’Ç‰Á
+  ARCH4 ç”¨ã‚³ãƒ¼ãƒ‰ã®è¿½åŠ 
 
   Revision 1.11  2003/12/16 06:42:30  yasu
-  ISDebugger ƒTƒ|[ƒg‚Ì‚½‚ßAƒXƒŒƒbƒhØ‚è‘Ö‚¦‚É FIQ ‚ğ‹Ö~‚·‚é
+  ISDebugger ã‚µãƒãƒ¼ãƒˆã®ãŸã‚ã€ã‚¹ãƒ¬ãƒƒãƒ‰åˆ‡ã‚Šæ›¿ãˆæ™‚ã« FIQ ã‚’ç¦æ­¢ã™ã‚‹
 
   Revision 1.10  2003/12/16 06:01:03  yasu
-  IRQ ƒxƒNƒ^ŒvZˆ—•ÏX
+  IRQ ãƒ™ã‚¯ã‚¿è¨ˆç®—å‡¦ç†å¤‰æ›´
 
   Revision 1.9  2003/12/16 00:17:22  yada
-  threadî•ñ‚ğ‚Ü‚Æ‚ß‚½‚±‚Æ‚É‚æ‚é•ÏX
+  threadæƒ…å ±ã‚’ã¾ã¨ã‚ãŸã“ã¨ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.8  2003/12/12 04:40:19  yada
-  ƒvƒƒZƒbƒTƒ‚[ƒh‚Ì’è‹`•ÏX‚É”º‚¤C³
+  ãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ¢ãƒ¼ãƒ‰ã®å®šç¾©å¤‰æ›´ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.7  2003/12/08 12:16:45  yada
-  ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹‚ğMemoryMap.h‚©‚ç mmap_global.h‚É•ÏX
+  ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’MemoryMap.hã‹ã‚‰ mmap_global.hã«å¤‰æ›´
 
   Revision 1.6  2003/12/08 10:11:00  yasu
-  •s—v‚È define ‚Ìíœ
+  ä¸è¦ãª define ã®å‰Šé™¤
 
   Revision 1.5  2003/12/08 01:25:05  yasu
-  context ‚É SP_svc ‚ğ’Ç‰Á‚·‚é
+  context ã« SP_svc ã‚’è¿½åŠ ã™ã‚‹
 
   Revision 1.4  2003/12/01 09:51:04  yasu
-  context ‚ÉƒZ[ƒu‚·‚é’l‚ğ PC->PC+4 ‚Ö
+  context ã«ã‚»ãƒ¼ãƒ–ã™ã‚‹å€¤ã‚’ PC->PC+4 ã¸
 
   Revision 1.3  2003/11/30 05:10:42  yasu
-  thread ŠÖŒW‚ÌŠÖ”‚ğŠ„‚è‚İƒT[ƒrƒX‚©‚çŒÄ‚Ño‚µ‰Â”\‚É‚µ‚½D
+  thread é–¢ä¿‚ã®é–¢æ•°ã‚’å‰²ã‚Šè¾¼ã¿ã‚µãƒ¼ãƒ“ã‚¹ã‹ã‚‰å‘¼ã³å‡ºã—å¯èƒ½ã«ã—ãŸï¼
 
   Revision 1.2  2003/11/29 04:36:30  yasu
-  –¼ÌC³
+  åç§°ä¿®æ­£
 
   Revision 1.1  2003/11/29 03:58:56  yasu
-  ƒtƒ@ƒCƒ‹–¼‚Ì•ÏX osInterruptBase.c -> os_irqhandler.c
+  ãƒ•ã‚¡ã‚¤ãƒ«åã®å¤‰æ›´ osInterruptBase.c -> os_irqhandler.c
 
   Revision 1.7  2003/11/28 12:01:57  yasu
-  OSi_IRQHandler_Begin_Label/End_Label ‚ğ’Ç‰Á
+  OSi_IRQHandler_Begin_Label/End_Label ã‚’è¿½åŠ 
 
   Revision 1.6  2003/11/27 13:39:14  yasu
-  ƒWƒƒƒ“ƒvƒe[ƒuƒ‹‚ÌƒoƒO‚ÌC³
+  ã‚¸ãƒ£ãƒ³ãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚°ã®ä¿®æ­£
 
   Revision 1.5  2003/11/27 10:14:18  yasu
-  ICE ŠÖŒW‚Ì‘Îô‚ğ SDK_BB -> SDK_BB_ICE ‚É•ÏX
+  ICE é–¢ä¿‚ã®å¯¾ç­–ã‚’ SDK_BB -> SDK_BB_ICE ã«å¤‰æ›´
 
   Revision 1.4  2003/11/27 07:34:55  yasu
-  Š„‚è‚İI—¹Œã‚Ì Context Switch ‚É‘Î‰
-  BreadBoad ‚Å‚Ì VBlank ‚Ì 30Hz ‰»‚É‘Î‰
+  å‰²ã‚Šè¾¼ã¿çµ‚äº†å¾Œã® Context Switch ã«å¯¾å¿œ
+  BreadBoad ã§ã® VBlank ã® 30Hz åŒ–ã«å¯¾å¿œ
 
   Revision 1.2  2003/11/10 02:33:19  yasu
-  interrupt table ‚Ì’Ç‰Á
+  interrupt table ã®è¿½åŠ 
 
   Revision 1.1  2003/11/06 13:39:01  yasu
-  osInterruptBase.s ‚ğƒCƒ“ƒ‰ƒCƒ“ƒAƒZƒ“ƒuƒ‰‚Å .c ‚É•ÏX
+  osInterruptBase.s ã‚’ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§ .c ã«å¤‰æ›´
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
 #include        <nitro/code32.h>
@@ -343,11 +343,11 @@ asm void OS_IrqHandler( void )
 /*---------------------------------------------------------------------------*
   Name:         OS_IRQHandler_ThreadSwitch
 
-  Description:  Š„‚è‚İ•ªŠòˆ—iƒe[ƒuƒ‹ OS_InterruptTable ˆø‚«j
+  Description:  å‰²ã‚Šè¾¼ã¿åˆ†å²å‡¦ç†ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ« OS_InterruptTable å¼•ãï¼‰
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 asm void OS_IrqHandler_ThreadSwitch(void)
 {

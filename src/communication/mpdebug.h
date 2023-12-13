@@ -4,7 +4,7 @@
  * @version "$Id: mpdebug.h,v 1.1 2006/05/02 03:09:56 mitsuhara Exp $"
  *
  * @file mpdebug.h
- * @brief MP–³ü’ÊMƒfƒoƒbƒO—pŠÖ”
+ * @brief MPç„¡ç·šé€šä¿¡ãƒ‡ãƒãƒƒã‚°ç”¨é–¢æ•°
  * 
  */
 #include "mpconnect.h"  
@@ -15,53 +15,53 @@ extern "C" {
 
   
 /**
- * w’èƒXƒe[ƒ^ƒX‚ğ•¶š—ñ‚Å•Ô‚·
+ * æŒ‡å®šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ–‡å­—åˆ—ã§è¿”ã™
  */
 extern const char* MpGetStatusString(MP_STATUS status);
 
 
 /**
- * ƒGƒ‰[ƒR[ƒh‚ğ•\¦‚·‚é
+ * ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¡¨ç¤ºã™ã‚‹
  *
- * @param WM‚ª•Ô‚·ƒGƒ‰[ƒR[ƒh
+ * @param WMãŒè¿”ã™ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 extern void MpPrintErrorCode(WMErrCode code);
 
 
 /**
- * ƒXƒe[ƒ^ƒXƒR[ƒh‚ğ•\¦‚·‚é
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰ã‚’è¡¨ç¤ºã™ã‚‹
  *
- * @param WM‚ª•Ô‚·ƒXƒe[ƒ^ƒXƒR[ƒh
+ * @param WMãŒè¿”ã™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰
  */
 extern  void MpPrintStateCode(WMStateCode code);
 
 
 /**
- * WMBssDesc‚Ì“à—e‚ğ•\¦‚·‚é
+ * WMBssDescã®å†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹
  */
 extern void MpPrintBssDesc(WMBssDesc *desc);
 
 
 /**
- * MpDataChildMP‚Ì“à—e‚ğ•\¦‚·‚é
+ * MpDataChildMPã®å†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹
  */
 extern void MpPrintDataChildMP(MpDataChildMP *drmp);
 
 
 /**
- * MpDataParentMP‚Ì“à—e‚ğ•\¦‚·‚é
+ * MpDataParentMPã®å†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹
  */
 extern void MpPrintDataParentMP(MpDataParentMP *dpmp);
   
 
 /**
- * MP_CONTROL_CODE‚ğ•¶š—ñ•Ô‚·
+ * MP_CONTROL_CODEã‚’æ–‡å­—åˆ—è¿”ã™
  */
 extern const char* MpPrintControlCode(MP_CONTROL_CODE code);
 
        
 /**
- * MpSendHeader‚Ì“à—e‚ğ•\¦‚·‚é
+ * MpSendHeaderã®å†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹
  */
 extern void MpPrintSendHeader(MpSendHeader *header);
 

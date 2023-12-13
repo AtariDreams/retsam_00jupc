@@ -1,6 +1,6 @@
 /**
  *	@file	fld_ranking.h
- *	@brief	ƒtƒB[ƒ‹ƒh@ƒ‰ƒ“ƒLƒ“ƒO‰æ–Ê•`‰æˆ—
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»é¢æç”»å‡¦ç†
  *	@author	Miyuki Iwasawa
  *	@date	06.06.06
  */
@@ -8,22 +8,22 @@
 #ifndef __H_FLD_RANKING_H__
 #define __H_FLD_RANKING_H__
 
-///ŒÄ‚Ño‚µƒ‚[ƒhİ’è
-#define RANKING_GLB_BTL		(0)	///<ƒOƒ[ƒoƒ‹ƒoƒgƒ‹
-#define RANKING_GLB_POKE	(1)	///<ƒOƒ[ƒoƒ‹ƒ|ƒPƒ‚ƒ“
-#define RANKING_GLB_CONTEST	(2)	///<ƒOƒ[ƒoƒ‹ƒRƒ“ƒeƒXƒg
-#define RANKING_GRP_BTL		(3)	///<ƒOƒ‹[ƒvƒoƒgƒ‹
-#define RANKING_GRP_POKE	(4)	///<ƒOƒ‹[ƒvƒ|ƒPƒ‚ƒ“
-#define RANKING_GRP_CONTEST	(5)	///<ƒOƒ‹[ƒvƒRƒ“ƒeƒXƒg
+///å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰è¨­å®š
+#define RANKING_GLB_BTL		(0)	///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒãƒˆãƒ«
+#define RANKING_GLB_POKE	(1)	///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒã‚±ãƒ¢ãƒ³
+#define RANKING_GLB_CONTEST	(2)	///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+#define RANKING_GRP_BTL		(3)	///<ã‚°ãƒ«ãƒ¼ãƒ—ãƒãƒˆãƒ«
+#define RANKING_GRP_POKE	(4)	///<ã‚°ãƒ«ãƒ¼ãƒ—ãƒã‚±ãƒ¢ãƒ³
+#define RANKING_GRP_CONTEST	(5)	///<ã‚°ãƒ«ãƒ¼ãƒ—ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 
 
 
 //============================================================================================
 //
-//	‚±‚±‚©‚ç‰º‚ÍƒvƒƒOƒ‰ƒ€‚Å‚Ì‚İQÆ‚·‚é’è‹`
+//	ã“ã“ã‹ã‚‰ä¸‹ã¯ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã§ã®ã¿å‚ç…§ã™ã‚‹å®šç¾©
 //
 //======================================================================================
-//__ASM_NO_DEF_‚ª’è‹`‚³‚ê‚Ä‚¢‚éê‡AƒAƒZƒ“ƒuƒ‰ƒ\[ƒX‚È‚Ì‚ÅˆÈ‰º‚Í–³Œø‚É‚·‚é
+//__ASM_NO_DEF_ãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹å ´åˆã€ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚½ãƒ¼ã‚¹ãªã®ã§ä»¥ä¸‹ã¯ç„¡åŠ¹ã«ã™ã‚‹
 #ifndef	__ASM_NO_DEF_
 
 #undef	GLOBAL
@@ -35,9 +35,9 @@
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒLƒ“ƒO‰æ–ÊƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * @brief	ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»é¢ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  * @param	event	GMEVENT_CONTROL*
- * @param	dir		ˆÚ“®•ûŒü
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */

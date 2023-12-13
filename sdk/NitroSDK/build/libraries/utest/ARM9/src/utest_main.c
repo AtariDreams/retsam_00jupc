@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.1  2005/06/24 02:19:25  yasu
-  ƒ†ƒjƒbƒgƒeƒXƒg‚Ì’Ç‰Á
+  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ†ã‚¹ãƒˆã®è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -27,10 +27,10 @@ UTiResult UTi_Result;
 /*---------------------------------------------------------------------------*
   Name:         UTi_Main
 
-  Description:  UnitTest ‚Ìƒ‚ƒWƒ…[ƒ‹‚ğ‡‚ÉÀs‚µŒ‹‰Ê‚ğo—Í‚·‚é
+  Description:  UnitTest ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’é †ã«å®Ÿè¡Œã—çµæœã‚’å‡ºåŠ›ã™ã‚‹
 
-  Arguments:    num_module ƒ‚ƒWƒ…[ƒ‹‚Ì”
-                modules    ƒ‚ƒWƒ…[ƒ‹
+  Arguments:    num_module ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®æ•°
+                modules    ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -44,31 +44,31 @@ void UTi_Main(int num_module, UTiModule * modules)
     {
         UTi_Printf("%s\n", t->testname);
 
-        // İ’è’lƒNƒŠƒA
+        // è¨­å®šå€¤ã‚¯ãƒªã‚¢
         UTi_SetResult(UT_RESULT_UNTESTED);
 
-        // ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒNƒŠƒA
+        // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
         UTi_ClearMessage();
 
-        // ŠJn‚Ì‹¤’Êˆ—
+        // é–‹å§‹æ™‚ã®å…±é€šå‡¦ç†
         if (t->callback_begin)
         {
             t->callback_begin();
         }
 
-        // ƒeƒXƒgŒÄ‚Ño‚µ
+        // ãƒ†ã‚¹ãƒˆå‘¼ã³å‡ºã—
         if (t->callback)
         {
             t->callback();
         }
 
-        // I—¹‚Ì‹¤’Êˆ—
+        // çµ‚äº†æ™‚ã®å…±é€šå‡¦ç†
         if (t->callback_end)
         {
             t->callback_end();
         }
 
-        // Œ‹‰Ê”»’è
+        // çµæœåˆ¤å®š
         switch (UTi_GetResult())
         {
         case UT_RESULT_OK:

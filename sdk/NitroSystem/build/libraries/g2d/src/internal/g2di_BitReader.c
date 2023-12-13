@@ -20,11 +20,11 @@
 /*---------------------------------------------------------------------------*
   Name:         BitReaderReload
 
-  Description:  BitReader “à‚ÌŒ»İ‚Ìƒoƒbƒtƒ@‚ğÌ‚ÄAŸ‚ÌƒoƒCƒg‚ğ“Ç‚İ‚İ‚Ü‚·B
+  Description:  BitReader å†…ã®ç¾åœ¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’æ¨ã¦ã€æ¬¡ã®ãƒã‚¤ãƒˆã‚’èª­ã¿è¾¼ã¿ã¾ã™ã€‚
 
-  Arguments:    reader: BitReader ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    reader: BitReader ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_G2D_INLINE void BitReaderReload(NNSiG2dBitReader* reader)
 {
@@ -37,12 +37,12 @@ static NNS_G2D_INLINE void BitReaderReload(NNSiG2dBitReader* reader)
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dBitReaderRead
 
-  Description:  ƒrƒbƒg—ñ‚ğ“Ç‚İæ‚è‚Ü‚·B
+  Description:  ãƒ“ãƒƒãƒˆåˆ—ã‚’èª­ã¿å–ã‚Šã¾ã™ã€‚
 
-  Arguments:    reader: BitReader ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                nBits:  “Ç‚İæ‚éƒrƒbƒg”B8ˆÈ‰º‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
+  Arguments:    reader: BitReader ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                nBits:  èª­ã¿å–ã‚‹ãƒ“ãƒƒãƒˆæ•°ã€‚8ä»¥ä¸‹ã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚
 
-  Returns:      “Ç‚İæ‚Á‚½ƒrƒbƒg—ñB
+  Returns:      èª­ã¿å–ã£ãŸãƒ“ãƒƒãƒˆåˆ—ã€‚
  *---------------------------------------------------------------------------*/
 u32 NNSi_G2dBitReaderRead(NNSiG2dBitReader* reader, int nBits)
 {
@@ -52,7 +52,7 @@ u32 NNSi_G2dBitReaderRead(NNSiG2dBitReader* reader, int nBits)
     SDK_ASSERT(nBits <= 8);
 
     if( nAvlBits < nBits )
-    // ƒoƒCƒgƒoƒbƒtƒ@“à‚Ìƒrƒbƒg‚Å•s\•ª‚Èê‡
+    // ãƒã‚¤ãƒˆãƒãƒƒãƒ•ã‚¡å†…ã®ãƒ“ãƒƒãƒˆã§ä¸ååˆ†ãªå ´åˆ
     {
         int lack = nBits - nAvlBits;
         val <<= lack;
@@ -60,7 +60,7 @@ u32 NNSi_G2dBitReaderRead(NNSiG2dBitReader* reader, int nBits)
         val |= NNSi_G2dBitReaderRead(reader, lack);
     }
     else
-    // ƒoƒCƒgƒoƒbƒtƒ@“à‚Ìƒrƒbƒg‚Å\•ª‚Èê‡
+    // ãƒã‚¤ãƒˆãƒãƒƒãƒ•ã‚¡å†…ã®ãƒ“ãƒƒãƒˆã§ååˆ†ãªå ´åˆ
     {
         val >>= (nAvlBits - nBits);
 

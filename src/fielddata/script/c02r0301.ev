@@ -1,6 +1,6 @@
 //====================================================================
 //						c02r0301.gmm
-//					�V�e�B�O�Q�Er0301
+//					シティ０２・r0301
 //====================================================================
 	.text
 
@@ -8,21 +8,21 @@
 	.include	"../../../include/msgdata/msg_c02r0301.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c02r0301_wasure
-_EVENT_DATA_END						//�I��
+_EVENT_DATA_END						//終了
 
 /********************************************************************/
-/*						�킷��ꂳ��								*/
+/*						わすれ爺さん								*/
 /********************************************************************/
 ev_c02r0301_wasure:
 	_TALK_OBJ_START
-	//�ŏ��ɉ�b���������`�F�b�N
+	//最初に会話したかをチェック
 	_IF_FLAGON_JUMP		FH_01,ev_c02r0301_wasure_02
 
 	_TALK_KEYWAIT	msg_c02r0301_wasure_01
@@ -31,14 +31,14 @@ ev_c02r0301_wasure:
 	_JUMP		ev_c02r0301_wasure_02
 
 ev_c02r0301_wasure_02:
-	//�킷�ꂳ���Ɂ@�����̂���ȁH
+	//わすれさせに　きたのじゃな？
 	_TALKMSG		msg_c02r0301_wasure_02
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c02r0301_wasure_03
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c02r0301_wasure_04
 	_END
 
-//�͂�
+//はい
 ev_c02r0301_wasure_03:
 	_TALK_KEYWAIT	msg_c02r0301_wasure_03
 	_TALK_CLOSE
@@ -47,25 +47,25 @@ ev_c02r0301_wasure_03:
 ev_c02r0301_wasure_poke_select:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
-	//�|�P�����I��
+	//ポケモン選択
 	_POKELIST_SET_PROC
-	//�I�������|�P�����̕��єԍ��擾
+	//選択したポケモンの並び番号取得
 	_POKELIST_GET_RESULT	SCWK_PARAM2
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//�L�����Z�����ꂽ
+	//キャンセルされた
 	_IFVAL_JUMP		SCWK_PARAM2,EQ,0xff,ev_c02r0301_wasure_04
 
-	//�^�}�S��
+	//タマゴか
 	_TEMOTI_MONSNO	SCWK_PARAM2,SCWK_PARAM1
 	_IFVAL_JUMP		SCWK_PARAM1,EQ,0,ev_c02r0301_wasure_06
 
-	//�����Ă��郏�U�����`�F�b�N
+	//持っているワザ数をチェック
 	_WAZA_COUNT		SCWK_ANSWER,SCWK_PARAM2
-	//�P��?
+	//１個?
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c02r0301_wasure_05
 	
 	_TALK_KEYWAIT	msg_c02r0301_wasure_07
@@ -73,29 +73,29 @@ ev_c02r0301_wasure_poke_select:
 
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
-	//�킴�I��
+	//わざ選択
 	_WAZALIST_SET_PROC		SCWK_PARAM2
-	//�I�������킴�̕��єԍ��擾
+	//選択したわざの並び番号取得
 	_WAZALIST_GET_RESULT	SCWK_PARAM1
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//�L�����Z�����ꂽ
+	//キャンセルされた
 	_IFVAL_JUMP		SCWK_PARAM1,EQ,0xff,ev_c02r0301_wasure_03
 
-	//�킴�����擾
+	//わざ名を取得
 	_TEMOTI_WAZA_NAME	0,SCWK_PARAM2,SCWK_PARAM1
 
-	//�킷�ꂳ���ā@�悢�̂���ȁH
+	//わすれさせて　よいのじゃな？
 	_TALKMSG		msg_c02r0301_wasure_08
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c02r0301_wasure_del
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c02r0301_wasure_03
 	_END
 
-//�킴�̏���
+//わざの消去
 ev_c02r0301_wasure_del:
 	_WAZA_DEL		SCWK_PARAM2,SCWK_PARAM1
 
@@ -108,19 +108,19 @@ ev_c02r0301_wasure_del:
 	_END
 
 
-//���܂�
+//たまご
 ev_c02r0301_wasure_06:
 	_TALK_KEYWAIT	msg_c02r0301_wasure_06
 	_TALK_CLOSE
 	_JUMP			ev_c02r0301_wasure_poke_select
 
-//�P�������U���Ȃ�
+//１つしかワザがない
 ev_c02r0301_wasure_05:
 	_TALK_KEYWAIT	msg_c02r0301_wasure_05
 	_TALK_CLOSE
 	_JUMP			ev_c02r0301_wasure_poke_select
 
-//���ڂ������Ȃ��Ƃ�
+//おぼえさせないとき
 ev_c02r0301_wasure_04:
 	_TALKMSG	msg_c02r0301_wasure_04
 	_LAST_KEYWAIT

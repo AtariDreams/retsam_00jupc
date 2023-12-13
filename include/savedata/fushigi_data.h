@@ -3,7 +3,7 @@
  * @file	fushigi_data.h
  * @date	2006.04.28
  * @author	tamada / mitsuhara
- * @brief	�ӂ����ʐM�p�Z�[�u�f�[�^�p�w�b�_
+ * @brief	ふしぎ通信用セーブデータ用ヘッダ
  */
 //============================================================================================
 
@@ -17,24 +17,24 @@
 
 //============================================================================================
 //
-//			��`
+//			定義
 //
 //============================================================================================
 //------------------------------------------------------------------
-///		���蕨�f�[�^�̑傫��
+///		贈り物データの大きさ
 //------------------------------------------------------------------
-#define	GIFT_DATA_SIZE	256		// �z�B���P�̃T�C�Y
+#define	GIFT_DATA_SIZE	256		// 配達員１つのサイズ
 
 //------------------------------------------------------------------
-///		���蕨�f�[�^�̌�
+///		贈り物データの個数
 //------------------------------------------------------------------
-#define GIFT_DELIVERY_MAX	8	// �z�B���W��
-#define GIFT_CARD_MAX		3	// �J�[�h�f�[�^�R��
+#define GIFT_DELIVERY_MAX	8	// 配達員８つ
+#define GIFT_CARD_MAX		3	// カードデータ３つ
 #define GIFT_CARD_NONE      (3)
-#define	GIFT_DATA_MAX		8	//�J�[�h�Ȃ�5���{�J�[�h����3����8����
+#define	GIFT_DATA_MAX		8	//カードなし5件＋カードあり3件で8件分
 
 //------------------------------------------------------------------
-///		�J�[�h�֌W�̃T�C�Y��`
+///		カード関係のサイズ定義
 //------------------------------------------------------------------
 #define GIFT_DATA_CARD_TITLE_MAX	36
 #define GIFT_DATA_CARD_TEXT_MAX		250
@@ -42,46 +42,46 @@
 
 
 //------------------------------------------------------------------
-///		���蕨�f�[�^�\����
+///		贈り物データ構造体
 //------------------------------------------------------------------
-#define MYSTERYGIFT_TYPE_NONE		0	// ��������
-#define MYSTERYGIFT_TYPE_POKEMON	1	// �|�P����
-#define MYSTERYGIFT_TYPE_POKEEGG	2	// �^�}�S
-#define MYSTERYGIFT_TYPE_ITEM		3	// �ǂ���
-#define MYSTERYGIFT_TYPE_RULE		4	// ���[��
-#define MYSTERYGIFT_TYPE_GOODS		5	// �O�b�Y
-#define MYSTERYGIFT_TYPE_ACCESSORY	6	// �A�N�Z�T��
-#define MYSTERYGIFT_TYPE_RANGEREGG	7	// �}�i�t�B�[�̃^�}�S
-#define MYSTERYGIFT_TYPE_MEMBERSCARD	8	// �����o�[�Y�J�[�h
-#define MYSTERYGIFT_TYPE_LETTER		9	// �I�[�L�h�̂Ă���
-#define MYSTERYGIFT_TYPE_WHISTLE	10	// �Ă񂩂��̂ӂ�
-#define MYSTERYGIFT_TYPE_POKETCH	11	// �|�P�b�`
-#define MYSTERYGIFT_TYPE_SECRET_KEY	12	// �閧�̌�
-#define MYSTERYGIFT_TYPE_MOVIE		13	// �f��z�z
+#define MYSTERYGIFT_TYPE_NONE		0	// 何も無い
+#define MYSTERYGIFT_TYPE_POKEMON	1	// ポケモン
+#define MYSTERYGIFT_TYPE_POKEEGG	2	// タマゴ
+#define MYSTERYGIFT_TYPE_ITEM		3	// どうぐ
+#define MYSTERYGIFT_TYPE_RULE		4	// ルール
+#define MYSTERYGIFT_TYPE_GOODS		5	// グッズ
+#define MYSTERYGIFT_TYPE_ACCESSORY	6	// アクセサリ
+#define MYSTERYGIFT_TYPE_RANGEREGG	7	// マナフィーのタマゴ
+#define MYSTERYGIFT_TYPE_MEMBERSCARD	8	// メンバーズカード
+#define MYSTERYGIFT_TYPE_LETTER		9	// オーキドのてがみ
+#define MYSTERYGIFT_TYPE_WHISTLE	10	// てんかいのふえ
+#define MYSTERYGIFT_TYPE_POKETCH	11	// ポケッチ
+#define MYSTERYGIFT_TYPE_SECRET_KEY	12	// 秘密の鍵
+#define MYSTERYGIFT_TYPE_MOVIE		13	// 映画配布
 #define MYSTERYGIFT_TYPE_MAX	14	// 
-#define MYSTERYGIFT_TYPE_CLEAR		255	// �ӂ����̈�̋����N���A
+#define MYSTERYGIFT_TYPE_CLEAR		255	// ふしぎ領域の強制クリア
 
-#define MYSTERYGIFT_ACCTYPE_SEAL   1  // �A�N�Z�T���[�̃V�[��
-#define MYSTERYGIFT_ACCTYPE_CLIP   2  // �A�N�Z�T���[�̃N���b�v
-#define MYSTERYGIFT_ACCTYPE_BG   3  // �A�N�Z�T���[�̔w�i
+#define MYSTERYGIFT_ACCTYPE_SEAL   1  // アクセサリーのシール
+#define MYSTERYGIFT_ACCTYPE_CLIP   2  // アクセサリーのクリップ
+#define MYSTERYGIFT_ACCTYPE_BG   3  // アクセサリーの背景
 
-#define MYSTERYPOKE_PARENTNAME_THROW  0  // �e�̖��O�����̂܂�
-#define MYSTERYPOKE_PARENTNAME_MY   1  // �e���������̖��O�ɕς���
+#define MYSTERYPOKE_PARENTNAME_THROW  0  // 親の名前をそのまま
+#define MYSTERYPOKE_PARENTNAME_MY   1  // 親名を自分の名前に変える
 
 
 //------------------------------------------------------------------
-///		�m�肵�Ă���C�x���g�ԍ�
+///		確定しているイベント番号
 //------------------------------------------------------------------
-#define MYSTERYGIFT_MANAFIEGG		1	// �}�i�t�B�̂��܂�
+#define MYSTERYGIFT_MANAFIEGG		1	// マナフィのたまご
 
 
 
-// �T�C�Y�Œ�p�\����
+// サイズ固定用構造体
 typedef struct {
   u8 data[256];
 } GIFT_PRESENT_ALL;
 
-// �|�P����
+// ポケモン
 typedef struct {
   u32 parentType;
   u8 data[236];		// sizeof(POKEMON_PARAM)	#####
@@ -89,7 +89,7 @@ typedef struct {
   u8 dummy[6];
 } GIFT_PRESENT_POKEMON;
 
-// �^�}�S
+// タマゴ
 typedef struct {
   u32 parentType;
   u8 data[236];		// sizeof(POKEMON_PARAM)	#####
@@ -97,54 +97,54 @@ typedef struct {
   u8 dummy[6];
 } GIFT_PRESENT_POKEEGG;
 
-// �ǂ���
+// どうぐ
 typedef struct {
   int itemNo;
   int movieflag;
 } GIFT_PRESENT_ITEM;
 
-// �O�b�Y
+// グッズ
 typedef struct {
   int goodsNo;
 } GIFT_PRESENT_GOODS;
 
-// ���[��(���M�����[�V����)
+// ルール(レギュレーション)
 typedef struct {
   REGULATION regulation;
 } GIFT_PRESENT_RULE;
 
-// �A�N�Z�T��
+// アクセサリ
 typedef struct {
   int accType;
   int accNo;
 } GIFT_PRESENT_ACCESSORY;
 
-// �}�i�t�B�[�̃^�}�S
+// マナフィーのタマゴ
 typedef struct {
   int dummy;
 } GIFT_PRESENT_RANGEREGG;
 
-// �����o�[�Y�J�[�h
+// メンバーズカード
 typedef struct {
   int itemNo;
 } GIFT_PRESENT_MEMBERSCARD;
 
-// �I�[�L�h�̂Ă���
+// オーキドのてがみ
 typedef struct {
   int itemNo;
 } GIFT_PRESENT_LETTER;
 
-// �Ă񂩂��̂ӂ�
+// てんかいのふえ
 typedef struct {
   int itemNo;
 } GIFT_PRESENT_WHISTLE;
 
-// �|�P�b�`
+// ポケッチ
 typedef struct {
   int id;
 } GIFT_PRESENT_POKETCH;
 
-// �ӂ����Ȃ�������̋����N���A
+// ふしぎなおくりもの強制クリア
 typedef struct {
   int dummy;
 } GIFT_PRESENT_REMOVE;
@@ -172,46 +172,46 @@ typedef union {
 
 #define MYSTERYGIFT_POKEICON	3
 
-// �ӂ����Ȃ�������́@�r�[�R���f�[�^
+// ふしぎなおくりもの　ビーコンデータ
 typedef struct {
-  STRCODE event_name[GIFT_DATA_CARD_TITLE_MAX];	// �C�x���g�^�C�g��
-  u32 version;					// �Ώۃo�[�W����(�O�̏ꍇ�͐��������Ŕz�z)
-  u16 event_id;					// �C�x���g�h�c(�ő�2048���܂�)
-  u8 only_one_flag: 1;				// �P�x������M�t���O(0..���x�ł���M�\ 1..�P��̂�)
-  u8 access_point: 1;				// �A�N�Z�X�|�C���g(���������ĕK�v�Ȃ��Ȃ����H)
-  u8 have_card: 1;				// �J�[�h�����܂�ł��邩(0..�܂�ł��Ȃ�  1..�܂�ł�)
-  u8 delivery_flag: 1;				// �z�B������󂯎����̂��܂�ł��邩
-  u8 re_deal_flag: 1;				// ���z�z���鎖���\���H(0..�o���Ȃ� 1..�o����)
-  u8 groundchild_flag: 1;			// ���z�z�t���O(0..�Ⴄ 1..���z�z)
+  STRCODE event_name[GIFT_DATA_CARD_TITLE_MAX];	// イベントタイトル
+  u32 version;					// 対象バージョン(０の場合は制限無しで配布)
+  u16 event_id;					// イベントＩＤ(最大2048件まで)
+  u8 only_one_flag: 1;				// １度だけ受信フラグ(0..何度でも受信可能 1..１回のみ)
+  u8 access_point: 1;				// アクセスポイント(もしかして必要なくなった？)
+  u8 have_card: 1;				// カード情報を含んでいるか(0..含んでいない  1..含んでる)
+  u8 delivery_flag: 1;				// 配達員から受け取るものを含んでいるか
+  u8 re_deal_flag: 1;				// 孫配布する事が可能か？(0..出来ない 1..出来る)
+  u8 groundchild_flag: 1;			// 孫配布フラグ(0..違う 1..孫配布)
   u8 dummy: 2;
 } GIFT_BEACON;
 
-// �z�B��(�ő�W��)
+// 配達員(最大８つ)
 typedef struct {
   u16 gift_type;
-  u16 link : 2;					// �J�[�h�ւ̃����N(0: 2:�����N 3�����N�Ȃ�)
+  u16 link : 2;					// カードへのリンク(0: 2:リンク 3リンクなし)
   u16 dummy : 14;
   GIFT_PRESENT data;
 } GIFT_DELIVERY;
 
 
-// �J�[�h���(�ő�R��)
+// カード情報(最大３つ)
 typedef struct {
   u16 gift_type;
-  u16 dummy;					// �z�B���ւ̃����N
+  u16 dummy;					// 配達員へのリンク
   GIFT_PRESENT data;
 
-  GIFT_BEACON beacon;				// �r�[�R�����Ɠ����̏�������
+  GIFT_BEACON beacon;				// ビーコン情報と同等の情報を持つ
 
-  STRCODE event_text[GIFT_DATA_CARD_TEXT_MAX];	// �����e�L�X�g
-  u8 re_deal_count;				// �Ĕz�z�̉�(0�`254�A255�͖�����)
-  u16 pokemon_icon[MYSTERYGIFT_POKEICON];	// �|�P�����A�C�R���R��
+  STRCODE event_text[GIFT_DATA_CARD_TEXT_MAX];	// 説明テキスト
+  u8 re_deal_count;				// 再配布の回数(0〜254、255は無制限)
+  u16 pokemon_icon[MYSTERYGIFT_POKEICON];	// ポケモンアイコン３つ分
 
-  // ���z�z����̂͂����܂�
-  // �����̉��̓t���b�V���ɃZ�[�u���鎞�̂ݕK�v�ȃf�[�^
+  // ↑配布するのはここまで
+  // ↓この下はフラッシュにセーブする時のみ必要なデータ
   
-  u8 re_dealed_count;				// �z�z������
-  s32 recv_date;				// ��M��������
+  u8 re_dealed_count;				// 配布した回数
+  s32 recv_date;				// 受信した時間
   
 } GIFT_CARD;
 
@@ -222,9 +222,9 @@ typedef union {
 } GIFT_DATA;
 
 
-// �ʐM����ۂ̃p�b�P�[�W��`
-// beacon.have_card == TRUE �Ȃ�� data = card;
-//                     FALSE �Ȃ�� data = deli;
+// 通信する際のパッケージ定義
+// beacon.have_card == TRUE ならば data = card;
+//                     FALSE ならば data = deli;
 typedef struct {
   GIFT_BEACON beacon;
   GIFT_DATA data;
@@ -233,7 +233,7 @@ typedef struct {
 
 //------------------------------------------------------------------
 /**
- * @brief	�ӂ����Z�[�u�f�[�^�ւ̕s���S�^��`
+ * @brief	ふしぎセーブデータへの不完全型定義
  */
 //------------------------------------------------------------------
 typedef struct FUSHIGI_DATA FUSHIGI_DATA;
@@ -241,138 +241,138 @@ typedef struct FUSHIGI_DATA FUSHIGI_DATA;
 
 //============================================================================================
 //
-//			�O���Q��
+//			外部参照
 //
 //============================================================================================
 //------------------------------------------------------------------
-//�f�[�^�T�C�Y�擾
+//データサイズ取得
 //------------------------------------------------------------------
 extern int FUSHIGIDATA_GetWorkSize(void);
 
 //------------------------------------------------------------------
-//����������
+//初期化処理
 //------------------------------------------------------------------
 extern void FUSHIGIDATA_Init(FUSHIGI_DATA * fd);
 
 //------------------------------------------------------------------
 /**
- * @brief	�ӂ����f�[�^�ւ̃|�C���^�擾
+ * @brief	ふしぎデータへのポインタ取得
  */
 //------------------------------------------------------------------
 extern FUSHIGI_DATA * SaveData_GetFushigiData(SAVEDATA * sv);
 
 //------------------------------------------------------------------
-/// �z�B���f�[�^�̎擾
+/// 配達員データの取得
 //------------------------------------------------------------------
 extern GIFT_DELIVERY * FUSHIGIDATA_GetDeliData(FUSHIGI_DATA * fd, int index);
 //------------------------------------------------------------------
-/// �z�B���f�[�^���Z�[�u�f�[�^�o�^
+/// 配達員データをセーブデータ登録
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_SetDeliData(FUSHIGI_DATA *fd, const void *p, int link);
 //------------------------------------------------------------------
-/// �z�B���f�[�^�𖕏�����
+/// 配達員データを抹消する
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_RemoveDeliData(FUSHIGI_DATA *fd, int index);
 //------------------------------------------------------------------
-/// �z�B���f�[�^���Z�[�u�ł��邩�`�F�b�N
+/// 配達員データがセーブできるかチェック
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_CheckDeliDataSpace(FUSHIGI_DATA *fd);
 //------------------------------------------------------------------
-/// �z�B���f�[�^�̑��݃`�F�b�N
+/// 配達員データの存在チェック
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_IsExistsDelivery(const FUSHIGI_DATA * fd, int index);
 
 
 //------------------------------------------------------------------
-/// �J�[�h�f�[�^�̎擾
+/// カードデータの取得
 //------------------------------------------------------------------
 extern GIFT_CARD *FUSHIGIDATA_GetCardData(FUSHIGI_DATA *fd, int index);
 //------------------------------------------------------------------
-/// �J�[�h�f�[�^���Z�[�u�f�[�^�o�^
+/// カードデータをセーブデータ登録
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_SetCardData(FUSHIGI_DATA *fd, const void *p);
 //------------------------------------------------------------------
-/// �J�[�h�f�[�^�𖕏�����
+/// カードデータを抹消する
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_RemoveCardData(FUSHIGI_DATA *fd, int index);
 extern BOOL FUSHIGIDATA_RemoveCardDataPlusBit(FUSHIGI_DATA *fd, int index);
 //------------------------------------------------------------------
-/// �J�[�h�f�[�^���Z�[�u�ł��邩�`�F�b�N
+/// カードデータがセーブできるかチェック
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_CheckCardDataSpace(FUSHIGI_DATA *fd);
 //------------------------------------------------------------------
-/// �J�[�h�f�[�^�����݂��邩�Ԃ�
+/// カードデータが存在するか返す
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_IsExistsCard(const FUSHIGI_DATA * fd, int index);
 //------------------------------------------------------------------
-/// �Z�[�u�f�[�^���ɃJ�[�h�f�[�^�����݂��邩�Ԃ�
+/// セーブデータ内にカードデータが存在するか返す
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_IsExistsCardAll(const FUSHIGI_DATA *fd);
 
 //------------------------------------------------------------------
-///	�w��̃J�[�h�Ƀ����N����Ă���z�B�������݂��邩
+///	指定のカードにリンクされている配達員が存在するか
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_GetCardLinkDeli(const FUSHIGI_DATA *fd, int index);
 
 //------------------------------------------------------------------
-///	�w��J�[�h�Ƀ����N����Ă���z�B�����폜
+///	指定カードにリンクされている配達員を削除
 //------------------------------------------------------------------
 extern void FUSHIGIDATA_RemoveCardLinkDeli(const FUSHIGI_DATA *fd, int index);
 
 //------------------------------------------------------------------
-/// �w��̃C�x���g�͂��łɂ���������Ԃ�
+/// 指定のイベントはすでにもらったか返す
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_IsEventRecvFlag(FUSHIGI_DATA * fd, int num);
 //------------------------------------------------------------------
-/// �w��̃C�x���g���������t���O�𗧂Ă�
+/// 指定のイベントもらったよフラグを立てる
 //------------------------------------------------------------------
 extern void FUSHIGIDATA_SetEventRecvFlag(FUSHIGI_DATA * fd, int num);
 //------------------------------------------------------------------
-/// �w��̃C�x���g���������t���O�𗎂�
+/// 指定のイベントもらったよフラグを落す
 //------------------------------------------------------------------
 extern void FUSHIGIDATA_ResetEventRecvFlag(FUSHIGI_DATA * fd, int num);
 //------------------------------------------------------------------
-///	�ӂ����Ȃ�������̂�\���o���邩�H
+///	ふしぎなおくりものを表示出来るか？
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_IsFushigiMenu(FUSHIGI_DATA *fd);
 //------------------------------------------------------------------
-///	�ӂ����Ȃ�������̂̕\���t���O��ON�ɂ���
+///	ふしぎなおくりものの表示フラグをONにする
 //------------------------------------------------------------------
 extern void FUSHIGIDATA_SetFushigiMenu(FUSHIGI_DATA *fd);
 
 
 //------------------------------------------------------------------
-/// ����ȉ��̊֐����g�����߂ɕK�v�ȏ�����
+/// これ以下の関数を使うために必要な初期化
 //------------------------------------------------------------------
 extern void FUSHIGIDATA_InitSlot(SAVEDATA * sv, int heap_id);
 //------------------------------------------------------------------
-/// ����ȉ��̊֐����g���I�������̌�n��
+/// これ以下の関数を使い終わった後の後始末
 //------------------------------------------------------------------
 extern void FUSHIGIDATA_FinishSlot(SAVEDATA * sv, int flag);
 //------------------------------------------------------------------
-/// �f�[�^������X���b�g�ԍ���Ԃ��֐�
+/// データがあるスロット番号を返す関数
 //------------------------------------------------------------------
 extern int FUSHIGIDATA_GetSlotData(void);
 //------------------------------------------------------------------
-/// �X���b�g�Ƀf�[�^�����邩�Ԃ��֐�
+/// スロットにデータがあるか返す関数
 //------------------------------------------------------------------
 extern BOOL FUSHIGIDATA_CheckSlotData(void);
 //------------------------------------------------------------------
-/// ��ԎႢ�f�[�^�͉��Ȃ̂���Ԃ�
+/// 一番若いデータは何なのかを返す
 //------------------------------------------------------------------
 extern int FUSHIGIDATA_GetSlotType(int index);
 //------------------------------------------------------------------
-/// ��ԎႢ�f�[�^�̍\���̂ւ̃|�C���^��Ԃ�
+/// 一番若いデータの構造体へのポインタを返す
 //------------------------------------------------------------------
 extern GIFT_PRESENT *FUSHIGIDATA_GetSlotPtr(int index);
 //------------------------------------------------------------------
-/// �w��̃X���b�g����������
+/// 指定のスロットを消去する
 //------------------------------------------------------------------
 extern void FUSHIGIDATA_RemoveSlot(int index);
 
 
 //------------------------------------------------------------------
-/// �f�o�b�O�p�Ƀ|�P�����f�[�^���Z�b�g����֐�
+/// デバッグ用にポケモンデータをセットする関数
 //------------------------------------------------------------------
 extern void FUSHIGIDATA_DebugSetPokemon(void);
 

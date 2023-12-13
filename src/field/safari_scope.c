@@ -1,7 +1,7 @@
 //===========================================================================
 /**
  * @file	safari_scope.c
- * @brief	ƒTƒtƒ@ƒŠ–]‰“‹¾
+ * @brief	ã‚µãƒ•ã‚¡ãƒªæœ›é é¡
  * @author	Nozomu Saito
  * @date	2006.04.24
  * 
@@ -42,24 +42,24 @@ typedef struct SCOPE_EVENT_WORK_tag
 }SCOPE_EVENT_WORK;
 
 enum {
-	SS_START,	//‰‰ñƒtƒF[ƒhƒAƒEƒgƒR[ƒ‹
-	SS_F_PROC_END,	//ƒtƒB[ƒ‹ƒhƒvƒƒZƒX‚ðI—¹
-	SS_MAP_CHG,		//ƒ}ƒbƒvƒ`ƒFƒ“ƒW
-	SS_F_PROC_START,//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJŽn
-	SS_SCOPE_SET,	//–]‰“‹¾ƒZƒbƒgƒAƒbƒv
-	SS_SCOPE_VIEW,		//–]‰“‹¾‚Ì‚¼‚¢‚Ä‚é
-	SS_SCOPE_RESET,	//ŽŸ‚Ì–]‰“‹¾‚Ì€”õ
-	SS_TASK_WAIT,	//ƒZƒ‹ƒAƒNƒ^[I—¹‘Ò‚¿
-	SS_END,		//–]‰“‹¾I—¹
+	SS_START,	//åˆå›žãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ãƒ«
+	SS_F_PROC_END,	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹ã‚’çµ‚äº†
+	SS_MAP_CHG,		//ãƒžãƒƒãƒ—ãƒã‚§ãƒ³ã‚¸
+	SS_F_PROC_START,//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹
+	SS_SCOPE_SET,	//æœ›é é¡ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
+	SS_SCOPE_VIEW,		//æœ›é é¡ã®ãžã„ã¦ã‚‹
+	SS_SCOPE_RESET,	//æ¬¡ã®æœ›é é¡ã®æº–å‚™
+	SS_TASK_WAIT,	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼çµ‚äº†å¾…ã¡
+	SS_END,		//æœ›é é¡çµ‚äº†
 };
 
 static BOOL GMEVENT_SafariScopeStart(GMEVENT_CONTROL * event);
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒR[ƒ‹
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -73,17 +73,17 @@ void CallSafariScopeEvent(FIELDSYS_WORK * fsys)
 	sew->Seq = SS_START;
 	sew->Count = 0;
 	
-	//ƒ}ƒbƒvƒWƒƒƒ“ƒvƒCƒxƒ“ƒg‚ðì¬
+	//ãƒžãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä½œæˆ
 	FieldEvent_Call(fsys->event, GMEVENT_SafariScopeStart, sew);
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * –]‰“‹¾ƒCƒxƒ“ƒg
+ * æœ›é é¡ã‚¤ãƒ™ãƒ³ãƒˆ
  *
- * @param	event		ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL		TRUE:I—¹@FALSE:Œp‘±
+ * @return	BOOL		TRUE:çµ‚äº†ã€€FALSE:ç¶™ç¶š
  */
 //--------------------------------------------------------------------------------------------
 static BOOL GMEVENT_SafariScopeStart(GMEVENT_CONTROL * event)
@@ -92,36 +92,36 @@ static BOOL GMEVENT_SafariScopeStart(GMEVENT_CONTROL * event)
 	SCOPE_EVENT_WORK * sew = FieldEvent_GetSpecialWork(event);
 
 	switch (sew->Seq) {
-	case SS_START:		//–]‰“‹¾ƒXƒ^[ƒg
-		//–]‰“‹¾ƒ‚[ƒhƒZƒbƒg
+	case SS_START:		//æœ›é é¡ã‚¹ã‚¿ãƒ¼ãƒˆ
+		//æœ›é é¡ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		FldFlg_SetScopeMode(fsys, TRUE);
-		//ƒƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬
+		//ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		SSC_SetNextLocation(sew->Count, sew->ScpDatPtr);
 		sew->Next = SSC_GetNextLocaton(sew->ScpDatPtr);
 		
-		EventCmd_FieldFadeOut(event);			//ƒtƒF[ƒhƒAƒEƒg
+		EventCmd_FieldFadeOut(event);			//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		sew->Seq = SS_F_PROC_END;
 		break;
-	case SS_F_PROC_END:	//ƒtƒB[ƒ‹ƒhƒvƒƒZƒX‚ðI—¹
+	case SS_F_PROC_END:	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹ã‚’çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		sew->Seq = SS_MAP_CHG;
 		break;
-	case SS_MAP_CHG:	//ŽÀÛ‚Éƒf[ƒ^‚ðVƒ}ƒbƒv‚É‘‚«Š·‚¦‚é
+	case SS_MAP_CHG:	//å®Ÿéš›ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ–°ãƒžãƒƒãƒ—ã«æ›¸ãæ›ãˆã‚‹
 		{
 			EVENTWORK* ev = SaveData_GetEventWork( fsys->savedata );
-			if (sew->Count == 0){					//ƒ|ƒPƒbƒ`‚ðƒtƒbƒN
+			if (sew->Count == 0){					//ãƒã‚±ãƒƒãƒã‚’ãƒ•ãƒƒã‚¯
 				SysFlag_PoketchHookSet(ev);
-///				OS_Printf("ƒ|ƒPƒbƒ`‚ðƒtƒbƒN\n");
-			}else if(sew->Count == SCOPE_DISP_CNT){	//ƒ|ƒPƒbƒ`‚ÌƒtƒbƒN‚ð‰ðœ
+///				OS_Printf("ãƒã‚±ãƒƒãƒã‚’ãƒ•ãƒƒã‚¯\n");
+			}else if(sew->Count == SCOPE_DISP_CNT){	//ãƒã‚±ãƒƒãƒã®ãƒ•ãƒƒã‚¯ã‚’è§£é™¤
 				SysFlag_PoketchHookReset(ev);
-///				OS_Printf("ƒ|ƒPƒbƒ`‚ÌƒtƒbƒN‚ð‰ðœ\n");
+///				OS_Printf("ãƒã‚±ãƒƒãƒã®ãƒ•ãƒƒã‚¯ã‚’è§£é™¤\n");
 			}
 		}
 		//SSC_JumpMap(event, sew->ScpDatPtr);
 		EventCmd_MapChangeByLocation(event, sew->Next);
 		sew->Seq = SS_F_PROC_START;
 		break;
-	case SS_F_PROC_START:	//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJŽn
+	case SS_F_PROC_START:	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹
 		EventCmd_StartFieldMap(event);
 		sew->Seq = SS_SCOPE_SET;
 		break;
@@ -129,39 +129,39 @@ static BOOL GMEVENT_SafariScopeStart(GMEVENT_CONTROL * event)
 		{
 			FIELD_OBJ_PTR player = Player_FieldOBJGet( fsys->player );
 			sew->Count++;
-			//5‰ñ–¢–ž‚È‚çŽ©‹@”ñ•\Ž¦
-			//ƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒ|ƒPƒ‚ƒ“•\Ž¦
-			//5‰ñˆ—‚µ‚½‚çŽ©‹@‚Í•\Ž¦i–]‰“‹¾‚ÌˆÊ’u‚É–ß‚Á‚Ä‚éj
+			//5å›žæœªæº€ãªã‚‰è‡ªæ©Ÿéžè¡¨ç¤º
+			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤º
+			//5å›žå‡¦ç†ã—ãŸã‚‰è‡ªæ©Ÿã¯è¡¨ç¤ºï¼ˆæœ›é é¡ã®ä½ç½®ã«æˆ»ã£ã¦ã‚‹ï¼‰
 			if (sew->Count<=SCOPE_DISP_CNT){
 				int monsno;
 				monsno = SSC_GetSafScpMons(fsys);
-				//Ž©‹@”ñ•\Ž¦
+				//è‡ªæ©Ÿéžè¡¨ç¤º
 				FieldOBJ_StatusBitSet_Vanish( player, TRUE );
 				
 				SSO_SetupSafariScopeCLACT(sew->SafScpObjPtr,monsno);
 				SSO_DrawStartCellAct(sew->SafScpObjPtr);
 				sew->Wait = 0;
-				Snd_SePlay( SEQ_SE_DP_KASYA );		//”`‚¢‚½‚Æ‚«‚Ì‰¹
+				Snd_SePlay( SEQ_SE_DP_KASYA );		//è¦—ã„ãŸã¨ãã®éŸ³
 				MJUMP_RequestWipe( event,WIPE_PATTERN_M, WIPE_TYPE_HOLEIN,
 							0xffff,0x0000,6,1,HEAPID_WORLD);
 				
 				sew->Seq = SS_SCOPE_VIEW;
 			}else{
-				//Ž©‹@•\Ž¦
+				//è‡ªæ©Ÿè¡¨ç¤º
 				FieldOBJ_StatusBitSet_Vanish( player, FALSE );
-				EventCmd_FieldFadeIn(event);		//ƒtƒF[ƒhƒCƒ“
+				EventCmd_FieldFadeIn(event);		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 				sew->Seq = SS_END;
 			}
 		}
 		break;
 	case SS_SCOPE_VIEW:
 		sew->Wait++;
-		//ƒEƒFƒCƒgŽžŠÔŒo‰ß‚ªŒˆ’èƒ{ƒ^ƒ“‰Ÿ‰º‚ÅŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+		//ã‚¦ã‚§ã‚¤ãƒˆæ™‚é–“çµŒéŽãŒæ±ºå®šãƒœã‚¿ãƒ³æŠ¼ä¸‹ã§æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 		if ((sew->Wait>=SCOPE_DISP_TIME)||(sys.trg & PAD_BUTTON_DECIDE)){
-			//ƒƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬
+			//ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			SSC_SetNextLocation(sew->Count, sew->ScpDatPtr);
 			sew->Next = SSC_GetNextLocaton(sew->ScpDatPtr);
-			Snd_SePlay( SEQ_SE_DP_KASYA );		//•Â‚¶‚½‚Æ‚«‚Ì‰¹
+			Snd_SePlay( SEQ_SE_DP_KASYA );		//é–‰ã˜ãŸã¨ãã®éŸ³
 			MJUMP_RequestWipe( event,WIPE_PATTERN_M, WIPE_TYPE_HOLEOUT,
 								0xffff,0x0000,6,1,HEAPID_WORLD);
 	
@@ -174,13 +174,13 @@ static BOOL GMEVENT_SafariScopeStart(GMEVENT_CONTROL * event)
 		break;
 	case SS_TASK_WAIT:
 		if (SSO_WaitDrawCellTask(sew->SafScpObjPtr)){
-			//ƒZƒ‹ƒAƒNƒ^[‰ð•ú
+			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è§£æ”¾
 			SSO_RereaseSSCellObject(sew->SafScpObjPtr);
 			sew->Seq = SS_F_PROC_END;
 		}
 		break;
-	case SS_END:		//I—¹ˆ—
-		////–]‰“‹¾ƒ‚[ƒhƒŠƒZƒbƒg
+	case SS_END:		//çµ‚äº†å‡¦ç†
+		////æœ›é é¡ãƒ¢ãƒ¼ãƒ‰ãƒªã‚»ãƒƒãƒˆ
 		FldFlg_SetScopeMode(fsys, FALSE);
 		
 		SSC_RereaseScopePointList(sew->ScpDatPtr);

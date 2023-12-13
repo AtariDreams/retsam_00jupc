@@ -1,229 +1,229 @@
 //==============================================================================
 /**
  * @file	footprint_control.dat
- * @brief	�X�^���v�֌W�Œ����������ȃf�[�^�ނ��܂Ƃ߂�����
+ * @brief	スタンプ関係で調整しそうなデータ類をまとめたもの
  * @author	matsuda
- * @date	2008.03.21(��)
+ * @date	2008.03.21(金)
  */
 //==============================================================================
 
 //--------------------------------------------------------------
-//	�X�y�V�����G�t�F�N�g
+//	スペシャルエフェクト
 //--------------------------------------------------------------
-///�X�y�V�����G�t�F�N�g����������A����(�Q���l���ŉ�)
+///スペシャルエフェクトが発動する連鎖回数(参加人数で可変)
 ALIGN4 static const s16 SpecialChainNum[] = {
-	255,			//�Q���l���F0�l
-	10,				//�Q���l���F1�l
-	10,				//�Q���l���F2�l
-	10,				//�Q���l���F3�l
-	10,				//�Q���l���F4�l
-	10,				//�Q���l���F5�l
-	10,				//�Q���l���F6�l
-	10,				//�Q���l���F7�l
-	10,				//�Q���l���F8�l
+	255,			//参加人数：0人
+	10,				//参加人数：1人
+	10,				//参加人数：2人
+	10,				//参加人数：3人
+	10,				//参加人数：4人
+	10,				//参加人数：5人
+	10,				//参加人数：6人
+	10,				//参加人数：7人
+	10,				//参加人数：8人
 };
 SDK_COMPILER_ASSERT((FOOTPRINT_ENTRY_MAX + 1) == NELEMS(SpecialChainNum));
 
 
 //--------------------------------------------------------------
-//	����
+//	動作
 //--------------------------------------------------------------
-///�X�^���v��������Ă��瓮���n�߂�܂ł̑҂�����
+///スタンプが押されてから動き始めるまでの待ち時間
 #define STAMP_FIRST_WAIT		(40)
 
-///�ɂ��݁F���t���[���̊g����Z�l(����8�r�b�g����)
+///にじみ：毎フレームの拡大加算値(下位8ビット小数)
 #define NIJIMI_ADD_AFFINE		(0xc0)
-///�ɂ��݁F���t���[���̃A���t�@���Z�l(����8�r�b�g����)
+///にじみ：毎フレームのアルファ加算値(下位8ビット小数)
 #define NIJIMI_ADD_ALPHA		(0xc0)
 
-///�͂����F�qOBJ�̐�
+///はじけ：子OBJの数
 #define HAJIKE_OBJ_CHILD_NUM		(3)
-///�͂����F�ړ����xX
+///はじけ：移動速度X
 #define HAJIKE_ADD_X		(0x02000)	//fx32
-///�͂����F�ړ����xY
+///はじけ：移動速度Y
 #define HAJIKE_ADD_Y		(HAJIKE_ADD_X)	//fx32
-///�͂����F������܂ł̃t���[����
+///はじけ：消えるまでのフレーム数
 #define HAJIKE_DELETE_FRAME	(30)
 
-///�W�O�U�O�F���t���[��������90�x��]�����邩
+///ジグザグ：何フレームかけて90度回転させるか
 #define ZIGZAG_THETA_FRAME		(6)
-///�W�O�U�O�F��]������A�W�O�U�O�ړ����n�߂�܂ł̑҂��t���[��
+///ジグザグ：回転した後、ジグザグ移動を始めるまでの待ちフレーム
 #define ZIGZAG_THETA_AFTER_WAIT	(4)
-///�W�O�U�O�F�ړ����xX
+///ジグザグ：移動速度X
 #define ZIGZAG_ADD_X			(0x03000)	//fx32
-///�W�O�U�O�F�ړ����xX
+///ジグザグ：移動速度X
 #define ZIGZAG_ADD_Y			(ZIGZAG_ADD_X)	//fx32
-///�W�O�U�O�F�W�O�U�O�ړ������t���[���Ő܂�Ԃ���
+///ジグザグ：ジグザグ移動を何フレームで折り返すか
 #define ZIGZAG_TURN_FRAME		(5)
 
-///�֍s�F���t���[��������90�x��]�����邩
+///蛇行：何フレームかけて90度回転させるか
 #define DAKOU_THETA_FRAME		(ZIGZAG_THETA_FRAME)
-///�֍s�F��]������A�֍s�ړ����n�߂�܂ł̑҂��t���[��
+///蛇行：回転した後、蛇行移動を始めるまでの待ちフレーム
 #define DAKOU_THETA_AFTER_WAIT	(ZIGZAG_THETA_AFTER_WAIT)
-///�֍s�F�ړ����xX
+///蛇行：移動速度X
 #define DAKOU_ADD_X			(0x01000)	//fx32
-///�֍s�FSIN�p�x���Z�l
+///蛇行：SIN角度加算値
 #define DAKOU_ADD_THETA		(0x8000)	//fx32
-///�֍s�F�ӂ蕝Y
+///蛇行：ふり幅Y
 #define DAKOU_FURIHABA_Y	(0x8000)	//fx32
 
-///�O�ՁF�qOBJ�̐�
+///軌跡：子OBJの数
 #define KISEKI_OBJ_CHILD_NUM		(3)
-///�O�ՁF�ړ����xY
+///軌跡：移動速度Y
 #define KISEKI_ADD_Y				(0x2800)	//fx32
-///�O�ՁF�O�Ղ𗎂Ƃ��t���[���Ԋu
+///軌跡：軌跡を落とすフレーム間隔
 #define KISEKI_DROP_FRAME			(3)
-///�O�ՁF�O��OBJ�̔������̔Z�x
-#define KISEKI_ALPHA				(8)	//31�Ŗ�����
+///軌跡：軌跡OBJの半透明の濃度
+#define KISEKI_ALPHA				(8)	//31で無透明
 
-///�h��F�ړ����xX
+///揺れ：移動速度X
 #define YURE_ADD_Y				(DAKOU_ADD_X)	//fx32
-///�h��FSIN�p�x���Z�l
+///揺れ：SIN角度加算値
 #define YURE_ADD_THETA			(DAKOU_ADD_THETA)	//fx32
-///�h��F�ӂ蕝Y
+///揺れ：ふり幅Y
 #define YURE_FURIHABA_X			(DAKOU_FURIHABA_Y)	//fx32
 
-///�g��F���t���[���̊g����Z�l(����8�r�b�g����)
-#define KAKUDAI_ADD_AFFINE		(0x300)		//0x1000����2�{
-///�g��F���ł܂ł̃t���[����
+///拡大：毎フレームの拡大加算値(下位8ビット小数)
+#define KAKUDAI_ADD_AFFINE		(0x300)		//0x1000だと2倍
+///拡大：消滅までのフレーム数
 #define KAKUDAI_DELETE_FRAME	(8)
 
-///�u���[X�F�qOBJ�̐�
+///ブラーX：子OBJの数
 #define BRAR_X_OBJ_CHILD_NUM	(2)
-///�u���[X�F���t���[���̃A���t�@���Z�l(����8�r�b�g����)
+///ブラーX：毎フレームのアルファ加算値(下位8ビット小数)
 #define BRAR_X_ADD_ALPHA		(0xa0)
-///�u���[X�FSIN�p�x���Z�l
+///ブラーX：SIN角度加算値
 #define BRAR_X_ADD_THETA		(0x20000)	//fx32
-///�u���[X�F�ӂ蕝
+///ブラーX：ふり幅
 #define BRAR_X_FURIHABA			(0x10000)	//fx32
 
-///�u���[Y�F�qOBJ�̐�
+///ブラーY：子OBJの数
 #define BRAR_Y_OBJ_CHILD_NUM	(BRAR_X_OBJ_CHILD_NUM)
-///�u���[Y�F���t���[���̃A���t�@���Z�l(����8�r�b�g����)
+///ブラーY：毎フレームのアルファ加算値(下位8ビット小数)
 #define BRAR_Y_ADD_ALPHA		(BRAR_X_ADD_ALPHA)
-///�u���[Y�FSIN�p�x���Z�l
+///ブラーY：SIN角度加算値
 #define BRAR_Y_ADD_THETA		(BRAR_X_ADD_THETA)	//fx32
-///�u���[Y�F�ӂ蕝
+///ブラーY：ふり幅
 #define BRAR_Y_FURIHABA			(BRAR_X_FURIHABA)	//fx32
 
-///����F���t���[���̊g����Z�l(����8�r�b�g����)
+///たれ：毎フレームの拡大加算値(下位8ビット小数)
 #define TARE_ADD_AFFINE		(0x180)
-///����F���ł܂ł̃t���[����
+///たれ：消滅までのフレーム数
 #define TARE_DELETE_FRAME	(30)
 
 //--------------------------------------------------------------
-//	�X�y�V�����G�t�F�N�g�����O�̃t���b�V��
+//	スペシャルエフェクト発動前のフラッシュ
 //--------------------------------------------------------------
-///�X�y�V�����G�t�F�N�g�O�̃t���b�V���F�P�x���Z�l
+///スペシャルエフェクト前のフラッシュ：輝度加算値
 #define SPECIAL_FLASH_ADD_EVY		(0x200)
-///�X�y�V�����G�t�F�N�g�O�̃t���b�V���F�P�x�ő�l(16=0x1000���ő�)
-#define SPECIAL_FLASH_EVY_MAX		(0x800)	//�O�̐��l�����ҏW�� ���̐����͂�����Ȃ�����!
-///�X�y�V�����G�t�F�N�g�O�̃t���b�V���F����t���b�V�����J��Ԃ���
+///スペシャルエフェクト前のフラッシュ：輝度最大値(16=0x1000が最大)
+#define SPECIAL_FLASH_EVY_MAX		(0x800)	//前の数値だけ編集可 後ろの数字はいじらないこと!
+///スペシャルエフェクト前のフラッシュ：何回フラッシュを繰り返すか
 #define SPECIAL_FLASH_LOOP			(2)
 
 //--------------------------------------------------------------
-//	�X�y�V�����G�t�F�N�g
+//	スペシャルエフェクト
 //--------------------------------------------------------------
-///SP�ɂ��݁F�J��������鋗��
+///SPにじみ：カメラが寄る距離
 #define SP_NIJIMI_CAMERA_FORWARD_DISTANCE		(-FX32_ONE * 50)
-///SP�ɂ��݁F���V���N�����ăJ��������点�邩
+///SPにじみ：何シンクかけてカメラを寄らせるか
 #define SP_NIJIMI_FORWARD_SYNC					(30)
-///SP�ɂ��݁F�������A�����n�߂�܂ł̃E�F�C�g
+///SPにじみ：寄った後、離し始めるまでのウェイト
 #define SP_NIJIMI_WAIT_SYNC						(4)
-///SP�ɂ��݁F���V���N�����ăJ�����𗣂���
+///SPにじみ：何シンクかけてカメラを離すか
 #define SP_NIJIMI_BACK_SYNC						(6)
-///SP�ɂ��݁F�J��������鎞�ɉ��Z���鋗��
+///SPにじみ：カメラが寄る時に加算する距離
 #define SP_NIJIMI_FORWARD_ADD_LEN	(SP_NIJIMI_CAMERA_FORWARD_DISTANCE / SP_NIJIMI_FORWARD_SYNC)
-///SP�ɂ��݁F�J����������鎞�ɉ��Z���鋗��
+///SPにじみ：カメラが離れる時に加算する距離
 #define SP_NIJIMI_BACK_ADD_LEN		(-SP_NIJIMI_CAMERA_FORWARD_DISTANCE / SP_NIJIMI_BACK_SYNC)
 
-///SP�g��F�J��������鋗��
+///SP拡大：カメラが寄る距離
 #define SP_KAKUDAI_CAMERA_FORWARD_DISTANCE		(FX32_ONE * 50)
-///SP�g��F���V���N�����ăJ�����𗣂���
+///SP拡大：何シンクかけてカメラを離すか
 #define SP_KAKUDAI_FORWARD_SYNC						(30)
-///SP�g��F��������A���n�߂�܂ł̃E�F�C�g
+///SP拡大：離した後、寄り始めるまでのウェイト
 #define SP_KAKUDAI_WAIT_SYNC						(4)
-///SP�g��F���V���N�����ăJ������߂���
+///SP拡大：何シンクかけてカメラを戻すか
 #define SP_KAKUDAI_BACK_SYNC						(6)
-///SP�g��F�J��������鎞�ɉ��Z���鋗��
+///SP拡大：カメラが寄る時に加算する距離
 #define SP_KAKUDAI_FORWARD_ADD_LEN	(SP_KAKUDAI_CAMERA_FORWARD_DISTANCE / SP_KAKUDAI_FORWARD_SYNC)
-///SP�g��F�J����������鎞�ɉ��Z���鋗��
+///SP拡大：カメラが離れる時に加算する距離
 #define SP_KAKUDAI_BACK_ADD_LEN		(-SP_KAKUDAI_CAMERA_FORWARD_DISTANCE / SP_KAKUDAI_BACK_SYNC)
 
-///SP�͂����F1��]����̂ɉ��V���N�����邩
+///SPはじけ：1回転するのに何シンクかけるか
 #define SP_HAJIKE_ROTATION_SYNC		(16)
-///SP�͂����F��]�񐔂���̂ɉ��V���N�����邩
+///SPはじけ：回転回数するのに何シンクかけるか
 #define SP_HAJIKE_ROTATION_NUM		(2)
 
-///SP�W�O�U�O�F�|���ő�l
+///SPジグザグ：倒す最大値
 #define SP_ZIGZAG_ANGLE_MAX		(0x2000)
-///SP�W�O�U�O�F���t���[�������ē|����
+///SPジグザグ：何フレームかけて倒すか
 #define SP_ZIGZAG_FORWARD_SYNC	(2)
-///SP�W�O�U�O�F���t���[�������Ė߂���
+///SPジグザグ：何フレームかけて戻すか
 #define SP_ZIGZAG_BACK_SYNC		(16)
-///SP�W�O�U�O�F�|���Ă���߂��܂ł̃E�F�C�g
+///SPジグザグ：倒してから戻すまでのウェイト
 #define SP_ZIGZAG_WAIT			(16)
-///SP�W�O�U�O�F�|�����̊p�x���Z�l
+///SPジグザグ：倒す時の角度加算値
 #define SP_ZIGZAG_ADD_ANGLE		(-SP_ZIGZAG_ANGLE_MAX / SP_ZIGZAG_FORWARD_SYNC)
-///SP�W�O�U�O�F�߂��Ƃ��̊p�x���Z�l
+///SPジグザグ：戻すときの角度加算値
 #define SP_ZIGZAG_SUB_ANGLE		(SP_ZIGZAG_ANGLE_MAX / SP_ZIGZAG_BACK_SYNC)
 
-///SP�֍s�F�|���ő�l
+///SP蛇行：倒す最大値
 #define SP_DAKOU_ANGLE_MAX		(0x2000)
-///SP�֍s�F���t���[�������ē|����
+///SP蛇行：何フレームかけて倒すか
 #define SP_DAKOU_FORWARD_SYNC	(2)
-///SP�֍s�F���t���[�������Ė߂���
+///SP蛇行：何フレームかけて戻すか
 #define SP_DAKOU_BACK_SYNC		(16)
-///SP�֍s�F�|���Ă���߂��܂ł̃E�F�C�g
+///SP蛇行：倒してから戻すまでのウェイト
 #define SP_DAKOU_WAIT			(16)
-///SP�֍s�F�|�����̊p�x���Z�l
+///SP蛇行：倒す時の角度加算値
 #define SP_DAKOU_ADD_ANGLE		(SP_DAKOU_ANGLE_MAX / SP_DAKOU_FORWARD_SYNC)
-///SP�֍s�F�߂��Ƃ��̊p�x���Z�l
+///SP蛇行：戻すときの角度加算値
 #define SP_DAKOU_SUB_ANGLE		(-SP_DAKOU_ANGLE_MAX / SP_DAKOU_BACK_SYNC)
 
-///SP�O�ՁF�|���ő�l
+///SP軌跡：倒す最大値
 #define SP_KISEKI_ANGLE_MAX		(0x2000)
-///SP�O�ՁF���t���[�������ē|����
+///SP軌跡：何フレームかけて倒すか
 #define SP_KISEKI_FORWARD_SYNC	(3)
-///SP�O�ՁF���t���[�������Ė߂���
+///SP軌跡：何フレームかけて戻すか
 #define SP_KISEKI_BACK_SYNC		(16)
-///SP�O�ՁF�|���Ă���߂��܂ł̃E�F�C�g
+///SP軌跡：倒してから戻すまでのウェイト
 #define SP_KISEKI_WAIT			(16)
-///SP�O�ՁF�|�����̊p�x���Z�l
+///SP軌跡：倒す時の角度加算値
 #define SP_KISEKI_ADD_ANGLE		(SP_KISEKI_ANGLE_MAX / SP_KISEKI_FORWARD_SYNC)
-///SP�O�ՁF�߂��Ƃ��̊p�x���Z�l
+///SP軌跡：戻すときの角度加算値
 #define SP_KISEKI_SUB_ANGLE		(-SP_KISEKI_ANGLE_MAX / SP_KISEKI_BACK_SYNC)
 
-///SP����F�|���ő�l
+///SPたれ：倒す最大値
 #define SP_TARE_ANGLE_MAX		(0x2000)
-///SP����F���t���[�������ē|����
+///SPたれ：何フレームかけて倒すか
 #define SP_TARE_FORWARD_SYNC	(3)
-///SP����F���t���[�������Ė߂���
+///SPたれ：何フレームかけて戻すか
 #define SP_TARE_BACK_SYNC		(16)
-///SP����F�|���Ă���߂��܂ł̃E�F�C�g
+///SPたれ：倒してから戻すまでのウェイト
 #define SP_TARE_WAIT			(16)
-///SP����F�|�����̊p�x���Z�l
+///SPたれ：倒す時の角度加算値
 #define SP_TARE_ADD_ANGLE		(-SP_TARE_ANGLE_MAX / SP_TARE_FORWARD_SYNC)
-///SP����F�߂��Ƃ��̊p�x���Z�l
+///SPたれ：戻すときの角度加算値
 #define SP_TARE_SUB_ANGLE		(SP_TARE_ANGLE_MAX / SP_TARE_BACK_SYNC)
 
-///SP�h��FSIN�p�x���Z�l
+///SP揺れ：SIN角度加算値
 #define SP_YURE_ADD_THETA		(0x18000)	//fx32
-///SP�h��F�ӂ蕝Y
+///SP揺れ：ふり幅Y
 #define SP_YURE_FURIHABA_X		(0x1000)	//fx32
-///SP�h��F�J��Ԃ���
+///SP揺れ：繰り返し回数
 #define SP_YURE_LOOP_NUM		(2)
 
-///SP�u���[X�FSIN�p�x���Z�l
+///SPブラーX：SIN角度加算値
 #define SP_BRAR_X_ADD_THETA		(0x20000)	//fx32
-///SP�u���[X�F�ӂ蕝Y
+///SPブラーX：ふり幅Y
 #define SP_BRAR_X_FURIHABA_X	(0x10000)	//fx32
-///SP�u���[X�F�J��Ԃ���
+///SPブラーX：繰り返し回数
 #define SP_BRAR_X_LOOP_NUM		(4)
 
-///SP�u���[Y�FSIN�p�x���Z�l
+///SPブラーY：SIN角度加算値
 #define SP_BRAR_Y_ADD_THETA		(0x20000)	//fx32
-///SP�u���[Y�F�ӂ蕝Y
+///SPブラーY：ふり幅Y
 #define SP_BRAR_Y_FURIHABA_Y	(0x8000)	//fx32
-///SP�u���[Y�F�J��Ԃ���
+///SPブラーY：繰り返し回数
 #define SP_BRAR_Y_LOOP_NUM		(4)

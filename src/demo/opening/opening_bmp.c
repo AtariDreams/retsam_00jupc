@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	opneing_bmp.c
- * @brief	ƒI[ƒvƒjƒ“ƒO BMP
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚° BMP
  * @author	Satoshi Nohara
  * @date	2005.12.08
  */
@@ -16,7 +16,7 @@
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
 extern u8 TalkWinNumGet(void);
@@ -24,27 +24,27 @@ extern u8 TalkWinNumGet(void);
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-#define OP_FONT_KIND		(FONT_SYSTEM)	//ƒtƒHƒ“ƒgí—Ş
+#define OP_FONT_KIND		(FONT_SYSTEM)	//ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
 
-//u‚Ú‚¤‚¯‚ñ@‚Æ‚ÍHv
+//ã€Œã¼ã†ã‘ã‚“ã€€ã¨ã¯ï¼Ÿã€
 #define WIN_SEL1_PX			(1)
 #define WIN_SEL1_PY			(4)
 #define WIN_SEL1_SX			(15)
 #define WIN_SEL1_SY			(6)
 #define WIN_SEL1_CGX		(1)
 
-//‘€ìAƒQ[ƒ€à–¾
+//æ“ä½œã€ã‚²ãƒ¼ãƒ èª¬æ˜
 #define WIN_GUIDE_PX		(1)
 #define WIN_GUIDE_PY		(2)
-#define WIN_GUIDE_SX		(32)		// ƒ^ƒbƒ`ƒpƒlƒ‹à–¾‚ª“ü‚è‚«‚Á‚Ä‚¢‚È‚©‚Á‚½‚Ì‚Å29->32‚É•ÏX tomoya takahashi 2005/12/22
+#define WIN_GUIDE_SX		(32)		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«èª¬æ˜ãŒå…¥ã‚Šãã£ã¦ã„ãªã‹ã£ãŸã®ã§29->32ã«å¤‰æ›´ tomoya takahashi 2005/12/22
 #define WIN_GUIDE_SY		(20)
 #define WIN_GUIDE_CGX		(WIN_SEL1_CGX + WIN_SEL1_SX * WIN_SEL1_SY)
 //1+15*6=91
 
-//u‚¨‚Æ‚±‚Ì‚±v
+//ã€ŒãŠã¨ã“ã®ã“ã€
 #define WIN_SEL2_PX			(12)
 #define WIN_SEL2_PY			(8)
 #define WIN_SEL2_SX			(8)
@@ -52,7 +52,7 @@ extern u8 TalkWinNumGet(void);
 #define WIN_SEL2_CGX		(WIN_GUIDE_CGX + WIN_GUIDE_SX * WIN_GUIDE_SY)
 //91+28*20=656
 
-//uƒI[ƒLƒh‰ï˜bv
+//ã€Œã‚ªãƒ¼ã‚­ãƒ‰ä¼šè©±ã€
 #define WIN_OOKIDO_PX		(2)
 #define WIN_OOKIDO_PY		(19)
 #define WIN_OOKIDO_SX		(27)
@@ -60,7 +60,7 @@ extern u8 TalkWinNumGet(void);
 #define WIN_OOKIDO_CGX		(WIN_SEL2_CGX + WIN_SEL2_SX * WIN_SEL2_SY)
 //656+8*4=688
 
-//u‚Í‚¢E‚¢‚¢‚¦v
+//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 #define WIN_YESNO_PX		(4)
 #define WIN_YESNO_PY		(6)//(13)
 #define WIN_YESNO_SX		(6)
@@ -68,7 +68,7 @@ extern u8 TalkWinNumGet(void);
 #define WIN_YESNO_CGX		(WIN_OOKIDO_CGX + WIN_OOKIDO_SX * WIN_OOKIDO_SY)
 //688+27*4=796
 
-//u‚Â‚¬‚ğ‚¦‚ç‚Ôv
+//ã€Œã¤ãã‚’ãˆã‚‰ã¶ã€
 #define WIN_IDSEL_PX		(1)
 #define WIN_IDSEL_PY		(4)//(13)
 #define WIN_IDSEL_SX		(10)
@@ -76,10 +76,10 @@ extern u8 TalkWinNumGet(void);
 #define WIN_IDSEL_CGX		(WIN_YESNO_CGX + WIN_YESNO_SX * WIN_YESNO_SY)
 //796+6*4=820
 
-//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define OP_MENU_CGX_NUM		(1024-MENU_WIN_CGX_SIZ)
 
-//‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	OP_TALKWIN_CGX_SIZE	(TALK_WIN_CGX_SIZ	)
 //#define	OP_TALKWIN_CGX_NUM	(512 - OP_TALKWIN_CGX_SIZE)
 #define	OP_TALKWIN_CGX_NUM	(OP_MENU_CGX_NUM - OP_TALKWIN_CGX_SIZE)
@@ -87,33 +87,33 @@ extern u8 TalkWinNumGet(void);
 
 //==============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
 static const BMPWIN_DAT OpeningBmpData[] =
 {
 	
-	{	// 0:u‚Ú‚¤‚¯‚ñ@‚Æ‚ÍHv
+	{	// 0:ã€Œã¼ã†ã‘ã‚“ã€€ã¨ã¯ï¼Ÿã€
 		OP_FRM_FONT, WIN_SEL1_PX, WIN_SEL1_PY,
 		WIN_SEL1_SX, WIN_SEL1_SY, OP_FONT_PAL, WIN_SEL1_CGX
 	},	
-	{	// 1:‘€ìAƒQ[ƒ€à–¾
+	{	// 1:æ“ä½œã€ã‚²ãƒ¼ãƒ èª¬æ˜
 		OP_FRM_FONT, WIN_GUIDE_PX, WIN_GUIDE_PY,
 		WIN_GUIDE_SX, WIN_GUIDE_SY, OP_FONT_PAL, WIN_GUIDE_CGX
 	},
-	{	// 2:u‚¨‚Æ‚±‚Ì‚±v
+	{	// 2:ã€ŒãŠã¨ã“ã®ã“ã€
 		OP_FRM_FONT, WIN_SEL2_PX, WIN_SEL2_PY,
 		WIN_SEL2_SX, WIN_SEL2_SY, OP_FONT_PAL, WIN_SEL2_CGX
 	},
-	{	// 3:uƒI[ƒLƒh‰ï˜bv
+	{	// 3:ã€Œã‚ªãƒ¼ã‚­ãƒ‰ä¼šè©±ã€
 		OP_FRM_FONT, WIN_OOKIDO_PX, WIN_OOKIDO_PY,
 		WIN_OOKIDO_SX, WIN_OOKIDO_SY, OP_MSGFONT_PAL, WIN_OOKIDO_CGX
 	},
-	{	// 4:u‚Í‚¢E‚¢‚¢‚¦v
+	{	// 4:ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 		OP_FRM_FONT, WIN_YESNO_PX, WIN_YESNO_PY,
 		WIN_YESNO_SX, WIN_YESNO_SY, OP_FONT_PAL, WIN_YESNO_CGX
 	},
-	{	// 5:u‚Â‚¬‚ğ‚¦‚ç‚Ôv
+	{	// 5:ã€Œã¤ãã‚’ãˆã‚‰ã¶ã€
 		OP_FRM_FONT, WIN_IDSEL_PX, WIN_IDSEL_PY,
 		WIN_IDSEL_SX, WIN_IDSEL_SY, OP_FONT_PAL, WIN_IDSEL_CGX
 	},
@@ -122,7 +122,7 @@ static const BMPWIN_DAT OpeningBmpData[] =
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 void OpeningAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
@@ -137,16 +137,16 @@ void OpeningTalkWinPut( GF_BGL_BMPWIN * win, WINTYPE wintype );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -156,13 +156,13 @@ void OpeningAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 	u8 i;
 	const BMPWIN_DAT* dat =OpeningBmpData;
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 	for( i=0; i < OPENING_BMPWIN_MAX; i++ ){
 		GF_BGL_BmpWinAddEx( bgl, &win[i], &dat[i] );
-		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//“h‚è‚Â‚Ô‚µ
+		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//å¡—ã‚Šã¤ã¶ã—
 	}
 
-	//æ“ªƒLƒƒƒ‰‚ğƒNƒŠƒA(ƒXƒNƒŠ[ƒ“ƒNƒŠƒA‚³‚ê‚Ä‚é‚Æ‚±‚ë‚ÍA‚±‚ÌƒLƒƒƒ‰‚Å–„‚Ü‚é)
+	//å…ˆé ­ã‚­ãƒ£ãƒ©ã‚’ã‚¯ãƒªã‚¢(ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ã•ã‚Œã¦ã‚‹ã¨ã“ã‚ã¯ã€ã“ã®ã‚­ãƒ£ãƒ©ã§åŸ‹ã¾ã‚‹)
 	//GF_BGL_CharFill( bgl, OP_FRM_FONT, 0, 1, 0 );
 
 	return;
@@ -170,9 +170,9 @@ void OpeningAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü	
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„	
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -189,9 +189,9 @@ void OpeningExitBmpWin( GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒIƒt
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -208,35 +208,35 @@ void OpeningOffBmpWin( GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	wait	•¶š•\¦ƒEƒFƒCƒg
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		OPENING_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	wait	æ–‡å­—è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
- * @return	"•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
+ * @return	"æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  */
 //--------------------------------------------------------------
 u8 OpeningWriteMsg(OPENING_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font)
 {
 #if 0
-	GF_BGL_BmpWinDataFill( win, b_col );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );			//å¡—ã‚Šã¤ã¶ã—
 	MSGMAN_GetString( wk->msgman, msg_id, wk->msg_buf );
 	//return GF_STR_PrintSimple( win, OP_FONT_KIND, wk->msg_buf, x, y, wait, NULL );
 	return GF_STR_PrintColor( win, OP_FONT_KIND, wk->msg_buf, x, y, wait, 
 								GF_PRINTCOLOR_MAKE(f_col,s_col,b_col), NULL );
 #else
-	GF_BGL_BmpWinDataFill( win, b_col );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );			//å¡—ã‚Šã¤ã¶ã—
 	MSGMAN_GetString( wk->msgman, msg_id, wk->tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
 	return GF_STR_PrintColor( win, font, wk->msg_buf, x, y, wait, 
@@ -246,20 +246,20 @@ u8 OpeningWriteMsg(OPENING_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒEƒBƒ“ƒhƒE•\¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
 //--------------------------------------------------------------
 void OpeningWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 {
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet( bgl, OP_FRM_FONT, OP_MENU_CGX_NUM, OP_MENU_PAL, 0, HEAPID_OPENING );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_OFF, OP_MENU_CGX_NUM, OP_MENU_PAL );
 
 	return;
@@ -267,10 +267,10 @@ void OpeningWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒwƒbƒ_[‰Šúİ’è
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	y_max	€–ÚÅ‘å”
+ * @param	wk		OPENING_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	y_max	é …ç›®æœ€å¤§æ•°
  *
  * @retval	none
  */
@@ -291,18 +291,18 @@ void OpeningInitMenu( OPENING_WORK* wk, GF_BGL_BMPWIN* win, u8 y_max )
 	wk->MenuH.y_max		= y_max;
 	wk->MenuH.line_spc	= 0;
 	wk->MenuH.c_disp_f	= 0;
-	wk->MenuH.loop_f	= 0;			//–³
+	wk->MenuH.loop_f	= 0;			//ç„¡
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒf[ƒ^ƒZƒbƒg
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		ƒZƒbƒg‚·‚éêŠ(–ß‚è’l)
- * @param	param	–ß‚è’l
- * @param	msg_id	ƒƒbƒZ[ƒWID
+ * @param	wk		OPENING_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		ã‚»ãƒƒãƒˆã™ã‚‹å ´æ‰€(æˆ»ã‚Šå€¤)
+ * @param	param	æˆ»ã‚Šå€¤
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
  * @retval	none
  */
@@ -312,7 +312,7 @@ void OpeningSetMenuData( OPENING_WORK* wk, u8 no, u8 param, int msg_id  )
 	int i;
 	void* msg;
 
-	SDK_ASSERTMSG( no < OPENING_MENU_MAX, "ƒƒjƒ…[€–Ú”ƒI[ƒo[I" );
+	SDK_ASSERTMSG( no < OPENING_MENU_MAX, "ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®æ•°ã‚ªãƒ¼ãƒãƒ¼ï¼" );
 
 	MSGMAN_GetString( wk->msgman, msg_id, wk->menu_buf[no] );
 
@@ -323,9 +323,9 @@ void OpeningSetMenuData( OPENING_WORK* wk, u8 no, u8 param, int msg_id  )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒh‰ï˜bƒEƒBƒ“ƒhƒE•\¦
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	win		BMPƒf[ƒ^
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -347,19 +347,19 @@ void OpeningTalkWinPut( GF_BGL_BMPWIN * win, WINTYPE wintype )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		OPENING_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	wait	•¶š•\¦ƒEƒFƒCƒg
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
+ * @param	wk		OPENING_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	wait	æ–‡å­—è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	"•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
+ * @return	"æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  */
 //--------------------------------------------------------------
 #define OPENING_TEMP_BUF_SIZE	(100)

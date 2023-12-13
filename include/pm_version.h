@@ -1,11 +1,11 @@
 //=========================================================================
 /**
  * @file	pm_version.h
- * @brief	ƒ|ƒPƒ‚ƒ“ROM‚â‘ƒR[ƒh‚Ì’è‹`
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ROMã‚„å›½ã‚³ãƒ¼ãƒ‰ã®å®šç¾©
  * @date	2005.11.25
  * @author	GAME FREAK inc.
  *
- * AGBƒ|ƒPƒ‚ƒ“‚Ì’è‹`ƒtƒ@ƒCƒ‹‚ð‚»‚Ì‚Ü‚ÜˆÚs‚µ‚½
+ * AGBãƒã‚±ãƒ¢ãƒ³ã®å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãã®ã¾ã¾ç§»è¡Œã—ãŸ
  */
 //=========================================================================
 
@@ -15,69 +15,69 @@
 //=========================================================================
 //	
 //
-//	ƒ\[ƒX‚Ìƒo[ƒWƒ‡ƒ“Žw’èŠÖ˜Aƒtƒ@ƒCƒ‹
+//	ã‚½ãƒ¼ã‚¹ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³æŒ‡å®šé–¢é€£ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //
 //=========================================================================
 
 
 //=========================================================================
-//	’è‹`
+//	å®šç¾©
 //=========================================================================
 
-//@œFˆá‚¢ƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Äˆ—‚ð•ªŠò‚·‚éê‡‚Í
-//	@PM_VERSION@‚É‚æ‚Á‚Ä‹Lq‚ð‚©‚¦‚é
+//ã€€â—è‰²é•ã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²ã™ã‚‹å ´åˆã¯
+//	ã€€PM_VERSIONã€€ã«ã‚ˆã£ã¦è¨˜è¿°ã‚’ã‹ãˆã‚‹
 //
-//	—áj
+//	ä¾‹ï¼‰
 //	#if ( PM_VERSION == VERSION_RUBY )
-//		ƒ‹ƒr[ƒo[ƒWƒ‡ƒ“‚Ìê‡‚Ìˆ—‚ð‹Lq
+//		ãƒ«ãƒ“ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®å ´åˆã®å‡¦ç†ã‚’è¨˜è¿°
 //
 //	#elif ( PM_VERSION == VERSION_SAPPHIRE )
-//		ƒTƒtƒ@ƒCƒAƒo[ƒWƒ‡ƒ“‚Ìê‡‚Ìˆ—‚ð‹Lq
+//		ã‚µãƒ•ã‚¡ã‚¤ã‚¢ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®å ´åˆã®å‡¦ç†ã‚’è¨˜è¿°
 //
 //	#endif
 //
 
 //------------------------------------------------------------------
-//	Fˆá‚¢ƒo[ƒWƒ‡ƒ“Žw’è
+//	è‰²é•ã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³æŒ‡å®š
 //------------------------------------------------------------------
-#define		VERSION_SAPPHIRE	1	///<	ƒo[ƒWƒ‡ƒ“FAGBƒTƒtƒ@ƒCƒA
-#define		VERSION_RUBY		2	///<	ƒo[ƒWƒ‡ƒ“FAGBƒ‹ƒr[
-#define		VERSION_EMERALD		3	///<	ƒo[ƒWƒ‡ƒ“FAGBƒGƒƒ‰ƒ‹ƒh
-#define		VERSION_RED			4	///<	ƒo[ƒWƒ‡ƒ“FAGBƒtƒ@ƒCƒA[ƒŒƒbƒh
-#define		VERSION_GREEN		5	///<	ƒo[ƒWƒ‡ƒ“FAGBƒŠ[ƒtƒOƒŠ[ƒ“
+#define		VERSION_SAPPHIRE	1	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šAGBã‚µãƒ•ã‚¡ã‚¤ã‚¢
+#define		VERSION_RUBY		2	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šAGBãƒ«ãƒ“ãƒ¼
+#define		VERSION_EMERALD		3	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šAGBã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰
+#define		VERSION_RED			4	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šAGBãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ãƒ¬ãƒƒãƒ‰
+#define		VERSION_GREEN		5	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šAGBãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³
 
-#define		VERSION_GOLD		7	///<	ƒo[ƒWƒ‡ƒ“FƒS[ƒ‹ƒh—p—\–ñ’è‹`
-#define		VERSION_SILVER		8	///<	ƒo[ƒWƒ‡ƒ“FƒVƒ‹ƒo[—p—\–ñ’è‹`
+#define		VERSION_GOLD		7	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šã‚´ãƒ¼ãƒ«ãƒ‰ç”¨äºˆç´„å®šç¾©
+#define		VERSION_SILVER		8	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šã‚·ãƒ«ãƒãƒ¼ç”¨äºˆç´„å®šç¾©
 
-#define		VERSION_DIAMOND		10	///<	ƒo[ƒWƒ‡ƒ“FDSƒ_ƒCƒ„ƒ‚ƒ“ƒh
-#define		VERSION_PEARL		11	///<	ƒo[ƒWƒ‡ƒ“FDSƒp[ƒ‹
-#define		VERSION_PLATINUM	12	///<	ƒo[ƒWƒ‡ƒ“FDSƒvƒ‰ƒ`ƒi
+#define		VERSION_DIAMOND		10	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šDSãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰
+#define		VERSION_PEARL		11	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šDSãƒ‘ãƒ¼ãƒ«
+#define		VERSION_PLATINUM	12	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šDSãƒ—ãƒ©ãƒãƒŠ
 
-#define		VERSION_COLOSSEUM	15	///<	ƒo[ƒWƒ‡ƒ“FGCƒRƒƒVƒAƒ€
-
-
-//------------------------------------------------------------------
-//	Œ¾ŒêƒR[ƒhŽw’è
-//------------------------------------------------------------------
-#define		LANG_JAPAN		1		///<	Œ¾ŒêƒR[ƒhF“ú–{
-#define		LANG_ENGLISH	2		///<	Œ¾ŒêƒR[ƒhF‰pŒê
-#define		LANG_FRANCE		3		///<	Œ¾ŒêƒR[ƒhFƒtƒ‰ƒ“ƒXŒê
-#define		LANG_ITALY		4		///<	Œ¾ŒêƒR[ƒhFƒCƒ^ƒŠƒAŒê
-#define		LANG_GERMANY	5		///<	Œ¾ŒêƒR[ƒhFƒhƒCƒcŒê
-#define		LANG_SPAIN		7		///<	Œ¾ŒêƒR[ƒhFƒXƒyƒCƒ“Œê
-#define		LANG_KOREA		8		///<	Œ¾ŒêƒR[ƒhFŠØ‘Œê
+#define		VERSION_COLOSSEUM	15	///<	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼šGCã‚³ãƒ­ã‚·ã‚¢ãƒ 
 
 
 //------------------------------------------------------------------
-//	«•ÊƒR[ƒhŽw’è
+//	è¨€èªžã‚³ãƒ¼ãƒ‰æŒ‡å®š
 //------------------------------------------------------------------
-#define		PM_MALE			0		///< «•ÊƒR[ƒhF’j«
-#define		PM_FEMALE		1		///< «•ÊƒR[ƒhF—«
-#define		PM_NEUTRAL		2		///< «•ÊƒR[ƒhF’†«
+#define		LANG_JAPAN		1		///<	è¨€èªžã‚³ãƒ¼ãƒ‰ï¼šæ—¥æœ¬
+#define		LANG_ENGLISH	2		///<	è¨€èªžã‚³ãƒ¼ãƒ‰ï¼šè‹±èªž
+#define		LANG_FRANCE		3		///<	è¨€èªžã‚³ãƒ¼ãƒ‰ï¼šãƒ•ãƒ©ãƒ³ã‚¹èªž
+#define		LANG_ITALY		4		///<	è¨€èªžã‚³ãƒ¼ãƒ‰ï¼šã‚¤ã‚¿ãƒªã‚¢èªž
+#define		LANG_GERMANY	5		///<	è¨€èªžã‚³ãƒ¼ãƒ‰ï¼šãƒ‰ã‚¤ãƒ„èªž
+#define		LANG_SPAIN		7		///<	è¨€èªžã‚³ãƒ¼ãƒ‰ï¼šã‚¹ãƒšã‚¤ãƒ³èªž
+#define		LANG_KOREA		8		///<	è¨€èªžã‚³ãƒ¼ãƒ‰ï¼šéŸ“å›½èªž
+
+
+//------------------------------------------------------------------
+//	æ€§åˆ¥ã‚³ãƒ¼ãƒ‰æŒ‡å®š
+//------------------------------------------------------------------
+#define		PM_MALE			0		///< æ€§åˆ¥ã‚³ãƒ¼ãƒ‰ï¼šç”·æ€§
+#define		PM_FEMALE		1		///< æ€§åˆ¥ã‚³ãƒ¼ãƒ‰ï¼šå¥³æ€§
+#define		PM_NEUTRAL		2		///< æ€§åˆ¥ã‚³ãƒ¼ãƒ‰ï¼šä¸­æ€§
 
 //=========================================================================
-//	•Ï”
+//	å¤‰æ•°
 //=========================================================================
 
 #ifndef	ASM_CPP
@@ -89,7 +89,7 @@ extern const u8 CasetteLanguage;
 #endif
 
 //=========================================================================
-//	ŠÖ”ƒvƒƒgƒ^ƒCƒv
+//	é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //=========================================================================
 
 

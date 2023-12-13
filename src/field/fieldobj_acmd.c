@@ -2,7 +2,7 @@
 /**
  *
  * @file	fieldobj_acmd.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰
  * @author	kagaya
  * @data	05.08.05
  *
@@ -19,50 +19,50 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-///	®”‚QŒ… ¬”“_2Œ… u16
+///	æ•´æ•°ï¼’æ¡ å°æ•°ç‚¹2æ¡ u16
 //--------------------------------------------------------------
 #define UX16_ONE (0x0100)
 #define UX16_NUM(a) ((a)/UX16_ONE)
 #define NUM_UX16(a) (UX16_ONE*(a))
 
 //--------------------------------------------------------------
-///	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒŠƒXƒgƒV[ƒPƒ“ƒX
+///	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //--------------------------------------------------------------
 enum
 {
-	SEQNO_AL_ACMD_COUNT_INIT = 0,								///<‰ñ”‰Šú‰»
-	SEQNO_AL_ACMD_SET_CHECK,									///<ƒZƒbƒg‰Â”\ƒ`ƒFƒbƒN
-	SEQNO_AL_ACMD_SET,											///<ƒZƒbƒg
-	SEQNO_AL_ACMD_END_CHECK,									///<ƒAƒjƒƒRƒ}ƒ“ƒhI—¹ƒ`ƒFƒbƒN
-	SEQNO_AL_ACMD_SET_COUNT,									///<ƒAƒjƒƒRƒ}ƒ“ƒhƒZƒbƒgƒJƒEƒ“ƒg
-	SEQNO_AL_END,												///<I—¹
+	SEQNO_AL_ACMD_COUNT_INIT = 0,								///<å›æ•°åˆæœŸåŒ–
+	SEQNO_AL_ACMD_SET_CHECK,									///<ã‚»ãƒƒãƒˆå¯èƒ½ãƒã‚§ãƒƒã‚¯
+	SEQNO_AL_ACMD_SET,											///<ã‚»ãƒƒãƒˆ
+	SEQNO_AL_ACMD_END_CHECK,									///<ã‚¢ãƒ‹ãƒ¡ã‚³ãƒãƒ³ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
+	SEQNO_AL_ACMD_SET_COUNT,									///<ã‚¢ãƒ‹ãƒ¡ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆã‚«ã‚¦ãƒ³ãƒˆ
+	SEQNO_AL_END,												///<çµ‚äº†
 };
 
 //--------------------------------------------------------------
-///	AC_JUMP_WORK‚Åw’è‚·‚é‚‚³B
-///	DATA_AcJumpOffsetTbl[]‚Ì—v‘f”‚Éˆê’v
+///	AC_JUMP_WORKã§æŒ‡å®šã™ã‚‹é«˜ã•ã€‚
+///	DATA_AcJumpOffsetTbl[]ã®è¦ç´ æ•°ã«ä¸€è‡´
 //--------------------------------------------------------------
 enum
 {
-	AC_JUMP_HEIGHT_12 = 0,										///<‚‚³12
-	AC_JUMP_HEIGHT_8,											///<‚‚³8
-	AC_JUMP_HEIGHT_6,											///<‚‚³6
+	AC_JUMP_HEIGHT_12 = 0,										///<é«˜ã•12
+	AC_JUMP_HEIGHT_8,											///<é«˜ã•8
+	AC_JUMP_HEIGHT_6,											///<é«˜ã•6
 };
 
-#define AC_JUMP_H_TBL_MAX (16)									///<‚‚³ƒe[ƒuƒ‹—v‘f”
-#define AC_JUMP_H_TBL_FRAME_MAX (AC_JUMP_H_TBL_MAX-1)			///<‚‚³ƒe[ƒuƒ‹—v‘f”
+#define AC_JUMP_H_TBL_MAX (16)									///<é«˜ã•ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°
+#define AC_JUMP_H_TBL_FRAME_MAX (AC_JUMP_H_TBL_MAX-1)			///<é«˜ã•ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°
 #define AC_JUMP_H_TBL_FRAME_MAX_UX16 (NUM_UX16(AC_JUMP_H_TBL_FRAME_MAX))
 
 //--------------------------------------------------------------
-///	AC_JUMP_WORK‚Åw’è‚·‚éã¸‘¬“x
+///	AC_JUMP_WORKã§æŒ‡å®šã™ã‚‹ä¸Šæ˜‡é€Ÿåº¦
 //--------------------------------------------------------------
-#define AC_JUMP_SPEED_UX16_1 (NUM_UX16(1))							///<‘¬“x1
-#define	AC_JUMP_SPEED_UX16_2 (NUM_UX16(2))							///<‘¬“x2
-#define AC_JUMP_SPEED_UX16_4 (NUM_UX16(4))							///<‘¬“x4
+#define AC_JUMP_SPEED_UX16_1 (NUM_UX16(1))							///<é€Ÿåº¦1
+#define	AC_JUMP_SPEED_UX16_2 (NUM_UX16(2))							///<é€Ÿåº¦2
+#define AC_JUMP_SPEED_UX16_4 (NUM_UX16(4))							///<é€Ÿåº¦4
 #define AC_JUMP_SPEED_UX16_TBL(a) (AC_JUMP_H_TBL_FRAME_MAX_UX16/a)
 
 //--------------------------------------------------------------
-///	”j‚ê‚½¢ŠEƒWƒƒƒ“ƒvSE
+///	ç ´ã‚ŒãŸä¸–ç•Œã‚¸ãƒ£ãƒ³ãƒ—SE
 //--------------------------------------------------------------
 #ifdef SE_YABURETA_JUMP2_STOP
 #define SE_TWORLD_JUMP (0)
@@ -74,72 +74,72 @@ enum
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	ACMD_LIST_WORK\‘¢‘Ì
+///	ACMD_LIST_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int seq_no;													///<ˆ—”Ô†
-	int end_flag;												///<I—¹ƒtƒ‰ƒO
-	int acmd_count;												///<ƒAƒjƒÀs‰ñ”‚ğ‹L˜^
-	FIELD_OBJ_PTR fldobj;										///<ƒAƒjƒ‘ÎÛFIELD_OBJ_PTR
-	const FIELD_OBJ_ACMD_LIST *list;							///<Às‚·‚éƒRƒ}ƒ“ƒhƒŠƒXƒg
+	int seq_no;													///<å‡¦ç†ç•ªå·
+	int end_flag;												///<çµ‚äº†ãƒ•ãƒ©ã‚°
+	int acmd_count;												///<ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œå›æ•°ã‚’è¨˜éŒ²
+	FIELD_OBJ_PTR fldobj;										///<ã‚¢ãƒ‹ãƒ¡å¯¾è±¡FIELD_OBJ_PTR
+	const FIELD_OBJ_ACMD_LIST *list;							///<å®Ÿè¡Œã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆ
 }ACMD_LIST_WORK;
 
-#define ACMD_LIST_WORK_SIZE (sizeof(ACMD_LIST_WORK))			///<ACMD_LIST_WORKƒTƒCƒY
+#define ACMD_LIST_WORK_SIZE (sizeof(ACMD_LIST_WORK))			///<ACMD_LIST_WORKã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	AC_WALK_WORK\‘¢‘ÌB•à‚«Œn‚Å‹¤’Êg—p‚·‚éƒ[ƒN
+///	AC_WALK_WORKæ§‹é€ ä½“ã€‚æ­©ãç³»ã§å…±é€šä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct
 {
-	u16 draw_state;												///<•`‰æƒXƒe[ƒ^ƒX
-	s16 wait;													///<ƒEƒFƒCƒg
-	int dir;													///<ˆÚ“®•ûŒü
-	fx32 val;													///<ˆÚ“®—Ê
+	u16 draw_state;												///<æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	s16 wait;													///<ã‚¦ã‚§ã‚¤ãƒˆ
+	int dir;													///<ç§»å‹•æ–¹å‘
+	fx32 val;													///<ç§»å‹•é‡
 }AC_WALK_WORK;
 
-#define AC_WALK_WORK_SIZE (sizeof(AC_WALK_WORK))				///<AC_WALK_WORKƒTƒCƒY
+#define AC_WALK_WORK_SIZE (sizeof(AC_WALK_WORK))				///<AC_WALK_WORKã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	AC_STAY_WALK_WORK\‘¢‘ÌB‚»‚Ìê•à‚«‚Å‹¤’Êg—p‚·‚é
+///	AC_STAY_WALK_WORKæ§‹é€ ä½“ã€‚ãã®å ´æ­©ãã§å…±é€šä½¿ç”¨ã™ã‚‹
 //--------------------------------------------------------------
 typedef struct
 {
-	u16 draw_state;												///<•`‰æƒXƒe[ƒ^ƒX
-	s16 wait;													///<ƒEƒFƒCƒg
+	u16 draw_state;												///<æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	s16 wait;													///<ã‚¦ã‚§ã‚¤ãƒˆ
 }AC_STAY_WALK_WORK;
 
-#define AC_STAY_WALK_WORK_SIZE (sizeof(AC_STAY_WALK_WORK))		///<AC_STAY_WALKƒTƒCƒY
+#define AC_STAY_WALK_WORK_SIZE (sizeof(AC_STAY_WALK_WORK))		///<AC_STAY_WALKã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	AC_JUMP_WORK\‘¢‘ÌBƒWƒƒƒ“ƒv‚Åg—p‚·‚é
+///	AC_JUMP_WORKæ§‹é€ ä½“ã€‚ã‚¸ãƒ£ãƒ³ãƒ—ã§ä½¿ç”¨ã™ã‚‹
 //--------------------------------------------------------------
 typedef struct
 {
-	fx32 val;													///<ˆÚ“®—Ê
-	fx32 dest_val;												///<ˆÚ“®
+	fx32 val;													///<ç§»å‹•é‡
+	fx32 dest_val;												///<ç§»å‹•
 	u16 h_speed;
 	u16 h_frame;
-	s8 dir;														///<ˆÚ“®•ûŒü
-	s8 wait;													///<ƒEƒFƒCƒg
-	u8 draw_state;												///<•`‰æƒXƒe[ƒ^ƒX
-	s8 h_type;													///<‚‚³
+	s8 dir;														///<ç§»å‹•æ–¹å‘
+	s8 wait;													///<ã‚¦ã‚§ã‚¤ãƒˆ
+	u8 draw_state;												///<æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	s8 h_type;													///<é«˜ã•
 }AC_JUMP_WORK;
 
-#define AC_JUMP_WORK_SIZE (sizeof(AC_JUMP_WORK))				///<AC_JUMP_WORKƒTƒCƒY
+#define AC_JUMP_WORK_SIZE (sizeof(AC_JUMP_WORK))				///<AC_JUMP_WORKã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	AC_WAIT\‘¢‘Ì ‘Ò‹@‚Åg—p‚·‚é
+///	AC_WAITæ§‹é€ ä½“ å¾…æ©Ÿã§ä½¿ç”¨ã™ã‚‹
 //--------------------------------------------------------------
 typedef struct
 {
 	int wait;
 }AC_WAIT_WORK;
 
-#define AC_WAIT_WORK_SIZE (sizeof(AC_WAIT_WORK))				///<AC_WAIT_WORKƒTƒCƒY
+#define AC_WAIT_WORK_SIZE (sizeof(AC_WAIT_WORK))				///<AC_WAIT_WORKã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	AC_WARP_WORK\‘¢‘Ì ã‰ºƒ[ƒv‚Åg—p‚·‚é
+///	AC_WARP_WORKæ§‹é€ ä½“ ä¸Šä¸‹ãƒ¯ãƒ¼ãƒ—ã§ä½¿ç”¨ã™ã‚‹
 //--------------------------------------------------------------
 typedef struct
 {
@@ -150,7 +150,7 @@ typedef struct
 #define AC_WARP_WORK_SIZE (sizeof(AC_WARP_WORK))
 
 //--------------------------------------------------------------
-///	AC_MARK_WORK\‘¢‘Ì !ƒ}[ƒN“™‚Åg—p‚·‚é
+///	AC_MARK_WORKæ§‹é€ ä½“ !ãƒãƒ¼ã‚¯ç­‰ã§ä½¿ç”¨ã™ã‚‹
 //--------------------------------------------------------------
 typedef struct
 {
@@ -161,14 +161,14 @@ typedef struct
 #define AC_MARK_WORK_SIZE (sizeof(AC_MARK_WORK))
 
 //--------------------------------------------------------------
-///	AC_WALK_ODD_WORK\‘¢‘ÌB•à‚«Œn‚Å‹¤’Êg—p‚·‚éƒ[ƒN
+///	AC_WALK_ODD_WORKæ§‹é€ ä½“ã€‚æ­©ãç³»ã§å…±é€šä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct
 {
-	s16 dir;													///<ˆÚ“®•ûŒü
-	u16 draw_state;												///<•`‰æƒXƒe[ƒ^ƒX
-	s16 max_frame;												///<Å‘åƒtƒŒ[ƒ€
-	s16 frame;													///<ƒEƒFƒCƒg
+	s16 dir;													///<ç§»å‹•æ–¹å‘
+	u16 draw_state;												///<æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	s16 max_frame;												///<æœ€å¤§ãƒ•ãƒ¬ãƒ¼ãƒ 
+	s16 frame;													///<ã‚¦ã‚§ã‚¤ãƒˆ
 }AC_WALK_ODD_WORK;
 
 #define AC_WALK_ODD_WORK_SIZE (sizeof(AC_WALK_ODD_WORK))
@@ -177,7 +177,7 @@ typedef struct
 #define AC_WALK_3F_FRAME (3)
 
 //--------------------------------------------------------------
-///	AC_WALKVEC_WORK\‘¢‘ÌBˆÚ“®ƒxƒNƒgƒ‹g—p‚É‚æ‚éˆÚ“®ˆ—‚Åg—p‚·‚éƒ[ƒN
+///	AC_WALKVEC_WORKæ§‹é€ ä½“ã€‚ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«ä½¿ç”¨ã«ã‚ˆã‚‹ç§»å‹•å‡¦ç†ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct
 {
@@ -188,7 +188,7 @@ typedef struct
 #define AC_WALKVEC_WORK_SIZE (sizeof(AC_WALKVEC_WORK))
 
 //--------------------------------------------------------------
-///	AC_JUMPVEC_WORK\‘¢‘ÌBˆÚ“®ƒxƒNƒgƒ‹g—p‚É‚æ‚éˆÚ“®ˆ—‚Åg—p‚·‚éƒ[ƒN
+///	AC_JUMPVEC_WORKæ§‹é€ ä½“ã€‚ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«ä½¿ç”¨ã«ã‚ˆã‚‹ç§»å‹•å‡¦ç†ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct
 {
@@ -242,13 +242,13 @@ static const fx32 DATA_AcWalk6FMoveValueTbl[AC_WALK_6F_FRAME];
 static const fx32 DATA_AcWalk3FMoveValueTbl[AC_WALK_3F_FRAME];
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ª‰Â”\‚©ƒ`ƒFƒbƒN
- * @param	fldobj		‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Â”\BFALSE=–³—
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãŒå¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
+ * @param	fldobj		å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR 
+ * @retval	int			TRUE=å¯èƒ½ã€‚FALSE=ç„¡ç†
  */
 //--------------------------------------------------------------
 int FieldOBJ_AcmdSetCheck( CONST_FIELD_OBJ_PTR fldobj )
@@ -271,15 +271,15 @@ int FieldOBJ_AcmdSetCheck( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒZƒbƒg
- * @param	fldobj		‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR 
- * @param	code		Às‚·‚éƒR[ƒhBAC_DIR_U“™
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆ
+ * @param	fldobj		å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR 
+ * @param	code		å®Ÿè¡Œã™ã‚‹ã‚³ãƒ¼ãƒ‰ã€‚AC_DIR_Uç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
 void FieldOBJ_AcmdSet( FIELD_OBJ_PTR fldobj, int code )
 {
-	GF_ASSERT( code < ACMD_MAX && "FieldOBJ_AcmdSet() ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh•s³" );
+	GF_ASSERT( code < ACMD_MAX && "FieldOBJ_AcmdSet() ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ä¸æ­£" );
 	
 	FieldOBJ_AcmdCodeSet( fldobj, code );
 	FieldOBJ_AcmdSeqSet( fldobj, 0 );
@@ -289,9 +289,9 @@ void FieldOBJ_AcmdSet( FIELD_OBJ_PTR fldobj, int code )
 
 //--------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhƒZƒbƒg
- * @param	fldobj		‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR 
- * @param	code		Às‚·‚éƒR[ƒhBAC_DIR_U“™
+ * ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆ
+ * @param	fldobj		å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR 
+ * @param	code		å®Ÿè¡Œã™ã‚‹ã‚³ãƒ¼ãƒ‰ã€‚AC_DIR_Uç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -304,9 +304,9 @@ void FieldOBJ_CmdSet( FIELD_OBJ_PTR fldobj, int code )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhI—¹ƒ`ƒFƒbƒNB
- * @param	fldobj		‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR 
- * @retval	int			TRUE=I—¹
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯ã€‚
+ * @param	fldobj		å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR 
+ * @retval	int			TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 int FieldOBJ_AcmdEndCheck( CONST_FIELD_OBJ_PTR fldobj )
@@ -324,9 +324,9 @@ int FieldOBJ_AcmdEndCheck( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhI—¹ƒ`ƒFƒbƒN‚ÆŠJ•ú
- * @param	fldobj		‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR 
- * @retval	int			TRUE=I—¹
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯ã¨é–‹æ”¾
+ * @param	fldobj		å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR 
+ * @retval	int			TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 int FieldOBJ_AcmdEnd( FIELD_OBJ_PTR fldobj )
@@ -346,28 +346,28 @@ int FieldOBJ_AcmdEnd( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhŠJ•ú
- * @param	fldobj		‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR 
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰é–‹æ”¾
+ * @param	fldobj		å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR 
  * @retval	nothing
  */
 //--------------------------------------------------------------
 void FieldOBJ_AcmdFree( FIELD_OBJ_PTR fldobj )
 {
 	FieldOBJ_StatusBit_OFF( fldobj, FLDOBJ_STA_BIT_ACMD );
-	FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_ACMD_END );	//ƒ[ƒJƒ‹ƒRƒ}ƒ“ƒhƒtƒ‰ƒO
+	FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_ACMD_END );	//ãƒ­ãƒ¼ã‚«ãƒ«ã‚³ãƒãƒ³ãƒ‰ãƒ•ãƒ©ã‚°
 	FieldOBJ_AcmdCodeSet( fldobj, ACMD_NOT );
 	FieldOBJ_AcmdSeqSet( fldobj, 0 );
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒŠƒXƒg
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒŠƒXƒgƒZƒbƒg
- * @param	fldobj		ƒAƒjƒ‚ğs‚¤FIELD_OBJ_PTR
- * @param	list		ƒRƒ}ƒ“ƒh‚ª‚Ü‚Æ‚ß‚ç‚ê‚½FIELD_OBJ_ACMD_LIST *
- * @retval	TCB_PTR		ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ğÀs‚·‚éTCB_PTR
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
+ * @param	fldobj		ã‚¢ãƒ‹ãƒ¡ã‚’è¡Œã†FIELD_OBJ_PTR
+ * @param	list		ã‚³ãƒãƒ³ãƒ‰ãŒã¾ã¨ã‚ã‚‰ã‚ŒãŸFIELD_OBJ_ACMD_LIST *
+ * @retval	TCB_PTR		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œã™ã‚‹TCB_PTR
  */
 //--------------------------------------------------------------
 TCB_PTR FieldOBJ_AcmdListSet( FIELD_OBJ_PTR fldobj, const FIELD_OBJ_ACMD_LIST *list )
@@ -376,7 +376,7 @@ TCB_PTR FieldOBJ_AcmdListSet( FIELD_OBJ_PTR fldobj, const FIELD_OBJ_ACMD_LIST *l
 	ACMD_LIST_WORK *work;
 	
 	work = sys_AllocMemoryLo( HEAPID_FIELD, ACMD_LIST_WORK_SIZE );
-	GF_ASSERT( work != NULL && "FLDOBJ ƒAƒjƒƒRƒ}ƒ“ƒh—pƒ[ƒNŠm•Û¸”s" );
+	GF_ASSERT( work != NULL && "FLDOBJ ã‚¢ãƒ‹ãƒ¡ã‚³ãƒãƒ³ãƒ‰ç”¨ãƒ¯ãƒ¼ã‚¯ç¢ºä¿å¤±æ•—" );
 	
 	memset( work, 0, ACMD_LIST_WORK_SIZE );
 	
@@ -385,7 +385,7 @@ TCB_PTR FieldOBJ_AcmdListSet( FIELD_OBJ_PTR fldobj, const FIELD_OBJ_ACMD_LIST *l
 		
 		pri = FieldOBJSys_TCBStandardPriorityGet( FieldOBJ_FieldOBJSysGet(fldobj) ) - 1;
 		tcb = TCB_Add( FldOBJ_AcmdListProcTCB, work, pri );
-		GF_ASSERT( tcb != NULL && "FLDOBJ ƒAƒjƒƒRƒ}ƒ“ƒh—pTCB’Ç‰Á¸”s" );
+		GF_ASSERT( tcb != NULL && "FLDOBJ ã‚¢ãƒ‹ãƒ¡ã‚³ãƒãƒ³ãƒ‰ç”¨TCBè¿½åŠ å¤±æ•—" );
 	}
 	
 	work->fldobj = fldobj;
@@ -396,9 +396,9 @@ TCB_PTR FieldOBJ_AcmdListSet( FIELD_OBJ_PTR fldobj, const FIELD_OBJ_ACMD_LIST *l
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒŠƒXƒgI—¹ƒ`ƒFƒbƒN
- * @param	tcb		ƒ`ƒFƒbƒN‚·‚éƒAƒjƒ‚ğƒZƒbƒg‚µ‚½FieldOBJ_AcmdListSet()‚Ì–ß‚è’lTCB_PTR
- * @retval	int		TRUE=I—¹ FALSE=Às’†
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆçµ‚äº†ãƒã‚§ãƒƒã‚¯
+ * @param	tcb		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆã—ãŸFieldOBJ_AcmdListSet()ã®æˆ»ã‚Šå€¤TCB_PTR
+ * @retval	int		TRUE=çµ‚äº† FALSE=å®Ÿè¡Œä¸­
  */
 //--------------------------------------------------------------
 int FieldOBJ_AcmdListEndCheck( TCB_PTR tcb )
@@ -411,8 +411,8 @@ int FieldOBJ_AcmdListEndCheck( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒŠƒXƒgI—¹
- * @param	tcb		I—¹‚·‚éƒAƒjƒ‚ğƒZƒbƒg‚µ‚½FieldOBJ_AcmdListSet()‚Ì–ß‚è’lTCB_PTR
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆçµ‚äº†
+ * @param	tcb		çµ‚äº†ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆã—ãŸFieldOBJ_AcmdListSet()ã®æˆ»ã‚Šå€¤TCB_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -423,7 +423,7 @@ void FieldOBJ_AcmdListEnd( TCB_PTR tcb )
 	work = TCB_GetWork( tcb );
 	
 	GF_ASSERT( FieldOBJ_AcmdEndCheck(work->fldobj) == TRUE &&
-			"FLDOBJ ƒAƒjƒƒRƒ}ƒ“ƒhÀs’†‚ÉƒAƒjƒƒRƒ}ƒ“ƒhI—¹" );
+			"FLDOBJ ã‚¢ãƒ‹ãƒ¡ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œä¸­ã«ã‚¢ãƒ‹ãƒ¡ã‚³ãƒãƒ³ãƒ‰çµ‚äº†" );
 	
 	FieldOBJ_AcmdEnd( work->fldobj );
 	
@@ -433,7 +433,7 @@ void FieldOBJ_AcmdListEnd( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒŠƒXƒgˆ—
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆå‡¦ç†
  * @param	tcb		TCB_PTR
  * @param	wk		TCB work *
  * @retval	nothing
@@ -450,9 +450,9 @@ static void FldOBJ_AcmdListProcTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒXƒgˆ—@‰ñ”‰Šú‰»
+ * ãƒªã‚¹ãƒˆå‡¦ç†ã€€å›æ•°åˆæœŸåŒ–
  * @param	work	ACMD_LIST_WORK *
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int AcmdListProc_Init( ACMD_LIST_WORK *work )
@@ -465,9 +465,9 @@ static int AcmdListProc_Init( ACMD_LIST_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒXƒgˆ—@ƒRƒ}ƒ“ƒhƒZƒbƒg‰Â”\ƒ`ƒFƒbƒN
+ * ãƒªã‚¹ãƒˆå‡¦ç†ã€€ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆå¯èƒ½ãƒã‚§ãƒƒã‚¯
  * @param	work	ACMD_LIST_WORK *
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int AcmdListProc_AcmdSetCheck( ACMD_LIST_WORK *work )
@@ -482,9 +482,9 @@ static int AcmdListProc_AcmdSetCheck( ACMD_LIST_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒXƒgˆ—@ƒRƒ}ƒ“ƒhƒZƒbƒg
+ * ãƒªã‚¹ãƒˆå‡¦ç†ã€€ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	work	ACMD_LIST_WORK *
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int AcmdListProc_AcmdSet( ACMD_LIST_WORK *work )
@@ -501,9 +501,9 @@ static int AcmdListProc_AcmdSet( ACMD_LIST_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒXƒgˆ—@ƒRƒ}ƒ“ƒhI—¹ƒ`ƒFƒbƒN
+ * ãƒªã‚¹ãƒˆå‡¦ç†ã€€ã‚³ãƒãƒ³ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	work	ACMD_LIST_WORK *
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int AcmdListProc_AcmdEndCheck( ACMD_LIST_WORK *work )
@@ -518,9 +518,9 @@ static int AcmdListProc_AcmdEndCheck( ACMD_LIST_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒXƒgˆ—@ƒRƒ}ƒ“ƒhƒJƒEƒ“ƒg
+ * ãƒªã‚¹ãƒˆå‡¦ç†ã€€ã‚³ãƒãƒ³ãƒ‰ã‚«ã‚¦ãƒ³ãƒˆ
  * @param	work	ACMD_LIST_WORK *
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int AcmdListProc_AcmdSetCount( ACMD_LIST_WORK *work )
@@ -551,9 +551,9 @@ static int AcmdListProc_AcmdSetCount( ACMD_LIST_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒXƒgˆ—@I—¹
+ * ãƒªã‚¹ãƒˆå‡¦ç†ã€€çµ‚äº†
  * @param	work	ACMD_LIST_WORK *
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int AcmdListProc_End( ACMD_LIST_WORK *work )
@@ -562,7 +562,7 @@ static int AcmdListProc_End( ACMD_LIST_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒŠƒXƒgˆ—ƒe[ƒuƒ‹
+///	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆå‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_AcmdListProcTbl[])( ACMD_LIST_WORK *work ) =
 {
@@ -575,14 +575,14 @@ static int (* const DATA_AcmdListProcTbl[])( ACMD_LIST_WORK *work ) =
 };
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@ƒR[ƒhæ“¾
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€ã‚³ãƒ¼ãƒ‰å–å¾—
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •ûŒü‚É‚æ‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒh•ÏX
- * @param	dir		ˆø”code‚ğ•ÏŠ·‚·‚é•ûŒüBDIR_UP“™
- * @param	code	•ÏX‚µ‚½‚¢ƒR[ƒhBAC_DIR_U“™
- * @retval	int		dir•Ê‚É•ÏX‚³‚ê‚½code@—áFdir=DIR_LEFT,code=AC_DIR_U = return(AC_DIR_L)
+ * æ–¹å‘ã«ã‚ˆã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰å¤‰æ›´
+ * @param	dir		å¼•æ•°codeã‚’å¤‰æ›ã™ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
+ * @param	code	å¤‰æ›´ã—ãŸã„ã‚³ãƒ¼ãƒ‰ã€‚AC_DIR_Uç­‰
+ * @retval	int		diråˆ¥ã«å¤‰æ›´ã•ã‚ŒãŸcodeã€€ä¾‹ï¼šdir=DIR_LEFT,code=AC_DIR_U = return(AC_DIR_L)
  */
 //--------------------------------------------------------------
 int FieldOBJ_AcmdCodeDirChange( int dir, int code )
@@ -591,7 +591,7 @@ int FieldOBJ_AcmdCodeDirChange( int dir, int code )
 	const int * const *tbl;
 	const int *dir_tbl;
 	
-	GF_ASSERT( dir < DIR_4_MAX && "FieldOBJ_AcmdCodeDirChange(–¢‘Î‰•ûŒü)" );
+	GF_ASSERT( dir < DIR_4_MAX && "FieldOBJ_AcmdCodeDirChange(æœªå¯¾å¿œæ–¹å‘)" );
 	
 	tbl = DATA_AcmdCodeDirChangeTbl;
 	
@@ -607,16 +607,16 @@ int FieldOBJ_AcmdCodeDirChange( int dir, int code )
 		tbl++;
 	}
 	
-	GF_ASSERT( 0 && "FieldOBJ_AcmdCodeDirChange(–¢‘Î‰ƒR[ƒh)" );
+	GF_ASSERT( 0 && "FieldOBJ_AcmdCodeDirChange(æœªå¯¾å¿œã‚³ãƒ¼ãƒ‰)" );
 	
 	return( code );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒh‚É‚æ‚é•ûŒüæ“¾
- * @param	code	•ûŒü‚ğæ“¾‚µ‚½‚¢ƒR[ƒhBAC_DIR_U“™
- * @retval	int		code‚©‚ç“¾‚ç‚ê‚½•ûŒü
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã‚‹æ–¹å‘å–å¾—
+ * @param	code	æ–¹å‘ã‚’å–å¾—ã—ãŸã„ã‚³ãƒ¼ãƒ‰ã€‚AC_DIR_Uç­‰
+ * @retval	int		codeã‹ã‚‰å¾—ã‚‰ã‚ŒãŸæ–¹å‘
  */
 //--------------------------------------------------------------
 int FieldOBJ_AcmdCodeDirGet( int code )
@@ -643,11 +643,11 @@ int FieldOBJ_AcmdCodeDirGet( int code )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@“®ì
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€å‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒAƒNƒVƒ‡ƒ“
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -669,13 +669,13 @@ void FieldOBJ_AcmdAction( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhƒAƒNƒVƒ‡ƒ“B
- * ƒtƒB[ƒ‹ƒhOBJ“à•”“®ì—pƒRƒ}ƒ“ƒh“®ìB
- * AcmdAction()‚Æ‚Ìˆá‚¢‚ÍƒRƒ}ƒ“ƒhI—¹‚É
- * ƒXƒe[ƒ^ƒXƒrƒbƒgAƒRƒ}ƒ“ƒhƒ[ƒN‚Ì‰Šú‰»‚ª‚ ‚é–‚Æ
- * –ß‚è’l‚ÅI—¹”»’è‚ª•Ô‚é–B
+ * ã‚³ãƒãƒ³ãƒ‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã€‚
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå†…éƒ¨å‹•ä½œç”¨ã‚³ãƒãƒ³ãƒ‰å‹•ä½œã€‚
+ * AcmdAction()ã¨ã®é•ã„ã¯ã‚³ãƒãƒ³ãƒ‰çµ‚äº†æ™‚ã«
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã€ã‚³ãƒãƒ³ãƒ‰ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–ãŒã‚ã‚‹äº‹ã¨
+ * æˆ»ã‚Šå€¤ã§çµ‚äº†åˆ¤å®šãŒè¿”ã‚‹äº‹ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=I—¹
+ * @retval	int			TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 int FieldOBJ_CmdAction( FIELD_OBJ_PTR fldobj )
@@ -695,9 +695,9 @@ int FieldOBJ_CmdAction( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒAƒNƒVƒ‡ƒ“
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=Ä‹A
+ * @retval	int			TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int FldOBJ_AcmdAction( FIELD_OBJ_PTR fldobj, int code, int seq )
@@ -706,12 +706,12 @@ static int FldOBJ_AcmdAction( FIELD_OBJ_PTR fldobj, int code, int seq )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@‹¤’Êƒp[ƒc
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€å…±é€šãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ACŒn@ƒRƒ}ƒ“ƒhI—¹
- * í‚ÉFLDOBJ_STA_BIT_ACMD_END‚ğƒZƒbƒg
+ * ACç³»ã€€ã‚³ãƒãƒ³ãƒ‰çµ‚äº†
+ * å¸¸ã«FLDOBJ_STA_BIT_ACMD_ENDã‚’ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	int		FALSE
  */
@@ -724,13 +724,13 @@ static int AC_End( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh AC_DIR_U-AC_DIR_R
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ AC_DIR_U-AC_DIR_R
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * AC_DIRŒn‹¤’Êˆ—
+ * AC_DIRç³»å…±é€šå‡¦ç†
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	dir		•\¦•ûŒüBDIR_UP
+ * @param	dir		è¡¨ç¤ºæ–¹å‘ã€‚DIR_UP
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -746,7 +746,7 @@ static void AcDirSet( FIELD_OBJ_PTR fldobj, int dir )
 /**
  * AC_DIR_U 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DirU_0( FIELD_OBJ_PTR fldobj )
@@ -760,7 +760,7 @@ static int AC_DirU_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_DIR_D 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DirD_0( FIELD_OBJ_PTR fldobj )
@@ -774,7 +774,7 @@ static int AC_DirD_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_DIR_L 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DirL_0( FIELD_OBJ_PTR fldobj )
@@ -788,7 +788,7 @@ static int AC_DirL_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_DIR_R 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DirR_0( FIELD_OBJ_PTR fldobj )
@@ -799,16 +799,16 @@ static int AC_DirR_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	AC_WALKŒn@‹¤’Ê
+//	AC_WALKç³»ã€€å…±é€š
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * AC_WALK_WORK‰Šú‰»
+ * AC_WALK_WORKåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	dir		ˆÚ“®•ûŒü
- * @param	val		ˆÚ“®—Ê
- * @param	wait	ˆÚ“®ƒtƒŒ[ƒ€
- * @param	draw	•`‰æƒXƒe[ƒ^ƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	val		ç§»å‹•é‡
+ * @param	wait	ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	draw	æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -831,9 +831,9 @@ static void AcWalkWorkInit( FIELD_OBJ_PTR fldobj, int dir, fx32 val, s16 wait, u
 
 //--------------------------------------------------------------
 /**
- * AC_WALKŒn@ˆÚ“®
+ * AC_WALKç³»ã€€ç§»å‹•
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Walk_1( FIELD_OBJ_PTR fldobj )
@@ -852,7 +852,7 @@ static int AC_Walk_1( FIELD_OBJ_PTR fldobj )
 	
 	FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_MOVE_END|FLDOBJ_STA_BIT_ACMD_END );
 	FieldOBJ_GPosUpdate( fldobj );
-	FieldOBJ_DrawProcCall( fldobj );						//1ƒtƒŒ[ƒ€i‚ß‚é
+	FieldOBJ_DrawProcCall( fldobj );						//1ãƒ•ãƒ¬ãƒ¼ãƒ é€²ã‚ã‚‹
 	FieldOBJ_DrawStatusSet( fldobj, DRAW_STA_STOP );
 	FieldOBJ_AcmdSeqInc( fldobj );
 	
@@ -860,13 +860,13 @@ static int AC_Walk_1( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	AC_WALK_Œn
+//	AC_WALK_ç³»
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * AC_WALK_U_32F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkU32F_0( FIELD_OBJ_PTR fldobj )
@@ -880,7 +880,7 @@ static int AC_WalkU32F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_D_32F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkD32F_0( FIELD_OBJ_PTR fldobj )
@@ -894,7 +894,7 @@ static int AC_WalkD32F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_L_32F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkL32F_0( FIELD_OBJ_PTR fldobj )
@@ -908,7 +908,7 @@ static int AC_WalkL32F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_R_32F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkR32F_0( FIELD_OBJ_PTR fldobj )
@@ -922,7 +922,7 @@ static int AC_WalkR32F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_U_16F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkU16F_0( FIELD_OBJ_PTR fldobj )
@@ -936,7 +936,7 @@ static int AC_WalkU16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_D_16F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkD16F_0( FIELD_OBJ_PTR fldobj )
@@ -950,7 +950,7 @@ static int AC_WalkD16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_L_16F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkL16F_0( FIELD_OBJ_PTR fldobj )
@@ -964,7 +964,7 @@ static int AC_WalkL16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_R_16F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkR16F_0( FIELD_OBJ_PTR fldobj )
@@ -978,7 +978,7 @@ static int AC_WalkR16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_U_8F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkU8F_0( FIELD_OBJ_PTR fldobj )
@@ -992,7 +992,7 @@ static int AC_WalkU8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_D_8F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkD8F_0( FIELD_OBJ_PTR fldobj )
@@ -1006,7 +1006,7 @@ static int AC_WalkD8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_L_8F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkL8F_0( FIELD_OBJ_PTR fldobj )
@@ -1020,7 +1020,7 @@ static int AC_WalkL8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_R_8F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkR8F_0( FIELD_OBJ_PTR fldobj )
@@ -1034,7 +1034,7 @@ static int AC_WalkR8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_U_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkU4F_0( FIELD_OBJ_PTR fldobj )
@@ -1048,7 +1048,7 @@ static int AC_WalkU4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_D_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkD4F_0( FIELD_OBJ_PTR fldobj )
@@ -1062,7 +1062,7 @@ static int AC_WalkD4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_L_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkL4F_0( FIELD_OBJ_PTR fldobj )
@@ -1076,7 +1076,7 @@ static int AC_WalkL4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_R_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkR4F_0( FIELD_OBJ_PTR fldobj )
@@ -1090,7 +1090,7 @@ static int AC_WalkR4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_U_2F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkU2F_0( FIELD_OBJ_PTR fldobj )
@@ -1104,7 +1104,7 @@ static int AC_WalkU2F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_D_2F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkD2F_0( FIELD_OBJ_PTR fldobj )
@@ -1118,7 +1118,7 @@ static int AC_WalkD2F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_L_2F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkL2F_0( FIELD_OBJ_PTR fldobj )
@@ -1132,7 +1132,7 @@ static int AC_WalkL2F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_R_2F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkR2F_0( FIELD_OBJ_PTR fldobj )
@@ -1146,7 +1146,7 @@ static int AC_WalkR2F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_U_1F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkU1F_0( FIELD_OBJ_PTR fldobj )
@@ -1160,7 +1160,7 @@ static int AC_WalkU1F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_D_1F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkD1F_0( FIELD_OBJ_PTR fldobj )
@@ -1174,7 +1174,7 @@ static int AC_WalkD1F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_L_1F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkL1F_0( FIELD_OBJ_PTR fldobj )
@@ -1188,7 +1188,7 @@ static int AC_WalkL1F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_R_1F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkR1F_0( FIELD_OBJ_PTR fldobj )
@@ -1202,7 +1202,7 @@ static int AC_WalkR1F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_DASH_U_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashU4F_0( FIELD_OBJ_PTR fldobj )
@@ -1216,7 +1216,7 @@ static int AC_DashU4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_DASH_D_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashD4F_0( FIELD_OBJ_PTR fldobj )
@@ -1230,7 +1230,7 @@ static int AC_DashD4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_DASH_L_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashL4F_0( FIELD_OBJ_PTR fldobj )
@@ -1244,7 +1244,7 @@ static int AC_DashL4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_DASH_R_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashR4F_0( FIELD_OBJ_PTR fldobj )
@@ -1255,15 +1255,15 @@ static int AC_DashR4F_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	AC_STAY_WALKŒn	‹¤’Ê
+//	AC_STAY_WALKç³»	å…±é€š
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * AC_STAY_WALK_WORK‰Šú‰»
+ * AC_STAY_WALK_WORKåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	dir		ˆÚ“®•ûŒü
- * @param	wait	•\¦ƒtƒŒ[ƒ€
- * @param	draw	•`‰æƒXƒe[ƒ^ƒX
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	wait	è¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	draw	æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1274,7 +1274,7 @@ static void AcStayWalkWorkInit( FIELD_OBJ_PTR fldobj, int dir, s16 wait, u16 dra
 	work = FieldOBJ_MoveCmdWorkInit( fldobj, AC_WALK_WORK_SIZE );
 	
 	work->draw_state = draw;
-	work->wait = wait + FRAME_1;	//FRAME_1=“®ì->ƒAƒjƒ‚Ö‚Ì1ƒtƒŒ[ƒ€
+	work->wait = wait + FRAME_1;	//FRAME_1=å‹•ä½œ->ã‚¢ãƒ‹ãƒ¡ã¸ã®1ãƒ•ãƒ¬ãƒ¼ãƒ 
 	
 	FieldOBJ_DirDispCheckSet( fldobj, dir );
 	FieldOBJ_DrawStatusSet( fldobj, draw );
@@ -1284,7 +1284,7 @@ static void AcStayWalkWorkInit( FIELD_OBJ_PTR fldobj, int dir, s16 wait, u16 dra
 
 //--------------------------------------------------------------
 /**
- * AC_STAY_WALKŒn@“®ì
+ * AC_STAY_WALKç³»ã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1309,13 +1309,13 @@ static int AC_StayWalk_1( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	AC_STAY_WALKŒn
+//	AC_STAY_WALKç³»
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * AC_STAY_WALK_U_32F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkU32F_0( FIELD_OBJ_PTR fldobj )
@@ -1329,7 +1329,7 @@ static int AC_StayWalkU32F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_D_32F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkD32F_0( FIELD_OBJ_PTR fldobj )
@@ -1343,7 +1343,7 @@ static int AC_StayWalkD32F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_L_32F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkL32F_0( FIELD_OBJ_PTR fldobj )
@@ -1357,7 +1357,7 @@ static int AC_StayWalkL32F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_R_32F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkR32F_0( FIELD_OBJ_PTR fldobj )
@@ -1371,7 +1371,7 @@ static int AC_StayWalkR32F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_U_16F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkU16F_0( FIELD_OBJ_PTR fldobj )
@@ -1385,7 +1385,7 @@ static int AC_StayWalkU16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_D_16F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkD16F_0( FIELD_OBJ_PTR fldobj )
@@ -1399,7 +1399,7 @@ static int AC_StayWalkD16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_L_16F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkL16F_0( FIELD_OBJ_PTR fldobj )
@@ -1413,7 +1413,7 @@ static int AC_StayWalkL16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_R_16F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkR16F_0( FIELD_OBJ_PTR fldobj )
@@ -1427,7 +1427,7 @@ static int AC_StayWalkR16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_U_8F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkU8F_0( FIELD_OBJ_PTR fldobj )
@@ -1441,7 +1441,7 @@ static int AC_StayWalkU8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_D_8F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkD8F_0( FIELD_OBJ_PTR fldobj )
@@ -1455,7 +1455,7 @@ static int AC_StayWalkD8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_L_8F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkL8F_0( FIELD_OBJ_PTR fldobj )
@@ -1469,7 +1469,7 @@ static int AC_StayWalkL8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_R_8F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkR8F_0( FIELD_OBJ_PTR fldobj )
@@ -1483,7 +1483,7 @@ static int AC_StayWalkR8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_U_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkU4F_0( FIELD_OBJ_PTR fldobj )
@@ -1497,7 +1497,7 @@ static int AC_StayWalkU4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_D_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkD4F_0( FIELD_OBJ_PTR fldobj )
@@ -1511,7 +1511,7 @@ static int AC_StayWalkD4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_L_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkL4F_0( FIELD_OBJ_PTR fldobj )
@@ -1525,7 +1525,7 @@ static int AC_StayWalkL4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_R_4F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkR4F_0( FIELD_OBJ_PTR fldobj )
@@ -1539,7 +1539,7 @@ static int AC_StayWalkR4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_U_2F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkU2F_0( FIELD_OBJ_PTR fldobj )
@@ -1553,7 +1553,7 @@ static int AC_StayWalkU2F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_D_2F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkD2F_0( FIELD_OBJ_PTR fldobj )
@@ -1567,7 +1567,7 @@ static int AC_StayWalkD2F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_L_2F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkL2F_0( FIELD_OBJ_PTR fldobj )
@@ -1581,7 +1581,7 @@ static int AC_StayWalkL2F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_WALK_R_2F 0
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayWalkR2F_0( FIELD_OBJ_PTR fldobj )
@@ -1592,19 +1592,19 @@ static int AC_StayWalkR2F_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@AC_STAY_JUMP_UŒn
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€AC_STAY_JUMP_Uç³»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * AC_JUMP_WORK‰Šú‰»@ƒƒCƒ“
+ * AC_JUMP_WORKåˆæœŸåŒ–ã€€ãƒ¡ã‚¤ãƒ³
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @param	val		ˆÚ“®—Ê
- * @param	wait	ˆÚ“®ƒtƒŒ[ƒ€
- * @param	draw	•`‰æƒXƒe[ƒ^ƒX
- * @param	h_type	‚‚³BAC_JUMP_HEIGHT_12“™
- * @param	h_speed	ã¸‘¬“x AC_JUMP_SPEED_1“™
- * @param	se		Ä¶SE 0=–Â‚ç‚³‚È‚¢
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @param	val		ç§»å‹•é‡
+ * @param	wait	ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	draw	æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+ * @param	h_type	é«˜ã•ã€‚AC_JUMP_HEIGHT_12ç­‰
+ * @param	h_speed	ä¸Šæ˜‡é€Ÿåº¦ AC_JUMP_SPEED_1ç­‰
+ * @param	se		å†ç”ŸSE 0=é³´ã‚‰ã•ãªã„
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1622,10 +1622,10 @@ static void AcJumpWorkInitMain(
 	work->h_type = h_type;
 	work->h_speed = h_speed;
 	
-	if( val == 0 ){												//‚»‚Ìê
+	if( val == 0 ){												//ãã®å ´
 		FieldOBJ_GPosUpdate( fldobj );
 	}else{
-		FieldOBJ_NowGPosDirAdd( fldobj, dir );					//ˆÚ“®
+		FieldOBJ_NowGPosDirAdd( fldobj, dir );					//ç§»å‹•
 	}
 	
 	FieldOBJ_StatusBit_ON( fldobj,
@@ -1643,14 +1643,14 @@ static void AcJumpWorkInitMain(
 
 //--------------------------------------------------------------
 /**
- * AC_JUMP_WORK‰Šú‰» SE_JUMPŒÅ’è
+ * AC_JUMP_WORKåˆæœŸåŒ– SE_JUMPå›ºå®š
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
- * @param	val		ˆÚ“®—Ê
- * @param	wait	ˆÚ“®ƒtƒŒ[ƒ€
- * @param	draw	•`‰æƒXƒe[ƒ^ƒX
- * @param	h_type	‚‚³BAC_JUMP_HEIGHT_12“™
- * @param	h_speed	ã¸‘¬“x AC_JUMP_SPEED_1“™
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
+ * @param	val		ç§»å‹•é‡
+ * @param	wait	ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	draw	æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+ * @param	h_type	é«˜ã•ã€‚AC_JUMP_HEIGHT_12ç­‰
+ * @param	h_speed	ä¸Šæ˜‡é€Ÿåº¦ AC_JUMP_SPEED_1ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1663,9 +1663,9 @@ static void AcJumpWorkInit(
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPŒn@ˆÚ“®
+ * AC_JUMPç³»ã€€ç§»å‹•
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Jump_1( FIELD_OBJ_PTR fldobj )
@@ -1678,7 +1678,7 @@ static int AC_Jump_1( FIELD_OBJ_PTR fldobj )
 		FieldOBJ_VecPosDirAdd( fldobj, work->dir, work->val );
 		FieldOBJ_VecPosNowHeightGetSet( fldobj );
 			
-		if( work->dest_val >= GRID_FX32 ){						//‚PƒOƒŠƒbƒhˆÚ“®
+		if( work->dest_val >= GRID_FX32 ){						//ï¼‘ã‚°ãƒªãƒƒãƒ‰ç§»å‹•
 			work->dest_val = 0;
 			FieldOBJ_NowGPosDirAdd( fldobj, work->dir );
 			FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_MOVE_START );
@@ -1720,7 +1720,7 @@ static int AC_Jump_1( FIELD_OBJ_PTR fldobj )
 	}
 	
 	{
-		VecFx32 vec = { 0, 0, 0 };								//ƒIƒtƒZƒbƒgƒNƒŠƒA
+		VecFx32 vec = { 0, 0, 0 };								//ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚¯ãƒªã‚¢
 		FieldOBJ_VecDrawOffsSet( fldobj, &vec );
 	}
 	
@@ -1730,7 +1730,7 @@ static int AC_Jump_1( FIELD_OBJ_PTR fldobj )
 			FLDOBJ_STA_BIT_ACMD_END );
 	
 	FieldOBJ_GPosUpdate( fldobj );
-	FieldOBJ_DrawProcCall( fldobj );						//1ƒtƒŒ[ƒ€i‚ß‚é
+	FieldOBJ_DrawProcCall( fldobj );						//1ãƒ•ãƒ¬ãƒ¼ãƒ é€²ã‚ã‚‹
 	FieldOBJ_DrawStatusSet( fldobj, DRAW_STA_STOP );
 	FieldOBJ_AcmdSeqInc( fldobj );
 	
@@ -1743,7 +1743,7 @@ static int AC_Jump_1( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_JUMP_U_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayJumpU16F_0( FIELD_OBJ_PTR fldobj )
@@ -1758,7 +1758,7 @@ static int AC_StayJumpU16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_JUMP_D_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayJumpD16F_0( FIELD_OBJ_PTR fldobj )
@@ -1773,7 +1773,7 @@ static int AC_StayJumpD16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_JUMP_L_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayJumpL16F_0( FIELD_OBJ_PTR fldobj )
@@ -1788,7 +1788,7 @@ static int AC_StayJumpL16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_JUMP_R_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayJumpR16F_0( FIELD_OBJ_PTR fldobj )
@@ -1803,7 +1803,7 @@ static int AC_StayJumpR16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_JUMP_U_8F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayJumpU8F_0( FIELD_OBJ_PTR fldobj )
@@ -1818,7 +1818,7 @@ static int AC_StayJumpU8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_JUMP_D_8F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayJumpD8F_0( FIELD_OBJ_PTR fldobj )
@@ -1833,7 +1833,7 @@ static int AC_StayJumpD8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_JUMP_L_8F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayJumpL8F_0( FIELD_OBJ_PTR fldobj )
@@ -1848,7 +1848,7 @@ static int AC_StayJumpL8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_STAY_JUMP_R_8F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_StayJumpR8F_0( FIELD_OBJ_PTR fldobj )
@@ -1863,7 +1863,7 @@ static int AC_StayJumpR8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMP_U_1G_8F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpU1G8F_0( FIELD_OBJ_PTR fldobj )
@@ -1878,7 +1878,7 @@ static int AC_JumpU1G8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JDMP_D_1G_8F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpD1G8F_0( FIELD_OBJ_PTR fldobj )
@@ -1893,7 +1893,7 @@ static int AC_JumpD1G8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JDMP_L_1G_8F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpL1G8F_0( FIELD_OBJ_PTR fldobj )
@@ -1908,7 +1908,7 @@ static int AC_JumpL1G8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JDMP_R_1G_8F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpR1G8F_0( FIELD_OBJ_PTR fldobj )
@@ -1923,7 +1923,7 @@ static int AC_JumpR1G8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMP_U_2G_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpU2G8F_0( FIELD_OBJ_PTR fldobj )
@@ -1938,7 +1938,7 @@ static int AC_JumpU2G8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMP_D_2G_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpD2G8F_0( FIELD_OBJ_PTR fldobj )
@@ -1953,7 +1953,7 @@ static int AC_JumpD2G8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMP_L_2G_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpL2G8F_0( FIELD_OBJ_PTR fldobj )
@@ -1968,7 +1968,7 @@ static int AC_JumpL2G8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMP_R_2G_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpR2G8F_0( FIELD_OBJ_PTR fldobj )
@@ -1983,7 +1983,7 @@ static int AC_JumpR2G8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMPHI_L_1G_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpHiL1G16F_0( FIELD_OBJ_PTR fldobj )
@@ -1999,7 +1999,7 @@ static int AC_JumpHiL1G16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMPHI_R_1G_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpHiR1G16F_0( FIELD_OBJ_PTR fldobj )
@@ -2015,7 +2015,7 @@ static int AC_JumpHiR1G16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMPHI_L_3G_32F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpHiL3G32F_0( FIELD_OBJ_PTR fldobj )
@@ -2032,7 +2032,7 @@ static int AC_JumpHiL3G32F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMPHI_R_3G_32F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpHiR3G32F_0( FIELD_OBJ_PTR fldobj )
@@ -2049,7 +2049,7 @@ static int AC_JumpHiR3G32F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMP_U_3G_24F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpU3G24F_0( FIELD_OBJ_PTR fldobj )
@@ -2065,7 +2065,7 @@ static int AC_JumpU3G24F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMP_D_3G_24F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpD3G24F_0( FIELD_OBJ_PTR fldobj )
@@ -2081,7 +2081,7 @@ static int AC_JumpD3G24F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMP_L_3G_24F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpL3G24F_0( FIELD_OBJ_PTR fldobj )
@@ -2097,7 +2097,7 @@ static int AC_JumpL3G24F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_JUMP_R_3G_24F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpR3G24F_0( FIELD_OBJ_PTR fldobj )
@@ -2110,13 +2110,13 @@ static int AC_JumpR3G24F_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@AC_WAITŒn
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€AC_WAITç³»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * AC_WAIT_WORK‰Šú‰»
+ * AC_WAIT_WORKåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	wait	ƒEƒFƒCƒgƒtƒŒ[ƒ€
+ * @param	wait	ã‚¦ã‚§ã‚¤ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2132,9 +2132,9 @@ static void AcWaitWorkInit( FIELD_OBJ_PTR fldobj, int wait )
 
 //--------------------------------------------------------------
 /**
- * AC_WAITŒn@‘Ò‚¿
+ * AC_WAITç³»ã€€å¾…ã¡
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Wait_1( FIELD_OBJ_PTR fldobj )
@@ -2156,7 +2156,7 @@ static int AC_Wait_1( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WAIT_1F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Wait1F_0( FIELD_OBJ_PTR fldobj )
@@ -2169,7 +2169,7 @@ static int AC_Wait1F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WAIT_2F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Wait2F_0( FIELD_OBJ_PTR fldobj )
@@ -2182,7 +2182,7 @@ static int AC_Wait2F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WAIT_4F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Wait4F_0( FIELD_OBJ_PTR fldobj )
@@ -2195,7 +2195,7 @@ static int AC_Wait4F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WAIT_8F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Wait8F_0( FIELD_OBJ_PTR fldobj )
@@ -2208,7 +2208,7 @@ static int AC_Wait8F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WAIT_15F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Wait15F_0( FIELD_OBJ_PTR fldobj )
@@ -2221,7 +2221,7 @@ static int AC_Wait15F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WAIT_16F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Wait16F_0( FIELD_OBJ_PTR fldobj )
@@ -2234,7 +2234,7 @@ static int AC_Wait16F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WAIT_32F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Wait32F_0( FIELD_OBJ_PTR fldobj )
@@ -2244,13 +2244,13 @@ static int AC_Wait32F_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@AC_WARP_UP DOWN
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€AC_WARP_UP DOWN
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * AC_WARP_UP 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WarpUp_0( FIELD_OBJ_PTR fldobj )
@@ -2270,7 +2270,7 @@ static int AC_WarpUp_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WARP_UP 1
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WarpUp_1( FIELD_OBJ_PTR fldobj )
@@ -2302,7 +2302,7 @@ static int AC_WarpUp_1( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WARP_DOWN 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WarpDown_0( FIELD_OBJ_PTR fldobj )
@@ -2323,7 +2323,7 @@ static int AC_WarpDown_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WARP_DOWN 1
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WarpDown_1( FIELD_OBJ_PTR fldobj )
@@ -2355,13 +2355,13 @@ static int AC_WarpDown_1( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@AC_VANISH_ON OFF
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€AC_VANISH_ON OFF
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * AC_VANISH_ON 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_VanishON_0( FIELD_OBJ_PTR fldobj )
@@ -2375,7 +2375,7 @@ static int AC_VanishON_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_VANISH_OFF 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_VanishOFF_0( FIELD_OBJ_PTR fldobj )
@@ -2386,13 +2386,13 @@ static int AC_VanishOFF_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@AC_DIR_PAUSE_ON OFF
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€AC_DIR_PAUSE_ON OFF
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * AC_DIR_PAUSE_ON 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DirPauseON_0( FIELD_OBJ_PTR fldobj )
@@ -2406,7 +2406,7 @@ static int AC_DirPauseON_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_DIR_PAUSE_OFF 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DirPauseOFF_0( FIELD_OBJ_PTR fldobj )
@@ -2417,13 +2417,13 @@ static int AC_DirPauseOFF_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@AC_ANM_PAUSE_ON OFF
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€AC_ANM_PAUSE_ON OFF
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * AC_ANM_PAUSE_ON 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_AnmPauseON_0( FIELD_OBJ_PTR fldobj )
@@ -2437,7 +2437,7 @@ static int AC_AnmPauseON_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_ANM_PAUSE_OFF 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_AnmPauseOFF_0( FIELD_OBJ_PTR fldobj )
@@ -2448,14 +2448,14 @@ static int AC_AnmPauseOFF_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@ƒ}[ƒN
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€ãƒãƒ¼ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * AC_MARK_WORK‰Šú‰»
+ * AC_MARK_WORKåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	type	ƒ}[ƒNí—Ş
- * @param	trans	TRUE=ƒ}[ƒNƒOƒ‰ƒtƒBƒbƒN“]‘—‘Ò‚¿”Å
+ * @param	type	ãƒãƒ¼ã‚¯ç¨®é¡
+ * @param	trans	TRUE=ãƒãƒ¼ã‚¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€å¾…ã¡ç‰ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2472,9 +2472,9 @@ static void AcMarkWorkInit(
 
 //--------------------------------------------------------------
 /**
- * AC_MARKŒn@“®ì
+ * AC_MARKç³»ã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Mark_1( FIELD_OBJ_PTR fldobj )
@@ -2496,7 +2496,7 @@ static int AC_Mark_1( FIELD_OBJ_PTR fldobj )
 /**
  * AC_MARK_GYOE 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_MarkGyoe_0( FIELD_OBJ_PTR fldobj )
@@ -2509,7 +2509,7 @@ static int AC_MarkGyoe_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_MARK_SAISEN 1
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_MarkSaisen_0( FIELD_OBJ_PTR fldobj )
@@ -2522,7 +2522,7 @@ static int AC_MarkSaisen_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_MARK_GYOE_TWAIT 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_MarkGyoeTWait_0( FIELD_OBJ_PTR fldobj )
@@ -2532,15 +2532,15 @@ static int AC_MarkGyoeTWait_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	AC_WALK_ODDŒn
+//	AC_WALK_ODDç³»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * AC_WALK_ODD_WORK‰Šú‰»
+ * AC_WALK_ODD_WORKåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir			ˆÚ“®•ûŒü
- * @param	max_frame	ˆÚ“®Å‘åƒtƒŒ[ƒ€
- * @param	draw		•`‰æƒXƒe[ƒ^ƒX
+ * @param	dir			ç§»å‹•æ–¹å‘
+ * @param	max_frame	ç§»å‹•æœ€å¤§ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	draw		æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2562,10 +2562,10 @@ static void AcWalkOddWorkInit( FIELD_OBJ_PTR fldobj, int dir, s16 max_frame, u16
 
 //--------------------------------------------------------------
 /**
- * AC_WALK_ODD_WORKŒn@ˆÚ“®
+ * AC_WALK_ODD_WORKç³»ã€€ç§»å‹•
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	tbl		ˆÚ“®—Ê‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒe[ƒuƒ‹
- * @retval	int		TRUE=I—¹
+ * @param	tbl		ç§»å‹•é‡ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static int AC_WalkOdd_Walk( FIELD_OBJ_PTR fldobj, const fx32 *tbl )
@@ -2584,7 +2584,7 @@ static int AC_WalkOdd_Walk( FIELD_OBJ_PTR fldobj, const fx32 *tbl )
 	
 	FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_MOVE_END|FLDOBJ_STA_BIT_ACMD_END );
 	FieldOBJ_GPosUpdate( fldobj );
-	FieldOBJ_DrawProcCall( fldobj );						//1ƒtƒŒ[ƒ€i‚ß‚é
+	FieldOBJ_DrawProcCall( fldobj );						//1ãƒ•ãƒ¬ãƒ¼ãƒ é€²ã‚ã‚‹
 	FieldOBJ_DrawStatusSet( fldobj, DRAW_STA_STOP );
 	FieldOBJ_AcmdSeqInc( fldobj );
 	
@@ -2592,13 +2592,13 @@ static int AC_WalkOdd_Walk( FIELD_OBJ_PTR fldobj, const fx32 *tbl )
 }
 
 //==============================================================================
-//	AC_WALK ƒtƒŒ[ƒ€Šï”Œn
+//	AC_WALK ãƒ•ãƒ¬ãƒ¼ãƒ å¥‡æ•°ç³»
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * AC_WALK_U_6F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkU6F_0( FIELD_OBJ_PTR fldobj )
@@ -2611,7 +2611,7 @@ static int AC_WalkU6F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_D_6F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkD6F_0( FIELD_OBJ_PTR fldobj )
@@ -2624,7 +2624,7 @@ static int AC_WalkD6F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_L_6F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkL6F_0( FIELD_OBJ_PTR fldobj )
@@ -2637,7 +2637,7 @@ static int AC_WalkL6F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_R_6F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkR6F_0( FIELD_OBJ_PTR fldobj )
@@ -2650,7 +2650,7 @@ static int AC_WalkR6F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_*_6F 1
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Walk6F_1( FIELD_OBJ_PTR fldobj )
@@ -2666,7 +2666,7 @@ static int AC_Walk6F_1( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_U_3F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkU3F_0( FIELD_OBJ_PTR fldobj )
@@ -2679,7 +2679,7 @@ static int AC_WalkU3F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_D_3F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkD3F_0( FIELD_OBJ_PTR fldobj )
@@ -2692,7 +2692,7 @@ static int AC_WalkD3F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_L_3F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkL3F_0( FIELD_OBJ_PTR fldobj )
@@ -2705,7 +2705,7 @@ static int AC_WalkL3F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_R_3F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkR3F_0( FIELD_OBJ_PTR fldobj )
@@ -2718,7 +2718,7 @@ static int AC_WalkR3F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_*_3F 1
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Walk3F_1( FIELD_OBJ_PTR fldobj )
@@ -2734,7 +2734,7 @@ static int AC_Walk3F_1( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_U_7F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkU7F_0( FIELD_OBJ_PTR fldobj )
@@ -2747,7 +2747,7 @@ static int AC_WalkU7F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_D_7F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkD7F_0( FIELD_OBJ_PTR fldobj )
@@ -2760,7 +2760,7 @@ static int AC_WalkD7F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_L_7F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkL7F_0( FIELD_OBJ_PTR fldobj )
@@ -2773,7 +2773,7 @@ static int AC_WalkL7F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_R_7F 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkR7F_0( FIELD_OBJ_PTR fldobj )
@@ -2786,7 +2786,7 @@ static int AC_WalkR7F_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_WALK_*_7F 1
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_Walk7F_1( FIELD_OBJ_PTR fldobj )
@@ -2799,7 +2799,7 @@ static int AC_Walk7F_1( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	AC_PC_BOW PCWOMAN‚¨«‹V
+//	AC_PC_BOW PCWOMANãŠè¾å„€
 //==============================================================================
 //--------------------------------------------------------------
 ///	AC_PC_BOW_WORK
@@ -2815,7 +2815,7 @@ typedef struct
 /**
  * AC_PC_BOW	0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹N
+ * @retval	int		TRUE=å†èµ·
  */
 //--------------------------------------------------------------
 static int AC_PcBow_0( FIELD_OBJ_PTR fldobj )
@@ -2831,7 +2831,7 @@ static int AC_PcBow_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_PC_BOW	1
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹N
+ * @retval	int		TRUE=å†èµ·
  */
 //--------------------------------------------------------------
 static int AC_PcBow_1( FIELD_OBJ_PTR fldobj )
@@ -2850,7 +2850,7 @@ static int AC_PcBow_1( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	AC_HIDE_PULLOFF ‰B‚ê–ª’E‚¬
+//	AC_HIDE_PULLOFF éš ã‚Œè“‘è„±ã
 //==============================================================================
 //--------------------------------------------------------------
 ///	AC_HIDE_PULLOFF
@@ -2866,7 +2866,7 @@ typedef struct
 /**
  * AC_HIDE_PULLOFF 0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_HidePullOFF_0( FIELD_OBJ_PTR fldobj )
@@ -2896,7 +2896,7 @@ static int AC_HidePullOFF_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_HIDE_PULLOFF 1
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_HidePullOFF_1( FIELD_OBJ_PTR fldobj )
@@ -2926,7 +2926,7 @@ static int AC_HidePullOFF_1( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	AC_HERO_BANZAI ©‹@–œÎ
+//	AC_HERO_BANZAI è‡ªæ©Ÿä¸‡æ­³
 //==============================================================================
 //--------------------------------------------------------------
 ///	AC_HERO_BANZAI
@@ -2942,7 +2942,7 @@ typedef struct
 /**
  * AC_HERO_BANZAI	0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹N
+ * @retval	int		TRUE=å†èµ·
  */
 //--------------------------------------------------------------
 static int AC_HeroBanzai_0( FIELD_OBJ_PTR fldobj )
@@ -2957,7 +2957,7 @@ static int AC_HeroBanzai_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_HERO_BANZAI_UKE	0
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹N
+ * @retval	int		TRUE=å†èµ·
  */
 //--------------------------------------------------------------
 static int AC_HeroBanzaiUke_0( FIELD_OBJ_PTR fldobj )
@@ -2973,7 +2973,7 @@ static int AC_HeroBanzaiUke_0( FIELD_OBJ_PTR fldobj )
 /**
  * AC_HERO_BANZAI 1
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_HeroBanzai_1( FIELD_OBJ_PTR fldobj )
@@ -2992,17 +2992,17 @@ static int AC_HeroBanzai_1( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	AC_WALKGLŒn
+//	AC_WALKGLç³»
 //==============================================================================
 //--------------------------------------------------------------
 /*
- * AC_WALKVEC_WORK‰Šú‰» 1GŒÀ’è
+ * AC_WALKVEC_WORKåˆæœŸåŒ– 1Gé™å®š
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	vec		ˆÚ“®ƒxƒNƒgƒ‹*
- * @param	d_dir	•\¦•ûŒü
- * @param	m_dir	ˆÚ“®•ûŒü
- * @param	wait	ˆÚ“®ƒtƒŒ[ƒ€
- * @param	draw	•`‰æƒXƒe[ƒ^ƒX
+ * @param	vec		ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«*
+ * @param	d_dir	è¡¨ç¤ºæ–¹å‘
+ * @param	m_dir	ç§»å‹•æ–¹å‘
+ * @param	wait	ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	draw	æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3034,9 +3034,9 @@ static void AcWalkVecWorkInit( FIELD_OBJ_PTR fldobj,
 
 //--------------------------------------------------------------
 /**
- * AC_WALKVEC@ˆÚ“®@‚‚³æ“¾‚Ís‚í‚È‚¢
+ * AC_WALKVECã€€ç§»å‹•ã€€é«˜ã•å–å¾—ã¯è¡Œã‚ãªã„
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkVec_1( FIELD_OBJ_PTR fldobj )
@@ -3065,9 +3065,9 @@ static int AC_WalkVec_1( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGL_U_8F ¶•Ç@ãˆÚ“®(y+) ¶•\¦
+ * AC_WALKGL_U_8F å·¦å£ã€€ä¸Šç§»å‹•(y+) å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGLU8F_0( FIELD_OBJ_PTR fldobj )
@@ -3080,9 +3080,9 @@ static int AC_WalkGLU8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGL_D_8F ¶•Ç@‰ºˆÚ“®(y-)@‰E•\¦
+ * AC_WALKGL_D_8F å·¦å£ã€€ä¸‹ç§»å‹•(y-)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGLD8F_0( FIELD_OBJ_PTR fldobj )
@@ -3095,9 +3095,9 @@ static int AC_WalkGLD8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGL_L_8F ¶•Ç@¶ˆÚ“®(z+)@‰º•\¦
+ * AC_WALKGL_L_8F å·¦å£ã€€å·¦ç§»å‹•(z+)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGLL8F_0( FIELD_OBJ_PTR fldobj )
@@ -3110,9 +3110,9 @@ static int AC_WalkGLL8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGL_R_8F ¶•Ç@‰EˆÚ“®(z-)@ã•\¦
+ * AC_WALKGL_R_8F å·¦å£ã€€å³ç§»å‹•(z-)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGLR8F_0( FIELD_OBJ_PTR fldobj )
@@ -3125,9 +3125,9 @@ static int AC_WalkGLR8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGR_U_8F ‰E•Ç@ãˆÚ“®(y+)@‰E•\¦
+ * AC_WALKGR_U_8F å³å£ã€€ä¸Šç§»å‹•(y+)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGRU8F_0( FIELD_OBJ_PTR fldobj )
@@ -3140,9 +3140,9 @@ static int AC_WalkGRU8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGR_D_8F ‰E•Ç@‰ºˆÚ“®(y-)@¶•\¦
+ * AC_WALKGR_D_8F å³å£ã€€ä¸‹ç§»å‹•(y-)ã€€å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGRD8F_0( FIELD_OBJ_PTR fldobj )
@@ -3155,9 +3155,9 @@ static int AC_WalkGRD8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGR_L_8F ‰E•Ç@¶ˆÚ“®(z-)@ã•\¦
+ * AC_WALKGR_L_8F å³å£ã€€å·¦ç§»å‹•(z-)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGRL8F_0( FIELD_OBJ_PTR fldobj )
@@ -3170,9 +3170,9 @@ static int AC_WalkGRL8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGR_R_8F ‰E•Ç@‰EˆÚ“®(z+)@‰º•\¦
+ * AC_WALKGR_R_8F å³å£ã€€å³ç§»å‹•(z+)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGRR8F_0( FIELD_OBJ_PTR fldobj )
@@ -3185,9 +3185,9 @@ static int AC_WalkGRR8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_8F ã•Ç@ãˆÚ“®(z+)@ã•\¦
+ * AC_WALKGU_L_8F ä¸Šå£ã€€ä¸Šç§»å‹•(z+)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUU8F_0( FIELD_OBJ_PTR fldobj )
@@ -3200,9 +3200,9 @@ static int AC_WalkGUU8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_8F ã•Ç@‰ºˆÚ“®(z-)@‰º•\¦
+ * AC_WALKGU_L_8F ä¸Šå£ã€€ä¸‹ç§»å‹•(z-)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUD8F_0( FIELD_OBJ_PTR fldobj )
@@ -3215,9 +3215,9 @@ static int AC_WalkGUD8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_8F ã•Ç@¶ˆÚ“®(x-)@‰E•\¦
+ * AC_WALKGU_L_8F ä¸Šå£ã€€å·¦ç§»å‹•(x-)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUL8F_0( FIELD_OBJ_PTR fldobj )
@@ -3230,9 +3230,9 @@ static int AC_WalkGUL8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_8F ã•Ç@‰EˆÚ“®(x+)@¶•\¦
+ * AC_WALKGU_L_8F ä¸Šå£ã€€å³ç§»å‹•(x+)ã€€å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUR8F_0( FIELD_OBJ_PTR fldobj )
@@ -3245,9 +3245,9 @@ static int AC_WalkGUR8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_4F ã•Ç@ãˆÚ“®(z+)@ã•\¦
+ * AC_WALKGU_L_4F ä¸Šå£ã€€ä¸Šç§»å‹•(z+)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUU4F_0( FIELD_OBJ_PTR fldobj )
@@ -3260,9 +3260,9 @@ static int AC_WalkGUU4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_4F ã•Ç@‰ºˆÚ“®(z-)@‰º•\¦
+ * AC_WALKGU_L_4F ä¸Šå£ã€€ä¸‹ç§»å‹•(z-)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUD4F_0( FIELD_OBJ_PTR fldobj )
@@ -3275,9 +3275,9 @@ static int AC_WalkGUD4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_4F ã•Ç@¶ˆÚ“®(x-)@‰E•\¦
+ * AC_WALKGU_L_4F ä¸Šå£ã€€å·¦ç§»å‹•(x-)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUL4F_0( FIELD_OBJ_PTR fldobj )
@@ -3290,9 +3290,9 @@ static int AC_WalkGUL4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_4F ã•Ç@‰EˆÚ“®(x+)@¶•\¦
+ * AC_WALKGU_L_4F ä¸Šå£ã€€å³ç§»å‹•(x+)ã€€å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUR4F_0( FIELD_OBJ_PTR fldobj )
@@ -3305,9 +3305,9 @@ static int AC_WalkGUR4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_2F ã•Ç@ãˆÚ“®(z+)@ã•\¦
+ * AC_WALKGU_L_2F ä¸Šå£ã€€ä¸Šç§»å‹•(z+)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUU2F_0( FIELD_OBJ_PTR fldobj )
@@ -3320,9 +3320,9 @@ static int AC_WalkGUU2F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_2F ã•Ç@‰ºˆÚ“®(z-)@‰º•\¦
+ * AC_WALKGU_L_2F ä¸Šå£ã€€ä¸‹ç§»å‹•(z-)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUD2F_0( FIELD_OBJ_PTR fldobj )
@@ -3335,9 +3335,9 @@ static int AC_WalkGUD2F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_2F ã•Ç@¶ˆÚ“®(x-)@‰E•\¦
+ * AC_WALKGU_L_2F ä¸Šå£ã€€å·¦ç§»å‹•(x-)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUL2F_0( FIELD_OBJ_PTR fldobj )
@@ -3350,9 +3350,9 @@ static int AC_WalkGUL2F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_WALKGU_L_2F ã•Ç@‰EˆÚ“®(x+)@¶•\¦
+ * AC_WALKGU_L_2F ä¸Šå£ã€€å³ç§»å‹•(x+)ã€€å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_WalkGUR2F_0( FIELD_OBJ_PTR fldobj )
@@ -3365,9 +3365,9 @@ static int AC_WalkGUR2F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGL_U_4F ¶•Ç@ãˆÚ“®(y+) ¶•\¦
+ * AC_DASHGL_U_4F å·¦å£ã€€ä¸Šç§»å‹•(y+) å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGLU4F_0( FIELD_OBJ_PTR fldobj )
@@ -3380,9 +3380,9 @@ static int AC_DashGLU4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGL_D_4F ¶•Ç@‰ºˆÚ“®(y-)@‰E•\¦
+ * AC_DASHGL_D_4F å·¦å£ã€€ä¸‹ç§»å‹•(y-)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGLD4F_0( FIELD_OBJ_PTR fldobj )
@@ -3395,9 +3395,9 @@ static int AC_DashGLD4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGL_L_4F ¶•Ç@¶ˆÚ“®(z+)@‰º•\¦
+ * AC_DASHGL_L_4F å·¦å£ã€€å·¦ç§»å‹•(z+)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGLL4F_0( FIELD_OBJ_PTR fldobj )
@@ -3410,9 +3410,9 @@ static int AC_DashGLL4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGL_R_4F ¶•Ç@‰EˆÚ“®(z-)@ã•\¦
+ * AC_DASHGL_R_4F å·¦å£ã€€å³ç§»å‹•(z-)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGLR4F_0( FIELD_OBJ_PTR fldobj )
@@ -3425,9 +3425,9 @@ static int AC_DashGLR4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGR_U_4F ‰E•Ç@ãˆÚ“®(y+)@‰E•\¦
+ * AC_DASHGR_U_4F å³å£ã€€ä¸Šç§»å‹•(y+)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGRU4F_0( FIELD_OBJ_PTR fldobj )
@@ -3440,9 +3440,9 @@ static int AC_DashGRU4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGR_D_4F ‰E•Ç@‰ºˆÚ“®(y-)@¶•\¦
+ * AC_DASHGR_D_4F å³å£ã€€ä¸‹ç§»å‹•(y-)ã€€å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGRD4F_0( FIELD_OBJ_PTR fldobj )
@@ -3455,9 +3455,9 @@ static int AC_DashGRD4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGR_L_4F ‰E•Ç@¶ˆÚ“®(z-)@ã•\¦
+ * AC_DASHGR_L_4F å³å£ã€€å·¦ç§»å‹•(z-)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGRL4F_0( FIELD_OBJ_PTR fldobj )
@@ -3470,9 +3470,9 @@ static int AC_DashGRL4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGR_L_4F ‰E•Ç@‰EˆÚ“®(z+)@‰º•\¦
+ * AC_DASHGR_L_4F å³å£ã€€å³ç§»å‹•(z+)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGRR4F_0( FIELD_OBJ_PTR fldobj )
@@ -3485,9 +3485,9 @@ static int AC_DashGRR4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGU_L_4F ã•Ç@ãˆÚ“®(z+)@ã•\¦
+ * AC_DASHGU_L_4F ä¸Šå£ã€€ä¸Šç§»å‹•(z+)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGUU4F_0( FIELD_OBJ_PTR fldobj )
@@ -3500,9 +3500,9 @@ static int AC_DashGUU4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGU_L_4F ã•Ç@‰ºˆÚ“®(z-)@‰º•\¦
+ * AC_DASHGU_L_4F ä¸Šå£ã€€ä¸‹ç§»å‹•(z-)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGUD4F_0( FIELD_OBJ_PTR fldobj )
@@ -3515,9 +3515,9 @@ static int AC_DashGUD4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGU_L_4F ã•Ç@¶ˆÚ“®(x-)@‰E•\¦
+ * AC_DASHGU_L_4F ä¸Šå£ã€€å·¦ç§»å‹•(x-)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGUL4F_0( FIELD_OBJ_PTR fldobj )
@@ -3530,9 +3530,9 @@ static int AC_DashGUL4F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_DASHGU_L_4F ã•Ç@‰EˆÚ“®(x+)@¶•\¦
+ * AC_DASHGU_L_4F ä¸Šå£ã€€å³ç§»å‹•(x+)ã€€å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_DashGUR4F_0( FIELD_OBJ_PTR fldobj )
@@ -3544,18 +3544,18 @@ static int AC_DashGUR4F_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	AC_JUMPGLŒn
+//	AC_JUMPGLç³»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * AC_JUMPVEC_WORK‰Šú‰»
+ * AC_JUMPVEC_WORKåˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR
- * @param	val			ˆÚ“®—Ê
- * @param	d_dir		•\¦•ûŒü
- * @param	m_dir		ˆÚ“®•ûŒü
- * @param	wait		ˆÚ“®ƒtƒŒ[ƒ€
- * @param	draw		•`‰æƒXƒe[ƒ^ƒX
- * @param	vec_type	ƒxƒNƒgƒ‹ƒ^ƒCƒv VEC_X“™
+ * @param	val			ç§»å‹•é‡
+ * @param	d_dir		è¡¨ç¤ºæ–¹å‘
+ * @param	m_dir		ç§»å‹•æ–¹å‘
+ * @param	wait		ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	draw		æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+ * @param	vec_type	ãƒ™ã‚¯ãƒˆãƒ«ã‚¿ã‚¤ãƒ— VEC_Xç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3585,7 +3585,7 @@ static void AcJumpVecWorkInit( FIELD_OBJ_PTR fldobj,
 	
 	GF_ASSERT( vec_type <= VEC_Z );
 	
-	if( val ){		//ˆÚ“®—Ê‚ª‘¶İ‚·‚é
+	if( val ){		//ç§»å‹•é‡ãŒå­˜åœ¨ã™ã‚‹
 		switch( vec_type ){
 		case VEC_X:
 			if( val < 0 ){ grid = -grid; }
@@ -3607,9 +3607,9 @@ static void AcJumpVecWorkInit( FIELD_OBJ_PTR fldobj,
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPVEC_WORK@ˆÚ“®@‚‚³æ“¾‚Ís‚í‚È‚¢
+ * AC_JUMPVEC_WORKã€€ç§»å‹•ã€€é«˜ã•å–å¾—ã¯è¡Œã‚ãªã„
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpVec_1( FIELD_OBJ_PTR fldobj )
@@ -3666,7 +3666,7 @@ static int AC_JumpVec_1( FIELD_OBJ_PTR fldobj )
 	
 	work->wait--;
 	
-	//ƒOƒŠƒbƒh‰z‚¦&ƒEƒFƒCƒgc‘¶
+	//ã‚°ãƒªãƒƒãƒ‰è¶Šãˆ&ã‚¦ã‚§ã‚¤ãƒˆæ®‹å­˜
 	if( work->count >= GRID_FX32 && work->wait ){
 		int grid = GRID_ONE;
 		work->count -= GRID_FX32;
@@ -3707,7 +3707,7 @@ static int AC_JumpVec_1( FIELD_OBJ_PTR fldobj )
 			FLDOBJ_STA_BIT_ACMD_END );
 	
 	FieldOBJ_GPosUpdate( fldobj );
-	FieldOBJ_DrawProcCall( fldobj );				//1ƒtƒŒ[ƒ€i‚ß‚é
+	FieldOBJ_DrawProcCall( fldobj );				//1ãƒ•ãƒ¬ãƒ¼ãƒ é€²ã‚ã‚‹
 	FieldOBJ_DrawStatusSet( fldobj, DRAW_STA_STOP );
 	FieldOBJ_AcmdSeqInc( fldobj );
 	
@@ -3717,9 +3717,9 @@ static int AC_JumpVec_1( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGL_U_1G_8F ¶•Ç@ãˆÚ“®(y+) ¶•\¦
+ * AC_JUMPGL_U_1G_8F å·¦å£ã€€ä¸Šç§»å‹•(y+) å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGLU1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3732,9 +3732,9 @@ static int AC_JumpGLU1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGL_D_1G_8F ¶•Ç@‰ºˆÚ“®(y-)@‰E•\¦
+ * AC_JUMPGL_D_1G_8F å·¦å£ã€€ä¸‹ç§»å‹•(y-)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGLD1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3747,9 +3747,9 @@ static int AC_JumpGLD1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGL_L_1G_8F ¶•Ç@¶ˆÚ“®(z+)@‰º•\¦
+ * AC_JUMPGL_L_1G_8F å·¦å£ã€€å·¦ç§»å‹•(z+)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGLL1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3762,9 +3762,9 @@ static int AC_JumpGLL1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGL_R_1G_8F ¶•Ç@‰EˆÚ“®(z-)@ã•\¦
+ * AC_JUMPGL_R_1G_8F å·¦å£ã€€å³ç§»å‹•(z-)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGLR1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3777,9 +3777,9 @@ static int AC_JumpGLR1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGR_U_1G_8F ‰E•Ç@ãˆÚ“®(y+)@‰E•\¦
+ * AC_JUMPGR_U_1G_8F å³å£ã€€ä¸Šç§»å‹•(y+)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGRU1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3792,9 +3792,9 @@ static int AC_JumpGRU1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGR_D_1G_8F ‰E•Ç@‰ºˆÚ“®(y-)@¶•\¦
+ * AC_JUMPGR_D_1G_8F å³å£ã€€ä¸‹ç§»å‹•(y-)ã€€å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGRD1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3807,9 +3807,9 @@ static int AC_JumpGRD1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGR_L_1G_8F ‰E•Ç@¶ˆÚ“®(z-)@ã•\¦
+ * AC_JUMPGR_L_1G_8F å³å£ã€€å·¦ç§»å‹•(z-)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGRL1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3822,9 +3822,9 @@ static int AC_JumpGRL1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGR_R_1G_8F ‰E•Ç@‰EˆÚ“®(z+)@‰º•\¦
+ * AC_JUMPGR_R_1G_8F å³å£ã€€å³ç§»å‹•(z+)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGRR1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3837,9 +3837,9 @@ static int AC_JumpGRR1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGU_U_1G_8F ã•Ç@ãˆÚ“®(z+)@ã•\¦
+ * AC_JUMPGU_U_1G_8F ä¸Šå£ã€€ä¸Šç§»å‹•(z+)ã€€ä¸Šè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGUU1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3852,9 +3852,9 @@ static int AC_JumpGUU1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGU_D_1G_8F ã•Ç@‰ºˆÚ“®(z-)@‰º•\¦
+ * AC_JUMPGU_D_1G_8F ä¸Šå£ã€€ä¸‹ç§»å‹•(z-)ã€€ä¸‹è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGUD1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3867,9 +3867,9 @@ static int AC_JumpGUD1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGU_L_1G_8F ã•Ç@¶ˆÚ“®(x-)@‰E•\¦
+ * AC_JUMPGU_L_1G_8F ä¸Šå£ã€€å·¦ç§»å‹•(x-)ã€€å³è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGUL1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3882,9 +3882,9 @@ static int AC_JumpGUL1G_8F_0( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * AC_JUMPGU_R_1G_8F ã•Ç@‰EˆÚ“®(x+)@¶•\¦
+ * AC_JUMPGU_R_1G_8F ä¸Šå£ã€€å³ç§»å‹•(x+)ã€€å·¦è¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int AC_JumpGUR1G_8F_0( FIELD_OBJ_PTR fldobj )
@@ -3896,7 +3896,7 @@ static int AC_JumpGUR1G_8F_0( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	data	ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
+//	data	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
 //--------------------------------------------------------------
 ///	AC_DIR_U
@@ -5431,7 +5431,7 @@ int (* const DATA_AC_MarkGyoeTWait_Tbl[])( FIELD_OBJ_PTR ) =
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	AC_JUMPŒn@‚‚³YƒIƒtƒZƒbƒg ‚»‚Ì0
+///	AC_JUMPç³»ã€€é«˜ã•Yã‚ªãƒ•ã‚»ãƒƒãƒˆ ãã®0
 //--------------------------------------------------------------
 static const fx32 DATA_AcJumpOffsTblType0[AC_JUMP_H_TBL_MAX] =			// 12
 {
@@ -5442,7 +5442,7 @@ static const fx32 DATA_AcJumpOffsTblType0[AC_JUMP_H_TBL_MAX] =			// 12
 };
 
 //--------------------------------------------------------------
-///	AC_JUMPŒn@‚‚³YƒIƒtƒZƒbƒg ‚»‚Ì1
+///	AC_JUMPç³»ã€€é«˜ã•Yã‚ªãƒ•ã‚»ãƒƒãƒˆ ãã®1
 //--------------------------------------------------------------
 static const fx32 DATA_AcJumpOffsTblType1[AC_JUMP_H_TBL_MAX] =			// 6
 {
@@ -5453,7 +5453,7 @@ static const fx32 DATA_AcJumpOffsTblType1[AC_JUMP_H_TBL_MAX] =			// 6
 };
 
 //--------------------------------------------------------------
-///	AC_JUMPŒn@‚‚³YƒIƒtƒZƒbƒg ‚»‚Ì2
+///	AC_JUMPç³»ã€€é«˜ã•Yã‚ªãƒ•ã‚»ãƒƒãƒˆ ãã®2
 //--------------------------------------------------------------
 static const fx32 DATA_AcJumpOffsTblType2[AC_JUMP_H_TBL_MAX] =			// 8
 {
@@ -5464,7 +5464,7 @@ static const fx32 DATA_AcJumpOffsTblType2[AC_JUMP_H_TBL_MAX] =			// 8
 };
 
 //--------------------------------------------------------------
-///	AC_JUMPŒn@‚‚³YƒIƒtƒZƒbƒg ‚»‚Ì3
+///	AC_JUMPç³»ã€€é«˜ã•Yã‚ªãƒ•ã‚»ãƒƒãƒˆ ãã®3
 //--------------------------------------------------------------
 static const fx32 DATA_AcJumpOffsTblType3[AC_JUMP_H_TBL_MAX] =			// 12
 {
@@ -5475,7 +5475,7 @@ static const fx32 DATA_AcJumpOffsTblType3[AC_JUMP_H_TBL_MAX] =			// 12
 };
 
 //--------------------------------------------------------------
-///	AC_JUMPŒn@í—Ş•Ê‚‚³YƒIƒtƒZƒbƒgƒe[ƒuƒ‹
+///	AC_JUMPç³»ã€€ç¨®é¡åˆ¥é«˜ã•Yã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const fx32 * DATA_AcJumpOffsetTbl[] =
 {
@@ -5485,7 +5485,7 @@ static const fx32 * DATA_AcJumpOffsetTbl[] =
 };
 
 //--------------------------------------------------------------
-///	AC_WALK_*_7F@ˆÚ“®ƒe[ƒuƒ‹
+///	AC_WALK_*_7Fã€€ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const fx32 DATA_AcWalk7FMoveValueTbl[AC_WALK_7F_FRAME] =
 {
@@ -5502,7 +5502,7 @@ static const fx32 DATA_AcWalk7FMoveValueTbl[AC_WALK_7F_FRAME] =
 #endif
 
 //--------------------------------------------------------------
-///	AC_WALK_*_6F@ˆÚ“®ƒe[ƒuƒ‹
+///	AC_WALK_*_6Fã€€ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const fx32 DATA_AcWalk6FMoveValueTbl[AC_WALK_6F_FRAME] =
 {
@@ -5511,7 +5511,7 @@ static const fx32 DATA_AcWalk6FMoveValueTbl[AC_WALK_6F_FRAME] =
 };
 
 //--------------------------------------------------------------
-///	AC_WALK_*_3F@ˆÚ“®ƒe[ƒuƒ‹
+///	AC_WALK_*_3Fã€€ç§»å‹•ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const fx32 DATA_AcWalk3FMoveValueTbl[AC_WALK_3F_FRAME] =
 {

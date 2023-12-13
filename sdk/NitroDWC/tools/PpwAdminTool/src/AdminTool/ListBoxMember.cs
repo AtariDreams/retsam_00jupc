@@ -5,7 +5,7 @@ using System.Text;
 namespace AdminTool
 {
     /// <summary>
-    /// リストボックスのメンバに値を持たせるためのクラス
+    /// 繝ｪ繧ｹ繝医�懊ャ繧ｯ繧ｹ縺ｮ繝｡繝ｳ繝舌↓蛟､繧呈戟縺溘○繧九◆繧√�ｮ繧ｯ繝ｩ繧ｹ
     /// </summary>
     class ListBoxMember
     {

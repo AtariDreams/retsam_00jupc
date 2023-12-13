@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_c06r0301evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c06r0301_oldman
 _EVENT_DATA		ev_c06r0301_minomutti_item_get
@@ -27,7 +27,7 @@ _EVENT_DATA_END
 //	_END
 
 /********************************************************************/
-/*				˜Vl												*/
+/*				è€äºº												*/
 /********************************************************************/
 ev_c06r0301_oldman:
 	_TALK_OBJ_START
@@ -40,56 +40,56 @@ ev_c06r0301_oldman:
 	_END
 
 /********************************************************************/
-/*			ƒ~ƒcƒnƒj[ƒAƒCƒeƒ€Žæ“¾		”ž‚í‚ç­”N												*/
+/*			ãƒŸãƒ„ãƒãƒ‹ãƒ¼ã‚¢ã‚¤ãƒ†ãƒ å–å¾—		éº¦ã‚ã‚‰å°‘å¹´												*/
 /********************************************************************/
 ev_c06r0301_minomutti_item_get:
 	_TALK_OBJ_START
 
-	// ‚à‚¤ƒCƒxƒ“ƒgI—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã‚‚ã†ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_IF_FLAGON_JUMP FE_C06R0301_ITEM_GET,ev_minomutti_item_get_end
 	
-	/*‚·‚Å‚É‰ï˜b‚µ‚Ä‚¢‚é*/
+	/*ã™ã§ã«ä¼šè©±ã—ã¦ã„ã‚‹*/
 	_IF_FLAGON_JUMP	FE_C06R0301_BOY3,ev_minomutti_item_get_talk
 
-	//ƒ~ƒcƒnƒj[‚à‚Á‚Ä‚éH
+	//ãƒŸãƒ„ãƒãƒ‹ãƒ¼ã‚‚ã£ã¦ã‚‹ï¼Ÿ
 	_TALK_KEYWAIT	msg_c06r0301_boy3_01
 	_FLAG_SET		FE_C06R0301_BOY3
 	_JUMP			ev_c06r0301_minomutti_item_get_end
 	_END
 
-/*‚·‚Å‚É‰ï˜b‚µ‚Ä‚¢‚é*/
+/*ã™ã§ã«ä¼šè©±ã—ã¦ã„ã‚‹*/
 ev_minomutti_item_get_talk:
 
-	//Ž‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+	//æŒã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_CHECK_MITUHANII_COMP	SCWK_ANSWER
 
-	//@‚»‚ë‚Á‚Ä‚È‚¢‚©
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_minomutti_no_get		/*‚È‚µ*/
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_minomutti_no_comp		/*•Ð•û*/
+	//ã€€ãã‚ã£ã¦ãªã„ã‹
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_minomutti_no_get		/*ãªã—*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_minomutti_no_comp		/*ç‰‡æ–¹*/
 
-	// ƒAƒCƒeƒ€‚â‚é‚æI
+	// ã‚¢ã‚¤ãƒ†ãƒ ã‚„ã‚‹ã‚ˆï¼
 	_TALK_KEYWAIT	msg_c06r0301_boy3_04
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_KYOUSEIGIPUSU
 	_LDVAL			SCWK_TEMP1,1
 
-	// ƒAƒCƒeƒ€‚â‚ê‚é‚©ƒ`ƒFƒbƒN
+	// ã‚¢ã‚¤ãƒ†ãƒ ã‚„ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 
-	// ƒAƒCƒeƒ€•Û‘¶‚Å‚«‚é‚©
+	// ã‚¢ã‚¤ãƒ†ãƒ ä¿å­˜ã§ãã‚‹ã‹
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_minomutti_item_noget
 	
-	// ƒAƒCƒeƒ€“o˜^
+	// ã‚¢ã‚¤ãƒ†ãƒ ç™»éŒ²
 	_FLAG_SET		FE_C06R0301_ITEM_GET
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_JUMP			ev_minomutti_item_get_end
 	_END
 
-// ƒ~ƒmƒ€ƒbƒ`‚à‚Á‚Ä‚¢‚È‚¢
+// ãƒŸãƒŽãƒ ãƒƒãƒã‚‚ã£ã¦ã„ãªã„
 ev_minomutti_no_get:
 	_TALKMSG		msg_c06r0301_boy3_02
 	_LAST_KEYWAIT
@@ -97,26 +97,26 @@ ev_minomutti_no_get:
 	_TALK_OBJ_END
 	_END
 
-// ‚»‚ë‚Á‚Ä‚¢‚È‚¢
+// ãã‚ã£ã¦ã„ãªã„
 ev_minomutti_no_comp:
 	_TALKMSG		msg_c06r0301_boy3_03
 	_JUMP			ev_c06r0301_minomutti_item_get_end
 	_END
 
-// ƒAƒCƒeƒ€‚à‚Ä‚È‚¢
+// ã‚¢ã‚¤ãƒ†ãƒ ã‚‚ã¦ãªã„
 ev_minomutti_item_noget:
 	_TALKMSG		msg_c06r0301_boy3_05
 	_JUMP			ev_c06r0301_minomutti_item_get_end
 	_END
 
-// I‚í‚è•¶
+// çµ‚ã‚ã‚Šæ–‡
 ev_minomutti_item_get_end:
-	// I‚í‚è•¶
+	// çµ‚ã‚ã‚Šæ–‡
 	_TALKMSG		msg_c06r0301_boy3_06
 	_JUMP			ev_c06r0301_minomutti_item_get_end
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_c06r0301_minomutti_item_get_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE

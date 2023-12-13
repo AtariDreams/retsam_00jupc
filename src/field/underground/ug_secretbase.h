@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_secretbase_info.h
- * @brief	’n‰º‚Ì”é–§Šî’nî•ñ‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹ã®ç§˜å¯†åŸºåœ°æƒ…å ±ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2005.10.04
  */
@@ -12,27 +12,27 @@
 
 #include "savedata/undergrounddata.h"
 
-/// ”é–§Šî’nî•ñ‰Šú‰»
+/// ç§˜å¯†åŸºåœ°æƒ…å ±åˆæœŸåŒ–
 extern void CommSecretBaseInfoInitialize(void* pWork, FIELDSYS_WORK* pFSys);
 extern void CommSecretBaseInfoReset(void);
 extern void CommSecretBaseInfoReboot(void);
-/// ”é–§Šî’nî•ñˆ—I—¹
+/// ç§˜å¯†åŸºåœ°æƒ…å ±å‡¦ç†çµ‚äº†
 extern void CommSecretBaseInfoFinalize(void);
 extern void CommSecretBaseInfoReInit(void);
 extern void CommSecretBaseInfoParentDel(void);
-/// ƒ[ƒN‘S‘Ì‚ÌƒTƒCƒY‚ğ•Ô‚·
+/// ãƒ¯ãƒ¼ã‚¯å…¨ä½“ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 extern int CommSecretBaseInfoGetWorkSize(void);
-/// ƒZ[ƒuƒf[ƒ^‚©‚ç©•ª‚Ì‚ ‚½‚è‚ğì¬
+/// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰è‡ªåˆ†ã®ã‚ãŸã‚Šã‚’ä½œæˆ
 extern void UgSecretBaseMakeMyAttr(FIELDSYS_WORK* pFSys);
-/// q‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€  e‹@‚É”é–§Šî’n‚ğ‘—‚é
+/// å­æ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ   è¦ªæ©Ÿã«ç§˜å¯†åŸºåœ°ã‚’é€ã‚‹
 extern void CommSecretBaseInfoChildSendStart(void);
-/// ”é–§Šî’nƒf[ƒ^óM
+/// ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿å—ä¿¡
 extern void CommSecretBaseInfoRecvData(int netID, int size, void* pData, void* pWork);
-/// ”é–§Šî’nƒf[ƒ^ƒTƒCƒY
+/// ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 extern int CommSecretBaseInfoGetDataSize(void);
-/// e‹@‚©‚ç”é–§Šî’nƒf[ƒ^‚ª“Í‚¢‚½‚©‚Ç‚¤‚©
+/// è¦ªæ©Ÿã‹ã‚‰ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿ãŒå±Šã„ãŸã‹ã©ã†ã‹
 extern BOOL CommSecretBaseInfoIsChildRecv(void);
-/// e‹@‚©‚ç”é–§Šî’nƒf[ƒ^‚ª“Í‚¢‚½‚Ì‚ÅAƒtƒ‰ƒO‚ğÁ‚·
+/// è¦ªæ©Ÿã‹ã‚‰ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿ãŒå±Šã„ãŸã®ã§ã€ãƒ•ãƒ©ã‚°ã‚’æ¶ˆã™
 extern void CommSecretBaseResetChildRecv(void);
 
 extern BOOL CommSecretBaseInfoIsPosRecv(void);
@@ -41,9 +41,9 @@ extern void CommSecretBaseResetPosRecv(void);
 
 extern BOOL CommSecretBaseIsTraveling(int netID);
 
-/// ”é–§Šî’nˆÚ“®‚ªI—¹‚µ‚½‚±‚Æ‚ğ‘—M
+/// ç§˜å¯†åŸºåœ°ç§»å‹•ãŒçµ‚äº†ã—ãŸã“ã¨ã‚’é€ä¿¡
 extern void CommSecretBaseInfoJumpEnd(void);
-/// ”é–§Šî’nˆÚ“®‚ªI—¹‚µ‚½‚±‚Æ‚ğóM
+/// ç§˜å¯†åŸºåœ°ç§»å‹•ãŒçµ‚äº†ã—ãŸã“ã¨ã‚’å—ä¿¡
 extern void CommSecretBaseInfoRecvJumpEnd(int netID, int size, void* pData, void* pWork);
 
 extern void UgSecretBaseRecvJumpEvent(int netID, int size, void* pData, void* pWork);
@@ -77,29 +77,29 @@ extern void CommSecretBaseRecvDrillStart(int netID, int size, void* pData, void*
 extern void CommSecretBaseRecvDrillStartResult(int netID, int size, void* pData, void* pWork);
 extern int CommSecretBaseDrillStartResultSize(void);
 
-/// ’ÊM—£’E‚µ‚½l‚Ì”é–§Šî’n‚ğÁ‚·
+/// é€šä¿¡é›¢è„±ã—ãŸäººã®ç§˜å¯†åŸºåœ°ã‚’æ¶ˆã™
 extern void UgSecretBaseResetPlayer(int netID);
 extern void UgSecretBaseDestroyPlayer(int netID);
 extern void UgSecretBaseDestroyDoor(int netID);
 extern void UgSecretBaseDestroyPlayerDontBaseIn(int netID);
-/// ”é–§Šî’n‚Ì“à—e•¨‚ğ•Ô‚·
+/// ç§˜å¯†åŸºåœ°ã®å†…å®¹ç‰©ã‚’è¿”ã™
 extern SECRETBASEDATA* UgSetupSecretBaseData(SAVEDATA * sv);
-///¡‚©‚çƒZƒbƒgƒAƒbƒv‚·‚é”é–§Šî’n‚ÌƒuƒƒbƒN‚ğ•Ô‚·
+///ä»Šã‹ã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ç§˜å¯†åŸºåœ°ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’è¿”ã™
 extern int UgSetupSecretBaseBlockX(void);
 extern int UgSetupSecretBaseBlockZ(void);
-/// ”é–§Šî’nƒOƒbƒY‚ ‚½‚èƒf[ƒ^‚ğ‚İ‚Ä•à‚¯‚é‚©‚Ç‚¤‚©‚µ‚ç‚×‚é
+/// ç§˜å¯†åŸºåœ°ã‚°ãƒƒã‚ºã‚ãŸã‚Šãƒ‡ãƒ¼ã‚¿ã‚’ã¿ã¦æ­©ã‘ã‚‹ã‹ã©ã†ã‹ã—ã‚‰ã¹ã‚‹
 extern BOOL UgSecretBaseMoveing(int x, int z);
-/// ‚à‚æ‚¤‚ª‚¦‚Ì‰ï˜bƒXƒ^[ƒg
+/// ã‚‚ã‚ˆã†ãŒãˆã®ä¼šè©±ã‚¹ã‚¿ãƒ¼ãƒˆ
 extern int UgSecretBaseTalkStart(int messageNo);
-/// ‚à‚æ‚¤‚ª‚¦‚Ì‰ï˜bI‚í‚è
+/// ã‚‚ã‚ˆã†ãŒãˆã®ä¼šè©±çµ‚ã‚ã‚Š
 extern void UgSecretBaseTalkEnd(void);
-/// ƒOƒbƒY‚Ì–¼‘O‚ğƒƒbƒZ[ƒW‚É•\¦‚³‚¹‚éê‡‚ÌŠÖ”
+/// ã‚°ãƒƒã‚ºã®åå‰ã‚’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«è¡¨ç¤ºã•ã›ã‚‹å ´åˆã®é–¢æ•°
 extern void UgSecretBaseTalkRegisterGoodsName(int type);
-/// ”š‚QŒ…‚ğƒƒbƒZ[ƒW‚É•\¦‚³‚¹‚éê‡‚ÌŠÖ”
+/// æ•°å­—ï¼’æ¡ã‚’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«è¡¨ç¤ºã•ã›ã‚‹å ´åˆã®é–¢æ•°
 extern void UgSecretBaseTalkRegisterNum2(int number,int index);
-/// Aƒ{ƒ^ƒ“‚ÅƒOƒbƒY‚Ìƒ`ƒFƒbƒN‚ª‚ ‚Á‚½
+/// Aãƒœã‚¿ãƒ³ã§ã‚°ãƒƒã‚ºã®ãƒã‚§ãƒƒã‚¯ãŒã‚ã£ãŸ
 extern BOOL UgSecretBaseGoodsCheck(int netID, Grid* pTouch);
-/// Aƒ{ƒ^ƒ“‚ÅƒOƒbƒY‚Ìƒ`ƒFƒbƒN‚ª‚ ‚Á‚½
+/// Aãƒœã‚¿ãƒ³ã§ã‚°ãƒƒã‚ºã®ãƒã‚§ãƒƒã‚¯ãŒã‚ã£ãŸ
 extern void UgSecretBaseRecvGoodsCheck(int netID, int size, void* pData, void* pWork);
 extern int UgSecretBaseGetRecvGoodsCheckSize(void);
 
@@ -112,9 +112,9 @@ extern int UgSBGetLVUPFlagRetSize(void);
 extern void UgSBRecvLVUPFlagRet(int netID, int size, void* pData, void* pWork);
 extern void UgSBRecvLVUPFlag(int netID, int size, void* pData, void* pWork);
 
-// ŒŸ¸
+// æ¤œæŸ»
 extern BOOL UgSecretBaseTrapGoodsCheck(int netID);
-// ƒŠƒZƒbƒg
+// ãƒªã‚»ãƒƒãƒˆ
 extern BOOL UgSecretBaseTrapGoodsReset(int netID);
 
 extern void UgSecretBaseRemovePlayer(int netID);
@@ -125,7 +125,7 @@ extern BOOL UgSecretBaseIsOtherEnter(void);
 
 extern void UgSecretBaseErrorMoveTickets(void);
 extern void UgSecretBaseErrorDisconnectTickets(void);
-// q‹@‚ª”é–§Šî’n‚É‚¢‚½ê‡A‚¢‚Á‚½‚ñŠO‚É‚Å‚Ä‚à‚ç‚¤
+// å­æ©ŸãŒç§˜å¯†åŸºåœ°ã«ã„ãŸå ´åˆã€ã„ã£ãŸã‚“å¤–ã«ã§ã¦ã‚‚ã‚‰ã†
 extern void UgSecretBaseFirstConnectChild(int netID);
 
 

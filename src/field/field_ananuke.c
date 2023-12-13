@@ -2,7 +2,7 @@
 /**
  *
  * @file	field_ananuke.c
- * @brief	ƒtƒB[ƒ‹ƒh@‚ ‚È‚Ê‚¯‚Ì‚Ğ‚à@‚ ‚È‚Ù‚è@ƒeƒŒƒ|[ƒg
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ã‚ãªã¬ã‘ã®ã²ã‚‚ã€€ã‚ãªã»ã‚Šã€€ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ
  * @author	kagaya
  * @data	05.08.03
  *
@@ -14,7 +14,7 @@
 #include "player.h"
 #include "ev_mapchange.h"
 #include "system/wipe.h"
-#include "system/brightness.h"		//fieldmap.h‚Å‚àok
+#include "system/brightness.h"		//fieldmap.hã§ã‚‚ok
 #include "field/situation_local.h"
 #include "field_cutin.h"
 #include "mapdata_warp.h"
@@ -30,17 +30,17 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-///	ŒŠ”²‚¯“®ìŠÖ”–ß‚è’l
+///	ç©´æŠœã‘å‹•ä½œé–¢æ•°æˆ»ã‚Šå€¤
 //--------------------------------------------------------------
 enum
 {
-	RET_NON = 0,	///<“Á‚É–³‚µ
-	RET_CONT,		///<Ä‹A
-	RET_END,		///<I—¹
+	RET_NON = 0,	///<ç‰¹ã«ç„¡ã—
+	RET_CONT,		///<å†å¸°
+	RET_END,		///<çµ‚äº†
 };
 
 //--------------------------------------------------------------
-///	ƒJƒƒ‰ƒY[ƒ€
+///	ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ 
 //--------------------------------------------------------------
 #define ANAZOOM_IN (NUM_FX32(-150))
 
@@ -81,14 +81,14 @@ const FIELD_OBJ_ACMD_LIST DATA_AnaHeroAcmdTbl_2[];
 
 
 //==============================================================================
-//	‚ ‚È‚Ê‚¯‚Ì‚Ğ‚à@’Eo
+//	ã‚ãªã¬ã‘ã®ã²ã‚‚ã€€è„±å‡º
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯‚Ì•Rg—pƒCƒxƒ“ƒgƒ[ƒNƒZƒbƒg
+ * ç©´æŠœã‘ã®ç´ä½¿ç”¨ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
  * @param	fsys	FIELDSYS_WORK *
- * @param	heap_id	ƒ[ƒN‚ğŠm•Û‚·‚éHEAP ID
- * @retval	void*	ŒŠ”²‚¯‚Ì•R‚Åg—p‚·‚éƒCƒxƒ“ƒgƒ[ƒN *
+ * @param	heap_id	ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿ã™ã‚‹HEAP ID
+ * @retval	void*	ç©´æŠœã‘ã®ç´ã§ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ *
  */
 //--------------------------------------------------------------
 void * EventWorkSet_AnanukeMapChange( FIELDSYS_WORK *fsys, u32 heap_id )
@@ -102,9 +102,9 @@ void * EventWorkSet_AnanukeMapChange( FIELDSYS_WORK *fsys, u32 heap_id )
 
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯‚Ì•Rg—pƒCƒxƒ“ƒg¨ƒ}ƒbƒv‘JˆÚ
+ * ç©´æŠœã‘ã®ç´ä½¿ç”¨ã‚¤ãƒ™ãƒ³ãƒˆâ†’ãƒãƒƒãƒ—é·ç§»
  * @param	event	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL GMEVENT_AnanukeMapChange( GMEVENT_CONTROL *event )
@@ -126,11 +126,11 @@ BOOL GMEVENT_AnanukeMapChange( GMEVENT_CONTROL *event )
 
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯@ŠJn
+ * ç©´æŠœã‘ã€€é–‹å§‹
  * @param	event	GMEVENT_CONTROL
  * @param	fsys	FIELDSYS_WORK
  * @param	work	ANA_WORK
- * @retval	int		RET_NON“™
+ * @retval	int		RET_NONç­‰
  */
 //--------------------------------------------------------------
 static int AnaMove_Start( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *work )
@@ -152,11 +152,11 @@ static int AnaMove_Start( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK 
 
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯@©‹@ƒAƒjƒI—¹‘Ò‚¿ 0
+ * ç©´æŠœã‘ã€€è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡ 0
  * @param	event	GMEVENT_CONTROL
  * @param	fsys	FIELDSYS_WORK
  * @param	work	ANA_WORK
- * @retval	int		RET_NON“™
+ * @retval	int		RET_NONç­‰
  */
 //--------------------------------------------------------------
 static int AnaMove_JikiAnimeWait0( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *work)
@@ -189,11 +189,11 @@ static int AnaMove_JikiAnimeWait0( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, 
 
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯@ƒtƒF[ƒhƒAƒEƒg
+ * ç©´æŠœã‘ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  * @param	event	GMEVENT_CONTROL
  * @param	fsys	FIELDSYS_WORK
  * @param	work	ANA_WORK
- * @retval	int		RET_NON“™
+ * @retval	int		RET_NONç­‰
  */
 //--------------------------------------------------------------
 static int AnaMove_FadeOut( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *work)
@@ -215,11 +215,11 @@ static int AnaMove_FadeOut( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WOR
 
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯@I—¹
+ * ç©´æŠœã‘ã€€çµ‚äº†
  * @param	event	GMEVENT_CONTROL
  * @param	fsys	FIELDSYS_WORK
  * @param	work	ANA_WORK
- * @retval	int		RET_NON“™
+ * @retval	int		RET_NONç­‰
  */
 //--------------------------------------------------------------
 static int AnaMove_End( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *work )
@@ -241,7 +241,7 @@ static int AnaMove_End( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *w
 }
 
 //--------------------------------------------------------------
-///	ŒŠ”²‚¯@“®ìƒe[ƒuƒ‹
+///	ç©´æŠœã‘ã€€å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_AnaMoveTbl[])( GMEVENT_CONTROL *, FIELDSYS_WORK *, ANA_WORK * ) =
 {
@@ -252,15 +252,15 @@ static int (* const DATA_AnaMoveTbl[])( GMEVENT_CONTROL *, FIELDSYS_WORK *, ANA_
 };
 
 //==============================================================================
-//	‚ ‚È‚Ê‚¯‚Ì‚Ğ‚à@oŒ»
+//	ã‚ãªã¬ã‘ã®ã²ã‚‚ã€€å‡ºç¾
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯‚Ì•Rg—pŒã‚ÌoŒ»ƒCƒxƒ“ƒgƒ[ƒNƒZƒbƒg
+ * ç©´æŠœã‘ã®ç´ä½¿ç”¨å¾Œã®å‡ºç¾ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
  * @param	fsys	FIELDSYS_WORK *
- * @param	heap_id	ƒ[ƒN‚ğŠm•Û‚·‚éHEAP ID
+ * @param	heap_id	ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿ã™ã‚‹HEAP ID
  * @param	type	ANATYPE
- * @retval	void*	ŒŠ”²‚¯‚Ì•R‚Åg—p‚·‚éƒCƒxƒ“ƒgƒ[ƒN *
+ * @retval	void*	ç©´æŠœã‘ã®ç´ã§ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ *
  */
 //--------------------------------------------------------------
 void * EventWorkSet_AnanukeMapIn( FIELDSYS_WORK *fsys, u32 heap_id, ANATYPE type )
@@ -274,9 +274,9 @@ void * EventWorkSet_AnanukeMapIn( FIELDSYS_WORK *fsys, u32 heap_id, ANATYPE type
 
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯‚Ì•Rg—pŒãƒ}ƒbƒvoŒ»ƒCƒxƒ“ƒg
+ * ç©´æŠœã‘ã®ç´ä½¿ç”¨å¾Œãƒãƒƒãƒ—å‡ºç¾ã‚¤ãƒ™ãƒ³ãƒˆ
  * @param	event	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL GMEVENT_AnanukeMapIn( GMEVENT_CONTROL *event )
@@ -314,11 +314,11 @@ static void AnaInMove_FnoteMake( FIELDSYS_WORK * fsys, ANA_WORK * work )
 
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯ƒ}ƒbƒvoŒ»@ŠJn
+ * ç©´æŠœã‘ãƒãƒƒãƒ—å‡ºç¾ã€€é–‹å§‹
  * @param	event	GMEVENT_CONTROL
  * @param	fsys	FIELDSYS_WORK
  * @param	work	ANA_WORK
- * @retval	int		RET_NON“™
+ * @retval	int		RET_NONç­‰
  */
 //--------------------------------------------------------------
 static int AnaInMove_Start( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *work )
@@ -343,11 +343,11 @@ static int AnaInMove_Start( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WOR
 
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯ƒ}ƒbƒvoŒ»@ƒzƒƒCƒgƒCƒ“
+ * ç©´æŠœã‘ãƒãƒƒãƒ—å‡ºç¾ã€€ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
  * @param	event	GMEVENT_CONTROL
  * @param	fsys	FIELDSYS_WORK
  * @param	work	ANA_WORK
- * @retval	int		RET_NON“™
+ * @retval	int		RET_NONç­‰
  */
 //--------------------------------------------------------------
 static int AnaInMove_WhiteIn( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *work)
@@ -369,11 +369,11 @@ static int AnaInMove_WhiteIn( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_W
 
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯@©‹@ƒAƒjƒI—¹‘Ò‚¿ 1
+ * ç©´æŠœã‘ã€€è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡ 1
  * @param	event	GMEVENT_CONTROL
  * @param	fsys	FIELDSYS_WORK
  * @param	work	ANA_WORK
- * @retval	int		RET_NON“™
+ * @retval	int		RET_NONç­‰
  */
 //--------------------------------------------------------------
 static int AnaInMove_JikiAnimeWait0(GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *work)
@@ -397,11 +397,11 @@ static int AnaInMove_JikiAnimeWait0(GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys,
 
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯@©‹@ƒAƒjƒI—¹‘Ò‚¿ 1
+ * ç©´æŠœã‘ã€€è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡ 1
  * @param	event	GMEVENT_CONTROL
  * @param	fsys	FIELDSYS_WORK
  * @param	work	ANA_WORK
- * @retval	int		RET_NON“™
+ * @retval	int		RET_NONç­‰
  */
 //--------------------------------------------------------------
 static int AnaInMove_JikiAnimeWait1(GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *work)
@@ -420,7 +420,7 @@ static int AnaInMove_JikiAnimeWait1(GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys,
 }
 
 //--------------------------------------------------------------
-///	ŒŠ”²‚¯@“®ìƒe[ƒuƒ‹
+///	ç©´æŠœã‘ã€€å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_AnaInMoveTbl[])( GMEVENT_CONTROL *, FIELDSYS_WORK *, ANA_WORK * ) =
 {
@@ -431,16 +431,16 @@ static int (* const DATA_AnaInMoveTbl[])( GMEVENT_CONTROL *, FIELDSYS_WORK *, AN
 };
 
 //==============================================================================
-//	‚ ‚È‚ğ‚Ù‚é@’Eo
-//	ƒJƒbƒgƒCƒ“ŒÄ‚Ño‚µ¨ŒŠ”²‚¯“®ì‚Ö
+//	ã‚ãªã‚’ã»ã‚‹ã€€è„±å‡º
+//	ã‚«ãƒƒãƒˆã‚¤ãƒ³å‘¼ã³å‡ºã—â†’ç©´æŠœã‘å‹•ä½œã¸
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ŒŠ‚ğŒ@‚é—pƒCƒxƒ“ƒgƒ[ƒNƒZƒbƒg
+ * ç©´ã‚’æ˜ã‚‹ç”¨ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
  * @param	fsys	FIELDSYS_WORK *
- * @param	param	ƒJƒbƒgƒCƒ“‚É•\¦‚·‚éPOKEMON_PARAM
- * @param	heap_id	ƒ[ƒN‚ğŠm•Û‚·‚éHEAP ID
- * @retval	void*	ŒŠ‚ğŒ@‚é‚Åg—p‚·‚éƒCƒxƒ“ƒgƒ[ƒN *
+ * @param	param	ã‚«ãƒƒãƒˆã‚¤ãƒ³ã«è¡¨ç¤ºã™ã‚‹POKEMON_PARAM
+ * @param	heap_id	ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿ã™ã‚‹HEAP ID
+ * @retval	void*	ç©´ã‚’æ˜ã‚‹ã§ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ *
  */
 //--------------------------------------------------------------
 void * EventWorkSet_AnawohoruMapChange( FIELDSYS_WORK *fsys, POKEMON_PARAM *param, u32 heap_id)
@@ -455,9 +455,9 @@ void * EventWorkSet_AnawohoruMapChange( FIELDSYS_WORK *fsys, POKEMON_PARAM *para
 
 //--------------------------------------------------------------
 /**
- * ŒŠ‚ğŒ@‚ég—pƒCƒxƒ“ƒg¨ƒ}ƒbƒv‘JˆÚ
+ * ç©´ã‚’æ˜ã‚‹ä½¿ç”¨ã‚¤ãƒ™ãƒ³ãƒˆâ†’ãƒãƒƒãƒ—é·ç§»
  * @param	event	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL GMEVENT_AnawohoruMapChange( GMEVENT_CONTROL *event )
@@ -479,11 +479,11 @@ BOOL GMEVENT_AnawohoruMapChange( GMEVENT_CONTROL *event )
 
 //--------------------------------------------------------------
 /**
- * ŒŠŒ@‚è@ƒJƒbƒgƒCƒ“ŠJn
+ * ç©´æ˜ã‚Šã€€ã‚«ãƒƒãƒˆã‚¤ãƒ³é–‹å§‹
  * @param	event	GMEVENT_CONTROL
  * @param	fsys	FIELDSYS_WORK
  * @param	work	ANA_WORK
- * @retval	int		RET_NON“™
+ * @retval	int		RET_NONç­‰
  */
 //--------------------------------------------------------------
 static int AnahoriMove_CutInStart( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *work )
@@ -496,11 +496,11 @@ static int AnahoriMove_CutInStart( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, 
 
 //--------------------------------------------------------------
 /**
- * ŒŠŒ@‚è@ƒJƒbƒgƒCƒ“I—¹‘Ò‚¿
+ * ç©´æ˜ã‚Šã€€ã‚«ãƒƒãƒˆã‚¤ãƒ³çµ‚äº†å¾…ã¡
  * @param	event	GMEVENT_CONTROL
  * @param	fsys	FIELDSYS_WORK
  * @param	work	ANA_WORK
- * @retval	int		RET_NON“™
+ * @retval	int		RET_NONç­‰
  */
 //--------------------------------------------------------------
 static int AnahoriMove_CutInWait( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, ANA_WORK *work )
@@ -515,7 +515,7 @@ static int AnahoriMove_CutInWait( GMEVENT_CONTROL *event, FIELDSYS_WORK *fsys, A
 }
 
 //--------------------------------------------------------------
-///	ŒŠŒ@‚è@“®ìƒe[ƒuƒ‹
+///	ç©´æ˜ã‚Šã€€å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_AnahoriMoveTbl[])( GMEVENT_CONTROL *, FIELDSYS_WORK *, ANA_WORK * ) =
 {
@@ -528,16 +528,16 @@ static int (* const DATA_AnahoriMoveTbl[])( GMEVENT_CONTROL *, FIELDSYS_WORK *, 
 };
 
 //==============================================================================
-//	ƒeƒŒƒ|[ƒg
-//	À“®ì•”•ª‚ÍŒŠŒ@‚è
+//	ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ
+//	å®Ÿå‹•ä½œéƒ¨åˆ†ã¯ç©´æ˜ã‚Š
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒeƒŒƒ|[ƒg—pƒCƒxƒ“ƒgƒ[ƒNƒZƒbƒg
+ * ãƒ†ãƒ¬ãƒãƒ¼ãƒˆç”¨ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
  * @param	fsys	FIELDSYS_WORK *
- * @param	param	ƒJƒbƒgƒCƒ“‚É•\¦‚·‚éPOKEMON_PARAM
- * @param	heap_id	ƒ[ƒN‚ğŠm•Û‚·‚éHEAP ID
- * @retval	void*	ƒeƒŒƒ|[ƒg‚Åg—p‚·‚éƒCƒxƒ“ƒgƒ[ƒN *
+ * @param	param	ã‚«ãƒƒãƒˆã‚¤ãƒ³ã«è¡¨ç¤ºã™ã‚‹POKEMON_PARAM
+ * @param	heap_id	ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿ã™ã‚‹HEAP ID
+ * @retval	void*	ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã§ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ *
  */
 //--------------------------------------------------------------
 void * EventWorkSet_TeleportMapChange( FIELDSYS_WORK *fsys, POKEMON_PARAM *param, u32 heap_id)
@@ -552,9 +552,9 @@ void * EventWorkSet_TeleportMapChange( FIELDSYS_WORK *fsys, POKEMON_PARAM *param
 
 //--------------------------------------------------------------
 /**
- * ƒeƒŒƒ|[ƒgg—pƒCƒxƒ“ƒg¨ƒ}ƒbƒv‘JˆÚ
+ * ãƒ†ãƒ¬ãƒãƒ¼ãƒˆä½¿ç”¨ã‚¤ãƒ™ãƒ³ãƒˆâ†’ãƒãƒƒãƒ—é·ç§»
  * @param	event	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL GMEVENT_TeleportMapChange( GMEVENT_CONTROL *event )
@@ -575,14 +575,14 @@ BOOL GMEVENT_TeleportMapChange( GMEVENT_CONTROL *event )
 }
 
 //==============================================================================
-//	ŒŠ”²‚¯@ƒp[ƒc
+//	ç©´æŠœã‘ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ[ƒNŠm•Û
- * @param	heap_id		ƒq[ƒvID
- * @param	size		Šm•ÛƒTƒCƒY
- * @retval	void*		Šm•Û‚µ‚½—Ìˆæ
+ * ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
+ * @param	size		ç¢ºä¿ã‚µã‚¤ã‚º
+ * @retval	void*		ç¢ºä¿ã—ãŸé ˜åŸŸ
  */
 //--------------------------------------------------------------
 static void * Anap_AllocMemory( u32 heap_id, u32 size )
@@ -593,12 +593,12 @@ static void * Anap_AllocMemory( u32 heap_id, u32 size )
 	return( mem );
 }
 
-#if 0		//ƒI[ƒo[ƒŒƒC‚ÅƒAƒNƒZƒX•s‰Â‚É‚È‚é‚Ì‚ÅAíœ	20060712 saito
+#if 0		//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã§ã‚¢ã‚¯ã‚»ã‚¹ä¸å¯ã«ãªã‚‹ã®ã§ã€å‰Šé™¤	20060712 saito
 //--------------------------------------------------------------
 /**
- * ŒŠ”²‚¯@ŒŠŒ@‚è‚ªo—ˆ‚é‚©‚Ç‚¤‚©
- * @param	zone_id	ƒ][ƒ“ID
- * @retval	BOOL	TRUE=‰Â”\ FALSE=•s‰Â
+ * ç©´æŠœã‘ã€€ç©´æ˜ã‚ŠãŒå‡ºæ¥ã‚‹ã‹ã©ã†ã‹
+ * @param	zone_id	ã‚¾ãƒ¼ãƒ³ID
+ * @retval	BOOL	TRUE=å¯èƒ½ FALSE=ä¸å¯
  */
 //--------------------------------------------------------------
 BOOL EventCheck_Ananuke( int zone_id )
@@ -616,7 +616,7 @@ BOOL EventCheck_Ananuke( int zone_id )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-//	ŒŠ”²‚¯@©‹@ƒAƒjƒ 0
+//	ç©´æŠœã‘ã€€è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ 0
 //--------------------------------------------------------------
 static const FIELD_OBJ_ACMD_LIST DATA_AnaHeroAcmdTbl_0[] =
 {
@@ -640,7 +640,7 @@ static const FIELD_OBJ_ACMD_LIST DATA_AnaHeroAcmdTbl_0[] =
 };
 
 //--------------------------------------------------------------
-//	ŒŠ”²‚¯@©‹@ƒAƒjƒ 1
+//	ç©´æŠœã‘ã€€è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ 1
 //--------------------------------------------------------------
 static const FIELD_OBJ_ACMD_LIST DATA_AnaHeroAcmdTbl_1[] =
 {
@@ -652,7 +652,7 @@ static const FIELD_OBJ_ACMD_LIST DATA_AnaHeroAcmdTbl_1[] =
 };
 
 //--------------------------------------------------------------
-///	ŒŠ”²‚¯@©‹@ƒAƒjƒ 2
+///	ç©´æŠœã‘ã€€è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ 2
 //--------------------------------------------------------------
 static const FIELD_OBJ_ACMD_LIST DATA_AnaHeroAcmdTbl_2[] =
 {

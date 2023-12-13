@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>SVC_WaitVBlankIntr</TITLE>
@@ -9,52 +9,52 @@
 </HEAD>
 <BODY>
 <H1 align="left">SVC_WaitVBlankIntr</H1>
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/os/common/systemCall.h&gt;</CODE></PRE>
   <PRE><CODE>void SVC_WaitVBlankIntr( void );</CODE></PRE>
 </DL>
-<H2>����</H2>
-<P>�Ȃ��B</P>
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
-<H2>����</H2>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
 <P>
-�u�u�����N���荞�݂���������܂ő҂��܂��B<BR>
-�󂫎��Ԃ� CPU ��<FONT color="red">���̃X���b�h�ɐ؂�ւ��</FONT>�悤�ɂ��邽�߁A
-���̊֐����Ăяo�����ۂɂ� <A href="../os/system/OS_WaitVBlankIntr.html"><CODE>OS_WaitVBlankIntr</CODE></A> �֐����Ăяo����܂��B
-���̂��߁A�ʏ�̓V�X�e���R�[���͎g�p����܂��񂪁A���ϐ� <CODE>NITRO_SVC_WAITVBLANK_COMPATIBLE</CODE> ��
-��`����ƃV�X�e���R�[�����g�p�����悤�ɂȂ�܂��B
+Ｖブランク割り込みが発生するまで待ちます。<BR>
+空き時間に CPU が<FONT color="red">他のスレッドに切り替わる</FONT>ようにするため、
+この関数を呼び出した際には <A href="../os/system/OS_WaitVBlankIntr.html"><CODE>OS_WaitVBlankIntr</CODE></A> 関数が呼び出されます。
+このため、通常はシステムコールは使用されませんが、環境変数 <CODE>NITRO_SVC_WAITVBLANK_COMPATIBLE</CODE> を
+定義するとシステムコールが使用されるようになります。
 </P>
 
-<H3>�V�X�e���R�[�����g�p����ꍇ</H3>
+<H3>システムコールを使用する場合</H3>
 <P>
-�u�u�����N���荞�݂���������܂� Halt ��Ԃő҂������܂��B<BR>
-���Ȃ킿�A�󂫎��Ԃł����Ă� CPU ��<FONT color="red">���̃X���b�h�ɐ؂�ւ�邱�Ƃ͂���܂���</FONT>�B
-�󂫎��Ԃɑ��̃X���b�h�ɐ؂芷�������ꍇ�� <A href="../os/system/OS_WaitVBlankIntr.html"><CODE>OS_WaitVBlankIntr</CODE></A> �֐����g���ĉ������B
+Ｖブランク割り込みが発生するまで Halt 状態で待ち続けます。<BR>
+すなわち、空き時間であっても CPU が<FONT color="red">他のスレッドに切り替わることはありません</FONT>。
+空き時間に他のスレッドに切り換えたい場合は <A href="../os/system/OS_WaitVBlankIntr.html"><CODE>OS_WaitVBlankIntr</CODE></A> 関数を使って下さい。
 </P>
 <P>
-�u�u�����N���荞�݃n���h���ɂ� <CODE><A href="../os/irq/OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag</A>( OS_IE_V_BLANK )</CODE> ��
-�u�u�����N�̃`�F�b�N�t���O���Z�b�g���Ă��������B���̊֐������ł͂h�q�p���荞�݌�ɂ��̃t���O���Z�b�g���ꂽ���Ƃłu�u�����N�����������ƌ��Ȃ��܂��B
+Ｖブランク割り込みハンドラにて <CODE><A href="../os/irq/OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag</A>( OS_IE_V_BLANK )</CODE> で
+Ｖブランクのチェックフラグをセットしてください。この関数内部ではＩＲＱ割り込み後にこのフラグがセットされたことでＶブランクが発生したと見なします。
 </P>
 <P>
-�����̊��荞�݂𕹗p�������A<A href="../os/system/OS_Halt.html"><CODE>OS_Halt</CODE></A> �֐����J��Ԃ��Ăяo�����ꍇ�Ɣ�ׂăV�X�e���R�[���Ăяo���̃I�[�o�[�w�b�h���y�����邱�Ƃ��ł��܂��B
+複数の割り込みを併用した時、<A href="../os/system/OS_Halt.html"><CODE>OS_Halt</CODE></A> 関数が繰り返し呼び出される場合と比べてシステムコール呼び出しのオーバーヘッドを軽減することができます。
 </P>
 <P>
-�����̃X���b�h�œ������ɂ��̊֐����Ăяo�����ꍇ�A�P��̂u�u�����N�ɑ΂��āA�����ꂩ�P�̃X���b�h���������A�o���܂��̂ŁA���ӂ��K�v�ł��B
+複数のスレッドで同時期にこの関数を呼び出した場合、１回のＶブランクに対して、いずれか１つのスレッドだけが復帰出来ますので、注意が必要です。
 </P>
 
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE><A href="../os/irq/OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag</A>, <A href="../os/system/OS_Halt.html">OS_Halt</A><BR>
 <A href="../os/system/OS_WaitVBlankIntr.html">OS_WaitVBlankIntr</A></CODE></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/11/21 <CODE>OS_WaitVBlankIntr</CODE> �֐��Ăяo���ɒu������邱�Ƃ�ǋL<BR>
-2005/10/07 ���̃X���b�h�ɐ؂�ւ��Ȃ����Ƃ�ǋL<BR>
-2004/11/02 <CODE>SVC_WaitIntr()</CODE> �̋L�q���폜<BR>
-2004/04/22 �����X���b�h�Ŏg�p����ꍇ�̒��ӂ�ǉ�<BR>
-2004/01/18 ����
+2005/11/21 <CODE>OS_WaitVBlankIntr</CODE> 関数呼び出しに置換されることを追記<BR>
+2005/10/07 他のスレッドに切り替わらないことを追記<BR>
+2004/11/02 <CODE>SVC_WaitIntr()</CODE> の記述を削除<BR>
+2004/04/22 複数スレッドで使用する場合の注意を追加<BR>
+2004/01/18 初版
 </P>
 </BODY>
 </HTML>

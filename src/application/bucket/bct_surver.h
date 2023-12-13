@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		bct_surver.h
- *	@brief		ƒT[ƒo[
+ *	@brief		ã‚µãƒ¼ãƒãƒ¼
  *	@author		tomoya takahashi
  *	@data		2007.06.19
  *
@@ -16,48 +16,48 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒT[ƒo[ƒVƒXƒeƒ€
+///	ã‚µãƒ¼ãƒãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _BCT_SURVER	BCT_SURVER;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 extern BCT_SURVER* BCT_SURVER_Init( u32 heapID, u32 timeover, u32 comm_num, const BCT_GAMEDATA* cp_gamedata );
 extern void BCT_SURVER_Delete( BCT_SURVER* p_wk );
 
-// ƒƒCƒ“ŠÖ”
-// FALSE‚ª‹A‚Á‚Ä‚«‚½‚çI—¹
-// I—¹–½—ß‚ÆƒXƒRƒA‚ğ‚İ‚ñ‚È‚É‘—‚é
+// ãƒ¡ã‚¤ãƒ³é–¢æ•°
+// FALSEãŒå¸°ã£ã¦ããŸã‚‰çµ‚äº†
+// çµ‚äº†å‘½ä»¤ã¨ã‚¹ã‚³ã‚¢ã‚’ã¿ã‚“ãªã«é€ã‚‹
 extern BOOL BCT_SURVER_Main( BCT_SURVER* p_wk );
 
-// ƒQ[ƒ€ƒŒƒxƒ‹‚Ì•ÏX‚ğƒ`ƒFƒbƒN
-extern BOOL BCT_SURVER_CheckGameLevelChange( const BCT_SURVER* cp_wk );	// •ÏX‚ª‚ ‚Á‚½‚©H
-extern void BCT_SURVER_ClearGameLevelChange( BCT_SURVER* p_wk );		// ƒtƒ‰ƒO‚ğƒNƒŠƒA
-extern u32	BCT_SURVER_GetGameLevel( const BCT_SURVER* cp_wk );			// ¡‚ÌƒŒƒxƒ‹‚ğæ“¾
+// ã‚²ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«ã®å¤‰æ›´ã‚’ãƒã‚§ãƒƒã‚¯
+extern BOOL BCT_SURVER_CheckGameLevelChange( const BCT_SURVER* cp_wk );	// å¤‰æ›´ãŒã‚ã£ãŸã‹ï¼Ÿ
+extern void BCT_SURVER_ClearGameLevelChange( BCT_SURVER* p_wk );		// ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢
+extern u32	BCT_SURVER_GetGameLevel( const BCT_SURVER* cp_wk );			// ä»Šã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
 
-// –Ø‚ÌÀ‚ª“ü‚Á‚½î•ñ‚ğİ’è
+// æœ¨ã®å®ŸãŒå…¥ã£ãŸæƒ…å ±ã‚’è¨­å®š
 extern void BCT_SURVER_SetNutData( BCT_SURVER* p_wk, const BCT_NUT_COMM* cp_data, u32 plno );
 
-//  ‚İ‚ñ‚È‚ÌƒXƒRƒA‚ğûW
+//  ã¿ã‚“ãªã®ã‚¹ã‚³ã‚¢ã‚’åé›†
 extern void BCT_SURVER_ScoreSet( BCT_SURVER* p_wk, u32 score, u32 plno );
 extern BOOL BCT_SURVER_ScoreAllUserGetCheck( const BCT_SURVER* cp_wk );
 extern void BCT_SURVER_ScoreGet( BCT_SURVER* p_wk, BCT_SCORE_COMM* p_data );
 
-// ƒJƒEƒ“ƒgƒ_ƒEƒ“‚ği‚ß‚é‚©İ’è
+// ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚’é€²ã‚ã‚‹ã‹è¨­å®š
 extern void BCT_SURVER_SetCountDown( BCT_SURVER* p_wk, BOOL flag );
 
 #endif		// __BCT_SURVER_H__

@@ -1,10 +1,10 @@
 //=============================================================================
 /**
  * @file	comm_command_contest_fld.c
- * @brief	comm_command_contest.c‚©‚çƒtƒB[ƒ‹ƒhƒ}ƒbƒv—Ìˆæ‚ÉƒI[ƒo[ƒŒƒC‚µ‚Ä‚à–â‘è‚È‚¢‚à‚Ì‚ğ
- *			”²‚«o‚µ‚½ƒtƒ@ƒCƒ‹‚Å‚·B
+ * @brief	comm_command_contest.cã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—é ˜åŸŸã«ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã—ã¦ã‚‚å•é¡Œãªã„ã‚‚ã®ã‚’
+ *			æŠœãå‡ºã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚
  * @author	matsuda
- * @date    2007.12.04(‰Î)
+ * @date    2007.12.04(ç«)
  */
 //=============================================================================
 #include "common.h"
@@ -25,19 +25,19 @@
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 typedef struct{
-	u8 my_version;					///<©•ª‚ÌƒRƒ“ƒeƒXƒgƒo[ƒWƒ‡ƒ“
-	u8 my_breeder_no;				///<©•ª‚ÌƒuƒŠ[ƒ_[”Ô†
-	u8 theme;						///<ƒCƒ[ƒWƒNƒŠƒbƒv‚Ìƒe[ƒ}
+	u8 my_version;					///<è‡ªåˆ†ã®ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	u8 my_breeder_no;				///<è‡ªåˆ†ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+	u8 theme;						///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã®ãƒ†ãƒ¼ãƒ
 	
 	u8 dummy[1];
 }CCSEND_FASTPARAM;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static int ServerNoCheck(CCSEND_FASTPARAM *ccfp[CC_NETID_MAX], int player_num, u8 *version);
 
@@ -47,12 +47,12 @@ static int ServerNoCheck(CCSEND_FASTPARAM *ccfp[CC_NETID_MAX], int player_num, u
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   Å‰‚ÉŒğŠ·‚·‚éƒf[ƒ^’ÊMóMˆ—
+ * @brief   æœ€åˆã«äº¤æ›ã™ã‚‹ãƒ‡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommContestRecvFastParam(int id_no,int size,void *pData,void *work)
@@ -76,16 +76,16 @@ void CommContestRecvFastParam(int id_no,int size,void *pData,void *work)
 		consys->c_game.server_version = version;
 		consys->c_game.theme = ccfp[consys->c_game.server_no]->theme;
 		
-		//OS_TPrintf("e‚ÌnetID%d\n", consys->c_game.server_no);
-		//OS_TPrintf("e‚ÌƒCƒ[ƒWƒNƒŠƒbƒvƒe[ƒ}%d\n", consys->c_game.theme);
+		//OS_TPrintf("è¦ªã®netIDï¼%d\n", consys->c_game.server_no);
+		//OS_TPrintf("è¦ªã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ†ãƒ¼ãƒï¼%d\n", consys->c_game.theme);
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Å‰‚ÉŒğŠ·‚·‚éƒf[ƒ^‘—M–½—ß
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @brief   æœ€åˆã«äº¤æ›ã™ã‚‹ãƒ‡ãƒ¼ã‚¿é€ä¿¡å‘½ä»¤
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommContestSendFastParam(CONTEST_SYSTEM *consys)
@@ -105,12 +105,12 @@ BOOL CommContestSendFastParam(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[‚Æ‚È‚éNetID‚ğæ“¾‚·‚é
+ * @brief   ã‚µãƒ¼ãƒãƒ¼ã¨ãªã‚‹NetIDã‚’å–å¾—ã™ã‚‹
  *
  * @param   ccfp[CC_NETID_MAX]		
- * @param   player_num				ƒvƒŒƒCƒ„[l”
+ * @param   player_num				ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼äººæ•°
  *
- * @retval  ƒT[ƒo[‚Æ‚È‚é‘ä‚ÌƒlƒbƒgID
+ * @retval  ã‚µãƒ¼ãƒãƒ¼ã¨ãªã‚‹å°ã®ãƒãƒƒãƒˆID
  */
 //--------------------------------------------------------------
 static int ServerNoCheck(CCSEND_FASTPARAM *ccfp[CC_NETID_MAX], int player_num, u8 *version)
@@ -133,12 +133,12 @@ static int ServerNoCheck(CCSEND_FASTPARAM *ccfp[CC_NETID_MAX], int player_num, u
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^’ÊMóMˆ—
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommContestRecvPokemonParam(int id_no,int size,void *pData,void *work)
@@ -155,8 +155,8 @@ void CommContestRecvPokemonParam(int id_no,int size,void *pData,void *work)
 
 	//OS_TPrintf("pp_size = %d, size = %d\n", pp_size, size);
 	//OS_TPrintf("pData[0] = %d\n", ((u8*)pData)[0]);
-	//OS_TPrintf("pp‚Ìbreeder_no = %d\n", breeder_no);
-	//OS_TPrintf("pp‚ÌÅŒãƒf[ƒ^ = %d\n", pp_buf[pp_size - 1]);
+	//OS_TPrintf("ppã®breeder_no = %d\n", breeder_no);
+	//OS_TPrintf("ppã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", pp_buf[pp_size - 1]);
 
 	MI_CpuCopy8(pData, consys->c_game.pp[breeder_no], pp_size);
 	
@@ -165,13 +165,13 @@ void CommContestRecvPokemonParam(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‘—M–½—ß
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€ä¿¡å‘½ä»¤
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		¡‚©‚ç‘—‚éƒ|ƒPƒ‚ƒ“‚ğŠ‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ä»Šã‹ã‚‰é€ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’æ‰€æŒã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommContestSendPokePara(CONTEST_SYSTEM *consys, int breeder_no, const POKEMON_PARAM *pp)
@@ -187,7 +187,7 @@ BOOL CommContestSendPokePara(CONTEST_SYSTEM *consys, int breeder_no, const POKEM
 	
 	//OS_TPrintf("pp_size = %d\n", pp_size);
 	//OS_TPrintf("breeder_no = %d\n", pp_buf[pp_size]);
-	//OS_TPrintf("‘—MŒ³pp‚ÌÅŒãƒf[ƒ^ = %d\n", pp_buf[pp_size - 1]);
+	//OS_TPrintf("é€ä¿¡å…ƒppã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", pp_buf[pp_size - 1]);
 	if(CommSendData(CC_POKEPARA_DATA, pp_buf, pp_size + 1) == TRUE){
 //		consys->recieve_count = 0;
 		ret = TRUE;
@@ -205,12 +205,12 @@ BOOL CommContestSendPokePara(CONTEST_SYSTEM *consys, int breeder_no, const POKEM
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^(‘Sˆõ•ª)’ÊMóMˆ—
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(å…¨å“¡åˆ†)é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommContestRecvPokemonParamAll(int id_no,int size,void *pData,void *work)
@@ -227,7 +227,7 @@ void CommContestRecvPokemonParamAll(int id_no,int size,void *pData,void *work)
 
 	//OS_TPrintf("all_size = %d, size = %d\n", all_size, size);
 	//OS_TPrintf("pData[0] = %d\n", ((u8*)pData)[0]);
-	//OS_TPrintf("pp‚ÌÅŒãƒf[ƒ^ = %d\n", pp_buf[all_size - 1]);
+	//OS_TPrintf("ppã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", pp_buf[all_size - 1]);
 
 	for(i = 0; i < BREEDER_MAX; i++){
 		MI_CpuCopy8(&pp_buf[pp_size * i], consys->c_game.pp[i], pp_size);
@@ -238,14 +238,14 @@ void CommContestRecvPokemonParamAll(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^(‘Sˆõ•ª)‘—M–½—ß
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(å…¨å“¡åˆ†)é€ä¿¡å‘½ä»¤
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  *
- * ¦eê—p–½—ß‚Å‚·B
+ * â€»è¦ªå°‚ç”¨å‘½ä»¤ã§ã™ã€‚
  */
 //--------------------------------------------------------------
 BOOL CommContestSendPokeParaAll(CONTEST_SYSTEM *consys, POKEMON_PARAM **pp)
@@ -265,7 +265,7 @@ BOOL CommContestSendPokeParaAll(CONTEST_SYSTEM *consys, POKEMON_PARAM **pp)
 	
 	//OS_TPrintf("all_size = %d\n", all_size);
 	//OS_TPrintf("breeder_no = %d\n", pp_buf[all_size]);
-	//OS_TPrintf("‘—MŒ³pp‚ÌÅŒãƒf[ƒ^ = %d\n", pp_buf[all_size - 1]);
+	//OS_TPrintf("é€ä¿¡å…ƒppã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", pp_buf[all_size - 1]);
 	if(CommSendHugeData(CC_POKEPARA_ALL_DATA, pp_buf, all_size) == TRUE){
 //		consys->recieve_count = 0;
 		ret = TRUE;
@@ -283,12 +283,12 @@ BOOL CommContestSendPokeParaAll(CONTEST_SYSTEM *consys, POKEMON_PARAM **pp)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒf[ƒ^’ÊMóMˆ—
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommContestRecvBreederData(int id_no,int size,void *pData,void *work)
@@ -305,8 +305,8 @@ void CommContestRecvBreederData(int id_no,int size,void *pData,void *work)
 
 	//OS_TPrintf("bd_size = %d, size = %d\n", bd_size, size);
 	//OS_TPrintf("pData[0] = %d\n", ((u8*)pData)[0]);
-	//OS_TPrintf("pp‚Ìbreeder_no = %d\n", breeder_no);
-	//OS_TPrintf("pp‚ÌÅŒãƒf[ƒ^ = %d\n", bd_buf[bd_size - 1]);
+	//OS_TPrintf("ppã®breeder_no = %d\n", breeder_no);
+	//OS_TPrintf("ppã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", bd_buf[bd_size - 1]);
 
 	MI_CpuCopy8(pData, &consys->c_game.bd[breeder_no], bd_size);
 	
@@ -315,13 +315,13 @@ void CommContestRecvBreederData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒf[ƒ^‘—M–½—ß
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿é€ä¿¡å‘½ä»¤
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		¡‚©‚ç‘—‚éƒ|ƒPƒ‚ƒ“‚ğŠ‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   bd				‘—M‚·‚éƒuƒŠ[ƒ_[ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ä»Šã‹ã‚‰é€ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’æ‰€æŒã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   bd				é€ä¿¡ã™ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommContestSendBreederData(CONTEST_SYSTEM *consys, int breeder_no, const BREEDER_DATA *bd)
@@ -337,7 +337,7 @@ BOOL CommContestSendBreederData(CONTEST_SYSTEM *consys, int breeder_no, const BR
 	
 	//OS_TPrintf("bd_size = %d\n", bd_size);
 	//OS_TPrintf("breeder_no = %d\n", bd_buf[bd_size]);
-	//OS_TPrintf("‘—MŒ³bd‚ÌÅŒãƒf[ƒ^ = %d\n", bd_buf[bd_size - 1]);
+	//OS_TPrintf("é€ä¿¡å…ƒbdã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", bd_buf[bd_size - 1]);
 	if(CommSendData(CC_BREEDER_DATA, bd_buf, bd_size + 1) == TRUE){
 //		consys->recieve_count = 0;
 		ret = TRUE;
@@ -355,12 +355,12 @@ BOOL CommContestSendBreederData(CONTEST_SYSTEM *consys, int breeder_no, const BR
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒf[ƒ^’ÊMóMˆ—
+ * @brief   å¯©åˆ¤ãƒ‡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommContestRecvJudgeData(int id_no,int size,void *pData,void *work)
@@ -375,7 +375,7 @@ void CommContestRecvJudgeData(int id_no,int size,void *pData,void *work)
 
 	//OS_TPrintf("jd_all_size = %d, size = %d\n", jd_all_size, size);
 	//OS_TPrintf("pData[0] = %d\n", ((u8*)pData)[0]);
-	//OS_TPrintf("jd‚ÌÅŒãƒf[ƒ^ = %d\n", jd_buf[jd_all_size - 1]);
+	//OS_TPrintf("jdã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", jd_buf[jd_all_size - 1]);
 
 	for(i = 0; i < JUDGE_MAX; i++){
 		MI_CpuCopy8(&jd_buf[sizeof(JUDGE_DATA) * i], &consys->c_game.jd[i], sizeof(JUDGE_DATA));
@@ -387,13 +387,13 @@ void CommContestRecvJudgeData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»ƒf[ƒ^‘—M–½—ß
+ * @brief   å¯©åˆ¤ãƒ‡ãƒ¼ã‚¿é€ä¿¡å‘½ä»¤
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		¡‚©‚ç‘—‚éƒ|ƒPƒ‚ƒ“‚ğŠ‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   jd				R”»ƒf[ƒ^
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ä»Šã‹ã‚‰é€ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’æ‰€æŒã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   jd				å¯©åˆ¤ãƒ‡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommContestSendJudgeData(CONTEST_SYSTEM *consys, int breeder_no, const JUDGE_DATA *jd)
@@ -414,7 +414,7 @@ BOOL CommContestSendJudgeData(CONTEST_SYSTEM *consys, int breeder_no, const JUDG
 	jd_buf[jd_all_size - 1] = consys->c_game.special_judge_no;
 	
 	//OS_TPrintf("jd_all_size = %d\n", jd_all_size);
-	//OS_TPrintf("‘—MŒ³jd‚ÌÅŒãƒf[ƒ^ = %d\n", jd_buf[jd_all_size - 1]);
+	//OS_TPrintf("é€ä¿¡å…ƒjdã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", jd_buf[jd_all_size - 1]);
 	if(CommSendData(CC_JUDGE_DATA, jd_buf, jd_all_size) == TRUE){
 //		consys->recieve_count = 0;
 		ret = TRUE;
@@ -432,12 +432,12 @@ BOOL CommContestSendJudgeData(CONTEST_SYSTEM *consys, int breeder_no, const JUDG
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[–¼’ÊMóMˆ—
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼åé€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommContestRecvNameData(int id_no,int size,void *pData,void *work)
@@ -453,7 +453,7 @@ void CommContestRecvNameData(int id_no,int size,void *pData,void *work)
 	name_size = recieve_buf[1];
 	name_code = (STRCODE *)(&recieve_buf[head_size]);
 	
-	//OS_TPrintf("–¼‘OóMFƒuƒŠ[ƒ_[No=%dA–¼‘OƒTƒCƒY=%d\n", breeder_no, name_size);
+	//OS_TPrintf("åå‰å—ä¿¡ï¼šãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No=%dã€åå‰ã‚µã‚¤ã‚º=%d\n", breeder_no, name_size);
 	STRBUF_Clear(consys->c_game.breeder_name_str[breeder_no]);
 	STRBUF_SetStringCode(consys->c_game.breeder_name_str[breeder_no], name_code);
 	
@@ -462,13 +462,13 @@ void CommContestRecvNameData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[–¼‘—M–½—ß
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼åé€ä¿¡å‘½ä»¤
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		¡‚©‚ç‘—‚é–¼‘O‚ğŠ‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚ÌNO
- * @param   name			‘—M‚·‚éƒuƒŠ[ƒ_[–¼
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ä»Šã‹ã‚‰é€ã‚‹åå‰ã‚’æ‰€æŒã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®NO
+ * @param   name			é€ä¿¡ã™ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼å
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommContestSendNameData(CONTEST_SYSTEM *consys, int breeder_no, const STRBUF *name)
@@ -487,10 +487,10 @@ BOOL CommContestSendNameData(CONTEST_SYSTEM *consys, int breeder_no, const STRBU
 	MI_CpuCopy8(name_code, &trans_buf[head_size], name_size);
 	trans_buf[0] = breeder_no;
 	trans_buf[1] = name_size;
-	trans_buf[2] = 0;	//ˆê‰4ƒoƒCƒg‹«ŠEƒ_ƒ~[
-	trans_buf[3] = 0;	//ˆê‰4ƒoƒCƒg‹«ŠEƒ_ƒ~[
+	trans_buf[2] = 0;	//ä¸€å¿œ4ãƒã‚¤ãƒˆå¢ƒç•Œãƒ€ãƒŸãƒ¼
+	trans_buf[3] = 0;	//ä¸€å¿œ4ãƒã‚¤ãƒˆå¢ƒç•Œãƒ€ãƒŸãƒ¼
 	
-	//OS_TPrintf("–¼‘O‘—MFƒuƒŠ[ƒ_[No=%d, –¼‘OƒTƒCƒY=%d\n", breeder_no, name_size);
+	//OS_TPrintf("åå‰é€ä¿¡ï¼šãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No=%d, åå‰ã‚µã‚¤ã‚º=%d\n", breeder_no, name_size);
 	if(CommSendData(CC_NAME_DATA, trans_buf, name_size + head_size) == TRUE){
 //		consys->recieve_count = 0;
 		ret = TRUE;
@@ -509,12 +509,12 @@ BOOL CommContestSendNameData(CONTEST_SYSTEM *consys, int breeder_no, const STRBU
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ‚Øƒ‰ƒbƒvƒpƒ‰ƒ[ƒ^’ÊMóMˆ—
+ * @brief   ãºãƒ©ãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommContestRecvPerap(int id_no,int size,void *pData,void *work)
@@ -529,11 +529,11 @@ void CommContestRecvPerap(int id_no,int size,void *pData,void *work)
 	perap_buf = pData;
 	breeder_no = perap_buf[perap_size];
 
-	//OS_TPrintf("‚Øƒ‰ƒbƒvƒf[ƒ^óM\n");
+	//OS_TPrintf("ãºãƒ©ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å—ä¿¡\n");
 	//OS_TPrintf("perap_size = %d, size = %d\n", perap_size, size);
 	//OS_TPrintf("pData[0] = %d\n", ((u8*)pData)[0]);
-	//OS_TPrintf("perap‚Ìbreeder_no = %d\n", breeder_no);
-	//OS_TPrintf("perap‚ÌÅŒãƒf[ƒ^ = %d\n", perap_buf[perap_size - 1]);
+	//OS_TPrintf("perapã®breeder_no = %d\n", breeder_no);
+	//OS_TPrintf("perapã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", perap_buf[perap_size - 1]);
 	
 	MI_CpuCopy8(pData, consys->perap_voice[breeder_no], perap_size);
 	
@@ -542,13 +542,13 @@ void CommContestRecvPerap(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚Øƒ‰ƒbƒvƒpƒ‰ƒ[ƒ^‘—M–½—ß
+ * @brief   ãºãƒ©ãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€ä¿¡å‘½ä»¤
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		¡‚©‚ç‘—‚éƒ|ƒPƒ‚ƒ“‚ğŠ‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   perap_voice		‚Øƒ‰ƒbƒvƒf[ƒ^(NULL‚Ìê‡‚Í‚±‚ÌŠÖ”‚ğŒÄ‚Ô‘O‚É©•ª‚Åhuge_buf‚É‚Øƒ‰ƒbƒvƒf[ƒ^‚ğƒ[ƒh‚µ‚Ä‚¨‚­‚±‚Æ)
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ä»Šã‹ã‚‰é€ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’æ‰€æŒã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   perap_voice		ãºãƒ©ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿(NULLã®å ´åˆã¯ã“ã®é–¢æ•°ã‚’å‘¼ã¶å‰ã«è‡ªåˆ†ã§huge_bufã«ãºãƒ©ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ãŠãã“ã¨)
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommContestSendPerap(CONTEST_SYSTEM *consys, int breeder_no, void *perap_voice)
@@ -567,7 +567,7 @@ BOOL CommContestSendPerap(CONTEST_SYSTEM *consys, int breeder_no, void *perap_vo
 	
 	//OS_TPrintf("perap_size = %d\n", perap_size);
 	//OS_TPrintf("breeder_no = %d\n", perap_buf[perap_size]);
-	//OS_TPrintf("‘—MŒ³perap‚ÌÅŒãƒf[ƒ^ = %d\n", perap_buf[perap_size - 1]);
+	//OS_TPrintf("é€ä¿¡å…ƒperapã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", perap_buf[perap_size - 1]);
 	if(CommSendHugeData(CC_PERAP_DATA, perap_buf, perap_size + 1) == TRUE){
 //		consys->recieve_count = 0;
 		ret = TRUE;
@@ -585,12 +585,12 @@ BOOL CommContestSendPerap(CONTEST_SYSTEM *consys, int breeder_no, void *perap_vo
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ŒÅ’è’·‚Ì×‚©‚¢ƒf[ƒ^ŒQˆêÄ‘—M—p’ÊMóMˆ—
+ * @brief   å›ºå®šé•·ã®ç´°ã‹ã„ãƒ‡ãƒ¼ã‚¿ç¾¤ä¸€æ–‰é€ä¿¡ç”¨é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		CONTEST_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		CONTEST_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CommContestRecvEtcData(int id_no,int size,void *pData,void *work)
@@ -608,8 +608,8 @@ void CommContestRecvEtcData(int id_no,int size,void *pData,void *work)
 
 	//OS_TPrintf("etc_size = %d, size = %d\n", etc_size, size);
 	//OS_TPrintf("pData[0] = %d\n", ((u8*)pData)[0]);
-	//OS_TPrintf("etc_data‚Ìbreeder_no = %d\n", breeder_no);
-	//OS_TPrintf("etc_data‚ÌÅŒãƒf[ƒ^ = %d\n", etc_buf[etc_size - 1]);
+	//OS_TPrintf("etc_dataã®breeder_no = %d\n", breeder_no);
+	//OS_TPrintf("etc_dataã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", etc_buf[etc_size - 1]);
 
 	consys->c_game.player_sex[breeder_no] = etc_buf->player_sex;
 	consys->c_game.character[breeder_no] = etc_buf->character;
@@ -621,13 +621,13 @@ void CommContestRecvEtcData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŒÅ’è’·‚Ì×‚©‚¢ƒf[ƒ^ŒQˆêÄ‘—M—p‘—M–½—ß
+ * @brief   å›ºå®šé•·ã®ç´°ã‹ã„ãƒ‡ãƒ¼ã‚¿ç¾¤ä¸€æ–‰é€ä¿¡ç”¨é€ä¿¡å‘½ä»¤
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		¡‚©‚ç‘—‚éƒ|ƒPƒ‚ƒ“‚ğŠ‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   etc_data		‘—M‚·‚é×‚©‚¢ƒf[ƒ^ŒQ
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ä»Šã‹ã‚‰é€ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’æ‰€æŒã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   etc_data		é€ä¿¡ã™ã‚‹ç´°ã‹ã„ãƒ‡ãƒ¼ã‚¿ç¾¤
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL CommContestSendEtcData(CONTEST_SYSTEM *consys, int breeder_no, const CON_ETC_SIO_DATA *etc_data)
@@ -643,7 +643,7 @@ BOOL CommContestSendEtcData(CONTEST_SYSTEM *consys, int breeder_no, const CON_ET
 	
 	//OS_TPrintf("etc_size = %d\n", etc_size);
 	//OS_TPrintf("breeder_no = %d\n", etc_buf[etc_size]);
-	//OS_TPrintf("‘—MŒ³etc_data‚ÌÅŒãƒf[ƒ^ = %d\n", etc_buf[etc_size - 1]);
+	//OS_TPrintf("é€ä¿¡å…ƒetc_dataã®æœ€å¾Œãƒ‡ãƒ¼ã‚¿ = %d\n", etc_buf[etc_size - 1]);
 	if(CommSendData(CC_ETC_DATA, etc_buf, etc_size + 1) == TRUE){
 //		consys->recieve_count = 0;
 		ret = TRUE;

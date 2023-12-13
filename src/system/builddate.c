@@ -1,9 +1,9 @@
 //=============================================================================
 /**
  * @file	builddate.c
- * @brief	�\�[�X�t�@�C���S�ʂɕύX���������make������悤�ɂ��Ă݂�
-            �{���̓f�o�b�O�p�ɂ������Ȃ��̂����A
-            buildTime���킩��ƍ��邱�Ƃ����邩������Ȃ��̂ł������Ă���
+ * @brief	ソースファイル全般に変更がかかるとmakeかかるようにしてみた
+            本当はデバッグ用にしたくないのだが、
+            buildTimeがわかると困ることがあるかもしれないのでくくってある
  * @author	Katsumi Ohno
  * @date    2005.10.03
  */
@@ -35,7 +35,7 @@ void WORDSET_DebugBuildTime(WORDSET * ws)
     int minNum = 0;
     int secNum = 0;
     
-    for(i = 0; i < 12; i++){  // ����3������r
+    for(i = 0; i < 12; i++){  // 月を3文字比較
         if(strncmp(month[i], BuildDate, 3)==0){
             monNum = i+1;
         }
@@ -65,7 +65,7 @@ void DebugGetBuildTime(STRCODE* buf)
     int secNum = 0;
     STRCODE* pStr = buf;
     
-    for(i = 0; i < 12; i++){  // ����3������r
+    for(i = 0; i < 12; i++){  // 月を3文字比較
         if(strncmp(month[i], BuildDate, 3)==0){
             monNum = i+1;
         }

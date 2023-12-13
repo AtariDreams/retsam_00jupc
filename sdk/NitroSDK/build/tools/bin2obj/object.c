@@ -15,13 +15,13 @@
   indent source
 
   Revision 1.3  2006/07/21 07:57:19  yasu
-  PowerPC ‘Î‰
+  PowerPC å¯¾å¿œ
 
   Revision 1.2  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.1  2005/06/10 12:55:43  yasu
-  1st ƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO
+  1st ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -31,11 +31,11 @@ static void header_init(ELF32_ElfHeader * h, u16 machine, u8 endian);
 /*---------------------------------------------------------------------------*
   Name:         object_init
 
-  Description:  ƒIƒuƒWƒFƒNƒgî•ñ‚ğ‰Šú‰»‚·‚é
+  Description:  ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
 
-  Arguments:    obj    ƒIƒuƒWƒFƒNƒg
+  Arguments:    obj    ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
   
-  Returns:      TRUE ¬Œ÷  FALSE ¸”s
+  Returns:      TRUE æˆåŠŸ  FALSE å¤±æ•—
  *---------------------------------------------------------------------------*/
 void object_init(Object * obj, u16 machine, u8 endian)
 {
@@ -43,60 +43,60 @@ void object_init(Object * obj, u16 machine, u8 endian)
     ELF32_ElfHeader *h;
 
     //-----------------------------------------------------------------------
-    // —Ìˆæ ZERO ‰Šú‰»
+    // é ˜åŸŸ ZERO åˆæœŸåŒ–
     //-----------------------------------------------------------------------
     memset(obj, 0, sizeof(Object));
 
     //-----------------------------------------------------------------------
-    // Elf Header ‚Ì‰Šú‰»
+    // Elf Header ã®åˆæœŸåŒ–
     //-----------------------------------------------------------------------
     h = &obj->header;
     header_init(h, machine, endian);
 
     //-----------------------------------------------------------------------
-    // ƒfƒtƒHƒ‹ƒgƒZƒNƒVƒ‡ƒ“‚Ì“o˜^
+    // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ç™»éŒ²
     //-----------------------------------------------------------------------
 
-    // index=0 ‚ÌƒZƒNƒVƒ‡ƒ“‚Íƒ_ƒ~[=NULL
+    // index=0 ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¯ãƒ€ãƒŸãƒ¼=NULL
     (void)add_section(obj, NULL, SHT_NULL, 0, 0, 0);
 
-    // index=1 ƒZƒNƒVƒ‡ƒ“–¼ƒe[ƒuƒ‹
+    // index=1 ã‚»ã‚¯ã‚·ãƒ§ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«
     h->e_shstrndx = add_section(obj, ".shstrtab", SHT_STRTAB, SHF_NULL, obj->section_name.size, 0);
 
-    // index=2 ƒVƒ“ƒ{ƒ‹î•ñ\‘¢‘Ì
+    // index=2 ã‚·ãƒ³ãƒœãƒ«æƒ…å ±æ§‹é€ ä½“
     obj->symbol_index = add_section(obj, ".symtab", SHT_SYMTAB, SHF_NULL, 0, 4);
 
-    // index=3 ƒVƒ“ƒ{ƒ‹–¼ƒe[ƒuƒ‹
+    // index=3 ã‚·ãƒ³ãƒœãƒ«åãƒ†ãƒ¼ãƒ–ãƒ«
     obj->symbol_name_index =
         add_section(obj, ".strtab", SHT_STRTAB, SHF_NULL, obj->symbol_name.size, 1);
 
-    // ƒVƒ“ƒ{ƒ‹î•ñ‚Ìİ’è’Ç‰Á
+    // ã‚·ãƒ³ãƒœãƒ«æƒ…å ±ã®è¨­å®šè¿½åŠ 
     s = &obj->section[obj->symbol_index];
-    s->sh_link = obj->symbol_name_index;        // symbol –¼ƒe[ƒuƒ‹‚ÌƒŠƒ“ƒN
-    s->sh_info = -1;                   // symbol ‚ÌÅI index ’l‰Šú‰»
-    s->sh_entsize = sizeof(ELF32_Symbol);       // symbol ƒGƒ“ƒgƒŠ‚ÌƒTƒCƒY
+    s->sh_link = obj->symbol_name_index;        // symbol åãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒªãƒ³ã‚¯
+    s->sh_info = -1;                   // symbol ã®æœ€çµ‚ index å€¤åˆæœŸåŒ–
+    s->sh_entsize = sizeof(ELF32_Symbol);       // symbol ã‚¨ãƒ³ãƒˆãƒªã®ã‚µã‚¤ã‚º
 
     //-----------------------------------------------------------------------
-    // ƒVƒ“ƒ{ƒ‹ƒe[ƒuƒ‹‚Ì‰Šú‰»
+    // ã‚·ãƒ³ãƒœãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã®åˆæœŸåŒ–
     //-----------------------------------------------------------------------
 
-    // index=0 NULL ƒVƒ“ƒ{ƒ‹‚ğ“o˜^
+    // index=0 NULL ã‚·ãƒ³ãƒœãƒ«ã‚’ç™»éŒ²
     (void)add_symbol(obj, NULL, 0, 0, 0);
 }
 
 /*---------------------------------------------------------------------------*
   Name:         header_init
 
-  Description:  ELF ƒwƒbƒ_î•ñ‚ğì¬‚·‚é
+  Description:  ELF ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’ä½œæˆã™ã‚‹
 
-  Arguments:    elfHeader  ELF ƒwƒbƒ_î•ñ
-                machine    Machine ƒR[ƒh
+  Arguments:    elfHeader  ELF ãƒ˜ãƒƒãƒ€æƒ…å ±
+                machine    Machine ã‚³ãƒ¼ãƒ‰
                               EM_ARM // ARM
                               EM_PPC // PPC
-                endian     ELF ‚ÌƒGƒ“ƒfƒBƒAƒ“
+                endian     ELF ã®ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³
                               ELFDATA2LSB // Little Endian
                               ELFDATA2MSB // Big    Endian
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 static void header_init(ELF32_ElfHeader * h, u16 machine, u8 endian)
 {
@@ -113,14 +113,14 @@ static void header_init(ELF32_ElfHeader * h, u16 machine, u8 endian)
     h->e_version = EV_CURRENT;
     h->e_entry = 0;
     h->e_phoff = 0;
-    h->e_shoff = 0;                    // ‚ ‚Æ‚Å³‚µ‚¢’l‚ğ–„‚ß‚é
+    h->e_shoff = 0;                    // ã‚ã¨ã§æ­£ã—ã„å€¤ã‚’åŸ‹ã‚ã‚‹
     h->e_flags = 0;
     h->e_ehsize = sizeof(ELF32_ElfHeader);
     h->e_phentsize = 0;
     h->e_phnum = 0;
     h->e_shentsize = sizeof(ELF32_SectionHeader);
-    h->e_shnum = 0;                    // ƒZƒNƒVƒ‡ƒ“‚ª‘‚¦‚é“x‚É +1
-    h->e_shstrndx = 0;                 // ‚ ‚Æ‚Å³‚µ‚¢’l‚ğ–„‚ß‚é
+    h->e_shnum = 0;                    // ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒå¢—ãˆã‚‹åº¦ã« +1
+    h->e_shstrndx = 0;                 // ã‚ã¨ã§æ­£ã—ã„å€¤ã‚’åŸ‹ã‚ã‚‹
 
     return;
 }
@@ -128,11 +128,11 @@ static void header_init(ELF32_ElfHeader * h, u16 machine, u8 endian)
 /*---------------------------------------------------------------------------*
   Name:         map_section
 
-  Description:  ƒZƒNƒVƒ‡ƒ“‚ÌˆÊ’uî•ñ‚ğ‘‚«‚Ş
+  Description:  ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ä½ç½®æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€
 
-  Arguments:    obj    ƒIƒuƒWƒFƒNƒg
+  Arguments:    obj    ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void map_section(Object * obj)
 {
@@ -141,13 +141,13 @@ void map_section(Object * obj)
     u32     offset;
     int     i;
 
-    // ELF HEADER/SECTION HEADER ‚ÌˆÊ’uŒvZ
+    // ELF HEADER/SECTION HEADER ã®ä½ç½®è¨ˆç®—
     h = &obj->header;
     offset = h->e_ehsize;
     h->e_shoff = roundup(offset, 4);
     offset = h->e_shoff + h->e_shentsize * h->e_shnum;
 
-    // ƒZƒNƒVƒ‡ƒ“‚ÌˆÊ’uŒvZ
+    // ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ä½ç½®è¨ˆç®—
     for (i = 1; i < obj->header.e_shnum; i++)
     {
         s = &obj->section[i];
@@ -160,12 +160,12 @@ void map_section(Object * obj)
 /*---------------------------------------------------------------------------*
   Name:         roundup
 
-  Description:  ®”‚ÌØ‚èã‚°
+  Description:  æ•´æ•°ã®åˆ‡ã‚Šä¸Šã’
 
-  Arguments:    val       ’l
-                align     ‹«ŠE’l
+  Arguments:    val       å€¤
+                align     å¢ƒç•Œå€¤
   
-  Returns:      Œ‹‰Ê
+  Returns:      çµæœ
  *---------------------------------------------------------------------------*/
 u32 roundup(u32 val, u32 align)
 {
@@ -185,12 +185,12 @@ u32 roundup(u32 val, u32 align)
 /*---------------------------------------------------------------------------*
   Name:         conv_to_big_endian
 
-  Description:  BinEndian ‚Ö‚Ì•ÏŠ·
+  Description:  BinEndian ã¸ã®å¤‰æ›
 
-  Arguments:    src  •ÏŠ·‘O
-                dest •ÏŠ·Œã
+  Arguments:    src  å¤‰æ›å‰
+                dest å¤‰æ›å¾Œ
   
-  Returns:      Œ‹‰Ê
+  Returns:      çµæœ
  *---------------------------------------------------------------------------*/
 static u32 Be32(u32 x)
 {

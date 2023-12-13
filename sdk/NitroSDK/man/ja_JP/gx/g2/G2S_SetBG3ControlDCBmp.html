@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>G2S_SetBG3ControlDCBmp</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">G2S_SetBG3ControlDCBmp</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -23,37 +23,37 @@
     GXBGBmpScrBase screenBase
 );</CODE></PRE>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="300"><em><strong><font face="Courier New">screenSize</font></strong></em></TD>
-      <TD width="700">�X�N���[���T�C�Y</TD>
+      <TD width="700">スクリーンサイズ</TD>
     </TR>
     <TR>
       <TD><em><strong><font face="Courier New">areaOver</font></strong></em></TD>
-      <TD>�G���A�I�[�o�[�����I�v�V����</TD>
+      <TD>エリアオーバー処理オプション</TD>
     </TR>
     <TR>
       <TD><em><strong><font face="Courier New">screenBase</font></strong></em></TD>
-      <TD>�X�N���[���x�[�X�u���b�N</TD>
+      <TD>スクリーンベースブロック</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
-<H2>����</H2>
-<P>�T�u�QD�G���W����BG3(�_�C���N�g�J���[�r�b�g�}�b�vBG�̏ꍇ)��ݒ肵�܂��B<BR>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>サブ２DエンジンのBG3(ダイレクトカラービットマップBGの場合)を設定します。<BR>
 </P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD width="30%"><CODE>GX_BG_SCRSIZE_DCBMP_128x128</CODE></TD>
-      <TD width="70%">��ʃT�C�Y��128x128�h�b�g(32K�o�C�g)�ɂ��܂��B</TD>
+      <TD width="70%">画面サイズを128x128ドット(32Kバイト)にします。</TD>
     </TR>
     <TR>
       <TD width="30%"><CODE>GX_BG_SCRSIZE_DCBMP_256x256</CODE></TD>
-      <TD width="70%">��ʃT�C�Y��256x256�h�b�g(128K�o�C�g)�ɂ��܂��B</TD>
+      <TD width="70%">画面サイズを256x256ドット(128Kバイト)にします。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -62,11 +62,11 @@
   <TBODY>
     <TR>
       <TD width="30%"><CODE>GX_BG_AREAOVER_XLU</CODE></TD>
-      <TD width="70%">�G���A�I�[�o�[�����̓����\��</TD>
+      <TD width="70%">エリアオーバー部分の透明表示</TD>
     </TR>
     <TR>
       <TD width="30%"><CODE>GX_BG_AREAOVER_REPEAT</CODE></TD>
-      <TD width="70%">�G���A�I�[�o�[�����̉�肱�ݕ\��</TD>
+      <TD width="70%">エリアオーバー部分の回りこみ表示</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -75,11 +75,11 @@
   <TBODY>
     <TR>
       <TD width="30%"><CODE>GX_BG_BMPSCRBASE_0xnnnnn</CODE></TD>
-      <TD width="70%">BG3�̃X�N���[���x�[�X�u���b�N���w�肵�܂��B<A href="../gx/GX_SetBGScrOffset.html"></A></TD>
+      <TD width="70%">BG3のスクリーンベースブロックを指定します。<A href="../gx/GX_SetBGScrOffset.html"></A></TD>
     </TR>
   </TBODY>
 </TABLE>
-<P><BR>�ȉ��Ɉ����̗񋓌^�̌^��`���L���Ă����܂��B</P>
+<P><BR>以下に引数の列挙型の型定義を記しておきます。</P>
 <PRE><CODE>typedef enum
 {
     GX_BG_SCRSIZE_DCBMP_128x128 = 0,
@@ -132,9 +132,9 @@ typedef enum
     GX_BG_BMPSCRBASE_0x7c000 = 31
 }
 GXBGBmpScrBase;</CODE></PRE>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><A href="G2_GetBG3ControlDCBmp.html">G2S_GetBG3ControlDCBmp</A></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>Ver. 2004/02/07</P>
 </body>
 </html>

@@ -18,7 +18,7 @@
   do-indent.
 
   Revision 1.16  2005/02/18 06:41:11  yasu
-  OS_DisableInterrupts •Ô’l‚ÌŒ^C³
+  OS_DisableInterrupts è¿”å€¤ã®å‹ä¿®æ­£
 
   Revision 1.15  2005/01/12 02:47:53  yada
   consider about multi-DMA

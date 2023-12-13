@@ -2,7 +2,7 @@
 /**
  *
  *@file		boxdata.h
- *@brief	�|�P�����{�b�N�X�f�[�^�Ǘ�
+ *@brief	ポケモンボックスデータ管理
  *@author	taya
  *@data		2005.09.8
  *
@@ -13,49 +13,49 @@
 
 #include  "system/savedata_def.h"
 #include  "gflib/strbuf.h"
-#include  "poketool/poke_tool.h"	// POKEMON_PASO_PARAM �Q�Ƃ̂���
+#include  "poketool/poke_tool.h"	// POKEMON_PASO_PARAM 参照のため
 
 //------------------------------------------------------------
 /**
- * @brief	�{�b�N�X�f�[�^�Q�Ɨp�s���S�^�|�C���^
+ * @brief	ボックスデータ参照用不完全型ポインタ
  *
- *   ����̃|�C���^�o�R�ŏ������s��
+ *   これのポインタ経由で処理を行う
  */
 //------------------------------------------------------------
 typedef struct _BOX_DATA	BOX_DATA;
 
 //------------------------------------------------------------
 /**
- *   �萔
+ *   定数
  */
 //------------------------------------------------------------
 #define BOX_MAX_RAW				(5)
 #define BOX_MAX_COLUMN			(6)
 #define BOX_MAX_TRAY			(18)
 #define BOX_TRAYNAME_MAXLEN		(8)
-#define BOX_TRAYNAME_BUFSIZE	(20)	// ���{��W�����{EOM�B�C�O�ŗp�̗]�T�����Ă��̒��x�B
+#define BOX_TRAYNAME_BUFSIZE	(20)	// 日本語８文字＋EOM。海外版用の余裕も見てこの程度。
 #define BOX_MAX_POS				(BOX_MAX_RAW*BOX_MAX_COLUMN)
 
 
 #define BOX_NORMAL_WALLPAPER_MAX	(16)
 #define BOX_EX_WALLPAPER_MAX		(8)
-#define BOX_PL_EX_WALLPAPER_MAX		(8)	//�v���`�i�Œǉ����ꂽ�閧�ǎ�
+#define BOX_PL_EX_WALLPAPER_MAX		(8)	//プラチナで追加された秘密壁紙
 #define BOX_TOTAL_WALLPAPER_MAX		(BOX_NORMAL_WALLPAPER_MAX+BOX_EX_WALLPAPER_MAX)
 #define BOX_TOTAL_WALLPAPER_MAX_PL	(BOX_NORMAL_WALLPAPER_MAX+BOX_EX_WALLPAPER_MAX+BOX_PL_EX_WALLPAPER_MAX)
 
-#define BOXDAT_TRAYNUM_CURRENT		(0xffffffff)	///< �g���C�i���o�[�������Ɏ��֐��Ŏw�肷��ƁA�J�����g���w�肵�����ƂɂȂ�B
-#define BOXDAT_TRAYNUM_ERROR		(BOX_MAX_TRAY)	///< �󂫂̂���g���C�T�[�`�ŁA������Ȃ��������Ȃǂ̖߂�l
+#define BOXDAT_TRAYNUM_CURRENT		(0xffffffff)	///< トレイナンバーを引数に取る関数で指定すると、カレントを指定したことになる。
+#define BOXDAT_TRAYNUM_ERROR		(BOX_MAX_TRAY)	///< 空きのあるトレイサーチで、見つからなかった時などの戻り値
 
 
 extern BOX_DATA * SaveData_GetBoxData(SAVEDATA * sv);
 
 //------------------------------------------------------------------
 /**
- * �{�b�N�X�f�[�^�̈���쐬�i�Z�[�u�f�[�^�ǂݍ��ݎ��ɂP�񂾂��j
+ * ボックスデータ領域を作成（セーブデータ読み込み時に１回だけ）
  *
- * @param   heapID		�쐬��q�[�v�h�c
+ * @param   heapID		作成先ヒープＩＤ
  *
- * @retval  BOX_DATA*	�쐬���ꂽ�{�b�N�X�f�[�^�̃|�C���^
+ * @retval  BOX_DATA*	作成されたボックスデータのポインタ
  */
 //------------------------------------------------------------------
 extern BOX_DATA* BOXDAT_Create( u32 heapID );
@@ -63,18 +63,18 @@ extern BOX_DATA* BOXDAT_Create( u32 heapID );
 
 //------------------------------------------------------------------
 /**
- * �{�b�N�X�f�[�^�̓��e������������
+ * ボックスデータの内容を初期化する
  *
- * @param   boxdat		�{�b�N�X�f�[�^�̃|�C���^
+ * @param   boxdat		ボックスデータのポインタ
  */
 //------------------------------------------------------------------
 extern void BOXDAT_Init( BOX_DATA* boxdat );
 
 //------------------------------------------------------------------
 /**
- * �{�b�N�X�f�[�^�̈�̑��T�C�Y��Ԃ��i�Z�[�u�f�[�^�Ǘ��p�j
+ * ボックスデータ領域の総サイズを返す（セーブデータ管理用）
  *
- * @retval  u32		�{�b�N�X�f�[�^���T�C�Y
+ * @retval  u32		ボックスデータ総サイズ
  */
 //------------------------------------------------------------------
 extern u32 BOXDAT_GetTotalSize( void );
@@ -82,40 +82,40 @@ extern u32 BOXDAT_GetTotalSize( void );
 
 //------------------------------------------------------------------
 /**
- * �{�b�N�X�S�̂��炩��󂫗̈��T���ă|�P�����f�[�^���i�[
+ * ボックス全体からから空き領域を探してポケモンデータを格納
  *
- * @param   box			�{�b�N�X�f�[�^�|�C���^
- * @param   poke		�|�P�����f�[�^
+ * @param   box			ボックスデータポインタ
+ * @param   poke		ポケモンデータ
  *
- * @retval  BOOL		TRUE=�i�[���ꂽ�^FALSE=�󂫂�����
+ * @retval  BOOL		TRUE=格納された／FALSE=空きが無い
  */
 //------------------------------------------------------------------
 extern BOOL BOXDAT_PutPokemon( BOX_DATA* box, POKEMON_PASO_PARAM* poke );
 
 //------------------------------------------------------------------
 /**
- * �{�b�N�X���w�肵�ă|�P�����f�[�^�i�[
+ * ボックスを指定してポケモンデータ格納
  *
- * @param   box			�{�b�N�X�f�[�^�|�C���^
- * @param   boxNum		���Ԗڂ̃{�b�N�X�Ɋi�[���邩
- * @param   poke		�|�P�����f�[�^
+ * @param   box			ボックスデータポインタ
+ * @param   boxNum		何番目のボックスに格納するか
+ * @param   poke		ポケモンデータ
  *
- * @retval  BOOL		TRUE=�i�[���ꂽ�^FALSE=�󂫂�����
+ * @retval  BOOL		TRUE=格納された／FALSE=空きが無い
  */
 //------------------------------------------------------------------
 extern BOOL BOXDAT_PutPokemonBox( BOX_DATA* box, u32 boxNum, POKEMON_PASO_PARAM* poke );
 
 //------------------------------------------------------------------
 /**
- * �{�b�N�X�A�ʒu���w�肵�ă|�P�����f�[�^�i�[
+ * ボックス、位置を指定してポケモンデータ格納
  *
- * @param   box			�{�b�N�X�f�[�^�|�C���^
- * @param   boxNum		���Ԗڂ̃{�b�N�X�Ɋi�[���邩
- * @param   x			�{�b�N�X���̈ʒu�w
- * @param   y			�{�b�N�X���̈ʒu�x
- * @param   poke		�|�P�����f�[�^
+ * @param   box			ボックスデータポインタ
+ * @param   boxNum		何番目のボックスに格納するか
+ * @param   x			ボックス内の位置Ｘ
+ * @param   y			ボックス内の位置Ｙ
+ * @param   poke		ポケモンデータ
  *
- * @retval  BOOL		TRUE=�i�[���ꂽ�^FALSE=�󂫂�����
+ * @retval  BOOL		TRUE=格納された／FALSE=空きが無い
  */
 //------------------------------------------------------------------
 extern BOOL BOXDAT_PutPokemonPos( BOX_DATA* box, u32 boxNum, u32 pos, POKEMON_PASO_PARAM* poke );
@@ -123,11 +123,11 @@ extern BOOL BOXDAT_PutPokemonPos( BOX_DATA* box, u32 boxNum, u32 pos, POKEMON_PA
 
 //------------------------------------------------------------------
 /**
- * �P�ł��󂫂̂���g���C�i���o�[��Ԃ��i�J�����g���猟���J�n����j
+ * １つでも空きのあるトレイナンバーを返す（カレントから検索開始する）
  *
- * @param   box		�{�b�N�X�f�[�^�|�C���^
+ * @param   box		ボックスデータポインタ
  *
- * @retval  u32		�󂫂̂���g���C�i���o�[�^������Ȃ���� BOXDAT_TRAYNUM_ERROR ���Ԃ�
+ * @retval  u32		空きのあるトレイナンバー／見つからなければ BOXDAT_TRAYNUM_ERROR が返る
  */
 //------------------------------------------------------------------
 extern u32 BOXDAT_GetEmptyTrayNumber( const BOX_DATA* box );
@@ -135,11 +135,11 @@ extern u32 BOXDAT_GetEmptyTrayNumber( const BOX_DATA* box );
 
 //------------------------------------------------------------------
 /**
- * �ʒu���w�肵�ăJ�����g�{�b�N�X�̃|�P�����f�[�^�N���A
+ * 位置を指定してカレントボックスのポケモンデータクリア
  *
- * @param   box			�{�b�N�X�f�[�^�|�C���^
- * @param   trayNumber	���Ԗڂ̃{�b�N�X��
- * @param   pos			�{�b�N�X���̈ʒu
+ * @param   box			ボックスデータポインタ
+ * @param   trayNumber	何番目のボックスか
+ * @param   pos			ボックス内の位置
  *
  */
 //------------------------------------------------------------------
@@ -147,9 +147,9 @@ extern void BOXDAT_ClearPokemon( BOX_DATA* box, u32 trayNum, u32 pos );
 
 //------------------------------------------------------------------
 /**
- * �{�b�N�X�S�̂Ɋ܂܂��|�P��������Ԃ�
+ * ボックス全体に含まれるポケモン数を返す
  *
- * @param   box		�{�b�N�X�f�[�^�|�C���^
+ * @param   box		ボックスデータポインタ
  *
  * @retval  u32		
  */
@@ -175,7 +175,7 @@ extern void BOXDAT_PokeParaPut( BOX_DATA* box, u32 trayNum, u32 pos, int param, 
 
 
 //==============================================================================================
-// ���������N���u�ǎ�
+// だいすきクラブ壁紙
 //==============================================================================================
 extern void BOXDAT_SetDaisukiKabegamiFlag( BOX_DATA* box, u32 number );
 extern BOOL BOXDAT_GetDaisukiKabegamiFlag( const BOX_DATA* box, u32 number );

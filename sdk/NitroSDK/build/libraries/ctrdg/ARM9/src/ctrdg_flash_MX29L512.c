@@ -18,7 +18,7 @@
   small fix
 
   Revision 1.1  2006/04/05 10:48:30  okubata_ryoma
-  AGBƒoƒbƒNƒAƒbƒvƒ‰ƒCƒuƒ‰ƒŠ‚ÌSDKû˜^‚Ì‚½‚ß‚Ì•ÏX
+  AGBãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®SDKåéŒ²ã®ãŸã‚ã®å¤‰æ›´
 
 
   $NoKeywords: $
@@ -35,7 +35,7 @@ extern u16 CTRDGi_ProgramFlashByteLE(u8 *src, u8 *dst);
 extern void CTRDGi_EraseFlashChipAsyncLE(CTRDG_TASK_FUNC callback);
 extern void CTRDGi_EraseFlashSectorAsyncLE(u16 secNo, CTRDG_TASK_FUNC callback);
 extern void CTRDGi_WriteFlashSectorAsyncLE(u16 secNo, u8 *src, CTRDG_TASK_FUNC callback);
-/*”r‘¼§Œä*/
+/*æ’ä»–åˆ¶å¾¡*/
 extern u16 ctrdgi_flash_lock_id;
 
 // function's prototype declaration-------------
@@ -61,7 +61,7 @@ const CTRDGiFlashTypePlus MN63F805MNP = {
     CTRDGi_PollingSR512kCOMMON,
     PaMaxTime,
     {
-/* ƒfƒoƒbƒO—p */
+/* ãƒ‡ãƒãƒƒã‚°ç”¨ */
 //#ifndef   __FLASH_DEBUG
         0x00010000,                       // ROM size
         {0x00001000, 12, 16, 0},          // sector size,shift,count,top
@@ -95,9 +95,9 @@ u32 CTRDGi_WriteFlashSectorCoreMX5(CTRDGTaskInfo * arg)
         return result;
     }
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(AgbFlash->agbWait[0]);
     //*(vu16 *)REG_EXMEMCNT_ADDR=(*(vu16 *)REG_EXMEMCNT_ADDR & 0xfffc)|AgbFlash->agbWait[0]; // read 3cycles wait
@@ -114,9 +114,9 @@ u32 CTRDGi_WriteFlashSectorCoreMX5(CTRDGTaskInfo * arg)
         tgt++;
     }
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return result;

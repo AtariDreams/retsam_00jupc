@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_a27v.c
- * @bfief	ƒ|ƒPƒbƒ`iƒAƒvƒŠNo27:‚Â‚¤‚µ‚ñƒT[ƒ`ƒƒ[j@•`‰æ
+ * @bfief	ãƒã‚±ãƒƒãƒï¼ˆã‚¢ãƒ—ãƒªNo27:ã¤ã†ã—ã‚“ã‚µãƒ¼ãƒãƒ£ãƒ¼ï¼‰ã€€æç”»
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -20,10 +20,10 @@
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/01
-// –³ü‹@”\‚ğƒIƒ“‚É‚·‚éŠm”F‚ÌƒƒbƒZ[ƒW‚ğ’Ç‰Á
+// ç„¡ç·šæ©Ÿèƒ½ã‚’ã‚ªãƒ³ã«ã™ã‚‹ç¢ºèªã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿½åŠ 
 
-// —LŒø‚É‚·‚é‚ÆAƒAƒvƒŠ‚Ìƒgƒbƒv‰æ–Ê‚Å’ÊM‚ğŠJn‚·‚é|‚ğ“`‚¦‚éƒƒbƒZ[ƒW‚ğ•\¦‚·‚éB
-// 2007.01.26 ƒ[ƒJƒ‰ƒCƒYC³ˆË—Š‚É‘Î‰     taya
+// æœ‰åŠ¹ã«ã™ã‚‹ã¨ã€ã‚¢ãƒ—ãƒªã®ãƒˆãƒƒãƒ—ç”»é¢ã§é€šä¿¡ã‚’é–‹å§‹ã™ã‚‹æ—¨ã‚’ä¼ãˆã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ã€‚
+// 2007.01.26 ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºæ™‚ä¿®æ­£ä¾é ¼ã«å¯¾å¿œ     taya
 #define POKETCH_070126_NOTIFY_COMM_START	(1)
 
 // ----------------------------------------------------------------------------
@@ -69,7 +69,7 @@ enum {
 	COLOR_LETTER  = POKETCH_DEFAULTCOLOR_L4_POS,
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/05/16
-	// •¶š‚Ì‰e‚ÌF‚ğˆê’iŠK”–‚­’²®
+	// æ–‡å­—ã®å½±ã®è‰²ã‚’ä¸€æ®µéšè–„ãèª¿æ•´
 	COLOR_SHADOW  = POKETCH_DEFAULTCOLOR_L3_POS,
 	// ----------------------------------------------------------------------------
 	COLOR_GROUND  = POKETCH_DEFAULTCOLOR_L1_POS,
@@ -136,9 +136,9 @@ static void print_bmp_status( VIEWWORK* vwk, const VIEWPARAM* vpara );
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNŠm•Û
+ * ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param   wk_ptr		Šm•Û‚µ‚½ƒ[ƒNƒAƒhƒŒƒX‚ğ•Û‘¶‚·‚éƒ|ƒCƒ“ƒ^‚ÌƒAƒhƒŒƒX
+ * @param   wk_ptr		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -165,9 +165,9 @@ BOOL Poketch_A27_SetViewWork( VIEWWORK** wk_ptr, const VIEWPARAM* vpara, GF_BGL_
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNíœ
+ * ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param   wk		Šm•Û‚µ‚½ƒ[ƒNƒAƒhƒŒƒX
+ * @param   wk		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -227,7 +227,7 @@ static void cleanup_actors( VIEWWORK* wk )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
+ * @brief	ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //------------------------------------------------------------------
 static const POKETCH_VIEW_CMD CmdTbl[] = {
@@ -246,10 +246,10 @@ static const POKETCH_VIEW_CMD CmdTbl[] = {
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌƒZƒbƒg
+ * æç”»ã‚³ãƒãƒ³ãƒ‰ã®ã‚»ãƒƒãƒˆ
  *
- * @param   cmd		ƒRƒ}ƒ“ƒh
- * @param   view_wk_adrs	ƒ[ƒN—ÌˆæƒAƒhƒŒƒX
+ * @param   cmd		ã‚³ãƒãƒ³ãƒ‰
+ * @param   view_wk_adrs	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -259,11 +259,11 @@ void Poketch_A27_SetViewCommand(VIEWWORK* wk, u32 cmd)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌI—¹‘Ò‚¿i’P”­j
+ * æç”»ã‚³ãƒãƒ³ãƒ‰ã®çµ‚äº†å¾…ã¡ï¼ˆå˜ç™ºï¼‰
  *
- * @param   cmd			ƒRƒ}ƒ“ƒh
+ * @param   cmd			ã‚³ãƒãƒ³ãƒ‰
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL Poketch_A27_WaitViewCommand(VIEWWORK* wk, u32 cmd)
@@ -272,9 +272,9 @@ BOOL Poketch_A27_WaitViewCommand(VIEWWORK* wk, u32 cmd)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌI—¹‘Ò‚¿i‘S•”j
+ * æç”»ã‚³ãƒãƒ³ãƒ‰ã®çµ‚äº†å¾…ã¡ï¼ˆå…¨éƒ¨ï¼‰
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL Poketch_A27_WaitViewCommandAll(VIEWWORK* wk)
@@ -286,9 +286,9 @@ BOOL Poketch_A27_WaitViewCommandAll(VIEWWORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhíœ
+ * ã‚³ãƒãƒ³ãƒ‰å‰Šé™¤
  *
- * @param   cwk		ƒRƒ}ƒ“ƒhƒ[ƒN
+ * @param   cwk		ã‚³ãƒãƒ³ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -300,10 +300,10 @@ static void DeleteCommand(POKETCH_CMD_WORK* cwk)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhF‰æ–Ê\’z
+ * ã‚³ãƒãƒ³ãƒ‰ï¼šç”»é¢æ§‹ç¯‰
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -349,10 +349,10 @@ static void CmdInit(TCB_PTR tcb, void *wk_ptr)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhFI—¹ˆ—
+ * ã‚³ãƒãƒ³ãƒ‰ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -476,13 +476,13 @@ static void print_bmp_top_title( VIEWWORK* vwk )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/01
-// –³ü‹@”\‚ğƒIƒ“‚É‚·‚éŠm”F‚ÌƒƒbƒZ[ƒW‚ğ’Ç‰Á
+// ç„¡ç·šæ©Ÿèƒ½ã‚’ã‚ªãƒ³ã«ã™ã‚‹ç¢ºèªã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿½åŠ 
 
 #if POKETCH_070126_NOTIFY_COMM_START
 	MSGMAN_GetString( vwk->mm, msg_comm_start, vwk->tmpbuf );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/03/27
-	// ƒƒbƒZ[ƒW‚ª•¡”s‚É‚È‚Á‚½ê‡‚É‘Î‰
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒè¤‡æ•°è¡Œã«ãªã£ãŸå ´åˆã«å¯¾å¿œ
 	xpos = ((POKETCH_MONITOR_SCRN_WIDTH*8) - FontProc_GetPrintMaxLineWidth( PRINT_FONT, vwk->tmpbuf, 0 ) ) / 2;
 
 	{
@@ -508,7 +508,7 @@ static void print_bmp_searching( VIEWWORK* vwk )
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/17
-	// ‚Â‚¤‚µ‚ñƒT[ƒ`’†‚ÌƒƒbƒZ[ƒW‚ğƒ|ƒPƒbƒ`‚Ì‰æ–Ê’†‰›‚É
+	// ã¤ã†ã—ã‚“ã‚µãƒ¼ãƒä¸­ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒã‚±ãƒƒãƒã®ç”»é¢ä¸­å¤®ã«
 	{
 		u32 xofs = (POKETCH_MONITOR_SCRN_WIDTH * 8 - FontProc_GetPrintMaxLineWidth( PRINT_FONT, vwk->tmpbuf, 0)) / 2;
 		GF_STR_PrintColor( &vwk->bmpwin, PRINT_FONT, vwk->tmpbuf, xofs, SEARCHING_STR_PRINT_Y, MSG_NO_PUT, 
@@ -546,7 +546,7 @@ static void print_bmp_dont_move( VIEWWORK* vwk )
 	MSGMAN_GetString( vwk->mm, msg_err, vwk->tmpbuf );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/17
-	// ‚Â‚¤‚µ‚ñƒT[ƒ`‚ÌƒGƒ‰[ƒƒbƒZ[ƒW‚ğƒ|ƒPƒbƒ`‚Ì‰æ–Ê’†‰›‚É
+	// ã¤ã†ã—ã‚“ã‚µãƒ¼ãƒã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒã‚±ãƒƒãƒã®ç”»é¢ä¸­å¤®ã«
 	{
 		u32 xofs = (POKETCH_MONITOR_SCRN_WIDTH * 8 - FontProc_GetPrintStrWidth( PRINT_FONT, vwk->tmpbuf, 0)) / 2;
 		GF_STR_PrintColor( &vwk->bmpwin, PRINT_FONT, vwk->tmpbuf, xofs, TOP_TITLE_PRINT_Y, MSG_NO_PUT,
@@ -567,7 +567,7 @@ static void print_bmp_dont_move( VIEWWORK* vwk )
 
 static void print_bmp_status( VIEWWORK* vwk, const VIEWPARAM* vpara )
 {
-	// ‚±‚Ìƒe[ƒuƒ‹‚Ì—v‘f”‚Í POKETCH_COMM_CATEGORY_MAX ‚Æˆê’v‚³‚¹‚é•K—v‚ª‚ ‚é
+	// ã“ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã®è¦ç´ æ•°ã¯ POKETCH_COMM_CATEGORY_MAX ã¨ä¸€è‡´ã•ã›ã‚‹å¿…è¦ãŒã‚ã‚‹
 	static const u8 strid[] = {
 		msg_category1,
 		msg_category2,

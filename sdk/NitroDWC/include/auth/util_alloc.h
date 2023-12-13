@@ -15,8 +15,8 @@
   Change prefix Ranking->Rnk
 
   Revision 1.14  2006/03/02 05:21:58  nakata
-  DWC_Svcƒ‚ƒWƒ…[ƒ‹’Ç‰Á
-  DWC_Util_Alloc/DWC_Util_FreeŠÖ”‚Ì–¼‘O‚ğDWC_Auth_Alloc/DWC_Auth_FreeŠÖ”‚É–¼‘O‚ğ•ÏX
+  DWC_Svcãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«è¿½åŠ 
+  DWC_Util_Alloc/DWC_Util_Freeé–¢æ•°ã®åå‰ã‚’DWC_Auth_Alloc/DWC_Auth_Freeé–¢æ•°ã«åå‰ã‚’å¤‰æ›´
 
   Revision 1.13  2005/12/22 01:39:06  nakata
   Ressurected util_alloc.h.
@@ -28,11 +28,11 @@
   Removed util_alloc.c related codes from DWC_Http/DWC_Auth/DWC_Netcheck.
 
   Revision 1.5  2005/08/20 07:01:19  sasakit
-  ƒwƒbƒ_ƒCƒ“ƒNƒ‹[ƒhƒK[ƒh‚Ì‘®‚ğ“ˆê‚µ‚½B
-  bm/dwc_init.h -> bm/dwc_bm_init.h‚É•ÏX
-  ƒwƒbƒ_‚ÉCopyright‚ğ‚Â‚¯‚½B
-  \‘¢‘Ì‚Ì–¼‘O‹óŠÔ‚ğ‚Å‚«‚é‚¾‚¯ƒ‹[ƒ‹‚É‚¿‚©‚Ã‚¯‚½B
-  util_wifiidtool.h‚Ædwc_backup.h‚ÌŠÖŒW‚ğáŠ±C³B
+  ãƒ˜ãƒƒãƒ€ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚¬ãƒ¼ãƒ‰ã®æ›¸å¼ã‚’çµ±ä¸€ã—ãŸã€‚
+  bm/dwc_init.h -> bm/dwc_bm_init.hã«å¤‰æ›´
+  ãƒ˜ãƒƒãƒ€ã«Copyrightã‚’ã¤ã‘ãŸã€‚
+  æ§‹é€ ä½“ã®åå‰ç©ºé–“ã‚’ã§ãã‚‹ã ã‘ãƒ«ãƒ¼ãƒ«ã«ã¡ã‹ã¥ã‘ãŸã€‚
+  util_wifiidtool.hã¨dwc_backup.hã®é–¢ä¿‚ã‚’è‹¥å¹²ä¿®æ­£ã€‚
 
 
   $NoKeywords: $
@@ -47,10 +47,10 @@ extern "C" {
 #endif // [nakata] __cplusplus
 
 //=============================================================================
-// [nakata] \‘¢‘Ì
+// [nakata] æ§‹é€ ä½“
 //=============================================================================
 
-// [nakata] ƒƒ‚ƒŠŠm•Û/‰ğ•úŠÖ”‚Ì‚½‚ß‚ÌƒCƒ“ƒ^ƒtƒF[ƒXŒ^
+// [nakata] ãƒ¡ãƒ¢ãƒªç¢ºä¿/è§£æ”¾é–¢æ•°ã®ãŸã‚ã®ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹å‹
 typedef void *(*DWCAuthAlloc)(unsigned long name, long size);
 typedef void (*DWCAuthFree)(unsigned long name, void *ptr, long size);
 

@@ -24,16 +24,16 @@
   new location of include files ARM9/ARM7
 
   Revision 1.4  2004/02/10 02:04:41  yada
-  utility.h ‚ğíœ
+  utility.h ã‚’å‰Šé™¤
 
   Revision 1.3  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.2  2003/12/22 14:06:32  yasu
-  make ‚ª’Ê‚éÅ¬ŒÀ‚Ìƒtƒ@ƒCƒ‹‚ğ include ‚·‚é
+  make ãŒé€šã‚‹æœ€å°é™ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ include ã™ã‚‹
 
   Revision 1.1  2003/12/16 10:52:11  yasu
-  V‹Kì¬
+  æ–°è¦ä½œæˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

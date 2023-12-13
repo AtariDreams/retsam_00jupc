@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief HTTP’ÊM‚Ìƒ‰ƒbƒp[ƒ†[ƒeƒBƒŠƒeƒB[ ƒwƒbƒ_
+ * @brief HTTPé€šä¿¡ã®ãƒ©ãƒƒãƒ‘ãƒ¼ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ¼ ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef DWC_ENCSESSION_H_
@@ -30,37 +30,37 @@ extern "C"
             enum
        ------------------------------------------------------------------------- */
 
-/// ƒZƒbƒVƒ‡ƒ“ƒXƒe[ƒ^ƒX‚ð•\‚·—ñ‹“Œ^
+/// ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¡¨ã™åˆ—æŒ™åž‹
     typedef enum{
 
-        DWCi_ENC_SESSION_STATE_CANCELED,		//!< ƒLƒƒƒ“ƒZƒ‹
-        DWCi_ENC_SESSION_STATE_ERROR,			//!< ƒGƒ‰[”­¶
-        DWCi_ENC_SESSION_STATE_INITIAL,			//!< ‰Šúó‘Ô
-        DWCi_ENC_SESSION_STATE_INITIALIZED,		//!< ‰Šú‰»Œã
-        DWCi_ENC_SESSION_STATE_REQUEST,			//!< ƒŠƒNƒGƒXƒg”­s
-        DWCi_ENC_SESSION_STATE_GETTING_TOKEN,	//!< ƒg[ƒNƒ“Žæ“¾’†
-        DWCi_ENC_SESSION_STATE_GOT_TOKEN,		//!< ƒg[ƒNƒ“Žæ“¾Š®—¹
-        DWCi_ENC_SESSION_STATE_SENDING_DATA,	//!< ƒf[ƒ^‘—M’†
-        DWCi_ENC_SESSION_STATE_COMPLETED		//!< Š®—¹
+        DWCi_ENC_SESSION_STATE_CANCELED,		//!< ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+        DWCi_ENC_SESSION_STATE_ERROR,			//!< ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
+        DWCi_ENC_SESSION_STATE_INITIAL,			//!< åˆæœŸçŠ¶æ…‹
+        DWCi_ENC_SESSION_STATE_INITIALIZED,		//!< åˆæœŸåŒ–å¾Œ
+        DWCi_ENC_SESSION_STATE_REQUEST,			//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œ
+        DWCi_ENC_SESSION_STATE_GETTING_TOKEN,	//!< ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—ä¸­
+        DWCi_ENC_SESSION_STATE_GOT_TOKEN,		//!< ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å®Œäº†
+        DWCi_ENC_SESSION_STATE_SENDING_DATA,	//!< ãƒ‡ãƒ¼ã‚¿é€ä¿¡ä¸­
+        DWCi_ENC_SESSION_STATE_COMPLETED		//!< å®Œäº†
 
     }DWCiEncSessionState;
 
-/// ŠÖ”•Ô‚è’l
+/// é–¢æ•°è¿”ã‚Šå€¤
     typedef enum{
 
-        DWCi_ENC_SESSION_SUCCESS,				//!< ³íI—¹
-        DWCi_ENC_SESSION_ERROR_NOTINITIALIZED,	//!< –¢‰Šú‰»
-        DWCi_ENC_SESSION_ERROR_NOMEMORY,		//!< ƒƒ‚ƒŠ[•s‘«
-        DWCi_ENC_SESSION_ERROR_INVALID_KEY		//!< •s³‚ÈƒL[
+        DWCi_ENC_SESSION_SUCCESS,				//!< æ­£å¸¸çµ‚äº†
+        DWCi_ENC_SESSION_ERROR_NOTINITIALIZED,	//!< æœªåˆæœŸåŒ–
+        DWCi_ENC_SESSION_ERROR_NOMEMORY,		//!< ãƒ¡ãƒ¢ãƒªãƒ¼ä¸è¶³
+        DWCi_ENC_SESSION_ERROR_INVALID_KEY		//!< ä¸æ­£ãªã‚­ãƒ¼
 
     }DWCiEncSessionResult;
 
-/// Ú‘±æƒT[ƒo[‚ð•\‚·—ñ‹“Œ^
+/// æŽ¥ç¶šå…ˆã‚µãƒ¼ãƒãƒ¼ã‚’è¡¨ã™åˆ—æŒ™åž‹
     typedef enum{
 
-        DWCi_ENC_SERVER_RELEASE,    //!< »•i—pƒT[ƒo[‚ÉÚ‘±‚µ‚Ü‚·
-        DWCi_ENC_SERVER_DEBUG,      //!< ŠJ”­—pƒT[ƒo[‚ÉÚ‘±‚µ‚Ü‚·
-        DWCi_ENC_SERVER_TEST        //!< (Žg—p‚µ‚È‚¢‚Å‚­‚¾‚³‚¢)
+        DWCi_ENC_SERVER_RELEASE,    //!< è£½å“ç”¨ã‚µãƒ¼ãƒãƒ¼ã«æŽ¥ç¶šã—ã¾ã™
+        DWCi_ENC_SERVER_DEBUG,      //!< é–‹ç™ºç”¨ã‚µãƒ¼ãƒãƒ¼ã«æŽ¥ç¶šã—ã¾ã™
+        DWCi_ENC_SERVER_TEST        //!< (ä½¿ç”¨ã—ãªã„ã§ãã ã•ã„)
 
     }DWCiEncServer;
 
@@ -69,7 +69,7 @@ extern "C"
             function type
        ------------------------------------------------------------------------- */
 
-/// ŽóMƒf[ƒ^‚ðŒŸØ‚·‚é‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒN
+/// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’æ¤œè¨¼ã™ã‚‹ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     typedef BOOL (*DWCiEncSessionVaridateCallback)( u32* buf, int len );
 
     /* -------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-#ƒpƒXæ“¾
+#ãƒ‘ã‚¹å–å¾—
 path = open("file_path.txt","r")
 nsbmt_path_str = path.gets
 path_str = path.gets
@@ -16,7 +16,7 @@ temp_name = temp_name.sub(".bin",".tmp")
 dst = open(temp_name,"wb+")
 header = open(bin_name,"wb+" )
 
-#ƒAƒgƒŠƒrƒ…[ƒg
+#ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 attr_name = temp_name
 attr_name = attr_name.sub("tmp/","")
 attr_name = attr_name.sub(".tmp","a.dat")
@@ -32,7 +32,7 @@ open(path_str+attr_name,"rb") do |f|
 	header.write(pack_str)
 end
 
-#”z’u
+#é…ç½®
 model_name = temp_name
 model_name = model_name.sub("tmp/","")
 model_name = model_name.sub(".tmp","e.dat")
@@ -47,7 +47,7 @@ open(path_str+model_name,"rb") do |f|
 	header.write(pack_str)
 end
 
-#’nŒ`
+#åœ°å½¢
 nsbmt_name = temp_name
 nsbmt_name = nsbmt_name.sub("tmp/","")
 nsbmt_name = nsbmt_name.sub(".tmp","c.nsbmt")
@@ -63,7 +63,7 @@ open(nsbmt_path_str+nsbmt_name,"rb") do |f|
 	header.write(pack_str)
 end
 
-#‚‚³
+#é«˜ã•
 height_name = temp_name
 height_name = height_name.sub("tmp/","")
 height_name = height_name.sub(".tmp","h.bhc")
@@ -81,11 +81,11 @@ end
 
 dst.close
 
-#ƒwƒbƒ_‚É˜AŒ‹
+#ãƒ˜ãƒƒãƒ€ã«é€£çµ
 open(temp_name,"rb") do |f|
 	header.write(f.read)
 	size = test(?s, f)
 end
 	
-print arg,"‚ğ˜AŒ‹","\n"
+print arg,"ã‚’é€£çµ","\n"
 

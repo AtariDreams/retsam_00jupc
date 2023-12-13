@@ -1,32 +1,32 @@
 #---------------------------------------------------
 #
-#	@brief	ƒGƒŠƒA–ˆ‚Ì“®ìƒ‚ƒfƒ‹ƒŠƒXƒgˆ——pƒXƒNƒŠƒvƒg
+#	@brief	ã‚¨ãƒªã‚¢æ¯ã®å‹•ä½œãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆå‡¦ç†ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 #	@file	area_move_model.rb
 #	@date	2005.11.24
 #	@author	tamada GAME FREAK Inc.
 #
-#	@param	ARGV[0]	ƒ^[ƒQƒbƒg’è‹`o—Íæƒtƒ@ƒCƒ‹–¼	
-#	@param	ARGV[1]	ƒA[ƒJƒCƒu‘ÎÛ’è‹`ƒtƒ@ƒCƒ‹–¼
-#	@param	ARGV[2]	ƒGƒŠƒAŠÇ—•\ƒtƒ@ƒCƒ‹–¼
-#	@param	ARGV[3]	“®ìƒ‚ƒfƒ‹ŠÇ—•\ƒtƒ@ƒCƒ‹–¼
+#	@param	ARGV[0]	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå®šç¾©å‡ºåŠ›å…ˆãƒ•ã‚¡ã‚¤ãƒ«å	
+#	@param	ARGV[1]	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å¯¾è±¡å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«å
+#	@param	ARGV[2]	ã‚¨ãƒªã‚¢ç®¡ç†è¡¨ãƒ•ã‚¡ã‚¤ãƒ«å
+#	@param	ARGV[3]	å‹•ä½œãƒ¢ãƒ‡ãƒ«ç®¡ç†è¡¨ãƒ•ã‚¡ã‚¤ãƒ«å
 #
 #---------------------------------------------------
 FIELDOBJ_CODE_HEADER	=	"fieldobj_code.h"
 $KCODE = "SJIS"
 #---------------------------------------------------
-#	ƒGƒŠƒAŠÇ—•\‚Ì‰ğß
+#	ã‚¨ãƒªã‚¢ç®¡ç†è¡¨ã®è§£é‡ˆ
 #---------------------------------------------------
 def read_areatable	filename
 	arealist = []
 	count = 0
 	infile = File.open(filename, "r")
-	infile.gets		#2s“Ç‚İ”ò‚Î‚µ
+	infile.gets		#2è¡Œèª­ã¿é£›ã°ã—
 	infile.gets
 	while line = infile.gets
 		if line =~ /^AREA_ID_/ then
 			areaname = line.split[0].sub(/\AAREA_ID_/, "").downcase
 			if arealist.include?(areaname) then
-				STDERR.puts "ƒGƒŠƒAID‚ª‘½d’è‹`‚³‚ê‚Ä‚¢‚Ü‚·:#{areaname}\n"
+				STDERR.puts "ã‚¨ãƒªã‚¢IDãŒå¤šé‡å®šç¾©ã•ã‚Œã¦ã„ã¾ã™:#{areaname}\n"
 			else
 				arealist[count] = areaname
 				count += 1
@@ -39,18 +39,18 @@ def read_areatable	filename
 end
 
 #---------------------------------------------------
-#	ƒGƒŠƒA–ˆ‚ÌƒAƒZƒ“ƒuƒ‰ƒtƒ@ƒCƒ‹‚ğ¶¬
+#	ã‚¨ãƒªã‚¢æ¯ã®ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç”Ÿæˆ
 #---------------------------------------------------
 def make_asmfile filename, objlist
 	output = ""
-	output += "\#	í’““®ìƒ‚ƒfƒ‹’è‹`ƒŠƒXƒg:#{filename}\n"
+	output += "\#	å¸¸é§å‹•ä½œãƒ¢ãƒ‡ãƒ«å®šç¾©ãƒªã‚¹ãƒˆ:#{filename}\n"
 	output += "\t.text\n"
 	output += "\#include	\"#{FIELDOBJ_CODE_HEADER}\"\n"
 	output += "\n"
 	objlist.each {|model|
 		name = model.upcase
 		if name != model
-			STDERR.puts "¬•¶š‚ª‚ ‚è‚Ü‚·:#{filename},#{model}\n"
+			STDERR.puts "å°æ–‡å­—ãŒã‚ã‚Šã¾ã™:#{filename},#{model}\n"
 		end
 		output += "\t.short\t#{model}\n"
 	}
@@ -60,22 +60,22 @@ def make_asmfile filename, objlist
 end
 
 #---------------------------------------------------
-#	“®ìƒ‚ƒfƒ‹ƒŠƒXƒg‚Ì‘‚©‚ê‚½ƒtƒ@ƒCƒ‹‚ğ‰ğß
+#	å‹•ä½œãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆã®æ›¸ã‹ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’è§£é‡ˆ
 #---------------------------------------------------
 def read_area_movemodel filename
 	areadata = {}
 	infile = File.open(filename, "r")
 
 	while line = infile.gets
-		#	"#end"‚Ån‚Ü‚éê‡Aƒf[ƒ^I’[‚Æ‚İ‚È‚·
+		#	"#end"ã§å§‹ã¾ã‚‹å ´åˆã€ãƒ‡ãƒ¼ã‚¿çµ‚ç«¯ã¨ã¿ãªã™
 		if line =~/^#end/ then break end
-		#	"#"‚Ån‚Ü‚éê‡ƒRƒƒ“ƒgs‚Æ‚µ‚Ä“Ç‚İ”ò‚Î‚·
+		#	"#"ã§å§‹ã¾ã‚‹å ´åˆã‚³ãƒ¡ãƒ³ãƒˆè¡Œã¨ã—ã¦èª­ã¿é£›ã°ã™
 		if line =~ /^#/ then next end
 
 		column = line.split
 		areaname = column[0].downcase
 		if areadata.key? areaname
-			STDERR.puts "ƒGƒŠƒA–¼‚ªd•¡‚µ‚Ä‚¢‚é‚Ì‚ÅƒXƒLƒbƒv‚µ‚Ü‚·F#{areaname}\n"
+			STDERR.puts "ã‚¨ãƒªã‚¢åãŒé‡è¤‡ã—ã¦ã„ã‚‹ã®ã§ã‚¹ã‚­ãƒƒãƒ—ã—ã¾ã™ï¼š#{areaname}\n"
 			next
 		end
 		areadata[areaname] = make_asmfile areaname, column[1..column.length - 1]
@@ -91,7 +91,7 @@ def make_listfile srcfilename, arcfilename, arealist
 	srcfile = File.open(srcfilename, "w")
 	arcfile = File.open(arcfilename, "w")
 
-	srcfile.puts "#©“®¶¬‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Å‚·\n"
+	srcfile.puts "#è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã§ã™\n"
 	srcfile.puts "SRCFILES	=	\\\n"
 
 	arealist.each {|name|
@@ -113,7 +113,7 @@ def make_area_asm_files arealist, areadata
 		if areadata.key?(areaname) then
 			sfile.puts areadata[areaname]	
 		else
-			STDERR.puts "ƒf[ƒ^‚ª‚È‚¢‚Ì‚Åƒ_ƒ~[‚ğ¶¬‚µ‚Ü‚·F#{areaname}\n"
+			STDERR.puts "ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ãƒ€ãƒŸãƒ¼ã‚’ç”Ÿæˆã—ã¾ã™ï¼š#{areaname}\n"
 			sfile.puts "#{make_asmfile areaname, dummy_list}\n"
 		end
 		sfile.close
@@ -125,12 +125,12 @@ end
 def check_entry_area arealist, areadata
 	areadata.each{|key, value|
 		unless arealist.include?(key) then
-			puts "‘¶İ‚µ‚È‚¢ƒGƒŠƒA‚Ì’è‹`‚ª‚ ‚è‚Ü‚·\t#{key}\n"
+			puts "å­˜åœ¨ã—ãªã„ã‚¨ãƒªã‚¢ã®å®šç¾©ãŒã‚ã‚Šã¾ã™\t#{key}\n"
 		end
 	}
 end
 #---------------------------------------------------
-#	ƒƒCƒ“ˆ—‚æ‚Ñ‚¾‚µ
+#	ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚ˆã³ã ã—
 #---------------------------------------------------
 arealist = read_areatable ARGV[2]
 areadata = read_area_movemodel ARGV[3]

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pokeparty.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‘€ì
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£æ“ä½œ
  * @author	tamada	GAME FREAK Inc.
  * @date	2005.10.13
  */
@@ -16,16 +16,16 @@
 #include	"poketool/pokeparty.h"
 #include	"savedata/pokeparty_local.h"
 
-//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^Žæ“¾‚Ì‚½‚ß
+//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚
 #include	"system/savedata.h"
 
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	Žw’èˆÊ’u‚ª³‚µ‚¢‚©‚Ç‚¤‚©‚Ì”»’è
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pos		ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’ui‚OƒIƒŠƒWƒ“j
+ * @brief	æŒ‡å®šä½ç½®ãŒæ­£ã—ã„ã‹ã©ã†ã‹ã®åˆ¤å®š
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ï¼ˆï¼ã‚ªãƒªã‚¸ãƒ³ï¼‰
  */
 //----------------------------------------------------------
 #define	PARTY_POS_ASSERT(party, pos)	{\
@@ -38,8 +38,8 @@
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY\‘¢‘Ì‚ÌƒTƒCƒYŽæ“¾
- * @return	int	POKEPARTY\‘¢‘Ì‚Ì‘å‚«‚³
+ * @brief	POKEPARTYæ§‹é€ ä½“ã®ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int	POKEPARTYæ§‹é€ ä½“ã®å¤§ãã•
  */
 //----------------------------------------------------------
 int PokeParty_GetWorkSize(void)
@@ -49,9 +49,9 @@ int PokeParty_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY\‘¢‘Ì‚Ìƒ[ƒNŠm•Û
- * @param	heapID		ƒƒ‚ƒŠ‚ðŠm•Û‚·‚éƒq[ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	POKEPARTY‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	POKEPARTYæ§‹é€ ä½“ã®ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+ * @param	heapID		ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	POKEPARTYã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 POKEPARTY * PokeParty_AllocPartyWork(u32 heapID)
@@ -66,8 +66,8 @@ POKEPARTY * PokeParty_AllocPartyWork(u32 heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY‚Ì‰Šú‰»ˆ—
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	POKEPARTYã®åˆæœŸåŒ–å‡¦ç†
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void PokeParty_InitWork(POKEPARTY * party)
@@ -79,9 +79,9 @@ void PokeParty_InitWork(POKEPARTY * party)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY‚Ì‰Šú‰»ˆ—
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	max		POKEPARTY‚ª•ÛŽ‚Å‚«‚éÅ‘å‚Ìƒ|ƒPƒ‚ƒ“”
+ * @brief	POKEPARTYã®åˆæœŸåŒ–å‡¦ç†
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	max		POKEPARTYãŒä¿æŒã§ãã‚‹æœ€å¤§ã®ãƒã‚±ãƒ¢ãƒ³æ•°
  */
 //----------------------------------------------------------
 void PokeParty_Init(POKEPARTY * party, int max)
@@ -101,17 +101,17 @@ void PokeParty_Init(POKEPARTY * party, int max)
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY‚Éƒ|ƒPƒ‚ƒ“‚ð‰Á‚¦‚é
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	poke	‰Á‚¦‚éƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒf[ƒ^
- * @retval	TRUE	¬Œ÷
- * @retval	FALSE	Ž¸”s
+ * @brief	POKEPARTYã«ãƒã‚±ãƒ¢ãƒ³ã‚’åŠ ãˆã‚‹
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	poke	åŠ ãˆã‚‹ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒ‡ãƒ¼ã‚¿
+ * @retval	TRUE	æˆåŠŸ
+ * @retval	FALSE	å¤±æ•—
  */
 //----------------------------------------------------------
 BOOL PokeParty_Add(POKEPARTY * party, POKEMON_PARAM * poke)
 {
 	if (party->PokeCount >= party->PokeCountMax) {
-		//ŽèŽ‚¿‚ª‚¢‚Á‚Ï‚¢
+		//æ‰‹æŒã¡ãŒã„ã£ã±ã„
 		return FALSE;
 	}
 	party->member[party->PokeCount] = *poke;
@@ -125,11 +125,11 @@ BOOL PokeParty_Add(POKEPARTY * party, POKEMON_PARAM * poke)
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY‚©‚çƒ|ƒPƒ‚ƒ“‚ðŽæ‚èœ‚­
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pos		Žæ‚èœ‚­ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’ui‚OƒIƒŠƒWƒ“j
- * @retval	TRUE	¬Œ÷
- * @retval	FALSE	Ž¸”s
+ * @brief	POKEPARTYã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã‚’å–ã‚Šé™¤ã
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos		å–ã‚Šé™¤ããƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ï¼ˆï¼ã‚ªãƒªã‚¸ãƒ³ï¼‰
+ * @retval	TRUE	æˆåŠŸ
+ * @retval	FALSE	å¤±æ•—
  */
 //----------------------------------------------------------
 BOOL PokeParty_Delete(POKEPARTY * party, int pos)
@@ -152,9 +152,9 @@ BOOL PokeParty_Delete(POKEPARTY * party, int pos)
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY‚©‚ç•ÛŽ‚Å‚«‚éƒ|ƒPƒ‚ƒ“”‚ÌÅ‘å‚ðŽæ“¾
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	ŽèŽ‚¿”
+ * @brief	POKEPARTYã‹ã‚‰ä¿æŒã§ãã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°ã®æœ€å¤§ã‚’å–å¾—
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	æ‰‹æŒã¡æ•°
  */
 //----------------------------------------------------------
 int	PokeParty_GetPokeCountMax(const POKEPARTY * party)
@@ -164,9 +164,9 @@ int	PokeParty_GetPokeCountMax(const POKEPARTY * party)
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY‚©‚çŽèŽ‚¿”‚ðŽæ“¾
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	ŽèŽ‚¿”
+ * @brief	POKEPARTYã‹ã‚‰æ‰‹æŒã¡æ•°ã‚’å–å¾—
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	æ‰‹æŒã¡æ•°
  */
 //----------------------------------------------------------
 int	PokeParty_GetPokeCount(const POKEPARTY * party)
@@ -176,10 +176,10 @@ int	PokeParty_GetPokeCount(const POKEPARTY * party)
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY‚©‚çƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pos		ŽQÆ‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’ui‚OƒIƒŠƒWƒ“j
- * @retval	POKEMON_PARAM	Žw’è‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	POKEPARTYã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos		å‚ç…§ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ï¼ˆï¼ã‚ªãƒªã‚¸ãƒ³ï¼‰
+ * @retval	POKEMON_PARAM	æŒ‡å®šã—ãŸãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 POKEMON_PARAM * PokeParty_GetMemberPointer(const POKEPARTY * party, int pos)
@@ -190,13 +190,13 @@ POKEMON_PARAM * PokeParty_GetMemberPointer(const POKEPARTY * party, int pos)
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY‚Öƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ð‹­§ƒZƒbƒg
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pos		ƒZƒbƒg‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’ui‚OƒIƒŠƒWƒ“j
- * @param	pp		ƒZƒbƒg‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ * @brief	POKEPARTYã¸ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å¼·åˆ¶ã‚»ãƒƒãƒˆ
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos		ã‚»ãƒƒãƒˆã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ï¼ˆï¼ã‚ªãƒªã‚¸ãƒ³ï¼‰
+ * @param	pp		ã‚»ãƒƒãƒˆã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
- * ƒ{ƒbƒNƒX‚©‚çE‚Á‚Ä‚«‚½ƒ|ƒPƒ‚ƒ“‚Æu“ü‚ê‘Ö‚¦‚évˆ—‚É•Ö—˜‚È‚Ì‚Åì¬‚µ‚½B
- * ’ÊíAƒƒ“ƒo[‚Ì’Ç‰Á‚É‚Í PokeParty_Add ‚ðŽg‚Á‚Ä‚­‚¾‚³‚¢B  taya
+ * ãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰æ‹¾ã£ã¦ããŸãƒã‚±ãƒ¢ãƒ³ã¨ã€Œå…¥ã‚Œæ›¿ãˆã‚‹ã€å‡¦ç†ã«ä¾¿åˆ©ãªã®ã§ä½œæˆã—ãŸã€‚
+ * é€šå¸¸ã€ãƒ¡ãƒ³ãƒãƒ¼ã®è¿½åŠ ã«ã¯ PokeParty_Add ã‚’ä½¿ã£ã¦ãã ã•ã„ã€‚  taya
  *
  */
 //----------------------------------------------------------
@@ -216,12 +216,12 @@ void PokeParty_SetMemberData( POKEPARTY* party, int pos, POKEMON_PARAM* pp )
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY“à‚Åƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u‚ð“ü‚ê‘Ö‚¦‚é
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pos1	ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’ui‚OƒIƒŠƒWƒ“j
- * @param	pos2	ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’ui‚OƒIƒŠƒWƒ“j
- * @retval	TRUE	¬Œ÷
- * @retval	FALSE	Ž¸”s
+ * @brief	POKEPARTYå†…ã§ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos1	ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ï¼ˆï¼ã‚ªãƒªã‚¸ãƒ³ï¼‰
+ * @param	pos2	ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ï¼ˆï¼ã‚ªãƒªã‚¸ãƒ³ï¼‰
+ * @retval	TRUE	æˆåŠŸ
+ * @retval	FALSE	å¤±æ•—
  */
 //----------------------------------------------------------
 BOOL PokeParty_ExchangePosition(POKEPARTY * party, int pos1, int pos2)
@@ -245,9 +245,9 @@ BOOL PokeParty_ExchangePosition(POKEPARTY * party, int pos1, int pos2)
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY‚ÌƒRƒs[
- * @param	src		POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	dst		POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	POKEPARTYã®ã‚³ãƒ”ãƒ¼
+ * @param	src		POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	dst		POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void PokeParty_Copy(const POKEPARTY * src, POKEPARTY * dst)
@@ -260,10 +260,10 @@ void PokeParty_Copy(const POKEPARTY * src, POKEPARTY * dst)
 
 //----------------------------------------------------------
 /**
- * @brief	POKEPARTY“à‚Éƒ‚ƒ“ƒXƒ^[‚ª‚¢‚é‚©‚Ç‚¤‚©H
- * @param	ppt		ƒ`ƒFƒbƒN‚·‚éPOKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	mons_no	‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @return	FALSE:‚¢‚È‚¢@TRUE:‚¢‚é
+ * @brief	POKEPARTYå†…ã«ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒã„ã‚‹ã‹ã©ã†ã‹ï¼Ÿ
+ * @param	ppt		ãƒã‚§ãƒƒã‚¯ã™ã‚‹POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	mons_no	ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @return	FALSE:ã„ãªã„ã€€TRUE:ã„ã‚‹
  */
 //----------------------------------------------------------
 BOOL PokeParty_PokemonCheck(const POKEPARTY * ppt, int mons_no)
@@ -283,9 +283,9 @@ BOOL PokeParty_PokemonCheck(const POKEPARTY * ppt, int mons_no)
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌŽæ“¾
- * @param	sv	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	POKEPARTY	ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
+ * @param	sv	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	POKEPARTY	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 POKEPARTY * SaveData_GetTemotiPokemon(SAVEDATA * sv)
@@ -300,8 +300,8 @@ POKEPARTY * SaveData_GetTemotiPokemon(SAVEDATA * sv)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOFƒ_ƒ~[ƒp[ƒeƒB‚Ì¶¬
- * @param	party	POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ‡ãƒãƒƒã‚°ï¼šãƒ€ãƒŸãƒ¼ãƒ‘ãƒ¼ãƒ†ã‚£ã®ç”Ÿæˆ
+ * @param	party	POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void Debug_PokeParty_MakeParty(POKEPARTY * party)
@@ -319,7 +319,7 @@ void Debug_PokeParty_MakeParty(POKEPARTY * party)
 #endif //CRC_LOADCHECK
 }
 
-// ŠO•”ŽQÆƒCƒ“ƒfƒbƒNƒX‚ðì‚éŽž‚Ì‚Ý—LŒø(ƒQ[ƒ€’†‚Í–³Œø)
+// å¤–éƒ¨å‚ç…§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œã‚‹æ™‚ã®ã¿æœ‰åŠ¹(ã‚²ãƒ¼ãƒ ä¸­ã¯ç„¡åŠ¹)
 #ifdef CREATE_INDEX
 void *Index_Get_PokeCount_Offset(POKEPARTY *pt){ return &pt->PokeCount; }
 #endif

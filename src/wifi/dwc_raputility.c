@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	dwc_raputility.c
- * @bfief	DWC���b�p�[�B�o�g���I�[�o�[���C�Q�w�ɕ���  06.03.25
+ * @bfief	DWCラッパー。バトルオーバーレイ２層に並列  06.03.25
  * @author	kazuki yoshihara  -> k.ohno
  * @date	06/03/25
  */
@@ -13,7 +13,7 @@
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/10
-// �|�P�����̌��ꂲ�Ƃ�Wi-Fi�ݒ��ʂ�؂芷��
+// ポケモンの言語ごとにWi-Fi設定画面を切り換え
 #if (PM_LANG == LANG_JAPAN)
 #define WIFI_SETTING_LANGUAGE	DWC_LANGUAGE_JAPANESE
 #define WIFI_SETTING_UTILITY	DWC_UTILITY_TOP_MENU_FOR_JPN
@@ -38,7 +38,7 @@
 
 //==============================================================================
 /**
- * WiFi�ڑ����[�e�B���e�B���Ăяo��
+ * WiFi接続ユーティリティを呼び出す
  * @param   none
  * @retval  none
  */
@@ -49,29 +49,29 @@ void mydwc_callUtility( int HeapID )
 	void *work;
 
 	CommVRAMDInitialize(); // 
-	// �A���[���V�X�e�������������Ă����Ȃ���DWC_StartUtility�ďo�����Panic����������
+	// アラームシステムを初期化しておかないとDWC_StartUtility呼出し後にPanicが発生する
 	OS_InitTick();
 	OS_InitAlarm();
 
 
-	// ���荞�ݏ�������U�֎~��
+	// 割り込み処理を一旦禁止へ
 	old = OS_DisableInterrupts();
 
     DWC_SetAuthServer( GF_DWC_CONNECTINET_AUTH_TYPE );
 
-	// WiFi�ݒ胁�j���[�Ăяo���i�I���܂ŋA���Ă��Ȃ�)
+	// WiFi設定メニュー呼び出し（終わるまで帰ってこない)
 	work = sys_AllocMemory( HeapID, DWC_UTILITY_WORK_SIZE );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/10
-	// �|�P�����̌��ꂲ�Ƃ�Wi-Fi�ݒ��ʂ�؂芷��
+	// ポケモンの言語ごとにWi-Fi設定画面を切り換え
 	(void)DWC_StartUtility( work, WIFI_SETTING_LANGUAGE, WIFI_SETTING_UTILITY );
 	// ----------------------------------------------------------------------------
 	sys_FreeMemoryEz( work );
 
-	// �֎~�������荞�ݏ����𕜋A
+	// 禁止した割り込み処理を復帰
 	OS_RestoreInterrupts( old );
 
-	//�}�X�^�[���荞�ݏ�����L����
+	//マスター割り込み処理を有効に
 	OS_EnableIrq( ); 
 
 

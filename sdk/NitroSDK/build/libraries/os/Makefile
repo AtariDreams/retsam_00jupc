@@ -19,7 +19,7 @@
 # add NITRO_WITH_ARM7 switch
 #
 # Revision 1.2  2004/02/12 11:16:26  yada
-# ˆêARM7‚ÌƒRƒ“ƒpƒCƒ‹~‚ß
+# ä¸€æ™‚ARM7ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ­¢ã‚
 #
 # Revision 1.1  2004/02/12 11:11:22  yasu
 # makefile for NitroSDK/build/libraries/os

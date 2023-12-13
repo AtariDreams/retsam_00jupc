@@ -1,7 +1,7 @@
 #ifndef _UNION_DEF_H_
 #define _UNION_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_UNION_FLAG_CHANGE		(1)
 #define	SCRID_UNION_INIT_CHANGE		(2)
 #define	SCRID_UNION_OBJ_CHANGE		(3)
@@ -10,6 +10,6 @@
 #define	SCRID_CONNECT_UNION_DUMMY		(6)
 #define	SCRID_CONNECT_UNION_TALK_OBJ		(7)
 #define	SCRID_CONNECT_UNION_GUIDE		(8)
-#define	SCRID_UNION_DATA_MAX		(8)		//最大数
+#define	SCRID_UNION_DATA_MAX		(8)		//譛螟ｧ謨ｰ
 
 #endif //_UNION_DEF_H_

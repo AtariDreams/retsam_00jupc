@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_234.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			234�@�����̎󂯂Ă����Ԉُ�i�ǂ��A�ǂ��ǂ��A�˂ނ�A�܂ЁA�₯�ǁj���A�G�A������I��ő���𓯂���Ԃɂ���B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			234　自分の受けている状態異常（どく、どくどく、ねむり、まひ、やけど）を、敵、味方を選んで相手を同じ状態にする。
  *
  *@author	HisashiSogabe
  *@data		2006.02.16

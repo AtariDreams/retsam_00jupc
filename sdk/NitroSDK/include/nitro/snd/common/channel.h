@@ -15,25 +15,25 @@
   do-indent
 
   Revision 1.21  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL の判定部分に SDK_WIN32 での判定も追加
+  SDK_FROM_TOOL 縺ｮ蛻､螳夐Κ蛻�縺ｫ SDK_WIN32 縺ｧ縺ｮ蛻､螳壹ｂ霑ｽ蜉
 
   Revision 1.20  2005/04/12 06:15:07  ida
-  SNDをNITRO-SDKへ移設
+  SND繧誰ITRO-SDK縺ｸ遘ｻ險ｭ
 
   Revision 1.24  2005/04/12 00:52:11  ida
   for SDK_FROM_TOOL
 
   Revision 1.23  2005/02/16 07:51:09  ida
-  ARM9のためにレジスタマクロ追加
+  ARM9縺ｮ縺溘ａ縺ｫ繝ｬ繧ｸ繧ｹ繧ｿ繝槭け繝ｭ霑ｽ蜉
 
   Revision 1.22  2005/02/02 05:10:47  ida
   for SDK_FROM_TOOL
 
   Revision 1.21  2005/01/06 04:07:49  ida
-  著作権年次表記を更新
+  闡嶺ｽ懈ｨｩ蟷ｴ谺｡陦ｨ險倥ｒ譖ｴ譁ｰ
 
   Revision 1.20  2005/01/05 06:47:34  ida
-  SND_GetChannelControl関数追加
+  SND_GetChannelControl髢｢謨ｰ霑ｽ蜉
 
   Revision 1.19  2004/10/07 05:55:49  ida
   add SND_CHANNEL_PAN_CENTER

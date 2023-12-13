@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_objdraw.c
- *	@brief		ƒIƒuƒWƒFƒNƒgƒf[ƒ^•\Ž¦ƒ‚ƒWƒ…[ƒ‹
+ *	@brief		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
  *	@author		tomoya takahashi
  *	@data		2007.03.16
  *
@@ -16,60 +16,60 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// •\Ž¦—Dæ‡ˆÊŒvŽZƒ}ƒNƒ
-#define WF2DMAP_DRAWPRI_STATR	(20000)	// •\Ž¦—Dæ‡ˆÊŠJŽnˆÊ’u
-#define WF2DMAP_DRAWPRI_MAX		(20000)	//‚½‚Ä‚É10000ƒhƒbƒgƒTƒCƒY‚Ì•”‰®‚Í‚È‚¢‚¾‚ë‚¤
-#define WF2DMAP_DRAWPRI_HERO_GET(y)	( WF2DMAP_DRAWPRI_MAX - (y*2) + WF2DMAP_DRAWPRI_STATR )	// ŽålŒö‚Ì•\Ž¦—Dæ‡ˆÊ
-#define WF2DMAP_DRAWPRI_GET(y)	( WF2DMAP_DRAWPRI_HERO_GET(y)+1 )	// NPC‚Ì•\Ž¦—Dæ‡ˆÊ
+// è¡¨ç¤ºå„ªå…ˆé †ä½è¨ˆç®—ãƒžã‚¯ãƒ­
+#define WF2DMAP_DRAWPRI_STATR	(20000)	// è¡¨ç¤ºå„ªå…ˆé †ä½é–‹å§‹ä½ç½®
+#define WF2DMAP_DRAWPRI_MAX		(20000)	//ãŸã¦ã«10000ãƒ‰ãƒƒãƒˆã‚µã‚¤ã‚ºã®éƒ¨å±‹ã¯ãªã„ã ã‚ã†
+#define WF2DMAP_DRAWPRI_HERO_GET(y)	( WF2DMAP_DRAWPRI_MAX - (y*2) + WF2DMAP_DRAWPRI_STATR )	// ä¸»äººå…¬ã®è¡¨ç¤ºå„ªå…ˆé †ä½
+#define WF2DMAP_DRAWPRI_GET(y)	( WF2DMAP_DRAWPRI_HERO_GET(y)+1 )	// NPCã®è¡¨ç¤ºå„ªå…ˆé †ä½
 #define WF2DMAP_DRAWPRI_SHADOW	( 40001 )
 
-// “o˜^ƒfƒtƒHƒ‹ƒgÝ’è
-#define WF2DMAP_BGPRI_DEF	(2)	// Šî–{‚a‚f—Dæ‡ˆÊ
+// ç™»éŒ²ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¨­å®š
+#define WF2DMAP_BGPRI_DEF	(2)	// åŸºæœ¬ï¼¢ï¼§å„ªå…ˆé †ä½
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	•\Ž¦ƒ[ƒN
+///	è¡¨ç¤ºãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WF2DMAP_OBJDRAWWK{
-	const WF2DMAP_OBJWK* cp_objwk;	// ƒŠƒ“ƒN‚µ‚Ä‚¢‚éƒIƒuƒWƒFƒNƒgƒ[ƒN
-	WF_2DCWK* p_drawwk;	// •\Ž¦ƒ[ƒN
-	u16 status;	// ¡‚Ìó‘Ô
-	u16 way;	// •ûŒü
-	u16 playid;	// ƒvƒŒƒCƒ„[‚h‚c
-	u16 lastframe;	// 1‚Â‘O‚ÌI—¹ƒtƒŒ[ƒ€
-	u16 lastanm;	// 1‚Â‘O‚ÌƒAƒjƒ
-	u8 hero;	// ŽålŒöƒtƒ‰ƒO
-	u8 updata;	// ƒAƒbƒvƒf[ƒgƒtƒ‰ƒO
+	const WF2DMAP_OBJWK* cp_objwk;	// ãƒªãƒ³ã‚¯ã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+	WF_2DCWK* p_drawwk;	// è¡¨ç¤ºãƒ¯ãƒ¼ã‚¯
+	u16 status;	// ä»Šã®çŠ¶æ…‹
+	u16 way;	// æ–¹å‘
+	u16 playid;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼©ï¼¤
+	u16 lastframe;	// 1ã¤å‰ã®çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 
+	u16 lastanm;	// 1ã¤å‰ã®ã‚¢ãƒ‹ãƒ¡
+	u8 hero;	// ä¸»äººå…¬ãƒ•ãƒ©ã‚°
+	u8 updata;	// ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒ•ãƒ©ã‚°
 }WF2DMAP_OBJDRAWWK;
 
 
 //-------------------------------------
-///	•\Ž¦ƒVƒXƒeƒ€ƒ[ƒN
+///	è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WF2DMAP_OBJDRAWSYS{
 	WF_2DCSYS* p_drawsys;
@@ -81,7 +81,7 @@ typedef struct _WF2DMAP_OBJDRAWSYS{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_OBJDrawWkCleanCheck( const WF2DMAP_OBJDRAWWK* cp_wk );
@@ -93,39 +93,39 @@ static void WF2DMAP_OBJDrawWkAnmSet( WF2DMAP_OBJDRAWWK* p_wk, WF_2DC_ANMTYPE anm
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *	
- *	@param	p_clset			ƒZƒ‹ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
- *	@param	p_pfd			ƒpƒŒƒbƒgƒtƒF[ƒhƒ|ƒCƒ“ƒ^
- *	@param	objnum			ƒIƒuƒWƒFƒNƒg”
- *	@param	draw_type		‘Sl•¨‚Ì•\Ž¦æ
- *	@param	heapID			ƒq[ƒv‚h‚c
+ *	@param	p_clset			ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+ *	@param	p_pfd			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ *	@param	objnum			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+ *	@param	draw_type		å…¨äººç‰©ã®è¡¨ç¤ºå…ˆ
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- *	@return	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@return	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *
  *	draw_type
-	main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN
-	sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB
-	—¼•û‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAX
+	mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN
+	subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB
+	ä¸¡æ–¹ã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAX
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_OBJDRAWSYS* WF2DMAP_OBJDrawSysInit( CLACT_SET_PTR p_clset, PALETTE_FADE_PTR p_pfd, u32 objnum, u32 draw_type, u32 heapID )
 {
 	WF2DMAP_OBJDRAWSYS* p_sys;
 
-	// ƒVƒXƒeƒ€ƒ[ƒNì¬
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_sys = sys_AllocMemory( heapID, sizeof(WF2DMAP_OBJDRAWSYS) );
 
-	// •\Ž¦ƒVƒXƒeƒ€ì¬
+	// è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_sys->p_drawsys = WF_2DC_SysInit( p_clset, p_pfd, objnum, heapID );
 
-	// ƒIƒuƒWƒFƒNƒgƒ[ƒNì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_sys->objnum = objnum;
 	p_sys->p_wk = sys_AllocMemory( heapID, sizeof(WF2DMAP_OBJDRAWWK)*p_sys->objnum );
 	memset( p_sys->p_wk, 0, sizeof(WF2DMAP_OBJDRAWWK)*p_sys->objnum );
 
-	// Šî–{Ý’è
+	// åŸºæœ¬è¨­å®š
 	p_sys->bg_pri		= WF2DMAP_BGPRI_DEF;
 	p_sys->draw_type	= draw_type;
 
@@ -134,48 +134,48 @@ WF2DMAP_OBJDRAWSYS* WF2DMAP_OBJDrawSysInit( CLACT_SET_PTR p_clset, PALETTE_FADE_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€‰Šú‰»		‰A‚ ‚è
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–		é™°ã‚ã‚Š
  *	
- *	@param	p_clset			ƒZƒ‹ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
- *	@param	p_pfd			ƒpƒŒƒbƒgƒtƒF[ƒhƒ|ƒCƒ“ƒ^
- *	@param	objnum			ƒIƒuƒWƒFƒNƒg”
- *	@param	hero_charid		ŽålŒöƒLƒƒƒ‰ƒNƒ^ID
- *	@param	hero_movetype	ŽålŒö‚Ì“®ì
- *	@param	draw_type		‘Sl•¨‚Ì•\Ž¦æ
- *	@param	heapID			ƒq[ƒv‚h‚c
+ *	@param	p_clset			ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+ *	@param	p_pfd			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ *	@param	objnum			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+ *	@param	hero_charid		ä¸»äººå…¬ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+ *	@param	hero_movetype	ä¸»äººå…¬ã®å‹•ä½œ
+ *	@param	draw_type		å…¨äººç‰©ã®è¡¨ç¤ºå…ˆ
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- *	@return	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@return	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *
  *	draw_type
-	main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN
-	sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB
-	—¼•û‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAX
+	mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN
+	subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB
+	ä¸¡æ–¹ã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAX
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_OBJDRAWSYS* WF2DMAP_OBJDrawSysInit_Shadow( CLACT_SET_PTR p_clset, PALETTE_FADE_PTR p_pfd, u32 objnum, u32 hero_charid, WF_2DC_MOVETYPE hero_movetype,  u32 draw_type,u32 heapID )
 {
 	WF2DMAP_OBJDRAWSYS* p_sys;
 
-	// ƒVƒXƒeƒ€ƒ[ƒNì¬
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_sys = sys_AllocMemory( heapID, sizeof(WF2DMAP_OBJDRAWSYS) );
 
-	// •\Ž¦ƒVƒXƒeƒ€ì¬
+	// è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_sys->p_drawsys = WF_2DC_SysInit( p_clset, p_pfd, objnum, heapID );
 
-	// ƒIƒuƒWƒFƒNƒgƒ[ƒNì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_sys->objnum = objnum;
 	p_sys->p_wk = sys_AllocMemory( heapID, sizeof(WF2DMAP_OBJDRAWWK)*p_sys->objnum );
 	memset( p_sys->p_wk, 0, sizeof(WF2DMAP_OBJDRAWWK)*p_sys->objnum );
 
-	// Šî–{Ý’è
+	// åŸºæœ¬è¨­å®š
 	p_sys->bg_pri		= WF2DMAP_BGPRI_DEF;
 	p_sys->draw_type	= draw_type;
 
-	// ŽålŒö‚ÌƒŠƒ\[ƒX‚ð“Ç‚Ýž‚Þ
+	// ä¸»äººå…¬ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 	WF_2DC_ResSet( p_sys->p_drawsys, hero_charid, p_sys->draw_type, hero_movetype, heapID );
 
-	// ‰A‚ÌƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	// é™°ã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	WF_2DC_ShadowResSet( p_sys->p_drawsys, p_sys->draw_type, WF2DMAP_DRAWPRI_SHADOW, heapID );
 
 	return p_sys;
@@ -183,7 +183,7 @@ WF2DMAP_OBJDRAWSYS* WF2DMAP_OBJDrawSysInit_Shadow( CLACT_SET_PTR p_clset, PALETT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
  *	@param	p_sys 
  */
@@ -192,7 +192,7 @@ void WF2DMAP_OBJDrawSysExit( WF2DMAP_OBJDRAWSYS* p_sys )
 {
 	int i;
 	
-	// ƒIƒuƒWƒFƒNƒgƒ[ƒN”jŠü
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	for( i=0; i<p_sys->objnum; i++ ){
 		if( WF2DMAP_OBJDrawWkCleanCheck( &p_sys->p_wk[i] ) == FALSE ){
 			WF2DMAP_OBJDrawWkDel( &p_sys->p_wk[i] );
@@ -200,26 +200,26 @@ void WF2DMAP_OBJDrawSysExit( WF2DMAP_OBJDRAWSYS* p_sys )
 	}
 
 
-	// ‰A‚ÌƒŠƒ\[ƒX”jŠü
+	// é™°ã®ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	WF_2DC_ShadowResDel( p_sys->p_drawsys );
 
-	// ƒŠƒ\[ƒX‚Í‚«
+	// ãƒªã‚½ãƒ¼ã‚¹ã¯ã
 	WF2DMAP_OBJDrawSysAllResDel( p_sys );
 
-	// •\Ž¦ƒVƒXƒeƒ€‚Í‚«
+	// è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ã¯ã
 	WF_2DC_SysExit( p_sys->p_drawsys );
 	
-	// ƒ[ƒNƒoƒbƒtƒ@”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	sys_FreeMemoryEz( p_sys->p_wk );
 	sys_FreeMemoryEz( p_sys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG—Dæ‡ˆÊ‚ÌÝ’è
+ *	@brief	BGå„ªå…ˆé †ä½ã®è¨­å®š
  *
- *	@param	p_sys	ƒIƒuƒWƒFƒNƒg•\Ž¦ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	bg_pri	‚a‚f—Dæ‡ˆÊ
+ *	@param	p_sys	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	bg_pri	ï¼¢ï¼§å„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawSysDefBgPriSet( WF2DMAP_OBJDRAWSYS* p_sys, u32 bg_pri )
@@ -229,11 +229,11 @@ void WF2DMAP_OBJDrawSysDefBgPriSet( WF2DMAP_OBJDRAWSYS* p_sys, u32 bg_pri )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚a‚f—Dæ‡ˆÊ‚ÌŽæ“¾
+ *	@brief	ï¼¢ï¼§å„ªå…ˆé †ä½ã®å–å¾—
  *
- *	@param	cp_sys	ƒIƒuƒWƒFƒNƒg•\Ž¦ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_sys	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‚a‚f—Dæ‡ˆÊ
+ *	@return	ï¼¢ï¼§å„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 u32 WF2DMAP_OBJDrawSysDefBgPriGet( const WF2DMAP_OBJDRAWSYS* cp_sys )
@@ -244,22 +244,22 @@ u32 WF2DMAP_OBJDrawSysDefBgPriGet( const WF2DMAP_OBJDRAWSYS* cp_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXÝ’è
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN	
- *	@param	charaid		ƒLƒƒƒ‰ƒNƒ^‚h‚c
- *	@param	movetype	“®ìƒ^ƒCƒv
- *	@param	heapID		ƒq[ƒv‚h‚c
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯	
+ *	@param	charaid		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ï¼©ï¼¤
+ *	@param	movetype	å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
 
 	movetype
-	WF_2DC_MOVERUN,		// •à‚«{U‚èŒü‚«{‘–‚èƒAƒjƒiŽålŒö‚Ì‚Ýj
-	WF_2DC_MOVENORMAL,	// •à‚«{U‚èŒü‚«‚Ì‚ÝƒAƒjƒ
-	WF_2DC_MOVETURN,	// U‚èŒü‚«‚Ì‚ÝƒAƒjƒ
+	WF_2DC_MOVERUN,		// æ­©ãï¼‹æŒ¯ã‚Šå‘ãï¼‹èµ°ã‚Šã‚¢ãƒ‹ãƒ¡ï¼ˆä¸»äººå…¬ã®ã¿ï¼‰
+	WF_2DC_MOVENORMAL,	// æ­©ãï¼‹æŒ¯ã‚Šå‘ãã®ã¿ã‚¢ãƒ‹ãƒ¡
+	WF_2DC_MOVETURN,	// æŒ¯ã‚Šå‘ãã®ã¿ã‚¢ãƒ‹ãƒ¡
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawSysResSet( WF2DMAP_OBJDRAWSYS* p_sys, u32 charaid, WF_2DC_MOVETYPE movetype, u32 heapID )
 {
-	// ‘½d“Ç‚Ýž‚Ý‰ñ”ð
+	// å¤šé‡èª­ã¿è¾¼ã¿å›žé¿
 	if( WF_2DC_ResCheck( p_sys->p_drawsys, charaid ) == FALSE ){
 		WF_2DC_ResSet( p_sys->p_drawsys, charaid, p_sys->draw_type, movetype, heapID );
 	}
@@ -267,10 +267,10 @@ void WF2DMAP_OBJDrawSysResSet( WF2DMAP_OBJDRAWSYS* p_sys, u32 charaid, WF_2DC_MO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^[ƒŠƒ\[ƒX‚Ì”jŠü
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	charid		ƒLƒƒƒ‰ƒNƒ^[ƒ^ƒCƒv
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	charid		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawSysResDel( WF2DMAP_OBJDRAWSYS* p_sys, u32 charaid )
@@ -280,13 +280,13 @@ void WF2DMAP_OBJDrawSysResDel( WF2DMAP_OBJDRAWSYS* p_sys, u32 charaid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^[ƒŠƒ\[ƒX‚ª“Ç‚Ýž‚Ü‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	charid		ƒLƒƒƒ‰ƒNƒ^‚h‚c
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	charid		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ï¼©ï¼¤
  *
- *	@retval	“Ç‚Ýž‚ñ‚Å‚ ‚é
- *	@retval	“Ç‚Ýž‚ñ‚Å‚È‚¢
+ *	@retval	èª­ã¿è¾¼ã‚“ã§ã‚ã‚‹
+ *	@retval	èª­ã¿è¾¼ã‚“ã§ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WF2DMAP_OBJDrawSysResCheck( const WF2DMAP_OBJDRAWSYS* cp_sys, u32 charid )
@@ -296,9 +296,9 @@ BOOL WF2DMAP_OBJDrawSysResCheck( const WF2DMAP_OBJDRAWSYS* cp_sys, u32 charid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘SƒŠƒ\[ƒX‚Ì”jŠü
+ *	@brief	å…¨ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *	
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawSysAllResDel( WF2DMAP_OBJDRAWSYS* p_sys )
@@ -308,17 +308,17 @@ void WF2DMAP_OBJDrawSysAllResDel( WF2DMAP_OBJDRAWSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^
+ *	@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	movetype	“®ìƒ^ƒCƒv
- *	@param	heap		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	movetype	å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
 
 	movetype
-	WF_2DC_MOVERUN,		// •à‚«{U‚èŒü‚«{‘–‚èƒAƒjƒiŽålŒö‚Ì‚Ýj
-	WF_2DC_MOVENORMAL,	// •à‚«{U‚èŒü‚«‚Ì‚ÝƒAƒjƒ
-	WF_2DC_MOVETURN,	// U‚èŒü‚«‚Ì‚ÝƒAƒjƒ
+	WF_2DC_MOVERUN,		// æ­©ãï¼‹æŒ¯ã‚Šå‘ãï¼‹èµ°ã‚Šã‚¢ãƒ‹ãƒ¡ï¼ˆä¸»äººå…¬ã®ã¿ï¼‰
+	WF_2DC_MOVENORMAL,	// æ­©ãï¼‹æŒ¯ã‚Šå‘ãã®ã¿ã‚¢ãƒ‹ãƒ¡
+	WF_2DC_MOVETURN,	// æŒ¯ã‚Šå‘ãã®ã¿ã‚¢ãƒ‹ãƒ¡
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawSysUniResSet( WF2DMAP_OBJDRAWSYS* p_sys, WF_2DC_MOVETYPE movetype, u32 heap )
@@ -328,9 +328,9 @@ void WF2DMAP_OBJDrawSysUniResSet( WF2DMAP_OBJDRAWSYS* p_sys, WF_2DC_MOVETYPE mov
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawSysUniResDel( WF2DMAP_OBJDRAWSYS* p_sys )
@@ -340,14 +340,14 @@ void WF2DMAP_OBJDrawSysUniResDel( WF2DMAP_OBJDRAWSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦ƒIƒuƒWƒFƒNƒg‚Ì¶¬
+ *	@brief	è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_objwk	ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	hero		ŽålŒöƒtƒ‰ƒO	i‚±‚ÌƒIƒuƒWƒFƒNƒg‚ªŽ©•ª:TRUE@‘¼l:FALSEj
- *	@param	heapID		ƒq[ƒv‚h‚c
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_objwk	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	hero		ä¸»äººå…¬ãƒ•ãƒ©ã‚°	ï¼ˆã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒè‡ªåˆ†:TRUEã€€ä»–äºº:FALSEï¼‰
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- *	@return	•\Ž¦ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@return	è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_OBJDRAWWK* WF2DMAP_OBJDrawWkNew( WF2DMAP_OBJDRAWSYS* p_sys, const WF2DMAP_OBJWK* cp_objwk, BOOL hero, u32 heapID )
@@ -361,23 +361,23 @@ WF2DMAP_OBJDRAWWK* WF2DMAP_OBJDrawWkNew( WF2DMAP_OBJDRAWSYS* p_sys, const WF2DMA
 	p_wk->status = WF2DMAP_OBJWkDataGet( cp_objwk, WF2DMAP_OBJPM_ST );
 	p_wk->way	 = WF2DMAP_OBJWkDataGet( cp_objwk, WF2DMAP_OBJPM_WAY );
 	p_wk->playid = WF2DMAP_OBJWkDataGet( cp_objwk, WF2DMAP_OBJPM_PLID );
-	p_wk->cp_objwk = cp_objwk;	// ƒIƒuƒWƒFƒNƒgƒ[ƒN•Û‘¶
+	p_wk->cp_objwk = cp_objwk;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ä¿å­˜
 	p_wk->hero = hero;
 	p_wk->updata = TRUE;
 	p_wk->lastframe = 0;
 	p_wk->lastanm = 0;
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	add.x = WF2DMAP_OBJWkDataGet( cp_objwk, WF2DMAP_OBJPM_X );
 	add.y = WF2DMAP_OBJWkDataGet( cp_objwk, WF2DMAP_OBJPM_Y );
 	add.pri = WF2DMAP_OBJDrawWkDrawPriCalc( add.y, p_wk->hero );
 	add.bgpri = p_sys->bg_pri;
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	charid = WF2DMAP_OBJWkDataGet( cp_objwk, WF2DMAP_OBJPM_CHARA );
 	p_wk->p_drawwk = WF_2DC_WkAdd( p_sys->p_drawsys, &add, charid, heapID );
 
-	// ˆê“xAPDATA
+	// ä¸€åº¦APDATA
 	WF2DMAP_OBJDrawWkUpdata( p_wk );
 
 	return p_wk;
@@ -385,23 +385,23 @@ WF2DMAP_OBJDRAWWK* WF2DMAP_OBJDrawWkNew( WF2DMAP_OBJDRAWSYS* p_sys, const WF2DMA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦ƒIƒuƒWƒFƒNƒg‚Ì”jŠü
+ *	@brief	è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawWkDel( WF2DMAP_OBJDRAWWK* p_wk )
 {
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	WF_2DC_WkDel( p_wk->p_drawwk );
 	memset( p_wk, 0, sizeof(WF2DMAP_OBJDRAWWK) );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒf[ƒ^XV
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿æ›´æ–°
  *
- *	@param	p_sys		ƒIƒuƒWƒFƒNƒg•\Ž¦ŠÇ—ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawSysUpdata( WF2DMAP_OBJDRAWSYS* p_sys )
@@ -409,7 +409,7 @@ void WF2DMAP_OBJDrawSysUpdata( WF2DMAP_OBJDRAWSYS* p_sys )
 	int i;
 
 	for( i=0; i<p_sys->objnum; i++ ){
-		// ƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚½‚çXV
+		// ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ãŸã‚‰æ›´æ–°
 		if( WF2DMAP_OBJDrawWkCleanCheck(&p_sys->p_wk[i]) == FALSE ){
 			WF2DMAP_OBJDrawWkUpdata( &p_sys->p_wk[i] );
 		}
@@ -418,9 +418,9 @@ void WF2DMAP_OBJDrawSysUpdata( WF2DMAP_OBJDRAWSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒf[ƒ^XV	ŒÂX‚É
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿æ›´æ–°	å€‹ã€…ã«
  *
- *	@param	p_wk		ƒIƒuƒWƒFƒNƒg•\Ž¦ƒ[ƒN
+ *	@param	p_wk		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawWkUpdata( WF2DMAP_OBJDRAWWK* p_wk )
@@ -432,7 +432,7 @@ void WF2DMAP_OBJDrawWkUpdata( WF2DMAP_OBJDRAWWK* p_wk )
 	u16 pri;
 	WF_2DC_ANMTYPE anmtype;
 
-	// XVƒtƒ‰ƒOƒ`ƒFƒbƒN
+	// æ›´æ–°ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 	if( p_wk->updata == FALSE ){
 		return;
 	}
@@ -441,31 +441,31 @@ void WF2DMAP_OBJDrawWkUpdata( WF2DMAP_OBJDRAWWK* p_wk )
 	way = WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_WAY );
 	frame = WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_FRAME );
 	
-	// ƒf[ƒ^XV
+	// ãƒ‡ãƒ¼ã‚¿æ›´æ–°
 	if( (p_wk->status != status) || (p_wk->way != way) || (frame == 0) ){
 		p_wk->status = status;
 		p_wk->way = way;
-		// ƒAƒjƒƒf[ƒ^•ÏX
+		// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
 		anmtype = WF2DMAP_OBJDrawWF2DMAP_OBJSTtoWF_2DC_ANMTYPE( p_wk->p_drawwk, status );
 		WF2DMAP_OBJDrawWkAnmSet( p_wk, anmtype, way );
 	}
 
-	// À•W‚ð‹‚ß‚é
+	// åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	WF2DMAP_OBJDrawWkFramePosGet( p_wk, &set_x, &set_y );
 	WF_2DC_WkMatrixSet( p_wk->p_drawwk, set_x, set_y );
 	pri = WF2DMAP_OBJDrawWkDrawPriCalc( set_y, p_wk->hero );
 	WF_2DC_WkDrawPriSet( p_wk->p_drawwk, pri );
 	
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚ði‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’é€²ã‚ã‚‹
 	WF_2DC_WkPatAnmAddFrame( p_wk->p_drawwk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒbƒvƒf[ƒgƒtƒ‰ƒO‚ÌÝ’è
+ *	@brief	ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒ•ãƒ©ã‚°ã®è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		ON/OFFƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ON/OFFãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawWkUpdataFlagSet( WF2DMAP_OBJDRAWWK* p_wk, BOOL flag )
@@ -475,11 +475,11 @@ void WF2DMAP_OBJDrawWkUpdataFlagSet( WF2DMAP_OBJDRAWWK* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒbƒvƒf[ƒgƒtƒ‰ƒO‚ÌŽæ“¾
+ *	@brief	ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒ•ãƒ©ã‚°ã®å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒtƒ‰ƒO
+ *	@return	ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 BOOL WF2DMAP_OBJDrawWkUpdataFlagGet( const WF2DMAP_OBJDRAWWK* cp_wk )
@@ -489,11 +489,11 @@ BOOL WF2DMAP_OBJDrawWkUpdataFlagGet( const WF2DMAP_OBJDRAWWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]ƒAƒjƒ‚ÌŠJŽn
+ *	@brief	å›žè»¢ã‚¢ãƒ‹ãƒ¡ã®é–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	–‰ñ“]ƒAƒjƒI—¹‚ðŽÀs‚·‚é‚Ü‚Å‰ñ‚è‘±‚¯‚é
+ *	ï¼Šå›žè»¢ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã‚’å®Ÿè¡Œã™ã‚‹ã¾ã§å›žã‚Šç¶šã‘ã‚‹
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawWkKuruAnimeStart( WF2DMAP_OBJDRAWWK* p_wk )
@@ -503,43 +503,43 @@ void WF2DMAP_OBJDrawWkKuruAnimeStart( WF2DMAP_OBJDRAWWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]ƒAƒjƒƒƒCƒ“
+ *	@brief	å›žè»¢ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawWkKuruAnimeMain( WF2DMAP_OBJDRAWWK* p_wk )
 {
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚ði‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’é€²ã‚ã‚‹
 	WF_2DC_WkPatAnmAddFrame( p_wk->p_drawwk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]ƒAƒjƒI—¹
+ *	@brief	å›žè»¢ã‚¢ãƒ‹ãƒ¡çµ‚äº†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawWkKuruAnimeEnd( WF2DMAP_OBJDRAWWK* p_wk )
 {
 	WF_2DC_ANMTYPE anmtype;
 
-	// ƒAƒjƒƒf[ƒ^•ÏX
+	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
 	anmtype = WF2DMAP_OBJDrawWF2DMAP_OBJSTtoWF_2DC_ANMTYPE( p_wk->p_drawwk, p_wk->status );
 	WF2DMAP_OBJDrawWkAnmSet( p_wk, anmtype, p_wk->way );
 
-	// ‚P‰ñƒAƒbƒvƒf[ƒg
+	// ï¼‘å›žã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	WF2DMAP_OBJDrawWkUpdata( p_wk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æÀ•W‚ÌŽæ“¾
+ *	@brief	æç”»åº§æ¨™ã®å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	À•W
+ *	@return	åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_POS WF2DMAP_OBJDrawWkMatrixGet( const WF2DMAP_OBJDRAWWK* cp_wk )
@@ -554,10 +554,10 @@ WF2DMAP_POS WF2DMAP_OBJDrawWkMatrixGet( const WF2DMAP_OBJDRAWWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æÀ•W‚ÌÝ’è
+ *	@brief	æç”»åº§æ¨™ã®è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	pos			À•W
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	pos			åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawWkMatrixSet( WF2DMAP_OBJDRAWWK* p_wk, WF2DMAP_POS pos )
@@ -567,12 +567,12 @@ void WF2DMAP_OBJDrawWkMatrixSet( WF2DMAP_OBJDRAWWK* p_wk, WF2DMAP_POS pos )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦”ñ•\Ž¦‚ðŽæ“¾
+ *	@brief	è¡¨ç¤ºéžè¡¨ç¤ºã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *	
- *	@retval	TRUE	•\Ž¦
- *	@retval	FALSE	”ñ•\Ž¦
+ *	@retval	TRUE	è¡¨ç¤º
+ *	@retval	FALSE	éžè¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 BOOL WF2DMAP_OBJDrawWkDrawFlagGet( const WF2DMAP_OBJDRAWWK* cp_wk )
@@ -582,10 +582,10 @@ BOOL WF2DMAP_OBJDrawWkDrawFlagGet( const WF2DMAP_OBJDRAWWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦”ñ•\Ž¦Ý’è
+ *	@brief	è¡¨ç¤ºéžè¡¨ç¤ºè¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		ƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawWkDrawFlagSet( WF2DMAP_OBJDRAWWK* p_wk, BOOL flag )
@@ -595,11 +595,11 @@ void WF2DMAP_OBJDrawWkDrawFlagSet( WF2DMAP_OBJDRAWWK* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦—Dæ‡ˆÊ‚ÌŽæ“¾
+ *	@brief	è¡¨ç¤ºå„ªå…ˆé †ä½ã®å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	•\Ž¦—Dæ‡ˆÊ
+ *	@return	è¡¨ç¤ºå„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 u16 WF2DMAP_OBJDrawWkDrawPriGet( const WF2DMAP_OBJDRAWWK* cp_wk )
@@ -609,12 +609,12 @@ u16 WF2DMAP_OBJDrawWkDrawPriGet( const WF2DMAP_OBJDRAWWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brieif	’âŽ~ó‘Ô‚ÌŠG‚Ì•ûŒüÝ’è
+ *	@brieif	åœæ­¢çŠ¶æ…‹ã®çµµã®æ–¹å‘è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	way			•ûŒü
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	way			æ–¹å‘
  *
- *	*•à‚¢‚Ä‚¢‚½‚è‚µ‚Ä‚à‚Æ‚Ü‚Á‚Ä‚¢‚éŠG‚Ì•ûŒü‚ðo‚µ‚Ü‚·B
+ *	*æ­©ã„ã¦ã„ãŸã‚Šã—ã¦ã‚‚ã¨ã¾ã£ã¦ã„ã‚‹çµµã®æ–¹å‘ã‚’å‡ºã—ã¾ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawWkWaySet( WF2DMAP_OBJDRAWWK* p_wk, WF2DMAP_WAY way )
@@ -625,12 +625,12 @@ void WF2DMAP_OBJDrawWkWaySet( WF2DMAP_OBJDRAWWK* p_wk, WF2DMAP_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦—Dæ‡ˆÊŽæ“¾
+ *	@brief	è¡¨ç¤ºå„ªå…ˆé †ä½å–å¾—
  *
- *	@param	y		‚™À•W
- *	@param	hero	ŽålŒö@‰Â”Û
+ *	@param	y		ï½™åº§æ¨™
+ *	@param	hero	ä¸»äººå…¬ã€€å¯å¦
  *
- *	@return	•\Ž¦—Dæ‡ˆÊ
+ *	@return	è¡¨ç¤ºå„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 u32 WF2DMAP_OBJDrawWkDrawPriCalc( s16 y, BOOL hero )
@@ -643,11 +643,11 @@ u32 WF2DMAP_OBJDrawWkDrawPriCalc( s16 y, BOOL hero )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽQÆƒpƒŒƒbƒgƒiƒ“ƒo[‚ðŽæ“¾
+ *	@brief	å‚ç…§ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	¡ŽQÆ‚µ‚Ä‚¢‚éƒpƒŒƒbƒgˆÊ’u
+ *	@return	ä»Šå‚ç…§ã—ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆä½ç½®
  */
 //-----------------------------------------------------------------------------
 u32 WF2DMAP_OBJDrawWkPaletteNoGet( const WF2DMAP_OBJDRAWWK* cp_wk )
@@ -657,10 +657,10 @@ u32 WF2DMAP_OBJDrawWkPaletteNoGet( const WF2DMAP_OBJDRAWWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰A‚ÌˆÊ’u‚ðÝ’è‚·‚é
+ *	@brief	é™°ã®ä½ç½®ã‚’è¨­å®šã™ã‚‹
  *	
- *	@param	p_wk	ƒ[ƒN
- *	@param	pos		‰AˆÊ’u
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	pos		é™°ä½ç½®
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_OBJDrawWkShadowMatrixSet( WF2DMAP_OBJDRAWWK* p_wk, WF2DMAP_POS pos )
@@ -672,17 +672,17 @@ void WF2DMAP_OBJDrawWkShadowMatrixSet( WF2DMAP_OBJDRAWWK* p_wk, WF2DMAP_POS pos 
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒ[ƒN‚ª‹ó‚¢‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯ãŒç©ºã„ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *	
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‹ó‚¢‚Ä‚¢‚é
- *	@retval	FALSE	‹ó‚¢‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ç©ºã„ã¦ã„ã‚‹
+ *	@retval	FALSE	ç©ºã„ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WF2DMAP_OBJDrawWkCleanCheck( const WF2DMAP_OBJDRAWWK* cp_wk )
@@ -695,11 +695,11 @@ static BOOL WF2DMAP_OBJDrawWkCleanCheck( const WF2DMAP_OBJDRAWWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ó‚ÌƒIƒuƒWƒFƒNƒgƒ[ƒN‚ðŽæ“¾
+ *	@brief	ç©ºã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
  *
- *	@param	p_sys		ƒIƒuƒWƒFƒNƒg•\Ž¦ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	‹ó‚ÌƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@return	ç©ºã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WF2DMAP_OBJDRAWWK* WF2DMAP_OBJDrawSysCleanWkGet( WF2DMAP_OBJDRAWSYS* p_sys )
@@ -718,12 +718,12 @@ static WF2DMAP_OBJDRAWWK* WF2DMAP_OBJDrawSysCleanWkGet( WF2DMAP_OBJDRAWSYS* p_sy
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒe[ƒ^ƒX‚ðƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒv‚ÉƒRƒ“ƒo[ƒg‚·‚é
+ *	@brief	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—ã«ã‚³ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹
  *
  *	@param	p_drawwk	wifi_2dchar
- *	@param	status		ó‘Ô
+ *	@param	status		çŠ¶æ…‹
  *
- *	@return	ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒv
+ *	@return	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static WF_2DC_ANMTYPE WF2DMAP_OBJDrawWF2DMAP_OBJSTtoWF_2DC_ANMTYPE( const WF_2DCWK* p_drawwk, WF2DMAP_OBJST status )
@@ -744,10 +744,10 @@ static WF_2DC_ANMTYPE WF2DMAP_OBJDrawWF2DMAP_OBJSTtoWF_2DC_ANMTYPE( const WF_2DC
 	};
 	WF_2DC_MOVETYPE movetype;
 
-	// “®ìƒ^ƒCƒvŽæ“¾
+	// å‹•ä½œã‚¿ã‚¤ãƒ—å–å¾—
 	movetype = WF_2DC_WkMoveTypeGet( p_drawwk );
 	
-	// “®ìƒ^ƒCƒv‚ªU‚èŒü‚«‚Ì‚Ý‚È‚ç‚Ç‚ñ‚È‚Æ‚«‚Å‚àU‚èŒü‚«‚µ‚©‚Å‚«‚È‚¢
+	// å‹•ä½œã‚¿ã‚¤ãƒ—ãŒæŒ¯ã‚Šå‘ãã®ã¿ãªã‚‰ã©ã‚“ãªã¨ãã§ã‚‚æŒ¯ã‚Šå‘ãã—ã‹ã§ããªã„
 	if( movetype == WF_2DC_MOVETURN ){
 		return WF_2DC_ANMWAY;
 	}
@@ -757,11 +757,11 @@ static WF_2DC_ANMTYPE WF2DMAP_OBJDrawWF2DMAP_OBJSTtoWF_2DC_ANMTYPE( const WF_2DC
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒŒ[ƒ€”‚©‚çÀ•W‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‹ã‚‰åº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_x			À•WÝ’èæ
- *	@param	p_y			À•WÝ’èæ
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_x			åº§æ¨™è¨­å®šå…ˆ
+ *	@param	p_y			åº§æ¨™è¨­å®šå…ˆ
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJDrawWkFramePosGet( const WF2DMAP_OBJDRAWWK* cp_wk, s16* p_x, s16* p_y )
@@ -776,11 +776,11 @@ static void WF2DMAP_OBJDrawWkFramePosGet( const WF2DMAP_OBJDRAWWK* cp_wk, s16* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“‚ðÝ’è
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN		
- *	@param	anmtype		ƒAƒjƒƒ^ƒCƒv
- *	@param	anmway		ƒAƒjƒ•ûŒü
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯		
+ *	@param	anmtype		ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
+ *	@param	anmway		ã‚¢ãƒ‹ãƒ¡æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJDrawWkAnmSet( WF2DMAP_OBJDRAWWK* p_wk, WF_2DC_ANMTYPE anmtype, WF_COMMON_WAY anmway )
@@ -788,39 +788,39 @@ static void WF2DMAP_OBJDrawWkAnmSet( WF2DMAP_OBJDRAWWK* p_wk, WF_2DC_ANMTYPE anm
 	u16 frame;
 	u16 lastanmtype;
 	static const u8 WF2DMAP_OBJFRAME_NEXT[ WF_2DC_ANMNUM ] = {
-		FALSE,		// Œü‚«•Ï‚¦
-		FALSE,		// ‰ñ“]
-		TRUE,		// •à‚«
-		FALSE,		// U‚èŒü‚«
-		TRUE,		// ‘–‚è
-		TRUE,		// •Ç•à‚«
-		TRUE,		// ‚ä‚Á‚­‚è•à‚«
-		TRUE,		// ‚‘¬•à‚«2ƒtƒŒ[ƒ€
-		TRUE,		// ‚‘¬•à‚«3ƒtƒŒ[ƒ€
-		FALSE,		// ‰½‚à‚È‚µ
+		FALSE,		// å‘ãå¤‰ãˆ
+		FALSE,		// å›žè»¢
+		TRUE,		// æ­©ã
+		FALSE,		// æŒ¯ã‚Šå‘ã
+		TRUE,		// èµ°ã‚Š
+		TRUE,		// å£æ­©ã
+		TRUE,		// ã‚†ã£ãã‚Šæ­©ã
+		TRUE,		// é«˜é€Ÿæ­©ã2ãƒ•ãƒ¬ãƒ¼ãƒ 
+		TRUE,		// é«˜é€Ÿæ­©ã3ãƒ•ãƒ¬ãƒ¼ãƒ 
+		FALSE,		// ä½•ã‚‚ãªã—
 	};
 
-	// •`‰æƒtƒŒ[ƒ€‚ðŽæ“¾
+	// æç”»ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—
 	frame = WF_2DC_WkAnmFrameGet( p_wk->p_drawwk ); 
 	lastanmtype = WF_2DC_WkAnmTypeGet( p_wk->p_drawwk );
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“•ÏX
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å¤‰æ›´
 	WF_2DC_WkPatAnmStart( p_wk->p_drawwk, anmtype, anmway );
 
-	// ¡‚ÌƒAƒjƒ‚ÆÝ’è‚µ‚½ƒAƒjƒ‚ªˆá‚¤‚Æ‚«
-	// ‚à‚µ•à‚«A‘–‚è‚È‚çˆÈ‘O‚ÌƒtƒŒ[ƒ€‚©‚çŠJŽn‚³‚¹‚é
+	// ä»Šã®ã‚¢ãƒ‹ãƒ¡ã¨è¨­å®šã—ãŸã‚¢ãƒ‹ãƒ¡ãŒé•ã†ã¨ã
+	// ã‚‚ã—æ­©ãã€èµ°ã‚Šãªã‚‰ä»¥å‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰é–‹å§‹ã•ã›ã‚‹
 	if( lastanmtype != anmtype ){
 		
-		// ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€ˆøŒp‚¬‚È‚Ì‚©ƒ`ƒFƒbƒN
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ å¼•ç¶™ãŽãªã®ã‹ãƒã‚§ãƒƒã‚¯
 		if( WF2DMAP_OBJFRAME_NEXT[ anmtype ] == TRUE ){
-			// ‚P‚Â‘OƒAƒjƒƒ^ƒCƒv‚Æ“¯‚¶‚È‚çƒtƒŒ[ƒ€‚ð‚»‚ê‚©‚ç‚É‚·‚é
+			// ï¼‘ã¤å‰ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—ã¨åŒã˜ãªã‚‰ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ãã‚Œã‹ã‚‰ã«ã™ã‚‹
 			if( p_wk->lastanm == anmtype ){
 //				TOMOYA_PRINT( "anmtype %d anmframe %d\n", anmtype, p_wk->lastframe );
 				WF_2DC_WkAnmFrameSet( p_wk->p_drawwk, p_wk->lastframe );
 			}
 		}
 
-		// •Û‘¶ƒf[ƒ^XV
+		// ä¿å­˜ãƒ‡ãƒ¼ã‚¿æ›´æ–°
 		if( WF2DMAP_OBJFRAME_NEXT[ lastanmtype ] == TRUE ){
 			p_wk->lastanm = lastanmtype;
 			p_wk->lastframe = frame;

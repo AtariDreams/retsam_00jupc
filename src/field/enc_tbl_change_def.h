@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	enc_tbl_change_def.h
- * @bfief	ƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹·‚µ‘Ö‚¦ˆÊ’u’è‹`
+ * @bfief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å·®ã—æ›¿ãˆä½ç½®å®šç¾©
  * @author	Nozomu Saito
  */
 //============================================================================================
@@ -9,18 +9,18 @@
 #define __ENC_TBL_CHANGE_DEF_H__
 
 typedef enum{
-	GENE_ENC_1 = 0,		//‘å—Ê”­¶
-	GENE_ENC_2 = 1,		//‘å—Ê”­¶
-	TIME_ENC_1 = 2,		//ŽžŠÔ‘Ñ
-	TIME_ENC_2 = 3,		//ŽžŠÔ‘Ñ
-	SWAY_ENC_1 = 4,		//—h‚ê‘
-	SWAY_ENC_2 = 5,		//—h‚ê‘
-	SP_ENC_1 = 6,	//“ÁŽê˜giƒTƒtƒ@ƒŠA— ŽRj
-	SP_ENC_2 = 7,	//“ÁŽê˜giƒTƒtƒ@ƒŠA— ŽRj
-	AGB_ENC_1 = 8,	//‚`‚a‚fƒXƒƒbƒg
-	AGB_ENC_2 = 9,	//‚`‚f‚aƒXƒƒbƒg
-	SWAY_ENC_3 = 10,	//—h‚ê‘
-	SWAY_ENC_4 = 11,	//—h‚ê‘
+	GENE_ENC_1 = 0,		//å¤§é‡ç™ºç”Ÿ
+	GENE_ENC_2 = 1,		//å¤§é‡ç™ºç”Ÿ
+	TIME_ENC_1 = 2,		//æ™‚é–“å¸¯
+	TIME_ENC_2 = 3,		//æ™‚é–“å¸¯
+	SWAY_ENC_1 = 4,		//æºã‚Œè‰
+	SWAY_ENC_2 = 5,		//æºã‚Œè‰
+	SP_ENC_1 = 6,	//ç‰¹æ®Šæž ï¼ˆã‚µãƒ•ã‚¡ãƒªã€è£å±±ï¼‰
+	SP_ENC_2 = 7,	//ç‰¹æ®Šæž ï¼ˆã‚µãƒ•ã‚¡ãƒªã€è£å±±ï¼‰
+	AGB_ENC_1 = 8,	//ï¼¡ï¼¢ï¼§ã‚¹ãƒ­ãƒƒãƒˆ
+	AGB_ENC_2 = 9,	//ï¼¡ï¼§ï¼¢ã‚¹ãƒ­ãƒƒãƒˆ
+	SWAY_ENC_3 = 10,	//æºã‚Œè‰
+	SWAY_ENC_4 = 11,	//æºã‚Œè‰
 }ENC_TBL_POS;
 
 #endif //__ENC_TBL_CHANGE_DEF_H__

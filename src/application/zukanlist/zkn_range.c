@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_range.c
- *	@brief		•ª•z}ƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+ *	@brief		åˆ†å¸ƒå›³ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  *	@author		tomoya takahashi
  *	@data		2006.01.20
  *
@@ -41,34 +41,34 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_RANGE_EVENT_NUM ( 0 )			// ƒCƒxƒ“ƒg”
-//#define ZKN_RANGE_EVENT_CHANGE_SOUND ( 0x1 << 1 )	// ‹ƒ‚«º‚Ö
+#define ZKN_RANGE_EVENT_NUM ( 0 )			// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
+//#define ZKN_RANGE_EVENT_CHANGE_SOUND ( 0x1 << 1 )	// æ³£ãå£°ã¸
 
 #define ZKN_RANGE_OAM_BG_PRI	( 1 )
 #define ZKN_RANGE_OAM_PRI	( 31 )
 
 //-------------------------------------
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_RANGE_SEQINIT_ALLOC,
@@ -84,7 +84,7 @@ enum{
 	ZKN_RANGE_SEQDELETE_END,
 };
 
-// ¶‘§’n•s–¾
+// ç”Ÿæ¯åœ°ä¸æ˜
 #define ZKN_RANGE_NONE_OAM_X	( 160 )
 #define ZKN_RANGE_NONE_OAM_Y	( 96 )
 #define ZKN_RANGE_NONE_FONTOAM_OFS_X	( -53 )
@@ -95,7 +95,7 @@ enum{
 
 #define ZKN_RANGE_FONTOAM_PAL_OFS	(2)
 
-// ‰B‚µƒ}ƒbƒv”z’uˆÊ’u
+// éš ã—ãƒãƒƒãƒ—é…ç½®ä½ç½®
 #define ZKN_RANGE_HIDEMAP_D15_X	( 13 )
 #define ZKN_RANGE_HIDEMAP_D15_Y	( 8 )
 #define ZKN_RANGE_HIDEMAP_D18_X	( 28 )
@@ -107,7 +107,7 @@ enum{
 
 
 
-// •ª•z}ƒOƒŠƒbƒh”
+// åˆ†å¸ƒå›³ã‚°ãƒªãƒƒãƒ‰æ•°
 #define ZKN_RANGE_GRID_NUM_X	( 30 )
 #define ZKN_RANGE_GRID_NUM_Y	( 30 )
 #define ZKN_RANGE_GRID_ARRAY_SIZE	( ZKN_RANGE_GRID_NUM_X * ZKN_RANGE_GRID_NUM_Y )
@@ -117,7 +117,7 @@ enum{
 
 
 
-// ƒ_ƒ“ƒWƒ‡ƒ“OAM
+// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³OAM
 #define ZKN_RANGE_DAN_OAMNORM_SP_SEQ	( 0 )
 #define ZKN_RANGE_DAN_OAMSP_SP_SEQ		( 1 )
 #define ZKN_RANGE_DAN_OAMNORM_NORM_SEQ	( 2 )
@@ -125,17 +125,17 @@ enum{
 #define ZKN_RANGE_DAN_OAM_BUFF_NUM		( ZKN_DAN_ID_MAX*2 )
 #define ZKN_RANGE_DAN_DRAW_X	( 92 )
 #define ZKN_RANGE_DAN_DRAW_Y	( 32 )
-// ƒqƒ“ƒoƒX—p
-#define ZKN_RANGE_DAN_OAMNORM_HIN_SEQ	( 4 )	// ƒqƒ“ƒoƒX—p
-#define ZKN_RANGE_DAN_OAMSP_HIN_SEQ		( 5 )	// ƒqƒ“ƒoƒX—p
+// ãƒ’ãƒ³ãƒã‚¹ç”¨
+#define ZKN_RANGE_DAN_OAMNORM_HIN_SEQ	( 4 )	// ãƒ’ãƒ³ãƒã‚¹ç”¨
+#define ZKN_RANGE_DAN_OAMSP_HIN_SEQ		( 5 )	// ãƒ’ãƒ³ãƒã‚¹ç”¨
 #define ZKN_RANGE_DAN_HIN_DRAW_OFS_X	( 0 ) 
 #define ZKN_RANGE_DAN_HIN_DRAW_OFS_Y	( -18 )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/15
-// u‚ ‚³vAu‚Ğ‚évAu‚æ‚év‚ğ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é‚æ‚¤‚É•ÏX
+// ã€Œã‚ã•ã€ã€ã€Œã²ã‚‹ã€ã€ã€Œã‚ˆã‚‹ã€ã‚’è‡ªå‹•ã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
-// ‚ ‚³@‚Ğ‚é@‚æ‚é
+// ã‚ã•ã€€ã²ã‚‹ã€€ã‚ˆã‚‹
 #define ZKN_RANGE_TYPE_OAM_X	( 8 )
 #define ZKN_RANGE_TYPE_OAM_Y	( 32 )
 #define ZKN_RANGE_TYPE_FONTOAM_BMP_SIZX	( 9 )
@@ -145,49 +145,49 @@ enum{
 // ----------------------------------------------------------------------------
 
 
-// ƒtƒF[ƒh—p
+// ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 #define ZKN_RANGE_FADE_PLANEMSK	( GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD )
 
-// •`‰æ“®ì—p
+// æç”»å‹•ä½œç”¨
 #define ZKN_RANGE_DRAW_MOVE_COUNT_MAX	( 32 )
 #define ZKN_RANGE_DRAW_MOVE_COUNT_HALF	( 16 )
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	•ª•z}‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	åˆ†å¸ƒå›³ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DATA*		p_glb;				// ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	int					type;				// •\¦•ª•zƒ^ƒCƒv
+	ZKN_GLB_DATA*		p_glb;				// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	int					type;				// è¡¨ç¤ºåˆ†å¸ƒã‚¿ã‚¤ãƒ—
 
-	// ƒƒCƒ“ƒRƒ‚ƒ“ƒOƒ[ƒoƒ‹
-	ZKN_APL_DATA*	p_main_common;	// ƒAƒvƒŠƒf[ƒ^
+	// ãƒ¡ã‚¤ãƒ³ã‚³ãƒ¢ãƒ³ã‚°ãƒ­ãƒ¼ãƒãƒ«
+	ZKN_APL_DATA*	p_main_common;	// ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 } ZKN_RANGE_GLB;
 
 //-------------------------------------
-//	•ª•z}‰æ–Ê	•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	åˆ†å¸ƒå›³ç”»é¢	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DRAWDATA*	p_drawglb;			// •`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DRAWDATA*	p_drawglb;			// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
 	int pokegra_move_x;
 	int pokegra_move_y;
 
-	int fade_mode;		// ƒtƒF[ƒhƒ‚[ƒh
+	int fade_mode;		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
 
-	int move_sync;		// “®ìƒVƒ“ƒN”
+	int move_sync;		// å‹•ä½œã‚·ãƒ³ã‚¯æ•°
 } ZKN_RANGE_DRAWGLB;
 
 
 //-------------------------------------
-//	•ª•z}‰æ–Ê@“à•”ƒ[ƒN
+//	åˆ†å¸ƒå›³ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒ[ƒJƒ‹•ª•zƒ^ƒCƒv
+	// ãƒ­ãƒ¼ã‚«ãƒ«åˆ†å¸ƒã‚¿ã‚¤ãƒ—
 	int type;
 
 	u8* p_hidemap_fld;
@@ -196,58 +196,58 @@ typedef struct {
 	u32 hidemap_dan_num;
 
 	
-	// ƒ_ƒ“ƒWƒ‡ƒ“@ƒtƒB[ƒ‹ƒh@•ª•zƒf[ƒ^
-	ZKN_RANGE_DATA_MONS dan_range;	// ’Êí
-	ZKN_RANGE_DATA_MONS fld_range;	// ’Êí
-	ZKN_RANGE_DATA_MONS dansp_range;	// “Áê
-	ZKN_RANGE_DATA_MONS fldsp_range;	// “Áê
+	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿
+	ZKN_RANGE_DATA_MONS dan_range;	// é€šå¸¸
+	ZKN_RANGE_DATA_MONS fld_range;	// é€šå¸¸
+	ZKN_RANGE_DATA_MONS dansp_range;	// ç‰¹æ®Š
+	ZKN_RANGE_DATA_MONS fldsp_range;	// ç‰¹æ®Š
 
 } ZKN_RANGE_WORK;
 
 //-------------------------------------
-//	•ª•z}‰æ–Ê@“à•”ƒ[ƒN
+//	åˆ†å¸ƒå›³ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒ[ƒJƒ‹•ª•zƒ^ƒCƒv
+	// ãƒ­ãƒ¼ã‚«ãƒ«åˆ†å¸ƒã‚¿ã‚¤ãƒ—
 	int type;
 
-	// ƒ_ƒ“ƒWƒ‡ƒ“ˆÊ’uOAM
+	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ä½ç½®OAM
 	CLACT_WORK_PTR danzyon_icon[ ZKN_RANGE_DAN_OAM_BUFF_NUM ];
 	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];
 	int now_use;	
 	
-	// ¶‘§’n•s–¾
+	// ç”Ÿæ¯åœ°ä¸æ˜
 	CLACT_WORK_PTR range_none;
 	ZKN_FONTOAM_DATA* range_none_font;
 	CLACT_U_RES_OBJ_PTR res_obj_other[ ZKN_CLACT_RES_OBJ_NUM_DEF ];
 
-	// ‚ ‚³‚Ğ‚é‚æ‚é
+	// ã‚ã•ã²ã‚‹ã‚ˆã‚‹
 	ZKN_FONTOAM_DATA* range_mode_font[ ZKN_RANGE_TYPE_NUM ];
 
-	// •ª•z}ƒOƒŠƒbƒhƒf[ƒ^
-	u8 range_grid_data[ ZKN_RANGE_GRID_ARRAY_SIZE ];	// ’Êí
-	u8 range_grid_spdata[ ZKN_RANGE_GRID_ARRAY_SIZE ];	// “Áê
+	// åˆ†å¸ƒå›³ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿
+	u8 range_grid_data[ ZKN_RANGE_GRID_ARRAY_SIZE ];	// é€šå¸¸
+	u8 range_grid_spdata[ ZKN_RANGE_GRID_ARRAY_SIZE ];	// ç‰¹æ®Š
 
-	// •ª•z}ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-	void * p_range_char_buff;			// ’Êí
+	// åˆ†å¸ƒå›³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	void * p_range_char_buff;			// é€šå¸¸
 	NNSG2dCharacterData* p_range_char;
-	void * p_rangesp_char_buff;			//@“Áê
+	void * p_rangesp_char_buff;			//ã€€ç‰¹æ®Š
 	NNSG2dCharacterData* p_rangesp_char;
 
-	// ƒ_ƒ“ƒWƒ‡ƒ“@ƒtƒB[ƒ‹ƒh•`‰æƒf[ƒ^
+	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æç”»ãƒ‡ãƒ¼ã‚¿
 	ZKN_RANGE_DATA_DAN_GRID* p_dan_grid;
 	ZKN_RANGE_DATA_FLD_GRID* p_fld_grid;
 
-	// OAM‚ÆBG‚ğŒğŒİ‚É“_–Å‚³‚¹‚éƒ[ƒN
-	int drawmove_count;	// ƒJƒEƒ“ƒ^
-	int drawmove_flag;	// “®ìƒtƒ‰ƒO
+	// OAMã¨BGã‚’äº¤äº’ã«ç‚¹æ»…ã•ã›ã‚‹ãƒ¯ãƒ¼ã‚¯
+	int drawmove_count;	// ã‚«ã‚¦ãƒ³ã‚¿
+	int drawmove_flag;	// å‹•ä½œãƒ•ãƒ©ã‚°
 
-	// ƒ|ƒPƒŠƒXƒgƒtƒF[ƒh—p“®ìƒ[ƒN
+	// ãƒã‚±ãƒªã‚¹ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ç”¨å‹•ä½œãƒ¯ãƒ¼ã‚¯
 	ZKN_UTIL_MOVE_WORK pokegra_move;
 
 
-	// ‰B‚µƒ}ƒbƒv‚Å”rœ‚³‚ê‚é‰Â”\«‚ª‚ ‚é‚½‚ßA
-	// ÀÛ‚É‘¶İ‚µ‚½•ª•zƒf[ƒ^”
+	// éš ã—ãƒãƒƒãƒ—ã§æ’é™¤ã•ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ãŸã‚ã€
+	// å®Ÿéš›ã«å­˜åœ¨ã—ãŸåˆ†å¸ƒãƒ‡ãƒ¼ã‚¿æ•°
 	u32 dan_range_num;
 	u32 fld_range_num;
 	u32 dansp_range_num;
@@ -256,12 +256,12 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_RANGE_GLB* MakeRangeGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -277,7 +277,7 @@ static int RangeEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknRangeProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -288,11 +288,11 @@ static int ZknRangeProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 static int ZknRangeProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
 
-// ƒ|ƒPƒOƒ‰
+// ãƒã‚±ã‚°ãƒ©
 static void ZknRangePokeGraOn( ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb );
 static void ZknRangePokeGraOff( ZKN_RANGE_DRAWGLB* p_drawglb );
 
-// ƒtƒF[ƒhˆ—
+// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknRangeOamFadeInit( ZKN_RANGE_DRAW* p_draw );
 static void ZknRangeOamFadeDelete( ZKN_RANGE_DRAW* p_draw );
 static void ZknRangeFadeInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, BOOL fadein_out );
@@ -300,7 +300,7 @@ static BOOL ZknRangeFadeMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawg
 static void ZknRangeFadeOtherInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, BOOL fadein_out );
 static BOOL ZknRangeFadeOtherMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, BOOL fadein_out );
 
-// Resource“Ç‚İ‚İ
+// Resourceèª­ã¿è¾¼ã¿
 static void ZknRangeLoadRes( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, const ZKN_RANGE_WORK* cp_datawork, int heap );
 static void ZknRangeDeleteRes( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb );
 static void ZknRangeSetUpBg( ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, int heap );
@@ -318,7 +318,7 @@ static void ZknRangeRangeTypeOn( ZKN_RANGE_DRAW* p_draw, int type );
 
 static void ZknRangeGraphicChange( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, const ZKN_RANGE_WORK* cp_datawork, int heap );
 
-// •ª•zƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ì¬
+// åˆ†å¸ƒã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 static void ZknRangeGraphicDataMake( ZKN_RANGE_DRAW* p_draw, const ZKN_RANGE_GLB* cp_glb, const ZKN_RANGE_WORK* cp_datawork, int heapID );
 static void ZknRangeGraphicDataDelete( ZKN_RANGE_DRAW* p_draw );
 static u8* ZknRangeGraphicDataFldHideMapTblGet( u32 heap, const ZKN_RANGE_GLB* cp_glb, u32* p_tbl_num );
@@ -326,22 +326,22 @@ static u8* ZknRangeGraphicDataDanHideMapTblGet( u32 heap, const ZKN_RANGE_GLB* c
 
 static void ZknRangeGraphicDrawMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb );
 
-// OAM‚ÆBG‚ğŒğŒİ‚É“_–Å‚³‚¹‚é
+// OAMã¨BGã‚’äº¤äº’ã«ç‚¹æ»…ã•ã›ã‚‹
 static void ZknRangeGraphicDrawMoveInit( ZKN_RANGE_DRAW* p_draw );
 static void ZknRangeGraphicDrawMoveStart( ZKN_RANGE_DRAW* p_draw );
 static void ZknRangeGraphicDrawMoveMain( ZKN_RANGE_DRAW* p_draw );
 
-// •ª•zƒf[ƒ^ŠÖŒW
+// åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿é–¢ä¿‚
 static void ZknRangeMonsRangeDataLoad( ZKN_RANGE_WORK* p_work, ZKN_RANGE_GLB* p_glb, int heap );
 static void ZknRangeMonsRangeDataDelete( ZKN_RANGE_WORK* p_work );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}@ƒAƒvƒŠì¬
+ *	@brief	åˆ†å¸ƒå›³ã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		g—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -375,9 +375,9 @@ void ZKN_RangeAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	ƒTƒu‰æ–Ê@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã‚µãƒ–ç”»é¢ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -392,14 +392,14 @@ void ZKN_RangeAplDelete( ZKN_APL_DATA* p_data )
 }
 
 
-// •ª•zƒ^ƒCƒvİ’è
+// åˆ†å¸ƒã‚¿ã‚¤ãƒ—è¨­å®š
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•zƒ^ƒCƒvæ“¾
+ *	@brief	åˆ†å¸ƒã‚¿ã‚¤ãƒ—å–å¾—
  *	
- *	@param	p_data	•ª•zƒAƒvƒŠƒf[ƒ^
+ *	@param	p_data	åˆ†å¸ƒã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@return	•ª•zƒ^ƒCƒv
+ *	@return	åˆ†å¸ƒã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 int ZKN_RangeTypeGet( const ZKN_APL_DATA* p_data )
@@ -411,10 +411,10 @@ int ZKN_RangeTypeGet( const ZKN_APL_DATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒ^ƒCƒvİ’è
+ *	@brief	å›³é‘‘ã‚¿ã‚¤ãƒ—è¨­å®š
  *
- *	@param	p_data	•ª•zƒAƒvƒŠƒf[ƒ^
- *	@param	type	•ª•zƒ^ƒCƒv
+ *	@param	p_data	åˆ†å¸ƒã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	type	åˆ†å¸ƒã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  */
@@ -430,11 +430,11 @@ void ZKN_RangeTypeSet( ZKN_APL_DATA* p_data, int type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒOƒ‰ƒtƒF[ƒhƒAƒEƒgæİ’è
+ *	@brief	ãƒã‚±ã‚°ãƒ©ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå…ˆè¨­å®š
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	x		‚wÀ•W
- *	@param	y		‚xÀ•W
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	x		ï¼¸åº§æ¨™
+ *	@param	y		ï¼¹åº§æ¨™
  *
  *	@return	none
  */
@@ -449,10 +449,10 @@ void ZKN_RangePokeGraFadeOutSet( ZKN_APL_DATA* p_data, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒ‚[ƒhİ’è
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰è¨­å®š
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	fade_mode	ƒtƒF[ƒhƒ‚[ƒh
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	fade_mode	ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
  *
  *	@return	none
  */
@@ -466,10 +466,10 @@ void ZKN_RangeFadeModeSet( ZKN_APL_DATA* p_data, int fade_mode )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒVƒ“ƒN”İ’è
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ãƒ³ã‚¯æ•°è¨­å®š
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	fade_sync	ƒtƒF[ƒhƒVƒ“ƒN
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	fade_sync	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ãƒ³ã‚¯
  *
  *	@return	none
  */
@@ -485,18 +485,18 @@ void ZKN_RangeFadeModeSync( ZKN_APL_DATA* p_data, int fade_sync )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	åˆ†å¸ƒå›³ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -509,10 +509,10 @@ static ZKN_RANGE_GLB* MakeRangeGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_RANGE_GLB) );
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
-	// ‚ß‚¢‚ñƒOƒ[ƒoƒ‹ƒAƒvƒŠƒf[ƒ^æ“¾
+	// ã‚ã„ã‚“ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_glb->p_main_common = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_COMMON );
 
 	return p_glb;
@@ -520,12 +520,12 @@ static ZKN_RANGE_GLB* MakeRangeGlb( int heap, ZKN_SYS_PTR zkn_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ì¬‚µ‚½ƒf[ƒ^
+ *	@return	ä½œæˆã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static ZKN_RANGE_DRAWGLB* MakeRangeDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
@@ -537,7 +537,7 @@ static ZKN_RANGE_DRAWGLB* MakeRangeDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_RANGE_DRAWGLB) );
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 	return p_glb;
@@ -547,12 +547,12 @@ static ZKN_RANGE_DRAWGLB* MakeRangeDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}@ƒCƒxƒ“ƒgì¬
+ *	@brief	åˆ†å¸ƒå›³ã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		g—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -562,7 +562,7 @@ static ZKN_EVENT_DATA* MakeRangeEvent( int heap, ZKN_SYS_PTR zkn_sys )
 	ZKN_EVENT_DATA* p_event_tbl;
 	int event_num = RangeEventDataNumGet();
 
-	// ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_event_tbl = sys_AllocMemory( heap, sizeof(ZKN_EVENT_DATA) * event_num );
 	GF_ASSERT( p_event_tbl );
 	memset( p_event_tbl, 0, sizeof(ZKN_EVENT_DATA) * event_num );
@@ -576,9 +576,9 @@ static ZKN_EVENT_DATA* MakeRangeEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	åˆ†å¸ƒå›³ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -594,9 +594,9 @@ static void DeleteRangeGlb( ZKN_RANGE_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}@•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	åˆ†å¸ƒå›³ã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -612,9 +612,9 @@ static void DeleteRangeDrawGlb( ZKN_RANGE_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	åˆ†å¸ƒå›³ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -635,11 +635,11 @@ static void DeleteRangeEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}ƒAƒvƒŠ@ƒCƒxƒ“ƒg”æ“¾
+ *	@brief	åˆ†å¸ƒå›³ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	•ª•z}ƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	åˆ†å¸ƒå›³ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -652,19 +652,19 @@ static int RangeEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -674,14 +674,14 @@ static int ZknRangeProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 	ZKN_RANGE_GLB* p_glb = p_glbdata;
 	ZKN_RANGE_WORK* p_work;
 	
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_RANGE_WORK) );
 	GF_ASSERT( p_work );
 	memset( p_work, 0, sizeof(ZKN_RANGE_WORK) );
 	p_dodata->p_work = p_work;
 	
 	
-	// Œ»İŠÔ‚©‚ç‰Šú•ª•zƒf[ƒ^ƒ^ƒCƒv‚ğİ’è
+	// ç¾åœ¨æ™‚é–“ã‹ã‚‰åˆæœŸåˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ã‚’è¨­å®š
 	if( p_glb->p_glb->time_zone == TIMEZONE_MORNING ){
 		p_glb->type = ZKN_RANGE_TYPE_MORNING;
 	}else{
@@ -693,28 +693,28 @@ static int ZknRangeProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 		}
 	}
 
-	// ‰B‚µƒ}ƒbƒvî•ñì¬
+	// éš ã—ãƒãƒƒãƒ—æƒ…å ±ä½œæˆ
 	p_work->p_hidemap_fld = ZknRangeGraphicDataFldHideMapTblGet( p_dodata->heap, p_glb, &p_work->hidemap_fld_num );
 	p_work->p_hidemap_dan = ZknRangeGraphicDataDanHideMapTblGet( p_dodata->heap, p_glb, &p_work->hidemap_dan_num );
 
 	
-	// •ª•zƒf[ƒ^ì¬
+	// åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	ZknRangeMonsRangeDataLoad( p_work, p_glb, p_dodata->heap );
-	p_work->type = p_glb->type;	// ƒ[ƒJƒ‹‚É‚à”½‰f
+	p_work->type = p_glb->type;	// ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚‚åæ˜ 
 	
 	return ZKN_PROC_TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -724,7 +724,7 @@ static int ZknRangeProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 	ZKN_RANGE_GLB* p_glb = p_glbdata;
 	ZKN_RANGE_WORK* p_work = p_dodata->p_work;
 	
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -734,11 +734,11 @@ static int ZknRangeProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 		return ZKN_PROC_FALSE;
 	}
 
-	// ƒ^ƒCƒv‚ª•Ï‚í‚Á‚½‚ç•ª•zƒf[ƒ^‚ğ•ÏX‚·‚é
+	// ã‚¿ã‚¤ãƒ—ãŒå¤‰ã‚ã£ãŸã‚‰åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã™ã‚‹
 	if( p_work->type != p_glb->type ){
 		ZknRangeMonsRangeDataDelete( p_work );
 		ZknRangeMonsRangeDataLoad( p_work, p_glb, p_dodata->heap );
-		p_work->type = p_glb->type;	// ƒ[ƒJƒ‹‚É‚à”½‰f
+		p_work->type = p_glb->type;	// ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚‚åæ˜ 
 	}
 
 	return ZKN_PROC_FALSE;
@@ -746,14 +746,14 @@ static int ZknRangeProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -762,7 +762,7 @@ static int ZknRangeProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata
 {
 	ZKN_RANGE_WORK* p_work = p_dodata->p_work;
 
-	// ‰B‚µƒ}ƒbƒvƒe[ƒuƒ‹”jŠü
+	// éš ã—ãƒãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
 	if( p_work->p_hidemap_fld ){
 		sys_FreeMemoryEz( p_work->p_hidemap_fld );
 	}
@@ -770,7 +770,7 @@ static int ZknRangeProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata
 		sys_FreeMemoryEz( p_work->p_hidemap_dan );
 	}
 
-	// •ª•zƒf[ƒ^”jŠü
+	// åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	ZknRangeMonsRangeDataDelete( p_work );
 	
 	sys_FreeMemoryEz( p_work );
@@ -781,17 +781,17 @@ static int ZknRangeProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -810,9 +810,9 @@ static int ZknRangeProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 		memset( p_drawdata->p_work, 0, sizeof(ZKN_RANGE_DRAW) );
 
 		p_drawwork = p_drawdata->p_work;
-		p_drawwork->type = cp_dataglb->type;	// ‰Šú‰»ƒ^ƒCƒvİ’è
+		p_drawwork->type = cp_dataglb->type;	// åˆæœŸåŒ–ã‚¿ã‚¤ãƒ—è¨­å®š
 
-		// ƒOƒŠƒbƒhƒf[ƒ^æ“¾
+		// ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿å–å¾—
 		p_drawwork->p_dan_grid = ZKN_RANGEDATA_GetDanGridOamData( p_drawdata->heap, NULL );		
 		p_drawwork->p_fld_grid = ZKN_RANGEDATA_GetFldGridAraaData( p_drawdata->heap, NULL );		
 		
@@ -822,20 +822,20 @@ static int ZknRangeProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 	case ZKN_RANGE_SEQINIT_LOAD:
 		ZknRangeLoadRes( p_drawwork, p_drawglb, cp_dataglb, cp_datawork, p_drawdata->heap );
 
-		// •ª•z•`‰æƒf[ƒ^ì¬
+		// åˆ†å¸ƒæç”»ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		ZknRangeGraphicDataMake( p_drawdata->p_work, cp_dataglb, cp_datawork, p_drawdata->heap );
 
-		// ¶‘§’n•s–¾•\¦
+		// ç”Ÿæ¯åœ°ä¸æ˜è¡¨ç¤º
 		ZknRangeRangeNoneDrawSet( p_drawdata->p_work, cp_datawork );
 
 
-		// •`‰æ“®ì‰Šú‰»
+		// æç”»å‹•ä½œåˆæœŸåŒ–
 		ZknRangeGraphicDrawMoveInit( p_drawwork );
 
-		// •ª•zƒf[ƒ^•`‰æ
+		// åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿æç”»
 		ZknRangeGraphicDrawMain( p_drawwork, p_drawglb );
 		
-		// ƒtƒF[ƒh‰Šú‰»
+		// ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
 		if( p_drawglb->fade_mode == ZKN_RANGE_FADE_MODE_MY ){
 			ZknRangeFadeInit( p_drawwork, p_drawglb, cp_dataglb, TRUE );
 		}else{
@@ -856,7 +856,7 @@ static int ZknRangeProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 		break;
 		
 	case ZKN_RANGE_SEQINIT_END:
-		// “®ìŠJn
+		// å‹•ä½œé–‹å§‹
 		ZknRangeGraphicDrawMoveStart( p_drawwork );
 		return ZKN_PROC_TRUE;
 	}
@@ -866,17 +866,17 @@ static int ZknRangeProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -889,10 +889,10 @@ static int ZknRangeProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 	ZKN_RANGE_DRAW* p_drawwork = p_drawdata->p_work;
 
 
-	// •`‰æ“®ìƒƒCƒ“
+	// æç”»å‹•ä½œãƒ¡ã‚¤ãƒ³
 	ZknRangeGraphicDrawMoveMain( p_drawwork );
 	
-	//•ª•zƒOƒ‰ƒtƒBƒbƒNXV
+	//åˆ†å¸ƒã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ›´æ–°
 	ZknRangeGraphicChange( p_drawwork, p_drawglb, cp_dataglb, cp_datawork, p_drawdata->heap );
 
 	return ZKN_PROC_FALSE;
@@ -900,17 +900,17 @@ static int ZknRangeProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_draw
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -926,7 +926,7 @@ static int ZknRangeProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dr
 
 	switch( p_drawdata->seq ){
 	case ZKN_RANGE_SEQDELETE_FADEOUT_INIT:
-		// •`‰æ“®ì‰Šú‰»
+		// æç”»å‹•ä½œåˆæœŸåŒ–
 		ZknRangeGraphicDrawMoveInit( p_drawwork );
 
 		if( p_drawglb->fade_mode == ZKN_RANGE_FADE_MODE_MY ){
@@ -950,7 +950,7 @@ static int ZknRangeProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dr
 
 	case ZKN_RANGE_SEQDELETE_RELEASE:
 		
-		// •ª•z•`‰æƒf[ƒ^”jŠü
+		// åˆ†å¸ƒæç”»ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		ZknRangeGraphicDataDelete( p_drawwork );
 		
 		ZknRangeDeleteRes( p_drawwork, p_drawglb );
@@ -959,10 +959,10 @@ static int ZknRangeProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dr
 		break;
 		
 	case ZKN_RANGE_SEQDELETE_FREE:
-		// BG1OAM‚Í•\¦
+		// BG1OAMã¯è¡¨ç¤º
 		GF_Disp_GX_VisibleControl( GX_BLEND_PLANEMASK_BG1, VISIBLE_ON );
 
-		// ƒOƒŠƒbƒhƒf[ƒ^”jŠü
+		// ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		sys_FreeMemoryEz( p_drawwork->p_dan_grid );		
 		sys_FreeMemoryEz( p_drawwork->p_fld_grid );		
 
@@ -983,77 +983,77 @@ static int ZknRangeProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource“Ç‚İ‚İ•‰æ–Ê\’z
+ *	@brief	Resourceèª­ã¿è¾¼ã¿ï¼†ç”»é¢æ§‹ç¯‰
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_datawork	ƒf[ƒ^ƒ[ƒN
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_datawork	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeLoadRes( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, const ZKN_RANGE_WORK* cp_datawork, int heap )
 {
-	// BGİ’è
+	// BGè¨­å®š
 	ZknRangeSetUpBg( p_drawglb, cp_glb, heap );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	ZknRangeBgCharLoad( p_draw, p_drawglb, heap );
 
-	// OAMƒŠƒ\[ƒX“Ç‚İ‚İ
+	// OAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	ZknRangeOamResLoad( p_draw, p_drawglb, heap );
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	ZknRangeOamInit( p_draw, p_drawglb, heap );
 
 	// FONTOAM
 	ZknRangeFontOamInit( p_draw, p_drawglb, cp_glb, heap );
 
-	// •ª•zƒ^ƒCƒv•\¦	
+	// åˆ†å¸ƒã‚¿ã‚¤ãƒ—è¡¨ç¤º	
 	ZknRangeRangeTypeOn( p_draw, cp_glb->type );
 
-	// ƒ|ƒPƒOƒ‰ON
+	// ãƒã‚±ã‚°ãƒ©ON
 	ZknRangePokeGraOn( p_drawglb, cp_glb );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Resource”jŠü
+ *	@brief	Resourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeDeleteRes( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb )
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”jŠü
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	ZknRangeBgCharDelete( p_draw, p_drawglb );
 
 	// FONTOAM
 	ZknRangeFontOamDelete( p_draw );
 	
-	// ƒAƒNƒ^[”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	ZknRangeOamDelete( p_draw );
 
-	// OAMƒŠƒ\[ƒX”jŠü
+	// OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	ZknRangeOamResDelete( p_draw, p_drawglb );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒi–ÊƒZƒbƒg	
+ *	@brief	èƒŒæ™¯é¢ã‚»ãƒƒãƒˆ	
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
- * [ƒCƒxƒ“ƒg‚Åo‚Ä‚­‚é“‡‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«Š·‚¦‚à‚±‚Ì’†]
+ * [ã‚¤ãƒ™ãƒ³ãƒˆã§å‡ºã¦ãã‚‹å³¶ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãæ›ãˆã‚‚ã“ã®ä¸­]
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeSetUpBg( ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, int heap )
@@ -1061,25 +1061,25 @@ static void ZknRangeSetUpBg( ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* 
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_main_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M, 0, 0, TRUE, heap );
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_map_bg_main1_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒtƒ‰ƒO‚ğŒ©‚ÄƒXƒNƒŠ[ƒ“ã‘‚«
+	// ãƒ•ãƒ©ã‚°ã‚’è¦‹ã¦ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä¸Šæ›¸ã
 	if( cp_glb->p_glb->hidemap_id_D30 ){
 
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_map_bg_main2a_lzh_NSCR, TRUE, &p_scrn, heap );
 		
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 		GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 				p_scrn->rawData, 
 				ZKN_RANGE_HIDEMAP_D15_X, 
@@ -1089,10 +1089,10 @@ static void ZknRangeSetUpBg( ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* 
 		sys_FreeMemoryEz( buff );
 	}
 	if( cp_glb->p_glb->hidemap_id_D18 ){
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_map_bg_main2b_lzh_NSCR, TRUE, &p_scrn, heap );
 		
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 		GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 				p_scrn->rawData, 
 				ZKN_RANGE_HIDEMAP_D18_X, 
@@ -1102,10 +1102,10 @@ static void ZknRangeSetUpBg( ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* 
 		sys_FreeMemoryEz( buff );
 	}
 	if( cp_glb->p_glb->hidemap_id_D15 ){
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_map_bg_main2c_lzh_NSCR, TRUE, &p_scrn, heap );
 		
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 		GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 				p_scrn->rawData, 
 				ZKN_RANGE_HIDEMAP_D30_X, 
@@ -1115,10 +1115,10 @@ static void ZknRangeSetUpBg( ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* 
 		sys_FreeMemoryEz( buff );
 	}
 	if( cp_glb->p_glb->hidemap_id_L04 ){
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_map_bg_main2d_lzh_NSCR, TRUE, &p_scrn, heap );
 		
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 		GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 				p_scrn->rawData, 
 				ZKN_RANGE_HIDEMAP_L04_X, 
@@ -1128,18 +1128,18 @@ static void ZknRangeSetUpBg( ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* 
 		sys_FreeMemoryEz( buff );
 	}
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResource“Ç‚İ‚İ
+ *	@brief	OAMResourceèª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1149,26 +1149,26 @@ static void ZknRangeOamResLoad(  ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_dr
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_drawglb );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_map_dungeon_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_map_dungeon_lzh_NCGR + ZKN_RANGE_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_map_dungeon_lzh_NCER, TRUE,
 			NARC_zukan_zkn_map_dungeon_lzh_NCER + ZKN_RANGE_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_map_dungeon_lzh_NANR, TRUE,
@@ -1178,38 +1178,38 @@ static void ZknRangeOamResLoad(  ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_dr
 
 
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_other[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCGR + ZKN_RANGE_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj_other[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj_other[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_other[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			NARC_zukan_zkn_data_oam3_NCLR, FALSE, 
 			NARC_zukan_zkn_data_oam3_NCLR + ZKN_RANGE_RES_ID, 
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			ZKN_BIG_PLTT_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_draw->res_obj_other[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj_other[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_other[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCER, TRUE,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCER + ZKN_RANGE_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj_other[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_data_oam_main3_lzh_NANR, TRUE,
@@ -1219,11 +1219,11 @@ static void ZknRangeOamResLoad(  ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMResource”jŠü
+ *	@brief	OAMResourceç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1235,7 +1235,7 @@ static void ZknRangeOamResDelete( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_d
 
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -1251,7 +1251,7 @@ static void ZknRangeOamResDelete( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_d
 	CLACT_U_CharManagerDelete( p_draw->res_obj_other[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_draw->res_obj_other[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj_other[ CLACT_U_CHAR_RES ] );
@@ -1268,11 +1268,11 @@ static void ZknRangeOamResDelete( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒAƒNƒ^[ƒoƒbƒtƒ@ì¬
+ *	@brief	OAMã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -1284,7 +1284,7 @@ static void ZknRangeOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawgl
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_drawglb;
 	int i;
 	
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_data_oam_main3_lzh_NCGR + ZKN_RANGE_RES_ID,
 			NARC_zukan_zkn_data_oam3_NCLR + ZKN_RANGE_RES_ID, 
@@ -1297,14 +1297,14 @@ static void ZknRangeOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawgl
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ğİ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= ZKN_RANGE_OAM_PRI;
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 	add.heap		= heap;
 	
-	// ¶‘§’n•s–¾OAM
+	// ç”Ÿæ¯åœ°ä¸æ˜OAM
 	add.mat.x = ZKN_RANGE_NONE_OAM_X * FX32_ONE;
 	add.mat.y = ZKN_RANGE_NONE_OAM_Y * FX32_ONE;
 	p_draw->range_none = CLACT_AddSimple( &add );
@@ -1312,7 +1312,7 @@ static void ZknRangeOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawgl
 
 
 
-	// ƒ_ƒ“ƒWƒ‡ƒ“OAM
+	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³OAM
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_map_dungeon_lzh_NCGR + ZKN_RANGE_RES_ID,
 			NARC_zukan_zkn_data_oam3_NCLR + ZKN_RANGE_RES_ID, 
@@ -1324,7 +1324,7 @@ static void ZknRangeOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawgl
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ],
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
-	// “o˜^‹¤’Ê•”•ª‚ğİ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= ZKN_RANGE_OAM_PRI;
@@ -1334,16 +1334,16 @@ static void ZknRangeOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawgl
 	add.mat.y = 0;
 	for( i=0; i<ZKN_RANGE_DAN_OAM_BUFF_NUM; i++ ){
 		p_draw->danzyon_icon[i] = CLACT_AddSimple( &add );
-		CLACT_SetDrawFlag( p_draw->danzyon_icon[i], FALSE );	// ”ñ•\¦‚É
+		CLACT_SetDrawFlag( p_draw->danzyon_icon[i], FALSE );	// éè¡¨ç¤ºã«
 		CLACT_ObjModeSet( p_draw->danzyon_icon[i], GX_OAM_MODE_XLU );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒAƒNƒ^[ƒoƒbƒtƒ@”jŠü
+ *	@brief	OAMã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1364,40 +1364,40 @@ static void ZknRangeOamDelete( ZKN_RANGE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAMì¬
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeFontOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, int heap )
 {
-	GF_BGL_BMPWIN* win;	// •¶š—ñ‘‚«‚İæ
+	GF_BGL_BMPWIN* win;	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿å…ˆ
 	ZKN_FONTOAM_INIT fontoam_init;
 	CLACT_U_RES_OBJ_PTR res_obj;
 	ZKN_GLB_DRAWDATA* p_glb_draw = p_drawglb->p_drawglb;
-	int pltt_ofs;	// ƒpƒŒƒbƒgƒAƒhƒŒƒX
+	int pltt_ofs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 	int i;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
-	// u‚ ‚³vAu‚Ğ‚évAu‚æ‚évAu‚¹‚¢‚»‚­‚¿‚Ó‚ß‚¢v‚ğ
-	// ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é‚æ‚¤‚É•ÏX
+	// ã€Œã‚ã•ã€ã€ã€Œã²ã‚‹ã€ã€ã€Œã‚ˆã‚‹ã€ã€ã€Œã›ã„ããã¡ãµã‚ã„ã€ã‚’
+	// è‡ªå‹•ã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 	u32 pixel_width;
 	// ----------------------------------------------------------------------------
 
-	// æ‚ÉCLACT‚ğ“o˜^‚µ‚Ä‚ ‚é•K—v‚ª‚ ‚é
+	// å…ˆã«CLACTã‚’ç™»éŒ²ã—ã¦ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 	GF_ASSERT( p_draw->range_none );
 
-	// ƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒf[ƒ^æ“¾
-	// ƒpƒŒƒbƒgƒvƒƒNƒVæ“¾—p
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·å–å¾—ç”¨
 	res_obj = CLACT_U_ResManagerGetIDResObjPtr( p_drawglb->p_drawglb->res_manager[ CLACT_U_PLTT_RES ], NARC_zukan_zkn_data_oam3_NCLR + ZKN_RANGE_RES_ID );
 
-	// ‰Šú‰»ƒf[ƒ^‚Ì‹¤’Ê•”•ª‚ğì¬
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã®å…±é€šéƒ¨åˆ†ã‚’ä½œæˆ
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_glb_draw->fontoam_sys;
 	fontoam_init.pltt		 = CLACT_U_PlttManagerGetProxy( res_obj, NULL );
 	fontoam_init.bg_pri		 = ZKN_RANGE_OAM_BG_PRI;
@@ -1405,19 +1405,19 @@ static void ZknRangeFontOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_dr
 	fontoam_init.draw_area	 = NNS_G2D_VRAM_TYPE_2DMAIN;
 	fontoam_init.heap		 = heap;
 
-	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	pltt_ofs = GetPlttProxyOffset( fontoam_init.pltt, NNS_G2D_VRAM_TYPE_2DMAIN );
 
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( p_glb_draw->fontoam_sys, 
 			ZKN_RANGE_NONE_FONTOAM_BMP_SIZX,
 			ZKN_RANGE_NONE_FONTOAM_BMP_SIZY );
 
-	// •ª•z‚Ó‚Ä‚¢
+	// åˆ†å¸ƒãµã¦ã„
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
-	// u‚¹‚¢‚»‚­‚¿‚Ó‚ß‚¢v‚ğ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é‚æ‚¤‚É•ÏX
+	// ã€Œã›ã„ããã¡ãµã‚ã„ã€ã‚’è‡ªå‹•ã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 	pixel_width = ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
 					NARC_msg_zkn_dat, ZNK_RANGE_00, 0, 0 );
 	fontoam_init.p_bmp		 = win;
@@ -1428,20 +1428,20 @@ static void ZknRangeFontOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_dr
 	p_draw->range_none_font  = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->range_none_font->p_fontoam, pltt_ofs + ZKN_RANGE_FONTOAM_PAL_OFS );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	for( i=0; i<ZKN_RANGE_TYPE_NUM; i++ ){
 		win = ZKN_FONTOAM_GetBmp( p_glb_draw->fontoam_sys, 
 				ZKN_RANGE_TYPE_FONTOAM_BMP_SIZX,
 				ZKN_RANGE_TYPE_FONTOAM_BMP_SIZY );
 
-		// ‚ ‚³
+		// ã‚ã•
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/11/15
-		// u‚ ‚³vAu‚Ğ‚évAu‚æ‚év‚ğ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é‚æ‚¤‚É•ÏX
+		// ã€Œã‚ã•ã€ã€ã€Œã²ã‚‹ã€ã€ã€Œã‚ˆã‚‹ã€ã‚’è‡ªå‹•ã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 		pixel_width = ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
 						NARC_msg_zkn_dat, ZNK_RANGE_01 + i, 0, 0 );
 		fontoam_init.p_bmp		 = win;
@@ -1452,16 +1452,16 @@ static void ZknRangeFontOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_dr
 		p_draw->range_mode_font[i]  = ZKN_FONTOAM_Make( &fontoam_init );
 		FONTOAM_SetPaletteNo( p_draw->range_mode_font[i]->p_fontoam, pltt_ofs + ZKN_RANGE_FONTOAM_PAL_OFS );
 
-		// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 		ZKN_FONTOAM_DeleteBmp( win );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
  *
- *	@param	p_draw •`‰æƒ[ƒN
+ *	@param	p_draw æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1480,9 +1480,9 @@ static void ZknRangeFontOamDelete( ZKN_RANGE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒh‰Šú‰»
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1500,9 +1500,9 @@ static void ZknRangeOamFadeInit( ZKN_RANGE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒhƒŠƒZƒbƒg
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1520,72 +1520,72 @@ static void ZknRangeOamFadeDelete( ZKN_RANGE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—‰Šú‰»
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†åˆæœŸåŒ–
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeFadeInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, BOOL fadein_out )
 {
-	// ”¼“§–¾OAMİ’è
+	// åŠé€æ˜OAMè¨­å®š
 	ZknRangeOamFadeInit( p_draw );
 
-	// ƒuƒ‰ƒCƒgƒlƒXˆ—‚ğs‚Á‚Ä‚æ‚¢‚©
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å‡¦ç†ã‚’è¡Œã£ã¦ã‚ˆã„ã‹
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_RANGE_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_RANGE_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}
 	}
 
-	// ƒuƒ‰ƒCƒgƒlƒX’lİ’è
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤è¨­å®š
 	ZKN_GLB_SpritePokeGraPalFade( p_drawglb->p_drawglb, &p_drawglb->p_drawglb->fade );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—ƒƒCƒ“
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
- *	@retval	TRUE	ƒtƒF[ƒhI—¹
- *	@retval	FALSE	ƒtƒF[ƒh“r’†
+ *	@retval	TRUE	ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
+ *	@retval	FALSE	ãƒ•ã‚§ãƒ¼ãƒ‰é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknRangeFadeMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, BOOL fadein_out )
 {
 	BOOL check;
 
-	// ƒuƒ‰ƒCƒgƒlƒX‚µ‚æ‚¤‹–‰Â‚Å‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã—ã‚ˆã†è¨±å¯ã§ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		check = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade );
 	}else{
 		check = ZKN_GLB_ChangeFadeEndCheck( &p_drawglb->p_drawglb->fade );
 	}
 
-	// I‚í‚Á‚½‚çI—¹ˆ—
+	// çµ‚ã‚ã£ãŸã‚‰çµ‚äº†å‡¦ç†
 	if( check ){
 		if( fadein_out ){
-			// ”¼“§–¾OAM”jŠü
+			// åŠé€æ˜OAMç ´æ£„
 			ZknRangeOamFadeDelete( p_draw );
 		}
 
 		return TRUE;
 	}else{
-		// ƒuƒ‰ƒCƒgƒlƒX’lİ’è
+		// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤è¨­å®š
 		ZKN_GLB_SpritePokeGraPalFade( p_drawglb->p_drawglb, &p_drawglb->p_drawglb->fade );
 	}
 
@@ -1594,37 +1594,37 @@ static BOOL ZknRangeFadeMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawg
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘¼ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ö‚ÌƒtƒF[ƒhˆ—
+ *	@brief	ä»–ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“@ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ã‚¢ã‚¦ãƒˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeFadeOtherInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, BOOL fadein_out )
 {
-	// ”¼“§–¾OAMİ’è
+	// åŠé€æ˜OAMè¨­å®š
 	ZknRangeOamFadeInit( p_draw );
 
 
-	// ƒtƒF[ƒhƒAƒEƒg‚Ì‚¾‚¯‚Ìˆ—
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®æ™‚ã ã‘ã®å‡¦ç†
 	if( fadein_out == FALSE ){
-		// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒtƒF[ƒh
+		// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰
 		ZKN_UTIL_MoveReq( &p_draw->pokegra_move, ZKN_RANGE_POKEGRA_DRAW_X, p_drawglb->pokegra_move_x, ZKN_RANGE_POKEGRA_DRAW_Y, p_drawglb->pokegra_move_y, p_drawglb->move_sync);
 	}
 
-	// ƒuƒ‰ƒCƒgƒlƒX‚ğg‚Á‚Ä—Ç‚¢‚©Áª¯¸
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ã£ã¦è‰¯ã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, p_drawglb->move_sync,
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_RANGE_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, p_drawglb->move_sync,
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_RANGE_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_MAIN );
 		}
@@ -1632,15 +1632,15 @@ static void ZknRangeFadeOtherInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘¼ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ö‚ÌƒtƒF[ƒhˆ—ƒƒCƒ“
+ *	@brief	ä»–ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“@ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ã‚¢ã‚¦ãƒˆ
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknRangeFadeOtherMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, BOOL fadein_out )
@@ -1649,19 +1649,19 @@ static BOOL ZknRangeFadeOtherMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_
 	int i;
 	
 
-	// ƒtƒF[ƒhƒAƒEƒg‚Ì‚Æ‚«‚Ì‚İ‚Ìˆ—
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®ã¨ãã®ã¿ã®å‡¦ç†
 	if( fadein_out == FALSE ){
-		// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN
+		// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 		check[0] = ZKN_UTIL_MoveMain( &p_draw->pokegra_move );
 
-		// À•Wİ’è
+		// åº§æ¨™è¨­å®š
 		ZKN_GlbPokemonGraphicSetMatrix( p_drawglb->p_drawglb, p_draw->pokegra_move.x, p_draw->pokegra_move.y );
 
 	}else{
 		check[0] = TRUE;
 	}
 	
-	// ƒuƒ‰ƒCƒgƒlƒX‚ğg—p‚µ‚Ä‚æ‚¢‚Æ‚«‚Í©•ª‚Åfade‚ğ“®‚©‚·
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ã¦ã‚ˆã„ã¨ãã¯è‡ªåˆ†ã§fadeã‚’å‹•ã‹ã™
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->p_main_common ) ){
 		check[1] = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade );
 	}else{
@@ -1676,9 +1676,9 @@ static BOOL ZknRangeFadeOtherMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_
 
 	if( i==2 ){
 
-		// ƒtƒF[ƒhƒCƒ“‚Ì‚Æ‚«‚Í”¼“§–¾”jŠü
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®ã¨ãã¯åŠé€æ˜ç ´æ£„
 		if( fadein_out == TRUE ){
-			// OAM”¼“§–¾İ’è”jŠü
+			// OAMåŠé€æ˜è¨­å®šç ´æ£„
 			ZknRangeOamFadeDelete( p_draw );
 		}
 		return TRUE;
@@ -1690,42 +1690,42 @@ static BOOL ZknRangeFadeOtherMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•z‘‚«‚İƒLƒƒƒ‰ƒNƒ^ƒ`ƒbƒv“Ç‚İ‚İ
+ *	@brief	åˆ†å¸ƒæ›¸ãè¾¼ã¿ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ—èª­ã¿è¾¼ã¿
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap	ƒq[ƒv
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeBgCharLoad( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, int heap )
 {
-	// •¶š–Êƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+	// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	p_draw->p_range_char_buff = ZKN_GLBDATA_CharDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_map_chip_lzh_NCGR, TRUE, &p_draw->p_range_char, heap );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	p_draw->p_rangesp_char_buff = ZKN_GLBDATA_CharDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_map_chip2_lzh_NCGR, TRUE, &p_draw->p_rangesp_char, heap );
 
-	// ƒpƒŒƒbƒgƒiƒ“ƒo[İ’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼è¨­å®š
 	GF_BGL_BmpWinSet_Pal( &p_drawglb->p_drawglb->bmp_mfont, 8 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•z‘‚«‚İƒLƒƒƒ‰ƒNƒ^ƒ`ƒbƒv”jŠü
+ *	@brief	åˆ†å¸ƒæ›¸ãè¾¼ã¿ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ—ç ´æ£„
  *
- *	@param	p_draw •`‰æƒ[ƒN
+ *	@param	p_draw æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeBgCharDelete( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb ) 
 {
-	// •¶š–Êƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+	// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
 	GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M );
 
@@ -1737,20 +1737,20 @@ static void ZknRangeBgCharDelete( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_d
 	p_draw->p_rangesp_char_buff = NULL;
 	p_draw->p_rangesp_char = NULL;
 
-	// ƒpƒŒƒbƒgƒiƒ“ƒo[İ’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼è¨­å®š
 	GF_BGL_BmpWinSet_Pal( &p_drawglb->p_drawglb->bmp_mfont, ZKN_BG_FONT_COLOR );
 }
 
-// •ª•zƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ì¬
+// åˆ†å¸ƒã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•zƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ì¬
+ *	@brief	åˆ†å¸ƒã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_datawork		ƒf[ƒ^ƒ[ƒN
- *	@param	heap			ƒq[ƒv
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_datawork		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -1761,19 +1761,19 @@ static void ZknRangeGraphicDataMake( ZKN_RANGE_DRAW* p_draw, const ZKN_RANGE_GLB
 	int norm_oam, sp_oam;
 	int draw_ofs_x, draw_ofs_y;
 	int monsno;
-	u8* p_rem_appy;	// ”rœ”z—ñ
+	u8* p_rem_appy;	// æ’é™¤é…åˆ—
 	int rem_appy_num;
 
 	ZknRangeGraphicDataDelete( p_draw );
 
-	// •ª•zƒf[ƒ^‚©‚ç
-	// ƒOƒŠƒbƒhƒf[ƒ^‚ğì¬
+	// åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ã‹ã‚‰
+	// ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 
-	// ƒOƒŠƒbƒhƒf[ƒ^‚É‘‚«‚İ
-	//@’Êí
+	// ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ã«æ›¸ãè¾¼ã¿
+	//ã€€é€šå¸¸
 	p_draw->fld_range_num = ZKN_RANGE_DATA_FldGridDataWriteMonsRangeData( p_draw->range_grid_data, ZKN_RANGE_GRID_NUM_X, ZKN_RANGE_GRID_NUM_Y, p_draw->p_fld_grid, &cp_datawork->fld_range, cp_datawork->p_hidemap_fld, cp_datawork->hidemap_fld_num );
 
-	// “Áê‚©‚ç”rœ‚·‚é•ª•zID—ñ‚ğì¬‚·‚é
+	// ç‰¹æ®Šã‹ã‚‰æ’é™¤ã™ã‚‹åˆ†å¸ƒIDåˆ—ã‚’ä½œæˆã™ã‚‹
 	rem_appy_num = (cp_datawork->fld_range.num - 1) + cp_datawork->hidemap_fld_num;
 	p_rem_appy = sys_AllocMemoryLo( heapID, rem_appy_num );
 	for( i=0; i<rem_appy_num; i++ ){
@@ -1783,19 +1783,19 @@ static void ZknRangeGraphicDataMake( ZKN_RANGE_DRAW* p_draw, const ZKN_RANGE_GLB
 			p_rem_appy[i] = cp_datawork->fld_range.p_rangeid[i - cp_datawork->hidemap_fld_num ];
 		}
 	}
-	//@“Áê
+	//ã€€ç‰¹æ®Š
 	p_draw->fldsp_range_num = ZKN_RANGE_DATA_FldGridDataWriteMonsRangeData( p_draw->range_grid_spdata, ZKN_RANGE_GRID_NUM_X, ZKN_RANGE_GRID_NUM_Y, p_draw->p_fld_grid, &cp_datawork->fldsp_range, p_rem_appy, rem_appy_num );
 
-	// “Áê‚©‚ç”rœ‚·‚é•ª•zID—ñ‚ğ”jŠü
+	// ç‰¹æ®Šã‹ã‚‰æ’é™¤ã™ã‚‹åˆ†å¸ƒIDåˆ—ã‚’ç ´æ£„
 	sys_FreeMemoryEz( p_rem_appy );
 	
 
-	// ŠÛ‚ßƒLƒƒƒ‰ƒNƒ^ˆ—
+	// ä¸¸ã‚ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å‡¦ç†
 	ZKN_ENCOUNTDRAW_MakeMuddyData( p_draw->range_grid_data, ZKN_RANGE_GRID_NUM_X, ZKN_RANGE_GRID_NUM_Y );
 	ZKN_ENCOUNTDRAW_MakeMuddyData( p_draw->range_grid_spdata, ZKN_RANGE_GRID_NUM_X, ZKN_RANGE_GRID_NUM_Y );
 
 
-	// ƒqƒ“ƒoƒX‚Ì‚Æ‚«‚ÍOAM‚ª“Áê‚È‚à‚Ì‚É‚È‚é
+	// ãƒ’ãƒ³ãƒã‚¹ã®ã¨ãã¯OAMãŒç‰¹æ®Šãªã‚‚ã®ã«ãªã‚‹
 	monsno = ZKN_GLBDATA_PokeMonsNoGet( cp_glb->p_glb );
 	if( monsno == MONSNO_HINBASU ){
 		norm_oam = ZKN_RANGE_DAN_OAMNORM_HIN_SEQ;
@@ -1809,7 +1809,7 @@ static void ZknRangeGraphicDataMake( ZKN_RANGE_DRAW* p_draw, const ZKN_RANGE_GLB
 		draw_ofs_y = ZKN_RANGE_DAN_DRAW_Y;
 	}
 
-	// ƒ_ƒ“ƒWƒ‡ƒ“ƒf[ƒ^İ’è
+	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_draw->now_use = 0;
 	p_draw->now_use = ZKN_RANGE_DATA_DanGridDataSetMonsRangeData(
 			p_draw->danzyon_icon, p_draw->now_use, ZKN_RANGE_DAN_OAM_BUFF_NUM, 
@@ -1820,7 +1820,7 @@ static void ZknRangeGraphicDataMake( ZKN_RANGE_DRAW* p_draw, const ZKN_RANGE_GLB
 			cp_datawork->p_hidemap_dan, cp_datawork->hidemap_dan_num,
 			&p_draw->dan_range_num );
 
-	// “Áê‚©‚ç”rœ‚·‚é•ª•zID—ñ‚ğì¬‚·‚é
+	// ç‰¹æ®Šã‹ã‚‰æ’é™¤ã™ã‚‹åˆ†å¸ƒIDåˆ—ã‚’ä½œæˆã™ã‚‹
 	rem_appy_num = (cp_datawork->dan_range.num - 1) + cp_datawork->hidemap_dan_num;
 	p_rem_appy = sys_AllocMemoryLo( heapID, rem_appy_num );
 	for( i=0; i<rem_appy_num; i++ ){
@@ -1840,16 +1840,16 @@ static void ZknRangeGraphicDataMake( ZKN_RANGE_DRAW* p_draw, const ZKN_RANGE_GLB
 			p_rem_appy, rem_appy_num,
 			&p_draw->dansp_range_num  );//*/
 
-	// “Áê‚©‚ç”rœ‚·‚é•ª•zID—ñ‚ğ”jŠü
+	// ç‰¹æ®Šã‹ã‚‰æ’é™¤ã™ã‚‹åˆ†å¸ƒIDåˆ—ã‚’ç ´æ£„
 	sys_FreeMemoryEz( p_rem_appy );
 	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒŠƒbƒhƒf[ƒ^”jŠü
+ *	@brief	ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1861,7 +1861,7 @@ static void ZknRangeGraphicDataDelete(  ZKN_RANGE_DRAW* p_draw )
 	memset( p_draw->range_grid_data, 0, sizeof(u8) * ZKN_RANGE_GRID_ARRAY_SIZE );
 	memset( p_draw->range_grid_spdata, 0, sizeof(u8) * ZKN_RANGE_GRID_ARRAY_SIZE );
 
-	// OAM”ñ•\¦
+	// OAMéè¡¨ç¤º
 	for( i=0; i<p_draw->now_use; i++ ){
 		CLACT_SetDrawFlag( p_draw->danzyon_icon[i], FALSE );
 	}
@@ -1870,13 +1870,13 @@ static void ZknRangeGraphicDataDelete(  ZKN_RANGE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒB[ƒ‹ƒh‰B‚µƒ}ƒbƒvƒ][ƒ“IDƒe[ƒuƒ‹ì¬
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰éš ã—ãƒãƒƒãƒ—ã‚¾ãƒ¼ãƒ³IDãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
  *
- *	@param	heap	ƒq[ƒv
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	p_tbl_num ƒe[ƒuƒ‹”Ši”[æ
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_tbl_num ãƒ†ãƒ¼ãƒ–ãƒ«æ•°æ ¼ç´å…ˆ
  *
- *	@return	ƒe[ƒuƒ‹@”jŠü‚Ì•K—v‚ ‚è
+ *	@return	ãƒ†ãƒ¼ãƒ–ãƒ«ã€€ç ´æ£„ã®å¿…è¦ã‚ã‚Š
  */
 //-----------------------------------------------------------------------------
 static u8* ZknRangeGraphicDataFldHideMapTblGet( u32 heap, const ZKN_RANGE_GLB* cp_glb, u32* p_tbl_num )
@@ -1887,7 +1887,7 @@ static u8* ZknRangeGraphicDataFldHideMapTblGet( u32 heap, const ZKN_RANGE_GLB* c
 
 	tbl_num = 0;
 	
-	// ƒe[ƒuƒ‹ì¬‚Ì‚½‚ß”‚ğ”‚¦‚é•K—v‚ª‚ ‚é
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆã®ãŸã‚æ•°ã‚’æ•°ãˆã‚‹å¿…è¦ãŒã‚ã‚‹
 	if( cp_glb->p_glb->hidemap_id_D15 == FALSE ){
 		i = 0;
 		while( ZKN_FLD_ZONE_ID_D15_IDTBL[ i ] != 0xffff ){
@@ -1924,7 +1924,7 @@ static u8* ZknRangeGraphicDataFldHideMapTblGet( u32 heap, const ZKN_RANGE_GLB* c
 	*p_tbl_num = tbl_num;
 
 
-	// ƒe[ƒuƒ‹İ’è
+	// ãƒ†ãƒ¼ãƒ–ãƒ«è¨­å®š
 	if( cp_glb->p_glb->hidemap_id_D15 == FALSE ){
 		i = 0;
 		while( ZKN_FLD_ZONE_ID_D15_IDTBL[ i ] != 0xffff ){
@@ -1963,13 +1963,13 @@ static u8* ZknRangeGraphicDataFldHideMapTblGet( u32 heap, const ZKN_RANGE_GLB* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ“ƒWƒ‡ƒ“‰B‚µƒ}ƒbƒvƒ][ƒ“IDƒe[ƒuƒ‹ì¬
+ *	@brief	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³éš ã—ãƒãƒƒãƒ—ã‚¾ãƒ¼ãƒ³IDãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
  *
- *	@param	heap	ƒq[ƒv
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	p_tbl_num ƒe[ƒuƒ‹”Ši”[æ
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_tbl_num ãƒ†ãƒ¼ãƒ–ãƒ«æ•°æ ¼ç´å…ˆ
  *
- *	@return	ƒe[ƒuƒ‹@”jŠü‚Ì•K—v‚ ‚è
+ *	@return	ãƒ†ãƒ¼ãƒ–ãƒ«ã€€ç ´æ£„ã®å¿…è¦ã‚ã‚Š
  */
 //-----------------------------------------------------------------------------
 static u8* ZknRangeGraphicDataDanHideMapTblGet( u32 heap, const ZKN_RANGE_GLB* cp_glb, u32* p_tbl_num )
@@ -1980,7 +1980,7 @@ static u8* ZknRangeGraphicDataDanHideMapTblGet( u32 heap, const ZKN_RANGE_GLB* c
 
 	tbl_num = 0;
 	
-	// ƒe[ƒuƒ‹ì¬‚Ì‚½‚ß”‚ğ”‚¦‚é•K—v‚ª‚ ‚é
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆã®ãŸã‚æ•°ã‚’æ•°ãˆã‚‹å¿…è¦ãŒã‚ã‚‹
 	if( cp_glb->p_glb->hidemap_id_D15 == FALSE ){
 		i = 0;
 		while( ZKN_DAN_ZONE_ID_D15_IDTBL[ i ] != 0xffff ){
@@ -2020,7 +2020,7 @@ static u8* ZknRangeGraphicDataDanHideMapTblGet( u32 heap, const ZKN_RANGE_GLB* c
 	*p_tbl_num = tbl_num;
 
 
-	//@ƒe[ƒuƒ‹‚ğİ’è‚·‚é
+	//ã€€ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’è¨­å®šã™ã‚‹
 	tbl_num = 0;
 	if( cp_glb->p_glb->hidemap_id_D15 == FALSE ){
 		i=0;
@@ -2060,10 +2060,10 @@ static u8* ZknRangeGraphicDataDanHideMapTblGet( u32 heap, const ZKN_RANGE_GLB* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒŠƒbƒhƒf[ƒ^•`‰æƒƒCƒ“ˆ—
+ *	@brief	ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿æç”»ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -2072,7 +2072,7 @@ static void ZknRangeGraphicDrawMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* 
 {
 	GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
 
-	// “Áê
+	// ç‰¹æ®Š
 	ZKN_ENCOUNTDRAW_PrintChar(
 			&p_drawglb->p_drawglb->bmp_mfont,
 			p_draw->p_rangesp_char->pRawData,
@@ -2083,7 +2083,7 @@ static void ZknRangeGraphicDrawMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* 
 			ZKN_RANGE_BMP_DRAW_X, ZKN_RANGE_BMP_DRAW_Y );
 
 	
-	// ’Êí
+	// é€šå¸¸
 	ZKN_ENCOUNTDRAW_PrintChar(
 			&p_drawglb->p_drawglb->bmp_mfont,
 			p_draw->p_range_char->pRawData,
@@ -2093,24 +2093,24 @@ static void ZknRangeGraphicDrawMain( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* 
 			ZKN_RANGE_GRID_NUM_X, ZKN_RANGE_GRID_NUM_Y,
 			ZKN_RANGE_BMP_DRAW_X, ZKN_RANGE_BMP_DRAW_Y );
 
-	// •\¦ON
+	// è¡¨ç¤ºON
 	GF_BGL_BmpWinOn( &p_drawglb->p_drawglb->bmp_mfont );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¶‘§’n‚Ó‚ß‚¢•`‰æONOFF
+ *	@brief	ç”Ÿæ¯åœ°ãµã‚ã„æç”»ONOFF
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  * 
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeRangeNoneDrawSet( ZKN_RANGE_DRAW* p_draw, const ZKN_RANGE_WORK* p_work )
 {
-	// ƒ_ƒ“ƒWƒ‡ƒ“‚àƒtƒB[ƒ‹ƒh‚à•ª•zƒf[ƒ^‚ª–³‚¢‚Æ‚«”ñ•W¦ ‚»‚Ì‘¼•\¦
+	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚‚ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚‚åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ãŒç„¡ã„ã¨ãéæ¨™ç¤º ãã®ä»–è¡¨ç¤º
 	if( (p_draw->dan_range_num <= 0) &&
 		(p_draw->fld_range_num <= 0) &&
 		(p_draw->dansp_range_num <= 0) &&
@@ -2127,10 +2127,10 @@ static void ZknRangeRangeNoneDrawSet( ZKN_RANGE_DRAW* p_draw, const ZKN_RANGE_WO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•zƒ^ƒCƒv•\¦Ø‘Ö
+ *	@brief	åˆ†å¸ƒã‚¿ã‚¤ãƒ—è¡¨ç¤ºåˆ‡æ›¿
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	type	•ª•zƒ^ƒCƒv
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	type	åˆ†å¸ƒã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  */
@@ -2151,34 +2151,34 @@ static void ZknRangeRangeTypeOn( ZKN_RANGE_DRAW* p_draw, int type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•z•`‰æƒf[ƒ^XV
+ *	@brief	åˆ†å¸ƒæç”»ãƒ‡ãƒ¼ã‚¿æ›´æ–°
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒf[ƒ^ƒOƒ[ƒoƒ‹
- *	@param	cp_datawork		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_datawork		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeGraphicChange( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB* cp_glb, const ZKN_RANGE_WORK* cp_datawork, int heap )
 {
-	// ƒ^ƒCƒv‚ª•ÏX‚³‚ê‚½‚ç•¶š‚â,ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^•ÏX
+	// ã‚¿ã‚¤ãƒ—ãŒå¤‰æ›´ã•ã‚ŒãŸã‚‰æ–‡å­—ã‚„,ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
 	if( p_draw->type != cp_datawork->type ){
 		
-		// •ª•z•`‰æƒf[ƒ^ì¬
+		// åˆ†å¸ƒæç”»ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		ZknRangeGraphicDataMake( p_draw, cp_glb, cp_datawork, heap );
 
-		// •ª•zƒf[ƒ^•`‰æ
+		// åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿æç”»
 		ZknRangeGraphicDrawMain( p_draw, p_drawglb );
 
-		// •ª•zƒ^ƒCƒv•\¦	
+		// åˆ†å¸ƒã‚¿ã‚¤ãƒ—è¡¨ç¤º	
 		ZknRangeRangeTypeOn( p_draw, cp_glb->type );
 
-		// ¶‘§’n•s–¾•\¦
+		// ç”Ÿæ¯åœ°ä¸æ˜è¡¨ç¤º
 		ZknRangeRangeNoneDrawSet( p_draw, cp_datawork );
 
-		// •ª•zXV
+		// åˆ†å¸ƒæ›´æ–°
 		p_draw->type = cp_datawork->type;
 	}
 }
@@ -2186,11 +2186,11 @@ static void ZknRangeGraphicChange( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•ª•zƒf[ƒ^“Ç‚İ‚İ
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap	ƒq[ƒv
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
@@ -2202,81 +2202,81 @@ static void ZknRangeMonsRangeDataLoad( ZKN_RANGE_WORK* p_work, ZKN_RANGE_GLB* p_
 	int mons_no = ZKN_GLBDATA_PokeMonsNoGet( p_glb->p_glb );
 	
 	switch( p_glb->type ){
-	case ZKN_RANGE_TYPE_MORNING:// ’©
+	case ZKN_RANGE_TYPE_MORNING:// æœ
 		dan_type = ZKN_RANGEDATA_TYPE_DAN_MORNING;
 		fld_type = ZKN_RANGEDATA_TYPE_FLD_MORNING;
 		break;
 		
-	case ZKN_RANGE_TYPE_NOON:	// ’‹
+	case ZKN_RANGE_TYPE_NOON:	// æ˜¼
 		dan_type = ZKN_RANGEDATA_TYPE_DAN_NOON;
 		fld_type = ZKN_RANGEDATA_TYPE_FLD_NOON;
 		break;
 		
-	case ZKN_RANGE_TYPE_NIGHT:	// –é
+	case ZKN_RANGE_TYPE_NIGHT:	// å¤œ
 		dan_type = ZKN_RANGEDATA_TYPE_DAN_NIGHT;
 		fld_type = ZKN_RANGEDATA_TYPE_FLD_NIGHT;
 		break;
 
 	default:
-		// ‚¨‚©‚µ‚¢
+		// ãŠã‹ã—ã„
 		GF_ASSERT( 0 );
 		break;
 	}
 
-	// ’Êíƒ_ƒ“ƒWƒ‡ƒ“
+	// é€šå¸¸ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 	ZKN_RANGEDATA_GetMonsNoRange( &p_work->dan_range, mons_no, dan_type, heap );
 
-	// ’ÊíƒtƒB[ƒ‹ƒh
+	// é€šå¸¸ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 	ZKN_RANGEDATA_GetMonsNoRange( &p_work->fld_range, mons_no, fld_type, heap );
 	
-	// }ŠÓ•Û‚Æ•ÛŒã‚Å@“Áêƒf[ƒ^‚Í•ÏX‚·‚é
+	// å›³é‘‘ä¿æŒã¨ä¿æŒå¾Œã§ã€€ç‰¹æ®Šãƒ‡ãƒ¼ã‚¿ã¯å¤‰æ›´ã™ã‚‹
 	if( ZKN_GLBDATA_SaveData_ZenkokuZukanGet( p_glb->p_glb ) == FALSE ){
 		
-		// }ŠÓ•Û‘O
-		// “Áêƒ_ƒ“ƒWƒ‡ƒ“
+		// å›³é‘‘ä¿æŒå‰
+		// ç‰¹æ®Šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 		ZKN_RANGEDATA_GetMonsNoRange( &p_work->dansp_range, mons_no, ZKN_RANGEDATA_TYPE_DAN_SPECIAL, heap );
-		// “ÁêƒtƒB[ƒ‹ƒh
+		// ç‰¹æ®Šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 		ZKN_RANGEDATA_GetMonsNoRange( &p_work->fldsp_range, mons_no, ZKN_RANGEDATA_TYPE_FLD_SPECIAL, heap );
 	}else{
 		
-		// }ŠÓ•ÛŒã
-		// “Áêƒ_ƒ“ƒWƒ‡ƒ“
+		// å›³é‘‘ä¿æŒå¾Œ
+		// ç‰¹æ®Šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 		ZKN_RANGEDATA_GetMonsNoRange( &p_work->dansp_range, mons_no, ZKN_RANGEDATA_TYPE_DAN_SPECIAL_COMP, heap );
-		// “ÁêƒtƒB[ƒ‹ƒh
+		// ç‰¹æ®Šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 		ZKN_RANGEDATA_GetMonsNoRange( &p_work->fldsp_range, mons_no, ZKN_RANGEDATA_TYPE_FLD_SPECIAL_COMP, heap );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•ª•zƒf[ƒ^”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeMonsRangeDataDelete( ZKN_RANGE_WORK* p_work )
 {
-	// ’Êíƒ_ƒ“ƒWƒ‡ƒ“
+	// é€šå¸¸ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 	ZKN_RANGEDATA_DeleteMonsNoRange( &p_work->dan_range );
 
-	// ’ÊíƒtƒB[ƒ‹ƒh
+	// é€šå¸¸ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 	ZKN_RANGEDATA_DeleteMonsNoRange( &p_work->fld_range );
 	
-	// “Áêƒ_ƒ“ƒWƒ‡ƒ“
+	// ç‰¹æ®Šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 	ZKN_RANGEDATA_DeleteMonsNoRange( &p_work->dansp_range );
 	
-	// “ÁêƒtƒB[ƒ‹ƒh
+	// ç‰¹æ®Šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 	ZKN_RANGEDATA_DeleteMonsNoRange( &p_work->fldsp_range );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•z}ƒOƒ‰ƒtƒBƒbƒN‚ğŒğŒİ‚É•\¦‚·‚é‰Šú‰»
+ *	@brief	åˆ†å¸ƒå›³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’äº¤äº’ã«è¡¨ç¤ºã™ã‚‹åˆæœŸåŒ–
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2287,7 +2287,7 @@ static void ZknRangeGraphicDrawMoveInit( ZKN_RANGE_DRAW* p_draw )
 	p_draw->drawmove_count = 0;
 	p_draw->drawmove_flag = 0;
 
-	// BG1OAM‚Í”ñ•W¦
+	// BG1OAMã¯éæ¨™ç¤º
 	GF_Disp_GX_VisibleControl( GX_BLEND_PLANEMASK_BG1, VISIBLE_OFF );
 	for( i=0; i<p_draw->now_use; i++ ){
 		CLACT_SetDrawFlag( p_draw->danzyon_icon[i], FALSE );
@@ -2296,9 +2296,9 @@ static void ZknRangeGraphicDrawMoveInit( ZKN_RANGE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠJn
+ *	@brief	é–‹å§‹
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2309,7 +2309,7 @@ static void ZknRangeGraphicDrawMoveStart( ZKN_RANGE_DRAW* p_draw )
 
 	G2_SetBlendAlpha( GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG3, GX_BLEND_PLANEMASK_BG3, 0, 16 );
 
-	// BG‚ğ•\¦‚µAOAM‚Í”ñ•W¦
+	// BGã‚’è¡¨ç¤ºã—ã€OAMã¯éæ¨™ç¤º
 	GF_Disp_GX_VisibleControl( GX_BLEND_PLANEMASK_BG1, VISIBLE_ON );
 	for( i=0; i<p_draw->now_use; i++ ){
 		CLACT_SetDrawFlag( p_draw->danzyon_icon[i], FALSE );
@@ -2318,9 +2318,9 @@ static void ZknRangeGraphicDrawMoveStart( ZKN_RANGE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•z}ƒOƒ‰ƒtƒBƒbƒN‚ğŒğŒİ‚É•\¦‚·‚é
+ *	@brief	åˆ†å¸ƒå›³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’äº¤äº’ã«è¡¨ç¤ºã™ã‚‹
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2332,26 +2332,26 @@ static void ZknRangeGraphicDrawMoveMain( ZKN_RANGE_DRAW* p_draw )
 	int i;
 
 
-	// •\¦ˆ—		Š®‘S‚ÉÁ‚¦‚Ä‚©‚ç•\¦‚³‚ê‚é‚æ‚¤‚É
-	// ”ñ•\¦ˆ—[„VBLANK|„•\¦ˆ—‚Æ‚¢‚¤‚Ó‚¤‚É‚µ‚Ä‚¢‚Ü‚·
+	// è¡¨ç¤ºå‡¦ç†		å®Œå…¨ã«æ¶ˆãˆã¦ã‹ã‚‰è¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«
+	// éè¡¨ç¤ºå‡¦ç†ãƒ¼ï¼VBLANKâˆ’ï¼è¡¨ç¤ºå‡¦ç†ã¨ã„ã†ãµã†ã«ã—ã¦ã„ã¾ã™
 	if( p_draw->drawmove_count >= ZKN_RANGE_DRAW_MOVE_COUNT_MAX ){
-		p_draw->drawmove_count = 0;	// ƒJƒEƒ“ƒg‰Šú‰»
-		// 0‚Ì‚Æ‚«BG
+		p_draw->drawmove_count = 0;	// ã‚«ã‚¦ãƒ³ãƒˆåˆæœŸåŒ–
+		// 0ã®ã¨ãBG
 		if( p_draw->drawmove_flag == 0 ){
 
-			// OAM•\¦İ’è
+			// OAMè¡¨ç¤ºè¨­å®š
 			for( i=0; i<p_draw->now_use; i++ ){
 				CLACT_SetDrawFlag( p_draw->danzyon_icon[ i ], TRUE );
 			}
 			p_draw->drawmove_flag = 1;
 		}else{
-			// BG•\¦İ’è
+			// BGè¡¨ç¤ºè¨­å®š
 			GF_Disp_GX_VisibleControl( GX_BLEND_PLANEMASK_BG1, VISIBLE_ON );
 			p_draw->drawmove_flag = 0;
 		}
 	}
 	
-	// ƒ¿’lİ’è
+	// Î±å€¤è¨­å®š
 	if( p_draw->drawmove_count < ZKN_RANGE_DRAW_MOVE_COUNT_HALF ){
 		count = p_draw->drawmove_count;
 	}else{
@@ -2361,18 +2361,18 @@ static void ZknRangeGraphicDrawMoveMain( ZKN_RANGE_DRAW* p_draw )
 	alpha = FX_Div( alpha, (ZKN_RANGE_DRAW_MOVE_COUNT_HALF << FX32_SHIFT) );
 	G2_ChangeBlendAlpha( alpha >> FX32_SHIFT, 16 );
 	
-	// ƒJƒEƒ“ƒgˆ—
+	// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	p_draw->drawmove_count++;
 
 
-	// ”ñ•\¦ˆ—
+	// éè¡¨ç¤ºå‡¦ç†
 	if( p_draw->drawmove_count >= ZKN_RANGE_DRAW_MOVE_COUNT_MAX ){
-		// 0‚Ì‚Æ‚«BG
+		// 0ã®ã¨ãBG
 		if( p_draw->drawmove_flag == 0 ){
 
 			GF_Disp_GX_VisibleControl( GX_BLEND_PLANEMASK_BG1, VISIBLE_OFF );
 		}else{
-			// OAM”ñ•\¦İ’è
+			// OAMéè¡¨ç¤ºè¨­å®š
 			for( i=0; i<p_draw->now_use; i++ ){
 				CLACT_SetDrawFlag( p_draw->danzyon_icon[ i ], FALSE );
 			}
@@ -2382,10 +2382,10 @@ static void ZknRangeGraphicDrawMoveMain( ZKN_RANGE_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\¦ON
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤ºON
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -2395,20 +2395,20 @@ static void ZknRangePokeGraOn( ZKN_RANGE_DRAWGLB* p_drawglb, const ZKN_RANGE_GLB
 	SOFT_SPRITE* p_pokegra = ZKN_GlbPokemonGraphicGet( p_drawglb->p_drawglb );
 	int monsno = ZKN_GLBDATA_PokeMonsNoGet( cp_glb->p_glb );
 
-	// ƒ|ƒPƒ‚ƒ“İ’è
+	// ãƒã‚±ãƒ¢ãƒ³è¨­å®š
 	ZKN_UTIL_PokemonGraphicSet( p_drawglb->p_drawglb, cp_glb->p_glb,
 			monsno,
 			PARA_FRONT, ZKN_RANGE_POKEGRA_DRAW_X, ZKN_RANGE_POKEGRA_DRAW_Y );
 	
-	// •\¦
+	// è¡¨ç¤º
 	SoftSpriteParaSet( p_pokegra, SS_PARA_VANISH, FALSE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\¦OFF
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤ºOFF
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -2417,9 +2417,9 @@ static void ZknRangePokeGraOff( ZKN_RANGE_DRAWGLB* p_drawglb )
 {
 	SOFT_SPRITE* p_pokegra = ZKN_GlbPokemonGraphicGet( p_drawglb->p_drawglb );
 
-	// •\¦OFF
+	// è¡¨ç¤ºOFF
 	SoftSpriteParaSet( p_pokegra, SS_PARA_VANISH, TRUE );
 
-	// ƒ\ƒtƒgƒpƒŒƒbƒgƒtƒF[ƒh‚ª‚©‚©‚Á‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅOFF
+	// ã‚½ãƒ•ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãŒã‹ã‹ã£ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§OFF
 	SoftSpritePalFadeOff( p_pokegra );
 }

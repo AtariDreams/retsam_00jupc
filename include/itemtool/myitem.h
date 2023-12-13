@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	myitem.h
- * @brief	è‚¿ƒAƒCƒeƒ€‘€ì—pƒwƒbƒ_
+ * @brief	æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æ“ä½œç”¨ãƒ˜ãƒƒãƒ€
  * @author	tamada
  * @author	hiroyuki nakamura
  * @date	2005.10.13
@@ -17,42 +17,42 @@
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	è‚¿ƒAƒCƒeƒ€Œ^’è‹`
+ * @brief	æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ å‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct _MYITEM MYITEM;
 
-// ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+// ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 typedef struct _BAG_CURSOR	BAG_CURSOR;
 
 //------------------------------------------------------------------------
-//	ƒAƒCƒeƒ€ƒf[ƒ^
+//	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 //------------------------------------------------------------------------
 typedef	struct {
-	u16	id;		// ƒAƒCƒeƒ€”Ô†
-	u16	no;		// ŒÂ”
+	u16	id;		// ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+	u16	no;		// å€‹æ•°
 }MINEITEM;
 
-#define	BAG_NORMAL_ITEM_MAX		( 165 )		// “¹‹ïƒ|ƒPƒbƒgÅ‘å”
-#define	BAG_EVENT_ITEM_MAX		( 50 )		// ‘åØ‚È•¨ƒ|ƒPƒbƒgÅ‘å”
-#define	BAG_WAZA_ITEM_MAX		( 100 )		// ‹Zƒ}ƒVƒ“ƒ|ƒPƒbƒgÅ‘å”
-#define	BAG_SEAL_ITEM_MAX		( 12 )		// ƒV[ƒ‹ƒ|ƒPƒbƒgÅ‘å”
-#define	BAG_DRUG_ITEM_MAX		( 40 )		// –òƒ|ƒPƒbƒgÅ‘å”
-#define	BAG_NUTS_ITEM_MAX		( 64 )		// –Ø‚ÌÀƒ|ƒPƒbƒgÅ‘å”
-#define	BAG_BALL_ITEM_MAX		( 15 )		// ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹ƒ|ƒPƒbƒgÅ‘å”
-#define	BAG_BATTLE_ITEM_MAX		( 30 )		// í“¬—pƒAƒCƒeƒ€ƒ|ƒPƒbƒgÅ‘å”
+#define	BAG_NORMAL_ITEM_MAX		( 165 )		// é“å…·ãƒã‚±ãƒƒãƒˆæœ€å¤§æ•°
+#define	BAG_EVENT_ITEM_MAX		( 50 )		// å¤§åˆ‡ãªç‰©ãƒã‚±ãƒƒãƒˆæœ€å¤§æ•°
+#define	BAG_WAZA_ITEM_MAX		( 100 )		// æŠ€ãƒã‚·ãƒ³ãƒã‚±ãƒƒãƒˆæœ€å¤§æ•°
+#define	BAG_SEAL_ITEM_MAX		( 12 )		// ã‚·ãƒ¼ãƒ«ãƒã‚±ãƒƒãƒˆæœ€å¤§æ•°
+#define	BAG_DRUG_ITEM_MAX		( 40 )		// è–¬ãƒã‚±ãƒƒãƒˆæœ€å¤§æ•°
+#define	BAG_NUTS_ITEM_MAX		( 64 )		// æœ¨ã®å®Ÿãƒã‚±ãƒƒãƒˆæœ€å¤§æ•°
+#define	BAG_BALL_ITEM_MAX		( 15 )		// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ãƒã‚±ãƒƒãƒˆæœ€å¤§æ•°
+#define	BAG_BATTLE_ITEM_MAX		( 30 )		// æˆ¦é—˜ç”¨ã‚¢ã‚¤ãƒ†ãƒ ãƒã‚±ãƒƒãƒˆæœ€å¤§æ•°
 
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //----------------------------------------------------------
 extern int MyItem_GetWorkSize(void);
 extern MYITEM * MyItem_AllocWork(int heapID);
 extern void MyItem_Copy(const MYITEM * from, MYITEM * to);
 
 //----------------------------------------------------------
-//	MYITEM‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	MYITEMæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern void MyItem_Init(MYITEM * item);
 extern BOOL MyItem_AddCheck( MYITEM * myitem, u16 item_no, u16 num, u32 heap );
@@ -72,17 +72,17 @@ extern void MyItem_CnvButtonItemSet( MYITEM * myitem, u32 item );
 
 
 //----------------------------------------------------------
-//	ƒoƒbƒOì¬ŠÖ”
+//	ãƒãƒƒã‚°ä½œæˆé–¢æ•°
 //----------------------------------------------------------
 extern void * MyItem_MakeBagData( MYITEM * myitem, const u8 * list, u32 heap );
 
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^æ“¾‚Ì‚½‚ß‚ÌŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern MYITEM * SaveData_GetMyItem(SAVEDATA * sv);
 
 //------------------------------------------------------------------
-//	ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’uƒf[ƒ^
+//	ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒ‡ãƒ¼ã‚¿
 //------------------------------------------------------------------
 extern BAG_CURSOR * MyItem_BagCursorAlloc( u32 heapID );
 
@@ -101,7 +101,7 @@ extern void MyItem_BattleBagPocketPagePosSet( BAG_CURSOR * wk, u16 pocket );
 extern void MyItem_BattleBagCursorPosInit( BAG_CURSOR * wk );
 
 
-//	ƒfƒoƒbƒO—p“K“–‚Éè‚¿ƒAƒCƒeƒ€¶¬ŠÖ”
+//	ãƒ‡ãƒãƒƒã‚°ç”¨é©å½“ã«æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ç”Ÿæˆé–¢æ•°
 extern void Debug_MyItem_MakeBag(MYITEM * myitem, int heapID);
 
 #ifdef CREATE_INDEX

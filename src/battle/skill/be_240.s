@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_240.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			240�@����̍U�����}���ɂ�����Ȃ��Ȃ�B��ɂ���ԗL���B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			240　相手の攻撃が急所にあたらなくなる。場にいる間有効。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14

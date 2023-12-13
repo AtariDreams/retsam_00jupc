@@ -1,11 +1,11 @@
 /**
  *	@file	nmix_res.h
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@ƒŠƒ\[ƒXŠÇ—
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†
  *	@author	Miyuki Iwasawa
  *	@date	06.04.08
  *
  *
- *	•`‰æƒc[ƒ‹‚à‚±‚±‚É’Ç‰Á
+ *	æç”»ãƒ„ãƒ¼ãƒ«ã‚‚ã“ã“ã«è¿½åŠ 
  */
 
 #ifndef __H_NMIX_RES_H__
@@ -21,36 +21,36 @@
 
 //-----------------------------------------------------------------------------
 /**
- *		’è”’è‹`
+ *		å®šæ•°å®šç¾©
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 // OAM
 //=====================================
-#define NMIX_OAM_OAM_MAIN_S			(0)			// ƒƒCƒ“‰æ–Ê OAMŽg—p—ÌˆæŠJŽn
-#define NMIX_OAM_OAM_MAIN_E			(128)		// ƒƒCƒ“‰æ–Ê OAMŽg—p—ÌˆæI—¹
-#define NMIX_OAM_AFF_MAIN_S			(0)			// ƒƒCƒ“‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæŠJŽn
-#define NMIX_OAM_AFF_MAIN_E			(32)		// ƒƒCƒ“‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæI—¹
-#define NMIX_OAM_OAM_SUB_S			(0)			// ƒTƒu‰æ–Ê OAMŽg—p—ÌˆæŠJŽn
-#define NMIX_OAM_OAM_SUB_E			(128)		// ƒTƒu‰æ–Ê OAMŽg—p—ÌˆæI—¹
-#define NMIX_OAM_AFF_SUB_S			(0)			// ƒTƒu‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæŠJŽn
-#define NMIX_OAM_AFF_SUB_E			(32)		// ƒTƒu‰æ–Ê ƒAƒtƒBƒ“Žg—p—ÌˆæI—¹
-#define NMIX_OAM_CHAR_ENTRY_NUM		(32)		// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒƒGƒ“ƒgƒŠ[”
-#define NMIX_OAM_CHAR_VRAMTRANS_MAIN_SIZE	(0x20000)	// ƒƒCƒ“‰æ–Ê ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒVramŠÇ——Ìˆæ
-#define NMIX_OAM_CHAR_VRAMTRANS_SUB_SIZE	(0x0)		// ƒTƒu‰æ–Ê ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒVramŠÇ——Ìˆæ
-#define NMIX_OAM_PLTT_ENTRY_NUM		(32)		// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒƒGƒ“ƒgƒŠ[”
+#define NMIX_OAM_OAM_MAIN_S			(0)			// ãƒ¡ã‚¤ãƒ³ç”»é¢ OAMä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define NMIX_OAM_OAM_MAIN_E			(128)		// ãƒ¡ã‚¤ãƒ³ç”»é¢ OAMä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define NMIX_OAM_AFF_MAIN_S			(0)			// ãƒ¡ã‚¤ãƒ³ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define NMIX_OAM_AFF_MAIN_E			(32)		// ãƒ¡ã‚¤ãƒ³ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define NMIX_OAM_OAM_SUB_S			(0)			// ã‚µãƒ–ç”»é¢ OAMä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define NMIX_OAM_OAM_SUB_E			(128)		// ã‚µãƒ–ç”»é¢ OAMä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define NMIX_OAM_AFF_SUB_S			(0)			// ã‚µãƒ–ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸé–‹å§‹
+#define NMIX_OAM_AFF_SUB_E			(32)		// ã‚µãƒ–ç”»é¢ ã‚¢ãƒ•ã‚£ãƒ³ä½¿ç”¨é ˜åŸŸçµ‚äº†
+#define NMIX_OAM_CHAR_ENTRY_NUM		(32)		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°
+#define NMIX_OAM_CHAR_VRAMTRANS_MAIN_SIZE	(0x20000)	// ãƒ¡ã‚¤ãƒ³ç”»é¢ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£Vramç®¡ç†é ˜åŸŸ
+#define NMIX_OAM_CHAR_VRAMTRANS_SUB_SIZE	(0x0)		// ã‚µãƒ–ç”»é¢ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£Vramç®¡ç†é ˜åŸŸ
+#define NMIX_OAM_PLTT_ENTRY_NUM		(32)		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ•°
 
 
 
 //-------------------------------------
-//	ƒZƒ‹ƒAƒNƒ^[
+//	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //=====================================
-#define NMIX_GAME_CLACT_WORK_MAX		( 72 )	// ƒ[ƒNÅ‘å
-#define NMIX_GAME_CLACT_RES_MAX			( 16 )	// ‚»‚ê‚¼‚êƒŠƒ\[ƒXÅ‘å
+#define NMIX_GAME_CLACT_WORK_MAX		( 72 )	// ãƒ¯ãƒ¼ã‚¯æœ€å¤§
+#define NMIX_GAME_CLACT_RES_MAX			( 16 )	// ãã‚Œãžã‚Œãƒªã‚½ãƒ¼ã‚¹æœ€å¤§
 #define NMIX_GAME_CLACT_RES_OBJ_TYPE	( 4 )	// char/pltt/cell/cellanm
 
 //-------------------------------------
-//	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+//	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 //=====================================
 #define NMIX_GAME_SWSP_WORK_MAX			( 48 )
 #define NMIX_GAME_SWSP_CHAR_MAX			( 32 )
@@ -63,33 +63,33 @@
 //-----------------------------------------------------------------------------
 /**
  *
- *		ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *		ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  *
  */
 //-----------------------------------------------------------------------------
 
 
 /**
- *	@brief	ƒRƒ}ƒ“ƒh@ƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ã‚³ãƒžãƒ³ãƒ‰ã€€ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 GLOBAL void NMixGameCom_GameStartGraphicInit(NMIX_GAMEWORK* wk);
 /**
- *	@brief	ƒRƒ}ƒ“ƒh@ƒŠƒ\[ƒX‰ð•ú
+ *	@brief	ã‚³ãƒžãƒ³ãƒ‰ã€€ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 GLOBAL void NMixGameCom_GameStartGraphicRelease(NMIX_GAMEWORK* wk);
 
 
 /**
- *	@brief	ƒRƒ}ƒ“ƒh@ƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ã‚³ãƒžãƒ³ãƒ‰ã€€ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 GLOBAL int NMixGameCom_ResInit(NMIX_GAMEWORK* wk,int* seq);
 /**
- *	@brief	ƒRƒ}ƒ“ƒh@ƒŠƒ\[ƒX‰ð•ú
+ *	@brief	ã‚³ãƒžãƒ³ãƒ‰ã€€ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 GLOBAL int NMixGameCom_ResRelease(NMIX_GAMEWORK* wk,int *seq);
 
 
-// •`‰æˆ—
+// æç”»å‡¦ç†
 GLOBAL void NMixGame_Draw( NMIX_GAMEWORK* wk );
 GLOBAL void NMixGame_GraVBlank( NMIX_GAMEWORK* wk );
 

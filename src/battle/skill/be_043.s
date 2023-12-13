@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_043.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			043 ƒNƒŠƒeƒBƒJƒ‹ƒqƒbƒg‚ªo‚â‚·‚¢
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			043 ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ãƒ’ãƒƒãƒˆãŒå‡ºã‚„ã™ã„
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_battleroom.c
- *	@brief		wifi	ƒoƒgƒ‹ƒ‹[ƒ€
+ *	@brief		wifi	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.02.15
  *
@@ -17,24 +17,24 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 enum{
@@ -44,37 +44,37 @@ enum{
 	WBRSYS_STATUS_END_SYNC,
 	WBRSYS_STATUS_END_SYNCWAIT,
 	WBRSYS_STATUS_END,
-	WBRSYS_STATUS_NUM,	// ó‘Ô‚Ì”
+	WBRSYS_STATUS_NUM,	// çŠ¶æ…‹ã®æ•°
 };
 
-#define WBRSYS_TCB_PRI	(32)	// TCB—Dæ‡ˆÊ
+#define WBRSYS_TCB_PRI	(32)	// TCBå„ªå…ˆé †ä½
 
 
-// WIFI2DMAPƒVƒXƒeƒ€ƒI[ƒo[ƒŒƒC
+// WIFI2DMAPã‚·ã‚¹ãƒ†ãƒ ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤
 FS_EXTERN_OVERLAY(wifi_2dmapsys);
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-static void WBRSys_ContTcb( TCB_PTR tcb, void* p_work );	// ŠÇ—TCB
+static void WBRSys_ContTcb( TCB_PTR tcb, void* p_work );	// ç®¡ç†TCB
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	wifiƒoƒgƒ‹ƒ‹[ƒ€‰Šú‰»
+ *	@brief	wifiãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ åˆæœŸåŒ–
  *
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return ŠÇ—ƒVƒXƒeƒ€ƒ[ƒN
+ *	@return ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WIFI_BATTLEROOM* WBRSys_Init( const WBR_INIT* cp_init, u32 heapID )
@@ -84,40 +84,40 @@ WIFI_BATTLEROOM* WBRSys_Init( const WBR_INIT* cp_init, u32 heapID )
 	WBR_CLIENT_INIT client_init;
 
 
-	// wifi_2dmapƒI[ƒo[ƒŒƒC“Ç‚İ
+	// wifi_2dmapã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤èª­è¾¼ã¿
 	Overlay_Load( FS_OVERLAY_ID(wifi_2dmapsys), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 	
-	// ƒq[ƒvì¬
+	// ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WIFI_BATTLEROOM, 0x40000 );
 	
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk = sys_AllocMemory( HEAPID_WIFI_BATTLEROOM, sizeof(WIFI_BATTLEROOM) );
 	memset( p_wk, 0, sizeof(WIFI_BATTLEROOM) );
 
-	// FIELDSYS_WORK‚ğİ’è
+	// FIELDSYS_WORKã‚’è¨­å®š
 	p_wk->p_fsys = cp_init->p_fsys;
 
-	// ’ÊM‰Šú‰»
+	// é€šä¿¡åˆæœŸåŒ–
 	CommCommandInitialize( Wbr_CommCommandTclGet(), CNM_COMMAND_MAX, p_wk );
 
-	// ‘Sˆõ•ª‚ÌSAVEDATA‚ğæ“¾
+	// å…¨å“¡åˆ†ã®SAVEDATAã‚’å–å¾—
 	for( i=0; i<WBR_COMM_NUM; i++ ){
 		p_wk->mystatus.cp_mystatus[ i ] = CommInfoGetMyStatus( i );
 	}
 	
-	// e‚È‚çeƒf[ƒ^‰Šú‰»
+	// è¦ªãªã‚‰è¦ªãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	p_wk->netid = CommGetCurrentID();
 	if( p_wk->netid == COMM_PARENT_ID ){
 		p_wk->p_surver = WBR_SurverInit( heapID );
 	}
 	
-	// qƒf[ƒ^‰Šú‰»
+	// å­ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	client_init.netid = p_wk->netid;
 	client_init.cp_mystatus = &p_wk->mystatus;
 	client_init.p_fsys = cp_init->p_fsys;
 	p_wk->p_client = WBR_ClientInit( &client_init, HEAPID_WIFI_BATTLEROOM );
 	
-	// ŠÇ—TCB“o˜^
+	// ç®¡ç†TCBç™»éŒ²
 	p_wk->tcb = TCB_Add( WBRSys_ContTcb, p_wk, WBRSYS_TCB_PRI );
 
 	return p_wk;
@@ -125,47 +125,47 @@ WIFI_BATTLEROOM* WBRSys_Init( const WBR_INIT* cp_init, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	wifiƒoƒgƒ‹ƒ‹[ƒ€”jŠü
+ *	@brief	wifiãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ç ´æ£„
  *		
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBRSys_Exit( WIFI_BATTLEROOM* p_sys )
 {
 	GF_ASSERT( p_sys->status == WBRSYS_STATUS_END );
 
-	// ƒ^ƒXƒN”jŠü
+	// ã‚¿ã‚¹ã‚¯ç ´æ£„
 	TCB_Delete( p_sys->tcb );
 
-	// qƒf[ƒ^”jŠü
+	// å­ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	WBR_ClientExit( p_sys->p_client );
 	
-	// eƒf[ƒ^”jŠü
+	// è¦ªãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	if( p_sys->p_surver ){
 		WBR_SurverExit( p_sys->p_surver );
 		p_sys->p_surver = NULL;
 	}
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_sys );
 
-	// ƒq[ƒv”jŠü
+	// ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_WIFI_BATTLEROOM );
 
 
-	// ƒI[ƒo[ƒŒƒC”jŠü
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ç ´æ£„
 	Overlay_UnloadID( FS_OVERLAY_ID(wifi_2dmapsys) );
 	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	wifiƒoƒgƒ‹ƒ‹[ƒ€I—¹ƒ`ƒFƒbƒN
+ *	@brief	wifiãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WBRSys_EndCheck( const WIFI_BATTLEROOM* cp_sys )
@@ -179,10 +179,10 @@ BOOL WBRSys_EndCheck( const WIFI_BATTLEROOM* cp_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ‹[ƒ€ŠÇ—TCB
+ *	@brief	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ç®¡ç†TCB
  *
- *	@param	tcb			TCBƒ|ƒCƒ“ƒ^
- *	@param	p_work		ƒ[ƒN
+ *	@param	tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBRSys_ContTcb( TCB_PTR tcb, void* p_work )
@@ -205,11 +205,11 @@ static void WBRSys_ContTcb( TCB_PTR tcb, void* p_work )
 		
 	case WBRSYS_STATUS_MAIN:
 		if(p_wk->p_surver){
-			// ƒT[ƒoƒƒCƒ“
+			// ã‚µãƒ¼ãƒãƒ¡ã‚¤ãƒ³
 			WBR_SurverMain( p_wk->p_surver );
 		}
 
-		// ƒNƒ‰ƒCƒAƒ“ƒgƒƒCƒ“
+		// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ¡ã‚¤ãƒ³
 		result = WBR_ClientMain( p_wk->p_client );
 
 		if( result == TRUE ){

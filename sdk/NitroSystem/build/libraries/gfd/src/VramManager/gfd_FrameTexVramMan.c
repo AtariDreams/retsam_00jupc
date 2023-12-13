@@ -32,7 +32,7 @@ typedef struct NNSGfdFrmTexRegionState
     
     BOOL          bActive;
     
-    const BOOL    bHalfSize;        // TODO:’¼ÚƒTƒCƒY‚ğ•Û‚·‚é‚æ‚¤‚É•ÏX‚Ì—\’è
+    const BOOL    bHalfSize;        // TODO:ç›´æ¥ã‚µã‚¤ã‚ºã‚’ä¿æŒã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ã®äºˆå®š
     
     const u16     index;
     const u16     pad16_;
@@ -79,7 +79,7 @@ static NNSGfdFrmTexRegionState* tex4x4SearchArray_[NNS_GFD_NUM_TEX_VRAM_REGION_4
 
 
 //------------------------------------------------------------------------------
-// NNS_GfdDumpFrmTexVramManager()“à‚Åg—p‚³‚ê‚éA‹K’è‚ÌƒfƒoƒbƒNƒRƒ“ƒeƒLƒXƒgî•ñ
+// NNS_GfdDumpFrmTexVramManager()å†…ã§ä½¿ç”¨ã•ã‚Œã‚‹ã€è¦å®šã®ãƒ‡ãƒãƒƒã‚¯ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæƒ…å ±
 // 
 typedef struct NNSiGfdDefaultDebugContext
 {
@@ -91,7 +91,7 @@ typedef struct NNSiGfdDefaultDebugContext
 
 
 //------------------------------------------------------------------------------
-// ƒXƒƒbƒg”‚Í“KØ‚©H
+// ã‚¹ãƒ­ãƒƒãƒˆæ•°ã¯é©åˆ‡ã‹ï¼Ÿ
 static NNS_GFD_INLINE BOOL IsSlotNumValid_( u16 numSlot )
 {
     if( numSlot > 0 && numSlot <= 4 )
@@ -140,7 +140,7 @@ static NNS_GFD_INLINE BOOL IsRegionStateValid_( const NNSGfdFrmTexRegionState* p
 }
 
 //------------------------------------------------------------------------------
-// ƒ}ƒl[ƒWƒƒ‚ª³í‚Èó‘Ô‚©’²¸‚µ‚Ü‚·
+// ãƒãƒãƒ¼ã‚¸ãƒ£ãŒæ­£å¸¸ãªçŠ¶æ…‹ã‹èª¿æŸ»ã—ã¾ã™
 static NNS_GFD_INLINE BOOL IsVramManagerValid_( )
 {
     int i;
@@ -212,7 +212,7 @@ static NNS_GFD_INLINE NNSGfdFrmTexRegionState* Get4x4IdxRegion_( const NNSGfdFrm
 }
 
 //------------------------------------------------------------------------------
-// 4x4ˆ³kƒeƒNƒXƒ`ƒƒ—Ìˆæ‚ÌŠm•Û
+// 4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸã®ç¢ºä¿
 static NNS_GFD_INLINE BOOL DoAlloc4x4_( u32 szByte, u32* addr )
 {
     NNS_GFD_NULL_ASSERT( addr );
@@ -228,16 +228,16 @@ static NNS_GFD_INLINE BOOL DoAlloc4x4_( u32 szByte, u32* addr )
             pRegion = tex4x4SearchArray_[i];
             
             //
-            // —˜—p‰Â”\‚Å‚©‚ÂA‹ó‚«—e—Ê‚ª‚ ‚é‚È‚ç...
+            // åˆ©ç”¨å¯èƒ½ã§ã‹ã¤ã€ç©ºãå®¹é‡ãŒã‚ã‚‹ãªã‚‰...
             //
             if( pRegion->bActive && 
                 GetReagionCapacity_( pRegion ) >= szByte )
             {
                 pPltRegion = Get4x4IdxRegion_( pRegion );
                 
-                // ƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹—p—Ìˆæ‚É‚Â‚¢‚Ä
+                // ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ç”¨é ˜åŸŸã«ã¤ã„ã¦
                 //
-                // —˜—p‰Â”\‚Å‚©‚ÂA‹ó‚«—e—Ê‚ª‚ ‚é‚È‚ç...
+                // åˆ©ç”¨å¯èƒ½ã§ã‹ã¤ã€ç©ºãå®¹é‡ãŒã‚ã‚‹ãªã‚‰...
                 //
                 if( pPltRegion->bActive && 
                     GetReagionCapacity_( pPltRegion ) >= szByte / 2 )
@@ -263,7 +263,7 @@ static NNS_GFD_INLINE BOOL DoAlloc4x4_( u32 szByte, u32* addr )
 
 
 //------------------------------------------------------------------------------
-// ’Êí‚ÌƒeƒNƒXƒ`ƒƒ—Ìˆæ‚ÌŠm•Û
+// é€šå¸¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸã®ç¢ºä¿
 static NNS_GFD_INLINE BOOL DoAllocNrm_( u32 szByte, u32* addr )
 {
     NNS_GFD_NULL_ASSERT( addr );
@@ -298,9 +298,9 @@ static NNS_GFD_INLINE BOOL DoAllocNrm_( u32 szByte, u32* addr )
 
 
 //------------------------------------------------------------------------------
-// NNS_GfdDumpFrmTexVramManager()“à‚Åg—p‚³‚ê‚éA‹K’è‚ÌƒfƒoƒbƒNƒ_ƒ“ƒvŠÖ”À‘•‚Å‚·B
+// NNS_GfdDumpFrmTexVramManager()å†…ã§ä½¿ç”¨ã•ã‚Œã‚‹ã€è¦å®šã®ãƒ‡ãƒãƒƒã‚¯ãƒ€ãƒ³ãƒ—é–¢æ•°å®Ÿè£…ã§ã™ã€‚
 // 
-// OS_Printf‚ÅŠeíî•ñ‚ğo—Í‚µ‚Ü‚·B
+// OS_Printfã§å„ç¨®æƒ…å ±ã‚’å‡ºåŠ›ã—ã¾ã™ã€‚
 static void DefaultDebugDumpFunc_( 
     int index, 
     u32 startAddr, 
@@ -335,7 +335,7 @@ static void DefaultDebugDumpFunc_(
 }
 
 //------------------------------------------------------------------------------
-// ’ÊíƒeƒNƒXƒ`ƒƒ‚ÌŒŸõ‡‚ğİ’è‚·‚é
+// é€šå¸¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ¤œç´¢é †ã‚’è¨­å®šã™ã‚‹
 void NNSi_GfdSetTexNrmSearchArray
 ( 
     int idx1st, 
@@ -362,13 +362,13 @@ void NNSi_GfdSetTexNrmSearchArray
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdDumpFrmTexVramManager
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚Ì“à—e‚ğƒfƒoƒbƒNo—Í‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®å†…å®¹ã‚’ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã—ã¾ã™ã€‚
                 
                  
-  Arguments:   ‚È‚µ
+  Arguments:   ãªã—
 
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdDumpFrmTexVramManager()
@@ -380,7 +380,7 @@ void NNS_GfdDumpFrmTexVramManager()
     OS_Printf("===== NNS_Gfd FrmTexVramManager Dump =====\n");
     OS_Printf("index : head-Addr   : tail-addr   : free-size \n");
     
-    // ‚·‚×‚Ä‚ÌRegionState‚É‚Â‚¢‚ÄAƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ño‚µ‚Ü‚·B
+    // ã™ã¹ã¦ã®RegionStateã«ã¤ã„ã¦ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
     NNS_GfdDumpFrmTexVramManagerEx( DefaultDebugDumpFunc_, &context );
     
     OS_Printf("    %08d / %08d bytes (%6.2f%%) used \n", 
@@ -394,14 +394,14 @@ void NNS_GfdDumpFrmTexVramManager()
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdDumpFrmTexVramManagerEx
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚Ì“à—e‚ğƒfƒoƒbƒNo—Í‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®å†…å®¹ã‚’ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã—ã¾ã™ã€‚
                 
                  
-  Arguments:   pFunc            ƒfƒoƒbƒNƒ_ƒ“ƒvƒR[ƒ‹ƒoƒbƒNŠÖ”
-               pUserContext     ƒ†[ƒUî•ñ(ƒgƒ‰ƒo[ƒXˆ—‚ÌƒRƒ“ƒeƒLƒXƒgî•ñ—p)
+  Arguments:   pFunc            ãƒ‡ãƒãƒƒã‚¯ãƒ€ãƒ³ãƒ—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+               pUserContext     ãƒ¦ãƒ¼ã‚¶æƒ…å ±(ãƒˆãƒ©ãƒãƒ¼ã‚¹å‡¦ç†ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæƒ…å ±ç”¨)
 
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdDumpFrmTexVramManagerEx( NNSGfdFrmTexVramDebugDumpCallBack pFunc, void* pUserContext )
@@ -425,14 +425,14 @@ void NNS_GfdDumpFrmTexVramManagerEx( NNSGfdFrmTexVramDebugDumpCallBack pFunc, vo
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdInitFrmTexVramManager
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚Ì‰Šú‰»
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®åˆæœŸåŒ–
                 
                  
-  Arguments:   numSlot      ƒtƒŒ[ƒ€ƒeƒNƒXƒ`ƒƒVRAMƒ}ƒl[ƒWƒƒ‚ªŠÇ—‚·‚éVRAMƒXƒƒbƒg‚Ì”
-               useAsDefault ƒtƒŒ[ƒ€ƒeƒNƒXƒ`ƒƒVRAMƒ}ƒl[ƒWƒƒ‚ğƒfƒtƒHƒ‹ƒg‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©
+  Arguments:   numSlot      ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMãƒãƒãƒ¼ã‚¸ãƒ£ãŒç®¡ç†ã™ã‚‹VRAMã‚¹ãƒ­ãƒƒãƒˆã®æ•°
+               useAsDefault ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
 
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdInitFrmTexVramManager( u16 numSlot, BOOL useAsDefault )
@@ -440,10 +440,10 @@ void NNS_GfdInitFrmTexVramManager( u16 numSlot, BOOL useAsDefault )
     NNS_GFD_ASSERT( IsSlotNumValid_( numSlot ) );
     
     //
-    // slot 2 ( Region 3 ) ‚ªg—p‚³‚ê‚È‚¢ê‡‚ÍA
-    // ƒŠ[ƒWƒ‡ƒ“2 ‚Í 4x4ƒeƒNƒXƒ`ƒƒ—p‚ÌƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹‚Æ‚µ‚Äg—p‚³‚ê‚È‚¢B
-    // ‚±‚Ìê‡‚ÍAƒŠ[ƒWƒ‡ƒ“2‚ğƒŠ[ƒWƒ‡ƒ“0‚æ‚è‚à—Dæ‚µ‚Äg—p‚·‚é‚×‚«‚È‚Ì‚ÅA
-    // ‚»‚Ì‚æ‚¤‚ÉŒŸõƒe[ƒuƒ‹‚ğÄİ’è‚·‚é‚±‚Æ‚Æ‚·‚éB
+    // slot 2 ( Region 3 ) ãŒä½¿ç”¨ã•ã‚Œãªã„å ´åˆã¯ã€
+    // ãƒªãƒ¼ã‚¸ãƒ§ãƒ³2 ã¯ 4x4ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”¨ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œãªã„ã€‚
+    // ã“ã®å ´åˆã¯ã€ãƒªãƒ¼ã‚¸ãƒ§ãƒ³2ã‚’ãƒªãƒ¼ã‚¸ãƒ§ãƒ³0ã‚ˆã‚Šã‚‚å„ªå…ˆã—ã¦ä½¿ç”¨ã™ã‚‹ã¹ããªã®ã§ã€
+    // ãã®ã‚ˆã†ã«æ¤œç´¢ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å†è¨­å®šã™ã‚‹ã“ã¨ã¨ã™ã‚‹ã€‚
     //
     if( numSlot <= 2 )
     {
@@ -467,11 +467,11 @@ void NNS_GfdInitFrmTexVramManager( u16 numSlot, BOOL useAsDefault )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdResetFrmTexVramState
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚ÌŒ»İ‚Ìó‘Ô‚ğƒŠƒZƒbƒg‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®ç¾åœ¨ã®çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
                  
-  Arguments:   ‚È‚µ
+  Arguments:   ãªã—
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdResetFrmTexVramState()
@@ -479,7 +479,7 @@ void NNS_GfdResetFrmTexVramState()
     int i;
     u16 numSlot = frmExVramMan_.numSlot;
     //
-    // 1 ”ÔƒXƒƒbƒg‚Í 2‚Â‚ÌRegion‚Æ‚µ‚ÄŠÇ—‚³‚ê‚Ü‚·
+    // 1 ç•ªã‚¹ãƒ­ãƒƒãƒˆã¯ 2ã¤ã®Regionã¨ã—ã¦ç®¡ç†ã•ã‚Œã¾ã™
     //
     const numRegion = ( numSlot > 1 ) ? numSlot + 1 : numSlot + 0;
     
@@ -512,14 +512,14 @@ void NNS_GfdResetFrmTexVramState()
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdAllocFrmTexVram
 
-  Description:  ƒƒ‚ƒŠ‚ÌŠm•Û
+  Description:  ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
                 
                  
-  Arguments:   szByte           :  ƒTƒCƒY
-               is4x4comp        :  4x4ˆ³kƒeƒNƒXƒ`ƒƒ‚©H
-               opt              :  À‘•ˆË‘¶ƒpƒ‰ƒ[ƒ^ig—p‚µ‚Ü‚¹‚ñj   
+  Arguments:   szByte           :  ã‚µã‚¤ã‚º
+               is4x4comp        :  4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ï¼Ÿ
+               opt              :  å®Ÿè£…ä¾å­˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆä½¿ç”¨ã—ã¾ã›ã‚“ï¼‰   
                             
-  Returns:     ƒeƒNƒXƒ`ƒƒƒL[
+  Returns:     ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
   
  *---------------------------------------------------------------------------*/
 NNSGfdTexKey NNS_GfdAllocFrmTexVram
@@ -538,11 +538,11 @@ NNSGfdTexKey NNS_GfdAllocFrmTexVram
     
     {
         //
-        // ƒeƒNƒXƒ`ƒƒƒL[‚Å•\Œ»‚Å‚«‚È‚¢¬‚³‚ÈƒTƒCƒY‚ÌŠm•Û‚Ìê‡AƒTƒCƒY‚ğØ‚èã‚°‚ÄŠm•Û‚µ‚Ü‚·B
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã§è¡¨ç¾ã§ããªã„å°ã•ãªã‚µã‚¤ã‚ºã®ç¢ºä¿ã®å ´åˆã€ã‚µã‚¤ã‚ºã‚’åˆ‡ã‚Šä¸Šã’ã¦ç¢ºä¿ã—ã¾ã™ã€‚
         //
         szByte = NNSi_GfdGetTexKeyRoundupSize( szByte );
         //
-        // ƒeƒNƒXƒ`ƒƒƒL[‚ª•\Œ»‚Å‚«‚È‚¢‚Ù‚Ç‘å‚«‚ÈƒTƒCƒY‚ÌŠm•Û‚Ìê‡AƒGƒ‰[ƒL[‚ğ•Ô‚µ‚Ü‚·B
+        // ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ãŒè¡¨ç¾ã§ããªã„ã»ã©å¤§ããªã‚µã‚¤ã‚ºã®ç¢ºä¿ã®å ´åˆã€ã‚¨ãƒ©ãƒ¼ã‚­ãƒ¼ã‚’è¿”ã—ã¾ã™ã€‚
         //
         if( szByte >= NNS_GFD_TEXSIZE_MAX )
         {
@@ -554,7 +554,7 @@ NNSGfdTexKey NNS_GfdAllocFrmTexVram
     }
         
     //
-    // Šm•Û‚ğ‚İ‚é
+    // ç¢ºä¿ã‚’è©¦ã¿ã‚‹
     //
     if( is4x4comp )
     {
@@ -565,13 +565,13 @@ NNSGfdTexKey NNS_GfdAllocFrmTexVram
     
     
     //
-    // Šm•Û¬Œ÷‚È‚ç‚ÎAƒL[‚Ö‚Æ•ÏŠ·‚·‚é
+    // ç¢ºä¿æˆåŠŸãªã‚‰ã°ã€ã‚­ãƒ¼ã¸ã¨å¤‰æ›ã™ã‚‹
     //
     if( result )
     {
         return NNS_GfdMakeTexKey( addr, szByte, is4x4comp );
     }else{
-        // ƒGƒ‰[FƒGƒ‰[‚ğ•\Œ»‚·‚éTexKey‚ğ‚©‚¦‚·
+        // ã‚¨ãƒ©ãƒ¼ï¼šã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¾ã™ã‚‹TexKeyã‚’ã‹ãˆã™
         NNS_GFD_WARNING("failure in Vram Allocation. : NNS_GfdAllocFrmTexVram()");
         return NNS_GFD_ALLOC_ERROR_TEXKEY;
     }
@@ -580,12 +580,12 @@ NNSGfdTexKey NNS_GfdAllocFrmTexVram
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdFreeFrmTexVram
 
-  Description:  ƒƒ‚ƒŠ‚ÌŠJ•ú
-                ÀÛ‚É‚Í‰½‚à‚µ‚Ü‚¹‚ñB
+  Description:  ãƒ¡ãƒ¢ãƒªã®é–‹æ”¾
+                å®Ÿéš›ã«ã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
                  
-  Arguments:   texKey          :   ƒeƒNƒXƒ`ƒƒƒL[
+  Arguments:   texKey          :   ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
                             
-  Returns:     ¬”Ûi0 ‚È‚ç‚Î ¬Œ÷)
+  Returns:     æˆå¦ï¼ˆ0 ãªã‚‰ã° æˆåŠŸ)
   
  *---------------------------------------------------------------------------*/
 int NNS_GfdFreeFrmTexVram( NNSGfdTexKey texKey )
@@ -594,10 +594,10 @@ int NNS_GfdFreeFrmTexVram( NNSGfdTexKey texKey )
     
     NNS_GFD_ASSERTMSG( IsVramManagerValid_(), "Make sure to Initialize the manager." );
     
-    // ‚Ç‚Ì—Ìˆæ‚©‚çAŠm•Û‚³‚ê‚½ƒƒ‚ƒŠ‚©H
+    // ã©ã®é ˜åŸŸã‹ã‚‰ã€ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªã‹ï¼Ÿ
     
-    // Lo Head( 4x4 )‚Ìê‡ 
-    //        => inndexTable‚à“¯ŠJ•ú‚·‚é
+    // Lo Head( 4x4 )ã®å ´åˆ 
+    //        => inndexTableã‚‚åŒæ™‚é–‹æ”¾ã™ã‚‹
     
     // Lo Tail( Nrm )
     // Hi Tail( Nrm )
@@ -609,12 +609,12 @@ int NNS_GfdFreeFrmTexVram( NNSGfdTexKey texKey )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdGetFrmTexVramState
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚ÌŒ»İ‚Ìó‘Ô‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®ç¾åœ¨ã®çŠ¶æ…‹ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
                  
-  Arguments:   pState          :   ƒ}ƒl[ƒWƒƒó‘Ôî•ñ
+  Arguments:   pState          :   ãƒãƒãƒ¼ã‚¸ãƒ£çŠ¶æ…‹æƒ…å ±
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdGetFrmTexVramState( NNSGfdFrmTexVramState* pState )
@@ -634,11 +634,11 @@ void NNS_GfdGetFrmTexVramState( NNSGfdFrmTexVramState* pState )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdSetFrmTexVramState
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚Ìó‘Ô‚É w’è‚µ‚½ ó‘Ôî•ñ ‚ğİ’è‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®çŠ¶æ…‹ã« æŒ‡å®šã—ãŸ çŠ¶æ…‹æƒ…å ± ã‚’è¨­å®šã—ã¾ã™ã€‚
                  
-  Arguments:   pState          :   ƒ}ƒl[ƒWƒƒó‘Ôî•ñ
+  Arguments:   pState          :   ãƒãƒãƒ¼ã‚¸ãƒ£çŠ¶æ…‹æƒ…å ±
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdSetFrmTexVramState( const NNSGfdFrmTexVramState* pState )

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
- * @file	ƒtƒ@ƒCƒ‹–¼
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @file	ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2007.11.05(Œ)
+ * @date	2007.11.05(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -47,7 +47,7 @@ static void LasterScroll( TCB_PTR tcb, void* work );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒN‰Šú‰»
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯åˆæœŸåŒ–
  *
  * @param	proc	
  * @param	seq	
@@ -78,7 +78,7 @@ PROC_RESULT DemoTengan_Proc_Init( PROC * proc, int * seq )
 	sys_VBlankFuncChange( VBlank, wk );
 	
 	
-	///< ƒ‰ƒCƒg‚ÌŠî–{ƒJƒ‰[
+	///< ãƒ©ã‚¤ãƒˆã®åŸºæœ¬ã‚«ãƒ©ãƒ¼
 	wk->sys.light_color.r = LIGHT_PARAM_MAX;
 	wk->sys.light_color.g = LIGHT_PARAM_MAX;
 	wk->sys.light_color.b = LIGHT_PARAM_MAX;
@@ -140,7 +140,7 @@ static const struct {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒNƒƒCƒ“
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
  *
  * @param	proc	
  * @param	seq	
@@ -217,7 +217,7 @@ PROC_RESULT DemoTengan_Proc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒNI—¹
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
  * @param	proc	
  * @param	seq	
@@ -257,7 +257,7 @@ PROC_RESULT DemoTengan_Proc_Exit( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	CATS‰Šú‰»
+ * @brief	CATSåˆæœŸåŒ–
  *
  * @param	system	
  *
@@ -274,7 +274,7 @@ static void CATS_Init( DEMO_SYSTEM* system )
 			0, 128, 0, 32,
 		};
 		const TCATS_CHAR_MANAGER_MAKE Ccmm = {
-			48 + 48,			///< IDŠÇ— main + sub
+			48 + 48,			///< IDç®¡ç† main + sub
 			1024 * 0x40,		///< 64k
 			 512 * 0x20,		///< 32k
 			GX_OBJVRAMMODE_CHAR_1D_64K,
@@ -287,12 +287,12 @@ static void CATS_Init( DEMO_SYSTEM* system )
 	{
 		BOOL active;
 		const TCATS_RESOURCE_NUM_LIST ResourceList = {
-			48 + 48,	///< ƒLƒƒƒ‰“o˜^” 	main + sub
-			16 + 16,	///< ƒpƒŒƒbƒg“o˜^”	main + sub
-			64,			///< ƒZƒ‹
-			64,			///< ƒZƒ‹ƒAƒjƒ
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+			48 + 48,	///< ã‚­ãƒ£ãƒ©ç™»éŒ²æ•° 	main + sub
+			16 + 16,	///< ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æ•°	main + sub
+			64,			///< ã‚»ãƒ«
+			64,			///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		};
 		
 		system->crp = CATS_ResourceCreate( system->csp );
@@ -307,7 +307,7 @@ static void CATS_Init( DEMO_SYSTEM* system )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€‰Šú‰»
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
  * @param	system	
  *
@@ -317,8 +317,8 @@ static void CATS_Init( DEMO_SYSTEM* system )
 //--------------------------------------------------------------
 static void SystemInit( DEMO_SYSTEM* system )
 {
-	sys_VBlankFuncChange( NULL, NULL );		///< VBlankƒZƒbƒg
-	sys_HBlankIntrStop();					///< HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );		///< VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();					///< HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
@@ -348,7 +348,7 @@ static void SystemInit( DEMO_SYSTEM* system )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€I—¹
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
  *
  * @param	system	
  *
@@ -399,7 +399,7 @@ static void SystemExit( DEMO_SYSTEM* system )
 
 //--------------------------------------------------------------
 /**
- * @brief	Vramİ’è
+ * @brief	Vramè¨­å®š
  *
  * @param	bgl	
  *
@@ -416,19 +416,19 @@ static void VramBankSet( GF_BGL_INI* bgl )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 	
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
@@ -438,7 +438,7 @@ static void VramBankSet( GF_BGL_INI* bgl )
 		MI_CpuClear32((void*)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 	}
 	
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME0_M
@@ -459,7 +459,7 @@ static void VramBankSet( GF_BGL_INI* bgl )
 				GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01,
 				3, 0, 0, FALSE
 			},
-			///<FRAME3_M	–¢g—p
+			///<FRAME3_M	æœªä½¿ç”¨
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x3800, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01,
@@ -479,7 +479,7 @@ static void VramBankSet( GF_BGL_INI* bgl )
 		GF_BGL_ScrClear( bgl, GF_BGL_FRAME2_M );
 		GF_BGL_ScrClear( bgl, GF_BGL_FRAME3_M );
 	}
-	///< ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	///< ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME0_S
@@ -529,7 +529,7 @@ static void VBlank( void* work )
 {
 	DEMO_TENGAN_WORK* wk = work;
 
-	DoVramTransferManager();			///< Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	DoVramTransferManager();			///< Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	
 	CATS_RenderOamTrans();
 
@@ -541,7 +541,7 @@ static void VBlank( void* work )
 }
 
 
-// ƒfƒoƒbƒO—p‰½‚à‚µ‚È‚¢ƒfƒ‚
+// ãƒ‡ãƒãƒƒã‚°ç”¨ä½•ã‚‚ã—ãªã„ãƒ‡ãƒ¢
 static void* Demo_Tengan_Scene0D_Init( DEMO_TENGAN_WORK* main_wk )
 {
 	return NULL;

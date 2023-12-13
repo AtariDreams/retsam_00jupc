@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fd_shop.c
- * @brief	ƒtƒŒƒ“ƒhƒŠƒBƒVƒ‡ƒbƒvˆ—
+ * @brief	ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚£ã‚·ãƒ§ãƒƒãƒ—å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2004.12.15
  */
@@ -59,30 +59,30 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// BGƒtƒŒ[ƒ€
-#define	SHOP_FRM_3D			( FLD_MBGFRM_MAP )		// 3D–Ê
-#define	SHOP_FRM_BG			( FLD_MBGFRM_EFFECT1 )	// ˜g
-#define	SHOP_FRM_LIST		( FLD_MBGFRM_EFFECT2 )	// ƒAƒCƒeƒ€ƒŠƒXƒg
-#define	SHOP_FRM_WINDOW		( FLD_MBGFRM_FONT )		// ƒEƒBƒ“ƒhƒE–Ê
+// BGãƒ•ãƒ¬ãƒ¼ãƒ 
+#define	SHOP_FRM_3D			( FLD_MBGFRM_MAP )		// 3Dé¢
+#define	SHOP_FRM_BG			( FLD_MBGFRM_EFFECT1 )	// æž 
+#define	SHOP_FRM_LIST		( FLD_MBGFRM_EFFECT2 )	// ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ
+#define	SHOP_FRM_WINDOW		( FLD_MBGFRM_FONT )		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢
 #define	SHOP_BG_PAL			( 0 )
 
 #define	SHOP_TALK_WIN_CGX	( 1 )
 #define	SHOP_MENU_WIN_CGX	( SHOP_TALK_WIN_CGX + TALK_WIN_CGX_SIZ )
 
-// BMPƒEƒBƒ“ƒhƒE’è‹`
-// ƒVƒ‡ƒbƒvƒƒjƒ…[iƒtƒB[ƒ‹ƒh‚Ì—Ìˆæ‚É’ˆÓIj
+// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+// ã‚·ãƒ§ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®é ˜åŸŸã«æ³¨æ„ï¼ï¼‰
 #define	WIN_SHOP_MENU_PX	( 1 )
 #define	WIN_SHOP_MENU_PY	( 1 )
 #define	WIN_SHOP_MENU_SX	( 13 )
-#define	WIN_SHOP_MENU_SX_BP	( 6 )		// BT—p‚Ì‚Í‚¢‚¢‚¢‚¦ pl‚Å’Ç‰Á
-#define	WIN_SHOP_MENU_SY	( 6 )		// ƒAƒCƒeƒ€ƒVƒ‡ƒbƒv
-#define	WIN_SHOP_MENU_SY_GS	( 4 )		// ƒOƒbƒYEƒV[ƒ‹ƒVƒ‡ƒbƒv
+#define	WIN_SHOP_MENU_SX_BP	( 6 )		// BTç”¨ã®ã¯ã„ã„ã„ãˆ plã§è¿½åŠ 
+#define	WIN_SHOP_MENU_SY	( 6 )		// ã‚¢ã‚¤ãƒ†ãƒ ã‚·ãƒ§ãƒƒãƒ—
+#define	WIN_SHOP_MENU_SY_GS	( 4 )		// ã‚°ãƒƒã‚ºãƒ»ã‚·ãƒ¼ãƒ«ã‚·ãƒ§ãƒƒãƒ—
 #define	WIN_SHOP_MENU_PAL	( FLD_SYSFONT_PAL )
 #define	WIN_SHOP_MENU_CGX	( FLD_MSG_WIN_CGX - ( WIN_SHOP_MENU_SX * WIN_SHOP_MENU_SY ) )
 
-// ƒAƒCƒeƒ€ƒŠƒXƒg
+// ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ
 //#define	WIN_SHOP_LIST_PX	( 13 )
 #define	WIN_SHOP_LIST_PX	( 12 )
 #define	WIN_SHOP_LIST_PY	( 2 )
@@ -93,9 +93,9 @@
 #define	WIN_SHOP_LIST_PAL	( FLD_SYSFONT_PAL )
 //#define	WIN_SHOP_LIST_CGX	( SHOP_MENU_WIN_CGX - ( WIN_SHOP_LIST_SX * WIN_SHOP_LIST_SY ) )
 #define	WIN_SHOP_LIST_CGX	( 1 )
-// ƒAƒCƒeƒ€à–¾
-#define	WIN_SHOP_INFO_PX	( 5 )		// ƒAƒCƒeƒ€ƒVƒ‡ƒbƒv
-#define	WIN_SHOP_INFO_PX_GS	( 1 )		// ƒOƒbƒYEƒV[ƒ‹ƒVƒ‡ƒbƒv
+// ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Ž
+#define	WIN_SHOP_INFO_PX	( 5 )		// ã‚¢ã‚¤ãƒ†ãƒ ã‚·ãƒ§ãƒƒãƒ—
+#define	WIN_SHOP_INFO_PX_GS	( 1 )		// ã‚°ãƒƒã‚ºãƒ»ã‚·ãƒ¼ãƒ«ã‚·ãƒ§ãƒƒãƒ—
 #define	WIN_SHOP_INFO_PY	( 18 )
 #define	WIN_SHOP_INFO_SX	( 27 )
 #define	WIN_SHOP_INFO_SY	( 6 )
@@ -104,18 +104,18 @@
 //#define	WIN_SHOP_INFO_CGX	( WIN_SHOP_LIST_CGX - ( WIN_SHOP_INFO_SX * WIN_SHOP_INFO_SY ) )
 #define	WIN_SHOP_INFO_CGX	( WIN_SHOP_LIST_CGX + ( WIN_SHOP_LIST_SX * WIN_SHOP_LIST_SY ) )
 
-// ‚¨‚±‚¸‚©‚¢
+// ãŠã“ãšã‹ã„
 #define	WIN_SHOP_GOLD_PX	( 1 )
 #define	WIN_SHOP_GOLD_PY	( 1 )
 //#define	WIN_SHOP_GOLD_SX	( 10 )
-#define	WIN_SHOP_GOLD_SX	( 9 )		///< ¬‚³‚­‚µ‚½
+#define	WIN_SHOP_GOLD_SX	( 9 )		///< å°ã•ãã—ãŸ
 #define	WIN_SHOP_GOLD_SY	( 4 )
 #define	WIN_SHOP_GOLD_SY_BP	( 2 )
 #define	WIN_SHOP_GOLD_FRM	( SHOP_FRM_WINDOW )
 #define	WIN_SHOP_GOLD_PAL	( FLD_SYSFONT_PAL )
 //#define	WIN_SHOP_GOLD_CGX	( WIN_SHOP_INFO_CGX - ( WIN_SHOP_GOLD_SX * WIN_SHOP_GOLD_SY ) )
 #define	WIN_SHOP_GOLD_CGX	( SHOP_MENU_WIN_CGX + MENU_WIN_CGX_SIZ )
-// ŒÂ”‘I‘ð
+// å€‹æ•°é¸æŠž
 #define	WIN_SHOP_NUM_PX		( 19 )
 #define	WIN_SHOP_NUM_PY		( 13 )
 #define	WIN_SHOP_NUM_SX		( 12 )
@@ -124,7 +124,7 @@
 #define	WIN_SHOP_NUM_PAL	( FLD_SYSFONT_PAL )
 //#define	WIN_SHOP_NUM_CGX	( WIN_SHOP_GOLD_CGX - ( WIN_SHOP_NUM_SX * WIN_SHOP_NUM_SY ) )
 #define	WIN_SHOP_NUM_CGX	( WIN_SHOP_GOLD_CGX + ( WIN_SHOP_GOLD_SX * WIN_SHOP_GOLD_SY ) )
-// Ž‚Á‚Ä‚¢‚é”
+// æŒã£ã¦ã„ã‚‹æ•°
 #define	WIN_SHOP_MINE_PX	( 1 )
 #define	WIN_SHOP_MINE_PY	( 15 )
 #define	WIN_SHOP_MINE_SX	( 14 )
@@ -133,7 +133,7 @@
 #define	WIN_SHOP_MINE_PAL	( FLD_SYSFONT_PAL )
 //#define	WIN_SHOP_MINE_CGX	( WIN_SHOP_NUM_CGX - ( WIN_SHOP_MINE_SX * WIN_SHOP_MINE_SY ) )
 #define	WIN_SHOP_MINE_CGX	( WIN_SHOP_NUM_CGX + ( WIN_SHOP_NUM_SX * WIN_SHOP_NUM_SY ) )
-// ‰ï˜b
+// ä¼šè©±
 #define	WIN_SHOP_TALK_PX	( 2 )
 #define	WIN_SHOP_TALK_PY	( 19 )
 #define	WIN_SHOP_TALK_SX	( 27 )
@@ -142,7 +142,7 @@
 #define	WIN_SHOP_TALK_PAL	( FLD_MESFONT_PAL )
 //#define	WIN_SHOP_TALK_CGX	( WIN_SHOP_MINE_CGX - ( WIN_SHOP_TALK_SX * WIN_SHOP_TALK_SY ) )
 #define	WIN_SHOP_TALK_CGX	( WIN_SHOP_MINE_CGX + ( WIN_SHOP_MINE_SX * WIN_SHOP_MINE_SY ) )
-// ‚Í‚¢E‚¢‚¢‚¦
+// ã¯ã„ãƒ»ã„ã„ãˆ
 #define	WIN_SHOP_YESNO_PX	( 23 )
 #define	WIN_SHOP_YESNO_PY	( 13 )
 #define	WIN_SHOP_YESNO_SX	( 7 )
@@ -152,10 +152,10 @@
 //#define	WIN_SHOP_YESNO_CGX	( WIN_SHOP_TALK_CGX - ( WIN_SHOP_YESNO_SX * WIN_SHOP_YESNO_SY ) )
 #define	WIN_SHOP_YESNO_CGX	( WIN_SHOP_TALK_CGX + ( WIN_SHOP_TALK_SX * WIN_SHOP_TALK_SY ) )
 
-#define	SHOPCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
-#define	SHOPCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F”’
-#define	SHOPCOL_N_BLUE	( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÂ
-#define	SHOPCOL_N_RED	( GF_PRINTCOLOR_MAKE( 5, 6, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÔ
+#define	SHOPCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+#define	SHOPCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+#define	SHOPCOL_N_BLUE	( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé’
+#define	SHOPCOL_N_RED	( GF_PRINTCOLOR_MAKE( 5, 6, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šèµ¤
 
 #define	MSG_BUFLEN		( 24*2*2 )
 
@@ -166,7 +166,7 @@
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static u8 CameraMoveCntGet( FIELDSYS_WORK * fsys );
 static u8 ShopEndSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk );
@@ -222,55 +222,55 @@ static u32	 MyBPGoldGet( SHOP_WORK * wk );
 static void  MyBPGoldSub( SHOP_WORK * wk, u32 sub );
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 static const BMPWIN_DAT ShopBuyBmpWin[] =
 {
-	{	// ƒAƒCƒeƒ€ƒŠƒXƒg
+	{	// ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ
 		WIN_SHOP_LIST_FRM, WIN_SHOP_LIST_PX, WIN_SHOP_LIST_PY,
 		WIN_SHOP_LIST_SX, WIN_SHOP_LIST_SY, WIN_SHOP_LIST_PAL, WIN_SHOP_LIST_CGX
 	},
-	{	// ƒAƒCƒeƒ€à–¾
+	{	// ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Ž
 		WIN_SHOP_INFO_FRM, WIN_SHOP_INFO_PX, WIN_SHOP_INFO_PY,
 		WIN_SHOP_INFO_SX, WIN_SHOP_INFO_SY, WIN_SHOP_INFO_PAL, WIN_SHOP_INFO_CGX
 	},
-	{	// ‚¨‚±‚¸‚©‚¢
+	{	// ãŠã“ãšã‹ã„
 		WIN_SHOP_GOLD_FRM, WIN_SHOP_GOLD_PX, WIN_SHOP_GOLD_PY,
 		WIN_SHOP_GOLD_SX, WIN_SHOP_GOLD_SY, WIN_SHOP_GOLD_PAL, WIN_SHOP_GOLD_CGX
 	},
-	{	// ŒÂ”‘I‘ð
+	{	// å€‹æ•°é¸æŠž
 		WIN_SHOP_NUM_FRM, WIN_SHOP_NUM_PX, WIN_SHOP_NUM_PY,
 		WIN_SHOP_NUM_SX, WIN_SHOP_NUM_SY, WIN_SHOP_NUM_PAL, WIN_SHOP_NUM_CGX
 	},
-	{	// Ž‚Á‚Ä‚¢‚é”
+	{	// æŒã£ã¦ã„ã‚‹æ•°
 		WIN_SHOP_MINE_FRM, WIN_SHOP_MINE_PX, WIN_SHOP_MINE_PY,
 		WIN_SHOP_MINE_SX, WIN_SHOP_MINE_SY, WIN_SHOP_MINE_PAL, WIN_SHOP_MINE_CGX
 	},
-	{	// ‰ï˜b
+	{	// ä¼šè©±
 		WIN_SHOP_TALK_FRM, WIN_SHOP_TALK_PX, WIN_SHOP_TALK_PY,
 		WIN_SHOP_TALK_SX, WIN_SHOP_TALK_SY, WIN_SHOP_TALK_PAL, WIN_SHOP_TALK_CGX
 	},
 };
 
-// ƒOƒbƒYEƒV[ƒ‹‚Ìà–¾
+// ã‚°ãƒƒã‚ºãƒ»ã‚·ãƒ¼ãƒ«ã®èª¬æ˜Ž
 static const BMPWIN_DAT ShopBuyGoodsInfoWin = {
 	WIN_SHOP_INFO_FRM, WIN_SHOP_INFO_PX_GS, WIN_SHOP_INFO_PY,
 	WIN_SHOP_INFO_SX, WIN_SHOP_INFO_SY, WIN_SHOP_INFO_PAL, WIN_SHOP_INFO_CGX
 };
 
-// ‚Í‚¢E‚¢‚¢‚¦
+// ã¯ã„ãƒ»ã„ã„ãˆ
 static const BMPWIN_DAT ShopBuyYesNoBmpWin = {
 	WIN_SHOP_YESNO_FRM, WIN_SHOP_YESNO_PX, WIN_SHOP_YESNO_PY,
 	WIN_SHOP_YESNO_SX, WIN_SHOP_YESNO_SY, WIN_SHOP_YESNO_PAL, WIN_SHOP_YESNO_CGX
 };
 
-// ƒoƒbƒO‚Ìƒ|ƒPƒbƒgƒŠƒXƒg
+// ãƒãƒƒã‚°ã®ãƒã‚±ãƒƒãƒˆãƒªã‚¹ãƒˆ
 static const u8 BagList[] = {
 	BAG_POKE_NORMAL, BAG_POKE_DRUG, BAG_POKE_BALL, BAG_POKE_WAZA,
 	BAG_POKE_NUTS, BAG_POKE_SEAL, BAG_POKE_BATTLE, BAG_POKE_EVENT, 0xff
 };
 
-// ‚¨‚±‚¸‚©‚¢ BP
+// ãŠã“ãšã‹ã„ BP
 static const BMPWIN_DAT ShopBuyBPWin = {
 	WIN_SHOP_GOLD_FRM, WIN_SHOP_GOLD_PX, WIN_SHOP_GOLD_PY,
 	WIN_SHOP_GOLD_SX, WIN_SHOP_GOLD_SY_BP, WIN_SHOP_GOLD_PAL, WIN_SHOP_GOLD_CGX
@@ -279,10 +279,10 @@ static const BMPWIN_DAT ShopBuyBPWin = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒf[ƒ^‚ðƒVƒ‡ƒbƒvƒ[ƒN‚ÉƒZƒbƒg
+ * ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ã«ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€ƒf[ƒ^
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -303,7 +303,7 @@ static void ShopItemSet( SHOP_WORK * wk, u16 * item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒ‡ƒbƒvƒ[ƒNŠm•Û
+ * ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
  * @param	none
  *
@@ -320,13 +320,13 @@ static SHOP_WORK * ShopWorkAlloc(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒ‡ƒbƒvŒÄ‚Ño‚µ
+ * ã‚·ãƒ§ãƒƒãƒ—å‘¼ã³å‡ºã—
  *
- * @param	event	ƒCƒxƒ“ƒg
- * @param	repw	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	item	¤•iƒe[ƒuƒ‹
- * @param	type	ƒVƒ‡ƒbƒvƒ^ƒCƒv
- * @param	dp_flg	ƒfƒp[ƒgƒtƒ‰ƒO
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆ
+ * @param	repw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	item	å•†å“ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	type	ã‚·ãƒ§ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+ * @param	dp_flg	ãƒ‡ãƒ‘ãƒ¼ãƒˆãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -373,13 +373,13 @@ void ShopInit( GMEVENT_CONTROL * event, FIELDSYS_WORK * repw, u16 * item, u8 typ
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒJƒƒ‰ˆÚ“®ƒJƒEƒ“ƒ^Žæ“¾
+ * ã‚«ãƒ¡ãƒ©ç§»å‹•ã‚«ã‚¦ãƒ³ã‚¿å–å¾—
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒJƒEƒ“ƒ^
+ * @return	ã‚«ã‚¦ãƒ³ã‚¿
  *
- * @li	˜b‚µ‚©‚¯‚½Œü‚«‚É‚æ‚Á‚ÄƒJƒEƒ“ƒ^•Ï‰»
+ * @li	è©±ã—ã‹ã‘ãŸå‘ãã«ã‚ˆã£ã¦ã‚«ã‚¦ãƒ³ã‚¿å¤‰åŒ–
  */
 //--------------------------------------------------------------------------------------------
 static u8 CameraMoveCntGet( FIELDSYS_WORK * fsys )
@@ -395,10 +395,10 @@ static u8 CameraMoveCntGet( FIELDSYS_WORK * fsys )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒgFƒƒjƒ…[§Œä
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
- * @retval	TRUE	ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE	ƒCƒxƒ“ƒgŒp‘±
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆï¼šãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆ¶å¾¡
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @retval	TRUE	ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE	ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //--------------------------------------------------------------------------------------------
 BOOL GMEVENT_Shop( GMEVENT_CONTROL * event )
@@ -412,7 +412,7 @@ BOOL GMEVENT_Shop( GMEVENT_CONTROL * event )
 	switch( wk->seq ){
 	case SHOP_SEQ_INIT:
 #ifdef PM_DEBUG
-		DEBUG_VIEW_HOOK(TRUE);		//ƒfƒoƒbƒOî•ñ•\Ž¦•s‹–‰Â
+		DEBUG_VIEW_HOOK(TRUE);		//ãƒ‡ãƒãƒƒã‚°æƒ…å ±è¡¨ç¤ºä¸è¨±å¯
 #endif
 		ShopInitSeq( wk );
 		wk->seq = SHOP_SEQ_MENU;
@@ -423,77 +423,77 @@ BOOL GMEVENT_Shop( GMEVENT_CONTROL * event )
 		break;
 
 
-	case SHOP_SEQ_BUY_INIT:		// w“ü‰æ–Ê‰Šú‰»
+	case SHOP_SEQ_BUY_INIT:		// è³¼å…¥ç”»é¢åˆæœŸåŒ–
 		ShopBuyInitSeq( fsys, wk );
-		OS_Printf( " ‚«‚½\n" );
+		OS_Printf( " ããŸ\n" );
 		wk->seq = SHOP_SEQ_BUY_SCROLL;
 		break;
-	case SHOP_SEQ_BUY_SCROLL:	// w“üˆÊ’u‚ÖƒXƒNƒ[ƒ‹
+	case SHOP_SEQ_BUY_SCROLL:	// è³¼å…¥ä½ç½®ã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 		wk->seq = ShopBuyScrollSeq( wk );
 		break;
-	case SHOP_SEQ_BUY_SELECT:	// ƒAƒCƒeƒ€‘I‘ð
+	case SHOP_SEQ_BUY_SELECT:	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠž
 		wk->seq = ShopBuySelectSeq( wk );
 		break;
 
-	case SHOP_SEQ_BUYSEL_WAIT:	// u‚¢‚­‚Â`v•\Ž¦ƒEƒFƒCƒg
+	case SHOP_SEQ_BUYSEL_WAIT:	// ã€Œã„ãã¤ã€œã€è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
 		wk->seq = ShopBuySelWaitSeq( wk );
 		break;
 
-	case SHOP_SEQ_BUYNUM_SEL:	// ŒÂ”‘I‘ð
+	case SHOP_SEQ_BUYNUM_SEL:	// å€‹æ•°é¸æŠž
 		wk->seq = ShopBuyNumSelSeq( wk );
 		break;
 
-	case SHOP_SEQ_BUYNUM_WAIT:	// u‡Œv`‚È‚è‚Ü‚·‚ªv•\Ž¦ƒEƒFƒCƒg
+	case SHOP_SEQ_BUYNUM_WAIT:	// ã€Œåˆè¨ˆã€œãªã‚Šã¾ã™ãŒã€è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
 		wk->seq = ShopBuyNumWaitSeq( wk );
 		break;
 
-	case SHOP_SEQ_BUY_YESNO:	// ‚Í‚¢E‚¢‚¢‚¦‘I‘ð
+	case SHOP_SEQ_BUY_YESNO:	// ã¯ã„ãƒ»ã„ã„ãˆé¸æŠž
 		wk->seq = ShopBuyYesNoSeq( wk );
 		break;
 
-	case SHOP_SEQ_BUY_CMP:		// w“ü
+	case SHOP_SEQ_BUY_CMP:		// è³¼å…¥
 		wk->seq = ShopBuyCmpSeq( wk );
 		break;
 
-	case SHOP_SEQ_BUYCMP_WAIT:	// ƒAƒCƒeƒ€‘I‘ð‚Ö
+	case SHOP_SEQ_BUYCMP_WAIT:	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžã¸
 		wk->seq = ShopBuyCmpWaitSeq( wk );
 		break;
 
-	case SHOP_SEQ_BUYOMAKE_WAIT:	// ƒvƒŒƒ~ƒAƒ{[ƒ‹‘Ò‚¿
+	case SHOP_SEQ_BUYOMAKE_WAIT:	// ãƒ—ãƒ¬ãƒŸã‚¢ãƒœãƒ¼ãƒ«å¾…ã¡
 		wk->seq = ShopBuyOmakeWait( wk );
 		break;
 
-	case SHOP_SEQ_BUY_END:		// w“ü‰æ–ÊI—¹
+	case SHOP_SEQ_BUY_END:		// è³¼å…¥ç”»é¢çµ‚äº†
 		wk->seq = ShopBuyEndSeq( fsys, wk );
 		break;
 
-	case SHOP_SEQ_MENU_RET:		// ƒƒjƒ…[‘I‘ð‚Ö–ß‚è‘Ò‚¿
+	case SHOP_SEQ_MENU_RET:		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠžã¸æˆ»ã‚Šå¾…ã¡
 		wk->seq = ShopBuyMenuRetSeq( wk );
 		break;
 
-	case SHOP_SEQ_SALE_INIT:		// u”„‚év‰Šú‰»
+	case SHOP_SEQ_SALE_INIT:		// ã€Œå£²ã‚‹ã€åˆæœŸåŒ–
 		ShopSaleInitSeq( fsys, wk );
 		break;
 
-	case SHOP_SEQ_SALE_CALL:		// u”„‚évŒÄ‚Ño‚µ
+	case SHOP_SEQ_SALE_CALL:		// ã€Œå£²ã‚‹ã€å‘¼ã³å‡ºã—
 		ShopSaleCallSeq( event );
 		break;
 
-	/* í’“—Ìˆæ‚Ìˆ—‚ÉˆÚ“® ( fd_shop_sale.c ) */
-	case SHOP_SEQ_SALE_WAIT:		// u”„‚évI—¹‘Ò‚¿
-	case SHOP_SEQ_SALE_RET:			// u”„‚évI—¹ -> ƒtƒF[ƒhƒCƒ“
+	/* å¸¸é§é ˜åŸŸã®å‡¦ç†ã«ç§»å‹• ( fd_shop_sale.c ) */
+	case SHOP_SEQ_SALE_WAIT:		// ã€Œå£²ã‚‹ã€çµ‚äº†å¾…ã¡
+	case SHOP_SEQ_SALE_RET:			// ã€Œå£²ã‚‹ã€çµ‚äº† -> ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		break;
 
 /*
-	case SHOP_SEQ_SALE_WAIT:		// u”„‚évI—¹‘Ò‚¿
+	case SHOP_SEQ_SALE_WAIT:		// ã€Œå£²ã‚‹ã€çµ‚äº†å¾…ã¡
 		wk->seq = ShopSaleWaitSeq( fsys, wk );
 		break;
-	case SHOP_SEQ_SALE_RET:			// u”„‚évI—¹ -> ƒtƒF[ƒhƒCƒ“
+	case SHOP_SEQ_SALE_RET:			// ã€Œå£²ã‚‹ã€çµ‚äº† -> ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		wk->seq = ShopSaleRetSeq( fsys );
 		break;
 */
 
-	case SHOP_SEQ_SALE_MENU_RET:	// ƒtƒF[ƒhƒCƒ“ -> ƒƒjƒ…[‚Ö
+	case SHOP_SEQ_SALE_MENU_RET:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ -> ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
 		wk->seq = ShopSaleMenuRetSeq( fsys, wk );
 		break;
 
@@ -520,9 +520,9 @@ BOOL GMEVENT_Shop( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰Šú‰»
+ * åˆæœŸåŒ–
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -535,9 +535,9 @@ static void ShopInitSeq( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aì¬
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ä½œæˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -550,9 +550,9 @@ static void ShopMsgCreate( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒ‡ƒbƒvƒƒjƒ…[ì¬
+ * ã‚·ãƒ§ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -615,11 +615,11 @@ static void ShopMenuSet( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[‘I‘ð
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠž
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopMenuSelect( SHOP_WORK * wk )
@@ -640,9 +640,9 @@ static u8 ShopMenuSelect( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[íœ
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‰Šé™¤
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -662,13 +662,13 @@ static void ShopMenuExit( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒ‡ƒbƒvˆ—I—¹
+ * ã‚·ãƒ§ãƒƒãƒ—å‡¦ç†çµ‚äº†
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = ˆ—’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = å‡¦ç†ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopEndSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
@@ -718,7 +718,7 @@ static u8 ShopEndSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 		sys_FreeMemoryEz( wk );
 
 #ifdef PM_DEBUG
-		DEBUG_VIEW_HOOK(FALSE);			//ƒfƒoƒbƒOî•ñ•\Ž¦‹–‰Â
+		DEBUG_VIEW_HOOK(FALSE);			//ãƒ‡ãƒãƒƒã‚°æƒ…å ±è¡¨ç¤ºè¨±å¯
 #endif
 		return TRUE;
 	}
@@ -728,15 +728,15 @@ static u8 ShopEndSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 
 
 //=============================================================================================
-//	”ƒ‚¤
+//	è²·ã†
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üˆ—‰Šú‰»
+ * è³¼å…¥å‡¦ç†åˆæœŸåŒ–
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -761,9 +761,9 @@ static void ShopBuyInitSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üˆ—‚ÌBMPì¬
+ * è³¼å…¥å‡¦ç†ã®BMPä½œæˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -788,9 +788,9 @@ static void ShopBuyWinAdd( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üˆ—‚ÌBMPíœ
+ * è³¼å…¥å‡¦ç†ã®BMPå‰Šé™¤
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -809,9 +809,9 @@ static void ShopBuyWinDel( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üˆ—‚ÌƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+ * è³¼å…¥å‡¦ç†ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -846,10 +846,10 @@ static void ShopBuyGraphicSet( SHOP_WORK * wk )
 			p_handle, NARC_shop_gra_shop_bg_NCLR, PALTYPE_MAIN_BG, 0, 32, HEAPID_WORLD );
 	}
 
-	// ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒZƒbƒg
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(
 		wk->bgl, SHOP_FRM_WINDOW, SHOP_MENU_WIN_CGX, MENU_WIN_PAL, 0, HEAPID_WORLD );
-	// ‰ï˜bƒEƒBƒ“ƒhƒEƒZƒbƒg
+	// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 	TalkWinGraphicSet(
 		wk->bgl, SHOP_FRM_WINDOW, SHOP_TALK_WIN_CGX,
 		TALK_WIN_PAL, CONFIG_GetWindowType(wk->cfg), HEAPID_WORLD );
@@ -859,9 +859,9 @@ static void ShopBuyGraphicSet( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üˆ—‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒBÝ’è
+ * è³¼å…¥å‡¦ç†ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£è¨­å®š
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -893,9 +893,9 @@ static void ShopBgPriorityChg( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒh‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB‚É•œ‹A
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã«å¾©å¸°
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -912,11 +912,11 @@ static void ShopBgPriorityReset( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üˆ—ŠJŽnƒXƒNƒ[ƒ‹
+ * è³¼å…¥å‡¦ç†é–‹å§‹ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuyScrollSeq( SHOP_WORK * wk )
@@ -957,28 +957,28 @@ static u8 ShopBuyScrollSeq( SHOP_WORK * wk )
 #define ITEM_LIST_DX_NORMAL		( 0 )
 #define ITEM_LIST_DX_MACHINE	( 35 ) // MatchComment: 32 -> 35
 
-// ƒAƒCƒeƒ€ƒŠƒXƒgƒf[ƒ^iBMPƒŠƒXƒgj
+// ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ï¼ˆBMPãƒªã‚¹ãƒˆï¼‰
 static const BMPLIST_HEADER ShopItemList = {
 	NULL, CB_ItemListMove, CB_ItemListWrite, NULL,
 	0, 7, 0,
-	0, 0,			// €–ÚX, ƒJ[ƒ\ƒ‹X
-	0,				// •\Ž¦Y
+	0, 0,			// é …ç›®X, ã‚«ãƒ¼ã‚½ãƒ«X
+	0,				// è¡¨ç¤ºY
 	FBMP_COL_BLACK, FBMP_COL_NULL, FBMP_COL_BLK_SDW,
-	0, 16,						// •¶ŽšŠÔŠu‚x
+	0, 16,						// æ–‡å­—é–“éš”ï¼¹
 	BMPLIST_NO_SKIP, FONT_SYSTEM, 1,
 	NULL,
 };
 
 //--------------------------------------------------------------------------------------------
 /**
- * ¤•i‚ÌIDŽæ“¾
+ * å•†å“ã®IDå–å¾—
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€ID
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ID
  *
- * @return	¤•i‚ÌID
+ * @return	å•†å“ã®ID
  *
- * @li	“¹‹ïAƒOƒbƒYAƒV[ƒ‹
+ * @li	é“å…·ã€ã‚°ãƒƒã‚ºã€ã‚·ãƒ¼ãƒ«
  */
 //--------------------------------------------------------------------------------------------
 static u32 ShopByeGetItemNameID( SHOP_WORK * wk, u16 item )
@@ -993,9 +993,9 @@ static u32 ShopByeGetItemNameID( SHOP_WORK * wk, u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ¤•i‚ÌBMPƒŠƒXƒgì¬
+ * å•†å“ã®BMPãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1028,7 +1028,7 @@ static void ShopBuyItemListMake( SHOP_WORK * wk )
 		id = ShopByeGetItemNameID( wk, wk->item[i] );
 		
 		if ( id <= ITEM_HIDENMASIN01
-		&&	 id >= ITEM_WAZAMASIN01 ){	///< ‹Zƒ}ƒVƒ“‚ÍAƒAƒCƒeƒ€–¼‚©‚çNoXX{‹Z–¼‚É•ÏX‚·‚é
+		&&	 id >= ITEM_WAZAMASIN01 ){	///< æŠ€ãƒžã‚·ãƒ³ã¯ã€ã‚¢ã‚¤ãƒ†ãƒ åã‹ã‚‰NoXXï¼‹æŠ€åã«å¤‰æ›´ã™ã‚‹
 			buf = MSGMAN_AllocString( waza_man, GetWazaNoItem( id ) );
 			BMP_MENULIST_AddString( wk->ld, buf, wk->item[ i ] );
 			STRBUF_Delete( buf );	
@@ -1042,7 +1042,7 @@ static void ShopBuyItemListMake( SHOP_WORK * wk )
 		}
 	}
 	
-	///< ‹Zƒ}ƒVƒ“‚È‚ç ƒ_ƒ~[‚ð“o˜^‚·‚é
+	///< æŠ€ãƒžã‚·ãƒ³ãªã‚‰ ãƒ€ãƒŸãƒ¼ã‚’ç™»éŒ²ã™ã‚‹
 	if ( waza_machine ){
 		BMP_MENULIST_AddArchiveString( wk->ld, wk->mman, mes_shop_10_01, BMPLIST_CANCEL );
 	}
@@ -1060,7 +1060,7 @@ static void ShopBuyItemListMake( SHOP_WORK * wk )
 	
 	lh = ShopItemList;
 	
-	///< •\Ž¦ˆÊ’u“ü‚ê‘Ö‚¦
+	///< è¡¨ç¤ºä½ç½®å…¥ã‚Œæ›¿ãˆ
 	if ( id <= ITEM_HIDENMASIN01 && id >= ITEM_WAZAMASIN01 ){
 		lh.data_x = ITEM_LIST_DX_MACHINE;
 	}else{
@@ -1076,11 +1076,11 @@ static void ShopBuyItemListMake( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒŠƒXƒgƒR[ƒ‹ƒoƒbƒNŠÖ”iƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æj
+ * ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ï¼ˆã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ï¼‰
  *
- * @param	work	BMPƒŠƒXƒg‚ÅÝ’è‚µ‚½ƒ[ƒN
- * @param	param	BMPƒŠƒXƒg‚Ìƒpƒ‰ƒ[ƒ^
- * @param	mode	‰Šú‰»Žž = 1
+ * @param	work	BMPãƒªã‚¹ãƒˆã§è¨­å®šã—ãŸãƒ¯ãƒ¼ã‚¯
+ * @param	param	BMPãƒªã‚¹ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	mode	åˆæœŸåŒ–æ™‚ = 1
  *
  * @return	none
  */
@@ -1155,12 +1155,12 @@ static void CB_ItemListMove( BMPLIST_WORK * work, u32 param, u8 mode )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒŠƒXƒgƒR[ƒ‹ƒoƒbƒNŠÖ”iˆê—ñ•\Ž¦‚²‚Æj
+ * ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ï¼ˆä¸€åˆ—è¡¨ç¤ºã”ã¨ï¼‰
  *
- * @param	work	BMPƒŠƒXƒg‚ÅÝ’è‚µ‚½ƒ[ƒN
- * @param	index	BMPƒŠƒXƒg‚ªŽg—p‚µ‚Ä‚¢‚éƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	param	BMPƒŠƒXƒg‚Ìƒpƒ‰ƒ[ƒ^
- * @param	y		YÀ•W
+ * @param	work	BMPãƒªã‚¹ãƒˆã§è¨­å®šã—ãŸãƒ¯ãƒ¼ã‚¯
+ * @param	index	BMPãƒªã‚¹ãƒˆãŒä½¿ç”¨ã—ã¦ã„ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	param	BMPãƒªã‚¹ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	y		Yåº§æ¨™
  *
  * @return	none
  */
@@ -1175,7 +1175,7 @@ static void CB_ItemListWrite( BMPLIST_WORK * work, u32 param, u8 y )
 		u32	price;
 		u32	siz;
 
-		///< NoXX ‚Ì•\Ž¦•”•ª
+		///< NoXX ã®è¡¨ç¤ºéƒ¨åˆ†
 		u16 id = (u16)param;
 		if ( id <= ITEM_HIDENMASIN01 && id >= ITEM_WAZAMASIN01 )
 		{							
@@ -1186,7 +1186,7 @@ static void CB_ItemListWrite( BMPLIST_WORK * work, u32 param, u8 y )
 				NUMFONT_MODE_ZERO, &wk->win[ WIN_IDX_LIST ], 0, y + 4);
 		}
 		
-		///< ’l’i‚È‚Ç‚Ì•\Ž¦•”•ª
+		///< å€¤æ®µãªã©ã®è¡¨ç¤ºéƒ¨åˆ†
 		price = ShopBuyItemPriceGet( wk, (u16)param );
 		expb  = STRBUF_Create( LIST_PRICE_BUFLEN, HEAPID_WORLD );
 		
@@ -1225,10 +1225,10 @@ static void CB_ItemListWrite( BMPLIST_WORK * work, u32 param, u8 y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠŽ‹à•\Ž¦
+ * æ‰€æŒé‡‘è¡¨ç¤º
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
- * @param	flg		ƒEƒBƒ“ƒhƒE˜g•`‰æƒtƒ‰ƒO
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æž æç”»ãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -1294,11 +1294,11 @@ static void ShopBuyGoldWinPut( SHOP_WORK * wk, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üƒAƒCƒeƒ€‘I‘ð
+ * è³¼å…¥ã‚¢ã‚¤ãƒ†ãƒ é¸æŠž
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuySelectSeq( SHOP_WORK * wk )
@@ -1342,7 +1342,7 @@ static u8 ShopBuySelectSeq( SHOP_WORK * wk )
 			GF_BGL_BmpWinDataFill( &wk->win[WIN_IDX_TALK], 15 );
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/12
-			// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE•\Ž¦’†‚ÍƒAƒCƒeƒ€à–¾‚ðÁ‹ŽiƒoƒbƒO‚Æ“¯—l‚Ìˆ—‚Éj
+			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä¸­ã¯ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚’æ¶ˆåŽ»ï¼ˆãƒãƒƒã‚°ã¨åŒæ§˜ã®å‡¦ç†ã«ï¼‰
 			GF_BGL_BmpWinOff( &wk->win[WIN_IDX_INFO] );
 			// ----------------------------------------------------------------------------
 			BmpTalkWinWrite(
@@ -1373,7 +1373,7 @@ static u8 ShopBuySelectSeq( SHOP_WORK * wk )
 			if( wk->shop_type == SHOP_TYPE_GOODS ){
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/24
-// ƒOƒbƒYƒVƒ‡ƒbƒv‚ÅSE‚ª–Â‚ç‚È‚¢•s‹ï‡‚ðC³
+// ã‚°ãƒƒã‚ºã‚·ãƒ§ãƒƒãƒ—ã§SEãŒé³´ã‚‰ãªã„ä¸å…·åˆã‚’ä¿®æ­£
 #if AFTERMASTER_070122_GOODSSHOP_SE
 				Snd_SePlay( FD_SHOP_SE_DECIDE );
 #endif
@@ -1408,11 +1408,11 @@ static u8 ShopBuySelectSeq( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€‘I‘ðŒã‚ÌƒƒbƒZ[ƒWƒEƒFƒCƒg
+ * ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžå¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuySelWaitSeq( SHOP_WORK * wk )
@@ -1431,9 +1431,9 @@ static u8 ShopBuySelWaitSeq( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Œ»Ý‚ÌŠŽ”‚ð•\Ž¦‚·‚éƒEƒBƒ“ƒhƒE‚ð•\Ž¦
+ * ç¾åœ¨ã®æ‰€æŒæ•°ã‚’è¡¨ç¤ºã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤º
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1476,11 +1476,11 @@ static void MyItemWinPut( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üŒÂ”‘I‘ðˆ—
+ * è³¼å…¥å€‹æ•°é¸æŠžå‡¦ç†
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuyNumSelSeq( SHOP_WORK * wk )
@@ -1514,7 +1514,7 @@ static u8 ShopBuyNumSelSeq( SHOP_WORK * wk )
 				check = TRUE;
 			}
 		}else{
-// ƒ`ƒFƒbƒN‚Ü‚¿
+// ãƒã‚§ãƒƒã‚¯ã¾ã¡
 			check = TRUE;
 		}
 
@@ -1552,7 +1552,7 @@ static u8 ShopBuyNumSelSeq( SHOP_WORK * wk )
 
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/12
-		// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE•\Ž¦’†‚ÉÁ‹Ž‚µ‚½ƒAƒCƒeƒ€à–¾‚ð•\Ž¦
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä¸­ã«æ¶ˆåŽ»ã—ãŸã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚’è¡¨ç¤º
 		GF_BGL_BmpWinOnVReq( &wk->win[WIN_IDX_INFO] );
 		// ----------------------------------------------------------------------------
 
@@ -1564,11 +1564,11 @@ static u8 ShopBuyNumSelSeq( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ð‚µ‚½ŒÂ”w“ü‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+ * é¸æŠžã—ãŸå€‹æ•°è³¼å…¥ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuyCmpCheck( SHOP_WORK * wk )
@@ -1620,12 +1620,12 @@ static u8 ShopBuyCmpCheck( SHOP_WORK * wk )
 		wk->wset, 2, wk->sel_price*wk->sel_num, 6,
 		NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	
-	///< ‹Zƒ}ƒVƒ“‚È‚ç‚³‚ç‚É‰ÁH
+	///< æŠ€ãƒžã‚·ãƒ³ãªã‚‰ã•ã‚‰ã«åŠ å·¥
 	if ( wk->sel_item <= ITEM_HIDENMASIN01 && wk->sel_item >= ITEM_WAZAMASIN01 ){
 		u16 waza_id = GetWazaNoItem( wk->sel_item );
 		WORDSET_RegisterWazaName( wk->wset, 3, waza_id );
 		
-		if ( wk->shop_type == SHOP_TYPE_BP ){						///< BP—p
+		if ( wk->shop_type == SHOP_TYPE_BP ){						///< BPç”¨
 			str = MSGMAN_AllocString( wk->mman, mes_shop_12_05 );
 		}
 		else {
@@ -1653,10 +1653,10 @@ static u8 ShopBuyCmpCheck( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŒÂ”‘I‘ðƒEƒBƒ“ƒhƒE•\Ž¦
+ * å€‹æ•°é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
- * @param	flg		ƒEƒBƒ“ƒhƒE‹Z•\Ž¦ƒtƒ‰ƒO
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æŠ€è¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -1705,11 +1705,11 @@ static void NumSelWinPut( SHOP_WORK * wk, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üŒÂ”‘I‘ðŒã‚ÌƒƒbƒZ[ƒWƒEƒFƒCƒg
+ * è³¼å…¥å€‹æ•°é¸æŠžå¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuyNumWaitSeq( SHOP_WORK * wk )
@@ -1724,11 +1724,11 @@ static u8 ShopBuyNumWaitSeq( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”ƒ‚¢‚Ü‚·‚©H‚Í‚¢E‚¢‚¢‚¦ˆ—
+ * è²·ã„ã¾ã™ã‹ï¼Ÿã¯ã„ãƒ»ã„ã„ãˆå‡¦ç†
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuyYesNoSeq( SHOP_WORK * wk )
@@ -1741,9 +1741,9 @@ static u8 ShopBuyYesNoSeq( SHOP_WORK * wk )
 
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/12
-			// ‚Ç‚¤‚®w“üŽž‚Ì‚Ç‚¤‚®–¼‚ðw“ü”‚Åo‚µ•ª‚¯
+			// ã©ã†ãè³¼å…¥æ™‚ã®ã©ã†ãåã‚’è³¼å…¥æ•°ã§å‡ºã—åˆ†ã‘
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-			// ƒV[ƒ‹–¼‚àw“ü”‚Åo‚µ•ª‚¯
+			// ã‚·ãƒ¼ãƒ«åã‚‚è³¼å…¥æ•°ã§å‡ºã—åˆ†ã‘
             // MatchComment: some changes to account for new SHOP_TYPE_BP
 
 			if( wk->shop_type == SHOP_TYPE_ITEM ){
@@ -1795,7 +1795,7 @@ static u8 ShopBuyYesNoSeq( SHOP_WORK * wk )
 		ShopBuyCursorPalChg( wk, 0 );
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/12
-		// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE•\Ž¦’†‚ÉÁ‹Ž‚µ‚½ƒAƒCƒeƒ€à–¾‚ð•\Ž¦
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä¸­ã«æ¶ˆåŽ»ã—ãŸã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚’è¡¨ç¤º
 		GF_BGL_BmpWinOnVReq( &wk->win[WIN_IDX_INFO] );
 		// ----------------------------------------------------------------------------
 		return SHOP_SEQ_BUY_SELECT;
@@ -1806,11 +1806,11 @@ static u8 ShopBuyYesNoSeq( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üŒã‚ÌƒƒbƒZ[ƒWƒEƒFƒCƒgˆ—‚P
+ * è³¼å…¥å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆå‡¦ç†ï¼‘
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuyCmpSeq( SHOP_WORK * wk )
@@ -1822,7 +1822,7 @@ static u8 ShopBuyCmpSeq( SHOP_WORK * wk )
 	if( wk->shop_type == SHOP_TYPE_ITEM ){
 		MyItem_AddItem( wk->myitem, wk->sel_item, wk->sel_num, HEAPID_WORLD );
 
-		//TVƒgƒsƒbƒNì¬F”ƒ‚¢•¨ƒ`ƒFƒbƒN
+		//TVãƒˆãƒ”ãƒƒã‚¯ä½œæˆï¼šè²·ã„ç‰©ãƒã‚§ãƒƒã‚¯
 		TVTOPIC_Entry_Watch_Shopping( wk->sv, wk->sel_item, wk->sel_num );
 	}
 	else if( wk->shop_type == SHOP_TYPE_BP ){
@@ -1856,11 +1856,11 @@ static u8 ShopBuyCmpSeq( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üŒã‚ÌƒƒbƒZ[ƒWƒEƒFƒCƒgˆ—‚Q
+ * è³¼å…¥å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆå‡¦ç†ï¼’
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuyCmpWaitSeq( SHOP_WORK * wk )
@@ -1883,7 +1883,7 @@ static u8 ShopBuyCmpWaitSeq( SHOP_WORK * wk )
 				GF_BGL_BmpWinDataFill( &wk->win[WIN_IDX_TALK], 15 );
 				wk->midx = FieldTalkMsgStart( &wk->win[WIN_IDX_TALK], wk->msgb, wk->cfg, 1 );
 				
-				///< ƒvƒŒƒ~ƒAƒ{[ƒ‹‚ð‚à‚ç‚Á‚½ŒÂ”ƒJƒEƒ“ƒg
+				///< ãƒ—ãƒ¬ãƒŸã‚¢ãƒœãƒ¼ãƒ«ã‚’ã‚‚ã‚‰ã£ãŸå€‹æ•°ã‚«ã‚¦ãƒ³ãƒˆ
 				{
 					RECORD* rec = SaveData_GetRecord( wk->sv );
 					RECORD_Inc( rec, RECID_PREMIUM_BALL );
@@ -1901,7 +1901,7 @@ static u8 ShopBuyCmpWaitSeq( SHOP_WORK * wk )
 
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/12
-		// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE•\Ž¦’†‚ÉÁ‹Ž‚µ‚½ƒAƒCƒeƒ€à–¾‚ð•\Ž¦
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä¸­ã«æ¶ˆåŽ»ã—ãŸã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚’è¡¨ç¤º
 		GF_BGL_BmpWinOnVReq( &wk->win[WIN_IDX_INFO] );
 		// ----------------------------------------------------------------------------
 
@@ -1912,11 +1912,11 @@ static u8 ShopBuyCmpWaitSeq( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒŒƒ~ƒAƒ{[ƒ‹“üŽèŒã‚ÌƒƒbƒZ[ƒWƒEƒFƒCƒg
+ * ãƒ—ãƒ¬ãƒŸã‚¢ãƒœãƒ¼ãƒ«å…¥æ‰‹å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuyOmakeWait( SHOP_WORK * wk )
@@ -1934,7 +1934,7 @@ static u8 ShopBuyOmakeWait( SHOP_WORK * wk )
 
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/12
-		// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE•\Ž¦’†‚ÉÁ‹Ž‚µ‚½ƒAƒCƒeƒ€à–¾‚ð•\Ž¦
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä¸­ã«æ¶ˆåŽ»ã—ãŸã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚’è¡¨ç¤º
 		GF_BGL_BmpWinOnVReq( &wk->win[WIN_IDX_INFO] );
 		// ----------------------------------------------------------------------------
 
@@ -1945,11 +1945,11 @@ static u8 ShopBuyOmakeWait( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€–¼‚ð’PŒê“o˜^
+ * ã‚¢ã‚¤ãƒ†ãƒ åã‚’å˜èªžç™»éŒ²
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€ID
- * @param	bufID	’PŒêID
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ID
+ * @param	bufID	å˜èªžID
  *
  * @return	none
  */
@@ -1971,12 +1971,12 @@ static void ShopBuyItemNameWordSet( SHOP_WORK * wk, u16 item, u16 bufID )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€‚Ì’l’iŽæ“¾
+ * ã‚¢ã‚¤ãƒ†ãƒ ã®å€¤æ®µå–å¾—
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€ID
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ID
  *
- * @return	’l’i
+ * @return	å€¤æ®µ
  */
 //--------------------------------------------------------------------------------------------
 static u32 ShopBuyItemPriceGet( SHOP_WORK * wk, u16 item )
@@ -1995,7 +1995,7 @@ static u32 ShopBuyItemPriceGet( SHOP_WORK * wk, u16 item )
 
 //--------------------------------------------------------------
 /**
- * @brief	BP’l
+ * @brief	BPå€¤
  *
  * @param	wk	
  * @param	item	
@@ -2070,7 +2070,7 @@ static u16 ShopBuyItemPriceBPGet( SHOP_WORK * wk, u16 item )
 
 //--------------------------------------------------------------
 /**
- * @brief	BP ‚© GOLD ‚ÌŽæ“¾
+ * @brief	BP ã‹ GOLD ã®å–å¾—
  *
  * @param	wk	
  *
@@ -2092,7 +2092,7 @@ u32 MyBPGoldGet( SHOP_WORK * wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BP GOLD ‚Ì‘€ì
+ * @brief	BP GOLD ã®æ“ä½œ
  *
  * @param	wk	
  * @param	sub	
@@ -2114,12 +2114,12 @@ void  MyBPGoldSub( SHOP_WORK * wk, u32 sub )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“üˆ—I—¹ƒXƒNƒ[ƒ‹
+ * è³¼å…¥å‡¦ç†çµ‚äº†ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuyEndSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
@@ -2131,14 +2131,14 @@ static u8 ShopBuyEndSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 		return SHOP_SEQ_BUY_END;
 	}
 	wk->cm_cnt = 0;
-	GFC_CopyCamera( wk->camera, fsys->camera_ptr );		// ƒJƒƒ‰”½‰f
-	GFC_FreeCamera( wk->camera);						// ƒJƒƒ‰íœ
-	GFC_AttachCamera( fsys->camera_ptr );				// ƒJƒƒ‰ƒAƒ^ƒbƒ`
+	GFC_CopyCamera( wk->camera, fsys->camera_ptr );		// ã‚«ãƒ¡ãƒ©åæ˜ 
+	GFC_FreeCamera( wk->camera);						// ã‚«ãƒ¡ãƒ©å‰Šé™¤
+	GFC_AttachCamera( fsys->camera_ptr );				// ã‚«ãƒ¡ãƒ©ã‚¢ã‚¿ãƒƒãƒ
 //	ShopMenuSet( wk );
 
 	ShopBuyActExit( wk );
 		
-	///< ƒƒjƒ…[‚ÌŠm”F‚ðo‚³‚È‚¢‚Ì‚Å
+	///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ç¢ºèªã‚’å‡ºã•ãªã„ã®ã§
 	if ( wk->shop_type == SHOP_TYPE_BP ){
 		return SHOP_SEQ_EXIT;
 	}
@@ -2157,11 +2157,11 @@ static u8 ShopBuyEndSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒ‡ƒbƒvƒƒjƒ…[‚Ö–ß‚é
+ * ã‚·ãƒ§ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopBuyMenuRetSeq( SHOP_WORK * wk )
@@ -2179,10 +2179,10 @@ static u8 ShopBuyMenuRetSeq( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒ‡ƒbƒvI—¹ƒƒbƒZ[ƒWƒZƒbƒg
+ * ã‚·ãƒ§ãƒƒãƒ—çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2210,9 +2210,9 @@ static void ShopExitSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 
 
 //============================================================================================
-//	w“ü‰æ–Ê‚ÌƒZƒ‹ƒAƒNƒ^[
+//	è³¼å…¥ç”»é¢ã®ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //============================================================================================
-// ƒŠƒ\[ƒXID
+// ãƒªã‚½ãƒ¼ã‚¹ID
 enum {
 	CLA_ID_ARROW = 0,
 	CLA_ID_CURSOR,
@@ -2232,37 +2232,37 @@ enum {
 
 
 static const TCATS_RESOURCE_FILE_LIST CatsFileList = {
-	"data/shop_chr.resdat",		// ƒLƒƒƒ‰ƒNƒ^
-	"data/shop_pal.resdat",		// ƒpƒŒƒbƒg
-	"data/shop_cell.resdat",	// ƒZƒ‹
-	"data/shop_canm.resdat",	// ƒZƒ‹ƒAƒjƒ
-	NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹
-	NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
-	"data/shop_h.cldat"			// ƒwƒbƒ_[
+	"data/shop_chr.resdat",		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+	"data/shop_pal.resdat",		// ãƒ‘ãƒ¬ãƒƒãƒˆ
+	"data/shop_cell.resdat",	// ã‚»ãƒ«
+	"data/shop_canm.resdat",	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+	NULL,						// ãƒžãƒ«ãƒã‚»ãƒ«
+	NULL,						// ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+	"data/shop_h.cldat"			// ãƒ˜ãƒƒãƒ€ãƒ¼
 
 };
 
 static const TCATS_OBJECT_ADD_PARAM	ActAddParam[] =
 {
-	{	// ã–îˆóƒJ[ƒ\ƒ‹
+	{	// ä¸ŠçŸ¢å°ã‚«ãƒ¼ã‚½ãƒ«
 		CLA_ID_ARROW,
 		LIST_SCR_PX, LIST_SCR_U_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ‰º–îˆóƒJ[ƒ\ƒ‹
+	{	// ä¸‹çŸ¢å°ã‚«ãƒ¼ã‚½ãƒ«
 		CLA_ID_ARROW,
 		LIST_SCR_PX, LIST_SCR_D_PY, 0,
 		1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒJ[ƒ\ƒ‹
+	{	// ã‚«ãƒ¼ã‚½ãƒ«
 		CLA_ID_CURSOR,
 		CURSOR_ACT_PX, CURSOR_ACT_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		0, 0, 0, 0
 	},
-	{	// ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+	{	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 		CLA_ID_ITEMICON,
 		SHOP_ITEMICON_PX, SHOP_ITEMICON_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -2273,9 +2273,9 @@ static const TCATS_OBJECT_ADD_PARAM	ActAddParam[] =
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“ü‰æ–Ê‚ÌƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
+ * è³¼å…¥ç”»é¢ã®ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2295,9 +2295,9 @@ static void ShopBuyActSet( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“ü‰æ–Ê‚ÌƒZƒ‹ƒAƒNƒ^[íœ
+ * è³¼å…¥ç”»é¢ã®ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2314,10 +2314,10 @@ static void ShopBuyActExit( SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“ü‰æ–Ê‚ÌƒXƒNƒ[ƒ‹–îˆó‚ÌˆÊ’u‚ðƒZƒbƒg
+ * è³¼å…¥ç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çŸ¢å°ã®ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
- * @param	flg		0 = ƒAƒCƒeƒ€‘I‘ð, 1 = ŒÂ”‘I‘ð
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		0 = ã‚¢ã‚¤ãƒ†ãƒ é¸æŠž, 1 = å€‹æ•°é¸æŠž
  *
  * @return	none
  */
@@ -2335,10 +2335,10 @@ static void ShopBuyScrCurPosChg( SHOP_WORK * wk, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“ü‰æ–Ê‚ÌƒAƒCƒeƒ€ƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * è³¼å…¥ç”»é¢ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€ID
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ID
  *
  * @return	none
  */
@@ -2352,14 +2352,14 @@ static void ShopBuyItemIconChg( SHOP_WORK * wk, u16 item )
 		return;
 	}
 
-	// ƒLƒƒƒ‰
+	// ã‚­ãƒ£ãƒ©
 	obj = CLACT_U_ResManagerGetIDResObjPtr( wk->fcat.resMan[0], 2 );
 	CLACT_U_ResManagerResChgArcChar(
 		wk->fcat.resMan[0], obj,
 		ARC_ITEMICON, GetItemIndex(item,ITEM_GET_ICON_CGX), 0, HEAPID_WORLD );
 	CLACT_U_CharManagerReTrans( obj );
 
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	obj = CLACT_U_ResManagerGetIDResObjPtr( wk->fcat.resMan[1], 1 );
 	CLACT_U_ResManagerResChgArcPltt(
 		wk->fcat.resMan[1], obj,
@@ -2369,10 +2369,10 @@ static void ShopBuyItemIconChg( SHOP_WORK * wk, u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w“ü‰æ–Ê‚ÌƒAƒCƒeƒ€‘I‘ðƒJ[ƒ\ƒ‹‚ÌƒpƒŒƒbƒg•ÏX
+ * è³¼å…¥ç”»é¢ã®ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
  *
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
- * @param	num		ƒpƒŒƒbƒg”Ô†
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  *
  * @return	none
  */
@@ -2386,14 +2386,14 @@ static void ShopBuyCursorPalChg( SHOP_WORK * wk, u8 num )
 
 
 //============================================================================================
-//	”„‚é
+//	å£²ã‚‹
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒF[ƒhƒAƒEƒgƒZƒbƒg ( -> ƒoƒbƒO‰æ–Ê‚Ö )
+ * ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚»ãƒƒãƒˆ ( -> ãƒãƒƒã‚°ç”»é¢ã¸ )
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2406,12 +2406,12 @@ static void ShopSaleInitSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒO‰æ–ÊŒÄ‚Ño‚µ
+ * ãƒãƒƒã‚°ç”»é¢å‘¼ã³å‡ºã—
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static void ShopSaleCallSeq( GMEVENT_CONTROL * event )
@@ -2442,18 +2442,18 @@ static void ShopSaleCallSeq( GMEVENT_CONTROL * event )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒO‰æ–ÊI—¹‘Ò‚¿
+ * ãƒãƒƒã‚°ç”»é¢çµ‚äº†å¾…ã¡
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 /*
 static u8 ShopSaleWaitSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 {
-	// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd( fsys ) ) {
 		return SHOP_SEQ_SALE_WAIT;
 	}
@@ -2470,17 +2470,17 @@ static u8 ShopSaleWaitSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒ‡ƒbƒv•œ‹A‘Ò‚¿
+ * ã‚·ãƒ§ãƒƒãƒ—å¾©å¸°å¾…ã¡
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 /*
 static u8 ShopSaleRetSeq( FIELDSYS_WORK * fsys )
 {
-	// ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXŠJŽn‘Ò‚¿
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹å¾…ã¡
 	if( FieldEvent_Cmd_WaitMapProcStart(fsys) ){
 //		FieldOBJSys_MoveStopAll( fsys->fldobjsys );
 		FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );
@@ -2492,12 +2492,12 @@ static u8 ShopSaleRetSeq( FIELDSYS_WORK * fsys )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •œ‹AƒtƒF[ƒh‘Ò‚¿
+ * å¾©å¸°ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	wk		ƒVƒ‡ƒbƒvƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	wk		ã‚·ãƒ§ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 ShopSaleMenuRetSeq( FIELDSYS_WORK * fsys, SHOP_WORK * wk )

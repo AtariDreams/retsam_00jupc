@@ -1,7 +1,7 @@
 //===========================================================================
 /**
  * @file	field_poketch.h
- * @brief	ƒtƒB[ƒ‹ƒhEƒ|ƒPƒbƒ`ŠÔ ˜A—ŠÖ”ŒQ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ãƒã‚±ãƒƒãƒé–“ é€£çµ¡é–¢æ•°ç¾¤
  * @author	taya	GAME FREAK Inc.
  *
  */

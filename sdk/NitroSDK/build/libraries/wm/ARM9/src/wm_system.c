@@ -12,132 +12,132 @@
 
   $Log: wm_system.c,v $
   Revision 1.41  2007/10/16 02:00:38  okubata_ryoma
-  �s�v�� warning ���폜
+  不要な warning を削除
 
   Revision 1.40  2006/06/28 23:57:15  seiki_masashi
-  PortCallback �̏������������C��
+  PortCallback の初期化処理を修正
 
   Revision 1.39  2006/05/25 00:31:08  terui
-  WmInitCore �֐������荞�݋֎~���čs���悤�ɏC��
-  WM_Finish �֐������荞�݋֎~���čs���悤�ɏC��
+  WmInitCore 関数を割り込み禁止して行うように修正
+  WM_Finish 関数を割り込み禁止して行うように修正
 
   Revision 1.38  2006/01/18 02:12:39  kitase_hirotake
   do-indent
 
   Revision 1.37  2005/12/01 15:05:15  seiki_masashi
-  WMPortSend/RecvCallback �\���̂� maxSend/RecvDataSize �t�B�[���h��ǉ�
+  WMPortSend/RecvCallback 構造体に maxSend/RecvDataSize フィールドを追加
 
   Revision 1.36  2005/11/24 03:05:33  seiki_masashi
-  �x���̏����̂��߁A�֐��錾��ǉ�
+  警告の除去のため、関数宣言を追加
 
   Revision 1.35  2005/11/22 08:58:10  seiki_masashi
-  WM_SendCommandDirect �֐��̒ǉ�
+  WM_SendCommandDirect 関数の追加
 
   Revision 1.34  2005/11/07 01:10:33  okubata_ryoma
-  SDK_ASSERT_ON_COMPILE����SDK_COMPILER_ASSERT�ɕύX
+  SDK_ASSERT_ON_COMPILEからSDK_COMPILER_ASSERTに変更
 
   Revision 1.33  2005/11/01 11:47:21  seiki_masashi
-  SDK_ASSERT_ON_COMPILE �̒�`���w�b�_�t�@�C���Ɉړ�
-  �f�o�b�O�R�[�h�̒ǉ�
-  WM_STATECODE_PORT_RECV �ł� connectedAidBitmap ��ʒm����悤�ɕύX
+  SDK_ASSERT_ON_COMPILE の定義をヘッダファイルに移動
+  デバッグコードの追加
+  WM_STATECODE_PORT_RECV でも connectedAidBitmap を通知するように変更
 
   Revision 1.32  2005/11/01 08:54:28  seiki_masashi
-  WmReceiveFifo �̍�����
-  wm9buf->myAid, connectedAidBitmap �̒ǉ�
-  WM_INDBUF_SIZE �̍폜
+  WmReceiveFifo の高速化
+  wm9buf->myAid, connectedAidBitmap の追加
+  WM_INDBUF_SIZE の削除
 
   Revision 1.31  2005/10/28 11:22:41  seiki_masashi
-  port �̐ؒf�ʒm�� reason ��ʒm����悤�ɕύX
+  port の切断通知に reason を通知するように変更
 
   Revision 1.30  2005/10/28 11:13:54  seiki_masashi
-  WM_STATECODE_DISCONNECTED_FROM_MYSELF �̎���
-  WMStatus �\���̂ւ̃A�N�Z�T�̎���
-  �q�@���� port �ڑ��E�ؒf�ʒm�̕s��̏C��
+  WM_STATECODE_DISCONNECTED_FROM_MYSELF の実装
+  WMStatus 構造体へのアクセサの実装
+  子機側の port 接続・切断通知の不具合の修正
 
   Revision 1.29  2005/09/16 10:14:21  terui
-  WMi_GetSystemWork�֐��ł�NULL�A�T�[�g���폜
+  WMi_GetSystemWork関数でのNULLアサートを削除
 
   Revision 1.28  2005/06/07 05:45:26  seiki_masashi
-  Key Sharing �Ɋւ�����ʏ�����ጸ���邽�߂̕ύX
+  Key Sharing に関する特別処理を低減するための変更
 
   Revision 1.27  2005/03/03 14:45:27  seiki_masashi
-  WM_DISABLE_KEYSHARING �X�C�b�`�̒ǉ�
+  WM_DISABLE_KEYSHARING スイッチの追加
 
   Revision 1.26  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.25  2005/02/23 12:48:14  seiki_masashi
-  �f�o�b�O�\���̐���
+  デバッグ表示の整理
 
   Revision 1.24  2005/02/18 12:27:45  seiki_masashi
-  �f�o�b�O�p�X�C�b�`�̔��蕶�� #if ���� #ifdef �ɕύX
+  デバッグ用スイッチの判定文を #if から #ifdef に変更
 
   Revision 1.23  2005/02/14 06:37:47  terui
-  WMi_CheckMpPacketTimeRequired�֐���ǉ��B
+  WMi_CheckMpPacketTimeRequired関数を追加。
 
   Revision 1.22  2005/01/27 02:23:08  takano_makoto
   fix comments.
 
   Revision 1.21  2005/01/26 05:36:52  takano_makoto
-  WMi_InitForScan��ǉ�
+  WMi_InitForScanを追加
 
   Revision 1.19  2005/01/26 01:35:28  seiki_masashi
-  PXI ���荞�݃n���h������ ARM9Buf->scanOnlyFlag ������
-  WMStatus �� cache invalidate ������悤�ɕύX
+  PXI 割り込みハンドラ内で ARM9Buf->scanOnlyFlag を見て
+  WMStatus の cache invalidate をするように変更
 
   Revision 1.18  2005/01/26 01:12:11  seiki_masashi
-  PXI ���荞�݃n���h������ WMStatus �� cache invalidate �����Ȃ��悤�ɕύX
+  PXI 割り込みハンドラ内で WMStatus の cache invalidate をしないように変更
 
   Revision 1.17  2005/01/25 01:57:25  yasu
-  Copyright �\�L�̏C��
+  Copyright 表記の修正
 
   Revision 1.16  2005/01/17 02:34:08  terui
-  WmReceiveFifo�֐����ŁA���[�U�[�R�[���o�b�N�Ăяo�����WM_Finish���Ăяo���ꂽ���ǂ����m�F����悤�ɏC���B
+  WmReceiveFifo関数内で、ユーザーコールバック呼び出し後にWM_Finishが呼び出されたかどうか確認するように修正。
 
   Revision 1.15  2004/12/27 05:31:55  terui
-  ���N�G�X�g�`�B�p�����O�o�b�t�@�̔r��������ǉ��B
+  リクエスト伝達用リングバッファの排他処理を追加。
 
   Revision 1.14  2004/10/22 08:52:52  terui
-  �Ԉ���č폜�����A�����N�G�X�g���L���[���Ă����d�l�𕜋��B
+  間違って削除した連続リクエストをキューしておく仕様を復旧。
 
   Revision 1.13  2004/10/22 04:37:28  terui
-  WMErrCode�Ƃ���int�^��Ԃ��Ă����֐��ɂ��āAWMErrCode�񋓌^��Ԃ��悤�ɕύX�B
+  WMErrCodeとしてint型を返していた関数について、WMErrCode列挙型を返すように変更。
 
   Revision 1.12  2004/10/21 12:08:25  terui
-  PXI�R�[���o�b�N����WM_End�ɑ΂���㏈�����s���ʒu�����[�U�[�R�[���o�b�N�Ăяo�����O�ɕύX�B
+  PXIコールバック内でWM_Endに対する後処理を行う位置をユーザーコールバック呼び出しより前に変更。
 
   Revision 1.11  2004/10/05 09:45:28  terui
-  MAC�A�h���X��u8�^�̔z��ɓ���B
+  MACアドレスをu8型の配列に統一。
 
   Revision 1.10  2004/10/05 01:04:17  terui
-  �R���p�C�����̍\���̃T�C�Y�`�F�b�N��ǉ��B
+  コンパイル時の構造体サイズチェックを追加。
 
   Revision 1.9  2004/10/03 07:47:13  ooe
-  ipl_branch�ƃ}�[�W�B Flash�G���[���̃t���[�Y������ǉ��B
+  ipl_branchとマージ。 Flashエラー時のフリーズ処理を追加。
 
   Revision 1.8  2004/09/29 09:48:25  terui
-  WMi_SendCommand�������ݓ�����Ăяo����邱�Ƃ�z�肵���C���B
+  WMi_SendCommandが割込み内から呼び出されることを想定した修正。
 
   Revision 1.7  2004/09/24 04:02:39  terui
-  WM_Init���̃G���[�`�F�b�N������ύX�B
+  WM_Init内のエラーチェック順序を変更。
 
   Revision 1.6  2004/09/23 09:24:17  seiki_masashi
-  WMi_SendCommand �̔r��������C��
+  WMi_SendCommand の排他制御を修正
 
   Revision 1.5  2004/09/17 06:36:08  seiki_masashi
-  WMPortRecvCallback �� ssid ����� myAid �t�B�[���h��ǉ�
+  WMPortRecvCallback に ssid および myAid フィールドを追加
 
   Revision 1.4  2004/09/14 02:47:58  terui
-  ���������ɗ^����ꂽ�o�b�t�@�̃L���b�V����j������@�\��ǉ��B
+  初期化時に与えられたバッファのキャッシュを破棄する機能を追加。
 
   Revision 1.3  2004/09/11 06:09:12  yasu
   Use OS_TPrintf instead of WMi_Printf
 
   Revision 1.2  2004/09/11 04:13:00  terui
-  �x���\�����s���v�����g�����܂�X�^�b�N������Ȃ����̂ɕύX�B
+  警告表示を行うプリントをあまりスタックを消費しないものに変更。
 
   Revision 1.1  2004/09/10 11:03:30  terui
-  wm.c�̕����ɔ����A�V�Kupload�B
+  wm.cの分割に伴い、新規upload。
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -147,23 +147,23 @@
 
 
 /*---------------------------------------------------------------------------*
-    �萔��`
+    定数定義
  *---------------------------------------------------------------------------*/
 #define     WM_BUF_MSG_NUM                  10
 
 
 /*---------------------------------------------------------------------------*
-    �����ϐ���`
+    内部変数定義
  *---------------------------------------------------------------------------*/
-static u16 wmInitialized = 0;          // WM�������t���O
+static u16 wmInitialized = 0;          // WM初期化フラグ
 static WMArm9Buf *wm9buf;
 static u32 fifoBuf[WM_BUF_MSG_NUM][WM_FIFO_BUF_SIZE / sizeof(u32)] ATTRIBUTE_ALIGN(32);
-static OSMessageQueue bufMsgQ;         // WM7�ւ̃��N�G�X�g�L���[
-static OSMessage bufMsg[WM_BUF_MSG_NUM];        // WM7�ւ̃��N�G�X�g�L���[�p�o�b�t�@
+static OSMessageQueue bufMsgQ;         // WM7へのリクエストキュー
+static OSMessage bufMsg[WM_BUF_MSG_NUM];        // WM7へのリクエストキュー用バッファ
 
 
 /*---------------------------------------------------------------------------*
-    �����֐���`
+    内部関数定義
  *---------------------------------------------------------------------------*/
 static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err);
 static void WmClearFifoRecvFlag(void);
@@ -174,14 +174,14 @@ static u32 *WmGetCommandBuffer4Arm7(void);
 /*---------------------------------------------------------------------------*
   Name:         WM_Init
 
-  Description:  WM���C�u�����̏������������s���B
-                ARM9���̏������݂̂��s�������֐��B
+  Description:  WMライブラリの初期化処理を行う。
+                ARM9側の初期化のみを行う同期関数。
 
-  Arguments:    wmSysBuf    -   �Ăяo�����ɂ���Ċm�ۂ��ꂽ�o�b�t�@�ւ̃|�C���^�B
-                                �o�b�t�@�̃T�C�Y��WM_SYSTEM_BUF_SIZE�����K�v�B
-                dmaNo       -   WM���g�p����DMA�ԍ��B
+  Arguments:    wmSysBuf    -   呼び出し元によって確保されたバッファへのポインタ。
+                                バッファのサイズはWM_SYSTEM_BUF_SIZEだけ必要。
+                dmaNo       -   WMが使用するDMA番号。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Init(void *wmSysBuf, u16 dmaNo)
 {
@@ -198,14 +198,14 @@ WMErrCode WM_Init(void *wmSysBuf, u16 dmaNo)
 /*---------------------------------------------------------------------------*
   Name:         WMi_InitForScan
 
-  Description:  �X�L�����݂̂��g�p����ꍇ��WM���C�u�����̏������������s���B
-                ARM9���̏������݂̂��s�������֐��B
+  Description:  スキャンのみを使用する場合のWMライブラリの初期化処理を行う。
+                ARM9側の初期化のみを行う同期関数。
 
-  Arguments:    wmSysBuf    -   �Ăяo�����ɂ���Ċm�ۂ��ꂽ�o�b�t�@�ւ̃|�C���^�B
-                                �o�b�t�@�̃T�C�Y��WM_SYSTEM_BUF_SIZE_FOR_SCAN�����K�v�B
-                dmaNo       -   WM���g�p����DMA�ԍ��B
+  Arguments:    wmSysBuf    -   呼び出し元によって確保されたバッファへのポインタ。
+                                バッファのサイズはWM_SYSTEM_BUF_SIZE_FOR_SCANだけ必要。
+                dmaNo       -   WMが使用するDMA番号。
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_InitForScan(void *wmSysBuf, u16 dmaNo);
 WMErrCode WMi_InitForScan(void *wmSysBuf, u16 dmaNo)
@@ -234,33 +234,33 @@ WMErrCode WMi_InitForScan(void *wmSysBuf, u16 dmaNo)
 /*---------------------------------------------------------------------------*
   Name:         WmInitCore
 
-  Description:  WM���C�u�����̏������������s���A���C�u���������g�p�֐��B
-                ARM9���̏������݂̂��s�������֐��B
+  Description:  WMライブラリの初期化処理を行う、ライブラリ内部使用関数。
+                ARM9側の初期化のみを行う同期関数。
 
-  Arguments:    wmSysBuf    -   �Ăяo�����ɂ���Ċm�ۂ��ꂽ�o�b�t�@�ւ̃|�C���^�B
-                dmaNo       -   WM���g�p����DMA�ԍ��B
-                bufSize     -   WM���C�u�����Ɋ��蓖�Ă���o�b�t�@�T�C�Y
+  Arguments:    wmSysBuf    -   呼び出し元によって確保されたバッファへのポインタ。
+                dmaNo       -   WMが使用するDMA番号。
+                bufSize     -   WMライブラリに割り当てられるバッファサイズ
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 static WMErrCode WmInitCore(void *wmSysBuf, u16 dmaNo, u32 bufSize)
 {
     OSIntrMode e;
 
-    // �\���̂̃T�C�Y���z��l���I�[�o�[���Ă��Ȃ����`�F�b�N
+    // 構造体のサイズが想定値をオーバーしていないかチェック
     SDK_COMPILER_ASSERT(sizeof(WMArm9Buf) <= WM_ARM9WM_BUF_SIZE);
     SDK_COMPILER_ASSERT(sizeof(WMArm7Buf) <= WM_ARM7WM_BUF_SIZE);
     SDK_COMPILER_ASSERT(sizeof(WMStatus) <= WM_STATUS_BUF_SIZE);
 
     e = OS_DisableInterrupts();
-    // WM���C�u�����̏������ς݂��m�F
+    // WMライブラリの初期化済みを確認
     if (wmInitialized)
     {
         (void)OS_RestoreInterrupts(e);
-        return WM_ERRCODE_ILLEGAL_STATE;        // �������ς�
+        return WM_ERRCODE_ILLEGAL_STATE;        // 初期化済み
     }
 
-    // �p�����[�^�`�F�b�N
+    // パラメータチェック
     if (wmSysBuf == NULL)
     {
         WM_WARNING("Parameter \"wmSysBuf\" must not be NULL.\n");
@@ -280,7 +280,7 @@ static WMErrCode WmInitCore(void *wmSysBuf, u16 dmaNo, u32 bufSize)
         return WM_ERRCODE_INVALID_PARAM;
     }
 
-    // ARM7����WM���C�u�������J�n����Ă��邩�m�F
+    // ARM7側でWMライブラリが開始されているか確認
     PXI_Init();
     if (!PXI_IsCallbackReady(PXI_FIFO_TAG_WM, PXI_PROC_ARM7))
     {
@@ -289,11 +289,11 @@ static WMErrCode WmInitCore(void *wmSysBuf, u16 dmaNo, u32 bufSize)
         return WM_ERRCODE_WM_DISABLE;
     }
 
-    /*  �L���b�V���ɗ]�v�ȃf�[�^���c���Ă���Ƒz��O�̃^�C�~���O��
-       ���C�g�o�b�N���������AARM7���̏�ԊǗ��Ɏx��𗈂����\��������B
-       ���̑΍�Ƃ��Ă����őS���[�N�o�b�t�@�̃L���b�V����j�����Ă����B */
+    /*  キャッシュに余計なデータが残っていると想定外のタイミングで
+       ライトバックが発生し、ARM7側の状態管理に支障を来たす可能性がある。
+       その対策としてここで全ワークバッファのキャッシュを破棄しておく。 */
     DC_InvalidateRange(wmSysBuf, bufSize);
-    // �e��o�b�t�@������
+    // 各種バッファ初期化
     MI_DmaClear32(dmaNo, wmSysBuf, bufSize);
     wm9buf = (WMArm9Buf *)wmSysBuf;
     wm9buf->WM7 = (WMArm7Buf *)((u32)wm9buf + WM_ARM9WM_BUF_SIZE);
@@ -301,15 +301,15 @@ static WMErrCode WmInitCore(void *wmSysBuf, u16 dmaNo, u32 bufSize)
     wm9buf->fifo9to7 = (u32 *)((u32)(wm9buf->status) + WM_STATUS_BUF_SIZE);
     wm9buf->fifo7to9 = (u32 *)((u32)(wm9buf->fifo9to7) + WM_FIFO_BUF_SIZE);
 
-    // FIFO�o�b�t�@�������݋��t���O���N���A
+    // FIFOバッファ書き込み許可フラグをクリア
     WmClearFifoRecvFlag();
 
-    // �e��ϐ���������
+    // 各種変数を初期化
     wm9buf->dmaNo = dmaNo;
     wm9buf->connectedAidBitmap = 0x0000;
     wm9buf->myAid = 0;
 
-    // �e�|�[�g�p�R�[���o�b�N�e�[�u����������
+    // 各ポート用コールバックテーブルを初期化
     {
         s32     i;
 
@@ -320,21 +320,21 @@ static WMErrCode WmInitCore(void *wmSysBuf, u16 dmaNo, u32 bufSize)
         }
     }
 
-    // �G���g���[�o�^�p�L���[��������
+    // エントリー登録用キューを初期化
     {
         s32     i;
 
         OS_InitMessageQueue(&bufMsgQ, bufMsg, WM_BUF_MSG_NUM);
         for (i = 0; i < WM_BUF_MSG_NUM; i++)
         {
-            // �����O�o�b�t�@���g�p�\�ȏ�ԂɃN���A
+            // リングバッファを使用可能な状態にクリア
             *((u16 *)(fifoBuf[i])) = WM_API_REQUEST_ACCEPTED;
             DC_StoreRange(fifoBuf[i], 2);
             (void)OS_SendMessage(&bufMsgQ, fifoBuf[i], OS_MESSAGE_BLOCK);
         }
     }
 
-    // FIFO��M�֐���ݒ�
+    // FIFO受信関数を設定
     PXI_SetFifoRecvCallback(PXI_FIFO_TAG_WM, WmReceiveFifo);
 
     wmInitialized = 1;
@@ -345,12 +345,12 @@ static WMErrCode WmInitCore(void *wmSysBuf, u16 dmaNo, u32 bufSize)
 /*---------------------------------------------------------------------------*
   Name:         WM_Finish
 
-  Description:  WM���C�u�����̏I���������s���B�����֐��B
-                WM_Init�֐����ĂԑO�̏�Ԃɖ߂�B
+  Description:  WMライブラリの終了処理を行う。同期関数。
+                WM_Init関数を呼ぶ前の状態に戻る。
 
   Arguments:    None.
 
-  Returns:      WMErrCode   -   �������ʂ�Ԃ��B
+  Returns:      WMErrCode   -   処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WM_Finish(void)
 {
@@ -358,7 +358,7 @@ WMErrCode WM_Finish(void)
     WMErrCode result;
 
     e = OS_DisableInterrupts();
-    // �������ς݂łȂ��ꍇ�͎��s�s��
+    // 初期化済みでない場合は実行不可
     result = WMi_CheckInitialized();
     if (result != WM_ERRCODE_SUCCESS)
     {
@@ -366,11 +366,11 @@ WMErrCode WM_Finish(void)
         return WM_ERRCODE_ILLEGAL_STATE;
     }
 
-    // �X�e�[�g��READY�łȂ��ꍇ�͎��s�s��
+    // ステートがREADYでない場合は実行不可
     result = WMi_CheckState(WM_STATE_READY);
     WM_CHECK_RESULT(result);
 
-    // WM���C�u�������I��
+    // WMライブラリを終了
     WmClearFifoRecvFlag();
     PXI_SetFifoRecvCallback(PXI_FIFO_TAG_WM, NULL);
     wm9buf = 0;
@@ -383,10 +383,10 @@ WMErrCode WM_Finish(void)
 /*---------------------------------------------------------------------------*
   Name:         WMi_SetCallbackTable
 
-  Description:  �e�񓯊��֐��ɑΉ������R�[���o�b�N�֐���o�^����B
+  Description:  各非同期関数に対応したコールバック関数を登録する。
 
-  Arguments:    id          -   �񓯊��֐���API ID�B
-                callback    -   �o�^����R�[���o�b�N�֐��B
+  Arguments:    id          -   非同期関数のAPI ID。
+                callback    -   登録するコールバック関数。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -400,11 +400,11 @@ void WMi_SetCallbackTable(WMApiid id, WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WmGetCommandBuffer4Arm7
 
-  Description:  ARM7 �����̃R�}���h�p�o�b�t�@���v�[������m�ۂ���
+  Description:  ARM7 向けのコマンド用バッファをプールから確保する
 
   Arguments:    None.
 
-  Returns:      �m�ۂł���΂��̒l, �m�ۂł��Ȃ���� NULL
+  Returns:      確保できればその値, 確保できなければ NULL
  *---------------------------------------------------------------------------*/
 u32    *WmGetCommandBuffer4Arm7(void)
 {
@@ -415,13 +415,13 @@ u32    *WmGetCommandBuffer4Arm7(void)
         return NULL;
     }
 
-    // �����O�o�b�t�@���g�p�\�ȏ��(�L���[����t�łȂ�)�����m�F
+    // リングバッファが使用可能な状態(キューが一杯でない)かを確認
     DC_InvalidateRange(tmpAddr, 2);
     if ((*((u16 *)tmpAddr) & WM_API_REQUEST_ACCEPTED) == 0)
     {
-        // �L���[�̐擪�ɍēx�\��( ��ԏ��߂Ɏg�p�\��ԂɂȂ�͂��Ȃ̂� )
+        // キューの先頭に再度予約( 一番初めに使用可能状態になるはずなので )
         (void)OS_JamMessage(&bufMsgQ, tmpAddr, OS_MESSAGE_BLOCK);
-        // �G���[�Ƃ��ďI��
+        // エラーとして終了
         return NULL;
     }
 
@@ -431,15 +431,15 @@ u32    *WmGetCommandBuffer4Arm7(void)
 /*---------------------------------------------------------------------------*
   Name:         WMi_SendCommand
 
-  Description:  FIFO�o�R�Ń��N�G�X�g��ARM7�ɑ��M����B
-                u32�^�̃p�����[�^�������������R�}���h�̏ꍇ�́A
-                �p�����[�^��񋓂��Ďw�肷��B
+  Description:  FIFO経由でリクエストをARM7に送信する。
+                u32型のパラメータをいくつか伴うコマンドの場合は、
+                パラメータを列挙して指定する。
 
-  Arguments:    id          -   ���N�G�X�g�ɑΉ�����API ID�B
-                paramNum    -   ���z�����̐��B
-                ...         -   ���z�����B
+  Arguments:    id          -   リクエストに対応したAPI ID。
+                paramNum    -   仮想引数の数。
+                ...         -   仮想引数。
 
-  Returns:      int -   WM_ERRCODE_*�^�̏������ʂ�Ԃ��B
+  Returns:      int -   WM_ERRCODE_*型の処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_SendCommand(WMApiid id, u16 paramNum, ...)
 {
@@ -450,7 +450,7 @@ WMErrCode WMi_SendCommand(WMApiid id, u16 paramNum, ...)
 
     SDK_NULL_ASSERT(wm9buf);
 
-    // �R�}���h���M�p�̃o�b�t�@���m��
+    // コマンド送信用のバッファを確保
     tmpAddr = WmGetCommandBuffer4Arm7();
     if (tmpAddr == NULL)
     {
@@ -460,7 +460,7 @@ WMErrCode WMi_SendCommand(WMApiid id, u16 paramNum, ...)
     // API ID
     *(u16 *)tmpAddr = (u16)id;
 
-    // �w�萔�̈�����ǉ�
+    // 指定数個の引数を追加
     va_start(vlist, paramNum);
     for (i = 0; i < paramNum; i++)
     {
@@ -470,7 +470,7 @@ WMErrCode WMi_SendCommand(WMApiid id, u16 paramNum, ...)
 
     DC_StoreRange(tmpAddr, WM_FIFO_BUF_SIZE);
 
-    // FIFO�Œʒm
+    // FIFOで通知
     result = PXI_SendWordByFifo(PXI_FIFO_TAG_WM, (u32)tmpAddr, FALSE);
 
     (void)OS_SendMessage(&bufMsgQ, tmpAddr, OS_MESSAGE_BLOCK);
@@ -487,13 +487,13 @@ WMErrCode WMi_SendCommand(WMApiid id, u16 paramNum, ...)
 /*---------------------------------------------------------------------------*
   Name:         WMi_SendCommandDirect
 
-  Description:  FIFO�o�R�Ń��N�G�X�g��ARM7�ɑ��M����B
-                ARM7 �ɑ���R�}���h�𒼐ڎw�肷��B
+  Description:  FIFO経由でリクエストをARM7に送信する。
+                ARM7 に送るコマンドを直接指定する。
 
-  Arguments:    data        -   ARM7 �ɑ���R�}���h�B
-                length      -   ARM7 �ɑ���R�}���h�̃T�C�Y�B
+  Arguments:    data        -   ARM7 に送るコマンド。
+                length      -   ARM7 に送るコマンドのサイズ。
 
-  Returns:      int -   WM_ERRCODE_*�^�̏������ʂ�Ԃ��B
+  Returns:      int -   WM_ERRCODE_*型の処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_SendCommandDirect(void *data, u32 length)
 {
@@ -503,19 +503,19 @@ WMErrCode WMi_SendCommandDirect(void *data, u32 length)
     SDK_NULL_ASSERT(wm9buf);
     SDK_ASSERT(length <= WM_FIFO_BUF_SIZE);
 
-    // �R�}���h���M�p�̃o�b�t�@���m��
+    // コマンド送信用のバッファを確保
     tmpAddr = WmGetCommandBuffer4Arm7();
     if (tmpAddr == NULL)
     {
         return WM_ERRCODE_FIFO_ERROR;
     }
 
-    // ARM7 �ɑ���R�}���h���p�o�b�t�@�ɃR�s�[����
+    // ARM7 に送るコマンドを専用バッファにコピーする
     MI_CpuCopy8(data, tmpAddr, length);
 
     DC_StoreRange(tmpAddr, length);
 
-    // FIFO�Œʒm
+    // FIFOで通知
     result = PXI_SendWordByFifo(PXI_FIFO_TAG_WM, (u32)tmpAddr, FALSE);
 
     (void)OS_SendMessage(&bufMsgQ, tmpAddr, OS_MESSAGE_BLOCK);
@@ -532,11 +532,11 @@ WMErrCode WMi_SendCommandDirect(void *data, u32 length)
 /*---------------------------------------------------------------------------*
   Name:         WMi_GetSystemWork
 
-  Description:  WM���C�u���������Ŏg�p����o�b�t�@�̐擪�ւ̃|�C���^���擾����B
+  Description:  WMライブラリ内部で使用するバッファの先頭へのポインタを取得する。
 
   Arguments:    None.
 
-  Returns:      WMArm9Buf*  -   �������[�N�o�b�t�@�ւ̃|�C���^��Ԃ��B
+  Returns:      WMArm9Buf*  -   内部ワークバッファへのポインタを返す。
  *---------------------------------------------------------------------------*/
 WMArm9Buf *WMi_GetSystemWork(void)
 {
@@ -547,15 +547,15 @@ WMArm9Buf *WMi_GetSystemWork(void)
 /*---------------------------------------------------------------------------*
   Name:         WMi_CheckInitialized
 
-  Description:  WM���C�u�����̏������ς݂��m�F����B
+  Description:  WMライブラリの初期化済みを確認する。
 
   Arguments:    None.
 
-  Returns:      int -   WM_ERRCODE_*�^�̏������ʂ�Ԃ��B
+  Returns:      int -   WM_ERRCODE_*型の処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_CheckInitialized(void)
 {
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (!wmInitialized)
     {
         WM_WARNING("WM library is not initialized yet.\n");
@@ -567,22 +567,22 @@ WMErrCode WMi_CheckInitialized(void)
 /*---------------------------------------------------------------------------*
   Name:         WMi_CheckIdle
 
-  Description:  WM���C�u�����̓�����Ԃ��m�F���A�����n�[�h�E�F�A���N���ς݂�
-                ���邱�Ƃ��m�F����B
+  Description:  WMライブラリの内部状態を確認し、無線ハードウェアが起動済みで
+                あることを確認する。
 
   Arguments:    None.
 
-  Returns:      int -   WM_ERRCODE_*�^�̏������ʂ�Ԃ��B
+  Returns:      int -   WM_ERRCODE_*型の処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_CheckIdle(void)
 {
     WMErrCode result;
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     result = WMi_CheckInitialized();
     WM_CHECK_RESULT(result);
 
-    // ���X�e�[�g�m�F
+    // 現ステート確認
     DC_InvalidateRange(&(wm9buf->status->state), 2);
     if ((wm9buf->status->state == WM_STATE_READY) || (wm9buf->status->state == WM_STATE_STOP))
     {
@@ -596,13 +596,13 @@ WMErrCode WMi_CheckIdle(void)
 /*---------------------------------------------------------------------------*
   Name:         WMi_CheckStateEx
 
-  Description:  WM���C�u�����̓�����Ԃ��m�F����B
-                ��������Ԃ�����WMState�^�̃p�����[�^��񋓂��Ďw�肷��B
+  Description:  WMライブラリの内部状態を確認する。
+                許可される状態を示すWMState型のパラメータを列挙して指定する。
 
-  Arguments:    paramNum    -   ���z�����̐��B
-                ...         -   ���z�����B
+  Arguments:    paramNum    -   仮想引数の数。
+                ...         -   仮想引数。
 
-  Returns:      int -   WM_ERRCODE_*�^�̏������ʂ�Ԃ��B
+  Returns:      int -   WM_ERRCODE_*型の処理結果を返す。
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_CheckStateEx(s32 paramNum, ...)
 {
@@ -611,15 +611,15 @@ WMErrCode WMi_CheckStateEx(s32 paramNum, ...)
     u32     temp;
     va_list vlist;
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     result = WMi_CheckInitialized();
     WM_CHECK_RESULT(result);
 
-    // ���X�e�[�g�擾
+    // 現ステート取得
     DC_InvalidateRange(&(wm9buf->status->state), 2);
     now = wm9buf->status->state;
 
-    // ��v�m�F
+    // 一致確認
     result = WM_ERRCODE_ILLEGAL_STATE;
     va_start(vlist, paramNum);
     for (; paramNum; paramNum--)
@@ -643,11 +643,11 @@ WMErrCode WMi_CheckStateEx(s32 paramNum, ...)
 /*---------------------------------------------------------------------------*
   Name:         WmReceiveFifo
 
-  Description:  FIFO�����WM7����̃R�[���o�b�N����M����B
+  Description:  FIFOを介したWM7からのコールバックを受信する。
 
-  Arguments:    tag          - ���g�p
-                fifo_buf_adr - �R�[���o�b�N�̃p�����[�^�Q�ւ̃|�C���^
-                err          - ���g�p
+  Arguments:    tag          - 未使用
+                fifo_buf_adr - コールバックのパラメータ群へのポインタ
+                err          - 未使用
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -656,22 +656,22 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
 #pragma unused( tag )
 
     WMCallback *callback_p = (WMCallback *)fifo_buf_adr;
-    WMArm9Buf *w9b = wm9buf;           // volatile �ł͂Ȃ����Ƃ��R���p�C���ɓ`����
+    WMArm9Buf *w9b = wm9buf;           // volatile ではないことをコンパイラに伝える
 #ifdef WM_DEBUG_CALLBACK
     int     beginVcount = GX_GetVCount();
 #endif
 
     if (err)
-        return;                        // WM_sp_init �� PXI �n���h���̏����������Ă��Ȃ�
+        return;                        // WM_sp_init の PXI ハンドラの準備が整っていない
 
-    // FIFO�R�}���h�o�b�t�@(9��7)�̃L���b�V���𖳌���
+    // FIFOコマンドバッファ(9←7)のキャッシュを無効化
     DC_InvalidateRange(w9b->fifo7to9, WM_FIFO_BUF_SIZE);
     if (!w9b->scanOnlyFlag)
     {
         DC_InvalidateRange(w9b->status, WM_STATUS_BUF_SIZE);
     }
 
-    // �����o�b�t�@�� fifo7to9 �Ƃ͕ʃo�b�t�@�łȂ����m�F
+    // 応答バッファが fifo7to9 とは別バッファでないか確認
     if ((u32)callback_p != (u32)(w9b->fifo7to9))
     {
         DC_InvalidateRange(callback_p, WM_FIFO_BUF_SIZE);
@@ -685,8 +685,8 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
 #if SDK_VERSION_WL >= 21000
             if (callback_p->errcode == WM_ERRCODE_FLASH_ERROR)
             {
-                // ARM9�t���[�Y
-                OS_Terminate();        // �Ԃ��Ă��Ȃ��B
+                // ARM9フリーズ
+                OS_Terminate();        // 返ってこない。
             }
 #endif
             if (w9b->indCallback != NULL)
@@ -696,15 +696,15 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
         }
         else if (callback_p->apiid == WM_APIID_PORT_RECV)
         {
-            // port �ԍ��ɉ������R�[���o�b�N�������s��
+            // port 番号に応じたコールバック処理を行う
             WMPortRecvCallback *cb_Port = (WMPortRecvCallback *)callback_p;
             SDK_ASSERT(cb_Port->port < 16);
-            // callback ���o�^����Ă�����ʒm����
+            // callback が登録されていたら通知する
             if (w9b->portCallbackTable[cb_Port->port] != NULL)
             {
                 cb_Port->arg = w9b->portCallbackArgument[cb_Port->port];
                 cb_Port->connectedAidBitmap = (u16)w9b->connectedAidBitmap;
-                DC_InvalidateRange(cb_Port->recvBuf, w9b->status->mp_recvBufSize);      // ToDo: Invalidate �������Ă���
+                DC_InvalidateRange(cb_Port->recvBuf, w9b->status->mp_recvBufSize);      // ToDo: Invalidate しすぎている
                 (w9b->portCallbackTable[cb_Port->port]) ((void *)cb_Port);
             }
 #ifdef WM_DEBUG
@@ -717,9 +717,9 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
         }
         else if (callback_p->apiid == WM_APIID_PORT_SEND)
         {
-            // �f�[�^���Z�b�g�����ۂɎw�肵���R�[���o�b�N�������s��
+            // データをセットした際に指定したコールバック処理を行う
             WMPortSendCallback *cb_Port = (WMPortSendCallback *)callback_p;
-            callback_p->apiid = WM_APIID_SET_MP_DATA;   // �U������
+            callback_p->apiid = WM_APIID_SET_MP_DATA;   // 偽装する
             if (cb_Port->callback != NULL)
             {
                 (cb_Port->callback) ((void *)cb_Port);
@@ -733,9 +733,9 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
     }
     else
     {
-        // ��M�o�b�t�@�̃L���b�V���𖳌������Ă���
-        // MPEND_IND, MP_IND �̌�ɑ����APORT_RECV �̌Ăяo���̍ۂ́A�����ł��ł�
-        // InvalidateRange ����Ă��邽�߁A���߂ăL���b�V�����C�ɂ���K�v�͂Ȃ�
+        // 受信バッファのキャッシュを無効化しておく
+        // MPEND_IND, MP_IND の後に続く、PORT_RECV の呼び出しの際は、ここですでに
+        // InvalidateRange されているため、改めてキャッシュを気にする必要はない
         if (callback_p->apiid == WM_APIID_START_MP)
         {
             WMStartMPCallback *cb_StartMP = (WMStartMPCallback *)callback_p;
@@ -749,13 +749,13 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
             }
         }
 
-        // WM_End�̌㏈��
+        // WM_Endの後処理
         if (callback_p->apiid == WM_APIID_END)
         {
             if (callback_p->errcode == WM_ERRCODE_SUCCESS)
             {
                 WMCallbackFunc cb = w9b->CallbackTable[callback_p->apiid];
-                // WM���C�u�������I��
+                // WMライブラリを終了
                 (void)WM_Finish();
                 if (cb != NULL)
                 {
@@ -769,7 +769,7 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
         }
 
 #if 0
-        // WM_Reset, WM_Disconnect, WM_EndParent �̌㏈��
+        // WM_Reset, WM_Disconnect, WM_EndParent の後処理
         if (callback_p->apiid == WM_APIID_RESET
             || callback_p->apiid == WM_APIID_DISCONNECT || callback_p->apiid == WM_APIID_END_PARENT)
         {
@@ -782,18 +782,18 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
         }
 #endif
 
-        // apiid�ɉ������R�[���o�b�N���� (�R�[���o�b�N�����ݒ�(NULL)�Ȃ牽�����Ȃ�)
+        // apiidに応じたコールバック処理 (コールバックが未設定(NULL)なら何もしない)
         if (NULL != w9b->CallbackTable[callback_p->apiid])
         {
             (w9b->CallbackTable[callback_p->apiid]) ((void *)callback_p);
-            /* ���[�U�[�R�[���o�b�N����WM_Finish���Ăяo����A���[�N�p���������N���A���ꂽ�ꍇ�͂����ŏI�� */
+            /* ユーザーコールバック内でWM_Finishが呼び出され、ワーク用メモリがクリアされた場合はここで終了 */
             if (!wmInitialized)
             {
                 return;
             }
         }
-        // �㏈��
-        // �ڑ��E�ؒf�̒ʒm�� port �� callback �ɂ��`���邽�߂ɁA���b�Z�[�W�����H����
+        // 後処理
+        // 接続・切断の通知を port の callback にも伝えるために、メッセージを加工する
         if (callback_p->apiid == WM_APIID_START_PARENT
             || callback_p->apiid == WM_APIID_START_CONNECT)
         {
@@ -830,11 +830,11 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
                 state == WM_STATECODE_DISCONNECTED
                 || state == WM_STATECODE_DISCONNECTED_FROM_MYSELF)
             {
-                // ���荞�݃n���h�����̂��߁Astatic �ł����͂Ȃ�
+                // 割り込みハンドラ内のため、static でも問題はない
                 static WMPortRecvCallback cb_Port;
                 u16     iPort;
 
-                // WM9 ���ŊǗ����Ă���ڑ���Ԃ�ύX
+                // WM9 側で管理している接続状態を変更
                 if (state == WM_STATECODE_CONNECTED)
                 {
 #ifdef WM_DEBUG
@@ -890,7 +890,7 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
                 cb_Port.maxSendDataSize = (myAid == 0) ? parentSize : childSize;
                 cb_Port.maxRecvDataSize = (myAid == 0) ? childSize : parentSize;
 
-                // �S�Ă� port �ɑ΂��āA�ڑ��E�ؒf�̒ʒm���s��
+                // 全ての port に対して、接続・切断の通知を行う
                 for (iPort = 0; iPort < WM_NUM_OF_PORT; iPort++)
                 {
                     cb_Port.port = iPort;
@@ -903,12 +903,12 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
             }
         }
     }
-    // PORT_SEND, PORT_RECV �� fifo7to9 �̈�ɏ������݂��s���Ă��܂��Ă��邽��
-    // ���C�g�o�b�N����Ȃ��悤�L���b�V���𖳌��ɂ���
+    // PORT_SEND, PORT_RECV で fifo7to9 領域に書き込みを行ってしまっているため
+    // ライトバックされないようキャッシュを無効にする
     DC_InvalidateRange(w9b->fifo7to9, WM_FIFO_BUF_SIZE);
     WmClearFifoRecvFlag();
 
-    // �����o�b�t�@�� fifo7to9 �Ƃ͕ʃo�b�t�@�̏ꍇ�A���N�G�X�g��t�����t���O���U��
+    // 応答バッファが fifo7to9 とは別バッファの場合、リクエスト受付完了フラグを偽装
     if ((u32)callback_p != (u32)(w9b->fifo7to9))
     {
         callback_p->apiid |= WM_API_REQUEST_ACCEPTED;
@@ -923,10 +923,10 @@ static void WmReceiveFifo(PXIFifoTag tag, u32 fifo_buf_adr, BOOL err)
 /*---------------------------------------------------------------------------*
   Name:         WmClearFifoRecvFlag
 
-  Description:  WM7����̃R�[���o�b�N�ɗp����ꂽFIFO�f�[�^���Q�Ƃ��I�������Ƃ�
-                WM7�ɒʒm����B
-                WM7�ɂ����ăR�[���o�b�N��FIFO��p����ہA���̃t���O���A�����b�N
-                �����̂�҂��Ă��玟�̃R�[���o�b�N��ҏW����B
+  Description:  WM7からのコールバックに用いられたFIFOデータを参照し終えたことを
+                WM7に通知する。
+                WM7においてコールバックにFIFOを用いる際、このフラグがアンロック
+                されるのを待ってから次のコールバックを編集する。
 
   Arguments:    None.
 
@@ -936,7 +936,7 @@ static void WmClearFifoRecvFlag(void)
 {
     if (OS_GetSystemWork()->wm_callback_control & WM_EXCEPTION_CB_MASK)
     {
-        // CB�r���t���O��������
+        // CB排他フラグを下げる
         OS_GetSystemWork()->wm_callback_control &= ~WM_EXCEPTION_CB_MASK;
     }
 }
@@ -944,9 +944,9 @@ static void WmClearFifoRecvFlag(void)
 /*---------------------------------------------------------------------------*
   Name:         WMi_DebugPrintSendQueue
 
-  Description:  �|�[�g���M�L���[�̓��e���v�����g�o�͂���B
+  Description:  ポート送信キューの内容をプリント出力する。
 
-  Arguments:    queue - �|�[�g���M�L���[�ւ̃|�C���^���w��B
+  Arguments:    queue - ポート送信キューへのポインタを指定。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -956,7 +956,7 @@ void WMi_DebugPrintSendQueue(WMPortSendQueue *queue)
     WMPortSendQueueData *queueData;
     u16     index;
 
-    DC_InvalidateRange(wm9buf->status, WM_STATUS_BUF_SIZE);     // ARM7�X�e�[�^�X�̈�̃L���b�V���𖳌���
+    DC_InvalidateRange(wm9buf->status, WM_STATUS_BUF_SIZE);     // ARM7ステータス領域のキャッシュを無効化
     queueData = status->sendQueueData;
 
     OS_Printf("head = %d, tail = %d, ", queue->head, queue->tail);
@@ -978,7 +978,7 @@ void WMi_DebugPrintSendQueue(WMPortSendQueue *queue)
 /*---------------------------------------------------------------------------*
   Name:         WMi_DebugPrintAllSendQueue
 
-  Description:  �S�Ẵ|�[�g���M�L���[�̓��e���v�����g�o�͂���B
+  Description:  全てのポート送信キューの内容をプリント出力する。
 
   Arguments:    None.
 
@@ -990,7 +990,7 @@ void WMi_DebugPrintAllSendQueue(void)
 #if 0
     int     iPrio;
 
-    DC_InvalidateRange(wm9buf->status, WM_STATUS_BUF_SIZE);     // ARM7�X�e�[�^�X�̈�̃L���b�V���𖳌���
+    DC_InvalidateRange(wm9buf->status, WM_STATUS_BUF_SIZE);     // ARM7ステータス領域のキャッシュを無効化
     for (iPrio = 0; iPrio < WM_PRIORITY_LEVEL; iPrio++)
     {
         OS_Printf("== send queue [%d]\n", iPrio);
@@ -1006,7 +1006,7 @@ void WMi_DebugPrintAllSendQueue(void)
               status->sendQueueFreeList.tail);
 //    WMi_DebugPrintSendQueue( &status->sendQueueFreeList );
 #else
-    DC_InvalidateRange(wm9buf->status, WM_STATUS_BUF_SIZE);     // ARM7�X�e�[�^�X�̈�̃L���b�V���𖳌���
+    DC_InvalidateRange(wm9buf->status, WM_STATUS_BUF_SIZE);     // ARM7ステータス領域のキャッシュを無効化
     OS_Printf("== ready queue [2]\n");
     OS_Printf(" head: %d, tail: %d\n", status->readyQueue[2].head, status->readyQueue[2].tail);
 #endif
@@ -1016,18 +1016,18 @@ void WMi_DebugPrintAllSendQueue(void)
 /*---------------------------------------------------------------------------*
   Name:         WMi_GetStatusAddress
 
-  Description:  WM���ŊǗ�����Ă���X�e�[�^�X�\���̂ւ̃|�C���^���擾����B
-                ���̍\���̂�ARM7�����ڑ��삷��̂ŁAARM9����̏������݂͋֎~�B
-                �܂��A���e�Q�Ƃ̑O�ɎQ�Ƃ��镔�����܂ރL���b�V�����C����j��
-                ����K�v������_�ɒ��ӁB
+  Description:  WM内で管理されているステータス構造体へのポインタを取得する。
+                この構造体はARM7が直接操作するので、ARM9からの書き込みは禁止。
+                また、内容参照の前に参照する部分を含むキャッシュラインを破棄
+                する必要がある点に注意。
 
   Arguments:    None.
 
-  Returns:      const WMStatus* - �X�e�[�^�X�\���̂ւ̃|�C���^��Ԃ��B
+  Returns:      const WMStatus* - ステータス構造体へのポインタを返す。
  *---------------------------------------------------------------------------*/
 const WMStatus *WMi_GetStatusAddress(void)
 {
-    // �������`�F�b�N
+    // 初期化チェック
     if (WMi_CheckInitialized() != WM_ERRCODE_SUCCESS)
     {
         return NULL;
@@ -1039,22 +1039,22 @@ const WMStatus *WMi_GetStatusAddress(void)
 /*---------------------------------------------------------------------------*
   Name:         WMi_CheckMpPacketTimeRequired
 
-  Description:  MP�ʐM�̂P�p�P�b�g�̓]�����v���Ԃ� 5600��s �ȉ��ł��邱�Ƃ�
-                �m�F����B
+  Description:  MP通信の１パケットの転送所要時間が 5600μs 以下であることを
+                確認する。
 
-  Arguments:    parentSize  -   �e�@�]���f�[�^�T�C�Y�B
-                childSize   -   �q�@�]���f�[�^�T�C�Y�B
-                childs      -   �ʐM����q�@�̑䐔�B
+  Arguments:    parentSize  -   親機転送データサイズ。
+                childSize   -   子機転送データサイズ。
+                childs      -   通信する子機の台数。
 
-  Returns:      BOOL        -   ���e�͈͂ł���ꍇ��TRUE��Ԃ��B
-                                5600��s ���z����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL        -   許容範囲である場合にTRUEを返す。
+                                5600μs を越える場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL WMi_CheckMpPacketTimeRequired(u16 parentSize, u16 childSize, u8 childs)
 {
     s32     mp_time;
 
-    // ����MP�ʐM�ɂ����鎞�Ԃ�us�P�ʂŌv�Z
-    mp_time = ((                       // --- �e�@���M���� ---
+    // 一回のMP通信にかかる時間をus単位で計算
+    mp_time = ((                       // --- 親機送信部分 ---
                    96                  // Preamble
                    + (24               // 802.11 Header
                       + 4              // TXOP + PollBitmap
@@ -1062,7 +1062,7 @@ BOOL WMi_CheckMpPacketTimeRequired(u16 parentSize, u16 childSize, u8 childs)
                       + parentSize + 4 // wmFooter( parent )
                       + 4              // FCS
                    ) * 4               // 4us per 1 byte
-               ) + (                   // --- �q�@���M���� ---
+               ) + (                   // --- 子機送信部分 ---
                        (10             // SIFS
                         + 96           // Preamble
                         + (24          // 802.11 Header
@@ -1071,7 +1071,7 @@ BOOL WMi_CheckMpPacketTimeRequired(u16 parentSize, u16 childSize, u8 childs)
                            + 4         // FCS
                         ) * 4          // 4us per 1 byte
                         + 6            // time to spare
-                       ) * childs) + ( // --- MP ACK ���M���� ---
+                       ) * childs) + ( // --- MP ACK 送信部分 ---
                                          10     // SIFS
                                          + 96   // Preamble
                                          + (24  // 802.11 Header
@@ -1093,11 +1093,11 @@ BOOL WMi_CheckMpPacketTimeRequired(u16 parentSize, u16 childSize, u8 childs)
 /*---------------------------------------------------------------------------*
   Name:         WMi_IsMP
 
-  Description:  ���݂� MP �ʐM��Ԃ��擾����B
+  Description:  現在の MP 通信状態を取得する。
 
   Arguments:    None.
 
-  Returns:      MP �ʐM��Ԃł���� TRUE
+  Returns:      MP 通信状態であれば TRUE
  *---------------------------------------------------------------------------*/
 BOOL WMi_IsMP(void)
 {
@@ -1106,14 +1106,14 @@ BOOL WMi_IsMP(void)
     OSIntrMode e;
 
 #ifdef SDK_DEBUG
-    // �������`�F�b�N
+    // 初期化チェック
     if (WMi_CheckInitialized() != WM_ERRCODE_SUCCESS)
     {
         return FALSE;
     }
 #endif
 
-    // �����݋֎~
+    // 割込み禁止
     e = OS_DisableInterrupts();
 
     if (wm9buf != NULL)
@@ -1127,7 +1127,7 @@ BOOL WMi_IsMP(void)
         isMP = FALSE;
     }
 
-    // �����݋֎~�߂�
+    // 割込み禁止戻し
     (void)OS_RestoreInterrupts(e);
 
     return isMP;
@@ -1136,9 +1136,9 @@ BOOL WMi_IsMP(void)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetAID
 
-  Description:  ���݂� AID ���擾����B
-                ��Ԃ� PARENT, MP_PARENT, CHILD, MP_CHILD �̂����ꂩ�̎��̂�
-                �L���Ȓl��Ԃ��B
+  Description:  現在の AID を取得する。
+                状態が PARENT, MP_PARENT, CHILD, MP_CHILD のいずれかの時のみ
+                有効な値を返す。
 
   Arguments:    None.
 
@@ -1150,14 +1150,14 @@ u16 WM_GetAID(void)
     OSIntrMode e;
 
 #ifdef SDK_DEBUG
-    // �������`�F�b�N
+    // 初期化チェック
     if (WMi_CheckInitialized() != WM_ERRCODE_SUCCESS)
     {
         return 0;
     }
 #endif
 
-    // �����݋֎~
+    // 割込み禁止
     e = OS_DisableInterrupts();
 
     if (wm9buf != NULL)
@@ -1169,7 +1169,7 @@ u16 WM_GetAID(void)
         myAid = 0;
     }
 
-    // �����݋֎~�߂�
+    // 割込み禁止戻し
     (void)OS_RestoreInterrupts(e);
 
     return myAid;
@@ -1178,14 +1178,14 @@ u16 WM_GetAID(void)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetConnectedAIDs
 
-  Description:  ���݂̐ڑ�������r�b�g�}�b�v�̌`�Ŏ擾����B
-                ��Ԃ� PARENT, MP_PARENT, CHILD, MP_CHILD �̂����ꂩ�̎��̂�
-                �L���Ȓl��Ԃ��B
-                �q�@�̏ꍇ�͐e�@�Ɛڑ����� 0x0001 ��Ԃ��B
+  Description:  現在の接続相手をビットマップの形で取得する。
+                状態が PARENT, MP_PARENT, CHILD, MP_CHILD のいずれかの時のみ
+                有効な値を返す。
+                子機の場合は親機と接続中は 0x0001 を返す。
 
   Arguments:    None.
 
-  Returns:      �ڑ����Ă��鑊��� AID �̃r�b�g�}�b�v
+  Returns:      接続している相手の AID のビットマップ
  *---------------------------------------------------------------------------*/
 u16 WM_GetConnectedAIDs(void)
 {
@@ -1193,14 +1193,14 @@ u16 WM_GetConnectedAIDs(void)
     OSIntrMode e;
 
 #ifdef SDK_DEBUG
-    // �������`�F�b�N
+    // 初期化チェック
     if (WMi_CheckInitialized() != WM_ERRCODE_SUCCESS)
     {
         return 0;
     }
 #endif
 
-    // �����݋֎~
+    // 割込み禁止
     e = OS_DisableInterrupts();
 
     if (wm9buf != NULL)
@@ -1212,7 +1212,7 @@ u16 WM_GetConnectedAIDs(void)
         connectedAidBitmap = 0;
     }
 
-    // �����݋֎~�߂�
+    // 割込み禁止戻し
     (void)OS_RestoreInterrupts(e);
 
 #ifdef WM_DEBUG
@@ -1231,15 +1231,15 @@ u16 WM_GetConnectedAIDs(void)
 /*---------------------------------------------------------------------------*
   Name:         WMi_GetMPReadyAIDs
 
-  Description:  ���݂̐ڑ�����̂����AMP ����M�ł��鑊��� AID �̈ꗗ��
-                �r�b�g�}�b�v�̌`�Ŏ擾����B
-                ��Ԃ� PARENT, MP_PARENT, CHILD, MP_CHILD �̂����ꂩ�̎��̂�
-                �L���Ȓl��Ԃ��B
-                �q�@�̏ꍇ�͐e�@�Ɛڑ����� 0x0001 ��Ԃ��B
+  Description:  現在の接続相手のうち、MP を受信できる相手の AID の一覧を
+                ビットマップの形で取得する。
+                状態が PARENT, MP_PARENT, CHILD, MP_CHILD のいずれかの時のみ
+                有効な値を返す。
+                子機の場合は親機と接続中は 0x0001 を返す。
 
   Arguments:    None.
 
-  Returns:      MP ���J�n���Ă��鑊��� AID �̃r�b�g�}�b�v
+  Returns:      MP を開始している相手の AID のビットマップ
  *---------------------------------------------------------------------------*/
 u16 WMi_GetMPReadyAIDs(void)
 {
@@ -1248,14 +1248,14 @@ u16 WMi_GetMPReadyAIDs(void)
     OSIntrMode e;
 
 #ifdef SDK_DEBUG
-    // �������`�F�b�N
+    // 初期化チェック
     if (WMi_CheckInitialized() != WM_ERRCODE_SUCCESS)
     {
         return FALSE;
     }
 #endif
 
-    // �����݋֎~
+    // 割込み禁止
     e = OS_DisableInterrupts();
 
     if (wm9buf != NULL)
@@ -1269,7 +1269,7 @@ u16 WMi_GetMPReadyAIDs(void)
         mpReadyAidBitmap = FALSE;
     }
 
-    // �����݋֎~�߂�
+    // 割込み禁止戻し
     (void)OS_RestoreInterrupts(e);
 
     return mpReadyAidBitmap;

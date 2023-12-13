@@ -1,9 +1,9 @@
 #ifndef _W226_DEF_H_
 #define _W226_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_W226_SIGN1		(1)
 #define	SCRID_W226_SIGN2		(2)
-#define	SCRID_W226_DATA_MAX		(2)		//最大数
+#define	SCRID_W226_DATA_MAX		(2)		//譛螟ｧ謨ｰ
 
 #endif //_W226_DEF_H_

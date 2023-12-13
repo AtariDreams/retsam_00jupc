@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	roulette_savedata_local.h
- * @brief	uƒoƒgƒ‹ƒ‹[ƒŒƒbƒgvƒwƒbƒ_[
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.09.05
  */
@@ -13,41 +13,41 @@
 
 //============================================================================================
 //
-//	ƒvƒŒƒCƒf[ƒ^
+//	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿
 //
 //============================================================================================
 struct _ROULETTEDATA{
-	u8	type		:3;									//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
-	u8	save_flag	:1;									//ƒZ[ƒuÏ‚Ý‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	u8	random_flag	:1;									//ƒJ[ƒ\ƒ‹‚Ìƒ‰ƒ“ƒ_ƒ€ˆÚ“®onƒtƒ‰ƒO
+	u8	type		:3;									//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ
+	u8	save_flag	:1;									//ã‚»ãƒ¼ãƒ–æ¸ˆã¿ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	u8	random_flag	:1;									//ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•onãƒ•ãƒ©ã‚°
 	u8	dmy99		:3;
-	u8	round;											//¡‰½l–ÚH
-	u8	csr_speed_level;								//ƒJ[ƒ\ƒ‹‚ÌƒXƒs[ƒhƒŒƒxƒ‹
+	u8	round;											//ä»Šä½•äººç›®ï¼Ÿ
+	u8	csr_speed_level;								//ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ¬ãƒ™ãƒ«
 
-	//ŽQ‰Á‚µ‚Ä‚¢‚éŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	u8 mine_poke_pos[ROULETTE_ENTRY_POKE_MAX];			//
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“
-	u16 item[ROULETTE_MINE_POKE_MAX];					//“¹‹ï
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
+	u16 item[ROULETTE_MINE_POKE_MAX];					//é“å…·
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
-	u16 tr_index[ROULETTE_LAP_MULTI_ENEMY_MAX];			//ƒgƒŒ[ƒi[indexƒe[ƒuƒ‹[7*2]
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	u16 tr_index[ROULETTE_LAP_MULTI_ENEMY_MAX];			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼indexãƒ†ãƒ¼ãƒ–ãƒ«[7*2]
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É•Û‘¶
-	u16 enemy_poke_index[ROULETTE_LAP_MULTI_ENEMY_MAX];	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ä¿å­˜
+	u16 enemy_poke_index[ROULETTE_LAP_MULTI_ENEMY_MAX];	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 
-	u16 dummy;											//4byte‹«ŠE
+	u16 dummy;											//4byteå¢ƒç•Œ
 };
 
 
 //============================================================================================
 //
-//	¬Ñƒf[ƒ^
+//	æˆç¸¾ãƒ‡ãƒ¼ã‚¿
 //
 //============================================================================================
 struct _ROULETTESCORE{
-	//«WIFIˆÈŠO‚Ìƒoƒgƒ‹ƒ^ƒCƒv‚ÅŽg—p‚µ‚Ä‚¢‚é
-	u8	clear_flag;										//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO(ƒrƒbƒg)
+	//â†“WIFIä»¥å¤–ã®ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã§ä½¿ç”¨ã—ã¦ã„ã‚‹
+	u8	clear_flag;										//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°(ãƒ“ãƒƒãƒˆ)
 	u8	dmy[3];
 };
 

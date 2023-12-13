@@ -2,29 +2,29 @@
 #define __COMM_COMMAND_TRADELIST_H__
 
 
-// ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB[‚ð‘—M‚·‚é‚Æ‚«‚Ìƒf[ƒ^—Ê
+// ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚’é€ä¿¡ã™ã‚‹ã¨ãã®ãƒ‡ãƒ¼ã‚¿é‡
 #define POKEPARTY_SEND_ONCE_SIZE	( 236*6+4*2 )	// sizeof(POKEPARTY)
 
 #include "communication/comm_command.h"
 
 
-/// ŒðŠ·ƒŠƒXƒgê—p’ÊMƒRƒ}ƒ“ƒh‚Ì’è‹`B
+/// äº¤æ›ãƒªã‚¹ãƒˆå°‚ç”¨é€šä¿¡ã‚³ãƒžãƒ³ãƒ‰ã®å®šç¾©ã€‚
 enum CommCommandTradeList_e {
 
-  CT_POKEDATA  = CS_COMMAND_MAX,	///< ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ì‘—MƒRƒ}ƒ“ƒh
-  CT_CURSOR_POS,					///< ƒJ[ƒ\ƒ‹ˆÊ’uî•ñ
-  CT_TRADE_DECIDE,					///< Œˆ’è
-  CT_TRADE_YES,						///< ‚Í‚¢
-  CT_TRADE_NO,						///< ‚¢‚¢‚¦
-  CT_TRADE_START,					///< ŒðŠ·ƒfƒ‚‚Ö
-  CT_FRINEDLIST,					///< —F’BƒŠƒXƒgƒf[ƒ^‚ð‘—‚é
-  CT_PERAPVOICE,					///< ƒyƒ‰ƒbƒvƒ”ƒHƒCƒXƒf[ƒ^‚ð‘—‚é
-  CT_TRADE_END,						///< I—¹
-  CT_SAVE_WAIT_TIME,				///< ƒZ[ƒu‚Ü‚Å‚ÌƒEƒFƒCƒg	
-  CT_SP_RIBBON_INFO,				///< Šg’£ƒŠƒ{ƒ“î•ñ
+  CT_POKEDATA  = CS_COMMAND_MAX,	///< ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡ã‚³ãƒžãƒ³ãƒ‰
+  CT_CURSOR_POS,					///< ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®æƒ…å ±
+  CT_TRADE_DECIDE,					///< æ±ºå®š
+  CT_TRADE_YES,						///< ã¯ã„
+  CT_TRADE_NO,						///< ã„ã„ãˆ
+  CT_TRADE_START,					///< äº¤æ›ãƒ‡ãƒ¢ã¸
+  CT_FRINEDLIST,					///< å‹é”ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
+  CT_PERAPVOICE,					///< ãƒšãƒ©ãƒƒãƒ—ãƒ´ã‚©ã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
+  CT_TRADE_END,						///< çµ‚äº†
+  CT_SAVE_WAIT_TIME,				///< ã‚»ãƒ¼ãƒ–ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ	
+  CT_SP_RIBBON_INFO,				///< æ‹¡å¼µãƒªãƒœãƒ³æƒ…å ±
   
-  //------------------------------------------------‚±‚±‚Ü‚Å
-  CT_COMMAND_MAX   // I’[--------------‚±‚ê‚ÍˆÚ“®‚³‚¹‚È‚¢‚Å‚­‚¾‚³‚¢
+  //------------------------------------------------ã“ã“ã¾ã§
+  CT_COMMAND_MAX   // çµ‚ç«¯--------------ã“ã‚Œã¯ç§»å‹•ã•ã›ãªã„ã§ãã ã•ã„
 };
 
 extern void CommTradeListPokemonData(int netID, int size, void* pBuff, void* pWork);

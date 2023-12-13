@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <imd version="1.6.0">
 
@@ -1027,7 +1027,7 @@
 	triangle_size="22" quad_size="70"/>
 
 <ex_nns_3dme>
-	<ex_model_info scene_name="暗いFOGあり" disp_pos="0.000000 60.000000"/>
+	<ex_model_info scene_name="證励＞FOG縺ゅｊ" disp_pos="0.000000 60.000000"/>
 	<ex_tex_image_array size="4">
 		<ex_tex_image index="0" disp_pos="-180.000000 300.000000"/>
 		<ex_tex_image index="1" disp_pos="60.000000 300.000000"/>

@@ -1,10 +1,10 @@
 //=============================================================================
 /**
  * @file	comm_field_state.c
- * @brief	�ʐM��Ԃ��Ǘ�����T�[�r�X  �ʐM�̏�ʂɂ���
- *          �X���b�h�̂ЂƂƂ��ē����A�����̒ʐM��Ԃ⑼�̋@���
- *          �J�n��I�����Ǘ�����
- *          �t�B�[���h��Œ��ڊǗ��������̂�communication����field�Ɉړ� 2005.09.28
+ * @brief	通信状態を管理するサービス  通信の上位にある
+ *          スレッドのひとつとして働き、自分の通信状態や他の機器の
+ *          開始や終了を管理する
+ *          フィールド上で直接管理したいのでcommunicationからfieldに移動 2005.09.28
  * @author	Katsumi Ohno
  * @date    2005.08.02
  */
@@ -46,29 +46,29 @@
 
 #include "comm_field_state_local.h"
 //==============================================================================
-// ��`
+// 定義
 //==============================================================================
-#define _START_TIME (50)     // �J�n����
-#define _CHILD_P_SEARCH_TIME (12) ///�q�@�Ƃ��Đe��T������
-#define _PARENT_WAIT_TIME (40) ///�e�Ƃ��Ă̂�т�҂���
+#define _START_TIME (50)     // 開始時間
+#define _CHILD_P_SEARCH_TIME (12) ///子機として親を探す時間
+#define _PARENT_WAIT_TIME (40) ///親としてのんびり待つ時間
 #define _FINALIZE_TIME (2)
 #define _EXIT_SENDING_TIME (5)
 #define _PARENT_END_TIME (2)
 #define _SEND_NAME_TIME (10)
-#define _PARENTSCAN_PA (3)  // �e�@�Ƃ��Č�������m����1/3
+#define _PARENTSCAN_PA (3)  // 親機として検索する確立は1/3
 
-#define _TCB_COMMCHECK_PRT   (10)    ///< �t�B�[���h������ʐM�̊Ď����[�`����PRI
+#define _TCB_COMMCHECK_PRT   (10)    ///< フィールドを歩く通信の監視ルーチンのPRI
 
 
 //==============================================================================
-// static�錾
+// static宣言
 //==============================================================================
 
-// �X�e�[�g�̏�����
+// ステートの初期化
 
-static void _commCheckFunc(TCB_PTR tcb, void* work);  // �X�e�[�g�����s���Ă���^�X�N
-static void _changeState(PTRStateFunc state, int time);  // �X�e�[�g��ύX����
-static void _changeStateDebug(PTRStateFunc state, int time, int line);  // �X�e�[�g��ύX����
+static void _commCheckFunc(TCB_PTR tcb, void* work);  // ステートを実行しているタスク
+static void _changeState(PTRStateFunc state, int time);  // ステートを変更する
+static void _changeStateDebug(PTRStateFunc state, int time, int line);  // ステートを変更する
 
 #ifdef PM_DEBUG
 #if 1
@@ -81,20 +81,20 @@ static void _changeStateDebug(PTRStateFunc state, int time, int line);  // �X�e�
 #endif //PM_DEBUG
 
 
-// �n���֘A�X�e�[�g
-static void _underStart(void);           // ������ + �V�X�e���̏�����
-static void _underOpenning(void);       //�C�x���g��
-static void _underConnecttingAloneSend(void);  // �������]������
-static void _underConnectting(void);     // �ڑ���
-static void _underChildConnecting(void);   // �q�@���e�@�ɐڑ���
-static void _underChildConnectInfoWait(void);  // �q�@�Ƃ��Đڑ��� info���W
+// 地下関連ステート
+static void _underStart(void);           // 初期化 + システムの初期化
+static void _underOpenning(void);       //イベント中
+static void _underConnecttingAloneSend(void);  // 初期化転送完了
+static void _underConnectting(void);     // 接続中
+static void _underChildConnecting(void);   // 子機が親機に接続中
+static void _underChildConnectInfoWait(void);  // 子機として接続中 info収集
 static void _underChildConnectFlagWait(void);
-static void _underChildConnectSecret(void);    // �q�@�Ƃ��Đڑ���
-static void _underChildConnectDig(void);    // �q�@�Ƃ��Đڑ���
-static void _underChildConnect(void);    // �q�@�Ƃ��Đڑ���
-static void _underChildConnect_JumpFieldStart(void);    // �q�@�Ƃ��Đڑ��� Jump�J�n
-static void _underChildConnect_JumpField(void);    // �q�@�Ƃ��Đڑ��� Jump��
-static void _underChildConnect_JumpFieldEnd(void);    // �q�@�Ƃ��Đڑ��� Jump�����
+static void _underChildConnectSecret(void);    // 子機として接続中
+static void _underChildConnectDig(void);    // 子機として接続中
+static void _underChildConnect(void);    // 子機として接続中
+static void _underChildConnect_JumpFieldStart(void);    // 子機として接続中 Jump開始
+static void _underChildConnect_JumpField(void);    // 子機として接続中 Jump中
+static void _underChildConnect_JumpFieldEnd(void);    // 子機として接続中 Jumpおわり
 static void _underParentRestart(void);
 #if (T1645_060815_FIX|T1644_060816_FIX)
 static void _underParentRestartAloneWait(void);
@@ -103,43 +103,43 @@ static void _underChildRestart(void);
 static void _underChildRestart_Base(void);
 static void _underChildStalth(void);
 
-static void _underParentWait(void);      // �e�@�Ƃ��đҋ@���
-static void _underParentConnect(void);   // �e�@�Ƃ��Đڑ���
-static void _underParentConnect_JumpFieldStart(void);  // �e�@�Ƃ��Đڑ��� Jump�J�n
-static void _underParentConnect_JumpField(void);  // �e�@�Ƃ��Đڑ��� Jump��
-static void _underParentConnect_JumpFieldEnd(void);  // �e�@�Ƃ��Đڑ��� Jump�I���
-static void _stateUnderGroundConnectEnd(void);  // �n���ؒf
+static void _underParentWait(void);      // 親機として待機状態
+static void _underParentConnect(void);   // 親機として接続中
+static void _underParentConnect_JumpFieldStart(void);  // 親機として接続中 Jump開始
+static void _underParentConnect_JumpField(void);  // 親機として接続中 Jump中
+static void _underParentConnect_JumpFieldEnd(void);  // 親機として接続中 Jump終わり
+static void _stateUnderGroundConnectEnd(void);  // 地下切断
 
-static void _underSoloConnect_JumpFieldStart(void);    // solo�@�Ƃ��Đڑ��� Jump�J�n
-static void _underSoloConnect_JumpField(void);    // solo�@�Ƃ��Đڑ��� Jump��
-static void _underSoloConnect_JumpFieldEnd(void);    // solo�@�Ƃ��Đڑ��� Jump�����
-static void _underStalthConnect_JumpFieldStart(void);    // stalth�@�Ƃ��Đڑ��� Jump�J�n
-static void _underStalthConnect_JumpField(void);    // stalth�@�Ƃ��Đڑ��� Jump��
-static void _underStalthConnect_JumpFieldEnd(void);    // stalth�@�Ƃ��Đڑ��� Jump�����
+static void _underSoloConnect_JumpFieldStart(void);    // solo機として接続中 Jump開始
+static void _underSoloConnect_JumpField(void);    // solo機として接続中 Jump中
+static void _underSoloConnect_JumpFieldEnd(void);    // solo機として接続中 Jumpおわり
+static void _underStalthConnect_JumpFieldStart(void);    // stalth機として接続中 Jump開始
+static void _underStalthConnect_JumpField(void);    // stalth機として接続中 Jump中
+static void _underStalthConnect_JumpFieldEnd(void);    // stalth機として接続中 Jumpおわり
 
 static void _underChildStalthDeadLoop(void);
 
 
 
-// ���̑���ʓI�ȃX�e�[�g
-static void _stateNone(void);            // �������Ȃ�
-static void _stateConnectError(void);    // �ڑ��G���[���
-static void _stateEnd(void);             // �I������
-static void _stateConnectEnd(void);      // �ؒf�����J�n
+// その他一般的なステート
+static void _stateNone(void);            // 何もしない
+static void _stateConnectError(void);    // 接続エラー状態
+static void _stateEnd(void);             // 終了処理
+static void _stateConnectEnd(void);      // 切断処理開始
 static void _underChildRebootFunc(void);
 
 #ifdef PM_DEBUG		// Debug ROM
-static void _debugTimerStart(void);   // �f�o�b�O�p
+static void _debugTimerStart(void);   // デバッグ用
 static void _debugTimerDisp(char* msg);
 #else
-static void _debugTimerStart(void){}   // �f�o�b�O�p
+static void _debugTimerStart(void){}   // デバッグ用
 static void _debugTimerDisp(char* msg){}
 #endif
 
 
 //==============================================================================
 /**
- * �n���ɂ͂��������̒ʐM����
+ * 地下にはいった時の通信処理
  * @param   pFSys FIELDSYS_WORK
  * @retval  none
  */
@@ -149,16 +149,16 @@ void CommFieldStateEnterUnderGround(FIELDSYS_WORK* pFSys)
 {
     _COMM_FSTATE_WORK *pCFS = _getCommFieldStateWork();
     
-    if(pCFS != NULL){ // �Ȃ����Ă���ꍇ���͏��O����
+    if(pCFS != NULL){ // つながっている場合今は除外する
         return;
     }
-    // �ڑ����s
+    // 接続実行
     CommStateEnterUnderGround(GameSystem_GetSaveData(pFSys));
     _commStateInitialize(pFSys);
     pCFS = _getCommFieldStateWork();
-    sys_CreateHeap( HEAPID_BASE_APP, HEAPID_UNDERGROUND, 0xe800 );  //�O�b�Y���j���[�ł��Ȃ�m��
+    sys_CreateHeap( HEAPID_BASE_APP, HEAPID_UNDERGROUND, 0xe800 );  //グッズメニューでかなり確保
     if(!SysFlag_UgFirstCheck(SaveData_GetEventWork(pCFS->pFSys->savedata))){
-        OS_TPrintf("����n���C�x���g\n");
+        OS_TPrintf("初回地下イベント\n");
         CommStateSetFirstEvent();
     }
 
@@ -166,7 +166,7 @@ void CommFieldStateEnterUnderGround(FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * �n���ɂ͂����āA�t�B�[���h���n���ɕς�������̏���
+ * 地下にはいって、フィールドが地下に変わった時の処理
  * @param   pFSys FIELDSYS_WORK
  * @retval  none
  */
@@ -179,7 +179,7 @@ void CommFieldStateArrivalUnderGround(void)
     pCFS->bUGOverlay = TRUE;
     RECORD_Score_Add(SaveData_GetRecord(pCFS->pFSys->savedata), SCORE_ID_MINE_IN);
 
-    CommUnderOptionInitialize(pCFS->pFSys);  // �n���T�[�r�X�̋N��
+    CommUnderOptionInitialize(pCFS->pFSys);  // 地下サービスの起動
 
 #ifdef PM_DEBUG
     if(DebugOhnoGetCommDebugDisp()){
@@ -192,7 +192,7 @@ void CommFieldStateArrivalUnderGround(void)
 
 //==============================================================================
 /**
- * �n�����o��ꍇ�̒ʐM����
+ * 地下を出る場合の通信処理
  * @param   none
  * @retval  none
  */
@@ -201,17 +201,17 @@ void CommFieldStateArrivalUnderGround(void)
 void CommFieldStateExitUnderGround(void)
 {
     _COMM_FSTATE_WORK *pCFS = _getCommFieldStateWork();
-    if(pCFS==NULL){  // ���łɏI�����Ă���
+    if(pCFS==NULL){  // すでに終了している
         return;
     }
-    // �ؒf�X�e�[�g�Ɉڍs����  �����ɐ؂�Ȃ�
+    // 切断ステートに移行する  すぐに切れない
     
     _CHANGE_STATE(_stateUnderGroundConnectEnd, 3);
 }
 
 //==============================================================================
 /**
- * �n����ʐM��~�ɂ���ꍇ�̒ʐM����
+ * 地下を通信停止にする場合の通信処理
  * @param   none
  * @retval  none
  */
@@ -220,14 +220,14 @@ void CommFieldStateExitUnderGround(void)
 void CommFieldStateStalthUnderGround(void)
 {
 //    OHNO_PRINT("stalth \n");
-//    CommUnderOptionFinalize();  // �������͂���@@OO
+//    CommUnderOptionFinalize();  // ここをはずす@@OO
     CommStateUnderGroundOfflineSecretBase();
     _CHANGE_STATE(_underChildStalth, 0);
 }
 
 //==============================================================================
 /**
- * �n�����Đڑ�����ꍇ�̏���
+ * 地下を再接続する場合の処理
  * @param   none
  * @retval  none
  */
@@ -247,18 +247,18 @@ void CommFieldStateUnderGroundReConnect(void)
 {
 //    CommSecretBaseInfoChildSendStart();
     //_underChildConnect_JumpFieldEnd();
-    CommStateUnderGroundOnlineSecretBase();  // �ʐM��Ԃ�ONLINE�ɂ��ǂ�
+    CommStateUnderGroundOnlineSecretBase();  // 通信状態をONLINEにもどす
 
     _CHANGE_STATE(_underStalthEndCheck,0);
 //    _CHANGE_STATE(_underStart,1)
     
-//    CommTrapInfoChildSendStart();  //Trap���������g�ɑ��M�J�n
+//    CommTrapInfoChildSendStart();  //Trapを自分自身に送信開始
 //    _CHANGE_STATE(_underConnectting, _CHILD_P_SEARCH_TIME*2);
 }
 
 //==============================================================================
 /**
- * �n����JUMP����ꍇ�̒ʐM����
+ * 地下をJUMPする場合の通信処理
  * @param   none
  * @retval  none
  */
@@ -308,7 +308,7 @@ BOOL CommStateJumpUnderGround(void)
 
 //==============================================================================
 /**
- * �n����JUMP���I������ꍇ�̏��� �X�e�[�g��Active��ԂɂȂ�
+ * 地下をJUMPし終わった場合の処理 ステートがActive状態になる
  * @param   none
  * @retval  none
  */
@@ -340,16 +340,16 @@ BOOL CommStateJumpEndUnderGround(void)
         return TRUE;
     }
     {
-//        GF_ASSERT(0 && "�z��O��state:�v�C��");
+//        GF_ASSERT(0 && "想定外のstate:要修正");
     }
     return FALSE;
 }
 
 //==============================================================================
 /**
- * �ړ��\�X�e�[�g�Ȃ̂��ǂ����Ԃ�
+ * 移動可能ステートなのかどうか返す
  * @param   none
- * @retval  �ړ��\�Ȃ�TRUE
+ * @retval  移動可能ならTRUE
  */
 //==============================================================================
 
@@ -375,7 +375,7 @@ BOOL CommIsUnderGroundMoveState(void)
     };
     u32 stateAddr = (u32)pCFS->state;
 
-    if(pCFS==NULL){  // ���łɏI�����Ă���
+    if(pCFS==NULL){  // すでに終了している
         return FALSE;
     }
     for(i = 0; funcTbl[i] != 0; i++ ){
@@ -389,7 +389,7 @@ BOOL CommIsUnderGroundMoveState(void)
 
 //==============================================================================
 /**
- * �ʐM�Ǘ��X�e�[�g�̏���
+ * 通信管理ステートの処理
  * @param
  * @retval  none
  */
@@ -419,9 +419,9 @@ static void _commCheckFunc(TCB_PTR tcb, void* work)
 
 //==============================================================================
 /**
- * �ʐM�Ǘ��X�e�[�g�̕ύX
- * @param   state  �ς���X�e�[�g�̊֐�
- * @param   time   �X�e�[�g�ێ�����
+ * 通信管理ステートの変更
+ * @param   state  変えるステートの関数
+ * @param   time   ステート保持時間
  * @retval  none
  */
 //==============================================================================
@@ -443,7 +443,7 @@ static void _changeStateDebug(PTRStateFunc state, int time, int line)
 
 //==============================================================================
 /**
- * �n���X�^�[�g
+ * 地下スタート
  * @param   none
  * @retval  none
  */
@@ -459,19 +459,19 @@ static void _underStart(void)
     if(!CommIsInitialize()){
         return;  //
     }
-//    if(!CommGetAloneMode()){   // alone���[�h�̏ꍇ
+//    if(!CommGetAloneMode()){   // aloneモードの場合
 //        return;
 //    }    
-    CommUnderOptionReInit(pCFS->pFSys);  // �n���T�[�r�X�ēx������
+    CommUnderOptionReInit(pCFS->pFSys);  // 地下サービス再度初期化
 
-    // �������g�ɂ������񑗂�
+    // 自分自身にいったん送る
     CommInfoSendPokeData();
     CommPlayerSendPos(FALSE);
-    CommTrapInfoChildSendStart();  //Trap���������g�ɑ��M�J�n
-    CommSecretBaseInfoChildSendStart(); // �����̔閧��n�f�[�^�����̐e���ɑ��M�J�n
+    CommTrapInfoChildSendStart();  //Trapを自分自身に送信開始
+    CommSecretBaseInfoChildSendStart(); // 自分の秘密基地データ自分の親側に送信開始
 
     if(!SysFlag_UgFirstCheck(SaveData_GetEventWork(pCFS->pFSys->savedata))){
-        // �Ђ傤���悤�X�e�[�g
+        // ひょうたようステート
         _CHANGE_STATE(_underOpenning, 0);
     }
     else{
@@ -482,7 +482,7 @@ static void _underStart(void)
 
 //==============================================================================
 /**
- * openiing���I���܂łȂɂ����Ȃ�  �Ȃ���Ȃ��悤�ɂ����
+ * openiingが終わるまでなにもしない  つながらないようにする為
  * @param   none
  * @retval  none
  */
@@ -504,7 +504,7 @@ static void _underOpenning(void)
 
 //==============================================================================
 /**
- * �����Ŏ����Ƀf�[�^�𑗐M���I���܂ő҂�
+ * 自分で自分にデータを送信し終わるまで待つ
  * @param   none
  * @retval  none
  */
@@ -522,7 +522,7 @@ static void _underConnecttingAloneSend(void)
 
 //==============================================================================
 /**
- * �l�b�g���[�N���Ȃ���܂őҋ@
+ * ネットワークがつながるまで待機
  * @param   none
  * @retval  none
  */
@@ -534,15 +534,15 @@ static void _underConnectting(void)
 
     CommPlayerFirstMoveEnable();
     
-    if(CommIsUnderGroundConnectingState()){  // �ڑ�����܂ŌĂё�����
+    if(CommIsUnderGroundConnectingState()){  // 接続するまで呼び続ける
         if(CommGetCurrentID() == COMM_PARENT_ID){
-          //  OHNO_PRINT("�e�ɂȂ���\n");
+          //  OHNO_PRINT("親になった\n");
             CommSecretBaseInfoParentDel();
 
             _CHANGE_STATE(_underParentWait, 60);
         }
         else{
-          //  OHNO_PRINT("�q�ɂȂ���\n");
+          //  OHNO_PRINT("子になった\n");
             _CHANGE_STATE(_underChildConnecting, 120);
         }
     }
@@ -550,7 +550,7 @@ static void _underConnectting(void)
 
 //==============================================================================
 /**
- * �q�@�ƂȂ��Đڑ���
+ * 子機となって接続中
  * @param   none
  * @retval  none
  */
@@ -564,24 +564,24 @@ static void _underChildConnecting(void)
 
     if(CommMPParentDisconnect() || CommIsError() || (pCFS->timer==0) ){
         CommStateUnderRestart();
-        _CHANGE_STATE(_underChildRestart, 0);  // �q�@�ɂȂ�O�ɃG���[�ɂȂ���
+        _CHANGE_STATE(_underChildRestart, 0);  // 子機になる前にエラーになった
     }
-    else if(CommIsConnect(CommGetCurrentID())){   // �������g���ڑ����Ă��邱�Ƃ��m�F�ł�����
+    else if(CommIsConnect(CommGetCurrentID())){   // 自分自身が接続していることが確認できたら
         if(pCFS->timer!=0){
             pCFS->timer--;
-            if(CommGetSendRestSize() != COMM_COMMAND_SEND_SIZE_MAX){  // ��ɂȂ�܂ő҂� �^�C�}�[��
+            if(CommGetSendRestSize() != COMM_COMMAND_SEND_SIZE_MAX){  // 空になるまで待つ タイマーつき
                 return;
             }
         }
         UgMgrForceExitNowTCB();
-        CommPlayerMyDataCopy( COMM_PARENT_ID );  // �e�f�[�^���玩���������Ă���
-        CommTrapRecvForceEnd(COMM_PARENT_ID,0,NULL,NULL);  // 㩂��~�߂�
+        CommPlayerMyDataCopy( COMM_PARENT_ID );  // 親データから自分を持ってくる
+        CommTrapRecvForceEnd(COMM_PARENT_ID,0,NULL,NULL);  // 罠を止める
         UgTrapForceExit(COMM_PARENT_ID,TRUE);
-        CommInfoDeletePlayer(COMM_PARENT_ID);   // �������e�������̂ł��������
+        CommInfoDeletePlayer(COMM_PARENT_ID);   // 自分が親だったのでそれを消す
         CommPlayerDestroy( COMM_PARENT_ID, FALSE, FALSE );
 //        CommPlayerSendPos(FALSE);
-        //_debugTimerDisp("�q�@�ڑ�----!!!-----");
-  //      OHNO_PRINT("�q�@�ɂȂ��� %d \n",CommGetCurrentID());
+        //_debugTimerDisp("子機接続----!!!-----");
+  //      OHNO_PRINT("子機になった %d \n",CommGetCurrentID());
         CommPlayerFirstMoveDisable();
         _CHANGE_STATE(_underChildConnectInfoWait, 10);
         return;
@@ -591,7 +591,7 @@ static void _underChildConnecting(void)
 
 //==============================================================================
 /**
- * �e�@�ɂȂ�A�q�@���ڑ����Ă���̂�҂�
+ * 親機になり、子機が接続してくるのを待つ
  * @param   none
  * @retval  none
  */
@@ -607,19 +607,19 @@ static void _underParentWait(void)
     }
 
     if(CommIsChildsConnecting() || (pCFS->timer==0)){
-        // �����ȊO���Ȃ�������e�@�Œ�
-        // �������͎q�@���ؒf���Ă��܂����ꍇ�̃^�C���A�E�g�G���[�I�Ɉړ�
+        // 自分以外がつながったら親機固定
+        // もしくは子機が切断してしまった場合のタイムアウトエラー的に移動
         if(UgMgrForceExitNowTCB()){
             CommPlayerHoldEnd();
         }
-        _debugTimerDisp("�e�@�ڑ�");
+        _debugTimerDisp("親機接続");
 //        CommInfoSendPokeData();
         CommPlayerSendPos(FALSE);
-//        CommTrapInfoChildSendStart();  //Trap���������g�ɑ��M�J�n
+//        CommTrapInfoChildSendStart();  //Trapを自分自身に送信開始
         CommPlayerNowFlagSend();
-        CommSecretBaseInfoChildSendStart(); // �����̔閧��n�f�[�^�����̐e���ɑ��M�J�n
+        CommSecretBaseInfoChildSendStart(); // 自分の秘密基地データ自分の親側に送信開始
 //        UgDigFossilPlayerInit();
-        UgInitialDataSend();   // ���΁{�G�X�P�[�v�ꏊ�𑗐M
+        UgInitialDataSend();   // 化石＋エスケープ場所を送信
         _CHANGE_STATE(_underParentConnect, 0);
         return;
     }
@@ -628,7 +628,7 @@ static void _underParentWait(void)
 
 //==============================================================================
 /**
- * �e�@�Ƃ��Đڑ���
+ * 親機として接続中
  * @param   none
  * @retval  none
  */
@@ -639,22 +639,22 @@ static void _underParentConnect(void)
     _COMM_FSTATE_WORK *pCFS = _getCommFieldStateWork();
     CommUnderProcess();
 
-    // �S���ڑ����؂ꂽ�珄��ɖ߂邪�C�x���g���͋֎~
-//    if((pCFS->pFSys->event != NULL) || UgSecretBaseIsMoveTickets()){  // �n���ړ��C�x���g���ɃX�e�[�g��ς���̂͋֎~
-    if(pCFS->pFSys->event != NULL){  // �n���ړ��C�x���g���ɃX�e�[�g��ς���̂͋֎~
+    // 全員接続が切れたら巡回に戻るがイベント中は禁止
+//    if((pCFS->pFSys->event != NULL) || UgSecretBaseIsMoveTickets()){  // 地下移動イベント時にステートを変えるのは禁止
+    if(pCFS->pFSys->event != NULL){  // 地下移動イベント時にステートを変えるのは禁止
         return;
     }
 
     if(CommIsError() || !CommMPIsChildsConnecting() || ((!CommIsConnect(CommGetCurrentID()) && !CommGetAloneMode())) ){
 
-//        OHNO_PRINT("�Ȃ����q�@���ؒf���� %d %d\n",CommIsError(),CommMPIsChildsConnecting());
+//        OHNO_PRINT("なぜか子機が切断する %d %d\n",CommIsError(),CommMPIsChildsConnecting());
         
-        // �閧��n����߂�E�C���h�E���o�Ă���Ɛe�@�̈ړ��t���O�������Ă���̂ł����Ń��Z�b�g
-        UgSecretBaseResetPlayer(COMM_PARENT_ID); // �C�x���g�������ĂȂ��Ȃ烊�Z�b�g
+        // 秘密基地から戻るウインドウが出ていると親機の移動フラグがたっているのでここでリセット
+        UgSecretBaseResetPlayer(COMM_PARENT_ID); // イベントが動いてないならリセット
 
         CommPlayerParentFlagDataReset();
         UgSecretBaseErrorMoveTickets();
-        CommSendFixData(CF_TRAP_END_FORCE);    // �T�[�o�[������������
+        CommSendFixData(CF_TRAP_END_FORCE);    // サーバー側も強制解除
         UgTrapForceExit(CommGetCurrentID(),TRUE);
         UgMgrForceExitNowTCB();
         CommStateUnderParentRestart();
@@ -668,7 +668,7 @@ static void _underParentConnect(void)
 
 //==============================================================================
 /**
- * �e�@�Ƃ��Đڑ���   �閧��n�ւ̈ړ��J�n
+ * 親機として接続中   秘密基地への移動開始
  * @param   none
  * @retval  none
  */
@@ -684,7 +684,7 @@ static void _underParentConnect_JumpFieldStart(void)
 
 //==============================================================================
 /**
- * �e�@�Ƃ��Đڑ���   �閧��n�ւ̈ړ���
+ * 親機として接続中   秘密基地への移動中
  * @param   none
  * @retval  none
  */
@@ -697,7 +697,7 @@ static void _underParentConnect_JumpField(void)
 
 //==============================================================================
 /**
- * �e�@�Ƃ��Đڑ���   �閧��n�ւ̈ړ��I���
+ * 親機として接続中   秘密基地への移動終わり
  * @param   none
  * @retval  none
  */
@@ -721,7 +721,7 @@ static void _underParentConnect_JumpFieldEnd(void)
 
 //==============================================================================
 /**
- * �q�@�Ƃ��Đڑ��������Ă��ā@info�f�[�^���W�߂Ă���Ƃ���
+ * 子機として接続完了していて　infoデータを集めているところ
  * @param   none
  * @retval  none
  */
@@ -731,19 +731,19 @@ static void _underChildConnectInfoWait(void)
 {
     _COMM_FSTATE_WORK *pCFS = _getCommFieldStateWork();
     if(pCFS->timer == 9){
-        CommInfoSendPokeData();  //info�f�[�^�𑗂�
-        UgInitialDataSend();   // ���΁{�G�X�P�[�v�ꏊ�𑗐M
+        CommInfoSendPokeData();  //infoデータを送る
+        UgInitialDataSend();   // 化石＋エスケープ場所を送信
     }
     if(pCFS->timer == 1){
-        //UgDigFossilPlayerInit();// ���Ό@���Ă邩�ǂ����𑗂�
-        CommPlayerSendPosServer(FALSE);  //�e�X�g
+        //UgDigFossilPlayerInit();// 化石掘ってるかどうかを送る
+        CommPlayerSendPosServer(FALSE);  //テスト
     }
     if(pCFS->timer!=0){
         pCFS->timer--;
         return;
     }
     if(CommInfoIsInfoCollected()){
-        _debugTimerDisp("info�f�[�^��M����");
+        _debugTimerDisp("infoデータ受信完了");
         CommPlayerNowFlagSend();
         _CHANGE_STATE(_underChildConnectFlagWait,200);
         return;
@@ -754,7 +754,7 @@ static void _underChildConnectInfoWait(void)
 
 //==============================================================================
 /**
- * �q�@�Ƃ��Đڑ��������Ă��ā@�n�^�f�[�^�𑗂鏊
+ * 子機として接続完了していて　ハタデータを送る所
  * @param   none
  * @retval  none
  */
@@ -764,7 +764,7 @@ static void _underChildConnectFlagWait(void)
 {
     _COMM_FSTATE_WORK *pCFS = _getCommFieldStateWork();
     if(CommPlayerIsNowFlagDataEnd()){
-        CommTrapInfoChildSendStart();  // 㩏�񑗐M
+        CommTrapInfoChildSendStart();  // 罠情報送信
         _CHANGE_STATE(_underChildConnectSecret,0);
     }
     else{
@@ -773,8 +773,8 @@ static void _underChildConnectFlagWait(void)
             pCFS->timer--;
         }
         else{
-            // �^�C���A�E�g�ɂ��ؒf
-        //    OHNO_PRINT("�����Ƃ��ĂȂ�\n");
+            // タイムアウトによる切断
+        //    OHNO_PRINT("うけとってない\n");
             _underChildRebootFunc();
         }
     }
@@ -782,7 +782,7 @@ static void _underChildConnectFlagWait(void)
 
 //==============================================================================
 /**
- * �q�@�Ƃ��Đڑ�  㩑��M����
+ * 子機として接続  罠送信完了
  * @param   none
  * @retval  none
  */
@@ -791,9 +791,9 @@ static void _underChildConnectFlagWait(void)
 static void _underChildConnectSecret(void)
 {
     if(CommTrapInfoIsParentRecv()){
-        _debugTimerDisp("�e�@㩃f�[�^�͂����炵��");
+        _debugTimerDisp("親機罠データ届いたらしい");
         CommTrapInfoResetParentRecv();
-        CommSecretBaseInfoChildSendStart(); // �q�@�̔閧��n�f�[�^���M�J�n
+        CommSecretBaseInfoChildSendStart(); // 子機の秘密基地データ送信開始
         _CHANGE_STATE(_underChildConnectDig,0);
         return;
     }
@@ -802,7 +802,7 @@ static void _underChildConnectSecret(void)
 
 //==============================================================================
 /**
- * �q�@�Ƃ��Đڑ� �閧��n���M����
+ * 子機として接続 秘密基地送信完了
  * @param   none
  * @retval  none
  */
@@ -811,11 +811,11 @@ static void _underChildConnectSecret(void)
 static void _underChildConnectDig(void)
 {
     if(CommSecretBaseInfoIsPosRecv()){
-        _debugTimerDisp("�閧��n�̈ʒu������");
+        _debugTimerDisp("秘密基地の位置がきた");
         CommSecretBaseResetPosRecv();
      //   CommPlayerSetMoveControl(TRUE);
-        CommPlayerSendPos(TRUE);  // �L�������o���ׂɂ�����񑗂�@�e�X�g��
-        CommSendFixData(CF_PLAYER_INIT_END);  // �����������𑗐M
+        CommPlayerSendPos(TRUE);  // キャラを出す為にもう一回送る　テスト中
+        CommSendFixData(CF_PLAYER_INIT_END);  // 初期化完了を送信
         _CHANGE_STATE(_underChildConnect,0);
         return;
     }
@@ -826,7 +826,7 @@ static void _underChildConnectDig(void)
 
 //==============================================================================
 /**
- * �e�@�Ƃ��Đؒf������
+ * 親機として切断をする
  * @param   none
  * @retval  none
  */
@@ -849,7 +849,7 @@ static void _underParentRestartAloneWait(void)
 
 //==============================================================================
 /**
- * �e�@�Ƃ��Đؒf������̂�҂�
+ * 親機として切断をするのを待つ
  * @param   none
  * @retval  none
  */
@@ -872,8 +872,8 @@ static void _underParentRestart(void)
         }
     }
 #endif //T1644_060816_FIX
-    if(CommGetCurrentID() == COMM_PARENT_ID){  // �e�ɂȂ���
-      //  OHNO_PRINT("�ăX�^�[�g\n");
+    if(CommGetCurrentID() == COMM_PARENT_ID){  // 親になった
+      //  OHNO_PRINT("再スタート\n");
         _CHANGE_STATE(_underStart, 0);
     }
 }
@@ -882,7 +882,7 @@ static void _underParentRestart(void)
 
 //==============================================================================
 /**
- * �e�@�Ƃ��Đؒf������
+ * 親機として切断をする
  * @param   none
  * @retval  none
  */
@@ -903,8 +903,8 @@ static void _underParentRestart(void)
         return;
     }
     
-    if(CommGetCurrentID() == COMM_PARENT_ID){  // �e�ɂȂ���
-     //   OHNO_PRINT("�ăX�^�[�g\n");
+    if(CommGetCurrentID() == COMM_PARENT_ID){  // 親になった
+     //   OHNO_PRINT("再スタート\n");
         _CHANGE_STATE(_underStart, 0);
     }
 }
@@ -913,7 +913,7 @@ static void _underParentRestart(void)
 
 //==============================================================================
 /**
- * �q�@�Ƃ��Đؒf������
+ * 子機として切断をする
  * @param   none
  * @retval  none
  */
@@ -926,8 +926,8 @@ static void _underChildRestart(void)
         pCFS->timer--;
         return;
     }
-    if(CommGetCurrentID() == COMM_PARENT_ID){  // �e�ɂȂ���
-   //     OHNO_PRINT("�ăX�^�[�g\n");
+    if(CommGetCurrentID() == COMM_PARENT_ID){  // 親になった
+   //     OHNO_PRINT("再スタート\n");
         _CHANGE_STATE(_underStart, 0);
     }
 }
@@ -935,8 +935,8 @@ static void _underChildRestart(void)
 static void _underChildRestart_Base(void)
 {
     _COMM_FSTATE_WORK *pCFS = _getCommFieldStateWork();
-    if(pCFS->pFSys->event == NULL ){  // �n���ړ��C�x���g�I��
-        CommStateUnderRestart();  // �n���̒ʐM��e�q�؂�ւ���
+    if(pCFS->pFSys->event == NULL ){  // 地下移動イベント終了
+        CommStateUnderRestart();  // 地下の通信を親子切り替えに
         _CHANGE_STATE(_underChildRestart, 0);
     }
 }
@@ -952,22 +952,22 @@ static void _underChildStalth(void)
 {
     _COMM_FSTATE_WORK *pCFS = _getCommFieldStateWork();
     if(CommGetCurrentID() == COMM_PARENT_ID){
-//        CommUnderOptionInitialize(pCFS->pFSys);  // �n���T�[�r�X�̋N��
+//        CommUnderOptionInitialize(pCFS->pFSys);  // 地下サービスの起動
 
-        CommUnderOptionReInit(pCFS->pFSys);  // �n���T�[�r�X�ēx������
+        CommUnderOptionReInit(pCFS->pFSys);  // 地下サービス再度初期化
 
-        // �������g�ɂ������񑗂�
+        // 自分自身にいったん送る
         CommInfoSendPokeData();
         CommPlayerSendPos(FALSE);
-        CommTrapInfoChildSendStart();  //Trap���������g�ɑ��M�J�n
-        CommSecretBaseInfoChildSendStart(); // �����̔閧��n�f�[�^�����̐e���ɑ��M�J�n
+        CommTrapInfoChildSendStart();  //Trapを自分自身に送信開始
+        CommSecretBaseInfoChildSendStart(); // 自分の秘密基地データ自分の親側に送信開始
         _CHANGE_STATE(_underChildStalthDeadLoop, 0);
     }
 }
 
 //==============================================================================
 /**
- * �q�@�Ƃ��Đڑ�����
+ * 子機として接続完了
  * @param   none
  * @retval  none
  */
@@ -977,7 +977,7 @@ static void _underChildStalth(void)
 
 //==============================================================================
 /**
- * �q�@�Ƃ��Đڑ�����
+ * 子機として接続完了
  * @param   none
  * @retval  none
  */
@@ -989,26 +989,26 @@ static void _underChildRebootFunc(void)
     UgTrapForceExit(CommGetCurrentID(),TRUE);
     UgSecretBaseRemovePlayer_Client(CommGetCurrentID(),TRUE);
     UgDigFossilDeleteLog();
-    CommPlayerManagerStop();  // �ړ���~
-    UgMgrForceExitNowTCB();   // �o�^�C�x���g���I��������
-    CommStateUnderRestart();  // �n���̒ʐM��e�q�؂�ւ���
-    CommPlayerFlagChange();   // �����̃n�^��}���ւ���
+    CommPlayerManagerStop();  // 移動停止
+    UgMgrForceExitNowTCB();   // 登録イベントを終了させる
+    CommStateUnderRestart();  // 地下の通信を親子切り替えに
+    CommPlayerFlagChange();   // 自分のハタを挿げ替える
     _CHANGE_STATE(_underChildRestart, 0);//
 #else
     UgTrapForceExit(CommGetCurrentID(),TRUE);
     if(UgSecretBaseRemovePlayer_Client(CommGetCurrentID(),TRUE)){
-        CommPlayerManagerStop();  // �ړ���~
-        UgMgrForceExitNowTCB();   // �o�^�C�x���g���I��������
-        CommStateUnderRestart();  // �n���̒ʐM��e�q�؂�ւ���
-        CommPlayerFlagChange();   // �����̃n�^��}���ւ���
+        CommPlayerManagerStop();  // 移動停止
+        UgMgrForceExitNowTCB();   // 登録イベントを終了させる
+        CommStateUnderRestart();  // 地下の通信を親子切り替えに
+        CommPlayerFlagChange();   // 自分のハタを挿げ替える
         _CHANGE_STATE(_underChildRestart, 0);//
     }
     else{
-  //      OHNO_PRINT("�ؒf�ċN�� %d\n",CommGetCurrentID());
-        CommPlayerManagerStop();  // �ړ���~
-        UgMgrForceExitNowTCB();   // �o�^�C�x���g���I��������
-        CommStateUnderRestart();  // �n���̒ʐM��e�q�؂�ւ���
-        CommPlayerFlagChange();   // �����̃n�^��}���ւ���
+  //      OHNO_PRINT("切断再起動 %d\n",CommGetCurrentID());
+        CommPlayerManagerStop();  // 移動停止
+        UgMgrForceExitNowTCB();   // 登録イベントを終了させる
+        CommStateUnderRestart();  // 地下の通信を親子切り替えに
+        CommPlayerFlagChange();   // 自分のハタを挿げ替える
         _CHANGE_STATE(_underChildRestart, 0);
     }
 #endif
@@ -1022,18 +1022,18 @@ static void _underChildConnect(void)
 
     CommPlayerFirstMoveEnable();
     
-    // �e�@�����Ȃ��Ȃ�����I�����������ĕʐe��T���ɂ���
-    if(pCFS->pFSys->event != NULL ){  // �n���ړ��C�x���g���ɃX�e�[�g��ς���̂͋֎~
+    // 親機がいなくなったら終了処理をして別親を探しにいく
+    if(pCFS->pFSys->event != NULL ){  // 地下移動イベント時にステートを変えるのは禁止
         return;
     }
     if(CommMPParentDisconnect() || CommIsError()){
-        _underChildRebootFunc();  // �ċN��
+        _underChildRebootFunc();  // 再起動
     }
 }
 
 //==============================================================================
 /**
- * �q�@�Ƃ��Đڑ����@�@�@JUMP����
+ * 子機として接続中　　　JUMP処理
  * @param   none
  * @retval  none
  */
@@ -1049,7 +1049,7 @@ static void _underChildConnect_JumpFieldStart(void)
 
 //==============================================================================
 /**
- * �q�@�Ƃ��Đڑ����@�@�@JUMP����
+ * 子機として接続中　　　JUMP処理
  * @param   none
  * @retval  none
  */
@@ -1057,13 +1057,13 @@ static void _underChildConnect_JumpFieldStart(void)
 
 static void _underChildConnect_JumpField(void)
 {
-    // �o���邾���������Ȃ�
+    // 出来るだけ何もしない
     UgSecretBaseErrorDisconnectTickets();
 }
 
 //==============================================================================
 /**
- * �q�@�Ƃ��Đڑ����@�@�@JUMP����
+ * 子機として接続中　　　JUMP処理
  * @param   none
  * @retval  none
  */
@@ -1083,13 +1083,13 @@ static void _underChildConnect_JumpFieldEnd(void)
 #endif
 
     if(CommMPParentDisconnect() || CommIsError()){
-   //     OHNO_PRINT("�ؒf�ċN�� %d\n",CommGetCurrentID());
+   //     OHNO_PRINT("切断再起動 %d\n",CommGetCurrentID());
         
         CommSecretBaseInfoReInit();  // 
-        CommPlayerManagerStop();  // �ړ���~
-        UgMgrForceExitNowTCB();   // �o�^�C�x���g���I��������
-        CommStateUnderRestart();  // �n���̒ʐM��e�q�؂�ւ���
-        CommPlayerFlagChange();   // �����̃n�^��}���ւ���
+        CommPlayerManagerStop();  // 移動停止
+        UgMgrForceExitNowTCB();   // 登録イベントを終了させる
+        CommStateUnderRestart();  // 地下の通信を親子切り替えに
+        CommPlayerFlagChange();   // 自分のハタを挿げ替える
         _CHANGE_STATE(_underChildRestart, 0);
     }
     else{
@@ -1101,7 +1101,7 @@ static void _underChildConnect_JumpFieldEnd(void)
 
 //==============================================================================
 /**
- * solo�@�Ƃ��Đڑ����@�@�@JUMP����
+ * solo機として接続中　　　JUMP処理
  * @param   none
  * @retval  none
  */
@@ -1115,7 +1115,7 @@ static void _underSoloConnect_JumpFieldStart(void)
 
 //==============================================================================
 /**
- * solo�@�Ƃ��Đڑ����@�@�@JUMP����
+ * solo機として接続中　　　JUMP処理
  * @param   none
  * @retval  none
  */
@@ -1127,7 +1127,7 @@ static void _underSoloConnect_JumpField(void)
 
 //==============================================================================
 /**
- * solo�@�Ƃ��Đڑ����@�@�@JUMP����
+ * solo機として接続中　　　JUMP処理
  * @param   none
  * @retval  none
  */
@@ -1148,7 +1148,7 @@ static void _underSoloConnect_JumpFieldEnd(void)
 
 //==============================================================================
 /**
- * stalth�@�Ƃ��Đڑ����@�@�@JUMP����
+ * stalth機として接続中　　　JUMP処理
  * @param   none
  * @retval  none
  */
@@ -1162,7 +1162,7 @@ static void _underStalthConnect_JumpFieldStart(void)
 
 //==============================================================================
 /**
- * stalth�@�Ƃ��Đڑ����@�@�@JUMP����
+ * stalth機として接続中　　　JUMP処理
  * @param   none
  * @retval  none
  */
@@ -1174,7 +1174,7 @@ static void _underStalthConnect_JumpField(void)
 
 //==============================================================================
 /**
- * solo�@�Ƃ��Đڑ����@�@�@JUMP����
+ * solo機として接続中　　　JUMP処理
  * @param   none
  * @retval  none
  */
@@ -1195,7 +1195,7 @@ static void _underStalthConnect_JumpFieldEnd(void)
 
 //==============================================================================
 /**
- * �������Ȃ��X�e�[�g
+ * 何もしないステート
  * @param   none
  * @retval  none
  */
@@ -1203,12 +1203,12 @@ static void _underStalthConnect_JumpFieldEnd(void)
 
 static void _stateNone(void)
 {
-    // �Ȃɂ����Ă��Ȃ�
+    // なにもしていない
 }
 
 //==============================================================================
 /**
- * @brief �G���[����
+ * @brief エラー処理
  * @param   none
  * @retval  none
  */
@@ -1220,7 +1220,7 @@ static void _stateConnectError(void)
 
 //==============================================================================
 /**
- * @brief  �I��������
+ * @brief  終了処理中
  * @param   none
  * @retval  none
  */
@@ -1236,7 +1236,7 @@ static void _stateEnd(void)
 
 //==============================================================================
 /**
- * @brief  �n�����E�����J�n
+ * @brief  地下離脱処理開始
  * @param   none
  * @retval  none
  */
@@ -1255,14 +1255,14 @@ static void _stateUnderGroundConnectEnd(void)
 
     sys_DeleteHeap(HEAPID_UNDERGROUND);
 
-    pCFS->bUGOverlay = FALSE; // �n�����~�߂�
+    pCFS->bUGOverlay = FALSE; // 地下を止める
 
-    _stateFinalize();   // state�͂����ŏI�� �ʐM�͌ォ��؂��
+    _stateFinalize();   // stateはここで終了 通信は後から切れる
 }
 
 //==============================================================================
 /**
- * @brief  �I�������J�n
+ * @brief  終了処理開始
  * @param   none
  * @retval  none
  */
@@ -1275,7 +1275,7 @@ static void _stateConnectEnd(void)
         pCFS->timer--;
         return;
     }
-    // �ؒf����
+    // 切断する
     CommFinalize();
     _CHANGE_STATE(_stateEnd, 0);
 }
@@ -1290,7 +1290,7 @@ static void _debugTimerStart(void)
 static void _debugTimerDisp(char* msg)
 {
     _COMM_FSTATE_WORK *pCFS = _getCommFieldStateWork();
-    OHNO_PRINT("%s �J�n���� %d sync ������܂���\n", msg, pCFS->debugTimer * 2);
+    OHNO_PRINT("%s 開始から %d sync かかりました\n", msg, pCFS->debugTimer * 2);
 }
 
 #endif

@@ -28,13 +28,13 @@ extern "C" {
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// \‘¢‘Ì’è‹`‹y‚Ñtypedef
+// æ§‹é€ ä½“å®šç¾©åŠã³typedef
 //
 
 typedef enum
 {
-    // NNS_G3dGlbFlushAlt‚ªg—p‚³‚ê‚½ê‡‚ÉON
-    // NNS_G3dGlbFlush‚ªg—p‚³‚ê‚½ê‡‚ÉOFF
+    // NNS_G3dGlbFlushAltãŒä½¿ç”¨ã•ã‚ŒãŸå ´åˆã«ON
+    // NNS_G3dGlbFlushãŒä½¿ç”¨ã•ã‚ŒãŸå ´åˆã«OFF
     NNS_G3D_GLB_FLAG_FLUSH_WVP              = 0x00000001,
     NNS_G3D_GLB_FLAG_FLUSH_VP               = 0x00000002,
     NNS_G3D_GLB_FLAG_INVBASE_UPTODATE       = 0x00000004,
@@ -54,20 +54,20 @@ NNSG3dGlbFlag;
 /*---------------------------------------------------------------------------*
     NNSG3dGlb
 
-    ‰Â”\‚ÈŒÀ‚èƒOƒ[ƒoƒ‹ó‘Ô‚Í•Û‚µ‚È‚¢•ûj
-    ‚¾‚ªAƒf[ƒ^ƒƒ“ƒo‚ª‘‚¦‚é‰Â”\«‚Í‚ ‚éBAPI‚ğ’Ê‚¶‚Ä‚ÌƒAƒNƒZƒX‚ª–]‚Ü‚µ‚¢B
+    å¯èƒ½ãªé™ã‚Šã‚°ãƒ­ãƒ¼ãƒãƒ«çŠ¶æ…‹ã¯ä¿æŒã—ãªã„æ–¹é‡
+    ã ãŒã€ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ³ãƒãŒå¢—ãˆã‚‹å¯èƒ½æ€§ã¯ã‚ã‚‹ã€‚APIã‚’é€šã˜ã¦ã®ã‚¢ã‚¯ã‚»ã‚¹ãŒæœ›ã¾ã—ã„ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct
 {
     u32     cmd0;             // G3_MtxMode -> G3_LoadMtx44 -> G3_MtxMode -> G3_LoadMtx43
     u32     mtxmode_proj;     // GX_MTXMODE_PROJECTION
-    MtxFx44 projMtx;          // Ë‰es—ñ
+    MtxFx44 projMtx;          // å°„å½±è¡Œåˆ—
     //
     u32     mtxmode_posvec;   // GX_MTXMODE_POSITION_VECTOR
-    MtxFx43 cameraMtx;        // ƒJƒƒ‰s—ñ
+    MtxFx43 cameraMtx;        // ã‚«ãƒ¡ãƒ©è¡Œåˆ—
     
     u32     cmd1;             // G3_LightVector * 4
-    u32     lightVec[4];      // ƒ‰ƒCƒgƒxƒNƒgƒ‹
+    u32     lightVec[4];      // ãƒ©ã‚¤ãƒˆãƒ™ã‚¯ãƒˆãƒ«
 
     u32     cmd2;             // G3_MatColorDiffAmb -> G3_MatColorSpecEmi -> G3_PolygonAttr -> G3_ViewPort
     u32     prmMatColor0;
@@ -76,7 +76,7 @@ typedef struct
     u32     prmViewPort;
 
     u32     cmd3;             // G3_LightColor * 4
-    u32     lightColor[4];    // ƒ‰ƒCƒgƒJƒ‰[
+    u32     lightColor[4];    // ãƒ©ã‚¤ãƒˆã‚«ãƒ©ãƒ¼
 
     u32     cmd4;             // G3_MultMtx43 -> G3_Scale -> G3_TexImageParam
     MtxFx33 prmBaseRot;
@@ -102,7 +102,7 @@ NNSG3dGlb;
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ŠÖ”‚ÌéŒ¾
+// é–¢æ•°ã®å®£è¨€
 //
 
 //
@@ -171,7 +171,7 @@ void NNS_G3dGlbGetViewPort(int* px1, int* py1, int* px2, int* py2);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ƒOƒ[ƒoƒ‹•Ï”
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //
 
 extern NNSG3dGlb NNS_G3dGlb;

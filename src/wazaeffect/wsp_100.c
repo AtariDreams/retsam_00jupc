@@ -1,48 +1,48 @@
 //==============================================================================
 /**
  * @file	wsp_100.c
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	goto
  * @date	2006.02.23
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
 
-#include "common.h"				///< •K{
-#include "system/lib_pack.h"	///< •K{
-#include "west_sp.h"			///< •K{
-#include "wsp.h"				///< xxx.c‚É‘Î‚·‚éxxx.h‚Í•K{
+#include "common.h"				///< å¿…é ˆ
+#include "system/lib_pack.h"	///< å¿…é ˆ
+#include "west_sp.h"			///< å¿…é ˆ
+#include "wsp.h"				///< xxx.cã«å¯¾ã™ã‚‹xxx.hã¯å¿…é ˆ
 
-#include "wazatool.h"			///< ‹ZƒGƒtƒFƒNƒgŽx‰‡ŠÖ”ŒS
+#include "wazatool.h"			///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ”¯æ´é–¢æ•°éƒ¡
 #include "we_tool.h"			///< 
 
 #include "ball_effect.h"
-#include "system/arc_tool.h"	///< ƒA[ƒJƒCƒu—p
-#include "system/arc_util.h"	///< ƒA[ƒJƒCƒu—p
+#include "system/arc_tool.h"	///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨
+#include "system/arc_util.h"	///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨
 
 #include "we_def.h"
 
 
-///< No100 `
+///< No100 ã€œ
 
 // -----------------------------------------
 //
-//	  102 ‚à‚Ì‚Ü‚Ë
+//	â–¡ 102 ã‚‚ã®ã¾ã­
 //
 // -----------------------------------------
 typedef struct {
 
-	TWE_TOOL_SYS		ts;		///< ‹ZƒGƒtƒFƒNƒg”Ä—p\‘¢‘Ì
-	TWE_POKE_SYS		poke;	///< ƒ|ƒPƒ‚ƒ“”Ä—p\‘¢‘Ì
-	TWE_POKE_SYS		poke2[2];	///< ƒ|ƒPƒ‚ƒ“”Ä—p\‘¢‘Ì
+	TWE_TOOL_SYS		ts;		///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ±Žç”¨æ§‹é€ ä½“
+	TWE_POKE_SYS		poke;	///< ãƒã‚±ãƒ¢ãƒ³æ±Žç”¨æ§‹é€ ä½“
+	TWE_POKE_SYS		poke2[2];	///< ãƒã‚±ãƒ¢ãƒ³æ±Žç”¨æ§‹é€ ä½“
 	
 	s16					dy;
 	s16					poke_h;
 	s16					base_y;
 	
-	WAZATOOL_CALCMOVE	cm;		///< ”Ä—pƒ[ƒN
+	WAZATOOL_CALCMOVE	cm;		///< æ±Žç”¨ãƒ¯ãƒ¼ã‚¯
 	
 } TWE_102_SYS;
 
@@ -73,7 +73,7 @@ static void We102_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	default:
-		///< ‰ð•úˆ—
+		///< è§£æ”¾å‡¦ç†
 		return;
 	}
 
@@ -129,19 +129,19 @@ void WestSp_WE_102(WE_SYS_PTR we_sys)
 #if 0
 // -----------------------------------------
 //
-//	  102 ‚à‚Ì‚Ü‚Ë
+//	â–¡ 102 ã‚‚ã®ã¾ã­
 //
 // -----------------------------------------
 typedef struct {
 
-	TWE_TOOL_SYS		ts;		///< ‹ZƒGƒtƒFƒNƒg”Ä—p\‘¢‘Ì
-	TWE_POKE_SYS		poke;	///< ƒ|ƒPƒ‚ƒ“”Ä—p\‘¢‘Ì
+	TWE_TOOL_SYS		ts;		///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ±Žç”¨æ§‹é€ ä½“
+	TWE_POKE_SYS		poke;	///< ãƒã‚±ãƒ¢ãƒ³æ±Žç”¨æ§‹é€ ä½“
 	
 	s16					dy;
 	s16					poke_h;
 	s16					base_y;
 	
-	WAZATOOL_CALCMOVE	cm;		///< ”Ä—pƒ[ƒN
+	WAZATOOL_CALCMOVE	cm;		///< æ±Žç”¨ãƒ¯ãƒ¼ã‚¯
 	
 } TWE_102_SYS;
 
@@ -167,7 +167,7 @@ static void We102_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	default:
-		///< ‰ð•úˆ—
+		///< è§£æ”¾å‡¦ç†
 		WEEffect_TCB_Delete(wk->ts.wsp, tcb);
 		WET_SAFE_RELEASE(wk);
 		return;
@@ -205,14 +205,14 @@ void WestSp_WE_102(WE_SYS_PTR we_sys)
 
 
 /* -------------------------------------------------------------
-         ƒeƒ“ƒvƒŒ[ƒg                  
+â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡ ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡
 
 typedef struct {
 
-	TWE_TOOL_SYS		ts;		///< ‹ZƒGƒtƒFƒNƒg”Ä—p\‘¢‘Ì
-	TWE_POKE_SYS		poke;	///< ƒ|ƒPƒ‚ƒ“”Ä—p\‘¢‘Ì
+	TWE_TOOL_SYS		ts;		///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ±Žç”¨æ§‹é€ ä½“
+	TWE_POKE_SYS		poke;	///< ãƒã‚±ãƒ¢ãƒ³æ±Žç”¨æ§‹é€ ä½“
 	
-	WAZATOOL_CALCMOVE	cm;		///< ”Ä—pƒ[ƒN
+	WAZATOOL_CALCMOVE	cm;		///< æ±Žç”¨ãƒ¯ãƒ¼ã‚¯
 	
 } TWE_102_SYS;
 
@@ -225,7 +225,7 @@ static void We102_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	default:
-		///< ‰ð•úˆ—
+		///< è§£æ”¾å‡¦ç†
 		WEEffect_TCB_Delete(wk->ts.wsp, tcb);
 		WET_SAFE_RELEASE(wk);
 		return;

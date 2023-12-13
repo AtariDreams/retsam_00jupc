@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	app_tool.h
- * @brief	ƒc[ƒ‹ŠÖ˜A
+ * @brief	ãƒ„ãƒ¼ãƒ«é–¢é€£
  * @author	Hiroyuki Nakamura
  * @date	05.09.28
  *
- *	“K“–‚É’Ç‰Á‚µ‚Ä‰º‚³‚¢
+ *	é©å½“ã«è¿½åŠ ã—ã¦ä¸‹ã•ã„
  */
 //============================================================================================
 #ifndef APP_TOOL_H
@@ -19,21 +19,21 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// HPƒJƒ‰[
+// HPã‚«ãƒ©ãƒ¼
 enum {
 	HP_DOTTO_NULL = 0,		// HP=0
-	HP_DOTTO_RED,			// Ô
-	HP_DOTTO_YELLOW,		// ‰©
-	HP_DOTTO_GREEN,			// —Î
+	HP_DOTTO_RED,			// èµ¤
+	HP_DOTTO_YELLOW,		// é»„
+	HP_DOTTO_GREEN,			// ç·‘
 	HP_DOTTO_MAX			// HP=MHP
 };
 
-// ‹P“x•ÏXƒŠƒNƒGƒXƒgID
+// è¼åº¦å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆID
 enum {
-	APP_BRIGHT_IN = 0,	// ˆÃ¨–¾
-	APP_BRIGHT_OUT		// –¾¨ˆÃ
+	APP_BRIGHT_IN = 0,	// æš—â†’æ˜Ž
+	APP_BRIGHT_OUT		// æ˜Žâ†’æš—
 };
 
 enum {
@@ -41,25 +41,25 @@ enum {
 	APP_WIPE_OUT,
 };
 
-//BMPƒEƒBƒ“ƒhƒEƒNƒŠƒAƒJƒ‰[¶¬ƒ}ƒNƒ
+//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ç”Ÿæˆãƒžã‚¯ãƒ­
 #define APP_WINCLR_COL(col)	(((col)<<4)|(col))
 
-// ŒÂ”‘I‘ð–ß‚è’l
+// å€‹æ•°é¸æŠžæˆ»ã‚Šå€¤
 enum {
-	APP_NUMSEL_NONE = 0,	// }‚O
-	APP_NUMSEL_UP,			// {
-	APP_NUMSEL_DOWN,		// |
+	APP_NUMSEL_NONE = 0,	// Â±ï¼
+	APP_NUMSEL_UP,			// ï¼‹
+	APP_NUMSEL_DOWN,		// âˆ’
 };
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   OAMƒ^ƒCƒv‚©‚çOAM‚Ìƒf[ƒ^ƒTƒCƒY‚ðŽæ“¾‚·‚é
- * @param   oam_type		OAMƒ^ƒCƒv
- * @retval  ƒf[ƒ^ƒTƒCƒY(Byte’PˆÊ)
+ * @brief   OAMã‚¿ã‚¤ãƒ—ã‹ã‚‰OAMã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
+ * @param   oam_type		OAMã‚¿ã‚¤ãƒ—
+ * @retval  ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º(Byteå˜ä½)
  */
 //--------------------------------------------------------------
 GLOBAL int APP_OamTypeToSize(int oam_type);
@@ -67,14 +67,14 @@ GLOBAL int APP_OamTypeToSize(int oam_type);
 
 //--------------------------------------------------------------
 /**
- * @brief   ’¼ü‹——£‚ð‹‚ß‚Ü‚·
+ * @brief   ç›´ç·šè·é›¢ã‚’æ±‚ã‚ã¾ã™
  *
- * @param   x		X‚Ì‹——£
- * @param   y		Y‚Ì‹——£
+ * @param   x		Xã®è·é›¢
+ * @param   y		Yã®è·é›¢
  *
- * @retval  int		’¼ü‹——£
+ * @retval  int		ç›´ç·šè·é›¢
  *
- * À•W(0,0)‚ðŽn“_‚Æ‚µ‚ÄA(x,y)‚Ü‚Å‚Ì’¼ü‹——£‚ðŒvŽZ‚µ‚Ü‚·
+ * åº§æ¨™(0,0)ã‚’å§‹ç‚¹ã¨ã—ã¦ã€(x,y)ã¾ã§ã®ç›´ç·šè·é›¢ã‚’è¨ˆç®—ã—ã¾ã™
  */
 //--------------------------------------------------------------
 GLOBAL u32 APP_StraightDistance(u32 x, u32 y);
@@ -82,38 +82,38 @@ GLOBAL u32 APP_StraightDistance(u32 x, u32 y);
 
 //--------------------------------------------------------------------------------------------
 /**
- * Œ»Ý’l‚ÌƒQ[ƒWƒhƒbƒg”‚ðŽæ“¾
+ * ç¾åœ¨å€¤ã®ã‚²ãƒ¼ã‚¸ãƒ‰ãƒƒãƒˆæ•°ã‚’å–å¾—
  *
- * @param	prm_now		Œ»Ý’l
- * @param	prm_max		Å‘å’l
- * @param	dot_max		Å‘åƒhƒbƒg”
+ * @param	prm_now		ç¾åœ¨å€¤
+ * @param	prm_max		æœ€å¤§å€¤
+ * @param	dot_max		æœ€å¤§ãƒ‰ãƒƒãƒˆæ•°
  *
- * @return	ƒhƒbƒg”
+ * @return	ãƒ‰ãƒƒãƒˆæ•°
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 GetNumDotto( u32 prm_now, u32 prm_max, u8 dot_max );
 
 //--------------------------------------------------------------
 /**
- * @brief   •\Ž¦ƒhƒbƒg‚ÆÅ‘åƒhƒbƒg‚©‚çHPƒQ[ƒW‚ÌF‚ðŽæ“¾‚·‚é
+ * @brief   è¡¨ç¤ºãƒ‰ãƒƒãƒˆã¨æœ€å¤§ãƒ‰ãƒƒãƒˆã‹ã‚‰HPã‚²ãƒ¼ã‚¸ã®è‰²ã‚’å–å¾—ã™ã‚‹
  *
- * @param   put_dot		•\Ž¦ƒhƒbƒg”
- * @param   max_dot		Å‘åƒhƒbƒg”
+ * @param   put_dot		è¡¨ç¤ºãƒ‰ãƒƒãƒˆæ•°
+ * @param   max_dot		æœ€å¤§ãƒ‰ãƒƒãƒˆæ•°
  *
- * @retval  ƒQ[ƒWƒJƒ‰[
+ * @retval  ã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 GLOBAL u8 GetGaugeDottoColor(u32 put_dot, u32 max_dot);
 
 //--------------------------------------------------------------------------------------------
 /**
- * HPƒQ[ƒW‚ÌƒJƒ‰[‚ðŽæ“¾
+ * HPã‚²ãƒ¼ã‚¸ã®ã‚«ãƒ©ãƒ¼ã‚’å–å¾—
  *
- * @param	hp			Œ»Ý‚ÌHP
- * @param	mhp			Å‘åHP
- * @param	max_dot		Å‘åƒhƒbƒg”
+ * @param	hp			ç¾åœ¨ã®HP
+ * @param	mhp			æœ€å¤§HP
+ * @param	max_dot		æœ€å¤§ãƒ‰ãƒƒãƒˆæ•°
  *
- * @return	ƒhƒbƒg”
+ * @return	ãƒ‰ãƒƒãƒˆæ•°
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 GetHPGaugeDottoColor( u16 hp, u16 mhp, u32 max_dot );
@@ -121,9 +121,9 @@ GLOBAL u8 GetHPGaugeDottoColor( u16 hp, u16 mhp, u32 max_dot );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹P“x•ÏXƒŠƒNƒGƒXƒg
+ * è¼åº¦å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	req		ƒŠƒNƒGƒXƒgID
+ * @param	req		ãƒªã‚¯ã‚¨ã‚¹ãƒˆID
  *
  * @return	none
  */
@@ -132,10 +132,10 @@ GLOBAL void APP_BrightnessReq( u8 req );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒvƒVƒXƒeƒ€‚É‚æ‚éƒtƒF[ƒhƒŠƒNƒGƒXƒg
+ * ãƒ¯ã‚¤ãƒ—ã‚·ã‚¹ãƒ†ãƒ ã«ã‚ˆã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	req			ƒŠƒNƒGƒXƒgID
- * @param	heap		ƒq[ƒvID
+ * @param	req			ãƒªã‚¯ã‚¨ã‚¹ãƒˆID
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -144,46 +144,46 @@ GLOBAL void APP_WipeStart( u8 req, u32 heap );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŒÂ”•ÏX
+ * å€‹æ•°å¤‰æ›´
  *
- * @param	num		ŒÂ”
- * @param	max		Å‘å’l
+ * @param	num		å€‹æ•°
+ * @param	max		æœ€å¤§å€¤
  *
- * @retval	"TRUE = •ÏX‚µ‚½"
- * @retval	"FALSE = •ÏX‚µ‚Ä‚È‚¢"
+ * @retval	"TRUE = å¤‰æ›´ã—ãŸ"
+ * @retval	"FALSE = å¤‰æ›´ã—ã¦ãªã„"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 NumSelectCheck( s16 * num, u16 max );
 
 /**
- *	@brief	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹Eƒtƒ@ƒCƒ‹idx“™‚ðˆø”‚ÉA
- *			Žw’èƒtƒŒ[ƒ€‚Ìƒf[ƒ^‚ðVRAM‚Ö“]‘—‚·‚é
+ *	@brief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«idxç­‰ã‚’å¼•æ•°ã«ã€
+ *			æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ‡ãƒ¼ã‚¿ã‚’VRAMã¸è»¢é€ã™ã‚‹
  *
- *	@param	bgl		‰ŠúÏ‚Ý‚ÌBGLƒf[ƒ^
- *	@param	heapID	ƒeƒ“ƒ|ƒ‰ƒŠì¬‚ÉŽg‚¤ƒq[ƒvƒnƒ“ƒhƒ‹
- *	@param	handel	ƒI[ƒvƒ“Ï‚Ý‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *	@param	arcID	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *	@param	dataID	ƒA[ƒJƒCƒu“àƒf[ƒ^ID
- *	@param	frame	ƒf[ƒ^“]‘—GF_BGL_FRAME_***Žw’è
- *	@param	mode	0:ƒLƒƒƒ‰,1:ƒXƒNƒŠ[ƒ“,2:ƒpƒŒƒbƒg
- *	@param	size	“]‘—ƒTƒCƒYŽw’è(0‚ðŽw’è‚µ‚½ê‡Aƒtƒ@ƒCƒ‹ƒTƒCƒY•ª)
- *	@param	ofs		“]‘—ƒIƒtƒZƒbƒgŽw’è
+ *	@param	bgl		åˆæœŸæ¸ˆã¿ã®BGLãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID	ãƒ†ãƒ³ãƒãƒ©ãƒªä½œæˆã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	handel	ã‚ªãƒ¼ãƒ—ãƒ³æ¸ˆã¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	arcID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *	@param	dataID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	frame	ãƒ‡ãƒ¼ã‚¿è»¢é€GF_BGL_FRAME_***æŒ‡å®š
+ *	@param	mode	0:ã‚­ãƒ£ãƒ©,1:ã‚¹ã‚¯ãƒªãƒ¼ãƒ³,2:ãƒ‘ãƒ¬ãƒƒãƒˆ
+ *	@param	size	è»¢é€ã‚µã‚¤ã‚ºæŒ‡å®š(0ã‚’æŒ‡å®šã—ãŸå ´åˆã€ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºåˆ†)
+ *	@param	ofs		è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆæŒ‡å®š
  */
 extern void APP_ArcFileVramLoad(GF_BGL_INI* bgl,int heapID,
 		ARCHANDLE* handle,int arcID,int fileID,int frame,int mode,u16 trans_siz,u16 ofs);
 
 /**
- *	@brief	ƒI[ƒvƒ“Ï‚Ý‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚ð“n‚µ‚Ä
- *			ƒA[ƒJƒCƒu“à‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ðUnpack‚µ‚ÄŽæ“¾‚·‚é
+ *	@brief	ã‚ªãƒ¼ãƒ—ãƒ³æ¸ˆã¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’æ¸¡ã—ã¦
+ *			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’Unpackã—ã¦å–å¾—ã™ã‚‹
  *
- *	@param	handel	ƒI[ƒvƒ“Ï‚Ý‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *	@param	arcID	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *	@param	dataID	ƒA[ƒJƒCƒu“àƒf[ƒ^ID
- *	@param	heapID	ƒƒ‚ƒŠŠm•Û‚·‚éƒq[ƒvƒnƒ“ƒhƒ‹
+ *	@param	handel	ã‚ªãƒ¼ãƒ—ãƒ³æ¸ˆã¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	arcID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *	@param	dataID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	heapID	ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«
  *
- *	@return void*	Šm•Û‚µ‚½ƒf[ƒ^—Ìˆæ‚Ìæ“ªƒ|ƒCƒ“ƒ^
+ *	@return void*	ç¢ºä¿ã—ãŸãƒ‡ãƒ¼ã‚¿é ˜åŸŸã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  *	
- *	–Unpack‚·‚é‚¾‚¯‚È‚Ì‚ÅA‰ð•ú‚ÍŽ©•ª‚Å‚â‚é‚±‚ÆI
+ *	ï¼ŠUnpackã™ã‚‹ã ã‘ãªã®ã§ã€è§£æ”¾ã¯è‡ªåˆ†ã§ã‚„ã‚‹ã“ã¨ï¼
  */
 extern void* APP_ArcScrFileUnpack(ARCHANDLE* handle,
 	int arcID,int fileID,NNSG2dScreenData** pDat,int heapID);

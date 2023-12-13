@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ug_base_bmp.c
- * @brief	îÈñßäÓínBMPèàíu
+ * @brief	ÁßòÂØÜÂü∫Âú∞BMPÂá¶ÁΩÆ
  * @author	saito
  * @date	2006.02.28
  *
@@ -66,61 +66,61 @@ typedef enum {
 	LIST_SEQ_END,
 }BASE_GOODS_LIST_SEQ;
 
-///îƒópëIëÉÅÉjÉÖÅ[ÇÃÉäÉXÉg
+///Ê±éÁî®ÈÅ∏Êäû„É°„Éã„É•„Éº„ÅÆ„É™„Çπ„Éà
 static const BMPLIST_HEADER MenuListHeader = {
-    NULL,			// ï\é¶ï∂éöÉfÅ[É^É|ÉCÉìÉ^
-    NULL,					// ÉJÅ[É\Éãà⁄ìÆÇ≤Ç∆ÇÃÉRÅ[ÉãÉoÉbÉNä÷êî
-    NULL,					// àÍóÒï\é¶Ç≤Ç∆ÇÃÉRÅ[ÉãÉoÉbÉNä÷êî
+    NULL,			// Ë°®Á§∫ÊñáÂ≠ó„Éá„Éº„Çø„Éù„Ç§„É≥„Çø
+    NULL,					// „Ç´„Éº„ÇΩ„É´ÁßªÂãï„Åî„Å®„ÅÆ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
+    NULL,					// ‰∏ÄÂàóË°®Á§∫„Åî„Å®„ÅÆ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØÈñ¢Êï∞
     NULL,					// 
-    MENU_MAX,	// ÉäÉXÉgçÄñ⁄êî
-    MENU_MAX,	// ï\é¶ç≈ëÂçÄñ⁄êî
-    0,						// ÉâÉxÉãï\é¶Çwç¿ïW
-    8,						// çÄñ⁄ï\é¶Çwç¿ïW
-    0,						// ÉJÅ[É\Éãï\é¶Çwç¿ïW
-    0,						// ï\é¶Çxç¿ïW
-    FBMP_COL_BLACK,			// ï∂éöêF
-    FBMP_COL_WHITE,			// îwåiêF
-    FBMP_COL_BLK_SDW,		// ï∂éöâeêF
-    0,						// ï∂éöä‘äuÇw
-    16,						// ï∂éöä‘äuÇx
-    BMPLIST_LRKEY_SKIP,		// ÉyÅ[ÉWÉXÉLÉbÉvÉ^ÉCÉv
-    FONT_SYSTEM,			// ï∂éöéwíË
-    0,						// ÇaÇfÉJÅ[É\Éã(allow)ï\é¶ÉtÉâÉO(0:ON,1:OFF)
-    NULL,                   // ÉèÅ[ÉN
+    MENU_MAX,	// „É™„Çπ„ÉàÈ†ÖÁõÆÊï∞
+    MENU_MAX,	// Ë°®Á§∫ÊúÄÂ§ßÈ†ÖÁõÆÊï∞
+    0,						// „É©„Éô„É´Ë°®Á§∫Ôº∏Â∫ßÊ®ô
+    8,						// È†ÖÁõÆË°®Á§∫Ôº∏Â∫ßÊ®ô
+    0,						// „Ç´„Éº„ÇΩ„É´Ë°®Á§∫Ôº∏Â∫ßÊ®ô
+    0,						// Ë°®Á§∫ÔºπÂ∫ßÊ®ô
+    FBMP_COL_BLACK,			// ÊñáÂ≠óËâ≤
+    FBMP_COL_WHITE,			// ËÉåÊôØËâ≤
+    FBMP_COL_BLK_SDW,		// ÊñáÂ≠óÂΩ±Ëâ≤
+    0,						// ÊñáÂ≠óÈñìÈöîÔº∏
+    16,						// ÊñáÂ≠óÈñìÈöîÔºπ
+    BMPLIST_LRKEY_SKIP,		// „Éö„Éº„Ç∏„Çπ„Ç≠„ÉÉ„Éó„Çø„Ç§„Éó
+    FONT_SYSTEM,			// ÊñáÂ≠óÊåáÂÆö
+    0,						// Ôº¢Ôºß„Ç´„Éº„ÇΩ„É´(allow)Ë°®Á§∫„Éï„É©„Ç∞(0:ON,1:OFF)
+    NULL,                   // „ÉØ„Éº„ÇØ
 };
 
 typedef struct UG_BASE_MENU_tag
 {
 	FIELDSYS_WORK* fsys;
-    GF_BGL_BMPWIN  Win;		// BMPÉEÉBÉìÉhÉEÉèÅ[ÉN
-	GF_BGL_BMPWIN  SubWin;		// BMPÉTÉuÉEÉBÉìÉhÉEÉèÅ[ÉN
+    GF_BGL_BMPWIN  Win;		// BMP„Ç¶„Ç£„É≥„Éâ„Ç¶„ÉØ„Éº„ÇØ
+	GF_BGL_BMPWIN  SubWin;		// BMP„Çµ„Éñ„Ç¶„Ç£„É≥„Éâ„Ç¶„ÉØ„Éº„ÇØ
 	BMPLIST_DATA*  MenuList;
 	
-    BMPLIST_WORK*  ListWork;		// BMPÉÅÉjÉÖÅ[ÉèÅ[ÉN
+    BMPLIST_WORK*  ListWork;		// BMP„É°„Éã„É•„Éº„ÉØ„Éº„ÇØ
 	STRBUF* StrBuf;
 	u16 *StartLine;
 	u16 *CurPos;
 	u8 Seq;
-	u32 ReturnIdx;				//ÉÅÉCÉìÉCÉxÉìÉgÇ…ï‘Ç∑ÉÅÉjÉÖÅ[ÉCÉìÉfÉbÉNÉX
+	u32 ReturnIdx;				//„É°„Ç§„É≥„Ç§„Éô„É≥„Éà„Å´Ëøî„Åô„É°„Éã„É•„Éº„Ç§„É≥„Éá„ÉÉ„ÇØ„Çπ
 	u16 pos_bak;
 };
 
 typedef struct UG_BASE_LIST_tag
 {
 	FIELDSYS_WORK* fsys;
-	FLD_COMACT_WORK* Cursor;	//è„â∫ÉJÅ[É\Éã
-    GF_BGL_BMPWIN  Win;		// BMPÉEÉBÉìÉhÉEÉèÅ[ÉN
-	GF_BGL_BMPWIN  SubWin;		// BMPÉTÉuÉEÉBÉìÉhÉEÉèÅ[ÉN
+	FLD_COMACT_WORK* Cursor;	//‰∏ä‰∏ã„Ç´„Éº„ÇΩ„É´
+    GF_BGL_BMPWIN  Win;		// BMP„Ç¶„Ç£„É≥„Éâ„Ç¶„ÉØ„Éº„ÇØ
+	GF_BGL_BMPWIN  SubWin;		// BMP„Çµ„Éñ„Ç¶„Ç£„É≥„Éâ„Ç¶„ÉØ„Éº„ÇØ
 	BMPLIST_DATA*  List;
     UG_BMPLIST_WORK* pUgListWork;
-    BMPLIST_WORK*  ListWork;		// BMPÉÅÉjÉÖÅ[ÉèÅ[ÉN
+    BMPLIST_WORK*  ListWork;		// BMP„É°„Éã„É•„Éº„ÉØ„Éº„ÇØ
 	STRBUF* StrBuf;
 	u16 *StartLine;
 	u16 *CurPos;
-	u8 GoodsCount;				//íuÇ¢ÇƒÇ¢ÇÈÉOÉbÉYêî
-	u8 GoodsLimit;				//íuÇØÇÈÉOÉbÉYêî
+	u8 GoodsCount;				//ÁΩÆ„ÅÑ„Å¶„ÅÑ„Çã„Ç∞„ÉÉ„Ç∫Êï∞
+	u8 GoodsLimit;				//ÁΩÆ„Åë„Çã„Ç∞„ÉÉ„Ç∫Êï∞
 	u8 Seq;
-	u32 ReturnIndex;				//ÉäÉXÉgÉCÉìÉfÉbÉNÉX
+	u32 ReturnIndex;				//„É™„Çπ„Éà„Ç§„É≥„Éá„ÉÉ„ÇØ„Çπ
 	int Count;
 	
 };
@@ -141,9 +141,9 @@ static void UgBaseListMoveSe( UG_BASE_MENU* outMenu );
 
 //---------------------------------------------------------------------------
 /**
- * @brief	îÈñßäÓínÉÅÉjÉÖÅ[ÉÅÉÇÉäÉAÉçÉPÅ[ÉVÉáÉì
+ * @brief	ÁßòÂØÜÂü∫Âú∞„É°„Éã„É•„Éº„É°„É¢„É™„Ç¢„É≠„Ç±„Éº„Ç∑„Éß„É≥
  * 
- * @return	menu	îÈñßäÓínÉÅÉjÉÖÅ[
+ * @return	menu	ÁßòÂØÜÂü∫Âú∞„É°„Éã„É•„Éº
  */
 //---------------------------------------------------------------------------
 UG_BASE_MENU * BMENU_AllocUgBaseMenu(void)
@@ -157,11 +157,11 @@ UG_BASE_MENU * BMENU_AllocUgBaseMenu(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	îÈñßäÓínÉÅÉjÉÖÅ[èâä˙âª
+ * @brief	ÁßòÂØÜÂü∫Âú∞„É°„Éã„É•„ÉºÂàùÊúüÂåñ
  *
- * @param	menu		ÉÅÉjÉÖÅ[
- * @param	fsys		ÉtÉBÅ[ÉãÉhÉVÉXÉeÉÄÉ|ÉCÉìÉ^
- * @param	pCurPos		ÉJÅ[É\Éãà íu
+ * @param	menu		„É°„Éã„É•„Éº
+ * @param	fsys		„Éï„Ç£„Éº„É´„Éâ„Ç∑„Çπ„ÉÜ„É†„Éù„Ç§„É≥„Çø
+ * @param	pCurPos		„Ç´„Éº„ÇΩ„É´‰ΩçÁΩÆ
  * 
  * @return	none
  */
@@ -181,9 +181,9 @@ void BMENU_InitBaseMainMenu(UG_BASE_MENU *menu, FIELDSYS_WORK * fsys,
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉÅÉjÉÖÅ[âï˙
+ * @brief	„É°„Éã„É•„ÉºËß£Êîæ
  * 
- * @param	menu		îÈñßäÓínÉÅÉjÉÖÅ[
+ * @param	menu		ÁßòÂØÜÂü∫Âú∞„É°„Éã„É•„Éº
  * 
  * @return	none
  */
@@ -195,11 +195,11 @@ void BMENU_FreeUgBaseMenu(UG_BASE_MENU *menu)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉÅÉjÉÖÅ[ÉCÉìÉfÉbÉNÉXÇï‘Ç∑
+ * @brief	„É°„Éã„É•„Éº„Ç§„É≥„Éá„ÉÉ„ÇØ„Çπ„ÇíËøî„Åô
  * 
- * @param	menu		îÈñßäÓínÉÅÉjÉÖÅ[
+ * @param	menu		ÁßòÂØÜÂü∫Âú∞„É°„Éã„É•„Éº
  * 
- * @return	u32			ÉCÉìÉfÉbÉNÉX
+ * @return	u32			„Ç§„É≥„Éá„ÉÉ„ÇØ„Çπ
  */
 //---------------------------------------------------------------------------
 const u32 BMENU_GetReturnIndex(UG_BASE_MENU *menu)
@@ -209,24 +209,24 @@ const u32 BMENU_GetReturnIndex(UG_BASE_MENU *menu)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉÅÉCÉìÉÅÉjÉÖÅ[ÉCÉxÉìÉg
+ * @brief	„É°„Ç§„É≥„É°„Éã„É•„Éº„Ç§„Éô„É≥„Éà
  * 
- * @param	outMenu		îÈñßäÓínÉÅÉjÉÖÅ[
+ * @param	outMenu		ÁßòÂØÜÂü∫Âú∞„É°„Éã„É•„Éº
  * 
- * @return	BOOL		TRUE:èIóπ	FALSE:åpë±
+ * @return	BOOL		TRUE:ÁµÇ‰∫Ü	FALSE:Á∂ôÁ∂ö
  */
 //---------------------------------------------------------------------------
 BOOL BMENU_EditMainMenuControl(UG_BASE_MENU *outMenu)
 {
 	switch(outMenu->Seq){
-	case MENU_SEQ_INIT:	//ÉÅÉjÉÖÅ[çÏê¨
+	case MENU_SEQ_INIT:	//„É°„Éã„É•„Éº‰ΩúÊàê
 		CreateBaseMainMenu(outMenu);
 		break;
-	case MENU_SEQ_LOOP:	//ÉÅÉjÉÖÅ[êßå‰
+	case MENU_SEQ_LOOP:	//„É°„Éã„É•„ÉºÂà∂Âæ°
 		BaseMenuMain(outMenu);
 		break;
-	case MENU_SEQ_END:	//èIóπ
-		outMenu->Seq = MENU_SEQ_INIT;	//éüâÒÇÃÇΩÇﬂÇ…ÉVÅ[ÉPÉìÉXÇèâä˙âªÇµÇƒÇ®Ç≠
+	case MENU_SEQ_END:	//ÁµÇ‰∫Ü
+		outMenu->Seq = MENU_SEQ_INIT;	//Ê¨°Âõû„ÅÆ„Åü„ÇÅ„Å´„Ç∑„Éº„Ç±„É≥„Çπ„ÇíÂàùÊúüÂåñ„Åó„Å¶„Åä„Åè
 		CloseMenu(outMenu);
 		return TRUE;
 	}
@@ -236,11 +236,11 @@ BOOL BMENU_EditMainMenuControl(UG_BASE_MENU *outMenu)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉÅÉjÉÖÅ[1ÉâÉCÉìÉRÅ[ÉãÉoÉbÉN
+ * @brief	„É°„Éã„É•„Éº1„É©„Ç§„É≥„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ
  * 
- * @param	wk			ÉäÉXÉgÉèÅ[ÉN
- * @param	param		ÉpÉâÉÅÅ[É^
- * @param	mode		ñ¢égóp
+ * @param	wk			„É™„Çπ„Éà„ÉØ„Éº„ÇØ
+ * @param	param		„Éë„É©„É°„Éº„Çø
+ * @param	mode		Êú™‰ΩøÁî®
  * 
  * @return	none
  */
@@ -259,9 +259,9 @@ static void BaseMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉÅÉjÉÖÅ[çÏê¨
+ * @brief	„É°„Éã„É•„Éº‰ΩúÊàê
  * 
- * @param	outMenu		îÈñßäÓínÉÅÉjÉÖÅ[
+ * @param	outMenu		ÁßòÂØÜÂü∫Âú∞„É°„Éã„É•„Éº
  * 
  * @return	none
  */
@@ -273,7 +273,7 @@ static void CreateBaseMainMenu(UG_BASE_MENU *outMenu)
     int count = BASE_MAIN_MENU_MAX;
     int line = MENU_MAX;
 
-    //BMPÉEÉBÉìÉhÉEê∂ê¨
+    //BMP„Ç¶„Ç£„É≥„Éâ„Ç¶ÁîüÊàê
     outMenu->MenuList = BMP_MENULIST_Create( count+1, HEAPID_FIELD );
 
 
@@ -295,14 +295,14 @@ static void CreateBaseMainMenu(UG_BASE_MENU *outMenu)
 		MSGDATA_MANAGER* msgman;
 		int i;
 		const int msg_list[BASE_MAIN_MENU_MAX+1] = {
-			mes_uw_edit_02,	//ÉOÉbÉYÇÇ®Ç≠
-			mes_uw_edit_03,	//ÉOÉbÉYÇÇ‡Ç«Ç∑
-			mes_uw_edit_04,	//ÉOÉbÉYÇÃÇ¢Ç«Ç§
-			mes_uw_edit_05,	//Ç‚ÇﬂÇÈ
+			mes_uw_edit_02,	//„Ç∞„ÉÉ„Ç∫„Çí„Åä„Åè
+			mes_uw_edit_03,	//„Ç∞„ÉÉ„Ç∫„Çí„ÇÇ„Å©„Åô
+			mes_uw_edit_04,	//„Ç∞„ÉÉ„Ç∫„ÅÆ„ÅÑ„Å©„ÅÜ
+			mes_uw_edit_05,	//„ÇÑ„ÇÅ„Çã
 		};
 		
 		msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_uwedit_dat, HEAPID_FIELD);
-		//ç∂è„ÉTÉuÉEÉBÉìÉhÉE
+		//Â∑¶‰∏ä„Çµ„Éñ„Ç¶„Ç£„É≥„Éâ„Ç¶
 		{
 			STRBUF * strb;
 			GF_BGL_BmpWinDataFill(&outMenu->SubWin, FBMP_COL_WHITE);
@@ -310,7 +310,7 @@ static void CreateBaseMainMenu(UG_BASE_MENU *outMenu)
 			GF_STR_PrintSimple( &outMenu->SubWin, FONT_SYSTEM, strb, 0, 0, MSG_NO_PUT, NULL );
 			STRBUF_Delete( strb );
 		}
-		//ÉÅÉjÉÖÅ[
+		//„É°„Éã„É•„Éº
 		for(i = 0; i < count+1; i++){
 			BMP_MENULIST_AddArchiveString( outMenu->MenuList, msgman, msg_list[i], i );
 		}
@@ -334,9 +334,9 @@ static void CreateBaseMainMenu(UG_BASE_MENU *outMenu)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉÅÉjÉÖÅ[ÉÅÉCÉì
+ * @brief	„É°„Éã„É•„Éº„É°„Ç§„É≥
  * 
- * @param	outMenu		îÈñßäÓínÉÅÉjÉÖÅ[
+ * @param	outMenu		ÁßòÂØÜÂü∫Âú∞„É°„Éã„É•„Éº
  * 
  * @return	none
  */
@@ -362,9 +362,9 @@ static void BaseMenuMain(UG_BASE_MENU *outMenu)
         outMenu->Seq = MENU_SEQ_END;
 		Snd_SePlay( UG_BASE_SE_SELECT );
         break;
-    default:	//ÉäÉ^Å[ÉìÉRÅ[ÉhÇÃÉZÉbÉg
+    default:	//„É™„Çø„Éº„É≥„Ç≥„Éº„Éâ„ÅÆ„Çª„ÉÉ„Éà
         {
-			//ÉÅÉCÉìÉCÉxÉìÉgÇ…ï‘Ç∑ÉäÉ^Å[ÉìÉRÅ[ÉhÇÉZÉbÉg
+			//„É°„Ç§„É≥„Ç§„Éô„É≥„Éà„Å´Ëøî„Åô„É™„Çø„Éº„É≥„Ç≥„Éº„Éâ„Çí„Çª„ÉÉ„Éà
 			Snd_SePlay( SEQ_SE_DP_SELECT );
 			outMenu->ReturnIdx = ret;
             outMenu->Seq = MENU_SEQ_END;
@@ -377,7 +377,7 @@ static void BaseMenuMain(UG_BASE_MENU *outMenu)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉÅÉjÉÖÅ[ÉNÉçÅ[ÉY
+ * @brief	„É°„Éã„É•„Éº„ÇØ„É≠„Éº„Ç∫
  * 
  * @param	outMenu		
  * 
@@ -402,32 +402,32 @@ static void CloseMenu(UG_BASE_MENU *outMenu)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	àÍçsÇ≤Ç∆ÇÃï`âÊÉRÅ[ÉãÉoÉbÉN(ÉÅÉjÉÖÅ[çÏê¨éû)
+ * @brief	‰∏ÄË°å„Åî„Å®„ÅÆÊèèÁîª„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ(„É°„Éã„É•„Éº‰ΩúÊàêÊôÇ)
  * 
- * @param	wk			ÉäÉXÉgÉèÅ[ÉN
- * @param	param		ÉpÉâÉÅÅ[É^
- * @param	y			Çô ñ¢égóp
+ * @param	wk			„É™„Çπ„Éà„ÉØ„Éº„ÇØ
+ * @param	param		„Éë„É©„É°„Éº„Çø
+ * @param	y			ÔΩô Êú™‰ΩøÁî®
  * 
  * @return	none
  */
 //---------------------------------------------------------------------------
 static void	LineCallBack(BMPLIST_WORK * wk, u32 param, u8 y)
 {
-	//Ç∑Ç≈Ç…äÓínÇ…Ç®Ç¢ÇƒÇ¢ÇÈÇ©ÇÉ`ÉFÉbÉN
+	//„Åô„Åß„Å´Âü∫Âú∞„Å´„Åä„ÅÑ„Å¶„ÅÑ„Çã„Åã„Çí„ÉÅ„Çß„ÉÉ„ÇØ
 	u8 flg;
 	flg = param & 0x01;
-	if (flg){//îzíuÇ≥ÇÍÇƒÇ¢Ç»Ç¢
+	if (flg){//ÈÖçÁΩÆ„Åï„Çå„Å¶„ÅÑ„Å™„ÅÑ
 		BmpListTmpColorChange( wk, FBMP_COL_BLACK, FBMP_COL_WHITE , FBMP_COL_BLK_SDW );
-	}else{		//îzíuçœÇ›
+	}else{		//ÈÖçÁΩÆÊ∏à„Åø
 		BmpListTmpColorChange( wk, FBMP_COL_BLK_SDW, FBMP_COL_WHITE , FBMP_COL_BLK_SDW );
 	}
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉOÉbÉYÉäÉXÉgÉÅÉÇÉäÉAÉçÉPÅ[ÉVÉáÉì
+ * @brief	„Ç∞„ÉÉ„Ç∫„É™„Çπ„Éà„É°„É¢„É™„Ç¢„É≠„Ç±„Éº„Ç∑„Éß„É≥
  * 
- * @return	list		ÉäÉXÉg
+ * @return	list		„É™„Çπ„Éà
  */
 //---------------------------------------------------------------------------
 UG_BASE_LIST * BMENU_AllocUgBaseGoodsList(void)
@@ -440,11 +440,11 @@ UG_BASE_LIST * BMENU_AllocUgBaseGoodsList(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉOÉbÉYÉäÉXÉgèâä˙âª
+ * @brief	„Ç∞„ÉÉ„Ç∫„É™„Çπ„ÉàÂàùÊúüÂåñ
  *
- * @param	list		ÉäÉXÉg
- * @param	fsys		ÉtÉBÅ[ÉãÉhÉVÉXÉeÉÄÉ|ÉCÉìÉ^
- * @param	pCurPos		ÉJÅ[É\Éãà íu
+ * @param	list		„É™„Çπ„Éà
+ * @param	fsys		„Éï„Ç£„Éº„É´„Éâ„Ç∑„Çπ„ÉÜ„É†„Éù„Ç§„É≥„Çø
+ * @param	pCurPos		„Ç´„Éº„ÇΩ„É´‰ΩçÁΩÆ
  * 
  * @return	none
  */
@@ -465,11 +465,11 @@ void BMENU_InitBaseGoodsList(	UG_BASE_LIST *list, FIELDSYS_WORK * fsys,
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉOÉbÉYêîÉZÉbÉg
+ * @brief	„Ç∞„ÉÉ„Ç∫Êï∞„Çª„ÉÉ„Éà
  * 
- * @param	list		ÉäÉXÉg
- * @param	inNum		ÉOÉbÉYêî
- * @param	inLimit		ÉäÉ~ÉbÉg
+ * @param	list		„É™„Çπ„Éà
+ * @param	inNum		„Ç∞„ÉÉ„Ç∫Êï∞
+ * @param	inLimit		„É™„Éü„ÉÉ„Éà
  * 
  * @return	none
  */
@@ -482,9 +482,9 @@ void BMENU_SetGoodsNumToList(UG_BASE_LIST *list, const u8 inNum, const u8 inLimi
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉOÉbÉYÉäÉXÉgâï˙
+ * @brief	„Ç∞„ÉÉ„Ç∫„É™„Çπ„ÉàËß£Êîæ
  * 
- * @param	list		ÉäÉXÉg
+ * @param	list		„É™„Çπ„Éà
  * 
  * @return	none
  */
@@ -496,11 +496,11 @@ void BMENU_FreeUgBaseGoodsList(UG_BASE_LIST *list)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉOÉbÉYÉäÉXÉgÉCÉìÉfÉbÉNÉXÇï‘Ç∑
+ * @brief	„Ç∞„ÉÉ„Ç∫„É™„Çπ„Éà„Ç§„É≥„Éá„ÉÉ„ÇØ„Çπ„ÇíËøî„Åô
  * 
- * @param	list		ÉäÉXÉg
+ * @param	list		„É™„Çπ„Éà
  * 
- * @return	u32			ÉäÉXÉgÉCÉìÉfÉbÉNÉX
+ * @return	u32			„É™„Çπ„Éà„Ç§„É≥„Éá„ÉÉ„ÇØ„Çπ
  */
 //---------------------------------------------------------------------------
 const u32 BMENU_GetReturnListIdx(UG_BASE_LIST *list)
@@ -510,29 +510,29 @@ const u32 BMENU_GetReturnListIdx(UG_BASE_LIST *list)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉOÉbÉYÉäÉXÉgÉRÉìÉgÉçÅ[Éã
+ * @brief	„Ç∞„ÉÉ„Ç∫„É™„Çπ„Éà„Ç≥„É≥„Éà„É≠„Éº„É´
  * 
- * @param	outList		ÉäÉXÉg
+ * @param	outList		„É™„Çπ„Éà
  * 
- * @return	BOOL		TRUE:èIóπ	FALSE:åpë±
+ * @return	BOOL		TRUE:ÁµÇ‰∫Ü	FALSE:Á∂ôÁ∂ö
  */
 //---------------------------------------------------------------------------
 BOOL BMENU_EditGoodsListControl(UG_BASE_LIST *outList)
 {
 	switch(outList->Seq){
-	case LIST_SEQ_INIT:	//ÉÅÉjÉÖÅ[çÏê¨
+	case LIST_SEQ_INIT:	//„É°„Éã„É•„Éº‰ΩúÊàê
 		CreateBaseGoodsList(outList);
 		break;
-	case LIST_SEQ_LOOP:	//ÉÅÉjÉÖÅ[êßå‰
+	case LIST_SEQ_LOOP:	//„É°„Éã„É•„ÉºÂà∂Âæ°
 		BaseGoodsListMain(outList);
 		break;
-	case LIST_SEQ_END:	//èIóπ
-		outList->Seq = LIST_SEQ_INIT;	//éüâÒÇÃÇΩÇﬂÇ…ÉVÅ[ÉPÉìÉXÇèâä˙âªÇµÇƒÇ®Ç≠
+	case LIST_SEQ_END:	//ÁµÇ‰∫Ü
+		outList->Seq = LIST_SEQ_INIT;	//Ê¨°Âõû„ÅÆ„Åü„ÇÅ„Å´„Ç∑„Éº„Ç±„É≥„Çπ„ÇíÂàùÊúüÂåñ„Åó„Å¶„Åä„Åè
 		CloseList(outList);
 		return TRUE;
 	}
 
-	//è„â∫ÉJÅ[É\Éãï`âÊ
+	//‰∏ä‰∏ã„Ç´„Éº„ÇΩ„É´ÊèèÁîª
 	if(outList->Cursor){
         FActCom_Main(outList->Cursor);
     }
@@ -542,9 +542,9 @@ BOOL BMENU_EditGoodsListControl(UG_BASE_LIST *outList)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉOÉbÉYÉäÉXÉgÉÅÉCÉì
+ * @brief	„Ç∞„ÉÉ„Ç∫„É™„Çπ„Éà„É°„Ç§„É≥
  * 
- * @param	outList		ÉäÉXÉg
+ * @param	outList		„É™„Çπ„Éà
  * 
  * @return	none
  */
@@ -576,11 +576,11 @@ static void BaseGoodsListMain(UG_BASE_LIST *outList)
     case BMPLIST_NULL:
         return ;
     case BMPLIST_CANCEL:
-		outList->ReturnIndex = LIST_CANCEL_CODE;	//ÉOÉbÉYîÒëIë
+		outList->ReturnIndex = LIST_CANCEL_CODE;	//„Ç∞„ÉÉ„Ç∫ÈùûÈÅ∏Êäû
         outList->Seq = LIST_SEQ_END;
 		Snd_SePlay( UG_BASE_SE_SELECT );
         break;
-    default:	//ÉäÉ^Å[ÉìÉRÅ[ÉhÇÃÉZÉbÉg
+    default:	//„É™„Çø„Éº„É≥„Ç≥„Éº„Éâ„ÅÆ„Çª„ÉÉ„Éà
         {
 			outList->ReturnIndex = pos;
 			outList->Seq = LIST_SEQ_END;
@@ -593,11 +593,11 @@ static void BaseGoodsListMain(UG_BASE_LIST *outList)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉäÉXÉg1ÉâÉCÉìÉRÅ[ÉãÉoÉbÉN
+ * @brief	„É™„Çπ„Éà1„É©„Ç§„É≥„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ
  * 
- * @param	wk			ÉäÉXÉgÉèÅ[ÉN
- * @param	param		ÉpÉâÉÅÅ[É^
- * @param	mode		ñ¢égóp	
+ * @param	wk			„É™„Çπ„Éà„ÉØ„Éº„ÇØ
+ * @param	param		„Éë„É©„É°„Éº„Çø
+ * @param	mode		Êú™‰ΩøÁî®	
  * 
  * @return	none
  */
@@ -624,9 +624,9 @@ static void BaseGoodMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉOÉbÉYÉäÉXÉgçÏê¨
+ * @brief	„Ç∞„ÉÉ„Ç∫„É™„Çπ„Éà‰ΩúÊàê
  * 
- * @param	outList		ÉäÉXÉg
+ * @param	outList		„É™„Çπ„Éà
  * 
  * @return	none
  */
@@ -639,7 +639,7 @@ static void CreateBaseGoodsList(UG_BASE_LIST *outList)
 	int count;
     int line;
 
-	//ÉOÉbÉYÇÃêîÇéÊìæ
+	//„Ç∞„ÉÉ„Ç∫„ÅÆÊï∞„ÇíÂèñÂæó
 	pUGData = SaveData_GetUnderGroundData(outList->fsys->savedata);
 	count = UnderGroundGetNumGoodsPCItem(pUGData);
 	outList->Count = count;
@@ -647,7 +647,7 @@ static void CreateBaseGoodsList(UG_BASE_LIST *outList)
 	if (line>GOODS_MENU_MAX){
 		line = GOODS_MENU_MAX;
 	}
-    //BMPÉEÉBÉìÉhÉEê∂ê¨
+    //BMP„Ç¶„Ç£„É≥„Éâ„Ç¶ÁîüÊàê
     outList->List = BMP_MENULIST_Create( count+1, HEAPID_FIELD );
 
 	list_size = BASE_MENU_SIZE_X * GOODS_MENU_MAX * 2;
@@ -672,7 +672,7 @@ static void CreateBaseGoodsList(UG_BASE_LIST *outList)
 		u8 flg;
         msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_undergroundgoods_dat, HEAPID_FIELD);
 		
-		//ç∂è„ÉTÉuÉEÉBÉìÉhÉE
+		//Â∑¶‰∏ä„Çµ„Éñ„Ç¶„Ç£„É≥„Éâ„Ç¶
 		{
 			MSGDATA_MANAGER* edit_msgman;
 			STRBUF * strb_put_goods;
@@ -691,9 +691,9 @@ static void CreateBaseGoodsList(UG_BASE_LIST *outList)
 			
 			wordset = WORDSET_Create( HEAPID_FIELD );
 			WORDSET_RegisterNumber(wordset, 0, outList->GoodsCount, 2,
-					NUMBER_DISPTYPE_SPACE , NUMBER_CODETYPE_DEFAULT );	//íuÇ¢ÇƒÇ†ÇÈÉOÉbÉYêî
+					NUMBER_DISPTYPE_SPACE , NUMBER_CODETYPE_DEFAULT );	//ÁΩÆ„ÅÑ„Å¶„ÅÇ„Çã„Ç∞„ÉÉ„Ç∫Êï∞
 			WORDSET_RegisterNumber(wordset, 1, outList->GoodsLimit, 2,
-					NUMBER_DISPTYPE_SPACE , NUMBER_CODETYPE_DEFAULT );	//íuÇØÇÈÉOÉbÉYêî
+					NUMBER_DISPTYPE_SPACE , NUMBER_CODETYPE_DEFAULT );	//ÁΩÆ„Åë„Çã„Ç∞„ÉÉ„Ç∫Êï∞
 			
 			WORDSET_ExpandStr( wordset, strb_dst, strb_goods_num );
 			
@@ -710,11 +710,11 @@ static void CreateBaseGoodsList(UG_BASE_LIST *outList)
         for(i=0; i < count ; i++)
         {
 			idx = UnderGroundGetGoodsPCItem(pUGData,i);
-			//Ç∑Ç≈Ç…äÓínÇ…Ç®Ç¢ÇƒÇ¢ÇÈÇ©ÇÉ`ÉFÉbÉN
+			//„Åô„Åß„Å´Âü∫Âú∞„Å´„Åä„ÅÑ„Å¶„ÅÑ„Çã„Åã„Çí„ÉÅ„Çß„ÉÉ„ÇØ
 			check = UnderGroundIsEntryGoodsPCItem(pUGData, i);
-			if (!check){//îzíuÇ≥ÇÍÇƒÇ¢Ç»Ç¢
+			if (!check){//ÈÖçÁΩÆ„Åï„Çå„Å¶„ÅÑ„Å™„ÅÑ
 				flg = 1;
-			}else{		//îzíuçœÇ›
+			}else{		//ÈÖçÁΩÆÊ∏à„Åø
 				flg = 0;
 			}
 			param = (i<<POS_SHIFT)+flg;
@@ -745,7 +745,7 @@ static void CreateBaseGoodsList(UG_BASE_LIST *outList)
 	GF_BGL_BmpWinOn(&outList->Win);
 	GF_BGL_BmpWinOn(&outList->SubWin);
 
-	//ÉJÅ[É\Éãèâä˙âª
+	//„Ç´„Éº„ÇΩ„É´ÂàùÊúüÂåñ
 	outList->Cursor = FComAct_Init(HEAPID_FIELD);
 	FComAct_CursorPosSet(outList->Cursor,200,10+8*2,118+8*2);
 	FComAct_SetDrawFlg(outList->Cursor,FCA_UCURSOR,FALSE);
@@ -756,9 +756,9 @@ static void CreateBaseGoodsList(UG_BASE_LIST *outList)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ÉäÉXÉgÉNÉçÅ[ÉY
+ * @brief	„É™„Çπ„Éà„ÇØ„É≠„Éº„Ç∫
  * 
- * @param	outList		ÉäÉXÉg
+ * @param	outList		„É™„Çπ„Éà
  * 
  * @return	none
  */
@@ -776,13 +776,13 @@ static void CloseList(UG_BASE_LIST *outList)
     GF_BGL_BmpWinDel(&outList->Win);
 	GF_BGL_BmpWinDel(&outList->SubWin);
     BMP_MENULIST_Delete(outList->List);
-	// ÉJÅ[É\ÉãäJï˙
+	// „Ç´„Éº„ÇΩ„É´ÈñãÊîæ
 	FComAct_Delete(outList->Cursor);
 }
 
 //==============================================================================
 /**
- * è„â∫ÉJÅ[É\ÉãÇÃï\é¶åüç∏
+ * ‰∏ä‰∏ã„Ç´„Éº„ÇΩ„É´„ÅÆË°®Á§∫Ê§úÊüª
  * @param   
  * 
  * @retval  none
@@ -817,11 +817,11 @@ static void UgBaseListMoveSe( UG_BASE_MENU* outMenu )
 {
 	u16 tmp_pos_bak;
 
-	//BMPÉäÉXÉgÇÃëSëÃà íuÇéÊìæ
-	tmp_pos_bak = outMenu->pos_bak;		//ëﬁî
+	//BMP„É™„Çπ„Éà„ÅÆÂÖ®‰Ωì‰ΩçÁΩÆ„ÇíÂèñÂæó
+	tmp_pos_bak = outMenu->pos_bak;		//ÈÄÄÈÅø
 	BmpListDirectPosGet( outMenu->ListWork, &outMenu->pos_bak );
 
-	//ÉJÅ[É\ÉãÇ™ìÆÇ¢ÇΩÇ©É`ÉFÉbÉN
+	//„Ç´„Éº„ÇΩ„É´„ÅåÂãï„ÅÑ„Åü„Åã„ÉÅ„Çß„ÉÉ„ÇØ
 	if( tmp_pos_bak != outMenu->pos_bak ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}

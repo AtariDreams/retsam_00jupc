@@ -18,12 +18,12 @@
 
 //----------------------------------------------------------
 /**
- * @brief	WORLDTRADE_DATA ‚Ö‚Ì•sŠ®‘SŒ^’è‹`
+ * @brief	WORLDTRADE_DATA ã¸ã®ä¸å®Œå…¨å‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct WORLDTRADE_DATA WORLDTRADE_DATA;
 
-//¢ŠEŒğŠ·ƒf[ƒ^‚Ìæ“¾
+//ä¸–ç•Œäº¤æ›ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 extern WORLDTRADE_DATA * SaveData_GetWorldTradeData(SAVEDATA * sv);
 
 extern int   WorldTradeData_GetWorkSize(void);

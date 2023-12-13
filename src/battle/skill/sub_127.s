@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_127.s
- *@brief	�퓬�V�[�P���X
- *			���������V�[�P���X
+ *@brief	戦闘シーケンス
+ *			いちゃもんシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.06
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_127:
-	//���łɂ��������������Ă��鎞�́A���܂����܂��
+	//すでにいちゃもんをつけられている時は、うまくきまらん
 	IF_PSP		IF_FLAG_BIT,SIDE_DEFENCE,ID_PSP_condition2,CONDITION2_ICHAMON,Umakukimaran
 	IF			IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
 	GOSUB		SUB_SEQ_WAZA_OUT_EFF

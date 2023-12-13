@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WMIndCallback</title>
@@ -13,7 +13,7 @@
 
 <h1 align="left">WMIndCallback</h1>
 
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -28,45 +28,45 @@
 } WMIndCallback;</CODE></PRE>
   </dd>
 
-</dl><h2>�v�f</h2>
+</dl><h2>要素</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="200"><em><strong><font face="Courier New">apiid</font></strong></em></TD>
-      <TD width="800">�R�[���o�b�N�����̌��ƂȂ���API��ID�ł��B<A href="WMApiid.html">WMApiid</A>�񋓌^�Ɠ��`�ł��B<BR>
-      �����ł�WM_APIID_INDICATION�ɌŒ�ƂȂ�܂��B
+      <TD width="800">コールバック発生の元となったAPIのIDです。<A href="WMApiid.html">WMApiid</A>列挙型と同義です。<BR>
+      ここではWM_APIID_INDICATIONに固定となります。
       </TD>
     </TR>
     <TR>
       <TD width="200"><em><strong><font face="Courier New">errcode</font></strong></em></TD>
-      <TD width="800">�񓯊������̌��ʂł��B<A href="WMErrCode.html">WMErrCode�񋓌^</A>�Ɠ��`�ł��B</TD>
+      <TD width="800">非同期処理の結果です。<A href="WMErrCode.html">WMErrCode列挙型</A>と同義です。</TD>
     </TR>
     <TR>
       <TD width="200"><em><strong><font face="Courier New">state</font></strong></em></TD>
-      <TD width="800">errcode��WM_ERRCODE_SUCCESS�̏ꍇ�A�R�[���o�b�N�̔�������<A href="WMStateCode.html">�v�����</A>���i�[����܂��B����������v���͈ȉ���6�ł��B<BR>
-      WM_STATECODE_BEACON_RECV�AWM_STATECODE_DISASSOCIATE�AWM_STATECODE_REASSOCIATE�AWM_STATECODE_AUTHENTICATE�AWM_STATECODE_FIFO_ERROR�AWM_STATECODE_INFORMATION�B
+      <TD width="800">errcodeがWM_ERRCODE_SUCCESSの場合、コールバックの発生した<A href="WMStateCode.html">要因種別</A>が格納されます。発生しうる要因は以下の6つです。<BR>
+      WM_STATECODE_BEACON_RECV、WM_STATECODE_DISASSOCIATE、WM_STATECODE_REASSOCIATE、WM_STATECODE_AUTHENTICATE、WM_STATECODE_FIFO_ERROR、WM_STATECODE_INFORMATION。
       </TD>
     </TR>
     <TR>
       <TD width="200"><em><strong><font face="Courier New"><font color="#808080">reason</font></font></strong></em></TD>
-      <TD width="800"><font color="#808080">state �̒l�ɉ����� indication �̌����������R�[�h���i�[����܂��B</font></TD>
+      <TD width="800"><font color="#808080">state の値に応じて indication の原因を示すコードが格納されます。</font></TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-<A href="WM_SetIndCallback.html">WM_SetIndCallback</A>�Őݒ肵���R�[���o�b�N�֐��ɓn�����\���̂ł��B<BR>
-state��WM_STATECODE_BEACON_RECV�������ꍇ�́A�����<A href="WMBeaconRecvIndCallback.html">WMBeaconRecvIndCallback</A>�ɃL���X�g���邱�ƂŁA�r�[�R���̏ڍ׏��𓾂邱�Ƃ��ł��܂��B
+<A href="WM_SetIndCallback.html">WM_SetIndCallback</A>で設定したコールバック関数に渡される構造体です。<BR>
+stateがWM_STATECODE_BEACON_RECVだった場合は、さらに<A href="WMBeaconRecvIndCallback.html">WMBeaconRecvIndCallback</A>にキャストすることで、ビーコンの詳細情報を得ることができます。
 </P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/07/29 �v����WM_STATECODE_INFORMATION��ǋL<BR>
-2005/02/01 �v����WM_STATECODE_FIFO_ERROR��ǋL<BR>
-2004/11/10 reason�����o�ɂ��Ă̐�����ǋL<BR>
-2004/08/02 �\���̖��̓���<BR>
-2004/07/29 ����<BR>
+2005/07/29 要因にWM_STATECODE_INFORMATIONを追記<BR>
+2005/02/01 要因にWM_STATECODE_FIFO_ERRORを追記<BR>
+2004/11/10 reasonメンバについての説明を追記<BR>
+2004/08/02 構造体名の統一<BR>
+2004/07/29 初版<BR>
 </P>
 </body>
 </html>

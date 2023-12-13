@@ -2,7 +2,7 @@
 /**
  *
  *@file		fld_motion_bl.h
- *@brief	ƒtƒB[ƒ‹ƒhê–åƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[
+ *@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å°‚é–€ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼
  *@author	tomoya takahashi
  *@data		2005.07.28
  *
@@ -22,13 +22,13 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 typedef struct _FLD_MOTION_BL_DATA* FLD_MOTION_BL_DATA_PTR;
@@ -36,12 +36,12 @@ typedef struct _FLD_MOTION_BL_DATA* FLD_MOTION_BL_DATA_PTR;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-GLOBAL FLD_MOTION_BL_DATA_PTR FLDMotionBl_Init(int eva, int evb);	// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[‚ðŽg—p‚·‚é€”õ‚ð‚·‚é
-GLOBAL void FLDMotionBl_Delete(FLD_MOTION_BL_DATA_PTR* data);		// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[‚ðŽg—p‚·‚é€”õ‚ð‚·‚é
-GLOBAL void FLDMotionBl_ParamChg(FLD_MOTION_BL_DATA_PTR data, int eva, int evb); // ƒpƒ‰ƒ[ƒ^[Change
+GLOBAL FLD_MOTION_BL_DATA_PTR FLDMotionBl_Init(int eva, int evb);	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹æº–å‚™ã‚’ã™ã‚‹
+GLOBAL void FLDMotionBl_Delete(FLD_MOTION_BL_DATA_PTR* data);		// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹æº–å‚™ã‚’ã™ã‚‹
+GLOBAL void FLDMotionBl_ParamChg(FLD_MOTION_BL_DATA_PTR data, int eva, int evb); // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼Change
 
 #undef	GLOBAL
 #endif		// __FLD_MOTION_BL_H__

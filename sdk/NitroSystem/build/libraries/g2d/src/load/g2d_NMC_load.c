@@ -20,7 +20,7 @@
 
 
 #ifndef SDK_FINALROM
-// NNSG2dMCAnimationPlayMode ‚Ì•¶Žš—ñ
+// NNSG2dMCAnimationPlayMode ã®æ–‡å­—åˆ—
 static const char* s_playModeStrTbl[] = 
 {
     "NNS_G2D_MCANIM_PLAYMODE_RESET",
@@ -75,14 +75,14 @@ BOOL NNS_G2dGetUnpackedMultiCellBank
 }
 
 //------------------------------------------------------------------------------
-// Šg’£ƒf[ƒ^‚Ì•œŒ³‚ðs‚¢‚Ü‚·B
-// Šg’£ƒf[ƒ^‚Í•¡”‚ÌƒuƒƒbƒN‚©‚ç\¬‚³‚ê‚é‰Â”\«‚ª‚ ‚è‚Ü‚·‚ªA
-// Œ»Ý‚Íƒ†[ƒUŠg’£ƒAƒgƒŠƒrƒ…[ƒgƒuƒƒbƒN‚Ì‚Ý‚ªŠi”[‚³‚ê‚Ä‚¢‚Ü‚·B
+// æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ã®å¾©å…ƒã‚’è¡Œã„ã¾ã™ã€‚
+// æ‹¡å¼µãƒ‡ãƒ¼ã‚¿ã¯è¤‡æ•°ã®ãƒ–ãƒ­ãƒƒã‚¯ã‹ã‚‰æ§‹æˆã•ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ãŒã€
+// ç¾åœ¨ã¯ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ–ãƒ­ãƒƒã‚¯ã®ã¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã¾ã™ã€‚
 static void UnpackExtendedData_( void* pExData )
 {
     NNS_G2D_NULL_ASSERT( pExData );
     
-    //------- ƒ†[ƒUŠg’£ƒAƒgƒŠƒrƒ…[ƒgƒuƒƒbƒN ‚Ì•œŒ³
+    //------- ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ–ãƒ­ãƒƒã‚¯ ã®å¾©å…ƒ
     {    
         NNSG2dUserExDataBlock*    pBlk          = (NNSG2dUserExDataBlock*)pExData;
         NNSG2dUserExCellAttrBank* pCellAttrBank = (NNSG2dUserExCellAttrBank*)(pBlk + 1);
@@ -119,7 +119,7 @@ void NNS_G2dUnpackNMC( NNSG2dMultiCellDataBank* pMCellData )
             }
         }
         //
-        // Šg’£î•ñƒ|ƒCƒ“ƒ^‚ð•œŒ³‚µ‚Ü‚·B(‘¶Ý‚·‚ê‚Î...) 
+        // æ‹¡å¼µæƒ…å ±ãƒã‚¤ãƒ³ã‚¿ã‚’å¾©å…ƒã—ã¾ã™ã€‚(å­˜åœ¨ã™ã‚Œã°...) 
         //
         if( pMCellData->pExtendedData != NULL )
         {
@@ -182,7 +182,7 @@ static void PrintNodeAttr_( const NNSG2dMultiCellHierarchyData* pNode )
 
 
 //------------------------------------------------------------------------------
-// Šg’£î•ñ‚ð•\Ž¦‚µ‚Ü‚·
+// æ‹¡å¼µæƒ…å ±ã‚’è¡¨ç¤ºã—ã¾ã™
 static void PrintCellExtendedData_( const void* pExData )
 {
     NNS_G2D_NULL_ASSERT( pExData ); 
@@ -240,7 +240,7 @@ void NNS_G2dPrintMultiCellBank  ( const NNSG2dMultiCellDataBank* pDataBank )
         NNS_G2dPrintMultiCellInfo( pMCell );
     }
     //
-    // Šg’£î•ñ‚Ì•\Ž¦i‚à‚µ‘¶Ý‚·‚ê‚Î...j
+    // æ‹¡å¼µæƒ…å ±ã®è¡¨ç¤ºï¼ˆã‚‚ã—å­˜åœ¨ã™ã‚Œã°...ï¼‰
     //
     if( pDataBank->pExtendedData != NULL )
     {

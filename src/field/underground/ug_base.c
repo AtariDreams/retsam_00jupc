@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ug_base.c
- * @brief	”é–§Šî’n
+ * @brief	ç§˜å¯†åŸºåœ°
  * @author	saito
  * @date	2006.02.21
  *
@@ -31,14 +31,14 @@
 
 #include "ug_base.h"
 
-#define GOODS_HIT_LIST_MAX	(32)	//ƒpƒ\ƒRƒ“1AƒOƒbƒY15AŠâ16
+#define GOODS_HIT_LIST_MAX	(32)	//ãƒ‘ã‚½ã‚³ãƒ³1ã€ã‚°ãƒƒã‚º15ã€å²©16
 
-#define BASE_EDIT_BLOCK_OFS_X	(0)	//Šî’n•ÒW‚Ì’n‰ºƒuƒƒbƒNXÀ•W
-#define BASE_EDIT_BLOCK_OFS_Z	(0) //Šî’n•ÒW‚Ì’n‰ºƒuƒƒbƒNZÀ•W
+#define BASE_EDIT_BLOCK_OFS_X	(0)	//åŸºåœ°ç·¨é›†æ™‚ã®åœ°ä¸‹ãƒ–ãƒ­ãƒƒã‚¯Xåº§æ¨™
+#define BASE_EDIT_BLOCK_OFS_Z	(0) //åŸºåœ°ç·¨é›†æ™‚ã®åœ°ä¸‹ãƒ–ãƒ­ãƒƒã‚¯Zåº§æ¨™
 #define BASE_EDIT_GRID_OFS_X	(BASE_EDIT_BLOCK_OFS_X*32)
 #define BASE_EDIT_GRID_OFS_Z	(BASE_EDIT_BLOCK_OFS_Z*32)
-#define EDIT_START_X	(16)		//•ÒWŠî“_XÀ•W
-#define EDIT_START_Z	(13)		//•ÒWŠî“_ZÀ•W
+#define EDIT_START_X	(16)		//ç·¨é›†åŸºç‚¹Xåº§æ¨™
+#define EDIT_START_Z	(13)		//ç·¨é›†åŸºç‚¹Zåº§æ¨™
 
 #define BASE_LX			(10)
 #define BASE_LZ			(12)
@@ -58,7 +58,7 @@
 #define PUT_BLINK_TIME	(4)
 #define COLLECT_BLINK_TIME	(8)
 
-#define GOODS_PUT_MAX	(15)	//’u‚­‚±‚Æ‚ª‚Å‚«‚éƒOƒbƒY‚ÌÅ‘å”
+#define GOODS_PUT_MAX	(15)	//ç½®ãã“ã¨ãŒã§ãã‚‹ã‚°ãƒƒã‚ºã®æœ€å¤§æ•°
 
 #define MSG_WAIT	(30)
 #define MSG_DEL_WAIT	(10)
@@ -81,8 +81,8 @@ typedef enum {
     BASE_SEQ_END2
 };
 
-//Še‹@”\–ˆ‚ÌƒV[ƒPƒ“ƒX
-//İ’u
+//å„æ©Ÿèƒ½æ¯ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+//è¨­ç½®
 enum {
 	PUT_SEQ_GOODS_LIST = 0,
 	PUT_SEQ_INIT,
@@ -92,7 +92,7 @@ enum {
 	PUT_SEQ_PUT_ALREADY,
 };
 
-//‰ñû
+//å›å
 enum {
 	COL_SEQ_INIT = 0,
 	COL_SEQ_MAIN,
@@ -103,14 +103,14 @@ enum {
 	COL_SEQ_ROCK_REST,
 };
 
-//Ä”z’uiƒ^[ƒQƒbƒgw’èj
+//å†é…ç½®ï¼ˆã‚¿ãƒ¼ã‚²ãƒƒãƒˆæŒ‡å®šï¼‰
 enum {
 	REPUT_SEQ_INIT = 0,
 	REPUT_SEQ_MAIN,
 	REPUT_SEQ_COL_NG,
 };
 
-//Ä”z’uiİ’uj
+//å†é…ç½®ï¼ˆè¨­ç½®ï¼‰
 enum {
 	REPUTSET_SEQ_INIT = 0,
 	REPUTSET_SEQ_MAIN,
@@ -135,23 +135,23 @@ typedef struct BLINK_DATA_tag
 
 typedef struct RECT_DATA_tag
 {
-	int GridLX;	//¶ãƒOƒŠƒbƒhÀ•WX
-	int GridLZ;	//¶ãƒOƒŠƒbƒhÀ•WZ
-	int GridRX;	//‰E‰ºƒOƒŠƒbƒhÀ•WX
-	int GridRZ;	//‰E‰ºƒOƒŠƒbƒhÀ•WZ
+	int GridLX;	//å·¦ä¸Šã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+	int GridLZ;	//å·¦ä¸Šã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
+	int GridRX;	//å³ä¸‹ã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+	int GridRZ;	//å³ä¸‹ã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
 }RECT_DATA;
 
 typedef struct GOODS_HIT_DAT_tag
 {
 	RECT_DATA	Rect;
 /**	
-	int GridLX;	//¶ãƒOƒŠƒbƒhÀ•WX
-	int GridLZ;	//¶ãƒOƒŠƒbƒhÀ•WZ
-	int GridRX;	//‰E‰ºƒOƒŠƒbƒhÀ•WX
-	int GridRZ;	//‰E‰ºƒOƒŠƒbƒhÀ•WZ
+	int GridLX;	//å·¦ä¸Šã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+	int GridLZ;	//å·¦ä¸Šã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
+	int GridRX;	//å³ä¸‹ã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+	int GridRZ;	//å³ä¸‹ã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
 */
-	int ObjEntryIndex;	//OBJƒGƒ“ƒgƒŠƒCƒ“ƒfƒbƒNƒX
-	int No;		//ƒOƒbƒYƒiƒ“ƒo[
+	int ObjEntryIndex;	//OBJã‚¨ãƒ³ãƒˆãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int No;		//ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
 	int Width;
 	int Depth;
 }GOODS_HIT_DAT;
@@ -165,18 +165,18 @@ typedef struct GOODS_OLD_POS_INFO_tag
 
 typedef struct GOODS_HIT_LIST_ITEM_tag
 {
-	BOOL Valid;	//ƒf[ƒ^—LŒøƒtƒ‰ƒO
+	BOOL Valid;	//ãƒ‡ãƒ¼ã‚¿æœ‰åŠ¹ãƒ•ãƒ©ã‚°
 	GOODS_HIT_DAT Data;
 }GOODS_HIT_LIST_ITEM;
 
 
-//‘I‘ğƒXƒNƒGƒA
+//é¸æŠã‚¹ã‚¯ã‚¨ã‚¢
 typedef struct UG_BASE_PANEL_tag
 {
 	NNSG3dRenderObj			renderobj;
 	NNSG3dResFileHeader* 	resfileheader;
 
-	VecFx32 trans;	//À•W
+	VecFx32 trans;	//åº§æ¨™
 	int GridX;
 	int GridZ;
 	BOOL DrawFlg;
@@ -184,9 +184,9 @@ typedef struct UG_BASE_PANEL_tag
 
 typedef struct UG_BASE_TP_tag
 {
-	int TpX;//Œ»İ‚Ìƒ^ƒbƒ`•Û‘¶À•W
+	int TpX;//ç¾åœ¨ã®ã‚¿ãƒƒãƒä¿å­˜åº§æ¨™
 	int TpY;
-	BOOL TrgFlg;//Œ»İ‚Ìƒ^ƒbƒ`ó‹µi—£‚³‚ê‚Ä‚¢‚éA‰Ÿ‚³‚ê‚Ä‚¢‚éj
+	BOOL TrgFlg;//ç¾åœ¨ã®ã‚¿ãƒƒãƒçŠ¶æ³ï¼ˆé›¢ã•ã‚Œã¦ã„ã‚‹ã€æŠ¼ã•ã‚Œã¦ã„ã‚‹ï¼‰
 }UG_BASE_TP;
 
 typedef struct EVENT_BASE_EDIT_WORK_tag
@@ -199,7 +199,7 @@ typedef struct EVENT_BASE_EDIT_WORK_tag
 	GOODS_HIT_LIST_ITEM	GoodsHitList[GOODS_HIT_LIST_MAX];
 	BLINK_DATA	BlinkData;
 	UG_BASE_TP	BaseTp;
-	UG_BASE_PANEL *Panel;		//ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒtƒ@ƒ“ƒN‚Ìƒ[ƒNƒ|ƒCƒ“ƒ^
+	UG_BASE_PANEL *Panel;		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ•ã‚¡ãƒ³ã‚¯ã®ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 	FIELDSYS_WORK * fsys;
 	UG_BASE_MENU *MainMenu;
 	UG_BASE_LIST *GoodsList;
@@ -211,10 +211,10 @@ typedef struct EVENT_BASE_EDIT_WORK_tag
 	u16	GoodsListCurPos;
 
 	u8 MesWait;
-	u8 GoodsCount;	//’u‚¢‚Ä‚ ‚éƒOƒbƒY”
-	u8 RockCount;	//”é–§Šî’n‚É‚ ‚éŠâ‚Ì”
-	u8 RockLimit;	//’u‚¢‚Ä‚¨‚©‚È‚¯‚ê‚Î‚È‚ç‚È‚¢Šâ‚Ì”
-	u8 GoodsLimit;	//’u‚¯‚éƒOƒbƒY”
+	u8 GoodsCount;	//ç½®ã„ã¦ã‚ã‚‹ã‚°ãƒƒã‚ºæ•°
+	u8 RockCount;	//ç§˜å¯†åŸºåœ°ã«ã‚ã‚‹å²©ã®æ•°
+	u8 RockLimit;	//ç½®ã„ã¦ãŠã‹ãªã‘ã‚Œã°ãªã‚‰ãªã„å²©ã®æ•°
+	u8 GoodsLimit;	//ç½®ã‘ã‚‹ã‚°ãƒƒã‚ºæ•°
 }EVENT_BASE_EDIT_WORK;
 
 static BOOL MenuEvent(GMEVENT_CONTROL * event);
@@ -284,18 +284,18 @@ static const FLDMAPFUNC_DATA BasePanelData = {
 };
 
 
-//¡‚©‚ç’u‚­•¨‚ğ”z’uƒ‚ƒfƒ‹‚Æ‚µ‚Ä“o˜^
+//ä»Šã‹ã‚‰ç½®ãç‰©ã‚’é…ç½®ãƒ¢ãƒ‡ãƒ«ã¨ã—ã¦ç™»éŒ²
 static void EntryNewGoods(FIELDSYS_WORK * fsys, const int inGoodsNo, EVENT_BASE_EDIT_WORK *ebew)
 {
 	GOODS_HIT_DAT *data;
 	VecFx32 trans;
 
-	GF_ASSERT(inGoodsNo!=0&&"ƒiƒ“ƒo[0‚ÌƒOƒbƒY‚Í‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT(inGoodsNo!=0&&"ãƒŠãƒ³ãƒãƒ¼0ã®ã‚°ãƒƒã‚ºã¯ã‚ã‚Šã¾ã›ã‚“");
 	
-	//¡‚©‚ç’u‚­•¨‚ğƒZƒbƒg
+	//ä»Šã‹ã‚‰ç½®ãç‰©ã‚’ã‚»ãƒƒãƒˆ
 	data = &ebew->EditGoodsData;
 
-	//ƒOƒbƒYî•ñ‚ÉƒAƒNƒZƒX‚µ‚ÄAc‰¡ƒTƒCƒY‚ğæ“¾
+	//ã‚°ãƒƒã‚ºæƒ…å ±ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã€ç¸¦æ¨ªã‚µã‚¤ã‚ºã‚’å–å¾—
 	data->Width = GOODS_GetGoodsSizeX(inGoodsNo);
 	data->Depth = GOODS_GetGoodsSizeZ(inGoodsNo);
 
@@ -313,30 +313,30 @@ static void EntryNewGoods(FIELDSYS_WORK * fsys, const int inGoodsNo, EVENT_BASE_
 							fsys->field_3d_anime);
 
 	
-	//Šî’n‚ª‚Ç‚±–¼”z’u‚³‚ê‚æ‚¤‚ÆAŠÇ—‚Í0,0Šî“_‚Ås‚¤
+	//åŸºåœ°ãŒã©ã“åé…ç½®ã•ã‚Œã‚ˆã†ã¨ã€ç®¡ç†ã¯0,0åŸºç‚¹ã§è¡Œã†
 	data->Rect.GridLX = EDIT_START_X;
 	data->Rect.GridLZ = EDIT_START_Z;
 	data->Rect.GridRX = EDIT_START_X+(data->Width-1);
 	data->Rect.GridRZ = EDIT_START_Z+(data->Depth-1);
-	data->No = inGoodsNo;//ƒOƒbƒYƒiƒ“ƒo[ƒZƒbƒg
+	data->No = inGoodsNo;//ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼ã‚»ãƒƒãƒˆ
 }
 
-//ƒGƒ“ƒgƒŠ‚ğ‰ğœ
+//ã‚¨ãƒ³ãƒˆãƒªã‚’è§£é™¤
 static void CancelGoodsEntry(FIELDSYS_WORK * fsys, const int inEntryIndex)
 {
 	M3DO_CleanMap3DObj(inEntryIndex, fsys->Map3DObjExp);
 }
 
-//ƒŠƒXƒg‚Ìw’èƒf[ƒ^‚ğ•ÒWƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+//ãƒªã‚¹ãƒˆã®æŒ‡å®šãƒ‡ãƒ¼ã‚¿ã‚’ç·¨é›†ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 static void CopyEditDataFromList(const int inIndex, EVENT_BASE_EDIT_WORK *ebew)
 {
 	GOODS_HIT_DAT *data;
-	GF_ASSERT(ebew->GoodsHitList[inIndex].Valid&&"ƒf[ƒ^‚Í–³Œøó‘Ô‚Å‚·");
+	GF_ASSERT(ebew->GoodsHitList[inIndex].Valid&&"ãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹çŠ¶æ…‹ã§ã™");
 	data = &(ebew->GoodsHitList[inIndex].Data);
 	ebew->EditGoodsData = (*data);
 }
 
-//”é–§Šî’nƒŒƒCƒAƒEƒg•ÏX§ŒäƒCƒxƒ“ƒg‚Ì”­s
+//ç§˜å¯†åŸºåœ°ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå¤‰æ›´åˆ¶å¾¡ã‚¤ãƒ™ãƒ³ãƒˆã®ç™ºè¡Œ
 static BOOL EditLayoutEvent(GMEVENT_CONTROL * event)
 {
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
@@ -344,20 +344,20 @@ static BOOL EditLayoutEvent(GMEVENT_CONTROL * event)
 	switch(ebew->seq){
 	case BASE_SEQ_SETUP:
 		sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
-		//Šî’nƒƒCƒ“ƒƒjƒ…[İ’è
+		//åŸºåœ°ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 		ebew->MainMenu = BMENU_AllocUgBaseMenu();
 		BMENU_InitBaseMainMenu(	ebew->MainMenu, fsys,
 								&ebew->MainMenuLine, &ebew->MainMenuCurPos);
 
-		//ƒOƒbƒYƒŠƒXƒgİ’è
+		//ã‚°ãƒƒã‚ºãƒªã‚¹ãƒˆè¨­å®š
 		ebew->GoodsList = BMENU_AllocUgBaseGoodsList();
 		BMENU_InitBaseGoodsList(ebew->GoodsList, fsys,
 								&ebew->GoodsListLine, &ebew->GoodsListCurPos);
 		
-		//ƒƒjƒ…[ƒRƒ“ƒgƒ[ƒ‹
-///		OS_Printf("ƒZ[ƒuƒf[ƒ^‚ğ“Ç‚ñ‚ÅƒŠƒXƒgì¬\n");
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+///		OS_Printf("ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã‚“ã§ãƒªã‚¹ãƒˆä½œæˆ\n");
 		MakeGoodsHitList(fsys, ebew, ebew->GoodsHitList);
-///		OS_Printf("Map3DObj‚ğƒNƒŠƒA‚µ‚ÄAƒGƒfƒBƒbƒg—p‚ÉÄƒZƒbƒg\n");
+///		OS_Printf("Map3DObjã‚’ã‚¯ãƒªã‚¢ã—ã¦ã€ã‚¨ãƒ‡ã‚£ãƒƒãƒˆç”¨ã«å†ã‚»ãƒƒãƒˆ\n");
 		MakeGoodsMap3DObj(fsys, ebew->GoodsHitList);	
 		
 		SetNextSeqCall(BASE_SEQ_FADEIN, ebew);
@@ -378,27 +378,27 @@ static BOOL EditLayoutEvent(GMEVENT_CONTROL * event)
         }
         break;
 	case BASE_SEQ_MAIN_MENU:
-///		OS_Printf("ƒƒjƒ…[ƒEƒBƒ“ƒhƒE\n");
+///		OS_Printf("ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦\n");
 		FieldEvent_Call(event, MenuEvent, ebew);
 		break;
 	case BASE_SEQ_PUT_CONT:
-		//İ’u
+		//è¨­ç½®
 		FieldEvent_Call(event, PutControl, ebew);
 		break;
 	case BASE_SEQ_COLLECT_CONT:
-		//‰ñû
+		//å›å
 		FieldEvent_Call(event, CollectControl, ebew);
 		break;
 	case BASE_SEQ_REPUT_CONT:
-		//Ä”z’u(ƒOƒbƒYw’è)
+		//å†é…ç½®(ã‚°ãƒƒã‚ºæŒ‡å®š)
 		FieldEvent_Call(event, ReputControl, ebew);
 		break;
 	case BASE_SEQ_REPUT_SET_CONT:
-		//Ä”z’uiİ’uj
+		//å†é…ç½®ï¼ˆè¨­ç½®ï¼‰
 		FieldEvent_Call(event, ReputSetControl, ebew);
 		break;
 	case BASE_SEQ_MSG_WAIT:
-		//ƒƒbƒZ[ƒW‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				UgSecretBaseTalkEnd();
@@ -418,16 +418,16 @@ static BOOL EditLayoutEvent(GMEVENT_CONTROL * event)
         break;
 	case BASE_SEQ_END2:
         if(WIPE_SYS_EndCheck()){
-		//I—¹
-///		OS_Printf("Šî’nˆ—I—¹\n");
+		//çµ‚äº†
+///		OS_Printf("åŸºåœ°å‡¦ç†çµ‚äº†\n");
 		
-		//ƒOƒbƒYƒŠƒXƒg‰ğ•ú
+		//ã‚°ãƒƒã‚ºãƒªã‚¹ãƒˆè§£æ”¾
 		BMENU_FreeUgBaseGoodsList(ebew->GoodsList);
 
-		//Šî’nƒƒCƒ“ƒƒjƒ…[‰ğ•ú
+		//åŸºåœ°ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼è§£æ”¾
 		BMENU_FreeUgBaseMenu(ebew->MainMenu);
 
-		//ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒtƒ@ƒ“ƒN‰ğ•ú
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ•ã‚¡ãƒ³ã‚¯è§£æ”¾
 		FLDMAPFUNC_Delete(ebew->FldMapFunc);
 		
 		sys_FreeMemoryEz(ebew);
@@ -438,73 +438,73 @@ static BOOL EditLayoutEvent(GMEVENT_CONTROL * event)
 	return FALSE;
 }
 
-//ƒƒjƒ…[ƒCƒxƒ“ƒg
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆ
 static BOOL MenuEvent(GMEVENT_CONTROL * event)
 {
 	BOOL rc;
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	EVENT_BASE_EDIT_WORK * ebew = FieldEvent_GetSpecialWork(event);
 
-	//ƒGƒfƒBƒbƒgƒƒCƒ“ƒƒjƒ…[
+	//ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 	rc = BMENU_EditMainMenuControl(ebew->MainMenu);
 
 	if (rc){
-		//ƒƒjƒ…[‚ÌƒCƒ“ƒfƒbƒNƒX‚ğŒ©‚Ä‚Ç‚Ìƒ‚[ƒh‚É”ò‚Î‚·‚©‚ğ”»’è
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¦‹ã¦ã©ã®ãƒ¢ãƒ¼ãƒ‰ã«é£›ã°ã™ã‹ã‚’åˆ¤å®š
 		switch(BMENU_GetReturnIndex(ebew->MainMenu)){
-		case 0:		//İ’uƒ‚[ƒh
+		case 0:		//è¨­ç½®ãƒ¢ãƒ¼ãƒ‰
 			{
-				//ŒÂ”ƒ`ƒFƒbƒN
+				//å€‹æ•°ãƒã‚§ãƒƒã‚¯
 				UNDERGROUNDDATA* pUGData;
 				int count;
 				pUGData = SaveData_GetUnderGroundData(fsys->savedata);
 				count = UnderGroundGetNumGoodsPCItem(pUGData);
-				if (count == 0){//¡‚à‚Á‚Ä‚éƒOƒbƒY‚ª‚ ‚é‚©H
-					//ƒƒbƒZ[ƒWFƒOƒbƒY‚ª@‚ ‚è‚Ü‚¹‚ñ
+				if (count == 0){//ä»Šã‚‚ã£ã¦ã‚‹ã‚°ãƒƒã‚ºãŒã‚ã‚‹ã‹ï¼Ÿ
+					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã‚°ãƒƒã‚ºãŒã€€ã‚ã‚Šã¾ã›ã‚“
 					ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_20);
 					ebew->MesWait = 0;
 					SetNextSeqCall(BASE_SEQ_MSG_WAIT, ebew);
 					return TRUE;
 				}
 				if (ebew->GoodsCount>GOODS_PUT_MAX){
-///					OS_Printf("‚±‚êˆÈã‚Í’u‚¯‚Ü‚¹‚ñ\n");
-					//ƒƒbƒZ[ƒWF‚±‚ê‚¢‚¶‚å‚¤@ƒOƒbƒY‚Í@‚¨‚¯‚Ü‚¹‚ñ
+///					OS_Printf("ã“ã‚Œä»¥ä¸Šã¯ç½®ã‘ã¾ã›ã‚“\n");
+					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã“ã‚Œã„ã˜ã‚‡ã†ã€€ã‚°ãƒƒã‚ºã¯ã€€ãŠã‘ã¾ã›ã‚“
 					ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_21);
 					ebew->MesWait = 0;
 					SetNextSeqCall(BASE_SEQ_MSG_WAIT, ebew);
 					return TRUE;
 				}
 				if (ebew->GoodsCount+1>ebew->GoodsLimit){
-///					OS_Printf("ƒOƒbƒY‚ğ’u‚­‚É‚ÍAƒŒƒxƒ‹‚ª‘«‚è‚È‚¢\n");
-					//ƒƒbƒZ[ƒWF‚±‚ê‚¢‚¶‚å‚¤@ƒOƒbƒY‚Í@‚¨‚¯‚Ü‚¹‚ñ
+///					OS_Printf("ã‚°ãƒƒã‚ºã‚’ç½®ãã«ã¯ã€ãƒ¬ãƒ™ãƒ«ãŒè¶³ã‚Šãªã„\n");
+					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã“ã‚Œã„ã˜ã‚‡ã†ã€€ã‚°ãƒƒã‚ºã¯ã€€ãŠã‘ã¾ã›ã‚“
 					ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_21);
 					ebew->MesWait = 0;
 					SetNextSeqCall(BASE_SEQ_MSG_WAIT, ebew);
 					return TRUE;
 				}
 			}
-			//ƒGƒ“ƒgƒŠ
-///			OS_Printf("İ’uƒ‚[ƒh\n");
-			//’u‚¯‚éƒOƒbƒY”‚Æ’u‚¢‚Ä‚ ‚éƒOƒbƒY”‚ğƒŠƒXƒg‚ÉƒZƒbƒg
+			//ã‚¨ãƒ³ãƒˆãƒª
+///			OS_Printf("è¨­ç½®ãƒ¢ãƒ¼ãƒ‰\n");
+			//ç½®ã‘ã‚‹ã‚°ãƒƒã‚ºæ•°ã¨ç½®ã„ã¦ã‚ã‚‹ã‚°ãƒƒã‚ºæ•°ã‚’ãƒªã‚¹ãƒˆã«ã‚»ãƒƒãƒˆ
 			BMENU_SetGoodsNumToList(ebew->GoodsList, ebew->GoodsCount, ebew->GoodsLimit);
 			
 			SetNextSeqCall(BASE_SEQ_PUT_CONT, ebew);
 			return TRUE;
-		case 1:		//‰ñûƒ‚[ƒh
-			//‰ñû
-///			OS_Printf("‰ñûƒ‚[ƒh\n");
-			//‰‰ñ‚Ì‚İƒpƒlƒ‹ˆÊ’uƒZƒbƒg
+		case 1:		//å›åãƒ¢ãƒ¼ãƒ‰
+			//å›å
+///			OS_Printf("å›åãƒ¢ãƒ¼ãƒ‰\n");
+			//åˆå›ã®ã¿ãƒ‘ãƒãƒ«ä½ç½®ã‚»ãƒƒãƒˆ
 			SetPanelPos(EDIT_START_X, EDIT_START_Z, ebew->Panel);
 			SetNextSeqCall(BASE_SEQ_COLLECT_CONT, ebew);
 			return TRUE;
-		case 2:		//Ä”z’uƒ‚[ƒh
-			//Ä”z’u
-///			OS_Printf("Ä”z’uƒ‚[ƒh\n");
-			//‰‰ñ‚Ì‚İƒpƒlƒ‹ˆÊ’uƒZƒbƒg
+		case 2:		//å†é…ç½®ãƒ¢ãƒ¼ãƒ‰
+			//å†é…ç½®
+///			OS_Printf("å†é…ç½®ãƒ¢ãƒ¼ãƒ‰\n");
+			//åˆå›ã®ã¿ãƒ‘ãƒãƒ«ä½ç½®ã‚»ãƒƒãƒˆ
 			SetPanelPos(EDIT_START_X, EDIT_START_Z, ebew->Panel);
 			SetNextSeqCall(BASE_SEQ_REPUT_CONT, ebew);
 			return TRUE;
-		default:	//I—¹
-			//ƒZ[ƒu‚É‘‚­
+		default:	//çµ‚äº†
+			//ã‚»ãƒ¼ãƒ–ã«æ›¸ã
 			WriteSaveData(fsys, ebew->GoodsHitList)	;
 			SetNextSeqCall(BASE_SEQ_END, ebew);
 			return TRUE;
@@ -514,22 +514,22 @@ static BOOL MenuEvent(GMEVENT_CONTROL * event)
 	return FALSE;
 }
 
-//ƒCƒxƒ“ƒgCALL
+//ã‚¤ãƒ™ãƒ³ãƒˆCALL
 void UGBase_CallBaseEditEvent(FIELDSYS_WORK * fsys,GMEVENT_CONTROL* mainEvent)
 {
-	//Šî’nƒGƒfƒBƒbƒg—pƒ[ƒN
+	//åŸºåœ°ã‚¨ãƒ‡ã‚£ãƒƒãƒˆç”¨ãƒ¯ãƒ¼ã‚¯
 	EVENT_BASE_EDIT_WORK * ebew = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(EVENT_BASE_EDIT_WORK));
 	MI_CpuClear8(ebew, sizeof(EVENT_BASE_EDIT_WORK));
 
 	SetNextSeqCall(BASE_SEQ_SETUP, ebew);
 	ebew->fsys = fsys;
 
-	//ƒpƒlƒ‹•`‰æ—pƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒtƒ@ƒ“ƒNì¬
+	//ãƒ‘ãƒãƒ«æç”»ç”¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ•ã‚¡ãƒ³ã‚¯ä½œæˆ
 	ebew->FldMapFunc = FLDMAPFUNC_Create(fsys->fldmap->fmapfunc_sys, &BasePanelData);
-	//ƒpƒlƒ‹•`‰æ—pƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒtƒ@ƒ“ƒN‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+	//ãƒ‘ãƒãƒ«æç”»ç”¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ•ã‚¡ãƒ³ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 	ebew->Panel = FLDMAPFUNC_GetFreeWork(ebew->FldMapFunc);
 
-	//ƒ}ƒbƒvƒWƒƒƒ“ƒvƒCƒxƒ“ƒg‚ğì¬
+	//ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä½œæˆ
 	FieldEvent_Call(mainEvent, EditLayoutEvent, ebew);
 }
 
@@ -548,7 +548,7 @@ static BOOL PutControl(GMEVENT_CONTROL * event)
 	case PUT_SEQ_GOODS_LIST:
 		{
 			BOOL rc;
-			//ƒGƒfƒBƒbƒgƒƒCƒ“ƒƒjƒ…[
+			//ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 			rc = BMENU_EditGoodsListControl(ebew->GoodsList);
 			if (rc){
 				u32 idx;
@@ -556,31 +556,31 @@ static BOOL PutControl(GMEVENT_CONTROL * event)
 				UNDERGROUNDDATA* pUGData;
 				pUGData = SaveData_GetUnderGroundData(ebew->fsys->savedata);
 
-				//ƒŠƒ^[ƒ“ƒR[ƒh‚ğ’²‚×‚é
+				//ãƒªã‚¿ãƒ¼ãƒ³ã‚³ãƒ¼ãƒ‰ã‚’èª¿ã¹ã‚‹
 				idx = BMENU_GetReturnListIdx(ebew->GoodsList);
-				if (idx == LIST_CANCEL_CODE){	//ƒLƒƒƒ“ƒZƒ‹‚Ìê‡
-					//ƒV[ƒPƒ“ƒX‚ğƒƒCƒ“ƒƒjƒ…[‚Ö
-					SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ƒƒCƒ“ƒƒjƒ…[
+				if (idx == LIST_CANCEL_CODE){	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®å ´åˆ
+					//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
+					SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 					return TRUE;
 				}
 				
 				goods_no = UnderGroundGetGoodsPCItem(pUGData,idx);
-				if (goods_no!=GOODS_INVALID){	//ƒOƒbƒY‚Ìê‡
-					//‚·‚Å‚ÉŠî’n‚É‚¨‚¢‚Ä‚¢‚é‚©‚ğƒ`ƒFƒbƒN
+				if (goods_no!=GOODS_INVALID){	//ã‚°ãƒƒã‚ºã®å ´åˆ
+					//ã™ã§ã«åŸºåœ°ã«ãŠã„ã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 					BOOL check;
 					check = UnderGroundIsEntryGoodsPCItem(pUGData, idx);
-					if (!check){//”z’u‚³‚ê‚Ä‚¢‚È‚¢
-						//”z’u•¨‚Æ‚µ‚Ä“o˜^‚·‚é
+					if (!check){//é…ç½®ã•ã‚Œã¦ã„ãªã„
+						//é…ç½®ç‰©ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 						EntryNewGoods(fsys, goods_no, ebew);
 						ebew->SubSeq = PUT_SEQ_INIT;
-					}else{	//’u‚¢‚Ä‚¢‚é
-						//ƒƒbƒZ[ƒWF‚»‚ÌƒOƒbƒY‚Í@‚à‚¤@‚¨‚©‚ê‚Ä‚¢‚Ü‚·
+					}else{	//ç½®ã„ã¦ã„ã‚‹
+						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šãã®ã‚°ãƒƒã‚ºã¯ã€€ã‚‚ã†ã€€ãŠã‹ã‚Œã¦ã„ã¾ã™
 						ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_22);
 						ebew->MesWait = 0;
 						ebew->SubSeq = PUT_SEQ_PUT_ALREADY;
 					}
 				}else{			
-					GF_ASSERT(0&&"ƒOƒbƒY‚ª¯•Ê‚Å‚«‚Ü‚¹‚ñ");
+					GF_ASSERT(0&&"ã‚°ãƒƒã‚ºãŒè­˜åˆ¥ã§ãã¾ã›ã‚“");
 				}
 			}
 		}
@@ -591,12 +591,12 @@ static BOOL PutControl(GMEVENT_CONTROL * event)
 		ebew->SubSeq = PUT_SEQ_MAIN;
 		break;
 	case PUT_SEQ_MAIN:
-		//“_–Åˆ—
+		//ç‚¹æ»…å‡¦ç†
 		BlinkTarget(fsys, &ebew->BlinkData);
 	
 		tp_touch = TpGoodsPutControl(ebew, fsys, &put);
 	
-		if (!tp_touch){	//ƒ^ƒbƒ`‚µ‚Ä‚¢‚È‚¢ê‡
+		if (!tp_touch){	//ã‚¿ãƒƒãƒã—ã¦ã„ãªã„å ´åˆ
 			BOOL edit;
 			RECT_DATA rect;
 			edit = TRUE;
@@ -641,9 +641,9 @@ static BOOL PutControl(GMEVENT_CONTROL * event)
 			if (sys.trg & PAD_BUTTON_DECIDE){
 				put = TRUE;
 			}else if(sys.trg & PAD_BUTTON_CANCEL){
-				//ƒ}ƒbƒv3DOBJ‚©‚çƒGƒ“ƒgƒŠƒNƒŠƒA
+				//ãƒãƒƒãƒ—3DOBJã‹ã‚‰ã‚¨ãƒ³ãƒˆãƒªã‚¯ãƒªã‚¢
 				CancelGoodsEntry(fsys, ebew->EditGoodsData.ObjEntryIndex);
-				//ƒƒjƒ…[‚Ö
+				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
 				ebew->SubSeq = PUT_SEQ_GOODS_LIST;
 				return FALSE;
 			}
@@ -651,46 +651,46 @@ static BOOL PutControl(GMEVENT_CONTROL * event)
 
 		if (put){
 			BOOL rc;
-			//’u‚¯‚é‚©ƒ`ƒFƒbƒN
+			//ç½®ã‘ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			rc = CheckPutGoods(&ebew->EditGoodsData, ebew->GoodsHitList);
-			if (rc){		//İ’uOK
+			if (rc){		//è¨­ç½®OK
 				u32 idx;
 				int pos;
 				UNDERGROUNDDATA* pUGData;
 				pUGData = SaveData_GetUnderGroundData(ebew->fsys->savedata);
 				pos = EntryGoodsList(&ebew->EditGoodsData, ebew->GoodsHitList);
 				idx = BMENU_GetReturnListIdx(ebew->GoodsList);	
-				//”z’u•¨‚Æ‚µ‚Ä“o˜^‚·‚é
+				//é…ç½®ç‰©ã¨ã—ã¦ç™»éŒ²ã™ã‚‹
 				UnderGroundEntryGoodsPCItem(pUGData, idx, pos);
 
-				Snd_SePlay( UG_BASE_SE_PUT );		//ƒOƒbƒY’u‚­‰¹
+				Snd_SePlay( UG_BASE_SE_PUT );		//ã‚°ãƒƒã‚ºç½®ãéŸ³
 				
 				UgSecretBaseTalkRegisterGoodsName(ebew->EditGoodsData.No);
-				//ƒƒbƒZ[ƒWF`@‚ğ@‚¹‚Á‚¿‚µ‚½I
+				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã€œã€€ã‚’ã€€ã›ã£ã¡ã—ãŸï¼
 				ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_12);
 				
-				//“_–Å‚ğ‰ğœ
+				//ç‚¹æ»…ã‚’è§£é™¤
 				StopBlink(fsys, &ebew->BlinkData);
 				ebew->GoodsCount++;
 /**				
-				//ƒV[ƒPƒ“ƒX‚ğƒƒCƒ“ƒƒjƒ…[‚Ö
-				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ƒƒCƒ“ƒƒjƒ…[//<<060306move
+				//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
+				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼//<<060306move
 				return TRUE;
 */
 				ebew->MesWait = 0;
 				ebew->SubSeq = PUT_SEQ_PUT_OK;
 				break;
 			}else{
-				Snd_SePlay( UG_BASE_SE_PUT_NG );		//ƒOƒbƒY’u‚¯‚È‚¢‰¹
-				//ƒƒbƒZ[ƒWF‚»‚Ì@‚Î‚µ‚å‚É‚Í@‚¨‚¯‚Ü‚¹‚ñ
+				Snd_SePlay( UG_BASE_SE_PUT_NG );		//ã‚°ãƒƒã‚ºç½®ã‘ãªã„éŸ³
+				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šãã®ã€€ã°ã—ã‚‡ã«ã¯ã€€ãŠã‘ã¾ã›ã‚“
 				ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_13);
 				ebew->MesWait = 0;
 				ebew->SubSeq = PUT_SEQ_PUT_NG;
 			}
 		}
 		break;
-	case PUT_SEQ_PUT_NG:	//’u‚¯‚È‚¢‚Æ‚«
-		//ƒƒbƒZ[ƒW‘Ò‚¿
+	case PUT_SEQ_PUT_NG:	//ç½®ã‘ãªã„ã¨ã
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				UgSecretBaseTalkEnd();
@@ -698,19 +698,19 @@ static BOOL PutControl(GMEVENT_CONTROL * event)
 			}
 		}
 		break;
-	case PUT_SEQ_PUT_OK:	//’u‚¯‚½‚Æ‚«
-		//ƒƒbƒZ[ƒW‘Ò‚¿
+	case PUT_SEQ_PUT_OK:	//ç½®ã‘ãŸã¨ã
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				UgSecretBaseTalkEnd();
-				//ƒV[ƒPƒ“ƒX‚ğƒƒCƒ“ƒƒjƒ…[‚Ö
-				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ƒƒCƒ“ƒƒjƒ…[
+				//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
+				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 				return TRUE;
 			}
 		}
 		break;
-	case PUT_SEQ_PUT_ALREADY:	//‚·‚Å‚É’u‚¢‚Ä‚¢‚½‚Æ‚«‚ÌƒƒbƒZ[ƒWƒEƒFƒCƒg
-		//ƒƒbƒZ[ƒW‘Ò‚¿
+	case PUT_SEQ_PUT_ALREADY:	//ã™ã§ã«ç½®ã„ã¦ã„ãŸã¨ãã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				UgSecretBaseTalkEnd();
@@ -722,7 +722,7 @@ static BOOL PutControl(GMEVENT_CONTROL * event)
 	return FALSE;
 }
 
-//‰ñûƒRƒ“ƒgƒ[ƒ‹
+//å›åã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 static BOOL CollectControl(GMEVENT_CONTROL * event)
 {
 	BOOL edit;
@@ -738,7 +738,7 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 	case COL_SEQ_INIT:
 		InitBlinkData(&ebew->BlinkData);
 		DispOnPanelFlgOnly(ebew->Panel); //<2003.04.28 add
-		//‰ŠúˆÊ’u‚É•¨‚ª’u‚¢‚Ä‚ ‚éê‡A“_–Åó‘Ô‚ğì‚é
+		//åˆæœŸä½ç½®ã«ç‰©ãŒç½®ã„ã¦ã‚ã‚‹å ´åˆã€ç‚¹æ»…çŠ¶æ…‹ã‚’ä½œã‚‹
 		{
 			BOOL hit;
 			int list_idx;
@@ -753,7 +753,7 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 		break;
 	case COL_SEQ_MAIN:
 		edit = TRUE;
-		//“_–Åˆ—
+		//ç‚¹æ»…å‡¦ç†
 		BlinkTarget(fsys, &ebew->BlinkData);
 		
 		tp_touch = TpGoodsCollectControl(ebew, fsys, &collect);
@@ -763,7 +763,7 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 		rect.GridRZ = ebew->Panel->GridZ;
 		trans_x = ebew->Panel->trans.x;
 		trans_z = ebew->Panel->trans.z;
-		if (!tp_touch){	//ƒ^ƒbƒ`‚µ‚Ä‚¢‚È‚¢ê‡
+		if (!tp_touch){	//ã‚¿ãƒƒãƒã—ã¦ã„ãªã„å ´åˆ
 			if (sys.repeat & PAD_KEY_LEFT){
 				Snd_SePlay( UG_BASE_SE_MOVE );
 				trans_x-=(FX32_ONE*16);
@@ -791,14 +791,14 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 			if (sys.trg & PAD_BUTTON_DECIDE){
 				collect = TRUE;
 			}else if(sys.trg & PAD_BUTTON_CANCEL){
-				//ƒLƒƒƒ“ƒZƒ‹
-///				OS_Printf("‰ñû‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚µ‚½\n");
+				//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+///				OS_Printf("å›åã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã—ãŸ\n");
 				DispOffPanel(ebew->Panel);
 
-				//¡“_–Å‚µ‚Ä‚¢‚é‚©‚à‚µ‚ê‚È‚¢OBJ‚Ì“_–Å‚ğƒXƒgƒbƒv
+				//ä»Šç‚¹æ»…ã—ã¦ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„OBJã®ç‚¹æ»…ã‚’ã‚¹ãƒˆãƒƒãƒ—
 				StopBlink(fsys, &ebew->BlinkData);
 				
-				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ƒƒCƒ“ƒƒjƒ…[
+				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 				return TRUE;
 			}
 		}//end if(!tp_touch)
@@ -818,9 +818,9 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 					int idx;
 					idx = GetBlinkTarget( &ebew->BlinkData );
 					if (ebew->GoodsHitList[list_idx].Data.ObjEntryIndex != idx){
-						//¡“_–Å‚µ‚Ä‚¢‚é‚©‚à‚µ‚ê‚È‚¢OBJ‚Ì“_–Å‚ğƒXƒgƒbƒv
+						//ä»Šç‚¹æ»…ã—ã¦ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„OBJã®ç‚¹æ»…ã‚’ã‚¹ãƒˆãƒƒãƒ—
 						StopBlink(fsys, &ebew->BlinkData);
-						//‘O‰ñ‚Æˆá‚¤‚à‚Ì‚Éƒqƒbƒg‚µ‚½ê‡‚ÍƒZƒbƒg‚µ’¼‚·
+						//å‰å›ã¨é•ã†ã‚‚ã®ã«ãƒ’ãƒƒãƒˆã—ãŸå ´åˆã¯ã‚»ãƒƒãƒˆã—ç›´ã™
 						SetBlinkTarget(	ebew->GoodsHitList[list_idx].Data.ObjEntryIndex,
 										COLLECT_BLINK_TIME,
 										&ebew->BlinkData	);
@@ -836,95 +836,95 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 			BOOL rc;
 			int x,z;
 			int index;
-			GF_ASSERT(ebew->Panel->GridX<32&&"ƒOƒŠƒbƒh’l‚ª•s³");
-			GF_ASSERT(ebew->Panel->GridZ<32&&"ƒOƒŠƒbƒh’l‚ª•s³");
+			GF_ASSERT(ebew->Panel->GridX<32&&"ã‚°ãƒªãƒƒãƒ‰å€¤ãŒä¸æ­£");
+			GF_ASSERT(ebew->Panel->GridZ<32&&"ã‚°ãƒªãƒƒãƒ‰å€¤ãŒä¸æ­£");
 
 			x = ebew->Panel->GridX;
 			z = ebew->Panel->GridZ;
 
-			//•¨‘Ìƒ`ƒFƒbƒN
+			//ç‰©ä½“ãƒã‚§ãƒƒã‚¯
 			rc = CheckCollectGoods(x, z, ebew->GoodsHitList, &index);
 			if (rc){
-				if (index!=SECRETBASE_PC_INDEX_NO){	//ƒpƒ\ƒRƒ“”»’è
+				if (index!=SECRETBASE_PC_INDEX_NO){	//ãƒ‘ã‚½ã‚³ãƒ³åˆ¤å®š
 					UgSecretBaseTalkRegisterGoodsName(ebew->GoodsHitList[index].Data.No);
-					if (ebew->GoodsHitList[index].Data.No == GOODS_UG_IWA){	//Šâ”»’è
-						//Šâ‚ğ“P‹‚Å‚«‚é‚©‚ğƒ`ƒFƒbƒN
+					if (ebew->GoodsHitList[index].Data.No == GOODS_UG_IWA){	//å²©åˆ¤å®š
+						//å²©ã‚’æ’¤å»ã§ãã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 						if (ebew->RockLimit == ROCK_MAX){
-							//ƒŒƒxƒ‹‚O‚È‚Ì‚ÅŠâ”j‰ó–³—
-							////ƒƒbƒZ[ƒWF‚¢‚í‚ğ@‚©‚¢‚µ‚ã‚¤@‚·‚é‚±‚Æ‚Í	 ‚Å‚«‚Ü‚¹‚ñ
+							//ãƒ¬ãƒ™ãƒ«ï¼ãªã®ã§å²©ç ´å£Šç„¡ç†
+							////ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã„ã‚ã‚’ã€€ã‹ã„ã—ã‚…ã†ã€€ã™ã‚‹ã“ã¨ã¯	 ã§ãã¾ã›ã‚“
 							ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_16);
 							ebew->MesWait = 0;
 							ebew->SubSeq = COL_SEQ_COL_NG;
 							break;
 						}
 						else if (ebew->RockCount-1<ebew->RockLimit){
-							//ƒŒƒxƒ‹‚ª‘«‚ç‚È‚­‚Ä‰ñû•s‰Â
-							//ƒƒbƒZ[ƒWF‚±‚ê‚¢‚¶‚å‚¤@‚¢‚í‚ğ	‚©‚¢‚µ‚ã‚¤@‚·‚é‚±‚Æ‚Í@‚Å‚«‚Ü‚¹‚ñ
+							//ãƒ¬ãƒ™ãƒ«ãŒè¶³ã‚‰ãªãã¦å›åä¸å¯
+							//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã“ã‚Œã„ã˜ã‚‡ã†ã€€ã„ã‚ã‚’	ã‹ã„ã—ã‚…ã†ã€€ã™ã‚‹ã“ã¨ã¯ã€€ã§ãã¾ã›ã‚“
 							ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_19);
 							ebew->MesWait = 0;
 							ebew->SubSeq = COL_SEQ_COL_NG;
 							break;
 						}else{
-							Snd_SePlay( UG_BASE_SE_BREAK );		//Šâ‰ó‚µ‰¹
-							//ƒƒbƒZ[ƒWF‚¢‚í‚ğ@‚©‚¢‚µ‚ã‚¤@‚µ‚Ä@‚±‚í‚µ‚Ü‚µ‚½I
+							Snd_SePlay( UG_BASE_SE_BREAK );		//å²©å£Šã—éŸ³
+							//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã„ã‚ã‚’ã€€ã‹ã„ã—ã‚…ã†ã€€ã—ã¦ã€€ã“ã‚ã—ã¾ã—ãŸï¼
 							ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_15);
 							GF_ASSERT(ebew->RockCount>0);
-							ebew->RockCount--;	//Šâ”ƒfƒNƒŠƒƒ“ƒg
+							ebew->RockCount--;	//å²©æ•°ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 							ebew->MesWait = 0;
 							ebew->SubSeq = COL_SEQ_COL_ROCK;
 						}
 					}else{
 						UNDERGROUNDDATA* pUGData;
 						pUGData = SaveData_GetUnderGroundData(ebew->fsys->savedata);
-						Snd_SePlay( UG_BASE_SE_PICK );		//ƒOƒbƒY–ß‚µ‰¹
-						//ƒpƒ\ƒRƒ“‚É–ß‚·
+						Snd_SePlay( UG_BASE_SE_PICK );		//ã‚°ãƒƒã‚ºæˆ»ã—éŸ³
+						//ãƒ‘ã‚½ã‚³ãƒ³ã«æˆ»ã™
 						UnderGroundTrashGoodsPCItem(pUGData, index);
-						//ƒƒbƒZ[ƒWF`@‚ğ@ƒpƒ\ƒRƒ“‚É@‚à‚Ç‚µ‚½
+						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã€œã€€ã‚’ã€€ãƒ‘ã‚½ã‚³ãƒ³ã«ã€€ã‚‚ã©ã—ãŸ
 						ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_14);
 						GF_ASSERT(ebew->GoodsCount>0);
-						ebew->GoodsCount--;//ƒOƒbƒY”ƒfƒNƒŠƒƒ“ƒg
+						ebew->GoodsCount--;//ã‚°ãƒƒã‚ºæ•°ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 						ebew->MesWait = 0;
 						ebew->SubSeq = COL_SEQ_COL_OK;
 					}
-					//ƒ}ƒbƒv3DOBJ‚©‚çƒGƒ“ƒgƒŠƒNƒŠƒA
+					//ãƒãƒƒãƒ—3DOBJã‹ã‚‰ã‚¨ãƒ³ãƒˆãƒªã‚¯ãƒªã‚¢
 					CancelGoodsEntry(fsys, ebew->GoodsHitList[index].Data.ObjEntryIndex);
-					//ƒŠƒXƒg‚©‚ç‚Í‚¸‚·
+					//ãƒªã‚¹ãƒˆã‹ã‚‰ã¯ãšã™
 					ClearGoodListByIndex(index, ebew->GoodsHitList);
-///					OS_Printf("‰ñû‚µ‚Ü‚·\n");
+///					OS_Printf("å›åã—ã¾ã™\n");
 									
 					DispOffPanel(ebew->Panel);
 /**
-					SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ƒƒCƒ“ƒƒjƒ…[<060306move
+					SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼<060306move
 					return TRUE;
 */
 					ebew->MesWait = 0;
 				}else{
-///					OS_Printf("ƒpƒ\ƒRƒ“‚Í‰ñû‘ÎÛŠO‚Å‚·\n");
-					//ƒƒbƒZ[ƒWFƒpƒ\ƒRƒ“‚Í@‚à‚Ç‚¹‚Ü‚¹‚ñ
+///					OS_Printf("ãƒ‘ã‚½ã‚³ãƒ³ã¯å›åå¯¾è±¡å¤–ã§ã™\n");
+					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šãƒ‘ã‚½ã‚³ãƒ³ã¯ã€€ã‚‚ã©ã›ã¾ã›ã‚“
 					ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_23);
 					ebew->MesWait = 0;
 					ebew->SubSeq = COL_SEQ_COL_NG;
 				}
 			}else{
-///				OS_Printf("•¨‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+///				OS_Printf("ç‰©ãŒã‚ã‚Šã¾ã›ã‚“\n");
 			}		
 		}
 		break;
 	case COL_SEQ_COL_ROCK:
-		//ƒƒbƒZ[ƒW‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				int num;
 				UgSecretBaseTalkEnd();
 				num = ebew->RockCount-ebew->RockLimit;
 				GF_ASSERT(num>=0);
-				if (num == 0){	//ƒƒbƒZ[ƒW‚È‚µ
-					SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ƒƒCƒ“ƒƒjƒ…[
+				if (num == 0){	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
+					SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 					return TRUE;
 				}else{
 					/**
 					UgSecretBaseTalkRegisterNum2(num, 0);
-					//ƒƒbƒZ[ƒWF‚ ‚Æ	`‚±	‚©‚¢‚µ‚ã‚¤	‚Å‚«‚Ü‚·
+					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã‚ã¨	ã€œã“	ã‹ã„ã—ã‚…ã†	ã§ãã¾ã™
 					ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_18);
 					ebew->MesWait = 0;
 					ebew->SubSeq = COL_SEQ_ROCK_REST;
@@ -935,20 +935,20 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 			}
 		}
 		break;
-	case COL_SEQ_COL_OK:	//‰ñû¬Œ÷
-		//ƒƒbƒZ[ƒW‘Ò‚¿
+	case COL_SEQ_COL_OK:	//å›åæˆåŠŸ
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				UgSecretBaseTalkEnd();
-//				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ƒƒCƒ“ƒƒjƒ…[
-				//ªŒp‘±‚Å‰ñû‚Å‚«‚é‚æ‚¤‚É•ÏX	2006.04.28
+//				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+				//â†‘ç¶™ç¶šã§å›åã§ãã‚‹ã‚ˆã†ã«å¤‰æ›´	2006.04.28
 				ebew->SubSeq = COL_SEQ_INIT;
 				return TRUE;
 			}
 		}	
 		break;
-	case COL_SEQ_COL_NG:	//‰ñû¸”s
-		//ƒƒbƒZ[ƒW‘Ò‚¿
+	case COL_SEQ_COL_NG:	//å›åå¤±æ•—
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				UgSecretBaseTalkEnd();
@@ -961,7 +961,7 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 			int num;
 			num = ebew->RockCount-ebew->RockLimit;
 			UgSecretBaseTalkRegisterNum2(num, 0);
-			//ƒƒbƒZ[ƒWF‚ ‚Æ	`‚±	‚©‚¢‚µ‚ã‚¤	‚Å‚«‚Ü‚·
+			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã‚ã¨	ã€œã“	ã‹ã„ã—ã‚…ã†	ã§ãã¾ã™
             // MatchComment: --------------------------
             // new localization change in plat US
             if (num == 1) {
@@ -974,11 +974,11 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 		}
 		break;
 	case COL_SEQ_ROCK_REST:
-		//ƒƒbƒZ[ƒW‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				UgSecretBaseTalkEnd();
-				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ƒƒCƒ“ƒƒjƒ…[
+				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 				return TRUE;
 			}
 		}
@@ -987,7 +987,7 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 	return FALSE;
 }
 
-//Äİ’uƒRƒ“ƒgƒ[ƒ‹
+//å†è¨­ç½®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 static BOOL ReputControl(GMEVENT_CONTROL * event)
 {
 	BOOL edit;
@@ -1002,8 +1002,8 @@ static BOOL ReputControl(GMEVENT_CONTROL * event)
 	case REPUT_SEQ_INIT:
 		InitBlinkData(&ebew->BlinkData);
 		DispOnPanelFlgOnly(ebew->Panel);
-		//‰‰ñˆÈŠO‚Ì‚Æ‚«‚ÍAƒpƒlƒ‹‚ªOBJ‚Éƒqƒbƒg‚µ‚Ä‚¢‚é‚Ì‚ÅA
-		//“_–Åó‘Ô‚ğì‚é(‰½‚©’u‚¢‚Ä‚ ‚ê‚ÎA‰‰ñ‚àƒqƒbƒg‚·‚é)
+		//åˆå›ä»¥å¤–ã®ã¨ãã¯ã€ãƒ‘ãƒãƒ«ãŒOBJã«ãƒ’ãƒƒãƒˆã—ã¦ã„ã‚‹ã®ã§ã€
+		//ç‚¹æ»…çŠ¶æ…‹ã‚’ä½œã‚‹(ä½•ã‹ç½®ã„ã¦ã‚ã‚Œã°ã€åˆå›ã‚‚ãƒ’ãƒƒãƒˆã™ã‚‹)
 		{
 			BOOL hit;
 			int list_idx;
@@ -1018,7 +1018,7 @@ static BOOL ReputControl(GMEVENT_CONTROL * event)
 		break;
 	case REPUT_SEQ_MAIN:
 		edit = TRUE;
-		//“_–Åˆ—
+		//ç‚¹æ»…å‡¦ç†
 		BlinkTarget(fsys, &ebew->BlinkData);
 		
 		tp_touch = TpGoodsReputControl(ebew, fsys, &reput);
@@ -1028,7 +1028,7 @@ static BOOL ReputControl(GMEVENT_CONTROL * event)
 		rect.GridRZ = ebew->Panel->GridZ;
 		trans_x = ebew->Panel->trans.x;
 		trans_z = ebew->Panel->trans.z;
-		if (!tp_touch){	//ƒ^ƒbƒ`‚µ‚Ä‚¢‚È‚¢ê‡
+		if (!tp_touch){	//ã‚¿ãƒƒãƒã—ã¦ã„ãªã„å ´åˆ
 			if (sys.repeat & PAD_KEY_LEFT){
 				Snd_SePlay( UG_BASE_SE_MOVE );
 				trans_x-=(FX32_ONE*16);
@@ -1055,14 +1055,14 @@ static BOOL ReputControl(GMEVENT_CONTROL * event)
 			if (sys.trg & PAD_BUTTON_DECIDE){
 				reput = TRUE;
 			}else if(sys.trg & PAD_BUTTON_CANCEL){
-				//ƒLƒƒƒ“ƒZƒ‹
-///				OS_Printf("Ä”z’u‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚µ‚½\n");
+				//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+///				OS_Printf("å†é…ç½®ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã—ãŸ\n");
 				DispOffPanel(ebew->Panel);
 				
-				//¡“_–Å‚µ‚Ä‚¢‚é‚©‚à‚µ‚ê‚È‚¢OBJ‚Ì“_–Å‚ğƒXƒgƒbƒv
+				//ä»Šç‚¹æ»…ã—ã¦ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„OBJã®ç‚¹æ»…ã‚’ã‚¹ãƒˆãƒƒãƒ—
 				StopBlink(fsys, &ebew->BlinkData);
 				
-				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);	//ƒƒCƒ“ƒƒjƒ…[
+				SetNextSeqCall(BASE_SEQ_MAIN_MENU, ebew);	//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 				return TRUE;
 			}
 		}//end if(!tp_touch)
@@ -1082,9 +1082,9 @@ static BOOL ReputControl(GMEVENT_CONTROL * event)
 					int idx;
 					idx = GetBlinkTarget( &ebew->BlinkData );
 					if (ebew->GoodsHitList[list_idx].Data.ObjEntryIndex != idx){
-						//¡“_–Å‚µ‚Ä‚¢‚é‚©‚à‚µ‚ê‚È‚¢OBJ‚Ì“_–Å‚ğƒXƒgƒbƒv
+						//ä»Šç‚¹æ»…ã—ã¦ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„OBJã®ç‚¹æ»…ã‚’ã‚¹ãƒˆãƒƒãƒ—
 						StopBlink(fsys, &ebew->BlinkData);
-						//‘O‰ñ‚Æˆá‚¤‚à‚Ì‚Éƒqƒbƒg‚µ‚½ê‡‚ÍƒZƒbƒg‚µ’¼‚·
+						//å‰å›ã¨é•ã†ã‚‚ã®ã«ãƒ’ãƒƒãƒˆã—ãŸå ´åˆã¯ã‚»ãƒƒãƒˆã—ç›´ã™
 						SetBlinkTarget(	ebew->GoodsHitList[list_idx].Data.ObjEntryIndex,
 										COLLECT_BLINK_TIME,
 										&ebew->BlinkData	);
@@ -1100,50 +1100,50 @@ static BOOL ReputControl(GMEVENT_CONTROL * event)
 			BOOL rc;
 			int x,z;
 			int index;
-			GF_ASSERT(ebew->Panel->GridX<32&&"ƒOƒŠƒbƒh’l‚ª•s³");
-			GF_ASSERT(ebew->Panel->GridZ<32&&"ƒOƒŠƒbƒh’l‚ª•s³");
+			GF_ASSERT(ebew->Panel->GridX<32&&"ã‚°ãƒªãƒƒãƒ‰å€¤ãŒä¸æ­£");
+			GF_ASSERT(ebew->Panel->GridZ<32&&"ã‚°ãƒªãƒƒãƒ‰å€¤ãŒä¸æ­£");
 
 			x = ebew->Panel->GridX;
 			z = ebew->Panel->GridZ;
 		
-			//•¨‘Ìƒ`ƒFƒbƒN
+			//ç‰©ä½“ãƒã‚§ãƒƒã‚¯
 			rc = CheckCollectGoods(x, z, ebew->GoodsHitList, &index);
 			if (rc){
-				if (index!=SECRETBASE_PC_INDEX_NO){	//ƒpƒ\ƒRƒ“”»’è
-					if (ebew->GoodsHitList[index].Data.No == GOODS_UG_IWA){	//Šâ”»’è
-						//Šâ‚È‚Ì‚ÅAˆÚ“®•s‰Â
-						//ƒƒbƒZ[ƒWF‚¢‚í‚ğ@‚¢‚Ç‚¤‚³‚¹‚é‚±‚Æ‚Í@‚Å‚«‚Ü‚¹‚ñ
+				if (index!=SECRETBASE_PC_INDEX_NO){	//ãƒ‘ã‚½ã‚³ãƒ³åˆ¤å®š
+					if (ebew->GoodsHitList[index].Data.No == GOODS_UG_IWA){	//å²©åˆ¤å®š
+						//å²©ãªã®ã§ã€ç§»å‹•ä¸å¯
+						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã„ã‚ã‚’ã€€ã„ã©ã†ã•ã›ã‚‹ã“ã¨ã¯ã€€ã§ãã¾ã›ã‚“
 						ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_17);
 						ebew->MesWait = 0;
 						ebew->SubSeq = REPUT_SEQ_COL_NG;
 					}else{
-						//•ÒWƒoƒbƒtƒ@‚Éƒf[ƒ^ƒRƒs[
+						//ç·¨é›†ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 						CopyEditDataFromList(index, ebew);
-						SetGoodsOldPos(index,ebew);				//Œ»İˆÊ’u‚ğ‹ŒˆÊ’u‚Æ‚µ‚Ä•Û‘¶
-						//Œ³‚ÌˆÊ’u‚Ìî•ñ‚ğƒNƒŠƒA
+						SetGoodsOldPos(index,ebew);				//ç¾åœ¨ä½ç½®ã‚’æ—§ä½ç½®ã¨ã—ã¦ä¿å­˜
+						//å…ƒã®ä½ç½®ã®æƒ…å ±ã‚’ã‚¯ãƒªã‚¢
 						ClearGoodListByIndex(index, ebew->GoodsHitList);
 						
-						Snd_SePlay( UG_BASE_SE_PICK );	//ƒOƒbƒY‚¿‚ ‚°‰¹
+						Snd_SePlay( UG_BASE_SE_PICK );	//ã‚°ãƒƒã‚ºæŒã¡ã‚ã’éŸ³
 						
-///						OS_Printf("Ä”z’uƒ‚[ƒh‚ÉˆÚs‚µ‚Ü‚·\n");
+///						OS_Printf("å†é…ç½®ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã—ã¾ã™\n");
 						DispOffPanel(ebew->Panel);
-						SetNextSeqCall(BASE_SEQ_REPUT_SET_CONT, ebew);	//Äİ’uƒ‚[ƒh‚Ö
+						SetNextSeqCall(BASE_SEQ_REPUT_SET_CONT, ebew);	//å†è¨­ç½®ãƒ¢ãƒ¼ãƒ‰ã¸
 						return TRUE;
 					}
 				}else{
-///					OS_Printf("ƒpƒ\ƒRƒ“‚Í‘ÎÛŠO‚Å‚·\n");
-					//ƒƒbƒZ[ƒWFƒpƒ\ƒRƒ“‚Í@‚¢‚Ç‚¤@‚Å‚«‚Ü‚¹‚ñ
+///					OS_Printf("ãƒ‘ã‚½ã‚³ãƒ³ã¯å¯¾è±¡å¤–ã§ã™\n");
+					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šãƒ‘ã‚½ã‚³ãƒ³ã¯ã€€ã„ã©ã†ã€€ã§ãã¾ã›ã‚“
 					ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_24);
 					ebew->MesWait = 0;
 					ebew->SubSeq = REPUT_SEQ_COL_NG;
 				}
 			}else{
-///				OS_Printf("•¨‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+///				OS_Printf("ç‰©ãŒã‚ã‚Šã¾ã›ã‚“\n");
 			}		
 		}
 		break;
 	case REPUT_SEQ_COL_NG:
-		//ƒƒbƒZ[ƒW‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				UgSecretBaseTalkEnd();
@@ -1155,7 +1155,7 @@ static BOOL ReputControl(GMEVENT_CONTROL * event)
 	return FALSE;
 }
 
-//Äİ’uƒRƒ“ƒgƒ[ƒ‹
+//å†è¨­ç½®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 static BOOL ReputSetControl(GMEVENT_CONTROL * event)
 {
 	fx32 plus_x, plus_z;
@@ -1174,11 +1174,11 @@ static BOOL ReputSetControl(GMEVENT_CONTROL * event)
 		ebew->SubSeq = REPUTSET_SEQ_MAIN;
 		break;
 	case REPUTSET_SEQ_MAIN:
-		//“_–Åˆ—
+		//ç‚¹æ»…å‡¦ç†
 		BlinkTarget(fsys, &ebew->BlinkData);
 		tp_touch = TpGoodsReputSetControl(ebew, fsys, &reput);
 
-		if (!tp_touch){	//ƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚È‚¢ê‡
+		if (!tp_touch){	//ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ãªã„å ´åˆ
 			BOOL edit;
 			RECT_DATA rect;
 			edit = TRUE;
@@ -1223,16 +1223,16 @@ static BOOL ReputSetControl(GMEVENT_CONTROL * event)
 			if (sys.trg & PAD_BUTTON_DECIDE){
 				reput = TRUE;
 			}else if(sys.trg & PAD_BUTTON_CANCEL){
-				//Œ³‚ÌˆÊ’u‚ÉAƒŠƒXƒg“o˜^
+				//å…ƒã®ä½ç½®ã«ã€ãƒªã‚¹ãƒˆç™»éŒ²
 				EntryGoodsListByIndex(&ebew->OldPosInfo.Data, ebew->OldPosInfo.TargetIndex, ebew->GoodsHitList);
-				//ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚Ì‚ÅŒ³‚Ì•\¦À•W‚É–ß‚·
+				//ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã®ã§å…ƒã®è¡¨ç¤ºåº§æ¨™ã«æˆ»ã™
 				PutGoodsOldPos(ebew);
 		
-///				OS_Printf("ƒLƒƒƒ“ƒZƒ‹BŒ³‚ÌˆÊ’u‚É–ß‚·\n");
-				//“_–Å‚ğ‰ğœ
+///				OS_Printf("ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€‚å…ƒã®ä½ç½®ã«æˆ»ã™\n");
+				//ç‚¹æ»…ã‚’è§£é™¤
 				StopBlink(fsys, &ebew->BlinkData);
 				
-				//Ä”z’uƒ‚[ƒh‚Ö
+				//å†é…ç½®ãƒ¢ãƒ¼ãƒ‰ã¸
 				SetNextSeqCall(BASE_SEQ_REPUT_CONT, ebew);
 				return TRUE;
 			}
@@ -1241,29 +1241,29 @@ static BOOL ReputSetControl(GMEVENT_CONTROL * event)
 
 		if (reput){
 			BOOL rc;
-			//’u‚¯‚é‚©ƒ`ƒFƒbƒN
+			//ç½®ã‘ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			rc = CheckPutGoods(&ebew->EditGoodsData, ebew->GoodsHitList);
 			if (rc){
-				//Œ³‚ÌˆÊ’u‚ÉAƒŠƒXƒg“o˜^
+				//å…ƒã®ä½ç½®ã«ã€ãƒªã‚¹ãƒˆç™»éŒ²
 				EntryGoodsListByIndex(&ebew->EditGoodsData, ebew->OldPosInfo.TargetIndex, ebew->GoodsHitList);
-///				OS_Printf("’u‚¯‚Ü‚µ‚½\n");
+///				OS_Printf("ç½®ã‘ã¾ã—ãŸ\n");
 
-				Snd_SePlay( UG_BASE_SE_PUT );		//ƒOƒbƒY’u‚­‰¹
-#if 0			//<<ƒƒbƒZ[ƒW‚Í‚¢‚ç‚È‚¢‚ç‚µ‚¢2006.04.28
+				Snd_SePlay( UG_BASE_SE_PUT );		//ã‚°ãƒƒã‚ºç½®ãéŸ³
+#if 0			//<<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯ã„ã‚‰ãªã„ã‚‰ã—ã„2006.04.28
 				UgSecretBaseTalkRegisterGoodsName(ebew->EditGoodsData.No);
-				//ƒƒbƒZ[ƒWF`@‚ğ@‚¹‚Á‚¿‚µ‚½I
+				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šã€œã€€ã‚’ã€€ã›ã£ã¡ã—ãŸï¼
 				ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_12);
 #endif				
-				//ƒpƒlƒ‹‚ÌˆÚ“®
+				//ãƒ‘ãƒãƒ«ã®ç§»å‹•
 				SetPanelPos(ebew->EditGoodsData.Rect.GridLX, ebew->EditGoodsData.Rect.GridLZ, ebew->Panel);
-				//“_–Å‚ğ‰ğœ
+				//ç‚¹æ»…ã‚’è§£é™¤
 				StopBlink(fsys, &ebew->BlinkData);
 				ebew->MesWait = 0;
 				ebew->SubSeq = REPUTSET_SEQ_PUT_OK;
 				break;
 			}else{
-				Snd_SePlay( UG_BASE_SE_PUT_NG );	//ƒOƒbƒY’u‚¯‚È‚¢‰¹
-				//ƒƒbƒZ[ƒWF‚»‚Ì@‚Î‚µ‚å‚É‚Í@‚¨‚¯‚Ü‚¹‚ñ
+				Snd_SePlay( UG_BASE_SE_PUT_NG );	//ã‚°ãƒƒã‚ºç½®ã‘ãªã„éŸ³
+				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼šãã®ã€€ã°ã—ã‚‡ã«ã¯ã€€ãŠã‘ã¾ã›ã‚“
 				ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_13);
 				ebew->MesWait = 0;
 				ebew->SubSeq = REPUTSET_SEQ_PUT_NG;
@@ -1271,7 +1271,7 @@ static BOOL ReputSetControl(GMEVENT_CONTROL * event)
 		}
 		break;
 	case REPUTSET_SEQ_PUT_NG:
-		//ƒƒbƒZ[ƒW‘Ò‚¿
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				UgSecretBaseTalkEnd();
@@ -1283,7 +1283,7 @@ static BOOL ReputSetControl(GMEVENT_CONTROL * event)
 		if( GF_MSG_PrintEndCheck( ebew->MesIndex ) == 0 ){
 			if ((ebew->MesWait++)>=MSG_WAIT){
 				UgSecretBaseTalkEnd();
-				//Ä”z’uƒ‚[ƒh‚Ö
+				//å†é…ç½®ãƒ¢ãƒ¼ãƒ‰ã¸
 				SetNextSeqCall(BASE_SEQ_REPUT_CONT, ebew);
 				return TRUE;
 			}
@@ -1294,40 +1294,40 @@ static BOOL ReputSetControl(GMEVENT_CONTROL * event)
 	return FALSE;
 }
 
-//’u‚¯‚é‚©ƒ`ƒFƒbƒN
+//ç½®ã‘ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 static BOOL CheckPutGoods(const GOODS_HIT_DAT *inData, const GOODS_HIT_LIST_ITEM *inList)
 {
 	int i;
-	//ƒŠƒXƒg‚ÆÆ‡
+	//ãƒªã‚¹ãƒˆã¨ç…§åˆ
 	for (i=0;i<GOODS_HIT_LIST_MAX;i++){
 		if (inList[i].Valid == TRUE){
-///			OS_Printf("%d:ƒ`ƒFƒbƒNŠJn\n",i);
+///			OS_Printf("%d:ãƒã‚§ãƒƒã‚¯é–‹å§‹\n",i);
 			if ( CheckRectHit(&inList[i].Data.Rect,&inData->Rect) ){
-				return FALSE;	//Õ“Ë‚µ‚½‚Ì‚Å•¨‚Í’u‚¯‚È‚¢
+				return FALSE;	//è¡çªã—ãŸã®ã§ç‰©ã¯ç½®ã‘ãªã„
 			}
 		}
 	}
 
-	//ƒpƒ\ƒRƒ“è‘O‚à’u‚¯‚È‚¢‚±‚Æ‚É‚·‚é
+	//ãƒ‘ã‚½ã‚³ãƒ³æ‰‹å‰ã‚‚ç½®ã‘ãªã„ã“ã¨ã«ã™ã‚‹
 	{
 		RECT_DATA paso_front_rect = {PASO_LX,PASO_LZ,PASO_RX,PASO_RZ};
 		if ( CheckRectHit(&inData->Rect,&paso_front_rect) ){
-			return FALSE;	//Õ“Ë‚µ‚½‚Ì‚Å•¨‚Í’u‚¯‚È‚¢
+			return FALSE;	//è¡çªã—ãŸã®ã§ç‰©ã¯ç½®ã‘ãªã„
 		}
 	}
 
-	//oŒû‚à’u‚¯‚È‚¢‚±‚Æ‚É‚·‚é
+	//å‡ºå£ã‚‚ç½®ã‘ãªã„ã“ã¨ã«ã™ã‚‹
 	{
 		RECT_DATA exit_rect = {EXIT_LX,EXIT_LZ,EXIT_RX,EXIT_RZ};
 		if ( CheckRectHit(&inData->Rect,&exit_rect) ){
-			return FALSE;	//Õ“Ë‚µ‚½‚Ì‚Å•¨‚Í’u‚¯‚È‚¢
+			return FALSE;	//è¡çªã—ãŸã®ã§ç‰©ã¯ç½®ã‘ãªã„
 		}
 	}
 	
-	return TRUE;	//•¨’u‚¯‚é
+	return TRUE;	//ç‰©ç½®ã‘ã‚‹
 }
 
-//w’èÀ•W‚É•¨‘Ì‚ª‚ ‚é‚©‚ğƒ`ƒFƒbƒN
+//æŒ‡å®šåº§æ¨™ã«ç‰©ä½“ãŒã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 static BOOL CheckCollectGoods(	const int inGridX, const int inGridZ,
 								const GOODS_HIT_LIST_ITEM *inList,
 								int *outIndex)
@@ -1336,17 +1336,17 @@ static BOOL CheckCollectGoods(	const int inGridX, const int inGridZ,
 	for (i=0;i<GOODS_HIT_LIST_MAX;i++){
 		if (inList[i].Valid == TRUE){
 			if ( CheckPointHit(&(inList[i].Data.Rect), inGridX, inGridZ) ){
-				//ƒqƒbƒg‚µ‚½‚Ì‚Å“P‹‰Â”\ 
+				//ãƒ’ãƒƒãƒˆã—ãŸã®ã§æ’¤å»å¯èƒ½ 
 				(*outIndex) = i;
 				return TRUE;
 			}
 		}
 	}
 	(*outIndex) = GOODS_HIT_LIST_MAX;
-	return FALSE;	//•¨‚ª‚È‚¢
+	return FALSE;	//ç‰©ãŒãªã„
 }
 
-//•Çƒ`ƒFƒbƒN
+//å£ãƒã‚§ãƒƒã‚¯
 static BOOL CheckHitWall(const RECT_DATA *inData)
 {
 	
@@ -1358,42 +1358,42 @@ static BOOL CheckHitWall(const RECT_DATA *inData)
 	};
 }
 
-//ƒŠƒXƒg‚ÉƒGƒ“ƒgƒŠ
+//ãƒªã‚¹ãƒˆã«ã‚¨ãƒ³ãƒˆãƒª
 static int EntryGoodsList(const GOODS_HIT_DAT *inData, GOODS_HIT_LIST_ITEM *ioList)
 {
 	int i;
 
 	for(i=0;i<GOODS_HIT_LIST_MAX;i++){
 		if (ioList[i].Valid == FALSE){
-			//ƒGƒ“ƒgƒŠ
+			//ã‚¨ãƒ³ãƒˆãƒª
 			ioList[i].Valid = TRUE;
 			ioList[i].Data = (*inData);
-///			OS_Printf("%d‚ÉƒGƒ“ƒgƒŠ\n",i);
+///			OS_Printf("%dã«ã‚¨ãƒ³ãƒˆãƒª\n",i);
 			return i;
 		}
 	}
-	GF_ASSERT(0&&"ƒGƒ“ƒgƒŠ”ƒI[ƒo[");
+	GF_ASSERT(0&&"ã‚¨ãƒ³ãƒˆãƒªæ•°ã‚ªãƒ¼ãƒãƒ¼");
 	return 0;
 }
 
-//ƒŠƒXƒg‚ÉƒGƒ“ƒgƒŠ(êŠw’è)
+//ãƒªã‚¹ãƒˆã«ã‚¨ãƒ³ãƒˆãƒª(å ´æ‰€æŒ‡å®š)
 static void EntryGoodsListByIndex(const GOODS_HIT_DAT *inData, const int inIndex, GOODS_HIT_LIST_ITEM *ioList)
 {
-	GF_ASSERT((inIndex<GOODS_HIT_LIST_MAX)&&"ƒCƒ“ƒfƒbƒNƒXƒI[ƒo[");
-	GF_ASSERT((!ioList[inIndex].Valid)&&"w’èƒCƒ“ƒfƒbƒNƒX‚É‚Í‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚Ü‚·");
+	GF_ASSERT((inIndex<GOODS_HIT_LIST_MAX)&&"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚ªãƒ¼ãƒãƒ¼");
+	GF_ASSERT((!ioList[inIndex].Valid)&&"æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã¯ã™ã§ã«ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã™");
 
-	//ƒGƒ“ƒgƒŠ
+	//ã‚¨ãƒ³ãƒˆãƒª
 	ioList[inIndex].Valid = TRUE;
 	ioList[inIndex].Data = (*inData);
-///	OS_Printf("%d‚ÉƒGƒ“ƒgƒŠ\n",inIndex);
+///	OS_Printf("%dã«ã‚¨ãƒ³ãƒˆãƒª\n",inIndex);
 }
 
-//w’èƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚ğƒŠƒXƒg‚©‚çíœ
+//æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 static void ClearGoodListByIndex(const int inIndex, GOODS_HIT_LIST_ITEM *outList)
 {
-	GF_ASSERT_MSG((inIndex<GOODS_HIT_LIST_MAX),"ƒCƒ“ƒfƒbƒNƒXƒI[ƒo[");
-	GF_ASSERT_MSG((inIndex!=0),"ƒCƒ“ƒfƒbƒNƒX0‚Ìƒpƒ\ƒRƒ“‚Í“P‹‚Å‚«‚Ü‚¹‚ñ");
-	GF_ASSERT_MSG(outList[inIndex].Valid,"‚·‚Å‚É–³Œø‚Æ‚È‚Á‚Ä‚¢‚Ü‚·");
+	GF_ASSERT_MSG((inIndex<GOODS_HIT_LIST_MAX),"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚ªãƒ¼ãƒãƒ¼");
+	GF_ASSERT_MSG((inIndex!=0),"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹0ã®ãƒ‘ã‚½ã‚³ãƒ³ã¯æ’¤å»ã§ãã¾ã›ã‚“");
+	GF_ASSERT_MSG(outList[inIndex].Valid,"ã™ã§ã«ç„¡åŠ¹ã¨ãªã£ã¦ã„ã¾ã™");
 	{
 		outList[inIndex].Data.ObjEntryIndex = 0;
 		outList[inIndex].Data.Rect.GridLX = 0;
@@ -1405,7 +1405,7 @@ static void ClearGoodListByIndex(const int inIndex, GOODS_HIT_LIST_ITEM *outList
 	}
 }
 
-//‹éŒ`“–‚½‚è”»’è
+//çŸ©å½¢å½“ãŸã‚Šåˆ¤å®š
 static BOOL CheckRectHit(const RECT_DATA *inData1, const RECT_DATA *inData2)
 {
 	if ( (inData1->GridLX<=inData2->GridRX)&&(inData2->GridLX<=inData1->GridRX) &&
@@ -1416,7 +1416,7 @@ static BOOL CheckRectHit(const RECT_DATA *inData1, const RECT_DATA *inData2)
 	}	
 }
 
-//w’è“_‚ª‹éŒ`“à‚É‚ ‚é‚©‚ğ”»’è
+//æŒ‡å®šç‚¹ãŒçŸ©å½¢å†…ã«ã‚ã‚‹ã‹ã‚’åˆ¤å®š
 static BOOL CheckPointHit(const RECT_DATA *inData, const int inX, const int inZ)
 {
 	if ( (inData->GridLX<=inX)&&(inX<=inData->GridRX) &&
@@ -1427,7 +1427,7 @@ static BOOL CheckPointHit(const RECT_DATA *inData, const int inX, const int inZ)
 	}
 }
 
-//ƒZ[ƒuƒf[ƒ^‚©‚çAŠÇ—ƒŠƒXƒg‚ğì¬‚·‚é
+//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã€ç®¡ç†ãƒªã‚¹ãƒˆã‚’ä½œæˆã™ã‚‹
 static void MakeGoodsHitList(FIELDSYS_WORK *fsys, EVENT_BASE_EDIT_WORK *ebew, GOODS_HIT_LIST_ITEM *outList)
 {
 	int i;
@@ -1437,34 +1437,34 @@ static void MakeGoodsHitList(FIELDSYS_WORK *fsys, EVENT_BASE_EDIT_WORK *ebew, GO
 	s_data = SaveData_GetSecretBaseData(fsys->savedata);
 	ebew->GoodsCount = 0;
 	ebew->RockCount = 0;
-	//ŠâƒŠƒ~ƒbƒgƒZƒbƒg
+	//å²©ãƒªãƒŸãƒƒãƒˆã‚»ãƒƒãƒˆ
 	ebew->RockLimit = SecretBaseData_GetPlaceRockLimit(s_data);
-	//ƒOƒbƒYƒŠƒ~ƒbƒgƒZƒbƒg
+	//ã‚°ãƒƒã‚ºãƒªãƒŸãƒƒãƒˆã‚»ãƒƒãƒˆ
 	ebew->GoodsLimit = SecretBaseData_GetPlaceGoodsLimit(s_data);
 	for(i=0;i<GOODS_HIT_LIST_MAX;i++){
 		goods_no = SecretBaseData_GetGoodsType(s_data, i);
 		if (goods_no != GOODS_INVALID){
-			//ŠâƒJƒEƒ“ƒg
+			//å²©ã‚«ã‚¦ãƒ³ãƒˆ
 			if (goods_no == GOODS_UG_IWA){
-				ebew->RockCount++;	//Šâ”ƒCƒ“ƒNƒŠƒƒ“ƒg
+				ebew->RockCount++;	//å²©æ•°ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 			}else if( (goods_no != GOODS_UG_TABLE_L01)&&
 						(goods_no != GOODS_UG_TABLE_L02)&&
 						(goods_no != GOODS_UG_TABLE_L03)&&
 						(goods_no != GOODS_UG_TABLE_L04)&&
 						(goods_no != GOODS_UG_TABLE_L05)){
-				ebew->GoodsCount++;	//ƒOƒbƒY‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+				ebew->GoodsCount++;	//ã‚°ãƒƒã‚ºã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 			}
 			x = SecretBaseData_GetGoodsXPos(s_data, i);
 			z = SecretBaseData_GetGoodsZPos(s_data, i);
-			//ƒGƒ“ƒgƒŠ
-///			OS_Printf("%d:ƒZ[ƒuƒf[ƒ^‚©‚çƒOƒbƒY”Ô†%d‚ğƒGƒ“ƒgƒŠ\n",i,goods_no);
-///			OS_Printf("À•W%d,%d\n",x,z);
+			//ã‚¨ãƒ³ãƒˆãƒª
+///			OS_Printf("%d:ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚°ãƒƒã‚ºç•ªå·%dã‚’ã‚¨ãƒ³ãƒˆãƒª\n",i,goods_no);
+///			OS_Printf("åº§æ¨™%d,%d\n",x,z);
 			MakeGoodsHitData(i, goods_no, x, z, outList);
 		}
 	}
 }
 
-//ƒf[ƒ^ì¬
+//ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 static void MakeGoodsHitData(	const int inIndex, const int inGoodsNo,
 								const int inX, const int inZ,
 								GOODS_HIT_LIST_ITEM *outList	)
@@ -1472,11 +1472,11 @@ static void MakeGoodsHitData(	const int inIndex, const int inGoodsNo,
 	GOODS_HIT_DAT data;
 	int w,d;
 	
-	data.ObjEntryIndex = 0;//Œã‚Ìˆ—‚ÅAOBJ‚ÌƒGƒ“ƒgƒŠƒCƒ“ƒfƒbƒNƒX‚ğƒZƒbƒg
-	data.No = inGoodsNo;	//ƒOƒbƒYƒiƒ“ƒo[
+	data.ObjEntryIndex = 0;//å¾Œã®å‡¦ç†ã§ã€OBJã®ã‚¨ãƒ³ãƒˆãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚»ãƒƒãƒˆ
+	data.No = inGoodsNo;	//ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼
 	data.Rect.GridLX = inX;
 	data.Rect.GridLZ = inZ;
-	//ƒOƒbƒYƒ^ƒCƒv‚©‚ç•A‰œs‚«‚ğæ“¾
+	//ã‚°ãƒƒã‚ºã‚¿ã‚¤ãƒ—ã‹ã‚‰å¹…ã€å¥¥è¡Œãã‚’å–å¾—
 	data.Width = GOODS_GetGoodsSizeX(inGoodsNo);
 	data.Depth = GOODS_GetGoodsSizeZ(inGoodsNo);
 
@@ -1484,10 +1484,10 @@ static void MakeGoodsHitData(	const int inIndex, const int inGoodsNo,
 	data.Rect.GridRZ = inZ+(data.Depth-1);
 
 	outList[inIndex].Data = data;
-	outList[inIndex].Valid = TRUE;	//ƒf[ƒ^‚ğ—LŒø
+	outList[inIndex].Valid = TRUE;	//ãƒ‡ãƒ¼ã‚¿ã‚’æœ‰åŠ¹
 }
 
-//ƒf[ƒ^ƒŠƒXƒg‚ğ‚à‚Æ‚ÉAƒ}ƒbƒv3DOBJ‚ğì¬
+//ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚’ã‚‚ã¨ã«ã€ãƒãƒƒãƒ—3DOBJã‚’ä½œæˆ
 static void MakeGoodsMap3DObj(FIELDSYS_WORK *fsys, GOODS_HIT_LIST_ITEM *ioList)
 {
 	int obj_id;
@@ -1497,7 +1497,7 @@ static void MakeGoodsMap3DObj(FIELDSYS_WORK *fsys, GOODS_HIT_LIST_ITEM *ioList)
 
 	GOODS_HIT_DAT *data;
 
-	//’n‰ºƒ}ƒbƒv3DOBJ‚ğƒNƒŠƒA
+	//åœ°ä¸‹ãƒãƒƒãƒ—3DOBJã‚’ã‚¯ãƒªã‚¢
 	M3DO_CleanMap3DObjList(fsys->Map3DObjExp);
 	
 	for(i=0;i<GOODS_HIT_LIST_MAX;i++){
@@ -1505,12 +1505,12 @@ static void MakeGoodsMap3DObj(FIELDSYS_WORK *fsys, GOODS_HIT_LIST_ITEM *ioList)
 			continue;
 		}
 		data = &ioList[i].Data;
-		//OBJID‚ğæ“¾(ƒ}ƒbƒvƒŠƒ\[ƒX‚Ìƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ÆƒOƒbƒYƒiƒ“ƒo[‚©‚çAOBJID‚ğæ“¾)
+		//OBJIDã‚’å–å¾—(ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã¨ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã€OBJIDã‚’å–å¾—)
 		obj_id = GetGoodsObjID(fsys, data->No);
 		w = data->Width;
 		d = data->Depth;
 		
-		//•`‰æˆÊ’u‚ğZo
+		//æç”»ä½ç½®ã‚’ç®—å‡º
 		trans.x = (FX32_ONE*16)*(data->Rect.GridLX)+(FX32_ONE*8)*w;
 		trans.z = (FX32_ONE*16)*(data->Rect.GridLZ)+(FX32_ONE*8)*d;
 		trans.y = FX32_ONE/*0*/;
@@ -1522,7 +1522,7 @@ static void MakeGoodsMap3DObj(FIELDSYS_WORK *fsys, GOODS_HIT_LIST_ITEM *ioList)
 	}
 }
 
-//ƒZ[ƒu‚É‘‚­
+//ã‚»ãƒ¼ãƒ–ã«æ›¸ã
 static void WriteSaveData(FIELDSYS_WORK *fsys, const GOODS_HIT_LIST_ITEM *inList)
 {
 	int i;
@@ -1537,23 +1537,23 @@ static void WriteSaveData(FIELDSYS_WORK *fsys, const GOODS_HIT_LIST_ITEM *inList
 			goods_no = inList[i].Data.No;
 			x = inList[i].Data.Rect.GridLX;
 			z = inList[i].Data.Rect.GridLZ;
-///			OS_Printf("—LŒø@%d:save_pos=%d,%d no=%d\n",i,x,z,goods_no);
+///			OS_Printf("æœ‰åŠ¹ã€€%d:save_pos=%d,%d no=%d\n",i,x,z,goods_no);
 		}else{
 			goods_no = GOODS_INVALID;
 			x = 0;
 			z = 0;
-///			OS_Printf("–³Œø@%d:save_pos=%d,%d no=%d\n",i,x,z,goods_no);
+///			OS_Printf("ç„¡åŠ¹ã€€%d:save_pos=%d,%d no=%d\n",i,x,z,goods_no);
 		}
 		SecretBaseData_SetGoodsPosition(s_data, i, goods_no, x, z);
 	}
 }
 
-//OBJID‚Ìæ“¾
+//OBJIDã®å–å¾—
 static const int GetGoodsObjID(FIELDSYS_WORK *fsys, const int inGoodsNo)
 {
 	int obj_id;
 
-	GF_ASSERT(inGoodsNo!=0&&"ƒiƒ“ƒo[0‚ÌƒOƒbƒY‚Í‚ ‚è‚Ü‚¹‚ñ");
+	GF_ASSERT(inGoodsNo!=0&&"ãƒŠãƒ³ãƒãƒ¼0ã®ã‚°ãƒƒã‚ºã¯ã‚ã‚Šã¾ã›ã‚“");
 
 	obj_id = MAPRES_GetObjIDFromModelFile(fsys->MapResource, inGoodsNo);
 	/**
@@ -1563,12 +1563,12 @@ static const int GetGoodsObjID(FIELDSYS_WORK *fsys, const int inGoodsNo)
 	return obj_id;
 }
 
-//Œ³‚ÌˆÊ’u‚Ì‹L‰¯
+//å…ƒã®ä½ç½®ã®è¨˜æ†¶
 static void SetGoodsOldPos(const int inIndex, EVENT_BASE_EDIT_WORK * ebew)
 {
 	M3DO_PTR ptr;
 	GOODS_HIT_DAT *data;
-	GF_ASSERT(ebew->GoodsHitList[inIndex].Valid&&"ƒf[ƒ^‚Í–³Œøó‘Ô‚Å‚·");
+	GF_ASSERT(ebew->GoodsHitList[inIndex].Valid&&"ãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹çŠ¶æ…‹ã§ã™");
 	data = &(ebew->GoodsHitList[inIndex].Data);
 	
 	ptr = M3DO_GetMap3DObjDataFromIndex(ebew->fsys->Map3DObjExp, data->ObjEntryIndex);
@@ -1577,7 +1577,7 @@ static void SetGoodsOldPos(const int inIndex, EVENT_BASE_EDIT_WORK * ebew)
 	ebew->OldPosInfo.Data = (*data);
 	
 }
-//Œ³‚ÌˆÊ’uÀ•W‚É•¨‚ğ’u‚­
+//å…ƒã®ä½ç½®åº§æ¨™ã«ç‰©ã‚’ç½®ã
 static void PutGoodsOldPos(EVENT_BASE_EDIT_WORK * ebew)
 {
 	M3DO_PTR ptr;
@@ -1585,7 +1585,7 @@ static void PutGoodsOldPos(EVENT_BASE_EDIT_WORK * ebew)
 	int list_index;
 	
 	list_index = ebew->OldPosInfo.TargetIndex;
-	GF_ASSERT(ebew->GoodsHitList[list_index].Valid&&"ƒf[ƒ^‚Í–³Œøó‘Ô‚Å‚·");
+	GF_ASSERT(ebew->GoodsHitList[list_index].Valid&&"ãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹çŠ¶æ…‹ã§ã™");
 	data = &(ebew->OldPosInfo.Data);
 
 	ptr = M3DO_GetMap3DObjDataFromIndex(ebew->fsys->Map3DObjExp, data->ObjEntryIndex);
@@ -1657,14 +1657,14 @@ static void TpUpdateGoodsPos(FIELDSYS_WORK * fsys, GOODS_HIT_DAT *ioData, UG_BAS
 	TP_TO_3D_PTR tp_to_3d_ptr;
 	tp_to_3d_ptr = fsys->TpTo3DPtr;
 	
-	//ƒ^ƒbƒ`À•Wæ“¾
+	//ã‚¿ãƒƒãƒåº§æ¨™å–å¾—
 	GetTouchPos(sys.tp_x, sys.tp_y, outBaseTp);
-	//ƒ^ƒbƒ`ƒOƒŠƒbƒhæ“¾
+	//ã‚¿ãƒƒãƒã‚°ãƒªãƒƒãƒ‰å–å¾—
 	vec = FTouch_CalcTpXYTo3D(outBaseTp->TpX, outBaseTp->TpY, tp_to_3d_ptr);
 	grid_x = vec.x/(FX32_ONE*16);
 	grid_z = vec.z/(FX32_ONE*16);
 
-	//ƒTƒCƒYæ“¾
+	//ã‚µã‚¤ã‚ºå–å¾—
 	w = ioData->Width;
 	d = ioData->Depth;
 
@@ -1673,7 +1673,7 @@ static void TpUpdateGoodsPos(FIELDSYS_WORK * fsys, GOODS_HIT_DAT *ioData, UG_BAS
 	rect.GridRX = rect.GridLX+(w-1);
 	rect.GridRZ = rect.GridLZ+(d-1);
 
-	//Šî’n“à‚È‚ç‚ÎAˆÚ“®‰Â”\ 
+	//åŸºåœ°å†…ãªã‚‰ã°ã€ç§»å‹•å¯èƒ½ 
 	if ( !CheckHitWall(&rect) ){
 		ioData->Rect = rect;
 /**
@@ -1684,7 +1684,7 @@ static void TpUpdateGoodsPos(FIELDSYS_WORK * fsys, GOODS_HIT_DAT *ioData, UG_BAS
 */
 		vec.x = grid_x*(FX32_ONE*16);
 		vec.z = grid_z*(FX32_ONE*16);
-		//•¨‘Ì‚ÌƒTƒCƒY•Ê‚ÉƒIƒtƒZƒbƒgŒvZ
+		//ç‰©ä½“ã®ã‚µã‚¤ã‚ºåˆ¥ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆè¨ˆç®—
 		vec.x += (FX32_ONE*8)*w;
 		vec.z += (FX32_ONE*8)*d;
 		vec.y = FX32_ONE;
@@ -1705,9 +1705,9 @@ static void TpUpdatePanelPos(FIELDSYS_WORK * fsys, UG_BASE_TP *outBaseTp, UG_BAS
 	TP_TO_3D_PTR tp_to_3d_ptr;
 	tp_to_3d_ptr = fsys->TpTo3DPtr;
 	
-	//ƒ^ƒbƒ`À•Wæ“¾
+	//ã‚¿ãƒƒãƒåº§æ¨™å–å¾—
 	GetTouchPos(sys.tp_x, sys.tp_y, outBaseTp);
-	//ƒ^ƒbƒ`ƒOƒŠƒbƒhæ“¾
+	//ã‚¿ãƒƒãƒã‚°ãƒªãƒƒãƒ‰å–å¾—
 	vec = FTouch_CalcTpXYTo3D(outBaseTp->TpX, outBaseTp->TpY, tp_to_3d_ptr);
 	grid_x = vec.x/(FX32_ONE*16);
 	grid_z = vec.z/(FX32_ONE*16);
@@ -1717,7 +1717,7 @@ static void TpUpdatePanelPos(FIELDSYS_WORK * fsys, UG_BASE_TP *outBaseTp, UG_BAS
 	rect.GridRX = rect.GridLX;
 	rect.GridRZ = rect.GridLZ;
 
-	//Šî’n“à‚È‚ç‚ÎAˆÚ“®‰Â”\ 
+	//åŸºåœ°å†…ãªã‚‰ã°ã€ç§»å‹•å¯èƒ½ 
 	if ( !CheckHitWall(&rect) ){
 		vec.x = grid_x*(FX32_ONE*16)+(FX32_ONE*8);
 		vec.z = grid_z*(FX32_ONE*16)+(FX32_ONE*8);
@@ -1729,24 +1729,24 @@ static void TpUpdatePanelPos(FIELDSYS_WORK * fsys, UG_BASE_TP *outBaseTp, UG_BAS
 	}
 }
 
-//İ’u‚Ìƒ^ƒbƒ`ƒpƒlƒ‹§Œä
+//è¨­ç½®æ™‚ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆ¶å¾¡
 static BOOL TpGoodsPutControl(EVENT_BASE_EDIT_WORK * ebew, FIELDSYS_WORK * fsys, BOOL *outPut)
 {
 	VecFx32 vec;
-	BOOL rc;	//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚Á‚Ä‚¢‚é‚©‚ğ•Ô‚·
+	BOOL rc;	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã£ã¦ã„ã‚‹ã‹ã‚’è¿”ã™
 	rc = FALSE;
 	*outPut = FALSE;
 	
-	if ( sys.tp_trg ){	//ƒgƒŠƒK[
-		if (!sys.cont){		//ƒL[‚ª‘S‚­‰Ÿ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î
-			//ƒgƒŠƒK[ƒtƒ‰ƒOƒIƒ“
+	if ( sys.tp_trg ){	//ãƒˆãƒªã‚¬ãƒ¼
+		if (!sys.cont){		//ã‚­ãƒ¼ãŒå…¨ãæŠ¼ã•ã‚Œã¦ã„ãªã‘ã‚Œã°
+			//ãƒˆãƒªã‚¬ãƒ¼ãƒ•ãƒ©ã‚°ã‚ªãƒ³
 			ebew->BaseTp.TrgFlg = TRUE;
 
 			TpUpdateGoodsPos(fsys, &(ebew->EditGoodsData), &ebew->BaseTp);
 		
 		}//end if
 		rc = TRUE;
-	}else if(sys.tp_cont){	//ƒxƒ^
+	}else if(sys.tp_cont){	//ãƒ™ã‚¿
 		if (ebew->BaseTp.TrgFlg){
 			TpUpdateGoodsPos(fsys, &(ebew->EditGoodsData), &ebew->BaseTp);
 			
@@ -1755,31 +1755,31 @@ static BOOL TpGoodsPutControl(EVENT_BASE_EDIT_WORK * ebew, FIELDSYS_WORK * fsys,
 	}else{
 		if (ebew->BaseTp.TrgFlg){
 			ebew->BaseTp.TrgFlg = FALSE;
-			//—£‚µ‚½‚Æ‚«‚Éİ’u
-			*outPut = TRUE;	//’u‚­
+			//é›¢ã—ãŸã¨ãã«è¨­ç½®
+			*outPut = TRUE;	//ç½®ã
 		}
 	}
 	return rc;
 }
 
-//‰ñû‚Ìƒ^ƒbƒ`ƒpƒlƒ‹§Œä
+//å›åæ™‚ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆ¶å¾¡
 static BOOL TpGoodsCollectControl(EVENT_BASE_EDIT_WORK * ebew, FIELDSYS_WORK * fsys, BOOL *outCollect)
 {
 	VecFx32 vec;
-	BOOL rc;	//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚Á‚Ä‚¢‚é‚©‚ğ•Ô‚·
+	BOOL rc;	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã£ã¦ã„ã‚‹ã‹ã‚’è¿”ã™
 	rc = FALSE;
 	*outCollect = FALSE;
 	
-	if ( sys.tp_trg ){	//ƒgƒŠƒK[
-		if (!sys.cont){		//ƒL[‚ª‘S‚­‰Ÿ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î
-			//ƒgƒŠƒK[ƒtƒ‰ƒOƒIƒ“
+	if ( sys.tp_trg ){	//ãƒˆãƒªã‚¬ãƒ¼
+		if (!sys.cont){		//ã‚­ãƒ¼ãŒå…¨ãæŠ¼ã•ã‚Œã¦ã„ãªã‘ã‚Œã°
+			//ãƒˆãƒªã‚¬ãƒ¼ãƒ•ãƒ©ã‚°ã‚ªãƒ³
 			ebew->BaseTp.TrgFlg = TRUE;
 
 			TpUpdatePanelPos(fsys, &ebew->BaseTp, ebew->Panel);
 		
 		}//end if
 		rc = TRUE;
-	}else if(sys.tp_cont){	//ƒxƒ^
+	}else if(sys.tp_cont){	//ãƒ™ã‚¿
 		if (ebew->BaseTp.TrgFlg){
 			TpUpdatePanelPos(fsys, &ebew->BaseTp, ebew->Panel);
 			
@@ -1788,27 +1788,27 @@ static BOOL TpGoodsCollectControl(EVENT_BASE_EDIT_WORK * ebew, FIELDSYS_WORK * f
 	}else{
 		if (ebew->BaseTp.TrgFlg){
 			ebew->BaseTp.TrgFlg = FALSE;
-			//—£‚µ‚½‚Æ‚«‚É‰ñû
-			*outCollect = TRUE;	//‰ñû
+			//é›¢ã—ãŸã¨ãã«å›å
+			*outCollect = TRUE;	//å›å
 		}
 	}
 	return rc;
 }
 
-//Ä”z’uiƒ^[ƒQƒbƒgw’èj‚Ìƒ^ƒbƒ`ƒpƒlƒ‹§Œä
+//å†é…ç½®æ™‚ï¼ˆã‚¿ãƒ¼ã‚²ãƒƒãƒˆæŒ‡å®šæ™‚ï¼‰ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆ¶å¾¡
 static BOOL TpGoodsReputControl(EVENT_BASE_EDIT_WORK * ebew, FIELDSYS_WORK * fsys, BOOL *outReput)
 {
 	VecFx32 vec;
-	BOOL rc;	//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚Á‚Ä‚¢‚é‚©‚ğ•Ô‚·
+	BOOL rc;	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã£ã¦ã„ã‚‹ã‹ã‚’è¿”ã™
 	rc = FALSE;
 	*outReput = FALSE;
 	
-	if ( sys.tp_trg ){	//ƒgƒŠƒK[
-		if (!sys.cont){		//ƒL[‚ª‘S‚­‰Ÿ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î
-			//ƒgƒŠƒK[ƒtƒ‰ƒOƒIƒ“
+	if ( sys.tp_trg ){	//ãƒˆãƒªã‚¬ãƒ¼
+		if (!sys.cont){		//ã‚­ãƒ¼ãŒå…¨ãæŠ¼ã•ã‚Œã¦ã„ãªã‘ã‚Œã°
+			//ãƒˆãƒªã‚¬ãƒ¼ãƒ•ãƒ©ã‚°ã‚ªãƒ³
 			ebew->BaseTp.TrgFlg = TRUE;
-			//‰Ÿ‚µ‚½‚Æ‚«‚ÉŒˆ’è
-			*outReput = TRUE;	//ƒ^[ƒQƒbƒgŒˆ’è
+			//æŠ¼ã—ãŸã¨ãã«æ±ºå®š
+			*outReput = TRUE;	//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆæ±ºå®š
 			TpUpdatePanelPos(fsys, &ebew->BaseTp, ebew->Panel);
 		}//end if
 		rc = TRUE;
@@ -1819,24 +1819,24 @@ static BOOL TpGoodsReputControl(EVENT_BASE_EDIT_WORK * ebew, FIELDSYS_WORK * fsy
 	return rc;
 }
 
-//Ä”z’uiİ’uj‚Ìƒ^ƒbƒ`ƒpƒlƒ‹§Œä
+//å†é…ç½®æ™‚ï¼ˆè¨­ç½®æ™‚ï¼‰ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆ¶å¾¡
 static BOOL TpGoodsReputSetControl(EVENT_BASE_EDIT_WORK * ebew, FIELDSYS_WORK * fsys, BOOL *outReput)
 {
 	VecFx32 vec;
-	BOOL rc;	//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚Á‚Ä‚¢‚é‚©‚ğ•Ô‚·
+	BOOL rc;	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã£ã¦ã„ã‚‹ã‹ã‚’è¿”ã™
 	rc = FALSE;
 	*outReput = FALSE;
 	
-	if ( sys.tp_trg ){	//ƒgƒŠƒK[
-		if (!sys.cont){		//ƒL[‚ª‘S‚­‰Ÿ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î
-			//ƒgƒŠƒK[ƒtƒ‰ƒOƒIƒ“
+	if ( sys.tp_trg ){	//ãƒˆãƒªã‚¬ãƒ¼
+		if (!sys.cont){		//ã‚­ãƒ¼ãŒå…¨ãæŠ¼ã•ã‚Œã¦ã„ãªã‘ã‚Œã°
+			//ãƒˆãƒªã‚¬ãƒ¼ãƒ•ãƒ©ã‚°ã‚ªãƒ³
 			ebew->BaseTp.TrgFlg = TRUE;
 
 			TpUpdateGoodsPos(fsys, &(ebew->EditGoodsData), &ebew->BaseTp);
 		
 		}//end if
 		rc = TRUE;
-	}else if(sys.tp_cont){	//ƒxƒ^
+	}else if(sys.tp_cont){	//ãƒ™ã‚¿
 		if (ebew->BaseTp.TrgFlg){
 			TpUpdateGoodsPos(fsys, &(ebew->EditGoodsData), &ebew->BaseTp);			
 		}
@@ -1844,8 +1844,8 @@ static BOOL TpGoodsReputSetControl(EVENT_BASE_EDIT_WORK * ebew, FIELDSYS_WORK * 
 	}else{
 		if (ebew->BaseTp.TrgFlg){
 			ebew->BaseTp.TrgFlg = FALSE;
-			//—£‚µ‚½‚Æ‚«‚Éİ’u
-			*outReput = TRUE;	//’u‚­
+			//é›¢ã—ãŸã¨ãã«è¨­ç½®
+			*outReput = TRUE;	//ç½®ã
 		}
 	}
 	return rc;
@@ -1875,13 +1875,13 @@ static void BlinkTarget(FIELDSYS_WORK *fsys, BLINK_DATA *ioBlinkData)
 	if (!ioBlinkData->Valid){
 		return;
 	}
-	//“à•”ƒJƒEƒ“ƒ^ƒAƒbƒv
+	//å†…éƒ¨ã‚«ã‚¦ãƒ³ã‚¿ã‚¢ãƒƒãƒ—
 	ioBlinkData->Count++;
 	if (ioBlinkData->Count >= ioBlinkData->CountMax){
 		ioBlinkData->Count = 0;
 		ioBlinkData->Vanish = (ioBlinkData->Vanish+1)%2;
 		ptr = M3DO_GetMap3DObjDataFromIndex(fsys->Map3DObjExp, ioBlinkData->TargetIndex);
-		//ƒoƒjƒbƒVƒ…ƒtƒ‰ƒbƒOƒZƒbƒg
+		//ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ãƒƒã‚°ã‚»ãƒƒãƒˆ
 		M3DO_SetVanish(ptr, ioBlinkData->Vanish);
 	}
 }
@@ -1893,7 +1893,7 @@ static void StopBlink(FIELDSYS_WORK *fsys, BLINK_DATA *inBlinkData)
 		return;
 	}
 	ptr = M3DO_GetMap3DObjDataFromIndex(fsys->Map3DObjExp, inBlinkData->TargetIndex);
-	//ƒoƒjƒbƒVƒ…ƒtƒ‰ƒbƒO—‚Æ‚·
+	//ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ãƒƒã‚°è½ã¨ã™
 	M3DO_SetVanish(ptr, FALSE);
 }
 
@@ -1902,14 +1902,14 @@ static const int GetBlinkTarget(BLINK_DATA *inBlinkData)
 	return inBlinkData->TargetIndex;
 }
 
-//ƒOƒbƒYƒŠƒXƒgƒCƒxƒ“ƒg
+//ã‚°ãƒƒã‚ºãƒªã‚¹ãƒˆã‚¤ãƒ™ãƒ³ãƒˆ
 static BOOL GoodsListEvent(GMEVENT_CONTROL * event)
 {
 	BOOL rc;
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	EVENT_BASE_EDIT_WORK * ebew = FieldEvent_GetSpecialWork(event);
 
-	//ƒGƒfƒBƒbƒgƒƒCƒ“ƒƒjƒ…[
+	//ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 	rc = BMENU_EditGoodsListControl(ebew->GoodsList);
 	
 	return FALSE;
@@ -1918,7 +1918,7 @@ static BOOL GoodsListEvent(GMEVENT_CONTROL * event)
 static void InitBasePanel(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void * work)
 {
 	UG_BASE_PANEL *panel = (UG_BASE_PANEL*)(work);
-	//ƒpƒlƒ‹“o˜^
+	//ãƒ‘ãƒãƒ«ç™»éŒ²
 	SetupPanel(panel);
 }
 
@@ -1930,7 +1930,7 @@ static void BasePanelDummy(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void * w
 static void EndBasePanel(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void * work)
 {
 	UG_BASE_PANEL *panel = (UG_BASE_PANEL*)(work);
-	//ƒpƒlƒ‹íœ
+	//ãƒ‘ãƒãƒ«å‰Šé™¤
 	ReleasePanel(panel);
 }
 

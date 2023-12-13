@@ -22,11 +22,11 @@
 /*---------------------------------------------------------------------------*
   Name:         WFSi_NotifyEvent
 
-  Description:  WFSƒT[ƒo“à•”‚ÌƒCƒxƒ“ƒg‚ğ’Ê’m‚·‚é.
+  Description:  WFSã‚µãƒ¼ãƒå†…éƒ¨ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’é€šçŸ¥ã™ã‚‹.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                event            ’Ê’m‚·‚éƒCƒxƒ“ƒgí•Ê.
-                argument         ƒCƒxƒ“ƒgˆø”.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                event            é€šçŸ¥ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆç¨®åˆ¥.
+                argument         ã‚¤ãƒ™ãƒ³ãƒˆå¼•æ•°.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -42,11 +42,11 @@ inline static void WFSi_NotifyEvent(WFSClientContext *context,
 /*---------------------------------------------------------------------------*
   Name:         WFSi_ReallocBitmap
 
-  Description:  w’è‚³‚ê‚½ƒTƒCƒYóM‰Â”\‚Èƒrƒbƒgƒ}ƒbƒv‚ğÄŠm•Û.
+  Description:  æŒ‡å®šã•ã‚ŒãŸã‚µã‚¤ã‚ºå—ä¿¡å¯èƒ½ãªãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’å†ç¢ºä¿.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                length           óM—\’è‚Ìƒtƒ@ƒCƒ‹ƒTƒCƒY.
-                                 •‰‚Ì’l‚ğw’è‚·‚é‚ÆŒ»İ‚Ì’l‚ÅÄŠm•Û.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                length           å—ä¿¡äºˆå®šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º.
+                                 è² ã®å€¤ã‚’æŒ‡å®šã™ã‚‹ã¨ç¾åœ¨ã®å€¤ã§å†ç¢ºä¿.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -73,12 +73,12 @@ static void WFSi_ReallocBitmap(WFSClientContext *context, int length)
 /*---------------------------------------------------------------------------*
   Name:         WFSi_ReceiveTableSequence
 
-  Description:  ROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ğóM‚·‚éƒV[ƒPƒ“ƒX.
-                ƒT[ƒo‚Æ‚ÌÚ‘±’¼Œã‚É1‰ñ‚¾‚¯Às‚³‚ê‚é.
+  Description:  ROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å—ä¿¡ã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹.
+                ã‚µãƒ¼ãƒã¨ã®æ¥ç¶šç›´å¾Œã«1å›ã ã‘å®Ÿè¡Œã•ã‚Œã‚‹.
 
-  Arguments:    userdata         WFSClientContext\‘¢‘Ì.
-                callback         WBTŠ®—¹ƒR[ƒ‹ƒoƒbƒNˆø”.
-                                 ƒV[ƒPƒ“ƒXŠJn‚ÍNULL‚ğw’è‚µ‚ÄŒÄ‚Ño‚·.
+  Arguments:    userdata         WFSClientContextæ§‹é€ ä½“.
+                callback         WBTå®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°.
+                                 ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–‹å§‹æ™‚ã¯NULLã‚’æŒ‡å®šã—ã¦å‘¼ã³å‡ºã™.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -91,13 +91,13 @@ static void WFSi_ReceiveTableSequence(void *userdata, WBTCommand *callback)
     {
         BOOL    post = FALSE;
         const int   bitmap = 0x0001;
-        /* ƒV[ƒPƒ“ƒXŠJn => WBT-SYNC() ‚ğ”­s‚µ‚ÄƒpƒPƒbƒgƒTƒCƒY‚ğ“¯Šú */
+        /* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–‹å§‹ => WBT-SYNC() ã‚’ç™ºè¡Œã—ã¦ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’åŒæœŸ */
         if (callback == NULL)
         {
             WFS_DEBUG_OUTPUT(("WBT-SYNC():post"));
             post = WBT_PostCommandSYNC(wbt, bitmap, WFSi_ReceiveTableSequence);
         }
-        /* WBT-SYNC Š®—¹ => WBT-INFO(0) ‚ğ”­s‚µ‚ÄROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ÌƒTƒCƒY‚ğæ“¾ */
+        /* WBT-SYNC å®Œäº† => WBT-INFO(0) ã‚’ç™ºè¡Œã—ã¦ROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾— */
         else if (callback->event == WBT_CMD_RES_SYNC)
         {
             WFS_DEBUG_OUTPUT(("WBT-SYNC():done [server = %d, client = %d]",
@@ -107,7 +107,7 @@ static void WFSi_ReceiveTableSequence(void *userdata, WBTCommand *callback)
             post = WBT_PostCommandINFO(wbt, bitmap, WFSi_ReceiveTableSequence,
                                        0, &context->block_info_table);
         }
-        /* WBT-INFO(0) Š®—¹ => WBT-GET(0x20000) ‚ğ”­s‚µ‚ÄROMƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ğæ“¾ */
+        /* WBT-INFO(0) å®Œäº† => WBT-GET(0x20000) ã‚’ç™ºè¡Œã—ã¦ROMãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾— */
         else if (callback->event == WBT_CMD_RES_GET_BLOCKINFO)
         {
             const int length = context->block_info_table.block_info[0]->block_size;
@@ -123,29 +123,29 @@ static void WFSi_ReceiveTableSequence(void *userdata, WBTCommand *callback)
                                       &context->recv_buf_table,
                                       &context->recv_buf_packet_bmp_table);
         }
-        /* WBT-GET(0x20000) Š®—¹ => ƒ}ƒEƒ“ƒg€”õŠ®—¹ƒCƒxƒ“ƒg’Ê’m */
+        /* WBT-GET(0x20000) å®Œäº† => ãƒã‚¦ãƒ³ãƒˆæº–å‚™å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ */
         else if (callback->event == WBT_CMD_RES_GET_BLOCK)
         {
             WFS_DEBUG_OUTPUT(("WBT-GET(0x%08X):done [ready for mount]", WFS_TABLE_BLOCK_INDEX));
             WFS_ParseTable(context->table);
             context->fat_ready = TRUE;
             WFSi_NotifyEvent(context, WFS_EVENT_CLIENT_READY, NULL);
-            post = TRUE;    /* •Ö‹Xã */
+            post = TRUE;    /* ä¾¿å®œä¸Š */
         }
-        /* WBTƒRƒ}ƒ“ƒh”­s¸”s (WFS“à•”•s‹ï‡‚É‚æ‚éƒRƒ}ƒ“ƒhƒLƒ…[•s‘«) */
+        /* WBTã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œå¤±æ•— (WFSå†…éƒ¨ä¸å…·åˆã«ã‚ˆã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ä¸è¶³) */
         if (!post)
         {
             WFS_DEBUG_OUTPUT(("internal-error (failed to post WBT command)"));
         }
     }
-    /* ‰½‚ç‚©‚Ì“à•”ƒGƒ‰[ */
+    /* ä½•ã‚‰ã‹ã®å†…éƒ¨ã‚¨ãƒ©ãƒ¼ */
      else
     {
-        /* WFSƒXƒ^[ƒgƒAƒbƒv’†‚ÌƒLƒƒƒ“ƒZƒ‹ (‚±‚±‚Å‚Í“Á‚É‰½‚à‚µ‚È‚­‚Ä‚æ‚¢) */
+        /* WFSã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒƒãƒ—ä¸­ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ« (ã“ã“ã§ã¯ç‰¹ã«ä½•ã‚‚ã—ãªãã¦ã‚ˆã„) */
         if (callback->event == WBT_CMD_CANCEL)
         {
         }
-        /* —\Šú‚¹‚ÊWBTƒGƒ‰[ (WFS“à•”•s‹ï‡‚É‚æ‚éó‘ÔŠÇ—‚Ì•s®‡) */
+        /* äºˆæœŸã›ã¬WBTã‚¨ãƒ©ãƒ¼ (WFSå†…éƒ¨ä¸å…·åˆã«ã‚ˆã‚‹çŠ¶æ…‹ç®¡ç†ã®ä¸æ•´åˆ) */
         else
         {
             WFS_DEBUG_OUTPUT(("internal-error (unexpected WBT result)"));
@@ -159,12 +159,12 @@ static void WFSi_ReceiveTableSequence(void *userdata, WBTCommand *callback)
 /*---------------------------------------------------------------------------*
   Name:         WFSi_ReadRomSequence
 
-  Description:  ƒT[ƒo‘¤‚ÌROMƒCƒ[ƒW‚ğóM‚·‚éƒV[ƒPƒ“ƒX.
-                ƒNƒ‰ƒCƒAƒ“ƒg‚©‚ç‚ÌFS_ReadFileŠÖ”ŒÄ‚Ño‚µ‚Ì‚½‚Ñ‚ÉÀs‚³‚ê‚é.
+  Description:  ã‚µãƒ¼ãƒå´ã®ROMã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å—ä¿¡ã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹.
+                ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‹ã‚‰ã®FS_ReadFileé–¢æ•°å‘¼ã³å‡ºã—ã®ãŸã³ã«å®Ÿè¡Œã•ã‚Œã‚‹.
 
-  Arguments:    userdata         WFSClientContext\‘¢‘Ì.
-                callback         WBTŠ®—¹ƒR[ƒ‹ƒoƒbƒNˆø”.
-                                 ƒV[ƒPƒ“ƒXŠJn‚ÍNULL‚ğw’è‚µ‚ÄŒÄ‚Ño‚·.
+  Arguments:    userdata         WFSClientContextæ§‹é€ ä½“.
+                callback         WBTå®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°.
+                                 ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–‹å§‹æ™‚ã¯NULLã‚’æŒ‡å®šã—ã¦å‘¼ã³å‡ºã™.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -177,7 +177,7 @@ static void WFSi_ReadRomSequence(void *userdata, WBTCommand *callback)
     {
         BOOL    post = FALSE;
         const int   bitmap = 0x0001;
-        /* ƒV[ƒPƒ“ƒXŠJn => WBT-MSG(LOCK) ‚ğ”­s‚µ‚Ä“]‘—”ÍˆÍ‚ğƒƒbƒN */
+        /* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–‹å§‹ => WBT-MSG(LOCK) ã‚’ç™ºè¡Œã—ã¦è»¢é€ç¯„å›²ã‚’ãƒ­ãƒƒã‚¯ */
         if (callback == NULL)
         {
             WFS_DEBUG_OUTPUT(("WBT-MSG(LOCK):post"));
@@ -185,28 +185,28 @@ static void WFSi_ReadRomSequence(void *userdata, WBTCommand *callback)
                                            context->request_region.offset + context->table->origin,
                                            context->request_region.length);
         }
-        /* WBT-MSG() ”­sŠ®—¹ (ƒT[ƒo‚Ì‰“š‚ğ‘Ò‚Â‚Ì‚Å‚±‚±‚Å‚Í‰½‚à‚µ‚È‚¢) */
+        /* WBT-MSG() ç™ºè¡Œå®Œäº† (ã‚µãƒ¼ãƒã®å¿œç­”ã‚’å¾…ã¤ã®ã§ã“ã“ã§ã¯ä½•ã‚‚ã—ãªã„) */
         else if (callback->event == WBT_CMD_RES_USER_DATA)
         {
             /* waiting for response from server... */
-            post = TRUE;    /* •Ö‹Xã */
+            post = TRUE;    /* ä¾¿å®œä¸Š */
         }
         else
         {
             const WFSMessageFormat *const msg = (const WFSMessageFormat *)callback->user_data.data;
-            /* WBT-MSG(LOCK) ‰“šóM */
+            /* WBT-MSG(LOCK) å¿œç­”å—ä¿¡ */
             if ((callback->event == WBT_CMD_REQ_USER_DATA) &&
                 (msg->type == WFS_MSG_LOCK_ACK))
             {
                 BOOL    accepted = (BOOL)MI_LEToH32(msg->arg2);
-                /* ‹‘”Û‰“š => WBT-SYNC() ‚ğÄ”­s‚µ‚ÄƒpƒPƒbƒgƒTƒCƒY‚ğ“¯Šú */
+                /* æ‹’å¦å¿œç­” => WBT-SYNC() ã‚’å†ç™ºè¡Œã—ã¦ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’åŒæœŸ */
                 if (!accepted)
                 {
                     WFS_DEBUG_OUTPUT(("WBT-MSG(LOCK):failed [packet-length renewal]"));
                     WFS_DEBUG_OUTPUT(("WBT-SYNC():post"));
                     post = WBT_PostCommandSYNC(wbt, bitmap, WFSi_ReadRomSequence);
                 }
-                /* ‹–‰Â‰“š => WBT-GET(id) ‚ğÄ”­s‚µ‚ÄƒuƒƒbƒN‚ğóM */
+                /* è¨±å¯å¿œç­” => WBT-GET(id) ã‚’å†ç™ºè¡Œã—ã¦ãƒ–ãƒ­ãƒƒã‚¯ã‚’å—ä¿¡ */
                 else
                 {
                     u32     id = MI_LEToH32(msg->arg1);
@@ -220,7 +220,7 @@ static void WFSi_ReadRomSequence(void *userdata, WBTCommand *callback)
                                               &context->recv_buf_packet_bmp_table);
                 }
             }
-            /* WBT-SYNC() Š®—¹ => ƒV[ƒPƒ“ƒX‚ğÄs (ˆê’i‚¾‚¯‚ÌÄ‹AŒÄ‚Ño‚µ‚Æ‚È‚é) */
+            /* WBT-SYNC() å®Œäº† => ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å†è©¦è¡Œ (ä¸€æ®µã ã‘ã®å†å¸°å‘¼ã³å‡ºã—ã¨ãªã‚‹) */
             else if (callback->event == WBT_CMD_RES_SYNC)
             {
                 WFS_DEBUG_OUTPUT(("WBT-SYNC():done [server = %d, client = %d]",
@@ -228,9 +228,9 @@ static void WFSi_ReadRomSequence(void *userdata, WBTCommand *callback)
                                  callback->sync.my_packet_size + WBT_PACKET_SIZE_MIN));
                 WFSi_ReallocBitmap(context, -1);
                 WFSi_ReadRomSequence(context, NULL);
-                post = TRUE;    /* •Ö‹Xã */
+                post = TRUE;    /* ä¾¿å®œä¸Š */
             }
-            /* WBT-GET(id) Š®—¹ => WBT-MSG(UNLOCK, id) ‚ğ”­s‚µ‚Ä“]‘—”ÍˆÍ‚ğ‰ğ•ú */
+            /* WBT-GET(id) å®Œäº† => WBT-MSG(UNLOCK, id) ã‚’ç™ºè¡Œã—ã¦è»¢é€ç¯„å›²ã‚’è§£æ”¾ */
             else if (callback->event == WBT_CMD_RES_GET_BLOCK)
             {
                 u32     id = context->block_id;
@@ -238,7 +238,7 @@ static void WFSi_ReadRomSequence(void *userdata, WBTCommand *callback)
                 WFS_DEBUG_OUTPUT(("WBT-MSG(UNLOCK,0x%08X):post", id));
                 post = WFS_SendMessageUNLOCK_REQ(wbt, WFSi_ReadRomSequence, bitmap, id);
             }
-            /* WBT-MSG(UNLOCK, id) ‰“šóM => ƒŠ[ƒhŠ®—¹ƒCƒxƒ“ƒg’Ê’m */
+            /* WBT-MSG(UNLOCK, id) å¿œç­”å—ä¿¡ => ãƒªãƒ¼ãƒ‰å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ */
             else if ((callback->event == WBT_CMD_REQ_USER_DATA) &&
                 (msg->type == WFS_MSG_UNLOCK_ACK))
             {
@@ -255,23 +255,23 @@ static void WFSi_ReadRomSequence(void *userdata, WBTCommand *callback)
                         (*callback)(context, TRUE, argument);
                     }
                 }
-                post = TRUE;    /* •Ö‹Xã */
+                post = TRUE;    /* ä¾¿å®œä¸Š */
             }
         }
-        /* WBTƒRƒ}ƒ“ƒh”­s¸”s (WFS“à•”•s‹ï‡‚É‚æ‚éƒRƒ}ƒ“ƒhƒLƒ…[•s‘«) */
+        /* WBTã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œå¤±æ•— (WFSå†…éƒ¨ä¸å…·åˆã«ã‚ˆã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ä¸è¶³) */
         if (!post)
         {
             WFS_DEBUG_OUTPUT(("internal-error (failed to post WBT command)"));
         }
     }
-    /* ‰½‚ç‚©‚Ì“à•”ƒGƒ‰[ */
+    /* ä½•ã‚‰ã‹ã®å†…éƒ¨ã‚¨ãƒ©ãƒ¼ */
      else
     {
-        /* WFSƒŠ[ƒhˆ—’†‚ÌƒLƒƒƒ“ƒZƒ‹ (‚±‚±‚Å‚Í“Á‚É‰½‚à‚µ‚È‚­‚Ä‚æ‚¢) */
+        /* WFSãƒªãƒ¼ãƒ‰å‡¦ç†ä¸­ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ« (ã“ã“ã§ã¯ç‰¹ã«ä½•ã‚‚ã—ãªãã¦ã‚ˆã„) */
         if (callback->event == WBT_CMD_CANCEL)
         {
         }
-        /* —\Šú‚¹‚ÊWBTƒGƒ‰[ (WFS“à•”•s‹ï‡‚É‚æ‚éó‘ÔŠÇ—‚Ì•s®‡) */
+        /* äºˆæœŸã›ã¬WBTã‚¨ãƒ©ãƒ¼ (WFSå†…éƒ¨ä¸å…·åˆã«ã‚ˆã‚‹çŠ¶æ…‹ç®¡ç†ã®ä¸æ•´åˆ) */
         else
         {
             WFS_DEBUG_OUTPUT(("internal-error (unexpected WBT result)"));
@@ -285,17 +285,17 @@ static void WFSi_ReadRomSequence(void *userdata, WBTCommand *callback)
 /*---------------------------------------------------------------------------*
   Name:         WFSi_WBTSystemCallback
 
-  Description:  ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌWBTƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒN.
+  Description:  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®WBTã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
-  Arguments:    userdata         WFSServerContext\‘¢‘Ì.
-                callback         WBT‚ÌƒCƒxƒ“ƒgˆø”.
+  Arguments:    userdata         WFSServerContextæ§‹é€ ä½“.
+                callback         WBTã®ã‚¤ãƒ™ãƒ³ãƒˆå¼•æ•°.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 static void WFSi_WBTSystemCallback(void *userdata, WBTCommand *callback)
 {
     WFSClientContext * const context = (WFSClientContext *)userdata;
-    /* ƒT[ƒo‚©‚ç‚Ì‰“šƒƒbƒZ[ƒW‚Í WFSi_ReadRomSequence ‚ÖƒŠƒ_ƒCƒŒƒNƒg */
+    /* ã‚µãƒ¼ãƒã‹ã‚‰ã®å¿œç­”ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯ WFSi_ReadRomSequence ã¸ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆ */
     if ((callback->event == WBT_CMD_REQ_USER_DATA) &&
         (context->request_buffer))
     {
@@ -306,10 +306,10 @@ static void WFSi_WBTSystemCallback(void *userdata, WBTCommand *callback)
 /*---------------------------------------------------------------------------*
   Name:         WFS_CallClientConnectHook
 
-  Description:  ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌÚ‘±’Ê’m.
+  Description:  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®æ¥ç¶šé€šçŸ¥.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                peer             Ú‘±‚µ‚½’ÊMæ‚Ìî•ñ.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                peer             æ¥ç¶šã—ãŸé€šä¿¡å…ˆã®æƒ…å ±.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -322,10 +322,10 @@ void WFS_CallClientConnectHook(WFSClientContext *context, const WFSPeerInfo *pee
 /*---------------------------------------------------------------------------*
   Name:         WFS_CallClientDisconnectHook
 
-  Description:  ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌØ’f’Ê’m.
+  Description:  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®åˆ‡æ–­é€šçŸ¥.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                peer             Ø’f‚µ‚½’ÊMæ‚Ìî•ñ.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                peer             åˆ‡æ–­ã—ãŸé€šä¿¡å…ˆã®æƒ…å ±.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -338,12 +338,12 @@ void WFS_CallClientDisconnectHook(WFSClientContext *context, const WFSPeerInfo *
 /*---------------------------------------------------------------------------*
   Name:         WFS_CallClientPacketSendHook
 
-  Description:  ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌƒpƒPƒbƒg‘—M‰Â”\ƒ^ƒCƒ~ƒ“ƒO’Ê’m.
+  Description:  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®ãƒ‘ã‚±ãƒƒãƒˆé€ä¿¡å¯èƒ½ã‚¿ã‚¤ãƒŸãƒ³ã‚°é€šçŸ¥.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                packet           ‘—MƒpƒPƒbƒgİ’è.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                packet           é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆè¨­å®š.
 
-  Returns:      ÀÛ‚ÌƒpƒPƒbƒgƒTƒCƒY.
+  Returns:      å®Ÿéš›ã®ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 void WFS_CallClientPacketSendHook(WFSClientContext *context, WFSPacketBuffer *packet)
 {
@@ -353,12 +353,12 @@ void WFS_CallClientPacketSendHook(WFSClientContext *context, WFSPacketBuffer *pa
 /*---------------------------------------------------------------------------*
   Name:         WFS_CallClientPacketRecvHook
 
-  Description:  ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌƒpƒPƒbƒgóMƒ^ƒCƒ~ƒ“ƒO’Ê’m.
+  Description:  ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®ãƒ‘ã‚±ãƒƒãƒˆå—ä¿¡ã‚¿ã‚¤ãƒŸãƒ³ã‚°é€šçŸ¥.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                packet           ‘—MŒ³ƒpƒPƒbƒgî•ñ.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                packet           é€ä¿¡å…ƒãƒ‘ã‚±ãƒƒãƒˆæƒ…å ±.
 
-  Returns:      ÀÛ‚ÌƒpƒPƒbƒgƒTƒCƒY.
+  Returns:      å®Ÿéš›ã®ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 void WFS_CallClientPacketRecvHook(WFSClientContext *context, const WFSPacketBuffer *packet)
 {
@@ -369,13 +369,13 @@ void WFS_CallClientPacketRecvHook(WFSClientContext *context, const WFSPacketBuff
 /*---------------------------------------------------------------------------*
   Name:         WFS_InitClient
 
-  Description:  WFSƒNƒ‰ƒCƒAƒ“ƒgƒRƒ“ƒeƒLƒXƒg‚ğ‰Šú‰».
+  Description:  WFSã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’åˆæœŸåŒ–.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                userdata         ƒRƒ“ƒeƒLƒXƒg‚ÉŠÖ˜A•t‚¯‚é”CˆÓ‚Ìƒ†[ƒU’è‹`’l.
-                callback         ƒVƒXƒeƒ€ƒCƒxƒ“ƒg’Ê’mƒR[ƒ‹ƒoƒbƒN.
-                                 •s—v‚È‚çNULL‚ğw’è‚·‚é.
-                allocator        “à•”‚Åg—p‚·‚éƒAƒƒP[ƒ^.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                userdata         ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã«é–¢é€£ä»˜ã‘ã‚‹ä»»æ„ã®ãƒ¦ãƒ¼ã‚¶å®šç¾©å€¤.
+                callback         ã‚·ã‚¹ãƒ†ãƒ ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
+                                 ä¸è¦ãªã‚‰NULLã‚’æŒ‡å®šã™ã‚‹.
+                allocator        å†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -388,7 +388,7 @@ void WFS_InitClient(WFSClientContext *context,
     context->callback = callback;
     context->allocator = allocator;
     context->fat_ready = FALSE;
-    /* WBT—p•Ï”‚Ì‰Šú‰» */
+    /* WBTç”¨å¤‰æ•°ã®åˆæœŸåŒ– */
     for (i = 0; i < WBT_NUM_OF_AID; ++i)
     {
         context->block_info_table.block_info[i] = &context->block_info[i];
@@ -401,7 +401,7 @@ void WFS_InitClient(WFSClientContext *context,
     context->request_buffer = NULL;
     context->table->length = 0;
     context->table->buffer = NULL;
-    /* WBT ‚Ì‰Šú‰» */
+    /* WBT ã®åˆæœŸåŒ– */
     WBT_InitContext(context->wbt, context, WFSi_WBTSystemCallback);
     WBT_AddCommandPool(context->wbt, context->wbt_list,
                        sizeof(context->wbt_list) / sizeof(*context->wbt_list));
@@ -410,9 +410,9 @@ void WFS_InitClient(WFSClientContext *context,
 /*---------------------------------------------------------------------------*
   Name:         WFS_EndClient
 
-  Description:  WFSƒNƒ‰ƒCƒAƒ“ƒgƒRƒ“ƒeƒLƒXƒg‚ğ‰ğ•ú.
+  Description:  WFSã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’è§£æ”¾.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -434,10 +434,10 @@ void WFS_EndClient(WFSClientContext *context)
 /*---------------------------------------------------------------------------*
   Name:         WFS_StartClient
 
-  Description:  WFSƒNƒ‰ƒCƒAƒ“ƒgƒRƒ“ƒeƒLƒXƒg‚Ì’ÊM‚ğŠJn.
+  Description:  WFSã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®é€šä¿¡ã‚’é–‹å§‹.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                peer             ©g‚ÌÚ‘±î•ñ.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                peer             è‡ªèº«ã®æ¥ç¶šæƒ…å ±.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -450,16 +450,16 @@ void WFS_StartClient(WFSClientContext *context, const WFSPeerInfo *peer)
 /*---------------------------------------------------------------------------*
   Name:         WFS_RequestClientRead
 
-  Description:  ƒT[ƒo‚ÖROMƒCƒ[ƒW“Ç‚İ‚İ—v‹‚ğŠJn.
-                Š®—¹‚É‚Í WFS_EVENT_CLIENT_READ ’Ê’m‚ª”­¶‚·‚é.
+  Description:  ã‚µãƒ¼ãƒã¸ROMã‚¤ãƒ¡ãƒ¼ã‚¸èª­ã¿è¾¼ã¿è¦æ±‚ã‚’é–‹å§‹.
+                å®Œäº†æ™‚ã«ã¯ WFS_EVENT_CLIENT_READ é€šçŸ¥ãŒç™ºç”Ÿã™ã‚‹.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                buffer           “Ç‚İ‚İƒf[ƒ^‚ÌŠi”[æƒƒ‚ƒŠ.
-                offset           ƒfƒoƒCƒX‚Ì“Ç‚İ‚İŠJnˆÊ’u.
-                length           “Ç‚İ‚İƒTƒCƒY.
-                callback         “Ç‚İ‚İŠ®—¹ƒR[ƒ‹ƒoƒbƒN.
-                                 •s—v‚È‚çNULL.
-                arg              “Ç‚İ‚İŠ®—¹ƒR[ƒ‹ƒoƒbƒN‚É—^‚¦‚éˆø”.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                buffer           èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆãƒ¡ãƒ¢ãƒª.
+                offset           ãƒ‡ãƒã‚¤ã‚¹ã®èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®.
+                length           èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º.
+                callback         èª­ã¿è¾¼ã¿å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
+                                 ä¸è¦ãªã‚‰NULL.
+                arg              èª­ã¿è¾¼ã¿å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«ä¸ãˆã‚‹å¼•æ•°.
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void WFS_RequestClientRead(WFSClientContext *context, void *buffer, u32 offset,
@@ -481,11 +481,11 @@ void WFS_RequestClientRead(WFSClientContext *context, void *buffer, u32 offset,
 /*---------------------------------------------------------------------------*
   Name:         WFS_GetClientReadProgress
 
-  Description:  ROMƒCƒ[ƒW“Ç‚İ‚İ—v‹‚Ìi’»ó‹µ‚ğæ“¾.
+  Description:  ROMã‚¤ãƒ¡ãƒ¼ã‚¸èª­ã¿è¾¼ã¿è¦æ±‚ã®é€²æ—çŠ¶æ³ã‚’å–å¾—.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                current          óMÏ‚İƒpƒPƒbƒg”‚ğæ“¾‚·‚é•Ï”.
-                total            óM—\’è‚ÌƒpƒPƒbƒg‘”‚ğæ“¾‚·‚é•Ï”.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                current          å—ä¿¡æ¸ˆã¿ãƒ‘ã‚±ãƒƒãƒˆæ•°ã‚’å–å¾—ã™ã‚‹å¤‰æ•°.
+                total            å—ä¿¡äºˆå®šã®ãƒ‘ã‚±ãƒƒãƒˆç·æ•°ã‚’å–å¾—ã™ã‚‹å¤‰æ•°.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

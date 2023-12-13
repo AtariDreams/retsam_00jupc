@@ -1,22 +1,22 @@
 //=============================================================================
 /**
  * @file	scr_seq_def.def
- * @bfief	�X�N���v�g�R�}���h�̃}�N����`�t�@�C��
+ * @bfief	スクリプトコマンドのマクロ定義ファイル
  * @author	HisashiSogabe
  * @date	2005.05.24
  *
  * 05.08.04 Satoshi Nohara
  *
- * �Z�V�[�P���X�p�̃}�N����`�t�@�C�������ɂ��Ă���
+ * 技シーケンス用のマクロ定義ファイルを元にしている
  */
 //=============================================================================
 #define	__ASM_NO_DEF_
 
-//�X�N���v�g�Ŏg�p����w�b�_�[�t�@�C��
+//スクリプトで使用するヘッダーファイル
 	.include	"usescript.h"
 	.include	"../../../include/pl_bugfix.h"
 
-//�f�[�^�����R�ȋ��E�ɃA���C�����邩�̐ݒ�
+//データを自然な境界にアラインするかの設定
 	.option alignment off
 
 	.macro	INIT_CMD
@@ -28,7 +28,7 @@ DEF_CMD_COUNT	=	0
 DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
-//���߃V���{���錾
+//命令シンボル宣言
 	INIT_CMD
 	DEF_CMD	EV_SEQ_NOP
 	DEF_CMD	EV_SEQ_DUMMY
@@ -101,7 +101,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	EV_SEQ_BOARD_MSG
 	DEF_CMD	EV_SEQ_BOARD_END_WAIT
 
-	DEF_CMD	EV_SEQ_MENU_REQ			// ���j���[���N�G�X�g
+	DEF_CMD	EV_SEQ_MENU_REQ			// メニューリクエスト
 	DEF_CMD	EV_SEQ_BG_SCROLL			//60
 
 	DEF_CMD	EV_SEQ_YES_NO_WIN
@@ -163,19 +163,19 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	EV_SEQ_MOVE_CODE_CHANGE
 	DEF_CMD	EV_SEQ_PAIR_OBJID_SET
 
-	DEF_CMD	EV_SEQ_ADD_GOLD				//�����֘A���ׂ�
+	DEF_CMD	EV_SEQ_ADD_GOLD				//お金関連すべて
 	DEF_CMD	EV_SEQ_SUB_GOLD
 	DEF_CMD	EV_SEQ_COMP_GOLD
 	DEF_CMD	EV_SEQ_GOLD_WIN_WRITE
 	DEF_CMD	EV_SEQ_GOLD_WIN_DEL
-	DEF_CMD	EV_SEQ_GOLD_WRITE			//�����֘A�����܂�
+	DEF_CMD	EV_SEQ_GOLD_WRITE			//お金関連ここまで
 
-	DEF_CMD	EV_SEQ_COIN_WIN_WRITE		//�R�C���֘A���ׂ�
+	DEF_CMD	EV_SEQ_COIN_WIN_WRITE		//コイン関連すべて
 	DEF_CMD	EV_SEQ_COIN_WIN_DEL			
 	DEF_CMD	EV_SEQ_COIN_WRITE
 	DEF_CMD	EV_SEQ_GET_COIN_NUM
 	DEF_CMD	EV_SEQ_ADD_COIN
-	DEF_CMD	EV_SEQ_SUB_COIN				//�R�C���֘A�����܂�
+	DEF_CMD	EV_SEQ_SUB_COIN				//コイン関連ここまで
 
 	DEF_CMD	EV_SEQ_ADD_ITEM
 	DEF_CMD	EV_SEQ_SUB_ITEM
@@ -184,47 +184,47 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	EV_SEQ_WAZA_ITEM_CHK
 
 	DEF_CMD	EV_SEQ_GET_POCKET_NO
-	DEF_CMD	EV_SEQ_ADD_BOX_ITEM			//�g�p����060630
-	DEF_CMD	EV_SEQ_CHK_BOX_ITEM			//�g�p����060630
+	DEF_CMD	EV_SEQ_ADD_BOX_ITEM			//使用せず060630
+	DEF_CMD	EV_SEQ_CHK_BOX_ITEM			//使用せず060630
 
-	DEF_CMD	EV_SEQ_ADD_GOODS			//�O�b�Y�֘A���ׂ�			�쐬��060602
+	DEF_CMD	EV_SEQ_ADD_GOODS			//グッズ関連すべて			作成中060602
 	DEF_CMD	EV_SEQ_SUB_GOODS
 	DEF_CMD	EV_SEQ_ADD_GOODS_CHK
-	DEF_CMD	EV_SEQ_GOODS_CHK			//�O�b�Y�֘A�����܂�
+	DEF_CMD	EV_SEQ_GOODS_CHK			//グッズ関連ここまで
 
-	DEF_CMD	EV_SEQ_ADD_TRAP				//�g���b�v�֘A���ׂ�
+	DEF_CMD	EV_SEQ_ADD_TRAP				//トラップ関連すべて
 	DEF_CMD	EV_SEQ_SUB_TRAP
 	DEF_CMD	EV_SEQ_ADD_TRAP_CHK
-	DEF_CMD	EV_SEQ_TRAP_CHK				//�g���b�v�֘A�����܂�
+	DEF_CMD	EV_SEQ_TRAP_CHK				//トラップ関連ここまで
 
-	DEF_CMD	EV_SEQ_ADD_TREASURE			//����
+	DEF_CMD	EV_SEQ_ADD_TREASURE			//お宝
 	DEF_CMD	EV_SEQ_SUB_TREASURE
 	DEF_CMD	EV_SEQ_ADD_TREASURE_CHK
-	DEF_CMD	EV_SEQ_TREASURE_CHK			//����֘A�����܂�
+	DEF_CMD	EV_SEQ_TREASURE_CHK			//お宝関連ここまで
 
-	DEF_CMD	EV_SEQ_ADD_TAMA				//�^�}�֘A���ׂ�
+	DEF_CMD	EV_SEQ_ADD_TAMA				//タマ関連すべて
 	DEF_CMD	EV_SEQ_SUB_TAMA
 	DEF_CMD	EV_SEQ_ADD_TAMA_CHK
-	DEF_CMD	EV_SEQ_TAMA_CHK				//�^�}�֘A�����܂�
+	DEF_CMD	EV_SEQ_TAMA_CHK				//タマ関連ここまで
 
 	DEF_CMD	EV_SEQ_CB_ITEM_NUM_GET
 	DEF_CMD	EV_SEQ_CB_ITEM_NUM_ADD
 	DEF_CMD	EV_SEQ_UNKNOWN_FORM_GET
 
-	DEF_CMD	EV_SEQ_ADD_POKEMON			//�|�P�����֘A���ׂ�
+	DEF_CMD	EV_SEQ_ADD_POKEMON			//ポケモン関連すべて
 	DEF_CMD	EV_SEQ_ADD_TAMAGO
 	DEF_CMD	EV_SEQ_CHG_POKE_WAZA
 	DEF_CMD	EV_SEQ_CHK_POKE_WAZA
-	DEF_CMD	EV_SEQ_CHK_POKE_WAZA_GROUP		//�|�P�����֘A�����܂�
+	DEF_CMD	EV_SEQ_CHK_POKE_WAZA_GROUP		//ポケモン関連ここまで
 
 	DEF_CMD	EV_SEQ_REVENGE_TRAINER_SEARCH
 
-	DEF_CMD	EV_SEQ_INIT_WEATHER			//�V��֘A���ׂ�			���Ή�
+	DEF_CMD	EV_SEQ_INIT_WEATHER			//天候関連すべて			未対応
 	DEF_CMD	EV_SEQ_SET_WEATHER
-	DEF_CMD	EV_SEQ_UPDATE_WEATHER		//�V��֘A�����܂�
+	DEF_CMD	EV_SEQ_UPDATE_WEATHER		//天候関連ここまで
 
-	DEF_CMD	EV_SEQ_GET_MAP_POS			//���݂̃}�b�v�ʒu���擾	���Ή�
-	DEF_CMD	EV_SEQ_GET_TEMOTI_POKE_NUM	//�莝���̃|�P���������擾	���Ή� ���ʖ��߂����ɂ��肢��Ȃ�060224tomo
+	DEF_CMD	EV_SEQ_GET_MAP_POS			//現在のマップ位置を取得	未対応
+	DEF_CMD	EV_SEQ_GET_TEMOTI_POKE_NUM	//手持ちのポケモン数を取得	未対応 ※別命令が既にありいらない060224tomo
 
 	DEF_CMD	EV_SEQ_SET_MAP_PROC
 
@@ -466,17 +466,17 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD EV_SEQ_GET_SODATE_NAME
 	DEF_CMD EV_SEQ_GET_SODATEYA_ZIISAN
 
-	DEF_CMD	EV_SEQ_INIT_WATER_GYM			//���W��������
-	DEF_CMD EV_SEQ_PUSH_WATER_GYM_BUTTON	//���W���{�^���v�b�V��
+	DEF_CMD	EV_SEQ_INIT_WATER_GYM			//水ジム初期化
+	DEF_CMD EV_SEQ_PUSH_WATER_GYM_BUTTON	//水ジムボタンプッシュ
 
-	DEF_CMD	EV_SEQ_INIT_GHOST_GYM			//�S�[�X�g�W��������
-	DEF_CMD EV_SEQ_MOVE_GHOST_GYM_LIFT		//�S�[�X�g�W�����t�g���[�u
-	DEF_CMD EV_SEQ_INIT_STEEL_GYM			//�|�W��������
-	DEF_CMD EV_SEQ_INIT_COMBAT_GYM			//�i���W��������
-	DEF_CMD EV_SEQ_INIT_ELEC_GYM			//�d�C�W��������
-	DEF_CMD EV_SEQ_ROT_ELEC_GYM_GEAR		//�d�C�W���M�A��]
+	DEF_CMD	EV_SEQ_INIT_GHOST_GYM			//ゴーストジム初期化
+	DEF_CMD EV_SEQ_MOVE_GHOST_GYM_LIFT		//ゴーストジムリフトムーブ
+	DEF_CMD EV_SEQ_INIT_STEEL_GYM			//鋼ジム初期化
+	DEF_CMD EV_SEQ_INIT_COMBAT_GYM			//格闘ジム初期化
+	DEF_CMD EV_SEQ_INIT_ELEC_GYM			//電気ジム初期化
+	DEF_CMD EV_SEQ_ROT_ELEC_GYM_GEAR		//電気ジムギア回転
 
-	DEF_CMD EV_SEQ_GET_POKE_COUNT			//�|�P�������擾
+	DEF_CMD EV_SEQ_GET_POKE_COUNT			//ポケモン数取得
 
 	DEF_CMD EV_SEQ_BAG_SET_PROC
 	DEF_CMD EV_SEQ_BAG_GET_RESULT
@@ -524,69 +524,69 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD EV_SEQ_TEMOTI_MONSNO
 	DEF_CMD EV_SEQ_MONS_OWN_CHK
 
-	DEF_CMD EV_SEQ_GET_POKE_COUNT2			//�|�P�������擾(�^�}�S������)
-	DEF_CMD EV_SEQ_GET_POKE_COUNT3			//�|�P�������擾(�^�}�S�ƕm��������)
-	DEF_CMD EV_SEQ_GET_POKE_COUNT4			//�|�P�������擾(�莝�����o�b���܂߂Đ킦��|�P���������̂��邩)
-	DEF_CMD EV_SEQ_GET_TAMAGO_COUNT			//�^�}�S���擾�i�_�����܂��܂܂��j
+	DEF_CMD EV_SEQ_GET_POKE_COUNT2			//ポケモン数取得(タマゴを除く)
+	DEF_CMD EV_SEQ_GET_POKE_COUNT3			//ポケモン数取得(タマゴと瀕死を除く)
+	DEF_CMD EV_SEQ_GET_POKE_COUNT4			//ポケモン数取得(手持ち＆ＰＣを含めて戦えるポケモンが何体いるか)
+	DEF_CMD EV_SEQ_GET_TAMAGO_COUNT			//タマゴ数取得（ダメたまご含まず）
 
-	DEF_CMD EV_SEQ_UG_SHOP_MENU_INIT		//�n���̂��X�̃��j���[���J��
-	DEF_CMD EV_SEQ_UG_SHOP_TALK_START		//�n���̂��X�̉�b�J�n
-	DEF_CMD EV_SEQ_UG_SHOP_TALK_END			//�n���̂��X�̉�b�I��
-	DEF_CMD EV_SEQ_UG_SHOP_ITEM_NAME		//�n���̂��X�̃A�C�e���̖��O��o�^
-	DEF_CMD EV_SEQ_UG_SHOP_TRAP_NAME		//�n���̂��X�̃g���b�v�̖��O��o�^
+	DEF_CMD EV_SEQ_UG_SHOP_MENU_INIT		//地下のお店のメニューを開く
+	DEF_CMD EV_SEQ_UG_SHOP_TALK_START		//地下のお店の会話開始
+	DEF_CMD EV_SEQ_UG_SHOP_TALK_END			//地下のお店の会話終了
+	DEF_CMD EV_SEQ_UG_SHOP_ITEM_NAME		//地下のお店のアイテムの名前を登録
+	DEF_CMD EV_SEQ_UG_SHOP_TRAP_NAME		//地下のお店のトラップの名前を登録
 
-	DEF_CMD EV_SEQ_SUB_MY_GOLD				//�����������i���[�N�Łj
-	DEF_CMD EV_SEQ_HIKITORI_POKE			//�����Ă₩��|�P�������������
-	DEF_CMD EV_SEQ_HIKITORI_LIST			//�Q�̂̃|�P�����̈������I���E�C���h�E�i�����Ă�j
-	DEF_CMD EV_SEQ_MSG_SODATEYA_AISHOU		//�������b�Z�[�W�Z�b�g
-	DEF_CMD EV_SEQ_MSGEXPANDBUF				//���b�Z�[�W���o��
-	DEF_CMD EV_SEQ_DEL_SODATEYA_EGG			//�������ꂽ�^�}�S�̎󂯎�苑��
-	DEF_CMD EV_SEQ_GET_SODATEYA_EGG			//�������ꂽ�^�}�S���󂯎��
-	DEF_CMD EV_SEQ_HIKITORI_RYOUKIN			//�Ђ��Ƃ藿���Z�b�g
-	DEF_CMD EV_SEQ_COMP_MY_GOLD				//�������r�i���[�N�Łj
-	DEF_CMD EV_SEQ_TAMAGO_DEMO				//�^�}�S�z���f��
-	DEF_CMD EV_SEQ_SODATEYA_POKELIST		//�����Ă�|�P�������X�g
-	DEF_CMD EV_SEQ_SODATE_POKE_LEVEL_STR	//���x�����𕶎���Ŏ擾
-	DEF_CMD EV_SEQ_MSG_AZUKE_SET			//�a����|�P�������Z�b�g�{�ԍ��擾
-	DEF_CMD EV_SEQ_SET_SODATEYA_POKE		//�|�P������a����
-	DEF_CMD EV_SEQ_OBJ_VISIBLE				//�L����������Ԃ�
-	DEF_CMD EV_SEQ_OBJ_INVISIBLE			//�L������s����Ԃ�
-	DEF_CMD	EV_SEQ_MAILBOX					//���[���{�b�N�X
-	DEF_CMD	EV_SEQ_GET_MAILBOX_DATANUM		//���[���{�b�N�X���̃f�[�^���擾
-	DEF_CMD	EV_SEQ_RANKING_VIEW				//�M�l�X�z�[�������L���O��ʌĂяo��
+	DEF_CMD EV_SEQ_SUB_MY_GOLD				//お金を引く（ワーク版）
+	DEF_CMD EV_SEQ_HIKITORI_POKE			//そだてやからポケモンを引き取る
+	DEF_CMD EV_SEQ_HIKITORI_LIST			//２体のポケモンの引き取り選択ウインドウ（そだてや）
+	DEF_CMD EV_SEQ_MSG_SODATEYA_AISHOU		//相性メッセージセット
+	DEF_CMD EV_SEQ_MSGEXPANDBUF				//メッセージを出す
+	DEF_CMD EV_SEQ_DEL_SODATEYA_EGG			//発見されたタマゴの受け取り拒否
+	DEF_CMD EV_SEQ_GET_SODATEYA_EGG			//発見されたタマゴを受け取る
+	DEF_CMD EV_SEQ_HIKITORI_RYOUKIN			//ひきとり料金セット
+	DEF_CMD EV_SEQ_COMP_MY_GOLD				//お金を比較（ワーク版）
+	DEF_CMD EV_SEQ_TAMAGO_DEMO				//タマゴ孵化デモ
+	DEF_CMD EV_SEQ_SODATEYA_POKELIST		//そだてやポケモンリスト
+	DEF_CMD EV_SEQ_SODATE_POKE_LEVEL_STR	//レベル差を文字列で取得
+	DEF_CMD EV_SEQ_MSG_AZUKE_SET			//預けるポケモン名セット＋番号取得
+	DEF_CMD EV_SEQ_SET_SODATEYA_POKE		//ポケモンを預ける
+	DEF_CMD EV_SEQ_OBJ_VISIBLE				//キャラを可視状態へ
+	DEF_CMD EV_SEQ_OBJ_INVISIBLE			//キャラを不可視状態へ
+	DEF_CMD	EV_SEQ_MAILBOX					//メールボックス
+	DEF_CMD	EV_SEQ_GET_MAILBOX_DATANUM		//メールボックス内のデータ数取得
+	DEF_CMD	EV_SEQ_RANKING_VIEW				//ギネスホールランキング画面呼び出し
 
-	DEF_CMD	EV_SEQ_GET_TIME_ZONE			//���ԑю擾
-	DEF_CMD	EV_SEQ_GET_RND					//�����_�����擾
-	DEF_CMD	EV_SEQ_GET_RND_NEXT				//�����_�����擾
+	DEF_CMD	EV_SEQ_GET_TIME_ZONE			//時間帯取得
+	DEF_CMD	EV_SEQ_GET_RND					//ランダム数取得
+	DEF_CMD	EV_SEQ_GET_RND_NEXT				//ランダム数取得
 
-	DEF_CMD	EV_SEQ_GET_NATSUKI				//�Ȃ��x�擾
-	DEF_CMD	EV_SEQ_ADD_NATSUKI				//�Ȃ��x�𑝂₷
-	DEF_CMD	EV_SEQ_SUB_NATSUKI				//�Ȃ��x�����炷
+	DEF_CMD	EV_SEQ_GET_NATSUKI				//なつき度取得
+	DEF_CMD	EV_SEQ_ADD_NATSUKI				//なつき度を増やす
+	DEF_CMD	EV_SEQ_SUB_NATSUKI				//なつき度を減らす
 
-	DEF_CMD EV_SEQ_HIKITORI_NAME_SET		//�Ђ��Ƃ�Q�̖̂��O�Z�b�g
+	DEF_CMD EV_SEQ_HIKITORI_NAME_SET		//ひきとり２体の名前セット
 
-	DEF_CMD	EV_SEQ_PLAYER_DIR_GET			//���@�̕����擾
+	DEF_CMD	EV_SEQ_PLAYER_DIR_GET			//自機の方向取得
 
-	DEF_CMD	EV_SEQ_GET_SODATEYA_AISHOU		//�����Ă�2�̂̑����Q�b�g
-	DEF_CMD	EV_SEQ_SODATEYA_TAMAGO_CHK	//�^�}�S���Y�܂�Ă��邩�`�F�b�N
+	DEF_CMD	EV_SEQ_GET_SODATEYA_AISHOU		//そだてや2体の相性ゲット
+	DEF_CMD	EV_SEQ_SODATEYA_TAMAGO_CHK	//タマゴが産まれているかチェック
 
-	DEF_CMD	EV_SEQ_TEMOTI_POKE_CHK			//�莝���ɓ���̃|�P���������邩���`�F�b�N
-	DEF_CMD	EV_SEQ_OOKISA_RECORD_CHK		//�L�^�Ǝ莝���|�P�����̔�r
-	DEF_CMD	EV_SEQ_OOKISA_RECORD_SET		//�莝���̃|�P�����ŋL�^�X�V
-	DEF_CMD	EV_SEQ_OOKISA_TEMOTI_SET_BUF	//�莝���̃|�P�����̑傫���𐔒l�ɂ��ĕ����o�b�t�@�փZ�b�g
-	DEF_CMD	EV_SEQ_OOKISA_KIROKU_SET_BUF	//�L�^�|�P�����̑傫���𐔒l�ɂ��ĕ����o�b�t�@�փZ�b�g
-	DEF_CMD	EV_SEQ_OOKISA_KURABE_INIT		//�傫����׏�����
+	DEF_CMD	EV_SEQ_TEMOTI_POKE_CHK			//手持ちに特定のポケモンがいるかをチェック
+	DEF_CMD	EV_SEQ_OOKISA_RECORD_CHK		//記録と手持ちポケモンの比較
+	DEF_CMD	EV_SEQ_OOKISA_RECORD_SET		//手持ちのポケモンで記録更新
+	DEF_CMD	EV_SEQ_OOKISA_TEMOTI_SET_BUF	//手持ちのポケモンの大きさを数値にして文字バッファへセット
+	DEF_CMD	EV_SEQ_OOKISA_KIROKU_SET_BUF	//記録ポケモンの大きさを数値にして文字バッファへセット
+	DEF_CMD	EV_SEQ_OOKISA_KURABE_INIT		//大きさ比べ初期化
 
-	DEF_CMD	EV_SEQ_WAZALIST_SET_PROC		//���U�I����ʌĂяo��
-	DEF_CMD	EV_SEQ_WAZALIST_GET_RESULT		//���U�I����ʌ��ʎ��o��
-	DEF_CMD	EV_SEQ_WAZA_COUNT				//�����Ă��郏�U�����J�E���g
-	DEF_CMD	EV_SEQ_WAZA_DEL					//���U������
-	DEF_CMD	EV_SEQ_TEMOTI_WAZANO			//�莝���̃��U�̔ԍ��擾
-	DEF_CMD	EV_SEQ_TEMOTI_WAZA_NAME			//�莝�����U�����o�b�t�@��
+	DEF_CMD	EV_SEQ_WAZALIST_SET_PROC		//ワザ選択画面呼び出し
+	DEF_CMD	EV_SEQ_WAZALIST_GET_RESULT		//ワザ選択画面結果取り出し
+	DEF_CMD	EV_SEQ_WAZA_COUNT				//持っているワザ数をカウント
+	DEF_CMD	EV_SEQ_WAZA_DEL					//ワザを消す
+	DEF_CMD	EV_SEQ_TEMOTI_WAZANO			//手持ちのワザの番号取得
+	DEF_CMD	EV_SEQ_TEMOTI_WAZA_NAME			//手持ちワザ名をバッファへ
 
-	DEF_CMD	EV_SEQ_FNOTE_START_SET			//�`���m�[�g�J�n�f�[�^�Z�b�g
-	DEF_CMD	EV_SEQ_FNOTE_DATA_MAKE			//�`���m�[�g�f�[�^�쐬
-	DEF_CMD	EV_SEQ_FNOTE_DATA_SAVE			//�`���m�[�g�f�[�^�Z�[�u
+	DEF_CMD	EV_SEQ_FNOTE_START_SET			//冒険ノート開始データセット
+	DEF_CMD	EV_SEQ_FNOTE_DATA_MAKE			//冒険ノートデータ作成
+	DEF_CMD	EV_SEQ_FNOTE_DATA_SAVE			//冒険ノートデータセーブ
 
 	DEF_CMD	EV_SEQ_SYS_FLAG_KAIRIKI
 	DEF_CMD EV_SEQ_SYS_FLAG_FLASH
@@ -598,37 +598,37 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	EV_SEQ_IMC_BG_ADD_ITEM
 	DEF_CMD	EV_SEQ_IMC_BG_ITEM_CHK
 	
-	DEF_CMD	EV_SEQ_NUTMIXER_CALL			//�܂��܂������Ăяo��
-	DEF_CMD	EV_SEQ_NUTMIXER_PLAY_CHECK		//�܂��܂������v���C���ł��邩�`�F�b�N
+	DEF_CMD	EV_SEQ_NUTMIXER_CALL			//まぜまぜ料理呼び出し
+	DEF_CMD	EV_SEQ_NUTMIXER_PLAY_CHECK		//まぜまぜ料理プレイができるかチェック
 	
-	DEF_CMD	EV_SEQ_BTOWER_APP_CALL			//�o�g���^���[�A�v���P�[�V�����R�[��
+	DEF_CMD	EV_SEQ_BTOWER_APP_CALL			//バトルタワーアプリケーションコール
 	
-	//��������o�g���^���[
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_WORK_CLEAR		//�o�g���^���[���[�N������
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_WORK_INIT		//�o�g���^���[���[�N�m��
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_WORK_RELEASE	//�o�g���^���[���[�N���
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_TOOLS			//�o�g���^���[�c�[��
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_GET_SEVEN_POKE	//5�l�O�̃|�P�����f�[�^�Q�b�g
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_IS_PRIZE_GET	//�o�g���^���[�@�v���C�Y�擾
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_IS_PRIZEMAN_SET	//�o�g���^���[�@�v���C�Y�������q�g
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_SEND_BUF		//�o�g���^���[�@�ėp�f�[�^���M
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_RECV_BUF		//�o�g���^���[�@�ėp�f�[�^��M
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_GET_LEADER_ROOM_ID	//�o�g���^���[�@���[�_�[�f�[�^��RoomID�擾
-	DEF_CMD	EV_SEQ_BATTLE_TOWER_IS_READER_DATA_EXIST	//�o�g���^���[�@���[�_�[�f�[�^�̗L��
+	//ここからバトルタワー
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_WORK_CLEAR		//バトルタワーワーク初期化
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_WORK_INIT		//バトルタワーワーク確保
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_WORK_RELEASE	//バトルタワーワーク解放
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_TOOLS			//バトルタワーツール
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_GET_SEVEN_POKE	//5人衆のポケモンデータゲット
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_IS_PRIZE_GET	//バトルタワー　プライズ取得
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_IS_PRIZEMAN_SET	//バトルタワー　プライズをくれるヒト
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_SEND_BUF		//バトルタワー　汎用データ送信
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_RECV_BUF		//バトルタワー　汎用データ受信
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_GET_LEADER_ROOM_ID	//バトルタワー　リーダーデータのRoomID取得
+	DEF_CMD	EV_SEQ_BATTLE_TOWER_IS_READER_DATA_EXIST	//バトルタワー　リーダーデータの有無
 	
-	//�������܂Ńo�g���^���[
-	DEF_CMD	EV_SEQ_RECORD_INC					//���R�[�h�C���N�������g
-	DEF_CMD	EV_SEQ_RECORD_GET					//���R�[�h�Q�b�g
-	DEF_CMD	EV_SEQ_RECORD_SET					//���R�[�h�Z�b�g
+	//↑ここまでバトルタワー
+	DEF_CMD	EV_SEQ_RECORD_INC					//レコードインクリメント
+	DEF_CMD	EV_SEQ_RECORD_GET					//レコードゲット
+	DEF_CMD	EV_SEQ_RECORD_SET					//レコードセット
 	
 
-	DEF_CMD	EV_SEQ_ZUKAN_CHK_SHINOU				//�V���I�E�}�ӂ��������Ă��邩�`�F�b�N
-	DEF_CMD	EV_SEQ_ZUKAN_CHK_NATIONAL			//�S���}�ӂ��������Ă��邩�`�F�b�N
-	DEF_CMD	EV_SEQ_ZUKAN_RECONGNIZE_SHINOU		//�V���I�E�}�Ӂh�Ђ傤���傤�h
-	DEF_CMD	EV_SEQ_ZUKAN_RECONGNIZE_NATIONAL	//�S���}�Ӂh�Ђ傤���傤�h
+	DEF_CMD	EV_SEQ_ZUKAN_CHK_SHINOU				//シンオウ図鑑が完成しているかチェック
+	DEF_CMD	EV_SEQ_ZUKAN_CHK_NATIONAL			//全国図鑑が完成しているかチェック
+	DEF_CMD	EV_SEQ_ZUKAN_RECONGNIZE_SHINOU		//シンオウ図鑑”ひょうしょう”
+	DEF_CMD	EV_SEQ_ZUKAN_RECONGNIZE_NATIONAL	//全国図鑑”ひょうしょう”
 
-	DEF_CMD	EV_SEQ_URAYAMA_ENCOUNT_SET			//�E�����}�G���J�E���g�Z�b�g
-	DEF_CMD	EV_SEQ_URAYAMA_ENCOUNT_NO_CHK		//�E�����}�G���J�E���g�`�F�b�N�i���݂̊Y������|�P�����ԍ��擾�j
+	DEF_CMD	EV_SEQ_URAYAMA_ENCOUNT_SET			//ウラヤマエンカウントセット
+	DEF_CMD	EV_SEQ_URAYAMA_ENCOUNT_NO_CHK		//ウラヤマエンカウントチェック（現在の該当するポケモン番号取得）
 
 	DEF_CMD	EV_SEQ_POKE_MAIL_CHK
 	DEF_CMD	EV_SEQ_PAPERPLANE_SET
@@ -700,11 +700,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 	DEF_CMD	EV_SEQ_GROUP
 
-	DEF_CMD	EV_SEQ_OSHIE_WAZA_COUNT					/*�d�l�ύX�ɂ�薢����*/
+	DEF_CMD	EV_SEQ_OSHIE_WAZA_COUNT					/*仕様変更により未完成*/
 	DEF_CMD	EV_SEQ_REMAIND_WAZA_COUNT
-	DEF_CMD	EV_SEQ_OSHIE_WAZALIST_SET_PROC			/*�d�l�ύX�ɂ�薢����*/
+	DEF_CMD	EV_SEQ_OSHIE_WAZALIST_SET_PROC			/*仕様変更により未完成*/
 	DEF_CMD	EV_SEQ_REMAIND_WAZALIST_SET_PROC
-	DEF_CMD	EV_SEQ_OSHIE_WAZALIST_GET_RESULT		/*�d�l�ύX�ɂ�薢����*/
+	DEF_CMD	EV_SEQ_OSHIE_WAZALIST_GET_RESULT		/*仕様変更により未完成*/
 	DEF_CMD	EV_SEQ_REMAIND_WAZALIST_GET_RESULT
 	DEF_CMD	EV_SEQ_NORMAL_WAZALIST_SET_PROC
 	DEF_CMD	EV_SEQ_NORMAL_WAZALIST_GET_RESULT
@@ -790,9 +790,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD EV_SEQ_ADD_SCORE
 	DEF_CMD EV_SEQ_ACCE_NAME
 
-	DEF_CMD EV_SEQ_PARTY_MONSNO_CHECK			// �p�[�e�B�Ɉ����P�̃|�P���������邩�`�F�b�N
-	DEF_CMD EV_SEQ_PARTY_DEOKISISUFORM_CHANGE	// �p�[�e�B���̃f�I�L�V�X�̃t�H������ύX
-	DEF_CMD EV_SEQ_CHECK_MITUHANII_COMP			// �~�c�n�j�[�̃I�X���X���������
+	DEF_CMD EV_SEQ_PARTY_MONSNO_CHECK			// パーティに引数１のポケモンがいるかチェック
+	DEF_CMD EV_SEQ_PARTY_DEOKISISUFORM_CHANGE	// パーティ内のデオキシスのフォルムを変更
+	DEF_CMD EV_SEQ_CHECK_MITUHANII_COMP			// ミツハニーのオスメスそろったか
 
 	DEF_CMD EV_SEQ_POKETCH_HOOK_SET
 	DEF_CMD EV_SEQ_POKETCH_HOOK_RESET
@@ -801,23 +801,23 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 	DEF_CMD	EV_SEQ_GET_NOW_HOUR
 	
-	DEF_CMD	EV_SEQ_FLDOBJ_SHAKE_ANM		//�t�B�[���hOBJ��h�炷�A�j��
-	DEF_CMD	EV_SEQ_FLDOBJ_BLINK_ANM		//�t�B�[���hOBJ��Blink������A�j��
-	DEF_CMD	EV_SEQ_D20R0106_LEGEND_IS_UNSEAL	//���W�L���O����`�F�b�N
+	DEF_CMD	EV_SEQ_FLDOBJ_SHAKE_ANM		//フィールドOBJを揺らすアニメ
+	DEF_CMD	EV_SEQ_FLDOBJ_BLINK_ANM		//フィールドOBJをBlinkさせるアニメ
+	DEF_CMD	EV_SEQ_D20R0106_LEGEND_IS_UNSEAL	//レジキング解放チェック
 
 	DEF_CMD	EV_SEQ_DRESSING_IMC_ACCE_CHECK
 	DEF_CMD	EV_SEQ_UNKNOWN_MSG
-	DEF_CMD	EV_SEQ_AGB_CARTRIDGE_VER_GET	// �������Ă���AGB�J�[�g���b�WVer�擾
+	DEF_CMD	EV_SEQ_AGB_CARTRIDGE_VER_GET	// ささっているAGBカートリッジVer取得
 
-	DEF_CMD	EV_SEQ_UNDERGROUND_TALK_COUNT_CLEAR		//��b�����J�E���g���N���A(�J�i���퓬�p�j
+	DEF_CMD	EV_SEQ_UNDERGROUND_TALK_COUNT_CLEAR		//会話したカウントをクリア(カナメ戦闘用）
 
-	DEF_CMD	EV_SEQ_HIDEMAP_STATE_CHANGE		//�B���}�b�v�X�e�[�^�X�`�F���W
-	DEF_CMD	EV_SEQ_NAMEIN_MONUMENT			//r224�Δ薼����
-	DEF_CMD	EV_SEQ_MONUMENT_NAME			//r224�Δ薼�^�O�W�J
+	DEF_CMD	EV_SEQ_HIDEMAP_STATE_CHANGE		//隠しマップステータスチェンジ
+	DEF_CMD	EV_SEQ_NAMEIN_MONUMENT			//r224石碑名入力
+	DEF_CMD	EV_SEQ_MONUMENT_NAME			//r224石碑名タグ展開
 
-	DEF_CMD EV_SEQ_IMC_BG_NAME_SET			// imc�̔w�i����ݒ�
+	DEF_CMD EV_SEQ_IMC_BG_NAME_SET			// imcの背景名を設定
 	DEF_CMD	EV_SEQ_COMP_COIN
-	DEF_CMD	EV_SEQ_SLOT_RENTYAN_CHK			//�X���b�g�Ń����`�������Ă��邩
+	DEF_CMD	EV_SEQ_SLOT_RENTYAN_CHK			//スロットでレンチャンしているか
 	DEF_CMD	EV_SEQ_ADD_COIN_CHK
 	DEF_CMD	EV_SEQ_LEVEL_JIJII_NO 
 	DEF_CMD	EV_SEQ_POKE_LEVEL_GET
@@ -830,20 +830,20 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD EV_SEQ_NEW_NANKAI_WORD_SET
 	DEF_CMD EV_SEQ_REGULAR_CHECK		
 	DEF_CMD	EV_SEQ_NANKAI_WORD_COMPLETE_CHECK
-	DEF_CMD EV_SEQ_NUMBER_NAME_EX			//���l�^�O�W�J�@�f�B�X�v���C���[�h�w��ver
+	DEF_CMD EV_SEQ_NUMBER_NAME_EX			//数値タグ展開　ディスプレイモード指定ver
 	DEF_CMD EV_SEQ_TEMOTI_POKE_CONTEST_STATUS_GET
 
 	DEF_CMD	EV_SEQ_BIRTH_DAY_CHECK
 	DEF_CMD	EV_SEQ_SND_INITIAL_VOL_SET
 	DEF_CMD	EV_SEQ_ANOON_SEE_NUM
-	DEF_CMD EV_SEQ_D17SYSTEM_MAP_SELECT		//D17�߂炸�̓��A�@�}�b�v���I
+	DEF_CMD EV_SEQ_D17SYSTEM_MAP_SELECT		//D17戻らずの洞窟　マップ抽選
 	DEF_CMD EV_SEQ_UNDERGROUND_TOOL_GIVE_COUNT
 	DEF_CMD EV_SEQ_UNDERGROUND_KASEKI_DIG_COUNT
 	DEF_CMD EV_SEQ_UNDERGROUND_TRAP_HIT_COUNT
 	DEF_CMD	EV_SEQ_POFIN_ADD
 	DEF_CMD	EV_SEQ_POFIN_ADD_CHK
 
-	DEF_CMD	EV_SEQ_IS_HAIHU_EVENT_ENABLE	//�z�z�C�x���g�L���`�F�b�N
+	DEF_CMD	EV_SEQ_IS_HAIHU_EVENT_ENABLE	//配布イベント有効チェック
 
 	DEF_CMD	EV_SEQ_POKE_WINDOW_PUT_PP
 	DEF_CMD	EV_SEQ_POKE_WINDOW_ANM
@@ -853,11 +853,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	EV_SEQ_SODATEYA_POKELIST_SET_PROC
 	DEF_CMD	EV_SEQ_SODATEYA_POKELIST_GET_RESULT
 	
-	DEF_CMD	EV_SEQ_GET_RANDOM_HIT	//�w�肵���m����TRUE,FALSE��Ԃ�
+	DEF_CMD	EV_SEQ_GET_RANDOM_HIT	//指定した確立でTRUE,FALSEを返す
 
 	DEF_CMD	EV_SEQ_UNDERGROUND_TALK_COUNT2
 
-	//�o�g���|�C���g�֘A��������
+	//バトルポイント関連ここから
 	DEF_CMD	EV_SEQ_BTL_POINT_WIN_WRITE
 	DEF_CMD	EV_SEQ_BTL_POINT_WIN_DEL
 	DEF_CMD	EV_SEQ_BTL_POINT_WRITE
@@ -866,7 +866,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	EV_SEQ_BTL_POINT_SUB
 	DEF_CMD	EV_SEQ_COMP_BTL_POINT
 	DEF_CMD	EV_SEQ_GET_BP_GIFT
-	//�o�g���|�C���g�֘A�����܂�
+	//バトルポイント関連ここまで
 	DEF_CMD	EV_SEQ_UNION_VIEW_TR_TYPE_NO_GET
 
 	DEF_CMD	EV_SEQ_BMPMENU_MAKE_LIST16
@@ -940,18 +940,18 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD EV_SEQ_INIT_PL_GRASS_GYM
 	DEF_CMD EV_SEQ_PL_GRASS_GYM_TIME_GAIN
 
-	DEF_CMD	EV_SEQ_TEMOTI_POKE_CHK_NUM		//�莝���ɓ���̃|�P���������C���邩���`�F�b�N
+	DEF_CMD	EV_SEQ_TEMOTI_POKE_CHK_NUM		//手持ちに特定のポケモンが何匹いるかをチェック
 
-	DEF_CMD	EV_SEQ_BATTLE_STAGE_TOOLS		//�o�g���X�e�[�W
+	DEF_CMD	EV_SEQ_BATTLE_STAGE_TOOLS		//バトルステージ
 
-	DEF_CMD EV_SEQ_GINGA_FOG_SET			///<��͒c�r���悤�t�H�O��ݒ�
-	DEF_CMD EV_SEQ_GINGA_FOG_RESET			///<��͒c�r���悤�t�H�O�����Z�b�g
+	DEF_CMD EV_SEQ_GINGA_FOG_SET			///<銀河団ビルようフォグを設定
+	DEF_CMD EV_SEQ_GINGA_FOG_RESET			///<銀河団ビルようフォグをリセット
 
 	DEF_CMD	EV_SEQ_BATTLE_STAGE_COMM_MONSNO
 	DEF_CMD EV_SEQ_BATTLE_STAGE_POKELIST_GET_RESULT
 	DEF_CMD	EV_SEQ_BATTLE_STAGE_SET_CONTINUE_NG
 	
-	DEF_CMD	EV_SEQ_BATTLE_CASTLE_TOOLS		//�o�g���L���b�X��
+	DEF_CMD	EV_SEQ_BATTLE_CASTLE_TOOLS		//バトルキャッスル
 	DEF_CMD	EV_SEQ_BATTLE_CASTLE_COMM_MONSNO
 	DEF_CMD EV_SEQ_BATTLE_CASTLE_POKELIST_GET_RESULT
 	DEF_CMD	EV_SEQ_BATTLE_CASTLE_SET_CONTINUE_NG
@@ -961,16 +961,16 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 	DEF_CMD	EV_SEQ_BTL_POINT_SHOP
 
-	DEF_CMD	EV_SEQ_BATTLE_ROULETTE_TOOLS		//�o�g�����[���b�g
+	DEF_CMD	EV_SEQ_BATTLE_ROULETTE_TOOLS		//バトルルーレット
 	DEF_CMD	EV_SEQ_BATTLE_ROULETTE_COMM_MONSNO
 	DEF_CMD EV_SEQ_BATTLE_ROULETTE_POKELIST_GET_RESULT
 	DEF_CMD	EV_SEQ_BATTLE_ROULETTE_SET_CONTINUE_NG
 	
 	DEF_CMD	EV_SEQ_TEMOTI_POKE_CHK_GET_POS
 
-	DEF_CMD	EV_SEQ_SEISEKI_BMP_LIST_START		//�o�g���X�e�[�W�p�̃��X�g
+	DEF_CMD	EV_SEQ_SEISEKI_BMP_LIST_START		//バトルステージ用のリスト
 
-	DEF_CMD	EV_SEQ_PARKMAN_ITEM_INDEX_GET		//������������
+	DEF_CMD	EV_SEQ_PARKMAN_ITEM_INDEX_GET		//公園おじさん
 	DEF_CMD	EV_SEQ_PARKMAN_ITEM_KIND_GET
 	DEF_CMD	EV_SEQ_PARKMAN_ITEM_NO_GET
 
@@ -978,7 +978,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	EV_SEQ_SCRATCH_FREE
 	DEF_CMD	EV_SEQ_SCRATCH_ITEM_GET
 
-	DEF_CMD	EV_SEQ_WAZA_OSHIE_DATA_COUNT		//�Z����
+	DEF_CMD	EV_SEQ_WAZA_OSHIE_DATA_COUNT		//技教え
 	DEF_CMD	EV_SEQ_WAZA_OSHIE_BMP_LIST_START
 	DEF_CMD EV_SEQ_WAZA_OSHIE_POKESTATUS_SET_PROC
 	DEF_CMD EV_SEQ_WAZA_OSHIE_POKESTATUS_GET_RESULT
@@ -988,24 +988,24 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	DEF_CMD	EV_SEQ_WAZA_OSHIE_BOARD_WRITE
 	DEF_CMD	EV_SEQ_WAZA_OSHIE_BOARD_DEL
 
-	DEF_CMD	EV_SEQ_TOP_BREEDER_POW_RND_GET		//�g�b�v�u���[�_�[
+	DEF_CMD	EV_SEQ_TOP_BREEDER_POW_RND_GET		//トップブリーダー
 	DEF_CMD	EV_SEQ_STATUS_NAME
 	
-	DEF_CMD EV_SEQ_VILLA_INIT					//�ʑ�������
+	DEF_CMD EV_SEQ_VILLA_INIT					//別荘初期化
 
-	DEF_CMD EV_SEQ_POKE_FORM_CHANGE				//�t�H�����`�F���W
+	DEF_CMD EV_SEQ_POKE_FORM_CHANGE				//フォルムチェンジ
 	
-	DEF_CMD EV_SEQ_TORNWORLD_INIT				//�j�ꂽ���E������
+	DEF_CMD EV_SEQ_TORNWORLD_INIT				//破れた世界初期化
 
 	DEF_CMD	EV_SEQ_TRAINER_NAME
 
 	DEF_CMD	EV_SEQ_GET_CHAR_CODE_T06R0101
 
-	DEF_CMD EV_SEQ_NUMBER_NAME_EX32			//���l�^�O�W�J�@�f�B�X�v���C���[�h�w��ver(32)
+	DEF_CMD EV_SEQ_NUMBER_NAME_EX32			//数値タグ展開　ディスプレイモード指定ver(32)
 
 	DEF_CMD	EV_SEQ_GDS_SET_PROC
 
-	DEF_CMD	EV_SEQ_WIFILOBBY_SET_PROC	// WiFi�L��J�n
+	DEF_CMD	EV_SEQ_WIFILOBBY_SET_PROC	// WiFi広場開始
 	DEF_CMD	EV_SEQ_SND_DEMO01_DATA_LOAD
 	DEF_CMD	EV_SEQ_SND_FIELD_DATA_LOAD
 	DEF_CMD	EV_SEQ_SND_NOW_BGM_NO_GET
@@ -1123,13 +1123,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	
 //=============================================================================
 /**
- *	��{�R�}���h
+ *	基本コマンド
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�������Ȃ�
+ *	何もしない
  */
 //-----------------------------------------------------------------------------
 	.macro	_NOP
@@ -1138,7 +1138,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�_�~�[
+ *	ダミー
  */
 //-----------------------------------------------------------------------------
 	.macro	_DUMMY
@@ -1147,7 +1147,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�X�N���v�g�̏I��
+ *	スクリプトの終了
  */
 //-----------------------------------------------------------------------------
 	.macro	_END
@@ -1156,7 +1156,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�E�F�C�g
+ *	ウェイト
  */
 //-----------------------------------------------------------------------------
 	.macro	_TIME_WAIT time,ret_wk
@@ -1168,13 +1168,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�f�[�^���[�h�E�X�g�A�֘A
+ *	データロード・ストア関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- * ���z�}�V���̔ėp���W�X�^��1byte�̒l���i�[
+ * 仮想マシンの汎用レジスタに1byteの値を格納
  */
 //-----------------------------------------------------------------------------
 	.macro	_LD_REG_VAL	r,val
@@ -1185,7 +1185,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���z�}�V���̔ėp���W�X�^��4byte�̒l���i�[
+ * 仮想マシンの汎用レジスタに4byteの値を格納
  */
 //-----------------------------------------------------------------------------
 	.macro	_LD_REG_WDATA	r,wdata
@@ -1196,7 +1196,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���z�}�V���̔ėp���W�X�^�ɃA�h���X���i�[
+ * 仮想マシンの汎用レジスタにアドレスを格納
  */
 //-----------------------------------------------------------------------------
 	.macro	_LD_REG_ADR	reg,ADDRESS
@@ -1207,7 +1207,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �A�h���X�̒��g�ɒl����
+ * アドレスの中身に値を代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_LD_ADR_VAL	adrs,val
@@ -1218,7 +1218,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �A�h���X�̒��g�ɉ��z�}�V���̔ėp���W�X�^�̒l����
+ * アドレスの中身に仮想マシンの汎用レジスタの値を代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_LD_ADR_REG	adrs,reg
@@ -1229,7 +1229,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���z�}�V���̔ėp���W�X�^�̒l��ėp���W�X�^�ɃR�s�[
+ * 仮想マシンの汎用レジスタの値を汎用レジスタにコピー
  */
 //-----------------------------------------------------------------------------
 	.macro	_LD_REG_REG	r1,r2
@@ -1239,7 +1239,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �A�h���X�̒��g�ɃA�h���X�̒��g����
+ * アドレスの中身にアドレスの中身を代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_LD_ADR_ADR	adr1,adr2
@@ -1251,13 +1251,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	��r�֘A
+ *	比較関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	���z�}�V���̔ėp���W�X�^���r
+ *	仮想マシンの汎用レジスタを比較
  */
 //-----------------------------------------------------------------------------
 	.macro	_CP_REG_REG	r1,r2
@@ -1267,7 +1267,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���z�}�V���̔ėp���W�X�^�ƒl���r
+ *	仮想マシンの汎用レジスタと値を比較
  */
 //-----------------------------------------------------------------------------
 	.macro	_CP_REG_VAL	r1,val
@@ -1277,7 +1277,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���z�}�V���̔ėp���W�X�^�ƃA�h���X�̒��g���r
+ *	仮想マシンの汎用レジスタとアドレスの中身を比較
  */
 //-----------------------------------------------------------------------------
 	.macro	_CP_REG_ADR	r1,adrs
@@ -1288,7 +1288,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�h���X�̒��g�Ɖ��z�}�V���̔ėp���W�X�^���r
+ *	アドレスの中身と仮想マシンの汎用レジスタを比較
  */
 //-----------------------------------------------------------------------------
 	.macro	_CP_ADR_REG	adrs,r1
@@ -1299,7 +1299,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�h���X�̒��g�ƒl���r
+ *	アドレスの中身と値を比較
  */
 //-----------------------------------------------------------------------------
 	.macro	_CP_ADR_VAL	adrs,val
@@ -1310,7 +1310,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�h���X�̒��g�ƃA�h���X�̒��g���r
+ *	アドレスの中身とアドレスの中身を比較
  */
 //-----------------------------------------------------------------------------
 	.macro	_CP_ADR_ADR	adr1,adr2
@@ -1321,7 +1321,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[�N�ƒl�̔�r
+ *	ワークと値の比較
  */
 //-----------------------------------------------------------------------------
 	.macro	_CMPVAL	wk,val
@@ -1332,7 +1332,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[�N�ƃ��[�N�̔�r
+ *	ワークとワークの比較
  */
 //-----------------------------------------------------------------------------
 	.macro	_CMPWK	wk1,wk2
@@ -1343,7 +1343,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �f�o�b�O�p�F���[�N���\��
+ * デバッグ用：ワーク情報表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_WATCH_WORK	wk
@@ -1353,13 +1353,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	���z�}�V���֘A
+ *	仮想マシン関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	���z�}�V���ǉ�(�؂�ւ��͂����A����œ��삵�܂��I)
+ *	仮想マシン追加(切り替えはせず、並列で動作します！)
  */
 //-----------------------------------------------------------------------------
 	.macro	_VM_ADD id
@@ -1369,7 +1369,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���[�J���X�N���v�g���E�F�C�g��Ԃɂ��āA���ʃX�N���v�g�𓮍삳���܂�
+ * ローカルスクリプトをウェイト状態にして、共通スクリプトを動作させます
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHG_COMMON_SCR id
@@ -1379,7 +1379,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���ʃX�N���v�g���I�����āA���[�J���X�N���v�g���ĊJ�����܂�
+ *	共通スクリプトを終了して、ローカルスクリプトを再開させます
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHG_LOCAL_SCR
@@ -1389,13 +1389,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�W�����v�֘A
+ *	ジャンプ関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�W�����v
+ *	ジャンプ
  */
 //-----------------------------------------------------------------------------
 	.macro	_JUMP adrs
@@ -1405,7 +1405,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ_ID�@�W�����v
+ *	OBJ_ID　ジャンプ
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_ID_JUMP act,adrs
@@ -1416,7 +1416,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BG_ID�@�W�����v
+ *	BG_ID　ジャンプ
  */
 //-----------------------------------------------------------------------------
 	.macro	_BG_ID_JUMP act,adrs
@@ -1427,8 +1427,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C�x���g�N�����̎�l���̌�����r�W�����v
- *	(���݂̌����ł͂Ȃ��̂Œ��ӁI)
+ *	イベント起動時の主人公の向き比較ジャンプ
+ *	(現在の向きではないので注意！)
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_DIR_JUMP dir,adrs
@@ -1439,7 +1439,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�[��
+ *	コール
  */
 //-----------------------------------------------------------------------------
 	.macro	_CALL adrs
@@ -1449,7 +1449,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�[�����Ăяo�����A�h���X�ɖ߂�
+ *	コールを呼び出したアドレスに戻る
  */
 //-----------------------------------------------------------------------------
 	.macro	_RET
@@ -1458,7 +1458,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	IF�W�����v
+ *	IFジャンプ
  */
 //-----------------------------------------------------------------------------
 	.macro	_IF_JUMP cond,adrs
@@ -1469,7 +1469,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	IF�R�[��
+ *	IFコール
  */
 //-----------------------------------------------------------------------------
 	.macro	_IF_CALL cond,adrs
@@ -1480,7 +1480,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�l���r�A�����ǂ���̏ꍇ����(�W�����v)
+ *	値を比較、条件どおりの場合分岐(ジャンプ)
  */
 //-----------------------------------------------------------------------------
 	.macro	_IFVAL_JUMP wk,cond,val,adrs
@@ -1492,7 +1492,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�l���r�A�����ǂ���̏ꍇ����(�R�[��)
+ *	値を比較、条件どおりの場合分岐(コール)
  */
 //-----------------------------------------------------------------------------
 	.macro	_IFVAL_CALL wk,cond,val,adrs
@@ -1504,7 +1504,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[�N���r�A�����ǂ���̏ꍇ����(�W�����v)
+ *	ワークを比較、条件どおりの場合分岐(ジャンプ)
  */
 //-----------------------------------------------------------------------------
 	.macro	_IFWK_JUMP wk1,cond,wk2,adrs
@@ -1516,7 +1516,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[�N���r�A�����ǂ���̏ꍇ����(�R�[��)
+ *	ワークを比較、条件どおりの場合分岐(コール)
  */
 //-----------------------------------------------------------------------------
 	.macro	_IFWK_CALL wk1,cond,wk2,adrs
@@ -1528,17 +1528,17 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	switch�֘A
+ *	switch関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	switch �` case �\��
+ *	switch 〜 case 構文
  *
- *  �X�N���v�g���䃏�[�N�Ŋm�ۂ���郏�[�N(SCWK_REG0)���g�p���Ă���̂ŁA
- *	FLAG_CHANGE,INIT_CHANGE�Ȃǂł͎g�p�ł��܂���I
- *	SCENE_CHANGE�͎g�p�ł��܂��B
+ *  スクリプト制御ワークで確保されるワーク(SCWK_REG0)を使用しているので、
+ *	FLAG_CHANGE,INIT_CHANGEなどでは使用できません！
+ *	SCENE_CHANGEは使用できます。
  */
 //-----------------------------------------------------------------------------
 	.macro	_SWITCH wk
@@ -1552,7 +1552,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �X�N���v�g�E�B���h�E�\������B�L�����Z��
+ * スクリプトウィンドウ表示中にBキャンセル
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASE_CANCEL	adr
@@ -1562,7 +1562,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ҋ@�A�C�R���\��
+ *	待機アイコン表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_WAITICON
@@ -1571,7 +1571,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ҋ@�A�C�R������
+ *	待機アイコン消去
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEL_WAITICON
@@ -1580,13 +1580,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�C�x���g�t���O�֘A
+ *	イベントフラグ関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�t���O�̃Z�b�g
+ *	フラグのセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLAG_SET num
@@ -1594,14 +1594,14 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.short	\num
 	.endm
 
-	//�����t���O�Z�b�g
+	//到着フラグセット
 	.macro	_ARRIVE_FLAG_SET num
 	_FLAG_SET	(\num + SYS_FLAG_ARRIVE_START)
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�t���O�̃��Z�b�g
+ *	フラグのリセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLAG_RESET num
@@ -1611,7 +1611,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t���O�`�F�b�N
+ *	フラグチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLAG_CHECK num
@@ -1619,25 +1619,25 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.short	\num
 	.endm
 
-	//�t���OON�̎��ɕ���(JUMP)
+	//フラグONの時に分岐(JUMP)
 	.macro	_IF_FLAGON_JUMP num,adrs
 	_FLAG_CHECK \num
 	_IF_JUMP	FLGON,\adrs
 	.endm
 
-	//�t���OOFF�̎��ɕ���(JUMP)
+	//フラグOFFの時に分岐(JUMP)
 	.macro	_IF_FLAGOFF_JUMP num,adrs
 	_FLAG_CHECK \num
 	_IF_JUMP	FLGOFF,\adrs
 	.endm
 
-	//�t���OON�̎��ɕ���(CALL)
+	//フラグONの時に分岐(CALL)
 	.macro	_IF_FLAGON_CALL num,adrs
 	_FLAG_CHECK \num
 	_IF_CALL	FLGON,\adrs
 	.endm
 
-	//�t���OOFF�̎��ɕ���(CALL)
+	//フラグOFFの時に分岐(CALL)
 	.macro	_IF_FLAGOFF_CALL num,adrs
 	_FLAG_CHECK \num
 	_IF_CALL	FLGOFF,\adrs
@@ -1645,7 +1645,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���[�N�̒l���t���O�i���o�[�Ƃ��ă`�F�b�N����I
+ * ワークの値をフラグナンバーとしてチェックする！
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLAG_CHECK_WK wk,ret_wk
@@ -1656,7 +1656,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���[�N�̒l���t���O�i���o�[�Ƃ��ăZ�b�g����I
+ * ワークの値をフラグナンバーとしてセットする！
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLAG_SET_WK wk
@@ -1667,13 +1667,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�g���[�i�[�t���O�֘A
+ *	トレーナーフラグ関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[�t���O�̃Z�b�g
+ *	トレーナーフラグのセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_FLAG_SET tr_id
@@ -1683,7 +1683,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[�t���O�̃��Z�b�g
+ *	トレーナーフラグのリセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_FLAG_RESET tr_id
@@ -1693,7 +1693,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[�t���O�`�F�b�N
+ *	トレーナーフラグチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_FLAG_CHECK tr_id
@@ -1701,25 +1701,25 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.short	\tr_id
 	.endm
 
-	//�t���OON�̎��ɕ���(JUMP)
+	//フラグONの時に分岐(JUMP)
 	.macro	_IF_TR_FLAGON_JUMP tr_id,adrs
 	_TRAINER_FLAG_CHECK \tr_id
 	_IF_JUMP	FLGON,\adrs
 	.endm
 
-	//�t���OOFF�̎��ɕ���(JUMP)
+	//フラグOFFの時に分岐(JUMP)
 	.macro	_IF_TR_FLAGOFF_JUMP tr_id,adrs
 	_TRAINER_FLAG_CHECK \tr_id
 	_IF_JUMP	FLGOFF,\adrs
 	.endm
 
-	//�t���OON�̎��ɕ���(CALL)
+	//フラグONの時に分岐(CALL)
 	.macro	_IF_TR_FLAGON_CALL tr_id,adrs
 	_TRAINER_FLAG_CHECK \tr_id
 	_IF_CALL	FLGON,\adrs
 	.endm
 
-	//�t���OOFF�̎��ɕ���(CALL)
+	//フラグOFFの時に分岐(CALL)
 	.macro	_IF_TR_FLAGOFF_CALL tr_id,adrs
 	_TRAINER_FLAG_CHECK \tr_id
 	_IF_CALL	FLGOFF,\adrs
@@ -1728,13 +1728,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	���[�N����֘A
+ *	ワーク操作関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	���[�N�ɒl�𑫂�
+ *	ワークに値を足す
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_WK wk,num
@@ -1745,7 +1745,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[�N����l������
+ *	ワークから値を引く
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_WK wk,num
@@ -1756,7 +1756,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[�N�ɒl����
+ *	ワークに値を代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_LDVAL	wk,val
@@ -1767,7 +1767,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[�N�Ƀ��[�N�̒l����
+ *	ワークにワークの値を代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_LDWK	wk1,wk2
@@ -1778,7 +1778,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[�N�ɒl�����[�N�̒l����
+ *	ワークに値かワークの値を代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_LDWKVAL	wk1,wk2
@@ -1790,15 +1790,15 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	��b�֘A
+ *	会話関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�W�J���b�Z�[�W��\��(1byte)
+ *	展開メッセージを表示(1byte)
  *
- *	@param	msg_id	�\�����郁�b�Z�[�WID
+ *	@param	msg_id	表示するメッセージID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_ALLPUT msg_id
@@ -1808,9 +1808,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�W�J���b�Z�[�W��\��(msg_id=work�w��L,arc_id=work�w��L)
+ *	展開メッセージを表示(msg_id=work指定有,arc_id=work指定有)
  *
- *	@param	msg_id	�\�����郁�b�Z�[�WID
+ *	@param	msg_id	表示するメッセージID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_ALLPUT_ARC	arc_id, msg_id
@@ -1821,9 +1821,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�W�J���b�Z�[�W��\��(msg_id=work�w��L,arc_id=work�w��L)
- *  @param	arc_id	�\�����郁�b�Z�[�W�A�[�J�C�uID
- *	@param	msg_id	�\�����郁�b�Z�[�WID
+ *	展開メッセージを表示(msg_id=work指定有,arc_id=work指定有)
+ *  @param	arc_id	表示するメッセージアーカイブID
+ *	@param	msg_id	表示するメッセージID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_ARC	arc_id, msg_id
@@ -1834,11 +1834,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ȈՉ�b���b�Z�[�W��\��(stype=2byte,sid=2byte)
- *  @param	stype	�ȈՉ�b�̕��̓^�C�v
- *  @param	sid		�ȈՉ�b�̕��̓^�C�v��ID
- *	@param	word0	�P��R�[�h0
- *	@param	word1	�P��R�[�h1
+ *	簡易会話メッセージを表示(stype=2byte,sid=2byte)
+ *  @param	stype	簡易会話の文章タイプ
+ *  @param	sid		簡易会話の文章タイプ内ID
+ *	@param	word0	単語コード0
+ *	@param	word1	単語コード1
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_ALLPUT_PMS	stype,sid,word0,word1	
@@ -1851,11 +1851,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ȈՉ�b���b�Z�[�W��\��(stype=2byte,sid=2byte)
- *  @param	stype	�ȈՉ�b�̕��̓^�C�v
- *  @param	sid		�ȈՉ�b�̕��̓^�C�v��ID
- *	@param	word0	�P��R�[�h0
- *	@param	word1	�P��R�[�h1
+ *	簡易会話メッセージを表示(stype=2byte,sid=2byte)
+ *  @param	stype	簡易会話の文章タイプ
+ *  @param	sid		簡易会話の文章タイプ内ID
+ *	@param	word0	単語コード0
+ *	@param	word1	単語コード1
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_PMS	stype,sid,word0,word1	
@@ -1868,8 +1868,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�^���[�ΐ�O���b�Z�[�W��\��(tr_idx)
- *  @param	tr_idx	��l�ڂ���l�ڂ��H
+ *	タワー対戦前メッセージを表示(tr_idx)
+ *  @param	tr_idx	一人目か二人目か？
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_BTOWER_APPEAR	tr_id	
@@ -1879,7 +1879,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�^���[�pNG�|�P�������W�J(�������Ƃ���z����)
+ *	タワー用NGポケモン名展開(見たことある奴だけ)
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_NG_POKE_NAME	msg_id,num,sex,flag
@@ -1893,9 +1893,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�W�J���b�Z�[�W��\��(1byte)
+ *	展開メッセージを表示(1byte)
  *
- *	@param	msg_id	�\�����郁�b�Z�[�WID
+ *	@param	msg_id	表示するメッセージID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG msg_id
@@ -1905,9 +1905,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�W�J���b�Z�[�W��\��(����F�����Ƀ��[�N���w��ł���)
+ *	展開メッセージを表示(特殊：引数にワークを指定できる)
  *
- *	@param	msg_id	�\�����郁�b�Z�[�WID
+ *	@param	msg_id	表示するメッセージID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_SP msg_id
@@ -1918,9 +1918,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�W�J���b�Z�[�W���I�[�g�ŕ\��(����F�����Ƀ��[�N���w��ł���)
+ *	展開メッセージをオートで表示(特殊：引数にワークを指定できる)
  *
- *	@param	msg_id	�\�����郁�b�Z�[�WID
+ *	@param	msg_id	表示するメッセージID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_SP_AUTO msg_id
@@ -1931,9 +1931,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�W�J���b�Z�[�W��\��(�X�L�b�v�s��)
+ *	展開メッセージを表示(スキップ不可)
  *
- *	@param	msg_id	�\�����郁�b�Z�[�WID
+ *	@param	msg_id	表示するメッセージID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_NOSKIP msg_id
@@ -1943,9 +1943,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�W�J���b�Z�[�W��\��(�R���e�X�g�p�A�ʐM�A��ʐM�𔻒肵�ă��b�Z�[�W����̐ݒ��ύX)
+ *	展開メッセージを表示(コンテスト用、通信、非通信を判定してメッセージ送りの設定を変更)
  *
- *	@param	msg_id	�\�����郁�b�Z�[�WID
+ *	@param	msg_id	表示するメッセージID
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_CON_SIO msg_id
@@ -1955,7 +1955,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * OBJ���烁�b�Z�[�WID���擾���ĕ\��
+ * OBJからメッセージIDを取得して表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALKMSG_AUTOGET
@@ -1965,7 +1965,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�L�[�҂�
+ *	キー待ち
  */
 //-----------------------------------------------------------------------------
 	.macro	_AB_KEYWAIT
@@ -1974,7 +1974,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �L�[�҂��@OR�@���ԑ҂�
+ * キー待ち　OR　時間待ち
  */
 //-----------------------------------------------------------------------------
 	.macro	_AB_KEY_TIME_WAIT	wait
@@ -1984,10 +1984,10 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C�x���g�̍Ō�̃L�[�҂�
- *		�X�^�[�g�{�^��	�X�N���v�g�I�����Ƀ��j���[���J�����N�G�X�g�Z�b�g
- *		�\���L�[		��l���̌�����ύX
- *		���ǉ������
+ *	イベントの最後のキー待ち
+ *		スタートボタン	スクリプト終了時にメニューが開くリクエストセット
+ *		十字キー		主人公の向きを変更
+ *		が追加される
  */
 //-----------------------------------------------------------------------------
 	.macro	_LAST_KEYWAIT
@@ -1996,9 +1996,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C�x���g�̍Ō�̃L�[�҂�(���̌�ɃA�j�����������Ɏg�p)
- *		�\���L�[		���b�Z�[�W�I��
- *		���ǉ������
+ *	イベントの最後のキー待ち(その後にアニメが続く時に使用)
+ *		十字キー		メッセージ終了
+ *		が追加される
  */
 //-----------------------------------------------------------------------------
 	.macro	_NEXT_ANM_LAST_KEYWAIT
@@ -2007,7 +2007,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��b�E�B���h�E�J��
+ *	会話ウィンドウ開く
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALK_OPEN
@@ -2016,7 +2016,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��b�E�B���h�E����
+ *	会話ウィンドウ閉じる
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALK_CLOSE
@@ -2025,7 +2025,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��b�E�B���h�E����(�N���A�Ȃ�)
+ *	会話ウィンドウ閉じる(クリアなし)
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALK_CLOSE_NO_CLEAR
@@ -2034,45 +2034,45 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�W�J���b�Z�[�W�\���{�L�[�҂�
+ *	展開メッセージ表示＋キー待ち
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALK_KEYWAIT msg_id
 	_TALKMSG \msg_id
-	//_AB_KEYWAIT			//06.04.07 ���b�Z�[�W����d�l�ɍ��킹�č폜
+	//_AB_KEYWAIT			//06.04.07 メッセージ送り仕様に合わせて削除
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ȉ�OBJ�ɑ΂��Ęb���|��
+ *	簡易OBJに対して話し掛け
  */
 //-----------------------------------------------------------------------------
 	.macro	_EASY_OBJ_MSG msg_id
 	_TALK_OBJ_START
 	//_TALK_KEYWAIT \msg_id
 	_TALKMSG	 \msg_id
-	_LAST_KEYWAIT				//���ӁI
+	_LAST_KEYWAIT				//注意！
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ȉ�BG�ɑ΂��Ęb���|��
+ *	簡易BGに対して話し掛け
  */
 //-----------------------------------------------------------------------------
 	.macro	_EASY_MSG msg_id
 	_TALK_START
 	//_TALK_KEYWAIT \msg_id
 	_TALKMSG	 \msg_id
-	_LAST_KEYWAIT				//���ӁI
+	_LAST_KEYWAIT				//注意！
 	_TALK_CLOSE
 	_TALK_END
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ŕ쐬�i�^�E���}�b�v�A�W���A�\�D�j
+ *	看板作成（タウンマップ、標識、表札）
  */
 //-----------------------------------------------------------------------------
 	.macro	_BOARD_MAKE msg_id,type,map,ret_wk
@@ -2085,7 +2085,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ŕ쐬�i�f���j(ret_wk=SCWK_ANSWER�Œ�I)
+ *	看板作成（掲示板）(ret_wk=SCWK_ANSWER固定！)
  */
 //-----------------------------------------------------------------------------
 	.macro	_INFOBOARD_MAKE type,map
@@ -2096,7 +2096,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ŕ��N�G�X�g
+ *	看板リクエスト
  */
 //-----------------------------------------------------------------------------
 	.macro	_BOARD_REQ req
@@ -2106,7 +2106,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ŕ��N�G�X�g�I���҂�
+ *	看板リクエスト終了待ち
  */
 //-----------------------------------------------------------------------------
 	.macro	_BOARD_REQ_WAIT
@@ -2115,7 +2115,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ŕ��b�Z�[�W�\��(ret_wk=SCWK_ANSWER�Œ�I)
+ *	看板メッセージ表示(ret_wk=SCWK_ANSWER固定！)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BOARD_MSG msg_id,ret_wk
@@ -2126,7 +2126,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ŔI���҂�(ret_wk=SCWK_ANSWER�Œ�I)
+ *	看板終了待ち(ret_wk=SCWK_ANSWER固定！)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BOARD_END_WAIT ret_wk
@@ -2136,7 +2136,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ȈՊŔɑ΂��Ęb���|���i�^�E���}�b�v�A�W���A�\�D�j(SCWK_ANSWER�Œ�I)
+ *	簡易看板に対して話し掛け（タウンマップ、標識、表札）(SCWK_ANSWER固定！)
  */
 //-----------------------------------------------------------------------------
 	.macro	_EASY_BOARD_MSG msg_id,type,map
@@ -2149,7 +2149,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ȈՊŔɑ΂��Ęb���|���i�f���j(SCWK_ANSWER�Œ�I)
+ *	簡易看板に対して話し掛け（掲示板）(SCWK_ANSWER固定！)
  */
 //-----------------------------------------------------------------------------
 	.macro	_EASY_INFOBOARD_MSG msg_id,type,map
@@ -2162,7 +2162,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C�x���g�؂�ւ�
+ *	イベント切り替え
  */
 //-----------------------------------------------------------------------------
 	.macro	_MENU_REQ
@@ -2171,7 +2171,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BG�X�N���[��
+ *	BGスクロール
  */
 //-----------------------------------------------------------------------------
 	.macro	_BG_SCROLL	scroll_x,count_x,mv_x,scroll_y,count_y,mv_y
@@ -2186,13 +2186,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�u�͂��A�������v�E�B���h�E�֘A
+ *	「はい、いいえ」ウィンドウ関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�͂��A�������I��
+ *	はい、いいえ選択
  */
 //-----------------------------------------------------------------------------
 	.macro	_YES_NO_WIN ret_wk
@@ -2203,13 +2203,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�M�l�X�֘A
+ *	ギネス関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�M�l�X�E�B���h�E�Ăяo��
+ *	ギネスウィンドウ呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_GUINNESS_WIN
@@ -2219,13 +2219,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	BMP���j���[�֘A
+ *	BMPメニュー関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���j���[�@������
+ *	BMPメニュー　初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_INIT x,y,cursor,cancel,ret_wk
@@ -2239,7 +2239,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���j���[�@������(�ǂݍ���ł���gmm�t�@�C�����g�p����)
+ *	BMPメニュー　初期化(読み込んでいるgmmファイルを使用する)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_INIT_EX x,y,cursor,cancel,ret_wk
@@ -2253,7 +2253,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���j���[�@���X�g�쐬
+ *	BMPメニュー　リスト作成
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_MAKE_LIST msg_id,param
@@ -2264,7 +2264,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���j���[�@���X�g�쐬(short�o�[�W����)
+ *	BMPメニュー　リスト作成(shortバージョン)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_MAKE_LIST16 msg_id,param
@@ -2275,7 +2275,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���j���[�@�J�n
+ *	BMPメニュー　開始
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_START
@@ -2284,7 +2284,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�I���E�B���h�E�@�W�����v
+ *	選択ウィンドウ　ジャンプ
  */
 //-----------------------------------------------------------------------------
 //	.macro	_SEL_WIN_JUMP act,adrs
@@ -2296,13 +2296,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	BMP���X�g�֘A
+ *	BMPリスト関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���X�g�@������
+ *	BMPリスト　初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_INIT	x,y,cursor,cancel,ret_wk
@@ -2316,7 +2316,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���X�g�@������(�ǂݍ���ł���gmm�t�@�C�����g�p����)
+ *	BMPリスト　初期化(読み込んでいるgmmファイルを使用する)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_INIT_EX	x,y,cursor,cancel,ret_wk
@@ -2330,7 +2330,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���X�g�@���X�g�쐬
+ *	BMPリスト　リスト作成
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_MAKE_LIST	msg_id_wk,talk_msg_id_wk,param_wk
@@ -2343,7 +2343,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���X�g�@�J�n
+ *	BMPリスト　開始
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_START
@@ -2352,7 +2352,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	����BMP���X�g�@�������A���X�g�쐬�A�J�n
+ *	成績BMPリスト　初期化、リスト作成、開始
  */
 //-----------------------------------------------------------------------------
 	.macro	_SEISEKI_BMPLIST_START param1,param2,ret_wk,ret_wk2,ret_wk3
@@ -2366,7 +2366,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���X�g�@�J�n(lp,cp�w��)
+ *	BMPリスト　開始(lp,cp指定)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_START_LP_CP	wk,wk2
@@ -2377,7 +2377,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���X�g�@�J�n(�E�B���h�E�����w��)
+ *	BMPリスト　開始(ウィンドウ横幅指定)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPLIST_START_WIDTH	width
@@ -2388,13 +2388,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	BMP���j���[�c���֘A
+ *	BMPメニュー縦横関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���j���[�c���@�J�n
+ *	BMPメニュー縦横　開始
  */
 //-----------------------------------------------------------------------------
 	.macro	_BMPMENU_HV_START	x_max
@@ -2405,13 +2405,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�T�E���h�֘A
+ *	サウンド関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	SE��炷
+ *	SEを鳴らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_SE_PLAY no
@@ -2421,7 +2421,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	SE���~�߂�
+ *	SEを止める
  */
 //-----------------------------------------------------------------------------
 	.macro	_SE_STOP no
@@ -2431,7 +2431,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	SE�I���҂�
+ *	SE終了待ち
  */
 //-----------------------------------------------------------------------------
 	.macro	_SE_WAIT	no
@@ -2441,7 +2441,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	������炷
+ *	鳴き声を鳴らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_VOICE_PLAY no,ptn
@@ -2452,7 +2452,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����I���҂�
+ *	鳴き声終了待ち
  */
 //-----------------------------------------------------------------------------
 	.macro	_VOICE_WAIT
@@ -2461,7 +2461,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ȈՖ������b�Z�[�W�\��
+ *	簡易鳴き声メッセージ表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_EASY_VOICE_MSG msg_id,no,ptn
@@ -2477,7 +2477,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ME��炷
+ *	MEを鳴らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_ME_PLAY no
@@ -2487,7 +2487,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	ME�I���҂�
+ *	ME終了待ち
  */
 //-----------------------------------------------------------------------------
 	.macro	_ME_WAIT
@@ -2496,7 +2496,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���ʃZ�b�g
+ *	音量セット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SND_INITIAL_VOL_SET seq_no,vol
@@ -2507,7 +2507,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BGM��炷
+ *	BGMを鳴らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_PLAY no
@@ -2517,7 +2517,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BGM���I���҂�
+ *	BGMを終了待ち
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_PLAY_CHECK no,ret_wk
@@ -2528,7 +2528,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BGM���~�߂�
+ *	BGMを止める
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_STOP no
@@ -2538,7 +2538,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���݂̃}�b�v��BGM��炷
+ *	現在のマップのBGMを鳴らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_NOW_MAP_PLAY
@@ -2547,8 +2547,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�}�b�v�������BGM�w�肪�Z�b�g�����
- *	���]��BGM�̐���ȂǂɎg�p
+ *	マップ内限定のBGM指定がセットされる
+ *	自転車BGMの制御などに使用
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_SPECIAL_SET no
@@ -2562,10 +2562,10 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BGM�t�F�[�h�A�E�g
+ *	BGMフェードアウト
  *
- *	vol		= �{�����[��
- *	frame	= ���t���[�������ăt�F�[�h���邩
+ *	vol		= ボリューム
+ *	frame	= 何フレームかけてフェードするか
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_FADEOUT vol,frame
@@ -2576,8 +2576,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BGM�t�F�[�h�A�E�g�@���@�w�肵��BGM���Đ�
- *	�g�p���Ȃ������킩��₷�������B�B�B
+ *	BGMフェードアウト　→　指定したBGMを再生
+ *	使用しない方がわかりやすいかも。。。
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_FADEOUT_PLAY frame,no
@@ -2587,9 +2587,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BGM�t�F�[�h�C��
+ *	BGMフェードイン
  *
- *	frame = ���t���[�������ăt�F�[�h���邩
+ *	frame = 何フレームかけてフェードするか
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_FADEIN frame
@@ -2599,7 +2599,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V�[�P���X���ꎞ��~�܂��͍ĊJ(1=��~�A0=�ĊJ)
+ *	シーケンスを一時停止または再開(1=停止、0=再開)
  */
 //-----------------------------------------------------------------------------
 	.macro	_BGM_PLAYER_PAUSE player,flag
@@ -2610,7 +2610,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���oBGM�Đ�(���C�o���E�T�|�[�g�E��Ă�)
+ *	演出BGM再生(ライバル・サポート・つれてけ)
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_FIELD_DEMO_BGM_PLAY	no
@@ -2620,7 +2620,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�B�[���hBGM���Œ�ɂ���t���O�Z�b�g(�Z�[�u���Ȃ�)
+ *	フィールドBGMを固定にするフラグセット(セーブしない)
  */
 //-----------------------------------------------------------------------------
 	.macro	_CTRL_BGM_FLAG_SET
@@ -2630,7 +2630,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�B�[���hBGM���Œ�ɂ���t���O���Z�b�g(�Z�[�u���Ȃ�)
+ *	フィールドBGMを固定にするフラグリセット(セーブしない)
  */
 //-----------------------------------------------------------------------------
 	.macro	_CTRL_BGM_FLAG_RESET
@@ -2640,7 +2640,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�y���b�v�f�[�^�����邩�`�F�b�N
+ *	ペラップデータがあるかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_PERAP_DATA_CHECK	ret_wk
@@ -2650,7 +2650,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�y���b�v�^���J�n
+ *	ペラップ録音開始
  */
 //-----------------------------------------------------------------------------
 	.macro	_PERAP_REC_START	ret_wk
@@ -2660,7 +2660,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�y���b�v�^����~
+ *	ペラップ録音停止
  */
 //-----------------------------------------------------------------------------
 	.macro	_PERAP_REC_STOP
@@ -2669,7 +2669,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�y���b�v�^�������f�[�^���Z�[�u
+ *	ペラップ録音したデータをセーブ
  */
 //-----------------------------------------------------------------------------
 	.macro	_PERAP_SAVE
@@ -2678,7 +2678,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�E���h�f�[�^�ǉ����[�h�F�N���C�}�b�N�X
+ *	サウンドデータ追加ロード：クライマックス
  */
 //-----------------------------------------------------------------------------
 	.macro	_SND_CLIMAX_DATA_LOAD
@@ -2687,7 +2687,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�E���h�f�[�^���[�h�F�f��01
+ *	サウンドデータロード：デモ01
  */
 //-----------------------------------------------------------------------------
 	.macro	_SND_DEMO01_DATA_LOAD
@@ -2696,7 +2696,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�E���h�f�[�^���[�h�F�t�B�[���h
+ *	サウンドデータロード：フィールド
  */
 //-----------------------------------------------------------------------------
 	.macro	_SND_FIELD_DATA_LOAD	bgm
@@ -2706,7 +2706,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�E���h�f�[�^���[�h�F�t�B�[���h
+ *	サウンドデータロード：フィールド
  */
 //-----------------------------------------------------------------------------
 	.macro	_SND_NOW_BGM_NO_GET	ret_wk
@@ -2717,15 +2717,15 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�A�j���[�V�����֘A
+ *	アニメーション関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�j��
+ *	アニメ
  *
- *	���ӁI �����~���Z�b�g���������́A_OBJ_PAUSE_ALL��������x�Ă΂Ȃ��Ƃ����Ȃ��I
+ *	注意！ 動作停止をセットしたい時は、_OBJ_PAUSE_ALLをもう一度呼ばないといけない！
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_ANIME	obj_id,adrs
@@ -2744,7 +2744,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 //-----------------------------------------------------------------------------
 /**
- *	�A�j���[�V�����f�[�^���x��
+ *	アニメーションデータラベル
  */
 //-----------------------------------------------------------------------------
 	.macro	_ANIME_LABEL label
@@ -2754,7 +2754,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�j���[�V�����f�[�^(fieldobj_code.h�Q��)
+ *	アニメーションデータ(fieldobj_code.h参照)
  */
 //-----------------------------------------------------------------------------
 	.macro	_ANIME_DATA	code,num
@@ -2764,7 +2764,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�j���E�F�C�g
+ *	アニメウェイト
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_ANIME_WAIT
@@ -2779,7 +2779,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����~
+ *	動作停止
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_PAUSE_ALL
@@ -2788,7 +2788,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	����ĊJ
+ *	動作再開
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_PAUSE_CLEAR_ALL
@@ -2797,7 +2797,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�X�̓����~
+ *	個々の動作停止
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_PAUSE	obj_id
@@ -2807,7 +2807,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�X�̓���ĊJ
+ *	個々の動作再開
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_PAUSE_CLEAR	obj_id
@@ -2817,7 +2817,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ�o��
+ *	OBJ出す
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_ADD	obj_id
@@ -2827,7 +2827,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ����
+ *	OBJ消す
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_DEL	obj_id
@@ -2837,7 +2837,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����_�~�[OBJ�ǉ�(�J�����؂�ւ�����)
+ *	透明ダミーOBJ追加(カメラ切り替えあり)
  */
 //-----------------------------------------------------------------------------
 	.macro	_VANISH_DUMMY_OBJ_ADD	x,z
@@ -2848,7 +2848,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����_�~�[OBJ�폜(�J�����؂�ւ�����)
+ *	透明ダミーOBJ削除(カメラ切り替えあり)
  */
 //-----------------------------------------------------------------------------
 	.macro	_VANISH_DUMMY_OBJ_DEL
@@ -2857,7 +2857,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����_�~�[OBJ�ǉ�
+ *	透明ダミーOBJ追加
  */
 //-----------------------------------------------------------------------------
 	.macro	_VANISH_DUMMY_OBJ_ADD2	x,z
@@ -2868,7 +2868,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����_�~�[OBJ�폜
+ *	透明ダミーOBJ削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_VANISH_DUMMY_OBJ_DEL2
@@ -2877,7 +2877,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�b��������OBJ�����@�����֐U�����
+ *	話しかけたOBJを自機方向へ振り向き
  */
 //-----------------------------------------------------------------------------
 	.macro	_TURN_HERO_SITE
@@ -2886,7 +2886,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ�ɑ΂��Ęb���|���J�n(��l���ɑ΂��ĐU������L��)
+ *	OBJに対して話し掛け開始(主人公に対して振り向き有り)
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALK_OBJ_START
@@ -2899,7 +2899,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ�ɑ΂��Ęb���|���J�n(��l���ɑ΂��ĐU���������)
+ *	OBJに対して話し掛け開始(主人公に対して振り向き無し)
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALK_OBJ_START_TURN_NOT
@@ -2910,7 +2910,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ�ɑ΂��Ęb���|���I��
+ *	OBJに対して話し掛け終了
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALK_OBJ_END
@@ -2919,7 +2919,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BJ�ɑ΂��Ęb���|���J�n
+ *	BJに対して話し掛け開始
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALK_START
@@ -2930,8 +2930,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	POS,SCENE_CHANGE_LABEL�ɑ΂��ĊJ�n
- *	(TALK_START���g�p����ƁA��b�J�n�̉����Ȃ��Ă��܂��̂ŕ�����)
+ *	POS,SCENE_CHANGE_LABELに対して開始
+ *	(TALK_STARTを使用すると、会話開始の音がなってしまうので分けた)
  */
 //-----------------------------------------------------------------------------
 	.macro	_EVENT_START
@@ -2940,7 +2940,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BJ�ɑ΂��Ęb���|���I��
+ *	BJに対して話し掛け終了
  */
 //-----------------------------------------------------------------------------
 	.macro	_TALK_END
@@ -2949,7 +2949,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	POS,SCENE_CHANGE_LABEL�ɑ΂��ďI��
+ *	POS,SCENE_CHANGE_LABELに対して終了
  */
 //-----------------------------------------------------------------------------
 	.macro	_EVENT_END
@@ -2958,7 +2958,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��l���̈ʒu�擾
+ *	主人公の位置取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_POS_GET	x,z
@@ -2969,7 +2969,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ�̈ʒu�擾
+ *	OBJの位置取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_POS_GET	obj_id,x,z
@@ -2981,7 +2981,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��l���̈ʒu�I�t�Z�b�g�Z�b�g
+ *	主人公の位置オフセットセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_POS_OFFSET_SET	x,y,z
@@ -2993,7 +2993,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ��l���̕����擾
+ * 主人公の方向取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_DIR_GET	dir
@@ -3003,7 +3003,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�]�[���؂�ւ����̍폜�֎~(TRUE=�֎~�AFALSE=�֎~���Ȃ�)
+ *	ゾーン切り替え時の削除禁止(TRUE=禁止、FALSE=禁止しない)
  */
 //-----------------------------------------------------------------------------
 	.macro	_NOT_ZONE_DEL_SET	obj_id,flag
@@ -3014,7 +3014,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	����R�[�h�ύX
+ *	動作コード変更
  */
 //-----------------------------------------------------------------------------
 	.macro	_MOVE_CODE_CHANGE	obj_id,code
@@ -3025,7 +3025,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	����R�[�h�擾
+ *	動作コード取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_MOVE_CODE_GET	ret_wk,obj_id
@@ -3036,7 +3036,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�����OBJID�Z�b�g
+ *	連れ歩きOBJIDセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_PAIR_OBJID_SET
@@ -3046,13 +3046,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�C�x���g�f�[�^�֘A
+ *	イベントデータ関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�C�x���g�f�[�^�@�e�[�u���錾
+ *	イベントデータ　テーブル宣言
  */
 //-----------------------------------------------------------------------------
 	.macro	_EVENT_DATA	adrs
@@ -3061,10 +3061,10 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C�x���g�f�[�^�@�e�[�u���I��
+ *	イベントデータ　テーブル終了
  */
 //-----------------------------------------------------------------------------
-#define EV_DATA_END_CODE	(0xfd13)	//�K���Ȓl
+#define EV_DATA_END_CODE	(0xfd13)	//適当な値
 	.macro	_EVENT_DATA_END
 	.short	EV_DATA_END_CODE
 	.endm
@@ -3072,13 +3072,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	����X�N���v�g�֘A
+ *	特殊スクリプト関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	����X�N���v�g�L�q�I��
+ *	特殊スクリプト記述終了
  */
 //-----------------------------------------------------------------------------
 	.macro	_SP_EVENT_DATA_END
@@ -3087,7 +3087,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V�[���C�x���g�F��ɊĎ����Ă������X�N���v�g
+ *	シーンイベント：常に監視している特殊スクリプト
  */
 //-----------------------------------------------------------------------------
 	.macro	_SCENE_CHANGE_LABEL	adrs
@@ -3095,61 +3095,61 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.long	((\adrs-.)-4)
 	.endm
 
-	//�N�������L�q
+	//起動条件記述
 	.macro	_SCENE_CHANGE_DATA		wk,num,scr_id
 	.short	\wk
 	.short	\num
 	.short	\scr_id
 	.endm
 
-	//�L�q�I��(�Z�[�u���[�N��`��SVWK_START�̃I�t�Z�b�g�𑫂��Ă���̂�0���w�肵�Ă悢)
+	//記述終了(セーブワーク定義はSVWK_STARTのオフセットを足しているので0を指定してよい)
 	.macro	_SCENE_CHANGE_END
 	.short	0
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�t���O����F�}�b�v�J�ڂň�x�̂݌Ă΂�����X�N���v�g
+ *	フラグ操作：マップ遷移で一度のみ呼ばれる特殊スクリプト
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLAG_CHANGE_LABEL	scr_id
 	.byte	SP_SCRID_FLAG_CHANGE
 	.short	\scr_id
-	.short	0		//4byte�ɍ��킹�邽�߂Ƀ_�~�[
+	.short	0		//4byteに合わせるためにダミー
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ����F�}�b�v�J�ڂň�x�̂݌Ă΂�����X�N���v�g
+ *	OBJ操作：マップ遷移で一度のみ呼ばれる特殊スクリプト
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_CHANGE_LABEL	scr_id
 	.byte	SP_SCRID_OBJ_CHANGE
 	.short	\scr_id
-	.short	0		//4byte�ɍ��킹�邽�߂Ƀ_�~�[
+	.short	0		//4byteに合わせるためにダミー
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	����������F�}�b�v���������ƂɌĂ΂�����X�N���v�g
+ *	初期化操作：マップ初期化ごとに呼ばれる特殊スクリプト
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_CHANGE_LABEL	scr_id
 	.byte	SP_SCRID_INIT_CHANGE
 	.short	\scr_id
-	.short	0		//4byte�ɍ��킹�邽�߂Ƀ_�~�[
+	.short	0		//4byteに合わせるためにダミー
 	.endm
 
 
 //=============================================================================
 /**
- *	�����֘A
+ *	お金関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	������������
+ *	お金を加える
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_GOLD val
@@ -3159,7 +3159,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���������炷
+ *	お金を減らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_GOLD val
@@ -3169,7 +3169,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���z�𒲂ׂ�
+ *	金額を調べる
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMP_GOLD ret_wk,val
@@ -3180,7 +3180,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�������E�B���h�E�\��
+ *	所持金ウィンドウ表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_GOLD_WIN_WRITE		x,z
@@ -3191,7 +3191,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�������E�B���h�E�폜
+ *	所持金ウィンドウ削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_GOLD_WIN_DEL
@@ -3200,7 +3200,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�������\��
+ *	所持金表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_GOLD_WRITE
@@ -3210,13 +3210,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�R�C���֘A
+ *	コイン関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C���E�B���h�E�\��
+ *	コインウィンドウ表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_COIN_WIN_WRITE	x,z
@@ -3227,7 +3227,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C���E�B���h�E�폜
+ *	コインウィンドウ削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_COIN_WIN_DEL
@@ -3236,7 +3236,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C���\��
+ *	コイン表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_COIN_WRITE
@@ -3245,7 +3245,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C�����擾
+ *	コイン数取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_COIN_NUM	ret_wk
@@ -3255,7 +3255,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C��������
+ *	コイン加える
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_COIN		val
@@ -3265,7 +3265,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C�����炷
+ *	コイン減らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_COIN		val
@@ -3276,15 +3276,15 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�A�C�e���֘A
+ *	アイテム関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�B�[���h�A�C�e���Q�b�g����
+ *	フィールドアイテムゲット処理
  *
- *	ANSWER�Ɍ��ʂ���
+ *	ANSWERに結果を代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLD_ITEM_EVENT	no,num
@@ -3295,9 +3295,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�B���A�C�e���Q�b�g����
+ *	隠しアイテムゲット処理
  *
- *	ANSWER�Ɍ��ʂ���
+ *	ANSWERに結果を代入
  */
 //-----------------------------------------------------------------------------
 #if 0
@@ -3311,7 +3311,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�C�e����������
+ *	アイテムを加える
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_ITEM	item_no,num,ret_wk
@@ -3323,7 +3323,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�C�e�������炷
+ *	アイテムを減らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_ITEM	item_no,num,ret_wk
@@ -3335,7 +3335,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�C�e�����������邩�`�F�b�N
+ *	アイテムを加えられるかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_ITEM_CHK	item_no,num,ret_wk
@@ -3347,9 +3347,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�b�O�̃A�C�e���`�F�b�N
+ *	バッグのアイテムチェック
  *
- *	ANSWER�Ɍ��ʂ���
+ *	ANSWERに結果を代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_ITEM_CHK		item_no,num,ret_wk
@@ -3361,9 +3361,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�b�O�̃A�C�e�����擾
+ *	バッグのアイテム個数取得
  *
- *	ANSWER�Ɍ��ʂ���
+ *	ANSWERに結果を代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_ITEM_NUM		item_no,ret_wk
@@ -3374,9 +3374,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z�}�V���̃A�C�e���i���o�[���`�F�b�N
+ *	技マシンのアイテムナンバーかチェック
  *
- *	ANSWER�Ɍ��ʂ���
+ *	ANSWERに結果を代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_ITEM_CHK		item_no,ret_wk
@@ -3387,7 +3387,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�b�g�i���o�[�擾
+ *	ポケットナンバー取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_POCKET_NO	item_no,ret_wk
@@ -3398,7 +3398,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �w��|�P�b�g�ɉ������邩�ǂ����̃`�F�b�N
+ * 指定ポケットに何かあるかどうかのチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHECK_POCKET	pocket_no,ret_wk
@@ -3409,7 +3409,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�p�\�R���ɃA�C�e����������
+ *	パソコンにアイテムを加える
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_BOX_ITEM
@@ -3418,7 +3418,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�p�\�R���̃A�C�e���`�F�b�N
+ *	パソコンのアイテムチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_BOX_ITEM
@@ -3428,13 +3428,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�O�b�Y�֘A
+ *	グッズ関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�O�b�Y��������(PC)
+ *	グッズを加える(PC)
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_GOODS	goods_no,num,ret_wk
@@ -3446,7 +3446,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�O�b�Y�����炷(PC)
+ *	グッズを減らす(PC)
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_GOODS	goods_no,num,ret_wk
@@ -3458,7 +3458,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�O�b�Y���������邩�̃`�F�b�N(PC)
+ *	グッズを加えられるかのチェック(PC)
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_GOODS_CHK	goods_no,num,ret_wk
@@ -3470,7 +3470,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�b�O�̃O�b�Y�`�F�b�N(PC)
+ *	バッグのグッズチェック(PC)
  */
 //-----------------------------------------------------------------------------
 	.macro	_GOODS_CHK goods_no,num,ret_wk
@@ -3482,13 +3482,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	㩊֘A
+ *	罠関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	㩂�������
+ *	罠を加える
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_TRAP	trap_no,num,ret_wk
@@ -3500,7 +3500,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	㩂����炷
+ *	罠を減らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_TRAP	trap_no,num,ret_wk
@@ -3512,7 +3512,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	㩂��������邩�̃`�F�b�N
+ *	罠を加えられるかのチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_TRAP_CHK	trap_no,num,ret_wk
@@ -3524,7 +3524,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�b�O��㩃`�F�b�N
+ *	バッグの罠チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAP_CHK trap_no,num,ret_wk
@@ -3536,13 +3536,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	����֘A
+ *	お宝関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�����������
+ *	お宝を加える
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_TREASURE	treasure_no,num,ret_wk
@@ -3554,7 +3554,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��������炷
+ *	お宝を減らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_TREASURE	treasure_no,num,ret_wk
@@ -3566,7 +3566,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	������������邩�̃`�F�b�N
+ *	お宝を加えられるかのチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_TREASURE_CHK	treasure_no,num,ret_wk
@@ -3578,7 +3578,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�b�O�̂���`�F�b�N
+ *	バッグのお宝チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_TREASURE_CHK treasure_no,num,ret_wk
@@ -3590,13 +3590,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�^�}�֘A
+ *	タマ関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�}��������
+ *	タマを加える
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_TAMA	tama_no,num,ret_wk
@@ -3608,7 +3608,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�}�����炷
+ *	タマを減らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_TAMA	tama_no,num,ret_wk
@@ -3620,7 +3620,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�}���������邩�̃`�F�b�N
+ *	タマを加えられるかのチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_TAMA_CHK	tama_no,num,ret_wk
@@ -3632,7 +3632,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�b�O�̃^�}�`�F�b�N
+ *	バッグのタマチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_TAMA_CHK tama_no,num,ret_wk
@@ -3644,7 +3644,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V�[���̎�ސ����擾
+ *	シールの種類数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CB_SEAL_KIND_NUM_GET	ret_wk
@@ -3654,7 +3654,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V�[���̐����擾
+ *	シールの数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CB_ITEM_NUM_GET	seal_id,ret_wk
@@ -3665,7 +3665,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V�[����ǉ�
+ *	シールを追加
  */
 //-----------------------------------------------------------------------------
 	.macro	_CB_ITEM_NUM_ADD	seal_id,num
@@ -3676,7 +3676,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���̃A���m�[���̌`����擾
+ *	手持ちのアンノーンの形状を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNKNOWN_FORM_GET	pos,ret_wk
@@ -3688,13 +3688,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�|�P�����֘A
+ *	ポケモン関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�������莝���ɉ�����
+ *	ポケモンを手持ちに加える
  */
 //-----------------------------------------------------------------------------
 	//.macro	_ADD_POKEMON	monsno,lv,itemno,adrs1,adrs2,name_sw
@@ -3710,7 +3710,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�}�S���莝���ɉ�����
+ *	タマゴを手持ちに加える
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_TAMAGO		monsno,msgid
@@ -3721,7 +3721,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���|�P�����̋Z��u��������
+ *	手持ちポケモンの技を置き換える
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHG_POKE_WAZA pos,waza_pos,wazano
@@ -3733,7 +3733,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�w�肳�ꂽ�Z���o���Ă��邩���ׂ�(1�́j
+ *	指定された技を覚えているか調べる(1体）
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_POKE_WAZA	ret_wk,wazano,tno
@@ -3745,7 +3745,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�w�肳�ꂽ�Z���o���Ă���莝���|�P�����𒲂ׂ�(�S�́j
+ *	指定された技を覚えている手持ちポケモンを調べる(全体）
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_POKE_WAZA_GROUP	ret_wk,wazano
@@ -3756,7 +3756,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �|�P�������łŋC�₵�����ǂ����̃`�F�b�N
+ * ポケモンが毒で気絶したかどうかのチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_APPROVE_POISON_DEAD	ret_wk, num
@@ -3767,13 +3767,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�|�P�T�[�`���[�֘A
+ *	ポケサーチャー関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���ꂽ�g���[�i�[���Đ�\���`�F�b�N
+ *	渡されたトレーナーが再戦可能かチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_REVENGE_TRAINER_SEARCH	tr_id,ret_wk1
@@ -3785,13 +3785,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�V��֘A
+ *	天候関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�V��R�[�h�̎擾
+ *	天候コードの取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_WEATHER ret_wk
@@ -3801,7 +3801,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V��R�[�h�̏�����
+ *	天候コードの初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_WEATHER
@@ -3810,7 +3810,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V��R�[�h�̃Z�b�g
+ *	天候コードのセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SET_WEATHER id
@@ -3820,7 +3820,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V��R�[�h�̔��f
+ *	天候コードの反映
  */
 //-----------------------------------------------------------------------------
 	.macro	_UPDATE_WEATHER
@@ -3830,13 +3830,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�c�[���֘A
+ *	ツール関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	���݂̃}�b�v�ʒu���擾
+ *	現在のマップ位置を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_MAP_POS
@@ -3845,7 +3845,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���̃|�P���������擾
+ *	手持ちのポケモン数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_TEMOTI_POKE_NUM
@@ -3855,13 +3855,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�v���O�����֘A
+ *	プログラム関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�B�[���h�v���Z�X���A
+ *	フィールドプロセス復帰
  */
 //-----------------------------------------------------------------------------
 	.macro	_SET_MAP_PROC
@@ -3870,7 +3870,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�B�[���h�v���Z�X�I��
+ *	フィールドプロセス終了
  */
 //-----------------------------------------------------------------------------
 	.macro	_FINISH_MAP_PROC
@@ -3879,7 +3879,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ƃ������R�[�h�o�^�C�x���g
+ *	ともだちコード登録イベント
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIFI_AUTO_REG
@@ -3888,7 +3888,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	P2P�ΐ�}�b�`���O�{�[�h�Ăяo��
+ *	P2P対戦マッチングボード呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIFI_P2P_MATCH_EVENT_CALL
@@ -3897,7 +3897,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	P2P�ΐ�}�b�`���O�{�[�h�̖߂�l�擾�A�m�ۂ����������폜
+ *	P2P対戦マッチングボードの戻り値取得、確保したメモリ削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIFI_P2P_MATCH_SET_DEL	ret_wk
@@ -3907,7 +3907,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	������NET_ID��Ԃ�
+ *	自分のNET_IDを返す
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_GET_CURRENT_ID	ret_wk
@@ -3917,7 +3917,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�a������񐔂��擾
+ *	殿堂入り回数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_DENDOU_NUM_GET	ret_wk
@@ -3928,7 +3928,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����E�B���h�E�\��
+ *	ポケモンウィンドウ表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKE_WINDOW_PUT	monsno,sex
@@ -3939,7 +3939,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����E�B���h�E�\��(POKEMON_PARAM)
+ *	ポケモンウィンドウ表示(POKEMON_PARAM)
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKE_WINDOW_PUT_PP	pos
@@ -3949,7 +3949,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����E�B���h�E�폜
+ *	ポケモンウィンドウ削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKE_WINDOW_DEL
@@ -3958,7 +3958,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����E�B���h�E�A�j��
+ *	ポケモンウィンドウアニメ
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKE_WINDOW_ANM
@@ -3967,7 +3967,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����E�B���h�E�A�j���E�F�C�g
+ *	ポケモンウィンドウアニメウェイト
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKE_WINDOW_ANM_WAIT	ret_wk
@@ -3977,7 +3977,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���T�[�`���[�C�x���g�Ăяo��
+ *	バトルサーチャーイベント呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTL_SEARCHER_EVENT_CALL	ret_wk
@@ -3987,7 +3987,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���T�[�`���[�F�퓬��ɕ\�������Œ�̓���R�[�h���Z�b�g
+ *	バトルサーチャー：戦闘後に表示方向固定の動作コードをセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTL_SEARCHER_DIR_MV_SET
@@ -3996,7 +3996,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���b�Z�[�W�o�^���N
+ *	メッセージ登録少年
  */
 //-----------------------------------------------------------------------------
 	.macro	_MSG_BOY_EVENT
@@ -4005,7 +4005,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�v���t�B�[���o�^���N
+ *	プロフィール登録少年
  */
 //-----------------------------------------------------------------------------
 	.macro	_PROFILE_BOY_EVENT	ret_wk
@@ -4015,9 +4015,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�v�Ăяo��
- *	pos	�Z�[�u�L�����A��܂�
- *	refe	REFERENCE����̎� 1
+ *	イメージクリップ呼び出し
+ *	pos	セーブ有無が帰ります
+ *	refe	REFERENCEありの時 1
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMAGE_CLIP_SET_PROC	pos,ret_wk,refe
@@ -4029,7 +4029,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�vViewer�Ăяo��
+ *	イメージクリップViewer呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMAGE_CLIP_VIEW_TV_SET_PROC	pos,ret_work
@@ -4040,7 +4040,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�vViewer�Ăяo��
+ *	イメージクリップViewer呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMAGE_CLIP_VIEW_CON_SET_PROC	pos,ret_work
@@ -4051,7 +4051,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�J�X�^���{�[���Ăяo��
+ *	カスタムボール呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_CUSTOM_BALL_EVENT_CALL
@@ -4060,7 +4060,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�E���}�b�vBG���[�h�Ăяo��
+ *	タウンマップBGモード呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_TMAP_BG_SET_PROC
@@ -4069,7 +4069,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�{�b�N�X�Ăяo��
+ *	ボックス呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_BOX_SET_PROC	mode
@@ -4079,7 +4079,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���������Ăяo��
+ *	おえかき呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_OEKAKI_BOARD_SET_PROC
@@ -4088,7 +4088,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�J�[�h�Ăяo��
+ *	カード呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_TR_CARD_SET_PROC
@@ -4097,7 +4097,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��������Ăяo��
+ *	こうかん呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRADE_LIST_SET_PROC
@@ -4106,7 +4106,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���R�[�h�R�[�i�[�Ăяo��
+ *	レコードコーナー呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_RECORD_CORNER_SET_PROC
@@ -4115,7 +4115,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�a������Ăяo��
+ *	殿堂入り呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_DENDOU_SET_PROC
@@ -4124,7 +4124,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�p�\�R���a������Ăяo��
+ *	パソコン殿堂入り呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_PC_DENDOU_SET_PROC
@@ -4133,7 +4133,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���E������ʌĂяo��
+ *	世界交換画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_WORLDTRADE_SET_PROC	no,ret_wk
@@ -4144,7 +4144,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WIFI�ڑ��������ID�擾
+ *	WIFI接続し初回のID取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_DPW_INIT_PROC	ret_wk
@@ -4154,7 +4154,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ŏ��̃|�P�����I���Ăяo��
+ *	最初のポケモン選択呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_FIRST_POKE_SELECT_PROC
@@ -4163,7 +4163,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ŏ��̃|�P�����I���őI�������|�P�����i���o�[���擾���āA�m�ۂ����������폜
+ *	最初のポケモン選択で選択したポケモンナンバーを取得して、確保したメモリ削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_FIRST_POKE_SELECT_SET_AND_DEL
@@ -4193,7 +4193,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����I����ʌĂяo��
+ *	ポケモン選択画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKELIST_SET_PROC
@@ -4202,7 +4202,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����I����ʌĂяo��(�Q�[��������)
+ *	ポケモン選択画面呼び出し(ゲーム内交換)
  */
 //-----------------------------------------------------------------------------
 	.macro	_NPC_TRADE_POKELIST_SET_PROC
@@ -4211,7 +4211,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���j�I���|�P�����I����ʌĂяo��
+ *	ユニオンポケモン選択画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_POKELIST_SET_PROC
@@ -4220,7 +4220,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �|�P�����I����ʌ��ʎ��o��
+ * ポケモン選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKELIST_GET_RESULT	ret_wk
@@ -4230,7 +4230,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �o�g���X�e�[�W�|�P�����I��
+ * バトルステージポケモン選択
  */
 //-----------------------------------------------------------------------------
 #if 0
@@ -4244,7 +4244,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �o�g���X�e�[�W�|�P�����I����ʌ��ʎ��o��
+ * バトルステージポケモン選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_BATTLE_STAGE_POKELIST_GET_RESULT	ret_wk,ret_wk2
@@ -4255,7 +4255,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �o�g���L���b�X���|�P�����I����ʌ��ʎ��o��
+ * バトルキャッスルポケモン選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_BATTLE_CASTLE_POKELIST_GET_RESULT	ret_wk,ret_wk2,ret_wk3
@@ -4267,7 +4267,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �o�g�����[���b�g�|�P�����I����ʌ��ʎ��o��
+ * バトルルーレットポケモン選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_BATTLE_ROULETTE_POKELIST_GET_RESULT	ret_wk,ret_wk2,ret_wk3
@@ -4279,7 +4279,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�|�P�����I����ʌĂяo��
+ *	コンテストポケモン選択画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_POKELIST_SET_PROC	pos,rank,type,sio_flag
@@ -4292,7 +4292,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �R���e�X�g �|�P�����I����ʌ��ʎ��o��
+ * コンテスト ポケモン選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_POKELIST_GET_RESULT	ret_wk,ret_mode
@@ -4303,7 +4303,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g �|�P�����X�e�[�^�X��ʌĂяo��
+ *	コンテスト ポケモンステータス画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_POKESTATUS_SET_PROC	pos
@@ -4313,7 +4313,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �|�P�����X�e�[�^�X��ʌ��ʎ��o��(�ꉞ_CON_POKESTATUS_SET_PROC�p�ō����)
+ * ポケモンステータス画面結果取り出し(一応_CON_POKESTATUS_SET_PROC用で作った)
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKESTATUS_GET_RESULT	ret_wk
@@ -4323,7 +4323,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���V��ʌĂяo��
+ *	地球儀画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIFI_EARTH_SET_PROC
@@ -4332,7 +4332,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�}����TV�Ăяo��
+ *	図書館TV呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_LIBRARY_TV_SET_PROC
@@ -4341,7 +4341,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����F�g���[�i�[�ړ��Ăяo��
+ *	視線：トレーナー移動呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_EYE_TRAINER_MOVE_SET	pos
@@ -4351,7 +4351,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����F�g���[�i�[�ړ��I���`�F�b�N
+ *	視線：トレーナー移動終了チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_EYE_TRAINER_MOVE_CHECK	pos,ret_wk
@@ -4362,7 +4362,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����F�g���[�i�[�^�C�v�擾
+ *	視線：トレーナータイプ取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_EYE_TRAINER_TYPE_GET ret_wk
@@ -4372,7 +4372,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����F�g���[�i�[ID�擾
+ *	視線：トレーナーID取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_EYE_TRAINER_ID_GET	pos,ret_wk
@@ -4383,7 +4383,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���O���͌Ăяo��
+ *	名前入力呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_NAMEIN ret_wk
@@ -4393,7 +4393,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�������O���͌Ăяo��
+ *	ポケモン名前入力呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_NAMEIN_POKE	pos,ret_wk
@@ -4405,15 +4405,15 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�P�x�֘A
+ *	輝度関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	���C�v�t�F�[�h�X�^�[�g
+ *	ワイプフェードスタート
  *
- *	���ӁI�@�t�F�[�h�ɂ�����LCD�ABG�ʂ̐ݒ�͌Œ�ɂ��Ă���
+ *	注意！　フェードにかかるLCD、BG面の設定は固定にしている
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIPE_FADE_START		div,sync,type,color
@@ -4426,9 +4426,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���C�v�t�F�[�h�I���`�F�b�N
+ *	ワイプフェード終了チェック
  *
- *	���ӁI�@�`�F�b�N����LCD�̐ݒ�͌Œ�ɂ��Ă���
+ *	注意！　チェックするLCDの設定は固定にしている
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIPE_FADE_END_CHECK
@@ -4437,9 +4437,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�z���C�g�A�E�g
+ *	ホワイトアウト
  *
- *	���ӁI�@�t�F�[�h�ɂ�����LCD�ABG�ʂ̐ݒ�͌Œ�ɂ��Ă���
+ *	注意！　フェードにかかるLCD、BG面の設定は固定にしている
  */
 //-----------------------------------------------------------------------------
 	.macro	_WHITE_OUT	div,sync
@@ -4448,9 +4448,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�z���C�g�C��
+ *	ホワイトイン
  *
- *	���ӁI�@�t�F�[�h�ɂ�����LCD�ABG�ʂ̐ݒ�͌Œ�ɂ��Ă���
+ *	注意！　フェードにかかるLCD、BG面の設定は固定にしている
  */
 //-----------------------------------------------------------------------------
 	.macro	_WHITE_IN	div,sync
@@ -4459,9 +4459,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���b�N�A�E�g
+ *	ブラックアウト
  *
- *	���ӁI�@�t�F�[�h�ɂ�����LCD�ABG�ʂ̐ݒ�͌Œ�ɂ��Ă���
+ *	注意！　フェードにかかるLCD、BG面の設定は固定にしている
  */
 //-----------------------------------------------------------------------------
 	.macro	_BLACK_OUT	div,sync
@@ -4470,9 +4470,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���b�N�C��
+ *	ブラックイン
  *
- *	���ӁI�@�t�F�[�h�ɂ�����LCD�ABG�ʂ̐ݒ�͌Œ�ɂ��Ă���
+ *	注意！　フェードにかかるLCD、BG面の設定は固定にしている
  */
 //-----------------------------------------------------------------------------
 	.macro	_BLACK_IN	div,sync
@@ -4482,13 +4482,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�}�b�v�J�ڊ֘A
+ *	マップ遷移関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�}�b�v�J��
+ *	マップ遷移
  */
 //-----------------------------------------------------------------------------
 	.macro	_MAP_CHANGE		zone_id,door_id,x,z,dir
@@ -4506,7 +4506,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�}�b�v�J��(�t�F�[�h�Ȃ�)
+ *	マップ遷移(フェードなし)
  */
 //-----------------------------------------------------------------------------
 	.macro	_MAP_CHANGE_NONE_FADE		zone_id,door_id,x,z,dir
@@ -4520,7 +4520,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�}�b�v�J��(�R���V�A��)�C��
+ *	マップ遷移(コロシアム)イン
  */
 //-----------------------------------------------------------------------------
 	.macro	_COLOSSEUM_MAP_CHANGE_IN		zone_id,door_id,x,z,dir
@@ -4534,7 +4534,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�}�b�v�J��(�R���V�A��)�A�E�g
+ *	マップ遷移(コロシアム)アウト
  */
 //-----------------------------------------------------------------------------
 	.macro	_COLOSSEUM_MAP_CHANGE_OUT
@@ -4543,7 +4543,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�O�̃]�[��ID�擾
+ *	前のゾーンID取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_BEFORE_ZONE_ID	ret_wk
@@ -4553,7 +4553,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���݂̃]�[��ID�擾
+ *	現在のゾーンID取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_NOW_ZONE_ID	ret_wk
@@ -4563,13 +4563,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	��`�Z�֘A
+ *	秘伝技関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�ǂ̂ڂ�
+ *	壁のぼり
  */
 //-----------------------------------------------------------------------------
 	.macro	_KABENOBORI	wk
@@ -4579,7 +4579,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ȃ݂̂�
+ *	なみのり
  */
 //-----------------------------------------------------------------------------
 	.macro	_NAMINORI	wk
@@ -4589,7 +4589,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���]�Ԃɏ���Ă��邩�`�F�b�N
+ *	自転車に乗っているかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_BICYCLE_CHECK	ret_wk
@@ -4599,7 +4599,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	1=���]�ԁA0=���s�`�ԂɕύX
+ *	1=自転車、0=歩行形態に変更
  */
 //-----------------------------------------------------------------------------
 	.macro	_BICYCLE_REQ	flag
@@ -4609,9 +4609,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���]�Ԍ`�ԂɕύX(BGM�͕ύX���Ȃ��A�}�b�v�L���t���O�͗���)
- *	���̃R�}���h�̌�Ɂu_BGM_PLAY	SEQ_BICYCLE�v���Ă�
- *	�T�C�N�����O���[�h��p
+ *	自転車形態に変更(BGMは変更しない、マップ有効フラグは立つ)
+ *	このコマンドの後に「_BGM_PLAY	SEQ_BICYCLE」を呼ぶ
+ *	サイクリングロード専用
  */
 //-----------------------------------------------------------------------------
 	.macro	_BICYCLE_REQ_NON_BGM
@@ -4620,7 +4620,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�C�N�����O���[�h�Z�b�g(1=�T�C�N�����O���[�h�A0=�Ȃ�)
+ *	サイクリングロードセット(1=サイクリングロード、0=なし)
  */
 //-----------------------------------------------------------------------------
 	.macro	_CYCLING_ROAD_SET	flag
@@ -4630,7 +4630,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���@�̌`�Ԃ��擾
+ *	自機の形態を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_FORM_GET	ret_wk
@@ -4640,7 +4640,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���@�փ��N�G�X�g
+ *	自機へリクエスト
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_REQ_BIT_ON	bit
@@ -4650,7 +4650,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���@���N�G�X�g���s
+ *	自機リクエスト実行
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_REQ_START
@@ -4659,7 +4659,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����̂ڂ�
+ *	たきのぼり
  */
 //-----------------------------------------------------------------------------
 	.macro	_TAKINOBORI	wk
@@ -4669,7 +4669,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	������Ƃ�
+ *	そらをとぶ
  */
 //-----------------------------------------------------------------------------
 	.macro	_SORAWOTOBU	zone_id,x,z
@@ -4681,7 +4681,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ��`�킴�F�t���b�V��
+ * 秘伝わざ：フラッシュ
  */
 //-----------------------------------------------------------------------------
 	.macro	_HIDEN_FLASH
@@ -4690,7 +4690,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ��`�킴�F����΂炢
+ * 秘伝わざ：きりばらい
  */
 //-----------------------------------------------------------------------------
 	.macro	_HIDEN_KIRIBARAI
@@ -4699,7 +4699,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�J�b�g�C��
+ *	カットイン
  */
 //-----------------------------------------------------------------------------
 	.macro	_CUTIN	wk
@@ -4709,7 +4709,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�@���ւ�
+ *	コンテスト　着替え
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_HERO_CHANGE
@@ -4719,13 +4719,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	������֘A
+ *	文字列関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�X�e�[�^�X��
+ *	ステータス名
  */
 //-----------------------------------------------------------------------------
 	.macro	_STATUS_NAME	idx,status
@@ -4736,7 +4736,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[��
+ *	トレーナー名
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_NAME	idx,trid
@@ -4747,7 +4747,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��l����
+ *	主人公名
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_NAME	idx
@@ -4757,7 +4757,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���C�o����
+ *	ライバル名
  */
 //-----------------------------------------------------------------------------
 	.macro	_RIVAL_NAME	idx
@@ -4767,7 +4767,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�|�[�g��
+ *	サポート名
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUPPORT_NAME	idx
@@ -4777,7 +4777,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���|�P������
+ *	手持ちポケモン名
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKEMON_NAME	idx,pos
@@ -4788,7 +4788,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�C�v��
+ *	タイプ名
  */
 //-----------------------------------------------------------------------------
 	.macro	_TYPE_NAME	idx,type
@@ -4799,7 +4799,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�C�e����
+ *	アイテム名
  */
 //-----------------------------------------------------------------------------
 	.macro	_ITEM_NAME	idx,itemno
@@ -4810,7 +4810,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�b�g��
+ *	ポケット名
  */
 //-----------------------------------------------------------------------------
 	.macro	_POCKET_NAME	idx,pocket
@@ -4821,7 +4821,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z��
+ *	技名
  */
 //-----------------------------------------------------------------------------
 	.macro	_ITEM_WAZA_NAME	idx,itemno
@@ -4832,7 +4832,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z��
+ *	技名
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_NAME	idx,waza
@@ -4843,7 +4843,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���l��
+ *	数値名
  */
 //-----------------------------------------------------------------------------
 	.macro	_NUMBER_NAME	idx,number
@@ -4854,7 +4854,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���l��	�f�B�X�v���C���[�h�w���
+ *	数値名	ディスプレイモード指定版
  */
 //-----------------------------------------------------------------------------
 	.macro	_NUMBER_NAME_EX	idx,number,dtype,keta
@@ -4867,7 +4867,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���l��	�f�B�X�v���C���[�h�w���
+ *	数値名	ディスプレイモード指定版
  */
 //-----------------------------------------------------------------------------
 	.macro	_NUMBER_NAME_EX32	idx,number,dtype,keta
@@ -4881,7 +4881,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�a�������`�F�b�N
+ *	誕生日かチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_BIRTH_DAY_CHECK	ret_wk
@@ -4891,7 +4891,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A���m�[���`��̌��������擾
+ *	アンノーン形状の見た数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_ANOON_SEE_NUM	ret_wk
@@ -4901,7 +4901,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�j�b�N�l�[��
+ *	ニックネーム
  */
 //-----------------------------------------------------------------------------
 	.macro	_NICK_NAME	idx,pos
@@ -4912,7 +4912,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�b�`�\�t�g��
+ *	ポケッチソフト名
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKETCH_NAME	idx,app_id
@@ -4923,7 +4923,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[��ʖ�
+ *	トレーナー種別名
  */
 //-----------------------------------------------------------------------------
 	.macro	_TR_TYPE_NAME	idx,type
@@ -4934,7 +4934,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��l���̃g���[�i�[��ʖ�
+ *	主人公のトレーナー種別名
  */
 //-----------------------------------------------------------------------------
 	.macro	_MY_TR_TYPE_NAME	idx
@@ -4944,7 +4944,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����X�^�[�i���o�[����|�P������
+ *	モンスターナンバーからポケモン名
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKEMON_NAME_EXTRA	idx,mons,sex,flag
@@ -4957,7 +4957,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ŏ��̃|�P������
+ *	最初のポケモン名
  */
 //-----------------------------------------------------------------------------
 	.macro	_FIRST_POKEMON_NAME	idx
@@ -4967,7 +4967,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���C�o���̃|�P������
+ *	ライバルのポケモン名
  */
 //-----------------------------------------------------------------------------
 	.macro	_RIVAL_POKEMON_NAME	idx
@@ -4977,7 +4977,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�|�[�g�̃|�P������
+ *	サポートのポケモン名
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUPPORT_POKEMON_NAME	idx
@@ -4987,7 +4987,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ŏ��̃|�P�����i���o�[�擾
+ *	最初のポケモンナンバー取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_FIRST_POKE_NO_GET	ret_wk
@@ -4997,10 +4997,10 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���݂̖̂��O
- *	@param	idx			�Z�b�g����WORDSET�̈ʒu
- *	@param	itemno		���݂̂̎w��i�A�C�e���i���o�[�Łj
- *	@param	count		���݂̂̐�
+ *	きのみの名前
+ *	@param	idx			セットするWORDSETの位置
+ *	@param	itemno		きのみの指定（アイテムナンバーで）
+ *	@param	count		きのみの数
  */
 //-----------------------------------------------------------------------------
 	.macro	_NUTS_NAME	idx, itemno, count
@@ -5012,9 +5012,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���i�̖��O
- *	@param	idx			�Z�b�g����WORDSET�̈ʒu
- *	@param	seikaku		���i
+ *	性格の名前
+ *	@param	idx			セットするWORDSETの位置
+ *	@param	seikaku		性格
  */
 //-----------------------------------------------------------------------------
 	.macro	_SEIKAKU_NAME	idx,seikaku
@@ -5025,9 +5025,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�O�b�Y�̖��O
- *	@param	idx			�Z�b�g����WORDSET�̈ʒu
- *	@param	itemno		�O�b�Y�̎w��
+ *	グッズの名前
+ *	@param	idx			セットするWORDSETの位置
+ *	@param	itemno		グッズの指定
  */
 //-----------------------------------------------------------------------------
 	.macro	_GOODS_NAME	idx, goodsno
@@ -5038,9 +5038,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���b�v�̖��O
- *	@param	idx			�Z�b�g����WORDSET�̈ʒu
- *	@param	itemno		�O�b�Y�̎w��
+ *	トラップの名前
+ *	@param	idx			セットするWORDSETの位置
+ *	@param	itemno		グッズの指定
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAP_NAME	idx, trapno
@@ -5051,9 +5051,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�}�̖��O
- *	@param	idx			�Z�b�g����WORDSET�̈ʒu
- *	@param	itemno		�O�b�Y�̎w��
+ *	タマの名前
+ *	@param	idx			セットするWORDSETの位置
+ *	@param	itemno		グッズの指定
  */
 //-----------------------------------------------------------------------------
 	.macro	_TAMA_NAME	idx, tamano
@@ -5064,9 +5064,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�]�[���̖��O
- *	@param	idx			�Z�b�g����WORDSET�̈ʒu
- *	@param	zone_id		�]�[��ID
+ *	ゾーンの名前
+ *	@param	idx			セットするWORDSETの位置
+ *	@param	zone_id		ゾーンID
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZONE_NAME	idx, zone_id
@@ -5077,9 +5077,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��ʔ������̎擾
- *	@param	zone		�]�[��ID�i�[�o�b�t�@
- *	@param	poke		�����X�^�[�i���o�[�i�[�o�b�t�@
+ *	大量発生情報の取得
+ *	@param	zone		ゾーンID格納バッファ
+ *	@param	poke		モンスターナンバー格納バッファ
  */
 //-----------------------------------------------------------------------------
 	.macro	_GENERATE_INFO_GET	zone, poke
@@ -5091,13 +5091,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�퓬�֘A(����)
+ *	戦闘関連(実験)
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[ID�擾
+ *	トレーナーID取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_ID_GET	wk
@@ -5107,7 +5107,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[�퓬�Ăяo��
+ *	トレーナー戦闘呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_BTL_SET	tr_id_0,tr_id_1
@@ -5118,7 +5118,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[�퓬�i�}���`�o�g���j�Ăяo��
+ *	トレーナー戦闘（マルチバトル）呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_MULTI_BTL_SET	partner_id, tr_id_0, tr_id_1
@@ -5130,7 +5130,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[��b�Ăяo��
+ *	トレーナー会話呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_MSG_SET	tr_id,kind_id
@@ -5141,7 +5141,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[��b�̎�ގ擾
+ *	トレーナー会話の種類取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_TALK_TYPE_GET	wk1,wk2,wk3
@@ -5153,7 +5153,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Đ�g���[�i�[��b�̎�ގ擾
+ *	再戦トレーナー会話の種類取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_REVENGE_TRAINER_TALK_TYPE_GET	wk1,wk2,wk3
@@ -5165,7 +5165,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[�^�C�v�擾
+ *	トレーナータイプ取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_TYPE_GET	ret_wk
@@ -5175,7 +5175,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[BGM�Z�b�g
+ *	トレーナーBGMセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_BGM_SET	tr_id
@@ -5185,7 +5185,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[�s�k
+ *	トレーナー敗北
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_LOSE
@@ -5194,7 +5194,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g���[�i�[�s�k�`�F�b�N
+ *	トレーナー敗北チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_TRAINER_LOSE_CHECK ret_wk
@@ -5204,7 +5204,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�s�k����
+ *	敗北処理
  */
 //-----------------------------------------------------------------------------
 	.macro	_NORMAL_LOSE
@@ -5213,7 +5213,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�s�k�`�F�b�N
+ *	敗北チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_LOSE_CHECK	ret_wk
@@ -5223,7 +5223,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�B���|�P�����Đ�s�`�F�b�N
+ *	隠しポケモン再戦可不可チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_SEACRET_POKE_RETRY_CHECK ret_wk
@@ -5233,7 +5233,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�z�z�|�P�����Đ�s�`�F�b�N
+ *	配布ポケモン再戦可不可チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_HAIFU_POKE_RETRY_CHECK ret_wk
@@ -5243,7 +5243,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�퓬���ʂ��擾
+ *	戦闘結果を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_BATTLE_RESULT_GET ret_wk
@@ -5253,7 +5253,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���`�F�b�N 2vs2���\���擾
+ *	手持ちチェック 2vs2が可能か取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_2VS2_BATTLE_CHECK ret_wk
@@ -5263,7 +5263,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�N�퓬�Ăяo��
+ *	デバック戦闘呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_BTL_SET
@@ -5272,7 +5272,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�N�g���[�i�[�t���O�Z�b�g(��ō폜���܂��I)
+ *	デバックトレーナーフラグセット(後で削除します！)
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_TRAINER_FLAG_SET
@@ -5281,7 +5281,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�N�g���[�i�[�t���OON�W�����v(��ō폜���܂��I)
+ *	デバックトレーナーフラグONジャンプ(後で削除します！)
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_TRAINER_FLAG_ON_JUMP	adrs
@@ -5292,7 +5292,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	//.short	EV_SEQ_DEBUG_TRAINER_FLAG_ON_JUMP
 	//.endm
 
-	//10����ROM�p�I�g���[�i�[�Ƃ̉�b���t���O�Z�b�g���퓬
+	//10月末ROM用！トレーナーとの会話→フラグセット→戦闘
 	.macro	_DEBUG_TR_TALK_BTL msg_id,adrs
 	//.macro	_DEBUG_TR_TALK_BTL msg_id
 	_DEBUG_TRAINER_FLAG_ON_JUMP	\adrs
@@ -5308,13 +5308,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�ʐM�֘A
+ *	通信関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�e�@��I������E�B���h�E���J��
+ *	親機を選択するウィンドウを開く
  */
 //-----------------------------------------------------------------------------
 	.macro	_SEL_PARENT_WIN	mode,type,type2,ret_wk
@@ -5327,7 +5327,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�q�@��I������E�B���h�E���J��
+ *	子機を選択するウィンドウを開く
  */
 //-----------------------------------------------------------------------------
 	.macro	_SEL_CHILD_WIN	mode,type,type2,ret_wk
@@ -5340,7 +5340,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�N�e�@��I������E�B���h�E���J��
+ *	デバック親機を選択するウィンドウを開く
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_PARENT_WIN ret_wk
@@ -5350,7 +5350,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�N�q�@��I������E�B���h�E���J��
+ *	デバック子機を選択するウィンドウを開く
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_CHILD_WIN ret_wk
@@ -5360,7 +5360,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�N�p�@�ʐM�퓬�Ăяo��
+ *	デバック用　通信戦闘呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_SIO_ENCOUNT
@@ -5369,7 +5369,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�N�p�@�ʐM�R���e�X�g�Ăяo��
+ *	デバック用　通信コンテスト呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_SIO_CONTEST
@@ -5379,13 +5379,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�R���e�X�g�֘A
+ *	コンテスト関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	���M
+ *	送信
  */
 //-----------------------------------------------------------------------------
 	.macro	_CONSIO_TIMING_SEND	timing_no
@@ -5395,7 +5395,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����҂�
+ *	同期待ち
  */
 //-----------------------------------------------------------------------------
 	.macro	_CONSIO_TIMING_CHECK	timing_no
@@ -5405,7 +5405,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V�X�e�����[�N�쐬
+ *	システムワーク作成
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_SYSTEM_CREATE	rank,type,mode,pos
@@ -5418,7 +5418,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V�X�e�����[�N�폜
+ *	システムワーク削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_SYSTEM_EXIT	wk
@@ -5428,7 +5428,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�����擾
+ *	審判名取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_JUDGE_NAME_GET	judge_no,idex
@@ -5439,7 +5439,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���[�_�[���擾
+ *	ブリーダー名取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_BREEDER_NAME_GET	entry_no,idex
@@ -5450,7 +5450,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�j�b�N�l�[���擾
+ *	ニックネーム取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_NICK_NAME_GET	entry_no,idex
@@ -5461,7 +5461,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�F�ꌅ���l���^�O�ɃZ�b�g
+ *	コンテスト：一桁数値をタグにセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_NUM_TAG_SET	num,idex
@@ -5472,7 +5472,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ʐM�p�Ƀ��[�N�̏����ݒ�ƍŏ��̒ʐM���s���^�X�N�𐶐�
+ *	通信用にワークの初期設定と最初の通信を行うタスクを生成
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_SIO_PARAM_INIT_SET
@@ -5481,7 +5481,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�Ăяo��
+ *	コンテスト呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_CONTEST_PROC
@@ -5490,7 +5490,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����N���擾
+ *	ランク名取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_RANK_NAME_GET	idx
@@ -5500,7 +5500,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�C�v���擾
+ *	タイプ名取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_TYPE_NAME_GET	idx
@@ -5510,7 +5510,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�D���Җ��擾
+ *	優勝者名取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_VICTORY_BREEDER_NAME_GET	idx
@@ -5520,7 +5520,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�D�����i�i���o�[�擾
+ *	優勝商品ナンバー取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_VICTORY_ITEM_NO_GET	ret_wk
@@ -5530,7 +5530,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�D�������u���[�_�[�̃|�P�����j�b�N�l�[�����擾
+ *	優勝したブリーダーのポケモンニックネームを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_VICTORY_NICK_NAME_GET	buf_id
@@ -5540,7 +5540,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���Q�����Ă����R���e�X�g�Ŏ��������ʂ����������擾
+ *	今参加していたコンテストで自分が何位だったかを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_RANKING_CHECK	ret_wk
@@ -5550,7 +5550,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�D�������u���[�_�[�̃G���g���[�ԍ����擾����
+ *	優勝したブリーダーのエントリー番号を取得する
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_VICTORY_ENTRY_NO_GET	ret_wk
@@ -5560,7 +5560,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����̃G���g���[�ԍ����擾
+ *	自分のエントリー番号を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_MY_ENTRY_NO_GET	ret_wk
@@ -5570,7 +5570,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ�R�[�h���擾
+ *	OBJコードを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_OBJ_CODE_GET	entry_no,ret_wk
@@ -5581,7 +5581,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�l�C���擾
+ *	人気を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_POPULARITY_GET	entry_no,ret_wk
@@ -5592,7 +5592,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�F��t�i���o�[���擾
+ *	コンテスト：受付ナンバーを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_DESK_MODE_GET	ret_wk
@@ -5602,7 +5602,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�F�Q�����Ă���R���e�X�g�ŗD���������ɖႦ�郊�{�������Ɏ����Ă��邩�`�F�b�N
+ *	コンテスト：参加しているコンテストで優勝した時に貰えるリボンを既に持っているかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_HAVE_RIBBON_CHECK	ret_wk
@@ -5612,7 +5612,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Q�����Ă���R���e�X�g�ŗD���������ɖႦ�郊�{���̖��O���擾
+ *	参加しているコンテストで優勝した時に貰えるリボンの名前を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_RIBBON_NAME_GET	buf_id
@@ -5622,7 +5622,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�ŗD���������ɖႦ��A�N�Z�T���ԍ����擾
+ *	コンテストで優勝した時に貰えるアクセサリ番号を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_ACCE_NO_GET	ret_wk
@@ -5632,7 +5632,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�F�R���e�X�g�V�X�e�����[�N���烉���N�⃂�[�h�Ȃǂ��擾����
+ *	コンテスト：コンテストシステムワークからランクやモードなどを取得する
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_ENTRY_PARAM_GET	ret_rank,ret_type,ret_mode,ret_temoti_pos
@@ -5645,7 +5645,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�F�J�����̃t���b�V���G�t�F�N�g�Z�b�g
+ *	コンテスト：カメラのフラッシュエフェクトセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_CAMERA_FLASH_SET	entry_no
@@ -5655,7 +5655,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�F�J�����̃t���b�V���G�t�F�N�g�I���҂�
+ *	コンテスト：カメラのフラッシュエフェクト終了待ち
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_CAMERA_FLASH_CHECK
@@ -5664,7 +5664,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�F�t�B�[���h��H�u�����N��~
+ *	コンテスト：フィールドのHブランク停止
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_HBLANK_STOP
@@ -5673,7 +5673,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�F�t�B�[���h��H�u�����N�ĊJ
+ *	コンテスト：フィールドのHブランク再開
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_HBLANK_START
@@ -5682,8 +5682,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *  �G���f�B���O�X�L�b�v�����m�F
- *		CPU���D���A���͒ʐM�ΐ�̂ǂ��炩�̏����𖞂������`�F�b�N
+ *  エンディングスキップ条件確認
+ *		CPUが優勝、又は通信対戦のどちらかの条件を満たすかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_ENDING_SKIP_CHECK	ret_wk
@@ -5693,7 +5693,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�ʐM�ΐ퐬�ѕ\��
+ *	コンテスト通信対戦成績表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_RECORD_DISP
@@ -5702,7 +5702,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�F���b�Z�[�W����t���O�ݒ�
+ *	コンテスト：メッセージ送りフラグ設定
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_MSGPRINT_FLAG_SET
@@ -5711,7 +5711,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R���e�X�g�F���b�Z�[�W����t���O�ݒ�
+ *	コンテスト：メッセージ送りフラグ設定
  */
 //-----------------------------------------------------------------------------
 	.macro	_CON_MSGPRINT_FLAG_RESET
@@ -5721,13 +5721,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	����ڑ��֘A
+ *	特殊接続関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	����ڑ����Z�b�g
+ *	特殊接続情報セット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SP_LOCATION_SET	zone,door,x,z,dir
@@ -5742,13 +5742,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�G���x�[�^�֘A
+ *	エレベータ関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���j���[�@�G���x�[�^�t���A
+ *	BMPメニュー　エレベータフロア
  */
 //-----------------------------------------------------------------------------
 	.macro	_ELEVATOR_FLOOR_GET wk
@@ -5758,7 +5758,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	BMP���j���[�@�G���x�[�^�t���A
+ *	BMPメニュー　エレベータフロア
  */
 //-----------------------------------------------------------------------------
 	.macro	_ELEVATOR_FLOOR_WRITE x,y,wk,floor
@@ -5772,13 +5772,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�}�ӕ]���֘A
+ *	図鑑評価関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�V���I�E�}�Ӂ@�����������擾
+ *	シンオウ図鑑　見つけた数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SHINOU_ZUKAN_SEE_NUM	ret_wk
@@ -5788,7 +5788,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V���I�E�}�Ӂ@�߂܂��������擾
+ *	シンオウ図鑑　捕まえた数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SHINOU_ZUKAN_GET_NUM	ret_wk
@@ -5798,7 +5798,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S���}�Ӂ@�����������擾
+ *	全国図鑑　見つけた数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZENKOKU_ZUKAN_SEE_NUM	ret_wk
@@ -5808,7 +5808,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S���}�Ӂ@�߂܂��������擾
+ *	全国図鑑　捕まえた数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZENKOKU_ZUKAN_GET_NUM	ret_wk
@@ -5818,7 +5818,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S���}�ӂ��`�F�b�N
+ *	全国図鑑かチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_ZENKOKU_ZUKAN
@@ -5827,7 +5827,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�]�����b�Z�[�WID�擾
+ *	評価メッセージID取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_HYOUKA_MSGID	mode,ret_wk
@@ -5839,7 +5839,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 #if PL_S0802_080716_FIX
 //-----------------------------------------------------------------------------
 /**
- *	�V���I�E�}�Ӂ@�����������擾
+ *	シンオウ図鑑　見つけた数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_POKE_SEE_FLAG	monsno,ret_wk
@@ -5851,13 +5851,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�쐶�퓬�֘A
+ *	野生戦闘関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����i���o�[�ƃ��x�����w�肵�Ė쐶�퓬
+ *	ポケモンナンバーとレベルを指定して野生戦闘
  */
 //-----------------------------------------------------------------------------
 	.macro	_WILD_BTL_SET	monsno,level
@@ -5868,7 +5868,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����i���o�[�ƃ��x�����w�肵�ăC�x���g�쐶�퓬
+ *	ポケモンナンバーとレベルを指定してイベント野生戦闘
  */
 //-----------------------------------------------------------------------------
 	.macro	_SP_WILD_BTL_SET	monsno,level
@@ -5879,9 +5879,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����i���o�[�ƃ��x�����w�肵�ăC�x���g�쐶�퓬
+ *	ポケモンナンバーとレベルを指定してイベント野生戦闘
  *
- * ��ID_PARA_event_get_flag���Z�b�g���܂�(�V�F�C�~�p�Ɏg�p���Ă��܂� 08.04.05)
+ * ★ID_PARA_event_get_flagをセットします(シェイミ用に使用しています 08.04.05)
  */
 //-----------------------------------------------------------------------------
 	.macro	_EVENT_GET_WILD_BTL_SET	monsno,level
@@ -5892,7 +5892,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ŏ��̃C�x���g�퓬(���C�o����)
+ *	最初のイベント戦闘(ライバル戦)
  */
 //-----------------------------------------------------------------------------
 	.macro	_FIRST_BTL_SET	tr_id
@@ -5902,7 +5902,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ŏ��̃C�x���g�퓬
+ *	最初のイベント戦闘
  */
 //-----------------------------------------------------------------------------
 	.macro	_CAPTURE_BTL_SET
@@ -5912,13 +5912,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�n�j�[�c���[
+ *	ハニーツリー
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�n�j�[�c���[
+ *	ハニーツリー
  */
 //-----------------------------------------------------------------------------
 	.macro	_HONEY_TREE
@@ -5927,7 +5927,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n�j�[�c���[�X�e�[�g�擾
+ *	ハニーツリーステート取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_HONEY_TREE_STATE ret_wk
@@ -5937,7 +5937,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n�j�[�c���[�퓬
+ *	ハニーツリー戦闘
  */
 //-----------------------------------------------------------------------------
 	.macro	_HONEY_TREE_BTL_SET
@@ -5946,7 +5946,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n�j�[�c���[�퓬�I����
+ *	ハニーツリー戦闘終了後
  */
 //-----------------------------------------------------------------------------
 	.macro	_HONEY_TREE_AFTER_SET
@@ -5955,7 +5955,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�C���Ăяo��
+ *	サイン呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_TSIGN_SET_PROC
@@ -5965,13 +5965,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	���|�[�g
+ *	レポート
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	���|�[�g�f�[�^�`�F�b�N
+ *	レポートデータチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_REPORT_SAVE_CHECK ret_wk
@@ -5981,7 +5981,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���|�[�g��������
+ *	レポート書き込み
  */
 //-----------------------------------------------------------------------------
 	.macro	_REPORT_SAVE	ret_wk
@@ -5991,7 +5991,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�O���Z�[�u������
+ *	外部セーブ初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_EXTRA_SAVE_INIT
@@ -6000,7 +6000,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�O���Z�[�u�������ς݂��`�F�b�N
+ *	外部セーブ初期化済みかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_EXTRA_SAVE_INIT_CHECK	ret_wk
@@ -6022,7 +6022,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *		�N���b�v�@�e���r�ǃf�[�^�L���`�F�b�N
+ *		クリップ　テレビ局データ有無チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CLIP_TVSAVEDATA_CHECK pos,ret_wk
@@ -6033,7 +6033,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *		�N���b�v�@�R���e�X�g�f�[�^�L���`�F�b�N
+ *		クリップ　コンテストデータ有無チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CLIP_CONSAVEDATA_CHECK pos,ret_wk
@@ -6045,7 +6045,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *		�N���b�v�@�e���r�ǃ^�C�g������
+ *		クリップ　テレビ局タイトル入力
  */
 //-----------------------------------------------------------------------------
 	.macro	_CLIP_TV_TITLE_SAVE	pos
@@ -6055,13 +6055,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�|�P�b�`
+ *	ポケッチ
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�b�g�Q�b�g
+ *	ポケットゲット
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_POKETCH
@@ -6070,9 +6070,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�b�g����t���O�ς݃t���O�擾
+ *	ポケット入手フラグ済みフラグ取得
  *
- *	ANSWER�Ɍ��ʑ��
+ *	ANSWERに結果代入
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_POKETCH_FLAG ret_wk
@@ -6082,7 +6082,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�b�`�\�t�g�ǉ�
+ *	ポケッチソフト追加
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKETCH_ADD	app_id
@@ -6092,7 +6092,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�b�`�\�t�g�ǉ��ς݃`�F�b�N
+ *	ポケッチソフト追加済みチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKETCH_CHECK	app_id,ret_wk
@@ -6104,13 +6104,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�ʐM
+ *	通信
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	����
+ *	同期
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_SYNCHRONIZE	no
@@ -6120,7 +6120,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �@���Z�b�g	
+ * 　リセット	
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_RESET
@@ -6130,13 +6130,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	���j�I�����[��
+ *	ユニオンルーム
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- * ���j�I�����[���@�ʐM�̐e�@���ŃJ�[�h������O�̉�b�ԍ����擾
+ * ユニオンルーム　通信の親機側でカードを見る前の会話番号を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_PARENT_CARD_TALK_NO	ret_wk
@@ -6146,7 +6146,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���j�I�����[���@����̐l�̘b�����b�Z�[�WID���擾
+ * ユニオンルーム　左上の人の話すメッセージIDを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_GET_INFO_TALK_NO	ret_wk
@@ -6156,7 +6156,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���j�I�����[���@�r�[�R����������
+ * ユニオンルーム　ビーコン書き換え
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_BEACON_CHANGE	flag
@@ -6166,7 +6166,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���j�I�����[���@�b���������Ȃ���Ԃɂ���
+ * ユニオンルーム　話しかけられない状態にする
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_CONNECT_TALK_DENIED
@@ -6175,7 +6175,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���j�I�����[���@�b�����������Ԃɂ���
+ * ユニオンルーム　話しかけられる状態にする
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_CONNECT_TALK_OK
@@ -6184,7 +6184,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���j�I�����[�����Ŏg�p�����b�p�Ƀg���[�i�[�����Z�b�g����
+ * ユニオンルーム内で使用する会話用にトレーナー名をセットする
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_TRAINER_NAME_REGIST	type
@@ -6194,7 +6194,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�B�[���h�p�̃R�}���h�̌n�ɏ�����
+ *	フィールド用のコマンド体系に初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_RETURN_SETUP
@@ -6203,7 +6203,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�r�[�R�����W���ĊJ����
+ *	ビーコン収集を再開する
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_CONNECT_CUT_RESTART
@@ -6212,7 +6212,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�b�|���ŒʐM�ڑ��ł��Ȃ����ɏo����b�̃C���f�b�N�X���擾
+ *	話掛けで通信接続できない時に出す会話のインデックスを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_GET_TALK_NUMBER	type,ret_wk
@@ -6223,7 +6223,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�b������OBJ��ID���Z�b�g
+ *	話しかけOBJのIDをセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_ID_SET	ret_wk
@@ -6234,7 +6234,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�b�������Őڑ����Ă݂����ʂ�Ԃ�
+ *	話しかけで接続してみた結果を返す
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_RESULT_GET ret_wk
@@ -6244,7 +6244,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���j�I�����[����OBJ���B��
+ * ユニオンルームのOBJを隠す
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_OBJ_ALL_VANISH
@@ -6253,7 +6253,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �I�������l�����j�I�����[�N�ɓn��
+ * 選択した値をユニオンワークに渡す
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_SCRIPT_RESULT_SET	type,num
@@ -6264,7 +6264,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �e�@�̃X�^�[�g��҂�
+ * 親機のスタートを待つ
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_PARENT_START_COMMAND_SET	ret_wk
@@ -6274,7 +6274,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �q�@�̑I����҂�
+ * 子機の選択を待つ
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_CHILD_SELECT_COMMAND_SET	ret_wk
@@ -6284,7 +6284,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���j�I���b�������ڑ��J�n
+ *	ユニオン話しかけ接続開始
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_CONNECT_START type, ret_wk
@@ -6295,7 +6295,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���j�I�����[���ƕ��ʂ̃}�b�v�̊Ԃ̃}�b�v�ړ�
+ * ユニオンルームと普通のマップの間のマップ移動
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_MAP_CHANGE
@@ -6304,7 +6304,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * 4�̑I�����̃g���[�i�[�̖��O��wordset�Ɋi�[����
+ * 4つの選択肢のトレーナーの名前をwordsetに格納する
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_VIEW_TR_SEL_SET
@@ -6313,7 +6313,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �I������1-4�̐������g���[�i�[�̌����ڔԍ��ɕϊ����� �� �g���[�i�[������ID���擾
+ * 選択した1-4の数字をトレーナーの見た目番号に変換する → トレーナー文字列IDを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_VIEW_TR_TYPE_MSG_GET	sel,ret_wk
@@ -6324,7 +6324,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �I������1-4�̐������g���[�i�[�̌����ڔԍ��ɕϊ�����
+ * 選択した1-4の数字をトレーナーの見た目番号に変換する
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_VIEW_TR_TYPE_NO_GET	sel,ret_wk
@@ -6335,7 +6335,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �������g���[�i�[�Ƃ��Č����鎞�̔ԍ����Z�b�g(���j�I�����[���p)
+ * 自分がトレーナーとして見られる時の番号をセット(ユニオンルーム用)
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_VIEW_MY_STATUS_SET	type
@@ -6346,13 +6346,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�V�X�e���t���O�֘A
+ *	システムフラグ関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�}�ӓ���ς݂��擾
+ * システムフラグ	図鑑入手済みか取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_ZUKAN_GET	ret_wk
@@ -6362,7 +6362,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�}�ӃZ�b�g
+ * システムフラグ	図鑑セット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_ZUKAN_SET
@@ -6371,7 +6371,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�V���[�Y����ς݂��擾
+ * システムフラグ	シューズ入手済みか取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_SHOES_GET	ret_wk
@@ -6381,7 +6381,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�V���[�Y�Z�b�g
+ * システムフラグ	シューズセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_SHOES_SET
@@ -6390,7 +6390,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�o�b�W����ς݂��擾
+ * システムフラグ	バッジ入手済みか取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_BADGE_GET	no,ret_wk
@@ -6401,7 +6401,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�o�b�W�Z�b�g
+ * システムフラグ	バッジセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_BADGE_SET	no
@@ -6411,7 +6411,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�o�b�W���萔�擾
+ * システムフラグ	バッジ入手数取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_BADGE_COUNT	ret_wk
@@ -6421,7 +6421,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�o�b�O����ς݂��擾
+ * システムフラグ	バッグ入手済みか取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_BAG_GET	ret_wk
@@ -6431,7 +6431,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�o�b�O�Z�b�g
+ * システムフラグ	バッグセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_BAG_SET
@@ -6440,7 +6440,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�A������t���O�擾
+ * システムフラグ	連れ歩きフラグ取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_PAIR_GET	ret_wk
@@ -6450,7 +6450,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�A������t���O�Z�b�g
+ * システムフラグ	連れ歩きフラグセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_PAIR_SET
@@ -6459,7 +6459,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�A������t���O���Z�b�g
+ * システムフラグ	連れ歩きフラグリセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_PAIR_RESET
@@ -6468,7 +6468,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	������������t���O�擾
+ * システムフラグ	一歩動いたかフラグ取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_ONE_STEP_GET	ret_wk
@@ -6478,7 +6478,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	������������t���O�Z�b�g
+ * システムフラグ	一歩動いたかフラグセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_ONE_STEP_SET
@@ -6487,7 +6487,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	������������t���O���Z�b�g
+ * システムフラグ	一歩動いたかフラグリセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_ONE_STEP_RESET
@@ -6496,7 +6496,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�Q�[���N���A�t���O�擾
+ * システムフラグ	ゲームクリアフラグ取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_GAME_CLEAR_GET	ret_wk
@@ -6506,7 +6506,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�Q�[���N���A�t���O�Z�b�g
+ * システムフラグ	ゲームクリアフラグセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_GAME_CLEAR_SET
@@ -6515,7 +6515,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�����肫�Z�b�g
+ * システムフラグ	かいりきセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_KAIRIKI_SET
@@ -6525,7 +6525,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�����肫���Z�b�g
+ * システムフラグ	かいりきリセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_KAIRIKI_RESET
@@ -6535,7 +6535,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�����肫�擾
+ * システムフラグ	かいりき取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_KAIRIKI_GET	ret_wk
@@ -6546,7 +6546,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�t���b�V���Z�b�g
+ * システムフラグ	フラッシュセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_FLASH_SET
@@ -6556,7 +6556,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�t���b�V�����Z�b�g
+ * システムフラグ	フラッシュリセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_FLASH_RESET
@@ -6566,7 +6566,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	�t���b�V���擾
+ * システムフラグ	フラッシュ取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_FLASH_GET	ret_wk
@@ -6577,7 +6577,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	����΂炢�Z�b�g
+ * システムフラグ	きりばらいセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_KIRIBARAI_SET
@@ -6587,7 +6587,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	����΂炢���Z�b�g
+ * システムフラグ	きりばらいリセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_KIRIBARAI_RESET
@@ -6597,7 +6597,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �V�X�e���t���O	����΂炢�擾
+ * システムフラグ	きりばらい取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SYS_FLAG_KIRIBARAI_GET	ret_wk
@@ -6608,13 +6608,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�t�����h���V���b�v
+ *	フレンドリショップ
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�ϓ��t�����h���V���b�v�Ăяo��
+ *	変動フレンドリショップ呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_SHOP_CALL	id
@@ -6624,7 +6624,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Œ�t�����h���V���b�v�Ăяo��
+ *	固定フレンドリショップ呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_FIX_SHOP_CALL	id
@@ -6634,7 +6634,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Œ�O�b�Y�V���b�v�Ăяo��
+ *	固定グッズショップ呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_FIX_GOODS_CALL	id
@@ -6644,7 +6644,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Œ�V�[���V���b�v�Ăяo��
+ *	固定シールショップ呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_FIX_SEAL_CALL	id
@@ -6654,7 +6654,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �A�N�Z�T���[�V���b�v�Ăяo��
+ * アクセサリーショップ呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_ACCE_SHOP_CALL
@@ -6663,7 +6663,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���|�[�g���@�`�Ԓǉ�
+ * レポート自機形態追加
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_REPORT_DRAW_SET
@@ -6672,7 +6672,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���|�[�g���@�`�ԍ폜
+ * レポート自機形態削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_REPORT_DRAW_DEL
@@ -6682,13 +6682,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�Q�[���I�[�o�[
+ *	ゲームオーバー
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�Q�[���I�[�o�[�Ăяo��
+ *	ゲームオーバー呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_GAME_OVER_CALL
@@ -6698,13 +6698,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	���[�v�֘A
+ *	ワープ関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	���[�vID�Z�b�g
+ *	ワープIDセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SET_WARP_ID	id
@@ -6714,7 +6714,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��l���̐��ʎ擾
+ *	主人公の性別取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_MY_SEX ret_wk
@@ -6724,7 +6724,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�Z����
+ *	ポケセン回復
  */
 //-----------------------------------------------------------------------------
 	.macro	_PC_KAIFUKU
@@ -6733,7 +6733,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n����NPC�������_���ɔz�u����
+ *	地下のNPCをランダムに配置する
  */
 //-----------------------------------------------------------------------------
 	.macro	_UG_MAN_SHOP_NPC_RAND_PLACE
@@ -6742,7 +6742,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ʐM�_�C���N�g�R�[�i�[�̏I���������J�n����
+ *	通信ダイレクトコーナーの終了処理を開始する
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_DIRECT_END
@@ -6751,7 +6751,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�I�������葱���@�^�C�~���O������
+ *	終了処理手続き　タイミング同期版
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_DIRECT_END_TIMING
@@ -6760,7 +6760,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ʐM�o�g�����畜�A�������ɌĂ�(������x�������̒ʐM���J�n)
+ *	通信バトルから復帰した時に呼ぶ(もう一度歩き回りの通信を開始)
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_DIRECT_ENTER_BTL_ROOM
@@ -6769,7 +6769,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ʐM������Ńv���C���[�̕�����ύX(�n���p)
+ *	通信した上でプレイヤーの方向を変更(地下用)
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMM_PLAYER_SET_DIR	dir
@@ -6779,7 +6779,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	
 //-----------------------------------------------------------------------------
 /**
- *	3D�A�j���֘A�@�h�A�A�j���Z�b�g
+ *	3Dアニメ関連　ドアアニメセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SET_UP_DOOR_ANIME	bx,bz,lx,lz,id
@@ -6793,7 +6793,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	3D�A�j���֘A�@�A�j���E�G�C�g
+ *	3Dアニメ関連　アニメウエイト
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAIT_3D_ANIME	id
@@ -6803,7 +6803,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	
 //-----------------------------------------------------------------------------
 /**
- *	3D�A�j���֘A�@�A�j�����
+ *	3Dアニメ関連　アニメ解放
  */
 //-----------------------------------------------------------------------------
 	.macro	_FREE_3D_ANIME	id
@@ -6813,7 +6813,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	
 //-----------------------------------------------------------------------------
 /**
- *	3D�A�j���֘A�@�h�A�I�[�v���A�j��
+ *	3Dアニメ関連　ドアオープンアニメ
  */
 //-----------------------------------------------------------------------------
 	.macro	_SEQ_OPEN_DOOR	id
@@ -6823,7 +6823,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	
 //-----------------------------------------------------------------------------
 /**
- *	3D�A�j���֘A�@�h�A�N���[�Y�A�j��
+ *	3Dアニメ関連　ドアクローズアニメ
  */
 //-----------------------------------------------------------------------------
 	.macro	_SEQ_CLOSE_DOOR	id
@@ -6833,28 +6833,28 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 //
-//		�ȈՉ�b�Ăяo��
+//		簡易会話呼び出し
 //
 //=============================================================================
 //-----------------------------------------------------------------------------
 /**
- * �ȈՉ�b�Ăяo���i�P���j
+ * 簡易会話呼び出し（単語一つ）
  */
 //-----------------------------------------------------------------------------
 	.macro	_PMS_INPUT_SINGLE		ret_wk, ans_wk
 	.short	EV_SEQ_PMS_INPUT_SINGLE
-	.short	0	//�_�~�[
+	.short	0	//ダミー
 	.short	\ret_wk
 	.short	\ans_wk
 	.endm
 //-----------------------------------------------------------------------------
 /**
- * �ȈՉ�b�Ăяo���i�P���j
+ * 簡易会話呼び出し（単語一つ）
  */
 //-----------------------------------------------------------------------------
 	.macro	_PMS_INPUT_DOUBLE		ret_wk, ans_wk1, ans_wk2
 	.short	EV_SEQ_PMS_INPUT_DOUBLE
-	.short	0	//�_�~�[
+	.short	0	//ダミー
 	.short	\ret_wk
 	.short	\ans_wk1
 	.short	\ans_wk2
@@ -6862,7 +6862,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �ȈՉ�b���b�Z�[�W���o�b�t�@�փZ�b�g
+ * 簡易会話メッセージをバッファへセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_PMS_BUF		buf_no,wk
@@ -6874,7 +6874,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���̂݁F��Ԏ擾
+ *	きのみ：状態取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_SEED_STATUS	ret_wk
@@ -6884,7 +6884,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���̂݁F��ގ擾
+ * きのみ：種類取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_SEED_TYPE		ret_wk
@@ -6894,7 +6894,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���̂݁F�엿�̎�ގ擾
+ * きのみ：肥料の種類取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_SEED_COMPOST		ret_wk
@@ -6911,7 +6911,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���̂݁F���������̐����擾
+ * きのみ：生った実の数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_SEED_COUNT			ret_wk
@@ -6949,7 +6949,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	SXY�f�[�^�̍��W����ύX
+ *	SXYデータの座標情報を変更
  */
 //-----------------------------------------------------------------------------
 	.macro	_SXY_POS_CHANGE	id,gx,gz
@@ -6961,7 +6961,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ�f�[�^�̍��W����ύX
+ *	OBJデータの座標情報を変更
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_POS_CHANGE	id,gx,gy,gz,dir
@@ -6975,7 +6975,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	SXY�f�[�^�̓���R�[�h����ύX
+ *	SXYデータの動作コード情報を変更
  */
 //-----------------------------------------------------------------------------
 	.macro	_SXY_MV_CHANGE	id,mv
@@ -6986,7 +6986,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	SXY�f�[�^�̕�������ύX
+ *	SXYデータの方向情報を変更
  */
 //-----------------------------------------------------------------------------
 	.macro	_SXY_DIR_CHANGE	id,dir
@@ -6997,7 +6997,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	SXY �ڑ��f�[�^�̍��W����ύX
+ *	SXY 接続データの座標情報を変更
  */
 //-----------------------------------------------------------------------------
 	.macro	_SXY_EXIT_POS_CHANGE	id,x,z
@@ -7009,7 +7009,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	SXY BG�f�[�^�̍��W����ύX
+ *	SXY BGデータの座標情報を変更
  */
 //-----------------------------------------------------------------------------
 	.macro	_SXY_BG_POS_CHANGE	id,x,z
@@ -7021,7 +7021,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ�f�[�^�̕�������ύX
+ *	OBJデータの方向情報を変更
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_DIR_CHANGE	id,dir
@@ -7032,7 +7032,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C�x���g���ʂ������郏�[�N�ɒl���Z�b�g
+ *	イベント結果を代入するワークに値をセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_RETURN_SCRIPT_WK_SET	num
@@ -7052,7 +7052,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��ĉ��ɂ���|�P�����̖��O���Z�b�g����
+ *	育て屋にいるポケモンの名前をセットする
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_SODATE_NAME
@@ -7061,7 +7061,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��ĉ��̏�ԃ`�F�b�N
+ *	育て屋の状態チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_SODATEYA_ZIISAN	ret_wk
@@ -7071,7 +7071,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���W��������
+ *	水ジム初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_WATER_GYM
@@ -7080,7 +7080,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���W���M�~�b�N�{�^��
+ *	水ジムギミックボタン
  */
 //-----------------------------------------------------------------------------
 	.macro	_PUSH_WATER_GYM_BUTTON
@@ -7089,7 +7089,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S�[�X�g�W��������
+ *	ゴーストジム初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_GHOST_GYM
@@ -7098,7 +7098,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S�[�X�g�W���M�~�b�N���t�g
+ *	ゴーストジムギミックリフト
  */
 //-----------------------------------------------------------------------------
 	.macro	_MOVE_GHOST_GYM_LIFT
@@ -7107,7 +7107,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�W��������
+ *	鋼ジム初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_STEEL_GYM
@@ -7116,7 +7116,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�i���W��������
+ *	格闘ジム初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_COMBAT_GYM
@@ -7125,7 +7125,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�d�C�W��������
+ *	電気ジム初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_ELEC_GYM	room
@@ -7135,7 +7135,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	
 //-----------------------------------------------------------------------------
 /**
- *	�d�C�W���M�~�b�N�M�A
+ *	電気ジムギミックギア
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROTATE_ELEC_GYM_GEAR	rot
@@ -7145,49 +7145,49 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�������擾
+ *	ポケモン数取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_POKE_COUNT	ret_wk
-	.short	EV_SEQ_GET_POKE_COUNT			//�|�P�������擾
+	.short	EV_SEQ_GET_POKE_COUNT			//ポケモン数取得
 	.short	\ret_wk
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�}�S���������莝���̃|�P������
+ *	タマゴを除いた手持ちのポケモン数
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_POKE_COUNT2	ret_wk
-	.short	EV_SEQ_GET_POKE_COUNT2			//�|�P�������擾
+	.short	EV_SEQ_GET_POKE_COUNT2			//ポケモン数取得
 	.short	\ret_wk
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�}�S�ƕm�����������莝���̃|�P������(�퓬�\�ȃ|�P�������j
- *	no = ��������莝���ԍ�(6:�Ȃ��A0�`5)
+ *	タマゴと瀕死を除いた手持ちのポケモン数(戦闘可能なポケモン数）
+ *	no = 無視する手持ち番号(6:なし、0〜5)
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_POKE_COUNT3	ret_wk,no
-	.short	EV_SEQ_GET_POKE_COUNT3			//�|�P�������擾
+	.short	EV_SEQ_GET_POKE_COUNT3			//ポケモン数取得
 	.short	\ret_wk
 	.short	\no
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���E�p�\�R�����܂߂Đ킦��|�P���������̂��邩�B
+ *	手持ち・パソコンを含めて戦えるポケモンが何体いるか。
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_POKE_COUNT4	ret_wk
-	.short	EV_SEQ_GET_POKE_COUNT4			//�|�P�������擾
+	.short	EV_SEQ_GET_POKE_COUNT4			//ポケモン数取得
 	.short	\ret_wk
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���^�}�S�̐����擾
+ *	手持ちタマゴの数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_TAMAGO_COUNT	ret_wk
@@ -7198,13 +7198,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //=============================================================================
 /**
- *	�n�����X�֘A
+ *	地下お店関連
  */
 //=============================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���̂��X�̃��j���[���J��
+ *	地下のお店のメニューを開く
  */
 //-----------------------------------------------------------------------------
 	.macro	_UG_SHOP_MENU_INIT	type,ret_wk
@@ -7215,7 +7215,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���̉�b�J�n
+ *	地下の会話開始
  */
 //-----------------------------------------------------------------------------
 	.macro	_UG_SHOP_TALK_START	msg
@@ -7225,7 +7225,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���̉�b�I��
+ *	地下の会話終了
  */
 //-----------------------------------------------------------------------------
 	.macro	_UG_SHOP_TALK_END
@@ -7234,7 +7234,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���̃A�C�e�����Z�b�g
+ *	地下のアイテム名セット
  */
 //-----------------------------------------------------------------------------
 	.macro	_UG_SHOP_ITEM_NAME	idx,type
@@ -7245,7 +7245,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���̃g���b�v���Z�b�g
+ *	地下のトラップ名セット
  */
 //-----------------------------------------------------------------------------
 	.macro	_UG_SHOP_TRAP_NAME	idx,type
@@ -7266,7 +7266,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	 �������ꂽ�^�}�S���󂯎��
+ *	 発見されたタマゴを受け取る
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_SODATEYA_EGG
@@ -7326,7 +7326,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��ĂĂ���|�P�����̈�������x�������o�b�t�@�փZ�b�g�A�܂����̒l��Ԃ�
+ *	育てているポケモンの育ったレベル差をバッファへセット、またその値を返す
  */
 //-----------------------------------------------------------------------------
 	.macro	_SODATE_POKE_LEVEL_STR ret_wk,no
@@ -7348,9 +7348,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	������菈��
- *	ret_wk �������|�P����
- *	no �ǂ����������邩
+ *	引き取り処理
+ *	ret_wk 引き取るポケモン
+ *	no どちらを引き取るか
  */
 //-----------------------------------------------------------------------------
 	.macro	_HIKITORI_POKE ret_wk,no
@@ -7361,7 +7361,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�^�}�S���܂�f��
+ *	タマゴ生まれデモ
  */
 //-----------------------------------------------------------------------------
 	.macro	_TAMAGO_DEMO
@@ -7370,10 +7370,10 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���̈ʒu�i���o�[����A�|�P�����ԍ��֕ϊ�
- *	IN:wk_in	�莝���ԍ���n�����[�N
- *	OUT:wk_out	�|�P�����ԍ����󂯎�郏�[�N
- *	    OUT��"0"�̂Ƃ��^�}�S
+ *	手持ちの位置ナンバーから、ポケモン番号へ変換
+ *	IN:wk_in	手持ち番号を渡すワーク
+ *	OUT:wk_out	ポケモン番号を受け取るワーク
+ *	    OUTが"0"のときタマゴ
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_MONSNO	wk_in,wk_out
@@ -7384,9 +7384,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���|�P�����̂���l�l�`�F�b�N
- *	IN:wk_in	�莝���ԍ���n�����[�N
- *	OUT:wk_out	���L�ҏ��(0:�����̃|�P�����A1:���l�̃|�P����)
+ *	手持ちポケモンのご主人様チェック
+ *	IN:wk_in	手持ち番号を渡すワーク
+ *	OUT:wk_out	所有者情報(0:自分のポケモン、1:他人のポケモン)
  */
 //-----------------------------------------------------------------------------
 	.macro	_MONS_OWN_CHK	wk_in,wk_out
@@ -7397,7 +7397,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P���X�Ɋ������Ă��邩�̃`�F�b�N
+ *	ポケルスに感染しているかのチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_TEMOTI_POKERUS	wk
@@ -7407,7 +7407,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���|�P�����̐��ʎ擾
+ *	手持ちポケモンの性別取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_POKE_SEX_GET	pos,ret_wk
@@ -7439,7 +7439,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�L����������Ԃ�
+ *	キャラを可視状態へ
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_VISIBLE obj_id
@@ -7449,7 +7449,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�L������s����Ԃ�
+ *	キャラを不可視状態へ
  */
 //-----------------------------------------------------------------------------
 	.macro	_OBJ_INVISIBLE obj_id
@@ -7459,7 +7459,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[���{�b�N�X
+ *	メールボックス
  */
 //-----------------------------------------------------------------------------
 	.macro	_MAILBOX
@@ -7468,7 +7468,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[���{�b�N�X���̃��[�������擾
+ *	メールボックス内のメール数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_MAILBOX_DATANUM	ret_wk
@@ -7478,7 +7478,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �@�M�l�X�z�[�������L���O��ʌĂяo��	
+ * 　ギネスホールランキング画面呼び出し	
  */
 //-----------------------------------------------------------------------------
 	.macro	_RANKING_VIEW	mode
@@ -7488,7 +7488,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���ԑю擾
+ *	時間帯取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_TIME_ZONE ret_wk
@@ -7498,7 +7498,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����_�����擾
+ *	ランダム数取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_RND ret_wk,num
@@ -7509,8 +7509,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����_�����擾
- *  GET_RAND�̃^�l�𗬗p�����܂܌Ăт����Ƃ� or Vsync�ɕω����������ԗp
+ *	ランダム数取得
+ *  GET_RANDのタネを流用したまま呼びたいとき or Vsyncに変化が無い期間用
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_RND_NEXT ret_wk,num
@@ -7522,7 +7522,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ȃ��x�擾
+ *	なつき度取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_NATSUKI ret_wk,tno
@@ -7533,7 +7533,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ȃ��x�𑝂₷
+ *	なつき度を増やす
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_NATSUKI wk,tno
@@ -7544,7 +7544,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ȃ��x�����炷
+ *	なつき度を減らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_NATSUKI wk,tno
@@ -7555,7 +7555,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Ђ��Ƃ薼�O(+���ʁALV)�Z�b�g
+ *	ひきとり名前(+性別、LV)セット
  */
 //-----------------------------------------------------------------------------
 	.macro	_HIKITORI_LIST_NAME_SET buf_no,buf2_no,buf3_no,list_no
@@ -7568,7 +7568,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@�����Ă⑊���x�������擾
+ *　そだてや相性度合いを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_SODATEYA_AISHOU ret_wk
@@ -7578,7 +7578,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@�^�}�S���Y�܂�Ă��邩�`�F�b�N
+ *　タマゴが産まれているかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_SODATEYA_TAMAGO_CHK ret_wk
@@ -7588,8 +7588,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@�莝���ɓ���̃|�P���������邩���`�F�b�N
- *  �����FTRUE�@���Ȃ��FFALSE
+ *　手持ちに特定のポケモンがいるかをチェック
+ *  いた：TRUE　いない：FALSE
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_POKE_CHK	ret_wk,num
@@ -7600,8 +7600,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@�莝���ɓ���̃|�P���������C���邩���`�F�b�N
- *  �����FTRUE�@���Ȃ��FFALSE
+ *　手持ちに特定のポケモンが何匹いるかをチェック
+ *  いた：TRUE　いない：FALSE
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_POKE_CHK_NUM	ret_wk,num
@@ -7612,8 +7612,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@�莝���ɓ���̃|�P���������邩���`�F�b�N(�ʒu��Ԃ� 0xff=������Ȃ�����)
- *  �����FTRUE�@���Ȃ��FFALSE
+ *　手持ちに特定のポケモンがいるかをチェック(位置を返す 0xff=見つからなかった)
+ *  いた：TRUE　いない：FALSE
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_POKE_CHK_GET_POS	ret_wk,num
@@ -7624,7 +7624,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@�莝���ɔz�z�t���O�������Ă������̃|�P���������邩���`�F�b�N(�ʒu��Ԃ� 0xff=������Ȃ�����)
+ *　手持ちに配布フラグが立っている特定のポケモンがいるかをチェック(位置を返す 0xff=見つからなかった)
  */
 //-----------------------------------------------------------------------------
 	.macro	_EVENT_GET_TEMOTI_POKE_CHK_GET_POS	ret_wk,num
@@ -7635,7 +7635,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@������������ׁF�L�^�Ǝ莝���|�P�����̔�r
+ *　おおきさくらべ：記録と手持ちポケモンの比較
  */
 //-----------------------------------------------------------------------------
 	.macro	_OOKISA_RECORD_CHK	ret_wk,num
@@ -7646,7 +7646,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@������������ׁF�莝���̃|�P�����ŋL�^�X�V
+ *　おおきさくらべ：手持ちのポケモンで記録更新
  */
 //-----------------------------------------------------------------------------
 	.macro	_OOKISA_RECORD_SET	num
@@ -7656,7 +7656,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@������������ׁF�莝���̃|�P�����̑傫���𐔒l�ɂ��ĕ����o�b�t�@�փZ�b�g
+ *　おおきさくらべ：手持ちのポケモンの大きさを数値にして文字バッファへセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_OOKISA_TEMOTI_SET_BUF	buf1,buf2,num
@@ -7668,7 +7668,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@������������ׁF�L�^�|�P�����̑傫���𐔒l�ɂ��ĕ����o�b�t�@�փZ�b�g
+ *　おおきさくらべ：記録ポケモンの大きさを数値にして文字バッファへセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_OOKISA_KIROKU_SET_BUF	buf1,buf2,monsno
@@ -7680,7 +7680,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@������������ׁF�������B���R�[�h���N���A
+ *　おおきさくらべ：初期化。レコードをクリア
  */
 //-----------------------------------------------------------------------------
 	.macro	_OOKISA_KURABE_INIT
@@ -7689,7 +7689,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���U�I����ʌĂяo��
+ *	ワザ選択画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZALIST_SET_PROC	wk
@@ -7699,7 +7699,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���U�I����ʌ��ʎ��o��
+ * ワザ選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZALIST_GET_RESULT	ret_wk
@@ -7709,7 +7709,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����Ă��郏�U�����J�E���g
+ *	持っているワザ数をカウント
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_COUNT				ret_wk,num
@@ -7720,7 +7720,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���U������
+ *	ワザを消す
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_DEL	t_num,w_num
@@ -7731,7 +7731,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���̃��U�ԍ����擾
+ *	手持ちのワザ番号を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_WAZANO		wk,t_num,w_num
@@ -7743,7 +7743,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���̃��U���o�b�t�@��
+ *	手持ちのワザをバッファへ
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_WAZA_NAME		idx,t_num,w_num
@@ -7756,13 +7756,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	�`���m�[�g�֘A
+//	冒険ノート関連
 //
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�`���m�[�g�J�n�f�[�^�Z�b�g
+ *	冒険ノート開始データセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_FNOTE_START_SET
@@ -7771,7 +7771,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�`���m�[�g�f�[�^�쐬
+ *	冒険ノートデータ作成
  */
 //-----------------------------------------------------------------------------
 	.macro	_FNOTE_DATA_MAKE	id,wk1,wk2,wk3,wk4
@@ -7785,7 +7785,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���g�p
+ *	未使用
  */
 //-----------------------------------------------------------------------------
 	.macro	_FNOTE_DATA_SAVE
@@ -7795,13 +7795,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	�C���[�W�N���b�v�A�C�e���֘A
+//	イメージクリップアイテム関連
 //
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�v�F�A�N�Z�T���[�F�A�C�e����������
+ *	イメージクリップ：アクセサリー：アイテムを加える
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMC_ACCE_ADD_ITEM	acce_no,num
@@ -7812,7 +7812,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�v�F�A�N�Z�T���[�F�A�C�e�����������邩�`�F�b�N
+ *	イメージクリップ：アクセサリー：アイテムを加えられるかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMC_ACCE_ADD_ITEM_CHK	acce_no,num,ret_wk
@@ -7824,7 +7824,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�v�F�A�N�Z�T���[�F�o�b�O�̃A�C�e���`�F�b�N
+ *	イメージクリップ：アクセサリー：バッグのアイテムチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMC_ACCE_ITEM_CHK		acce_no,num,ret_wk
@@ -7836,7 +7836,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�v�F�w�i�F�A�C�e����������
+ *	イメージクリップ：背景：アイテムを加える
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMC_BG_ADD_ITEM	bg_no
@@ -7846,7 +7846,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�v�F�w�i�F�o�b�O�̃A�C�e���`�F�b�N
+ *	イメージクリップ：背景：バッグのアイテムチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMC_BG_ITEM_CHK		bg_no,ret_wk
@@ -7857,7 +7857,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�܂��܂������F�Ăяo���}�N��
+ *	まぜまぜ料理：呼び出しマクロ
  */
 //-----------------------------------------------------------------------------
 	.macro	_NUTMIXER_CALL			mode
@@ -7867,7 +7867,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�܂��܂������v���C�\���`�F�b�N�F�Ăяo���}�N��
+ *	まぜまぜ料理プレイ可能かチェック：呼び出しマクロ
  */
 //-----------------------------------------------------------------------------
 	.macro	_NUTMIXER_PLAY_CHECK	retwk
@@ -7877,7 +7877,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V���I�E�}�ӂ��������Ă��邩�`�F�b�N
+ *	シンオウ図鑑が完成しているかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZUKAN_CHK_SHINOU		ret_wk
@@ -7887,7 +7887,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S���}�ӂ��������Ă��邩�`�F�b�N
+ *	全国図鑑が完成しているかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZUKAN_CHK_NATIONAL		ret_wk
@@ -7897,7 +7897,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V���I�E�}�ӕ\��
+ *	シンオウ図鑑表彰
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZUKAN_RECONGNIZE_SHINOU
@@ -7906,7 +7906,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S���}�ӕ\��
+ *	全国図鑑表彰
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZUKAN_RECONGNIZE_NATIONAL
@@ -7915,7 +7915,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�E�����}�G���J�E���g�Z�b�g
+ *	ウラヤマエンカウントセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_URAYAMA_ENCOUNT_SET
@@ -7924,7 +7924,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�E�����}�G���J�E���g�`�F�b�N�i���݂̊Y������|�P�����ԍ��擾�j
+ *	ウラヤマエンカウントチェック（現在の該当するポケモン番号取得）
  */
 //-----------------------------------------------------------------------------
 	.macro	_URAYAMA_ENCOUNT_NO_CHK				ret_wk
@@ -7936,7 +7936,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���[���������Ă��邩�`�F�b�N
+ *	メールを持っているかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKE_MAIL_CHK		ret_wk,tno
@@ -7947,7 +7947,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���Ƃ��ꏊ�����߂�
+ *	落とす場所を決める
  */
 //-----------------------------------------------------------------------------
 	.macro	_PAPERPLANE_SET			ret_wk
@@ -7957,7 +7957,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����Ă��郁�[�����폜
+ *	持っているメールを削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKE_MAIL_DEL			tno
@@ -7967,7 +7967,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���΂������邩�̃`�F�b�N
+ *	化石が何個あるかのチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_KASEKI_COUNT			ret_wk
@@ -7977,7 +7977,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�C�e���I��
+ *	アイテム選択
  */
 //-----------------------------------------------------------------------------
 	.macro	_ITEMLIST_SET_PROC
@@ -7986,7 +7986,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�I�������A�C�e���ԍ��擾
+ *	選択したアイテム番号取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_ITEMLIST_GET_RESULT		ret_wk
@@ -7996,7 +7996,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�A�C�e���i���΁j�ԍ����A�����X�^�[�ԍ��֕ϊ�(0:���΂ł͂Ȃ��Ƃ��͂O�j
+ *	アイテム（化石）番号を、モンスター番号へ変換(0:化石ではないときは０）
  */
 //-----------------------------------------------------------------------------
 	.macro	_ITEMNO_TO_MONSNO		ret_wk,itemno
@@ -8007,7 +8007,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝����xxx�Ԗڂ̉��΂������ăA�C�e���ԍ��ɂ��ĕԂ�(0:�ŏ���1��)
+ *	手持ちのxxx番目の化石を見つけてアイテム番号にして返す(0:最初の1個)
  */
 //-----------------------------------------------------------------------------
 	.macro	_KASEKI_ITEMNO		ret_wk,ret_wk_mes,no
@@ -8022,7 +8022,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�������x���`�F�b�N
+ *	ポケモンレベルチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKE_LEVEL_CHK		ret_wk,level
@@ -8034,11 +8034,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 
 //======================================
-//��������o�g���^���[�֘A
+//ここからバトルタワー関連
 //======================================
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[�A�v���Ăяo��
+ *	バトルタワーアプリ呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_APP_CALL	main,sub
@@ -8049,7 +8049,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[���[�N������
+ *	バトルタワーワーク初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_WORK_CLEAR
@@ -8058,7 +8058,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[���[�N�m�ہ�������
+ *	バトルタワーワーク確保＆初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_WORK_INIT		init,mode
@@ -8069,7 +8069,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[���[�N���
+ *	バトルタワーワーク解放
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_WORK_RELEASE
@@ -8078,7 +8078,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[ �R�}���h�c�[���Ăяo��
+ *	バトルタワー コマンドツール呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_TOOLS	cmd,param,ret_wk
@@ -8091,11 +8091,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[ 5�l�O�̃|�P�����f�[�^�擾
+ *	バトルタワー 5人衆のポケモンデータ取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_SEVEN_POKE_GET	id,idx,ret_poke,ret_waza
-	.short	EV_SEQ_BATTLE_TOWER_GET_SEVEN_POKE	//5�l�O�̃|�P�����f�[�^�Q�b�g
+	.short	EV_SEQ_BATTLE_TOWER_GET_SEVEN_POKE	//5人衆のポケモンデータゲット
 	.short	\id
 	.short	\idx
 	.short	\ret_poke
@@ -8104,16 +8104,16 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[ �v���C�Y���擾
+ *	バトルタワー プライズを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_PRIZE_GET	ret_wk
-	.short	EV_SEQ_BATTLE_TOWER_IS_PRIZE_GET	//�o�g���^���[�@�v���C�Y�擾
+	.short	EV_SEQ_BATTLE_TOWER_IS_PRIZE_GET	//バトルタワー　プライズ取得
 	.short	\ret_wk
 	.endm
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[ �v���C�Y�������l�����Z�b�g
+ *	バトルタワー プライズをくれる人物をセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_PRIZEMAN_SET	ret_wk
@@ -8122,7 +8122,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[ �ėp�f�[�^���M
+ *	バトルタワー 汎用データ送信
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_SEND_BUF	mode,param,ret_wk
@@ -8133,7 +8133,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[ �ėp�f�[�^��M
+ *	バトルタワー 汎用データ受信
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_RECV_BUF	mode,ret_wk
@@ -8144,7 +8144,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[ ���[�_�[�f�[�^RoomID�擾
+ *	バトルタワー リーダーデータRoomID取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_GET_LEADER_ROOMID	ret_rank,ret_no
@@ -8155,20 +8155,20 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���^���[ ���[�_�[�f�[�^�����݂��邩�ǂ����H
+ *	バトルタワー リーダーデータが存在するかどうか？
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTOWER_IS_LEADER_EXIST	ret_wk
-	.short	EV_SEQ_BATTLE_TOWER_IS_READER_DATA_EXIST	//�o�g���^���[�@���[�_�[�f�[�^�̗L��
+	.short	EV_SEQ_BATTLE_TOWER_IS_READER_DATA_EXIST	//バトルタワー　リーダーデータの有無
 	.short	\ret_wk
 	.endm
 
 //-----------------------------------------------------------------------------
-//���R�[�h�֘A
+//レコード関連
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *	���R�[�h�C���N�������g
+ *	レコードインクリメント
  */
 //-----------------------------------------------------------------------------
 //	.macro	_RECORD_INC	cmd,recid
@@ -8178,11 +8178,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 //-----------------------------------------------------------------------------
 /**
- *	���R�[�h�Q�b�g
+ *	レコードゲット
  *
  *	recid:RECID_XXXXX
- *	h_wk:��ʃo�C�g�擾���[�N
- *	l_wk:���ʃo�C�g�擾���[�N
+ *	h_wk:上位バイト取得ワーク
+ *	l_wk:下位バイト取得ワーク
  */
 //-----------------------------------------------------------------------------
 	.macro	_RECORD_GET	cmd,recid,h_wk,l_wk
@@ -8194,11 +8194,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���R�[�hAdd
+ *	レコードAdd
  *
  *	recid:RECID_XXXXX
- *	h_val:��ʃo�C�g
- *	l_val:���ʃo�C�g
+ *	h_val:上位バイト
+ *	l_val:下位バイト
  */
 //-----------------------------------------------------------------------------
 	.macro	_RECORD_ADD	cmd,recid,h_val,l_val
@@ -8210,11 +8210,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 //-----------------------------------------------------------------------------
 /**
- *	���R�[�hSet
+ *	レコードSet
  *
  *	recid:RECID_XXXXX
- *	h_val:��ʃo�C�g
- *	l_val:���ʃo�C�g
+ *	h_val:上位バイト
+ *	l_val:下位バイト
  */
 //-----------------------------------------------------------------------------
 	.macro	_RECORD_SET	cmd,recid,h_val,l_val
@@ -8226,11 +8226,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 //-----------------------------------------------------------------------------
 /**
- *	���R�[�hSetIfLarge
+ *	レコードSetIfLarge
  *
  *	recid:RECID_XXXXX
- *	h_val:��ʃo�C�g
- *	l_val:���ʃo�C�g
+ *	h_val:上位バイト
+ *	l_val:下位バイト
  */
 //-----------------------------------------------------------------------------
 	.macro	_RECORD_SETIFLARGE	cmd,recid,h_val,l_val
@@ -8243,7 +8243,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���R�[�hAdd ex		���[�N�w�肠��
+ *	レコードAdd ex		ワーク指定あり
  *
  *	recid:RECID_XXXXX
  */
@@ -8256,7 +8256,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���R�[�hAdd ex		���[�N�w��Ȃ�(u32)
+ *	レコードAdd ex		ワーク指定なし(u32)
  *
  *	recid:RECID_XXXXX
  */
@@ -8269,12 +8269,12 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//		�T�t�@���֘A
+//		サファリ関連
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- *	�T�t�@���J�n	
+ *	サファリ開始	
  */
 //-----------------------------------------------------------------------------
 	.macro	_SAFARI_START
@@ -8284,7 +8284,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�t�@���I��
+ *	サファリ終了
  */
 //-----------------------------------------------------------------------------
 	.macro	_SAFARI_END
@@ -8294,7 +8294,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�t�@���]����
+ *	サファリ望遠鏡
  */
 //-----------------------------------------------------------------------------
 	.macro	_CALL_SAFARI_SCOPE
@@ -8304,7 +8304,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//		�e���K���U���R���f��
+//		テンガンザン山頂デモ
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
@@ -8317,7 +8317,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�t�@���d�ԏ�����
+ *	サファリ電車初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_SAFARI_TRAIN
@@ -8326,7 +8326,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�t�@���d�Ԉړ�
+ *	サファリ電車移動
  */
 //-----------------------------------------------------------------------------
 	.macro	_MOVE_SAFARI_TRAIN	pos, type
@@ -8337,7 +8337,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�T�t�@���d�Ԉʒu�`�F�b�N
+ *	サファリ電車位置チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHECK_SAFARI_TRAIN	pos, ret_wk
@@ -8348,7 +8348,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���@�����擾�L���L��
+ *	自機高さ取得有効有無
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_HEGIHT_VALID valid
@@ -8358,7 +8358,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����̐��i���Q�b�g
+ *	ポケモンの性格をゲット
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_POKE_SEIKAKU ret_wk,tno
@@ -8369,7 +8369,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	����̐��i�̃|�P���������邩���`�F�b�N
+ *	特定の性格のポケモンがいるかをチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_POKE_SEIKAKU_ALL ret_wk,seikaku_no
@@ -8380,7 +8380,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���ŉ�b�����l���̗݌v(�~�J�Q��p�Łj
+ *	地下で会話した人数の累計(ミカゲ専用版）
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNDERGROUND_TALK_COUNT	ret_wk
@@ -8390,7 +8390,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���R���������J�E���g�N���A
+ *	自然公園歩数カウントクリア
  */
 //-----------------------------------------------------------------------------
 	.macro	_NATURAL_PARK_WALK_COUNT_CLEAR
@@ -8399,7 +8399,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���R���������`�F�b�N
+ *	自然公園歩数チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_NATURAL_PARK_WALK_COUNT_GET	ret_wk
@@ -8409,7 +8409,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���R�����ŖႦ��A�N�Z�T���[�ԍ��擾
+ *	自然公園で貰えるアクセサリー番号取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_NATURAL_PARK_ACCESSORY_NO_GET		ret_wk,mon_wk
@@ -8420,7 +8420,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V���ЁF��Ă���|�P�����ԍ��擾
+ *	新聞社：つれてくるポケモン番号取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_NEWS_POKE_NO				ret_wk
@@ -8430,7 +8430,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V���ЁF���ߐ؂�܂ł̎c������Z�b�g
+ *	新聞社：締め切りまでの残り日数セット
  */
 //-----------------------------------------------------------------------------
 	.macro	_NEWS_COUNT_SET		no
@@ -8440,7 +8440,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V���ЁF���ߐ؂�܂ł̎c������`�F�b�N
+ *	新聞社：締め切りまでの残り日数チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_NEWS_COUNT_CHK				ret_wk
@@ -8450,7 +8450,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��ʔ����J�n
+ *	大量発生開始
  */
 //-----------------------------------------------------------------------------
 	.macro	_START_GENERATE
@@ -8459,7 +8459,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ړ��|�P�����o�^
+ *	移動ポケモン登録
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_MOVE_POKE		poke
@@ -8469,7 +8469,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����ɋ�������킴�����擾	���d�l�ύX�ɂ�薢����
+ *	ポケモンに教えられるわざ個数を取得	※仕様変更により未完成
  */
 //-----------------------------------------------------------------------------
 	.macro	_OSHIE_WAZA_COUNT		ret_wk,tno
@@ -8480,7 +8480,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�������v���o����킴�����擾
+ *	ポケモンが思い出せるわざ個数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_REMAIND_WAZA_COUNT		ret_wk,tno
@@ -8491,7 +8491,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�킴�����I����ʌĂяo��	���d�l�ύX�ɂ�薢����
+ *	わざ教え選択画面呼び出し	※仕様変更により未完成
  */
 //-----------------------------------------------------------------------------
 	.macro	_OSHIE_WAZALIST_SET_PROC	wk
@@ -8501,7 +8501,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�킴�v���o���I����ʌĂяo��
+ *	わざ思い出し選択画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_REMAIND_WAZALIST_SET_PROC	wk
@@ -8511,7 +8511,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�킴�����I����ʌ��ʎ��o�����d�l�ύX�ɂ�薢����
+ *	わざ教え選択画面結果取り出し※仕様変更により未完成
  */
 //-----------------------------------------------------------------------------
 	.macro	_OSHIE_WAZALIST_GET_RESULT	ret_wk
@@ -8521,7 +8521,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�킴�v���o���I����ʌ��ʎ��o��
+ *	わざ思い出し選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_REMAIND_WAZALIST_GET_RESULT	ret_wk
@@ -8532,7 +8532,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	1�݂̂̂킴�����I����ʌĂяo��
+ *	1個のみのわざ教え選択画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_NORMAL_WAZALIST_SET_PROC	wk,waza
@@ -8543,7 +8543,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	1�݂̂̂킴�����I����ʌ��ʎ��o��
+ *	1個のみのわざ教え選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_NORMAL_WAZALIST_GET_RESULT	ret_wk
@@ -8553,7 +8553,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����f�[�^�쐬
+ *	交換データ作成
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLD_TRADE_ALLOC	tradeno
@@ -8563,7 +8563,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����|�P�����i���o�[�擾
+ *	くれるポケモンナンバー取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLD_TRADE_MONSNO	ret_wk
@@ -8573,7 +8573,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�킽���|�P�����i���o�[�擾
+ *	わたすポケモンナンバー取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLD_TRADE_CHG_MONSNO	ret_wk
@@ -8583,7 +8583,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����f�[�^�C�x���g
+ *	交換データイベント
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLD_TRADE_EVENT	pos
@@ -8593,7 +8593,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����f�[�^�폜
+ *	交換データ削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLD_TRADE_DEL
@@ -8602,7 +8602,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�}�Ӄe�L�X�gVerUp
+ *	図鑑テキストVerUp
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZUKAN_TEXT_VER_UP
@@ -8611,7 +8611,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�}�Ӑ���VerUp
+ *	図鑑性別VerUp
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZUKAN_SEX_VER_UP
@@ -8620,7 +8620,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S���}�Ӄt���O����
+ *	全国図鑑フラグ操作
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZENKOKU_ZUKAN_FLAG	mode,ret_wk
@@ -8631,7 +8631,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���{���v�̎擾���i�P�|�P�����j
+ *	「リボン」の取得数（１ポケモン）
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_RIBBON_COUNT		ret_wk,tno
@@ -8642,7 +8642,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���{���v�̎擾���i�S�莝���|�P�������v�̎�ށj
+ *	「リボン」の取得数（全手持ちポケモン合計の種類）
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_RIBBON_COUNT_ALL		ret_wk
@@ -8652,7 +8652,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���{���v�������Ă��邩
+ *	「リボン」をもっているか
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_RIBBON		ret_wk,tno,rno
@@ -8664,7 +8664,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���{���v���Z�b�g
+ *	「リボン」をセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SET_RIBBON		tno,rno
@@ -8675,7 +8675,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�u���{���v�����o�b�t�@�փZ�b�g
+ *	「リボン」名をバッファへセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_RIBBON_NAME		idx,rno
@@ -8686,7 +8686,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�w�͒l���擾
+ *	努力値を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_PRMEXP	ret_wk,tno
@@ -8697,7 +8697,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�j���`�F�b�N
+ *	曜日チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CHK_WEEK	ret_wk
@@ -8707,7 +8707,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g�s�b�N�����F�B���A�C�e�������I
+ *	トピック生成：隠しアイテム発見！
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_ENTRY_WATCH_HIDE_ITEM	item_no
@@ -8717,7 +8717,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g�s�b�N�����F�������f
+ *	トピック生成：姓名判断
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_ENTRY_WATCH_CHANGE_NAME	mons_pos
@@ -8727,7 +8727,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g�s�b�N�����F�I�X�����I���X�����I
+ *	トピック生成：オスだけ！メスだけ！
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_ENTRY_WATCH_OSU_MESU
@@ -8736,7 +8736,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g�s�b�N�����F�ʑ��w��
+ *	トピック生成：別荘購入
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_ENTRY_WATCH_VILLA
@@ -8745,7 +8745,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�g�s�b�N�����F�ʑ����z
+ *	トピック生成：別荘改築
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_ENTRY_WATCH_RECONSTRUCTION	fum
@@ -8755,7 +8755,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�����e�B�A�Œ��ǂ��C���^�r���A�[��SXY���擾
+ *	フロンティアで仲良しインタビュアーのSXY情報取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_FR_FRIEND_SXY_GET	wk1,wk2,wk3,wk4
@@ -8768,7 +8768,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���M�����[�V�������[���u�b�N
+ *	レギュレーションルールブック
  */
 //-----------------------------------------------------------------------------
 	.macro	_REGULATION_LIST_CALL	ret_wk
@@ -8778,7 +8778,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���Ճ`�F�b�N
+ *	足跡チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_ASHIATO_CHK	ret_wk,ret2_wk,tno
@@ -8790,7 +8790,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�Z���񕜃}�V���A�j��
+ *	ポケセン回復マシンアニメ
  */
 //-----------------------------------------------------------------------------
 	.macro	_PC_RECOVER_ANM	ball_num
@@ -8800,7 +8800,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	
 //-----------------------------------------------------------------------------
 /**
- *	�G���x�[�^�[�A�j��
+ *	エレベーターアニメ
  */
 //-----------------------------------------------------------------------------
 	.macro	_ELEVATOR_ANM	dir, loop
@@ -8811,7 +8811,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�D�f���R�[��
+ *	船デモコール
  */
 //-----------------------------------------------------------------------------
 	.macro	_CALL_SHIP_DEMO	ship_dir, play_dir, zone, x, z
@@ -8826,7 +8826,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�O��p���߁@���[�N�̒��g
+ *	デバッグ専用命令　ワークの中身
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_PRINT_WORK	wk
@@ -8836,7 +8836,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�O��p���߁@�t���O�̒l��\��
+ *	デバッグ専用命令　フラグの値を表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_PRINT_FLAG	num
@@ -8846,9 +8846,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�O��p����(�풓�̈�ŁB���ł��g�pOK�j�@���[�N�̒��g
+ *	デバッグ専用命令(常駐領域版。いつでも使用OK）　ワークの中身
  *
- *	���������擾���Ă��Ȃ��̂Ő��i�ł��ƃR�}���h������܂�(DP�̍�����)
+ *	★引数を取得していないので製品版だとコマンドがずれます(DPの頃から)
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_PRINT_WORK_STATIONED	wk
@@ -8858,9 +8858,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�f�o�b�O��p����(�풓�̈�ŁB���ł��g�pOK�j�@�t���O�̒��g
+ *	デバッグ専用命令(常駐領域版。いつでも使用OK）　フラグの中身
  *
- *	���������擾���Ă��Ȃ��̂Ő��i�ł��ƃR�}���h������܂�(DP�̍�����)
+ *	★引数を取得していないので製品版だとコマンドがずれます(DPの頃から)
  */
 //-----------------------------------------------------------------------------
 	.macro	_DEBUG_PRINT_FLAG_STATIONED	num
@@ -8870,7 +8870,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�[�W�����擾
+ *	バージョン取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_PM_VERSION_GET	ret_wk
@@ -8880,7 +8880,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�擪�̃|�P������Ԃ��i�^�}�S�𔲂������j
+ *	先頭のポケモンを返す（タマゴを抜かした）
  */
 //-----------------------------------------------------------------------------
 	.macro	_FRONT_POKEMON	ret_wk
@@ -8890,7 +8890,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���̃|�P�����^�C�v�擾
+ *	手持ちのポケモンタイプ取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_POKE_TYPE	ret_wk1,ret_wk2,tno
@@ -8902,7 +8902,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�������Ƃ΂ɊY������ǎ���L����
+ *	あいことばに該当する壁紙を有効に
  */
 //-----------------------------------------------------------------------------
 	.macro	_AIKOTOBA_KABEGAMI_SET		ret_wk,wk1,wk2,wk3,wk4
@@ -8916,7 +8916,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���Ŏ擾�����n�^�̑����擾
+ *	地下で取得したハタの総数取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_UG_HATA_NUM		ret_wk
@@ -8927,7 +8927,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�p�\�R���A�j���Z�b�g�A�b�v
+ *	パソコンアニメセットアップ
  */
 //-----------------------------------------------------------------------------
 	.macro	_SETUP_PASO_ANM		id
@@ -8937,7 +8937,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	
 //-----------------------------------------------------------------------------
 /**
- *	�p�\�R������A�j��
+ *	パソコンつけるアニメ
  */
 //-----------------------------------------------------------------------------
 	.macro	_START_PASO_ON_ANM	id
@@ -8947,7 +8947,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�p�\�R�������A�j��
+ *	パソコン消すアニメ
  */
 //-----------------------------------------------------------------------------
 	.macro	_START_PASO_OFF_ANM id
@@ -8957,7 +8957,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	����������ԍ��Q�b�g
+ *	くじあたり番号ゲット
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_KUJI_ATARI_NUM	ret_wk
@@ -8967,7 +8967,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	����������`�F�b�N
+ *	くじあたりチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_KUJI_ATARI_CHK	ret_wk1,ret_wk2,ret_wk3,num
@@ -8980,7 +8980,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	����������ԍ�������
+ *	くじあたり番号初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_KUJI_ATARI_INIT
@@ -8989,7 +8989,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	PC��̃|�P�����̃j�b�N�l�[��
+ *	PC上のポケモンのニックネーム
  */
 //-----------------------------------------------------------------------------
 	.macro	_NICK_NAME_PC	idx,pos
@@ -9002,7 +9002,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * �C���^�r���A�[�̏o���`�F�b�N
+ * インタビュアーの出現チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_INTERVIEWER_CHECK	id, ret_wk
@@ -9014,12 +9014,12 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 //============================================================================================
 //
 //
-//			�|�P�p�[�N�֘A
+//			ポケパーク関連
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
-///		�{�b�N�X�̋󂫂𐔂���
+///		ボックスの空きを数える
 //-----------------------------------------------------------------------------
 	.macro	_COUNT_MONSBOX_SPACE	ret_wk
 	.short	EV_SEQ_COUNT_POKEBOX_SPACE
@@ -9027,7 +9027,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //-----------------------------------------------------------------------------
-///		�|�P�p�[�N�Q�[������
+///		ポケパークゲーム制御
 //-----------------------------------------------------------------------------
 	.macro	_POKEPARK_CONTROL	id
 	.short	EV_SEQ_POKEPARK_CONTROL
@@ -9035,7 +9035,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //-----------------------------------------------------------------------------
-///		�|�P�p�[�N�ɗa���Ă���|�P�����̐��𐔂���
+///		ポケパークに預けているポケモンの数を数える
 //-----------------------------------------------------------------------------
 	.macro	_POKEPARK_DEPOSIT_COUNT	ret_wk
 	.short EV_SEQ_COUNT_POKEPARK_BOX
@@ -9043,14 +9043,14 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //-----------------------------------------------------------------------------
-///		�|�P�p�[�N�ɗa�����|�P�������{�b�N�X�ɓ]��
+///		ポケパークに預けたポケモンをボックスに転送
 //-----------------------------------------------------------------------------
 	.macro	_POKEPARK_TRANS_MONS
 	.short	EV_SEQ_TRANS_POKEPARK_MONS
 	.endm
 
 //-----------------------------------------------------------------------------
-///		�|�P�p�[�N�Q�[���̌��ʃX�R�A�擾
+///		ポケパークゲームの結果スコア取得
 //-----------------------------------------------------------------------------
 	.macro	_POKEPARK_GET_SCORE		type, ret_wk
 	.short	EV_SEQ_GET_POKEPARK_SCORE
@@ -9059,7 +9059,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //-----------------------------------------------------------------------------
-///		�a���}�V����{�[���A�j��
+///		殿堂マシン上ボールアニメ
 //-----------------------------------------------------------------------------
 	.macro	_DENDOU_BALL_ANM	ball_num
 	.short	EV_SEQ_DENDOU_BALL_ANM
@@ -9067,21 +9067,21 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 	
 //-----------------------------------------------------------------------------
-///		�t�B�[���h���t�g������
+///		フィールドリフト初期化
 //-----------------------------------------------------------------------------
 	.macro	_INIT_FLD_LIFT
 	.short	EV_SEQ_INIT_FLD_LIFT
 	.endm
 
 //-----------------------------------------------------------------------------
-///		�t�B�[���h���t�g�ړ�
+///		フィールドリフト移動
 //-----------------------------------------------------------------------------
 	.macro	_MOVE_FLD_LIFT
 	.short	EV_SEQ_MOVE_FLD_LIFT
 	.endm
 
 //-----------------------------------------------------------------------------
-///		�t�B�[���h���t�g�`�F�b�N
+///		フィールドリフトチェック
 //-----------------------------------------------------------------------------
 	.macro	_CHECK_FLD_LIFT		ret_wk
 	.short	EV_SEQ_CHECK_FLD_LIFT
@@ -9089,21 +9089,21 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //-----------------------------------------------------------------------------
-///		���C�A�C�n�C�@�V�����_�[�A�j���Z�b�g�A�b�v
+///		レイアイハイ　シリンダーアニメセットアップ
 //-----------------------------------------------------------------------------
 	.macro	_SETUP_RAH_CYL
 	.short	EV_SEQ_SETUP_RAH_CYL
 	.endm
 
 //-----------------------------------------------------------------------------
-///		���C�A�C�n�C�@�V�����_�[�A�j���X�^�[�g
+///		レイアイハイ　シリンダーアニメスタート
 //-----------------------------------------------------------------------------
 	.macro	_START_RAH_CYL
 	.short	EV_SEQ_START_RAH_CYL
 	.endm
 
 //-----------------------------------------------------------------------------
-///		�X�R�A���Z
+///		スコア加算
 //-----------------------------------------------------------------------------
 	.macro	_ADD_SCORE	score_id
 	.short	EV_SEQ_ADD_SCORE
@@ -9111,7 +9111,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 //-----------------------------------------------------------------------------
 /**
- *	�u�A�N�Z�T���[�v�����o�b�t�@�փZ�b�g
+ *	「アクセサリー」名をバッファへセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_ACCE_NAME		idx,acceno
@@ -9122,7 +9122,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 
 //-----------------------------------------------------------------------------
-///		�p�[�e�B���Ɏw�肵���|�P���������邩�`�F�b�N
+///		パーティ内に指定したポケモンがいるかチェック
 //-----------------------------------------------------------------------------
 	.macro	_PARTY_MONSNO_CHECK	monsno, ret_wk
 	.short	EV_SEQ_PARTY_MONSNO_CHECK
@@ -9131,7 +9131,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //-----------------------------------------------------------------------------
-///		�p�[�e�B���̃f�I�L�V�X�̃t�H������ύX
+///		パーティ内のデオキシスのフォルムを変更
 //-----------------------------------------------------------------------------
 	.macro	_PARTY_DEOKISISUFORM_CHANGE	form
 	.short	EV_SEQ_PARTY_DEOKISISUFORM_CHANGE
@@ -9139,7 +9139,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //-----------------------------------------------------------------------------
-///		�p�[�e�B���Ƀ~�c�n�j�[�̃I�X���X����������`�F�b�N
+///		パーティ内にミツハニーのオスメスそろったかチェック
 //-----------------------------------------------------------------------------
 	.macro	_CHECK_MITUHANII_COMP	ret_wk
 	.short	EV_SEQ_CHECK_MITUHANII_COMP
@@ -9148,7 +9148,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�b�`���t�b�N����
+ *	ポケッチをフックする
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKETCH_HOOK_SET
@@ -9157,7 +9157,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�b�`�̃t�b�N����������
+ *	ポケッチのフックを解除する
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKETCH_HOOK_RESET
@@ -9167,7 +9167,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �X���b�g�}�V�[��
+ * スロットマシーン
  */
 //-----------------------------------------------------------------------------
 	.macro	_SLOT_MACHINE	id
@@ -9177,7 +9177,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * ���݂̎����i����:0-23)
+ * 現在の時刻（時間:0-23)
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_NOW_HOUR	ret_wk
@@ -9187,11 +9187,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �t�B�[���hOBJ��h�炷�A�j���[�V����
+ * フィールドOBJを揺らすアニメーション
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLDOBJ_SHAKE_ANM	objid,count,spd,ofsx,ofsz
-	.short	EV_SEQ_FLDOBJ_SHAKE_ANM		//�t�B�[���hOBJ��h�炷�A�j��
+	.short	EV_SEQ_FLDOBJ_SHAKE_ANM		//フィールドOBJを揺らすアニメ
 	.short	\objid
 	.short	\count
 	.short	\spd
@@ -9201,11 +9201,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �t�B�[���hOBJ��blink������A�j��
+ * フィールドOBJをblinkさせるアニメ
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLDOBJ_BLINK_ANM	objid,count,time
-	.short	EV_SEQ_FLDOBJ_BLINK_ANM		//�t�B�[���hOBJ��blink�A�j��
+	.short	EV_SEQ_FLDOBJ_BLINK_ANM		//フィールドOBJをblinkアニメ
 	.short	\objid
 	.short	\count
 	.short	\time
@@ -9213,19 +9213,19 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * d20r0106 ���W�L���O��������`�F�b�N
+ * d20r0106 レジキング解放条件チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_D20R0106_LEGEND_IS_UNSEAL	ret_val
-	.short	EV_SEQ_D20R0106_LEGEND_IS_UNSEAL	//���W�L���O����`�F�b�N
+	.short	EV_SEQ_D20R0106_LEGEND_IS_UNSEAL	//レジキング解放チェック
 	.short	\ret_val
 	.endm
 
 
 //-----------------------------------------------------------------------------
 /**
- * ���������o����F�����_���ŃC���[�W�N���b�v�̃A�N�Z�T���[�擾
- *  ret_wk = �擾�����A�N�Z�T���[�̔ԍ��A�@0xffff���擾�o���Ȃ�����
+ * お洒落お姉さん：ランダムでイメージクリップのアクセサリー取得
+ *  ret_wk = 取得したアクセサリーの番号、　0xffff＝取得出来なかった
  */
 //-----------------------------------------------------------------------------
 	.macro	_DRESSING_IMC_ACCE_CHECK	ret_wk
@@ -9235,7 +9235,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �A���m�[�������Ń��b�Z�[�W�\��
+ * アンノーン文字でメッセージ表示
  */
 //-----------------------------------------------------------------------------
 	.macro		_UNKNOWN_MSG	msg_id
@@ -9247,7 +9247,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�������Ă���AGB�J�[�g���b�W�o�[�W�����擾
+ *	ささっているAGBカートリッジバージョン取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_AGB_CARTRIDGE_VER_GET	ret_val
@@ -9257,7 +9257,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���ŉ�b�����l���̗݌v���N���A
+ *	地下で会話した人数の累計をクリア
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNDERGROUND_TALK_COUNT_CLEAR
@@ -9266,37 +9266,37 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�B���}�b�v�X�e�[�^�X�`�F���W
+ *	隠しマップステータスチェンジ
  */
 //-----------------------------------------------------------------------------
 	.macro	_HIDEMAP_STATE_CHG	hidemap_id,flag
-	.short	EV_SEQ_HIDEMAP_STATE_CHANGE		//�B���}�b�v�X�e�[�^�X�`�F���W
+	.short	EV_SEQ_HIDEMAP_STATE_CHANGE		//隠しマップステータスチェンジ
 	.short	\hidemap_id
 	.byte	\flag
 	.endm
 //-----------------------------------------------------------------------------
 /**
- *	r224�Δ薼���͌Ăяo��
+ *	r224石碑名入力呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_NAMEIN_MONUMENT	ret_wk
-	.short	EV_SEQ_NAMEIN_MONUMENT			//r224�Δ薼����
+	.short	EV_SEQ_NAMEIN_MONUMENT			//r224石碑名入力
 	.short	\ret_wk
 	.endm
 	
 //-----------------------------------------------------------------------------
 /**
- *	r224�Δ薼�^�O�W�J
+ *	r224石碑名タグ展開
  */
 //-----------------------------------------------------------------------------
 	.macro	_MONUMENT_NAME	idx
-	.short	EV_SEQ_MONUMENT_NAME			//r224�Δ薼�^�O�W�J
+	.short	EV_SEQ_MONUMENT_NAME			//r224石碑名タグ展開
 	.byte	\idx
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�v�u�w�i�v�����o�b�t�@�փZ�b�g
+ *	イメージクリップ「背景」名をバッファへセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMC_BG_NAME		idx,bgno
@@ -9307,7 +9307,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C���𒲂ׂ�i�����������Ă��邩��Ԃ��j
+ *	コインを調べる（引数分持っているかを返す）
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMP_COIN ret_wk,val
@@ -9318,8 +9318,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �X���b�g�Ń����`�������Ă��邩
- * TRUE=10��ȏ� FALSE=10��艺
+ * スロットでレンチャンしているか
+ * TRUE=10回以上 FALSE=10より下
  */
 //-----------------------------------------------------------------------------
 	.macro	_SLOT_RENTYAN_CHK ret_wk
@@ -9329,8 +9329,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C���𑝂₹�邩�ǂ������`�F�b�N
- *	TRUE�@���₹�� / FALSE ���₹�Ȃ�
+ *	コインを増やせるかどうかをチェック
+ *	TRUE　増やせる / FALSE 増やせない
  */
 //-----------------------------------------------------------------------------
 	.macro	_ADD_COIN_CHK ret_wk,val
@@ -9341,7 +9341,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �����ƃ��x������v������A�C�e����������̃i���o�[
+ * 数字とレベルが一致したらアイテムをくれる爺のナンバー
  * 
  */
 //-----------------------------------------------------------------------------
@@ -9352,7 +9352,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���|�P�������x���Q�b�g
+ *	手持ちポケモンレベルゲット
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKE_LEVEL_GET		ret_wk,tno
@@ -9363,7 +9363,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�v�F�A�N�Z�T���[�F�A�C�e�������炷
+ *	イメージクリップ：アクセサリー：アイテムを減らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMC_ACCE_SUB_ITEM	acce_no,num
@@ -9375,7 +9375,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�i�M�T�V�e�B�@�V���x�m����@�J�����ݒ�
+ *	ナギサシティ　シルベノ灯台　カメラ設定
  */
 //-----------------------------------------------------------------------------
 	.macro	_C08R0801SCOPECAMERASET
@@ -9384,7 +9384,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���x���W�W�C������
+ *	レベルジジイ初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_LEVEL_JIJII_INIT
@@ -9393,7 +9393,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	������Ƃ΂������_���łЂƂo��������
+ *	難解ことばをランダムでひとつ覚えさせる
  */
 //-----------------------------------------------------------------------------
 	.macro	_NEW_NANKAI_WORD_SET	ret_wk,buf_id
@@ -9404,7 +9404,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��A�`�F�b�N
+ *	常連チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_REGULAR_CHECK		ret_wk
@@ -9414,7 +9414,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	������Ƃ΂�S�Ċo���Ă��邩�`�F�b�N
+ *	難解ことばを全て覚えているかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_NEW_NANKAI_WORD_COMPLETE_CHECK	ret_wk
@@ -9424,7 +9424,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���|�P�����̃R���e�X�g�X�e�[�^�X�擾(�������悳�A���킢����)
+ *	手持ちポケモンのコンテストステータス取得(かっこよさ、かわいさ等)
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_POKE_CONTEST_STATUS_GET	pos,con_type,ret_wk
@@ -9436,18 +9436,18 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	d17�߂炸�̓��A�@�}�b�v���I
+ *	d17戻らずの洞窟　マップ抽選
  */
 //-----------------------------------------------------------------------------
 	.macro	_D17SYSTEM_MAP_SELECT	point,total
-	.short	EV_SEQ_D17SYSTEM_MAP_SELECT		//D17�߂炸�̓��A�@�}�b�v���I
+	.short	EV_SEQ_D17SYSTEM_MAP_SELECT		//D17戻らずの洞窟　マップ抽選
 	.short	\point
 	.short	\total
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���œ�����������l���̗݌v
+ *	地下で道具をあげた人数の累計
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNDERGROUND_TOOL_GIVE_COUNT	ret_wk
@@ -9457,7 +9457,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���ł��������@�����񐔂̗݌v
+ *	地下でかせきを掘った回数の累計
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNDERGROUND_KASEKI_DIG_COUNT	ret_wk
@@ -9467,7 +9467,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���Ńg���b�v�ɂ������񐔂̗݌v
+ *	地下でトラップにかけた回数の累計
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNDERGROUND_TRAP_HIT_COUNT	ret_wk
@@ -9478,23 +9478,23 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�t�B���ǉ�
+ *	ポフィン追加
  */
 //-----------------------------------------------------------------------------
 	.macro	_POFIN_ADD	ret_wk,spicy,astr,sweet,bitter,sour,taste
 	.short	EV_SEQ_POFIN_ADD
 	.short	\ret_wk
-	.short	\spicy		//�h��
-	.short	\astr		//�a��
-	.short	\sweet		//�Â�
-	.short	\bitter		//�ꂢ
-	.short	\sour		//�_���ς�
-	.short	\taste		//�|��
+	.short	\spicy		//辛い
+	.short	\astr		//渋い
+	.short	\sweet		//甘い
+	.short	\bitter		//苦い
+	.short	\sour		//酸っぱい
+	.short	\taste		//旨み
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�t�B�����ǉ��o���邩�`�F�b�N
+ *	ポフィンが追加出来るかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_POFIN_ADD_CHK	ret_wk
@@ -9504,7 +9504,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�t�B���P�[�X�̋󂫐����擾
+ *	ポフィンケースの空き数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_POFIN_AKI_COUNT_GET	ret_wk
@@ -9514,18 +9514,18 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�z�z�C�x���g�L���`�F�b�N
+ *	配布イベント有効チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_IS_HAIHU_EVENT_ENABLE	id,ret_wk
-	.short	EV_SEQ_IS_HAIHU_EVENT_ENABLE	//�z�z�C�x���g�L���`�F�b�N
+	.short	EV_SEQ_IS_HAIHU_EVENT_ENABLE	//配布イベント有効チェック
 	.byte	\id
 	.short	\ret_wk
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�����Ă�|�P�����I����ʌĂяo��
+ *	そだてやポケモン選択画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_SODATEYA_POKELIST_SET_PROC		pos
@@ -9535,7 +9535,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �����Ă�|�P�����I����ʌ��ʎ��o��
+ * そだてやポケモン選択画面結果取り出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_SODATEYA_POKELIST_GET_RESULT	ret_wk,ret_mode
@@ -9546,18 +9546,18 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�w�肵���m����TRUE,FALSE��Ԃ�
+ *	指定した確立でTRUE,FALSEを返す
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_RANDOM_HIT	per,ret_wk
-	.short	EV_SEQ_GET_RANDOM_HIT	//�w�肵���m����TRUE,FALSE��Ԃ�
+	.short	EV_SEQ_GET_RANDOM_HIT	//指定した確立でTRUE,FALSEを返す
 	.byte	\per			//0-100%
 	.short	\ret_wk
 	.endm
 
 //-----------------------------------------------------------------------------
 /**
- *	�n���ŉ�b�����l���̗݌v
+ *	地下で会話した人数の累計
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNDERGROUND_TALK_COUNT2	ret_wk
@@ -9567,7 +9567,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�q�f���Z�J�n
+ *	ヒデン技開始
  */
 //-----------------------------------------------------------------------------
 	.macro _HIDENEFF_START	eff_no, ret_wk
@@ -9578,7 +9578,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�n�k�J�n
+ *	地震開始
  */
 //-----------------------------------------------------------------------------
 	.macro _ZISHIN	no
@@ -9589,7 +9589,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���|�C���g�E�B���h�E�\��
+ *	バトルポイントウィンドウ表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTL_POINT_WIN_WRITE	x,y
@@ -9600,7 +9600,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���|�C���g�E�B���h�E�폜
+ *	バトルポイントウィンドウ削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTL_POINT_WIN_DEL
@@ -9609,7 +9609,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���|�C���g�E�B���h�E�ĕ`��
+ *	バトルポイントウィンドウ再描画
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTL_POINT_WRITE
@@ -9618,7 +9618,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����o�g���|�C���g�擾
+ *	所持バトルポイント取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_BTL_POINT	ret_wk
@@ -9628,7 +9628,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����o�g���|�C���g���Z
+ *	所持バトルポイント加算
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTL_POINT_ADD	value
@@ -9638,7 +9638,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����o�g���|�C���g���Z
+ *	所持バトルポイント減算
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTL_POINT_SUB	value
@@ -9648,7 +9648,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�����o�g���|�C���g���w��l�Ɣ�r
+ *	所持バトルポイントを指定値と比較
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMP_BTL_POINT	value,ret_wk
@@ -9659,7 +9659,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���|�C���g�ƈ��������\�ȃA�C�e�������擾
+ *	バトルポイントと引き換え可能なアイテム情報を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_BP_GIFT	list_id,item_idx,ret_item,ret_bp
@@ -9672,8 +9672,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �n���p����A�C�e���̃`�F�b�N
- * ���A�C�e���{�[���擾���̐�p����
+ * 地下用特殊アイテムのチェック
+ * ※アイテムボール取得時の専用命令
  */
 //-----------------------------------------------------------------------------
 	.macro	_UG_BALLITEM_CHECK	item
@@ -9683,8 +9683,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �A�E�X�̃v���[�g�̃`�F�b�N
- * ���A�C�e���{�[���擾���̐�p����
+ * アウスのプレートのチェック
+ * ※アイテムボール取得時の専用命令
  */
 //-----------------------------------------------------------------------------
 	.macro	_AUSU_ITEM_CHECK	item,ret_wk
@@ -9716,7 +9716,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C���ƈ��������\�ȃA�C�e�������擾
+ *	コインと引き換え可能なアイテム情報を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_COIN_GIFT	item_idx,ret_item,ret_bp
@@ -9728,7 +9728,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C�����炷(���[�N��p�Łj
+ *	コイン減らす(ワーク専用版）
  */
 //-----------------------------------------------------------------------------
 	.macro	_SUB_WK_COIN		wk
@@ -9738,7 +9738,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�R�C���𒲂ׂ�i�����������Ă��邩��Ԃ��j�@���[�N��p��
+ *	コインを調べる（引数分持っているかを返す）　ワーク専用版
  */
 //-----------------------------------------------------------------------------
 	.macro	_COMP_WK_COIN ret_wk,wk
@@ -9749,7 +9749,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�������Ƃ΂��I�N�����m�t���O�L���ɊY�����邩
+ *	あいことばがオクリモノフラグ有効に該当するか
  */
 //-----------------------------------------------------------------------------
 	.macro	_AIKOTOBA_OKURIMONO_CHK		ret_wk,wk1,wk2,wk3,wk4
@@ -9763,7 +9763,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WIFI�ӂ����Ȃ�������̃I�[�v���t���O�Z�b�g
+ *	WIFIふしぎなおくりものオープンフラグセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIFI_HUSIGINAOKURIMONO_OPEN_FLAG_SET
@@ -9772,7 +9772,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���j�I���֘A
+ *	ユニオン関連
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_GET_CARD_TALK_NO ret_wk
@@ -9782,7 +9782,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *		WirelessIconEasy�֐��Ăяo��
+ *		WirelessIconEasy関数呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIRELESS_ICON_EASY
@@ -9791,7 +9791,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *		WirelessIconEasyEnd�֐��Ăяo��
+ *		WirelessIconEasyEnd関数呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIRELESS_ICON_EASY_END
@@ -9800,7 +9800,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��l���̈ʒu�𐳂����L�^���邽�߂Ƀt�B�[���h����SAVEDATA�ɔ��f������
+ *	主人公の位置を正しく記録するためにフィールド情報をSAVEDATAに反映させる
  */
 //-----------------------------------------------------------------------------
 	.macro	_SAVE_FIELD_OBJ
@@ -9809,9 +9809,9 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�V�[���̖��O
- *	@param	idx			�Z�b�g����WORDSET�̈ʒu
- *	@param	itemno		�V�[���̎w��
+ *	シールの名前
+ *	@param	idx			セットするWORDSETの位置
+ *	@param	itemno		シールの指定
  */
 //-----------------------------------------------------------------------------
 	.macro	_SEAL_NAME	idx, sealno
@@ -9822,7 +9822,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�G�X�P�[�v���P�[�V�����𒼐ڏ���������
+ *	エスケープロケーションを直接書き換える
  */
 //-----------------------------------------------------------------------------
 	.macro	_SET_ESCAPE_LOCATION	zone_id,grid_x,grid_z	
@@ -9834,7 +9834,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ���m�̓����蔻��t���O��ݒ�
+ *	OBJ同士の当たり判定フラグを設定
  */
 //-----------------------------------------------------------------------------
 	.macro	_FIELDOBJ_BITSET_FELLOWHIT	obj_id,flag
@@ -9845,7 +9845,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@�_���^�}�S�`�F�b�N�S�̔�(�莝���ɂ���:TRUE,���Ȃ�:FALSE)
+ *　ダメタマゴチェック全体版(手持ちにいる:TRUE,いない:FALSE)
  */
 //-----------------------------------------------------------------------------
 	.macro	_DAME_TAMAGO_CHK_ALL ret_wk
@@ -9856,7 +9856,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@���j�I�����[���pBMPLIST�i�ʐM�f�[�^��M�ɂ��L�����Z�����ł���j
+ *　ユニオンルーム用BMPLIST（通信データ受信によりキャンセルができる）
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_BMPMENU_START
@@ -9866,7 +9866,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *�@���j�I�����[���퓬�p�J�n�O�|�P�������X�g�I�����ʎ擾
+ *　ユニオンルーム戦闘用開始前ポケモンリスト選択結果取得
  */
 //-----------------------------------------------------------------------------
 	.macro  _UNION_BATTLE_START_CHECK ret_wk
@@ -9876,7 +9876,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �g���[�i�[�J�[�h�����N�擾
+ * トレーナーカードランク取得
  */
 //-----------------------------------------------------------------------------
 	.macro  _GET_TRCARD_RANK ret_wk
@@ -9901,7 +9901,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�����e�B�A�V�X�e���Ăяo��
+ *	フロンティアシステム呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_FRONTIER_SYSTEM_CALL	scene
@@ -9911,7 +9911,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�@�N�g���[�p��NG
+ *	ファクトリー継続NG
  */
 //-----------------------------------------------------------------------------
 	.macro	_FACTORY_SET_CONTINUE_NG	type,level
@@ -9922,7 +9922,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���邮�����
+ *	ぐるぐる交換
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_GURU2_CALL
@@ -9931,7 +9931,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �����Ă�RomCode�擾
+ * あいてのRomCode取得
  */
 //-----------------------------------------------------------------------------
 	.macro  _GET_ROM_CODE ret_wk
@@ -9941,7 +9941,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	PL���W��������
+ *	PL草ジム初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_PL_GRASS_GYM
@@ -9950,7 +9950,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	PL���W�������i�s
+ *	PL草ジム時刻進行
  */
 //-----------------------------------------------------------------------------
 	.macro	_PL_GRASS_GYM_TIME_GAIN
@@ -9959,7 +9959,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���X�e�[�W �R�}���h�c�[���Ăяo��
+ *	バトルステージ コマンドツール呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_BSTAGE_TOOLS	cmd,param,ret_wk
@@ -9971,7 +9971,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�����e�B�A���j�^�[
+ *	フロンティアモニター
  */
 //-----------------------------------------------------------------------------
 	.macro	_FRONTIER_MONITOR	type,fr_no,monsno
@@ -9983,7 +9983,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��͒c�pFOG�̐ݒ�
+ *	銀河団用FOGの設定
  */
 //-----------------------------------------------------------------------------
 	.macro	_GINGA_FOG_SET
@@ -9992,7 +9992,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��͒c�pFOG�̉���
+ *	銀河団用FOGの解除
  */
 //-----------------------------------------------------------------------------
 	.macro	_GINGA_FOG_RESET
@@ -10001,7 +10001,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���X�e�[�W �����X�^�[�i���o�[����M
+ *	バトルステージ モンスターナンバー送受信
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_COMM_MONSNO	monsno,ret_wk
@@ -10012,7 +10012,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���X�e�[�W�p��NG
+ *	バトルステージ継続NG
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_SET_CONTINUE_NG	type
@@ -10022,7 +10022,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S�|�P�����̘A�����̍��v���w��o�b�t�@�ɓo�^(u32)
+ *	全ポケモンの連勝数の合計を指定バッファに登録(u32)
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_TOTAL_NUMBER_NAME	idx_1,idx_2,idx_3,idx_4,lv_wk,ret_wk
@@ -10037,7 +10037,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S�|�P�����̘A�����̍��v���w��o�b�t�@�ɓo�^(u32)
+ *	全ポケモンの連勝数の合計を指定バッファに登録(u32)
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_RECORD_POKE_GET	ret_wk
@@ -10047,7 +10047,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�S�|�P�����̘A�����̍��v���w��o�b�t�@�ɓo�^(10000�ȏ��10000�Ƃ��ĕԂ�)
+ *	全ポケモンの連勝数の合計を指定バッファに登録(10000以上は10000として返す)
  */
 //-----------------------------------------------------------------------------
 	.macro	_STAGE_TOTAL_RECORD_GET_EX	ret_wk
@@ -10058,13 +10058,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	�o�g���L���b�X��
+//	バトルキャッスル
 //
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���L���b�X�� �R�}���h�c�[���Ăяo��
+ *	バトルキャッスル コマンドツール呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_BCASTLE_TOOLS	cmd,param,ret_wk
@@ -10076,7 +10076,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���L���b�X�� �ėp�f�[�^���M
+ *	バトルキャッスル 汎用データ送信
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_COMM_MONSNO	monsno,monsno2,ret_wk
@@ -10088,7 +10088,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���L���b�X���p��NG
+ *	バトルキャッスル継続NG
  */
 //-----------------------------------------------------------------------------
 	.macro	_CASTLE_SET_CONTINUE_NG	type
@@ -10099,7 +10099,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g���|�C���g�V���b�v
+ *	バトルポイントショップ
  */
 //-----------------------------------------------------------------------------
 	.macro	_BTL_POINT_SHOP	type
@@ -10110,13 +10110,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	�o�g�����[���b�g
+//	バトルルーレット
 //
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g�����[���b�g �R�}���h�c�[���Ăяo��
+ *	バトルルーレット コマンドツール呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_BROULETTE_TOOLS	cmd,param,ret_wk
@@ -10128,7 +10128,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g�����[���b�g �ėp�f�[�^���M
+ *	バトルルーレット 汎用データ送信
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_COMM_MONSNO	monsno,monsno2,ret_wk
@@ -10140,7 +10140,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g�����[���b�g�p��NG
+ *	バトルルーレット継続NG
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROULETTE_SET_CONTINUE_NG	type
@@ -10151,13 +10151,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	������������
+//	公園おじさん
 //
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	������������F�E�����̃e�[�u���̃C���f�b�N�X���擾
+ *	公園おじさん：拾いものテーブルのインデックスを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_PARKMAN_ITEM_INDEX_GET	wk
@@ -10167,7 +10167,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	������������F���݂̂��A�A�N�Z�T���[�����擾
+ *	公園おじさん：きのみか、アクセサリーかを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_PARKMAN_ITEM_KIND_GET	index,wk
@@ -10178,7 +10178,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	������������F�E�����̃e�[�u���̃A�C�e���i���o�[���擾
+ *	公園おじさん：拾いものテーブルのアイテムナンバーを取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_PARKMAN_ITEM_NO_GET	index,wk
@@ -10190,13 +10190,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	�X�N���b�`
+//	スクラッチ
 //
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�X�N���b�`�Ăяo��
+ *	スクラッチ呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_SCRATCH
@@ -10205,7 +10205,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�X�N���b�`�J��
+ *	スクラッチ開放
  */
 //-----------------------------------------------------------------------------
 	.macro	_SCRATCH_FREE
@@ -10214,7 +10214,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�X�N���b�`������A�C�e���擾
+ *	スクラッチ当たりアイテム取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_SCRATCH_ITEM_GET	pos,item_wk,num_wk
@@ -10227,13 +10227,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	�Z����
+//	技教え
 //
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z�����F�o������Z�����邩�擾
+ *	技教え：覚えられる技があるか取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_OSHIE_DATA_COUNT	pos,color,wk
@@ -10245,7 +10245,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z�����FBMP���X�g�@�������A���X�g�쐬�A�J�n
+ *	技教え：BMPリスト　初期化、リスト作成、開始
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_OSHIE_BMPLIST_START pos,color,ret_wk
@@ -10257,7 +10257,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z�����F�|�P�����X�e�[�^�X��ʌĂяo��(���g���ł��g�p)
+ *	技教え：ポケモンステータス画面呼び出し(ロトムでも使用)
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_OSHIE_POKESTATUS_SET_PROC	pos,waza
@@ -10268,7 +10268,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z�����F�莝���|�P�����̋Z��u��������(���g���ł��g�p)
+ *	技教え：手持ちポケモンの技を置き換える(ロトムでも使用)
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_OSHIE_CHG_POKE_WAZA pos,waza_pos,wazano
@@ -10280,7 +10280,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z�����F�A�C�e�������邩�`�F�b�N
+ *	技教え：アイテムがあるかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_OSHIE_ITEM_CHECK waza,ret_wk
@@ -10291,7 +10291,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z�����F�A�C�e�����炷
+ *	技教え：アイテム減らす
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_OSHIE_ITEM_SUB waza
@@ -10301,7 +10301,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- * �Z�����F�|�P�����X�e�[�^�X��ʌ��ʎ��o��(���g���ł��g�p)
+ * 技教え：ポケモンステータス画面結果取り出し(ロトムでも使用)
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_OSHIE_POKESTATUS_GET_RESULT	ret_wk
@@ -10311,7 +10311,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z�����F�{�[�h�\��
+ *	技教え：ボード表示
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_OSHIE_BOARD_WRITE x,y,no,ret_wk
@@ -10324,7 +10324,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�Z�����F�{�[�h�폜
+ *	技教え：ボード削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_WAZA_OSHIE_BOARD_DEL
@@ -10334,13 +10334,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	�g�b�v�u���[�_�[
+//	トップブリーダー
 //
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����̃p���[�����l�`�F�b�N
+ *	ポケモンのパワー乱数値チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_TOP_BREEDER_POW_RND_GET	pos,ret_wk,ret_wk2,ret_wk3
@@ -10354,13 +10354,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	�ʑ�
+//	別荘
 //	
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�ʑ�������
+ *	別荘初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_VILLA
@@ -10370,13 +10370,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	���g��
+//	ロトム
 //	
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�H�����`�F���W
+ *	フォルムチェンジ
  */
 //-----------------------------------------------------------------------------
 	.macro	_POKE_FORM_CHANGE	pos,form
@@ -10388,13 +10388,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	�j�ꂽ���E
+//	破れた世界
 //	
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�j�ꂽ���E������
+ *	破れた世界初期化
  */
 //-----------------------------------------------------------------------------
 	.macro	_INIT_TORNWORLD
@@ -10404,13 +10404,13 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //============================================================================================
 //
-//	�Đ�{��
+//	再戦施設
 //	
 //============================================================================================
 
 //-----------------------------------------------------------------------------
 /**
- *	�L�����R�[�h�擾
+ *	キャラコード取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_CHAR_CODE_T06R0101	wk1,wk2,wk3,wk4
@@ -10424,7 +10424,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�o�g�����R�[�_�[(GDS���[�h)��ʌĂяo��
+ *	バトルレコーダー(GDSモード)画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_GDS_SET_PROC	gds_mode,no,ret_wk
@@ -10436,7 +10436,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	WiFi�L���ʌĂяo��
+ *	WiFi広場画面呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIFILOBBY_SET_PROC	ret_wk
@@ -10446,7 +10446,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�e���K���R�Ăяo��
+ *	テンガン山呼び出し
  */
 //-----------------------------------------------------------------------------
 	.macro	_TENGAN_DEMO_EVENT_CALL
@@ -10455,7 +10455,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	AB�L�[��sys.cont�`�F�b�N
+ *	ABキーのsys.contチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_CONT_AB_KEY	ret_wk
@@ -10465,7 +10465,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�߂��߂�p���[�̃^�C�v�擾
+ *	めざめるパワーのタイプ取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_MEZAMERU_PAWAA_TYPE_GET	pos,ret_wk
@@ -10476,7 +10476,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���C�ɓ���|�P�����̃Z�b�g
+ *	お気に入りポケモンのセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_SET_FAVORITE_POKE
@@ -10485,7 +10485,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���C�ɓ���|�P�����̎擾
+ *	お気に入りポケモンの取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_GET_FAVORITE_POKE	mons,form,egg
@@ -10497,7 +10497,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�H�����`�F���W�������g�������邩�`�F�b�N(�S�ă`�F�b�N)
+ *	フォルムチェンジしたロトムがいるかチェック(全てチェック)
  */
 //-----------------------------------------------------------------------------
 	.macro	_ROTOMU_FORM_CHECK	ret_hot,ret_wash,ret_cold,ret_fan,ret_cut
@@ -10511,7 +10511,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�H�����`�F���W�������g�����莝���ɉ��C���邩�`�F�b�N(���C�A�ŏ��̎莝���ʒu)
+ *	フォルムチェンジしたロトムが手持ちに何匹いるかチェック(何匹、最初の手持ち位置)
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_ROTOMU_FORM_CHG_CHECK	ret_wk,ret_wk2
@@ -10522,7 +10522,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���g���̃t�H�����`�F���W�������̋Z��������
+ *	ロトムのフォルムチェンジした時の技書き換え
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_ROTOMU_FORM_WAZA_CHG	pos,waza_pos,waza,next_form
@@ -10535,7 +10535,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�莝���̃��g���̃t�H�����擾
+ *	手持ちのロトムのフォルム取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_ROTOMU_FORM_GET	pos,ret_wk
@@ -10545,11 +10545,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //-----------------------------------------------------------------------------
-//�X�R�A�֘A
+//スコア関連
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *	�X�R�A�C���N�������g
+ *	スコアインクリメント
  */
 //-----------------------------------------------------------------------------
 	.macro	_SCORE_ADD	id
@@ -10559,7 +10559,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�ʑ��̃��X�g�\���`�F�b�N
+ *	別荘のリスト表示チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_VILLA_LIST_CHECK	no,ret_wk
@@ -10570,7 +10570,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	(�t�����e�B�A��)�q�[�v�`�F�b�N
+ *	(フロンティアの)ヒープチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_HEAP_CHECK	flag
@@ -10580,7 +10580,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�C���[�W�N���b�v���M�ς݃t���O�����Z�b�g����
+ *	イメージクリップ送信済みフラグをリセットする
  */
 //-----------------------------------------------------------------------------
 	.macro	_IMAGE_CLIP_TV_SEND_FLAG_RESET
@@ -10588,11 +10588,11 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.endm
 
 //-----------------------------------------------------------------------------
-//	�j�ꂽ���E�֘A
+//	破れた世界関連
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *	OBJ�o��
+ *	OBJ出す
  */
 //-----------------------------------------------------------------------------
 	.macro	_TW_OBJ_ADD	obj_id
@@ -10602,7 +10602,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	OBJ����
+ *	OBJ消す
  */
 //-----------------------------------------------------------------------------
 	.macro	_TW_OBJ_DEL	obj_id
@@ -10612,7 +10612,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	
 //-----------------------------------------------------------------------------
 /**
- *	���@���W�擾
+ *	自機座標取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_PLAYER_POS_ALL_GET	x,y,z
@@ -10624,7 +10624,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�|�P�����i���o�[�ƃ��x�����w�肵�ăM���e�B�i�C�x���g�쐶�퓬
+ *	ポケモンナンバーとレベルを指定してギラティナイベント野生戦闘
  */
 //-----------------------------------------------------------------------------
 	.macro	_GIRATHINA_SP_WILD_BTL_SET	monsno,level
@@ -10635,7 +10635,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�}�ӂ�������ԂɃZ�b�g����
+ *	図鑑を見た状態にセットする
  */
 //-----------------------------------------------------------------------------
 	.macro	_ZUKAN_SEE_SET	monsno
@@ -10645,7 +10645,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�s�u�F�󋵕ێ����[�N�̃T�t�@���ŕ߂܂��������擾
+ *	ＴＶ：状況保持ワークのサファリで捕まえた数を取得
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_SAFARI_TEMP_CAPTURE_COUNT_GET	ret_wk
@@ -10655,7 +10655,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�H������߂�(���j�I�����[��)
+ *	フォルムを戻す(ユニオンルーム)
  */
 //-----------------------------------------------------------------------------
 	.macro	_UNION_POKE_FORM_RETURN	ret_wk
@@ -10665,7 +10665,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�t�H������߂�(��ĉ�)
+ *	フォルムを戻す(育て屋)
  */
 //-----------------------------------------------------------------------------
 	.macro	_SODATEYA_POKE_FORM_RETURN	monsno,ret_wk
@@ -10676,7 +10676,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�j�ꂽ���E�@�J������߂�
+ *	破れた世界　カメラを戻す
  */
 //-----------------------------------------------------------------------------
 	.macro	_TW_CAMERA_DEFAULT_SET
@@ -10685,7 +10685,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�j�ꂽ���E�˓��f��
+ *	破れた世界突入デモ
  */
 //-----------------------------------------------------------------------------
 	.macro	_HAKAI_WARP_SET_PROC
@@ -10694,7 +10694,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�j�ꂽ���E�@�M���e�B�i�e�G�t�F�N�g�Z�b�g
+ *	破れた世界　ギラティナ影エフェクトセット
  */
 //-----------------------------------------------------------------------------
 	.macro	_TW_GIRAS_SET	eff_no
@@ -10704,7 +10704,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�j�ꂽ���E�@�M���e�B�i�e�G�t�F�N�g�폜
+ *	破れた世界　ギラティナ影エフェクト削除
  */
 //-----------------------------------------------------------------------------
 	.macro	_TW_GIRAS_DEL
@@ -10713,7 +10713,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	Wi-Fi�Ђ�΁@�J�E���^�[�`�F�b�N	
+ *	Wi-Fiひろば　カウンターチェック	
  */
 //-----------------------------------------------------------------------------
 	.macro	_WFLBY_COUNTER_CHECK	ret_wk
@@ -10723,7 +10723,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	��Ԃꂽ���E�ł̃M���e�B�i�t�H���������Z�b�g
+ *	やぶれた世界でのギラティナフォルム強制セット
  */
 //-----------------------------------------------------------------------------
 	.macro	_GIRATHINA_FORM_UPDATE	flag
@@ -10733,7 +10733,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	TV:�X�e�[�W�A���`�F�b�N
+ *	TV:ステージ連勝チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_TV_STAGE_RENSYOU_CHECK	ret_wk
@@ -10743,7 +10743,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	�z�z���W�M�K�X�����邩�`�F�b�N
+ *	配布レジギガスがいるかチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_D35_HAIHU_REZI_CHECK	ret_wk
@@ -10753,7 +10753,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *	���W�}�b�v�̏��`�F�b�N
+ *	レジマップの床チェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_D35_FLOOR_SET	wk,zone_id,x,z
@@ -10766,8 +10766,8 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *  @brief �t�B�[���hOBJ�@OBJ�ɍ����擾���s�ł��\������l�ɂ���B
- *  ���łɍ��������@�ɍ��킹��B���@�����͂��̂܂܁B
+ *  @brief フィールドOBJ　OBJに高さ取得失敗でも表示する様にする。
+ *  ついでに高さを自機に合わせる。自機だけはそのまま。
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLD_OBJ_ALL_HEIGHT_VANISH_OFF
@@ -10776,7 +10776,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *  EvCmdFldOBJAllHeightVanishOFF()�ŃZ�b�g�����t���O��߂��B
+ *  EvCmdFldOBJAllHeightVanishOFF()でセットしたフラグを戻す。
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLD_OBJ_ALL_HEIGHT_VANISH_ON
@@ -10785,7 +10785,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *  �莝���|�P�����A�C�e���`�F�b�N
+ *  手持ちポケモンアイテムチェック
  */
 //-----------------------------------------------------------------------------
 	.macro	_TEMOTI_ITEM_CHK	item,ret_wk
@@ -10796,7 +10796,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *  �n���V�o�^
+ *  地球儀登録
  */
 //-----------------------------------------------------------------------------
 	.macro	_WIFI_HISTORY
@@ -10805,7 +10805,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *  @brief �n�N�^�C�V�e�B�Ń��C�o���ƃ|�P�����������ɍs���C�x���g����(�J�n)
+ *  @brief ハクタイシティでライバルとポケモン像を見に行くイベント限定(開始)
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLD_OBJ_C04_ONLY
@@ -10814,7 +10814,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *  @brief �n�N�^�C�V�e�B�Ń��C�o���ƃ|�P�����������ɍs���C�x���g����(�I��)
+ *  @brief ハクタイシティでライバルとポケモン像を見に行くイベント限定(終了)
  */
 //-----------------------------------------------------------------------------
 	.macro	_FLD_OBJ_C04_AFTER_ONLY
@@ -10823,7 +10823,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *  @brief �v���C���[�{�����[���𑀍�(�K����(127)�ɖ߂�����)
+ *  @brief プレイヤーボリュームを操作(必ず元(127)に戻すこと)
  */
 //-----------------------------------------------------------------------------
 	.macro	_SND_PLAYER_VOLUME	vol
@@ -10833,7 +10833,7 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 
 //-----------------------------------------------------------------------------
 /**
- *  @brief �a������f�[�^�`�F�b�N ret==1 �G���[
+ *  @brief 殿堂入りデータチェック ret==1 エラー
  */
 //-----------------------------------------------------------------------------
 	.macro _DENDOU_DATA_CHECK ret

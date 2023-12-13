@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_obj_list_func.c
- *	@brief		‘òR‚ÌƒVƒXƒeƒ€‚ªg—p‚·‚éƒIƒuƒWƒFƒŠƒXƒg—pŠÖ”‚ğéŒ¾
+ *	@brief		æ²¢å±±ã®ã‚·ã‚¹ãƒ†ãƒ ãŒä½¿ç”¨ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚¹ãƒˆç”¨é–¢æ•°ã‚’å®£è¨€
  *	@author		tomoya takahashi 
  *	@data		2005.09.30
  *
@@ -20,36 +20,36 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
-*	ƒAƒNƒZƒTƒŠ‚Æƒ|ƒPƒ‚ƒ“ƒIƒuƒWƒF‚Ì•\¦—Dæ‡ˆÊA“–‚½‚è”»’èAÀ•W•ÏX
-*	‚ğs‚¤ŠÖ”
+*	ã‚¢ã‚¯ã‚»ã‚µãƒªã¨ãƒã‚±ãƒ¢ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã®è¡¨ç¤ºå„ªå…ˆé †ä½ã€å½“ãŸã‚Šåˆ¤å®šã€åº§æ¨™å¤‰æ›´
+*	ã‚’è¡Œã†é–¢æ•°
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•\¦—Dæ‡ˆÊİ’è
+ *	@brief	è¡¨ç¤ºå„ªå…ˆé †ä½è¨­å®š
  *
- *	@param	work	ƒIƒuƒWƒFƒŠƒXƒgƒ[ƒN
- *	@param	pri		•\¦—Dæ‡ˆÊ
+ *	@param	work	ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	pri		è¡¨ç¤ºå„ªå…ˆé †ä½
  *
  *	@return	none
  *
@@ -59,11 +59,11 @@
 void IMC_OBJLIST_ACCEPOKE_Pri( IMC_OBJLIST* work, int pri )
 {
 	if( work->flag < IMC_OBJLIST_POKE ){
-		// ƒAƒNƒZƒTƒŠ
+		// ã‚¢ã‚¯ã‚»ã‚µãƒª
 		IMC_ACCESSORIE_OBJ* acce = work->obj_data;
 		IMC_ACCE_ObjDrawPrioritySet( acce, pri );
 	}else{
-		// ƒ|ƒPƒ‚ƒ“
+		// ãƒã‚±ãƒ¢ãƒ³
 		IMC_POKE* poke = work->obj_data;
 		IMC_POKE_DrawPrioritySet( poke, pri );
 	}
@@ -72,14 +72,14 @@ void IMC_OBJLIST_ACCEPOKE_Pri( IMC_OBJLIST* work, int pri )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹“–‚½‚è”»’è
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å½“ãŸã‚Šåˆ¤å®š
  *
- *	@param	work	ƒIƒuƒWƒFƒŠƒXƒgƒ[ƒN
- *	@param	x		”»’èX
- *	@param	y		”»’èY
+ *	@param	work	ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	x		åˆ¤å®šX
+ *	@param	y		åˆ¤å®šY
  *
- *	@retval	TRUE	‚ ‚½‚Á‚½
- *	@retval	FALSE	‚ ‚½‚ç‚È‚©‚Á‚½
+ *	@retval	TRUE	ã‚ãŸã£ãŸ
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã‹ã£ãŸ
  *
  *
  */
@@ -87,7 +87,7 @@ void IMC_OBJLIST_ACCEPOKE_Pri( IMC_OBJLIST* work, int pri )
 BOOL IMC_OBJLIST_ACCEPOKE_Hit( IMC_OBJLIST* work, int x, int y )
 {
 	if( work->flag < IMC_OBJLIST_POKE ){
-		// ƒAƒNƒZƒTƒŠ
+		// ã‚¢ã‚¯ã‚»ã‚µãƒª
 		IMC_ACCESSORIE_OBJ* acce = work->obj_data;
 		
 		if(x == IMC_OBJ_LIST_FUNC_TP_NOW){
@@ -97,7 +97,7 @@ BOOL IMC_OBJLIST_ACCEPOKE_Hit( IMC_OBJLIST* work, int x, int y )
 		}
 	}	
 	
-	// ƒ|ƒPƒ‚ƒ“
+	// ãƒã‚±ãƒ¢ãƒ³
 	{
 		IMC_POKE* poke = work->obj_data;
 
@@ -112,15 +112,15 @@ BOOL IMC_OBJLIST_ACCEPOKE_Hit( IMC_OBJLIST* work, int x, int y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	×‚©‚¢ƒ^ƒbƒ`ƒpƒlƒ‹“–‚½‚è”»’è
+ *	@brief	ç´°ã‹ã„ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å½“ãŸã‚Šåˆ¤å®š
  *
- *	@param	work		ƒIƒuƒWƒFƒŠƒXƒgƒ[ƒN
- *	@param	offs_x		¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg‚˜À•W
- *	@param	offs_y		¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg‚™À•W 
- *	@param	drawData	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@param	work		ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	offs_x		å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï½˜åº§æ¨™
+ *	@param	offs_y		å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï½™åº§æ¨™ 
+ *	@param	drawData	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	‚ ‚½‚Á‚½
- *	@retval	FALSE	‚ ‚½‚ç‚È‚©‚Á‚½
+ *	@retval	TRUE	ã‚ãŸã£ãŸ
+ *	@retval	FALSE	ã‚ãŸã‚‰ãªã‹ã£ãŸ
  *
  *
  */
@@ -130,42 +130,42 @@ BOOL IMC_OBJLIST_ACCEPOKE_HitEx( IMC_OBJLIST* work, int* offs_x, int* offs_y, NN
 	NNSG2dCharacterData* char_data;
 
 	if( work->flag == IMC_OBJLIST_ACCE ){
-		// ƒAƒNƒZƒTƒŠ
+		// ã‚¢ã‚¯ã‚»ã‚µãƒª
 		IMC_ACCESSORIE_OBJ* acce = work->obj_data;
 	
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 		char_data = drawData[ acce->accessorie_no ];
 
 		return IMC_ACCE_ObjTpHitEx( acce, offs_x, offs_y, char_data );
 	}	
 	
 	if( work->flag == IMC_OBJLIST_BG ){
-		// BGƒTƒ€ƒlƒCƒ‹
+		// BGã‚µãƒ ãƒã‚¤ãƒ«
 		IMC_ACCESSORIE_OBJ* acce = work->obj_data;
 		int char_no = IMC_BG_THUMB_CHAR_CONT_ID( acce->accessorie_no );
 	
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 		char_data = drawData[ char_no ];
 
 		return IMC_ACCE_ObjTpHitEx( acce, offs_x, offs_y, char_data );
 	}	
 	
 	if( work->flag == IMC_OBJLIST_SND ){
-		// ‰¹ƒTƒ€ƒlƒCƒ‹
+		// éŸ³ã‚µãƒ ãƒã‚¤ãƒ«
 		IMC_ACCESSORIE_OBJ* acce = work->obj_data;
 		int char_no = IMC_SND_THUMB_CHAR_CONT_ID( acce->accessorie_no );
 	
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 		char_data = drawData[ char_no ];
 	
 		return IMC_ACCE_ObjTpHitEx( acce, offs_x, offs_y, char_data );
 	}	
 	
-	// ƒ|ƒPƒ‚ƒ“
+	// ãƒã‚±ãƒ¢ãƒ³
 	{
 		IMC_POKE* poke = work->obj_data;
 
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 		char_data = drawData[ IMC_DRAW_POKE_CHAR_ID ];
 
 		return IMC_POKE_TPHitEx( poke, offs_x, offs_y, char_data );
@@ -175,11 +175,11 @@ BOOL IMC_OBJLIST_ACCEPOKE_HitEx( IMC_OBJLIST* work, int* offs_x, int* offs_y, NN
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	À•Wİ’è
+ *	@brief	åº§æ¨™è¨­å®š
  *
- *	@param	work	ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒ[ƒN
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	work	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  *
  *	@return	none
  *
@@ -189,14 +189,14 @@ BOOL IMC_OBJLIST_ACCEPOKE_HitEx( IMC_OBJLIST* work, int* offs_x, int* offs_y, NN
 void IMC_OBJLIST_ACCEPOKE_Mat( IMC_OBJLIST* work, int x, int y )
 {
 	if( work->flag < IMC_OBJLIST_POKE ){
-		// ƒAƒNƒZƒTƒŠ
+		// ã‚¢ã‚¯ã‚»ã‚µãƒª
 		IMC_ACCESSORIE_OBJ* acce = work->obj_data;
 		IMC_ACCE_ObjSetMat( acce, x, y );
 	}else{
-		// ƒ|ƒPƒ‚ƒ“
+		// ãƒã‚±ãƒ¢ãƒ³
 		IMC_POKE* poke = work->obj_data;
-		int size_x, size_y;		// ƒTƒCƒY
-		// ¶ãÀ•W‚É‚·‚é
+		int size_x, size_y;		// ã‚µã‚¤ã‚º
+		// å·¦ä¸Šåº§æ¨™ã«ã™ã‚‹
 		IMC_POKE_SizeGet( poke, &size_x, &size_y );
 		size_x /= 2;
 		size_y /= 2;
@@ -210,11 +210,11 @@ void IMC_OBJLIST_ACCEPOKE_Mat( IMC_OBJLIST* work, int x, int y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	À•W‚ğæ“¾
+ *	@brief	åº§æ¨™ã‚’å–å¾—
  *
- *	@param	obj		ƒIƒuƒWƒFƒ[ƒN
- *	@param	x		‚˜À•WŠi”[æ
- *	@param	y		‚™À•WŠi”[æ
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜åº§æ¨™æ ¼ç´å…ˆ
+ *	@param	y		ï½™åº§æ¨™æ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -224,17 +224,17 @@ void IMC_OBJLIST_ACCEPOKE_Mat( IMC_OBJLIST* work, int x, int y )
 void IMC_OBJLIST_ACCEPOKE_MatGet( IMC_OBJLIST* obj, int* x, int* y )
 {
 	if( obj->flag < IMC_OBJLIST_POKE ){
-		// ƒAƒNƒZƒTƒŠ
+		// ã‚¢ã‚¯ã‚»ã‚µãƒª
 		IMC_ACCESSORIE_OBJ* acce = obj->obj_data;
 		IMC_ACCE_ObjGetMat( acce, x, y );
 	}else{
-		// ƒ|ƒPƒ‚ƒ“
+		// ãƒã‚±ãƒ¢ãƒ³
 		IMC_POKE* poke = obj->obj_data;
-		int size_x, size_y;		// ƒTƒCƒY
+		int size_x, size_y;		// ã‚µã‚¤ã‚º
 		
 		IMC_POKE_MatrixGet( poke, x, y );
 
-		// ¶ãÀ•W‚É‚·‚é
+		// å·¦ä¸Šåº§æ¨™ã«ã™ã‚‹
 		IMC_POKE_SizeGet( poke, &size_x, &size_y );
 		size_x /= 2;
 		size_y /= 2;
@@ -246,11 +246,11 @@ void IMC_OBJLIST_ACCEPOKE_MatGet( IMC_OBJLIST* obj, int* x, int* y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒTƒCƒY‚ğæ“¾
+ *	@brief	ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	@param	obj		ƒIƒuƒWƒFƒ[ƒN
- *	@param	x		‚˜ƒTƒCƒYŠi”[æ
- *	@param	y		‚™ƒTƒCƒYŠi”[æ
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜ã‚µã‚¤ã‚ºæ ¼ç´å…ˆ
+ *	@param	y		ï½™ã‚µã‚¤ã‚ºæ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -260,11 +260,11 @@ void IMC_OBJLIST_ACCEPOKE_MatGet( IMC_OBJLIST* obj, int* x, int* y )
 void IMC_OBJLIST_ACCEPOKE_SizeGet( IMC_OBJLIST* obj, int* x, int* y )
 {
 	if( obj->flag < IMC_OBJLIST_POKE ){
-		// ƒAƒNƒZƒTƒŠ
+		// ã‚¢ã‚¯ã‚»ã‚µãƒª
 		IMC_ACCESSORIE_OBJ* acce = obj->obj_data;
 		IMC_ACCE_ObjGetSize( acce, x, y );
 	}else{
-		// ƒ|ƒPƒ‚ƒ“
+		// ãƒã‚±ãƒ¢ãƒ³
 		IMC_POKE* poke = obj->obj_data;
 		IMC_POKE_SizeGet( poke, x, y );
 	}
@@ -273,11 +273,11 @@ void IMC_OBJLIST_ACCEPOKE_SizeGet( IMC_OBJLIST* obj, int* x, int* y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	H‚¢‚ñ‚Å‚æ‚¢ƒTƒCƒY‚ğæ“¾
+ *	@brief	é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	@param	obj		ƒIƒuƒWƒFƒ[ƒN
- *	@param	x		‚˜ƒTƒCƒYŠi”[æ
- *	@param	y		‚™ƒTƒCƒYŠi”[æ
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜ã‚µã‚¤ã‚ºæ ¼ç´å…ˆ
+ *	@param	y		ï½™ã‚µã‚¤ã‚ºæ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -288,14 +288,14 @@ void IMC_OBJLIST_ACCEPOKE_SizeGet( IMC_OBJLIST* obj, int* x, int* y )
 void IMC_OBJLIST_ACCEPOKE_InSizeGet( IMC_OBJLIST* obj, int* p_left, int* p_right, int* p_top, int* p_bottom )
 {
 	if( obj->flag < IMC_OBJLIST_POKE ){
-		// ƒAƒNƒZƒTƒŠ
+		// ã‚¢ã‚¯ã‚»ã‚µãƒª
 		IMC_ACCESSORIE_OBJ* acce = obj->obj_data;
 		IMC_ACCE_ObjInSizeGet( acce, p_left, p_top );
 		*p_right = *p_left;
 		*p_bottom = *p_top;
 	}else{
 		IMC_POKE_RECT rect;
-		// ƒ|ƒPƒ‚ƒ“
+		// ãƒã‚±ãƒ¢ãƒ³
 		IMC_POKE* poke = obj->obj_data;
 		IMC_POKE_InSizeGet( poke, &rect );
 		*p_left = rect.left;
@@ -308,11 +308,11 @@ void IMC_OBJLIST_ACCEPOKE_InSizeGet( IMC_OBJLIST* obj, int* p_left, int* p_right
 void IMC_OBJLIST_ACCEPOKE_InSizeGet( IMC_OBJLIST* obj, int* x, int* y )
 {
 	if( obj->flag < IMC_OBJLIST_POKE ){
-		// ƒAƒNƒZƒTƒŠ
+		// ã‚¢ã‚¯ã‚»ã‚µãƒª
 		IMC_ACCESSORIE_OBJ* acce = obj->obj_data;
 		IMC_ACCE_ObjInSizeGet( acce, x, y );
 	}else{
-		// ƒ|ƒPƒ‚ƒ“
+		// ãƒã‚±ãƒ¢ãƒ³
 		IMC_POKE* poke = obj->obj_data;
 		IMC_POKE_InSizeGet( poke, x, y );
 	}
@@ -322,11 +322,11 @@ void IMC_OBJLIST_ACCEPOKE_InSizeGet( IMC_OBJLIST* obj, int* x, int* y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒŠƒXƒg‚²‚Æ‘«‚µZˆÚ“®‚³‚¹‚é
+ *	@brief	ãƒªã‚¹ãƒˆã”ã¨è¶³ã—ç®—ç§»å‹•ã•ã›ã‚‹
  *	
- *	@param	top		ƒŠƒXƒgæ“ªƒ|ƒCƒ“ƒ^
- *	@param	x		‘«‚·XÀ•W
- *	@param	y		‘«‚·YÀ•W
+ *	@param	top		ãƒªã‚¹ãƒˆå…ˆé ­ãƒã‚¤ãƒ³ã‚¿
+ *	@param	x		è¶³ã™Xåº§æ¨™
+ *	@param	y		è¶³ã™Yåº§æ¨™
  *
  *	@return	none
  *
@@ -355,24 +355,24 @@ void IMC_OBJLIST_ACCEPOKE_ListMove( IMC_OBJLIST* top, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg‹éŒ`æ“¾@H‚¢‚ñ‚Å‚æ‚¢ƒTƒCƒY•ªŒ¸‚ç‚µÏ‚İ
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆçŸ©å½¢å–å¾—ã€€é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºåˆ†æ¸›ã‚‰ã—æ¸ˆã¿
  *	
- *	@param	p_obj	ƒ[ƒN
- *	@param	top		ã
- *	@param	bottom	‰º
- *	@param	left	¶
- *	@param	right	‰E
+ *	@param	p_obj	ãƒ¯ãƒ¼ã‚¯
+ *	@param	top		ä¸Š
+ *	@param	bottom	ä¸‹
+ *	@param	left	å·¦
+ *	@param	right	å³
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void IMC_OBJLIST_GetObjRectSubInSize( IMC_OBJLIST* p_obj, int* top, int* bottom, int* left, int* right )
 {
-	int size_x,size_y;			// ƒIƒuƒWƒFƒNƒgƒTƒCƒYXY
-	int mat_x, mat_y;			// ƒIƒuƒWƒFƒNƒgÀ•W
-	int in_size_x, in_size_y;	// H‚¢‚ñ‚Å‚æ‚¢ƒTƒCƒYXY
+	int size_x,size_y;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚µã‚¤ã‚ºXY
+	int mat_x, mat_y;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåº§æ¨™
+	int in_size_x, in_size_y;	// é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºXY
 #if PLFIX_S2407
-	int in_size_right, in_size_bottom;	// H‚¢‚ñ‚Å‚æ‚¢ƒTƒCƒYXY
+	int in_size_right, in_size_bottom;	// é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºXY
 #endif
 
 
@@ -397,19 +397,19 @@ void IMC_OBJLIST_GetObjRectSubInSize( IMC_OBJLIST* p_obj, int* top, int* bottom,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’†SÀ•W‚ğæ“¾‚·‚é
+ *	@brief	ä¸­å¿ƒåº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
- *	@param	x		‚˜À•WŠi”[æ
- *	@param	y		‚™À•WŠi”[æ
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	x		ï½˜åº§æ¨™æ ¼ç´å…ˆ
+ *	@param	y		ï½™åº§æ¨™æ ¼ç´å…ˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void IMC_OBJLIST_GetObjCenterMat( IMC_OBJLIST* p_obj, int* x, int* y )
 {
-	int size_x,size_y;			// ƒIƒuƒWƒFƒNƒgƒTƒCƒYXY
-	int mat_x, mat_y;			// ƒIƒuƒWƒFƒNƒgÀ•W
+	int size_x,size_y;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚µã‚¤ã‚ºXY
+	int mat_x, mat_y;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåº§æ¨™
 
 	IMC_OBJLIST_ACCEPOKE_SizeGet( p_obj, &size_x, &size_y );
 	IMC_OBJLIST_ACCEPOKE_MatGet( p_obj, &mat_x, &mat_y );

@@ -1,6 +1,6 @@
 /**
  *	@file	poru_oam.c
- *	@brief	ƒ|ƒ‹ƒgƒAƒNƒ^[@OAMƒRƒ“ƒgƒ[ƒ‰
+ *	@brief	ãƒãƒ«ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã€€OAMã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  *	@author	Miyuki Iwasawa
  *	@date	06.03.28
  */
@@ -36,7 +36,7 @@ enum{
 
 
 //======================================================
-//ƒvƒƒgƒ^ƒCƒv
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //======================================================
 static void PoruOam_ResManagerInit(PORUOAM_MAN* wk);
 static void PoruOam_ResManagerRelease(PORUOAM_MAN* wk);
@@ -45,14 +45,14 @@ static void poam_LoadResArc(PORUOAM_MAN* wk);
 static s16 poam_GetNullWork(PORUOAM_MAN* wk,u8 flavor);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒAƒNƒ^[@ƒ}ƒl[ƒWƒƒ‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  *
- *	@param	heapID	ƒq[ƒvID
- *	@param	actmax	Šm•Û‚·‚éƒZƒ‹ƒAƒNƒ^[—Ìˆæ‚ÌŒÂ”
- *	@param	palmax	ƒ|ƒ‹ƒg—p‚Éè—L‚·‚éOBJƒpƒŒƒbƒg‚Ì–{”
- *	@param	vramType	•`‰æ‰æ–Êw’è(PORUOAM_DRAW_MAIN/SUB/BOTH)
- *  @param	cgx_transofs	ƒLƒƒƒ‰ƒNƒ^“]‘—ƒIƒtƒZƒbƒgw’è
- *							(PORUOAM_CGXOFS_AREA‚ğw’è‚µ‚½ê‡A‹ó‚«—ÌˆæŒŸõƒ‚[ƒh‚É‚È‚é)	
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
+ *	@param	actmax	ç¢ºä¿ã™ã‚‹ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼é ˜åŸŸã®å€‹æ•°
+ *	@param	palmax	ãƒãƒ«ãƒˆç”¨ã«å æœ‰ã™ã‚‹OBJãƒ‘ãƒ¬ãƒƒãƒˆã®æœ¬æ•°
+ *	@param	vramType	æç”»ç”»é¢æŒ‡å®š(PORUOAM_DRAW_MAIN/SUB/BOTH)
+ *  @param	cgx_transofs	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆæŒ‡å®š
+ *							(PORUOAM_CGXOFS_AREAã‚’æŒ‡å®šã—ãŸå ´åˆã€ç©ºãé ˜åŸŸæ¤œç´¢ãƒ¢ãƒ¼ãƒ‰ã«ãªã‚‹)	
  */
 PORUOAM_MAN* PoruOam_SysInit(int heapID,u16 actmax,u16 palmax,
 		u16 vramType,PORUOAM_CGXOFS cgx_transofs)
@@ -62,7 +62,7 @@ PORUOAM_MAN* PoruOam_SysInit(int heapID,u16 actmax,u16 palmax,
 	wk = sys_AllocMemory(heapID,sizeof(PORUOAM_MAN));
 	MI_CpuClear8(wk,sizeof(PORUOAM_MAN));
 
-	//ƒpƒ‰ƒ[ƒ^•Û‘¶
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿å­˜
 	wk->heapID = heapID;
 
 	if(actmax > PORUOAM_PAL_MAX){
@@ -79,7 +79,7 @@ PORUOAM_MAN* PoruOam_SysInit(int heapID,u16 actmax,u16 palmax,
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒAƒNƒ^[@ƒ}ƒl[ƒWƒƒ‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒãƒãƒ¼ã‚¸ãƒ£è§£æ”¾
  */
 void PoruOam_SysRelease(PORUOAM_MAN* wk)
 {
@@ -90,7 +90,7 @@ void PoruOam_SysRelease(PORUOAM_MAN* wk)
 
 
 /**
- *	@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
  */
 static void PoruOam_ResManagerInit(PORUOAM_MAN* wk)
 {
@@ -99,7 +99,7 @@ static void PoruOam_ResManagerInit(PORUOAM_MAN* wk)
 
 	wk->cas  = CLACT_U_SetEasyInit(wk->act_max, &wk->renddata,wk->heapID);
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬&ƒe[ƒuƒ‹‰Šú‰»
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ&ãƒ†ãƒ¼ãƒ–ãƒ«åˆæœŸåŒ–
 	resnum[RESTYPE_PAL] = wk->pal_num;
 	for( i=0; i< PORUOAM_RESMAX; i++ ){
 		wk->resMan[i] = CLACT_U_ResManagerInit(resnum[i],i, wk->heapID );
@@ -109,38 +109,38 @@ static void PoruOam_ResManagerInit(PORUOAM_MAN* wk)
 		}
 	}
 
-	//ƒŠƒ\[ƒXƒ[ƒh
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰
 	poam_LoadResArc(wk);
 
-	//ƒpƒŒƒbƒgƒ[ƒNŠm•Û
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	wk->work = sys_AllocMemory(wk->heapID,sizeof(PORUOAM_ACTWORK));
 	MI_CpuClear8(wk->work,sizeof(PORUOAM_ACTWORK));
 }
 
 /**
- *	@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‰ğ•ú
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£è§£æ”¾
  */
 static void PoruOam_ResManagerRelease(PORUOAM_MAN* wk)
 {
 	u32	i;
 
-	//ƒpƒŒƒbƒgƒ[ƒN”jŠü
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz(wk->work);
 
-	CLACT_DestSet( wk->cas );	// ƒZƒbƒg”jŠü
-	CLACT_U_CharManagerDeletes( wk->resObjTbl[RESTYPE_CHR] );	// ƒLƒƒƒ‰ƒf[ƒ^”jŠü
-	CLACT_U_PlttManagerDeletes( wk->resObjTbl[RESTYPE_PAL] );	// ƒpƒŒƒbƒgƒf[ƒ^”jŠü
+	CLACT_DestSet( wk->cas );	// ã‚»ãƒƒãƒˆç ´æ£„
+	CLACT_U_CharManagerDeletes( wk->resObjTbl[RESTYPE_CHR] );	// ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ç ´æ£„
+	CLACT_U_PlttManagerDeletes( wk->resObjTbl[RESTYPE_PAL] );	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 
 	for( i=0; i<PORUOAM_RESMAX; i++ ){
-		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹”jŠü
+		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
 		CLACT_U_ResManagerResObjTblDelete( wk->resObjTbl[i] );
-		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 		CLACT_U_ResManagerDelete( wk->resMan[i] );
 	}
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgOAM@•`‰æƒƒCƒ“
+ *	@brief	ãƒãƒ«ãƒˆOAMã€€æç”»ãƒ¡ã‚¤ãƒ³
  */
 void PoruOam_DrawMain(PORUOAM_MAN* wk)
 {
@@ -148,19 +148,19 @@ void PoruOam_DrawMain(PORUOAM_MAN* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgOAM’Ç‰Á
+ *	@brief	ãƒãƒ«ãƒˆOAMè¿½åŠ 
  *
- *	@param	flavor	ƒ|ƒ‹ƒg‚Ìí—ŞID
- *	@param	x		XÀ•W
- *	@param	y		YÀ•W
- *	@param	z		ZÀ•W
- *	@param	bg_pri	BGƒvƒ‰ƒCƒIƒŠƒeƒB
- *	@param	spri	ƒ\ƒtƒgƒEƒFƒAƒvƒ‰ƒCƒIƒŠƒeƒB
- *	@param	vram_type	PORUOAM_VRAMTYPEŒ^
- *						PORUOAM_VT_MAIN:ƒƒCƒ“‰æ–Ê
- *						PORUOAM_VT_SUB:ƒTƒu‰æ–Ê
+ *	@param	flavor	ãƒãƒ«ãƒˆã®ç¨®é¡ID
+ *	@param	x		Xåº§æ¨™
+ *	@param	y		Yåº§æ¨™
+ *	@param	z		Zåº§æ¨™
+ *	@param	bg_pri	BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ *	@param	spri	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ *	@param	vram_type	PORUOAM_VRAMTYPEå‹
+ *						PORUOAM_VT_MAIN:ãƒ¡ã‚¤ãƒ³ç”»é¢
+ *						PORUOAM_VT_SUB:ã‚µãƒ–ç”»é¢
  *
- *	–•K‚¸PoruOam_DelŠÖ”‚Å”jŠü‚·‚é‚±‚Æ
+ *	ï¼Šå¿…ãšPoruOam_Delé–¢æ•°ã§ç ´æ£„ã™ã‚‹ã“ã¨
  */
 PORUTO_OAM* PoruOam_Add(PORUOAM_MAN* wk,PORUTO_FLAVORID flavor,
 		u16 x,u16 y,u16 z,u8 bg_pri,u8 spri,PORUOAM_VRAMTYPE vtype)
@@ -173,15 +173,15 @@ PORUTO_OAM* PoruOam_Add(PORUOAM_MAN* wk,PORUTO_FLAVORID flavor,
 	CLACT_ADD	 add;
 	CLACT_U_RES_OBJ_PTR	obj;
 
-	//ƒ[ƒN‚Ì‹ó‚«—Ìˆæ‚ğ’T‚·
+	//ãƒ¯ãƒ¼ã‚¯ã®ç©ºãé ˜åŸŸã‚’æ¢ã™
 	idx = poam_GetNullWork(wk,flavor);
 	if(idx < 0){
-		//‹ó‚«—Ìˆæ‚ª‚È‚¢
+		//ç©ºãé ˜åŸŸãŒãªã„
 		GF_ASSERT(0 && "PoruOam_Add->work was full");
 		return NULL;
 	}
 
-	//OAMƒ[ƒNŠm•Û
+	//OAMãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	oam = sys_AllocMemory(wk->heapID,sizeof(PORUTO_OAM));
 	MI_CpuClear8(oam,sizeof(PORUTO_OAM));
 	oam->workID = idx;
@@ -193,21 +193,21 @@ PORUTO_OAM* PoruOam_Add(PORUOAM_MAN* wk,PORUTO_FLAVORID flavor,
 	}
 
 	obj = wk->resObjTbl[RESTYPE_PAL]->tbl[idx];
-	//ƒpƒŒƒbƒgƒŠƒ\[ƒX“Ç‚İ‘Ö‚¦
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹èª­ã¿æ›¿ãˆ
 	CLACT_U_ResManagerResChgArcPltt(wk->resMan[RESTYPE_PAL],
 		wk->resObjTbl[RESTYPE_PAL]->tbl[idx],
 		ARC_PORUACT_GRA,RES_PALID+flavor,RES_NOCOMP,wk->heapID);
 	CLACT_U_PlttManagerReTrans(wk->resObjTbl[RESTYPE_PAL]->tbl[idx]);
 
-	//ƒ[ƒNƒƒ‚ƒŠŠm•Û
+	//ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	cap = sys_AllocMemory(wk->heapID, sizeof(TCATS_ACT) );
 
-	//ƒwƒbƒ_[ƒƒ‚ƒŠŠm•Û
+	//ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	cap->act_htp = sys_AllocMemory(wk->heapID,sizeof(CLACT_HEADER_TBL));
 	cap->act_htp->tbl = sys_AllocMemory(wk->heapID,sizeof(CLACT_HEADER));
 	cap->act_hd = cap->act_htp->tbl;
 
-	//ƒwƒbƒ_[¶¬
+	//ãƒ˜ãƒƒãƒ€ãƒ¼ç”Ÿæˆ
 	CLACT_U_MakeHeader(
 		cap->act_hd,
 		RES_HEADID,RES_HEADID+idx,
@@ -218,7 +218,7 @@ PORUTO_OAM* PoruOam_Add(PORUOAM_MAN* wk,PORUTO_FLAVORID flavor,
 		wk->resMan[RESTYPE_CEL],wk->resMan[RESTYPE_ANM],
 		NULL,NULL);	
 
-	// OAM“o˜^
+	// OAMç™»éŒ²
 	add.ClActSet	= wk->cas;
 	add.ClActHeader = cap->act_hd;
 
@@ -229,22 +229,22 @@ PORUTO_OAM* PoruOam_Add(PORUOAM_MAN* wk,PORUTO_FLAVORID flavor,
 		add.mat.y += SUB_SURFACE_Y;
 	}
 	
-	add.sca.x		= FX32_ONE;			// Šgk—¦
+	add.sca.x		= FX32_ONE;			// æ‹¡ç¸®ç‡
 	add.sca.y		= FX32_ONE;
 	add.sca.z		= FX32_ONE;
 	
-	add.rot			= 0;				// ‰ñ“]Šp
-	add.pri			= spri;				// —Dæ“x
-	add.DrawArea	= vram_type;		// •`‰æ–Ê
-	add.heap		= wk->heapID;		// ƒq[ƒvID
+	add.rot			= 0;				// å›è»¢è§’
+	add.pri			= spri;				// å„ªå…ˆåº¦
+	add.DrawArea	= vram_type;		// æç”»é¢
+	add.heap		= wk->heapID;		// ãƒ’ãƒ¼ãƒ—ID
 	
-	cap->act = CLACT_Add(&add);			//“o˜^ˆ—
+	cap->act = CLACT_Add(&add);			//ç™»éŒ²å‡¦ç†
 	
 	if (cap->act != NULL){
-		CLACT_AnmChg(cap->act,0);		//ƒAƒjƒ[ƒVƒ‡ƒ“w’è
+		CLACT_AnmChg(cap->act,0);		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æŒ‡å®š
 		palid = CLACT_U_PlttManagerGetPlttNo(
 			obj,vram_type);
-		CLACT_PaletteNoChg(cap->act,palid);		//ƒpƒŒƒbƒgw’è
+		CLACT_PaletteNoChg(cap->act,palid);		//ãƒ‘ãƒ¬ãƒƒãƒˆæŒ‡å®š
 	}
 	else{
 		GF_ASSERT(0 &&"poruto oam add failed");
@@ -254,9 +254,9 @@ PORUTO_OAM* PoruOam_Add(PORUOAM_MAN* wk,PORUTO_FLAVORID flavor,
 }
 
 /**
- *	@brief	“o˜^Ï‚İOAM‚Ìƒ|ƒ‹ƒg‚Ìí—Ş‚ğ•ÏX‚·‚é
+ *	@brief	ç™»éŒ²æ¸ˆã¿OAMã®ãƒãƒ«ãƒˆã®ç¨®é¡ã‚’å¤‰æ›´ã™ã‚‹
  *	
- *	@param	flavor	ƒ|ƒ‹ƒg‚Ìí—ŞID
+ *	@param	flavor	ãƒãƒ«ãƒˆã®ç¨®é¡ID
  */
 void PoruOam_ChangeFlavor(PORUOAM_MAN*wk,PORUTO_OAM* oam,PORUTO_FLAVORID flavor)
 {
@@ -264,21 +264,21 @@ void PoruOam_ChangeFlavor(PORUOAM_MAN*wk,PORUTO_OAM* oam,PORUTO_FLAVORID flavor)
 
 	obj = wk->resObjTbl[RESTYPE_PAL]->tbl[oam->workID];
 
-	//ƒpƒŒƒbƒgƒŠƒ\[ƒX“Ç‚İ‘Ö‚¦
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹èª­ã¿æ›¿ãˆ
 	CLACT_U_ResManagerResChgArcPltt(wk->resMan[RESTYPE_PAL],
 		obj,ARC_PORUACT_GRA,RES_PALID+flavor,RES_NOCOMP,wk->heapID);
 	CLACT_U_PlttManagerReTrans(obj);
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgOAMíœ
+ *	@brief	ãƒãƒ«ãƒˆOAMå‰Šé™¤
  */
 void PoruOam_Del(PORUOAM_MAN* wk,PORUTO_OAM* oam)
 {
-	//ƒAƒNƒ^[íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 	CATS_ActorPointerDelete_S(oam->act);
 	
-	//ƒ[ƒN‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	wk->work[oam->workID].valid = 0;
 	wk->work[oam->workID].resNo = 0;
 	wk->work[oam->workID].flavor = 0;
@@ -287,7 +287,7 @@ void PoruOam_Del(PORUOAM_MAN* wk,PORUTO_OAM* oam)
 }
 
 /**
- *	@brief	ƒŠƒ\[ƒX‰Šúİ’è
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹åˆæœŸè¨­å®š
  */
 static void poam_LoadResArc(PORUOAM_MAN* wk)
 {
@@ -299,7 +299,7 @@ static void poam_LoadResArc(PORUOAM_MAN* wk)
 
 	p_handle = ArchiveDataHandleOpen( ARC_PORUACT_GRA, wk->heapID );
 	
-	//ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXæ“¾
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	obj = wk->resObjTbl[RESTYPE_CHR];
 	obj->tbl[0] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[RESTYPE_CHR],
 		p_handle,RES_CHRID,RES_NOCOMP,RES_HEADID,wk->vramType,wk->heapID);
@@ -319,7 +319,7 @@ static void poam_LoadResArc(PORUOAM_MAN* wk)
 		break;
 	}
 
-	//ƒZƒ‹&ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒXæ“¾
+	//ã‚»ãƒ«&ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	for(i = 0;i < 2;i++){
 		obj = wk->resObjTbl[RESTYPE_CEL+i];
 		obj->tbl[0] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[RESTYPE_CEL+i],
@@ -328,7 +328,7 @@ static void poam_LoadResArc(PORUOAM_MAN* wk)
 		GF_ASSERT((obj->tbl[0]!=NULL)&&"poam cell&canm resload failed");
 	}
 
-	//‰ŠúƒpƒŒƒbƒgƒŠƒ\[ƒXæ“¾(No.001‚Å‘S•”‚ğ‰Šú‰»‚·‚é)
+	//åˆæœŸãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹å–å¾—(No.001ã§å…¨éƒ¨ã‚’åˆæœŸåŒ–ã™ã‚‹)
 	obj = wk->resObjTbl[RESTYPE_PAL];
 	for(i = 0;i < wk->pal_num;i++){
 		obj->tbl[i] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[RESTYPE_PAL],
@@ -343,7 +343,7 @@ static void poam_LoadResArc(PORUOAM_MAN* wk)
 }
 
 /**
- *	@brief	‹ó‚«ƒ[ƒN‚ğ’T‚·
+ *	@brief	ç©ºããƒ¯ãƒ¼ã‚¯ã‚’æ¢ã™
  */
 static s16 poam_GetNullWork(PORUOAM_MAN* wk,u8 flavor)
 {

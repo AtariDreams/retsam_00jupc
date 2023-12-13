@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	point_sel.h
- * @brief	�ʒu�C���f�b�N�X�I������
+ * @brief	位置インデックス選択処理
  * @author	Hiroyuki Nakamura
  * @date	2004.11.12
  */
@@ -17,72 +17,72 @@
 
 
 //============================================================================================
-//	�V���{����`
+//	シンボル定義
 //============================================================================================
-// �p�����[�^�擾�p��`
+// パラメータ取得用定義
 enum {
-	POINT_WK_PX = 0,	// X���W
-	POINT_WK_PY,		// Y���W
-	POINT_WK_SX,		// X�T�C�Y
-	POINT_WK_SY,		// Y�T�C�Y
-	POINT_WK_UP,		// ������ւ̃C���f�b�N�X�ԍ�
-	POINT_WK_DOWN,		// �������ւ̃C���f�b�N�X�ԍ�
-	POINT_WK_LEFT,		// �������ւ̃C���f�b�N�X�ԍ�
-	POINT_WK_RIGHT		// �E�����ւ̃C���f�b�N�X�ԍ�
+	POINT_WK_PX = 0,	// X座標
+	POINT_WK_PY,		// Y座標
+	POINT_WK_SX,		// Xサイズ
+	POINT_WK_SY,		// Yサイズ
+	POINT_WK_UP,		// 上方向へのインデックス番号
+	POINT_WK_DOWN,		// 下方向へのインデックス番号
+	POINT_WK_LEFT,		// 左方向へのインデックス番号
+	POINT_WK_RIGHT		// 右方向へのインデックス番号
 };
 
-// �f�[�^�ړ���`
+// データ移動定義
 enum {
-	POINT_MV_UP = 0,	// ��
-	POINT_MV_DOWN,		// ��
-	POINT_MV_LEFT,		// �E
-	POINT_MV_RIGHT,		// ��
-	POINT_MV_NULL		// �_�~�[
+	POINT_MV_UP = 0,	// 上
+	POINT_MV_DOWN,		// 下
+	POINT_MV_LEFT,		// 右
+	POINT_MV_RIGHT,		// 左
+	POINT_MV_NULL		// ダミー
 };
 
-#define	POINT_SEL_NOMOVE	( 0xff )	// �\���L�[�ړ��ŏ\���L�[��������ĂȂ��ꍇ�̕Ԃ�l
+#define	POINT_SEL_NOMOVE	( 0xff )	// 十字キー移動で十字キーが押されてない場合の返り値
 
 typedef struct {
-	u8	px;			// X���W�i�L�����ł��h�b�g�ł��j
-	u8	py;			// Y���W
-	u8	sx;			// X�T�C�Y
-	u8	sy;			// Y�T�C�Y
+	u8	px;			// X座標（キャラでもドットでも）
+	u8	py;			// Y座標
+	u8	sx;			// Xサイズ
+	u8	sy;			// Yサイズ
 
-	u8	up;			// ������ւ̃C���f�b�N�X�ԍ�
-	u8	down;		// �������ւ̃C���f�b�N�X�ԍ�
-	u8	left;		// �������ւ̃C���f�b�N�X�ԍ�
-	u8	right;		// �E�����ւ̃C���f�b�N�X�ԍ�
+	u8	up;			// 上方向へのインデックス番号
+	u8	down;		// 下方向へのインデックス番号
+	u8	left;		// 左方向へのインデックス番号
+	u8	right;		// 右方向へのインデックス番号
 }POINTER_WORK;
 
 
 //============================================================================================
-//	�O���[�o���ϐ�
+//	グローバル変数
 //============================================================================================
 
 
 //============================================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �p�����[�^�擾
+ * パラメータ取得
  *
- * @param	pw		���[�N
- * @param	flg		�擾�t���O
+ * @param	pw		ワーク
+ * @param	flg		取得フラグ
  *
- * @return	�w��p�����[�^
+ * @return	指定パラメータ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 PointerWorkGet( const POINTER_WORK * pw, u8 flg );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���W�擾
+ * 座標取得
  *
- * @param	pw		���[�N
- * @param	x		X���W�i�[�ꏊ
- * @param	y		Y���W�i�[�ꏊ
+ * @param	pw		ワーク
+ * @param	x		X座標格納場所
+ * @param	y		Y座標格納場所
  *
  * @return	none
  */
@@ -91,11 +91,11 @@ GLOBAL void PointerWkPosGet( const POINTER_WORK * pw, u8 * x, u8 * y );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �T�C�Y�擾
+ * サイズ取得
  *
- * @param	pw		���[�N
- * @param	x		X�T�C�Y�i�[�ꏊ
- * @param	y		Y�T�C�Y�i�[�ꏊ
+ * @param	pw		ワーク
+ * @param	x		Xサイズ格納場所
+ * @param	y		Yサイズ格納場所
  *
  * @return	none
  */
@@ -104,17 +104,17 @@ GLOBAL void PointerWkSizeGet( const POINTER_WORK * pw, u8 * x, u8 * y );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �ړ��������w�肵�A���W�A�T�C�Y�A�C���f�b�N�X���擾����
+ * 移動方向を指定し、座標、サイズ、インデックスを取得する
  *
- * @param	pw		���[�N
- * @param	px		X���W�i�[�ꏊ
- * @param	py		Y���W�i�[�ꏊ
- * @param	sx		X�T�C�Y�i�[�ꏊ
- * @param	sy		Y�T�C�Y�i�[�ꏊ
- * @param	now		���݂̃C���f�b�N�X
- * @param	mv		�ړ�����
+ * @param	pw		ワーク
+ * @param	px		X座標格納場所
+ * @param	py		Y座標格納場所
+ * @param	sx		Xサイズ格納場所
+ * @param	sy		Yサイズ格納場所
+ * @param	now		現在のインデックス
+ * @param	mv		移動方向
  *
- * @return	�ړ���̃C���f�b�N�X
+ * @return	移動先のインデックス
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 PointerWkMoveSel(
@@ -122,18 +122,18 @@ GLOBAL u8 PointerWkMoveSel(
 
 //--------------------------------------------------------------------------------------------
 /**
- * �\���L�[�̏�񂩂�A���W�A�T�C�Y�A�C���f�b�N�X���擾����
+ * 十字キーの情報から、座標、サイズ、インデックスを取得する
  *
- * @param	pw		���[�N
- * @param	px		X���W�i�[�ꏊ
- * @param	py		Y���W�i�[�ꏊ
- * @param	sx		X�T�C�Y�i�[�ꏊ
- * @param	sy		Y�T�C�Y�i�[�ꏊ
- * @param	now		���݂̃C���f�b�N�X
+ * @param	pw		ワーク
+ * @param	px		X座標格納場所
+ * @param	py		Y座標格納場所
+ * @param	sx		Xサイズ格納場所
+ * @param	sy		Yサイズ格納場所
+ * @param	now		現在のインデックス
  *
- * @return	�ړ���̃C���f�b�N�X�i�\���L�[��������Ă��Ȃ��ꍇ��POINT_SEL_NOMOVE�j
+ * @return	移動先のインデックス（十字キーが押されていない場合はPOINT_SEL_NOMOVE）
  *
- * @li	sys.trg���g�p
+ * @li	sys.trgを使用
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 PointerWkMoveSelTrg(
@@ -141,14 +141,14 @@ GLOBAL u8 PointerWkMoveSelTrg(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���W���w�肵�A�C���f�b�N�X���擾����
+ * 座標を指定し、インデックスを取得する
  *
- * @param	pw		���[�N
- * @param	px		X���W
- * @param	py		Y���W
- * @param	siz		�f�[�^�T�C�Y
+ * @param	pw		ワーク
+ * @param	px		X座標
+ * @param	py		Y座標
+ * @param	siz		データサイズ
  *
- * @return	�w����W�̃C���f�b�N�X
+ * @return	指定座標のインデックス
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 PointerWkMovePos( const POINTER_WORK * pw, u8 px, u8 py, u8 siz );

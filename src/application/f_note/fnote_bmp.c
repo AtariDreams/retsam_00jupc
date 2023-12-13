@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fnote_bmp.c
- * @brief	–`Œ¯ƒm[ƒg@BMPˆ—
+ * @brief	å†’é™ºãƒãƒ¼ãƒˆã€€BMPå‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2006.03.06
  */
@@ -26,31 +26,31 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
-// “ú•t‚P
-#define	WIN_TIME1_PX	( 2 )		// •\¦XÀ•W
-#define	WIN_TIME1_PY	( 2 )		// •\¦YÀ•W
-#define	WIN_TIME1_SX	( 24 )		// XƒTƒCƒY
-#define	WIN_TIME1_SY	( 2 )		// YƒTƒCƒY
-#define	WIN_TIME1_PAL	( 15 )		// g—pƒpƒŒƒbƒg
-#define	WIN_TIME1_CGX	( 1 )		// ƒLƒƒƒ‰ŠJnˆÊ’u
-// “à—e‚P
+// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+// æ—¥ä»˜ï¼‘
+#define	WIN_TIME1_PX	( 2 )		// è¡¨ç¤ºXåº§æ¨™
+#define	WIN_TIME1_PY	( 2 )		// è¡¨ç¤ºYåº§æ¨™
+#define	WIN_TIME1_SX	( 24 )		// Xã‚µã‚¤ã‚º
+#define	WIN_TIME1_SY	( 2 )		// Yã‚µã‚¤ã‚º
+#define	WIN_TIME1_PAL	( 15 )		// ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define	WIN_TIME1_CGX	( 1 )		// ã‚­ãƒ£ãƒ©é–‹å§‹ä½ç½®
+// å†…å®¹ï¼‘
 #define	WIN_STR1_PX		( 4 )
 #define	WIN_STR1_PY		( 4 )
 #define	WIN_STR1_SX		( 27 )
 #define	WIN_STR1_SY		( 18 )
 #define	WIN_STR1_PAL	( 15 )
 #define	WIN_STR1_CGX	( WIN_TIME1_CGX + WIN_TIME1_SX * WIN_TIME1_SY )
-// “ú•t‚QiƒXƒƒbƒv—pj
+// æ—¥ä»˜ï¼’ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 #define	WIN_TIME2_PX	( 2 )
 #define	WIN_TIME2_PY	( 2 )
 #define	WIN_TIME2_SX	( 24 )
 #define	WIN_TIME2_SY	( 2 )
 #define	WIN_TIME2_PAL	( 15 )
 #define	WIN_TIME2_CGX	( 1 )
-// “à—e‚QiƒXƒƒbƒv—pj
+// å†…å®¹ï¼’ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 #define	WIN_STR2_PX		( 4 )
 #define	WIN_STR2_PY		( 4 )
 #define	WIN_STR2_SX		( 27 )
@@ -58,18 +58,18 @@
 #define	WIN_STR2_PAL	( 15 )
 #define	WIN_STR2_CGX	( WIN_TIME2_CGX + WIN_TIME2_SX * WIN_TIME2_SY )
 
-#define	COL_N_BLACK		( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
+#define	COL_N_BLACK		( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
 
-#define	WEEK_SPC_X	( 12 )		// —j“úƒXƒy[ƒX
+#define	WEEK_SPC_X	( 12 )		// æ›œæ—¥ã‚¹ãƒšãƒ¼ã‚¹
 
-#define	ACTION_PY	( 16 )					// €–Úus“®v•\¦YÀ•W
-#define	POKEMON_PY	( ACTION_PY * 4 + 16 )	// €–Úuƒ|ƒPƒ‚ƒ“v•\¦YÀ•W
-#define	TRAINER_PY	( POKEMON_PY + 16 )		// €–ÚuƒgƒŒ[ƒi[v•\¦YÀ•W
-#define	SIO_PY		( TRAINER_PY + 16 )		// €–Úu’ÊMv•\¦YÀ•W
+#define	ACTION_PY	( 16 )					// é …ç›®ã€Œè¡Œå‹•ã€è¡¨ç¤ºYåº§æ¨™
+#define	POKEMON_PY	( ACTION_PY * 4 + 16 )	// é …ç›®ã€Œãƒã‚±ãƒ¢ãƒ³ã€è¡¨ç¤ºYåº§æ¨™
+#define	TRAINER_PY	( POKEMON_PY + 16 )		// é …ç›®ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€è¡¨ç¤ºYåº§æ¨™
+#define	SIO_PY		( TRAINER_PY + 16 )		// é …ç›®ã€Œé€šä¿¡ã€è¡¨ç¤ºYåº§æ¨™
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static u8 FNOTE_HederPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * time, GF_BGL_BMPWIN * info );
 static void FNOTE_ActionPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info );
@@ -198,24 +198,24 @@ static void FNOTE_SioWifiClubDataPut(
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT BmpData[] =
 {
-	{	// “ú•t‚P
+	{	// æ—¥ä»˜ï¼‘
 		GF_BGL_FRAME0_M, WIN_TIME1_PX, WIN_TIME1_PY,
 		WIN_TIME1_SX, WIN_TIME1_SY, WIN_TIME1_PAL, WIN_TIME1_CGX
 	},
-	{	// î•ñ‚P
+	{	// æƒ…å ±ï¼‘
 		GF_BGL_FRAME0_M, WIN_STR1_PX, WIN_STR1_PY,
 		WIN_STR1_SX, WIN_STR1_SY, WIN_STR1_PAL, WIN_STR1_CGX
 	},
-	{	// “ú•t‚Q
+	{	// æ—¥ä»˜ï¼’
 		GF_BGL_FRAME1_M, WIN_TIME2_PX, WIN_TIME2_PY,
 		WIN_TIME2_SX, WIN_TIME2_SY, WIN_TIME2_PAL, WIN_TIME2_CGX
 	},
-	{	// î•ñ‚Q
+	{	// æƒ…å ±ï¼’
 		GF_BGL_FRAME1_M, WIN_STR2_PX, WIN_STR2_PY,
 		WIN_STR2_SX, WIN_STR2_SY, WIN_STR2_PAL, WIN_STR2_CGX
 	}
@@ -224,9 +224,9 @@ static const BMPWIN_DAT BmpData[] =
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMP’Ç‰Á
+ * BMPè¿½åŠ 
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -242,9 +242,9 @@ void FantasyNote_BmpAdd( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPíœ
+ * BMPå‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -260,10 +260,10 @@ void FantasyNote_BmpFree( FNOTE_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶š—ñ•\¦
+ * æ–‡å­—åˆ—è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	flg		•\¦‚·‚éBMP‚Ìƒtƒ‰ƒO
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		è¡¨ç¤ºã™ã‚‹BMPã®ãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -297,14 +297,14 @@ void FantasyNote_BmpPut( FNOTE_WORK * wk, u32 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒwƒbƒ_[ƒf[ƒ^•\¦
+ * ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	time	“ú•t‚ğ•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	info	ŠJnˆÊ’u‚ğ•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	time	æ—¥ä»˜ã‚’è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	info	é–‹å§‹ä½ç½®ã‚’è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- * @retval	"TRUE = ƒf[ƒ^‚ ‚è"
- * @retval	"FALSE = ƒf[ƒ^‚È‚µ"
+ * @retval	"TRUE = ãƒ‡ãƒ¼ã‚¿ã‚ã‚Š"
+ * @retval	"FALSE = ãƒ‡ãƒ¼ã‚¿ãªã—"
  */
 //--------------------------------------------------------------------------------------------
 static u8 FNOTE_HederPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * time, GF_BGL_BMPWIN * info )
@@ -319,11 +319,11 @@ static u8 FNOTE_HederPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * time, GF_BGL_BMPWIN *
 		return FALSE;
 	}
 
-	// “ú•t
+	// æ—¥ä»˜
 	str = MSGMAN_AllocString( wk->mman, msg_fnote_001 );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-	// Œ‚Ì•\¦‚ğ’PŒê•\‹L‚É•ÏX
+	// æœˆã®è¡¨ç¤ºã‚’å˜èªè¡¨è¨˜ã«å¤‰æ›´
 	WORDSET_RegisterMonthName( wk->wset, 0, mem.month );
 	// ----------------------------------------------------------------------------
 	WORDSET_RegisterNumber(
@@ -331,14 +331,14 @@ static u8 FNOTE_HederPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * time, GF_BGL_BMPWIN *
 	WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 	STRBUF_Delete( str );
 	GF_STR_PrintColor( time, FONT_SYSTEM, wk->msg_buf, 0, 0, MSG_NO_PUT, COL_N_BLACK, NULL );
-	// —j“ú
+	// æ›œæ—¥
 	siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->msg_buf, 0 );
 	str = MSGMAN_AllocString( wk->mman, msg_fnote_010+mem.week );
 	GF_STR_PrintColor(
 		time, FONT_SYSTEM, str, siz+WEEK_SPC_X, 0, MSG_NO_PUT, COL_N_BLACK, NULL );
 	STRBUF_Delete( str );
 
-	// ƒXƒ^[ƒgI
+	// ã‚¹ã‚¿ãƒ¼ãƒˆï¼
 	str = MSGMAN_AllocString( wk->mman, msg_fnote_000 );
 	WORDSET_RegisterPlaceName( wk->wset, 0, ZoneData_GetPlaceNameID(mem.start) );
 
@@ -351,10 +351,10 @@ static u8 FNOTE_HederPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * time, GF_BGL_BMPWIN *
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®ƒf[ƒ^•\¦
+ * è¡Œå‹•ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	info	•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	info	è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -368,150 +368,150 @@ static void FNOTE_ActionPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 
 	for( i=0; i<FNOTE_ACTION_MAX; i++ ){
 		switch( mem[i].id ){
-		case 0:						// ƒf[ƒ^‚È‚µ
+		case 0:						// ãƒ‡ãƒ¼ã‚¿ãªã—
 			return;
 
-		case FNOTE_ID_MYHOUSE:		// s“®F©‘î
+		case FNOTE_ID_MYHOUSE:		// è¡Œå‹•ï¼šè‡ªå®…
 			FNOTE_ActionHouseDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_LABO:			// s“®FŒ¤‹†Š
+		case FNOTE_ID_LABO:			// è¡Œå‹•ï¼šç ”ç©¶æ‰€
 			FNOTE_ActionLaboDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_POKECENTER:	// s“®Fƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[
+		case FNOTE_ID_POKECENTER:	// è¡Œå‹•ï¼šãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼
 			FNOTE_ActionPokeCenterDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_FDSHOP_BUY:	// s“®FƒVƒ‡ƒbƒvE”ƒ‚¤
+		case FNOTE_ID_FDSHOP_BUY:	// è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»è²·ã†
 			FNOTE_ActionShopBuyDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_FDSHOP_BUY2:	// s“®FƒVƒ‡ƒbƒvE”ƒ‚¤i•¡”j
+		case FNOTE_ID_FDSHOP_BUY2:	// è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»è²·ã†ï¼ˆè¤‡æ•°ï¼‰
 			FNOTE_ActionShopBuy2DataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_FDSHOP_SALE:	// s“®FƒVƒ‡ƒbƒvE”„‚é
+		case FNOTE_ID_FDSHOP_SALE:	// è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²ã‚‹
 			FNOTE_ActionShopSaleDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_FDSHOP_SALE2:	// s“®FƒVƒ‡ƒbƒvE”„‚éi•¡”j
+		case FNOTE_ID_FDSHOP_SALE2:	// è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²ã‚‹ï¼ˆè¤‡æ•°ï¼‰
 			FNOTE_ActionShopSale2DataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_FDSHOP_TRADE:	// s“®FƒVƒ‡ƒbƒvE”„”ƒ
+		case FNOTE_ID_FDSHOP_TRADE:	// è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²è²·
 			FNOTE_ActionShopTradeDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_GYMBEFORE:	// s“®FƒWƒ€iƒŠ[ƒ_[‚ğ“|‚·‘Oj
+		case FNOTE_ID_GYMBEFORE:	// è¡Œå‹•ï¼šã‚¸ãƒ ï¼ˆãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã™å‰ï¼‰
 			FNOTE_ActionGymBeforeDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_GYMAFTER:		// s“®FƒWƒ€iƒŠ[ƒ_[‚ğ“|‚µ‚½Œãj
+		case FNOTE_ID_GYMAFTER:		// è¡Œå‹•ï¼šã‚¸ãƒ ï¼ˆãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã—ãŸå¾Œï¼‰
 			FNOTE_ActionGymAfterDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_SITENNOU:		// s“®Fl“V‰¤
+		case FNOTE_ID_SITENNOU:		// è¡Œå‹•ï¼šå››å¤©ç‹
 			FNOTE_ActionSitennouDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_CHAMPION:		// s“®Fƒ`ƒƒƒ“ƒsƒIƒ“
+		case FNOTE_ID_CHAMPION:		// è¡Œå‹•ï¼šãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
 			FNOTE_ActionChampionDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_CITY:			// s“®FŠX
+		case FNOTE_ID_CITY:			// è¡Œå‹•ï¼šè¡—
 			FNOTE_ActionCityDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_DUNGEON:		// s“®Fƒ_ƒ“ƒWƒ‡ƒ“
+		case FNOTE_ID_DUNGEON:		// è¡Œå‹•ï¼šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
 			FNOTE_ActionDungeonDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_BUILD:		// s“®FŒš•¨
+		case FNOTE_ID_BUILD:		// è¡Œå‹•ï¼šå»ºç‰©
 			FNOTE_ActionBuildDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_GAMECORNER:		// s“®FƒQ[ƒ€ƒR[ƒi[
+		case FNOTE_ID_GAMECORNER:		// è¡Œå‹•ï¼šã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒŠãƒ¼
 			FNOTE_ActionGameCornerDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_SAFARIZONE:		// s“®FƒTƒtƒ@ƒŠƒ][ƒ“
+		case FNOTE_ID_SAFARIZONE:		// è¡Œå‹•ï¼šã‚µãƒ•ã‚¡ãƒªã‚¾ãƒ¼ãƒ³
 			FNOTE_ActionSafariDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_ITEMGET:		// s“®FƒAƒCƒeƒ€æ“¾
+		case FNOTE_ID_ITEMGET:		// è¡Œå‹•ï¼šã‚¢ã‚¤ãƒ†ãƒ å–å¾—
 			FNOTE_ActionItemGetDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_IWAKUDAKI:	// s“®F‹ZE‚¢‚í‚­‚¾‚«
+		case FNOTE_ID_IWAKUDAKI:	// è¡Œå‹•ï¼šæŠ€ãƒ»ã„ã‚ãã ã
 			FNOTE_ActionIwakudakiDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_IAIGIRI:		// s“®F‹ZE‚¢‚ ‚¢‚¬‚è
+		case FNOTE_ID_IAIGIRI:		// è¡Œå‹•ï¼šæŠ€ãƒ»ã„ã‚ã„ãã‚Š
 			FNOTE_ActionIaigiriDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_SORAWOTOBU:	// s“®F‹ZE‚»‚ç‚ğ‚Æ‚Ô
+		case FNOTE_ID_SORAWOTOBU:	// è¡Œå‹•ï¼šæŠ€ãƒ»ãã‚‰ã‚’ã¨ã¶
 			FNOTE_ActionSorawotobuDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_KIRIBARAI:	// s“®F‹ZE‚«‚è‚Î‚ç‚¢
+		case FNOTE_ID_KIRIBARAI:	// è¡Œå‹•ï¼šæŠ€ãƒ»ãã‚Šã°ã‚‰ã„
 			FNOTE_ActionKiribaraiDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_KAIRIKI:		// s“®F‹ZE‚©‚¢‚è‚«
+		case FNOTE_ID_KAIRIKI:		// è¡Œå‹•ï¼šæŠ€ãƒ»ã‹ã„ã‚Šã
 			FNOTE_ActionKairikiDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_NAMINORI:		// s“®F‹ZE‚È‚İ‚Ì‚è
+		case FNOTE_ID_NAMINORI:		// è¡Œå‹•ï¼šæŠ€ãƒ»ãªã¿ã®ã‚Š
 			FNOTE_ActionNaminoriDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_ROCKCLIMB:	// s“®F‹ZEƒƒbƒNƒNƒ‰ƒCƒ€
+		case FNOTE_ID_ROCKCLIMB:	// è¡Œå‹•ï¼šæŠ€ãƒ»ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ 
 			FNOTE_ActionRockckimbDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_TAKINOBORI:	// s“®F‹ZE‚½‚«‚Ì‚Ú‚è
+		case FNOTE_ID_TAKINOBORI:	// è¡Œå‹•ï¼šæŠ€ãƒ»ãŸãã®ã¼ã‚Š
 			FNOTE_ActionTakinoboriDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_FLASH:		// s“®F‹ZEƒtƒ‰ƒbƒVƒ…
+		case FNOTE_ID_FLASH:		// è¡Œå‹•ï¼šæŠ€ãƒ»ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 			FNOTE_ActionFlashDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_TELEPORT:		// s“®F‹ZEƒeƒŒƒ|[ƒg
+		case FNOTE_ID_TELEPORT:		// è¡Œå‹•ï¼šæŠ€ãƒ»ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ
 			FNOTE_ActionTeleportDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_ANAWOHORU:	// s“®F‹ZE‚ ‚È‚ğ‚Ù‚é
+		case FNOTE_ID_ANAWOHORU:	// è¡Œå‹•ï¼šæŠ€ãƒ»ã‚ãªã‚’ã»ã‚‹
 			FNOTE_ActionAnawohoruDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_AMAIKAORI:	// s“®F‹ZE‚ ‚Ü‚¢‚©‚¨‚è
+		case FNOTE_ID_AMAIKAORI:	// è¡Œå‹•ï¼šæŠ€ãƒ»ã‚ã¾ã„ã‹ãŠã‚Š
 			FNOTE_ActionAmiaikaoriDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_TAMAGOUMI:	// s“®F‹ZEƒ^ƒ}ƒS‚¤‚İ
+		case FNOTE_ID_TAMAGOUMI:	// è¡Œå‹•ï¼šæŠ€ãƒ»ã‚¿ãƒã‚´ã†ã¿
 			FNOTE_ActionTamagoumiDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_MIRUKUNOMI:	// s“®F‹ZEƒ~ƒ‹ƒN‚Ì‚İ
+		case FNOTE_ID_MIRUKUNOMI:	// è¡Œå‹•ï¼šæŠ€ãƒ»ãƒŸãƒ«ã‚¯ã®ã¿
 			FNOTE_ActionMilknomiDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_UG_FOSSIL:	// s“®F’n‰ºE‰»ÎŒ@‚è
+		case FNOTE_ID_UG_FOSSIL:	// è¡Œå‹•ï¼šåœ°ä¸‹ãƒ»åŒ–çŸ³æ˜ã‚Š
 			FNOTE_ActionUGFossilDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_UG_BASE:		// s“®F’n‰ºE”é–§Šî’n
+		case FNOTE_ID_UG_BASE:		// è¡Œå‹•ï¼šåœ°ä¸‹ãƒ»ç§˜å¯†åŸºåœ°
 			FNOTE_ActionUGBaseDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_PL_TOWER:		// s“®Fƒtƒƒ“ƒeƒBƒA{İEƒ^ƒ[
-		case FNOTE_ID_PL_FACTORY:	// s“®Fƒtƒƒ“ƒeƒBƒA{İEƒtƒ@ƒNƒgƒŠ[
-		case FNOTE_ID_PL_CASTLE:	// s“®Fƒtƒƒ“ƒeƒBƒA{İEƒLƒƒƒbƒXƒ‹
-		case FNOTE_ID_PL_STAGE:		// s“®Fƒtƒƒ“ƒeƒBƒA{İEƒXƒe[ƒW
-		case FNOTE_ID_PL_ROULETTE:	// s“®Fƒtƒƒ“ƒeƒBƒA{İEƒ‹[ƒŒƒbƒg
+		case FNOTE_ID_PL_TOWER:		// è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ãƒ»ã‚¿ãƒ¯ãƒ¼
+		case FNOTE_ID_PL_FACTORY:	// è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ãƒ»ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+		case FNOTE_ID_PL_CASTLE:	// è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ãƒ»ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+		case FNOTE_ID_PL_STAGE:		// è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ãƒ»ã‚¹ãƒ†ãƒ¼ã‚¸
+		case FNOTE_ID_PL_ROULETTE:	// è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ãƒ»ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 			FNOTE_ActionFrontierDataPut( wk, info, &mem[i], i, mem[i].id );
 			break;
 		}
@@ -520,10 +520,10 @@ static void FNOTE_ActionPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒf[ƒ^•\¦
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	info	•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	info	è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -535,14 +535,14 @@ static void FNOTE_PokemonPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 	FNOTE_DataGet( wk->dat, &mem, FNOTE_TYPE_POKEMON, wk->page );
 
 	switch( mem.id ){
-	case 0:						// ƒf[ƒ^‚È‚µ
+	case 0:						// ãƒ‡ãƒ¼ã‚¿ãªã—
 		return;
 
-	case FNOTE_ID_POKEGET:		// ƒ|ƒPƒ‚ƒ“F•ßŠl
+	case FNOTE_ID_POKEGET:		// ãƒã‚±ãƒ¢ãƒ³ï¼šæ•ç²
 		FNOTE_PokeGetDataPut( wk, info, &mem );
 		break;
 
-	case FNOTE_ID_POKEDOWN:		// ƒ|ƒPƒ‚ƒ“F“|‚µ‚½
+	case FNOTE_ID_POKEDOWN:		// ãƒã‚±ãƒ¢ãƒ³ï¼šå€’ã—ãŸ
 		FNOTE_PokeDownDataPut( wk, info, &mem );
 		break;
 	}
@@ -550,17 +550,17 @@ static void FNOTE_PokemonPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒf[ƒ^•\¦
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	info	•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	info	è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-// ‘ÎíƒƒOo‚µ•ª‚¯‚Ì‹«ŠE’l‚ğA‰pŒê”Å‚Ì•¶š”‚ÌoŒ»•ª•z‚ğl—¶‚µ‚Ä•ÏX
+// å¯¾æˆ¦ãƒ­ã‚°å‡ºã—åˆ†ã‘ã®å¢ƒç•Œå€¤ã‚’ã€è‹±èªç‰ˆã®æ–‡å­—æ•°ã®å‡ºç¾åˆ†å¸ƒã‚’è€ƒæ…®ã—ã¦å¤‰æ›´
 enum {
 	LETNUM_SHORTEST = 14,
 	LETNUM_SHORTER  = 16,
@@ -582,22 +582,22 @@ static void FNOTE_TrainerPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 	{
 		STRBUF * str;
 		
-		// ’n–¼
+		// åœ°å
 		str = MSGDAT_GetStrDirectAlloc(
 				ARC_MSG, NARC_msg_place_name_dat,
 				ZoneData_GetPlaceNameID(mem.map), HEAPID_FANTASYNOTE );
 		i = STRBUF_GetLen( str );
 		STRBUF_Delete( str );
 
-		// ƒgƒŒ[ƒi[–¼
-		// ƒ‰ƒCƒoƒ‹
+		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
+		// ãƒ©ã‚¤ãƒãƒ«
 		if( TT_TrainerDataParaGet( mem.trid, ID_TD_tr_type ) == TRTYPE_RIVAL ){
 			str = MSGMAN_AllocString( wk->mman, msg_fnote_304 );
 			WORDSET_RegisterRivalName( wk->wset, 1, wk->sv );
 			WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 			i += STRBUF_GetLen( wk->msg_buf );
 			STRBUF_Delete( str );
-		// ‚¼‚êˆÈŠO
+		// ãã‚Œä»¥å¤–
 		}else{
 			str = MSGDAT_GetStrDirectAlloc(
 					ARC_MSG, NARC_msg_trname_dat, mem.trid, HEAPID_FANTASYNOTE );
@@ -609,7 +609,7 @@ static void FNOTE_TrainerPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/10
-	// ‘ÎíƒƒOo‚µ•ª‚¯‚Ì‹«ŠE’l‚ğA‰pŒê”Å‚Ì•¶š”‚ÌoŒ»•ª•z‚ğl—¶‚µ‚Ä•ÏX
+	// å¯¾æˆ¦ãƒ­ã‚°å‡ºã—åˆ†ã‘ã®å¢ƒç•Œå€¤ã‚’ã€è‹±èªç‰ˆã®æ–‡å­—æ•°ã®å‡ºç¾åˆ†å¸ƒã‚’è€ƒæ…®ã—ã¦å¤‰æ›´
 	if( i <= LETNUM_SHORTEST ){
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_300 );
 	}else if( i <= LETNUM_SHORTER ){
@@ -630,10 +630,10 @@ static void FNOTE_TrainerPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMƒf[ƒ^•\¦
+ * é€šä¿¡ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	info	•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	info	è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -650,95 +650,95 @@ static void FNOTE_SioPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 		case 0:
 			return;
 
-		case FNOTE_ID_SB_SINGLE:		// ’ÊMF’ÊM‘ÎíEƒVƒ“ƒOƒ‹
+		case FNOTE_ID_SB_SINGLE:		// é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ã‚·ãƒ³ã‚°ãƒ«
 			FNOTE_SioBtlSingleDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_SB_DOUBLE:		// ’ÊMF’ÊM‘ÎíEƒ_ƒuƒ‹
+		case FNOTE_ID_SB_DOUBLE:		// é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒ€ãƒ–ãƒ«
 			FNOTE_SioBtlDoubleDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_SB_MULTI:			// ’ÊMF’ÊM‘ÎíEƒ}ƒ‹ƒ`
+		case FNOTE_ID_SB_MULTI:			// é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒãƒ«ãƒ
 			FNOTE_SioBtlMultiDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_SB_MIX1:			// ’ÊMF’ÊM‘ÎíEƒ~ƒbƒNƒX1vs1
+		case FNOTE_ID_SB_MIX1:			// é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒŸãƒƒã‚¯ã‚¹1vs1
 			FNOTE_SioBtlMix1DataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_SB_MIX2:			// ’ÊMF’ÊM‘ÎíEƒ~ƒbƒNƒX2vs2
+		case FNOTE_ID_SB_MIX2:			// é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒŸãƒƒã‚¯ã‚¹2vs2
 			FNOTE_SioBtlMix2DataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_U_GREETING:		// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€Eˆ¥A
+		case FNOTE_ID_U_GREETING:		// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»æŒ¨æ‹¶
 			FNOTE_SioUnionGreetDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_U_POKECHG:		// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€EŒğŠ·
+		case FNOTE_ID_U_POKECHG:		// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»äº¤æ›
 			FNOTE_SioUnionChgDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_U_PICTURE:		// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E‚¨ŠG‚©‚«
+		case FNOTE_ID_U_PICTURE:		// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»ãŠçµµã‹ã
 			FNOTE_SioUnionPictureDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_U_MLTCHG:			// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E•¡”lŒğŠ·
+		case FNOTE_ID_U_MLTCHG:			// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»è¤‡æ•°äººäº¤æ›
 			FNOTE_SioUnionMultiChgDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_U_TRANSCEIVER:	// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€Eƒgƒ‰ƒ“ƒV[ƒo[
+		case FNOTE_ID_U_TRANSCEIVER:	// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»ãƒˆãƒ©ãƒ³ã‚·ãƒ¼ãƒãƒ¼
 			FNOTE_SioUnionTransceiverDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_U_BATTLE:			// ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E‘Îí
+		case FNOTE_ID_U_BATTLE:			// é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»å¯¾æˆ¦
 			FNOTE_SioUnionBtlDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_RECORD:			// ’ÊMFƒŒƒR[ƒhƒR[ƒi[
+		case FNOTE_ID_RECORD:			// é€šä¿¡ï¼šãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼
 			FNOTE_SioRecordDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_CONTEST:			// ’ÊMFƒRƒ“ƒeƒXƒg
+		case FNOTE_ID_CONTEST:			// é€šä¿¡ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 			FNOTE_SioContestDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_PORUTO:			// ’ÊMFƒ|ƒ‹ƒgì¬
+		case FNOTE_ID_PORUTO:			// é€šä¿¡ï¼šãƒãƒ«ãƒˆä½œæˆ
 			FNOTE_SioPorutoDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_GTC:				// ’ÊMFGTC
+		case FNOTE_ID_GTC:				// é€šä¿¡ï¼šGTC
 			FNOTE_SioGtcDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_BTLTOWER:			// ’ÊMFƒoƒgƒ‹ƒ^ƒ[
+		case FNOTE_ID_BTLTOWER:			// é€šä¿¡ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 			FNOTE_SioBtlTowerDataPut( wk, info, &mem[i], i );
 			break;
 
-		case FNOTE_ID_PL_GURUGURU:				// ’ÊMF‚®‚é‚®‚éŒğŠ·
+		case FNOTE_ID_PL_GURUGURU:				// é€šä¿¡ï¼šãã‚‹ãã‚‹äº¤æ›
 			FNOTE_SioGuruguruDataPut( wk, info, &mem[i], i );
 			break;
-		case FNOTE_ID_PL_GDS_VIDEO:				// ’ÊMFGDSƒoƒgƒ‹ƒrƒfƒI
-		case FNOTE_ID_PL_GDS_RANKING:			// ’ÊMFGDSƒ‰ƒ“ƒLƒ“ƒO
-		case FNOTE_ID_PL_GDS_DRESS:				// ’ÊMFGDSƒhƒŒƒXƒAƒbƒv
-		case FNOTE_ID_PL_GDS_BOX:				// ’ÊMFGDSƒ{ƒbƒNƒXƒVƒ‡ƒbƒg
+		case FNOTE_ID_PL_GDS_VIDEO:				// é€šä¿¡ï¼šGDSãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ª
+		case FNOTE_ID_PL_GDS_RANKING:			// é€šä¿¡ï¼šGDSãƒ©ãƒ³ã‚­ãƒ³ã‚°
+		case FNOTE_ID_PL_GDS_DRESS:				// é€šä¿¡ï¼šGDSãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—
+		case FNOTE_ID_PL_GDS_BOX:				// é€šä¿¡ï¼šGDSãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ
 			FNOTE_SioGDSDataPut( wk, info, &mem[i], i, mem[i].id );
 			break;
-		case FNOTE_ID_PL_LOBBY_CHAT:			// ’ÊMFWIFILê‚¨‚µ‚á‚×‚è
+		case FNOTE_ID_PL_LOBBY_CHAT:			// é€šä¿¡ï¼šWIFIåºƒå ´ãŠã—ã‚ƒã¹ã‚Š
 			FNOTE_SioLobbyChatDataPut( wk, info, &mem[i], i );
 			break;
-		case FNOTE_ID_PL_LOBBY_TOY_GET:				// ’ÊMFWIFILêƒ^ƒbƒ`ƒgƒC
+		case FNOTE_ID_PL_LOBBY_TOY_GET:				// é€šä¿¡ï¼šWIFIåºƒå ´ã‚¿ãƒƒãƒãƒˆã‚¤
 			FNOTE_SioLobbyToyDataPut( wk, info, &mem[i], i );
 			break;
-		case FNOTE_ID_PL_LOBBY_MINIGAME:		// ’ÊMFWIFILêƒ~ƒjƒQ[ƒ€
+		case FNOTE_ID_PL_LOBBY_MINIGAME:		// é€šä¿¡ï¼šWIFIåºƒå ´ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
 			FNOTE_SioLobbyMiniGameDataPut( wk, info, &mem[i], i );
 			break;
-		case FNOTE_ID_PL_LOBBY_FOOT_BOARD:		// ’ÊMFWIFILê‘«Õƒ{[ƒh
-		case FNOTE_ID_PL_LOBBY_WORLDTIMER:		// ’ÊMFWIFILê¢ŠEŒv
-		case FNOTE_ID_PL_LOBBY_NEWS:			// ’ÊMFWIFILêƒjƒ…[ƒX
-		case FNOTE_ID_PL_LOBBY_PARADE:			// ’ÊMFWIFILêƒpƒŒ[ƒh
+		case FNOTE_ID_PL_LOBBY_FOOT_BOARD:		// é€šä¿¡ï¼šWIFIåºƒå ´è¶³è·¡ãƒœãƒ¼ãƒ‰
+		case FNOTE_ID_PL_LOBBY_WORLDTIMER:		// é€šä¿¡ï¼šWIFIåºƒå ´ä¸–ç•Œæ™‚è¨ˆ
+		case FNOTE_ID_PL_LOBBY_NEWS:			// é€šä¿¡ï¼šWIFIåºƒå ´ãƒ‹ãƒ¥ãƒ¼ã‚¹
+		case FNOTE_ID_PL_LOBBY_PARADE:			// é€šä¿¡ï¼šWIFIåºƒå ´ãƒ‘ãƒ¬ãƒ¼ãƒ‰
 			FNOTE_SioLobbyAppliDataPut( wk, info, &mem[i], i, mem[i].id );
 			break;
-		case FNOTE_ID_PL_WIFICLUB:				// ’ÊMFWIFIƒNƒ‰ƒu
+		case FNOTE_ID_PL_WIFICLUB:				// é€šä¿¡ï¼šWIFIã‚¯ãƒ©ãƒ–
 			FNOTE_SioWifiClubDataPut( wk, info, &mem[i], i );
 			break;
 		}
@@ -748,12 +748,12 @@ static void FNOTE_SioPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F©‘î•\¦
+ * è¡Œå‹•ï¼šè‡ªå®…è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -769,12 +769,12 @@ static void FNOTE_ActionHouseDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FŒ¤‹†Š•\¦
+ * è¡Œå‹•ï¼šç ”ç©¶æ‰€è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -790,12 +790,12 @@ static void FNOTE_ActionLaboDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®Fƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[•\¦
+ * è¡Œå‹•ï¼šãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -811,12 +811,12 @@ static void FNOTE_ActionPokeCenterDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FƒVƒ‡ƒbƒvE”ƒ‚¤•\¦
+ * è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»è²·ã†è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -832,12 +832,12 @@ static void FNOTE_ActionShopBuyDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FƒVƒ‡ƒbƒvE”ƒ‚¤i•¡”j•\¦
+ * è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»è²·ã†ï¼ˆè¤‡æ•°ï¼‰è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -853,12 +853,12 @@ static void FNOTE_ActionShopBuy2DataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FƒVƒ‡ƒbƒvE”„‚é•\¦
+ * è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²ã‚‹è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -874,12 +874,12 @@ static void FNOTE_ActionShopSaleDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FƒVƒ‡ƒbƒvE”„‚éi•¡”j•\¦
+ * è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²ã‚‹ï¼ˆè¤‡æ•°ï¼‰è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -895,12 +895,12 @@ static void FNOTE_ActionShopSale2DataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FƒVƒ‡ƒbƒvE”„”ƒ•\¦
+ * è¡Œå‹•ï¼šã‚·ãƒ§ãƒƒãƒ—ãƒ»å£²è²·è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -916,12 +916,12 @@ static void FNOTE_ActionShopTradeDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FƒWƒ€iƒŠ[ƒ_[‚ğ“|‚·‘Oj•\¦
+ * è¡Œå‹•ï¼šã‚¸ãƒ ï¼ˆãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã™å‰ï¼‰è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -939,12 +939,12 @@ static void FNOTE_ActionGymBeforeDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FƒWƒ€iƒŠ[ƒ_[‚ğ“|‚µ‚½Œãj•\¦
+ * è¡Œå‹•ï¼šã‚¸ãƒ ï¼ˆãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã—ãŸå¾Œï¼‰è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -963,12 +963,12 @@ static void FNOTE_ActionGymAfterDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®Fl“V‰¤•\¦
+ * è¡Œå‹•ï¼šå››å¤©ç‹è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -986,12 +986,12 @@ static void FNOTE_ActionSitennouDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®Fƒ`ƒƒƒ“ƒsƒIƒ“•\¦
+ * è¡Œå‹•ï¼šãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1009,12 +1009,12 @@ static void FNOTE_ActionChampionDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FŠX•\¦
+ * è¡Œå‹•ï¼šè¡—è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1032,12 +1032,12 @@ static void FNOTE_ActionCityDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®Fƒ_ƒ“ƒWƒ‡ƒ“•\¦
+ * è¡Œå‹•ï¼šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1049,7 +1049,7 @@ static void FNOTE_ActionDungeonDataPut(
 	u32	name;
 
 	name = mem->map;
-	// u‚½‚É‚Ü‚Ì‚Í‚Â‚Å‚ñ‚µ‚åvuƒLƒbƒTƒL‚µ‚ñ‚Å‚ñvuƒ^ƒ^ƒ‰‚¹‚¢‚Ä‚Â‚¶‚åv‚Í“Áê
+	// ã€ŒãŸã«ã¾ã®ã¯ã¤ã§ã‚“ã—ã‚‡ã€ã€Œã‚­ãƒƒã‚µã‚­ã—ã‚“ã§ã‚“ã€ã€Œã‚¿ã‚¿ãƒ©ã›ã„ã¦ã¤ã˜ã‚‡ã€ã¯ç‰¹æ®Š
 	if( name == MAPNAME_D2HATUDEN || name == MAPNAME_D20KISSAKI || name == MAPNAME_D4TATARA ){
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_142 );
 	}else{
@@ -1064,12 +1064,12 @@ static void FNOTE_ActionDungeonDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FŒš•¨•\¦
+ * è¡Œå‹•ï¼šå»ºç‰©è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1095,12 +1095,12 @@ static void FNOTE_ActionBuildDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FƒQ[ƒ€ƒR[ƒi[•\¦
+ * è¡Œå‹•ï¼šã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒŠãƒ¼è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1116,12 +1116,12 @@ static void FNOTE_ActionGameCornerDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FƒTƒtƒ@ƒŠƒ][ƒ“•\¦
+ * è¡Œå‹•ï¼šã‚µãƒ•ã‚¡ãƒªã‚¾ãƒ¼ãƒ³è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1137,12 +1137,12 @@ static void FNOTE_ActionSafariDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®FƒAƒCƒeƒ€æ“¾•\¦
+ * è¡Œå‹•ï¼šã‚¢ã‚¤ãƒ†ãƒ å–å¾—è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1160,12 +1160,12 @@ static void FNOTE_ActionItemGetDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZE‚¢‚í‚­‚¾‚«•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ã„ã‚ãã ãè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1183,12 +1183,12 @@ static void FNOTE_ActionIwakudakiDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZE‚¢‚ ‚¢‚¬‚è•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ã„ã‚ã„ãã‚Šè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1206,12 +1206,12 @@ static void FNOTE_ActionIaigiriDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZE‚»‚ç‚ğ‚Æ‚Ô•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ãã‚‰ã‚’ã¨ã¶è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1229,12 +1229,12 @@ static void FNOTE_ActionSorawotobuDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZE‚«‚è‚Î‚ç‚¢•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ãã‚Šã°ã‚‰ã„è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1252,12 +1252,12 @@ static void FNOTE_ActionKiribaraiDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZE‚©‚¢‚è‚«•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ã‹ã„ã‚Šãè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1275,12 +1275,12 @@ static void FNOTE_ActionKairikiDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZE‚È‚İ‚Ì‚è•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ãªã¿ã®ã‚Šè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1298,12 +1298,12 @@ static void FNOTE_ActionNaminoriDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZEƒƒbƒNƒNƒ‰ƒCƒ€•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1321,12 +1321,12 @@ static void FNOTE_ActionRockckimbDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZE‚½‚«‚Ì‚Ú‚è•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ãŸãã®ã¼ã‚Šè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1344,12 +1344,12 @@ static void FNOTE_ActionTakinoboriDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZEƒtƒ‰ƒbƒVƒ…•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ãƒ•ãƒ©ãƒƒã‚·ãƒ¥è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1367,12 +1367,12 @@ static void FNOTE_ActionFlashDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZEƒeƒŒƒ|[ƒg•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ãƒ†ãƒ¬ãƒãƒ¼ãƒˆè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1390,12 +1390,12 @@ static void FNOTE_ActionTeleportDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZE‚ ‚È‚ğ‚Ù‚é•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ã‚ãªã‚’ã»ã‚‹è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1413,12 +1413,12 @@ static void FNOTE_ActionAnawohoruDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZE‚ ‚Ü‚¢‚©‚¨‚è•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ã‚ã¾ã„ã‹ãŠã‚Šè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1434,12 +1434,12 @@ static void FNOTE_ActionAmiaikaoriDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZEƒ^ƒ}ƒS‚¤‚İ•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ã‚¿ãƒã‚´ã†ã¿è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1455,12 +1455,12 @@ static void FNOTE_ActionTamagoumiDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F‹ZEƒ~ƒ‹ƒN‚Ì‚İ•\¦
+ * è¡Œå‹•ï¼šæŠ€ãƒ»ãƒŸãƒ«ã‚¯ã®ã¿è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1476,12 +1476,12 @@ static void FNOTE_ActionMilknomiDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F’n‰ºE‰»ÎŒ@‚è•\¦
+ * è¡Œå‹•ï¼šåœ°ä¸‹ãƒ»åŒ–çŸ³æ˜ã‚Šè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1497,12 +1497,12 @@ static void FNOTE_ActionUGFossilDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®F’n‰ºE”é–§Šî’n•\¦
+ * è¡Œå‹•ï¼šåœ°ä¸‹ãƒ»ç§˜å¯†åŸºåœ°è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1518,12 +1518,12 @@ static void FNOTE_ActionUGBaseDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * s“®Fƒtƒƒ“ƒeƒBƒA{İ•\¦
+ * è¡Œå‹•ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		s“®ƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		è¡Œå‹•ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  * @param	id		ID
  *
  * @return	none
@@ -1563,12 +1563,12 @@ static void FNOTE_ActionFrontierDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“–¼ƒZƒbƒg
+ * ãƒã‚±ãƒ¢ãƒ³åã‚»ãƒƒãƒˆ
  *
- * @param	wk			–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	mons		ƒ|ƒPƒ‚ƒ“”Ô†
- * @param	sex			«•Ê
- * @param	buf_id		ƒZƒbƒg‚·‚é’PŒêID
+ * @param	wk			å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	mons		ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+ * @param	sex			æ€§åˆ¥
+ * @param	buf_id		ã‚»ãƒƒãƒˆã™ã‚‹å˜èªID
  *
  * @return	none
  */
@@ -1584,11 +1584,11 @@ static void FNOTE_PokeMonsNameSet( FNOTE_WORK * wk, u16 mons, u8 sex, u8 buf_id 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“F•ßŠl•\¦
+ * ãƒã‚±ãƒ¢ãƒ³ï¼šæ•ç²è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1625,11 +1625,11 @@ static void FNOTE_PokeGetDataPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * win, FNOTE_WK
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“F“|‚µ‚½•\¦
+ * ãƒã‚±ãƒ¢ãƒ³ï¼šå€’ã—ãŸè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1667,12 +1667,12 @@ static void FNOTE_PokeDownDataPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * win, FNOTE_W
 
 //--------------------------------------------------------------------------------------------
 /**
- * STRCODEŒ^‚Ì’PŒê‚ğƒZƒbƒg
+ * STRCODEå‹ã®å˜èªã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	str		ƒZƒbƒg‚·‚é’PŒê
- * @param	sex		«•Ê
- * @param	buf_id	ƒZƒbƒg‚·‚é’PŒêID
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	str		ã‚»ãƒƒãƒˆã™ã‚‹å˜èª
+ * @param	sex		æ€§åˆ¥
+ * @param	buf_id	ã‚»ãƒƒãƒˆã™ã‚‹å˜èªID
  *
  * @return	none
  */
@@ -1688,12 +1688,12 @@ static void FNOTE_StrWordSet( FNOTE_WORK * wk, STRCODE * str, u8 sex, u8 buf_id 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMF’ÊM‘ÎíEƒVƒ“ƒOƒ‹•\¦
+ * é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ã‚·ãƒ³ã‚°ãƒ«è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1704,13 +1704,13 @@ static void FNOTE_SioBtlSingleDataPut(
 	STRBUF * str;
 	
 	switch( mem->result ){
-	case FNOTE_RESULT_WIN:		// Ÿ‚¿
+	case FNOTE_RESULT_WIN:		// å‹ã¡
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_400 );
 		break;
-	case FNOTE_RESULT_LOSE:		// •‰‚¯
+	case FNOTE_RESULT_LOSE:		// è² ã‘
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_401 );
 		break;
-	case FNOTE_RESULT_DRAW:		// ˆø‚«•ª‚¯
+	case FNOTE_RESULT_DRAW:		// å¼•ãåˆ†ã‘
 	default:
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_402 );
 		break;
@@ -1725,12 +1725,12 @@ static void FNOTE_SioBtlSingleDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMF’ÊM‘ÎíEƒ_ƒuƒ‹•\¦
+ * é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒ€ãƒ–ãƒ«è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1741,13 +1741,13 @@ static void FNOTE_SioBtlDoubleDataPut(
 	STRBUF * str;
 	
 	switch( mem->result ){
-	case FNOTE_RESULT_WIN:		// Ÿ‚¿
+	case FNOTE_RESULT_WIN:		// å‹ã¡
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_403 );
 		break;
-	case FNOTE_RESULT_LOSE:		// •‰‚¯
+	case FNOTE_RESULT_LOSE:		// è² ã‘
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_404 );
 		break;
-	case FNOTE_RESULT_DRAW:		// ˆø‚«•ª‚¯
+	case FNOTE_RESULT_DRAW:		// å¼•ãåˆ†ã‘
 	default:
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_405 );
 		break;
@@ -1762,12 +1762,12 @@ static void FNOTE_SioBtlDoubleDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMF’ÊM‘ÎíEƒ}ƒ‹ƒ`•\¦
+ * é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒãƒ«ãƒè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1778,13 +1778,13 @@ static void FNOTE_SioBtlMultiDataPut(
 	STRBUF * str;
 	
 	switch( mem->result ){
-	case FNOTE_RESULT_WIN:		// Ÿ‚¿
+	case FNOTE_RESULT_WIN:		// å‹ã¡
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_406 );
 		break;
-	case FNOTE_RESULT_LOSE:		// •‰‚¯
+	case FNOTE_RESULT_LOSE:		// è² ã‘
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_407 );
 		break;
-	case FNOTE_RESULT_DRAW:		// ˆø‚«•ª‚¯
+	case FNOTE_RESULT_DRAW:		// å¼•ãåˆ†ã‘
 	default:
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_408 );
 		break;
@@ -1800,12 +1800,12 @@ static void FNOTE_SioBtlMultiDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMF’ÊM‘ÎíEƒ~ƒbƒNƒX1vs1•\¦
+ * é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒŸãƒƒã‚¯ã‚¹1vs1è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1816,13 +1816,13 @@ static void FNOTE_SioBtlMix1DataPut(
 	STRBUF * str;
 	
 	switch( mem->result ){
-	case FNOTE_RESULT_WIN:		// Ÿ‚¿
+	case FNOTE_RESULT_WIN:		// å‹ã¡
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_409 );
 		break;
-	case FNOTE_RESULT_LOSE:		// •‰‚¯
+	case FNOTE_RESULT_LOSE:		// è² ã‘
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_410 );
 		break;
-	case FNOTE_RESULT_DRAW:		// ˆø‚«•ª‚¯
+	case FNOTE_RESULT_DRAW:		// å¼•ãåˆ†ã‘
 	default:
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_411 );
 		break;
@@ -1837,12 +1837,12 @@ static void FNOTE_SioBtlMix1DataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMF’ÊM‘ÎíEƒ~ƒbƒNƒX2vs2•\¦
+ * é€šä¿¡ï¼šé€šä¿¡å¯¾æˆ¦ãƒ»ãƒŸãƒƒã‚¯ã‚¹2vs2è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1853,13 +1853,13 @@ static void FNOTE_SioBtlMix2DataPut(
 	STRBUF * str;
 	
 	switch( mem->result ){
-	case FNOTE_RESULT_WIN:		// Ÿ‚¿
+	case FNOTE_RESULT_WIN:		// å‹ã¡
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_412 );
 		break;
-	case FNOTE_RESULT_LOSE:		// •‰‚¯
+	case FNOTE_RESULT_LOSE:		// è² ã‘
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_413 );
 		break;
-	case FNOTE_RESULT_DRAW:		// ˆø‚«•ª‚¯
+	case FNOTE_RESULT_DRAW:		// å¼•ãåˆ†ã‘
 	default:
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_414 );
 		break;
@@ -1875,12 +1875,12 @@ static void FNOTE_SioBtlMix2DataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€Eˆ¥A•\¦
+ * é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»æŒ¨æ‹¶è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1898,12 +1898,12 @@ static void FNOTE_SioUnionGreetDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€EŒğŠ·•\¦
+ * é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»äº¤æ›è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1922,12 +1922,12 @@ static void FNOTE_SioUnionChgDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E‚¨ŠG‚©‚«•\¦
+ * é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»ãŠçµµã‹ãè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1943,12 +1943,12 @@ static void FNOTE_SioUnionPictureDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E•¡”lŒğŠ·•\¦
+ * é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»è¤‡æ•°äººäº¤æ›è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1966,12 +1966,12 @@ static void FNOTE_SioUnionMultiChgDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€Eƒgƒ‰ƒ“ƒV[ƒo[•\¦
+ * é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»ãƒˆãƒ©ãƒ³ã‚·ãƒ¼ãƒãƒ¼è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1987,12 +1987,12 @@ static void FNOTE_SioUnionTransceiverDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFƒ†ƒjƒIƒ“ƒ‹[ƒ€E‘Îí•\¦
+ * é€šä¿¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ»å¯¾æˆ¦è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2003,13 +2003,13 @@ static void FNOTE_SioUnionBtlDataPut(
 	STRBUF * str;
 	
 	switch( mem->result ){
-	case FNOTE_RESULT_WIN:		// Ÿ‚¿
+	case FNOTE_RESULT_WIN:		// å‹ã¡
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_425 );
 		break;
-	case FNOTE_RESULT_LOSE:		// •‰‚¯
+	case FNOTE_RESULT_LOSE:		// è² ã‘
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_426 );
 		break;
-	case FNOTE_RESULT_DRAW:		// ˆø‚«•ª‚¯
+	case FNOTE_RESULT_DRAW:		// å¼•ãåˆ†ã‘
 	default:
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_427 );
 		break;
@@ -2024,12 +2024,12 @@ static void FNOTE_SioUnionBtlDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFƒŒƒR[ƒhƒR[ƒi[•\¦
+ * é€šä¿¡ï¼šãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2045,12 +2045,12 @@ static void FNOTE_SioRecordDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFƒRƒ“ƒeƒXƒg•\¦
+ * é€šä¿¡ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2069,12 +2069,12 @@ static void FNOTE_SioContestDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFƒ|ƒ‹ƒgì¬•\¦
+ * é€šä¿¡ï¼šãƒãƒ«ãƒˆä½œæˆè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2090,12 +2090,12 @@ static void FNOTE_SioPorutoDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFGTC•\¦
+ * é€šä¿¡ï¼šGTCè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2114,12 +2114,12 @@ static void FNOTE_SioGtcDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFƒoƒgƒ‹ƒ^ƒ[•\¦
+ * é€šä¿¡ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2135,12 +2135,12 @@ static void FNOTE_SioBtlTowerDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMF‚®‚é‚®‚éŒğŠ·•\¦
+ * é€šä¿¡ï¼šãã‚‹ãã‚‹äº¤æ›è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2156,12 +2156,12 @@ static void FNOTE_SioGuruguruDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFGDS•\¦
+ * é€šä¿¡ï¼šGDSè¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  * @param   id		ID
  *
  * @return	none
@@ -2174,16 +2174,16 @@ static void FNOTE_SioGDSDataPut(
 	u32 msg_id;
 	
 	switch(id){
-	case FNOTE_ID_PL_GDS_VIDEO:				// ’ÊMFGDSƒoƒgƒ‹ƒrƒfƒI
+	case FNOTE_ID_PL_GDS_VIDEO:				// é€šä¿¡ï¼šGDSãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ª
 		msg_id = msg_fnote_496;
 		break;
-	case FNOTE_ID_PL_GDS_RANKING:			// ’ÊMFGDSƒ‰ƒ“ƒLƒ“ƒO
+	case FNOTE_ID_PL_GDS_RANKING:			// é€šä¿¡ï¼šGDSãƒ©ãƒ³ã‚­ãƒ³ã‚°
 		msg_id = msg_fnote_497;
 		break;
-	case FNOTE_ID_PL_GDS_DRESS:				// ’ÊMFGDSƒhƒŒƒXƒAƒbƒv
+	case FNOTE_ID_PL_GDS_DRESS:				// é€šä¿¡ï¼šGDSãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—
 		msg_id = msg_fnote_498;
 		break;
-	case FNOTE_ID_PL_GDS_BOX:				// ’ÊMFGDSƒ{ƒbƒNƒXƒVƒ‡ƒbƒg
+	case FNOTE_ID_PL_GDS_BOX:				// é€šä¿¡ï¼šGDSãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ
 	default:
 		msg_id = msg_fnote_499;
 		break;
@@ -2197,12 +2197,12 @@ static void FNOTE_SioGDSDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFWIFILêE‚¨‚µ‚á‚×‚è
+ * é€šä¿¡ï¼šWIFIåºƒå ´ãƒ»ãŠã—ã‚ƒã¹ã‚Š
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2220,12 +2220,12 @@ static void FNOTE_SioLobbyChatDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFWIFILêEƒ^ƒbƒ`ƒgƒC
+ * é€šä¿¡ï¼šWIFIåºƒå ´ãƒ»ã‚¿ãƒƒãƒãƒˆã‚¤
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2243,12 +2243,12 @@ static void FNOTE_SioLobbyToyDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFWIFILêEƒ~ƒjƒQ[ƒ€
+ * é€šä¿¡ï¼šWIFIåºƒå ´ãƒ»ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2266,12 +2266,12 @@ static void FNOTE_SioLobbyMiniGameDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFWIFILêEƒAƒvƒŠ(‘«Õƒ{[ƒhA¢ŠEŒvAƒjƒ…[ƒXAƒpƒŒ[ƒh)
+ * é€šä¿¡ï¼šWIFIåºƒå ´ãƒ»ã‚¢ãƒ—ãƒª(è¶³è·¡ãƒœãƒ¼ãƒ‰ã€ä¸–ç•Œæ™‚è¨ˆã€ãƒ‹ãƒ¥ãƒ¼ã‚¹ã€ãƒ‘ãƒ¬ãƒ¼ãƒ‰)
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2283,16 +2283,16 @@ static void FNOTE_SioLobbyAppliDataPut(
 	u32 msg_id;
 	
 	switch(id){
-	case FNOTE_ID_PL_LOBBY_FOOT_BOARD:		// ’ÊMFWIFILê‘«Õƒ{[ƒh
+	case FNOTE_ID_PL_LOBBY_FOOT_BOARD:		// é€šä¿¡ï¼šWIFIåºƒå ´è¶³è·¡ãƒœãƒ¼ãƒ‰
 		msg_id = msg_fnote_503;
 		break;
-	case FNOTE_ID_PL_LOBBY_WORLDTIMER:		// ’ÊMFWIFILê¢ŠEŒv
+	case FNOTE_ID_PL_LOBBY_WORLDTIMER:		// é€šä¿¡ï¼šWIFIåºƒå ´ä¸–ç•Œæ™‚è¨ˆ
 		msg_id = msg_fnote_504;
 		break;
-	case FNOTE_ID_PL_LOBBY_NEWS:			// ’ÊMFWIFILêƒjƒ…[ƒX
+	case FNOTE_ID_PL_LOBBY_NEWS:			// é€šä¿¡ï¼šWIFIåºƒå ´ãƒ‹ãƒ¥ãƒ¼ã‚¹
 		msg_id = msg_fnote_505;
 		break;
-	case FNOTE_ID_PL_LOBBY_PARADE:			// ’ÊMFWIFILêƒpƒŒ[ƒh
+	case FNOTE_ID_PL_LOBBY_PARADE:			// é€šä¿¡ï¼šWIFIåºƒå ´ãƒ‘ãƒ¬ãƒ¼ãƒ‰
 	default:
 		msg_id = msg_fnote_506;
 		break;
@@ -2306,12 +2306,12 @@ static void FNOTE_SioLobbyAppliDataPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMFWIFIƒNƒ‰ƒu•\¦
+ * é€šä¿¡ï¼šWIFIã‚¯ãƒ©ãƒ–è¡¨ç¤º
  *
- * @param	wk		–`Œ¯ƒm[ƒg‚Ìƒ[ƒN
- * @param	win		•\¦‚·‚éBMPƒEƒBƒ“ƒhƒE
- * @param	mem		’ÊMƒf[ƒ^
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		å†’é™ºãƒãƒ¼ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win		è¡¨ç¤ºã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	mem		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -2359,7 +2359,7 @@ void Debug_FNOTE_BmpPut( FNOTE_WORK * wk, u32 flg )
 		GF_BGL_BmpWinDataFill( time, 0 );
 		GF_BGL_BmpWinDataFill( info, 0 );
 
-		// “ú•t
+		// æ—¥ä»˜
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_001 );
 		WORDSET_RegisterNumber(
 			wk->wset, 0, 7, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
@@ -2368,35 +2368,35 @@ void Debug_FNOTE_BmpPut( FNOTE_WORK * wk, u32 flg )
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		GF_STR_PrintColor( time, FONT_SYSTEM, wk->msg_buf, 0, 0, MSG_NO_PUT, COL_N_BLACK, NULL );
-		// ƒXƒ^[ƒgI
+		// ã‚¹ã‚¿ãƒ¼ãƒˆï¼
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_000 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// s“®‚P
+		// è¡Œå‹•ï¼‘
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_100 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 16, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// s“®‚Q
+		// è¡Œå‹•ï¼’
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_121 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 32, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// s“®‚R
+		// è¡Œå‹•ï¼“
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_144 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 48, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// s“®‚S
+		// è¡Œå‹•ï¼”
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_171 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 64, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// ƒ|ƒPƒ‚ƒ“
+		// ãƒã‚±ãƒ¢ãƒ³
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_200 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 80, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// ƒgƒŒ[ƒi[
+		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_300 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 96, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// ’ÊM
+		// é€šä¿¡
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_460 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 112, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
@@ -2408,7 +2408,7 @@ void Debug_FNOTE_BmpPut( FNOTE_WORK * wk, u32 flg )
 		GF_BGL_BmpWinDataFill( time, 0 );
 		GF_BGL_BmpWinDataFill( info, 0 );
 
-		// “ú•t
+		// æ—¥ä»˜
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_001 );
 		WORDSET_RegisterNumber(
 			wk->wset, 0, 11, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
@@ -2417,35 +2417,35 @@ void Debug_FNOTE_BmpPut( FNOTE_WORK * wk, u32 flg )
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		GF_STR_PrintColor( time, FONT_SYSTEM, wk->msg_buf, 0, 0, MSG_NO_PUT, COL_N_BLACK, NULL );
-		// ƒXƒ^[ƒgI
+		// ã‚¹ã‚¿ãƒ¼ãƒˆï¼
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_000 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// s“®‚P
+		// è¡Œå‹•ï¼‘
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_101 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 16, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// s“®‚Q
+		// è¡Œå‹•ï¼’
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_110 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 32, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// s“®‚R
+		// è¡Œå‹•ï¼“
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_145 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 48, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// s“®‚S
+		// è¡Œå‹•ï¼”
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_173 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 64, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// ƒ|ƒPƒ‚ƒ“
+		// ãƒã‚±ãƒ¢ãƒ³
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_203 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 80, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// ƒgƒŒ[ƒi[
+		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_302 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 96, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );
-		// ’ÊM
+		// é€šä¿¡
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_480 );
 		GF_STR_PrintColor( info, FONT_SYSTEM, str, 0, 112, MSG_NO_PUT, COL_N_BLACK, NULL );
 		STRBUF_Delete( str );

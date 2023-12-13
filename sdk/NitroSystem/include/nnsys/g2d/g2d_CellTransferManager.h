@@ -24,7 +24,7 @@
 extern "C" {
 #endif
 
-// ��ɕs�v�ƂȂ�H
+// 後に不要となる？
 #include <nnsys/gfd/VramTransferMan/gfd_VramTransferManager.h>
 
 #define NNS_G2D_INVALID_CELL_TRANSFER_STATE_HANDLE    (u32)0xFFFFFFFF
@@ -33,7 +33,7 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         VramTransferTaskRegisterFuncPtr
 
-  Description:  Vram �]���^�X�N�̓o�^���s���֐��ւ̃|�C���^�ł��B
+  Description:  Vram 転送タスクの登録を行う関数へのポインタです。
                 
  *---------------------------------------------------------------------------*/
 typedef BOOL (*VramTransferTaskRegisterFuncPtr)( NNS_GFD_DST_TYPE  type, 
@@ -49,33 +49,33 @@ typedef BOOL (*VramTransferTaskRegisterFuncPtr)( NNS_GFD_DST_TYPE  type,
 typedef struct NNSG2dCellTransferState
 {
     //
-    // �������t�F�[�Y�Őݒ肳��郁���o
+    // 初期化フェーズで設定されるメンバ
     //
-    NNSG2dVRamLocation    dstVramLocation;      // �]����̉摜�A�h���X(�e�̈�̃T�C�Y��szDst�ȏ�ł��邱��)
-    u32                   szDst;                // �]����̗̈�̃T�C�Y
+    NNSG2dVRamLocation    dstVramLocation;      // 転送先の画像アドレス(各領域のサイズはszDst以上であること)
+    u32                   szDst;                // 転送先の領域のサイズ
     
-    const void*          pSrcNCGR;             // �]�����f�[�^�i�L�����N�^�����j
-    const void*          pSrcNCBR;             // �]�����f�[�^�i�r�b�g�}�b�v�����j
-    u32                   szSrcData;            // �]�����f�[�^�̑傫���i����ł��邱�Ɓj
-    BOOL                  bActive;              // �A�N�e�B�u�ȏ�Ԃ��H
+    const void*          pSrcNCGR;             // 転送元データ（キャラクタ方式）
+    const void*          pSrcNCBR;             // 転送元データ（ビットマップ方式）
+    u32                   szSrcData;            // 転送元データの大きさ（同一であること）
+    BOOL                  bActive;              // アクティブな状態か？
     
     //
-    // ���t���[���X�V����郁���o
+    // 毎フレーム更新されるメンバ
     //
-    u32                   bDrawn;               // �`�悳�ꂽ���H
-                                                // �O���t�B�b�N�X�G���W�����Ƃɕ`�悳�ꂽ���A�ǂ����̏�Ԃ��L������܂��B
-                                                // �`�悳��Ȃ��Z����Vram�]�����������ړI�Ŏg�p����܂��B
-                                                // �`�惂�W���[���ɂ���ăZ�b�g����
-                                                // �Ǘ����W���[�� �ɂ���� ���t���[�����t���b�V������܂�   
-                                                // ���[�U���Ǝ��̕`�惂�W���[�����\�z����ꍇ�́A�{�����o��K�؂ɐݒ肷��K�v������܂��B
+    u32                   bDrawn;               // 描画されたか？
+                                                // グラフィックスエンジンごとに描画されたか、どうかの状態が記憶されます。
+                                                // 描画されないセルのVram転送を回避する目的で使用されます。
+                                                // 描画モジュールによってセットされ
+                                                // 管理モジュール によって 毎フレームリフレッシュされます   
+                                                // ユーザが独自の描画モジュールを構築する場合は、本メンバを適切に設定する必要があります。
                                             
-    u32                   bTransferRequested;   // �]���v�������������H
-                                                // �O���t�B�b�N�X�G���W�����Ƃɓ]���v���̏�Ԃ��L������܂��B
-                                                // �Z���A�j���[�V�������䃂�W���[�����ݒ肵�܂�
-                                                // �Ǘ����W���[�� �ɂ���� �]���^�X�N�o�^�����������ۂɃ��Z�b�g����܂��B
+    u32                   bTransferRequested;   // 転送要求があったか？
+                                                // グラフィックスエンジンごとに転送要求の状態が記憶されます。
+                                                // セルアニメーション制御モジュールが設定します
+                                                // 管理モジュール によって 転送タスク登録を完了した際にリセットされます。
     
-    u32                   srcOffset;            // �\�[�X�I�t�Z�b�g�i�]���v���̏ڍׁj
-    u32                   szByte;               // �]���T�C�Y      �i�]���v���̏ڍׁj
+    u32                   srcOffset;            // ソースオフセット（転送要求の詳細）
+    u32                   szByte;               // 転送サイズ      （転送要求の詳細）
     
 }NNSG2dCellTransferState;
 
@@ -93,7 +93,7 @@ NNS_G2dInitCellTransferStateManager
 );
 
 //------------------------------------------------------------------------------
-// �n���h���擾�A�ԋp
+// ハンドル取得、返却
 u32 
 NNS_G2dGetNewCellTransferStateHandle();
 void
@@ -103,8 +103,8 @@ NNS_G2dFreeCellTransferStateHandle( u32 handle );
 void NNS_G2dUpdateCellTransferStateManager();
 
 //------------------------------------------------------------------------------
-// �]�����N�G�X�g�֘A
-// �Z���A�j���[�V�������� �����΂��
+// 転送リクエスト関連
+// セルアニメーション実体 からよばれる
 // 
 void NNS_G2dSetCellTransferStateRequested
 ( 
@@ -147,7 +147,7 @@ void NNSi_G2dInitCellTransferState
 //------------------------------------------------------------------------------
 // inline functions 
 //------------------------------------------------------------------------------
-// �t���O���쓙�̃A�N�Z�T�F�������J�֐��ł��B
+// フラグ操作等のアクセサ：内部公開関数です。
 //------------------------------------------------------------------------------
 NNS_G2D_INLINE void 
 NNSi_G2dSetCellTransferStateRequestFlag( NNSG2dCellTransferState* pState, NNS_G2D_VRAM_TYPE type, BOOL flag )

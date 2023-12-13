@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>STD_CopyLString</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">STD_CopyLString</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
   <dd><PRE><CODE>#include &lt;nitro/std.h&gt;
 
@@ -21,42 +21,42 @@ int STD_CopyLString( char* destp, const char* srcp, int siz );</CODE></PRE>
 </CODE></PRE></dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">destp</FONT></STRONG></EM></TD>
-      <TD width="800">�R�s�[��̃|�C���^���w�肵�܂��B</TD>
+      <TD width="800">コピー先のポインタを指定します。</TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">srcp</FONT></STRONG></EM></TD>
-      <TD width="800">�R�s�[���̃|�C���^���w�肵�܂��B</TD>
+      <TD width="800">コピー元のポインタを指定します。</TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">siz</FONT></STRONG></EM></TD>
-      <TD width="800">�R�s�[��̏������݃o�b�t�@�T�C�Y���w�肵�܂��B</TD>
+      <TD width="800">コピー先の書き込みバッファサイズを指定します。</TD>
     </TR>
   </tbody>
 </table>
 
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 <p>
-�R�s�[���̕�����̒�����Ԃ��܂��B
+コピー元の文字列の長さを返します。
 </p>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-������ srcp ���A������ destp �֍ő� (siz - 1) �����R�s�[���܂��B��ʓI�� strlcpy() �Ɠ�����������܂��B
-<P><CODE>STD_StrLCpy()</CODE> �� <CODE>STD_CopyLString()</CODE> �̕ʖ��Ƃ��� define ����Ă��܂��B</P>
+文字列 srcp を、文字列 destp へ最大 (siz - 1) 文字コピーします。一般的な strlcpy() と同じ動作をします。
+<P><CODE>STD_StrLCpy()</CODE> は <CODE>STD_CopyLString()</CODE> の別名として define されています。</P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="STD_CopyString.html">STD_CopyString</A>,<A href="STD_CopyLStringZeroFill.html">STD_CopyLStringZeroFill</A></CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2006/06/06 �֐��d�l�� strlcpy() �ɏ�������悤�ɕύX<BR>
-2006/05/15 �����̏C��<BR>
-2005/10/5 ����<BR>
+2006/06/06 関数仕様を strlcpy() に準拠するように変更<BR>
+2006/05/15 説明の修正<BR>
+2005/10/5 初版<BR>
 </P>
 </body>
 </html>

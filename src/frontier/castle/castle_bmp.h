@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	castle_bmp.h
- * @brief	uƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹vBMP
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€BMP
  * @author	Satoshi Nohara
  * @date	08.07.05
  */
@@ -15,23 +15,23 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//BMPƒf[ƒ^ƒiƒ“ƒo[
+//BMPãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
 enum{
-	CASTLE_BMP_MINE = 0,		//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‰æ–Ê
-	CASTLE_BMP_ENEMY,			//“GƒgƒŒ[ƒi[‰æ–Ê
+	CASTLE_BMP_MINE = 0,		//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ç”»é¢
+	CASTLE_BMP_ENEMY,			//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢
 	CASTLE_BMP_MAX,
 };
 
 
 //==============================================================================================
 //
-//	ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“@ƒf[ƒ^
+//	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã€€ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//ƒrƒbƒgƒ}ƒbƒvID
+//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ID
 enum{
 	MINE_BMPWIN_TR1 = 0,
 	MINE_BMPWIN_MODORU,
@@ -51,16 +51,16 @@ enum{
 	MINE_BMPWIN_CP,
 	MINE_BMPWIN_ITEM_LV,
 	MINE_BMPWIN_ITEM_HP,
-	CASTLE_MINE_BMPWIN_MAX,			//BMPƒEƒBƒ“ƒhƒE‚Ì”
+	CASTLE_MINE_BMPWIN_MAX,			//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ•°
 };
 
 
 //==============================================================================================
 //
-//	“GƒgƒŒ[ƒi[@ƒf[ƒ^
+//	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€€ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//ƒrƒbƒgƒ}ƒbƒvID
+//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ID
 enum{
 	ENEMY_BMPWIN_TR1 = 0,
 	ENEMY_BMPWIN_MODORU,
@@ -74,22 +74,22 @@ enum{
 	ENEMY_BMPWIN_TALKMENU2,
 	ENEMY_BMPWIN_YESNO,
 	ENEMY_BMPWIN_SEL,
-	CASTLE_ENEMY_BMPWIN_MAX,		//BMPƒEƒBƒ“ƒhƒE‚Ì”
+	CASTLE_ENEMY_BMPWIN_MAX,		//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ•°
 };
 
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -98,9 +98,9 @@ extern void CastleAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, u8 bmp_no );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü	
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„	
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -109,9 +109,9 @@ extern void CastleExitBmpWin( GF_BGL_BMPWIN* win, u8 bmp_no );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒIƒt
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -120,10 +120,10 @@ extern void CastleOffBmpWin( GF_BGL_BMPWIN* win, u8 bmp_no );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒEƒBƒ“ƒhƒE•\Ž¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -132,10 +132,10 @@ extern void CastleWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	win		BMPƒf[ƒ^
- * @param	wintype	ƒEƒBƒ“ƒhƒEƒ^ƒCƒv
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿
+ * @param	wintype	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—
  *
  * @return	none
  */

@@ -1,8 +1,8 @@
-#@‘æˆêˆø”F“Ç‚ÝŽæ‚èŒ³ƒtƒ@ƒCƒ‹
-#@‘æ“ñˆø”F’Ç‰ÁƒpƒX
-#@‘æŽOˆø”Fì¬ƒtƒ@ƒCƒ‹
+#ã€€ç¬¬ä¸€å¼•æ•°ï¼šèª­ã¿å–ã‚Šå…ƒãƒ•ã‚¡ã‚¤ãƒ«
+#ã€€ç¬¬äºŒå¼•æ•°ï¼šè¿½åŠ ãƒ‘ã‚¹
+#ã€€ç¬¬ä¸‰å¼•æ•°ï¼šä½œæˆãƒ•ã‚¡ã‚¤ãƒ«
 arg = $*
-f = open(arg[0]) # ƒ‚[ƒhÈ—ªŽž‚Í "r" ‚ÅƒI[ƒvƒ“‚³‚ê‚é
+f = open(arg[0]) # ãƒ¢ãƒ¼ãƒ‰çœç•¥æ™‚ã¯ "r" ã§ã‚ªãƒ¼ãƒ—ãƒ³ã•ã‚Œã‚‹
 target = open(arg[2],"w")
 
 while line = f.gets

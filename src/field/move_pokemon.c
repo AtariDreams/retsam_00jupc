@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	move_pokemon.c
- * @bfief	ˆÚ“®ƒ|ƒPƒ‚ƒ“ŠÖ˜Aˆ—
+ * @bfief	ç§»å‹•ãƒã‚±ãƒ¢ãƒ³é–¢é€£å‡¦ç†
  * @author	Nozomu Saito
  * @date	06.05.11
  */
@@ -110,10 +110,10 @@ static const int ZoneTbl[LOCATION_MAX] = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒWƒƒƒ“ƒv
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¸ãƒ£ãƒ³ãƒ—
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inTarget		ˆÚ“®‘ÎÛ
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTarget		ç§»å‹•å¯¾è±¡
  *
  * @return
  */
@@ -127,9 +127,9 @@ void MP_JumpMovePokemon(ENC_SV_PTR inEncData, const u8 inTarget)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“‘S•”ƒWƒƒƒ“ƒv
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å…¨éƒ¨ã‚¸ãƒ£ãƒ³ãƒ—
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return
  */
@@ -138,9 +138,9 @@ void MP_JumpMovePokemonAll(ENC_SV_PTR inEncData)
 {
 	u8 i;
 	for(i=0;i<MOVE_POKE_MAX;i++){
-		//ˆÚ“®’†‚©H
+		//ç§»å‹•ä¸­ã‹ï¼Ÿ
 		if ( EncDataSave_IsMovePokeValid(inEncData, i) ){
-			//ƒWƒƒƒ“ƒv
+			//ã‚¸ãƒ£ãƒ³ãƒ—
 			MP_JumpMovePokemon(inEncData, i);
 		}
 	}
@@ -148,9 +148,9 @@ void MP_JumpMovePokemonAll(ENC_SV_PTR inEncData)
 
 //-----------------------------------------------------------------------------
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“‚Ì—×ÚˆÚ“®
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã®éš£æ¥ç§»å‹•
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -160,17 +160,17 @@ void MP_MovePokemonNeighboring(ENC_SV_PTR inEncData)
 	
 	u8 i;
 	for(i=0;i<MOVE_POKE_MAX;i++){
-		//ˆÚ“®’†‚©H
+		//ç§»å‹•ä¸­ã‹ï¼Ÿ
 		if ( EncDataSave_IsMovePokeValid(inEncData, i) ){
-			//16•ª‚Ì1‚ÌŠm—¦‚ÅƒWƒƒƒ“ƒv
+			//16åˆ†ã®1ã®ç¢ºç‡ã§ã‚¸ãƒ£ãƒ³ãƒ—
 			if (gf_p_rand(16) == 0){
-				OS_Printf_saitou("%d:ƒWƒƒƒ“ƒv‚µ‚Ü‚·\n",i);
-				//ƒWƒƒƒ“ƒv
+				OS_Printf_saitou("%d:ã‚¸ãƒ£ãƒ³ãƒ—ã—ã¾ã™\n",i);
+				//ã‚¸ãƒ£ãƒ³ãƒ—
 				MP_JumpMovePokemon(inEncData, i);
 				
 			}else{
-				OS_Printf_saitou("%d:—×ÚˆÚ“®‚µ‚Ü‚·\n",i);
-				//—×ÚˆÚ“®
+				OS_Printf_saitou("%d:éš£æ¥ç§»å‹•ã—ã¾ã™\n",i);
+				//éš£æ¥ç§»å‹•
 				{
 					int player_old_zone;
 					player_old_zone = EncDataSave_GetPlayerOldZone(inEncData);
@@ -183,9 +183,9 @@ void MP_MovePokemonNeighboring(ENC_SV_PTR inEncData)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒ][ƒ“æ“¾
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¾ãƒ¼ãƒ³å–å¾—
  *
- * @param	inIndex		ƒ][ƒ“ƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒX
+ * @param	inIndex		ã‚¾ãƒ¼ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return
  */
@@ -198,11 +198,11 @@ int MP_GetMovePokeZone(const u8 inIndex)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©‚ğƒ`ƒFƒbƒN
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @return BOOL		TRUE:‚¢‚é	FALSE:‚¢‚È‚¢
+ * @return BOOL		TRUE:ã„ã‚‹	FALSE:ã„ãªã„
  */
 //--------------------------------------------------------------------------------------------
 BOOL MP_CheckMovePoke(ENC_SV_PTR inEncData)
@@ -218,10 +218,10 @@ BOOL MP_CheckMovePoke(ENC_SV_PTR inEncData)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ålŒöƒ][ƒ“—š—ğ‚ÌXV
+ * ä¸»äººå…¬ã‚¾ãƒ¼ãƒ³å±¥æ­´ã®æ›´æ–°
  *
- * @param	inEncData		ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inZone			XVƒ][ƒ“
+ * @param	inEncData		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inZone			æ›´æ–°ã‚¾ãƒ¼ãƒ³
  *
  * @return	none
  */
@@ -229,17 +229,17 @@ BOOL MP_CheckMovePoke(ENC_SV_PTR inEncData)
 void MP_UpdatePlayerZoneHist(ENC_SV_PTR inEncData, const int inZone)
 {
 	if (MP_CheckMovePoke(inEncData)){
-		//—š—ğXV
+		//å±¥æ­´æ›´æ–°
 		EncDataSave_UpdatePlayerZoneHist( inEncData, inZone );
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’èˆÚ“®ƒ|ƒPƒ‚ƒ“‚ğ“o˜^
+ * æŒ‡å®šç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚’ç™»éŒ²
  *
- * @param	sv					ƒZ[ƒuƒf[ƒ^
- * @param	inTargetPoke		‘ÎÛˆÚ“®ƒ|ƒPƒ‚ƒ“ƒCƒ“ƒfƒbƒNƒX
+ * @param	sv					ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	inTargetPoke		å¯¾è±¡ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * 
  * @return	none
  */
@@ -301,34 +301,34 @@ void MP_AddMovePoke(SAVEDATA *sv, const u8 inTargetPoke)
 	PokeParaSet(poke_param, monsno, lv, POW_RND, RND_NO_SET, 0, ID_SET, MyStatus_GetID_Low(my_st));
 #endif
 
-	//ó‘ÔˆÙí
+	//çŠ¶æ…‹ç•°å¸¸
 	EncDataSave_SetMovePokeDataParam(mpd, MP_PARAM_COND, 0);
-	//ƒGƒ“ƒJƒEƒ“ƒgƒtƒ‰ƒO
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ•ãƒ©ã‚°
 	EncDataSave_SetMovePokeDataParam(mpd, MP_PARAM_ENC, 1);
-	//ƒpƒ[—”
+	//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
 	EncDataSave_SetMovePokeDataParam(mpd, MP_PARAM_POW_RND,
 											PokeParaGet( poke_param, ID_PARA_power_rnd, NULL ));
-	//ŒÂ«—”
+	//å€‹æ€§ä¹±æ•°
 	EncDataSave_SetMovePokeDataParam(mpd, MP_PARAM_PER_RND,
 											PokeParaGet( poke_param, ID_PARA_personal_rnd, NULL ));
-	//‚g‚o
+	//ï¼¨ï¼°
 	EncDataSave_SetMovePokeDataParam(mpd, MP_PARAM_HP,
 											PokeParaGet( poke_param, ID_PARA_hpmax, NULL ));
 
 	sys_FreeMemoryEz(poke_param);
 
-	//‰‰ñˆÚ“®ƒ|ƒPƒ‚ƒ“oŒ»êŠŒˆ’è
+	//åˆå›ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å‡ºç¾å ´æ‰€æ±ºå®š
 	player_old_zone = EncDataSave_GetPlayerOldZone(data);
 	JumpMovePokeLocation(data, inTargetPoke, player_old_zone);
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“oŒ»êŠ’Š‘I
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å‡ºç¾å ´æ‰€æŠ½é¸
  *
- * @param	data			ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^
- * @param	inTargetPoke	‘ÎÛˆÚ“®ƒ|ƒPƒ‚ƒ“ƒCƒ“ƒfƒbƒNƒX
- * @param	inPlayerZone	‹Œƒ][ƒ“
+ * @param	data			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	inTargetPoke	å¯¾è±¡ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inPlayerZone	æ—§ã‚¾ãƒ¼ãƒ³
  *
  * @return
  */
@@ -338,15 +338,15 @@ static void JumpMovePokeLocation(ENC_SV_PTR data, const u8 inTargetPoke, const i
 	u8 zone_idx;
 	int move_poke_now_zone;
 	int zone;
-	//ålŒö‚ª‘OX‰ñ‚¢‚½ƒ][ƒ“‚Æ
-	//¡©•ª‚ª‚¢‚éêŠ‚Í‘ÎÛŠO‚Æ‚·‚é
+	//ä¸»äººå…¬ãŒå‰ã€…å›ã„ãŸã‚¾ãƒ¼ãƒ³ã¨
+	//ä»Šè‡ªåˆ†ãŒã„ã‚‹å ´æ‰€ã¯å¯¾è±¡å¤–ã¨ã™ã‚‹
 	move_poke_now_zone = ZoneTbl[EncDataSave_GetMovePokeZoneIdx(data,inTargetPoke)];
 	while(1){
 		zone_idx = gf_p_rand(LOCATION_MAX);
 		zone = ZoneTbl[zone_idx];
 		if ((zone != inPlayerOldZone)&&(zone != move_poke_now_zone)){
 			UpdateData(	data, inTargetPoke, zone_idx, zone);
-			OS_Printf_saitou("%d‚ÖƒWƒƒƒ“ƒv player_old_zone:%d\n",zone,inPlayerOldZone);
+			OS_Printf_saitou("%dã¸ã‚¸ãƒ£ãƒ³ãƒ— player_old_zone:%d\n",zone,inPlayerOldZone);
 			break;
 		}
 	}	
@@ -354,11 +354,11 @@ static void JumpMovePokeLocation(ENC_SV_PTR data, const u8 inTargetPoke, const i
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“—×ÚˆÚ“®
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³éš£æ¥ç§»å‹•
  *
- * @param	data			ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^
- * @param	inTargetPoke	‘ÎÛˆÚ“®ƒ|ƒPƒ‚ƒ“ƒCƒ“ƒfƒbƒNƒX
- * @param	inPlayerZone	‹Œƒ][ƒ“	
+ * @param	data			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	inTargetPoke	å¯¾è±¡ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inPlayerZone	æ—§ã‚¾ãƒ¼ãƒ³	
  *
  * @return
  */
@@ -370,26 +370,26 @@ static void MovePokeLocation(ENC_SV_PTR data, const u8 inTargetPoke, const int i
 	int zone;
 	loc_data = &(MovePokeLocationTbl[EncDataSave_GetMovePokeZoneIdx(data,inTargetPoke)]);
 	
-	if (loc_data->BranchNum == 1){	//•ÏˆÚæ‚ª1‚Â‚µ‚©‚È‚¢ê‡
+	if (loc_data->BranchNum == 1){	//å¤‰ç§»å…ˆãŒ1ã¤ã—ã‹ãªã„å ´åˆ
 		zone_idx = loc_data->ZoneIdx[0];
 		zone = ZoneTbl[zone_idx];
-		if (zone == inPlayerOldZone){	//ålŒö‚Ì‘OX‰ñ‚Ìƒ][ƒ“‚¾‚Á‚½‚çAƒWƒƒƒ“ƒv
-			OS_Printf_saitou("ålŒö‚Ì‹ŒÀ•W‚¾‚Á‚½‚Ì‚ÅƒWƒƒƒ“ƒv‚É•ÏX\n");
+		if (zone == inPlayerOldZone){	//ä¸»äººå…¬ã®å‰ã€…å›ã®ã‚¾ãƒ¼ãƒ³ã ã£ãŸã‚‰ã€ã‚¸ãƒ£ãƒ³ãƒ—
+			OS_Printf_saitou("ä¸»äººå…¬ã®æ—§åº§æ¨™ã ã£ãŸã®ã§ã‚¸ãƒ£ãƒ³ãƒ—ã«å¤‰æ›´\n");
 			JumpMovePokeLocation(data, inTargetPoke, inPlayerOldZone);
 		}else{
-			OS_Printf_saitou("%d:%d‚É—×ÚˆÚ“®\n",inTargetPoke,zone);
+			OS_Printf_saitou("%d:%dã«éš£æ¥ç§»å‹•\n",inTargetPoke,zone);
 			UpdateData(	data, inTargetPoke, zone_idx, zone);
 		}
-	}else{							//•ÏˆÚæ‚ª•¡”‚ ‚éê‡
+	}else{							//å¤‰ç§»å…ˆãŒè¤‡æ•°ã‚ã‚‹å ´åˆ
 		u8 idx;
 		while(1){
-			//—×ÚêŠ‚ğƒ‰ƒ“ƒ_ƒ€‚ÅŒˆ’è
+			//éš£æ¥å ´æ‰€ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§æ±ºå®š
 			idx = gf_p_rand(loc_data->BranchNum);
 			zone_idx = loc_data->ZoneIdx[idx];
 			zone = ZoneTbl[zone_idx];
-			//ålŒö‚Ì‘OX‰ñ‚¢‚½ƒ][ƒ“ˆÈŠO‚ğ‘Io‚µ‚ÄˆÚ“®
+			//ä¸»äººå…¬ã®å‰ã€…å›ã„ãŸã‚¾ãƒ¼ãƒ³ä»¥å¤–ã‚’é¸å‡ºã—ã¦ç§»å‹•
 			if (zone != inPlayerOldZone){
-				OS_Printf_saitou("%d:%d‚É—×ÚˆÚ“®\n",inTargetPoke,zone);
+				OS_Printf_saitou("%d:%dã«éš£æ¥ç§»å‹•\n",inTargetPoke,zone);
 				UpdateData(	data, inTargetPoke, zone_idx, zone);
 				break;
 			}
@@ -399,12 +399,12 @@ static void MovePokeLocation(ENC_SV_PTR data, const u8 inTargetPoke, const int i
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^XV
+ * ãƒ‡ãƒ¼ã‚¿æ›´æ–°
  *
- * @param	data			ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜AƒZ[ƒuƒf[ƒ^
- * @param	inTargetPoke	‘ÎÛˆÚ“®ƒ|ƒPƒ‚ƒ“ƒCƒ“ƒfƒbƒNƒX
- * @param	inZoneidx		ˆÚ“®ƒ][ƒ“ƒCƒ“ƒfƒbƒNƒX
- * @param	inZone			ƒ][ƒ“‚h‚c	
+ * @param	data			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param	inTargetPoke	å¯¾è±¡ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inZoneidx		ç§»å‹•ã‚¾ãƒ¼ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inZone			ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤	
  *
  * @return
  */
@@ -415,16 +415,16 @@ static void UpdateData(	ENC_SV_PTR data,
 {
 	MPD_PTR mpd;
 	mpd = EncDataSave_GetMovePokeDataPtr(data, inTargetPoke);
-	//XV
+	//æ›´æ–°
 	EncDataSave_SetMovePokeZoneIdx(data,inTargetPoke,inZoneIdx);
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚à‘‚«Š·‚¦‚é
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚‚æ›¸ãæ›ãˆã‚‹
 	EncDataSave_SetMovePokeDataParam(mpd, MP_PARAM_ZONE_ID, inZone);
 }
 
 #ifdef PM_DEBUG
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^XV
+ * ãƒ‡ãƒ¼ã‚¿æ›´æ–°
  *
  * @param	
  *
@@ -437,9 +437,9 @@ void MP_DebugUpdateData(	ENC_SV_PTR data,
 {
 	MPD_PTR mpd;
 	mpd = EncDataSave_GetMovePokeDataPtr(data, inTargetPoke);
-	//XV
+	//æ›´æ–°
 	EncDataSave_SetMovePokeZoneIdx(data,inTargetPoke,inZoneIdx);
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚à‘‚«Š·‚¦‚é
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚‚æ›¸ãæ›ãˆã‚‹
 	EncDataSave_SetMovePokeDataParam(mpd, MP_PARAM_ZONE_ID, ZoneTbl[inZoneIdx]);
 }
 #endif

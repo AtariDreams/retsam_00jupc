@@ -103,18 +103,18 @@ static NNS_G2D_INLINE void CopyCharDataToImageAttr_
     NNS_G2D_NULL_ASSERT( pSrc );
     NNS_G2D_NULL_ASSERT( pDst );
     //
-    // TODO:����̂ݐݒ肷��
-    // ����ȊO�Ȃ�΁A����ł��邩�`�F�b�N�������Ȃ�
-    // ����ł��邱�Ƃ𔻒�ł���悤�ɁA�����K��l�ŏ���������
+    // TODO:初回のみ設定する
+    // 初回以外ならば、同一であるかチェックをおこなう
+    // 初回であることを判定できるように、何か規定値で初期化する
     //
     if( pSrc->mapingType == GX_OBJVRAMMODE_CHAR_2D )
     {
         pDst->sizeS         = (GXTexSizeS)(GetPow_( pSrc->W ));
         pDst->sizeT         = (GXTexSizeT)(GetPow_( pSrc->H ));
     }else{
-        // 1D �}�b�s���O���[�h���ɂ͈Ӗ��������Ȃ����ł��B
-        // ����Ďg�p����邱�Ƃ��Ȃ��悤�ɁA
-        // pSrc->W H �ɂ� �s���ȃf�[�^(NNS_G2D_1D_MAPPING_CHAR_SIZE) ���R���o�[�^�ő}�����Ă��܂�
+        // 1D マッピングモード時には意味を持たない情報です。
+        // 誤って使用されることがないように、
+        // pSrc->W H には 不正なデータ(NNS_G2D_1D_MAPPING_CHAR_SIZE) をコンバータで挿入しています
         NNS_G2D_ASSERT( (pSrc->W == NNS_G2D_1D_MAPPING_CHAR_SIZE) && 
                     (pSrc->H == NNS_G2D_1D_MAPPING_CHAR_SIZE) );
         
@@ -129,7 +129,7 @@ static NNS_G2D_INLINE void CopyCharDataToImageAttr_
 }
 
 //------------------------------------------------------------------------------
-// �L�����N�^�f�[�^��VRAM�ւ̎��ۂ̃��[�h���������s���܂��B
+// キャラクタデータのVRAMへの実際のロード処理を実行します。
 static NNS_G2D_INLINE void DoLoadingToVram_
 ( 
     const NNSG2dCharacterData*  pSrcData, 
@@ -140,14 +140,14 @@ static NNS_G2D_INLINE void DoLoadingToVram_
     const NNSG2dCharacterFmt charFmt = NNSi_G2dGetCharacterFmtType( pSrcData->characterFmt );
     
     //
-    // VRAM�]���}�l�[�W�����]�����s���̂ŁA�����Ń��[�h����K�v�͂Ȃ�
+    // VRAM転送マネージャが転送を行うので、自分でロードする必要はない
     //
     NNS_G2D_ASSERTMSG( !NNSi_G2dIsCharacterVramTransfered( pSrcData->characterFmt ),
         "You don't have to transfer a image data to VRAM. When you use the VRAM Transfer format image." );
 
     //
-    // �w�肳�ꂽVRAM��ނɉ����Ď��ۂ̃��[�h���������s���܂�
-    // ���[�h�����f�[�^�̃t�H�[�}�b�g���K�؂łȂ��ꍇ�̓A�T�[�g�Ɏ��s���܂��B
+    // 指定されたVRAM種類に応じて実際のロード処理を実行します
+    // ロードされるデータのフォーマットが適切でない場合はアサートに失敗します。
     //
     DC_FlushRange( pSrcData->pRawData, pSrcData->szByte );
     switch( type )
@@ -174,7 +174,7 @@ static NNS_G2D_INLINE void DoLoadingToVram_
 }
 
 //------------------------------------------------------------------------------
-// 1D �}�b�s���O���[�h��ނ��L�������肵�܂��B
+// 1D マッピングモード種類が有効か判定します。
 static BOOL IsValid1DMappingType_( NNS_G2D_VRAM_TYPE vramType, GXOBJVRamModeChar mappingType )
 {
     switch( vramType )
@@ -186,7 +186,7 @@ static BOOL IsValid1DMappingType_( NNS_G2D_VRAM_TYPE vramType, GXOBJVRamModeChar
        break;
     case NNS_G2D_VRAM_TYPE_2DSUB:
        //
-       // GX_OBJVRAMMODE_CHAR_1D_256K �͎g�p�ł��Ȃ��_�ɒ���
+       // GX_OBJVRAMMODE_CHAR_1D_256K は使用できない点に注意
        //
        return (BOOL)( GX_OBJVRAMMODE_CHAR_1D_32K <= mappingType && 
                       mappingType <= GX_OBJVRAMMODE_CHAR_1D_128K );
@@ -197,7 +197,7 @@ static BOOL IsValid1DMappingType_( NNS_G2D_VRAM_TYPE vramType, GXOBJVRamModeChar
 }
 
 //------------------------------------------------------------------------------
-// ���̓\�[�X�f�[�^�̃T�C�Y���K�������肵�܂�
+// 入力ソースデータのサイズが適正か判定します
 static BOOL IsValidDataSize_
 ( 
     const NNSG2dCharacterData*  pSrcData, 
@@ -206,7 +206,7 @@ static BOOL IsValidDataSize_
 {
     if( vramType == NNS_G2D_VRAM_TYPE_3DMAIN )
     {
-       // 3D �e�N�X�`���f�[�^�Ɋւ��Ă͓��ɃT�C�Y�`�F�b�N�͍s��Ȃ�
+       // 3D テクスチャデータに関しては特にサイズチェックは行わない
        return TRUE;
     }else{
        switch( pSrcData->mapingType )
@@ -228,7 +228,7 @@ static BOOL IsValidDataSize_
 }
 
 //------------------------------------------------------------------------------
-// GX �֐����g�p���āA�L�����N�^�}�b�s���O���[�h�Ɋւ��郌�W�X�^�ݒ���s���܂��B
+// GX 関数を使用して、キャラクタマッピングモードに関するレジスタ設定を行います。
 static NNS_G2D_INLINE void SetOBJVRamModeCharacterMapping_
 ( 
     NNS_G2D_VRAM_TYPE   vramType, 
@@ -254,7 +254,7 @@ static NNS_G2D_INLINE void SetOBJVRamModeCharacterMapping_
 }
 
 //------------------------------------------------------------------------------
-// �摜�v���N�V�̃p�����[�^�ݒ���s���܂��B
+// 画像プロクシのパレメータ設定を行います。
 static NNS_G2D_INLINE void SetupImageProxyPrams_
 (
     const NNSG2dCharacterData*  pSrcData, 
@@ -263,17 +263,17 @@ static NNS_G2D_INLINE void SetupImageProxyPrams_
     NNSG2dImageProxy*           pImgProxy
 )
 {
-    // �p�����[�^�ނ̃R�s�[
-    // NNSG2dCharacterData ���� NNSG2dImageProxy ��
+    // パラメータ類のコピー
+    // NNSG2dCharacterData から NNSG2dImageProxy へ
     CopyCharDataToImageAttr_( pSrcData, &pImgProxy->attr );
-    // VRAM�ʒu�i�A�h���X�j�̐ݒ�
+    // VRAM位置（アドレス）の設定
     NNS_G2dSetImageLocation( pImgProxy, type, baseAddr );
 }
 
 
 //------------------------------------------------------------------------------
-// ���ۂ̃p���b�g�f�[�^��VRAM�ւ̓]�������s���܂��B
-// type �Ŏw�肵��VRAM��ނɂ���āA�]���Ɏg�p����֐��͕ω����܂��B
+// 実際のパレットデータのVRAMへの転送を実行します。
+// type で指定したVRAM種類によって、転送に使用する関数は変化します。
 //
 static NNS_G2D_INLINE void DoLoadingPalette_
 (
@@ -337,7 +337,7 @@ static NNS_G2D_INLINE u32 CalcSizePerOnePltt_( const NNSG2dPaletteData*    pSrcD
         return 16 * sizeof( u16 );
         
     }else{
-        NNS_G2D_ASSERT( pSrcData->fmt == GX_TEXFMT_PLTT256 );// 2��ނ������݂��Ȃ��͂�
+        NNS_G2D_ASSERT( pSrcData->fmt == GX_TEXFMT_PLTT256 );// 2種類しか存在しないはず
         return 256 * sizeof( u16 );
     }
 }
@@ -351,7 +351,7 @@ static NNS_G2D_INLINE u16 GetCompressedPlttOriginalIndex_( const NNSG2dPaletteCo
 }
 
 //------------------------------------------------------------------------------
-// ���k�`���ŕۑ����ꂽ�f�[�^��VRAM�ւ̎��ۂ̃��[�h���������s���܂��B
+// 圧縮形式で保存されたデータのVRAMへの実際のロード処理を実行します。
 static NNS_G2D_INLINE void DoLoadingPaletteEx_
 (
     const NNSG2dPaletteData*            pSrcData,
@@ -365,7 +365,7 @@ static NNS_G2D_INLINE void DoLoadingPaletteEx_
     NNS_G2D_VRAM_TYPE_VALID( type );
     
     //
-    // �������āA�����I�Ƀ��[�h���܂�
+    // 分割して、部分的にロードします
     //
     {
         u16             i;
@@ -387,13 +387,13 @@ static NNS_G2D_INLINE void DoLoadingPaletteEx_
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitImageProxy
 
-  Description:  NNSG2dImageProxy�����������܂�
+  Description:  NNSG2dImageProxyを初期化します
                 
                 
-  Arguments:    pImg:         [OUT] NNSG2dImageProxy����
+  Arguments:    pImg:         [OUT] NNSG2dImageProxy実体
                
                 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitImageProxy( NNSG2dImageProxy* pImg )
@@ -405,14 +405,14 @@ void NNS_G2dInitImageProxy( NNSG2dImageProxy* pImg )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetImageLocation
 
-  Description:  �摜���i�[����Ă�����A�h���X��ݒ肵�܂�
+  Description:  画像が格納されている実アドレスを設定します
                 
                 
-  Arguments:    pImg:         [OUT] NNSG2dImageProxy����
-                type:         [IN]  VRAM�̎��
-                addr:         [IN]  ���A�h���X
+  Arguments:    pImg:         [OUT] NNSG2dImageProxy実体
+                type:         [IN]  VRAMの種類
+                addr:         [IN]  実アドレス
                 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetImageLocation( NNSG2dImageProxy* pImg, NNS_G2D_VRAM_TYPE type, u32 addr )
@@ -426,13 +426,13 @@ void NNS_G2dSetImageLocation( NNSG2dImageProxy* pImg, NNS_G2D_VRAM_TYPE type, u3
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetImageLocation
 
-  Description:  �摜���i�[����Ă�����A�h���X���擾���܂�
+  Description:  画像が格納されている実アドレスを取得します
                 
                 
-  Arguments:    pImg:         [OUT] NNSG2dImageProxy����
-                type:         [IN]  VRAM�̎��
+  Arguments:    pImg:         [OUT] NNSG2dImageProxy実体
+                type:         [IN]  VRAMの種類
                 
-  Returns:      ���A�h���X
+  Returns:      実アドレス
   
  *---------------------------------------------------------------------------*/
 u32 NNS_G2dGetImageLocation( const NNSG2dImageProxy* pImg, NNS_G2D_VRAM_TYPE type )
@@ -445,13 +445,13 @@ u32 NNS_G2dGetImageLocation( const NNSG2dImageProxy* pImg, NNS_G2D_VRAM_TYPE typ
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dIsImageReadyToUse
 
-  Description:  �摜�����p�\�����肵�܂�
+  Description:  画像が利用可能か判定します
                 
                 
-  Arguments:    pImg:         [OUT] NNSG2dImageProxy����
-                type:         [IN]  VRAM�̎��
+  Arguments:    pImg:         [OUT] NNSG2dImageProxy実体
+                type:         [IN]  VRAMの種類
                 
-  Returns:      ���p�\��
+  Returns:      利用可能か
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dIsImageReadyToUse( const NNSG2dImageProxy* pImg, NNS_G2D_VRAM_TYPE type )
@@ -465,11 +465,11 @@ BOOL NNS_G2dIsImageReadyToUse( const NNSG2dImageProxy* pImg, NNS_G2D_VRAM_TYPE t
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitImagePaletteProxy
 
-  Description:  �摜�p���b�g�����������܂��B
+  Description:  画像パレットを初期化します。
                 
-  Arguments:    pImg:         [OUT] NNSG2dImagePaletteProxy����
+  Arguments:    pImg:         [OUT] NNSG2dImagePaletteProxy実体
                 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitImagePaletteProxy( NNSG2dImagePaletteProxy* pImg )
@@ -481,14 +481,14 @@ void NNS_G2dInitImagePaletteProxy( NNSG2dImagePaletteProxy* pImg )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetImagePaletteLocation
 
-  Description:  �摜�p���b�g���i�[����Ă�����A�h���X���擾���܂�
+  Description:  画像パレットが格納されている実アドレスを取得します
                 
                 
-  Arguments:    pImg:         [OUT] NNSG2dImagePaletteProxy����
-                type:         [IN]  VRAM�̎��
-                addr:         [IN]  ���A�h���X
+  Arguments:    pImg:         [OUT] NNSG2dImagePaletteProxy実体
+                type:         [IN]  VRAMの種類
+                addr:         [IN]  実アドレス
                 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetImagePaletteLocation( NNSG2dImagePaletteProxy* pImg, NNS_G2D_VRAM_TYPE type, u32 addr )
@@ -502,13 +502,13 @@ void NNS_G2dSetImagePaletteLocation( NNSG2dImagePaletteProxy* pImg, NNS_G2D_VRAM
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetImagePaletteLocation
 
-  Description:  �摜�p���b�g���i�[����Ă�����A�h���X���擾���܂�
+  Description:  画像パレットが格納されている実アドレスを取得します
                 
                 
-  Arguments:    pImg:         [OUT] NNSG2dImagePaletteProxy����
-                type:         [IN]  VRAM�̎��
+  Arguments:    pImg:         [OUT] NNSG2dImagePaletteProxy実体
+                type:         [IN]  VRAMの種類
                 
-  Returns:      ���A�h���X
+  Returns:      実アドレス
   
  *---------------------------------------------------------------------------*/
 u32 NNS_G2dGetImagePaletteLocation( const NNSG2dImagePaletteProxy* pImg, NNS_G2D_VRAM_TYPE type )
@@ -522,12 +522,12 @@ u32 NNS_G2dGetImagePaletteLocation( const NNSG2dImagePaletteProxy* pImg, NNS_G2D
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dIsImagePaletteReadyToUse
 
-  Description:  �摜�p���b�g�����p�\�����肵�܂�
+  Description:  画像パレットが利用可能か判定します
                 
-  Arguments:    pImg:         [OUT] NNSG2dImagePaletteProxy����
-                type:         [IN]  VRAM�̎��
+  Arguments:    pImg:         [OUT] NNSG2dImagePaletteProxy実体
+                type:         [IN]  VRAMの種類
                 
-  Returns:      ���p�\��
+  Returns:      利用可能か
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dIsImagePaletteReadyToUse( const NNSG2dImagePaletteProxy* pImg, NNS_G2D_VRAM_TYPE type )
@@ -547,19 +547,19 @@ BOOL NNS_G2dIsImagePaletteReadyToUse( const NNSG2dImagePaletteProxy* pImg, NNS_G
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dLoadImage1DMapping
 
-  Description:  �摜�f�[�^���n�[�h�E�G�A�Ƀ��[�h���A�摜�v���N�V�Ƀ��[�h���ʁA
-                �摜�t�H�[�}�b�g��ݒ肵�܂��B
-                1D�}�b�s���O���[�h�̉摜�f�ސ�p�̊֐��ł��B
-                2D Graphics Engine �pVRAM���w�肳�ꂽ�ꍇ�́A
-                ������ 2D Graphics Engine �� �L�����N�^���[�h��1D�}�b�s���O���[�h�ɐݒ肵�܂��B
+  Description:  画像データをハードウエアにロードし、画像プロクシにロード結果、
+                画像フォーマットを設定します。
+                1Dマッピングモードの画像素材専用の関数です。
+                2D Graphics Engine 用VRAMが指定された場合は、
+                内部で 2D Graphics Engine の キャラクタモードを1Dマッピングモードに設定します。
 
                 
-  Arguments:    pSrcData        [IN]  ���͉摜�f�[�^�\�[�X 
-                baseAddr        [IN]  �ǂݍ��ݐ�A�h���X 
-                type            [IN]  VRAM���p�̎��(3D 2D-Main 2D-Sub ) 
-                pImgProxy       [OUT] �ǂݍ��݌��ʂ��i�[����摜�v���N�V 
+  Arguments:    pSrcData        [IN]  入力画像データソース 
+                baseAddr        [IN]  読み込み先アドレス 
+                type            [IN]  VRAM利用の種類(3D 2D-Main 2D-Sub ) 
+                pImgProxy       [OUT] 読み込み結果を格納する画像プロクシ 
 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dLoadImage1DMapping
@@ -590,20 +590,20 @@ void NNS_G2dLoadImage1DMapping
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dLoadImage2DMapping
 
-  Description:  �摜�f�[�^���n�[�h�E�G�A�Ƀ��[�h���A�摜�v���N�V�Ƀ��[�h���ʁA
-                �摜�t�H�[�}�b�g��ݒ肵�܂��B
+  Description:  画像データをハードウエアにロードし、画像プロクシにロード結果、
+                画像フォーマットを設定します。
                 
-                2D�}�b�s���O���[�h�̉摜�f�ސ�p�̊֐��ł��B
-                2D Graphics Engine �pVRAM���w�肳�ꂽ�ꍇ�́A
-                ������ 2D Graphics Engine �� �L�����N�^���[�h��2D�}�b�s���O���[�h�ɐݒ肵�܂��B
+                2Dマッピングモードの画像素材専用の関数です。
+                2D Graphics Engine 用VRAMが指定された場合は、
+                内部で 2D Graphics Engine の キャラクタモードを2Dマッピングモードに設定します。
 
                 
-  Arguments:    pSrcData        [IN]  ���͉摜�f�[�^�\�[�X 
-                baseAddr        [IN]  �ǂݍ��ݐ�A�h���X 
-                type            [IN]  VRAM���p�̎��(3D 2D-Main 2D-Sub ) 
-                pImgProxy       [OUT] �ǂݍ��݌��ʂ��i�[����摜�v���N�V 
+  Arguments:    pSrcData        [IN]  入力画像データソース 
+                baseAddr        [IN]  読み込み先アドレス 
+                type            [IN]  VRAM利用の種類(3D 2D-Main 2D-Sub ) 
+                pImgProxy       [OUT] 読み込み結果を格納する画像プロクシ 
 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dLoadImage2DMapping
@@ -632,20 +632,20 @@ void NNS_G2dLoadImage2DMapping
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dLoadImageVramTransfer
 
-  Description:  �摜�v���N�V�Ƀ��[�h���ʁA�摜�t�H�[�}�b�g��ݒ肵�܂��B
-                VRAM�]���p�̉摜�f�ސ�p�̊֐��ł��B
-                �ق��� NNS_G2dLoadImageXXX() �֐��Ƃ͂��ƂȂ���ۂɂ͉摜�f�[�^���n�[�h�E�G�A�Ƀ��[�h���܂���B
-                ���ۂ̃��[�h�̓Q�[�����[�v���ŁAVRAM�]�����W���[�����s�����ƂƂȂ�܂��B
-                2D Graphics Engine �pVRAM���w�肳�ꂽ�ꍇ�́A
-                ������ 2D Graphics Engine �� �L�����N�^���[�h��1D�}�b�s���O���[�h�ɐݒ肵�܂��B
-                �iNCGR,NCBR�t�@�C���ł�VRAM�]���p�̉摜�f�ނ͕K���PD�}�b�s���O���[�h�Ŋi�[����Ă��܂��B�j 
+  Description:  画像プロクシにロード結果、画像フォーマットを設定します。
+                VRAM転送用の画像素材専用の関数です。
+                ほかの NNS_G2dLoadImageXXX() 関数とはことなり実際には画像データをハードウエアにロードしません。
+                実際のロードはゲームループ中で、VRAM転送モジュールが行うこととなります。
+                2D Graphics Engine 用VRAMが指定された場合は、
+                内部で 2D Graphics Engine の キャラクタモードを1Dマッピングモードに設定します。
+                （NCGR,NCBRファイルではVRAM転送用の画像素材は必ず１Dマッピングモードで格納されています。） 
                 
-  Arguments:    pSrcData        [IN]  ���͉摜�f�[�^�\�[�X 
-                baseAddr        [IN]  �ǂݍ��ݐ�A�h���X 
-                type            [IN]  VRAM���p�̎��(3D 2D-Main 2D-Sub ) 
-                pImgProxy       [OUT] �ǂݍ��݌��ʂ��i�[����摜�v���N�V 
+  Arguments:    pSrcData        [IN]  入力画像データソース 
+                baseAddr        [IN]  読み込み先アドレス 
+                type            [IN]  VRAM利用の種類(3D 2D-Main 2D-Sub ) 
+                pImgProxy       [OUT] 読み込み結果を格納する画像プロクシ 
 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dLoadImageVramTransfer
@@ -675,17 +675,17 @@ void NNS_G2dLoadImageVramTransfer
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dLoadPalette
 
-  Description:  �摜�p���b�g�f�[�^���n�[�h�E�G�A�Ƀ��[�h���A
-                �摜�p���b�g�v���N�V�Ƀ��[�h���ʁA�摜�t�H�[�}�b�g��ݒ肵�܂��B
+  Description:  画像パレットデータをハードウエアにロードし、
+                画像パレットプロクシにロード結果、画像フォーマットを設定します。
 
                 
                 
-  Arguments:    pSrcData        [IN]  ���͉摜�f�[�^�\�[�X 
-                addr            [IN]  �ǂݍ��ݐ�A�h���X 
-                type            [IN]  VRAM���p�̎��(3D 2D-Main 2D-Sub ) 
-                pPltProxt       [OUT] �ǂݍ��݌��ʂ��i�[����摜�p���b�g�v���N�V 
+  Arguments:    pSrcData        [IN]  入力画像データソース 
+                addr            [IN]  読み込み先アドレス 
+                type            [IN]  VRAM利用の種類(3D 2D-Main 2D-Sub ) 
+                pPltProxt       [OUT] 読み込み結果を格納する画像パレットプロクシ 
 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dLoadPalette
@@ -713,18 +713,18 @@ void NNS_G2dLoadPalette
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dLoadPaletteEx
 
-  Description:  �摜�p���b�g�f�[�^���n�[�h�E�G�A�Ƀ��[�h���A
-                �摜�p���b�g�v���N�V�Ƀ��[�h���ʁA�摜�t�H�[�}�b�g��ݒ肵�܂��B
+  Description:  画像パレットデータをハードウエアにロードし、
+                画像パレットプロクシにロード結果、画像フォーマットを設定します。
 
                 
                 
-  Arguments:    pSrcData        [IN]  ���͉摜�f�[�^�\�[�X 
-                pCmpInfo        [IN]  ���k���
-                addr            [IN]  �ǂݍ��ݐ�A�h���X 
-                type            [IN]  VRAM���p�̎��(3D 2D-Main 2D-Sub ) 
-                pPltProxy       [OUT] �ǂݍ��݌��ʂ��i�[����摜�p���b�g�v���N�V 
+  Arguments:    pSrcData        [IN]  入力画像データソース 
+                pCmpInfo        [IN]  圧縮情報
+                addr            [IN]  読み込み先アドレス 
+                type            [IN]  VRAM利用の種類(3D 2D-Main 2D-Sub ) 
+                pPltProxy       [OUT] 読み込み結果を格納する画像パレットプロクシ 
 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dLoadPaletteEx
@@ -742,13 +742,13 @@ void NNS_G2dLoadPaletteEx
     NNS_G2D_NULL_ASSERT( pPltProxy );
     
     //
-    // �������āA�����I�Ƀ��[�h���܂�
+    // 分割して、部分的にロードします
     //
     DoLoadingPaletteEx_( pSrcData, pCmpInfo, addr, type );
     
     // 
-    // ���̂ق��̐ݒ�ɂ��ẮA�ʏ�̃��[�h�ƕς�肠��܂���
-    // �摜�v���N�V�̐ݒ肪����ł���_�ɂ͓��ɂ����ӂ��������B
+    // そのほかの設定については、通常のロードと変わりありません
+    // 画像プロクシの設定が同一である点には特にご注意ください。
     //
     pPltProxy->fmt          = pSrcData->fmt;          
     pPltProxy->bExtendedPlt = pSrcData->bExtendedPlt;
@@ -758,8 +758,8 @@ void NNS_G2dLoadPaletteEx
 
 
 //------------------------------------------------------------------------------
-// �v���C�x�[�g�֐� �� �O�����J����̂��߂̃��b�p�[�Q
-// ���C�u���� internal ���J
+// プレイベート関数 を 外部公開するのためのラッパー群
+// ライブラリ internal 公開
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 void NNSi_G2dInitializeVRamLocation( NNSG2dVRamLocation* pVramLocation )
@@ -794,7 +794,7 @@ BOOL NNSi_G2dIsVramLocationReadyToUse( const NNSG2dVRamLocation* pVramLocation, 
 }
 
 //------------------------------------------------------------------------------
-// �摜�f�[�^�̎��ۂ�VRAM�ւ̃��[�h�������s���܂��B
+// 画像データの実際のVRAMへのロード処理を行います。
 void NNSi_G2dDoImageLoadingToVram
 ( 
     const NNSG2dCharacterData*  pSrcData, 
@@ -810,7 +810,7 @@ void NNSi_G2dDoImageLoadingToVram
 
 
 //------------------------------------------------------------------------------
-// �摜�v���N�V�̃p�����[�^�ݒ���s���܂��B
+// 画像プロクシのパレメータ設定を行います。
 void NNSi_G2dSetupImageProxyPrams
 (
     const NNSG2dCharacterData*  pSrcData, 
@@ -827,7 +827,7 @@ void NNSi_G2dSetupImageProxyPrams
 }
 
 //------------------------------------------------------------------------------
-// �p���b�g�f�[�^�̎��ۂ�VRAM�ւ̃��[�h�������s���܂��B
+// パレットデータの実際のVRAMへのロード処理を行います。
 void NNSi_G2dDoLoadingPaletteToVram
 (
     const NNSG2dPaletteData*    pSrcData,
@@ -843,8 +843,8 @@ void NNSi_G2dDoLoadingPaletteToVram
 }
 
 //------------------------------------------------------------------------------
-// �p���b�g�f�[�^�̎��ۂ�VRAM�ւ̃��[�h�������s���܂��B
-// ���k�`���ŕۑ����ꂽ�p���b�g�f�[�^�ɑ΂��Ďg�p�����֐��ł��B
+// パレットデータの実際のVRAMへのロード処理を行います。
+// 圧縮形式で保存されたパレットデータに対して使用される関数です。
 void NNSi_G2dDoLoadingPaletteToVramEx
 (
     const NNSG2dPaletteData*            pSrcData,
@@ -862,7 +862,7 @@ void NNSi_G2dDoLoadingPaletteToVramEx
 }
 
 //------------------------------------------------------------------------------
-// �p���b�g�v���N�V�̃p�����[�^�ݒ���s���܂��B
+// パレットプロクシのパレメータ設定を行います。
 void NNSi_G2dSetupPaletteProxyPrams
 (
     const NNSG2dPaletteData*            pSrcData,

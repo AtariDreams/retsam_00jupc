@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	actin_snd_def.h
- * @brief	ƒRƒ“ƒeƒXƒgFƒrƒWƒ…ƒAƒ‹•”–å@SE’è‹`ƒtƒ@ƒCƒ‹
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã€€SEå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	matsuda
- * @date	2006.03.01(…)
+ * @date	2006.03.01(æ°´)
  */
 //==============================================================================
 #ifndef __ACTIN_SND_DEF_H__
@@ -12,54 +12,54 @@
 #include "system/snd_tool.h"
 
 
-///ƒJ[ƒ\ƒ‹Œˆ’è
+///ã‚«ãƒ¼ã‚½ãƒ«æ±ºå®š
 #define ASE_DECIDE			(SEQ_SE_DP_DECIDE)
-///“ü—Í‰æ–ÊƒJ[ƒ\ƒ‹ˆÚ“®‰¹
+///å…¥åŠ›ç”»é¢ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•éŸ³
 #define ASE_CCURSOR_MOVE_SE			(SEQ_SE_DP_SELECT)
 
-///ƒ{ƒ‹ƒe[ƒWã¸SE
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ä¸Šæ˜‡SE
 #define ASE_VOLTAGE_UP		(SEQ_SE_DP_CON_002)	//(SEQ_SE_DP_CON_006)
-///ƒ{ƒ‹ƒe[ƒW‰º~SE
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ä¸‹é™SE
 #define ASE_VOLTAGE_DOWN		(SEQ_SE_DP_CON_001)	//(SEQ_SE_DP_CON_005)
-///APã¸SE
+///APä¸Šæ˜‡SE
 #define ASE_AP_UP			(SEQ_SE_DP_CON_003)	//(SEQ_SE_DP_CON_004)
-///ŽŸƒAƒCƒRƒ“‚ð“\‚è•t‚¯‚½Žž‚ÌSE
+///æ¬¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’è²¼ã‚Šä»˜ã‘ãŸæ™‚ã®SE
 #define ASE_NEXTICON			(SEQ_SE_DP_CON_004)
-///ŠÏ‹q·‚èã‚ª‚èŽž‚ÌSE
+///è¦³å®¢ç››ã‚Šä¸ŠãŒã‚Šæ™‚ã®SE
 #define ASE_AUDIENCE			(SEQ_SE_DP_CON_007)
 
-//R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ““_“”Žž‚É‚È‚éSEFŽw–¼
+//å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç‚¹ç¯æ™‚ã«ãªã‚‹SEï¼šæŒ‡å
 #define ASE_ICON_NOMINATION		(SEQ_SE_DP_CON_003)
-//R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ““_“”Žž‚É‚È‚éSEF”í‚è
+//å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç‚¹ç¯æ™‚ã«ãªã‚‹SEï¼šè¢«ã‚Š
 #define ASE_ICON_WEAR			(SEQ_SE_DP_CON_001)
-//R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ““_“”Žž‚É‚È‚éSEFƒ{ƒ‹ƒe[ƒW
+//å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç‚¹ç¯æ™‚ã«ãªã‚‹SEï¼šãƒœãƒ«ãƒ†ãƒ¼ã‚¸
 #define ASE_ICON_VOLTAGE		(SEQ_SE_DP_DECIDE)
-//R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ““_“”Žž‚É‚È‚éSEFƒ{ƒ‹ƒe[ƒWMAX
+//å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç‚¹ç¯æ™‚ã«ãªã‚‹SEï¼šãƒœãƒ«ãƒ†ãƒ¼ã‚¸MAX
 #define ASE_ICON_VOLTAGE_MAX	(SEQ_SE_DP_DECIDE)
 
-///R”»”í‚è‚ÌR”»‚Ì”½‰žŽžF+0
+///å¯©åˆ¤è¢«ã‚Šã®å¯©åˆ¤ã®åå¿œæ™‚ï¼š+0
 #define ASE_JUDGE_SUFFER_FAILED		(SEQ_SE_DP_CON_001)
-///R”»”í‚è‚ÌR”»‚Ì”½‰žŽžF+1
+///å¯©åˆ¤è¢«ã‚Šã®å¯©åˆ¤ã®åå¿œæ™‚ï¼š+1
 #define ASE_JUDGE_SUFFER_SMALL		(SEQ_SE_DP_CON_021)
-///R”»”í‚è‚ÌR”»‚Ì”½‰žŽžF+2
+///å¯©åˆ¤è¢«ã‚Šã®å¯©åˆ¤ã®åå¿œæ™‚ï¼š+2
 #define ASE_JUDGE_SUFFER_MIDDLE		(SEQ_SE_DP_CON_022)
-///R”»”í‚è‚ÌR”»‚Ì”½‰žŽžF+3
+///å¯©åˆ¤è¢«ã‚Šã®å¯©åˆ¤ã®åå¿œæ™‚ï¼š+3
 #define ASE_JUDGE_SUFFER_BIG		(SEQ_SE_DP_CON_023)
 
-///APƒn[ƒg‚ªƒpƒlƒ‹‚Éˆù‚Ýž‚Ü‚ê‚éŽž‚Ì‰¹
+///APãƒãƒ¼ãƒˆãŒãƒ‘ãƒãƒ«ã«é£²ã¿è¾¼ã¾ã‚Œã‚‹æ™‚ã®éŸ³
 #define ASE_APHEART_PANEL_IN	(SEQ_SE_DP_SELECT5)
-///ƒ{ƒ‹ƒe[ƒW‚ªƒpƒlƒ‹‚Éˆù‚Ýž‚Ü‚ê‚éŽž‚Ì‰¹
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãŒãƒ‘ãƒãƒ«ã«é£²ã¿è¾¼ã¾ã‚Œã‚‹æ™‚ã®éŸ³
 #define ASE_VOLTAGE_PANEL_IN	(SEQ_SE_DP_SELECT5)
-///ƒ{ƒ‹ƒe[ƒWMAX‚ÅƒGƒtƒFƒNƒg‹N“®ŽžR”»ƒ{ƒbƒNƒX‚©‚ç™‚ªo‚Ä‚­‚éŽž‚É–Â‚ç‚·‰¹
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸MAXã§ã‚¨ãƒ•ã‚§ã‚¯ãƒˆèµ·å‹•æ™‚å¯©åˆ¤ãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰â˜†ãŒå‡ºã¦ãã‚‹æ™‚ã«é³´ã‚‰ã™éŸ³
 #define ASE_VOLTAGE_EFF_START	(SEQ_SE_DP_W234)
-///‰º~‚µ‚«‚Á‚½ƒ{ƒ‹ƒe[ƒW‚ªƒpƒlƒ‹‚É’¼i‚µ‚Ä”ò‚ñ‚Å‚¢‚­Žž‚É–Â‚ç‚·‰¹
+///ä¸‹é™ã—ãã£ãŸãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãŒãƒ‘ãƒãƒ«ã«ç›´é€²ã—ã¦é£›ã‚“ã§ã„ãæ™‚ã«é³´ã‚‰ã™éŸ³
 #define ASE_VOLTAGE_STRAIGHT_MOVE	(SEQ_SE_DP_CON_013)
 
-///ÅIƒ^[ƒ“‚ð’m‚ç‚¹‚é‰¹
+///æœ€çµ‚ã‚¿ãƒ¼ãƒ³ã‚’çŸ¥ã‚‰ã›ã‚‹éŸ³
 #define ASE_FINAL_TURN			(SEQ_SE_DP_CON_029)
-///Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“‚ª“oê
+///è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ãŒç™»å ´
 #define ASE_MY_POKEMON			(SEQ_SE_DP_CON_031)
-///R”»‚Ìu‚»‚±‚Ü‚Å[Iv‚ÌŽž
+///å¯©åˆ¤ã®ã€Œãã“ã¾ã§ãƒ¼ï¼ã€ã®æ™‚
 #define ASE_ACTIN_STOP			(SEQ_SE_DP_CON_032)
 
 

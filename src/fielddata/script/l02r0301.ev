@@ -10,42 +10,42 @@
 	.include	"../../../include/savedata/score_def.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_l02r0301_masuda
 _EVENT_DATA_END
 
 
 /********************************************************************/
-/*							���c����								*/
+/*							増田部長								*/
 /********************************************************************/
 ev_l02r0301_masuda:
 	_TALK_OBJ_START
 
-	/*�\�������Ă��畔�����o�Ă��Ȃ��Ƃ�*/
+	/*表彰を見てから部屋を出ていないとき*/
 	_IF_FLAGON_JUMP		FH_01,ev_l02r0301_masuda_04
 
-	//�V���I�E�}�ӊ����`�F�b�N
+	//シンオウ図鑑完成チェック
 	_ZUKAN_CHK_SHINOU	SCWK_ANSWER
-	//�V���I�E�}�ӂ��������Ă��Ȃ�
+	//シンオウ図鑑が完成していない
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0301_masuda_01
 
-	/*�܂��V���I�E�ŕ\������Ă��Ȃ�*/
+	/*まだシンオウ版表彰されていない*/
 	_IF_FLAGOFF_JUMP		FE_RECONGNIZE_SHINOU,ev_l02r0301_masuda_02
 
-	//�S���}�ӊ����`�F�b�N
+	//全国図鑑完成チェック
 	_ZUKAN_CHK_NATIONAL	SCWK_ANSWER
-	//�S���}�ӂ��������Ă��Ȃ�
+	//全国図鑑が完成していない
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0301_masuda_02
 
-	/*�S���\����*/
+	/*全国表彰へ*/
 	_JUMP		ev_l02r0301_masuda_03
 
-//�ʏ툥�A
+//通常挨拶
 ev_l02r0301_masuda_01:
 	_TALKMSG		msg_l02r0301_masuda_01
 	_LAST_KEYWAIT
@@ -53,7 +53,7 @@ ev_l02r0301_masuda_01:
 	_TALK_OBJ_END
 	_END
 
-/*�V���I�E�ŕ\��*/
+/*シンオウ版表彰*/
 ev_l02r0301_masuda_02:
 	_IF_FLAGOFF_CALL	FE_RECONGNIZE_SHINOU,shinou_zukan_score_add
 
@@ -68,7 +68,7 @@ ev_l02r0301_masuda_02:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*�V���I�E�ŕ\���Ăяo��*/
+	/*シンオウ版表彰呼び出し*/
 	_ZUKAN_RECONGNIZE_SHINOU
 	_SET_MAP_PROC
 
@@ -78,7 +78,7 @@ ev_l02r0301_masuda_02:
 	_TALK_OBJ_END
 	_END
 
-/*�S���ŕ\��*/
+/*全国版表彰*/
 ev_l02r0301_masuda_03:
 	_IF_FLAGOFF_CALL	FE_RECONGNIZE_NATIONAL,zenkoku_zukan_score_add
 
@@ -93,7 +93,7 @@ ev_l02r0301_masuda_03:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*�S���ŕ\���Ăяo��*/
+	/*全国版表彰呼び出し*/
 	_ZUKAN_RECONGNIZE_NATIONAL
 	_SET_MAP_PROC
 
@@ -103,7 +103,7 @@ ev_l02r0301_masuda_03:
 	_TALK_OBJ_END
 	_END
 
-//�]����
+//評価後
 ev_l02r0301_masuda_04:
 	_TALKMSG		msg_l02r0301_masuda_04
 	_LAST_KEYWAIT
@@ -111,12 +111,12 @@ ev_l02r0301_masuda_04:
 	_TALK_OBJ_END
 	_END
 
-//�V���I�E�}�ӃX�R�A�𑫂�
+//シンオウ図鑑スコアを足す
 shinou_zukan_score_add:
 	_ADD_SCORE		SCORE_ID_COMMENDATION_A
 	_RET
 
-//�S���}�ӃX�R�A�𑫂�
+//全国図鑑スコアを足す
 zenkoku_zukan_score_add:
 	_ADD_SCORE		SCORE_ID_COMMENDATION_B
 	_RET

@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		lobby_news_data.c
- *	@brief		ƒƒr[ƒjƒ…[ƒX	ƒf[ƒ^Ši”[•”•ª
+ *	@brief		ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹	ãƒ‡ãƒ¼ã‚¿æ ¼ç´éƒ¨åˆ†
  *	@author		tomoya takahashi
  *	@data		2007.10.09
  *
@@ -25,33 +25,33 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒgƒsƒbƒNŠÖ˜A
+///	ãƒˆãƒ”ãƒƒã‚¯é–¢é€£
 //=====================================
-#define NEWS_TOPIC_MAX		( 8 )							// ƒgƒsƒbƒNÅ‘å”
-#define NEWS_TOPICNAME_LEN	( PERSON_NAME_SIZE+EOM_SIZE )	// ƒgƒŒ[ƒi•¶š—ñƒTƒCƒY
+#define NEWS_TOPIC_MAX		( 8 )							// ãƒˆãƒ”ãƒƒã‚¯æœ€å¤§æ•°
+#define NEWS_TOPICNAME_LEN	( PERSON_NAME_SIZE+EOM_SIZE )	// ãƒˆãƒ¬ãƒ¼ãƒŠæ–‡å­—åˆ—ã‚µã‚¤ã‚º
 
-enum{		// —Dæ‡ˆÊ
+enum{		// å„ªå…ˆé †ä½
 	NEWS_TOPIC_PRI_NONE,
 	NEWS_TOPIC_PRI_VIPIN,
 	NEWS_TOPIC_PRI_MINIGAME_02,
@@ -61,50 +61,50 @@ enum{		// —Dæ‡ˆÊ
 	NEWS_TOPIC_PRI_FOOTBOARD_01,
 	NEWS_TOPIC_PRI_ITEM,
 	NEWS_TOPIC_PRI_CONNECT,
-	NEWS_TOPIC_PRI_MGRESULT02,	// Œ‹‰Ê	‚Ç‚ñ‚Ç‚ñƒ\[ƒiƒ“ƒX
-	NEWS_TOPIC_PRI_MGRESULT01,	// Œ‹‰Ê	ƒ}ƒlƒl
-	NEWS_TOPIC_PRI_MGRESULT00,	// Œ‹‰Ê ƒ}ƒ‹ƒm[ƒ€
+	NEWS_TOPIC_PRI_MGRESULT02,	// çµæœ	ã©ã‚“ã©ã‚“ã‚½ãƒ¼ãƒŠãƒ³ã‚¹
+	NEWS_TOPIC_PRI_MGRESULT01,	// çµæœ	ãƒãƒãƒ
+	NEWS_TOPIC_PRI_MGRESULT00,	// çµæœ ãƒãƒ«ãƒãƒ¼ãƒ 
 	NEWS_TOPIC_PRI_WORLDTIMER,
 	NEWS_TOPIC_PRI_LOBBYNEWS,
 	NEWS_TOPIC_PRI_TIMEEVENT,
 };
-enum{		// ŠeƒgƒsƒbƒN‚Ìƒ[ƒNg—p•û–@
+enum{		// å„ãƒˆãƒ”ãƒƒã‚¯ã®ãƒ¯ãƒ¼ã‚¯ä½¿ç”¨æ–¹æ³•
 
-	NEWS_TOPIC_WK_NUM		= 3,	// ƒ[ƒN‚Ì‘”
+	NEWS_TOPIC_WK_NUM		= 3,	// ãƒ¯ãƒ¼ã‚¯ã®ç·æ•°
 
-	// ˆ¥A
+	// æŒ¨æ‹¶
 
-	// ƒAƒCƒeƒ€ƒVƒFƒA
+	// ã‚¢ã‚¤ãƒ†ãƒ ã‚·ã‚§ã‚¢
 	NEWS_TOPIC_WK_ITEMNO		= 0,
 
-	// ƒ~ƒjƒQ[ƒ€
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
 	NEWS_TOPIC_WK_GAME_NO		= 0,
 	NEWS_TOPIC_WK_GAME_PLAYNUM,
 	NEWS_TOPIC_WK_GAME_PLAYFLAG,
 
-	// ‚ ‚µ‚ ‚Æ
+	// ã‚ã—ã‚ã¨
 	NEWS_TOPIC_WK_FOOT_NO		= 0,
 	NEWS_TOPIC_WK_FOOT_PLAYNUM,
 
-	// ¢ŠEŒv
+	// ä¸–ç•Œæ™‚è¨ˆ
 	NEWS_TOPIC_WK_WLDT_PLAYNUM	= 0,
 
-	// ƒƒr[ƒjƒ…[ƒX
+	// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
 	NEWS_TOPIC_WK_LBYN_PLAYNUM	= 0,
 
-	// ŠÔƒCƒxƒ“ƒg
+	// æ™‚é–“ã‚¤ãƒ™ãƒ³ãƒˆ
 	NEWS_TOPIC_WK_TIEV_TIME		= 0,
 	NEWS_TOPIC_WK_TIEV_NO,
 
-	// VIP“üº
+	// VIPå…¥å®¤
 	NEWS_TOPIC_WK_VIPIN_IDX		= 0,
 
-	// ƒ~ƒjƒQ[ƒ€Œ‹‰Ê
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµæœ
 	NEWS_TOPIC_WK_MGRESULT_NO		= 0,
 	NEWS_TOPIC_WK_MGRESULT_PLAYNUM,
 };
-enum{		// ŠeƒgƒsƒbƒN‚Ì”jŠüƒJƒEƒ“ƒg
-	// ƒ~ƒjƒQ[ƒ€
+enum{		// å„ãƒˆãƒ”ãƒƒã‚¯ã®ç ´æ£„ã‚«ã‚¦ãƒ³ãƒˆ
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
 	NEWS_TOPIC_DEST_VIPIN		= 60 * 30,
 	NEWS_TOPIC_DEST_GAME		= 30 * 30,
 	NEWS_TOPIC_DEST_FOOT		= 30 * 30,
@@ -119,68 +119,68 @@ enum{		// ŠeƒgƒsƒbƒN‚Ì”jŠüƒJƒEƒ“ƒg
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	Ú‘±ƒvƒŒƒCƒ„[ƒf[ƒ^
+///	æ¥ç¶šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
 //=====================================
-//1ƒvƒŒƒCƒ„[ƒf[ƒ^
+//1ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
 typedef struct {
 	u16 sex;
 	u16 special;
 } NEWS_ROOMPLAYER_ONE;
-// ƒvƒŒƒCƒ„[‘Sƒf[ƒ^
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨ãƒ‡ãƒ¼ã‚¿
 typedef struct {
 	NEWS_ROOMPLAYER_ONE	player[WFLBY_PLAYER_MAX];
-	u16					event;				// ƒvƒŒƒCƒ„[ƒCƒxƒ“ƒg
-	u16					new_player;			// V‚µ‚­“ü‚Á‚Ä‚«‚½ƒvƒŒƒCƒ„[
+	u16					event;				// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆ
+	u16					new_player;			// æ–°ã—ãå…¥ã£ã¦ããŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 } NEWS_ROOMPLAYER;
 
 //-------------------------------------
-///	ƒgƒsƒbƒNƒXƒf[ƒ^
+///	ãƒˆãƒ”ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
 //=====================================
-// 1ƒgƒsƒbƒNƒf[ƒ^
+// 1ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 typedef struct _NEWS_TOPIC{
-	u8		type;							// ƒf[ƒ^ƒ^ƒCƒv
-	u32		work[NEWS_TOPIC_WK_NUM];		// ”Ä—pƒ[ƒN
-	STRBUF* p_name[ NEWS_TOPICNAME_NUM ];	// l‚Ì–¼‘O—pƒoƒbƒtƒ@
-	u16		pl_idx[ NEWS_TOPICNAME_NUM ];	// l‚Ì¯•ÊƒCƒ“ƒfƒbƒNƒX
-	u16		pri;							// —Dæ‡ˆÊ
-	s16		dest;							// ”jŠüƒJƒEƒ“ƒ^
+	u8		type;							// ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
+	u32		work[NEWS_TOPIC_WK_NUM];		// æ±ç”¨ãƒ¯ãƒ¼ã‚¯
+	STRBUF* p_name[ NEWS_TOPICNAME_NUM ];	// äººã®åå‰ç”¨ãƒãƒƒãƒ•ã‚¡
+	u16		pl_idx[ NEWS_TOPICNAME_NUM ];	// äººã®è­˜åˆ¥ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u16		pri;							// å„ªå…ˆé †ä½
+	s16		dest;							// ç ´æ£„ã‚«ã‚¦ãƒ³ã‚¿
 
-	// ƒŠƒXƒg\‘¢
+	// ãƒªã‚¹ãƒˆæ§‹é€ 
 	struct _NEWS_TOPIC* p_next;
 	struct _NEWS_TOPIC* p_last;
 } NEWS_TOPIC;
-// ƒgƒsƒbƒN‘Sƒf[ƒ^
+// ãƒˆãƒ”ãƒƒã‚¯å…¨ãƒ‡ãƒ¼ã‚¿
 typedef struct {
-	NEWS_TOPIC		topic_buf[ NEWS_TOPIC_MAX ];// ƒgƒsƒbƒNŠi”[ƒoƒbƒtƒ@
-	NEWS_TOPIC		topic_top;					// ƒgƒsƒbƒNæ“ªƒf[ƒ^
+	NEWS_TOPIC		topic_buf[ NEWS_TOPIC_MAX ];// ãƒˆãƒ”ãƒƒã‚¯æ ¼ç´ãƒãƒƒãƒ•ã‚¡
+	NEWS_TOPIC		topic_top;					// ãƒˆãƒ”ãƒƒã‚¯å…ˆé ­ãƒ‡ãƒ¼ã‚¿
 } NEWS_TOPICBUF;
 
 
 
 //-------------------------------------
-///	WiFiƒƒr[ƒjƒ…[ƒXƒf[ƒ^ƒx[ƒX
+///	WiFiãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
 //=====================================
 typedef struct _NEWS_DATA {
-	WFLBY_TIME		lock_time;					// LOCKƒ^ƒCƒ€
-	BOOL			lock_flag;					// LOCK‚³‚ê‚Ä‚¢‚é‚©
-	NEWS_ROOMPLAYER	player;						// Ú‘±ƒvƒŒƒCƒ„[ƒoƒbƒtƒ@
-	NEWS_TOPICBUF	topic;						// ƒgƒsƒbƒNƒoƒbƒtƒ@
+	WFLBY_TIME		lock_time;					// LOCKã‚¿ã‚¤ãƒ 
+	BOOL			lock_flag;					// LOCKã•ã‚Œã¦ã„ã‚‹ã‹
+	NEWS_ROOMPLAYER	player;						// æ¥ç¶šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒãƒƒãƒ•ã‚¡
+	NEWS_TOPICBUF	topic;						// ãƒˆãƒ”ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
 
 } NEWS_DATA;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	Ú‘±ƒvƒŒƒCƒ„[	ŠÖ˜A
+///	æ¥ç¶šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼	é–¢é€£
 //=====================================
 static void NEWS_ROOMPLAYER_Init( NEWS_ROOMPLAYER* p_wk );
 static void NEWS_ROOMPLAYER_SetData( NEWS_ROOMPLAYER* p_wk, u32 player, u32 sex, NEWS_ROOMSP special );
@@ -199,7 +199,7 @@ static BOOL NEWS_ROOMPLAYER_GetNewPlayer( const NEWS_ROOMPLAYER* cp_wk, u32 play
 
 
 //-------------------------------------
-///	ƒgƒsƒbƒNƒX	ŠÖ˜A
+///	ãƒˆãƒ”ãƒƒã‚¯ã‚¹	é–¢é€£
 //=====================================
 static void NEWS_TOPIC_Init( NEWS_TOPICBUF* p_wk, u32 heapID );
 static void NEWS_TOPIC_Exit( NEWS_TOPICBUF* p_wk );
@@ -234,11 +234,11 @@ static BOOL NEWS_TOPIC_MGRESULT_CheckPlayerNum( WFLBY_GAMETYPE minigame, u32 num
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒjƒ…[ƒX	ƒoƒbƒtƒ@ì¬
+ *	@brief	ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹	ãƒãƒƒãƒ•ã‚¡ä½œæˆ
  *
- *	@param	heapID	ƒq[ƒv
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒƒr[ƒjƒ…[ƒXƒoƒbƒtƒ@
+ *	@return	ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ãƒãƒƒãƒ•ã‚¡
  */
 //-----------------------------------------------------------------------------
 NEWS_DATA* NEWS_DSET_Init( u32 heapID )
@@ -248,10 +248,10 @@ NEWS_DATA* NEWS_DSET_Init( u32 heapID )
 	p_data = sys_AllocMemory( heapID, sizeof( NEWS_DATA ) );
 	memset( p_data, 0, sizeof(NEWS_DATA) );
 
-	// Ú‘±ƒvƒŒƒCƒ„[@‰Šú‰»
+	// æ¥ç¶šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€€åˆæœŸåŒ–
 	NEWS_ROOMPLAYER_Init( &p_data->player );
 
-	// ƒgƒsƒbƒNƒoƒbƒtƒ@‰Šú‰»
+	// ãƒˆãƒ”ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 	NEWS_TOPIC_Init( &p_data->topic, heapID );
 
 
@@ -260,15 +260,15 @@ NEWS_DATA* NEWS_DSET_Init( u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒjƒ…[ƒX	ƒoƒbƒtƒ@”jŠü
+ *	@brief	ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹	ãƒãƒƒãƒ•ã‚¡ç ´æ£„
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NEWS_DSET_Exit( NEWS_DATA* p_data )
 {
 	
-	// ƒgƒsƒbƒNƒoƒbƒtƒ@”jŠü
+	// ãƒˆãƒ”ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	NEWS_TOPIC_Exit( &p_data->topic );
 	
 	sys_FreeMemoryEz( p_data );
@@ -276,34 +276,34 @@ void NEWS_DSET_Exit( NEWS_DATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒjƒ…[ƒX	ƒƒCƒ“ˆ—	iƒgƒsƒbƒNƒX‚ğŠÔŒo‰ß‚É‚æ‚è”jŠü‚·‚éˆ—‚È‚Çj
+ *	@brief	ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹	ãƒ¡ã‚¤ãƒ³å‡¦ç†	ï¼ˆãƒˆãƒ”ãƒƒã‚¯ã‚¹ã‚’æ™‚é–“çµŒéã«ã‚ˆã‚Šç ´æ£„ã™ã‚‹å‡¦ç†ãªã©ï¼‰
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NEWS_DSET_Main( NEWS_DATA* p_data )
 {
-	// ƒgƒsƒbƒNƒX
+	// ãƒˆãƒ”ãƒƒã‚¯ã‚¹
 	NEWS_TOPIC_Main( &p_data->topic );
 
-	// İ’è‚µ‚½ƒCƒxƒ“ƒg‚ğ”jŠü
-	// V‚µ‚­“ü‚Á‚Ä‚«‚½lƒf[ƒ^(player.new_player)‚à”jŠü‚µ‚½‚¢‚Æ‚±‚ë‚¾‚ªA
-	// lobby_news‚Å•\¦‚·‚é‚Æ‚«‚É‚¸‚Á‚Æ‚Æ‚Á‚Ä‚¨‚¢‚½‚Ù‚¤‚ª
-	// “s‡‚ª‚æ‚¢‚Ì‚Å”jŠü‚µ‚È‚¢
+	// è¨­å®šã—ãŸã‚¤ãƒ™ãƒ³ãƒˆã‚’ç ´æ£„
+	// æ–°ã—ãå…¥ã£ã¦ããŸäººãƒ‡ãƒ¼ã‚¿(player.new_player)ã‚‚ç ´æ£„ã—ãŸã„ã¨ã“ã‚ã ãŒã€
+	// lobby_newsã§è¡¨ç¤ºã™ã‚‹ã¨ãã«ãšã£ã¨ã¨ã£ã¦ãŠã„ãŸã»ã†ãŒ
+	// éƒ½åˆãŒã‚ˆã„ã®ã§ç ´æ£„ã—ãªã„
 	NEWS_ROOMPLAYER_SetEvent( &p_data->player, NEWS_ROOMEV_NONE );
 	
 }
 
 
 //-------------------------------------
-///	ƒf[ƒ^Ši”[ˆ—
+///	ãƒ‡ãƒ¼ã‚¿æ ¼ç´å‡¦ç†
 //=====================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	LOCKŠÔ‚Ìİ’è
+ *	@brief	LOCKæ™‚é–“ã®è¨­å®š
  *
- *	@param	p_data	ƒ[ƒN
- *	@param	cp_time	ŠÔƒf[ƒ^
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_time	æ™‚é–“ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void NEWS_DSET_SetLockTime( NEWS_DATA* p_data, const WFLBY_TIME* cp_time )
@@ -314,12 +314,12 @@ void NEWS_DSET_SetLockTime( NEWS_DATA* p_data, const WFLBY_TIME* cp_time )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®‚É“ü‚Á‚½ƒf[ƒ^İ’è
+ *	@brief	éƒ¨å±‹ã«å…¥ã£ãŸãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_data		ƒ[ƒN
- *	@param	player		“ü‚Á‚½ƒvƒŒƒCƒ„[NO
- *	@param	sex			“ü‚Á‚½ƒvƒŒƒCƒ„[‚Ì«•Ê
- *	@param	special_msk	“ü‚Á‚½ƒvƒŒƒCƒ„[‚Ì“Áêó‘Ôƒ}ƒXƒN
+ *	@param	p_data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		å…¥ã£ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
+ *	@param	sex			å…¥ã£ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ€§åˆ¥
+ *	@param	special_msk	å…¥ã£ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç‰¹æ®ŠçŠ¶æ…‹ãƒã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NEWS_DSET_SetRoomIn( NEWS_DATA* p_data, u32 player,  u32 sex, NEWS_ROOMSP special_msk )
@@ -329,13 +329,13 @@ void NEWS_DSET_SetRoomIn( NEWS_DATA* p_data, u32 player,  u32 sex, NEWS_ROOMSP s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®‚ğo‚½ƒf[ƒ^İ’è
+ *	@brief	éƒ¨å±‹ã‚’å‡ºãŸãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_data		ƒ[ƒN
- *	@param	player		o‚½ƒvƒŒƒCƒ„[NO
+ *	@param	p_data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		å‡ºãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
  *
- *	@retval	TRUE	ˆê”ÔŒÃ‚¢l‚¾‚Á‚½ê‡
- *	@retval	FALSE	ˆê”ÔŒÃ‚­‚È‚¢l‚¾‚Á‚½ê‡
+ *	@retval	TRUE	ä¸€ç•ªå¤ã„äººã ã£ãŸå ´åˆ
+ *	@retval	FALSE	ä¸€ç•ªå¤ããªã„äººã ã£ãŸå ´åˆ
  */
 //-----------------------------------------------------------------------------
 BOOL NEWS_DSET_SetRoomOut( NEWS_DATA* p_data, u32 player )
@@ -351,10 +351,10 @@ BOOL NEWS_DSET_SetRoomOut( NEWS_DATA* p_data, u32 player )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆê”ÔŒÃ‚¢lİ’è‚ğs‚¤
+ *	@brief	ä¸€ç•ªå¤ã„äººè¨­å®šã‚’è¡Œã†
  *
- *	@param	p_data		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	p_data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  */	
 //-----------------------------------------------------------------------------
 void NEWS_DSET_SetRoomOld( NEWS_DATA* p_data, u32 player )
@@ -362,7 +362,7 @@ void NEWS_DSET_SetRoomOld( NEWS_DATA* p_data, u32 player )
 	u32 special;
 	int i;
 
-	// ¡‚Ü‚Åˆê”ÔŒÃ‚¢ƒf[ƒ^‚¾‚Á‚½l‚ª‚¢‚½‚çƒtƒ‰ƒO‚ğ—‚Æ‚·
+	// ä»Šã¾ã§ä¸€ç•ªå¤ã„ãƒ‡ãƒ¼ã‚¿ã ã£ãŸäººãŒã„ãŸã‚‰ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 	for( i=0; i<WFLBY_PLAYER_MAX; i++ ){
 		special = NEWS_ROOMPLAYER_GetSpecial( &p_data->player, i );
 		if( special & NEWS_ROOMSP_OLD ){
@@ -377,10 +377,10 @@ void NEWS_DSET_SetRoomOld( NEWS_DATA* p_data, u32 player )
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN‚Ìİ’è
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ã®è¨­å®š
  *
- *	@param	p_data		ƒ[ƒN
- *	Šeİ’èƒf[ƒ^
+ *	@param	p_data		ãƒ¯ãƒ¼ã‚¯
+ *	å„è¨­å®šãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void NEWS_DSET_SetConnect( NEWS_DATA* p_data,  const NEWS_DATA_SET_CONNECT* cp_data )
@@ -405,7 +405,7 @@ void NEWS_DSET_SetItem( NEWS_DATA* p_data, const NEWS_DATA_SET_ITEM* cp_data )
 {
 	NEWS_TOPIC* p_obj;
 
-	// ƒAƒCƒeƒ€ƒ^ƒCƒv‚ª•s³‚È‚çİ’è‚µ‚È‚¢
+	// ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—ãŒä¸æ­£ãªã‚‰è¨­å®šã—ãªã„
 	if( cp_data->item >= WFLBY_ITEM_NUM  ){
 		return ;
 	}
@@ -435,27 +435,27 @@ void NEWS_DSET_SetMiniGame( NEWS_DATA* p_data, const NEWS_DATA_SET_MINIGAME* cp_
 		NEWS_TOPIC_PRI_MINIGAME_02,
 	};
 
-	// ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv‚ª•s³‚È‚çİ’è‚µ‚È‚¢
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—ãŒä¸æ­£ãªã‚‰è¨­å®šã—ãªã„
 	if( (cp_data->minigame != WFLBY_GAME_BALLSLOW) && 
 		(cp_data->minigame != WFLBY_GAME_BALANCEBALL) && 
 		(cp_data->minigame != WFLBY_GAME_BALLOON) ){
 		return ;
 	}
 
-	// Ú‘±l”‚ªPlay=TRUE‚È‚ç‚QˆÈã‚Å‚ ‚é•K—v‚ª‚ ‚é
-	// ‚SˆÈ‰º‚Å‚ ‚é•K—v‚à‚ ‚é
+	// æ¥ç¶šäººæ•°ãŒPlay=TRUEãªã‚‰ï¼’ä»¥ä¸Šã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
+	// ï¼”ä»¥ä¸‹ã§ã‚ã‚‹å¿…è¦ã‚‚ã‚ã‚‹
 	if( cp_data->play == TRUE ){
 		if( (cp_data->num < 2) || (cp_data->num > 4) ){
 			return ;
 		}
 	}else{
-		// Ú‘±‘O‚È‚ç1ˆÈã‚Å‚ ‚é•K—v‚ª‚ ‚é
+		// æ¥ç¶šå‰ãªã‚‰1ä»¥ä¸Šã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 		if( (cp_data->num < 1) || (cp_data->num > 4) ){
 			return ;
 		}
 	}
 
-	// ƒ~ƒjƒQ[ƒ€“à‚Å‚Ì”š‚É•ÏŠ·
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å†…ã§ã®æ•°å­—ã«å¤‰æ›
 	minigame = cp_data->minigame - WFLBY_GAME_BALLSLOW;
 	
 	p_obj = NEWS_TOPIC_GetCleanWork( &p_data->topic, sc_NEWS_DSET_MINIGAME_PRI[minigame] );
@@ -477,7 +477,7 @@ void NEWS_DSET_SetFootBoard( NEWS_DATA* p_data, const NEWS_DATA_SET_FOOTBOARD* c
 {
 	NEWS_TOPIC* p_obj;
 
-	// ‘«Õƒ{[ƒhƒ^ƒCƒv‚ª•s³‚È‚çİ’è‚µ‚È‚¢
+	// è¶³è·¡ãƒœãƒ¼ãƒ‰ã‚¿ã‚¤ãƒ—ãŒä¸æ­£ãªã‚‰è¨­å®šã—ãªã„
 	if( (cp_data->board != WFLBY_GAME_FOOTWHITE) && 
 		(cp_data->board != WFLBY_GAME_FOOTBLACK) ){
 		return ;
@@ -540,17 +540,17 @@ void NEWS_DSET_SetTimeEvent( NEWS_DATA* p_data, const NEWS_DATA_SET_TIMEEVENT* c
 {
 	NEWS_TOPIC* p_obj;
 
-	// ƒCƒxƒ“ƒg‚ª•s³‚È‚çİ’è‚µ‚È‚¢
+	// ã‚¤ãƒ™ãƒ³ãƒˆãŒä¸æ­£ãªã‚‰è¨­å®šã—ãªã„
 	switch( cp_data->event_no ){
 	
-	// •\¦‚·‚éƒCƒxƒ“ƒg
-	case WFLBY_EVENT_NEON:		// ƒlƒIƒ“
-	case WFLBY_EVENT_FIRE:		// ‰Ô‰Î
-	case WFLBY_EVENT_PARADE:		// ƒpƒŒ[ƒh
-	case WFLBY_EVENT_CLOSE:		// ƒNƒ[ƒY
+	// è¡¨ç¤ºã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆ
+	case WFLBY_EVENT_NEON:		// ãƒã‚ªãƒ³
+	case WFLBY_EVENT_FIRE:		// èŠ±ç«
+	case WFLBY_EVENT_PARADE:		// ãƒ‘ãƒ¬ãƒ¼ãƒ‰
+	case WFLBY_EVENT_CLOSE:		// ã‚¯ãƒ­ãƒ¼ã‚º
 		break;
 	
-	// •\¦‚µ‚È‚¢ƒCƒxƒ“ƒg
+	// è¡¨ç¤ºã—ãªã„ã‚¤ãƒ™ãƒ³ãƒˆ
 	default:
 		return;
 	}
@@ -570,7 +570,7 @@ void NEWS_DSET_SetTimeEvent( NEWS_DATA* p_data, const NEWS_DATA_SET_TIMEEVENT* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIP‚Ì“üê
+ *	@brief	VIPã®å…¥å ´
  */
 //-----------------------------------------------------------------------------
 void NEWS_DSET_SetVipIn( NEWS_DATA* p_data, const NEWS_DATA_SET_VIPIN* cp_data, const WFLBY_VIPFLAG* cp_vip )
@@ -578,14 +578,14 @@ void NEWS_DSET_SetVipIn( NEWS_DATA* p_data, const NEWS_DATA_SET_VIPIN* cp_data, 
 	NEWS_TOPIC* p_obj;
 	int i;
 
-	// ‚»‚Ìƒ†[ƒUIDX‚Í³‚µ‚¢‚©ƒ`ƒFƒbƒN
+	// ãã®ãƒ¦ãƒ¼ã‚¶IDXã¯æ­£ã—ã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( cp_data->vip_plidx >= WFLBY_PLAYER_MAX ){
 		return ;
 	}
 
-	// ‚»‚Ìl‚ªVIP‚È‚Ì‚©ƒ`ƒFƒbƒN‚·‚é
+	// ãã®äººãŒVIPãªã®ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	if( cp_vip->vip[ cp_data->vip_plidx ] == FALSE ){
-		return ;	// VIP‚¶‚á‚È‚¢‚Ì‚Å’Ç‰Á‚µ‚È‚¢
+		return ;	// VIPã˜ã‚ƒãªã„ã®ã§è¿½åŠ ã—ãªã„
 	}
 
 	p_obj = NEWS_TOPIC_GetCleanWork( &p_data->topic, NEWS_TOPIC_PRI_VIPIN );
@@ -603,7 +603,7 @@ void NEWS_DSET_SetVipIn( NEWS_DATA* p_data, const NEWS_DATA_SET_VIPIN* cp_data, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€Œ‹‰Ê
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµæœ
  */
 //-----------------------------------------------------------------------------
 void NEWS_DSET_SetMgResult( NEWS_DATA* p_data, const NEWS_DATA_SET_MGRESULT* cp_data )
@@ -617,19 +617,19 @@ void NEWS_DSET_SetMgResult( NEWS_DATA* p_data, const NEWS_DATA_SET_MGRESULT* cp_
 	};
 
 
-	// ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv‚ª•s³‚È‚çİ’è‚µ‚È‚¢
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—ãŒä¸æ­£ãªã‚‰è¨­å®šã—ãªã„
 	if( (cp_data->minigame != WFLBY_GAME_BALLSLOW) && 
 		(cp_data->minigame != WFLBY_GAME_BALANCEBALL) && 
 		(cp_data->minigame != WFLBY_GAME_BALLOON) ){
 		return ;
 	}
 
-	// —DŸl”ƒ`ƒFƒbƒN
+	// å„ªå‹äººæ•°ãƒã‚§ãƒƒã‚¯
 	if( NEWS_TOPIC_MGRESULT_CheckPlayerNum( cp_data->minigame, cp_data->num ) == FALSE ){
 		return ;
 	}
 
-	// ƒ~ƒjƒQ[ƒ€“à‚Å‚Ì”š‚É•ÏŠ·
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å†…ã§ã®æ•°å­—ã«å¤‰æ›
 	minigame = cp_data->minigame - WFLBY_GAME_BALLSLOW;
 	
 	p_obj = NEWS_TOPIC_GetCleanWork( &p_data->topic, sc_NEWS_DSET_MGRESULT_PRI[minigame] );
@@ -650,9 +650,9 @@ void NEWS_DSET_SetMgResult( NEWS_DATA* p_data, const NEWS_DATA_SET_MGRESULT* cp_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	æ“ªƒgƒsƒbƒN‚ğ”jŠü‚·‚é
+ *	@brief	å…ˆé ­ãƒˆãƒ”ãƒƒã‚¯ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NEWS_DSET_RemoveTopTopic( NEWS_DATA* p_data )
@@ -662,17 +662,17 @@ void NEWS_DSET_RemoveTopTopic( NEWS_DATA* p_data )
 
 
 //-------------------------------------
-///	ƒf[ƒ^æ“¾ˆ—
+///	ãƒ‡ãƒ¼ã‚¿å–å¾—å‡¦ç†
 //=====================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	LOCKŠÔ‚ğæ“¾‚·‚é
+ *	@brief	LOCKæ™‚é–“ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_data		ƒ[ƒN
- *	@param	p_time		ŠÔŠi”[æ
+ *	@param	cp_data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_time		æ™‚é–“æ ¼ç´å…ˆ
  *
- *	@retval	TRUE	LOCK‚³‚ê‚Ä‚¢‚é
- *	@retval	FALSE	LOCK‚³‚ê‚Ä‚¢‚È‚¢‚©‚çŠÔ‚ª–³‚¢
+ *	@retval	TRUE	LOCKã•ã‚Œã¦ã„ã‚‹
+ *	@retval	FALSE	LOCKã•ã‚Œã¦ã„ãªã„ã‹ã‚‰æ™‚é–“ãŒç„¡ã„
  */
 //-----------------------------------------------------------------------------
 BOOL NEWS_DSET_GetLockTime( const NEWS_DATA* cp_data, WFLBY_TIME* p_time )
@@ -683,13 +683,13 @@ BOOL NEWS_DSET_GetLockTime( const NEWS_DATA* cp_data, WFLBY_TIME* p_time )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚ª•”‰®‚Ì’†‚É“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒéƒ¨å±‹ã®ä¸­ã«å…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	player	ƒvƒŒƒCƒ„[NO
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	player	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
  *
- *	@retval	TRUE	“ü‚Á‚Ä‚¢‚é
- *	@retval	FALSE	“ü‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	å…¥ã£ã¦ã„ã‚‹
+ *	@retval	FALSE	å…¥ã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL NEWS_DSET_CheckPlayerInside( const NEWS_DATA* cp_wk, u32 player )
@@ -699,12 +699,12 @@ BOOL NEWS_DSET_CheckPlayerInside( const NEWS_DATA* cp_wk, u32 player )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚Ì«•Ê‚ğæ“¾
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ€§åˆ¥ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *
- *	@return	«•Ê
+ *	@return	æ€§åˆ¥
  */
 //-----------------------------------------------------------------------------
 u32 NEWS_DSET_GetPlayerSex( const NEWS_DATA* cp_wk, u32 player )
@@ -714,13 +714,13 @@ u32 NEWS_DSET_GetPlayerSex( const NEWS_DATA* cp_wk, u32 player )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚ª©•ª‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè‡ªåˆ†ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *
- *	@retval	TRUE	©•ª
- *	@retval	FALSE	‚¿‚ª‚¤
+ *	@retval	TRUE	è‡ªåˆ†
+ *	@retval	FALSE	ã¡ãŒã†
  */
 //-----------------------------------------------------------------------------
 BOOL NEWS_DSET_GetPlayerSpecialMy( const NEWS_DATA* cp_wk, u32 player )
@@ -730,13 +730,13 @@ BOOL NEWS_DSET_GetPlayerSpecialMy( const NEWS_DATA* cp_wk, u32 player )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚ªˆê”ÔÌ‚©‚ç‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒä¸€ç•ªæ˜”ã‹ã‚‰ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *
- *	@retval	TRUE	‚Ó‚é‚¢
- *	@retval	FALSE	‚Ó‚é‚­‚È‚¢
+ *	@retval	TRUE	ãµã‚‹ã„
+ *	@retval	FALSE	ãµã‚‹ããªã„
  */
 //-----------------------------------------------------------------------------
 BOOL NEWS_DSET_GetPlayerSpecialOld( const NEWS_DATA* cp_wk, u32 player )
@@ -746,13 +746,13 @@ BOOL NEWS_DSET_GetPlayerSpecialOld( const NEWS_DATA* cp_wk, u32 player )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚Ìl‚ªV‚µ‚­“ü‚Á‚Ä‚«‚½l‚©ƒ`ƒFƒbƒN
+ *	@brief	ãã®äººãŒæ–°ã—ãå…¥ã£ã¦ããŸäººã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *
- *	@retval	TRUE	V‚µ‚­“ü‚Á‚Ä‚«‚½l
- *	@retval	FALSE	ˆá‚¤l
+ *	@retval	TRUE	æ–°ã—ãå…¥ã£ã¦ããŸäºº
+ *	@retval	FALSE	é•ã†äºº
  */
 //-----------------------------------------------------------------------------
 BOOL NEWS_DSET_GetPlayerNewPlayer( const NEWS_DATA* cp_wk, u32 player )
@@ -762,13 +762,13 @@ BOOL NEWS_DSET_GetPlayerNewPlayer( const NEWS_DATA* cp_wk, u32 player )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒCƒxƒ“ƒgæ“¾
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆå–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
  *	@retval	NEWS_ROOMEV_NONE,
- *	@retval	NEWS_ROOMEV_IN,		// ’N‚©“ü‚Á‚Ä‚«‚½
- *	@retval	NEWS_ROOMEV_OUT,	// ’N‚©o‚Äs‚Á‚½
+ *	@retval	NEWS_ROOMEV_IN,		// èª°ã‹å…¥ã£ã¦ããŸ
+ *	@retval	NEWS_ROOMEV_OUT,	// èª°ã‹å‡ºã¦è¡Œã£ãŸ
  */
 //-----------------------------------------------------------------------------
 NEWS_ROOMEV NEWS_DSET_GetPlayerEvent( const NEWS_DATA* cp_wk )
@@ -778,12 +778,12 @@ NEWS_ROOMEV NEWS_DSET_GetPlayerEvent( const NEWS_DATA* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒgƒsƒbƒN‚ª‚ ‚é
- *	@retval	FALSE	ƒgƒsƒbƒN‚ª‚È‚¢
+ *	@retval	TRUE	ãƒˆãƒ”ãƒƒã‚¯ãŒã‚ã‚‹
+ *	@retval	FALSE	ãƒˆãƒ”ãƒƒã‚¯ãŒãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL NEWS_DSET_CheckToppic( const NEWS_DATA* cp_wk )
@@ -796,22 +796,22 @@ BOOL NEWS_DSET_CheckToppic( const NEWS_DATA* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	æ“ª‚ÌƒgƒsƒbƒNƒXƒ^ƒCƒv‚Ìæ“¾
+ *	@brief	å…ˆé ­ã®ãƒˆãƒ”ãƒƒã‚¯ã‚¹ã‚¿ã‚¤ãƒ—ã®å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN 
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯ 
  *
- *	@retval	NEWS_TOPICTYPE_CONNECT,			// ˆ¥A
- *	@retval	NEWS_TOPICTYPE_ITEM,			// ƒKƒWƒFƒbƒg‚ÌŒğŠ·
- *	@retval	NEWS_TOPICTYPE_MINIGAME,		// ƒ~ƒjƒQ[ƒ€
- *	@retval	NEWS_TOPICTYPE_FOOTBOARD,		// ‚ ‚µ‚ ‚Æƒ{[ƒh
- *	@retval	NEWS_TOPICTYPE_WORLDTIMER,		// ¢ŠEŒv
- *	@retval	NEWS_TOPICTYPE_LOBBYNEWS,		// ƒƒr[ƒjƒ…[ƒX
- *	@retval	NEWS_TOPICTYPE_TIMEEVENT,		// ŠÔƒCƒxƒ“ƒg
+ *	@retval	NEWS_TOPICTYPE_CONNECT,			// æŒ¨æ‹¶
+ *	@retval	NEWS_TOPICTYPE_ITEM,			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã®äº¤æ›
+ *	@retval	NEWS_TOPICTYPE_MINIGAME,		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
+ *	@retval	NEWS_TOPICTYPE_FOOTBOARD,		// ã‚ã—ã‚ã¨ãƒœãƒ¼ãƒ‰
+ *	@retval	NEWS_TOPICTYPE_WORLDTIMER,		// ä¸–ç•Œæ™‚è¨ˆ
+ *	@retval	NEWS_TOPICTYPE_LOBBYNEWS,		// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
+ *	@retval	NEWS_TOPICTYPE_TIMEEVENT,		// æ™‚é–“ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 NEWS_TOPICTYPE NEWS_DSET_GetTopicType( const NEWS_DATA* cp_wk )
 {
-	// ƒf[ƒ^‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( NEWS_DSET_CheckToppic( cp_wk ) );
 	
 	return cp_wk->topic.topic_top.p_next->type;
@@ -819,16 +819,16 @@ NEWS_TOPICTYPE NEWS_DSET_GetTopicType( const NEWS_DATA* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	æ“ªƒf[ƒ^‚ÌƒgƒsƒbƒN‚ğ•¶š—ñ‚É•ÏŠ·‚µ‚Ä•Ô‚·
+ *	@brief	å…ˆé ­ãƒ‡ãƒ¼ã‚¿ã®ãƒˆãƒ”ãƒƒã‚¯ã‚’æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¦è¿”ã™
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	cp_vip		VIPƒtƒ‰ƒO
- *	@param	type		ƒgƒsƒbƒNƒ^ƒCƒv
- *	@param	p_str		•¶š—ñŠi”[æ
- *	@param	heapID		ƒq[ƒvID
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_vip		VIPãƒ•ãƒ©ã‚°
+ *	@param	type		ãƒˆãƒ”ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
+ *	@param	p_str		æ–‡å­—åˆ—æ ¼ç´å…ˆ
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	•¶š—ñ‚ğì‚ê‚½
- *	@retval	FALSE	•¶š—ñ‚ğ‚Â‚­‚ê‚È‚©‚Á‚½
+ *	@retval	TRUE	æ–‡å­—åˆ—ã‚’ä½œã‚ŒãŸ
+ *	@retval	FALSE	æ–‡å­—åˆ—ã‚’ã¤ãã‚Œãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 BOOL NEWS_DSET_GetTopicData( const NEWS_DATA* cp_wk, const WFLBY_VIPFLAG* cp_vip, NEWS_TOPICTYPE type, STRBUF* p_str, u32 heapID )
@@ -849,16 +849,16 @@ BOOL NEWS_DSET_GetTopicData( const NEWS_DATA* cp_wk, const WFLBY_VIPFLAG* cp_vip
 		NEWS_TOPIC_GetSTRMgResultIn,
 	};
 
-	GF_ASSERT( NEWS_DSET_CheckToppic( cp_wk ) );	// ƒgƒsƒbƒN‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	GF_ASSERT( NEWS_DSET_CheckToppic( cp_wk ) );	// ãƒˆãƒ”ãƒƒã‚¯ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	
-	//  æ“ªƒgƒsƒbƒNæ“¾
+	//  å…ˆé ­ãƒˆãƒ”ãƒƒã‚¯å–å¾—
 	p_obj = cp_wk->topic.topic_top.p_next;
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^‰Šú‰»
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	p_msgman	= MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_wflby_news_dat,heapID );
 	p_wordset	= WORDSET_Create( heapID );
 
-	// •¶š—ñì¬
+	// æ–‡å­—åˆ—ä½œæˆ
 	if( p_obj->type < NEWS_TOPICTYPE_NUM ){
 		result = p_func[ p_obj->type ]( p_obj, cp_vip, p_wordset, p_msgman, p_str, heapID );
 	}else{
@@ -873,14 +873,14 @@ BOOL NEWS_DSET_GetTopicData( const NEWS_DATA* cp_wk, const WFLBY_VIPFLAG* cp_vip
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	æ“ªƒf[ƒ^‚ÌƒgƒsƒbƒN‚ğ•¶š—ñ‚É•ÏŠ·‚µ‚Ä•Ô‚·
+ *	@brief	å…ˆé ­ãƒ‡ãƒ¼ã‚¿ã®ãƒˆãƒ”ãƒƒã‚¯ã‚’æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¦è¿”ã™
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	type		ƒgƒsƒbƒNƒ^ƒCƒv
- *	@param	count		ƒgƒsƒbƒNƒf[ƒ^“à‚ÌƒgƒŒ[ƒi‚ÌƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		ãƒˆãƒ”ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
+ *	@param	count		ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å†…ã®ãƒˆãƒ¬ãƒ¼ãƒŠã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	WFLBY_PLAYER_MAX	‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚É‚¢‚él‚Í‚¢‚È‚¢‚æ
- *	@retval	‚»‚Ì‚½				‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚ÌƒvƒŒƒCƒ„[‚Ìƒ[ƒr[“àƒCƒ“ƒfƒbƒNƒX
+ *	@retval	WFLBY_PLAYER_MAX	ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã„ã‚‹äººã¯ã„ãªã„ã‚ˆ
+ *	@retval	ãã®ãŸ				ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ­ãƒ¼ãƒ“ãƒ¼å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 u32 NEWS_DSET_GetTopicUserIdx( const NEWS_DATA* cp_wk, NEWS_TOPICTYPE type, u32 count )
@@ -899,16 +899,16 @@ u32 NEWS_DSET_GetTopicUserIdx( const NEWS_DATA* cp_wk, NEWS_TOPICTYPE type, u32 
 		NEWS_TOPIC_GetUserIdxMgResult,
 	};
 
-	GF_ASSERT( NEWS_DSET_CheckToppic( cp_wk ) );	// ƒgƒsƒbƒN‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	GF_ASSERT( NEWS_DSET_CheckToppic( cp_wk ) );	// ãƒˆãƒ”ãƒƒã‚¯ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	
-	//  æ“ªƒgƒsƒbƒNæ“¾
+	//  å…ˆé ­ãƒˆãƒ”ãƒƒã‚¯å–å¾—
 	p_obj = cp_wk->topic.topic_top.p_next;
 
-	// •¶š—ñì¬
+	// æ–‡å­—åˆ—ä½œæˆ
 	if( p_obj->type < NEWS_TOPICTYPE_NUM ){
 		ret = p_func[ p_obj->type ]( p_obj, count );
 	}else{
-		GF_ASSERT( 0 );	// ƒgƒsƒbƒNƒ^ƒCƒvƒGƒ‰[
+		GF_ASSERT( 0 );	// ãƒˆãƒ”ãƒƒã‚¯ã‚¿ã‚¤ãƒ—ã‚¨ãƒ©ãƒ¼
 		ret = WFLBY_PLAYER_MAX;
 	}
 
@@ -922,17 +922,17 @@ u32 NEWS_DSET_GetTopicUserIdx( const NEWS_DATA* cp_wk, NEWS_TOPICTYPE type, u32 
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	Ú‘±ƒvƒŒƒCƒ„[	ŠÖ˜A
+///	æ¥ç¶šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼	é–¢é€£
 //=====================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Šú‰»ˆ—
+ *	@brief	åˆæœŸåŒ–å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWS_ROOMPLAYER_Init( NEWS_ROOMPLAYER* p_wk )
@@ -946,12 +946,12 @@ static void NEWS_ROOMPLAYER_Init( NEWS_ROOMPLAYER* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒf[ƒ^İ’è
+ *	@brief	ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	player		İ’èƒvƒŒƒCƒ„[NO
- *	@param	sex			«•Ê
- *	@param	special		“Áêó‘Ô
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		è¨­å®šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
+ *	@param	sex			æ€§åˆ¥
+ *	@param	special		ç‰¹æ®ŠçŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 static void NEWS_ROOMPLAYER_SetData( NEWS_ROOMPLAYER* p_wk, u32 player, u32 sex, NEWS_ROOMSP special )
@@ -963,12 +963,12 @@ static void NEWS_ROOMPLAYER_SetData( NEWS_ROOMPLAYER* p_wk, u32 player, u32 sex,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“üºİ’è
+ *	@brief	å…¥å®¤è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[NO
- *	@param	sex			«•Ê
- *	@param	special		“Áêó‘Ô
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
+ *	@param	sex			æ€§åˆ¥
+ *	@param	special		ç‰¹æ®ŠçŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 static void NEWS_ROOMPLAYER_SetIn( NEWS_ROOMPLAYER* p_wk, u32 player, u32 sex, NEWS_ROOMSP special )
@@ -980,10 +980,10 @@ static void NEWS_ROOMPLAYER_SetIn( NEWS_ROOMPLAYER* p_wk, u32 player, u32 sex, N
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘Şºİ’è
+ *	@brief	é€€å®¤è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	player	ƒvƒŒƒCƒ„[NO
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	player	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
  */
 //-----------------------------------------------------------------------------
 static void NEWS_ROOMPLAYER_SetOut( NEWS_ROOMPLAYER* p_wk, u32 player )
@@ -994,11 +994,11 @@ static void NEWS_ROOMPLAYER_SetOut( NEWS_ROOMPLAYER* p_wk, u32 player )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒyƒVƒƒƒ‹ƒf[ƒ^‚¾‚¯İ’è
+ *	@brief	ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ‡ãƒ¼ã‚¿ã ã‘è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
- *	@param	special		ƒXƒyƒVƒƒƒ‹ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+ *	@param	special		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void NEWS_ROOMPLAYER_SetSpecial( NEWS_ROOMPLAYER* p_wk, u32 player, NEWS_ROOMSP special )
@@ -1009,10 +1009,10 @@ static void NEWS_ROOMPLAYER_SetSpecial( NEWS_ROOMPLAYER* p_wk, u32 player, NEWS_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒf[ƒ^‚ğİ’è‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	event		ƒCƒxƒ“ƒg
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void NEWS_ROOMPLAYER_SetEvent( NEWS_ROOMPLAYER* p_wk, NEWS_ROOMEV event )
@@ -1023,10 +1023,10 @@ static void NEWS_ROOMPLAYER_SetEvent( NEWS_ROOMPLAYER* p_wk, NEWS_ROOMEV event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	V‚µ‚­“ü‚Á‚Ä‚«‚½l‚ğ•Û‘¶‚·‚é
+ *	@brief	æ–°ã—ãå…¥ã£ã¦ããŸäººã‚’ä¿å­˜ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void NEWS_ROOMPLAYER_SetNewPlayer( NEWS_ROOMPLAYER* p_wk, u32 player )
@@ -1037,13 +1037,13 @@ static void NEWS_ROOMPLAYER_SetNewPlayer( NEWS_ROOMPLAYER* p_wk, u32 player )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚ª•”‰®‚É“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒéƒ¨å±‹ã«å…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *
- *	@retval	TRUE	“ü‚Á‚Ä‚¢‚é
- *	@retval	FALSE	“ü‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	å…¥ã£ã¦ã„ã‚‹
+ *	@retval	FALSE	å…¥ã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_ROOMPLAYER_CheckInside( const NEWS_ROOMPLAYER* cp_wk, u32 player )
@@ -1059,12 +1059,12 @@ static BOOL NEWS_ROOMPLAYER_CheckInside( const NEWS_ROOMPLAYER* cp_wk, u32 playe
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚Ì«•Ê‚ğæ“¾
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ€§åˆ¥ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *
- *	@return	«•Ê
+ *	@return	æ€§åˆ¥
  */
 //-----------------------------------------------------------------------------
 static u32 NEWS_ROOMPLAYER_GetSex( const NEWS_ROOMPLAYER* cp_wk, u32 player )
@@ -1075,13 +1075,13 @@ static u32 NEWS_ROOMPLAYER_GetSex( const NEWS_ROOMPLAYER* cp_wk, u32 player )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚ª©•ª‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè‡ªåˆ†ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *
- *	@retval	TRUE	©•ª‚Ìƒf[ƒ^
- *	@retval	FALSE	‘¼l‚Ìƒf[ƒ^
+ *	@retval	TRUE	è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿
+ *	@retval	FALSE	ä»–äººã®ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_ROOMPLAYER_GetSpecialMy( const NEWS_ROOMPLAYER* cp_wk, u32 player )
@@ -1095,13 +1095,13 @@ static BOOL NEWS_ROOMPLAYER_GetSpecialMy( const NEWS_ROOMPLAYER* cp_wk, u32 play
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚ª‚à‚Á‚Æ‚àŒÃ‚¢l‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã‚‚ã£ã¨ã‚‚å¤ã„äººã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *
- *	@retval	TRUE		‚à‚Á‚Æ‚àŒÃ‚¢l
- *	@retval	FALSE		‚à‚Á‚Æ‚àŒÃ‚­‚È‚¢
+ *	@retval	TRUE		ã‚‚ã£ã¨ã‚‚å¤ã„äºº
+ *	@retval	FALSE		ã‚‚ã£ã¨ã‚‚å¤ããªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_ROOMPLAYER_GetSpecialOld( const NEWS_ROOMPLAYER* cp_wk, u32 player )
@@ -1115,12 +1115,12 @@ static BOOL NEWS_ROOMPLAYER_GetSpecialOld( const NEWS_ROOMPLAYER* cp_wk, u32 pla
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚Ì“Áêó‘Ôƒ}ƒXƒN‚ğæ“¾‚·‚é
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç‰¹æ®ŠçŠ¶æ…‹ãƒã‚¹ã‚¯ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *
- *	@return	ƒ}ƒXƒN
+ *	@return	ãƒã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 static NEWS_ROOMSP NEWS_ROOMPLAYER_GetSpecial( const NEWS_ROOMPLAYER* cp_wk, u32 player )
@@ -1131,12 +1131,12 @@ static NEWS_ROOMSP NEWS_ROOMPLAYER_GetSpecial( const NEWS_ROOMPLAYER* cp_wk, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒg‚Ìæ“¾
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆã®å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	NEWS_ROOMEV_IN,		// ’N‚©“ü‚Á‚Ä‚«‚½
- *	@retval NEWS_ROOMEV_OUT,	// ’N‚©o‚Äs‚Á‚½
+ *	@retval	NEWS_ROOMEV_IN,		// èª°ã‹å…¥ã£ã¦ããŸ
+ *	@retval NEWS_ROOMEV_OUT,	// èª°ã‹å‡ºã¦è¡Œã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static NEWS_ROOMEV NEWS_ROOMPLAYER_GetEvent( const NEWS_ROOMPLAYER* cp_wk )
@@ -1146,13 +1146,13 @@ static NEWS_ROOMEV NEWS_ROOMPLAYER_GetEvent( const NEWS_ROOMPLAYER* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚Ìl‚ªV‚µ‚­“ü‚Á‚Ä‚«‚½l‚©ƒ`ƒFƒbƒN
+ *	@brief	ãã®äººãŒæ–°ã—ãå…¥ã£ã¦ããŸäººã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	player		ƒvƒŒƒCƒ„[
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	player		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
  *
- *	@retval	TRUE	V‚µ‚­“ü‚Á‚Ä‚«‚½l
- *	@retval	FALSE	ˆá‚¤l
+ *	@retval	TRUE	æ–°ã—ãå…¥ã£ã¦ããŸäºº
+ *	@retval	FALSE	é•ã†äºº
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_ROOMPLAYER_GetNewPlayer( const NEWS_ROOMPLAYER* cp_wk, u32 player )
@@ -1169,14 +1169,14 @@ static BOOL NEWS_ROOMPLAYER_GetNewPlayer( const NEWS_ROOMPLAYER* cp_wk, u32 play
 
 
 //-------------------------------------
-///	ƒgƒsƒbƒNƒX	ŠÖ˜A
+///	ãƒˆãƒ”ãƒƒã‚¯ã‚¹	é–¢é€£
 //=====================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒXƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void NEWS_TOPIC_Init( NEWS_TOPICBUF* p_wk, u32 heapID )
@@ -1185,30 +1185,30 @@ static void NEWS_TOPIC_Init( NEWS_TOPICBUF* p_wk, u32 heapID )
 
 	memset( p_wk, 0, sizeof(NEWS_TOPICBUF) );
 
-	// ƒgƒsƒbƒNƒXŠi”[ƒoƒbƒtƒ@‰Šú‰»
+	// ãƒˆãƒ”ãƒƒã‚¯ã‚¹æ ¼ç´ãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 	for( i=0; i<NEWS_TOPIC_MAX; i++ ){
 		for( j=0; j<NEWS_TOPICNAME_NUM; j++ ){
 			p_wk->topic_buf[ i ].p_name[j] = STRBUF_Create( NEWS_TOPICNAME_LEN, heapID );
 		}
 	}
 
-	// ƒgƒsƒbƒNƒŠƒXƒgæ“ªƒ_ƒ~[ƒf[ƒ^
+	// ãƒˆãƒ”ãƒƒã‚¯ãƒªã‚¹ãƒˆå…ˆé ­ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 	p_wk->topic_top.p_next = &p_wk->topic_top;
 	p_wk->topic_top.p_last = &p_wk->topic_top;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒXƒVƒXƒeƒ€	”jŠüˆ—
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWS_TOPIC_Exit( NEWS_TOPICBUF* p_wk )
 {
 	int i, j;
 
-	// ƒgƒsƒbƒNƒXŠi”[ƒoƒbƒtƒ@”jŠü
+	// ãƒˆãƒ”ãƒƒã‚¯ã‚¹æ ¼ç´ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	for( i=0; i<NEWS_TOPIC_MAX; i++ ){
 		for( j=0; j<NEWS_TOPICNAME_NUM; j++ ){
 			STRBUF_Delete( p_wk->topic_buf[ i ].p_name[j] );
@@ -1220,9 +1220,9 @@ static void NEWS_TOPIC_Exit( NEWS_TOPICBUF* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN	ƒgƒsƒbƒNŠÇ—ˆ—
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯	ãƒˆãƒ”ãƒƒã‚¯ç®¡ç†å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWS_TOPIC_Main( NEWS_TOPICBUF* p_wk )
@@ -1230,20 +1230,20 @@ static void NEWS_TOPIC_Main( NEWS_TOPICBUF* p_wk )
 	NEWS_TOPIC* p_next;
 	NEWS_TOPIC* p_now;
 
-	// ”jŠüƒJƒEƒ“ƒ^ƒ`ƒFƒbƒN
-	// —Dæ‡ˆÊŠÇ—
+	// ç ´æ£„ã‚«ã‚¦ãƒ³ã‚¿ãƒã‚§ãƒƒã‚¯
+	// å„ªå…ˆé †ä½ç®¡ç†
 	p_now = p_wk->topic_top.p_next;
 	while( p_now != &p_wk->topic_top ){
 		p_next = p_now->p_next;
 
-		// —Dæ‡ˆÊİ’è‚ğ‚È‚­‚·
+		// å„ªå…ˆé †ä½è¨­å®šã‚’ãªãã™
 		p_now->pri = NEWS_TOPIC_PRI_NONE;
 
-		// ”jŠüƒJƒEƒ“ƒg
+		// ç ´æ£„ã‚«ã‚¦ãƒ³ãƒˆ
 		if( (p_now->dest - 1) > 0 ){
 			p_now->dest --;
 		}else{
-			// ‚±‚¢‚Â‚Í”jŠü
+			// ã“ã„ã¤ã¯ç ´æ£„
 			NEWS_TOPIC_Remove( p_wk, p_now );
 		}
 
@@ -1253,9 +1253,9 @@ static void NEWS_TOPIC_Main( NEWS_TOPICBUF* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	æ“ªƒf[ƒ^‚ğ”jŠü‚·‚é
+ *	@brief	å…ˆé ­ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWS_TOPIC_RemoveTop( NEWS_TOPICBUF* p_wk )
@@ -1265,12 +1265,12 @@ static void NEWS_TOPIC_RemoveTop( NEWS_TOPICBUF* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ó‚¢‚Ä‚¢‚éƒ[ƒN‚ğæ“¾‚·‚é
+ *	@brief	ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_wk	ƒgƒsƒbƒNƒVƒXƒeƒ€ƒ[ƒN
- *	@param	pri		—Dæ‡ˆÊ
+ *	@param	p_wk	ãƒˆãƒ”ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	pri		å„ªå…ˆé †ä½
  *
- *	@return	‹ó‚¢‚Ä‚éƒ[ƒN
+ *	@return	ç©ºã„ã¦ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static NEWS_TOPIC* NEWS_TOPIC_GetCleanWork( NEWS_TOPICBUF* p_wk, u16 pri )
@@ -1287,10 +1287,10 @@ static NEWS_TOPIC* NEWS_TOPIC_GetCleanWork( NEWS_TOPICBUF* p_wk, u16 pri )
 	}
 
 	if( p_ret == NULL ){
-		// —Dæ‡ˆÊ‚ª©•ªˆÈã‚ÈƒgƒsƒbƒN‚ğÁ‚µ‚ÄA‹ó‚¢‚Ä‚¢‚éƒ[ƒN‚É‚·‚é
+		// å„ªå…ˆé †ä½ãŒè‡ªåˆ†ä»¥ä¸Šãªãƒˆãƒ”ãƒƒã‚¯ã‚’æ¶ˆã—ã¦ã€ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã«ã™ã‚‹
 		for( i=0; i<NEWS_TOPIC_MAX; i++ ){
 			if( p_wk->topic_buf[i].pri >= pri ){
-				// ƒŠƒ“ƒN‚ğ”jŠü
+				// ãƒªãƒ³ã‚¯ã‚’ç ´æ£„
 				NEWS_TOPIC_Remove( p_wk, &p_wk->topic_buf[i] );
 				p_ret = &p_wk->topic_buf[i];
 				break;
@@ -1302,10 +1302,10 @@ static NEWS_TOPIC* NEWS_TOPIC_GetCleanWork( NEWS_TOPICBUF* p_wk, u16 pri )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒXƒg˜AŒ‹‚ğ‚¨‚±‚È‚·
+ *	@brief	ãƒªã‚¹ãƒˆé€£çµã‚’ãŠã“ãªã™
  *
- *	@param	p_last		‘O‚Ìƒf[ƒ^
- *	@param	p_obj		©•ª
+ *	@param	p_last		å‰ã®ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_obj		è‡ªåˆ†
  */
 //-----------------------------------------------------------------------------
 static void NEWS_TOPIC_AddList( NEWS_TOPIC* p_last, NEWS_TOPIC* p_obj )
@@ -1318,25 +1318,25 @@ static void NEWS_TOPIC_AddList( NEWS_TOPIC* p_last, NEWS_TOPIC* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒX‚ğƒŠƒXƒg‚É’Ç‰Á‚·‚é
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ã‚¹ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_obj		’Ç‰Á‚·‚éƒgƒsƒbƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj		è¿½åŠ ã™ã‚‹ãƒˆãƒ”ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWS_TOPIC_Add( NEWS_TOPICBUF* p_wk, NEWS_TOPIC* p_obj )
 {
-	// —Dæ‡ˆÊ‚Ì¬‚³‚¢‡”Ô‚É¸‡‚Å’Ç‰Á‚µ‚Ä‚¢‚­
-	// ‚¯‚Â‚©‚çƒT[ƒ`‚µ‚Ä‚¢‚­
+	// å„ªå…ˆé †ä½ã®å°ã•ã„é †ç•ªã«æ˜‡é †ã§è¿½åŠ ã—ã¦ã„ã
+	// ã‘ã¤ã‹ã‚‰ã‚µãƒ¼ãƒã—ã¦ã„ã
 
-	// ‰º‚©‚ç—Dæ‡ˆÊ‚É]‚Á‚Ä’Ç‰Á‚·‚é
+	// ä¸‹ã‹ã‚‰å„ªå…ˆé †ä½ã«å¾“ã£ã¦è¿½åŠ ã™ã‚‹
 	{
 		NEWS_TOPIC* p_last;
 
 		p_last = p_wk->topic_top.p_last;
 		while( p_last != &p_wk->topic_top ){
 
-			// —Dæ‡ˆÊ‚ª‘å‚«‚­‚È‚Á‚½‚ç”²‚¯‚é
+			// å„ªå…ˆé †ä½ãŒå¤§ãããªã£ãŸã‚‰æŠœã‘ã‚‹
 			if( p_last->pri < p_obj->pri ){
 				break;
 			}
@@ -1350,10 +1350,10 @@ static void NEWS_TOPIC_Add( NEWS_TOPICBUF* p_wk, NEWS_TOPIC* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒX‚ğ”jŠü‚·‚é
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ã‚¹ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_obj		”jŠü‚·‚éƒgƒsƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj		ç ´æ£„ã™ã‚‹ãƒˆãƒ”ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void NEWS_TOPIC_Remove( NEWS_TOPICBUF* p_wk, NEWS_TOPIC* p_obj )
@@ -1361,30 +1361,30 @@ static void NEWS_TOPIC_Remove( NEWS_TOPICBUF* p_wk, NEWS_TOPIC* p_obj )
 	p_obj->p_last->p_next = p_obj->p_next;
 	p_obj->p_next->p_last = p_obj->p_last;
 
-	//  ƒf[ƒ^‚Ì”jŠü
+	//  ãƒ‡ãƒ¼ã‚¿ã®ç ´æ£„
 	p_obj->p_last = NULL;
     p_obj->p_next = NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒf[ƒ^‚Ìİ’è
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
  *
- *	@param	p_obj		ƒ[ƒN
- *	@param	data0		ƒ[ƒNƒf[ƒ^‚P
- *	@param	data1		ƒ[ƒNƒf[ƒ^‚Q
- *	@param	data2		ƒ[ƒNƒf[ƒ^‚R
- *	@param	cp_p1		ƒvƒŒƒCƒ„[–¼‚P
- *	@param	cp_p2		ƒvƒŒƒCƒ„[–¼‚Q
- *	@param	cp_p3		ƒvƒŒƒCƒ„[–¼‚R
- *	@param	cp_p4		ƒvƒŒƒCƒ„[–¼‚S
- *	@param	idx_p1		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX‚P
- *	@param	idx_p2		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX‚Q
- *	@param	idx_p3		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX‚R
- *	@param	idx_p4		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX‚S
- *	@param	dest		”jŠüƒJƒEƒ“ƒg’l
- *	@param	pri			—Dæ‡ˆÊ
- *	@param	type		ƒ^ƒCƒv
+ *	@param	p_obj		ãƒ¯ãƒ¼ã‚¯
+ *	@param	data0		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ï¼‘
+ *	@param	data1		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ï¼’
+ *	@param	data2		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ï¼“
+ *	@param	cp_p1		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åï¼‘
+ *	@param	cp_p2		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åï¼’
+ *	@param	cp_p3		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åï¼“
+ *	@param	cp_p4		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åï¼”
+ *	@param	idx_p1		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼‘
+ *	@param	idx_p2		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼’
+ *	@param	idx_p3		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼“
+ *	@param	idx_p4		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼”
+ *	@param	dest		ç ´æ£„ã‚«ã‚¦ãƒ³ãƒˆå€¤
+ *	@param	pri			å„ªå…ˆé †ä½
+ *	@param	type		ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void NEWS_TOPIC_SetData( NEWS_TOPIC* p_obj, u32 data0, u32 data1, u32 data2, const MYSTATUS* cp_p1, const MYSTATUS* cp_p2, const MYSTATUS* cp_p3, const MYSTATUS* cp_p4, u16 idx_p1, u16 idx_p2, u16 idx_p3, u16 idx_p4, u32 dest, u32 pri, u32 type )
@@ -1416,11 +1416,11 @@ static void NEWS_TOPIC_SetData( NEWS_TOPIC* p_obj, u32 data0, u32 data1, u32 dat
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–¼‘O‚ğŠi”[‚·‚é
+ *	@brief	åå‰ã‚’æ ¼ç´ã™ã‚‹
  *
- *	@param	p_obj		ƒ[ƒN
- *	@param	no			Ši”[‚·‚éƒoƒbƒtƒ@ƒiƒ“ƒo[
- *	@param	cp_player	ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX
+ *	@param	p_obj		ãƒ¯ãƒ¼ã‚¯
+ *	@param	no			æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ãƒŠãƒ³ãƒãƒ¼
+ *	@param	cp_player	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void NEWS_TOPIC_SetName( NEWS_TOPIC* p_obj, u32 no, const MYSTATUS* cp_player )
@@ -1431,30 +1431,30 @@ static void NEWS_TOPIC_SetName( NEWS_TOPIC* p_obj, u32 no, const MYSTATUS* cp_pl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ú‘±
+ *	@brief	æ¥ç¶š
  *
- *	@param	p_obj			ƒgƒsƒbƒNƒIƒuƒWƒF
- *	@param	cp_vip			VIPƒtƒ‰ƒO
- *	@param	p_wordset		ƒ[ƒhƒZƒbƒg
- *	@param	p_msgman		ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- *	@param	p_str			•¶š—ñŠi”[æ
- *	@param	heapID			ƒq[ƒv‚h‚c
+ *	@param	p_obj			ãƒˆãƒ”ãƒƒã‚¯ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	cp_vip			VIPãƒ•ãƒ©ã‚°
+ *	@param	p_wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ *	@param	p_msgman		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	p_str			æ–‡å­—åˆ—æ ¼ç´å…ˆ
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_TOPIC_GetSTRConnect( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vip, WORDSET* p_wordset, MSGDATA_MANAGER* p_msgman, STRBUF* p_str, u32 heapID )
 {
 	STRBUF*				p_tmpstr;
 
-	WORDSET_RegisterWord( p_wordset, 0,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// –¼‘O
-	WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[1], 0, TRUE, CasetteLanguage );	// –¼‘O
+	WORDSET_RegisterWord( p_wordset, 0,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// åå‰
+	WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[1], 0, TRUE, CasetteLanguage );	// åå‰
 
-	// “WŠJ‚·‚é•¶š—ñì¬
+	// å±•é–‹ã™ã‚‹æ–‡å­—åˆ—ä½œæˆ
 	p_tmpstr = MSGMAN_AllocString( p_msgman, wflby_topic_03 );
 
-	// “WŠJ
+	// å±•é–‹
 	WORDSET_ExpandStr( p_wordset, p_str, p_tmpstr );
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	STRBUF_Delete( p_tmpstr );
 
 	return TRUE;
@@ -1462,24 +1462,24 @@ static BOOL NEWS_TOPIC_GetSTRConnect( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€ŒğŠ·
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ äº¤æ›
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_TOPIC_GetSTRItem( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vip, WORDSET* p_wordset, MSGDATA_MANAGER* p_msgman, STRBUF* p_str, u32 heapID )
 {
 	STRBUF*				p_tmpstr;
 
-	WORDSET_RegisterWord( p_wordset, 0,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// –¼‘O
-	WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[1], 0, TRUE, CasetteLanguage );	// –¼‘O
+	WORDSET_RegisterWord( p_wordset, 0,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// åå‰
+	WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[1], 0, TRUE, CasetteLanguage );	// åå‰
 	WORDSET_RegisterWiFiLobbyItemName( p_wordset, 2, p_obj->work[ NEWS_TOPIC_WK_ITEMNO ] );
 
-	// “WŠJ‚·‚é•¶š—ñì¬
+	// å±•é–‹ã™ã‚‹æ–‡å­—åˆ—ä½œæˆ
 	p_tmpstr = MSGMAN_AllocString( p_msgman, wflby_topic_04 );
 
-	// “WŠJ
+	// å±•é–‹
 	WORDSET_ExpandStr( p_wordset, p_str, p_tmpstr );
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	STRBUF_Delete( p_tmpstr );
 
 
@@ -1488,7 +1488,7 @@ static BOOL NEWS_TOPIC_GetSTRItem( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vi
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€•åW
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_TOPIC_GetSTRMiniGame( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vip, WORDSET* p_wordset, MSGDATA_MANAGER* p_msgman, STRBUF* p_str, u32 heapID )
@@ -1496,54 +1496,54 @@ static BOOL NEWS_TOPIC_GetSTRMiniGame( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* c
 	STRBUF*				p_tmpstr;
 
 
-	// ƒ~ƒjƒQ[ƒ€–¼
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å
 	WORDSET_RegisterWiFiLobbyGameName( p_wordset, 0, p_obj->work[NEWS_TOPIC_WK_GAME_NO] );
 	
-	// l”‚Å•¶š—ñ‚ğ•ÏX
+	// äººæ•°ã§æ–‡å­—åˆ—ã‚’å¤‰æ›´
 	if( p_obj->work[NEWS_TOPIC_WK_GAME_PLAYFLAG] == TRUE ){
 		u32 msgidx;
 
-		// “WŠJ‚·‚é•¶š—ñì¬
+		// å±•é–‹ã™ã‚‹æ–‡å­—åˆ—ä½œæˆ
 		switch( p_obj->work[ NEWS_TOPIC_WK_GAME_PLAYNUM ] ){
 		case 3:
-			WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// –¼‘O
-			WORDSET_RegisterWord( p_wordset, 2,  p_obj->p_name[1], 0, TRUE, CasetteLanguage );	// –¼‘O
-			WORDSET_RegisterWord( p_wordset, 3,  p_obj->p_name[2], 0, TRUE, CasetteLanguage );	// –¼‘O
+			WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// åå‰
+			WORDSET_RegisterWord( p_wordset, 2,  p_obj->p_name[1], 0, TRUE, CasetteLanguage );	// åå‰
+			WORDSET_RegisterWord( p_wordset, 3,  p_obj->p_name[2], 0, TRUE, CasetteLanguage );	// åå‰
 			msgidx = wflby_topic_14;
 			break;
 
 		case 2:
-			WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// –¼‘O
-			WORDSET_RegisterWord( p_wordset, 2,  p_obj->p_name[1], 0, TRUE, CasetteLanguage );	// –¼‘O
+			WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// åå‰
+			WORDSET_RegisterWord( p_wordset, 2,  p_obj->p_name[1], 0, TRUE, CasetteLanguage );	// åå‰
 			msgidx = wflby_topic_15;
 			break;
 
 		case 4:
-			WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// –¼‘O
-			WORDSET_RegisterWord( p_wordset, 2,  p_obj->p_name[1], 0, TRUE, CasetteLanguage );	// –¼‘O
-			WORDSET_RegisterWord( p_wordset, 3,  p_obj->p_name[2], 0, TRUE, CasetteLanguage );	// –¼‘O
-			WORDSET_RegisterWord( p_wordset, 4,  p_obj->p_name[3], 0, TRUE, CasetteLanguage );	// –¼‘O
+			WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// åå‰
+			WORDSET_RegisterWord( p_wordset, 2,  p_obj->p_name[1], 0, TRUE, CasetteLanguage );	// åå‰
+			WORDSET_RegisterWord( p_wordset, 3,  p_obj->p_name[2], 0, TRUE, CasetteLanguage );	// åå‰
+			WORDSET_RegisterWord( p_wordset, 4,  p_obj->p_name[3], 0, TRUE, CasetteLanguage );	// åå‰
 			msgidx = wflby_topic_02;
 			break;
 		
 		default:
-			return FALSE;	// •¶š—ñì¬•s‰Â”\ 
+			return FALSE;	// æ–‡å­—åˆ—ä½œæˆä¸å¯èƒ½ 
 		}
 		p_tmpstr = MSGMAN_AllocString( p_msgman, msgidx );
 	}else{
 
-		WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// –¼‘O
+		WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// åå‰
 		WORDSET_RegisterNumber( p_wordset, 2, WFLBY_MINIGAME_MAX - p_obj->work[ NEWS_TOPIC_WK_GAME_PLAYNUM ],
 				1, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
 
-		// “WŠJ‚·‚é•¶š—ñì¬
+		// å±•é–‹ã™ã‚‹æ–‡å­—åˆ—ä½œæˆ
 		p_tmpstr = MSGMAN_AllocString( p_msgman, wflby_topic_01 );
 	}
 
-	// “WŠJ
+	// å±•é–‹
 	WORDSET_ExpandStr( p_wordset, p_str, p_tmpstr );
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	STRBUF_Delete( p_tmpstr );
 
 
@@ -1552,7 +1552,7 @@ static BOOL NEWS_TOPIC_GetSTRMiniGame( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		‘«Õƒ{[ƒh
+ *	@brief		è¶³è·¡ãƒœãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_TOPIC_GetSTRFoot( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vip, WORDSET* p_wordset, MSGDATA_MANAGER* p_msgman, STRBUF* p_str, u32 heapID )
@@ -1560,17 +1560,17 @@ static BOOL NEWS_TOPIC_GetSTRFoot( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vi
 	STRBUF*				p_tmpstr;
 
 	WORDSET_RegisterWiFiLobbyGameName( p_wordset, 0, p_obj->work[NEWS_TOPIC_WK_FOOT_NO] );
-	WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// –¼‘O
+	WORDSET_RegisterWord( p_wordset, 1,  p_obj->p_name[0], 0, TRUE, CasetteLanguage );	// åå‰
 	WORDSET_RegisterNumber( p_wordset, 2, WFLBY_FOOT_MAX - p_obj->work[ NEWS_TOPIC_WK_FOOT_PLAYNUM ],
 			1, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
 
-	// “WŠJ‚·‚é•¶š—ñì¬
+	// å±•é–‹ã™ã‚‹æ–‡å­—åˆ—ä½œæˆ
 	p_tmpstr = MSGMAN_AllocString( p_msgman, wflby_topic_05 );
 
-	// “WŠJ
+	// å±•é–‹
 	WORDSET_ExpandStr( p_wordset, p_str, p_tmpstr );
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	STRBUF_Delete( p_tmpstr );
 
 
@@ -1579,7 +1579,7 @@ static BOOL NEWS_TOPIC_GetSTRFoot( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vi
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŒv
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆ
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_TOPIC_GetSTRWldTimer( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vip, WORDSET* p_wordset, MSGDATA_MANAGER* p_msgman, STRBUF* p_str, u32 heapID )
@@ -1588,9 +1588,9 @@ static BOOL NEWS_TOPIC_GetSTRWldTimer( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* c
 	int i;
 	u32 stridx;
 
-	// –¼‘Oİ’è
+	// åå‰è¨­å®š
 	for( i=0; i<p_obj->work[NEWS_TOPIC_WK_WLDT_PLAYNUM]; i++ ){
-		WORDSET_RegisterWord( p_wordset, i,  p_obj->p_name[i], 0, TRUE, CasetteLanguage );	// –¼‘O
+		WORDSET_RegisterWord( p_wordset, i,  p_obj->p_name[i], 0, TRUE, CasetteLanguage );	// åå‰
 	}
 	if( p_obj->type == NEWS_TOPICTYPE_WORLDTIMER ){
 		WORDSET_RegisterWiFiLobbyGameName( p_wordset, 
@@ -1600,13 +1600,13 @@ static BOOL NEWS_TOPIC_GetSTRWldTimer( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* c
 				p_obj->work[NEWS_TOPIC_WK_WLDT_PLAYNUM], WFLBY_GAME_NEWS );
 	}
 
-	// “WŠJ‚·‚é•¶š—ñì¬
+	// å±•é–‹ã™ã‚‹æ–‡å­—åˆ—ä½œæˆ
 	p_tmpstr = MSGMAN_AllocString( p_msgman, wflby_topic_06+(WFLBY_MINIGAME_MAX - p_obj->work[NEWS_TOPIC_WK_WLDT_PLAYNUM]) );
 
-	// “WŠJ
+	// å±•é–‹
 	WORDSET_ExpandStr( p_wordset, p_str, p_tmpstr );
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	STRBUF_Delete( p_tmpstr );
 
 
@@ -1615,7 +1615,7 @@ static BOOL NEWS_TOPIC_GetSTRWldTimer( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgİ’è
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_TOPIC_GetSTREvent( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vip, WORDSET* p_wordset, MSGDATA_MANAGER* p_msgman, STRBUF* p_str, u32 heapID )
@@ -1637,7 +1637,7 @@ static BOOL NEWS_TOPIC_GetSTREvent( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_v
 		stridx = wflby_topic_12;
 		break;
 
-	case WFLBY_EVENT_CLOSE:		// ƒNƒ[ƒY
+	case WFLBY_EVENT_CLOSE:		// ã‚¯ãƒ­ãƒ¼ã‚º
 		stridx = wflby_topic_13;
 		break;
 
@@ -1645,13 +1645,13 @@ static BOOL NEWS_TOPIC_GetSTREvent( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_v
 		return FALSE;
 	}
 
-	// “WŠJ‚·‚é•¶š—ñì¬
+	// å±•é–‹ã™ã‚‹æ–‡å­—åˆ—ä½œæˆ
 	p_tmpstr = MSGMAN_AllocString( p_msgman, stridx );
 
-	// “WŠJ
+	// å±•é–‹
 	WORDSET_ExpandStr( p_wordset, p_str, p_tmpstr );
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	STRBUF_Delete( p_tmpstr );
 
 
@@ -1660,17 +1660,17 @@ static BOOL NEWS_TOPIC_GetSTREvent( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_v
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIP‚ª“ü‚Á‚Ä‚«‚½İ’è
+ *	@brief	VIPãŒå…¥ã£ã¦ããŸè¨­å®š
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_TOPIC_GetSTRVipIn( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vip, WORDSET* p_wordset, MSGDATA_MANAGER* p_msgman, STRBUF* p_str, u32 heapID )
 {
-	// ƒ†[ƒUID‚ªM—p‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ¦ãƒ¼ã‚¶IDãŒä¿¡ç”¨ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_obj->work[NEWS_TOPIC_WK_VIPIN_IDX] >= WFLBY_PLAYER_MAX ){
 		return FALSE;
 	}
 	
-	// ‚»‚Ìl‚ªVIP‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN‚·‚é
+	// ãã®äººãŒVIPã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	if( cp_vip->vip[ p_obj->work[NEWS_TOPIC_WK_VIPIN_IDX] ] == FALSE ){
 		return FALSE;
 	}
@@ -1682,7 +1682,7 @@ static BOOL NEWS_TOPIC_GetSTRVipIn( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_v
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€Œ‹‰Ê
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµæœ
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_TOPIC_GetSTRMgResultIn( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* cp_vip, WORDSET* p_wordset, MSGDATA_MANAGER* p_msgman, STRBUF* p_str, u32 heapID )
@@ -1703,19 +1703,19 @@ static BOOL NEWS_TOPIC_GetSTRMgResultIn( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG*
 		wflby_topic_22,
 	};
 
-	// l”‚ª‚¨‚©‚µ‚©‚Á‚½‚çƒgƒsƒbƒNì¬•s‰Â”\ 
+	// äººæ•°ãŒãŠã‹ã—ã‹ã£ãŸã‚‰ãƒˆãƒ”ãƒƒã‚¯ä½œæˆä¸å¯èƒ½ 
 	if( NEWS_TOPIC_MGRESULT_CheckPlayerNum( p_obj->work[NEWS_TOPIC_WK_MGRESULT_NO], 
 				p_obj->work[NEWS_TOPIC_WK_MGRESULT_PLAYNUM] ) == FALSE ){
 		return FALSE;
 	}
 
-	// ƒ~ƒjƒQ[ƒ€–¼
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å
 	WORDSET_RegisterWiFiLobbyGameName( p_wordset, 0, p_obj->work[NEWS_TOPIC_WK_MGRESULT_NO] );
 	
-	// l”‚Å•¶š—ñ‚ğ•ÏX
-	// “WŠJ‚·‚é•¶š—ñì¬
+	// äººæ•°ã§æ–‡å­—åˆ—ã‚’å¤‰æ›´
+	// å±•é–‹ã™ã‚‹æ–‡å­—åˆ—ä½œæˆ
 	for( i=0; i<p_obj->work[ NEWS_TOPIC_WK_MGRESULT_PLAYNUM ]; i++ ){
-		WORDSET_RegisterWord( p_wordset, i+1,  p_obj->p_name[i], 0, TRUE, CasetteLanguage );	// –¼‘Oİ’è
+		WORDSET_RegisterWord( p_wordset, i+1,  p_obj->p_name[i], 0, TRUE, CasetteLanguage );	// åå‰è¨­å®š
 	}
 	if( (p_obj->work[NEWS_TOPIC_WK_MGRESULT_NO] == WFLBY_GAME_BALLSLOW) ||
 		(p_obj->work[NEWS_TOPIC_WK_MGRESULT_NO] == WFLBY_GAME_BALANCEBALL) ){
@@ -1726,10 +1726,10 @@ static BOOL NEWS_TOPIC_GetSTRMgResultIn( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG*
 				sc_NEWS_TOPIC_BALLOON_MSG[ p_obj->work[NEWS_TOPIC_WK_MGRESULT_PLAYNUM]-1 ] );
 	}
 
-	// “WŠJ
+	// å±•é–‹
 	WORDSET_ExpandStr( p_wordset, p_str, p_tmpstr );
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	STRBUF_Delete( p_tmpstr );
 
 	return TRUE;
@@ -1739,24 +1739,24 @@ static BOOL NEWS_TOPIC_GetSTRMgResultIn( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚ê‚¼‚ê‚ÌƒgƒsƒbƒNƒ†[ƒU¯•ÊIDX‚ğæ“¾‚·‚é
+ *	@brief	ãã‚Œãã‚Œã®ãƒˆãƒ”ãƒƒã‚¯ãƒ¦ãƒ¼ã‚¶è­˜åˆ¥IDXã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_obj		ƒIƒuƒWƒF
- *	@param	count		ƒJƒEƒ“ƒg
+ *	@param	cp_obj		ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	count		ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@retval	WFLBY_PLAYER_MAX	‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚É‚¢‚él‚Í‚¢‚È‚¢‚æ
- *	@retval	‚»‚Ì‚½				‚»‚ÌƒCƒ“ƒfƒbƒNƒX‚ÌƒvƒŒƒCƒ„[‚Ìƒ[ƒr[“àƒCƒ“ƒfƒbƒNƒX
+ *	@retval	WFLBY_PLAYER_MAX	ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã„ã‚‹äººã¯ã„ãªã„ã‚ˆ
+ *	@retval	ãã®ãŸ				ãã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ­ãƒ¼ãƒ“ãƒ¼å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b
+ *	@brief	ä¼šè©±
  */
 //-----------------------------------------------------------------------------
 static u32 NEWS_TOPIC_GetUserIdxConnect( const NEWS_TOPIC* cp_obj, u32 count )
 {
 
-	// 2ˆÈã‚Í‚È‚¢
+	// 2ä»¥ä¸Šã¯ãªã„
 	if( count >= 2 ){
 		return WFLBY_PLAYER_MAX;
 	}
@@ -1765,12 +1765,12 @@ static u32 NEWS_TOPIC_GetUserIdxConnect( const NEWS_TOPIC* cp_obj, u32 count )
 	
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€ŒğŠ·
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ äº¤æ›
  */
 //-----------------------------------------------------------------------------
 static u32 NEWS_TOPIC_GetUserIdxItem( const NEWS_TOPIC* cp_obj, u32 count )
 {
-	// 2ˆÈã‚Í‚È‚¢
+	// 2ä»¥ä¸Šã¯ãªã„
 	if( count >= 2 ){
 		return WFLBY_PLAYER_MAX;
 	}
@@ -1779,7 +1779,7 @@ static u32 NEWS_TOPIC_GetUserIdxItem( const NEWS_TOPIC* cp_obj, u32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
  */
 //-----------------------------------------------------------------------------
 static u32 NEWS_TOPIC_GetUserIdxMiniGame( const NEWS_TOPIC* cp_obj, u32 count )
@@ -1792,7 +1792,7 @@ static u32 NEWS_TOPIC_GetUserIdxMiniGame( const NEWS_TOPIC* cp_obj, u32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«Õƒ{[ƒh
+ *	@brief	è¶³è·¡ãƒœãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 static u32 NEWS_TOPIC_GetUserIdxFoot( const NEWS_TOPIC* cp_obj, u32 count )
@@ -1805,7 +1805,7 @@ static u32 NEWS_TOPIC_GetUserIdxFoot( const NEWS_TOPIC* cp_obj, u32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŒv
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆ
  */
 //-----------------------------------------------------------------------------
 static u32 NEWS_TOPIC_GetUserIdxWldTimer( const NEWS_TOPIC* cp_obj, u32 count )
@@ -1818,7 +1818,7 @@ static u32 NEWS_TOPIC_GetUserIdxWldTimer( const NEWS_TOPIC* cp_obj, u32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒg	
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆ	
  */
 //-----------------------------------------------------------------------------
 static u32 NEWS_TOPIC_GetUserIdxEvent( const NEWS_TOPIC* cp_obj, u32 count )
@@ -1828,7 +1828,7 @@ static u32 NEWS_TOPIC_GetUserIdxEvent( const NEWS_TOPIC* cp_obj, u32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIP“üê
+ *	@brief	VIPå…¥å ´
  */
 //-----------------------------------------------------------------------------
 static u32 NEWS_TOPIC_GetUserIdxVipIn( const NEWS_TOPIC* cp_obj, u32 count )
@@ -1838,7 +1838,7 @@ static u32 NEWS_TOPIC_GetUserIdxVipIn( const NEWS_TOPIC* cp_obj, u32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€Œ‹‰Ê
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµæœ
  */
 //-----------------------------------------------------------------------------
 static u32 NEWS_TOPIC_GetUserIdxMgResult( const NEWS_TOPIC* cp_obj, u32 count )
@@ -1853,13 +1853,13 @@ static u32 NEWS_TOPIC_GetUserIdxMgResult( const NEWS_TOPIC* cp_obj, u32 count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€Œ‹‰ÊƒgƒsƒbƒN	l”ƒ`ƒFƒbƒN
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµæœãƒˆãƒ”ãƒƒã‚¯	äººæ•°ãƒã‚§ãƒƒã‚¯
  *
- *	@param	minigame		ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
- *	@param	num				l”
+ *	@param	minigame		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
+ *	@param	num				äººæ•°
  *
- *	@retval	TRUE	‘åä•v
- *	@retval	FALSE	•s³
+ *	@retval	TRUE	å¤§ä¸ˆå¤«
+ *	@retval	FALSE	ä¸æ­£
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWS_TOPIC_MGRESULT_CheckPlayerNum( WFLBY_GAMETYPE minigame, u32 num )

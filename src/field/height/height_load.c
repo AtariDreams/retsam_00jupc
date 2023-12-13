@@ -39,7 +39,7 @@ typedef struct {
 
 
 //////////////////////////////////////////////////////////////////////////////
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 //////////////////////////////////////////////////////////////////////////////
 static void SetDataMem(const READ_INFO *inInfo, MHI_PTR	outMapHeightInfo, void **mem);
 
@@ -59,27 +59,27 @@ extern u32 sys_GetMemoryBlockSize( const void* memBlock );
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-//ƒwƒbƒ_[ƒf[ƒ^4+16ƒoƒCƒg‚ğ“Ç‚Ş
+//ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿4+16ãƒã‚¤ãƒˆã‚’èª­ã‚€
 static void ReadHeaderDataArc(ARCHANDLE *ioHandle, READ_INFO *outInfo)
 {	
 	u16 temp[4];
 
-	//Ši”[æ‚ÌƒNƒŠ[ƒ“
+	//æ ¼ç´å…ˆã®ã‚¯ãƒªãƒ¼ãƒ³
 	MI_CpuClear32(outInfo,sizeof(READ_INFO));
 
-	//IDƒf[ƒ^4ƒoƒCƒg‚ğ“Ç‚İ”ò‚Î‚·
+	//IDãƒ‡ãƒ¼ã‚¿4ãƒã‚¤ãƒˆã‚’èª­ã¿é£›ã°ã™
 	ArchiveDataLoadByHandleContinue( ioHandle, 4, temp );
-	//’¸“_”
+	//é ‚ç‚¹æ•°
 	ArchiveDataLoadByHandleContinue( ioHandle, 2, &outInfo->VtxNum );
-	//–@ü”
+	//æ³•ç·šæ•°
 	ArchiveDataLoadByHandleContinue( ioHandle, 2, &outInfo->NrmNum );
-	//D’l”
+	//Då€¤æ•°
 	ArchiveDataLoadByHandleContinue( ioHandle, 2, &outInfo->DNum );
-	//lŠpƒ|ƒŠƒSƒ“”
+	//å››è§’ãƒãƒªã‚´ãƒ³æ•°
 	ArchiveDataLoadByHandleContinue( ioHandle, 2, &outInfo->PolygonNum );
-	//ƒ‰ƒCƒ“‘”
+	//ãƒ©ã‚¤ãƒ³ç·æ•°
 	ArchiveDataLoadByHandleContinue( ioHandle, 2, &outInfo->LineNum/*TotalLineListSize*/ );	
-	//ƒ|ƒŠƒSƒ“ƒCƒ“ƒfƒbƒNƒXÀƒf[ƒ^
+	//ãƒãƒªã‚´ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å®Ÿãƒ‡ãƒ¼ã‚¿
 	ArchiveDataLoadByHandleContinue( ioHandle, 2, &outInfo->TotalPolyIDListNum/*TotalPolyIDListSize*/ );
 
 OS_Printf("head:%d,%d,%d,%d,%d,%d\n",outInfo->VtxNum,outInfo->NrmNum,outInfo->DNum,
@@ -96,7 +96,7 @@ static void SetDataMem(const READ_INFO *inInfo, MHI_PTR	outMapHeightInfo, void *
 	OS_Printf("Before Get Height Data:Graphic_Heap = %x\n",sys_GetHeapFreeSize(HEAPID_FIELD));
 #endif
 
-	//’¸“_ƒf[ƒ^
+	//é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 	p = &((u8*)(*mem))[0];
 	outMapHeightInfo->VertexArray = p;//(void *)&data[0];
 	offset += (sizeof(XZ_VERTEX)*inInfo->VtxNum);
@@ -107,7 +107,7 @@ static void SetDataMem(const READ_INFO *inInfo, MHI_PTR	outMapHeightInfo, void *
 		offset += mod;
 	}
 */	
-	//–@üƒf[ƒ^
+	//æ³•ç·šãƒ‡ãƒ¼ã‚¿
 	p = &((u8*)(*mem))[offset];
 	outMapHeightInfo->NormalArray = p;//(void *)&data[offset];
 	offset += (sizeof(VecFx32)*inInfo->NrmNum);
@@ -117,7 +117,7 @@ static void SetDataMem(const READ_INFO *inInfo, MHI_PTR	outMapHeightInfo, void *
 		offset += mod;
 	}
 */	
-	//Dƒf[ƒ^
+	//Dãƒ‡ãƒ¼ã‚¿
 	p = &((u8*)(*mem))[offset];
 	outMapHeightInfo->DArray = p;//(void *)&data[offset];
 	offset += (sizeof(fx32)*inInfo->DNum);
@@ -127,7 +127,7 @@ static void SetDataMem(const READ_INFO *inInfo, MHI_PTR	outMapHeightInfo, void *
 		offset += mod;
 	}
 */	
-	//ƒ|ƒŠƒSƒ“ƒf[ƒ^
+	//ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿
 	p = &((u8*)(*mem))[offset];
 	outMapHeightInfo->PolygonData = p;//(void *)&data[offset];
 	offset += (sizeof(POLYGON_DATA)*inInfo->PolygonNum);
@@ -138,7 +138,7 @@ static void SetDataMem(const READ_INFO *inInfo, MHI_PTR	outMapHeightInfo, void *
 	}
 */	
 /**	
-	//ƒOƒŠƒbƒh•ªŠ„ƒf[ƒ^
+	//ã‚°ãƒªãƒƒãƒ‰åˆ†å‰²ãƒ‡ãƒ¼ã‚¿
 	p = &((u8*)(*mem))[offset];
 	outMapHeightInfo->SplitGridData = p;//(void *)&data[offset];
 	offset += (sizeof(SPLIT_GRID_DATA));
@@ -146,7 +146,7 @@ static void SetDataMem(const READ_INFO *inInfo, MHI_PTR	outMapHeightInfo, void *
 	if (mod != 0){
 		offset += mod;
 	}
-	//ƒOƒŠƒbƒhƒe[ƒuƒ‹ƒf[ƒ^
+	//ã‚°ãƒªãƒƒãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
 	p = &((u8*)(*mem))[offset];
 	outMapHeightInfo->GridDataTbl = p;//(void *)&data[offset];
 	offset += (GRID_ENTRY_HEADER_SIZE*inInfo->GridNum);
@@ -155,7 +155,7 @@ static void SetDataMem(const READ_INFO *inInfo, MHI_PTR	outMapHeightInfo, void *
 		offset += mod;
 	}
 */	
-	//ƒ‰ƒCƒ“ƒe[ƒuƒ‹ƒf[ƒ^
+	//ãƒ©ã‚¤ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
 	p = &((u8*)(*mem))[offset];
 	outMapHeightInfo->LineDataTbl = p;//(void *)&data[offset];
 	offset += /*(inInfo->TotalLineListSize)*/sizeof(LINE_DATA)*inInfo->LineNum;
@@ -165,7 +165,7 @@ static void SetDataMem(const READ_INFO *inInfo, MHI_PTR	outMapHeightInfo, void *
 		offset += mod;
 	}
 */	
-	//ƒ‰ƒCƒ““àƒ|ƒŠƒSƒ“IDƒGƒ“ƒgƒŠƒf[ƒ^
+	//ãƒ©ã‚¤ãƒ³å†…ãƒãƒªã‚´ãƒ³IDã‚¨ãƒ³ãƒˆãƒªãƒ‡ãƒ¼ã‚¿
 	p = &((u8*)(*mem))[offset];
 	outMapHeightInfo->PolyIDList = p;//(void *)&data[offset];
 	offset += sizeof(u16)*inInfo->TotalPolyIDListNum/*(inInfo->TotalPolyIDListSize)*/;
@@ -186,20 +186,20 @@ static void SetDataMem(const READ_INFO *inInfo, MHI_PTR	outMapHeightInfo, void *
 			(sizeof(u16)*inInfo->TotalPolyIDListNum)/*inInfo->TotalPolyIDListSize*/);
 #endif
 	
-	///GF_ASSERT((offset<=0x8000)&&"‚‚³ƒf[ƒ^ƒƒ‚ƒŠƒI[ƒo[");
-	GF_ASSERT(offset<=0x9000&&"‚‚³ƒf[ƒ^‚ª‘å‚«‚·‚¬‚Å‚·");
+	///GF_ASSERT((offset<=0x8000)&&"é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªã‚ªãƒ¼ãƒãƒ¼");
+	GF_ASSERT(offset<=0x9000&&"é«˜ã•ãƒ‡ãƒ¼ã‚¿ãŒå¤§ãã™ãã§ã™");
 }
 
 ///ARC
 #if 0
-//ƒOƒŠƒbƒh•ªŠ„ƒf[ƒ^‚ğƒŠ[ƒh
+//ã‚°ãƒªãƒƒãƒ‰åˆ†å‰²ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªãƒ¼ãƒ‰
 static void ReadGridSpDataArc(ARCHANDLE *ioHandle, MHI_PTR outMap3DInfo)
 {
 	ArchiveDataLoadByHandleContinue(ioHandle, sizeof(SPLIT_GRID_DATA),
 									outMap3DInfo->SplitGridData );
 }
 #endif
-//ƒwƒbƒ_‚©‚çæ“¾‚µ‚½A’¸“_”‚Ìƒf[ƒ^‚ğ“Ç‚Ş
+//ãƒ˜ãƒƒãƒ€ã‹ã‚‰å–å¾—ã—ãŸã€é ‚ç‚¹æ•°ã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã‚€
 static void ReadVtxDataArc(ARCHANDLE *ioHandle, MHI_PTR outMap3DInfo, const READ_INFO *inInfo)
 {
 	ArchiveDataLoadByHandleContinue(ioHandle, sizeof(XZ_VERTEX)*inInfo->VtxNum,
@@ -261,7 +261,7 @@ static void HeightDataArcTask(TCB_PTR _tcb, void * work)
 		}
 
 		ReadHeaderDataArc(height_task_data->ArcHandle, &height_task_data->ReadInfo);
-		//ƒ‰ƒCƒ“”•Û‘¶
+		//ãƒ©ã‚¤ãƒ³æ•°ä¿å­˜
 		height_task_data->HeightData->LineNum = height_task_data->ReadInfo.LineNum;
 		
 		SetDataMem(&height_task_data->ReadInfo, height_task_data->HeightData, (void**)&height_task_data->HeightMem);
@@ -289,7 +289,7 @@ static void HeightDataArcTask(TCB_PTR _tcb, void * work)
 	if (rc == TRUE){
 		height_task_data->Seq++;
 		if(height_task_data->Seq == HEIGHT_END_SEQ){
-			height_task_data->HeightData->DataValid = TRUE;		//ƒf[ƒ^—LŒø
+			height_task_data->HeightData->DataValid = TRUE;		//ãƒ‡ãƒ¼ã‚¿æœ‰åŠ¹
 		}
 	}
 }
@@ -298,37 +298,37 @@ static void HeightDataArcTask(TCB_PTR _tcb, void * work)
 
 static void FreeMHIMember(MHI_PTR outMap3DInfo)
 {
-	//’¸“_ƒf[ƒ^
+	//é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 	if (outMap3DInfo->VertexArray != NULL){
 		sys_FreeMemoryEz(outMap3DInfo->VertexArray);
 		outMap3DInfo->VertexArray = NULL;
 	}
-	//–@üƒf[ƒ^
+	//æ³•ç·šãƒ‡ãƒ¼ã‚¿
 	if (outMap3DInfo->NormalArray != NULL){
 		sys_FreeMemoryEz(outMap3DInfo->NormalArray);
 		outMap3DInfo->NormalArray = NULL;
 	}
-	//ƒ|ƒŠƒSƒ“ƒf[ƒ^
+	//ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿
 	if (outMap3DInfo->PolygonData != NULL){
 		sys_FreeMemoryEz(outMap3DInfo->PolygonData);
 		outMap3DInfo->PolygonData = NULL;
 	}
-	//ƒOƒŠƒbƒh•ªŠ„ƒf[ƒ^
+	//ã‚°ãƒªãƒƒãƒ‰åˆ†å‰²ãƒ‡ãƒ¼ã‚¿
 	if (outMap3DInfo->SplitGridData != NULL){
 		sys_FreeMemoryEz(outMap3DInfo->SplitGridData);
 		outMap3DInfo->SplitGridData = NULL;	
 	}
-	//ƒOƒŠƒbƒhƒe[ƒuƒ‹ƒf[ƒ^
+	//ã‚°ãƒªãƒƒãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
 	if (outMap3DInfo->GridDataTbl != NULL){
 		sys_FreeMemoryEz(outMap3DInfo->GridDataTbl);
 		outMap3DInfo->GridDataTbl = NULL;
 	}
-	//ƒ‰ƒCƒ“ƒe[ƒuƒ‹ƒf[ƒ^
+	//ãƒ©ã‚¤ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
 	if (outMap3DInfo->LineDataTbl != NULL){
 		sys_FreeMemoryEz(outMap3DInfo->LineDataTbl);
 		outMap3DInfo->LineDataTbl = NULL;
 	}
-	//ƒOƒŠƒbƒhÀƒf[ƒ^
+	//ã‚°ãƒªãƒƒãƒ‰å®Ÿãƒ‡ãƒ¼ã‚¿
 	if (outMap3DInfo->PolyIDList != NULL){
 		sys_FreeMemoryEz(outMap3DInfo->PolyIDList);
 		outMap3DInfo->PolyIDList = NULL;
@@ -361,24 +361,24 @@ void SetupHeightDataArc(ARCHANDLE *ioHandle,
     if(1) {
         char    buf[256];
 		READ_INFO *read_info;
-		//ˆêƒƒ‚ƒŠŠm•Û
+		//ä¸€æ™‚ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		read_info = sys_AllocMemoryLo(HEAPID_FIELD,sizeof(READ_INFO));
 
-		//ƒA[ƒJƒCƒuƒf[ƒ^æ“¾
+		//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 		ReadHeaderDataArc(ioHandle, read_info);
-		//ƒ‰ƒCƒ“”•Û‘¶
+		//ãƒ©ã‚¤ãƒ³æ•°ä¿å­˜
 		outMapHeightInfo->LineNum = read_info->LineNum;
 #ifdef PM_DEBUG
 		{
-			//ƒTƒCƒYŠm•Ûƒƒ‚ƒŠ-ŠÇ—ƒwƒbƒ_
+			//ã‚µã‚¤ã‚ºï¼ç¢ºä¿ãƒ¡ãƒ¢ãƒª-ç®¡ç†ãƒ˜ãƒƒãƒ€
 			u32 size = sys_GetMemoryBlockSize((void*)inHeightMem)-(0x10);
 			if ((inDataSize!=0)&&(inDataSize<=HEIGHT_HEADER_SIZE)){
-				GF_ASSERT( 0 && "SetupHeightData ERROR:ƒtƒ@ƒCƒ‹‚ª•s³");
+				GF_ASSERT( 0 && "SetupHeightData ERROR:ãƒ•ã‚¡ã‚¤ãƒ«ãŒä¸æ­£");
 			}
-			//ƒtƒ@ƒCƒ‹ƒTƒCƒY‚©‚çŒÅ’èƒwƒbƒ_i‚‚³“Ç‚İ‚İƒwƒbƒ_j‚ğˆø‚¢‚½•ª‚ªŠm•Û‚µ‚½ƒƒ‚ƒŠ‚ğ’´‚¦‚é‚©‚ğƒ`ƒFƒbƒN
+			//ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‹ã‚‰å›ºå®šãƒ˜ãƒƒãƒ€ï¼ˆé«˜ã•èª­ã¿è¾¼ã¿ãƒ˜ãƒƒãƒ€ï¼‰ã‚’å¼•ã„ãŸåˆ†ãŒç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’è¶…ãˆã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 			if ((inDataSize!=0)&&(inDataSize-HEIGHT_HEADER_SIZE>size)){
 				OS_Printf("fileSize=%x,allocSize=%x",inDataSize,size);
-				GF_ASSERT( 0 && "SetupHeightData ERROR:ƒƒ‚ƒŠ‚ª•s‘«‚µ‚Ä‚Ü‚·");
+				GF_ASSERT( 0 && "SetupHeightData ERROR:ãƒ¡ãƒ¢ãƒªãŒä¸è¶³ã—ã¦ã¾ã™");
 			}
 
 		}
@@ -394,7 +394,7 @@ void SetupHeightDataArc(ARCHANDLE *ioHandle,
 		ReadLineDataTblArc(ioHandle,outMapHeightInfo, read_info);
 		ReadEntryDataArc(ioHandle,outMapHeightInfo, read_info);
 
-		//ƒfƒoƒbƒOF’†g‚Ì•\¦
+		//ãƒ‡ãƒãƒƒã‚°ï¼šä¸­èº«ã®è¡¨ç¤º
 		{
 			int i;
 			for(i=0;i<read_info->VtxNum;i++){
@@ -422,10 +422,10 @@ void SetupHeightDataArc(ARCHANDLE *ioHandle,
 		}
 		
 
-		//ˆêƒƒ‚ƒŠ‰ğ•ú
+		//ä¸€æ™‚ãƒ¡ãƒ¢ãƒªè§£æ”¾
 		sys_FreeMemoryEz(read_info);
 
-		outMapHeightInfo->DataValid = TRUE;		//ƒf[ƒ^—LŒø
+		outMapHeightInfo->DataValid = TRUE;		//ãƒ‡ãƒ¼ã‚¿æœ‰åŠ¹
 	}
 }
 
@@ -447,23 +447,23 @@ void SetInvalidHeightData(MHI_PTR outMap3DInfo)
 	if (outMap3DInfo == NULL){
 		return;
 	}
-	outMap3DInfo->DataValid = FALSE;		//ƒf[ƒ^–³Œø
+	outMap3DInfo->DataValid = FALSE;		//ãƒ‡ãƒ¼ã‚¿ç„¡åŠ¹
 #ifdef	INVALIED_HEIGHT_MEM_ALOOC
 	FreeMHIMember(outMap3DInfo);
 #else
-	//’¸“_ƒf[ƒ^
+	//é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 	outMap3DInfo->VertexArray = NULL;
-	//–@üƒf[ƒ^
+	//æ³•ç·šãƒ‡ãƒ¼ã‚¿
 	outMap3DInfo->NormalArray = NULL;
-	//ƒ|ƒŠƒSƒ“ƒf[ƒ^
+	//ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿
 	outMap3DInfo->PolygonData = NULL;
-	//ƒOƒŠƒbƒh•ªŠ„ƒf[ƒ^
+	//ã‚°ãƒªãƒƒãƒ‰åˆ†å‰²ãƒ‡ãƒ¼ã‚¿
 ///	outMap3DInfo->SplitGridData = NULL;	
-	//ƒOƒŠƒbƒhƒe[ƒuƒ‹ƒf[ƒ^
+	//ã‚°ãƒªãƒƒãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
 ///	outMap3DInfo->GridDataTbl = NULL;
-	//ƒ‰ƒCƒ“ƒe[ƒuƒ‹ƒf[ƒ^
+	//ãƒ©ã‚¤ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
 	outMap3DInfo->LineDataTbl = NULL;
-	//ƒOƒŠƒbƒhÀƒf[ƒ^
+	//ã‚°ãƒªãƒƒãƒ‰å®Ÿãƒ‡ãƒ¼ã‚¿
 	outMap3DInfo->PolyIDList = NULL;
 #endif //INVALIED_HEIGHT_MEM_ALOOC
 }

@@ -1,6 +1,6 @@
 //====================================================================
 //						r209.gmm
-//					�t�B�[���h�E���[�h209
+//					フィールド・ロード209
 //====================================================================
 	.text
 
@@ -8,11 +8,11 @@
 	.include	"../../../include/msgdata/msg_r209.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r209_middleman1
 _EVENT_DATA		ev_r209_mikage
@@ -23,13 +23,13 @@ _EVENT_DATA		ev_r209_jogger1
 _EVENT_DATA		ev_r209_jogger6
 _EVENT_DATA		ev_r209_flag_change
 _EVENT_DATA		ev_r209_sign3
-_EVENT_DATA_END						//�I��
+_EVENT_DATA_END						//終了
 
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_r209_flag_change:
-	/*���ԑтɂ���ĕ���*/
+	/*時間帯によって分岐*/
 	_GET_TIME_ZONE	LOCALWORK0
 	_IFVAL_JUMP		LOCALWORK0,EQ,TIMEZONE_MORNING,ev_r209_fc_morning
 	_IFVAL_JUMP		LOCALWORK0,EQ,TIMEZONE_NOON,ev_r209_fc_noon
@@ -56,26 +56,26 @@ ev_r209_fc_midnight:
 	_END
 
 /********************************************************************/
-/*							�q�ꂨ������							*/
+/*							牧場おじさん							*/
 /********************************************************************/
 ev_r209_middleman1:
 	_EASY_OBJ_MSG	msg_r209_middleman1_01
 	_END
 
 /********************************************************************/
-/*							�݂����̂Ƃ�							*/
+/*							みかげのとう							*/
 /********************************************************************/
 ev_r209_mikage:
 	_TALK_START
 
-	//�u���Ȃ߂����v��Ƃ߂���
+	//「かなめいし」を嵌めた後
 	_IFVAL_JUMP		WK_SCENE_R209,EQ,1,ev_r209_mikage_surechigai_check
 
-	//�u���Ȃ߂����v�`�F�b�N
+	//「かなめいし」チェック
 	_ITEM_CHK			ITEM_KANAMEISI,1,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_r209_mikage_01
 
-	//���Ȃ߂������@�����܂����H
+	//かなめいしを　つかいますか？
 	_TALKMSG		msg_r209_mikage_02
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r209_mikage_03	//YES
@@ -98,10 +98,10 @@ ev_r209_mikage_03:
 	_TALK_END
 	_END
 
-//�u���Ȃ߂����v��Ƃ߂���
+//「かなめいし」を嵌めた後
 ev_r209_mikage_surechigai_check:
 
-	//�n���ŉ�b�����l���`�F�b�N
+	//地下で会話した人数チェック
 	_UNDERGROUND_TALK_COUNT	SCWK_ANSWER
 
 	_IFVAL_JUMP		SCWK_ANSWER,GE,32,	ev_r209_mikage_09
@@ -111,7 +111,7 @@ ev_r209_mikage_surechigai_check:
 	_IFVAL_JUMP		SCWK_ANSWER,GE,8,	ev_r209_mikage_05
 	_JUMP								ev_r209_mikage_04
 
-//����Ⴂ�@�P�O�W��@�i�~�J�Q�Ɛ퓬�j
+//すれ違い　１０８回　（ミカゲと戦闘）
 ev_r209_mikage_09:
 	_SE_WAIT	SEQ_SE_DP_SELECT
 
@@ -121,25 +121,25 @@ ev_r209_mikage_09:
 	_TALK_CLOSE
 
 
-	//�~�J���Q�Ɛ퓬
+	//ミカルゲと戦闘
 	_WILD_BTL_SET		MONSNO_MIKAGE,25
 
 	_LOSE_CHECK			SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_r209_mikage_battle_lose
 
-	//������Ԃցi���x���킦��̂Łj
+	//初期状態へ（何度も戦えるので）
 	_LDVAL		WK_SCENE_R209,0
 	_UNDERGROUND_TALK_COUNT_CLEAR
 	_END
 
-//�S��
+//全滅
 ev_r209_mikage_battle_lose:
 	_NORMAL_LOSE	
 	_EVENT_END
 	_END
 
 
-//����Ⴂ�@0-7��
+//すれ違い　0-7回
 ev_r209_mikage_04:
 	_TALKMSG		msg_r209_mikage_04
 	_LAST_KEYWAIT
@@ -147,7 +147,7 @@ ev_r209_mikage_04:
 	_TALK_END
 	_END
 
-//����Ⴂ�@8-14��
+//すれ違い　8-14回
 ev_r209_mikage_05:
 	_TALKMSG		msg_r209_mikage_05
 	_LAST_KEYWAIT
@@ -155,7 +155,7 @@ ev_r209_mikage_05:
 	_TALK_END
 	_END
 
-//����Ⴂ�@15-21��
+//すれ違い　15-21回
 ev_r209_mikage_06:
 	_TALKMSG		msg_r209_mikage_06
 	_LAST_KEYWAIT
@@ -163,7 +163,7 @@ ev_r209_mikage_06:
 	_TALK_END
 	_END
 
-//����Ⴂ�@22-28��
+//すれ違い　22-28回
 ev_r209_mikage_07:
 	_TALKMSG		msg_r209_mikage_07
 	_LAST_KEYWAIT
@@ -171,7 +171,7 @@ ev_r209_mikage_07:
 	_TALK_END
 	_END
 
-//����Ⴂ�@29-31��
+//すれ違い　29-31回
 ev_r209_mikage_08:
 	_TALKMSG		msg_r209_mikage_08
 	_LAST_KEYWAIT
@@ -179,7 +179,7 @@ ev_r209_mikage_08:
 	_TALK_END
 	_END
 
-//�u���Ȃ߂����v�������Ă��Ȃ�
+//「かなめいし」を持っていない
 ev_r209_mikage_01:
 	_TALKMSG		msg_r209_mikage_01
 	_LAST_KEYWAIT
@@ -188,16 +188,16 @@ ev_r209_mikage_01:
 	_END
 
 /********************************************************************/
-/*							�ނ�l									*/
+/*							釣り人									*/
 /********************************************************************/
 ev_r209_fishing1:
 	_TALK_OBJ_START
 
-	//�A�C�e�������Z�b�g
+	//アイテム名をセット
 	_LDVAL			SCWK_TEMP0,ITEM_IITURIZAO
 	_ITEM_NAME		0,SCWK_TEMP0
 
-	//���Ɏ擾�ς݂��`�F�b�N
+	//既に取得済みかチェック
 	_IF_FLAGON_JUMP		FE_IITURIZAO_GET,r209_fishing1_flag_on
 
 	_TALKMSG	msg_r209_fishing1_01
@@ -206,7 +206,7 @@ ev_r209_fishing1:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,r209_fishing1_no
 	_END
 
-//���Ɏ擾�ς�
+//既に取得済み
 r209_fishing1_flag_on:
 	_ITEM_NAME		0,SCWK_TEMP0
 
@@ -216,7 +216,7 @@ r209_fishing1_flag_on:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,r209_fishing1_06
 	_END
 
-//�����@�͂�
+//説明　はい
 r209_fishing1_05:
 	_TALKMSG		msg_r209_fishing1_05
 	_LAST_KEYWAIT
@@ -224,7 +224,7 @@ r209_fishing1_05:
 	_TALK_OBJ_END
 	_END
 
-//�����@������
+//説明　いいえ
 r209_fishing1_06:
 	_TALKMSG		msg_r209_fishing1_06
 	_LAST_KEYWAIT
@@ -233,7 +233,7 @@ r209_fishing1_06:
 	_END
 
 
-//�h�������h�I��
+//”いいえ”選択
 r209_fishing1_no:
 	_TALKMSG		msg_r209_fishing1_04
 	_LAST_KEYWAIT
@@ -241,53 +241,53 @@ r209_fishing1_no:
 	_TALK_OBJ_END
 	_END
 
-//�h�͂��h�I��
+//”はい”選択
 r209_fishing1_yes:
 	_ITEM_NAME		0,SCWK_TEMP0
 
 	_TALK_KEYWAIT	msg_r209_fishing1_02
 
-	//�����Z�b�g
+	//個数をセット
 	_LDVAL			SCWK_TEMP1,1
 
-	//�A�C�e���擾�����C�x���g(SCWK_TEMP0=�A�C�e���i���o�[�ASCWK_TEMP1=���������Ă���)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*����J�[�\���҂�����*/
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*送りカーソル待ちあり*/
 
-	//�擾�ςݏ�Ԃ�
+	//取得済み状態へ
 	_FLAG_SET		FE_IITURIZAO_GET
 
 	_JUMP			r209_fishing1_flag_on
 
 /********************************************************************/
-/*							���Ŕ�									*/
+/*							道看板									*/
 /********************************************************************/
 ev_r209_sign1:
 	_EASY_BOARD_MSG	msg_r209_sign1_01,BOARD_TYPE_ROAD,0
 	_END
 
 /********************************************************************/
-/*							���Ŕ�									*/
+/*							道看板									*/
 /********************************************************************/
 ev_r209_sign2:
 	_EASY_BOARD_MSG	msg_r209_sign2_01,BOARD_TYPE_ROAD,0
 	_END
 
 /********************************************************************/
-/*							���Ƃ��Ȍf����							*/
+/*							おとくな掲示板							*/
 /********************************************************************/
 ev_r209_sign3:
 	_EASY_INFOBOARD_MSG	msg_r209_sign3_01,BOARD_TYPE_INFO,0
 	_END
 
 /********************************************************************/
-/*							�W���M���O								*/
+/*							ジョギング								*/
 /********************************************************************/
 ev_r209_jogger1:
 	_EASY_OBJ_MSG	msg_r209_jogger_01_01
 	_END
 
 /********************************************************************/
-/*							�W���M���O								*/
+/*							ジョギング								*/
 /********************************************************************/
 ev_r209_jogger6:
 	_EASY_OBJ_MSG	msg_r209_jogger_06_01

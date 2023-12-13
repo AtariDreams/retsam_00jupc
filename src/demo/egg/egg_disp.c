@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	egg_disp.c
- * @brief	‰æ–Êü‚è‚ÌƒVƒXƒeƒ€
+ * @brief	ç”»é¢å‘¨ã‚Šã®ã‚·ã‚¹ãƒ†ãƒ 
  * @author	goto
- * @date	2006.05.20(“y)
+ * @date	2006.05.20(åœŸ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -48,13 +48,13 @@ extern void EggDisp_3DVramInit(void);
 // =============================================================================
 //
 //
-//	  •`‰æƒVƒXƒeƒ€ŠÖ˜A
+//	â–¡ æç”»ã‚·ã‚¹ãƒ†ãƒ é–¢é€£
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€‰Šú‰»
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
  * @param	none	
  *
@@ -73,7 +73,7 @@ void EggDisp_SystemInit(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	Šî–{ƒ¿İ’è
+ * @brief	åŸºæœ¬Î±è¨­å®š
  *
  * @param	none	
  *
@@ -93,7 +93,7 @@ void EggDisp_DefaultBlendSet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	3D‰Šú‰»
+ * @brief	3DåˆæœŸåŒ–
  *
  * @param	none	
  *
@@ -118,7 +118,7 @@ GF_G3DMAN* EggDisp_3D_Init(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	3DƒZƒbƒgƒAƒbƒv
+ * @brief	3Dã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  * @param	none	
  *
@@ -146,7 +146,7 @@ void EggDisp_3DSetUp(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	3DVram‰Šú‰»
+ * @brief	3DVramåˆæœŸåŒ–
  *
  * @param	none	
  *
@@ -169,8 +169,8 @@ void EggDisp_3DVramInit(void)
 	tex_addrs	= NNS_GfdGetTexKeyAddr(tex_key);
 	pltt_addrs	= NNS_GfdGetPlttKeyAddr(pltt_key);
 	
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ ƒeƒNƒXƒ`ƒƒVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", tex_addrs);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ @ƒpƒŒƒbƒgVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", pltt_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸ ãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", tex_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸ ã€€ãƒ‘ãƒ¬ãƒƒãƒˆVramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", pltt_addrs);
 
 	Particle_SystemWorkInit();		
 }
@@ -178,7 +178,7 @@ void EggDisp_3DVramInit(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	VramBankİ’è
+ * @brief	VramBankè¨­å®š
  *
  * @param	bgl	
  *
@@ -190,23 +190,23 @@ void EggDisp_VramBankSet(GF_BGL_INI* bgl)
 {
 	GF_Disp_GX_VisibleControlInit();	
 	
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -221,7 +221,7 @@ void EggDisp_VramBankSet(GF_BGL_INI* bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -257,7 +257,7 @@ void EggDisp_VramBankSet(GF_BGL_INI* bgl)
 	GF_Disp_DispOn();
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 	
-	///< ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	///< ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			{	///< BG
@@ -273,7 +273,7 @@ void EggDisp_VramBankSet(GF_BGL_INI* bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief	VBlankŠÖ”
+ * @brief	VBlanké–¢æ•°
  *
  * @param	work	
  *
@@ -287,7 +287,7 @@ void EggDisp_VBlank(void* work)
 	
 	SoftSpriteTextureTrans(emwk->sys.ssm_p);
 
-	DoVramTransferManager();					///< Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	DoVramTransferManager();					///< Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(emwk->sys.pfd);
 	
@@ -299,7 +299,7 @@ void EggDisp_VBlank(void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒBƒNƒ‹ƒƒCƒ“
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ¡ã‚¤ãƒ³
  *
  * @param	none	
  *
@@ -328,7 +328,7 @@ void EggDisp_ParticleMain(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒvƒtƒF[ƒhƒCƒ“
+ * @brief	ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  *
  * @param	none	
  *
@@ -345,7 +345,7 @@ void EggDisp_WipeFadeIn(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒvƒtƒF[ƒhƒAƒEƒg
+ * @brief	ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
  * @param	none	
  *
@@ -371,13 +371,13 @@ void EggDisp_WipeFadeOut(void)
 // =============================================================================
 //
 //
-//	  •`‰æƒc[ƒ‹ŠÖŒW
+//	â–¡ æç”»ãƒ„ãƒ¼ãƒ«é–¢ä¿‚
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	BMP win “o˜^
+ * @brief	BMP win ç™»éŒ²
  *
  * @param	bgl	
  * @param	pfd	
@@ -422,7 +422,7 @@ void EggDisp_BMP_WindowResLoad(GF_BGL_INI* bgl, PALETTE_FADE_PTR pfd, int wintyp
 					   0x20,
 					   EDPAL_MENU * 16);
 
-	///< ƒtƒHƒ“ƒg
+	///< ãƒ•ã‚©ãƒ³ãƒˆ
 	PaletteWorkSet_Arc(pfd,
 					   ARC_FONT,
 					   NARC_font_talk_ncrl, 
@@ -434,7 +434,7 @@ void EggDisp_BMP_WindowResLoad(GF_BGL_INI* bgl, PALETTE_FADE_PTR pfd, int wintyp
 
 //--------------------------------------------------------------
 /**
- * @brief	BMP win’Ç‰Á
+ * @brief	BMP winè¿½åŠ 
  *
  * @param	bgl	
  * @param	win	
@@ -465,7 +465,7 @@ void EggDisp_BMP_WindowAdd(GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, int frm, int x, 
 
 //--------------------------------------------------------------
 /**
- * @brief	BMP win ƒƒbƒZ[ƒW“o˜^
+ * @brief	BMP win ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç™»éŒ²
  *
  * @param	win	
  * @param	mes_id	
@@ -478,7 +478,7 @@ int EggDisp_BMP_MessageSet(GF_BGL_BMPWIN * win, int mes_id, POKEMON_PARAM* pp, i
 {
 	int index;
 	
-	STRBUF*		str;	///< Œ³ƒf[ƒ^
+	STRBUF*		str;	///< å…ƒãƒ‡ãƒ¼ã‚¿
 	STRBUF*		tmp;	///< 
 	WORDSET*	wset;
 	POKEMON_PASO_PARAM* ppp;
@@ -487,7 +487,7 @@ int EggDisp_BMP_MessageSet(GF_BGL_BMPWIN * win, int mes_id, POKEMON_PARAM* pp, i
 	
 	GF_BGL_BmpWinDataFill(win, FBMP_COL_WHITE);
 	
-	///< ‰Šú‰»
+	///< åˆæœŸåŒ–
 	man  = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG,
 						 NARC_msg_egg_demo_dat, HEAPID_EGG_DEMO);
 	wset = WORDSET_Create(HEAPID_EGG_DEMO);
@@ -502,7 +502,7 @@ int EggDisp_BMP_MessageSet(GF_BGL_BMPWIN * win, int mes_id, POKEMON_PARAM* pp, i
 	
 	index = GF_STR_PrintSimple(win, FONT_TALK, tmp, 0, 0, speed, NULL);
 	
-	///< ‰ğ•ú
+	///< è§£æ”¾
 	MSGMAN_Delete(man);
 	STRBUF_Delete(tmp);
 	STRBUF_Delete(str);
@@ -513,7 +513,7 @@ int EggDisp_BMP_MessageSet(GF_BGL_BMPWIN * win, int mes_id, POKEMON_PARAM* pp, i
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Í‚¢E‚¢‚¢‚¦
+ * @brief	ã¯ã„ãƒ»ã„ã„ãˆ
  *
  * @param	emwk	
  * @param	bgl	
@@ -570,7 +570,7 @@ void EggDisp_SelWindowAdd(EGG_MAIN_WORK* emwk, GF_BGL_INI* bgl, GF_BGL_BMPWIN* w
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Í‚¢E‚¢‚¢‚¦”jŠü
+ * @brief	ã¯ã„ãƒ»ã„ã„ãˆç ´æ£„
  *
  * @param	emwk	
  *
@@ -589,7 +589,7 @@ void EggDisp_SelWindowDel(EGG_MAIN_WORK* emwk)
 
 //--------------------------------------------------------------
 /**
- * @brief	BMP win ”jŠü
+ * @brief	BMP win ç ´æ£„
  *
  * @param	win	
  *
@@ -606,7 +606,7 @@ void EggDisp_BMP_WindowDel(GF_BGL_BMPWIN* win)
 
 //--------------------------------------------------------------
 /**
- * @brief	ã‰æ–Ê”wŒi‚Ìƒ[ƒh
+ * @brief	ä¸Šç”»é¢èƒŒæ™¯ã®ãƒ­ãƒ¼ãƒ‰
  *
  * @param	bgl	
  * @param	pfd	
@@ -637,7 +637,7 @@ void EggDisp_BG_ResourceLoad(GF_BGL_INI* bgl, PALETTE_FADE_PTR pfd)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Ê”wŒi
+ * @brief	ã‚µãƒ–ç”»é¢èƒŒæ™¯
  *
  * @param	bgl	
  * @param	pfd	
@@ -674,7 +674,7 @@ void EggDisp_SubBG_ResourceLoad(GF_BGL_INI* bgl, PALETTE_FADE_PTR pfd)
 // =============================================================================
 //
 //
-//	  ƒp[ƒeƒBƒNƒ‹
+//	â–¡ ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 //
 //
 // =============================================================================
@@ -686,7 +686,7 @@ static PTC_PTR EggParticle_PtcInit(int heap_id, int arc_id, int data_no);
 static void EggParticle_CallBack(EMIT_PTR emit);
 //--------------------------------------------------------------
 /**
- * @brief	—ÌˆæŠm•Û
+ * @brief	é ˜åŸŸç¢ºä¿
  *
  * @param	size	
  * @param	is4x4comp	
@@ -701,17 +701,17 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	u32 address;
 	
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
-	Particle_LnkTexKeySet(key);		//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_LnkTexKeySet(key);		//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	address = NNS_GfdGetTexKeyAddr(key);
-	OS_Printf("ƒeƒNƒXƒ`ƒƒVramƒAƒhƒŒƒX%#x\n", address);
+	OS_Printf("ãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 	return address;
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	—ÌˆæŠm•Û
+ * @brief	é ˜åŸŸç¢ºä¿
  *
  * @param	size	
  * @param	is4pltt	
@@ -726,17 +726,17 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 	u32 address;
 	
 	key = NNS_GfdAllocPlttVram(size, is4pltt, 0);
-	Particle_PlttLnkTexKeySet(key);	//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_PlttLnkTexKeySet(key);	//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	address = NNS_GfdGetPlttKeyAddr(key);
-	OS_Printf("ƒpƒŒƒbƒgVramƒAƒhƒŒƒX%#x\n", address);
+	OS_Printf("ãƒ‘ãƒ¬ãƒƒãƒˆVramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 	return address;
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€ƒZƒbƒg
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ ã‚»ãƒƒãƒˆ
  *
  * @param	heap_id	
  *
@@ -763,7 +763,7 @@ static PTC_PTR EggParticle_SystemSet(int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief	PTC‰Šú‰»
+ * @brief	PTCåˆæœŸåŒ–
  *
  * @param	heap_id	
  * @param	arc_id	
@@ -788,7 +788,7 @@ static PTC_PTR EggParticle_PtcInit(int heap_id, int arc_id, int data_no)
 
 //--------------------------------------------------------------
 /**
- * @brief	PTCI—¹
+ * @brief	PTCçµ‚äº†
  *
  * @param	ptc	
  *
@@ -808,7 +808,7 @@ void EggParticle_PtcExit(PTC_PTR ptc)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒR[ƒ‹ƒoƒbƒN
+ * @brief	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	emit	
  *
@@ -826,7 +826,7 @@ static void EggParticle_CallBack(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‰Šú‰»
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
  * @param	param	
  *
@@ -859,7 +859,7 @@ EGG_PARTICLE_SYS* EggParticle_Init(EGG_PARTICLE_PARAM* param)
 
 //--------------------------------------------------------------
 /**
- * @brief	SPA“o˜^
+ * @brief	SPAç™»éŒ²
  *
  * @param	eps	
  * @param	no	
@@ -884,7 +884,7 @@ void EggParticle_SprSet(EGG_PARTICLE_SYS* eps, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
  * @param	eps	
  *
@@ -907,7 +907,7 @@ BOOL EggParticle_Main(EGG_PARTICLE_SYS* eps)
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	eps	
  *
@@ -926,13 +926,13 @@ void EggParticle_End(EGG_PARTICLE_SYS* eps)
 // =============================================================================
 //
 //
-//	  ‚n‚`‚lŠÖ˜A
+//	â–¡ ï¼¯ï¼¡ï¼­é–¢é€£
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	›z‰»ƒfƒ‚ƒŠƒ\[ƒX“Ç‚İ‚İ
+ * @brief	å­µåŒ–ãƒ‡ãƒ¢ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
  * @param	emwk	
  *
@@ -969,7 +969,7 @@ void EggOAM_ResourceLoad(EGG_MAIN_WORK* emwk)
 	crp = emwk->sys.crp;
 	pfd = emwk->sys.pfd;
 	
-	///< ƒ^ƒ}ƒS
+	///< ã‚¿ãƒã‚´
 	CATS_LoadResourceCharArc(csp, crp, arc, egg_id[egg_type][0], TRUE, vram, EDID_EGG_NCGR);
 	CATS_LoadResourcePlttWorkArc(pfd, FADE_MAIN_OBJ, csp, crp, arc, egg_id[egg_type][1], FALSE, 1, vram, EDID_EGG_NCLR);
 	CATS_LoadResourceCellArc(csp, crp, arc, egg_id[egg_type][2], TRUE, EDID_EGG_NCER);
@@ -985,7 +985,7 @@ void EggOAM_ResourceLoad(EGG_MAIN_WORK* emwk)
 
 //--------------------------------------------------------------
 /**
- * @brief	OAM’Ç‰Á
+ * @brief	OAMè¿½åŠ 
  *
  * @param	emwk	
  *
@@ -1036,7 +1036,7 @@ void EggOAM_Add(EGG_MAIN_WORK* emwk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒ‚’†‚Ì“®‚«
+ * @brief	ãƒ‡ãƒ¢ä¸­ã®å‹•ã
  *
  * @param	emwk	
  *
@@ -1131,7 +1131,7 @@ BOOL EggOam_DemoMove(EGG_MAIN_WORK* emwk, int count)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒ‚’†‚Ì“®‚«
+ * @brief	ãƒ‡ãƒ¢ä¸­ã®å‹•ã
  *
  * @param	emwk	
  * @param	count	
@@ -1168,7 +1168,7 @@ int	EggOam_DemoMoveEx(EGG_MAIN_WORK* emwk, int count)
 
 //--------------------------------------------------------------
 /**
- * @brief	›z‰»ƒfƒ‚‚n‚`‚líœ
+ * @brief	å­µåŒ–ãƒ‡ãƒ¢ï¼¯ï¼¡ï¼­å‰Šé™¤
  *
  * @param	emwk	
  *
@@ -1186,7 +1186,7 @@ void EggOAM_Delete(EGG_MAIN_WORK* emwk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€‰Šú‰»
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
  * @param	sys	
  *
@@ -1203,7 +1203,7 @@ void EggOAM_CatsInit(COMMON_SYS_WORK* sys)
 			0, 128, 0, 32,
 		};
 		const TCATS_CHAR_MANAGER_MAKE ED_Ccmm = {
-			48 + 48,			///< IDŠÇ— main + sub
+			48 + 48,			///< IDç®¡ç† main + sub
 			1024 * 0x40,		///< 64k
 			 512 * 0x20,		///< 32k
 			GX_OBJVRAMMODE_CHAR_1D_64K,
@@ -1215,12 +1215,12 @@ void EggOAM_CatsInit(COMMON_SYS_WORK* sys)
 	{
 		BOOL active;
 		const TCATS_RESOURCE_NUM_LIST ED_ResourceList = {
-			48 + 48,	///< ƒLƒƒƒ‰“o˜^” 	main + sub
-			16 + 16,	///< ƒpƒŒƒbƒg“o˜^”	main + sub
-			64,			///< ƒZƒ‹
-			64,			///< ƒZƒ‹ƒAƒjƒ
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+			48 + 48,	///< ã‚­ãƒ£ãƒ©ç™»éŒ²æ•° 	main + sub
+			16 + 16,	///< ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æ•°	main + sub
+			64,			///< ã‚»ãƒ«
+			64,			///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		};
 		
 		sys->crp = CATS_ResourceCreate(sys->csp);
@@ -1235,7 +1235,7 @@ void EggOAM_CatsInit(COMMON_SYS_WORK* sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€íœ
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
  *
  * @param	sys	
  *
@@ -1254,13 +1254,13 @@ void EggOAM_CatsDelete(COMMON_SYS_WORK* sys)
 // =============================================================================
 //
 //
-//	  ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg
+//	â–¡ ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ““o˜^
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ç™»éŒ²
  *
  * @param	emwk	
  *
@@ -1282,7 +1282,7 @@ void EggPoke_Add(EGG_MAIN_WORK* emwk)
 	monsno  = PokeParaGet(pp, ID_PARA_monsno, NULL);
 	height	= PokeParaHeightGet(pp, PARA_FRONT);
 	
-	///< ƒ^ƒ}ƒS‚ğƒ^ƒ}ƒS‚¶‚á‚È‚­‚·‚é‚½‚ß‚É
+	///< ã‚¿ãƒã‚´ã‚’ã‚¿ãƒã‚´ã˜ã‚ƒãªãã™ã‚‹ãŸã‚ã«
 	{
 		int para = 0;
 
@@ -1301,7 +1301,7 @@ void EggPoke_Add(EGG_MAIN_WORK* emwk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒİ’è
+ * @brief	ã‚¢ãƒ‹ãƒ¡è¨­å®š
  *
  * @param	emwk	
  *
@@ -1335,7 +1335,7 @@ void EggPoke_Anm(EGG_MAIN_WORK* emwk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“íœ
+ * @brief	ãƒã‚±ãƒ¢ãƒ³å‰Šé™¤
  *
  * @param	emwk	
  *
@@ -1351,7 +1351,7 @@ void EggPoke_Del(EGG_MAIN_WORK* emwk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“”ñ•\¦
+ * @brief	ãƒã‚±ãƒ¢ãƒ³éè¡¨ç¤º
  *
  * @param	emwk	
  * @param	flag	

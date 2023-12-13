@@ -1,6 +1,6 @@
 //=============================================================================
 /**
- *	@brief	ƒ[ƒ‹ƒhƒ}ƒbƒv§Œäƒwƒbƒ_ƒtƒ@ƒCƒ‹
+ *	@brief	ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—åˆ¶å¾¡ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
  *
  *	@param	none
  *	@retval	none
@@ -13,7 +13,7 @@
 ///#include "field_3d_anime.h"
 //--------------------------------------------------------------
 //
-// WORLD_MAP‚Ì“à—e‚ðŽQÆ‚·‚é‚½‚ß‚ÌƒCƒ“ƒ^[ƒtƒF[ƒXŒQ
+// WORLD_MAPã®å†…å®¹ã‚’å‚ç…§ã™ã‚‹ãŸã‚ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ç¾¤
 //
 //--------------------------------------------------------------
 
@@ -51,7 +51,7 @@ extern int GetZoneIDFromMatID(const int inMatID, const u16 inX, const u16 inZ);
 extern void WorldMapSetOffset( WORLD_MAP_PTR world, u32 x, u32 z );
 
 //--------------------------------------------------------------
-//	ƒ}ƒbƒv‘‚«Š·‚¦“ÁŽêˆ—
+//	ãƒžãƒƒãƒ—æ›¸ãæ›ãˆç‰¹æ®Šå‡¦ç†
 //--------------------------------------------------------------
 extern void World_Overwrite_L04(WORLD_MAP_PTR world);
 extern void World_Overwrite_R224(WORLD_MAP_PTR world);

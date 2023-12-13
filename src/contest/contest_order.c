@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	contest_order.c
- * @brief	ƒRƒ“ƒeƒXƒg’ÊM‘—óM
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€šä¿¡é€å—ä¿¡
  * @author	matsuda
- * @date	2005.12.13(‰Î)
+ * @date	2005.12.13(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -15,25 +15,25 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///“¯‚É–½—ß‚ğo‚¹‚é”(“¯ƒtƒŒ[ƒ€‚Éo‚¹‚é–½—ß‚Í1‚Â)
+///åŒæ™‚ã«å‘½ä»¤ã‚’å‡ºã›ã‚‹æ•°(åŒãƒ•ãƒ¬ãƒ¼ãƒ ã«å‡ºã›ã‚‹å‘½ä»¤ã¯1ã¤)
 #define CONTEST_ORDER_SAME_MAX		(32)
 
-///‘—Mƒ^ƒCƒv
+///é€ä¿¡ã‚¿ã‚¤ãƒ—
 enum{
-	TRANSMIT_TYPE_REQUEST,		///<–½—ß
-	TRANSMIT_TYPE_ANSWER,		///<•Ô–
+	TRANSMIT_TYPE_REQUEST,		///<å‘½ä»¤
+	TRANSMIT_TYPE_ANSWER,		///<è¿”äº‹
 };
 
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg‘—óMƒ[ƒN‰Šú‰»
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€å—ä¿¡ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param   cow				ƒRƒ“ƒeƒXƒg‘—óMƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   initdata		‰Šú‰»ƒf[ƒ^
+ * @param   cow				ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€å—ä¿¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   initdata		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void CO_WorkInit(CONTEST_ORDER_WORK *cow, const CO_INIT_DATA *initdata)
@@ -49,8 +49,8 @@ void CO_WorkInit(CONTEST_ORDER_WORK *cow, const CO_INIT_DATA *initdata)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŠƒNƒGƒXƒgƒrƒbƒg‚ğƒZƒbƒg‚·‚é
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static int CO_RequestBitSet(CONTEST_ORDER_WORK *cow)
@@ -64,16 +64,16 @@ static int CO_RequestBitSet(CONTEST_ORDER_WORK *cow)
 		}
 	}
 	
-	GF_ASSERT(0 && "Å‘å“¯‘—M–½—ß”‚ğ’´‚¦‚Ä‚¢‚Ü‚·\n");
+	GF_ASSERT(0 && "æœ€å¤§åŒæ™‚é€ä¿¡å‘½ä»¤æ•°ã‚’è¶…ãˆã¦ã„ã¾ã™\n");
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‚ÌƒŠƒNƒGƒXƒgƒrƒbƒg‚ğƒŠƒZƒbƒg‚·‚é
+ * @brief   æŒ‡å®šã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   syswork		Še•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   bit_no		ƒrƒbƒg”Ô†
+ * @param   syswork		å„éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   bit_no		ãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static void CO_RequestBitReset(CONTEST_ORDER_WORK *cow, int bit_no)
@@ -83,9 +83,9 @@ static void CO_RequestBitReset(CONTEST_ORDER_WORK *cow, int bit_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŠƒNƒGƒXƒgƒrƒbƒg‚ª‚¢‚­‚Â—§‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚é
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  —§‚Á‚Ä‚¢‚éƒrƒbƒg”
+ * @brief   ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆãŒã„ãã¤ç«‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  ç«‹ã£ã¦ã„ã‚‹ãƒ“ãƒƒãƒˆæ•°
  */
 //--------------------------------------------------------------
 u8 CO_RequestBitNumCheck(CONTEST_ORDER_WORK *cow)
@@ -95,12 +95,12 @@ u8 CO_RequestBitNumCheck(CONTEST_ORDER_WORK *cow)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’èƒrƒbƒg”Ô†‚ÌƒŠƒNƒGƒXƒgƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚é‚©Šm”F
+ * @brief   æŒ‡å®šãƒ“ãƒƒãƒˆç•ªå·ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã‚‹ã‹ç¢ºèª
  *
- * @param   syswork		Še•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   bit_no		ƒrƒbƒg”Ô†
+ * @param   syswork		å„éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   bit_no		ãƒ“ãƒƒãƒˆç•ªå·
  *
- * @retval  TRUE:ƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚éB@FALSE:ƒrƒbƒg‚ª—‚¿‚Ä‚¢‚é
+ * @retval  TRUE:ãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã‚‹ã€‚ã€€FALSE:ãƒ“ãƒƒãƒˆãŒè½ã¡ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 BOOL CO_RequestBitCheck(CONTEST_ORDER_WORK *cow, int bit_no)
@@ -113,35 +113,35 @@ BOOL CO_RequestBitCheck(CONTEST_ORDER_WORK *cow, int bit_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘—Mƒoƒbƒtƒ@‚É‘—Mƒf[ƒ^‚ğƒZƒbƒg
+ * @brief   é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   apw					‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_breeder		‘ÎÛƒuƒŠ[ƒ_[
- * @param   order_no			–½—ß”Ô†
- * @param   data				‘—Mƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^(‚È‚¢ê‡‚ÍNULL)
- * @param   data_size			‘—Mƒf[ƒ^ƒTƒCƒY
+ * @param   apw					æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_breeder		å¯¾è±¡ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
+ * @param   order_no			å‘½ä»¤ç•ªå·
+ * @param   data				é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿(ãªã„å ´åˆã¯NULL)
+ * @param   data_size			é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  * 
- * @retval	“o˜^‚³‚ê‚½ƒŠƒNƒGƒXƒgƒrƒbƒg”Ô†
+ * @retval	ç™»éŒ²ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ“ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 int CO_REQUEST_TransmitBufferSet(CONTEST_ORDER_WORK *cow, u8 select_breeder, u16 order_no, void *data, int data_size)
 {
 	CORDER_HEAD trans_head;
 	
-//	OS_TPrintf("‘—Mƒoƒbƒtƒ@‚ÉƒZƒbƒg‚µ‚½ƒf[ƒ^‚ÌƒTƒCƒY%d\n", data_size);
+//	OS_TPrintf("é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºï¼%d\n", data_size);
 	GF_ASSERT(sizeof(CORDER_HEAD) + data_size <= CO_TRANSMIT_BUF_SIZE);
 	
-	//‘—Mƒoƒbƒtƒ@ƒNƒŠƒA
+	//é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	MI_CpuClear8(cow->transmit_buf, CO_TRANSMIT_BUF_SIZE);
 
-	//ƒwƒbƒ_ì¬
+	//ãƒ˜ãƒƒãƒ€ä½œæˆ
 	trans_head.select_breeder = select_breeder;
 	trans_head.order_no = order_no;
 	trans_head.bit_no = CO_RequestBitSet(cow);
 	trans_head.type = TRANSMIT_TYPE_REQUEST;
 	trans_head.data_size = data_size + sizeof(CORDER_HEAD);
 	
-	//ƒf[ƒ^ƒZƒbƒg
+	//ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	MI_CpuCopy32(&trans_head, cow->transmit_buf, sizeof(CORDER_HEAD));
 	MI_CpuCopy8(data, &cow->transmit_buf[sizeof(CORDER_HEAD)], data_size);
 	
@@ -153,12 +153,12 @@ int CO_REQUEST_TransmitBufferSet(CONTEST_ORDER_WORK *cow, u8 select_breeder, u16
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘—Mƒoƒbƒtƒ@‚É•Ô–ƒf[ƒ^‚ğƒZƒbƒg
+ * @brief   é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«è¿”äº‹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req_head		ƒŠƒNƒGƒXƒgƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
- * @param   data			‘—Mƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^(‚È‚¢ê‡‚ÍNULL)
- * @param   data_size		‘—Mƒf[ƒ^ƒTƒCƒY
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req_head		ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   data			é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿(ãªã„å ´åˆã¯NULL)
+ * @param   data_size		é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------
 void CO_ANSWER_TransmitBufferSet(CONTEST_ORDER_WORK *cow, const CORDER_HEAD *req_head, void *data, int data_size)
@@ -167,16 +167,16 @@ void CO_ANSWER_TransmitBufferSet(CONTEST_ORDER_WORK *cow, const CORDER_HEAD *req
 	
 	GF_ASSERT(sizeof(CORDER_HEAD) + data_size <= CO_TRANSMIT_BUF_SIZE);
 	
-	//‘—Mƒoƒbƒtƒ@ƒNƒŠƒA
+	//é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	MI_CpuClear8(cow->transmit_buf, CO_TRANSMIT_BUF_SIZE);
 
-	//ƒwƒbƒ_ì¬
+	//ãƒ˜ãƒƒãƒ€ä½œæˆ
 	answer_head = *req_head;
 	answer_head.select_breeder = CSELECT_SERVER;
 	answer_head.type = TRANSMIT_TYPE_ANSWER;
 	answer_head.data_size = data_size + sizeof(CORDER_HEAD);
 	
-	//ƒf[ƒ^ƒZƒbƒg
+	//ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	MI_CpuCopy32(&answer_head, cow->transmit_buf, sizeof(CORDER_HEAD));
 	if(data != NULL){
 		MI_CpuCopy8(data, &cow->transmit_buf[sizeof(CORDER_HEAD)], data_size);
@@ -187,12 +187,12 @@ void CO_ANSWER_TransmitBufferSet(CONTEST_ORDER_WORK *cow, const CORDER_HEAD *req
 
 //--------------------------------------------------------------
 /**
- * @brief   óMƒoƒbƒtƒ@‚©‚çƒwƒbƒ_ƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ÆAƒf[ƒ^ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ‚èo‚·
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã€ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–ã‚Šå‡ºã™
  *
- * @param   syswork		Še•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   net_id		æ“¾‚·‚éƒoƒbƒtƒ@‚ÌƒlƒbƒgID
- * @param   req_head	‘—óMƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^‚ğ‘ã“ü‚·‚éƒ|ƒCƒ“ƒ^
- * @param   data		óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ‘ã“ü‚·‚éƒ|ƒCƒ“ƒ^
+ * @param   syswork		å„éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   net_id		å–å¾—ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ãƒãƒƒãƒˆID
+ * @param   req_head	é€å—ä¿¡ãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ä»£å…¥ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
+ * @param   data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ä»£å…¥ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void CO_RECIEVE_BufferDataGet(CONTEST_ORDER_WORK *cow, int net_id, CORDER_HEAD **req_head, void **data)
@@ -203,11 +203,11 @@ static void CO_RECIEVE_BufferDataGet(CONTEST_ORDER_WORK *cow, int net_id, CORDER
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—M‚ªo—ˆ‚éó‘Ô‚©ƒ`ƒFƒbƒN
+ * @brief   å‘½ä»¤é€ä¿¡ãŒå‡ºæ¥ã‚‹çŠ¶æ…‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:o—ˆ‚éB@FALSE:o—ˆ‚È‚¢
+ * @retval  TRUE:å‡ºæ¥ã‚‹ã€‚ã€€FALSE:å‡ºæ¥ãªã„
  */
 //--------------------------------------------------------------
 static BOOL COSub_OrderPossibleCheck(CONTEST_ORDER_WORK *cow)
@@ -224,13 +224,13 @@ static BOOL COSub_OrderPossibleCheck(CONTEST_ORDER_WORK *cow)
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ß‘—MƒRƒ}ƒ“ƒh‚ğÀs‚·‚é
+ * @brief   å‘½ä»¤é€ä¿¡ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œã™ã‚‹
  *
- * @param   syswork		Še•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   order_no	–½—ß”Ô†(AORDER_NO_???)
- * @param   work		”CˆÓ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   syswork		å„éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   order_no	å‘½ä»¤ç•ªå·(AORDER_NO_???)
+ * @param   work		ä»»æ„ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‘—M¬Œ÷B@FALSE:‘—M‘Ò‚¿
+ * @retval  TRUE:é€ä¿¡æˆåŠŸã€‚ã€€FALSE:é€ä¿¡å¾…ã¡
  */
 //--------------------------------------------------------------
 int CO_OrderSet(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work)
@@ -246,13 +246,13 @@ int CO_OrderSet(CONTEST_ORDER_WORK *cow, void *syswork, int order_no, void *work
 
 //--------------------------------------------------------------
 /**
- * @brief   select_breeder‚Åw’è‚³‚ê‚Ä‚¢‚é‚Ì‚ª©•ª‚È‚Ì‚©ƒ`ƒFƒbƒN‚·‚é
+ * @brief   select_breederã§æŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã®ãŒè‡ªåˆ†ãªã®ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @param   my_breeder_no		©•ª‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   server_no			ƒT[ƒo[‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   select_breeder		‘I‘ğƒuƒŠ[ƒ_[
+ * @param   my_breeder_no		è‡ªåˆ†ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   server_no			ã‚µãƒ¼ãƒãƒ¼ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   select_breeder		é¸æŠãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
  *
- * @retval  TRUE:©•ªB@FALSE:©•ª‚Å‚Í‚È‚¢
+ * @retval  TRUE:è‡ªåˆ†ã€‚ã€€FALSE:è‡ªåˆ†ã§ã¯ãªã„
  */
 //--------------------------------------------------------------
 static BOOL COSub_SelectBreederCheck(int my_breeder_no, int server_no, int select_breeder)
@@ -266,11 +266,11 @@ static BOOL COSub_SelectBreederCheck(int my_breeder_no, int server_no, int selec
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘—Mƒoƒbƒtƒ@‚Éƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚ê‚Î‘—M‚ğs‚¤
+ * @brief   é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚Œã°é€ä¿¡ã‚’è¡Œã†
  *
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M‚µ‚Ä‚¢‚È‚¢
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 BOOL CO_TransmitCheckExe(CONTEST_ORDER_WORK *cow)
@@ -280,7 +280,7 @@ BOOL CO_TransmitCheckExe(CONTEST_ORDER_WORK *cow)
 	}
 	
 	if(cow->sio_flag == FALSE){
-		//©•ª‚¾‚¯óM
+		//è‡ªåˆ†ã ã‘å—ä¿¡
 		MI_CpuCopy8(cow->transmit_buf, cow->receive_buf[cow->my_breeder_no], CO_TRANSMIT_BUF_SIZE);
 		cow->receive_flag[cow->my_breeder_no] = TRUE;
 
@@ -299,8 +299,8 @@ BOOL CO_TransmitCheckExe(CONTEST_ORDER_WORK *cow)
 	#endif
 //		if(CommSendData(CC_NORMAL_DATA, cow->transmit_buf, chead->data_size) == TRUE){
 		if(CommSendHugeData(CC_NORMAL_DATA, cow->transmit_buf, chead->data_size) == TRUE){
-			OS_TPrintf("ƒf[ƒ^‘—M¬Œ÷\n");
-			//«HugeData‚Å‘—M‚·‚éê‡‚Í‘—M‚ªI‚í‚é‚Ü‚Å•Û‚·‚é•K—v‚ª‚ ‚é‚Ì‚ÅƒNƒŠƒA‚µ‚È‚¢
+			OS_TPrintf("ãƒ‡ãƒ¼ã‚¿é€ä¿¡æˆåŠŸ\n");
+			//â†“HugeDataã§é€ä¿¡ã™ã‚‹å ´åˆã¯é€ä¿¡ãŒçµ‚ã‚ã‚‹ã¾ã§ä¿æŒã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã®ã§ã‚¯ãƒªã‚¢ã—ãªã„
 			//MI_CpuClear8(cow->transmit_buf, CO_TRANSMIT_BUF_SIZE);
 			cow->transmit_flag = FALSE;
 			return TRUE;
@@ -311,12 +311,12 @@ BOOL CO_TransmitCheckExe(CONTEST_ORDER_WORK *cow)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘—Mƒoƒbƒtƒ@‚Éƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é‚©Šm”F
+ * @brief   é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹ã‹ç¢ºèª
  *
  * @param   cow		
  *
- * @retval  TRUE:ƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é
- * @retval  FALSE:ƒf[ƒ^‚Í–³‚¢
+ * @retval  TRUE:ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹
+ * @retval  FALSE:ãƒ‡ãƒ¼ã‚¿ã¯ç„¡ã„
  */
 //--------------------------------------------------------------
 BOOL CO_TransmitFlagCheck(CONTEST_ORDER_WORK *cow)
@@ -326,11 +326,11 @@ BOOL CO_TransmitFlagCheck(CONTEST_ORDER_WORK *cow)
 
 //--------------------------------------------------------------
 /**
- * @brief   –½—ßƒRƒ}ƒ“ƒh‚ğóM‚µ‚½‚©Šm”F‚µAóM‚µ‚Ä‚¢‚ê‚ÎÀs
+ * @brief   å‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ã‚’å—ä¿¡ã—ãŸã‹ç¢ºèªã—ã€å—ä¿¡ã—ã¦ã„ã‚Œã°å®Ÿè¡Œ
  *
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:–½—ßÀs‚µ‚½B@FALSE:óM‚È‚µ
+ * @retval  TRUE:å‘½ä»¤å®Ÿè¡Œã—ãŸã€‚ã€€FALSE:å—ä¿¡ãªã—
  */
 //--------------------------------------------------------------
 int CO_RecieveCheckExe(CONTEST_ORDER_WORK *cow, void *syswork)
@@ -345,14 +345,14 @@ int CO_RecieveCheckExe(CONTEST_ORDER_WORK *cow, void *syswork)
 	if(1){	//cow->sio_flag == FALSE){
 		for(i = 0; i < CC_NETID_MAX; i++){
 			if(cow->receive_flag[i] == TRUE){
-				//óMƒf[ƒ^æ“¾
+				//å—ä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—
 				CO_RECIEVE_BufferDataGet(cow, i, &req_head, &data);
-				//©•ª‚ª‘ÎÛ‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚©Šm”F
+				//è‡ªåˆ†ãŒå¯¾è±¡ã«å«ã¾ã‚Œã¦ã„ã‚‹ã‹ç¢ºèª
 				if(COSub_SelectBreederCheck(cow->my_breeder_no, 
 						cow->server_no, req_head->select_breeder) == TRUE){
-					//–½—ßƒRƒ}ƒ“ƒh‚ª—pˆÓ‚³‚ê‚Ä‚¢‚é‚©Šm”F
+					//å‘½ä»¤ã‚³ãƒãƒ³ãƒ‰ãŒç”¨æ„ã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèª
 					if(req_head->order_no < cow->func_tbl_max){
-						//óM–½—ßÀs
+						//å—ä¿¡å‘½ä»¤å®Ÿè¡Œ
 						if(req_head->type == TRANSMIT_TYPE_REQUEST){
 							cow->func_tbl[req_head->order_no].receive_func(cow, syswork, req_head, data);
 						}
@@ -361,18 +361,18 @@ int CO_RecieveCheckExe(CONTEST_ORDER_WORK *cow, void *syswork)
 								ansdat.data[i] = data;
 								cow->func_tbl[req_head->order_no].answer_func(cow, syswork, req_head, &ansdat, i);
 							}
-							//•Ô–‚ª—ˆ‚½‚Ì‚Åƒrƒbƒg—‚Æ‚·
+							//è¿”äº‹ãŒæ¥ãŸã®ã§ãƒ“ãƒƒãƒˆè½ã¨ã™
 							CO_RequestBitReset(cow, req_head->bit_no);
-							//•Ô–‚ª—ˆ‚½‚Ì‚ÅƒJƒEƒ“ƒgƒCƒ“ƒNƒŠƒƒ“ƒg
+							//è¿”äº‹ãŒæ¥ãŸã®ã§ã‚«ã‚¦ãƒ³ãƒˆã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 							cow->answer_count++;
 						}
 					}
 					else{
-						OS_TPrintf("—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢–½—ß”Ô†‚ğóM‚µ‚½‚Ì‚Å‰½‚à‚¹‚¸‚É–³‹‚µ‚Ü‚·\n");
+						OS_TPrintf("ç”¨æ„ã•ã‚Œã¦ã„ãªã„å‘½ä»¤ç•ªå·ã‚’å—ä¿¡ã—ãŸã®ã§ä½•ã‚‚ã›ãšã«ç„¡è¦–ã—ã¾ã™\n");
 					}
 				}
 				
-				//óMƒoƒbƒtƒ@ƒNƒŠƒA
+				//å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 				cow->receive_flag[i] = FALSE;
 				MI_CpuClear8(cow->receive_buf[i], CO_RECEIVE_BUF_SIZE);
 				return TRUE;
@@ -384,22 +384,22 @@ int CO_RecieveCheckExe(CONTEST_ORDER_WORK *cow, void *syswork)
 
 //--------------------------------------------------------------
 /**
- * @brief   •Ô–óMƒJƒEƒ“ƒg‚ªw’è”‚É’B‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * @brief   è¿”äº‹å—ä¿¡ã‚«ã‚¦ãƒ³ãƒˆãŒæŒ‡å®šæ•°ã«é”ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   cow				ƒRƒ“ƒeƒXƒg‘—óMƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   answer_num		w’èóMl”
- * @param   my_breeder		©•ª‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   server_breeder	ƒT[ƒo[‚ÌƒuƒŠ[ƒ_[”Ô†
+ * @param   cow				ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé€å—ä¿¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   answer_num		æŒ‡å®šå—ä¿¡äººæ•°
+ * @param   my_breeder		è‡ªåˆ†ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   server_breeder	ã‚µãƒ¼ãƒãƒ¼ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  *
- * @retval  TRUE:óM‚µ‚Ä‚¢‚éB@FALSEFw’è”‚É’B‚µ‚Ä‚¢‚È‚¢
+ * @retval  TRUE:å—ä¿¡ã—ã¦ã„ã‚‹ã€‚ã€€FALSEï¼šæŒ‡å®šæ•°ã«é”ã—ã¦ã„ãªã„
  *
- * ƒT[ƒo[ê—p–½—ß‚Å‚·Bq‹@‚ªŒÄ‚ñ‚¾ê‡‚Íí‚ÉTRUE‚ª•Ô‚è‚Ü‚·B
+ * ã‚µãƒ¼ãƒãƒ¼å°‚ç”¨å‘½ä»¤ã§ã™ã€‚å­æ©ŸãŒå‘¼ã‚“ã å ´åˆã¯å¸¸ã«TRUEãŒè¿”ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 BOOL CO_AnswerCountCheck(CONTEST_ORDER_WORK *cow, int answer_num, int my_breeder, int server_breeder)
 {
 	if(my_breeder != server_breeder){
-		return TRUE;	//ƒT[ƒo[ê—p–½—ß‚È‚Ì‚ÅA©•ª‚ªƒT[ƒo[‚Å‚È‚¢‚Íí‚ÉŒ‹‰Ê‚ÍTRUE
+		return TRUE;	//ã‚µãƒ¼ãƒãƒ¼å°‚ç”¨å‘½ä»¤ãªã®ã§ã€è‡ªåˆ†ãŒã‚µãƒ¼ãƒãƒ¼ã§ãªã„æ™‚ã¯å¸¸ã«çµæœã¯TRUE
 	}
 	
 	if(cow->answer_count >= answer_num){

@@ -3,8 +3,8 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_3dobjcont.h
- *	@brief		�o�ꂷ��l�������ׂĊǗ�����V�X�e��	
- *				�l���ɑ΂��郊�N�G�X�g�����ׂĂ����𓖂��čs��
+ *	@brief		登場する人物をすべて管理するシステム	
+ *				人物に対するリクエストもすべてここを当して行う
  *	@author		tomoya takahashi
  *	@data		2007.11.13
  *
@@ -20,48 +20,48 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�v���C���[����^�C�v
+///	プレイヤー動作タイプ
 //=====================================
 typedef enum {
-	WFLBY_3DOBJCONT_MOVENONE,	// �����������Ȃ�
-	WFLBY_3DOBJCONT_MOVEPLAYER,	// ��l������
-	WFLBY_3DOBJCONT_MOVENPC,	// NPC����
-	WFLBY_3DOBJCONT_MOVEFLYUP,	// ���ł������Ă���	���ł�����ƕ`��X�V�t���O��OFF�̂܂܂ɂȂ�܂�		FLYDOWN�Ȃǂ��ĂԂƂ܂��X�VON�ɂȂ�܂�
-	WFLBY_3DOBJCONT_MOVEFLYDOWN,// ���ŗ����Ă���
-	WFLBY_3DOBJCONT_MOVEROTAUP,		// ��]���Ȃ��琁�����
-	WFLBY_3DOBJCONT_MOVEROTADOWN,	// ��]���鐁�����
-	WFLBY_3DOBJCONT_MOVEROTALEFT,	// ��]���Ȃ��琁�����
-	WFLBY_3DOBJCONT_MOVEROTARIGHT,	// ��]���鐁�����
-	WFLBY_3DOBJCONT_MOVEJUMP,	// �W�����v
-	WFLBY_3DOBJCONT_MOVENUM,	// ����^�C�v��
+	WFLBY_3DOBJCONT_MOVENONE,	// 何も動かさない
+	WFLBY_3DOBJCONT_MOVEPLAYER,	// 主人公動作
+	WFLBY_3DOBJCONT_MOVENPC,	// NPC動作
+	WFLBY_3DOBJCONT_MOVEFLYUP,	// 飛んであがっている	飛んであがると描画更新フラグがOFFのままになります		FLYDOWNなどを呼ぶとまだ更新ONになります
+	WFLBY_3DOBJCONT_MOVEFLYDOWN,// 飛んで落ちてくる
+	WFLBY_3DOBJCONT_MOVEROTAUP,		// 回転しながら吹き飛ぶ
+	WFLBY_3DOBJCONT_MOVEROTADOWN,	// 回転する吹き飛ぶ
+	WFLBY_3DOBJCONT_MOVEROTALEFT,	// 回転しながら吹き飛ぶ
+	WFLBY_3DOBJCONT_MOVEROTARIGHT,	// 回転する吹き飛ぶ
+	WFLBY_3DOBJCONT_MOVEJUMP,	// ジャンプ
+	WFLBY_3DOBJCONT_MOVENUM,	// 動作タイプ数
 } WFLBY_3DOBJCONT_MOVETYPE;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�V�X�e���\����
+///	システム構造体
 //=====================================
 typedef struct _WFLBY_3DOBJCONT WFLBY_3DOBJCONT;
 
 //-------------------------------------
-///	���[�N�\����
+///	ワーク構造体
 //=====================================
 typedef struct _WFLBY_3DPERSON WFLBY_3DPERSON;
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
-// �V�X�e���Ǘ�
+// システム管理
 extern WFLBY_3DOBJCONT* WFLBY_3DOBJCONT_Init( u32 objnum, u32 hero_sex, const WFLBY_MAPCONT* cp_map, u32 heapID, u32 gheapID );
 extern void WFLBY_3DOBJCONT_Exit( WFLBY_3DOBJCONT* p_sys );
 extern void WFLBY_3DOBJCONT_Move( WFLBY_3DOBJCONT* p_sys );
@@ -69,19 +69,19 @@ extern void WFLBY_3DOBJCONT_ReqMove( WFLBY_3DOBJCONT* p_sys );
 extern void WFLBY_3DOBJCONT_Draw( WFLBY_3DOBJCONT* p_sys );
 extern void WFLBY_3DOBJCONT_VBlank( WFLBY_3DOBJCONT* p_sys );
 
-// �e����
+// 影操作
 extern void WFLBY_3DOBJCONT_InitShadowAlpha( WFLBY_3DOBJCONT* p_sys, WFLBY_LIGHT_NEON_ROOMTYPE roomtype );
 extern void WFLBY_3DOBJCONT_SetShadowAlpha( WFLBY_3DOBJCONT* p_sys, WFLBY_LIGHT_NEON_ROOMTYPE roomtype );
 
-// �����蔻��֌W
+// 当たり判定関係
 extern const WFLBY_3DPERSON* WFLBY_3DOBJCONT_CheckSysGridHit( const WFLBY_3DOBJCONT* cp_sys, u16 gridx, u16 gridy );
 extern BOOL WFLBY_3DOBJCONT_CheckGridHit( const WFLBY_3DPERSON* cp_wk, u16 gridx, u16 gridy );
 extern BOOL WFLBY_3DOBJCONT_GetOpenGird4Way( WFLBY_3DOBJCONT* p_sys, const WFLBY_3DPERSON* cp_wk, u32* p_way, WF2DMAP_POS* p_pos );
 
-// ���N�G�X�g�R�}���h�ݒ�
+// リクエストコマンド設定
 extern void WFLBY_3DOBJCONT_SetReqCmd( WFLBY_3DOBJCONT* p_sys, const WF2DMAP_REQCMD* cp_cmd );
 
-//  ���[�N�o�^�A�j���A����
+//  ワーク登録、破棄、検索
 extern WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddPlayer( WFLBY_3DOBJCONT* p_sys, u32 plid );
 extern WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddPlayerEx( WFLBY_3DOBJCONT* p_sys, u32 plid, u32 gridx,  u32 gridy );
 extern WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddNpc( WFLBY_3DOBJCONT* p_sys, u32 plid, u32 trtype );
@@ -90,7 +90,7 @@ extern WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetPlIDWk( WFLBY_3DOBJCONT* p_sys, u32 pl
 extern WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetPlayer( WFLBY_3DOBJCONT* p_sys );
 extern WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetPierrot( WFLBY_3DOBJCONT* p_sys );
 
-// ���[�N����
+// ワーク操作
 extern void WFLBY_3DOBJCONT_SetWkPos( WFLBY_3DPERSON* p_wk, WF2DMAP_POS pos );
 extern void WFLBY_3DOBJCONT_SetWkPosAndWay( WFLBY_3DPERSON* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way );
 extern WF2DMAP_POS WFLBY_3DOBJCONT_GetWkPos( const WFLBY_3DPERSON* cp_wk );
@@ -104,7 +104,7 @@ extern WFLBY_3DOBJCONT_MOVETYPE WFLBY_3DOBJCONT_GetWkMove( const WFLBY_3DPERSON*
 extern WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetFrontPerson( WFLBY_3DOBJCONT* p_sys, const WFLBY_3DPERSON* cp_wk );
 extern BOOL WFLBY_3DOBJCONT_GetCullingFlag( const WFLBY_3DPERSON* cp_wk );
 
-// �O������\�������̂ݕύX����
+// 外側から表示部分のみ変更する
 extern void WFLBY_3DOBJCONT_DRAW_SetUpdata( WFLBY_3DPERSON* p_wk, BOOL updata );
 extern BOOL WFLBY_3DOBJCONT_DRAW_GetUpdata( const WFLBY_3DPERSON* cp_wk );
 extern void WFLBY_3DOBJCONT_DRAW_SetMatrix( WFLBY_3DPERSON* p_wk, const WF2DMAP_POS* cp_pos );

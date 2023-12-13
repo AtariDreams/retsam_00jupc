@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	mysign_local.h
- * @brief	�T�C����ʍ\���̒�`�i�����Q�Ɨp)
+ * @brief	サイン画面構造体定義（内部参照用)
  *          
  * @author	Akito Mori
  * @date    2006.04.11
@@ -15,32 +15,32 @@
 
 #include "system/touch_subwindow.h"
 
-// �@�\�{�^���p��`
-#define FUNCBUTTON_NUM	( 7 ) 		// �@�\�{�^���̐�
-#define START_WORDPANEL ( 0 )		// �ŏ��̕������̓p�l���̔ԍ��i�O���Ђ炪�ȁj
+// 機能ボタン用定義
+#define FUNCBUTTON_NUM	( 7 ) 		// 機能ボタンの数
+#define START_WORDPANEL ( 0 )		// 最初の文字入力パネルの番号（０＝ひらがな）
 
-// �ڑ��l��MAX�͂T�l
+// 接続人数MAXは５人
 #define OEKAKI_MEMBER_MAX	( 5 )
 
 
-// CLACT�Œ�`���Ă���Z�����傫�����ăT�u��ʂɉe�����łĂ��܂��̂ŗ����Ă݂�
+// CLACTで定義しているセルが大きすぎてサブ画面に影響がでてしまうので離してみる
 #define NAMEIN_SUB_ACTOR_DISTANCE 	(256*FX32_ONE)
 
-// CellActor�ɏ��������郊�\�[�X�}�l�[�W���̎�ނ̐��i���}���`�Z���E�}���`�Z���A�j���͎g�p���Ȃ��j
+// CellActorに処理させるリソースマネージャの種類の数（＝マルチセル・マルチセルアニメは使用しない）
 #define CLACT_RESOURCE_NUM		(  4 )
 #define NAMEIN_OAM_NUM			( 14 )
 
 
-// ���b�Z�[�W�\�����WAIT
+// メッセージ表示後のWAIT
 #define OEKAKI_MESSAGE_END_WAIT	( 60 )
 
 
-// ���G�����{�[�h�̕��E����
+// お絵かきボードの幅・高さ
 #define OEKAKI_BOARD_W	 	( 24 )
 #define OEKAKI_BOARD_H	 	(  8 )
 #define OEKAKI_GRAPHI_SIZE  ( OEKAKI_BOARD_W*OEKAKI_BOARD_H*32 )
 
-// �����p�l���̑J�ڗp
+// 文字パネルの遷移用
 enum{
 	MYSIGN_MODE_INIT  = 0, 
     MYSIGN_MODE,
@@ -53,12 +53,12 @@ enum{
 };
 
 
-// �㉺��ʎw���`
+// 上下画面指定定義
 #define BOTH_LCD	( 2 )
-#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// �v�͂O��
-#define SUB_LCD		( GF_BGL_SUB_DISP )		// �P�Ȃ�ł����B
+#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// 要は０と
+#define SUB_LCD		( GF_BGL_SUB_DISP )		// １なんですが。
 
-// BMPWIN�w��
+// BMPWIN指定
 enum{
 	BMP_NAME1_S_BG0,
 	BMP_NAME2_S_BG0,
@@ -68,13 +68,13 @@ enum{
 	BMP_OEKAKI_MAX,
 };
 
-// �^�b�`�p�l�����\����
-// ���̃f�[�^���ʐM�ő��M����܂�
+// タッチパネル情報構造体
+// このデータが通信で送信されます
 typedef struct{
-	u8 x[8];	// �ő�8�񕪂̃^�b�`���W
+	u8 x[8];	// 最大8回分のタッチ座標
 	u8 y[8];	// 
-	u8 brush:4;	// �I�𒆂̃u���V
-	u8 size:4;	// �T���v�����O������
+	u8 brush:4;	// 選択中のブラシ
+	u8 size:4;	// サンプリング成功個数
 }TOUCH_INFO;
 
 typedef struct{
@@ -92,7 +92,7 @@ typedef struct{
 
 
 //============================================================================================
-//	�\���̒�`
+//	構造体定義
 //============================================================================================
 
 struct MYSIGN_WORK{
@@ -101,33 +101,33 @@ struct MYSIGN_WORK{
 	RECORD			*record;
 	CONFIG			*config;
 
-	WORDSET			*WordSet;								// ���b�Z�[�W�W�J�p���[�N�}�l�[�W���[
-	MSGDATA_MANAGER *MsgManager;							// ���O���̓��b�Z�[�W�f�[�^�}�l�[�W���[
-	STRBUF			*TrainerName[OEKAKI_MEMBER_MAX];		// ���O
-	STRBUF			*EndString;								// ������u��߂�v
-	STRBUF			*TitleString;								// ������u��߂�v
-	STRBUF			*TalkString;							// ��b���b�Z�[�W�p
-	int				MsgIndex;								// �I�����o�p���[�N
+	WORDSET			*WordSet;								// メッセージ展開用ワークマネージャー
+	MSGDATA_MANAGER *MsgManager;							// 名前入力メッセージデータマネージャー
+	STRBUF			*TrainerName[OEKAKI_MEMBER_MAX];		// 名前
+	STRBUF			*EndString;								// 文字列「やめる」
+	STRBUF			*TitleString;								// 文字列「やめる」
+	STRBUF			*TalkString;							// 会話メッセージ用
+	int				MsgIndex;								// 終了検出用ワーク
 
-	CLACT_SET_PTR 			clactSet;								// �Z���A�N�^�[�Z�b�g
-	CLACT_U_EASYRENDER_DATA	renddata;								// �ȈՃ����_�[�f�[�^
-	CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// ���\�[�X�}�l�[�W��
-	CLACT_U_RES_OBJ_PTR 	resObjTbl[BOTH_LCD][CLACT_RESOURCE_NUM];// ���\�[�X�I�u�W�F�e�[�u��
-	CLACT_HEADER			clActHeader_m;							// �Z���A�N�^�[�w�b�_�[
-	CLACT_HEADER			clActHeader_s;							// �Z���A�N�^�[�w�b�_�[
-	CLACT_WORK_PTR			MainActWork[NAMEIN_OAM_NUM];				// �Z���A�N�^�[���[�N�|�C���^�z��
-	CLACT_WORK_PTR			SubActWork[NAMEIN_OAM_NUM];				// �Z���A�N�^�[���[�N�|�C���^�z��
-	CLACT_WORK_PTR			ButtonActWork[9];						// �{�^���A�N�^�[�|�C���^
+	CLACT_SET_PTR 			clactSet;								// セルアクターセット
+	CLACT_U_EASYRENDER_DATA	renddata;								// 簡易レンダーデータ
+	CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// リソースマネージャ
+	CLACT_U_RES_OBJ_PTR 	resObjTbl[BOTH_LCD][CLACT_RESOURCE_NUM];// リソースオブジェテーブル
+	CLACT_HEADER			clActHeader_m;							// セルアクターヘッダー
+	CLACT_HEADER			clActHeader_s;							// セルアクターヘッダー
+	CLACT_WORK_PTR			MainActWork[NAMEIN_OAM_NUM];				// セルアクターワークポインタ配列
+	CLACT_WORK_PTR			SubActWork[NAMEIN_OAM_NUM];				// セルアクターワークポインタ配列
+	CLACT_WORK_PTR			ButtonActWork[9];						// ボタンアクターポインタ
 
-	GF_BGL_BMPWIN 			TrainerNameWin[BMP_OEKAKI_MAX];			// ���G������ʗpBMP�E�C���h�E
+	GF_BGL_BMPWIN 			TrainerNameWin[BMP_OEKAKI_MAX];			// お絵かき画面用BMPウインドウ
 	GF_BGL_BMPWIN			OekakiBoard;
-	GF_BGL_BMPWIN			MsgWin;									// ��b�E�C���h�E
-	GF_BGL_BMPWIN			EndWin;									// ��߂�
-	GF_BGL_BMPWIN			TitleWin;								// �u�g���[�i�[�T�C�����������I�v
-	GF_BGL_BMPWIN			*YesNoWin[2];							// �͂��E�������E�C���h�E�̃|�C���^
+	GF_BGL_BMPWIN			MsgWin;									// 会話ウインドウ
+	GF_BGL_BMPWIN			EndWin;									// やめる
+	GF_BGL_BMPWIN			TitleWin;								// 「トレーナーサインをかこう！」
+	GF_BGL_BMPWIN			*YesNoWin[2];							// はい・いいえウインドウのポインタ
 
-	int						seq;									// ���݂̕������͏�ԁi����OK/�A�j�����j�Ȃ�
-	int						mode;									// ���ݍőO�ʂ̕����p�l��
+	int						seq;									// 現在の文字入力状態（入力OK/アニメ中）など
+	int						mode;									// 現在最前面の文字パネル
 	int						wait;
 
 	u8						SendBoardGraphic[0x4000];
@@ -135,16 +135,16 @@ struct MYSIGN_WORK{
 	u8						brush_color;
 	u8						brush;
 
-	TOUCH_INFO				MyTouchResult;							// �����̃T���v�����O���ʁi����͑��M���邾��
-	TOUCH_INFO				AllTouchResult[OEKAKI_MEMBER_MAX];		// �ʐM�Ŏ擾�����T���v�����O���ʁi���̃f�[�^�ŕ`�悷��
-	OLD_TOUCH_INFO			OldTouch[OEKAKI_MEMBER_MAX];			// �O�񂩂�̃|�C���g����
+	TOUCH_INFO				MyTouchResult;							// 自分のサンプリング結果（これは送信するだけ
+	TOUCH_INFO				AllTouchResult[OEKAKI_MEMBER_MAX];		// 通信で取得したサンプリング結果（このデータで描画する
+	OLD_TOUCH_INFO			OldTouch[OEKAKI_MEMBER_MAX];			// 前回からのポイント履歴
 
 	u8						canvas_buf[OEKAKI_GRAPHI_SIZE];
-	u8						*SignBuf;								// �g���[�i�[�J�[�h�̃T�C���̈���w���|�C���^
+	u8						*SignBuf;								// トレーナーカードのサイン領域を指すポインタ
 	u8						TransWork[0x20*4*2];
 
 	TOUCH_SW_SYS			*TouchSubWindowSys;
-	SCRUCH_INFO				scruchInfo;								// �����茟�o�p���[�N
+	SCRUCH_INFO				scruchInfo;								// こすり検出用ワーク
 	int						BeforeX,BeforeY;
 
 #ifdef PM_DEBUG

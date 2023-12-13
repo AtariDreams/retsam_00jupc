@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_climaxdemo.h
- * @bfief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒh—p:ƒeƒ“ƒKƒ“ƒUƒ“R’¸ƒfƒ‚ŒÄ‚Ño‚µ
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ç”¨:ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ãƒ‡ãƒ¢å‘¼ã³å‡ºã—
  * @author	tamada GAME FREAK inc.
  * @date	2006.06.21
  *
@@ -12,7 +12,7 @@
 #define __SCR_CLIMAXDEMO_H__
 
 #ifndef	__ASM_NO_DEF_
-//ƒeƒ“ƒKƒ“ƒUƒ“R’¸ƒfƒ‚ŠÖ˜A
+//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚ãƒ‡ãƒ¢é–¢é€£
 extern BOOL ClimaxDemoCall(FIELDSYS_WORK * fsys, int demo_id);
 #endif
 

@@ -1,5 +1,5 @@
 /* MSL
- * Copyright © 1995-2006 Freescale Corporation.  All rights reserved.
+ * Copyright 1995-2006 Freescale Corporation.  All rights reserved.
  *
  * $Date: 2006/02/09 16:58:42 $
  * $Revision: 1.37.2.2 $
@@ -329,7 +329,7 @@ template <class internT>
 class __jis : public __codecvt_pub_destructor<internT, char, mbstate_t> {...};
 
 template <class internT>
-class __shift_jis : public __codecvt_pub_destructor<internT, char, mbstate_t> {...};
+class __UTF-8 : public __codecvt_pub_destructor<internT, char, mbstate_t> {...};
 
 template <class internT>
 class __euc : public __codecvt_pub_destructor<internT, char, mbstate_t> {...};

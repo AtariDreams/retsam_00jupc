@@ -1,10 +1,10 @@
 #ifndef _T03R0301_DEF_H_
 #define _T03R0301_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T03R0301_WOMAN1		(1)
 #define	SCRID_T03R0301_BABYGIRL1		(2)
 #define	SCRID_T03R0301_ENECO		(3)
-#define	SCRID_T03R0301_DATA_MAX		(3)		//最大数
+#define	SCRID_T03R0301_DATA_MAX		(3)		//譛螟ｧ謨ｰ
 
 #endif //_T03R0301_DEF_H_

@@ -14,73 +14,73 @@
 /**
  * @file dwci_lobby.h
  *
- * @brief Wi-Fi ���r�[���C�u���� �\�[�X
+ * @brief Wi-Fi ロビーライブラリ ソース
  * 
- * Wi-Fi ���r�[���C�u����
+ * Wi-Fi ロビーライブラリ
  */
 
 /**
- * @page DWCi_LOBBY Wi-Fi ���r�[���C�u����
+ * @page DWCi_LOBBY Wi-Fi ロビーライブラリ
  *
  * @section Introduction
  *
- * ���̃��C�u�����ɂ���āAGameSpy��IRC�T�[�o����đ��̃v���C���[�ƒʐM���邱�Ƃ��ł��܂��B
+ * このライブラリによって、GameSpyのIRCサーバを介して他のプレイヤーと通信することができます。
  *
- * ���ׂĂ̒ʐM�̓T�[�o�𒆌p����̂ŁA�ł������ʐM�ʂ����Ȃ��Ȃ�悤�ɂ��Ă��������B\n
- * �ڈ��Ƃ��ẮA�`�����l���S�̂ɑ��M�������(::DWCi_LobbySendChannelMessage�֐���::DWCi_LobbySetChannelData�֐��ɂ��u���[�h�L���X�g)�́A
- * ���������b�Z�[�W�̏ꍇ�͈�l�ɂ����b10���b�Z�[�W�ȉ��A�傫�����b�Z�[�W�̏ꍇ�͖��b5���b�Z�[�W�ȉ��ɗ}���Ă��������B\n
- * ����ɁA�ꕪ�Ԃ�50���b�Z�[�W�𒴂��Ȃ��悤�ɂ��Ă��������B
- * ���C�u���������ł̃������m�ۂ�DWC_Alloc�֐����g�p���Ă��܂��B\n
- * �{���C�u�����̓X���b�h�Z�[�t�ł͂���܂���B\n
- * ��ȏ�̃X���b�h�œ����Ƀ��C�u�����̊֐����Ăяo���Ȃ��ł��������B\n
- * �{���C�u�����Ńv���C���[�����ʂ��邽�߂Ɏg�p���郆�[�UID��GameSpyProfileID(pid)�ƈ�v���Ă��܂��B\n
- * �����̃��[�UID�͏��������::DWCi_LobbyGetMyUserId�֐����g�p���邱�Ƃɂ��擾�ł��܂��B\n
- * ����̓v���C���[���ƂɃ��j�[�N�Ȓl�ƂȂ�܂��B\n
- * �������A�f�o�b�O�p��::DWCi_LobbyInitializePidAsync�֐����g���ď����������Ƃ��A�����̃v���C���[��
- * ����pid���w�肵���ꍇ���[�UID�����j�[�N�ł͂Ȃ��Ȃ��Ă��܂��܂��B\n
- * ���̏ꍇ�̓���͕s��ł��̂ŕK���قȂ���pid���w�肷��悤�ɂ��Ă��������B\n
- * ���ׂĂ�char�^�̃p�����[�^�ɂ�0x5C������0x22-0x7E�͈̔͂̕����y�яI�[��0x00���w�肵�Ă��������B\n
+ * すべての通信はサーバを中継するので、できる限り通信量が少なくなるようにしてください。\n
+ * 目安としては、チャンネル全体に送信するもの(::DWCi_LobbySendChannelMessage関数や::DWCi_LobbySetChannelData関数によるブロードキャスト)は、
+ * 小さいメッセージの場合は一人につき毎秒10メッセージ以下、大きいメッセージの場合は毎秒5メッセージ以下に抑えてください。\n
+ * さらに、一分間で50メッセージを超えないようにしてください。
+ * ライブラリ内部でのメモリ確保はDWC_Alloc関数を使用しています。\n
+ * 本ライブラリはスレッドセーフではありません。\n
+ * 二つ以上のスレッドで同時にライブラリの関数を呼び出さないでください。\n
+ * 本ライブラリでプレイヤーを識別するために使用するユーザIDはGameSpyProfileID(pid)と一致しています。\n
+ * 自分のユーザIDは初期化後に::DWCi_LobbyGetMyUserId関数を使用することにより取得できます。\n
+ * これはプレイヤーごとにユニークな値となります。\n
+ * ただし、デバッグ用の::DWCi_LobbyInitializePidAsync関数を使って初期化したとき、複数のプレイヤーが
+ * 同じpidを指定した場合ユーザIDがユニークではなくなってしまいます。\n
+ * この場合の動作は不定ですので必ず異なったpidを指定するようにしてください。\n
+ * すべてのchar型のパラメータには0x5Cを除く0x22-0x7Eの範囲の文字及び終端の0x00を指定してください。\n
  * 
  * 
  * @section Usage
  *
  *<table border=1 bgcolor="mistyrose"><tr><td>
  *
- * �����C�u�����̏�����
+ * ■ライブラリの初期化
  *
- * ::DWCi_LobbyInitializeAsync�֐����g�����C�u���������������܂��B\n
- * ���炩����DWC_LoginAsync�֐�����DWC_NASLoginAsync�֐���Wi-Fi�R�l�N�V�����ւ̐ڑ����������Ă���K�v������܂��B \n
- * ���C�u�����̃X�e�[�g��::DWCi_LOBBY_STATE_CONNECTED�ɂȂ�ƃT�[�o�ւ̐ڑ��������ł��B\n
+ * ::DWCi_LobbyInitializeAsync関数を使いライブラリを初期化します。\n
+ * あらかじめDWC_LoginAsync関数又はDWC_NASLoginAsync関数でWi-Fiコネクションへの接続を完了している必要があります。 \n
+ * ライブラリのステートが::DWCi_LOBBY_STATE_CONNECTEDになるとサーバへの接続が完了です。\n
  *
- * ���`�����l���ւ̎Q��
+ * ■チャンネルへの参加
  * 
- * �`�����l���ւ̎Q����::DWCi_LobbyJoinChannelAsync�֐��ōs���܂��B��ʓI��IRC�Ɠ��l�ɔC�ӂ̃`�����l�������w�肵�čs���܂��B\n
- * �����w�肵���`�����l�����̃`�����l�������݂����ꍇ�͂��̃`�����l���ɓ���܂��B�������������ꍇ�͐V�K�Ƀ`�����l�����쐬������܂��B\n
- * �`�����l�����̑S�Ẵ��[�U�̓I�y���[�^�����������Ă��܂��B\n
+ * チャンネルへの参加は::DWCi_LobbyJoinChannelAsync関数で行います。一般的なIRCと同様に任意のチャンネル名を指定して行います。\n
+ * もし指定したチャンネル名のチャンネルが存在した場合はそのチャンネルに入ります。もし無かった場合は新規にチャンネルを作成し入ります。\n
+ * チャンネル内の全てのユーザはオペレータ権限を持っています。\n
  * 
- * �����b�Z�[�W�̑���M
+ * ■メッセージの送受信
  *
- * ���C�u�����̃X�e�[�g��::DWCi_LOBBY_STATE_CONNECTED�̂Ƃ��Ɋe�탁�b�Z�[�W�̑���M�A�`�����l���f�[�^�̑���M���ł��܂��B\n
- * �`�����l���f�[�^�Ƃ͎Q�����Ă���`�����l���̃v���C���[��l��l�ƃ`�����l�����̂Ɋ֘A�Â�����f�[�^�ł��B\n
+ * ライブラリのステートが::DWCi_LOBBY_STATE_CONNECTEDのときに各種メッセージの送受信、チャンネルデータの送受信ができます。\n
+ * チャンネルデータとは参加しているチャンネルのプレイヤー一人一人とチャンネル自体に関連づけられるデータです。\n
  *
- * �����C�u�����̏I��
+ * ■ライブラリの終了
  *
- * ::DWCi_LobbyShutdownAsync�֐����Ăяo���ă��C�u�������I�����܂��B\n
- * ���̊֐����Ăяo������A::DWCi_LobbyProcess�֐���::DWCi_LOBBY_STATE_NOTINITIALIZED��Ԃ��ƃV���b�g�_�E�������ł��B\n
+ * ::DWCi_LobbyShutdownAsync関数を呼び出してライブラリを終了します。\n
+ * この関数を呼び出した後、::DWCi_LobbyProcess関数が::DWCi_LOBBY_STATE_NOTINITIALIZEDを返すとシャットダウン完了です。\n
  * 
  * 
- * ���G���[����
+ * ■エラー処理
  *
- * �v���I�ȃG���[�����������ꍇ��::DWCi_LobbyProcess�֐���::DWCi_LOBBY_STATE_ERROR��Ԃ��܂��B\n
- * ���̏�ԂɂȂ�ƂقƂ�ǂ̊֐����g�p�s�\�ɂȂ�܂��B\n
- * �܂��A�����Ń������m�ۂɎ��s�����ꍇ�A���̊֐��ł̏����͐���Ɋ������܂����A���C�u�����̃X�e�[�g��::DWCi_LOBBY_STATE_ERROR�ɕύX���܂��B\n
- * ���̂��ߎ��̊֐��Ăяo����::DWCi_LOBBY_RESULT_ERROR_CONDITION��::DWCi_LOBBY_STATE_ERROR���Ԃ�܂��B\n
- * ���̏�ԂɂȂ����ꍇ��::DWCi_LobbyGetLastError�֐��ŃG���[���e���m�F��A::DWCi_LobbyShutdownAsync�֐��ŃV���b�g�_�E�����Ă��������B\n
- * �v���I�ȃG���[�ɂ̓T�[�o�ւ̐ڑ����s(::DWCi_LOBBY_ERROR_SESSION)�A�������m�ێ��s(::DWCi_LOBBY_ERROR_ALLOC)�Ȃǂ�����܂��B
- * �܂��A���̂Ƃ��u�T�[�o�[�Ƃ̒ʐM���ɃG���[���������܂����B�v�Ƃ������b�Z�[�W�Ƌ���::DWCi_LobbyToErrorCode�֐����g�p���ē���ꂽ�G���[�R�[�h��\�����Ă��������B\n
- * ���Ƃ��΁A::DWCi_LobbyGetLastError�֐���::DWCi_LOBBY_ERROR_SESSION���擾�����ꍇ�́u42003�v��\�����Ă��������B
- * ���̑��A�`�����l���ւ̎Q���Ɏ��s�����ꍇ��`�����l���f�[�^�̎擾�Ɏ��s�����ꍇ�ȂǁA�y���G���[�̏ꍇ�̓��b�Z�[�W��\������K�v�͂���܂���B
- * �A�v���P�[�V�������Ń��r�[�@�\�𑱍s�ł��Ȃ��Ȃ����Ɣ��f�����ꍇ�̃��b�Z�[�W�\���ɂ��Ă̓A�v���P�[�V�����ɔC����܂��B
+ * 致命的なエラーが発生した場合は::DWCi_LobbyProcess関数が::DWCi_LOBBY_STATE_ERRORを返します。\n
+ * この状態になるとほとんどの関数が使用不能になります。\n
+ * また、内部でメモリ確保に失敗した場合、その関数での処理は正常に完了しますが、ライブラリのステートを::DWCi_LOBBY_STATE_ERRORに変更します。\n
+ * そのため次の関数呼び出しで::DWCi_LOBBY_RESULT_ERROR_CONDITIONや::DWCi_LOBBY_STATE_ERRORが返ります。\n
+ * この状態になった場合は::DWCi_LobbyGetLastError関数でエラー内容を確認後、::DWCi_LobbyShutdownAsync関数でシャットダウンしてください。\n
+ * 致命的なエラーにはサーバへの接続失敗(::DWCi_LOBBY_ERROR_SESSION)、メモリ確保失敗(::DWCi_LOBBY_ERROR_ALLOC)などがあります。
+ * また、このとき「サーバーとの通信中にエラーが発生しました。」というメッセージと共に::DWCi_LobbyToErrorCode関数を使用して得られたエラーコードを表示してください。\n
+ * たとえば、::DWCi_LobbyGetLastError関数で::DWCi_LOBBY_ERROR_SESSIONを取得した場合は「42003」を表示してください。
+ * その他、チャンネルへの参加に失敗した場合やチャンネルデータの取得に失敗した場合など、軽いエラーの場合はメッセージを表示する必要はありません。
+ * アプリケーション側でロビー機能を続行できなくなったと判断した場合のメッセージ表示についてはアプリケーションに任されます。
  *
  *</td></tr></table>
  */
@@ -91,24 +91,24 @@
 #include "dwci_lobbyCallback.h"
 #include "dwci_lobbyNewHandler.h"
 
-// �萔��`
+// 定数定義
 static const u32 DWCi_MAX_RETRY_COUNT = 3;
 static const int DWCi_LOBBY_MESSAGE_TYPE_NORMAL_COMMAND = CHAT_UTM;
 
-// �X�^�e�B�b�N�ϐ��錾
+// スタティック変数宣言
 static DWCi_Lobby*  s_iLobby      = NULL;
 
-// ����������Ă��邩�`�F�b�N����
+// 初期化されているかチェックする
 #define RETURN_IF_NOTINITIALIZED(retval) if(!s_iLobby){return retval;}
 
-// �v���I�ȃG���[���N���Ă��Ȃ����`�F�b�N����
+// 致命的なエラーが起きていないかチェックする
 #define RETURN_IF_ERROR_STATE(retval) \
     if(s_iLobby && s_iLobby->GetState() == DWCi_LOBBY_STATE_ERROR)\
     {\
         return retval;\
     }
 
-// �X�e�[�g��CONNECTED�ł��邩�`�F�b�N����
+// ステートがCONNECTEDであるかチェックする
 #define RETURN_IF_NOTCONNECTED(retval) \
     if(s_iLobby && s_iLobby->GetState() != DWCi_LOBBY_STATE_CONNECTED)\
     {\
@@ -120,10 +120,10 @@ static const u32 DWCi_LOBBY_TIMER_ID_0 = 0;
 
 static const u32 DWCi_LOBBY_TIMER_INTERVAL_FOR_ID_0 = 30;
 
-// �ÓI�`�F�b�N��p�_�~�[�֐�
+// 静的チェック専用ダミー関数
 static void DummyStaticCheck()
 {
-    // �������ʃt���O�����������`�F�b�N
+    // 入室結果フラグが正しいかチェック
     DWCi_STATIC_ASSERT(DWCi_LOBBY_ENTER_RESULT_MAX == CHATBadChannelMask);
 }
 
@@ -147,7 +147,7 @@ static void Disconnected(CHAT chat, const char* reason, void* param)
     // MatchComment: add this line
     s_iLobby->GetTimerManager().RemoveTimer(DWCi_LOBBY_TIMER_ID_0);
 
-    // ���K�̎菇�ŃV���b�g�_�E�����������m�F����
+    // 正規の手順でシャットダウンしたかを確認する
     if(s_iLobby->GetState() == DWCi_LOBBY_STATE_CLOSING)
     {
 	    DWC_Printf(DWC_REPORTFLAG_INFO, "Disconnected: %s\n", reason);
@@ -157,10 +157,10 @@ static void Disconnected(CHAT chat, const char* reason, void* param)
     {
 	    DWC_Printf(DWC_REPORTFLAG_ERROR, "Server disconnect me: %s\n", reason);
     
-        // ������؂ꂽ(�v���I�G���[)
+        // 回線が切れた(致命的エラー)
         s_iLobby->SetError(DWCi_LOBBY_ERROR_SESSION);
         
-        // ������chatDisconnect()���ĂׂȂ��̂�(�ĂԂ�assert�ɂ�����)����Ƀt���O���Z�b�g����B
+        // ここでchatDisconnect()を呼べないので(呼ぶとassertにかかる)代わりにフラグをセットする。
         s_iLobby->SetServerDisconnectedMe();
     }
 	(void)chat;
@@ -195,10 +195,10 @@ static void PrivateMessage(CHAT chat, const char* user, const char* message, int
 
 	DWC_Printf(DWC_REPORTFLAG_INFO, "Private message from %s: %s\n", user, message);
     
-    // �T�[�o����̃��b�Z�[�W���m�F����
+    // サーバからのメッセージか確認する
     if(DWCi_StrnicmpChar(user, "SERVER", 6) == 0)
     {
-        // Excess Flood�̏ꍇ�x������
+        // Excess Floodの場合警告する
         if(DWCi_StrnicmpChar(message, "Excess Flood", 12) != 0)
         {
             return;
@@ -213,7 +213,7 @@ static void PrivateMessage(CHAT chat, const char* user, const char* message, int
         {
             return;
         }
-        // �R�[���o�b�N���Ă�
+        // コールバックを呼ぶ
         s_iLobby->GetGlobalCallbacks().lobbyExcessFloodCallback(floodWeight, param);
         return;
     }
@@ -223,14 +223,14 @@ static void PrivateMessage(CHAT chat, const char* user, const char* message, int
         return;
     }
     
-    // userId���擾
+    // userIdを取得
     s32 userId = s_iLobby->FindUser(user);
     if(userId == DWC_LOBBY_INVALID_USER_ID)
     {
         return;
     }
 
-    // �R�[���o�b�N���Ă�
+    // コールバックを呼ぶ
     s_iLobby->GetGlobalCallbacks().lobbyUserMassageReceivedCallback(userId, message, param);
     (void)chat;
 	(void)type;
@@ -262,10 +262,10 @@ static void ChannelMessage(CHAT chat, const char* channel, const char* user, con
         return;
     }
     
-    // userId���擾
+    // userIdを取得
     s32 userId = s_iLobby->FindUser(user);
 
-    // �R�[���o�b�N���Ă�
+    // コールバックを呼ぶ
     const DWCi_LobbyChannelCallbacks* callbacks = s_iLobby->GetChannelCallbacks(channel);
     DWC_ASSERTMSG(callbacks, "ChannelMessage: Internal error. No callback info. channel: %s", channel);
     callbacks->lobbyChannelMassageReceivedCallback(s_iLobby->UnmodifyChannelName(channel).c_str(), userId, message, callbacks->param);
@@ -282,7 +282,7 @@ static void Kicked(CHAT chat, const char* channel, const char* user, const char*
     
 	DWC_Printf(DWC_REPORTFLAG_INFO, "Kicked from %s by %s: %s\n", channel, user, reason);
 
-    // �`�����l�����폜
+    // チャンネルを削除
     s_iLobby->RemoveChannel(channel);
     
 	(void)chat;
@@ -296,31 +296,31 @@ static void UserJoined(CHAT chat, const char* channel, const char* user, int mod
     DWC_ASSERTMSG( s_iLobby, "s_iLobby: Invalid state. s_iLobby is NULL." );
     RETURN_IF_ERROR_STATE((void)0);
 
-    // JoinChannelLimitAsync�̎��Ɏw�肵���f�t�H���g�̐l�����擾
+    // JoinChannelLimitAsyncの時に指定したデフォルトの人数を取得
     s32 limit = s_iLobby->GetDefaultChannelLimit(channel);
     
-    // �����l���̃`�F�b�N
+    // 制限人数のチェック
     if(limit != 0 && chatGetChannelNumUsers(s_iLobby->GetChat(), channel) > limit)
     {
-        // �I�[�o�[�����l�������I�ɑގ�����̂Őڑ��R�[���o�b�N�͌Ă΂Ȃ��B
+        // オーバーした人が自動的に退室するので接続コールバックは呼ばない。
         DWC_Printf(DWC_REPORTFLAG_INFO, "%s joined %s but ignored: limit over.\n", user, channel);
         return;
     }
     
-    // ����userId(�Đڑ��O�̖S��)�����݂��邩�m�F
-    // ��xPID�ɒ����Ă���ߋ��̃j�b�N�l�[������������
+    // 同じuserId(再接続前の亡霊)が存在するか確認
+    // 一度PIDに直してから過去のニックネームを検索する
     DWCi_String oldNick = s_iLobby->FindUser(DWCi_Lobby::NickNameToPid(user));
     
-    // �Y���j�b�N�l�[�������̃`�����l���ɂ��邩�T���BRemoveUser�ō폜������ő��݂��������m�F����B
+    // 該当ニックネームがこのチャンネルにいるか探す。RemoveUserで削除するついで存在したかを確認する。
     if(s_iLobby->RemoveUser(oldNick, channel))
     {
-        // �Đڑ����[�U�������̂ň�[�ؒf�R�[���o�b�N���Ă�
+        // 再接続ユーザだったので一端切断コールバックを呼ぶ
         const DWCi_LobbyChannelCallbacks* callbacks = s_iLobby->GetChannelCallbacks(channel);
         DWC_ASSERTMSG(callbacks, "UserJoined: Internal error. No callback info. channel: %s", channel);
         callbacks->lobbyPlayerDisconnectedCallback(s_iLobby->UnmodifyChannelName(channel).c_str(), DWCi_Lobby::NickNameToPid(user), callbacks->param);
     }
     
-    // ���[�U��ǉ�
+    // ユーザを追加
     s32 userId = s_iLobby->AddUser(user, channel);
 
     if(userId == DWC_LOBBY_INVALID_USER_ID)
@@ -334,7 +334,7 @@ static void UserJoined(CHAT chat, const char* channel, const char* user, int mod
 
     if(s_iLobby->IsChannelActivated(channel))
     {
-        // �`�����l�����L���Ȃ���(JoinChannel�R�[���o�b�N���Ă񂾂���)�̂ݐڑ��R�[���o�b�N���Ă�
+        // チャンネルが有効なもの(JoinChannelコールバックを呼んだもの)のみ接続コールバックを呼ぶ
         const DWCi_LobbyChannelCallbacks* callbacks = s_iLobby->GetChannelCallbacks(channel);
         DWC_ASSERTMSG(callbacks, "UserJoined: Internal error. No callback info. channel: %s", channel);
         callbacks->lobbyPlayerConnectedCallback(s_iLobby->UnmodifyChannelName(channel).c_str(), userId, callbacks->param);
@@ -368,22 +368,22 @@ static void UserParted(CHAT chat, const char* channel, const char* user, int why
         break;
     }
 	
-    // userId���m�F
+    // userIdを確認
     s32 userId = s_iLobby->FindUser(user);
 
-    // ���łɊY�����[�U���Đڑ��ς݂Ŗ��O���ω����ă��X�g�ɑ��݂��Ȃ��Ƃ��͐ؒf�R�[���o�b�N�͌Ă΂Ȃ�
+    // すでに該当ユーザが再接続済みで名前が変化してリストに存在しないときは切断コールバックは呼ばない
     if(userId == DWC_LOBBY_INVALID_USER_ID)
     {
 		DWC_Printf(DWC_REPORTFLAG_INFO, "Disconnected reconnected user.: %s\n", user);
         return;
     }
     
-    // �R�[���o�b�N���Ă�
+    // コールバックを呼ぶ
     const DWCi_LobbyChannelCallbacks* callbacks = s_iLobby->GetChannelCallbacks(channel);
     DWC_ASSERTMSG(callbacks, "UserParted: Internal error. No callback info. channel: %s", channel);
     callbacks->lobbyPlayerDisconnectedCallback(s_iLobby->UnmodifyChannelName(channel).c_str(), userId, callbacks->param);
 
-    // ���[�U���폜
+    // ユーザを削除
     s_iLobby->RemoveUser(user, channel);
 	(void)chat;
 	(void)reason;
@@ -398,9 +398,9 @@ static void UserChangedNick(CHAT chat, const char* channel, const char* oldNick,
     
 	DWC_Printf(DWC_REPORTFLAG_INFO, "%s changed nicks to %s\n", oldNick, newNick);
 	
-    // nick��ύX���邱�Ƃ͂Ȃ����O�̂��ߑΉ�
+    // nickを変更することはないが念のため対応
     
-    // ���[�U��ID�͂��̂܂܂Ŗ��O��ύX
+    // ユーザのIDはそのままで名前を変更
     s_iLobby->RenameUser(oldNick, newNick);
     
 	(void)chat;
@@ -624,7 +624,7 @@ static void EnumChannelsAllCallback(CHAT chat, CHATBool success, int numChannels
 
     std::vector<char*, DWCi_Allocator<char*> > result = s_iLobby->UnmodifyChannelNames(numChannels, channels);
 
-    // �R�[���o�b�N���Ă�
+    // コールバックを呼ぶ
     DWCi_Callback<DWCi_LobbyEnumChannelsCallback>* callbackObj = s_iLobby->GetCallbackManager().FindCallback<DWCi_LobbyEnumChannelsCallback>((u32)param);
     callbackObj->GetCallback()(success == CHATTrue, numChannels, (const char**)DWCi_GetVectorBuffer(result),
                                topics, (s32*)numUsers, callbackObj->GetParam());
@@ -668,7 +668,7 @@ static void EnumUsersCallback(CHAT chat, CHATBool success, const char* channel, 
     
     
 
-    // �R�[���o�b�N���Ă�
+    // コールバックを呼ぶ
     DWCi_Callback<DWCi_LobbyEnumUsersCallback>* callbackObj = s_iLobby->GetCallbackManager().FindCallback<DWCi_LobbyEnumUsersCallback>((u32)param);
     callbackObj->GetCallback()(success == CHATTrue, s_iLobby->UnmodifyChannelName(channel).c_str(), (s32)userIds.size(),
                                DWCi_GetVectorBuffer(userIds), callbackObj->GetParam());
@@ -687,10 +687,10 @@ static void EnumUsersAfterEnteredCallback(CHAT chat, CHATBool success, const cha
         s_iLobby->AddUsers(numUsers, users, channel);
     }
 
-    // �`�����l����L����
+    // チャンネルを有効化
     s_iLobby->ActivateChannel(channel);
 
-    // �����R�[���o�b�N���Ă�
+    // 入室コールバックを呼ぶ
     const DWCi_Callback<DWCi_LobbyJoinChannelCallback>* callbackObj =
         s_iLobby->GetCallbackManager().FindCallback<DWCi_LobbyJoinChannelCallback>((u32)param);
     callbackObj->GetCallback()(success == CHATTrue, DWCi_LOBBY_ENTER_RESULT_SUCCESS, s_iLobby->UnmodifyChannelName(channel).c_str(), callbackObj->GetParam());
@@ -698,7 +698,7 @@ static void EnumUsersAfterEnteredCallback(CHAT chat, CHATBool success, const cha
 
     if(success == CHATFalse)
     {
-        // ���s�����̂ŕ������o��B
+        // 失敗したので部屋を出る。
         DWCi_LobbyLeaveChannel(s_iLobby->UnmodifyChannelName(channel).c_str());
     }
     (void)chat;
@@ -712,21 +712,21 @@ static void EnterChannelCallback(CHAT chat, CHATBool success, CHATEnterResult re
     
     if(success == CHATTrue)
     {
-        // JoinChannelLimitAsync�̎��Ɏw�肵���f�t�H���g�̐l�����擾
+        // JoinChannelLimitAsyncの時に指定したデフォルトの人数を取得
         s32 limit = s_iLobby->GetDefaultChannelLimit(channel);
     
-        // DWCi_LobbyJoinChannelLimitAsync��Join�������̊m�F
+        // DWCi_LobbyJoinChannelLimitAsyncでJoinしたかの確認
         if(limit != 0)
         {
-            // ���݂̐l�����擾
+            // 現在の人数を取得
             s32 currentNum = chatGetChannelNumUsers(s_iLobby->GetChat(), channel);
     
-            // ���݂̐l���������l���I�[�o�[���Ă�����ގ�����B�����O��Leave�����Ƃ�(limit==-1)�ƁA
-            // �����ł��Ă��Ȃ��Ƃ�(currentNum==-1)���O�̂��ߑގ�(DWCi_LobbyLeaveChannel)����)
+            // 現在の人数が制限値をオーバーしていたら退室する。入室前にLeaveしたとき(limit==-1)と、
+            // 入室できていないとき(currentNum==-1)も念のため退室(DWCi_LobbyLeaveChannel)する)
             if(limit == -1)
             {
                 success = CHATFalse;
-                result = CHATEnterTimedOut; // �Y�����闝�R���Ȃ��̂Ń^�C���A�E�g�ɂ���B
+                result = CHATEnterTimedOut; // 該当する理由がないのでタイムアウトにする。
             }
             else if(currentNum > limit || currentNum == -1)
             {
@@ -735,7 +735,7 @@ static void EnterChannelCallback(CHAT chat, CHATBool success, CHATEnterResult re
             }
             else
             {
-                // �I�[�o�[���Ă��Ȃ�������l��������������
+                // オーバーしていなかったら人数制限をかける
                 DWC_Printf(DWC_REPORTFLAG_INFO, "SetChannelLimit channel: %s, limit: %d\n", channel, limit);
                 chatSetChannelLimit(s_iLobby->GetChat(), channel, limit);
             }
@@ -744,22 +744,22 @@ static void EnterChannelCallback(CHAT chat, CHATBool success, CHATEnterResult re
     
     }
     
-    // ���̃��C�u�������œ������s������ꍇ������̂ōēx�������������
+    // このライブラリ内で入室失敗させる場合もあるので再度成功判定をする
 	if (success == CHATTrue)
     {
-        // �������g�����[�U�ɒǉ�
+        // 自分自身をユーザに追加
         s32 userId = s_iLobby->AddUser(s_iLobby->GetChatNick(), channel);
     
-        // �S�Ẵ��[�UID���擾(��ɑS�����̃��[�UID���擾���Ă����K�v������)
+        // 全てのユーザIDを取得(常に全員分のユーザIDを取得しておく必要がある)
         chatEnumUsers(chat, channel, EnumUsersAfterEnteredCallback, param, CHATFalse);
     }
     else
     {
-        // �`�����l�������폜(�Q�����Ă��Ȃ��`�����l���ɑ΂���Leave���Ă������N����Ȃ��̂ŁA�{���ɓ������s�����ꍇ�ł��Ă�ŗǂ�)
-        // �{���ɓ������s�����ꍇ�ɉ��ʃ��C�u�������炻�̑��̃R�[���o�b�N���Ă΂�邱�Ƃ�����̂ł�����h�~�B
+        // チャンネル情報を削除(参加していないチャンネルに対してLeaveしても何も起こらないので、本当に入室失敗した場合でも呼んで良い)
+        // 本当に入室失敗した場合に下位ライブラリからその他のコールバックが呼ばれることがあるのでそれも防止。
         DWCi_LobbyLeaveChannel(s_iLobby->UnmodifyChannelName(channel).c_str());
         
-        // �������s�R�[���o�b�N���Ă�
+        // 入室失敗コールバックを呼ぶ
         const DWCi_Callback<DWCi_LobbyJoinChannelCallback>* callbackObj =
             s_iLobby->GetCallbackManager().FindCallback<DWCi_LobbyJoinChannelCallback>((u32)param);
         callbackObj->GetCallback()(FALSE, (DWCi_LOBBY_ENTER_RESULT)result, s_iLobby->UnmodifyChannelName(channel).c_str(), callbackObj->GetParam());
@@ -775,7 +775,7 @@ static void GetChannelKeysCallback(CHAT chat, CHATBool success, const char* chan
     DWC_ASSERTMSG( s_iLobby, "s_iLobby: Invalid state. s_iLobby is NULL." );
     RETURN_IF_ERROR_STATE((void)0);
     
-    // channel��success == CHATFalse�̂Ƃ���NULL�ɂȂ�ꍇ������B
+    // channelはsuccess == CHATFalseのときにNULLになる場合がある。
     if(!channel)
     {
         //DWC_ASSERTMSG( channel, "GetChannelKeysCallback: channel is NULL. Please check excess flood.");
@@ -791,7 +791,7 @@ static void GetChannelKeysCallback(CHAT chat, CHATBool success, const char* chan
     if(user)
     {
         DWC_Printf(DWC_REPORTFLAG_INFO, "Channel user key changed. User:%s\n", user);
-        // userId���m�F
+        // userIdを確認
         userId = s_iLobby->FindUser(user);
     }
     else
@@ -800,10 +800,10 @@ static void GetChannelKeysCallback(CHAT chat, CHATBool success, const char* chan
         userId = DWC_LOBBY_INVALID_USER_ID;
     }
 
-    // �R�[���o�b�N�����o��
+    // コールバックを取り出す
     DWCi_Callback<DWCi_LobbyGetChannelDataCallback>* callbackObj = s_iLobby->GetCallbackManager().FindCallback<DWCi_LobbyGetChannelDataCallback>((u32)param);
     
-    // �R�[���o�b�N���Ă�
+    // コールバックを呼ぶ
     char* key = NULL;
     char* value = NULL;
     if(success == CHATTrue && num > 0)
@@ -814,7 +814,7 @@ static void GetChannelKeysCallback(CHAT chat, CHATBool success, const char* chan
     callbackObj->GetCallback()(success == CHATTrue, s_iLobby->UnmodifyChannelName(channel).c_str(),
                                userId, key, value, callbackObj->GetParam());
     
-    // �R�[���o�b�N���폜����
+    // コールバックを削除する
     s_iLobby->GetCallbackManager().RemoveCallback((u32)param);
 
     for(int i=0; i<num; i++)
@@ -836,7 +836,7 @@ static void BroadcastKeyChanged(CHAT chat, const char* channel, const char* user
     if(user)
     {
         DWC_Printf(DWC_REPORTFLAG_INFO, "Channel user key changed. User:%s\n", user);
-        // userId���m�F
+        // userIdを確認
         userId = s_iLobby->FindUser(user);
     }
     else
@@ -926,7 +926,7 @@ static void GetChannelModeCallback(CHAT chat, CHATBool success, const char* chan
 		return;
 	}
     
-    // �R�[���o�b�N���Ă�
+    // コールバックを呼ぶ
     DWCi_Callback<DWCi_LobbyGetChannelModeCallback>* callbackObj = s_iLobby->GetCallbackManager().FindCallback<DWCi_LobbyGetChannelModeCallback>((u32)param);
     callbackObj->GetCallback()(success == CHATTrue, s_iLobby->UnmodifyChannelName(channel).c_str(),
                                (DWCi_LobbyChannelMode*)mode, callbackObj->GetParam());
@@ -967,25 +967,25 @@ BOOL ov66_2244758(void* param)
 }
 
     // 07 Dec 2021 pikalaxalt
-    // ���͖��炩�ɋ@�B�|����g�p���āA���̍s�������ɂ��邱�Ƃ�\�����Ă��܂��B
+    // 私は明らかに機械翻訳を使用して、この行がここにあることを表現しています。
 inline void ProcessTimers() {
     s_iLobby->GetTimerManager().Process();
 }
 
 /**
- * @brief ���r�[���C�u�����̏�����i�߂܂��B
+ * @brief ロビーライブラリの処理を進めます。
  * 
- * ���r�[���C�u�����̏�����i�߂܂��B\n
- * ���Q�[���t���[�����x�̕p�x�ŌĂяo���Ă��������B\n
- * ::DWCi_LOBBY_STATE_ERROR��Ԃ����Ƃ���::DWCi_LobbyGetLastError�֐��ŃG���[���e���擾��::DWCi_LobbyShutdownAsync�֐����Ă�ŃV���b�g�_�E�����Ă��������B\n
- * ::DWCi_LOBBY_STATE_CONNECTED�̂Ƃ��̂݃��b�Z�[�W���M�A�`�����l�������Ȃǂ̊֐����Ăׂ܂��B
+ * ロビーライブラリの処理を進めます。\n
+ * 毎ゲームフレーム程度の頻度で呼び出してください。\n
+ * ::DWCi_LOBBY_STATE_ERRORを返したときは::DWCi_LobbyGetLastError関数でエラー内容を取得後::DWCi_LobbyShutdownAsync関数を呼んでシャットダウンしてください。\n
+ * ::DWCi_LOBBY_STATE_CONNECTEDのときのみメッセージ送信、チャンネル入室などの関数を呼べます。
  * 
- * @retval ::DWCi_LOBBY_STATE_NOTINITIALIZED ���r�[���C�u����������������Ă��܂���B
- * @retval ::DWCi_LOBBY_STATE_CONNECTING �T�[�o�ɐڑ����J�n���Ă��܂��B
- * @retval ::DWCi_LOBBY_STATE_CONNECTINGWAIT �T�[�o�ɐڑ����ł��B
- * @retval ::DWCi_LOBBY_STATE_CONNECTED �T�[�o�ɐڑ����܂����B�e��֐����Ăׂ܂��B
- * @retval ::DWCi_LOBBY_STATE_CLOSING ���r�[���C�u�������I�����ł��B
- * @retval ::DWCi_LOBBY_STATE_ERROR ���r�[���C�u����������������Ă��܂���B
+ * @retval ::DWCi_LOBBY_STATE_NOTINITIALIZED ロビーライブラリが初期化されていません。
+ * @retval ::DWCi_LOBBY_STATE_CONNECTING サーバに接続を開始しています。
+ * @retval ::DWCi_LOBBY_STATE_CONNECTINGWAIT サーバに接続中です。
+ * @retval ::DWCi_LOBBY_STATE_CONNECTED サーバに接続しました。各種関数が呼べます。
+ * @retval ::DWCi_LOBBY_STATE_CLOSING ロビーライブラリを終了中です。
+ * @retval ::DWCi_LOBBY_STATE_ERROR ロビーライブラリが初期化されていません。
  */
 DWCi_LOBBY_STATE DWCi_LobbyProcess()
 {
@@ -994,15 +994,15 @@ DWCi_LOBBY_STATE DWCi_LobbyProcess()
     
     if(s_iLobby->GetChat())
     {
-        // �����Ŋe��R�[���o�b�N���Ă΂��
+        // ここで各種コールバックが呼ばれる
         chatThink(s_iLobby->GetChat());
     }
 
     ProcessTimers();
-    // �R�[���o�b�N���ɒv���I�ȃG���[���������Ă��Ȃ����`�F�b�N
+    // コールバック中に致命的なエラーが発生していないかチェック
     RETURN_IF_ERROR_STATE(DWCi_LOBBY_STATE_ERROR);
     
-    // ���g���C�J�E���g���I�[�o�[���Ă���Ƃ��̓Z�b�V�����G���[��Ԃ�
+    // リトライカウントがオーバーしているときはセッションエラーを返す
     if(s_iLobby->GetRetryCount() >= DWCi_MAX_RETRY_COUNT)
     {
         s_iLobby->ResetRetryCount();
@@ -1010,7 +1010,7 @@ DWCi_LOBBY_STATE DWCi_LobbyProcess()
         return s_iLobby->GetState();
     }
     
-    // ������i�߂�
+    // 処理を進める
     switch(s_iLobby->GetState())
     {
     case DWCi_LOBBY_STATE_NOTINITIALIZED:
@@ -1034,14 +1034,14 @@ DWCi_LOBBY_STATE DWCi_LobbyProcess()
 }
 
 /**
- * @brief �������Ă���v���I�ȃG���[�̏����擾���܂��B
+ * @brief 発生している致命的なエラーの情報を取得します。
  * 
- * �������Ă���v���I�ȃG���[�̏����擾���܂��B
+ * 発生している致命的なエラーの情報を取得します。
  * 
- * @retval ::DWCi_LOBBY_ERROR_NONE �G���[�����B
- * @retval ::DWCi_LOBBY_ERROR_UNKNOWN �s���ȃG���[�B
- * @retval ::DWCi_LOBBY_ERROR_ALLOC �������m�ۂɎ��s�B
- * @retval ::DWCi_LOBBY_ERROR_SESSION �ʐM�G���[�B
+ * @retval ::DWCi_LOBBY_ERROR_NONE エラー無し。
+ * @retval ::DWCi_LOBBY_ERROR_UNKNOWN 不明なエラー。
+ * @retval ::DWCi_LOBBY_ERROR_ALLOC メモリ確保に失敗。
+ * @retval ::DWCi_LOBBY_ERROR_SESSION 通信エラー。
  */
 DWCi_LOBBY_ERROR DWCi_LobbyGetLastError()
 {
@@ -1051,13 +1051,13 @@ DWCi_LOBBY_ERROR DWCi_LobbyGetLastError()
 }
 
 /**
- * @brief ���������G���[(::DWCi_LOBBY_ERROR)����\�����ׂ��G���[�R�[�h�𓾂܂��B
+ * @brief 発生したエラー(::DWCi_LOBBY_ERROR)から表示すべきエラーコードを得ます。
  * 
- * ::DWCi_LOBBY_ERROR����\�����ׂ��G���[�R�[�h�ɕϊ����܂��B
+ * ::DWCi_LOBBY_ERRORから表示すべきエラーコードに変換します。
  * 
- * @param err ���������G���[�B
+ * @param err 発生したエラー。
  * 
- * @retval �\�����ׂ��G���[�R�[�h�B
+ * @retval 表示すべきエラーコード。
  */
 s32 DWCi_LobbyToErrorCode(DWCi_LOBBY_ERROR err)
 {
@@ -1065,12 +1065,12 @@ s32 DWCi_LobbyToErrorCode(DWCi_LOBBY_ERROR err)
 }
 
 /**
- * @brief ���r�[���C�u�����Ŏg�p���Ă��鎩���̃��[�UID���擾���܂��B
+ * @brief ロビーライブラリで使用している自分のユーザIDを取得します。
  * 
- * ���r�[���C�u�����Ŏg�p���Ă��鎩���̃��[�UID���擾���܂��B
+ * ロビーライブラリで使用している自分のユーザIDを取得します。
  * 
- * @retval �����̃��[�UID�B
- * @retval ::DWC_LOBBY_INVALID_USER_ID ���������Ă��܂���B
+ * @retval 自分のユーザID。
+ * @retval ::DWC_LOBBY_INVALID_USER_ID 初期化していません。
  */
 s32 DWCi_LobbyGetMyUserId()
 {
@@ -1080,14 +1080,14 @@ s32 DWCi_LobbyGetMyUserId()
 }
 
 /**
- * @brief �w�肵���`�����l���ɎQ�����Ă��邩�𒲂ׂ܂��B
+ * @brief 指定したチャンネルに参加しているかを調べます。
  * 
- * �w�肵���`�����l���ɎQ�����Ă��邩�𒲂ׂ܂��B
+ * 指定したチャンネルに参加しているかを調べます。
  * 
- * @param[in] channelName ���ׂ�`�����l����
+ * @param[in] channelName 調べるチャンネル名
  * 
- * @retval TRUE �Q�����Ă���B
- * @retval FALSE �Q�����Ă��Ȃ��B
+ * @retval TRUE 参加している。
+ * @retval FALSE 参加していない。
  */
 BOOL DWCi_LobbyInChannel(const char* channelName)
 {
@@ -1098,33 +1098,33 @@ BOOL DWCi_LobbyInChannel(const char* channelName)
 }
 
 /** 
- * @brief ���r�[���C�u���������������܂��B
+ * @brief ロビーライブラリを初期化します。
  * 
- * ���r�[���C�u���������������܂��B\n
- * ���̊֐����ĂԑO�ɂ��炩����DWC_LoginAsync�֐�����DWC_NASLoginAsync�֐���Wi-Fi�R�l�N�V�����ւ̐ڑ����������Ă���K�v������܂��B\n
- * ���̊֐������������ꍇ��::DWCi_LobbyProcess�֐��𖈃Q�[���t���[�����x�̕p�x�ŌĂяo���Ă��������B
+ * ロビーライブラリを初期化します。\n
+ * この関数を呼ぶ前にあらかじめDWC_LoginAsync関数又はDWC_NASLoginAsync関数でWi-Fiコネクションへの接続を完了している必要があります。\n
+ * この関数が成功した場合は::DWCi_LobbyProcess関数を毎ゲームフレーム程度の頻度で呼び出してください。
  * 
- * @param[in] gameName NULL�I�[���ꂽ�Q�[�����B
- * @param[in] secretKey NULL�I�[���ꂽ�V�[�N���b�g�L�[�B
- * @param[in] prefix �`�����l�����ɕt������v���t�B�b�N�X�B���i�p�A�f�o�b�O�p�A�e�X�g�p�œ���`�����l���𕪂��邱�Ƃ��ł��܂��B\n
- *                   ���i�p�ɂ�::DWC_LOBBY_CHANNEL_PREFIX_RELEASE���A�f�o�b�O�p�ɂ�::DWC_LOBBY_CHANNEL_PREFIX_DEBUG���w�肵�Ă��������B
- * @param[in] globalCallbacks �`�����l���Ɋւ��Ȃ��R�[���o�b�N�֐����Z�b�g���܂��B
- * @param[in] dwcUserData �L����DWC���[�U�f�[�^�I�u�W�F�N�g�B
+ * @param[in] gameName NULL終端されたゲーム名。
+ * @param[in] secretKey NULL終端されたシークレットキー。
+ * @param[in] prefix チャンネル名に付加するプリフィックス。製品用、デバッグ用、テスト用で入るチャンネルを分けることができます。\n
+ *                   製品用には::DWC_LOBBY_CHANNEL_PREFIX_RELEASEを、デバッグ用には::DWC_LOBBY_CHANNEL_PREFIX_DEBUGを指定してください。
+ * @param[in] globalCallbacks チャンネルに関わらないコールバック関数をセットします。
+ * @param[in] dwcUserData 有効なDWCユーザデータオブジェクト。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM �������s���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ���łɏ���������Ă��܂��B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_ALLOC �������m�ۂɎ��s�B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_SESSION �ʐM�G���[�B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM 引数が不正。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE すでに初期化されています。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_ALLOC メモリ確保に失敗。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_SESSION 通信エラー。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyInitializeAsync(const char* gameName, const char* secretKey, DWC_LOBBY_CHANNEL_PREFIX prefix,
                                             const DWCi_LobbyGlobalCallbacks* globalCallbacks, const DWCUserData* dwcUserData)
 {
-	// ���[�U�f�[�^�̐�����������
+	// ユーザデータの正当性を検証
 	if( !DWC_CheckUserData( dwcUserData )
 		|| !DWC_CheckHasProfile( dwcUserData ))
     {
-		// �s���ȃ��[�U�f�[�^
+		// 不正なユーザデータ
         DWC_Printf(DWC_REPORTFLAG_ERROR, "DWCi_LobbyInitializeAsync: Invalid dwcUserData.\n");
 		return DWCi_LOBBY_RESULT_ERROR_PARAM;
 	}
@@ -1132,30 +1132,30 @@ DWCi_LOBBY_RESULT DWCi_LobbyInitializeAsync(const char* gameName, const char* se
 }
 
 /** 
- * @brief ���r�[���C�u���������������܂��B(�f�o�b�O�p)
+ * @brief ロビーライブラリを初期化します。(デバッグ用)
  * 
- * ���r�[���C�u���������������܂��B(�f�o�b�O�p)\n
- * ���̊֐����ĂԑO�ɂ��炩����DWC_LoginAsync�֐�����DWC_NASLoginAsync�֐���Wi-Fi�R�l�N�V�����ւ̐ڑ����������Ă���K�v������܂��B\n
- * ::DWCi_LobbyInitializeAsync�֐���DWCUserData���ɋL�^����Ă���GameSpyProfileID���g�p����̂ɑ΂��A������͔C�ӂ�GameSpyProfileID�ŏ������ł��܂��B\n
- * ���̊֐������������ꍇ��::DWCi_LobbyProcess�֐��𖈃Q�[���t���[�����x�̕p�x�ŌĂяo���Ă��������B
+ * ロビーライブラリを初期化します。(デバッグ用)\n
+ * この関数を呼ぶ前にあらかじめDWC_LoginAsync関数又はDWC_NASLoginAsync関数でWi-Fiコネクションへの接続を完了している必要があります。\n
+ * ::DWCi_LobbyInitializeAsync関数はDWCUserData内に記録されているGameSpyProfileIDを使用するのに対し、こちらは任意のGameSpyProfileIDで初期化できます。\n
+ * この関数が成功した場合は::DWCi_LobbyProcess関数を毎ゲームフレーム程度の頻度で呼び出してください。
  * 
- * @param[in] gameName NULL�I�[���ꂽ�Q�[�����B
- * @param[in] secretKey NULL�I�[���ꂽ�V�[�N���b�g�L�[�B
- * @param[in] prefix �`�����l�����ɕt������v���t�B�b�N�X�B���i�p�A�f�o�b�O�p�A�e�X�g�p�œ���`�����l���𕪂��邱�Ƃ��ł��܂��B\n
- *                   ���i�p�ɂ�::DWC_LOBBY_CHANNEL_PREFIX_RELEASE���A�f�o�b�O�p�ɂ�::DWC_LOBBY_CHANNEL_PREFIX_DEBUG���w�肵�Ă��������B
- * @param[in] globalCallbacks �`�����l���Ɋւ��Ȃ��R�[���o�b�N�֐����Z�b�g���܂��B
- * @param[in] pid GameSpyProfileID�B10���ȏ�̐��̐����w�肵�Ă��������B
+ * @param[in] gameName NULL終端されたゲーム名。
+ * @param[in] secretKey NULL終端されたシークレットキー。
+ * @param[in] prefix チャンネル名に付加するプリフィックス。製品用、デバッグ用、テスト用で入るチャンネルを分けることができます。\n
+ *                   製品用には::DWC_LOBBY_CHANNEL_PREFIX_RELEASEを、デバッグ用には::DWC_LOBBY_CHANNEL_PREFIX_DEBUGを指定してください。
+ * @param[in] globalCallbacks チャンネルに関わらないコールバック関数をセットします。
+ * @param[in] pid GameSpyProfileID。10万以上の正の数を指定してください。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM �������s���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ���łɏ���������Ă��܂��B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_ALLOC �������m�ۂɎ��s�B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_SESSION �ʐM�G���[�B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM 引数が不正。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE すでに初期化されています。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_ALLOC メモリ確保に失敗。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_SESSION 通信エラー。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyInitializePidAsync(const char* gameName, const char* secretKey, DWC_LOBBY_CHANNEL_PREFIX prefix,
                                                const DWCi_LobbyGlobalCallbacks* globalCallbacks, s32 pid)
 {
-    // ��ԃ`�F�b�N
+    // 状態チェック
     if(s_iLobby)
     {
         DWC_Printf(DWC_REPORTFLAG_ERROR, "DWCi_LobbyInitializePidAsync: Already initialized.\n");
@@ -1167,7 +1167,7 @@ DWCi_LOBBY_RESULT DWCi_LobbyInitializePidAsync(const char* gameName, const char*
 	DWCi_String chatName("DWCName");
     CHAT chat = NULL;
 
-    // �������r�[�f�[�^������
+    // 内部ロビーデータ初期化
     s_iLobby = new DWCi_Lobby(gameName, secretKey, prefix, pid, chatNick, chatUser, chatName, globalCallbacks);
     if(!s_iLobby)
     {
@@ -1177,7 +1177,7 @@ DWCi_LOBBY_RESULT DWCi_LobbyInitializePidAsync(const char* gameName, const char*
     
     DWCi_LOBBY_RESULT result = DWCi_LOBBY_RESULT_SUCCESS;
 
-    // new�n���h��������
+    // newハンドラ初期化
     if(!DWCi_LobbyInitializeNewHandler(s_iLobby))
     {
         result = DWCi_LOBBY_RESULT_ERROR_ALLOC;
@@ -1194,7 +1194,7 @@ DWCi_LOBBY_RESULT DWCi_LobbyInitializePidAsync(const char* gameName, const char*
 
     DWC_Printf(DWC_REPORTFLAG_INFO, "chatConnectSecure start\n");
 	/*
-    // �Â��o�[�W�����͈����̎d�l���Ⴄ
+    // 古いバージョンは引数の仕様が違う
     chat = chatConnectSecure(serverAddress[0]?serverAddress:NULL, port, chatNick, chatName,
                                   gamename, secretKey, &gsGlobalCallbacks, NickErrorCallback, FillInUserCallback, ConnectCallback, NULL, CHATFalse);
     */
@@ -1222,63 +1222,63 @@ ERROR_ALLOC:
 }
 
 /** 
- * @brief ���r�[���C�u�������I�����܂��B
+ * @brief ロビーライブラリを終了します。
  * 
- * ���r�[���C�u�������I�����܂��B\n
- * �C�ӂ̃^�C�~���O�ŌĂԂ��Ƃ��ł��܂��B���łɏI�����Ă���ꍇ�͉������܂���B\n
- * ::DWCi_LobbyProcess�֐���::DWCi_LOBBY_STATE_NOTINITIALIZED��Ԃ��ƃV���b�g�_�E�������ł��B
+ * ロビーライブラリを終了します。\n
+ * 任意のタイミングで呼ぶことができます。すでに終了している場合は何もしません。\n
+ * ::DWCi_LobbyProcess関数が::DWCi_LOBBY_STATE_NOTINITIALIZEDを返すとシャットダウン完了です。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyShutdownAsync()
 {
     RETURN_IF_NOTINITIALIZED(DWCi_LOBBY_RESULT_SUCCESS);
     
-    // ���łɔ\���I�ɏI�����BDiconnect�R�[���o�b�N�҂�
+    // すでに能動的に終了中。Diconnectコールバック待ち
     if(s_iLobby->GetState() == DWCi_LOBBY_STATE_CLOSING)
     {
         return DWCi_LOBBY_RESULT_SUCCESS;
     }
     
-    // new�n���h���I��
+    // newハンドラ終了
     DWCi_LobbyDestroyNewHandler();
     
     if(s_iLobby->GetServerDisconnectedMe())
     {
-        // �T�[�o������ؒf�����Disconnected�R�[���o�b�N���Ă΂ꂽ�Ƃ��̏ꍇ
-        // GS�`���b�g���C�u�������I������B���̂Ƃ���Disconnected�R�[���o�b�N�͌Ă΂�Ȃ��B
+        // サーバ側から切断されてDisconnectedコールバックが呼ばれたときの場合
+        // GSチャットライブラリを終了する。このときはDisconnectedコールバックは呼ばれない。
         chatDisconnect(s_iLobby->GetChat());
         DWC_SAFE_DELETE(s_iLobby);
     }
     else
     {
-        // �\���I�ɏI������ꍇ
+        // 能動的に終了する場合
         // MatchComment: SetState -> SetStateNoErrorCheck
         s_iLobby->SetStateNoErrorCheck(DWCi_LOBBY_STATE_CLOSING);
         chatDisconnect(s_iLobby->GetChat());
-        // Disconnected�R�[���o�b�N��s_iLobby���폜
+        // Disconnectedコールバックでs_iLobbyを削除
     }
     return DWCi_LOBBY_RESULT_SUCCESS;
 }
 
 /** 
- * @brief �`�����l���ɎQ�����܂��B
+ * @brief チャンネルに参加します。
  * 
- * �`�����l���ɎQ�����܂��B�Q���������܂��͎��s�����::DWCi_LobbyJoinChannelCallback�R�[���o�b�N���Ă΂�܂��B
+ * チャンネルに参加します。参加が完了または失敗すると::DWCi_LobbyJoinChannelCallbackコールバックが呼ばれます。
  * 
- * @param[in] channelName �Q������`�����l���̖��O�B�I�[���݂�::DWC_LOBBY_MAX_CHANNEL_NAME_SIZE�ȉ��̒����ł���K�v������܂��B\n
- *                        ���ۂɎQ������`�����l�����́u\#GSP!(gameName)!(::DWC_LOBBY_CHANNEL_PREFIX)!(channelName)�v�ƂȂ�܂��B\n
- *                        ��F�Q�[������"dwctest"�A::DWC_LOBBY_CHANNEL_PREFIX��::DWC_LOBBY_CHANNEL_PREFIX_DEBUG�A�`�����l������"TestChannel"�̏ꍇ�A
- *                        �u\#GSP!dwctest!D!TestChannel�v�ƂȂ�܂��B
- * @param[in] password �`�����l���̃p�X���[�h�B::DWCi_LobbySetChannelPassword�֐��ŃZ�b�g���ꂽ�p�X���[�h���w�肵�Ă��������B
- *                     �p�X���[�h���ݒ肳��Ă��Ȃ��ꍇ�͖�������܂��B
- * @param[in] channelCallbacks �`�����l���Ɋւ���R�[���o�b�N�֐����Z�b�g���܂��B
- * @param[in] callback �`�����l���ɎQ���܂��͎��s�����Ƃ��ɌĂ΂��R�[���o�b�N�B
- * @param[in] param callback��param�p�����[�^�ɂ��̂܂ܓn����郆�[�U��`���B
+ * @param[in] channelName 参加するチャンネルの名前。終端込みで::DWC_LOBBY_MAX_CHANNEL_NAME_SIZE以下の長さである必要があります。\n
+ *                        実際に参加するチャンネル名は「\#GSP!(gameName)!(::DWC_LOBBY_CHANNEL_PREFIX)!(channelName)」となります。\n
+ *                        例：ゲーム名が"dwctest"、::DWC_LOBBY_CHANNEL_PREFIXが::DWC_LOBBY_CHANNEL_PREFIX_DEBUG、チャンネル名が"TestChannel"の場合、
+ *                        「\#GSP!dwctest!D!TestChannel」となります。
+ * @param[in] password チャンネルのパスワード。::DWCi_LobbySetChannelPassword関数でセットされたパスワードを指定してください。
+ *                     パスワードが設定されていない場合は無視されます。
+ * @param[in] channelCallbacks チャンネルに関するコールバック関数をセットします。
+ * @param[in] callback チャンネルに参加または失敗したときに呼ばれるコールバック。
+ * @param[in] param callbackのparamパラメータにそのまま渡されるユーザ定義情報。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyJoinChannelAsync(const char* channelName, const char* password, const DWCi_LobbyChannelCallbacks* channelCallbacks,
                                              DWCi_LobbyJoinChannelCallback callback, void* param)
@@ -1287,25 +1287,25 @@ DWCi_LOBBY_RESULT DWCi_LobbyJoinChannelAsync(const char* channelName, const char
 }
 
 /** 
- * @brief �����l�����w�肵�ă`�����l���ɎQ�����܂��B
+ * @brief 制限人数を指定してチャンネルに参加します。
  * 
- * �`�����l���ɎQ�����܂��B�Q���������܂��͎��s�����::DWCi_LobbyJoinChannelCallback�R�[���o�b�N���Ă΂�܂��B
+ * チャンネルに参加します。参加が完了または失敗すると::DWCi_LobbyJoinChannelCallbackコールバックが呼ばれます。
  * 
- * @param[in] channelName �Q������`�����l���̖��O�B�I�[���݂�::DWC_LOBBY_MAX_CHANNEL_NAME_SIZE�ȉ��̒����ł���K�v������܂��B\n
- *                        ���ۂɎQ������`�����l�����́u\#GSP!(gameName)!(::DWC_LOBBY_CHANNEL_PREFIX)!(channelName)�v�ƂȂ�܂��B\n
- *                        ��F�Q�[������"dwctest"�A::DWC_LOBBY_CHANNEL_PREFIX��::DWC_LOBBY_CHANNEL_PREFIX_DEBUG�A�`�����l������"TestChannel"�̏ꍇ�A
- *                        �u\#GSP!dwctest!D!TestChannel�v�ƂȂ�܂��B
- * @param[in] password �`�����l���̃p�X���[�h�B::DWCi_LobbySetChannelPassword�֐��ŃZ�b�g���ꂽ�p�X���[�h���w�肵�Ă��������B
- *                     �p�X���[�h���ݒ肳��Ă��Ȃ��ꍇ�͖�������܂��B
- * @param[in] limit �`�����l���ɎQ���ł���l�����w�肵�܂��B�����̃`�����l���ɎQ������ꍇ���w�肵���l���ɐ������ύX�����_�ɂ����Ӊ������B
- *                  0���w�肷��Ɛ������܂���B(::DWCi_LobbyJoinChannelAsync�֐��Ɠ�������ɂȂ�܂��B)
- * @param[in] channelCallbacks �`�����l���Ɋւ���R�[���o�b�N�֐����Z�b�g���܂��B
- * @param[in] callback �`�����l���ɎQ���܂��͎��s�����Ƃ��ɌĂ΂��R�[���o�b�N�B
- * @param[in] param callback��param�p�����[�^�ɂ��̂܂ܓn����郆�[�U��`���B
+ * @param[in] channelName 参加するチャンネルの名前。終端込みで::DWC_LOBBY_MAX_CHANNEL_NAME_SIZE以下の長さである必要があります。\n
+ *                        実際に参加するチャンネル名は「\#GSP!(gameName)!(::DWC_LOBBY_CHANNEL_PREFIX)!(channelName)」となります。\n
+ *                        例：ゲーム名が"dwctest"、::DWC_LOBBY_CHANNEL_PREFIXが::DWC_LOBBY_CHANNEL_PREFIX_DEBUG、チャンネル名が"TestChannel"の場合、
+ *                        「\#GSP!dwctest!D!TestChannel」となります。
+ * @param[in] password チャンネルのパスワード。::DWCi_LobbySetChannelPassword関数でセットされたパスワードを指定してください。
+ *                     パスワードが設定されていない場合は無視されます。
+ * @param[in] limit チャンネルに参加できる人数を指定します。既存のチャンネルに参加する場合も指定した人数に制限が変更される点にご注意下さい。
+ *                  0を指定すると制限しません。(::DWCi_LobbyJoinChannelAsync関数と同じ動作になります。)
+ * @param[in] channelCallbacks チャンネルに関するコールバック関数をセットします。
+ * @param[in] callback チャンネルに参加または失敗したときに呼ばれるコールバック。
+ * @param[in] param callbackのparamパラメータにそのまま渡されるユーザ定義情報。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyJoinChannelLimitAsync(const char* channelName, const char* password, s32 limit, const DWCi_LobbyChannelCallbacks* channelCallbacks,
                                              DWCi_LobbyJoinChannelCallback callback, void* param)
@@ -1319,10 +1319,10 @@ DWCi_LOBBY_RESULT DWCi_LobbyJoinChannelLimitAsync(const char* channelName, const
         DWC_Printf(DWC_REPORTFLAG_INFO, "DWCi_LobbyJoinChannelAsync: channelName is too long.\n");
     }
     
-    // �����R�[���o�b�N����ۑ�
+    // 入室コールバック情報を保存
     u32 joinChannelOperationId = s_iLobby->GetCallbackManager().AddCallback(callback, param);
     
-    // �`�����l������ǉ�
+    // チャンネル情報を追加
     s_iLobby->AddChannel(s_iLobby->ModifyChannelName(channelName).c_str(), *channelCallbacks, limit);
     
 	chatChannelCallbacks gsChannelCallbacks;
@@ -1347,15 +1347,15 @@ DWCi_LOBBY_RESULT DWCi_LobbyJoinChannelLimitAsync(const char* channelName, const
 }
 
 /** 
- * @brief �`�����l������o�܂��B
+ * @brief チャンネルから出ます。
  * 
- * �`�����l������o�܂��B
+ * チャンネルから出ます。
  * 
- * @param[in] channelName �ގ��������`�����l�����B
+ * @param[in] channelName 退室したいチャンネル名。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyLeaveChannel(const char* channelName)
 {
@@ -1366,25 +1366,25 @@ DWCi_LOBBY_RESULT DWCi_LobbyLeaveChannel(const char* channelName)
     DWC_Printf(DWC_REPORTFLAG_INFO, "DWCi_LobbyLeaveChannel start\n");
 	chatLeaveChannel(s_iLobby->GetChat(), s_iLobby->ModifyChannelName(channelName).c_str(), NULL);
     
-    // �`�����l�������폜
+    // チャンネル情報を削除
     s_iLobby->RemoveChannel(s_iLobby->ModifyChannelName(channelName));
     
     return DWCi_LOBBY_RESULT_SUCCESS;
 }
 
 /**
- * @brief Ascii������̃��b�Z�[�W���w�肵���`�����l���ɎQ�����Ă���S�Ẵv���C���[�ɑ��M���܂��B
+ * @brief Ascii文字列のメッセージを指定したチャンネルに参加している全てのプレイヤーに送信します。
  * 
- * Ascii������̃��b�Z�[�W���w�肵���`�����l���ɎQ�����Ă���S�Ẵv���C���[�ɑ��M���܂��B\n
- * ���b�Z�[�W�͎����ɂ����[�v�o�b�N����܂��B
+ * Ascii文字列のメッセージを指定したチャンネルに参加している全てのプレイヤーに送信します。\n
+ * メッセージは自分にもループバックされます。
  * 
- * @param[in] channelName ���M��̃`�����l�����B
- * @param[in] message ���M����NULL�I�[���ꂽAscii������B�I�[���݂�::DWC_LOBBY_MAX_STRING_SIZE�ȉ��̒����ł���K�v������܂��B
+ * @param[in] channelName 送信先のチャンネル名。
+ * @param[in] message 送信するNULL終端されたAscii文字列。終端込みで::DWC_LOBBY_MAX_STRING_SIZE以下の長さである必要があります。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM message���������܂��B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM messageが長すぎます。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbySendChannelMessage(const char* channelName, const char* message)
 {
@@ -1403,17 +1403,17 @@ DWCi_LOBBY_RESULT DWCi_LobbySendChannelMessage(const char* channelName, const ch
 }
 
 /**
- * @brief Ascii������̃��b�Z�[�W����l�̃v���C���[�ɑ��M���܂��B
+ * @brief Ascii文字列のメッセージを一人のプレイヤーに送信します。
  * 
- * Ascii������̃��b�Z�[�W����l�̃v���C���[�ɑ��M���܂��B�������Q�����Ă���`�����l���ɂ���l�ȊO�ɂ͑��M�ł��܂���B
+ * Ascii文字列のメッセージを一人のプレイヤーに送信します。自分が参加しているチャンネルにいる人以外には送信できません。
  * 
- * @param[in] userId ���M��̃��[�UID�B
- * @param[in] message ���M����NULL�I�[���ꂽAscii������BNULL�I�[���݂�::DWC_LOBBY_MAX_STRING_SIZE�ȉ��̒����ł���K�v������܂��B
+ * @param[in] userId 送信先のユーザID。
+ * @param[in] message 送信するNULL終端されたAscii文字列。NULL終端込みで::DWC_LOBBY_MAX_STRING_SIZE以下の長さである必要があります。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM �w�肵�����[�U�����܂���A��������message���������܂��B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM 指定したユーザがいません、もしくはmessageが長すぎます。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbySendUserMessage(s32 userId, const char* message)
 {
@@ -1438,24 +1438,24 @@ DWCi_LOBBY_RESULT DWCi_LobbySendUserMessage(s32 userId, const char* message)
 }
 
 /**
- * @brief �`�����l���f�[�^���Z�b�g���܂��B
+ * @brief チャンネルデータをセットします。
  * 
- * �`�����l���f�[�^���Z�b�g���܂��B\n
- * �`�����l���f�[�^�͎Q�����Ă���`�����l���̃v���C���[��l��l�ƃ`�����l�����̂ɃZ�b�g���邱�Ƃ��ł��܂��B\n
- * ���ꂼ��ɍő�20�̃`�����l���f�[�^���Z�b�g���邱�Ƃ��ł��܂��B\n
- * key��"b_"����n�܂镶������w�肷��ƁA�T�[�o�ɃZ�b�g����Ɠ����ɑ��̃v���C���[�ɂ����ʒm���܂��B(�u���[�h�L���X�g)\n
- * ���̃u���[�h�L���X�g�͎����ɂ����[�v�o�b�N����܂��B\n
- * �ʒm��::DWCi_LobbyGetChannelDataCallback�R�[���o�b�N�ɂ��s���܂��B���̂Ƃ�������(broadcast)��TRUE�ƂȂ�܂��B
+ * チャンネルデータをセットします。\n
+ * チャンネルデータは参加しているチャンネルのプレイヤー一人一人とチャンネル自体にセットすることができます。\n
+ * それぞれに最大20個のチャンネルデータをセットすることができます。\n
+ * keyに"b_"から始まる文字列を指定すると、サーバにセットすると同時に他のプレイヤーにそれを通知します。(ブロードキャスト)\n
+ * このブロードキャストは自分にもループバックされます。\n
+ * 通知は::DWCi_LobbyGetChannelDataCallbackコールバックにより行われます。このとき第二引数(broadcast)がTRUEとなります。
  * 
- * @param[in] channelName �`�����l���f�[�^���Z�b�g����`�����l�����B
- * @param[in] userId �`�����l���f�[�^���Z�b�g���郆�[�UID�B::DWC_LOBBY_INVALID_USER_ID���w�肷��ƃ`�����l�����̂ɃZ�b�g���܂��B
- * @param[in] key �`�����l���f�[�^�ɃA�N�Z�X���邽�߂�NULL�I�[���ꂽ������BNULL�I�[���݂�::DWC_LOBBY_MAX_CHANNEL_KEY_SIZE�܂ł̒����ł���K�v������܂��B
- * @param[in] value key�Ɍ��т���NULL�I�[���ꂽ������BNULL�I�[���݂�::DWC_LOBBY_MAX_STRING_SIZE�܂ł̒����ł���K�v������܂��B
+ * @param[in] channelName チャンネルデータをセットするチャンネル名。
+ * @param[in] userId チャンネルデータをセットするユーザID。::DWC_LOBBY_INVALID_USER_IDを指定するとチャンネル自体にセットします。
+ * @param[in] key チャンネルデータにアクセスするためのNULL終端された文字列。NULL終端込みで::DWC_LOBBY_MAX_CHANNEL_KEY_SIZEまでの長さである必要があります。
+ * @param[in] value keyに結びつけるNULL終端された文字列。NULL終端込みで::DWC_LOBBY_MAX_STRING_SIZEまでの長さである必要があります。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM �w�肵�����[�U�����܂���A��������key�܂���value���������܂��B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM 指定したユーザがいません、もしくはkeyまたはvalueが長すぎます。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbySetChannelData(const char* channelName, s32 userId, const char* key, const char* value)
 {
@@ -1472,12 +1472,12 @@ DWCi_LOBBY_RESULT DWCi_LobbySetChannelData(const char* channelName, s32 userId, 
     DWCi_String userName = "";
     if(userId == DWC_LOBBY_INVALID_USER_ID)
     {
-        // �`�����l�����̂̃f�[�^���Z�b�g
+        // チャンネル自体のデータをセット
         userName = "";
     }
     else
     {
-        // ����̃��[�U�̃f�[�^���Z�b�g
+        // 特定のユーザのデータをセット
         userName = s_iLobby->FindUser(userId);
         if(userName == "")
         {
@@ -1491,21 +1491,21 @@ DWCi_LOBBY_RESULT DWCi_LobbySetChannelData(const char* channelName, s32 userId, 
 }
 
 /**
- * @brief �`�����l���f�[�^���擾���܂��B
+ * @brief チャンネルデータを取得します。
  * 
- * �`�����l���f�[�^���擾���܂��B\n
- * ���������::DWCi_LobbyGetChannelDataCallback�R�[���o�b�N���Ă΂�܂��B
+ * チャンネルデータを取得します。\n
+ * 完了すると::DWCi_LobbyGetChannelDataCallbackコールバックが呼ばれます。
  * 
- * @param[in] channelName �`�����l���f�[�^���擾����`�����l�����B
- * @param[in] userId �`�����l���f�[�^���擾���郆�[�UID�B::DWC_LOBBY_INVALID_USER_ID���w�肷��ƃ`�����l�����̂���擾���܂��B
- * @param[in] key �`�����l���f�[�^�ɃA�N�Z�X���邽�߂̃L�[�BNULL�I�[���݂�::DWC_LOBBY_MAX_CHANNEL_KEY_SIZE�܂ł̒����ł���K�v������܂��B
- * @param[in] callback �擾�������A���s�����Ƃ��ɌĂяo�����R�[���o�b�N�B
- * @param[in] param callback��param�p�����[�^�ɂ��̂܂ܓn����郆�[�U��`���B
+ * @param[in] channelName チャンネルデータを取得するチャンネル名。
+ * @param[in] userId チャンネルデータを取得するユーザID。::DWC_LOBBY_INVALID_USER_IDを指定するとチャンネル自体から取得します。
+ * @param[in] key チャンネルデータにアクセスするためのキー。NULL終端込みで::DWC_LOBBY_MAX_CHANNEL_KEY_SIZEまでの長さである必要があります。
+ * @param[in] callback 取得が完了、失敗したときに呼び出されるコールバック。
+ * @param[in] param callbackのparamパラメータにそのまま渡されるユーザ定義情報。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM �w�肵�����[�U�����܂���A��������key���������܂��B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM 指定したユーザがいません、もしくはkeyが長すぎます。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyGetChannelDataAsync(const char* channelName, s32 userId, const char* key, DWCi_LobbyGetChannelDataCallback callback, void* param)
 {
@@ -1522,12 +1522,12 @@ DWCi_LOBBY_RESULT DWCi_LobbyGetChannelDataAsync(const char* channelName, s32 use
     DWCi_String userName = "";
     if(userId == DWC_LOBBY_INVALID_USER_ID)
     {
-        // �`�����l�����̂̃f�[�^���擾
+        // チャンネル自体のデータを取得
         userName = "";
     }
     else
     {
-        // ����̃��[�U�̃f�[�^���擾
+        // 特定のユーザのデータを取得
         userName = s_iLobby->FindUser(userId);
         if(userName == "")
         {
@@ -1536,7 +1536,7 @@ DWCi_LOBBY_RESULT DWCi_LobbyGetChannelDataAsync(const char* channelName, s32 use
         }
     }
     
-    // �R�[���o�b�N����ۑ�
+    // コールバック情報を保存
     u32 operationId = s_iLobby->GetCallbackManager().AddCallback(callback, param);
     
     DWC_Printf(DWC_REPORTFLAG_INFO, "DWCi_LobbyGetChannelDataAsync start: channel: %s, key: %s\n", channelName, key);
@@ -1546,19 +1546,19 @@ DWCi_LOBBY_RESULT DWCi_LobbyGetChannelDataAsync(const char* channelName, s32 use
 }
 
 /**
- * @brief �T�[�o��̃`�����l�����������܂��B
+ * @brief サーバ上のチャンネルを検索します。
  * 
- * �T�[�o��̃`�����l�����������܂��B\n
- * ���������::DWCi_LobbyEnumChannelsCallback�R�[���o�b�N���Ă΂�܂��B
+ * サーバ上のチャンネルを検索します。\n
+ * 完了すると::DWCi_LobbyEnumChannelsCallbackコールバックが呼ばれます。
  * 
- * @param[in] filter ����������B���C���h�J�[�h"*"���g�p�ł��܂��B�Ⴆ�΂��̃A�v���P�[�V�����Ŏg�p���Ă���S�Ẵ`�����l����񋓂���ꍇ��"*"���w�肵�܂��B
- *                   test����n�܂�`�����l��������������ꍇ��"test*"�Ƃ��܂��B
- * @param[in] callback �����������A���s�����Ƃ��ɌĂяo�����R�[���o�b�N�B
- * @param[in] param callback��param�p�����[�^�ɂ��̂܂ܓn����郆�[�U��`���B
+ * @param[in] filter 検索文字列。ワイルドカード"*"が使用できます。例えばこのアプリケーションで使用している全てのチャンネルを列挙する場合は"*"を指定します。
+ *                   testから始まるチャンネル名を検索する場合は"test*"とします。
+ * @param[in] callback 検索が完了、失敗したときに呼び出されるコールバック。
+ * @param[in] param callbackのparamパラメータにそのまま渡されるユーザ定義情報。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyEnumChannelsAsync(const char* filter, DWCi_LobbyEnumChannelsCallback callback, void* param)
 {
@@ -1566,32 +1566,32 @@ DWCi_LOBBY_RESULT DWCi_LobbyEnumChannelsAsync(const char* filter, DWCi_LobbyEnum
     RETURN_IF_ERROR_STATE(DWCi_LOBBY_RESULT_ERROR_CONDITION);
     RETURN_IF_NOTCONNECTED(DWCi_LOBBY_RESULT_ERROR_STATE);
     
-    // �R�[���o�b�N����ۑ�
+    // コールバック情報を保存
     u32 operationId = s_iLobby->GetCallbackManager().AddCallback(callback, param);
     
     DWC_Printf(DWC_REPORTFLAG_INFO, "DWCi_LobbyEnumChannelsAsync start. searching:%s\n", s_iLobby->ModifyChannelName(filter).c_str());
-    chatEnumChannels(s_iLobby->GetChat(), s_iLobby->ModifyChannelName(filter).c_str(), EnumChannelsEachCallback,    // �o�O?�ɂ��Each���ݒ肵�Ȃ���΂Ȃ�Ȃ��B
+    chatEnumChannels(s_iLobby->GetChat(), s_iLobby->ModifyChannelName(filter).c_str(), EnumChannelsEachCallback,    // バグ?によりEachも設定しなければならない。
                      EnumChannelsAllCallback, reinterpret_cast<void*>(operationId), CHATFalse);
     return DWCi_LOBBY_RESULT_SUCCESS;
 }
 
 /**
- * @brief �`�����l���ɎQ�����Ă���l��񋓂��܂��B
+ * @brief チャンネルに参加している人を列挙します。
  * 
- * @deprecated ::DWCi_LobbyEnumUsers�֐����g�p���Ă��������B
+ * @deprecated ::DWCi_LobbyEnumUsers関数を使用してください。
  * 
- * �`�����l���ɎQ�����Ă���l��񋓂��܂��B\n
- * �������Q�����Ă���`�����l���̂ݗ񋓂ł��܂��B\n
- * ���������::DWCi_LobbyEnumUsersCallback�R�[���o�b�N���Ă΂�܂��B
+ * チャンネルに参加している人を列挙します。\n
+ * 自分が参加しているチャンネルのみ列挙できます。\n
+ * 完了すると::DWCi_LobbyEnumUsersCallbackコールバックが呼ばれます。
  * 
- * @param[in] channelName �񋓂���`�����l�����B
- * @param[in] callback �񋓂������A���s�����Ƃ��ɌĂяo�����R�[���o�b�N�B
- * @param[in] param callback��param�p�����[�^�ɂ��̂܂ܓn����郆�[�U��`���B
+ * @param[in] channelName 列挙するチャンネル名。
+ * @param[in] callback 列挙が完了、失敗したときに呼び出されるコールバック。
+ * @param[in] param callbackのparamパラメータにそのまま渡されるユーザ定義情報。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CHANNEL �w�肵���`�����l���ɎQ�����Ă��܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CHANNEL 指定したチャンネルに参加していません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyEnumUsersAsync(const char* channelName, DWCi_LobbyEnumUsersCallback callback, void* param)
 {
@@ -1599,15 +1599,15 @@ DWCi_LOBBY_RESULT DWCi_LobbyEnumUsersAsync(const char* channelName, DWCi_LobbyEn
     RETURN_IF_ERROR_STATE(DWCi_LOBBY_RESULT_ERROR_CONDITION);
     RETURN_IF_NOTCONNECTED(DWCi_LOBBY_RESULT_ERROR_STATE);
     
-    // �������Q�����Ă��Ȃ��`�����l���͗񋓕s�\
-    //if(!DWCi_LobbyInChannel(channelName))   // �Ȃ��������炾��GCC3.2.2�Ŋ֐��Ăяo���������Ƃ΂����
+    // 自分が参加していないチャンネルは列挙不能
+    //if(!DWCi_LobbyInChannel(channelName))   // なぜかこちらだとGCC3.2.2で関数呼び出しがすっとばされる
     if(!chatInChannel(s_iLobby->GetChat(), s_iLobby->ModifyChannelName(channelName).c_str()))
     {
         DWC_Printf(DWC_REPORTFLAG_INFO, "DWCi_LobbyEnumUsersAsync called2 %s\n", channelName);
         return DWCi_LOBBY_RESULT_ERROR_CHANNEL;
     }
     
-    // �R�[���o�b�N����ۑ�
+    // コールバック情報を保存
     u32 operationId = s_iLobby->GetCallbackManager().AddCallback(callback, param);
     
     DWC_Printf(DWC_REPORTFLAG_INFO, "DWCi_LobbyEnumUsersAsync start\n");
@@ -1617,22 +1617,22 @@ DWCi_LOBBY_RESULT DWCi_LobbyEnumUsersAsync(const char* channelName, DWCi_LobbyEn
 }
 
 /**
- * @brief �`�����l���ɎQ�����Ă���l��񋓂��܂��B
+ * @brief チャンネルに参加している人を列挙します。
  * 
- * �`�����l���ɎQ�����Ă���l��񋓂��܂��B\n
- * �������Q�����Ă���`�����l���̂ݗ񋓂ł��܂��B\n
- * userIds��NULL��������userIdNum�Ɏ��ۂɕK�v�Ȍ���菭�Ȃ�����n����::DWCi_LOBBY_RESULT_ERROR_PARAM���Ԃ�A
- * userIdNum�Ɏ��ۂɕK�v�Ȍ�(�܂�`�����l���ɎQ�����Ă��郆�[�U�̐�)���i�[����܂��B
+ * チャンネルに参加している人を列挙します。\n
+ * 自分が参加しているチャンネルのみ列挙できます。\n
+ * userIdsにNULLもしくはuserIdNumに実際に必要な個数より少ない数を渡すと::DWCi_LOBBY_RESULT_ERROR_PARAMが返り、
+ * userIdNumに実際に必要な個数(つまりチャンネルに参加しているユーザの数)が格納されます。
  * 
- * @param[in] channelName �񋓂���`�����l�����B
- * @param[in,out] userIds ���[�UID�̔z����i�[����o�b�t�@�B
- * @param[in,out] userIdNum userIds�ɗp�ӂ����z��̃T�C�Y�Bbyte�P�ʂł͂���܂���B
+ * @param[in] channelName 列挙するチャンネル名。
+ * @param[in,out] userIds ユーザIDの配列を格納するバッファ。
+ * @param[in,out] userIdNum userIdsに用意した配列のサイズ。byte単位ではありません。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CHANNEL �w�肵���`�����l���ɎQ�����Ă��܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM userIdNum���K�v�Ȍ���������Ă��邩�AuserIds��NULL�ł��BuserIdNum�ɕK�v�Ȍ����i�[���܂����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CHANNEL 指定したチャンネルに参加していません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM userIdNumが必要な個数を下回っているか、userIdsがNULLです。userIdNumに必要な個数を格納しました。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyEnumUsers(const char* channelName, s32* userIds, u32* userIdNum)
 {
@@ -1659,16 +1659,16 @@ DWCi_LOBBY_RESULT DWCi_LobbyEnumUsers(const char* channelName, s32* userIds, u32
 }
 
 /**
- * @brief �`�����l�����[�h���Z�b�g���܂��B
+ * @brief チャンネルモードをセットします。
  * 
- * �`�����l�����[�h���Z�b�g���܂��B
+ * チャンネルモードをセットします。
  * 
- * @param[in] channelName �Z�b�g����`�����l�����B
- * @param[in] mode �Z�b�g����`�����l�����[�h�B
+ * @param[in] channelName セットするチャンネル名。
+ * @param[in] mode セットするチャンネルモード。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbySetChannelMode(const char* channelName, const DWCi_LobbyChannelMode* mode)
 {
@@ -1682,17 +1682,17 @@ DWCi_LOBBY_RESULT DWCi_LobbySetChannelMode(const char* channelName, const DWCi_L
 }
 
 /**
- * @brief �`�����l�����[�h���擾���܂��B
+ * @brief チャンネルモードを取得します。
  * 
- * �`�����l�����[�h���擾���܂��B
+ * チャンネルモードを取得します。
  * 
- * @param[in] channelName �擾����`�����l�����B
- * @param[in] callback �擾�������A���s�����Ƃ��ɌĂяo�����R�[���o�b�N�B
- * @param[in] param callback��param�p�����[�^�ɂ��̂܂ܓn����郆�[�U��`���B
+ * @param[in] channelName 取得するチャンネル名。
+ * @param[in] callback 取得が完了、失敗したときに呼び出されるコールバック。
+ * @param[in] param callbackのparamパラメータにそのまま渡されるユーザ定義情報。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbyGetChannelModeAsync(const char* channelName, DWCi_LobbyGetChannelModeCallback callback, void* param)
 {
@@ -1700,7 +1700,7 @@ DWCi_LOBBY_RESULT DWCi_LobbyGetChannelModeAsync(const char* channelName, DWCi_Lo
     RETURN_IF_ERROR_STATE(DWCi_LOBBY_RESULT_ERROR_CONDITION);
     RETURN_IF_NOTCONNECTED(DWCi_LOBBY_RESULT_ERROR_STATE);
     
-    // �R�[���o�b�N����ۑ�
+    // コールバック情報を保存
     u32 operationId = s_iLobby->GetCallbackManager().AddCallback(callback, param);
     
     DWC_Printf(DWC_REPORTFLAG_INFO, "DWCi_LobbyGetChannelModeAsync start\n");
@@ -1710,19 +1710,19 @@ DWCi_LOBBY_RESULT DWCi_LobbyGetChannelModeAsync(const char* channelName, DWCi_Lo
 }
 
 /**
- * @brief �`�����l���g�s�b�N���Z�b�g���܂��B
+ * @brief チャンネルトピックをセットします。
  * 
- * �`�����l���g�s�b�N���Z�b�g���܂��B���̃g�s�b�N��::DWCi_LobbyEnumChannelsAsync�֐��ŎQ�Ƃ��邱�Ƃ��ł��܂��B\n
- * �w�肵���`�����l���ɓ������Ă��Ȃ��ꍇ�̓Z�b�g�ł��܂���B
+ * チャンネルトピックをセットします。このトピックは::DWCi_LobbyEnumChannelsAsync関数で参照することができます。\n
+ * 指定したチャンネルに入室していない場合はセットできません。
  * 
- * @param[in] channelName �g�s�b�N���Z�b�g����`�����l�����B
- * @param[in] topic �ݒ肷��g�s�b�N�BNULL�I�[���܂�::DWC_LOBBY_MAX_CHANNEL_TOPIC_SIZE�ȉ��̒����܂Ŏw��ł��܂��B
+ * @param[in] channelName トピックをセットするチャンネル名。
+ * @param[in] topic 設定するトピック。NULL終端を含み::DWC_LOBBY_MAX_CHANNEL_TOPIC_SIZE以下の長さまで指定できます。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM �w�肵��topic���������܂��B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CHANNEL �w�肵���`�����l���ɓ����Ă��܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM 指定したtopicが長すぎます。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CHANNEL 指定したチャンネルに入っていません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbySetChannelTopic(const char* channelName, const char* topic)
 {
@@ -1748,21 +1748,21 @@ DWCi_LOBBY_RESULT DWCi_LobbySetChannelTopic(const char* channelName, const char*
 }
 
 /**
- * @brief �`�����l���p�X���[�h���Z�b�g�܂��͉������܂��B
+ * @brief チャンネルパスワードをセットまたは解除します。
  * 
- * �`�����l���Ƀp�X���[�h���Z�b�g�܂��͉������܂��B�p�X���[�h���Z�b�g���ꂽ�ꍇ�A::DWCi_LobbyJoinChannelAsync�֐��Ńp�X���[�h���w�肵�Ȃ��Ɠ����ł��܂���B�B\n
- * �w�肵���`�����l���ɓ������Ă��Ȃ��ꍇ�̓Z�b�g�ł��܂���B
+ * チャンネルにパスワードをセットまたは解除します。パスワードがセットされた場合、::DWCi_LobbyJoinChannelAsync関数でパスワードを指定しないと入室できません。。\n
+ * 指定したチャンネルに入室していない場合はセットできません。
  * 
- * @param[in] channelName �p�X���[�h���Z�b�g����`�����l�����B
- * @param[in] enable �p�X���[�h���Z�b�g����ꍇ��TRUE�A��������ꍇ��FALSE���w�肵�Ă��������B
- * @param[in] password �ݒ�܂��͉�������p�X���[�h�BNULL�I�[���܂�::DWC_LOBBY_MAX_CHANNEL_PASSWORD_SIZE�ȉ��̒����܂Ŏw��ł��܂��B
- *                     ��������ꍇ�͌��݂̃p�X���[�h���w�肵�Ă��������B
+ * @param[in] channelName パスワードをセットするチャンネル名。
+ * @param[in] enable パスワードをセットする場合はTRUE、解除する場合はFALSEを指定してください。
+ * @param[in] password 設定または解除するパスワード。NULL終端を含み::DWC_LOBBY_MAX_CHANNEL_PASSWORD_SIZE以下の長さまで指定できます。
+ *                     解除する場合は現在のパスワードを指定してください。
  * 
- * @retval ::DWCi_LOBBY_RESULT_SUCCESS �����B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE �X�e�[�g��CONNECTED�ł͂���܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM �w�肵��password���������܂��B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CHANNEL �w�肵���`�����l���ɓ����Ă��܂���B
- * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION �v���I�ȃG���[���������Ă��܂��B
+ * @retval ::DWCi_LOBBY_RESULT_SUCCESS 成功。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_STATE ステートがCONNECTEDではありません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_PARAM 指定したpasswordが長すぎます。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CHANNEL 指定したチャンネルに入っていません。
+ * @retval ::DWCi_LOBBY_RESULT_ERROR_CONDITION 致命的なエラーが発生しています。
  */
 DWCi_LOBBY_RESULT DWCi_LobbySetChannelPassword(const char* channelName, BOOL enable, const char* password)
 {

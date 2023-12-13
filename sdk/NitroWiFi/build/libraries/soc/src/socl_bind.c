@@ -15,49 +15,49 @@
   INDENT SOURCE
 
   Revision 1.15  2006/01/13 07:26:50  yasu
-  SOCL ŠÖ”‚Ìƒpƒ‰ƒ[ƒ^’²®
+  SOCL é–¢æ•°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿èª¿æ•´
 
   Revision 1.14  2005/09/19 14:08:29  yasu
-  Closing ó‘Ô‚ğ’Ç‰Á‚µ‚½
+  Closing çŠ¶æ…‹ã‚’è¿½åŠ ã—ãŸ
 
   Revision 1.13  2005/09/13 07:27:06  yada
   applied for connect() on UDP
 
   Revision 1.12  2005/08/24 09:25:13  yasu
-  SOCL_SocketIsInvalid ’Ç‰Á
+  SOCL_SocketIsInvalid è¿½åŠ 
 
   Revision 1.11  2005/08/18 08:54:18  yasu
-  NOBLOCK connect ‚É‚¨‚¯‚é•Ô’l‚ÌC³
+  NOBLOCK connect ã«ãŠã‘ã‚‹è¿”å€¤ã®ä¿®æ­£
 
   Revision 1.10  2005/08/10 09:30:35  seiki_masashi
-  SSL ‚ÌƒTƒ|[ƒg‚ğ’Ç‰Á
+  SSL ã®ã‚µãƒãƒ¼ãƒˆã‚’è¿½åŠ 
 
   Revision 1.9  2005/08/08 14:26:11  yasu
-  NoBlock ƒ‚[ƒh‚ÌŠù‚ÉÚ‘±‚µ‚Ä‚¢‚é‚Æ‚«‚Ì result ’l‚ğ 0 ‚É•ÏX
+  NoBlock ãƒ¢ãƒ¼ãƒ‰æ™‚ã®æ—¢ã«æ¥ç¶šã—ã¦ã„ã‚‹ã¨ãã® result å€¤ã‚’ 0 ã«å¤‰æ›´
 
   Revision 1.8  2005/08/07 13:04:05  yasu
-  NOBLOCK ‚Ìˆ—‚ğ’²®
+  NOBLOCK æ™‚ã®å‡¦ç†ã‚’èª¿æ•´
 
   Revision 1.7  2005/08/01 13:23:42  yasu
-  Bind ‚Ì Mutex ŠJ•úˆÊ’u‚Ì•ÏX
+  Bind æ™‚ã® Mutex é–‹æ”¾ä½ç½®ã®å¤‰æ›´
 
   Revision 1.6  2005/07/30 22:30:14  yasu
-  ƒfƒ‚‚ª“®‚­‚æ‚¤‚ÉC³
+  ãƒ‡ãƒ¢ãŒå‹•ãã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.5  2005/07/30 15:30:52  yasu
-  ƒRƒ}ƒ“ƒhƒpƒCƒv•ª—£‚É‚Æ‚à‚È‚¤C³
+  ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—åˆ†é›¢ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.4  2005/07/23 14:16:49  yasu
-  Debug ƒƒbƒZ[ƒW‚ğ‰B“½
+  Debug ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’éš åŒ¿
 
   Revision 1.3  2005/07/22 12:44:56  yasu
-  ”ñ“¯Šúˆ—‰¼À‘•
+  éåŒæœŸå‡¦ç†ä»®å®Ÿè£…
 
   Revision 1.2  2005/07/19 14:06:33  yasu
-  SOCL_Read/Write ’Ç‰Á
+  SOCL_Read/Write è¿½åŠ 
 
   Revision 1.1  2005/07/18 13:16:28  yasu
-  ‘—MóMƒXƒŒƒbƒh‚ğì¬‚·‚é
+  é€ä¿¡å—ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã™ã‚‹
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -69,20 +69,20 @@ static int  SOCLi_ExecBindCommand(SOCLSocket* socket);
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Bind
 
-  Description:  ƒ\ƒPƒbƒg‚Ìƒ[ƒJƒ‹ƒ|[ƒg‘¤‚Ìİ’è(ƒoƒCƒ“ƒh)‚ğs‚È‚¤
-                CPS ŠÖ”‚Å‚ÍÚ‘±æ‚Ìƒ|[ƒg‚ÆƒAƒhƒŒƒX‚à“¯‚Éİ’è‚µ‚Ä
-                Ú‘±‚·‚é‚Ì‚Å‚±‚±‚Å‚Íƒ\ƒPƒbƒg\‘¢‘Ì“à•”‚Éİ’è’l‚ğ•Û‘¶
-                ‚·‚é‚Ì‚İD
+  Description:  ã‚½ã‚±ãƒƒãƒˆã®ãƒ­ãƒ¼ã‚«ãƒ«ãƒãƒ¼ãƒˆå´ã®è¨­å®š(ãƒã‚¤ãƒ³ãƒ‰)ã‚’è¡Œãªã†
+                CPS é–¢æ•°ã§ã¯æ¥ç¶šå…ˆã®ãƒãƒ¼ãƒˆã¨ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚‚åŒæ™‚ã«è¨­å®šã—ã¦
+                æ¥ç¶šã™ã‚‹ã®ã§ã“ã“ã§ã¯ã‚½ã‚±ãƒƒãƒˆæ§‹é€ ä½“å†…éƒ¨ã«è¨­å®šå€¤ã‚’ä¿å­˜
+                ã™ã‚‹ã®ã¿ï¼
 
-  Arguments:    s		ƒ\ƒPƒbƒg
-                localport	ƒ[ƒJƒ‹‚Ìƒ|[ƒg”Ô†
+  Arguments:    s		ã‚½ã‚±ãƒƒãƒˆ
+                localport	ãƒ­ãƒ¼ã‚«ãƒ«ã®ãƒãƒ¼ãƒˆç•ªå·
 
-  Returns:      ³or 0: ¬Œ÷
-                •‰    : ƒGƒ‰[
-                  Œ»óƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒGƒ‰[’l‚ÍˆÈ‰º
+  Returns:      æ­£or 0: æˆåŠŸ
+                è²     : ã‚¨ãƒ©ãƒ¼
+                  ç¾çŠ¶ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼å€¤ã¯ä»¥ä¸‹
                     - :
-                  ƒGƒ‰[’l‚Í’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ßA‘¼‚Ì•‰‚Ì’l‚à‘S‚Ä”Ä—p
-                  ƒGƒ‰[‚Æ‚µ‚Äˆµ‚¤‚±‚ÆD
+                  ã‚¨ãƒ©ãƒ¼å€¤ã¯è¿½åŠ ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€ä»–ã®è² ã®å€¤ã‚‚å…¨ã¦æ±ç”¨
+                  ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦æ‰±ã†ã“ã¨ï¼
  *---------------------------------------------------------------------------*/
 int SOCL_Bind(int s, u16 local_port)
 {
@@ -90,17 +90,17 @@ int SOCL_Bind(int s, u16 local_port)
 
     if (SOCL_SocketIsInvalid(socket))
     {
-        return SOCL_EINVAL;     // ‹K’èŠO‚Ì’l
+        return SOCL_EINVAL;     // è¦å®šå¤–ã®å€¤
     }
 
     if (!SOCL_SocketIsCreated(socket))
     {
-        return SOCL_ENETRESET;  // ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_ENETRESET;  // åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
     }
 
     if (SOCL_SocketIsConnecting(socket))
     {
-        return SOCL_EALREADY;   // Ú‘±ˆ—‚ğŠJn‚µ‚Ä‚¢‚é
+        return SOCL_EALREADY;   // æ¥ç¶šå‡¦ç†ã‚’é–‹å§‹ã—ã¦ã„ã‚‹
     }
 
     socket->local_port = local_port;
@@ -111,30 +111,30 @@ int SOCL_Bind(int s, u16 local_port)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Connect
 
-  Description:  ƒ\ƒPƒbƒg‚ÌƒŠƒ‚[ƒgƒ|[ƒg‘¤‚Ìİ’è(ƒoƒCƒ“ƒh)‚ğs‚È‚¤
-                CPS ŠÖ”‚Å‚ÍÚ‘±æ‚Ìƒ|[ƒg‚ÆƒAƒhƒŒƒX‚à“¯‚Éİ’è‚µ‚Ä
-                Ú‘±‚·‚é‚Ì‚Å‚±‚±‚Å‚Í SOC_Bind ‚Åƒ\ƒPƒbƒg\‘¢‘Ì“à•”‚É•Û‘¶
-                ‚³‚ê‚½İ’è’l‚ğg—p‚·‚éD
+  Description:  ã‚½ã‚±ãƒƒãƒˆã®ãƒªãƒ¢ãƒ¼ãƒˆãƒãƒ¼ãƒˆå´ã®è¨­å®š(ãƒã‚¤ãƒ³ãƒ‰)ã‚’è¡Œãªã†
+                CPS é–¢æ•°ã§ã¯æ¥ç¶šå…ˆã®ãƒãƒ¼ãƒˆã¨ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚‚åŒæ™‚ã«è¨­å®šã—ã¦
+                æ¥ç¶šã™ã‚‹ã®ã§ã“ã“ã§ã¯ SOC_Bind ã§ã‚½ã‚±ãƒƒãƒˆæ§‹é€ ä½“å†…éƒ¨ã«ä¿å­˜
+                ã•ã‚ŒãŸè¨­å®šå€¤ã‚’ä½¿ç”¨ã™ã‚‹ï¼
 
-  Arguments:    s		ƒ\ƒPƒbƒg
-                remoteport	ƒŠƒ‚[ƒg‚Ìƒ|[ƒg”Ô†
-                remoteIP	ƒŠƒ‚[ƒg‚Ì IP ƒAƒhƒŒƒX
+  Arguments:    s		ã‚½ã‚±ãƒƒãƒˆ
+                remoteport	ãƒªãƒ¢ãƒ¼ãƒˆã®ãƒãƒ¼ãƒˆç•ªå·
+                remoteIP	ãƒªãƒ¢ãƒ¼ãƒˆã® IP ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-  Returns:      ³or 0: ¬Œ÷
-                •‰    : ƒGƒ‰[
-                Œ»óƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒGƒ‰[’l‚ÍˆÈ‰º
-                  SOC_EINPROGRESS  : Ú‘±‚ª‚Ü‚¾Š®—¹‚µ‚Ä‚¢‚Ü‚¹‚ñB
-                  SOC_EINVAL       : –³Œø‚Èˆ—B
-                  SOC_EISCONN      : ƒ\ƒPƒbƒg‚ª‚·‚Å‚ÉÚ‘±‚³‚ê‚Ä‚¢‚Ü‚·B
-                  SOC_EMFILE       : ƒ\ƒPƒbƒg‹Lqq‚ğ‚±‚êˆÈãì‚ê‚Ü‚¹‚ñB
-                  SOC_ENETRESET    : ƒ\ƒPƒbƒg‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB
-                  SOC_ENOBUFS      : ƒŠƒ\[ƒX•s‘«B
-                  SOC_ETIMEDOUT    : TCP‚ÌƒRƒlƒNƒgƒ^ƒCƒ€ƒAƒEƒgB
+  Returns:      æ­£or 0: æˆåŠŸ
+                è²     : ã‚¨ãƒ©ãƒ¼
+                ç¾çŠ¶ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼å€¤ã¯ä»¥ä¸‹
+                  SOC_EINPROGRESS  : æ¥ç¶šãŒã¾ã å®Œäº†ã—ã¦ã„ã¾ã›ã‚“ã€‚
+                  SOC_EINVAL       : ç„¡åŠ¹ãªå‡¦ç†ã€‚
+                  SOC_EISCONN      : ã‚½ã‚±ãƒƒãƒˆãŒã™ã§ã«æ¥ç¶šã•ã‚Œã¦ã„ã¾ã™ã€‚
+                  SOC_EMFILE       : ã‚½ã‚±ãƒƒãƒˆè¨˜è¿°å­ã‚’ã“ã‚Œä»¥ä¸Šä½œã‚Œã¾ã›ã‚“ã€‚
+                  SOC_ENETRESET    : ã‚½ã‚±ãƒƒãƒˆãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚
+                  SOC_ENOBUFS      : ãƒªã‚½ãƒ¼ã‚¹ä¸è¶³ã€‚
+                  SOC_ETIMEDOUT    : TCPã®ã‚³ãƒã‚¯ãƒˆã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€‚
 
-                ƒGƒ‰[’l‚Í’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ßA‘¼‚Ì•‰‚Ì’l‚à‘S‚Ä”Ä—p
-                ƒGƒ‰[‚Æ‚µ‚Äˆµ‚¤‚±‚ÆD
+                ã‚¨ãƒ©ãƒ¼å€¤ã¯è¿½åŠ ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€ä»–ã®è² ã®å€¤ã‚‚å…¨ã¦æ±ç”¨
+                ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦æ‰±ã†ã“ã¨ï¼
  *---------------------------------------------------------------------------*/
-int SOCLiResultCodeInConnecting = SOCL_EINPROGRESS; //‚Ü‚½‚Í SOCL_EALREADY;
+int SOCLiResultCodeInConnecting = SOCL_EINPROGRESS; //ã¾ãŸã¯ SOCL_EALREADY;
 int SOCL_Connect(int s, u16 remote_port, SOCLInAddr remote_ip)
 {
     SOCLSocket*     socket = (SOCLSocket*)s;
@@ -142,20 +142,20 @@ int SOCL_Connect(int s, u16 remote_port, SOCLInAddr remote_ip)
 
     if (SOCL_SocketIsInvalid(socket) || SOCL_SocketIsClosing(socket))
     {
-        return SOCL_EINVAL;                 // ‹K’èŠO‚Ì’l‚ ‚é‚¢‚ÍØ’f’†
+        return SOCL_EINVAL;                 // è¦å®šå¤–ã®å€¤ã‚ã‚‹ã„ã¯åˆ‡æ–­ä¸­
     }
 
     if (!SOCL_SocketIsCreated(socket))
     {
-        return SOCL_ENETRESET;              // ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_ENETRESET;              // åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
     }
 
-    // TCP ‚Ìê‡
+    // TCP ã®å ´åˆ
     if (SOCL_SocketIsTCP(socket))
     {
-        if (SOCL_SocketIsConnected(socket)) // ‚·‚Å‚ÉÚ‘±‚³‚ê‚Ä‚¢‚é‚©
+        if (SOCL_SocketIsConnected(socket)) // ã™ã§ã«æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ã‹
         {
-            return SOCL_SocketIsBlock(socket) ? SOCL_EISCONN : 0;   // Šù‚ÉÚ‘±‚µ‚Ä‚¢‚é
+            return SOCL_SocketIsBlock(socket) ? SOCL_EISCONN : 0;   // æ—¢ã«æ¥ç¶šã—ã¦ã„ã‚‹
         }
 
         if (SOCL_SocketIsConnecting(socket))
@@ -164,15 +164,15 @@ int SOCL_Connect(int s, u16 remote_port, SOCLInAddr remote_ip)
             {
                 return socket->result;
 
-                // SOCL_ETIMEDOUT : Ú‘±ƒ^ƒCƒ€ƒAƒEƒg
+                // SOCL_ETIMEDOUT : æ¥ç¶šã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
             }
             else
             {
-                // Šù‚ÉÚ‘±ŠJn’†D
-                // ƒŠƒ^[ƒ“’l‚ğŠô‚Â‚É‚·‚é‚©‚ÍAŒİŠ·«‚Ì–â‘èD
-                // ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì‚æ‚Á‚Ä SOCL_EINPROGRESS ‚ğŠú‘Ò‚µ‚Ä‚¢‚é‚à‚Ì‚Æ
-                // SOCL_EALREADY ‚ğŠú‘Ò‚µ‚Ä‚¢‚é‚à‚Ì‚Æ‚ª‚ ‚é‚ç‚µ‚¢D-> ƒTƒ|[ƒgî•ñ
-                // ƒ†[ƒU‚ª•ÏX‰Â”\‚É‚·‚é‚½‚ß‚ÉƒOƒ[ƒoƒ‹•Ï”‚É‚µ‚Ä‚¨‚­
+                // æ—¢ã«æ¥ç¶šé–‹å§‹ä¸­ï¼
+                // ãƒªã‚¿ãƒ¼ãƒ³å€¤ã‚’å¹¾ã¤ã«ã™ã‚‹ã‹ã¯ã€äº’æ›æ€§ã®å•é¡Œï¼
+                // ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚ˆã£ã¦ SOCL_EINPROGRESS ã‚’æœŸå¾…ã—ã¦ã„ã‚‹ã‚‚ã®ã¨
+                // SOCL_EALREADY ã‚’æœŸå¾…ã—ã¦ã„ã‚‹ã‚‚ã®ã¨ãŒã‚ã‚‹ã‚‰ã—ã„ï¼-> ã‚µãƒãƒ¼ãƒˆæƒ…å ±
+                // ãƒ¦ãƒ¼ã‚¶ãŒå¤‰æ›´å¯èƒ½ã«ã™ã‚‹ãŸã‚ã«ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã—ã¦ãŠã
                 return SOCLiResultCodeInConnecting;
             }
         }
@@ -186,7 +186,7 @@ int SOCL_Connect(int s, u16 remote_port, SOCLInAddr remote_ip)
     }
     else
     {
-        // UDP‚Ìê‡‚ÍŠù‚ÉÚ‘±‚µ‚Ä‚Ä‚à‚æ‚¢(bind Œã‚Ì connect‚É‘Î‰BŠo‚¦‚é‚¾‚¯)
+        // UDPã®å ´åˆã¯æ—¢ã«æ¥ç¶šã—ã¦ã¦ã‚‚ã‚ˆã„(bind å¾Œã® connectã«å¯¾å¿œã€‚è¦šãˆã‚‹ã ã‘)
         socket->remote_port = remote_port;
         socket->remote_ip = remote_ip;
         return 0;
@@ -196,43 +196,43 @@ int SOCL_Connect(int s, u16 remote_port, SOCLInAddr remote_ip)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_ExecBindCommand
 
-  Description:  ƒ\ƒPƒbƒg‚ÌƒŠƒ‚[ƒgƒ|[ƒg‘¤‚Ìİ’è(ƒoƒCƒ“ƒh)‚ğs‚È‚¤
-                CPS ŠÖ”‚Å‚ÍÚ‘±æ‚Ìƒ|[ƒg‚ÆƒAƒhƒŒƒX‚à“¯‚Éİ’è‚µ‚Ä
-                Ú‘±‚·‚é‚Ì‚Å‚±‚±‚Å‚Í SOC_Bind ‚Åƒ\ƒPƒbƒg\‘¢‘Ì“à•”‚É•Û‘¶
-                ‚³‚ê‚½İ’è’l‚ğg—p‚·‚éD
+  Description:  ã‚½ã‚±ãƒƒãƒˆã®ãƒªãƒ¢ãƒ¼ãƒˆãƒãƒ¼ãƒˆå´ã®è¨­å®š(ãƒã‚¤ãƒ³ãƒ‰)ã‚’è¡Œãªã†
+                CPS é–¢æ•°ã§ã¯æ¥ç¶šå…ˆã®ãƒãƒ¼ãƒˆã¨ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚‚åŒæ™‚ã«è¨­å®šã—ã¦
+                æ¥ç¶šã™ã‚‹ã®ã§ã“ã“ã§ã¯ SOC_Bind ã§ã‚½ã‚±ãƒƒãƒˆæ§‹é€ ä½“å†…éƒ¨ã«ä¿å­˜
+                ã•ã‚ŒãŸè¨­å®šå€¤ã‚’ä½¿ç”¨ã™ã‚‹ï¼
 
-  Arguments:    s		ƒ\ƒPƒbƒg
-                remoteport	ƒŠƒ‚[ƒg‚Ìƒ|[ƒg”Ô†
-                remoteIP	ƒŠƒ‚[ƒg‚Ì IP ƒAƒhƒŒƒX
+  Arguments:    s		ã‚½ã‚±ãƒƒãƒˆ
+                remoteport	ãƒªãƒ¢ãƒ¼ãƒˆã®ãƒãƒ¼ãƒˆç•ªå·
+                remoteIP	ãƒªãƒ¢ãƒ¼ãƒˆã® IP ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-  Returns:      ³or 0: ¬Œ÷
-                •‰    : ƒGƒ‰[
-                Œ»óƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒGƒ‰[’l‚ÍˆÈ‰º
-                  SOCL_EMFILE    : ƒ\ƒPƒbƒgƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚ğŠm•Û‚Å‚«‚È‚©‚Á‚½
-                ƒGƒ‰[’l‚Í’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ßA‘¼‚Ì•‰‚Ì’l‚à‘S‚Ä”Ä—p
-                ƒGƒ‰[‚Æ‚µ‚Äˆµ‚¤‚±‚ÆD
+  Returns:      æ­£or 0: æˆåŠŸ
+                è²     : ã‚¨ãƒ©ãƒ¼
+                ç¾çŠ¶ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼å€¤ã¯ä»¥ä¸‹
+                  SOCL_EMFILE    : ã‚½ã‚±ãƒƒãƒˆã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã‚’ç¢ºä¿ã§ããªã‹ã£ãŸ
+                ã‚¨ãƒ©ãƒ¼å€¤ã¯è¿½åŠ ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€ä»–ã®è² ã®å€¤ã‚‚å…¨ã¦æ±ç”¨
+                ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦æ‰±ã†ã“ã¨ï¼
  *---------------------------------------------------------------------------*/
 static int SOCLi_ExecBindCommand(SOCLSocket* socket)
 {
     SOCLiCommandPacket*     command;
     s32 result;
 
-    // recv_pipe ‚ÉƒRƒ}ƒ“ƒh‚ğ“Š‚°AƒR[ƒ‹ƒoƒbƒNŠÖ”“à•”‚Å CPS_Bind ‚ğ
-    // ‹N“®‚·‚éDƒ\ƒPƒbƒgƒ^ƒCƒv‚ª NOBLOCK ‚É‚È‚Á‚Ä‚¢‚é‚È‚çƒRƒ}ƒ“ƒh‚ğŠm•Û
-    // ‚Å‚«‚È‚¢ê‡‚ÉƒGƒ‰[‚Æ‚È‚é
+    // recv_pipe ã«ã‚³ãƒãƒ³ãƒ‰ã‚’æŠ•ã’ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…éƒ¨ã§ CPS_Bind ã‚’
+    // èµ·å‹•ã™ã‚‹ï¼ã‚½ã‚±ãƒƒãƒˆã‚¿ã‚¤ãƒ—ãŒ NOBLOCK ã«ãªã£ã¦ã„ã‚‹ãªã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’ç¢ºä¿
+    // ã§ããªã„å ´åˆã«ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹
     command = SOCLi_CreateCommandPacket(SOCLi_BindCallBack, socket, socket->flag_block);
     if (NULL == command)
     {
         return SOCL_EMFILE;
     }
 
-    // bind —p‚Ìƒpƒ‰ƒ[ƒ^İ’è
+    // bind ç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
     command->bind.local_port = socket->local_port;
     command->bind.remote_port = socket->remote_port;
     command->bind.remote_ip = socket->remote_ip;
     socket->state |= SOCL_STATUS_CONNECTING;
 
-    // ƒRƒ}ƒ“ƒhÀs
+    // ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
     result = SOCLi_ExecCommandPacketInRecvPipe(socket, command);
 
     return result;
@@ -241,11 +241,11 @@ static int SOCLi_ExecBindCommand(SOCLSocket* socket)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_BindCallBack
 
-  Description:  Bind/Connect ˆ—‚ÌƒR[ƒ‹ƒoƒbƒN
+  Description:  Bind/Connect å‡¦ç†ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    arg  ƒRƒ}ƒ“ƒhƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    arg  ã‚³ãƒãƒ³ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      SOCLi_ExecCommand* ‚É“n‚³‚ê‚é’l(BLOCKƒ‚[ƒh‚Ì‚Æ‚«)
+  Returns:      SOCLi_ExecCommand* ã«æ¸¡ã•ã‚Œã‚‹å€¤(BLOCKãƒ¢ãƒ¼ãƒ‰ã®ã¨ã)
  *---------------------------------------------------------------------------*/
 static int SOCLi_BindCallBack(void* arg)
 {
@@ -269,8 +269,8 @@ static int SOCLi_BindCallBack(void* arg)
         CPS_SocBind(cpacket->local_port, cpacket->remote_port, cpacket->remote_ip);
         recv_pipe->consumed = 0;
 
-        // TCP ‚È‚çƒRƒlƒNƒgˆ—‚ğs‚È‚¤D
-        // ¸”s‚µ‚½‚çƒ^ƒCƒ€ƒAƒEƒgƒGƒ‰[’l‚ğ•Ô‚·
+        // TCP ãªã‚‰ã‚³ãƒã‚¯ãƒˆå‡¦ç†ã‚’è¡Œãªã†ï¼
+        // å¤±æ•—ã—ãŸã‚‰ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚¨ãƒ©ãƒ¼å€¤ã‚’è¿”ã™
         if (cpacket->h.flag_mode == SOCL_FLAGMODE_TCP || cpacket->h.flag_mode == SOCL_FLAGMODE_SSL)
         {
 #ifdef SDK_MY_DEBUG
@@ -292,5 +292,5 @@ static int SOCLi_BindCallBack(void* arg)
     }
 
     socket->state |= SOCL_STATUS_CONNECTED;
-    return SOCL_ESUCCESS;               // ¬Œ÷
+    return SOCL_ESUCCESS;               // æˆåŠŸ
 }

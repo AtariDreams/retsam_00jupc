@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	map_jump_def.h
- * @brief	ƒ}ƒbƒvƒWƒƒƒ“ƒvƒ^ƒCƒv’è‹`
+ * @brief	ãƒžãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã‚¿ã‚¤ãƒ—å®šç¾©
  * @date	2006.02.08
  * @author	Nozomu Saito
  */
@@ -12,13 +12,13 @@
 #define MAP_JUMP_TYPE_MAX	(7)
 
 typedef enum{
-	M_JUMP_MATOUT,		//0:Žº“à¨ŠO
-	M_JUMP_DOOR,	//1:ƒhƒAiŠOj¨Žº“à
-	M_JUMP_ESCA,	//2:ƒGƒXƒJƒŒ[ƒ^[
-	M_JUMP_STAIRS,	//3:ŠK’i
-	M_JUMP_DUNIN,	//4:ƒ_ƒ“ƒWƒ‡ƒ“ŠO‚©‚ç“ü‚é
-	M_JUMP_DUNOUT,	//5:ƒ_ƒ“ƒWƒ‡ƒ“ŠO‚Éo‚é
-	M_JUMP_MATIN,	//6:ŠOƒ}ƒbƒg¨‰®“à
+	M_JUMP_MATOUT,		//0:å®¤å†…â†’å¤–
+	M_JUMP_DOOR,	//1:ãƒ‰ã‚¢ï¼ˆå¤–ï¼‰â†’å®¤å†…
+	M_JUMP_ESCA,	//2:ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼
+	M_JUMP_STAIRS,	//3:éšŽæ®µ
+	M_JUMP_DUNIN,	//4:ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å¤–ã‹ã‚‰å…¥ã‚‹
+	M_JUMP_DUNOUT,	//5:ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å¤–ã«å‡ºã‚‹
+	M_JUMP_MATIN,	//6:å¤–ãƒžãƒƒãƒˆâ†’å±‹å†…
 }MAP_JUMP_TYPE;
 
 #endif //__MAP_JUMP_DEF_H__

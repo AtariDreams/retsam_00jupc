@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_dig_stone.c
- * @brief	‹Ê‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+ * @brief	ç‰ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2005.10.26
  */
@@ -30,24 +30,24 @@
 #include "field/eventflag.h"
 #include "../sysflag.h"
 
-#include "../d_ohno.h"  // ƒfƒoƒbƒO—p
+#include "../d_ohno.h"  // ãƒ‡ãƒãƒƒã‚°ç”¨
 
 
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define _RESULT_CMD_SIZE (2) // ƒf[ƒ^‘—óM‚ÌŒ‹‰Ê‚ğ•Ô‚·‚Ìƒf[ƒ^ƒoƒCƒg”
-#define _TOUCH_OBJ_MAX (3)  //Touch‚µ‚½‚É•\¦‚·‚éã©‚ÌŒÀŠE”
-#define _STONE_NUM_SINGLE_MAX (UG_STONE_PLACE_NUM_MAX)   // ˆêl•ª‚ÌÎ
-#define _STONE_NUM_MAX (_STONE_NUM_SINGLE_MAX)      // Î 100
+#define _RESULT_CMD_SIZE (2) // ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡ã®çµæœã‚’è¿”ã™æ™‚ã®ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒˆæ•°
+#define _TOUCH_OBJ_MAX (3)  //Touchã—ãŸæ™‚ã«è¡¨ç¤ºã™ã‚‹ç½ ã®é™ç•Œæ•°
+#define _STONE_NUM_SINGLE_MAX (UG_STONE_PLACE_NUM_MAX)   // ä¸€äººåˆ†ã®çŸ³
+#define _STONE_NUM_MAX (_STONE_NUM_SINGLE_MAX)      // çŸ³ 100
 
 #define _INTERVAL_STONE_DISP (20)
 
-// ‚ ‚è‚¦‚È‚¢ID
+// ã‚ã‚Šãˆãªã„ID
 #define _INVALID_ID  (0xff)
 
 enum _result_e {
@@ -57,16 +57,16 @@ enum _result_e {
 };
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
 
 typedef struct{
-    u16 xpos;   // Î‚ÌˆÊ’u
+    u16 xpos;   // çŸ³ã®ä½ç½®
     u16 zpos;
-    u8 carat;   // ‘å‚«‚³=ƒJƒ‰ƒbƒg 1-99
-    u8 addCarat;   // ¬’·=ƒJƒ‰ƒbƒg 1-99
-    u8 type;     // í—Ş
-//    u8 order;   // –„‚ß‚½‡”Ô  (‚½‚­‚³‚ñ–„‚ß‚é‚ÆŒÃ‚¢‚à‚Ì‚ªÁ‚¦‚Ä‚¢‚Á‚Ä‚µ‚Ü‚¤ˆ×)
+    u8 carat;   // å¤§ãã•=ã‚«ãƒ©ãƒƒãƒˆ 1-99
+    u8 addCarat;   // æˆé•·=ã‚«ãƒ©ãƒƒãƒˆ 1-99
+    u8 type;     // ç¨®é¡
+//    u8 order;   // åŸ‹ã‚ãŸé †ç•ª  (ãŸãã•ã‚“åŸ‹ã‚ã‚‹ã¨å¤ã„ã‚‚ã®ãŒæ¶ˆãˆã¦ã„ã£ã¦ã—ã¾ã†ç‚º)
 } _Stone;
 
 typedef struct{
@@ -77,13 +77,13 @@ typedef struct{
 
 
 typedef struct{
-    u8 pcRadarIndex;  //ƒpƒ\ƒRƒ“ƒŒ[ƒ_[óM—p
-    u16 pcRadarTimer;  //ƒpƒ\ƒRƒ“ƒŒ[ƒ_[•\¦—p
+    u8 pcRadarIndex;  //ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼å—ä¿¡ç”¨
+    u16 pcRadarTimer;  //ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼è¡¨ç¤ºç”¨
 } _EVENT_PCRADAR_WORK;
 
 typedef struct{
-    _Stone myStone[_STONE_NUM_SINGLE_MAX];    // –„‚ß‚Ä‚¢‚é©•ª‚ÌÎiƒZ[ƒu‰Â”\j
-    _Stone* pStoneTbl[_STONE_NUM_SINGLE_MAX]; // ŒŸõ—pƒe[ƒuƒ‹
+    _Stone myStone[_STONE_NUM_SINGLE_MAX];    // åŸ‹ã‚ã¦ã„ã‚‹è‡ªåˆ†ã®çŸ³ï¼ˆã‚»ãƒ¼ãƒ–å¯èƒ½ï¼‰
+    _Stone* pStoneTbl[_STONE_NUM_SINGLE_MAX]; // æ¤œç´¢ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
     u8 recvCounter[COMM_MACHINE_MAX];
     u8 recvCounterBackup[COMM_MACHINE_MAX];
     TCB_PTR pPcRadar;
@@ -96,11 +96,11 @@ typedef struct{
     u8 bStopDisp;
 } CommDigWork;
 
-// ƒVƒ“ƒOƒ‹ƒgƒ“
+// ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
 static CommDigWork* _pCommWork = NULL;
 
 //==============================================================================
-//	staticéŒ¾
+//	staticå®£è¨€
 //==============================================================================
 
 static _Stone* _getOldOrderData(_Stone* pStoneTbl);
@@ -113,7 +113,7 @@ static void _insertStoneTbl(_Stone* pStone);
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‚ğ©“®•\¦‚µ‚½ê‡‚ÌI—¹ƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è‡ªå‹•è¡¨ç¤ºã—ãŸå ´åˆã®çµ‚äº†æ™‚ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -125,9 +125,9 @@ static void _msgEndCallBack(int num)
 
 //==============================================================================
 /**
- * Î–¼‚Â‚«ƒƒbƒZ[ƒW‚Ì•\¦
- * @param   type   Îƒ^ƒCƒv
- * @param   message   GMMƒƒbƒZ[ƒWID
+ * çŸ³åã¤ããƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
+ * @param   type   çŸ³ã‚¿ã‚¤ãƒ—
+ * @param   message   GMMãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  * @retval  none
  */
 //==============================================================================
@@ -146,8 +146,8 @@ static void _digAddCaratMessage(int num)
 
 //==============================================================================
 /**
- * ÎŒ@‚èŠÇ—‚Ì‰Šú‰»
- * @param   pWork   ì‹Æƒƒ‚ƒŠ[
+ * çŸ³æ˜ã‚Šç®¡ç†ã®åˆæœŸåŒ–
+ * @param   pWork   ä½œæ¥­ãƒ¡ãƒ¢ãƒªãƒ¼
  * @retval  none
  */
 //==============================================================================
@@ -181,7 +181,7 @@ void CommDigStoneInitialize(void* pWork, FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * ©•ª‚ÌÎ‚ğƒoƒbƒNƒAƒbƒv‚·‚é
+ * è‡ªåˆ†ã®çŸ³ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã™ã‚‹
  * @param   none
  * @retval  none
  */
@@ -204,9 +204,9 @@ static void _myStoneBackup(void)
 
 //==============================================================================
 /**
- * ÎŒ@‚è‚Ìƒ[ƒNƒTƒCƒY‚ğ“¾‚é
+ * çŸ³æ˜ã‚Šã®ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -217,7 +217,7 @@ int CommDigStoneManagerGetWorkSize(void)
 
 //==============================================================================
 /**
- * ÎŒ@‚è‚ÌƒŠƒZƒbƒg
+ * çŸ³æ˜ã‚Šã®ãƒªã‚»ãƒƒãƒˆ
  * @param   none
  * @retval  none
  */
@@ -230,7 +230,7 @@ void CommDigStoneManagerReset(void)
 
 //==============================================================================
 /**
- * ÎŒ@‚è‚Ì•œ‹Aˆ—
+ * çŸ³æ˜ã‚Šã®å¾©å¸°å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -243,7 +243,7 @@ void CommDigStoneManagerReboot(void)
 
 //==============================================================================
 /**
- * ÎŒ@‚è‚ÌI—¹
+ * çŸ³æ˜ã‚Šã®çµ‚äº†
  * @param   none
  * @retval  none
  */
@@ -259,7 +259,7 @@ void CommDigStoneFinalize(void)
 
 //==============================================================================
 /**
- * ÎŒ@‚è‚Ì–ˆƒtƒŒ[ƒ€ˆ—
+ * çŸ³æ˜ã‚Šã®æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -288,10 +288,10 @@ void CommDigStoneStep(void)
 
 //==============================================================================
 /**
- * ƒe[ƒuƒ‹ã‚É‚ ‚éÎ‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   pGrid  •Ô‚·ˆÊ’u
- * @param   index  ŒŸõ‚·‚éindex
- * @retval  noneƒTƒCƒY
+ * ãƒ†ãƒ¼ãƒ–ãƒ«ä¸Šã«ã‚ã‚‹çŸ³ã®ä½ç½®ã‚’è¿”ã™
+ * @param   pGrid  è¿”ã™ä½ç½®
+ * @param   index  æ¤œç´¢ã™ã‚‹index
+ * @retval  noneã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -307,10 +307,10 @@ static Grid* _getStoneTblPos(Grid* pGrid, int index)
 
 //==============================================================================
 /**
- * ƒe[ƒuƒ‹‚ÉÎ‚ğ‘}“ü‚·‚é
- * @param   pGrid  •Ô‚·ˆÊ’u
- * @param   index  ŒŸõ‚·‚éindex
- * @retval  noneƒTƒCƒY
+ * ãƒ†ãƒ¼ãƒ–ãƒ«ã«çŸ³ã‚’æŒ¿å…¥ã™ã‚‹
+ * @param   pGrid  è¿”ã™ä½ç½®
+ * @param   index  æ¤œç´¢ã™ã‚‹index
+ * @retval  noneã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -324,7 +324,7 @@ static void _insertStoneTbl(_Stone* pStone)
     CommUnderItemSearchInitialize(_STONE_NUM_MAX, _getStoneTblPos);
     ins = CommUnderSearchItemTbl(&grid);
 
-    OHNO_PRINT("ƒe[ƒuƒ‹‚É“ü‚ê‚é %d\n",ins);
+    OHNO_PRINT("ãƒ†ãƒ¼ãƒ–ãƒ«ã«å…¥ã‚Œã‚‹ %d\n",ins);
     GF_ASSERT_RETURN(ins < (_STONE_NUM_MAX),);
 
     for(i = (_STONE_NUM_MAX - 1); i > ins  ; i--){
@@ -340,7 +340,7 @@ static void _insertStoneTbl(_Stone* pStone)
 
 //==============================================================================
 /**
- * ŒŸõƒe[ƒuƒ‹‚Â‚­‚è‚È‚¨‚µ
+ * æ¤œç´¢ãƒ†ãƒ¼ãƒ–ãƒ«ã¤ãã‚ŠãªãŠã—
  * @param   netID     ID
  * @retval  _Stone*
  */
@@ -356,13 +356,13 @@ static void _delStoneTbl(_Stone* pStone)
 
     for(i = 0; i < _STONE_NUM_MAX; i++){
         if(_pCommWork->myStone[i].type != STONE_TYPE_NONE){
-            _insertStoneTbl(&_pCommWork->myStone[i]); //Ä\’z
+            _insertStoneTbl(&_pCommWork->myStone[i]); //å†æ§‹ç¯‰
         }
     }
     
 #if 0
     for(i = 0; i < _STONE_NUM_MAX; i++){
-        OHNO_PRINT("Îƒe[ƒuƒ‹ %d %d %d\n",i, _pCommWork->pStoneTbl[ i ]->xpos,_pCommWork->pStoneTbl[ i ]->zpos);
+        OHNO_PRINT("çŸ³ãƒ†ãƒ¼ãƒ–ãƒ« %d %d %d\n",i, _pCommWork->pStoneTbl[ i ]->xpos,_pCommWork->pStoneTbl[ i ]->zpos);
         if(_pCommWork->pStoneTbl[ i ] == pStone){
             match = i;
             break;
@@ -382,7 +382,7 @@ static void _delStoneTbl(_Stone* pStone)
     grid.zpos = pStone->zpos;
     CommUnderItemSearchInitialize(_STONE_NUM_MAX, _getStoneTblPos);
     match = CommUnderMatchItemTbl(&grid);
-    OHNO_PRINT("ƒe[ƒuƒ‹‚©‚çÁ‹ %d\n",match);
+    OHNO_PRINT("ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰æ¶ˆå» %d\n",match);
     
 
     GF_ASSERT_RETURN(match != -1,);
@@ -400,7 +400,7 @@ static void _delStoneTbl(_Stone* pStone)
 
 //==============================================================================
 /**
- * ‚ ‚¢‚Ä‚éÎƒoƒbƒtƒ@‚ğ•Ô‚·
+ * ã‚ã„ã¦ã‚‹çŸ³ãƒãƒƒãƒ•ã‚¡ã‚’è¿”ã™
  * @param   netID     ID
  * @retval  _Stone*
  */
@@ -421,7 +421,7 @@ static _Stone* _getFreeStone( _Stone* pStoneTbl )
 
 //==============================================================================
 /**
- * ‚ ‚¢‚Ä‚éÎ‚Ìindex‚ğ•Ô‚·
+ * ã‚ã„ã¦ã‚‹çŸ³ã®indexã‚’è¿”ã™
  * @param   netID     ID
  * @retval  _Stone*
  */
@@ -444,8 +444,8 @@ static int _getFreeStoneIndex( _Stone* pStoneTbl )
 
 //==============================================================================
 /**
- * Î‚ÌÁ‹
- * @param   TrapInfo* pTrap ã©
+ * çŸ³ã®æ¶ˆå»
+ * @param   TrapInfo* pTrap ç½ 
  * @retval  none
  */
 //==============================================================================
@@ -464,9 +464,9 @@ static void _delStone(_Stone* pStone)
 #endif
 //--------------------------------------------------------------
 /**
- * Å‰‚É¶¬‚µ‚½Î‚ğ“¾‚é
- * @param    netID  ‹@Ší”Ô†
- * @retval   ¶¬”Ô†
+ * æœ€åˆã«ç”Ÿæˆã—ãŸçŸ³ã‚’å¾—ã‚‹
+ * @param    netID  æ©Ÿå™¨ç•ªå·
+ * @retval   ç”Ÿæˆç•ªå·
  */
 //--------------------------------------------------------------
 static _Stone* _getOldOrderData(_Stone* pStoneTbl)
@@ -476,10 +476,10 @@ static _Stone* _getOldOrderData(_Stone* pStoneTbl)
 
 //==============================================================================
 /**
- *  Î‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @param   ’²‚×‚½‚¢À•W‚ÌXÀ•W
-   @param   ’²‚×‚½‚¢À•W‚ÌZÀ•W
- * @retval  ˆø‚Á‚©‚©‚Á‚½ã©
+ *  çŸ³ãŒã‚ã£ãŸã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @param   èª¿ã¹ãŸã„åº§æ¨™ã®Xåº§æ¨™
+   @param   èª¿ã¹ãŸã„åº§æ¨™ã®Zåº§æ¨™
+ * @retval  å¼•ã£ã‹ã‹ã£ãŸç½ 
  */
 //==============================================================================
 
@@ -501,10 +501,10 @@ static _Stone* _checkStone(int x, int z)
 
 //==============================================================================
 /**
- *  Î‚ğE‚Á‚½‚±‚Æ‚ğE‚Á‚½ƒNƒ‰ƒCƒAƒ“ƒg‚É•\¦ CF_DIG_STONE_PICKUP
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   x,y      ˆÊ’uî•ñ
- * @retval  ”­Œ©‚µ‚½ê‡TRUE 
+ *  çŸ³ã‚’æ‹¾ã£ãŸã“ã¨ã‚’æ‹¾ã£ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«è¡¨ç¤º CF_DIG_STONE_PICKUP
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   x,y      ä½ç½®æƒ…å ±
+ * @retval  ç™ºè¦‹ã—ãŸå ´åˆTRUE 
  */
 //==============================================================================
 
@@ -519,9 +519,9 @@ void CommDigStoneRecvPickUp(int netID, int size, void* pData, void* pWork)
         x = CommPlayerGetPosXDirAdd(id);
         z = CommPlayerGetPosZDirAdd(id);
         pStone = _checkStone(x, z);
-        if(pStone){       // Î‚ğE‚¤
+        if(pStone){       // çŸ³ã‚’æ‹¾ã†
             CommPlayerHold();
-            if(CommUnderBagAddStone(pStone->type, pStone->carat + pStone->addCarat)){  // ƒ{[ƒ‹‚ğƒoƒbƒO‚É’Ç‰Á
+            if(CommUnderBagAddStone(pStone->type, pStone->carat + pStone->addCarat)){  // ãƒœãƒ¼ãƒ«ã‚’ãƒãƒƒã‚°ã«è¿½åŠ 
                 _pCommWork->logMsgGetStone[id] = pStone->type;
                 Snd_SePlay(UG_SE_FIND);
                 ca = UG_STONE_CARAT_MAX;
@@ -531,7 +531,7 @@ void CommDigStoneRecvPickUp(int netID, int size, void* pData, void* pWork)
                 CommMsgRegisterNumber2Index(CommUnderGetMsgUnderWorld(), 1, ca);
                 // ----------------------------------------------------------------------------
                 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-                // ‘ã“ü‚·‚é’n‰ºƒAƒCƒeƒ€–¼‚ğ•s’èŠ¥Œ•t‚«‚É•ÏX
+                // ä»£å…¥ã™ã‚‹åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ åã‚’ä¸å®šå† è©ä»˜ãã«å¤‰æ›´
                 CommMsgRegisterUGItemNameIndexIndefinate(CommUnderGetMsgUnderWorld(), 2, pStone->type);
                 // ----------------------------------------------------------------------------
                 ca = pStone->addCarat;
@@ -540,8 +540,8 @@ void CommDigStoneRecvPickUp(int netID, int size, void* pData, void* pWork)
                 }
                 CommMsgTalkWindowStartSendNum(CommUnderGetMsgUnderWorld(),
                                               msg_underworld_69, TRUE, _digAddCaratMessage, ca);
-                CommMsgTalkWindowMeWait(CommUnderGetMsgUnderWorld());  //ME‚ÌI—¹‘Ò‚¿ON
-                _myStoneDel(pStone);  // ŒÃ‚¢‚Ì‚ğÁ‚·
+                CommMsgTalkWindowMeWait(CommUnderGetMsgUnderWorld());  //MEã®çµ‚äº†å¾…ã¡ON
+                _myStoneDel(pStone);  // å¤ã„ã®ã‚’æ¶ˆã™
                 _myStoneBackup();
             }
             else{
@@ -554,7 +554,7 @@ void CommDigStoneRecvPickUp(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ©•ª‚É‹ß‚¢‚Ü‚·À•W‚ğ‹³‚¦‚Ä‚­‚ê‚é
+ * è‡ªåˆ†ã«è¿‘ã„ã¾ã™åº§æ¨™ã‚’æ•™ãˆã¦ãã‚Œã‚‹
  * @param   none
  * @retval  none
  */
@@ -568,7 +568,7 @@ void NearHexInitialize(NearHexWork* pWork, int maxDist)
 
 //==============================================================================
 /**
- * ©•ª‚É‹ß‚¢‚Ü‚·À•W‚ğ‹³‚¦‚Ä‚­‚ê‚é
+ * è‡ªåˆ†ã«è¿‘ã„ã¾ã™åº§æ¨™ã‚’æ•™ãˆã¦ãã‚Œã‚‹
  * @param   none
  * @retval  none
  */
@@ -615,10 +615,10 @@ BOOL NearHexGetHex(NearHexWork* pWork, NearHex* pHex)
 
 //==============================================================================
 /**
- *  ‹Ê‚ğ–„‚ß‚é
- * @param   type      ƒ^ƒ}
- * @param   carat     ƒJƒ‰ƒbƒg
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ *  ç‰ã‚’åŸ‹ã‚ã‚‹
+ * @param   type      ã‚¿ãƒ
+ * @param   carat     ã‚«ãƒ©ãƒƒãƒˆ
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -628,10 +628,10 @@ void CommDigStoneAddStone( int type, int carat ,int x,int z)
     _Stone* pStone;
     BOOL bDig = FALSE;
     
-    stone.xpos = x;   // Î‚ÌˆÊ’u
+    stone.xpos = x;   // çŸ³ã®ä½ç½®
     stone.zpos = z;
-    stone.carat = carat;   // ‘å‚«‚³=ƒJƒ‰ƒbƒg 1-99
-    stone.type = type;     // í—Ş
+    stone.carat = carat;   // å¤§ãã•=ã‚«ãƒ©ãƒƒãƒˆ 1-99
+    stone.type = type;     // ç¨®é¡
     stone.addCarat = 0;
 
     if(UgSecretBaseIsSecretBasePlace(x,z)){
@@ -647,8 +647,8 @@ void CommDigStoneAddStone( int type, int carat ,int x,int z)
         return;
     }
     pStone = _checkStone(x, z);
-    if(pStone){  // æ–ñ‚ª‚¢‚½
-        if(pStone->type == stone.type){ // “¯‚¶Î‚Ìê‡
+    if(pStone){  // å…ˆç´„ãŒã„ãŸ
+        if(pStone->type == stone.type){ // åŒã˜çŸ³ã®å ´åˆ
             if(pStone->carat > carat){
                 pStone->carat = pStone->carat + (carat / 5) + 1;
             }
@@ -673,7 +673,7 @@ void CommDigStoneAddStone( int type, int carat ,int x,int z)
         CommMsgRegisterNumber2Index(CommUnderGetMsgUnderWorld(), 1, carat);
         CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_58, FALSE, NULL);
         CommUnderBagDeleteStone(type);
-        Snd_SePlay(UG_SE_BURY);  // –„‚ß‚½
+        Snd_SePlay(UG_SE_BURY);  // åŸ‹ã‚ãŸ
         //Snd_SePlay(UG_SE_SMOKE);
         SysFlag_UgTamaSet(SaveData_GetEventWork(_pCommWork->pFSys->savedata));
 		RECORD_Inc( SaveData_GetRecord(_pCommWork->pFSys->savedata), RECID_UG_BALL );
@@ -683,8 +683,8 @@ void CommDigStoneAddStone( int type, int carat ,int x,int z)
 
 //==============================================================================
 /**
- * ©•ª‚ÌÎ‚ğÁ‚·
- * @param   pStone    Îƒf[ƒ^
+ * è‡ªåˆ†ã®çŸ³ã‚’æ¶ˆã™
+ * @param   pStone    çŸ³ãƒ‡ãƒ¼ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -715,7 +715,7 @@ static void _myStoneDel(_Stone* pStone)
 
 //==============================================================================
 /**
- * ©•ª‚ÌÎ‚ğ’Ç‰Á‚·‚é
+ * è‡ªåˆ†ã®çŸ³ã‚’è¿½åŠ ã™ã‚‹
  * @param   pStone
  * @retval  none
  */
@@ -728,7 +728,7 @@ static void _myStoneAdd(_Stone* pStone)
 
     if(pFreeStone==NULL){
         pFreeStone = _getOldOrderData(_pCommWork->myStone);
-        _myStoneDel(pFreeStone);  // ŒÃ‚¢‚Ì‚ğÁ‚·
+        _myStoneDel(pFreeStone);  // å¤ã„ã®ã‚’æ¶ˆã™
         pFreeStone = _getFreeStone(_pCommWork->myStone);
         GF_ASSERT_RETURN(pFreeStone,);
     }
@@ -740,9 +740,9 @@ static void _myStoneAdd(_Stone* pStone)
 
 //==============================================================================
 /**
- *  ƒ^ƒ}‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ *  ã‚¿ãƒã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 BOOL CommDigIsStone(int type)
@@ -756,10 +756,10 @@ BOOL CommDigIsStone(int type)
 
 //==============================================================================
 /**
- *  Î‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @param   ’²‚×‚½‚¢À•W‚ÌXÀ•W
-   @param   ’²‚×‚½‚¢À•W‚ÌZÀ•W
- * @retval  ‚ ‚Á‚½‚©‚Ç‚¤‚©
+ *  çŸ³ãŒã‚ã£ãŸã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @param   èª¿ã¹ãŸã„åº§æ¨™ã®Xåº§æ¨™
+   @param   èª¿ã¹ãŸã„åº§æ¨™ã®Zåº§æ¨™
+ * @retval  ã‚ã£ãŸã‹ã©ã†ã‹
  */
 //==============================================================================
 
@@ -775,9 +775,9 @@ BOOL UgStoneCheck(int x, int z)
 
 //--------------------------------------------------------------
 /**
- * Î‚ÌˆÊ’uXÀ•W‚ğ“¾‚é
+ * çŸ³ã®ä½ç½®Xåº§æ¨™ã‚’å¾—ã‚‹
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -792,9 +792,9 @@ int UgStoneGetMyStoneX(int index)
 
 //--------------------------------------------------------------
 /**
- * Î‚ÌˆÊ’uZÀ•W‚ğ“¾‚é
+ * çŸ³ã®ä½ç½®Zåº§æ¨™ã‚’å¾—ã‚‹
  * @param    index
- * @retval   ZÀ•W
+ * @retval   Zåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -809,16 +809,16 @@ int UgStoneGetMyStoneZ(int index)
 
 //==============================================================================
 /**
- * ÎlogƒƒbƒZ[ƒW‚ğ•Ô‚·
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ * çŸ³logãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
 BOOL UgDigStoneGetActionMessage(STRBUF* pStrBuf)
 {
     int i;
-    WORDSET* pWordSetMain=NULL;  //ƒ[ƒhƒZƒbƒg\‘¢‘Ì
+    WORDSET* pWordSetMain=NULL;  //ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆæ§‹é€ ä½“
     STRBUF* tmp_buf1=NULL;
     BOOL bRet = FALSE;
 
@@ -831,7 +831,7 @@ BOOL UgDigStoneGetActionMessage(STRBUF* pStrBuf)
             tmp_buf1 = STRBUF_Create( _EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );
             // ----------------------------------------------------------------------------
             // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-            // ‘ã“ü‚·‚é’n‰ºƒAƒCƒeƒ€–¼‚ğ•s’èŠ¥Œ•t‚«‚É•ÏX
+            // ä»£å…¥ã™ã‚‹åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ åã‚’ä¸å®šå† è©ä»˜ãã«å¤‰æ›´
             WORDSET_RegisterUGItemNameIndefinate(pWordSetMain, 2, _pCommWork->logMsgGetStone[i]);
             WORDSET_Capitalize(pWordSetMain, 2);
             // ----------------------------------------------------------------------------
@@ -851,9 +851,9 @@ BOOL UgDigStoneGetActionMessage(STRBUF* pStrBuf)
 
 //==============================================================================
 /**
- * ÎˆêŒÂ‚Ì‹ß‚­‚É‰»ÎˆêŒÂ‚ğ–„‚ß‚é
- * @param   —”ƒ|ƒCƒ“ƒ^
- * @retval  ‚¤‚ß‚½‚©‚¸
+ * çŸ³ä¸€å€‹ã®è¿‘ãã«åŒ–çŸ³ä¸€å€‹ã‚’åŸ‹ã‚ã‚‹
+ * @param   ä¹±æ•°ãƒã‚¤ãƒ³ã‚¿
+ * @retval  ã†ã‚ãŸã‹ãš
  */
 //==============================================================================
 
@@ -874,7 +874,7 @@ int UgDigStoneSetOneFossil(MATHRandContext16* pRand)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“ƒŒ[ƒ_[ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒXƒN
+ * ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¹ã‚¯
  * @param    tcb   tcb
  * @param    work   _EVENT_PCRADAR_WORK
  * @retval   none
@@ -895,7 +895,7 @@ static void _GMEVENT_PcRadar(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“ƒŒ[ƒ_[ƒXƒ^[ƒg
+ * ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
  * @param    none
  * @retval   none
  */
@@ -904,7 +904,7 @@ static void _GMEVENT_PcRadar(TCB_PTR tcb, void *work)
 void UgStonePcRadarStart(void)
 {
     _EVENT_PCRADAR_WORK* mdw;
-    GF_ASSERT_RETURN(!_pCommWork->pPcRadarWork,);  // “ñd‹N“®‹Ö~
+    GF_ASSERT_RETURN(!_pCommWork->pPcRadarWork,);  // äºŒé‡èµ·å‹•ç¦æ­¢
     GF_ASSERT_RETURN(!_pCommWork->pPcRadar,);
 
     mdw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(_EVENT_PCRADAR_WORK));
@@ -916,7 +916,7 @@ void UgStonePcRadarStart(void)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“ƒŒ[ƒ_[ƒGƒ“ƒh
+ * ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¨ãƒ³ãƒ‰
  * @param    none
  * @retval   none
  */
@@ -932,13 +932,13 @@ void UgStonePcRadarEnd(void)
     }
 }
 
-#define _DTIME  (2)  // ƒŒ[ƒ_[‚ğ‚ä‚Á‚­‚èŒ©‚¹‚éˆ×‚ÌŠÔŠu
+#define _DTIME  (2)  // ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚’ã‚†ã£ãã‚Šè¦‹ã›ã‚‹ç‚ºã®é–“éš”
 
 //--------------------------------------------------------------
 /**
- * ©•ª‚ÌÎ‚ÌˆÊ’uXÀ•W‚ğ“¾‚é
+ * è‡ªåˆ†ã®çŸ³ã®ä½ç½®Xåº§æ¨™ã‚’å¾—ã‚‹
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -954,9 +954,9 @@ int UgStoneGetRadarStoneX(int index)
 
 //--------------------------------------------------------------
 /**
- * ©•ª‚ÌÎ‚ÌTRAP‚ÌˆÊ’uZÀ•W‚ğ“¾‚é
+ * è‡ªåˆ†ã®çŸ³ã®TRAPã®ä½ç½®Zåº§æ¨™ã‚’å¾—ã‚‹
  * @param    index
- * @retval   ZÀ•W
+ * @retval   Zåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -977,10 +977,10 @@ int UgStoneGetRadarStoneZ(int index)
 void Debug_UgDigStoneAdd( int type, int carat ,int x,int z)
 {
     _Stone stone;
-    stone.xpos = x;   // Î‚ÌˆÊ’u
+    stone.xpos = x;   // çŸ³ã®ä½ç½®
     stone.zpos = z;
-    stone.carat = carat;   // ‘å‚«‚³=ƒJƒ‰ƒbƒg 1-99
-    stone.type = type;     // í—Ş
+    stone.carat = carat;   // å¤§ãã•=ã‚«ãƒ©ãƒƒãƒˆ 1-99
+    stone.type = type;     // ç¨®é¡
     stone.addCarat = 0;
 
     _myStoneAdd(&stone);

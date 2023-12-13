@@ -5,13 +5,13 @@
 #define PMS_WORDID_END	(0xffff)
 #define PMS_WORDID_DUP	(0xfffe)
 
-#define PMS_WORDNUM_MAX	(1495)	// ‘’PŒê”
+#define PMS_WORDNUM_MAX	(1495)	// ç·å˜èªæ•°
 
 //==========================================================
-// ƒJƒeƒSƒŠ‚²‚Æ‚Ì’PŒêIDƒe[ƒuƒ‹
+// ã‚«ãƒ†ã‚´ãƒªã”ã¨ã®å˜èªIDãƒ†ãƒ¼ãƒ–ãƒ«
 //==========================================================
 
-// ƒ|ƒPƒ‚ƒ“
+// ãƒã‚±ãƒ¢ãƒ³
 static const u16 PMS_CategoryTable_01[] = {
 	 460,
 	  63,
@@ -253,7 +253,7 @@ static const u16 PMS_CategoryTable_01[] = {
 
 #define  PMS_Category_01_MaxNum	(235)
 
-// ƒ|ƒPƒ‚ƒ“‚Q
+// ãƒã‚±ãƒ¢ãƒ³ï¼’
 static const u16 PMS_CategoryTable_02[] = {
 	  68,
 	  67,
@@ -518,7 +518,7 @@ static const u16 PMS_CategoryTable_02[] = {
 
 #define  PMS_Category_02_MaxNum	(258)
 
-// ‚í‚´
+// ã‚ã–
 static const u16 PMS_CategoryTable_03[] = {
 	 567,
 	 547,
@@ -748,7 +748,7 @@ static const u16 PMS_CategoryTable_03[] = {
 
 #define  PMS_Category_03_MaxNum	(223)
 
-// ‚í‚´‚Q
+// ã‚ã–ï¼’
 static const u16 PMS_CategoryTable_04[] = {
 	 679,
 	 773,
@@ -996,7 +996,7 @@ static const u16 PMS_CategoryTable_04[] = {
 
 #define  PMS_Category_04_MaxNum	(241)
 
-// ƒXƒe[ƒ^ƒX
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 static const u16 PMS_CategoryTable_05[] = {
 	1073,
 	1088,
@@ -1141,7 +1141,7 @@ static const u16 PMS_CategoryTable_05[] = {
 
 #define  PMS_Category_05_MaxNum	(138)
 
-// ƒgƒŒ[ƒi[
+// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 static const u16 PMS_CategoryTable_06[] = {
 	1112,
 	1114,
@@ -1186,7 +1186,7 @@ static const u16 PMS_CategoryTable_06[] = {
 
 #define  PMS_Category_06_MaxNum	(38)
 
-// ‚Ğ‚Æ
+// ã²ã¨
 static const u16 PMS_CategoryTable_07[] = {
 	1152,
 	1173,
@@ -1226,7 +1226,7 @@ static const u16 PMS_CategoryTable_07[] = {
 
 #define  PMS_Category_07_MaxNum	(33)
 
-// ‚ ‚¢‚³‚Â
+// ã‚ã„ã•ã¤
 static const u16 PMS_CategoryTable_08[] = {
 	1288,
 	1189,
@@ -1335,7 +1335,7 @@ static const u16 PMS_CategoryTable_08[] = {
 
 #define  PMS_Category_08_MaxNum	(102)
 
-// ‚¹‚¢‚©‚Â
+// ã›ã„ã‹ã¤
 static const u16 PMS_CategoryTable_09[] = {
 	1371,
 	1292,
@@ -1446,7 +1446,7 @@ static const u16 PMS_CategoryTable_09[] = {
 
 #define  PMS_Category_09_MaxNum	(104)
 
-// ‚«‚à‚¿
+// ãã‚‚ã¡
 static const u16 PMS_CategoryTable_10[] = {
 	1412,
 	1411,
@@ -1500,7 +1500,7 @@ static const u16 PMS_CategoryTable_10[] = {
 
 #define  PMS_Category_10_MaxNum	(47)
 
-// ‚È‚ñ‚©‚¢‚±‚Æ‚Î
+// ãªã‚“ã‹ã„ã“ã¨ã°
 static const u16 PMS_CategoryTable_11[] = {
 	1451,
 	1452,
@@ -1539,7 +1539,7 @@ static const u16 PMS_CategoryTable_11[] = {
 
 #define  PMS_Category_11_MaxNum	(32)
 
-// ƒ†ƒjƒIƒ“
+// ãƒ¦ãƒ‹ã‚ªãƒ³
 static const u16 PMS_CategoryTable_12[] = {
 	1492,
 	1483,
@@ -1570,7 +1570,7 @@ static const u16 PMS_CategoryTable_12[] = {
 #define  PMS_Category_12_MaxNum	(23)
 
 //==========================================================
-// •¶š‡’PŒêIDƒe[ƒuƒ‹
+// æ–‡å­—é †å˜èªIDãƒ†ãƒ¼ãƒ–ãƒ«
 //==========================================================
 
 // A
@@ -3172,13 +3172,13 @@ static const u16 PMS_InitialTable_25[] = {
 	PMS_WORDID_END
 };
 
-// ‚»‚Ì‘¼
+// ãã®ä»–
 static const u16 PMS_InitialTable_26[] = {
 	1288,
 	PMS_WORDID_END
 };
 
-// •¶š‡ƒe[ƒuƒ‹‚Ìæ“ªƒAƒhƒŒƒX‚ğƒe[ƒuƒ‹‰»‚µ‚Ä‚¨‚­
+// æ–‡å­—é †ãƒ†ãƒ¼ãƒ–ãƒ«ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«åŒ–ã—ã¦ãŠã
 static const u16* const PMS_InitialTable[] = {
 	PMS_InitialTable_0,
 	PMS_InitialTable_1,

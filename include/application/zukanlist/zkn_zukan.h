@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_zukan.h
- *	@brief		}ŠÓƒTƒu‰æ–Ê
+ *	@brief		å›³é‘‘ã‚µãƒ–ç”»é¢
  *	@author		tomoya takahashi	
  *	@data		2006.01.21
  *
@@ -24,52 +24,52 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 enum{
-	ZKN_ZUKAN_FADE_MODE_CHPOKELIST,	// ƒ|ƒPƒŠƒXƒg‚Æ‚Ìs‚«—ˆ
-	ZKK_ZUKAN_FADE_MODE_NORMAL,		// ’Êí
-	ZKK_ZUKAN_FADE_MODE_OTHER,		// ‚»‚Ì‘¼‰æ–Ê‚Ö
+	ZKN_ZUKAN_FADE_MODE_CHPOKELIST,	// ãƒã‚±ãƒªã‚¹ãƒˆã¨ã®è¡Œãæ¥
+	ZKK_ZUKAN_FADE_MODE_NORMAL,		// é€šå¸¸
+	ZKK_ZUKAN_FADE_MODE_OTHER,		// ãã®ä»–ç”»é¢ã¸
 };
 
-// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgÀ•W
+// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆåº§æ¨™
 #define ZKN_ZUKAN_POKELIST_MAT_IX	( 172 )
 #define ZKN_ZUKAN_POKELIST_MAT_IY	( 32 )
 
-// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNÀ•W
+// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åº§æ¨™
 #define ZKN_ZUKAN_POKEGRA_MAT_X	( 48 )
 #define ZKN_ZUKAN_POKEGRA_MAT_Y	( 72 )
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	}ŠÓ‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	å›³é‘‘ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	int*				p_event_key;		// ƒCƒxƒ“ƒgƒL[
-	ZKN_GLB_DATA*		p_glb;				// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	int*				p_event_key;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
+	ZKN_GLB_DATA*		p_glb;				// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
-	int poke_gra_move_x;					// ƒ|ƒPƒOƒ‰“®ìæ
-	int poke_gra_move_y;					// ƒ|ƒPƒOƒ‰“®ìæ
+	int poke_gra_move_x;					// ãƒã‚±ã‚°ãƒ©å‹•ä½œå…ˆ
+	int poke_gra_move_y;					// ãƒã‚±ã‚°ãƒ©å‹•ä½œå…ˆ
 
-	// }ŠÓƒRƒ‚ƒ“ƒAƒvƒŠƒf[ƒ^
+	// å›³é‘‘ã‚³ãƒ¢ãƒ³ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 	const ZKN_APL_DATA* cp_zukan_common_apl;
-	int					fade_mode;			// ƒtƒF[ƒhƒ‚[ƒh
+	int					fade_mode;			// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
 
-	int zukan_page;		// •\¦}ŠÓƒy[ƒW
+	int zukan_page;		// è¡¨ç¤ºå›³é‘‘ãƒšãƒ¼ã‚¸
 
-	BOOL mons_snd_req;	// ƒ|ƒPƒ‚ƒ“‚ÌºƒŠƒNƒGƒXƒg
+	BOOL mons_snd_req;	// ãƒã‚±ãƒ¢ãƒ³ã®å£°ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 } ZKN_ZUKAN_GLB;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_ZukanAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap );
@@ -79,16 +79,16 @@ GLOBAL BOOL ZKN_ZukanAplPageAdd( ZKN_ZUKAN_GLB* p_data, int add );
 GLOBAL BOOL ZKN_ZukanAplPageSet( ZKN_ZUKAN_GLB* p_data, int set );
 
 
-// •ßŠl}ŠÓ‰æ–Ê—p
+// æ•ç²å›³é‘‘ç”»é¢ç”¨
 GLOBAL GF_BGL_BMPWIN* ZknZukanPokeTypeTextBmpMake( ZKN_FONTOAM_SYS_PTR p_fontoamsys, int mons_no, int heap );
 GLOBAL int ZknZukanClactTypeNoChg( int type );
 GLOBAL void ZknZukanSetUpFontBg_Minute( GF_BGL_BMPWIN* p_bmp, int monsno, int heap, int page, u32 color_msk );
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/20
-// u?ƒ|ƒPƒ‚ƒ“v•\¦‚ª“ü‚è‚«‚ç‚È‚©‚Á‚½‚Ì‚ğC³
+// ã€Œ?ãƒã‚±ãƒ¢ãƒ³ã€è¡¨ç¤ºãŒå…¥ã‚Šãã‚‰ãªã‹ã£ãŸã®ã‚’ä¿®æ­£
 
-// ?ƒ|ƒPƒ‚ƒ“À•W
+// ?ãƒã‚±ãƒ¢ãƒ³åº§æ¨™
 #define ZKN_ZUKAN_POKETYPE_TEXT_FONT_OFS_X	( -78 )
 #define ZKN_ZUKAN_POKETYPE_TEXT_FONT_OFS_Y	( -8 )
 #define ZKN_ZUKAN_POKETYPE_TEXT_BMP_SCX	( 18 )
@@ -98,7 +98,7 @@ GLOBAL void ZknZukanSetUpFontBg_Minute( GF_BGL_BMPWIN* p_bmp, int monsno, int he
 
 // ----------------------------------------------------------------------------
 
-// ƒ^ƒCƒvƒAƒjƒƒV[ƒPƒ“ƒX
+// ã‚¿ã‚¤ãƒ—ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	ZKN_ZUKAN_POKETYPE_NORMAL = 0,
 };

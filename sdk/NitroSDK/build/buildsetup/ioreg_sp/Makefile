@@ -31,22 +31,22 @@
 # execute ./header_generator_ioreg_sp.pl
 #
 # Revision 1.3  2003/12/16 09:45:31  yasu
-# nitro_sp �ւ̑Ή�
+# nitro_sp への対応
 #
 # Revision 1.2  2003/11/30 09:35:19  yasu
-# �R���p�C���p ROOT �ƃC���X�g�[���p ROOT ��Ɨ�������
+# コンパイル用 ROOT とインストール用 ROOT を独立させた
 #
 # Revision 1.1  2003/11/17 01:55:35  yasu
-# ioreg SP �̐����X�N���v�g�� sp/ ->ioreg_sp/ �ֈړ�
+# ioreg SP の生成スクリプトを sp/ ->ioreg_sp/ へ移動
 #
 # Revision 1.3  2003/11/12 12:03:25  yasu
-# make clobber �� INSTALL_TARGETS �폜����悤�ɂ���
+# make clobber で INSTALL_TARGETS 削除するようにした
 #
 # Revision 1.2  2003/11/05 10:00:50  yasu
-# �f�B���N�g����`�}�N���̏C��
+# ディレクトリ定義マクロの修正
 #
 # Revision 1.1  2003/11/05 07:05:43  yasu
-# SP(ARM7) �p�w�b�_�̐���
+# SP(ARM7) 用ヘッダの生成
 #
 # $NoKeywords:$
 #----------------------------------------------------------------------------

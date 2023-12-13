@@ -1,8 +1,8 @@
 #ifndef _INIT_SCR_DEF_H_
 #define _INIT_SCR_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_INIT_SCRIPT		(9600)
-#define	SCRID_INIT_SCR_DATA_MAX		(1)		//最大数
+#define	SCRID_INIT_SCR_DATA_MAX		(1)		//譛螟ｧ謨ｰ
 
 #endif //_INIT_SCR_DEF_H_

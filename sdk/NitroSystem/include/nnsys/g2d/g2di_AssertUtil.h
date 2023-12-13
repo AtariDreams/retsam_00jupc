@@ -21,7 +21,7 @@ extern "C" {
 #endif
 
 
-// アライメントチェック
+// 繧｢繝ｩ繧､繝｡繝ｳ繝医メ繧ｧ繝�繧ｯ
 #define NNS_G2D_IS_ALIGNED(addr, align) (((u32)(addr) & ((align)-1)) == 0)
 
 #define NNS_G2D_ALIGN_ASSERT(addr, align)                   \
@@ -29,7 +29,7 @@ extern "C" {
         NNS_G2D_IS_ALIGNED((addr), (align)),                \
         "'%s'=%p must be %d byte aligned.", #addr, (addr) )
 
-// 有効なメモリアドレスチェック
+// 譛牙柑縺ｪ繝｡繝｢繝ｪ繧｢繝峨Ξ繧ｹ繝√ぉ繝�繧ｯ
 #define NNS_G2D_IS_VALID_POINTER(p) ((HW_ITCM_IMAGE <= ((u32)(p))) && (((u32)(p)) <= HW_CTRDG_RAM_END))
 
 #define NNS_G2D_POINTER_ASSERT(p)                                           \

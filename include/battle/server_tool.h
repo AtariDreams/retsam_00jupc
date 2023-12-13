@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	server_tool.h
- * @bfief	í“¬ƒT[ƒo—pƒc[ƒ‹ƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ã‚µãƒ¼ãƒç”¨ãƒ„ãƒ¼ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.05.26
  */
@@ -14,32 +14,32 @@
 #include "battle/scio.h"
 #include "poketool/poke_tool.h"
 
-//ST_ServerHitCountCheck—pƒtƒ‰ƒO
-#define	SHCC_NORMAL		(0)		//‘S‘Ì
-#define	SHCC_SIDE		(1)		//‘¤
+//ST_ServerHitCountCheckç”¨ãƒ•ãƒ©ã‚°
+#define	SHCC_NORMAL		(0)		//å…¨ä½“
+#define	SHCC_SIDE		(1)		//å´
 
-//ST_ServerListRowChange—pƒtƒ‰ƒO
-#define	FB_FORWARD		(0)		//‘O‰q
-#define	FB_BACKWARD		(1)		//Œã‰q
+//ST_ServerListRowChangeç”¨ãƒ•ãƒ©ã‚°
+#define	FB_FORWARD		(0)		//å‰è¡›
+#define	FB_BACKWARD		(1)		//å¾Œè¡›
 
-//ST_ServerSoubiAtkGet—pƒtƒ‰ƒO
-#define	ATK_CHECK_NORMAL	(0)	//ƒ`ƒFƒbƒN‚ ‚è
-#define	ATK_CHECK_NONE		(1)	//ƒ`ƒFƒbƒN‚È‚µ
-#define	ATK_CHECK_SHUTOUT	(2)	//ƒVƒƒƒbƒgƒAƒEƒg‚¾‚¯ƒ`ƒFƒbƒN‚ ‚è
+//ST_ServerSoubiAtkGetç”¨ãƒ•ãƒ©ã‚°
+#define	ATK_CHECK_NORMAL	(0)	//ãƒã‚§ãƒƒã‚¯ã‚ã‚Š
+#define	ATK_CHECK_NONE		(1)	//ãƒã‚§ãƒƒã‚¯ãªã—
+#define	ATK_CHECK_SHUTOUT	(2)	//ã‚·ãƒ£ãƒƒãƒˆã‚¢ã‚¦ãƒˆã ã‘ãƒã‚§ãƒƒã‚¯ã‚ã‚Š
 
 
-//ST_ServerTokuseiCheck—pƒtƒ‰ƒO
+//ST_ServerTokuseiCheckç”¨ãƒ•ãƒ©ã‚°
 enum{
-	STC_HAVE_MINE_SIDE=0,		//Ž©•ª‘¤‚ªŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
-	STC_HAVE_MINE_SIDE_HP,		//Ž©•ª‘¤‚ªŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒNiHP0‚Í–³Œøj
-	STC_HAVE_ENEMY_SIDE,		//‘ŠŽè‘¤‚ªŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
-	STC_HAVE_ENEMY_SIDE_HP,		//‘ŠŽè‘¤‚ªŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒNiHP0‚Í–³Œøj
-	STC_HAVE_ENEMY_SIDE_RET,	//‘ŠŽè‘¤‚ªŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚ÄŽ‚Á‚Ä‚¢‚½ClientNo‚ð•Ô‚·
-	STC_HAVE_ALL,				//Ž©•ª‚àŠÜ‚ßŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
-	STC_HAVE_ALL_NOMINE,		//Ž©•ªˆÈŠO‚Ìƒ|ƒPƒ‚ƒ“‚ªŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
-	STC_HAVE_ALL_NOMINE_RET,	//Ž©•ªˆÈŠO‚Ìƒ|ƒPƒ‚ƒ“‚ªŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚ÄŽ‚Á‚Ä‚¢‚½ClientNo‚ð•Ô‚·
-	STC_HAVE_ALL_HP,			//Ž©•ª‚àŠÜ‚ßŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒNiHP0‚Í–³Œøj
-	STC_HAVE_ALL_NOMINE_HP		//Ž©•ªˆÈŠO‚Ìƒ|ƒPƒ‚ƒ“‚ªŽ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒNiHP0‚Í–³Œøj
+	STC_HAVE_MINE_SIDE=0,		//è‡ªåˆ†å´ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+	STC_HAVE_MINE_SIDE_HP,		//è‡ªåˆ†å´ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆHP0ã¯ç„¡åŠ¹ï¼‰
+	STC_HAVE_ENEMY_SIDE,		//ç›¸æ‰‹å´ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+	STC_HAVE_ENEMY_SIDE_HP,		//ç›¸æ‰‹å´ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆHP0ã¯ç„¡åŠ¹ï¼‰
+	STC_HAVE_ENEMY_SIDE_RET,	//ç›¸æ‰‹å´ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦æŒã£ã¦ã„ãŸClientNoã‚’è¿”ã™
+	STC_HAVE_ALL,				//è‡ªåˆ†ã‚‚å«ã‚æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+	STC_HAVE_ALL_NOMINE,		//è‡ªåˆ†ä»¥å¤–ã®ãƒã‚±ãƒ¢ãƒ³ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+	STC_HAVE_ALL_NOMINE_RET,	//è‡ªåˆ†ä»¥å¤–ã®ãƒã‚±ãƒ¢ãƒ³ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦æŒã£ã¦ã„ãŸClientNoã‚’è¿”ã™
+	STC_HAVE_ALL_HP,			//è‡ªåˆ†ã‚‚å«ã‚æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆHP0ã¯ç„¡åŠ¹ï¼‰
+	STC_HAVE_ALL_NOMINE_HP		//è‡ªåˆ†ä»¥å¤–ã®ãƒã‚±ãƒ¢ãƒ³ãŒæŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ï¼ˆHP0ã¯ç„¡åŠ¹ï¼‰
 };
 
 
@@ -169,7 +169,7 @@ extern	int		ST_ServerParamDataGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int id,int cl
 extern	void	ST_ServerOSTFStatusFlagSet(SERVER_PARAM *sp,int client_no,u32 value);
 extern	void	ST_ServerParamDataPut(BATTLE_WORK *bw,SERVER_PARAM *sp,int id,int client_no,int data);
 
-//‹Z‚ÌƒV[ƒPƒ“ƒX“à‚Å‚àŒÄ‚Î‚ê‚é‚Ì‚Å,battle_ai‚ÌƒI[ƒo[ƒŒƒC‚©‚ç‚Í‚¸‚·
+//æŠ€ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å†…ã§ã‚‚å‘¼ã°ã‚Œã‚‹ã®ã§,battle_aiã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‹ã‚‰ã¯ãšã™
 extern	int		ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no);
 extern	int		ClientAIReshuffleSelMonsNoGet(BATTLE_WORK *bw,int client_no);
 extern	int		AIWazaTypeGetPP(BATTLE_WORK *bw,SERVER_PARAM *sp,POKEMON_PARAM *pp,int waza_no);

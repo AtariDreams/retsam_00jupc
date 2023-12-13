@@ -1,7 +1,7 @@
 #ifndef _C01R0103_DEF_H_
 #define _C01R0103_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C01R0103_BABYBOY1		(1)
 #define	SCRID_C01R0103_MIDDLEWOMAN1		(2)
 #define	SCRID_C01R0103_OLDWOMAN1		(3)
@@ -9,6 +9,6 @@
 #define	SCRID_C01R0103_POKETCH_PC2		(5)
 #define	SCRID_C01R0103_POKETCH_PC3		(6)
 #define	SCRID_C01R0103_POKETCH_PC4		(7)
-#define	SCRID_C01R0103_DATA_MAX		(7)		//最大数
+#define	SCRID_C01R0103_DATA_MAX		(7)		//譛螟ｧ謨ｰ
 
 #endif //_C01R0103_DEF_H_

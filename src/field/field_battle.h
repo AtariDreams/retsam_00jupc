@@ -13,11 +13,11 @@
 #include "battle/battle_common.h"
 
 //============================================================================================
-//	‚«‚Á‚Æbattle_param.h‚ª‚Å‚«‚Ä“Æ—§‚·‚é‚Í‚¸‚¾‚ª‚»‚ê‚Ü‚Å‚±‚±‚ÉŠÔØ‚è‚·‚é
+//	ãã£ã¨battle_param.hãŒã§ãã¦ç‹¬ç«‹ã™ã‚‹ã¯ãšã ãŒãã‚Œã¾ã§ã“ã“ã«é–“å€Ÿã‚Šã™ã‚‹
 //============================================================================================
-extern BATTLE_PARAM * BattleParam_Create(int heapID, u32 fight_type);			//À‘Ì‚Ífield_battle.c
-extern BATTLE_PARAM * BattleParam_CreateForSafari(int heapID, int ball_num);	//À‘Ì‚Ífield_battle.c
-extern BATTLE_PARAM * BattleParam_CreateForPokePark(int heapID, int ball_num);	//À‘Ì‚Ífield_battle.c
+extern BATTLE_PARAM * BattleParam_Create(int heapID, u32 fight_type);			//å®Ÿä½“ã¯field_battle.c
+extern BATTLE_PARAM * BattleParam_CreateForSafari(int heapID, int ball_num);	//å®Ÿä½“ã¯field_battle.c
+extern BATTLE_PARAM * BattleParam_CreateForPokePark(int heapID, int ball_num);	//å®Ÿä½“ã¯field_battle.c
 extern BATTLE_PARAM * BattleParam_CreateForGetDemo(int heapID, const FIELDSYS_WORK * fsys);	
 extern void BattleParam_Delete(BATTLE_PARAM * bp);
 extern void BattleParam_AddPokemon(BATTLE_PARAM * bp, POKEMON_PARAM * pp, int client_no);
@@ -31,7 +31,7 @@ extern BOOL BattleParam_IsSeacretPokeRetry(u32 result);
 extern BOOL BattleParam_IsHaifuPokeRetry(u32 result);
 
 //============================================================================================
-//	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ˆË‘¶‚ÌBATTLE_PARAM‘€ì
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ä¾å­˜ã®BATTLE_PARAMæ“ä½œ
 //============================================================================================
 extern void BattleParam_UpdateGameData(const BATTLE_PARAM * bp, FIELDSYS_WORK * fsys);
 extern void BattleParam_UpdateGameDataOfVirtualBattle(const BATTLE_PARAM * bp, FIELDSYS_WORK * fsys);

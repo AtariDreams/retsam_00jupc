@@ -3,7 +3,7 @@
  * @file	seedbed.h
  * @author	tamada
  * @date	2005.02.01
- * @brief	‚«‚Ì‚İ‚Ìó‘Ôƒf[ƒ^’è‹`
+ * @brief	ãã®ã¿ã®çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å®šç¾©
  */
 //============================================================================================
 #ifndef	__SEEDBED_H__
@@ -15,41 +15,41 @@
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚İó‘Ôƒf[ƒ^‚Ì•sŠ®‘SŒ^’è‹`
+ * @brief	ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã®ä¸å®Œå…¨å‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct _SEEDBED SEEDBED;
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚İ‚Ìó‘Ô’è‹`
+ * @brief	ãã®ã¿ã®çŠ¶æ…‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef enum {
-	SEEDSTAT_NOTHING = 0,	///<‚«‚Ì‚İ‚ªA‚¦‚ç‚ê‚Ä‚¢‚È‚¢
-	SEEDSTAT_UNDERGROUND,	///<‚«‚Ì‚İ‚ğA‚¦‚½ó‘Ô
-	SEEDSTAT_HUTABA,		///<‰è‚ªo‚Ä‚«‚½ó‘Ô
-	SEEDSTAT_MIKI,			///<­‚µ¬’·‚µ‚½ó‘Ô
-	SEEDSTAT_FLOWER,		///<‰Ô‚ªç‚¢‚Ä‚¢‚éó‘Ô
-	SEEDSTAT_FRUIT,			///<À‚ª‚È‚Á‚Ä‚¢‚éó‘Ô
+	SEEDSTAT_NOTHING = 0,	///<ãã®ã¿ãŒæ¤ãˆã‚‰ã‚Œã¦ã„ãªã„
+	SEEDSTAT_UNDERGROUND,	///<ãã®ã¿ã‚’æ¤ãˆãŸçŠ¶æ…‹
+	SEEDSTAT_HUTABA,		///<èŠ½ãŒå‡ºã¦ããŸçŠ¶æ…‹
+	SEEDSTAT_MIKI,			///<å°‘ã—æˆé•·ã—ãŸçŠ¶æ…‹
+	SEEDSTAT_FLOWER,		///<èŠ±ãŒå’²ã„ã¦ã„ã‚‹çŠ¶æ…‹
+	SEEDSTAT_FRUIT,			///<å®ŸãŒãªã£ã¦ã„ã‚‹çŠ¶æ…‹
 
-	SEEDSTAT_CHANGE = 0xff,	///<ó‘Ô•Ï‰»’†
+	SEEDSTAT_CHANGE = 0xff,	///<çŠ¶æ…‹å¤‰åŒ–ä¸­
 }SEEDSTAT;
 
 //----------------------------------------------------------
 /**
- * @brief	¼‚è‹C‚Ìó‘Ô
+ * @brief	æ¹¿ã‚Šæ°—ã®çŠ¶æ…‹
  */
 //----------------------------------------------------------
 typedef enum {
-	SEEDGROUND_DRY = 0,	///<Š£‚«‚«‚Á‚Äƒqƒr‚ª‚Å‚Ä‚¢‚éó‘Ô
-	SEEDGROUND_WET,		///<­‚µŠ£‚¢‚½ó‘Ô
-	SEEDGROUND_FULL,		///<\•ª…•ª‚ª‚ ‚éó‘Ô
+	SEEDGROUND_DRY = 0,	///<ä¹¾ããã£ã¦ãƒ’ãƒ“ãŒã§ã¦ã„ã‚‹çŠ¶æ…‹
+	SEEDGROUND_WET,		///<å°‘ã—ä¹¾ã„ãŸçŠ¶æ…‹
+	SEEDGROUND_FULL,		///<ååˆ†æ°´åˆ†ãŒã‚ã‚‹çŠ¶æ…‹
 }SEEDGROUND;
 
 //----------------------------------------------------------
 /**
- * @brief	”ì—¿‚Ìí—Ş
+ * @brief	è‚¥æ–™ã®ç¨®é¡
  */
 //----------------------------------------------------------
 typedef enum {
@@ -62,13 +62,13 @@ typedef enum {
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚İ‚Ì¬’·ˆ—‚É•K—v‚Èƒpƒ‰ƒ[ƒ^
+ * @brief	ãã®ã¿ã®æˆé•·å‡¦ç†ã«å¿…è¦ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------
 typedef struct {
-	u8 grow_speed;		///<¬’·‘¬“xiŠÔ’PˆÊj
-	u8 root_power;		///<‹z…—Í
-	u8 nuts_rate;		///<À‚Ì¶‚é”‚Ì”{—¦
+	u8 grow_speed;		///<æˆé•·é€Ÿåº¦ï¼ˆæ™‚é–“å˜ä½ï¼‰
+	u8 root_power;		///<å¸æ°´åŠ›
+	u8 nuts_rate;		///<å®Ÿã®ç”Ÿã‚‹æ•°ã®å€ç‡
 }SEED_TABLE;
 
 //============================================================================================
@@ -79,48 +79,48 @@ extern int SEEDBED_GetWorkSize(void);
 extern SEEDBED * SEEDBED_AllocWork(u32 heapID);
 extern void SEEDBED_Init(SEEDBED * sbed);
 
-//¬’·—pƒe[ƒuƒ‹¶¬
+//æˆé•·ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ç”Ÿæˆ
 extern SEED_TABLE * SEEDBED_CreateParamTable(int heapID);
 
-//‰Šúó‘ÔƒZƒbƒgˆ—
+//åˆæœŸçŠ¶æ…‹ã‚»ãƒƒãƒˆå‡¦ç†
 extern void SEEDBED_SetDefaultData(SEEDBED * sbed, int heapID, const u16 * init_data, int max);
 //----------------------------------------------------------
 //----------------------------------------------------------
-//ó‘Ôæ“¾
+//çŠ¶æ…‹å–å¾—
 extern SEEDSTAT SEEDBED_GetSeedStatus(const SEEDBED * sbed, int id);
 
-//‚«‚Ì‚İ‚Ìí—Ş‚ğæ“¾
+//ãã®ã¿ã®ç¨®é¡ã‚’å–å¾—
 extern int SEEDBED_GetSeedType(const SEEDBED * sbed, int id);
 
-//…‚â‚è‚Ìó‘Ô‚ğæ“¾
+//æ°´ã‚„ã‚Šã®çŠ¶æ…‹ã‚’å–å¾—
 extern SEEDGROUND SEEDBED_GetGroundStatus(const SEEDBED * sbed, int id);
 
-//‚«‚Ì‚İ‚ÌHP‚ğæ“¾
+//ãã®ã¿ã®HPã‚’å–å¾—
 extern int SEEDBED_GetSeedHP(const SEEDBED * sbed, int id);
 
-//‚«‚Ì‚İ‚ğA‚¦‚é
+//ãã®ã¿ã‚’æ¤ãˆã‚‹
 extern void SEEDBED_SetNuts(SEEDBED * sbed, int id, const SEED_TABLE * param, int type);
-//…‚ğ‚ ‚°‚é
+//æ°´ã‚’ã‚ã’ã‚‹
 extern void SEEDBED_SetSeedWater(SEEDBED * sbed, int id);
-//ƒRƒ„ƒV‚ğ‚Ü‚­
-//ƒRƒ„ƒV‚Ìí—Ş‚ğæ“¾
+//ã‚³ãƒ¤ã‚·ã‚’ã¾ã
+//ã‚³ãƒ¤ã‚·ã®ç¨®é¡ã‚’å–å¾—
 extern void SEEDBED_SetCompost(SEEDBED * sbed, int id, SEEDCOMPOST compost);
 
-//¬’·ƒtƒ‰ƒO‚Ìİ’è
+//æˆé•·ãƒ•ãƒ©ã‚°ã®è¨­å®š
 extern BOOL SEEDBED_GetGrowthFlag(const SEEDBED * sbed, int id);
-//¬’·ƒtƒ‰ƒO‚Ìæ“¾
+//æˆé•·ãƒ•ãƒ©ã‚°ã®å–å¾—
 extern void SEEDBED_SetGrowthFlag(SEEDBED * sbed, int id, BOOL flag);
 
-//‚«‚Ì‚İ‚Ì”‚ğæ“¾
+//ãã®ã¿ã®æ•°ã‚’å–å¾—
 extern int SEEDBED_GetSeedCount(const SEEDBED * sbed, int id);
 
 extern SEEDCOMPOST SEEDBED_GetCompost(const SEEDBED * sbed, int id);
 //----------------------------------------------------------
 //----------------------------------------------------------
-//‚«‚Ì‚İ‚ğûŠn
+//ãã®ã¿ã‚’åç©«
 extern int SEEDBED_GetHarvest(SEEDBED * sbed, int id);
 
-//‚«‚Ì‚İ‚ğ¬’·‚³‚¹‚é
+//ãã®ã¿ã‚’æˆé•·ã•ã›ã‚‹
 extern void SEEDBED_Growth(SEEDBED * sbed, const SEED_TABLE * param, int minute);
 
 //----------------------------------------------------------

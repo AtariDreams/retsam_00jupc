@@ -1,5 +1,5 @@
-’S“–	ƒOƒ‰ƒtƒBƒbƒNiŠC–ì‚³‚ñj	ƒOƒ‰ƒtƒBƒbƒNi•q‚³‚ñj	ƒOƒ‰ƒtƒBƒbƒNi•q‚³‚ñj	ƒOƒ‰ƒtƒBƒbƒNi•q‚³‚ñj	ƒvƒ‰ƒ“ƒi[i¼‹{‚³‚ñj	ƒvƒ‰ƒ“ƒi[i¼‹{‚³‚ñj
-ƒGƒŠƒA–¼	ƒGƒŠƒA•ÊQ”z’uƒ‚ƒfƒ‹ŠÇ—•\	ƒGƒŠƒA•ÊQ’nŒ`ƒeƒNƒXƒ`ƒƒ[ŠÇ—•\	’nŒ`ƒeƒNƒXƒ`ƒƒ[ƒXƒƒbƒg1	’nŒ`ƒeƒNƒXƒ`ƒƒ[ƒXƒƒbƒg2	ƒGƒŠƒA•ÊQ“®ìƒ‚ƒfƒ‹ŠÇ—•\	ƒ‰ƒCƒgÝ’è
+æ‹…å½“	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼ˆæµ·é‡Žã•ã‚“ï¼‰	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼ˆæ•ã•ã‚“ï¼‰	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼ˆæ•ã•ã‚“ï¼‰	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼ˆæ•ã•ã‚“ï¼‰	ãƒ—ãƒ©ãƒ³ãƒŠãƒ¼ï¼ˆæ¾å®®ã•ã‚“ï¼‰	ãƒ—ãƒ©ãƒ³ãƒŠãƒ¼ï¼ˆæ¾å®®ã•ã‚“ï¼‰
+ã‚¨ãƒªã‚¢å	ã‚¨ãƒªã‚¢åˆ¥ï¼¿é…ç½®ãƒ¢ãƒ‡ãƒ«ç®¡ç†è¡¨	ã‚¨ãƒªã‚¢åˆ¥ï¼¿åœ°å½¢ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ç®¡ç†è¡¨	åœ°å½¢ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚¹ãƒ­ãƒƒãƒˆ1	åœ°å½¢ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚¹ãƒ­ãƒƒãƒˆ2	ã‚¨ãƒªã‚¢åˆ¥ï¼¿å‹•ä½œãƒ¢ãƒ‡ãƒ«ç®¡ç†è¡¨	ãƒ©ã‚¤ãƒˆè¨­å®š
 AREA_ID_FIELD	area01o.xls	map_tex_set.xls	dummy	dummy	area_01d.xls	ON
 AREA_ID_ROOM	room00o.xls	hos1_tex_set.xls	dummy	dummy	area_02d.xls	OFF
 AREA_ID_UNDERGROUND	area00o.xls	ug_tex_set.xls	dummy	dummy	area_03d.xls	OFF

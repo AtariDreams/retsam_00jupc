@@ -2,7 +2,7 @@
  * @version "$Id: beacondownload.c,v 1.3 2006/08/09 09:29:51 mitsuhara Exp $"
  *
  * @file beacondownload.cpp
- * @brief ƒr[ƒRƒ“‚ğg—p‚µ‚½ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒhˆ—
+ * @brief ãƒ“ãƒ¼ã‚³ãƒ³ã‚’ä½¿ç”¨ã—ãŸãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å‡¦ç†
  * 
  */
  
@@ -14,24 +14,24 @@
 #include "nitrocrypto/crypto.h"
 
 /* ======================================================================
-   ‘—óM‚·‚éƒf[ƒ^‚ÌƒQ[ƒ€ƒf[ƒ^\‘¢‘Ì
+   é€å—ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
    ====================================================================== */  
 #define BSDOWN_ONEPACKET_SIZE (WM_SIZE_USER_GAMEINFO - 8)
 #define BSDOWN_PACKET_MAXSIZE ((BSOWN_MAXSIZE - 1) / BSDOWN_ONEPACKET_SIZE + 1)
 typedef struct
 {
-	u16 crc;							// ‘—M‚·‚éƒXƒNƒŠƒvƒg‚ÌCRC
-	u16 index;							// ‚±‚Ìƒr[ƒRƒ“‚Ì’Ê‚µ”Ô†
-	u32 size;							// ‘—‚ë‚¤‚Æ‚µ‚Ä‚¢‚éƒXƒNƒŠƒvƒg‚Ì‘å‚«‚³
-	u8 data[BSDOWN_ONEPACKET_SIZE];	// ƒf[ƒ^–{‘Ìi‚P‚O‚SƒoƒCƒgj
+	u16 crc;							// é€ä¿¡ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®CRC
+	u16 index;							// ã“ã®ãƒ“ãƒ¼ã‚³ãƒ³ã®é€šã—ç•ªå·
+	u32 size;							// é€ã‚ã†ã¨ã—ã¦ã„ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å¤§ãã•
+	u8 data[BSDOWN_ONEPACKET_SIZE];	// ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ï¼ˆï¼‘ï¼ï¼”ãƒã‚¤ãƒˆï¼‰
 } BSDOWN_GAMEINFO_STRUCT;
 
 /* ======================================================================
-  ì‹Æ—Ìˆæ‚Ìƒf[ƒ^\‘¢‘Ì
+  ä½œæ¥­é ˜åŸŸã®ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
    ====================================================================== */
 typedef struct
 {
-	/* WM —pƒVƒXƒeƒ€ƒ[ƒN—Ìˆæƒoƒbƒtƒ@ */
+	/* WM ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯é ˜åŸŸãƒãƒƒãƒ•ã‚¡ */
 	u8  WmBuffer[ WM_SYSTEM_BUF_SIZE ] ATTRIBUTE_ALIGN(32);
 	WMBssDesc BssDesc ATTRIBUTE_ALIGN(32);	
 	WMScanParam ScanParam ATTRIBUTE_ALIGN(32);
@@ -39,31 +39,31 @@ typedef struct
 	int infoflag;
 	CRYPTORC4Context rc4context;
 	int SysState;
-	// ƒGƒ‰[ƒR[ƒhŠi”[—p
+	// ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰æ ¼ç´ç”¨
 	int ErrCode;	
 	
-	u16 state;	  // Œ»İ‚Ìó‹µ
-	u16 crc;	  // Œ»İóM’†‚Ìƒf[ƒ^‚ÌCRCi¯•Ê‚É—˜—pj
-	u16 packets;  // Œ»İóM’†‚Ìƒf[ƒ^‚ÍA‰½•ªŠ„‚³‚ê‚Ä‘—‚ç‚ê‚Ä‚­‚é‚©
-	u16 received; // Œ»İ‰½ŒÂ‚ÌƒpƒPƒbƒg‚ğó‚¯æ‚Á‚½‚©
-	u32 size;	  // Œ»İóM’†‚Ìƒf[ƒ^‚ÌƒTƒCƒY
+	u16 state;	  // ç¾åœ¨ã®çŠ¶æ³
+	u16 crc;	  // ç¾åœ¨å—ä¿¡ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã®CRCï¼ˆè­˜åˆ¥ã«åˆ©ç”¨ï¼‰
+	u16 packets;  // ç¾åœ¨å—ä¿¡ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã¯ã€ä½•åˆ†å‰²ã•ã‚Œã¦é€ã‚‰ã‚Œã¦ãã‚‹ã‹
+	u16 received; // ç¾åœ¨ä½•å€‹ã®ãƒ‘ã‚±ãƒƒãƒˆã‚’å—ã‘å–ã£ãŸã‹
+	u32 size;	  // ç¾åœ¨å—ä¿¡ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
 	u32 count;
-	int index;	  // ˆê”ÔÅŒã‚Éó‚¯æ‚Á‚½ƒpƒPƒbƒg‚Ì’Ê‚µ”Ô†ie‹@‚ª¡A‚Ç‚Ì‚ ‚½‚è‚ğ‘—M‚µ‚Ä‚¢‚é‚©‚ğ”»’f‚·‚é‚½‚ßj
+	int index;	  // ä¸€ç•ªæœ€å¾Œã«å—ã‘å–ã£ãŸãƒ‘ã‚±ãƒƒãƒˆã®é€šã—ç•ªå·ï¼ˆè¦ªæ©ŸãŒä»Šã€ã©ã®ã‚ãŸã‚Šã‚’é€ä¿¡ã—ã¦ã„ã‚‹ã‹ã‚’åˆ¤æ–­ã™ã‚‹ãŸã‚ï¼‰
 	int linklevel;
 	u8 macaddress[6];
 	u16 channel;
-	u8 *target;	  // ƒXƒNƒŠƒvƒg‚ğ•Û‘¶‚·‚éæB‚SƒoƒCƒgƒAƒ‰ƒCƒƒ“ƒg‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+	u8 *target;	  // ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ä¿å­˜ã™ã‚‹å…ˆã€‚ï¼”ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 	BSDOWN_CALLBACK callback;
-	u8 flags[ BSDOWN_PACKET_MAXSIZE ];	// ‚Ç‚ÌƒpƒPƒbƒg‚ª‘—‚ç‚ê‚Ä—ˆ‚é‚©B
+	u8 flags[ BSDOWN_PACKET_MAXSIZE ];	// ã©ã®ãƒ‘ã‚±ãƒƒãƒˆãŒé€ã‚‰ã‚Œã¦æ¥ã‚‹ã‹ã€‚
 } BSDOWN_WORK;
 
 enum
 {
-	BSDOWNSTATE_STOP,			// ‰Šúó‘Ô
-	BSDOWNSTATE_STARTSCAN,		// ƒXƒLƒƒƒ“‚ğŠJn‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚Æ‚±‚ë
-	BSDOWNSTATE_SCANNING,		// ƒXƒLƒƒƒ“’†iƒr[ƒRƒ“óM‘Oj
-	BSDOWNSTATE_RECEVING,		// ˆê‰ñ‚Å‚àƒr[ƒRƒ“‚ğó‚¯æ‚Á‚½‚±‚Æ‚ª‚ ‚éó‘Ô
-	BSDOWNSTATE_COMPLETE,		// óMŠ®—¹
+	BSDOWNSTATE_STOP,			// åˆæœŸçŠ¶æ…‹
+	BSDOWNSTATE_STARTSCAN,		// ã‚¹ã‚­ãƒ£ãƒ³ã‚’é–‹å§‹ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹ã¨ã“ã‚
+	BSDOWNSTATE_SCANNING,		// ã‚¹ã‚­ãƒ£ãƒ³ä¸­ï¼ˆãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡å‰ï¼‰
+	BSDOWNSTATE_RECEVING,		// ä¸€å›ã§ã‚‚ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å—ã‘å–ã£ãŸã“ã¨ãŒã‚ã‚‹çŠ¶æ…‹
+	BSDOWNSTATE_COMPLETE,		// å—ä¿¡å®Œäº†
 	
 	BSDOWNSTATE_SIZE	
 };
@@ -74,38 +74,38 @@ enum
 
 enum 
 {
-    mywh_SYSSTATE_STOP,           // ‰Šúó‘Ô
-    mywh_SYSSTATE_IDLE,           // ‘Ò‹@’†
-    mywh_SYSSTATE_SCANNING,       // ƒXƒLƒƒƒ“’†
-    mywh_SYSSTATE_BUSY,           // Ú‘±ì‹Æ’†
-    mywh_SYSSTATE_CONNECTED,      // Ú‘±Š®—¹i‚±‚Ìó‘Ô‚Å’ÊM‰Â”\j
-    mywh_SYSSTATE_DATASHARING,    // data-sharing—LŒø‚ÅÚ‘±Š®—¹
-    mywh_SYSSTATE_KEYSHARING,     // key-sharing—LŒø‚ÅÚ‘±Š®—¹
-    mywh_SYSSTATE_MEASURECHANNEL, // ƒ`ƒƒƒ“ƒlƒ‹‚Ì“d”gg—p—¦‚ğƒ`ƒFƒbƒN
-    mywh_SYSSTATE_CONNECT_FAIL,   // e‹@‚Ö‚ÌÚ‘±¸”s
-    mywh_SYSSTATE_ERROR,          // ƒGƒ‰[”­¶
-    mywh_SYSSTATE_FATAL,          // FATALƒGƒ‰[”­¶
+    mywh_SYSSTATE_STOP,           // åˆæœŸçŠ¶æ…‹
+    mywh_SYSSTATE_IDLE,           // å¾…æ©Ÿä¸­
+    mywh_SYSSTATE_SCANNING,       // ã‚¹ã‚­ãƒ£ãƒ³ä¸­
+    mywh_SYSSTATE_BUSY,           // æ¥ç¶šä½œæ¥­ä¸­
+    mywh_SYSSTATE_CONNECTED,      // æ¥ç¶šå®Œäº†ï¼ˆã“ã®çŠ¶æ…‹ã§é€šä¿¡å¯èƒ½ï¼‰
+    mywh_SYSSTATE_DATASHARING,    // data-sharingæœ‰åŠ¹ã§æ¥ç¶šå®Œäº†
+    mywh_SYSSTATE_KEYSHARING,     // key-sharingæœ‰åŠ¹ã§æ¥ç¶šå®Œäº†
+    mywh_SYSSTATE_MEASURECHANNEL, // ãƒãƒ£ãƒ³ãƒãƒ«ã®é›»æ³¢ä½¿ç”¨ç‡ã‚’ãƒã‚§ãƒƒã‚¯
+    mywh_SYSSTATE_CONNECT_FAIL,   // è¦ªæ©Ÿã¸ã®æ¥ç¶šå¤±æ•—
+    mywh_SYSSTATE_ERROR,          // ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
+    mywh_SYSSTATE_FATAL,          // FATALã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
     mywh_SYSSTATE_NUM
 };
 
 enum 
 {
-    mywh_CONNECTMODE_MP_PARENT,  // e‹@ MP Ú‘±ƒ‚[ƒh
-    mywh_CONNECTMODE_MP_CHILD,   // q‹@ MP Ú‘±ƒ‚[ƒh
-    mywh_CONNECTMODE_KS_PARENT,  // e‹@ key-sharing Ú‘±ƒ‚[ƒh
-    mywh_CONNECTMODE_KS_CHILD,   // q‹@ key-sharing Ú‘±ƒ‚[ƒh
-    mywh_CONNECTMODE_DS_PARENT,  // e‹@ data-sharing Ú‘±ƒ‚[ƒh
-    mywh_CONNECTMODE_DS_CHILD,   // q‹@ data-sharing Ú‘±ƒ‚[ƒh
+    mywh_CONNECTMODE_MP_PARENT,  // è¦ªæ©Ÿ MP æ¥ç¶šãƒ¢ãƒ¼ãƒ‰
+    mywh_CONNECTMODE_MP_CHILD,   // å­æ©Ÿ MP æ¥ç¶šãƒ¢ãƒ¼ãƒ‰
+    mywh_CONNECTMODE_KS_PARENT,  // è¦ªæ©Ÿ key-sharing æ¥ç¶šãƒ¢ãƒ¼ãƒ‰
+    mywh_CONNECTMODE_KS_CHILD,   // å­æ©Ÿ key-sharing æ¥ç¶šãƒ¢ãƒ¼ãƒ‰
+    mywh_CONNECTMODE_DS_PARENT,  // è¦ªæ©Ÿ data-sharing æ¥ç¶šãƒ¢ãƒ¼ãƒ‰
+    mywh_CONNECTMODE_DS_CHILD,   // å­æ©Ÿ data-sharing æ¥ç¶šãƒ¢ãƒ¼ãƒ‰
     mywh_CONNECTMODE_NUM
 };
 
 enum {
-    // ©‘O‚ÌƒGƒ‰[ƒR[ƒh
-    mywh_ERRCODE_DISCONNECTED      = WM_ERRCODE_MAX, // e‚©‚çØ’f‚³‚ê‚½
-    mywh_ERRCODE_PARENT_NOT_FOUND,                   // e‚ª‚¢‚È‚¢
-    mywh_ERRCODE_NO_RADIO,                           // –³üg—p•s‰Â
-    mywh_ERRCODE_LOST_PARENT,                        // e‚ğŒ©¸‚Á‚½
-    mywh_ERRCODE_NOMORE_CHANNEL,                     // ‚·‚×‚Ä‚Ìƒ`ƒƒƒ“ƒlƒ‹‚Ì’²¸‚ğI‚¦‚½
+    // è‡ªå‰ã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+    mywh_ERRCODE_DISCONNECTED      = WM_ERRCODE_MAX, // è¦ªã‹ã‚‰åˆ‡æ–­ã•ã‚ŒãŸ
+    mywh_ERRCODE_PARENT_NOT_FOUND,                   // è¦ªãŒã„ãªã„
+    mywh_ERRCODE_NO_RADIO,                           // ç„¡ç·šä½¿ç”¨ä¸å¯
+    mywh_ERRCODE_LOST_PARENT,                        // è¦ªã‚’è¦‹å¤±ã£ãŸ
+    mywh_ERRCODE_NOMORE_CHANNEL,                     // ã™ã¹ã¦ã®ãƒãƒ£ãƒ³ãƒãƒ«ã®èª¿æŸ»ã‚’çµ‚ãˆãŸ
     mywh_ERRCODE_MAX
 };
 #define mywh_DMA_NO                 2
@@ -121,12 +121,12 @@ static BSDOWN_WORK *s_work_ptr;
 
 
 
-// ‚Í‚¶‚ß‚Äƒf[ƒ^‚ğó‚¯‚Æ‚Á‚½‚Æ‚«B
+// ã¯ã˜ã‚ã¦ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘ã¨ã£ãŸã¨ãã€‚
 static void bsdown_c_startdownload( BSDOWN_GAMEINFO_STRUCT *info );
-// óMƒXƒeƒbƒvB
+// å—ä¿¡ã‚¹ãƒ†ãƒƒãƒ—ã€‚
 static int bsdown_c_step( BSDOWN_GAMEINFO_STRUCT *info );
 
-/* ƒfƒoƒbƒOo—ÍƒtƒbƒNŠÖ” */
+/* ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›ãƒ•ãƒƒã‚¯é–¢æ•° */
 static void (*wh_trace)(const char *, ...) =
 #if !defined(SDK_FINALROM)
     OS_TPrintf;
@@ -142,7 +142,7 @@ static void (*wh_trace)(const char *, ...) =
 
 #define mywh_MAX(a, b) ( ((a) > (b)) ? (a) : (b) )
 
-/* •s’èŠú‚È’Ê’m‚ğó‚¯æ‚éŠÖ” */
+/* ä¸å®šæœŸãªé€šçŸ¥ã‚’å—ã‘å–ã‚‹é–¢æ•° */
 static void mywh_IndicateHandler( void* arg );
 
 /* (stateless) -> READY -> STOP -> IDLE */
@@ -407,7 +407,7 @@ static void mywh_ChangeSysState(int state)
 
 static void mywh_SetError(int code)
 {
-    // Šù‚ÉƒVƒXƒeƒ€‚ª ERROR ó‘Ô‚É‚È‚Á‚Ä‚¢‚éê‡‚ÍAã‘‚«‚µ‚È‚¢B
+    // æ—¢ã«ã‚·ã‚¹ãƒ†ãƒ ãŒ ERROR çŠ¶æ…‹ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ã€ä¸Šæ›¸ãã—ãªã„ã€‚
     if ( s_work.SysState == mywh_SYSSTATE_ERROR ||
          s_work.SysState == mywh_SYSSTATE_FATAL )
     {
@@ -421,9 +421,9 @@ static void mywh_SetError(int code)
 /*---------------------------------------------------------------------------*
   Name:         mywh_StartScan
 
-  Description:  e‹@‚Ìƒr[ƒRƒ“‚ğæ“¾‚·‚éŠÖ”
+  Description:  è¦ªæ©Ÿã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å–å¾—ã™ã‚‹é–¢æ•°
 
-  Arguments:    callback - e‹@”­Œ©‚É•Ô‚·ƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚·‚éB
+  Arguments:    callback - è¦ªæ©Ÿç™ºè¦‹æ™‚ã«è¿”ã™ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã™ã‚‹ã€‚
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -433,7 +433,7 @@ static BOOL mywh_StartScan( void )
     mywh_ASSERT( s_work.SysState != mywh_SYSSTATE_CONNECTED );
     
     mywh_ChangeSysState( mywh_SYSSTATE_SCANNING );
-    // ŒŸõ‚·‚éMACƒAƒhƒŒƒX‚ÌğŒ‚ğİ’è
+    // æ¤œç´¢ã™ã‚‹MACã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ¡ä»¶ã‚’è¨­å®š
     *(u16*)(&(s_work.ScanParam).bssid[4]) = 0xffff;
     *(u16*)(&(s_work.ScanParam).bssid[2]) = 0xffff;
     *(u16*)(&(s_work.ScanParam).bssid[0]) = 0xffff;
@@ -455,7 +455,7 @@ static BOOL mywh_StartScan( void )
   ---------------------------------------------------------------------- */
 static BOOL mywh_StateInStartScan( void )
 {
-    // ‚±‚Ìó‘Ô‚ÌAe‹@‚ğ’Tõ‚µ‚Ü‚·B
+    // ã“ã®çŠ¶æ…‹ã®æ™‚ã€è¦ªæ©Ÿã‚’æ¢ç´¢ã—ã¾ã™ã€‚
     WMErrCode result;
     u16 chanpat;
     
@@ -463,24 +463,24 @@ static BOOL mywh_StateInStartScan( void )
     
     chanpat = WM_GetAllowedChannel();
     
-    // –³ü‚ªg—p‰Â”\‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é
+    // ç„¡ç·šãŒä½¿ç”¨å¯èƒ½ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
     if ( chanpat == 0x8000 )
     {
-        // 0x8000 ‚ª•Ô‚Á‚Ä‚«‚½ê‡‚ÍA–³ü‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‚È‚Ç
-        // –³üƒ‰ƒCƒuƒ‰ƒŠ‚Ìó‘ÔˆÙí‚ğ•\‚µ‚Ä‚¢‚é‚Ì‚ÅƒGƒ‰[‚É‚µ‚Ü‚·B
+        // 0x8000 ãŒè¿”ã£ã¦ããŸå ´åˆã¯ã€ç„¡ç·šãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ãªã©
+        // ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®çŠ¶æ…‹ç•°å¸¸ã‚’è¡¨ã—ã¦ã„ã‚‹ã®ã§ã‚¨ãƒ©ãƒ¼ã«ã—ã¾ã™ã€‚
         mywh_REPORT_FAILURE( WM_ERRCODE_ILLEGAL_STATE );
         return FALSE;
     }
     if ( chanpat == 0 )
     {
-        // –³ü‚ªg‚¦‚È‚¢ó‘ÔB
+        // ç„¡ç·šãŒä½¿ãˆãªã„çŠ¶æ…‹ã€‚
         mywh_REPORT_FAILURE( mywh_ERRCODE_NO_RADIO );
         return FALSE;
     }
     
     if( s_work.channel >= 16 )
     {
-    	// e‹@”­Œ©‘OBƒ`ƒƒƒ“ƒlƒ‹‚ğ•Ï‚¦‚ÄŒŸõ
+    	// è¦ªæ©Ÿç™ºè¦‹å‰ã€‚ãƒãƒ£ãƒ³ãƒãƒ«ã‚’å¤‰ãˆã¦æ¤œç´¢
     	int next = s_work.channel - 16;
     	int i;
     	for( i = 0; i < 13; i++ )
@@ -493,7 +493,7 @@ static BOOL mywh_StateInStartScan( void )
     }
     else 
     {
-    	// e‹@”­Œ©Œã
+    	// è¦ªæ©Ÿç™ºè¦‹å¾Œ
     	s_work.ScanParam.channel = s_work.channel;    	
     }
     s_work.ScanParam.maxChannelTime = BSDOWN_SCANTIME;
@@ -501,7 +501,7 @@ static BOOL mywh_StateInStartScan( void )
     
     if( s_work.state == BSDOWNSTATE_RECEVING ) 
     {
-	    // ŒŸõ‚·‚éMACƒAƒhƒŒƒX‚ÌğŒ‚ğİ’è
+	    // æ¤œç´¢ã™ã‚‹MACã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ¡ä»¶ã‚’è¨­å®š
 	    int i;
 	    for(i = 0; i < 6; i++) s_work.ScanParam.bssid[i] = s_work.macaddress[i];
     }
@@ -521,7 +521,7 @@ static void mywh_StateOutStartScan( void *arg )
 {
     WMstartScanCallback* cb  = (WMstartScanCallback*)arg;
     
-    // ƒXƒLƒƒƒ“ƒRƒ}ƒ“ƒh‚É¸”s‚µ‚½ê‡
+    // ã‚¹ã‚­ãƒ£ãƒ³ã‚³ãƒãƒ³ãƒ‰ã«å¤±æ•—ã—ãŸå ´åˆ
     if ( cb->errcode != WM_ERRCODE_SUCCESS )
     {
         mywh_REPORT_FAILURE(cb->errcode);
@@ -532,7 +532,7 @@ static void mywh_StateOutStartScan( void *arg )
 
     if ( s_work.SysState != mywh_SYSSTATE_SCANNING )
     {
-        // ó‘Ô‚ª•ÏX‚³‚ê‚Ä‚¢‚ê‚ÎƒXƒLƒƒƒ“I—¹
+        // çŠ¶æ…‹ãŒå¤‰æ›´ã•ã‚Œã¦ã„ã‚Œã°ã‚¹ã‚­ãƒ£ãƒ³çµ‚äº†
         if ( ! mywh_StateInEndScan() )
         {
             mywh_ChangeSysState( mywh_SYSSTATE_ERROR );
@@ -552,47 +552,47 @@ static void mywh_StateOutStartScan( void *arg )
         break;
         
     case WM_STATECODE_PARENT_FOUND:
-        // e‹@‚ªŒ©‚Â‚©‚Á‚½ê‡
-        // GUIDELINE : ƒKƒCƒhƒ‰ƒCƒ“€‹’ƒ|ƒCƒ“ƒg(6.3.5)
-        // ggid ‚ğ”äŠr‚µAˆá‚Á‚Ä‚¢‚½‚ç¸”s‚Æ‚µ‚Ü‚·B
-        // ‚Ü‚¸AWMBssDesc.gameInfoLength ‚ğŠm”F‚µA
-        // ggid ‚É—LŒø‚È’l‚ª“ü‚Á‚Ä‚¢‚é‚±‚Æ‚©‚ç’²‚×‚é•K—v‚ª‚ ‚è‚Ü‚·B
+        // è¦ªæ©ŸãŒè¦‹ã¤ã‹ã£ãŸå ´åˆ
+        // GUIDELINE : ã‚¬ã‚¤ãƒ‰ãƒ©ã‚¤ãƒ³æº–æ‹ ãƒã‚¤ãƒ³ãƒˆ(6.3.5)
+        // ggid ã‚’æ¯”è¼ƒã—ã€é•ã£ã¦ã„ãŸã‚‰å¤±æ•—ã¨ã—ã¾ã™ã€‚
+        // ã¾ãšã€WMBssDesc.gameInfoLength ã‚’ç¢ºèªã—ã€
+        // ggid ã«æœ‰åŠ¹ãªå€¤ãŒå…¥ã£ã¦ã„ã‚‹ã“ã¨ã‹ã‚‰èª¿ã¹ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 
-        // BssDesc‚Ìî•ñ‚ªARM7‘¤‚©‚ç‘‚«‚Ü‚ê‚Ä‚¢‚é‚½‚ß
-        // ƒoƒbƒtƒ@‚Éİ’è‚³‚ê‚½BssDesc‚ÌƒLƒƒƒbƒVƒ…‚ğ”jŠü
+        // BssDescã®æƒ…å ±ãŒARM7å´ã‹ã‚‰æ›¸ãè¾¼ã¾ã‚Œã¦ã„ã‚‹ãŸã‚
+        // ãƒãƒƒãƒ•ã‚¡ã«è¨­å®šã•ã‚ŒãŸBssDescã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç ´æ£„
         DC_InvalidateRange( &(s_work.BssDesc), sizeof(WMbssDesc) );
                
         // ----------------------------------------------------------------------------
         // localize_spec_mark(LANG_ALL) imatake 2007/01/10
-        // ‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ìƒr[ƒRƒ“‚ÌGGID‚ğŠe‘Œê‘Î‰
+        // ãµã—ããªãŠãã‚Šã‚‚ã®ãƒ“ãƒ¼ã‚³ãƒ³ã®GGIDã‚’å„å›½èªå¯¾å¿œ
         if ( cb->gameInfoLength < 8 || cb->gameInfo.ggid != _BCON_DOWNLOAD_GGID )
         {
-            // GGID‚ªˆá‚Á‚Ä‚¢‚ê‚Î–³‹‚·‚é
+            // GGIDãŒé•ã£ã¦ã„ã‚Œã°ç„¡è¦–ã™ã‚‹
             WH_TRACE("not my parent ggid (%d != %d)\n",  cb->gameInfo.ggid, _BCON_DOWNLOAD_GGID );
             break;
         }
         // ----------------------------------------------------------------------------
       
-      	// ÅŒã‚É‚¤‚¯‚Æ‚Á‚½“d”g‚ÌƒŠƒ“ƒN‹­“x‚ğ‹L‰¯
+      	// æœ€å¾Œã«ã†ã‘ã¨ã£ãŸé›»æ³¢ã®ãƒªãƒ³ã‚¯å¼·åº¦ã‚’è¨˜æ†¶
       	s_work.linklevel = cb->linkLevel;
         
         if( s_work.state == BSDOWNSTATE_SCANNING ) 
         {
-			// ‚Í‚¶‚ß‚Äƒf[ƒ^‚ğó‚¯‚Æ‚Á‚½‚Æ‚«B
+			// ã¯ã˜ã‚ã¦ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘ã¨ã£ãŸã¨ãã€‚
         	bsdown_c_startdownload( (BSDOWN_GAMEINFO_STRUCT *) &(cb->gameInfo.userGameInfo[0]) );
-        	// ŒŸõ‚·‚éƒ}ƒbƒNƒAƒhƒŒƒX‚ğŒÅ’è
+        	// æ¤œç´¢ã™ã‚‹ãƒãƒƒã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å›ºå®š
         	{
         		int i;
         		for(i = 0; i < 6; i++ ) s_work.macaddress[i] = cb->macAddress[i];
         	}
-        	// ŒŸõ‚·‚éƒ`ƒƒƒ“ƒlƒ‹‚ğŒÅ’è
+        	// æ¤œç´¢ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«ã‚’å›ºå®š
         	s_work.channel = (u16)(s_work.channel - 16 + 1);
         	if( s_work.callback != NULL ) s_work.callback( BSDOWNCALLBACK_START );
         }
         
         if( bsdown_c_step( (BSDOWN_GAMEINFO_STRUCT *) &(cb->gameInfo.userGameInfo[0]) ) )
         {
-     		// óMŠ®—¹   	
+     		// å—ä¿¡å®Œäº†   	
      		OS_TPrintf("Complete!");
         	s_work.state = BSDOWNSTATE_COMPLETE;
         	bsdown_end();
@@ -602,7 +602,7 @@ static void mywh_StateOutStartScan( void *arg )
         break;
     }
 
-    // ÄƒXƒLƒƒƒ“‚ğŠJn‚µ‚Ü‚·B
+    // å†ã‚¹ã‚­ãƒ£ãƒ³ã‚’é–‹å§‹ã—ã¾ã™ã€‚
     if ( ! mywh_StateInStartScan() )
     {
         mywh_ChangeSysState( mywh_SYSSTATE_ERROR );
@@ -617,7 +617,7 @@ static void mywh_StateOutStartScan( void *arg )
 /*---------------------------------------------------------------------------*
   Name:         mywh_EndScan
 
-  Description:  e‹@‚Ìƒr[ƒRƒ“‚ğæ“¾‚·‚éŠÖ”
+  Description:  è¦ªæ©Ÿã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å–å¾—ã™ã‚‹é–¢æ•°
 
   Arguments:    None.
 
@@ -640,7 +640,7 @@ static BOOL mywh_StateInEndScan(void)
     WMErrCode result;
     WH_TRACE_STATE;
 
-    // ‚±‚Ìó‘Ô‚Å‚ÍAƒXƒLƒƒƒ“‚ÌI—¹ˆ—‚ğs‚¢‚Ü‚·B
+    // ã“ã®çŠ¶æ…‹ã§ã¯ã€ã‚¹ã‚­ãƒ£ãƒ³ã®çµ‚äº†å‡¦ç†ã‚’è¡Œã„ã¾ã™ã€‚
     result = WM_EndScan( mywh_StateOutEndScan );
     if ( result != WM_ERRCODE_OPERATING )
     {
@@ -671,8 +671,8 @@ static void mywh_StateOutEndScan( void *arg )
   ---------------------------------------------------------------------- */
 static BOOL mywh_StateInReset(void)
 {
-    // ‚±‚Ìó‘Ô‚ÍAe‹@q‹@‹¤’Ê‚Å‚·B
-    // ƒVƒXƒeƒ€‚ğ‰Šúó‘Ô‚É–ß‚µ‚Ü‚·B
+    // ã“ã®çŠ¶æ…‹ã¯ã€è¦ªæ©Ÿå­æ©Ÿå…±é€šã§ã™ã€‚
+    // ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸçŠ¶æ…‹ã«æˆ»ã—ã¾ã™ã€‚
     WMErrCode result;
     WH_TRACE_STATE;
 
@@ -697,7 +697,7 @@ static void mywh_StateOutReset(void *arg)
         if( s_work.callback != NULL ) s_work.callback( BSDOWNCALLBACK_ERROR );
         return;
     }
-    // Reset ‚ÍŸ‚Ìó‘Ô‚ğŠJn‚¹‚¸AƒAƒCƒhƒŠƒ“ƒOi‘Ò‹@’†jó‘Ô‚É‚µ‚Ü‚·B
+    // Reset ã¯æ¬¡ã®çŠ¶æ…‹ã‚’é–‹å§‹ã›ãšã€ã‚¢ã‚¤ãƒ‰ãƒªãƒ³ã‚°ï¼ˆå¾…æ©Ÿä¸­ï¼‰çŠ¶æ…‹ã«ã—ã¾ã™ã€‚
     mywh_ChangeSysState(mywh_SYSSTATE_IDLE);
 }
 /* ----------------------------------------------------------------------
@@ -705,8 +705,8 @@ static void mywh_StateOutReset(void *arg)
   ---------------------------------------------------------------------- */
 static BOOL mywh_StateInPowerOff(void)
 {
-    // –³üƒn[ƒhƒEƒFƒA‚Ö‚Ì“d—Í‹Ÿ‹‹‚ğI—¹‚µ‚Ü‚·B
-    // ‚±‚Ìó‘Ô‚ÍAe‹@q‹@‹¤’Ê‚Å‚·B
+    // ç„¡ç·šãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã¸ã®é›»åŠ›ä¾›çµ¦ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+    // ã“ã®çŠ¶æ…‹ã¯ã€è¦ªæ©Ÿå­æ©Ÿå…±é€šã§ã™ã€‚
     WMErrCode result;
     WH_TRACE_STATE;
 
@@ -721,7 +721,7 @@ static BOOL mywh_StateInPowerOff(void)
 
 static void mywh_StateOutPowerOff(void *arg)
 {
-    // “dŒ¹Ø’fŒãó‘Ô‚Å‚·B
+    // é›»æºåˆ‡æ–­å¾ŒçŠ¶æ…‹ã§ã™ã€‚
     WMCallback* cb  = (WMCallback*)arg;
     WH_TRACE_STATE;
 
@@ -742,8 +742,8 @@ static void mywh_StateOutPowerOff(void *arg)
   ---------------------------------------------------------------------- */
 static BOOL mywh_StateInDisable(void)
 {
-    // –³üƒn[ƒhƒEƒFƒA‚Ìg—pI—¹‚ğ’Ê’m‚µ‚Ü‚·B
-    // ‚±‚Ìó‘Ô‚ÍAe‹@q‹@‹¤’Ê‚Å‚·B
+    // ç„¡ç·šãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã®ä½¿ç”¨çµ‚äº†ã‚’é€šçŸ¥ã—ã¾ã™ã€‚
+    // ã“ã®çŠ¶æ…‹ã¯ã€è¦ªæ©Ÿå­æ©Ÿå…±é€šã§ã™ã€‚
     WMErrCode result;
     WH_TRACE_STATE;
 
@@ -758,7 +758,7 @@ static BOOL mywh_StateInDisable(void)
 
 static void mywh_StateOutDisable(void *arg)
 {
-    // ‘S‚ÄI—¹‚µ‚Ü‚µ‚½B
+    // å…¨ã¦çµ‚äº†ã—ã¾ã—ãŸã€‚
     WMCallback* cb  = (WMCallback*)arg;
     WH_TRACE_STATE;
 
@@ -795,15 +795,15 @@ static void mywh_StateOutEnd( void *arg )
 
 
 /**************************************************************************
- * ˆÈ‰º‚ÍAWH ‚ÌŠeíİ’è’l‚ğ•ÏX‚·‚éŠÖ”‚Å‚·B
+ * ä»¥ä¸‹ã¯ã€WH ã®å„ç¨®è¨­å®šå€¤ã‚’å¤‰æ›´ã™ã‚‹é–¢æ•°ã§ã™ã€‚
  **************************************************************************/
 
 /*---------------------------------------------------------------------------*
   Name:         mywh_SetDebugOutput
 
-  Description:  ƒfƒoƒbƒO•¶š—ño—Í—p‚ÌŠÖ”‚ğİ’è‚µ‚Ü‚·B
+  Description:  ãƒ‡ãƒãƒƒã‚°æ–‡å­—åˆ—å‡ºåŠ›ç”¨ã®é–¢æ•°ã‚’è¨­å®šã—ã¾ã™ã€‚
 
-  Arguments:    func    İ’è‚·‚éƒfƒoƒbƒO•¶š—ño—Í—p‚ÌŠÖ”.
+  Arguments:    func    è¨­å®šã™ã‚‹ãƒ‡ãƒãƒƒã‚°æ–‡å­—åˆ—å‡ºåŠ›ç”¨ã®é–¢æ•°.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -817,9 +817,9 @@ static void mywh_SetDebugOutput( void (*func)(const char *, ...) )
 
 /* ----------------------------------------------------------------------
    Name:        mywh_GetSystemState
-   Description: WH ‚Ì“à•”ó‘Ô‚ğæ“¾‚µ‚Ü‚·B
+   Description: WH ã®å†…éƒ¨çŠ¶æ…‹ã‚’å–å¾—ã—ã¾ã™ã€‚
    Arguments:   none.
-   Returns:     “à•”ó‘Ôimywh_SYSSTATE_XXXXjB
+   Returns:     å†…éƒ¨çŠ¶æ…‹ï¼ˆmywh_SYSSTATE_XXXXï¼‰ã€‚
    ---------------------------------------------------------------------- */
 static int mywh_GetSystemState(void)
 {
@@ -827,20 +827,20 @@ static int mywh_GetSystemState(void)
 }
 
 /**************************************************************************
- * ˆÈ‰º‚ÍA–³ü‚ğ‰Šú‰»‚µ‚Ä’ÊM‰Â”\ó‘Ô‚Ü‚Å‘JˆÚ‚·‚éŠÖ”‚Å‚·B
+ * ä»¥ä¸‹ã¯ã€ç„¡ç·šã‚’åˆæœŸåŒ–ã—ã¦é€šä¿¡å¯èƒ½çŠ¶æ…‹ã¾ã§é·ç§»ã™ã‚‹é–¢æ•°ã§ã™ã€‚
  **************************************************************************/
 
 /* ----------------------------------------------------------------------
    Name:        mywh_Initialize
-   Description: ‰Šú‰»ì‹Æ‚ğs‚¢A‰Šú‰»ƒV[ƒPƒ“ƒX‚ğŠJn‚µ‚Ü‚·B
+   Description: åˆæœŸåŒ–ä½œæ¥­ã‚’è¡Œã„ã€åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é–‹å§‹ã—ã¾ã™ã€‚
    Arguments:   None.
-   Returns:     ƒV[ƒPƒ“ƒXŠJn‚É¬Œ÷‚·‚ê‚Î^B
+   Returns:     ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–‹å§‹ã«æˆåŠŸã™ã‚Œã°çœŸã€‚
    ---------------------------------------------------------------------- */
 static BOOL mywh_Initialize( void )
 {
     s_work.ErrCode = WM_ERRCODE_SUCCESS;
     
-    // ‰Šú‰»ƒV[ƒPƒ“ƒXŠJnB
+    // åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–‹å§‹ã€‚
     if ( ! mywh_StateInInitialize() )
     {
         return FALSE;
@@ -868,7 +868,7 @@ static void mywh_IndicateHandler( void* arg )
    ---------------------------------------------------------------------- */
 static BOOL mywh_StateInInitialize(void)
 {
-    // ‰Šú‰»ƒV[ƒPƒ“ƒX‚ğŠJn‚µ‚Ü‚·B
+    // åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é–‹å§‹ã—ã¾ã™ã€‚
     WMErrCode result;
     WH_TRACE_STATE;
     
@@ -886,7 +886,7 @@ static BOOL mywh_StateInInitialize(void)
 
 static void mywh_StateOutInitialize(void *arg)
 {
-    // “dŒ¹“Š“üŒãó‘Ô‚Å‚·B
+    // é›»æºæŠ•å…¥å¾ŒçŠ¶æ…‹ã§ã™ã€‚
     WMErrCode result;
     WMCallback* cb  = (WMCallback*)arg;
     WH_TRACE_STATE;
@@ -897,7 +897,7 @@ static void mywh_StateOutInitialize(void *arg)
         mywh_ChangeSysState( mywh_SYSSTATE_FATAL );
         return;
     }
-    // •s’èŠú‚É”­¶‚·‚é’Ê’m‚ğó‚¯æ‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚µ‚Ü‚·B
+    // ä¸å®šæœŸã«ç™ºç”Ÿã™ã‚‹é€šçŸ¥ã‚’å—ã‘å–ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã—ã¾ã™ã€‚
     result = WM_SetIndCallback( mywh_IndicateHandler );
     if( result != WM_ERRCODE_SUCCESS )
     {
@@ -906,25 +906,25 @@ static void mywh_StateOutInitialize(void *arg)
         return;
     }
     
-    // ƒVƒXƒeƒ€ó‘Ô‚ğƒAƒCƒhƒŠƒ“ƒOi‘Ò‹@’†j‚É•ÏXB
+    // ã‚·ã‚¹ãƒ†ãƒ çŠ¶æ…‹ã‚’ã‚¢ã‚¤ãƒ‰ãƒªãƒ³ã‚°ï¼ˆå¾…æ©Ÿä¸­ï¼‰ã«å¤‰æ›´ã€‚
     mywh_ChangeSysState( mywh_SYSSTATE_IDLE );
     
-    // ƒXƒLƒƒƒ“‚ğŠJn‚µ‚Ü‚·B
+    // ã‚¹ã‚­ãƒ£ãƒ³ã‚’é–‹å§‹ã—ã¾ã™ã€‚
     (void) mywh_StartScan();
 }
 
 
 /**************************************************************************
- * ˆÈ‰º‚ÍA’ÊM‚ğI—¹‚µ‚Ä‰Šú‰»ó‘Ô‚Ü‚Å‘JˆÚ‚³‚¹‚éŠÖ”‚Å‚·B
+ * ä»¥ä¸‹ã¯ã€é€šä¿¡ã‚’çµ‚äº†ã—ã¦åˆæœŸåŒ–çŠ¶æ…‹ã¾ã§é·ç§»ã•ã›ã‚‹é–¢æ•°ã§ã™ã€‚
  **************************************************************************/
 
 /* ----------------------------------------------------------------------
    Name:        mywh_Reset
-   Description: ƒŠƒZƒbƒgƒV[ƒPƒ“ƒX‚ğŠJn‚µ‚Ü‚·B
-                ‚±‚ÌŠÖ”‚ğŒÄ‚Ô‚ÆA¡‚Ìó‘Ô‚É\‚í‚¸ƒŠƒZƒbƒg‚µ‚Ü‚·B
-        ƒGƒ‰[‚©‚ç‚Ì‹­§•œ‹A—p‚Å‚·B
+   Description: ãƒªã‚»ãƒƒãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+                ã“ã®é–¢æ•°ã‚’å‘¼ã¶ã¨ã€ä»Šã®çŠ¶æ…‹ã«æ§‹ã‚ãšãƒªã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
+        ã‚¨ãƒ©ãƒ¼ã‹ã‚‰ã®å¼·åˆ¶å¾©å¸°ç”¨ã§ã™ã€‚
    Arguments:   none.
-   Returns:     ˆ—ŠJn‚É¬Œ÷‚·‚ê‚Î^B
+   Returns:     å‡¦ç†é–‹å§‹ã«æˆåŠŸã™ã‚Œã°çœŸã€‚
    ---------------------------------------------------------------------- */
 static void mywh_Reset(void)
 {
@@ -936,10 +936,10 @@ static void mywh_Reset(void)
 
 /* ----------------------------------------------------------------------
    Name:        mywh_Finalize
-   Description: Œãˆ—EI—¹ƒV[ƒPƒ“ƒX‚ğŠJn‚µ‚Ü‚·B
-                ‚±‚ÌŠÖ”‚ğŒÄ‚Ô‚ÆA¡‚Ìó‘Ô‚ğŒ©‚Ä“KØ‚ÈI—¹ƒV[ƒPƒ“ƒX‚ğ
-                Às‚µ‚Ü‚·B
-                ’Êí‚ÌI—¹ˆ—‚É‚Íimywh_Reset‚Å‚Í‚È‚­j‚±‚ÌŠÖ”‚ğg—p‚µ‚Ü‚·B
+   Description: å¾Œå‡¦ç†ãƒ»çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+                ã“ã®é–¢æ•°ã‚’å‘¼ã¶ã¨ã€ä»Šã®çŠ¶æ…‹ã‚’è¦‹ã¦é©åˆ‡ãªçµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’
+                å®Ÿè¡Œã—ã¾ã™ã€‚
+                é€šå¸¸ã®çµ‚äº†å‡¦ç†ã«ã¯ï¼ˆmywh_Resetã§ã¯ãªãï¼‰ã“ã®é–¢æ•°ã‚’ä½¿ç”¨ã—ã¾ã™ã€‚
    Arguments:   None.
    Returns:     None.
    ---------------------------------------------------------------------- */
@@ -958,7 +958,7 @@ static void mywh_Finalize(void)
          && (s_work.SysState != mywh_SYSSTATE_DATASHARING)
          && (s_work.SysState != mywh_SYSSTATE_CONNECTED) )
     {
-        // Ú‘±‚µ‚Ä‚¢‚È‚¢EƒGƒ‰[ó‘Ô‚È‚Ç‚Ìê‡‚ÍƒŠƒZƒbƒg‚µ‚Ä‚¨‚­B
+        // æ¥ç¶šã—ã¦ã„ãªã„ãƒ»ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ãªã©ã®å ´åˆã¯ãƒªã‚»ãƒƒãƒˆã—ã¦ãŠãã€‚
         mywh_ChangeSysState( mywh_SYSSTATE_BUSY );
         mywh_Reset();
         return;
@@ -971,11 +971,11 @@ static void mywh_Finalize(void)
 /*---------------------------------------------------------------------------*
   Name:         mywh_End
 
-  Description:  –³ü’ÊM‚ğI—¹‚·‚éB
+  Description:  ç„¡ç·šé€šä¿¡ã‚’çµ‚äº†ã™ã‚‹ã€‚
 
   Arguments:    None.
 
-  Returns:      ¬Œ÷‚·‚ê‚Î^B
+  Returns:      æˆåŠŸã™ã‚Œã°çœŸã€‚
  *---------------------------------------------------------------------------*/
 static BOOL mywh_End( void )
 {
@@ -1004,8 +1004,8 @@ BOOL bsdown_end( void )
 
 static BOOL mywh_StateInMyReset(void)
 {
-    // ‚±‚Ìó‘Ô‚ÍAe‹@q‹@‹¤’Ê‚Å‚·B
-    // ƒVƒXƒeƒ€‚ğ‰Šúó‘Ô‚É–ß‚µ‚Ü‚·B
+    // ã“ã®çŠ¶æ…‹ã¯ã€è¦ªæ©Ÿå­æ©Ÿå…±é€šã§ã™ã€‚
+    // ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸçŠ¶æ…‹ã«æˆ»ã—ã¾ã™ã€‚
     WMErrCode result;
     WH_TRACE_STATE;
 
@@ -1030,10 +1030,10 @@ static void mywh_StateOutMyReset(void *arg)
         if( s_work.callback != NULL ) s_work.callback( BSDOWNCALLBACK_ERROR );
         return;
     }
-    // ƒAƒCƒhƒŠƒ“ƒOi‘Ò‹@’†jó‘Ô‚É‚µ‚Ü‚·B
+    // ã‚¢ã‚¤ãƒ‰ãƒªãƒ³ã‚°ï¼ˆå¾…æ©Ÿä¸­ï¼‰çŠ¶æ…‹ã«ã—ã¾ã™ã€‚
     mywh_ChangeSysState(mywh_SYSSTATE_IDLE);
     
-    // I—¹ˆ—‚ğŠJn‚µ‚Ü‚·B
+    // çµ‚äº†å‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ã€‚
     mywh_End();
 }
 
@@ -1041,13 +1041,13 @@ static void mywh_StateOutMyReset(void *arg)
   Name:         bsdown_c_init
 
   Description:  
-	  q‹@—p‰Šú‰»B
-	  “à•”‚ÅWM_INIT‚ğŒÄ‚Ño‚µAƒXƒLƒƒƒ“ŠJn‚Ü‚Åˆê‹C‚Éi‚ß‚Ü‚·B
+	  å­æ©Ÿç”¨åˆæœŸåŒ–ã€‚
+	  å†…éƒ¨ã§WM_INITã‚’å‘¼ã³å‡ºã—ã€ã‚¹ã‚­ãƒ£ãƒ³é–‹å§‹ã¾ã§ä¸€æ°—ã«é€²ã‚ã¾ã™ã€‚
 	  
 
   Arguments:    None.
 
-  Returns:      ¬Œ÷‚·‚ê‚Î^B
+  Returns:      æˆåŠŸã™ã‚Œã°çœŸã€‚
  *---------------------------------------------------------------------------*/
 BOOL bsdown_c_init( void *target, BSDOWN_CALLBACK callback, void *buffer )
 {
@@ -1064,7 +1064,7 @@ BOOL bsdown_c_init( void *target, BSDOWN_CALLBACK callback, void *buffer )
 	return mywh_Initialize();
 }
 
-// ‚Í‚¶‚ß‚Äƒf[ƒ^‚ğó‚¯‚Æ‚Á‚½‚Æ‚«B
+// ã¯ã˜ã‚ã¦ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘ã¨ã£ãŸã¨ãã€‚
 static void bsdown_c_startdownload( BSDOWN_GAMEINFO_STRUCT *info )
 {
 	int i;
@@ -1078,16 +1078,16 @@ static void bsdown_c_startdownload( BSDOWN_GAMEINFO_STRUCT *info )
 	for(i = 0; i < s_work.packets; i++) s_work.flags[i] = 0;
 }
 
-// óMƒXƒeƒbƒvB
+// å—ä¿¡ã‚¹ãƒ†ãƒƒãƒ—ã€‚
 static int bsdown_c_step( BSDOWN_GAMEINFO_STRUCT *info )
 {
 	if( s_work.crc != info->crc || s_work.size != info->size ) 
 	{
 		OS_TPrintf("!!!!!\n");
-		// ˆá‚¤ƒ^ƒCƒv‚ÌƒXƒNƒŠƒvƒg‚ª•Às‚µ‚Ä”zM’†H
+		// é•ã†ã‚¿ã‚¤ãƒ—ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒä¸¦è¡Œã—ã¦é…ä¿¡ä¸­ï¼Ÿ
 		if( s_work.count++ >= BSDOWN_TIMEOUT )
 		{
-			// ƒXƒNƒŠƒvƒg‚ÌóM‚ğ‚â‚è’¼‚µB
+			// ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å—ä¿¡ã‚’ã‚„ã‚Šç›´ã—ã€‚
 			bsdown_c_startdownload( info );
 			if( s_work.callback != NULL ) s_work.callback( BSDOWNCALLBACK_RESTART );
 		}
@@ -1109,14 +1109,14 @@ static int bsdown_c_step( BSDOWN_GAMEINFO_STRUCT *info )
 		s_work.index = info->index;
 		if( info->index >= s_work.packets )
 		{
-		   // index‚ª‚¨‚©‚µ‚¢BƒGƒ‰[
+		   // indexãŒãŠã‹ã—ã„ã€‚ã‚¨ãƒ©ãƒ¼
 		   if( s_work.callback != NULL ) s_work.callback( BSDOWNCALLBACK_ERROR );
 		   mywh_ChangeSysState( mywh_SYSSTATE_ERROR );
 		}
-		// ‚±‚ÌƒpƒPƒbƒg‚ÍŠù‚Éó‚¯æ‚èÏ‚İ‚©‚Ç‚¤‚©
+		// ã“ã®ãƒ‘ã‚±ãƒƒãƒˆã¯æ—¢ã«å—ã‘å–ã‚Šæ¸ˆã¿ã‹ã©ã†ã‹
 		if( s_work.flags[info->index] == 0) 
 		{
-			// ‚Ü‚¾ó‚¯æ‚Á‚Ä‚¢‚È‚¢
+			// ã¾ã å—ã‘å–ã£ã¦ã„ãªã„
 			s_work.flags[info->index] = 1;
 			if( info->index == s_work.packets - 1 ) 
 			{
@@ -1141,7 +1141,7 @@ static int bsdown_c_step( BSDOWN_GAMEINFO_STRUCT *info )
 	return 0;
 }
 
-// óMƒf[ƒ^‚Ì‚b‚q‚b‚ğŒvZ
+// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ï¼£ï¼²ï¼£ã‚’è¨ˆç®—
 static u16 culcCRC(u8 *data, u32 size)
 {
 	u16 ans, i;
@@ -1155,31 +1155,31 @@ static u16 culcCRC(u8 *data, u32 size)
 	return ans;
 }
 
-// Œ»İ‚Ü‚Å‚ÉóM‚µ‚½ƒpƒPƒbƒg—Ê‚ğæ“¾
+// ç¾åœ¨ã¾ã§ã«å—ä¿¡ã—ãŸãƒ‘ã‚±ãƒƒãƒˆé‡ã‚’å–å¾—
 int bsdown_c_received(void)
 {
 	return s_work.received;	
 }
 
-// óM‚·‚×‚«ƒpƒPƒbƒg‚Ì—Ê
+// å—ä¿¡ã™ã¹ããƒ‘ã‚±ãƒƒãƒˆã®é‡
 int bsdown_c_total(void)
 {
 	return s_work.packets;
 }
 
-// óM‚µ‚Ä‚¢‚éƒf[ƒ^‚ÌƒTƒCƒYB‚Ü‚¾óM‚ªŠJn‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î‚O‚ğ•Ô‚·B
+// å—ä¿¡ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã€‚ã¾ã å—ä¿¡ãŒé–‹å§‹ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ï¼ã‚’è¿”ã™ã€‚
 int bsdown_c_size(void)
 {
 	return (int)s_work.size;	
 }
 
-// ÅŒã‚ÉóM‚µ‚½ƒpƒPƒbƒg‚ÌƒCƒ“ƒfƒbƒNƒX
+// æœ€å¾Œã«å—ä¿¡ã—ãŸãƒ‘ã‚±ãƒƒãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 int bsdown_c_lastreceive(void)
 {
 	return s_work.index;	
 }
 
-// Œ»İ‚Ü‚Åó‚¯æ‚Á‚½ƒpƒPƒbƒg‚Ì•\ 
+// ç¾åœ¨ã¾ã§å—ã‘å–ã£ãŸãƒ‘ã‚±ãƒƒãƒˆã®è¡¨ 
 u8 *bsdown_c_downloadpacket(void)
 {
 	return &(s_work.flags[0]);	
@@ -1187,11 +1187,11 @@ u8 *bsdown_c_downloadpacket(void)
 
 #define SECRET_KEY 0x3fa2
 
-// óMÏ‚İ‚Ì‚b‚q‚b‚ª³‚µ‚¢‚©ƒ`ƒFƒbƒNB
+// å—ä¿¡æ¸ˆã¿ã®ï¼£ï¼²ï¼£ãŒæ­£ã—ã„ã‹ãƒã‚§ãƒƒã‚¯ã€‚
 int bsdown_c_checkcrc(void)
 {
 	{
-		// ˆÃ†‰»‚Ég‚¤keyB‘—MŒ³‚ÌMacAddri‚UƒoƒCƒgj + CRCi‚QƒoƒCƒgj
+		// æš—å·åŒ–ã«ä½¿ã†keyã€‚é€ä¿¡å…ƒã®MacAddrï¼ˆï¼–ãƒã‚¤ãƒˆï¼‰ + CRCï¼ˆï¼’ãƒã‚¤ãƒˆï¼‰
 		u16 key[4];
 		u16 *ptr;
 		ptr = (u16*)&(s_work.macaddress[0]);
@@ -1210,7 +1210,7 @@ int bsdown_c_checkcrc(void)
 			}	
 		}
 		
-		// ƒfƒoƒbƒO—p
+		// ãƒ‡ãƒãƒƒã‚°ç”¨
 		{
 			u8 *test = (u8*)&(key[0]);
 			int i;
@@ -1220,11 +1220,11 @@ int bsdown_c_checkcrc(void)
 			}	
 			OS_TPrintf("\n");
 		}
-		OS_TPrintf("CRYPTO_RC4InitŠJn\n");
+		OS_TPrintf("CRYPTO_RC4Inité–‹å§‹\n");
 		
 		CRYPTO_RC4Init( &(s_work.rc4context), &(key[0]), 8 );
 
-		OS_TPrintf("CRYPTO_RC4InitI—¹\n");
+		OS_TPrintf("CRYPTO_RC4Initçµ‚äº†\n");
 		
 		CRYPTO_RC4Encrypt(
 			&(s_work.rc4context),
@@ -1233,16 +1233,16 @@ int bsdown_c_checkcrc(void)
 			s_work.target
 		);
 
-		OS_TPrintf("CRYPTO_RC4EncryptI—¹\n");
+		OS_TPrintf("CRYPTO_RC4Encryptçµ‚äº†\n");
 		
-		// ”O‚Ì‚½‚ßAƒRƒ“ƒeƒLƒXƒg‚Ííœ‚µ‚Ä‚¨‚­
+		// å¿µã®ãŸã‚ã€ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¯å‰Šé™¤ã—ã¦ãŠã
 		MI_CpuClear32( &(s_work.rc4context), sizeof(s_work.rc4context) );
 	}	
 	
 	return ( culcCRC( s_work.target, s_work.size ) == s_work.crc );
 }
 
-// ÅŒã‚É‚¤‚¯‚Æ‚Á‚½ƒr[ƒRƒ“‚Ì‹­“x‚ğæ“¾
+// æœ€å¾Œã«ã†ã‘ã¨ã£ãŸãƒ“ãƒ¼ã‚³ãƒ³ã®å¼·åº¦ã‚’å–å¾—
 int bsdown_c_linklevel(void)
 {
 	return s_work.linklevel;	

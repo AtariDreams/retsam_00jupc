@@ -1,4 +1,4 @@
-��{�t�@�C��	�Đ�P���	�Đ�Q���	�Đ�R���	�Đ�S���	�Đ�T���
+基本ファイル	再戦１回目	再戦２回目	再戦３回目	再戦４回目	再戦５回目
 
 aroma_01	aroma_01	END	END	END	END
 aroma_02	aroma_07	aroma_08	DMY	aroma_09	END

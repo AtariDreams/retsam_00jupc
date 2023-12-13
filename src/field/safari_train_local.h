@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	safari_train_local.h
- * @bfief	ƒTƒtƒ@ƒŠ“dÔ
+ * @bfief	ã‚µãƒ•ã‚¡ãƒªé›»è»Š
  * @author	Nozomu Saito
  *
  */
@@ -11,7 +11,7 @@
 
 typedef struct SAFARI_TRAIN_WORK_tag
 {
-	u16 NowPos;		//Œ»İˆÊ’u
+	u16 NowPos;		//ç¾åœ¨ä½ç½®
 }SAFARI_TRAIN_WORK;
 
 #endif	//__SAFARI_TRAIN_LOCAL_H__

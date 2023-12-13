@@ -1,247 +1,247 @@
-//�������イ
+//あくしゅう
 #define	TOKUSYU_AKUSYUU			(1)
-//���߂ӂ炵
+//あめふらし
 #define	TOKUSYU_AMEHURASI			(2)
-//������
+//かそく
 #define	TOKUSYU_KASOKU			(3)
-//�J�u�g�A�[�}�[
+//カブトアーマー
 #define	TOKUSYU_KABUTOAAMAA			(4)
-//���񂶂傤
+//がんじょう
 #define	TOKUSYU_GANZYOU			(5)
-//���߂肯
+//しめりけ
 #define	TOKUSYU_SIMERIKE			(6)
-//���イ�Ȃ�
+//じゅうなん
 #define	TOKUSYU_ZYUUNAN			(7)
-//���Ȃ�����
+//すながくれ
 #define	TOKUSYU_SUNAGAKURE			(8)
-//�����ł�
+//せいでんき
 #define	TOKUSYU_SEIDENKI			(9)
-//�����ł�
+//ちくでん
 #define	TOKUSYU_TIKUDEN			(10)
-//���傷��
+//ちょすい
 #define	TOKUSYU_TYOSUI			(11)
-//�ǂ񂩂�
+//どんかん
 #define	TOKUSYU_DONKAN			(12)
-//�m�[�Ă�
+//ノーてんき
 #define	TOKUSYU_NOOTENKI			(13)
-//�ӂ�����
+//ふくがん
 #define	TOKUSYU_HUKUGAN			(14)
-//�ӂ݂�
+//ふみん
 #define	TOKUSYU_HUMIN			(15)
-//�ւ񂵂傭
+//へんしょく
 #define	TOKUSYU_HENSYOKU			(16)
-//�߂񂦂�
+//めんえき
 #define	TOKUSYU_MENEKI			(17)
-//���炢��
+//もらいび
 #define	TOKUSYU_MORAIBI			(18)
-//���Ղ�
+//りんぷん
 #define	TOKUSYU_RINPUN			(19)
-//�}�C�y�[�X
+//マイペース
 #define	TOKUSYU_MAIPEESU			(20)
-//���イ�΂�
+//きゅうばん
 #define	TOKUSYU_KYUUBAN			(21)
-//������
+//いかく
 #define	TOKUSYU_IKAKU			(22)
-//�����ӂ�
+//かげふみ
 #define	TOKUSYU_KAGEHUMI			(23)
-//���߂͂�
+//さめはだ
 #define	TOKUSYU_SAMEHADA			(24)
-//�ӂ����Ȃ܂���
+//ふしぎなまもり
 #define	TOKUSYU_HUSIGINAMAMORI			(25)
-//�ӂ䂤
+//ふゆう
 #define	TOKUSYU_HUYUU			(26)
-//�ق���
+//ほうし
 #define	TOKUSYU_HOUSI			(27)
-//�V���N��
+//シンクロ
 #define	TOKUSYU_SINKURO			(28)
-//�N���A�{�f�B
+//クリアボディ
 #define	TOKUSYU_KURIABODHI			(29)
-//�����񂩂��ӂ�
+//しぜんかいふく
 #define	TOKUSYU_SIZENKAIHUKU			(30)
-//�Ђ炢����
+//ひらいしん
 #define	TOKUSYU_HIRAISIN			(31)
-//�Ă�̂߂���
+//てんのめぐみ
 #define	TOKUSYU_TENNOMEGUMI			(32)
-//��������
+//すいすい
 #define	TOKUSYU_SUISUI			(33)
-//�悤��傭��
+//ようりょくそ
 #define	TOKUSYU_YOURYOKUSO			(34)
-//�͂�����
+//はっこう
 #define	TOKUSYU_HAKKOU			(35)
-//�g���[�X
+//トレース
 #define	TOKUSYU_TOREESU			(36)
-//���������
+//ちからもち
 #define	TOKUSYU_TIKARAMOTI			(37)
-//�ǂ��̃g�Q
+//どくのトゲ
 #define	TOKUSYU_DOKUNOTOGE			(38)
-//���������傭
+//せいしんりょく
 #define	TOKUSYU_SEISINRYOKU			(39)
-//�}�O�}�̂�낢
+//マグマのよろい
 #define	TOKUSYU_MAGUMANOYOROI			(40)
-//�݂��̃x�[��
+//みずのベール
 #define	TOKUSYU_MIZUNOBEERU			(41)
-//����傭
+//じりょく
 #define	TOKUSYU_ZIRYOKU			(42)
-//�ڂ�����
+//ぼうおん
 #define	TOKUSYU_BOUON			(43)
-//���߂�������
+//あめうけざら
 #define	TOKUSYU_AMEUKEZARA			(44)
-//���Ȃ�����
+//すなおこし
 #define	TOKUSYU_SUNAOKOSI			(45)
-//�v���b�V���[
+//プレッシャー
 #define	TOKUSYU_PURESSYAA			(46)
-//�������ڂ�
+//あついしぼう
 #define	TOKUSYU_ATUISIBOU			(47)
-//�͂₨��
+//はやおき
 #define	TOKUSYU_HAYAOKI			(48)
-//�ق̂��̂��炾
+//ほのおのからだ
 #define	TOKUSYU_HONOONOKARADA			(49)
-//�ɂ�����
+//にげあし
 #define	TOKUSYU_NIGEASI			(50)
-//����ǂ���
+//するどいめ
 #define	TOKUSYU_SURUDOIME			(51)
-//�����肫�o�T�~
+//かいりきバサミ
 #define	TOKUSYU_KAIRIKIBASAMI			(52)
-//���̂Ђ낢
+//ものひろい
 #define	TOKUSYU_MONOHIROI			(53)
-//�Ȃ܂�
+//なまけ
 #define	TOKUSYU_NAMAKE			(54)
-//�͂肫��
+//はりきり
 #define	TOKUSYU_HARIKIRI			(55)
-//���������{�f�B
+//メロメロボディ
 #define	TOKUSYU_MEROMEROBODHI			(56)
-//�v���X
+//プラス
 #define	TOKUSYU_PURASU			(57)
-//�}�C�i�X
+//マイナス
 #define	TOKUSYU_MAINASU			(58)
-//�Ă񂫂�
+//てんきや
 #define	TOKUSYU_TENKIYA			(59)
-//�˂񂿂Ⴍ
+//ねんちゃく
 #define	TOKUSYU_NENTYAKU			(60)
-//������
+//だっぴ
 #define	TOKUSYU_DAPPI			(61)
-//���񂶂傤
+//こんじょう
 #define	TOKUSYU_KONZYOU			(62)
-//�ӂ����Ȃ��낱
+//ふしぎなうろこ
 #define	TOKUSYU_HUSIGINAUROKO			(63)
-//�w�h������
+//ヘドロえき
 #define	TOKUSYU_HEDOROEKI			(64)
-//�����傭
+//しんりょく
 #define	TOKUSYU_SINRYOKU			(65)
-//������
+//もうか
 #define	TOKUSYU_MOUKA			(66)
-//������イ
+//げきりゅう
 #define	TOKUSYU_GEKIRYUU			(67)
-//�ނ��̂��点
+//むしのしらせ
 #define	TOKUSYU_MUSINOSIRASE			(68)
-//����������
+//いしあたま
 #define	TOKUSYU_ISIATAMA			(69)
-//�Ђł�
+//ひでり
 #define	TOKUSYU_HIDERI			(70)
-//���肶����
+//ありじごく
 #define	TOKUSYU_ARIZIGOKU			(71)
-//��邫
+//やるき
 #define	TOKUSYU_YARUKI			(72)
-//���낢���ނ�
+//しろいけむり
 #define	TOKUSYU_SIROIKEMURI			(73)
-//���K�p���[
+//ヨガパワー
 #define	TOKUSYU_YOGAPAWAA			(74)
-//�V�F���A�[�}�[
+//シェルアーマー
 #define	TOKUSYU_SHERUAAMAA			(75)
-//�G�A���b�N
+//エアロック
 #define	TOKUSYU_EAROKKU			(76)
-//���ǂ肠��
+//ちどりあし
 #define	TOKUSYU_TIDORIASI			(77)
-//�ł񂫃G���W��
+//でんきエンジン
 #define	TOKUSYU_DENKIENZIN			(78)
-//�Ƃ���������
+//とうそうしん
 #define	TOKUSYU_TOUSOUSIN			(79)
-//�ӂ��̂�����
+//ふくつのこころ
 #define	TOKUSYU_HUKUTUNOKOKORO			(80)
-//�䂫������
+//ゆきがくれ
 #define	TOKUSYU_YUKIGAKURE			(81)
-//��������ڂ�
+//くいしんぼう
 #define	TOKUSYU_KUISINBOU			(82)
-//������̂�
+//いかりのつぼ
 #define	TOKUSYU_IKARINOTUBO			(83)
-//����킴
+//かるわざ
 #define	TOKUSYU_KARUWAZA			(84)
-//�����˂�
+//たいねつ
 #define	TOKUSYU_TAINETU			(85)
-//���񂶂��
+//たんじゅん
 #define	TOKUSYU_TANZYUN			(86)
-//���񂻂��͂�
+//かんそうはだ
 #define	TOKUSYU_KANSOUHADA			(87)
-//�_�E�����[�h
+//ダウンロード
 #define	TOKUSYU_DAUNROODO			(88)
-//�Ă̂��Ԃ�
+//てつのこぶし
 #define	TOKUSYU_TETUNOKOBUSI			(89)
-//�|�C�Y���q�[��
+//ポイズンヒール
 #define	TOKUSYU_POIZUNHIIRU			(90)
-//�Ă�������傭
+//てきおうりょく
 #define	TOKUSYU_TEKIOURYOKU			(91)
-//�X�L�������N
+//スキルリンク
 #define	TOKUSYU_SUKIRURINKU			(92)
-//���邨���{�f�B
+//うるおいボディ
 #define	TOKUSYU_URUOIBODHI			(93)
-//�T���p���[
+//サンパワー
 #define	TOKUSYU_SANPAWAA			(94)
-//�͂₠��
+//はやあし
 #define	TOKUSYU_HAYAASI			(95)
-//�m�[�}���X�L��
+//ノーマルスキン
 #define	TOKUSYU_NOOMARUSUKIN			(96)
-//�X�i�C�p�[
+//スナイパー
 #define	TOKUSYU_SUNAIPAA			(97)
-//�}�W�b�N�K�[�h
+//マジックガード
 #define	TOKUSYU_MAZIKKUGAADO			(98)
-//�m�[�K�[�h
+//ノーガード
 #define	TOKUSYU_NOOGAADO			(99)
-//���Ƃ���
+//あとだし
 #define	TOKUSYU_ATODASI			(100)
-//�e�N�j�V����
+//テクニシャン
 #define	TOKUSYU_TEKUNISYAN			(101)
-//���[�t�K�[�h
+//リーフガード
 #define	TOKUSYU_RIIHUGAADO			(102)
-//�Ԃ��悤
+//ぶきよう
 #define	TOKUSYU_BUKIYOU			(103)
-//������Ԃ�
+//かたやぶり
 #define	TOKUSYU_KATAYABURI			(104)
-//���傤����
+//きょううん
 #define	TOKUSYU_KYOUUN			(105)
-//�䂤�΂�
+//ゆうばく
 #define	TOKUSYU_YUUBAKU			(106)
-//������悿
+//きけんよち
 #define	TOKUSYU_KIKENYOTI			(107)
-//�悿��
+//よちむ
 #define	TOKUSYU_YOTIMU			(108)
-//�Ă�˂�
+//てんねん
 #define	TOKUSYU_TENNEN			(109)
-//����߂���
+//いろめがね
 #define	TOKUSYU_IROMEGANE			(110)
-//�t�B���^�[
+//フィルター
 #define	TOKUSYU_FIRUTAA			(111)
-//�X���[�X�^�[�g
+//スロースタート
 #define	TOKUSYU_SUROOSUTAATO			(112)
-//����������
+//きもったま
 #define	TOKUSYU_KIMOTTAMA			(113)
-//��т݂�
+//よびみず
 #define	TOKUSYU_YOBIMIZU			(114)
-//�A�C�X�{�f�B
+//アイスボディ
 #define	TOKUSYU_AISUBODHI			(115)
-//�n�[�h���b�N
+//ハードロック
 #define	TOKUSYU_HAADOROKKU			(116)
-//�䂫�ӂ炵
+//ゆきふらし
 #define	TOKUSYU_YUKIHURASI			(117)
-//�݂���
+//みつあつめ
 #define	TOKUSYU_MITUATUME			(118)
-//���݂Ƃ���
+//おみとおし
 #define	TOKUSYU_OMITOOSI			(119)
-//���Ă�
+//すてみ
 #define	TOKUSYU_SUTEMI			(120)
-//�}���`�^�C�v
+//マルチタイプ
 #define	TOKUSYU_MARUTITAIPU			(121)
-//�t�����[�M�t�g
+//フラワーギフト
 #define	TOKUSYU_HURAWAAGIHUTO			(122)
-//�i�C�g���A
+//ナイトメア
 #define	TOKUSYU_NAITOMEA			(123)
 #define	TOKUSYU_MAX	(123)

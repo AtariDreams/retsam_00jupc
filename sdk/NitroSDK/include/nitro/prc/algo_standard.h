@@ -15,45 +15,45 @@
   do-indent
 
   Revision 1.8  2005/03/04 12:45:07  seiki_masashi
-  PRC_InitPrototypeDB ‹y‚Ñ PRC_InitInputPattern ‚ªì¬‚Ì¬Œ÷E¸”s‚ğ•Ô‚·‚æ‚¤‚É•ÏX
+  PRC_InitPrototypeDB åŠã³ PRC_InitInputPattern ãŒä½œæˆã®æˆåŠŸãƒ»å¤±æ•—ã‚’è¿”ã™ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.7  2005/02/28 05:26:01  yosizaki
   do-indent.
 
   Revision 1.6  2004/11/04 07:59:53  seiki_masashi
-  regularize ‚ğ normalize ‚ÉC³
+  regularize ã‚’ normalize ã«ä¿®æ­£
 
   Revision 1.5  2004/07/19 06:52:06  seiki_masashi
-  ¯•Êq–¼‚Ì®—
+  è­˜åˆ¥å­åã®æ•´ç†
 
   Revision 1.4  2004/06/30 08:49:45  seiki_masashi
   algo_simple -> algo_light
   algo_standard -> algo_fine
   algo_accurate -> algo_superfine
-  V‚µ‚¢ algo_standard ‚Ì’Ç‰Á
+  æ–°ã—ã„ algo_standard ã®è¿½åŠ 
 
   Revision 1.3  2004/06/28 13:18:22  seiki_masashi
-  PRC_GetInputPatternStrokes ‚Ì’Ç‰Á
+  PRC_GetInputPatternStrokes ã®è¿½åŠ 
 
   Revision 1.2  2004/06/25 03:03:39  seiki_masashi
-  ŠeŠÖ”‚©‚ç bufferSize ‚Ìw’è‚ğíœ
-  GetRecognitionBufferSize* ‚Ì’Ç‰Á
-  ‘¼‚ÌŠÖ”ŒÄ‚Ño‚µ‚µ‚©‚µ‚Ä‚¢‚È‚¢ŠÖ”‚Ì inline ‰»
+  å„é–¢æ•°ã‹ã‚‰ bufferSize ã®æŒ‡å®šã‚’å‰Šé™¤
+  GetRecognitionBufferSize* ã®è¿½åŠ 
+  ä»–ã®é–¢æ•°å‘¼ã³å‡ºã—ã—ã‹ã—ã¦ã„ãªã„é–¢æ•°ã® inline åŒ–
 
   Revision 1.1  2004/06/24 07:03:10  seiki_masashi
-  ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ğ•ªŠ„E®—‚µ‚Ü‚µ‚½
+  ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²ãƒ»æ•´ç†ã—ã¾ã—ãŸ
 
   Revision 1.1  2004/06/23 12:00:29  seiki_masashi
   add 'PRC*' to SDK
 
   Revision 1.3  2004/06/22 11:19:00  seiki_masashi
-  “®ì‰Â”\ƒo[ƒWƒ‡ƒ“(standard‚Ì‚İ)
+  å‹•ä½œå¯èƒ½ãƒãƒ¼ã‚¸ãƒ§ãƒ³(standardã®ã¿)
 
   Revision 1.2  2004/06/17 08:14:52  seiki_masashi
   PRC_GetPrototypeDBBufferSizeEx
 
   Revision 1.1  2004/06/17 02:30:29  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚Ì·‚µ‘Ö‚¦‚ğ—eˆÕ‚É‚·‚é‚½‚ß‚É prc_algo_* ‚É•ªŠ„‚µ‚Ü‚µ‚½
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®å·®ã—æ›¿ãˆã‚’å®¹æ˜“ã«ã™ã‚‹ãŸã‚ã« prc_algo_* ã«åˆ†å‰²ã—ã¾ã—ãŸ
 
   Revision 1.2  2004/06/17 00:52:36  seiki_masashi
   PRC_InitPrototypeDBEX, PRC_InitInputPatternEX
@@ -62,13 +62,13 @@
   rename ptrcg to prc.
 
   Revision 1.3  2004/06/15 08:10:55  seiki_masashi
-  ƒ_ƒ~[‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ÅƒTƒ“ƒvƒ‹ƒvƒƒOƒ‰ƒ€‚ª“®ì‰Â”\‚É
+  ãƒ€ãƒŸãƒ¼ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ã‚µãƒ³ãƒ—ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãŒå‹•ä½œå¯èƒ½ã«
 
   Revision 1.2  2004/06/15 05:55:09  seiki_masashi
-  ƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ì‰ü‘P
+  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®æ”¹å–„
 
   Revision 1.1  2004/06/15 00:54:42  seiki_masashi
-  ƒCƒ“ƒ^[ƒtƒFƒCƒX‚ÌİŒv
+  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®è¨­è¨ˆ
 
 
   $NoKeywords: $
@@ -96,31 +96,31 @@ extern "C" {
  *===========================================================================*/
 
 /*---------------------------------------------------------------------------*
-  Œ©–{DB‚Ì“WŠJ‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
-    normalizeSize       ³‹K‰»ƒTƒCƒY.
-    resampleThreshold   ³‹K‰»Œã‚És‚í‚ê‚éƒŠƒTƒ“ƒvƒ‹‚Ìè‡’l.
+  è¦‹æœ¬DBã®å±•é–‹ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    normalizeSize       æ­£è¦åŒ–ã‚µã‚¤ã‚º.
+    resampleThreshold   æ­£è¦åŒ–å¾Œã«è¡Œã‚ã‚Œã‚‹ãƒªã‚µãƒ³ãƒ—ãƒ«ã®é–¾å€¤.
  *---------------------------------------------------------------------------*/
 typedef PRCPrototypeDBParam_Common PRCPrototypeDBParam_Standard;
 
 /*---------------------------------------------------------------------------*
-  “ü—Íƒpƒ^[ƒ“‚Ì‰ğß‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
-    normalizeSize       ³‹K‰»ƒTƒCƒY.
-    resampleThreshold   ³‹K‰»Œã‚És‚í‚ê‚éƒŠƒTƒ“ƒvƒ‹‚Ìè‡’l.
+  å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã®è§£é‡ˆã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    normalizeSize       æ­£è¦åŒ–ã‚µã‚¤ã‚º.
+    resampleThreshold   æ­£è¦åŒ–å¾Œã«è¡Œã‚ã‚Œã‚‹ãƒªã‚µãƒ³ãƒ—ãƒ«ã®é–¾å€¤.
  *---------------------------------------------------------------------------*/
 typedef PRCInputPatternParam_Common PRCInputPatternParam_Standard;
 
 /*---------------------------------------------------------------------------*
-  “ü—Í—R—ˆ‚Ì”F¯ƒpƒ^[ƒ“
+  å…¥åŠ›ç”±æ¥ã®èªè­˜ãƒ‘ã‚¿ãƒ¼ãƒ³
  *---------------------------------------------------------------------------*/
 typedef PRCInputPattern_Common PRCInputPattern_Standard;
 
 /*---------------------------------------------------------------------------*
-  ƒƒ‚ƒŠ‚É“WŠJ‚³‚ê‚½Œ©–{DB
+  ãƒ¡ãƒ¢ãƒªã«å±•é–‹ã•ã‚ŒãŸè¦‹æœ¬DB
  *---------------------------------------------------------------------------*/
 typedef PRCPrototypeDB_Common PRCPrototypeDB_Standard;
 
 /*---------------------------------------------------------------------------*
-  ”F¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+  èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *---------------------------------------------------------------------------*/
 typedef struct PRCRecognizeParam_Standard
 {
@@ -133,7 +133,7 @@ PRCRecognizeParam_Standard;
 /*---------------------------------------------------------------------------*
   Name:         PRC_Init_Standard
 
-  Description:  }Œ`”F¯ API ‚ğ‰Šú‰»‚µ‚Ü‚·.
+  Description:  å›³å½¢èªè­˜ API ã‚’åˆæœŸåŒ–ã—ã¾ã™.
 
   Arguments:    None.
 
@@ -147,11 +147,11 @@ static inline void PRC_Init_Standard(void)
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetPrototypeDBBufferSize_Standard
 
-  Description:  Œ©–{DB‚ğ“WŠJ‚·‚é‚Ì‚É•K—v‚Èƒ[ƒN—Ìˆæ‚Ì‘å‚«‚³‚ğŒvZ‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã‚’å±•é–‹ã™ã‚‹ã®ã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®å¤§ãã•ã‚’è¨ˆç®—ã—ã¾ã™.
 
-  Arguments:    prototypeList           Œ©–{ƒpƒ^[ƒ“‚Ìˆê——
+  Arguments:    prototypeList           è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§
 
-  Returns:      Œ©–{DB‚ğ“WŠJ‚·‚é‚Ì‚É•K—v‚Èƒƒ‚ƒŠ—Ê.
+  Returns:      è¦‹æœ¬DBã‚’å±•é–‹ã™ã‚‹ã®ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªé‡.
  *---------------------------------------------------------------------------*/
 static inline u32 PRC_GetPrototypeDBBufferSize_Standard(const PRCPrototypeList *prototypeList)
 {
@@ -161,15 +161,15 @@ static inline u32 PRC_GetPrototypeDBBufferSize_Standard(const PRCPrototypeList *
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetPrototypeDBBufferSizeEx_Standard
 
-  Description:  Œ©–{DB‚ğ“WŠJ‚·‚é‚Ì‚É•K—v‚Èƒ[ƒN—Ìˆæ‚Ì‘å‚«‚³‚ğŒvZ‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã‚’å±•é–‹ã™ã‚‹ã®ã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®å¤§ãã•ã‚’è¨ˆç®—ã—ã¾ã™.
 
-  Arguments:    prototypeList           Œ©–{ƒpƒ^[ƒ“‚Ìˆê——
-                kindMask                í—Şw’è—pƒ}ƒXƒN
-                ignoreDisabledEntries   enabled ƒtƒ‰ƒO‚ª FALSE ‚ÌŒ©–{DBƒGƒ“ƒgƒŠ‚Í
-                                        ‚»‚à‚»‚à“WŠJ‚µ‚È‚¢‚©‚Ç‚¤‚©
-                param                   Œ©–{DB‚Ì“WŠJ‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+  Arguments:    prototypeList           è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§
+                kindMask                ç¨®é¡æŒ‡å®šç”¨ãƒã‚¹ã‚¯
+                ignoreDisabledEntries   enabled ãƒ•ãƒ©ã‚°ãŒ FALSE ã®è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã¯
+                                        ãã‚‚ãã‚‚å±•é–‹ã—ãªã„ã‹ã©ã†ã‹
+                param                   è¦‹æœ¬DBã®å±•é–‹ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      Œ©–{DB‚ğ“WŠJ‚·‚é‚Ì‚É•K—v‚Èƒƒ‚ƒŠ—Ê.
+  Returns:      è¦‹æœ¬DBã‚’å±•é–‹ã™ã‚‹ã®ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªé‡.
  *---------------------------------------------------------------------------*/
 static inline u32
 PRC_GetPrototypeDBBufferSizeEx_Standard(const PRCPrototypeList *prototypeList,
@@ -184,14 +184,14 @@ PRC_GetPrototypeDBBufferSizeEx_Standard(const PRCPrototypeList *prototypeList,
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitPrototypeDB_Standard
 
-  Description:  PRCPrototypeDB \‘¢‘Ì‚ğì¬‚µ‚Ü‚·.
-                buffer ‚É‚Í PRC_GetPrototypeDBBufferSize ‚ª•Ô‚·ƒTƒCƒYˆÈã‚Ì
-                ƒoƒbƒtƒ@—Ìˆæ‚ªİ’è‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·.
+  Description:  PRCPrototypeDB æ§‹é€ ä½“ã‚’ä½œæˆã—ã¾ã™.
+                buffer ã«ã¯ PRC_GetPrototypeDBBufferSize ãŒè¿”ã™ã‚µã‚¤ã‚ºä»¥ä¸Šã®
+                ãƒãƒƒãƒ•ã‚¡é ˜åŸŸãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™.
 
-  Arguments:    protoDB         ‰Šú‰»‚·‚éŒ©–{DB\‘¢‘Ì.
-                buffer          Œ©–{DB‚Ì“WŠJ‚Ég—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                (ƒƒ‚ƒŠ—ÌˆæƒTƒCƒY>=PRC_GetPrototypeDBBufferSize ‚Ì•Ô‚è’l)
-                prototypeList   Œ©–{ƒpƒ^[ƒ“‚Ìˆê——
+  Arguments:    protoDB         åˆæœŸåŒ–ã™ã‚‹è¦‹æœ¬DBæ§‹é€ ä½“.
+                buffer          è¦‹æœ¬DBã®å±•é–‹ã«ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                (ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetPrototypeDBBufferSize ã®è¿”ã‚Šå€¤)
+                prototypeList   è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -205,19 +205,19 @@ PRC_InitPrototypeDB_Standard(PRCPrototypeDB_Standard *protoDB,
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitPrototypeDBEx_Standard
 
-  Description:  PRCPrototypeDB \‘¢‘Ì‚ğì¬‚µ‚Ü‚·.
-                buffer ‚É‚Í PRC_GetPrototypeDBBufferSize ‚ª•Ô‚·ƒTƒCƒYˆÈã‚Ì
-                ƒoƒbƒtƒ@—Ìˆæ‚ªİ’è‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·.
-                param ‚É‚æ‚Á‚ÄA“WŠJ‚Ìƒpƒ‰ƒ[ƒ^‚ªw’è‚Å‚«‚Ü‚·.
+  Description:  PRCPrototypeDB æ§‹é€ ä½“ã‚’ä½œæˆã—ã¾ã™.
+                buffer ã«ã¯ PRC_GetPrototypeDBBufferSize ãŒè¿”ã™ã‚µã‚¤ã‚ºä»¥ä¸Šã®
+                ãƒãƒƒãƒ•ã‚¡é ˜åŸŸãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™.
+                param ã«ã‚ˆã£ã¦ã€å±•é–‹æ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæŒ‡å®šã§ãã¾ã™.
 
-  Arguments:    protoDB         ‰Šú‰»‚·‚éŒ©–{DB\‘¢‘Ì.
-                buffer          Œ©–{DB‚Ì“WŠJ‚Ég—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                (ƒƒ‚ƒŠ—ÌˆæƒTƒCƒY>=PRC_GetPrototypeDBBufferSize ‚Ì•Ô‚è’l)
-                prototypeList   Œ©–{ƒpƒ^[ƒ“‚Ìˆê——
-                kindMask        í—Şw’è—pƒ}ƒXƒN
-                ignoreDisabledEntries   enabled ƒtƒ‰ƒO‚ª FALSE ‚ÌŒ©–{DBƒGƒ“ƒgƒŠ‚Í
-                                        ‚»‚à‚»‚à“WŠJ‚µ‚È‚¢‚©‚Ç‚¤‚©
-                param           Œ©–{DB‚Ì“WŠJ‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+  Arguments:    protoDB         åˆæœŸåŒ–ã™ã‚‹è¦‹æœ¬DBæ§‹é€ ä½“.
+                buffer          è¦‹æœ¬DBã®å±•é–‹ã«ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                (ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetPrototypeDBBufferSize ã®è¿”ã‚Šå€¤)
+                prototypeList   è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§
+                kindMask        ç¨®é¡æŒ‡å®šç”¨ãƒã‚¹ã‚¯
+                ignoreDisabledEntries   enabled ãƒ•ãƒ©ã‚°ãŒ FALSE ã®è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã¯
+                                        ãã‚‚ãã‚‚å±•é–‹ã—ãªã„ã‹ã©ã†ã‹
+                param           è¦‹æœ¬DBã®å±•é–‹ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -236,13 +236,13 @@ PRC_InitPrototypeDBEx_Standard(PRCPrototypeDB_Standard *protoDB,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetInputPatternBufferSize_Standard
 
-  Description:  ƒpƒ^[ƒ“ƒf[ƒ^‚ğ”äŠr—p‚É“WŠJ‚·‚é‚Ì‚É•K—v‚Èƒ[ƒN—Ìˆæ‚Ì‘å‚«‚³‚ğ
-                ŒvZ‚µ‚Ü‚·.
+  Description:  ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ¯”è¼ƒç”¨ã«å±•é–‹ã™ã‚‹ã®ã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®å¤§ãã•ã‚’
+                è¨ˆç®—ã—ã¾ã™.
 
-  Arguments:    maxPointCount   “ü—Í“_”‚ÌãŒÀ(pen up marker ‚ğŠÜ‚Ş)
-                maxStrokeCount  ‰æ”‚ÌãŒÀ
+  Arguments:    maxPointCount   å…¥åŠ›ç‚¹æ•°ã®ä¸Šé™(pen up marker ã‚’å«ã‚€)
+                maxStrokeCount  ç”»æ•°ã®ä¸Šé™
 
-  Returns:      ƒpƒ^[ƒ“‚ğ“WŠJ‚·‚é‚Ì‚É•K—v‚Èƒƒ‚ƒŠ—Ê.
+  Returns:      ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å±•é–‹ã™ã‚‹ã®ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªé‡.
  *---------------------------------------------------------------------------*/
 static inline u32 PRC_GetInputPatternBufferSize_Standard(int maxPointCount, int maxStrokeCount)
 {
@@ -252,16 +252,16 @@ static inline u32 PRC_GetInputPatternBufferSize_Standard(int maxPointCount, int 
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitInputPattern_Standard
 
-  Description:  PRCInputPattern \‘¢‘Ì‚ğì¬‚µ‚Ü‚·.
+  Description:  PRCInputPattern æ§‹é€ ä½“ã‚’ä½œæˆã—ã¾ã™.
 
-  Arguments:    pattern             ‰Šú‰»‚·‚éƒpƒ^[ƒ“\‘¢‘Ì.
-                buffer              ƒpƒ^[ƒ“‚Ì“WŠJ‚Ég—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                    (—ÌˆæƒTƒCƒY>=PRC_GetInputPatternBufferSize ‚Ì•Ô‚è’l)
-                strokes             ®Œ`‘O‚Ì¶“ü—ÍÀ•W’l.
-                maxPointCount       “ü—Í“_”‚ÌãŒÀ(pen up marker ‚ğŠÜ‚Ş)
-                maxStrokeCount      ‰æ”‚ÌãŒÀ
+  Arguments:    pattern             åˆæœŸåŒ–ã™ã‚‹ãƒ‘ã‚¿ãƒ¼ãƒ³æ§‹é€ ä½“.
+                buffer              ãƒ‘ã‚¿ãƒ¼ãƒ³ã®å±•é–‹ã«ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                    (é ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetInputPatternBufferSize ã®è¿”ã‚Šå€¤)
+                strokes             æ•´å½¢å‰ã®ç”Ÿå…¥åŠ›åº§æ¨™å€¤.
+                maxPointCount       å…¥åŠ›ç‚¹æ•°ã®ä¸Šé™(pen up marker ã‚’å«ã‚€)
+                maxStrokeCount      ç”»æ•°ã®ä¸Šé™
 
-  Returns:      ì¬‚É¬Œ÷‚µ‚½‚ç^.
+  Returns:      ä½œæˆã«æˆåŠŸã—ãŸã‚‰çœŸ.
  *---------------------------------------------------------------------------*/
 static inline BOOL
 PRC_InitInputPattern_Standard(PRCInputPattern_Standard *pattern,
@@ -274,16 +274,16 @@ PRC_InitInputPattern_Standard(PRCInputPattern_Standard *pattern,
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitInputPatternEx_Standard
 
-  Description:  PRCInputPattern \‘¢‘Ì‚ğì¬‚µ‚Ü‚·.
-                param ‚É‚æ‚Á‚ÄA“ü—Íƒpƒ^[ƒ“‚Ì‰ğß‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^‚ğw’è‚Å‚«‚Ü‚·.
+  Description:  PRCInputPattern æ§‹é€ ä½“ã‚’ä½œæˆã—ã¾ã™.
+                param ã«ã‚ˆã£ã¦ã€å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã®è§£é‡ˆã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æŒ‡å®šã§ãã¾ã™.
 
-  Arguments:    pattern             ‰Šú‰»‚·‚éƒpƒ^[ƒ“\‘¢‘Ì.
-                buffer              ƒpƒ^[ƒ“‚Ì“WŠJ‚Ég—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                    (—ÌˆæƒTƒCƒY>=PRC_GetInputPatternBufferSize ‚Ì•Ô‚è’l)
-                strokes             ®Œ`‘O‚Ì¶“ü—ÍÀ•W’l.
-                param               “ü—Íƒpƒ^[ƒ“‚Ì‰ğß‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+  Arguments:    pattern             åˆæœŸåŒ–ã™ã‚‹ãƒ‘ã‚¿ãƒ¼ãƒ³æ§‹é€ ä½“.
+                buffer              ãƒ‘ã‚¿ãƒ¼ãƒ³ã®å±•é–‹ã«ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                    (é ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetInputPatternBufferSize ã®è¿”ã‚Šå€¤)
+                strokes             æ•´å½¢å‰ã®ç”Ÿå…¥åŠ›åº§æ¨™å€¤.
+                param               å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã®è§£é‡ˆã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      ì¬‚É¬Œ÷‚µ‚½‚ç^.
+  Returns:      ä½œæˆã«æˆåŠŸã—ãŸã‚‰çœŸ.
  *---------------------------------------------------------------------------*/
 static inline BOOL
 PRC_InitInputPatternEx_Standard(PRCInputPattern_Standard *pattern,
@@ -299,15 +299,15 @@ PRC_InitInputPatternEx_Standard(PRCInputPattern_Standard *pattern,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognitionBufferSizeEx_Standard
 
-  Description:  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ª•K—v‚Æ‚·‚éƒ[ƒN—Ìˆæ‚Ì‘å‚«‚³‚ğ
-                ŒvZ‚µ‚Ü‚·.
+  Description:  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒå¿…è¦ã¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®å¤§ãã•ã‚’
+                è¨ˆç®—ã—ã¾ã™.
 
-  Arguments:    maxPointCount   “ü—Í“_”‚ÌãŒÀ(pen up marker ‚ğŠÜ‚Ş)
-                maxStrokeCount  ‰æ”‚ÌãŒÀ
-                protoDB         Œ©–{DB.
-                param           ”F¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^.
+  Arguments:    maxPointCount   å…¥åŠ›ç‚¹æ•°ã®ä¸Šé™(pen up marker ã‚’å«ã‚€)
+                maxStrokeCount  ç”»æ•°ã®ä¸Šé™
+                protoDB         è¦‹æœ¬DB.
+                param           èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿.
 
-  Returns:      ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ª•K—v‚Æ‚·‚éƒƒ‚ƒŠ—Ê.
+  Returns:      èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒå¿…è¦ã¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé‡.
  *---------------------------------------------------------------------------*/
 u32
  
@@ -320,14 +320,14 @@ PRC_GetRecognitionBufferSizeEx_Standard(int maxPointCount,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognitionBufferSize_Standard
 
-  Description:  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ª•K—v‚Æ‚·‚éƒ[ƒN—Ìˆæ‚Ì‘å‚«‚³‚ğ
-                ŒvZ‚µ‚Ü‚·.
+  Description:  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒå¿…è¦ã¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®å¤§ãã•ã‚’
+                è¨ˆç®—ã—ã¾ã™.
 
-  Arguments:    maxPointCount   “ü—Í“_”‚ÌãŒÀ(pen up marker ‚ğŠÜ‚Ş)
-                maxStrokeCount  ‰æ”‚ÌãŒÀ
-                protoDB         Œ©–{DB.
+  Arguments:    maxPointCount   å…¥åŠ›ç‚¹æ•°ã®ä¸Šé™(pen up marker ã‚’å«ã‚€)
+                maxStrokeCount  ç”»æ•°ã®ä¸Šé™
+                protoDB         è¦‹æœ¬DB.
 
-  Returns:      ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ª•K—v‚Æ‚·‚éƒƒ‚ƒŠ—Ê.
+  Returns:      èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒå¿…è¦ã¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé‡.
  *---------------------------------------------------------------------------*/
 static inline u32
 PRC_GetRecognitionBufferSize_Standard(int maxPointCount,
@@ -339,23 +339,23 @@ PRC_GetRecognitionBufferSize_Standard(int maxPointCount,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntriesEx_Standard
 
-  Description:  Œ©–{DB‚Ì“Á’è‚Ì kind ‚ÌƒGƒ“ƒgƒŠ‚Æ“ü—Íƒpƒ^[ƒ“‚ğ”äŠr‚µ‚Ä”F¯‚µ,
-                Œ‹‰Ê‚ÌãˆÊ numRanking ˆÊ‚ğ•Ô‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã®ç‰¹å®šã® kind ã®ã‚¨ãƒ³ãƒˆãƒªã¨å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æ¯”è¼ƒã—ã¦èªè­˜ã—,
+                çµæœã®ä¸Šä½ numRanking ä½ã‚’è¿”ã—ã¾ã™.
 
-  Arguments:    resultEntries   ”F¯Œ‹‰Ê‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ“ü‚ê‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                ‹‚ß‚éŒÂ”ˆÈ‰º‚µ‚©”F¯‚Å‚«‚È‚©‚Á‚½ê‡A
-                                c‚è‚Í NULL ‚Å–„‚ß‚ç‚ê‚Ü‚·.
-                resultScores    ”F¯Œ‹‰Ê‚ÌƒXƒRƒA‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                numRanking      result* ‚É•Ô‚·ŒÂ”
-                buffer          ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ªg—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                (—ÌˆæƒTƒCƒY>=PRC_GetRecognitionBufferSize ‚Ì•Ô‚è’l)
-                input           “ü—Íƒpƒ^[ƒ“.
-                protoDB         Œ©–{DB.
-                kindMask        ŠeŒ©–{DBƒGƒ“ƒgƒŠ‚Ì kind ’l‚Æ‚Ì˜_—Ï‚ğ‚Æ‚è,
-                                ”ñƒ[ƒ‚Å‚ ‚ê‚Î—LŒø‚Æ‚İ‚È‚µ‚Ü‚·.
-                param           ”F¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^.
+  Arguments:    resultEntries   èªè­˜çµæœã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å…¥ã‚Œã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                æ±‚ã‚ã‚‹å€‹æ•°ä»¥ä¸‹ã—ã‹èªè­˜ã§ããªã‹ã£ãŸå ´åˆã€
+                                æ®‹ã‚Šã¯ NULL ã§åŸ‹ã‚ã‚‰ã‚Œã¾ã™.
+                resultScores    èªè­˜çµæœã®ã‚¹ã‚³ã‚¢ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                numRanking      result* ã«è¿”ã™å€‹æ•°
+                buffer          èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                (é ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetRecognitionBufferSize ã®è¿”ã‚Šå€¤)
+                input           å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³.
+                protoDB         è¦‹æœ¬DB.
+                kindMask        å„è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã® kind å€¤ã¨ã®è«–ç†ç©ã‚’ã¨ã‚Š,
+                                éã‚¼ãƒ­ã§ã‚ã‚Œã°æœ‰åŠ¹ã¨ã¿ãªã—ã¾ã™.
+                param           èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿.
 
-  Returns:      ”äŠr‚³‚ê‚½Œ©–{DBã‚Ìƒpƒ^[ƒ“”.
+  Returns:      æ¯”è¼ƒã•ã‚ŒãŸè¦‹æœ¬DBä¸Šã®ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°.
  *---------------------------------------------------------------------------*/
 int
  
@@ -371,20 +371,20 @@ PRC_GetRecognizedEntriesEx_Standard(PRCPrototypeEntry **resultEntries,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntries_Standard
 
-  Description:  Œ©–{DB‚Æ“ü—Íƒpƒ^[ƒ“‚ğ”äŠr‚µ‚Ä”F¯‚µ,
-                Œ‹‰Ê‚ÌãˆÊ numRanking ˆÊ‚ğ•Ô‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã¨å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æ¯”è¼ƒã—ã¦èªè­˜ã—,
+                çµæœã®ä¸Šä½ numRanking ä½ã‚’è¿”ã—ã¾ã™.
 
-  Arguments:    resultEntries   ”F¯Œ‹‰Ê‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ“ü‚ê‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                ‹‚ß‚éŒÂ”ˆÈ‰º‚µ‚©”F¯‚Å‚«‚È‚©‚Á‚½ê‡A
-                                c‚è‚Í NULL ‚Å–„‚ß‚ç‚ê‚Ü‚·.
-                resultScores    ”F¯Œ‹‰Ê‚ÌƒXƒRƒA‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                numRanking      result* ‚É•Ô‚µ‚Ä‚Ù‚µ‚¢ŒÂ”
-                buffer          ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ªg—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                (—ÌˆæƒTƒCƒY>=PRC_GetRecognitionBufferSize ‚Ì•Ô‚è’l)
-                input           “ü—Íƒpƒ^[ƒ“.
-                protoDB         Œ©–{DB.
+  Arguments:    resultEntries   èªè­˜çµæœã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å…¥ã‚Œã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                æ±‚ã‚ã‚‹å€‹æ•°ä»¥ä¸‹ã—ã‹èªè­˜ã§ããªã‹ã£ãŸå ´åˆã€
+                                æ®‹ã‚Šã¯ NULL ã§åŸ‹ã‚ã‚‰ã‚Œã¾ã™.
+                resultScores    èªè­˜çµæœã®ã‚¹ã‚³ã‚¢ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                numRanking      result* ã«è¿”ã—ã¦ã»ã—ã„å€‹æ•°
+                buffer          èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                (é ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetRecognitionBufferSize ã®è¿”ã‚Šå€¤)
+                input           å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³.
+                protoDB         è¦‹æœ¬DB.
 
-  Returns:      ”äŠr‚³‚ê‚½Œ©–{DBã‚Ìƒpƒ^[ƒ“”.
+  Returns:      æ¯”è¼ƒã•ã‚ŒãŸè¦‹æœ¬DBä¸Šã®ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°.
  *---------------------------------------------------------------------------*/
 static inline int
 PRC_GetRecognizedEntries_Standard(PRCPrototypeEntry **resultEntries,
@@ -401,19 +401,19 @@ PRC_GetRecognizedEntries_Standard(PRCPrototypeEntry **resultEntries,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntryEx_Standard
 
-  Description:  Œ©–{DB‚Ì“Á’è‚Ì kind ‚ÌƒGƒ“ƒgƒŠ‚Æ“ü—Íƒpƒ^[ƒ“‚ğ”äŠr‚µ‚Ä”F¯‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã®ç‰¹å®šã® kind ã®ã‚¨ãƒ³ãƒˆãƒªã¨å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æ¯”è¼ƒã—ã¦èªè­˜ã—ã¾ã™.
 
-  Arguments:    resultEntry ”F¯‚³‚ê‚½Œ©–{DBƒGƒ“ƒgƒŠ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğó‚¯æ‚éƒ|ƒCƒ“ƒ^.
-                            ”F¯‚Å‚«‚È‚©‚Á‚½ê‡ANULL ‚ª“ü‚è‚Ü‚·.
-                buffer      ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ªg—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                            (—ÌˆæƒTƒCƒY>=PRC_GetRecognitionBufferSize ‚Ì•Ô‚è’l)
-                input       “ü—Íƒpƒ^[ƒ“.
-                protoDB     Œ©–{DB.
-                kindMask    ŠeŒ©–{DBƒGƒ“ƒgƒŠ‚Ì kind ’l‚Æ‚Ì˜_—Ï‚ğ‚Æ‚è,
-                            ”ñƒ[ƒ‚Å‚ ‚ê‚Î—LŒø‚Æ‚İ‚È‚µ‚Ü‚·.
-                param       ”F¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^.
+  Arguments:    resultEntry èªè­˜ã•ã‚ŒãŸè¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å—ã‘å–ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                            èªè­˜ã§ããªã‹ã£ãŸå ´åˆã€NULL ãŒå…¥ã‚Šã¾ã™.
+                buffer      èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                            (é ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetRecognitionBufferSize ã®è¿”ã‚Šå€¤)
+                input       å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³.
+                protoDB     è¦‹æœ¬DB.
+                kindMask    å„è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã® kind å€¤ã¨ã®è«–ç†ç©ã‚’ã¨ã‚Š,
+                            éã‚¼ãƒ­ã§ã‚ã‚Œã°æœ‰åŠ¹ã¨ã¿ãªã—ã¾ã™.
+                param       èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿.
 
-  Returns:      ƒXƒRƒA’l.
+  Returns:      ã‚¹ã‚³ã‚¢å€¤.
  *---------------------------------------------------------------------------*/
 static inline fx32
 PRC_GetRecognizedEntryEx_Standard(PRCPrototypeEntry **resultEntry,
@@ -431,16 +431,16 @@ PRC_GetRecognizedEntryEx_Standard(PRCPrototypeEntry **resultEntry,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntry_Standard
 
-  Description:  Œ©–{DB‚Æ“ü—Íƒpƒ^[ƒ“‚ğ”äŠr‚µ‚Ä”F¯‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã¨å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æ¯”è¼ƒã—ã¦èªè­˜ã—ã¾ã™.
 
-  Arguments:    resultEntry ”F¯‚³‚ê‚½Œ©–{DBƒGƒ“ƒgƒŠ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğó‚¯æ‚éƒ|ƒCƒ“ƒ^.
-                            ”F¯‚Å‚«‚È‚©‚Á‚½ê‡ANULL ‚ª“ü‚è‚Ü‚·.
-                buffer      ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ªg—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                            (—ÌˆæƒTƒCƒY>=PRC_GetRecognitionBufferSize ‚Ì•Ô‚è’l)
-                input       “ü—Íƒpƒ^[ƒ“.
-                protoDB Œ©–{DB.
+  Arguments:    resultEntry èªè­˜ã•ã‚ŒãŸè¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å—ã‘å–ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                            èªè­˜ã§ããªã‹ã£ãŸå ´åˆã€NULL ãŒå…¥ã‚Šã¾ã™.
+                buffer      èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                            (é ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetRecognitionBufferSize ã®è¿”ã‚Šå€¤)
+                input       å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³.
+                protoDB è¦‹æœ¬DB.
 
-  Returns:      ƒXƒRƒA’l.
+  Returns:      ã‚¹ã‚³ã‚¢å€¤.
  *---------------------------------------------------------------------------*/
 static inline fx32
 PRC_GetRecognizedEntry_Standard(PRCPrototypeEntry **resultEntry,
@@ -455,11 +455,11 @@ PRC_GetRecognizedEntry_Standard(PRCPrototypeEntry **resultEntry,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetInputPatternStrokes_Standard
 
-  Description:  PRCInputPattern \‘¢‘Ì‚©‚ç“_—ñƒf[ƒ^‚ğ“¾‚Ü‚·.
+  Description:  PRCInputPattern æ§‹é€ ä½“ã‹ã‚‰ç‚¹åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã¾ã™.
 
-  Arguments:    strokes         “¾‚ç‚ê‚½“_—ñƒf[ƒ^.
-                                ‘‚«Š·‚¦‚Ä‚Í‚¢‚¯‚Ü‚¹‚ñ.
-                input           “ü—Íƒpƒ^[ƒ“.
+  Arguments:    strokes         å¾—ã‚‰ã‚ŒãŸç‚¹åˆ—ãƒ‡ãƒ¼ã‚¿.
+                                æ›¸ãæ›ãˆã¦ã¯ã„ã‘ã¾ã›ã‚“.
+                input           å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -478,39 +478,39 @@ PRC_GetInputPatternStrokes_Standard(PRCStrokes *strokes, const PRCInputPattern_S
 
 
 /*===========================================================================*
-  }Œ`”F¯ API ‚Ì•W€ŠÖ”‚Æ‚µ‚Äİ’è
+  å›³å½¢èªè­˜ API ã®æ¨™æº–é–¢æ•°ã¨ã—ã¦è¨­å®š
  *===========================================================================*/
 #ifndef PRC_DEFAULT_ALGORITHM
 #define PRC_DEFAULT_ALGORITHM "Standard"
 
 /*---------------------------------------------------------------------------*
-  Œ©–{DB‚Ì“WŠJ‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+  è¦‹æœ¬DBã®å±•é–‹ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *---------------------------------------------------------------------------*/
 typedef PRCPrototypeDBParam_Standard PRCPrototypeDBParam;
 
 /*---------------------------------------------------------------------------*
-  “ü—Íƒpƒ^[ƒ“‚Ì‰ğß‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+  å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã®è§£é‡ˆã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *---------------------------------------------------------------------------*/
 typedef PRCInputPatternParam_Standard PRCInputPatternParam;
 
 /*---------------------------------------------------------------------------*
-  “ü—Í—R—ˆ‚Ì”F¯ƒpƒ^[ƒ“
+  å…¥åŠ›ç”±æ¥ã®èªè­˜ãƒ‘ã‚¿ãƒ¼ãƒ³
  *---------------------------------------------------------------------------*/
 typedef PRCInputPattern_Standard PRCInputPattern;
 
 /*---------------------------------------------------------------------------*
-  ƒƒ‚ƒŠ‚É“WŠJ‚³‚ê‚½Œ©–{DB
+  ãƒ¡ãƒ¢ãƒªã«å±•é–‹ã•ã‚ŒãŸè¦‹æœ¬DB
  *---------------------------------------------------------------------------*/
 typedef PRCPrototypeDB_Standard PRCPrototypeDB;
 
 /*---------------------------------------------------------------------------*
-  ”F¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+  èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *---------------------------------------------------------------------------*/
 typedef PRCRecognizeParam_Standard PRCRecognizeParam;
 
 
 /*---------------------------------------------------------------------------*
-  ŠÖ”
+  é–¢æ•°
  *---------------------------------------------------------------------------*/
 static inline void PRC_Init(void)
 {

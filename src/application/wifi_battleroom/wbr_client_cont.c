@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wbr_client_cont.c
- *	@brief		ƒNƒ‰ƒCƒAƒ“ƒgƒIƒuƒWƒFƒNƒgŠÇ—ƒVƒXƒeƒ€
+ *	@brief		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.04.19
  *
@@ -32,88 +32,88 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define WBR_CHARMAN_CONTNUM	( 32 )	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒŠÇ—”
-#define WBR_PLTTMAN_CONTNUM	( 32 )	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒŠÇ—”
-#define WBR_CLACT_CONTNUM	( 64 )	// ƒZƒ‹ƒAƒNƒ^[ŠÇ—”
-#define WBR_CHARVRAM_MSIZE	( 128*1024 )	// OAMƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
-#define WBR_CHARVRAM_SSIZE	( 16*1024 )	// OAMƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
-#define WBR_BGFRAME_BACK	( GF_BGL_FRAME0_M )	// ”wŒi–Ê
-#define WBR_BGFRAME_MSG		( GF_BGL_FRAME1_M )	// ƒƒbƒZ[ƒW–Ê
-#define WBR_BGMSK_BACK		( GX_PLANEMASK_BG0 )	// ”wŒi–Ê
-#define WBR_BGMSK_MSG		( GX_PLANEMASK_BG1 )	// ƒƒbƒZ[ƒW–Ê
+#define WBR_CHARMAN_CONTNUM	( 32 )	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ç®¡ç†æ•°
+#define WBR_PLTTMAN_CONTNUM	( 32 )	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ç®¡ç†æ•°
+#define WBR_CLACT_CONTNUM	( 64 )	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†æ•°
+#define WBR_CHARVRAM_MSIZE	( 128*1024 )	// OAMã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
+#define WBR_CHARVRAM_SSIZE	( 16*1024 )	// OAMã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
+#define WBR_BGFRAME_BACK	( GF_BGL_FRAME0_M )	// èƒŒæ™¯é¢
+#define WBR_BGFRAME_MSG		( GF_BGL_FRAME1_M )	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¢
+#define WBR_BGMSK_BACK		( GX_PLANEMASK_BG0 )	// èƒŒæ™¯é¢
+#define WBR_BGMSK_MSG		( GX_PLANEMASK_BG1 )	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¢
 
-// messageƒEƒBƒ“ƒhƒE
-#define WBR_MESSAGE_FONTBMP_X	( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define WBR_MESSAGE_FONTBMP_Y	( 19 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define WBR_MESSAGE_FONTBMP_CX	( 23 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define WBR_MESSAGE_FONTBMP_CY	( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define WBR_MESSAGE_FONT_COLOR		( 6 )		// ˜g—pƒJƒ‰[ƒpƒŒƒbƒg
-#define WBR_MESSAGE_FONT_CG_OFS		( 1 )		// ˜g—pCGX
+// messageã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define WBR_MESSAGE_FONTBMP_X	( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define WBR_MESSAGE_FONTBMP_Y	( 19 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define WBR_MESSAGE_FONTBMP_CX	( 23 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define WBR_MESSAGE_FONTBMP_CY	( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define WBR_MESSAGE_FONT_COLOR		( 6 )		// æž ç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define WBR_MESSAGE_FONT_CG_OFS		( 1 )		// æž ç”¨CGX
 #define WBR_MESSAGE_BMP_CG_OFS		( TALK_WIN_CGX_SIZ + 1 )
-#define WBR_MESSAGE_FONT_STR_COLOR	( 5 )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
+#define WBR_MESSAGE_FONT_STR_COLOR	( 5 )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define WBR_MESSAGE_FONTBMP_PRICOLOR	( GF_PRINTCOLOR_MAKE(1,2,15) )
 
 #define WBR_MESSAGE_STRBUFF_NUM	( 64 )
 
 
-// ƒIƒuƒWƒFƒNƒg ƒf[ƒ^
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ãƒ‡ãƒ¼ã‚¿
 #define WBR_OBJ_BG_PRI	(1)
-#define WBR_OBJ_CMDSEND_TIMING	(4)	// “®ìI—¹‰½ƒtƒŒ[ƒ€‘O‚©‚çƒRƒ}ƒ“ƒh‚ð“]‘—‚·‚é‚©
+#define WBR_OBJ_CMDSEND_TIMING	(4)	// å‹•ä½œçµ‚äº†ä½•ãƒ•ãƒ¬ãƒ¼ãƒ å‰ã‹ã‚‰ã‚³ãƒžãƒ³ãƒ‰ã‚’è»¢é€ã™ã‚‹ã‹
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	•à‚«‰ñ‚èƒIƒuƒWƒFƒNƒgƒf[ƒ^
+///	æ­©ãå›žã‚Šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	BOOL recv_wait;
 	WF2DMAP_OBJWK*		p_obj;
 	WF2DMAP_OBJDRAWWK*	p_draw;
 	WBR_TALK_DATA talk_data;
-	BOOL talk_recv;			// ˜bƒf[ƒ^XV
-	BOOL talk_recv_wait;	// ˜bƒf[ƒ^XV‘Ò‚¿
+	BOOL talk_recv;			// è©±ãƒ‡ãƒ¼ã‚¿æ›´æ–°
+	BOOL talk_recv_wait;	// è©±ãƒ‡ãƒ¼ã‚¿æ›´æ–°å¾…ã¡
 } WBR_CLIENTCONTOBJ;
 
 //-------------------------------------
-///	messageƒf[ƒ^
+///	messageãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	MSGDATA_MANAGER *p_man;	///<ƒ}ƒl[ƒWƒƒ
-	WORDSET* p_wordset;		///<ƒ[ƒN
+	MSGDATA_MANAGER *p_man;	///<ãƒžãƒãƒ¼ã‚¸ãƒ£
+	WORDSET* p_wordset;		///<ãƒ¯ãƒ¼ã‚¯
 	STRBUF* p_tmpstr;
 	u32 okuri;
 
-	// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	GF_BGL_BMPWIN* p_message;
 } WBR_CLIENTCONTOBJ_MSG;
 
 
 //-------------------------------------
-///	ƒOƒ‰ƒtƒBƒbƒNŠÖŒWƒ[ƒN
+///	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢ä¿‚ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	GF_BGL_INI*	p_bgl;
@@ -122,28 +122,28 @@ typedef struct {
 
 	WF2DMAP_OBJDRAWSYS* p_objdraw;
 
-	// messageƒf[ƒ^
+	// messageãƒ‡ãƒ¼ã‚¿
 	WBR_CLIENTCONTOBJ_MSG	msg;
 
 } WBR_CLIENTCONT_GRAPHIC;
 
 
 //-------------------------------------
-///	•à‚«‰ñ‚èƒVƒXƒeƒ€
+///	æ­©ãå›žã‚Šã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _WBR_CLIENTCONT{
-	WBR_CLIENT_COMMON* p_prt;		// ƒNƒ‰ƒCƒAƒ“ƒgƒ[ƒN‚Æ‚Ì‹¤’Êƒf[ƒ^
+	WBR_CLIENT_COMMON* p_prt;		// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã¨ã®å…±é€šãƒ‡ãƒ¼ã‚¿
 	WBR_CLIENTCONTOBJ	obj[WBR_COMM_NUM];
-	WBR_CLIENTCONTOBJ* p_player;	// ŽålŒö
-	WBR_CLIENTCONT_GRAPHIC graphic;	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
-	WF2DMAP_OBJSYS*		p_objsys;	// ƒIƒuƒWƒFƒNƒgŠÇ—ƒVƒXƒeƒ€
-	WF2DMAP_ACTCMDQ*	p_actQ;		// ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[
-	BOOL end_flag;					// e‚©‚çI—¹‚Ì’Ê’B
+	WBR_CLIENTCONTOBJ* p_player;	// ä¸»äººå…¬
+	WBR_CLIENTCONT_GRAPHIC graphic;	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	WF2DMAP_OBJSYS*		p_objsys;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+	WF2DMAP_ACTCMDQ*	p_actQ;		// ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
+	BOOL end_flag;					// è¦ªã‹ã‚‰çµ‚äº†ã®é€šé”
 } WBR_CLIENTCONT;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_Vblank( void* p_wk );
@@ -151,7 +151,7 @@ static BOOL WBR_ClientCont_ObjDataRecvCheck( const WBR_CLIENTCONT* p_sys );
 static WF2DMAP_WAY WBR_ClientCont_KayWayGet( int cont );
 
 
-// ƒIƒuƒWƒFƒNƒgƒf[ƒ^\’z
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹ç¯‰
 static void WBR_ClientCont_ObjInit( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT_GRAPHIC* p_graphic, WBR_CLIENT_COMMON* p_client, int id, BOOL hero );
 static void WBR_ClientCont_ObjDel( WBR_CLIENTCONTOBJ* p_obj );
 static void WBR_ClientCont_PlayerMove( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ* p_player );
@@ -160,7 +160,7 @@ static BOOL WBR_ClientCont_PlayerTalkCheck( const WBR_CLIENTCONTOBJ* cp_obj );
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_PlayerTalkMove( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ* p_player );
 
 
-// ƒOƒ‰ƒtƒBƒbƒNŠÖŒW
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢ä¿‚
 static void WBR_ClientCont_GraphicInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID );
 static void WBR_ClientCont_GraphicExit( WBR_CLIENTCONT_GRAPHIC* p_gra );
 static void WBR_ClientCont_GraphicVblank( WBR_CLIENTCONT_GRAPHIC* p_gra );
@@ -177,7 +177,7 @@ static void WBR_ClientCont_ClactRelease( WBR_CLIENTCONT_GRAPHIC* p_gra );
 static void WBR_ClientCont_MessageInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID );
 static void WBR_ClientCont_MessageExit( WBR_CLIENTCONT_GRAPHIC* p_gra );
 
-// message‘€ì
+// messageæ“ä½œ
 static void WBR_ClientCont_MessageOn( WBR_CLIENTCONT_GRAPHIC* p_gra );
 static void WBR_ClientCont_MessageOff( WBR_CLIENTCONT_GRAPHIC* p_gra );
 static void WBR_ClientCont_MessageTrNameSet( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 buffid, const MYSTATUS* p_status );
@@ -185,7 +185,7 @@ static void WBR_ClientCont_MessagePrint( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 stri
 static BOOL WBR_ClientCont_MessageEndCheck( const WBR_CLIENTCONT_GRAPHIC* cp_gra );
 
 
-// ˜bƒf[ƒ^‰Šú‰»
+// è©±ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 static void WBR_ClientCont_Talk_StartInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys );
 static void WBR_ClientCont_Talk_NextInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys );
 static void WBR_ClientCont_Talk_EndInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys );
@@ -195,7 +195,7 @@ static void WBR_ClientCont_Talk_TrCardStartInit( WBR_CLIENTCONTOBJ* p_obj, WBR_C
 static void WBR_ClientCont_Talk_TrCardEndWaitInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys );
 static void WBR_ClientCont_Talk_TrCardEndInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys );
 
-// ˜bƒf[ƒ^ƒƒCƒ“
+// è©±ãƒ‡ãƒ¼ã‚¿ãƒ¡ã‚¤ãƒ³
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_StartMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys );
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_NextMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys );
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_EndMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys );
@@ -207,13 +207,13 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_TrCardEndMain( WBR_CLIENTCONTO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Šú‰»
+ *	@brief	åˆæœŸåŒ–
  *
- *	@param	p_proc		ƒvƒƒZƒXƒ[ƒN
- *	@param	p_seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@retval		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval		PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WBR_ClientCont_Init( PROC* p_proc, int* p_seq )
@@ -226,27 +226,27 @@ PROC_RESULT WBR_ClientCont_Init( PROC* p_proc, int* p_seq )
 	switch( *p_seq ){
 	case 0:
 		
-		// ƒVƒXƒeƒ€ƒ[ƒNì¬
+		// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 		p_sys = PROC_AllocWork( p_proc, sizeof(WBR_CLIENTCONT), p_prt->heapID );	
 		memset( p_sys, 0, sizeof(WBR_CLIENTCONT) );
 
-		// ã‚©‚ç‚à‚½‚Á‚½ƒf[ƒ^‚ð•Û‘¶
+		// ä¸Šã‹ã‚‰ã‚‚ãŸã£ãŸãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 		p_sys->p_prt = p_prt;
 
-		// Š„‚èž‚ÝÝ’è
-		sys_VBlankFuncChange( WBR_ClientCont_Vblank, p_sys );	// VBlankƒZƒbƒg
-		sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+		// å‰²ã‚Šè¾¼ã¿è¨­å®š
+		sys_VBlankFuncChange( WBR_ClientCont_Vblank, p_sys );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-		// ƒIƒuƒWƒFƒNƒgŠÇ—ƒ[ƒN¶¬
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ãƒ¯ãƒ¼ã‚¯ç”Ÿæˆ
 		p_sys->p_objsys = WF2DMAP_OBJSysInit( WBR_COMM_NUM, p_prt->heapID );
 
-		// ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[¶¬
+		// ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ç”Ÿæˆ
 		p_sys->p_actQ = WF2DMAP_ACTCMDQSysInit( WBR_CMDQ_BUFFNUM, p_prt->heapID );
 
-		// ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 		WBR_ClientCont_GraphicInit( &p_sys->graphic, p_prt->heapID );
 
-		// ƒIƒuƒWƒFƒNƒgƒf[ƒ^\’z
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹ç¯‰
 		for( i=0; i<WBR_COMM_NUM; i++ ){
 			if( i==p_prt->netid ){
 				hero = TRUE;
@@ -254,23 +254,23 @@ PROC_RESULT WBR_ClientCont_Init( PROC* p_proc, int* p_seq )
 				hero = FALSE;
 			}
 			WBR_ClientCont_ObjInit( p_sys, &p_sys->obj[i], &p_sys->graphic, p_prt, i, hero );
-			if( hero == TRUE ){	// ŽålŒöƒ[ƒN‚ðŽæ‚Á‚Ä‚¨‚­
+			if( hero == TRUE ){	// ä¸»äººå…¬ãƒ¯ãƒ¼ã‚¯ã‚’å–ã£ã¦ãŠã
 				p_sys->p_player = &p_sys->obj[i];
 			}
 		}
 
-		// ã‚©‚ç‚à‚ç‚Á‚Ä‚¢‚éƒ[ƒN‚ÉŽ©•ª‚Ìƒ|ƒCƒ“ƒ^‚ðÝ’è
-		// ŽóM‚µ‚½ƒf[ƒ^‚È‚Ç‚ð‚à‚ç‚¤‚Æ‚«‚ÉŽg—p‚·‚é
+		// ä¸Šã‹ã‚‰ã‚‚ã‚‰ã£ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã«è‡ªåˆ†ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®š
+		// å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ãªã©ã‚’ã‚‚ã‚‰ã†ã¨ãã«ä½¿ç”¨ã™ã‚‹
 		p_prt->p_procw = p_sys;
 
-		// ¡‚Ìó‘Ô‚ðŽóM—v¿
+		// ä»Šã®çŠ¶æ…‹ã‚’å—ä¿¡è¦è«‹
 		CommSendData( CNM_WBR_KO_OYADATA_GET, NULL, 0 );
 
 		(*p_seq) ++;
 		break;
 	
 	case 1:
-		// ÅVó‘Ô‚ðŽæ“¾‚·‚é‚Ü‚Å‚Ü‚Â
+		// æœ€æ–°çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹ã¾ã§ã¾ã¤
 		if( WBR_ClientCont_ObjDataRecvCheck( p_sys ) == TRUE ){
 			WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 					WIPE_FADE_OUTCOLOR, WIPE_DEF_DIV, WIPE_DEF_SYNC, p_prt->heapID );
@@ -291,13 +291,13 @@ PROC_RESULT WBR_ClientCont_Init( PROC* p_proc, int* p_seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“
+ *	@brief	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_proc		ƒvƒƒZƒXƒ[ƒN
- *	@param	p_seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@retval		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval		PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WBR_ClientCont_Main( PROC* p_proc, int* p_seq )
@@ -309,16 +309,16 @@ PROC_RESULT WBR_ClientCont_Main( PROC* p_proc, int* p_seq )
 	BOOL end_flag = FALSE;
 	BOOL talk_flag;
 
-	// I—¹ƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚½
+	// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ãŸ
 	if( p_sys->end_flag == TRUE ){
 		p_prt->next_seq = WBR_CLIENTCONT_RET_END;
 		end_flag = TRUE;
 	}
 
-	// ƒIƒuƒWƒFƒNƒg“®ì
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
 	WF2DMAP_OBJSysMain( p_sys->p_objsys );
 
-	//  ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ÌÝ’è
+	//  ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã®è¨­å®š
 	{
 		WF2DMAP_ACTCMD act;
 		while( WF2DMAP_ACTCMDQSysCmdPop( p_sys->p_actQ, &act ) == TRUE ){
@@ -328,10 +328,10 @@ PROC_RESULT WBR_ClientCont_Main( PROC* p_proc, int* p_seq )
 	
 	talk_flag = WBR_ClientCont_PlayerTalkCheck( p_sys->p_player );
 	if( talk_flag == FALSE ){
-		// ƒIƒuƒWƒFƒNƒg“®ì
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
 		WBR_ClientCont_PlayerMove( p_sys, p_sys->p_player );
 	}else{
-		// ‰ï˜b“®ì
+		// ä¼šè©±å‹•ä½œ
 		ret_type = WBR_ClientCont_PlayerTalkMove( p_sys, p_sys->p_player );
 		if( ret_type != WBR_CLIENTCONT_RET_NONE ){
 			p_prt->next_seq = ret_type;
@@ -339,10 +339,10 @@ PROC_RESULT WBR_ClientCont_Main( PROC* p_proc, int* p_seq )
 		}
 	}
 
-	// ƒIƒuƒWƒFƒNƒg•`‰æˆ—
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»å‡¦ç†
 	WF2DMAP_OBJDrawSysUpdata( p_sys->graphic.p_objdraw );
  
-	// ƒAƒNƒ^[‚Ì•\Ž¦
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ã®è¡¨ç¤º
 	CLACT_Draw( p_sys->graphic.p_clset );
 	
 	if( end_flag == TRUE ){
@@ -353,13 +353,13 @@ PROC_RESULT WBR_ClientCont_Main( PROC* p_proc, int* p_seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹
+ *	@brief	çµ‚äº†
  *
- *	@param	p_proc		ƒvƒƒZƒXƒ[ƒN
- *	@param	p_seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@retval		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval		PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WBR_ClientCont_End( PROC* p_proc, int* p_seq )
@@ -384,11 +384,11 @@ PROC_RESULT WBR_ClientCont_End( PROC* p_proc, int* p_seq )
 
 	case 2:
 
-		// Š„‚èž‚ÝI—¹
-		sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-		sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+		// å‰²ã‚Šè¾¼ã¿çµ‚äº†
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 		
-		// ƒIƒuƒWƒFƒNƒg”jŠü
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 		for( i=0; i<WBR_COMM_NUM; i++ ){
 			WBR_ClientCont_ObjDel( &p_sys->obj[i] );
 		}
@@ -396,13 +396,13 @@ PROC_RESULT WBR_ClientCont_End( PROC* p_proc, int* p_seq )
 		WF2DMAP_OBJSysExit( p_sys->p_objsys );
 		WF2DMAP_ACTCMDQSysExit( p_sys->p_actQ );
 		
-		// ƒOƒ‰ƒtƒBƒbƒN”jŠü
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
 		WBR_ClientCont_GraphicExit( &p_sys->graphic );	
 
-		// ã‚É“`‚¦‚Ä‚¢‚½ƒ[ƒN‚É‚àNULL‚ð“ü‚ê‚Ä‚¨‚­
+		// ä¸Šã«ä¼ãˆã¦ã„ãŸãƒ¯ãƒ¼ã‚¯ã«ã‚‚NULLã‚’å…¥ã‚Œã¦ãŠã
 		p_prt->p_procw = NULL;
 
-		// ƒvƒƒZƒXƒ[ƒN”jŠü
+		// ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		PROC_FreeWork(p_proc);
 		return PROC_RES_FINISH;
 	}
@@ -412,10 +412,10 @@ PROC_RESULT WBR_ClientCont_End( PROC* p_proc, int* p_seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚¨‚â‚©‚çŽóM‚µ‚½ƒQ[ƒ€ƒf[ƒ^Ý’è
+ *	@brief	ãŠã‚„ã‹ã‚‰å—ä¿¡ã—ãŸã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_procw		ƒ[ƒN
- *	@param	cp_oyadata	eƒf[ƒ^
+ *	@param	p_procw		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_oyadata	è¦ªãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WBR_ClientCont_SetOyaGameData( void* p_procw, const WBR_OYA_COMM_GAME* cp_oyadata )
@@ -426,24 +426,24 @@ void WBR_ClientCont_SetOyaGameData( void* p_procw, const WBR_OYA_COMM_GAME* cp_o
 	if( p_wk ){
 		playid = cp_oyadata->obj_data.act.playid;
 
-		//  ŽóMŠ®—¹
+		//  å—ä¿¡å®Œäº†
 		p_wk->obj[ playid ].recv_wait = TRUE;
 
-		// ˜bƒf[ƒ^Ý’è
+		// è©±ãƒ‡ãƒ¼ã‚¿è¨­å®š
 		p_wk->obj[ playid ].talk_data = cp_oyadata->obj_data.talk_data;
 		p_wk->obj[ playid ].talk_recv = TRUE;
 
-		// ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ðƒLƒ…[‚ÉÝ’è
+		// ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚’ã‚­ãƒ¥ãƒ¼ã«è¨­å®š
 		WF2DMAP_ACTCMDQSysCmdPush( p_wk->p_actQ, &cp_oyadata->obj_data.act );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒf[ƒ^‚ðŽæ“¾
+ *	@brief	ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *	@param	p_procw			ƒ[ƒN
- *	@param	cp_talkdata		‰ï˜bƒf[ƒ^
+ *	@param	p_procw			ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_talkdata		ä¼šè©±ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WBR_ClientCont_SetTalkData( void* p_procw, const WBR_KO_COMM_TALK* cp_talkdata )
@@ -455,34 +455,34 @@ void WBR_ClientCont_SetTalkData( void* p_procw, const WBR_KO_COMM_TALK* cp_talkd
 
 		OS_TPrintf( "netid %d talk_seq %d talk_netid %d\n", cp_talkdata->talk_data.netid, cp_talkdata->talk_data.talk_seq, cp_talkdata->talk_data.talk_playid );
 
-		// Ž©•ªˆ¶‚©ƒ`ƒFƒbƒN
+		// è‡ªåˆ†å®›ã‹ãƒã‚§ãƒƒã‚¯
 		if( (p_wk->p_prt->netid != cp_talkdata->talk_data.talk_playid) &&
 			(p_wk->p_prt->netid != cp_talkdata->talk_data.netid) ){
 			return ;
 		}
 
-		// ƒV[ƒPƒ“ƒX‚Ìƒ‚[ƒh‚É‚æ‚èŽóM‚µ‚½‚Æ‚«‚Ì“®ì‚ð•ª‚¯‚é
-		// ƒgƒŒ[ƒi[ƒJ[ƒhŒ©‚¹ƒ‚[ƒhI—¹
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã‚Šå—ä¿¡ã—ãŸã¨ãã®å‹•ä½œã‚’åˆ†ã‘ã‚‹
+		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰è¦‹ã›ãƒ¢ãƒ¼ãƒ‰çµ‚äº†
 		if( cp_talkdata->talk_data.talk_seq == WBR_TALK_SEQ_TRCARD_END ){
-			// e‹@‚©‚ç‚«‚½‚Ì‚Å‚ ‚ê‚ÎAŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+			// è¦ªæ©Ÿã‹ã‚‰ããŸã®ã§ã‚ã‚Œã°ã€æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 			if( cp_talkdata->talk_data.talk_mode == WBR_TALK_OYA ){
 				p_wk->p_player->talk_data.talk_seq = cp_talkdata->talk_data.talk_seq;
 				p_wk->p_player->talk_recv = TRUE;
 			}else{
 
-				// Žq‹@‚Ìê‡‚ÍA‚»‚Ìl‚ÌƒV[ƒPƒ“ƒXƒf[ƒ^‚ð“®‚©‚·
+				// å­æ©Ÿã®å ´åˆã¯ã€ãã®äººã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å‹•ã‹ã™
 				p_wk->obj[ cp_talkdata->talk_data.netid ].talk_data.talk_seq = cp_talkdata->talk_data.talk_seq;
 			}
 		}
-		// ƒgƒŒ[ƒi[ƒJ[ƒhI—¹‘Ò‚¿
+		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 		else if( cp_talkdata->talk_data.talk_seq == WBR_TALK_SEQ_TRCARD_ENDWAIT ){
-			// ‰½‚à‚µ‚È‚¢
+			// ä½•ã‚‚ã—ãªã„
 			p_wk->p_player->talk_data.talk_seq = cp_talkdata->talk_data.talk_seq;
 //			p_wk->p_player->talk_recv = TRUE;
 		}
-		// ‚»‚êˆÈŠO
+		// ãã‚Œä»¥å¤–
 		else {
-			// ƒV[ƒPƒ“ƒX‚ª•Ï‚í‚é‚©ƒ`ƒFƒbƒN
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãŒå¤‰ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( p_wk->p_player->talk_data.talk_seq == cp_talkdata->talk_data.talk_seq ){
 				GF_ASSERT(0);
 				return ;
@@ -497,9 +497,9 @@ void WBR_ClientCont_SetTalkData( void* p_procw, const WBR_KO_COMM_TALK* cp_talkd
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒŠƒNƒGƒXƒg
+ *	@brief	çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *	
- *	@param	p_procw		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_procw		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_ClientCont_SetEndFlag( void* p_procw )
@@ -515,13 +515,13 @@ void WBR_ClientCont_SetEndFlag( void* p_procw )
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankŠÖ”
+ *	@brief	VBlanké–¢æ•°
  *
  *	@param	p_wk 
  */
@@ -530,15 +530,15 @@ static void WBR_ClientCont_Vblank( void* p_wk )
 {
 	WBR_CLIENTCONT* p_wbr = p_wk;
 
-	// ƒOƒ‰ƒtƒBƒbƒNVƒuƒ‰ƒ“ƒNŠÖ”
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
 	WBR_ClientCont_GraphicVblank( &p_wbr->graphic );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e‚©‚ç‚Ìƒf[ƒ^ŽóMƒ`ƒFƒbƒN
+ *	@brief	è¦ªã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿å—ä¿¡ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static BOOL WBR_ClientCont_ObjDataRecvCheck( const WBR_CLIENTCONT* p_sys )
@@ -554,11 +554,11 @@ static BOOL WBR_ClientCont_ObjDataRecvCheck( const WBR_CLIENTCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒL[î•ñ‚©‚ç‰Ÿ‚³‚ê‚½•ûŒü‚ð•Ô‚·
+ *	@brief	ã‚­ãƒ¼æƒ…å ±ã‹ã‚‰æŠ¼ã•ã‚ŒãŸæ–¹å‘ã‚’è¿”ã™
  *
- *	@param	cont	ƒL[î•ñ
+ *	@param	cont	ã‚­ãƒ¼æƒ…å ±
  *
- *	@return	•ûŒü
+ *	@return	æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 static WF2DMAP_WAY WBR_ClientCont_KayWayGet( int cont )
@@ -580,137 +580,137 @@ static WF2DMAP_WAY WBR_ClientCont_KayWayGet( int cont )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  *
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_GraphicInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 {
-	// ƒoƒ“ƒNÝ’è
+	// ãƒãƒ³ã‚¯è¨­å®š
 	WBR_ClientCont_BankInit();
 
-	// BGL‰Šú‰»
+	// BGLåˆæœŸåŒ–
 	WBR_ClientCont_BgInit( p_gra, heapID );
 
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	WBR_ClientCont_ClactInit( p_gra, heapID );
 
-	// BG“Ç‚Ýž‚Ý
+	// BGèª­ã¿è¾¼ã¿
 	WBR_ClientCont_BgLoad( p_gra, heapID );
 
-	// ƒZƒ‹ƒAƒNƒ^[“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼èª­ã¿è¾¼ã¿
 	WBR_ClientCont_ClactLoad( p_gra, heapID );
 
-	// messageì¬
+	// messageä½œæˆ
 	WBR_ClientCont_MessageInit( p_gra, heapID );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN”jŠü
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
  *
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_GraphicExit( WBR_CLIENTCONT_GRAPHIC* p_gra )
 {
-	// message”jŠü
+	// messageç ´æ£„
 	WBR_ClientCont_MessageExit( p_gra );
 	
-	// BG“Ç‚Ýž‚Ý
+	// BGèª­ã¿è¾¼ã¿
 	WBR_ClientCont_BgRelease( p_gra );
 
-	// ƒZƒ‹ƒAƒNƒ^[“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼èª­ã¿è¾¼ã¿
 	WBR_ClientCont_ClactRelease( p_gra );
 
-	// BGL‰Šú‰»
+	// BGLåˆæœŸåŒ–
 	WBR_ClientCont_BgExit( p_gra );
 
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	WBR_ClientCont_ClactExit( p_gra );
 
-	// ƒoƒ“ƒNÝ’è
+	// ãƒãƒ³ã‚¯è¨­å®š
 	WBR_ClientCont_BankExit();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankŠÖ”
+ *	@brief	VBlanké–¢æ•°
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_GraphicVblank( WBR_CLIENTCONT_GRAPHIC* p_gra )
 {
-    // BG‘‚«Š·‚¦
+    // BGæ›¸ãæ›ãˆ
 	GF_BGL_VBlankFunc( p_gra->p_bgl );
 
-    // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+    // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
     REND_OAMTrans();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒ“ƒNÝ’è
+ *	@brief	ãƒãƒ³ã‚¯è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_BankInit( void )
 {
     GF_BGL_DISPVRAM tbl = {
-        GX_VRAM_BG_256_AC,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-        GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-        GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-        GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-        GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-        GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-        GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-        GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-        GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+        GX_VRAM_BG_256_AC,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+        GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+        GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+        GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+        GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+        GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+        GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+        GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+        GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
     GF_Disp_SetBank( &tbl );
 
-	// •\Ž¦–ÊÝ’è
+	// è¡¨ç¤ºé¢è¨­å®š
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒ“ƒNÝ’è”jŠü
+ *	@brief	ãƒãƒ³ã‚¯è¨­å®šç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_BankExit( void )
 {
-	// VRAMÝ’èƒŠƒZƒbƒg
-	GX_ResetBankForBG();			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_ResetBankForBGExtPltt();		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_ResetBankForSubBG();			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_ResetBankForSubBGExtPltt();	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_ResetBankForOBJ();			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_ResetBankForOBJExtPltt();	// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_ResetBankForSubOBJ();		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_ResetBankForSubOBJExtPltt();	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_ResetBankForTex();			// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒW
-	GX_ResetBankForTexPltt();		// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg
+	// VRAMè¨­å®šãƒªã‚»ãƒƒãƒˆ
+	GX_ResetBankForBG();			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_ResetBankForBGExtPltt();		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_ResetBankForSubBG();			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_ResetBankForSubBGExtPltt();	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_ResetBankForOBJ();			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_ResetBankForOBJExtPltt();	// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_ResetBankForSubOBJ();		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_ResetBankForSubOBJExtPltt();	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_ResetBankForTex();			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸
+	GX_ResetBankForTexPltt();		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆ
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGÝ’è
+ *	@brief	BGè¨­å®š
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_BgInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 {
 	GF_ASSERT( p_gra->p_bgl == NULL );
 	
-	// BGLì¬
+	// BGLä½œæˆ
 	p_gra->p_bgl = GF_BGL_BglIniAlloc( heapID );
 
 	
@@ -721,7 +721,7 @@ static void WBR_ClientCont_BgInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 		GF_BGL_InitBG(&BGsys_data);
 	}
 
-	{	// ”wŒi
+	{	// èƒŒæ™¯
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0xc000, GX_BG_CHARBASE_0x20000, GX_BG_EXTPLTT_01,
@@ -732,7 +732,7 @@ static void WBR_ClientCont_BgInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 		GF_BGL_ScrClear( p_gra->p_bgl, WBR_BGFRAME_BACK );
 	}
 
-	{	// ƒƒbƒZ[ƒW
+	{	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xd000, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -743,7 +743,7 @@ static void WBR_ClientCont_BgInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 		GF_BGL_ScrClear( p_gra->p_bgl, WBR_BGFRAME_MSG );
 	}
 
-/*	// ‚Æ‚è‚ ‚¦‚¸”ñ•\Ž¦
+/*	// ã¨ã‚Šã‚ãˆãšéžè¡¨ç¤º
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 //*/
@@ -752,9 +752,9 @@ static void WBR_ClientCont_BgInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGÝ’è”jŠü
+ *	@brief	BGè¨­å®šç ´æ£„
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_BgExit( WBR_CLIENTCONT_GRAPHIC* p_gra )
@@ -767,18 +767,18 @@ static void WBR_ClientCont_BgExit( WBR_CLIENTCONT_GRAPHIC* p_gra )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒf[ƒ^“Ç‚Ýž‚Ý
+ *	@brief	BGãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_BgLoad( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 {
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, WBR_MESSAGE_FONT_STR_COLOR*32, heapID );
 	
-	// ˜g—pƒOƒ‰ƒtƒBƒbƒN“Ç‚Ýž‚Ý
+	// æž ç”¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
 	TalkWinGraphicSet( p_gra->p_bgl, WBR_BGFRAME_MSG, 
 			WBR_MESSAGE_FONT_CG_OFS, WBR_MESSAGE_FONT_COLOR, 0,
 			heapID );
@@ -786,9 +786,9 @@ static void WBR_ClientCont_BgLoad( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒf[ƒ^”jŠü
+ *	@brief	BGãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_BgRelease( WBR_CLIENTCONT_GRAPHIC* p_gra )
@@ -797,28 +797,28 @@ static void WBR_ClientCont_BgRelease( WBR_CLIENTCONT_GRAPHIC* p_gra )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_ClactInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 {
-	// OAMƒ}ƒl[ƒWƒƒ‰Šú‰»
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
     NNS_G2dInitOamManagerModule();
 
-    // ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-    // ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-    // ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+    // å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
     REND_OAMInit(
-        0, 124,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-        0, 124,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+        0, 124,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+        0, 124,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 		heapID );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			WBR_CHARMAN_CONTNUM,
@@ -829,76 +829,76 @@ static void WBR_ClientCont_ClactInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID 
 		cm.heap = heapID;
 		InitCharManagerReg(&cm, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K );
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(WBR_PLTTMAN_CONTNUM, heapID);
 
-	// “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 
-	// ’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	// é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
     p_gra->p_clset = CLACT_U_SetEasyInit( WBR_CLACT_CONTNUM, &p_gra->renddata, heapID );
 
-	// ƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_gra->p_objdraw = WF2DMAP_OBJDrawSysInit( p_gra->p_clset, NULL, WBR_CLACT_CONTNUM, NNS_G2D_VRAM_TYPE_2DMAIN, heapID );
 
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_gra	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒN
+ *	@param	p_gra	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_ClactExit( WBR_CLIENTCONT_GRAPHIC* p_gra )
 {
-	// 2DcharƒVƒXƒeƒ€”jŠü
+	// 2Dcharã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WF2DMAP_OBJDrawSysExit( p_gra->p_objdraw );
 	
-    //OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+    //OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
     REND_OAM_Delete();
 
-    // ƒŠƒ\[ƒX‰ð•ú
+    // ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
     DeleteCharManager();
     DeletePlttManager();
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
     CLACT_DestSet(p_gra->p_clset);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^“Ç‚Ýž‚Ý
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */	
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_ClactLoad( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 {
-	// ŽålŒö‚ÆƒqƒƒCƒ“‚ð“Ç‚Ýž‚Ý
+	// ä¸»äººå…¬ã¨ãƒ’ãƒ­ã‚¤ãƒ³ã‚’èª­ã¿è¾¼ã¿
 	WF2DMAP_OBJDrawSysResSet( p_gra->p_objdraw, HERO, WF_2DC_MOVERUN, heapID );	
 	WF2DMAP_OBJDrawSysResSet( p_gra->p_objdraw, HEROINE, WF_2DC_MOVERUN, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_gra		ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒN
+ *	@param	p_gra		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_ClactRelease( WBR_CLIENTCONT_GRAPHIC* p_gra )
 {
-	// ŽålŒö‚ÆƒqƒƒCƒ“‚ð”jŠü
+	// ä¸»äººå…¬ã¨ãƒ’ãƒ­ã‚¤ãƒ³ã‚’ç ´æ£„
 	WF2DMAP_OBJDrawSysResDel( p_gra->p_objdraw, HERO );	
 	WF2DMAP_OBJDrawSysResDel( p_gra->p_objdraw, HEROINE );
 }
@@ -906,18 +906,18 @@ static void WBR_ClientCont_ClactRelease( WBR_CLIENTCONT_GRAPHIC* p_gra )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	message‰Šú‰»
+ *	@brief	messageåˆæœŸåŒ–
  *
- *	@param	p_gra	ƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_gra	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_MessageInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapID )
 {
-	// ƒƒbƒZ[ƒWƒrƒbƒgƒ}ƒbƒvì¬
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆ
 	p_gra->msg.p_message = GF_BGL_BmpWinAllocGet( heapID, 1 );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“o˜^
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç™»éŒ²
 	GF_BGL_BmpWinAdd( p_gra->p_bgl, p_gra->msg.p_message,
 			WBR_BGFRAME_MSG, 
 			WBR_MESSAGE_FONTBMP_X,
@@ -927,27 +927,27 @@ static void WBR_ClientCont_MessageInit( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 heapI
 			WBR_MESSAGE_FONT_STR_COLOR,
 			WBR_MESSAGE_BMP_CG_OFS );
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( p_gra->msg.p_message, 15 );
 
-	// ˜g‚Ì‘‚«ž‚Ý
+	// æž ã®æ›¸ãè¾¼ã¿
 	BmpTalkWinWrite( p_gra->msg.p_message, WINDOW_TRANS_OFF,
 			WBR_MESSAGE_FONT_CG_OFS,
 			WBR_MESSAGE_FONT_COLOR );
 
-	// messageƒ}ƒl[ƒWƒƒ
+	// messageãƒžãƒãƒ¼ã‚¸ãƒ£
 	p_gra->msg.p_man = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_br_dat, heapID );	
 	p_gra->msg.p_wordset = WORDSET_Create( heapID );	
 
-	// STRƒoƒbƒtƒ@ì¬
+	// STRãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	p_gra->msg.p_tmpstr = STRBUF_Create( WBR_MESSAGE_STRBUFF_NUM, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	message”jŠü
+ *	@brief	messageç ´æ£„
  *
- *	@param	p_gra	ƒ[ƒN
+ *	@param	p_gra	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_MessageExit( WBR_CLIENTCONT_GRAPHIC* p_gra )
@@ -964,7 +964,7 @@ static void WBR_ClientCont_MessageExit( WBR_CLIENTCONT_GRAPHIC* p_gra )
 /**
  *	@brief	messageON
  *
- *	@param	p_gra	ƒ[ƒN
+ *	@param	p_gra	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_MessageOn( WBR_CLIENTCONT_GRAPHIC* p_gra )
@@ -977,7 +977,7 @@ static void WBR_ClientCont_MessageOn( WBR_CLIENTCONT_GRAPHIC* p_gra )
 /**
  *	@brief	messageOFF
  *
- *	@param	p_gra	ƒ[ƒN
+ *	@param	p_gra	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_MessageOff( WBR_CLIENTCONT_GRAPHIC* p_gra )
@@ -987,11 +987,11 @@ static void WBR_ClientCont_MessageOff( WBR_CLIENTCONT_GRAPHIC* p_gra )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[–¼Ý’è
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åè¨­å®š
  *
- *	@param	p_gra		ƒ[ƒN
- *	@param	buffid		ƒoƒbƒtƒ@ID
- *	@param	p_status	ƒXƒe[ƒ^ƒXƒf[ƒ^
+ *	@param	p_gra		ãƒ¯ãƒ¼ã‚¯
+ *	@param	buffid		ãƒãƒƒãƒ•ã‚¡ID
+ *	@param	p_status	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_MessageTrNameSet( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 buffid, const MYSTATUS* p_status )
@@ -1001,9 +1001,9 @@ static void WBR_ClientCont_MessageTrNameSet( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	messageƒvƒŠƒ“ƒg
+ *	@brief	messageãƒ—ãƒªãƒ³ãƒˆ
  *
- *	@param	p_gra		ƒ[ƒN
+ *	@param	p_gra		ãƒ¯ãƒ¼ã‚¯
  *	@param	strid		STRID
  */
 //-----------------------------------------------------------------------------
@@ -1011,7 +1011,7 @@ static void WBR_ClientCont_MessagePrint( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 stri
 {
 	STRBUF* p_str;
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( p_gra->msg.p_message, 15 );
 
 	p_str = MSGMAN_AllocString( p_gra->msg.p_man, strid );
@@ -1024,11 +1024,11 @@ static void WBR_ClientCont_MessagePrint( WBR_CLIENTCONT_GRAPHIC* p_gra, u32 stri
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	messageƒvƒŠƒ“ƒgI—¹‘Ò‚¿
+ *	@brief	messageãƒ—ãƒªãƒ³ãƒˆçµ‚äº†å¾…ã¡
  *
- *	@param	cp_gra	ƒ[ƒN
+ *	@param	cp_gra	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
+ *	@retval	TRUE	çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 static BOOL WBR_ClientCont_MessageEndCheck( const WBR_CLIENTCONT_GRAPHIC* cp_gra )
@@ -1042,14 +1042,14 @@ static BOOL WBR_ClientCont_MessageEndCheck( const WBR_CLIENTCONT_GRAPHIC* cp_gra
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒf[ƒ^¶¬
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_graphic	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
- *	@param	p_client	ƒNƒ‰ƒCƒAƒ“ƒgƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_graphic	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_client	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *	@param	id			AID
- *	@param	hero		ŽålŒöƒtƒ‰ƒO
+ *	@param	hero		ä¸»äººå…¬ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_ObjInit( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT_GRAPHIC* p_graphic, WBR_CLIENT_COMMON* p_client, int id, BOOL hero )
@@ -1062,10 +1062,10 @@ static void WBR_ClientCont_ObjInit( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ* p_
 	};
 	u32 sex;
 	
-	// ‚Õ‚ê‚¢‚â[ID‚ðÝ’è
+	// ã·ã‚Œã„ã‚„ãƒ¼IDã‚’è¨­å®š
 	add.playid = id;
 	
-	// mystatus‚©‚ç«•Ê‚ðŽæ“¾
+	// mystatusã‹ã‚‰æ€§åˆ¥ã‚’å–å¾—
 	sex = MyStatus_GetMySex( p_client->cp_mystatus->cp_mystatus[ id ] );
 	if( sex == PM_MALE ){
 		add.charaid = HERO;
@@ -1073,7 +1073,7 @@ static void WBR_ClientCont_ObjInit( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ* p_
 		add.charaid = HEROINE;
 	}
 	
-	// ƒIƒuƒWƒFƒNƒgƒf[ƒ^¶¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	p_obj->p_obj = WF2DMAP_OBJWkNew( p_sys->p_objsys, &add );
 	p_obj->p_draw = WF2DMAP_OBJDrawWkNew( p_graphic->p_objdraw, 
 			p_obj->p_obj, hero, p_client->heapID );
@@ -1081,9 +1081,9 @@ static void WBR_ClientCont_ObjInit( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒf[ƒ^”jŠü
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_ObjDel( WBR_CLIENTCONTOBJ* p_obj )
@@ -1094,10 +1094,10 @@ static void WBR_ClientCont_ObjDel( WBR_CLIENTCONTOBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒö“®ì
+ *	@brief	ä¸»äººå…¬å‹•ä½œ
  *	
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_player	ŽålŒöƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_player	ä¸»äººå…¬ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_PlayerMove( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ* p_player )
@@ -1108,26 +1108,26 @@ static void WBR_ClientCont_PlayerMove( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ*
 	BOOL send_check;
 	WBR_TALK_REQ talk_req;
 
-	// ‚±‚ÌƒtƒŒ[ƒ€ƒRƒ}ƒ“ƒh‚ð“]‘—‚·‚é‚©ƒ`ƒFƒbƒN
+	// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚³ãƒžãƒ³ãƒ‰ã‚’è»¢é€ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	send_check = WBR_ClientCont_PlayerReqCmdSendOkCheck( p_player );
 	if( send_check == FALSE ){
 		return ;
 	}
 	
-	// ˜b‚µ‚©‚¯ƒ`ƒFƒbƒN
+	// è©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯
 	if( sys.trg & PAD_BUTTON_A ){
 		talk_req.netid = WF2DMAP_OBJWkDataGet( p_player->p_obj, WF2DMAP_OBJPM_PLID );
 		talk_req.flag = WBR_TALK_REQ_START;
-		// ‘—M
+		// é€ä¿¡
 		CommSendData( CNM_WBR_KO_TALKREQ, &talk_req, sizeof(WBR_TALK_REQ) );
 	}else{
 	
-		// ƒL[î•ñ‚©‚ç•ûŒü‚ðŽæ“¾
+		// ã‚­ãƒ¼æƒ…å ±ã‹ã‚‰æ–¹å‘ã‚’å–å¾—
 		move_way = WBR_ClientCont_KayWayGet( sys.cont );
 
 		if( move_way != WF2DMAP_WAY_NUM ){
 
-			// ¡Œü‚¢‚Ä‚¢‚é•ûŒü‚Æ”ä‚×‚ÄƒRƒ}ƒ“ƒh”­s
+			// ä»Šå‘ã„ã¦ã„ã‚‹æ–¹å‘ã¨æ¯”ã¹ã¦ã‚³ãƒžãƒ³ãƒ‰ç™ºè¡Œ
 			way = WF2DMAP_OBJWkDataGet( p_player->p_obj, WF2DMAP_OBJPM_WAY );
 			comm_data.req.way = move_way;
 			comm_data.req.playid = WF2DMAP_OBJWkDataGet( p_player->p_obj, WF2DMAP_OBJPM_PLID );
@@ -1141,7 +1141,7 @@ static void WBR_ClientCont_PlayerMove( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ*
 				comm_data.req.cmd = WF2DMAP_CMD_TURN;
 			}
 
-			// ‘—M
+			// é€ä¿¡
 			CommSendData( CNM_WBR_KO_GAMEDATA, &comm_data, sizeof(WBR_KO_COMM_GAME) );
 		}
 	}
@@ -1149,12 +1149,12 @@ static void WBR_ClientCont_PlayerMove( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh‚ð“]‘—‚·‚é‚·‚é•K—v‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚’è»¢é€ã™ã‚‹ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	cp_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh‚ð“]‘—‚µ‚Ä‘åä•v
- *	@retval	FALSE	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh‚Í“]‘—‚µ‚È‚­‚Ä‚æ‚¢
+ *	@retval	TRUE	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚’è»¢é€ã—ã¦å¤§ä¸ˆå¤«
+ *	@retval	FALSE	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã¯è»¢é€ã—ãªãã¦ã‚ˆã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WBR_ClientCont_PlayerReqCmdSendOkCheck( const WBR_CLIENTCONTOBJ* cp_obj )
@@ -1163,12 +1163,12 @@ static BOOL WBR_ClientCont_PlayerReqCmdSendOkCheck( const WBR_CLIENTCONTOBJ* cp_
 	s32 end_frame;
 	u32 status;
 	
-	// ‘Ò‹@ó‘Ô‚È‚ç–³ðŒ‚Å“]‘—
+	// å¾…æ©ŸçŠ¶æ…‹ãªã‚‰ç„¡æ¡ä»¶ã§è»¢é€
 	status = WF2DMAP_OBJWkDataGet( cp_obj->p_obj, WF2DMAP_OBJPM_ST );
 	if( status == WF2DMAP_OBJST_NONE ){
 		return TRUE;
 	}
-	// ƒrƒW[ó‘Ô‚È‚ç–³ðŒ‚Å“]‘—‚µ‚È‚¢
+	// ãƒ“ã‚¸ãƒ¼çŠ¶æ…‹ãªã‚‰ç„¡æ¡ä»¶ã§è»¢é€ã—ãªã„
 	if( status == WF2DMAP_OBJST_BUSY ){
 		return FALSE;
 	}
@@ -1184,12 +1184,12 @@ static BOOL WBR_ClientCont_PlayerReqCmdSendOkCheck( const WBR_CLIENTCONTOBJ* cp_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b’†ƒ`ƒFƒbƒN
+ *	@brief	ä¼šè©±ä¸­ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	cp_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‰ï˜b’†
- *	@retval	FALSE	‰ï˜b‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ä¼šè©±ä¸­
+ *	@retval	FALSE	ä¼šè©±ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WBR_ClientCont_PlayerTalkCheck( const WBR_CLIENTCONTOBJ* cp_obj )
@@ -1202,10 +1202,10 @@ static BOOL WBR_ClientCont_PlayerTalkCheck( const WBR_CLIENTCONTOBJ* cp_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯“®ì
+ *	@brief	è©±ã—ã‹ã‘å‹•ä½œ
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_player	“®ìƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_player	å‹•ä½œãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_PlayerTalkMove( WBR_CLIENTCONT* p_sys, WBR_CLIENTCONTOBJ* p_player )
@@ -1231,14 +1231,14 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_PlayerTalkMove( WBR_CLIENTCONT* p_s
 		WBR_ClientCont_Talk_TrCardEndMain,
 	};
 
-	// ‰Šú‰»ˆ—
+	// åˆæœŸåŒ–å‡¦ç†
 	if( p_player->talk_recv ){
 		p_player->talk_recv = FALSE;
 		pTalkInit[ p_player->talk_data.talk_seq ]( p_player, p_sys );
 		p_player->talk_recv_wait = FALSE;
 	}
 
-	// ƒƒCƒ“
+	// ãƒ¡ã‚¤ãƒ³
 	if( p_player->talk_recv_wait == FALSE ){
 		return pTalkMain[ p_player->talk_data.talk_seq ]( p_player, p_sys );
 	}
@@ -1250,21 +1250,21 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_PlayerTalkMove( WBR_CLIENTCONT* p_s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯ŠJŽn
+ *	@brief	è©±ã—ã‹ã‘é–‹å§‹
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒg
- *	@param	p_sys		ƒVƒXƒeƒ€
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_Talk_StartInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
 {
 	const MYSTATUS* cp_mystatus;
 	
-	// ‘ŠŽèƒgƒŒ[ƒi[–¼‚ðÝ’è
+	// ç›¸æ‰‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’è¨­å®š
 	cp_mystatus = p_sys->p_prt->cp_mystatus->cp_mystatus[ p_obj->talk_data.talk_playid ];
 	WBR_ClientCont_MessageTrNameSet( &p_sys->graphic, 0, cp_mystatus );
 
-	// e‚©Žq‚É‚æ‚Á‚Ämessage‚ð•ÏX
+	// è¦ªã‹å­ã«ã‚ˆã£ã¦messageã‚’å¤‰æ›´
 	if( p_obj->talk_data.talk_mode == WBR_TALK_OYA ){
 		WBR_ClientCont_MessagePrint( &p_sys->graphic, WBR_000 );
 	}else{
@@ -1275,22 +1275,22 @@ static void WBR_ClientCont_Talk_StartInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTC
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘±‚¢‚Ä‚Ì˜b‚µ‚©‚¯@‰Šú‰»
+ *	@brief	ç¶šã„ã¦ã®è©±ã—ã‹ã‘ã€€åˆæœŸåŒ–
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_Talk_NextInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
 {
 	const MYSTATUS* cp_mystatus;
 	
-	// ‘ŠŽèƒgƒŒ[ƒi[–¼‚ðÝ’è
+	// ç›¸æ‰‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’è¨­å®š
 	cp_mystatus = p_sys->p_prt->cp_mystatus->cp_mystatus[ p_obj->talk_data.talk_playid ];
 	WBR_ClientCont_MessageTrNameSet( &p_sys->graphic, 0, cp_mystatus );
 
-/*	’Êí
-	// e‚©Žq‚É‚æ‚Á‚Ämessage‚ð•ÏX
+/*	é€šå¸¸
+	// è¦ªã‹å­ã«ã‚ˆã£ã¦messageã‚’å¤‰æ›´
 	if( p_obj->obj_data.talk_mode == WBR_TALK_OYA ){
 		WBR_ClientCont_MessagePrint( &p_sys->graphic, WBR_000 );
 	}else{
@@ -1302,10 +1302,10 @@ static void WBR_ClientCont_Talk_NextInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯I—¹	‰Šú‰»
+ *	@brief	è©±ã—ã‹ã‘çµ‚äº†	åˆæœŸåŒ–
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_Talk_EndInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
@@ -1315,10 +1315,10 @@ static void WBR_ClientCont_Talk_EndInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCON
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯”²‚¯‚é	‰Šú‰»
+ *	@brief	è©±ã—ã‹ã‘æŠœã‘ã‚‹	åˆæœŸåŒ–
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_Talk_ExitInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
@@ -1327,10 +1327,10 @@ static void WBR_ClientCont_Talk_ExitInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒhƒŠƒNƒGƒXƒg
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_Talk_TrCardReqInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
@@ -1344,10 +1344,10 @@ static void WBR_ClientCont_Talk_TrCardReqInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒh‰Šú‰»
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_Talk_TrCardStartInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
@@ -1356,24 +1356,24 @@ static void WBR_ClientCont_Talk_TrCardStartInit( WBR_CLIENTCONTOBJ* p_obj, WBR_C
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒhI—¹‘Ò‚¿	‰Šú‰»
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡	åˆæœŸåŒ–
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_Talk_TrCardEndWaitInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
 {
-	// ‚Ù‚©‚Ìl‚ÌI—¹‚ð‚Ü‚Á‚Ä‚¢‚éó‘Ô
+	// ã»ã‹ã®äººã®çµ‚äº†ã‚’ã¾ã£ã¦ã„ã‚‹çŠ¶æ…‹
 	WBR_ClientCont_MessagePrint( &p_sys->graphic, WBR_004 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒhI—¹	‰Šú‰»
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰çµ‚äº†	åˆæœŸåŒ–
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCont_Talk_TrCardEndInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
@@ -1383,10 +1383,10 @@ static void WBR_ClientCont_Talk_TrCardEndInit( WBR_CLIENTCONTOBJ* p_obj, WBR_CLI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯ŠJŽn	ƒƒCƒ“
+ *	@brief	è©±ã—ã‹ã‘é–‹å§‹	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_StartMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
@@ -1395,11 +1395,11 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_StartMain( WBR_CLIENTCONTOBJ* 
 	
 	if( p_obj->talk_data.talk_mode == WBR_TALK_OYA ){
 		if( WBR_ClientCont_MessageEndCheck( &p_sys->graphic ) == TRUE ){
-			// message‚ªI‚í‚Á‚½‚çƒgƒŒ[ƒi[ƒJ[ƒhƒŠƒNƒGƒXƒg‚Ö
+			// messageãŒçµ‚ã‚ã£ãŸã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¸
 			comm_data.talk_data = p_obj->talk_data;
 			comm_data.talk_data.talk_seq = WBR_TALK_SEQ_TRCARD_REQ;
 			CommSendData( CNM_WBR_KO_TALKDATA, &comm_data, sizeof(WBR_KO_COMM_TALK) );
-			p_obj->talk_recv_wait = 1;	// ŽóM‘Ò‚¿
+			p_obj->talk_recv_wait = 1;	// å—ä¿¡å¾…ã¡
 		}
 	}
 	return WBR_CLIENTCONT_RET_NONE;
@@ -1407,33 +1407,33 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_StartMain( WBR_CLIENTCONTOBJ* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯‘±‚«
+ *	@brief	è©±ã—ã‹ã‘ç¶šã
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_NextMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
 {
 	WBR_KO_COMM_TALK comm_data;
-/*	’Êí
+/*	é€šå¸¸
 	if( p_obj->talk_data.talk_mode == WBR_TALK_OYA ){
 		if( WBR_ClientCont_MessageEndCheck( &p_sys->graphic ) == TRUE ){
-			// message‚ªI‚í‚Á‚½‚çƒgƒŒ[ƒi[ƒJ[ƒhƒŠƒNƒGƒXƒg‚Ö
+			// messageãŒçµ‚ã‚ã£ãŸã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¸
 			comm_data.talk_data = p_obj->talk_data;
 			comm_data.talk_data.talk_seq = WBR_TALK_SEQ_TRCARD_REQ;
 			CommSendData( CNM_WBR_KO_TALKDATA, &p_obj->ko_comm_talk, sizeof(WBR_KO_COMM_TALK) );
-			p_obj->talk_recv_wait = 1;	// ŽóM‘Ò‚¿
+			p_obj->talk_recv_wait = 1;	// å—ä¿¡å¾…ã¡
 		}
 	}
 //*/
 	if( p_obj->talk_data.talk_mode == WBR_TALK_OYA ){
 		if( WBR_ClientCont_MessageEndCheck( &p_sys->graphic ) == TRUE ){
-			// message‚ªI‚í‚Á‚½‚çƒgƒŒ[ƒi[ƒJ[ƒhƒŠƒNƒGƒXƒg‚Ö
+			// messageãŒçµ‚ã‚ã£ãŸã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¸
 			comm_data.talk_data = p_obj->talk_data;
 			comm_data.talk_data.talk_seq = WBR_TALK_SEQ_END;
 			CommSendData( CNM_WBR_KO_TALKDATA, &comm_data, sizeof(WBR_KO_COMM_TALK) );
-			p_obj->talk_recv_wait = 1;	// ŽóM‘Ò‚¿
+			p_obj->talk_recv_wait = 1;	// å—ä¿¡å¾…ã¡
 		}
 	}
 	return WBR_CLIENTCONT_RET_NONE;
@@ -1441,10 +1441,10 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_NextMain( WBR_CLIENTCONTOBJ* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯I—¹	ƒƒCƒ“
+ *	@brief	è©±ã—ã‹ã‘çµ‚äº†	ãƒ¡ã‚¤ãƒ³
  *	
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_EndMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
@@ -1452,11 +1452,11 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_EndMain( WBR_CLIENTCONTOBJ* p_
 	WBR_KO_COMM_TALK comm_data;
 	if( p_obj->talk_data.talk_mode == WBR_TALK_OYA ){
 		if( WBR_ClientCont_MessageEndCheck( &p_sys->graphic ) == TRUE ){
-			// message‚ªI‚í‚Á‚½‚çI—¹‚Ö
+			// messageãŒçµ‚ã‚ã£ãŸã‚‰çµ‚äº†ã¸
 			comm_data.talk_data = p_obj->talk_data;
 			comm_data.talk_data.talk_seq = WBR_TALK_SEQ_EXIT;
 			CommSendData( CNM_WBR_KO_TALKDATA, &comm_data, sizeof(WBR_KO_COMM_TALK) );
-			p_obj->talk_recv_wait = 1;	// ŽóM‘Ò‚¿
+			p_obj->talk_recv_wait = 1;	// å—ä¿¡å¾…ã¡
 		}
 	}
 
@@ -1465,10 +1465,10 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_EndMain( WBR_CLIENTCONTOBJ* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯”²‚¯‚é	ƒƒCƒ“
+ *	@brief	è©±ã—ã‹ã‘æŠœã‘ã‚‹	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_ExitMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
@@ -1479,31 +1479,31 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_ExitMain( WBR_CLIENTCONTOBJ* p
 		talk_req.flag = WBR_TALK_REQ_END;
 		talk_req.netid = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_PLID );
 		CommSendData( CNM_WBR_KO_TALKREQ, &talk_req, sizeof(WBR_TALK_REQ) );
-		p_obj->talk_recv_wait = 1;	// ŽóM‘Ò‚¿
+		p_obj->talk_recv_wait = 1;	// å—ä¿¡å¾…ã¡
 	}
 	return WBR_CLIENTCONT_RET_NONE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒhƒŠƒNƒGƒXƒgƒƒCƒ“
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_TrCardReqMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
 {
 	WBR_KO_COMM_TALK comm_data;
 	
-	// Žq‚È‚çƒgƒŒ[ƒi[ƒJ[ƒhŽÀs‚Ö
+	// å­ãªã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰å®Ÿè¡Œã¸
 	if( p_obj->talk_data.talk_mode == WBR_TALK_KO ){
 		if( WBR_ClientCont_MessageEndCheck( &p_sys->graphic ) == TRUE ){
-			// message‚ªI‚í‚Á‚½‚çƒgƒŒ[ƒi[ƒJ[ƒh‚Ö
+			// messageãŒçµ‚ã‚ã£ãŸã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã¸
 			comm_data.talk_data = p_obj->talk_data;
 			comm_data.talk_data.talk_seq = WBR_TALK_SEQ_TRCARD_START;
 			CommSendData( CNM_WBR_KO_TALKDATA, &comm_data, sizeof(WBR_KO_COMM_TALK) );
-			p_obj->talk_recv_wait = 1;	// ŽóM‘Ò‚¿
+			p_obj->talk_recv_wait = 1;	// å—ä¿¡å¾…ã¡
 		}
 	}
 	return WBR_CLIENTCONT_RET_NONE;
@@ -1511,62 +1511,62 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_TrCardReqMain( WBR_CLIENTCONTO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒh@ƒƒCƒ“
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_TrCardStartMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
 {
 	WBR_KO_COMM_TALK comm_data;
-	// ƒV[ƒPƒ“ƒX‚ð‘Ò‹@‚Ü‚¿‚É‚µ‚Ä‚¨‚­
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å¾…æ©Ÿã¾ã¡ã«ã—ã¦ãŠã
 	comm_data.talk_data = p_obj->talk_data;
 	comm_data.talk_data.talk_seq = WBR_TALK_SEQ_TRCARD_ENDWAIT;
 	CommSendData( CNM_WBR_KO_TALKDATA, &comm_data, sizeof(WBR_KO_COMM_TALK) );
-	p_obj->talk_recv_wait = 1;	// ŽóM‘Ò‚¿
+	p_obj->talk_recv_wait = 1;	// å—ä¿¡å¾…ã¡
 	
-	// ŠJŽn‚È‚Ì‚ÅAŠJŽn‚³‚¹‚é
+	// é–‹å§‹ãªã®ã§ã€é–‹å§‹ã•ã›ã‚‹
 	return WBR_CLIENTCONT_RET_TRCARD;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒhI—¹‘Ò‚¿
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_TrCardEndWaitMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
 {
 	WBR_KO_COMM_TALK comm_data;
 	
-	// e‹@‚ÍŽq‹@‚ªƒgƒŒ[ƒi[ƒJ[ƒhI—¹‚É‚È‚é‚Ì‚ð‘Ò‚Â
+	// è¦ªæ©Ÿã¯å­æ©ŸãŒãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰çµ‚äº†ã«ãªã‚‹ã®ã‚’å¾…ã¤
 	if( p_obj->talk_data.talk_mode == WBR_TALK_OYA ){
-		// Žq‹@‚Ì˜bƒf[ƒ^‚ªŽŸ‚ÌƒV[ƒPƒ“ƒX‚ÉŒ¾‚Á‚Ä‚¢‚½‚çOK
+		// å­æ©Ÿã®è©±ãƒ‡ãƒ¼ã‚¿ãŒæ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«è¨€ã£ã¦ã„ãŸã‚‰OK
 		if( p_sys->obj[ p_obj->talk_data.talk_playid ].talk_data.talk_seq == WBR_TALK_SEQ_TRCARD_END ){
 			comm_data.talk_data = p_obj->talk_data;
 			comm_data.talk_data.talk_seq = WBR_TALK_SEQ_TRCARD_END;
 			CommSendData( CNM_WBR_KO_TALKDATA, &comm_data, sizeof(WBR_KO_COMM_TALK) );
-			p_obj->talk_recv_wait = 1;	// ŽóM‘Ò‚¿
+			p_obj->talk_recv_wait = 1;	// å—ä¿¡å¾…ã¡
 		}
 	}else{
-		// Žq‹@‚Í‚¨‚â‚«‚ÉI—¹‚ð“]‘—
+		// å­æ©Ÿã¯ãŠã‚„ãã«çµ‚äº†ã‚’è»¢é€
 		comm_data.talk_data = p_obj->talk_data;
 		comm_data.talk_data.talk_seq = WBR_TALK_SEQ_TRCARD_END;
 		CommSendData( CNM_WBR_KO_TALKDATA, &comm_data, sizeof(WBR_KO_COMM_TALK) );
-		p_obj->talk_recv_wait = 1;	// ŽóM‘Ò‚¿
+		p_obj->talk_recv_wait = 1;	// å—ä¿¡å¾…ã¡
 	}
 	return WBR_CLIENTCONT_RET_NONE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJ[ƒhI—¹	ƒƒCƒ“
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰çµ‚äº†	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_TrCardEndMain( WBR_CLIENTCONTOBJ* p_obj, WBR_CLIENTCONT* p_sys )
@@ -1577,7 +1577,7 @@ static WBR_CLIENTCONT_RETTYPE WBR_ClientCont_Talk_TrCardEndMain( WBR_CLIENTCONTO
 		comm_data.talk_data = p_obj->talk_data;
 		comm_data.talk_data.talk_seq = WBR_TALK_SEQ_NEXT;
 		CommSendData( CNM_WBR_KO_TALKDATA, &comm_data, sizeof(WBR_KO_COMM_TALK) );
-		p_obj->talk_recv_wait = 1;	// ŽóM‘Ò‚¿
+		p_obj->talk_recv_wait = 1;	// å—ä¿¡å¾…ã¡
 	}
 	return WBR_CLIENTCONT_RET_NONE;
 }

@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	field_rdobj.h
- * @brief	ƒtƒB[ƒ‹ƒh@ƒŒƒ“ƒ_ƒŠƒ“ƒOOBJ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°OBJ
  * @author	kagaya
  * @data	05.07.13
  */
@@ -13,77 +13,77 @@
 
 //==============================================================================
 /*
-	ƒtƒB[ƒ‹ƒh@ƒŒƒ“ƒ_ƒŠƒ“ƒOOBJ@ŠÈˆÕà–¾
+	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°OBJã€€ç°¡æ˜“èª¬æ˜Ž
 	
-	<ƒ\[ƒXƒtƒ@ƒCƒ‹>
+	<ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«>
 	field_rdobj.c
 	field_rdobj.h
 	
-	<OBJ’Ç‰ÁŽè‡@ƒ‚ƒfƒ‹>
-	œŽè‡‚P@FRO_MDL\‘¢‘Ì‚ð—pˆÓ
+	<OBJè¿½åŠ æ‰‹é †ã€€ãƒ¢ãƒ‡ãƒ«>
+	â—æ‰‹é †ï¼‘ã€€FRO_MDLæ§‹é€ ä½“ã‚’ç”¨æ„
 		FRO_MDL rmdl;
 	
-	œŽè‡‚Q@rmdl‚ÖƒŠƒ\[ƒXƒtƒ@ƒCƒ‹ƒwƒbƒ_[‚ðƒZƒbƒg
-		FRO_MDL_ResSetFileHeader(); ‚Ü‚½‚Í FRO_MDL_ResSetArcLoad();
+	â—æ‰‹é †ï¼’ã€€rmdlã¸ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
+		FRO_MDL_ResSetFileHeader(); ã¾ãŸã¯ FRO_MDL_ResSetArcLoad();
 	
-	œŽè‡‚R@rmdl‚ÖƒZƒbƒg‚µ‚½ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÉƒeƒNƒXƒ`ƒƒ‚ðƒZƒbƒg
-		VBlank’†‚ÉFRO_MDL_TexTransBind()‚©A
+	â—æ‰‹é †ï¼“ã€€rmdlã¸ã‚»ãƒƒãƒˆã—ãŸãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆ
+		VBlankä¸­ã«FRO_MDL_TexTransBind()ã‹ã€
 		FRO_MDL_TexTransBindVTaskAdd();
 	
-	<OBJ’Ç‰ÁŽè‡@ƒAƒjƒ>
-	œŽè‡‚P@FRO_ANM\‘¢‘Ì‚ð—pˆÓ
+	<OBJè¿½åŠ æ‰‹é †ã€€ã‚¢ãƒ‹ãƒ¡>
+	â—æ‰‹é †ï¼‘ã€€FRO_ANMæ§‹é€ ä½“ã‚’ç”¨æ„
 		FRO_ANM ranm;
 		
-	œŽè‡‚Q@ranm‚ÖƒAƒjƒƒŠƒ\[ƒX‚ðƒZƒbƒg
-		ƒŠƒ\[ƒX‚ðƒƒCƒ“‚Æ‚µ‚ÄƒZƒbƒg‚·‚éê‡‚Í
-		FRO_ANM_AnmResSetMain(),FRO_ANM_AnmResSetArcLoad()‚Ì‚¢‚¸‚ê‚©‚ðŽg—p‚·‚éB
-		Šù‚Éƒ[ƒhÏ‚Ý‚ÌƒŠƒ\[ƒX‚ðŽg—p‚·‚éê‡‚Í
-		FRO_ANM_AnmResSetSub()‚ðŽg—p‚·‚éB
+	â—æ‰‹é †ï¼’ã€€ranmã¸ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆ
+		ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ¡ã‚¤ãƒ³ã¨ã—ã¦ã‚»ãƒƒãƒˆã™ã‚‹å ´åˆã¯
+		FRO_ANM_AnmResSetMain(),FRO_ANM_AnmResSetArcLoad()ã®ã„ãšã‚Œã‹ã‚’ä½¿ç”¨ã™ã‚‹ã€‚
+		æ—¢ã«ãƒ­ãƒ¼ãƒ‰æ¸ˆã¿ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯
+		FRO_ANM_AnmResSetSub()ã‚’ä½¿ç”¨ã™ã‚‹ã€‚
 	
-	œŽè‡‚R@ranm“à‚ÉƒAƒjƒƒIƒuƒWƒFƒŠƒ\[ƒX‚ðŠm•Û‚·‚é
-		FRO_ANM_AllocAnmObj(),‚à‚µ‚­‚Í
-		FRO_MDL‚ðŽQÆ‚·‚éFRO_ANM_AllocAnmObjInMdl()‚©A
-		FRO_ANM_AllocAnmObjInMdlAlloc()‚ðŽg—p‚·‚é
+	â—æ‰‹é †ï¼“ã€€ranmå†…ã«ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ã‚’ç¢ºä¿ã™ã‚‹
+		FRO_ANM_AllocAnmObj(),ã‚‚ã—ãã¯
+		FRO_MDLã‚’å‚ç…§ã™ã‚‹FRO_ANM_AllocAnmObjInMdl()ã‹ã€
+		FRO_ANM_AllocAnmObjInMdlAlloc()ã‚’ä½¿ç”¨ã™ã‚‹
 	
-	<OBJ’Ç‰ÁŽè‡ OBJ>
-	œŽè‡‚P@FRO_OBJ\‘¢‘Ì‚ð—pˆÓ
+	<OBJè¿½åŠ æ‰‹é † OBJ>
+	â—æ‰‹é †ï¼‘ã€€FRO_OBJæ§‹é€ ä½“ã‚’ç”¨æ„
 		FRO_OBJ robj;
 	
-	œŽè‡‚Q@robj‚ð‰Šú‰»
-		FRO_OBJ_Init()‚à‚µ‚­‚Í
-		‰Šú‰»‚É‡‚í‚¹FRO_MDL“à‚Ìƒ‚ƒfƒ‹‚ÆƒŠƒ“ƒN‚·‚éFRO_OBJ_InitInMdl()B
+	â—æ‰‹é †ï¼’ã€€robjã‚’åˆæœŸåŒ–
+		FRO_OBJ_Init()ã‚‚ã—ãã¯
+		åˆæœŸåŒ–ã«åˆã‚ã›FRO_MDLå†…ã®ãƒ¢ãƒ‡ãƒ«ã¨ãƒªãƒ³ã‚¯ã™ã‚‹FRO_OBJ_InitInMdl()ã€‚
 		
-	œŽè‡‚R@•K—v‚ª‚ ‚ê‚Îrobj‚ÖƒAƒjƒ‚ðƒŠƒ“ƒN
-		FRO_OBJ_AddAnm()‚à‚µ‚­‚ÍFRO_OBJ_AddAnmInAnm()B
+	â—æ‰‹é †ï¼“ã€€å¿…è¦ãŒã‚ã‚Œã°robjã¸ã‚¢ãƒ‹ãƒ¡ã‚’ãƒªãƒ³ã‚¯
+		FRO_OBJ_AddAnm()ã‚‚ã—ãã¯FRO_OBJ_AddAnmInAnm()ã€‚
 		
-		FRO_OBJ_InitAddAnm()‚ðŒÄ‚Ô‚ÆŽè‡‚QC‚R‚ð“Z‚ß‚Äs‚¤B
+		FRO_OBJ_InitAddAnm()ã‚’å‘¼ã¶ã¨æ‰‹é †ï¼’ï¼Œï¼“ã‚’çºã‚ã¦è¡Œã†ã€‚
 	
-	<OBJƒAƒjƒ>
-		FRO_ANM_Play()‚ðŒÄ‚ÔB
+	<OBJã‚¢ãƒ‹ãƒ¡>
+		FRO_ANM_Play()ã‚’å‘¼ã¶ã€‚
 
-	<OBJ•`‰æ>
-		FRO_OBJ_Draw()‚ðŒÄ‚ÔB
+	<OBJæç”»>
+		FRO_OBJ_Draw()ã‚’å‘¼ã¶ã€‚
 	
-	<OBJíœ>
-	œFRO_MDLíœ
-		FRO_MDL_DeleteAll()‚ðŒÄ‚ÔB
+	<OBJå‰Šé™¤>
+	â—FRO_MDLå‰Šé™¤
+		FRO_MDL_DeleteAll()ã‚’å‘¼ã¶ã€‚
 		
-	œFRO_ANMíœ
-		FRO_ANM_DeleteAll()‚ðŒÄ‚ÔB
+	â—FRO_ANMå‰Šé™¤
+		FRO_ANM_DeleteAll()ã‚’å‘¼ã¶ã€‚
 	
-	œFRO_OBJíœ
-		“Á‚É‚È‚µB
-		ƒ[ƒN‚ðƒNƒŠƒA‚µ‚½‚¢ê‡‚ÍFRO_OBJ_Clear()B
+	â—FRO_OBJå‰Šé™¤
+		ç‰¹ã«ãªã—ã€‚
+		ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã—ãŸã„å ´åˆã¯FRO_OBJ_Clear()ã€‚
 	
-	<ƒAƒjƒ ƒŠƒ\[ƒX—¬—p—á>
+	<ã‚¢ãƒ‹ãƒ¡ ãƒªã‚½ãƒ¼ã‚¹æµç”¨ä¾‹>
 		FRO_ANM ranm0,ranm1;
 		FRO_ANM_AnmResSetArcLoad(ranm0);
 		void *pRes = FRO_ANM_ResAnmGet(ranm0);
 		FRO_ANM_AnmResSetSub(ranm1,pRes);
-		‚à‚µ‚­‚Í
-		FRO_ANM_AnmResObjInitSame()“™
+		ã‚‚ã—ãã¯
+		FRO_ANM_AnmResObjInitSame()ç­‰
 		
-	<ƒAƒjƒ@ŽQÆA•ÏX>
+	<ã‚¢ãƒ‹ãƒ¡ã€€å‚ç…§ã€å¤‰æ›´>
 		FRO_ANM_FrameSet()
 		FRO_ANM_FrameGet()
 		FRO_ANM_MaxFrameGet()
@@ -98,16 +98,16 @@
 //	debug
 //--------------------------------------------------------------
 #ifdef PM_DEBUG
-//#define DEBUG_FRO_VINTR_COUNT		//’è‹`‚ÅVIntrTCB‹N“®”ƒJƒEƒ“ƒg
+//#define DEBUG_FRO_VINTR_COUNT		//å®šç¾©ã§VIntrTCBèµ·å‹•æ•°ã‚«ã‚¦ãƒ³ãƒˆ
 
 #ifdef	DEBUG_FRO_VINTR_COUNT
-//#define DEBUG_FRO_VINTR_COUNT_PRINT //’è‹`‚ÅVIntrTCB‹N“®”ƒvƒŠƒ“ƒg
-#define DEBUG_FRO_VINTR_COUNT_ASSERT //’è‹`‚ÅVIntrTCBƒGƒ‰[’âŽ~
+//#define DEBUG_FRO_VINTR_COUNT_PRINT //å®šç¾©ã§VIntrTCBèµ·å‹•æ•°ãƒ—ãƒªãƒ³ãƒˆ
+#define DEBUG_FRO_VINTR_COUNT_ASSERT //å®šç¾©ã§VIntrTCBã‚¨ãƒ©ãƒ¼åœæ­¢
 #endif
 
 #endif	//PM_DEBUG
 
-#define VTCBPRI_FRO_TEXBIND (0xffff)		///<ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒhVBlankTCBPriorty
+#define VTCBPRI_FRO_TEXBIND (0xffff)		///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰VBlankTCBPriorty
 
 //--------------------------------------------------------------
 ///	loop?

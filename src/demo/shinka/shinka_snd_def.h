@@ -2,20 +2,20 @@
 //==============================================================================
 /**
  * @file	shinka_snd_def.h
- * @brief	i‰»ƒfƒ‚‚ÌŒø‰Ê‰¹İ’èƒtƒ@ƒCƒ‹
+ * @brief	é€²åŒ–ãƒ‡ãƒ¢ã®åŠ¹æœéŸ³è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
  * @author	sogabe
- * @date	2006.03.28(‰Î)
+ * @date	2006.03.28(ç«)
  */
 //==============================================================================
 #ifndef __SHINKA_SND_DEF_H__
 #define __SHINKA_SND_DEF_H__
 
-#define	SHINKA_SE_QUEEN		(SEQ_SE_DP_W025)		//ƒNƒC`ƒ“
+#define	SHINKA_SE_QUEEN		(SEQ_SE_DP_W025)		//ã‚¯ã‚¤ã€œãƒ³
 
-#define	SHINKA_SE_KIIN		(SEQ_SE_DP_W060C)		//ƒL`ƒ“I
+#define	SHINKA_SE_KIIN		(SEQ_SE_DP_W060C)		//ã‚­ã€œãƒ³ï¼
 
-#define	SHINKA_SE_SYUU		(SEQ_SE_DP_W062)		//ƒVƒ…[
+#define	SHINKA_SE_SYUU		(SEQ_SE_DP_W062)		//ã‚·ãƒ¥ãƒ¼
 
-#define	SHINKA_SE_BAAN		(SEQ_SE_DP_W080)		//ƒo[ƒ“I
+#define	SHINKA_SE_BAAN		(SEQ_SE_DP_W080)		//ãƒãƒ¼ãƒ³ï¼
 
 #endif	//__SHINKA_SND_DEF_H__

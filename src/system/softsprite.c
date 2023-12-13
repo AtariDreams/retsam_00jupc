@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	softsprite.c
- * @bfief	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ğg—p‚µ‚½•\¦ƒvƒƒOƒ‰ƒ€
+ * @bfief	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ä½¿ç”¨ã—ãŸè¡¨ç¤ºãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.06.08
  */
@@ -16,15 +16,15 @@
 
 #include "poketool/pokegra/otherpoke.naix"
 
-#include "patch.dat"	//ƒpƒbƒ`[ƒ‹‚Ì‚Ô‚¿ƒf[ƒ^
+#include "patch.dat"	//ãƒ‘ãƒƒãƒãƒ¼ãƒ«ã®ã¶ã¡ãƒ‡ãƒ¼ã‚¿
 
 
 // -----------------------------------------
 //
-//	¡softspriteŠÖ˜AƒXƒCƒbƒ`
+//	â– softspriteé–¢é€£ã‚¹ã‚¤ãƒƒãƒ
 //
 // -----------------------------------------
-//#define SS_PAT_ANM_OFS_Y_ON			///< —LŒø = ƒpƒ^[ƒ“ƒAƒjƒ‚ÌƒIƒtƒZƒbƒgY‚ğ”½‰f‚·‚é
+//#define SS_PAT_ANM_OFS_Y_ON			///< æœ‰åŠ¹ = ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆYã‚’åæ˜ ã™ã‚‹
 
 
 void	*SoftSpriteInit(int heap_id);
@@ -97,9 +97,9 @@ static	void	SoftSpriteStrikeMake(SOFT_SPRITE *ss,u8 *buf);
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€‚Ì‰Šú‰»
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
  *
- * @param[in]	heap_id		—Ìˆæ‚ğŠm•Û‚·‚éƒq[ƒv—Ìˆæ‚ÌID
+ * @param[in]	heap_id		é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ID
  */
 //============================================================================================
 void	*SoftSpriteInit(int heap_id)
@@ -114,10 +114,10 @@ void	*SoftSpriteInit(int heap_id)
 
 	ssm_p->heap_id=heap_id;
 	ssm_p->cnt=0;
-	ssm_p->texture_trans_ofs=0;								///<ƒeƒNƒXƒ`ƒƒ‚Ì“]‘—æƒAƒhƒŒƒX‚ÌƒIƒtƒZƒbƒg
-	ssm_p->texture_trans_size=SOFT_SPRITE_CHR_SIZE;			///<ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—ƒTƒCƒY
-	ssm_p->palette_trans_ofs=0;								///<ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg‚Ì“]‘—æƒAƒhƒŒƒX‚ÌƒIƒtƒZƒbƒg
-	ssm_p->palette_trans_size=SOFT_SPRITE_TRANS_COL_SIZE;	///<ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒf[ƒ^“]‘—ƒTƒCƒY
+	ssm_p->texture_trans_ofs=0;								///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	ssm_p->texture_trans_size=SOFT_SPRITE_CHR_SIZE;			///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€ã‚µã‚¤ã‚º
+	ssm_p->palette_trans_ofs=0;								///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã®è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	ssm_p->palette_trans_size=SOFT_SPRITE_TRANS_COL_SIZE;	///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€ã‚µã‚¤ã‚º
 
 	ssm_p->dest_chr=sys_AllocMemory(heap_id,SOFT_SPRITE_CHR_SIZE);
 	ssm_p->dest_col=sys_AllocMemory(heap_id,SOFT_SPRITE_COL_SIZE);
@@ -133,7 +133,7 @@ void	*SoftSpriteInit(int heap_id)
 
 	ssm_p->mode=SS_DRAW_MODE_NORMAL;
 
-	//‰eƒf[ƒ^“Ç‚İ‚İ
+	//å½±ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buf=ArchiveDataLoadMalloc(ARC_OTHER_POKE,NARC_pl_otherpoke_kage_NCBR,ssm_p->heap_id);
 	NNS_G2dGetUnpackedCharacterData(buf,&cd_src);
 	ssm_p->cd_dest.pixelFmt=cd_src->pixelFmt;
@@ -142,7 +142,7 @@ void	*SoftSpriteInit(int heap_id)
 	src=cd_src->pRawData;
 	SoftSpriteChrMask(src);
 
-	//“§–¾F‚Å“h‚è‚Â‚Ô‚µ
+	//é€æ˜è‰²ã§å¡—ã‚Šã¤ã¶ã—
 	MI_CpuFill8(&ssm_p->dest_chr[0],src[0],SOFT_SPRITE_CHR_SIZE);
 
 	for(y=0;y<SOFT_SPRITE_SRC_Y;y++){
@@ -189,7 +189,7 @@ static const int SoftSpritePatTable[4][2][4]={
 };
 
 static const int SoftSpriteShadowTable[4][4]={
-	//0Fƒ_ƒ~[ƒf[ƒ^iÀÛ‚Í•\¦‚³‚ê‚È‚¢j
+	//0ï¼šãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆå®Ÿéš›ã¯è¡¨ç¤ºã•ã‚Œãªã„ï¼‰
 	{SOFT_SPRITE_SIZE_X*2,SOFT_SPRITE_SIZE_Y*2+ 0,SOFT_SPRITE_SIZE_X*2+64,SOFT_SPRITE_SIZE_Y*2+16},
 	//1
 	{SOFT_SPRITE_SIZE_X*2,SOFT_SPRITE_SIZE_Y*2+ 0,SOFT_SPRITE_SIZE_X*2+64,SOFT_SPRITE_SIZE_Y*2+16},
@@ -201,9 +201,9 @@ static const int SoftSpriteShadowTable[4][4]={
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒƒCƒ“ƒ‹[ƒ`ƒ“
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
  *
- * @param[in]	ssm_p	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ssm_p	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteMain(SOFT_SPRITE_MANAGER *ssm_p)
@@ -237,7 +237,7 @@ void	SoftSpriteMain(SOFT_SPRITE_MANAGER *ssm_p)
 			NNS_G3dGeFlushBuffer();
 
 			if(ssm_p->mode!=SS_DRAW_MODE_NO_IDENTITY){
-				// ƒ}ƒgƒŠƒNƒX‰Šú‰»
+				// ãƒãƒˆãƒªã‚¯ã‚¹åˆæœŸåŒ–
 				G3_Identity();
 			}
 			
@@ -300,7 +300,7 @@ void	SoftSpriteMain(SOFT_SPRITE_MANAGER *ssm_p)
 			   (ssm_p->ss[i].ssp.visible_flag==0)&&
 			   ((ssm_p->ss_system_flag&SS_SYSTEM_FLAG_SHADOW_OFF)==0)){
 				if(ssm_p->mode!=SS_DRAW_MODE_NO_IDENTITY){
-					// ƒ}ƒgƒŠƒNƒX‰Šú‰»
+					// ãƒãƒˆãƒªã‚¯ã‚¹åˆæœŸåŒ–
 					G3_Identity();
 				}
 				G3_TexPlttBase((u32)(ssm_p->palette_trans_ofs+32*(3+ssm_p->ss[i].sss.shadow_req)),ssm_p->imgp.attr.fmt);
@@ -338,9 +338,9 @@ void	SoftSpriteMain(SOFT_SPRITE_MANAGER *ssm_p)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ‚ÌI—¹
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã®çµ‚äº†
  *
- * @param[in]	ssm_p	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ssm_p	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteEnd(SOFT_SPRITE_MANAGER *ssm_p)
@@ -353,17 +353,17 @@ void	SoftSpriteEnd(SOFT_SPRITE_MANAGER *ssm_p)
 
 //============================================================================================
 /**
- *	ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒZƒbƒg
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	ss		ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒZƒbƒg‚·‚éƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgŠÇ—ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param[in]	anm_no	ƒZƒbƒg‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+ * @param[in]	ss		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç®¡ç†ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	anm_no	ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	SoftSpriteAnimeSet(SOFT_SPRITE *ss,int anm_no)
 {
 	int	i;
 
-	//¡‰ñ‚ÍA”Ä—p«‚ğ‚È‚­‚µ‚ÄAanm_no‚ğƒtƒ‰ƒO‚Æ‚µ‚Äˆ—i0:ƒAƒjƒ‚µ‚È‚¢@1:ƒAƒjƒ‚·‚éj
+	//ä»Šå›ã¯ã€æ±ç”¨æ€§ã‚’ãªãã—ã¦ã€anm_noã‚’ãƒ•ãƒ©ã‚°ã¨ã—ã¦å‡¦ç†ï¼ˆ0:ã‚¢ãƒ‹ãƒ¡ã—ãªã„ã€€1:ã‚¢ãƒ‹ãƒ¡ã™ã‚‹ï¼‰
 	ss->anm_seq=0;
 	for(i=0;i<SS_ANM_SEQ_MAX;i++){
 		ss->anm_loop[i]=0;
@@ -387,10 +387,10 @@ void	SoftSpriteAnimeSet(SOFT_SPRITE *ss,int anm_no)
 
 //============================================================================================
 /**
- *	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğƒZƒbƒg
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	ss		ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒZƒbƒg‚·‚éƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgŠÇ—ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param[in]	ssanm	ƒZƒbƒg‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+ * @param[in]	ss		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç®¡ç†ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	ssanm	ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 void	SoftSpriteAnimeDataSet( SOFT_SPRITE *ss, SOFT_SPRITE_ANIME *ssanm )
@@ -400,11 +400,11 @@ void	SoftSpriteAnimeDataSet( SOFT_SPRITE *ss, SOFT_SPRITE_ANIME *ssanm )
 
 //============================================================================================
 /**
- *	ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌI—¹‚ğƒ`ƒFƒbƒN
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	ss		ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌI—¹‚ğƒ`ƒFƒbƒN‚·‚éƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgŠÇ—ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param[in]	ss		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç®¡ç†ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	FALSE:I—¹	TRUE:Œp‘±’†
+ * @retval	FALSE:çµ‚äº†	TRUE:ç¶™ç¶šä¸­
  */
 //============================================================================================
 BOOL	SoftSpriteAnimeEndCheck(SOFT_SPRITE *ss)
@@ -414,18 +414,18 @@ BOOL	SoftSpriteAnimeEndCheck(SOFT_SPRITE *ss)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ğ“o˜^‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ç™»éŒ²ã™ã‚‹
  *
- * @param[in]	ssm_p	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	ssa		ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒwƒbƒ_[ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	pos_x	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‰ŠúˆÊ’uiXÀ•Wj
- * @param[in]	pos_y	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‰ŠúˆÊ’uiYÀ•Wj
- * @param[in]	pos_z	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‰ŠúˆÊ’uiZÀ•Wj
- * @param[in]	poly_id	•`‰æ‚·‚éƒ|ƒŠƒSƒ“ID
- * @param[in]	anm_tbl	ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	move	“®ìŠÖ”‚Ìƒ|ƒCƒ“ƒ^iSoftSpriteMain‚©‚çŒÄ‚Î‚ê‚Ü‚·j
+ * @param[in]	ssm_p	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	ssa		ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	pos_x	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸä½ç½®ï¼ˆXåº§æ¨™ï¼‰
+ * @param[in]	pos_y	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸä½ç½®ï¼ˆYåº§æ¨™ï¼‰
+ * @param[in]	pos_z	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸä½ç½®ï¼ˆZåº§æ¨™ï¼‰
+ * @param[in]	poly_id	æç”»ã™ã‚‹ãƒãƒªã‚´ãƒ³ID
+ * @param[in]	anm_tbl	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	move	å‹•ä½œé–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆSoftSpriteMainã‹ã‚‰å‘¼ã°ã‚Œã¾ã™ï¼‰
  *
- * @retval		SOFT_SPRITE *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgŠÇ—ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval		SOFT_SPRITE *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç®¡ç†ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //============================================================================================
@@ -449,19 +449,19 @@ SOFT_SPRITE	*SoftSpriteAdd(SOFT_SPRITE_MANAGER *ssm_p,SOFT_SPRITE_ARC *ssa,
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ğ“o˜^‚·‚éiƒZƒbƒg‚·‚éêŠ‚Ìw’è‚à‚ ‚èj
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ç™»éŒ²ã™ã‚‹ï¼ˆã‚»ãƒƒãƒˆã™ã‚‹å ´æ‰€ã®æŒ‡å®šã‚‚ã‚ã‚Šï¼‰
  *
- * @param[in]	ssm_p	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	ssa		ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒwƒbƒ_[ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	pos_x	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‰ŠúˆÊ’uiXÀ•Wj
- * @param[in]	pos_y	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‰ŠúˆÊ’uiYÀ•Wj
- * @param[in]	pos_z	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‰ŠúˆÊ’uiZÀ•Wj
- * @param[in]	poly_id	•`‰æ‚·‚éƒ|ƒŠƒSƒ“ID
- * @param[in]	ss_no	“o˜^‚·‚éSS\‘¢‘Ì”z—ñ‚Ì“Y‚¦š
- * @param[in]	anm_tbl	ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	move	“®ìŠÖ”‚Ìƒ|ƒCƒ“ƒ^iSoftSpriteMain‚©‚çŒÄ‚Î‚ê‚Ü‚·j
+ * @param[in]	ssm_p	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	ssa		ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	pos_x	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸä½ç½®ï¼ˆXåº§æ¨™ï¼‰
+ * @param[in]	pos_y	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸä½ç½®ï¼ˆYåº§æ¨™ï¼‰
+ * @param[in]	pos_z	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸä½ç½®ï¼ˆZåº§æ¨™ï¼‰
+ * @param[in]	poly_id	æç”»ã™ã‚‹ãƒãƒªã‚´ãƒ³ID
+ * @param[in]	ss_no	ç™»éŒ²ã™ã‚‹SSæ§‹é€ ä½“é…åˆ—ã®æ·»ãˆå­—
+ * @param[in]	anm_tbl	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	move	å‹•ä½œé–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆSoftSpriteMainã‹ã‚‰å‘¼ã°ã‚Œã¾ã™ï¼‰
  *
- * @retval		SOFT_SPRITE *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgŠÇ—ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval		SOFT_SPRITE *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç®¡ç†ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //============================================================================================
@@ -508,9 +508,9 @@ SOFT_SPRITE	*SoftSpriteAddNum(SOFT_SPRITE_MANAGER *ssm_p,SOFT_SPRITE_ARC *ssa,
 
 //============================================================================================
 /**
- *	“o˜^‚³‚ê‚Ä‚¢‚éƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ğíœ
+ *	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’å‰Šé™¤
  *
- * @param[in]	ss		íœ‚·‚é‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ss		å‰Šé™¤ã™ã‚‹å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteDel(SOFT_SPRITE *ss)
@@ -520,9 +520,9 @@ void	SoftSpriteDel(SOFT_SPRITE *ss)
 
 //============================================================================================
 /**
- *	“o˜^‚³‚ê‚Ä‚¢‚éƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ğ‚·‚×‚Äíœ
+ *	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ã™ã¹ã¦å‰Šé™¤
  *
- * @param[in]	ssm_p	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ssm_p	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteClear(SOFT_SPRITE_MANAGER *ssm_p)
@@ -536,11 +536,11 @@ void	SoftSpriteClear(SOFT_SPRITE_MANAGER *ssm_p)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param[in]	ss		ƒZƒbƒg‚·‚é‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	para	ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^isoftsprite.h‚É’è‹`j
- * @param[in]	data	ƒZƒbƒg‚·‚é’l
+ * @param[in]	ss		ã‚»ãƒƒãƒˆã™ã‚‹å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	para	ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆsoftsprite.hã«å®šç¾©ï¼‰
+ * @param[in]	data	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //============================================================================================
 void	SoftSpriteParaSet(SOFT_SPRITE *ss,int para,int data)
@@ -555,13 +555,13 @@ void	SoftSpriteParaSet(SOFT_SPRITE *ss,int para,int data)
 	case SS_PARA_POS_Z:
 		ss->ssp.pos_z=data;
 		break;
-	case SS_PARA_POS_OX:			// XÀ•WƒIƒtƒZƒbƒg
+	case SS_PARA_POS_OX:			// Xåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		ss->ssp.pos_ox=data;
 		break;
-	case SS_PARA_POS_OY:			// YÀ•WƒIƒtƒZƒbƒg
+	case SS_PARA_POS_OY:			// Yåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		ss->ssp.pos_oy=data;
 		break;
-	case SS_PARA_POS_OZ:			// ZÀ•WƒIƒtƒZƒbƒg
+	case SS_PARA_POS_OZ:			// Zåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		ss->ssp.pos_oz=data;
 		break;
 	case SS_PARA_VANISH:
@@ -618,50 +618,50 @@ void	SoftSpriteParaSet(SOFT_SPRITE *ss,int para,int data)
 	case SS_PARA_ALPHA:
 		ss->ssp.alpha=data;
 		break;
-	case SS_PARA_DIFF_R:		// DiffR’l
+	case SS_PARA_DIFF_R:		// DiffRå€¤
 		ss->ssp.diff_r=data;
 		break;
-	case SS_PARA_DIFF_G:		// DiffG’l
+	case SS_PARA_DIFF_G:		// DiffGå€¤
 		ss->ssp.diff_g=data;
 		break;
-	case SS_PARA_DIFF_B:		// DiffB’l
+	case SS_PARA_DIFF_B:		// DiffBå€¤
 		ss->ssp.diff_b=data;
 		break;
-	case SS_PARA_AMB_R:			// AmbR’l
+	case SS_PARA_AMB_R:			// AmbRå€¤
 		ss->ssp.amb_r=data;
 		break;
-	case SS_PARA_AMB_G:			// AmbG’l
+	case SS_PARA_AMB_G:			// AmbGå€¤
 		ss->ssp.amb_g=data;
 		break;
-	case SS_PARA_AMB_B:			// AmbB’l
+	case SS_PARA_AMB_B:			// AmbBå€¤
 		ss->ssp.amb_b=data;
 		break;
-	case SS_PARA_PAL_FADE:		// ƒpƒŒƒbƒgƒtƒF[ƒhƒtƒ‰ƒO
+	case SS_PARA_PAL_FADE:		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 		ss->ssp.pal_fade=data;
-		ss->pal_req=1;			//ƒpƒŒƒbƒgƒtƒF[ƒhŒW”‚ğ‘€ì‚µ‚½ê‡‚ÍAƒpƒŒƒbƒg¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->pal_req=1;			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¿‚æ•°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
-	case SS_PARA_PAL_RGB:		// ƒpƒŒƒbƒgƒtƒF[ƒh RGB’l
+	case SS_PARA_PAL_RGB:		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ RGBå€¤
 		ss->ssp.pal_rgb=data;
-		ss->pal_req=1;			//ƒpƒŒƒbƒgƒtƒF[ƒhŒW”‚ğ‘€ì‚µ‚½ê‡‚ÍAƒpƒŒƒbƒg¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->pal_req=1;			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¿‚æ•°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
-	case SS_PARA_PAL_START_EVY:	// ƒpƒŒƒbƒgƒtƒF[ƒh START_EVY’l
+	case SS_PARA_PAL_START_EVY:	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ START_EVYå€¤
 		ss->ssp.pal_start_evy=data;
-		ss->pal_req=1;			//ƒpƒŒƒbƒgƒtƒF[ƒhŒW”‚ğ‘€ì‚µ‚½ê‡‚ÍAƒpƒŒƒbƒg¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->pal_req=1;			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¿‚æ•°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
-	case SS_PARA_PAL_END_EVY:	// ƒpƒŒƒbƒgƒtƒF[ƒh END_EVY’l
+	case SS_PARA_PAL_END_EVY:	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ END_EVYå€¤
 		ss->ssp.pal_end_evy=data;
-		ss->pal_req=1;			//ƒpƒŒƒbƒgƒtƒF[ƒhŒW”‚ğ‘€ì‚µ‚½ê‡‚ÍAƒpƒŒƒbƒg¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->pal_req=1;			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¿‚æ•°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
-	case SS_PARA_PAL_WAIT:		// ƒpƒŒƒbƒgƒtƒF[ƒh wait’l
+	case SS_PARA_PAL_WAIT:		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ waitå€¤
 		ss->ssp.pal_wait=data;
 		break;
 	case SS_PARA_H_FLIP:
 		ss->ssp.h_flip=data;
-		ss->make_req=1;				//ƒtƒŠƒbƒvƒtƒ‰ƒO‚ğ‘€ì‚µ‚½ê‡‚ÍAƒeƒNƒXƒ`ƒƒ¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->make_req=1;				//ãƒ•ãƒªãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
 	case SS_PARA_V_FLIP:
 		ss->ssp.v_flip=data;
-		ss->make_req=1;				//ƒtƒŠƒbƒvƒtƒ‰ƒO‚ğ‘€ì‚µ‚½ê‡‚ÍAƒeƒNƒXƒ`ƒƒ¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->make_req=1;				//ãƒ•ãƒªãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
 	case SS_PARA_DRAW_STOP:
 		ss->ssp.draw_stop=data;
@@ -671,14 +671,14 @@ void	SoftSpriteParaSet(SOFT_SPRITE *ss,int para,int data)
 		break;
 	case SS_PARA_MOSAIC:
 		ss->ssp.mosaic=data;
-		ss->make_req=1;				//ƒ‚ƒUƒCƒN’l‚ğ‘€ì‚µ‚½ê‡‚ÍAƒeƒNƒXƒ`ƒƒ¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->make_req=1;				//ãƒ¢ã‚¶ã‚¤ã‚¯å€¤ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
 	case SS_PARA_SHADOW_HEIGHT:
 		ss->sss.shadow_height=data;
 		break;
 	case SS_PARA_SHADOW_REQ:
 		ss->sss.shadow_req=data;
-		ss->pal_req=1;				//‰e—L–³’l‚ğ‘€ì‚µ‚½ê‡‚ÍAƒpƒŒƒbƒg¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->pal_req=1;				//å½±æœ‰ç„¡å€¤ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
 	case SS_PARA_SHADOW_X_REQ:
 		ss->sss.shadow_x_req=data;
@@ -697,10 +697,10 @@ void	SoftSpriteParaSet(SOFT_SPRITE *ss,int para,int data)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- * @param[in]	ss		æ“¾‚·‚é‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	para	æ“¾‚·‚éƒpƒ‰ƒ[ƒ^isoftsprite.h‚É’è‹`j
+ * @param[in]	ss		å–å¾—ã™ã‚‹å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	para	å–å¾—ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆsoftsprite.hã«å®šç¾©ï¼‰
  */
 //============================================================================================
 int		SoftSpriteParaGet(SOFT_SPRITE *ss,int para)
@@ -754,27 +754,27 @@ int		SoftSpriteParaGet(SOFT_SPRITE *ss,int para)
 		return ss->sss.shadow_oy;
 	case SS_PARA_ALPHA:
 		return ss->ssp.alpha;
-	case SS_PARA_DIFF_R:		// DiffR’l
+	case SS_PARA_DIFF_R:		// DiffRå€¤
 		return ss->ssp.diff_r;
-	case SS_PARA_DIFF_G:		// DiffG’l
+	case SS_PARA_DIFF_G:		// DiffGå€¤
 		return ss->ssp.diff_g;
-	case SS_PARA_DIFF_B:		// DiffB’l
+	case SS_PARA_DIFF_B:		// DiffBå€¤
 		return ss->ssp.diff_b;
-	case SS_PARA_AMB_R:			// AmbR’l
+	case SS_PARA_AMB_R:			// AmbRå€¤
 		return ss->ssp.amb_r;
-	case SS_PARA_AMB_G:			// AmbG’l
+	case SS_PARA_AMB_G:			// AmbGå€¤
 		return ss->ssp.amb_g;
-	case SS_PARA_AMB_B:			// AmbB’l
+	case SS_PARA_AMB_B:			// AmbBå€¤
 		return ss->ssp.amb_b;
-	case SS_PARA_PAL_FADE:		// ƒpƒŒƒbƒgƒtƒF[ƒhƒtƒ‰ƒO
+	case SS_PARA_PAL_FADE:		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 		return ss->ssp.pal_fade;
-	case SS_PARA_PAL_RGB:		// ƒpƒŒƒbƒgƒtƒF[ƒh RGB’l
+	case SS_PARA_PAL_RGB:		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ RGBå€¤
 		return ss->ssp.pal_rgb;
-	case SS_PARA_PAL_START_EVY:	// ƒpƒŒƒbƒgƒtƒF[ƒh START_EVY’l
+	case SS_PARA_PAL_START_EVY:	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ START_EVYå€¤
 		return ss->ssp.pal_start_evy;
-	case SS_PARA_PAL_END_EVY:	// ƒpƒŒƒbƒgƒtƒF[ƒh END_EVY’l
+	case SS_PARA_PAL_END_EVY:	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ END_EVYå€¤
 		return ss->ssp.pal_end_evy;
-	case SS_PARA_PAL_WAIT:		// ƒpƒŒƒbƒgƒtƒF[ƒh wait’l
+	case SS_PARA_PAL_WAIT:		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ waitå€¤
 		return ss->ssp.pal_wait;
 	case SS_PARA_H_FLIP:
 		return ss->ssp.h_flip;
@@ -801,17 +801,17 @@ int		SoftSpriteParaGet(SOFT_SPRITE *ss,int para)
 		return ss->sss.shadow_size;
 		break;
 	}
-	GF_ASSERT((0)&&"‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢");
+	GF_ASSERT((0)&&"ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„");
 	return 0;
 }
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^ŒvZ‚ğ‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨ˆç®—ã‚’ã™ã‚‹
  *
- * @param[in]	ss		ŒvZ‚ğ‚·‚é‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	para	ŒvZ‚ğ‚·‚éƒpƒ‰ƒ[ƒ^isoftsprite.h‚É’è‹`j
- * @param[in]	data	‰ÁŒ¸Z‚·‚é’l
+ * @param[in]	ss		è¨ˆç®—ã‚’ã™ã‚‹å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	para	è¨ˆç®—ã‚’ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆsoftsprite.hã«å®šç¾©ï¼‰
+ * @param[in]	data	åŠ æ¸›ç®—ã™ã‚‹å€¤
  *
  */
 //============================================================================================
@@ -827,13 +827,13 @@ void	SoftSpriteParaCalc(SOFT_SPRITE *ss,int para,int data)
 	case SS_PARA_POS_Z:
 		ss->ssp.pos_z+=data;
 		break;
-	case SS_PARA_POS_OX:			// XÀ•WƒIƒtƒZƒbƒg
+	case SS_PARA_POS_OX:			// Xåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		ss->ssp.pos_ox+=data;
 		break;
-	case SS_PARA_POS_OY:			// YÀ•WƒIƒtƒZƒbƒg
+	case SS_PARA_POS_OY:			// Yåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		ss->ssp.pos_oy+=data;
 		break;
-	case SS_PARA_POS_OZ:			// ZÀ•WƒIƒtƒZƒbƒg
+	case SS_PARA_POS_OZ:			// Zåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		ss->ssp.pos_oz+=data;
 		break;
 	case SS_PARA_VANISH:
@@ -890,50 +890,50 @@ void	SoftSpriteParaCalc(SOFT_SPRITE *ss,int para,int data)
 	case SS_PARA_ALPHA:
 		ss->ssp.alpha+=data;
 		break;
-	case SS_PARA_DIFF_R:		// DiffR’l
+	case SS_PARA_DIFF_R:		// DiffRå€¤
 		ss->ssp.diff_r+=data;
 		break;
-	case SS_PARA_DIFF_G:		// DiffG’l
+	case SS_PARA_DIFF_G:		// DiffGå€¤
 		ss->ssp.diff_g+=data;
 		break;
-	case SS_PARA_DIFF_B:		// DiffB’l
+	case SS_PARA_DIFF_B:		// DiffBå€¤
 		ss->ssp.diff_b+=data;
 		break;
-	case SS_PARA_AMB_R:			// AmbR’l
+	case SS_PARA_AMB_R:			// AmbRå€¤
 		ss->ssp.amb_r+=data;
 		break;
-	case SS_PARA_AMB_G:			// AmbG’l
+	case SS_PARA_AMB_G:			// AmbGå€¤
 		ss->ssp.amb_g+=data;
 		break;
-	case SS_PARA_AMB_B:			// AmbB’l
+	case SS_PARA_AMB_B:			// AmbBå€¤
 		ss->ssp.amb_b+=data;
 		break;
-	case SS_PARA_PAL_FADE:		// ƒpƒŒƒbƒgƒtƒF[ƒhƒtƒ‰ƒO
+	case SS_PARA_PAL_FADE:		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
 		ss->ssp.pal_fade+=data;
-		ss->pal_req=1;			//ƒpƒŒƒbƒgƒtƒF[ƒhŒW”‚ğ‘€ì‚µ‚½ê‡‚ÍAƒpƒŒƒbƒg¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->pal_req=1;			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¿‚æ•°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
-	case SS_PARA_PAL_RGB:		// ƒpƒŒƒbƒgƒtƒF[ƒh RGB’l
+	case SS_PARA_PAL_RGB:		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ RGBå€¤
 		ss->ssp.pal_rgb+=data;
-		ss->pal_req=1;			//ƒpƒŒƒbƒgƒtƒF[ƒhŒW”‚ğ‘€ì‚µ‚½ê‡‚ÍAƒpƒŒƒbƒg¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->pal_req=1;			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¿‚æ•°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
-	case SS_PARA_PAL_START_EVY:	// ƒpƒŒƒbƒgƒtƒF[ƒh START_EVY’l
+	case SS_PARA_PAL_START_EVY:	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ START_EVYå€¤
 		ss->ssp.pal_start_evy+=data;
-		ss->pal_req=1;			//ƒpƒŒƒbƒgƒtƒF[ƒhŒW”‚ğ‘€ì‚µ‚½ê‡‚ÍAƒpƒŒƒbƒg¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->pal_req=1;			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¿‚æ•°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
-	case SS_PARA_PAL_END_EVY:	// ƒpƒŒƒbƒgƒtƒF[ƒh END_EVY’l
+	case SS_PARA_PAL_END_EVY:	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ END_EVYå€¤
 		ss->ssp.pal_end_evy+=data;
-		ss->pal_req=1;			//ƒpƒŒƒbƒgƒtƒF[ƒhŒW”‚ğ‘€ì‚µ‚½ê‡‚ÍAƒpƒŒƒbƒg¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->pal_req=1;			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¿‚æ•°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
-	case SS_PARA_PAL_WAIT:		// ƒpƒŒƒbƒgƒtƒF[ƒh wait’l
+	case SS_PARA_PAL_WAIT:		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ waitå€¤
 		ss->ssp.pal_wait+=data;
 		break;
 	case SS_PARA_H_FLIP:
 		ss->ssp.h_flip+=data;
-		ss->make_req=1;				//ƒtƒŠƒbƒvƒtƒ‰ƒO‚ğ‘€ì‚µ‚½ê‡‚ÍAƒeƒNƒXƒ`ƒƒ¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->make_req=1;				//ãƒ•ãƒªãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
 	case SS_PARA_V_FLIP:
 		ss->ssp.v_flip+=data;
-		ss->make_req=1;				//ƒtƒŠƒbƒvƒtƒ‰ƒO‚ğ‘€ì‚µ‚½ê‡‚ÍAƒeƒNƒXƒ`ƒƒ¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->make_req=1;				//ãƒ•ãƒªãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
 	case SS_PARA_DRAW_STOP:
 		ss->ssp.draw_stop+=data;
@@ -943,14 +943,14 @@ void	SoftSpriteParaCalc(SOFT_SPRITE *ss,int para,int data)
 		break;
 	case SS_PARA_MOSAIC:
 		ss->ssp.mosaic+=data;
-		ss->make_req=1;				//ƒ‚ƒUƒCƒN’l‚ğ‘€ì‚µ‚½ê‡‚ÍAƒeƒNƒXƒ`ƒƒ¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->make_req=1;				//ãƒ¢ã‚¶ã‚¤ã‚¯å€¤ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
 	case SS_PARA_SHADOW_HEIGHT:
 		ss->sss.shadow_height+=data;
 		break;
 	case SS_PARA_SHADOW_REQ:
 		ss->sss.shadow_req+=data;
-		ss->pal_req=1;				//‰e—L–³’l‚ğ‘€ì‚µ‚½ê‡‚ÍAƒpƒŒƒbƒg¶¬ƒŠƒNƒGƒXƒg‚ğo‚·
+		ss->pal_req=1;				//å½±æœ‰ç„¡å€¤ã‚’æ“ä½œã—ãŸå ´åˆã¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆç”Ÿæˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
 		break;
 	case SS_PARA_SHADOW_X_REQ:
 		ss->sss.shadow_x_req+=data;
@@ -969,13 +969,13 @@ void	SoftSpriteParaCalc(SOFT_SPRITE *ss,int para,int data)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgVISIBLEƒ‚[ƒhƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆVISIBLEãƒ¢ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param[in]	ss		ƒZƒbƒg‚·‚é‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	ofs_x	ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒeƒNƒXƒ`ƒƒ‰Â‹”ÍˆÍw’è¶ãXÀ•Wj
- * @param[in]	ofs_y	ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒeƒNƒXƒ`ƒƒ‰Â‹”ÍˆÍw’è¶ãYÀ•Wj
- * @param[in]	size_x	ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒeƒNƒXƒ`ƒƒ‰Â‹”ÍˆÍXƒTƒCƒYj
- * @param[in]	size_y	ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒeƒNƒXƒ`ƒƒ‰Â‹”ÍˆÍYƒTƒCƒYj
+ * @param[in]	ss		ã‚»ãƒƒãƒˆã™ã‚‹å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	ofs_x	ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²æŒ‡å®šå·¦ä¸ŠXåº§æ¨™ï¼‰
+ * @param[in]	ofs_y	ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²æŒ‡å®šå·¦ä¸ŠYåº§æ¨™ï¼‰
+ * @param[in]	size_x	ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²Xã‚µã‚¤ã‚ºï¼‰
+ * @param[in]	size_y	ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²Yã‚µã‚¤ã‚ºï¼‰
  */
 //============================================================================================
 void	SoftSpriteVisibleSet(SOFT_SPRITE *ss,int ofs_x,int ofs_y,int size_x,int size_y)
@@ -990,13 +990,13 @@ void	SoftSpriteVisibleSet(SOFT_SPRITE *ss,int ofs_x,int ofs_y,int size_x,int siz
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒpƒŒƒbƒgƒtƒF[ƒhƒ‚[ƒhƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param[in]	ss			ƒZƒbƒg‚·‚é‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	start_evy	ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒtƒF[ƒh‚³‚¹‚éF‚É‘Î‚·‚éŠJnŠ„‡16’iŠKj
- * @param[in]	end_evy		ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒtƒF[ƒh‚³‚¹‚éF‚É‘Î‚·‚éI—¹Š„‡16’iŠKj
- * @param[in]	wait		ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒEƒFƒCƒgj
- * @param[in]	rgb			ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒtƒF[ƒh‚³‚¹‚éFj
+ * @param[in]	ss			ã‚»ãƒƒãƒˆã™ã‚‹å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	start_evy	ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹è‰²ã«å¯¾ã™ã‚‹é–‹å§‹å‰²åˆ16æ®µéšï¼‰
+ * @param[in]	end_evy		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹è‰²ã«å¯¾ã™ã‚‹çµ‚äº†å‰²åˆ16æ®µéšï¼‰
+ * @param[in]	wait		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆã‚¦ã‚§ã‚¤ãƒˆï¼‰
+ * @param[in]	rgb			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹è‰²ï¼‰
  */
 //============================================================================================
 void	SoftSpritePalFadeSet(SOFT_SPRITE *ss,int start_evy,int end_evy,int wait,int rgb)
@@ -1011,13 +1011,13 @@ void	SoftSpritePalFadeSet(SOFT_SPRITE *ss,int start_evy,int end_evy,int wait,int
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒpƒŒƒbƒgƒtƒF[ƒhƒ‚[ƒhƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚éi“o˜^‚³‚ê‚Ä‚¢‚éƒXƒvƒ‰ƒCƒg‚·‚×‚Äj
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ï¼ˆç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã™ã¹ã¦ï¼‰
  *
- * @param[in]	ssm_p		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	start_evy	ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒtƒF[ƒh‚³‚¹‚éF‚É‘Î‚·‚éŠJnŠ„‡16’iŠKj
- * @param[in]	end_evy		ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒtƒF[ƒh‚³‚¹‚éF‚É‘Î‚·‚éI—¹Š„‡16’iŠKj
- * @param[in]	wait		ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒEƒFƒCƒgj
- * @param[in]	rgb			ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^iƒtƒF[ƒh‚³‚¹‚éFj
+ * @param[in]	ssm_p		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	start_evy	ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹è‰²ã«å¯¾ã™ã‚‹é–‹å§‹å‰²åˆ16æ®µéšï¼‰
+ * @param[in]	end_evy		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹è‰²ã«å¯¾ã™ã‚‹çµ‚äº†å‰²åˆ16æ®µéšï¼‰
+ * @param[in]	wait		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆã‚¦ã‚§ã‚¤ãƒˆï¼‰
+ * @param[in]	rgb			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹è‰²ï¼‰
  */
 //============================================================================================
 void	SoftSpritePalFadeSetAll(SOFT_SPRITE_MANAGER *ssm_p,int start_evy,int end_evy,int wait,int rgb)
@@ -1038,9 +1038,9 @@ void	SoftSpritePalFadeSetAll(SOFT_SPRITE_MANAGER *ssm_p,int start_evy,int end_ev
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒpƒŒƒbƒgƒtƒF[ƒhƒ‚[ƒh‚ğƒIƒt‚É‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚ªãƒ•ã«ã™ã‚‹
  *
- * @param[in]	ss		ƒZƒbƒg‚·‚é‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ss		ã‚»ãƒƒãƒˆã™ã‚‹å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpritePalFadeOff(SOFT_SPRITE *ss)
@@ -1056,11 +1056,11 @@ void	SoftSpritePalFadeOff(SOFT_SPRITE *ss)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒpƒŒƒbƒgƒtƒF[ƒh’†‚©ƒ`ƒFƒbƒN‚É‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã‹ãƒã‚§ãƒƒã‚¯ã«ã™ã‚‹
  *
- * @param[in]	ss		ƒ`ƒFƒbƒN‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ss		ãƒã‚§ãƒƒã‚¯å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	TRUE:ƒtƒF[ƒh’†@FALSEFƒtƒF[ƒhI—¹
+ * @retval	TRUE:ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã€€FALSEï¼šãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
  */
 //============================================================================================
 BOOL	SoftSpritePalFadeExist(SOFT_SPRITE *ss)
@@ -1070,10 +1070,10 @@ BOOL	SoftSpritePalFadeExist(SOFT_SPRITE *ss)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚ÌŠgk‚ÌOY‚ğŒvZ‚·‚é
- *	iƒ|ƒPƒ‚ƒ““oê‚É‘«ˆÊ’u‚ğ‡‚í‚¹‚ÄŠg‘åAk¬‚³‚¹‚éj
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®æ‹¡ç¸®æ™‚ã®OYã‚’è¨ˆç®—ã™ã‚‹
+ *	ï¼ˆãƒã‚±ãƒ¢ãƒ³ç™»å ´æ™‚ã«è¶³ä½ç½®ã‚’åˆã‚ã›ã¦æ‹¡å¤§ã€ç¸®å°ã•ã›ã‚‹ï¼‰
  *
- * @param[in]	ss		ŒvZ‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ss		è¨ˆç®—å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteOYCalc(SOFT_SPRITE *ss,int height)
@@ -1082,19 +1082,19 @@ void	SoftSpriteOYCalc(SOFT_SPRITE *ss,int height)
 }
 
 //============================================================================================
-//		ŠO•””ñŒöŠJŠÖ”ŒQ
+//		å¤–éƒ¨éå…¬é–‹é–¢æ•°ç¾¤
 //============================================================================================
 
 //------------------------------------------------------------------
 /**
- * ƒAƒjƒisˆ—
+ * ã‚¢ãƒ‹ãƒ¡é€²è¡Œå‡¦ç†
  *
- * @param   anm_flag[io]	ƒAƒjƒ’†ƒtƒ‰ƒOƒ[ƒN
- * @param   pat[out]		ƒAƒjƒƒpƒ^[ƒ“‚ğó‚¯æ‚é•Ï”ƒ|ƒCƒ“ƒ^
- * @param   seq	[io]		ƒV[ƒPƒ“ƒX•Û‘¶ƒ[ƒN
- * @param   wait[io]		ƒEƒFƒCƒg•Û‘¶ƒ[ƒN
- * @param   loop_cnt[io]	ƒ‹[ƒvƒJƒEƒ“ƒ^•Û‘¶ƒ[ƒNiu8 * SS_ANM_SEQ_MAXj
- * @param   anm_tbl[in]		ƒAƒjƒƒe[ƒuƒ‹ƒ|ƒCƒ“ƒ^
+ * @param   anm_flag[io]	ã‚¢ãƒ‹ãƒ¡ä¸­ãƒ•ãƒ©ã‚°ãƒ¯ãƒ¼ã‚¯
+ * @param   pat[out]		ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å—ã‘å–ã‚‹å¤‰æ•°ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq	[io]		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿å­˜ãƒ¯ãƒ¼ã‚¯
+ * @param   wait[io]		ã‚¦ã‚§ã‚¤ãƒˆä¿å­˜ãƒ¯ãƒ¼ã‚¯
+ * @param   loop_cnt[io]	ãƒ«ãƒ¼ãƒ—ã‚«ã‚¦ãƒ³ã‚¿ä¿å­˜ãƒ¯ãƒ¼ã‚¯ï¼ˆu8 * SS_ANM_SEQ_MAXï¼‰
+ * @param   anm_tbl[in]		ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static inline void SoftSpriteAnimeCore( u8* anm_flag, u8* pat, u8* seq, u8* wait, u8* loop_cnt, const SOFT_SPRITE_ANIME* anm_tbl )
@@ -1104,7 +1104,7 @@ static inline void SoftSpriteAnimeCore( u8* anm_flag, u8* pat, u8* seq, u8* wait
 		if( (*wait) == 0 )
 		{
 			(*seq)++;
-			//ƒ‹[ƒvˆ—
+			//ãƒ«ãƒ¼ãƒ—å‡¦ç†
 			while( anm_tbl[*seq].patno < -1 )
 			{
 				loop_cnt[*seq]++;
@@ -1140,7 +1140,7 @@ static void SoftSpriteAnimeCoreEx( u8* anm_flag, u8* pat, u8* seq, u8* wait, s16
 		if( (*wait) == 0 )
 		{
 			(*seq)++;
-			//ƒ‹[ƒvˆ—
+			//ãƒ«ãƒ¼ãƒ—å‡¦ç†
 			OS_Printf( "00seq = %3d\n", *seq );
 			while( anm_tbl[*seq].patno < -1 )
 			{
@@ -1214,7 +1214,7 @@ static void SoftSpriteAnimeCoreSS( SOFT_SPRITE *ss )
 		if( ss->anm_wait == 0 )
 		{
 			ss->anm_seq++;
-			//ƒ‹[ƒvˆ—
+			//ãƒ«ãƒ¼ãƒ—å‡¦ç†
 			while( ss->ssanm[ ss->anm_seq ].patno < -1 )
 			{
 				ss->anm_loop[ ss->anm_seq ]++;
@@ -1282,10 +1282,10 @@ static	void	SoftSpriteAnime(SOFT_SPRITE *ss)
 
 //------------------------------------------------------------------
 /**
- * ƒAƒjƒisˆ—‚ğŠO•”‚©‚çs‚¤‚½‚ß‚Ìƒ[ƒN—ÌˆæƒZƒbƒgƒAƒbƒv
+ * ã‚¢ãƒ‹ãƒ¡é€²è¡Œå‡¦ç†ã‚’å¤–éƒ¨ã‹ã‚‰è¡Œã†ãŸã‚ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param   wk			isˆ—ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   anim_tbl	ƒAƒjƒƒe[ƒuƒ‹
+ * @param   wk			é€²è¡Œå‡¦ç†ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   anim_tbl	ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  */
 //------------------------------------------------------------------
@@ -1306,12 +1306,12 @@ void SoftSprite_SetupAnimeWork( SOFT_SPRITE_ANIME_WORK* wk, const SOFT_SPRITE_AN
 
 //------------------------------------------------------------------
 /**
- * ƒAƒjƒisˆ—iŠO•”ŒöŠJj
+ * ã‚¢ãƒ‹ãƒ¡é€²è¡Œå‡¦ç†ï¼ˆå¤–éƒ¨å…¬é–‹ï¼‰
  *
- * @param   wk		isˆ—ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		é€²è¡Œå‡¦ç†ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int		0`1  ƒAƒjƒƒpƒ^[ƒ“
- *					-1    ƒAƒjƒI—¹
+ * @retval  int		0ã€œ1  ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³
+ *					-1    ã‚¢ãƒ‹ãƒ¡çµ‚äº†
  */
 //------------------------------------------------------------------
 int SoftSprite_FwdAnime( SOFT_SPRITE_ANIME_WORK* wk )
@@ -1327,9 +1327,9 @@ int SoftSprite_FwdAnime( SOFT_SPRITE_ANIME_WORK* wk )
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒeƒNƒXƒ`ƒƒ—Ìˆæ‚ğ•œ‹Œ‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸã‚’å¾©æ—§ã™ã‚‹
  *
- * @param[in]	ssm_p		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ssm_p		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteRecover(SOFT_SPRITE_MANAGER *ssm_p)
@@ -1345,9 +1345,9 @@ void	SoftSpriteRecover(SOFT_SPRITE_MANAGER *ssm_p)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒeƒNƒXƒ`ƒƒ—Ìˆæ‚ğ•œ‹Œ‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸã‚’å¾©æ—§ã™ã‚‹
  *
- * @param[in]	ss		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ss		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteRecoverSS(SOFT_SPRITE *ss)
@@ -1358,9 +1358,9 @@ void	SoftSpriteRecoverSS(SOFT_SPRITE *ss)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌSSA‚ğƒXƒ^ƒbƒN—Ìˆæ‚É‘Ş”ğ‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®SSAã‚’ã‚¹ã‚¿ãƒƒã‚¯é ˜åŸŸã«é€€é¿ã™ã‚‹
  *
- * @param[in]	ss		‘Ş”ğ‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ss		é€€é¿å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteSSAPush(SOFT_SPRITE *ss)
@@ -1371,9 +1371,9 @@ void	SoftSpriteSSAPush(SOFT_SPRITE *ss)
 
 //============================================================================================
 /**
- *	ƒXƒ^ƒbƒN‚É‘Ş”ğ‚µ‚½ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌSSA‚ğ•œ‹Œ‚·‚é
+ *	ã‚¹ã‚¿ãƒƒã‚¯ã«é€€é¿ã—ãŸã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®SSAã‚’å¾©æ—§ã™ã‚‹
  *
- * @param[in]	ss		•œ‹Œ‘ÎÛ‚Ìƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ss		å¾©æ—§å¯¾è±¡ã®ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteSSAPop(SOFT_SPRITE *ss)
@@ -1386,11 +1386,11 @@ void	SoftSpriteSSAPop(SOFT_SPRITE *ss)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒeƒNƒXƒ`ƒƒ“]‘—‚ÌŠJnˆÊ’u‚ÆƒTƒCƒY‚ğ•ÏX‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€ã®é–‹å§‹ä½ç½®ã¨ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param[in]	ssm_p		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	ofs			“]‘—ŠJnˆÊ’u‚ÌƒIƒtƒZƒbƒg
- * @param[in]	size		“]‘—ƒTƒCƒY
+ * @param[in]	ssm_p		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	ofs			è»¢é€é–‹å§‹ä½ç½®ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param[in]	size		è»¢é€ã‚µã‚¤ã‚º
  */
 //============================================================================================
 void	SoftSpriteTextureTransParamSet(SOFT_SPRITE_MANAGER *ssm_p,u32 ofs,u32 size)
@@ -1401,11 +1401,11 @@ void	SoftSpriteTextureTransParamSet(SOFT_SPRITE_MANAGER *ssm_p,u32 ofs,u32 size)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg“]‘—‚ÌŠJnˆÊ’u‚ÆƒTƒCƒY‚ğ•ÏX‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã®é–‹å§‹ä½ç½®ã¨ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param[in]	ssm_p		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	ofs			“]‘—ŠJnˆÊ’u‚ÌƒIƒtƒZƒbƒg
- * @param[in]	size		“]‘—ƒTƒCƒY
+ * @param[in]	ssm_p		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	ofs			è»¢é€é–‹å§‹ä½ç½®ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param[in]	size		è»¢é€ã‚µã‚¤ã‚º
  */
 //============================================================================================
 void	SoftSpritePaletteTransParamSet(SOFT_SPRITE_MANAGER *ssm_p,u32 ofs,u32 size)
@@ -1416,10 +1416,10 @@ void	SoftSpritePaletteTransParamSet(SOFT_SPRITE_MANAGER *ssm_p,u32 ofs,u32 size)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒA[ƒJƒCƒoî•ñ‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒæƒ…å ±ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param[in]	ssm_p		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	num			‰½”Ô–Ú‚ÌƒXƒvƒ‰ƒCƒg‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é‚©w’è
+ * @param[in]	ssm_p		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	num			ä½•ç•ªç›®ã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã‹æŒ‡å®š
  */
 //============================================================================================
 SOFT_SPRITE_ARC	*SoftSpriteArcPointerGet(SOFT_SPRITE_MANAGER *ssm_p,int num)
@@ -1429,9 +1429,9 @@ SOFT_SPRITE_ARC	*SoftSpriteArcPointerGet(SOFT_SPRITE_MANAGER *ssm_p,int num)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒA[ƒJƒCƒoî•ñ‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒæƒ…å ±ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param[in]	ss		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ss		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 SOFT_SPRITE_ARC	*SoftSpriteArcPointerGetSS(SOFT_SPRITE *ss)
@@ -1441,11 +1441,11 @@ SOFT_SPRITE_ARC	*SoftSpriteArcPointerGetSS(SOFT_SPRITE *ss)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒA[ƒJƒCƒoî•ñ‚ğ‘ã“ü
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒæƒ…å ±ã‚’ä»£å…¥
  *
- * @param[in]	ssm_p		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	num			‰½”Ô–Ú‚ÌƒXƒvƒ‰ƒCƒg‚Ìƒ|ƒCƒ“ƒ^‚É‘ã“ü‚·‚é‚©w’è
- * @param[in]	ssa			‘ã“ü‚·‚éƒA[ƒJƒCƒoî•ñ
+ * @param[in]	ssm_p		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	num			ä½•ç•ªç›®ã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã«ä»£å…¥ã™ã‚‹ã‹æŒ‡å®š
+ * @param[in]	ssa			ä»£å…¥ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒæƒ…å ±
  */
 //============================================================================================
 void	SoftSpriteArcSet(SOFT_SPRITE_MANAGER *ssm_p,int num,SOFT_SPRITE_ARC *ssa)
@@ -1457,10 +1457,10 @@ void	SoftSpriteArcSet(SOFT_SPRITE_MANAGER *ssm_p,int num,SOFT_SPRITE_ARC *ssa)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒA[ƒJƒCƒoî•ñ‚ğ‘ã“ü
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒæƒ…å ±ã‚’ä»£å…¥
  *
- * @param[in]	ss		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	ssa			‘ã“ü‚·‚éƒA[ƒJƒCƒoî•ñ
+ * @param[in]	ss		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	ssa			ä»£å…¥ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒæƒ…å ±
  */
 //============================================================================================
 void	SoftSpriteArcSetSS(SOFT_SPRITE *ss,SOFT_SPRITE_ARC *ssa)
@@ -1472,9 +1472,9 @@ void	SoftSpriteArcSetSS(SOFT_SPRITE *ss,SOFT_SPRITE_ARC *ssa)
 
 //============================================================================================
 /**
- *	‰¼‘zƒeƒNƒXƒ`ƒƒ—Ìˆæ‚ğƒeƒNƒXƒ`ƒƒ—Ìˆæ‚É“]‘—
+ *	ä»®æƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸã«è»¢é€
  *
- * @param[in]	ssm_p		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ssm_p		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteTextureTrans(SOFT_SPRITE_MANAGER *ssm_p)
@@ -1511,10 +1511,10 @@ void	SoftSpriteTextureTrans(SOFT_SPRITE_MANAGER *ssm_p)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌDrawMode‚ğƒZƒbƒg‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®DrawModeã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param[in]	ssm_p		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	mode		ƒZƒbƒg‚·‚éƒ‚[ƒh
+ * @param[in]	ssm_p		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	mode		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¢ãƒ¼ãƒ‰
  */
 //============================================================================================
 void	SoftSpriteDrawModeSet(SOFT_SPRITE_MANAGER *ssm_p,int mode)
@@ -1524,11 +1524,11 @@ void	SoftSpriteDrawModeSet(SOFT_SPRITE_MANAGER *ssm_p,int mode)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgg—pƒ`ƒFƒbƒN‚ğ‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆä½¿ç”¨ãƒã‚§ãƒƒã‚¯ã‚’ã™ã‚‹
  *
- * @param[in]	ss			ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ss			ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	FALSE:–¢g—p@TRUE:g—p’†
+ * @retval	FALSE:æœªä½¿ç”¨ã€€TRUE:ä½¿ç”¨ä¸­
  */
 //============================================================================================
 BOOL	SoftSpriteExistCheck(SOFT_SPRITE *ss)
@@ -1539,10 +1539,10 @@ BOOL	SoftSpriteExistCheck(SOFT_SPRITE *ss)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€ƒtƒ‰ƒO‚ğƒZƒbƒg
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	ssm_p	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	flag	ƒZƒbƒg‚·‚éƒtƒ‰ƒO
+ * @param[in]	ssm_p	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	flag	ã‚»ãƒƒãƒˆã™ã‚‹ãƒ•ãƒ©ã‚°
  */
 //============================================================================================
 void	SoftSpriteSSSystemFlagSet(SOFT_SPRITE_MANAGER *ssm_p,u32 flag)
@@ -1552,10 +1552,10 @@ void	SoftSpriteSSSystemFlagSet(SOFT_SPRITE_MANAGER *ssm_p,u32 flag)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€ƒtƒ‰ƒO‚ğƒŠƒZƒbƒg
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆ
  *
- * @param[in]	ssm_p	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	flag	ƒŠƒZƒbƒg‚·‚éƒtƒ‰ƒO
+ * @param[in]	ssm_p	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	flag	ãƒªã‚»ãƒƒãƒˆã™ã‚‹ãƒ•ãƒ©ã‚°
  */
 //============================================================================================
 void	SoftSpriteSSSystemFlagReset(SOFT_SPRITE_MANAGER *ssm_p,u32 flag)
@@ -1565,9 +1565,9 @@ void	SoftSpriteSSSystemFlagReset(SOFT_SPRITE_MANAGER *ssm_p,u32 flag)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒeƒNƒXƒ`ƒƒ—Ìˆæ‚ğ¶¬‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param[in]	ssm_p		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ssm_p		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	SoftSpriteTextureFieldMake(SOFT_SPRITE_MANAGER *ssm_p)
@@ -1584,7 +1584,7 @@ static	void	SoftSpriteTextureFieldMake(SOFT_SPRITE_MANAGER *ssm_p)
 		if((ssm_p->ss[i].exist)&&(ssm_p->ss[i].make_req)){
 			ssm_p->ss[i].make_req=0;
 			req=1;
-			//ƒLƒƒƒ‰ƒf[ƒ^“Ç‚İ‚İ
+			//ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 			buf=ArchiveDataLoadMalloc(ssm_p->ss[i].ssa.arc_no,ssm_p->ss[i].ssa.index_chr,ssm_p->heap_id);
 			NNS_G2dGetUnpackedCharacterData(buf,&cd_src);
 			ssm_p->cd_dest.pixelFmt=cd_src->pixelFmt;
@@ -1726,9 +1726,9 @@ static	void	SoftSpriteTextureFieldMake(SOFT_SPRITE_MANAGER *ssm_p)
 
 //============================================================================================
 /**
- *	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg—Ìˆæ‚ğ¶¬‚·‚é
+ *	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆé ˜åŸŸã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param[in]	ssm_p		ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ[‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ssm_p		ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 static	void	SoftSpriteTexturePaletteMake(SOFT_SPRITE_MANAGER *ssm_p)
@@ -1745,7 +1745,7 @@ static	void	SoftSpriteTexturePaletteMake(SOFT_SPRITE_MANAGER *ssm_p)
 		if((ssm_p->ss[i].exist)&&(ssm_p->ss[i].pal_req)){
 			ssm_p->ss[i].pal_req=0;
 			req=1;
-			//ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 			buf=ArchiveDataLoadMalloc(ssm_p->ss[i].ssa.arc_no,ssm_p->ss[i].ssa.index_pal,ssm_p->heap_id);
 			NNS_G2dGetUnpackedPaletteData(buf,&pd_src);
 			ssm_p->pd_dest.fmt=pd_src->fmt;
@@ -1756,7 +1756,7 @@ static	void	SoftSpriteTexturePaletteMake(SOFT_SPRITE_MANAGER *ssm_p)
 			}
 			sys_FreeMemoryEz(buf);
 			if(ssm_p->ss[i].sss.shadow_req){
-				//‰eƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+				//å½±ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 				buf=ArchiveDataLoadMalloc(ARC_OTHER_POKE,NARC_pl_otherpoke_kage_NCLR,ssm_p->heap_id);
 				NNS_G2dGetUnpackedPaletteData(buf,&pd_src);
 				src=pd_src->pRawData;
@@ -1799,11 +1799,11 @@ static	void	SoftSpriteTexturePaletteMake(SOFT_SPRITE_MANAGER *ssm_p)
 
 //============================================================================================
 /**
- *	ƒf[ƒ^‚ÌãˆÊ4bit‚Æ‰ºˆÊ4bit‚ğ”½“]‚·‚é
+ *	ãƒ‡ãƒ¼ã‚¿ã®ä¸Šä½4bitã¨ä¸‹ä½4bitã‚’åè»¢ã™ã‚‹
  *
- * @param[in]	data	”½“]‚·‚éƒf[ƒ^
+ * @param[in]	data	åè»¢ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
  *
- * @retval	”½“]‚µ‚½ƒf[ƒ^
+ * @retval	åè»¢ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 static	u8	BitReverse(u8 data)
@@ -1818,16 +1818,16 @@ static	u8	BitReverse(u8 data)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚É‚Ô‚¿‚ğ‚Â‚¯‚é
+ *	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ã¶ã¡ã‚’ã¤ã‘ã‚‹
  *
- * @param[in]	ss		‚Ô‚¿‚ğ‚Â‚¯‚éSoftSprite\‘¢‘Ìƒf[ƒ^
- * @param[in]	buf		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ª“WŠJ‚³‚ê‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	ss		ã¶ã¡ã‚’ã¤ã‘ã‚‹SoftSpriteæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿
+ * @param[in]	buf		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãŒå±•é–‹ã•ã‚ŒãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 
 //============================================================================================
 static	void	SoftSpriteStrikeMake(SOFT_SPRITE *ss,u8 *buf)
 {
-	//‚Ô‚¿¶¬ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚È‚¢‚Íˆ—‚È‚µ
+	//ã¶ã¡ç”Ÿæˆãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãªã„æ™‚ã¯å‡¦ç†ãªã—
 	if(ss->ssa.strike_mons==0){
 		return;
 	}
@@ -1837,11 +1837,11 @@ static	void	SoftSpriteStrikeMake(SOFT_SPRITE *ss,u8 *buf)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚É‚Ô‚¿‚ğ‚Â‚¯‚éiŠO•”ŒöŠJ”Åj
+ *	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ã¶ã¡ã‚’ã¤ã‘ã‚‹ï¼ˆå¤–éƒ¨å…¬é–‹ç‰ˆï¼‰
  *
- * @param[out]	buf			ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ª“WŠJ‚³‚ê‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	rnd			ŒÂ«—”
- * @param[in]	animeFlag	TRUE‚È‚çƒAƒjƒ—p‚É‚QƒRƒ}–Ú‚àˆ—‚·‚é
+ * @param[out]	buf			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãŒå±•é–‹ã•ã‚ŒãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	rnd			å€‹æ€§ä¹±æ•°
+ * @param[in]	animeFlag	TRUEãªã‚‰ã‚¢ãƒ‹ãƒ¡ç”¨ã«ï¼’ã‚³ãƒç›®ã‚‚å‡¦ç†ã™ã‚‹
  */
 
 //============================================================================================
@@ -1855,7 +1855,7 @@ void SoftSprite_MakeStrike( u8* buf, u32 rnd, BOOL animeFlag )
 
 	tmp_rnd=rnd;
 
-	//1–‡–Ú
+	//1æšç›®
 	for(i=0;i<4;i++){
 		psd=psd_table[i];
 		cnt=0;
@@ -1880,7 +1880,7 @@ void SoftSprite_MakeStrike( u8* buf, u32 rnd, BOOL animeFlag )
 
 	rnd=tmp_rnd;
 
-	//2–‡–Ú
+	//2æšç›®
 	if( animeFlag )
 	{
 		for(i=0;i<4;i++){
@@ -1910,9 +1910,9 @@ void SoftSprite_MakeStrike( u8* buf, u32 rnd, BOOL animeFlag )
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚É‚©‚¯‚ç‚ê‚½ƒ}ƒXƒN‚Ì‰ğœƒL[‚ğZo
+ *	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ã‹ã‘ã‚‰ã‚ŒãŸãƒã‚¹ã‚¯ã®è§£é™¤ã‚­ãƒ¼ã‚’ç®—å‡º
  *
- * @param[in/out]	code	‰ğœƒL[
+ * @param[in/out]	code	è§£é™¤ã‚­ãƒ¼
  */
 //============================================================================================
 static	u16 CodeRand(u32 *code)
@@ -1923,9 +1923,9 @@ static	u16 CodeRand(u32 *code)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚É‚©‚¯‚ç‚ê‚½ƒ}ƒXƒN‚ğ‰ğœ
+ *	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ã‹ã‘ã‚‰ã‚ŒãŸãƒã‚¹ã‚¯ã‚’è§£é™¤
  *
- * @param[in/out]	src		ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚ª“WŠJ‚³‚ê‚½—Ìˆæ‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in/out]	src		ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒå±•é–‹ã•ã‚ŒãŸé ˜åŸŸã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteChrMask(u8 *src)
@@ -1938,13 +1938,13 @@ void	SoftSpriteChrMask(u8 *src)
 
 	code=buf[0];
 
-	//ƒvƒ‰ƒ`ƒi‚Í‘O•ûƒ}ƒXƒN
+	//ãƒ—ãƒ©ãƒãƒŠã¯å‰æ–¹ãƒã‚¹ã‚¯
 	for(i=0;i<(20*10*0x20)/2;i++){
 		buf[i]^=code;
 		CodeRand(&code);
 	}
 
-//DP‚Å‚ÍAŒã•ûƒ}ƒXƒN
+//DPã§ã¯ã€å¾Œæ–¹ãƒã‚¹ã‚¯
 #if 0
 	code=buf[(20*10*0x20)/2-1];
 
@@ -1957,9 +1957,9 @@ void	SoftSpriteChrMask(u8 *src)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚É‚©‚¯‚ç‚ê‚½ƒ}ƒXƒN‚ğ‰ğœ(DPƒOƒ‰ƒtƒBƒbƒN—p)
+ *	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ã‹ã‘ã‚‰ã‚ŒãŸãƒã‚¹ã‚¯ã‚’è§£é™¤(DPã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç”¨)
  *
- * @param[in/out]	src		ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚ª“WŠJ‚³‚ê‚½—Ìˆæ‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in/out]	src		ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒå±•é–‹ã•ã‚ŒãŸé ˜åŸŸã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	SoftSpriteChrMask_DP(u8 *src)
@@ -1980,11 +1980,11 @@ void	SoftSpriteChrMask_DP(u8 *src)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚É‚©‚¯‚ç‚ê‚½ƒ}ƒXƒN‚ğ‰ğœ
- * 			ƒA[ƒJƒCƒuID‚É‚æ‚Á‚Äƒvƒ‰ƒ`ƒi—pADP—p‚Ì•œ†ˆ—‚É•ªŠò
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ã‹ã‘ã‚‰ã‚ŒãŸãƒã‚¹ã‚¯ã‚’è§£é™¤
+ * 			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–IDã«ã‚ˆã£ã¦ãƒ—ãƒ©ãƒãƒŠç”¨ã€DPç”¨ã®å¾©å·å‡¦ç†ã«åˆ†å²
  *
- * @param   src			ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚ª“WŠJ‚³‚ê‚½—Ìˆæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   arc_id		ƒA[ƒJƒCƒuID
+ * @param   src			ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒå±•é–‹ã•ã‚ŒãŸé ˜åŸŸã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   arc_id		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
  */
 //--------------------------------------------------------------
 void	SoftSpriteChrMask_ArcID(u8 *src, int arc_id)

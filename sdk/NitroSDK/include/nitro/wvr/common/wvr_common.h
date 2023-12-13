@@ -15,7 +15,7 @@
   do-indent.
 
   Revision 1.2  2005/02/09 09:12:08  terui
-  RESULTŽí•Ê‚ð’Ç‰ÁB
+  RESULTç¨®åˆ¥ã‚’è¿½åŠ ã€‚
 
   Revision 1.1  2004/12/20 00:44:16  terui
   Initial upload.
@@ -31,23 +31,23 @@ extern "C" {
 
 /*===========================================================================*/
 
-// API ˆ—Œ‹‰Ê
+// API å‡¦ç†çµæžœ
 typedef enum WVRResult
 {
-    WVR_RESULT_SUCCESS = 0,            // ¬Œ÷
-    WVR_RESULT_OPERATING,              // ”ñ“¯Šúˆ—‚ÌŠJŽn‚É¬Œ÷
-    WVR_RESULT_DISABLE,                // ƒRƒ“ƒ|[ƒlƒ“ƒg‚ªWVRƒ‰ƒCƒuƒ‰ƒŠ‚É‘Î‰ž‚µ‚Ä‚¢‚È‚¢
-    WVR_RESULT_INVALID_PARAM,          // –³Œø‚Èƒpƒ‰ƒ[ƒ^Žw’è
-    WVR_RESULT_FIFO_ERROR,             // PXI‚Å‚ÌARM7‚Ö‚Ì—v‹‘—M‚ÉŽ¸”s
-    WVR_RESULT_ILLEGAL_STATUS,         // —v‹‚ðŽÀs‚Å‚«‚È‚¢ó‘Ô
-    WVR_RESULT_VRAM_LOCKED,            // VRAM‚ªƒƒbƒN‚³‚ê‚Ä‚¢‚ÄŽg—p‚Å‚«‚È‚¢B
-    WVR_RESULT_FATAL_ERROR,            // ‘z’èŠO‚Ì’v–½“I‚ÈƒGƒ‰[
+    WVR_RESULT_SUCCESS = 0,            // æˆåŠŸ
+    WVR_RESULT_OPERATING,              // éžåŒæœŸå‡¦ç†ã®é–‹å§‹ã«æˆåŠŸ
+    WVR_RESULT_DISABLE,                // ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆãŒWVRãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«å¯¾å¿œã—ã¦ã„ãªã„
+    WVR_RESULT_INVALID_PARAM,          // ç„¡åŠ¹ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æŒ‡å®š
+    WVR_RESULT_FIFO_ERROR,             // PXIã§ã®ARM7ã¸ã®è¦æ±‚é€ä¿¡ã«å¤±æ•—
+    WVR_RESULT_ILLEGAL_STATUS,         // è¦æ±‚ã‚’å®Ÿè¡Œã§ããªã„çŠ¶æ…‹
+    WVR_RESULT_VRAM_LOCKED,            // VRAMãŒãƒ­ãƒƒã‚¯ã•ã‚Œã¦ã„ã¦ä½¿ç”¨ã§ããªã„ã€‚
+    WVR_RESULT_FATAL_ERROR,            // æƒ³å®šå¤–ã®è‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼
 
     WVR_RESULT_MAX
 }
 WVRResult;
 
-// PXI ƒRƒ}ƒ“ƒh
+// PXI ã‚³ãƒžãƒ³ãƒ‰
 #define     WVR_PXI_COMMAND_STARTUP     0x00010000
 #define     WVR_PXI_COMMAND_TERMINATE   0x00020000
 

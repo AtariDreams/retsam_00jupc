@@ -29,7 +29,7 @@ extern "C" {
 
 
 /* ========================================================================
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
    ======================================================================== */
 
 #define NNSi_MCS_FILEIO_CHANNEL  (uint16_t)('FI' +0x8000)
@@ -55,7 +55,7 @@ enum
 
 
 /* ========================================================================
-    Œ^’è‹`
+    å‹å®šç¾©
    ======================================================================== */
 
 #ifdef _WIN32
@@ -74,7 +74,7 @@ typedef NNSMcsFileFindData*     NNSiMcsFileFindDataPtr;
 #endif
 
 /* ------------------------------------------------------------------------
-    file I/O ƒT[ƒo‚É‘—‚éƒRƒ}ƒ“ƒh
+    file I/O ã‚µãƒ¼ãƒã«é€ã‚‹ã‚³ãƒãƒ³ãƒ‰
    ------------------------------------------------------------------------ */
 
 typedef struct NNSiMcsFileIOCmdHeader NNSiMcsFileIOCmdHeader;
@@ -85,7 +85,7 @@ struct NNSiMcsFileIOCmdHeader
 };
 
 /*
-    ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“—p‚ÌƒRƒ}ƒ“ƒh
+    ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ç”¨ã®ã‚³ãƒãƒ³ãƒ‰
 */
 typedef struct NNSiMcsFileIOCmdOpen NNSiMcsFileIOCmdOpen;
 struct NNSiMcsFileIOCmdOpen
@@ -98,7 +98,7 @@ struct NNSiMcsFileIOCmdOpen
 };
 
 /*
-    ƒtƒ@ƒCƒ‹ƒNƒ[ƒY—p‚ÌƒRƒ}ƒ“ƒh
+    ãƒ•ã‚¡ã‚¤ãƒ«ã‚¯ãƒ­ãƒ¼ã‚ºç”¨ã®ã‚³ãƒãƒ³ãƒ‰
 */
 typedef struct NNSiMcsFileIOCmdClose NNSiMcsFileIOCmdClose;
 struct NNSiMcsFileIOCmdClose
@@ -110,7 +110,7 @@ struct NNSiMcsFileIOCmdClose
 };
 
 /*
-    ƒtƒ@ƒCƒ‹ƒŠ[ƒh—p‚ÌƒRƒ}ƒ“ƒh
+    ãƒ•ã‚¡ã‚¤ãƒ«ãƒªãƒ¼ãƒ‰ç”¨ã®ã‚³ãƒãƒ³ãƒ‰
 */
 typedef struct NNSiMcsFileIOCmdRead NNSiMcsFileIOCmdRead;
 struct NNSiMcsFileIOCmdRead
@@ -124,7 +124,7 @@ struct NNSiMcsFileIOCmdRead
 };
 
 /*
-  ƒtƒ@ƒCƒ‹ƒ‰ƒCƒg—p‚ÌƒRƒ}ƒ“ƒh
+  ãƒ•ã‚¡ã‚¤ãƒ«ãƒ©ã‚¤ãƒˆç”¨ã®ã‚³ãƒãƒ³ãƒ‰
 */
 typedef struct NNSiMcsFileIOCmdWrite NNSiMcsFileIOCmdWrite;
 struct NNSiMcsFileIOCmdWrite
@@ -137,7 +137,7 @@ struct NNSiMcsFileIOCmdWrite
 };
 
 /*
-  ƒtƒ@ƒCƒ‹ƒV[ƒN—p‚ÌƒRƒ}ƒ“ƒh
+  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ãƒ¼ã‚¯ç”¨ã®ã‚³ãƒãƒ³ãƒ‰
 */
 typedef struct NNSiMcsFileIOCmdFileSeek NNSiMcsFileIOCmdFileSeek;
 struct NNSiMcsFileIOCmdFileSeek
@@ -151,7 +151,7 @@ struct NNSiMcsFileIOCmdFileSeek
 };
 
 /*
-    FindFirstFile—p‚ÌƒRƒ}ƒ“ƒh
+    FindFirstFileç”¨ã®ã‚³ãƒãƒ³ãƒ‰
 */
 typedef struct NNSiMcsFileIOCmdFindFirst NNSiMcsFileIOCmdFindFirst;
 struct NNSiMcsFileIOCmdFindFirst
@@ -164,7 +164,7 @@ struct NNSiMcsFileIOCmdFindFirst
 };
 
 /*
-    FindNextFile—pƒRƒ}ƒ“ƒh
+    FindNextFileç”¨ã‚³ãƒãƒ³ãƒ‰
 */
 typedef struct NNSiMcsFileIOCmdFindNext NNSiMcsFileIOCmdFindNext;
 struct NNSiMcsFileIOCmdFindNext
@@ -177,7 +177,7 @@ struct NNSiMcsFileIOCmdFindNext
 };
 
 /* ------------------------------------------------------------------------
-    Windows‚©‚ç‚ÌResult
+    Windowsã‹ã‚‰ã®Result
    ------------------------------------------------------------------------ */
 
 typedef struct NNSiMcsFileIOResult NNSiMcsFileIOResult;
@@ -190,7 +190,7 @@ struct NNSiMcsFileIOResult
 };
 
 /*
-    FileOpen‚ÌResult
+    FileOpenã®Result
 */
 typedef struct NNSiMcsFileIOResultOpen NNSiMcsFileIOResultOpen;
 struct NNSiMcsFileIOResultOpen

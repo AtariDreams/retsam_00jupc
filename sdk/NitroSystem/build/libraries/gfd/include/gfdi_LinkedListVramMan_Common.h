@@ -24,24 +24,24 @@ typedef struct NNSiGfdLnkVramBlock NNSiGfdLnkVramBlock;
 /*---------------------------------------------------------------------------*
   Name:         NNSiGfdLnkVramBlock
 
-  Description:  �������̈�Ǘ��u���b�N
+  Description:  メモリ領域管理ブロック
   
  *---------------------------------------------------------------------------*/
 struct NNSiGfdLnkVramBlock
 {
-    u32                         addr;       // �̈�J�n�A�h���X
-    u32                         szByte;     // �̈�T�C�Y(�[���͕s���ł�)
+    u32                         addr;       // 領域開始アドレス
+    u32                         szByte;     // 領域サイズ(ゼロは不正です)
     
-    NNSiGfdLnkVramBlock*        pBlkPrev;   // �O�̗̈�(�A�h���X�ʒu�I�Ȋ֘A�͂Ȃ�)
-    NNSiGfdLnkVramBlock*        pBlkNext;   // ���̗̈�(�A�h���X�ʒu�I�Ȋ֘A�͂Ȃ�)
+    NNSiGfdLnkVramBlock*        pBlkPrev;   // 前の領域(アドレス位置的な関連はない)
+    NNSiGfdLnkVramBlock*        pBlkNext;   // 次の領域(アドレス位置的な関連はない)
     
 };
 
 /*---------------------------------------------------------------------------*
   Name:         NNSiGfdLnkMemRegion
 
-  Description:  ���������
-                end > start �𖞂������̂Ƃ��܂�
+  Description:  メモリ区間
+                end > start を満たすものとします
   
  *---------------------------------------------------------------------------*/
 typedef struct NNSiGfdLnkMemRegion
@@ -54,18 +54,18 @@ typedef struct NNSiGfdLnkMemRegion
 /*---------------------------------------------------------------------------*
   Name:         NNSiGfdLnkVramMan
 
-  Description:  �}�l�[�W��
-                �ʏ�̃q�[�v�ȂǂƂ͈قȂ�A�g�p�ςݗ̈�̊Ǘ����̃��X�g�������܂���
-                �Ǘ����̈�i���C����������j�� �Ǘ��̈�A�h���X�iVRAM��j�Ɋ֘A������ 
-                TextureKey�i�A�h���X + �T�C�Y�̏������j����̎g�p�ςݗ̈�̊Ǘ����
-                �ւ̃��b�N�A�b�v��������߂ł��B
-                �t���[�̍ۂɂ� �A�h���X + �T�C�Y ���� �g�p�̈�̃t���[�̈�ւ̕ԋp���s��
-                �Ă��܂��B
+  Description:  マネージャ
+                通常のヒープなどとは異なり、使用済み領域の管理情報のリストを持ちません
+                管理情報領域（メインメモリ上）と 管理領域アドレス（VRAM上）に関連が無く 
+                TextureKey（アドレス + サイズの情報を持つ）からの使用済み領域の管理情報
+                へのルックアップが難しいためです。
+                フリーの際には アドレス + サイズ から 使用領域のフリー領域への返却を行っ
+                ています。
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSiGfdLnkVramMan
 {
-    NNSiGfdLnkVramBlock*         pFreeList;         // ���g�p�̈�u���b�N���X�g
+    NNSiGfdLnkVramBlock*         pFreeList;         // 未使用領域ブロックリスト
       
 }NNSiGfdLnkVramMan;
 
@@ -73,7 +73,7 @@ typedef struct NNSiGfdLnkVramMan
 
 
 //------------------------------------------------------------------------------
-// �֐��錾
+// 関数宣言
 //------------------------------------------------------------------------------
 void NNSi_GfdDumpLnkVramManFreeListInfo
 ( 

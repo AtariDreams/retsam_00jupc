@@ -1,11 +1,11 @@
 //==============================================================================================
 /**
  * @file	frontier_monitor.c
- * @brief	uƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒAvƒ‚ƒjƒ^[
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã€ãƒ¢ãƒ‹ã‚¿ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.12.6
  *
- * type‚Í0=SINGLE‚Æl‚¦‚Ä‚¢‚Ü‚·
+ * typeã¯0=SINGLEã¨è€ƒãˆã¦ã„ã¾ã™
  */
 //==============================================================================================
 #include "common.h"
@@ -36,9 +36,9 @@
 #include "msgdata/msg.naix"					//NARC_msg_??_dat
 #include "msgdata/msg_bf_seiseki.h"			//msg_??
 
-#include "../field/fieldsys.h"				//scr_tool.h‚É•K—v
+#include "../field/fieldsys.h"				//scr_tool.hã«å¿…è¦
 #include "../field/scr_tool.h"				//FactoryScr_GetWinRecordID
-#include "../field/poketch/poketch_arc.h"	//ƒ|ƒPƒbƒ`‚É‚ ‚éƒ{[ƒ‹‚ÌŠG‚ğg‚¢‚Ü‚í‚µ
+#include "../field/poketch/poketch_arc.h"	//ãƒã‚±ãƒƒãƒã«ã‚ã‚‹ãƒœãƒ¼ãƒ«ã®çµµã‚’ä½¿ã„ã¾ã‚ã—
 
 #include "application/frontier_monitor.h"
 #include "frontier_monitor_bmp.h"
@@ -54,33 +54,33 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒV[ƒPƒ“ƒX’è‹`
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
 enum {
-	SEQ_GAME_INIT,											//‰Šú‰»
-	SEQ_GAME_START,											//ƒQ[ƒ€ŠJn
-	SEQ_GAME_END,											//I—¹
+	SEQ_GAME_INIT,											//åˆæœŸåŒ–
+	SEQ_GAME_START,											//ã‚²ãƒ¼ãƒ é–‹å§‹
+	SEQ_GAME_END,											//çµ‚äº†
 };
 
-//•\¦ˆÊ’u
+//è¡¨ç¤ºä½ç½®
 enum{
-	BF_STR_X	= (1*8),									//ƒoƒgƒ‹›({İ–¼)
+	BF_STR_X	= (1*8),									//ãƒãƒˆãƒ«â—‹(æ–½è¨­å)
 
-	TITLE_STR_SINGLE_X_TOWER	= (27*8),					//ƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«
-	TITLE_STR_SINGLE_X_FACTORY	= (27*8),					//ƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«
-	TITLE_STR_SINGLE_X_STAGE	= (27*8),					//ƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«
-	TITLE_STR_SINGLE_X_CASTLE	= (27*8),					//ƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«
-	TITLE_STR_SINGLE_X_ROULETTE	= (27*8),					//ƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«
+	TITLE_STR_SINGLE_X_TOWER	= (27*8),					//ã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ã
+	TITLE_STR_SINGLE_X_FACTORY	= (27*8),					//ã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ã
+	TITLE_STR_SINGLE_X_STAGE	= (27*8),					//ã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ã
+	TITLE_STR_SINGLE_X_CASTLE	= (27*8),					//ã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ã
+	TITLE_STR_SINGLE_X_ROULETTE	= (27*8),					//ã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ã
 
-	TITLE_STR_X_TOWER	= (27*8),							//ƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`‚¹‚¢‚¹‚«
-	TITLE_STR_X_FACTORY = (27*8),							//ƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`‚¹‚¢‚¹‚«
-	TITLE_STR_X_STAGE	= (27*8),							//ƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`‚¹‚¢‚¹‚«
-	TITLE_STR_X_CASTLE	= (27*8),							//ƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`‚¹‚¢‚¹‚«
-	TITLE_STR_X_ROULETTE= (27*8),							//ƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`‚¹‚¢‚¹‚«
+	TITLE_STR_X_TOWER	= (27*8),							//ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã›ã„ã›ã
+	TITLE_STR_X_FACTORY = (27*8),							//ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã›ã„ã›ã
+	TITLE_STR_X_STAGE	= (27*8),							//ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã›ã„ã›ã
+	TITLE_STR_X_CASTLE	= (27*8),							//ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã›ã„ã›ã
+	TITLE_STR_X_ROULETTE= (27*8),							//ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã›ã„ã›ã
 
-	WIN_NUM_X	= (14*8),									//˜AŸ”‚ğ‘‚­ˆÊ’u
+	WIN_NUM_X	= (14*8),									//é€£å‹æ•°ã‚’æ›¸ãä½ç½®
 	CP_STR_X	= (28*8),
 	TRD_NUM_X	= (28*8),
     ENTRY1_X    = (12*8),
@@ -97,48 +97,48 @@ enum {
 
 //==============================================================================================
 //
-//	ƒƒbƒZ[ƒWŠÖ˜A‚Ì’è‹`
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ã®å®šç¾©
 //
 //==============================================================================================
-#define FRONTIER_MSG_BUF_SIZE		(800)//(1024)			//ƒƒbƒZ[ƒWƒTƒCƒY
+#define FRONTIER_MSG_BUF_SIZE		(800)//(1024)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚µã‚¤ã‚º
 
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 typedef struct{
-	PROC* proc;											//PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	PROC* proc;											//PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	u8	sub_seq;										//ƒV[ƒPƒ“ƒX
-	u8	type;											//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
-	u8	fr_no;											//{İƒiƒ“ƒo[
+	u8	sub_seq;										//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	type;											//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã€wifiãƒãƒ«ãƒ
+	u8	fr_no;											//æ–½è¨­ãƒŠãƒ³ãƒãƒ¼
 	u8	dummy;
 
 	u16 monsno;
 	u16 dummy2;
 
-	GF_BGL_INI*	bgl;									//BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	//GF_BGL_BMPWIN bmpwin[FRONTIER_MONITOR_BMPWIN_MAX];	//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
-	GF_BGL_BMPWIN bmpwin[16];	//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_INI*	bgl;									//BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	//GF_BGL_BMPWIN bmpwin[FRONTIER_MONITOR_BMPWIN_MAX];	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+	GF_BGL_BMPWIN bmpwin[16];	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	MSGDATA_MANAGER* msgman;							//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;									//’PŒêƒZƒbƒg
-	STRBUF* msg_buf;									//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	STRBUF* tmp_buf;									//ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	MSGDATA_MANAGER* msgman;							//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;									//å˜èªã‚»ãƒƒãƒˆ
+	STRBUF* msg_buf;									//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	STRBUF* tmp_buf;									//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
-	PALETTE_FADE_PTR pfd;								//ƒpƒŒƒbƒgƒtƒF[ƒh
+	PALETTE_FADE_PTR pfd;								//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 
-	const CONFIG* config;								//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^
-	SAVEDATA* sv;										//ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	const CONFIG* config;								//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿
+	SAVEDATA* sv;										//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 	FRONTIER_SAVEWORK* f_sv;
 }FRONTIER_MONITOR_WORK;
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 //PROC
@@ -146,57 +146,57 @@ PROC_RESULT FrontierMonitorProc_Init( PROC * proc, int * seq );
 PROC_RESULT FrontierMonitorProc_Main( PROC * proc, int * seq );
 PROC_RESULT FrontierMonitorProc_End( PROC * proc, int * seq );
 
-//ƒV[ƒPƒ“ƒX
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 static BOOL Seq_GameInit( FRONTIER_MONITOR_WORK* wk );
 static BOOL Seq_GameStart( FRONTIER_MONITOR_WORK* wk );
 static BOOL Seq_GameEnd( FRONTIER_MONITOR_WORK* wk );
 
-//İ’è
+//è¨­å®š
 static void VBlankFunc( void * work );
 static void SetVramBank(void);
 static void SetBgHeader( GF_BGL_INI * ini );
 
-//‹¤’Ê‰Šú‰»AI—¹
+//å…±é€šåˆæœŸåŒ–ã€çµ‚äº†
 static void Frontier_BgInit( FRONTIER_MONITOR_WORK* wk );
 static void Frontier_BgExit( GF_BGL_INI * ini );
 
-//ƒc[ƒ‹
+//ãƒ„ãƒ¼ãƒ«
 static void NextSeq( FRONTIER_MONITOR_WORK* wk, int* seq, int next );
 static int KeyCheck( int key );
 static void BgCheck( void );
 static u8 GetBmpNo( u8 fr_no );
 
-//BGƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+//BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 static void Frontier_SetMainBgGraphic( FRONTIER_MONITOR_WORK * wk, u32 frm  );
 static void Frontier_SetMainBgPalette( void );
 static void Frontier_SetSubBgGraphic( FRONTIER_MONITOR_WORK * wk, u32 frm  );
 
-//ƒƒbƒZ[ƒWŠÖ˜A
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£
 // MatchComment: FrontierWriteMsg has 10th (0-indexed) argument
 static u8 FrontierWriteMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u8 f_col, u8 s_col, u8 b_col, u8 font, u8 fill, int align );
 static u8 EasyMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u8 fill );
 static void SetNumber( FRONTIER_MONITOR_WORK* wk, u32 bufID, s32 number );
 static void Frontier_Write( FRONTIER_MONITOR_WORK* wk );
 
-//ƒtƒ@ƒNƒgƒŠ[
+//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk );
 static void Factory_SetLv100Info( FRONTIER_MONITOR_WORK* wk );
 static u32 Factory_GetMsg( FRONTIER_MONITOR_WORK* wk, u8 level );
 
-//ƒXƒe[ƒW
+//ã‚¹ãƒ†ãƒ¼ã‚¸
 static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk );
 static u32 Stage_GetMsg( FRONTIER_MONITOR_WORK* wk );
 static void FrontierMonitor_PokeName( FRONTIER_MONITOR_WORK* wk );
 
-//ƒLƒƒƒbƒXƒ‹
+//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk );
 static u32 Castle_GetMsg( FRONTIER_MONITOR_WORK* wk );
 
-//ƒ‹[ƒŒƒbƒg
+//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk );
 static u32 Roulette_GetMsg( FRONTIER_MONITOR_WORK* wk );
 
-//ƒ^ƒ[
+//ã‚¿ãƒ¯ãƒ¼
 static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk );
 static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk );
 static u32 Tower_GetMsg( FRONTIER_MONITOR_WORK* wk, u8 type );
@@ -210,12 +210,12 @@ static u32 Tower_GetMsg( FRONTIER_MONITOR_WORK* wk, u8 type );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT FrontierMonitorProc_Init( PROC * proc, int * seq )
@@ -224,8 +224,8 @@ PROC_RESULT FrontierMonitorProc_Init( PROC * proc, int * seq )
 	FRONTIER_MONITOR_WORK* wk;
 	FRONTIER_MONITOR_CALL* bfm_call;
 
-	sys_VBlankFuncChange( NULL, NULL );					//VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );						//HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );					//VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );						//HBlankã‚»ãƒƒãƒˆ
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
@@ -244,11 +244,11 @@ PROC_RESULT FrontierMonitorProc_Init( PROC * proc, int * seq )
 	wk->type	= bfm_call->type;
 	wk->fr_no	= bfm_call->fr_no;
 	wk->monsno	= bfm_call->monsno;
-	wk->config	= SaveData_GetConfig( wk->sv );			//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^‚ğæ“¾
+	wk->config	= SaveData_GetConfig( wk->sv );			//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 
-	Frontier_BgInit( wk );								//BG‰Šú‰»
+	Frontier_BgInit( wk );								//BGåˆæœŸåŒ–
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	wk->msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, 
 								NARC_msg_bf_seiseki_dat, HEAPID_FRONTIER_MONITOR );
 
@@ -256,14 +256,14 @@ PROC_RESULT FrontierMonitorProc_Init( PROC * proc, int * seq )
 	wk->msg_buf = STRBUF_Create( FRONTIER_MSG_BUF_SIZE, HEAPID_FRONTIER_MONITOR );
 	wk->tmp_buf = STRBUF_Create( FRONTIER_MSG_BUF_SIZE, HEAPID_FRONTIER_MONITOR );
 
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, BFM_FONT_PAL * 32, HEAPID_FRONTIER_MONITOR );
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, BFM_MSGFONT_PAL * 32, HEAPID_FRONTIER_MONITOR );
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 	FrontierMonitorAddBmpWin( wk->bgl, wk->bmpwin, GetBmpNo(wk->fr_no) );
 
-	sys_VBlankFuncChange( VBlankFunc, (void*)wk );		//VBlankƒZƒbƒg
+	sys_VBlankFuncChange( VBlankFunc, (void*)wk );		//VBlankã‚»ãƒƒãƒˆ
 	
 	(*seq) = SEQ_GAME_INIT;
 
@@ -272,12 +272,12 @@ PROC_RESULT FrontierMonitorProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT FrontierMonitorProc_Main( PROC * proc, int * seq )
@@ -286,21 +286,21 @@ PROC_RESULT FrontierMonitorProc_Main( PROC * proc, int * seq )
 
 	switch( *seq ){
 
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	case SEQ_GAME_INIT:
 		if( Seq_GameInit(wk) == TRUE ){
 			NextSeq( wk, seq, SEQ_GAME_START );
 		}
 		break;
 
-	//ƒQ[ƒ€ŠJn
+	//ã‚²ãƒ¼ãƒ é–‹å§‹
 	case SEQ_GAME_START:
 		if( Seq_GameStart(wk) == TRUE ){
-			NextSeq( wk, seq, SEQ_GAME_END );		//I—¹
+			NextSeq( wk, seq, SEQ_GAME_END );		//çµ‚äº†
 		}
 		break;
 
-	//I—¹
+	//çµ‚äº†
 	case SEQ_GAME_END:
 		if( Seq_GameEnd(wk) == TRUE ){
 			return PROC_RES_FINISH;
@@ -312,12 +312,12 @@ PROC_RESULT FrontierMonitorProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT FrontierMonitorProc_End( PROC * proc, int * seq )
@@ -325,26 +325,26 @@ PROC_RESULT FrontierMonitorProc_End( PROC * proc, int * seq )
 	int i;
 	FRONTIER_MONITOR_WORK* wk = PROC_GetWork( proc );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhŠJ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰é–‹æ”¾
 	PaletteFadeWorkAllocFree( wk->pfd, FADE_MAIN_OBJ );
 	PaletteFadeWorkAllocFree( wk->pfd, FADE_MAIN_BG );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ŠJ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ é–‹æ”¾
 	PaletteFadeFree( wk->pfd );
 	wk->pfd = NULL;
 
-	MSGMAN_Delete( wk->msgman );						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠJ•ú
+	MSGMAN_Delete( wk->msgman );						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–‹æ”¾
 	WORDSET_Delete( wk->wordset );
-	STRBUF_Delete( wk->msg_buf );						//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
-	STRBUF_Delete( wk->tmp_buf );						//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
+	STRBUF_Delete( wk->msg_buf );						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
+	STRBUF_Delete( wk->tmp_buf );						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 
-	FrontierMonitorExitBmpWin( wk->bmpwin, GetBmpNo(wk->fr_no) );	//BMPƒEƒBƒ“ƒhƒEŠJ•ú
+	FrontierMonitorExitBmpWin( wk->bmpwin, GetBmpNo(wk->fr_no) );	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
 
-	Frontier_BgExit( wk->bgl );							//BGLíœ
+	Frontier_BgExit( wk->bgl );							//BGLå‰Šé™¤
 
-	PROC_FreeWork( proc );								//ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );								//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );					//VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );					//VBlankã‚»ãƒƒãƒˆ
 	sys_DeleteHeap( HEAPID_FRONTIER_MONITOR );
 
 	return PROC_RES_FINISH;
@@ -353,17 +353,17 @@ PROC_RESULT FrontierMonitorProc_End( PROC * proc, int * seq )
 
 //==============================================================================================
 //
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€‰Šú‰»
+ * @brief	ã‚²ãƒ¼ãƒ åˆæœŸåŒ–
  *
- * @param	wk		FRONTIER_MONITOR_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_MONITOR_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameInit( FRONTIER_MONITOR_WORK* wk )
@@ -374,7 +374,7 @@ static BOOL Seq_GameInit( FRONTIER_MONITOR_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒuƒ‰ƒbƒNƒCƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
 	case 1:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 						WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC*3, HEAPID_FRONTIER_MONITOR );
@@ -382,7 +382,7 @@ static BOOL Seq_GameInit( FRONTIER_MONITOR_WORK* wk )
 		wk->sub_seq++;
 		break;
 		
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 2:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			return TRUE;
@@ -395,11 +395,11 @@ static BOOL Seq_GameInit( FRONTIER_MONITOR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ŠJn
+ * @brief	ã‚²ãƒ¼ãƒ é–‹å§‹
  *
- * @param	wk		FRONTIER_MONITOR_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_MONITOR_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameStart( FRONTIER_MONITOR_WORK* wk )
@@ -415,9 +415,9 @@ static BOOL Seq_GameStart( FRONTIER_MONITOR_WORK* wk )
 
 	//
 	case 1:
-		//BgCheck();									//BG‚ÌONEOFF(ƒfƒoƒbƒN)
+		//BgCheck();									//BGã®ONãƒ»OFF(ãƒ‡ãƒãƒƒã‚¯)
 
-		//I—¹ƒ`ƒFƒbƒN
+		//çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( (sys.cont & PAD_BUTTON_A) ||
 			(sys.cont & PAD_BUTTON_B) ){
 			return TRUE;
@@ -432,11 +432,11 @@ static BOOL Seq_GameStart( FRONTIER_MONITOR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFI—¹‚Ö
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†ã¸
  *
- * @param	wk		FRONTIER_MONITOR_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_MONITOR_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameEnd( FRONTIER_MONITOR_WORK* wk )
@@ -445,14 +445,14 @@ static BOOL Seq_GameEnd( FRONTIER_MONITOR_WORK* wk )
 
 	switch( wk->sub_seq ){
 
-	//ƒtƒF[ƒhƒAƒEƒg
+	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case 0:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
 						WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_FRONTIER_MONITOR );
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 1:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			return TRUE;
@@ -466,15 +466,15 @@ static BOOL Seq_GameEnd( FRONTIER_MONITOR_WORK* wk )
 
 //==============================================================================================
 //
-//	İ’è
+//	è¨­å®š
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	VBlankŠÖ”
+ * @brief	VBlanké–¢æ•°
  *
- * @param	work	ƒ[ƒN
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -483,7 +483,7 @@ static void VBlankFunc( void * work )
 {
 	FRONTIER_MONITOR_WORK* wk = work;
 
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	if( wk->pfd != NULL ){
 		PaletteFadeTrans( wk->pfd );
 	}
@@ -495,32 +495,32 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	VRAMİ’è
+ * @brief	VRAMè¨­å®š
  *
  * @param	none
  *
  * @return	none
  *
- * ×‚©‚­İ’è‚µ‚Ä‚¢‚È‚¢‚Ì‚Å’ˆÓI
+ * ç´°ã‹ãè¨­å®šã—ã¦ã„ãªã„ã®ã§æ³¨æ„ï¼
  */
 //--------------------------------------------------------------
 static void SetVramBank(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_128_B,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				//ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			//ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	GF_Disp_SetBank( &tbl );
@@ -529,9 +529,9 @@ static void SetVramBank(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	BGİ’è
+ * @brief	BGè¨­å®š
  *
- * @param	init	BGLƒf[ƒ^
+ * @param	init	BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -539,7 +539,7 @@ static void SetVramBank(void)
 static void SetBgHeader( GF_BGL_INI * ini )
 {
 	/******************/
-	//CHRA,SCR‚Í—vŠm”FI
+	//CHRA,SCRã¯è¦ç¢ºèªï¼
 	/******************/
 
 	{	//BG SYSTEM
@@ -549,7 +549,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	{	//BG(ƒtƒHƒ“ƒg)
+	{	//BG(ãƒ•ã‚©ãƒ³ãƒˆ)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -560,7 +560,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, BFM_FRAME_WIN );
 	}
 
-	{	//ã‰æ–Ê
+	{	//ä¸Šç”»é¢
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
@@ -572,7 +572,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 	}
 
 	//--------------------------------------------------------------------------------
-	{	//‰º‰æ–Ê(ƒ{[ƒ‹)
+	{	//ä¸‹ç”»é¢(ãƒœãƒ¼ãƒ«)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -592,15 +592,15 @@ static void SetBgHeader( GF_BGL_INI * ini )
 
 //==============================================================================================
 //
-//	‹¤’Ê‰Šú‰»AI—¹
+//	å…±é€šåˆæœŸåŒ–ã€çµ‚äº†
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BGŠÖ˜A‰Šú‰»
+ * @brief	BGé–¢é€£åˆæœŸåŒ–
  *
- * @param	wk		FRONTIER_MONITOR_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_MONITOR_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -610,34 +610,34 @@ static void Frontier_BgInit( FRONTIER_MONITOR_WORK* wk )
 	SetVramBank();
 	SetBgHeader( wk->bgl );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ƒ[ƒNì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	wk->pfd = PaletteFadeInit( HEAPID_FRONTIER_MONITOR );
 
-	//ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğmalloc‚µ‚ÄƒZƒbƒg
+	//ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’mallocã—ã¦ã‚»ãƒƒãƒˆ
 	PaletteFadeWorkAllocSet( wk->pfd, FADE_MAIN_OBJ, FADE_PAL_ALL_SIZE, HEAPID_FRONTIER_MONITOR );
 	PaletteFadeWorkAllocSet( wk->pfd, FADE_MAIN_BG, FADE_PAL_ALL_SIZE, HEAPID_FRONTIER_MONITOR );
 
-	//ã‰æ–Ê”wŒi
+	//ä¸Šç”»é¢èƒŒæ™¯
 	Frontier_SetMainBgGraphic( wk, BFM_FRAME_BG );
 	Frontier_SetMainBgPalette();
 
-	//‰º‰æ–Ê”wŒiAƒpƒŒƒbƒgƒZƒbƒg
+	//ä¸‹ç”»é¢èƒŒæ™¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	Frontier_SetSubBgGraphic( wk, BFM_FRAME_SUB );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	BG‰ğ•ú
+ * @brief	BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void Frontier_BgExit( GF_BGL_INI * ini )
 {
-	//ƒƒCƒ“‰æ–Ê‚ÌŠe–Ê‚Ì•\¦ƒRƒ“ƒgƒ[ƒ‹(•\¦OFF)
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«(è¡¨ç¤ºOFF)
 	GF_Disp_GX_VisibleControl(	GX_PLANEMASK_BG0 | 
 								GX_PLANEMASK_BG1 | 
 								GX_PLANEMASK_BG2 |
@@ -645,7 +645,7 @@ static void Frontier_BgExit( GF_BGL_INI * ini )
 								GX_PLANEMASK_OBJ, 
 								VISIBLE_OFF );
 
-	//ƒTƒu‰æ–Ê‚ÌŠe–Ê‚Ì•\¦ƒRƒ“ƒgƒ[ƒ‹(•\¦OFF)
+	//ã‚µãƒ–ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«(è¡¨ç¤ºOFF)
 	GF_Disp_GXS_VisibleControl(	GX_PLANEMASK_BG0 | 
 								GX_PLANEMASK_BG1 | 
 								GX_PLANEMASK_BG2 | 
@@ -653,7 +653,7 @@ static void Frontier_BgExit( GF_BGL_INI * ini )
 								GX_PLANEMASK_OBJ, 
 								VISIBLE_OFF );
 
-	//GF_BGL_BGControlSet‚Åæ“¾‚µ‚½ƒƒ‚ƒŠ‚ğŠJ•ú
+	//GF_BGL_BGControlSetã§å–å¾—ã—ãŸãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾
 	GF_BGL_BGControlExit( ini, BFM_FRAME_WIN );
 	GF_BGL_BGControlExit( ini, BFM_FRAME_BG );
 	GF_BGL_BGControlExit( ini, BFM_FRAME_SUB );
@@ -665,17 +665,17 @@ static void Frontier_BgExit( GF_BGL_INI * ini )
 
 //==============================================================================================
 //
-//	ƒc[ƒ‹
+//	ãƒ„ãƒ¼ãƒ«
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒX•ÏX
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
  *
- * @param	wk		FRONTIER_MONITOR_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
- * @param	next	Ÿ‚ÌƒV[ƒPƒ“ƒX’è‹`
+ * @param	wk		FRONTIER_MONITOR_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	next	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
  *
  * @return	none
  */
@@ -689,11 +689,11 @@ static void NextSeq( FRONTIER_MONITOR_WORK* wk, int* seq, int next )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒL[ƒ`ƒFƒbƒN
+ * @brief	ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
  *
- * @param	key		ƒ`ƒFƒbƒN‚·‚éƒL[
+ * @param	key		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚­ãƒ¼
  *
- * @return	"Œ‹‰Ê"
+ * @return	"çµæœ"
  */
 //--------------------------------------------------------------
 static int KeyCheck( int key )
@@ -703,7 +703,7 @@ static int KeyCheck( int key )
 
 //--------------------------------------------------------------
 /**
- * @brief	BGƒ`ƒFƒbƒN
+ * @brief	BGãƒã‚§ãƒƒã‚¯
  *
  * @param	none
  *
@@ -731,7 +731,7 @@ static void BgCheck(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	{İƒiƒ“ƒo[‚©‚çBMPƒiƒ“ƒo[‚ğæ“¾
+ * @brief	æ–½è¨­ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰BMPãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
  * @param	none
  *
@@ -774,16 +774,16 @@ static u8 GetBmpNo( u8 fr_no )
 
 //==============================================================================================
 //
-//	BGƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+//	BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFã‰æ–Ê”wŒi(ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹)
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸Šç”»é¢èƒŒæ™¯(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«)
  *
- * @param	wk		FRONTIER_MONITOR_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		FRONTIER_MONITOR_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -805,7 +805,7 @@ static void Frontier_SetMainBgGraphic( FRONTIER_MONITOR_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ã‰æ–Ê”wŒiƒpƒŒƒbƒgİ’è
+ * @brief	ä¸Šç”»é¢èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -820,7 +820,7 @@ static void Frontier_SetMainBgPalette(void)
 	buf = ArcUtil_PalDataGet(ARC_FRONTIER_BG, SEISEKI_NCLR, &dat,HEAPID_FRONTIER_MONITOR);
 		
 	DC_FlushRange( dat->pRawData, (sizeof(u16)*16*2) );
-	GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*2) );		//ƒƒCƒ“
+	GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*2) );		//ãƒ¡ã‚¤ãƒ³
 
 	sys_FreeMemoryEz(buf);
 	return;
@@ -828,10 +828,10 @@ static void Frontier_SetMainBgPalette(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF‰º‰æ–Ê”wŒiAƒpƒŒƒbƒgƒZƒbƒg
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸‹ç”»é¢èƒŒæ™¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRONTIER_MONITOR_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		FRONTIER_MONITOR_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -840,7 +840,7 @@ static void Frontier_SetSubBgGraphic( FRONTIER_MONITOR_WORK * wk, u32 frm  )
 {
 	ARCHANDLE* hdl;
 		
-	//‚Æ‚è‚ ‚¦‚¸ƒ|ƒPƒbƒ`‚É‚ ‚é‰º‰æ–Ê‚ğg‚¢‚Ü‚í‚·
+	//ã¨ã‚Šã‚ãˆãšãƒã‚±ãƒƒãƒã«ã‚ã‚‹ä¸‹ç”»é¢ã‚’ä½¿ã„ã¾ã‚ã™
 	hdl = ArchiveDataHandleOpen( ARC_POKETCH_IMG, HEAPID_FRONTIER_MONITOR );
 
 	ArcUtil_HDL_BgCharSet(	hdl, NARC_poketch_before_lz_ncgr, wk->bgl, frm,
@@ -859,38 +859,38 @@ static void Frontier_SetSubBgGraphic( FRONTIER_MONITOR_WORK * wk, u32 frm  )
 
 //==============================================================================================
 //
-//	ƒƒbƒZ[ƒWŠÖ˜A
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		FRONTIER_MONITOR_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
- * @param	fill	“h‚è‚Â‚Ô‚µ—L‚è–³‚µ
- * @param   align   …•½•ûŒü‚Ì”z’u
+ * @param	wk		FRONTIER_MONITOR_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
+ * @param	fill	å¡—ã‚Šã¤ã¶ã—æœ‰ã‚Šç„¡ã—
+ * @param   align   æ°´å¹³æ–¹å‘ã®é…ç½®
  *
- * @return	"•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
+ * @return	"æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  */
 //--------------------------------------------------------------
 static u8 FrontierWriteMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u8 f_col, u8 s_col, u8 b_col, u8 font, u8 fill, int align )
 {
 	if( fill != 0 ){
-		GF_BGL_BmpWinDataFill( win, b_col );			//“h‚è‚Â‚Ô‚µ
+		GF_BGL_BmpWinDataFill( win, b_col );			//å¡—ã‚Šã¤ã¶ã—
 	}
 
 	MSGMAN_GetString( wk->msgman, msg_id, wk->tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
     //MatchComment: string alignment
@@ -909,10 +909,10 @@ static u8 FrontierWriteMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int m
  
 //--------------------------------------------------------------
 /**
- * @brief	ŠÈ’PƒƒbƒZ[ƒW•\¦
+ * @brief	ç°¡å˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	win		GF_BGL_BMPWINŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id	ƒƒbƒZ[ƒWID
+ * @param	win		GF_BGL_BMPWINå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
  * @return	"msg_index"
  */
@@ -925,15 +925,15 @@ static u8 EasyMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u8
 
 //--------------------------------------------------------------
 /**
- * @brief	”’l‚ğƒZƒbƒg
+ * @brief	æ•°å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRONTIER_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID	ƒoƒbƒtƒ@ID
- * @param	number	ƒZƒbƒg‚·‚é”’l
+ * @param	wk		FRONTIER_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID	ãƒãƒƒãƒ•ã‚¡ID
+ * @param	number	ã‚»ãƒƒãƒˆã™ã‚‹æ•°å€¤
  *
  * @retval	none
  *
- * 4Œ…ŒÅ’è‚É‚µ‚Ä‚¢‚é
+ * 4æ¡å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static void SetNumber( FRONTIER_MONITOR_WORK* wk, u32 bufID, s32 number )
@@ -945,9 +945,9 @@ static void SetNumber( FRONTIER_MONITOR_WORK* wk, u32 bufID, s32 number )
 
 //--------------------------------------------------------------
 /**
- * @brief	Še{İ‚²‚Æ‚Ìî•ñ‚ğ‘‚«‚Ş
+ * @brief	å„æ–½è¨­ã”ã¨ã®æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€
  *
- * @param	wk		FRONTIER_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -958,14 +958,14 @@ static void Frontier_Write( FRONTIER_MONITOR_WORK* wk )
 
 	switch( wk->fr_no ){
 
-	//ƒtƒ@ƒNƒgƒŠ[
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 	case FRONTIER_NO_FACTORY_LV50:
 	case FRONTIER_NO_FACTORY_LV100:
-		Factory_SetLv50Info( wk );	//u‚k‚u‚T‚Ov
-		Factory_SetLv100Info( wk );	//uƒI[ƒvƒ“v
+		Factory_SetLv50Info( wk );	//ã€Œï¼¬ï¼¶ï¼•ï¼ã€
+		Factory_SetLv100Info( wk );	//ã€Œã‚ªãƒ¼ãƒ—ãƒ³ã€
 		break;
 
-	//ƒXƒe[ƒW
+	//ã‚¹ãƒ†ãƒ¼ã‚¸
 	case FRONTIER_NO_STAGE:
 		Stage_SetInfo( wk );
 		break;
@@ -987,7 +987,7 @@ static void Frontier_Write( FRONTIER_MONITOR_WORK* wk )
 		}
 		break;
 
-	//ƒGƒ‰[‰ñ”ğ
+	//ã‚¨ãƒ©ãƒ¼å›é¿
 	default:
 		Roulette_SetInfo( wk );
 		break;
@@ -1000,15 +1000,15 @@ static void Frontier_Write( FRONTIER_MONITOR_WORK* wk )
 
 //==============================================================================================
 //
-//	ƒtƒ@ƒNƒgƒŠ[
+//	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	LV50î•ñ‚ğƒZƒbƒg
+ * @brief	LV50æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRONTIER_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1022,9 +1022,9 @@ static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
 	//----------------------------------------------------------
 	no = BF_BMPWIN_TITLE;
 
-	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
-	//uƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[v
+	//ã€Œãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list02, BF_STR_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
@@ -1039,33 +1039,33 @@ static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
 		x = TITLE_STR_X_FACTORY;
 	}
 
-	//uƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«v
+	//ã€Œã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ãã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	
 	//----------------------------------------------------------
 	no = BF_BMPWIN_ENTRY1;
-	//u‚k‚u‚T‚Ov
+	//ã€Œï¼¬ï¼¶ï¼•ï¼ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list13, 1 );
-	//uƒŒƒ“ƒ^ƒ‹^‚±‚¤‚©‚ñv
+	//ã€Œãƒ¬ãƒ³ã‚¿ãƒ«ï¼ã“ã†ã‹ã‚“ã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list15, 28*8, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
 	no = BF_BMPWIN_BEFORE;
-	//u‚º‚ñ‚©‚¢vu‚°‚ñ‚´‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€ã€Œã’ã‚“ã–ã„ã€
 	EasyMsg( wk, &wk->bmpwin[no], Factory_GetMsg(wk,0), 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 		FrontierRecord_Get( wk->f_sv, FactoryScr_GetWinRecordID(FACTORY_LEVEL_50,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
-	//u››‚©‚¢v
+	//ã€Œâ—‹â—‹ã‹ã„ã€
 	SetNumber(	wk, 0, 
 		FrontierRecord_Get( wk->f_sv,FactoryScr_GetTradeRecordID(FACTORY_LEVEL_50,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
@@ -1075,17 +1075,17 @@ static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
 		
 	//----------------------------------------------------------
 	no = BF_BMPWIN_MAX;
-	//u‚³‚¢‚±‚¤v
+	//ã€Œã•ã„ã“ã†ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list10, 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 		FrontierRecord_Get(	wk->f_sv,FactoryScr_GetMaxWinRecordID(FACTORY_LEVEL_50,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
-	//u››‚©‚¢v
+	//ã€Œâ—‹â—‹ã‹ã„ã€
 	SetNumber(	wk, 0,
 		FrontierRecord_Get( wk->f_sv,FactoryScr_GetMaxTradeRecordID(FACTORY_LEVEL_50,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
@@ -1097,9 +1097,9 @@ static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	LV100î•ñ‚ğƒZƒbƒg
+ * @brief	LV100æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRONTIER_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1111,27 +1111,27 @@ static void Factory_SetLv100Info( FRONTIER_MONITOR_WORK* wk )
 
 	//----------------------------------------------------------
 	no = BF_BMPWIN_ENTRY2;
-	//uƒI[ƒvƒ“ƒŒƒxƒ‹v
+	//ã€Œã‚ªãƒ¼ãƒ—ãƒ³ãƒ¬ãƒ™ãƒ«ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list14, 1 );
 
-	//uƒŒƒ“ƒ^ƒ‹^‚±‚¤‚©‚ñv
+	//ã€Œãƒ¬ãƒ³ã‚¿ãƒ«ï¼ã“ã†ã‹ã‚“ã€
 //	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list15, 19*8, 0,
 //					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
 	no = BF_BMPWIN_BEFORE2;
-	//u‚º‚ñ‚©‚¢vu‚°‚ñ‚´‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€ã€Œã’ã‚“ã–ã„ã€
 	EasyMsg( wk, &wk->bmpwin[no], Factory_GetMsg(wk,1), 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 		FrontierRecord_Get( wk->f_sv, FactoryScr_GetWinRecordID(FACTORY_LEVEL_OPEN,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
-	//u››‚©‚¢v
+	//ã€Œâ—‹â—‹ã‹ã„ã€
 	SetNumber(	wk, 0, 
 		FrontierRecord_Get( wk->f_sv, FactoryScr_GetTradeRecordID(FACTORY_LEVEL_OPEN,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
@@ -1141,17 +1141,17 @@ static void Factory_SetLv100Info( FRONTIER_MONITOR_WORK* wk )
 		
 	//----------------------------------------------------------
 	no = BF_BMPWIN_MAX2;
-	//u‚³‚¢‚±‚¤v
+	//ã€Œã•ã„ã“ã†ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list10, 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 		FrontierRecord_Get( wk->f_sv,FactoryScr_GetMaxWinRecordID(FACTORY_LEVEL_OPEN,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
-	//u››‚©‚¢v
+	//ã€Œâ—‹â—‹ã‹ã„ã€
 	SetNumber(	wk, 0,
 		FrontierRecord_Get( wk->f_sv, FactoryScr_GetMaxTradeRecordID(FACTORY_LEVEL_OPEN,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
@@ -1172,39 +1172,39 @@ static u32 Factory_GetMsg( FRONTIER_MONITOR_WORK* wk, u8 level )
 		clear_id = FRID_FACTORY_MULTI_WIFI_CLEAR100_BIT;
 	}
 
-	//WIFI‚Ì‚İ“Áê
+	//WIFIã®ã¿ç‰¹æ®Š
 	if( wk->type == FACTORY_TYPE_WIFI_MULTI ){
 
 		clear_flag = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), clear_id,
 										Frontier_GetFriendIndex(clear_id) );
 	}else{
-		//ƒNƒŠƒA‚µ‚½‚©ƒtƒ‰ƒO‚ğæ“¾
+		//ã‚¯ãƒªã‚¢ã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 		clear_flag = (u8)FACTORYSCORE_GetScoreData(	SaveData_GetFactoryScore(wk->sv), 
 													FACTORYSCORE_ID_CLEAR_FLAG, 
 													(level*FACTORY_TYPE_MAX)+wk->type, NULL );
 	}
 
 	if( clear_flag == 1 ){
-		//u‚°‚ñ‚´‚¢v
+		//ã€Œã’ã‚“ã–ã„ã€
 		return msg_bf_seiseki_list23;
 	}
 
-	//u‚º‚ñ‚©‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€
 	return msg_bf_seiseki_list09;
 }
 
 
 //==============================================================================================
 //
-//	ƒXƒe[ƒW
+//	ã‚¹ãƒ†ãƒ¼ã‚¸
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	î•ñ‚ğƒZƒbƒg
+ * @brief	æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRONTIER_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1222,9 +1222,9 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 	//----------------------------------------------------------
 	no = BS_BMPWIN_TITLE;
 
-	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
-	//uƒoƒgƒ‹ƒXƒe[ƒWv
+	//ã€Œãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list04, BF_STR_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
@@ -1239,14 +1239,14 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 		x = TITLE_STR_X_STAGE;
 	}
 
-	//uƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«v
+	//ã€Œã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ãã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	
 	//----------------------------------------------------------
 	no = BS_BMPWIN_ENTRY1;
-	//ƒ|ƒPƒ‚ƒ“–¼ƒZƒbƒg
+	//ãƒã‚±ãƒ¢ãƒ³åã‚»ãƒƒãƒˆ
 	FrontierMonitor_PokeName( wk );
 	//EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_03_01, 1 );
 
@@ -1258,15 +1258,15 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 
 	//----------------------------------------------------------
 	no = BS_BMPWIN_BEFORE;
-	//u‚º‚ñ‚©‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list09, 1 );
 
-	//’§í’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğæ“¾
+	//æŒ‘æˆ¦ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	before_monsno = FrontierRecord_Get(	SaveData_GetFrontier(wk->sv), 
 							StageScr_GetMonsNoRecordID(wk->type),
 							Frontier_GetFriendIndex(StageScr_GetMonsNoRecordID(wk->type)) );
 
-	//’§í’†ˆÈŠO‚Ìƒ|ƒPƒ‚ƒ“‚ÌŒ»İ‚Ì˜AŸ”‚Í0‚É‚·‚é
+	//æŒ‘æˆ¦ä¸­ä»¥å¤–ã®ãƒã‚±ãƒ¢ãƒ³ã®ç¾åœ¨ã®é€£å‹æ•°ã¯0ã«ã™ã‚‹
 	if( wk->monsno != before_monsno ){
 		num = 0;
 	}else{
@@ -1276,7 +1276,7 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 	OS_Printf( "monsno = %d\n", wk->monsno );
 	OS_Printf( "num = %d\n", num );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, num );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
@@ -1284,18 +1284,18 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 		
 	//----------------------------------------------------------
 	no = BS_BMPWIN_MAX;
-	//u‚³‚¢‚±‚¤v
+	//ã€Œã•ã„ã“ã†ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list10, 1 );
 
 #if 0
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 				FrontierRecord_Get( wk->f_sv, StageScr_GetMaxWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 #else
 	fes = FrontierEx_Load( wk->sv, HEAPID_WORLD, &load_result );
 	if( load_result != LOAD_RESULT_OK ){
-		num = 0;	//ƒZ[ƒu”j‰óorƒL[‚Æˆê’v‚µ‚È‚¢Aê‡‚ÍV‹Kƒf[ƒ^‚Æ‰ğß‚µAƒJƒEƒ“ƒ^0‚Æ‚·‚é
+		num = 0;	//ã‚»ãƒ¼ãƒ–ç ´å£Šorã‚­ãƒ¼ã¨ä¸€è‡´ã—ãªã„ã€å ´åˆã¯æ–°è¦ãƒ‡ãƒ¼ã‚¿ã¨è§£é‡ˆã—ã€ã‚«ã‚¦ãƒ³ã‚¿0ã¨ã™ã‚‹
 	}else{
 		num = FrontierEx_StageRenshou_Get(	wk->sv, fes, 
 											StageScr_GetExMaxWinRecordID(wk->type), wk->monsno );
@@ -1303,7 +1303,7 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 	OS_Printf( "num = %d\n", num );
 
 #if 0
-	//ƒfƒoƒbƒN
+	//ãƒ‡ãƒãƒƒã‚¯
 	OS_Printf( "num = %d\n", FrontierEx_StageRenshou_Get(	wk->sv, fes, 
 										StageScr_GetExMaxWinRecordID(wk->type), MONSNO_BIIBARU ) );
 	OS_Printf( "num = %d\n", FrontierEx_StageRenshou_Get(	wk->sv, fes, 
@@ -1329,33 +1329,33 @@ static u32 Stage_GetMsg( FRONTIER_MONITOR_WORK* wk )
 #if 0
 	u8 clear_flag;
 
-	//WIFI‚Ì‚İ“Áê
+	//WIFIã®ã¿ç‰¹æ®Š
 	if( wk->type == STAGE_TYPE_WIFI_MULTI ){
 		clear_flag = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), 
 										FRID_STAGE_MULTI_WIFI_CLEAR_BIT,
 										Frontier_GetFriendIndex(FRID_STAGE_MULTI_WIFI_CLEAR_BIT) );
 	}else{
-		//ƒNƒŠƒA‚µ‚½‚©ƒtƒ‰ƒO‚ğæ“¾
+		//ã‚¯ãƒªã‚¢ã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 		clear_flag = (u8)STAGESCORE_GetScoreData(	SaveData_GetStageScore(wk->sv), 
 													STAGESCORE_ID_CLEAR_FLAG, 
 													wk->type, 0, NULL );
 	}
 
 	if( clear_flag == 1 ){
-		//u‚°‚ñ‚´‚¢v
+		//ã€Œã’ã‚“ã–ã„ã€
 		return msg_bf_seiseki_list23;
 	}
 #endif
 
-	//u‚º‚ñ‚©‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€
 	return msg_bf_seiseki_list09;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©‚çƒ|ƒPƒ‚ƒ“–¼‚ğw’èƒoƒbƒtƒ@‚É“o˜^
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³åã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1369,12 +1369,12 @@ static void FrontierMonitor_PokeName( FRONTIER_MONITOR_WORK* wk )
 	buf = MSGMAN_AllocString( man, wk->monsno );
 	MSGMAN_Delete( man );
 
-	//’PŒêƒZƒbƒg
-	//ƒoƒbƒtƒ@ID
-	//•¶š—ñ
-	//«•ÊƒR[ƒh
-	//’P^•¡iTRUE‚Å’P”j
-	//Œ¾ŒêƒR[ƒh
+	//å˜èªã‚»ãƒƒãƒˆ
+	//ãƒãƒƒãƒ•ã‚¡ID
+	//æ–‡å­—åˆ—
+	//æ€§åˆ¥ã‚³ãƒ¼ãƒ‰
+	//å˜ï¼è¤‡ï¼ˆTRUEã§å˜æ•°ï¼‰
+	//è¨€èªã‚³ãƒ¼ãƒ‰
 	WORDSET_RegisterWord( wk->wordset, 0, buf, 0, 0, PM_LANG );
 	STRBUF_Delete( buf );
 	return;
@@ -1383,15 +1383,15 @@ static void FrontierMonitor_PokeName( FRONTIER_MONITOR_WORK* wk )
 
 //==============================================================================================
 //
-//	ƒLƒƒƒbƒXƒ‹
+//	ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	î•ñ‚ğƒZƒbƒg
+ * @brief	æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRONTIER_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1406,9 +1406,9 @@ static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 	//----------------------------------------------------------
 	no = BC_BMPWIN_TITLE;
 
-	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
-	//uƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹v
+	//ã€Œãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list03, BF_STR_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
@@ -1423,14 +1423,14 @@ static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 		x = TITLE_STR_X_CASTLE;
 	}
 
-	//uƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«v
+	//ã€Œã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ãã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
 	no = BC_BMPWIN_ENTRY1;
-	//uƒLƒƒƒbƒXƒ‹ƒ|ƒCƒ“ƒgv
+	//ã€Œã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒã‚¤ãƒ³ãƒˆã€
 	//EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list16, 1 );
     FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list16, ENTRY1_X, 0,
                     FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM,
@@ -1439,20 +1439,20 @@ static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 
 	//----------------------------------------------------------
 	no = BC_BMPWIN_BEFORE;
-	//u‚º‚ñ‚©‚¢vu‚°‚ñ‚´‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€ã€Œã’ã‚“ã–ã„ã€
 	EasyMsg( wk, &wk->bmpwin[no], Castle_GetMsg(wk), 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 				FrontierRecord_Get( wk->f_sv, CastleScr_GetWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list21, WIN_NUM_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
-	//u››‚b‚ovc‚èCP‚ğ•\¦
+	//ã€Œâ—‹â—‹ï¼£ï¼°ã€æ®‹ã‚ŠCPã‚’è¡¨ç¤º
 	now_cp = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), CastleScr_GetCPRecordID(wk->type),
 								Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)) );
-	//OS_Printf( "‘O‰ñc‚ècp = %d\n", now_cp );
+	//OS_Printf( "å‰å›æ®‹ã‚Šcp = %d\n", now_cp );
 	SetNumber(	wk, 0, now_cp );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list20, CP_STR_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
@@ -1461,21 +1461,21 @@ static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 		
 	//----------------------------------------------------------
 	no = BC_BMPWIN_MAX;
-	//u‚³‚¢‚±‚¤v
+	//ã€Œã•ã„ã“ã†ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list10, 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 				FrontierRecord_Get( wk->f_sv, CastleScr_GetMaxWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list21, WIN_NUM_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
-	//u››‚b‚ovc‚èCP‚ğ•\¦
+	//ã€Œâ—‹â—‹ï¼£ï¼°ã€æ®‹ã‚ŠCPã‚’è¡¨ç¤º
 	now_cp = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), 
 							CastleScr_GetRemainderCPRecordID(wk->type),
 							Frontier_GetFriendIndex(CastleScr_GetRemainderCPRecordID(wk->type)) );
-	//OS_Printf( "Å‚c‚ècp = %d\n", now_cp );
+	//OS_Printf( "æœ€é«˜æ®‹ã‚Šcp = %d\n", now_cp );
 	SetNumber(	wk, 0, now_cp );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list20, CP_STR_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
@@ -1488,39 +1488,39 @@ static u32 Castle_GetMsg( FRONTIER_MONITOR_WORK* wk )
 {
 	u8 clear_flag;
 
-	//WIFI‚Ì‚İ“Áê
+	//WIFIã®ã¿ç‰¹æ®Š
 	if( wk->type == CASTLE_TYPE_WIFI_MULTI ){
 		clear_flag = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), 
 										FRID_CASTLE_MULTI_WIFI_CLEAR_BIT,
 										Frontier_GetFriendIndex(FRID_CASTLE_MULTI_WIFI_CLEAR_BIT) );
 	}else{
-		//ƒNƒŠƒA‚µ‚½‚©ƒtƒ‰ƒO‚ğæ“¾
+		//ã‚¯ãƒªã‚¢ã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 		clear_flag = (u8)CASTLESCORE_GetScoreData(	SaveData_GetCastleScore(wk->sv), 
 													CASTLESCORE_ID_CLEAR_FLAG, 
 													wk->type, 0, NULL );
 	}
 
 	if( clear_flag == 1 ){
-		//u‚°‚ñ‚´‚¢v
+		//ã€Œã’ã‚“ã–ã„ã€
 		return msg_bf_seiseki_list23;
 	}
 
-	//u‚º‚ñ‚©‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€
 	return msg_bf_seiseki_list09;
 }
 
 
 //==============================================================================================
 //
-//	ƒ‹[ƒŒƒbƒg
+//	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	î•ñ‚ğƒZƒbƒg
+ * @brief	æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRONTIER_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1535,9 +1535,9 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 	no = BR_BMPWIN_TITLE;
 
 
-	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
-	//uƒoƒgƒ‹ƒ‹[ƒŒƒbƒgv
+	//ã€Œãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list05, BF_STR_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
@@ -1552,17 +1552,17 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 		x = TITLE_STR_X_ROULETTE;
 	}
 
-	//uƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«v
+	//ã€Œã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ãã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
 	no = BR_BMPWIN_BEFORE;
-	//u‚º‚ñ‚©‚¢vu‚°‚ñ‚´‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€ã€Œã’ã‚“ã–ã„ã€
 	EasyMsg( wk, &wk->bmpwin[no], Roulette_GetMsg(wk), 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 				FrontierRecord_Get( wk->f_sv, RouletteScr_GetWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
@@ -1573,10 +1573,10 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 		
 	//----------------------------------------------------------
 	no = BR_BMPWIN_MAX;
-	//u‚³‚¢‚±‚¤v
+	//ã€Œã•ã„ã“ã†ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list10, 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 				FrontierRecord_Get( wk->f_sv, RouletteScr_GetMaxWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
@@ -1591,39 +1591,39 @@ static u32 Roulette_GetMsg( FRONTIER_MONITOR_WORK* wk )
 {
 	u8 clear_flag;
 
-	//WIFI‚Ì‚İ“Áê
+	//WIFIã®ã¿ç‰¹æ®Š
 	if( wk->type == ROULETTE_TYPE_WIFI_MULTI ){
 		clear_flag = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), 
 									FRID_ROULETTE_MULTI_WIFI_CLEAR_BIT,
 									Frontier_GetFriendIndex(FRID_ROULETTE_MULTI_WIFI_CLEAR_BIT) );
 	}else{
-		//ƒNƒŠƒA‚µ‚½‚©ƒtƒ‰ƒO‚ğæ“¾
+		//ã‚¯ãƒªã‚¢ã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 		clear_flag = (u8)ROULETTESCORE_GetScoreData(SaveData_GetRouletteScore(wk->sv), 
 													ROULETTESCORE_ID_CLEAR_FLAG, 
 													wk->type, 0, NULL );
 	}
 
 	if( clear_flag == 1 ){
-		//u‚°‚ñ‚´‚¢v
+		//ã€Œã’ã‚“ã–ã„ã€
 		return msg_bf_seiseki_list23;
 	}
 
-	//u‚º‚ñ‚©‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€
 	return msg_bf_seiseki_list09;
 }
 
 
 //==============================================================================================
 //
-//	ƒ^ƒ[
+//	ã‚¿ãƒ¯ãƒ¼
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹î•ñ‚ğƒZƒbƒg
+ * @brief	ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRONTIER_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1637,9 +1637,9 @@ static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk )
 	//----------------------------------------------------------
 	no = BT_BMPWIN_TITLE;
 
-	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
-	//uƒoƒgƒ‹ƒ^ƒ[v
+	//ã€Œãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list01, BF_STR_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
@@ -1651,17 +1651,17 @@ static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk )
 		x = TITLE_STR_X_TOWER;
 	}
 
-	//uƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«v
+	//ã€Œã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ãã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
 	no = BT_BMPWIN_BEFORE0;
-	//u‚º‚ñ‚©‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€
 	EasyMsg( wk, &wk->bmpwin[no], Tower_GetMsg(wk,wk->type), 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 				FrontierRecord_Get( wk->f_sv, TowerScr_GetWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
@@ -1672,10 +1672,10 @@ static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk )
 		
 	//----------------------------------------------------------
 	no = BT_BMPWIN_MAX0;
-	//u‚³‚¢‚±‚¤v
+	//ã€Œã•ã„ã“ã†ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list10, 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 				FrontierRecord_Get( wk->f_sv, TowerScr_GetMaxWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
@@ -1688,9 +1688,9 @@ static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ}ƒ‹ƒ`î•ñ‚ğƒZƒbƒg
+ * @brief	ãƒãƒ«ãƒæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FRONTIER_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FRONTIER_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1703,29 +1703,29 @@ static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
 	//----------------------------------------------------------
 	no = BT_BMPWIN_TITLE;
 
-	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin[no], FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
-	//uƒoƒgƒ‹ƒ^ƒ[v
+	//ã€Œãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list01, BF_STR_X, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
-	//uƒVƒ“ƒOƒ‹‚¹‚¢‚¹‚«v
+	//ã€Œã‚·ãƒ³ã‚°ãƒ«ã›ã„ã›ãã€
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list08, TITLE_STR_X_TOWER, 0,
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
 	no = BT_BMPWIN_ENTRY1;
-	//uƒgƒŒ[ƒi[‚Æƒ}ƒ‹ƒ`v
+	//ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã¨ãƒãƒ«ãƒã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list11, 1 );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
 	no = BT_BMPWIN_BEFORE;
-	//u‚º‚ñ‚©‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€
 	EasyMsg( wk, &wk->bmpwin[no], Tower_GetMsg(wk,wk->type), 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 				FrontierRecord_Get( wk->f_sv, TowerScr_GetWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
@@ -1736,10 +1736,10 @@ static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
 		
 	//----------------------------------------------------------
 	no = BT_BMPWIN_MAX;
-	//u‚³‚¢‚±‚¤v
+	//ã€Œã•ã„ã“ã†ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list10, 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 				FrontierRecord_Get( wk->f_sv, TowerScr_GetMaxWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
@@ -1750,16 +1750,16 @@ static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
 
 	//----------------------------------------------------------
 	no = BT_BMPWIN_ENTRY2;
-	//u‚Æ‚à‚¾‚¿‚Æƒ}ƒ‹ƒ`v
+	//ã€Œã¨ã‚‚ã ã¡ã¨ãƒãƒ«ãƒã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list12, 1 );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
 	no = BT_BMPWIN_BEFORE2;
-	//u‚º‚ñ‚©‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€
 	EasyMsg( wk, &wk->bmpwin[no], Tower_GetMsg(wk,BTWR_MODE_COMM_MULTI), 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 		FrontierRecord_Get( wk->f_sv, TowerScr_GetWinRecordID(BTWR_MODE_COMM_MULTI),
 							FRONTIER_RECORD_NOT_FRIEND) );
@@ -1769,10 +1769,10 @@ static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
 
 	//----------------------------------------------------------
 	no = BT_BMPWIN_MAX2;
-	//u‚³‚¢‚±‚¤v
+	//ã€Œã•ã„ã“ã†ã€
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list10, 1 );
 
-	//u››‚ê‚ñ‚µ‚å‚¤v
+	//ã€Œâ—‹â—‹ã‚Œã‚“ã—ã‚‡ã†ã€
 	SetNumber(	wk, 0, 
 		FrontierRecord_Get( wk->f_sv,TowerScr_GetMaxWinRecordID(BTWR_MODE_COMM_MULTI),
 							FRONTIER_RECORD_NOT_FRIEND) );
@@ -1790,7 +1790,7 @@ static u32 Tower_GetMsg( FRONTIER_MONITOR_WORK* wk, u8 type )
 
 	scoreSave = SaveData_GetTowerScoreData( wk->sv );
 
-	//ƒ‚[ƒh‚É‚æ‚Á‚Ä•K—v‚ÈID‚ğæ“¾
+	//ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å¿…è¦ãªIDã‚’å–å¾—
 	switch( type ){
 	case BTWR_MODE_SINGLE:
 		id = BTWR_SFLAG_SINGLE_RECORD;
@@ -1815,25 +1815,25 @@ static u32 Tower_GetMsg( FRONTIER_MONITOR_WORK* wk, u8 type )
 	//case BTWR_MODE_RETRY:
 	//	break;
 
-	case BTWR_MODE_WIFI_MULTI:		//07.08.06 ƒvƒ‰ƒ`ƒi’Ç‰Á(COMM_MULTI‚ÌWIFI”Å —F’Bè’ )
-		id = BTWR_SFLAG_WIFI_MULTI_RECORD;		//ƒvƒ‰ƒ`ƒi’Ç‰Á
+	case BTWR_MODE_WIFI_MULTI:		//07.08.06 ãƒ—ãƒ©ãƒãƒŠè¿½åŠ (COMM_MULTIã®WIFIç‰ˆ å‹é”æ‰‹å¸³)
+		id = BTWR_SFLAG_WIFI_MULTI_RECORD;		//ãƒ—ãƒ©ãƒãƒŠè¿½åŠ 
 		break;
 
-	//ƒGƒ‰[‰ñ”ğ
+	//ã‚¨ãƒ©ãƒ¼å›é¿
 	default:
 		id = BTWR_SFLAG_SINGLE_RECORD;
 		break;
 	};
 
 	flag = TowerScoreData_SetFlags( scoreSave, id, BTWR_DATA_get );
-	OS_Printf( "ƒ^ƒ[‚ÌƒNƒŠƒAó‘Ô = %d\n", flag );
+	OS_Printf( "ã‚¿ãƒ¯ãƒ¼ã®ã‚¯ãƒªã‚¢çŠ¶æ…‹ = %d\n", flag );
 
 	if( flag == 1 ){
-		//u‚°‚ñ‚´‚¢v
+		//ã€Œã’ã‚“ã–ã„ã€
 		return msg_bf_seiseki_list23;
 	}
 
-	//u‚º‚ñ‚©‚¢v
+	//ã€Œãœã‚“ã‹ã„ã€
 	return msg_bf_seiseki_list09;
 }
 

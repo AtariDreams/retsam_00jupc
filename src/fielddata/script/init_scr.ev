@@ -7,26 +7,26 @@
 	.include	"scr_seq_def.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_init_script
 _EVENT_DATA_END
 
 
 /********************************************************************/
-/*						ƒQ[ƒ€ŠJŽnƒXƒNƒŠƒvƒg 						*/
+/*						ã‚²ãƒ¼ãƒ é–‹å§‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 						*/
 /*											 						*/
-/*	¦”ñí’“ƒvƒƒOƒ‰ƒ€—Þ‚ÌŒÄ‚Ño‚µ‚Í‹ÖŽ~	 						*/
+/*	â€»éžå¸¸é§ãƒ—ãƒ­ã‚°ãƒ©ãƒ é¡žã®å‘¼ã³å‡ºã—ã¯ç¦æ­¢	 						*/
 /********************************************************************/
 ev_init_script:
 
 /*******************************************/
-	//ƒfƒoƒbƒN
-	//_LDVAL			WK_SCENE_D29R0102,1		/*ƒfƒoƒbƒN*/
+	//ãƒ‡ãƒãƒƒã‚¯
+	//_LDVAL			WK_SCENE_D29R0102,1		/*ãƒ‡ãƒãƒƒã‚¯*/
 /*******************************************/
 
 	//T01R0202
@@ -37,15 +37,15 @@ ev_init_script:
 	_FLAG_SET		FV_R201_DOCTOR
 	_FLAG_SET		FV_R201_BAG
 
-	/*ŒÎ*/
+	/*æ¹–*/
 	_FLAG_SET		FV_D27R0101_POKE
 	_FLAG_SET		FV_D27R0101_DOCTOR
 	_FLAG_SET		FV_D27R0101_SUPPORT
-	//_FLAG_SET		FV_D27R0101_GKANBU1	//–{“–‚Í2DƒGƒfƒBƒ^‚Åíœ‚µ‚Ä‚æ‚¢
+	//_FLAG_SET		FV_D27R0101_GKANBU1	//æœ¬å½“ã¯2Dã‚¨ãƒ‡ã‚£ã‚¿ã§å‰Šé™¤ã—ã¦ã‚ˆã„
 	_FLAG_SET		FV_L01_RIVAL
 	//_FLAG_SET		FV_D27R0101_GKANBU
 
-	/*ŒÎ‚Ì“`àƒ|ƒPƒ‚ƒ“*/
+	/*æ¹–ã®ä¼èª¬ãƒã‚±ãƒ¢ãƒ³*/
 	_FLAG_SET		FV_D27R0103_AI
 	_FLAG_SET		FV_D28R0103_HAI
 	_FLAG_SET		FV_D29R0103_REI
@@ -54,12 +54,12 @@ ev_init_script:
 	_FLAG_SET		FV_D29R0101_RIVAL
 	_FLAG_SET		FV_D29R0102_GKANBU2
 
-	/*ƒRƒgƒuƒLƒ^ƒEƒ“*/
+	/*ã‚³ãƒˆãƒ–ã‚­ã‚¿ã‚¦ãƒ³*/
 	_FLAG_SET		FV_T01_RIVAL
 	_FLAG_SET		FV_T01R0201_RIVALMAMA
-	_LDVAL			WK_SCENE_T01,1			/*ƒ‰ƒCƒoƒ‹‚Ô‚Â‚©‚èƒCƒxƒ“ƒg‚ª•Ê‚É‚È‚Á‚½‚½‚ß*/
+	_LDVAL			WK_SCENE_T01,1			/*ãƒ©ã‚¤ãƒãƒ«ã¶ã¤ã‹ã‚Šã‚¤ãƒ™ãƒ³ãƒˆãŒåˆ¥ã«ãªã£ãŸãŸã‚*/
 
-	//ƒ}ƒTƒSƒ^ƒEƒ“
+	//ãƒžã‚µã‚´ã‚¿ã‚¦ãƒ³
 	_FLAG_SET		FV_T02_RIVAL
 	_FLAG_SET		FV_T02_DOCTOR
 	_FLAG_SET		FV_T02R0101_OOKIDO
@@ -67,17 +67,17 @@ ev_init_script:
 	_FLAG_SET		FV_D02R0101_BABYGIRL1
 	_FLAG_SET		FV_D02_POLICE
 
-	/*ƒnƒNƒ^ƒC‚ÌX*/
+	/*ãƒã‚¯ã‚¿ã‚¤ã®æ£®*/
 	_FLAG_SET		FV_D03R0101_LEADER
 
-	/*ƒJƒ“ƒiƒMƒ^ƒEƒ“*/
+	/*ã‚«ãƒ³ãƒŠã‚®ã‚¿ã‚¦ãƒ³*/
 	_FLAG_SET		FV_T05_CHAMP
 	_FLAG_SET		FV_T05R0501_AKAGI
 	_FLAG_SET		FV_T05R0501_OLDWOMAN
 	_FLAG_SET		FV_T05R0501_CHAMP
 	_FLAG_SET		FV_T05R0101_OLDWOMAN
 
-	//ƒRƒgƒuƒLƒVƒeƒB
+	//ã‚³ãƒˆãƒ–ã‚­ã‚·ãƒ†ã‚£
 	_FLAG_SET		FV_C01_SUPPORT
 	_FLAG_SET		FV_C01_DOCTOR
 	_FLAG_SET		FV_C01_GINGA
@@ -86,7 +86,7 @@ ev_init_script:
 	_FLAG_SET		FV_C01_CROWN
 	_FLAG_SET		FV_C01_SUNGLASSES
 
-	/*ƒ~ƒIƒVƒeƒB*/
+	/*ãƒŸã‚ªã‚·ãƒ†ã‚£*/
 	_FLAG_SET		FV_C02_SUPPORT
 	_FLAG_SET		FV_C02_DOCTOR
 	_FLAG_SET		FV_C02_RIVAL
@@ -97,13 +97,13 @@ ev_init_script:
 	_FLAG_SET		FV_C02R0101_BIGFOUR4
 	_FLAG_SET		FV_C02_RIVAL_STOPPER
 
-	//ƒNƒƒKƒlƒVƒeƒB
+	//ã‚¯ãƒ­ã‚¬ãƒã‚·ãƒ†ã‚£
 	_FLAG_SET		FV_C03_BOY1
 
-	/*”é“`u‚¢‚í‚­‚¾‚«vPOS*/
+	/*ç§˜ä¼ã€Œã„ã‚ãã ãã€POS*/
 	_LDVAL			WK_SCENE_D14R0101,1
 
-	/*ƒnƒNƒ^ƒCƒVƒeƒB*/
+	/*ãƒã‚¯ã‚¿ã‚¤ã‚·ãƒ†ã‚£*/
 	_FLAG_SET		FV_C04_CHAMP
 	_FLAG_SET		FV_C04_RIVAL
 	_FLAG_SET		FV_C04PC0101_GONBE
@@ -114,22 +114,22 @@ ev_init_script:
 	_FLAG_SET		FV_C04R0201_POLICE
 	_FLAG_SET		FV_C04R0205_DOCTOR
 
-	//ƒˆƒXƒKƒVƒeƒB
+	//ãƒ¨ã‚¹ã‚¬ã‚·ãƒ†ã‚£
 	_FLAG_SET		FV_C05_POKE
 	_FLAG_SET		FV_C05_JUDGE
 	_FLAG_SET		FV_C05R0601_RIVAL
 
-	//ƒoƒO‘ÎˆŒ©‘—‚è(06.07.23)
-	//_FLAG_SET		FV_C05_EGG		/*ƒ^ƒ}ƒS‚­‚ê‚él*/
+	//ãƒã‚°å¯¾å‡¦è¦‹é€ã‚Š(06.07.23)
+	//_FLAG_SET		FV_C05_EGG		/*ã‚¿ãƒžã‚´ãã‚Œã‚‹äºº*/
 
-	//ƒmƒ‚ƒZƒVƒeƒB
+	//ãƒŽãƒ¢ã‚»ã‚·ãƒ†ã‚£
 	_FLAG_SET		FV_C06_POKE
 	_FLAG_SET		FV_C06_LEADER
 	_FLAG_SET		FV_R213_GINGAM
 	_FLAG_SET		FV_R213_POLICE
 	_FLAG_SET		FV_R213R0301_POLICE
 	
-	//ƒgƒoƒŠƒVƒeƒB
+	//ãƒˆãƒãƒªã‚·ãƒ†ã‚£
 	_FLAG_SET		FV_D26R0109_BOSS
 	_FLAG_SET		FV_D26R0101_GKANBU
 	_FLAG_SET		FV_C07_GINGAM_3
@@ -141,25 +141,25 @@ ev_init_script:
 
 	_FLAG_SET		FV_R207_SUPPORT
 
-	/*ƒ|ƒPƒ‚ƒ“ƒŠ[ƒO*/
+	/*ãƒã‚±ãƒ¢ãƒ³ãƒªãƒ¼ã‚°*/
 	_FLAG_SET		FV_C10R0101_RIVAL
 
-	/*”­“dŠ*/
+	/*ç™ºé›»æ‰€*/
 	_FLAG_SET		FV_D13R0101_ITEM
 
-	//ƒoƒgƒ‹ƒ^ƒ[
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 	_FLAG_SET		FV_D31R0205_TRAINER
 	_FLAG_SET		FV_D31R0201_PRIZEMAN
 
 	_FLAG_SET		FV_D31_TOWERBOSS
 	_FLAG_SET		FV_D31_RIVAL
 
-	/*‚TlO*/
+	/*ï¼•äººè¡†*/
 	_FLAG_SET		FV_T06R0101_SEVEN2
 	_FLAG_SET		FV_T06_SEVEN2
 	_FLAG_SET		FV_T06_RIVAL
 
-	/*‰ÎŽR*/
+	/*ç«å±±*/
 	_FLAG_SET		FV_D16R0103_POLICE
 	_FLAG_SET		FV_D16R0103_POLICE_23
 	_FLAG_SET		FV_D16R0103_POKE
@@ -168,7 +168,7 @@ ev_init_script:
 	_FLAG_SET		FV_D16_POLICE
 	_FLAG_SET		FV_D16_SEVEN2
 
-	/*ˆç‚Ä‰®*/
+	/*è‚²ã¦å±‹*/
 	_FLAG_SET		FV_T04R0101_SUNGLASSES
 	_FLAG_SET		FV_T04_RIVAL
 
@@ -186,13 +186,13 @@ ev_init_script:
 	//L02R0101
 	_FLAG_SET		FV_L02R0201_WOMAN2
 
-	/*‘å‚«‚³”ä‚×‚Ì‹L˜^‰Šú‰»*/
+	/*å¤§ãã•æ¯”ã¹ã®è¨˜éŒ²åˆæœŸåŒ–*/
 	_OOKISA_KURABE_INIT
 
-	/*ƒ|ƒPƒ‚ƒ“‚­‚¶—”‰Šú‰»*/
+	/*ãƒã‚±ãƒ¢ãƒ³ãã˜ä¹±æ•°åˆæœŸåŒ–*/
 	_KUJI_ATARI_INIT
 
-	/*ƒŒƒxƒ‹ƒWƒWƒC‰Šú‰»*/
+	/*ãƒ¬ãƒ™ãƒ«ã‚¸ã‚¸ã‚¤åˆæœŸåŒ–*/
 	_LEVEL_JIJII_INIT
 
 	/*D24R0201*/
@@ -208,16 +208,16 @@ ev_init_script:
 	/*D15R0101*/
 	_FLAG_SET		FV_FLD_ITEM_92
 
-	/*ƒXƒƒbƒgƒŒƒ“ƒ`ƒƒƒ“”‚ð‚X‚Ö*/
+	/*ã‚¹ãƒ­ãƒƒãƒˆãƒ¬ãƒ³ãƒãƒ£ãƒ³æ•°ã‚’ï¼™ã¸*/
 	_LDVAL			SYS_WORK_RENSYOU_COUNT,9
 
-	/*D17R0104‚ÌƒAƒCƒeƒ€ƒ{[ƒ‹*/
+	/*D17R0104ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒœãƒ¼ãƒ«*/
 	_FLAG_SET		FV_D17R0104_ITEM
 
-	/*C05R1001‚¨—¿—‹³Žº‚ÌƒCƒ“ƒ^ƒrƒ…ƒA[*/
+	/*C05R1001ãŠæ–™ç†æ•™å®¤ã®ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼*/
 	_FLAG_SET		FV_TV_INTERVIEW_11
 
-	/*ƒeƒ“ƒKƒ“ƒUƒ“*/
+	/*ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³*/
 	_FLAG_SET		FV_D05R0102_HAHEN
 	_FLAG_SET		FV_D05R0102_POLICE
 	_FLAG_SET		FV_D05R0112_GINGAW

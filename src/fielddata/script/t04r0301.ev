@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_t04r0301evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_t04r0301_sunglasses
 _EVENT_DATA		ev_t04r0301_man1
@@ -21,47 +21,47 @@ _EVENT_DATA		ev_t04r0301_ball_guide_01
 _EVENT_DATA_END
 
 /********************************************************************/
-/*							ƒTƒ“ƒOƒ‰ƒX								*/
+/*							ã‚µãƒ³ã‚°ãƒ©ã‚¹								*/
 /********************************************************************/
 ev_t04r0301_sunglasses:
 	_TALK_OBJ_START
 
-	//‚²–J”üƒAƒCƒeƒ€‚ð—a‚¯‚½‚Ü‚Ü
+	//ã”è¤’ç¾Žã‚¢ã‚¤ãƒ†ãƒ ã‚’é ã‘ãŸã¾ã¾
 	_IF_FLAGON_JUMP	FE_T04R0301_ITEM_DEPOSIT,ev_t04r0301_sunglasses_item_chk
 
-	//¡“ú‚ÌˆË—ŠI—¹
+	//ä»Šæ—¥ã®ä¾é ¼çµ‚äº†
 	_IF_FLAGON_JUMP	TMFLG_T04R0301_NEWS_END,ev_t04r0301_sunglasses_11
 
-	//‰‰ñ
+	//åˆå›ž
 	_IF_FLAGOFF_JUMP	FE_T04R0301_SUNGLASSES_TALK,ev_t04r0301_sunglasses_01
 
-	//2‰ñ–ÚˆÈ~‚ÌˆË—Š‘O
+	//2å›žç›®ä»¥é™ã®ä¾é ¼å‰
 	_IFVAL_JUMP		WK_SCENE_NEWS_MONSNO,EQ,0,ev_t04r0301_sunglasses_02
 
-	//2‰ñ–ÚˆÈ~‚ÌˆË—ŠŒã
+	//2å›žç›®ä»¥é™ã®ä¾é ¼å¾Œ
 	_JUMP				ev_t04r0301_sunglasses_04
 
-//‰‰ñ
+//åˆå›ž
 ev_t04r0301_sunglasses_01:
 	_FLAG_SET		FE_T04R0301_SUNGLASSES_TALK
 
 	_TALK_KEYWAIT		msg_t04r0301_sunglasses_01
 	_JUMP			ev_t04r0301_sunglasses_03
 
-//2‰ñ–ÚˆÈ~‚ÌˆË—Š‘O
+//2å›žç›®ä»¥é™ã®ä¾é ¼å‰
 ev_t04r0301_sunglasses_02:
 	_TALK_KEYWAIT		msg_t04r0301_sunglasses_02
 	_JUMP			ev_t04r0301_sunglasses_03
 
-//ˆË—Š‚Ìƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+//ä¾é ¼ã®ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 ev_t04r0301_sunglasses_03:
-	//‚Â‚ê‚Ä‚­‚éƒ|ƒPƒ‚ƒ“”Ô†Žæ“¾
+	//ã¤ã‚Œã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·å–å¾—
 	_GET_NEWS_POKE_NO		SCWK_ANSWER
 
-	//˜A‚ê‚Ä‚­‚éƒ|ƒPƒ‚ƒ“”Ô†‚ð•Û‘¶
+	//é€£ã‚Œã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚’ä¿å­˜
 	_LDWK	WK_SCENE_NEWS_MONSNO,SCWK_ANSWER
 
-	//Žc‚è‚Ì“ú”ƒZƒbƒg
+	//æ®‹ã‚Šã®æ—¥æ•°ã‚»ãƒƒãƒˆ
 	_NEWS_COUNT_SET		1
 
 	_POKEMON_NAME_EXTRA	0,WK_SCENE_NEWS_MONSNO,0,0
@@ -72,19 +72,19 @@ ev_t04r0301_sunglasses_03:
 	_TALK_OBJ_END
 	_END
 
-//2‰ñ–ÚˆÈ~‚ÌˆË—ŠŒã
+//2å›žç›®ä»¥é™ã®ä¾é ¼å¾Œ
 ev_t04r0301_sunglasses_04:
 	_TALK_KEYWAIT		msg_t04r0301_sunglasses_04
 
-	//Žc‚è“ú”ƒ`ƒFƒbƒN
+	//æ®‹ã‚Šæ—¥æ•°ãƒã‚§ãƒƒã‚¯
 	_NEWS_COUNT_CHK		SCWK_ANSWER
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_t04r0301_sunglasses_10		//ŠúŒÀ’´‰ß
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_t04r0301_sunglasses_10		//æœŸé™è¶…éŽ
 
 	_TEMOTI_POKE_CHK	SCWK_ANSWER,WK_SCENE_NEWS_MONSNO
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,FALSE,ev_t04r0301_sunglasses_09		//ŽèŽ‚¿‚É–Ú“I‚Ìƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚©‚Á‚½
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,FALSE,ev_t04r0301_sunglasses_09		//æ‰‹æŒã¡ã«ç›®çš„ã®ãƒã‚±ãƒ¢ãƒ³ãŒã„ãªã‹ã£ãŸ
 	_JUMP				ev_t04r0301_sunglasses_05
 
-//ˆË—Š‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚ð˜A‚ê‚Ä‚¢‚é
+//ä¾é ¼ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã‚’é€£ã‚Œã¦ã„ã‚‹
 ev_t04r0301_sunglasses_05:
 	_POKEMON_NAME_EXTRA	0,WK_SCENE_NEWS_MONSNO,0,0
 	_TALK_KEYWAIT		msg_t04r0301_sunglasses_05
@@ -105,100 +105,100 @@ ev_t04r0301_sunglasses_05:
 
 	_LDVAL			SCWK_TEMP1,3
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 #if 0
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,NE,0,ev_t04r0301_sunglasses_06
 #else
-	/*ƒvƒ‰ƒ`ƒi‚Å‚Íƒn[ƒg‚Ì‚¤‚ë‚±‚ð“n‚¹‚é‚©‚Ì‚Ý‚ðƒ`ƒFƒbƒN‚·‚é(08.03.03 ¼‹{‚³‚ñŠm”F)*/
+	/*ãƒ—ãƒ©ãƒãƒŠã§ã¯ãƒãƒ¼ãƒˆã®ã†ã‚ã“ã‚’æ¸¡ã›ã‚‹ã‹ã®ã¿ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹(08.03.03 æ¾å®®ã•ã‚“ç¢ºèª)*/
 	_ADD_ITEM_CHK	ITEM_HAATONOUROKO,1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,NE,0,ev_t04r0301_sunglasses_06
 #endif
 
-	//¡“ú‚ÌˆË—ŠI—¹
+	//ä»Šæ—¥ã®ä¾é ¼çµ‚äº†
 	_FLAG_SET		TMFLG_T04R0301_NEWS_END
 
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_t04r0301_sunglasses_07
 	_END
 
 
-//ƒAƒCƒeƒ€‚PƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼‘ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_01_set:
 	_LDVAL			SCWK_TEMP0,ITEM_HAIPAABOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚QƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼’ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_02_set:
 	_LDVAL			SCWK_TEMP0,ITEM_SUUPAABOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚RƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼“ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_03_set:
 	_LDVAL			SCWK_TEMP0,ITEM_MONSUTAABOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚SƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼”ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_04_set:
 	_LDVAL			SCWK_TEMP0,ITEM_NETTOBOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚TƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼•ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_05_set:
 	_LDVAL			SCWK_TEMP0,ITEM_DAIBUBOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚UƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼–ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_06_set:
 	_LDVAL			SCWK_TEMP0,ITEM_NESUTOBOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚VƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼—ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_07_set:
 	_LDVAL			SCWK_TEMP0,ITEM_RIPIITOBOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚WƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼˜ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_08_set:
 	_LDVAL			SCWK_TEMP0,ITEM_TAIMAABOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚XƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼™ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_09_set:
 	_LDVAL			SCWK_TEMP0,ITEM_GOOZYASUBOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚P‚OƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼‘ï¼ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_10_set:
 	_LDVAL			SCWK_TEMP0,ITEM_DAAKUBOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚P‚PƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼‘ï¼‘ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_11_set:
 	_LDVAL			SCWK_TEMP0,ITEM_HIIRUBOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚P‚QƒZƒbƒg
+//ã‚¢ã‚¤ãƒ†ãƒ ï¼‘ï¼’ã‚»ãƒƒãƒˆ
 ev_t04r0301_item_12_set:
 	_LDVAL			SCWK_TEMP0,ITEM_KUIKKUBOORU
 	_RET
 
-//ƒAƒCƒeƒ€‚ð–á‚¦‚é
+//ã‚¢ã‚¤ãƒ†ãƒ ã‚’è²°ãˆã‚‹
 ev_t04r0301_sunglasses_06:
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
-	/*ƒvƒ‰ƒ`ƒi‚Å‚Íƒn[ƒg‚Ì‚¤‚ë‚±‚à“n‚·*/
+	/*ãƒ—ãƒ©ãƒãƒŠã§ã¯ãƒãƒ¼ãƒˆã®ã†ã‚ã“ã‚‚æ¸¡ã™*/
 	_LDVAL			SCWK_TEMP0,ITEM_HAATONOUROKO
 	_LDVAL			SCWK_TEMP1,1
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
-	//ƒAƒCƒeƒ€‚ð—a‚¯‚Ä‚¢‚È‚¢ó‘Ô‚Ö
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚’é ã‘ã¦ã„ãªã„çŠ¶æ…‹ã¸
 	_FLAG_RESET		FE_T04R0301_ITEM_DEPOSIT
 
-	//˜A‚ê‚Ä‚­‚éƒ|ƒPƒ‚ƒ“”Ô†‚ðƒNƒŠƒA = ˆË—Š‘Oó‘Ô
+	//é€£ã‚Œã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚’ã‚¯ãƒªã‚¢ = ä¾é ¼å‰çŠ¶æ…‹
 	_LDVAL			WK_SCENE_NEWS_MONSNO,0
 
-	//¡“ú‚ÌˆË—ŠI—¹
+	//ä»Šæ—¥ã®ä¾é ¼çµ‚äº†
 	_FLAG_SET		TMFLG_T04R0301_NEWS_END
 
 	_TALKMSG		msg_t04r0301_sunglasses_06
@@ -208,22 +208,22 @@ ev_t04r0301_sunglasses_06:
 	_END
 
 
-//‚²–J”üƒAƒCƒeƒ€‚ð—a‚¯‚½‚Ü‚Ü
+//ã”è¤’ç¾Žã‚¢ã‚¤ãƒ†ãƒ ã‚’é ã‘ãŸã¾ã¾
 ev_t04r0301_sunglasses_item_chk:
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDWK			SCWK_TEMP0,WK_SCENE_T04R0301_RE_ITEM
 	_LDVAL			SCWK_TEMP1,3
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_t04r0301_sunglasses_07
 	_IFVAL_JUMP		SCWK_ANSWER,NE,0,ev_t04r0301_sunglasses_08
 	_END
 
-//ƒAƒCƒeƒ€‚ð—a‚¯‚é
+//ã‚¢ã‚¤ãƒ†ãƒ ã‚’é ã‘ã‚‹
 ev_t04r0301_sunglasses_07:
-	_LDWK			WK_SCENE_T04R0301_RE_ITEM,SCWK_TEMP0		//—a‚¯‚éƒAƒCƒeƒ€”Ô†ƒZƒbƒg
+	_LDWK			WK_SCENE_T04R0301_RE_ITEM,SCWK_TEMP0		//é ã‘ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·ã‚»ãƒƒãƒˆ
 	_FLAG_SET		FE_T04R0301_ITEM_DEPOSIT
 
 	_TALKMSG		msg_t04r0301_sunglasses_07
@@ -232,23 +232,23 @@ ev_t04r0301_sunglasses_07:
 	_TALK_OBJ_END
 	_END
 
-//ƒAƒCƒeƒ€‚ð–á‚¦‚é
+//ã‚¢ã‚¤ãƒ†ãƒ ã‚’è²°ãˆã‚‹
 ev_t04r0301_sunglasses_08:
 	_TALK_KEYWAIT		msg_t04r0301_sunglasses_08
 
-	//ƒAƒCƒeƒ€‚ð—a‚¯‚Ä‚¢‚È‚¢ó‘Ô‚Ö
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚’é ã‘ã¦ã„ãªã„çŠ¶æ…‹ã¸
 	_FLAG_RESET		FE_T04R0301_ITEM_DEPOSIT
 
-	//˜A‚ê‚Ä‚­‚éƒ|ƒPƒ‚ƒ“”Ô†‚ðƒNƒŠƒA = ˆË—Š‘Oó‘Ô
+	//é€£ã‚Œã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚’ã‚¯ãƒªã‚¢ = ä¾é ¼å‰çŠ¶æ…‹
 	_LDVAL			WK_SCENE_NEWS_MONSNO,0
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-//ŠúŒÀ‘O‚Åƒ|ƒPƒ‚ƒ“‚Ü‚¾‚ª‚¢‚È‚¢
+//æœŸé™å‰ã§ãƒã‚±ãƒ¢ãƒ³ã¾ã ãŒã„ãªã„
 ev_t04r0301_sunglasses_09:
 	_POKEMON_NAME_EXTRA	0,WK_SCENE_NEWS_MONSNO,0,0
 	_NEWS_COUNT_CHK		SCWK_ANSWER
@@ -261,11 +261,11 @@ ev_t04r0301_sunglasses_09:
 	_TALK_OBJ_END
 	_END
 
-//ŠúŒÀŒã
+//æœŸé™å¾Œ
 ev_t04r0301_sunglasses_10:
 	_TALKMSG		msg_t04r0301_sunglasses_10
 
-	//˜A‚ê‚Ä‚­‚éƒ|ƒPƒ‚ƒ“”Ô†‚ðƒNƒŠƒA = ˆË—Š‘Oó‘Ô
+	//é€£ã‚Œã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚’ã‚¯ãƒªã‚¢ = ä¾é ¼å‰çŠ¶æ…‹
 	_LDVAL			WK_SCENE_NEWS_MONSNO,0
 
 	_LAST_KEYWAIT
@@ -274,7 +274,7 @@ ev_t04r0301_sunglasses_10:
 	_END
 
 
-//ˆË—ŠI—¹Œãi‚»‚Ì“ú1“új
+//ä¾é ¼çµ‚äº†å¾Œï¼ˆãã®æ—¥1æ—¥ï¼‰
 ev_t04r0301_sunglasses_11:
 	_TALKMSG		msg_t04r0301_sunglasses_11
 
@@ -286,7 +286,7 @@ ev_t04r0301_sunglasses_11:
 
 
 /********************************************************************/
-/*							ŒZ‚³‚ñ									*/
+/*							å…„ã•ã‚“									*/
 /********************************************************************/
 ev_t04r0301_man1:
 	_EASY_OBJ_MSG		msg_t04r0301_man1_01
@@ -294,7 +294,7 @@ ev_t04r0301_man1:
 
 
 /********************************************************************/
-/*					ƒ{[ƒ‹ƒKƒCƒhiPCj								*/
+/*					ãƒœãƒ¼ãƒ«ã‚¬ã‚¤ãƒ‰ï¼ˆPCï¼‰								*/
 /********************************************************************/
 ev_t04r0301_ball_guide_01:
 	_TALK_START
@@ -302,7 +302,7 @@ ev_t04r0301_ball_guide_01:
 	_TALKMSG		msg_ball_guide_01
 	_TALKMSG		msg_ball_guide_02
 
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 	_BMPMENU_MAKE_LIST16	msg_press_01,0
 	_BMPMENU_MAKE_LIST16	msg_press_02,1
 	_BMPMENU_MAKE_LIST16	msg_press_03,2
@@ -311,14 +311,14 @@ ev_t04r0301_ball_guide_01:
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_press_paso_00			//ƒ_[ƒNƒ{[ƒ‹
-	_CASE_JUMP		1,ev_press_paso_01			//ƒq[ƒ‹ƒ{[ƒ‹
-	_CASE_JUMP		2,ev_press_paso_02			//ƒNƒCƒbƒNƒ{[ƒ‹
-	_CASE_JUMP		3,ev_press_paso_03			/*ƒ_ƒCƒuƒ{[ƒ‹*/
-	_JUMP			ev_press_paso_cancel		//I—¹‚Ö
+	_CASE_JUMP		0,ev_press_paso_00			//ãƒ€ãƒ¼ã‚¯ãƒœãƒ¼ãƒ«
+	_CASE_JUMP		1,ev_press_paso_01			//ãƒ’ãƒ¼ãƒ«ãƒœãƒ¼ãƒ«
+	_CASE_JUMP		2,ev_press_paso_02			//ã‚¯ã‚¤ãƒƒã‚¯ãƒœãƒ¼ãƒ«
+	_CASE_JUMP		3,ev_press_paso_03			/*ãƒ€ã‚¤ãƒ–ãƒœãƒ¼ãƒ«*/
+	_JUMP			ev_press_paso_cancel		//çµ‚äº†ã¸
 	_END
 
-/* ƒ_[ƒNƒ{[ƒ‹ */
+/* ãƒ€ãƒ¼ã‚¯ãƒœãƒ¼ãƒ« */
 ev_press_paso_00:
 	_TALKMSG		msg_ball_guide_03
 	_LAST_KEYWAIT
@@ -326,7 +326,7 @@ ev_press_paso_00:
 	_TALK_END
 	_END
 
-/* ƒq[ƒ‹ƒ{[ƒ‹ */
+/* ãƒ’ãƒ¼ãƒ«ãƒœãƒ¼ãƒ« */
 ev_press_paso_01:
 	_TALKMSG		msg_ball_guide_04
 	_LAST_KEYWAIT
@@ -334,7 +334,7 @@ ev_press_paso_01:
 	_TALK_END
 	_END
 
-/* ƒNƒCƒbƒNƒ{[ƒ‹ */
+/* ã‚¯ã‚¤ãƒƒã‚¯ãƒœãƒ¼ãƒ« */
 ev_press_paso_02:
 	_TALKMSG		msg_ball_guide_05
 	_LAST_KEYWAIT
@@ -342,7 +342,7 @@ ev_press_paso_02:
 	_TALK_END
 	_END
 
-/* ƒ_ƒCƒuƒ{[ƒ‹ */
+/* ãƒ€ã‚¤ãƒ–ãƒœãƒ¼ãƒ« */
 ev_press_paso_03:
 	_TALKMSG		msg_ball_guide_06
 	_LAST_KEYWAIT
@@ -350,7 +350,7 @@ ev_press_paso_03:
 	_TALK_END
 	_END
 
-/* ‚â‚ß‚é */
+/* ã‚„ã‚ã‚‹ */
 ev_press_paso_cancel:
 	_TALK_CLOSE
 	_TALK_END

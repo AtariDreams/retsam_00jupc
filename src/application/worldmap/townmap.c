@@ -1,6 +1,6 @@
 /**
  *	@file	townmap.c
- *	@brief	ƒ[ƒ‹ƒhƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹@ƒƒCƒ“
+ *	@brief	ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã€€ãƒ¡ã‚¤ãƒ³
  *	@outhor	Miyuki Iwasawa
  *	@date	05.09.07
  */
@@ -32,10 +32,10 @@
 #include "tmap_act.h"
 #include "tmap_snd_def.h"
 
-#define OSP_TMAP_HEAP_SIZE	0	//ƒq[ƒvŽg—pó‹µOSƒvƒŠƒ“ƒg—LŒø
+#define OSP_TMAP_HEAP_SIZE	0	//ãƒ’ãƒ¼ãƒ—ä½¿ç”¨çŠ¶æ³OSãƒ—ãƒªãƒ³ãƒˆæœ‰åŠ¹
 
 //================================================================
-///ƒf[ƒ^Œ^’è‹`ƒGƒŠƒA
+///ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾©ã‚¨ãƒªã‚¢
 //================================================================
 enum{
  MSEQ_MAININIT,
@@ -49,22 +49,22 @@ enum{
  MSEQ_END,
 };
 
-//ƒvƒƒgƒ^ƒCƒvéŒ¾@ƒOƒ[ƒoƒ‹
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«
 //================================================================
-///ƒƒCƒ“ŒÄ‚Ño‚µ
+///ãƒ¡ã‚¤ãƒ³å‘¼ã³å‡ºã—
 
-//ƒvƒƒgƒ^ƒCƒvéŒ¾@ƒ[ƒJƒ‹
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ã€€ãƒ­ãƒ¼ã‚«ãƒ«
 //================================================================
-///ƒI[ƒo[ƒŒƒCƒvƒƒZƒX
+///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹
 PROC_RESULT TMapProc_Init( PROC *proc,int *seq);
 PROC_RESULT TMapProc_Main( PROC *proc,int *seq);
 PROC_RESULT TMapProc_End( PROC *proc,int *seq);
 
-///VBlankŠÖ˜A
+///VBlanké–¢é€£
 static void TMapVBlank(void * work);
-///VRAMƒoƒ“ƒN’è‹`
+///VRAMãƒãƒ³ã‚¯å®šç¾©
 static void TMapVramBankSet(void);
-///ƒvƒƒZƒX
+///ãƒ—ãƒ­ã‚»ã‚¹
 static int TMapInitCommon(TMAP_MAIN_DAT* wk);
 static void TMapBGLSet(TMAP_MAIN_DAT* wk,GF_BGL_INI *ini);
 static void TMapBgGrapSet(TMAP_MAIN_DAT* wk);
@@ -81,10 +81,10 @@ static int TMapSeq_FadeOutWait(TMAP_MAIN_DAT* wk);
 static int TMapSeq_End(TMAP_MAIN_DAT* wk);
 
 //================================================================
-///ƒf[ƒ^’è‹`ƒGƒŠƒA
+///ãƒ‡ãƒ¼ã‚¿å®šç¾©ã‚¨ãƒªã‚¢
 //================================================================
 
-///ƒ‚[ƒh•Ê§ŒäŠÖ”’è‹`
+///ãƒ¢ãƒ¼ãƒ‰åˆ¥åˆ¶å¾¡é–¢æ•°å®šç¾©
 extern int	TMapNormal_Init(TMAP_MAIN_DAT* pMain);
 extern int	TMapNormal_Build(TMAP_MAIN_DAT* pMain);
 extern int	TMapNormal_FadeInSet(TMAP_MAIN_DAT* pMain);
@@ -137,14 +137,14 @@ const TMAP_SUB_PROC TMapSubProcData[TMAP_MODE_MAX] = {
 };
 
 //--------------------------------------------------
-///ƒvƒƒOƒ‰ƒ€ƒGƒŠƒA
+///ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¨ãƒªã‚¢
 //----------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒ‹ƒhƒ}ƒbƒv ƒvƒƒZƒX‰Šú‰»
- *	@param	proc	ƒvƒƒZƒXƒf[ƒ^
- *	@param	seq		ƒV[ƒPƒ“ƒX
+ *	@brief	ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ— ãƒ—ãƒ­ã‚»ã‚¹åˆæœŸåŒ–
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  */
 PROC_RESULT TMapProc_Init( PROC *proc,int *seq)
 {
@@ -152,39 +152,39 @@ PROC_RESULT TMapProc_Init( PROC *proc,int *seq)
 	TMAP_MAIN_DAT *wk = NULL;
 	TOWNMAP_PARAM * param = (TOWNMAP_PARAM*)PROC_GetParentWork(proc);
 
-	//ƒ[ƒNƒGƒŠƒAŽæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢å–å¾—
 	HeapStatePush();
 
-	//ƒq[ƒvì¬
+	//ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_TOWNMAP,0x20000);
-	TMAP_HEAP_PRINT("ƒvƒƒZƒX‰Šú‰»ŠJŽn");
+	TMAP_HEAP_PRINT("ãƒ—ãƒ­ã‚»ã‚¹åˆæœŸåŒ–é–‹å§‹");
 	
 	wk = PROC_AllocWork( proc,sizeof(TMAP_MAIN_DAT),HEAPID_TOWNMAP);
 	memset(wk,0,sizeof(TMAP_MAIN_DAT));
 	
-	//ƒpƒ‰ƒ[ƒ^ˆøŒp‚¬
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¼•ç¶™ãŽ
 	wk->param = param;
 	if(param->mode < TMAP_MODE_MAX){
 		wk->mode = param->mode;
 	}else{
 		wk->mode = TMAP_MNORMAL;
 	}
-	wk->mapView = param->view_f;	//”z•zƒ}ƒbƒv•`‰æƒtƒ‰ƒOˆøŒp‚¬
+	wk->mapView = param->view_f;	//é…å¸ƒãƒžãƒƒãƒ—æç”»ãƒ•ãƒ©ã‚°å¼•ç¶™ãŽ
 	wk->heapID = HEAPID_TOWNMAP;
 
-	//ƒTƒEƒ“ƒhˆøŒp‚¬Ý’è
+	//ã‚µã‚¦ãƒ³ãƒ‰å¼•ç¶™ãŽè¨­å®š
 	Snd_DataSetByScene( SND_SCENE_SUB_TOWNMAP, 0, 0 );
 
-	TMAP_HEAP_PRINT("ƒvƒƒZƒX‰Šú‰»I—¹");
+	TMAP_HEAP_PRINT("ãƒ—ãƒ­ã‚»ã‚¹åˆæœŸåŒ–çµ‚äº†");
 	return PROC_RES_FINISH;
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒhƒ}ƒbƒv ƒvƒƒZƒXƒƒCƒ“
- *	@param	proc	ƒvƒƒZƒXƒf[ƒ^
- *	@param	seq		ƒV[ƒPƒ“ƒX
+ *	@brief	ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ— ãƒ—ãƒ­ã‚»ã‚¹ãƒ¡ã‚¤ãƒ³
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  */
 PROC_RESULT TMapProc_Main( PROC *proc,int *seq)
 {
@@ -219,11 +219,11 @@ PROC_RESULT TMapProc_Main( PROC *proc,int *seq)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒhƒ}ƒbƒv ƒvƒƒZƒXI—¹
- *	@param	proc	ƒvƒƒZƒXƒf[ƒ^
- *	@param	seq		ƒV[ƒPƒ“ƒX
+ *	@brief	ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ— ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  */
 PROC_RESULT TMapProc_End( PROC *proc,int *seq)
 {
@@ -231,58 +231,58 @@ PROC_RESULT TMapProc_End( PROC *proc,int *seq)
 
 	TMAP_MAIN_DAT *wk = PROC_GetWork(proc);
 	
-	//ƒ[ƒNƒGƒŠƒA‰ð•ú
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢è§£æ”¾
 	PROC_FreeWork(proc);
 
 	HeapStatePop();
 	HeapStateCheck(wk->heapID);
 	
-	TMAP_HEAP_PRINT("ƒvƒƒZƒXI—¹");
+	TMAP_HEAP_PRINT("ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†");
 	sys_DeleteHeap(HEAPID_TOWNMAP);
 	return PROC_RES_FINISH;
 }
 
 /**
- *	@brief ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹
+ *	@brief ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
  */
 static void TMapVBlank(void * work)
 {
 	TMAP_MAIN_DAT* wk = work;
 
-	//ƒTƒuƒV[ƒPƒ“ƒXˆ—ŽÀs
+	//ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å‡¦ç†å®Ÿè¡Œ
 	if(TMapSubProcData[wk->mode].vBlank != NULL){
 		(TMapSubProcData[wk->mode].vBlank)(wk);	
 	}
 	
-	NNS_GfdDoVramTransfer();	//VRam“]‘—ƒ}ƒl[ƒWƒƒŽÀs
+	NNS_GfdDoVramTransfer();	//VRamè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£å®Ÿè¡Œ
 	TMapCellActorTrans(wk);
 	GF_BGL_VBlankFunc( wk->bgl );
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK);
 }
 
 /**
- *	@brief ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹ VRAM BANK Set
+ *	@brief ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ« VRAM BANK Set
  */
 static void TMapVramBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 
 /**
- *	@brief ƒ^ƒEƒ“ƒ}ƒbƒv‹¤’Ê‰Šú‰»
+ *	@brief ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—å…±é€šåˆæœŸåŒ–
  *
  *	@param	wk	TMAP_MAIN_DAT*
  */
@@ -290,16 +290,16 @@ static int TMapInitCommon(TMAP_MAIN_DAT* wk)
 {
 	switch(wk->sub_seq){
 	case 0:
-		//BlankŠÖ”ƒŠƒZƒbƒg
+		//Blanké–¢æ•°ãƒªã‚»ãƒƒãƒˆ
 		sys_VBlankFuncChange(NULL, NULL);
-		sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
 		GX_SetVisiblePlane(0);
 		GXS_SetVisiblePlane(0);
 		
-		//Ž©‹@ˆÊ’uŽæ“¾
+		//è‡ªæ©Ÿä½ç½®å–å¾—
 		if(wk->param->player_x == 0 && wk->param->player_z == 0){
 			wk->gx = 3;
 			wk->gz = 27;
@@ -310,40 +310,40 @@ static int TMapInitCommon(TMAP_MAIN_DAT* wk)
 		wk->cposX = wk->gx;
 		wk->cposZ = wk->gz;
 
-		//ƒƒbƒZ[ƒWƒŠƒ\[ƒXŽæ“¾
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 		wk->pMsgMap = MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,
 				NARC_msg_place_name_dat,wk->heapID);
 		wk->pMsgTMap = MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,
 				NARC_msg_townmap_dat,wk->heapID);
 		wk->placeName = STRBUF_Create(BUFLEN_PLACE_NAME,wk->heapID);
 		
-		//ƒ][ƒ“ƒŠƒ\[ƒXŽæ“¾
+		//ã‚¾ãƒ¼ãƒ³ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 		wk->pZone = InitFMZ(wk->heapID);
 
-		//ƒuƒƒbƒNƒf[ƒ^Žæ“¾
+		//ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
 		wk->pBDat = TMapBlockDataLoad("data/tmap_block.dat",wk->heapID);
 		break;
 	case 1:
-		//BankƒZƒbƒg
+		//Bankã‚»ãƒƒãƒˆ
 		TMapVramBankSet();
 
-		//BGŠÖ˜AƒZƒbƒg
+		//BGé–¢é€£ã‚»ãƒƒãƒˆ
 		wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 
 		TMapBGLSet(wk,wk->bgl);
 		TMapBgGrapSet(wk);
 		
-		//ƒ^ƒbƒ`ƒpƒlƒ‹‰Šú‰»
+		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆæœŸåŒ–
 		InitTPSystem();
 		InitTPNoBuff(4);
 
-		//ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 		TMapCellActorInit(wk);
 		break;
 	case 2:
 		sys_VBlankFuncChange(TMapVBlank, wk);	//VBlankSet
 
-		//ƒfƒtƒHƒ‹ƒgƒL[Žæ“¾ŠÖ”ƒZƒbƒg
+		//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚­ãƒ¼å–å¾—é–¢æ•°ã‚»ãƒƒãƒˆ
 		wk->keyFunc = TMapSubProcData[wk->mode].keyIO;
 		wk->sub_seq = 0;
 		return TMAP_SEQ_FINISH;
@@ -352,14 +352,14 @@ static int TMapInitCommon(TMAP_MAIN_DAT* wk)
 	return TMAP_SEQ_CONTINUE;
 }
 /**
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒv‹¤’ÊI—¹ˆ—
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—å…±é€šçµ‚äº†å‡¦ç†
  *	@param	wk	TMAP_MAIN_DAT*
  */
 static void TMapEndCommon(TMAP_MAIN_DAT* wk)
 {
 	int i;
 
-	//ƒ^ƒbƒ`ƒpƒlƒ‹I—¹
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµ‚äº†
 	StopTP();
 
 	GF_Disp_GX_VisibleControl(
@@ -370,9 +370,9 @@ static void TMapEndCommon(TMAP_MAIN_DAT* wk)
 		GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, VISIBLE_OFF);
 	
 	sys_VBlankFuncChange(NULL, NULL);
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	//ƒZƒ‹ƒAƒNƒ^[I—¹
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼çµ‚äº†
 	TMapCellActorRelease(wk);
 
 	TMapBgGrapRelease(wk);
@@ -382,29 +382,29 @@ static void TMapEndCommon(TMAP_MAIN_DAT* wk)
 
 	sys_FreeMemoryEz(wk->bgl);
 
-	//ƒuƒƒbƒNƒf[ƒ^‰ð•ú
+	//ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	TMapBlockDataRelease(wk->pBDat);
-	//ƒ][ƒ“ƒf[ƒ^‰ð•ú
+	//ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	FreeFMZ(wk->pZone);
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[‰ð•ú
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	STRBUF_Delete(wk->placeName);
 	MSGMAN_Delete(wk->pMsgTMap);
 	MSGMAN_Delete(wk->pMsgMap);
 }
 
 /**
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒvDraw
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—Draw
  */
 static void TMapMainDraw(TMAP_MAIN_DAT* wk)
 {
-	//ƒTƒuDraw
+	//ã‚µãƒ–Draw
 	(TMapSubProcData[wk->mode].draw)(wk);
 	
-	//ƒAƒNƒ^[
+	//ã‚¢ã‚¯ã‚¿ãƒ¼
 	TMapCellActorMain(wk);
 }
 /**
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒv BGLÝ’è
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ— BGLè¨­å®š
  */
 static void TMapBGLSet(TMAP_MAIN_DAT* wk,GF_BGL_INI *ini)
 {
@@ -469,7 +469,7 @@ static void TMapBGLSet(TMAP_MAIN_DAT* wk,GF_BGL_INI *ini)
 }
 
 /**
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒv@2DƒŠƒ\[ƒXƒtƒ@ƒCƒ‹Žæ“¾
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—ã€€2Dãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å–å¾—
  */
 #define GRA_M01_NCGR	(NARC_tmap_gra_tmap01_ncgr)
 #define GRA_S01_NCGR	(NARC_tmap_gra_tmap02_ncgr)
@@ -496,10 +496,10 @@ static void TMapBgGrapSet(TMAP_MAIN_DAT* wk)
 
 	arcID = ARC_TMAP_GRA;
 
-	//ƒA[ƒJƒCƒu‚Ìƒnƒ“ƒhƒ‹‚ðŽæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
 	handle = ArchiveDataHandleOpen(ARC_TMAP_GRA,wk->heapID);
 
-	//ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,handle,
 		arcID,GRA_M01_NCGR,GF_BGL_FRAME1_M,0,0,0);
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,handle,
@@ -507,13 +507,13 @@ static void TMapBgGrapSet(TMAP_MAIN_DAT* wk)
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,handle,
 		arcID,GRA_S02_NCGR,GF_BGL_FRAME1_S,0,0,0);
 	
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,handle,
 		arcID,GRA_M01_NCLR,PALTYPE_MAIN_BG,2,0,0);
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,handle,
 		arcID,GRA_S01_NCLR,PALTYPE_SUB_BG,2,0,0);
 
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	wk->pScrBuf01 = APP_ArcScrFileUnpack(handle,arcID,GRA_M_MLOAD,&wk->pScr01,wk->heapID);
 	wk->pScrBuf01_back = APP_ArcScrFileUnpack(handle,arcID,GRA_M_BACK,&wk->pScr01_back,wk->heapID);
 	wk->pScrBuf01_dis = APP_ArcScrFileUnpack(handle,arcID,GRA_M_DIS,&wk->pScr01_dis,wk->heapID);
@@ -524,16 +524,16 @@ static void TMapBgGrapSet(TMAP_MAIN_DAT* wk)
 	wk->pScrBuf02_sw = APP_ArcScrFileUnpack(handle,arcID,GRA_S_SW,&wk->pScr02_sw,wk->heapID);
 	wk->pScrBuf02_dis = APP_ArcScrFileUnpack(handle,arcID,GRA_S_DIS,&wk->pScr02_dis,wk->heapID);
 	
-	//ƒNƒ[ƒY
+	//ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( handle );
 	
-	//ƒtƒHƒ“ƒg—pƒpƒŒƒbƒgƒZƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	SystemFontPaletteLoad(PALTYPE_MAIN_BG,FONT_SYS_PAL*32,wk->heapID);
 	SystemFontPaletteLoad(PALTYPE_SUB_BG,FONT_SYS_PAL*32,wk->heapID);
 }
 
 /**
- *	@brief	ƒƒCƒ“2DƒOƒ‰ƒtƒBƒbƒNƒŠƒ\[ƒX‰ð•ú
+ *	@brief	ãƒ¡ã‚¤ãƒ³2Dã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 static void TMapBgGrapRelease(TMAP_MAIN_DAT* wk)
 {
@@ -548,42 +548,42 @@ static void TMapBgGrapRelease(TMAP_MAIN_DAT* wk)
 }
 
 //============================================================================================
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //============================================================================================
 
 /**
- *	@brief	ƒƒCƒ“/ƒTƒuƒƒ‚ƒŠ‰Šú‰»
+ *	@brief	ãƒ¡ã‚¤ãƒ³/ã‚µãƒ–ãƒ¡ãƒ¢ãƒªåˆæœŸåŒ–
  */
 static int TMapSeq_MainInit(TMAP_MAIN_DAT* wk)
 {
-	//ƒƒCƒ“‰Šú‰»
+	//ãƒ¡ã‚¤ãƒ³åˆæœŸåŒ–
 	if(TMapInitCommon(wk) != TMAP_SEQ_FINISH){
 		return PROC_RES_CONTINUE;	
 	}
-//	TMAP_HEAP_PRINT("ƒƒCƒ“‰Šú‰»I—¹");
+//	TMAP_HEAP_PRINT("ãƒ¡ã‚¤ãƒ³åˆæœŸåŒ–çµ‚äº†");
 
-	//ƒTƒuƒƒ‚ƒŠ‰ŠúŽæ“¾
+	//ã‚µãƒ–ãƒ¡ãƒ¢ãƒªåˆæœŸå–å¾—
 	(TMapSubProcData[wk->mode].init)(wk);
 	return MSEQ_SUBINIT;
 }
 
 /**
- *	@brief	ƒ‚[ƒh•ÊƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ãƒ¢ãƒ¼ãƒ‰åˆ¥ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static int TMapSeq_SubInit(TMAP_MAIN_DAT* wk)
 {
-	//ƒ‚[ƒh•Ê‰Šú‰»
+	//ãƒ¢ãƒ¼ãƒ‰åˆ¥åˆæœŸåŒ–
 	if((TMapSubProcData[wk->mode].build)(wk) != TMAP_SEQ_FINISH){
 		return MSEQ_SUBINIT;	
 	}
 	
-	//ƒ‚[ƒh•ÊƒtƒF[ƒhƒCƒ“ŒÄ‚Ño‚µ
+	//ãƒ¢ãƒ¼ãƒ‰åˆ¥ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å‘¼ã³å‡ºã—
 	TMapSubProcData[wk->mode].fadein(wk);
 	return MSEQ_FADEINWAIT;
 }
 
 /**
- *	@brief	ƒtƒF[ƒhƒCƒ“‘Ò‚¿
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
  */
 static int TMapSeq_FadeInWait(TMAP_MAIN_DAT* wk)
 {
@@ -594,28 +594,28 @@ static int TMapSeq_FadeInWait(TMAP_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒ‚[ƒh•ÊƒƒCƒ“ƒV[ƒPƒ“ƒXI—¹‘Ò‚¿
+ *	@brief	ãƒ¢ãƒ¼ãƒ‰åˆ¥ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚äº†å¾…ã¡
  */
 static int TMapSeq_Main(TMAP_MAIN_DAT* wk)
 {
-	//ƒL[Žæ“¾
+	//ã‚­ãƒ¼å–å¾—
 	if( (wk->keyFunc)(wk) != TMAP_SEQ_FINISH){
-		//ƒTƒuƒƒCƒ“ˆ—
+		//ã‚µãƒ–ãƒ¡ã‚¤ãƒ³å‡¦ç†
 		TMapSubProcData[wk->mode].main(wk);
 		return MSEQ_MAIN;
 	}
-	//ƒ‚[ƒh•ÊƒtƒF[ƒhƒAƒEƒgƒŠƒNƒGƒXƒg
+	//ãƒ¢ãƒ¼ãƒ‰åˆ¥ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	TMapSubProcData[wk->mode].fadeout(wk);
 	return MSEQ_FADEOUTWAIT;
 }
 
 /**
- *	@brief	ƒtƒF[ƒhƒAƒEƒgI—¹‘Ò‚¿
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆçµ‚äº†å¾…ã¡
  */
 static int TMapSeq_FadeOutWait(TMAP_MAIN_DAT* wk)
 {
 	if(WIPE_SYS_EndCheck()){
-		//‰æ–Ê‚ð•‚­Ý’è
+		//ç”»é¢ã‚’é»’ãè¨­å®š
 		G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE,GX_BLEND_PLANEMASK_NONE,31,0);
 		WIPE_SetBrightness(WIPE_DISP_MAIN,WIPE_FADE_BLACK);
 		WIPE_SetBrightness(WIPE_DISP_SUB,WIPE_FADE_BLACK);
@@ -629,19 +629,19 @@ static int TMapSeq_FadeOutWait(TMAP_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒƒCƒ“/ƒTƒu@‰Šúƒƒ‚ƒŠ‰ð•ú
+ *	@brief	ãƒ¡ã‚¤ãƒ³/ã‚µãƒ–ã€€åˆæœŸãƒ¡ãƒ¢ãƒªè§£æ”¾
  */
 static int TMapSeq_End(TMAP_MAIN_DAT* wk)
 {
-	//ƒ‚[ƒh•Ê‰ð•ú
+	//ãƒ¢ãƒ¼ãƒ‰åˆ¥è§£æ”¾
 	(TMapSubProcData[wk->mode].release)(wk);
 	
-	//ƒƒCƒ“ƒƒ‚ƒŠ‰ð•ú
+	//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	TMapEndCommon(wk);
-//	TMAP_HEAP_PRINT("‰ð•úˆ—I—¹");
+//	TMAP_HEAP_PRINT("è§£æ”¾å‡¦ç†çµ‚äº†");
 	return MSEQ_PROC_END;	
 }
 
 //============================================================================================
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //============================================================================================

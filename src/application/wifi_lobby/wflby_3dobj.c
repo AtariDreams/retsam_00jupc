@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_3dobj.c
- *	@brief		‚RDƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€
+ *	@brief		ï¼“Dãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.11.01
  *
@@ -34,44 +34,44 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ŽålŒö‚Ì•\Ž¦ˆÊ’u‚ÌŒë·
+///	ä¸»äººå…¬ã®è¡¨ç¤ºä½ç½®ã®èª¤å·®
 //=====================================
 #define WFLBY_3DOBJ_OFS_Z	( FX32_CONST(16) )
 
 
 //-------------------------------------
-///	U‚èŒü‚«“®ìA‚P•à‘O“®ì•`‰æƒtƒŒ[ƒ€
+///	æŒ¯ã‚Šå‘ãå‹•ä½œã€ï¼‘æ­©å‰å‹•ä½œæç”»ãƒ•ãƒ¬ãƒ¼ãƒ 
 //=====================================
 #define WFLBY_3DOBJ_TRUN_FIRST_FRAME	(4)
 
 
 
 //-------------------------------------
-///	“ÁŽêƒAƒjƒ	‰ñ“]
+///	ç‰¹æ®Šã‚¢ãƒ‹ãƒ¡	å›žè»¢
 //=====================================
-#define WFLBY_3DOBJ_ANM_ROTA_1SYNC	( 4 )	// 1ƒyƒ“‚ðŒ©‚¹‚Ä‚¢‚éƒVƒ“ƒN”
+#define WFLBY_3DOBJ_ANM_ROTA_1SYNC	( 4 )	// 1ãƒšãƒ³ã‚’è¦‹ã›ã¦ã„ã‚‹ã‚·ãƒ³ã‚¯æ•°
 static const u8	sc_WFLBY_3DOBJ_ANM_WAY[ WF2DMAP_WAY_NUM ] = {
 	WF2DMAP_WAY_DOWN,
 	WF2DMAP_WAY_LEFT,
@@ -80,15 +80,15 @@ static const u8	sc_WFLBY_3DOBJ_ANM_WAY[ WF2DMAP_WAY_NUM ] = {
 };
 
 //-------------------------------------
-///	“ÁŽêƒAƒjƒ	‘«ƒoƒ^ƒoƒ^
+///	ç‰¹æ®Šã‚¢ãƒ‹ãƒ¡	è¶³ãƒã‚¿ãƒã‚¿
 //=====================================
 #define WFLBY_3DOBJ_ANM_BATA_FRAME	( 4 )
 
 
 //-------------------------------------
-///	‰e‚É‚Â‚¢‚Ä
-//	YÀ•W‚Íí‚É°‚ÌˆÊ’u
-//	‚»‚Ì‘¼‚Í“®ì‚·‚é
+///	å½±ã«ã¤ã„ã¦
+//	Yåº§æ¨™ã¯å¸¸ã«åºŠã®ä½ç½®
+//	ãã®ä»–ã¯å‹•ä½œã™ã‚‹
 //=====================================
 #define WFLBY_3DOBJ_SHADOW_OFS_X		(0)
 #define WFLBY_3DOBJ_SHADOW_MAT_Y	(WFLBY_3DMATRIX_FLOOR_MAT+FX32_CONST(2))
@@ -98,22 +98,22 @@ static const u8	sc_WFLBY_3DOBJ_ANM_WAY[ WF2DMAP_WAY_NUM ] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	l•¨‚RDƒIƒuƒWƒFƒNƒgƒf[ƒ^
+///	äººç‰©ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u16	objid;			// ‘Î‰ž‚·‚él•¨ID
-	u16 tex:15;			// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹ƒiƒ“ƒo[
-	u16 anm:1;			// Vram“]‘—ƒAƒjƒƒtƒ‰ƒO
+	u16	objid;			// å¯¾å¿œã™ã‚‹äººç‰©ID
+	u16 tex:15;			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ãƒŠãƒ³ãƒãƒ¼
+	u16 anm:1;			// Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
 } WFLBY_3DMDL_DATA;
 
 
 //-------------------------------------
-///	ƒAƒNƒ^[‚Å•\Ž¦‚Å‚«‚È‚¢‚RDƒIƒuƒWƒFƒŠƒ\[ƒX
+///	ã‚¢ã‚¯ã‚¿ãƒ¼ã§è¡¨ç¤ºã§ããªã„ï¼“Dã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹
 //=====================================
 typedef struct {
 	D3DOBJ_MDL			mdlres;
@@ -123,50 +123,50 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒ[ƒN\‘¢‘Ì
+///	ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 //=====================================
 typedef struct _WFLBY_3DOBJWK{
-	u8						updata : 4;	// XVƒtƒ‰ƒO
-	u8						culling : 2;// ƒJƒŠƒ“ƒO
-	u8						objdraw : 2;// ƒAƒNƒ^[•\Ž¦
-	u8						anmflag : 1;// “ÁŽêƒAƒjƒ‚Ì—L–³
-	u8						anm : 7;	// “ÁŽêƒAƒjƒ
-	u8						anmframe;	// ƒAƒjƒƒtƒŒ[ƒ€
-	u8						anmspeed;	// ƒAƒjƒƒXƒs[ƒh
+	u8						updata : 4;	// æ›´æ–°ãƒ•ãƒ©ã‚°
+	u8						culling : 2;// ã‚«ãƒªãƒ³ã‚°
+	u8						objdraw : 2;// ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤º
+	u8						anmflag : 1;// ç‰¹æ®Šã‚¢ãƒ‹ãƒ¡ã®æœ‰ç„¡
+	u8						anm : 7;	// ç‰¹æ®Šã‚¢ãƒ‹ãƒ¡
+	u8						anmframe;	// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ 
+	u8						anmspeed;	// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
 	
-	const WF2DMAP_OBJWK*	cp_objwk;	// ŽQÆƒIƒuƒWƒFƒNƒgƒf[ƒ^
-	BLACT_WORK_PTR			p_act;		// •`‰æƒAƒNƒ^[
-	D3DOBJ					shadow;		// ‰eƒ‚ƒfƒ‹
+	const WF2DMAP_OBJWK*	cp_objwk;	// å‚ç…§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+	BLACT_WORK_PTR			p_act;		// æç”»ã‚¢ã‚¯ã‚¿ãƒ¼
+	D3DOBJ					shadow;		// å½±ãƒ¢ãƒ‡ãƒ«
 
-	u8	lastst;			// 1‚Â‘O‚Ìó‘Ô
-	u8	lastanm;		// 1‚Â‘O‚Ì•Û‘¶ƒAƒjƒ(BLACT ƒAƒjƒƒIƒtƒZƒbƒg)
-	u16 lastfrm;		// 1‚Â‘O‚ÌƒtƒŒ[ƒ€
-	fx32 lastframe;		// 1‚Â‘O‚Ì•Û‘¶ƒAƒjƒI—¹ƒtƒŒ[ƒ€(BLACT frame)
+	u8	lastst;			// 1ã¤å‰ã®çŠ¶æ…‹
+	u8	lastanm;		// 1ã¤å‰ã®ä¿å­˜ã‚¢ãƒ‹ãƒ¡(BLACT ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆ)
+	u16 lastfrm;		// 1ã¤å‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
+	fx32 lastframe;		// 1ã¤å‰ã®ä¿å­˜ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ (BLACT frame)
 
-	int	set_light_msk;	// Ý’è‚µ‚½ƒ‰ƒCƒgƒtƒ‰ƒO
+	int	set_light_msk;	// è¨­å®šã—ãŸãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°
 }WFLBY_3DOBJWK;
 
 //-------------------------------------
-///	ƒVƒXƒeƒ€\‘¢‘Ì
+///	ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
 //=====================================
 typedef struct _WFLBY_3DOBJSYS{
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
 	RES_MANAGER_PTR		p_mdlresman;
 	RES_MANAGER_PTR		p_anmresman;
 	TEXRES_MANAGER_PTR	p_texresman;
 
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒVƒXƒeƒ€
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
 	BLACT_SET_PTR		p_blact;
 
-	// •`‰æƒIƒuƒWƒFƒNƒgƒe[ƒuƒ‹
+	// æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 	WFLBY_3DOBJWK*		p_obj;
 	u32					objnum;
 
-	// ‰eƒ‚ƒfƒ‹ƒŠƒ\[ƒXƒf[ƒ^
+	// å½±ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
 	WFLBY_3DMDLRES		shadowres;	
 
-	// ƒ‰ƒCƒgƒ}ƒXƒN
+	// ãƒ©ã‚¤ãƒˆãƒžã‚¹ã‚¯
 	int					mdl_light_msk;
 
 }WFLBY_3DOBJSYS;
@@ -175,7 +175,7 @@ typedef struct _WFLBY_3DOBJSYS{
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒ‚ƒfƒ‹ƒf[ƒ^
+ *				ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 #define WFLBY_3DMDL_MDLDATA_NUM	(1)
@@ -183,7 +183,7 @@ typedef struct _WFLBY_3DOBJSYS{
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒAƒjƒƒf[ƒ^
+ *				ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 enum{
@@ -192,29 +192,29 @@ enum{
 	WFLBY_3DMDL_ANMDATA_NUM
 };
 static const u16 sc_WFLBY_ANMDATA[ WFLBY_3DMDL_ANMDATA_NUM ] = {
-	NARC_mmodel_charaobj_itpcv_dat,		// ’ÊíƒAƒjƒ—p
-	NARC_mmodel_hero_itpcv_dat			// “]‘—ƒAƒjƒ—p
+	NARC_mmodel_charaobj_itpcv_dat,		// é€šå¸¸ã‚¢ãƒ‹ãƒ¡ç”¨
+	NARC_mmodel_hero_itpcv_dat			// è»¢é€ã‚¢ãƒ‹ãƒ¡ç”¨
 };
 
 //-------------------------------------
-///		ƒAƒjƒƒtƒŒ[ƒ€ƒf[ƒ^
+///		ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
 //=====================================
 enum{
-	// •à‚«ƒAƒjƒ
+	// æ­©ãã‚¢ãƒ‹ãƒ¡
 	WFLBY_3DOBJ_ANM_TYPE_UP,
 	WFLBY_3DOBJ_ANM_TYPE_DOWN,
 	WFLBY_3DOBJ_ANM_TYPE_LEFT,
 	WFLBY_3DOBJ_ANM_TYPE_RIGHT,
 
-	// ‘–‚èƒAƒjƒ
+	// èµ°ã‚Šã‚¢ãƒ‹ãƒ¡
 	WFLBY_3DOBJ_ANM_TYPE_RUN_UP,
 	WFLBY_3DOBJ_ANM_TYPE_RUN_DOWN,
 	WFLBY_3DOBJ_ANM_TYPE_RUN_LEFT,
 	WFLBY_3DOBJ_ANM_TYPE_RUN_RIGHT,
 };
 #define WFLBY_3DOBJ_ONEANM_FRAME		( 16 )
-#define WFLBY_3DOBJ_ONEANM_HFRAME		( 8 )	// ”¼•ª
-#define WFLBY_3DOBJ_ONEANM_RUNFRAME		( 4 )	// ”¼•ª
+#define WFLBY_3DOBJ_ONEANM_HFRAME		( 8 )	// åŠåˆ†
+#define WFLBY_3DOBJ_ONEANM_RUNFRAME		( 4 )	// åŠåˆ†
 static const BLACT_ANIME_TBL WFLBY_3DOBJ_ANM_TR_FRAME_DATA[] =
 {
 	{ 0, 15, BLACT_ANIM_LOOP },
@@ -222,7 +222,7 @@ static const BLACT_ANIME_TBL WFLBY_3DOBJ_ANM_TR_FRAME_DATA[] =
 	{ 32, 47, BLACT_ANIM_LOOP },
 	{ 48, 63, BLACT_ANIM_LOOP },
 	
-	{ 64, 79, BLACT_ANIM_LOOP },	//ƒ_ƒbƒVƒ…
+	{ 64, 79, BLACT_ANIM_LOOP },	//ãƒ€ãƒƒã‚·ãƒ¥
 	{ 80, 95, BLACT_ANIM_LOOP },
 	{ 96, 111, BLACT_ANIM_LOOP },
 	{ 112, 127, BLACT_ANIM_LOOP },
@@ -234,13 +234,13 @@ static const BLACT_ANIME_TBL WFLBY_3DOBJ_ANM_TR_FRAME_DATA[] =
 
 //-----------------------------------------------------------------------------
 /**
- *				l•¨ƒtƒ@ƒCƒ‹ƒf[ƒ^
+ *				äººç‰©ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
-#define WFLBY_3DMDL_DATA_NUM		( 20 )	// ƒ†ƒjƒIƒ“16+ŽålŒö2+‚¨‚Ë‚¦‚³‚ñ+‚¨‚É‚¢‚³‚ñ
+#define WFLBY_3DMDL_DATA_NUM		( 20 )	// ãƒ¦ãƒ‹ã‚ªãƒ³16+ä¸»äººå…¬2+ãŠã­ãˆã•ã‚“+ãŠã«ã„ã•ã‚“
 #define WFLBY_3DMDL_DATA_HERO_NUM	( 2 )
 static const WFLBY_3DMDL_DATA	sc_WFLBY_3DMDL_DATA[ WFLBY_3DMDL_DATA_NUM ] = {
-	// ŽålŒö2
+	// ä¸»äººå…¬2
 	{
 		HERO,
 		NARC_mmodel_hero_nsbtx,
@@ -252,7 +252,7 @@ static const WFLBY_3DMDL_DATA	sc_WFLBY_3DMDL_DATA[ WFLBY_3DMDL_DATA_NUM ] = {
 		TRUE
 	},
 
-	// ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^16
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿16
 	{
 		BOY1,
 		NARC_mmodel_boy1_nsbtx,
@@ -347,26 +347,26 @@ static const WFLBY_3DMDL_DATA	sc_WFLBY_3DMDL_DATA[ WFLBY_3DMDL_DATA_NUM ] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-///	@l•¨ƒtƒ@ƒCƒ‹ƒf[ƒ^
+///	ã€€äººç‰©ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
 static const WFLBY_3DMDL_DATA* WFLBY_3DOBJ_GetMdlData( u32 objid );
 
 
 //-------------------------------------
-///		ƒAƒjƒƒf[ƒ^‚ÌŽæ“¾
+///		ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 //=====================================
 static u32 WFLBY_3DMDL_ANM_GetAnmOffs( BOOL walk, u32 way );
 static fx32 WFLBY_3DMDL_ANM_GetAnmFrame( u16 frame_max, u16 now_frame, u32 anm_frame_max );
 
 
 //-------------------------------------
-///	ƒAƒNƒ^[‚Å•\Ž¦‚Å‚«‚È‚¢‚RDƒIƒuƒWƒFƒŠƒ\[ƒX
+///	ã‚¢ã‚¯ã‚¿ãƒ¼ã§è¡¨ç¤ºã§ããªã„ï¼“Dã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹
 //=====================================
 static void WFLBY_3DMDL_RES_Load( WFLBY_3DMDLRES* p_wk, ARCHANDLE* p_handle, u32 dataidx, u32 gheapID );
 static void WFLBY_3DMDL_RES_Delete( WFLBY_3DMDLRES* p_wk );
@@ -376,7 +376,7 @@ static void WFLBY_3DMDL_RES_InitD3DOBJ( WFLBY_3DMDLRES* p_wk, D3DOBJ* p_obj );
 
 
 //-------------------------------------
-///	‚RDƒIƒuƒWƒFƒNƒgƒ[ƒN
+///	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 static WFLBY_3DOBJWK* WFLBY_3DOBJSYS_GetCleanWk( WFLBY_3DOBJSYS* p_sys );
 static BOOL WFLBY_3DOBJWK_CheckMove( const WFLBY_3DOBJWK* cp_wk );
@@ -399,14 +399,14 @@ static BOOL WFLBY_3DOBJWK_CheckCullingBlact( BLACT_WORK_PTR p_act );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€		ì¬
+ *	@brief	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 		ä½œæˆ
  *
- *	@param	objnum		ƒIƒuƒWƒFƒNƒg”
- *	@param	hero_sex	ŽålŒö‚Ì«•Ê
- *	@param	heapID		ƒq[ƒvID
- *	@param	gheapID		ƒOƒ‰ƒtƒBƒbƒNƒq[ƒvID
+ *	@param	objnum		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+ *	@param	hero_sex	ä¸»äººå…¬ã®æ€§åˆ¥
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	gheapID		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@return	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DOBJSYS* WFLBY_3DOBJSYS_Init( u32 objnum, u32 hero_sex, u32 heapID, u32 gheapID )
@@ -417,7 +417,7 @@ WFLBY_3DOBJSYS* WFLBY_3DOBJSYS_Init( u32 objnum, u32 hero_sex, u32 heapID, u32 g
 	p_sys = sys_AllocMemory( heapID, sizeof(WFLBY_3DOBJSYS) );
 	memset( p_sys, 0, sizeof(WFLBY_3DOBJSYS) );
 
-	// ƒIƒuƒWƒFƒNƒgƒe[ƒuƒ‹ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	{
 		int i;
 		
@@ -429,12 +429,12 @@ WFLBY_3DOBJSYS* WFLBY_3DOBJSYS_Init( u32 objnum, u32 hero_sex, u32 heapID, u32 g
 		}
 	}
 
-	// ƒŠƒ\[ƒXƒIƒuƒWƒF‚ðì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚’ä½œæˆ
 	p_sys->p_mdlresman = RESM_Init( WFLBY_3DMDL_MDLDATA_NUM, heapID );
 	p_sys->p_anmresman = RESM_Init( WFLBY_3DMDL_ANMDATA_NUM, heapID );
 	p_sys->p_texresman = TEXRESM_Init( WFLBY_3DMDL_DATA_NUM, heapID );
 
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ì¬
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆ
 	{
 		BLACT_SETDATA	setdata;
 
@@ -445,7 +445,7 @@ WFLBY_3DOBJSYS* WFLBY_3DOBJSYS_Init( u32 objnum, u32 hero_sex, u32 heapID, u32 g
 		p_sys->p_blact = BLACT_InitSet( &setdata );
 	}
 
-	// “Ç‚Ýž‚Ýˆ—
+	// èª­ã¿è¾¼ã¿å‡¦ç†
 	{
 		ARCHANDLE* p_handle;
 		ARCHANDLE* p_handle_other;
@@ -455,13 +455,13 @@ WFLBY_3DOBJSYS* WFLBY_3DOBJSYS_Init( u32 objnum, u32 hero_sex, u32 heapID, u32 g
 		p_handle		= ArchiveDataHandleOpen( ARC_MMODEL, heapID );
 		p_handle_other	= ArchiveDataHandleOpen( ARC_WIFILOBBY_OTHER_GRA, heapID );
 
-		// ƒ‚ƒfƒ‹
+		// ãƒ¢ãƒ‡ãƒ«
 		{
 			p_file = ArcUtil_HDL_Load( p_handle_other, WFLBY_3DMDL_MDLDATA_IDX, FALSE, gheapID, ALLOC_TOP );
 			RESM_AddResNormal( p_sys->p_mdlresman, p_file, WFLBY_3DMDL_MDLDATA_IDX );
 			WFLBY_LIGHT_SetUpMdl( p_file );
 
-			// ƒ‚ƒfƒ‹ƒf[ƒ^‚©‚çƒ‰ƒCƒgƒf[ƒ^‚ðŽæ“¾‚·‚é
+			// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 			{
 				NNSG3dResMdlSet* p_mdlset;
 				NNSG3dResMdl* p_mdlres;
@@ -473,7 +473,7 @@ WFLBY_3DOBJSYS* WFLBY_3DOBJSYS_Init( u32 objnum, u32 hero_sex, u32 heapID, u32 g
 
 		}
 
-		// ƒAƒjƒƒf[ƒ^
+		// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 		{
 			for( i=0; i<WFLBY_3DMDL_ANMDATA_NUM; i++ ){
 				p_file = ArcUtil_HDL_Load( p_handle, sc_WFLBY_ANMDATA[i], FALSE, gheapID, ALLOC_TOP );
@@ -481,17 +481,17 @@ WFLBY_3DOBJSYS* WFLBY_3DOBJSYS_Init( u32 objnum, u32 hero_sex, u32 heapID, u32 g
 			}
 		}
 
-		// ƒeƒNƒXƒ`ƒƒƒf[ƒ^
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿
 		{
 			TEXRES_OBJ_PTR p_tex;
 			int				skip;
 			BOOL			tex_cut;
 
-			// ŽålŒö‚Ì“o˜^‚ðƒXƒLƒbƒv
+			// ä¸»äººå…¬ã®ç™»éŒ²ã‚’ã‚¹ã‚­ãƒƒãƒ—
 			if( hero_sex == PM_MALE ){
-				skip = 1;	// —‚ÌƒŠƒ\[ƒX‚ðƒXƒLƒbƒv
+				skip = 1;	// å¥³ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚¹ã‚­ãƒƒãƒ—
 			}else{
-				skip = 0;	// ’j‚ÌƒŠƒ\[ƒX‚ðƒXƒLƒbƒv
+				skip = 0;	// ç”·ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚¹ã‚­ãƒƒãƒ—
 			}
 
 			for( i=0; i<WFLBY_3DMDL_DATA_NUM; i++ ){
@@ -507,7 +507,7 @@ WFLBY_3DOBJSYS* WFLBY_3DOBJSYS_Init( u32 objnum, u32 hero_sex, u32 heapID, u32 g
 
 				p_file = ArcUtil_HDL_Load( p_handle, sc_WFLBY_3DMDL_DATA[i].tex, FALSE, gheapID, ALLOC_TOP );
 				p_tex = TEXRESM_AddResNormal( p_sys->p_texresman, p_file, sc_WFLBY_3DMDL_DATA[i].tex, tex_cut, gheapID );
-				// “]‘—‚ÆƒeƒNƒXƒ`ƒƒ—Ìˆæ‚ðƒJƒbƒg
+				// è»¢é€ã¨ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸã‚’ã‚«ãƒƒãƒˆ
 				if( tex_cut == TRUE ){	
 					TEXRESM_AllocVramKeyPTR( p_tex );
 					TEXRESM_TexLoadPTR( p_tex );
@@ -517,7 +517,7 @@ WFLBY_3DOBJSYS* WFLBY_3DOBJSYS_Init( u32 objnum, u32 hero_sex, u32 heapID, u32 g
 		}
 
 
-		// ‰e
+		// å½±
 		WFLBY_3DMDL_RES_Load( &p_sys->shadowres, p_handle_other, NARC_wifi_lobby_other_kage_nsbmd, gheapID );
 
 		ArchiveDataHandleClose( p_handle );
@@ -528,14 +528,14 @@ WFLBY_3DOBJSYS* WFLBY_3DOBJSYS_Init( u32 objnum, u32 hero_sex, u32 heapID, u32 g
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€	”jŠü
+ *	@brief	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJSYS_Exit( WFLBY_3DOBJSYS* p_sys )
 {
-	// “Ç‚Ýž‚ñ‚¾ƒŠƒ\[ƒX‚ð”jŠü‚·‚é
+	// èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã™ã‚‹
 	{
 		WFLBY_3DMDL_RES_Delete( &p_sys->shadowres );
 		TEXRESM_DeleteAllRes( p_sys->p_texresman );
@@ -543,50 +543,50 @@ void WFLBY_3DOBJSYS_Exit( WFLBY_3DOBJSYS* p_sys )
 		RESM_DeleteAllRes( p_sys->p_anmresman );
 	}
 
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[”jŠü
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	{
 		BLACT_DestSet( p_sys->p_blact );
 		BLACT_DestSys();
 	}
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ì”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ç ´æ£„
 	TEXRESM_Delete( p_sys->p_texresman );
 	RESM_Delete( p_sys->p_mdlresman );
 	RESM_Delete( p_sys->p_anmresman );
 
-	// ƒ‚ƒfƒ‹ƒf[ƒ^”jŠü
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	sys_FreeMemoryEz( p_sys->p_obj );
 
-	// ƒVƒXƒeƒ€Ž©‘Ì‚ð”jŠü
+	// ã‚·ã‚¹ãƒ†ãƒ è‡ªä½“ã‚’ç ´æ£„
 	sys_FreeMemoryEz( p_sys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€	XV
+ *	@brief	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 	æ›´æ–°
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJSYS_Updata( WFLBY_3DOBJSYS* p_sys )
 {
 	int i;
 	
-	// •\Ž¦ƒf[ƒ^‚ÌXV
+	// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ã®æ›´æ–°
 	for( i=0; i<p_sys->objnum; i++ ){
-		// p_obj->updata‚ªTRUE‚È‚çWF2DMAP_OBJ‚Ìƒf[ƒ^‚ª”½‰f‚³‚ê‚Ü‚·B
-		// p_obj->updata‚ªFALSE‚Åp_obj->anmflag‚ªTRUE‚È‚ç“ÁŽêƒAƒjƒ‚Ìƒf[ƒ^‚ª”½‰f‚³‚ê‚Ü‚·B
-		WFLBY_3DOBJWK_Updata( &p_sys->p_obj[i] );		// ’ÊíƒAƒbƒvƒf[ƒg
-		WFLBY_3DOBJWK_AnmUpdata( &p_sys->p_obj[i] );	// “ÁŽêƒAƒjƒƒAƒbƒvƒf[ƒg
-		WFLBY_3DOBJWK_CheckCulling( &p_sys->p_obj[i] );	// ƒJƒŠƒ“ƒOƒ`ƒFƒbƒN
+		// p_obj->updataãŒTRUEãªã‚‰WF2DMAP_OBJã®ãƒ‡ãƒ¼ã‚¿ãŒåæ˜ ã•ã‚Œã¾ã™ã€‚
+		// p_obj->updataãŒFALSEã§p_obj->anmflagãŒTRUEãªã‚‰ç‰¹æ®Šã‚¢ãƒ‹ãƒ¡ã®ãƒ‡ãƒ¼ã‚¿ãŒåæ˜ ã•ã‚Œã¾ã™ã€‚
+		WFLBY_3DOBJWK_Updata( &p_sys->p_obj[i] );		// é€šå¸¸ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
+		WFLBY_3DOBJWK_AnmUpdata( &p_sys->p_obj[i] );	// ç‰¹æ®Šã‚¢ãƒ‹ãƒ¡ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
+		WFLBY_3DOBJWK_CheckCulling( &p_sys->p_obj[i] );	// ã‚«ãƒªãƒ³ã‚°ãƒã‚§ãƒƒã‚¯
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€		•`‰æ
+ *	@brief	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 		æç”»
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJSYS_Draw( WFLBY_3DOBJSYS* p_sys )
@@ -594,12 +594,12 @@ void WFLBY_3DOBJSYS_Draw( WFLBY_3DOBJSYS* p_sys )
 	int i;
 
 	
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[•\Ž¦
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤º
 	BLACT_DrawSys();
 
 
-	// ‰e‚Ì•`‰æ
-	// ‰e‚ÌƒJƒ‰[‚ª‚O‚È‚ç•\Ž¦‚µ‚È‚¢
+	// å½±ã®æç”»
+	// å½±ã®ã‚«ãƒ©ãƒ¼ãŒï¼ãªã‚‰è¡¨ç¤ºã—ãªã„
 	if( WFLBY_3DMDL_RES_GetAlpha( &p_sys->shadowres ) > 0 ){
 		for( i=0; i<p_sys->objnum; i++ ){
 			if( WFLBY_3DOBJWK_CheckMove( &p_sys->p_obj[i] ) == TRUE ){
@@ -611,26 +611,26 @@ void WFLBY_3DOBJSYS_Draw( WFLBY_3DOBJSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€	VBlankˆ—
+ *	@brief	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 	VBlankå‡¦ç†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJSYS_VBlank( WFLBY_3DOBJSYS* p_sys )
 {
 
-	// ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
 	BLACT_VBlankFunc( p_sys->p_blact );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	o‚¹‚éƒgƒŒ[ƒiƒ^ƒCƒv‚©ƒ`ƒFƒbƒN
+ *	@brief	å‡ºã›ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	trtype	ƒgƒŒ[ƒiƒ^ƒCƒv
+ *	@param	trtype	ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	o‚¹‚é
- *	@retval	FALSE	o‚¹‚È‚¢
+ *	@retval	TRUE	å‡ºã›ã‚‹
+ *	@retval	FALSE	å‡ºã›ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DOBJSYS_CheckTrType( u32 trtype )
@@ -647,10 +647,10 @@ BOOL WFLBY_3DOBJSYS_CheckTrType( u32 trtype )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰e‚ÌƒAƒ‹ƒtƒ@’l‚ðÝ’è‚·‚é
+ *	@brief	å½±ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	alpha		ƒAƒ‹ƒtƒ@’l
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	alpha		ã‚¢ãƒ«ãƒ•ã‚¡å€¤
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJSYS_SetShadowAlpha( WFLBY_3DOBJSYS* p_sys, u32 alpha )
@@ -660,9 +660,9 @@ void WFLBY_3DOBJSYS_SetShadowAlpha( WFLBY_3DOBJSYS* p_sys, u32 alpha )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰e‚ÌƒAƒ‹ƒtƒ@’l‚ðŽæ“¾‚·‚é
+ *	@brief	å½±ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return
  */
@@ -675,25 +675,25 @@ u32 WFLBY_3DOBJSYS_GetShadowAlpha( const WFLBY_3DOBJSYS* cp_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€	•`‰æƒIƒuƒWƒFì¬
+ *	@brief	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 	æç”»ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	cp_objwk	ƒIƒuƒWƒFƒNƒgƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_objwk	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	•`‰æƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@return	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DOBJWK* WFLBY_3DOBJWK_New( WFLBY_3DOBJSYS* p_sys, const WF2DMAP_OBJWK* cp_objwk )
 {
 	WFLBY_3DOBJWK* p_wk;
 
-	// ‹ó‚¢‚Ä‚¢‚éƒ[ƒN‚ðŽæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
 	p_wk = WFLBY_3DOBJSYS_GetCleanWk( p_sys );
 
-	// ŽQÆæƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^•Û‘¶
+	// å‚ç…§å…ˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿ä¿å­˜
 	p_wk->cp_objwk = cp_objwk;
 
-	// ƒAƒNƒ^[¶¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	{
 		const WFLBY_3DMDL_DATA* cp_data;
 		BLACT_HEADER	header;
@@ -710,23 +710,23 @@ WFLBY_3DOBJWK* WFLBY_3DOBJWK_New( WFLBY_3DOBJSYS* p_sys, const WF2DMAP_OBJWK* cp
 		VecFx32			matrix = {0,0,0};
 		VecFx32			scale = {FX32_ONE,FX32_ONE,FX32_ONE};
 
-		// ƒIƒuƒWƒFƒNƒg\¬ƒf[ƒ^Žæ“¾
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹æˆãƒ‡ãƒ¼ã‚¿å–å¾—
 		objid	= WF2DMAP_OBJWkDataGet( cp_objwk, WF2DMAP_OBJPM_CHARA );
 		cp_data = WFLBY_3DOBJ_GetMdlData( objid );
 
-		// ƒ‚ƒfƒ‹ƒf[ƒ^Žæ“¾
+		// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
 		{
 			p_resobj = RESM_GetResObj( p_sys->p_mdlresman, WFLBY_3DMDL_MDLDATA_IDX );
 			p_imd	 = RESM_GetRes( p_resobj );
 		}
 
-		// ƒeƒNƒXƒ`ƒƒƒf[ƒ^Žæ“¾
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿å–å¾—
 		{
 			p_texresobj = TEXRESM_GetResObj( p_sys->p_texresman, cp_data->tex );
 			cp_itx		= TEXRESM_GetResPTR( p_texresobj );
 		}
 
-		// ƒeƒNƒXƒ`ƒƒƒAƒjƒƒf[ƒ^
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 		{
 			u32 anm_id;
 			const void* cp_buff;
@@ -742,17 +742,17 @@ WFLBY_3DOBJWK* WFLBY_3DOBJWK_New( WFLBY_3DOBJSYS* p_sys, const WF2DMAP_OBJWK* cp
 		}
 		
 		if( cp_data->anm == TRUE ){	
-			// “]‘—ƒAƒjƒ‚ÅÝ’è
+			// è»¢é€ã‚¢ãƒ‹ãƒ¡ã§è¨­å®š
 			BLACT_MakeHeaderVramAnm( &header, p_imd, cp_itx, WFLBY_3DOBJ_ANM_TR_FRAME_DATA, &texanm );
 		}else{
-			// ’ÊíƒAƒjƒ‚ÅÝ’è
+			// é€šå¸¸ã‚¢ãƒ‹ãƒ¡ã§è¨­å®š
 			texkey		= TEXRESM_GetTexKeyPTR( p_texresobj );
 			tex4x4key	= TEXRESM_GetTex4x4KeyPTR( p_texresobj );
 			plttkey		= TEXRESM_GetPlttKeyPTR( p_texresobj );
 			BLACT_MakeHeaderNormalAnm( &header, p_imd, cp_itx, WFLBY_3DOBJ_ANM_TR_FRAME_DATA, &texanm, texkey, tex4x4key, plttkey  );
 		}
 
-		// À•W‚ðÝ’è
+		// åº§æ¨™ã‚’è¨­å®š
 		{
 			WF2DMAP_POS pos;
 			pos = WF2DMAP_OBJWkMatrixGet( cp_objwk );
@@ -760,21 +760,21 @@ WFLBY_3DOBJWK* WFLBY_3DOBJWK_New( WFLBY_3DOBJSYS* p_sys, const WF2DMAP_OBJWK* cp
 			matrix.z += WFLBY_3DOBJ_OFS_Z;
 		}
 
-		// ƒ[ƒN‚ðì¬
+		// ãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆ
 		add.blact_s = p_sys->p_blact;
 		add.pHeader	= &header;
 		add.matrix	= matrix;
 		add.scale	= scale;
 		p_wk->p_act = BLACT_Add( &add );
 
-		// ƒR[ƒ‹ƒoƒbƒN‚ÌÝ’è
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®è¨­å®š
 		BLACT_DrawBeforeProcSet( p_wk->p_act, WFLBY_3DOBJWK_CallBack_BlactDraw, p_wk );
 
 
-		// ‰e‚ðì¬
+		// å½±ã‚’ä½œæˆ
 		WFLBY_3DMDL_RES_InitD3DOBJ( &p_sys->shadowres, &p_wk->shadow );
 
-		// À•W‚ð‚ ‚í‚¹‚é
+		// åº§æ¨™ã‚’ã‚ã‚ã›ã‚‹
 		D3DOBJ_SetMatrix( &p_wk->shadow, 
 				matrix.x + WFLBY_3DOBJ_SHADOW_OFS_X,
 				WFLBY_3DOBJ_SHADOW_MAT_Y,
@@ -784,14 +784,14 @@ WFLBY_3DOBJWK* WFLBY_3DOBJWK_New( WFLBY_3DOBJSYS* p_sys, const WF2DMAP_OBJWK* cp
 	
 
 
-	// XVŠJŽn
+	// æ›´æ–°é–‹å§‹
 	p_wk->updata = TRUE;
 
-	// •\Ž¦‚ÆƒJƒŠƒ“ƒOƒtƒ‰ƒO
+	// è¡¨ç¤ºã¨ã‚«ãƒªãƒ³ã‚°ãƒ•ãƒ©ã‚°
 	p_wk->objdraw = TRUE;
 	p_wk->culling = FALSE;
 
-	// ƒ‰ƒCƒgƒ}ƒXƒNÝ’è
+	// ãƒ©ã‚¤ãƒˆãƒžã‚¹ã‚¯è¨­å®š
 	p_wk->set_light_msk = p_sys->mdl_light_msk;
 
 	return p_wk;
@@ -799,9 +799,9 @@ WFLBY_3DOBJWK* WFLBY_3DOBJWK_New( WFLBY_3DOBJSYS* p_sys, const WF2DMAP_OBJWK* cp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒIƒuƒWƒFƒNƒg•`‰æƒVƒXƒeƒ€	•`‰æƒIƒuƒWƒF”jŠü
+ *	@brief	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 	æç”»ã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
  *
- *	@param	p_wk		•`‰æƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_wk		æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_Del( WFLBY_3DOBJWK* p_wk )
@@ -813,10 +813,10 @@ void WFLBY_3DOBJWK_Del( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒFƒNƒg‚ÌXVƒtƒ‰ƒO‚ðÝ’è
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ›´æ–°ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	updata		ƒAƒbƒvƒf[ƒgƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	updata		ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_SetUpdata( WFLBY_3DOBJWK* p_wk, BOOL updata )
@@ -826,12 +826,12 @@ void WFLBY_3DOBJWK_SetUpdata( WFLBY_3DOBJWK* p_wk, BOOL updata )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒFƒNƒg‚ÌXVƒtƒ‰ƒO‚ðŽæ“¾
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ›´æ–°ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE		XV’†
- *	@retval	FALSE		XV‚µ‚Ä‚¢‚È‚¢
+ *	@retval	TRUE		æ›´æ–°ä¸­
+ *	@retval	FALSE		æ›´æ–°ã—ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DOBJWK_GetUpdata( const WFLBY_3DOBJWK* cp_wk )
@@ -842,10 +842,10 @@ BOOL WFLBY_3DOBJWK_GetUpdata( const WFLBY_3DOBJWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	light_msk‚ðÝ’è
+ *	@brief	light_mskã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	light_msk	ƒ‰ƒCƒgƒ}ƒXƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	light_msk	ãƒ©ã‚¤ãƒˆãƒžã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_SetLight( WFLBY_3DOBJWK* p_wk, u32 light_msk )
@@ -855,12 +855,12 @@ void WFLBY_3DOBJWK_SetLight( WFLBY_3DOBJWK* p_wk, u32 light_msk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒŠƒ“ƒOƒtƒ‰ƒO‚ðŽæ“¾’†
+ *	@brief	ã‚«ãƒªãƒ³ã‚°ãƒ•ãƒ©ã‚°ã‚’å–å¾—ä¸­
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒJƒŠƒ“ƒOƒ`ƒFƒbƒN‚Éˆø‚Á‚©‚©‚Á‚Ä”ñ•\Ž¦’†
- *	@retval	FALSE	ƒJƒŠƒ“ƒO‚Éˆø‚Á‚©‚©‚ç‚¸‚É•\Ž¦’†
+ *	@retval	TRUE	ã‚«ãƒªãƒ³ã‚°ãƒã‚§ãƒƒã‚¯ã«å¼•ã£ã‹ã‹ã£ã¦éžè¡¨ç¤ºä¸­
+ *	@retval	FALSE	ã‚«ãƒªãƒ³ã‚°ã«å¼•ã£ã‹ã‹ã‚‰ãšã«è¡¨ç¤ºä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DOBJWK_GetCullingFlag( const WFLBY_3DOBJWK* cp_wk )
@@ -870,10 +870,10 @@ BOOL WFLBY_3DOBJWK_GetCullingFlag( const WFLBY_3DOBJWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ðÝ’è
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åº§æ¨™ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_vec		À•W
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_vec		åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_SetMatrix( WFLBY_3DOBJWK* p_wk, const WF2DMAP_POS* cp_pos )
@@ -889,10 +889,10 @@ void WFLBY_3DOBJWK_SetMatrix( WFLBY_3DOBJWK* p_wk, const WF2DMAP_POS* cp_pos )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ðŽæ“¾
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åº§æ¨™ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_vec		À•W
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_vec		åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_GetMatrix( const WFLBY_3DOBJWK* cp_wk, WF2DMAP_POS* p_pos )
@@ -904,27 +904,27 @@ void WFLBY_3DOBJWK_GetMatrix( const WFLBY_3DOBJWK* cp_wk, WF2DMAP_POS* p_pos )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3DÀ•W‚ðÝ’è‚·‚é
+ *	@brief	3Dåº§æ¨™ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk	l•¨ƒ[ƒN
- *	@param	cp_vec	ƒxƒNƒgƒ‹
+ *	@param	p_wk	äººç‰©ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_vec	ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_Set3DMatrix( WFLBY_3DOBJWK* p_wk, const VecFx32* cp_vec )
 {
 	BLACT_MatrixSet( p_wk->p_act, cp_vec );
 
-	// ‰e‚É”½‰f‚½‚¾‚µA‰e‚Í‚ÌYˆÊ’u‚Íí‚É’èˆÊ’u
+	// å½±ã«åæ˜ ãŸã ã—ã€å½±ã¯ã®Yä½ç½®ã¯å¸¸ã«å®šä½ç½®
 	D3DOBJ_SetMatrix( &p_wk->shadow, cp_vec->x + WFLBY_3DOBJ_SHADOW_OFS_X,
 			WFLBY_3DOBJ_SHADOW_MAT_Y, cp_vec->z + WFLBY_3DOBJ_SHADOW_OFS_Z );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDÀ•W‚ðŽæ“¾‚·‚é
+ *	@brief	ï¼“Dåº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	l•¨ƒ[ƒN
- *	@param	p_vec	ƒxƒNƒgƒ‹
+ *	@param	cp_wk	äººç‰©ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_vec	ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_Get3DMatrix( const WFLBY_3DOBJWK* cp_wk, VecFx32* p_vec )
@@ -937,10 +937,10 @@ void WFLBY_3DOBJWK_Get3DMatrix( const WFLBY_3DOBJWK* cp_wk, VecFx32* p_vec )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦‚µ‚Ä‚¢‚é•ûŒü‚ð•ÏX
+ *	@brief	è¡¨ç¤ºã—ã¦ã„ã‚‹æ–¹å‘ã‚’å¤‰æ›´
  *
- *	@param	p_wk	l•¨ƒ[ƒN
- *	@param	way		•ûŒü
+ *	@param	p_wk	äººç‰©ãƒ¯ãƒ¼ã‚¯
+ *	@param	way		æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_SetWay( WFLBY_3DOBJWK* p_wk, WF2DMAP_WAY way )
@@ -953,10 +953,10 @@ void WFLBY_3DOBJWK_SetWay( WFLBY_3DOBJWK* p_wk, WF2DMAP_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ“o˜^	iXVƒtƒ‰ƒO‚ðOFF‚É‚µ‚½Œã‚Ì“®ìj
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ç™»éŒ²	ï¼ˆæ›´æ–°ãƒ•ãƒ©ã‚°ã‚’OFFã«ã—ãŸå¾Œã®å‹•ä½œï¼‰
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	anm		ƒAƒjƒƒiƒ“ƒo[
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	anm		ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_StartAnm( WFLBY_3DOBJWK* p_wk, WFLBY_3DOBJ_ANMTYPE anm )
@@ -969,9 +969,9 @@ void WFLBY_3DOBJWK_StartAnm( WFLBY_3DOBJWK* p_wk, WFLBY_3DOBJ_ANMTYPE anm )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ”jŠü
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_EndAnm( WFLBY_3DOBJWK* p_wk )
@@ -981,10 +981,10 @@ void WFLBY_3DOBJWK_EndAnm( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒXƒs[ƒh‚ðÝ’è‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN	
- *	@param	speed		ƒXƒs[ƒh
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯	
+ *	@param	speed		ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_SetAnmSpeed( WFLBY_3DOBJWK* p_wk, u8 speed )
@@ -995,10 +995,10 @@ void WFLBY_3DOBJWK_SetAnmSpeed( WFLBY_3DOBJWK* p_wk, u8 speed )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒFƒNƒg‚Ì•`‰æƒtƒ‰ƒO‚ðÝ’è
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		•`‰æƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		æç”»ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJWK_SetDrawFlag( WFLBY_3DOBJWK* p_wk, BOOL flag )
@@ -1009,12 +1009,12 @@ void WFLBY_3DOBJWK_SetDrawFlag( WFLBY_3DOBJWK* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒIƒuƒWƒFƒNƒg‚Ì•`‰æƒtƒ‰ƒO‚ðŽæ“¾
+ *	@brief	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•`‰æ’†
- *	@retval	FALSE	”ñ•\Ž¦’†
+ *	@retval	TRUE	æç”»ä¸­
+ *	@retval	FALSE	éžè¡¨ç¤ºä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DOBJWK_GetDrawFlag( const WFLBY_3DOBJWK* cp_wk )
@@ -1027,16 +1027,16 @@ BOOL WFLBY_3DOBJWK_GetDrawFlag( const WFLBY_3DOBJWK* cp_wk )
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	objid‚É‘Î‰ž‚µ‚½l•¨ƒf[ƒ^‚ðŽæ“¾‚·‚é
+ *	@brief	objidã«å¯¾å¿œã—ãŸäººç‰©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	objid		ƒIƒuƒWƒFƒNƒgID
+ *	@param	objid		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
  *
- *	@return	l•¨ƒf[ƒ^
+ *	@return	äººç‰©ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const WFLBY_3DMDL_DATA* WFLBY_3DOBJ_GetMdlData( u32 objid )
@@ -1055,12 +1055,12 @@ static const WFLBY_3DMDL_DATA* WFLBY_3DOBJ_GetMdlData( u32 objid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
  *
- *	@param	walk		•à‚«ƒAƒjƒ‚©	TRUEF•à‚«	FALSEF‘–‚è
- *	@param	way			•ûŒü
+ *	@param	walk		æ­©ãã‚¢ãƒ‹ãƒ¡ã‹	TRUEï¼šæ­©ã	FALSEï¼šèµ°ã‚Š
+ *	@param	way			æ–¹å‘
  *
- *	@return	ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒtƒZƒbƒg
+ *	@return	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_3DMDL_ANM_GetAnmOffs( BOOL walk, u32 way )
@@ -1073,18 +1073,18 @@ static u32 WFLBY_3DMDL_ANM_GetAnmOffs( BOOL walk, u32 way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ðŽæ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—
  *
- *	@param	frame_max		Å‘åƒtƒŒ[ƒ€
- *	@param	now_frame		¡‚ÌƒtƒŒ[ƒ€
+ *	@param	frame_max		æœ€å¤§ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	now_frame		ä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ 
  */
 //-----------------------------------------------------------------------------
 static fx32 WFLBY_3DMDL_ANM_GetAnmFrame( u16 frame_max, u16 now_frame, u32 anm_frame_max )
 {
 	fx32 frame;
 
-	// OBJƒVƒXƒeƒ€‚ÅƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ðÝ’è‚µ‚Ä‚©‚çƒAƒbƒvƒf[ƒg‚·‚é‚Ì‚ÅA
-	// frame_max‚É‚È‚é‚±‚Æ‚Í‚È‚¢
+	// OBJã‚·ã‚¹ãƒ†ãƒ ã§ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚’è¨­å®šã—ã¦ã‹ã‚‰ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã™ã‚‹ã®ã§ã€
+	// frame_maxã«ãªã‚‹ã“ã¨ã¯ãªã„
 	now_frame ++;
 	
 	frame = ( now_frame * anm_frame_max ) / frame_max;
@@ -1096,39 +1096,39 @@ static fx32 WFLBY_3DMDL_ANM_GetAnmFrame( u16 frame_max, u16 now_frame, u32 anm_f
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ð“Ç‚Ýž‚Þ
+ *	@brief	ï¼“Dãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	dataidx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	gheapID		ƒOƒ‰ƒtƒBƒbƒNƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	dataidx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	gheapID		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMDL_RES_Load( WFLBY_3DMDLRES* p_wk, ARCHANDLE* p_handle, u32 dataidx, u32 gheapID )
 {
 	void* p_mdl;
 	
-	//  ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý•ƒeƒNƒXƒ`ƒƒ“]‘—•ƒeƒNƒXƒ`ƒƒŽÀƒf[ƒ^”jŠü
+	//  ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ï¼†ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€ï¼†ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	WFLBY_3DMAPOBJ_TEX_LoatCutTex( &p_mdl, p_handle, dataidx, gheapID );
 
-	// ƒ‚ƒfƒ‹‚ÌƒŠƒ\[ƒX‚ðD3DOBJ_MDL‚ÌŒ`‚ÉŒ`¬
+	// ãƒ¢ãƒ‡ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’D3DOBJ_MDLã®å½¢ã«å½¢æˆ
 	p_wk->mdlres.pResMdl	= p_mdl;
 	p_wk->mdlres.pModelSet	= NNS_G3dGetMdlSet( p_wk->mdlres.pResMdl );
 	p_wk->mdlres.pModel		= NNS_G3dGetMdlByIdx( p_wk->mdlres.pModelSet, 0 );
 	p_wk->mdlres.pMdlTex	= NNS_G3dGetTex( p_wk->mdlres.pResMdl );
 
-	// ƒ‚ƒfƒ‹‚ÉƒoƒCƒ“ƒh‚·‚é
+	// ãƒ¢ãƒ‡ãƒ«ã«ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹
 	BindTexture( p_wk->mdlres.pResMdl, p_wk->mdlres.pMdlTex );
 
-	// ‚Û‚è‚²‚ñID ‚ðÝ’è
+	// ã½ã‚Šã”ã‚“ID ã‚’è¨­å®š
 	NNS_G3dMdlSetMdlPolygonIDAll( p_wk->mdlres.pModel, WFLBY_3DOBJ_SHADOW_OBJID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ð”jŠü‚·‚é
+ *	@brief	ï¼“Dãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMDL_RES_Delete( WFLBY_3DMDLRES* p_wk )
@@ -1138,10 +1138,10 @@ static void WFLBY_3DMDL_RES_Delete( WFLBY_3DMDLRES* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3Dƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÉƒAƒ‹ƒtƒ@’l‚ðÝ’è
+ *	@brief	3Dãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã«ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	alpha		ƒAƒ‹ƒtƒ@’l
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	alpha		ã‚¢ãƒ«ãƒ•ã‚¡å€¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMDL_RES_SetAlpha( WFLBY_3DMDLRES* p_wk, u32 alpha )
@@ -1152,9 +1152,9 @@ static void WFLBY_3DMDL_RES_SetAlpha( WFLBY_3DMDLRES* p_wk, u32 alpha )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚©‚çƒAƒ‹ƒtƒ@’l‚ðŽæ“¾
+ *	@brief	ï¼“Dãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_3DMDL_RES_GetAlpha( const WFLBY_3DMDLRES* cp_wk )
@@ -1164,10 +1164,10 @@ static u32 WFLBY_3DMDL_RES_GetAlpha( const WFLBY_3DMDLRES* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ðŽg‚Á‚½•\Ž¦ƒIƒuƒWƒFƒ[ƒN‚ð‰Šú‰»
+ *	@brief	ï¼“Dãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’ä½¿ã£ãŸè¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_obj		•\Ž¦ƒIƒuƒWƒFƒNƒg
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj		è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMDL_RES_InitD3DOBJ( WFLBY_3DMDLRES* p_wk, D3DOBJ* p_obj )
@@ -1178,11 +1178,11 @@ static void WFLBY_3DMDL_RES_InitD3DOBJ( WFLBY_3DMDLRES* p_wk, D3DOBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ó‚¢‚Ä‚¢‚éƒ[ƒN‚ðŽæ“¾‚·‚é
+ *	@brief	ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‹ó‚¢‚Ä‚¢‚éƒ[ƒN
+ *	@return	ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WFLBY_3DOBJWK* WFLBY_3DOBJSYS_GetCleanWk( WFLBY_3DOBJSYS* p_sys )
@@ -1202,12 +1202,12 @@ static WFLBY_3DOBJWK* WFLBY_3DOBJSYS_GetCleanWk( WFLBY_3DOBJSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‚ª“®ì’†‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ãŒå‹•ä½œä¸­ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“®ì’†
- *	@retval	FALSE	“®ì‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	å‹•ä½œä¸­
+ *	@retval	FALSE	å‹•ä½œã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DOBJWK_CheckMove( const WFLBY_3DOBJWK* cp_wk )
@@ -1220,9 +1220,9 @@ static BOOL WFLBY_3DOBJWK_CheckMove( const WFLBY_3DOBJWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒ[ƒN‚ð‹ó‚É‚·‚é
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã‚’ç©ºã«ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_CleanWk( WFLBY_3DOBJWK* p_wk )
@@ -1232,22 +1232,22 @@ static void WFLBY_3DOBJWK_CleanWk( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒIƒuƒWƒFƒ[ƒN	l•¨ˆÈŠO‚Ì•`‰æˆ—
+ *	@brief	ï¼“Dã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯	äººç‰©ä»¥å¤–ã®æç”»å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_Draw( WFLBY_3DOBJWK* p_wk )
 {
-	// ‰e‚Ì•`‰æ
+	// å½±ã®æç”»
 	D3DOBJ_Draw( &p_wk->shadow );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒ[ƒN	XV
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯	æ›´æ–°
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_Updata( WFLBY_3DOBJWK* p_wk )
@@ -1269,20 +1269,20 @@ static void WFLBY_3DOBJWK_Updata( WFLBY_3DOBJWK* p_wk )
 		WFLBY_3DOBJWK_Updata_Walk,
 	};
 	
-	// XVƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚È‚¯‚ê‚ÎXV‚µ‚È‚¢
+	// æ›´æ–°ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ãªã‘ã‚Œã°æ›´æ–°ã—ãªã„
 	if( p_wk->updata == FALSE ){
 		return ;
 	}
 
-	// ƒIƒuƒWƒFƒNƒg‚ÌƒtƒŒ[ƒ€”‚É‘Î‰ž‚µ‚½ƒAƒjƒ‚ð—¬‚·
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã«å¯¾å¿œã—ãŸã‚¢ãƒ‹ãƒ¡ã‚’æµã™
 	st		= WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_ST );
 	frame	= WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_FRAME );
 
-	// ˆÈ‘O‚ÌƒtƒŒ[ƒ€”‚æ‚è¡‚ÌƒtƒŒ[ƒ€”‚ª¬‚³‚¢‚Æ‚«
-	// ó‘Ô‚ª•ÏX‚µ‚½‚Æ‚«‚ÉˆÈ‘O‚ÌƒAƒjƒ‚ÆƒtƒŒ[ƒ€”‚ð•Û‘¶‚·‚é
+	// ä»¥å‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚ˆã‚Šä»Šã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ãŒå°ã•ã„ã¨ã
+	// çŠ¶æ…‹ãŒå¤‰æ›´ã—ãŸã¨ãã«ä»¥å‰ã®ã‚¢ãƒ‹ãƒ¡ã¨ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’ä¿å­˜ã™ã‚‹
 	if( (p_wk->lastfrm > frame) || (p_wk->lastst != st) ){
 		if( WFLBY_3DOBJWK_GetAnmSave( p_wk->lastst ) == TRUE ){
-			// ƒAƒjƒƒtƒŒ[ƒ€‚ð•Û‘¶‚·‚é
+			// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ä¿å­˜ã™ã‚‹
 			p_wk->lastanm	= BLACT_AnmOffsGet( p_wk->p_act );
 			p_wk->lastframe = BLACT_AnmFrameGetOffs( p_wk->p_act );
 		}
@@ -1290,17 +1290,17 @@ static void WFLBY_3DOBJWK_Updata( WFLBY_3DOBJWK* p_wk )
 	}
 	p_wk->lastfrm	= frame;
 	
-	// XV
+	// æ›´æ–°
 	pUpdata[ st ]( p_wk );
 
-	// À•W‚ð”½‰f
+	// åº§æ¨™ã‚’åæ˜ 
 	pos = WF2DMAP_OBJWkFrameMatrixGet( p_wk->cp_objwk );
 	WFLBY_3DOBJWK_SetMatrix( p_wk, &pos );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚Ìê‘Ò‹@ƒAƒjƒ
+ *	@brief	ãã®å ´å¾…æ©Ÿã‚¢ãƒ‹ãƒ¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_Updata_Normal( WFLBY_3DOBJWK* p_wk )
@@ -1308,20 +1308,20 @@ static void WFLBY_3DOBJWK_Updata_Normal( WFLBY_3DOBJWK* p_wk )
 	u32 way;
 	u32 anm;
 
-	// WAY‚Ì•ûŒü‚ðŒü‚¢‚Ä‚¢‚é‚¾‚¯
+	// WAYã®æ–¹å‘ã‚’å‘ã„ã¦ã„ã‚‹ã ã‘
 	way	= WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_WAY );
 
-	// •ûŒü‚ÌƒAƒjƒƒIƒtƒZƒbƒgŽæ“¾
+	// æ–¹å‘ã®ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 	anm = WFLBY_3DMDL_ANM_GetAnmOffs( TRUE, way );
 
-	// ƒAƒNƒ^[‚ÉÝ’è
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®š
 	BLACT_AnmOffsChg( p_wk->p_act, anm );
 	BLACT_AnmFrameSetOffs( p_wk->p_act, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•à‚«ƒAƒjƒ
+ *	@brief	æ­©ãã‚¢ãƒ‹ãƒ¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_Updata_Walk( WFLBY_3DOBJWK* p_wk )
@@ -1332,21 +1332,21 @@ static void WFLBY_3DOBJWK_Updata_Walk( WFLBY_3DOBJWK* p_wk )
 	u16 frame_max;
 	u16 now_frame;
 
-	// WAY‚Ì•ûŒü‚É‚ ‚é‚­
+	// WAYã®æ–¹å‘ã«ã‚ã‚‹ã
 	way	= WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_WAY );
 
-	// •ûŒü‚ÌƒAƒjƒƒIƒtƒZƒbƒgŽæ“¾
+	// æ–¹å‘ã®ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 	anm = WFLBY_3DMDL_ANM_GetAnmOffs( TRUE, way );
 
-	// ƒtƒŒ[ƒ€”Žæ“¾
+	// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°å–å¾—
 	frame_max = WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_ENDFRAME );
 	now_frame = WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_FRAME );
 	frame = WFLBY_3DMDL_ANM_GetAnmFrame( frame_max, now_frame, WFLBY_3DOBJ_ONEANM_HFRAME );
 
-	// ƒAƒNƒ^[‚ÉÝ’è
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®š
 	BLACT_AnmOffsChg( p_wk->p_act, anm );
 
-	// ‘O‚ÌƒAƒjƒ‚Æˆê‚È‚ç‘O‚ÌƒtƒŒ[ƒ€‚©‚ç‘±‚¯‚é
+	// å‰ã®ã‚¢ãƒ‹ãƒ¡ã¨ä¸€ç·’ãªã‚‰å‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ç¶šã‘ã‚‹
 	if( p_wk->lastanm == anm ){
 		BLACT_AnmFrameSetOffs( p_wk->p_act, 0 );
 		BLACT_AnmFrameChg( p_wk->p_act, frame+p_wk->lastframe );
@@ -1358,7 +1358,7 @@ static void WFLBY_3DOBJWK_Updata_Walk( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	U‚èŒü‚«ƒAƒjƒ
+ *	@brief	æŒ¯ã‚Šå‘ãã‚¢ãƒ‹ãƒ¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_Updata_Turn( WFLBY_3DOBJWK* p_wk )
@@ -1367,19 +1367,19 @@ static void WFLBY_3DOBJWK_Updata_Turn( WFLBY_3DOBJWK* p_wk )
 	u32 anm;
 	u16 now_frame;
 
-	// ƒtƒŒ[ƒ€”Žæ“¾
+	// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°å–å¾—
 	now_frame = WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_FRAME );
 
 	if( now_frame < WFLBY_3DOBJ_TRUN_FIRST_FRAME ){
-		BLACT_AnmFrameSetOffs( p_wk->p_act, WFLBY_3DOBJ_TRUN_FIRST_FRAME*FX32_ONE );	// 1•à‘O‚É
+		BLACT_AnmFrameSetOffs( p_wk->p_act, WFLBY_3DOBJ_TRUN_FIRST_FRAME*FX32_ONE );	// 1æ­©å‰ã«
 	}else{
-		// WAY‚Ì•ûŒü‚É‚ ‚é‚­
+		// WAYã®æ–¹å‘ã«ã‚ã‚‹ã
 		way	= WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_WAY );
 
-		// •ûŒü‚ÌƒAƒjƒƒIƒtƒZƒbƒgŽæ“¾
+		// æ–¹å‘ã®ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 		anm = WFLBY_3DMDL_ANM_GetAnmOffs( TRUE, way );
 
-		// ƒAƒNƒ^[‚ÉÝ’è
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®š
 		BLACT_AnmOffsChg( p_wk->p_act, anm );
 		BLACT_AnmFrameSetOffs( p_wk->p_act, 0 );
 	}
@@ -1387,7 +1387,7 @@ static void WFLBY_3DOBJWK_Updata_Turn( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘–‚èƒAƒjƒ
+ *	@brief	èµ°ã‚Šã‚¢ãƒ‹ãƒ¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_Updata_Run( WFLBY_3DOBJWK* p_wk )
@@ -1398,21 +1398,21 @@ static void WFLBY_3DOBJWK_Updata_Run( WFLBY_3DOBJWK* p_wk )
 	u16 frame_max;
 	u16 now_frame;
 
-	// WAY‚Ì•ûŒü‚É‚ ‚é‚­
+	// WAYã®æ–¹å‘ã«ã‚ã‚‹ã
 	way	= WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_WAY );
 
-	// •ûŒü‚ÌƒAƒjƒƒIƒtƒZƒbƒgŽæ“¾
+	// æ–¹å‘ã®ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 	anm = WFLBY_3DMDL_ANM_GetAnmOffs( FALSE, way );
 
-	// ƒtƒŒ[ƒ€”Žæ“¾
+	// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°å–å¾—
 	frame_max = WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_ENDFRAME );
 	now_frame = WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_FRAME );
 	frame = WFLBY_3DMDL_ANM_GetAnmFrame( frame_max, now_frame, WFLBY_3DOBJ_ONEANM_RUNFRAME );
 
-	// ƒAƒNƒ^[‚ÉÝ’è
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®š
 	BLACT_AnmOffsChg( p_wk->p_act, anm );
 
-	// ‘O‚ÌƒAƒjƒ‚Æˆê‚È‚ç‘O‚ÌƒtƒŒ[ƒ€‚©‚ç‘±‚¯‚é
+	// å‰ã®ã‚¢ãƒ‹ãƒ¡ã¨ä¸€ç·’ãªã‚‰å‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ç¶šã‘ã‚‹
 	if( p_wk->lastanm == anm ){
 		BLACT_AnmFrameSetOffs( p_wk->p_act, 0 );
 		BLACT_AnmFrameChg( p_wk->p_act, frame+p_wk->lastframe );
@@ -1424,7 +1424,7 @@ static void WFLBY_3DOBJWK_Updata_Run( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ÁŽêƒAƒjƒƒAƒbƒvƒf[ƒgˆ—
+ *	@brief	ç‰¹æ®Šã‚¢ãƒ‹ãƒ¡ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆå‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_AnmUpdata( WFLBY_3DOBJWK* p_wk )
@@ -1435,7 +1435,7 @@ static void WFLBY_3DOBJWK_AnmUpdata( WFLBY_3DOBJWK* p_wk )
 		WFLBY_3DOBJWK_Anm_BataBata,
 	};
 
-	// XV’âŽ~{ƒAƒjƒÄ¶’†‚È‚çÝ’è
+	// æ›´æ–°åœæ­¢ï¼‹ã‚¢ãƒ‹ãƒ¡å†ç”Ÿä¸­ãªã‚‰è¨­å®š
 	if( (p_wk->updata == FALSE) && (p_wk->anmflag == TRUE) ){
 		pUpdata[ p_wk->anm ]( p_wk );
 	}
@@ -1443,7 +1443,7 @@ static void WFLBY_3DOBJWK_AnmUpdata( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ÁŽêƒAƒjƒ		‰ñ“]
+ *	@brief	ç‰¹æ®Šã‚¢ãƒ‹ãƒ¡		å›žè»¢
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_Anm_Rota( WFLBY_3DOBJWK* p_wk )
@@ -1452,7 +1452,7 @@ static void WFLBY_3DOBJWK_Anm_Rota( WFLBY_3DOBJWK* p_wk )
 	u32 blact_anm;
 	
 	if( (p_wk->anmframe % WFLBY_3DOBJ_ANM_ROTA_1SYNC) == 0 ){
-		// ƒAƒjƒ•ÏX
+		// ã‚¢ãƒ‹ãƒ¡å¤‰æ›´
 		anmidx = p_wk->anmframe / WFLBY_3DOBJ_ANM_ROTA_1SYNC;
 		blact_anm = WFLBY_3DMDL_ANM_GetAnmOffs( TRUE, sc_WFLBY_3DOBJ_ANM_WAY[ anmidx ] );
 		BLACT_AnmOffsChg( p_wk->p_act, blact_anm );
@@ -1467,9 +1467,9 @@ static void WFLBY_3DOBJWK_Anm_Rota( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒƒƒ“ƒvƒAƒjƒ
+ *	@brief	ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_Anm_Jump( WFLBY_3DOBJWK* p_wk )
@@ -1478,17 +1478,17 @@ static void WFLBY_3DOBJWK_Anm_Jump( WFLBY_3DOBJWK* p_wk )
 	u32 anm;
 	
 	if( p_wk->anmframe == 0 ){
-		// Œü‚¢‚Ä‚¢‚é•ûŒü‚É•à‚­ƒAƒjƒ‚Ì‚Q‚±‚Ü–Ú‚ðÝ’è
+		// å‘ã„ã¦ã„ã‚‹æ–¹å‘ã«æ­©ãã‚¢ãƒ‹ãƒ¡ã®ï¼’ã“ã¾ç›®ã‚’è¨­å®š
 		way = WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_WAY );
 
 
-		// WAY‚Ì•ûŒü‚ðŒü‚¢‚Ä‚¢‚é‚¾‚¯
+		// WAYã®æ–¹å‘ã‚’å‘ã„ã¦ã„ã‚‹ã ã‘
 		way	= WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_WAY );
 
-		// •ûŒü‚ÌƒAƒjƒƒIƒtƒZƒbƒgŽæ“¾
+		// æ–¹å‘ã®ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 		anm = WFLBY_3DMDL_ANM_GetAnmOffs( TRUE, way );
 
-		// ƒAƒNƒ^[‚ÉÝ’è
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®š
 		BLACT_AnmOffsChg( p_wk->p_act, anm );
 		BLACT_AnmFrameSetOffs( p_wk->p_act, WFLBY_3DOBJ_TRUN_FIRST_FRAME*FX32_ONE );
 
@@ -1498,9 +1498,9 @@ static void WFLBY_3DOBJWK_Anm_Jump( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚ ‚µƒoƒ^ƒoƒ^ƒAƒjƒ
+ *	@brief	ã‚ã—ãƒã‚¿ãƒã‚¿ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_Anm_BataBata( WFLBY_3DOBJWK* p_wk )
@@ -1509,25 +1509,25 @@ static void WFLBY_3DOBJWK_Anm_BataBata( WFLBY_3DOBJWK* p_wk )
 	u32 anm;
 	
 	if( p_wk->anmframe == 0 ){
-		// Œü‚¢‚Ä‚¢‚é•ûŒü‚É•à‚­ƒAƒjƒ‚Ì1‚±‚Ü–Ú‚ðÝ’è
+		// å‘ã„ã¦ã„ã‚‹æ–¹å‘ã«æ­©ãã‚¢ãƒ‹ãƒ¡ã®1ã“ã¾ç›®ã‚’è¨­å®š
 		way = WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_WAY );
 
-		// •ûŒü‚ÌƒAƒjƒƒIƒtƒZƒbƒgŽæ“¾
+		// æ–¹å‘ã®ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 		anm = WFLBY_3DMDL_ANM_GetAnmOffs( TRUE, way );
 
-		// ƒAƒNƒ^[‚ÉÝ’è
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®š
 		BLACT_AnmOffsChg( p_wk->p_act, anm );
 		BLACT_AnmFrameSetOffs( p_wk->p_act, WFLBY_3DOBJ_TRUN_FIRST_FRAME*FX32_ONE );
 
 	}else if( p_wk->anmframe == WFLBY_3DOBJ_ANM_BATA_FRAME ){
 
-		// Œü‚¢‚Ä‚¢‚é•ûŒü‚É•à‚­ƒAƒjƒ‚Ì3‚±‚Ü–Ú‚ðÝ’è
+		// å‘ã„ã¦ã„ã‚‹æ–¹å‘ã«æ­©ãã‚¢ãƒ‹ãƒ¡ã®3ã“ã¾ç›®ã‚’è¨­å®š
 		way = WF2DMAP_OBJWkDataGet( p_wk->cp_objwk, WF2DMAP_OBJPM_WAY );
 
-		// •ûŒü‚ÌƒAƒjƒƒIƒtƒZƒbƒgŽæ“¾
+		// æ–¹å‘ã®ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 		anm = WFLBY_3DMDL_ANM_GetAnmOffs( TRUE, way );
 
-		// ƒAƒNƒ^[‚ÉÝ’è
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®š
 		BLACT_AnmOffsChg( p_wk->p_act, anm );
 		BLACT_AnmFrameSetOffs( p_wk->p_act, (WFLBY_3DOBJ_TRUN_FIRST_FRAME*3)*FX32_ONE );
 	}
@@ -1537,12 +1537,12 @@ static void WFLBY_3DOBJWK_Anm_BataBata( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ‚ð•Û‘¶‚·‚éó‘Ô‚È‚Ì‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã‚’ä¿å­˜ã™ã‚‹çŠ¶æ…‹ãªã®ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	st		ó‘Ô
+ *	@param	st		çŠ¶æ…‹
  *
- *	@retval	TRUE	ƒZ[ƒu‚·‚é
- *	@retval	FALSE	ƒZ[ƒu‚µ‚È‚¢
+ *	@retval	TRUE	ã‚»ãƒ¼ãƒ–ã™ã‚‹
+ *	@retval	FALSE	ã‚»ãƒ¼ãƒ–ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DOBJWK_GetAnmSave( u32 st )
@@ -1564,9 +1564,9 @@ static BOOL WFLBY_3DOBJWK_GetAnmSave( u32 st )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒŠƒ“ƒOƒ`ƒFƒbƒN
+ *	@brief	ã‚«ãƒªãƒ³ã‚°ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_CheckCulling( WFLBY_3DOBJWK* p_wk )
@@ -1584,26 +1584,26 @@ static void WFLBY_3DOBJWK_CheckCulling( WFLBY_3DOBJWK* p_wk )
 			p_wk->culling = FALSE;
 		}
 
-		// •\Ž¦Ý’è
+		// è¡¨ç¤ºè¨­å®š
 		WFLBY_3DOBJWK_ContBlactDrawFlag( p_wk );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æŠÇ—
+ *	@brief	æç”»ç®¡ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_ContBlactDrawFlag( WFLBY_3DOBJWK* p_wk )
 {
 	if( (p_wk->culling == FALSE) && (p_wk->objdraw == TRUE) ){
-		// •\Ž¦ON
+		// è¡¨ç¤ºON
 		BLACT_ObjDrawFlagSet( p_wk->p_act, TRUE );
 		D3DOBJ_SetDraw( &p_wk->shadow, TRUE );
 	}else{
-		// •\Ž¦OFF
+		// è¡¨ç¤ºOFF
 		BLACT_ObjDrawFlagSet( p_wk->p_act, FALSE );
 		D3DOBJ_SetDraw( &p_wk->shadow, FALSE );
 	}
@@ -1611,10 +1611,10 @@ static void WFLBY_3DOBJWK_ContBlactDrawFlag( WFLBY_3DOBJWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[	•`‰æ‘OƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼	æç”»å‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	p_act		ƒAƒNƒ^[
- *	@param	p_work		ƒ[ƒN
+ *	@param	p_act		ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJWK_CallBack_BlactDraw( BLACT_WORK_PTR p_act ,void* p_work )
@@ -1628,13 +1628,13 @@ static void WFLBY_3DOBJWK_CallBack_BlactDraw( BLACT_WORK_PTR p_act ,void* p_work
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ê—p	ƒJƒŠƒ“ƒOˆ—
- *			í’“‚ð‘‚â‚µ‚½‚­‚È‚¢‚Ì‚Å	–³—‚â‚è‚È‚â‚è•û‚Ås‚¢‚Ü‚·
+ *	@brief	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å°‚ç”¨	ã‚«ãƒªãƒ³ã‚°å‡¦ç†
+ *			å¸¸é§ã‚’å¢—ã‚„ã—ãŸããªã„ã®ã§	ç„¡ç†ã‚„ã‚Šãªã‚„ã‚Šæ–¹ã§è¡Œã„ã¾ã™
  *
- *	@param	p_act	ƒAƒNƒ^[
+ *	@param	p_act	ã‚¢ã‚¯ã‚¿ãƒ¼
  *		
- *	@retval	TRUE	•`‰æ‚·‚é
- *	@retval	FALSE	•`‰æ‚µ‚È‚¢
+ *	@retval	TRUE	æç”»ã™ã‚‹
+ *	@retval	FALSE	æç”»ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DOBJWK_CheckCullingBlact( BLACT_WORK_PTR p_act )
@@ -1646,19 +1646,19 @@ static BOOL WFLBY_3DOBJWK_CheckCullingBlact( BLACT_WORK_PTR p_act )
 	BOUNDING_BOX		box;
 	MtxFx33				mtx;
 	
-	// ƒŠƒ\[ƒXŽæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	p_mdl = BLACT_MdlResGet( p_act );
-	p_mdlinfo = NNS_G3dGetMdlInfo( p_mdl );			// ƒ‚ƒfƒ‹ƒŠƒ\[ƒXƒCƒ“ƒtƒHƒf[ƒ^Žæ“¾
+	p_mdlinfo = NNS_G3dGetMdlInfo( p_mdl );			// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ•ã‚©ãƒ‡ãƒ¼ã‚¿å–å¾—
 
-	// À•W
+	// åº§æ¨™
 	matrix = *BLACT_MatrixGet(p_act);
 
 
-	// ƒrƒ‹ƒ{[ƒh‚Í”Â‚È‚Ì‚Åƒ‚ƒfƒ‹‚Æ‚µ‚Ä‚Í‰œs‚«‚ª‚È‚¢‚ªA
-	// ƒJƒƒ‰‚Ì•ûŒü‚ðŒü‚­‚æ‚¤‚É‰ñ“]‚·‚é‚Ì‚ÅA
-	// ‚»‚ÌŠp“x‚É‚æ‚Á‚Ä‚ÍA‰œs‚«‚ªo‚Ä‚­‚éB
-	// ƒrƒ‹ƒ{[ƒh‚ª‚Ç‚ñ‚È•ûŒü‚É‰ñ“]‚µ‚Ä‚à‘åä•v‚È‚æ‚¤‚É
-	// ‰œs‚«‚É‚‚³‚Ì‘å‚«‚³‚ð“ü‚ê‚é
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã¯æ¿ãªã®ã§ãƒ¢ãƒ‡ãƒ«ã¨ã—ã¦ã¯å¥¥è¡ŒããŒãªã„ãŒã€
+	// ã‚«ãƒ¡ãƒ©ã®æ–¹å‘ã‚’å‘ãã‚ˆã†ã«å›žè»¢ã™ã‚‹ã®ã§ã€
+	// ãã®è§’åº¦ã«ã‚ˆã£ã¦ã¯ã€å¥¥è¡ŒããŒå‡ºã¦ãã‚‹ã€‚
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãŒã©ã‚“ãªæ–¹å‘ã«å›žè»¢ã—ã¦ã‚‚å¤§ä¸ˆå¤«ãªã‚ˆã†ã«
+	// å¥¥è¡Œãã«é«˜ã•ã®å¤§ãã•ã‚’å…¥ã‚Œã‚‹
 	box.w		= p_mdlinfo->boxW;
 	box.h		= p_mdlinfo->boxH;
 	box.d		= p_mdlinfo->boxH;
@@ -1669,12 +1669,12 @@ static BOOL WFLBY_3DOBJWK_CheckCullingBlact( BLACT_WORK_PTR p_act )
 	matrix.x	+= FX_Mul( p_mdlinfo->boxX, p_mdlinfo->boxPosScale );
 	matrix.y	+= FX_Mul( p_mdlinfo->boxY, p_mdlinfo->boxPosScale );
 	matrix.z	+= FX_Mul( p_mdlinfo->boxZ, p_mdlinfo->boxPosScale );
-	matrix.z	-= FX_Mul( p_mdlinfo->boxH, p_mdlinfo->boxPosScale );	// ‰œs‚«‚ð‚‚³•ª‘‚â‚·‚Ì‚ÅAZ‚Ì’l‚àH•ªˆÚ“®‚³‚¹‚é
+	matrix.z	-= FX_Mul( p_mdlinfo->boxH, p_mdlinfo->boxPosScale );	// å¥¥è¡Œãã‚’é«˜ã•åˆ†å¢—ã‚„ã™ã®ã§ã€Zã®å€¤ã‚‚Håˆ†ç§»å‹•ã•ã›ã‚‹
 
 	MTX_Identity33( &mtx );
 	NNS_G3dGlbSetBaseRot( &mtx );
 	
-	// ƒXƒP[ƒ‹Ý’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
 	NNS_G3dGlbSetBaseScale( BLACT_ScaleGet(p_act) );
 
 	ret = BB_CullingCheck3DModelNonResQuick( &matrix, &box );

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_bag_anm.c
- * @brief	í“¬—pƒoƒbƒO‰æ–Ê ƒ{ƒ^ƒ“§Œä
+ * @brief	æˆ¦é—˜ç”¨ãƒãƒƒã‚°ç”»é¢ ãƒœã‚¿ãƒ³åˆ¶å¾¡
  * @author	Hiroyuki Nakamura
  * @date	05.03.15
  */
@@ -23,24 +23,24 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// ƒ{ƒ^ƒ“ƒAƒjƒƒpƒ^[ƒ“
+// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³
 enum {
-	BBAG_BANM_PAT0 = 0,	// ’Êí
-	BBAG_BANM_PAT1,		// ƒAƒjƒ‚P
-	BBAG_BANM_PAT2,		// ƒAƒjƒ‚Q
-	BBAG_BANM_NONE,		// ‰Ÿ‚¹‚È‚¢
+	BBAG_BANM_PAT0 = 0,	// é€šå¸¸
+	BBAG_BANM_PAT1,		// ã‚¢ãƒ‹ãƒ¡ï¼‘
+	BBAG_BANM_PAT2,		// ã‚¢ãƒ‹ãƒ¡ï¼’
+	BBAG_BANM_NONE,		// æŠ¼ã›ãªã„
 };
 
-// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“
-#define	DAT_PX_POCKET_1	( 0 )								// ƒpƒ^[ƒ“‚P‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌXÀ•W
-#define	DAT_PY_POCKET_1	( 0 )								// ƒpƒ^[ƒ“‚P‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌYÀ•W
-#define	DAT_PX_POCKET_2	( 0 )								// ƒpƒ^[ƒ“‚Q‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌXÀ•W
-#define	DAT_PY_POCKET_2	( DAT_PY_POCKET_1+BBAG_BSY_POCKET )	// ƒpƒ^[ƒ“‚Q‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌYÀ•W
-#define	DAT_PX_POCKET_3	( 0 )								// ƒpƒ^[ƒ“‚R‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌXÀ•W
-#define	DAT_PY_POCKET_3	( DAT_PY_POCKET_2+BBAG_BSY_POCKET )	// ƒpƒ^[ƒ“‚S‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ÌYÀ•W
-// g—pƒ{ƒ^ƒ“
+// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³
+#define	DAT_PX_POCKET_1	( 0 )								// ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‘ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®Xåº§æ¨™
+#define	DAT_PY_POCKET_1	( 0 )								// ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼‘ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®Yåº§æ¨™
+#define	DAT_PX_POCKET_2	( 0 )								// ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼’ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®Xåº§æ¨™
+#define	DAT_PY_POCKET_2	( DAT_PY_POCKET_1+BBAG_BSY_POCKET )	// ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼’ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®Yåº§æ¨™
+#define	DAT_PX_POCKET_3	( 0 )								// ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼“ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®Xåº§æ¨™
+#define	DAT_PY_POCKET_3	( DAT_PY_POCKET_2+BBAG_BSY_POCKET )	// ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼”ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®Yåº§æ¨™
+// ä½¿ç”¨ãƒœã‚¿ãƒ³
 #define	DAT_PX_USE_1	( 0 )
 #define	DAT_PY_USE_1	( 27 )
 #define	DAT_PX_USE_2	( 0 )
@@ -49,14 +49,14 @@ enum {
 #define	DAT_PY_USE_3	( DAT_PY_USE_2+BBAG_BSY_USE )
 #define	DAT_PX_USE_4	( 0 )
 #define	DAT_PY_USE_4	( DAT_PY_USE_3+BBAG_BSY_USE )
-// –ß‚éƒ{ƒ^ƒ“
+// æˆ»ã‚‹ãƒœã‚¿ãƒ³
 #define	DAT_PX_RET_1	( 0 )
 #define	DAT_PY_RET_1	( 57 )
 #define	DAT_PX_RET_2	( DAT_PX_RET_1+BBAG_BSX_RET )
 #define	DAT_PY_RET_2	( 57 )
 #define	DAT_PX_RET_3	( DAT_PX_RET_2+BBAG_BSX_RET )
 #define	DAT_PY_RET_3	( 57 )
-// ƒAƒCƒeƒ€
+// ã‚¢ã‚¤ãƒ†ãƒ 
 #define	DAT_PX_ITEM_1	( 16 )
 #define	DAT_PY_ITEM_1	( 0 )
 #define	DAT_PX_ITEM_2	( 16 )
@@ -65,7 +65,7 @@ enum {
 #define	DAT_PY_ITEM_3	( DAT_PY_ITEM_2+BBAG_BSY_ITEM )
 #define	DAT_PX_ITEM_4	( 16 )
 #define	DAT_PY_ITEM_4	( DAT_PY_ITEM_3+BBAG_BSY_ITEM )
-// ‘O‚Ìƒy[ƒW‚Ö
+// å‰ã®ãƒšãƒ¼ã‚¸ã¸
 #define	DAT_PX_UP_1		( 0 )
 #define	DAT_PY_UP_1		( 47 )
 #define	DAT_PX_UP_2		( DAT_PX_UP_1+BBAG_BSX_UP )
@@ -74,7 +74,7 @@ enum {
 #define	DAT_PY_UP_3		( 47 )
 #define	DAT_PX_UP_4		( DAT_PX_UP_3+BBAG_BSX_UP )
 #define	DAT_PY_UP_4		( 47 )
-// Ÿ‚Ìƒy[ƒW‚Ö
+// æ¬¡ã®ãƒšãƒ¼ã‚¸ã¸
 #define	DAT_PX_DOWN_1	( 0 )
 #define	DAT_PY_DOWN_1	( 52 )
 #define	DAT_PX_DOWN_2	( DAT_PX_DOWN_1+BBAG_BSX_DOWN )
@@ -83,28 +83,28 @@ enum {
 #define	DAT_PY_DOWN_3	( 52 )
 #define	DAT_PX_DOWN_4	( DAT_PX_DOWN_3+BBAG_BSX_DOWN )
 #define	DAT_PY_DOWN_4	( 52 )
-// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“ƒAƒCƒRƒ“ HP/PP‰ñ•œ
+// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ HP/PPå›å¾©
 #define	DAT_PX_HP_1		( 20 )
 #define	DAT_PY_HP_1		( 47 )
 #define	DAT_PX_HP_2		( DAT_PX_HP_1+BBAG_BSX_ICON )
 #define	DAT_PY_HP_2		( 47 )
 #define	DAT_PX_HP_3		( DAT_PX_HP_2+BBAG_BSX_ICON )
 #define	DAT_PY_HP_3		( 47 )
-// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“ƒAƒCƒRƒ“ ó‘ÔˆÙí‰ñ•œ
+// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ çŠ¶æ…‹ç•°å¸¸å›å¾©
 #define	DAT_PX_ST_1		( 20 )
 #define	DAT_PY_ST_1		( DAT_PY_HP_1+BBAG_BSY_ICON )
 #define	DAT_PX_ST_2		( DAT_PX_ST_1+BBAG_BSX_ICON )
 #define	DAT_PY_ST_2		( DAT_PY_ST_1 )
 #define	DAT_PX_ST_3		( DAT_PX_ST_2+BBAG_BSX_ICON )
 #define	DAT_PY_ST_3		( DAT_PY_ST_1 )
-// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“ƒAƒCƒRƒ“ ƒ{[ƒ‹
+// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ ãƒœãƒ¼ãƒ«
 #define	DAT_PX_BALL_1	( 20 )
 #define	DAT_PY_BALL_1	( DAT_PY_ST_1+BBAG_BSY_ICON )
 #define	DAT_PX_BALL_2	( DAT_PX_BALL_1+BBAG_BSX_ICON )
 #define	DAT_PY_BALL_2	( DAT_PY_BALL_1 )
 #define	DAT_PX_BALL_3	( DAT_PX_BALL_2+BBAG_BSX_ICON )
 #define	DAT_PY_BALL_3	( DAT_PY_BALL_1 )
-// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“ƒAƒCƒRƒ“ í“¬—p
+// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ æˆ¦é—˜ç”¨
 #define	DAT_PX_BATL_1	( 20 )
 #define	DAT_PY_BATL_1	( DAT_PY_BALL_1+BBAG_BSY_ICON )
 #define	DAT_PX_BATL_2	( DAT_PX_BATL_1+BBAG_BSX_ICON )
@@ -112,7 +112,7 @@ enum {
 #define	DAT_PX_BATL_3	( DAT_PX_BATL_2+BBAG_BSX_ICON )
 #define	DAT_PY_BATL_3	( DAT_PY_BATL_1 )
 
-// ‚Pƒy[ƒW–Ú‚Ìƒ{ƒ^ƒ“À•W
+// ï¼‘ãƒšãƒ¼ã‚¸ç›®ã®ãƒœã‚¿ãƒ³åº§æ¨™
 #define	P1_PAGE1_SCR_PX		( 0 )
 #define	P1_PAGE1_SCR_PY		( 1 )
 #define	P1_PAGE2_SCR_PX		( 0 )
@@ -125,7 +125,7 @@ enum {
 #define	P1_LASTITEM_SCR_PY	( 19 )
 #define	P1_RETURN_SCR_PX	( 27 )
 #define	P1_RETURN_SCR_PY	( 19 )
-// ‚Qƒy[ƒW–Ú‚Ìƒ{ƒ^ƒ“À•W
+// ï¼’ãƒšãƒ¼ã‚¸ç›®ã®ãƒœã‚¿ãƒ³åº§æ¨™
 #define	P2_ITEM1_SCR_PX		( 32 )
 #define	P2_ITEM1_SCR_PY		( 1 )
 #define	P2_ITEM2_SCR_PX		( 48 )
@@ -144,7 +144,7 @@ enum {
 #define	P2_DOWN_SCR_PY		( 19 )
 #define	P2_RETURN_SCR_PX	( 59 )
 #define	P2_RETURN_SCR_PY	( 19 )
-// ‚Rƒy[ƒW–Ú‚Ìƒ{ƒ^ƒ“À•W
+// ï¼“ãƒšãƒ¼ã‚¸ç›®ã®ãƒœã‚¿ãƒ³åº§æ¨™
 #define	P3_USE_SCR_PX		( 0 )
 #define	P3_USE_SCR_PY		( 51 )
 #define	P3_RETURN_SCR_PX	( 27 )
@@ -160,15 +160,15 @@ typedef struct {
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void BBAG_ScrnCopy( u16 * buf, u16 * scrn, u8 px, u8 py, u8 sx, u8 sy );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ƒ{ƒ^ƒ“ƒAƒjƒƒf[ƒ^
+// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 static const BUTTON_ANM ButtonScreenAnm[] =
 {
 	{ P1_PAGE1_SCR_PX, P1_PAGE1_SCR_PY, BBAG_BSX_POCKET, BBAG_BSY_POCKET },
@@ -192,12 +192,12 @@ static const BUTTON_ANM ButtonScreenAnm[] =
 	{ P3_RETURN_SCR_PX, P3_RETURN_SCR_PY, BBAG_BSX_RET, BBAG_BSY_RET },
 };
 
-// ƒ{ƒ^ƒ“ã‚ÌBMP
-static const u8 BtnBmpWin_Page1[] = { WIN_P1_HP, 0xff };		// uPP‚©‚¢‚Ó‚­v
-static const u8 BtnBmpWin_Page2[] = { WIN_P1_ZYOUTAI, 0xff };	// u‚¶‚å‚¤‚½‚¢‚©‚¢‚Ó‚­v
-static const u8 BtnBmpWin_Page3[] = { WIN_P1_BALL, 0xff };		// uƒ{[ƒ‹v
-static const u8 BtnBmpWin_Page4[] = { WIN_P1_BATTLE, 0xff };	// u‚¹‚ñ‚Æ‚¤‚æ‚¤v
-static const u8 BtnBmpWin_Last[]  = { WIN_P1_LASTITEM, 0xff };	// u‚³‚¢‚²‚É‚Â‚©‚Á‚½‚Ç‚¤‚®v
+// ãƒœã‚¿ãƒ³ä¸Šã®BMP
+static const u8 BtnBmpWin_Page1[] = { WIN_P1_HP, 0xff };		// ã€ŒPPã‹ã„ãµãã€
+static const u8 BtnBmpWin_Page2[] = { WIN_P1_ZYOUTAI, 0xff };	// ã€Œã˜ã‚‡ã†ãŸã„ã‹ã„ãµãã€
+static const u8 BtnBmpWin_Page3[] = { WIN_P1_BALL, 0xff };		// ã€Œãƒœãƒ¼ãƒ«ã€
+static const u8 BtnBmpWin_Page4[] = { WIN_P1_BATTLE, 0xff };	// ã€Œã›ã‚“ã¨ã†ã‚ˆã†ã€
+static const u8 BtnBmpWin_Last[]  = { WIN_P1_LASTITEM, 0xff };	// ã€Œã•ã„ã”ã«ã¤ã‹ã£ãŸã©ã†ãã€
 static const u8 BtnBmpWin_Item1[] = { WIN_P2_NAME1, WIN_P2_NUM1, 0xff };
 static const u8 BtnBmpWin_Item2[] = { WIN_P2_NAME2, WIN_P2_NUM2, 0xff };
 static const u8 BtnBmpWin_Item3[] = { WIN_P2_NAME3, WIN_P2_NUM3, 0xff };
@@ -212,14 +212,14 @@ static const u8 BtnBmpWin_Item5_S[] = { WIN_P2_NAME5_S, WIN_P2_NUM5_S, 0xff };
 static const u8 BtnBmpWin_Item6_S[] = { WIN_P2_NAME6_S, WIN_P2_NUM6_S, 0xff };
 static const u8 BtnBmpWin_Use[] = { WIN_P3_USE, 0xff };
 
-// ƒ{ƒ^ƒ“ã‚ÌBMPƒf[ƒ^ƒe[ƒuƒ‹
+// ãƒœã‚¿ãƒ³ä¸Šã®BMPãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 * const ButtonBmpWinIndex[] = {
-	BtnBmpWin_Page1,	// uHP‚©‚¢‚Ó‚­v
-	BtnBmpWin_Page2,	// u‚¶‚å‚¤‚½‚¢‚©‚¢‚Ó‚­v
-	BtnBmpWin_Page3,	// uƒ{[ƒ‹v
-	BtnBmpWin_Page4,	// u‚¹‚ñ‚Æ‚¤‚æ‚¤v
-	BtnBmpWin_Last,		// u‚³‚¢‚²‚É‚Â‚©‚Á‚½‚Ç‚¤‚®v
-	NULL,				// –ß‚é
+	BtnBmpWin_Page1,	// ã€ŒHPã‹ã„ãµãã€
+	BtnBmpWin_Page2,	// ã€Œã˜ã‚‡ã†ãŸã„ã‹ã„ãµãã€
+	BtnBmpWin_Page3,	// ã€Œãƒœãƒ¼ãƒ«ã€
+	BtnBmpWin_Page4,	// ã€Œã›ã‚“ã¨ã†ã‚ˆã†ã€
+	BtnBmpWin_Last,		// ã€Œã•ã„ã”ã«ã¤ã‹ã£ãŸã©ã†ãã€
+	NULL,				// æˆ»ã‚‹
 
 	BtnBmpWin_Item1,
 	BtnBmpWin_Item2,
@@ -227,11 +227,11 @@ static const u8 * const ButtonBmpWinIndex[] = {
 	BtnBmpWin_Item4,
 	BtnBmpWin_Item5,
 	BtnBmpWin_Item6,
-	NULL,				// ‘O‚Ö
-	NULL,				// Ÿ‚Ö
-	NULL,				// –ß‚é
+	NULL,				// å‰ã¸
+	NULL,				// æ¬¡ã¸
+	NULL,				// æˆ»ã‚‹
 
-	BtnBmpWin_Use,		// u‚Â‚©‚¤v
+	BtnBmpWin_Use,		// ã€Œã¤ã‹ã†ã€
 	NULL,
 
 	BtnBmpWin_Item1_S,
@@ -242,22 +242,22 @@ static const u8 * const ButtonBmpWinIndex[] = {
 	BtnBmpWin_Item6_S,
 };
 
-#define	SWAP_BMP_POS	( BBAG_BTNANM_RET3+1 )		// ƒXƒƒbƒv—pƒf[ƒ^ˆÊ’u
+#define	SWAP_BMP_POS	( BBAG_BTNANM_RET3+1 )		// ã‚¹ãƒ¯ãƒƒãƒ—ç”¨ãƒ‡ãƒ¼ã‚¿ä½ç½®
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒXƒNƒŠ[ƒ“ì¬
+ * ãƒœã‚¿ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆ
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	scrn	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	scrn	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 {
-	// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“
+	// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³
 	BBAG_ScrnCopy(
 		wk->btn_pocket[BBAG_BANM_PAT0], scrn,
 		DAT_PX_POCKET_1, DAT_PY_POCKET_1, BBAG_BSX_POCKET, BBAG_BSY_POCKET );
@@ -268,7 +268,7 @@ void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 		wk->btn_pocket[BBAG_BANM_PAT2], scrn,
 		DAT_PX_POCKET_3, DAT_PY_POCKET_3, BBAG_BSX_POCKET, BBAG_BSY_POCKET );
 
-	// g—pƒ{ƒ^ƒ“
+	// ä½¿ç”¨ãƒœã‚¿ãƒ³
 	BBAG_ScrnCopy(
 		wk->btn_use[BBAG_BANM_PAT0], scrn,
 		DAT_PX_USE_1, DAT_PY_USE_1, BBAG_BSX_USE, BBAG_BSY_USE );
@@ -282,7 +282,7 @@ void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 		wk->btn_use[BBAG_BANM_NONE], scrn,
 		DAT_PX_USE_3, DAT_PY_USE_3, BBAG_BSX_USE, BBAG_BSY_USE );
 
-	// –ß‚éƒ{ƒ^ƒ“
+	// æˆ»ã‚‹ãƒœã‚¿ãƒ³
 	BBAG_ScrnCopy(
 		wk->btn_ret[BBAG_BANM_PAT0], scrn,
 		DAT_PX_RET_1, DAT_PY_RET_1, BBAG_BSX_RET, BBAG_BSY_RET );
@@ -293,7 +293,7 @@ void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 		wk->btn_ret[BBAG_BANM_PAT2], scrn,
 		DAT_PX_RET_3, DAT_PY_RET_3, BBAG_BSX_RET, BBAG_BSY_RET );
 
-	// ƒAƒCƒeƒ€
+	// ã‚¢ã‚¤ãƒ†ãƒ 
 	BBAG_ScrnCopy(
 		wk->btn_item[BBAG_BANM_PAT0], scrn,
 		DAT_PX_ITEM_1, DAT_PY_ITEM_1, BBAG_BSX_ITEM, BBAG_BSY_ITEM );
@@ -307,7 +307,7 @@ void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 		wk->btn_item[BBAG_BANM_NONE], scrn,
 		DAT_PX_ITEM_4, DAT_PY_ITEM_4, BBAG_BSX_ITEM, BBAG_BSY_ITEM );
 
-	// ‘O‚Ìƒy[ƒW‚Ö
+	// å‰ã®ãƒšãƒ¼ã‚¸ã¸
 	BBAG_ScrnCopy(
 		wk->btn_up[BBAG_BANM_PAT0], scrn, DAT_PX_UP_1, DAT_PY_UP_1, BBAG_BSX_UP, BBAG_BSY_UP );
 	BBAG_ScrnCopy(
@@ -317,7 +317,7 @@ void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 	BBAG_ScrnCopy(
 		wk->btn_up[BBAG_BANM_NONE], scrn, DAT_PX_UP_4, DAT_PY_UP_4, BBAG_BSX_UP, BBAG_BSY_UP );
 
-	// Ÿ‚Ìƒy[ƒW‚Ö
+	// æ¬¡ã®ãƒšãƒ¼ã‚¸ã¸
 	BBAG_ScrnCopy(
 		wk->btn_down[BBAG_BANM_PAT0], scrn,
 		DAT_PX_DOWN_1, DAT_PY_DOWN_1, BBAG_BSX_DOWN, BBAG_BSY_DOWN );
@@ -331,7 +331,7 @@ void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 		wk->btn_down[BBAG_BANM_NONE], scrn,
 		DAT_PX_DOWN_4, DAT_PY_DOWN_4, BBAG_BSX_DOWN, BBAG_BSY_DOWN );
 
-	// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“ƒAƒCƒRƒ“ HP/PP‰ñ•œ
+	// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ HP/PPå›å¾©
 	BBAG_ScrnCopy(
 		wk->btn_icon_hp[BBAG_BANM_PAT0], scrn,
 		DAT_PX_HP_1, DAT_PY_HP_1, BBAG_BSX_ICON, BBAG_BSY_ICON );
@@ -342,7 +342,7 @@ void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 		wk->btn_icon_hp[BBAG_BANM_PAT2], scrn,
 		DAT_PX_HP_3, DAT_PY_HP_3, BBAG_BSX_ICON, BBAG_BSY_ICON );
 
-	// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“ƒAƒCƒRƒ“ ó‘ÔˆÙí‰ñ•œ
+	// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ çŠ¶æ…‹ç•°å¸¸å›å¾©
 	BBAG_ScrnCopy(
 		wk->btn_icon_st[BBAG_BANM_PAT0], scrn,
 		DAT_PX_ST_1, DAT_PY_ST_1, BBAG_BSX_ICON, BBAG_BSY_ICON );
@@ -353,7 +353,7 @@ void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 		wk->btn_icon_st[BBAG_BANM_PAT2], scrn,
 		DAT_PX_ST_3, DAT_PY_ST_3, BBAG_BSX_ICON, BBAG_BSY_ICON );
 
-	// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“ƒAƒCƒRƒ“ ƒ{[ƒ‹
+	// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ ãƒœãƒ¼ãƒ«
 	BBAG_ScrnCopy(
 		wk->btn_icon_ball[BBAG_BANM_PAT0], scrn,
 		DAT_PX_BALL_1, DAT_PY_BALL_1, BBAG_BSX_ICON, BBAG_BSY_ICON );
@@ -364,7 +364,7 @@ void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 		wk->btn_icon_ball[BBAG_BANM_PAT2], scrn,
 		DAT_PX_BALL_3, DAT_PY_BALL_3, BBAG_BSX_ICON, BBAG_BSY_ICON );
 
-	// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“ƒAƒCƒRƒ“ í“¬—p
+	// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ æˆ¦é—˜ç”¨
 	BBAG_ScrnCopy(
 		wk->btn_icon_batl[BBAG_BANM_PAT0], scrn,
 		DAT_PX_BATL_1, DAT_PY_BATL_1, BBAG_BSX_ICON, BBAG_BSY_ICON );
@@ -379,14 +379,14 @@ void BattleBag_ButtonScreenMake( BBAG_WORK * wk, u16 * scrn )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒRƒs[
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
  *
- * @param	buf		ƒRƒs[æ
- * @param	scrn	ƒRƒs[Œ³
- * @param	px		ƒRƒs[Œ³‚ÌXÀ•W
- * @param	py		ƒRƒs[Œ³‚ÌYÀ•W
- * @param	sx		ƒRƒs[XƒTƒCƒY
- * @param	sy		ƒRƒs[YƒTƒCƒY
+ * @param	buf		ã‚³ãƒ”ãƒ¼å…ˆ
+ * @param	scrn	ã‚³ãƒ”ãƒ¼å…ƒ
+ * @param	px		ã‚³ãƒ”ãƒ¼å…ƒã®Xåº§æ¨™
+ * @param	py		ã‚³ãƒ”ãƒ¼å…ƒã®Yåº§æ¨™
+ * @param	sx		ã‚³ãƒ”ãƒ¼Xã‚µã‚¤ã‚º
+ * @param	sy		ã‚³ãƒ”ãƒ¼Yã‚µã‚¤ã‚º
  *
  * @return	none
  */
@@ -405,13 +405,13 @@ static void BBAG_ScrnCopy( u16 * buf, u16 * scrn, u8 px, u8 py, u8 sx, u8 sy )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒXƒNƒŠ[ƒ“æ“¾
+ * ãƒœã‚¿ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å–å¾—
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	id		ƒ{ƒ^ƒ“ID
- * @param	num		ƒAƒjƒ”Ô†
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒœã‚¿ãƒ³ID
+ * @param	num		ã‚¢ãƒ‹ãƒ¡ç•ªå·
  *
- * @return	ƒXƒNƒŠ[ƒ“ƒf[ƒ^
+ * @return	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static u16 * BBAG_ButtonScreenBufGet( BBAG_WORK * wk, u8 id, u8 num )
@@ -453,14 +453,14 @@ static u16 * BBAG_ButtonScreenBufGet( BBAG_WORK * wk, u8 id, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒpƒŒƒbƒgæ“¾
+ * ãƒœã‚¿ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆå–å¾—
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	id		ƒ{ƒ^ƒ“ID
- * @param	anm		ƒAƒjƒ”Ô†
- * @param	page	ƒy[ƒW”Ô†
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒœã‚¿ãƒ³ID
+ * @param	anm		ã‚¢ãƒ‹ãƒ¡ç•ªå·
+ * @param	page	ãƒšãƒ¼ã‚¸ç•ªå·
  *
- * @return	ƒpƒŒƒbƒg”Ô†
+ * @return	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 static u16 BBAG_ButtonPalGet( BBAG_WORK * wk, u8 id, u8 anm, u8 page )
@@ -504,17 +504,17 @@ static u16 BBAG_ButtonPalGet( BBAG_WORK * wk, u8 id, u8 anm, u8 page )
 	return 0;
 }
 
-#define	PAGE_ICON_BPX	( 6 )	// ƒ|ƒPƒbƒgƒAƒCƒRƒ“‚Ì“WŠJXˆÊ’u
-#define	PAGE_ICON_BPY	( 0 )	// ƒ|ƒPƒbƒgƒAƒCƒRƒ“‚Ì“WŠJYˆÊ’u
+#define	PAGE_ICON_BPX	( 6 )	// ãƒã‚±ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³ã®å±•é–‹Xä½ç½®
+#define	PAGE_ICON_BPY	( 0 )	// ãƒã‚±ãƒƒãƒˆã‚¢ã‚¤ã‚³ãƒ³ã®å±•é–‹Yä½ç½®
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒgƒ{ƒ^ƒ“ã‚ÉƒAƒCƒRƒ“ƒZƒbƒg
+ * ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ä¸Šã«ã‚¢ã‚¤ã‚³ãƒ³ã‚»ãƒƒãƒˆ
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	buf		“WŠJêŠ
- * @param	id		ƒ{ƒ^ƒ“ID
- * @param	anm		ƒAƒjƒ”Ô†
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	buf		å±•é–‹å ´æ‰€
+ * @param	id		ãƒœã‚¿ãƒ³ID
+ * @param	anm		ã‚¢ãƒ‹ãƒ¡ç•ªå·
  *
  * @return	none
  */
@@ -545,13 +545,13 @@ static void BBAG_ButtonPageIconSet( BBAG_WORK * wk, u16 * buf, u8 id, u8 anm )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ì¬
+ * ãƒœã‚¿ãƒ³ä½œæˆ
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	buf		“WŠJêŠ
- * @param	id		ƒ{ƒ^ƒ“ID
- * @param	anm		ƒAƒjƒ”Ô†
- * @param	page	ƒy[ƒW”Ô†
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	buf		å±•é–‹å ´æ‰€
+ * @param	id		ãƒœã‚¿ãƒ³ID
+ * @param	anm		ã‚¢ãƒ‹ãƒ¡ç•ªå·
+ * @param	page	ãƒšãƒ¼ã‚¸ç•ªå·
  *
  * @return	none
  */
@@ -574,12 +574,12 @@ static void BBAG_ButtonBufMake( BBAG_WORK * wk, u16 * buf, u8 id, u8 anm, u8 pag
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“•\¦
+ * ãƒœã‚¿ãƒ³è¡¨ç¤º
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	id		ƒ{ƒ^ƒ“ID
- * @param	anm		ƒAƒjƒ”Ô†
- * @param	page	ƒy[ƒW”Ô†
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒœã‚¿ãƒ³ID
+ * @param	anm		ã‚¢ãƒ‹ãƒ¡ç•ªå·
+ * @param	page	ãƒšãƒ¼ã‚¸ç•ªå·
  *
  * @return	none
  */
@@ -603,11 +603,11 @@ static void BBAG_ButtonScreenWrite( BBAG_WORK * wk, u8 id, u8 anm, u8 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ã‚ÌBMPƒf[ƒ^‚ğƒVƒtƒg
+ * ãƒœã‚¿ãƒ³ä¸Šã®BMPãƒ‡ãƒ¼ã‚¿ã‚’ã‚·ãƒ•ãƒˆ
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	id		ƒ{ƒ^ƒ“ID
- * @param	anm		ƒAƒjƒ”Ô†
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒœã‚¿ãƒ³ID
+ * @param	anm		ã‚¢ãƒ‹ãƒ¡ç•ªå·
  *
  * @return	none
  */
@@ -646,11 +646,11 @@ static void BBAG_ButtonBmpWinShift( BBAG_WORK * wk, u8 id, u8 anm )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ã‚ÌOBJ‚ğˆÚ“®
+ * ãƒœã‚¿ãƒ³ä¸Šã®OBJã‚’ç§»å‹•
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	id		ƒ{ƒ^ƒ“ID
- * @param	anm		ƒAƒjƒ”Ô†
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒœã‚¿ãƒ³ID
+ * @param	anm		ã‚¢ãƒ‹ãƒ¡ç•ªå·
  *
  * @return	none
  */
@@ -687,11 +687,11 @@ static void BBAG_ButtonObjMove( BBAG_WORK * wk, u8 id, u8 anm )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒ‰Šú‰»
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	id		ƒ{ƒ^ƒ“ID
- * @param	mode	ƒAƒjƒƒ‚[ƒh
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒœã‚¿ãƒ³ID
+ * @param	mode	ã‚¢ãƒ‹ãƒ¡ãƒ¢ãƒ¼ãƒ‰
  *
  * @return	none
  */
@@ -707,9 +707,9 @@ void BattleBag_ButtonAnmInit( BBAG_WORK * wk, u8 id, u8 mode )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒƒƒCƒ“
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -766,10 +766,10 @@ void BattleBag_ButtonAnmMain( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“BG‰Šú‰»
+ * ãƒœã‚¿ãƒ³BGåˆæœŸåŒ–
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	page	ƒy[ƒW”Ô†
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸ç•ªå·
  *
  * @return	none
  */
@@ -777,7 +777,7 @@ void BattleBag_ButtonAnmMain( BBAG_WORK * wk )
 void BattleBag_ButtonPageScreenInit( BBAG_WORK * wk, u8 page )
 {
 	switch( page ){
-	case BBAG_PAGE_POCKET:	// ƒ|ƒPƒbƒg‘I‘ğƒy[ƒW
+	case BBAG_PAGE_POCKET:	// ãƒã‚±ãƒƒãƒˆé¸æŠãƒšãƒ¼ã‚¸
 		BBAG_ButtonScreenWrite( wk, BBAG_BTNANM_PAGE1, 0, page );
 		BBAG_ButtonScreenWrite( wk, BBAG_BTNANM_PAGE2, 0, page );
 		BBAG_ButtonScreenWrite( wk, BBAG_BTNANM_PAGE3, 0, page );
@@ -790,7 +790,7 @@ void BattleBag_ButtonPageScreenInit( BBAG_WORK * wk, u8 page )
 		BBAG_ButtonScreenWrite( wk, BBAG_BTNANM_RET1, BBAG_BANM_PAT0, page );
 		break;
 
-	case BBAG_PAGE_MAIN:	// ƒAƒCƒeƒ€‘I‘ğƒy[ƒW
+	case BBAG_PAGE_MAIN:	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠãƒšãƒ¼ã‚¸
 		{
 			u32	i;
 
@@ -812,7 +812,7 @@ void BattleBag_ButtonPageScreenInit( BBAG_WORK * wk, u8 page )
 		BBAG_ButtonScreenWrite( wk, BBAG_BTNANM_RET2, 0, page );
 		break;
 
-	case BBAG_PAGE_ITEM:	// ƒAƒCƒeƒ€g—pƒy[ƒW
+	case BBAG_PAGE_ITEM:	// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸
 		BBAG_ButtonScreenWrite( wk, BBAG_BTNANM_USE, 0, page );
 		BBAG_ButtonScreenWrite( wk, BBAG_BTNANM_RET3, 0, page );
 	}

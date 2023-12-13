@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_gym05eff.c
- * @brief	ƒS[ƒXƒgƒWƒ€ƒGƒtƒFƒNƒg
+ * @brief	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  * @author	kagaya
  * @data	05.05.13
  *
@@ -39,7 +39,7 @@
 #define HINTP_OFFS_Z (NUM_FX32(-4))
 
 //--------------------------------------------------------------
-///	ƒ‚ƒfƒ‹í—Ş
+///	ãƒ¢ãƒ‡ãƒ«ç¨®é¡
 //--------------------------------------------------------------
 enum
 {
@@ -56,7 +56,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒAƒjƒí—Ş
+///	ã‚¢ãƒ‹ãƒ¡ç¨®é¡
 //--------------------------------------------------------------
 enum
 {
@@ -65,7 +65,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒ‰ƒCƒg‹——£@ƒOƒŠƒbƒh’PˆÊ
+///	ãƒ©ã‚¤ãƒˆè·é›¢ã€€ã‚°ãƒªãƒƒãƒ‰å˜ä½
 //--------------------------------------------------------------
 enum
 {
@@ -82,7 +82,7 @@ enum
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //--------------------------------------------------------------
 #ifdef DEBUG_LIGHT_ON
 typedef struct
@@ -92,12 +92,12 @@ typedef struct
 #endif
 
 //--------------------------------------------------------------
-///	FE_GYM05EFFŒ^
+///	FE_GYM05EFFå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GYM05EFF * FE_GYM05EFF_PTR;
 
 //--------------------------------------------------------------
-///	FE_GYM05EFF\‘¢‘Ì
+///	FE_GYM05EFFæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GYM05EFF
 {
@@ -110,7 +110,7 @@ typedef struct _TAG_FE_GYM05EFF
 #endif
 }FE_GYM05EFF;
 
-#define FE_GYM05EFF_SIZE (sizeof(FE_GYM05EFF)) ///<FE_GYM05EFFƒTƒCƒY
+#define FE_GYM05EFF_SIZE (sizeof(FE_GYM05EFF)) ///<FE_GYM05EFFã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
 ///	EOALIGHT_HEAD
@@ -156,7 +156,7 @@ typedef struct
 }EOA_HINTP_WORK;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Gym05Eff_GraphicInit( FE_GYM05EFF_PTR gym05eff );
 static void Gym05Eff_GraphicDelete( FE_GYM05EFF_PTR gym05eff );
@@ -186,11 +186,11 @@ static void DEBUG_Light( EOA_PTR eoa, EOA_LIGHT_WORK *work );
 #endif
 
 //==============================================================================
-//	ƒS[ƒXƒgƒWƒ€ƒGƒtƒFƒNƒg@ƒVƒXƒeƒ€
+//	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€ƒGƒtƒFƒNƒg‰Šú‰»
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_GYM05EFF_PTR	FE_GYM05EFF_PTR
  */
@@ -208,7 +208,7 @@ void * FE_Gym05Eff_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€ƒGƒtƒFƒNƒgíœ
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‰Šé™¤
  * @param	gym05eff		FE_GYM05EFF_PTR
  * @retval	nothing
  */
@@ -222,11 +222,11 @@ void FE_Gym05Eff_Delete( void *work )
 }
 
 //==============================================================================
-//	ƒS[ƒXƒgƒWƒ€ƒGƒtƒFƒNƒg@ƒOƒ‰ƒtƒBƒbƒN
+//	ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€ƒGƒtƒFƒNƒg ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	gym05eff	FE_GYM05EFF_PTR
  * @retval	nothing
  */
@@ -252,7 +252,7 @@ static void Gym05Eff_GraphicInit( FE_GYM05EFF_PTR gym05 )
 
 //--------------------------------------------------------------
 /**
- * ƒS[ƒXƒgƒWƒ€ƒGƒtƒFƒNƒg ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	gym05eff	FE_GYM05EFF_PTR
  * @retval	nothing
  */
@@ -271,15 +271,15 @@ static void Gym05Eff_GraphicDelete( FE_GYM05EFF_PTR gym05 )
 }
 
 //==============================================================================
-//	eoa	ƒ‰ƒCƒg
+//	eoa	ãƒ©ã‚¤ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒg‚ğ’Ç‰Á
+ * ãƒ©ã‚¤ãƒˆã‚’è¿½åŠ 
  * @param	fes	FE_SYS
- * @param	fldobj	ƒ‰ƒCƒg‚ğ‚½‚¹‚éFIELD_OBJ_PTR
- * @param	range	ƒ‰ƒCƒg‹——£@ƒOƒŠƒbƒh’PˆÊ
- * @retval	EOA_PTR	’Ç‰Á‚µ‚½EOA_PTR
+ * @param	fldobj	ãƒ©ã‚¤ãƒˆã‚’æŒãŸã›ã‚‹FIELD_OBJ_PTR
+ * @param	range	ãƒ©ã‚¤ãƒˆè·é›¢ã€€ã‚°ãƒªãƒƒãƒ‰å˜ä½
+ * @retval	EOA_PTR	è¿½åŠ ã—ãŸEOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_Gym05Eff_LightAdd(
@@ -301,9 +301,9 @@ EOA_PTR FE_Gym05Eff_LightAdd(
 
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒg‹——£‚ğİ’è
- * @param	eoa		ƒ‰ƒCƒgEOA
- * @param	range	ƒ‰ƒCƒg‹——£
+ * ãƒ©ã‚¤ãƒˆè·é›¢ã‚’è¨­å®š
+ * @param	eoa		ãƒ©ã‚¤ãƒˆEOA
+ * @param	range	ãƒ©ã‚¤ãƒˆè·é›¢
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -315,10 +315,10 @@ void FE_Gym05Eff_LightRangeSet( EOA_PTR eoa, int range )
 
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒg@‰Šú‰»
+ * ãƒ©ã‚¤ãƒˆã€€åˆæœŸåŒ–
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
- * @retval	int TRUE=³íI—¹ FALSE=ˆÙíI—¹
+ * @retval	int TRUE=æ­£å¸¸çµ‚äº† FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaGym05Light_Init( EOA_PTR eoa, void *wk )
@@ -343,7 +343,7 @@ static int EoaGym05Light_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒg@íœ
+ * ãƒ©ã‚¤ãƒˆã€€å‰Šé™¤
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -358,7 +358,7 @@ static void EoaGym05Light_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒg@“®ì
+ * ãƒ©ã‚¤ãƒˆã€€å‹•ä½œ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -394,7 +394,7 @@ static void EoaGym05Light_Move( EOA_PTR eoa, void *wk )
 	}
 	#endif
 	
-	if( work->range == work->head.range ){	//§ŒÀ–³‚µ
+	if( work->range == work->head.range ){	//åˆ¶é™ç„¡ã—
 		LightDrawStateSet( eoa, work );
 	}else{
 		LightHitScaleOffsSet( work->dir, work->head.range,
@@ -407,7 +407,7 @@ static void EoaGym05Light_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒg@•`‰æ
+ * ãƒ©ã‚¤ãƒˆã€€æç”»
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -438,7 +438,7 @@ EOA_LIGHT_WORK *work = wk;
 }
 
 //--------------------------------------------------------------
-///	EOA	ƒ‰ƒCƒg@ƒwƒbƒ_
+///	EOA	ãƒ©ã‚¤ãƒˆã€€ãƒ˜ãƒƒãƒ€
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Gym05Light =
 {
@@ -450,11 +450,11 @@ static const EOA_H_NPP DATA_EoaH_Gym05Light =
 };
 
 //==============================================================================
-//	ƒ‰ƒCƒgƒp[ƒc
+//	ãƒ©ã‚¤ãƒˆãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒg À•WƒZƒbƒg
+ * ãƒ©ã‚¤ãƒˆ åº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
  * @param	work	EOA_LIGHT_WORK *
  * @retval	nothing
@@ -476,7 +476,7 @@ static void LightDrawPosSet( EOA_PTR eoa, EOA_LIGHT_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒgŠp“xAŠgk—¦AÀ•WƒZƒbƒg
+ * ãƒ©ã‚¤ãƒˆè§’åº¦ã€æ‹¡ç¸®ç‡ã€åº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	eoa		EOA_PTR
  * @param	work	EOA_LIGHT_WORK *
  * @retval	nothing
@@ -494,9 +494,9 @@ static void LightDrawStateSet( EOA_PTR eoa, EOA_LIGHT_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * Šp“x‘Œ¸
- * @param	angle	Šp“x
- * @param	add		‘Œ¸’l
+ * è§’åº¦å¢—æ¸›
+ * @param	angle	è§’åº¦
+ * @param	add		å¢—æ¸›å€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -509,9 +509,9 @@ static void AngleAdd( u16 *angle, s16 add )
 
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒg‚ ‚½‚è”»’è@ˆÚ“®§ŒÀ‚Í–³‹‚·‚é
- * @param	fldobj	‘ÎÛFIELD_OBJ_PTR
- * @param	range	ƒ‰ƒCƒgƒŒƒ“ƒWÅ‘å@ƒOƒŠƒbƒh’PˆÊ
+ * ãƒ©ã‚¤ãƒˆã‚ãŸã‚Šåˆ¤å®šã€€ç§»å‹•åˆ¶é™ã¯ç„¡è¦–ã™ã‚‹
+ * @param	fldobj	å¯¾è±¡FIELD_OBJ_PTR
+ * @param	range	ãƒ©ã‚¤ãƒˆãƒ¬ãƒ³ã‚¸æœ€å¤§ã€€ã‚°ãƒªãƒƒãƒ‰å˜ä½
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -534,9 +534,9 @@ static int LightRangeHitCheck( CONST_FIELD_OBJ_PTR fldobj, int range, VecFx32 *h
 		z += FieldOBJ_DirAddValueGZ( dir );
 		hit = FieldOBJ_MoveHitCheck( fldobj, &pos, x, y, z, dir );
 		
-		if( hit != FLDOBJ_MOVE_HIT_BIT_NON &&	//“–‚½‚è—L‚è
-			hit != FLDOBJ_MOVE_HIT_BIT_LIM ){	//ˆÚ“®§ŒÀƒqƒbƒg‚Å‚Í‚È‚¢
-			if( hit == FLDOBJ_MOVE_HIT_BIT_OBJ ){	//OBJƒqƒbƒg‚Å‚ ‚éê‡
+		if( hit != FLDOBJ_MOVE_HIT_BIT_NON &&	//å½“ãŸã‚Šæœ‰ã‚Š
+			hit != FLDOBJ_MOVE_HIT_BIT_LIM ){	//ç§»å‹•åˆ¶é™ãƒ’ãƒƒãƒˆã§ã¯ãªã„
+			if( hit == FLDOBJ_MOVE_HIT_BIT_OBJ ){	//OBJãƒ’ãƒƒãƒˆã§ã‚ã‚‹å ´åˆ
 				FIELD_OBJ_PTR hitobj;
 				hitobj = FieldOBJ_SearchGridPos(
 					FieldOBJ_FieldOBJSysGet(fldobj), x, z, TRUE );
@@ -556,13 +556,13 @@ static int LightRangeHitCheck( CONST_FIELD_OBJ_PTR fldobj, int range, VecFx32 *h
 
 //--------------------------------------------------------------
 /**
- * áŠQ•¨‚Ü‚Å‚Ìƒ‰ƒCƒgÀ•WAŠgk—¦‚ğ‹‚ß‚é
- * @param	dir	ƒ‰ƒCƒg•ûŒü DIR_UP“™
- * @param	max_range	ƒ‰ƒCƒgÅ‘å”ÍˆÍ ƒOƒŠƒbƒh’PˆÊ
- * @param	hit_pos	áŠQ•¨‚ÌÀ•W
- * @param	pos	ƒ‰ƒCƒgÀ•W
- * @param	light_offs	ƒ‰ƒCƒgÀ•WƒIƒtƒZƒbƒgŠi”[æ
- * @param	light_scale	ƒ‰ƒCƒgŠgk—¦Ši”[æ
+ * éšœå®³ç‰©ã¾ã§ã®ãƒ©ã‚¤ãƒˆåº§æ¨™ã€æ‹¡ç¸®ç‡ã‚’æ±‚ã‚ã‚‹
+ * @param	dir	ãƒ©ã‚¤ãƒˆæ–¹å‘ DIR_UPç­‰
+ * @param	max_range	ãƒ©ã‚¤ãƒˆæœ€å¤§ç¯„å›² ã‚°ãƒªãƒƒãƒ‰å˜ä½
+ * @param	hit_pos	éšœå®³ç‰©ã®åº§æ¨™
+ * @param	pos	ãƒ©ã‚¤ãƒˆåº§æ¨™
+ * @param	light_offs	ãƒ©ã‚¤ãƒˆåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆæ ¼ç´å…ˆ
+ * @param	light_scale	ãƒ©ã‚¤ãƒˆæ‹¡ç¸®ç‡æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -582,7 +582,7 @@ static void LightHitScaleOffsSet(
 	case DIR_RIGHT:	sabun = (hit_pos->x - pos->x); break;
 	}
 	
-	j_range = sabun / GRID_FX32;	//·•ª‚ğƒOƒŠƒbƒh’PˆÊ‚É‚µŒ»“_‚Ì”ÍˆÍ‚É
+	j_range = sabun / GRID_FX32;	//å·®åˆ†ã‚’ã‚°ãƒªãƒƒãƒ‰å˜ä½ã«ã—ç¾æ™‚ç‚¹ã®ç¯„å›²ã«
 	
 	if( j_range < 0 ){
 		j_range = -j_range;
@@ -592,7 +592,7 @@ static void LightHitScaleOffsSet(
 		j_range = max_range;
 	}
 	
-	j_range--;						//-1=©g‚ÌˆÊ’u
+	j_range--;						//-1=è‡ªèº«ã®ä½ç½®
 	
 	if( j_range < 0 ){
 		j_range = 0;
@@ -602,7 +602,7 @@ static void LightHitScaleOffsSet(
 	
 	sabun %= GRID_FX32;
 	
-	if( sabun < 0 ){				//·•ª‚É‚æ‚é–Ú•Wİ’è
+	if( sabun < 0 ){				//å·®åˆ†ã«ã‚ˆã‚‹ç›®æ¨™è¨­å®š
 		h_range--;
 	}else if( sabun > 0 ){
 		h_range++;
@@ -614,7 +614,7 @@ static void LightHitScaleOffsSet(
 		h_range = max_range;
 	}
 	
-	s = sabun / (GRID_FX32/10);		// ·•ª‚ğ%‰»
+	s = sabun / (GRID_FX32/10);		// å·®åˆ†ã‚’%åŒ–
 	
 	if( s < 0 ){
 		s = -s;
@@ -634,16 +634,16 @@ static void LightHitScaleOffsSet(
 }
 
 //==============================================================================
-//	ƒqƒ“ƒgƒpƒlƒ‹
+//	ãƒ’ãƒ³ãƒˆãƒ‘ãƒãƒ«
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒqƒ“ƒgƒpƒlƒ‹”z’u
+ * ãƒ’ãƒ³ãƒˆãƒ‘ãƒãƒ«é…ç½®
  * @param	fea	FE_SYS
- * @param	gx	”z’u‚·‚éƒOƒŠƒbƒhGX
- * @param	gz	”z’u‚·‚éƒOƒŠƒbƒhGZ
- * @param	no	ƒqƒ“ƒg”Ô†0-7
- * @retval	EOA_PTR	ƒqƒ“ƒgƒpƒlƒ‹EOA_PTR
+ * @param	gx	é…ç½®ã™ã‚‹ã‚°ãƒªãƒƒãƒ‰GX
+ * @param	gz	é…ç½®ã™ã‚‹ã‚°ãƒªãƒƒãƒ‰GZ
+ * @param	no	ãƒ’ãƒ³ãƒˆç•ªå·0-7
+ * @retval	EOA_PTR	ãƒ’ãƒ³ãƒˆãƒ‘ãƒãƒ«EOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_Gym05Eff_HintPanelAdd( FE_SYS *fes, int gx, int gz, int no )
@@ -666,10 +666,10 @@ EOA_PTR FE_Gym05Eff_HintPanelAdd( FE_SYS *fes, int gx, int gz, int no )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒqƒ“ƒgƒpƒlƒ‹@‰Šú‰»
+ * EOA ãƒ’ãƒ³ãƒˆãƒ‘ãƒãƒ«ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaHintPanel_Init( EOA_PTR eoa, void *wk )
@@ -687,7 +687,7 @@ static int EoaHintPanel_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒqƒ“ƒgƒpƒlƒ‹@íœ
+ * EOA ãƒ’ãƒ³ãƒˆãƒ‘ãƒãƒ«ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -700,7 +700,7 @@ static void EoaHintPanel_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒqƒ“ƒgƒpƒlƒ‹@“®ì
+ * EOA ãƒ’ãƒ³ãƒˆãƒ‘ãƒãƒ«ã€€å‹•ä½œ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -713,7 +713,7 @@ static void EoaHintPanel_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒqƒ“ƒgƒpƒlƒ‹@•`‰æ
+ * EOA ãƒ’ãƒ³ãƒˆãƒ‘ãƒãƒ«ã€€æç”»
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
  * @retval	nothing
@@ -728,7 +728,7 @@ static void EoaHintPanel_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA ƒqƒ“ƒgƒpƒlƒ‹@ƒwƒbƒ_[
+///	EOA ãƒ’ãƒ³ãƒˆãƒ‘ãƒãƒ«ã€€ãƒ˜ãƒƒãƒ€ãƒ¼
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_HintPanel =
 {
@@ -743,7 +743,7 @@ static const EOA_H_NPP DATA_EoaH_HintPanel =
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒ‚ƒfƒ‹ƒf[ƒ^@ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹
+///	ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const u32 DATA_Gym05MdlArcIdxTbl[GYM05MDL_MAX] =
 {
@@ -759,7 +759,7 @@ static const u32 DATA_Gym05MdlArcIdxTbl[GYM05MDL_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒAƒjƒƒf[ƒ^@ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹
+///	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const u32 DATA_Gym05AnmArcIdxTbl[GYM05ANM_MAX] =
 {
@@ -767,7 +767,7 @@ static const u32 DATA_Gym05AnmArcIdxTbl[GYM05ANM_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒ‰ƒCƒg@•ûŒü•Ê‰ñ“]Šp“x
+///	ãƒ©ã‚¤ãƒˆã€€æ–¹å‘åˆ¥å›è»¢è§’åº¦
 //--------------------------------------------------------------
 static const ROTATE DATA_LightDirRotateTbl[DIR_4_MAX] =
 {
@@ -789,7 +789,7 @@ static const ROTATE DATA_LightDirRotateTbl[DIR_4_MAX] =
 #endif
 
 //--------------------------------------------------------------
-///	ƒ‰ƒCƒg@•ûŒüA‹——£•ÊŠgk—¦
+///	ãƒ©ã‚¤ãƒˆã€€æ–¹å‘ã€è·é›¢åˆ¥æ‹¡ç¸®ç‡
 //--------------------------------------------------------------
 static const VecFx32 DATA_LightDirRangeScaleTbl[DIR_4_MAX][LIGHT_RANGE_MAX] =
 {
@@ -828,7 +828,7 @@ static const VecFx32 DATA_LightDirRangeScaleTbl[DIR_4_MAX][LIGHT_RANGE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒ‰ƒCƒg@•ûŒüA‹——£•Ê•\¦ˆÊ’u
+///	ãƒ©ã‚¤ãƒˆã€€æ–¹å‘ã€è·é›¢åˆ¥è¡¨ç¤ºä½ç½®
 //--------------------------------------------------------------
 static const VecFx32 DATA_LightDirPosTbl[DIR_4_MAX][LIGHT_RANGE_MAX] =
 {
@@ -893,8 +893,8 @@ static void DEBUG_Light( EOA_PTR eoa, EOA_LIGHT_WORK *work )
 		if( trg & PAD_BUTTON_B ){
 			debug->mode++;
 			debug->mode &= 0x01;
-			if( debug->mode )OS_Printf( "ƒ‚[ƒh@Šgk\n" );
-			else OS_Printf( "ƒ‚[ƒh À•W\n" );
+			if( debug->mode )OS_Printf( "ãƒ¢ãƒ¼ãƒ‰ã€€æ‹¡ç¸®\n" );
+			else OS_Printf( "ãƒ¢ãƒ¼ãƒ‰ åº§æ¨™\n" );
 		}
 		
 		if( debug->mode == 0 ){
@@ -915,7 +915,7 @@ static void DEBUG_Light( EOA_PTR eoa, EOA_LIGHT_WORK *work )
 			}
 			
 			if( trg & PAD_BUTTON_START ){
-				OS_Printf( "ƒ‰ƒCƒgÀ•W@x=%d,y=%d,z=%d\n",
+				OS_Printf( "ãƒ©ã‚¤ãƒˆåº§æ¨™ã€€x=%d,y=%d,z=%d\n",
 					FX32_NUM(work->offs.x),
 					FX32_NUM(work->offs.y),
 					FX32_NUM(work->offs.z) );
@@ -940,7 +940,7 @@ static void DEBUG_Light( EOA_PTR eoa, EOA_LIGHT_WORK *work )
 			}
 			
 			if( trg & PAD_BUTTON_START ){
-				OS_Printf( "ƒ‰ƒCƒgŠgk—¦ " );
+				OS_Printf( "ãƒ©ã‚¤ãƒˆæ‹¡ç¸®ç‡ " );
 				OS_Printf( "X = 0x%x ", work->scale.x );
 				OS_Printf( "Y = 0x%x ", work->scale.y );
 				OS_Printf( "Z = 0x%x\n", work->scale.z );

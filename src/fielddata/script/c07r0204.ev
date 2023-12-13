@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_c07r0204evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c07r0204_depart_01
 _EVENT_DATA		ev_c07r0204_babyboy1
@@ -36,23 +36,23 @@ ev_c07r0204_depart_01:
 
 	_TALKMSG		msg_c07r0204_depart_01
 
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_depart_menu_02,1					//‚¨‚·‚·‚ß‚ÍH
-	_BMPMENU_MAKE_LIST	msg_depart_menu_01,0					//‚È‚ñ‚Å‚à‚È‚¢
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_depart_menu_02,1					//ãŠã™ã™ã‚ã¯ï¼Ÿ
+	_BMPMENU_MAKE_LIST	msg_depart_menu_01,0					//ãªã‚“ã§ã‚‚ãªã„
 	_BMPMENU_START
 
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,1,ev_c07r0204_depart_04
 	_JUMP		ev_c07r0204_depart_03
 
-//í˜A
+//å¸¸é€£
 c07r0204_regular_check:
 	_PLAYER_NAME	0
 
 	_TALKMSG		msg_c07r0204_depart_02
 
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_depart_menu_02,0					//‚¨‚·‚·‚ß‚ÍH
-	_BMPMENU_MAKE_LIST	msg_depart_menu_01,1					//‚È‚ñ‚Å‚à‚È‚¢
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_depart_menu_02,0					//ãŠã™ã™ã‚ã¯ï¼Ÿ
+	_BMPMENU_MAKE_LIST	msg_depart_menu_01,1					//ãªã‚“ã§ã‚‚ãªã„
 	_BMPMENU_START
 
 	_IFVAL_JUMP  SCWK_ANSWER,NE,0,ev_c07r0204_depart_03
@@ -63,7 +63,7 @@ c07r0204_regular_check:
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,2,ev_c07r0204_depart_06
 	_JUMP		ev_c07r0204_depart_07
 
-//ƒLƒƒƒ“ƒZƒ‹
+//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_c07r0204_depart_03:
 	_TALKMSG		msg_c07r0204_depart_03
 	_LAST_KEYWAIT
@@ -71,7 +71,7 @@ ev_c07r0204_depart_03:
 	_TALK_OBJ_END
 	_END
 
-//‚¨‚·‚·‚ß‚P
+//ãŠã™ã™ã‚ï¼‘
 ev_c07r0204_depart_04:
 	_TALKMSG		msg_c07r0204_depart_04
 	_LAST_KEYWAIT
@@ -79,7 +79,7 @@ ev_c07r0204_depart_04:
 	_TALK_OBJ_END
 	_END
 
-//‚¨‚·‚·‚ß‚Q
+//ãŠã™ã™ã‚ï¼’
 ev_c07r0204_depart_05:
 	_TALKMSG		msg_c07r0204_depart_05
 	_LAST_KEYWAIT
@@ -87,7 +87,7 @@ ev_c07r0204_depart_05:
 	_TALK_OBJ_END
 	_END
 
-//‚¨‚·‚·‚ß‚R
+//ãŠã™ã™ã‚ï¼“
 ev_c07r0204_depart_06:
 	_TALKMSG		msg_c07r0204_depart_06
 	_LAST_KEYWAIT
@@ -95,7 +95,7 @@ ev_c07r0204_depart_06:
 	_TALK_OBJ_END
 	_END
 
-//‚¨‚·‚·‚ß‚S
+//ãŠã™ã™ã‚ï¼”
 ev_c07r0204_depart_07:
 	_TALKMSG		msg_c07r0204_depart_07
 	_LAST_KEYWAIT
@@ -125,7 +125,7 @@ ev_c07r0204_boy1:
 	_END
 
 /********************************************************************/
-//					ƒOƒbƒY	•i•¨ŒÅ’è‚Ì“Xˆõ(OBJ–¼shopm)
+//					ã‚°ãƒƒã‚º	å“ç‰©å›ºå®šã®åº—å“¡(OBJåshopm)
 /********************************************************************/
 ev_c07r0204_fix_shop_01:
 	_TALK_OBJ_START
@@ -138,7 +138,7 @@ ev_c07r0204_fix_shop_01:
 	_END
 
 /********************************************************************/
-//					ƒOƒbƒY	•i•¨ŒÅ’è‚Ì“Xˆõ(OBJ–¼shopm)
+//					ã‚°ãƒƒã‚º	å“ç‰©å›ºå®šã®åº—å“¡(OBJåshopm)
 /********************************************************************/
 ev_c07r0204_fix_shop_02:
 	_TALK_OBJ_START
@@ -151,7 +151,7 @@ ev_c07r0204_fix_shop_02:
 	_END
 
 /********************************************************************/
-/*							ˆÄ“à”Â									*/
+/*							æ¡ˆå†…æ¿									*/
 /********************************************************************/
 ev_c07r0204_board:
 	_EASY_MSG		msg_c07r0204_board_01

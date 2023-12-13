@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_220.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			220�@�m���ɂȂ邪�A���ɏo�Ă���|�P�����̗̑͂Ə�Ԉُ��S�񕜂�����B�y�����݂₰�z�̉񕜔ŁB
- *				 �T���|�P���������Ȃ��ꍇ�͎��s�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			220　瀕死になるが、次に出てくるポケモンの体力と状態異常を全回復させる。【おきみやげ】の回復版。
+ *				 控えポケモンがいない場合は失敗。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14

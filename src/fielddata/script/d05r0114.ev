@@ -10,27 +10,27 @@
 
 	.include	"../../field/scr_climaxdemo.h"
 
-	/*aftermasterƒoƒOfix061031 iwasawa*/
+	/*aftermasterãƒã‚°fix061031 iwasawa*/
 	.include	"../../../include/bugfix.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//		À•W—p’è‹`
+//		åº§æ¨™ç”¨å®šç¾©
 //--------------------------------------------------------------------
 #define	AREA_DOWN_OUT			(8)
 #define	KANBU_BATTLE_POS_Z		(32)
 
 
 //--------------------------------------------------------------------
-//		ƒV[ƒ“’è‹`(savework.h‚ÌƒRƒƒ“ƒg‚à‡‚í‚¹‚é‚æ‚¤‚É‚·‚é)
+//		ã‚·ãƒ¼ãƒ³å®šç¾©(savework.hã®ã‚³ãƒ¡ãƒ³ãƒˆã‚‚åˆã‚ã›ã‚‹ã‚ˆã†ã«ã™ã‚‹)
 /* 
-00	‰Šúó‘ÔAPOS‚ÅƒMƒ“ƒK’cƒUƒR‚Æ‘Îí
-01	POS‚ÅƒMƒ“ƒK’cŠ²•”‚Æƒ}ƒ‹ƒ`ƒoƒgƒ‹(02‚ÖƒI[ƒg)
-02	POS‚ÅƒMƒ‰ƒeƒBƒi“oêƒfƒ‚¨ƒVƒƒi“oê
-03	‚â‚Ô‚ê‚½¢ŠE‚És‚¯‚éó‘Ô(d05r0115‚É‚È‚Á‚Ä‚¢‚é)
+00	åˆæœŸçŠ¶æ…‹ã€POSã§ã‚®ãƒ³ã‚¬å›£ã‚¶ã‚³ã¨å¯¾æˆ¦
+01	POSã§ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨ã¨ãƒžãƒ«ãƒãƒãƒˆãƒ«(02ã¸ã‚ªãƒ¼ãƒˆ)
+02	POSã§ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´ãƒ‡ãƒ¢â†’ã‚·ãƒ­ãƒŠç™»å ´
+03	ã‚„ã¶ã‚ŒãŸä¸–ç•Œã«è¡Œã‘ã‚‹çŠ¶æ…‹(d05r0115ã«ãªã£ã¦ã„ã‚‹)
  */
 //--------------------------------------------------------------------
 #define	SCENE_0_D05R0114_START				(0)
@@ -40,7 +40,7 @@
 
 
 //--------------------------------------------------------------------
-//		ƒgƒŒ[ƒi[ID’è‹`
+//		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDå®šç¾©
 //--------------------------------------------------------------------
 #define	KANBU1_TRAINER_ID	GINGALEADER1_03
 #define	KANBU2_TRAINER_ID	GINGALEADER2_02
@@ -49,7 +49,7 @@
 
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d05r0114_flag_change
 _EVENT_DATA		ev_d05r0114_init_change
@@ -66,50 +66,50 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d05r0114_flag_change:
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D05R0114	//“ž’…
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D05R0114	//åˆ°ç€
 
-	/*OBJ‚ÌƒIƒ“ƒIƒt‚ðÝ’è*/
+	/*OBJã®ã‚ªãƒ³ã‚ªãƒ•ã‚’è¨­å®š*/
 	_CALL			d05r0114_flag_change_scene
 
-	/*‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦‚ÌPOS‚ðŽg‚¦‚é‚æ‚¤‚É‚·‚é‚©‚Ç‚¤‚©‚ÌÝ’è(d05r0114,18,19)*/
+	/*ã¦ã‚“ã‹ã„ã®ãµãˆã®POSã‚’ä½¿ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®š(d05r0114,18,19)*/
 	_CALL			sub_d05r0114_flag_change_tenkainofue
 
-	/*WKOBJCHR‚ÉƒTƒ|[ƒg‚ÌƒLƒƒƒ‰ƒR[ƒh‚ðƒZƒbƒg‚·‚é*/
+	/*WKOBJCHRã«ã‚µãƒãƒ¼ãƒˆã®ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹*/
 	_GET_MY_SEX		LOCALWORK0
-	_IFVAL_JUMP		LOCALWORK0,EQ,0,d05r0114_male_flag_change_01	//ƒTƒ|[ƒg—
-	_IFVAL_JUMP		LOCALWORK0,EQ,1,d05r0114_female_flag_change_01	//ƒTƒ|[ƒg’j
+	_IFVAL_JUMP		LOCALWORK0,EQ,0,d05r0114_male_flag_change_01	//ã‚µãƒãƒ¼ãƒˆå¥³
+	_IFVAL_JUMP		LOCALWORK0,EQ,1,d05r0114_female_flag_change_01	//ã‚µãƒãƒ¼ãƒˆç”·
 	_END
 
-d05r0114_male_flag_change_01:	//ƒTƒ|[ƒg—
+d05r0114_male_flag_change_01:	//ã‚µãƒãƒ¼ãƒˆå¥³
 	_LDVAL			OBJCHRWORK0,HEROINE
 	_END
 
-d05r0114_female_flag_change_01:	//ƒTƒ|[ƒg’j
+d05r0114_female_flag_change_01:	//ã‚µãƒãƒ¼ãƒˆç”·
 	_LDVAL			OBJCHRWORK0,HERO
 	_END
 
 //--------------------------------------------------------------------
-/*‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦‚ÌPOS‚ðŽg‚¦‚é‚æ‚¤‚É‚·‚é‚©‚Ç‚¤‚©‚ÌÝ’è(d05r0114,18,19)*/
+/*ã¦ã‚“ã‹ã„ã®ãµãˆã®POSã‚’ä½¿ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®š(d05r0114,18,19)*/
 //--------------------------------------------------------------------
 sub_d05r0114_flag_change_tenkainofue:
-	/*‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦‚ªŽg‚¦‚éðŒ*/
-	/*ƒQ[ƒ€ƒNƒŠƒAH*/
+	/*ã¦ã‚“ã‹ã„ã®ãµãˆãŒä½¿ãˆã‚‹æ¡ä»¶*/
+	/*ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ï¼Ÿ*/
 	_SYS_FLAG_GAME_CLEAR_GET	LOCALWORK0
 	_IFVAL_JUMP					LOCALWORK0,EQ,0, sub_d05r0114_flag_change_tenkainofue_end
 
-	/* ‘S‘}ŠÓ“üŽèŒãH*/
+	/* å…¨å›½å›³é‘‘å…¥æ‰‹å¾Œï¼Ÿ*/
 	_ZENKOKU_ZUKAN_FLAG			FLAG_MODE_GET, LOCALWORK0
 	_IFVAL_JUMP					LOCALWORK0,EQ,0, sub_d05r0114_flag_change_tenkainofue_end
 
-	/* ‚Ä‚ñ‚©‚¢‚Ì‚Ó‚¦‚ð‚à‚Á‚Ä‚¢‚éH*/
+	/* ã¦ã‚“ã‹ã„ã®ãµãˆã‚’ã‚‚ã£ã¦ã„ã‚‹ï¼Ÿ*/
 	_ITEM_CHK					ITEM_TENKAINOHUE,1, LOCALWORK0
 	_IFVAL_JUMP					LOCALWORK0,EQ,0, sub_d05r0114_flag_change_tenkainofue_end
 
-	/* ”z•z—pƒ}ƒWƒbƒNƒiƒ“ƒo[³íH*/
+	/* é…å¸ƒç”¨ãƒžã‚¸ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼æ­£å¸¸ï¼Ÿ*/
 	_IS_HAIHU_EVENT_ENABLE		HAIHUEVENT_ID_D05, LOCALWORK0
 	_IFVAL_JUMP					LOCALWORK0,EQ,0, sub_d05r0114_flag_change_tenkainofue_end
 
-	/* ƒAƒEƒXiƒAƒ‹ƒZƒEƒXj‚ð•ß‚Ü‚¦‚Ä‚¢‚È‚¢H*/
+	/* ã‚¢ã‚¦ã‚¹ï¼ˆã‚¢ãƒ«ã‚»ã‚¦ã‚¹ï¼‰ã‚’æ•ã¾ãˆã¦ã„ãªã„ï¼Ÿ*/
 	_IF_FLAGON_JUMP				FE_D05R0116_LEGEND_CLEAR, sub_d05r0114_flag_change_tenkainofue_end
 
 	_LDVAL						WK_SCENE_D05R0116, 1
@@ -121,21 +121,21 @@ sub_d05r0114_flag_change_tenkainofue_end:
 
 
 //--------------------------------------------------------------------
-/*						OBJ‚ÌƒIƒ“ƒIƒt‚ðÝ’è							*/
+/*						OBJã®ã‚ªãƒ³ã‚ªãƒ•ã‚’è¨­å®š							*/
 //--------------------------------------------------------------------
 d05r0114_flag_change_scene:
 	_DEBUG_WATCH_WORK	WK_SCENE_D05R0114
 
-	/*‰Šúó‘ÔAPOS‚ÅƒMƒ“ƒK’cƒUƒR‚Æ‘Îí*/
+	/*åˆæœŸçŠ¶æ…‹ã€POSã§ã‚®ãƒ³ã‚¬å›£ã‚¶ã‚³ã¨å¯¾æˆ¦*/
 	_IFVAL_JUMP		WK_SCENE_D05R0114,EQ,SCENE_0_D05R0114_START,	   d05r0114_flag_change_scene_00
 
-	/*POS‚ÅƒMƒ“ƒK’cŠ²•”‚Æƒ}ƒ‹ƒ`ƒoƒgƒ‹*/
+	/*POSã§ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨ã¨ãƒžãƒ«ãƒãƒãƒˆãƒ«*/
 	_IFVAL_JUMP		WK_SCENE_D05R0114,EQ,SCENE_1_D05R0114_GINGA_BATTLE,d05r0114_flag_change_scene_01
 
-	/*POS‚ÅƒMƒ‰ƒeƒBƒi“oêƒfƒ‚¨ƒVƒƒi“oê*/
+	/*POSã§ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´ãƒ‡ãƒ¢â†’ã‚·ãƒ­ãƒŠç™»å ´*/
 	_IFVAL_JUMP		WK_SCENE_D05R0114,EQ,SCENE_2_D05R0114_SPPOKE_DEMO, d05r0114_flag_change_scene_02
 
-	/*‚â‚Ô‚ê‚½¢ŠE‚És‚¯‚éó‘Ô(d05r0115‚É‚È‚Á‚Ä‚¢‚é)*/
+	/*ã‚„ã¶ã‚ŒãŸä¸–ç•Œã«è¡Œã‘ã‚‹çŠ¶æ…‹(d05r0115ã«ãªã£ã¦ã„ã‚‹)*/
 	_IFVAL_JUMP		WK_SCENE_D05R0114,EQ,SCENE_3_D05R0114_YABURETA_GO, d05r0114_flag_change_scene_03
 	_RET
 
@@ -158,7 +158,7 @@ ev_d05r0114_init_change:
 //
 //
 //
-//			ƒXƒg[ƒŠ[‚ÌƒXƒNƒŠƒvƒg
+//			ã‚¹ãƒˆãƒ¼ãƒªãƒ¼ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 //
 //
 //
@@ -204,17 +204,17 @@ sub_choice_sex_ret:
 //============================================================================================
 //
 //
-//		ƒV[ƒ“‚OFƒUƒRí
+//		ã‚·ãƒ¼ãƒ³ï¼ï¼šã‚¶ã‚³æˆ¦
 //
 //
 //============================================================================================
 /********************************************************************/
-/*					ƒMƒ“ƒK’cƒUƒR:Š„‚èž‚ñ‚¾(POS)					*/
+/*					ã‚®ãƒ³ã‚¬å›£ã‚¶ã‚³:å‰²ã‚Šè¾¼ã‚“ã (POS)					*/
 /********************************************************************/
 pos_d05r0114_gingam:
 	_EVENT_START
 
-	/*‹ß‚Ã‚¢‚Ä‚­‚é*/
+	/*è¿‘ã¥ã„ã¦ãã‚‹*/
 	_OBJ_ANIME		D05R0114_GINGAM_01, anm_d05r0114_look_gingam_01
 	_OBJ_ANIME		D05R0114_GINGAM_02, anm_d05r0114_look_gingam_02
 	_OBJ_ANIME_WAIT
@@ -224,13 +224,13 @@ pos_d05r0114_gingam:
 	_JUMP			pos_d05r0114_gingam_not_battle
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ð2‘ÌŽ‚Á‚Ä‚¢‚È‚¢‚Ì‚Åƒ_ƒuƒ‹ƒoƒgƒ‹‚Å‚«‚È‚¢
-//í‚¦‚È‚¢ê‡Aˆê•à–ß‚³‚ê‚é
+//ãƒã‚±ãƒ¢ãƒ³ã‚’2ä½“æŒã£ã¦ã„ãªã„ã®ã§ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã§ããªã„
+//æˆ¦ãˆãªã„å ´åˆã€ä¸€æ­©æˆ»ã•ã‚Œã‚‹
 pos_d05r0114_gingam_not_battle:
 	_TALKMSG		msg_d05r0114_gingam_02
 	_TALK_CLOSE
 
-	/*ˆê•à–ß‚³‚ê‚é*/
+	/*ä¸€æ­©æˆ»ã•ã‚Œã‚‹*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0114_return_player_01
 	_OBJ_ANIME_WAIT
 
@@ -241,7 +241,7 @@ pos_d05r0114_gingam_not_battle:
 	_EVENT_END
 	_END
 
-/*í“¬‚Ö*/
+/*æˆ¦é—˜ã¸*/
 ev_d04r0114_gingam_battle_sub:
 	_CALL			ev_d04r0114_gingam_battle
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d05r0114_gingam_battle_lose
@@ -253,7 +253,7 @@ ev_d04r0114_gingam_battle_sub:
 	_EVENT_END
 	_END
 
-//ƒMƒ“ƒK’cƒUƒR‘Îíiƒ_ƒuƒ‹ƒoƒgƒ‹j‚Ö
+//ã‚®ãƒ³ã‚¬å›£ã‚¶ã‚³å¯¾æˆ¦ï¼ˆãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ï¼‰ã¸
 ev_d04r0114_gingam_battle:
 	_TALKMSG		msg_d05r0114_gingam_01
 	_TALK_CLOSE
@@ -261,7 +261,7 @@ ev_d04r0114_gingam_battle:
 	_TRAINER_LOSE_CHECK	SCWK_ANSWER
 	_RET
 
-//ƒMƒ“ƒK’cƒUƒR‚É”s–k‚µ‚½
+//ã‚®ãƒ³ã‚¬å›£ã‚¶ã‚³ã«æ•—åŒ—ã—ãŸ
 ev_d05r0114_gingam_battle_lose:
 	_TRAINER_LOSE
 	_EVENT_END
@@ -283,7 +283,7 @@ _ANIME_LABEL	anm_d05r0114_default_gingam_02
 	_ANIME_DATA AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
-//ˆê•à–ß‚³‚ê‚é
+//ä¸€æ­©æˆ»ã•ã‚Œã‚‹
 _ANIME_LABEL	anm_d05r0114_return_player_01
 	_ANIME_DATA	AC_WAIT_4F,5
 	_ANIME_DATA AC_WALK_D_8F,1
@@ -291,7 +291,7 @@ _ANIME_LABEL	anm_d05r0114_return_player_01
 	
 
 /********************************************************************/
-/*		ƒMƒ“ƒK’cƒUƒR:˜b‚µ‚©‚¯(ŠK’i‰º‚©‚ç‚Í˜b‚µ‚©‚¯‚ç‚ê‚È‚¢)			*/
+/*		ã‚®ãƒ³ã‚¬å›£ã‚¶ã‚³:è©±ã—ã‹ã‘(éšŽæ®µä¸‹ã‹ã‚‰ã¯è©±ã—ã‹ã‘ã‚‰ã‚Œãªã„)			*/
 /********************************************************************/
 ev_d05r0114_gingam:
 	_EASY_OBJ_MSG	msg_d05r0114_gingam_03
@@ -300,12 +300,12 @@ ev_d05r0114_gingam:
 
 //============================================================================================
 //
-//		ƒV[ƒ“‚PFƒMƒ“ƒK’cŠ²•”í
+//		ã‚·ãƒ¼ãƒ³ï¼‘ï¼šã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨æˆ¦
 //
 //============================================================================================
 
 /********************************************************************/
-/*						ƒWƒ…ƒsƒ^[‚É‰ï˜b							*/
+/*						ã‚¸ãƒ¥ãƒ”ã‚¿ãƒ¼ã«ä¼šè©±							*/
 /********************************************************************/
 ev_d05r0114_gingakanbu1:
 	_EASY_OBJ_MSG		msg_d05r0114_gkanbu2_10
@@ -313,7 +313,7 @@ ev_d05r0114_gingakanbu1:
 
 
 /********************************************************************/
-/*							ƒ}[ƒY‚É‰ï˜b							*/
+/*							ãƒžãƒ¼ã‚ºã«ä¼šè©±							*/
 /********************************************************************/
 ev_d05r0114_gingakanbu2:
 	_EASY_OBJ_MSG		msg_d05r0114_gkanbu1_10
@@ -321,19 +321,19 @@ ev_d05r0114_gingakanbu2:
 
 
 /********************************************************************/
-/*					ƒMƒ“ƒK’cŠ²•”:—§‚¿‚Í‚¾‚©‚é						*/
+/*					ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨:ç«‹ã¡ã¯ã ã‹ã‚‹						*/
 /********************************************************************/
 pos_d05r0114_gingakanbu:
 	_EVENT_START
 
-	/*Š²•”A‹ßŠñ‚Á‚Ä‚­‚é*/
+	/*å¹¹éƒ¨ã€è¿‘å¯„ã£ã¦ãã‚‹*/
 	_CALL			sub_d05r0114_gingakanbu_come
 
-	_TALKMSG		msg_d05r0114_gkanbu1_01			/*ƒ}[ƒY*/
-	_TALKMSG		msg_d05r0114_gkanbu2_01			/*ƒWƒ…ƒsƒ^[*/
+	_TALKMSG		msg_d05r0114_gkanbu1_01			/*ãƒžãƒ¼ã‚º*/
+	_TALKMSG		msg_d05r0114_gkanbu2_01			/*ã‚¸ãƒ¥ãƒ”ã‚¿ãƒ¼*/
 	_TALK_CLOSE
 
-	//ƒ‰ƒCƒoƒ‹“oêƒAƒjƒ
+	//ãƒ©ã‚¤ãƒãƒ«ç™»å ´ã‚¢ãƒ‹ãƒ¡
 	_CALL			sub_d05r0114_rival_appear
 
 #if 1
@@ -344,7 +344,7 @@ pos_d05r0114_gingakanbu:
 	_TALKMSG		msg_d05r0114_gkanbu2_03
 	_TALK_CLOSE
 
-	//ƒMƒ“ƒK’cƒ}[ƒX•ƒWƒ…ƒsƒ^[	V.S.	ŽålŒö•ƒ‰ƒCƒoƒ‹
+	//ã‚®ãƒ³ã‚¬å›£ãƒžãƒ¼ã‚¹ï¼†ã‚¸ãƒ¥ãƒ”ã‚¿ãƒ¼	V.S.	ä¸»äººå…¬ï¼†ãƒ©ã‚¤ãƒãƒ«
 	_CALL			sub_d05r0114_get_rival_id
 	_TRAINER_MULTI_BTL_SET	SCWK_TEMP0, KANBU1_TRAINER_ID, KANBU2_TRAINER_ID
 	_TRAINER_LOSE_CHECK		SCWK_ANSWER
@@ -357,7 +357,7 @@ pos_d05r0114_gingakanbu:
 	_PLAYER_NAME	1
 	_TALKMSG		msg_d05r0114_rival_04
 
-	//ŽålŒö‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‰ñ•œ
+	//ä¸»äººå…¬ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³å›žå¾©
 	_ME_PLAY		SEQ_ASA
 	_ME_WAIT
 	_PC_KAIFUKU
@@ -367,26 +367,26 @@ pos_d05r0114_gingakanbu:
 	_TALK_CLOSE
 #endif
 
-	//ƒ‰ƒCƒoƒ‹‘ÞêƒAƒjƒ
+	//ãƒ©ã‚¤ãƒãƒ«é€€å ´ã‚¢ãƒ‹ãƒ¡
 	_OBJ_DIR_CHANGE	FLDOBJ_ID_PLAYER, DIR_DOWN
 	_OBJ_ANIME		D05R0114_RIVAL,anm_d05r0114_rival_go_out
 	_OBJ_ANIME_WAIT
 	_OBJ_DEL		D05R0114_RIVAL
 
-	/*‚³‚ç‚ÉŽŸ‚ÌƒCƒxƒ“ƒg‚Â‚È‚®*/
+	/*ã•ã‚‰ã«æ¬¡ã®ã‚¤ãƒ™ãƒ³ãƒˆã¤ãªã*/
 	_LDVAL			WK_SCENE_D05R0114,SCENE_2_D05R0114_SPPOKE_DEMO		//2
-	_JUMP			pos_d05r0114_gingaboss		/*ƒAƒJƒM‚ª‚ ‚©‚¢‚­‚³‚è‚ðŽg‚¤*/
+	_JUMP			pos_d05r0114_gingaboss		/*ã‚¢ã‚«ã‚®ãŒã‚ã‹ã„ãã•ã‚Šã‚’ä½¿ã†*/
 	_END
 
 ev_d05r0114_gingakanbu_lose:
-	/*‘S–Å‚µ‚½‚ç‚â‚è’¼‚µ*/
+	/*å…¨æ»…ã—ãŸã‚‰ã‚„ã‚Šç›´ã—*/
 	_LDVAL			WK_SCENE_D05R0114,SCENE_1_D05R0114_GINGA_BATTLE		//1
 	_TRAINER_LOSE
 	_EVENT_END
 	_END
 
 //--------------------------------------------------------------------
-//ƒTƒuƒ‹[ƒ`ƒ“Fƒ‰ƒCƒoƒ‹oŒ»
+//ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ï¼šãƒ©ã‚¤ãƒãƒ«å‡ºç¾
 //--------------------------------------------------------------------
 sub_d05r0114_rival_appear:
 	_FLAG_RESET	FV_D05R0114_RIVAL
@@ -423,7 +423,7 @@ sub_d05r0114_rival_appear_03:
 	_RET
 
 //--------------------------------------------------------------------
-//	ƒTƒuƒ‹[ƒ`ƒ“FƒMƒ“ƒK’cŠ²•”‚ª‹ßŠñ‚Á‚Ä‚­‚éƒAƒjƒ
+//	ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ï¼šã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨ãŒè¿‘å¯„ã£ã¦ãã‚‹ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------------
 sub_d05r0114_gingakanbu_come:
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
@@ -479,7 +479,7 @@ _ANIME_LABEL	anm_d05r0114_kanbu02_come_03
 	_ANIME_DATA ACMD_END,0
 
 //--------------------------------------------------------------------
-//	ƒTƒuƒ‹[ƒ`ƒ“Fƒ‰ƒCƒoƒ‹‚ÌƒgƒŒ[ƒi[IDŽæ“¾
+//	ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ï¼šãƒ©ã‚¤ãƒãƒ«ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDå–å¾—
 //--------------------------------------------------------------------
 sub_d05r0114_get_rival_id:
 	_FIRST_POKE_NO_GET		SCWK_ANSWER
@@ -492,7 +492,7 @@ sub_d05r0114_get_rival_id_ret:
 	_RET
 
 //--------------------------------------------------------------------
-//	ƒTƒuƒ‹[ƒ`ƒ“Fƒ‰ƒCƒoƒ‹‚ÆŒü‚«‡‚¤
+//	ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ï¼šãƒ©ã‚¤ãƒãƒ«ã¨å‘ãåˆã†
 //--------------------------------------------------------------------
 sub_d05r0114_talk_rival:
 	_PLAYER_POS_GET		SCWK_TEMP0,SCWK_TEMP1
@@ -518,7 +518,7 @@ sub_d05r0114_talk_rival_03:
 	_RET
 
 //--------------------------------------------------------------------
-//	ƒTƒuƒ‹[ƒ`ƒ“FƒMƒ“ƒK’cŠ²•”‚ª˜e‚Ö‰º‚ª‚é
+//	ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ï¼šã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨ãŒè„‡ã¸ä¸‹ãŒã‚‹
 //--------------------------------------------------------------------
 sub_d05r0114_gingakanbu_away:
 	_OBJ_ANIME	D05R0114_GINGAKANBU_01,anm_d05r0114_kanbu01_away
@@ -555,27 +555,27 @@ _ANIME_LABEL	anm_d05r0114_rival_go_out
 //============================================================================================
 //
 //
-//		ƒV[ƒ“‚QFƒ{ƒX‚Ì‘äŽŒ`ƒCƒAiƒGƒAj¢ŠÒ‚Ü‚Å
+//		ã‚·ãƒ¼ãƒ³ï¼’ï¼šãƒœã‚¹ã®å°è©žã€œã‚¤ã‚¢ï¼ˆã‚¨ã‚¢ï¼‰å¬é‚„ã¾ã§
 //		SCENE_2_D05R0114_SPPOKE_DEMO
 //
 //============================================================================================
 /********************************************************************/
-/*					ƒMƒ“ƒK’cƒ{ƒX:ƒCƒA¢ŠÒ							*/
+/*					ã‚®ãƒ³ã‚¬å›£ãƒœã‚¹:ã‚¤ã‚¢å¬é‚„							*/
 /********************************************************************/
 pos_d05r0114_gingaboss:
 	//_EVENT_START
 
-	/*ã‚ðŒü‚­*/
+	/*ä¸Šã‚’å‘ã*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0114_player_up
 	_OBJ_ANIME_WAIT
 
-	//ƒJƒƒ‰ˆÚ“®Aƒ{ƒX’†S‚Ö
+	//ã‚«ãƒ¡ãƒ©ç§»å‹•ã€ãƒœã‚¹ä¸­å¿ƒã¸
 	_PLAYER_POS_GET			SCWK_PARAM0,SCWK_PARAM1
 	_VANISH_DUMMY_OBJ_ADD	SCWK_PARAM0,SCWK_PARAM1
 	_CALL			sub_d05r0114_camera_jiki2boss
 	_OBJ_ANIME_WAIT
 
-#if 1 /// ƒeƒ“ƒKƒ“ŽRƒCƒxƒ“ƒgƒfƒ‚Šm”F—p@skip
+#if 1 /// ãƒ†ãƒ³ã‚¬ãƒ³å±±ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¢ç¢ºèªç”¨ã€€skip
 	_LDVAL_VERSION	msg_d05r0114_gingaboss_01,msg_d05r0115_gingaboss_01
 	_TALKMSG_SP		SCWK_TEMP0
 	_TALK_CLOSE
@@ -587,13 +587,13 @@ pos_d05r0114_gingaboss:
 	_SE_PLAY		SEQ_SE_PL_KUSARI
 	_TIME_WAIT		20,SCWK_ANSWER
 
-	/*ƒTƒu‰æ–ÊƒTƒEƒ“ƒhƒf[ƒ^‚ðÁ‚³‚È‚¢‚æ‚¤‚ÉAPLAYER_FIELD‚ÅÄ¶‚·‚é‚æ‚¤‚É‚µ‚½I*/
+	/*ã‚µãƒ–ç”»é¢ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã•ãªã„ã‚ˆã†ã«ã€PLAYER_FIELDã§å†ç”Ÿã™ã‚‹ã‚ˆã†ã«ã—ãŸï¼*/
 	_BGM_PLAY		SEQ_THE_EVENT02
 
-	//ƒTƒEƒ“ƒhƒ[ƒh
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ­ãƒ¼ãƒ‰
 	_SND_CLIMAX_DATA_LOAD
 
-	/*g‚¢½‚ðŽg‚¤ƒgƒR*/
+	/*ç´…ã„éŽ–ã‚’ä½¿ã†ãƒˆã‚³*/
 	_JUMP			demo_loop
 	_END
 
@@ -602,56 +602,56 @@ demo_loop:
 	_IFVAL_JUMP		SCWK_ANSWER, EQ, 0, demo_loop
 #endif
 
-	/*ƒeƒ“ƒKƒ“ŽRƒCƒxƒ“ƒgŒÄ‚Ño‚µ*/
+	/*ãƒ†ãƒ³ã‚¬ãƒ³å±±ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—*/
 	_TENGAN_DEMO_EVENT_CALL	
 	
-	/*ƒUƒRƒMƒ“ƒK’c‚ðÁ‚·*/
+	/*ã‚¶ã‚³ã‚®ãƒ³ã‚¬å›£ã‚’æ¶ˆã™*/
 	_FLAG_SET		FV_D05R0114_GINGAM
 	//_OBJ_DEL		D05R0114_GINGAM_01
 	//_OBJ_DEL		D05R0114_GINGAM_02
 
-	/*ƒMƒ“ƒK’cŠ²•”‚ðÁ‚·*/
+	/*ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨ã‚’æ¶ˆã™*/
 	_FLAG_SET		FV_D05R0114_GINGAKANBU
 	//_OBJ_DEL		D05R0114_GINGAKANBU_01
 	//_OBJ_DEL		D05R0114_GINGAKANBU_02
 
-	/*ƒAƒJƒM‚ðÁ‚·*/
+	/*ã‚¢ã‚«ã‚®ã‚’æ¶ˆã™*/
 	_FLAG_SET		FV_D05R0114_GINGABOSS
 	//_OBJ_DEL		D05R0114_GINGABOSS
 
-	/*ŽŸ‚ÌƒV[ƒ“‚ÉØ‚è‘Ö‚¦‚Ä‚¨‚­*/
+	/*æ¬¡ã®ã‚·ãƒ¼ãƒ³ã«åˆ‡ã‚Šæ›¿ãˆã¦ãŠã*/
 	_LDVAL			WK_SCENE_D05R0114,SCENE_3_D05R0114_YABURETA_GO
 
-	//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[Lv.3
+	//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼Lv.3
 	_FLAG_SET		SYS_FLAG_BS_LV3
 
-	/*ŒŠ‚ª‚ ‚éƒ}ƒbƒv‚É”z’u‚·‚éOBJ•\Ž¦*/
+	/*ç©´ãŒã‚ã‚‹ãƒžãƒƒãƒ—ã«é…ç½®ã™ã‚‹OBJè¡¨ç¤º*/
 	_FLAG_RESET		FV_D05R0115_GINGA
 
-	/*ŒŠ‚ª‚ ‚éƒ}ƒbƒv‚ÖˆÚ“®*/
+	/*ç©´ãŒã‚ã‚‹ãƒžãƒƒãƒ—ã¸ç§»å‹•*/
 	_FLAG_SET		FE_YABURETA_SEKAI
 	_LDVAL			WK_SCENE_D05R0115,1
 
-	/*ƒMƒ‰ƒeƒBƒAAƒpƒ‹ƒLƒA‚ðŒ©‚½ó‘Ô‚É‚·‚é*/
+	/*ã‚®ãƒ©ãƒ†ã‚£ã‚¢ã€ãƒ‘ãƒ«ã‚­ã‚¢ã‚’è¦‹ãŸçŠ¶æ…‹ã«ã™ã‚‹*/
 	_ZUKAN_SEE_SET	MONSNO_IA
 	_ZUKAN_SEE_SET	MONSNO_EA
 
-	//ƒJƒƒ‰ˆÚ“®
-	//ƒ_ƒ~[OBJíœ
+	//ã‚«ãƒ¡ãƒ©ç§»å‹•
+	//ãƒ€ãƒŸãƒ¼OBJå‰Šé™¤
 	_VANISH_DUMMY_OBJ_DEL
 
 	_MAP_CHANGE_NONE_FADE		ZONE_ID_D05R0115, 0, 30, 30, DIR_UP
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	ã‚ðŒü‚­
+//ä¸»äººå…¬	ä¸Šã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d05r0114_player_up
 	_ANIME_DATA AC_STAY_WALK_U_8F,1
 	_ANIME_DATA ACMD_END,0
 
 //--------------------------------------------------------------------
-//		ƒJƒƒ‰ˆÚ“®FŽ©‹@‚©‚çƒ{ƒX‚Ö
+//		ã‚«ãƒ¡ãƒ©ç§»å‹•ï¼šè‡ªæ©Ÿã‹ã‚‰ãƒœã‚¹ã¸
 //--------------------------------------------------------------------
 sub_d05r0114_camera_jiki2boss:
 	_PLAYER_POS_GET		SCWK_TEMP0, SCWK_TEMP1

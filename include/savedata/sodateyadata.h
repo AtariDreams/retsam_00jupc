@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	sodateyadata.h
- * @brief	ˆç‚Ä‰®ƒf[ƒ^ƒAƒNƒZƒX—pƒwƒbƒ_
+ * @brief	è‚²ã¦å±‹ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ˜ãƒƒãƒ€
  * @author	mori GAME FREAK inc.
  * @date	2005.12.21
  */
@@ -9,7 +9,7 @@
 #ifndef __SODATEAYADATA_H__
 #define __SODATEAYADATA_H__
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 #include "savedata/mail_util.h"
 #include "poketool/poke_tool.h"
 
@@ -60,9 +60,9 @@ extern BOOL SodateyaWork_GetRareFlag( SODATEYA_WORK *sw );
 extern SODATEYA_WORK * SaveData_GetSodateyaWork(SAVEDATA * sv);
 
 
-/* ˆç‚Ä‰®‚Ìƒ^ƒ}ƒSƒtƒ‰ƒO‚ª—”‚Ìí‚Å‚ ‚éà–¾‚ª‚È‚©‚Á‚½‚½‚ßA
-   ƒ|ƒPƒbƒ`‚ÆƒXƒNƒŠƒvƒg‚ªu16‚âu8‚Åæ“¾‚µ‚Ä‚O‚©‚P‚©‚Å”»’è‚µ‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚Ì‚ğ
-   ˆç‚Ä‰®ˆ—‚Ì•û‚ÅC³‚·‚é‚±‚Æ‚É‚µ‚½ */
+/* è‚²ã¦å±‹ã®ã‚¿ãƒã‚´ãƒ•ãƒ©ã‚°ãŒä¹±æ•°ã®ç¨®ã§ã‚ã‚‹èª¬æ˜ãŒãªã‹ã£ãŸãŸã‚ã€
+   ãƒã‚±ãƒƒãƒã¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒu16ã‚„u8ã§å–å¾—ã—ã¦ï¼ã‹ï¼‘ã‹ã§åˆ¤å®šã—ã¦ã—ã¾ã£ã¦ã„ã‚‹ã®ã‚’
+   è‚²ã¦å±‹å‡¦ç†ã®æ–¹ã§ä¿®æ­£ã™ã‚‹ã“ã¨ã«ã—ãŸ */
 #if AFTER_MASTER_SODATEYA_EGGFLAG_FIX
 extern int SodateyaWork_GetEggPersonalRnd( const SODATEYA_WORK *sw );
 #endif

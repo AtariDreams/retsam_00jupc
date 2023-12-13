@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>G3X_GetMtxStackLevelPJ</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">G3X_GetMtxStackLevelPJ</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,25 +20,25 @@
 
 s32 G3X_GetMtxStackLevelPJ(s32* level);<BR></CODE></PRE>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="224">level</TD>
-      <TD width="622">s32�^�ւ̃|�C���^</TD>
+      <TD width="622">s32型へのポインタ</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Ԃ�l</h2>
-<p>���ʂ��擾�ł���(0)���A�s��X�^�b�N���r�W�[��ԁi0�ȊO�j���̏��</p>
-<H2>����</H2>
-<P>Projection�s��X�^�b�N�̌��݂̃X�^�b�N���x�����擾���܂��B�Ԃ�l��0�̏ꍇ�A*<I><B>level</B></I>�Ɍ��݂̍s��X�^�b�N���x�����������Ă��܂��B�s��X�^�b�N���x����0��1�̒l�ɂȂ�܂��B�Ԃ�l��0�ȊO�̏ꍇ�A�s��X�^�b�N���r�W�[��Ԃ̂��ߌ��݂̍s��X�^�b�N���x�����擾�ł��Ă��܂���B</P>
-<h2>�Q��</h2>
+<h2>返り値</h2>
+<p>結果が取得できた(0)か、行列スタックがビジー状態（0以外）かの状態</p>
+<H2>説明</H2>
+<P>Projection行列スタックの現在のスタックレベルを取得します。返り値が0の場合、*<I><B>level</B></I>に現在の行列スタックレベルが代入されています。行列スタックレベルは0か1の値になります。返り値が0以外の場合、行列スタックがビジー状態のため現在の行列スタックレベルを取得できていません。</P>
+<h2>参照</h2>
 <P><A href="G3X_GetMtxStackLevelPV.html">G3X_GetMtxStackLevelPV</A></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>Ver. 2004/02/09</P>
 <UL>
-  <LI>������s32�^�̃|�C���^�ɕύX
+  <LI>引数をs32型のポインタに変更
 </UL>
 <P>Ver. 2004/01/19</P>
 </body>

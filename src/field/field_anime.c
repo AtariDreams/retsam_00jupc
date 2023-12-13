@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	field_anime.c
- * @bfief	ƒtƒB[ƒ‹ƒhƒAƒjƒˆ—iŽå‚É“]‘—ƒAƒjƒ)
+ * @bfief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¢ãƒ‹ãƒ¡å‡¦ç†ï¼ˆä¸»ã«è»¢é€ã‚¢ãƒ‹ãƒ¡)
  * @author	mori GAME FREAK inc.
  *
  *
@@ -18,7 +18,7 @@
 #include "fldtanime.naix"
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 //---- kagaya debug
 #ifdef DEBUG_ONLY_FOR_kagaya
@@ -26,52 +26,52 @@
 #endif
 //----
 
-#define FIELD_ANIME_MAX			( 16 )	 // ’nŒ`—p“]‘—ƒAƒjƒ‚Ì“¯Žž“®ìãŒÀ
-#define TEXTURE_NAME_LENGTH		( 16 )	 // ƒeƒNƒXƒ`ƒƒŽw’è–¼‚ÌÅ‘å’·
-#define TEXTURE_ANIME_MAX		( 18 )	 // “¯Žž‚É“o˜^‚Å‚«‚éƒAƒjƒ[ƒVƒ‡ƒ“‚Ì”
+#define FIELD_ANIME_MAX			( 16 )	 // åœ°å½¢ç”¨è»¢é€ã‚¢ãƒ‹ãƒ¡ã®åŒæ™‚å‹•ä½œä¸Šé™
+#define TEXTURE_NAME_LENGTH		( 16 )	 // ãƒ†ã‚¯ã‚¹ãƒãƒ£æŒ‡å®šåã®æœ€å¤§é•·
+#define TEXTURE_ANIME_MAX		( 18 )	 // åŒæ™‚ã«ç™»éŒ²ã§ãã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°
 
-#define TEX_ANIME_END_CODE		( 0xff ) // ƒAƒjƒƒf[ƒ^‚ÌI’[’è‹`(AnmTbl—p)
+#define TEX_ANIME_END_CODE		( 0xff ) // ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®çµ‚ç«¯å®šç¾©(AnmTblç”¨)
 
-// ƒAƒjƒƒf[ƒ^’è‹`
-typedef struct{							// ƒAƒjƒ—pƒf[ƒ^iROM‚©‚ç“Ç‚Ýž‚Ý‚Ü‚·)
-	char name[TEXTURE_NAME_LENGTH];		// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹–¼
-	u8	 AnmTbl[TEXTURE_ANIME_MAX][2];	// ƒAƒjƒ—pƒe[ƒuƒ‹[0]:ƒpƒ^[ƒ“”Ô†  [1]:wait
+// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å®šç¾©
+typedef struct{							// ã‚¢ãƒ‹ãƒ¡ç”¨ãƒ‡ãƒ¼ã‚¿ï¼ˆROMã‹ã‚‰èª­ã¿è¾¼ã¿ã¾ã™)
+	char name[TEXTURE_NAME_LENGTH];		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«å
+	u8	 AnmTbl[TEXTURE_ANIME_MAX][2];	// ã‚¢ãƒ‹ãƒ¡ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«[0]:ãƒ‘ã‚¿ãƒ¼ãƒ³ç•ªå·  [1]:wait
 }FIELD_ANIME;
 
 
-// “]‘—ƒAƒjƒŠÇ—ƒ[ƒN
+// è»¢é€ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	u8  			*texadr;			// Šù‚É“]‘—‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒX
-	int 			texsize;			// “]‘—‚·‚éƒeƒNƒXƒ`ƒƒƒTƒCƒY
-	NNSG3dResTex 	*animetex;			// “]‘—‚·‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^
-	void			*texfile;			// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ÌŽÀ‘Ì
-	FIELD_ANIME		*animetbl;			// ƒAƒjƒ[ƒVƒ‡ƒ“’è‹`ƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
-	u16				point,wait;			// Œ»Ý‚Ì•\Ž¦ƒ|ƒCƒ“ƒ^,ƒEƒFƒCƒg
+	u8  			*texadr;			// æ—¢ã«è»¢é€ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹
+	int 			texsize;			// è»¢é€ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+	NNSG3dResTex 	*animetex;			// è»¢é€ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
+	void			*texfile;			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã®å®Ÿä½“
+	FIELD_ANIME		*animetbl;			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®šç¾©ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	u16				point,wait;			// ç¾åœ¨ã®è¡¨ç¤ºãƒã‚¤ãƒ³ã‚¿,ã‚¦ã‚§ã‚¤ãƒˆ
 }FIELD_ANIME_WORK;
 
-// “Ç‚Ýž‚ñ‚¾ƒAƒjƒƒf[ƒ^‚ðcast‚·‚é‚½‚ß‚Ì\‘¢‘Ì’è‹`
+// èª­ã¿è¾¼ã‚“ã ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚’castã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“å®šç¾©
 typedef struct{
 	u32 num;
-	FIELD_ANIME anime_sheet[0];			// num‚ÌŽw’è‚ÅŒã‚ë‚Éƒf[ƒ^‚ª‘±‚­
+	FIELD_ANIME anime_sheet[0];			// numã®æŒ‡å®šã§å¾Œã‚ã«ãƒ‡ãƒ¼ã‚¿ãŒç¶šã
 }FIELD_ANIME_SHEET;
 
 
-// ƒtƒB[ƒ‹ƒh“]‘—ƒAƒjƒ—pƒRƒ“ƒgƒ[ƒ‹ƒ[ƒN
+// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰è»¢é€ã‚¢ãƒ‹ãƒ¡ç”¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
 struct _FIELD_ANIME_CONTROL_WORK{
-	void 			 	*anime_bindata;	// ROM‚©‚ç“Ç‚Ýž‚ÞƒAƒjƒŽw’èƒf[ƒ^
+	void 			 	*anime_bindata;	// ROMã‹ã‚‰èª­ã¿è¾¼ã‚€ã‚¢ãƒ‹ãƒ¡æŒ‡å®šãƒ‡ãƒ¼ã‚¿
 	FIELD_ANIME_SHEET   *fa_sheet;
-	FIELD_ANIME_WORK faw[FIELD_ANIME_MAX];	// ƒAƒjƒ—pƒ[ƒN
+	FIELD_ANIME_WORK faw[FIELD_ANIME_MAX];	// ã‚¢ãƒ‹ãƒ¡ç”¨ãƒ¯ãƒ¼ã‚¯
 };
 
 typedef struct _FIELD_ANIME_CONTROL_WORK FIELD_ANIME_CONTROL_WORK;
 
 //==============================================================================
-// ƒ[ƒN
+// ãƒ¯ãƒ¼ã‚¯
 //==============================================================================
 
 
 //==============================================================================
-// ŠÖ”
+// é–¢æ•°
 //==============================================================================
 
 static int  AnimeSet(FIELD_ANIME_PTR faw, NNSG3dResTex *tex, int AnimeNo, ARCHANDLE *handle);
@@ -79,11 +79,11 @@ static int  AnimeSet(FIELD_ANIME_PTR faw, NNSG3dResTex *tex, int AnimeNo, ARCHAN
 
 //==============================================================================
 /**
- * ‰Šú‰»
+ * åˆæœŸåŒ–
  *
  * @param   none		
  *
- * @retval  FIELD_ANIME_PTR		ƒAƒjƒŠÇ—ƒ|ƒCƒ“ƒ^	
+ * @retval  FIELD_ANIME_PTR		ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒã‚¤ãƒ³ã‚¿	
  */
 //==============================================================================
 FIELD_ANIME_PTR InitFieldAnime(void)
@@ -115,13 +115,13 @@ FIELD_ANIME_PTR InitFieldAnime(void)
 
 //------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒh“]‘—ƒAƒjƒ“o˜^
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰è»¢é€ã‚¢ãƒ‹ãƒ¡ç™»éŒ²
  *
- * @param   tex			Šù‚ÉVRAM‚É“]‘—Ï‚Ý‚ÌƒeƒNƒXƒ`ƒƒŠÇ—ƒ|ƒCƒ“ƒ^
- * @param   Tindex		ã‚ÌƒeƒNƒXƒ`ƒƒ‚ÌŽw’èindex
- * @param   AnimeNo		“]‘—‚ðs‚¢‚½‚¢ƒeƒNƒXƒ`ƒƒƒAƒjƒ”Ô†i‚±‚ê‚ªƒtƒ@ƒCƒ‹–¼‚É‚È‚é)
+ * @param   tex			æ—¢ã«VRAMã«è»¢é€æ¸ˆã¿ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†ãƒã‚¤ãƒ³ã‚¿
+ * @param   Tindex		ä¸Šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æŒ‡å®šindex
+ * @param   AnimeNo		è»¢é€ã‚’è¡Œã„ãŸã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ç•ªå·ï¼ˆã“ã‚ŒãŒãƒ•ã‚¡ã‚¤ãƒ«åã«ãªã‚‹)
  *
- * @retval  int 		“o˜^‚Å‚«‚½‚ç0-10 ‚Å‚«‚È‚©‚Á‚½‚ç-1
+ * @retval  int 		ç™»éŒ²ã§ããŸã‚‰0-10 ã§ããªã‹ã£ãŸã‚‰-1
  */
 //------------------------------------------------------------------
 int FieldAnimeSets(FIELD_ANIME_PTR facw, NNSG3dResTex *tex)
@@ -129,12 +129,12 @@ int FieldAnimeSets(FIELD_ANIME_PTR facw, NNSG3dResTex *tex)
 	int i,result=0;
 	ARCHANDLE *handle;
 
-//	OS_Printf("field trans_ anime“o˜^ŠJŽn");
+//	OS_Printf("field trans_ animeç™»éŒ²é–‹å§‹");
 
-	// ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	handle = ArchiveDataHandleOpen( ARC_FIELD_TRANS_ANIME, HEAPID_FIELD );
 
-	// ƒAƒjƒƒe[ƒuƒ‹“Ç‚Ýž‚Ý
+	// ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«èª­ã¿è¾¼ã¿
 	facw->anime_bindata = ArchiveDataLoadAllocByHandle( handle, NARC_fldtanime_tanime_bin, HEAPID_FIELD );
 	facw->fa_sheet      = (FIELD_ANIME_SHEET*)facw->anime_bindata;
 	
@@ -145,14 +145,14 @@ int FieldAnimeSets(FIELD_ANIME_PTR facw, NNSG3dResTex *tex)
 	
 
 	
-	//ƒtƒ@ƒCƒ‹‚Ì”‚¾‚¯ƒeƒNƒXƒ`ƒƒŒŸõ•“o˜^ì‹Æ‚ðs‚¤
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã ã‘ãƒ†ã‚¯ã‚¹ãƒãƒ£æ¤œç´¢ï¼†ç™»éŒ²ä½œæ¥­ã‚’è¡Œã†
 	for (i=0;i<facw->fa_sheet->num;i++){
 		if(AnimeSet(facw, tex, i, handle)>=0){
 			result++;
 		}
 	}
 
-	//ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+	//ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( handle );
 
 //	OS_Printf("field anime num = %d\n",result);
@@ -163,13 +163,13 @@ int FieldAnimeSets(FIELD_ANIME_PTR facw, NNSG3dResTex *tex)
 
 //------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒh“]‘—ƒAƒjƒ“o˜^
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰è»¢é€ã‚¢ãƒ‹ãƒ¡ç™»éŒ²
  *
- * @param   tex			Šù‚ÉVRAM‚É“]‘—Ï‚Ý‚ÌƒeƒNƒXƒ`ƒƒŠÇ—ƒ|ƒCƒ“ƒ^
- * @param   Tindex		ã‚ÌƒeƒNƒXƒ`ƒƒ‚ÌŽw’èindex
- * @param   AnimeNo		“]‘—‚ðs‚¢‚½‚¢ƒeƒNƒXƒ`ƒƒƒAƒjƒ”Ô†i‚±‚ê‚ªƒtƒ@ƒCƒ‹–¼‚É‚È‚é)
+ * @param   tex			æ—¢ã«VRAMã«è»¢é€æ¸ˆã¿ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†ãƒã‚¤ãƒ³ã‚¿
+ * @param   Tindex		ä¸Šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æŒ‡å®šindex
+ * @param   AnimeNo		è»¢é€ã‚’è¡Œã„ãŸã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ç•ªå·ï¼ˆã“ã‚ŒãŒãƒ•ã‚¡ã‚¤ãƒ«åã«ãªã‚‹)
  *
- * @retval  int 		“o˜^‚Å‚«‚½‚ç0-10 ‚Å‚«‚È‚©‚Á‚½‚ç-1
+ * @retval  int 		ç™»éŒ²ã§ããŸã‚‰0-10 ã§ããªã‹ã£ãŸã‚‰-1
  */
 //------------------------------------------------------------------
 static int AnimeSet(FIELD_ANIME_PTR facw, NNSG3dResTex *tex, int AnimeNo, ARCHANDLE *handle)
@@ -177,26 +177,26 @@ static int AnimeSet(FIELD_ANIME_PTR facw, NNSG3dResTex *tex, int AnimeNo, ARCHAN
 	int  no,i;
 	char filename[40];
 	
-	//Šm•Û‚³‚ê‚Ä‚È‚¢‚Ì‚ÉŒÄ‚Î‚ê‚Ä‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚Å
+	//ç¢ºä¿ã•ã‚Œã¦ãªã„ã®ã«å‘¼ã°ã‚Œã¦ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§
 	if(facw==NULL){								
 		return -1;
 	}
 
-	//Žg—p‚µ‚Ä‚¢‚È‚¢ƒ[ƒN‚ðŒŸõ
+	//ä½¿ç”¨ã—ã¦ã„ãªã„ãƒ¯ãƒ¼ã‚¯ã‚’æ¤œç´¢
 	for(no=0;no<FIELD_ANIME_MAX;no++){				
 		if(facw->faw[no].texfile==NULL){
 			break;
 		}
 	}
-	//“o˜^MAX ‚à‚µ‚­‚Í’nŒ`ƒeƒNƒXƒ`ƒƒ‚ªNULL‚¾‚Á‚½‚ç“o˜^’†Ž~
+	//ç™»éŒ²MAX ã‚‚ã—ãã¯åœ°å½¢ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒNULLã ã£ãŸã‚‰ç™»éŒ²ä¸­æ­¢
 	if(no==FIELD_ANIME_MAX || tex==NULL){			
 		return -1;
 	}
 
-	//“]‘—Ï‚Ý’nŒ`ƒeƒNƒXƒ`ƒƒ‚©‚ç“]‘—‘ÎÛ‚Æ‚È‚éêŠ‚ðŽæ“¾‚·‚é
+	//è»¢é€æ¸ˆã¿åœ°å½¢ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã‚‰è»¢é€å¯¾è±¡ã¨ãªã‚‹å ´æ‰€ã‚’å–å¾—ã™ã‚‹
 	facw->faw[no].texadr   = GetTexStartVRAMAdrByName(tex,facw->fa_sheet->anime_sheet[AnimeNo].name);	
 	if (facw->faw[no].texadr == NULL){
-		//ƒeƒNƒXƒ`ƒƒ‚ª‚È‚©‚Á‚½‚ç“o˜^’†Ž~
+		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒãªã‹ã£ãŸã‚‰ç™»éŒ²ä¸­æ­¢
 		return -1;			
 	}
 	
@@ -209,13 +209,13 @@ static int AnimeSet(FIELD_ANIME_PTR facw, NNSG3dResTex *tex, int AnimeNo, ARCHAN
 	
 	facw->faw[no].texsize  = GetTexByteSizeByName(tex,facw->fa_sheet->anime_sheet[AnimeNo].name);
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	sprintf(filename,"data/fld_anime%d.bin",AnimeNo);				
 	facw->faw[no].animetbl = &(facw->fa_sheet->anime_sheet[AnimeNo]);	
 	
 //	OS_Printf("field_anime animetbl=%08x\n",facw->faw[no].animetbl);
 	
-	//“]‘—ƒAƒjƒƒeƒNƒXƒ`ƒƒ“Ç‚Ýž‚Ý
+	//è»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 	facw->faw[no].texfile = ArchiveDataLoadAllocByHandle( handle, AnimeNo+1, HEAPID_FIELD );
 
 	facw->faw[no].animetex  = NNS_G3dGetTex((NNSG3dResFileHeader*) facw->faw[no].texfile );
@@ -227,9 +227,9 @@ static int AnimeSet(FIELD_ANIME_PTR facw, NNSG3dResTex *tex, int AnimeNo, ARCHAN
 
 //==============================================================================
 /**
- * ƒtƒB[ƒ‹ƒh—pƒeƒNƒXƒ`ƒƒ“]‘—ƒAƒjƒí’“ŠÖ”
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€ã‚¢ãƒ‹ãƒ¡å¸¸é§é–¢æ•°
  *
- * @param   faw		ƒAƒjƒŠÇ—ƒ|ƒCƒ“ƒ^		
+ * @param   faw		ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒã‚¤ãƒ³ã‚¿		
  *
  * @retval  none		
  */
@@ -238,15 +238,15 @@ void FieldAnimeMain(FIELD_ANIME_PTR facw)
 {
 	int i;
 	
-	if(facw==NULL){								//Šm•Û‚³‚ê‚Ä‚È‚¢‚Ì‚ÉŒÄ‚Î‚ê‚Ä‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚Å
+	if(facw==NULL){								//ç¢ºä¿ã•ã‚Œã¦ãªã„ã®ã«å‘¼ã°ã‚Œã¦ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§
 		return;
 	}
 	
-	for(i=0;i<FIELD_ANIME_MAX;i++){				//Žg—p‚µ‚Ä‚¢‚È‚¢ƒ[ƒN‚ðŒŸõ
+	for(i=0;i<FIELD_ANIME_MAX;i++){				//ä½¿ç”¨ã—ã¦ã„ãªã„ãƒ¯ãƒ¼ã‚¯ã‚’æ¤œç´¢
 		FIELD_ANIME_WORK *faw = &facw->faw[i];
 
 		if(faw->texfile==NULL){
-			continue;							//‰½‚àƒZƒbƒg‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍƒXƒ‹[
+			continue;							//ä½•ã‚‚ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãªã„å ´åˆã¯ã‚¹ãƒ«ãƒ¼
 		}
 
 		//>>add
@@ -255,10 +255,10 @@ void FieldAnimeMain(FIELD_ANIME_PTR facw)
 		}
 		//<<
 		
-		if(faw->animetbl->AnmTbl[faw->point][1] <= faw->wait){	//ƒAƒjƒXVƒ^ƒCƒ~ƒ“ƒO‚ÌŽž
-			faw->wait = 0;						//ƒEƒFƒCƒgƒNƒŠƒA
-			faw->point++;						//ƒ|ƒCƒ“ƒg{{
-			if(faw->animetbl->AnmTbl[faw->point][0]==TEX_ANIME_END_CODE){	//ƒAƒjƒ’è‹`‚ª’[‚Ü‚Å‚«‚Ä‚¢‚éê‡‚Íƒ‹[ƒv
+		if(faw->animetbl->AnmTbl[faw->point][1] <= faw->wait){	//ã‚¢ãƒ‹ãƒ¡æ›´æ–°ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®æ™‚
+			faw->wait = 0;						//ã‚¦ã‚§ã‚¤ãƒˆã‚¯ãƒªã‚¢
+			faw->point++;						//ãƒã‚¤ãƒ³ãƒˆï¼‹ï¼‹
+			if(faw->animetbl->AnmTbl[faw->point][0]==TEX_ANIME_END_CODE){	//ã‚¢ãƒ‹ãƒ¡å®šç¾©ãŒç«¯ã¾ã§ãã¦ã„ã‚‹å ´åˆã¯ãƒ«ãƒ¼ãƒ—
 				faw->point = 0;
 			}
 			
@@ -270,13 +270,13 @@ void FieldAnimeMain(FIELD_ANIME_PTR facw)
 			#endif
 			
 			AddVramTransferManager(
-					NNS_GFD_DST_3D_TEX_VRAM,		//“]‘—ƒZƒbƒg
+					NNS_GFD_DST_3D_TEX_VRAM,		//è»¢é€ã‚»ãƒƒãƒˆ
 					(u32)faw->texadr,
 					GetTexStartAdr(faw->animetex,faw->animetbl->AnmTbl[faw->point][0]),
 					faw->texsize);	
 //			OS_Printf("i=%d, point=%d pat=%04x\n",i,faw[i].point,faw[i].animetbl->AnmTbl[faw[i].point][0]);
 		}else{
-			faw->wait++;			//ƒEƒFƒCƒgXV
+			faw->wait++;			//ã‚¦ã‚§ã‚¤ãƒˆæ›´æ–°
 		}
 	}
 }
@@ -285,42 +285,42 @@ void FieldAnimeMain(FIELD_ANIME_PTR facw)
 
 //==============================================================================
 /**
- * ŒÂ•Ê‚ÉƒeƒNƒXƒ`ƒƒ“]‘—ƒAƒjƒ‚ð‰ð•ú
+ * å€‹åˆ¥ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’è§£æ”¾
  *
- * @param   faw		ƒAƒjƒŠÇ—ƒ|ƒCƒ“ƒ^
- * @param   no		faw[]‚Ì“YŽš
+ * @param   faw		ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		faw[]ã®æ·»å­—
  *
  * @retval  none	
  */
 //==============================================================================
 void FieldAnimeRelease(FIELD_ANIME_PTR facw, int no )
 {
-	// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚Ì‰ð•ú‚ÍƒLƒƒƒbƒVƒ…‚ÉÏ‚Ü‚ê‚Ä‚¢‚é‚Ì‚Ås‚í‚È‚¢
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã®è§£æ”¾ã¯ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ç©ã¾ã‚Œã¦ã„ã‚‹ã®ã§è¡Œã‚ãªã„
 	
 
-	//Šm•Û‚³‚ê‚Ä‚È‚©‚Á‚½‚çI—¹
+	//ç¢ºä¿ã•ã‚Œã¦ãªã‹ã£ãŸã‚‰çµ‚äº†
 	if(facw==NULL){
 		return;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‰ð•ú
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«è§£æ”¾
 	if(facw->faw[no].texfile){
 		sys_FreeMemoryEz(facw->faw[no].texfile);
 	}
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“’è‹`ƒe[ƒuƒ‹Žw’è‚ð‰ðœ
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®šç¾©ãƒ†ãƒ¼ãƒ–ãƒ«æŒ‡å®šã‚’è§£é™¤
 	if(facw->faw[no].animetbl!=NULL){
 		facw->faw[no].animetbl = NULL;
 	}
-	facw->faw[no].point = 0;	//ƒAƒjƒ—pƒ[ƒN‚Ì‰Šú‰»
+	facw->faw[no].point = 0;	//ã‚¢ãƒ‹ãƒ¡ç”¨ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
 	facw->faw[no].wait  = 0;
 }
 
 //==============================================================================
 /**
- * ƒeƒNƒXƒ`ƒƒƒAƒjƒ“]‘—ƒVƒXƒeƒ€I—¹
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡è»¢é€ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
  *
- * @param   faw		ƒAƒjƒŠÇ—ƒ|ƒCƒ“ƒ^
+ * @param   faw		ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none
  */
@@ -329,25 +329,25 @@ void FieldAnimeAllRelease(FIELD_ANIME_PTR facw)
 {
 	int i;
 	
-	//Šm•Û‚³‚ê‚Ä‚È‚¢‚Ì‚ÉŒÄ‚Î‚ê‚Ä‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚Å
+	//ç¢ºä¿ã•ã‚Œã¦ãªã„ã®ã«å‘¼ã°ã‚Œã¦ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§
 	if(facw==NULL){								
 		return;
 	}	
-	// ƒAƒjƒ“o˜^ƒe[ƒuƒ‹‚Ì‰ð•ú
+	// ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«ã®è§£æ”¾
 	for(i=0;i<FIELD_ANIME_MAX;i++){
 		FieldAnimeRelease( facw, i );
 	}
 	
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‰ð•ú
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	sys_FreeMemoryEz(facw->anime_bindata);
 	
 }
 
 //==============================================================================
 /**
- * ƒtƒB[ƒ‹ƒh“]‘—ƒAƒjƒƒVƒXƒeƒ€‰ð•ú
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ è§£æ”¾
  *
- * @param   facw		ƒAƒjƒŠÇ—ƒ|ƒCƒ“ƒ^
+ * @param   facw		ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */

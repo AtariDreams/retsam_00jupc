@@ -13,14 +13,14 @@
 #
 # $Log: commondefs.nossl.template,v $
 # Revision 1.1  2005/09/13 08:57:45  yasu
-# SSL ��L�������ɂ��邽�߂̃X�C�b�`�쐬
+# SSL を有効無効にするためのスイッチ作成
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------
 
 #
-# SSL ���C�u�������g�p���Ȃ��ꍇ�̃t���O
-# ���̃t�@�C���� commondefs.nossl �Ƀ��l�[������ΗL���ɂȂ�
+# SSL ライブラリを使用しない場合のフラグ
+# このファイルを commondefs.nossl にリネームすれば有効になる
 #
 NITROWIFI_NOSSL		= TRUE
 

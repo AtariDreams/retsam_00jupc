@@ -15,7 +15,7 @@
   fix about CRADi_ReadCard.
 
   Revision 1.39  2007/06/06 01:44:04  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.38  2007/05/28 04:15:18  yosizaki
   fix around cache invalidation.
@@ -36,10 +36,10 @@
   fix comments.
 
   Revision 1.32  2005/11/09 07:39:13  adachi_hiroaki
-  ARM7‘¤‚ÌROM“Ç‚İ‚İ‚ğ–³Œø‰»
+  ARM7å´ã®ROMèª­ã¿è¾¼ã¿ã‚’ç„¡åŠ¹åŒ–
 
   Revision 1.31  2005/11/07 01:10:01  okubata_ryoma
-  SDK_ASSERT_ON_COMPILE‚©‚çSDK_COMPILER_ASSERT‚É•ÏX
+  SDK_ASSERT_ON_COMPILEã‹ã‚‰SDK_COMPILER_ASSERTã«å¤‰æ›´
 
   Revision 1.30  2005/06/27 23:51:25  yosizaki
   smalll fix. (remove 'const')
@@ -64,13 +64,13 @@
   delete unnecessary flush-command.
 
   Revision 1.23  2005/01/24 06:35:13  yosizaki
-  copyright ”N•\‹LC³.
+  copyright å¹´è¡¨è¨˜ä¿®æ­£.
 
   Revision 1.22  2005/01/19 12:18:00  yosizaki
   delete pragma `pack'.
 
   Revision 1.21  2004/12/15 09:44:45  yasu
-  CARD ƒAƒNƒZƒXƒCƒl[ƒuƒ‰‹@\‚Ì’Ç‰Á
+  CARD ã‚¢ã‚¯ã‚»ã‚¹ã‚¤ãƒãƒ¼ãƒ–ãƒ©æ©Ÿæ§‹ã®è¿½åŠ 
 
   Revision 1.20  2004/12/08 08:53:49  yosizaki
   delete CARDi_ReadRomID()
@@ -151,7 +151,7 @@
 
 CARDRomStat rom_stat ATTRIBUTE_ALIGN(32);
 
-/* (’Êí‚Í 0) */
+/* (é€šå¸¸ã¯ 0) */
 extern u32 cardi_rom_base;
 u32     cardi_rom_base;
 u32     cardi_rom_header_addr = HW_ROM_HEADER_BUF;
@@ -165,11 +165,11 @@ SDK_COMPILER_ASSERT(sizeof(rom_stat) % 32 == 0);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_OnReadPageDirect
 
-  Description:  ’¼Ú“]‘—æ‚Ö1ƒy[ƒW“]‘—‚µ‚½Œã‚ÌƒR[ƒ‹ƒoƒbƒN
+  Description:  ç›´æ¥è»¢é€å…ˆã¸1ãƒšãƒ¼ã‚¸è»¢é€ã—ãŸå¾Œã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    arg        CARDRomStat \‘¢‘Ì
+  Arguments:    arg        CARDRomStat æ§‹é€ ä½“
 
-  Returns:      ‚Ü‚¾“]‘—‚ª•K—v‚Å‚ ‚ê‚Î TRUE.
+  Returns:      ã¾ã è»¢é€ãŒå¿…è¦ã§ã‚ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL CARDi_OnReadPageDirect(CARDRomStat * arg)
 {
@@ -184,11 +184,11 @@ static inline BOOL CARDi_OnReadPageDirect(CARDRomStat * arg)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadFromCache
 
-  Description:  ‰Â”\‚Å‚ ‚ê‚ÎÅ‹ß‚ÌƒŠ[ƒhƒLƒƒƒbƒVƒ…‚©‚çROMƒf[ƒ^“]‘—
+  Description:  å¯èƒ½ã§ã‚ã‚Œã°æœ€è¿‘ã®ãƒªãƒ¼ãƒ‰ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰ROMãƒ‡ãƒ¼ã‚¿è»¢é€
 
-  Arguments:    p          CARDRomStat \‘¢‘Ì
+  Arguments:    p          CARDRomStat æ§‹é€ ä½“
 
-  Returns:      ‚Ü‚¾“]‘—‚ª•K—v‚Å‚ ‚ê‚Î TRUE.
+  Returns:      ã¾ã è»¢é€ãŒå¿…è¦ã§ã‚ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 static BOOL CARDi_ReadFromCache(CARDRomStat * p)
 {
@@ -215,20 +215,20 @@ static BOOL CARDi_ReadFromCache(CARDRomStat * p)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_SetRomOp
 
-  Description:  ƒJ[ƒhƒRƒ}ƒ“ƒhİ’è
+  Description:  ã‚«ãƒ¼ãƒ‰ã‚³ãƒãƒ³ãƒ‰è¨­å®š
 
-  Arguments:    cmd1       ƒRƒ}ƒ“ƒhƒ[ƒh1
-                cmd2       ƒRƒ}ƒ“ƒhƒ[ƒh2
+  Arguments:    cmd1       ã‚³ãƒãƒ³ãƒ‰ãƒ¯ãƒ¼ãƒ‰1
+                cmd2       ã‚³ãƒãƒ³ãƒ‰ãƒ¯ãƒ¼ãƒ‰2
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 static void CARDi_SetRomOp(u32 cmd1, u32 cmd2)
 {
-    /* CARD ROM ‚ÌŠ®—¹‘Ò‚¿ (”O‚Ì‚½‚ß) */
+    /* CARD ROM ã®å®Œäº†å¾…ã¡ (å¿µã®ãŸã‚) */
     while ((*(vu32 *)REG_CARDCNT & CARD_START) != 0) ;
-    /* ƒ}ƒXƒ^[ƒCƒl[ƒuƒ‹ */
+    /* ãƒã‚¹ã‚¿ãƒ¼ã‚¤ãƒãƒ¼ãƒ–ãƒ« */
     *(vu8 *)REG_CARD_MASTER_CNT = CARDMST_SEL_ROM | CARDMST_ENABLE | CARDMST_IF_ENABLE;
-    {                                  /* ƒRƒ}ƒ“ƒhİ’è */
+    {                                  /* ã‚³ãƒãƒ³ãƒ‰è¨­å®š */
         vu8    *const p_cmd = (vu8 *)REG_CARD_CMD;
         p_cmd[0] = (u8)(cmd1 >> (8 * 3));
         p_cmd[1] = (u8)(cmd1 >> (8 * 2));
@@ -244,9 +244,9 @@ static void CARDi_SetRomOp(u32 cmd1, u32 cmd2)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_SetRomOpReadPage1
 
-  Description:  1 ƒy[ƒWƒŠ[ƒhƒRƒ}ƒ“ƒh
+  Description:  1 ãƒšãƒ¼ã‚¸ãƒªãƒ¼ãƒ‰ã‚³ãƒãƒ³ãƒ‰
 
-  Arguments:    src        ƒŠ[ƒhŒ³‚ÌROMƒIƒtƒZƒbƒg
+  Arguments:    src        ãƒªãƒ¼ãƒ‰å…ƒã®ROMã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -258,7 +258,7 @@ static inline void CARDi_SetRomOpReadPage1(u32 src)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_SetCardDma
 
-  Description:  1 ƒy[ƒW•ª‚Ì CARD-DMA ‚ğŠJn
+  Description:  1 ãƒšãƒ¼ã‚¸åˆ†ã® CARD-DMA ã‚’é–‹å§‹
 
   Arguments:    None.
 
@@ -268,18 +268,18 @@ static void CARDi_SetCardDma(void)
 {
     CARDiCommon *const c = &cardi_common;
     CARDRomStat *const p = &rom_stat;
-    /* ‚Ü‚¸ CARD-DMA ‚Ìİ’è‚ğs‚¤ */
+    /* ã¾ãš CARD-DMA ã®è¨­å®šã‚’è¡Œã† */
     MIi_CardDmaCopy32(c->dma, (const void *)REG_CARD_DATA, (void *)c->dst, CARD_ROM_PAGE_SIZE);
-    /* Ÿ‚É CARD-ROM ‚Ìİ’è‚ğs‚¤ */
+    /* æ¬¡ã« CARD-ROM ã®è¨­å®šã‚’è¡Œã† */
     CARDi_SetRomOpReadPage1(c->src);
     *(vu32 *)REG_CARDCNT = p->ctrl;
-    /* ‚±‚±‚©‚ç”ñ“¯Šú‹N“®‚·‚é */
+    /* ã“ã“ã‹ã‚‰éåŒæœŸèµ·å‹•ã™ã‚‹ */
 }
 
 /*---------------------------------------------------------------------------*
   Name:         CARDi_OnReadCard
 
-  Description:  CARD-DMA Š®—¹ƒnƒ“ƒhƒ‰
+  Description:  CARD-DMA å®Œäº†ãƒãƒ³ãƒ‰ãƒ©
 
   Arguments:    None.
 
@@ -305,11 +305,11 @@ static void CARDi_OnReadCard(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_TryReadCardDma
 
-  Description:  CARD-DMA ‚Å‚«‚é‚È‚çİ’è‚µ, TRUE ‚ğ•Ô‚·
+  Description:  CARD-DMA ã§ãã‚‹ãªã‚‰è¨­å®šã—, TRUE ã‚’è¿”ã™
 
-  Arguments:    p          CARDRomStat \‘¢‘Ì
+  Arguments:    p          CARDRomStat æ§‹é€ ä½“
 
-  Returns:      ÀÛ‚É CARD-DMA ‚ğŠJn‚µ‚½ê‡‚Í TRUE.
+  Returns:      å®Ÿéš›ã« CARD-DMA ã‚’é–‹å§‹ã—ãŸå ´åˆã¯ TRUE.
  *---------------------------------------------------------------------------*/
 BOOL CARDi_TryReadCardDma(CARDRomStat * p)
 #if defined(SDK_TS)
@@ -317,18 +317,18 @@ BOOL CARDi_TryReadCardDma(CARDRomStat * p)
     CARDiCommon *const c = &cardi_common;
     const u32 dst = c->dst;
     u32     len = c->len;
-    /* ˆÈ‰º‚Ì‘SğŒ‚ğ–‚½‚¹‚Î¡‰ñ‚Ìw’è”ÍˆÍ‚Í DMA “]‘—‰Â”\ */
-    const BOOL is_async = !(dst & 31) &&    /* “]‘—æ‹«ŠE®‡(32) */
-        (c->dma <= MI_DMA_MAX_NUM) &&       /* —LŒø‚È DMA ƒ`ƒƒƒ“ƒlƒ‹ */
-        !CARDi_IsInTcm(dst, len) &&         /* “]‘—æ‚ª TCM —Ìˆæ‚Å‚Í‚È‚¢ */
-        !CARD_ALIGN_LO_BIT(c->src | len) && /* “]‘—Œ³&ƒTƒCƒY‹«ŠE®‡(512) */
+    /* ä»¥ä¸‹ã®å…¨æ¡ä»¶ã‚’æº€ãŸã›ã°ä»Šå›ã®æŒ‡å®šç¯„å›²ã¯ DMA è»¢é€å¯èƒ½ */
+    const BOOL is_async = !(dst & 31) &&    /* è»¢é€å…ˆå¢ƒç•Œæ•´åˆ(32) */
+        (c->dma <= MI_DMA_MAX_NUM) &&       /* æœ‰åŠ¹ãª DMA ãƒãƒ£ãƒ³ãƒãƒ« */
+        !CARDi_IsInTcm(dst, len) &&         /* è»¢é€å…ˆãŒ TCM é ˜åŸŸã§ã¯ãªã„ */
+        !CARD_ALIGN_LO_BIT(c->src | len) && /* è»¢é€å…ƒ&ã‚µã‚¤ã‚ºå¢ƒç•Œæ•´åˆ(512) */
         (len > 0);
     p->ctrl = CARDi_GetRomFlag(CARD_COMMAND_PAGE);
     if (is_async)
     {
         OSIntrMode bak_psr = OS_DisableInterrupts();
 #if defined(SDK_ARM9)
-        /* “]‘—”ÍˆÍ‚ÌƒTƒCƒY‚É‰‚¶‚ÄƒLƒƒƒbƒVƒ…–³Œø‰»‚Ì•û–@‚ğØ‚è‘Ö‚¦ */
+        /* è»¢é€ç¯„å›²ã®ã‚µã‚¤ã‚ºã«å¿œã˜ã¦ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç„¡åŠ¹åŒ–ã®æ–¹æ³•ã‚’åˆ‡ã‚Šæ›¿ãˆ */
         if (len < c->flush_threshold_ic)
         {
             IC_InvalidateRange((void *)dst, len);
@@ -375,9 +375,9 @@ BOOL CARDi_TryReadCardDma(CARDRomStat * p)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadCard
 
-  Description:  İ’è‚³‚ê‚½“à—e‚ÉŠî‚Ã‚¢‚ÄƒJ[ƒhƒAƒNƒZƒX‚ğ’¼ÚÀs.
+  Description:  è¨­å®šã•ã‚ŒãŸå†…å®¹ã«åŸºã¥ã„ã¦ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¯ã‚»ã‚¹ã‚’ç›´æ¥å®Ÿè¡Œ.
 
-  Arguments:    p          ƒAƒNƒZƒX“à—e‚ªİ’è‚³‚ê‚½\‘¢‘Ì
+  Arguments:    p          ã‚¢ã‚¯ã‚»ã‚¹å†…å®¹ãŒè¨­å®šã•ã‚ŒãŸæ§‹é€ ä½“
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -387,17 +387,17 @@ void CARDi_ReadCard(CARDRomStat * p)
     || (defined(SDK_ARM7) && defined(SDK_ARM7_READROM_SUPPORT))
 
     /*
-     * CPU (‚Æ, ‰Â”\‚È‚ç DMA)‚É‚æ‚é“¯Šú“]‘—.
-     * E4 BYTE ƒAƒ‰ƒCƒ“‚³‚ê‚Ä‚¢‚éê‡
-     * E1 BYTE ƒYƒŒ‚Ä‚éê‡
-     * E2 BYTE ƒYƒŒ‚Ä‚éê‡
-     * E3 BYTE ƒYƒŒ‚Ä‚éê‡
-     * ŠeX‚É‚Â‚¢‚ÄƒYƒŒ•â³“]‘—‚ğ‘g‚İ‰Â”\‚ÈŒÀ‚è‚‘¬‰».
-     * ‚Æ‚è‚ ‚¦‚¸¡‚Íƒeƒ“ƒ|ƒ‰ƒŠ‚ÉˆÚ‚µ‚Ä MI_CpuCopy8 ‚É—Š‚é.
+     * CPU (ã¨, å¯èƒ½ãªã‚‰ DMA)ã«ã‚ˆã‚‹åŒæœŸè»¢é€.
+     * ãƒ»4 BYTE ã‚¢ãƒ©ã‚¤ãƒ³ã•ã‚Œã¦ã„ã‚‹å ´åˆ
+     * ãƒ»1 BYTE ã‚ºãƒ¬ã¦ã‚‹å ´åˆ
+     * ãƒ»2 BYTE ã‚ºãƒ¬ã¦ã‚‹å ´åˆ
+     * ãƒ»3 BYTE ã‚ºãƒ¬ã¦ã‚‹å ´åˆ
+     * å„ã€…ã«ã¤ã„ã¦ã‚ºãƒ¬è£œæ­£è»¢é€ã‚’çµ„ã¿å¯èƒ½ãªé™ã‚Šé«˜é€ŸåŒ–.
+     * ã¨ã‚Šã‚ãˆãšä»Šã¯ãƒ†ãƒ³ãƒãƒ©ãƒªã«ç§»ã—ã¦ MI_CpuCopy8 ã«é ¼ã‚‹.
      *
-     * CARD ‚Ìƒ[ƒh’PˆÊƒrƒW[‚ª[•ª‚É’·‚¢‚Ì‚Å‚ ‚ê‚Î,
-     * ÅŒã‚Ìƒy[ƒW‚¾‚¯•K‚¸ƒeƒ“ƒ|ƒ‰ƒŠ‚Ö“Ç‚İ‚Ş‚æ‚¤‚É‚µ‚Ä‚à
-     * ƒpƒtƒH[ƒ}ƒ“ƒX‚É‰e‹¿‚ğ—^‚¦‚È‚¢.
+     * CARD ã®ãƒ¯ãƒ¼ãƒ‰å˜ä½ãƒ“ã‚¸ãƒ¼ãŒå……åˆ†ã«é•·ã„ã®ã§ã‚ã‚Œã°,
+     * æœ€å¾Œã®ãƒšãƒ¼ã‚¸ã ã‘å¿…ãšãƒ†ãƒ³ãƒãƒ©ãƒªã¸èª­ã¿è¾¼ã‚€ã‚ˆã†ã«ã—ã¦ã‚‚
+     * ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã«å½±éŸ¿ã‚’ä¸ãˆãªã„.
      */
     CARDiCommon *const c = &cardi_common;
     for (;;)
@@ -405,7 +405,7 @@ void CARDi_ReadCard(CARDRomStat * p)
         const u32 len = CARD_ROM_PAGE_SIZE;
         u32     src = CARD_ALIGN_HI_BIT(c->src);
         u32     dst;
-        /* ƒLƒƒƒbƒVƒ…Œo—R‚ª•K—v‚©”»’è */
+        /* ã‚­ãƒ£ãƒƒã‚·ãƒ¥çµŒç”±ãŒå¿…è¦ã‹åˆ¤å®š */
         if ((src != c->src) || ((c->dst & 3) != 0) || (c->len < len))
         {
             dst = (u32)p->cache_buf;
@@ -415,9 +415,9 @@ void CARDi_ReadCard(CARDRomStat * p)
         {
             dst = c->dst;
         }
-        /* ¡‰ñ‚Ìİ’è‚ğs‚¤ */
+        /* ä»Šå›ã®è¨­å®šã‚’è¡Œã† */
         CARDi_SetRomOpReadPage1(src);
-        {                              /* CPU “]‘— (ŒJ‚è•Ô‚µƒ‹[ƒv) */
+        {                              /* CPU è»¢é€ (ç¹°ã‚Šè¿”ã—ãƒ«ãƒ¼ãƒ—) */
             u32     pos = 0;
             *(vu32 *)REG_CARDCNT = p->ctrl;
             for (;;)
@@ -425,7 +425,7 @@ void CARDi_ReadCard(CARDRomStat * p)
                 const u32 ctrl = *(vu32 *)REG_CARDCNT;
                 if ((ctrl & CARD_DATA_READY) != 0)
                 {
-                    /* w’èƒTƒCƒY•ª‚¾‚¯Ši”[ */
+                    /* æŒ‡å®šã‚µã‚¤ã‚ºåˆ†ã ã‘æ ¼ç´ */
                     u32     data = *(vu32 *)REG_CARD_DATA;
                     if (pos * sizeof(u32) < len)
                         ((u32 *)dst)[pos++] = data;
@@ -434,7 +434,7 @@ void CARDi_ReadCard(CARDRomStat * p)
                     break;
             }
         }
-        /* ¡‰ñ‚Ì“]‘—Š®—¹•ª‚ği‚ß‚é */
+        /* ä»Šå›ã®è»¢é€å®Œäº†åˆ†ã‚’é€²ã‚ã‚‹ */
         if (dst == c->dst)
         {
             if (!CARDi_OnReadPageDirect(p))
@@ -454,11 +454,11 @@ void CARDi_ReadCard(CARDRomStat * p)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadRomIDCore
 
-  Description:  ƒJ[ƒh ID ‚Ì“Ç‚İo‚µ
+  Description:  ã‚«ãƒ¼ãƒ‰ ID ã®èª­ã¿å‡ºã—
 
   Arguments:    None.
 
-  Returns:      ƒJ[ƒh ID.
+  Returns:      ã‚«ãƒ¼ãƒ‰ ID.
  *---------------------------------------------------------------------------*/
 u32 CARDi_ReadRomIDCore(void)
 {
@@ -481,12 +481,12 @@ u32 CARDi_ReadRomIDCore(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadRomCore
 
-  Description:  ƒŠƒNƒGƒXƒg‚É‚æ‚éƒJ[ƒh“]‘—.
-                í‚É“¯Šúˆ—.
+  Description:  ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«ã‚ˆã‚‹ã‚«ãƒ¼ãƒ‰è»¢é€.
+                å¸¸ã«åŒæœŸå‡¦ç†.
 
-  Arguments:    src        “]‘—Œ³
-                dst        “]‘—æ
-                len        “]‘—ƒTƒCƒY
+  Arguments:    src        è»¢é€å…ƒ
+                dst        è»¢é€å…ˆ
+                len        è»¢é€ã‚µã‚¤ã‚º
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -495,7 +495,7 @@ void CARDi_ReadRomCore(const void *src, void *dst, u32 len)
     CARDRomStat *const p = &rom_stat;
     CARDiCommon *const c = &cardi_common;
 
-    /* ¡‰ñ‚Ì“]‘—ƒpƒ‰ƒ[ƒ^İ’è */
+    /* ä»Šå›ã®è»¢é€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š */
     c->dma = (MI_DMA_MAX_NUM + 1);
     c->src = (u32)src;
     c->dst = (u32)dst;
@@ -513,11 +513,11 @@ void CARDi_ReadRomCore(const void *src, void *dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadRomID
 
-  Description:  ƒJ[ƒh ID ‚Ì“Ç‚İo‚µ
+  Description:  ã‚«ãƒ¼ãƒ‰ ID ã®èª­ã¿å‡ºã—
 
   Arguments:    None.
 
-  Returns:      ƒJ[ƒh ID.
+  Returns:      ã‚«ãƒ¼ãƒ‰ ID.
  *---------------------------------------------------------------------------*/
 u32 CARDi_ReadRomID(void)
 {
@@ -531,7 +531,7 @@ u32 CARDi_ReadRomID(void)
 
     CARDi_WaitTask(c, NULL, NULL);
 
-    /* ’¼ÚƒAƒNƒZƒX‰Â”\‚È‚Ì‚Å‚±‚±‚ÅÀs */
+    /* ç›´æ¥ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½ãªã®ã§ã“ã“ã§å®Ÿè¡Œ */
     ret = CARDi_ReadRomIDCore();
     CARDi_ReadEnd();
     return ret;
@@ -541,9 +541,9 @@ u32 CARDi_ReadRomID(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadRomSyncCore
 
-  Description:  “¯ŠúƒJ[ƒh“Ç‚İ‚İ‚Ì‹¤’Êˆ—
+  Description:  åŒæœŸã‚«ãƒ¼ãƒ‰èª­ã¿è¾¼ã¿ã®å…±é€šå‡¦ç†
 
-  Arguments:    c          CARDiCommon \‘¢‘Ì
+  Arguments:    c          CARDiCommon æ§‹é€ ä½“
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -552,8 +552,8 @@ static void CARDi_ReadRomSyncCore(CARDiCommon * c)
     CARDRomStat *const p = &rom_stat;
     (void)c;
     /*
-     * ‘O‰ñƒAƒNƒZƒX‚µ‚½ƒLƒƒƒbƒVƒ…‚¾‚¯‚Å‰ğŒˆ‚µ‚È‚¢‚È‚ç
-     * ¡‰ñ‚àÀÛ‚É ROM ƒAƒNƒZƒX. (CARD / CARTRIDGE / PXI)
+     * å‰å›ã‚¢ã‚¯ã‚»ã‚¹ã—ãŸã‚­ãƒ£ãƒƒã‚·ãƒ¥ã ã‘ã§è§£æ±ºã—ãªã„ãªã‚‰
+     * ä»Šå›ã‚‚å®Ÿéš›ã« ROM ã‚¢ã‚¯ã‚»ã‚¹. (CARD / CARTRIDGE / PXI)
      */
     if (CARDi_ReadFromCache(p))
     {
@@ -565,15 +565,15 @@ static void CARDi_ReadRomSyncCore(CARDiCommon * c)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadRom
 
-  Description:  ROM ƒŠ[ƒh‚ÌŠî–{ŠÖ”
+  Description:  ROM ãƒªãƒ¼ãƒ‰ã®åŸºæœ¬é–¢æ•°
 
-  Arguments:    dma        g—p‚·‚é DMA ƒ`ƒƒƒ“ƒlƒ‹
-                src        “]‘—Œ³ƒIƒtƒZƒbƒg
-                dst        “]‘—æƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sg—p‚È‚ç–³‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šúƒ‚[ƒh‚ğw’è‚·‚é‚È‚ç TRUE
+  Arguments:    dma        ä½¿ç”¨ã™ã‚‹ DMA ãƒãƒ£ãƒ³ãƒãƒ«
+                src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        è»¢é€å…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éåŒæœŸãƒ¢ãƒ¼ãƒ‰ã‚’æŒ‡å®šã™ã‚‹ãªã‚‰ TRUE
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -584,18 +584,18 @@ void CARDi_ReadRom(u32 dma,
     CARDRomStat *const p = &rom_stat;
     CARDiCommon *const c = &cardi_common;
 
-    SDK_ASSERT(CARD_IsAvailable());    /* CARD_Init ‚ªŒÄ‚Î‚ê‚Ä‚¢‚é‚©”»’è */
+    SDK_ASSERT(CARD_IsAvailable());    /* CARD_Init ãŒå‘¼ã°ã‚Œã¦ã„ã‚‹ã‹åˆ¤å®š */
     SDK_ASSERT(CARDi_GetTargetMode() == CARD_TARGET_ROM);
     SDK_ASSERTMSG((dma != 0), "cannot specify DMA channel 0");
 
-    /* CARD ƒAƒNƒZƒX‚É‘Î‚·‚é³“–«”»’è
-       ‚à‚µƒAƒNƒZƒX‹Ö~‚È‚çŠÖ”“à•”‚Å OS_Panic ‚·‚é */
+    /* CARD ã‚¢ã‚¯ã‚»ã‚¹ã«å¯¾ã™ã‚‹æ­£å½“æ€§åˆ¤å®š
+       ã‚‚ã—ã‚¢ã‚¯ã‚»ã‚¹ç¦æ­¢ãªã‚‰é–¢æ•°å†…éƒ¨ã§ OS_Panic ã™ã‚‹ */
     CARD_CheckEnabled();
 
-    /* ARM9 ‘¤‚Ì”r‘¼‘Ò‚¿ */
+    /* ARM9 å´ã®æ’ä»–å¾…ã¡ */
     CARDi_WaitTask(c, callback, arg);
 
-    /* ¡‰ñ‚Ì“]‘—ƒpƒ‰ƒ[ƒ^İ’è */
+    /* ä»Šå›ã®è»¢é€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š */
     c->dma = dma;
     c->src = (u32)((u32)src + cardi_rom_base);
     c->dst = (u32)dst;
@@ -685,11 +685,11 @@ BOOL CARD_TryWaitRomAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_GetRomAccessor
 
-  Description:  “®ìŠÂ‹«‚²‚Æ‚ÉˆÙ‚È‚éƒJ[ƒhƒAƒNƒZƒXŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·.
+  Description:  å‹•ä½œç’°å¢ƒã”ã¨ã«ç•°ãªã‚‹ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™.
 
   Arguments:    None.
 
-  Returns:      TS ”Å‚Å‚ ‚é‚±‚ÌÀ‘•‚É‚¨‚¢‚Ä‚Íí‚É CARDi_ReadCard().
+  Returns:      TS ç‰ˆã§ã‚ã‚‹ã“ã®å®Ÿè£…ã«ãŠã„ã¦ã¯å¸¸ã« CARDi_ReadCard().
  *---------------------------------------------------------------------------*/
 void    (*CARDi_GetRomAccessor(void)) (CARDRomStat *)
 {

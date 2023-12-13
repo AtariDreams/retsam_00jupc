@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	p_status.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–Ê
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢
  * @author	Hiroyuki Nakamura
  * @date	2004.12.21
  */
@@ -53,70 +53,70 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// ƒƒCƒ“ƒV[ƒPƒ“ƒX
+// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	SEQ_IN_SET = 0,
-	SEQ_IN,					// ‰ŠúƒtƒF[ƒh‘Ò‚¿
-	SEQ_MAIN,				// ƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‹
+	SEQ_IN,					// åˆæœŸãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
+	SEQ_MAIN,				// ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 
-	SEQ_WAZAIN,				// ‹Zà–¾ƒCƒ“‘Ò‚¿
-	SEQ_WAZAOUT,			// ‹Zà–¾ƒAƒEƒg‘Ò‚¿
+	SEQ_WAZAIN,				// æŠ€èª¬æ˜ã‚¤ãƒ³å¾…ã¡
+	SEQ_WAZAOUT,			// æŠ€èª¬æ˜ã‚¢ã‚¦ãƒˆå¾…ã¡
 
-	SEQ_CON_WAZAIN,			// ƒRƒ“ƒeƒXƒg‹Zà–¾ƒCƒ“‘Ò‚¿
-	SEQ_CON_WAZAOUT,		// ƒRƒ“ƒeƒXƒg‹Zà–¾ƒAƒEƒg‘Ò‚¿
+	SEQ_CON_WAZAIN,			// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€èª¬æ˜ã‚¤ãƒ³å¾…ã¡
+	SEQ_CON_WAZAOUT,		// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€èª¬æ˜ã‚¢ã‚¦ãƒˆå¾…ã¡
 
-	SEQ_WAZA_SELECT,		// ‹Z‘I‘ğ
-	SEQ_WAZA_CHANGE,		// ‹Z“ü‚ê‘Ö‚¦‘I‘ğ
-	SEQ_WAZA_OBOE,			// ‹ZŠo‚¦/–Y‚ê
-	SEQ_WAZA_OBOE_ERROR,	// ‹ZŠo‚¦ƒGƒ‰[
+	SEQ_WAZA_SELECT,		// æŠ€é¸æŠ
+	SEQ_WAZA_CHANGE,		// æŠ€å…¥ã‚Œæ›¿ãˆé¸æŠ
+	SEQ_WAZA_OBOE,			// æŠ€è¦šãˆ/å¿˜ã‚Œ
+	SEQ_WAZA_OBOE_ERROR,	// æŠ€è¦šãˆã‚¨ãƒ©ãƒ¼
 
-	SEQ_RIBBON_IN,			// ƒŠƒ{ƒ“à–¾ƒCƒ“‘Ò‚¿
-	SEQ_RIBBON_OUT,			// ƒŠƒ{ƒ“à–¾ƒAƒEƒg‘Ò‚¿
-	SEQ_RIBBON_SELECT,		// ƒŠƒ{ƒ“‘I‘ğ
+	SEQ_RIBBON_IN,			// ãƒªãƒœãƒ³èª¬æ˜ã‚¤ãƒ³å¾…ã¡
+	SEQ_RIBBON_OUT,			// ãƒªãƒœãƒ³èª¬æ˜ã‚¢ã‚¦ãƒˆå¾…ã¡
+	SEQ_RIBBON_SELECT,		// ãƒªãƒœãƒ³é¸æŠ
 
-	SEQ_BUTTON_ANM,			// ‰º‰æ–Ê‚Ìƒ{ƒ^ƒ“ƒAƒjƒ‘Ò‚¿
+	SEQ_BUTTON_ANM,			// ä¸‹ç”»é¢ã®ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡å¾…ã¡
 
-	SEQ_COND_INIT,			// ‰ŠúƒL[‘Ò‚¿
-	SEQ_COND_MSG,			// ƒƒbƒZ[ƒW•\¦
-	SEQ_COND_END,			// ƒRƒ“ƒfƒBƒVƒ‡ƒ“•ÏXI—¹
+	SEQ_COND_INIT,			// åˆæœŸã‚­ãƒ¼å¾…ã¡
+	SEQ_COND_MSG,			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	SEQ_COND_END,			// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å¤‰æ›´çµ‚äº†
 
-	SEQ_OUT_SET,			// I—¹ƒtƒF[ƒhƒZƒbƒg
-	SEQ_OUT,				// I—¹ƒtƒF[ƒh‘Ò‚¿
+	SEQ_OUT_SET,			// çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	SEQ_OUT,				// çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 };
 
-#define	TMP_MSGBUF_SIZ	( 128 )		// ƒeƒ“ƒ|ƒ‰ƒŠƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define	TMP_MSGBUF_SIZ	( 128 )		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define	PAGE_PRM_AREA_PX	( 14 )		// ƒy[ƒW‚ÌƒXƒNƒŠ[ƒ“PXiƒNƒŠƒA‚Ég—pj
-#define	PAGE_PRM_AREA_PY	( 4 )		// ƒy[ƒW‚ÌƒXƒNƒŠ[ƒ“PY
-#define	PAGE_PRM_AREA_SX	( 19 )		// ƒy[ƒW‚ÌƒXƒNƒŠ[ƒ“SY
-#define	PAGE_PRM_AREA_SY	( 20 )		// ƒy[ƒW‚ÌƒXƒNƒŠ[ƒ“SY
+#define	PAGE_PRM_AREA_PX	( 14 )		// ãƒšãƒ¼ã‚¸ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³PXï¼ˆã‚¯ãƒªã‚¢ã«ä½¿ç”¨ï¼‰
+#define	PAGE_PRM_AREA_PY	( 4 )		// ãƒšãƒ¼ã‚¸ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³PY
+#define	PAGE_PRM_AREA_SX	( 19 )		// ãƒšãƒ¼ã‚¸ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³SY
+#define	PAGE_PRM_AREA_SY	( 20 )		// ãƒšãƒ¼ã‚¸ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³SY
 
-#define	HP_CHR_PALETTE	( 0xa000 )	// HPƒQ[ƒW‚ÌƒpƒŒƒbƒg
-#define	HP_CHR_GREEN	( 0xc0 )	// HPƒQ[ƒW‚ÌƒLƒƒƒ‰ŠJnˆÊ’ui—Îj
-#define	HP_CHR_YELLOW	( 0xe0 )	// HPƒQ[ƒW‚ÌƒLƒƒƒ‰ŠJnˆÊ’ui‰©j
-#define	HP_CHR_RED		( 0x100 )	// HPƒQ[ƒW‚ÌƒLƒƒƒ‰ŠJnˆÊ’uiÔj
-#define	HP_DOT_CHR_MAX	( 6 )		// HPƒQ[ƒW‚ÌƒLƒƒƒ‰”
-#define	HP_DOT_MAX		( 48 )		// HPƒQ[ƒW‚Ìƒhƒbƒg”
-#define	HP_GAUGE_SCR_PX	( 24 )		// HPƒQ[ƒW‚Ì•\¦XÀ•W
-#define	HP_GAUGE_SCR_PY	( 6 )		// HPƒQ[ƒW‚Ì•\¦YÀ•W
+#define	HP_CHR_PALETTE	( 0xa000 )	// HPã‚²ãƒ¼ã‚¸ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define	HP_CHR_GREEN	( 0xc0 )	// HPã‚²ãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒ©é–‹å§‹ä½ç½®ï¼ˆç·‘ï¼‰
+#define	HP_CHR_YELLOW	( 0xe0 )	// HPã‚²ãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒ©é–‹å§‹ä½ç½®ï¼ˆé»„ï¼‰
+#define	HP_CHR_RED		( 0x100 )	// HPã‚²ãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒ©é–‹å§‹ä½ç½®ï¼ˆèµ¤ï¼‰
+#define	HP_DOT_CHR_MAX	( 6 )		// HPã‚²ãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒ©æ•°
+#define	HP_DOT_MAX		( 48 )		// HPã‚²ãƒ¼ã‚¸ã®ãƒ‰ãƒƒãƒˆæ•°
+#define	HP_GAUGE_SCR_PX	( 24 )		// HPã‚²ãƒ¼ã‚¸ã®è¡¨ç¤ºXåº§æ¨™
+#define	HP_GAUGE_SCR_PY	( 6 )		// HPã‚²ãƒ¼ã‚¸ã®è¡¨ç¤ºYåº§æ¨™
 
-#define	EXP_CGX				( 0xac )	// EXPƒQ[ƒWƒLƒƒƒ‰ŠJnˆÊ’u
-#define	EXP_DOT_CHR_MAX		( 7 )		// EXPƒQ[ƒWƒLƒƒƒ‰”
-#define	EXP_DOT_MAX			( 56 )		// EXPƒQ[ƒWƒhƒbƒg”
-#define	EXP_GAUGE_SCR_PX	( 23 )		// EXPƒQ[ƒW•\¦XÀ•W
-#define	EXP_GAUGE_SCR_PY	( 23 )		// EXPƒQ[ƒW•\¦YÀ•W
+#define	EXP_CGX				( 0xac )	// EXPã‚²ãƒ¼ã‚¸ã‚­ãƒ£ãƒ©é–‹å§‹ä½ç½®
+#define	EXP_DOT_CHR_MAX		( 7 )		// EXPã‚²ãƒ¼ã‚¸ã‚­ãƒ£ãƒ©æ•°
+#define	EXP_DOT_MAX			( 56 )		// EXPã‚²ãƒ¼ã‚¸ãƒ‰ãƒƒãƒˆæ•°
+#define	EXP_GAUGE_SCR_PX	( 23 )		// EXPã‚²ãƒ¼ã‚¸è¡¨ç¤ºXåº§æ¨™
+#define	EXP_GAUGE_SCR_PY	( 23 )		// EXPã‚²ãƒ¼ã‚¸è¡¨ç¤ºYåº§æ¨™
 
-#define	HEART1_CHR_NUM	( 0x12c )	// ƒRƒ“ƒeƒXƒg‚Ìƒn[ƒgƒLƒƒƒ‰ŠJnˆÊ’ui—Lj
-#define	HEART2_CHR_NUM	( 0x12e )	// ƒRƒ“ƒeƒXƒg‚Ìƒn[ƒgƒLƒƒƒ‰ŠJnˆÊ’ui–³j
-#define	HEART_MAX		( 6 )		// ƒRƒ“ƒeƒXƒg‚Ìƒn[ƒgƒLƒƒƒ‰”
-#define	HEART_PX		( 2 )		// ƒRƒ“ƒeƒXƒg‚Ìƒn[ƒgƒLƒƒƒ‰•\¦XÀ•W
-#define	HEART_PY		( 32+15 )	// ƒRƒ“ƒeƒXƒg‚Ìƒn[ƒgƒLƒƒƒ‰•\¦YÀ•W
+#define	HEART1_CHR_NUM	( 0x12c )	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒãƒ¼ãƒˆã‚­ãƒ£ãƒ©é–‹å§‹ä½ç½®ï¼ˆæœ‰ï¼‰
+#define	HEART2_CHR_NUM	( 0x12e )	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒãƒ¼ãƒˆã‚­ãƒ£ãƒ©é–‹å§‹ä½ç½®ï¼ˆç„¡ï¼‰
+#define	HEART_MAX		( 6 )		// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒãƒ¼ãƒˆã‚­ãƒ£ãƒ©æ•°
+#define	HEART_PX		( 2 )		// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒãƒ¼ãƒˆã‚­ãƒ£ãƒ©è¡¨ç¤ºXåº§æ¨™
+#define	HEART_PY		( 32+15 )	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒãƒ¼ãƒˆã‚­ãƒ£ãƒ©è¡¨ç¤ºYåº§æ¨™
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static PROC_RESULT PokeStatusProc_Init( PROC * proc, int * seq );
 static PROC_RESULT PokeStatusProc_Main( PROC * proc, int * seq );
@@ -198,9 +198,9 @@ static int PST_PorutoEatCehck( PST_WORK * wk );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 const PROC_DATA PokeStatusProcData = {
 	PokeStatusProc_Init,
 	PokeStatusProc_Main,
@@ -213,11 +213,11 @@ const PROC_DATA PokeStatusProcData = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒgƒtƒ‰ƒO‚ğæ“¾
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
- * @return	ƒRƒ“ƒeƒXƒgƒtƒ‰ƒO
+ * @return	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------------------------------------
 BOOL PokeStatus_ContestFlagGet( SAVEDATA * sv )
@@ -227,17 +227,17 @@ BOOL PokeStatus_ContestFlagGet( SAVEDATA * sv )
 
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT PokeStatusProc_Init( PROC * proc, int * seq )
@@ -245,8 +245,8 @@ static PROC_RESULT PokeStatusProc_Init( PROC * proc, int * seq )
 	PST_WORK * wk;
 	ARCHANDLE* p_handle;
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -273,41 +273,41 @@ static PROC_RESULT PokeStatusProc_Init( PROC * proc, int * seq )
 
 	FontProc_LoadBitData( FONT_SYSTEM, HEAPID_POKESTATUS );
 
-	InitTPSystem();						// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	InitTPSystem();						// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPNoBuff(4);
 
 	PST_ContestPageCheck( wk );
 
-	PokeStatusVramBankSet();			// VRAMŠ„‚è“–‚Ä
-	PokeStatusBgSet( wk->bgl );			// BG‰Šú‰»
-	PokeStatusBgGraphicSet( wk, p_handle );		// BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+	PokeStatusVramBankSet();			// VRAMå‰²ã‚Šå½“ã¦
+	PokeStatusBgSet( wk->bgl );			// BGåˆæœŸåŒ–
+	PokeStatusBgGraphicSet( wk, p_handle );		// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 	PokeStatusAlphaSet();
 
-	PokeStatus_3DInit( wk );			// 3D‰Šú‰»
+	PokeStatus_3DInit( wk );			// 3DåˆæœŸåŒ–
 
-	MsgBufCreate( wk );					// ƒƒbƒZ[ƒWŠÖ˜Aì¬
+	MsgBufCreate( wk );					// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ä½œæˆ
 
-	PokeDataSet( wk );					// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^æ“¾
+	PokeDataSet( wk );					// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
 
-	PokeStatusCellActInit( wk );		// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
-	PokeStatusCellActSet( wk );			// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	PokeStatus_SoftSpriteSet( wk );		// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒZƒbƒg
-	PokeStatusBallAnmChg( wk );			// •ßŠlƒ{[ƒ‹Ø‚è‘Ö‚¦
-	PokeStatus_StIconChg( wk );			// ó‘ÔˆÙíƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+	PokeStatusCellActInit( wk );		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
+	PokeStatusCellActSet( wk );			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	PokeStatus_SoftSpriteSet( wk );		// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚»ãƒƒãƒˆ
+	PokeStatusBallAnmChg( wk );			// æ•ç²ãƒœãƒ¼ãƒ«åˆ‡ã‚Šæ›¿ãˆ
+	PokeStatus_StIconChg( wk );			// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 
 	PokeStatus_DefaultBmpAdd( wk );
-	InitPageSet( wk );					// ‰Šúƒy[ƒWì¬
+	InitPageSet( wk );					// åˆæœŸãƒšãƒ¼ã‚¸ä½œæˆ
 
-	PokeStatus_SubButtonMake( wk );		// ‰º‰æ–Ê‚Ìƒ{ƒ^ƒ“ƒZƒbƒg
+	PokeStatus_SubButtonMake( wk );		// ä¸‹ç”»é¢ã®ãƒœã‚¿ãƒ³ã‚»ãƒƒãƒˆ
 
-	PokeStatus_CameraInit( wk );		// ƒJƒƒ‰ƒZƒbƒg
+	PokeStatus_CameraInit( wk );		// ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 
-	sys_VBlankFuncChange( PokeStatusVBlank, wk );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( PokeStatusVBlank, wk );	// VBlankã‚»ãƒƒãƒˆ
 //	APP_WipeStart( APP_WIPE_IN, HEAPID_POKESTATUS );
 
 	GF_Disp_DispOn();
 
-	Snd_DataSetByScene( SND_SCENE_SUB_PST, 0, 0 );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(PST)(BGMˆøŒp‚¬)
+	Snd_DataSetByScene( SND_SCENE_SUB_PST, 0, 0 );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(PST)(BGMå¼•ç¶™ã)
 
 	WirelessIconEasyUnion();
 
@@ -318,12 +318,12 @@ static PROC_RESULT PokeStatusProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT PokeStatusProc_Main( PROC * proc, int * seq )
@@ -336,79 +336,79 @@ static PROC_RESULT PokeStatusProc_Main( PROC * proc, int * seq )
 		*seq = SEQ_IN;
 		break;
 
-	case SEQ_IN:			// ‰ŠúƒtƒF[ƒh‘Ò‚¿
+	case SEQ_IN:			// åˆæœŸãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		*seq = PST_SeqIn( wk );
 		break;
 
-	case SEQ_MAIN:			// ƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‹
+	case SEQ_MAIN:			// ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 		*seq = PST_SeqMain( wk );
 		break;
 
-	case SEQ_WAZAIN:		// ‹Zà–¾ƒCƒ“‘Ò‚¿
+	case SEQ_WAZAIN:		// æŠ€èª¬æ˜ã‚¤ãƒ³å¾…ã¡
 		*seq = PST_SeqWazaIn( wk );
 		break;
 
-	case SEQ_WAZAOUT:		// ‹Zà–¾ƒAƒEƒg‘Ò‚¿
+	case SEQ_WAZAOUT:		// æŠ€èª¬æ˜ã‚¢ã‚¦ãƒˆå¾…ã¡
 		*seq = PST_SeqWazaOut( wk );
 		break;
 
-	case SEQ_CON_WAZAIN:	// ƒRƒ“ƒeƒXƒg‹Zà–¾ƒCƒ“‘Ò‚¿
+	case SEQ_CON_WAZAIN:	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€èª¬æ˜ã‚¤ãƒ³å¾…ã¡
 		*seq = PST_SeqContestWazaIn( wk );
 		break;
 
-	case SEQ_CON_WAZAOUT:	// ƒRƒ“ƒeƒXƒg‹Zà–¾ƒAƒEƒg‘Ò‚¿
+	case SEQ_CON_WAZAOUT:	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€èª¬æ˜ã‚¢ã‚¦ãƒˆå¾…ã¡
 		*seq = PST_SeqContestWazaOut( wk );
 		break;
 
-	case SEQ_WAZA_SELECT:	// ‹Z‘I‘ğ
+	case SEQ_WAZA_SELECT:	// æŠ€é¸æŠ
 		*seq = PST_SeqWazaSelect( wk );
 		break;
 
-	case SEQ_WAZA_CHANGE:	// ‹Z“ü‚ê‘Ö‚¦‘I‘ğ
+	case SEQ_WAZA_CHANGE:	// æŠ€å…¥ã‚Œæ›¿ãˆé¸æŠ
 		*seq = PST_SeqWazaChange( wk );
 		break;
 
-	case SEQ_WAZA_OBOE:		// ‹ZŠo‚¦/–Y‚ê
+	case SEQ_WAZA_OBOE:		// æŠ€è¦šãˆ/å¿˜ã‚Œ
 		*seq = PST_SeqWazaAdd( wk );
 		break;
 
-	case SEQ_WAZA_OBOE_ERROR:	// ‹ZŠo‚¦ƒGƒ‰[
+	case SEQ_WAZA_OBOE_ERROR:	// æŠ€è¦šãˆã‚¨ãƒ©ãƒ¼
 		*seq = PST_SeqWazaAddError( wk );
 		break;
 
-	case SEQ_RIBBON_IN:			// ƒŠƒ{ƒ“à–¾ƒCƒ“‘Ò‚¿
+	case SEQ_RIBBON_IN:			// ãƒªãƒœãƒ³èª¬æ˜ã‚¤ãƒ³å¾…ã¡
 		*seq = PST_SeqRibbonIn( wk );
 		break;
 
-	case SEQ_RIBBON_OUT:		// ƒŠƒ{ƒ“à–¾ƒAƒEƒg‘Ò‚¿
+	case SEQ_RIBBON_OUT:		// ãƒªãƒœãƒ³èª¬æ˜ã‚¢ã‚¦ãƒˆå¾…ã¡
 		*seq = PST_SeqRibbonOut( wk );
 		break;
 
-	case SEQ_RIBBON_SELECT:		// ƒŠƒ{ƒ“‘I‘ğ
+	case SEQ_RIBBON_SELECT:		// ãƒªãƒœãƒ³é¸æŠ
 		*seq = PST_SeqRibbonSelect( wk );
 		break;
 
-	case SEQ_BUTTON_ANM:	// ‰º‰æ–Ê‚Ìƒ{ƒ^ƒ“ƒAƒjƒ‘Ò‚¿
+	case SEQ_BUTTON_ANM:	// ä¸‹ç”»é¢ã®ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡å¾…ã¡
 		*seq = PST_SeqButtnAnm( wk );
 		break;
 
-	case SEQ_COND_INIT:		// ‰ŠúƒL[‘Ò‚¿
+	case SEQ_COND_INIT:		// åˆæœŸã‚­ãƒ¼å¾…ã¡
 		*seq = PST_SeqCondUpInit( wk );
 		break;
 
-	case SEQ_COND_MSG:		// ƒƒbƒZ[ƒW•\¦
+	case SEQ_COND_MSG:		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		*seq = PST_SeqCondUpMsgPut( wk );
 		break;
 
-	case SEQ_COND_END:		// ƒRƒ“ƒfƒBƒVƒ‡ƒ“•ÏXI—¹
+	case SEQ_COND_END:		// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å¤‰æ›´çµ‚äº†
 		*seq = PST_SeqCondUpEnd( wk );
 		break;
 
-	case SEQ_OUT_SET:		// I—¹ƒtƒF[ƒhƒZƒbƒg
+	case SEQ_OUT_SET:		// çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		*seq = PST_SeqOutSet( wk );
 		break;
 
-	case SEQ_OUT:			// I—¹ƒtƒF[ƒh‘Ò‚¿
+	case SEQ_OUT:			// çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
 		if( PST_SeqOut( wk ) == TRUE ){
 			return PROC_RES_FINISH;
 		}
@@ -428,26 +428,26 @@ static PROC_RESULT PokeStatusProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT PokeStatusProc_End( PROC * proc, int * seq )
 {
 	PST_WORK * wk  = PROC_GetWork( proc );
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
 
-	PokeStatus_3DRelease( wk );			// 3Díœ
-	PokeStatusCellActRerease( wk );		// ƒZƒ‹ƒAƒNƒ^[íœ
-//	PokeStatusBmpExit( wk );			// BMPƒEƒBƒ“ƒhƒEŠJ•ú
+	PokeStatus_3DRelease( wk );			// 3Då‰Šé™¤
+	PokeStatusCellActRerease( wk );		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
+//	PokeStatusBmpExit( wk );			// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
 	PokeStatus_BmpFreeAll( wk );
-	PokeStatusBgExit( wk->bgl );		// BGLíœ
-	StopTP();							// ƒ^ƒbƒ`ƒpƒlƒ‹I—¹
+	PokeStatusBgExit( wk->bgl );		// BGLå‰Šé™¤
+	StopTP();							// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµ‚äº†
 	DellVramTransferManager();
 
 	MsgBufRelease( wk );
@@ -461,7 +461,7 @@ static PROC_RESULT PokeStatusProc_End( PROC * proc, int * seq )
 */
 	G2_BlendNone();
 
-	PROC_FreeWork( proc );				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
 	sys_DeleteHeap( HEAPID_POKESTATUS );
 
@@ -470,14 +470,14 @@ static PROC_RESULT PokeStatusProc_End( PROC * proc, int * seq )
 
 
 //============================================================================================
-//	İ’èŠÖ˜A
+//	è¨­å®šé–¢é€£
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
- * @param	work	ƒ[ƒN
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -489,8 +489,8 @@ static void PokeStatusVBlank( void * work )
 	GF_BGL_VBlankFunc( wk->bgl );
 	SoftSpriteTextureTrans( wk->p3d.ssm );
 
-	// ƒZƒ‹ƒAƒNƒ^[
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	DoVramTransferManager();	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -498,7 +498,7 @@ static void PokeStatusVBlank( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMİ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -508,29 +508,29 @@ static void PokeStatusVBlank( void * work )
 static void PokeStatusVramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGİ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  *
@@ -551,7 +551,7 @@ static void PokeStatusBgSet( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	// ã‰æ–Ê
+	// ä¸Šç”»é¢
 	{	// FONT (BMP)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -582,7 +582,7 @@ static void PokeStatusBgSet( GF_BGL_INI * ini )
 		GF_BGL_BGControlSet( ini, GF_BGL_FRAME3_M, &TextBgCntDat, GF_BGL_MODE_TEXT );
 	}
 
-	// ‰º‰æ–Ê
+	// ä¸‹ç”»é¢
 	{	// BUTTON (CHAR)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -607,9 +607,9 @@ static void PokeStatusBgSet( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -630,9 +630,9 @@ static void PokeStatusBgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -669,7 +669,7 @@ static void PokeStatusBgGraphicSet( PST_WORK * wk, ARCHANDLE* p_handle )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”¼“§–¾İ’è
+ * åŠé€æ˜è¨­å®š
  *
  * @param	none
  *
@@ -686,23 +686,23 @@ static void PokeStatusAlphaSet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aì¬
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void MsgBufCreate( PST_WORK * wk )
 {
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	wk->msg_man = MSGMAN_Create(
 					MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_pokestatus_dat, HEAPID_POKESTATUS );
 
 	wk->rbn_man = MSGMAN_Create(
 					MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_ribbon_dat, HEAPID_POKESTATUS );
 
-	// 8x8ƒtƒHƒ“ƒgì¬
+	// 8x8ãƒ•ã‚©ãƒ³ãƒˆä½œæˆ
 	wk->num_font = NUMFONT_Create(
 					FBMP_COL_BLACK, FBMP_COL_BLK_SDW, FBMP_COL_NULL, HEAPID_POKESTATUS );
 
@@ -725,9 +725,9 @@ static void MsgBufCreate( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aíœ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -748,16 +748,16 @@ static void MsgBufRelease( PST_WORK * wk )
 
 
 //============================================================================================
-//	ƒƒCƒ“ƒV[ƒPƒ“ƒX
+//	ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‰ŠúƒtƒF[ƒh‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šåˆæœŸãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqIn( PST_WORK * wk )
@@ -779,11 +779,11 @@ static int PST_SeqIn( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‹
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqMain( PST_WORK * wk )
@@ -855,11 +855,11 @@ static int PST_SeqMain( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‹Zà–¾ƒCƒ“‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€èª¬æ˜ã‚¤ãƒ³å¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqWazaIn( PST_WORK * wk )
@@ -872,11 +872,11 @@ static int PST_SeqWazaIn( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‹Zà–¾ƒAƒEƒg‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€èª¬æ˜ã‚¢ã‚¦ãƒˆå¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqWazaOut( PST_WORK * wk )
@@ -889,11 +889,11 @@ static int PST_SeqWazaOut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒRƒ“ƒeƒXƒg‹Zà–¾ƒCƒ“‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€èª¬æ˜ã‚¤ãƒ³å¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqContestWazaIn( PST_WORK * wk )
@@ -906,11 +906,11 @@ static int PST_SeqContestWazaIn( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒRƒ“ƒeƒXƒg‹Zà–¾ƒAƒEƒg‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€èª¬æ˜ã‚¢ã‚¦ãƒˆå¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqContestWazaOut( PST_WORK * wk )
@@ -923,11 +923,11 @@ static int PST_SeqContestWazaOut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‹Z‘I‘ğ
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€é¸æŠ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqWazaSelect( PST_WORK * wk )
@@ -982,11 +982,11 @@ static int PST_SeqWazaSelect( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‹Z“ü‚ê‘Ö‚¦‘I‘ğ
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€å…¥ã‚Œæ›¿ãˆé¸æŠ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqWazaChange( PST_WORK * wk )
@@ -1031,11 +1031,11 @@ static int PST_SeqWazaChange( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‹ZŠo‚¦/–Y‚ê
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€è¦šãˆ/å¿˜ã‚Œ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqWazaAdd( PST_WORK * wk )
@@ -1099,11 +1099,11 @@ static int PST_SeqWazaAdd( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‹ZŠo‚¦/–Y‚êƒGƒ‰[I—¹‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€è¦šãˆ/å¿˜ã‚Œã‚¨ãƒ©ãƒ¼çµ‚äº†å¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqWazaAddError( PST_WORK * wk )
@@ -1118,11 +1118,11 @@ static int PST_SeqWazaAddError( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒŠƒ{ƒ“à–¾ƒCƒ“‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒªãƒœãƒ³èª¬æ˜ã‚¤ãƒ³å¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqRibbonIn( PST_WORK * wk )
@@ -1135,11 +1135,11 @@ static int PST_SeqRibbonIn( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒŠƒ{ƒ“à–¾ƒAƒEƒg‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒªãƒœãƒ³èª¬æ˜ã‚¢ã‚¦ãƒˆå¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqRibbonOut( PST_WORK * wk )
@@ -1152,11 +1152,11 @@ static int PST_SeqRibbonOut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒŠƒ{ƒ“‘I‘ğ
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒªãƒœãƒ³é¸æŠ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqRibbonSelect( PST_WORK * wk )
@@ -1189,11 +1189,11 @@ static int PST_SeqRibbonSelect( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‰º‰æ–Ê‚Ìƒ{ƒ^ƒ“ƒAƒjƒ‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šä¸‹ç”»é¢ã®ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡å¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqButtnAnm( PST_WORK * wk )
@@ -1221,11 +1221,11 @@ static int PST_SeqButtnAnm( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒAƒbƒv‰Šúİ’è
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚¢ãƒƒãƒ—åˆæœŸè¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqCondUpInit( PST_WORK * wk )
@@ -1247,7 +1247,7 @@ static int PST_SeqCondUpInit( PST_WORK * wk )
 
 		wk->sub_seq = 0;
 
-		// ‚©‚Á‚±‚æ‚³
+		// ã‹ã£ã“ã‚ˆã•
 		tmp = wk->pp.style;
 		wk->pp.style = (u8)PokeParaGet( pp, ID_PARA_style, NULL );
 		if( tmp != wk->pp.style ){
@@ -1255,7 +1255,7 @@ static int PST_SeqCondUpInit( PST_WORK * wk )
 		}
 //		OS_Printf( "style : %d -> %d\n", tmp, wk->pp.style );
 
-		// ‚¤‚Â‚­‚µ‚³
+		// ã†ã¤ãã—ã•
 		tmp = wk->pp.beautiful;
 		wk->pp.beautiful = (u8)PokeParaGet( pp, ID_PARA_beautiful, NULL );
 		if( tmp != wk->pp.beautiful ){
@@ -1263,7 +1263,7 @@ static int PST_SeqCondUpInit( PST_WORK * wk )
 		}
 //		OS_Printf( "beautiful : %d -> %d\n", tmp, wk->pp.beautiful );
 
-		// ‚©‚í‚¢‚³
+		// ã‹ã‚ã„ã•
 		tmp = wk->pp.cute;
 		wk->pp.cute = (u8)PokeParaGet( pp, ID_PARA_cute, NULL );
 		if( tmp != wk->pp.cute ){
@@ -1271,7 +1271,7 @@ static int PST_SeqCondUpInit( PST_WORK * wk )
 		}
 //		OS_Printf( "cute : %d -> %d\n", tmp, wk->pp.cute );
 
-		// ‚©‚µ‚±‚³
+		// ã‹ã—ã“ã•
 		tmp = wk->pp.clever;
 		wk->pp.clever = (u8)PokeParaGet( pp, ID_PARA_clever, NULL );
 		if( tmp != wk->pp.clever ){
@@ -1279,7 +1279,7 @@ static int PST_SeqCondUpInit( PST_WORK * wk )
 		}
 //		OS_Printf( "clever : %d -> %d\n", tmp, wk->pp.clever );
 
-		// ‚½‚­‚Ü‚µ‚³
+		// ãŸãã¾ã—ã•
 		tmp = wk->pp.strong;
 		wk->pp.strong = (u8)PokeParaGet( pp, ID_PARA_strong, NULL );
 		if( tmp != wk->pp.strong ){
@@ -1287,13 +1287,13 @@ static int PST_SeqCondUpInit( PST_WORK * wk )
 		}
 //		OS_Printf( "strong : %d -> %d\n", tmp, wk->pp.strong );
 		
-		wk->pp.fur = (u8)PokeParaGet( pp, ID_PARA_fur, NULL );	// –Ñ‰
+		wk->pp.fur = (u8)PokeParaGet( pp, ID_PARA_fur, NULL );	// æ¯›è‰¶
 
 		if( wk->dat->ppt == PST_PP_TYPE_POKEPASO ){
 			sys_FreeMemoryEz( pp );
 		}
 
-		// ‰ï˜bƒEƒBƒ“ƒhƒEƒZƒbƒg
+		// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 		TalkFontPaletteLoad( PALTYPE_MAIN_BG, PST_PAL_TALKFONT * 32, HEAPID_POKESTATUS );
 		TalkWinGraphicSet(
 			wk->bgl, GF_BGL_FRAME1_M, PST_CGX_TALKWIN,
@@ -1314,11 +1314,11 @@ static int PST_SeqCondUpInit( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒAƒbƒvƒƒbƒZ[ƒWƒZƒbƒg
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚¢ãƒƒãƒ—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqCondUpMsgPut( PST_WORK * wk )
@@ -1342,11 +1342,11 @@ static int PST_SeqCondUpMsgPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒAƒbƒvI—¹
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚¢ãƒƒãƒ—çµ‚äº†
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_SeqCondUpEnd( PST_WORK * wk )
@@ -1361,11 +1361,11 @@ static int PST_SeqCondUpEnd( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFI—¹ƒtƒF[ƒhƒZƒbƒg
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 PST_SeqOutSet( PST_WORK * wk )
@@ -1377,11 +1377,11 @@ static u8 PST_SeqOutSet( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFI—¹ƒtƒF[ƒh‘Ò‚¿
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 PST_SeqOut( PST_WORK * wk )
@@ -1394,14 +1394,14 @@ static u8 PST_SeqOut( PST_WORK * wk )
 
 
 //============================================================================================
-//	ƒc[ƒ‹
+//	ãƒ„ãƒ¼ãƒ«
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒf[ƒ^æ“¾
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1419,10 +1419,10 @@ static void PokeDataSet( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒf[ƒ^æ“¾ ( POKEMON_PASO_PARAM”Å )
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾— ( POKEMON_PASO_PARAMç‰ˆ )
  *
  * @param	ppp		POKEMON_PASO_PARAM
- * @param	dat		ƒf[ƒ^Ši”[êŠ
+ * @param	dat		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -1439,10 +1439,10 @@ static void PokeDataSet_PokePasoParam(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒf[ƒ^æ“¾ ( POKEMON_PARAM”Å )
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾— ( POKEMON_PARAMç‰ˆ )
  *
  * @param	pp		POKEMON_PARAM
- * @param	dat		ƒf[ƒ^Ši”[êŠ
+ * @param	dat		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -1527,12 +1527,12 @@ static void PokeDataSet_PokemonParam(
 	dat->clever    = 255;
 	dat->strong    = 255;
 */
-	dat->style     = (u8)PokeParaGet( pp, ID_PARA_style, NULL );		// ‚©‚Á‚±‚æ‚³
-	dat->beautiful = (u8)PokeParaGet( pp, ID_PARA_beautiful, NULL );	// ‚¤‚Â‚­‚µ‚³
-	dat->cute      = (u8)PokeParaGet( pp, ID_PARA_cute, NULL );			// ‚©‚í‚¢‚³
-	dat->clever    = (u8)PokeParaGet( pp, ID_PARA_clever, NULL );		// ‚©‚µ‚±‚³
-	dat->strong    = (u8)PokeParaGet( pp, ID_PARA_strong, NULL );		// ‚½‚­‚Ü‚µ‚³
-	dat->fur       = (u8)PokeParaGet( pp, ID_PARA_fur, NULL );			// –Ñ‰
+	dat->style     = (u8)PokeParaGet( pp, ID_PARA_style, NULL );		// ã‹ã£ã“ã‚ˆã•
+	dat->beautiful = (u8)PokeParaGet( pp, ID_PARA_beautiful, NULL );	// ã†ã¤ãã—ã•
+	dat->cute      = (u8)PokeParaGet( pp, ID_PARA_cute, NULL );			// ã‹ã‚ã„ã•
+	dat->clever    = (u8)PokeParaGet( pp, ID_PARA_clever, NULL );		// ã‹ã—ã“ã•
+	dat->strong    = (u8)PokeParaGet( pp, ID_PARA_strong, NULL );		// ãŸãã¾ã—ã•
+	dat->fur       = (u8)PokeParaGet( pp, ID_PARA_fur, NULL );			// æ¯›è‰¶
 
 	dat->like = PST_LIKE_TASTE_NONE;
 	for( i=0; i<5; i++ ){
@@ -1577,7 +1577,7 @@ static void PokeDataSet_PokemonParam(
 		}
 	}
 
-/**** ƒeƒXƒg!!! ****/
+/**** ãƒ†ã‚¹ãƒˆ!!! ****/
 /*
 	dat->ribbon[0] = 0xffffffff;
 	dat->ribbon[1] = 0xffffffff;
@@ -1591,11 +1591,11 @@ static void PokeDataSet_PokemonParam(
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Â‚«ºÄ¶
+ * é³´ãå£°å†ç”Ÿ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static void PST_PokeVoicePlay( PST_WORK * wk )
@@ -1607,7 +1607,7 @@ static void PST_PokeVoicePlay( PST_WORK * wk )
 	PokeEditData_VoiceWaitSet( wk->handle, &wait, wk->pp.mons, CLIENT_TYPE_BB );
 
 	if( wk->pp.mons == MONSNO_PERAPPU ){
-		//ƒyƒ‰ƒbƒv‚Ìƒ|ƒCƒ“ƒ^‚ª•K—v‚É‚È‚è‚Ü‚·
+		//ãƒšãƒ©ãƒƒãƒ—ã®ãƒã‚¤ãƒ³ã‚¿ãŒå¿…è¦ã«ãªã‚Šã¾ã™
 		Snd_PerapVoiceWaitPlay( wk->dat->perap, PM_MALE, PV_VOL_DEFAULT, 0, wait );
 //		Snd_PerapVoicePlay( wk->dat->perap, PM_MALE, PV_VOL_DEFAULT, 0 );
 //		Snd_PerapVoicePlay( NULL, PM_MALE, PV_VOL_DEFAULT, 0 );
@@ -1622,9 +1622,9 @@ static void PST_PokeVoicePlay( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰Šúƒy[ƒWƒZƒbƒg
+ * åˆæœŸãƒšãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1632,29 +1632,29 @@ static void PST_PokeVoicePlay( PST_WORK * wk )
 static void InitPageSet( PST_WORK * wk )
 {
 	switch( wk->dat->mode ){
-	case PST_MODE_NORMAL:		// ’Êí
-	case PST_MODE_NO_WAZACHG:	// ‹Z“ü‚ê‘Ö‚¦•s‰Â
+	case PST_MODE_NORMAL:		// é€šå¸¸
+	case PST_MODE_NO_WAZACHG:	// æŠ€å…¥ã‚Œæ›¿ãˆä¸å¯
 		if( wk->pp.tamago == 0 ){
 			wk->page = PST_PAGE_INFO;
 		}else{
 			wk->page = PST_PAGE_MEMO;
 		}
 		break;
-	case PST_MODE_WAZAADD:		// ‹ZŠo‚¦/‹Z–Y‚ê
+	case PST_MODE_WAZAADD:		// æŠ€è¦šãˆ/æŠ€å¿˜ã‚Œ
 		wk->page = PST_PAGE_B_SKILL;
 		break;
-	case PST_MODE_PORUTO:		// ƒ|ƒ‹ƒgg—p
-	case PST_MODE_CONDITION:	// ƒRƒ“ƒfƒBƒVƒ‡ƒ“•ÏXƒfƒ‚
+	case PST_MODE_PORUTO:		// ãƒãƒ«ãƒˆä½¿ç”¨
+	case PST_MODE_CONDITION:	// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å¤‰æ›´ãƒ‡ãƒ¢
 		wk->page = PST_PAGE_CONDITION;
 		break;
 	}
 
 	PokeStatus_A_ButtonMarkPut( wk, NULL );
 
-	PokeStatusTabPosChg( wk );			// ƒ^ƒuOBJØ‚è‘Ö‚¦
-	PokeStatus_PageTypeIconDrow( wk );	// ‘®«ƒAƒCƒRƒ“ƒZƒbƒg
-	PokeStatus_RibbonInit( wk );		// ƒŠƒ{ƒ“
-	PokeStatus_TabArrowPut( wk );		// ƒ^ƒu–îˆóˆÊ’u•ÏX
+	PokeStatusTabPosChg( wk );			// ã‚¿ãƒ–OBJåˆ‡ã‚Šæ›¿ãˆ
+	PokeStatus_PageTypeIconDrow( wk );	// å±æ€§ã‚¢ã‚¤ã‚³ãƒ³ã‚»ãƒƒãƒˆ
+	PokeStatus_RibbonInit( wk );		// ãƒªãƒœãƒ³
+	PokeStatus_TabArrowPut( wk );		// ã‚¿ãƒ–çŸ¢å°ä½ç½®å¤‰æ›´
 	PokeStatus_MarkChg( wk );
 
 	PokeStatus_KezuyaInit( wk );
@@ -1662,7 +1662,7 @@ static void InitPageSet( PST_WORK * wk )
 	PokeStatus_PageBmpAdd( wk );
 	PokeStatus_PageBmpPut( wk );
 
-	PageBgScreenChg( wk );				// BGØ‚è‘Ö‚¦
+	PageBgScreenChg( wk );				// BGåˆ‡ã‚Šæ›¿ãˆ
 	PokeStatus_ConditionParamInit( wk );
 
 	if( wk->dat->mode == PST_MODE_WAZAADD ){
@@ -1674,10 +1674,10 @@ static void InitPageSet( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWì¬
+ * ãƒšãƒ¼ã‚¸ä½œæˆ
  *
- * @param	dat		ƒXƒe[ƒ^ƒX‰æ–Êƒf[ƒ^
- * @param	tbl		ƒy[ƒWƒe[ƒuƒ‹
+ * @param	dat		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ‡ãƒ¼ã‚¿
+ * @param	tbl		ãƒšãƒ¼ã‚¸ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  * @return	none
  */
@@ -1695,9 +1695,9 @@ void PokeStatus_PageSet( PSTATUS_DATA * dat, const u8 * tbl )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒgƒy[ƒWƒZƒbƒg
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒšãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1719,13 +1719,13 @@ static void PST_ContestPageCheck( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWƒ`ƒFƒbƒN
+ * ãƒšãƒ¼ã‚¸ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	pos		ƒ`ƒFƒbƒNƒy[ƒW
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ãƒã‚§ãƒƒã‚¯ãƒšãƒ¼ã‚¸
  *
- * @retval	"0 = •\¦•s‰Â"
- * @retval	"0 != •\¦‰Â"
+ * @retval	"0 = è¡¨ç¤ºä¸å¯"
+ * @retval	"0 != è¡¨ç¤ºå¯"
  */
 //--------------------------------------------------------------------------------------------
 u8 PokeStatus_PageCheck( PST_WORK * wk, u32 pos )
@@ -1738,11 +1738,11 @@ u8 PokeStatus_PageCheck( PST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW”æ“¾
+ * ãƒšãƒ¼ã‚¸æ•°å–å¾—
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒy[ƒW”
+ * @return	ãƒšãƒ¼ã‚¸æ•°
  */
 //--------------------------------------------------------------------------------------------
 u8 PokeStatus_PageNumGet( PST_WORK * wk )
@@ -1762,10 +1762,10 @@ u8 PokeStatus_PageNumGet( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦•\¦
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	next	Ÿ‚Ìƒy[ƒW
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	next	æ¬¡ã®ãƒšãƒ¼ã‚¸
  *
  * @return	none
  */
@@ -1784,9 +1784,9 @@ static void PageChangeWrite( PST_WORK * wk, u8 next )
 	PokeStatus_A_ButtonMarkPut( wk, NULL );
 
 	PokeStatusTabPosChg( wk );
-	PokeStatus_TabArrowPut( wk );		// ƒ^ƒu–îˆóˆÊ’u•ÏX
+	PokeStatus_TabArrowPut( wk );		// ã‚¿ãƒ–çŸ¢å°ä½ç½®å¤‰æ›´
 	PokeStatus_PageTypeIconDrow( wk );
-	PokeStatus_RibbonInit( wk );		// ƒŠƒ{ƒ“
+	PokeStatus_RibbonInit( wk );		// ãƒªãƒœãƒ³
 	PokeStatus_KezuyaInit( wk );
 	PokeStatus_PageBmpAdd( wk );
 	PokeStatus_ConditionFlash( wk, 0 );
@@ -1794,7 +1794,7 @@ static void PageChangeWrite( PST_WORK * wk, u8 next )
 	GF_BGL_ScrFill(
 		wk->bgl, GF_BGL_FRAME1_M, 0,
 		PAGE_PRM_AREA_PX, PAGE_PRM_AREA_PY, PAGE_PRM_AREA_SX, PAGE_PRM_AREA_SY, 0 );
-	GF_BGL_LoadScreenReq( wk->bgl, GF_BGL_FRAME1_M );	// ‘¦“]‘—
+	GF_BGL_LoadScreenReq( wk->bgl, GF_BGL_FRAME1_M );	// å³è»¢é€
 
 	PokeStatus_PageBmpPut( wk );
 
@@ -1808,10 +1808,10 @@ static void PageChangeWrite( PST_WORK * wk, u8 next )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	mv		Ø‚è‘Ö‚¦•ûŒü
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		åˆ‡ã‚Šæ›¿ãˆæ–¹å‘
  *
  * @return	none
  */
@@ -1849,12 +1849,12 @@ static void PageChange( PST_WORK * wk, s8 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰º‰æ–Êƒy[ƒWØ‚è‘Ö‚¦
+ * ä¸‹ç”»é¢ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = Ø‚è‘Ö‚¦‰Â"
- * @retval	"FALSE = Ø‚è‘Ö‚¦•s‰Â"
+ * @retval	"TRUE = åˆ‡ã‚Šæ›¿ãˆå¯"
+ * @retval	"FALSE = åˆ‡ã‚Šæ›¿ãˆä¸å¯"
  */
 //--------------------------------------------------------------------------------------------
 static u8 SubButtonPageChg( PST_WORK * wk )
@@ -1871,7 +1871,7 @@ static u8 SubButtonPageChg( PST_WORK * wk )
 
 	PokeStatusTabPosChg( wk );
 	PokeStatus_PageTypeIconDrow( wk );
-	PokeStatus_RibbonInit( wk );		// ƒŠƒ{ƒ“
+	PokeStatus_RibbonInit( wk );		// ãƒªãƒœãƒ³
 	PokeStatus_KezuyaInit( wk );
 	PokeStatus_PageBmpAdd( wk );
 	PokeStatus_PageBmpPut( wk );
@@ -1889,9 +1889,9 @@ static u8 SubButtonPageChg( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWBGØ‚è‘Ö‚¦
+ * ãƒšãƒ¼ã‚¸BGåˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1930,9 +1930,9 @@ static void PageBgScreenChg( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * HPƒQ[ƒW•\¦
+ * HPã‚²ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1945,15 +1945,15 @@ static void HPGaugeSet( PST_WORK * wk )
 	u8	i;
 
 	switch( GetHPGaugeDottoColor( wk->pp.hp, wk->pp.mhp, HP_DOT_MAX ) ){
-	case HP_DOTTO_MAX:		// —Î
+	case HP_DOTTO_MAX:		// ç·‘
 	case HP_DOTTO_GREEN:
 	case HP_DOTTO_NULL:
 		chr = HP_CHR_GREEN | HP_CHR_PALETTE;
 		break;
-	case HP_DOTTO_YELLOW:	// ‰©
+	case HP_DOTTO_YELLOW:	// é»„
 		chr = HP_CHR_YELLOW | HP_CHR_PALETTE;
 		break;
-	case HP_DOTTO_RED:		// Ô
+	case HP_DOTTO_RED:		// èµ¤
 		chr = HP_CHR_RED | HP_CHR_PALETTE;
 		break;
 	}
@@ -1984,9 +1984,9 @@ static void HPGaugeSet( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * EXPƒQ[ƒW•\¦
+ * EXPã‚²ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1999,8 +1999,8 @@ static void ExpGaugeSet( PST_WORK * wk )
 	u8	dot;
 	u8	i;
 
-/* ƒ‹ƒrƒTƒtƒ@‚Ìˆç‚Ä‰®‚ÅLv100ˆÈã‚ÌŒoŒ±’l‚É‚È‚é‚½‚ßAƒ}ƒCƒiƒX•\¦‚É‚È‚Á‚Ä‚µ‚Ü‚¤•s‹ï‡‘Îˆ */
-#if T1653_060815_FIX	// ‘ÎˆŒã
+/* ãƒ«ãƒ“ã‚µãƒ•ã‚¡ã®è‚²ã¦å±‹ã§Lv100ä»¥ä¸Šã®çµŒé¨“å€¤ã«ãªã‚‹ãŸã‚ã€ãƒã‚¤ãƒŠã‚¹è¡¨ç¤ºã«ãªã£ã¦ã—ã¾ã†ä¸å…·åˆå¯¾å‡¦ */
+#if T1653_060815_FIX	// å¯¾å‡¦å¾Œ
 	if( wk->pp.lv < 100 ){
 		max = wk->pp.next_lv_exp - wk->pp.now_lv_exp;
 		now = wk->pp.now_exp - wk->pp.now_lv_exp;
@@ -2008,7 +2008,7 @@ static void ExpGaugeSet( PST_WORK * wk )
 		max = 0;
 		now = 0;
 	}
-#else					// ‘Îˆ‘O
+#else					// å¯¾å‡¦å‰
 	max = wk->pp.next_lv_exp - wk->pp.now_lv_exp;
 	now = wk->pp.now_exp - wk->pp.now_lv_exp;
 #endif	// T1653_060815_FIX
@@ -2039,10 +2039,10 @@ static void ExpGaugeSet( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“Ø‚è‘Ö‚¦
+ * ãƒã‚±ãƒ¢ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	mv		Ø‚è‘Ö‚¦•ûŒü
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		åˆ‡ã‚Šæ›¿ãˆæ–¹å‘
  *
  * @return	none
  */
@@ -2078,11 +2078,11 @@ static void PokeChange( PST_WORK * wk, s8 mv )
 	PokeStatus_A_ButtonMarkPut( wk, NULL );
 
 	PokeStatusTabPosChg( wk );
-	PokeStatus_TabArrowPut( wk );		// ƒ^ƒu–îˆóˆÊ’u•ÏX
+	PokeStatus_TabArrowPut( wk );		// ã‚¿ãƒ–çŸ¢å°ä½ç½®å¤‰æ›´
 
 	PokeStatus_PokeTypeChange( wk );
 	PokeStatus_PageTypeIconDrow( wk );
-	PokeStatus_RibbonInit( wk );		// ƒŠƒ{ƒ“
+	PokeStatus_RibbonInit( wk );		// ãƒªãƒœãƒ³
 	PokeStasus_PokeIconChange( wk );
 	PokeStatusBallAnmChg( wk );
 	PokeStatus_StIconChg( wk );
@@ -2094,13 +2094,13 @@ static void PokeChange( PST_WORK * wk, s8 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“Ø‚è‘Ö‚¦ƒT[ƒ`
+ * ãƒã‚±ãƒ¢ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚µãƒ¼ãƒ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	mv		Ø‚è‘Ö‚¦•ûŒü
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		åˆ‡ã‚Šæ›¿ãˆæ–¹å‘
  *
- * @retval	"-1 = Ø‚è‘Ö‚¦‚ç‚ê‚È‚¢"
- * @retval	"-1 != Ø‚è‘Ö‚¦ˆÊ’u"
+ * @retval	"-1 = åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œãªã„"
+ * @retval	"-1 != åˆ‡ã‚Šæ›¿ãˆä½ç½®"
  */
 //--------------------------------------------------------------------------------------------
 static s8 PokeSearch( PST_WORK * wk, s8 mv )
@@ -2118,12 +2118,12 @@ static s8 PokeSearch( PST_WORK * wk, s8 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒ}ƒS‚Ìƒ`ƒFƒbƒN‚ğ‹–‰Â‚·‚é‚©
+ * ã‚¿ãƒã‚´ã®ãƒã‚§ãƒƒã‚¯ã‚’è¨±å¯ã™ã‚‹ã‹
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ‚ ‚è"
- * @retval	"FALSE = ‚È‚µ"
+ * @retval	"TRUE = ã‚ã‚Š"
+ * @retval	"FALSE = ãªã—"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL PokeSearch_TamagoCheck( PST_WORK * wk )
@@ -2139,13 +2139,13 @@ static BOOL PokeSearch_TamagoCheck( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒT[ƒ` ( POKEMON_PARAM )
+ * ãƒã‚±ãƒ¢ãƒ³ã‚µãƒ¼ãƒ ( POKEMON_PARAM )
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	mv		ƒT[ƒ`•ûŒü
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		ã‚µãƒ¼ãƒæ–¹å‘
  *
- * @retval	"-1 = Ø‚è‘Ö‚¦‚ç‚ê‚È‚¢"
- * @retval	"-1 != Ø‚è‘Ö‚¦ˆÊ’u"
+ * @retval	"-1 = åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œãªã„"
+ * @retval	"-1 != åˆ‡ã‚Šæ›¿ãˆä½ç½®"
  */
 //--------------------------------------------------------------------------------------------
 static s8 PokeSearch_PokemonParam( PST_WORK * wk, s8 mv )
@@ -2183,13 +2183,13 @@ static s8 PokeSearch_PokemonParam( PST_WORK * wk, s8 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒT[ƒ` ( POKEPARTY )
+ * ãƒã‚±ãƒ¢ãƒ³ã‚µãƒ¼ãƒ ( POKEPARTY )
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	mv		ƒT[ƒ`•ûŒü
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		ã‚µãƒ¼ãƒæ–¹å‘
  *
- * @retval	"-1 = Ø‚è‘Ö‚¦‚ç‚ê‚È‚¢"
- * @retval	"-1 != Ø‚è‘Ö‚¦ˆÊ’u"
+ * @retval	"-1 = åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œãªã„"
+ * @retval	"-1 != åˆ‡ã‚Šæ›¿ãˆä½ç½®"
  */
 //--------------------------------------------------------------------------------------------
 static s8 PokeSearch_PokeParty( PST_WORK * wk, s8 mv )
@@ -2226,13 +2226,13 @@ static s8 PokeSearch_PokeParty( PST_WORK * wk, s8 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒT[ƒ` ( POKEMON_PASO_PARAM )
+ * ãƒã‚±ãƒ¢ãƒ³ã‚µãƒ¼ãƒ ( POKEMON_PASO_PARAM )
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	mv		ƒT[ƒ`•ûŒü
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		ã‚µãƒ¼ãƒæ–¹å‘
  *
- * @retval	"-1 = Ø‚è‘Ö‚¦‚ç‚ê‚È‚¢"
- * @retval	"-1 != Ø‚è‘Ö‚¦ˆÊ’u"
+ * @retval	"-1 = åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚Œãªã„"
+ * @retval	"-1 != åˆ‡ã‚Šæ›¿ãˆä½ç½®"
  */
 //--------------------------------------------------------------------------------------------
 static s8 PokeSearch_PokemonPasoParam( PST_WORK * wk, s8 mv )
@@ -2270,11 +2270,11 @@ static s8 PokeSearch_PokemonPasoParam( PST_WORK * wk, s8 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ğ’†‚Ìƒ|ƒPƒ‚ƒ“‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+ * é¸æŠä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @return	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void * PokeStatusPokeParamGet( PST_WORK * wk )
@@ -2295,12 +2295,12 @@ void * PokeStatusPokeParamGet( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zî•ñií“¬j‚ğƒXƒNƒ[ƒ‹ƒCƒ“
+ * æŠ€æƒ…å ±ï¼ˆæˆ¦é—˜ï¼‰ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = ˆ—’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = å‡¦ç†ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static u8 WazaInfoScrollIn( PST_WORK * wk )
@@ -2351,12 +2351,12 @@ static u8 WazaInfoScrollIn( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zî•ñií“¬j‚ğƒXƒNƒ[ƒ‹ƒAƒEƒg
+ * æŠ€æƒ…å ±ï¼ˆæˆ¦é—˜ï¼‰ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = ˆ—’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = å‡¦ç†ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static u8 WazaInfoScrollOut( PST_WORK * wk )
@@ -2401,13 +2401,13 @@ static u8 WazaInfoScrollOut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ZƒJ[ƒ\ƒ‹ˆÚ“®
+ * æŠ€ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	mv		ˆÚ“®•ûŒü
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		ç§»å‹•æ–¹å‘
  *
- * @retval	"TRUE = ˆÚ“®‚µ‚½"
- * @retval	"FALSE = ˆÚ“®‚µ‚È‚©‚Á‚½"
+ * @retval	"TRUE = ç§»å‹•ã—ãŸ"
+ * @retval	"FALSE = ç§»å‹•ã—ãªã‹ã£ãŸ"
  */
 //--------------------------------------------------------------------------------------------
 static u8 WazaCursorMove( PST_WORK * wk, s8 mv )
@@ -2429,14 +2429,14 @@ static u8 WazaCursorMove( PST_WORK * wk, s8 mv )
 		wk->cur_pos = pos;
 		return TRUE;
 	}
-	return FALSE;	// ‚½‚Ô‚ñA‚±‚±‚É‚Í‚±‚È‚¢
+	return FALSE;	// ãŸã¶ã‚“ã€ã“ã“ã«ã¯ã“ãªã„
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zî•ñ•\¦Ø‘Ö
+ * æŠ€æƒ…å ±è¡¨ç¤ºåˆ‡æ›¿
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2470,10 +2470,10 @@ static void WazaInfoChange( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * í“¬‹Zî•ñ•\¦Ø‘Ö
+ * æˆ¦é—˜æŠ€æƒ…å ±è¡¨ç¤ºåˆ‡æ›¿
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	waza	‹Z”Ô†
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
  *
  * @return	none
  */
@@ -2492,10 +2492,10 @@ static void BattleWazaInfoChg( PST_WORK * wk, u32 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Zî•ñ•\¦Ø‘Ö
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€æƒ…å ±è¡¨ç¤ºåˆ‡æ›¿
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	waza	‹Z”Ô†
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
  *
  * @return	none
  */
@@ -2514,9 +2514,9 @@ static void ContestWazaInfoChg( PST_WORK * wk, u32 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z“ü‚ê‘Ö‚¦
+ * æŠ€å…¥ã‚Œæ›¿ãˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2551,9 +2551,9 @@ static void WazaChangeMain( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zî•ñ•\¦
+ * æŠ€æƒ…å ±è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2581,12 +2581,12 @@ static void WazaInfoPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zî•ñiƒRƒ“ƒeƒXƒgj‚ğƒXƒNƒ[ƒ‹ƒCƒ“
+ * æŠ€æƒ…å ±ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼‰ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = ˆ—’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = å‡¦ç†ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static u8 ContestWazaInfoScrollIn( PST_WORK * wk )
@@ -2635,12 +2635,12 @@ static u8 ContestWazaInfoScrollIn( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zî•ñiƒRƒ“ƒeƒXƒgj‚ğƒXƒNƒ[ƒ‹ƒAƒEƒg
+ * æŠ€æƒ…å ±ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼‰ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = ˆ—’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = å‡¦ç†ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static u8 ContestWazaInfoScrollOut( PST_WORK * wk )
@@ -2684,11 +2684,11 @@ static u8 ContestWazaInfoScrollOut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Z‚Ìƒn[ƒg•\¦ƒƒCƒ“
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã®ãƒãƒ¼ãƒˆè¡¨ç¤ºãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	chr		ƒn[ƒg‚ÌƒLƒƒƒ‰
- * @param	num		‰½ŒÂ–Ú‚©
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	chr		ãƒãƒ¼ãƒˆã®ã‚­ãƒ£ãƒ©
+ * @param	num		ä½•å€‹ç›®ã‹
  *
  * @return	none
  */
@@ -2711,9 +2711,9 @@ static void ContestWazaHeartPutMain( PST_WORK * wk, u16 chr, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Z‚Ìƒn[ƒg•\¦‰Šú‰»
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã®ãƒãƒ¼ãƒˆè¡¨ç¤ºåˆæœŸåŒ–
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2730,10 +2730,10 @@ static void ContestWazaHeartInit( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Z‚Ìƒn[ƒg•\¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã®ãƒãƒ¼ãƒˆè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	waza	‹Z”Ô†
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
  *
  * @return	none
  */
@@ -2759,9 +2759,9 @@ static void ContestWazaHeartPut( PST_WORK * wk, u32 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zà–¾‚ğ”ñ•\¦‚É
+ * æŠ€èª¬æ˜ã‚’éè¡¨ç¤ºã«
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2777,9 +2777,9 @@ static void PST_WazaSetInfoOff( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‘I‘ğƒ‚[ƒh‚Éƒy[ƒWØ‚è‘Ö‚¦‚³‚ê‚½‚Ì‹Zî•ñØ‚è‘Ö‚¦
+ * æŠ€é¸æŠãƒ¢ãƒ¼ãƒ‰æ™‚ã«ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆã•ã‚ŒãŸæ™‚ã®æŠ€æƒ…å ±åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2808,12 +2808,12 @@ static void PST_WazaSetInfoChange( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“î•ñ‚ğƒXƒNƒ[ƒ‹ƒCƒ“
+ * ãƒªãƒœãƒ³æƒ…å ±ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = ˆ—’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = å‡¦ç†ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static u8 RibbonInfoScrollIn( PST_WORK * wk )
@@ -2875,12 +2875,12 @@ static u8 RibbonInfoScrollIn( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“î•ñ‚ğƒXƒNƒ[ƒ‹ƒAƒEƒg
+ * ãƒªãƒœãƒ³æƒ…å ±ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = ˆ—’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = å‡¦ç†ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static u8 RibbonInfoScrollOut( PST_WORK * wk )
@@ -2939,10 +2939,10 @@ static u8 RibbonInfoScrollOut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“‘I‘ğ
+ * ãƒªãƒœãƒ³é¸æŠ
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	mv		ˆÚ“®•ûŒü
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		ç§»å‹•æ–¹å‘
  *
  * @return	none
  */
@@ -3015,10 +3015,10 @@ static void RibbonSelect( PST_WORK * wk, s8 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’èˆÊ’u‚ÌƒŠƒ{ƒ“ID‚ğæ“¾
+ * æŒ‡å®šä½ç½®ã®ãƒªãƒœãƒ³IDã‚’å–å¾—
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	cur_pos	ˆÊ’u
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	cur_pos	ä½ç½®
  *
  * @return	none
  */
@@ -3045,17 +3045,17 @@ u8 PokeStatus_RibbonPosIDGet( PST_WORK * wk, u8 cur_pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒ‹ƒg‚ğH‚×‚ç‚ê‚é‚©
+ * ãƒãƒ«ãƒˆã‚’é£Ÿã¹ã‚‰ã‚Œã‚‹ã‹
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int PST_PorutoEatCehck( PST_WORK * wk )
 {
 	if( wk->pp.fur == PST_KEDUYA_MAX ){
-		// ‰ï˜bƒEƒBƒ“ƒhƒEƒZƒbƒg
+		// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 		TalkFontPaletteLoad( PALTYPE_MAIN_BG, PST_PAL_TALKFONT * 32, HEAPID_POKESTATUS );
 		TalkWinGraphicSet(
 			wk->bgl, GF_BGL_FRAME1_M, PST_CGX_TALKWIN,
@@ -3072,9 +3072,9 @@ static int PST_PorutoEatCehck( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒŒƒCƒ„[î•ñƒZƒbƒg
+ * ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã‚»ãƒƒãƒˆ
  *
- * @param	dat		ƒXƒe[ƒ^ƒX‰æ–Êƒf[ƒ^
+ * @param	dat		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ‡ãƒ¼ã‚¿
  * @param	my		MYSTATUS
  *
  * @return	none
@@ -3090,11 +3090,11 @@ void PokeStatus_PlayerSet( PSTATUS_DATA * dat, const MYSTATUS * my )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ó‘ÔˆÙíƒAƒCƒRƒ“‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾iƒLƒƒƒ‰j
+ * çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ï¼ˆã‚­ãƒ£ãƒ©ï¼‰
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32 BadStatusIconCharArcGet(void)
@@ -3104,11 +3104,11 @@ u32 BadStatusIconCharArcGet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ó‘ÔˆÙíƒAƒCƒRƒ“‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾iƒpƒŒƒbƒgj
+ * çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ï¼ˆãƒ‘ãƒ¬ãƒƒãƒˆï¼‰
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32 BadStatusIconPlttArcGet(void)
@@ -3118,11 +3118,11 @@ u32 BadStatusIconPlttArcGet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ó‘ÔˆÙíƒAƒCƒRƒ“‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾iƒZƒ‹j
+ * çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ï¼ˆã‚»ãƒ«ï¼‰
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32 BadStatusIconCellArcGet(void)
@@ -3132,11 +3132,11 @@ u32 BadStatusIconCellArcGet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ó‘ÔˆÙíƒAƒCƒRƒ“‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾iƒZƒ‹ƒAƒjƒj
+ * çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ï¼ˆã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ï¼‰
  *
  * @param	none
  *
- * @return	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u32 BadStatusIconCanmArcGet(void)
@@ -3146,36 +3146,36 @@ u32 BadStatusIconCanmArcGet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ó‘ÔˆÙíƒAƒCƒRƒ“‚ÌƒAƒjƒ”Ô†‚ğæ“¾
+ * çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ç•ªå·ã‚’å–å¾—
  *
- * @param	pp		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ * @param	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
- * @return	ƒAƒjƒ”Ô†
+ * @return	ã‚¢ãƒ‹ãƒ¡ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 u32 BadStatusIconAnmGet( POKEMON_PARAM * pp )
 {
 	u32	prm = PokeParaGet( pp, ID_PARA_condition, NULL );
 
-	// •m€
+	// ç€•æ­»
 	if( PokeParaGet( pp, ID_PARA_hp, NULL ) == 0 ){
 		return ST_ICON_HINSI;
-	// “Å
+	// æ¯’
 	}else if( ( prm & (CONDITION_DOKU|CONDITION_DOKUDOKU) ) != 0 ){
 		return ST_ICON_DOKU;
-	// –°‚è
+	// çœ ã‚Š
 	}else if( ( prm & CONDITION_NEMURI ) != 0 ){
 		return ST_ICON_NEMURI;
-	// ‰Î
+	// ç«å‚·
 	}else if( ( prm & CONDITION_YAKEDO ) != 0 ){
 		return ST_ICON_YAKEDO;
-	// •X
+	// æ°·
 	}else if( ( prm & CONDITION_KOORI ) != 0 ){
 		return ST_ICON_KOORI;
-	// –ƒáƒ
+	// éº»ç—º
 	}else if( ( prm & CONDITION_MAHI ) != 0 ){
 		return ST_ICON_MAHI;
 	}
-	// ‚È‚µ
+	// ãªã—
 	return ST_ICON_NONE;
 }

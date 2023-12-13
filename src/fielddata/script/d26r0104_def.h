@@ -1,11 +1,11 @@
 #ifndef _D26R0104_DEF_H_
 #define _D26R0104_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D26R0104_GINGABOSS		(1)
 #define	SCRID_D26R0104_DOOR		(2)
 #define	SCRID_D26R0104_PAPER1		(3)
 #define	SCRID_D26R0104_PC1		(4)
-#define	SCRID_D26R0104_DATA_MAX		(4)		//最大数
+#define	SCRID_D26R0104_DATA_MAX		(4)		//譛螟ｧ謨ｰ
 
 #endif //_D26R0104_DEF_H_

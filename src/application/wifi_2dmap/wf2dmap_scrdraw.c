@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_scrdraw.c
- *	@brief		ƒXƒNƒ[ƒ‹•`‰æİ’èˆ—
+ *	@brief		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»è¨­å®šå‡¦ç†
  *	@author		tomoya takahshi
  *	@data		2007.03.19
  *
@@ -16,31 +16,31 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define WF2DMAP_SCRDRAW_SCRNSIZE_X	(33)	// ƒXƒNƒ[ƒ‹‘‚«‚ŞƒXƒNƒŠ[ƒ“ƒTƒCƒY
-#define WF2DMAP_SCRDRAW_SCRNSIZE_Y	(25)	// ƒXƒNƒ[ƒ‹‘‚«‚ŞƒXƒNƒŠ[ƒ“ƒTƒCƒY
+#define WF2DMAP_SCRDRAW_SCRNSIZE_X	(33)	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ™‚æ›¸ãè¾¼ã‚€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+#define WF2DMAP_SCRDRAW_SCRNSIZE_Y	(25)	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ™‚æ›¸ãè¾¼ã‚€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
 
 //-------------------------------------
-///	ƒXƒNƒŠ[ƒ“ƒ^ƒCƒv
+///	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—
 //=====================================
 enum {
 	WF2DMAP_SCRNTYPE_256x256,
@@ -53,11 +53,11 @@ enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒXƒNƒ[ƒ‹•`‰æƒ[ƒN
+///	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WF2DMAP_SCRDRAW {
 	CLACT_U_EASYRENDER_DATA* p_render;
@@ -66,14 +66,14 @@ typedef struct _WF2DMAP_SCRDRAW {
 	NNSG2dScreenData* p_scrn;
 	u32 surface_type;
 	u32 bg_frame;
-	u16 now_scrn_x;	// Œ»İ‚ÌƒXƒNƒŠ[ƒ“‘‚«o‚µæ
-	u16 now_scrn_y;	// Œ»İ‚ÌƒXƒNƒŠ[ƒ“‘‚«o‚µæ
+	u16 now_scrn_x;	// ç¾åœ¨ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãå‡ºã—å…ˆ
+	u16 now_scrn_y;	// ç¾åœ¨ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãå‡ºã—å…ˆ
 }WF2DMAP_SCRDRAW;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJDrawSysBGCNTSet( GF_BGL_INI* p_bgl, int bg_frame, const WF2DMAP_SCRDRAWINIT* cp_data );
@@ -86,15 +86,15 @@ static const void* WF2DMAP_OBJDrawSysScrnBuffPtrGet( const u8* p_buf, u8 scrnblc
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹•`‰æƒVƒXƒeƒ€ì¬
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- *	@param	p_render			ƒŒƒ“ƒ_ƒ‰[ƒf[ƒ^
- *	@param	p_bgl				‚f‚eQ‚a‚f‚kƒf[ƒ^
- *	@param	cp_scrn				ƒXƒNƒŠ[ƒ“ƒf[ƒ^
- *	@param	cp_init				‰Šú‰»ƒf[ƒ^
- *	@param	heapID				ƒq[ƒv‚h‚c
+ *	@param	p_render			ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_bgl				ï¼§ï¼¦ï¼¿ï¼¢ï¼§ï¼¬ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_scrn				ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_init				åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID				ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- *	@return	ƒXƒNƒ[ƒ‹•`‰æ
+ *	@return	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»
  *
  */
 //-----------------------------------------------------------------------------
@@ -109,10 +109,10 @@ WF2DMAP_SCRDRAW* WF2DMAP_SCRDrawSysInit( CLACT_U_EASYRENDER_DATA* p_render, GF_B
 	p_sys->surface_type = cp_init->surface_type;
 	p_sys->bg_frame = cp_init->bg_frame;
 
-	// BGCONTİ’è
+	// BGCONTè¨­å®š
 	WF2DMAP_OBJDrawSysBGCNTSet( p_sys->p_bgl, p_sys->bg_frame, cp_init );
 
-	// ƒXƒNƒŠ[ƒ“ƒOƒ‰ƒtƒBƒbƒN“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
 	p_sys->p_scrnbuff = ArcUtil_ScrnDataGet( cp_init->arcid_scrn, cp_init->dataid_scrn,
 			cp_init->arcdata_comp, &p_sys->p_scrn, heapID );
 
@@ -121,9 +121,9 @@ WF2DMAP_SCRDRAW* WF2DMAP_SCRDrawSysInit( CLACT_U_EASYRENDER_DATA* p_render, GF_B
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹•`‰æƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_sys	ƒXƒNƒ[ƒ‹•`‰æƒVƒXƒeƒ€
+ *	@param	p_sys	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_SCRDrawSysExit( WF2DMAP_SCRDRAW* p_sys )
@@ -134,10 +134,10 @@ void WF2DMAP_SCRDrawSysExit( WF2DMAP_SCRDRAW* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹ƒƒCƒ“
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_sys		ƒXƒNƒ[ƒ‹•`‰æƒVƒXƒeƒ€
- *	@param	cp_scroll	ƒXƒNƒ[ƒ‹ƒf[ƒ^
+ *	@param	p_sys		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_scroll	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_SCRDrawSysMain( WF2DMAP_SCRDRAW* p_sys, const WF2DMAP_SCROLL* cp_scroll )
@@ -145,11 +145,11 @@ void WF2DMAP_SCRDrawSysMain( WF2DMAP_SCRDRAW* p_sys, const WF2DMAP_SCROLL* cp_sc
 	s16 scr_x;
 	s16 scr_y;
 	
-	// ƒXƒNƒ[ƒ‹À•W‚©‚çƒXƒNƒ[ƒ‹À•W‚ğŠe•\¦ƒVƒXƒeƒ€‚Éİ’è
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‹ã‚‰ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‚’å„è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ã«è¨­å®š
 	scr_y = WF2DMAP_SCROLLSysTopGet( cp_scroll );	
 	scr_x = WF2DMAP_SCROLLSysLeftGet( cp_scroll );	
 
-	// ƒT[ƒtƒF[ƒX
+	// ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 	if( p_sys->surface_type == CLACT_U_EASYRENDER_SURFACE_MAIN ){
 		CLACT_U_SetMainSurfaceMatrix( p_sys->p_render, FX32_CONST(scr_x), FX32_CONST(scr_y) );
 	}else{
@@ -157,23 +157,23 @@ void WF2DMAP_SCRDrawSysMain( WF2DMAP_SCRDRAW* p_sys, const WF2DMAP_SCROLL* cp_sc
 	}
 
 	// BGL
-	// ƒXƒNƒ[ƒ‹À•W‚©‚çƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ğ‘‚«‚ñ‚Å“]‘—
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚“ã§è»¢é€
 	WF2DMAP_OBJDrawSysBGScrSet( p_sys,  scr_x, scr_y );
 }
 
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒg
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆ
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹‚·‚é‚a‚f–Ê‚Ì‚a‚fƒRƒ“ƒgƒ[ƒ‹İ’è
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹ï¼¢ï¼§é¢ã®ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
  *
- *	@param	p_bgl		‚a‚f‚k
- *	@param	bg_frame	‚a‚fƒtƒŒ[ƒ€
- *	@param	cp_data		‰Šú‰»ƒf[ƒ^
+ *	@param	p_bgl		ï¼¢ï¼§ï¼¬
+ *	@param	bg_frame	ï¼¢ï¼§ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	cp_data		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJDrawSysBGCNTSet( GF_BGL_INI* p_bgl, int bg_frame, const WF2DMAP_SCRDRAWINIT* cp_data )
@@ -197,27 +197,27 @@ static void WF2DMAP_OBJDrawSysBGCNTSet( GF_BGL_INI* p_bgl, int bg_frame, const W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG–Ê‚ÌƒXƒNƒ[ƒ‹İ’è
+ *	@brief	BGé¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	scr_x		ƒXƒNƒ[ƒ‹‚wÀ•W
- *	@param	scr_y		ƒXƒNƒ[ƒ‹‚xÀ•W
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	scr_x		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ï¼¸åº§æ¨™
+ *	@param	scr_y		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ï¼¹åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJDrawSysBGScrSet( WF2DMAP_SCRDRAW* p_sys, s16 scr_x, s16 scr_y )
 {
-	s16 scrn_x;	// ƒXƒNƒŠ[ƒ“ˆÊ’u
+	s16 scrn_x;	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½ç½®
 	s16 scrn_y;	
-	s16 ofs_x;	// ƒXƒNƒ[ƒ‹À•W
+	s16 ofs_x;	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™
 	s16 ofs_y;
 
-	// ƒXƒNƒŠ[ƒ“ˆÊ’u‚ÆƒXƒNƒ[ƒ‹À•W‚ğ‹‚ß‚é
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½ç½®ã¨ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	scrn_x = scr_x / 8;
 	scrn_y = scr_y / 8;
 	ofs_x = scr_x % 8;	
 	ofs_y = scr_y % 8;
 
-	// ƒXƒNƒŠ[ƒ“ˆÊ’u‚ª•Ï‚í‚ç‚È‚¢‚Æ‚«‚ÍƒXƒNƒŠ[ƒ“‚Ì‘‚«Š·‚¦‚ğs‚í‚È‚¢
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½ç½®ãŒå¤‰ã‚ã‚‰ãªã„ã¨ãã¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æ›¸ãæ›ãˆã‚’è¡Œã‚ãªã„
 	if( (scrn_x != p_sys->now_scrn_x) || (scrn_y != p_sys->now_scrn_y) ){
 		p_sys->now_scrn_x = scrn_x;
 		p_sys->now_scrn_y = scrn_y;
@@ -225,20 +225,20 @@ static void WF2DMAP_OBJDrawSysBGScrSet( WF2DMAP_SCRDRAW* p_sys, s16 scr_x, s16 s
 		GF_BGL_LoadScreenV_Req( p_sys->p_bgl, p_sys->bg_frame );
 	}
 
-	// ƒXƒNƒ[ƒ‹À•W‚ğİ’è
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‚’è¨­å®š
 	GF_BGL_ScrollReq( p_sys->p_bgl, p_sys->bg_frame, GF_BGL_SCROLL_X_SET, ofs_x );
 	GF_BGL_ScrollReq( p_sys->p_bgl, p_sys->bg_frame, GF_BGL_SCROLL_Y_SET, ofs_y );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
  *
- *	@param	p_bgl		‚a‚fƒf[ƒ^
- *	@param	bg_frame	‚a‚fƒtƒŒ[ƒ€
- *	@param	cp_scrn		ƒXƒNƒŠ[ƒ“ƒf[ƒ^
- *	@param	scrn_x		ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚Ì‘‚«o‚µˆÊ’u
- *	@param	scrn_y		ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚Ì‘‚«o‚µˆÊ’u
+ *	@param	p_bgl		ï¼¢ï¼§ãƒ‡ãƒ¼ã‚¿
+ *	@param	bg_frame	ï¼¢ï¼§ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	cp_scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	scrn_x		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãå‡ºã—ä½ç½®
+ *	@param	scrn_y		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãå‡ºã—ä½ç½®
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJDrawSysBGScrnWrite( GF_BGL_INI* p_bgl, int bg_frame, const NNSG2dScreenData* cp_scrn, s16 scrn_x, s16 scrn_y )
@@ -248,12 +248,12 @@ static void WF2DMAP_OBJDrawSysBGScrnWrite( GF_BGL_INI* p_bgl, int bg_frame, cons
 	s16 write_x, write_y;
 	s16 scrndata_sizx, scrndata_sizy;
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒTƒCƒYæ“¾
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
 	scrndata_sizx = (cp_scrn->screenWidth/8);
 	scrndata_sizy = (cp_scrn->screenHeight/8);
 	
 
-	// “Ç‚İ‚İæİ’è
+	// èª­ã¿è¾¼ã¿å…ˆè¨­å®š
 	if( scrn_x < 0 ){
 		read_x = -scrn_x;	
 	}else{
@@ -265,7 +265,7 @@ static void WF2DMAP_OBJDrawSysBGScrnWrite( GF_BGL_INI* p_bgl, int bg_frame, cons
 		read_y = 0;
 	}
 
-	// ‘‚«‚İæİ’è
+	// æ›¸ãè¾¼ã¿å…ˆè¨­å®š
 	if( scrn_x > 0 ){
 		write_x = scrn_x;
 	}else{
@@ -277,7 +277,7 @@ static void WF2DMAP_OBJDrawSysBGScrnWrite( GF_BGL_INI* p_bgl, int bg_frame, cons
 		write_y = 0;
 	}
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚É‘‚«‚Ş‚Ù‚Ç‚ÌƒTƒCƒY‚ª‚ ‚é‚Ì‚©ƒ`ƒFƒbƒN
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã«æ›¸ãè¾¼ã‚€ã»ã©ã®ã‚µã‚¤ã‚ºãŒã‚ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
 	write_siz_x = WF2DMAP_SCRDRAW_SCRNSIZE_X - write_x;
 	write_siz_y = WF2DMAP_SCRDRAW_SCRNSIZE_Y - write_y;
 	if( scrndata_sizx < (read_x+write_siz_x) ){
@@ -287,105 +287,105 @@ static void WF2DMAP_OBJDrawSysBGScrnWrite( GF_BGL_INI* p_bgl, int bg_frame, cons
 		write_siz_y -= (read_y+write_siz_y) - scrndata_sizy;
 	}
 
-	// ƒXƒNƒŠ[ƒ“ƒNƒŠ[ƒ“
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_ScrFill( p_bgl, bg_frame, 0, 
 			0, 0, 
 			WF2DMAP_SCRDRAW_SCRNSIZE_X, WF2DMAP_SCRDRAW_SCRNSIZE_Y, GF_BGL_SCRWRT_PALIN );
 	
-	// —§‚Ä‚É‚QƒXƒNƒŠ[ƒ“‚É•ª‚¯‚È‚­‚Ä‚Í‚¢‚¯‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ç«‹ã¦ã«ï¼’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«åˆ†ã‘ãªãã¦ã¯ã„ã‘ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	WF2DMAP_OBJDrawSysScrnDraw(
 			p_bgl, bg_frame,
-			write_x, write_y,				//  ‘‚«‚İŠJnˆÊ’u
-			write_siz_x,					// ‘‚«‚İƒTƒCƒY 
-			write_siz_y,					// ‘‚«‚İƒTƒCƒY
-			cp_scrn->rawData,				// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
-			read_x, read_y,					// ‘‚«‚İŠJnˆÊ’u
-			scrndata_sizx, scrndata_sizy	// ƒXƒNƒŠ[ƒ“ƒTƒCƒY
+			write_x, write_y,				//  æ›¸ãè¾¼ã¿é–‹å§‹ä½ç½®
+			write_siz_x,					// æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º 
+			write_siz_y,					// æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º
+			cp_scrn->rawData,				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+			read_x, read_y,					// æ›¸ãè¾¼ã¿é–‹å§‹ä½ç½®
+			scrndata_sizx, scrndata_sizy	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
 			);
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“ƒf[ƒ^•`‰æ
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æç”»
  *
  *	@param	p_bgl			BGL
- *	@param	bg_frame		ƒtƒŒ[ƒ€
- *	@param	write_x			‘‚«‚İŠJn@‚˜ƒLƒƒƒ‰
- *	@param	write_y			‘‚«‚İŠJn@‚™ƒLƒƒƒ‰
- *	@param	write_siz_x		‘‚«‚İƒTƒCƒY
- *	@param	write_siz_y		‘‚«‚İƒTƒCƒY
- *	@param	buf				ƒXƒNƒŠ[ƒ“ƒf[ƒ^
- *	@param	read_x			“Ç‚İ‚İŠJn@‚˜ƒLƒƒƒ‰
- *	@param	read_y			“Ç‚İ‚İŠJn@‚™ƒLƒƒƒ‰
- *	@param	buf_sx			ƒXƒNƒŠ[ƒ“ƒf[ƒ^@‚˜ƒLƒƒƒ‰ƒTƒCƒY
- *	@param	buf_sy			ƒXƒNƒŠ[ƒ“ƒf[ƒ^@‚™ƒLƒƒƒ‰ƒTƒCƒY
+ *	@param	bg_frame		ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	write_x			æ›¸ãè¾¼ã¿é–‹å§‹ã€€ï½˜ã‚­ãƒ£ãƒ©
+ *	@param	write_y			æ›¸ãè¾¼ã¿é–‹å§‹ã€€ï½™ã‚­ãƒ£ãƒ©
+ *	@param	write_siz_x		æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º
+ *	@param	write_siz_y		æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º
+ *	@param	buf				ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	read_x			èª­ã¿è¾¼ã¿é–‹å§‹ã€€ï½˜ã‚­ãƒ£ãƒ©
+ *	@param	read_y			èª­ã¿è¾¼ã¿é–‹å§‹ã€€ï½™ã‚­ãƒ£ãƒ©
+ *	@param	buf_sx			ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€ï½˜ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+ *	@param	buf_sy			ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€ï½™ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static void WF2DMAP_OBJDrawSysScrnDraw( GF_BGL_INI * p_bgl, u8 bg_frame, u8 write_x, u8 write_y, u8 write_siz_x, u8 write_siz_y, const void * buf, u8 read_x, u8 read_y, u8 buf_sx, u8 buf_sy )
 {
-	s8 ws_x, ws_y;	// ‘‚«‚ñ‚¾ƒTƒCƒY
-	s8 nws_x, nws_y;// Ÿ‚Ì‘‚«‚ŞƒTƒCƒY
+	s8 ws_x, ws_y;	// æ›¸ãè¾¼ã‚“ã ã‚µã‚¤ã‚º
+	s8 nws_x, nws_y;// æ¬¡ã®æ›¸ãè¾¼ã‚€ã‚µã‚¤ã‚º
 	const u16* write_buf;
-	WF2DMAP_POS siz;	// ƒoƒbƒtƒ@ƒTƒCƒY
+	WF2DMAP_POS siz;	// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 	s8 scrnblck_x, scrnblck_y;
 	u8 scrn_type;
-	s8 reedw_x, writew_x;	// “Ç‚İ‚İ‘‚«‚İæ
+	s8 reedw_x, writew_x;	// èª­ã¿è¾¼ã¿æ›¸ãè¾¼ã¿å…ˆ
 
 	scrn_type = WF2DMAP_OBJDrawSysScrnTypeGet( buf_sx, buf_sy );
 
 //	OS_Printf( "BUFF_size x[%d] y[%d] scrntype[%d]\n", buf_sx, buf_sy, scrn_type );
 	
-	// ƒoƒbƒtƒ@‚ª‚R‚Q–‚R‚Q“à‚É“ü‚Á‚Ä‚¢‚é‚È‚ç‚»‚Ì‚Ü‚Ü‘‚«‚Ş
+	// ãƒãƒƒãƒ•ã‚¡ãŒï¼“ï¼’ï¼Šï¼“ï¼’å†…ã«å…¥ã£ã¦ã„ã‚‹ãªã‚‰ãã®ã¾ã¾æ›¸ãè¾¼ã‚€
 	if( scrn_type == WF2DMAP_SCRNTYPE_256x256 ){
 		GF_BGL_ScrWriteExpand(
 				p_bgl, bg_frame,
-				write_x, write_y,				// ‘‚«‚İŠJnˆÊ’u
-				write_siz_x,					// ‘‚«‚İƒTƒCƒY 
-				write_siz_y,					// ‘‚«‚İƒTƒCƒY
-				buf,							// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
-				read_x, read_y,					// ‘‚«‚İŠJnˆÊ’u
-				buf_sx, buf_sy					// ƒXƒNƒŠ[ƒ“ƒTƒCƒY
+				write_x, write_y,				// æ›¸ãè¾¼ã¿é–‹å§‹ä½ç½®
+				write_siz_x,					// æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º 
+				write_siz_y,					// æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º
+				buf,							// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+				read_x, read_y,					// æ›¸ãè¾¼ã¿é–‹å§‹ä½ç½®
+				buf_sx, buf_sy					// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
 			);
 		return ;
 	}
 
-	// c•ûŒü‘‚«‚İƒ‹[ƒv
+	// ç¸¦æ–¹å‘æ›¸ãè¾¼ã¿ãƒ«ãƒ¼ãƒ—
 	ws_y = write_siz_y;
 	while( ws_y > 0 ){
 		
-		if( (((read_y)%32) + ws_y) <= 32 ){	// Y•ûŒü‘‚«‚İ‚ª‚R‚QˆÈã‚É‚È‚é‚©ƒ`ƒFƒbƒN
-			// ˆÈ‰º‚È‚ç‚P‰ñ‚Å‚©‚¯‚é
+		if( (((read_y)%32) + ws_y) <= 32 ){	// Yæ–¹å‘æ›¸ãè¾¼ã¿ãŒï¼“ï¼’ä»¥ä¸Šã«ãªã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+			// ä»¥ä¸‹ãªã‚‰ï¼‘å›ã§ã‹ã‘ã‚‹
 			nws_y = ws_y;
 			ws_y = 0;
 		}else{
-			// ‘å‚«‚¢‚È‚çA¡‚©‚¯‚é‚¾‚¯‘‚­
+			// å¤§ãã„ãªã‚‰ã€ä»Šã‹ã‘ã‚‹ã ã‘æ›¸ã
 			nws_y = 32 - (read_y%32);
 			ws_y -= nws_y;
 		}
 
-		// ƒXƒNƒŠ[ƒ“ƒuƒƒbƒNæ“¾
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ–ãƒ­ãƒƒã‚¯å–å¾—
 		scrnblck_y = read_y / 32;
 
 		ws_x = write_siz_x;
 		reedw_x = read_x;
 		writew_x = write_x;
-		// X•ûŒü‘‚«‚İƒ‹[ƒv
+		// Xæ–¹å‘æ›¸ãè¾¼ã¿ãƒ«ãƒ¼ãƒ—
 		while( ws_x > 0 ){
-			if( (((reedw_x)%32) + ws_x) <= 32 ){	// Y•ûŒü‘‚«‚İ‚ª‚R‚QˆÈã‚É‚È‚é‚©ƒ`ƒFƒbƒN
-				// ˆÈ‰º‚È‚ç‚P‰ñ‚Å‚©‚¯‚é
+			if( (((reedw_x)%32) + ws_x) <= 32 ){	// Yæ–¹å‘æ›¸ãè¾¼ã¿ãŒï¼“ï¼’ä»¥ä¸Šã«ãªã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// ä»¥ä¸‹ãªã‚‰ï¼‘å›ã§ã‹ã‘ã‚‹
 				nws_x = ws_x;
 				ws_x = 0;
 			}else{
-				// ‘å‚«‚¢‚È‚çA¡‚©‚¯‚é‚¾‚¯‘‚­
+				// å¤§ãã„ãªã‚‰ã€ä»Šã‹ã‘ã‚‹ã ã‘æ›¸ã
 				nws_x = 32 - (reedw_x%32);
 				ws_x -= nws_x;
 			}
 
-			// ƒXƒNƒŠ[ƒ“ƒuƒƒbƒNæ“¾
+			// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ–ãƒ­ãƒƒã‚¯å–å¾—
 			scrnblck_x = reedw_x / 32;
 
-			// ‘‚«‚İ
+			// æ›¸ãè¾¼ã¿
 			write_buf = WF2DMAP_OBJDrawSysScrnBuffPtrGet( buf, scrnblck_x, scrnblck_y, scrn_type,  buf_sx, buf_sy, &siz );
 
 			/*
@@ -397,25 +397,25 @@ static void WF2DMAP_OBJDrawSysScrnDraw( GF_BGL_INI * p_bgl, u8 bg_frame, u8 writ
 
 			GF_BGL_ScrWriteExpand(
 					p_bgl, bg_frame,
-					writew_x, write_y,				//  ‘‚«‚İŠJnˆÊ’u
-					nws_x,							// ‘‚«‚İƒTƒCƒY 
-					nws_y,							// ‘‚«‚İƒTƒCƒY
-					write_buf,						// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
-					reedw_x%32, read_y%32,			// ‘‚«‚İŠJnˆÊ’u
-					siz.x, siz.y					// ƒXƒNƒŠ[ƒ“ƒTƒCƒY
+					writew_x, write_y,				//  æ›¸ãè¾¼ã¿é–‹å§‹ä½ç½®
+					nws_x,							// æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º 
+					nws_y,							// æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º
+					write_buf,						// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+					reedw_x%32, read_y%32,			// æ›¸ãè¾¼ã¿é–‹å§‹ä½ç½®
+					siz.x, siz.y					// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
 				);
 
-			// “Ç‚İ‚İæ‚ğ“®‚©‚·
+			// èª­ã¿è¾¼ã¿å…ˆã‚’å‹•ã‹ã™
 			reedw_x += nws_x;
 
-			// ‘‚«‚İæ‚ğ“®‚©‚·
+			// æ›¸ãè¾¼ã¿å…ˆã‚’å‹•ã‹ã™
 			writew_x += nws_x;
 		}
 
-		// “Ç‚İ‚İæ‚ğ“®‚©‚·
+		// èª­ã¿è¾¼ã¿å…ˆã‚’å‹•ã‹ã™
 		read_y += nws_y;
 
-		// ‘‚«‚İæ‚ğ“®‚©‚·
+		// æ›¸ãè¾¼ã¿å…ˆã‚’å‹•ã‹ã™
 		write_y += nws_y;
 	}
 
@@ -424,12 +424,12 @@ static void WF2DMAP_OBJDrawSysScrnDraw( GF_BGL_INI * p_bgl, u8 bg_frame, u8 writ
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“ƒ^ƒCƒvæ“¾
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—å–å¾—
  *
- *	@param	scrn_siz_x		ƒXƒNƒŠ[ƒ“ƒTƒCƒY‚˜
- *	@param	scrn_siz_y		ƒXƒNƒŠ[ƒ“ƒTƒCƒY‚™
+ *	@param	scrn_siz_x		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚ºï½˜
+ *	@param	scrn_siz_y		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚ºï½™
  *
- *	@return	ƒXƒNƒŠ[ƒ“ƒ^ƒCƒv
+ *	@return	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static u8 WF2DMAP_OBJDrawSysScrnTypeGet( u8 scrn_siz_x, u8 scrn_siz_y )
@@ -456,14 +456,14 @@ static u8 WF2DMAP_OBJDrawSysScrnTypeGet( u8 scrn_siz_x, u8 scrn_siz_y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“ƒuƒƒbƒNƒiƒ“ƒo[‚©‚çƒXƒNƒŠ[ƒ“‚Ìæ“ªƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ–ãƒ­ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- *	@param	p_buf			ƒoƒbƒtƒ@
- *	@param	scrnblck_x		ƒXƒNƒŠ[ƒ“ƒuƒƒbƒNƒiƒ“ƒo[‚˜
- *	@param	scrnblck_y		ƒXƒNƒŠ[ƒ“ƒuƒƒbƒNƒiƒ“ƒo[‚™
- *	@param	scrntype		ƒXƒNƒŠ[ƒ“ƒ^ƒCƒv
+ *	@param	p_buf			ãƒãƒƒãƒ•ã‚¡
+ *	@param	scrnblck_x		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ–ãƒ­ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼ï½˜
+ *	@param	scrnblck_y		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ–ãƒ­ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼ï½™
+ *	@param	scrntype		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—
  *
- *	@return	‚»‚ÌƒuƒƒbƒN‚Ìƒoƒbƒtƒ@‚Ìæ“ªƒoƒbƒtƒ@
+ *	@return	ãã®ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ãƒãƒƒãƒ•ã‚¡
  */
 //-----------------------------------------------------------------------------
 static const void* WF2DMAP_OBJDrawSysScrnBuffPtrGet( const u8* p_buf, u8 scrnblck_x, u8 scrnblck_y, u8 scrntype, u8 scrn_siz_x, u8 scrn_siz_y, WF2DMAP_POS* p_siz )
@@ -471,9 +471,9 @@ static const void* WF2DMAP_OBJDrawSysScrnBuffPtrGet( const u8* p_buf, u8 scrnblc
 	s16 one_blck_siz;
 	u16 idx;
 
-	// ¡‚Ì‚Æ‚±‚ëA‚¢‚ë‚ñ‚ÈƒXƒNƒŠ[ƒ“ƒTƒCƒY‚É‘Î‰‚µ‚Ä‚¢‚Ü‚·B
-	// ‚½‚¾•ªŠò‚È‚Ç‚ª‘½‚­‚È‚Á‚Ä‚µ‚Ü‚¤‚½‚ßA‚à‚µ‘¬“x“I‚É–â‘è‚ª‚ ‚ê‚ÎA
-	// â‘Î‚É256‚Ì”{”‚ÌƒXƒNƒŠ[ƒ“ƒTƒCƒY‚É‚·‚é‚Æ‚¢‚¤•û–@‚Å‚‘¬‰»‚ğ‚·‚é•K—v‚ª‚ ‚é‚Æv‚¢‚Ü‚·
+	// ä»Šã®ã¨ã“ã‚ã€ã„ã‚ã‚“ãªã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚ºã«å¯¾å¿œã—ã¦ã„ã¾ã™ã€‚
+	// ãŸã åˆ†å²ãªã©ãŒå¤šããªã£ã¦ã—ã¾ã†ãŸã‚ã€ã‚‚ã—é€Ÿåº¦çš„ã«å•é¡ŒãŒã‚ã‚Œã°ã€
+	// çµ¶å¯¾ã«256ã®å€æ•°ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚ºã«ã™ã‚‹ã¨ã„ã†æ–¹æ³•ã§é«˜é€ŸåŒ–ã‚’ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã¨æ€ã„ã¾ã™
 	
 	switch( scrntype ){
 	case WF2DMAP_SCRNTYPE_256x256:
@@ -482,7 +482,7 @@ static const void* WF2DMAP_OBJDrawSysScrnBuffPtrGet( const u8* p_buf, u8 scrnblc
 		return p_buf;
 		
 	case WF2DMAP_SCRNTYPE_512x256:
-		// ƒXƒNƒŠ[ƒ“‘‚«‚İƒTƒCƒY
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º
 		if( ((scrnblck_x+1)*32) <= scrn_siz_x ){
 			p_siz->x = 32;
 		}else{
@@ -490,12 +490,12 @@ static const void* WF2DMAP_OBJDrawSysScrnBuffPtrGet( const u8* p_buf, u8 scrnblc
 		}
 		p_siz->y = scrn_siz_y;
 
-		// 1blck‚ÌƒTƒCƒY
+		// 1blckã®ã‚µã‚¤ã‚º
 		one_blck_siz = scrn_siz_y * (2*32);
 		return &p_buf[ (scrnblck_x * one_blck_siz) ];
 		
 	case WF2DMAP_SCRNTYPE_256x512:
-		// ƒXƒNƒŠ[ƒ“‘‚«‚İƒTƒCƒY
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º
 		p_siz->x = scrn_siz_x;
 		if( ((scrnblck_y+1)*32) <= scrn_siz_y ){
 			p_siz->y = 32;
@@ -503,12 +503,12 @@ static const void* WF2DMAP_OBJDrawSysScrnBuffPtrGet( const u8* p_buf, u8 scrnblc
 			p_siz->y = scrn_siz_y - (scrnblck_y*32);
 		}
 
-		// 1blck‚ÌƒTƒCƒY
+		// 1blckã®ã‚µã‚¤ã‚º
 		one_blck_siz = (scrn_siz_x*2) * 32;
 		return &p_buf[ (scrnblck_y * one_blck_siz) ];
 		
 	case WF2DMAP_SCRNTYPE_512x512:
-		// ƒXƒNƒŠ[ƒ“‘‚«‚İƒTƒCƒY
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º
 		if( ((scrnblck_x+1)*32) <= scrn_siz_x ){
 			p_siz->x = 32;
 		}else{
@@ -520,10 +520,10 @@ static const void* WF2DMAP_OBJDrawSysScrnBuffPtrGet( const u8* p_buf, u8 scrnblc
 			p_siz->y = scrn_siz_y - (scrnblck_y*32);
 		}
 
-		// ƒoƒbƒtƒ@‚ÌQÆæ‚ğİ’è
+		// ãƒãƒƒãƒ•ã‚¡ã®å‚ç…§å…ˆã‚’è¨­å®š
 		// 0 1
 		// 2 3
-		// ‚ÆƒXƒNƒŠ[ƒ“‚Í•À‚ñ‚Å‚¢‚é
+		// ã¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¯ä¸¦ã‚“ã§ã„ã‚‹
 		if( scrnblck_y == 0 ){
 			idx = 0;
 

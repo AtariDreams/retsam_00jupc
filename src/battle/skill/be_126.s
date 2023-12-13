@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_126.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			126�@�З͂��m���ŕς��A�T��=10�A�P�O��=30�A�Q�O��=50�A�R�O��=70�A�Q�O��=90�A�P�O��=110�A�T��=150�B
- *				�u���Ȃ��ق�v��Ԃ̑���Ɏg�p����Ɣ{�̃_���[�W��^����B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			126　威力が確率で変わる、５％=10、１０％=30、２０％=50、３０％=70、２０％=90、１０％=110、５％=150。
+ *				「あなをほる」状態の相手に使用すると倍のダメージを与える。
  *
  *@author	HisashiSogabe
  *@data		2006.02.01
@@ -16,7 +16,7 @@
 	.include	"waza_seq_def.h"
 
 BE_126:
-	//���Ȃ��ق�����Ă��鑊��ɂ�2�{�_���[�W��^����
+	//あなをほるをしている相手には2倍ダメージを与える
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_ANAWOHORU_HIT
 	VALUE			VAL_SET,BUF_PARA_DAMAGE_VALUE,10
 	IF_PSP			IF_FLAG_NBIT,SIDE_DEFENCE,ID_PSP_waza_kouka,WAZAKOUKA_ANAWOHORU,BE_126_NEXT

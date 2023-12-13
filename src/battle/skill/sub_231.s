@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_231.s
- *@brief	�퓬�V�[�P���X
- *			�C��ɂ��|�P��������ւ��V�[�P���X�i����ւ���p�j
+ *@brief	戦闘シーケンス
+ *			気絶によるポケモン入れ替えシーケンス（入れ替え戦用）
  *@author	HisashiSogabe
  *@data		2005.07.20
  *
@@ -15,12 +15,12 @@
 	.include	"waza_seq_def.h"
 
 SUB_231:
-	//TEMP_WORK���P�̎��͑��葤�̕m��
+	//TEMP_WORKが１の時は相手側の瀕死
 	IF						IF_FLAG_EQ,BUF_PARA_TEMP_WORK,1,ENEMY_RESHUFFLE
 
-//�������m���̎��̃`�F�b�N
+//自分が瀕死の時のチェック
 MINE_RESHUFFLE:
-	//�������m���̎��̓���ւ��`�F�b�N�͖쐶��̂�
+	//自分が瀕死の時の入れ替えチェックは野生戦のみ
 	IF						IF_FLAG_BIT,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_TRAINER,SUB_231_YES1
 	MESSAGE					NextPokeMsg,TAG_NONE
 	SERVER_WAIT
@@ -39,7 +39,7 @@ SUB_231_ESCAPE:
 	GOSUB					SUB_SEQ_ESCAPE
 	SEQ_END
 
-//�G���m���̎��̃`�F�b�N
+//敵が瀕死の時のチェック
 ENEMY_RESHUFFLE:
 	POKEMON_LIST
 	POKEMON_LIST_WAIT
@@ -51,14 +51,14 @@ POKE_RESHUFFLE:
 	YES_NO_SELECT			YNTYPE_CHANGE_POKEMON
 	YES_NO_SELECT_WAIT		SUB_231_YES2,SUB_231_NO2
 SUB_231_YES2:
-	//reshuffle_client��ޔ�
+	//reshuffle_clientを退避
 	VALUE_WORK				VAL_SET,BUF_PARA_RESHUFFLE_CLIENT_TEMP,BUF_PARA_RESHUFFLE_CLIENT
-	//�|�P�������X�g���Ăяo��
+	//ポケモンリストを呼び出し
 	POKEMON_LIST_CALL
 	POKEMON_LIST_CALL_WAIT	NoReshuffle
 	GOSUB					SUB_SEQ_POKEMON_RESHUFFLE
 NoReshuffle:
-	//reshuffle_client�����ɖ߂�
+	//reshuffle_clientを元に戻す
 	VALUE_WORK				VAL_SET,BUF_PARA_RESHUFFLE_CLIENT,BUF_PARA_RESHUFFLE_CLIENT_TEMP
 SUB_231_NO2:
 	BALL_GAUGE_RESOURCE_LOAD
@@ -74,7 +74,7 @@ SUB_231_NO2:
 	HP_GAUGE_IN				SIDE_RESHUFFLE
 	SERVER_WAIT
 	GOSUB					SUB_SEQ_MAKIBISI_CHECK
-	//�C�₵�Ă�����A�C��G�t�F�N�g��
+	//気絶していたら、気絶エフェクトへ
 	IF						IF_FLAG_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_KIZETSU,SUB_231_END
 	GOSUB					SUB_SEQ_KIZETSU
 SUB_231_END:

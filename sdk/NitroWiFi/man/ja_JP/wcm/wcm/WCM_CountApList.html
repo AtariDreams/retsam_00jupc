@@ -13,8 +13,8 @@
 
   $Log: WCM_CountApList.html,v $
   Revision 1.2  2005/07/22 13:00:24  terui
-  "�t�F�[�Y"��"���"�ɗp�ꓝ��
-  �����̏��œ��𓝈�
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
 
   Revision 1.1  2005/07/20 13:11:10  terui
   Initial upload
@@ -23,7 +23,7 @@
  ==========================================================================-->
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>WCM_CountApList</TITLE>
 		<LINK rel="stylesheet" href="../../css/nitro.css">
@@ -32,7 +32,7 @@
 	<BODY>
 		<H1>WCM_CountApList</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -43,28 +43,28 @@ s32   WCM_CountApList( void );
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-			�����A�N�Z�X�|�C���g�����T�����ɔ�������A�����o�b�t�@�Ƀ��X�g�A�b�v���ꂽ�@��̐����擾���铯���֐��ł��B<BR>
-			<A href="WCM_ClearApList.html"><CODE>WCM_ClearApList</CODE> �֐�</A>�ɂ���ē������X�g�͏���������܂��̂ŁA�@��̐��� 0 �ɏ���������܂��B
-			�܂��A<A href="WCM_StartupAsync.html"><CODE>WCM_StartupAsync</CODE> �֐�</A>�Ăяo�����ɓ������X�g�p�ɗL���ȃo�b�t�@��^���Ă��Ȃ��ꍇ�Ȃǂɂ́A
-			�����o�b�t�@�ւ̃��X�g�A�b�v���̂��s���܂���̂ŁA���̊֐��ɂ͕K�� <CODE>0</CODE> ���Ԃ���܂��B
-			WCM ���C�u����������������O�̌Ăяo���ɂ� <CODE>0</CODE> ���Ԃ���܂��B<BR>
-			�����A�N�Z�X�|�C���g�����T�����ɂ͕s����ɓ������X�g�o�b�t�@�̏�Ԃ͕ύX����Ă����܂��̂ŁA��U <A href="WCM_LockApList.html"><CODE>WCM_LockApList</CODE> �֐�</A>�ɂ����
-			�������X�g�̍X�V���֎~������œ��֐����g�p���邱�Ƃ������߂��܂��B
+			無線アクセスポイント自動探索中に発見され、内部バッファにリストアップされた機器の数を取得する同期関数です。<BR>
+			<A href="WCM_ClearApList.html"><CODE>WCM_ClearApList</CODE> 関数</A>によって内部リストは初期化されますので、機器の数も 0 に初期化されます。
+			また、<A href="WCM_StartupAsync.html"><CODE>WCM_StartupAsync</CODE> 関数</A>呼び出し時に内部リスト用に有効なバッファを与えていない場合などには、
+			内部バッファへのリストアップ自体が行われませんので、この関数には必ず <CODE>0</CODE> が返されます。
+			WCM ライブラリを初期化する前の呼び出しにも <CODE>0</CODE> が返されます。<BR>
+			無線アクセスポイント自動探索中には不定期に内部リストバッファの状態は変更されていきますので、一旦 <A href="WCM_LockApList.html"><CODE>WCM_LockApList</CODE> 関数</A>によって
+			内部リストの更新を禁止した上で当関数を使用することをお勧めします。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<P>
-			����܂���B
+			ありません。
 		</P>
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<P>
-			�����o�b�t�@�Ƀ��X�g�A�b�v����Ă��閳���A�N�Z�X�|�C���g���̐���Ԃ��܂��B
+			内部バッファにリストアップされている無線アクセスポイント情報の数を返します。
 		</P>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<CODE>
 				<A href="WCM_StartupAsync.html">WCM_StartupAsync</A>, <A href="WCMConfig.html">WCMConfig</A>, <A href="WCM_LockApList.html">WCM_LockApList</A>,
@@ -72,9 +72,9 @@ s32   WCM_CountApList( void );
 			</CODE>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2005/07/22 ����<BR>
+			2005/07/22 初版<BR>
 		</P>
 
 	</BODY>

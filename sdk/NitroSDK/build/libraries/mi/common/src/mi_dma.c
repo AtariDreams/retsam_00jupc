@@ -18,7 +18,7 @@
   do-indent.
 
   Revision 1.37  2005/02/18 06:41:36  yasu
-  OS_DisableInterrupts •Ô’l‚ÌŒ^C³
+  OS_DisableInterrupts è¿”å€¤ã®å‹ä¿®æ­£
 
   Revision 1.36  2005/01/12 11:13:37  yada
   consider about multi-DMA
@@ -92,45 +92,45 @@
   only fix comment
 
   Revision 1.13  2004/02/18 12:29:35  yada
-  “]‘—”ÍˆÍ‚ª TCM@‚É“ü‚Á‚Ä‚¢‚½‚çŒx‚ğo‚·‚æ‚¤‚É•ÏX
+  è»¢é€ç¯„å›²ãŒ TCMã€€ã«å…¥ã£ã¦ã„ãŸã‚‰è­¦å‘Šã‚’å‡ºã™ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.12  2004/02/18 10:53:53  yada
-  DEBUGƒrƒ‹ƒhAsrc, dest ƒAƒhƒŒƒX‚ª TCM@‚É“ü‚Á‚Ä‚¢‚½‚çŒx‚ğo‚·‚æ‚¤‚É‚µ‚½B
+  DEBUGãƒ“ãƒ«ãƒ‰æ™‚ã€src, dest ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒ TCMã€€ã«å…¥ã£ã¦ã„ãŸã‚‰è­¦å‘Šã‚’å‡ºã™ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.11  2004/02/13 08:56:37  yasu
   fix small typo
 
   Revision 1.10  2004/02/13 06:31:01  yada
-  ARM7‘¤‚Ì“]‘—ƒTƒCƒY§ŒÀ‚ğl—¶B
-  ‚ ‚í‚¹‚ÄASSERT‘‚«Š·‚¦B
+  ARM7å´ã®è»¢é€ã‚µã‚¤ã‚ºåˆ¶é™ã‚’è€ƒæ…®ã€‚
+  ã‚ã‚ã›ã¦ASSERTæ›¸ãæ›ãˆã€‚
 
   Revision 1.9  2004/02/13 04:36:59  yada
-  ARM9‚ÆAMR7 ‚Ìê‡‚í‚¯l—¶
+  ARM9ã¨AMR7 ã®å ´åˆã‚ã‘è€ƒæ…®
 
   Revision 1.8  2004/02/10 11:22:15  yada
   only arrange tab
 
   Revision 1.7  2004/02/05 11:39:23  yada
- *Send*() ŠÖ”‚Ì“]‘—æƒ|ƒCƒ“ƒ^‚ğvolatile‚É‚µ‚½B
+ *Send*() é–¢æ•°ã®è»¢é€å…ˆãƒã‚¤ãƒ³ã‚¿ã‚’volatileã«ã—ãŸã€‚
 
   Revision 1.6  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.5  2004/01/30 05:00:58  yada
-  MI_DmaSend*, MI_CpuSend* ’Ç‰Á
+  MI_DmaSend*, MI_CpuSend* è¿½åŠ 
 
   Revision 1.4  2004/01/29 05:09:10  yada
-  callbackw’è‚ªNULL‚Ìê‡‚ÌAsync”Å‚ÍƒEƒFƒCƒg‚È‚µ‚Åi‚Ş‚æ‚¤‚É‚µ‚½B
-  ‚Ü‚½AMI_DmaCopy16Async ‚ÅƒR[ƒ‹ƒoƒbƒN‚ªŒÄ‚Î‚ê‚È‚¢•s‹ï‡‚ğC³B
+  callbackæŒ‡å®šãŒNULLã®å ´åˆã®Asyncç‰ˆã¯ã‚¦ã‚§ã‚¤ãƒˆãªã—ã§é€²ã‚€ã‚ˆã†ã«ã—ãŸã€‚
+  ã¾ãŸã€MI_DmaCopy16Async ã§ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒå‘¼ã°ã‚Œãªã„ä¸å…·åˆã‚’ä¿®æ­£ã€‚
 
   Revision 1.3  2004/01/29 04:22:34  yada
-  callbackw’è‚ªNULL‚Ìê‡‚ÌAsync”Å‚ÍAsync‚È‚µ‚Ì‚à‚Ì“¯“™‚É‚µ‚½B
+  callbackæŒ‡å®šãŒNULLã®å ´åˆã®Asyncç‰ˆã¯Asyncãªã—ã®ã‚‚ã®åŒç­‰ã«ã—ãŸã€‚
 
   Revision 1.2  2004/01/26 12:50:27  yada
-  MI_WaitDma inline ƒ~ƒXC³
+  MI_WaitDma inline ãƒŸã‚¹ä¿®æ­£
 
   Revision 1.1  2004/01/26 12:42:59  yada
-  firstReleaseB dma.h ‚Ì inline Œ©’¼‚µ
+  firstReleaseã€‚ dma.h ã® inline è¦‹ç›´ã—
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

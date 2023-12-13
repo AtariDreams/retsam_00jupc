@@ -1,6 +1,6 @@
 /**
  *	@file	b_tower_ev.c
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@í’“ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€å¸¸é§ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  *	@author	Miyuki Iwasawa
  *	@date	06.04.24
  */
@@ -49,7 +49,7 @@
 
 //#include "field/b_tower_deb.h"
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ğƒCƒxƒ“ƒgƒ[ƒN
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 typedef struct _BTWR_POKESEL_EVENT{
 	int	ret_val;
 	int	seq;
@@ -63,7 +63,7 @@ typedef struct _BTWR_POKESEL_EVENT{
 	void** sp_wk;
 }BTWR_POKESEL_EVENT;
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ğƒCƒxƒ“ƒgƒV[ƒPƒ“ƒXID
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ID
 typedef enum{
  BTWR_POKESEL_PLIST_CALL,
  BTWR_POKESEL_PLIST_WAIT,
@@ -73,7 +73,7 @@ typedef enum{
  BTWR_POKESEL_ENTER,
 };
 
-///WifiƒCƒxƒ“ƒgƒ[ƒN
+///Wifiã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 typedef struct _BTWR_WIFI_EVENT{
 	int	ret_val;
 	int	seq;
@@ -90,14 +90,14 @@ typedef enum{
 	BTWR_WIFI_EV_EXIT,
 };
 
-///’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^óMƒ[ƒN
+///é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿å—ä¿¡ãƒ¯ãƒ¼ã‚¯
 typedef struct _BTWR_SIO_EVENT{
 	u16	mode;
 	u16	scr_ret_wkno;
 }BTWR_SIO_EVENT;
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
  */
 static int BtlTower_PokeListCall(BTWR_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,int heapID)
 {
@@ -131,35 +131,35 @@ static int BtlTower_PokeListCall(BTWR_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,int 
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
  */
 static int BtlTower_PokeListWait(BTWR_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys)
 {
 	int	ret;
 	PLIST_DATA * pld;
 
-	// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd( fsys ) ) {
 		return BTWR_POKESEL_PLIST_WAIT;
 	}
 
 	pld = *(wk->sp_wk);
 
-	//ƒf[ƒ^æ“¾
+	//ãƒ‡ãƒ¼ã‚¿å–å¾—
 	switch(pld->ret_sel){
-	case PL_SEL_POS_EXIT:	//‚â‚ß‚é
+	case PL_SEL_POS_EXIT:	//ã‚„ã‚ã‚‹
 		wk->ret_val = 0;
 		return BTWR_POKESEL_EXIT;
-	case PL_SEL_POS_ENTER:	//Œˆ’è
+	case PL_SEL_POS_ENTER:	//æ±ºå®š
 		wk->ret_val = 1;
 		return BTWR_POKESEL_EXIT;
-	default:	//‚Â‚æ‚³‚ğ‚İ‚é
+	default:	//ã¤ã‚ˆã•ã‚’ã¿ã‚‹
 		break;
 	}
-	//Œ»İ‘I‚Î‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ğ•Û‘¶
+	//ç¾åœ¨é¸ã°ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ä¿å­˜
 	MI_CpuCopy8(pld->in_num,wk->sel,6);
 	
-	//ƒ|ƒWƒVƒ‡ƒ“‚ğ•Û‘¶
+	//ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’ä¿å­˜
 	wk->pos = pld->ret_sel;
 
 	sys_FreeMemoryEz(pld);
@@ -168,7 +168,7 @@ static int BtlTower_PokeListWait(BTWR_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys)
 }
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
  */
 static int BtlTower_PokeStatusCall(BTWR_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,int heapID)
 {
@@ -176,20 +176,20 @@ static int BtlTower_PokeStatusCall(BTWR_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,in
 	SAVEDATA	*sv;
 
 	static const u8 PST_PageTbl[] = {
-		PST_PAGE_INFO,			// uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-		PST_PAGE_MEMO,			// uƒgƒŒ[ƒi[ƒƒ‚v
-		PST_PAGE_PARAM,			// uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-		PST_PAGE_CONDITION,		// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-		PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-		PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
-		PST_PAGE_RIBBON,		// u‚«‚Ë‚ñƒŠƒ{ƒ“v
-		PST_PAGE_RET,			// u‚à‚Ç‚év
+		PST_PAGE_INFO,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+		PST_PAGE_MEMO,			// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
+		PST_PAGE_PARAM,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+		PST_PAGE_CONDITION,		// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+		PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+		PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+		PST_PAGE_RIBBON,		// ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+		PST_PAGE_RET,			// ã€Œã‚‚ã©ã‚‹ã€
 		PST_PAGE_MAX
 	};
 	
 	sv = fsys->savedata;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ğŒÄ‚Ño‚·
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã³å‡ºã™
 	//
 	psd = sys_AllocMemoryLo(heapID, sizeof(PSTATUS_DATA));
 	MI_CpuClear8(psd,sizeof(PSTATUS_DATA));
@@ -214,20 +214,20 @@ static int BtlTower_PokeStatusCall(BTWR_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,in
 }
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
  */
 static int BtlTower_PokeStatusWait(BTWR_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys)
 {
 	PSTATUS_DATA* psd;
 
-	// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ) {
 		return BTWR_POKESEL_PST_WAIT;
 	}
 
 	psd = *(wk->sp_wk);
 	
-	//Ø‚è‘Ö‚¦‚ç‚ê‚½ƒJƒŒƒ“ƒg‚ğ•Û‘¶‚·‚é
+	//åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚ŒãŸã‚«ãƒ¬ãƒ³ãƒˆã‚’ä¿å­˜ã™ã‚‹
 	wk->pos = psd->pos;
 
 	sys_FreeMemoryEz(psd);
@@ -238,9 +238,9 @@ static int BtlTower_PokeStatusWait(BTWR_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰@ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg&ƒXƒe[ƒ^ƒX
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã€€ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ&ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL BtlTowerEv_PokeSelect( GMEVENT_CONTROL *ev )
@@ -282,7 +282,7 @@ static BOOL BtlTowerEv_PokeSelect( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‘I‘ğ@ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * @brief	ãƒã‚±ãƒ¢ãƒ³é¸æŠã€€ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  * @param	event	GMEVENT_CONTROL*
  * @retval	nothing
  */
@@ -308,7 +308,7 @@ void EventCmd_BTowerPokeSelectCall(GMEVENT_CONTROL *event,void** buf,
 }
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@WiFiƒRƒlƒNƒgŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€WiFiã‚³ãƒã‚¯ãƒˆå‘¼ã³å‡ºã—
  */
 static int BtlTower_WifiConnectCall(BTWR_WIFI_EVENT* wk,FIELDSYS_WORK* fsys)
 {
@@ -323,23 +323,23 @@ static int BtlTower_WifiConnectCall(BTWR_WIFI_EVENT* wk,FIELDSYS_WORK* fsys)
 }
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@WiFiƒRƒlƒNƒgI—¹‘Ò‚¿
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€WiFiã‚³ãƒã‚¯ãƒˆçµ‚äº†å¾…ã¡
  */
 static int BtlTower_WifiConnectWait(BTWR_WIFI_EVENT* wk,FIELDSYS_WORK* fsys)
 {
 	u8	i;
 	WBTOWER_PARAM	*param;
 
-	// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ) {
 		return BTWR_WIFI_CONNECT_WAIT;
 	}
 //	param = (WBTOWER_PARAM*)wk->app_wk;
 
-	//ƒXƒe[ƒ^ƒX‚ğæ“¾
+	//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—
 	wk->ret_val = wk->app_wk->result;//param->result;
 	OS_Printf("wifi_ret_val = %d,%d\n",wk->app_wk->result,wk->ret_val);
-	//ƒƒ‚ƒŠ‰ğ•ú
+	//ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	sys_FreeMemoryEz(wk->app_wk);
 	return BTWR_WIFI_EV_EXIT;
 }
@@ -347,9 +347,9 @@ static int BtlTower_WifiConnectWait(BTWR_WIFI_EVENT* wk,FIELDSYS_WORK* fsys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰@WiFiÚ‘±
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã€€WiFiæ¥ç¶š
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL BtlTowerEv_WifiConnect( GMEVENT_CONTROL *ev )
@@ -366,7 +366,7 @@ static BOOL BtlTowerEv_WifiConnect( GMEVENT_CONTROL *ev )
 		wk->seq = BtlTower_WifiConnectWait(wk,fsys);
 		break;
 	case BTWR_WIFI_EV_EXIT:
-		//–ß‚è’lw’è
+		//æˆ»ã‚Šå€¤æŒ‡å®š
 		buf16 = GetEventWorkAdrs(fsys,wk->scr_ret_wkno);//*(wk->scr_ret_wk);
 		OS_Printf("wifi_ret_val = %d\n",wk->ret_val);
 		*buf16 = wk->ret_val;
@@ -378,11 +378,11 @@ static BOOL BtlTowerEv_WifiConnect( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------
 /**
- * @brief	WiFiÚ‘±@ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * @brief	WiFiæ¥ç¶šã€€ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  * @param	event	GMEVENT_CONTROL*
- * @param	mode	Ú‘±ƒ‚[ƒh
- * @param	ret_wk_no	•Ô‚è’l‚ğ•Ô‚·ƒ[ƒNID
- * @param	dpw_code	DPW_INIT_PROC‚ª•Ô‚µ‚½•Ô‚è’l
+ * @param	mode	æ¥ç¶šãƒ¢ãƒ¼ãƒ‰
+ * @param	ret_wk_no	è¿”ã‚Šå€¤ã‚’è¿”ã™ãƒ¯ãƒ¼ã‚¯ID
+ * @param	dpw_code	DPW_INIT_PROCãŒè¿”ã—ãŸè¿”ã‚Šå€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -398,16 +398,16 @@ void EventCmd_BTowerWifiCall(GMEVENT_CONTROL *event,u16 mode,u16 ret_wk_no,u16 d
 	wk->scr_ret_wkno = ret_wk_no;
 	/*
 	if(mode == BTWR_WIFI_UP_PLAY){
-		//ƒAƒbƒvƒ[ƒhƒf[ƒ^¶¬
+		//ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	}*/
 	FieldEvent_Call(fsys->event,BtlTowerEv_WifiConnect,wk);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰ ’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^óM@
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ© é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿å—ä¿¡ã€€
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL BtlTowerEv_SioRecvBuf( GMEVENT_CONTROL *ev )
@@ -417,16 +417,16 @@ static BOOL BtlTowerEv_SioRecvBuf( GMEVENT_CONTROL *ev )
 	FIELDSYS_WORK *fsys = FieldEvent_GetFieldSysWork( ev );
 	BTWR_SIO_EVENT *wk = FieldEvent_GetSpecialWork( ev );
 
-	//ƒf[ƒ^óM‘Ò‚¿
+	//ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾…ã¡
 	recv = CommToolGetTempData(1-CommGetCurrentID());
 	if(recv == NULL){
 		return FALSE;
 	}
 #if 1
-	//–ß‚è’lw’èƒoƒbƒtƒ@ƒAƒhƒŒƒXæ“¾
+	//æˆ»ã‚Šå€¤æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	buf16 = GetEventWorkAdrs(fsys,wk->scr_ret_wkno);
 	
-	//óMƒf[ƒ^ƒ‚[ƒh•Ê‰ğÍ
+	//å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãƒ¢ãƒ¼ãƒ‰åˆ¥è§£æ
 	switch(wk->mode){
 	case 0:
 		*buf16 = BTowerComm_RecvPlayerData(fsys,recv);
@@ -444,10 +444,10 @@ static BOOL BtlTowerEv_SioRecvBuf( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------
 /**
- * @brief	’ÊMƒ}ƒ‹ƒ`@ƒf[ƒ^óMƒTƒuƒCƒxƒ“ƒg
+ * @brief	é€šä¿¡ãƒãƒ«ãƒã€€ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆ
  * @param	event	GMEVENT_CONTROL*
- * @param	mode	óMƒ‚[ƒh
- * @param	ret_wk_no	•Ô‚è’læ“¾—pƒ[ƒNID
+ * @param	mode	å—ä¿¡ãƒ¢ãƒ¼ãƒ‰
+ * @param	ret_wk_no	è¿”ã‚Šå€¤å–å¾—ç”¨ãƒ¯ãƒ¼ã‚¯ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -464,9 +464,9 @@ void EventCmd_BTowerSioRecvBuf(GMEVENT_CONTROL *event,u16 mode,u16 ret_wk_no)
 }
 
 /**
- *	@brief	ƒvƒ‰ƒCƒY‚ğ‚à‚ç‚¦‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ãƒ—ãƒ©ã‚¤ã‚ºã‚’ã‚‚ã‚‰ãˆã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@retval	0	‚à‚ç‚¦‚È‚¢
+ *	@retval	0	ã‚‚ã‚‰ãˆãªã„
  */
 u16 BtlTower_IsPrizeGet(SAVEDATA* sv)
 {
@@ -476,7 +476,7 @@ u16 BtlTower_IsPrizeGet(SAVEDATA* sv)
 	u16	win;
 	u8	c_on,s_on,g_on,c_ready,s_ready,g_ready;
 	
-	//ƒVƒ“ƒOƒ‹ƒ‚[ƒh‚ÌÅ‘å˜AŸ”ƒŒƒR[ƒh‚ğæ“¾
+	//ã‚·ãƒ³ã‚°ãƒ«ãƒ¢ãƒ¼ãƒ‰ã®æœ€å¤§é€£å‹æ•°ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	frontier = SaveData_GetFrontier(sv);
 	win = FrontierRecord_Get(frontier, FRID_TOWER_SINGLE_RENSHOU, FRONTIER_RECORD_NOT_FRIEND);
 
@@ -494,69 +494,69 @@ u16 BtlTower_IsPrizeGet(SAVEDATA* sv)
 	
 	if(c_on && s_on && g_on){
 //	if(s_on && g_on){
-		return 0;	//‚à‚¤O‚Â‚Æ‚à–á‚Á‚½
+		return 0;	//ã‚‚ã†ä¸‰ã¤ã¨ã‚‚è²°ã£ãŸ
 	}
 	gSave = SaveData_GetUnderGroundData(sv);
 
-	//‚Ü‚¾20‚ğ–á‚Á‚Ä‚¢‚È‚¢
+	//ã¾ã 20ã‚’è²°ã£ã¦ã„ãªã„
 	if(!c_on){
-		//ƒOƒbƒY‚É‹ó‚«‚ª‚ ‚ê‚Î‚ ‚°‚é
+		//ã‚°ãƒƒã‚ºã«ç©ºããŒã‚ã‚Œã°ã‚ã’ã‚‹
 		if(UnderGroundAddChkGoodsPCItem(gSave,BTWR_GOODS_COPPER)){
-			//“ü‚Á‚½
+			//å…¥ã£ãŸ
 			TowerScoreData_SetFlags(score,BTWR_SFLAG_COPPER_GET,BTWR_DATA_set);
 			return 1;
 		}else{
-			//ˆê‰ñ‚ ‚°‚æ‚¤‚Æ‚µ‚Ä“ü‚ç‚È‚©‚Á‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚Ä‚¨‚­
+			//ä¸€å›ã‚ã’ã‚ˆã†ã¨ã—ã¦å…¥ã‚‰ãªã‹ã£ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦ãŠã
 			if(!c_ready){
 				TowerScoreData_SetFlags(score,BTWR_SFLAG_COPPER_READY,BTWR_DATA_set);
 			}
-			return 4;	//“ü‚ç‚È‚¢
+			return 4;	//å…¥ã‚‰ãªã„
 		}
 	}
-	//‚Ü‚¾50˜AŸ‚µ‚Ä‚¢‚È‚¢
+	//ã¾ã 50é€£å‹ã—ã¦ã„ãªã„
 	if(win < BTWR_50_RENSHOU_CNT){
 		return 0;
 	}
 	
-	//‚Ü‚¾50‚ğ–á‚Á‚Ä‚¢‚È‚¢
+	//ã¾ã 50ã‚’è²°ã£ã¦ã„ãªã„
 	if(!s_on){
-		//ƒOƒbƒY‚É‹ó‚«‚ª‚ ‚ê‚Î‚ ‚°‚é
+		//ã‚°ãƒƒã‚ºã«ç©ºããŒã‚ã‚Œã°ã‚ã’ã‚‹
 		if(UnderGroundAddChkGoodsPCItem(gSave,BTWR_GOODS_SILVER)){
 //		if(UnderGroundAddGoodsPCItem(gSave,BTWR_GOODS_SILVER)){
-			//“ü‚Á‚½
+			//å…¥ã£ãŸ
 			TowerScoreData_SetFlags(score,BTWR_SFLAG_SILVER_GET,BTWR_DATA_set);
 			return 2;
 		}else{
-			//ˆê‰ñ‚ ‚°‚æ‚¤‚Æ‚µ‚Ä“ü‚ç‚È‚©‚Á‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚Ä‚¨‚­
+			//ä¸€å›ã‚ã’ã‚ˆã†ã¨ã—ã¦å…¥ã‚‰ãªã‹ã£ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦ãŠã
 			if(!s_ready){
 				TowerScoreData_SetFlags(score,BTWR_SFLAG_SILVER_READY,BTWR_DATA_set);
 			}
-			return 4;	//“ü‚ç‚È‚¢
+			return 4;	//å…¥ã‚‰ãªã„
 		}
 	}
-	//‚Ü‚¾100˜AŸ‚µ‚Ä‚¢‚È‚¢‚©A‚à‚¤–á‚Á‚Ä‚¢‚é
+	//ã¾ã 100é€£å‹ã—ã¦ã„ãªã„ã‹ã€ã‚‚ã†è²°ã£ã¦ã„ã‚‹
 	if(win < BTWR_100_RENSHOU_CNT || (g_on)){
 		return 0;
 	}
-	//ƒOƒbƒY‚É‹ó‚«‚ª‚ ‚ê‚Î‚ ‚°‚é
+	//ã‚°ãƒƒã‚ºã«ç©ºããŒã‚ã‚Œã°ã‚ã’ã‚‹
 	if(UnderGroundAddChkGoodsPCItem(gSave,BTWR_GOODS_GOLD)){
 //	if(UnderGroundAddGoodsPCItem(gSave,BTWR_GOODS_GOLD)){
-		//“ü‚Á‚½
+		//å…¥ã£ãŸ
 		TowerScoreData_SetFlags(score,BTWR_SFLAG_GOLD_GET,BTWR_DATA_set);
 		return 3;
 	}else{
-		//ˆê‰ñ‚ ‚°‚æ‚¤‚Æ‚µ‚Ä“ü‚ç‚È‚©‚Á‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚Ä‚¨‚­
+		//ä¸€å›ã‚ã’ã‚ˆã†ã¨ã—ã¦å…¥ã‚‰ãªã‹ã£ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦ãŠã
 		if(!g_ready){
 			TowerScoreData_SetFlags(score,BTWR_SFLAG_GOLD_READY,BTWR_DATA_set);
 		}
-		return 4;	//“ü‚ç‚È‚¢
+		return 4;	//å…¥ã‚‰ãªã„
 	}
 }
 
 /**
- *	@brief	ƒvƒ‰ƒCƒY‚ğ‚­‚ê‚éƒqƒg‚Ì•\¦ó‘Ô‚ğ•Ô‚·
+ *	@brief	ãƒ—ãƒ©ã‚¤ã‚ºã‚’ãã‚Œã‚‹ãƒ’ãƒˆã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è¿”ã™
  *
- *	@retval	0	”ñ•\¦
+ *	@retval	0	éè¡¨ç¤º
  *	@retval	1	
  */
 u16 BtlTower_IsPrizemanSet(SAVEDATA* sv)
@@ -566,7 +566,7 @@ u16 BtlTower_IsPrizemanSet(SAVEDATA* sv)
 	u16	win;
 	u8	c_on,s_on,g_on,c_ready,s_ready,g_ready;
 	
-	//ƒVƒ“ƒOƒ‹ƒ‚[ƒh‚ÌÅ‘å˜AŸ”ƒŒƒR[ƒh‚ğæ“¾
+	//ã‚·ãƒ³ã‚°ãƒ«ãƒ¢ãƒ¼ãƒ‰ã®æœ€å¤§é€£å‹æ•°ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	frontier = SaveData_GetFrontier(sv);
 	win = FrontierRecord_Get(frontier,FRID_TOWER_SINGLE_RENSHOU,FRONTIER_RECORD_NOT_FRIEND);
 
@@ -582,11 +582,11 @@ u16 BtlTower_IsPrizemanSet(SAVEDATA* sv)
 	s_ready = TowerScoreData_SetFlags(score,BTWR_SFLAG_SILVER_READY,BTWR_DATA_get);
 	g_ready = TowerScoreData_SetFlags(score,BTWR_SFLAG_GOLD_READY,BTWR_DATA_get);
 
-	if(c_on && s_on && g_on){	//—¼•ûŠù‚É–á‚Á‚Ä‚¢‚é
+	if(c_on && s_on && g_on){	//ä¸¡æ–¹æ—¢ã«è²°ã£ã¦ã„ã‚‹
 		return 0;
 	}
 
-	//20‚ğ‚Ü‚¾–á‚Á‚Ä‚¢‚È‚¢
+	//20ã‚’ã¾ã è²°ã£ã¦ã„ãªã„
 	if(!c_on){
 		if(c_ready){
 			return 4;
@@ -594,26 +594,26 @@ u16 BtlTower_IsPrizemanSet(SAVEDATA* sv)
 		return 1;
 	}
 	
-	//‚Ü‚¾50˜AŸ‚µ‚Ä‚È‚¢
+	//ã¾ã 50é€£å‹ã—ã¦ãªã„
 	if(win < BTWR_50_RENSHOU_CNT){
 		return 0;
 	}
-	//50‚ğ‚Ü‚¾–á‚Á‚Ä‚¢‚È‚¢
+	//50ã‚’ã¾ã è²°ã£ã¦ã„ãªã„
 	if(!s_on){
 		if(s_ready){
 			return 5;
 		}
 		return 2;
 	}
-	//100˜AŸ‚Ü‚¾‚µ‚Ä‚È‚¢
+	//100é€£å‹ã¾ã ã—ã¦ãªã„
 	if(win < BTWR_100_RENSHOU_CNT){
 		return 0;
 	}
-	//100‚Í‚à‚¤–á‚Á‚½
+	//100ã¯ã‚‚ã†è²°ã£ãŸ
 	if(g_on){
 		return 0;
 	}
-	//100‚ğ‚Ü‚¾–á‚Á‚Ä‚È‚¢
+	//100ã‚’ã¾ã è²°ã£ã¦ãªã„
 	if(g_ready){
 		return 6;
 	}
@@ -621,7 +621,7 @@ u16 BtlTower_IsPrizemanSet(SAVEDATA* sv)
 }
 
 /**
- *	@brief	ƒ^ƒ[‘ÎíŒ‹‰Ê@ƒAƒbƒvƒf[ƒgˆ—
+ *	@brief	ã‚¿ãƒ¯ãƒ¼å¯¾æˆ¦çµæœã€€ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆå‡¦ç†
  */
 void BtlTower_BattleRecordUpdate(FIELDSYS_WORK* fsys,const BATTLE_TOWER_RECORD* rec)
 {
@@ -634,16 +634,16 @@ void BtlTower_BattleRecordUpdate(FIELDSYS_WORK* fsys,const BATTLE_TOWER_RECORD* 
 
 #include "savedata/randomgroup.h"
 /**
- *	@brief	ƒ^ƒ[ƒvƒŒƒCXVƒ‰ƒ“ƒ_ƒ€ŒvZ
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ãƒ—ãƒ¬ã‚¤æ›´æ–°ãƒ©ãƒ³ãƒ€ãƒ è¨ˆç®—
  */
 u32	BtlTower_PlayFixRand(u32 seed)
 {
-	// ‚±‚±‚Å•Ô‚·’l‚ğ•Û‘¶‚µ‚Ä‚¨‚¯‚ÎŸ‚Ì—”‚Ìí‚É‚È‚é
+	// ã“ã“ã§è¿”ã™å€¤ã‚’ä¿å­˜ã—ã¦ãŠã‘ã°æ¬¡ã®ä¹±æ•°ã®ç¨®ã«ãªã‚‹
 	return seed * 48828125L + 1;
 }
 
 /**
- *	@brief	ƒ^ƒ[“ú•tXVƒ‰ƒ“ƒ_ƒ€ŒvZ
+ *	@brief	ã‚¿ãƒ¯ãƒ¼æ—¥ä»˜æ›´æ–°ãƒ©ãƒ³ãƒ€ãƒ è¨ˆç®—
  */
 u32 BtlTower_DayFixRand(u32 seed)
 {
@@ -651,45 +651,45 @@ u32 BtlTower_DayFixRand(u32 seed)
 }
 
 /**
- *	@brief	ƒ^ƒ[“ú•tXVƒ‰ƒ“ƒ_ƒ€ƒV[ƒh@ˆê“úˆê‰ñ‚ÌXVˆ—
+ *	@brief	ã‚¿ãƒ¯ãƒ¼æ—¥ä»˜æ›´æ–°ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰ã€€ä¸€æ—¥ä¸€å›ã®æ›´æ–°å‡¦ç†
  *
- *	–“ú•t•ÏXˆ—/ƒŒƒR[ƒhŒğŠ·(ƒOƒ‹[ƒv“à)/new gameˆ—‚ÉŒÄ‚Ô‚±‚Æ
+ *	ï¼Šæ—¥ä»˜å¤‰æ›´å‡¦ç†/ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›(ã‚°ãƒ«ãƒ¼ãƒ—å†…)/new gameå‡¦ç†æ™‚ã«å‘¼ã¶ã“ã¨
  */
 u32	BtlTower_UpdateDayRndSeed(SAVEDATA* sv)
 {
 	u32	seed;
 
-	//ƒQ[ƒ€ƒ‰ƒ“ƒ_ƒ€ƒV[ƒh‚ÌƒIƒŠƒWƒiƒ‹‚ğæ“¾
+	//ã‚²ãƒ¼ãƒ ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰ã®ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚’å–å¾—
 	seed = RandomGroup_GetDefaultRandom(SaveData_GetRandomGroup(sv));
 	OS_Printf("BTowerRndSeed = %d : ",seed);
-	//ƒIƒŠƒWƒiƒ‹‚©‚çƒ^ƒ[—pDayƒV[ƒh‚ğæ“¾
+	//ã‚ªãƒªã‚¸ãƒŠãƒ«ã‹ã‚‰ã‚¿ãƒ¯ãƒ¼ç”¨Dayã‚·ãƒ¼ãƒ‰ã‚’å–å¾—
 	seed = BtlTower_DayFixRand(seed);
 	OS_Printf("%d\n",seed);
 
-	//ƒ^ƒ[ƒZ[ƒuƒf[ƒ^XV‚µ‚Ä‚¨‚­
+	//ã‚¿ãƒ¯ãƒ¼ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ›´æ–°ã—ã¦ãŠã
 	TowerScoreData_SetDayRndSeed(SaveData_GetTowerScoreData(sv),seed);
 
 	return seed;
 }
 
 /**
- *	@brief	ƒ^ƒ[“ú•t/ƒvƒŒƒCXVƒ‰ƒ“ƒ_ƒ€ƒV[ƒh@’§íŠJn‚ÌXVˆ—
+ *	@brief	ã‚¿ãƒ¯ãƒ¼æ—¥ä»˜/ãƒ—ãƒ¬ã‚¤æ›´æ–°ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰ã€€æŒ‘æˆ¦é–‹å§‹æ™‚ã®æ›´æ–°å‡¦ç†
  */
 u32	BtlTower_UpdatePlayRndSeed(SAVEDATA* sv)
 {
 	u32	seed,day_seed;
 	BTLTOWER_SCOREWORK* score = SaveData_GetTowerScoreData(sv);
 	
-	//Œ»İƒZ[ƒu‚³‚ê‚Ä‚¢‚éDayƒV[ƒh‚ğæ“¾
+	//ç¾åœ¨ã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ã‚‹Dayã‚·ãƒ¼ãƒ‰ã‚’å–å¾—
 	day_seed = TowerScoreData_GetDayRndSeed(score);
-	//æ“¾‚µ‚½’l‚ğXV
+	//å–å¾—ã—ãŸå€¤ã‚’æ›´æ–°
 	day_seed = BtlTower_DayFixRand(day_seed);
-	//’l‚ğ‘‚«–ß‚·
+	//å€¤ã‚’æ›¸ãæˆ»ã™
 	TowerScoreData_SetDayRndSeed(score,day_seed);
 
-	//DayƒV[ƒh‚©‚çPlayƒV[ƒh‚ğæ“¾
+	//Dayã‚·ãƒ¼ãƒ‰ã‹ã‚‰Playã‚·ãƒ¼ãƒ‰ã‚’å–å¾—
 	seed = BtlTower_PlayFixRand(day_seed);
-	//æ“¾‚µ‚½’l‚ğXV
+	//å–å¾—ã—ãŸå€¤ã‚’æ›´æ–°
 	TowerPlayData_Put(SaveData_GetTowerPlayData(sv),BTWR_PSD_rnd_seed,&seed);
 
 	OS_Printf("BTowerPlayRndUpdate = %d <- %d \n",seed,day_seed);
@@ -697,7 +697,7 @@ u32	BtlTower_UpdatePlayRndSeed(SAVEDATA* sv)
 }
 
 /**
- *	@brief	ƒ^ƒ[“ú•t/ƒvƒŒƒCXVƒ‰ƒ“ƒ_ƒ€ƒV[ƒhæ“¾@Œp‘±’§íŠJn‚Ìæ“¾ˆ—
+ *	@brief	ã‚¿ãƒ¯ãƒ¼æ—¥ä»˜/ãƒ—ãƒ¬ã‚¤æ›´æ–°ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰å–å¾—ã€€ç¶™ç¶šæŒ‘æˆ¦é–‹å§‹æ™‚ã®å–å¾—å‡¦ç†
  */
 u32	BtlTower_GetContinuePlayRndSeed(SAVEDATA* sv)
 {
@@ -706,19 +706,19 @@ u32	BtlTower_GetContinuePlayRndSeed(SAVEDATA* sv)
 	BTLTOWER_SCOREWORK* score = SaveData_GetTowerScoreData(sv);
 	BTLTOWER_PLAYWORK* play = SaveData_GetTowerPlayData(sv);
 	
-	//Œ»İƒZ[ƒu‚³‚ê‚Ä‚¢‚éDayƒV[ƒh‚ğæ“¾‚µ‚Ä‚»‚Ì‚Ü‚Üg‚¤
+	//ç¾åœ¨ã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ã‚‹Dayã‚·ãƒ¼ãƒ‰ã‚’å–å¾—ã—ã¦ãã®ã¾ã¾ä½¿ã†
 	day_seed = TowerScoreData_GetDayRndSeed(score);
 
-	//DayƒV[ƒh‚©‚çPlayƒV[ƒh‚ğæ“¾
+	//Dayã‚·ãƒ¼ãƒ‰ã‹ã‚‰Playã‚·ãƒ¼ãƒ‰ã‚’å–å¾—
 	seed = BtlTower_PlayFixRand(day_seed);
 	round = TowerScoreData_SetStage(score,
 			TowerPlayData_Get(play,BTWR_PSD_playmode,NULL),BTWR_DATA_get);
 	round *= 24;
-	//ü‰ñ”•ª—\‚ßi‚ß‚Ä‚¨‚­
+	//å‘¨å›æ•°åˆ†äºˆã‚é€²ã‚ã¦ãŠã
 	for(i = 0;i < round;i++){
 		seed = BtlTower_PlayFixRand(seed);
 	}
-	//æ“¾‚µ‚½’l‚ğƒvƒŒƒCƒf[ƒ^‚É‘‚«‚ñ‚Å‚¨‚­
+	//å–å¾—ã—ãŸå€¤ã‚’ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã«æ›¸ãè¾¼ã‚“ã§ãŠã
 	TowerPlayData_Put(SaveData_GetTowerPlayData(sv),BTWR_PSD_rnd_seed,&seed);
 
 	OS_Printf("BTowerPlayRndUpdate = %d <- %d \n",seed,day_seed);
@@ -726,7 +726,7 @@ u32	BtlTower_GetContinuePlayRndSeed(SAVEDATA* sv)
 }
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[ƒTƒƒ“”»’è
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚µãƒ­ãƒ³åˆ¤å®š
  */
 BOOL BtlTower_IsSalon(FIELDSYS_WORK* fsys)
 {

@@ -2,7 +2,7 @@
   Project:  PokemonDS
   File:     simple_3dgraphics.c
 
-  Šî–{‚R‚cƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€
+  åŸºæœ¬ï¼“ï¼¤ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 
  *---------------------------------------------------------------------------*/
 #include <nitro.h>
@@ -42,7 +42,7 @@ void simple_LoadG3DModelAlrady(NNSG3dResMdl** model, NNSG3dResFileHeader** resFi
 void simple_Setup3DParams(const G3D_SETUP_PARAM *inParam);
 void simple_FreeVRAMManager(VRAM_MANAGER_MEM_PTR *ptr);
 //------------------------------------------------------------------
-//                      ƒ‚ƒfƒ‹“Ç‚İ‚İŠÖ”
+//                      ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿é–¢æ•°
 //------------------------------------------------------------------
 
 void simple_LoadG3DModel(const u8 mode, const char* path, NNSG3dResMdl** model, NNSG3dResFileHeader** resFile)
@@ -53,54 +53,54 @@ void simple_LoadG3DModel(const u8 mode, const char* path, NNSG3dResMdl** model, 
     *resFile = sys_LoadFile(mode,path);
     NNS_G3D_NULL_ASSERT(*resFile);
 
-	// ƒeƒNƒXƒ`ƒƒ‚ªVram‚É“WŠJ‚³‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
-	texture = NNS_G3dGetTex(*resFile);	// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXæ“¾
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒVramã«å±•é–‹ã•ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
+	texture = NNS_G3dGetTex(*resFile);	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	if(texture != NULL){
-		if(TexKeyLive(texture) == FALSE){	// ƒeƒNƒXƒ`ƒƒ‚ªVram‚É“WŠJ‚³‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
-			///OS_Printf("ƒeƒNƒXƒ`ƒƒ‚ªVRAM‚É“WŠJ‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅA‚±‚±‚Å“WŠJ\n");
-			//“à•”‚ÅDMA“]‘—‚·‚é‚Ì‚Åƒtƒ‰ƒbƒVƒ…‚·‚é
+		if(TexKeyLive(texture) == FALSE){	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒVramã«å±•é–‹ã•ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
+			///OS_Printf("ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒVRAMã«å±•é–‹ã•ã‚Œã¦ã„ãªã„ã®ã§ã€ã“ã“ã§å±•é–‹\n");
+			//å†…éƒ¨ã§DMAè»¢é€ã™ã‚‹ã®ã§ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹
 			DC_FlushRange(*resFile,(*resFile)->fileSize);
-			// ƒfƒtƒHƒ‹ƒg‚Ì‰Šú‰»ŠÖ”‚ğƒR[ƒ‹‚µ‚ÄƒZƒbƒgƒAƒbƒv‚·‚é
+			// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®åˆæœŸåŒ–é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ã¦ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 			status = NNS_G3dResDefaultSetup(*resFile);
 			NNS_G3D_ASSERTMSG(status, "NNS_G3dResDefaultSetup failed");
 		}
 	}
     
-    // G3D: ƒ‚ƒfƒ‹‚Ìæ“¾
-    // nsbmd‚Íƒ‚ƒfƒ‹‚ğ•¡”ŠÜ‚Ş‚±‚Æ‚ª‚Å‚«‚é‚Ì‚ÅAƒCƒ“ƒfƒbƒNƒX(ƒ‚ƒfƒ‹‚ª‚P‚Â‚Ìê‡‚Í0)
-    // ‚ğw’è‚µ‚Ä‚P‚Â‚Ìƒ‚ƒfƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
+    // G3D: ãƒ¢ãƒ‡ãƒ«ã®å–å¾—
+    // nsbmdã¯ãƒ¢ãƒ‡ãƒ«ã‚’è¤‡æ•°å«ã‚€ã“ã¨ãŒã§ãã‚‹ã®ã§ã€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(ãƒ¢ãƒ‡ãƒ«ãŒï¼‘ã¤ã®å ´åˆã¯0)
+    // ã‚’æŒ‡å®šã—ã¦ï¼‘ã¤ã®ãƒ¢ãƒ‡ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
     // --------------------------------------------------------------------
     *model = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*resFile), 0);
 }
 
-//ƒŠƒ\[ƒXŠm•ÛÏ‚İ—p
+//ãƒªã‚½ãƒ¼ã‚¹ç¢ºä¿æ¸ˆã¿ç”¨
 void simple_LoadG3DModelAlrady(NNSG3dResMdl** model, NNSG3dResFileHeader** resFile)
 {
     NNSG3dResTex*        texture = NULL;
     BOOL status;
 
-	// ƒeƒNƒXƒ`ƒƒ‚ªVram‚É“WŠJ‚³‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
-	texture = NNS_G3dGetTex(*resFile);	// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXæ“¾
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒVramã«å±•é–‹ã•ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
+	texture = NNS_G3dGetTex(*resFile);	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	if(texture != NULL){
-		if(TexKeyLive(texture) == FALSE){	// ƒeƒNƒXƒ`ƒƒ‚ªVram‚É“WŠJ‚³‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
-			OS_Printf("–‘O‚ÉƒeƒNƒXƒ`ƒƒ‚ª“WŠJ‚³‚ê‚Ä‚¢‚Ì‚ÅAƒeƒNƒXƒ`ƒƒ‚ğ‚u‚q‚`‚l‚É“WŠJ‚µ‚Ü‚·\n");
-			//“à•”‚ÅDMA“]‘—‚·‚é‚Ì‚Åƒtƒ‰ƒbƒVƒ…‚·‚é
+		if(TexKeyLive(texture) == FALSE){	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒVramã«å±•é–‹ã•ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
+			OS_Printf("äº‹å‰ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒå±•é–‹ã•ã‚Œã¦ã„ã®ã§ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ï¼¶ï¼²ï¼¡ï¼­ã«å±•é–‹ã—ã¾ã™\n");
+			//å†…éƒ¨ã§DMAè»¢é€ã™ã‚‹ã®ã§ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹
 			DC_FlushRange(*resFile,(*resFile)->fileSize);
-			// ƒfƒtƒHƒ‹ƒg‚Ì‰Šú‰»ŠÖ”‚ğƒR[ƒ‹‚µ‚ÄƒZƒbƒgƒAƒbƒv‚·‚é
+			// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®åˆæœŸåŒ–é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ã¦ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 			status = NNS_G3dResDefaultSetup(*resFile);
 			NNS_G3D_ASSERTMSG(status, "NNS_G3dResDefaultSetup failed");
 		}
 	}
     
-    // G3D: ƒ‚ƒfƒ‹‚Ìæ“¾
-    // nsbmd‚Íƒ‚ƒfƒ‹‚ğ•¡”ŠÜ‚Ş‚±‚Æ‚ª‚Å‚«‚é‚Ì‚ÅAƒCƒ“ƒfƒbƒNƒX(ƒ‚ƒfƒ‹‚ª‚P‚Â‚Ìê‡‚Í0)
-    // ‚ğw’è‚µ‚Ä‚P‚Â‚Ìƒ‚ƒfƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
+    // G3D: ãƒ¢ãƒ‡ãƒ«ã®å–å¾—
+    // nsbmdã¯ãƒ¢ãƒ‡ãƒ«ã‚’è¤‡æ•°å«ã‚€ã“ã¨ãŒã§ãã‚‹ã®ã§ã€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(ãƒ¢ãƒ‡ãƒ«ãŒï¼‘ã¤ã®å ´åˆã¯0)
+    // ã‚’æŒ‡å®šã—ã¦ï¼‘ã¤ã®ãƒ¢ãƒ‡ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
     // --------------------------------------------------------------------
     *model = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*resFile), 0);
 }
 
 //------------------------------------------------------------------
-//                      ‚R‚cƒIƒuƒWƒFƒNƒgƒZƒbƒgŠÖ”
+//                      ï¼“ï¼¤ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚»ãƒƒãƒˆé–¢æ•°
 //------------------------------------------------------------------
 
 void simple_3DModelSet
@@ -127,19 +127,19 @@ void simple_3DModelSetResFileAlready
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒeƒNƒXƒ`ƒƒƒL[‚ªŠ„‚èU‚ç‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ãŒå‰²ã‚ŠæŒ¯ã‚‰ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *@param	pTex		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ *@param	pTex		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *	
- *@return	bool		true	Š„‚èU‚ç‚ê‚Ä‚é
- *						false	Š„‚èU‚ç‚ê‚Ä‚¢‚È‚¢
+ *@return	bool		true	å‰²ã‚ŠæŒ¯ã‚‰ã‚Œã¦ã‚‹
+ *						false	å‰²ã‚ŠæŒ¯ã‚‰ã‚Œã¦ã„ãªã„
  *
  */
 //-----------------------------------------------------------------------------
 BOOL TexKeyLive( NNSG3dResTex* pTex )
 {
-	// •’Ê‚ÌƒeƒNƒXƒ`ƒƒ‚©4*4ƒeƒNƒZƒ‹ˆ³kƒeƒNƒXƒ`ƒƒ
-	// ‚ÅVram‚É“WŠJ‚³‚ê‚Ä‚¢‚é‚©‚ğƒ`ƒFƒbƒN
+	// æ™®é€šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹4*4ãƒ†ã‚¯ã‚»ãƒ«åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	// ã§Vramã«å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	if((pTex->texInfo.flag & NNS_G3D_RESTEX_LOADED) ||
 	   (pTex->tex4x4Info.flag & NNS_G3D_RESTEX4x4_LOADED)){
 		return TRUE;
@@ -149,19 +149,19 @@ BOOL TexKeyLive( NNSG3dResTex* pTex )
 }
 
 //------------------------------------------------------------------
-//                      ‚R‚c‚a‚f•`‰æŠÖ”
+//                      ï¼“ï¼¤ï¼¢ï¼§æç”»é–¢æ•°
 //------------------------------------------------------------------
 void simple_3DModelDraw
 (NNSG3dRenderObj* object_p, const VecFx32* trans_p, const MtxFx33* rot_p, const VecFx32* scale_p)
 {
 #ifdef	PM_DEBUG
-	D_3D_DC_CountNum(object_p);	//ƒfƒoƒbƒOƒJƒEƒ“ƒg
+	D_3D_DC_CountNum(object_p);	//ãƒ‡ãƒãƒƒã‚°ã‚«ã‚¦ãƒ³ãƒˆ
 #endif
-	// ˆÊ’uİ’è
+	// ä½ç½®è¨­å®š
 	NNS_G3dGlbSetBaseTrans(trans_p);
-	// Šp“xİ’è
+	// è§’åº¦è¨­å®š
 	NNS_G3dGlbSetBaseRot(rot_p);
-	// ƒXƒP[ƒ‹İ’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
 	NNS_G3dGlbSetBaseScale(scale_p);
 
 	NNS_G3dGlbFlush();
@@ -171,19 +171,19 @@ void simple_3DModelDraw
 }
 
 //------------------------------------------------------------------
-//                      ‚‘¬‚R‚c‚a‚f•`‰æŠÖ”
+//                      é«˜é€Ÿï¼“ï¼¤ï¼¢ï¼§æç”»é–¢æ•°
 //------------------------------------------------------------------
 void simple_3DModelDraw_1mat1shape
 (NNSG3dRenderObj* object_p,const VecFx32* trans_p,const MtxFx33* rot_p,const VecFx32* scale_p)
 {
 #ifdef	PM_DEBUG
-	D_3D_DC_CountNum(object_p);	//ƒfƒoƒbƒOƒJƒEƒ“ƒg
+	D_3D_DC_CountNum(object_p);	//ãƒ‡ãƒãƒƒã‚°ã‚«ã‚¦ãƒ³ãƒˆ
 #endif
-	// ˆÊ’uİ’è
+	// ä½ç½®è¨­å®š
 	NNS_G3dGlbSetBaseTrans(trans_p);
-	// Šp“xİ’è
+	// è§’åº¦è¨­å®š
 	NNS_G3dGlbSetBaseRot(rot_p);
-	// ƒXƒP[ƒ‹İ’è
+	// ã‚¹ã‚±ãƒ¼ãƒ«è¨­å®š
 	NNS_G3dGlbSetBaseScale(scale_p);
 
 	NNS_G3dGlbFlush();
@@ -194,7 +194,7 @@ void simple_3DModelDraw_1mat1shape
 }
 
 //------------------------------------------------------------------
-//                      ‚R‚c‚a‚f‰Šú‰»ŠÖ”
+//                      ï¼“ï¼¤ï¼¢ï¼§åˆæœŸåŒ–é–¢æ•°
 //------------------------------------------------------------------
 static GF_G3DMAN* g3Dman = NULL;
 static void simpleSetUp(void);
@@ -212,22 +212,22 @@ void simple_3DBGInit(const u8 inMode)
 
 static void simpleSetUp(void)
 {
-	// ‚R‚cg—p–Ê‚Ìİ’è(•\¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
@@ -240,16 +240,16 @@ void simple_3DBGExit(void)
 //------------------------------------------------------------------
 BOOL BindTexture(void* pResData, NNSG3dResTex* pTex)
 {
-	//ƒoƒCƒ“ƒh‚·‚é
+	//ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹
 	NNSG3dResMdlSet* mdlSet = NNS_G3dGetMdlSet((NNSG3dResFileHeader*) pResData);
 	NNS_G3D_NULL_ASSERT(mdlSet);
 	if (pTex){
 		BOOL rc;
-		// ƒ‚ƒfƒ‹ƒZƒbƒg‚ÌƒoƒCƒ“ƒh
+		// ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆã®ãƒã‚¤ãƒ³ãƒ‰
 		rc = NNS_G3dBindMdlSet(mdlSet, pTex);
 	
-		//ÀÛ‚ÉŒ‹‡‚³‚ê‚éƒ‚ƒfƒ‹‚ğo—Í kaga
-		#if 0 //—v‚ç‚È‚­‚È‚Á‚½‚Ì‚ÅÁ‚µ‚½
+		//å®Ÿéš›ã«çµåˆã•ã‚Œã‚‹ãƒ¢ãƒ‡ãƒ«ã‚’å‡ºåŠ› kaga
+		#if 0 //è¦ã‚‰ãªããªã£ãŸã®ã§æ¶ˆã—ãŸ
 		#ifdef DEBUG_ONLY_FOR_kagaya
 	    if( rc ){
 			u32 i;
@@ -264,11 +264,11 @@ BOOL BindTexture(void* pResData, NNSG3dResTex* pTex)
 				mat     = NNS_G3dGetMat(mdl);
 				dictTex = (NNSG3dResDict*)((u8*)mat + mat->ofsDictTexToMatList);
     	
-				// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ÌƒeƒNƒXƒ`ƒƒ–¼->ƒ}ƒeƒŠƒAƒ‹ƒCƒ“ƒfƒbƒNƒX—ñ«‘“à‚Ì
-				// ‚»‚ê‚¼‚ê‚É‘Î‚µ‚Äƒ‹[ƒv‚ğ‰ñ‚·
+				// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£å->ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹åˆ—è¾æ›¸å†…ã®
+				// ãã‚Œãã‚Œã«å¯¾ã—ã¦ãƒ«ãƒ¼ãƒ—ã‚’å›ã™
 			    for (j = 0; j < dictTex->numEntry; ++j){
     		    	const NNSG3dResName* name = NNS_G3dGetResNameByIdx(dictTex, i);
-					OS_Printf( "ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh Name[%s]\n", name );
+					OS_Printf( "ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰ Name[%s]\n", name );
 				}
 			}
 		}
@@ -277,7 +277,7 @@ BOOL BindTexture(void* pResData, NNSG3dResTex* pTex)
 		
 #ifdef PN_DEBUG		
 		if (!rc){
-			OS_Printf("ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh‚É¸”s\n");
+			OS_Printf("ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰ã«å¤±æ•—\n");
 		}
 #endif
 
@@ -289,7 +289,7 @@ BOOL BindTexture(void* pResData, NNSG3dResTex* pTex)
 	return FALSE;
 }
 
-//ƒeƒNƒXƒ`ƒƒ‚ÌVRAM‚Ö‚Ìƒ[ƒh
+//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®VRAMã¸ã®ãƒ­ãƒ¼ãƒ‰
 BOOL LoadVRAMTexture(NNSG3dResTex* tex)
 {
 	if(tex == NULL){
@@ -307,13 +307,13 @@ BOOL LoadVRAMTexture(NNSG3dResTex* tex)
         NNSG3dPlttKey keyPltt;
 
 		if (tex){
-			// •K—v‚ÈƒTƒCƒY‚ğæ“¾
+			// å¿…è¦ãªã‚µã‚¤ã‚ºã‚’å–å¾—
             szTex    = NNS_G3dTexGetRequiredSize(tex);
             szTex4x4 = NNS_G3dTex4x4GetRequiredSize(tex);
             szPltt   = NNS_G3dPlttGetRequiredSize(tex);
 
             if (szTex > 0){
-				// ‘¶İ‚·‚ê‚ÎƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ÉŠm•Û
+				// å­˜åœ¨ã™ã‚Œã°ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã«ç¢ºä¿
                 keyTex = NNS_GfdAllocTexVram(szTex, FALSE, 0);
                 if (keyTex == NNS_GFD_ALLOC_ERROR_TEXKEY){
                     sucTex = FALSE;
@@ -324,7 +324,7 @@ BOOL LoadVRAMTexture(NNSG3dResTex* tex)
             }
 
 			if (szTex4x4 > 0){
-				// ‘¶İ‚·‚ê‚ÎƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ÉŠm•Û
+				// å­˜åœ¨ã™ã‚Œã°ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã«ç¢ºä¿
                 keyTex4x4 = NNS_GfdAllocTexVram(szTex4x4, TRUE, 0);
                 if (keyTex4x4 == NNS_GFD_ALLOC_ERROR_TEXKEY){
 					sucTex4x4 = FALSE;
@@ -335,7 +335,7 @@ BOOL LoadVRAMTexture(NNSG3dResTex* tex)
             }
 
             if (szPltt > 0){
-                // ‘¶İ‚·‚ê‚ÎƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg‚ÉŠm•Û
+                // å­˜åœ¨ã™ã‚Œã°ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆã«ç¢ºä¿
                 keyPltt = 
                     NNS_GfdAllocPlttVram(szPltt,
                                         tex->tex4x4Info.flag & NNS_G3D_RESPLTT_USEPLTT4,
@@ -349,10 +349,10 @@ BOOL LoadVRAMTexture(NNSG3dResTex* tex)
             }
 
             if (!sucTex){
-                // ¸”s‚Ìƒ[ƒ‹ƒoƒbƒNˆ—
+                // å¤±æ•—æ™‚ã®ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
                 int status;
 #ifdef PM_DEBUG
-				OS_Printf("ƒeƒNƒXƒ`ƒƒæ“¾•s‰Â%d/%d\n",szTex,D_3D_DC_VramTexSizeGet());
+				OS_Printf("ãƒ†ã‚¯ã‚¹ãƒãƒ£å–å¾—ä¸å¯%d/%d\n",szTex,D_3D_DC_VramTexSizeGet());
 #endif
 				status = NNS_GfdFreeTexVram(keyTex);
                 NNS_G3D_ASSERTMSG(!status, "NNS_GfdFreeTexVram failed");
@@ -361,7 +361,7 @@ BOOL LoadVRAMTexture(NNSG3dResTex* tex)
                 return FALSE;
             }
 			if (!sucTex4x4){
-                // ¸”s‚Ìƒ[ƒ‹ƒoƒbƒNˆ—
+                // å¤±æ•—æ™‚ã®ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
                 int status;
 
                 status = NNS_GfdFreeTexVram(keyTex4x4);
@@ -371,7 +371,7 @@ BOOL LoadVRAMTexture(NNSG3dResTex* tex)
                 return FALSE;
             }
 			if (!sucPltt){
-                // ¸”s‚Ìƒ[ƒ‹ƒoƒbƒNˆ—
+                // å¤±æ•—æ™‚ã®ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
                 int status;
 
                 status = NNS_GfdFreePlttVram(keyPltt);
@@ -381,13 +381,13 @@ BOOL LoadVRAMTexture(NNSG3dResTex* tex)
                 return FALSE;
             }
 
-            // ƒL[‚ÌƒAƒTƒCƒ“
+            // ã‚­ãƒ¼ã®ã‚¢ã‚µã‚¤ãƒ³
             NNS_G3dTexSetTexKey(tex, keyTex, keyTex4x4);
             NNS_G3dPlttSetPlttKey(tex, keyPltt);
 
-			//DMA“]‘—‚·‚é‚Ì‚Åƒtƒ‰ƒbƒVƒ…‚·‚é
+			//DMAè»¢é€ã™ã‚‹ã®ã§ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹
 			DC_FlushRange( tex, tex->header.size );
-            // VRAM‚Ö‚Ìƒ[ƒh
+            // VRAMã¸ã®ãƒ­ãƒ¼ãƒ‰
             NNS_G3dTexLoad(tex, TRUE);
             NNS_G3dPlttLoad(tex, TRUE);
         }
@@ -398,36 +398,36 @@ BOOL LoadVRAMTexture(NNSG3dResTex* tex)
 
 //==============================================================================
 /**
- * 3DŠÖ˜Aƒpƒ‰ƒ[ƒ^‚Ìİ’è
+ * 3Dé–¢é€£ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®š
  *
- * @param   inParam		ƒZƒbƒgƒAƒbƒvƒpƒ‰ƒ[ƒ^		
+ * @param   inParam		ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿		
  *
  * @retval  none		
  */
 //==============================================================================
 void simple_Setup3DParams(const G3D_SETUP_PARAM *inParam)
 {
-	// NitroSystem:‚R‚cƒGƒ“ƒWƒ“‚Ì‰Šú‰»
+	// NitroSystem:ï¼“ï¼¤ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–
 	NNS_G3dInit();
-	// ƒ}ƒgƒŠƒNƒXƒXƒ^ƒbƒN‚Ì‰Šú‰»
+	// ãƒãƒˆãƒªã‚¯ã‚¹ã‚¹ã‚¿ãƒƒã‚¯ã®åˆæœŸåŒ–
     G3X_InitMtxStack();
 
-	// ‚R‚cg—p–Ê‚Ìİ’è(•\¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
-	GF_ASSERT(inParam->Priority<=3&&"’l‚ª•s³");
+	GF_ASSERT(inParam->Priority<=3&&"å€¤ãŒä¸æ­£");
     G2_SetBG0Priority(inParam->Priority);
 
-	// Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
-    G3X_SetShading(inParam->ShadeMode);					//ƒVƒF[ƒfƒBƒ“ƒO
-    G3X_AntiAlias(inParam->AntiAlias);					//ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
+    G3X_SetShading(inParam->ShadeMode);					//ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°
+    G3X_AntiAlias(inParam->AntiAlias);					//ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹
     //G2_BlendNone(); 
-	G3X_AlphaTest(inParam->AlphaTest, inParam->Ref);	// ƒAƒ‹ƒtƒ@ƒeƒXƒg
-	G3X_AlphaBlend(inParam->AlphaBlend);				// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh
+	G3X_AlphaTest(inParam->AlphaTest, inParam->Ref);	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆ
+	G3X_AlphaBlend(inParam->AlphaBlend);				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰
 
 	{
 		const G3D_CLEAR_COLOR *col;
 		col = &(inParam->ClearColor);
-		// ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+		// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
 		G3X_SetClearColor(col->RGB,	// clear color
 			              col->Alpha,				// clear alpha
 				          col->Depth,			// clear depth
@@ -436,18 +436,18 @@ void simple_Setup3DParams(const G3D_SETUP_PARAM *inParam)
 						 );
 	}
 
-	// ƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‹N“®Œã•K‚¸ŒÄ‚Î‚ê‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³èµ·å‹•å¾Œå¿…ãšå‘¼ã°ã‚Œãªã‘ã‚Œã°ãªã‚‰ãªã„
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //==============================================================================
 /**
- * VRAMƒ}ƒl[ƒWƒƒ[ƒƒ‚ƒŠ‚Ì‰ğ•ú
+ * VRAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
  *
- * @param   inParam		ƒZƒbƒgƒAƒbƒvƒpƒ‰ƒ[ƒ^		
+ * @param   inParam		ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿		
  *
  * @retval  none		
  */
@@ -461,13 +461,13 @@ void simple_FreeVRAMManager(VRAM_MANAGER_MEM_PTR *ptr)
 
 //==============================================================================
 /**
- * VRAMƒ}ƒl[ƒWƒƒ[‚Ìİ’è
+ * VRAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®è¨­å®š
  *
- * @param   inPalSize		ƒpƒŒƒbƒgƒTƒCƒY
- * @param   inTexSize		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param   inHeapID		ƒq[ƒvID
+ * @param   inPalSize		ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚º
+ * @param   inTexSize		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param   inHeapID		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  VRAM_MANAGER_MEM_PTR	Šm•Û‚µ‚½ƒƒ‚ƒŠƒ|ƒCƒ“ƒ^
+ * @retval  VRAM_MANAGER_MEM_PTR	ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 static VRAM_MANAGER_MEM_PTR AllocVramManegerMem(const int inPalSize,
@@ -485,13 +485,13 @@ static VRAM_MANAGER_MEM_PTR AllocVramManegerMem(const int inPalSize,
 
 //==============================================================================
 /**
- * VRAMƒ}ƒl[ƒWƒƒ[‚Ìİ’è
+ * VRAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®è¨­å®š
  *
- * @param   inPalSize		ƒpƒŒƒbƒgƒTƒCƒY
- * @param   inTexSize		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param   inHeapID		ƒq[ƒvID
+ * @param   inPalSize		ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚º
+ * @param   inTexSize		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param   inHeapID		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  VRAM_MANAGER_MEM_PTR	Šm•Û‚µ‚½ƒƒ‚ƒŠƒ|ƒCƒ“ƒ^
+ * @retval  VRAM_MANAGER_MEM_PTR	ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 static void FreeVramManegerMem(VRAM_MANAGER_MEM_PTR *ptr)

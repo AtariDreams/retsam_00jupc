@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	fight_def.h
- * @bfief	í“¬ƒƒCƒ“ƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.05.24
  */
@@ -40,135 +40,135 @@ typedef struct PERAPVOICE PERAPVOICE;
 typedef struct _CONFIG CONFIG;
 typedef struct _POKETCH_DATA POKETCH_DATA;
 
-///<í“¬—pƒ[ƒN\‘¢‘ÌéŒ¾
+///<æˆ¦é—˜ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“å®£è¨€
 struct battle_work
 {
-	GF_G3DMAN			*g3Dman;					///<3D–Ê‰Šú‰»ƒ}ƒl[ƒWƒƒ[‚Ìƒ|ƒCƒ“ƒ^
+	GF_G3DMAN			*g3Dman;					///<3Dé¢åˆæœŸåŒ–ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
 	GF_BGL_INI			*bgl;
 	GF_BGL_BMPWIN		*win;
-	MSGDATA_MANAGER		*fight_msg;					///<í“¬ƒƒbƒZ[ƒW—pƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ‚Ìƒ|ƒCƒ“ƒ^
-	MSGDATA_MANAGER		*attack_msg;				///<í“¬ƒƒbƒZ[ƒW—pƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ‚Ìƒ|ƒCƒ“ƒ^iƒAƒ^ƒbƒNƒƒbƒZ[ƒWj
-	WORDSET				*wordset;					///<í“¬ƒƒbƒZ[ƒW—p’PŒêƒoƒbƒtƒ@
-	STRBUF				*msg_buf;					///<ƒƒbƒZ[ƒW—p‚ÉŠm•Û‚µ‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MSGDATA_MANAGER		*fight_msg;					///<æˆ¦é—˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒã‚¤ãƒ³ã‚¿
+	MSGDATA_MANAGER		*attack_msg;				///<æˆ¦é—˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆã‚¢ã‚¿ãƒƒã‚¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼‰
+	WORDSET				*wordset;					///<æˆ¦é—˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨å˜èªãƒãƒƒãƒ•ã‚¡
+	STRBUF				*msg_buf;					///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ã«ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	TCB_PTR				update_tcb;
-	TCB_PTR				pinch_tcb;					///<ƒsƒ“ƒ`SE‚Ì§Œäƒ^ƒXƒN
-	TCB_PTR				msgwinmove_tcb;				///<Å‰‚Ì‰‰o—p(BG1–ÊiƒƒbƒZ[ƒW–Êj‚ğã‚ÉƒXƒNƒ[ƒ‹‚³‚¹‚éj
-	PALETTE_FADE_PTR	pfd;						///<ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	TCB_PTR				pinch_tcb;					///<ãƒ”ãƒ³ãƒSEã®åˆ¶å¾¡ã‚¿ã‚¹ã‚¯
+	TCB_PTR				msgwinmove_tcb;				///<æœ€åˆã®æ¼”å‡ºç”¨(BG1é¢ï¼ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¢ï¼‰ã‚’ä¸Šã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹ï¼‰
+	PALETTE_FADE_PTR	pfd;						///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	u32					fight_type;
 	SERVER_PARAM		*server_param;
 	CLIENT_PARAM		*client_param[CLIENT_MAX];
 	int					client_set_max;
-	MYSTATUS			*my_status[CLIENT_MAX];		///<ƒvƒŒ[ƒ„[î•ñ
-	MYITEM				*my_item;					///<è‚¿ƒAƒCƒeƒ€î•ñ
-	BAG_CURSOR			*bag_cursor;				///<ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ƒf[ƒ^
-	ZUKAN_WORK			*zw;						///<}ŠÓƒ[ƒN
-	BOX_DATA			*box;						///<ƒ{ƒbƒNƒXƒf[ƒ^
-	POKEPARTY			*poke_party[CLIENT_MAX];	///<è‚¿ƒ|ƒPƒ‚ƒ“‚Ì\‘¢‘Ì
-	PERAPVOICE			*poke_voice[CLIENT_MAX];	///<ƒ|ƒPƒ‚ƒ“‚Ì–Â‚«ºƒf[ƒ^
+	MYSTATUS			*my_status[CLIENT_MAX];		///<ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼æƒ…å ±
+	MYITEM				*my_item;					///<æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±
+	BAG_CURSOR			*bag_cursor;				///<ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ZUKAN_WORK			*zw;						///<å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+	BOX_DATA			*box;						///<ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+	POKEPARTY			*poke_party[CLIENT_MAX];	///<æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®æ§‹é€ ä½“
+	PERAPVOICE			*poke_voice[CLIENT_MAX];	///<ãƒã‚±ãƒ¢ãƒ³ã®é³´ãå£°ãƒ‡ãƒ¼ã‚¿
 	SOFT_SPRITE_MANAGER	*soft_sprite;
 	WE_SYS_PTR			wsp;
 	CATS_SYS_PTR		csp;
 	CATS_RES_PTR		crp;
-	POKETCH_DATA		*poketch_data;				///<ƒ|ƒPƒbƒ`ƒf[ƒ^
-	TVWATCH_BATTLE_WORK * TVWatchBattleWork;		///<ƒeƒŒƒrF•ßŠl”Ô‘g—p
+	POKETCH_DATA		*poketch_data;				///<ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿
+	TVWATCH_BATTLE_WORK * TVWatchBattleWork;		///<ãƒ†ãƒ¬ãƒ“ï¼šæ•ç²ç•ªçµ„ç”¨
 	u16					trainer_id[CLIENT_MAX];
 	u8					trainer_sex[CLIENT_MAX];
-	TRAINER_DATA		trainer_data[CLIENT_MAX];	///<ƒgƒŒ[ƒi[ƒf[ƒ^
-	GROUND_WORK			ground[GROUND_MAX];			///<’n–Êƒ[ƒN(©‹@‘¤ + “G‘¤)
-	BI_PARAM_PTR		bip;						///<í“¬“ü—Í‰æ–ÊƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TEMOTIGAUGE_PTR		tg[TEMOTIGAUGE_MAX];		///<è‚¿ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	NUMFONT				*numfont_hp;				///<8x8ƒtƒHƒ“ƒg(HP—p)
-	NUMFONT				*numfont_lv;				///<8x8ƒtƒHƒ“ƒg(ƒŒƒxƒ‹—p)
-	void				*msg_icon;					///<ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE‚ÌDSƒAƒCƒRƒ“—pƒ|ƒCƒ“ƒ^
-	CONFIG				*config;					///<ƒQ[ƒ€ƒRƒ“ƒtƒBƒO
-	FRIEND_LIST			*friendlist;				///<‚Æ‚à‚¾‚¿ƒOƒ‹[ƒvƒf[ƒ^
-	void				*time_icon;					///<’ÊM‘Ò‹@’†‚ÌŒvƒAƒCƒRƒ“ƒ^ƒXƒN
-	BATTLE_CURSOR_DISP	*battle_cursor;				///<í“¬ƒJ[ƒ\ƒ‹‚Ì‰Šú•\¦ó‘Ô
+	TRAINER_DATA		trainer_data[CLIENT_MAX];	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	GROUND_WORK			ground[GROUND_MAX];			///<åœ°é¢ãƒ¯ãƒ¼ã‚¯(è‡ªæ©Ÿå´ + æ•µå´)
+	BI_PARAM_PTR		bip;						///<æˆ¦é—˜å…¥åŠ›ç”»é¢ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TEMOTIGAUGE_PTR		tg[TEMOTIGAUGE_MAX];		///<æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	NUMFONT				*numfont_hp;				///<8x8ãƒ•ã‚©ãƒ³ãƒˆ(HPç”¨)
+	NUMFONT				*numfont_lv;				///<8x8ãƒ•ã‚©ãƒ³ãƒˆ(ãƒ¬ãƒ™ãƒ«ç”¨)
+	void				*msg_icon;					///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®DSã‚¢ã‚¤ã‚³ãƒ³ç”¨ãƒã‚¤ãƒ³ã‚¿
+	CONFIG				*config;					///<ã‚²ãƒ¼ãƒ ã‚³ãƒ³ãƒ•ã‚£ã‚°
+	FRIEND_LIST			*friendlist;				///<ã¨ã‚‚ã ã¡ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿
+	void				*time_icon;					///<é€šä¿¡å¾…æ©Ÿä¸­ã®æ™‚è¨ˆã‚¢ã‚¤ã‚³ãƒ³ã‚¿ã‚¹ã‚¯
+	BATTLE_CURSOR_DISP	*battle_cursor;				///<æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®åˆæœŸè¡¨ç¤ºçŠ¶æ…‹
 	
 
-	VS_DEMO_DATA		*vdd;						///<‘ÎíŠJn‘Oƒfƒ‚—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	POKE_ANM_SYS_PTR	pasp;						///<ƒ|ƒPƒ‚ƒ“ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	NNSG2dCellTransferState	*cell_trans;			///<ƒZƒ‹“]‘—ƒ}ƒl[ƒWƒƒ
+	VS_DEMO_DATA		*vdd;						///<å¯¾æˆ¦é–‹å§‹å‰ãƒ‡ãƒ¢ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	POKE_ANM_SYS_PTR	pasp;						///<ãƒã‚±ãƒ¢ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	NNSG2dCellTransferState	*cell_trans;			///<ã‚»ãƒ«è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£
 	
 
-	EXCHR_PARAM			exchr_param[CLIENT_MAX];	///<‹ZƒGƒtƒFƒNƒg—pƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰“WŠJƒpƒ‰ƒ[ƒ^
+	EXCHR_PARAM			exchr_param[CLIENT_MAX];	///<æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©å±•é–‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	BATTLE_TOWER_RECORD	btr;						///<ƒoƒgƒ‹ƒ^ƒ[¬Ñ—pƒ[ƒN
+	BATTLE_TOWER_RECORD	btr;						///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æˆç¸¾ç”¨ãƒ¯ãƒ¼ã‚¯
 
-	RECORD				*record;					///<ƒJƒEƒ“ƒgƒAƒbƒv—pƒ[ƒN
+	RECORD				*record;					///<ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ç”¨ãƒ¯ãƒ¼ã‚¯
 
-	u8					*bg_area;					///<”wŒiƒOƒ‰ƒtƒBƒbƒN‘Ş”ğ—ÌˆæiƒLƒƒƒ‰j
-	u16					*pal_area;					///<”wŒiƒOƒ‰ƒtƒBƒbƒN‘Ş”ğ—ÌˆæiƒpƒŒƒbƒgj
+	u8					*bg_area;					///<èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é€€é¿é ˜åŸŸï¼ˆã‚­ãƒ£ãƒ©ï¼‰
+	u16					*pal_area;					///<èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é€€é¿é ˜åŸŸï¼ˆãƒ‘ãƒ¬ãƒƒãƒˆï¼‰
 
-	u8					sio_send_buffer[BATTLE_SIO_BUF_SIZE];	///<’ÊM‘—Mƒoƒbƒtƒ@
-	u8					sio_recv_buffer[BATTLE_SIO_BUF_SIZE];	///<’ÊMóMƒoƒbƒtƒ@
+	u8					sio_send_buffer[BATTLE_SIO_BUF_SIZE];	///<é€šä¿¡é€ä¿¡ãƒãƒƒãƒ•ã‚¡
+	u8					sio_recv_buffer[BATTLE_SIO_BUF_SIZE];	///<é€šä¿¡å—ä¿¡ãƒãƒƒãƒ•ã‚¡
 
-	u16					push_bg_palette[0x10*7];	///<BGƒpƒŒƒbƒg‘Ş”ğ—Ìˆæ
-	u16					push_obj_palette[0x10*7];	///<OBJƒpƒŒƒbƒg‘Ş”ğ—Ìˆæ
+	u16					push_bg_palette[0x10*7];	///<BGãƒ‘ãƒ¬ãƒƒãƒˆé€€é¿é ˜åŸŸ
+	u16					push_obj_palette[0x10*7];	///<OBJãƒ‘ãƒ¬ãƒƒãƒˆé€€é¿é ˜åŸŸ
 
-	u16					sio_send_read;				///<’ÊM‘—Mƒoƒbƒtƒ@“Ç‚İ‚İˆÊ’u
-	u16					sio_send_write;				///<’ÊM‘—Mƒoƒbƒtƒ@‘‚«‚İˆÊ’u
+	u16					sio_send_read;				///<é€šä¿¡é€ä¿¡ãƒãƒƒãƒ•ã‚¡èª­ã¿è¾¼ã¿ä½ç½®
+	u16					sio_send_write;				///<é€šä¿¡é€ä¿¡ãƒãƒƒãƒ•ã‚¡æ›¸ãè¾¼ã¿ä½ç½®
 
-	u16					sio_send_over;				///<’ÊM‘—Mƒoƒbƒtƒ@‘‚«‚İ‚ÉƒI[ƒo[‚µ‚½‚Æ‚«‚Ìƒ[ƒN
-	u16					sio_recv_read;				///<’ÊMóMƒoƒbƒtƒ@“Ç‚İ‚İˆÊ’u
+	u16					sio_send_over;				///<é€šä¿¡é€ä¿¡ãƒãƒƒãƒ•ã‚¡æ›¸ãè¾¼ã¿æ™‚ã«ã‚ªãƒ¼ãƒãƒ¼ã—ãŸã¨ãã®ãƒ¯ãƒ¼ã‚¯
+	u16					sio_recv_read;				///<é€šä¿¡å—ä¿¡ãƒãƒƒãƒ•ã‚¡èª­ã¿è¾¼ã¿ä½ç½®
 
-	u16					sio_recv_write;				///<’ÊMóMƒoƒbƒtƒ@‘‚«‚İˆÊ’u
-	u16					sio_recv_over;				///<’ÊMóMƒoƒbƒtƒ@‘‚«‚İ‚ÉƒI[ƒo[‚µ‚½‚Æ‚«‚Ìƒ[ƒN
+	u16					sio_recv_write;				///<é€šä¿¡å—ä¿¡ãƒãƒƒãƒ•ã‚¡æ›¸ãè¾¼ã¿ä½ç½®
+	u16					sio_recv_over;				///<é€šä¿¡å—ä¿¡ãƒãƒƒãƒ•ã‚¡æ›¸ãè¾¼ã¿æ™‚ã«ã‚ªãƒ¼ãƒãƒ¼ã—ãŸã¨ãã®ãƒ¯ãƒ¼ã‚¯
 
-	u8					*tcb_sio_send_seq_no;		///<’ÊM‘—MTCB‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8					*tcb_sio_recv_seq_no;		///<’ÊMóMTCB‚ÌƒV[ƒPƒ“ƒXƒiƒ“ƒo[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	u8					*tcb_sio_send_seq_no;		///<é€šä¿¡é€ä¿¡TCBã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8					*tcb_sio_recv_seq_no;		///<é€šä¿¡å—ä¿¡TCBã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	u8					server_flag;				///<ƒT[ƒo‚ª‹N“®‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO
-	u8					proc_mode;					///<í“¬ƒVƒXƒeƒ€‚Ì“®ìƒ‚[ƒh
-	u8					fight_end_flag;				///<í“¬I—¹ƒtƒ‰ƒO
-	u8					bld_init_req		:1;		///<ƒuƒŒƒ“ƒhİ’è‰Šú‰»—v‹ƒtƒ‰ƒO
-	u8					vram_init_req		:1;		///<VRAMİ’è‰Šú‰»—v‹ƒtƒ‰ƒO
-	u8					bl_vram_init_req	:1;		///<VRAMİ’è‰Šú‰»—v‹ƒtƒ‰ƒOiƒoƒbƒO•ƒŠƒXƒg‰æ–Êj
-	u8					pinch_se_flag		:2;		///<ƒsƒ“ƒ`SEƒtƒ‰ƒO
-	u8					pinch_se_wait		:3;		///<ƒsƒ“ƒ`SEƒEƒGƒCƒg
+	u8					server_flag;				///<ã‚µãƒ¼ãƒãŒèµ·å‹•ã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	u8					proc_mode;					///<æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰
+	u8					fight_end_flag;				///<æˆ¦é—˜çµ‚äº†ãƒ•ãƒ©ã‚°
+	u8					bld_init_req		:1;		///<ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šåˆæœŸåŒ–è¦æ±‚ãƒ•ãƒ©ã‚°
+	u8					vram_init_req		:1;		///<VRAMè¨­å®šåˆæœŸåŒ–è¦æ±‚ãƒ•ãƒ©ã‚°
+	u8					bl_vram_init_req	:1;		///<VRAMè¨­å®šåˆæœŸåŒ–è¦æ±‚ãƒ•ãƒ©ã‚°ï¼ˆãƒãƒƒã‚°ï¼†ãƒªã‚¹ãƒˆç”»é¢ï¼‰
+	u8					pinch_se_flag		:2;		///<ãƒ”ãƒ³ãƒSEãƒ•ãƒ©ã‚°
+	u8					pinch_se_wait		:3;		///<ãƒ”ãƒ³ãƒSEã‚¦ã‚¨ã‚¤ãƒˆ
 
-	int					ground_id;					///<’nŒ`ID
-	int					bg_id;						///<”wŒiID
-	int					place_id;					///<’nˆæ–¼ID
-	u32					battle_status_flag;			///<í“¬Œø‰Êƒtƒ‰ƒO
-	int					time_zone;					///<ŠÔ‘Ñ
+	int					ground_id;					///<åœ°å½¢ID
+	int					bg_id;						///<èƒŒæ™¯ID
+	int					place_id;					///<åœ°åŸŸåID
+	u32					battle_status_flag;			///<æˆ¦é—˜åŠ¹æœãƒ•ãƒ©ã‚°
+	int					time_zone;					///<æ™‚é–“å¸¯
 
-	int					safari_ball;				///<ƒTƒtƒ@ƒŠƒ{[ƒ‹‚Ì”
+	int					safari_ball;				///<ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®æ•°
 
-	u8					appear_flag[CLIENT_MAX];	///<ŒJ‚èo‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌSelMonsNo‚ğƒrƒbƒg‚ÅŠi”[
+	u8					appear_flag[CLIENT_MAX];	///<ç¹°ã‚Šå‡ºã—ãŸãƒã‚±ãƒ¢ãƒ³ã®SelMonsNoã‚’ãƒ“ãƒƒãƒˆã§æ ¼ç´
 
-	u32					regulation_flag;			///<ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒtƒ‰ƒO
+	u32					regulation_flag;			///<ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°
 
-	u8					win_lose_flag;				///<Ÿ”sƒtƒ‰ƒO
-	u8					demo_seq_no;				///<•ßŠlƒfƒ‚—pƒV[ƒPƒ“ƒXƒiƒ“ƒo[
-	u16					ball_count;					///<ƒ{[ƒ‹‚ğ“Š‚°‚½‰ñ”
+	u8					win_lose_flag;				///<å‹æ•—ãƒ•ãƒ©ã‚°
+	u8					demo_seq_no;				///<æ•ç²ãƒ‡ãƒ¢ç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
+	u16					ball_count;					///<ãƒœãƒ¼ãƒ«ã‚’æŠ•ã’ãŸå›æ•°
 
-	int					shinka_place_mode;			///<êŠi‰»î•ñiSHINKA_PLACE`j	
-	int					contest_see_flag;			///<ƒRƒ“ƒeƒXƒg‚ğŒ©‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int					weather;					///<ƒtƒB[ƒ‹ƒh“VŒó
-	int					mizuki_flag;				///<ƒ~ƒYƒL‚É‚ ‚Á‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	u32					seed_temp;					///<—”‚Ìí‚Ì‘Ş”ğƒ[ƒN
-	int					bg1_scroll;					///<BG1YƒXƒNƒ[ƒ‹—pƒ[ƒN
-	int					get_pokemon_client;			///<•ßŠl‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌClientNo
+	int					shinka_place_mode;			///<å ´æ‰€é€²åŒ–æƒ…å ±ï¼ˆSHINKA_PLACEã€œï¼‰	
+	int					contest_see_flag;			///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚’è¦‹ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int					weather;					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¤©å€™
+	int					mizuki_flag;				///<ãƒŸã‚ºã‚­ã«ã‚ã£ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	u32					seed_temp;					///<ä¹±æ•°ã®ç¨®ã®é€€é¿ãƒ¯ãƒ¼ã‚¯
+	int					bg1_scroll;					///<BG1Yã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç”¨ãƒ¯ãƒ¼ã‚¯
+	int					get_pokemon_client;			///<æ•ç²ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ClientNo
 
-	int					command_select_flag;		///<ƒRƒ}ƒ“ƒhƒZƒŒƒNƒg‚Åƒ{ƒ^ƒ“‚ÌƒXƒ‰ƒCƒhƒCƒ“‚ÌI—¹‚Å—‚Æ‚·ƒtƒ‰ƒO
+	int					command_select_flag;		///<ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒ¬ã‚¯ãƒˆã§ãƒœã‚¿ãƒ³ã®ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³ã®çµ‚äº†æ™‚ã§è½ã¨ã™ãƒ•ãƒ©ã‚°
 
-	u8					no_reshuffle_client;		///<“ü‚ê‘Ö‚¦‚Å‚«‚È‚¢ClientNo‚ğƒrƒbƒg‚ÅŠÇ—i’ÊM—pj
-	u8					overlay_flag;				///<bc_common2‚Æbattle_ai‚ÌØ‚è‘Ö‚í‚è‚ğ•Û‘¶
-	u16					comm_id;					///<©•ª‚Ì’ÊMID
+	u8					no_reshuffle_client;		///<å…¥ã‚Œæ›¿ãˆã§ããªã„ClientNoã‚’ãƒ“ãƒƒãƒˆã§ç®¡ç†ï¼ˆé€šä¿¡ç”¨ï¼‰
+	u8					overlay_flag;				///<bc_common2ã¨battle_aiã®åˆ‡ã‚Šæ›¿ã‚ã‚Šã‚’ä¿å­˜
+	u16					comm_id;					///<è‡ªåˆ†ã®é€šä¿¡ID
 
-	u32					rand;						///<í“¬ê—p—”‚Ìí
-	u32					rand_temp;					///<í“¬ê—p—”‚Ìíi‘Ş”ğ—pj
-	u16					rec_send_pos[CLIENT_MAX];	///<‘Îí˜^‰æ—pƒoƒbƒtƒ@‚Ì‘—MˆÊ’uƒCƒ“ƒfƒbƒNƒXƒ[ƒN
-	u16					rec_recv_pos[CLIENT_MAX];	///<‘Îí˜^‰æ—pƒoƒbƒtƒ@‚ÌóMˆÊ’uƒCƒ“ƒfƒbƒNƒXƒ[ƒN
-	u16					rec_play_pos[CLIENT_MAX];	///<‘Îí˜^‰æ—pƒoƒbƒtƒ@‚ÌƒCƒ“ƒfƒbƒNƒXƒ[ƒN
-	int					comm_stand_no[CLIENT_MAX];	///<’ÊM‘Îí•”‰®‚Å‚Ì©•ª‚Ì—§‚¿ˆÊ’u
+	u32					rand;						///<æˆ¦é—˜å°‚ç”¨ä¹±æ•°ã®ç¨®
+	u32					rand_temp;					///<æˆ¦é—˜å°‚ç”¨ä¹±æ•°ã®ç¨®ï¼ˆé€€é¿ç”¨ï¼‰
+	u16					rec_send_pos[CLIENT_MAX];	///<å¯¾æˆ¦éŒ²ç”»ç”¨ãƒãƒƒãƒ•ã‚¡ã®é€ä¿¡ä½ç½®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¯ãƒ¼ã‚¯
+	u16					rec_recv_pos[CLIENT_MAX];	///<å¯¾æˆ¦éŒ²ç”»ç”¨ãƒãƒƒãƒ•ã‚¡ã®å—ä¿¡ä½ç½®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¯ãƒ¼ã‚¯
+	u16					rec_play_pos[CLIENT_MAX];	///<å¯¾æˆ¦éŒ²ç”»ç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¯ãƒ¼ã‚¯
+	int					comm_stand_no[CLIENT_MAX];	///<é€šä¿¡å¯¾æˆ¦éƒ¨å±‹ã§ã®è‡ªåˆ†ã®ç«‹ã¡ä½ç½®
 
-	u32					battle_rec_stop_flag:1;		///<‘Îí˜^‰æÄ¶’†’fƒtƒ‰ƒO
+	u32					battle_rec_stop_flag:1;		///<å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­æ–­ãƒ•ãƒ©ã‚°
 	u32										:31;
 
-	TCB_PTR				pbsb;						///<‘Îí˜^‰æÄ¶’†’fƒ{ƒ^ƒ“ƒ^ƒXƒN
-	u8					voice_waza_param[CLIENT_MAX];	///<‚Øƒ‰ƒbƒv‚Ì‚¨‚µ‚á‚×‚èg—p‚Ìƒpƒ‰ƒ[ƒ^i˜^‰æÄ¶‚Ég—pj
+	TCB_PTR				pbsb;						///<å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­æ–­ãƒœã‚¿ãƒ³ã‚¿ã‚¹ã‚¯
+	u8					voice_waza_param[CLIENT_MAX];	///<ãºãƒ©ãƒƒãƒ—ã®ãŠã—ã‚ƒã¹ã‚Šä½¿ç”¨æ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆéŒ²ç”»å†ç”Ÿæ™‚ã«ä½¿ç”¨ï¼‰
 };
 
 #endif __FIGHT_DEF_H_

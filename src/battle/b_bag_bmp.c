@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_bag_bmp.c
- * @brief	í“¬—pƒoƒbƒO‰æ–Ê BMPŠÖ˜A
+ * @brief	æˆ¦é—˜ç”¨ãƒãƒƒã‚°ç”»é¢ BMPé–¢é€£
  * @author	Hiroyuki Nakamura
  * @date	05.02.10
  */
@@ -32,18 +32,18 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	PCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
-#define	PCOL_N_WHITE	( PCOL_N_BLACK )						// ƒtƒHƒ“ƒgƒJƒ‰[F”’
-#define	PCOL_N_BLUE		( GF_PRINTCOLOR_MAKE( 7, 8, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÂ
-#define	PCOL_N_RED		( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÔ
+#define	PCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+#define	PCOL_N_WHITE	( PCOL_N_BLACK )						// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+#define	PCOL_N_BLUE		( GF_PRINTCOLOR_MAKE( 7, 8, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé’
+#define	PCOL_N_RED		( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šèµ¤
 
-#define	PCOL_BTN		( GF_PRINTCOLOR_MAKE( 3, 2, 1 ) )		// ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg
+#define	PCOL_BTN		( GF_PRINTCOLOR_MAKE( 3, 2, 1 ) )		// ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆ
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void BBAG_Page1BmpWrite( BBAG_WORK * wk );
 static void BBAG_Page2BmpWrite( BBAG_WORK * wk );
@@ -51,164 +51,164 @@ static void BBAG_Page3BmpWrite( BBAG_WORK * wk );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ‰ï˜bƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT CommBmpData = {
 	WIN_TALK_FRM, WIN_TALK_PX, WIN_TALK_PY,
 	WIN_TALK_SX, WIN_TALK_SY, WIN_TALK_PAL, WIN_TALK_CGX
 };
 
-// ƒy[ƒW‚P‚ÌƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ãƒšãƒ¼ã‚¸ï¼‘ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT Page1_BmpData[] =
 {
-	{	// uHP/PP‚©‚¢‚Ó‚­v
+	{	// ã€ŒHP/PPã‹ã„ãµãã€
 		WIN_P1_HP_FRM, WIN_P1_HP_PX, WIN_P1_HP_PY,
 		WIN_P1_HP_SX, WIN_P1_HP_SY, WIN_P1_HP_PAL, WIN_P1_HP_CGX
 	},
-	{	// u‚¶‚å‚¤‚½‚¢‚©‚¢‚Ó‚­v
+	{	// ã€Œã˜ã‚‡ã†ãŸã„ã‹ã„ãµãã€
 		WIN_P1_ZYOUTAI_FRM, WIN_P1_ZYOUTAI_PX, WIN_P1_ZYOUTAI_PY,
 		WIN_P1_ZYOUTAI_SX, WIN_P1_ZYOUTAI_SY, WIN_P1_ZYOUTAI_PAL, WIN_P1_ZYOUTAI_CGX
 	},
-	{	// uƒ{[ƒ‹v
+	{	// ã€Œãƒœãƒ¼ãƒ«ã€
 		WIN_P1_BALL_FRM, WIN_P1_BALL_PX, WIN_P1_BALL_PY,
 		WIN_P1_BALL_SX, WIN_P1_BALL_SY, WIN_P1_BALL_PAL, WIN_P1_BALL_CGX
 	},
-	{	// u‚¹‚ñ‚Æ‚¤‚æ‚¤v
+	{	// ã€Œã›ã‚“ã¨ã†ã‚ˆã†ã€
 		WIN_P1_BATTLE_FRM, WIN_P1_BATTLE_PX, WIN_P1_BATTLE_PY,
 		WIN_P1_BATTLE_SX, WIN_P1_BATTLE_SY, WIN_P1_BATTLE_PAL, WIN_P1_BATTLE_CGX
 	},
-	{	// u‚³‚¢‚²‚É‚Â‚©‚Á‚½‚Ç‚¤‚®v
+	{	// ã€Œã•ã„ã”ã«ã¤ã‹ã£ãŸã©ã†ãã€
 		WIN_P1_LASTITEM_FRM, WIN_P1_LASTITEM_PX, WIN_P1_LASTITEM_PY,
 		WIN_P1_LASTITEM_SX, WIN_P1_LASTITEM_SY, WIN_P1_LASTITEM_PAL, WIN_P1_LASTITEM_CGX
 	}
 };
 
-// ƒy[ƒW‚Q‚ÌƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ãƒšãƒ¼ã‚¸ï¼’ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT Page2_BmpData[] =
 {
-	{	// “¹‹ï–¼‚P
+	{	// é“å…·åï¼‘
 		WIN_P2_NAME1_FRM, WIN_P2_NAME1_PX, WIN_P2_NAME1_PY,
 		WIN_P2_NAME1_SX, WIN_P2_NAME1_SY, WIN_P2_NAME1_PAL, WIN_P2_NAME1_CGX
 	},
-	{	// “¹‹ï”‚P
+	{	// é“å…·æ•°ï¼‘
 		WIN_P2_NUM1_FRM, WIN_P2_NUM1_PX, WIN_P2_NUM1_PY,
 		WIN_P2_NUM1_SX, WIN_P2_NUM1_SY, WIN_P2_NUM1_PAL, WIN_P2_NUM1_CGX
 	},
-	{	// “¹‹ï–¼‚Q
+	{	// é“å…·åï¼’
 		WIN_P2_NAME2_FRM, WIN_P2_NAME2_PX, WIN_P2_NAME2_PY,
 		WIN_P2_NAME2_SX, WIN_P2_NAME2_SY, WIN_P2_NAME2_PAL, WIN_P2_NAME2_CGX
 	},
-	{	// “¹‹ï”‚Q
+	{	// é“å…·æ•°ï¼’
 		WIN_P2_NUM2_FRM, WIN_P2_NUM2_PX, WIN_P2_NUM2_PY,
 		WIN_P2_NUM2_SX, WIN_P2_NUM2_SY, WIN_P2_NUM2_PAL, WIN_P2_NUM2_CGX
 	},
-	{	// “¹‹ï–¼‚R
+	{	// é“å…·åï¼“
 		WIN_P2_NAME3_FRM, WIN_P2_NAME3_PX, WIN_P2_NAME3_PY,
 		WIN_P2_NAME3_SX, WIN_P2_NAME3_SY, WIN_P2_NAME3_PAL, WIN_P2_NAME3_CGX
 	},
-	{	// “¹‹ï”‚R
+	{	// é“å…·æ•°ï¼“
 		WIN_P2_NUM3_FRM, WIN_P2_NUM3_PX, WIN_P2_NUM3_PY,
 		WIN_P2_NUM3_SX, WIN_P2_NUM3_SY, WIN_P2_NUM3_PAL, WIN_P2_NUM3_CGX
 	},
-	{	// “¹‹ï–¼‚S
+	{	// é“å…·åï¼”
 		WIN_P2_NAME4_FRM, WIN_P2_NAME4_PX, WIN_P2_NAME4_PY,
 		WIN_P2_NAME4_SX, WIN_P2_NAME4_SY, WIN_P2_NAME4_PAL, WIN_P2_NAME4_CGX
 	},
-	{	// “¹‹ï”‚S
+	{	// é“å…·æ•°ï¼”
 		WIN_P2_NUM4_FRM, WIN_P2_NUM4_PX, WIN_P2_NUM4_PY,
 		WIN_P2_NUM4_SX, WIN_P2_NUM4_SY, WIN_P2_NUM4_PAL, WIN_P2_NUM4_CGX
 	},
-	{	// “¹‹ï–¼‚T
+	{	// é“å…·åï¼•
 		WIN_P2_NAME5_FRM, WIN_P2_NAME5_PX, WIN_P2_NAME5_PY,
 		WIN_P2_NAME5_SX, WIN_P2_NAME5_SY, WIN_P2_NAME5_PAL, WIN_P2_NAME5_CGX
 	},
-	{	// “¹‹ï”‚T
+	{	// é“å…·æ•°ï¼•
 		WIN_P2_NUM5_FRM, WIN_P2_NUM5_PX, WIN_P2_NUM5_PY,
 		WIN_P2_NUM5_SX, WIN_P2_NUM5_SY, WIN_P2_NUM5_PAL, WIN_P2_NUM5_CGX
 	},
-	{	// “¹‹ï–¼‚U
+	{	// é“å…·åï¼–
 		WIN_P2_NAME6_FRM, WIN_P2_NAME6_PX, WIN_P2_NAME6_PY,
 		WIN_P2_NAME6_SX, WIN_P2_NAME6_SY, WIN_P2_NAME6_PAL, WIN_P2_NAME6_CGX
 	},
-	{	// “¹‹ï”‚U
+	{	// é“å…·æ•°ï¼–
 		WIN_P2_NUM6_FRM, WIN_P2_NUM6_PX, WIN_P2_NUM6_PY,
 		WIN_P2_NUM6_SX, WIN_P2_NUM6_SY, WIN_P2_NUM6_PAL, WIN_P2_NUM6_CGX
 	},
-	{	// “¹‹ï–¼‚PiƒXƒƒbƒv—pj
+	{	// é“å…·åï¼‘ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NAME1_FRM, WIN_P2_NAME1_PX, WIN_P2_NAME1_PY,
 		WIN_P2_NAME1_SX, WIN_P2_NAME1_SY, WIN_P2_NAME1_PAL, WIN_P2_NAME1_S_CGX
 	},
-	{	// “¹‹ï”‚PiƒXƒƒbƒv—pj
+	{	// é“å…·æ•°ï¼‘ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NUM1_FRM, WIN_P2_NUM1_PX, WIN_P2_NUM1_PY,
 		WIN_P2_NUM1_SX, WIN_P2_NUM1_SY, WIN_P2_NUM1_PAL, WIN_P2_NUM1_S_CGX
 	},
-	{	// “¹‹ï–¼‚QiƒXƒƒbƒv—pj
+	{	// é“å…·åï¼’ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NAME2_FRM, WIN_P2_NAME2_PX, WIN_P2_NAME2_PY,
 		WIN_P2_NAME2_SX, WIN_P2_NAME2_SY, WIN_P2_NAME2_PAL, WIN_P2_NAME2_S_CGX
 	},
-	{	// “¹‹ï”‚QiƒXƒƒbƒv—pj
+	{	// é“å…·æ•°ï¼’ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NUM2_FRM, WIN_P2_NUM2_PX, WIN_P2_NUM2_PY,
 		WIN_P2_NUM2_SX, WIN_P2_NUM2_SY, WIN_P2_NUM2_PAL, WIN_P2_NUM2_S_CGX
 	},
-	{	// “¹‹ï–¼‚RiƒXƒƒbƒv—pj
+	{	// é“å…·åï¼“ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NAME3_FRM, WIN_P2_NAME3_PX, WIN_P2_NAME3_PY,
 		WIN_P2_NAME3_SX, WIN_P2_NAME3_SY, WIN_P2_NAME3_PAL, WIN_P2_NAME3_S_CGX
 	},
-	{	// “¹‹ï”‚RiƒXƒƒbƒv—pj
+	{	// é“å…·æ•°ï¼“ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NUM3_FRM, WIN_P2_NUM3_PX, WIN_P2_NUM3_PY,
 		WIN_P2_NUM3_SX, WIN_P2_NUM3_SY, WIN_P2_NUM3_PAL, WIN_P2_NUM3_S_CGX
 	},
-	{	// “¹‹ï–¼‚SiƒXƒƒbƒv—pj
+	{	// é“å…·åï¼”ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NAME4_FRM, WIN_P2_NAME4_PX, WIN_P2_NAME4_PY,
 		WIN_P2_NAME4_SX, WIN_P2_NAME4_SY, WIN_P2_NAME4_PAL, WIN_P2_NAME4_S_CGX
 	},
-	{	// “¹‹ï”‚SiƒXƒƒbƒv—pj
+	{	// é“å…·æ•°ï¼”ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NUM4_FRM, WIN_P2_NUM4_PX, WIN_P2_NUM4_PY,
 		WIN_P2_NUM4_SX, WIN_P2_NUM4_SY, WIN_P2_NUM4_PAL, WIN_P2_NUM4_S_CGX
 	},
-	{	// “¹‹ï–¼‚TiƒXƒƒbƒv—pj
+	{	// é“å…·åï¼•ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NAME5_FRM, WIN_P2_NAME5_PX, WIN_P2_NAME5_PY,
 		WIN_P2_NAME5_SX, WIN_P2_NAME5_SY, WIN_P2_NAME5_PAL, WIN_P2_NAME5_S_CGX
 	},
-	{	// “¹‹ï”‚TiƒXƒƒbƒv—pj
+	{	// é“å…·æ•°ï¼•ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NUM5_FRM, WIN_P2_NUM5_PX, WIN_P2_NUM5_PY,
 		WIN_P2_NUM5_SX, WIN_P2_NUM5_SY, WIN_P2_NUM5_PAL, WIN_P2_NUM5_S_CGX
 	},
-	{	// “¹‹ï–¼‚UiƒXƒƒbƒv—pj
+	{	// é“å…·åï¼–ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NAME6_FRM, WIN_P2_NAME6_PX, WIN_P2_NAME6_PY,
 		WIN_P2_NAME6_SX, WIN_P2_NAME6_SY, WIN_P2_NAME6_PAL, WIN_P2_NAME6_S_CGX
 	},
-	{	// “¹‹ï”‚UiƒXƒƒbƒv—pj
+	{	// é“å…·æ•°ï¼–ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 		WIN_P2_NUM6_FRM, WIN_P2_NUM6_PX, WIN_P2_NUM6_PY,
 		WIN_P2_NUM6_SX, WIN_P2_NUM6_SY, WIN_P2_NUM6_PAL, WIN_P2_NUM6_S_CGX
 	},
-	{	// ƒ|ƒPƒbƒg–¼
+	{	// ãƒã‚±ãƒƒãƒˆå
 		WIN_P2_POCKET_FRM, WIN_P2_POCKET_PX, WIN_P2_POCKET_PY,
 		WIN_P2_POCKET_SX, WIN_P2_POCKET_SY, WIN_P2_POCKET_PAL, WIN_P2_POCKET_CGX
 	},
-	{	// ƒy[ƒW”iƒAƒCƒeƒ€”j
+	{	// ãƒšãƒ¼ã‚¸æ•°ï¼ˆã‚¢ã‚¤ãƒ†ãƒ æ•°ï¼‰
 		WIN_P2_PAGENUM_FRM, WIN_P2_PAGENUM_PX, WIN_P2_PAGENUM_PY,
 		WIN_P2_PAGENUM_SX, WIN_P2_PAGENUM_SY, WIN_P2_PAGENUM_PAL, WIN_P2_PAGENUM_CGX
 	}
 };
 
-// ƒy[ƒW‚R‚ÌƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ãƒšãƒ¼ã‚¸ï¼“ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT Page3_BmpData[] =
 {
-	{	// “¹‹ï–¼
+	{	// é“å…·å
 		WIN_P3_NAME_FRM, WIN_P3_NAME_PX, WIN_P3_NAME_PY,
 		WIN_P3_NAME_SX, WIN_P3_NAME_SY, WIN_P3_NAME_PAL, WIN_P3_NAME_CGX
 	},
-	{	// ŒÂ”
+	{	// å€‹æ•°
 		WIN_P3_NUM_FRM, WIN_P3_NUM_PX, WIN_P3_NUM_PY,
 		WIN_P3_NUM_SX, WIN_P3_NUM_SY, WIN_P3_NUM_PAL, WIN_P3_NUM_CGX
 	},
-	{	// à–¾
+	{	// èª¬æ˜Ž
 		WIN_P3_INFO_FRM, WIN_P3_INFO_PX, WIN_P3_INFO_PY,
 		WIN_P3_INFO_SX, WIN_P3_INFO_SY, WIN_P3_INFO_PAL, WIN_P3_INFO_CGX
 	},
-	{	// u‚Â‚©‚¤v
+	{	// ã€Œã¤ã‹ã†ã€
 		WIN_P3_USE_FRM, WIN_P3_USE_PX, WIN_P3_USE_PY,
 		WIN_P3_USE_SX, WIN_P3_USE_SY, WIN_P3_USE_PAL, WIN_P3_USE_CGX
 	}
@@ -218,9 +218,9 @@ static const BMPWIN_DAT Page3_BmpData[] =
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒE‰Šú‰»
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -235,10 +235,10 @@ void BattleBag_BmpInit( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚²‚Æ‚ÌBMPƒEƒBƒ“ƒhƒE’Ç‰Á
+ * ãƒšãƒ¼ã‚¸ã”ã¨ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒW
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸
  *
  * @return	none
  */
@@ -249,15 +249,15 @@ void BattleBag_BmpAdd( BBAG_WORK * wk, u32 page )
 	u8	i;
 
 	switch( page ){
-	case BBAG_PAGE_POCKET:	// ƒ|ƒPƒbƒg‘I‘ðƒy[ƒW
+	case BBAG_PAGE_POCKET:	// ãƒã‚±ãƒƒãƒˆé¸æŠžãƒšãƒ¼ã‚¸
 		dat = Page1_BmpData;
 		wk->bmp_add_max = WIN_P1_MAX;
 		break;
-	case BBAG_PAGE_MAIN:	// ƒAƒCƒeƒ€‘I‘ðƒy[ƒW
+	case BBAG_PAGE_MAIN:	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžãƒšãƒ¼ã‚¸
 		dat = Page2_BmpData;
 		wk->bmp_add_max = WIN_P2_MAX;
 		break;
-	case BBAG_PAGE_ITEM:	// ƒAƒCƒeƒ€Žg—pƒy[ƒW
+	case BBAG_PAGE_ITEM:	// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸
 		dat = Page3_BmpData;
 		wk->bmp_add_max = WIN_P3_MAX;
 		break;
@@ -271,9 +271,9 @@ void BattleBag_BmpAdd( BBAG_WORK * wk, u32 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’Ç‰ÁBMPƒEƒBƒ“ƒhƒEíœ
+ * è¿½åŠ BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -285,9 +285,9 @@ void BattleBag_BmpFree( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒE‘Síœ
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å…¨å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -302,10 +302,10 @@ void BattleBag_BmpFreeAll( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMP‘‚«ž‚Ý
+ * BMPæ›¸ãè¾¼ã¿
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒW
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸
  *
  * @return	none
  */
@@ -313,13 +313,13 @@ void BattleBag_BmpFreeAll( BBAG_WORK * wk )
 void BattleBag_BmpWrite( BBAG_WORK * wk, u32 page )
 {
 	switch( page ){
-	case BBAG_PAGE_POCKET:	// ƒ|ƒPƒbƒg‘I‘ðƒy[ƒW
+	case BBAG_PAGE_POCKET:	// ãƒã‚±ãƒƒãƒˆé¸æŠžãƒšãƒ¼ã‚¸
 		BBAG_Page1BmpWrite( wk );
 		break;
-	case BBAG_PAGE_MAIN:	// ƒAƒCƒeƒ€‘I‘ðƒy[ƒW
+	case BBAG_PAGE_MAIN:	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžãƒšãƒ¼ã‚¸
 		BBAG_Page2BmpWrite( wk );
 		break;
-	case BBAG_PAGE_ITEM:	// ƒAƒCƒeƒ€Žg—pƒy[ƒW
+	case BBAG_PAGE_ITEM:	// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸
 		BBAG_Page3BmpWrite( wk );
 		break;
 	}
@@ -327,13 +327,13 @@ void BattleBag_BmpWrite( BBAG_WORK * wk, u32 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶Žš—ñ•\Ž¦
+ * æ–‡å­—åˆ—è¡¨ç¤º
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	widx	ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	midx	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
- * @param	py		•\Ž¦YÀ•W
- * @param	col		ƒJƒ‰[
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	widx	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	midx	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
+ * @param	col		ã‚«ãƒ©ãƒ¼
  *
  * @return	none
  */
@@ -355,7 +355,7 @@ static void BBAG_StrPut( BBAG_WORK * wk, u32 widx, u32 midx, u32 fidx, u32 py, u
 	GF_BGL_BmpWinOnVReq( win );
 }
 
-// ƒ|ƒPƒbƒg–¼•\Ž¦À•W
+// ãƒã‚±ãƒƒãƒˆåè¡¨ç¤ºåº§æ¨™
 #define	P1_KAIFUKU1_PY	( 24 )
 #define	P1_ZYOUTAI_PY	( 8 )
 #define	P1_KAIFUKU2_PY	( 24 )
@@ -367,9 +367,9 @@ static void BBAG_StrPut( BBAG_WORK * wk, u32 widx, u32 midx, u32 fidx, u32 py, u
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒg‘I‘ðƒy[ƒW•\Ž¦
+ * ãƒã‚±ãƒƒãƒˆé¸æŠžãƒšãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -401,9 +401,9 @@ static void BBAG_Page1BmpWrite( BBAG_WORK * wk )
 }
 
 
-// ƒAƒCƒeƒ€–¼‚ÌƒƒbƒZ[ƒWID
+// ã‚¢ã‚¤ãƒ†ãƒ åã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 static const u32 ItemStrGmm[][2] =
-{	// –¼‘OAx???
+{	// åå‰ã€x???
 	{ mes_b_bag_02_000, mes_b_bag_02_001 },
 	{ mes_b_bag_02_100, mes_b_bag_02_101 },
 	{ mes_b_bag_02_200, mes_b_bag_02_201 },
@@ -412,18 +412,18 @@ static const u32 ItemStrGmm[][2] =
 	{ mes_b_bag_02_500, mes_b_bag_02_501 }
 };
 
-#define	P2_ITEMNAME_PY	( 8 )		// ƒAƒCƒeƒ€‘I‘ðƒy[ƒW‚ÌƒAƒCƒeƒ€–¼•\Ž¦YÀ•W
+#define	P2_ITEMNAME_PY	( 8 )		// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžãƒšãƒ¼ã‚¸ã®ã‚¢ã‚¤ãƒ†ãƒ åè¡¨ç¤ºYåº§æ¨™
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€–¼•\Ž¦
+ * ã‚¢ã‚¤ãƒ†ãƒ åè¡¨ç¤º
  *
- * @param	wk			í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	dat_pos		ƒf[ƒ^ˆÊ’uiƒ|ƒPƒbƒg“à‚ÌƒAƒCƒeƒ€ˆÊ’uj
- * @param	put_pos		•\Ž¦ˆÊ’u
- * @param	widx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	fidx		ƒtƒHƒ“ƒgƒCƒ“ƒfƒbƒNƒX
- * @param	col			ƒJƒ‰[
+ * @param	wk			æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	dat_pos		ãƒ‡ãƒ¼ã‚¿ä½ç½®ï¼ˆãƒã‚±ãƒƒãƒˆå†…ã®ã‚¢ã‚¤ãƒ†ãƒ ä½ç½®ï¼‰
+ * @param	put_pos		è¡¨ç¤ºä½ç½®
+ * @param	widx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	fidx		ãƒ•ã‚©ãƒ³ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	col			ã‚«ãƒ©ãƒ¼
  *
  * @return	none
  */
@@ -456,15 +456,15 @@ static void BBAG_ItemNamePut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŒÂ”•\Ž¦
+ * å€‹æ•°è¡¨ç¤º
  *
- * @param	wk			í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	dat_pos		ƒf[ƒ^ˆÊ’uiƒ|ƒPƒbƒg“à‚ÌƒAƒCƒeƒ€ˆÊ’uj
- * @param	put_pos		•\Ž¦ˆÊ’u
- * @param	widx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	fidx		ƒtƒHƒ“ƒgƒCƒ“ƒfƒbƒNƒX
- * @param	py			•\Ž¦YÀ•W
- * @param	col			ƒJƒ‰[
+ * @param	wk			æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	dat_pos		ãƒ‡ãƒ¼ã‚¿ä½ç½®ï¼ˆãƒã‚±ãƒƒãƒˆå†…ã®ã‚¢ã‚¤ãƒ†ãƒ ä½ç½®ï¼‰
+ * @param	put_pos		è¡¨ç¤ºä½ç½®
+ * @param	widx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	fidx		ãƒ•ã‚©ãƒ³ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	py			è¡¨ç¤ºYåº§æ¨™
+ * @param	col			ã‚«ãƒ©ãƒ¼
  *
  * @return	none
  */
@@ -493,14 +493,14 @@ static void BBAG_ItemNumPut(
 	GF_BGL_BmpWinOnVReq( win );
 }
 
-#define	P2_ITEMNUM_PY	( 4 )	// ƒAƒCƒeƒ€‘I‘ðƒy[ƒW‚ÌŒÂ”•\Ž¦YÀ•W
+#define	P2_ITEMNUM_PY	( 4 )	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžãƒšãƒ¼ã‚¸ã®å€‹æ•°è¡¨ç¤ºYåº§æ¨™
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€–¼‚ÆŒÂ”•\Ž¦iŒÂ•Êj
+ * ã‚¢ã‚¤ãƒ†ãƒ åã¨å€‹æ•°è¡¨ç¤ºï¼ˆå€‹åˆ¥ï¼‰
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	pos		•\Ž¦ˆÊ’u
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -525,9 +525,9 @@ static void BBAG_P2_ItemPut( BBAG_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€–¼‚ÆŒÂ”•\Ž¦i‘S‘Ìj
+ * ã‚¢ã‚¤ãƒ†ãƒ åã¨å€‹æ•°è¡¨ç¤ºï¼ˆå…¨ä½“ï¼‰
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -546,13 +546,13 @@ void BattleBag_Page2_StrItemPut( BBAG_WORK * wk )
 }
 
 
-#define	P2_PAGE_NUM_PY	( 4 )	// ƒAƒCƒeƒ€‘I‘ðƒy[ƒW‚Ìƒy[ƒW”•\Ž¦YÀ•W
+#define	P2_PAGE_NUM_PY	( 4 )	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžãƒšãƒ¼ã‚¸ã®ãƒšãƒ¼ã‚¸æ•°è¡¨ç¤ºYåº§æ¨™
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW”•\Ž¦
+ * ãƒšãƒ¼ã‚¸æ•°è¡¨ç¤º
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -598,7 +598,7 @@ void BattleBag_Page2_StrPageNumPut( BBAG_WORK * wk )
 	GF_BGL_BmpWinOnVReq( win );
 }
 
-// ƒAƒCƒeƒ€‘I‘ðƒy[ƒW‚Ìƒ|ƒPƒbƒg–¼•\Ž¦À•W
+// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžãƒšãƒ¼ã‚¸ã®ãƒã‚±ãƒƒãƒˆåè¡¨ç¤ºåº§æ¨™
 #define	P2_NEXT_PY			( 8 )
 #define	P2_POCKET_HP1_PY	( 4 )
 #define	P2_POCKET_HP2_PY	( P2_POCKET_HP1_PY+16 )
@@ -609,9 +609,9 @@ void BattleBag_Page2_StrPageNumPut( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒg–¼•\Ž¦
+ * ãƒã‚±ãƒƒãƒˆåè¡¨ç¤º
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -621,23 +621,23 @@ static void BBAG_Page2PocketNamePut( BBAG_WORK * wk )
 	GF_BGL_BmpWinDataFill( &wk->add_win[WIN_P2_POCKET], 0 );
 
 	switch( wk->poke_id ){
-	case BBAG_POKE_HPRCV:	// HP‰ñ•œƒ|ƒPƒbƒg
+	case BBAG_POKE_HPRCV:	// HPå›žå¾©ãƒã‚±ãƒƒãƒˆ
 		BBAG_StrPut(
 			wk, WIN_P2_POCKET, mes_b_bag_02_700, FONT_SYSTEM, P2_POCKET_HP1_PY, PCOL_N_WHITE );
 		BBAG_StrPut(
 			wk, WIN_P2_POCKET, mes_b_bag_02_701, FONT_SYSTEM, P2_POCKET_HP2_PY, PCOL_N_WHITE );
 		break;
-	case BBAG_POKE_STRCV:	// ó‘Ô‰ñ•œƒ|ƒPƒbƒg
+	case BBAG_POKE_STRCV:	// çŠ¶æ…‹å›žå¾©ãƒã‚±ãƒƒãƒˆ
 		BBAG_StrPut(
 			wk, WIN_P2_POCKET, mes_b_bag_02_702, FONT_SYSTEM, P2_POCKET_ST1_PY, PCOL_N_WHITE );
 		BBAG_StrPut(
 			wk, WIN_P2_POCKET, mes_b_bag_02_703, FONT_SYSTEM, P2_POCKET_ST2_PY, PCOL_N_WHITE );
 		break;
-	case BBAG_POKE_BALL:	// ƒ{[ƒ‹ƒ|ƒPƒbƒg
+	case BBAG_POKE_BALL:	// ãƒœãƒ¼ãƒ«ãƒã‚±ãƒƒãƒˆ
 		BBAG_StrPut(
 			wk, WIN_P2_POCKET, mes_b_bag_02_704, FONT_SYSTEM, P2_POCKET_BALL_PY, PCOL_N_WHITE );
 		break;
-	case BBAG_POKE_BATTLE:	// í“¬—pƒ|ƒPƒbƒg
+	case BBAG_POKE_BATTLE:	// æˆ¦é—˜ç”¨ãƒã‚±ãƒƒãƒˆ
 		BBAG_StrPut(
 			wk, WIN_P2_POCKET, mes_b_bag_02_705, FONT_SYSTEM, P2_POCKET_BATL_PY, PCOL_N_WHITE );
 		break;
@@ -646,9 +646,9 @@ static void BBAG_Page2PocketNamePut( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€‘I‘ðƒy[ƒW
+ * ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžãƒšãƒ¼ã‚¸
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -660,17 +660,17 @@ static void BBAG_Page2BmpWrite( BBAG_WORK * wk )
 	BattleBag_Page2_StrPageNumPut( wk );
 }
 
-#define	P3_ITEMNAME_PY	( 0 )	// ƒAƒCƒeƒ€Žg—pƒy[ƒW‚ÌƒAƒCƒeƒ€–¼•\Ž¦YÀ•W
-#define	P3_ITEMINFO_PX	( 4 )	// ƒAƒCƒeƒ€Žg—pƒy[ƒW‚ÌƒAƒCƒeƒ€î•ñ•\Ž¦XÀ•W
-#define	P3_ITEMINFO_PY	( 0 )	// ƒAƒCƒeƒ€Žg—pƒy[ƒW‚ÌƒAƒCƒeƒ€î•ñ•\Ž¦YÀ•W
-#define	P3_ITEMNUM_PY	( 0 )	// ƒAƒCƒeƒ€Žg—pƒy[ƒW‚ÌƒAƒCƒeƒ€”•\Ž¦YÀ•W
+#define	P3_ITEMNAME_PY	( 0 )	// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸ã®ã‚¢ã‚¤ãƒ†ãƒ åè¡¨ç¤ºYåº§æ¨™
+#define	P3_ITEMINFO_PX	( 4 )	// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸ã®ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±è¡¨ç¤ºXåº§æ¨™
+#define	P3_ITEMINFO_PY	( 0 )	// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸ã®ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±è¡¨ç¤ºYåº§æ¨™
+#define	P3_ITEMNUM_PY	( 0 )	// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸ã®ã‚¢ã‚¤ãƒ†ãƒ æ•°è¡¨ç¤ºYåº§æ¨™
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€–¼•\Ž¦
+ * ã‚¢ã‚¤ãƒ†ãƒ åè¡¨ç¤º
  *
- * @param	wk			í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	dat_pos		ƒf[ƒ^ˆÊ’uiƒ|ƒPƒbƒg“à‚ÌƒAƒCƒeƒ€ˆÊ’uj
+ * @param	wk			æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	dat_pos		ãƒ‡ãƒ¼ã‚¿ä½ç½®ï¼ˆãƒã‚±ãƒƒãƒˆå†…ã®ã‚¢ã‚¤ãƒ†ãƒ ä½ç½®ï¼‰
  *
  * @return	none
  */
@@ -695,10 +695,10 @@ static void BBAG_P3_ItemNamePut( BBAG_WORK * wk, u32 dat_pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€î•ñ•\Ž¦
+ * ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±è¡¨ç¤º
  *
- * @param	wk			í“¬ƒoƒbƒO‚Ìƒ[ƒN
- * @param	dat_pos		ƒf[ƒ^ˆÊ’uiƒ|ƒPƒbƒg“à‚ÌƒAƒCƒeƒ€ˆÊ’uj
+ * @param	wk			æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	dat_pos		ãƒ‡ãƒ¼ã‚¿ä½ç½®ï¼ˆãƒã‚±ãƒƒãƒˆå†…ã®ã‚¢ã‚¤ãƒ†ãƒ ä½ç½®ï¼‰
  *
  * @return	none
  */
@@ -718,13 +718,13 @@ static void BBAG_P3_ItemInfoPut( BBAG_WORK * wk, u32 dat_pos )
 	GF_BGL_BmpWinOnVReq( win );
 }
 
-#define	P3_USE_PY	( 6 )		// u‚Â‚©‚¤v•\Ž¦YÀ•W
+#define	P3_USE_PY	( 6 )		// ã€Œã¤ã‹ã†ã€è¡¨ç¤ºYåº§æ¨™
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€Žg—pƒy[ƒW
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸
  *
- * @param	wk		í“¬ƒoƒbƒO‚Ìƒ[ƒN
+ * @param	wk		æˆ¦é—˜ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -748,9 +748,9 @@ static void BBAG_Page3BmpWrite( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•\Ž¦
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -764,9 +764,9 @@ void BattleBag_TalkMsgSet( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•\Ž¦ŠJŽn
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–‹å§‹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -782,9 +782,9 @@ void BattleBag_TalkMsgStart( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒO“àŽg—pƒAƒCƒeƒ€‚ÌƒƒbƒZ[ƒWƒZƒbƒg
+ * ãƒãƒƒã‚°å†…ä½¿ç”¨ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -800,46 +800,46 @@ void BattleBag_ItemUseMsgSet( BBAG_WORK * wk )
 	smn  = BattleBag_SelMonsNoGet( wk );
 	pp   = BattleWorkPokemonParamGet( wk->dat->bw, wk->dat->client_no, smn );
 
-	// ”\—ÍƒK[ƒh
+	// èƒ½åŠ›ã‚¬ãƒ¼ãƒ‰
 	if( ItemBufParamGet( item, ITEM_PRM_ABILITY_GUARD ) != 0 ){
 		MSGMAN_GetString( wk->mman, mes_b_bag_m02, wk->msg_buf );
-	// UŒ‚—ÍƒAƒbƒv
+	// æ”»æ’ƒåŠ›ã‚¢ãƒƒãƒ—
 	}else if( ItemBufParamGet( item, ITEM_PRM_ATTACK_UP ) != 0 ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_bag_m04 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// –hŒä—ÍƒAƒbƒv
+	// é˜²å¾¡åŠ›ã‚¢ãƒƒãƒ—
 	}else if( ItemBufParamGet( item, ITEM_PRM_DEFENCE_UP ) != 0 ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_bag_m08 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// “ÁUƒAƒbƒv
+	// ç‰¹æ”»ã‚¢ãƒƒãƒ—
 	}else if( ItemBufParamGet( item, ITEM_PRM_SP_ATTACK_UP ) != 0 ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_bag_m05 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// “Á–hƒAƒbƒv
+	// ç‰¹é˜²ã‚¢ãƒƒãƒ—
 	}else if( ItemBufParamGet( item, ITEM_PRM_SP_DEFENCE_UP ) != 0 ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_bag_m07 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// ‘f‘‚³ƒAƒbƒv
+	// ç´ æ—©ã•ã‚¢ãƒƒãƒ—
 	}else if( ItemBufParamGet( item, ITEM_PRM_AGILITY_UP ) != 0 ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_bag_m06 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// –½’†—¦ƒAƒbƒv
+	// å‘½ä¸­çŽ‡ã‚¢ãƒƒãƒ—
 	}else if( ItemBufParamGet( item, ITEM_PRM_HIT_UP ) != 0 ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_bag_m09 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// ƒNƒŠƒeƒBƒJƒ‹—¦ƒAƒbƒv
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«çŽ‡ã‚¢ãƒƒãƒ—
 	}else if( ItemBufParamGet( item, ITEM_PRM_CRITICAL_UP ) != 0 ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_bag_m03 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );

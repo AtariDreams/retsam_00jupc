@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	randomgroup.h
- * @brief	—”‚ÌíƒOƒ‹[ƒv’è‹`ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+ * @brief	ä¹±æ•°ã®ç¨®ã‚°ãƒ«ãƒ¼ãƒ—å®šç¾©ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	mori GAME FREAK inc.
  * @date	2006.03.22
  */
@@ -10,23 +10,23 @@
 #define __RANDOMGROUP_H__
 
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
-#include "gflib/msg_print.h"		//STRCODEQÆ‚Ì‚½‚ß
-#include "gflib/strbuf.h"			//STRBUFQÆ‚Ì‚½‚ß
+#include "gflib/msg_print.h"		//STRCODEå‚ç…§ã®ãŸã‚
+#include "gflib/strbuf.h"			//STRBUFå‚ç…§ã®ãŸã‚
 
 
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒvƒf[ƒ^Œ^’è‹`
+ * @brief	ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿å‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct _RANDOM_GROUP RANDOM_GROUP;
 
 
-// RandomGroup_<Get*Set>FriendInfo‚Åg‚¤enum
+// RandomGroup_<Get*Set>FriendInfoã§ä½¿ã†enum
 enum{
 	RANDOMGROUP_MINE=0,
 	RANDOMGROUP_MYUSE,
@@ -35,18 +35,18 @@ enum{
 	RANDOMGROUP_DATA2,
 	RANDOMGROUP_DATA3,
 	
-	RANDOMGROUP_MAX,	///< ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒv‚Ì”
+	RANDOMGROUP_MAX,	///< ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—ã®æ•°
 };
 
 
 enum{
-	RANDOMGROUP_NAME_GROUP=0,	///< ƒOƒ‹[ƒv–¼
-	RANDOMGROUP_NAME_LEADER,	///< ƒŠ[ƒ_[–¼
+	RANDOMGROUP_NAME_GROUP=0,	///< ã‚°ãƒ«ãƒ¼ãƒ—å
+	RANDOMGROUP_NAME_LEADER,	///< ãƒªãƒ¼ãƒ€ãƒ¼å
 };
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //----------------------------------------------------------
 extern int RandomGroup_GetWorkSize(void);
 extern void RandomGroup_Init(RANDOM_GROUP * randomgroup );
@@ -55,42 +55,42 @@ extern RANDOM_GROUP *SaveData_GetRandomGroup(SAVEDATA * sv);
 
 extern void RandomGroup_Copy( RANDOM_GROUP *randomgroup, int from, int to );
 
-//“ú”Œo‰ß‚É‚æ‚éXVˆ—
+//æ—¥æ•°çµŒéã«ã‚ˆã‚‹æ›´æ–°å‡¦ç†
 extern void RandomGroup_Update( RANDOM_GROUP* randomgroup, u32 days );
-//ƒQ[ƒ€“à‚ÅQÆ‚·‚é—”‚Ìƒ^ƒlæ“¾
+//ã‚²ãƒ¼ãƒ å†…ã§å‚ç…§ã™ã‚‹ä¹±æ•°ã®ã‚¿ãƒå–å¾—
 extern u32  RandomGroup_GetDefaultRandom( RANDOM_GROUP* randomgroup );
 
-//—”‚Ìƒ^ƒlİ’èEæ“¾ŠÖ˜A
+//ä¹±æ•°ã®ã‚¿ãƒè¨­å®šãƒ»å–å¾—é–¢é€£
 extern void RandomGroup_SetRandomSeed( RANDOM_GROUP* randomgroup, int no, u32 seed );
 extern u32  RandomGroup_GetRandomSeed( RANDOM_GROUP* randomgroup, int no );
 extern void RandomGroup_SetRandom( RANDOM_GROUP* randomgroup, int no );
 extern u32  RandomGroup_GetRandom( RANDOM_GROUP* randomgroup, int no );
 
 
-//–¼‘Oæ“¾
+//åå‰å–å¾—
 extern const STRCODE *RandomGroup_GetNamePtr( const RANDOM_GROUP *randomgroup, int no, int type );
-//–¼‘OƒZƒbƒg
+//åå‰ã‚»ãƒƒãƒˆ
 extern void  RandomGroup_SetName( RANDOM_GROUP *randomgroup, int no, int type, STRBUF *name );
-//ƒŠ[ƒWƒ‡ƒ“ƒR[ƒhi‘ƒR[ƒhjƒZƒbƒg
+//ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ï¼ˆå›½ã‚³ãƒ¼ãƒ‰ï¼‰ã‚»ãƒƒãƒˆ
 extern void RandomGroup_SetRegionCode( RANDOM_GROUP *randomgroup, int no, int region_code );
-//ƒŠ[ƒWƒ‡ƒ“ƒR[ƒhi‘ƒR[ƒhjæ“¾
+//ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ï¼ˆå›½ã‚³ãƒ¼ãƒ‰ï¼‰å–å¾—
 extern int RandomGroup_GetRegionCode( const RANDOM_GROUP *randomgroup, int no);
-//«•ÊƒZƒbƒg
+//æ€§åˆ¥ã‚»ãƒƒãƒˆ
 extern void RandomGroup_SetSex( RANDOM_GROUP *randomgroup, int no, int sex);
-//«•Êæ“¾
+//æ€§åˆ¥å–å¾—
 extern int RandomGroup_GetSex( const RANDOM_GROUP *randomgroup, int no);
 
-//‘¶İƒ`ƒFƒbƒN
+//å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 extern BOOL RandomGroup_ExistCheck(const RANDOM_GROUP * rg, int no);
-//“o˜^ƒ`ƒFƒbƒN
+//ç™»éŒ²ãƒã‚§ãƒƒã‚¯
 extern BOOL RandomGroup_EntryCheck(const RANDOM_GROUP * rg, int no);
 
-//“¯‚¶ƒOƒ‹[ƒv–¼‚Ì‘¶İƒ`ƒFƒbƒN
+//åŒã˜ã‚°ãƒ«ãƒ¼ãƒ—åã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 extern BOOL RandomGroup_SameGroupNameCheck(const RANDOM_GROUP * rg, const STRCODE * group_name);
 
 //----------------------------------------------------------
-//	ƒŒƒR[ƒhŠÖ˜AŠÖ”
-//	¦í’“—Ìˆæ‚É‚È‚¢‚½‚ß‚ÉƒŒƒR[ƒhˆÈŠO‚©‚çŒÄ‚Ô‚±‚Æ‚Í‚Å‚«‚È‚¢
+//	ãƒ¬ã‚³ãƒ¼ãƒ‰é–¢é€£é–¢æ•°
+//	â€»å¸¸é§é ˜åŸŸã«ãªã„ãŸã‚ã«ãƒ¬ã‚³ãƒ¼ãƒ‰ä»¥å¤–ã‹ã‚‰å‘¼ã¶ã“ã¨ã¯ã§ããªã„
 //----------------------------------------------------------
 extern u32 RandomGroup_GetDefaultDataSize(RANDOM_GROUP * rg);
 extern void * RandomGroup_GetDefaultData(RANDOM_GROUP * rg);

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pmsi_sound_def.h
- * @bfief	ƒ{ƒbƒNƒX‰æ–ÊƒTƒEƒ“ƒhƒiƒ“ƒo[’è‹`
+ * @bfief	ãƒœãƒƒã‚¯ã‚¹ç”»é¢ã‚µã‚¦ãƒ³ãƒ‰ãƒŠãƒ³ãƒãƒ¼å®šç¾©
  * @author	taya
  * @date	06.02.15
  */
@@ -13,23 +13,23 @@
 #include "system/snd_tool.h"
 
 
-#define  SOUND_MOVE_CURSOR		(SEQ_SE_DP_SELECT)		// ƒJ[ƒ\ƒ‹ˆÚ“®
+#define  SOUND_MOVE_CURSOR		(SEQ_SE_DP_SELECT)		// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 
-//#define  SOUND_DECIDE			(SEQ_SE_DP_DECIDE)		// Œˆ’è‰¹
-#define  SOUND_DECIDE			(SEQ_SE_DP_SELECT)		// Œˆ’è‰¹
+//#define  SOUND_DECIDE			(SEQ_SE_DP_DECIDE)		// æ±ºå®šéŸ³
+#define  SOUND_DECIDE			(SEQ_SE_DP_SELECT)		// æ±ºå®šéŸ³
 
-//#define  SOUND_CANCEL			(SEQ_SE_DP_DECIDE)		// ƒLƒƒƒ“ƒZƒ‹‰¹
-#define  SOUND_CANCEL			(SEQ_SE_DP_SELECT)		// ƒLƒƒƒ“ƒZƒ‹‰¹
+//#define  SOUND_CANCEL			(SEQ_SE_DP_DECIDE)		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
+#define  SOUND_CANCEL			(SEQ_SE_DP_SELECT)		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 
-#define  SOUND_CHANGE_SENTENCE	(SEQ_SE_DP_SELECT)		// •¶Í•ÏX
+#define  SOUND_CHANGE_SENTENCE	(SEQ_SE_DP_SELECT)		// æ–‡ç« å¤‰æ›´
 
-//#define  SOUND_CHANGE_CATEGORY	(SEQ_SE_DP_DECIDE)	// ƒJƒeƒSƒŠ•ÏX
-#define  SOUND_CHANGE_CATEGORY	(SEQ_SE_DP_BUTTON9)		// ƒJƒeƒSƒŠ•ÏX
+//#define  SOUND_CHANGE_CATEGORY	(SEQ_SE_DP_DECIDE)	// ã‚«ãƒ†ã‚´ãƒªå¤‰æ›´
+#define  SOUND_CHANGE_CATEGORY	(SEQ_SE_DP_BUTTON9)		// ã‚«ãƒ†ã‚´ãƒªå¤‰æ›´
 
-//#define  SOUND_DISABLE_CATEGORY	(SEQ_SE_DP_WALL_HIT)// –³Œø‚ÈƒJƒeƒSƒŠ‘I‘ð
-#define  SOUND_DISABLE_CATEGORY	(SEQ_SE_DP_CUSTOM06)	// –³Œø‚ÈƒJƒeƒSƒŠ‘I‘ð
+//#define  SOUND_DISABLE_CATEGORY	(SEQ_SE_DP_WALL_HIT)// ç„¡åŠ¹ãªã‚«ãƒ†ã‚´ãƒªé¸æŠž
+#define  SOUND_DISABLE_CATEGORY	(SEQ_SE_DP_CUSTOM06)	// ç„¡åŠ¹ãªã‚«ãƒ†ã‚´ãƒªé¸æŠž
 
-//#define  SOUND_DISABLE_BUTTON	(SEQ_SE_DP_WALL_HIT)	// –³Œø‚Èƒ{ƒ^ƒ“ƒ^ƒbƒ`
-#define  SOUND_DISABLE_BUTTON	(SEQ_SE_DP_CUSTOM06)	// –³Œø‚Èƒ{ƒ^ƒ“ƒ^ƒbƒ`
+//#define  SOUND_DISABLE_BUTTON	(SEQ_SE_DP_WALL_HIT)	// ç„¡åŠ¹ãªãƒœã‚¿ãƒ³ã‚¿ãƒƒãƒ
+#define  SOUND_DISABLE_BUTTON	(SEQ_SE_DP_CUSTOM06)	// ç„¡åŠ¹ãªãƒœã‚¿ãƒ³ã‚¿ãƒƒãƒ
 
 #endif

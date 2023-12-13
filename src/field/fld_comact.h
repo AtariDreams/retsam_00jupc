@@ -1,6 +1,6 @@
 /**
  *  @file	fld_comact.h
- *	@brief	ƒtƒB[ƒ‹ƒhã‚É‹¤—L•`‰æ‚³‚ê‚éƒJ[ƒ\ƒ‹ƒAƒNƒ^[‚ÌƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã«å…±æœ‰æç”»ã•ã‚Œã‚‹ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *	@author	Miyuki iwasawa
  *	@date	06.03.23
  */
@@ -33,7 +33,7 @@ typedef enum{
  FCA_ACTMAX,
 };
 
-///ƒRƒ“ƒgƒ[ƒ‰[ƒ[ƒN
+///ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãƒ¯ãƒ¼ã‚¯
 typedef struct _FLD_COMACT_WORK{
 	FIELD_CLACT	fcat;
 	CATS_ACT_PTR	act[FCA_ACTMAX];
@@ -41,40 +41,40 @@ typedef struct _FLD_COMACT_WORK{
 
 
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg@‹¤’ÊƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆã€€å…±é€šã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  */
 extern FLD_COMACT_WORK* FComAct_Init(int heapID);
 
 /**
- *	@brief	ƒRƒ“ƒgƒ[ƒ‰[”jŠü
+ *	@brief	ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ç ´æ£„
  */
 extern void FComAct_Delete(FLD_COMACT_WORK* wk);
 
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  */
 extern void FActCom_Main(FLD_COMACT_WORK* wk);
 
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ƒ|ƒWƒVƒ‡ƒ“ƒZƒbƒg
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
  *
- *	@param	px	ƒJ[ƒ\ƒ‹XÀ•W
- *	@param	uy	ƒAƒbƒvƒJ[ƒ\ƒ‹YÀ•W
- *	@param	dy	ƒ_ƒEƒ“ƒJ[ƒ\ƒ‹YÀ•W
+ *	@param	px	ã‚«ãƒ¼ã‚½ãƒ«Xåº§æ¨™
+ *	@param	uy	ã‚¢ãƒƒãƒ—ã‚«ãƒ¼ã‚½ãƒ«Yåº§æ¨™
+ *	@param	dy	ãƒ€ã‚¦ãƒ³ã‚«ãƒ¼ã‚½ãƒ«Yåº§æ¨™
  */
 extern void FComAct_CursorPosSet(FLD_COMACT_WORK* wk,s16 px,s16 uy,s16 dy);
 
 /**
- *	@brief	•`‰æó‘ÔƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	æç”»çŠ¶æ…‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- *	@param	vanish	TRUE:•`‰æ,FALSE:ƒoƒjƒbƒVƒ…
+ *	@param	vanish	TRUE:æç”»,FALSE:ãƒãƒ‹ãƒƒã‚·ãƒ¥
  */
 extern void FComAct_SetDrawFlg(FLD_COMACT_WORK* wk,u16 idx,BOOL draw);
 
 /**
- *	@brief	ƒI[ƒgƒAƒjƒó‘ÔƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡çŠ¶æ…‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- *	@param	anm	TRUE:ƒI[ƒgƒAƒjƒ,FALSE:ƒI[ƒgƒAƒjƒOff
+ *	@param	anm	TRUE:ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡,FALSE:ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡Off
  */
 extern void FComAct_SetAutoAnmFlg(FLD_COMACT_WORK* wk,u16 idx,BOOL anm);
 

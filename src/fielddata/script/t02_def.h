@@ -1,7 +1,7 @@
 #ifndef _T02_DEF_H_
 #define _T02_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T02_FLAG_CHANGE		(1)
 #define	SCRID_POS_T02_SUPPORT		(2)
 #define	SCRID_T02_SUPPORT		(3)
@@ -14,6 +14,6 @@
 #define	SCRID_T02_SIGN3		(10)
 #define	SCRID_T02_FSSIGN		(11)
 #define	SCRID_T02_PCSIGN		(12)
-#define	SCRID_T02_DATA_MAX		(12)		//最大数
+#define	SCRID_T02_DATA_MAX		(12)		//譛螟ｧ謨ｰ
 
 #endif //_T02_DEF_H_

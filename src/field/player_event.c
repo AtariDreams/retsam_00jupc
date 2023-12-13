@@ -2,7 +2,7 @@
 /**
  *
  * @file	player_event.c
- * @brief	©‹@ƒCƒxƒ“ƒg
+ * @brief	è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆ
  * @author	kagaya
  * @data	05.08.03
  *
@@ -42,32 +42,32 @@
 #define DRAW_RESET_NEW
 
 //--------------------------------------------------------------
-//	Ä‹A—v‹
+//	å†å¸°è¦æ±‚
 //--------------------------------------------------------------
 #define RET_FALSE	(FALSE)
 #define RET_TRUE	(TRUE)
 #define RET_AGAIN	(TRUE+1)
 
 //--------------------------------------------------------------
-///	‘ê“o‚è@ã¸ŠÔ
+///	æ»ç™»ã‚Šã€€ä¸Šæ˜‡æ™‚é–“
 //--------------------------------------------------------------
 #define TAKI_UP_FRAME_Y (64)
 #define TAKI_UP_FRAME_Z (64)
 #define TAKI_UP_FRAME_Z_START (32)
 
 //--------------------------------------------------------------
-///	À
+///	æ²¼
 //--------------------------------------------------------------
 //DP
-//#define NUMA_NUKE_COUNT_MAX (10)	///<À‚©‚ç”²‚¯‚éˆ×‚ÌƒJƒEƒ“ƒg”
+//#define NUMA_NUKE_COUNT_MAX (10)	///<æ²¼ã‹ã‚‰æŠœã‘ã‚‹ç‚ºã®ã‚«ã‚¦ãƒ³ãƒˆæ•°
 //PL
-#define NUMA_NUKE_COUNT_MAX (5)	///<À‚©‚ç”²‚¯‚éˆ×‚ÌƒJƒEƒ“ƒg”
+#define NUMA_NUKE_COUNT_MAX (5)	///<æ²¼ã‹ã‚‰æŠœã‘ã‚‹ç‚ºã®ã‚«ã‚¦ãƒ³ãƒˆæ•°
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	CUTIN_PARAM\‘¢‘Ì
+///	CUTIN_PARAMæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -78,7 +78,7 @@ typedef struct
 }CUTIN_PARAM;
 
 //--------------------------------------------------------------
-///	KAIRIKI_WORK\‘¢‘Ì@‰ö—ÍƒCƒxƒ“ƒg
+///	KAIRIKI_WORKæ§‹é€ ä½“ã€€æ€ªåŠ›ã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------
 typedef struct
 {
@@ -93,7 +93,7 @@ typedef struct
 #define KAIRIKI_WORK_SIZE (sizeof(KAIRIKI_WORK))
 
 //--------------------------------------------------------------
-///	SNOWBALL_WORK\‘¢‘Ì@á‹ÊƒCƒxƒ“ƒg
+///	SNOWBALL_WORKæ§‹é€ ä½“ã€€é›ªç‰ã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------
 typedef struct
 {
@@ -106,7 +106,7 @@ typedef struct
 #define SNOWBALL_WORK_SIZE (sizeof(SNOWBALL_WORK))
 
 //--------------------------------------------------------------
-///	NAMINORI_WORK\‘¢‘Ì
+///	NAMINORI_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -123,7 +123,7 @@ typedef struct
 #define NAMINORI_WORK_SIZE (sizeof(NAMINORI_WORK))
 
 //--------------------------------------------------------------
-///	NAMINORI_END_WORK\‘¢‘Ì
+///	NAMINORI_END_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -138,7 +138,7 @@ typedef struct
 #define NAMINORI_END_WORK_SIZE (sizeof(NAMINORI_END_WORK))
 
 //--------------------------------------------------------------
-///	ROCKRIDE_WORK\‘¢‘Ì
+///	ROCKRIDE_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -156,7 +156,7 @@ typedef struct
 #define ROCKRIDE_WORK_SIZE (sizeof(ROCKRIDE_WORK))
 
 //--------------------------------------------------------------
-///	TAKINOBORI_WORK\‘¢‘Ì
+///	TAKINOBORI_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -179,7 +179,7 @@ typedef struct
 #define TAKINOBORI_WORK_SIZE (sizeof(TAKINOBORI_WORK))
 
 //--------------------------------------------------------------
-//	NUMA_WORK\‘¢‘Ì
+//	NUMA_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -192,7 +192,7 @@ typedef struct
 #define NUMA_WORK_SIZE (sizeof(NUMA_WORK))
 
 //--------------------------------------------------------------
-///	 BUMPPOST_WORK\‘¢‘Ì
+///	 BUMPPOST_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -277,13 +277,13 @@ static void Jiki_EventWorkFree( void *work );
 static POKEMON_PARAM * Jiki_PokeParaPartyGet( FIELDSYS_WORK *fsys, int no );
 
 //==============================================================================
-//	©‹@@ƒŠƒNƒGƒXƒg
+//	è‡ªæ©Ÿã€€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒgƒZƒbƒg
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	req		ƒŠƒNƒGƒXƒg HERO_REQBIT_NORMAL“™
+ * @param	req		ãƒªã‚¯ã‚¨ã‚¹ãƒˆ HERO_REQBIT_NORMALç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -294,7 +294,7 @@ void Player_RequestSet( PLAYER_STATE_PTR jiki, u32 req )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒgó•t
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä»˜
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -309,7 +309,7 @@ void Player_Request( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@‚Q‘«•às‚É
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€ï¼’è¶³æ­©è¡Œã«
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -319,9 +319,9 @@ static void JikiReq_Normal( PLAYER_STATE_PTR jiki )
 	int code;
 	int form = HERO_FORM_NORMAL;
 	
-	if( Player_MoveBitCheck_TWorld(jiki) != HEROTWTYPE_NON ){//PL ”j‚ê‚½¢ŠE
+	if( Player_MoveBitCheck_TWorld(jiki) != HEROTWTYPE_NON ){//PL ç ´ã‚ŒãŸä¸–ç•Œ
 		form = HERO_DRAWFORM_TW;
-	}else{//PL ƒS[ƒXƒgƒWƒ€
+	}else{//PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
 		FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
 		FIELDSYS_WORK *fsys = FieldOBJ_FieldSysWorkGet( fldobj );
 		if( GYM_GimmickCodeCheck(fsys,FLD_GIMMICK_GHOST_GYM) == TRUE ){
@@ -344,7 +344,7 @@ static void JikiReq_Normal( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@©“]Ô‚É
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€è‡ªè»¢è»Šã«
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -369,7 +369,7 @@ static void JikiReq_Cycle( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@‚È‚İ‚Ì‚è‚É
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€ãªã¿ã®ã‚Šã«
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -394,10 +394,10 @@ static void JikiReq_Naminori( PLAYER_STATE_PTR jiki )
 		dir = Player_DirMoveGet( jiki );
 	}
 	
-	if( tw == HEROTWTYPE_NON ){	//’Êí”gæ‚è ‘¦Ú‘± À•W‚Í0
+	if( tw == HEROTWTYPE_NON ){	//é€šå¸¸æ³¢ä¹—ã‚Š å³æ¥ç¶š åº§æ¨™ã¯0
 		eoa = FE_FldOBJNamiPokeSet( fldobj, 0, 0, dir, TRUE );
 		code = HERO_FORM_SWIM;
-	}else{						//”j‚ê‚½¢ŠE—p”gæ‚è ‘¦Ú‘±
+	}else{						//ç ´ã‚ŒãŸä¸–ç•Œç”¨æ³¢ä¹—ã‚Š å³æ¥ç¶š
 		eoa = FE_FldOBJNamiPokeRSet( jiki, 0, 0, 0, dir, TRUE, tw );
 		code = HERO_DRAWFORM_TWSWIM;
 	}
@@ -431,7 +431,7 @@ static void JikiReq_Naminori( PLAYER_STATE_PTR jiki )
 		int dir = Player_DirGet( jiki );
 		FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
 		FIELDSYS_WORK *fsys = FieldOBJ_FieldSysWorkGet( fldobj );
-		EOA_PTR eoa = FE_FldOBJNamiPokeSet( fldobj, 0, 0, dir, TRUE );	//‘¦Ú‘± À•W‚Í0
+		EOA_PTR eoa = FE_FldOBJNamiPokeSet( fldobj, 0, 0, dir, TRUE );	//å³æ¥ç¶š åº§æ¨™ã¯0
 		Player_JointEoaSet( jiki, eoa );
 	}
 }
@@ -439,7 +439,7 @@ static void JikiReq_Naminori( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@‘«Œ³‚ğ–³Œø‰»
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€è¶³å…ƒã‚’ç„¡åŠ¹åŒ–
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -451,7 +451,7 @@ static void JikiReq_UnderOFF( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@…Œ­‚è‚Ö
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€æ°´é£ã‚Šã¸
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -466,7 +466,7 @@ static void JikiReq_Water( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@’Ş‚è©‹@‚É•\¦•ÏX
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€é‡£ã‚Šè‡ªæ©Ÿã«è¡¨ç¤ºå¤‰æ›´
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -481,7 +481,7 @@ static void JikiReq_Fishing( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@ƒ|ƒPƒbƒ`‚É•\¦•ÏX
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€ãƒã‚±ãƒƒãƒã«è¡¨ç¤ºå¤‰æ›´
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -507,7 +507,7 @@ static void JikiReq_Poketch( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@ƒZ[ƒu‚É•\¦•ÏX
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€ã‚»ãƒ¼ãƒ–ã«è¡¨ç¤ºå¤‰æ›´
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -533,7 +533,7 @@ static void JikiReq_Save( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@–œÎ‚É•\¦•ÏX
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€ä¸‡æ­³ã«è¡¨ç¤ºå¤‰æ›´
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -548,7 +548,7 @@ static void JikiReq_Banzai( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@BS‚É•\¦•ÏX
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€BSã«è¡¨ç¤ºå¤‰æ›´
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -564,7 +564,7 @@ static void JikiReq_BS( PLAYER_STATE_PTR jiki )
 #if 0
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@¶•ÇˆÚ“®‚É•ÏX
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€å·¦å£ç§»å‹•ã«å¤‰æ›´
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -577,7 +577,7 @@ static void JikiReq_GL( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒŠƒNƒGƒXƒg@‰E•ÇˆÚ“®‚É•ÏX
+ * è‡ªæ©Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€å³å£ç§»å‹•ã«å¤‰æ›´
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */
@@ -590,7 +590,7 @@ static void JikiReq_GR( PLAYER_STATE_PTR jiki )
 #endif
 
 //--------------------------------------------------------------
-///	ƒŠƒNƒGƒXƒgˆ—ƒe[ƒuƒ‹ •À‚Ñ‚ÍHERO_REQBIT_NON“™‚Éˆê’v
+///	ãƒªã‚¯ã‚¨ã‚¹ãƒˆå‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ« ä¸¦ã³ã¯HERO_REQBIT_NONç­‰ã«ä¸€è‡´
 //--------------------------------------------------------------
 static void (* const DATA_RequestTbl[HERO_REQBIT_MAX])( PLAYER_STATE_PTR jiki ) =
 {
@@ -607,16 +607,16 @@ static void (* const DATA_RequestTbl[HERO_REQBIT_MAX])( PLAYER_STATE_PTR jiki ) 
 };
 
 //==============================================================================
-//	©‹@ƒCƒxƒ“ƒg”­“®
+//	è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@ƒCƒxƒ“ƒg”­“®ƒ`ƒFƒbƒN
+ * è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒü DIR_UP“™
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘ DIR_UPç­‰
  * @param	flag	HERO_EVBIT
- * @retval	int		TRUE=©‹@ƒCƒxƒ“ƒg”­“®
+ * @retval	int		TRUE=è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  */
 //--------------------------------------------------------------
 int Player_EventMoveCheck(
@@ -689,16 +689,16 @@ int Player_EventMoveCheck(
 #endif
 
 //==============================================================================
-//	ˆÚ“®ƒqƒbƒgŒnƒCƒxƒ“ƒg
+//	ç§»å‹•ãƒ’ãƒƒãƒˆç³»ã‚¤ãƒ™ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ˆÚ“®ƒqƒbƒgŒnƒCƒxƒ“ƒg”­“®ƒ`ƒFƒbƒN
+ * ç§»å‹•ãƒ’ãƒƒãƒˆç³»ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒü DIR_UP“™
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘ DIR_UPç­‰
  * @param	flag	HERO_EVBIT
- * @retval	int		TRUE=ƒCƒxƒ“ƒg”­“® FALSE=–³‚µ
+ * @retval	int		TRUE=ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹• FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int JikiEventCheck_MoveHitEvent(
@@ -742,16 +742,16 @@ static int JikiEventCheck_MoveHitEvent(
 }
 
 //==============================================================================
-//	í”­“®ŒnƒCƒxƒ“ƒg
+//	å¸¸æ™‚ç™ºå‹•ç³»ã‚¤ãƒ™ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * í”­“®ƒCƒxƒ“ƒg”­“®ƒ`ƒFƒbƒN
+ * å¸¸æ™‚ç™ºå‹•ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ƒL[“ü—Í•ûŒü DIR_UP“™
+ * @param	dir		ã‚­ãƒ¼å…¥åŠ›æ–¹å‘ DIR_UPç­‰
  * @param	flag	HERO_EVBIT
- * @retval	int		TRUE=ƒCƒxƒ“ƒg”­“® FALSE=–³‚µ
+ * @retval	int		TRUE=ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹• FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int JikiEventCheck_KeyOFFEvent(
@@ -767,16 +767,16 @@ static int JikiEventCheck_KeyOFFEvent(
 }
 
 //==============================================================================
-//	ƒCƒxƒ“ƒg@‚©‚¢‚è‚«
+//	ã‚¤ãƒ™ãƒ³ãƒˆã€€ã‹ã„ã‚Šã
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚©‚¢‚è‚«ˆÚ“®ƒ`ƒFƒbƒN
+ * ã‹ã„ã‚Šãç§»å‹•ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		is•ûŒü DIR_UP“™
- * @param	val		dir‚É‚æ‚é©‹@ó‘Ô OBJ_MOVE_VALUE_STOP“™
- * @retval	int		TRUE=‚©‚¢‚è‚«”­“®
+ * @param	dir		é€²è¡Œæ–¹å‘ DIR_UPç­‰
+ * @param	val		dirã«ã‚ˆã‚‹è‡ªæ©ŸçŠ¶æ…‹ OBJ_MOVE_VALUE_STOPç­‰
+ * @retval	int		TRUE=ã‹ã„ã‚Šãç™ºå‹•
  */
 //--------------------------------------------------------------
 static int JikiEventCheck_Kairiki(
@@ -801,32 +801,32 @@ static int JikiEventCheck_Kairiki(
 			}
 		}
 		
-		OS_Printf( "‚©‚¢‚è‚«Šâ‚ª‚İ‚Â‚©‚è‚Ü‚µ‚½@" );
+		OS_Printf( "ã‹ã„ã‚Šãå²©ãŒã¿ã¤ã‹ã‚Šã¾ã—ãŸã€€" );
 		
 		{
 			u32 ret = FieldOBJ_MoveHitCheckDir( fldobj, dir );
-			ret &= ~FLDOBJ_MOVE_HIT_BIT_LIM;	//ˆÚ“®§ŒÀ‚Í–³‹
+			ret &= ~FLDOBJ_MOVE_HIT_BIT_LIM;	//ç§»å‹•åˆ¶é™ã¯ç„¡è¦–
 			
 			if( ret != FLDOBJ_MOVE_HIT_BIT_NON ){
 				if(GYM_GimmickCodeCheck(fsys,FLD_GIMMICK_TORNWORLD)==TRUE){
 					if(	FldTornWorld_FallRockDirCheck(fldobj,dir) == FALSE ){
-						OS_Printf( "Šâ‚ÍáŠQ•¨‚É‚æ‚è‰Ÿ‚·–‚ªo—ˆ‚Ü‚¹‚ñ\n" );
+						OS_Printf( "å²©ã¯éšœå®³ç‰©ã«ã‚ˆã‚ŠæŠ¼ã™äº‹ãŒå‡ºæ¥ã¾ã›ã‚“\n" );
 						return( FALSE );
 					}
 				}else{
-					OS_Printf( "Šâ‚ÍáŠQ•¨‚É‚æ‚è‰Ÿ‚·–‚ªo—ˆ‚Ü‚¹‚ñ\n" );
+					OS_Printf( "å²©ã¯éšœå®³ç‰©ã«ã‚ˆã‚ŠæŠ¼ã™äº‹ãŒå‡ºæ¥ã¾ã›ã‚“\n" );
 					return( FALSE );
 				}
 			}
 		}
 		
-		OS_Printf( "‚©‚¢‚è‚«ŠJnII\n" );
+		OS_Printf( "ã‹ã„ã‚Šãé–‹å§‹ï¼ï¼\n" );
 		JikiEvent_KairikiSet( dir, fsys, jiki, fldobj );
 		return( TRUE );
 	}
 }
 
-#if 0	//”j‚ê‚½¢ŠEl—¶–³‚µ”Å
+#if 0	//ç ´ã‚ŒãŸä¸–ç•Œè€ƒæ…®ç„¡ã—ç‰ˆ
 static int JikiEventCheck_Kairiki(
 		FIELDSYS_WORK *fsys, PLAYER_STATE_PTR jiki, int dir, int val )
 {
@@ -849,20 +849,20 @@ static int JikiEventCheck_Kairiki(
 			}
 		}
 		
-		OS_Printf( "‚©‚¢‚è‚«Šâ‚ª‚İ‚Â‚©‚è‚Ü‚µ‚½@" );
+		OS_Printf( "ã‹ã„ã‚Šãå²©ãŒã¿ã¤ã‹ã‚Šã¾ã—ãŸã€€" );
 		
 		{
 			u32 ret = FieldOBJ_MoveHitCheckDir( fldobj, dir );
-			ret &= ~FLDOBJ_MOVE_HIT_BIT_LIM;	//ˆÚ“®§ŒÀ‚Í–³‹
+			ret &= ~FLDOBJ_MOVE_HIT_BIT_LIM;	//ç§»å‹•åˆ¶é™ã¯ç„¡è¦–
 			
 			if( ret != FLDOBJ_MOVE_HIT_BIT_NON ){
-				OS_Printf( "Šâ‚ÍáŠQ•¨‚É‚æ‚è‰Ÿ‚·–‚ªo—ˆ‚Ü‚¹‚ñ\n" );
+				OS_Printf( "å²©ã¯éšœå®³ç‰©ã«ã‚ˆã‚ŠæŠ¼ã™äº‹ãŒå‡ºæ¥ã¾ã›ã‚“\n" );
 				return( FALSE );
 			}
 		}
 	
-		//‚³‚ç‚Éo“ü‚èŒûƒ`ƒFƒbƒN‚ª•K—v
-		OS_Printf( "‚©‚¢‚è‚«ŠJnII\n" );
+		//ã•ã‚‰ã«å‡ºå…¥ã‚Šå£ãƒã‚§ãƒƒã‚¯ãŒå¿…è¦
+		OS_Printf( "ã‹ã„ã‚Šãé–‹å§‹ï¼ï¼\n" );
 		JikiEvent_KairikiSet( dir, fsys, jiki, fldobj );
 		return( TRUE );
 	}
@@ -871,11 +871,11 @@ static int JikiEventCheck_Kairiki(
 
 //--------------------------------------------------------------
 /**
- * ‚©‚¢‚è‚«ƒCƒxƒ“ƒg”­“®
- * @param	dir		ˆÚ“®‚·‚é•ûŒü
+ * ã‹ã„ã‚Šãã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
+ * @param	dir		ç§»å‹•ã™ã‚‹æ–¹å‘
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	‘ÎÛ‚ÌFIELD_OBJ_PTR
+ * @param	fldobj	å¯¾è±¡ã®FIELD_OBJ_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -894,9 +894,9 @@ static void JikiEvent_KairikiSet(
 
 //--------------------------------------------------------------
 /**
- * ‚©‚¢‚è‚«ƒCƒxƒ“ƒg 
+ * ã‹ã„ã‚Šãã‚¤ãƒ™ãƒ³ãƒˆ 
  * @param ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL JikiEvent_Kairiki( GMEVENT_CONTROL *ev )
@@ -953,7 +953,7 @@ static BOOL JikiEvent_Kairiki( GMEVENT_CONTROL *ev )
 	case 2:
 		Jiki_EventWorkFree( work );
 		return( TRUE );
-	case 3:	//”j‚ê‚½¢ŠEê—p
+	case 3:	//ç ´ã‚ŒãŸä¸–ç•Œå°‚ç”¨
 		if( FldTornWorld_FallRockEvent(work->fallrock_p) == TRUE ){
 			FieldOBJ_AcmdEnd( fldobj );
 			FieldOBJ_AcmdEnd( jikiobj );
@@ -966,12 +966,12 @@ static BOOL JikiEvent_Kairiki( GMEVENT_CONTROL *ev )
 }
 
 //==============================================================================
-//	‚È‚İ‚Ì‚èŠJn
+//	ãªã¿ã®ã‚Šé–‹å§‹
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚È‚İ‚Ì‚èƒCƒxƒ“ƒg”­“®
- * @param	dir		”z’u‚·‚é•ûŒü
+ * ãªã¿ã®ã‚Šã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
+ * @param	dir		é…ç½®ã™ã‚‹æ–¹å‘
  * @param	fsys	FIELDSYS_WORK *
  * @retval	nothing
  */
@@ -985,7 +985,7 @@ static void JikiEvent_NaminoriSet( FIELDSYS_WORK *fsys, int dir )
 	work->jiki = fsys->player;
 	work->fldobj = Player_FieldOBJGet( work->jiki );
 
-	//—h‚ê‘ƒNƒŠƒA
+	//æºã‚Œè‰ã‚¯ãƒªã‚¢
 	SwayGrass_InitSwayGrass(fsys->SwayGrass);
 	
 	FieldEvent_Set( fsys, JikiEvent_Naminori, work );
@@ -993,8 +993,8 @@ static void JikiEvent_NaminoriSet( FIELDSYS_WORK *fsys, int dir )
 
 //--------------------------------------------------------------
 /**
- * ‚È‚İ‚Ì‚èƒTƒuƒCƒxƒ“ƒg”­“®
- * @param	dir		”z’u‚·‚é•ûŒü
+ * ãªã¿ã®ã‚Šã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
+ * @param	dir		é…ç½®ã™ã‚‹æ–¹å‘
  * @param	fsys	FIELDSYS_WORK *
  * @param	cutin	CUTIN_PARAM *
  * @retval	nothing
@@ -1016,8 +1016,8 @@ static void JikiEvent_NaminoriCall(
 
 //--------------------------------------------------------------
 /**
- * ‚È‚İ‚Ì‚èƒCƒxƒ“ƒg”­“®@ŠO•”ŒÄo‚µ
- * @param	dir		”z’u‚·‚é•ûŒü
+ * ãªã¿ã®ã‚Šã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ã€€å¤–éƒ¨å‘¼å‡ºã—
+ * @param	dir		é…ç½®ã™ã‚‹æ–¹å‘
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
@@ -1030,10 +1030,10 @@ void Player_EventNaminoriStart( int dir, FIELDSYS_WORK *fsys, PLAYER_STATE_PTR j
 
 //--------------------------------------------------------------
 /**
- * ‚È‚İ‚Ì‚èƒCƒxƒ“ƒg”­“®@ƒTƒuƒCƒxƒ“ƒgŒÄo‚µ
+ * ãªã¿ã®ã‚Šã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ã€€ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼å‡ºã—
  * @param	event	GMEVENT_CONTROL
- * @param	dir		”gæ‚è‚ğs‚¤•ûŒü@DIR_UP“™
- * @param	poke_useno	”é“`‹Z‚ğg—p‚µ‚½è‚¿ƒ|ƒPƒ‚ƒ“”Ô†
+ * @param	dir		æ³¢ä¹—ã‚Šã‚’è¡Œã†æ–¹å‘ã€€DIR_UPç­‰
+ * @param	poke_useno	ç§˜ä¼æŠ€ã‚’ä½¿ç”¨ã—ãŸæ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ç•ªå·
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1042,16 +1042,16 @@ void EventCmd_NaminoriCall( GMEVENT_CONTROL *event, int dir, int poke_useno )
 	CUTIN_PARAM cutin;
 	FIELDSYS_WORK *fsys = FieldEvent_GetFieldSysWork( event );
 	POKEMON_PARAM *para = Jiki_PokeParaPartyGet( fsys, poke_useno );
-	OS_Printf( "•ûŒü=%d\n", dir );
+	OS_Printf( "æ–¹å‘=%d\n", dir );
 	Jiki_CutInParamInit( fsys, para, &cutin );
 	JikiEvent_NaminoriCall( fsys, dir, &cutin );
 }
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒCƒxƒ“ƒgƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN@‚È‚İ‚Ì‚è
- * @param	attr	ƒAƒgƒŠƒrƒ…[ƒg
- * @retval	int		TRUE=”gæ‚è’nŒ`
+ * è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯ã€€ãªã¿ã®ã‚Š
+ * @param	attr	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @retval	int		TRUE=æ³¢ä¹—ã‚Šåœ°å½¢
  */
 //--------------------------------------------------------------
 /*
@@ -1069,19 +1069,19 @@ int Player_EventAttrCheck_Naminori( PLAYER_STATE_PTR jiki, u32 attr )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒCƒxƒ“ƒgƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN@‚È‚İ‚Ì‚è
- * @param	nattr	Œ»İ’n‚ÌƒAƒgƒŠƒrƒ…[ƒg
- * @param	fattr	Šú‘O‚ÌƒAƒgƒŠƒrƒ…[ƒg
- * @retval	int		TRUE=”gæ‚è’nŒ`
+ * è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯ã€€ãªã¿ã®ã‚Š
+ * @param	nattr	ç¾åœ¨åœ°ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @param	fattr	æ™‚æœŸå‰ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @retval	int		TRUE=æ³¢ä¹—ã‚Šåœ°å½¢
  */
 //--------------------------------------------------------------
 int Player_EventAttrCheck_Naminori( PLAYER_STATE_PTR jiki, u32 nattr, u32 fattr )
 {
 	FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
 	
-	// –Ú‚Ì‘O‚ª…
+	// ç›®ã®å‰ãŒæ°´
 	if( MATR_IsWater(fattr) == TRUE ){
-		// ‹´‚Ìã‚É‚¢‚È‚¯‚ê‚ÎOK
+		// æ©‹ã®ä¸Šã«ã„ãªã‘ã‚Œã°OK
 		if( MATR_IsBridge(nattr) == TRUE ||
 			MATR_IsBridgeFlag(nattr) == TRUE ){
 			if( FieldOBJ_StatusBitCheck_Bridge(fldobj) == TRUE ){
@@ -1095,9 +1095,9 @@ int Player_EventAttrCheck_Naminori( PLAYER_STATE_PTR jiki, u32 nattr, u32 fattr 
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒCƒxƒ“ƒg 
+ * æ³¢ä¹—ã‚Šã‚¤ãƒ™ãƒ³ãƒˆ 
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
@@ -1105,10 +1105,10 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 	NAMINORI_WORK *work = FieldEvent_GetSpecialWork( ev );
 	
 	switch( work->seq_no ){
-	case 0:	//ƒJƒbƒgƒCƒ“”­“®
+	case 0:	//ã‚«ãƒƒãƒˆã‚¤ãƒ³ç™ºå‹•
 		if( Player_MoveBitCheck_TWorld(work->jiki) == HEROTWTYPE_NON ){
-			//ƒtƒF[ƒhƒAƒEƒg ¨ ’Ç‰Á”gŒ`“Ç‚İ‚İ ¨ BGMÄ¶
-			Snd_FieldBgmSetSpecial( work->fsys, 0 ); //©“]ÔBGMƒNƒŠƒA
+			//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ è¿½åŠ æ³¢å½¢èª­ã¿è¾¼ã¿ â†’ BGMå†ç”Ÿ
+			Snd_FieldBgmSetSpecial( work->fsys, 0 ); //è‡ªè»¢è»ŠBGMã‚¯ãƒªã‚¢
 			Snd_FadeOutNextPlayCall(
 				work->fsys, SEQ_NAMINORI, BGM_FADE_FIELD_MODE );
 		}
@@ -1121,13 +1121,13 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 		}
 		
 		break;
-	case 1:	//ƒJƒbƒgƒCƒ“I—¹ƒ`ƒFƒbƒN
+	case 1:	//ã‚«ãƒƒãƒˆã‚¤ãƒ³çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( Jiki_CutInEndCheck(&work->cutin) == TRUE ){
 			work->seq_no++;
 		}
 		
 		break;
-	case 2:	//1ƒOƒŠƒbƒhæ‚Éƒ|ƒPƒ‚ƒ“oŒ»
+	case 2:	//1ã‚°ãƒªãƒƒãƒ‰å…ˆã«ãƒã‚±ãƒ¢ãƒ³å‡ºç¾
 		#if 0
 		{
 			int gx = Player_NowGPosXGet( work->jiki ) +
@@ -1140,7 +1140,7 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 			Player_JointEoaSet( work->jiki, work->eoa_poke );
 			Player_FormSet( work->jiki, HERO_FORM_SWIM );
 		}
-		#else	//”j‚ê‚½¢ŠE‚ğl—¶
+		#else	//ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®
 		{
 			if( Player_MoveBitCheck_TWorld(work->jiki) == FALSE ){
 				int gx = Player_NowGPosXGet( work->jiki ) +
@@ -1167,10 +1167,10 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 		
 		work->seq_no++;
 		break;
-	case 3:	//Œ³‚É–ß‚·
-		/*	ƒJƒbƒgƒCƒ“‚ÉSPHERO“™‚É‚µ‚Ä‚¢‚½–¼cB
-		 *	“–‚ÍSPHERO‚©‚ç’ÊíålŒö‚É–ß‚·•K—v‚ª‚ ‚Á‚½‚ª
-		 *	Œ»İAƒJƒbƒgƒCƒ“‚Ì’†OAM‚ÅSPHERO‚ğ•\Œ»‚µ‚Ä‚¢‚éˆ×A•K—v–³‚¢ */
+	case 3:	//å…ƒã«æˆ»ã™
+		/*	ã‚«ãƒƒãƒˆã‚¤ãƒ³æ™‚ã«SPHEROç­‰ã«ã—ã¦ã„ãŸåæ®‹ã€‚
+		 *	å½“æ™‚ã¯SPHEROã‹ã‚‰é€šå¸¸ä¸»äººå…¬ã«æˆ»ã™å¿…è¦ãŒã‚ã£ãŸãŒ
+		 *	ç¾åœ¨ã€ã‚«ãƒƒãƒˆã‚¤ãƒ³ã®ä¸­OAMã§SPHEROã‚’è¡¨ç¾ã—ã¦ã„ã‚‹ç‚ºã€å¿…è¦ç„¡ã„ */
 		#if 0
 		work->frame++;
 		
@@ -1184,7 +1184,7 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 		break;
 		#else
 		
-		#ifdef DEBUG_ONLY_FOR_kagaya	//”j‚ê‚½”gæ‚èƒ`ƒFƒbƒN—p
+		#ifdef DEBUG_ONLY_FOR_kagaya	//ç ´ã‚ŒãŸæ³¢ä¹—ã‚Šãƒã‚§ãƒƒã‚¯ç”¨
 	//	break;
 		#endif
 		
@@ -1198,7 +1198,7 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 			FieldOBJ_AcmdSet( work->fldobj, code );
 			work->seq_no++;
 		}
-		#else	//”j‚ê‚½¢ŠE‚ğl—¶
+		#else	//ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®
 		if( FieldOBJ_AcmdSetCheck(work->fldobj) == TRUE ){
 			int code;
 			int tbl[HEROTWTYPE_MAX] = {
@@ -1231,7 +1231,7 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 				HERO_FORM_SWIM, Player_SexGet(work->jiki) );
 			Jiki_DrawReset( work->jiki, code );
 		}
-#else	//”j‚ê‚½¢ŠE‚ğl—¶
+#else	//ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…®
 		if( Player_MoveBitCheck_TWorld(work->jiki) == FALSE ){
 			int code;
 			FE_FldOBJNamiPokeJointFlagSet( work->eoa_poke, TRUE );
@@ -1260,7 +1260,7 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 	NAMINORI_WORK *work = FieldEvent_GetSpecialWork( ev );
 	
 	switch( work->seq_no ){
-	case 0: //”é“`‹Z”­“®
+	case 0: //ç§˜ä¼æŠ€ç™ºå‹•
 		{
 			/*
 			int code = Player_FormSexOBJCodeGet(
@@ -1268,16 +1268,16 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 			Jiki_DrawReset( work->jiki, code );
 			*/
 			
-			//ƒtƒF[ƒhƒAƒEƒg ¨ ’Ç‰Á”gŒ`“Ç‚İ‚İ ¨ BGMÄ¶
-			Snd_FieldBgmSetSpecial( work->fsys, 0 );//©“]ÔBGMƒNƒŠƒA
+			//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ è¿½åŠ æ³¢å½¢èª­ã¿è¾¼ã¿ â†’ BGMå†ç”Ÿ
+			Snd_FieldBgmSetSpecial( work->fsys, 0 );//è‡ªè»¢è»ŠBGMã‚¯ãƒªã‚¢
 			Snd_FadeOutNextPlayCall(
 				work->fsys, SEQ_NAMINORI, BGM_FADE_FIELD_MODE );
 		}
 		
 		work->seq_no++;
-		work->seq_no++;	//case 1‚ğƒpƒX‚·‚é
+		work->seq_no++;	//case 1ã‚’ãƒ‘ã‚¹ã™ã‚‹
 		break;
-	case 1:	//”é“`‹Z‘Ò‚¿
+	case 1:	//ç§˜ä¼æŠ€å¾…ã¡
 		work->frame++;
 			
 		if( work->frame > 10 ){
@@ -1286,7 +1286,7 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 		}
 		
 		break;
-	case 2:	//ƒJƒbƒgƒCƒ“”­“®
+	case 2:	//ã‚«ãƒƒãƒˆã‚¤ãƒ³ç™ºå‹•
 		if( work->cutin.set_flag == TRUE ){
 			Jiki_CutInSet( work->fsys, &work->cutin );
 			work->seq_no++;
@@ -1295,14 +1295,14 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 		}
 		
 		break;
-	case 3:	//ƒJƒbƒgƒCƒ“I—¹ƒ`ƒFƒbƒN
+	case 3:	//ã‚«ãƒƒãƒˆã‚¤ãƒ³çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( Jiki_CutInEndCheck(&work->cutin) == TRUE ){
 			work->seq_no++;
 		}
 		
 		break;
 	case 4:
-		{	//1ƒOƒŠƒbƒhæ‚Éƒ|ƒPƒ‚ƒ“oŒ»
+		{	//1ã‚°ãƒªãƒƒãƒ‰å…ˆã«ãƒã‚±ãƒ¢ãƒ³å‡ºç¾
 			int gx = Player_NowGPosXGet( work->jiki ) +
 				FieldOBJ_DirAddValueGX( work->dir );
 			int gz = Player_NowGPosZGet( work->jiki ) +
@@ -1315,7 +1315,7 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 		
 		work->seq_no++;
 		break;
-	case 5:	//Œ³‚É–ß‚·
+	case 5:	//å…ƒã«æˆ»ã™
 		work->frame++;
 			
 		if( work->frame > 10 ){
@@ -1356,16 +1356,16 @@ static BOOL JikiEvent_Naminori( GMEVENT_CONTROL *ev )
 #endif
 
 //==============================================================================
-//	”gæ‚èI—¹
+//	æ³¢ä¹—ã‚Šçµ‚äº†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚È‚İ‚Ì‚èI—¹ƒ`ƒFƒbƒN
+ * ãªã¿ã®ã‚Šçµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		is•ûŒü DIR_UP“™
- * @param	val		dir‚É‚æ‚é©‹@ˆÚ“®ó‹µ@OBJ_MOVE_VALUE_STOP“™
- * @retval	int		TRUE=”gæ‚èI—¹ŠJn
+ * @param	dir		é€²è¡Œæ–¹å‘ DIR_UPç­‰
+ * @param	val		dirã«ã‚ˆã‚‹è‡ªæ©Ÿç§»å‹•çŠ¶æ³ã€€OBJ_MOVE_VALUE_STOPç­‰
+ * @retval	int		TRUE=æ³¢ä¹—ã‚Šçµ‚äº†é–‹å§‹
  */
 //--------------------------------------------------------------
 static int JikiEventCheck_NaminoriEnd(
@@ -1397,12 +1397,12 @@ static int JikiEventCheck_NaminoriEnd(
 		}
 	}
 	
-	OS_Printf( "ã—¤ŠJn\n" );
+	OS_Printf( "ä¸Šé™¸é–‹å§‹\n" );
 	JikiEvent_NaminoriEndSet( dir, fsys, jiki );
 	return( TRUE );
 }
 
-#if 0	//”j‚ê‚½¢ŠE–¢l—¶
+#if 0	//ç ´ã‚ŒãŸä¸–ç•Œæœªè€ƒæ…®
 static int JikiEventCheck_NaminoriEnd(
 		FIELDSYS_WORK *fsys, PLAYER_STATE_PTR jiki, int dir, int val )
 {
@@ -1426,7 +1426,7 @@ static int JikiEventCheck_NaminoriEnd(
 		}
 	}
 	
-	OS_Printf( "ã—¤ŠJn\n" );
+	OS_Printf( "ä¸Šé™¸é–‹å§‹\n" );
 	JikiEvent_NaminoriEndSet( dir, fsys, jiki );
 	return( TRUE );
 }
@@ -1434,8 +1434,8 @@ static int JikiEventCheck_NaminoriEnd(
 
 //--------------------------------------------------------------
 /**
- * ‚È‚İ‚Ì‚èI—¹ƒCƒxƒ“ƒg”­“®
- * @param	dir		ˆÚ“®•ûŒü
+ * ãªã¿ã®ã‚Šçµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
@@ -1450,15 +1450,15 @@ static void JikiEvent_NaminoriEndSet( int dir, FIELDSYS_WORK *fsys, PLAYER_STATE
 	work->jiki = jiki;
 	work->fldobj = Player_FieldOBJGet( jiki );
 	work->eoa_poke = Player_JointEoaGet( jiki );
-//	GF_ASSERT( work->eoa_poke != NULL  );	//”gæ‚èƒ|ƒPƒ‚ƒ“–³‚µ
+//	GF_ASSERT( work->eoa_poke != NULL  );	//æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ç„¡ã—
 	FieldEvent_Set( fsys, JikiEvent_NaminoriEnd, work );
 }
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èI—¹ƒCƒxƒ“ƒg 
+ * æ³¢ä¹—ã‚Šçµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆ 
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL JikiEvent_NaminoriEnd( GMEVENT_CONTROL *ev )
@@ -1503,14 +1503,14 @@ static BOOL JikiEvent_NaminoriEnd( GMEVENT_CONTROL *ev )
 		
 		FieldOBJ_AcmdEnd( work->fldobj );
 		
-		if( work->eoa_poke != NULL ){		//–{—ˆ‚ ‚è‚¦‚È‚¢
+		if( work->eoa_poke != NULL ){		//æœ¬æ¥ã‚ã‚Šãˆãªã„
 			FE_EoaDelete( work->eoa_poke );
 		}
 		
 		Player_JointEoaSet( work->jiki, NULL );
 		Player_FormSet( work->jiki, HERO_FORM_NORMAL );
 		
-		//ƒtƒF[ƒhƒAƒEƒg ¨ ’Ç‰Á”gŒ`“Ç‚İ‚İ ¨ BGMÄ¶
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ è¿½åŠ æ³¢å½¢èª­ã¿è¾¼ã¿ â†’ BGMå†ç”Ÿ
 		Snd_FadeOutNextPlayCall( work->fsys, 
 			Snd_FieldBgmNoGetNonBasicBank(
 			work->fsys,work->fsys->location->zone_id), 
@@ -1523,7 +1523,7 @@ static BOOL JikiEvent_NaminoriEnd( GMEVENT_CONTROL *ev )
 	return( FALSE );
 }
 
-#if 0	//”j‚ê‚½¢ŠE–¢l—¶
+#if 0	//ç ´ã‚ŒãŸä¸–ç•Œæœªè€ƒæ…®
 static BOOL JikiEvent_NaminoriEnd( GMEVENT_CONTROL *ev )
 {
 	NAMINORI_END_WORK *work = FieldEvent_GetSpecialWork( ev );
@@ -1551,7 +1551,7 @@ static BOOL JikiEvent_NaminoriEnd( GMEVENT_CONTROL *ev )
 		Player_JointEoaSet( work->jiki, NULL );
 		Player_FormSet( work->jiki, HERO_FORM_NORMAL );
 		
-		//ƒtƒF[ƒhƒAƒEƒg ¨ ’Ç‰Á”gŒ`“Ç‚İ‚İ ¨ BGMÄ¶
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ è¿½åŠ æ³¢å½¢èª­ã¿è¾¼ã¿ â†’ BGMå†ç”Ÿ
 		Snd_FadeOutNextPlayCall( work->fsys, 
 						 Snd_FieldBgmNoGetNonBasicBank(work->fsys,work->fsys->location->zone_id), 
 						 BGM_FADE_FIELD_MODE );
@@ -1565,15 +1565,15 @@ static BOOL JikiEvent_NaminoriEnd( GMEVENT_CONTROL *ev )
 #endif
 
 //==============================================================================
-//	Ô~‚ß
+//	è»Šæ­¢ã‚
 //==============================================================================
 //--------------------------------------------------------------
 /**
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		is•ûŒü DIR_UP“™
- * @param	val		dir‚É‚æ‚é©‹@ˆÚ“®ó‹µ@OBJ_MOVE_VALUE_STOP“™
- * @retval	int		TRUE=Ô~‚ßƒCƒxƒ“ƒgŠJn
+ * @param	dir		é€²è¡Œæ–¹å‘ DIR_UPç­‰
+ * @param	val		dirã«ã‚ˆã‚‹è‡ªæ©Ÿç§»å‹•çŠ¶æ³ã€€OBJ_MOVE_VALUE_STOPç­‰
+ * @retval	int		TRUE=è»Šæ­¢ã‚ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
  */
 //--------------------------------------------------------------
 static int JikiEventCheck_BumpPost(
@@ -1591,14 +1591,14 @@ static int JikiEventCheck_BumpPost(
 		}
 	}
 	
-	OS_Printf( "Ô~‚ßƒqƒbƒg\n" );
+	OS_Printf( "è»Šæ­¢ã‚ãƒ’ãƒƒãƒˆ\n" );
 	JikiEvent_BumpPostSet( fsys, jiki );
 	return( TRUE );
 }
 
 //--------------------------------------------------------------
 /**
- * Ô~‚ßƒCƒxƒ“ƒg”­“®
+ * è»Šæ­¢ã‚ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
@@ -1614,9 +1614,9 @@ static void JikiEvent_BumpPostSet( FIELDSYS_WORK *fsys, PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * Ô~‚ßƒCƒxƒ“ƒg 
+ * è»Šæ­¢ã‚ã‚¤ãƒ™ãƒ³ãƒˆ 
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL JikiEvent_BumpPost( GMEVENT_CONTROL *ev )
@@ -1638,16 +1638,16 @@ static BOOL JikiEvent_BumpPost( GMEVENT_CONTROL *ev )
 }
 
 //==============================================================================
-//	‘ê‰º‚è
+//	æ»ä¸‹ã‚Š
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘ê‰º‚èƒ`ƒFƒbƒN
+ * æ»ä¸‹ã‚Šãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		is•ûŒü DIR_UP“™
- * @param	val		dir‚É‚æ‚é©‹@ˆÚ“®ó‹µ@OBJ_MOVE_VALUE_STOP“™
- * @retval	int		TRUE=‘ê‰º‚èŠJn
+ * @param	dir		é€²è¡Œæ–¹å‘ DIR_UPç­‰
+ * @param	val		dirã«ã‚ˆã‚‹è‡ªæ©Ÿç§»å‹•çŠ¶æ³ã€€OBJ_MOVE_VALUE_STOPç­‰
+ * @retval	int		TRUE=æ»ä¸‹ã‚Šé–‹å§‹
  */
 //--------------------------------------------------------------
 static int JikiEventCheck_TakiKudari(
@@ -1667,22 +1667,22 @@ static int JikiEventCheck_TakiKudari(
 		}
 	}
 	
-	OS_Printf( "‘ê‰º‚èƒqƒbƒg\n" );
+	OS_Printf( "æ»ä¸‹ã‚Šãƒ’ãƒƒãƒˆ\n" );
 	Player_EventTakiNoboriStart( fsys, dir );
 	return( TRUE );
 }
 
 //==============================================================================
-//	[‚¢À
+//	æ·±ã„æ²¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * [‚¢Àƒ`ƒFƒbƒN
+ * æ·±ã„æ²¼ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		is•ûŒü DIR_UP“™
- * @param	val		dir‚É‚æ‚é©‹@ó‘Ô OBJ_MOVE_VALUE_STOP“™
- * @retval	int		TRUE=[‚¢ÀƒCƒxƒ“ƒg”­“®
+ * @param	dir		é€²è¡Œæ–¹å‘ DIR_UPç­‰
+ * @param	val		dirã«ã‚ˆã‚‹è‡ªæ©ŸçŠ¶æ…‹ OBJ_MOVE_VALUE_STOPç­‰
+ * @retval	int		TRUE=æ·±ã„æ²¼ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  */
 //--------------------------------------------------------------
 static int JikiEventCheck_SwampDeep(
@@ -1714,7 +1714,7 @@ static int JikiEventCheck_SwampDeep(
 
 //--------------------------------------------------------------
 /**
- * [‚¢ÀƒCƒxƒ“ƒg”­“®
+ * æ·±ã„æ²¼ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
@@ -1732,9 +1732,9 @@ static void JikiEvent_SwampDeepSet( FIELDSYS_WORK *fsys, PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * [‚¢ÀƒCƒxƒ“ƒg
+ * æ·±ã„æ²¼ã‚¤ãƒ™ãƒ³ãƒˆ
  * @param ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL JikiEvent_SwampDeep( GMEVENT_CONTROL *ev )
@@ -1808,15 +1808,15 @@ static BOOL JikiEvent_SwampDeep( GMEVENT_CONTROL *ev )
 }
 
 //==============================================================================
-//	‹­§ˆÚ“®’†ƒqƒbƒgƒCƒxƒ“ƒg
+//	å¼·åˆ¶ç§»å‹•ä¸­ãƒ’ãƒƒãƒˆã‚¤ãƒ™ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ˆÚ“®ƒqƒbƒgŒnƒCƒxƒ“ƒg”­“®ƒ`ƒFƒbƒN
+ * ç§»å‹•ãƒ’ãƒƒãƒˆç³»ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK
  * @param	jiki	PLAYER_STATE_PTR
  * @param	flag	HERO_EVBIT
- * @retval	int		TRUE=ƒCƒxƒ“ƒg”­“® FALSE=–³‚µ
+ * @retval	int		TRUE=ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹• FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int JikiEventCheck_ForceMoveHitEvent(
@@ -1824,7 +1824,7 @@ static int JikiEventCheck_ForceMoveHitEvent(
 {
 	FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
 	
-	if( FieldOBJ_AcmdSetCheck(fldobj) == FALSE ){			//ˆÚ“®’†
+	if( FieldOBJ_AcmdSetCheck(fldobj) == FALSE ){			//ç§»å‹•ä¸­
 		return( FALSE );
 	}
 	
@@ -1836,14 +1836,14 @@ static int JikiEventCheck_ForceMoveHitEvent(
 }
 
 //==============================================================================
-//	‹­§ˆÚ“®ƒCƒxƒ“ƒg@á‹Ê”j‰ó
+//	å¼·åˆ¶ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã€€é›ªç‰ç ´å£Š
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * á‹Ê”j‰óƒ`ƒFƒbƒN
+ * é›ªç‰ç ´å£Šãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		TRUE=ƒCƒxƒ“ƒg”­“®
+ * @retval	int		TRUE=ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  */
 //--------------------------------------------------------------
 static int JikiEventCheck_SnowBall( FIELDSYS_WORK *fsys, PLAYER_STATE_PTR jiki )
@@ -1868,7 +1868,7 @@ static int JikiEventCheck_SnowBall( FIELDSYS_WORK *fsys, PLAYER_STATE_PTR jiki )
 			}
 		}
 		
-		OS_Printf( "á‹Ê”j‰ó\n" );
+		OS_Printf( "é›ªç‰ç ´å£Š\n" );
 		
 		FieldOBJ_DrawSnowBallBreakSet( fldobj );
 		FieldOBJ_Delete( fldobj );
@@ -1901,7 +1901,7 @@ static int JikiEventCheck_SnowBall( FIELDSYS_WORK *fsys, PLAYER_STATE_PTR jiki )
 			}
 		}
 		
-		OS_Printf( "á‹Ê”j‰óƒCƒxƒ“ƒg”­“®\n" );
+		OS_Printf( "é›ªç‰ç ´å£Šã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•\n" );
 	
 		JikiEvent_SnowBallSet( fsys, jiki, fldobj );
 	}
@@ -1912,10 +1912,10 @@ static int JikiEventCheck_SnowBall( FIELDSYS_WORK *fsys, PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * á‹Ê”j‰óƒCƒxƒ“ƒg”­“®
+ * é›ªç‰ç ´å£Šã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
- * @param	fldobj	‘ÎÛ‚ÌFIELD_OBJ_PTR
+ * @param	fldobj	å¯¾è±¡ã®FIELD_OBJ_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1933,9 +1933,9 @@ static void JikiEvent_SnowBallSet(
 
 //--------------------------------------------------------------
 /**
- * á‹ÊƒCƒxƒ“ƒg 
+ * é›ªç‰ã‚¤ãƒ™ãƒ³ãƒˆ 
  * @param ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL JikiEvent_SnowBall( GMEVENT_CONTROL *ev )
@@ -1967,12 +1967,12 @@ static BOOL JikiEvent_SnowBall( GMEVENT_CONTROL *ev )
 }
 
 //==============================================================================
-//	”é“`@‚©‚×‚Ì‚Ú‚è
+//	ç§˜ä¼ã€€ã‹ã¹ã®ã¼ã‚Š
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚©‚×‚Ì‚Ú‚èƒCƒxƒ“ƒg”­“®
- * @param	dir		ˆÚ“®•ûŒü
+ * ã‹ã¹ã®ã¼ã‚Šã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
@@ -1992,9 +1992,9 @@ static void JikiEvent_KabeNoboriSet( int dir, FIELDSYS_WORK *fsys, PLAYER_STATE_
 
 //--------------------------------------------------------------
 /**
- * ‚©‚×‚Ì‚Ú‚èƒTƒuƒCƒxƒ“ƒg”­“®
+ * ã‹ã¹ã®ã¼ã‚Šã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  * @param	fsys	FIELDSYS_WORK *
- * @param	dir		ˆÚ“®•ûŒü
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @param	cutin	CUTIN_PARAM *
  * @retval	nothing
  */
@@ -2014,8 +2014,8 @@ static void JikiEvent_KabeNoboriCall( FIELDSYS_WORK *fsys, int dir, const CUTIN_
 
 //--------------------------------------------------------------
 /**
- * •Ç‚Ì‚Ú‚èƒCƒxƒ“ƒgŠO•”‘‹Œû
- * @param	dir		ˆÚ“®•ûŒü
+ * å£ã®ã¼ã‚Šã‚¤ãƒ™ãƒ³ãƒˆå¤–éƒ¨çª“å£
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @param	fsys	FIELDSYS_WORK *
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
@@ -2028,10 +2028,10 @@ void Player_EventKabeNoboriStart( int dir, FIELDSYS_WORK *fsys, PLAYER_STATE_PTR
 
 //--------------------------------------------------------------
 /**
- * •Ç‚Ì‚Ú‚èƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * å£ã®ã¼ã‚Šã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  * @param	event	GMEVENT_CONTROL*
- * @param	dir		ˆÚ“®•ûŒü
- * @param	poke_useno	”é“`‹Z‚ğg—p‚µ‚½è‚¿ƒ|ƒPƒ‚ƒ“”Ô†
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	poke_useno	ç§˜ä¼æŠ€ã‚’ä½¿ç”¨ã—ãŸæ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ç•ªå·
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2047,10 +2047,10 @@ void EventCmd_KabeNoboriCall( GMEVENT_CONTROL *event, int dir, int poke_useno )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒCƒxƒ“ƒgƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN@•Çã‚è
- * @param	attr	ƒAƒgƒŠƒrƒ…[ƒg
- * @param	dir		i“ü•ûŒü DIR_UP“™
- * @retval	int		TRUE=•Çã‚è’nŒ`
+ * è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯ã€€å£ä¸Šã‚Š
+ * @param	attr	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @param	dir		é€²å…¥æ–¹å‘ DIR_UPç­‰
+ * @retval	int		TRUE=å£ä¸Šã‚Šåœ°å½¢
  */
 //--------------------------------------------------------------
 int Player_EventAttrCheck_KabeNobori( u32 attr, int dir )
@@ -2074,9 +2074,9 @@ int Player_EventAttrCheck_KabeNobori( u32 attr, int dir )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒCƒxƒ“ƒg 
+ * å£ä¸Šã‚Šã‚¤ãƒ™ãƒ³ãƒˆ 
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL JikiEvent_KabeNobori( GMEVENT_CONTROL *ev )
@@ -2097,9 +2097,9 @@ static BOOL JikiEvent_KabeNobori( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒCƒxƒ“ƒg ƒJƒbƒgƒCƒ“@0
+ * å£ä¸Šã‚Šã‚¤ãƒ™ãƒ³ãƒˆ ã‚«ãƒƒãƒˆã‚¤ãƒ³ã€€0
  * @param	work	ROCKRIDE_WORK *
- * @retval	int		RET_AGAIN=Ä‹A—v‹
+ * @retval	int		RET_AGAIN=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int RockRideEvent_CutIn0( ROCKRIDE_WORK *work )
@@ -2112,9 +2112,9 @@ static int RockRideEvent_CutIn0( ROCKRIDE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒCƒxƒ“ƒg ƒJƒbƒgƒCƒ“@1
+ * å£ä¸Šã‚Šã‚¤ãƒ™ãƒ³ãƒˆ ã‚«ãƒƒãƒˆã‚¤ãƒ³ã€€1
  * @param	work	ROCKRIDE_WORK *
- * @retval	int		RET_AGAIN=Ä‹A—v‹
+ * @retval	int		RET_AGAIN=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int RockRideEvent_CutIn1( ROCKRIDE_WORK *work )
@@ -2128,9 +2128,9 @@ static int RockRideEvent_CutIn1( ROCKRIDE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒCƒxƒ“ƒg 0
+ * å£ä¸Šã‚Šã‚¤ãƒ™ãƒ³ãƒˆ 0
  * @param	work	ROCKRIDE_WORK *
- * @retval	int		RET_AGAIN=Ä‹A—v‹
+ * @retval	int		RET_AGAIN=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int RockRideEvent_0( ROCKRIDE_WORK *work )
@@ -2139,7 +2139,7 @@ static int RockRideEvent_0( ROCKRIDE_WORK *work )
 	int gz = Player_NowGPosZGet( work->jiki ) + FieldOBJ_DirAddValueGZ( work->dir );
 	work->eoa_poke = FE_FldOBJRockRidePoke_Add( work->fldobj, gx, gz, work->dir, FALSE );
 	
-	// ƒGƒtƒFƒNƒgƒIƒuƒWƒF¶¬
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ–ã‚¸ã‚§ç”Ÿæˆ
 	work->hiden_eff = FLD_HIDENEFF_RockClime_Start( work->fsys );
 	Snd_SePlay( SE_ROCKCLIMB );
 	
@@ -2149,9 +2149,9 @@ static int RockRideEvent_0( ROCKRIDE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒCƒxƒ“ƒg 1
+ * å£ä¸Šã‚Šã‚¤ãƒ™ãƒ³ãƒˆ 1
  * @param	work	ROCKRIDE_WORK *
- * @retval	int		RET_AGAIN=Ä‹A—v‹
+ * @retval	int		RET_AGAIN=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int RockRideEvent_1( ROCKRIDE_WORK *work )
@@ -2167,9 +2167,9 @@ static int RockRideEvent_1( ROCKRIDE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒCƒxƒ“ƒg 2
+ * å£ä¸Šã‚Šã‚¤ãƒ™ãƒ³ãƒˆ 2
  * @param	work	ROCKRIDE_WORK *
- * @retval	int		RET_AGAIN=Ä‹A—v‹
+ * @retval	int		RET_AGAIN=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int RockRideEvent_2( ROCKRIDE_WORK *work )
@@ -2184,9 +2184,9 @@ static int RockRideEvent_2( ROCKRIDE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒCƒxƒ“ƒg 3
+ * å£ä¸Šã‚Šã‚¤ãƒ™ãƒ³ãƒˆ 3
  * @param	work	ROCKRIDE_WORK *
- * @retval	int		RET_AGAIN=Ä‹A—v‹
+ * @retval	int		RET_AGAIN=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int RockRideEvent_3( ROCKRIDE_WORK *work )
@@ -2202,9 +2202,9 @@ static int RockRideEvent_3( ROCKRIDE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒCƒxƒ“ƒg 4
+ * å£ä¸Šã‚Šã‚¤ãƒ™ãƒ³ãƒˆ 4
  * @param	work	ROCKRIDE_WORK *
- * @retval	int		RET_AGAIN=Ä‹A—v‹
+ * @retval	int		RET_AGAIN=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int RockRideEvent_4( ROCKRIDE_WORK *work )
@@ -2223,7 +2223,7 @@ static int RockRideEvent_4( ROCKRIDE_WORK *work )
 		}
 	}
 	
-	OS_Printf( "•ÇƒAƒgƒŠƒrƒ…[ƒg‚Å‚Í‚È‚¢\n" );
+	OS_Printf( "å£ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã§ã¯ãªã„\n" );
 	
 	{
 		int code = FieldOBJ_AcmdCodeDirChange( work->dir, AC_JUMP_U_1G_8F );
@@ -2234,7 +2234,7 @@ static int RockRideEvent_4( ROCKRIDE_WORK *work )
 		FE_FldOBJRockRidePokeJointFlagSet( work->eoa_poke, FALSE );
 	}
 
-	// ƒqƒfƒ“ƒGƒtƒFƒNƒg”jŠü
+	// ãƒ’ãƒ‡ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
 	FLD_HIDENEFF_RockClime_End( work->hiden_eff );	
 	work->hiden_eff = NULL;
 	return( RET_FALSE );
@@ -2242,9 +2242,9 @@ static int RockRideEvent_4( ROCKRIDE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * •Çã‚èƒCƒxƒ“ƒg 5
+ * å£ä¸Šã‚Šã‚¤ãƒ™ãƒ³ãƒˆ 5
  * @param	work	ROCKRIDE_WORK *
- * @retval	int		RET_AGAIN=Ä‹A—v‹
+ * @retval	int		RET_AGAIN=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int RockRideEvent_5( ROCKRIDE_WORK *work )
@@ -2259,7 +2259,7 @@ static int RockRideEvent_5( ROCKRIDE_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	•Çã‚èƒCƒxƒ“ƒgƒe[ƒuƒ‹
+///	å£ä¸Šã‚Šã‚¤ãƒ™ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_KabeNoboriEventTbl[])( ROCKRIDE_WORK *work ) =
 {
@@ -2274,13 +2274,13 @@ static int (* const DATA_KabeNoboriEventTbl[])( ROCKRIDE_WORK *work ) =
 };
 
 //==============================================================================
-//	‚½‚«‚Ì‚Ú‚è
+//	ãŸãã®ã¼ã‚Š
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘ê“o‚èƒ[ƒNƒZƒbƒg
+ * æ»ç™»ã‚Šãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
  * @param	fsys	FIELDSYS_WORK *
- * @param	dir		ˆÚ“®•ûŒü DIR_UP“™
+ * @param	dir		ç§»å‹•æ–¹å‘ DIR_UPç­‰
  * @retval	TAKINOBORI_WORK	TAKINOBORI_WORK *
  */
 //--------------------------------------------------------------
@@ -2303,9 +2303,9 @@ static TAKINOBORI_WORK * TakiNoboriWorkInit(
 
 //--------------------------------------------------------------
 /**
- * ‚½‚«‚Ì‚Ú‚èƒCƒxƒ“ƒg”­“®
+ * ãŸãã®ã¼ã‚Šã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  * @param	fsys	FIELDSYS_WORK *
- * @param	dir		ˆÚ“®•ûŒü
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2317,9 +2317,9 @@ void Player_EventTakiNoboriStart( FIELDSYS_WORK *fsys, int dir )
 
 //--------------------------------------------------------------
 /**
- * ‚½‚«‚Ì‚Ú‚èƒTƒuƒCƒxƒ“ƒg”­“®
+ * ãŸãã®ã¼ã‚Šã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  * @param	event	GMEVENT_CONTROL*
- * @param	dir		ˆÚ“®•ûŒü
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @param	
  * @retval	nothing
  */
@@ -2339,9 +2339,9 @@ void EventCmd_TakiNoboriCall( GMEVENT_CONTROL *event, int dir, int poke_useno )
 
 //--------------------------------------------------------------
 /**
- * ‘ê“o‚èƒCƒxƒ“ƒg
+ * æ»ç™»ã‚Šã‚¤ãƒ™ãƒ³ãƒˆ
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL JikiEvent_TakiNobori( GMEVENT_CONTROL *ev )
@@ -2367,9 +2367,9 @@ static BOOL JikiEvent_TakiNobori( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------
 /**
- * ‘ê“o‚è@ƒJƒbƒgƒCƒ“ 0
+ * æ»ç™»ã‚Šã€€ã‚«ãƒƒãƒˆã‚¤ãƒ³ 0
  * @param	work	TAKINOBORI_WORK
- * @retval	int		RET_FALSE“™
+ * @retval	int		RET_FALSEç­‰
  */
 //--------------------------------------------------------------
 static int TakiNobori_CutIn0( TAKINOBORI_WORK *work )
@@ -2386,9 +2386,9 @@ static int TakiNobori_CutIn0( TAKINOBORI_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‘ê“o‚è@ƒJƒbƒgƒCƒ“ 1
+ * æ»ç™»ã‚Šã€€ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1
  * @param	work	TAKINOBORI_WORK
- * @retval	int		RET_FALSE“™
+ * @retval	int		RET_FALSEç­‰
  */
 //--------------------------------------------------------------
 static int TakiNobori_CutIn1( TAKINOBORI_WORK *work )
@@ -2403,13 +2403,13 @@ static int TakiNobori_CutIn1( TAKINOBORI_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‘ê“o‚è@0
+ * æ»ç™»ã‚Šã€€0
  * @param	work	TAKINOBORI_WORK
- * @retval	int		RET_FALSE“™
+ * @retval	int		RET_FALSEç­‰
  */
 //--------------------------------------------------------------
 static int TakiNobori_0( TAKINOBORI_WORK *work )
-{																//‚QƒOƒŠƒbƒhæ
+{																//ï¼’ã‚°ãƒªãƒƒãƒ‰å…ˆ
 	int x,z;
 	VecFx32 now_vec,calc_vec;
 	
@@ -2425,8 +2425,8 @@ static int TakiNobori_0( TAKINOBORI_WORK *work )
 	work->target_gz = z;
 	
 	FieldOBJ_VecPosGet( work->fldobj, &now_vec );
-	GF_ASSERT(now_vec.z > work->target_vec.z && "TakiNobori_0()zÀ•WˆÙí");
-	GF_ASSERT(now_vec.y < work->target_vec.y && "TakiNobori_0()yÀ•WˆÙí");
+	GF_ASSERT(now_vec.z > work->target_vec.z && "TakiNobori_0()zåº§æ¨™ç•°å¸¸");
+	GF_ASSERT(now_vec.y < work->target_vec.y && "TakiNobori_0()yåº§æ¨™ç•°å¸¸");
 	
 	calc_vec.x = 0;
 	calc_vec.y = work->target_vec.y - now_vec.y;
@@ -2435,7 +2435,7 @@ static int TakiNobori_0( TAKINOBORI_WORK *work )
 	calc_vec.z /= TAKI_UP_FRAME_Z;
 	work->add_val = calc_vec;
 
-	// ƒGƒtƒFƒNƒg¶¬
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	work->hiden_eff = FLD_HIDENEFF_Takinobori_Start( work->fsys );
 	work->seq_no++;
 	
@@ -2448,9 +2448,9 @@ static int TakiNobori_0( TAKINOBORI_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‘ê“o‚è@1
+ * æ»ç™»ã‚Šã€€1
  * @param	work	TAKINOBORI_WORK
- * @retval	int		RET_FALSE“™
+ * @retval	int		RET_FALSEç­‰
  */
 //--------------------------------------------------------------
 static int TakiNobori_1( TAKINOBORI_WORK *work )
@@ -2479,9 +2479,9 @@ static int TakiNobori_1( TAKINOBORI_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‘ê“o‚è@2
+ * æ»ç™»ã‚Šã€€2
  * @param	work	TAKINOBORI_WORK
- * @retval	int		RET_FALSE“™
+ * @retval	int		RET_FALSEç­‰
  */
 //--------------------------------------------------------------
 static int TakiNobori_2( TAKINOBORI_WORK *work )
@@ -2510,8 +2510,8 @@ static int TakiNobori_2( TAKINOBORI_WORK *work )
 		return( RET_FALSE );
 	}
 	
-	GF_ASSERT( vec.z == work->target_vec.z && "‘ê“o‚è@À•WˆÙí\n" );
-	GF_ASSERT( vec.y == work->target_vec.y && "‘ê“o‚è@À•WˆÙí\n" );
+	GF_ASSERT( vec.z == work->target_vec.z && "æ»ç™»ã‚Šã€€åº§æ¨™ç•°å¸¸\n" );
+	GF_ASSERT( vec.y == work->target_vec.y && "æ»ç™»ã‚Šã€€åº§æ¨™ç•°å¸¸\n" );
 	
 //	FieldOBJ_VecPosSet( work->fldobj, &vec );
 	FieldOBJ_NowPosGX_Set( work->fldobj, work->target_gx );
@@ -2519,13 +2519,13 @@ static int TakiNobori_2( TAKINOBORI_WORK *work )
 	FieldOBJ_NowPosGZ_Set( work->fldobj, work->target_gz );
 	FieldOBJ_GPosUpdate( work->fldobj );
 	
-	// ƒGƒtƒFƒNƒgI—¹
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 	FLD_HIDENEFF_Takinobori_End( work->hiden_eff );
 	return( RET_TRUE );
 }
 
 //--------------------------------------------------------------
-///	‘ê“o‚è“®ìƒe[ƒuƒ‹
+///	æ»ç™»ã‚Šå‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_TakiNoboriEventTbl[])( TAKINOBORI_WORK *work ) =
 {
@@ -2538,9 +2538,9 @@ static int (* const DATA_TakiNoboriEventTbl[])( TAKINOBORI_WORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‘ê‚­‚¾‚è@ƒJƒbƒgƒCƒ“ 0
+ * æ»ãã ã‚Šã€€ã‚«ãƒƒãƒˆã‚¤ãƒ³ 0
  * @param	work	TAKINOBORI_WORK
- * @retval	int		RET_FALSE“™
+ * @retval	int		RET_FALSEç­‰
  */
 //--------------------------------------------------------------
 static int TakiKudari_CutIn0( TAKINOBORI_WORK *work )
@@ -2557,9 +2557,9 @@ static int TakiKudari_CutIn0( TAKINOBORI_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‘ê‰º‚è@ƒJƒbƒgƒCƒ“ 1
+ * æ»ä¸‹ã‚Šã€€ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1
  * @param	work	TAKINOBORI_WORK
- * @retval	int		RET_FALSE“™
+ * @retval	int		RET_FALSEç­‰
  */
 //--------------------------------------------------------------
 static int TakiKudari_CutIn1( TAKINOBORI_WORK *work )
@@ -2574,13 +2574,13 @@ static int TakiKudari_CutIn1( TAKINOBORI_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‘ê‰º‚è@0
+ * æ»ä¸‹ã‚Šã€€0
  * @param	work	TAKINOBORI_WORK
- * @retval	int		RET_FALSE“™
+ * @retval	int		RET_FALSEç­‰
  */
 //--------------------------------------------------------------
 static int TakiKudari_0( TAKINOBORI_WORK *work )
-{																//‚QƒOƒŠƒbƒhæ
+{																//ï¼’ã‚°ãƒªãƒƒãƒ‰å…ˆ
 	int x,z;
 	VecFx32 now_vec,calc_vec;
 	
@@ -2598,8 +2598,8 @@ static int TakiKudari_0( TAKINOBORI_WORK *work )
 	
 	FieldOBJ_VecPosGet( work->fldobj, &now_vec );
 	
-	GF_ASSERT( now_vec.z < work->target_vec.z && "TakiKudari_0()zÀ•WˆÙí" );
-	GF_ASSERT( now_vec.y > work->target_vec.y && "TakiKudari_0()yÀ•WˆÙí" );
+	GF_ASSERT( now_vec.z < work->target_vec.z && "TakiKudari_0()zåº§æ¨™ç•°å¸¸" );
+	GF_ASSERT( now_vec.y > work->target_vec.y && "TakiKudari_0()yåº§æ¨™ç•°å¸¸" );
 	
 #ifdef PM_DEBUG
 	{
@@ -2609,7 +2609,7 @@ static int TakiKudari_0( TAKINOBORI_WORK *work )
 		FieldOBJTool_GridCenterPosGet( x, z, &center );
 		if( now_vec.z != center.z ){
 			OS_Printf( "now_vec.z = %x center z = %x\n", now_vec.z, center.z );
-			GF_ASSERT( 0 && "©‹@À•W‚ª‚¸‚ê‚Ä‚¢‚é" );
+			GF_ASSERT( 0 && "è‡ªæ©Ÿåº§æ¨™ãŒãšã‚Œã¦ã„ã‚‹" );
 		}
 	}
 #endif
@@ -2617,13 +2617,13 @@ static int TakiKudari_0( TAKINOBORI_WORK *work )
 	calc_vec.x = 0;
 	calc_vec.y = work->target_vec.y - now_vec.y;
 	calc_vec.z = work->target_vec.z - now_vec.z;
-	OS_Printf( "‚½‚«‚­‚¾‚è@·•ª %x\n", calc_vec.z );
+	OS_Printf( "ãŸããã ã‚Šã€€å·®åˆ† %x\n", calc_vec.z );
 	calc_vec.y /= TAKI_UP_FRAME_Y;
 	calc_vec.z /= TAKI_UP_FRAME_Z;
 	work->add_val = calc_vec;
-	OS_Printf( "‚½‚«‚­‚¾‚è@‘¬“x@%x\n", calc_vec.z );
+	OS_Printf( "ãŸããã ã‚Šã€€é€Ÿåº¦ã€€%x\n", calc_vec.z );
 
-	// ƒGƒtƒFƒNƒg¶¬
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	work->hiden_eff = FLD_HIDENEFF_Takinobori_Start( work->fsys );
 	
 	work->seq_no++;
@@ -2636,9 +2636,9 @@ static int TakiKudari_0( TAKINOBORI_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‘ê‰º‚è@1
+ * æ»ä¸‹ã‚Šã€€1
  * @param	work	TAKINOBORI_WORK
- * @retval	int		RET_FALSE“™
+ * @retval	int		RET_FALSEç­‰
  */
 //--------------------------------------------------------------
 static int TakiKudari_1( TAKINOBORI_WORK *work )
@@ -2669,9 +2669,9 @@ static int TakiKudari_1( TAKINOBORI_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‘ê‰º‚è@2
+ * æ»ä¸‹ã‚Šã€€2
  * @param	work	TAKINOBORI_WORK
- * @retval	int		RET_FALSE“™
+ * @retval	int		RET_FALSEç­‰
  */
 //--------------------------------------------------------------
 static int TakiKudari_2( TAKINOBORI_WORK *work )
@@ -2702,8 +2702,8 @@ static int TakiKudari_2( TAKINOBORI_WORK *work )
 		return( RET_FALSE );
 	}
 	
-	GF_ASSERT( vec.z == work->target_vec.z && "‘ê“o‚è@À•WˆÙí\n" );
-	GF_ASSERT( vec.y == work->target_vec.y && "‘ê“o‚è@À•WˆÙí\n" );
+	GF_ASSERT( vec.z == work->target_vec.z && "æ»ç™»ã‚Šã€€åº§æ¨™ç•°å¸¸\n" );
+	GF_ASSERT( vec.y == work->target_vec.y && "æ»ç™»ã‚Šã€€åº§æ¨™ç•°å¸¸\n" );
 //	FieldOBJ_VecPosSet( work->fldobj, &vec );
 	
 	FieldOBJ_NowPosGX_Set( work->fldobj, work->target_gx );
@@ -2711,16 +2711,16 @@ static int TakiKudari_2( TAKINOBORI_WORK *work )
 	FieldOBJ_NowPosGZ_Set( work->fldobj, work->target_gz );
 	FieldOBJ_GPosUpdate( work->fldobj );
 	
-	OS_Printf( "ZˆÚ“®‹——£ %x\n", work->count_vec );
+	OS_Printf( "Zç§»å‹•è·é›¢ %x\n", work->count_vec );
 
-	// ƒGƒtƒFƒNƒgI—¹
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 	FLD_HIDENEFF_Takinobori_End( work->hiden_eff );
 	
 	return( RET_TRUE );
 }
 
 //--------------------------------------------------------------
-///	‘ê‰º‚è“®ìƒe[ƒuƒ‹
+///	æ»ä¸‹ã‚Šå‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_TakiKudariEventTbl[])( TAKINOBORI_WORK *work ) =
 {
@@ -2732,10 +2732,10 @@ static int (* const DATA_TakiKudariEventTbl[])( TAKINOBORI_WORK *work ) =
 };
 
 //==============================================================================
-//	ƒRƒ“ƒeƒXƒg
+//	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-///	CONTEST_WORK\‘¢‘Ì
+///	CONTEST_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -2750,7 +2750,7 @@ typedef struct
 #define CONTEST_WORK_SIZE (sizeof(CONTEST_WORK))
 
 //--------------------------------------------------------------
-///	ƒRƒ“ƒeƒXƒg©‹@ƒAƒjƒ
+///	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆè‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const FIELD_OBJ_ACMD_LIST DATA_ContestHeroAcmdTbl_0[] =
 {
@@ -2801,7 +2801,7 @@ static BOOL JikiEvent_ContestHeroChange( GMEVENT_CONTROL *ev );
 
 //--------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg’…‘Ö‚¦@ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç€æ›¿ãˆã€€ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  * @param	event	GMEVENT_CONTROL
  * @retval	nothing
  */
@@ -2814,7 +2814,7 @@ void EventCmd_ContestHeroChange( GMEVENT_CONTROL *event )
 
 //--------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg’…‘Ö‚¦ƒCƒxƒ“ƒg”­“®
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç€æ›¿ãˆã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  * @param	fsys	FIELDSYS_WORK *
  * @retval	nothing
  */
@@ -2833,7 +2833,7 @@ void Player_EventContestHeroChangeStart( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒTƒuƒCƒxƒ“ƒgƒZƒbƒg@ƒRƒ“ƒeƒXƒg’…‘Ö‚¦”­“®
+ * è‡ªæ©Ÿã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç€æ›¿ãˆç™ºå‹•
  * @param	event	GMEVENT_CONTROL
  * @retval	nothing
  */
@@ -2852,9 +2852,9 @@ static void JikiEvent_ContestHeroChangeSet( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg’…‘Ö‚¦ƒCƒxƒ“ƒg
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç€æ›¿ãˆã‚¤ãƒ™ãƒ³ãƒˆ
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL JikiEvent_ContestHeroChange( GMEVENT_CONTROL *ev )
@@ -2890,11 +2890,11 @@ static BOOL JikiEvent_ContestHeroChange( GMEVENT_CONTROL *ev )
 }
 
 //==============================================================================
-//	ƒ|ƒPƒbƒ`ƒLƒƒƒ“ƒZƒ‹
+//	ãƒã‚±ãƒƒãƒã‚­ãƒ£ãƒ³ã‚»ãƒ«
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@ƒ|ƒPƒbƒ`‚Å‚È‚¯‚ê‚Îƒ|ƒPƒbƒ`ó‘Ô‚É
+ * è‡ªæ©Ÿãƒã‚±ãƒƒãƒã§ãªã‘ã‚Œã°ãƒã‚±ãƒƒãƒçŠ¶æ…‹ã«
  * @param	jiki	PLAYER_STATE_PTR	
  * @retval	nothing
  */
@@ -2931,7 +2931,7 @@ void Player_EventPoketchChange( PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ƒ|ƒPƒbƒ`ó‘Ô‚Å‚ ‚ê‚ÎƒLƒƒƒ“ƒZƒ‹‚·‚é
+ * è‡ªæ©Ÿãƒã‚±ãƒƒãƒçŠ¶æ…‹ã§ã‚ã‚Œã°ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
  * @param	jiki	PLAYER_STATE_PTR	
  * @retval	nothing
  */
@@ -2968,10 +2968,10 @@ void Player_EventPoketchCancel( PLAYER_STATE_PTR jiki )
 }
 
 //==============================================================================
-//	ƒCƒxƒ“ƒg•`‰æ
+//	ã‚¤ãƒ™ãƒ³ãƒˆæç”»
 //==============================================================================
 //--------------------------------------------------------------
-///	JIKIEVDRAW_WORK\‘¢‘Ì
+///	JIKIEVDRAW_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -2985,10 +2985,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg•`‰æˆ—’Ç‰ÁB
- * ©‹@Œ`‘Ô‚ª“k•àˆÈŠO‚Å‚ ‚ê‚Î‰½‚à‚µ‚È‚¢B
+ * ã‚¤ãƒ™ãƒ³ãƒˆæç”»å‡¦ç†è¿½åŠ ã€‚
+ * è‡ªæ©Ÿå½¢æ…‹ãŒå¾’æ­©ä»¥å¤–ã§ã‚ã‚Œã°ä½•ã‚‚ã—ãªã„ã€‚
  * @param	fsys	FIELDSYS_WORK
- * @retval	TCB_PTR	ƒŒƒ|[ƒg•`‰æˆ—TCB_PTR ‰½‚à‚µ‚È‚¢ê‡ANULL
+ * @retval	TCB_PTR	ãƒ¬ãƒãƒ¼ãƒˆæç”»å‡¦ç†TCB_PTR ä½•ã‚‚ã—ãªã„å ´åˆã€NULL
  */
 //--------------------------------------------------------------
 static TCB_PTR Jiki_EvDrawProcSet( FIELDSYS_WORK *fsys, u32 reqbit )
@@ -3022,8 +3022,8 @@ static TCB_PTR Jiki_EvDrawProcSet( FIELDSYS_WORK *fsys, u32 reqbit )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg•`‰æˆ—íœ
- * @param	tcb Player_ReportDrawProcSet()‚Ì–ß‚è’lBNULL‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+ * ã‚¤ãƒ™ãƒ³ãƒˆæç”»å‡¦ç†å‰Šé™¤
+ * @param	tcb Player_ReportDrawProcSet()ã®æˆ»ã‚Šå€¤ã€‚NULLã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3052,14 +3052,14 @@ static void Jiki_EvDrawVIntrTcb( TCB_PTR tcb, void *wk )
 }
 
 //==============================================================================
-//	ƒŒƒ|[ƒg•`‰æ
+//	ãƒ¬ãƒãƒ¼ãƒˆæç”»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŒƒ|[ƒg•`‰æˆ—’Ç‰ÁB
- * ©‹@Œ`‘Ô‚ª“k•àˆÈŠO‚Å‚ ‚ê‚Î‰½‚à‚µ‚È‚¢B
+ * ãƒ¬ãƒãƒ¼ãƒˆæç”»å‡¦ç†è¿½åŠ ã€‚
+ * è‡ªæ©Ÿå½¢æ…‹ãŒå¾’æ­©ä»¥å¤–ã§ã‚ã‚Œã°ä½•ã‚‚ã—ãªã„ã€‚
  * @param	fsys	FIELDSYS_WORK
- * @retval	TCB_PTR	ƒŒƒ|[ƒg•`‰æˆ—TCB_PTR ‰½‚à‚µ‚È‚¢ê‡ANULL
+ * @retval	TCB_PTR	ãƒ¬ãƒãƒ¼ãƒˆæç”»å‡¦ç†TCB_PTR ä½•ã‚‚ã—ãªã„å ´åˆã€NULL
  */
 //--------------------------------------------------------------
 TCB_PTR Player_ReportDrawProcSet( FIELDSYS_WORK *fsys )
@@ -3069,8 +3069,8 @@ TCB_PTR Player_ReportDrawProcSet( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ|[ƒg•`‰æˆ—íœ
- * @param	tcb		Player_ReportDrawProcSet()‚Ì–ß‚è’lBNULL‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+ * ãƒ¬ãƒãƒ¼ãƒˆæç”»å‡¦ç†å‰Šé™¤
+ * @param	tcb		Player_ReportDrawProcSet()ã®æˆ»ã‚Šå€¤ã€‚NULLã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3081,10 +3081,10 @@ void Player_ReportDrawProcDelete( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * BS•`‰æˆ—’Ç‰ÁB
- * ©‹@Œ`‘Ô‚ª“k•àˆÈŠO‚Å‚ ‚ê‚Î‰½‚à‚µ‚È‚¢B
+ * BSæç”»å‡¦ç†è¿½åŠ ã€‚
+ * è‡ªæ©Ÿå½¢æ…‹ãŒå¾’æ­©ä»¥å¤–ã§ã‚ã‚Œã°ä½•ã‚‚ã—ãªã„ã€‚
  * @param	fsys	FIELDSYS_WORK
- * @retval	TCB_PTR	ƒŒƒ|[ƒg•`‰æˆ—TCB_PTR ‰½‚à‚µ‚È‚¢ê‡ANULL
+ * @retval	TCB_PTR	ãƒ¬ãƒãƒ¼ãƒˆæç”»å‡¦ç†TCB_PTR ä½•ã‚‚ã—ãªã„å ´åˆã€NULL
  */
 //--------------------------------------------------------------
 TCB_PTR Player_BSDrawProcSet( FIELDSYS_WORK *fsys )
@@ -3094,8 +3094,8 @@ TCB_PTR Player_BSDrawProcSet( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * BS•`‰æˆ—íœ
- * @param	tcb		Player_ReportDrawProcSet()‚Ì–ß‚è’lBNULL‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+ * BSæç”»å‡¦ç†å‰Šé™¤
+ * @param	tcb		Player_ReportDrawProcSet()ã®æˆ»ã‚Šå€¤ã€‚NULLã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3105,14 +3105,14 @@ void Player_BSDrawProcDelete( TCB_PTR tcb )
 }
 
 //==============================================================================
-//	ƒJƒbƒgƒCƒ“ƒp[ƒc
+//	ã‚«ãƒƒãƒˆã‚¤ãƒ³ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * CURIN_PARAM‰Šú‰»
+ * CURIN_PARAMåˆæœŸåŒ–
  * @param	fsys	FIELDSYS_WORK *
- * @param	para	ƒJƒbƒgƒCƒ“‚Å•\¦‚³‚¹‚éPOKEMON_PARAM *
- * @param	cutin	‰Šú‰»‚·‚éCUTIN_PARAM *
+ * @param	para	ã‚«ãƒƒãƒˆã‚¤ãƒ³ã§è¡¨ç¤ºã•ã›ã‚‹POKEMON_PARAM *
+ * @param	cutin	åˆæœŸåŒ–ã™ã‚‹CUTIN_PARAM *
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3125,7 +3125,7 @@ static void Jiki_CutInParamInit( FIELDSYS_WORK *fsys, POKEMON_PARAM *para, CUTIN
 
 //--------------------------------------------------------------
 /**
- * CURIN_PARAM‚©‚çƒJƒbƒgƒCƒ“’Ç‰Á
+ * CURIN_PARAMã‹ã‚‰ã‚«ãƒƒãƒˆã‚¤ãƒ³è¿½åŠ 
  * @param	fsys	FIELDSYS_WORK *
  * @param	cutin	CUTIN_PARAM *
  * @retval	nothing
@@ -3139,7 +3139,7 @@ static void Jiki_CutInSet( FIELDSYS_WORK *fsys, CUTIN_PARAM *cutin  )
 
 //--------------------------------------------------------------
 /**
- * CURIN_PARAM‚©‚çƒJƒbƒgƒCƒ“I—¹ƒ`ƒFƒbƒN
+ * CURIN_PARAMã‹ã‚‰ã‚«ãƒƒãƒˆã‚¤ãƒ³çµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK *
  * @param	cutin	CUTIN_PARAM *
  * @retval	nothing
@@ -3156,13 +3156,13 @@ static int Jiki_CutInEndCheck( CUTIN_PARAM *cutin )
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@•\¦ŒnƒŠƒZƒbƒg
+ * è‡ªæ©Ÿè¡¨ç¤ºç³»ãƒªã‚»ãƒƒãƒˆ
  * @param	jiki	PLAYER_STATE_PTR
- * @param	code	•\¦‚·‚éOBJƒR[ƒh HERO“™
+ * @param	code	è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰ HEROç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3172,7 +3172,7 @@ static void Jiki_DrawReset( PLAYER_STATE_PTR jiki, int code )
 	
 	if( Player_MoveBitCheck_TWorld(jiki) == HEROTWTYPE_NON ){
 		FieldOBJ_BlActDummyDrawReset( fldobj, code, NULL, NULL );
-	}else{ //”j‚ê‚½¢ŠE‚Å‚Íƒ_ƒ~[ƒAƒNƒ^[‚É©“]Šp“x‚ğ•t‚¯‚é•K—v‚ª‚ ‚é
+	}else{ //ç ´ã‚ŒãŸä¸–ç•Œã§ã¯ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ã«è‡ªè»¢è§’åº¦ã‚’ä»˜ã‘ã‚‹å¿…è¦ãŒã‚ã‚‹
 		int rot;
 		FIELDSYS_WORK *fsys;
 		BLACT_WORK_PTR d_act;
@@ -3190,10 +3190,10 @@ static void Jiki_DrawReset( PLAYER_STATE_PTR jiki, int code )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠEŒÀ’èB
- * ©‹@•\¦ŒnƒŠƒZƒbƒgˆ—‚Å’Ç‰Á‚³‚ê‚éƒ_ƒ~[íœ‚És‚¤ˆ—B
+ * ç ´ã‚ŒãŸä¸–ç•Œé™å®šã€‚
+ * è‡ªæ©Ÿè¡¨ç¤ºç³»ãƒªã‚»ãƒƒãƒˆå‡¦ç†ã§è¿½åŠ ã•ã‚Œã‚‹ãƒ€ãƒŸãƒ¼å‰Šé™¤æ™‚ã«è¡Œã†å‡¦ç†ã€‚
  * @param	wk	PLAYER_STATE_PTR
- * @param	d_act ƒ_ƒ~[ƒAƒNƒ^[
+ * @param	d_act ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3233,10 +3233,10 @@ static void Jiki_DrawReset( PLAYER_STATE_PTR jiki, int code )
 
 //--------------------------------------------------------------
 /**
- * ©‹@ˆÊ’u‚©‚çw’è•ûŒü‚ÉƒtƒB[ƒ‹ƒhOBJ‚ª‚¢‚é‚©
+ * è‡ªæ©Ÿä½ç½®ã‹ã‚‰æŒ‡å®šæ–¹å‘ã«ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒã„ã‚‹ã‹
  * @param	jiki			PLAYER_STATE_PTR
- * @param	dir				w’è•ûŒüBDIR_UP“™
- * @retval	FIELD_OBJ_PTR	NULL=‚¢‚È‚¢
+ * @param	dir				æŒ‡å®šæ–¹å‘ã€‚DIR_UPç­‰
+ * @retval	FIELD_OBJ_PTR	NULL=ã„ãªã„
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_PTR Jiki_DirOBJSearch( PLAYER_STATE_PTR jiki, int dir )
@@ -3251,15 +3251,15 @@ static FIELD_OBJ_PTR Jiki_DirOBJSearch( PLAYER_STATE_PTR jiki, int dir )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg—pƒ[ƒNƒƒ‚ƒŠŠm•Û
- * @param	size	ƒ[ƒNƒTƒCƒY
- * @retval	void*	Šm•Û‚µ‚½ƒ[ƒN
+ * ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç¢ºä¿
+ * @param	size	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+ * @retval	void*	ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 static void * Jiki_EventWorkAlloc( int size )
 {
 	void *work = sys_AllocMemoryLo( HEAPID_FIELD, size );
-	GF_ASSERT( work != NULL && "Jiki_EventWorkAlloc()ƒ[ƒNŠm•Û¸”s" );
+	GF_ASSERT( work != NULL && "Jiki_EventWorkAlloc()ãƒ¯ãƒ¼ã‚¯ç¢ºä¿å¤±æ•—" );
 	memset( work, 0, size );
 	
 	return( work );
@@ -3267,8 +3267,8 @@ static void * Jiki_EventWorkAlloc( int size )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg—pƒ[ƒNƒƒ‚ƒŠŠJ•ú
- * @param	work	ŠJ•ú‚·‚éƒ[ƒN
+ * ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
+ * @param	work	é–‹æ”¾ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3279,9 +3279,9 @@ static void Jiki_EventWorkFree( void *work )
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“è‚¿”Ô†‚©‚çPOKEMON_PARAMæ“¾
+ * ãƒã‚±ãƒ¢ãƒ³æ‰‹æŒã¡ç•ªå·ã‹ã‚‰POKEMON_PARAMå–å¾—
  * @param	fsys	FIELDSYS_WORK
- * @param	no		è‚¿”Ô†
+ * @param	no		æ‰‹æŒã¡ç•ªå·
  * @retval	POKEMON_PARAM*	POKEMON_PARAM *
  */
 //--------------------------------------------------------------

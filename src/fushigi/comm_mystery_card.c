@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	comm_fushigi_card.c
- * @bfief	‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì ƒJ[ƒh‚ÌŠm”F‰æ–Ê
+ * @bfief	ãµã—ããªã€€ãŠãã‚Šã‚‚ã® ã‚«ãƒ¼ãƒ‰ã®ç¢ºèªç”»é¢
  * @author	Satoshi Mitsuhara
  * @date	06.05.19
  *
@@ -10,13 +10,13 @@
 //============================================================================================
 
 // [Main]
-// BG0	ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
-// BG1	ƒJ[ƒh”wŒi
-// BG2	è‘O‚Ìƒƒjƒ…[
-// BG3	ˆê”ÔŒã‚ë‚ÌŠiq–Í—l
+// BG0	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+// BG1	ã‚«ãƒ¼ãƒ‰èƒŒæ™¯
+// BG2	æ‰‹å‰ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+// BG3	ä¸€ç•ªå¾Œã‚ã®æ ¼å­æ¨¡æ§˜
 
 // [Sub]
-// Šiq–Í—l‚Ì‚İ
+// æ ¼å­æ¨¡æ§˜ã®ã¿
 
 
 #include "common.h"
@@ -58,7 +58,7 @@ extern void MysteryCard_DisplayCardOnly(GF_BGL_INI *bgl, void *p, int heapid);
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 #define MYSTERYCARD_HEADSIZE	0x30000
 
@@ -67,7 +67,7 @@ extern void MysteryCard_DisplayCardOnly(GF_BGL_INI *bgl, void *p, int heapid);
 #define OSUSOWAKE_PALNO		12
 #define WAKU_PALETTE_NUMBER1	13
 #define WAKU_PALETTE_NUMBER2	14
-#define	FONT_PALNO_NORMAL	15	/* ƒm[ƒ}ƒ‹ƒpƒŒƒbƒg */
+#define	FONT_PALNO_NORMAL	15	/* ãƒãƒ¼ãƒãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆ */
 #define	MYSTERYCARD_BLACK	(GF_PRINTCOLOR_MAKE( 1, 2, 0))
 #define	MYSTERYCARD_WHITE	(GF_PRINTCOLOR_MAKE(15, 2, 0))
 #define	MYSTERYCARD_OWHITE	(GF_PRINTCOLOR_MAKE(14, 15, 0))
@@ -83,7 +83,7 @@ extern void MysteryCard_DisplayCardOnly(GF_BGL_INI *bgl, void *p, int heapid);
 #define MYSTERYCARD_TFRAMECHR	(MYSTERYCARD_FRAMECHR2 + MENU_WIN_CGX_SIZ)
 #define MYSTERYCARD_CHBASE	(MYSTERYCARD_TFRAMECHR + TALK_WIN_CGX_SIZ)
 
-/* ƒOƒ‰ƒtƒBƒbƒNƒX‚Ì•\—  */
+/* ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã®è¡¨è£ */
 #define MYSTERYCARD_FRONT	0
 #define MYSTERYCARD_BACK	1
 #define MYSTERYCARD_MENU	2
@@ -91,42 +91,42 @@ extern void MysteryCard_DisplayCardOnly(GF_BGL_INI *bgl, void *p, int heapid);
 #define WHITE			1
 #define BLACK			2
 
-/* ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚Ìƒf[ƒ^‚ª‚ ‚éêŠ */
+/* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´æ‰€ */
 #define MYSTERYCARD_INDEX_MENU	7
 #define MYSTERYCARD_MENU_BASE	640
 
-/* ƒGƒ“ƒgƒŠ”‚ğ•\¦‚µ‚Ä‚¢‚éƒEƒBƒ“ƒhƒE‚ÌƒCƒ“ƒfƒbƒNƒX */
+/* ã‚¨ãƒ³ãƒˆãƒªæ•°ã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ */
 #define MYSTERYCARD_ENTRY_COUNT	15
-/* ƒGƒ“ƒgƒŠ[‚ğ•\¦‚µ‚Ä‚¢‚éƒEƒBƒ“ƒhƒE‚ÌƒCƒ“ƒfƒbƒNƒX */
+/* ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ */
 #define MYSTERYCARD_ENTRY_LIST	16
-/* ÅŒã‚ÌƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE */
+/* æœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ */
 #define MYSTERYCARD_INDEX_LASTWIN	17
 
 
-/* ‚¨‚·‚»‚í‚¯‚Å‚«‚éÅ‘ål” */
+/* ãŠã™ãã‚ã‘ã§ãã‚‹æœ€å¤§äººæ•° */
 #define MYSTERYCARD_OSUSOWAKE_MAX	4
-/* ‚¨‚·‚»‚í‚¯‚·‚éƒƒ“ƒo[–¼‚Ì•\¦• */
+/* ãŠã™ãã‚ã‘ã™ã‚‹ãƒ¡ãƒ³ãƒãƒ¼åã®è¡¨ç¤ºå¹… */
 #define MYSTERYCARD_OSUSOWAKE_HEIGHT	24
 
-/* •\¦‚·‚éƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒRƒ“” */
+/* è¡¨ç¤ºã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ã‚³ãƒ³æ•° */
 
 
 
-// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ªn‚Ü‚éVRAMã‚Å‚ÌƒIƒtƒZƒbƒg
+// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãŒå§‹ã¾ã‚‹VRAMä¸Šã§ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define POKEICON_VRAM_OFFSET ( 0x64 )
 #define POKEICON_TRANS_CHARA	(4*4)
 #define POKEICON_TRANS_SIZE		(POKEICON_TRANS_CHARA*0x20)
-// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒg‚ğ“]‘—‚·‚éƒIƒtƒZƒbƒg
+// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€ã™ã‚‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define POKEICON_PAL_OFFSET				(  3 )
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define RECORD_CHAR_CONT_NUM				(20)
 #define RECORD_CHAR_VRAMTRANS_MAIN_SIZE		(2048)
 #define RECORD_CHAR_VRAMTRANS_SUB_SIZE		(2048)
 #define RECORD_PLTT_CONT_NUM				(20)
 
 
-// ƒJ[ƒh‚ğ‚ß‚­‚é“®ì—p
+// ã‚«ãƒ¼ãƒ‰ã‚’ã‚ãã‚‹å‹•ä½œç”¨
 typedef struct {
   u16 sbuff[2][HW_LCD_HEIGHT*4];
   LASTER_SYS_PTR laster_ptr;
@@ -143,63 +143,63 @@ typedef struct {
   MYSTERYGIFT_WORK gwk;
   
   GF_BGL_INI *bgl;
-  WORDSET *word;	       			// ’PŒêƒ‚ƒWƒ…[ƒ‹§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-  MSGDATA_MANAGER *msgman;	    		// MSGƒf[ƒ^ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  WORDSET *word;	       			// å˜èªãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+  MSGDATA_MANAGER *msgman;	    		// MSGãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  GF_BGL_BMPWIN	win[MYSTERYCARD_WIN_MAX];	// ƒƒbƒZ[ƒW‚ğ•\¦‚·‚éƒEƒBƒ“ƒhƒE
+  GF_BGL_BMPWIN	win[MYSTERYCARD_WIN_MAX];	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
   int chbase[MYSTERYCARD_WIN_MAX];
 
   int nowbase;
   void *tbl;
 
-  FUSHIGI_DATA *fdata;				// ‚Ó‚µ‚¬ƒf[ƒ^‚ğ“Ç‚ñ‚¾êŠ
+  FUSHIGI_DATA *fdata;				// ãµã—ããƒ‡ãƒ¼ã‚¿ã‚’èª­ã‚“ã å ´æ‰€
   SAVEDATA *sv;
   CONFIG *cfg;
   int win_type;
   LOAD_RESULT load_result;
-  GIFT_CARD *card[GIFT_CARD_MAX];		// ƒJ[ƒhƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  GIFT_CARD *card[GIFT_CARD_MAX];		// ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  int disp_card;				// •\¦‘ÎÛ‚É‚È‚Á‚Ä‚¢‚éƒJ[ƒh”Ô†
-  int disp_side;				// •\¦‚µ‚Ä‚¢‚é–Ê
+  int disp_card;				// è¡¨ç¤ºå¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ã‚«ãƒ¼ãƒ‰ç•ªå·
+  int disp_side;				// è¡¨ç¤ºã—ã¦ã„ã‚‹é¢
 
-  BMPLIST_WORK *lw;				// ƒƒjƒ…[
+  BMPLIST_WORK *lw;				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼
   BMP_MENULIST_DATA *bmd;
 
-  GF_BGL_BMPWIN	msgwin;				// ƒƒbƒZ[ƒW‚ğ•\¦‚·‚éƒEƒBƒ“ƒhƒE
-  GF_BGL_BMPWIN	menuwin;			// ƒƒjƒ…[‚ğ•\¦‚·‚éƒEƒBƒ“ƒhƒE
+  GF_BGL_BMPWIN	msgwin;				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+  GF_BGL_BMPWIN	menuwin;			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
   int menu_index;
 
-  int entry;					// ‚¨‚·‚»‚í‚¯‚ÉŒq‚°‚Ä‚«‚½l‚Ì”
-  u32 tranerid[MYSTERYCARD_OSUSOWAKE_MAX];	// ‘O‰ñŒq‚ª‚Á‚Ä‚¢‚½ƒgƒŒ[ƒi[‚h‚c
+  int entry;					// ãŠã™ãã‚ã‘ã«ç¹‹ã’ã¦ããŸäººã®æ•°
+  u32 tranerid[MYSTERYCARD_OSUSOWAKE_MAX];	// å‰å›ç¹‹ãŒã£ã¦ã„ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
 
-  MYSTATUS *my[MYSTERYCARD_OSUSOWAKE_MAX+1];	// ‘O‰ñŒq‚ª‚Á‚Ä‚¢‚½ƒgƒŒ[ƒi[‚h‚c
+  MYSTATUS *my[MYSTERYCARD_OSUSOWAKE_MAX+1];	// å‰å›ç¹‹ãŒã£ã¦ã„ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
   int worder[MYSTERYCARD_OSUSOWAKE_MAX+1];
 
-  int prev_connect;				// ‚Â‚¢‚³‚Á‚«‚Ü‚ÅŒq‚°‚Ä‚¢‚½l”
+  int prev_connect;				// ã¤ã„ã•ã£ãã¾ã§ç¹‹ã’ã¦ã„ãŸäººæ•°
   int sync_wait;
   void (*wait_end_func)(void *p);
   int write_index;
   
   int next_seq;
 
-  // ƒZƒ‹ƒAƒNƒ^[ŠÖ˜A
-  CLACT_SET_PTR	clactSet;				// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg 
-  CLACT_U_EASYRENDER_DATA renddata;			// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-  CLACT_U_RES_MANAGER_PTR resMan[CLACT_U_RES_MAX];	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-  CLACT_U_RES_OBJ_PTR resObjTbl[CLACT_U_RES_MAX];	// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
+  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£
+  CLACT_SET_PTR	clactSet;				// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ 
+  CLACT_U_EASYRENDER_DATA renddata;			// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+  CLACT_U_RES_MANAGER_PTR resMan[CLACT_U_RES_MAX];	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+  CLACT_U_RES_OBJ_PTR resObjTbl[CLACT_U_RES_MAX];	// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
   CLACT_HEADER clActHeaderMain;
-  // ƒ{ƒ^ƒ“ƒAƒCƒRƒ“‚Ì”wŒi
+  // ãƒœã‚¿ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®èƒŒæ™¯
   CLACT_WORK_PTR ibase[2];
 
-  // ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì•\¦
+  // ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤º
   CLACT_WORK_PTR pokeicon[3];
 
   //  CRYPTORC4Context rc4context;
-  //  GIFT_BEACON_CRC gbc;				// ƒr[ƒRƒ“ƒf[ƒ^
-  GIFT_DATA comm_data;					// ˆÃ†‰»‚³‚ê‚½ƒf[ƒ^
+  //  GIFT_BEACON_CRC gbc;				// ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿
+  GIFT_DATA comm_data;					// æš—å·åŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿
 
-  CARDTURN cturn;					// ƒJ[ƒh‚ß‚­‚è—p
-  void (*func_hook)(void *);				// ŠO•”ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“Às—p
+  CARDTURN cturn;					// ã‚«ãƒ¼ãƒ‰ã‚ãã‚Šç”¨
+  void (*func_hook)(void *);				// å¤–éƒ¨ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³å®Ÿè¡Œç”¨
 
   int select_icon;
   void *time_icon;
@@ -209,44 +209,44 @@ typedef struct {
 
 
 enum {
-  MYSTERYCARD_READ_SAVEDATA = 0,	/* ƒZ[ƒuƒf[ƒ^‚Ì“Ç‚İ‚İ */
-  MYSTERYCARD_SEQ_INIT,			/* ‰Šú‰» */
-  MYSTERYCARD_SEQ_CREATE_SCREEN,	/* ‰Šú‰æ–Êì¬ */
+  MYSTERYCARD_READ_SAVEDATA = 0,	/* ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ */
+  MYSTERYCARD_SEQ_INIT,			/* åˆæœŸåŒ– */
+  MYSTERYCARD_SEQ_CREATE_SCREEN,	/* åˆæœŸç”»é¢ä½œæˆ */
   
-  MYSTERYCARD_SEQ_MAIN,			/* ƒƒCƒ“ƒ‹[ƒv */
+  MYSTERYCARD_SEQ_MAIN,			/* ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ— */
 
-  MYSTERYCARD_SEQ_CREATE_MENU,		/* ƒƒjƒ…[‚Ìì¬ */
-  MYSTERYCARD_SEQ_MENU,			/* ƒƒjƒ…[‚ÌƒƒCƒ“ƒ‹[ƒv */
-  MYSTERYCARD_SEQ_MENU_TO_VIEWMODE,	/* ƒJ[ƒh‚Ìà–¾•¶‚ğŒ©‚éƒ‚[ƒh‚ÖˆÚs */
+  MYSTERYCARD_SEQ_CREATE_MENU,		/* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½œæˆ */
+  MYSTERYCARD_SEQ_MENU,			/* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ— */
+  MYSTERYCARD_SEQ_MENU_TO_VIEWMODE,	/* ã‚«ãƒ¼ãƒ‰ã®èª¬æ˜æ–‡ã‚’è¦‹ã‚‹ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œ */
   MYSTERYCARD_SEQ_MENU_TO_VIEWMODE2,
-  MYSTERYCARD_SEQ_MENU_VIEWMODE,	/* ƒJ[ƒh‚Ìà–¾•¶‚ğŒ©‚éƒ‚[ƒh */
+  MYSTERYCARD_SEQ_MENU_VIEWMODE,	/* ã‚«ãƒ¼ãƒ‰ã®èª¬æ˜æ–‡ã‚’è¦‹ã‚‹ãƒ¢ãƒ¼ãƒ‰ */
   MYSTERYCARD_SEQ_MENU_VIEWMODE2,
   MYSTERYCARD_SEQ_MENU_VIEWMODE3,
-  MYSTERYCARD_SEQ_END_MENU,		/* ƒƒjƒ…[‚ğI—¹‚µ‚ÄƒƒCƒ“ƒ‹[ƒv‚Ö */
-  MYSTERYCARD_SEQ_REMOVE_MENU,		/* ƒJ[ƒh‚ğÁ‚·ƒƒjƒ…[‚ÌƒƒCƒ“ƒ‹[ƒv */
+  MYSTERYCARD_SEQ_END_MENU,		/* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’çµ‚äº†ã—ã¦ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã¸ */
+  MYSTERYCARD_SEQ_REMOVE_MENU,		/* ã‚«ãƒ¼ãƒ‰ã‚’æ¶ˆã™ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ— */
 
-  MYSTERYCARD_SEQ_SENDFIGT_YESNO,	/* ‚¨‚·‚í‚¯‚µ‚Ü‚·‚©H@‚Í‚¢^‚¢‚¢‚¦ */
-  MYSTERYCARD_SEQ_COMM_YESNO,		/* ‚c‚rƒƒCƒ„ƒŒƒX’ÊM‚ğŠJn‚µ‚Ü‚·‚©H@‚Í‚¢^‚¢‚¢‚¦ */
-  MYSTERYCARD_SEQ_MENU_TO_SENDGIFT,	/* ‚¨‚·‚»‚í‚¯‰æ–Ê‚Ös‚­€”õ */
-  MYSTERYCARD_SEQ_MENU_TO_SENDGIFT2,	/* ‚¨‚·‚»‚í‚¯‰æ–Ê‚Ös‚­€”õ ‚»‚Ì‚Q */
-  MYSTERYCARD_SEQ_MENU_TO_SENDGIFT3,	/* ‚¨‚·‚»‚í‚¯‰æ–Ê‚Ös‚­€”õ ‚»‚Ì‚R */
-  MYSTERYCARD_SEQ_ENTRY_SENDGIFT,	/* ‚¨‚·‚»‚í‚¯‰æ–Ê */
+  MYSTERYCARD_SEQ_SENDFIGT_YESNO,	/* ãŠã™ã‚ã‘ã—ã¾ã™ã‹ï¼Ÿã€€ã¯ã„ï¼ã„ã„ãˆ */
+  MYSTERYCARD_SEQ_COMM_YESNO,		/* ï¼¤ï¼³ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’é–‹å§‹ã—ã¾ã™ã‹ï¼Ÿã€€ã¯ã„ï¼ã„ã„ãˆ */
+  MYSTERYCARD_SEQ_MENU_TO_SENDGIFT,	/* ãŠã™ãã‚ã‘ç”»é¢ã¸è¡Œãæº–å‚™ */
+  MYSTERYCARD_SEQ_MENU_TO_SENDGIFT2,	/* ãŠã™ãã‚ã‘ç”»é¢ã¸è¡Œãæº–å‚™ ãã®ï¼’ */
+  MYSTERYCARD_SEQ_MENU_TO_SENDGIFT3,	/* ãŠã™ãã‚ã‘ç”»é¢ã¸è¡Œãæº–å‚™ ãã®ï¼“ */
+  MYSTERYCARD_SEQ_ENTRY_SENDGIFT,	/* ãŠã™ãã‚ã‘ç”»é¢ */
 
-  MYSTERYCARD_SEQ_ENTRY_SENDGIFT_END1,	/* ‚¨‚·‚»‚í‚¯‰æ–ÊI—¹ ‚»‚Ì‚P */
-  MYSTERYCARD_SEQ_ENTRY_SENDGIFT_END2,	/* ‚¨‚·‚»‚í‚¯‰æ–ÊI—¹ ‚»‚Ì‚Q */
+  MYSTERYCARD_SEQ_ENTRY_SENDGIFT_END1,	/* ãŠã™ãã‚ã‘ç”»é¢çµ‚äº† ãã®ï¼‘ */
+  MYSTERYCARD_SEQ_ENTRY_SENDGIFT_END2,	/* ãŠã™ãã‚ã‘ç”»é¢çµ‚äº† ãã®ï¼’ */
 
-  MYSTERYCARD_SEQ_SEND_WAITSYNC,	/* ƒ^ƒCƒ~ƒ“ƒO‚ğ‚Æ‚Á‚Äƒf[ƒ^‘—M */
-  MYSTERYCARD_SEQ_WAIT_ENDCOMM,		/* ’ÊMƒ‰ƒCƒuƒ‰ƒŠ‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â */
-  MYSTERYCARD_SEQ_SEND_SAVEDATA,	/* ‚¨‚·‚»‚í‚¯Œã‚Ìƒf[ƒ^ƒZ[ƒu */
-  MYSTERYCARD_SEQ_LAST_SAVE_WAIT,	/* q‹@‚Æ“¯Šú‚ªæ‚ê‚é‚Ü‚Å‘Ò‚Á‚Ä‚©‚çÅŒã‚ÌƒZ[ƒuˆ— */
+  MYSTERYCARD_SEQ_SEND_WAITSYNC,	/* ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ã¨ã£ã¦ãƒ‡ãƒ¼ã‚¿é€ä¿¡ */
+  MYSTERYCARD_SEQ_WAIT_ENDCOMM,		/* é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤ */
+  MYSTERYCARD_SEQ_SEND_SAVEDATA,	/* ãŠã™ãã‚ã‘å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ– */
+  MYSTERYCARD_SEQ_LAST_SAVE_WAIT,	/* å­æ©Ÿã¨åŒæœŸãŒå–ã‚Œã‚‹ã¾ã§å¾…ã£ã¦ã‹ã‚‰æœ€å¾Œã®ã‚»ãƒ¼ãƒ–å‡¦ç† */
 
-  MYSTERYCARD_SEQ_SEND_FINISH,		/* I—¹(“dŒ¹OFF) */
+  MYSTERYCARD_SEQ_SEND_FINISH,		/* çµ‚äº†(é›»æºOFF) */
   
-  MYSTERYCARD_SEQ_TO_RETURN,		/* ‘O‚Ìƒƒjƒ…[‚Ö–ß‚é‚½‚ß‚Ì“ü‚èŒû */
-  MYSTERYCARD_SEQ_WAIT_FADE,		/* ƒtƒF[ƒh‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â */
+  MYSTERYCARD_SEQ_TO_RETURN,		/* å‰ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹ãŸã‚ã®å…¥ã‚Šå£ */
+  MYSTERYCARD_SEQ_WAIT_FADE,		/* ãƒ•ã‚§ãƒ¼ãƒ‰ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤ */
 
-  MYSTERYCARD_SEQ_RETURN,		/* ‘O‚Ìƒƒjƒ…[‰æ–Ê‚Ö–ß‚é */
-  MYSTERYCARD_SEQ_LOOP,			/* ƒGƒ‰[‚Ì–³ŒÀƒ‹[ƒv */
+  MYSTERYCARD_SEQ_RETURN,		/* å‰ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã¸æˆ»ã‚‹ */
+  MYSTERYCARD_SEQ_LOOP,			/* ã‚¨ãƒ©ãƒ¼æ™‚ã®ç„¡é™ãƒ«ãƒ¼ãƒ— */
 
   MYSTERYCARD_SEQ_MAX
 };
@@ -260,7 +260,7 @@ typedef struct {
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static int MysteryCardGoRemove(PROC *proc);
 static int MysteryCardGoSendGift(PROC *proc);
@@ -293,7 +293,7 @@ static void RemoveCellActor(MYSTERYCARD_WORK *wk);
 static int MysteryCardGetConnectCount(MYSTERYCARD_WORK *wk);
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 typedef struct {
   int side;
@@ -312,106 +312,106 @@ typedef struct {
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/05/01
-// ‚¨‚·‚»‚í‚¯‰æ–Ê‚Ìu‚­‚Î‚évu‚â‚ß‚év‚ğ©“®‚Å’†‰›Šñ‚¹‚É
+// ãŠã™ãã‚ã‘ç”»é¢ã®ã€Œãã°ã‚‹ã€ã€Œã‚„ã‚ã‚‹ã€ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã«
 
 #define OX_CENTERED		(-1)
 
 MYSTERYCARD_MSGWIN_TABLE MsgWin_Table[] = {
-  /*  ------------------------------ •\–Ê ---------------------------- */
-  /* ‚Ó‚µ‚¬‚ÈƒJ[ƒh */
+  /*  ------------------------------ è¡¨é¢ ---------------------------- */
+  /* ãµã—ããªã‚«ãƒ¼ãƒ‰ */
   /*  0 */ { MYSTERYCARD_FRONT, 2,  2, 12,  2, FONT_TALK, MYSTERYCARD_BLACK, -1,	mystery_card_001,	_nop },
-  /* ‚à‚ç‚Á‚½‚Ğ‚Ã‚¯ */
+  /* ã‚‚ã‚‰ã£ãŸã²ã¥ã‘ */
   /*  1 */ { MYSTERYCARD_FRONT, 6, 17, 11,  2, FONT_TALK, MYSTERYCARD_WHITE, -1,	mystery_card_005,	_nop },
-  /* ƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[‚É‚¢‚é\n‚Í‚¢‚½‚Â‚¢‚ñ‚©‚ç@‚¤‚¯‚Æ‚Á‚Ä‚­‚¾‚³‚¢@‚È‚Ç */
+  /* ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼ã«ã„ã‚‹\nã¯ã„ãŸã¤ã„ã‚“ã‹ã‚‰ã€€ã†ã‘ã¨ã£ã¦ãã ã•ã„ã€€ãªã© */
   /*  2 */ { MYSTERYCARD_FRONT, 2,  9, 28,  4, FONT_TALK, MYSTERYCARD_BLACK, -1,	NULL,		MysteryCardStatusWin },
-  /* ƒJ[ƒh–¼‚Ì•\¦ */
+  /* ã‚«ãƒ¼ãƒ‰åã®è¡¨ç¤º */
   /*  3 */ { MYSTERYCARD_FRONT, 2,  6, 28,  2, FONT_TALK, MYSTERYCARD_WHITE, -1,	NULL,		MysteryCardTitleWin },
-  /* “ú•t */
+  /* æ—¥ä»˜ */
   /*  4 */ { MYSTERYCARD_FRONT,18, 17, 11,  2, FONT_TALK, MYSTERYCARD_BLACK, -1,	mystery_card_014,		MysteryCardDateWin },
 
-  /*  ------------------------------ — –Ê ---------------------------- */
-  /* ƒJ[ƒh‚Ìà–¾ */
+  /*  ------------------------------ è£é¢ ---------------------------- */
+  /* ã‚«ãƒ¼ãƒ‰ã®èª¬æ˜ */
   /*  5 */ { MYSTERYCARD_BACK , 2,  3, 28, 10, FONT_TALK, MYSTERYCARD_BLACK, -1,	NULL,		MysteryCardTextWin },
-  /* ‚­‚Î‚ê‚é‰ñ”‚ÆƒƒbƒZ[ƒW•\¦ */
+  /* ãã°ã‚Œã‚‹å›æ•°ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º */
   /*  6 */ { MYSTERYCARD_BACK , 2, 14, 28,  4, FONT_TALK, MYSTERYCARD_BLACK, -1,	mystery_card_006,	MysteryCardTransWin },
 
-  /*  ------------------------------ ƒƒjƒ…[ ---------------------------- */
+  /*  ------------------------------ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ ---------------------------- */
   /*  7 */ { MYSTERYCARD_MENU , 2, 19, 27,  4, FONT_TALK, MYSTERYCARD_BLACK, 15,	mystery_card_001,	_nop },
   /*  8 */ { MYSTERYCARD_MENU ,18,  9, 12,  8, FONT_TALK, MYSTERYCARD_BLACK, FONT_HEADER_F_COLOR,	NULL,		MysteryCardMenu1Win },
   /*  9 */ { MYSTERYCARD_MENU ,24, 13,  6,  4, FONT_TALK, MYSTERYCARD_BLACK, FONT_HEADER_F_COLOR,	NULL,		MysteryCardMenu2Win },
   /* 10 */ { MYSTERYCARD_MENU ,24, 13,  6,  4, FONT_TALK, MYSTERYCARD_BLACK, FONT_HEADER_F_COLOR,	NULL,		MysteryCardMenu3Win },
 
-  /*  ------------------------------ ‚¨‚·‚»‚í‚¯ ---------------------------- */
-  /* ‚Æ‚à‚¾‚¿‚Í‚¢‚µ‚ñ@‚¤‚¯‚Â‚¯‚¿‚ã‚¤ */
+  /*  ------------------------------ ãŠã™ãã‚ã‘ ---------------------------- */
+  /* ã¨ã‚‚ã ã¡ã¯ã„ã—ã‚“ã€€ã†ã‘ã¤ã‘ã¡ã‚…ã† */
   /* 11 */ { MYSTERYCARD_SEND,  1,  1, 25,  2, FONT_SYSTEM, MYSTERYCARD_OWHITE, -1,	mystery_osusowake_001, _nop, 7, 0},
-  /* ‚°‚ñ‚´‚¢‚ÌƒGƒ“ƒgƒŠ[ */
+  /* ã’ã‚“ã–ã„ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ */
   /* 12 */ { MYSTERYCARD_SEND, 23,  7,  9,  4, FONT_SYSTEM, MYSTERYCARD_OWHITE, -1,	mystery_osusowake_004, _nop, 2, 0 },
-  /* ‚­‚Î‚é */
+  /* ãã°ã‚‹ */
   /* 13 */ { MYSTERYCARD_SEND,  6, 20,  6,  2, FONT_SYSTEM, MYSTERYCARD_OWHITE, -1,	mystery_osusowake_006, _nop, OX_CENTERED, 1},
-  /* ‚â‚ß‚é */
+  /* ã‚„ã‚ã‚‹ */
   /* 14 */ { MYSTERYCARD_SEND, 20, 20,  6,  2, FONT_SYSTEM, MYSTERYCARD_OWHITE, -1,	mystery_osusowake_007, _nop, OX_CENTERED, 1 },
-  /* ‚°‚ñ‚´‚¢‚ÌƒGƒ“ƒgƒŠ[(›^‚S) */
+  /* ã’ã‚“ã–ã„ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼(â—‹ï¼ï¼”) */
   /* 15 */ { MYSTERYCARD_SEND, 25, 12,  4,  2, FONT_TALK, MYSTERYCARD_BLACK, -1,	mystery_osusowake_005, MysteryCardDrawEntry },
-  /* ÀÛ‚ÉƒGƒ“ƒgƒŠ‚µ‚Ä‚él‚ğ•\¦‚·‚éƒEƒBƒ“ƒhƒE */
+  /* å®Ÿéš›ã«ã‚¨ãƒ³ãƒˆãƒªã—ã¦ã‚‹äººã‚’è¡¨ç¤ºã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ */
   /* 16 */ { MYSTERYCARD_SEND,  2,  5, 19, 11, FONT_SYSTEM, MYSTERYCARD_BLACK, -1,	NULL,		     _nop },
 
-  /* ‚¨‚·‚»‚í‚¯’†•“dŒ¹‚ğ‚«‚Á‚Ä‚­‚¾‚³‚¢ƒEƒBƒ“ƒhƒE */
+  /* ãŠã™ãã‚ã‘ä¸­ï¼†é›»æºã‚’ãã£ã¦ãã ã•ã„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ */
   /* 17 */ { MYSTERYCARD_MENU , 2, 19, 27,  4, FONT_TALK, MYSTERYCARD_BLACK, 14,	mystery_osusowake_008, _nop },
   /* 18 */ { MYSTERYCARD_MENU , 2, 19, 27,  4, FONT_TALK, MYSTERYCARD_BLACK, 14,	mystery_osusowake_009, _nop },
 };
 
 // ----------------------------------------------------------------------------
 
-/* ƒƒjƒ…[—pƒf[ƒ^ */
+/* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ãƒ‡ãƒ¼ã‚¿ */
 LISTDATA MysteryCard_Menu1Data[] = {
-  { mystery_card_007, (u32)MYSTERYCARD_SEQ_MENU_TO_VIEWMODE },	// ‚¹‚Â‚ß‚¢‚ğ@‚æ‚Ş
-  { mystery_card_008, (u32)MysteryCardGoSendGift },		// ‚¨‚·‚»‚í‚¯
-  { mystery_card_009, (u32)MysteryCardGoRemove },		// ‚·‚Ä‚é
-  { mystery_card_010, (u32)MYSTERYCARD_SEQ_END_MENU },		// ‚â‚ß‚é
+  { mystery_card_007, (u32)MYSTERYCARD_SEQ_MENU_TO_VIEWMODE },	// ã›ã¤ã‚ã„ã‚’ã€€ã‚ˆã‚€
+  { mystery_card_008, (u32)MysteryCardGoSendGift },		// ãŠã™ãã‚ã‘
+  { mystery_card_009, (u32)MysteryCardGoRemove },		// ã™ã¦ã‚‹
+  { mystery_card_010, (u32)MYSTERYCARD_SEQ_END_MENU },		// ã‚„ã‚ã‚‹
 };
-/* ƒJ[ƒh‚ğÁ‚·‘I‘ğ */
+/* ã‚«ãƒ¼ãƒ‰ã‚’æ¶ˆã™é¸æŠ */
 LISTDATA MysteryCard_Menu2Data[] = {
-  { mystery_drop_004, (u32)MysteryCardRemove },			// ‚Í‚¢
-  { mystery_drop_005, (u32)MysteryCardRetMainMenu },		// ‚¢‚¢‚¦
+  { mystery_drop_004, (u32)MysteryCardRemove },			// ã¯ã„
+  { mystery_drop_005, (u32)MysteryCardRetMainMenu },		// ã„ã„ãˆ
 };
-/* ‚¨‚·‚»‚í‚¯‘I‘ğ */
+/* ãŠã™ãã‚ã‘é¸æŠ */
 LISTDATA MysteryCard_Menu3Data[] = {
-  { mystery_drop_004, (u32)MYSTERYCARD_SEQ_COMM_YESNO },	// ‚Í‚¢
-  { mystery_drop_005, (u32)MysteryCardRetMainMenu },		// ‚¢‚¢‚¦
+  { mystery_drop_004, (u32)MYSTERYCARD_SEQ_COMM_YESNO },	// ã¯ã„
+  { mystery_drop_005, (u32)MysteryCardRetMainMenu },		// ã„ã„ãˆ
 };
-/* ‚c‚rƒƒCƒ„ƒŒƒX’ÊM‚ğ‚·‚éH‘I‘ğ */
+/* ï¼¤ï¼³ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’ã™ã‚‹ï¼Ÿé¸æŠ */
 LISTDATA MysteryCard_Menu4Data[] = {
-  { mystery_drop_004, (u32)MYSTERYCARD_SEQ_MENU_TO_SENDGIFT },	// ‚Í‚¢
-  { mystery_drop_005, (u32)MysteryCardRetMainMenu },		// ‚¢‚¢‚¦
+  { mystery_drop_004, (u32)MYSTERYCARD_SEQ_MENU_TO_SENDGIFT },	// ã¯ã„
+  { mystery_drop_005, (u32)MysteryCardRetMainMenu },		// ã„ã„ãˆ
 };
 
-/* ”Ä—pƒƒjƒ…[\‘¢‘Ì(’†g‚ğ‘‚«Š·‚¦‚ÄÄ—˜—p) */
+/* æ±ç”¨ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ§‹é€ ä½“(ä¸­èº«ã‚’æ›¸ãæ›ãˆã¦å†åˆ©ç”¨) */
 static BMPLIST_HEADER MenuListHeader = {
   NULL,
-  MysteryLib_MenuKeyMove,	 	/* ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ” */
-  NULL,				     	/* ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ” */
-  NULL,					/* BMPƒEƒBƒ“ƒhƒEƒf[ƒ^ */
-  0,/* Œã‚Å–„‚ß‚é */			/* ƒŠƒXƒg€–Ú” */
-  4,					/* •\¦Å‘å€–Ú” */
-  0,					/* ƒ‰ƒxƒ‹•\¦‚wÀ•W */
-  12,					/* €–Ú•\¦‚wÀ•W */
-  0,					/* ƒJ[ƒ\ƒ‹•\¦‚wÀ•W */
-  0,					/* •\¦‚xÀ•W */
-  FBMP_COL_BLACK,			/*•¶šF */
-  FBMP_COL_WHITE,			/*”wŒiF */
-  FBMP_COL_BLK_SDW,			/*•¶š‰eF */
-  0,					/* •¶šŠÔŠu‚w */
-  16,					/* •¶šŠÔŠu‚x */
-  BMPLIST_LRKEY_SKIP,			/* ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv */
-  FONT_SYSTEM, 				/* •¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å) */
-  0			  		/* ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF) */
+  MysteryLib_MenuKeyMove,	 	/* ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° */
+  NULL,				     	/* ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° */
+  NULL,					/* BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ */
+  0,/* å¾Œã§åŸ‹ã‚ã‚‹ */			/* ãƒªã‚¹ãƒˆé …ç›®æ•° */
+  4,					/* è¡¨ç¤ºæœ€å¤§é …ç›®æ•° */
+  0,					/* ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™ */
+  12,					/* é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™ */
+  0,					/* ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™ */
+  0,					/* è¡¨ç¤ºï¼¹åº§æ¨™ */
+  FBMP_COL_BLACK,			/*æ–‡å­—è‰² */
+  FBMP_COL_WHITE,			/*èƒŒæ™¯è‰² */
+  FBMP_COL_BLK_SDW,			/*æ–‡å­—å½±è‰² */
+  0,					/* æ–‡å­—é–“éš”ï¼¸ */
+  16,					/* æ–‡å­—é–“éš”ï¼¹ */
+  BMPLIST_LRKEY_SKIP,			/* ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ— */
+  FONT_SYSTEM, 				/* æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§) */
+  0			  		/* ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF) */
 };
 
 
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‚Ì‰Šú‰»
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®åˆæœŸåŒ–
  * @param	NONE
  * @return	NONE
  */
@@ -432,7 +432,7 @@ static void InitCellActor(MYSTERYCARD_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‚Ìíœ
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®å‰Šé™¤
  * @param	NONE
  * @return	NONE
  */
@@ -451,7 +451,7 @@ static void RemoveCellActor(MYSTERYCARD_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	‘I‘ğ^‚â‚ß‚é“y‘äƒIƒuƒWƒFƒNƒg‚Ì“o˜^
+ * @brief	é¸æŠï¼ã‚„ã‚ã‚‹åœŸå°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç™»éŒ²
  * @param	NONE
  * @return	NONE
  */
@@ -468,7 +468,7 @@ static void SetBaseIcon(MYSTERYCARD_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒEƒBƒ“ƒhƒE‚ª‘¶İ‚·‚ê‚ÎƒNƒŠƒA‚·‚é
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒå­˜åœ¨ã™ã‚Œã°ã‚¯ãƒªã‚¢ã™ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -487,7 +487,7 @@ static void CMC_BmpTalkWinClear(GF_BGL_BMPWIN * win, u8 trans_sw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‚ğ“o˜^‚·‚é”Ä—pŠÖ”
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ç™»éŒ²ã™ã‚‹æ±ç”¨é–¢æ•°
  * @param	NONE
  * @return	NONE
  */
@@ -499,13 +499,13 @@ static void CreateWindowMenuData(MYSTERYCARD_WORK *wk, LISTDATA *ld, int num, GF
 
   if(wk->bmd)	BMP_MENULIST_Delete(wk->bmd);
   if(wk->lw) 	BmpListExit(wk->lw, NULL, NULL);
-  /* ƒƒjƒ…[‚Ì•¶š—ñ‚ğ“o˜^ */
+  /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æ–‡å­—åˆ—ã‚’ç™»éŒ² */
   wk->bmd = BMP_MENULIST_Create(num,HEAPID_MYSTERYCARD);
   wk->msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_mystery_dat, HEAPID_MYSTERYCARD);
   for(i = 0; i < num; i++)
     BMP_MENULIST_AddArchiveString(wk->bmd, wk->msgman, ld[i].id, ld[i].param);
   MSGMAN_Delete(wk->msgman);
-  /* descì¬ ¨ •ÏX ¨ “o˜^ */
+  /* descä½œæˆ â†’ å¤‰æ›´ â†’ ç™»éŒ² */
   list_h = MenuListHeader;
   list_h.list = wk->bmd;
   list_h.count = num;
@@ -516,7 +516,7 @@ static void CreateWindowMenuData(MYSTERYCARD_WORK *wk, LISTDATA *ld, int num, GF
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	w’è‚ÌƒEƒBƒ“ƒhƒE‚É•¶š—ñ‚ğ•\¦
+ * @brief	æŒ‡å®šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«æ–‡å­—åˆ—ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -539,22 +539,22 @@ static void DrawStringWindow(GF_BGL_BMPWIN *win, int msgid)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚¨‚·‚»‚í‚¯‰æ–Ê‚Ìì¬
+ * @brief	ãŠã™ãã‚ã‘ç”»é¢ã®ä½œæˆ
  * @param	NONE
  * @return	NONE
  */
 //--------------------------------------------------------------------------------------------
 static void MysteryCardCreateOsusowake(GF_BGL_INI *ini)
 {
-  // ‚¨‚·‚»‚í‚¯‰æ–Êê—p‚ÌƒtƒHƒ“ƒgƒpƒŒƒbƒg‚ğ“]‘—
+  // ãŠã™ãã‚ã‘ç”»é¢å°‚ç”¨ã®ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_font_00_nclr, PALTYPE_MAIN_BG, 16*2*FONT_PALNO_NORMAL, 16*2, HEAPID_MYSTERYCARD);
 
-  // ƒƒCƒ“‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_recep_nclr, PALTYPE_MAIN_BG, 16*2*OSUSOWAKE_PALNO, 16*2, HEAPID_MYSTERYCARD);
-  // ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
   ArcUtil_BgCharSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_recep_00_lz_ccgr, ini,
 		    GF_BGL_FRAME1_M, 0, 6*16*0x20, 1, HEAPID_MYSTERYCARD);
-  // ƒƒCƒ“‰æ–ÊƒXƒNƒŠ[ƒ“‚P
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ï¼‘
   ArcUtil_ScrnSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_recep_00_lz_cscr, ini,
 		  GF_BGL_FRAME1_M, 0, 32*24*2, 1, HEAPID_MYSTERYCARD);
   GF_BGL_ScrPalChange(ini, GF_BGL_FRAME1_M, 0, 0, 32, 24, OSUSOWAKE_PALNO);
@@ -563,7 +563,7 @@ static void MysteryCardCreateOsusowake(GF_BGL_INI *ini)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚¨‚·‚»‚í‚¯‚·‚éˆ—‚ÖˆÚs
+ * @brief	ãŠã™ãã‚ã‘ã™ã‚‹å‡¦ç†ã¸ç§»è¡Œ
  * @param	NONE
  * @return	NONE
  */
@@ -580,7 +580,7 @@ static int MysteryCardGoSendGift(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‚ğ‚·‚Ä‚éˆ—‚ÉˆÚs
+ * @brief	ã‚«ãƒ¼ãƒ‰ã‚’ã™ã¦ã‚‹å‡¦ç†ã«ç§»è¡Œ
  * @param	NONE
  * @return	NONE
  */
@@ -591,10 +591,10 @@ static int MysteryCardGoRemove(PROC *proc)
   MysteryCardRemoveMainMenu(wk);
 
   if(FUSHIGIDATA_GetCardLinkDeli(wk->fdata, wk->disp_card) == TRUE)
-    /* ‚¨‚­‚è‚à‚Ì@‚ğ@‚¤‚¯‚Æ‚Á‚Ä‚Ü‚¹‚ñ‚ª\n‚±‚Ì@ƒJ[ƒh‚ğ@‚·‚Ä‚Ü‚·‚©H */
+    /* ãŠãã‚Šã‚‚ã®ã€€ã‚’ã€€ã†ã‘ã¨ã£ã¦ã¾ã›ã‚“ãŒ\nã“ã®ã€€ã‚«ãƒ¼ãƒ‰ã‚’ã€€ã™ã¦ã¾ã™ã‹ï¼Ÿ */
     DrawStringWindow(&wk->msgwin, mystery_drop_002);
   else
-    /* ‚±‚Ì@ƒJ[ƒh‚ğ@‚·‚Ä‚Ü‚·‚©H */
+    /* ã“ã®ã€€ã‚«ãƒ¼ãƒ‰ã‚’ã€€ã™ã¦ã¾ã™ã‹ï¼Ÿ */
     DrawStringWindow(&wk->msgwin, mystery_drop_001);
 
   MysteryCardCreateWindow(wk, &wk->menuwin, MYSTERYCARD_INDEX_MENU+2, wk->menu_index);
@@ -603,7 +603,7 @@ static int MysteryCardGoRemove(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‚ğÌ‚Ä‚éˆ—
+ * @brief	ã‚«ãƒ¼ãƒ‰ã‚’æ¨ã¦ã‚‹å‡¦ç†
  * @param	NONE
  * @return	NONE
  */
@@ -612,17 +612,17 @@ static int MysteryCardRemove(PROC *proc)
 {
   MYSTERYCARD_WORK *wk = PROC_GetWork(proc);
 
-  /* ƒJ[ƒh‚ğÌ‚Ä‚Ä‚Ü‚·c‚Ìˆ— */
+  /* ã‚«ãƒ¼ãƒ‰ã‚’æ¨ã¦ã¦ã¾ã™â€¦ã®å‡¦ç† */
   MysteryCardRemoveMainMenu(wk);
   DrawStringWindow(&wk->msgwin, mystery_drop_003);
-  /* ƒ^ƒCƒ€ƒAƒCƒRƒ“•\¦ƒXƒ^[ƒg */
+  /* ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºã‚¹ã‚¿ãƒ¼ãƒˆ */
   wk->time_icon = TimeWaitIconAdd(&wk->msgwin, MYSTERYCARD_TFRAMECHR);
 
 #if 0//def DEBUG_ONLY_FOR_mituhara
-  OS_TPrintf("Ì‚Ä‚éƒJ[ƒh %d\n", wk->disp_card);
+  OS_TPrintf("æ¨ã¦ã‚‹ã‚«ãƒ¼ãƒ‰ %d\n", wk->disp_card);
 #endif
 
-    /* ƒJ[ƒh‚Ì–•Áˆ— */
+    /* ã‚«ãƒ¼ãƒ‰ã®æŠ¹æ¶ˆå‡¦ç† */
     if(FUSHIGIDATA_GetCardLinkDeli(wk->fdata, wk->disp_card) == TRUE){
         FUSHIGIDATA_RemoveCardDataPlusBit(wk->fdata, wk->disp_card);
     }
@@ -632,18 +632,18 @@ static int MysteryCardRemove(PROC *proc)
 
     SaveData_Save(wk->sv);
 
-  /* ƒ^ƒCƒ€ƒAƒCƒRƒ“‚ğÁ‚· */
+  /* ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã‚’æ¶ˆã™ */
   TimeWaitIconDel(wk->time_icon);
   
-  /* ƒJ[ƒh‚ªc‚Á‚Ä‚¢‚ê‚ÎƒƒCƒ“ˆ—‚Ö
-     c‚Á‚Ä‚¢‚È‚¯‚ê‚Îu‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ìv‚Ìƒƒjƒ…[‚Ü‚Å–ß‚é */
+  /* ã‚«ãƒ¼ãƒ‰ãŒæ®‹ã£ã¦ã„ã‚Œã°ãƒ¡ã‚¤ãƒ³å‡¦ç†ã¸
+     æ®‹ã£ã¦ã„ãªã‘ã‚Œã°ã€Œãµã—ããªã€€ãŠãã‚Šã‚‚ã®ã€ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¾ã§æˆ»ã‚‹ */
   if(FUSHIGIDATA_IsExistsCardAll(wk->fdata) == FALSE)
     return MYSTERYCARD_SEQ_TO_RETURN;
   
-  /* ƒJ[ƒh‚ªc‚Á‚Ä‚¢‚é‚Ì‚ÅAŸ‚ÌƒJ[ƒh‚ğ’T‚µ‚Ä•\¦ */
+  /* ã‚«ãƒ¼ãƒ‰ãŒæ®‹ã£ã¦ã„ã‚‹ã®ã§ã€æ¬¡ã®ã‚«ãƒ¼ãƒ‰ã‚’æ¢ã—ã¦è¡¨ç¤º */
   wk->disp_card = MysteryCardNextCard(wk, wk->disp_card,  1);
 
-  OS_TPrintf("Ÿ‚É•\¦‚·‚éƒJ[ƒh %d\n", wk->disp_card);
+  OS_TPrintf("æ¬¡ã«è¡¨ç¤ºã™ã‚‹ã‚«ãƒ¼ãƒ‰ %d\n", wk->disp_card);
 
   DrawStringWindow(&wk->msgwin, mystery_card_001);
   MysteryCardCreateWindow(wk, &wk->menuwin, MYSTERYCARD_INDEX_MENU+1, wk->menu_index);
@@ -655,7 +655,7 @@ static int MysteryCardRemove(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“ƒƒjƒ…[‚É–ß‚é
+ * @brief	ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«æˆ»ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -671,7 +671,7 @@ static int MysteryCardRetMainMenu(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‚ğÁ‚·
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æ¶ˆã™
  * @param	NONE
  * @return	NONE
  */
@@ -686,7 +686,7 @@ static void MysteryCardRemoveMainMenu(MYSTERYCARD_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‰½‚à‚µ‚È‚¢
+ * @brief	ä½•ã‚‚ã—ãªã„
  * @param	NONE
  * @return	NONE
  */
@@ -695,7 +695,7 @@ static BOOL _nop(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRINTCOLOR col){ r
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‚Ìƒ^ƒCƒgƒ‹•\¦
+ * @brief	ã‚«ãƒ¼ãƒ‰ã®ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -713,7 +713,7 @@ static BOOL MysteryCardTitleWin(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRI
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‚Ìó‘Ô‚ğ•\¦
+ * @brief	ã‚«ãƒ¼ãƒ‰ã®çŠ¶æ…‹ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -729,14 +729,14 @@ static BOOL MysteryCardStatusWin(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PR
   
   //  if(card->gift_type == MYSTERYGIFT_TYPE_NONE){
   if(card->beacon.delivery_flag == FALSE){
-    /* ƒJ[ƒhî•ñ‚Ì‚İ‚Å”z’Bˆõ‚Ìƒf[ƒ^‚ª‚È‚¢ê‡ */
+    /* ã‚«ãƒ¼ãƒ‰æƒ…å ±ã®ã¿ã§é…é”å“¡ã®ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆ */
     msgid = mystery_card_004;
   } else {
     if(wk->fdata == NULL || FUSHIGIDATA_GetCardLinkDeli(wk->fdata, wk->disp_card) == TRUE)
-      /* ”z’Bˆõî•ñ‚ª‚ ‚Á‚ÄA‚Ü‚¾ƒ†[ƒU[‚ªó‚¯æ‚Á‚Ä‚È‚¢ê‡ */
+      /* é…é”å“¡æƒ…å ±ãŒã‚ã£ã¦ã€ã¾ã ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒå—ã‘å–ã£ã¦ãªã„å ´åˆ */
       msgid = mystery_card_002;
     else
-      /* ”z’Bˆõ‚©‚çó‚¯æ‚Á‚Ä‚¢‚½ê‡‚ÌƒƒbƒZ[ƒW */
+      /* é…é”å“¡ã‹ã‚‰å—ã‘å–ã£ã¦ã„ãŸå ´åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ */
       msgid = mystery_card_003;
   }
 
@@ -749,7 +749,7 @@ static BOOL MysteryCardStatusWin(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PR
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	“ú•t‚ğ•\¦
+ * @brief	æ—¥ä»˜ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -764,15 +764,15 @@ static BOOL MysteryCardDateWin(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRIN
 	    wk->card[wk->disp_card]->pokemon_icon[0],
 	    wk->card[wk->disp_card]->pokemon_icon[1],
 	    wk->card[wk->disp_card]->pokemon_icon[2]);
-  OS_Printf("¡‚Ü‚Å‚É”z•z‚µ‚½‰ñ” = %d\n", wk->card[wk->disp_card]->re_dealed_count);
+  OS_Printf("ä»Šã¾ã§ã«é…å¸ƒã—ãŸå›æ•° = %d\n", wk->card[wk->disp_card]->re_dealed_count);
   OS_Printf("%04d/%02d/%02d [ %d ]\n", date.year, date.month, date.day, wk->card[wk->disp_card]->recv_date);
 #endif  
 
-  // •¶š—ñ‚ğƒZƒbƒg‚¾‚¯‚µ‚ÄŒã‚ÍƒƒbƒZ[ƒW‚É”C‚¹‚é
+  // æ–‡å­—åˆ—ã‚’ã‚»ãƒƒãƒˆã ã‘ã—ã¦å¾Œã¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«ä»»ã›ã‚‹
   WORDSET_RegisterNumber(wk->word, 0, date.year+2000, 4, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
   // ----------------------------------------------------------------------------
   // localize_spec_mark(LANG_ALL) imatake 2007/01/29
-  // Œ‚Ì•\¦‚ğ’PŒê•\‹L‚É•ÏX
+  // æœˆã®è¡¨ç¤ºã‚’å˜èªè¡¨è¨˜ã«å¤‰æ›´
   WORDSET_RegisterMonthName( wk->word, 1, date.month );
   // ----------------------------------------------------------------------------
   WORDSET_RegisterNumber(wk->word, 2, date.day,       2, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
@@ -782,7 +782,7 @@ static BOOL MysteryCardDateWin(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRIN
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‚Ìà–¾•¶‚ğ•\¦
+ * @brief	ã‚«ãƒ¼ãƒ‰ã®èª¬æ˜æ–‡ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -801,40 +801,40 @@ static BOOL MysteryCardTextWin(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRIN
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	”z•z‚Å‚«‚é‰ñ”‚ğ•\¦‚·‚é
+ * @brief	é…å¸ƒã§ãã‚‹å›æ•°ã‚’è¡¨ç¤ºã™ã‚‹
  * @param	NONE
  * @return	NONE
  */
 //--------------------------------------------------------------------------------------------
 static BOOL MysteryCardTransWin(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRINTCOLOR col)
 {
-#if 0	// –³ŒÀ‰ñ”•\¦ƒeƒXƒg
+#if 0	// ç„¡é™å›æ•°è¡¨ç¤ºãƒ†ã‚¹ãƒˆ
   wk->card[wk->disp_card]->re_deal_count = 255;
 #endif
 
   if(wk->card[wk->disp_card]->re_deal_count == 255){
-    // –³ŒÀ‰ñ”‚Ì”z•z
+    // ç„¡é™å›æ•°ã®é…å¸ƒ
     STRBUF * msg;
     msg = MSGDAT_UTIL_AllocExpandString(wk->word, wk->msgman, mystery_card_016, HEAPID_MYSTERYCARD);
     GF_STR_PrintColor(win, FONT_TALK, msg, 0, 0, MSG_NO_PUT, col, NULL);
     STRBUF_Delete(msg);
     return FALSE;
   } else if(wk->card[wk->disp_card]->re_deal_count){
-    // w’è‰ñ”‚Ì”z•z
+    // æŒ‡å®šå›æ•°ã®é…å¸ƒ
     WORDSET_RegisterNumber(wk->word, 0,
 			   wk->card[wk->disp_card]->re_deal_count,
 			   3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
     return TRUE;
   } else {
-    // Ä”z•z‚Å‚«‚È‚¢‚Ì‚Å•\¦‚µ‚È‚¢
+    // å†é…å¸ƒã§ããªã„ã®ã§è¡¨ç¤ºã—ãªã„
     return FALSE;
   }
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‚P‚ğì¬
- *		ƒƒCƒ“ƒƒjƒ…[
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼‘ã‚’ä½œæˆ
+ *		ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  * @param	NONE
  * @return	NONE
  */
@@ -845,21 +845,21 @@ static BOOL MysteryCardMenu1Win(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRI
   MYSTERYCARD_MSGWIN_TABLE *tbl;
   int index = 0;
 
-  // ‚¨‚·‚»‚í‚¯‚ªo—ˆ‚È‚¢ê‡‚Íu‚¨‚·‚»‚í‚¯vƒƒjƒ…[‚ğ•\¦‚µ‚È‚¢
+  // ãŠã™ãã‚ã‘ãŒå‡ºæ¥ãªã„å ´åˆã¯ã€ŒãŠã™ãã‚ã‘ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã—ãªã„
   ld[index++] = MysteryCard_Menu1Data[0];
   if(wk->card[wk->disp_card]->re_deal_count)
     ld[index++] = MysteryCard_Menu1Data[1];
-  // ”z’Bl‚©‚çó‚¯æ‚Á‚Ä‚¢‚È‚¢ê‡‚Íu‚·‚Ä‚évƒƒjƒ…[‚ğ•\¦‚µ‚È‚¢
+  // é…é”äººã‹ã‚‰å—ã‘å–ã£ã¦ã„ãªã„å ´åˆã¯ã€Œã™ã¦ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã—ãªã„
   //if(FUSHIGIDATA_GetCardLinkDeli(wk->fdata, wk->disp_card) == FALSE)
     ld[index++] = MysteryCard_Menu1Data[2];
   ld[index++] = MysteryCard_Menu1Data[3];
-  // ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY‚É‚ ‚í‚¹‚Äƒƒjƒ…[‚ğì‚è’¼‚µ
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã«ã‚ã‚ã›ã¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½œã‚Šç›´ã—
   tbl = wk->tbl;
   GF_BGL_BmpWinOff(win);  GF_BGL_BmpWinDel(win);
   GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME2_M,
 		   tbl->sx, tbl->sy + (4 - index) * 2, tbl->width, tbl->height - (4 - index) * 2,
 		   FONT_PALNO_NORMAL, wk->nowbase);
-  // ƒƒjƒ…[“o˜^
+  // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç™»éŒ²
   CreateWindowMenuData(wk, ld, index, win, 0);
 
   return TRUE;
@@ -867,8 +867,8 @@ static BOOL MysteryCardMenu1Win(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRI
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‚Q‚ğì¬
- *		ƒJ[ƒh‚ğ‚·‚Ä‚Ü‚·‚©H@‚Í‚¢^‚¢‚¢‚¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼’ã‚’ä½œæˆ
+ *		ã‚«ãƒ¼ãƒ‰ã‚’ã™ã¦ã¾ã™ã‹ï¼Ÿã€€ã¯ã„ï¼ã„ã„ãˆ
  * @param	NONE
  * @return	NONE
  */
@@ -881,8 +881,8 @@ static BOOL MysteryCardMenu2Win(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRI
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‚R‚ğì¬
- *		‚¨‚·‚»‚í‚¯‚ğ‚µ‚Ü‚·‚©H@‚Í‚¢^‚¢‚¢‚¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼“ã‚’ä½œæˆ
+ *		ãŠã™ãã‚ã‘ã‚’ã—ã¾ã™ã‹ï¼Ÿã€€ã¯ã„ï¼ã„ã„ãˆ
  * @param	NONE
  * @return	NONE
  */
@@ -895,8 +895,8 @@ static BOOL MysteryCardMenu3Win(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRI
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‚S‚ğì¬
- *		‚c‚rƒƒCƒ„ƒŒƒX‚Â‚¤‚µ‚ñ‚ğ\n‚©‚¢‚µ@‚µ‚Ü‚·@‚Í‚¢^‚¢‚¢‚¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼”ã‚’ä½œæˆ
+ *		ï¼¤ï¼³ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹ã¤ã†ã—ã‚“ã‚’\nã‹ã„ã—ã€€ã—ã¾ã™ã€€ã¯ã„ï¼ã„ã„ãˆ
  * @param	NONE
  * @return	NONE
  */
@@ -911,7 +911,7 @@ static BOOL MysteryCardMenu4Win(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRI
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	Œ»İ‚ÌƒGƒ“ƒgƒŠ‚ğ•\¦
+ * @brief	ç¾åœ¨ã®ã‚¨ãƒ³ãƒˆãƒªã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -925,7 +925,7 @@ static BOOL MysteryCardDrawEntry(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PR
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒtƒF[ƒhˆ—
+ * @brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
  * @param	none
  * @return	none
@@ -942,7 +942,7 @@ static void RequestFade(MYSTERYCARD_WORK *wk, int type, int next_seq, int *seq)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	•K—v‚ÈƒXƒNƒŠ[ƒ“‚Ìì¬
+ * @brief	å¿…è¦ãªã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ä½œæˆ
  * @param	NONE
  * @return	NONE
  */
@@ -960,7 +960,7 @@ static void MysteryCardCreateMsgWindow(MYSTERYCARD_WORK *wk, int font, int side)
 
   CreateCardGraphics(wk, side);
 
-  /* ‚Ü‚¸‚Í•ÊƒTƒCƒh‚ÌƒEƒBƒ“ƒhƒE‚ğ–•Á */
+  /* ã¾ãšã¯åˆ¥ã‚µã‚¤ãƒ‰ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æŠ¹æ¶ˆ */
   for(i = 0; i < sizeof(MsgWin_Table) / sizeof(MYSTERYCARD_MSGWIN_TABLE); i++){
     if(tbl[i].side != side && tbl[i].side != MYSTERYCARD_MENU){
       if(wk->win[i].ini){
@@ -970,27 +970,27 @@ static void MysteryCardCreateMsgWindow(MYSTERYCARD_WORK *wk, int font, int side)
     }
   }
   chbase = MYSTERYCARD_CHBASE;
-  /* V‚½‚ÉƒEƒBƒ“ƒhƒE‚ğì‚è’¼‚· */
+  /* æ–°ãŸã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œã‚Šç›´ã™ */
   for(i = 0; i < sizeof(MsgWin_Table) / sizeof(MYSTERYCARD_MSGWIN_TABLE); i++){
     if(tbl[i].side == side){
       if(wk->win[i].ini == NULL){
-	// ƒEƒBƒ“ƒhƒE‚ğì‚Á‚Äc
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œã£ã¦â€¦
 	wk->chbase[i] = chbase;
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->win[i], GF_BGL_FRAME0_M,
 			 tbl[i].sx, tbl[i].sy, tbl[i].width, tbl[i].height,
 			 FONT_PALNO_NORMAL, chbase);
       }
-      // ƒEƒBƒ“ƒhƒE‚ğƒNƒŠƒA‚µ‚Äc
+      // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¯ãƒªã‚¢ã—ã¦â€¦
       GF_BGL_BmpWinDataFill(&wk->win[i], FontHeaderGet(tbl[i].font, tbl[i].background));
       col = tbl[i].color;
-      // ŠO•”ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“‚ğŒÄ‚Ño‚µ‚Äc
+      // å¤–éƒ¨ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã‚’å‘¼ã³å‡ºã—ã¦â€¦
       if(tbl[i].func(wk, &wk->win[i], col) == TRUE){
-	// ƒƒbƒZ[ƒW‚ª‚ ‚ê‚Î•\¦‚·‚é
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚Œã°è¡¨ç¤ºã™ã‚‹
 	if(tbl[i].msgid){
 	  msg = MSGDAT_UTIL_AllocExpandString(wk->word, wk->msgman, tbl[i].msgid, wk->heapid);
       // ----------------------------------------------------------------------------
 	  // localize_spec_mark(LANG_ALL) imatake 2007/05/01
-	  // ‚¨‚·‚»‚í‚¯‰æ–Ê‚Ìu‚­‚Î‚évu‚â‚ß‚év‚ğ©“®‚Å’†‰›Šñ‚¹‚É
+	  // ãŠã™ãã‚ã‘ç”»é¢ã®ã€Œãã°ã‚‹ã€ã€Œã‚„ã‚ã‚‹ã€ã‚’è‡ªå‹•ã§ä¸­å¤®å¯„ã›ã«
 	  {
 	    u32 xofs = (tbl[i].ox == OX_CENTERED) ?
 		       FontProc_GetPrintCenteredPositionX(tbl[i].font, msg, 0, tbl[i].width * 8) :
@@ -1001,7 +1001,7 @@ static void MysteryCardCreateMsgWindow(MYSTERYCARD_WORK *wk, int font, int side)
 	  STRBUF_Delete(msg);
 	}
       }
-      /* ÅŒã‚ÉƒEƒBƒ“ƒhƒE•\¦ */
+      /* æœ€å¾Œã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º */
       GF_BGL_BmpWinOn(&wk->win[i]);
       chbase += tbl[i].width * tbl[i].height;
     }
@@ -1009,7 +1009,7 @@ static void MysteryCardCreateMsgWindow(MYSTERYCARD_WORK *wk, int font, int side)
   MSGMAN_Delete(wk->msgman);
   WORDSET_Delete(wk->word);
 
-  /* ƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒRƒ“‚ğ•\¦ */
+  /* ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤º */
   if(side == MYSTERYCARD_FRONT)
     MysteryCard_DisplayPokemonIcon(wk);
 }
@@ -1017,7 +1017,7 @@ static void MysteryCardCreateMsgWindow(MYSTERYCARD_WORK *wk, int font, int side)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	V‚µ‚¢ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğŠJ‚­
+ * @brief	æ–°ã—ã„ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
  * @param	NONE
  * @return	NONE
  */
@@ -1040,11 +1040,11 @@ static int MysteryCardCreateWindow(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN	*win, int
     wk->msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_mystery_dat, HEAPID_MYSTERYCARD);
     wk->word = WORDSET_Create(HEAPID_MYSTERYCARD);
   }
-  // ŠO•”ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“‚ğŒÄ‚Ño‚·
+  // å¤–éƒ¨ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã‚’å‘¼ã³å‡ºã™
   wk->nowbase = base;
   wk->tbl = tbl;
   tbl->func(wk, win, MYSTERYCARD_BLACK);
-  // ƒƒbƒZ[ƒW‚ª‚ ‚ê‚Î•\¦‚µ‚Äc
+  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚Œã°è¡¨ç¤ºã—ã¦â€¦
   if(tbl->msgid){
     msg = MSGDAT_UTIL_AllocExpandString(wk->word, wk->msgman, tbl->msgid, HEAPID_MYSTERYCARD);
     GF_STR_PrintColor(win, tbl->font, msg, 0, 0, MSG_NO_PUT, tbl->color, NULL);
@@ -1052,7 +1052,7 @@ static int MysteryCardCreateWindow(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN	*win, int
     MSGMAN_Delete(wk->msgman);
     WORDSET_Delete(wk->word);
   }
-  if(win == &wk->msgwin){	// ‚²‚ß‚ñ‚È‚³‚¢ƒR[ƒh
+  if(win == &wk->msgwin){	// ã”ã‚ã‚“ãªã•ã„ã‚³ãƒ¼ãƒ‰
     BmpTalkWinWrite(win, WINDOW_TRANS_ON, MYSTERYCARD_TFRAMECHR, TWAKU_PALETTE_NUMBER);
   } else {
     BmpMenuWinWrite(win, WINDOW_TRANS_ON, MYSTERYCARD_FRAMECHR2, WAKU_PALETTE_NUMBER2);
@@ -1063,7 +1063,7 @@ static int MysteryCardCreateWindow(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN	*win, int
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	Ÿ‚ÌƒJ[ƒh‚ğŒŸõ‚·‚é
+ * @brief	æ¬¡ã®ã‚«ãƒ¼ãƒ‰ã‚’æ¤œç´¢ã™ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -1082,14 +1082,14 @@ static int MysteryCardNextCard(MYSTERYCARD_WORK *wk, int card, int add)
       break;
   }
 #if 0//def DEBUG_ONLY_FOR_mituhara
-  OS_TPrintf("Ÿ‚ÌƒJ[ƒhƒXƒƒbƒg‚Í %d ”Ô‚Å‚·\n", card);
+  OS_TPrintf("æ¬¡ã®ã‚«ãƒ¼ãƒ‰ã‚¹ãƒ­ãƒƒãƒˆã¯ %d ç•ªã§ã™\n", card);
 #endif
   return card;
 }
 
 static void CMC_ArcUtil_ScrnSet(MYSTERYCARD_WORK *wk, u32 dataIdx, u32 frm, u32 transSize)
 {
-  // ArcUtil_ScrnSet‚¾‚Æ”ñ‚’¼ŠúŠÔ’†‚ÉVRAM“]‘—‚³‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ÅAC³
+  // ArcUtil_ScrnSetã ã¨éå‚ç›´æœŸé–“ä¸­ã«VRAMè»¢é€ã•ã‚Œã¦ã—ã¾ã†ã®ã§ã€ä¿®æ­£
   NNSG2dScreenData* scrnData;
   void *arcData = ArcUtil_Load(ARC_MYSTERY_GRA, dataIdx, 1, wk->heapid, ALLOC_BOTTOM);
   NNS_G2dGetUnpackedScreenData( arcData, &scrnData );
@@ -1099,35 +1099,35 @@ static void CMC_ArcUtil_ScrnSet(MYSTERYCARD_WORK *wk, u32 dataIdx, u32 frm, u32 
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	w’è”Ô†‚ÌƒXƒNƒŠ[ƒ“‚ğ“]‘—
+ * @brief	æŒ‡å®šç•ªå·ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’è»¢é€
  * @param	NONE
  * @return	NONE
  */
 //--------------------------------------------------------------------------------------------
 static void CreateCardGraphics(MYSTERYCARD_WORK *wk, int side)
 {
-  // ƒƒCƒ“‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_card_nclr, PALTYPE_MAIN_BG, 0, 16*16, wk->heapid);
-  // ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
   ArcUtil_BgCharSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_card_lz_cngr, wk->bgl, GF_BGL_FRAME1_M, 0, 24*16*0x20, 1, wk->heapid);
 
   switch(side){
   case MYSTERYCARD_FRONT:
-    // ƒƒCƒ“‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
     ArcUtil_ScrnSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_card01_lz_cscr, wk->bgl, GF_BGL_FRAME1_M, 0, 32*24*2, 1, wk->heapid);
     break;
   case MYSTERYCARD_BACK:
-    // ƒƒCƒ“‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
     ArcUtil_ScrnSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_card02_lz_cscr, wk->bgl, GF_BGL_FRAME1_M, 0, 32*24*2, 1, wk->heapid);
     break;
   }
 
-  // ƒƒCƒ“‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_nclr, PALTYPE_MAIN_BG, 16*2*LATTICEBG_PALNO, 16*2, wk->heapid);
-  // ƒƒCƒ“‰æ–ÊBG2ƒLƒƒƒ‰“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚­ãƒ£ãƒ©è»¢é€
   ArcUtil_BgCharSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_lz_ccgr, wk->bgl,
 		    GF_BGL_FRAME3_M, LATTICEBG_CHARBASE * 1/*0x20*/, 1*16*0x20, 1, wk->heapid);
-  // ƒƒCƒ“‰æ–ÊƒXƒNƒŠ[ƒ“‚P
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ï¼‘
   CMC_ArcUtil_ScrnSet(wk, NARC_mystery_fusigi_bg_00_lz_cscr, GF_BGL_FRAME3_M, 32*24*2);
   GF_BGL_ScrPalChange(wk->bgl, GF_BGL_FRAME3_M, 0, 0, 32, 24, LATTICEBG_PALNO);
   GF_BGL_LoadScreenReq(wk->bgl, GF_BGL_FRAME3_M);
@@ -1136,7 +1136,7 @@ static void CreateCardGraphics(MYSTERYCARD_WORK *wk, int side)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‘I‘ğ•Às
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠï¼†å®Ÿè¡Œ
  * @param	NONE
  * @return	NONE
  */
@@ -1150,9 +1150,9 @@ static void DoMenuMain(PROC *proc, int *seq, int (*cfunc)(PROC *))
   
   ret = BmpListMain(wk->lw);
   switch(ret){
-  case BMPLIST_NULL:	/* ‰½‚à‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢ */
+  case BMPLIST_NULL:	/* ä½•ã‚‚é¸æŠã•ã‚Œã¦ã„ãªã„ */
     break;
-  case BMPLIST_CANCEL:	/* ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½ */
+  case BMPLIST_CANCEL:	/* ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ */
     Snd_SePlay(SEQ_SE_DP_SELECT);
     if(cfunc){
       ret_seq = cfunc(proc);
@@ -1160,7 +1160,7 @@ static void DoMenuMain(PROC *proc, int *seq, int (*cfunc)(PROC *))
 	*seq = ret_seq;
     }
     break;
-  default:		/* ‰½‚©‚ªŒˆ’è‚³‚ê‚½ */
+  default:		/* ä½•ã‹ãŒæ±ºå®šã•ã‚ŒãŸ */
     Snd_SePlay(SEQ_SE_DP_SELECT);
     if(ret){
       if(ret < MYSTERYCARD_SEQ_MAX){
@@ -1179,7 +1179,7 @@ static void DoMenuMain(PROC *proc, int *seq, int (*cfunc)(PROC *))
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒRƒ“‚ğ•\¦
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -1202,7 +1202,7 @@ static void MysteryCard_DisplayPokemonIcon(MYSTERYCARD_WORK *wk)
 			 NARC_mystery_gba_box_oam_lz_ccer,
 			 NARC_mystery_gba_box_oam_lz_canr,
 			 GF_BGL_MAIN_DISP);
-    // ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“—pƒpƒŒƒbƒg‚ğˆê‹C‚É“Ç‚İ‚ñ‚ÅVRAM“]‘—‚·‚é
+    // ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä¸€æ°—ã«èª­ã¿è¾¼ã‚“ã§VRAMè»¢é€ã™ã‚‹
     ArcUtil_PalSet(ARC_POKEICON, PokeIconPalArcIndexGet(), PALTYPE_MAIN_OBJ, POKEICON_PAL_OFFSET*0x20,
 		   0, wk->heapid);
   }
@@ -1223,9 +1223,9 @@ static void MysteryCard_DisplayPokemonIcon(MYSTERYCARD_WORK *wk)
 			      PokeIconCgxArcIndexGetByMonsNumber(pokeno, 0, 0), 0, &chara, wk->heapid);
     DC_FlushRange(chara->pRawData, POKEICON_TRANS_SIZE);
 
-    // ƒLƒƒƒ‰ƒNƒ^[“]‘—
+    // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è»¢é€
     GX_LoadOBJ(chara->pRawData, (POKEICON_VRAM_OFFSET+no*POKEICON_TRANS_CHARA)*0x20, POKEICON_TRANS_SIZE);
-    // ƒpƒŒƒbƒgİ’è
+    // ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
     CLACT_PaletteNoChg(wk->pokeicon[no],  PokeIconPalNumGet(pokeno, 0, 0)+POKEICON_PAL_OFFSET );
     sys_FreeMemoryEz(buf);
   }
@@ -1234,35 +1234,35 @@ static void MysteryCard_DisplayPokemonIcon(MYSTERYCARD_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚Ó‚µ‚¬‚ÈƒJ[ƒhF‰Šú‰»
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ãµã—ããªã‚«ãƒ¼ãƒ‰ï¼šåˆæœŸåŒ–
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT MysteryCardProc_Init(PROC * proc, int * seq)
 {
   MYSTERYCARD_WORK *wk;
 
-  /* ƒ[ƒNƒGƒŠƒA‚ÍTITLE_STARTMENU‚Ìã‚Éì¬‚·‚é(–•Á‚Ì‡”Ô‚Í–â‘è‚È‚¢‚Í‚¸) */
+  /* ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã¯TITLE_STARTMENUã®ä¸Šã«ä½œæˆã™ã‚‹(æŠ¹æ¶ˆã®é †ç•ªã¯å•é¡Œãªã„ã¯ãš) */
   sys_CreateHeap( HEAPID_BASE_APP, HEAPID_MYSTERYCARD, MYSTERYCARD_HEADSIZE);
   wk = PROC_AllocWork(proc, sizeof(MYSTERYCARD_WORK), HEAPID_MYSTERYCARD);
-  /* ‰Šú‰»•s—Ç‚ª•|‚¢‚Ì‚Åƒ[ƒN‚Íƒ[ƒƒNƒŠƒA */
+  /* åˆæœŸåŒ–ä¸è‰¯ãŒæ€–ã„ã®ã§ãƒ¯ãƒ¼ã‚¯ã¯ã‚¼ãƒ­ã‚¯ãƒªã‚¢ */
   memset(wk, 0, sizeof(MYSTERYCARD_WORK));
   
-  /* Šeí•Ï”‚Ì‰Šú‰» */
+  /* å„ç¨®å¤‰æ•°ã®åˆæœŸåŒ– */
   wk->bgl = GF_BGL_BglIniAlloc(HEAPID_MYSTERYCARD);
   wk->heapid = HEAPID_MYSTERYCARD;
 
-  /* ‰æ–Ê‚Ì‰Šúİ’è */
+  /* ç”»é¢ã®åˆæœŸè¨­å®š */
   WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
   WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 
-  /* •Ï”‰Šú‰» */
+  /* å¤‰æ•°åˆæœŸåŒ– */
   wk->disp_card = GIFT_CARD_MAX - 1;
   wk->write_index = 1;
-  // ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+  // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
   MysteryLib_Init(HEAPID_MYSTERYCARD);
 
   sys_CreateHeap( HEAPID_BASE_SYSTEM, HEAPID_COMMICON, 0x300 );
@@ -1274,7 +1274,7 @@ static PROC_RESULT MysteryCardProc_Init(PROC * proc, int * seq)
 #define SPEED			0.025
 //------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‰ñ“]‚ÌVBLANKˆ—
+ * @brief	ã‚«ãƒ¼ãƒ‰å›è»¢æ™‚ã®VBLANKå‡¦ç†
  * @param	NONE
  * @return	NONE
  */
@@ -1288,7 +1288,7 @@ static void MysteryCard_VBlankTcb(TCB_PTR tcb, void* p_work)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‰ñ“]‰Šú‰»
+ * @brief	ã‚«ãƒ¼ãƒ‰å›è»¢åˆæœŸåŒ–
  * @param	NONE
  * @return	NONE
  */
@@ -1311,7 +1311,7 @@ static void MysteryCard_InitTurn(MYSTERYCARD_WORK *wk, BOOL mode, fx32 default_s
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‰ñ“]ˆ—‚ÌÅIŒãn––
+ * @brief	ã‚«ãƒ¼ãƒ‰å›è»¢å‡¦ç†ã®æœ€çµ‚å¾Œå§‹æœ«
  * @param	NONE
  * @return	NONE
  */
@@ -1330,7 +1330,7 @@ static void MysteryCard_FinishTurn(MYSTERYCARD_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‰ñ“]ˆ—
+ * @brief	ã‚«ãƒ¼ãƒ‰å›è»¢å‡¦ç†
  * @param	NONE
  * @return	NONE
  */
@@ -1343,12 +1343,12 @@ static BOOL MysteryCard_TurnMainProc(MYSTERYCARD_WORK *wk)
   CARDTURN *ct = &wk->cturn;
   fx32 line = (CARDHEIGHT/2) * FX32_ONE;
 
-  // ‘O‰ñ‚Å‚·‚Å‚Éˆ—‚ÍI—¹‚µ‚Ä‚¢‚é
+  // å‰å›ã§ã™ã§ã«å‡¦ç†ã¯çµ‚äº†ã—ã¦ã„ã‚‹
   if(ct->do_run == FALSE)	return TRUE;
 
-  // æ‚ÉI—¹”»’è‚ğs‚Á‚ÄAÅŒã‚Ì‚PƒtƒŒ[ƒ€‚ğì¬‚·‚é
+  // å…ˆã«çµ‚äº†åˆ¤å®šã‚’è¡Œã£ã¦ã€æœ€å¾Œã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ä½œæˆã™ã‚‹
   if(ct->mode == TRUE){
-    // •Â‚¶‚éÛ‚ÌI—¹”»’è
+    // é–‰ã˜ã‚‹éš›ã®çµ‚äº†åˆ¤å®š
     ct->speed += ct->accel;
     ct->accel += ct->accel;
     if(ct->speed / FX32_ONE > 1000){
@@ -1358,7 +1358,7 @@ static BOOL MysteryCard_TurnMainProc(MYSTERYCARD_WORK *wk)
       ct->accel = 0;
     }
   } else {
-    // ŠJ‚­Û‚ÌI—¹”»’è
+    // é–‹ãéš›ã®çµ‚äº†åˆ¤å®š
     ct->speed -= ct->accel;
     ct->accel /= 2;
     if(ct->accel < FX32_ONE/4/*4*/){
@@ -1367,7 +1367,7 @@ static BOOL MysteryCard_TurnMainProc(MYSTERYCARD_WORK *wk)
       ct->accel = 0;
     }
   }
-  // Šeƒ‰ƒCƒ“‚ÌƒXƒNƒ[ƒ‹’lŒvZ
+  // å„ãƒ©ã‚¤ãƒ³ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤è¨ˆç®—
   buf = LASTER_GetWriteBuff(ct->laster_ptr);
   for(i = CARDHEIGHT/2; i < CARDHEIGHT; i++){
     reg = line / FX32_ONE;
@@ -1380,7 +1380,7 @@ static BOOL MysteryCard_TurnMainProc(MYSTERYCARD_WORK *wk)
     line += ct->speed;
   }
   DC_FlushRange(buf, sizeof(u16) * HW_LCD_HEIGHT*4);
-  // €”õ‚ªI‚í‚Á‚½ƒoƒbƒtƒ@‚ÖØ‚è‘Ö‚¦
+  // æº–å‚™ãŒçµ‚ã‚ã£ãŸãƒãƒƒãƒ•ã‚¡ã¸åˆ‡ã‚Šæ›¿ãˆ
   LASTER_VBlank(ct->laster_ptr);
 
   return FALSE;
@@ -1389,7 +1389,7 @@ static BOOL MysteryCard_TurnMainProc(MYSTERYCARD_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒV[ƒPƒ“ƒX
+ * @brief	ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  * @param	NONE
  * @return	NONE
  */
@@ -1401,14 +1401,14 @@ static void SaveSequence(void *p)
   ret = MysteryLib_SaveDSCard();
   if(ret == SAVE_RESULT_OK || ret == SAVE_RESULT_NG){
     Snd_SePlay(SEQ_SE_DP_SAVE);
-    //    OS_TPrintf("•ªŠ„ƒZ[ƒu‚ªI—¹‚µ‚Ü‚µ‚½\n");
+    //    OS_TPrintf("åˆ†å‰²ã‚»ãƒ¼ãƒ–ãŒçµ‚äº†ã—ã¾ã—ãŸ\n");
     wk->func_hook = NULL;
   }
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒV[ƒPƒ“ƒXŠJn
+ * @brief	ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–‹å§‹
  * @param	NONE
  * @return	NONE
  */
@@ -1420,10 +1420,10 @@ static void MysteryCard_StartSaveSeq(MYSTERYCARD_WORK *wk)
     SVLD_CheckCrc(GMDATA_ID_FUSHIGIDATA);
 #endif //CRC_LOADCHECK
 
-  /* ”z•z‚µ‚½‰ñ”‚ğƒJƒEƒ“ƒgƒAƒbƒv(‚±‚êAg‚¤‚Ì‚©‚ÈcH) */
+  /* é…å¸ƒã—ãŸå›æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—(ã“ã‚Œã€ä½¿ã†ã®ã‹ãªâ€¦ï¼Ÿ) */
   if(wk->card[wk->disp_card]->re_dealed_count != 255)
     wk->card[wk->disp_card]->re_dealed_count++;
-  /* ”z•z‰ñ”‚ğ|‚P‚·‚é(‚½‚¾‚µ255‚È‚ç‚Î–³§ŒÀ”z•z) */
+  /* é…å¸ƒå›æ•°ã‚’âˆ’ï¼‘ã™ã‚‹(ãŸã ã—255ãªã‚‰ã°ç„¡åˆ¶é™é…å¸ƒ) */
   if(wk->card[wk->disp_card]->re_deal_count != 255)
     wk->card[wk->disp_card]->re_deal_count--;
 
@@ -1431,11 +1431,11 @@ static void MysteryCard_StartSaveSeq(MYSTERYCARD_WORK *wk)
 	SVLD_SetCrc(GMDATA_ID_FUSHIGIDATA);
 #endif //CRC_LOADCHECK
     
-  // ƒZ[ƒuƒV[ƒPƒ“ƒX‚ğ“o˜^
+  // ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ç™»éŒ²
   MysteryLib_InitSaveDSCard(wk->sv);
   wk->func_hook = SaveSequence;
 #if 0
-  /* ƒf[ƒ^ƒZ[ƒu */
+  /* ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ– */
   SaveData_Save(wk->sv);
 #endif
 }
@@ -1443,7 +1443,7 @@ static void MysteryCard_StartSaveSeq(MYSTERYCARD_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÚ“®ˆ—
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å‡¦ç†
  * @param	NONE
  * @return	NONE
  */
@@ -1453,18 +1453,18 @@ static void SelectCursor(MYSTERYCARD_WORK *wk, int connect, int *seq)
   int mark;
   int select = wk->select_icon;
 
-  // ¶‰EˆÚ“®
+  // å·¦å³ç§»å‹•
   if(sys.trg & PAD_KEY_RIGHT && wk->select_icon != 1)
     wk->select_icon = 1;
   if(sys.trg & PAD_KEY_LEFT && wk->select_icon != 0)
     wk->select_icon = 0;
-  // ƒJ[ƒ\ƒ‹”½‰f
+  // ã‚«ãƒ¼ã‚½ãƒ«åæ˜ 
   if(select != wk->select_icon){
     CLACT_AnmChg(wk->ibase[0], wk->select_icon == 0 ? 1 : 0);
     CLACT_AnmChg(wk->ibase[1], wk->select_icon == 0 ? 0 : 1);
   }
 
-  // ˆ—‚Ì‘I‘ğ
+  // å‡¦ç†ã®é¸æŠ
   mark = 0;
   if(sys.trg & PAD_BUTTON_CANCEL)
     mark = 2;
@@ -1475,10 +1475,10 @@ static void SelectCursor(MYSTERYCARD_WORK *wk, int connect, int *seq)
   else if((sys.trg & PAD_BUTTON_DECIDE) && connect == 0)
     mark = 3;
 
-  // ˆ—Às
+  // å‡¦ç†å®Ÿè¡Œ
   if(mark == 1){
     Snd_SePlay(SEQ_SE_DP_SELECT);
-    // ƒf[ƒ^‚Ì‘—MŠJn
+    // ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡é–‹å§‹
     CommTimingSyncStart(MYSTERYGIFT_SYNC_CODE);
     wk->sync_wait = 1;
     *seq = MYSTERYCARD_SEQ_SEND_WAITSYNC;
@@ -1487,8 +1487,8 @@ static void SelectCursor(MYSTERYCARD_WORK *wk, int connect, int *seq)
   }
   if(mark == 2){
     Snd_SePlay(SEQ_SE_DP_SELECT);
-    // ’ÊM‚ğI—¹‚³‚¹‚é
-    // ¦’ÊM‚ªI—¹‚µ‚½‚çŸ‚ÌƒV[ƒPƒ“ƒX‚ÖˆÚs
+    // é€šä¿¡ã‚’çµ‚äº†ã•ã›ã‚‹
+    // â€»é€šä¿¡ãŒçµ‚äº†ã—ãŸã‚‰æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸ç§»è¡Œ
     CommMysteryCardExit(wk,  seq, MYSTERYCARD_SEQ_ENTRY_SENDGIFT_END1);
   }
   if(mark == 3){
@@ -1499,11 +1499,11 @@ static void SelectCursor(MYSTERYCARD_WORK *wk, int connect, int *seq)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚Ó‚µ‚¬‚ÈƒJ[ƒhFƒƒCƒ“
- * @param	proc	ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	PROC_RES_CONTINUE	“®ìŒp‘±’†
- * @return	PROC_RES_FINISH		“®ìI—¹
+ * @brief	ãµã—ããªã‚«ãƒ¼ãƒ‰ï¼šãƒ¡ã‚¤ãƒ³
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	PROC_RES_CONTINUE	å‹•ä½œç¶™ç¶šä¸­
+ * @return	PROC_RES_FINISH		å‹•ä½œçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
@@ -1535,47 +1535,47 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
     break;
 
   case MYSTERYCARD_SEQ_CREATE_SCREEN:
-    /* ‰æ–Êì¬ */
+    /* ç”»é¢ä½œæˆ */
     MSG_PrintInit();
-    /* ƒXƒNƒŠ[ƒ““]‘— */
+    /* ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ */
     CreateCardGraphics(wk, MYSTERYCARD_FRONT);
-    /* ƒƒbƒZ[ƒW‚ÌƒtƒHƒ“ƒgƒJƒ‰[‚ğİ’è */
+    /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®š */
     SystemFontPaletteLoad( PALTYPE_MAIN_BG, FONT_PALNO_NORMAL * 32, HEAPID_MYSTERYCARD);
-    /*ƒEƒBƒ“ƒhƒE˜gƒLƒƒƒ‰AƒpƒŒƒbƒg‚ğƒZƒbƒg */
+    /*ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ ã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ */
     MenuWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, MYSTERYCARD_FRAMECHR1, WAKU_PALETTE_NUMBER1, 0, HEAPID_MYSTERYCARD);
     MenuWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, MYSTERYCARD_FRAMECHR2, WAKU_PALETTE_NUMBER2, 1, HEAPID_MYSTERYCARD);
     TalkWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, MYSTERYCARD_TFRAMECHR, TWAKU_PALETTE_NUMBER, wk->win_type, HEAPID_MYSTERYCARD);
 
     MysteryCardCreateMsgWindow(wk, FONT_TALK, MYSTERYCARD_FRONT);
-    /* ƒtƒF[ƒhƒCƒ“ */
+    /* ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ */
     RequestFade(wk, WIPE_TYPE_FADEIN, MYSTERYCARD_SEQ_MAIN, seq);
 
     break;
 
   case MYSTERYCARD_SEQ_MAIN:
     new_card = wk->disp_card;
-    /* ƒJ[ƒh“ü‚ê‘Ö‚¦ */
+    /* ã‚«ãƒ¼ãƒ‰å…¥ã‚Œæ›¿ãˆ */
     if(sys.trg & PAD_KEY_UP){
       new_card = MysteryCardNextCard(wk, wk->disp_card, -1);
     } else if(sys.trg & PAD_KEY_DOWN){
       new_card = MysteryCardNextCard(wk, wk->disp_card,  1);
     }
-    /* –ß‚éƒ{ƒ^ƒ“ƒ`ƒFƒbƒN */
+    /* æˆ»ã‚‹ãƒœã‚¿ãƒ³ãƒã‚§ãƒƒã‚¯ */
     else if(sys.trg & PAD_BUTTON_CANCEL){
       Snd_SePlay(SEQ_SE_DP_SELECT);
       RequestFade(wk, WIPE_TYPE_FADEOUT, MYSTERYCARD_SEQ_RETURN, seq);
     }
-    /* ‚`ƒ{ƒ^ƒ“‚Åƒƒjƒ…[‚ªŠJ‚­ */
+    /* ï¼¡ãƒœã‚¿ãƒ³ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé–‹ã */
     else if(sys.trg & PAD_BUTTON_DECIDE){
       Snd_SePlay(SEQ_SE_DP_SELECT);
       *seq = MYSTERYCARD_SEQ_CREATE_MENU;
     }
 
-    /* •ÏX‚ª‚ ‚Á‚½‚çƒJ[ƒh•\¦ */
+    /* å¤‰æ›´ãŒã‚ã£ãŸã‚‰ã‚«ãƒ¼ãƒ‰è¡¨ç¤º */
     if(wk->disp_card != new_card){
       Snd_SePlay(SEQ_SE_DP_CARD2);
 #if 0//def DEBUG_ONLY_FOR_mituhara
-      OS_TPrintf("ƒJ[ƒh•ÏX‚¾‚æ! %d -> %d\n", wk->disp_card, new_card);
+      OS_TPrintf("ã‚«ãƒ¼ãƒ‰å¤‰æ›´ã ã‚ˆ! %d -> %d\n", wk->disp_card, new_card);
 #endif
       wk->disp_card = new_card;
       MysteryCardCreateMsgWindow(wk, FONT_TALK, MYSTERYCARD_FRONT);
@@ -1584,18 +1584,18 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
     break;
 
 
-  // «‚±‚ÌŠÔ‚Íƒƒjƒ…[‚Ì§Œä ----------------------------
+  // â†“ã“ã®é–“ã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®åˆ¶å¾¡ ----------------------------
 
     
   case MYSTERYCARD_SEQ_CREATE_MENU:
-    /* ƒƒjƒ…[‚ğŠJ‚­ */
+    /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã */
     wk->menu_index = MysteryCardCreateWindow(wk, &wk->msgwin, MYSTERYCARD_INDEX_MENU, MYSTERYCARD_MENU_BASE);
     MysteryCardCreateWindow(wk, &wk->menuwin, MYSTERYCARD_INDEX_MENU+1, wk->menu_index);
     *seq = MYSTERYCARD_SEQ_MENU;
     break;
 
   case MYSTERYCARD_SEQ_MENU:
-    /* ƒƒjƒ…[‰æ–Ê */
+    /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ */
     DoMenuMain(proc, seq, NULL);
     if(sys.trg & PAD_BUTTON_CANCEL){
       Snd_SePlay(SEQ_SE_DP_SELECT);
@@ -1604,21 +1604,21 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
     break;
 
   case MYSTERYCARD_SEQ_MENU_TO_VIEWMODE:
-    /* ƒJ[ƒh‚Ìà–¾•¶‚ğŒ©‚éƒ‚[ƒh‚ÖˆÚs */
+    /* ã‚«ãƒ¼ãƒ‰ã®èª¬æ˜æ–‡ã‚’è¦‹ã‚‹ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œ */
     Snd_SePlay(SEQ_SE_DP_CARD2);
     GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_OFF);
     CMC_BmpTalkWinClear(&wk->msgwin,  WINDOW_TRANS_ON);
     CMC_BmpMenuWinClear(&wk->menuwin, WINDOW_TRANS_ON);
-    // ƒJ[ƒh‚ğ•Â‚¶‚é
+    // ã‚«ãƒ¼ãƒ‰ã‚’é–‰ã˜ã‚‹
     MysteryCard_InitTurn(wk, TRUE,     1*FX32_ONE, SPEED*FX32_ONE);
     *seq = MYSTERYCARD_SEQ_MENU_TO_VIEWMODE2;
     break;
     
   case MYSTERYCARD_SEQ_MENU_TO_VIEWMODE2:
     if(MysteryCard_TurnMainProc(wk)){
-      // — –Ê‚ğ•`‰æ
+      // è£é¢ã‚’æç”»
       MysteryCardCreateMsgWindow(wk, FONT_TALK, MYSTERYCARD_BACK);
-      // ƒJ[ƒh‚ğŠJ‚­
+      // ã‚«ãƒ¼ãƒ‰ã‚’é–‹ã
       MysteryCard_InitTurn(wk, FALSE, 1800*FX32_ONE,   900*FX32_ONE);
       *seq = MYSTERYCARD_SEQ_MENU_VIEWMODE;
     }
@@ -1626,11 +1626,11 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
 
   case MYSTERYCARD_SEQ_MENU_VIEWMODE:
     MysteryCard_TurnMainProc(wk);
-    /* ƒJ[ƒh‚Ìà–¾•¶‚ğŒ©‚éƒ‚[ƒh */
+    /* ã‚«ãƒ¼ãƒ‰ã®èª¬æ˜æ–‡ã‚’è¦‹ã‚‹ãƒ¢ãƒ¼ãƒ‰ */
     if(sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL)){
       Snd_SePlay(SEQ_SE_DP_CARD2);
       //      Snd_SePlay(SEQ_SE_DP_SELECT);
-      // ƒJ[ƒh‚ğ•Â‚¶‚é
+      // ã‚«ãƒ¼ãƒ‰ã‚’é–‰ã˜ã‚‹
       MysteryCard_InitTurn(wk, TRUE,     1*FX32_ONE, SPEED*FX32_ONE);
       *seq = MYSTERYCARD_SEQ_MENU_VIEWMODE2;
     }
@@ -1638,9 +1638,9 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
 
   case MYSTERYCARD_SEQ_MENU_VIEWMODE2:
     if(MysteryCard_TurnMainProc(wk)){
-      // •\–Ê‚ğ•`‰æ
+      // è¡¨é¢ã‚’æç”»
       MysteryCardCreateMsgWindow(wk, FONT_TALK, MYSTERYCARD_FRONT);
-      // ƒJ[ƒh‚ğŠJ‚­
+      // ã‚«ãƒ¼ãƒ‰ã‚’é–‹ã
       MysteryCard_InitTurn(wk, FALSE, 1800*FX32_ONE,   900*FX32_ONE);
       GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_OFF);
       *seq = MYSTERYCARD_SEQ_MENU_VIEWMODE3;
@@ -1648,7 +1648,7 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
     break;
   case MYSTERYCARD_SEQ_MENU_VIEWMODE3:
     if(MysteryCard_TurnMainProc(wk)){
-      // ƒƒjƒ…[‚ğ•`‰æ
+      // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æç”»
       BmpTalkWinWrite(&wk->msgwin,  WINDOW_TRANS_ON, MYSTERYCARD_TFRAMECHR, TWAKU_PALETTE_NUMBER);
       BmpMenuWinWrite(&wk->menuwin, WINDOW_TRANS_ON, MYSTERYCARD_FRAMECHR2, WAKU_PALETTE_NUMBER2);
       GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
@@ -1658,28 +1658,28 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
     break;
 
   case MYSTERYCARD_SEQ_END_MENU:
-    /* ƒƒjƒ…[‚ğÁ‚· */
+    /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æ¶ˆã™ */
     MysteryCardRemoveMainMenu(wk);
-    /* ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚ğÁ‚· */
+    /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ */
     CMC_BmpTalkWinClear(&wk->msgwin, WINDOW_TRANS_ON);
     GF_BGL_BmpWinOff(&wk->msgwin);  GF_BGL_BmpWinDel(&wk->msgwin);
     *seq = MYSTERYCARD_SEQ_MAIN;
     break;
 
   case MYSTERYCARD_SEQ_REMOVE_MENU:
-    /* ƒJ[ƒh‚ğÁ‚·‘I‘ğƒƒjƒ…[ */
+    /* ã‚«ãƒ¼ãƒ‰ã‚’æ¶ˆã™é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
     DoMenuMain(proc, seq, MysteryCardRetMainMenu);
     break;
 
 
   case MYSTERYCARD_SEQ_SENDFIGT_YESNO:
-    /* ‚¨‚·‚»‚í‚¯‚ğ‚µ‚Ü‚·‚©H ‚Í‚¢^‚¢‚¢‚¦ */
-    /* ƒJ[ƒh‚ğÁ‚·‘I‘ğƒƒjƒ…[ */
+    /* ãŠã™ãã‚ã‘ã‚’ã—ã¾ã™ã‹ï¼Ÿ ã¯ã„ï¼ã„ã„ãˆ */
+    /* ã‚«ãƒ¼ãƒ‰ã‚’æ¶ˆã™é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
     DoMenuMain(proc, seq, MysteryCardRetMainMenu);
     break;
 
   case MYSTERYCARD_SEQ_COMM_YESNO:
-    /* u‚c‚rƒƒCƒ„ƒŒƒX‚Â‚¤‚µ‚ñ‚ğ@‚©‚¢‚µ@‚µ‚Ü‚·v */
+    /* ã€Œï¼¤ï¼³ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹ã¤ã†ã—ã‚“ã‚’ã€€ã‹ã„ã—ã€€ã—ã¾ã™ã€ */
     MysteryCardMenu4Win(wk, &wk->menuwin, MYSTERYCARD_BLACK);
     *seq = MYSTERYCARD_SEQ_SENDFIGT_YESNO;
     break;
@@ -1687,42 +1687,42 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
 
     
   case MYSTERYCARD_SEQ_MENU_TO_SENDGIFT:
-    /* ‚¨‚·‚»‚í‚¯‰æ–Ê‚Ö‚¢‚­‚½‚ß‚ÌƒtƒF[ƒhƒAƒEƒg */
+    /* ãŠã™ãã‚ã‘ç”»é¢ã¸ã„ããŸã‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ */
     RequestFade(wk, WIPE_TYPE_FADEOUT, MYSTERYCARD_SEQ_MENU_TO_SENDGIFT2, seq);
     break;
 
   case MYSTERYCARD_SEQ_MENU_TO_SENDGIFT2:
-    /* ‚¨‚·‚»‚í‚¯‰æ–Ê‚Ös‚­€”õ */
-    /* ƒƒjƒ…[‚ğÁ‚· */
+    /* ãŠã™ãã‚ã‘ç”»é¢ã¸è¡Œãæº–å‚™ */
+    /* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æ¶ˆã™ */
     MysteryCardRemoveMainMenu(wk);
-    /* ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE‚ğÁ‚· */
+    /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ */
     CMC_BmpTalkWinClear(&wk->msgwin, WINDOW_TRANS_ON);
     GF_BGL_BmpWinOff(&wk->msgwin);  GF_BGL_BmpWinDel(&wk->msgwin);
     MysteryCardCreateMsgWindow(wk, FONT_SYSTEM, MYSTERYCARD_SEND);
-    /* ‚¨‚·‚»‚í‚¯‰æ–Ê‚Ìì¬ */
+    /* ãŠã™ãã‚ã‘ç”»é¢ã®ä½œæˆ */
     MysteryCardCreateOsusowake(wk->bgl);
-    /* ƒIƒuƒWƒFƒNƒgü‚è‚Ì‰Šú‰» */
+    /* ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‘¨ã‚Šã®åˆæœŸåŒ– */
     InitCellActor(wk);
     SetBaseIcon(wk);
     *seq = MYSTERYCARD_SEQ_MENU_TO_SENDGIFT3;
     break;
 
   case MYSTERYCARD_SEQ_MENU_TO_SENDGIFT3:
-    // e‚Æ‚µ‚Ä’ÊMŠJn
+    // è¦ªã¨ã—ã¦é€šä¿¡é–‹å§‹
     CommMysteryCard_CreateBeacon(wk);
-    WirelessIconEasy();		// ’ÊMƒAƒCƒRƒ“•\¦
+    WirelessIconEasy();		// é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
     RequestFade(wk, WIPE_TYPE_FADEIN, MYSTERYCARD_SEQ_ENTRY_SENDGIFT, seq);
     break;
 
   case MYSTERYCARD_SEQ_ENTRY_SENDGIFT:
-    /* ‚¨‚·‚»‚í‚¯‚ÌƒGƒ“ƒgƒŠ’†‰æ–Ê */
+    /* ãŠã™ãã‚ã‘ã®ã‚¨ãƒ³ãƒˆãƒªä¸­ç”»é¢ */
     connect_ds = 0;
     if(CommIsConnect(COMM_PARENT_ID)){
       CommMPSetBeaconTempData(&wk->gwk.gift_data.beacon);
-      // ‚Â‚È‚ª‚Á‚Ä‚¢‚éq‹@‚ğ•\¦
+      // ã¤ãªãŒã£ã¦ã„ã‚‹å­æ©Ÿã‚’è¡¨ç¤º
       connect_ds = MysteryCardDispConnectChildStatus(wk, &wk->win[MYSTERYCARD_ENTRY_LIST]);
       if(connect_ds == 0 && wk->prev_connect){
-	// ’N‚à‹‚È‚­‚È‚Á‚ÄAæ‚Ù‚Ç‚Ü‚ÅŒq‚ª‚Á‚Ä‚¢‚½‚çƒEƒBƒ“ƒhƒE‚ğƒNƒŠƒA
+	// èª°ã‚‚å±…ãªããªã£ã¦ã€å…ˆã»ã©ã¾ã§ç¹‹ãŒã£ã¦ã„ãŸã‚‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill(&wk->win[MYSTERYCARD_ENTRY_LIST], 0);
 	GF_BGL_BmpWinOn(&wk->win[MYSTERYCARD_ENTRY_LIST]);
 	wk->prev_connect = 0;
@@ -1730,12 +1730,12 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
       MysteryCardDispConnectChildCount(wk, &wk->win[MYSTERYCARD_ENTRY_COUNT], connect_ds);
       wk->prev_connect = connect_ds;
     }
-    /* ƒJ[ƒ\ƒ‹ˆÚ“®‚Å‘I‘ğ */
+    /* ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã§é¸æŠ */
     SelectCursor(wk, connect_ds, seq);
     break;
 
   case MYSTERYCARD_SEQ_ENTRY_SENDGIFT_END1:
-    // ƒtƒF[ƒhƒAƒEƒgŠJn
+    // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹
     RequestFade(wk, WIPE_TYPE_FADEOUT, MYSTERYCARD_SEQ_ENTRY_SENDGIFT_END2, seq);
     break;
 
@@ -1745,9 +1745,9 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
     CMC_BmpTalkWinClear(&wk->msgwin,  WINDOW_TRANS_ON);
     CMC_BmpMenuWinClear(&wk->menuwin, WINDOW_TRANS_ON);
     
-    // ‰æ–Ê‚ğ‘‚«Š·‚¦‚ÄƒtƒF[ƒhƒCƒ“
+    // ç”»é¢ã‚’æ›¸ãæ›ãˆã¦ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
     MysteryCardCreateMsgWindow(wk, FONT_TALK, MYSTERYCARD_FRONT);
-    /* ƒƒbƒZ[ƒW‚ÌƒtƒHƒ“ƒgƒJƒ‰[‚ğİ’è */
+    /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®š */
     SystemFontPaletteLoad( PALTYPE_MAIN_BG, FONT_PALNO_NORMAL * 32, HEAPID_MYSTERYCARD);
     RequestFade(wk, WIPE_TYPE_FADEIN, MYSTERYCARD_SEQ_CREATE_MENU, seq);
     break;
@@ -1760,17 +1760,17 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
     
   case MYSTERYCARD_SEQ_SEND_WAITSYNC:
     if(--wk->sync_wait == 0){
-      /* ‚¨‚·‚»‚í‚¯’† */
+      /* ãŠã™ãã‚ã‘ä¸­ */
       MysteryLib_CreateCryptoData(&wk->gwk.gift_data, &wk->comm_data, wk->heapid);
       CommMysterySendGiftDataParent((const void *)&wk->comm_data, sizeof(GIFT_DATA));
-      /* ”ñ“¯ŠúƒZ[ƒuŠJn */
+      /* éåŒæœŸã‚»ãƒ¼ãƒ–é–‹å§‹ */
       MysteryCard_StartSaveSeq(wk);
       *seq = MYSTERYCARD_SEQ_SEND_SAVEDATA;
     }
     break;
     
   case MYSTERYCARD_SEQ_SEND_SAVEDATA:
-    // ÅŒã‚Ì‚PƒZƒNƒ^ˆÈŠO‚ªƒZ[ƒu‚Å‚«‚½‚çq‹@‚Æ“¯Šú‚ğæ‚é
+    // æœ€å¾Œã®ï¼‘ã‚»ã‚¯ã‚¿ä»¥å¤–ãŒã‚»ãƒ¼ãƒ–ã§ããŸã‚‰å­æ©Ÿã¨åŒæœŸã‚’å–ã‚‹
     if(MysteryLib_GetSaveStatus() == MYSTERYLIB_SEQ_SAVE_LAST){
       CommTimingSyncStart(MYSTERYGIFT_SYNC_CODE2);
       *seq = MYSTERYCARD_SEQ_LAST_SAVE_WAIT;
@@ -1778,10 +1778,10 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
     break;
 
   case MYSTERYCARD_SEQ_LAST_SAVE_WAIT:
-    // Œq‚ª‚Á‚Ä‚¢‚éq‹@‘S‚Ä‚©‚ç‚Ì•Ô–‚ğ‘Ò‚Â
+    // ç¹‹ãŒã£ã¦ã„ã‚‹å­æ©Ÿå…¨ã¦ã‹ã‚‰ã®è¿”äº‹ã‚’å¾…ã¤
     if(MysteryCardGetConnectCount(wk) == 0 || CommIsTimingSync(MYSTERYGIFT_SYNC_CODE2) == TRUE){
       MysteryLib_DoLastSave();
-      /* ‚¨‚µ‚Ü‚¢ƒƒbƒZ[ƒW‚ğo‚µ‚ÄI—¹ */
+      /* ãŠã—ã¾ã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã—ã¦çµ‚äº† */
       MysteryCardCreateWindow(wk, &wk->msgwin, MYSTERYCARD_INDEX_LASTWIN+1, MYSTERYCARD_MENU_BASE);
       TimeWaitIconDel(wk->time_icon);
       CommMysteryCardExit(wk, seq, MYSTERYCARD_SEQ_SEND_FINISH);
@@ -1789,45 +1789,45 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
     break;
     
   case MYSTERYCARD_SEQ_SEND_FINISH:
-    // ‚¨‚·‚»‚í‚¯I—¹Aƒ{ƒ^ƒ“‚ğ‚Ü‚Á‚Äƒƒjƒ…[‰æ–Ê‚Ö
+    // ãŠã™ãã‚ã‘çµ‚äº†ã€ãƒœã‚¿ãƒ³ã‚’ã¾ã£ã¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã¸
     if(sys.trg & (PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL))
       *seq = MYSTERYCARD_SEQ_ENTRY_SENDGIFT_END1;
     break;
 
 
     
-    // ª‚±‚ÌŠÔ‚Íƒƒjƒ…[‚Ì§Œä ----------------------------
+    // â†‘ã“ã®é–“ã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®åˆ¶å¾¡ ----------------------------
 
   case MYSTERYCARD_SEQ_TO_RETURN:
-    // ˆ—‚ğ”²‚¯‚Ä‘O‚Ìƒƒjƒ…[‚É‹A‚é‚Ì“ü‚èŒû
+    // å‡¦ç†ã‚’æŠœã‘ã¦å‰ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«å¸°ã‚‹æ™‚ã®å…¥ã‚Šå£
     RequestFade(wk, WIPE_TYPE_FADEOUT, MYSTERYCARD_SEQ_RETURN, seq);
     break;
 
   case MYSTERYCARD_SEQ_WAIT_FADE:
-    /* ƒtƒF[ƒhI—¹‚Ü‚Å‘Ò‚Â */
+    /* ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ã¾ã§å¾…ã¤ */
     if(WIPE_SYS_EndCheck()){
       *seq = wk->next_seq;
     }
     break;
 
-    case MYSTERYCARD_SEQ_RETURN:	/* ‘O‚Ìƒƒjƒ…[‰æ–Ê‚Ö–ß‚é */
+    case MYSTERYCARD_SEQ_RETURN:	/* å‰ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã¸æˆ»ã‚‹ */
       RemoveCellActor(wk);
       MysteryCard_FinishTurn(wk);
       return PROC_RES_FINISH;
       break;
     
     case MYSTERYCARD_SEQ_LOOP:
-      /* ƒGƒ‰[‚Ì–³ŒÀƒ‹[ƒv */
+      /* ã‚¨ãƒ©ãƒ¼æ™‚ã®ç„¡é™ãƒ«ãƒ¼ãƒ— */
       break;
   }
 
-  // ƒAƒCƒRƒ“‚ğ•\¦‚·‚é‚½‚ß‚É•K—v‚È‹ì“®ˆ—
+  // ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã«å¿…è¦ãªé§†å‹•å‡¦ç†
   if(wk->clactSet!=NULL)
     CLACT_Draw( wk->clactSet );
 
   MysteryLib_DoClact();
 
-  // í‚Å‚Í‚È‚¢‚¯‚ê‚ÇÀs‚µ‚½ŠÖ”‚Í‚±‚±‚ÅÀs
+  // å¸¸æ™‚ã§ã¯ãªã„ã‘ã‚Œã©å®Ÿè¡Œã—ãŸé–¢æ•°ã¯ã“ã“ã§å®Ÿè¡Œ
   if(wk->func_hook)
     wk->func_hook(wk);
   
@@ -1835,26 +1835,26 @@ static PROC_RESULT MysteryCardProc_Main(PROC * proc, int * seq)
 }
 
 
-// ------------------------------ ‚±‚±‚©‚ç ----------------------------
-// ’ÊMŠÖ˜A‚ÌƒvƒƒOƒ‰ƒ€‚ğŒã”¼‚É‚Ü‚Æ‚ß‚Ü‚·
+// ------------------------------ ã“ã“ã‹ã‚‰ ----------------------------
+// é€šä¿¡é–¢é€£ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’å¾ŒåŠã«ã¾ã¨ã‚ã¾ã™
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒr[ƒRƒ“ƒf[ƒ^‚ğì¬‚µ‚Äe‚Æ‚µ‚Ä’ÊM‚ğŠJn
+ * @brief	ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦è¦ªã¨ã—ã¦é€šä¿¡ã‚’é–‹å§‹
  * @param	NONE
  * @return	NONE
  */
 //--------------------------------------------------------------------------------------------
 static int CommMysteryCard_CreateBeacon(MYSTERYCARD_WORK *wk)
 {
-  /* ƒZ[ƒuƒf[ƒ^‚©‚çƒr[ƒRƒ“î•ñ‚ğì¬ */
+  /* ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’ä½œæˆ */
   GIFT_CARD *gd = wk->card[wk->disp_card];
   memcpy(&wk->gwk.gift_data.data, gd, sizeof(GIFT_DATA));
   memcpy(&wk->gwk.gift_data.beacon, &gd->beacon, sizeof(GIFT_BEACON));
-  // ‘·”z•z‚³‚ê‚é‘¤‚ÍA‚³‚ç‚É‘·”z•z‚·‚é–‚Í‚Å‚«‚Ü‚¹‚ñ(d—l)
+  // å­«é…å¸ƒã•ã‚Œã‚‹å´ã¯ã€ã•ã‚‰ã«å­«é…å¸ƒã™ã‚‹äº‹ã¯ã§ãã¾ã›ã‚“(ä»•æ§˜)
   wk->gwk.gift_data.data.card.re_deal_count = 0;
   wk->gwk.gift_data.beacon.re_deal_flag = FALSE;
-  // ‘·”z•z‚Å‚ ‚éuˆóv‚ğ’Ç‰Á
+  // å­«é…å¸ƒã§ã‚ã‚‹ã€Œå°ã€ã‚’è¿½åŠ 
   wk->gwk.gift_data.beacon.groundchild_flag = TRUE;
 
   CommMysteryStateEnterGiftParent(&wk->gwk, wk->sv, COMM_MODE_MYSTERY);
@@ -1863,8 +1863,8 @@ static int CommMysteryCard_CreateBeacon(MYSTERYCARD_WORK *wk)
 }
 
 
-// ‚S‚Â‚Ì”z—ñ‚Ì’†‚©‚çˆê”Ô¬‚³‚È—v‘f‚ğ•Ô‚·
-// ¦ƒ[ƒN‚ğ”j‰ó“I‚Éˆµ‚¢‚Ü‚·¦
+// ï¼”ã¤ã®é…åˆ—ã®ä¸­ã‹ã‚‰ä¸€ç•ªå°ã•ãªè¦ç´ ã‚’è¿”ã™
+// â€»ãƒ¯ãƒ¼ã‚¯ã‚’ç ´å£Šçš„ã«æ‰±ã„ã¾ã™â€»
 static int getmin(int *p)
 {
   int *v = p;
@@ -1880,7 +1880,7 @@ static int getmin(int *p)
 
 //------------------------------------------------------------------
 /**
- * @brief	Œq‚ª‚Á‚Ä‚¢‚él”‚ğ•Ô‚·
+ * @brief	ç¹‹ãŒã£ã¦ã„ã‚‹äººæ•°ã‚’è¿”ã™
  * @param	NONE
  * @return	NONE
  */
@@ -1901,7 +1901,7 @@ static int MysteryCardGetConnectCount(MYSTERYCARD_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	Œq‚ª‚Á‚Ä‚¢‚éq‹@î•ñ‚ğ•\¦
+ * @brief	ç¹‹ãŒã£ã¦ã„ã‚‹å­æ©Ÿæƒ…å ±ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -1917,7 +1917,7 @@ static int MysteryCardDispConnectChildStatus(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN
   int copy[MYSTERYCARD_OSUSOWAKE_MAX];
   int order[MYSTERYCARD_OSUSOWAKE_MAX];
 
-  // ‘O‰ñ‚ÆŒq‚ª‚Á‚Ä‚¢‚él‚ªˆá‚¤‚©’²‚×‚é
+  // å‰å›ã¨ç¹‹ãŒã£ã¦ã„ã‚‹äººãŒé•ã†ã‹èª¿ã¹ã‚‹
   max = 0;
   redraw = 0;
   for(i = 1; i < MYSTERYCARD_OSUSOWAKE_MAX + 1; i++){
@@ -1936,27 +1936,27 @@ static int MysteryCardDispConnectChildStatus(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN
     }
   }
 
-  // Ä•\¦‚Ì•K—v‚ª‚È‚¯‚ê‚Î‚±‚Ìæ‚Ìˆ—‚ğ‚µ‚È‚¢
+  // å†è¡¨ç¤ºã®å¿…è¦ãŒãªã‘ã‚Œã°ã“ã®å…ˆã®å‡¦ç†ã‚’ã—ãªã„
   if(redraw == 0)
     return max;
 
-  // •\¦‡”Ô‚ğŠm’è‚·‚é
+  // è¡¨ç¤ºé †ç•ªã‚’ç¢ºå®šã™ã‚‹
   copy[0] = wk->worder[1], copy[1] = wk->worder[2], copy[2] = wk->worder[3], copy[3] = wk->worder[4];
   order[0] = getmin(copy);
   order[1] = getmin(copy);
   order[2] = getmin(copy);
   order[3] = getmin(copy);
 
-  // Ä•`‰æ‚ª•K—v‚È‚ç‚Î•`‚«‚È‚¨‚·
+  // å†æç”»ãŒå¿…è¦ãªã‚‰ã°æããªãŠã™
   word = WORDSET_Create(HEAPID_MYSTERYCARD);
   msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_mystery_dat, HEAPID_MYSTERYCARD);
   y = 0;
-  // ƒEƒBƒ“ƒhƒE‚ğÁ‚µ‚Äc
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã—ã¦â€¦
   GF_BGL_BmpWinDataFill(win, 0);
   for(i = 0; i < max; i++){
     my = CommInfoGetMyStatus(order[i]);
     if(my){
-      // ƒgƒŒ[ƒi[–¼‚ğ•\¦
+      // ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’è¡¨ç¤º
       WORDSET_RegisterPlayerName(word, 0, my);
       msg = MSGDAT_UTIL_AllocExpandString(word, msgman, mystery_osusowake_002, HEAPID_MYSTERYCARD);
       if(MyStatus_GetMySex(my) == PM_MALE)
@@ -1965,7 +1965,7 @@ static int MysteryCardDispConnectChildStatus(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN
 	GF_STR_PrintColor(win, FONT_SYSTEM, msg, 0, y, MSG_NO_PUT, MYSTERYCARD_RED, NULL);
 
       STRBUF_Delete(msg);
-      // ‚h‚c‚ğ•\¦
+      // ï¼©ï¼¤ã‚’è¡¨ç¤º
       WORDSET_RegisterNumber(word, 0,
 			     MyStatus_GetID(my) & 0xFFFF,
 			     5, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
@@ -1984,7 +1984,7 @@ static int MysteryCardDispConnectChildStatus(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	Œq‚ª‚Á‚Ä‚¢‚él”‚ğ•\¦
+ * @brief	ç¹‹ãŒã£ã¦ã„ã‚‹äººæ•°ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -2011,7 +2011,7 @@ static void MysteryCardDispConnectChildCount(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	’ÊM‚ğI—¹‚³‚¹‚é
+ * @brief	é€šä¿¡ã‚’çµ‚äº†ã•ã›ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -2019,12 +2019,12 @@ static void MysteryCardDispConnectChildCount(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN
 static void CommMysteryCardExit(MYSTERYCARD_WORK *wk, int *seq, int next)
 {
   CommMysteryExitGift();
-  WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+  WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
   wk->next_seq = next;
   *seq = MYSTERYCARD_SEQ_WAIT_ENDCOMM;
 }
 
-// ------------------------------ ‚±‚±‚Ü‚Å ----------------------------
+// ------------------------------ ã“ã“ã¾ã§ ----------------------------
 
 #define CHECK_OVERLAY
 #ifdef CHECK_OVERLAY
@@ -2076,7 +2076,7 @@ const PROC_DATA MysteryCardProcData = {
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒh‚ğó‚¯æ‚Á‚½Œã‚É•\¦‚·‚éŠÖ”
+ * @brief	ã‚«ãƒ¼ãƒ‰ã‚’å—ã‘å–ã£ãŸå¾Œã«è¡¨ç¤ºã™ã‚‹é–¢æ•°
  * @param	NONE
  * @return	NONE
  */
@@ -2087,13 +2087,13 @@ void MysteryCard_DisplayCardOnly(GF_BGL_INI *bgl, void *p, int heapid)
 
   CommMysteryFunc_BgInit(bgl);
 
-  // ƒJ[ƒh•\¦‚É•K—v‚Èƒ[ƒNƒGƒŠƒA‚Ìİ’è
+  // ã‚«ãƒ¼ãƒ‰è¡¨ç¤ºã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã®è¨­å®š
   wk = sys_AllocMemoryLo(heapid, sizeof(MYSTERYCARD_WORK));
   memset(wk, 0, sizeof(MYSTERYCARD_WORK));
   wk->bgl = bgl;
   wk->heapid = heapid;
 
-  /* ƒƒbƒZ[ƒW‚ÌƒtƒHƒ“ƒgƒJƒ‰[‚ğİ’è */
+  /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®š */
   SystemFontPaletteLoad( PALTYPE_MAIN_BG, FONT_PALNO_NORMAL * 32, wk->heapid);
   
   wk->card[0] = (GIFT_CARD *)p;

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>CP_GetSqrtResult</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">CP_GetSqrtResult*</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -28,71 +28,71 @@
 </CODE>
 </dl>
 
-<h2>����</h2>
-<p>�Ȃ��B</p>
+<h2>引数</h2>
+<p>なし。</p>
 
-<h2>�Ԃ�l</h2>
-<p>���������Z�œ���ꂽ���ʂł��B</p>
+<h2>返り値</h2>
+<p>平方根演算で得られた結果です。</p>
 
-<H2>����</H2>
-<P>���������Z�̌��ʂ�Ԃ��܂��B<BR>
-���ʂ�8�r�b�g�A16�r�b�g�A32�r�b�g�̉��ꂩ�Ŏ擾�ł��܂��B<BR>
-�o�Ă��錋�ʈȉ��̃r�b�g���Ŏ擾���邱�Ƃ��o���܂����A���m�Ȓl�ɂ͂Ȃ�Ȃ���������܂���B<BR>
-(�Ⴆ�΁A���ʂ�0x100 �ɂȂ��Ă���Ƃ��ɁAu8 �̒l�Ŏ擾����� 0x0 �ƂȂ�)<BR>
+<H2>説明</H2>
+<P>平方根演算の結果を返します。<BR>
+結果は8ビット、16ビット、32ビットの何れかで取得できます。<BR>
+出ている結果以下のビット数で取得することも出来ますが、正確な値にはならないかもしれません。<BR>
+(例えば、結果が0x100 になっているときに、u8 の値で取得すると 0x0 となる)<BR>
 <BR>
-�r�W�[��Ԃ��烌�f�B��ԂɂȂ�̂�҂֐��ƁA���f�B��ԂɂȂ��Ă�����̂Ƃ��đ҂��Ȃ��֐������ꂼ��p�ӂ���Ă��܂��B</P>
+ビジー状態からレディ状態になるのを待つ関数と、レディ状態になっているものとして待たない関数がそれぞれ用意されています。</P>
 <TABLE border="1">
   <TBODY>
     <TR>
-      <TH>�֐�</TH>
-      <TH>�Ԃ�l�̌^</TH>
-      <TH>���f�B��ԂɂȂ�̂�҂��ǂ���</TH>
+      <TH>関数</TH>
+      <TH>返り値の型</TH>
+      <TH>レディ状態になるのを待つかどうか</TH>
     </TR>
     <TR>
       <TD><CODE>CP_GetSqrtResult32</CODE></TD>
       <TD>u32</TD>
-      <TD>�҂�</TD>
+      <TD>待つ</TD>
     </TR>
     <TR>
       <TD><CODE>CP_GetSqrtResult16</CODE></TD>
       <TD>u16</TD>
-      <TD>�҂�</TD>
+      <TD>待つ</TD>
     </TR>
     <TR>
       <TD><CODE>CP_GetSqrtResult8</CODE></TD>
       <TD>u8</TD>
-      <TD>�҂�</TD>
+      <TD>待つ</TD>
     </TR>
     <TR>
       <TD><CODE>CP_GetSqrtResultImm32</CODE></TD>
       <TD>u32</TD>
-      <TD>�҂��Ȃ�</TD>
+      <TD>待たない</TD>
     </TR>
     <TR>
       <TD><CODE>CP_GetSqrtResultImm16</CODE></TD>
       <TD>u16</TD>
-      <TD>�҂��Ȃ�</TD>
+      <TD>待たない</TD>
     </TR>
     <TR>
       <TD><CODE>CP_GetSqrtResultImm8</CODE></TD>
       <TD>u8</TD>
-      <TD>�҂��Ȃ�</TD>
+      <TD>待たない</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>��������</h2>
-<p><CODE>IO���W�X�^�́ASQRT_RESULT(0x40002B4) �̒l���Q�Ƃ��܂��B<BR>
-�܂��A���f�B��Ԃ̃`�F�b�N�ɂ�SQRTCNT(0x40002B0)���Q�Ƃ��܂��B<br>
+<h2>内部動作</h2>
+<p><CODE>IOレジスタの、SQRT_RESULT(0x40002B4) の値を参照します。<BR>
+また、レディ状態のチェックにはSQRTCNT(0x40002B0)を参照します。<br>
 </CODE></p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="CP_SetSqrtImm.html">CP_SetSqrtImm*</A>, <A href="CP_SetSqrt.html">CP_SetSqrt*</A>, <A href="CP_IsSqrtBusy.html">CP_IsSqrtBusy</A>, <A href="CP_WaitSqrt.html">CP_WaitSqrt</A><br>
 </CODE></p>
 
-<H2>����</H2>
-<P>2004/11/02 64�r�b�g�l�̌��ʂ��擾�o����Ƃ����L�q���폜<BR>
-2004 01/09 ���e��ǉ�<BR>
-2003/12/01 ����</P>
+<H2>履歴</H2>
+<P>2004/11/02 64ビット値の結果を取得出来るという記述を削除<BR>
+2004 01/09 内容を追加<BR>
+2003/12/01 初版</P>
 </body>
 </html>

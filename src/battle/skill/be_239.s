@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_239.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			239@‘ŠŽè‚Ì“Á«‚ð–³Œø‚É‚·‚éB•K‚¸Ž¸”s‚·‚é“Á«‚ð—pˆÓ‚·‚é•K—v‚ª‚ ‚é‚©‚àB
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			239ã€€ç›¸æ‰‹ã®ç‰¹æ€§ã‚’ç„¡åŠ¹ã«ã™ã‚‹ã€‚å¿…ãšå¤±æ•—ã™ã‚‹ç‰¹æ€§ã‚’ç”¨æ„ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã‚‚ã€‚
  *
  *@author	HisashiSogabe
  *@data		2006.02.14

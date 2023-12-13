@@ -42,20 +42,20 @@
 /*---------------------------------------------------------------------------*
   Name:         LC_INFO
 
-  Description:  LetterChar ŠÖ”‚É“n‚³‚ê‚éƒpƒ‰ƒ[ƒ^
+  Description:  LetterChar é–¢æ•°ã«æ¸¡ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *---------------------------------------------------------------------------*/
 typedef struct LC_INFO
 {
-    const u8* dst;  // •`‰æ‘ÎÛ‚ÌƒLƒƒƒ‰ƒNƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    const u8* src;  // ƒOƒŠƒtƒCƒ[ƒW‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    int ofs_x;      // •`‰æƒIƒtƒZƒbƒg
-    int ofs_y;      // •`‰æƒIƒtƒZƒbƒg
-    int width;      // ƒOƒŠƒt‚Ì•
-    int height;     // ƒOƒŠƒt‚Ì‚‚³
-    int dsrc;       // ƒOƒŠƒtƒCƒ[ƒW‚Ì1ƒ‰ƒCƒ“•ª‚Ìƒrƒbƒg”
-    int srcBpp;     // ƒOƒŠƒtƒCƒ[ƒW‚Ì1ƒhƒbƒg‚ ‚½‚è‚Ìƒrƒbƒg”
-    int dstBpp;     // •`‰æ‘ÎÛƒLƒƒƒ‰ƒNƒ^‚Ì1ƒhƒbƒg‚ ‚½‚è‚Ìƒrƒbƒg”
-    u32 cl;         // F”Ô†
+    const u8* dst;  // æç”»å¯¾è±¡ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    const u8* src;  // ã‚°ãƒªãƒ•ã‚¤ãƒ¡ãƒ¼ã‚¸ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    int ofs_x;      // æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+    int ofs_y;      // æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+    int width;      // ã‚°ãƒªãƒ•ã®å¹…
+    int height;     // ã‚°ãƒªãƒ•ã®é«˜ã•
+    int dsrc;       // ã‚°ãƒªãƒ•ã‚¤ãƒ¡ãƒ¼ã‚¸ã®1ãƒ©ã‚¤ãƒ³åˆ†ã®ãƒ“ãƒƒãƒˆæ•°
+    int srcBpp;     // ã‚°ãƒªãƒ•ã‚¤ãƒ¡ãƒ¼ã‚¸ã®1ãƒ‰ãƒƒãƒˆã‚ãŸã‚Šã®ãƒ“ãƒƒãƒˆæ•°
+    int dstBpp;     // æç”»å¯¾è±¡ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®1ãƒ‰ãƒƒãƒˆã‚ãŸã‚Šã®ãƒ“ãƒƒãƒˆæ•°
+    u32 cl;         // è‰²ç•ªå·
 }
 LC_INFO;
 
@@ -64,15 +64,15 @@ LC_INFO;
 /*---------------------------------------------------------------------------*
   Name:         OBJ1DParam
 
-  Description:  1D OBJ CharCanvas ‚Ì•`‰æ—pƒpƒ‰ƒ[ƒ^
+  Description:  1D OBJ CharCanvas ã®æç”»ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *---------------------------------------------------------------------------*/
 typedef union OBJ1DParam
 {
     u32 packed;
     struct
     {
-        unsigned baseWidthShift:    8;  // CharCanvas ¶ãŠp‚ÌOBJ‚ÌƒTƒCƒY
-        unsigned baseHeightShift:   8;  // CharCanvas ¶ãŠp‚ÌOBJ‚ÌƒTƒCƒY
+        unsigned baseWidthShift:    8;  // CharCanvas å·¦ä¸Šè§’ã®OBJã®ã‚µã‚¤ã‚º
+        unsigned baseHeightShift:   8;  // CharCanvas å·¦ä¸Šè§’ã®OBJã®ã‚µã‚¤ã‚º
     };
 }
 OBJ1DParam;
@@ -82,21 +82,21 @@ OBJ1DParam;
 /*---------------------------------------------------------------------------*
   Name:         ObjectSize
 
-  Description:  OBJƒTƒCƒYƒe[ƒuƒ‹—p\‘¢‘ÌB
-                Še’l‚ÍƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚ÌƒTƒCƒY‚Ì2‚ğ’ê‚Æ‚·‚é‘Î”’lB
-                ‚·‚È‚í‚¿ (1 << widthShift) * 8 ‚ªƒsƒNƒZƒ‹’PˆÊ‚Å‚Ì•‚ğ¦‚·B
+  Description:  OBJã‚µã‚¤ã‚ºãƒ†ãƒ¼ãƒ–ãƒ«ç”¨æ§‹é€ ä½“ã€‚
+                å„å€¤ã¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®ã‚µã‚¤ã‚ºã®2ã‚’åº•ã¨ã™ã‚‹å¯¾æ•°å€¤ã€‚
+                ã™ãªã‚ã¡ (1 << widthShift) * 8 ãŒãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã§ã®å¹…ã‚’ç¤ºã™ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct ObjectSize
 {
-    u8 widthShift;      // •
-    u8 heightShift;     // ‚‚³
+    u8 widthShift;      // å¹…
+    u8 heightShift;     // é«˜ã•
 }
 ObjectSize;
 
 
 
 
-// ‰¼‘zŠÖ”ƒe[ƒuƒ‹’è‹`
+// ä»®æƒ³é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«å®šç¾©
 static void DrawGlyphLine  (const NNSG2dCharCanvas* pCC, const NNSG2dFont* pFont, int x, int y, int cl, const NNSG2dGlyph* pGlyph);
 static void DrawGlyph1D    (const NNSG2dCharCanvas* pCC, const NNSG2dFont* pFont, int x, int y, int cl, const NNSG2dGlyph* pGlyph);
 static void ClearContinuous(const NNSG2dCharCanvas* pCC, int cl);
@@ -121,17 +121,17 @@ static const NNSiG2dCharCanvasVTable VTABLE_OBJ2DRECT =
 /*---------------------------------------------------------------------------*
   Name:         GetCharacterSize
 
-  Description:  CharCanvas ‚Ì‘ÎÛ‚Æ‚·‚é1ƒLƒƒƒ‰ƒNƒ^‚Ìƒf[ƒ^ƒTƒCƒY‚ğ‹‚ß‚Ü‚·B
+  Description:  CharCanvas ã®å¯¾è±¡ã¨ã™ã‚‹1ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã¾ã™ã€‚
 
-  Arguments:    pCC:    CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pCC:    CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      1ƒLƒƒƒ‰ƒNƒ^‚ÌƒoƒCƒg’PˆÊ‚Å‚ÌƒTƒCƒYB
+  Returns:      1ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ãƒã‚¤ãƒˆå˜ä½ã§ã®ã‚µã‚¤ã‚ºã€‚
  *---------------------------------------------------------------------------*/
 static NNS_G2D_INLINE int GetCharacterSize(const NNSG2dCharCanvas* pCC)
 {
     NNS_G2D_CHARCANVAS_ASSERT(pCC);
 
-    // • x ‚ x bpp / (byte/bit)
+    // å¹… x é«˜ x bpp / (byte/bit)
     return CHARACTER_HEIGHT * CHARACTER_WIDTH * pCC->dstBpp / 8;
 }
 
@@ -140,13 +140,13 @@ static NNS_G2D_INLINE int GetCharacterSize(const NNSG2dCharCanvas* pCC)
 /*---------------------------------------------------------------------------*
   Name:         SpreadColor32
 
-  Description:  pCC ‚ª‘ÎÛ‚Æ‚·‚éƒLƒƒƒ‰ƒNƒ^‚Ì bpp ‚É‰‚¶‚ÄF”Ô†‚ğ32bit•ª
-                ‚Â‚ç‚Ë‚½’l‚ğì‚è‚Ü‚·B
+  Description:  pCC ãŒå¯¾è±¡ã¨ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã® bpp ã«å¿œã˜ã¦è‰²ç•ªå·ã‚’32bitåˆ†
+                ã¤ã‚‰ã­ãŸå€¤ã‚’ä½œã‚Šã¾ã™ã€‚
 
-  Arguments:    pCC:    CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                cl:     F”Ô†B
+  Arguments:    pCC:    CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                cl:     è‰²ç•ªå·ã€‚
 
-  Returns:      F”Ô†‚ğ4‰ñ‚Ü‚½‚Í8‰ñ‚Â‚ç‚Ë‚½’lB
+  Returns:      è‰²ç•ªå·ã‚’4å›ã¾ãŸã¯8å›ã¤ã‚‰ã­ãŸå€¤ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_G2D_INLINE u32 SpreadColor32(const NNSG2dCharCanvas* pCC, int cl)
 {
@@ -178,12 +178,12 @@ static NNS_G2D_INLINE u32 SpreadColor32(const NNSG2dCharCanvas* pCC, int cl)
 /*---------------------------------------------------------------------------*
   Name:         GetMaxObjectSize
 
-  Description:  w’è‚³‚ê‚½‘å‚«‚³ˆÈ‰º‚ÌÅ‘å‚Ì OBJ ‚ÌƒTƒCƒY‚ğæ“¾‚µ‚Ü‚·B
+  Description:  æŒ‡å®šã•ã‚ŒãŸå¤§ãã•ä»¥ä¸‹ã®æœ€å¤§ã® OBJ ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    w:  ƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•B
-                h:  ƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³B
+  Arguments:    w:  ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…ã€‚
+                h:  ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•ã€‚
 
-  Returns:      Å‘å‚ÌOBJƒTƒCƒY‚ğŠi”[‚µ‚½\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Returns:      æœ€å¤§ã®OBJã‚µã‚¤ã‚ºã‚’æ ¼ç´ã—ãŸæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_G2D_INLINE const ObjectSize* GetMaxObjectSize(int w, int h)
 {
@@ -215,11 +215,11 @@ static NNS_G2D_INLINE const ObjectSize* GetMaxObjectSize(int w, int h)
 /*---------------------------------------------------------------------------*
   Name:         ISqrt
 
-  Description:  ®”’l‚Å‚Ì•½•ûª‚ğŒvZ‚µ‚Ü‚·B
+  Description:  æ•´æ•°å€¤ã§ã®å¹³æ–¹æ ¹ã‚’è¨ˆç®—ã—ã¾ã™ã€‚
 
-  Arguments:    x:  •½•ûª‚ğŒvZ‚·‚é’l
+  Arguments:    x:  å¹³æ–¹æ ¹ã‚’è¨ˆç®—ã™ã‚‹å€¤
 
-  Returns:      x ‚Ì•½•ûªB
+  Returns:      x ã®å¹³æ–¹æ ¹ã€‚
  *---------------------------------------------------------------------------*/
 static int ISqrt(int x)
 {
@@ -254,16 +254,16 @@ static int ISqrt(int x)
 /*---------------------------------------------------------------------------*
   Name:         GetCharIndex1D
 
-  Description:  1D OBJ CharCanvas ‚É‚¨‚¢‚Äw’èˆÊ’u‚ÌƒLƒƒƒ‰ƒNƒ^”Ô†‚ğ‹‚ß‚éB
-                CharCanvas ‚É‘®‚·‚éƒLƒƒƒ‰ƒNƒ^‚Ì‚¤‚¿Å‰‚ÌƒLƒƒƒ‰ƒNƒ^‚Ì
-                ƒLƒƒƒ‰ƒNƒ^”Ô†‚ğ0‚Æ‚·‚éB
+  Description:  1D OBJ CharCanvas ã«ãŠã„ã¦æŒ‡å®šä½ç½®ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·ã‚’æ±‚ã‚ã‚‹ã€‚
+                CharCanvas ã«å±ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã†ã¡æœ€åˆã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®
+                ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·ã‚’0ã¨ã™ã‚‹ã€‚
 
-  Arguments:    cx:         ƒLƒƒƒ‰ƒNƒ^”Ô†‚ğæ“¾‚·‚éƒLƒƒƒ‰ƒNƒ^‚ÌˆÊ’uB
-                cy:         ƒLƒƒƒ‰ƒNƒ^”Ô†‚ğæ“¾‚·‚éƒLƒƒƒ‰ƒNƒ^‚ÌˆÊ’uB
-                areaWidth:  CharCanvas ‚Ì•B
-                areaHeight: CharCanvas ‚Ì‚‚³B
-                objWidth:   CharCanvas ’†‚ÌÅ‘å‚Ì OBJƒTƒCƒYi‘Î”j
-                objHeight:  CharCanvas ’†‚ÌÅ‘å‚Ì OBJƒTƒCƒYi‘Î”j
+  Arguments:    cx:         ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·ã‚’å–å¾—ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ä½ç½®ã€‚
+                cy:         ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·ã‚’å–å¾—ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ä½ç½®ã€‚
+                areaWidth:  CharCanvas ã®å¹…ã€‚
+                areaHeight: CharCanvas ã®é«˜ã•ã€‚
+                objWidth:   CharCanvas ä¸­ã®æœ€å¤§ã® OBJã‚µã‚¤ã‚ºï¼ˆå¯¾æ•°ï¼‰
+                objHeight:  CharCanvas ä¸­ã®æœ€å¤§ã® OBJã‚µã‚¤ã‚ºï¼ˆå¯¾æ•°ï¼‰
 
   Returns:
  *---------------------------------------------------------------------------*/
@@ -345,11 +345,11 @@ static u32 GetCharIndex1D( u32 cx, u32 cy, u32 areaWidth, u32 areaHeight, u32 ob
 /*---------------------------------------------------------------------------*
   Name:         OBJSizeToShape
 
-  Description:  ObjectSize ‚©‚ç GXOamShape ‚É•ÏŠ·‚·‚éB
+  Description:  ObjectSize ã‹ã‚‰ GXOamShape ã«å¤‰æ›ã™ã‚‹ã€‚
 
-  Arguments:    pSize:  •ÏŠ·‚à‚Æ‚Ì ObjectSize
+  Arguments:    pSize:  å¤‰æ›ã‚‚ã¨ã® ObjectSize
 
-  Returns:      pSize ‚É‘Î‰‚·‚é GXOamShape Œ^‚Ì’lB
+  Returns:      pSize ã«å¯¾å¿œã™ã‚‹ GXOamShape å‹ã®å€¤ã€‚
  *---------------------------------------------------------------------------*/
 static GXOamShape OBJSizeToShape(const ObjectSize* pSize)
 {
@@ -373,17 +373,17 @@ static GXOamShape OBJSizeToShape(const ObjectSize* pSize)
 /*---------------------------------------------------------------------------*
   Name:         ClearChar
 
-  Description:  1ƒLƒƒƒ‰ƒNƒ^‚ğ“h‚è‚Â‚Ô‚µ‚Ü‚·B
+  Description:  1ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’å¡—ã‚Šã¤ã¶ã—ã¾ã™ã€‚
 
-  Arguments:    pChar:  “h‚è‚Â‚Ô‚·ƒLƒƒƒ‰ƒNƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                x:      “h‚è‚Â‚Ô‚µŠJn“_ x À•W (ƒLƒƒƒ‰ƒNƒ^À•WŒn)
-                y:      “h‚è‚Â‚Ô‚µŠJn“_ y À•W (ƒLƒƒƒ‰ƒNƒ^À•WŒn)
-                w:      “h‚è‚Â‚Ô‚µ• (ƒLƒƒƒ‰ƒNƒ^À•WŒn)
-                h:      “h‚è‚Â‚Ô‚µ‚ (ƒLƒƒƒ‰ƒNƒ^À•WŒn)
-                cl8:    “h‚è‚Â‚Ô‚µF‚Ì 4or8bit ƒJƒ‰[”Ô†‚ğ8or4‰ñŒJ‚è•Ô‚µ‚Ä
-                        32bit ‚É‚µ‚½‚à‚Ì
+  Arguments:    pChar:  å¡—ã‚Šã¤ã¶ã™ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                x:      å¡—ã‚Šã¤ã¶ã—é–‹å§‹ç‚¹ x åº§æ¨™ (ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åº§æ¨™ç³»)
+                y:      å¡—ã‚Šã¤ã¶ã—é–‹å§‹ç‚¹ y åº§æ¨™ (ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åº§æ¨™ç³»)
+                w:      å¡—ã‚Šã¤ã¶ã—å¹… (ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åº§æ¨™ç³»)
+                h:      å¡—ã‚Šã¤ã¶ã—é«˜ (ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åº§æ¨™ç³»)
+                cl8:    å¡—ã‚Šã¤ã¶ã—è‰²ã® 4or8bit ã‚«ãƒ©ãƒ¼ç•ªå·ã‚’8or4å›ç¹°ã‚Šè¿”ã—ã¦
+                        32bit ã«ã—ãŸã‚‚ã®
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void ClearChar(void* pChar, int x, int y, int w, int h, u32 cl8, int bpp)
 {
@@ -489,22 +489,22 @@ static void ClearChar(void* pChar, int x, int y, int w, int h, u32 cl8, int bpp)
 /*---------------------------------------------------------------------------*
   Name:         LetterChar
 
-  Description:  •¶š•`‰æ‚Ì‚¤‚¿ƒLƒƒƒ‰ƒNƒ^1‚Â‚Ô‚ñ‚Ì•`‰æ‚ğs‚¢‚Ü‚·B
+  Description:  æ–‡å­—æç”»ã®ã†ã¡ã‚­ãƒ£ãƒ©ã‚¯ã‚¿1ã¤ã¶ã‚“ã®æç”»ã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    i:  •`‰æî•ñ\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    i:  æç”»æƒ…å ±æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void LetterChar(LC_INFO* i)
 {
-    const u8* pSrc;     // “Ç‚İ‚İŒ³ == ƒtƒHƒ“ƒgƒf[ƒ^
-    u32 x_st;           // ƒLƒƒƒ‰ƒNƒ^•`‰æŠJnÀ•W x
-    u32 x_ed;           // ƒLƒƒƒ‰ƒNƒ^•`‰æI—¹À•W x
-    u32 y_st;         // ƒLƒƒƒ‰ƒNƒ^•`‰æŠJnÀ•W y
-    u32 y_ed;         // ƒLƒƒƒ‰ƒNƒ^•`‰æI—¹À•W y
+    const u8* pSrc;     // èª­ã¿è¾¼ã¿å…ƒ == ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+    u32 x_st;           // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æç”»é–‹å§‹åº§æ¨™ x
+    u32 x_ed;           // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æç”»çµ‚äº†åº§æ¨™ x
+    u32 y_st;         // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æç”»é–‹å§‹åº§æ¨™ y
+    u32 y_ed;         // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æç”»çµ‚äº†åº§æ¨™ y
     u32 offset;
 
-    // •K{ ASSERT
+    // å¿…é ˆ ASSERT
     NNS_G2D_POINTER_ASSERT( i );
     NNS_G2D_POINTER_ASSERT( i->dst );
     NNS_G2D_POINTER_ASSERT( i->src );
@@ -515,16 +515,16 @@ static void LetterChar(LC_INFO* i)
     NNS_G2D_ASSERT( i->dstBpp == 4 || i->dstBpp == 8 );
     NNS_G2D_ASSERT( i->cl + (1 << i->srcBpp) <= (1 << i->dstBpp) );
 
-    // ˆ—‚Ì–³‘ÊŠm”F ASSERT
+    // å‡¦ç†ã®ç„¡é§„ç¢ºèª ASSERT
     NNS_G2D_ASSERT( - i->width < i->ofs_x );
     NNS_G2D_ASSERT( - i->height < i->ofs_y );
     NNS_G2D_ASSERT( 0 < i->width );
     NNS_G2D_ASSERT( 0 < i->height );
 
     {
-        u32 bit_y_begin;  // ƒtƒHƒ“ƒgƒf[ƒ^ƒIƒtƒZƒbƒg y
+        u32 bit_y_begin;  // ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ y
 
-        // •`‰æ”ÍˆÍ
+        // æç”»ç¯„å›²
         x_st = (unsigned int)MATH_IMax(i->ofs_x, 0);
         y_st = (unsigned int)MATH_IMax(i->ofs_y, 0);
         x_ed = (unsigned int)MATH_IMin(CHARACTER_WIDTH, i->ofs_x + i->width);
@@ -541,7 +541,7 @@ static void LetterChar(LC_INFO* i)
     NNS_G2D_ASSERT( x_ed <= CHARACTER_WIDTH );
     NNS_G2D_ASSERT( y_ed <= CHARACTER_HEIGHT );
 
-    // ƒLƒƒƒ‰ƒNƒ^•`‰æŠJn
+    // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æç”»é–‹å§‹
     {
         u32 x;           //
         const int dsrc = i->dsrc;
@@ -630,17 +630,17 @@ static void LetterChar(LC_INFO* i)
 /*---------------------------------------------------------------------------*
   Name:         DrawGlyphLine
 
-  Description:  CharCanvas ‚Éw’è‚µ‚½ƒOƒŠƒt‚ğ•`‰æ‚µ‚Ü‚·B
-                1s‚²‚Æ‚Éˆê’è”ƒLƒƒƒ‰ƒNƒ^‚ª‹ó‚¢‚Ä‚¢‚é CharCanvas —p‚Å‚·B
+  Description:  CharCanvas ã«æŒ‡å®šã—ãŸã‚°ãƒªãƒ•ã‚’æç”»ã—ã¾ã™ã€‚
+                1è¡Œã”ã¨ã«ä¸€å®šæ•°ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒç©ºã„ã¦ã„ã‚‹ CharCanvas ç”¨ã§ã™ã€‚
 
-  Arguments:    pCC:    CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pFont:  •`‰æ‚É—p‚¢‚éƒtƒHƒ“ƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                x:      •¶š‚Ì¶ã‚ÌÀ•WB
-                y:      •¶š‚Ì¶ã‚ÌÀ•WB
-                cl:     •¶šF‚ÌF”Ô†B
-                pGlyph: •`‰æ‚·‚éƒOƒŠƒt‚Ö‚Ìƒ|ƒCƒ“ƒ^BB
+  Arguments:    pCC:    CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pFont:  æç”»ã«ç”¨ã„ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                x:      æ–‡å­—ã®å·¦ä¸Šã®åº§æ¨™ã€‚
+                y:      æ–‡å­—ã®å·¦ä¸Šã®åº§æ¨™ã€‚
+                cl:     æ–‡å­—è‰²ã®è‰²ç•ªå·ã€‚
+                pGlyph: æç”»ã™ã‚‹ã‚°ãƒªãƒ•ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void DrawGlyphLine(
     const NNSG2dCharCanvas* pCC,
@@ -672,7 +672,7 @@ static void DrawGlyphLine(
 
     charSize = GetCharacterSize(pCC);
 
-    // ˆ—”ÍˆÍ‚ÌŒvZ
+    // å‡¦ç†ç¯„å›²ã®è¨ˆç®—
     {
         int chara_x_num;
         int chara_y_num;
@@ -686,27 +686,27 @@ static void DrawGlyphLine(
         unsigned int chara_y_begin;
         unsigned int chara_y_last;
 
-        // ƒOƒŠƒt••‚‚³
+        // ã‚°ãƒªãƒ•å¹…ï¼†é«˜ã•
         glyphWidth = pWidth->glyphWidth;
         charHeight = NNS_G2dFontGetCellHeight(pFont);
 
-        // •‚ª–³‚¢ == •`‰æ‚Ì•K—v‚È‚µ
+        // å¹…ãŒç„¡ã„ == æç”»ã®å¿…è¦ãªã—
         if( glyphWidth <= 0 )
         {
             return;
         }
 
-        // —ÌˆæŠO
+        // é ˜åŸŸå¤–
         if( (x + glyphWidth < 0) || (y + charHeight) < 0 )
         {
             return;
         }
 
-        // •`‰æŠJnƒLƒƒƒ‰ƒNƒ^À•W
+        // æç”»é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åº§æ¨™
         chara_x_begin = (x <= 0) ? 0: ((u32)x / CHARACTER_WIDTH);
         chara_y_begin = (y <= 0) ? 0: ((u32)y / CHARACTER_HEIGHT);
 
-        // •`‰æI’[ƒLƒƒƒ‰ƒNƒ^À•W
+        // æç”»çµ‚ç«¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åº§æ¨™
         chara_x_last = (u32)(x + glyphWidth + (CHARACTER_WIDTH - 1)) / CHARACTER_WIDTH;
         if( chara_x_last >= areaWidth )
         {
@@ -718,31 +718,31 @@ static void DrawGlyphLine(
             chara_y_last = areaHeight;
         }
 
-        // c‰¡ƒLƒƒƒ‰ƒNƒ^” - 1
+        // ç¸¦æ¨ªã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•° - 1
         chara_x_num = (int)(chara_x_last - chara_x_begin);
         chara_y_num = (int)(chara_y_last - chara_y_begin);
 
-        // •`‰æ‚·‚×‚«ƒLƒƒƒ‰”‚ª 0
+        // æç”»ã™ã¹ãã‚­ãƒ£ãƒ©æ•°ãŒ 0
         if( (chara_x_num < 0) || (chara_y_num < 0) )
         {
             return;
         }
 
-        // Å‰‚ÌƒLƒƒƒ‰ƒNƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+        // æœ€åˆã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
         pChar = charBase + (pCC->param * chara_y_begin + chara_x_begin) * charSize;
 
-        // Šes‚Ì•`‰æ‚·‚×‚«ÅŒã‚ÌƒLƒƒƒ‰ƒNƒ^‚©‚çŸ‚Ìs‚Ì•`‰æ‚·‚×‚«Å‰‚ÌƒLƒƒƒ‰ƒNƒ^‚Ü‚Å‚Ì·
-        // pCC->param == 1ƒ‰ƒCƒ“‚ÌƒLƒƒƒ‰ƒNƒ^”
+        // å„è¡Œã®æç”»ã™ã¹ãæœ€å¾Œã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‹ã‚‰æ¬¡ã®è¡Œã®æç”»ã™ã¹ãæœ€åˆã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¾ã§ã®å·®
+        // pCC->param == 1ãƒ©ã‚¤ãƒ³ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°
         nextLineOffset = (pCC->param - chara_x_num) * charSize;
 
-        // ŠeƒLƒƒƒ‰ƒNƒ^“à‚Å‚Ì•`‰æˆÊ’uŒvZ—p
+        // å„ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å†…ã§ã®æç”»ä½ç½®è¨ˆç®—ç”¨
         ofs_x_base = (x < 0) ? x: x & 0x7;
         ofs_y = (y < 0) ? y: y & 0x7;
         ofs_x_end = ofs_x_base - CHARACTER_WIDTH * chara_x_num;
         ofs_y_end = ofs_y - CHARACTER_HEIGHT * chara_y_num;
     }
 
-    // ŠeƒLƒƒƒ‰ƒNƒ^‚Ö‚Ì•`‰æ
+    // å„ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¸ã®æç”»
     {
         LC_INFO i;
 
@@ -774,17 +774,17 @@ static void DrawGlyphLine(
 /*---------------------------------------------------------------------------*
   Name:         DrawGlyph1D
 
-  Description:  CharCanvas ‚Éw’è‚µ‚½ƒOƒŠƒt‚ğ•`‰æ‚µ‚Ü‚·B
-                1D OBJ CharCanvas —p‚Å‚·B
+  Description:  CharCanvas ã«æŒ‡å®šã—ãŸã‚°ãƒªãƒ•ã‚’æç”»ã—ã¾ã™ã€‚
+                1D OBJ CharCanvas ç”¨ã§ã™ã€‚
 
-  Arguments:    pCC:    CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pFont:  •`‰æ‚É—p‚¢‚éƒtƒHƒ“ƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                x:      •¶š‚Ì¶ã‚ÌÀ•WB
-                y:      •¶š‚Ì¶ã‚ÌÀ•WB
-                cl:     •¶šF‚ÌF”Ô†B
-                pGlyph: •`‰æ‚·‚éƒOƒŠƒt‚Ö‚Ìƒ|ƒCƒ“ƒ^BB
+  Arguments:    pCC:    CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pFont:  æç”»ã«ç”¨ã„ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                x:      æ–‡å­—ã®å·¦ä¸Šã®åº§æ¨™ã€‚
+                y:      æ–‡å­—ã®å·¦ä¸Šã®åº§æ¨™ã€‚
+                cl:     æ–‡å­—è‰²ã®è‰²ç•ªå·ã€‚
+                pGlyph: æç”»ã™ã‚‹ã‚°ãƒªãƒ•ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void DrawGlyph1D(
     const NNSG2dCharCanvas* pCC,
@@ -818,7 +818,7 @@ static void DrawGlyph1D(
     charSize = GetCharacterSize(pCC);
     mapTable = (u16*)(pCC->param);
 
-    // ˆ—”ÍˆÍ‚ÌŒvZ
+    // å‡¦ç†ç¯„å›²ã®è¨ˆç®—
     {
         int chara_x_num;
         int chara_y_num;
@@ -831,27 +831,27 @@ static void DrawGlyph1D(
         u32 chara_y_begin;
         u32 chara_y_last;
 
-        // ƒOƒŠƒt••‚‚³
+        // ã‚°ãƒªãƒ•å¹…ï¼†é«˜ã•
         glyphWidth = pWidth->glyphWidth;
         charHeight = NNS_G2dFontGetCellHeight(pFont);
 
-        // •`‰æ‚Ì•K—v‚È‚µ
+        // æç”»ã®å¿…è¦ãªã—
         if( glyphWidth <= 0 )
         {
             return;
         }
 
-        // —ÌˆæŠO
+        // é ˜åŸŸå¤–
         if( (x + glyphWidth < 0) || (y + charHeight) < 0 )
         {
             return;
         }
 
-        // •`‰æŠJnƒLƒƒƒ‰ƒNƒ^À•W
+        // æç”»é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åº§æ¨™
         chara_x_begin = (x <= 0) ? 0: ((u32)x / CHARACTER_WIDTH);
         chara_y_begin = (y <= 0) ? 0: ((u32)y / CHARACTER_HEIGHT);
 
-        // •`‰æI’[ƒLƒƒƒ‰ƒNƒ^À•W
+        // æç”»çµ‚ç«¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åº§æ¨™
         chara_x_last = (u32)(x + glyphWidth + (CHARACTER_WIDTH - 1)) / CHARACTER_WIDTH;
         if( chara_x_last >= areaWidth )
         {
@@ -863,11 +863,11 @@ static void DrawGlyph1D(
             chara_y_last = areaHeight;
         }
 
-        // c‰¡ƒLƒƒƒ‰ƒNƒ^” - 1
+        // ç¸¦æ¨ªã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•° - 1
         chara_x_num = (int)(chara_x_last - chara_x_begin);
         chara_y_num = (int)(chara_y_last - chara_y_begin);
 
-        // —ÌˆæŠO‚Ì‚½‚ß•`‰æ‚Ì•K—v‚È‚µ
+        // é ˜åŸŸå¤–ã®ãŸã‚æç”»ã®å¿…è¦ãªã—
         if( (chara_x_num < 0) || (chara_y_num < 0) )
         {
             return;
@@ -876,14 +876,14 @@ static void DrawGlyph1D(
         cx_base = (int)chara_x_begin;
         cy      = (int)chara_y_begin;
 
-        // ŠeƒLƒƒƒ‰ƒNƒ^“à‚Å‚Ì•`‰æˆÊ’uŒvZ—p
+        // å„ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å†…ã§ã®æç”»ä½ç½®è¨ˆç®—ç”¨
         ofs_x_base = (x < 0) ? x: x & 0x7;
         ofs_y = (y < 0) ? y: y & 0x7;
         ofs_x_end = ofs_x_base - CHARACTER_WIDTH * chara_x_num;
         ofs_y_end = ofs_y - CHARACTER_HEIGHT * chara_y_num;
     }
 
-    // ŠeƒLƒƒƒ‰ƒNƒ^‚Ö‚Ì•`‰æ
+    // å„ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¸ã®æç”»
     {
         LC_INFO i;
         u8* const pCharBase = pCC->charBase;
@@ -930,14 +930,14 @@ static void DrawGlyph1D(
 /*---------------------------------------------------------------------------*
   Name:         ClearContinuous
 
-  Description:  CharCanvas ‚É‘®‚µ‚Ä‚¢‚éƒLƒƒƒ‰ƒNƒ^‘S‘Ì‚ğ
-                w’è‚³‚ê‚½F‚Å“h‚è‚Â‚Ô‚µ‚Ü‚·B
-                ‘SƒLƒƒƒ‰ƒNƒ^‚ª˜A‘±‚µ‚Ä‚¢‚é CharCanvas —p‚Å‚·B
+  Description:  CharCanvas ã«å±ã—ã¦ã„ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å…¨ä½“ã‚’
+                æŒ‡å®šã•ã‚ŒãŸè‰²ã§å¡—ã‚Šã¤ã¶ã—ã¾ã™ã€‚
+                å…¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒé€£ç¶šã—ã¦ã„ã‚‹ CharCanvas ç”¨ã§ã™ã€‚
 
-  Arguments:    pCC:    CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                cl:     “h‚è‚Â‚Ô‚µF‚ÌF”Ô†B
+  Arguments:    pCC:    CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                cl:     å¡—ã‚Šã¤ã¶ã—è‰²ã®è‰²ç•ªå·ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void ClearContinuous(const NNSG2dCharCanvas* pCC, int cl)
 {
@@ -945,10 +945,10 @@ static void ClearContinuous(const NNSG2dCharCanvas* pCC, int cl)
 
     NNS_G2D_CHARCANVAS_ASSERT( pCC );
 
-    // “h‚è‚Â‚Ô‚µƒf[ƒ^—pˆÓ
+    // å¡—ã‚Šã¤ã¶ã—ãƒ‡ãƒ¼ã‚¿ç”¨æ„
     data = SpreadColor32(pCC, cl);
 
-    // “h‚è‚Â‚Ô‚µ
+    // å¡—ã‚Šã¤ã¶ã—
     MI_CpuFillFast(
         pCC->charBase,
         data,
@@ -961,14 +961,14 @@ static void ClearContinuous(const NNSG2dCharCanvas* pCC, int cl)
 /*---------------------------------------------------------------------------*
   Name:         ClearLine
 
-  Description:  CharCanvas ‚É‘®‚µ‚Ä‚¢‚éƒLƒƒƒ‰ƒNƒ^‘S‘Ì‚ğ
-                w’è‚³‚ê‚½F‚Å“h‚è‚Â‚Ô‚µ‚Ü‚·B
-                1s‚²‚Æ‚Éˆê’è”ƒLƒƒƒ‰ƒNƒ^‚ª‹ó‚¢‚Ä‚¢‚é CharCanvas —p‚Å‚·B
+  Description:  CharCanvas ã«å±ã—ã¦ã„ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å…¨ä½“ã‚’
+                æŒ‡å®šã•ã‚ŒãŸè‰²ã§å¡—ã‚Šã¤ã¶ã—ã¾ã™ã€‚
+                1è¡Œã”ã¨ã«ä¸€å®šæ•°ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒç©ºã„ã¦ã„ã‚‹ CharCanvas ç”¨ã§ã™ã€‚
 
-  Arguments:    pCC:    CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                cl:     “h‚è‚Â‚Ô‚µF‚ÌF”Ô†B
+  Arguments:    pCC:    CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                cl:     å¡—ã‚Šã¤ã¶ã—è‰²ã®è‰²ç•ªå·ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void ClearLine(const NNSG2dCharCanvas* pCC, int cl)
 {
@@ -976,10 +976,10 @@ static void ClearLine(const NNSG2dCharCanvas* pCC, int cl)
 
     NNS_G2D_CHARCANVAS_ASSERT( pCC );
 
-    // “h‚è‚Â‚Ô‚µƒf[ƒ^—pˆÓ
+    // å¡—ã‚Šã¤ã¶ã—ãƒ‡ãƒ¼ã‚¿ç”¨æ„
     data = SpreadColor32(pCC, cl);
 
-    // “h‚è‚Â‚Ô‚µ
+    // å¡—ã‚Šã¤ã¶ã—
     {
         const int charSize = GetCharacterSize(pCC);
         const int lineSize = (int)(charSize * pCC->param);
@@ -1000,18 +1000,18 @@ static void ClearLine(const NNSG2dCharCanvas* pCC, int cl)
 /*---------------------------------------------------------------------------*
   Name:         ClearAreaLine
 
-  Description:  CharCanvas ‚É‘®‚µ‚Ä‚¢‚éƒLƒƒƒ‰ƒNƒ^‚Ìw’è‚³‚ê‚½—Ìˆæ‚ğ
-                w’è‚³‚ê‚½F‚Å“h‚è‚Â‚Ô‚µ‚Ü‚·B
-                1s‚²‚Æ‚Éˆê’è”ƒLƒƒƒ‰ƒNƒ^‚ª‹ó‚¢‚Ä‚¢‚é CharCanvas —p‚Å‚·B
+  Description:  CharCanvas ã«å±ã—ã¦ã„ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®æŒ‡å®šã•ã‚ŒãŸé ˜åŸŸã‚’
+                æŒ‡å®šã•ã‚ŒãŸè‰²ã§å¡—ã‚Šã¤ã¶ã—ã¾ã™ã€‚
+                1è¡Œã”ã¨ã«ä¸€å®šæ•°ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒç©ºã„ã¦ã„ã‚‹ CharCanvas ç”¨ã§ã™ã€‚
 
-  Arguments:    pCC:    CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                cl:     “h‚è‚Â‚Ô‚·‚Ì‚É—p‚¢‚éƒJƒ‰[”Ô†B
-                x:      ‹éŒ`¶ã‚Ì x À•WB
-                y:      ‹éŒ`¶ã‚Ì y À•WB
-                w:      ‹éŒ`•B
-                h:      ‹éŒ`‚‚³B
+  Arguments:    pCC:    CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                cl:     å¡—ã‚Šã¤ã¶ã™ã®ã«ç”¨ã„ã‚‹ã‚«ãƒ©ãƒ¼ç•ªå·ã€‚
+                x:      çŸ©å½¢å·¦ä¸Šã® x åº§æ¨™ã€‚
+                y:      çŸ©å½¢å·¦ä¸Šã® y åº§æ¨™ã€‚
+                w:      çŸ©å½¢å¹…ã€‚
+                h:      çŸ©å½¢é«˜ã•ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void ClearAreaLine(
     const NNSG2dCharCanvas* pCC,
@@ -1032,11 +1032,11 @@ static void ClearAreaLine(
     NNS_G2D_ASSERT( xw <= pCC->areaWidth * 8 );
     NNS_G2D_ASSERT( yh <= pCC->areaHeight * 8 );
 
-    // “h‚è‚Â‚Ô‚µƒf[ƒ^—pˆÓ
+    // å¡—ã‚Šã¤ã¶ã—ãƒ‡ãƒ¼ã‚¿ç”¨æ„
     cl8 = SpreadColor32(pCC, cl);
 
     {
-        // ƒsƒNƒZƒ‹À•W‚ÉƒLƒƒƒ‰ƒNƒ^’PˆÊ‚ÌƒAƒ‰ƒCƒƒ“ƒg“K—p
+        // ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆé©ç”¨
         const int left    = MATH_ROUNDDOWN(x, CHARACTER_WIDTH);
         const int top     = MATH_ROUNDDOWN(y, CHARACTER_HEIGHT);
         const int right   = MATH_ROUNDUP(xw, CHARACTER_WIDTH);
@@ -1048,7 +1048,7 @@ static void ClearAreaLine(
         u8* pCharBase;
         u8* pChar;
 
-        // ‹éŒ`¶ã‹÷‚ÌƒLƒƒƒ‰ƒNƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğŒvZ
+        // çŸ©å½¢å·¦ä¸Šéš…ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¨ˆç®—
         pCharBase = pCC->charBase + ((top / CHARACTER_HEIGHT) * pCC->param + (left / CHARACTER_WIDTH)) * charSize;
 
         for( iy = top; iy < bottom; iy += CHARACTER_HEIGHT )
@@ -1076,18 +1076,18 @@ static void ClearAreaLine(
 /*---------------------------------------------------------------------------*
   Name:         ClearArea1D
 
-  Description:  CharCanvas ‚É‘®‚µ‚Ä‚¢‚éƒLƒƒƒ‰ƒNƒ^‚Ìw’è‚³‚ê‚½—Ìˆæ‚ğ
-                w’è‚³‚ê‚½F‚Å“h‚è‚Â‚Ô‚µ‚Ü‚·B
-                1D OBJ CharCanvas —p‚Å‚·B
+  Description:  CharCanvas ã«å±ã—ã¦ã„ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®æŒ‡å®šã•ã‚ŒãŸé ˜åŸŸã‚’
+                æŒ‡å®šã•ã‚ŒãŸè‰²ã§å¡—ã‚Šã¤ã¶ã—ã¾ã™ã€‚
+                1D OBJ CharCanvas ç”¨ã§ã™ã€‚
 
-  Arguments:    pCC:    CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                cl:     “h‚è‚Â‚Ô‚·‚Ì‚É—p‚¢‚éƒJƒ‰[”Ô†B
-                x:      ‹éŒ`¶ã‚Ì x À•WB
-                y:      ‹éŒ`¶ã‚Ì y À•WB
-                w:      ‹éŒ`•B
-                h:      ‹éŒ`‚‚³B
+  Arguments:    pCC:    CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                cl:     å¡—ã‚Šã¤ã¶ã™ã®ã«ç”¨ã„ã‚‹ã‚«ãƒ©ãƒ¼ç•ªå·ã€‚
+                x:      çŸ©å½¢å·¦ä¸Šã® x åº§æ¨™ã€‚
+                y:      çŸ©å½¢å·¦ä¸Šã® y åº§æ¨™ã€‚
+                w:      çŸ©å½¢å¹…ã€‚
+                h:      çŸ©å½¢é«˜ã•ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void ClearArea1D(
     const NNSG2dCharCanvas* pCC,
@@ -1110,13 +1110,13 @@ static void ClearArea1D(
     NNS_G2D_ASSERT( xw <= pCC->areaWidth * 8 );
     NNS_G2D_ASSERT( yh <= pCC->areaHeight * 8 );
 
-    // “h‚è‚Â‚Ô‚µƒf[ƒ^—pˆÓ
+    // å¡—ã‚Šã¤ã¶ã—ãƒ‡ãƒ¼ã‚¿ç”¨æ„
     cl8 = SpreadColor32(pCC, cl);
 
     p.packed = pCC->param;
 
     {
-        // ƒsƒNƒZƒ‹À•W‚ÉƒLƒƒƒ‰ƒNƒ^’PˆÊ‚ÌƒAƒ‰ƒCƒƒ“ƒg“K—p
+        // ãƒ”ã‚¯ã‚»ãƒ«åº§æ¨™ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆé©ç”¨
         const int left    = MATH_ROUNDDOWN(x, CHARACTER_WIDTH);
         const int top     = MATH_ROUNDDOWN(y, CHARACTER_HEIGHT);
         const int right   = MATH_ROUNDUP(xw, CHARACTER_WIDTH);
@@ -1164,19 +1164,19 @@ static void ClearArea1D(
 /*---------------------------------------------------------------------------*
   Name:         InitCharCanvas
 
-  Description:  CharCanvas ‚ğ‚»‚Ìƒƒ“ƒo‚ğ’¼Úw’è‚·‚é‚±‚Æ‚Å‰Šú‰»‚µ‚Ü‚·B
+  Description:  CharCanvas ã‚’ãã®ãƒ¡ãƒ³ãƒã‚’ç›´æ¥æŒ‡å®šã™ã‚‹ã“ã¨ã§åˆæœŸåŒ–ã—ã¾ã™ã€‚
 
-  Arguments:    pCC:        ‰Šú‰»‚·‚é CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                areaWidth:  CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•B
-                areaHeight: CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³B
-                colorMode:  •`‰æ‘ÎÛƒLƒƒƒ‰ƒNƒ^‚ÌƒJƒ‰[ƒ‚[ƒhB
-                charBase:   •`‰æ‘ÎÛ‚ÌƒLƒƒƒ‰ƒNƒ^‚Ìæ“ª‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pDrawGlyph: ƒOƒŠƒt•`‰æ‚É—p‚¢‚éŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pDrawGlyph: ƒNƒŠƒA‚É—p‚¢‚éŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pDrawGlyph: •”•ªƒNƒŠƒA‚É—p‚¢‚éŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                param:      ƒLƒƒƒ‰ƒNƒ^•`‰æŠÖ”‚ª—p‚¢‚éƒpƒ‰ƒ[ƒ^B
+  Arguments:    pCC:        åˆæœŸåŒ–ã™ã‚‹ CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                areaWidth:  CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…ã€‚
+                areaHeight: CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•ã€‚
+                colorMode:  æç”»å¯¾è±¡ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã€‚
+                charBase:   æç”»å¯¾è±¡ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®å…ˆé ­ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pDrawGlyph: ã‚°ãƒªãƒ•æç”»ã«ç”¨ã„ã‚‹é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pDrawGlyph: ã‚¯ãƒªã‚¢ã«ç”¨ã„ã‚‹é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pDrawGlyph: éƒ¨åˆ†ã‚¯ãƒªã‚¢ã«ç”¨ã„ã‚‹é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                param:      ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æç”»é–¢æ•°ãŒç”¨ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void InitCharCanvas(
     NNSG2dCharCanvas* pCC,
@@ -1212,24 +1212,24 @@ static void InitCharCanvas(
 /*---------------------------------------------------------------------------*
   Name:         MakeCell
 
-  Description:  NNS_G2dCharCanvasInitForOBJ1D() ‚Å‰Šú‰»‚µ‚½ CharCanvas ‚ğ
-                •\¦‚·‚é‚½‚ß‚ÌƒZƒ‹‚ğì¬‚µ‚Ü‚·B
+  Description:  NNS_G2dCharCanvasInitForOBJ1D() ã§åˆæœŸåŒ–ã—ãŸ CharCanvas ã‚’
+                è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ã‚»ãƒ«ã‚’ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    pCell:          ¶¬‚µ‚½ƒZƒ‹ƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@
-                pOam:           ArrangeÏ‚İOAM”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                numObj:         pOam‚Ì”z—ñ—v‘f”
-                x:              ƒZƒ‹‚Ì‰ñ“]’†SÀ•W(CharCanvasÀ•WŒn)
-                y:              ƒZƒ‹‚Ì‰ñ“]’†SÀ•W(CharCanvasÀ•WŒn)
-                areaPWidth:     CharCanvas‚Ì•‚Ì1/2(ƒsƒNƒZƒ‹’PˆÊ)
-                areaPHeight:    CharCanvas‚Ì‚‚³‚Ì1/2(ƒsƒNƒZƒ‹’PˆÊ)
-                priority:       ƒZƒ‹‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
-                mode:           ƒZƒ‹‚Ìƒ‚[ƒh
-                mosaic:         ƒZƒ‹‚Ìƒ‚ƒUƒCƒN
-                effect:         ƒZƒ‹‚ÌƒGƒtƒFƒNƒg
-                cParam:         ƒJƒ‰[ƒpƒŒƒbƒg”Ô†
-                makeBR:         ‹«ŠE‹éŒ`î•ñ‚ğ•t‰Á‚·‚é‚©‚Ç‚¤‚©‚ğw’è‚µ‚Ü‚·B
+  Arguments:    pCell:          ç”Ÿæˆã—ãŸã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+                pOam:           Arrangeæ¸ˆã¿OAMé…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                numObj:         pOamã®é…åˆ—è¦ç´ æ•°
+                x:              ã‚»ãƒ«ã®å›è»¢ä¸­å¿ƒåº§æ¨™(CharCanvasåº§æ¨™ç³»)
+                y:              ã‚»ãƒ«ã®å›è»¢ä¸­å¿ƒåº§æ¨™(CharCanvasåº§æ¨™ç³»)
+                areaPWidth:     CharCanvasã®å¹…ã®1/2(ãƒ”ã‚¯ã‚»ãƒ«å˜ä½)
+                areaPHeight:    CharCanvasã®é«˜ã•ã®1/2(ãƒ”ã‚¯ã‚»ãƒ«å˜ä½)
+                priority:       ã‚»ãƒ«ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                mode:           ã‚»ãƒ«ã®ãƒ¢ãƒ¼ãƒ‰
+                mosaic:         ã‚»ãƒ«ã®ãƒ¢ã‚¶ã‚¤ã‚¯
+                effect:         ã‚»ãƒ«ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+                cParam:         ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+                makeBR:         å¢ƒç•ŒçŸ©å½¢æƒ…å ±ã‚’ä»˜åŠ ã™ã‚‹ã‹ã©ã†ã‹ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static void MakeCell(
     NNSG2dCellData* pCell,
@@ -1256,7 +1256,7 @@ static void MakeCell(
     NNS_G2D_POINTER_ASSERT( pOam );
 
 
-    //---- BoundingRect î•ñ‚ğ\’z‚µ‚Ü‚·
+    //---- BoundingRect æƒ…å ±ã‚’æ§‹ç¯‰ã—ã¾ã™
     if( makeBR )
     {
         pBoundingRect = (NNSG2dCellBoundingRectS16*)(pCell + 1);
@@ -1273,7 +1273,7 @@ static void MakeCell(
         oamArray = (NNSG2dCellOAMAttrData*)(pCell + 1);
     }
 
-    //---- OBJ ‚Éƒpƒ‰ƒ[ƒ^‚ğ“K—p‚µ‚Ü‚·
+    //---- OBJ ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’é©ç”¨ã—ã¾ã™
     for( i = 0; i < numObj; i++ )
     {
         G2_SetOBJPriority   (&pOam[i], priority);
@@ -1281,7 +1281,7 @@ static void MakeCell(
         G2_SetOBJEffect     (&pOam[i], effect, 0);
         G2_OBJMosaic        (&pOam[i], mosaic);
 
-        //---- ”{Šp•\¦‚Ìê‡‚ÍˆÊ’u‚ğ•â³‚µ‚Ü‚·
+        //---- å€è§’è¡¨ç¤ºã®å ´åˆã¯ä½ç½®ã‚’è£œæ­£ã—ã¾ã™
         if( effect == GX_OAM_EFFECT_AFFINE_DOUBLE )
         {
             const GXOamShape shape = G2_GetOBJShape(&pOam[i]);
@@ -1297,7 +1297,7 @@ static void MakeCell(
         }
     }
 
-    //---- OAM ‚ğƒZƒ‹‚ÉƒRƒs[‚µ‚Ü‚·
+    //---- OAM ã‚’ã‚»ãƒ«ã«ã‚³ãƒ”ãƒ¼ã—ã¾ã™
     for( i = 0; i < numObj; i++ )
     {
         oamArray[i].attr0 = pOam[i].attr0;
@@ -1305,7 +1305,7 @@ static void MakeCell(
         oamArray[i].attr2 = pOam[i].attr2;
     }
 
-    //---- ƒZƒ‹ƒf[ƒ^‚ğ\’z‚µ‚Ü‚·
+    //---- ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã—ã¾ã™
     attr |= NNSi_G2dSetCellAttrFlipFlag(
         (effect == GX_OAM_EFFECT_FLIP_H ) ? 1: 0,
         (effect == GX_OAM_EFFECT_FLIP_V ) ? 1: 0,
@@ -1316,7 +1316,7 @@ static void MakeCell(
     pCell->cellAttr      = attr;
     pCell->pOamAttrArray = oamArray;
 
-    //---- ‹«ŠE‹…”¼Œa‚ğ•t‰Á‚µ‚Ü‚·
+    //---- å¢ƒç•ŒçƒåŠå¾„ã‚’ä»˜åŠ ã—ã¾ã™
     {
         const u8 bsr = (u8)(ISqrt(areaPWidth * areaPWidth + areaPHeight * areaPHeight) / 2);
         NNSi_G2dSetCellBoundingSphereR(pCell, bsr);
@@ -1332,21 +1332,21 @@ static void MakeCell(
 //****************************************************************************
 
 //----------------------------------------------------------------------------
-// •`‰æ
+// æç”»
 //----------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dCharCanvasDrawChar
 
-  Description:  •¶š‚ğ•`‰æ‚µ‚Ü‚·B
+  Description:  æ–‡å­—ã‚’æç”»ã—ã¾ã™ã€‚
 
-  Arguments:    pCC:    CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                x:      •¶š‚Ì¶ã‚Ì x À•W (ƒeƒLƒXƒgƒXƒNƒŠ[ƒ“À•WŒn)
-                y:      •¶š‚Ì¶ã‚Ì y À•W (ƒeƒLƒXƒgƒXƒNƒŠ[ƒ“À•WŒn)
-                cl:     •¶šF‚ÌƒJƒ‰[”Ô†
-                ccode:  •¶šƒR[ƒh
+  Arguments:    pCC:    CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                x:      æ–‡å­—ã®å·¦ä¸Šã® x åº§æ¨™ (ãƒ†ã‚­ã‚¹ãƒˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ç³»)
+                y:      æ–‡å­—ã®å·¦ä¸Šã® y åº§æ¨™ (ãƒ†ã‚­ã‚¹ãƒˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ç³»)
+                cl:     æ–‡å­—è‰²ã®ã‚«ãƒ©ãƒ¼ç•ªå·
+                ccode:  æ–‡å­—ã‚³ãƒ¼ãƒ‰
 
-  Returns:      •`‰æ‚µ‚½•¶š‚Ìpixel’PˆÊ‚Å‚Ì•‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      æç”»ã—ãŸæ–‡å­—ã®pixelå˜ä½ã§ã®å¹…ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 
 int NNS_G2dCharCanvasDrawChar(const NNSG2dCharCanvas* pCC, const NNSG2dFont* pFont, int x, int y, int cl, u16 ccode)
@@ -1398,21 +1398,21 @@ int NNS_G2dCharCanvasDrawChar(const NNSG2dCharCanvas* pCC, const NNSG2dFont* pFo
 
 
 //----------------------------------------------------------------------------
-// \’z
+// æ§‹ç¯‰
 //----------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dCharCanvasInitForBG
 
-  Description:  CharCanvas ‚ğ BG ‚Å‚Ìg—p‚·‚é‚½‚ß‚É‰Šú‰»‚µ‚Ü‚·B
+  Description:  CharCanvas ã‚’ BG ã§ã®ä½¿ç”¨ã™ã‚‹ãŸã‚ã«åˆæœŸåŒ–ã—ã¾ã™ã€‚
 
-  Arguments:    pCC:        ‰Šú‰»‚·‚é CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                charBase:   •`‰æ‘ÎÛ‚ÌƒLƒƒƒ‰ƒNƒ^‚Ìæ“ª‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                areaWidth:  CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•B
-                areaHeight: CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³B
-                colorMode:  •`‰æ‘ÎÛƒLƒƒƒ‰ƒNƒ^‚ÌƒJƒ‰[ƒ‚[ƒhB
+  Arguments:    pCC:        åˆæœŸåŒ–ã™ã‚‹ CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                charBase:   æç”»å¯¾è±¡ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®å…ˆé ­ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                areaWidth:  CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…ã€‚
+                areaHeight: CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•ã€‚
+                colorMode:  æç”»å¯¾è±¡ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNS_G2dCharCanvasInitForBG(
     NNSG2dCharCanvas* pCC,
@@ -1441,15 +1441,15 @@ void NNS_G2dCharCanvasInitForBG(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dCharCanvasInitForOBJ1D
 
-  Description:  CharCanvas ‚ğ1Dƒ}ƒbƒsƒ“ƒOOBJ‚Åg—p‚·‚é‚½‚ß‚É‰Šú‰»‚µ‚Ü‚·B
+  Description:  CharCanvas ã‚’1Dãƒãƒƒãƒ”ãƒ³ã‚°OBJã§ä½¿ç”¨ã™ã‚‹ãŸã‚ã«åˆæœŸåŒ–ã—ã¾ã™ã€‚
 
-  Arguments:    pCC:        ‰Šú‰»‚·‚é CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                charBase:   CharCanvas‚ÉŠ„‚è“–‚Ä‚éƒLƒƒƒ‰ƒNƒ^‚Ìn“_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                areaWidth:  CharCanvas‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•B
-                areaHeight: CharCanvas‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³B
-                colorMode:  •`‰æ‘ÎÛƒLƒƒƒ‰ƒNƒ^‚ÌƒJƒ‰[ƒ‚[ƒhB
+  Arguments:    pCC:        åˆæœŸåŒ–ã™ã‚‹ CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                charBase:   CharCanvasã«å‰²ã‚Šå½“ã¦ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®å§‹ç‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                areaWidth:  CharCanvasã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…ã€‚
+                areaHeight: CharCanvasã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•ã€‚
+                colorMode:  æç”»å¯¾è±¡ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNS_G2dCharCanvasInitForOBJ1D(
     NNSG2dCharCanvas* pCC,
@@ -1485,18 +1485,18 @@ void NNS_G2dCharCanvasInitForOBJ1D(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dCharCanvasInitForOBJ2DRect
 
-  Description:  CharCanvas ‚ğ2Dƒ}ƒbƒsƒ“ƒOOBJ‚Åg—p‚·‚é‚½‚ß‚É‰Šú‰»‚µ‚Ü‚·B
-                2Dƒ}ƒbƒsƒ“ƒO‚ÌƒLƒƒƒ‰ƒNƒ^—Ìˆæ‚©‚ç‹éŒ`‚Ì—Ìˆæ‚ğ
-                CharCanvas ‚Æ‚µ‚Äİ’è‚µ‚Ü‚·B
-                OBJ ‚ÌƒTƒCƒY‚â”z’u‚Íl—¶‚µ‚Ü‚¹‚ñB
+  Description:  CharCanvas ã‚’2Dãƒãƒƒãƒ”ãƒ³ã‚°OBJã§ä½¿ç”¨ã™ã‚‹ãŸã‚ã«åˆæœŸåŒ–ã—ã¾ã™ã€‚
+                2Dãƒãƒƒãƒ”ãƒ³ã‚°ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é ˜åŸŸã‹ã‚‰çŸ©å½¢ã®é ˜åŸŸã‚’
+                CharCanvas ã¨ã—ã¦è¨­å®šã—ã¾ã™ã€‚
+                OBJ ã®ã‚µã‚¤ã‚ºã‚„é…ç½®ã¯è€ƒæ…®ã—ã¾ã›ã‚“ã€‚
 
-  Arguments:    pCC:        ‰Šú‰»‚·‚é CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                charBase:   ƒLƒƒƒ‰ƒNƒ^‹éŒ`—Ìˆæ¶ã‚ÌƒLƒƒƒ‰ƒNƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                areaWidth:  ‹éŒ`—Ìˆæ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•B
-                areaHeight: ‹éŒ`—Ìˆæ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³B
-                colorMode:  •`‰æ‘ÎÛƒLƒƒƒ‰ƒNƒ^‚ÌƒJƒ‰[ƒ‚[ƒhB
+  Arguments:    pCC:        åˆæœŸåŒ–ã™ã‚‹ CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                charBase:   ã‚­ãƒ£ãƒ©ã‚¯ã‚¿çŸ©å½¢é ˜åŸŸå·¦ä¸Šã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                areaWidth:  çŸ©å½¢é ˜åŸŸã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…ã€‚
+                areaHeight: çŸ©å½¢é ˜åŸŸã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•ã€‚
+                colorMode:  æç”»å¯¾è±¡ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNS_G2dCharCanvasInitForOBJ2DRect(
     NNSG2dCharCanvas* pCC,
@@ -1530,28 +1530,28 @@ void NNS_G2dCharCanvasInitForOBJ2DRect(
 
 
 //****************************************************************************
-// BG ƒXƒNƒŠ[ƒ“\¬ŠÖ”
+// BG ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ§‹æˆé–¢æ•°
 //****************************************************************************
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dMapScrToChar256x16Pltt
 
-  Description:  ƒXƒNƒŠ[ƒ“‚ª CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^‚ğQÆ‚·‚é‚æ‚¤‚É
-                İ’è‚µ‚Ü‚·BƒeƒLƒXƒgBG—p‚Å‚·B
+  Description:  ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒ CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’å‚ç…§ã™ã‚‹ã‚ˆã†ã«
+                è¨­å®šã—ã¾ã™ã€‚ãƒ†ã‚­ã‚¹ãƒˆBGç”¨ã§ã™ã€‚
 
-  Arguments:    scnBase:    CharCanvas ‚ª—˜—p‚µ‚Ä‚¢‚é BG–Ê‚Ì
-                            ƒXƒNƒŠ[ƒ“ƒx[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                areaWidth:  CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•
-                areaHeight: CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³
-                areaLeft:   BG –Ê¶ã‚ğ(0,0)‚Æ‚µ‚½‚Ì areaBase ‚É‘Î‰‚·‚é
-                            ƒXƒNƒŠ[ƒ“‚Ì x À•WB
-                areaLeft:   BG –Ê¶ã‚ğ(0,0)‚Æ‚µ‚½‚Ì areaBase ‚É‘Î‰‚·‚é
-                            ƒXƒNƒŠ[ƒ“‚Ì y À•WB
-                scnWidth:   ƒLƒƒƒ‰ƒNƒ^•’PˆÊ‚ÌƒXƒNƒŠ[ƒ“•B
-                charNo:     ŠJnƒLƒƒƒ‰ƒNƒ^‚ÌƒLƒƒƒ‰ƒNƒ^”Ô†B
-                cplt:       ƒXƒNƒŠ[ƒ“‚Éİ’è‚·‚éƒJƒ‰[ƒpƒŒƒbƒg”Ô†B
+  Arguments:    scnBase:    CharCanvas ãŒåˆ©ç”¨ã—ã¦ã„ã‚‹ BGé¢ã®
+                            ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ™ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                areaWidth:  CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…
+                areaHeight: CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•
+                areaLeft:   BG é¢å·¦ä¸Šã‚’(0,0)ã¨ã—ãŸæ™‚ã® areaBase ã«å¯¾å¿œã™ã‚‹
+                            ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã® x åº§æ¨™ã€‚
+                areaLeft:   BG é¢å·¦ä¸Šã‚’(0,0)ã¨ã—ãŸæ™‚ã® areaBase ã«å¯¾å¿œã™ã‚‹
+                            ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã® y åº§æ¨™ã€‚
+                scnWidth:   ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¹…å˜ä½ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å¹…ã€‚
+                charNo:     é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·ã€‚
+                cplt:       ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«è¨­å®šã™ã‚‹ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNS_G2dMapScrToCharText(
     void* scnBase,
@@ -1610,18 +1610,18 @@ void NNS_G2dMapScrToCharText(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dMapScrToCharAffine
 
-  Description:  ƒXƒNƒŠ[ƒ“‚ª CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^‚ğQÆ‚·‚é‚æ‚¤‚É
-                İ’è‚µ‚Ü‚·BƒAƒtƒBƒ“BG—p‚Å‚·B
-                ƒAƒtƒBƒ“BG‚Í256ƒLƒƒƒ‰ƒNƒ^‚µ‚©ˆµ‚¦‚È‚¢–‚É’ˆÓ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-                Å‘å‚Å‚à128x128‚Ì—Ìˆæ‚µ‚©ˆµ‚¦‚Ü‚¹‚ñB
+  Description:  ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒ CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’å‚ç…§ã™ã‚‹ã‚ˆã†ã«
+                è¨­å®šã—ã¾ã™ã€‚ã‚¢ãƒ•ã‚£ãƒ³BGç”¨ã§ã™ã€‚
+                ã‚¢ãƒ•ã‚£ãƒ³BGã¯256ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã—ã‹æ‰±ãˆãªã„äº‹ã«æ³¨æ„ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+                æœ€å¤§ã§ã‚‚128x128ã®é ˜åŸŸã—ã‹æ‰±ãˆã¾ã›ã‚“ã€‚
 
-  Arguments:    areaBase:   CharCanvas ¶ã‚É‚ ‚½‚éƒXƒNƒŠ[ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                areaWidth:  CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•
-                areaHeight: CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³
-                scnWidth:   ƒLƒƒƒ‰ƒNƒ^•’PˆÊ‚ÌƒXƒNƒŠ[ƒ“•B
-                charNo:     ŠJnƒLƒƒƒ‰ƒNƒ^‚ÌƒLƒƒƒ‰ƒNƒ^”Ô†B
+  Arguments:    areaBase:   CharCanvas å·¦ä¸Šã«ã‚ãŸã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                areaWidth:  CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…
+                areaHeight: CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•
+                scnWidth:   ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¹…å˜ä½ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å¹…ã€‚
+                charNo:     é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNS_G2dMapScrToCharAffine(
     void* areaBase,
@@ -1660,8 +1660,8 @@ void NNS_G2dMapScrToCharAffine(
             int x = 0;
             u16* pScr = pScrBase;
 
-            // ƒAƒtƒBƒ“BG ‚Ì ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚Í 8bit ‚¾‚ª
-            // VRAM ‚É‚Í 16bit ’PˆÊ‚Å‚µ‚©ƒAƒNƒZƒX‚Å‚«‚È‚¢‚Ì‚Å‹ôŠï‚Åˆ—•ª—£
+            // ã‚¢ãƒ•ã‚£ãƒ³BG ã® ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã¯ 8bit ã ãŒ
+            // VRAM ã«ã¯ 16bit å˜ä½ã§ã—ã‹ã‚¢ã‚¯ã‚»ã‚¹ã§ããªã„ã®ã§å¶å¥‡ã§å‡¦ç†åˆ†é›¢
             if( bOddBase )
             {
                 *pScr++ = (u16)( (charNo++ << 8) | (*pScr & 0xFF) );
@@ -1685,18 +1685,18 @@ void NNS_G2dMapScrToCharAffine(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dMapScrToChar256x16Pltt
 
-  Description:  ƒXƒNƒŠ[ƒ“‚ª CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^‚ğQÆ‚·‚é‚æ‚¤‚É
-                İ’è‚µ‚Ü‚·B
-                ƒAƒtƒBƒ“Šg’£BG 256x16ƒpƒŒƒbƒg—p‚Å‚·B
+  Description:  ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒ CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’å‚ç…§ã™ã‚‹ã‚ˆã†ã«
+                è¨­å®šã—ã¾ã™ã€‚
+                ã‚¢ãƒ•ã‚£ãƒ³æ‹¡å¼µBG 256x16ãƒ‘ãƒ¬ãƒƒãƒˆç”¨ã§ã™ã€‚
 
-  Arguments:    areaBase:   CharCanvas ¶ã‚É‚ ‚½‚éƒXƒNƒŠ[ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                areaWidth:  CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•
-                areaHeight: CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³
-                scnWidth:   ƒLƒƒƒ‰ƒNƒ^•’PˆÊ‚ÌƒXƒNƒŠ[ƒ“•B
-                charNo:     ŠJnƒLƒƒƒ‰ƒNƒ^‚ÌƒLƒƒƒ‰ƒNƒ^”Ô†B
-                cplt:         ƒXƒNƒŠ[ƒ“‚Éİ’è‚·‚éƒJƒ‰[ƒpƒŒƒbƒg”Ô†B
+  Arguments:    areaBase:   CharCanvas å·¦ä¸Šã«ã‚ãŸã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                areaWidth:  CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…
+                areaHeight: CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•
+                scnWidth:   ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¹…å˜ä½ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å¹…ã€‚
+                charNo:     é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·ã€‚
+                cplt:         ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«è¨­å®šã™ã‚‹ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNS_G2dMapScrToChar256x16Pltt(
     void* areaBase,
@@ -1740,18 +1740,18 @@ void NNS_G2dMapScrToChar256x16Pltt(
 
 
 //****************************************************************************
-// OBJ \¬ŠÖ”
+// OBJ æ§‹æˆé–¢æ•°
 //****************************************************************************
 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dCalcRequiredOBJ
 
-  Description:  NNS_G2dCharCanvasInitForOBJ* ‚Å•K—v‚ÈOBJ”‚ğŒvZ‚µ‚Ü‚·B
+  Description:  NNS_G2dCharCanvasInitForOBJ* ã§å¿…è¦ãªOBJæ•°ã‚’è¨ˆç®—ã—ã¾ã™ã€‚
 
-  Arguments:    areaWidth:  OBJ”‚ğŒvZ‚·‚é CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•B
-                areaHeight: OBJ”‚ğŒvZ‚·‚é CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³B
+  Arguments:    areaWidth:  OBJæ•°ã‚’è¨ˆç®—ã™ã‚‹ CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…ã€‚
+                areaHeight: OBJæ•°ã‚’è¨ˆç®—ã™ã‚‹ CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•ã€‚
 
-  Returns:      •K—v‚ÈOBJ”B
+  Returns:      å¿…è¦ãªOBJæ•°ã€‚
  *---------------------------------------------------------------------------*/
 int NNSi_G2dCalcRequiredOBJ(int areaWidth, int areaHeight)
 {
@@ -1786,21 +1786,21 @@ int NNSi_G2dCalcRequiredOBJ(int areaWidth, int areaHeight)
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dArrangeOBJ1D
 
-  Description:  NNS_G2dCharCanvasInitForOBJ1D ‚Å•`‰æ‚µ‚½OBJ‚ğ“KØ‚É
-                •\¦‚Å‚«‚é‚æ‚¤‚ÉOBJ‚ğ®—ñ‚³‚¹‚Ü‚·B
-                oam ‚ğn“_‚Æ‚·‚é NNS_G2dCalcRequireOBJ1D(areaWidth, areaHeight)
-                ŒÂ‚Ì OBJ ‚ğg—p‚µ‚Ü‚·B
+  Description:  NNS_G2dCharCanvasInitForOBJ1D ã§æç”»ã—ãŸOBJã‚’é©åˆ‡ã«
+                è¡¨ç¤ºã§ãã‚‹ã‚ˆã†ã«OBJã‚’æ•´åˆ—ã•ã›ã¾ã™ã€‚
+                oam ã‚’å§‹ç‚¹ã¨ã™ã‚‹ NNS_G2dCalcRequireOBJ1D(areaWidth, areaHeight)
+                å€‹ã® OBJ ã‚’ä½¿ç”¨ã—ã¾ã™ã€‚
 
-  Arguments:    oam:        g—p‚·‚éOAM—ñ‚Ìn“_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                areaWidth:  CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•B
-                areaHeight: CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³B
-                x:          CharCanvas ¶ã‹÷‚Ì•\¦ˆÊ’uB
-                y:          CharCanvas ¶ã‹÷‚Ì•\¦ˆÊ’uB
-                color:      CharCanvas ‚ÌƒJƒ‰[ƒ‚[ƒhB
-                charName:   OBJ—ñ‚ª•\¦‚É—p‚¢‚éƒLƒƒƒ‰ƒNƒ^—ñæ“ª‚ÌƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€B
-                vramMode:   OBJ VRAM—e—Ê
+  Arguments:    oam:        ä½¿ç”¨ã™ã‚‹OAMåˆ—ã®å§‹ç‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                areaWidth:  CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…ã€‚
+                areaHeight: CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•ã€‚
+                x:          CharCanvas å·¦ä¸Šéš…ã®è¡¨ç¤ºä½ç½®ã€‚
+                y:          CharCanvas å·¦ä¸Šéš…ã®è¡¨ç¤ºä½ç½®ã€‚
+                color:      CharCanvas ã®ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã€‚
+                charName:   OBJåˆ—ãŒè¡¨ç¤ºã«ç”¨ã„ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ—å…ˆé ­ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ ã€‚
+                vramMode:   OBJ VRAMå®¹é‡
 
-  Returns:      ‘‚«Š·‚¦‚½ OBJ ‚Ì”‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      æ›¸ãæ›ãˆãŸ OBJ ã®æ•°ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 int NNS_G2dArrangeOBJ1D(
     GXOamAttr * oam,
@@ -1913,20 +1913,20 @@ int NNS_G2dArrangeOBJ1D(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dArrangeOBJ2DRect
 
-  Description:  NNS_G2dCharCanvasInitForOBJ2DRect ‚Å•`‰æ‚µ‚½OBJ‚ğ“KØ‚É
-                •\¦‚Å‚«‚é‚æ‚¤‚ÉOBJ‚ğ®—ñ‚³‚¹‚Ü‚·B
-                oam ‚ğn“_‚Æ‚·‚é NNS_G2dCalcRequireOBJ2DRect(areaWidth, areaHeight)
-                ŒÂ‚Ì OBJ ‚ğg—p‚µ‚Ü‚·B
+  Description:  NNS_G2dCharCanvasInitForOBJ2DRect ã§æç”»ã—ãŸOBJã‚’é©åˆ‡ã«
+                è¡¨ç¤ºã§ãã‚‹ã‚ˆã†ã«OBJã‚’æ•´åˆ—ã•ã›ã¾ã™ã€‚
+                oam ã‚’å§‹ç‚¹ã¨ã™ã‚‹ NNS_G2dCalcRequireOBJ2DRect(areaWidth, areaHeight)
+                å€‹ã® OBJ ã‚’ä½¿ç”¨ã—ã¾ã™ã€‚
 
-  Arguments:    oam:        g—p‚·‚éOAM—ñ‚Ìn“_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                areaWidth:  CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì•B
-                areaHeight: CharCanvas ‚ÌƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Å‚Ì‚‚³B
-                x:          CharCanvas ¶ã‹÷‚Ì•\¦ˆÊ’uB
-                y:          CharCanvas ¶ã‹÷‚Ì•\¦ˆÊ’uB
-                color:      CharCanvas ‚ÌƒJƒ‰[ƒ‚[ƒhB
-                charName:   OBJ—ñ‚ª•\¦‚É—p‚¢‚éƒLƒƒƒ‰ƒNƒ^—ñæ“ª‚ÌƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€B
+  Arguments:    oam:        ä½¿ç”¨ã™ã‚‹OAMåˆ—ã®å§‹ç‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                areaWidth:  CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®å¹…ã€‚
+                areaHeight: CharCanvas ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã§ã®é«˜ã•ã€‚
+                x:          CharCanvas å·¦ä¸Šéš…ã®è¡¨ç¤ºä½ç½®ã€‚
+                y:          CharCanvas å·¦ä¸Šéš…ã®è¡¨ç¤ºä½ç½®ã€‚
+                color:      CharCanvas ã®ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã€‚
+                charName:   OBJåˆ—ãŒè¡¨ç¤ºã«ç”¨ã„ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ—å…ˆé ­ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ ã€‚
 
-  Returns:      ‘‚«Š·‚¦‚½ OBJ ‚Ì”‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      æ›¸ãæ›ãˆãŸ OBJ ã®æ•°ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 int NNS_G2dArrangeOBJ2DRect(
     GXOamAttr * oam,
@@ -2042,24 +2042,24 @@ int NNS_G2dArrangeOBJ2DRect(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dCharCanvasMakeCell1D
 
-  Description:  NNS_G2dCharCanvasInitForOBJ1D() ‚Å‰Šú‰»‚µ‚½ CharCanvas ‚ğ
-                •\¦‚·‚é‚½‚ß‚ÌƒZƒ‹‚ğì¬‚µ‚Ü‚·B
+  Description:  NNS_G2dCharCanvasInitForOBJ1D() ã§åˆæœŸåŒ–ã—ãŸ CharCanvas ã‚’
+                è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ã‚»ãƒ«ã‚’ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    pCell:      ¶¬‚µ‚½ƒZƒ‹ƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@
-                pCC:        CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                x:          ƒZƒ‹‚Ì’†SÀ•W(CharCanvasÀ•WŒn)
-                y:          ƒZƒ‹‚Ì’†SÀ•W(CharCanvasÀ•WŒn)
-                priority:   ƒZƒ‹‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
-                mode:       ƒZƒ‹‚Ìƒ‚[ƒh
-                mosaic:     ƒZƒ‹‚Ìƒ‚ƒUƒCƒN
-                effect:     ƒZƒ‹‚ÌƒGƒtƒFƒNƒg
-                color:      CharCanvas ‚ÌƒJƒ‰[ƒ‚[ƒh
-                charName:   æ“ªƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€
-                cParam:     ƒJƒ‰[ƒpƒŒƒbƒg”Ô†
-                vramMode:   OBJ VRAM—e—Ê‚Ìİ’è‚ğw’è‚µ‚Ü‚·B
-                makeBR:     ‹«ŠE‹éŒ`î•ñ‚ğ•t‰Á‚·‚é‚©‚Ç‚¤‚©‚ğw’è‚µ‚Ü‚·B
+  Arguments:    pCell:      ç”Ÿæˆã—ãŸã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+                pCC:        CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                x:          ã‚»ãƒ«ã®ä¸­å¿ƒåº§æ¨™(CharCanvasåº§æ¨™ç³»)
+                y:          ã‚»ãƒ«ã®ä¸­å¿ƒåº§æ¨™(CharCanvasåº§æ¨™ç³»)
+                priority:   ã‚»ãƒ«ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                mode:       ã‚»ãƒ«ã®ãƒ¢ãƒ¼ãƒ‰
+                mosaic:     ã‚»ãƒ«ã®ãƒ¢ã‚¶ã‚¤ã‚¯
+                effect:     ã‚»ãƒ«ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+                color:      CharCanvas ã®ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰
+                charName:   å…ˆé ­ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ 
+                cParam:     ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+                vramMode:   OBJ VRAMå®¹é‡ã®è¨­å®šã‚’æŒ‡å®šã—ã¾ã™ã€‚
+                makeBR:     å¢ƒç•ŒçŸ©å½¢æƒ…å ±ã‚’ä»˜åŠ ã™ã‚‹ã‹ã©ã†ã‹ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNS_G2dCharCanvasMakeCell1D(
     NNSG2dCellData*         pCell,
@@ -2087,7 +2087,7 @@ void NNS_G2dCharCanvasMakeCell1D(
         const u16 numObj = (u16)NNS_G2dCalcRequiredOBJ1D(areaCWidth, areaCHeight);
         GXOamAttr* pTmpBuffer = (GXOamAttr*)__alloca( sizeof(GXOamAttr) * numObj );
 
-        //---- OBJ ‚ğ arrange ‚µ‚Ü‚·
+        //---- OBJ ã‚’ arrange ã—ã¾ã™
         (void)NNS_G2dArrangeOBJ1D(
             pTmpBuffer,
             areaCWidth,
@@ -2098,7 +2098,7 @@ void NNS_G2dCharCanvasMakeCell1D(
             vramMode
         );
 
-        //---- OAM‚©‚çƒZƒ‹‚ğ\’z‚µ‚Ü‚·
+        //---- OAMã‹ã‚‰ã‚»ãƒ«ã‚’æ§‹ç¯‰ã—ã¾ã™
         MakeCell(
             pCell,
             pTmpBuffer,
@@ -2121,23 +2121,23 @@ void NNS_G2dCharCanvasMakeCell1D(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dCharCanvasMakeCell2DRect
 
-  Description:  NNS_G2dCharCanvasInitForOBJ2DRect() ‚Å‰Šú‰»‚µ‚½ CharCanvas ‚ğ
-                •\¦‚·‚é‚½‚ß‚ÌƒZƒ‹‚ğì¬‚µ‚Ü‚·B
+  Description:  NNS_G2dCharCanvasInitForOBJ2DRect() ã§åˆæœŸåŒ–ã—ãŸ CharCanvas ã‚’
+                è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ã‚»ãƒ«ã‚’ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    pCell:      ¶¬‚µ‚½ƒZƒ‹ƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@
-                pCC:        CharCanvas ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                x:          ƒZƒ‹‚Ì’†SÀ•W(CharCanvasÀ•WŒn)
-                y:          ƒZƒ‹‚Ì’†SÀ•W(CharCanvasÀ•WŒn)
-                priority:   ƒZƒ‹‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
-                mode:       ƒZƒ‹‚Ìƒ‚[ƒh
-                mosaic:     ƒZƒ‹‚Ìƒ‚ƒUƒCƒN
-                effect:     ƒZƒ‹‚ÌƒGƒtƒFƒNƒg
-                color:      CharCanvas ‚ÌƒJƒ‰[ƒ‚[ƒh
-                charName:   æ“ªƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€
-                cParam:     ƒJƒ‰[ƒpƒŒƒbƒg”Ô†
-                makeBR:     ‹«ŠE‹éŒ`î•ñ‚ğ•t‰Á‚·‚é‚©‚Ç‚¤‚©‚ğw’è‚µ‚Ü‚·B
+  Arguments:    pCell:      ç”Ÿæˆã—ãŸã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+                pCC:        CharCanvas ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                x:          ã‚»ãƒ«ã®ä¸­å¿ƒåº§æ¨™(CharCanvasåº§æ¨™ç³»)
+                y:          ã‚»ãƒ«ã®ä¸­å¿ƒåº§æ¨™(CharCanvasåº§æ¨™ç³»)
+                priority:   ã‚»ãƒ«ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                mode:       ã‚»ãƒ«ã®ãƒ¢ãƒ¼ãƒ‰
+                mosaic:     ã‚»ãƒ«ã®ãƒ¢ã‚¶ã‚¤ã‚¯
+                effect:     ã‚»ãƒ«ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+                color:      CharCanvas ã®ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰
+                charName:   å…ˆé ­ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ 
+                cParam:     ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+                makeBR:     å¢ƒç•ŒçŸ©å½¢æƒ…å ±ã‚’ä»˜åŠ ã™ã‚‹ã‹ã©ã†ã‹ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void NNS_G2dCharCanvasMakeCell2DRect(
     NNSG2dCellData*         pCell,
@@ -2164,7 +2164,7 @@ void NNS_G2dCharCanvasMakeCell2DRect(
         const u16 numObj = (u16)NNS_G2dCalcRequiredOBJ1D(areaCWidth, areaCHeight);
         GXOamAttr* pTmpBuffer = (GXOamAttr*)__alloca( sizeof(GXOamAttr) * numObj );
 
-        //---- OBJ ‚ğ arrange ‚µ‚Ü‚·
+        //---- OBJ ã‚’ arrange ã—ã¾ã™
         (void)NNS_G2dArrangeOBJ2DRect(
             pTmpBuffer,
             areaCWidth,
@@ -2174,7 +2174,7 @@ void NNS_G2dCharCanvasMakeCell2DRect(
             charName
         );
 
-        //---- OAM‚©‚çƒZƒ‹‚ğ\’z‚µ‚Ü‚·
+        //---- OAMã‹ã‚‰ã‚»ãƒ«ã‚’æ§‹ç¯‰ã—ã¾ã™
         MakeCell(
             pCell,
             pTmpBuffer,

@@ -24,11 +24,11 @@
 /*---------------------------------------------------------------------------*
   Name:         StrDup
 
-  Description:  strdup ‚ÌƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO”Å
+  Description:  strdup ã®ã‚¨ãƒ©ãƒ¼ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ç‰ˆ
   
-  Arguments:    str     ƒRƒs[‚·‚é•¶š—ñ
+  Arguments:    str     ã‚³ãƒ”ãƒ¼ã™ã‚‹æ–‡å­—åˆ—
   
-  Returns:      ƒRƒs[‚³‚ê‚½•¶š—ñ
+  Returns:      ã‚³ãƒ”ãƒ¼ã•ã‚ŒãŸæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 char   *StrDup(const char *str)
 {
@@ -45,12 +45,12 @@ char   *StrDup(const char *str)
 /*---------------------------------------------------------------------------*
   Name:         StrNDup
 
-  Description:  •¶š’·w’è‚Â‚«‚Ì strdup ‚ÌƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO”Å
+  Description:  æ–‡å­—é•·æŒ‡å®šã¤ãã® strdup ã®ã‚¨ãƒ©ãƒ¼ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ç‰ˆ
   
-  Arguments:    str     ƒRƒs[‚·‚é•¶š—ñ
-                len     ƒRƒs[‚·‚é•¶š’·('\0'‚ğŠÜ‚Ü‚È‚¢)
+  Arguments:    str     ã‚³ãƒ”ãƒ¼ã™ã‚‹æ–‡å­—åˆ—
+                len     ã‚³ãƒ”ãƒ¼ã™ã‚‹æ–‡å­—é•·('\0'ã‚’å«ã¾ãªã„)
   
-  Returns:      ƒRƒs[‚³‚ê‚½•¶š—ñ
+  Returns:      ã‚³ãƒ”ãƒ¼ã•ã‚ŒãŸæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 char   *StrNDup(const char *str, int len)
 {
@@ -61,20 +61,20 @@ char   *StrNDup(const char *str, int len)
         (void)strncpy(cp, str, len);
     return cp;
 
-    // malloc ‚Å len+1 ƒoƒCƒg•ª—Ìˆæ‚ğŠm•Û‚µ‚Ä‚¢‚é‚Ì‚Å
-    // strncpy Œã‚Ì '\0' ‚Ì•Ê“r’Ç‰Á‚Í•K—v‚È‚¢D
-    // ‚Ü‚½ str ‚ª NULL ‚Ì‚Æ‚«‚à‘Î‰‚Å‚«‚é
+    // malloc ã§ len+1 ãƒã‚¤ãƒˆåˆ†é ˜åŸŸã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã®ã§
+    // strncpy å¾Œã® '\0' ã®åˆ¥é€”è¿½åŠ ã¯å¿…è¦ãªã„ï¼
+    // ã¾ãŸ str ãŒ NULL ã®ã¨ãã‚‚å¯¾å¿œã§ãã‚‹
 }
 
 /*---------------------------------------------------------------------------*
   Name:         StrCatDup
 
-  Description:  •¶š—ñ‚ğ˜AŒ‹‚µ‚½‚à‚Ì‚ğƒq[ƒv—Ìˆæ‚©‚çŠm•Û‚·‚é
+  Description:  æ–‡å­—åˆ—ã‚’é€£çµã—ãŸã‚‚ã®ã‚’ãƒ’ãƒ¼ãƒ—é ˜åŸŸã‹ã‚‰ç¢ºä¿ã™ã‚‹
   
-  Arguments:    str1    •¶š—ñ1 ==NULL ‚Ì‚Í "" ‚Æ‚µ‚Äˆµ‚í‚ê‚é
-                str2    •¶š—ñ2 ==NULL ‚Ì‚Í "" ‚Æ‚µ‚Äˆµ‚í‚ê‚é
+  Arguments:    str1    æ–‡å­—åˆ—1 ==NULL ã®æ™‚ã¯ "" ã¨ã—ã¦æ‰±ã‚ã‚Œã‚‹
+                str2    æ–‡å­—åˆ—2 ==NULL ã®æ™‚ã¯ "" ã¨ã—ã¦æ‰±ã‚ã‚Œã‚‹
   
-  Returns:      ˜AŒ‹‚µ‚½•¶š—ñ
+  Returns:      é€£çµã—ãŸæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 char   *StrCatDup(const char *str1, const char *str2)
 {
@@ -97,11 +97,11 @@ char   *StrCatDup(const char *str1, const char *str2)
 /*---------------------------------------------------------------------------*
   Name:         Calloc
 
-  Description:  calloc ‚ÌƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO”Å(ˆø”‚Íˆê‚Â‚É‚È‚Á‚Ä‚¢‚é)
+  Description:  calloc ã®ã‚¨ãƒ©ãƒ¼ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ç‰ˆ(å¼•æ•°ã¯ä¸€ã¤ã«ãªã£ã¦ã„ã‚‹)
   
-  Arguments:    size    Šm•Û‚·‚é—Ìˆæ’·
+  Arguments:    size    ç¢ºä¿ã™ã‚‹é ˜åŸŸé•·
   
-  Returns:      Šm•Û‚³‚ê‚½—Ìˆæ
+  Returns:      ç¢ºä¿ã•ã‚ŒãŸé ˜åŸŸ
  *---------------------------------------------------------------------------*/
 void   *Calloc(int size)
 {
@@ -118,12 +118,12 @@ void   *Calloc(int size)
 /*---------------------------------------------------------------------------*
   Name:         Free
 
-  Description:  free ‚Ì NULL ƒnƒ“ƒhƒŠƒ“ƒO”Å
-                •Ï” *ptr ‚Í NULL ƒNƒŠƒA‚³‚ê‚é
+  Description:  free ã® NULL ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ç‰ˆ
+                å¤‰æ•° *ptr ã¯ NULL ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹
   
-  Arguments:    ptr  free ‚·‚é—Ìˆæ
+  Arguments:    ptr  free ã™ã‚‹é ˜åŸŸ
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void Free(void **ptr)
 {
@@ -138,12 +138,12 @@ void Free(void **ptr)
 /*---------------------------------------------------------------------------*
   Name:         Realloc
 
-  Description:  realloc ‚ÌƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO”Å
+  Description:  realloc ã®ã‚¨ãƒ©ãƒ¼ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ç‰ˆ
   
-  Arguments:    buffer  Œ³‚ÌƒTƒCƒY
-                size    Šm•Û‚·‚é—Ìˆæ’·
+  Arguments:    buffer  å…ƒã®ã‚µã‚¤ã‚º
+                size    ç¢ºä¿ã™ã‚‹é ˜åŸŸé•·
   
-  Returns:      Šm•Û‚³‚ê‚½—Ìˆæ
+  Returns:      ç¢ºä¿ã•ã‚ŒãŸé ˜åŸŸ
  *---------------------------------------------------------------------------*/
 void   *Realloc(void *buffer, int size)
 {
@@ -161,14 +161,14 @@ void   *Realloc(void *buffer, int size)
 /*---------------------------------------------------------------------------*
   Name:         Fopen
 
-  Description:  fopen ‚Ì stdin/stdout ‚ğl—¶‚µ‚½‚à‚Ì
-                '-' ‚ğw’è‚µ‚½‚Æ‚«‚ÉƒAƒNƒZƒXƒ‚[ƒh 'r' ‚Ì‚Æ‚« stdin  ‚É
-                                    ƒAƒNƒZƒXƒ‚[ƒh 'w' ‚Ì‚Æ‚« stdout ‚Éİ’è
+  Description:  fopen ã® stdin/stdout ã‚’è€ƒæ…®ã—ãŸã‚‚ã®
+                '-' ã‚’æŒ‡å®šã—ãŸã¨ãã«ã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰ 'r' ã®ã¨ã stdin  ã«
+                                    ã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰ 'w' ã®ã¨ã stdout ã«è¨­å®š
   
-  Arguments:    name   ƒtƒ@ƒCƒ‹ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^(‚Ö‚Ìƒ|ƒCƒ“ƒ^)
-                mode   ƒtƒ@ƒCƒ‹ƒoƒbƒtƒ@‚ÌƒTƒCƒY(‚Ö‚Ìƒ|ƒCƒ“ƒ^)
+  Arguments:    name   ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿(ã¸ã®ãƒã‚¤ãƒ³ã‚¿)
+                mode   ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º(ã¸ã®ãƒã‚¤ãƒ³ã‚¿)
   
-  Returns:      fp  ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
+  Returns:      fp  ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 FILE   *Fopen(const char *filename, const char *mode)
 {
@@ -197,12 +197,12 @@ FILE   *Fopen(const char *filename, const char *mode)
 /*---------------------------------------------------------------------------*
   Name:         Fclose
 
-  Description:  fclose ‚Ì stdin/stdout ‚ğl—¶‚µ‚½‚à‚Ì
-                NULL, stdin, stdout, stderr ‚È‚çƒNƒ[ƒY‚µ‚È‚¢
+  Description:  fclose ã® stdin/stdout ã‚’è€ƒæ…®ã—ãŸã‚‚ã®
+                NULL, stdin, stdout, stderr ãªã‚‰ã‚¯ãƒ­ãƒ¼ã‚ºã—ãªã„
   
-  Arguments:    fp  ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
+  Arguments:    fp  ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void Fclose(FILE * fp)
 {
@@ -216,20 +216,20 @@ void Fclose(FILE * fp)
 /*---------------------------------------------------------------------------*
   Name:         Fgets
 
-  Description:  ƒtƒ@ƒCƒ‹‚ğˆês‚Ã‚Â“Ç‚ŞB
-                ’Êí‚Ì fgets ‚ÆˆÙ‚È‚èA“®“I‚Èƒoƒbƒtƒ@ƒTƒCƒY‚ÌƒRƒ“ƒgƒ[ƒ‹‚É
-                ‚æ‚Á‚ÄŠmÀ‚Éˆês•ª‚ğ“Ç‚Ş
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸€è¡Œã¥ã¤èª­ã‚€ã€‚
+                é€šå¸¸ã® fgets ã¨ç•°ãªã‚Šã€å‹•çš„ãªãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«
+                ã‚ˆã£ã¦ç¢ºå®Ÿã«ä¸€è¡Œåˆ†ã‚’èª­è¾¼ã‚€
   
-  Arguments:    *buffer   ƒtƒ@ƒCƒ‹ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^(‚Ö‚Ìƒ|ƒCƒ“ƒ^)
-                *size     ƒtƒ@ƒCƒ‹ƒoƒbƒtƒ@‚ÌƒTƒCƒY(‚Ö‚Ìƒ|ƒCƒ“ƒ^)
-                fp        ƒtƒ@ƒCƒ‹(=NULL ‚È‚ç stdin ‚©‚ç“Ç‚Ş)
+  Arguments:    *buffer   ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿(ã¸ã®ãƒã‚¤ãƒ³ã‚¿)
+                *size     ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º(ã¸ã®ãƒã‚¤ãƒ³ã‚¿)
+                fp        ãƒ•ã‚¡ã‚¤ãƒ«(=NULL ãªã‚‰ stdin ã‹ã‚‰èª­ã‚€)
   
-      buffer, size ‚Í Fgets “à•”‚É‚¨‚¢‚Ä•K—v‚É‰‚¶ realloc ‚³‚ê‚Ü‚·B
-      ˆø”‚É size ‚ğ—^‚¦‚é‚Ì‚Í buffer ‚ğÄ—˜—p‚µAalloc/free ˆ—‚ğ
-      ß–ñ‚·‚é‚½‚ß‚Å‚·B
-      Å‰‚É *buffer ‚É NULL ‚ğ“ü‚ê‚ÄŒÄ‚Ño‚·‚±‚Æ‚ğ‘z’è‚µ‚Ä‚¢‚Ü‚·B
+      buffer, size ã¯ Fgets å†…éƒ¨ã«ãŠã„ã¦å¿…è¦ã«å¿œã˜ realloc ã•ã‚Œã¾ã™ã€‚
+      å¼•æ•°ã« size ã‚’ä¸ãˆã‚‹ã®ã¯ buffer ã‚’å†åˆ©ç”¨ã—ã€alloc/free å‡¦ç†ã‚’
+      ç¯€ç´„ã™ã‚‹ãŸã‚ã§ã™ã€‚
+      æœ€åˆã« *buffer ã« NULL ã‚’å…¥ã‚Œã¦å‘¼ã³å‡ºã™ã“ã¨ã‚’æƒ³å®šã—ã¦ã„ã¾ã™ã€‚
   
-  Returns:      ¬Œ÷‚µ‚½‚ç *buffer ‚ğAƒtƒ@ƒCƒ‹‚ÌI’[‚È‚Ç‚Å¸”s‚µ‚½‚ç NULL
+  Returns:      æˆåŠŸã—ãŸã‚‰ *buffer ã‚’ã€ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ç«¯ãªã©ã§å¤±æ•—ã—ãŸã‚‰ NULL
  *---------------------------------------------------------------------------*/
 char   *Fgets(char **pbuffer, int *pbuffer_size, FILE * fp)
 {
@@ -254,10 +254,10 @@ char   *Fgets(char **pbuffer, int *pbuffer_size, FILE * fp)
     while (NULL != fgets(buffer + buffer_gets, buffer_size - buffer_gets, fp))
     {
         //
-        //  “Ç‚İ‚ñ‚¾s‚ªs––‚É’B‚µ‚Ä‚¢‚é‚È‚çA’è‹`’l‚ğ“o˜^‚·‚é
-        //    s––‚Ì”»’è‚ÍAfgets ‚É‚æ‚é“Ç‚İ‚İ‚É‚¨‚¢‚Ä
-        //      1) ƒoƒbƒtƒ@—Ìˆæ‚ÌÅŒã–Úˆê”t‚Ü‚Åƒf[ƒ^‚ª“Ç‚İ‚Ü‚ê‚È‚©‚Á‚½‚Æ‚«
-        //      2) ˆê”t‚Ü‚Åƒf[ƒ^‚Í“Ç‚Ü‚ê‚½‚ª‚»‚±‚Ås‚ª’š“xI‚í‚Á‚Ä‚¢‚é‚Æ‚«
+        //  èª­ã¿è¾¼ã‚“ã è¡ŒãŒè¡Œæœ«ã«é”ã—ã¦ã„ã‚‹ãªã‚‰ã€å®šç¾©å€¤ã‚’ç™»éŒ²ã™ã‚‹
+        //    è¡Œæœ«ã®åˆ¤å®šã¯ã€fgets ã«ã‚ˆã‚‹èª­ã¿è¾¼ã¿ã«ãŠã„ã¦
+        //      1) ãƒãƒƒãƒ•ã‚¡é ˜åŸŸã®æœ€å¾Œç›®ä¸€æ¯ã¾ã§ãƒ‡ãƒ¼ã‚¿ãŒèª­ã¿è¾¼ã¾ã‚Œãªã‹ã£ãŸã¨ã
+        //      2) ä¸€æ¯ã¾ã§ãƒ‡ãƒ¼ã‚¿ã¯èª­ã¾ã‚ŒãŸãŒãã“ã§è¡ŒãŒä¸åº¦çµ‚ã‚ã£ã¦ã„ã‚‹ã¨ã
         //
         buffer_gets = strlen(buffer);
         if (buffer_gets < buffer_size - 1 || buffer[buffer_gets - 1] == '\n')
@@ -267,8 +267,8 @@ char   *Fgets(char **pbuffer, int *pbuffer_size, FILE * fp)
             return buffer;
         }
         //
-        //  “Ç‚İ‚ñ‚¾s‚ªs––‚É‚Ü‚Å’B‚µ‚Ä‚¢‚È‚¢ê‡‚ÍAƒoƒbƒtƒ@‚ğ‚Q”{‚ÉŠg’£‚µ
-        //  ‘±‚«‚ğ“Ç‚İi‚Ş
+        //  èª­ã¿è¾¼ã‚“ã è¡ŒãŒè¡Œæœ«ã«ã¾ã§é”ã—ã¦ã„ãªã„å ´åˆã¯ã€ãƒãƒƒãƒ•ã‚¡ã‚’ï¼’å€ã«æ‹¡å¼µã—
+        //  ç¶šãã‚’èª­ã¿é€²ã‚€
         //
         else
         {
@@ -277,7 +277,7 @@ char   *Fgets(char **pbuffer, int *pbuffer_size, FILE * fp)
         }
     }
 
-    // ƒtƒ@ƒCƒ‹I—¹‚Ìˆ—
+    // ãƒ•ã‚¡ã‚¤ãƒ«çµ‚äº†æ™‚ã®å‡¦ç†
     free(*pbuffer);
     *pbuffer = NULL;
     *pbuffer_size = 0;
@@ -287,25 +287,25 @@ char   *Fgets(char **pbuffer, int *pbuffer_size, FILE * fp)
 /*---------------------------------------------------------------------------*
   Name:         UnpackFileName
 
-  Description:  ƒtƒ@ƒCƒ‹–¼‚ğ‰ğÍ‚µƒp[ƒc–ˆ
-                (ƒfƒBƒŒƒNƒgƒŠ•”Aƒtƒ@ƒCƒ‹åŠ²•”AŠg’£q)‚É•ªŠ„‚·‚é
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è§£æã—ãƒ‘ãƒ¼ãƒ„æ¯
+                (ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªéƒ¨ã€ãƒ•ã‚¡ã‚¤ãƒ«ä¸»å¹¹éƒ¨ã€æ‹¡å¼µå­)ã«åˆ†å‰²ã™ã‚‹
   
-  Arguments:    path   ƒtƒ‹ƒpƒX–¼
-                dir    ƒfƒBƒŒƒNƒgƒŠ / ‚È‚Ç‚ğŠÜ‚Ş
-                base   ƒtƒ@ƒCƒ‹åŠ²
-                ext    Šg’£q '.' ‚ğŠÜ‚Ş
+  Arguments:    path   ãƒ•ãƒ«ãƒ‘ã‚¹å
+                dir    ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª / ãªã©ã‚’å«ã‚€
+                base   ãƒ•ã‚¡ã‚¤ãƒ«ä¸»å¹¹
+                ext    æ‹¡å¼µå­ '.' ã‚’å«ã‚€
   
-                * dir,base,ext ‚Íƒq[ƒv‚©‚çŠm•Û‚µ‚Ä‚¢‚é‚Ì‚Å free ‚ª•K—v
-                * dir,base,ext ‚ª NULL ‚Ì‚Æ‚«‚Í’l‚Ì‘ã“ü‚Í‚µ‚È‚¢
+                * dir,base,ext ã¯ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã—ã¦ã„ã‚‹ã®ã§ free ãŒå¿…è¦
+                * dir,base,ext ãŒ NULL ã®ã¨ãã¯å€¤ã®ä»£å…¥ã¯ã—ãªã„
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void UnpackFileName(const char *path, char **dir, char **base, char **ext)
 {
     int     i, base_top, ext_top;
     int     path_len = strlen(path);
 
-    // ÅI‚Ì '.' ‚ÌˆÊ’u‚ÆƒpƒX‹æØ‚è‚ÌˆÊ’u‚ğŒŸõ‚·‚é
+    // æœ€çµ‚ã® '.' ã®ä½ç½®ã¨ãƒ‘ã‚¹åŒºåˆ‡ã‚Šã®ä½ç½®ã‚’æ¤œç´¢ã™ã‚‹
     ext_top = path_len;
     base_top = 0;
 
@@ -322,13 +322,13 @@ void UnpackFileName(const char *path, char **dir, char **base, char **ext)
         }
     }
 
-    // . ‚Æ .. ‚Ìˆ— (‚±‚Ìê‡ base ‚ª "." or "..", Šg’£q‚Í‚È‚µ)
+    // . ã¨ .. ã®å‡¦ç† (ã“ã®å ´åˆ base ãŒ "." or "..", æ‹¡å¼µå­ã¯ãªã—)
     if (!strcmp(path + base_top, ".") || !strcmp(path + base_top, ".."))
     {
         ext_top = path_len;
     }
 
-    // ‘ã“ü‚·‚é
+    // ä»£å…¥ã™ã‚‹
     if (dir)
         *dir = StrNDup(path, base_top);
     if (base)
@@ -341,11 +341,11 @@ void UnpackFileName(const char *path, char **dir, char **base, char **ext)
 /*---------------------------------------------------------------------------*
   Name:         SetDebugMode
   
-  Description:  ƒfƒoƒbƒOƒ‚[ƒh‚Ìİ’è
+  Description:  ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
   
-  Arguments:    mode   ƒ‚[ƒh
+  Arguments:    mode   ãƒ¢ãƒ¼ãƒ‰
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 static BOOL sDebugMode = FALSE;
 
@@ -357,12 +357,12 @@ void SetDebugMode(BOOL mode)
 /*---------------------------------------------------------------------------*
   Name:         DebugPrintf
   
-  Description:  ƒfƒoƒbƒOƒvƒŠƒ“ƒg
+  Description:  ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆ
   
-  Arguments:    fmt   Printf ‚ÌƒtƒH[ƒ}ƒbƒg
-                ...   ƒvƒŠƒ“ƒg‚·‚é•Ï”
+  Arguments:    fmt   Printf ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                ...   ãƒ—ãƒªãƒ³ãƒˆã™ã‚‹å¤‰æ•°
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void DebugPrintf(const char *fmt, ...)
 {

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_185.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			185�@�������Z���o���^�[���ɂ��̑��肩��_���[�W���󂯂Ă����ꍇ�A�Z�̈З͂��{�ɂȂ�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			185　自分が技を出すターンにその相手からダメージを受けていた場合、技の威力が倍になる
  *
  *@author	HisashiSogabe
  *@data		2006.02.08

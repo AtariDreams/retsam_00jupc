@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_207.s
- * @brief	Ç¢ÇŒÇÈ			207
+ * @brief	„ÅÑ„Å∞„Çã			207
  * @author	goto
- * @date	2005.07.13(êÖ)
+ * @date	2005.07.13(Ê∞¥)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	Å°Ç¢ÇŒÇÈ			207
+//	‚ñ†„ÅÑ„Å∞„Çã			207
 //
 //
 // =============================================================================
@@ -28,14 +28,14 @@
 #define IBARU_ACT_NUM		(1)
 WEST_IBARU:
 	
-	///<èâä˙âªèàóùÅ@ì«Ç›çûÇ›èàóù
+	///<ÂàùÊúüÂåñÂá¶ÁêÜ„ÄÄË™≠„ÅøËæº„ÅøÂá¶ÁêÜ
 	CATS_RES_INIT		IBARU_RES_NO, IBARU_ACT_NUM, IBARU_RES_NUM, IBARU_RES_NUM, IBARU_RES_NUM, IBARU_RES_NUM, 0, 0
 	CATS_CAHR_RES_LOAD	IBARU_RES_NO, EFFECT_207_NCGR_BIN
 	CATS_PLTT_RES_LOAD	IBARU_RES_NO, EFFECT_207_NCLR, 1
 	CATS_CELL_RES_LOAD	IBARU_RES_NO, EFFECT_207_NCER_BIN
 	CATS_CELL_ANM_RES_LOAD	IBARU_RES_NO, EFFECT_207_NANR_BIN
 	
-	///<ìÆçÏ
+	///<Âãï‰Ωú
 	FUNC_CALL		WEST_SP_WE_207_MAIN, 0,0,0,0,0,0,0,0,0
 
 	//SE_L			SEQ_SE_DP_W207
@@ -54,7 +54,7 @@ WEST_IBARU:
 
 	WAIT_FLAG
 
-	///<îjä¸èàóù
+	///<Á†¥Ê£ÑÂá¶ÁêÜ
 	CATS_RES_FREE		IBARU_RES_NO
 	
 	SEQEND

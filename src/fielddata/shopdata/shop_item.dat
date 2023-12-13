@@ -1,14 +1,14 @@
 //====================================================================
-//						•Ï“®ƒVƒ‡ƒbƒvƒAƒCƒeƒ€ƒf[ƒ^
+//						å¤‰å‹•ã‚·ãƒ§ãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 //
 // 06.03.06 Satoshi Nohara
 //
-// œshop_item.xls‚ðƒRƒ“ƒo[ƒg‚µ‚Äo—Í‚µ‚Ä‚¢‚Ü‚·
+// â—shop_item.xlsã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦å‡ºåŠ›ã—ã¦ã„ã¾ã™
 //
 //====================================================================
 
 const SHOP_ITEM_DATA shop_item_data[] = {
-	//ƒAƒCƒeƒ€ƒiƒ“ƒo[		’iŠK
+	//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼		æ®µéšŽ
 	{ ITEM_MONSUTAABOORU,		1 },
 	{ ITEM_SUUPAABOORU,		3 },
 	{ ITEM_HAIPAABOORU,		4 },

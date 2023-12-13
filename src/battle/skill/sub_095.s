@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_095.s
- *@brief	�퓬�V�[�P���X
- *			���������Ȃ�ǉ����ʃV�[�P���X
+ *@brief	戦闘シーケンス
+ *			ちいさくなる追加効果シーケンス
  *@author	HisashiSogabe
  *@data		2006.01.27
  *
@@ -16,6 +16,6 @@
 
 SUB_095:
 	PSP_VALUE	VAL_BIT,SIDE_TSUIKA,ID_PSP_waza_kouka,WAZAKOUKA_CHIISAKUNARU
-	//��𗦂�1�i�K�グ����Z�b�g
+	//回避率を1段階上げるをセット
 	VALUE		VAL_SET,BUF_PARA_TSUIKA_PARA,ADD_COND2_AVOIDUP
 	JUMP		SUB_SEQ_ABICNT_CALC

@@ -12,37 +12,37 @@
 
   $Log: createlcf.c,v $
   Revision 1.25  2007/07/09 12:17:54  yasu
-  TARGET_NAME ‚ÌƒTƒ|[ƒg
+  TARGET_NAME ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.24  2007/07/09 07:02:00  yasu
-  IF.EXIST ‚ÌƒTƒ|[ƒg
+  IF.EXIST ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.23  2007/06/21 00:19:05  yasu
-  FOREACH.AUTOLOADS=XXX •\‹L‚ÌƒTƒ|[ƒg
+  FOREACH.AUTOLOADS=XXX è¡¨è¨˜ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.22  2007/04/12 03:29:45  yasu
-  IF FIRST/LAST ‚ğ FOREACH OBJECT/LIBRARY ‚Å‚à‘Î‰‚Å‚«‚é‚æ‚¤‚É‚µ‚½
+  IF FIRST/LAST ã‚’ FOREACH OBJECT/LIBRARY ã§ã‚‚å¯¾å¿œã§ãã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.21  2007/04/10 14:13:20  yasu
-  •¡”‚Ì SEARCH_SYMBOL ‘Î‰
+  è¤‡æ•°ã® SEARCH_SYMBOL å¯¾å¿œ
 
   Revision 1.20  2006/05/10 02:06:00  yasu
-  CodeWarrior 2.x ‚Ö‚Ì‘Î‰
+  CodeWarrior 2.x ã¸ã®å¯¾å¿œ
 
   Revision 1.19  2006/04/06 09:05:56  kitase_hirotake
-  .itcm.bss .dtcm.bss .wram.bss ‚É‘Î‰
+  .itcm.bss .dtcm.bss .wram.bss ã«å¯¾å¿œ
 
   Revision 1.18  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.17  2005/09/01 04:30:52  yasu
-  Overlay Group ‚ÌƒTƒ|[ƒg
+  Overlay Group ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.16  2005/08/26 11:23:11  yasu
-  ITCM/DTCM ‚Ö‚Ì overlay ‚Ì‘Î‰
+  ITCM/DTCM ã¸ã® overlay ã®å¯¾å¿œ
 
   Revision 1.15  2005/06/20 12:21:48  yasu
-  Surffix -> Suffix C³
+  Surffix -> Suffix ä¿®æ­£
 
   Revision 1.14  2005/02/28 05:26:03  yosizaki
   do-indent.
@@ -51,7 +51,7 @@
   Support NitroStaticInit
 
   Revision 1.12  2004/08/25 04:01:34  yasu
-  Object aaa.o (*) ‚Ì‚Æ‚«‚Ìˆµ‚¢•ÏX
+  Object aaa.o (*) ã®ã¨ãã®æ‰±ã„å¤‰æ›´
 
   Revision 1.11  2004/07/10 04:06:17  yasu
   Support command 'Library'
@@ -77,7 +77,7 @@
   change SDK prefix iris -> nitro
 
   Revision 1.4  2004/01/15 10:51:45  yasu
-  Static StackSize ‚ÌÀ‘•
+  Static StackSize ã®å®Ÿè£…
 
   Revision 1.3  2004/01/14 12:38:08  yasu
   Change OverlayName->OverlayDefs
@@ -275,11 +275,11 @@ static tMemType GetMemTypeParam(const char *str)
 }
 
 //
-// name, address ‚Å¦‚³‚ê‚éƒZƒNƒVƒ‡ƒ“‚ª‚Ç‚Ìƒƒ‚ƒŠ—Ìˆæ‚É‘®‚·‚é‚©‚ğ”»’è‚·‚é
+// name, address ã§ç¤ºã•ã‚Œã‚‹ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒã©ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã«å±ã™ã‚‹ã‹ã‚’åˆ¤å®šã™ã‚‹
 //
 static tMemType GetSectionMemType(const char *name, u32 address)
 {
-    BOOL    isARM9 = (Static.address < 0x02300000);     // –Àã‚Ì”»’è’l
+    BOOL    isARM9 = (Static.address < 0x02300000);     // äº‹å®Ÿä¸Šã®åˆ¤å®šå€¤
     tMemType memtype = MEMTYPE_NONE;
 
     if (isARM9)
@@ -328,7 +328,7 @@ static tMemType GetSectionMemType(const char *name, u32 address)
 }
 
 //
-// name ‚Å¦‚³‚ê‚éƒZƒNƒVƒ‡ƒ“‚É‘Î‰‚·‚é overlay ‚ğ•Ô‚·
+// name ã§ç¤ºã•ã‚Œã‚‹ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹ overlay ã‚’è¿”ã™
 //
 static tOverlay *GetOverlayByName(const char *name)
 {
@@ -348,7 +348,7 @@ static tOverlay *GetOverlayByName(const char *name)
 }
 
 //
-// name ‚Å¦‚³‚ê‚éƒZƒNƒVƒ‡ƒ“‚ª‚Ç‚Ìƒƒ‚ƒŠ—Ìˆæ‚É‘®‚µ‚Ä‚¢‚é‚©‚ğ”»’è‚·‚é
+// name ã§ç¤ºã•ã‚Œã‚‹ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãŒã©ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã«å±ã—ã¦ã„ã‚‹ã‹ã‚’åˆ¤å®šã™ã‚‹
 //
 static tMemType RecgSectionMemTypeByName(const char *name)
 {
@@ -383,7 +383,7 @@ static tMemType RecgSectionMemTypeByName(const char *name)
 
                 if (mt == MEMTYPE_DUMMY)
                 {
-                    // ƒ‹[ƒv‚µ‚Ä‚¢‚é
+                    // ãƒ«ãƒ¼ãƒ—ã—ã¦ã„ã‚‹
                     lcf_error("Recursive AFTER reference in section %s, Ignored.", name);
                     overlay->memtype = MEMTYPE_NONE;
                     return MEMTYPE_NONE;
@@ -394,7 +394,7 @@ static tMemType RecgSectionMemTypeByName(const char *name)
                 }
                 else if (memtype != mt)
                 {
-                    // ˆÙ‚È‚é memtype ‚Ì section ‚ª AFTER ‚É‚Ü‚Æ‚ß‚Ä‚ ‚é
+                    // ç•°ãªã‚‹ memtype ã® section ãŒ AFTER ã«ã¾ã¨ã‚ã¦ã‚ã‚‹
                     lcf_error("Bad address mapping in section %s, Ignored.", name);
                     overlay->memtype = MEMTYPE_NONE;
                     return MEMTYPE_NONE;
@@ -412,14 +412,14 @@ static tMemType RecgSectionMemTypeByName(const char *name)
 /*---------------------------------------------------------------------------*
   Name:         isObjectOK
 
-  Description:  w’è‚³‚ê‚½ object ‚ª section ‚¨‚æ‚Ñ filter_type ‚Åw’è‚³‚ê‚½
-                ğŒ‚Æˆê’v‚·‚é‚©”»’è‚·‚é
+  Description:  æŒ‡å®šã•ã‚ŒãŸ object ãŒ section ãŠã‚ˆã³ filter_type ã§æŒ‡å®šã•ã‚ŒãŸ
+                æ¡ä»¶ã¨ä¸€è‡´ã™ã‚‹ã‹åˆ¤å®šã™ã‚‹
 
   Arguments:    obj         : object
-                              (ÀÛ‚É”»’è‚³‚ê‚é‚Ì‚Í
+                              (å®Ÿéš›ã«åˆ¤å®šã•ã‚Œã‚‹ã®ã¯
                               obj->sectionName, obj->objextType )
-                section     : w’èƒZƒNƒVƒ‡ƒ“–¼
-                filter_type : CüƒIƒvƒVƒ‡ƒ“
+                section     : æŒ‡å®šã‚»ã‚¯ã‚·ãƒ§ãƒ³å
+                filter_type : ä¿®é£¾ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -427,11 +427,11 @@ static tMemType RecgSectionMemTypeByName(const char *name)
 static BOOL isObjectOK(const tObject * obj, const char *section, char filter_type)
 {
     //
-    //  ƒZƒNƒVƒ‡ƒ“‚Ì–¼ÌŠY“–ƒ`ƒFƒbƒN
-    //          ƒZƒNƒVƒ‡ƒ“‚ÌƒƒCƒ‹ƒhƒJ[ƒg‚Æ‚µ‚Ä '*' ‚ªg‚¦‚é
-    //          section ‚ª '*' ‚Ì‚Æ‚«‚ÍA‘S‚Ä‚Ì obj ‚ª‡Ši‚Æ‚È‚é
-    //          obj->section ‚ª '*' ‚Ì‚Æ‚«‚Í section w’è‚ª
-    //          ˆê”ÊƒZƒNƒVƒ‡ƒ“(.text,.data,.bss,.init ‚È‚Ç) ‚Ì‚Æ‚«‡Ši‚Æ‚È‚é
+    //  ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åç§°è©²å½“ãƒã‚§ãƒƒã‚¯
+    //          ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ¯ã‚¤ãƒ«ãƒ‰ã‚«ãƒ¼ãƒˆã¨ã—ã¦ '*' ãŒä½¿ãˆã‚‹
+    //          section ãŒ '*' ã®ã¨ãã¯ã€å…¨ã¦ã® obj ãŒåˆæ ¼ã¨ãªã‚‹
+    //          obj->section ãŒ '*' ã®ã¨ãã¯ section æŒ‡å®šãŒ
+    //          ä¸€èˆ¬ã‚»ã‚¯ã‚·ãƒ§ãƒ³(.text,.data,.bss,.init ãªã©) ã®ã¨ãåˆæ ¼ã¨ãªã‚‹
     //
     if (isSectionWildcard(section) ||
         (isSectionWildcard(obj->sectionName) && isSectionRegular(section)) ||
@@ -487,7 +487,7 @@ static int ForeachObjects(tObject ** ptrObject, tObject * start, tForeachStatus*
     debug_printf("section =[%s]\n", section ? section : "");
     debug_printf("filter  =[%c]\n", filter ? filter : ' ');
 
-    count = 0;	// Ä‹A‘Îô‚Ì‚½‚ßƒXƒ^ƒbƒN‚Ì’l‚ğƒJƒEƒ“ƒ^‚Æ‚µ‚Äg‚¤B
+    count = 0;	// å†å¸°å¯¾ç­–ã®ãŸã‚ã‚¹ã‚¿ãƒƒã‚¯ã®å€¤ã‚’ã‚«ã‚¦ãƒ³ã‚¿ã¨ã—ã¦ä½¿ã†ã€‚
     while (start)
     {
         if (isObjectOK(start, section, filter))
@@ -524,7 +524,7 @@ static void PutIfObject(BOOL flag, const char *str)
         p = GetObjectParam(str, ':', '\0');
     }
     
-    if (p)	// æ“¾‚Å‚«‚½‚ç•\¦
+    if (p)	// å–å¾—ã§ããŸã‚‰è¡¨ç¤º
     {
         PutString(p);
         Free(&p);
@@ -892,7 +892,7 @@ static void PutOverlayGroup(void)
 {
     if (Overlay)
     {
-        // Group ‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍƒI[ƒo[ƒŒƒC‚Ì–¼‘O‚ğƒOƒ‹[ƒv‚Æ‚µ‚Äg‚¤
+        // Group ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆã¯ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã®åå‰ã‚’ã‚°ãƒ«ãƒ¼ãƒ—ã¨ã—ã¦ä½¿ã†
         PutString(Overlay->group ? Overlay->group : Overlay->name);
     }
     else

@@ -15,22 +15,22 @@
   fix copyright header.
 
   Revision 1.8  2007/11/02 00:45:34  takano_makoto
-  LZ77Šg’£ˆ³k‚É‘Î‰
+  LZ77æ‹¡å¼µåœ§ç¸®ã«å¯¾å¿œ
 
   Revision 1.7  2006/01/18 02:12:29  kitase_hirotake
   do-indent
 
   Revision 1.6  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.5  2005/02/28 05:26:02  yosizaki
   do-indent.
 
   Revision 1.4  2004/12/01 00:03:12  takano_makoto
-  ŠÖ”–¼‚ğ MI_UncompReadXX -> MI_ReadUncompXX‚Ö•ÏX
+  é–¢æ•°åã‚’ MI_UncompReadXX -> MI_ReadUncompXXã¸å¤‰æ›´
 
   Revision 1.3  2004/11/30 10:51:52  takano_makoto
-  16bitƒAƒNƒZƒXŠÖ”‚ğ—pˆÓ
+  16bitã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°ã‚’ç”¨æ„
 
   Revision 1.1  2004/11/30 04:18:26  takano_makoto
   Initial update.
@@ -49,49 +49,49 @@ extern "C" {
 
 typedef struct
 {
-    u8     *destp;                     // ‘‚«‚İæƒ|ƒCƒ“ƒ^          4B
-    s32     destCount;                 // c‚è‘‚«‚İƒTƒCƒY          4B
-    u16     destTmp;                   // ‘‚«‚İ“r’†‚Ìƒf[ƒ^        2B
-    u8      destTmpCnt;                // ‘‚«‚İ“r’†‚Ìƒf[ƒ^ƒTƒCƒY  1B
-    u8      flags;                     // ˆ³kƒtƒ‰ƒO                  1B
-    u16     length;                    // ˜A‘±‘‚«‚İc‚èƒTƒCƒY      2B
+    u8     *destp;                     // æ›¸ãè¾¼ã¿å…ˆãƒã‚¤ãƒ³ã‚¿          4B
+    s32     destCount;                 // æ®‹ã‚Šæ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º          4B
+    u16     destTmp;                   // æ›¸ãè¾¼ã¿é€”ä¸­ã®ãƒ‡ãƒ¼ã‚¿        2B
+    u8      destTmpCnt;                // æ›¸ãè¾¼ã¿é€”ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º  1B
+    u8      flags;                     // åœ§ç¸®ãƒ•ãƒ©ã‚°                  1B
+    u16     length;                    // é€£ç¶šæ›¸ãè¾¼ã¿æ®‹ã‚Šã‚µã‚¤ã‚º      2B
     u8      _padding[2];               //                             2B
-    //                         Œv 16B
+    //                         è¨ˆ 16B
 }
 MIUncompContextRL;
 
 
 typedef struct
 {
-    u8     *destp;                     // ‘‚«‚İæƒ|ƒCƒ“ƒ^              4B
-    s32     destCount;                 // c‚è‘‚«‚İƒTƒCƒY              4B
-    u32     length;                    // ˜A‘±‘‚«‚İc‚è’·              4B
-    u16     destTmp;                   // ‘‚«‚İ“r’†‚Ìƒf[ƒ^            2B
-    u8      destTmpCnt;                // ‘‚«‚İ“r’†‚Ìƒf[ƒ^ƒTƒCƒY      1B
-    u8      flags;                     // ˆ³kƒtƒ‰ƒO                      1B
-    u8      flagIndex;                 // ƒJƒŒƒ“ƒgˆ³kƒtƒ‰ƒOƒCƒ“ƒfƒbƒNƒX  1B
-    u8      lengthFlg;                 // lengthæ“¾Ïƒtƒ‰ƒO              1B
-    u8      exFormat;                  // LZ77ˆ³kŠg’£ƒIƒvƒVƒ‡ƒ“          1B
+    u8     *destp;                     // æ›¸ãè¾¼ã¿å…ˆãƒã‚¤ãƒ³ã‚¿              4B
+    s32     destCount;                 // æ®‹ã‚Šæ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º              4B
+    u32     length;                    // é€£ç¶šæ›¸ãè¾¼ã¿æ®‹ã‚Šé•·              4B
+    u16     destTmp;                   // æ›¸ãè¾¼ã¿é€”ä¸­ã®ãƒ‡ãƒ¼ã‚¿            2B
+    u8      destTmpCnt;                // æ›¸ãè¾¼ã¿é€”ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º      1B
+    u8      flags;                     // åœ§ç¸®ãƒ•ãƒ©ã‚°                      1B
+    u8      flagIndex;                 // ã‚«ãƒ¬ãƒ³ãƒˆåœ§ç¸®ãƒ•ãƒ©ã‚°ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹  1B
+    u8      lengthFlg;                 // lengthå–å¾—æ¸ˆãƒ•ãƒ©ã‚°              1B
+    u8      exFormat;                  // LZ77åœ§ç¸®æ‹¡å¼µã‚ªãƒ—ã‚·ãƒ§ãƒ³          1B
     u8      _padding[1];               //                                 1B
-    //                             Œv 20B
+    //                             è¨ˆ 20B
 }
 MIUncompContextLZ;
 
 
 typedef struct
 {
-    u8     *destp;                     // ‘‚«‚İæƒ|ƒCƒ“ƒ^                     4B
-    s32     destCount;                 // c‚è‘‚«‚İƒTƒCƒY                     4B
-    u8     *treep;                     // ƒnƒtƒ}ƒ“•„†ƒe[ƒuƒ‹AƒJƒŒƒ“ƒgƒ|ƒCƒ“ƒ^ 4B
-    u32     srcTmp;                    // “Ç‚İ‚İ“r’†‚Ìƒf[ƒ^                   4B
-    u32     destTmp;                   // •œ†‰»“r’†‚Ìƒf[ƒ^                     4B
-    s16     treeSize;                  // ƒnƒtƒ}ƒ“•„†ƒe[ƒuƒ‹ƒTƒCƒY             2B
-    u8      srcTmpCnt;                 // “Ç‚İ‚İ“r’†‚Ìƒf[ƒ^ƒTƒCƒY             1B
-    u8      destTmpCnt;                // •œ†‰»Ï‚Ìƒrƒbƒg”                     1B
-    u8      bitSize;                   // •„†‰»ƒrƒbƒgƒTƒCƒY                     1B
+    u8     *destp;                     // æ›¸ãè¾¼ã¿å…ˆãƒã‚¤ãƒ³ã‚¿                     4B
+    s32     destCount;                 // æ®‹ã‚Šæ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º                     4B
+    u8     *treep;                     // ãƒãƒ•ãƒãƒ³ç¬¦å·ãƒ†ãƒ¼ãƒ–ãƒ«ã€ã‚«ãƒ¬ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ 4B
+    u32     srcTmp;                    // èª­ã¿è¾¼ã¿é€”ä¸­ã®ãƒ‡ãƒ¼ã‚¿                   4B
+    u32     destTmp;                   // å¾©å·åŒ–é€”ä¸­ã®ãƒ‡ãƒ¼ã‚¿                     4B
+    s16     treeSize;                  // ãƒãƒ•ãƒãƒ³ç¬¦å·ãƒ†ãƒ¼ãƒ–ãƒ«ã‚µã‚¤ã‚º             2B
+    u8      srcTmpCnt;                 // èª­ã¿è¾¼ã¿é€”ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º             1B
+    u8      destTmpCnt;                // å¾©å·åŒ–æ¸ˆã®ãƒ“ãƒƒãƒˆæ•°                     1B
+    u8      bitSize;                   // ç¬¦å·åŒ–ãƒ“ãƒƒãƒˆã‚µã‚¤ã‚º                     1B
     u8      _padding2[3];              //                                        3B
-    u8      tree[0x200];               // ƒnƒtƒ}ƒ“•„†ƒe[ƒuƒ‹                 512B  (4bit•„†‰»‚Å‚ ‚ê‚Î32B‚Å\•ª‚È‚Ì‚Å‚·‚ª8bit•ªŠm•Û)
-    //                                   Œv 540B  (4bit•„†‰»‚Ìê‡‚Í60B‚ ‚ê‚Î‚æ‚¢)
+    u8      tree[0x200];               // ãƒãƒ•ãƒãƒ³ç¬¦å·ãƒ†ãƒ¼ãƒ–ãƒ«                 512B  (4bitç¬¦å·åŒ–ã§ã‚ã‚Œã°32Bã§ååˆ†ãªã®ã§ã™ãŒ8bitåˆ†ç¢ºä¿)
+    //                                   è¨ˆ 540B  (4bitç¬¦å·åŒ–ã®å ´åˆã¯60Bã‚ã‚Œã°ã‚ˆã„)
 }
 MIUncompContextHuffman;
 

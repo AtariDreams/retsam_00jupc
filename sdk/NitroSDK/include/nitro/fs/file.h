@@ -839,11 +839,11 @@ static inline u32 FS_GetFileImageBottom(const FSFile *p_file)
 /*---------------------------------------------------------------------------*
   Name:         FS_CreateFileFromRom
 
-  Description:  w’è‚Ì CARD-ROM —Ìˆæ‚ğƒ}ƒbƒv‚µ‚½ƒtƒ@ƒCƒ‹‚ğˆê“I‚É¶¬.
+  Description:  æŒ‡å®šã® CARD-ROM é ˜åŸŸã‚’ãƒãƒƒãƒ—ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸€æ™‚çš„ã«ç”Ÿæˆ.
 
-  Arguments:    p_file           ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚ğŠi”[‚·‚é FSFile \‘¢‘Ì
-                offset           READ ‚Ì‘ÎÛ‚Æ‚È‚é CARD-ROM —Ìˆææ“ªƒIƒtƒZƒbƒg.
-                size             ‘ÎÛ—Ìˆæ‚Ì offset ‚©‚ç‚ÌƒoƒCƒgƒTƒCƒY
+  Arguments:    p_file           ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’æ ¼ç´ã™ã‚‹ FSFile æ§‹é€ ä½“
+                offset           READ ã®å¯¾è±¡ã¨ãªã‚‹ CARD-ROM é ˜åŸŸå…ˆé ­ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                size             å¯¾è±¡é ˜åŸŸã® offset ã‹ã‚‰ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -852,11 +852,11 @@ BOOL    FS_CreateFileFromRom(FSFile *p_file, u32 offset, u32 size);
 /*---------------------------------------------------------------------------*
   Name:         FS_CreateFileFromMemory
 
-  Description:  ƒƒ‚ƒŠ—Ìˆæ‚ğƒ}ƒbƒv‚µ‚½ƒtƒ@ƒCƒ‹‚ğˆê“I‚É¶¬.
+  Description:  ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ãƒãƒƒãƒ—ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸€æ™‚çš„ã«ç”Ÿæˆ.
 
-  Arguments:    p_file           ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚ğŠi”[‚·‚é FSFile \‘¢‘Ì
-                buf              READ ‚¨‚æ‚Ñ WRITE ‚Ì‘ÎÛ‚Æ‚È‚éƒƒ‚ƒŠ
-                size             buf ‚ÌƒoƒCƒgƒTƒCƒY
+  Arguments:    p_file           ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’æ ¼ç´ã™ã‚‹ FSFile æ§‹é€ ä½“
+                buf              READ ãŠã‚ˆã³ WRITE ã®å¯¾è±¡ã¨ãªã‚‹ãƒ¡ãƒ¢ãƒª
+                size             buf ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -913,7 +913,7 @@ static inline void FS_CreateReadServerThread(u32 priority)
   do-indent.
 
   Revision 1.31  2005/01/24 06:34:45  yosizaki
-  copyright ”N•\‹LC³.
+  copyright å¹´è¡¨è¨˜ä¿®æ­£.
 
   Revision 1.30  2005/01/19 11:25:36  yosizaki
   delete pragma `pack'.

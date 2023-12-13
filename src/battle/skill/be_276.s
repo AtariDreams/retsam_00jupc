@@ -3,8 +3,8 @@
 /**
  *
  *@file		be_276.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			276@’Ç‰ÁŒø‰Ê‚Å©•ª‚Ì“ÁU‚ğ‚P’iŠKã‚°‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			276ã€€è¿½åŠ åŠ¹æœã§è‡ªåˆ†ã®ç‰¹æ”»ã‚’ï¼‘æ®µéšä¸Šã’ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2006.05.18

@@ -1,6 +1,6 @@
 /**
  *	@file	porudemo.c
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢
  *	@author	Miyuki Iwasawa
  *	@date	06.03.27
  */
@@ -86,19 +86,19 @@ typedef enum{
 #define PKA_EAX	(0x0001800)
 #define PKA_EAY	(0x0001800)
 
-#define PKA_TIME_WAIT	(4)	///ƒ|ƒ‹ƒg‚ğƒLƒƒƒbƒ`‚µ‚½’¼Œã‚ÌƒEƒFƒCƒg
+#define PKA_TIME_WAIT	(4)	///ãƒãƒ«ãƒˆã‚’ã‚­ãƒ£ãƒƒãƒã—ãŸç›´å¾Œã®ã‚¦ã‚§ã‚¤ãƒˆ
 
 #define ANM_PORU_TIME01	(24)
 #define ANM_PORU_TIME	(ANM_PORU_TIME01)
 
 #define TASK_MAX	(4)
 //======================================================
-//\‘¢‘Ì’è‹`
+//æ§‹é€ ä½“å®šç¾©
 ///======================================================
 
 typedef struct _PORUDEMO_MSG{
-	WORDSET* wset;		//ƒ[ƒN
-	STRBUF	*tmp;		//”Ä—p
+	WORDSET* wset;		//ãƒ¯ãƒ¼ã‚¯
+	STRBUF	*tmp;		//æ±ç”¨
 	STRBUF	*mbuf[PORUD_MSG_NUM];	//
 }PORUDEMO_MSG;
 
@@ -117,7 +117,7 @@ typedef struct _PORUDEMO_OBJ{
 	int	time;
 }PORUDEMO_OBJ;
 
-//ƒvƒƒgƒ^ƒCƒv
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 typedef struct _PORUDEMO_ANM PORUDEMO_ANM;
 typedef struct _PORUDEMO_TASK{
 	int		id;
@@ -152,7 +152,7 @@ typedef struct _PORU_DEMO_WORK{
 
 	PORUDEMO_PARAM* param;
 
-	///ƒ|ƒ‹ƒg–¼æ“¾ƒ}ƒl[ƒWƒƒ
+	///ãƒãƒ«ãƒˆåå–å¾—ãƒãƒãƒ¼ã‚¸ãƒ£
 	PORUTO_NAME_MAN	*nameMan;
 	MSGDATA_MANAGER *msgMan;
 	PORUDEMO_MSG	msgDat;
@@ -161,18 +161,18 @@ typedef struct _PORU_DEMO_WORK{
 	PORUOAM_MAN		*oamMan;
 	PORUTO_OAM		*pOam[2];
 	
-	///ƒOƒ‰ƒtƒBƒbƒNƒŠƒ\[ƒX
-	GF_BGL_INI *bgl;	///<BGLƒf[ƒ^
+	///ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒªã‚½ãƒ¼ã‚¹
+	GF_BGL_INI *bgl;	///<BGLãƒ‡ãƒ¼ã‚¿
 	GF_BGL_BMPWIN	win;
 
-	CATS_SYS_PTR	pActSys;	///<ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€
+	CATS_SYS_PTR	pActSys;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
 
-	//ƒAƒjƒƒ[ƒN
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
 	PORUDEMO_ANM	anm;
 }PORU_DEMO_WORK;
 
 //======================================================
-//ƒvƒƒgƒ^ƒCƒv
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //======================================================
 PROC_RESULT PoruDemo_Init(PROC* proc,int *seq);
 PROC_RESULT PoruDemo_Main(PROC* proc,int *seq);
@@ -234,11 +234,11 @@ static VecFx32	Vec_Div(VecFx32* vec,VecFx32* src,fx32 val)
 }
 
 //======================================================
-//ƒI[ƒo[ƒŒƒCƒvƒƒZƒX’è‹`
+//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©
 //======================================================
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚ŒÄ‚Ño‚µ‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢å‘¼ã³å‡ºã—åˆæœŸåŒ–
  */
 PROC_RESULT PoruDemo_Init(PROC* proc,int *seq)
 {
@@ -247,7 +247,7 @@ PROC_RESULT PoruDemo_Init(PROC* proc,int *seq)
 
 	HeapStatePush();
 
-	//ƒq[ƒvì¬
+	//ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_PORUTO_DEMO,0x10000);
 	
 	wk = PROC_AllocWork(proc,sizeof(PORU_DEMO_WORK),HEAPID_PORUTO_DEMO);
@@ -259,7 +259,7 @@ PROC_RESULT PoruDemo_Init(PROC* proc,int *seq)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒƒCƒ“ƒvƒƒZƒX
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹
  */
 PROC_RESULT PoruDemo_Main(PROC* proc,int* seq)
 {
@@ -271,9 +271,9 @@ PROC_RESULT PoruDemo_Main(PROC* proc,int* seq)
 	}
 	switch(*seq){
 	case 0:
-		//BlankŠÖ”ƒŠƒZƒbƒg
+		//Blanké–¢æ•°ãƒªã‚»ãƒƒãƒˆ
 		sys_VBlankFuncChange(NULL, NULL);
-		sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -341,13 +341,13 @@ PROC_RESULT PoruDemo_Main(PROC* proc,int* seq)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒvƒƒZƒX‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ãƒ—ãƒ­ã‚»ã‚¹è§£æ”¾
  */
 PROC_RESULT PoruDemo_End(PROC* proc,int* seq)
 {
 	PORU_DEMO_WORK* wk = (PORU_DEMO_WORK*)PROC_GetWork(proc);
 
-	//ƒ[ƒN‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	PROC_FreeWork(proc);
 	
 	HeapStatePop();
@@ -358,7 +358,7 @@ PROC_RESULT PoruDemo_End(PROC* proc,int* seq)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static int PoruDemo_ResInit(PORU_DEMO_WORK* wk)
 {
@@ -385,7 +385,7 @@ static int PoruDemo_ResInit(PORU_DEMO_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒŠƒ\[ƒX‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 static int PoruDemo_ResRelease(PORU_DEMO_WORK* wk)
 {
@@ -418,43 +418,43 @@ static void PoruDemoVBlank( void * work )
 	SoftSpriteTextureTrans( wk->p3d.ssm );
 
 	CATS_RenderOamTrans();
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	DoVramTransferManager();	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
 }
 
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚VramBankİ’è
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢VramBankè¨­å®š
  */
 static void PoruDemo_VBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_16_G,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0_F				// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_16_G,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0_F				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@BGL‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€BGLåˆæœŸåŒ–
  */
 static void PoruDemo_BGLInit(PORU_DEMO_WORK* wk)
 {
 	int i = 0,frame;
 
-	//VramBankƒZƒbƒg
+	//VramBankã‚»ãƒƒãƒˆ
 	PoruDemo_VBankSet();
 
-	//BGL‰Šú‰»
+	//BGLåˆæœŸåŒ–
 	wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 	
 	{	//BG SYSTEM
@@ -490,7 +490,7 @@ static void PoruDemo_BGLInit(PORU_DEMO_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚ BGL‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ BGLè§£æ”¾
  */
 static void PoruDemo_BGLRelease(PORU_DEMO_WORK* wk)
 {
@@ -504,16 +504,16 @@ static void PoruDemo_BGLRelease(PORU_DEMO_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@2DƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€2Dãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static void PoruDemo_2DGraInit(PORU_DEMO_WORK* wk)
 {
 	ARCHANDLE* handle;
 
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹æ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«å–å¾—
 	handle = ArchiveDataHandleOpen(ARC_PORUDEMO_GRA,wk->heapID);
 
-	//ƒLƒƒƒ‰ƒNƒ^“]‘—
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,
 		handle,ARC_PORUDEMO_GRA,NARC_porudemo_poru_demo_ncgr,
 		GF_BGL_FRAME2_M,0,0,0);
@@ -521,7 +521,7 @@ static void PoruDemo_2DGraInit(PORU_DEMO_WORK* wk)
 		handle,ARC_PORUDEMO_GRA,NARC_porudemo_poru_demo2_ncgr,
 		GF_BGL_FRAME0_S,0,0,0);
 	
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,
 		handle,ARC_PORUDEMO_GRA,NARC_porudemo_poru_demo_nclr,
 		GF_BGL_FRAME2_M,2,0x20*0x01,0);
@@ -529,7 +529,7 @@ static void PoruDemo_2DGraInit(PORU_DEMO_WORK* wk)
 		handle,ARC_PORUDEMO_GRA,NARC_porudemo_poru_demo2_nclr,
 		GF_BGL_FRAME0_S,2,0x20*0x05,0);
 
-	//ƒXƒNƒŠ[ƒ““]‘—
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,
 		handle,ARC_PORUDEMO_GRA,NARC_porudemo_poru_demo_nscr,
 		GF_BGL_FRAME2_M,1,0,0);
@@ -537,16 +537,16 @@ static void PoruDemo_2DGraInit(PORU_DEMO_WORK* wk)
 		handle,ARC_PORUDEMO_GRA,NARC_porudemo_poru_demo2_nscr,
 		GF_BGL_FRAME0_S,1,0,0);
 
-	//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+	//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 	ArchiveDataHandleClose( handle );
 	
-	//ƒXƒNƒŠ[ƒ““]‘—
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	GF_BGL_LoadScreenV_Req(wk->bgl,GF_BGL_FRAME2_M);
 	GF_BGL_LoadScreenV_Req(wk->bgl,GF_BGL_FRAME0_S);
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@2DƒŠƒ\[ƒX‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€2Dãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 static void PoruDemo_2DResRelease(PORU_DEMO_WORK* wk)
 {
@@ -554,7 +554,7 @@ static void PoruDemo_2DResRelease(PORU_DEMO_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@BMPWIN‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€BMPWINåˆæœŸåŒ–
  */
 static void PoruDemo_BmpWinAdd(PORU_DEMO_WORK* wk)
 {
@@ -562,20 +562,20 @@ static void PoruDemo_BmpWinAdd(PORU_DEMO_WORK* wk)
 		BMPL_TALK_FRM,BMPL_TALK_PX, BMPL_TALK_PY,
 		BMPL_TALK_SX, BMPL_TALK_SY, BMPL_TALK_PAL, BMPL_TALK_CGX
 	};
-	//ƒEƒBƒ“ƒhƒEì¬
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	GF_BGL_BmpWinAddEx(wk->bgl,&(wk->win),&bmp);
 	GF_BGL_BmpWinDataFill(&wk->win,WINCLR_COL(FBMP_COL_NULL));
 
-	//ƒEƒBƒ“ƒhƒE—pƒLƒƒƒ‰ƒNƒ^“]‘—
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	TalkWinGraphicSet(wk->bgl,BMPL_TALK_WIN_FRAME,
 			BMPL_TALK_WIN_CGX, BMPL_TALK_WIN_PAL,wk->param->win_type, wk->heapID);
 	
-	//ƒEƒBƒ“ƒhƒE—pƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”¨ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad(PALTYPE_MAIN_BG,BMPL_TALK_PAL*32,wk->heapID);
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@BMPƒEƒBƒ“ƒhƒE‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
  */
 static void PoruDemo_BmpWinRelease(PORU_DEMO_WORK* wk)
 {
@@ -584,7 +584,7 @@ static void PoruDemo_BmpWinRelease(PORU_DEMO_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  */
 static void PoruDemo_MsgManagerGet(PORU_DEMO_WORK* wk)
 {
@@ -595,7 +595,7 @@ static void PoruDemo_MsgManagerGet(PORU_DEMO_WORK* wk)
 	
 	wk->msgDat.wset = WORDSET_CreateEx(1,WORDSET_PORUDEMO_BUFLEN,wk->heapID);
 	
-	//ƒfƒtƒHƒ‹ƒg•¶š—ñæ“¾
+	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—åˆ—å–å¾—
 	wk->msgDat.tmp = STRBUF_Create(WORDSET_PORUDEMO_BUFLEN,wk->heapID);
 
 	for(i = 0;i < PORUD_MSG_NUM;i++){
@@ -604,7 +604,7 @@ static void PoruDemo_MsgManagerGet(PORU_DEMO_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£è§£æ”¾
  */
 static void PoruDemo_MsgManagerRelease(PORU_DEMO_WORK* wk)
 {
@@ -620,7 +620,7 @@ static void PoruDemo_MsgManagerRelease(PORU_DEMO_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^æ“¾
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  */
 static void PoruDemo_PokeParaGet(PORU_DEMO_WORK* wk)
 {
@@ -635,12 +635,12 @@ static void PoruDemo_PokeParaGet(PORU_DEMO_WORK* wk)
 	wk->poke.name = STRBUF_Create(BUFLEN_POKEMON_NAME,wk->heapID);
 	PokeParaGet(wk->param->pp,ID_PARA_nickname_buf,wk->poke.name);
 
-	//D‚«Œ™‚¢æ“¾
+	//å¥½ãå«Œã„å–å¾—
 	wk->poke.favolite = PoruSys_IsFavolite(wk->param->poruto,wk->poke.seikaku);
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è§£æ”¾
  */
 static void PoruDemo_PokeParaRelease(PORU_DEMO_WORK* wk)
 {
@@ -648,28 +648,28 @@ static void PoruDemo_PokeParaRelease(PORU_DEMO_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒ|ƒ‹ƒgOAM‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ãƒãƒ«ãƒˆOAMåˆæœŸåŒ–
  */
 static void PoruDemo_OamInit(PORU_DEMO_WORK* wk)
 {
 	initVramTransferManagerHeap(32,wk->heapID);
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€‰Šú‰»
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	wk->pActSys = CATS_AllocMemory(wk->heapID);
 
 	{
 		TCATS_OAM_INIT	coi = {
-			0,128,		///< ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJn/I—¹
-			0,31,		///< ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn/I—¹
-			0,1,		///< ƒTƒu	OAMŠÇ——ÌˆæEŠJn/I—¹
-			0,31,		///< ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn/I—¹
+			0,128,		///< ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,31,		///< ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,1,		///< ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,31,		///< ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
 		};
 		TCATS_CHAR_MANAGER_MAKE ccmm = {
-			3,	//ID§Œä”
-			/*0x20*2048*/0,	//ƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-			0,		//ƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-			GX_OBJVRAMMODE_CHAR_1D_32K,	//ƒƒCƒ“OBJƒ‚[ƒhw’è
-			GX_OBJVRAMMODE_CHAR_1D_32K,	//ƒTƒuOBJƒ‚[ƒhw’è
+			3,	//IDåˆ¶å¾¡æ•°
+			/*0x20*2048*/0,	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+			0,		//ã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+			GX_OBJVRAMMODE_CHAR_1D_32K,	//ãƒ¡ã‚¤ãƒ³OBJãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
+			GX_OBJVRAMMODE_CHAR_1D_32K,	//ã‚µãƒ–OBJãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
 		};
 		CATS_SystemInit( wk->pActSys, &coi, &ccmm, 32 );
 		REND_OAM_UtilOamRamClear_Main(wk->heapID);
@@ -681,10 +681,10 @@ static void PoruDemo_OamInit(PORU_DEMO_WORK* wk)
 	wk->pOam[0] = PoruOam_Add(wk->oamMan,wk->param->flavor,
 		100,90,0,1,0,PORUOAM_VT_MAIN);
 
-	//ˆê’U”ñ•\¦
+	//ä¸€æ—¦éè¡¨ç¤º
 	CATS_ObjectEnableCap(wk->pOam[0]->act,FALSE);
 
-	//’ÊM’†‚È‚ç’ÊMƒAƒCƒRƒ“•\¦
+	//é€šä¿¡ä¸­ãªã‚‰é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 	if(CommIsInitialize()){
 		WirelessIconEasy();
 	}
@@ -693,7 +693,7 @@ static void PoruDemo_OamInit(PORU_DEMO_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒ|ƒ‹ƒgOAM‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ãƒãƒ«ãƒˆOAMè§£æ”¾
  */
 static void PoruDemo_OamRelease(PORU_DEMO_WORK* wk)
 {
@@ -706,7 +706,7 @@ static void PoruDemo_OamRelease(PORU_DEMO_WORK* wk)
 }
 
 //=============================================================
-//§Œä
+//åˆ¶å¾¡
 //=============================================================
 static int	PoruDemo_AnmMain(PORU_DEMO_WORK* wk)
 {
@@ -749,7 +749,7 @@ static int	PoruDemo_AnmMain(PORU_DEMO_WORK* wk)
 }
 
 //=============================================================
-//ƒAƒjƒƒV[ƒPƒ“ƒX
+//ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=============================================================
 static void TPoruAnm01_00(TCB_PTR tcb,void* work);
 static void TPoruAnm01_01(TCB_PTR tcb,void* work);
@@ -772,7 +772,7 @@ static void TPokeAnm06_00(TCB_PTR tcb,void* work);
 static void TPokeAnm06_01(TCB_PTR tcb,void* work);
 
 /**
- *	@brief	ƒ^ƒXƒN“o˜^
+ *	@brief	ã‚¿ã‚¹ã‚¯ç™»éŒ²
  */
 static int panm_TaskSet(PORUDEMO_ANM* wk,int idx,TCB_FUNC func)
 {
@@ -780,7 +780,7 @@ static int panm_TaskSet(PORUDEMO_ANM* wk,int idx,TCB_FUNC func)
 
 	MI_CpuClear8(tp,sizeof(PORUDEMO_TASK));
 
-	tp->prm = wk;	//eƒ|ƒCƒ“ƒ^ƒQƒbƒg
+	tp->prm = wk;	//è¦ªãƒã‚¤ãƒ³ã‚¿ã‚²ãƒƒãƒˆ
 	tp->tcb = TCB_Add(func,tp,0);
 
 	wk->tnum++;
@@ -796,23 +796,23 @@ static int panm_TaskDel(PORUDEMO_TASK* tp)
 }
 
 /**
- *	@brief	‰ŠúƒXƒe[ƒ^ƒXƒZƒbƒg
+ *	@brief	åˆæœŸã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚»ãƒƒãƒˆ
  */
 static int panm_PoruInit(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 {
 	VecFx32	tmp;
 	MI_CpuClear8(anm,sizeof(PORUDEMO_ANM));
 	
-	//ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^æ“¾
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	anm->poruAct = wk->pOam[0]->act->act;
-	//ƒXƒvƒ‰ƒCƒgƒ|ƒCƒ“ƒ^æ“¾
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒã‚¤ãƒ³ã‚¿å–å¾—
 	anm->pokeAct = wk->p3d.ss;
 	anm->favolite = wk->poke.favolite;
 
-	//ƒ^ƒCƒ€ƒZƒbƒg
+	//ã‚¿ã‚¤ãƒ ã‚»ãƒƒãƒˆ
 	anm->time = ANM_PORU_TIME;
 
-	//‰ŠúÀ•WƒZƒbƒg
+	//åˆæœŸåº§æ¨™ã‚»ãƒƒãƒˆ
 	anm->poru.sv.x = FX32_CONST(PRA_SX);
 	anm->poru.sv.y = FX32_CONST(PRA_SY);
 	anm->poru.ev.x = FX32_CONST(PRA_EX);
@@ -826,17 +826,17 @@ static int panm_PoruInit(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 	anm->poru.time = ANM_PORU_TIME;
 	anm->poru.frm = 0;
 
-	//‰ŠúˆÊ’uƒZƒbƒg
+	//åˆæœŸä½ç½®ã‚»ãƒƒãƒˆ
 	CLACT_SetMatrix(anm->poruAct, &anm->poru.sv);
 	VEC_Subtract(&anm->poru.sv,&anm->poru.ev,&tmp);
 	Vec_Div(&anm->poru.adv,&tmp,FX32_CONST(ANM_PORU_TIME01));
 	
-	//ƒAƒtƒBƒ“ƒZƒbƒg
+	//ã‚¢ãƒ•ã‚£ãƒ³ã‚»ãƒƒãƒˆ
 	CLACT_SetAffineParam(anm->poruAct,CLACT_AFFINE_NORMAL);
 	CLACT_SetScale(anm->poruAct,&anm->poru.asv);
 	
 	
-	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒXƒN“o˜^
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	panm_TaskSet(anm,0,TPoruAnm01_00);
 	panm_TaskSet(anm,1,TPoruAnm02_00);
 	panm_TaskSet(anm,2,TPokeAnm01_00);
@@ -845,7 +845,7 @@ static int panm_PoruInit(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒAƒjƒ@ƒEƒFƒCƒg
+ *	@brief	ãƒãƒ«ãƒˆã‚¢ãƒ‹ãƒ¡ã€€ã‚¦ã‚§ã‚¤ãƒˆ
  */
 static int panm_PoruWait(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 {
@@ -858,7 +858,7 @@ static int panm_PoruWait(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“@–Â‚«ºÄ¶
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã€€é³´ãå£°å†ç”Ÿ
  */
 static int panm_PokeVoiceSet(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 {
@@ -878,24 +878,24 @@ static int panm_PokeVoiceSet(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“–Â‚«ºÄ¶ƒEƒFƒCƒg
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³é³´ãå£°å†ç”Ÿã‚¦ã‚§ã‚¤ãƒˆ
  */
 static int panm_PokeVoiceWait(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 {
 	if(Snd_PMVoicePlayCheck()){
 		return ANMSEQ_VOICEWAIT;
 	}
-	//’â~ˆ—
+	//åœæ­¢å‡¦ç†
 	Snd_PMVoiceStop(0);
 	return ANMSEQ_REACTSET;
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒAƒjƒ@ƒŠƒAƒNƒVƒ‡ƒ“ƒZƒbƒg
+ *	@brief	ãƒãƒ«ãƒˆã‚¢ãƒ‹ãƒ¡ã€€ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
  */
 static int panm_PokeReactionSet(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 {
-	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒXƒN“o˜^
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	MI_CpuClear8(&anm->poke,sizeof(PORUDEMO_OBJ));
 	panm_TaskSet(anm,0,TPokeAnm03_00);
 	panm_TaskSet(anm,1,TPokeAnm04_00);
@@ -903,7 +903,7 @@ static int panm_PokeReactionSet(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒAƒjƒ@ƒŠƒAƒNƒVƒ‡ƒ“ƒEƒFƒCƒg
+ *	@brief	ãƒãƒ«ãƒˆã‚¢ãƒ‹ãƒ¡ã€€ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¦ã‚§ã‚¤ãƒˆ
  */
 static int panm_PokeReactionWait(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 {
@@ -914,7 +914,7 @@ static int panm_PokeReactionWait(PORU_DEMO_WORK* wk,PORUDEMO_ANM* anm)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒg‚ğH‚×‚³‚¹‚½ƒƒbƒZ[ƒW•\¦
+ *	@brief	ãƒãƒ«ãƒˆã‚’é£Ÿã¹ã•ã›ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  */
 static int panm_EatMsgSet(PORU_DEMO_WORK* wk)
 {
@@ -935,7 +935,7 @@ static int panm_EatMsgSet(PORU_DEMO_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒg‚ğH‚×‚³‚¹‚½ƒƒbƒZ[ƒW•\¦‘Ò‚¿
+ *	@brief	ãƒãƒ«ãƒˆã‚’é£Ÿã¹ã•ã›ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾…ã¡
  */
 static int panm_EatMsgWait(PORU_DEMO_WORK* wk)
 {
@@ -957,7 +957,7 @@ static int panm_EatMsgWait(PORU_DEMO_WORK* wk)
 //
 //======================================================
 /**
- *	@brief	ƒ|ƒ‹ƒgƒAƒjƒ@ƒAƒtƒBƒ“‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆã‚¢ãƒ‹ãƒ¡ã€€ã‚¢ãƒ•ã‚£ãƒ³åˆæœŸåŒ–
  */
 static void TPoruAnm01_00(TCB_PTR tcb,void* work)
 {
@@ -977,7 +977,7 @@ static void TPoruAnm01_00(TCB_PTR tcb,void* work)
 	VEC_Subtract(&poru->asv,&poru->aev,&tmp);
 	Vec_Div(&poru->adv,&tmp,FX32_CONST(tp->time));
 	
-	//•`‰æŠJn
+	//æç”»é–‹å§‹
 	CLACT_SetDrawFlag(anm->poruAct,TRUE);
 	CLACT_SetAffineParam(anm->poruAct,CLACT_AFFINE_NORMAL);
 	CLACT_SetScale(anm->poruAct,&poru->asv);
@@ -986,7 +986,7 @@ static void TPoruAnm01_00(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief ƒ|ƒ‹ƒgƒAƒjƒ@ƒAƒtƒBƒ“	
+ *	@brief ãƒãƒ«ãƒˆã‚¢ãƒ‹ãƒ¡ã€€ã‚¢ãƒ•ã‚£ãƒ³	
  */
 static void TPoruAnm01_01(TCB_PTR tcb,void* work)
 {
@@ -995,7 +995,7 @@ static void TPoruAnm01_01(TCB_PTR tcb,void* work)
 	PORUDEMO_OBJ*	poru = &anm->poru;
 	VecFx32	atmp = {0,0,0};
 
-	//ƒXƒP[ƒ‹’lXV
+	//ã‚¹ã‚±ãƒ¼ãƒ«å€¤æ›´æ–°
 	atmp.x = poru->asv.x-FX_Mul(poru->adv.x,tp->frm);
 	atmp.y = poru->asv.y-FX_Mul(poru->adv.y,tp->frm);
 	CLACT_SetScale(anm->poruAct,&atmp);
@@ -1009,7 +1009,7 @@ static void TPoruAnm01_01(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief@ƒ|ƒ‹ƒgƒAƒjƒ@ˆÚ“®‰Šú‰»
+ *	@briefã€€ãƒãƒ«ãƒˆã‚¢ãƒ‹ãƒ¡ã€€ç§»å‹•åˆæœŸåŒ–
  */
 static void TPoruAnm02_00(TCB_PTR tcb,void* work)
 {
@@ -1020,7 +1020,7 @@ static void TPoruAnm02_00(TCB_PTR tcb,void* work)
 	
 	tp->time = ANM_PORU_TIME01;
 
-	//‰ŠúˆÊ’uƒZƒbƒg
+	//åˆæœŸä½ç½®ã‚»ãƒƒãƒˆ
 	poru->sv.x = FX32_CONST(PRA_SX);
 	poru->sv.y = FX32_CONST(PRA_SY);
 	poru->ev.x = FX32_CONST(PRA_EX);
@@ -1038,7 +1038,7 @@ static void TPoruAnm02_00(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒAƒjƒ@ˆÚ“®‚P
+ *	@brief	ãƒãƒ«ãƒˆã‚¢ãƒ‹ãƒ¡ã€€ç§»å‹•ï¼‘
  */
 static void TPoruAnm02_01(TCB_PTR tcb,void* work)
 {
@@ -1048,11 +1048,11 @@ static void TPoruAnm02_01(TCB_PTR tcb,void* work)
 	VecFx32	tmp;
 	fx32	dy,per;
 
-	//ˆÚ“®’lXV
+	//ç§»å‹•å€¤æ›´æ–°
 	tmp.x = poru->sv.x+FX_Mul(poru->dv.x,tp->frm);
 	tmp.y = poru->sv.y+FX_Mul(poru->dv.y,tp->frm);
 	
-	//ƒIƒtƒZƒbƒgZo
+	//ã‚ªãƒ•ã‚»ãƒƒãƒˆç®—å‡º
 	dy = FX_Mul(poru->r,tp->frm);
 	dy = FX_Mul(Sin360R(dy>>12),FX32_CONST(-64));
 //	per = FX_Mul(poru->df,tp->frm);
@@ -1070,7 +1070,7 @@ static void TPoruAnm02_01(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ ƒAƒtƒBƒ““®ì‰Šú‰»
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ ã‚¢ãƒ•ã‚£ãƒ³å‹•ä½œåˆæœŸåŒ–
  */
 static void TPokeAnm01_00(TCB_PTR tcb,void* work)
 {
@@ -1095,7 +1095,7 @@ static void TPokeAnm01_00(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì ƒAƒtƒBƒ“
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œ ã‚¢ãƒ•ã‚£ãƒ³
  */
 static void TPokeAnm01_01(TCB_PTR tcb,void* work)
 {
@@ -1104,7 +1104,7 @@ static void TPokeAnm01_01(TCB_PTR tcb,void* work)
 	PORUDEMO_OBJ*	poke = &anm->poke;
 	VecFx32	tmp;
 
-	//ƒXƒP[ƒ‹’lXV
+	//ã‚¹ã‚±ãƒ¼ãƒ«å€¤æ›´æ–°
 	tmp.x = poke->asv.x+FX_Mul(poke->adv.x,tp->frm);
 	tmp.y = poke->asv.y+FX_Mul(poke->adv.y,tp->frm);
 	SoftSpriteParaSet( anm->pokeAct, SS_PARA_AFF_X,tmp.x >> 4);
@@ -1120,7 +1120,7 @@ static void TPokeAnm01_01(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì@ƒWƒƒƒ“ƒv‚µ‚È‚ª‚ç‹ß‚Ã‚­‰Šú‰»
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œã€€ã‚¸ãƒ£ãƒ³ãƒ—ã—ãªãŒã‚‰è¿‘ã¥ãåˆæœŸåŒ–
  */
 static void TPokeAnm02_00(TCB_PTR tcb,void* work)
 {
@@ -1145,7 +1145,7 @@ static void TPokeAnm02_00(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì@ƒWƒƒƒ“ƒv‚µ‚È‚ª‚ç‹ß‚Ã‚­
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œã€€ã‚¸ãƒ£ãƒ³ãƒ—ã—ãªãŒã‚‰è¿‘ã¥ã
  */
 static void TPokeAnm02_01(TCB_PTR tcb,void* work)
 {
@@ -1193,7 +1193,7 @@ static void TPokeAnm02_02(TCB_PTR tcb,void* work)
 	panm_TaskDel(tp);
 }
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì@Œ³‚Ì‘å‚«‚³‚É–ß‚·‰Šú‰»
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œã€€å…ƒã®å¤§ãã•ã«æˆ»ã™åˆæœŸåŒ–
  */
 static void TPokeAnm03_00(TCB_PTR tcb,void* work)
 {
@@ -1218,7 +1218,7 @@ static void TPokeAnm03_00(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì ƒAƒtƒBƒ“Œ³‚É–ß‚·
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œ ã‚¢ãƒ•ã‚£ãƒ³å…ƒã«æˆ»ã™
  */
 static void TPokeAnm03_01(TCB_PTR tcb,void* work)
 {
@@ -1227,7 +1227,7 @@ static void TPokeAnm03_01(TCB_PTR tcb,void* work)
 	PORUDEMO_OBJ*	poke = &anm->poke;
 	VecFx32	tmp;
 
-	//ƒXƒP[ƒ‹’lXV
+	//ã‚¹ã‚±ãƒ¼ãƒ«å€¤æ›´æ–°
 	tmp.x = poke->asv.x+FX_Mul(poke->adv.x,tp->frm);
 	tmp.y = poke->asv.y+FX_Mul(poke->adv.y,tp->frm);
 	SoftSpriteParaSet( anm->pokeAct, SS_PARA_AFF_X,tmp.x >> 4);
@@ -1244,7 +1244,7 @@ static void TPokeAnm03_01(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì@’†‰›‚Ö–ß‚·‰Šú‰»
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œã€€ä¸­å¤®ã¸æˆ»ã™åˆæœŸåŒ–
  */
 static void TPokeAnm04_00(TCB_PTR tcb,void* work)
 {
@@ -1270,7 +1270,7 @@ static void TPokeAnm04_00(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì@’†‰›‚Ö–ß‚é@
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œã€€ä¸­å¤®ã¸æˆ»ã‚‹ã€€
  */
 static void TPokeAnm04_01(TCB_PTR tcb,void* work)
 {
@@ -1302,7 +1302,7 @@ static void TPokeAnm04_01(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì@’†‰›‚Ö–ß‚éƒEƒFƒCƒg
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œã€€ä¸­å¤®ã¸æˆ»ã‚‹ã‚¦ã‚§ã‚¤ãƒˆ
  */
 static void TPokeAnm04_02(TCB_PTR tcb,void* work)
 {
@@ -1312,7 +1312,7 @@ static void TPokeAnm04_02(TCB_PTR tcb,void* work)
 		return;
 	}
 
-	//ƒŠƒAƒNƒVƒ‡ƒ“‚Ö
+	//ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã¸
 	switch(tp->prm->favolite){
 	case PORU_FAVOLITE_SUKI:
 		TCB_ChangeFunc(tcb,TPokeAnm05_00);
@@ -1327,7 +1327,7 @@ static void TPokeAnm04_02(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì@Šì‚Ô‰Šú‰»
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œã€€å–œã¶åˆæœŸåŒ–
  */
 static void TPokeAnm05_00(TCB_PTR tcb,void* work)
 {
@@ -1342,7 +1342,7 @@ static void TPokeAnm05_00(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì@Šì‚Ô
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œã€€å–œã¶
  */
 static void TPokeAnm05_01(TCB_PTR tcb,void* work)
 {
@@ -1373,7 +1373,7 @@ static void TPokeAnm05_01(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì@Œ™‚ª‚é‰Šú‰»
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œã€€å«ŒãŒã‚‹åˆæœŸåŒ–
  */
 static void TPokeAnm06_00(TCB_PTR tcb,void* work)
 {
@@ -1389,7 +1389,7 @@ static void TPokeAnm06_00(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ““®ì@Œ™‚ª‚é
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å‹•ä½œã€€å«ŒãŒã‚‹
  */
 static void TPokeAnm06_01(TCB_PTR tcb,void* work)
 {

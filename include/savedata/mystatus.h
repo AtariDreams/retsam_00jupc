@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	mystatus.h
- * @brief	©•ªó‘Ôƒf[ƒ^ƒAƒNƒZƒX—pƒwƒbƒ_
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ˜ãƒƒãƒ€
  * @author	tamada GAME FREAK inc.
  * @date	2005.10.27
  */
@@ -9,41 +9,41 @@
 #ifndef __MYSTATUS_H__
 #define __MYSTATUS_H__
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
-#include "gflib/msg_print.h"		//STRCODEQÆ‚Ì‚½‚ß
-#include "gflib/strbuf.h"			//STRBUFQÆ‚Ì‚½‚ß
+#include "gflib/msg_print.h"		//STRCODEå‚ç…§ã®ãŸã‚
+#include "gflib/strbuf.h"			//STRBUFå‚ç…§ã®ãŸã‚
 
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	©•ªó‘Ôƒf[ƒ^Œ^’è‹`
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct _MYSTATUS MYSTATUS;
 
-#define POKEMON_DP_ROM_CODE	( 0 )		///< PokemonDP ‚Å ˆµ‚í‚ê‚Ä‚¢‚½ RomCode
+#define POKEMON_DP_ROM_CODE	( 0 )		///< PokemonDP ã§ æ‰±ã‚ã‚Œã¦ã„ãŸ RomCode
 
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //----------------------------------------------------------
 extern int MyStatus_GetWorkSize(void);
 extern MYSTATUS * MyStatus_AllocWork(u32 heapID);
 extern void MyStatus_Copy(const MYSTATUS * from, MYSTATUS * to);
 
 //----------------------------------------------------------
-//	MYSTATUS‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	MYSTATUSæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern void MyStatus_Init(MYSTATUS * my);
 
-// –¼‘O‚ª‚O‚Å–„‚ß‚ç‚ê‚Ä‚è‚¤‚©ƒ`ƒFƒbƒN
-// (ƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚È‚¢í‘Ô‚©‚ğƒ`ƒFƒbƒN‚·‚é)
+// åå‰ãŒï¼ã§åŸ‹ã‚ã‚‰ã‚Œã¦ã‚Šã†ã‹ãƒã‚§ãƒƒã‚¯
+// (ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ãªã„å¸¸æ…‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹)
 extern BOOL MyStatus_CheckNameClear( const MYSTATUS * my );
 
-//–¼‘O
+//åå‰
 extern void MyStatus_SetMyName(MYSTATUS * my, const STRCODE * name);
 extern const STRCODE * MyStatus_GetMyName(const MYSTATUS * my);
 extern STRBUF * MyStatus_CreateNameString(const MYSTATUS * my, int heapID);
@@ -54,60 +54,60 @@ extern void MyStatus_SetMyNameFromString(MYSTATUS * my, const STRBUF * str);
 extern void MyStatus_SetID(MYSTATUS * my, u32 id);
 extern u32 MyStatus_GetID(const MYSTATUS * my);
 extern u16 MyStatus_GetID_Low(const MYSTATUS * my);
-//«•Ê
+//æ€§åˆ¥
 extern void MyStatus_SetMySex(MYSTATUS * my, int sex);
 extern u32 MyStatus_GetMySex(const MYSTATUS * my);
-//ƒoƒbƒW
+//ãƒãƒƒã‚¸
 extern BOOL MyStatus_GetBadgeFlag(const MYSTATUS * my, int badge_id);
 extern void MyStatus_SetBadgeFlag(MYSTATUS * my, int badge_id);
 extern int MyStatus_GetBadgeCount(const MYSTATUS * my);
-//‚¨‹à
+//ãŠé‡‘
 extern u32 MyStatus_GetGold(const MYSTATUS * my);
 extern u32 MyStatus_SetGold(MYSTATUS * my, u32 gold);
 extern u32 Mystatus_AddGold(MYSTATUS * my, u32 add);
 extern u32 Mystatus_SubGold(MYSTATUS * my, u32 sub);
 
-// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Åg‚¤©•ª‚ÌŒ©‚½–Ú
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ä½¿ã†è‡ªåˆ†ã®è¦‹ãŸç›®
 extern void MyStatus_SetTrainerView( MYSTATUS *my, u8 view );
 extern u8 MyStatus_GetTrainerView( const MYSTATUS *my );
 
-// ROMƒR[ƒhi0:ƒ_ƒCƒ„ 1:ƒp[ƒ‹j
-// DP ‚Å‚ÍA0=ƒ_ƒCƒ„ 1=ƒp[ƒ‹‚Åˆµ‚¤—\’è‚¾‚Á‚½‚İ‚½‚¢‚¾‚ª
-// ÀÛAƒ_ƒCƒ„Eƒp[ƒ‹‚Æ‚à‚ÉA0‚µ‚©‚Í‚¢‚Á‚Ä‚È‚¢B
-// ƒvƒ‰ƒ`ƒi‚Å‚ÍAPM_VERSION‚ª‰Šú’l‚Æ‚µ‚Äİ’è‚³‚ê‚Ä‚¢‚é‚Ì‚Å
-// DP‚Æ‚Ì”äŠr‚ÍA0 = DP PM_VERSION = ƒvƒ‰ƒ`ƒi@‚Æ‚È‚è‚Ü‚·B
+// ROMã‚³ãƒ¼ãƒ‰ï¼ˆ0:ãƒ€ã‚¤ãƒ¤ 1:ãƒ‘ãƒ¼ãƒ«ï¼‰
+// DP ã§ã¯ã€0=ãƒ€ã‚¤ãƒ¤ 1=ãƒ‘ãƒ¼ãƒ«ã§æ‰±ã†äºˆå®šã ã£ãŸã¿ãŸã„ã ãŒ
+// å®Ÿéš›ã€ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ã¨ã‚‚ã«ã€0ã—ã‹ã¯ã„ã£ã¦ãªã„ã€‚
+// ãƒ—ãƒ©ãƒãƒŠã§ã¯ã€PM_VERSIONãŒåˆæœŸå€¤ã¨ã—ã¦è¨­å®šã•ã‚Œã¦ã„ã‚‹ã®ã§
+// DPã¨ã®æ¯”è¼ƒã¯ã€0 = DP PM_VERSION = ãƒ—ãƒ©ãƒãƒŠã€€ã¨ãªã‚Šã¾ã™ã€‚
 extern u8	MyStatus_GetRomCode( const MYSTATUS * my );
 extern void MyStatus_SetRomCode( MYSTATUS * my, u8 rom_code );
 extern u8	PokemonDP_GetRomCode( void );
 
-// ƒŠ[ƒWƒ‡ƒ“ƒR[ƒh
+// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
 extern u8  MyStatus_GetRegionCode( const MYSTATUS * my );
 extern void  MyStatus_SetRegionCode( MYSTATUS * my, u8 region_code );
 
-// ƒQ[ƒ€ƒNƒŠƒA
+// ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢
 void MyStatus_SetDpClearFlag( MYSTATUS * my );
 int MyStatus_GetDpClearFlag( MYSTATUS * my );
 
-// ‘S‘}ŠÓ
+// å…¨å›½å›³é‘‘
 void MyStatus_SetDpZenkokuFlag( MYSTATUS * my );
 int MyStatus_GetDpZenkokuFlag( MYSTATUS * my );
 
-// ŠO•”ƒZ[ƒuƒf[ƒ^‰Šú‰»Ï‚İƒtƒ‰ƒO
+// å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–æ¸ˆã¿ãƒ•ãƒ©ã‚°
 extern void MyStatus_SetExtraInitFlag(MYSTATUS * my);
 extern u32 MyStatus_GetExtraInitFlag(const MYSTATUS * my);
 
 
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^æ“¾‚Ì‚½‚ß‚ÌŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern MYSTATUS * SaveData_GetMyStatus(SAVEDATA * sv);
 
 
-//	myStatus“¯m‚ª“¯‚¶‚à‚Ì‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+//	myStatusåŒå£«ãŒåŒã˜ã‚‚ã®ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 BOOL MyStatus_Compare(const MYSTATUS * my, const MYSTATUS * target);
 
 //----------------------------------------------------------
-//	ƒfƒoƒbƒO—pƒf[ƒ^¶¬‚Ì‚½‚ß‚ÌŠÖ”
+//	ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern void Debug_MyStatus_Make(MYSTATUS * mystatus, const STRCODE * name, int sex);
 

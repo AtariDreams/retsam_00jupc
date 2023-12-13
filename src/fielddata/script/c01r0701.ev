@@ -1,5 +1,5 @@
 //====================================================================
-//							ƒVƒeƒB‚O‚P
+//							ã‚·ãƒ†ã‚£ï¼ï¼‘
 //====================================================================
 
 	.text
@@ -9,7 +9,7 @@
 	.include	"../eventdata/zone_c01r0701evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c01r0701_rival
 _EVENT_DATA		ev_c01r0701_woman3
@@ -23,7 +23,7 @@ _EVENT_DATA		ev_c01r0701_trainer_boy
 _EVENT_DATA		ev_c01r0701_trainer_girl3
 _EVENT_DATA		ev_c01r0701_board
 _EVENT_DATA		ev_c01r0701_notebook
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
@@ -46,18 +46,18 @@ ev_c01r0701_rival:
 	_RIVAL_NAME		1
 	_TALK_KEYWAIT	msg_c01r0701_rival_03
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ğƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_TAUNMAPPU
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€æ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ğ‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_RIVAL_NAME		1
 	_TALK_KEYWAIT	msg_c01r0701_rival_04
 	_TALK_CLOSE
 
-	//ålŒö‚ÌŒü‚«æ“¾
+	//ä¸»äººå…¬ã®å‘ãå–å¾—
 	_PLAYER_DIR_GET	SCWK_ANSWER
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP		DIR_UP,ev_c01r0701_player_dir_up
@@ -66,7 +66,7 @@ ev_c01r0701_rival:
 	_JUMP			ev_c01r0701_player_dir_right
 	_END
 
-/*ƒ‰ƒCƒoƒ‹‹‚Á‚Ä‚¢‚­*/
+/*ãƒ©ã‚¤ãƒãƒ«å»ã£ã¦ã„ã*/
 ev_c01r0701_player_dir_up:
 	_OBJ_ANIME		C01R0701_RIVAL,anm_c01r0701_rival_01
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c01r0701_player_01
@@ -88,7 +88,7 @@ ev_c01r0701_player_dir_right:
 	_JUMP			common_c01r0701_player_dir
 	_END
 
-/*‹¤’Êˆ—*/
+/*å…±é€šå‡¦ç†*/
 common_c01r0701_player_dir:
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
 	_OBJ_DEL		C01R0701_RIVAL
@@ -102,7 +102,7 @@ common_c01r0701_player_dir:
 	_END
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	‹‚Á‚Ä‚¢‚­
+//ãƒ©ã‚¤ãƒãƒ«	å»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c01r0701_rival_01
 	_ANIME_DATA	AC_WALK_R_4F,1
@@ -118,7 +118,7 @@ _ANIME_LABEL	anm_c01r0701_rival_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ålŒö	Œ©‘—‚é
+//ä¸»äººå…¬	è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c01r0701_player_01
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -188,15 +188,15 @@ ev_c01r0701_boy1b:
 
 
 /********************************************************************/
-/*							ƒgƒŒ[ƒi[								*/
+/*							ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼								*/
 /********************************************************************/
 ev_c01r0701_trainer_boy:
 	_TALK_OBJ_START
 
-	/*ƒAƒCƒeƒ€“üèŒã*/
+	/*ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹å¾Œ*/
 	_IF_FLAGON_JUMP	FE_C01R0701_ITEM_GET,ev_c01r0701_trainer_boy_after
 
-	/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚é‚Æ‚«*/
+	/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ã‚‹ã¨ã*/
 	_IF_FLAGON_JUMP	FE_C01R0701_BOY_WIN,ev_c01r0701_trainer_boy_win
 
 	_TALKMSG		msg_c01r0701_trainer_boy_01
@@ -209,14 +209,14 @@ yes_c01r0701_trainer_boy_01:
 	_TALK_KEYWAIT	msg_c01r0701_trainer_boy_02
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_FIRST_POKE_NO_GET	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,MONSNO_NAETORU,ev_c01r0701_boy_02
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,MONSNO_HIKOZARU,ev_c01r0701_boy_03
 	_JUMP				ev_c01r0701_boy_01
 	_END
 
-//í“¬ŒÄ‚Ño‚µ
+//æˆ¦é—˜å‘¼ã³å‡ºã—
 ev_c01r0701_boy_01:
 	_TRAINER_BTL_SET	SCHOOLB_04,0
 	//_TRAINER_BTL_SET	RIVAL_01,0
@@ -241,12 +241,12 @@ ev_c01r0701_boy_btl_coomon:
 
 	_FLAG_SET		FE_C01R0701_BOY_WIN
 
-	/*Ÿ—˜ó‹µ‚ğŒ©‚Ä•ªŠò*/
+	/*å‹åˆ©çŠ¶æ³ã‚’è¦‹ã¦åˆ†å²*/
 	_IF_FLAGON_JUMP		FE_C01R0701_GIRL_WIN,ev_c01r0701_trainer_boy_item_get
 	_IF_FLAGOFF_JUMP	FE_C01R0701_GIRL_WIN,ev_c01r0701_trainer_boy_item_nothing
 	_END
 
-/*ˆêl‚µ‚©Ÿ—˜‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅƒƒbƒZ[ƒW‚ğ•\¦*/
+/*ä¸€äººã—ã‹å‹åˆ©ã—ã¦ã„ãªã„ã®ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º*/
 ev_c01r0701_trainer_boy_item_nothing:
 	_TALK_KEYWAIT	msg_c01r0701_trainer_boy_04
 	_LAST_KEYWAIT
@@ -254,27 +254,27 @@ ev_c01r0701_trainer_boy_item_nothing:
 	_TALK_OBJ_END
 	_END
 
-/*“ñl‚ÉŸ—˜‚µ‚Ä‚¢‚é‚Ì‚Å‹Zƒ}ƒVƒ“‚ª“üè‚Å‚«‚é*/
+/*äºŒäººã«å‹åˆ©ã—ã¦ã„ã‚‹ã®ã§æŠ€ãƒã‚·ãƒ³ãŒå…¥æ‰‹ã§ãã‚‹*/
 ev_c01r0701_trainer_boy_item_get:
 	_TALK_KEYWAIT	msg_c01r0701_trainer_boy_05
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ğƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_KIZUGUSURI
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€æ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c01r0701_trainer_boy_item_event_fail
 
-	//ƒAƒCƒeƒ€æ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ğ‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_FLAG_SET		FE_C01R0701_ITEM_GET
 
 	_JUMP			ev_c01r0701_trainer_boy_after
 	_END
 	
-/*ƒAƒCƒeƒ€“üèŒã*/
+/*ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹å¾Œ*/
 ev_c01r0701_trainer_boy_after:
 	_TALKMSG		msg_c01r0701_trainer_boy_06
 	_LAST_KEYWAIT
@@ -282,14 +282,14 @@ ev_c01r0701_trainer_boy_after:
 	_TALK_OBJ_END
 	_END
 
-/*ƒAƒCƒeƒ€æ“¾¸”s*/
+/*ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¤±æ•—*/
 ev_c01r0701_trainer_boy_item_event_fail:
-	//ƒAƒCƒeƒ€æ“¾¸”sƒCƒxƒ“ƒg(‹¤’ÊƒƒbƒZ[ƒW‚ğo‚·Aê—p‚ğg—p‚·‚é‚Æ‚«‚Í‚¢‚ç‚È‚¢)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¤±æ•—ã‚¤ãƒ™ãƒ³ãƒˆ(å…±é€šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™ã€å°‚ç”¨ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã¯ã„ã‚‰ãªã„)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
 
 	/******************************************/
 	//
-	//‹¤’ÊƒXƒNƒŠƒvƒg‚ªƒ‰ƒXƒg‚©‚Ì”»’è‚ª‚Å‚«‚È‚¢
+	//å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒãƒ©ã‚¹ãƒˆã‹ã®åˆ¤å®šãŒã§ããªã„
 	//
 	/******************************************/
 
@@ -297,10 +297,10 @@ ev_c01r0701_trainer_boy_item_event_fail:
 	_TALK_OBJ_END
 	_END
 
-/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚é‚Æ‚«*/
+/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ã‚‹ã¨ã*/
 ev_c01r0701_trainer_boy_win:
 
-	/*—ƒgƒŒ[ƒi[‚É‚àŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*å¥³ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã«ã‚‚å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP		FE_C01R0701_GIRL_WIN,ev_c01r0701_trainer_boy_item_get
 
 	_TALKMSG		msg_c01r0701_trainer_boy_04
@@ -309,7 +309,7 @@ ev_c01r0701_trainer_boy_win:
 	_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_c01r0701_trainer_boy_01:
 	_TALKMSG		msg_c01r0701_trainer_boy_03
 	_LAST_KEYWAIT
@@ -318,7 +318,7 @@ no_c01r0701_trainer_boy_01:
 	_END
 
 //--------------------------------------------------------------------
-//”s–kˆ—
+//æ•—åŒ—å‡¦ç†
 //--------------------------------------------------------------------
 ev_c01r0701_trainer_boy_battle_lose:
 	_TRAINER_LOSE
@@ -326,12 +326,12 @@ ev_c01r0701_trainer_boy_battle_lose:
 	_END
 
 /********************************************************************/
-/*							ƒgƒŒ[ƒi[								*/
+/*							ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼								*/
 /********************************************************************/
 ev_c01r0701_trainer_girl3:
 	_TALK_OBJ_START
 
-	/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚é*/
+	/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ã‚‹*/
 	_IF_FLAGON_JUMP	FE_C01R0701_GIRL_WIN,ev_c01r0701_trainer_girl3_win
 
 	_TALKMSG		msg_c01r0701_trainer_girl3_01
@@ -344,14 +344,14 @@ yes_c01r0701_trainer_girl3_01:
 	_TALK_KEYWAIT	msg_c01r0701_trainer_girl3_02
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_FIRST_POKE_NO_GET	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,MONSNO_NAETORU,ev_c01r0701_girl_02
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,MONSNO_HIKOZARU,ev_c01r0701_girl_03
 	_JUMP				ev_c01r0701_girl_01
 	_END
 
-//í“¬ŒÄ‚Ño‚µ
+//æˆ¦é—˜å‘¼ã³å‡ºã—
 ev_c01r0701_girl_01:
 	_TRAINER_BTL_SET	SCHOOLG_04,0
 	//_TRAINER_BTL_SET	RIVAL_01,0
@@ -380,7 +380,7 @@ ev_c01r0701_girl_btl_coomon:
 	_IF_FLAGOFF_JUMP	FE_C01R0701_BOY_WIN,ev_c01r0701_trainer_girl3_item_nothing
 	_END
 
-/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚é*/
+/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ã‚‹*/
 ev_c01r0701_trainer_girl3_win:
 	_TALKMSG		msg_c01r0701_trainer_girl3_04
 	_LAST_KEYWAIT
@@ -388,7 +388,7 @@ ev_c01r0701_trainer_girl3_win:
 	_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_c01r0701_trainer_girl3_01:
 	_TALKMSG		msg_c01r0701_trainer_girl3_03
 	_LAST_KEYWAIT
@@ -396,7 +396,7 @@ no_c01r0701_trainer_girl3_01:
 	_TALK_OBJ_END
 	_END
 
-/*ˆêl‚µ‚©Ÿ—˜‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅƒƒbƒZ[ƒW‚ğ•\¦*/
+/*ä¸€äººã—ã‹å‹åˆ©ã—ã¦ã„ãªã„ã®ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º*/
 ev_c01r0701_trainer_girl3_item_nothing:
 	_TALKMSG		msg_c01r0701_trainer_girl3_04
 	_LAST_KEYWAIT
@@ -404,10 +404,10 @@ ev_c01r0701_trainer_girl3_item_nothing:
 	_TALK_OBJ_END
 	_END
 
-/*“ñl‚ÉŸ—˜‚µ‚Ä‚¢‚é‚Ì‚Å‹Zƒ}ƒVƒ“‚ª“üè‚Å‚«‚é*/
+/*äºŒäººã«å‹åˆ©ã—ã¦ã„ã‚‹ã®ã§æŠ€ãƒã‚·ãƒ³ãŒå…¥æ‰‹ã§ãã‚‹*/
 ev_c01r0701_trainer_girl3_item_get:
 
-	/*‚·‚Å‚É‹Zƒ}ƒVƒ“‚ğ“üè‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«æŠ€ãƒã‚·ãƒ³ã‚’å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_C01R0701_ITEM_GET,ev_c01r0701_trainer_girl3_item_nothing
 
 	_TALKMSG		msg_c01r0701_trainer_girl3_05
@@ -417,7 +417,7 @@ ev_c01r0701_trainer_girl3_item_get:
 	_END
 
 //--------------------------------------------------------------------
-//”s–kˆ—
+//æ•—åŒ—å‡¦ç†
 //--------------------------------------------------------------------
 ev_c01r0701_trainer_girl3_battle_lose:
 	_TRAINER_LOSE
@@ -426,7 +426,7 @@ ev_c01r0701_trainer_girl3_battle_lose:
 
 
 /********************************************************************/
-/*								•”Â								*/
+/*								é»’æ¿								*/
 /********************************************************************/
 ev_c01r0701_board:
 	_TALK_START
@@ -438,15 +438,15 @@ ev_c01r0701_board:
 ev_c01r0701_board_02:
 	_TALKMSG		msg_c01r0701_board_02
 
-	//ƒŠƒXƒg
-	_BMPMENU_INIT		9,2,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_001,0			//‚Ç‚­
-	_BMPMENU_MAKE_LIST	msg_ev_win_002,1			//‚Ü‚Ğ
-	_BMPMENU_MAKE_LIST	msg_ev_win_003,2			//‚Ë‚Ş‚è
-	_BMPMENU_MAKE_LIST	msg_ev_win_004,3			//‚â‚¯‚Ç
-	_BMPMENU_MAKE_LIST	msg_ev_win_005,4			//‚Ë‚Ş‚è
-	_BMPMENU_MAKE_LIST	msg_ev_win_006,5			//‚â‚ß‚é
-	_BMPMENU_HV_START	2	//’ˆÓI@c‰¡‘I‘ğ
+	//ãƒªã‚¹ãƒˆ
+	_BMPMENU_INIT		9,2,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_001,0			//ã©ã
+	_BMPMENU_MAKE_LIST	msg_ev_win_002,1			//ã¾ã²
+	_BMPMENU_MAKE_LIST	msg_ev_win_003,2			//ã­ã‚€ã‚Š
+	_BMPMENU_MAKE_LIST	msg_ev_win_004,3			//ã‚„ã‘ã©
+	_BMPMENU_MAKE_LIST	msg_ev_win_005,4			//ã­ã‚€ã‚Š
+	_BMPMENU_MAKE_LIST	msg_ev_win_006,5			//ã‚„ã‚ã‚‹
+	_BMPMENU_HV_START	2	//æ³¨æ„ï¼ã€€ç¸¦æ¨ªé¸æŠ
 
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP		0,ev_c01r0701_board_select_00	//
@@ -482,7 +482,7 @@ ev_c01r0701_board_select_04:
 	_JUMP			ev_c01r0701_board_02
 	_END
 
-//I—¹
+//çµ‚äº†
 ev_c01r0701_board_select_05:
 	_TALK_CLOSE
 	_TALK_END
@@ -490,7 +490,7 @@ ev_c01r0701_board_select_05:
 
 
 /********************************************************************/
-/*							ƒm[ƒgƒuƒbƒN							*/
+/*							ãƒãƒ¼ãƒˆãƒ–ãƒƒã‚¯							*/
 /********************************************************************/
 ev_c01r0701_notebook:
 	_EASY_MSG	msg_c01r0701_notebook_01
@@ -501,13 +501,13 @@ ev_c01r0701_notebook:
 /********************************************************************/
 #if 0
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_FIRST_POKE_NO_GET	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,MONSNO_NAETORU,ev_r203_rival_02
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,MONSNO_HIKOZARU,ev_r203_rival_03
 	_JUMP												ev_r203_rival_01
 
-//í“¬ŒÄ‚Ño‚µ
+//æˆ¦é—˜å‘¼ã³å‡ºã—
 ev_r203_rival_01:
 	_TRAINER_BTL_SET	RIVAL_01,0
 	_JUMP			ev_r203_rival_btl_coomon

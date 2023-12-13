@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_r209r0105evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r209r0105_oldwoman2a
 _EVENT_DATA		ev_r209r0105_oldwoman2b
@@ -33,24 +33,24 @@ _EVENT_DATA_END
 ev_r209r0105_oldwoman2a:
 	_TALK_OBJ_START
 
-	/*‚«‚è‚Î‚ç‚¢Žg—p‘O*/
+	/*ãã‚Šã°ã‚‰ã„ä½¿ç”¨å‰*/
 	_IF_FLAGOFF_JUMP	FE_R209R0105_KIRI_USE,ev_r209r0105_oldwoman2a_before
 
-	/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_R209R0105_ITEM_A_GET,ev_r209r0105_oldwoman2a_end
 
 	_TALK_KEYWAIT	msg_r209r0105_oldwoman2a_01
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_NOROINOOHUDA
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r209r0105_oldwoman2b_item_event_fail
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*‘—‚èƒJ[ƒ\ƒ‹‘Ò‚¿‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«å¾…ã¡ã‚ã‚Š*/
 
 	_FLAG_SET		FE_R209R0105_ITEM_A_GET
 	_JUMP			ev_r209r0105_oldwoman2a_end
@@ -63,7 +63,7 @@ ev_r209r0105_oldwoman2a_end:
 	_EVENT_END
 	_END
 
-/*‚«‚è‚Î‚ç‚¢Žg—p‘O*/
+/*ãã‚Šã°ã‚‰ã„ä½¿ç”¨å‰*/
 ev_r209r0105_oldwoman2a_before:
 	_TALKMSG		msg_r209r0105_oldwoman2a_03
 	_LAST_KEYWAIT
@@ -73,35 +73,35 @@ ev_r209r0105_oldwoman2a_before:
 
 
 /********************************************************************/
-/*							‚Î‚ ‚³‚ñ								*/
+/*							ã°ã‚ã•ã‚“								*/
 /********************************************************************/
 ev_r209r0105_oldwoman2b:
 	_TALK_OBJ_START
 
-	/*‚«‚è‚Î‚ç‚¢Žg—p‘O*/
+	/*ãã‚Šã°ã‚‰ã„ä½¿ç”¨å‰*/
 	_IF_FLAGOFF_JUMP	FE_R209R0105_KIRI_USE,ev_r209r0105_oldwoman2b_before
 
-	/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_R209R0105_ITEM_B_GET,ev_r209r0105_oldwoman2b_02
 
 	_TALK_KEYWAIT	msg_r209r0105_oldwoman2b_01
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_KIYOMENOOHUDA
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r209r0105_oldwoman2b_item_event_fail
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*‘—‚èƒJ[ƒ\ƒ‹‘Ò‚¿‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«å¾…ã¡ã‚ã‚Š*/
 
 	_FLAG_SET		FE_R209R0105_ITEM_B_GET
 	_JUMP			ev_r209r0105_oldwoman2b_02
 	_END
 
-/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 ev_r209r0105_oldwoman2b_02:
 	_TALKMSG		msg_r209r0105_oldwoman2b_02
 	_LAST_KEYWAIT
@@ -109,15 +109,15 @@ ev_r209r0105_oldwoman2b_02:
 	_TALK_OBJ_END
 	_END
 
-/*ƒAƒCƒeƒ€“üŽèŽ¸”s*/
+/*ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹å¤±æ•—*/
 ev_r209r0105_oldwoman2b_item_event_fail:
-	//ƒAƒCƒeƒ€Žæ“¾Ž¸”sƒCƒxƒ“ƒg(‹¤’ÊƒƒbƒZ[ƒW‚ðo‚·Aê—p‚ðŽg—p‚·‚é‚Æ‚«‚Í‚¢‚ç‚È‚¢)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¤±æ•—ã‚¤ãƒ™ãƒ³ãƒˆ(å…±é€šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™ã€å°‚ç”¨ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã¯ã„ã‚‰ãªã„)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-/*‚«‚è‚Î‚ç‚¢Žg—p‘O*/
+/*ãã‚Šã°ã‚‰ã„ä½¿ç”¨å‰*/
 ev_r209r0105_oldwoman2b_before:
 	_TALKMSG		msg_r209r0105_oldwoman2b_03
 	_LAST_KEYWAIT

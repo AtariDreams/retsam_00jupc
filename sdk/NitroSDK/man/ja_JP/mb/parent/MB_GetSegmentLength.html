@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MB_GetSegmentLength</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MB_GetSegmentLength</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,45 +22,45 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <p>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>file</STRONG></EM></TD>
-      <TD width="87%">�v���O�����t�@�C���̃n���h����ێ�����FSFile�\����<BR>
-	  ���̃t�@�C���̃V�[�N�ʒu�̓v���O�����o�C�i���̐擪���w���Ă���K�v������܂��B<BR>
-	  �܂��A�V�[�N�ʒu�͂��̊֐�����Ԃ����Ƃ��Ɍ��̈ʒu��ێ����܂��B<br>
+      <TD width="87%">プログラムファイルのハンドルを保持するFSFile構造体<BR>
+	  このファイルのシーク位置はプログラムバイナリの先頭を指している必要があります。<BR>
+	  また、シーク位置はこの関数から返ったときに元の位置を保持します。<br>
 	  <br>
-	  ���̃|�C���^��NULL���w�肵���ꍇ�͐e�@�A�v���P�[�V�������g��<br>
-	  �_�E�����[�h�v���O�����t�@�C���Ƃ݂Ȃ��ăT�C�Y���v�Z���܂��B<br>
+	  このポインタにNULLを指定した場合は親機アプリケーション自身を<br>
+	  ダウンロードプログラムファイルとみなしてサイズを計算します。<br>
 	  </TD>
     </TR>
   </TBODY>
 </TABLE>
 </p>
 
-<h2>�Ԃ�l</h2>
-<p>�������v���O�����ł���ꍇ�A0 �����傫���o�C�g�T�C�Y��Ԃ��A�����łȂ��ꍇ�� 0 ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>正しいプログラムである場合、0 よりも大きいバイトサイズを返し、そうでない場合は 0 を返します。</p>
 
-<H2>����</H2>
-<P>�w�肵���v���O�����t�@�C�����}���`�u�[�g�����֓o�^���邽�߂ɕK�v�ȃ������T�C�Y���擾���܂��B<br>
-�ڍׂ�<A href="MB_ReadSegment.html">MB_ReadSegment</A>�֐����Q�Ƃ��������B<br>
+<H2>説明</H2>
+<P>指定したプログラムファイルをマルチブート処理へ登録するために必要なメモリサイズを取得します。<br>
+詳細は<A href="MB_ReadSegment.html">MB_ReadSegment</A>関数を参照ください。<br>
 <BR>
-���̊֐��͓�����FS_ReadFile�֐����Ăяo���܂��B
+この関数は内部でFS_ReadFile関数を呼び出します。
 </p>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>
 <br>
 <A href="MB_ReadSegment.html">MB_ReadSegment</A> 
 <A href="MB_RegisterFile.html">MB_RegisterFile</A> 
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/11/11 �N���[���u�[�g���J�ɔ����L�q�ύX. �x�����[�h�����ǉ��ɔ����L�q�ύX.<br>
-2004/09/10 �t�@�C���|�C���^��NULL���w�肵���ۂ̓��������ǉ�<br>
-2004/08/09 ����<br>
+2004/11/11 クローンブート公開に伴う記述変更. 遅延リード方式追加に伴う記述変更.<br>
+2004/09/10 ファイルポインタにNULLを指定した際の動作説明を追加<br>
+2004/08/09 初版<br>
 </P>
 </body>
 </html>

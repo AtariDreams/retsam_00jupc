@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWC_NdGetFileListNumAsync</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWC_NdGetFileListNumAsync</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -20,43 +20,43 @@ BOOL DWC_NdGetFileListNumAsync( int* entrynum )
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-		  �_�E�����[�h�\�ȃt�@�C�������̎擾���J�n���܂��B���łɃ_�E�����[�h�T�[�o�ƒʐM���̏ꍇ�͎��s���܂��B
+		  ダウンロード可能なファイル総数の取得を開始します。すでにダウンロードサーバと通信中の場合は失敗します。
 		</P>
 		<P>
-		  �_�E�����[�h�����̊������ɁA<a href="DWC_NdInitAsync.html"><code>DWC_NdInitAsync</code></a>�֐��Ŏw�肵���R�[���o�b�N�֐����Ăяo����܂��B
+		  ダウンロード処理の完了時に、<a href="DWC_NdInitAsync.html"><code>DWC_NdInitAsync</code></a>関数で指定したコールバック関数が呼び出されます。
 		</P>
 		<P>
-		  �_�E�����[�h�T�[�o�ɂ��_�E�����[�h�\�ȃt�@�C���̔���́A<a href="DWC_NdSetAttr.html"><code>DWC_NdSetAttr</code></a>�֐��Őݒ肳�ꂽ����������Ɋ�Â��čs���܂��B
+		  ダウンロードサーバによるダウンロード可能なファイルの判定は、<a href="DWC_NdSetAttr.html"><code>DWC_NdSetAttr</code></a>関数で設定された属性文字列に基づいて行われます。
 		</P>
 		
-		<H2>����</H2>
+		<H2>引数</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>entrynum</CODE></STRONG></EM></TD>
-					<TD width="75%">�ʐM�̌��ʎ擾�����_�E�����[�h�\�ȃt�@�C���̑������i�[����̈�ւ̃|�C���^</TD>
+					<TD width="75%">通信の結果取得したダウンロード可能なファイルの総数を格納する領域へのポインタ</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
-					<TD width="75%">�����B�擾�����I�����ɃR�[���o�b�N�֐����Ăяo����܂��B</TD>
+					<TD width="75%">成功。取得処理終了時にコールバック関数が呼び出されます。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
-					<TD width="75%">���s<BR>
-					<a href="DWC_GetLastError.html"><code>DWC_GetLastErrorEx</code></a>�֐����g�p���ăG���[�̏����擾���Ă�������</TD>
+					<TD width="75%">失敗<BR>
+					<a href="DWC_GetLastError.html"><code>DWC_GetLastErrorEx</code></a>関数を使用してエラーの情報を取得してください</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<code>
 			<a href="DWC_NdSetAttr.html">DWC_NdSetAttr</a>,
@@ -65,9 +65,9 @@ BOOL DWC_NdGetFileListNumAsync( int* entrynum )
 			
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2006/04/26 ����<BR>
+			2006/04/26 初版<BR>
 		</P>
 
 	</BODY>

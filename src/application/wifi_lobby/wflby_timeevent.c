@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_timeevent.c
- *	@brief		ƒ^ƒCƒ€ƒCƒxƒ“ƒg
+ *	@brief		ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆ
  *	@author		tomoya takahshi
  *	@data		2008.01.26
  *
@@ -20,19 +20,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
@@ -48,17 +48,17 @@ static s32 s_WFLBY_DEBUG_LIGHT_CONT_FLOOR_COUNT;
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒ^ƒCƒ€ƒCƒxƒ“ƒgƒ[ƒN
+///	ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WFLBY_TIMEEVENT{
 	WFLBY_ROOMWK*		p_rmwk;
@@ -72,7 +72,7 @@ typedef struct _WFLBY_TIMEEVENT{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_TIMEEVENT_GetNeonRoom( PPW_LOBBY_TIME_EVENT event );
@@ -83,10 +83,10 @@ static void WFLBY_TIMEEVENT_AplLightOff( WFLBY_TIMEEVENT* p_wk );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	heapID		ƒq[ƒv
- *	@param	p_rmwk		•”‰®ƒ[ƒN
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_rmwk		éƒ¨å±‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_TIMEEVENT* WFLBY_TIMEEVENT_Init( u32 heapID, WFLBY_ROOMWK* p_rmwk )
@@ -108,20 +108,20 @@ WFLBY_TIMEEVENT* WFLBY_TIMEEVENT_Init( u32 heapID, WFLBY_ROOMWK* p_rmwk )
 	floor	= WFLBY_TIMEEVENT_GetNeonFloor( WFLBY_SYSTEM_Event_GetNeonFloor( p_wk->p_system ) );
 	monu	= WFLBY_TIMEEVENT_GetNeonMonu( WFLBY_SYSTEM_Event_GetNeonMonu( p_wk->p_system ) );
 
-	//  ƒ‰ƒCƒgŠÇ—ƒVƒXƒeƒ€‰Šú‰»
+	//  ãƒ©ã‚¤ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	p_wk->p_light		= WFLBY_LIGHT_Init( heapID, room, floor, monu );
 
-	// ƒtƒ[ƒgŠÇ—ƒVƒXƒeƒ€‰Šú‰»
+	// ãƒ•ãƒ­ãƒ¼ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	p_wk->p_floatcont	= WFLBY_FLOAT_CONT_Init( p_rmwk, heapID );
 
-	// ‰Ô‰ÎŠÇ—ƒVƒXƒeƒ€‰Šú‰»
+	// èŠ±ç«ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	p_wk->p_firecont	= WFLBY_FIRECONT_Init( p_wk->p_system, p_wk->p_mapobjcont, heapID );
 
-	// l•¨‚Ì‰e‚ÌF
+	// äººç‰©ã®å½±ã®è‰²
 	WFLBY_3DOBJCONT_InitShadowAlpha( p_wk->p_3dobjcont, room );
 
 
-	// ŠeƒCƒxƒ“ƒgó‘Ôæ“¾
+	// å„ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹å–å¾—
 	hanabi	= WFLBY_SYSTEM_Event_GetHanabi( p_wk->p_system );
 	lock	= WFLBY_SYSTEM_Event_GetLock( p_wk->p_system );
 	parade	= WFLBY_SYSTEM_Event_GetParade( p_wk->p_system );
@@ -129,38 +129,38 @@ WFLBY_TIMEEVENT* WFLBY_TIMEEVENT_Init( u32 heapID, WFLBY_ROOMWK* p_rmwk )
 	close	= WFLBY_SYSTEM_Event_GetEndCM( p_wk->p_system );
 	minigame= WFLBY_SYSTEM_Event_GetMiniGameStop( p_wk->p_system );
 	
-	// “º‘œ‚Ìó‘Ô
+	// éŠ…åƒã®çŠ¶æ…‹
 	{
 		if( hanabi == WFLBY_EVENT_HANABI_AFTER ){
-			// ‰Ô‰ÎŒã‚È‚Ì‚ÅA“º‘œ‚Ì–¾‚©‚è‚ğÁ‚·
+			// èŠ±ç«å¾Œãªã®ã§ã€éŠ…åƒã®æ˜ã‹ã‚Šã‚’æ¶ˆã™
 			WFLBY_3DMAPOBJCONT_MAP_OffDouzouLight( p_wk->p_mapobjcont );
 		}
 	}
 
-	// °ƒ‰ƒCƒg‚Ìó‘Ô
+	// åºŠãƒ©ã‚¤ãƒˆã®çŠ¶æ…‹
 	{
-		// ‰Ô‰Î‚ªn‚Ü‚Á‚Ä‚¢‚é‚Æ‚«
+		// èŠ±ç«ãŒå§‹ã¾ã£ã¦ã„ã‚‹ã¨ã
 		if(  hanabi != WFLBY_EVENT_HANABI_PLAY ){
 
-			// ‰Ô‰Î‘O‚È‚çÅ‰‚©‚çŒõ‚ğo‚·
+			// èŠ±ç«å‰ãªã‚‰æœ€åˆã‹ã‚‰å…‰ã‚’å‡ºã™
 			if( (hanabi == WFLBY_EVENT_HANABI_BEFORE) && (neon == TRUE) ){
 				WFLBY_3DMAPOBJCONT_MAP_SetFloorLight( p_wk->p_mapobjcont, WFLBY_3DMAPOBJ_CONT_LAMP_YURE  );
 			}
 		}
 	}
 
-	// ô‚Ìó‘Ô
+	// ç­–ã®çŠ¶æ…‹
 	{
-		// ƒpƒŒ[ƒh‚ªn‚Ü‚Á‚Ä‚¢‚é‚Æ‚«
+		// ãƒ‘ãƒ¬ãƒ¼ãƒ‰ãŒå§‹ã¾ã£ã¦ã„ã‚‹ã¨ã
 		if( parade == TRUE ){
 			WFLBY_3DMAPOBJCONT_MAP_OnPoll( p_wk->p_mapobjcont );
 		}
 	}
 
-	// ƒNƒ[ƒY
+	// ã‚¯ãƒ­ãƒ¼ã‚º
 	{
 		if( close == TRUE ){
-			// ƒAƒvƒŠ‚Ì–¾‚©‚è‚ğÁ‚·
+			// ã‚¢ãƒ—ãƒªã®æ˜ã‹ã‚Šã‚’æ¶ˆã™
 			WFLBY_TIMEEVENT_AplLightOff( p_wk );
 		}
 	}
@@ -171,31 +171,31 @@ WFLBY_TIMEEVENT* WFLBY_TIMEEVENT_Init( u32 heapID, WFLBY_ROOMWK* p_rmwk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€	”jŠü
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_TIMEEVENT_Exit( WFLBY_TIMEEVENT* p_wk )
 {
-	// ‰Ô‰ÎŠÇ—ƒVƒXƒeƒ€”jŠü
+	// èŠ±ç«ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_FIRECONT_Exit( p_wk->p_firecont );
 
-	// ƒtƒ[ƒgŠÇ—ƒVƒXƒeƒ€”jŠü
+	// ãƒ•ãƒ­ãƒ¼ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_FLOAT_CONT_Exit( p_wk->p_floatcont );
 	
-	// ƒ‰ƒCƒgŠÇ—ƒVƒXƒeƒ€”jŠü
+	// ãƒ©ã‚¤ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WFLBY_LIGHT_Exit( p_wk->p_light );
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_wk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€	ƒƒCƒ“
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_TIMEEVENT_Main( WFLBY_TIMEEVENT* p_wk )
@@ -234,94 +234,94 @@ void WFLBY_TIMEEVENT_Main( WFLBY_TIMEEVENT* p_wk )
 	}
 #endif
 	
-	// ƒCƒxƒ“ƒg”­“®ƒ`ƒFƒbƒN
-	// •”‰®ƒlƒIƒ“
+	// ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãƒã‚§ãƒƒã‚¯
+	// éƒ¨å±‹ãƒã‚ªãƒ³
 	if( WFLBY_SYSTEM_FLAG_GetEventStart( p_wk->p_system, WFLBY_EVENT_CHG_NEON_ROOM ) ){
 		u32 room;
 		room = WFLBY_TIMEEVENT_GetNeonRoom( WFLBY_SYSTEM_Event_GetNeonRoom( p_wk->p_system ) );
 		WFLBY_LIGHT_SetRoom( p_wk->p_light, room );
-		// l•¨‚Ì‰e‚ÌF
+		// äººç‰©ã®å½±ã®è‰²
 		WFLBY_3DOBJCONT_SetShadowAlpha( p_wk->p_3dobjcont, room );
 	}
-	// °ƒlƒIƒ“
+	// åºŠãƒã‚ªãƒ³
 	if( WFLBY_SYSTEM_FLAG_GetEventStart( p_wk->p_system, WFLBY_EVENT_CHG_NEON_FLOOR ) ){
 		u32 floor;
 		floor = WFLBY_TIMEEVENT_GetNeonFloor( WFLBY_SYSTEM_Event_GetNeonFloor( p_wk->p_system ) );
 		WFLBY_LIGHT_SetFloor( p_wk->p_light, floor );
 	}
-	// ƒ‚ƒjƒ…ƒƒ“ƒgƒlƒIƒ“
+	// ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆãƒã‚ªãƒ³
 	if( WFLBY_SYSTEM_FLAG_GetEventStart( p_wk->p_system, WFLBY_EVENT_CHG_NEON_MONU ) ){
 		u32 monu;
 		monu = WFLBY_TIMEEVENT_GetNeonMonu( WFLBY_SYSTEM_Event_GetNeonMonu( p_wk->p_system ) );
 		WFLBY_LIGHT_SetMonu( p_wk->p_light, monu );
 	}
 
-	// ƒlƒIƒ“ƒCƒxƒ“ƒg‚ªn‚Ü‚Á‚Ä‚¢‚ÄA‰Ô‰Î’†‚Å‚È‚¢‚Æ‚«
+	// ãƒã‚ªãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãŒå§‹ã¾ã£ã¦ã„ã¦ã€èŠ±ç«ä¸­ã§ãªã„ã¨ã
 	if( (WFLBY_SYSTEM_Event_GetNeon( p_wk->p_system ) == TRUE) && 
 		(WFLBY_SYSTEM_Event_GetHanabi( p_wk->p_system ) == WFLBY_EVENT_HANABI_BEFORE) ){
-		// ƒ‰ƒCƒg‚ª‚Â‚¢‚Ä‚¢‚È‚¢‚È‚çAƒ‰ƒCƒgON
+		// ãƒ©ã‚¤ãƒˆãŒã¤ã„ã¦ã„ãªã„ãªã‚‰ã€ãƒ©ã‚¤ãƒˆON
 		if( WFLBY_3DMAPOBJCONT_MAP_CheckFloorLightYure( p_wk->p_mapobjcont ) == FALSE ){
-			// ƒ‰ƒCƒgON
+			// ãƒ©ã‚¤ãƒˆON
 			WFLBY_3DMAPOBJCONT_MAP_SetFloorLight( p_wk->p_mapobjcont, WFLBY_3DMAPOBJ_CONT_LAMP_ON );
 		}
 	}
 
-	// ‰Ô‰ÎŠJn
+	// èŠ±ç«é–‹å§‹
 	if( WFLBY_SYSTEM_FLAG_GetEventStart( p_wk->p_system, WFLBY_EVENT_CHG_FIRE ) ){
 		if( WFLBY_SYSTEM_Event_GetHanabi( p_wk->p_system ) == WFLBY_EVENT_HANABI_PLAY ){
-			// ‰Ô‰ÎŠJn
-			// “º‘œ‚Ìƒ‰ƒCƒg‚ª“¯‚ÉOFF‚É‚È‚è‚Ü‚·
+			// èŠ±ç«é–‹å§‹
+			// éŠ…åƒã®ãƒ©ã‚¤ãƒˆãŒåŒæ™‚ã«OFFã«ãªã‚Šã¾ã™
 			WFLBY_3DMAPOBJCONT_MAP_OffDouzouLight( p_wk->p_mapobjcont );
 
-			// °ƒ‰ƒCƒgOFF
+			// åºŠãƒ©ã‚¤ãƒˆOFF
 			WFLBY_3DMAPOBJCONT_MAP_SetFloorLight( p_wk->p_mapobjcont, WFLBY_3DMAPOBJ_CONT_LAMP_OFF );
 
 		}else{
-			// ‰Ô‰Î’â~
+			// èŠ±ç«åœæ­¢
 		}
 	}
 		
 
-	// ƒpƒŒ[ƒhŠJn
+	// ãƒ‘ãƒ¬ãƒ¼ãƒ‰é–‹å§‹
 	if( WFLBY_SYSTEM_FLAG_GetEventStart( p_wk->p_system, WFLBY_EVENT_CHG_PARADE ) ){
 		if( WFLBY_SYSTEM_Event_GetParade( p_wk->p_system ) == TRUE ){
 
-			// ô‚ğƒAƒjƒŠJn
+			// ç­–ã‚’ã‚¢ãƒ‹ãƒ¡é–‹å§‹
 			WFLBY_3DMAPOBJCONT_MAP_OnPoll( p_wk->p_mapobjcont );
 		}
 	}
 
-	// ƒNƒ[ƒY‚b‚lŠJn
+	// ã‚¯ãƒ­ãƒ¼ã‚ºï¼£ï¼­é–‹å§‹
 	if( WFLBY_SYSTEM_Event_GetEndCM( p_wk->p_system ) == TRUE ){
-		// ˜g‚ÌƒAƒjƒ’â~
+		// æ ã®ã‚¢ãƒ‹ãƒ¡åœæ­¢
 		WFLBY_3DMAPOBJCONT_MAP_OffPoll( p_wk->p_mapobjcont );
 		
 
-		// ƒAƒvƒŠ‚Ì–¾‚©‚è‚ğÁ‚·
+		// ã‚¢ãƒ—ãƒªã®æ˜ã‹ã‚Šã‚’æ¶ˆã™
 		WFLBY_TIMEEVENT_AplLightOff( p_wk );
 	}
 
 	
-	// ƒ‰ƒCƒgŠÇ—ƒƒCƒ“
+	// ãƒ©ã‚¤ãƒˆç®¡ç†ãƒ¡ã‚¤ãƒ³
 	WFLBY_LIGHT_Main( p_wk->p_light );
 
-	// ƒtƒ[ƒgŠÇ—ƒƒCƒ“
+	// ãƒ•ãƒ­ãƒ¼ãƒˆç®¡ç†ãƒ¡ã‚¤ãƒ³
 	WFLBY_FLOAT_CONT_Main( p_wk->p_floatcont );
 
-	// ‰Ô‰ÎŠÇ—ƒƒCƒ“
+	// èŠ±ç«ç®¡ç†ãƒ¡ã‚¤ãƒ³
 	WFLBY_FIRECONT_Main( p_wk->p_firecont );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg‚ªƒAƒjƒ’†‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãŒã‚¢ãƒ‹ãƒ¡ä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒVƒXƒeƒ€
- *	@param	floatidx	ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX
- *	@param	anmidx		ƒAƒjƒƒCƒ“ƒfƒbƒNƒX		WFLBY_FLOAT_ANM_NUM
+ *	@param	cp_wk		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	floatidx	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	anmidx		ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹		WFLBY_FLOAT_ANM_NUM
  *
- *	@retval	TRUE	ƒAƒjƒ’†
- *	@retval	FALSE	ƒAƒjƒ‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ã‚¢ãƒ‹ãƒ¡ä¸­
+ *	@retval	FALSE	ã‚¢ãƒ‹ãƒ¡ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_TIMEEVENT_FLOAT_CheckAnm( const WFLBY_TIMEEVENT* cp_wk, u32 floatidx, WFLBY_FLOAT_ANM_TYPE anmidx )
@@ -331,9 +331,9 @@ BOOL WFLBY_TIMEEVENT_FLOAT_CheckAnm( const WFLBY_TIMEEVENT* cp_wk, u32 floatidx,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰ÎSE‚ª—¬‚ê‚Ä‚½‚çÁ‚·
+ *	@brief	èŠ±ç«SEãŒæµã‚Œã¦ãŸã‚‰æ¶ˆã™
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_TIMEEVENT_FIRE_StopSe( WFLBY_TIMEEVENT* p_wk )
@@ -347,30 +347,30 @@ void WFLBY_TIMEEVENT_FIRE_StopSe( WFLBY_TIMEEVENT* p_wk )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒg
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆ
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒlƒIƒ“ƒiƒ“ƒo[‚ğæ“¾‚·‚é
+ *	@brief	éƒ¨å±‹ãƒã‚ªãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	event	ƒCƒxƒ“ƒg
+ *	@param	event	ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_TIMEEVENT_GetNeonRoom( PPW_LOBBY_TIME_EVENT event )
 {
 	switch( event ){
-    case PPW_LOBBY_TIME_EVENT_NEON_A0:           ///< º“àƒlƒIƒ“æ~’²0B
-    case PPW_LOBBY_TIME_EVENT_NEON_A1:           ///< º“àƒlƒIƒ“æ~’²1B
-    case PPW_LOBBY_TIME_EVENT_NEON_A2:           ///< º“àƒlƒIƒ“æ~’²2B
-    case PPW_LOBBY_TIME_EVENT_NEON_A3:           ///< º“àƒlƒIƒ“æ~’²3B
-    case PPW_LOBBY_TIME_EVENT_NEON_A4:           ///< º“àƒlƒIƒ“æ~’²4B
-    case PPW_LOBBY_TIME_EVENT_NEON_A5:           ///< º“àƒlƒIƒ“æ~’²5B
+    case PPW_LOBBY_TIME_EVENT_NEON_A0:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿0ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_A1:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿1ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_A2:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿2ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_A3:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿3ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_A4:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿4ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_A5:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿5ã€‚
 		
 		return event - PPW_LOBBY_TIME_EVENT_NEON_A0;
 
 	default:
-		//  ƒCƒxƒ“ƒgƒiƒ“ƒo[‚¦‚ç[
+		//  ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ãˆã‚‰ãƒ¼
 		GF_ASSERT( 0 );
 		break;
 	}
@@ -379,23 +379,23 @@ static u32 WFLBY_TIMEEVENT_GetNeonRoom( PPW_LOBBY_TIME_EVENT event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	°ƒlƒIƒ“ƒiƒ“ƒo[‚ğæ“¾‚·‚é
+ *	@brief	åºŠãƒã‚ªãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	event	ƒCƒxƒ“ƒg
+ *	@param	event	ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_TIMEEVENT_GetNeonFloor( PPW_LOBBY_TIME_EVENT event )
 {
 	switch( event ){
-    case PPW_LOBBY_TIME_EVENT_NEON_B0:           ///< °ƒlƒIƒ“æ~’²0B
-    case PPW_LOBBY_TIME_EVENT_NEON_B1:           ///< °ƒlƒIƒ“æ~’²1B
-    case PPW_LOBBY_TIME_EVENT_NEON_B2:           ///< °ƒlƒIƒ“æ~’²2B
-    case PPW_LOBBY_TIME_EVENT_NEON_B3:           ///< °ƒlƒIƒ“æ~’²3B
+    case PPW_LOBBY_TIME_EVENT_NEON_B0:           ///< åºŠãƒã‚ªãƒ³è«§èª¿0ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_B1:           ///< åºŠãƒã‚ªãƒ³è«§èª¿1ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_B2:           ///< åºŠãƒã‚ªãƒ³è«§èª¿2ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_B3:           ///< åºŠãƒã‚ªãƒ³è«§èª¿3ã€‚
 		
 		return event - PPW_LOBBY_TIME_EVENT_NEON_B0;
 
 	default:
-		//  ƒCƒxƒ“ƒgƒiƒ“ƒo[‚¦‚ç[
+		//  ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ãˆã‚‰ãƒ¼
 		GF_ASSERT( 0 );
 		break;
 	}
@@ -404,23 +404,23 @@ static u32 WFLBY_TIMEEVENT_GetNeonFloor( PPW_LOBBY_TIME_EVENT event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒjƒ…ƒƒ“ƒgƒlƒIƒ“ƒiƒ“ƒo[‚ğæ“¾‚·‚é
+ *	@brief	ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆãƒã‚ªãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	event	ƒCƒxƒ“ƒg
+ *	@param	event	ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_TIMEEVENT_GetNeonMonu( PPW_LOBBY_TIME_EVENT event )
 {
 	switch( event ){
-    case PPW_LOBBY_TIME_EVENT_NEON_C0:           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²0B
-    case PPW_LOBBY_TIME_EVENT_NEON_C1:           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²1B
-    case PPW_LOBBY_TIME_EVENT_NEON_C2:           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²2B
-    case PPW_LOBBY_TIME_EVENT_NEON_C3:           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²3B
+    case PPW_LOBBY_TIME_EVENT_NEON_C0:           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿0ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_C1:           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿1ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_C2:           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿2ã€‚
+    case PPW_LOBBY_TIME_EVENT_NEON_C3:           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿3ã€‚
 		
 		return event - PPW_LOBBY_TIME_EVENT_NEON_C0;
 
 	default:
-		//  ƒCƒxƒ“ƒgƒiƒ“ƒo[‚¦‚ç[
+		//  ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ãˆã‚‰ãƒ¼
 		GF_ASSERT( 0 );
 		break;
 	}
@@ -433,13 +433,13 @@ static u32 WFLBY_TIMEEVENT_GetNeonMonu( PPW_LOBBY_TIME_EVENT event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒ‰ƒCƒg‚ğOFF‚·‚é
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ©ã‚¤ãƒˆã‚’OFFã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_TIMEEVENT_AplLightOff( WFLBY_TIMEEVENT* p_wk )
 {
-	// ƒ‰ƒCƒg‚Q‚ğOFF‚É‚·‚é
+	// ãƒ©ã‚¤ãƒˆï¼’ã‚’OFFã«ã™ã‚‹
 	NNS_G3dGlbLightColor( 2, GX_RGB( 0,0,0 ) );
 }

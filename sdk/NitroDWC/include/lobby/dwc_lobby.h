@@ -14,9 +14,9 @@
 /**
  * @file
  * 
- * @brief Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ ƒwƒbƒ_
+ * @brief Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒ˜ãƒƒãƒ€
  * 
- * Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ
+ * Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
  * 
  */
 
@@ -34,39 +34,39 @@ extern "C"
 #pragma pack(push, 4)
 #endif
 
-#define DWC_LOBBY_INVALID_USER_ID       -1  ///< –³Œø‚Èƒ†[ƒUIDB
-#define DWC_LOBBY_INVALID_TIME          0   ///< –³Œø‚ÈŠÔB
+#define DWC_LOBBY_INVALID_USER_ID       -1  ///< ç„¡åŠ¹ãªãƒ¦ãƒ¼ã‚¶IDã€‚
+#define DWC_LOBBY_INVALID_TIME          0   ///< ç„¡åŠ¹ãªæ™‚é–“ã€‚
 
-/// DWCi_LobbySend*MessageŠÖ”‹y‚ÑDWCi_LobbySetChannelDataŠÖ”‚Å‘—M‚Å‚«‚éÅ‘å‚Ì•¶š”B(NULLI’[ŠÜ‚Ş)
+/// DWCi_LobbySend*Messageé–¢æ•°åŠã³DWCi_LobbySetChannelDataé–¢æ•°ã§é€ä¿¡ã§ãã‚‹æœ€å¤§ã®æ–‡å­—æ•°ã€‚(NULLçµ‚ç«¯å«ã‚€)
 #define DWC_LOBBY_MAX_STRING_SIZE       400
 
-/// ƒ`ƒƒƒ“ƒlƒ‹–¼‚Éw’è‚Å‚«‚éÅ‘å‚Ì•¶š”B(NULLI’[ŠÜ‚Ş)
+/// ãƒãƒ£ãƒ³ãƒãƒ«åã«æŒ‡å®šã§ãã‚‹æœ€å¤§ã®æ–‡å­—æ•°ã€‚(NULLçµ‚ç«¯å«ã‚€)
 #define DWC_LOBBY_MAX_CHANNEL_NAME_SIZE 20
     
-/// DWCi_LobbySetChannelTopicŠÖ”‚Åw’è‚Å‚«‚éƒgƒsƒbƒN‚ÌÅ‘å‚Ì•¶š”B(NULLI’[ŠÜ‚Ş)
+/// DWCi_LobbySetChannelTopicé–¢æ•°ã§æŒ‡å®šã§ãã‚‹ãƒˆãƒ”ãƒƒã‚¯ã®æœ€å¤§ã®æ–‡å­—æ•°ã€‚(NULLçµ‚ç«¯å«ã‚€)
 #define DWC_LOBBY_MAX_CHANNEL_TOPIC_SIZE DWC_LOBBY_MAX_STRING_SIZE
 
-/// ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ÌƒL[‚Æ‚µ‚Äw’è‚Å‚«‚éÅ‘å‚Ì•¶š”B(NULLI’[ŠÜ‚Ş)
+/// ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ¼ã¨ã—ã¦æŒ‡å®šã§ãã‚‹æœ€å¤§ã®æ–‡å­—æ•°ã€‚(NULLçµ‚ç«¯å«ã‚€)
 #define DWC_LOBBY_MAX_CHANNEL_KEY_SIZE  20
 
-/// ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒpƒXƒ[ƒh‚Æ‚µ‚Äw’è‚Å‚«‚éÅ‘å‚Ì•¶š”B(NULLI’[ŠÜ‚Ş)
+/// ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã¨ã—ã¦æŒ‡å®šã§ãã‚‹æœ€å¤§ã®æ–‡å­—æ•°ã€‚(NULLçµ‚ç«¯å«ã‚€)
 #define DWC_LOBBY_MAX_CHANNEL_PASSWORD_SIZE 20
 
-/// ƒ`ƒƒƒ“ƒlƒ‹–¼‚É•t‚¯‚éƒvƒŠƒtƒBƒbƒNƒXB“üºƒ`ƒƒƒ“ƒlƒ‹‚ğ•ª‚¯‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+/// ãƒãƒ£ãƒ³ãƒãƒ«åã«ä»˜ã‘ã‚‹ãƒ—ãƒªãƒ•ã‚£ãƒƒã‚¯ã‚¹ã€‚å…¥å®¤ãƒãƒ£ãƒ³ãƒãƒ«ã‚’åˆ†ã‘ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
 typedef enum DWC_LOBBY_CHANNEL_PREFIX
 {
-    DWC_LOBBY_CHANNEL_PREFIX_RELEASE,       ///< »•i—pB
-    DWC_LOBBY_CHANNEL_PREFIX_DEBUG,         ///< ƒfƒoƒbƒO—pB
-    DWC_LOBBY_CHANNEL_PREFIX_DEBUG1,        ///< ƒfƒoƒbƒO—pB
-    DWC_LOBBY_CHANNEL_PREFIX_DEBUG2,        ///< ƒfƒoƒbƒO—pB
-    DWC_LOBBY_CHANNEL_PREFIX_DEBUG3,        ///< ƒfƒoƒbƒO—pB
-    DWC_LOBBY_CHANNEL_PREFIX_DEBUG4,        ///< ƒfƒoƒbƒO—pB
-    DWC_LOBBY_CHANNEL_PREFIX_DEBUG5,        ///< ƒfƒoƒbƒO—pB
-    DWC_LOBBY_CHANNEL_PREFIX_DEBUG6,        ///< ƒfƒoƒbƒO—pB
-    DWC_LOBBY_CHANNEL_PREFIX_DEBUG7,        ///< ƒfƒoƒbƒO—pB
-    DWC_LOBBY_CHANNEL_PREFIX_DEBUG8,        ///< ƒfƒoƒbƒO—pB
-    DWC_LOBBY_CHANNEL_PREFIX_DEBUG9,        ///< ƒfƒoƒbƒO—pB
-    DWC_LOBBY_CHANNEL_PREFIX_TEST           ///< ƒ‰ƒCƒuƒ‰ƒŠŠJ”­—pB(w’è‚µ‚È‚¢‚Å‚­‚¾‚³‚¢)
+    DWC_LOBBY_CHANNEL_PREFIX_RELEASE,       ///< è£½å“ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_DEBUG,         ///< ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_DEBUG1,        ///< ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_DEBUG2,        ///< ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_DEBUG3,        ///< ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_DEBUG4,        ///< ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_DEBUG5,        ///< ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_DEBUG6,        ///< ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_DEBUG7,        ///< ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_DEBUG8,        ///< ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_DEBUG9,        ///< ãƒ‡ãƒãƒƒã‚°ç”¨ã€‚
+    DWC_LOBBY_CHANNEL_PREFIX_TEST           ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªé–‹ç™ºç”¨ã€‚(æŒ‡å®šã—ãªã„ã§ãã ã•ã„)
 }
 DWC_LOBBY_CHANNEL_PREFIX;
 

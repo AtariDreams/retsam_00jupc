@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WMPort</title>
@@ -13,7 +13,7 @@
 
 <h1 align="left">WMPort</h1>
 
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -33,45 +33,45 @@
 } WMPort;</CODE></PRE>
   </dd>
 
-</dl><h2>�v�f</h2>
+</dl><h2>要素</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="200"><em><strong><font face="Courier New">WM_PORT_RAWDATA</font></strong></em></TD>
-      <TD width="800">WM���C�u�����̃o�[�W�����݊��p�ɗ\�񂳂ꂽ�|�[�g�ł��B</TD>
+      <TD width="800">WMライブラリのバージョン互換用に予約されたポートです。</TD>
     </TR>
     <TR>
       <TD width="200"><em><strong><font face="Courier New">WM_PORT_BT</font></strong></em></TD>
-      <TD width="800">�u���b�N�]���p�ɗ\�񂳂ꂽ�|�[�g�ł��B</TD>
+      <TD width="800">ブロック転送用に予約されたポートです。</TD>
     </TR>
     <TR>
       <TD width="200"><em><strong><font face="Courier New">WM_PORT_KS</font></strong></em></TD>
-      <TD width="800">�L�[�V�F�A�����O�p�ɗ\�񂳂ꂽ�|�[�g�ł��B</TD>
+      <TD width="800">キーシェアリング用に予約されたポートです。</TD>
     </TR>
     <TR>
       <TD width="200"><em><strong><font face="Courier New">WM_PORT_RESERVE_*</font></strong></em></TD>
-      <TD width="800">�V�X�e���\��|�[�g�ł��B</TD>
+      <TD width="800">システム予約ポートです。</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-MP�ɂ��f�[�^����M�|�[�g�������񋓌^�ł��B
-�g�p�\�ȃ|�[�g�� 0 �` 15 �ł��B
-0 �` 7 �͒ʏ�̓]���p�̃|�[�g�ɁA8 �` 15 �̓f�[�^����M�̏����𐧌䂷��]���p�̃|�[�g�ɁA���ꂼ�ꊄ�蓖�Ă��Ă��܂��B
-0 �` 3�A8 �` 11 �ԃ|�[�g�͗\�񂳂�Ă��܂��̂ŁA���R�Ɏg�p�\�ȃ|�[�g�� 4 �` 7 �A12 �` 15 �ԂƂȂ�܂��B
-�f�[�^�V�F�A�����O���s���ۂɂ� 12 �Ԉȍ~�̃|�[�g���g�p���ĉ������B
+MPによるデータ送受信ポートを示す列挙型です。
+使用可能なポートは 0 〜 15 です。
+0 〜 7 は通常の転送用のポートに、8 〜 15 はデータ送受信の順序を制御する転送用のポートに、それぞれ割り当てられています。
+0 〜 3、8 〜 11 番ポートは予約されていますので、自由に使用可能なポートは 4 〜 7 、12 〜 15 番となります。
+データシェアリングを行う際には 12 番以降のポートを使用して下さい。
 </P>
 
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE>
 <A href="WM_SetMPDataToPort.html">WM_SetMPDataToPort</A>, <A href="WM_SetPortCallback.html">WM_SetPortCallback</A>, <A href="WM_StartDataSharing.html">WM_StartDataSharing</A>
 </CODE></P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/08/11 ����<BR>
+2004/08/11 初版<BR>
 </P>
 </body>
 </html>

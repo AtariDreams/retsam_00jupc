@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	roulette.h
- * @brief	uƒoƒgƒ‹ƒ‹[ƒŒƒbƒgvƒwƒbƒ_[
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.09.05
  */
@@ -14,14 +14,14 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
 
 
 //==============================================================================================
 //
-//	ƒ‹[ƒŒƒbƒg‰æ–ÊŒÄ‚Ño‚µ@\‘¢‘ÌéŒ¾
+//	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆç”»é¢å‘¼ã³å‡ºã—ã€€æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 typedef struct{
@@ -32,10 +32,10 @@ typedef struct{
 	u8	mode; 
 	u8	point;
 
-	int* p_weather;									//“VŒó
-	u8*	p_csr_speed_level;							//ƒJ[ƒ\ƒ‹ƒXƒs[ƒhƒŒƒxƒ‹
-	u8*	p_decide_ev_no;								//Œˆ’è‚µ‚½ƒCƒxƒ“ƒgƒiƒ“ƒo[
-	u16* p_rand_pos;								//‹¤’Ê‚Ìƒ‰ƒ“ƒ_ƒ€
+	int* p_weather;									//å¤©å€™
+	u8*	p_csr_speed_level;							//ã‚«ãƒ¼ã‚½ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ¬ãƒ™ãƒ«
+	u8*	p_decide_ev_no;								//æ±ºå®šã—ãŸã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+	u16* p_rand_pos;								//å…±é€šã®ãƒ©ãƒ³ãƒ€ãƒ 
 
 	u16	pair_rensyou;
 	u16	dummy2;
@@ -43,21 +43,21 @@ typedef struct{
 	u16	rensyou;
 	u16	lap;
 
-	//“GƒgƒŒ[ƒi[‰æ–Ê‚Ìî•ñ‚ªŒöŠJ‚³‚ê‚½‚©ƒtƒ‰ƒO
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢ã®æƒ…å ±ãŒå…¬é–‹ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°
 	u8	enemy_temoti_flag[ROULETTE_ENEMY_POKE_MAX];
 	u8	enemy_level_flag[ROULETTE_ENEMY_POKE_MAX];
 	u8	enemy_tuyosa_flag[ROULETTE_ENEMY_POKE_MAX];
 	u8	enemy_waza_flag[ROULETTE_ENEMY_POKE_MAX];
 
-	POKEPARTY* p_m_party;							//–¡•û
-	POKEPARTY* p_e_party;							//“G
-//	u16 ret_work[ROULETTE_RET_WORK_MAX];				//–ß‚è’lŠi”[ƒ[ƒN
-	u16 ret_work;									//–ß‚è’lŠi”[ƒ[ƒN
-	void* p_work;									//ROULETTE_SCRWORK(bf_scr_wk•Û‘¶)
+	POKEPARTY* p_m_party;							//å‘³æ–¹
+	POKEPARTY* p_e_party;							//æ•µ
+//	u16 ret_work[ROULETTE_RET_WORK_MAX];				//æˆ»ã‚Šå€¤æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	u16 ret_work;									//æˆ»ã‚Šå€¤æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	void* p_work;									//ROULETTE_SCRWORK(bf_scr_wkä¿å­˜)
 
-	u16 pair_cp;									//ƒp[ƒgƒi[‚ÌCP
+	u16 pair_cp;									//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®CP
 
-	u8	random_flag;								//ƒJ[ƒ\ƒ‹ƒ‰ƒ“ƒ_ƒ€ˆÚ“®onƒtƒ‰ƒO
+	u8	random_flag;								//ã‚«ãƒ¼ã‚½ãƒ«ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•onãƒ•ãƒ©ã‚°
 	u8	dummy_work;
 	u16	dummy_work2;
 }ROULETTE_CALL_WORK;
@@ -65,10 +65,10 @@ typedef struct{
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
-//extern const PROC_DATA RouletteProcData;				//ƒvƒƒZƒX’è‹`ƒf[ƒ^
+//extern const PROC_DATA RouletteProcData;				//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT RouletteProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT RouletteProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT RouletteProc_End( PROC * proc, int * seq );

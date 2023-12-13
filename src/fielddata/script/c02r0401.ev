@@ -1,6 +1,6 @@
 //====================================================================
 //						c02r0401.gmm
-//					ƒVƒeƒB‚O‚QEr0401
+//					ã‚·ãƒ†ã‚£ï¼ï¼’ãƒ»r0401
 //====================================================================
 	.text
 
@@ -9,16 +9,16 @@
 	.include	"../eventdata/zone_c02r0401evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c02r0401_flag_change
 _EVENT_DATA		ev_c02r0401_event_start
 _EVENT_DATA		ev_c02r0401_event_end
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
@@ -28,74 +28,74 @@ ev_c02r0401_flag_change:
 
 	_FLAG_SET		FV_C02R0401_EVENT
 
-	/*ƒ_[ƒNƒCƒxƒ“ƒgŠù‚ÉƒNƒŠƒA‚µ‚Ä‚¢‚é‚©H*/
+	/*ãƒ€ãƒ¼ã‚¯ã‚¤ãƒ™ãƒ³ãƒˆæ—¢ã«ã‚¯ãƒªã‚¢ã—ã¦ã„ã‚‹ã‹ï¼Ÿ*/
 	_IF_FLAGOFF_JUMP	FE_D30R0101_LEGEND_CLEAR,ev_c02r0401_flag_change_check0
 	_END
 
-/*‚Ü‚¾ƒ_[ƒNƒCƒxƒ“ƒg‚ðƒNƒŠƒA‚µ‚Ä‚¢‚È‚¢*/
+/*ã¾ã ãƒ€ãƒ¼ã‚¯ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢ã—ã¦ã„ãªã„*/
 ev_c02r0401_flag_change_check0:
-	/*ƒQ[ƒ€ƒNƒŠƒA‚µ‚Ä‚¢‚é‚©*/
+	/*ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã—ã¦ã„ã‚‹ã‹*/
 	_IF_FLAGON_JUMP		SYS_FLAG_GAME_CLEAR,ev_c02r0401_flag_change_check1
 	_END
 
-/*ƒQ[ƒ€ƒNƒŠƒA‚µ‚Ä‚¢‚é‚©*/
+/*ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã—ã¦ã„ã‚‹ã‹*/
 ev_c02r0401_flag_change_check1:
 
-	/*‘S‘}ŠÓ‚É‚È‚Á‚Ä‚¢‚½‚ç*/
+	/*å…¨å›½å›³é‘‘ã«ãªã£ã¦ã„ãŸã‚‰*/
 	_ZENKOKU_ZUKAN_FLAG	FLAG_MODE_GET,LOCALWORK0
 	_IFVAL_JUMP			LOCALWORK0,EQ,1,ev_c02r0401_flag_change_check2
 	_END
 
-/*‘S‘}ŠÓ‚É‚È‚Á‚Ä‚¢‚½‚ç*/
+/*å…¨å›½å›³é‘‘ã«ãªã£ã¦ã„ãŸã‚‰*/
 ev_c02r0401_flag_change_check2:
 
-	/*ƒƒ“ƒo[ƒYƒJ[ƒh‚ð‚à‚Á‚Ä‚¢‚é‚©H*/
+	/*ãƒ¡ãƒ³ãƒãƒ¼ã‚ºã‚«ãƒ¼ãƒ‰ã‚’ã‚‚ã£ã¦ã„ã‚‹ã‹ï¼Ÿ*/
 	_ITEM_CHK	ITEM_MENBAAZUKAADO,1,LOCALWORK0
 	_IFVAL_JUMP	LOCALWORK0,EQ,TRUE,ev_c02r0401_flag_change_check3
 	
 	_END
 
-/*ƒƒ“ƒo[ƒYƒJ[ƒh‚ð‚à‚Á‚Ä‚¢‚é*/
+/*ãƒ¡ãƒ³ãƒãƒ¼ã‚ºã‚«ãƒ¼ãƒ‰ã‚’ã‚‚ã£ã¦ã„ã‚‹*/
 ev_c02r0401_flag_change_check3:
-	/*”z•zƒCƒxƒ“ƒguƒƒ“ƒo[ƒYƒJ[ƒhv‚ª—LŒø‚©H*/
+	/*é…å¸ƒã‚¤ãƒ™ãƒ³ãƒˆã€Œãƒ¡ãƒ³ãƒãƒ¼ã‚ºã‚«ãƒ¼ãƒ‰ã€ãŒæœ‰åŠ¹ã‹ï¼Ÿ*/
 	_IS_HAIHU_EVENT_ENABLE	HAIHUEVENT_ID_D30,LOCALWORK0
 	_IFVAL_JUMP				LOCALWORK0,EQ,1,ev_c02r0401_flag_change_check4
 	_END
 
-/*”z•zƒCƒxƒ“ƒguƒƒ“ƒo[ƒYƒJ[ƒhv‚ª—LŒø‚¾‚Á‚½*/
+/*é…å¸ƒã‚¤ãƒ™ãƒ³ãƒˆã€Œãƒ¡ãƒ³ãƒãƒ¼ã‚ºã‚«ãƒ¼ãƒ‰ã€ãŒæœ‰åŠ¹ã ã£ãŸ*/
 ev_c02r0401_flag_change_check4:
 
-	/*ƒNƒŒƒZƒŠƒA(ƒ€[ƒoƒX)­”N‚ð•‚¯‚½‚©H*/
+	/*ã‚¯ãƒ¬ã‚»ãƒªã‚¢(ãƒ ãƒ¼ãƒã‚¹)å°‘å¹´ã‚’åŠ©ã‘ãŸã‹ï¼Ÿ*/
 	_IF_FLAGON_JUMP		FE_C02R0501_EVENT_CLEAR,ev_c02r0401_flag_change_check5
 	_END
 
-/*ƒNƒŒƒZƒŠƒA(ƒ€[ƒoƒX)­”N‚ð•‚¯‚½*/
+/*ã‚¯ãƒ¬ã‚»ãƒªã‚¢(ãƒ ãƒ¼ãƒã‚¹)å°‘å¹´ã‚’åŠ©ã‘ãŸ*/
 ev_c02r0401_flag_change_check5:
-	/*‚·‚Å‚ÉƒCƒxƒ“ƒgI—¹‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã—ã¦ã„ãŸã‚‰*/
 	_IFVAL_JUMP			WK_SCENE_C02R0401,GE,2,ev_c02r0401_flag_change_check6
 
 	_FLAG_RESET			FV_C02R0401_EVENT
-	_LDVAL				WK_SCENE_C02R0401,1		/*ƒCƒxƒ“ƒgŠJŽn*/
+	_LDVAL				WK_SCENE_C02R0401,1		/*ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹*/
 	_END
 
-/*‚·‚Å‚ÉƒCƒxƒ“ƒgI—¹‚µ‚Ä‚¢‚½‚ç*/
+/*ã™ã§ã«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã—ã¦ã„ãŸã‚‰*/
 ev_c02r0401_flag_change_check6:
 	_END
 
 
 /********************************************************************/
-/*							ƒ_[ƒNŠJŽn								*/
+/*							ãƒ€ãƒ¼ã‚¯é–‹å§‹								*/
 /********************************************************************/
 ev_c02r0401_event_start:
 	_EVENT_START
 
-	//ˆê”ŠÔ‚ð‚ ‚¯‚é
+	//ä¸€æ‹é–“ã‚’ã‚ã‘ã‚‹
 	_TIME_WAIT		30,SCWK_ANSWER
-	//c‚¢‚ç‚Á‚µ‚á‚¢‚Ü‚¹
+	//â€¦ã„ã‚‰ã£ã—ã‚ƒã„ã¾ã›
 	_TALK_KEYWAIT	msg_c02r0401_event_01
 	_TALK_CLOSE
 
-	/*—U“±‚³‚ê‚Äƒxƒbƒh‚Ì—×‚Ö*/
+	/*èª˜å°Žã•ã‚Œã¦ãƒ™ãƒƒãƒ‰ã®éš£ã¸*/
 	_OBJ_ANIME		C02R0401_EVENT,anm_c02r0401_event_01
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c02r0401_player_01
 	_OBJ_ANIME_WAIT
@@ -106,16 +106,16 @@ ev_c02r0401_event_start:
 	_TALK_KEYWAIT	msg_c02r0401_event_02
 	_TALK_CLOSE
 
-	/*ê—p‚ÌSEH*/
+	/*å°‚ç”¨ã®SEï¼Ÿ*/
 	_SE_PLAY		SEQ_SE_DP_MAZYO2
 
 	_FLAG_SET		FE_C02R0401_START
-	//‹A‚Á‚Ä—ˆ‚½‚Æ‚«‚Í‚¨‚¶‚³‚ñÁ‚¦‚Ä‚é
+	//å¸°ã£ã¦æ¥ãŸã¨ãã¯ãŠã˜ã•ã‚“æ¶ˆãˆã¦ã‚‹
 	_FLAG_SET		FV_C02R0401_EVENT
-	//‹A‚Á‚Ä‚«‚½‚Æ‚«—p‚ÉƒV[ƒ“ƒXƒe[ƒ^ƒX‚ð•Ï‚¦‚Ä‚¨‚­
+	//å¸°ã£ã¦ããŸã¨ãç”¨ã«ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å¤‰ãˆã¦ãŠã
 	_LDVAL			WK_SCENE_C02R0401,2
 
-	//“ñ‰ñƒtƒF[ƒh‚ðŒJ‚è•Ô‚µ
+	//äºŒå›žãƒ•ã‚§ãƒ¼ãƒ‰ã‚’ç¹°ã‚Šè¿”ã—
 	_BLACK_OUT		SCR_WIPE_DIV,3
 	_WIPE_FADE_END_CHECK
 	_BLACK_IN		SCR_WIPE_DIV,3
@@ -125,11 +125,11 @@ ev_c02r0401_event_start:
 	_BLACK_IN		SCR_WIPE_DIV,3
 	_WIPE_FADE_END_CHECK
 
-	//ÅŒã‚É‚ä‚Á‚­‚èƒtƒF[ƒhƒAƒEƒg
+	//æœ€å¾Œã«ã‚†ã£ãã‚Šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	_BLACK_OUT		SCR_WIPE_DIV,6
 	_WIPE_FADE_END_CHECK
 	
-	//4•bŠÔˆÃ‚¢‚Ü‚Ü
+	//4ç§’é–“æš—ã„ã¾ã¾
 	_TIME_WAIT		120,SCWK_ANSWER
 
 	_MAP_CHANGE_NONE_FADE	ZONE_ID_D30,0,152,277,DIR_DOWN
@@ -141,7 +141,7 @@ ev_c02r0401_event_start:
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒxƒbƒh‚Ö
+//ä¸»äººå…¬	ãƒ™ãƒƒãƒ‰ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c02r0401_player_01
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -152,7 +152,7 @@ _ANIME_LABEL anm_c02r0401_player_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒTƒ“ƒOƒ‰ƒX	ƒxƒbƒh‚Ö
+//ã‚µãƒ³ã‚°ãƒ©ã‚¹	ãƒ™ãƒƒãƒ‰ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c02r0401_event_01
 	_ANIME_DATA	AC_WALK_R_8F,3
@@ -164,18 +164,18 @@ _ANIME_LABEL anm_c02r0401_event_01
 
 
 /********************************************************************/
-/*							ƒ_[ƒNI—¹								*/
+/*							ãƒ€ãƒ¼ã‚¯çµ‚äº†								*/
 /********************************************************************/
 ev_c02r0401_event_end:
 	_EVENT_START
 
-	//ƒV[ƒ“‚Ìó‘Ô‚ðƒZƒbƒg‚µ‚Ä‚¨‚­
+	//ã‚·ãƒ¼ãƒ³ã®çŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	_CALL			ev_c02r0401_return_d30_scene
 
-	//ƒGƒXƒP[ƒvƒƒP[ƒVƒ‡ƒ“‚ð•œ‹A‚³‚¹‚é
+	//ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å¾©å¸°ã•ã›ã‚‹
 	_SET_ESCAPE_LOCATION	ZONE_ID_C02,58,714
 
-	/*ƒvƒ‰ƒ`ƒi’Ç‰Á*/
+	/*ãƒ—ãƒ©ãƒãƒŠè¿½åŠ */
 	//_TALKMSG		msg_c02r0401_event_05
 	//_TALK_CLOSE
 
@@ -189,14 +189,14 @@ ev_c02r0401_event_end:
 	_EVENT_END
 	_END
 
-//h‰®‚ÌƒV[ƒ“ƒXƒe[ƒ^ƒX‚ðƒŠƒZƒbƒg‚·‚é
+//å®¿å±‹ã®ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 ev_c02r0401_return_d30_scene:
-	//ƒCƒxƒ“ƒgƒNƒŠƒA‚µ‚½‚©‚Ç‚¤‚©H
+	//ã‚¤ãƒ™ãƒ³ãƒˆã‚¯ãƒªã‚¢ã—ãŸã‹ã©ã†ã‹ï¼Ÿ
 	_IF_FLAGON_JUMP	FE_D30R0101_LEGEND_CLEAR,ev_c02r0401_return_d30_clear
 	_LDVAL			WK_SCENE_C02R0401,0
 	_RET
 
-//d30ƒ_[ƒNƒCƒxƒ“ƒgƒNƒŠƒA
+//d30ãƒ€ãƒ¼ã‚¯ã‚¤ãƒ™ãƒ³ãƒˆã‚¯ãƒªã‚¢
 ev_c02r0401_return_d30_clear:
 	_LDVAL			WK_SCENE_C02R0401,3
 	_RET

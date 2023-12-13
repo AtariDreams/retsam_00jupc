@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>VCT_SetTransceiverClients</title>
 <LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
@@ -11,7 +11,7 @@
 <body>
 
 <h1 align="left">VCT_SetTransceiverClients</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -19,28 +19,28 @@
   <PRE><CODE>int VCT_SetTransceiverClients( u8 aidList[], int num_of_aid );</CODE></PRE></dd> 
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%" height="17"><EM><STRONG>aidList</STRONG></EM></TD>
-      <TD width="87%" height="17">�g�����V�[�o�[���[�h�̃N���C�A���g��aid��ۑ����Ă���z��</TD>
+      <TD width="87%" height="17">トランシーバーモードのクライアントのaidを保存している配列</TD>
     </TR>
     <TR>
       <TD width="13%" height="17"><EM><STRONG>num_of_aid</STRONG></EM></TD>
-      <TD width="87%" height="17">aidList�̔z��̃T�C�Y</TD>
+      <TD width="87%" height="17">aidListの配列のサイズ</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Ԃ�l</h2>
-<p>0�Ȃ琬���A���s�̏ꍇ��<a href="VCTErrorCode.html">���̃G���[�R�[�h</a></p>
+<h2>返り値</h2>
+<p>0なら成功、失敗の場合は<a href="VCTErrorCode.html">負のエラーコード</a></p>
 
-<H2>����</H2>
-<P>�g�����V�[�o�[�̃N���C�A���g���X�g��ݒ肵�܂��B���̊֐��̓g�����V�[�o�[�T�[�o�[�����p���܂��B�N���C�A���g�ɂȂ��Ă���}�V���ŌĂяo���Ă���������܂��B</p>
+<H2>説明</H2>
+<P>トランシーバーのクライアントリストを設定します。この関数はトランシーバーサーバーが利用します。クライアントになっているマシンで呼び出しても無視されます。</p>
 
-<p>�g�����V�[�o�[���[�h�͍ő�W�l�܂őΉ��\�ł��B�W�l�ȏ��aidList���w�肷��Ƃ��̊֐��̓G���[��Ԃ��܂��B</p>
+<p>トランシーバーモードは最大８人まで対応可能です。８人以上のaidListを指定するとこの関数はエラーを返します。</p>
 
-<p>aidList�Ɏ������g�i�T�[�o�[��AID�j���܂߂Ă����܂��܂���B���Ȃ킿�A���̊֐��͈ȉ��̂悤�ɂ��ė��p�ł��܂��B</p>
+<p>aidListに自分自身（サーバーのAID）を含めてもかまいません。すなわち、この関数は以下のようにして利用できます。</p>
 
 <pre><code>
        u8 *aidList;
@@ -49,7 +49,7 @@
        VCT_SetTransceiverClients(aidList, n);
 </code></pre>
 
-<p>�������A�W�l�ȏ��aidList���w�肷��Ƃ��̊֐��̓G���[��Ԃ����߁A�g�����V�[�o�[�ɎQ������N���C�A���g���ő�W�l�ɂȂ�ꍇ�́A�ȉ��̂悤�ɌĂяo���K�v������܂��B
+<p>しかし、８人以上のaidListを指定するとこの関数はエラーを返すため、トランシーバーに参加するクライアントが最大８人になる場合は、以下のように呼び出す必要があります。
 
 <pre><code>
        u8 *aidList;
@@ -59,17 +59,17 @@
        VCT_SetTransceiverClients(aidList, n);
 </code></pre>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
   <code>
     <a href="VCT_SetTransceiverServer.html">VCT_SetTransceiverServer</a>, 
     <a href="VCT_Contact.html">VCT_Contact</a>
   </code>
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2006/04/17 �G���[�R�[�h�̃����N��ǉ�<BR>
-2006/01/25 ����
+2006/04/17 エラーコードのリンクを追加<BR>
+2006/01/25 初版
 </P>
 </body>
 </html>

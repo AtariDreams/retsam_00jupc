@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	testscr.s
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	matsuda
- * @date	2007.03.30(‹à)
+ * @date	2007.03.30(é‡‘)
  */
 //==============================================================================
 
@@ -15,28 +15,28 @@
 	.include	"../../particledata/pl_frontier/frontier_particle_lst.h"	//EMIT
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
-_EVENT_DATA		test_scr_obj3		//ˆê”Ôã‚ÌEVENT_DATA‚ÍŽ©“®ŽÀs
+_EVENT_DATA		test_scr_obj3		//ä¸€ç•ªä¸Šã®EVENT_DATAã¯è‡ªå‹•å®Ÿè¡Œ
 _EVENT_DATA		test_scr_obj1		//SCRID_TEST_SCR_OBJ1
 _EVENT_DATA		test_scr_obj2		//SCRID_TEST_SCR_OBJ2
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 #define EVENTID_TEST_SCR_OBJ3		(0)
 #define EVENTID_TEST_SCR_OBJ1		(1)
 #define EVENTID_TEST_SCR_OBJ2		(2)
 
 //--------------------------------------------------------------
-//	ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//	ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //--------------------------------------------------------------
 _RESOURCE_LABEL	default_set_resource
-	_PLAYER_RESOURCE_DATA	//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA	//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		MAN3, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		GIRL1, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 //--------------------------------------------------------------
-//	ó‹µ‚É‚æ‚Á‚Ä•Ï‚¦‚éƒŠƒ\[ƒX
+//	çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ãƒªã‚½ãƒ¼ã‚¹
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------
 _RESOURCE_LABEL	etc_set_resource
@@ -44,14 +44,14 @@ _RESOURCE_LABEL	etc_set_resource
 	_CHAR_RESOURCE_DATA_END
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //--------------------------------------------------------------
 #define OBJID_PLAYER	(0)
 #define OBJID_MAN		(1)
 #define OBJID_GIRL		(2)
 #define OBJID_ETC		(3)
 _ACTOR_LABEL	default_set_actor
-	_PLAYER_ACTOR_DATA	OBJID_PLAYER, WF2DMAP_WAY_C_DOWN, 8*16, 8*5, ON	//Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg
+	_PLAYER_ACTOR_DATA	OBJID_PLAYER, WF2DMAP_WAY_C_DOWN, 8*16, 8*5, ON	//è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 	_ACTOR_DATA			OBJID_MAN, MAN3, WF2DMAP_WAY_C_DOWN, \
 							8*16, 8*7, ON, EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA			OBJID_GIRL, GIRL1, WF2DMAP_WAY_C_LEFT, \
@@ -59,7 +59,7 @@ _ACTOR_LABEL	default_set_actor
 	_ACTOR_DATA_END
 
 //--------------------------------------------------------------
-//	ó‹µ‚É‚æ‚Á‚Ä•Ï‚¦‚éƒAƒNƒ^[
+//	çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------
 _ACTOR_LABEL	etc_set_actor
@@ -68,7 +68,7 @@ _ACTOR_LABEL	etc_set_actor
 	_ACTOR_DATA_END
 
 //--------------------------------------------------------------
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 _ANIME_LABEL anm_player_walk_test
 	_ANIME_DATA	FC_WAIT_16F,4
@@ -92,13 +92,13 @@ _ANIME_LABEL etc_anime_move
 
 
 //==============================================================================
-//	SCENE2(ƒ}ƒbƒvØ‚è‘Ö‚¦Œã)‚ÌƒŠƒ\[ƒXƒf[ƒ^‚âƒAƒNƒ^[ƒf[ƒ^
+//	SCENE2(ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆå¾Œ)ã®ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚„ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
-//	SCENE2:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//	SCENE2:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //--------------------------------------------------------------
 _RESOURCE_LABEL	default_scene2_resource
-	_PLAYER_RESOURCE_DATA	//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA	//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		CAMPBOY, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		WAITER, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		WAITRESS, WF2DC_C_MOVENORMAL
@@ -108,7 +108,7 @@ _RESOURCE_LABEL	default_scene2_resource
 	_CHAR_RESOURCE_DATA_END
 
 //--------------------------------------------------------------
-//	SCENE2:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE2:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //--------------------------------------------------------------
 #define OBJID_PLAYER	(0)
 #define OBJID_ENEMY1	(1)
@@ -118,7 +118,7 @@ _RESOURCE_LABEL	default_scene2_resource
 #define OBJID_ENEMY5	(5)
 #define OBJID_ENEMY6	(6)
 _ACTOR_LABEL	default_scene2_actor
-	_PLAYER_ACTOR_DATA	OBJID_PLAYER, WF2DMAP_WAY_C_DOWN, 8*16, 8*5, ON	//Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg
+	_PLAYER_ACTOR_DATA	OBJID_PLAYER, WF2DMAP_WAY_C_DOWN, 8*16, 8*5, ON	//è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 	_ACTOR_DATA			OBJID_ENEMY1, CAMPBOY, WF2DMAP_WAY_C_DOWN, \
 							8*16, 8*10, ON, EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA			OBJID_ENEMY2, WAITER, WF2DMAP_WAY_C_DOWN, \
@@ -134,7 +134,7 @@ _ACTOR_LABEL	default_scene2_actor
 	_ACTOR_DATA_END
 
 //--------------------------------------------------------------
-//	SCENE2:ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+//	SCENE2:ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 _ANIME_LABEL scene2_anime_move_lr
 	_ANIME_DATA	FC_WAIT_16F,4
@@ -174,8 +174,8 @@ test_back:
 test_scr_obj3:
 //	_MAP_CHANGE_EX	FSS_SCENEID_TESTSCR3, 0
 
-	_CHAR_RESOURCE_SET		default_set_resource		//ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^
-	_ACTOR_SET				default_set_actor			//ƒAƒNƒ^[“o˜^
+	_CHAR_RESOURCE_SET		default_set_resource		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
+	_ACTOR_SET				default_set_actor			//ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	
@@ -214,11 +214,11 @@ test_scr_obj3:
 	_PARTICLE_SPA_EXIT		SPAWORK_0
 #endif
 
-	_BMPMENU_INIT_EX	1,1,0,1,FSW_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	CAMSG_CONTYPE_STYLE,0			//‚³‚ñ‚©‚·‚é
-	_BMPMENU_MAKE_LIST	CAMSG_CONTYPE_BEAUTIFUL,1			//‚¹‚Â‚ß‚¢‚ð‚«‚­
-	_BMPMENU_MAKE_LIST	CAMSG_CONTYPE_CUTE,2			//‚â‚ß‚é
-	_BMPMENU_MAKE_LIST	CAMSG_CONTYPE_STRONG,3			//‚â‚ß‚é
+	_BMPMENU_INIT_EX	1,1,0,1,FSW_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	CAMSG_CONTYPE_STYLE,0			//ã•ã‚“ã‹ã™ã‚‹
+	_BMPMENU_MAKE_LIST	CAMSG_CONTYPE_BEAUTIFUL,1			//ã›ã¤ã‚ã„ã‚’ãã
+	_BMPMENU_MAKE_LIST	CAMSG_CONTYPE_CUTE,2			//ã‚„ã‚ã‚‹
+	_BMPMENU_MAKE_LIST	CAMSG_CONTYPE_STRONG,3			//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			FSW_ANSWER
@@ -241,7 +241,7 @@ test_jump1:
 test_jump1_yes:
 	_TALK_CLOSE
 	
-	//-- ƒ}ƒbƒvØ‚è‘Ö‚¦ --//
+	//-- ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ --//
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
@@ -250,8 +250,8 @@ test_jump1_yes:
 //	_MAP_CHANGE_EX	FSS_SCENEID_TESTSCR3, 1
 //	_MAP_CHANGE_EX	FSS_SCENEID_TESTSCR3, 2
 
-	_CHAR_RESOURCE_SET		default_scene2_resource		//ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^
-	_ACTOR_SET				default_scene2_actor			//ƒAƒNƒ^[“o˜^
+	_CHAR_RESOURCE_SET		default_scene2_resource		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
+	_ACTOR_SET				default_scene2_actor			//ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
@@ -283,7 +283,7 @@ test_jump2:
 
 
 //--------------------------------------------------------------
-//	OBJØ‚è‘Ö‚¦ƒeƒXƒg
+//	OBJåˆ‡ã‚Šæ›¿ãˆãƒ†ã‚¹ãƒˆ
 //--------------------------------------------------------------
 test_jump3:
 	_TALK_CLOSE
@@ -344,30 +344,30 @@ test_talk_end:
 
 
 //==============================================================================
-//	SCENE3(ƒ}ƒbƒvØ‚è‘Ö‚¦ŒãA‹^Ž—’ÊMŽž‚Ìê–Ê‚ð‘z’è‚µ‚½‰æ–Ê)‚ÌƒŠƒ\[ƒXƒf[ƒ^‚âƒAƒNƒ^[ƒf[ƒ^
+//	SCENE3(ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆå¾Œã€ç–‘ä¼¼é€šä¿¡æ™‚ã®å ´é¢ã‚’æƒ³å®šã—ãŸç”»é¢)ã®ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚„ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
-//	SCENE3:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//	SCENE3:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //--------------------------------------------------------------
 _RESOURCE_LABEL	sio_set_resource
-	_PLAYER_RESOURCE_DATA	//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA	//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA_END
 
 //--------------------------------------------------------------
-//	SCENE3:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE3:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //--------------------------------------------------------------
 #define OBJID_SIO_PLAYER		(0)
 #define OBJID_SIO_USER_0		(1)
 #define OBJID_SIO_USER_1		(2)
 _ACTOR_LABEL	sio_set_actor
-	_PLAYER_ACTOR_DATA	OBJID_SIO_PLAYER, WF2DMAP_WAY_C_DOWN, 8*16, 8*5, OFF	//Ž©•ªŽ©g‚Í”ñ•\Ž¦
+	_PLAYER_ACTOR_DATA	OBJID_SIO_PLAYER, WF2DMAP_WAY_C_DOWN, 8*16, 8*5, OFF	//è‡ªåˆ†è‡ªèº«ã¯éžè¡¨ç¤º
 	_SIO_PLAYER_ACTOR_DATA 0, OBJID_SIO_USER_0, WF2DMAP_WAY_C_DOWN, 8*16, 8*5, ON
 	_SIO_PLAYER_ACTOR_DATA 1, OBJID_SIO_USER_1, WF2DMAP_WAY_C_DOWN, 8*16, 8*5, ON
 	_ACTOR_DATA_END
 
 //--------------------------------------------------------------
-//	SCENE2:ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+//	SCENE2:ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 _ANIME_LABEL scene3_anime_move_left
 	_ANIME_DATA	FC_WAIT_16F,4
@@ -389,8 +389,8 @@ _ANIME_LABEL scene3_anime_move_right
 //	
 //==============================================================================
 sio_scene_start:
-	_CHAR_RESOURCE_SET		sio_set_resource		//ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^
-	_ACTOR_SET				sio_set_actor			//ƒAƒNƒ^[“o˜^
+	_CHAR_RESOURCE_SET		sio_set_resource		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
+	_ACTOR_SET				sio_set_actor			//ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	

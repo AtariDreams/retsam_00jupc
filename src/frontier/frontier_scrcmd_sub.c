@@ -1,11 +1,11 @@
 //==============================================================================
 /**
- * @file	ƒtƒ@ƒCƒ‹–¼
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @file	ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	matsuda
- * @date	2007.04.06(‹à)
+ * @date	2007.04.06(é‡‘)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -50,76 +50,76 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-//ƒJ[ƒ\ƒ‹•
-#define FSEV_WIN_CURSOR_WIDTH		(12)			//ƒJ[ƒ\ƒ‹•
+//ã‚«ãƒ¼ã‚½ãƒ«å¹…
+#define FSEV_WIN_CURSOR_WIDTH		(12)			//ã‚«ãƒ¼ã‚½ãƒ«å¹…
 
-#define FSEV_WIN_DEFAULT_WAIT		(3)				//ƒL[‘€ì‚ª‚·‚®‚É“ü‚ç‚È‚¢‚æ‚¤‚ÉŠî–{ƒEƒFƒCƒg
+#define FSEV_WIN_DEFAULT_WAIT		(3)				//ã‚­ãƒ¼æ“ä½œãŒã™ãã«å…¥ã‚‰ãªã„ã‚ˆã†ã«åŸºæœ¬ã‚¦ã‚§ã‚¤ãƒˆ
 
-//BMPƒƒjƒ…[
-#define FSEV_WIN_MENU_MAX			(28)			//ƒƒjƒ…[€–Ú‚ÌÅ‘å”
+//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼
+#define FSEV_WIN_MENU_MAX			(28)			//ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®æœ€å¤§æ•°
 
-//BMPƒŠƒXƒg
-#define FSEV_WIN_LIST_MAX			(28)			//ƒŠƒXƒg€–Ú‚ÌÅ‘å”
+//BMPãƒªã‚¹ãƒˆ
+#define FSEV_WIN_LIST_MAX			(28)			//ãƒªã‚¹ãƒˆé …ç›®ã®æœ€å¤§æ•°
 
-#define	FSEV_WIN_MSG_MAX			(28)			//MSGƒoƒbƒtƒ@‚ÌÅ‘å”
+#define	FSEV_WIN_MSG_MAX			(28)			//MSGãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ•°
 
-//BMPƒŠƒXƒgƒwƒbƒ_[’è‹`
-#define EV_LIST_LINE				(8)				//•\Ž¦Å‘å€–Ú”
-#define EV_LIST_RABEL_X				(1)				//ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-#define EV_LIST_DATA_X				(12)			//€–Ú•\Ž¦‚wÀ•W
-#define EV_LIST_CURSOR_X			(2)				//ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-#define EV_LIST_LINE_Y				(1)				//•\Ž¦‚xÀ•W
+//BMPãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼å®šç¾©
+#define EV_LIST_LINE				(8)				//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+#define EV_LIST_RABEL_X				(1)				//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_DATA_X				(12)			//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_CURSOR_X			(2)				//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+#define EV_LIST_LINE_Y				(1)				//è¡¨ç¤ºï¼¹åº§æ¨™
 
 #define FSEV_FONT					(FONT_SYSTEM)
 
-#define FSEVWIN_MSG_BUF_SIZE		(40*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define FSEVWIN_MSG_BUF_SIZE		(40*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 typedef struct _FSEV_WIN{
 	FSS_PTR fss;
 	TCB_PTR	tcb;
 
- 	GF_BGL_BMPWIN bmpwin;						//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- 	GF_BGL_BMPWIN* talk_bmpwin;					//BMP‰ï˜bƒEƒBƒ“ƒhƒEƒf[ƒ^
+ 	GF_BGL_BMPWIN bmpwin;						//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ 	GF_BGL_BMPWIN* talk_bmpwin;					//BMPä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 	
-	STRBUF* msg_buf[FSEV_WIN_MSG_MAX];			//ƒƒbƒZ[ƒWƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-	MSGDATA_MANAGER* msgman;					//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;							//’PŒêƒZƒbƒg
+	STRBUF* msg_buf[FSEV_WIN_MSG_MAX];			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+	MSGDATA_MANAGER* msgman;					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;							//å˜èªžã‚»ãƒƒãƒˆ
 
-	u8  wait;									//ƒEƒFƒCƒg
-	u8  menu_id;								//BMPƒƒjƒ…[ID
-	u8  cursor_pos;								//ƒJ[ƒ\ƒ‹ˆÊ’u
-	u8  cancel:1;								//ƒLƒƒƒ“ƒZƒ‹
-	u8  msgman_del_flag:1;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[íœƒtƒ‰ƒO
+	u8  wait;									//ã‚¦ã‚§ã‚¤ãƒˆ
+	u8  menu_id;								//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ID
+	u8  cursor_pos;								//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8  cancel:1;								//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	u8  msgman_del_flag:1;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤ãƒ•ãƒ©ã‚°
 	u8  dmy:4;									//
     u8  unk_97_x40:1;
     u8  unk_97_x80:1;
 
-	u8  x;										//ƒEƒBƒ“ƒhƒEˆÊ’uX
-	u8  y;										//ƒEƒBƒ“ƒhƒEˆÊ’uY
-	u8  dmyy;									//ƒƒjƒ…[ƒiƒ“ƒo[
-	u8  list_no;								//ƒƒjƒ…[€–Ú‚Ì‰½”Ô–Ú‚©
+	u8  x;										//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®X
+	u8  y;										//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®Y
+	u8  dmyy;									//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u8  list_no;								//ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®ä½•ç•ªç›®ã‹
 
-	u16* pMsg;									//ƒƒbƒZ[ƒWƒf[ƒ^
-	u16* work;									//Œ‹‰ÊŽæ“¾ƒ[ƒN
+	u16* pMsg;									//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+	u16* work;									//çµæžœå–å¾—ãƒ¯ãƒ¼ã‚¯
  
-	//BMPƒƒjƒ…[(bmp_menu.h)
-	BMPMENU_HEADER MenuH;						//BMPƒƒjƒ…[ƒwƒbƒ_[
-	BMPMENU_WORK * mw;							//BMPƒƒjƒ…[ƒ[ƒN
-	BMPMENU_DATA Data[FSEV_WIN_MENU_MAX];			//BMPƒƒjƒ…[ƒf[ƒ^
+	//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼(bmp_menu.h)
+	BMPMENU_HEADER MenuH;						//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	BMPMENU_WORK * mw;							//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	BMPMENU_DATA Data[FSEV_WIN_MENU_MAX];			//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	//BMPƒŠƒXƒg
-	BMPLIST_HEADER ListH;						//BMPƒŠƒXƒgƒwƒbƒ_[
-	BMPLIST_WORK* lw;							//BMPƒŠƒXƒgƒf[ƒ^
-	u16 list_bak;								//ƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒv
-	u16 cursor_bak;								//ƒJ[ƒ\ƒ‹ˆÊ’uƒoƒbƒNƒAƒbƒv
-	BMPLIST_DATA list_Data[FSEV_WIN_LIST_MAX];	//ƒŠƒXƒgƒf[ƒ^
-	u16 talk_msg_id[FSEV_WIN_LIST_MAX];			//ƒŠƒXƒgƒf[ƒ^‚É‘Î‚É‚È‚é‰ï˜bƒƒbƒZ[ƒWID
+	//BMPãƒªã‚¹ãƒˆ
+	BMPLIST_HEADER ListH;						//BMPãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼
+	BMPLIST_WORK* lw;							//BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	u16 list_bak;								//ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	u16 cursor_bak;								//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	BMPLIST_DATA list_Data[FSEV_WIN_LIST_MAX];	//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
+	u16 talk_msg_id[FSEV_WIN_LIST_MAX];			//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã«å¯¾ã«ãªã‚‹ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 
 	u16 pos_bak;
 
@@ -129,15 +129,15 @@ typedef struct _FSEV_WIN{
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒAƒjƒƒRƒ}ƒ“ƒhƒf[ƒ^ƒe[ƒuƒ‹\‘¢‘Ì
+///ã‚¢ãƒ‹ãƒ¡ã‚³ãƒžãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«æ§‹é€ ä½“
 typedef struct{
-	u16 cmd;		///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh
-	u16 way;		///<•ûŒü
+	u16 cmd;		///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰
+	u16 way;		///<æ–¹å‘
 }ANM_CMD_TBL_DATA;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void AddBitmapWin(FSS_PTR fss);
 static void LoadPrintString(FSS_PTR fss, const MSGDATA_MANAGER* msgman, u32 msg_id );
@@ -158,23 +158,23 @@ static void menu_talk_msg_update( FSEVWIN_PTR wk );
 void FSSC_Sub_BmpMenu_Del( FSEVWIN_PTR wk );
 static void talk_msg_print( FSEVWIN_PTR wk, u16 talk_msg_id, u32 wait );
 
-//ŠÈˆÕ‰ï˜b
+//ç°¡æ˜“ä¼šè©±
 void FSTalkMsgPMSParam( FS_SYSTEM* fss, u8 spd, u16 stype, u16 sid, u16 word0, s16 word1, u8 skip );
 static void CreatePrintStringByPmsParam( STRBUF* buf, u16 stype, u16 sid, PMS_WORD word0, PMS_WORD word1 );
 
 //==============================================================================
 //
-//	‰ï˜bƒƒbƒZ[ƒW
+//	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- *	‰ï˜bƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒEo—Í
+ *	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡ºåŠ›
  *
- * @param	core		FSS_TASKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	skip		ƒƒbƒZ[ƒWƒXƒLƒbƒvƒtƒ‰ƒO
- * @param   ex_param	Šg’£ƒpƒ‰ƒ[ƒ^(•s—v‚Èê‡‚ÍNULL)
+ * @param	core		FSS_TASKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	skip		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ãƒ•ãƒ©ã‚°
+ * @param   ex_param	æ‹¡å¼µãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(ä¸è¦ãªå ´åˆã¯NULL)
  *
  * @retval	none
  */
@@ -209,7 +209,7 @@ void FSSC_Sub_ScrTalkMsg(FSS_PTR fss, const MSGDATA_MANAGER* msgman, u16 msg_id,
 
 //------------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE“o˜^E•\Ž¦
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç™»éŒ²ãƒ»è¡¨ç¤º
  *
  * @param   fsys		
  * @param   param		
@@ -236,7 +236,7 @@ static void AddBitmapWin(FSS_PTR fss)
 
 //------------------------------------------------------------------
 /**
- * o—Í•¶Žš—ñ‚ðƒpƒ‰ƒ[ƒ^“à•”ƒoƒbƒtƒ@‚É“Ç‚Ýž‚Ý
+ * å‡ºåŠ›æ–‡å­—åˆ—ã‚’ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã«èª­ã¿è¾¼ã¿
  *
  * @param   param		
  * @param   msgman		
@@ -252,7 +252,7 @@ static void LoadPrintString(FSS_PTR fss, const MSGDATA_MANAGER* msgman, u32 msg_
 
 //------------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW‚ð—¬‚·ˆ—‚ðŠJŽn
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æµã™å‡¦ç†ã‚’é–‹å§‹
  *
  * @param   msg_param		
  * @param   font		
@@ -273,7 +273,7 @@ static void ScrTalkMsgCore(FSS_PTR fss, int font, int speed, int skip_flag, int 
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒBƒ“ƒhƒE‚ð•Â‚¶‚é
+ * @brief   ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
  *
  * @param   fss		
  */
@@ -289,14 +289,14 @@ void FSSC_Sub_ScrTalkClose(FSS_PTR fss)
 }
 
 //==============================================================================
-//	ŠÈˆÕ‰ï˜b
+//	ç°¡æ˜“ä¼šè©±
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^‚©‚çŠÈˆÕ‰ï˜bƒf[ƒ^‚ð¶¬AƒƒbƒZ[ƒWo—Í‚·‚é
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›ã™ã‚‹
  *
- * @param	core		VM_MACHINEŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		VM_MACHINEåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	stype		
  * @param	sid
  * @param	word0
@@ -312,20 +312,20 @@ void FSTalkMsgPMSParam( FS_SYSTEM* fss, u8 spd, u16 stype, u16 sid, u16 word0, s
 
 	AddBitmapWin( fss );
 
-	//ŠÈˆÕ‰ï˜bƒf[ƒ^‚©‚ç•¶Žš—ñ‚ð¶¬‚µAƒpƒ‰ƒ[ƒ^“à•”ƒoƒbƒtƒ@‚É“Ç‚Ýž‚Ý
+	//ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ–‡å­—åˆ—ã‚’ç”Ÿæˆã—ã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã«èª­ã¿è¾¼ã¿
 	CreatePrintStringByPmsParam( fss->msg_buf, stype, sid, word0, word1 );
 
 	if(skip != 0xFF){
 		ScrTalkMsgCore( fss, FONT_TALK, spd, skip, MSG_AUTO_OFF );
 	}else{
-		// skip == 0xff ‚¾‚Á‚½‚ç ˆêŠ‡•\Ž¦‚·‚é
+		// skip == 0xff ã ã£ãŸã‚‰ ä¸€æ‹¬è¡¨ç¤ºã™ã‚‹
 		ScrTalkMsgCore( fss, FONT_TALK, MSG_ALLPUT, skip, MSG_AUTO_OFF );
 	}
 }
 
 //------------------------------------------------------------------
 /**
- * ŠÈˆÕ‰ï˜bƒf[ƒ^‚©‚ç•¶Žš—ñ‚ð¶¬‚µAƒpƒ‰ƒ[ƒ^“à•”ƒoƒbƒtƒ@‚É“Ç‚Ýž‚Ý
+ * ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ–‡å­—åˆ—ã‚’ç”Ÿæˆã—ã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã«èª­ã¿è¾¼ã¿
  *
  * @param   param		
  * @param   stype		
@@ -340,7 +340,7 @@ static void CreatePrintStringByPmsParam( STRBUF* buf, u16 stype, u16 sid, PMS_WO
 	PMS_DATA     pms;
 	STRBUF* tmpBuf;
 
-	// ŠÈˆÕ‰ï˜bƒf[ƒ^¶¬
+	// ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	PMSDAT_Clear(&pms);
 	PMSDAT_SetSentence( &pms, stype, sid );
 	PMSDAT_SetWord( &pms, 0, word0 );
@@ -352,19 +352,19 @@ static void CreatePrintStringByPmsParam( STRBUF* buf, u16 stype, u16 sid, PMS_WO
 }
 
 //==============================================================================
-//	BMPƒƒjƒ…[
+//	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE@ƒ[ƒN‰Šú‰»
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param	wk			FSEV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	x			ƒEƒBƒ“ƒhƒE•\Ž¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\Ž¦XÀ•W
- * @param	cursor		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	cancel		BƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO(TRUE=—LŒøAFALSE=–³Œø)
- * @param	work		Œ‹‰Ê‚ð‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FSEV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	cursor		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	cancel		Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°(TRUE=æœ‰åŠ¹ã€FALSE=ç„¡åŠ¹)
+ * @param	work		çµæžœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -374,21 +374,21 @@ static void EvWin_Init(FSS_PTR fss, FSEVWIN_PTR wk, u8 x, u8 y, u8 cursor, u8 ca
 	int i;
 
 	if( msgman == NULL ){
-		//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_ev_win_dat, fss->heap_id);
 		wk->msgman_del_flag = 1;
 	}else{
-		wk->msgman = msgman;	//ˆøŒp‚¬
+		wk->msgman = msgman;	//å¼•ç¶™ãŽ
 		wk->msgman_del_flag = 0;
 	}
 
 	//wk->wordset = WORDSET_Create( fss->heap_id );
-	wk->wordset		= wordset;		//ƒXƒNƒŠƒvƒg‚ðˆø‚«Œp‚®
+	wk->wordset		= wordset;		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å¼•ãç¶™ã
 
 	wk->fss			= fss;
 	wk->work		= work;
 #if 1
-	*wk->work		= 0;			//‹­§I—¹‚Åƒ[ƒN‚Ì’l‚ðŒ©‚é‚æ‚¤‚É‚È‚Á‚½‚Ì‚Å‰Šú‰»‚ð“ü‚ê‚Ä‚¨‚­
+	*wk->work		= 0;			//å¼·åˆ¶çµ‚äº†ã§ãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’è¦‹ã‚‹ã‚ˆã†ã«ãªã£ãŸã®ã§åˆæœŸåŒ–ã‚’å…¥ã‚Œã¦ãŠã
 #endif
 	wk->cancel		= cancel;
 	wk->cursor_pos	= cursor;
@@ -410,12 +410,12 @@ static void EvWin_Init(FSS_PTR fss, FSEVWIN_PTR wk, u8 x, u8 y, u8 cursor, u8 ca
 		wk->talk_msg_id[i] = FSEV_WIN_TALK_MSG_NONE;
 	}
 
-	//MSGMAN_Create‚ÌŒã‚Éˆ—
+	//MSGMAN_Createã®å¾Œã«å‡¦ç†
 	for( i=0; i < FSEV_WIN_MSG_MAX ;i++ ){
 		wk->msg_buf[i] = STRBUF_Create( FSEVWIN_MSG_BUF_SIZE, fss->heap_id );
 	}
 
-	//‘I‘ð‚µ‚½’l‚ðŽæ“¾‚·‚éƒ[ƒN‚ð‰Šú‰»
+	//é¸æŠžã—ãŸå€¤ã‚’å–å¾—ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
 	*wk->work = FSEV_WIN_NOTHING;
 
 	return;
@@ -423,16 +423,16 @@ static void EvWin_Init(FSS_PTR fss, FSEVWIN_PTR wk, u8 x, u8 y, u8 cursor, u8 ca
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[@‰Šú‰»
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€åˆæœŸåŒ–
  *
- * @param	x			ƒEƒBƒ“ƒhƒE•\Ž¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\Ž¦XÀ•W
- * @param	cursor		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	cancel		BƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO(TRUE=—LŒøAFALSE=–³Œø)
- * @param	work		Œ‹‰Ê‚ð‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	cursor		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	cancel		Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°(TRUE=æœ‰åŠ¹ã€FALSE=ç„¡åŠ¹)
+ * @param	work		çµæžœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"FSEV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒXANULL‚ÍŽ¸”s"
+ * @retval	"FSEV_WIN_WORKåž‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€NULLã¯å¤±æ•—"
  */
 //--------------------------------------------------------------
 FSEVWIN_PTR FSSC_Sub_BmpMenu_Init( FSS_PTR fss, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, MSGDATA_MANAGER* msgman )
@@ -447,7 +447,7 @@ FSEVWIN_PTR FSSC_Sub_BmpMenu_Init( FSS_PTR fss, u8 x, u8 y, u8 cursor, u8 cancel
 	}
 	memset( wk, 0, sizeof(FSEV_WIN_WORK) );
 
-	//ƒ[ƒN‰Šú‰»	
+	//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–	
 	EvWin_Init( fss, wk, x, y, cursor, cancel, work, wordset, msgman );
 
 	return wk;
@@ -455,11 +455,11 @@ FSEVWIN_PTR FSSC_Sub_BmpMenu_Init( FSS_PTR fss, u8 x, u8 y, u8 cursor, u8 cancel
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[@ƒŠƒXƒgì¬
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			FSEV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	param		BMPMENUƒpƒ‰ƒ[ƒ^
+ * @param	wk			FSEV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPMENUãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -472,11 +472,11 @@ void FSSC_Sub_BmpMenu_MakeList( FSEVWIN_PTR wk, u32 msg_id, u32 talk_msg_id, u32
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[@ŠJŽn
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€é–‹å§‹
  *
- * @param	wk			FSEV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	param		BMPMENUƒpƒ‰ƒ[ƒ^
+ * @param	wk			FSEV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPMENUãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -486,7 +486,7 @@ void FSSC_Sub_BmpMenu_Start( FSEVWIN_PTR wk )
 	u32 len;
 	FMAP_PTR fmap = FSS_GetFMapAdrs(wk->fss);
 
-	//(Å‘å•¶Žš”{ƒJ[ƒ\ƒ‹) * ƒtƒHƒ“ƒgƒTƒCƒY
+	//(æœ€å¤§æ–‡å­—æ•°ï¼‹ã‚«ãƒ¼ã‚½ãƒ«) * ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	//len = (BmpMenu_length_get(wk)+1) * FontHeaderGet(FSEV_FONT, FONT_HEADER_SIZE_X);
 	len = BmpMenu_length_get(wk);
 
@@ -505,21 +505,21 @@ void FSSC_Sub_BmpMenu_Start( FSEVWIN_PTR wk )
 	GF_BGL_BmpWinAdd( fmap->bgl, &wk->bmpwin, FRMAP_FRAME_WIN, wk->x, wk->y, 
 									len, wk->list_no*2, FFD_SYSFONT_PAL, FFD_FREE_CGX );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ðƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 //	MenuWinGraphicSet(
 //		wk->fsys->bgl, FFD_MBGFRM_FONT, FR_MENU_WIN_CGX_NUM, FR_MENU_WIN_PAL, 0, fss->heap_id );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ð•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite(&wk->bmpwin, WINDOW_TRANS_OFF, FR_MENU_WIN_CGX_NUM, FR_MENU_WIN_PAL);
 
-	//ƒƒjƒ…[ƒwƒbƒ_[‰ŠúÝ’è
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
 	BmpMenu_h_default_set(wk);
 	wk->mw = BmpMenuAdd( &wk->MenuH, wk->cursor_pos, wk->fss->heap_id );
 
-	//‰ï˜bƒEƒBƒ“ƒhƒEXV
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›´æ–°
 	menu_talk_msg_update( wk );
 
-	//TCB’Ç‰Á
+	//TCBè¿½åŠ 
 	wk->tcb	= TCB_Add( EvBmpMenu_MainTCB, wk, 0 );
 
 	return;
@@ -527,12 +527,12 @@ void FSSC_Sub_BmpMenu_Start( FSEVWIN_PTR wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒŠƒXƒgì¬
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			FSEV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	param		BMPMENUƒpƒ‰ƒ[ƒ^
+ * @param	wk			FSEV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPMENUãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -542,15 +542,15 @@ static void BmpMenu_list_make( FSEVWIN_PTR wk, u32 msg_id, u32 talk_msg_id, u32 
 	int i;
 	void* msg;
 
-	SDK_ASSERTMSG( wk->list_no < FSEV_WIN_MENU_MAX, "ƒƒjƒ…[€–Ú”ƒI[ƒo[I" );
+	SDK_ASSERTMSG( wk->list_no < FSEV_WIN_MENU_MAX, "ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®æ•°ã‚ªãƒ¼ãƒãƒ¼ï¼" );
 
 	{
-		//“WŠJž‚Ý
+		//å±•é–‹è¾¼ã¿
 		
-		STRBUF* tmp_buf2= STRBUF_Create( FSEVWIN_MSG_BUF_SIZE, wk->fss->heap_id );//ƒRƒs[—pƒoƒbƒtƒ@
+		STRBUF* tmp_buf2= STRBUF_Create( FSEVWIN_MSG_BUF_SIZE, wk->fss->heap_id );//ã‚³ãƒ”ãƒ¼ç”¨ãƒãƒƒãƒ•ã‚¡
 
 		MSGMAN_GetString( wk->msgman, msg_id, tmp_buf2 );
-		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//“WŠJ
+		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//å±•é–‹
 		wk->Data[ wk->list_no ].str = (const void *)wk->msg_buf[wk->list_no];
 
 		STRBUF_Delete( tmp_buf2 );
@@ -565,9 +565,9 @@ static void BmpMenu_list_make( FSEVWIN_PTR wk, u32 msg_id, u32 talk_msg_id, u32 
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	€–Ú‚Ì’†‚©‚çÅ‘å•¶Žš”‚ðŽæ“¾
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	é …ç›®ã®ä¸­ã‹ã‚‰æœ€å¤§æ–‡å­—æ•°ã‚’å–å¾—
  *
- * @param	wk			FSEV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FSEV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -598,9 +598,9 @@ static u32 BmpMenu_length_get( FSEVWIN_PTR wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…	ƒwƒbƒ_[‰ŠúÝ’è
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk			FSEV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FSEV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -617,11 +617,11 @@ static void BmpMenu_h_default_set(FSEVWIN_PTR wk)
 	wk->MenuH.line_spc	= 0;
 	wk->MenuH.c_disp_f	= 0;
 
-	//ƒƒjƒ…[€–Ú‚ª4Ží—ÞˆÈã‚¾‚Á‚½Žž‚ÍƒJ[ƒ\ƒ‹‚Ìƒ‹[ƒv—L‚è‚É‚·‚é
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ãŒ4ç¨®é¡žä»¥ä¸Šã ã£ãŸæ™‚ã¯ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ«ãƒ¼ãƒ—æœ‰ã‚Šã«ã™ã‚‹
 	if( wk->list_no >= 4 ){
-		wk->MenuH.loop_f	= 1;			//—L
+		wk->MenuH.loop_f	= 1;			//æœ‰
 	}else{
-		wk->MenuH.loop_f	= 0;			//–³
+		wk->MenuH.loop_f	= 0;			//ç„¡
 	}
 
 	return;
@@ -629,10 +629,10 @@ static void BmpMenu_h_default_set(FSEVWIN_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[@ƒƒCƒ“
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ãƒ¡ã‚¤ãƒ³
  *
  * @param	tcb			TCB_PTR
- * @param	wk			ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -642,26 +642,26 @@ static void EvBmpMenu_MainTCB( TCB_PTR tcb, void* wk )
 	u32 ret;
 	FSEV_WIN_WORK *swk = wk;
 
-	//ƒEƒFƒCƒg
+	//ã‚¦ã‚§ã‚¤ãƒˆ
 	if( swk->wait != 0 ){
 		swk->wait--;
 		return;
 	}
 
-	//ƒƒCƒv’†‚Íˆ—‚µ‚È‚¢
+	//ãƒ¯ã‚¤ãƒ—ä¸­ã¯å‡¦ç†ã—ãªã„
 	if( WIPE_SYS_EndCheck() == FALSE ){
 		return;
 	}
 
 	ret = BmpMenuMain( swk->mw );
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE‚ÌƒƒbƒZ[ƒWXV
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ›´æ–°
 	if( (sys.repeat & PAD_KEY_UP) || (sys.repeat & PAD_KEY_DOWN) ||
 		(sys.repeat & PAD_KEY_LEFT) || (sys.repeat & PAD_KEY_RIGHT) ){
 		menu_talk_msg_update( swk );
 	}
 
-	//ƒtƒƒ“ƒeƒBƒA‚ÌŽ{Ý‚ÅA‹­§íœ‚Ì’l‚ª“ü‚Á‚Ä‚¢‚½‚ç
+	//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®æ–½è¨­ã§ã€å¼·åˆ¶å‰Šé™¤ã®å€¤ãŒå…¥ã£ã¦ã„ãŸã‚‰
 	if( *swk->work == FSEV_WIN_COMPULSION_DEL ){
 
 		EvBmpMenu_Del(wk);
@@ -672,13 +672,13 @@ static void EvBmpMenu_MainTCB( TCB_PTR tcb, void* wk )
 		case BMPMENU_NULL:
 			break;
 		case BMPMENU_CANCEL:
-			if( swk->cancel == TRUE ){			//TRUE = BƒLƒƒƒ“ƒZƒ‹—LŒø
-				*swk->work = FSEV_WIN_B_CANCEL;	//‘I‘ð‚µ‚½’l‚ðƒ[ƒN‚É‘ã“ü
+			if( swk->cancel == TRUE ){			//TRUE = Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+				*swk->work = FSEV_WIN_B_CANCEL;	//é¸æŠžã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 				EvBmpMenu_Del(wk);
 			}
 			break;
 		default:
-			*swk->work = ret;					//‘I‘ð‚µ‚½’l‚ðƒ[ƒN‚É‘ã“ü
+			*swk->work = ret;					//é¸æŠžã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 			EvBmpMenu_Del(wk);
 			break;
 		};
@@ -690,20 +690,20 @@ static void EvBmpMenu_MainTCB( TCB_PTR tcb, void* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[@I—¹
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€çµ‚äº†
  *
- * @param	wk			FSEV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			FSEV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * SEQ_SE_DP_SELECT‚ð–Â‚ç‚µ‚Ä‚¢‚éI
+ * SEQ_SE_DP_SELECTã‚’é³´ã‚‰ã—ã¦ã„ã‚‹ï¼
  */
 //--------------------------------------------------------------
 static void EvBmpMenu_Del( FSEVWIN_PTR wk )
 {
 	int i;
 
-	Snd_SePlay(SEQ_SE_DP_SELECT);	//’ˆÓI
+	Snd_SePlay(SEQ_SE_DP_SELECT);	//æ³¨æ„ï¼
 
 	BmpMenuExit( wk->mw, NULL );
 	BmpMenuWinClear( wk->MenuH.win, WINDOW_TRANS_ON );
@@ -725,11 +725,11 @@ static void EvBmpMenu_Del( FSEVWIN_PTR wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW‚ðˆêŠ‡•\Ž¦
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¸€æ‹¬è¡¨ç¤º
  *
- * @param	wk			EV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒX
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	wait		ƒƒbƒZ[ƒWƒEƒFƒCƒg
+ * @param	wk			EV_WIN_WORKåž‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	wait		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
  *
  * @retval	none
  */
@@ -738,7 +738,7 @@ static void menu_talk_msg_update( FSEVWIN_PTR wk )
 {
 	u8 csr_pos;
 
-	csr_pos = BmpMenuCursorPosGet( wk->mw );			//ƒJ[ƒ\ƒ‹À•WŽæ“¾
+	csr_pos = BmpMenuCursorPosGet( wk->mw );			//ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™å–å¾—
 	//OS_Printf( "csr_pos = %d\n", csr_pos );
 
 	if( wk->talk_msg_id[csr_pos] != FSEV_WIN_TALK_MSG_NONE ){
@@ -749,13 +749,13 @@ static void menu_talk_msg_update( FSEVWIN_PTR wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	‹­§I—¹
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	å¼·åˆ¶çµ‚äº†
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹‚Ì‚Ý‚ÅŽg—p‚·‚é
+ * ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã®ã¿ã§ä½¿ç”¨ã™ã‚‹
  */
 //--------------------------------------------------------------
 void FSSC_Sub_BmpMenu_Del( FSEVWIN_PTR wk )
@@ -768,10 +768,10 @@ void FSSC_Sub_BmpMenu_Del( FSEVWIN_PTR wk )
 
 	swk = (FSEV_WIN_WORK*)wk;
 
-	*swk->work = FSEV_WIN_B_CANCEL;	//‘I‘ð‚µ‚½’l‚ðƒ[ƒN‚É‘ã“ü
+	*swk->work = FSEV_WIN_B_CANCEL;	//é¸æŠžã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-	EvWin_ActorRelease( wk );		//íœ
+	EvWin_ActorRelease( wk );		//å‰Šé™¤
 #endif
 
 	EvBmpMenu_Del(wk);
@@ -782,7 +782,7 @@ void FSSC_Sub_BmpMenu_Del( FSEVWIN_PTR wk )
 #if 1
 //==============================================================================================
 //
-//	BMPƒŠƒXƒgŠÖ˜A
+//	BMPãƒªã‚¹ãƒˆé–¢é€£
 //
 //==============================================================================================
 FSEVWIN_PTR FSSC_Sub_BmpList_Init( FSS_PTR fss, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, MSGDATA_MANAGER* msgman );
@@ -800,16 +800,16 @@ void FSSC_Sub_BmpList_Del( FSEVWIN_PTR wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@‰Šú‰»
+ * @brief	BMPãƒªã‚¹ãƒˆã€€åˆæœŸåŒ–
  *
- * @param	x			ƒEƒBƒ“ƒhƒE•\Ž¦XÀ•W
- * @param	y			ƒEƒBƒ“ƒhƒE•\Ž¦XÀ•W
- * @param	cursor		ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	cancel		BƒLƒƒƒ“ƒZƒ‹ƒtƒ‰ƒO(TRUE=—LŒøAFALSE=–³Œø)
- * @param	work		Œ‹‰Ê‚ð‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	x			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	y			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºXåº§æ¨™
+ * @param	cursor		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	cancel		Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ•ãƒ©ã‚°(TRUE=æœ‰åŠ¹ã€FALSE=ç„¡åŠ¹)
+ * @param	work		çµæžœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"EV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒXANULL‚ÍŽ¸”s"
+ * @retval	"EV_WIN_WORKåž‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€NULLã¯å¤±æ•—"
  */
 //--------------------------------------------------------------
 FSEVWIN_PTR FSSC_Sub_BmpList_Init( FSS_PTR fss, u8 x, u8 y, u8 cursor, u8 cancel, u16* work, WORDSET* wordset, MSGDATA_MANAGER* msgman )
@@ -819,12 +819,12 @@ FSEVWIN_PTR FSSC_Sub_BmpList_Init( FSS_PTR fss, u8 x, u8 y, u8 cursor, u8 cancel
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgì¬
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	param		BMPLISTƒpƒ‰ƒ[ƒ^
+ * @param	wk			EV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPLISTãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -837,9 +837,9 @@ void FSSC_Sub_BmpList_MakeList( FSEVWIN_PTR wk, u32 msg_id, u32 talk_msg_id, u32
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ŠJŽn
+ * @brief	BMPãƒªã‚¹ãƒˆã€€é–‹å§‹
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -849,7 +849,7 @@ void FSSC_Sub_BmpList_Start( FSEVWIN_PTR wk )
 	u32 len;
 	FMAP_PTR fmap = FSS_GetFMapAdrs(wk->fss);
 
-	//(Å‘å•¶Žš”{ƒJ[ƒ\ƒ‹) * ƒtƒHƒ“ƒgƒTƒCƒY
+	//(æœ€å¤§æ–‡å­—æ•°ï¼‹ã‚«ãƒ¼ã‚½ãƒ«) * ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	//len = (BmpList_length_get(wk)+1) * FontHeaderGet(FSEV_FONT, FONT_HEADER_SIZE_X);
 	len = BmpList_length_get(wk);
 
@@ -862,7 +862,7 @@ void FSSC_Sub_BmpList_Start( FSEVWIN_PTR wk )
     if(wk->unk_97_x40){
         wk->x -= len;
     }
-	//•\Ž¦Å‘å€–Ú”ƒ`ƒFƒbƒN
+	//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°ãƒã‚§ãƒƒã‚¯
 	if( wk->list_no > EV_LIST_LINE ){
         if(wk->unk_97_x80){
             wk->y -= EV_LIST_LINE * 2;
@@ -877,26 +877,26 @@ void FSSC_Sub_BmpList_Start( FSEVWIN_PTR wk )
 									len, wk->list_no*2, FFD_SYSFONT_PAL, FFD_FREE_CGX );
 	}
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ðƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 //	MenuWinGraphicSet(
 //		wk->fsys->bgl, FLD_MBGFRM_FONT, MENU_WIN_CGX_NUM, MENU_WIN_PAL, 0, HEAPID_FIELD );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ð•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite(&wk->bmpwin, WINDOW_TRANS_OFF, FR_MENU_WIN_CGX_NUM, FR_MENU_WIN_PAL);
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 	EvWin_ActorInit( wk );
 #endif
 
-	//ƒŠƒXƒgƒwƒbƒ_[‰ŠúÝ’è
+	//ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
 	BmpList_h_default_set(wk);
 
 	wk->lw = BmpListSet( (const BMPLIST_HEADER*)&wk->ListH, 0, wk->cursor_pos, wk->fss->heap_id );
 
-	//‰ï˜bƒEƒBƒ“ƒhƒEXV
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›´æ–°
 	list_talk_msg_update( wk );
 
-	//TCB’Ç‰Á
+	//TCBè¿½åŠ 
 	wk->tcb	= TCB_Add( EvBmpList_MainTCB, wk, 0 );
 
 	return;
@@ -904,12 +904,12 @@ void FSSC_Sub_BmpList_Start( FSEVWIN_PTR wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒŠƒXƒgì¬
+ * @brief	BMPãƒªã‚¹ãƒˆ	ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	param		BMPLISTƒpƒ‰ƒ[ƒ^
+ * @param	wk			EV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	param		BMPLISTãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @retval	none
  */
@@ -919,16 +919,16 @@ static void BmpList_list_make( FSEVWIN_PTR wk, u32 msg_id, u32 talk_msg_id, u32 
 	int i;
 	void* msg;
 
-	SDK_ASSERTMSG( wk->list_no < EV_WIN_LIST_MAX, "ƒŠƒXƒg€–Ú”ƒI[ƒo[I" );
+	SDK_ASSERTMSG( wk->list_no < EV_WIN_LIST_MAX, "ãƒªã‚¹ãƒˆé …ç›®æ•°ã‚ªãƒ¼ãƒãƒ¼ï¼" );
 
 #if 1
 	{
-		//“WŠJž‚Ý
+		//å±•é–‹è¾¼ã¿
 		
-		STRBUF* tmp_buf2= STRBUF_Create( FSEVWIN_MSG_BUF_SIZE, wk->fss->heap_id );//ƒRƒs[—pƒoƒbƒtƒ@
+		STRBUF* tmp_buf2= STRBUF_Create( FSEVWIN_MSG_BUF_SIZE, wk->fss->heap_id );//ã‚³ãƒ”ãƒ¼ç”¨ãƒãƒƒãƒ•ã‚¡
 
 		MSGMAN_GetString( wk->msgman, msg_id, tmp_buf2 );
-		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//“WŠJ
+		WORDSET_ExpandStr( wk->wordset, wk->msg_buf[wk->list_no], tmp_buf2 );	//å±•é–‹
 		wk->list_Data[ wk->list_no ].str = (const void *)wk->msg_buf[wk->list_no];
 
 		STRBUF_Delete( tmp_buf2 );
@@ -955,9 +955,9 @@ static void BmpList_list_make( FSEVWIN_PTR wk, u32 msg_id, u32 talk_msg_id, u32 
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	€–Ú‚Ì’†‚©‚çÅ‘å•¶Žš”‚ðŽæ“¾
+ * @brief	BMPãƒªã‚¹ãƒˆ	é …ç›®ã®ä¸­ã‹ã‚‰æœ€å¤§æ–‡å­—æ•°ã‚’å–å¾—
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -988,9 +988,9 @@ static u32 BmpList_length_get( FSEVWIN_PTR wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒwƒbƒ_[‰ŠúÝ’è
+ * @brief	BMPãƒªã‚¹ãƒˆ	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1019,7 +1019,7 @@ static void BmpList_h_default_set(FSEVWIN_PTR wk)
 #if 0
 	wk->ListH.page_skip	= BMPLIST_LRKEY_SKIP;
 #else
-	wk->ListH.page_skip	= BMPLIST_NO_SKIP;				//08.05.31•ÏX
+	wk->ListH.page_skip	= BMPLIST_NO_SKIP;				//08.05.31å¤‰æ›´
 #endif
 	wk->ListH.font		= FSEV_FONT;
 	wk->ListH.c_disp_f	= 0;
@@ -1030,10 +1030,10 @@ static void BmpList_h_default_set(FSEVWIN_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒXƒgƒVƒXƒeƒ€‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒN¦ˆês•\Ž¦‚²‚Æ
+ * @brief	ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯â€»ä¸€è¡Œè¡¨ç¤ºã”ã¨
  *
- * @param	lw			BMPLIST_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	param		‘I‘ðŽžƒŠƒ^[ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param	lw			BMPLIST_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param		é¸æŠžæ™‚ãƒªã‚¿ãƒ¼ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  * @param	y			
  *
  * @retval	none
@@ -1050,7 +1050,7 @@ static void	BmpList_CallBack(BMPLIST_WORK* lw,u32 param,u8 y)
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒN
+ * @brief	BMPãƒªã‚¹ãƒˆ	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	
  *
@@ -1066,34 +1066,34 @@ static void BmpList_CursorMoveCallBack( BMPLIST_WORK* wk, u32 param, u8 mode )
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
 
-	//‰Šú‰»Žž
+	//åˆæœŸåŒ–æ™‚
 	if( mode == 1 ){
 		//
 	}
 
-	count = BmpListParamGet( wk, BMPLIST_ID_COUNT );	//ƒŠƒXƒg€–Ú”
-	line  = BmpListParamGet( wk, BMPLIST_ID_LINE );		//•\Ž¦Å‘å€–Ú”
+	count = BmpListParamGet( wk, BMPLIST_ID_COUNT );	//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	line  = BmpListParamGet( wk, BMPLIST_ID_LINE );		//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	//‘S‚Ä‚Ì€–Ú‚ð•\Ž¦‚µ‚Ä‚¢‚È‚¢Žž
+	//å…¨ã¦ã®é …ç›®ã‚’è¡¨ç¤ºã—ã¦ã„ãªã„æ™‚
 	if( count > line ){
 
 		BmpListPosGet( wk, &list_bak, &cursor_bak );
 
 		if( list_bak == 0 ){
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹”ñ•\Ž¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\Ž¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], FALSE );	//OBJ‚Ì”ñ•\Ž¦Ý’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJ‚Ì•\Ž¦Ý’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«éžè¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], FALSE );	//OBJã®éžè¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
 		}else if( list_bak == (count-line) ){
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\Ž¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹”ñ•\Ž¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJ‚Ì•\Ž¦Ý’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], FALSE );	//OBJ‚Ì”ñ•\Ž¦Ý’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«éžè¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], FALSE );	//OBJã®éžè¡¨ç¤ºè¨­å®š
 		}else{
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ìã‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\Ž¦\n" );
-			//OS_Printf( "ƒEƒBƒ“ƒhƒE‚Ì‰º‚ÌƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\Ž¦\n" );
-			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJ‚Ì•\Ž¦Ý’è
-			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJ‚Ì•\Ž¦Ý’è
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			//OS_Printf( "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸‹ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º\n" );
+			CATS_ObjectEnableCap( evwin_wk->act[0], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
+			CATS_ObjectEnableCap( evwin_wk->act[1], TRUE );		//OBJã®è¡¨ç¤ºè¨­å®š
 		}
 	}
 
@@ -1104,10 +1104,10 @@ static void BmpList_CursorMoveCallBack( BMPLIST_WORK* wk, u32 param, u8 mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgƒƒCƒ“
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆãƒ¡ã‚¤ãƒ³
  *
  * @param	tcb			TCB_PTR
- * @param	wk			ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -1119,29 +1119,29 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 	FSEV_WIN_WORK* swk;
 	swk = (FSEV_WIN_WORK*)wk;
 
-	//ƒEƒFƒCƒg
+	//ã‚¦ã‚§ã‚¤ãƒˆ
 	if( swk->wait != 0 ){
 		swk->wait--;
 		return;
 	}
 
-	//ƒƒCƒv’†‚Íˆ—‚µ‚È‚¢
+	//ãƒ¯ã‚¤ãƒ—ä¸­ã¯å‡¦ç†ã—ãªã„
 	if( WIPE_SYS_EndCheck() == FALSE ){
 		return;
 	}
 
 	ret = BmpListMain( swk->lw );
 
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ðŽæ“¾
-	tmp_pos_bak = swk->pos_bak;		//‘Þ”ð
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = swk->pos_bak;		//é€€é¿
 	BmpListDirectPosGet( swk->lw, &swk->pos_bak );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != swk->pos_bak ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE‚ÌƒƒbƒZ[ƒWXV
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ›´æ–°
 	if( (sys.repeat & PAD_KEY_UP) || (sys.repeat & PAD_KEY_DOWN) ||
 		(sys.repeat & PAD_KEY_LEFT) || (sys.repeat & PAD_KEY_RIGHT) ){
 		list_talk_msg_update( swk );
@@ -1151,11 +1151,11 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 	CLACT_Draw( swk->fcat.cas );
 #endif
 
-	//ƒtƒƒ“ƒeƒBƒA‚ÌŽ{Ý‚ÅA‹­§íœ‚Ì’l‚ª“ü‚Á‚Ä‚¢‚½‚ç
+	//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®æ–½è¨­ã§ã€å¼·åˆ¶å‰Šé™¤ã®å€¤ãŒå…¥ã£ã¦ã„ãŸã‚‰
 	if( *swk->work == FSEV_WIN_COMPULSION_DEL ){
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-		EvWin_ActorRelease( wk );				//íœ
+		EvWin_ActorRelease( wk );				//å‰Šé™¤
 #endif
 		EvBmpList_Del(wk,0);
 
@@ -1165,20 +1165,20 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 		case BMPLIST_NULL:
 			break;
 		case BMPLIST_CANCEL:
-			if( swk->cancel == TRUE ){			//TRUE = BƒLƒƒƒ“ƒZƒ‹—LŒø
+			if( swk->cancel == TRUE ){			//TRUE = Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 				Snd_SePlay( SEQ_SE_DP_SELECT );
-				*swk->work = FSEV_WIN_B_CANCEL;	//‘I‘ð‚µ‚½’l‚ðƒ[ƒN‚É‘ã“ü
+				*swk->work = FSEV_WIN_B_CANCEL;	//é¸æŠžã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-				EvWin_ActorRelease( wk );		//íœ
+				EvWin_ActorRelease( wk );		//å‰Šé™¤
 #endif
 				EvBmpList_Del(wk,1);
 			}
 			break;
 		default:
 			Snd_SePlay( SEQ_SE_DP_SELECT );
-			*swk->work = ret;					//‘I‘ð‚µ‚½’l‚ðƒ[ƒN‚É‘ã“ü
+			*swk->work = ret;					//é¸æŠžã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-			EvWin_ActorRelease( wk );			//íœ
+			EvWin_ActorRelease( wk );			//å‰Šé™¤
 #endif
 			EvBmpList_Del(wk,1);
 			break;
@@ -1191,13 +1191,13 @@ static void EvBmpList_MainTCB( TCB_PTR tcb, void* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg@ƒŠƒXƒgI—¹
+ * @brief	BMPãƒªã‚¹ãƒˆã€€ãƒªã‚¹ãƒˆçµ‚äº†
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * SEQ_SE_DP_SELECT‚ð–Â‚ç‚µ‚Ä‚¢‚éI
+ * SEQ_SE_DP_SELECTã‚’é³´ã‚‰ã—ã¦ã„ã‚‹ï¼
  */
 //--------------------------------------------------------------
 static void EvBmpList_Del( FSEVWIN_PTR wk, u8 se_flag )
@@ -1205,7 +1205,7 @@ static void EvBmpList_Del( FSEVWIN_PTR wk, u8 se_flag )
 	int i;
 
 	if( se_flag == 1 ){
-		Snd_SePlay(SEQ_SE_DP_SELECT);	//’ˆÓI
+		Snd_SePlay(SEQ_SE_DP_SELECT);	//æ³¨æ„ï¼
 	}
 
 	BmpListExit( wk->lw, NULL, NULL );
@@ -1228,11 +1228,11 @@ static void EvBmpList_Del( FSEVWIN_PTR wk, u8 se_flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW‚ðˆêŠ‡•\Ž¦
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¸€æ‹¬è¡¨ç¤º
  *
- * @param	wk			EV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒX
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	wait		ƒƒbƒZ[ƒWƒEƒFƒCƒg
+ * @param	wk			EV_WIN_WORKåž‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	wait		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
  *
  * @retval	none
  */
@@ -1242,12 +1242,12 @@ static void talk_msg_print( FSEVWIN_PTR wk, u16 talk_msg_id, u32 wait )
 	STRBUF* tmp_buf = STRBUF_Create( FSEVWIN_MSG_BUF_SIZE, wk->fss->heap_id );
 	STRBUF* tmp_buf2= STRBUF_Create( FSEVWIN_MSG_BUF_SIZE, wk->fss->heap_id );
 
-	//ƒƒbƒZ[ƒWƒNƒŠƒA
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¯ãƒªã‚¢
 	GF_BGL_BmpWinDataFill( wk->talk_bmpwin, (FBMP_COL_WHITE) );
 
 	MSGMAN_GetString( wk->msgman, talk_msg_id, tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ðŽg‚Á‚Ä•¶Žš—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªžã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, tmp_buf2, tmp_buf );
 
 	GF_STR_PrintSimple( wk->talk_bmpwin, FONT_TALK, tmp_buf2, 0, 0, wait, NULL );
@@ -1259,18 +1259,18 @@ static void talk_msg_print( FSEVWIN_PTR wk, u16 talk_msg_id, u32 wait )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW‚ðˆêŠ‡•\Ž¦
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¸€æ‹¬è¡¨ç¤º
  *
- * @param	wk			EV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒX
- * @param	talk_msg_id	‰ï˜bƒƒbƒZ[ƒWID
- * @param	wait		ƒƒbƒZ[ƒWƒEƒFƒCƒg
+ * @param	wk			EV_WIN_WORKåž‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	talk_msg_id	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	wait		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚§ã‚¤ãƒˆ
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void list_talk_msg_update( FSEVWIN_PTR wk )
 {
-	BmpListDirectPosGet( wk->lw, &wk->cursor_bak );		//ƒJ[ƒ\ƒ‹À•WŽæ“¾
+	BmpListDirectPosGet( wk->lw, &wk->cursor_bak );		//ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™å–å¾—
 	if( wk->talk_msg_id[wk->cursor_bak] != FSEV_WIN_TALK_MSG_NONE ){
 		talk_msg_print( wk, wk->talk_msg_id[wk->cursor_bak], MSG_ALLPUT );
 	}
@@ -1279,13 +1279,13 @@ static void list_talk_msg_update( FSEVWIN_PTR wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒŠƒXƒg	‹­§I—¹
+ * @brief	BMPãƒªã‚¹ãƒˆ	å¼·åˆ¶çµ‚äº†
  *
- * @param	wk			EV_WIN_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			EV_WIN_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹‚Ì‚Ý‚ÅŽg—p‚·‚é
+ * ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã®ã¿ã§ä½¿ç”¨ã™ã‚‹
  */
 //--------------------------------------------------------------
 void FSSC_Sub_BmpList_Del( FSEVWIN_PTR wk )
@@ -1298,10 +1298,10 @@ void FSSC_Sub_BmpList_Del( FSEVWIN_PTR wk )
 
 	swk = (FSEV_WIN_WORK*)wk;
 
-	*swk->work = FSEV_WIN_B_CANCEL;	//‘I‘ð‚µ‚½’l‚ðƒ[ƒN‚É‘ã“ü
+	*swk->work = FSEV_WIN_B_CANCEL;	//é¸æŠžã—ãŸå€¤ã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 
 #ifdef EV_WIN_SCROLL_CURSOR	//070228
-	EvWin_ActorRelease( wk );		//íœ
+	EvWin_ActorRelease( wk );		//å‰Šé™¤
 #endif
 
 	EvBmpList_Del(wk,0);
@@ -1313,14 +1313,14 @@ void FSSC_Sub_BmpList_Del( FSEVWIN_PTR wk )
 
 //==============================================================================
 //
-//	OBJƒAƒjƒ[ƒVƒ‡ƒ“
+//	OBJã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 //
 //==============================================================================
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒAƒjƒ[ƒVƒ‡ƒ“ƒEƒFƒCƒgƒe[ƒuƒ‹
+///ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¦ã‚§ã‚¤ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 ALIGN4 static const u8 AnmCmdWaitTbl[] = {
 	1,		//WAIT_1F
 	2,		//WAIT_2F
@@ -1331,7 +1331,7 @@ ALIGN4 static const u8 AnmCmdWaitTbl[] = {
 	32,		//WAIT_32F
 };
 
-///ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒf[ƒ^ƒe[ƒuƒ‹
+///ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 static ANM_CMD_TBL_DATA AnmCmdTbl[] = {
 	{WF2DMAP_CMD_NONE,	WF2DMAP_WAY_UP},	//FC_DIR_U	
 	{WF2DMAP_CMD_NONE,	WF2DMAP_WAY_DOWN},	//FC_DIR_D	
@@ -1369,10 +1369,10 @@ static ANM_CMD_TBL_DATA AnmCmdTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒB[ƒ‹ƒhOBJƒAƒjƒ[ƒVƒ‡ƒ“ŽÀsƒƒCƒ“
+ * @brief   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿè¡Œãƒ¡ã‚¤ãƒ³
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		FSSC_ANIME_MOVE_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		FSSC_ANIME_MOVE_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 void FSSC_Sub_AnimeListMain(TCB_PTR tcb, void *work)
@@ -1397,7 +1397,7 @@ void FSSC_Sub_AnimeListMain(TCB_PTR tcb, void *work)
 		//break;
 	case SEQ_ANM_REQ:
 		if(WF2DMAP_OBJWkDataGet(move->fss_actor->objwk, WF2DMAP_OBJPM_ST) == WF2DMAP_OBJST_NONE){
-			//waitƒ`ƒFƒbƒN
+			//waitãƒã‚§ãƒƒã‚¯
 			if(code >= FC_WAIT_1F && code <= FC_WAIT_32F){
 				move->wait++;
 				if(move->wait >= AnmCmdWaitTbl[code - FC_WAIT_1F]){
@@ -1415,15 +1415,15 @@ void FSSC_Sub_AnimeListMain(TCB_PTR tcb, void *work)
 					WF2DMAP_OBJDrawWkDrawFlagSet(move->fss_actor->drawwk, OFF);
 					break;
 				default:
-					GF_ASSERT(0);	//‘¶Ý‚µ‚È‚¢ƒRƒ}ƒ“ƒh
+					GF_ASSERT(0);	//å­˜åœ¨ã—ãªã„ã‚³ãƒžãƒ³ãƒ‰
 					break;
 				}
 				move->anm_list++;
 				break;
 			}
 			
-		#if 0	//ƒXƒNƒŠƒvƒg‚ÌOBJƒAƒjƒ‚Íƒ}ƒbƒv‚âl•¨‚Æ‚Ì“–‚½‚è”»’è‚ð–³Ž‹‚·‚é‚½‚ß
-				//ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ðŽg—p‚·‚é‚æ‚¤‚É•ÏX
+		#if 0	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®OBJã‚¢ãƒ‹ãƒ¡ã¯ãƒžãƒƒãƒ—ã‚„äººç‰©ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’ç„¡è¦–ã™ã‚‹ãŸã‚
+				//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 			req.cmd = AnmCmdTbl[code].cmd;
 			req.way = AnmCmdTbl[code].way;
 			req.playid = move->playid;
@@ -1455,12 +1455,12 @@ void FSSC_Sub_AnimeListMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ðì¬
+ * @brief   ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚’ä½œæˆ
  *
- * @param   act			‘ã“üæ
- * @param   objwk		‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒgƒ[ƒN
- * @param   playid		”FŽ¯ID
- * @param   code		ƒAƒjƒƒR[ƒh(FC_DIR_UAFC_WAIT_1FA“™)
+ * @param   act			ä»£å…¥å…ˆ
+ * @param   objwk		å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param   playid		èªè­˜ID
+ * @param   code		ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰(FC_DIR_Uã€FC_WAIT_1Fã€ç­‰)
  */
 //--------------------------------------------------------------
 void FSSC_Sub_ActCmdCreate(WF2DMAP_ACTCMD *act, WF2DMAP_OBJWK *objwk, int playid, int code)
@@ -1479,22 +1479,22 @@ void FSSC_Sub_ActCmdCreate(WF2DMAP_ACTCMD *act, WF2DMAP_OBJWK *objwk, int playid
 }
 
 //==============================================================================
-//	ƒ|ƒPƒ‚ƒ“•\Ž¦
+//	ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤º
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[‚ð¶¬‚·‚é
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   fmap			
- * @param   pp				•\Ž¦‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
- * @param   heap_id			ƒq[ƒvID(ŠÖ”“à‚Åƒeƒ“ƒ|ƒ‰ƒŠ‚Æ‚µ‚ÄŽg—p)
- * @param   manager_id		ƒAƒNƒ^[•ƒŠƒ\[ƒXŠÇ—ID (POKE_DISP_MANAGER_ID_???)
- * @param   x				â‘ÎÀ•WX
- * @param   y				â‘ÎÀ•WY
- * @param   soft_pri		ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param   bg_pri			BGƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param   evy				ƒJƒ‰[‰ÁŒ¸ŽZEVY’l
- * @param   next_rgb		ƒJƒ‰[‰ÁŒ¸ŽZŒã‚ÌF
+ * @param   pp				è¡¨ç¤ºã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+ * @param   heap_id			ãƒ’ãƒ¼ãƒ—ID(é–¢æ•°å†…ã§ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ç”¨)
+ * @param   manager_id		ã‚¢ã‚¯ã‚¿ãƒ¼ï¼†ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ID (POKE_DISP_MANAGER_ID_???)
+ * @param   x				çµ¶å¯¾åº§æ¨™X
+ * @param   y				çµ¶å¯¾åº§æ¨™Y
+ * @param   soft_pri		ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param   bg_pri			BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param   evy				ã‚«ãƒ©ãƒ¼åŠ æ¸›ç®—EVYå€¤
+ * @param   next_rgb		ã‚«ãƒ©ãƒ¼åŠ æ¸›ç®—å¾Œã®è‰²
  */
 //--------------------------------------------------------------
 void FSSC_Sub_PokemonActorAdd(FMAP_PTR fmap, POKEMON_PARAM *pp, int heap_id, 
@@ -1507,7 +1507,7 @@ void FSSC_Sub_PokemonActorAdd(FMAP_PTR fmap, POKEMON_PARAM *pp, int heap_id,
 	void *decord_buf;
 	CATS_ACT_PTR cap;
 	
-	//ƒ_ƒ~[‚ÌƒŠƒ\[ƒXƒf[ƒ^‚ðƒ}ƒl[ƒWƒƒ‚É“o˜^
+	//ãƒ€ãƒŸãƒ¼ã®ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒžãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
 	{
 		ARCHANDLE* hdl;
 
@@ -1523,7 +1523,7 @@ void FSSC_Sub_PokemonActorAdd(FMAP_PTR fmap, POKEMON_PARAM *pp, int heap_id,
 		ArchiveDataHandleClose( hdl );
 	}
 
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	{
 		int n;
 		TCATS_OBJECT_ADD_PARAM_S coap;
@@ -1545,7 +1545,7 @@ void FSSC_Sub_PokemonActorAdd(FMAP_PTR fmap, POKEMON_PARAM *pp, int heap_id,
 		CATS_ObjectUpdateCap(cap);
 	}
 
-	//ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ðƒ[ƒN‚É“Ç‚Ýž‚Ý
+	//ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¯ãƒ¼ã‚¯ã«èª­ã¿è¾¼ã¿
 	{
 		u32 personal_rnd, monsno;
 
@@ -1560,24 +1560,24 @@ void FSSC_Sub_PokemonActorAdd(FMAP_PTR fmap, POKEMON_PARAM *pp, int heap_id,
 			personal_rnd, FALSE, PARA_FRONT, monsno);
 	}
 
-	//ƒ_ƒ~[‚ÌƒŠƒ\[ƒX‚É³Ž®ƒf[ƒ^‚ð“]‘—‚µ‚È‚¨‚·
+	//ãƒ€ãƒŸãƒ¼ã®ãƒªã‚½ãƒ¼ã‚¹ã«æ­£å¼ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã—ãªãŠã™
 	{
 		NNSG2dImageProxy * image;
 		NNSG2dImagePaletteProxy* palette;
 		int pal_no;
 		
-		//ƒLƒƒƒ‰ƒNƒ^
+		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 		image = CLACT_ImageProxyGet(cap->act);
 		DC_FlushRange(decord_buf, sizeof(POKE_TEX_SIZE));
 		GX_LoadOBJ(decord_buf, 
 			image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], POKE_TEX_SIZE);
 		
-		//ƒpƒŒƒbƒg
+		//ãƒ‘ãƒ¬ãƒƒãƒˆ
 		palette = CLACT_PaletteProxyGet(cap->act);
 		pal_no = GetPlttProxyOffset(palette, NNS_G2D_VRAM_TYPE_2DMAIN);
 		PaletteWorkSet_Arc(pfd, ssa.arc_no, ssa.index_pal, heap_id, 
 			FADE_MAIN_OBJ, 0x20, pal_no*16);
-		//ƒJƒ‰[‰ÁŒ¸ŽZ
+		//ã‚«ãƒ©ãƒ¼åŠ æ¸›ç®—
 		if(evy > 0){
 			SoftFadePfd(pfd, FADE_MAIN_OBJ, pal_no * 16, 16, evy, next_rgb);
 		}
@@ -1590,19 +1590,19 @@ void FSSC_Sub_PokemonActorAdd(FMAP_PTR fmap, POKEMON_PARAM *pp, int heap_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[‚ðíœ‚·‚é
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   fmap			
- * @param   manager_id		ƒ}ƒl[ƒWƒƒID(POKE_DISP_MANAGER_ID_???)
+ * @param   manager_id		ãƒžãƒãƒ¼ã‚¸ãƒ£ID(POKE_DISP_MANAGER_ID_???)
  */
 //--------------------------------------------------------------
 void FSSC_Sub_PokemonDispDelete(FMAP_PTR fmap, int manager_id)
 {
-	//ƒAƒNƒ^[íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
 	CATS_ActorPointerDelete_S(fmap->poke_cap[manager_id - POKE_DISP_MANAGER_ID_START]);
 	fmap->poke_cap[manager_id - POKE_DISP_MANAGER_ID_START] = NULL;
 	
-	//ƒŠƒ\[ƒXíœ
+	//ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
 	CATS_FreeResourceChar(fmap->clactsys.crp, manager_id);
 	CATS_FreeResourcePltt(fmap->clactsys.crp, manager_id);
 	CATS_FreeResourceCell(fmap->clactsys.crp, manager_id);
@@ -1611,66 +1611,66 @@ void FSSC_Sub_PokemonDispDelete(FMAP_PTR fmap, int manager_id)
 
 
 //==============================================================================
-//	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+//	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 //==============================================================================
-///ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“FƒAƒNƒ^[ƒwƒbƒ_
+///ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ï¼šã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S PokeIconObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 100, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		FR_CHARID_POKEICON_0,				//ƒLƒƒƒ‰
-		FR_PLTTID_POKEICON,				//ƒpƒŒƒbƒg
-		FR_CELLID_POKEICON,				//ƒZƒ‹
-		FR_CELLANMID_POKEICON,				//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 100, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		FR_CHARID_POKEICON_0,				//ã‚­ãƒ£ãƒ©
+		FR_PLTTID_POKEICON,				//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		FR_CELLID_POKEICON,				//ã‚»ãƒ«
+		FR_CELLANMID_POKEICON,				//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	1,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	1,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒAƒCƒeƒ€ƒAƒCƒRƒ“FƒAƒNƒ^[ƒwƒbƒ_
+///ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ï¼šã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S ItemIconObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 99, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		FR_CHARID_ITEMICON,				//ƒLƒƒƒ‰
-		FR_PLTTID_ITEMICON,				//ƒpƒŒƒbƒg
-		FR_CELLID_ITEMICON,				//ƒZƒ‹
-		FR_CELLANMID_ITEMICON,				//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 99, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		FR_CHARID_ITEMICON,				//ã‚­ãƒ£ãƒ©
+		FR_PLTTID_ITEMICON,				//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		FR_CELLID_ITEMICON,				//ã‚»ãƒ«
+		FR_CELLANMID_ITEMICON,				//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	1,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	1,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì‹¤’ÊƒŠƒ\[ƒX‚ð“o˜^
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®å…±é€šãƒªã‚½ãƒ¼ã‚¹ã‚’ç™»éŒ²
  *
  * @param   fmap		
  */
 //--------------------------------------------------------------
 void FSSC_Sub_PokeIconCommonResourceSet(FMAP_PTR fmap)
 {
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	CATS_LoadResourcePlttWorkArc(fmap->pfd, FADE_MAIN_OBJ, fmap->clactsys.csp, fmap->clactsys.crp,
 		ARC_POKEICON, PokeIconPalArcIndexGet(), 0, POKEICON_PAL_MAX, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, FR_PLTTID_POKEICON);
-	//ƒZƒ‹
+	//ã‚»ãƒ«
 	CATS_LoadResourceCellArc(fmap->clactsys.csp, fmap->clactsys.crp, ARC_POKEICON, 
 		PokeIconAnmCellArcIndexGet(), 0, FR_CELLID_POKEICON);
-	//ƒZƒ‹ƒAƒjƒ
+	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	CATS_LoadResourceCellAnmArc(fmap->clactsys.csp, fmap->clactsys.crp, ARC_POKEICON, 
 		PokeIconAnmCellAnmArcIndexGet(), 0, FR_CELLANMID_POKEICON);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì‹¤’ÊƒŠƒ\[ƒX‚ð”jŠü‚·‚é
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®å…±é€šãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã™ã‚‹
  *
  * @param   fmap		
  */
@@ -1684,15 +1684,15 @@ void FSSC_Sub_PokeIconCommonResourceFree(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[‚ð¶¬(ƒLƒƒƒ‰ƒNƒ^‚ÌƒŠƒ\[ƒX“o˜^‚à‚·‚é)
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆ(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²ã‚‚ã™ã‚‹)
  *
  * @param   fmap		
- * @param   pp			¶¬‚·‚éƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pos			ŠÇ—”Ô†
- * @param   x			•\Ž¦À•WX
- * @param   y			•\Ž¦À•WY
+ * @param   pp			ç”Ÿæˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos			ç®¡ç†ç•ªå·
+ * @param   x			è¡¨ç¤ºåº§æ¨™X
+ * @param   y			è¡¨ç¤ºåº§æ¨™Y
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR Frontier_PokeIconAdd(FMAP_PTR fmap, POKEMON_PARAM *pp, int pos, int x, int y)
@@ -1705,24 +1705,24 @@ CATS_ACT_PTR Frontier_PokeIconAdd(FMAP_PTR fmap, POKEMON_PARAM *pp, int pos, int
 	OS_Printf( "pos = %d\n", (FR_CHARID_POKEICON_0 + pos) );
 
 #if 1
-	//ƒLƒƒƒ‰ƒŠƒ\[ƒX	¦ƒLƒƒƒ‰ƒŠƒ\[ƒX‚ÆƒAƒNƒ^[‚Ípos–ˆ‚ÉŒÂ•Ê“o˜^
+	//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹	â€»ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ã¨ã‚¢ã‚¯ã‚¿ãƒ¼ã¯posæ¯Žã«å€‹åˆ¥ç™»éŒ²
 	CATS_LoadResourceCharArcModeAdjustAreaCont(
 		fmap->clactsys.csp, fmap->clactsys.crp, ARC_POKEICON, 
 		PokeIconCgxArcIndexGetByPP(pp), 0, NNS_G2D_VRAM_TYPE_2DMAIN, FR_CHARID_POKEICON_0 + pos);
 #else
-	//ƒLƒƒƒ‰ƒŠƒ\[ƒX	¦ƒLƒƒƒ‰ƒŠƒ\[ƒX‚ÆƒAƒNƒ^[‚Ípos–ˆ‚ÉŒÂ•Ê“o˜^
+	//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹	â€»ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ã¨ã‚¢ã‚¯ã‚¿ãƒ¼ã¯posæ¯Žã«å€‹åˆ¥ç™»éŒ²
 	CATS_LoadResourceCharArc(fmap->clactsys.csp, fmap->clactsys.crp, ARC_POKEICON, 
 		PokeIconCgxArcIndexGetByPP(pp), 0, NNS_G2D_VRAM_TYPE_2DMAIN, FR_CHARID_POKEICON_0 + pos);
 #endif
 
-	//ƒAƒNƒ^[“o˜^
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	obj_param = PokeIconObjParam;
 	obj_param.id[CLACT_U_CHAR_RES] += pos;
 	obj_param.x		= x;
 	obj_param.y		= y;
 	obj_param.pri	= ACT_SOFTPRI_ROULETTE_POKE;
 	cap = CATS_ObjectAdd_S(fmap->clactsys.csp, fmap->clactsys.crp, &obj_param);
-	//ƒpƒŒƒbƒgØ‚è‘Ö‚¦
+	//ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
 	CLACT_PaletteOffsetChgAddTransPlttNo(cap->act, PokeIconPalNumGetByPP(pp));
 	
 	CATS_ObjectUpdateCap(cap);
@@ -1731,11 +1731,11 @@ CATS_ACT_PTR Frontier_PokeIconAdd(FMAP_PTR fmap, POKEMON_PARAM *pp, int pos, int
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ìíœ‚ðs‚¤(ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‚Ì‰ð•ú‚às‚¤)
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®å‰Šé™¤ã‚’è¡Œã†(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾ã‚‚è¡Œã†)
  *
  * @param   fmap		
- * @param   cap			íœ‚·‚éƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pos			ŠÇ—”Ô†
+ * @param   cap			å‰Šé™¤ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos			ç®¡ç†ç•ªå·
  */
 //--------------------------------------------------------------
 void FSSC_Sub_PokeIconDel(FMAP_PTR fmap, CATS_ACT_PTR cap, int pos)
@@ -1746,7 +1746,7 @@ void FSSC_Sub_PokeIconDel(FMAP_PTR fmap, CATS_ACT_PTR cap, int pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€ƒAƒCƒRƒ“(ƒŠƒXƒg—p)‚ÌƒŠƒ\[ƒX“o˜^
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³(ãƒªã‚¹ãƒˆç”¨)ã®ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  *
  * @param   fmap		
  */
@@ -1757,19 +1757,19 @@ void FSSC_Sub_ItemIconLoad(FMAP_PTR fmap)
 	
 	hdl = ArchiveDataHandleOpen( ARC_PLIST_GRA, HEAPID_FRONTIERMAP); 
 	
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	CATS_LoadResourcePlttWorkArcH(
 		fmap->pfd, FADE_MAIN_OBJ, fmap->clactsys.csp, fmap->clactsys.crp, hdl,
 		Pokelist_ItemIconPalArcGet(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, FR_PLTTID_ITEMICON);
-	// ƒZƒ‹
+	// ã‚»ãƒ«
 	CATS_LoadResourceCellArcH(
 		fmap->clactsys.csp, fmap->clactsys.crp, hdl, 
 		Pokelist_ItemIconCellArcGet(), 0, FR_CELLID_ITEMICON );
-	// ƒZƒ‹ƒAƒjƒ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	CATS_LoadResourceCellAnmArcH(
 		fmap->clactsys.csp, fmap->clactsys.crp, hdl, 
 		Pokelist_ItemIconCAnmArcGet(), 0, FR_CELLANMID_ITEMICON );
-	// ƒLƒƒƒ‰
+	// ã‚­ãƒ£ãƒ©
 //	CATS_LoadResourceCharArcH(
 //		fmap->clactsys.csp, fmap->clactsys.crp, hdl,
 //		Pokelist_ItemIconCgxArcGet(), 0, NNS_G2D_VRAM_TYPE_2DMAIN, FR_CHARID_ITEMICON);
@@ -1782,7 +1782,7 @@ void FSSC_Sub_ItemIconLoad(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€ƒAƒCƒRƒ“(ƒŠƒXƒg—p)‚ÌƒŠƒ\[ƒX‰ð•ú
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³(ãƒªã‚¹ãƒˆç”¨)ã®ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  *
  * @param   fmap		
  */
@@ -1797,13 +1797,13 @@ void FSSC_Sub_ItemIconFree(FMAP_PTR fmap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[‚ð¶¬(ƒLƒƒƒ‰ƒNƒ^‚ÌƒŠƒ\[ƒX“o˜^‚à‚·‚é)
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆ(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²ã‚‚ã™ã‚‹)
  *
  * @param   fmap		
- * @param   x			•\Ž¦À•WX
- * @param   y			•\Ž¦À•WY
+ * @param   x			è¡¨ç¤ºåº§æ¨™X
+ * @param   y			è¡¨ç¤ºåº§æ¨™Y
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR Frontier_ItemIconAdd(FMAP_PTR fmap, int x, int y)
@@ -1811,7 +1811,7 @@ CATS_ACT_PTR Frontier_ItemIconAdd(FMAP_PTR fmap, int x, int y)
 	CATS_ACT_PTR cap;
 	TCATS_OBJECT_ADD_PARAM_S obj_param;
 	
-	//ƒAƒNƒ^[“o˜^
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	obj_param = ItemIconObjParam;
 	obj_param.x		= x;
 	obj_param.y		= y;
@@ -1824,10 +1824,10 @@ CATS_ACT_PTR Frontier_ItemIconAdd(FMAP_PTR fmap, int x, int y)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚Ìíœ‚ðs‚¤
+ * @brief   ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã®å‰Šé™¤ã‚’è¡Œã†
  *
  * @param   fmap		
- * @param   cap			íœ‚·‚éƒAƒCƒeƒ€ƒAƒCƒRƒ“ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   cap			å‰Šé™¤ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void FSSC_Sub_ItemIconDel(FMAP_PTR fmap, CATS_ACT_PTR cap)
@@ -1837,7 +1837,7 @@ void FSSC_Sub_ItemIconDel(FMAP_PTR fmap, CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Îí‘OƒgƒŒ[ƒi[ƒf[ƒ^ƒZƒbƒg
+ * @brief   å¯¾æˆ¦å‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
  * @param   
  */
@@ -1848,7 +1848,7 @@ void FrontierTalkMsgSub2( FSS_TASK* core, u16* msg, u32 datID );
 
 void FrontierTalkMsgSub( FSS_TASK* core, u16* msg )
 {
-	FrontierTalkMsgSub2( core, msg, NARC_msg_tower_trainerpl_dat );		//ƒvƒ‰ƒ`ƒi
+	FrontierTalkMsgSub2( core, msg, NARC_msg_tower_trainerpl_dat );		//ãƒ—ãƒ©ãƒãƒŠ
 	return;
 }
 
@@ -1865,7 +1865,7 @@ void FrontierTalkMsgSub2( FSS_TASK* core, u16* msg, u32 datID )
 		//ScrTalkMsg(core, man,msg[1], 1, NULL);
 		FSSC_Sub_ScrTalkMsg(core->fss, man, msg[1], 1, NULL);
 		MSGMAN_Delete(man);
-	}else{					//ŠÈˆÕ‰ï˜b--------------------------------------------
+	}else{					//ç°¡æ˜“ä¼šè©±--------------------------------------------
 
 		spd = CONFIG_GetMsgPrintSpeed( SaveData_GetConfig(ex_param->savedata) );
 		FSTalkMsgPMSParam(core->fss,spd,msg[0],msg[1],msg[2],msg[3],1);
@@ -1886,9 +1886,9 @@ static BOOL TowerTalkMsgWait(FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’nkŽÀsƒ^ƒXƒN
+ * @brief   åœ°éœ‡å®Ÿè¡Œã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		FMAP_SHAK_WORK
  */
 //--------------------------------------------------------------
@@ -1912,9 +1912,9 @@ void FSSC_Sub_ShakeMove(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   WindowŽÀsƒ^ƒXƒN
+ * @brief   Windowå®Ÿè¡Œã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		FMAP_WND_WORK
  */
 //--------------------------------------------------------------

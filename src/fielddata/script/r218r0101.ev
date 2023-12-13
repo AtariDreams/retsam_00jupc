@@ -8,34 +8,34 @@
 	.include	"../../../include/msgdata/msg_r218r0101.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r218r0101_policeman
 _EVENT_DATA		ev_r218r0101_fishing
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 /********************************************************************/
-/*							‚¨„‚è‚³‚ñ								*/
+/*							ãŠå·¡ã‚Šã•ã‚“								*/
 /********************************************************************/
 ev_r218r0101_policeman:
 	_EASY_OBJ_MSG	msg_r218r0101_policeman_01
 	_END
 
 /********************************************************************/
-/*							’Þ‚èl									*/
+/*							é‡£ã‚Šäºº									*/
 /********************************************************************/
 ev_r218r0101_fishing:
 	_TALK_OBJ_START
 
-	//ƒAƒCƒeƒ€–¼‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_BORONOTURIZAO
 	_ITEM_NAME		0,SCWK_TEMP0
 
-	//Šù‚ÉŽæ“¾Ï‚Ý‚©ƒ`ƒFƒbƒN
+	//æ—¢ã«å–å¾—æ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
 	_IF_FLAGON_JUMP		FE_BORONOTURIZAO_GET,r218r0101_fishing_flag_on
 
 	_TALKMSG	msg_r218r0101_fishing_01
@@ -44,7 +44,7 @@ ev_r218r0101_fishing:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,r218r0101_fishing_no
 	_END
 
-//Šù‚ÉŽæ“¾Ï‚Ý
+//æ—¢ã«å–å¾—æ¸ˆã¿
 r218r0101_fishing_flag_on:
 	_ITEM_NAME		0,SCWK_TEMP0
 
@@ -54,7 +54,7 @@ r218r0101_fishing_flag_on:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,r218r0101_fishing_06
 	_END
 
-//à–¾@‚Í‚¢
+//èª¬æ˜Žã€€ã¯ã„
 r218r0101_fishing_05:
 	_TALKMSG		msg_r218r0101_fishing_05
 	_LAST_KEYWAIT
@@ -62,7 +62,7 @@ r218r0101_fishing_05:
 	_TALK_OBJ_END
 	_END
 
-//à–¾@‚¢‚¢‚¦
+//èª¬æ˜Žã€€ã„ã„ãˆ
 r218r0101_fishing_06:
 	_TALKMSG		msg_r218r0101_fishing_06
 	_LAST_KEYWAIT
@@ -71,7 +71,7 @@ r218r0101_fishing_06:
 	_END
 
 
-//h‚¢‚¢‚¦h‘I‘ð
+//â€ã„ã„ãˆâ€é¸æŠž
 r218r0101_fishing_no:
 	_TALKMSG		msg_r218r0101_fishing_04
 	_LAST_KEYWAIT
@@ -79,19 +79,19 @@ r218r0101_fishing_no:
 	_TALK_OBJ_END
 	_END
 
-//h‚Í‚¢h‘I‘ð
+//â€ã¯ã„â€é¸æŠž
 r218r0101_fishing_yes:
 	_ITEM_NAME		0,SCWK_TEMP0
 
 	_TALK_KEYWAIT	msg_r218r0101_fishing_02
 
-	//ŒÂ”‚ðƒZƒbƒg
+	//å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*‘—‚èƒJ[ƒ\ƒ‹‘Ò‚¿‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«å¾…ã¡ã‚ã‚Š*/
 
-	//Žæ“¾Ï‚Ýó‘Ô‚Ö
+	//å–å¾—æ¸ˆã¿çŠ¶æ…‹ã¸
 	_FLAG_SET		FE_BORONOTURIZAO_GET
 
 	_JUMP			r218r0101_fishing_flag_on

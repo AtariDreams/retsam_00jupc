@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fss_roulette_sub.c
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhƒTƒuFƒ‹[ƒŒƒbƒg
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚µãƒ–ï¼šãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
  * @author	Satoshi Nohara
  * @date	07.09.06
  */
@@ -48,7 +48,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 ROULETTE_SCRWORK* RouletteScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 pos1, u16 pos2, u16 pos3, u16* work );
@@ -74,13 +74,13 @@ void RouletteScr_DelItemKeepIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param
 void RouletteScr_ChgItemKeepIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1, u16 param2, u16 param3 );
 void RouletteScr_ResColorChange( u8 evy, u8 flag );
 
-//’ÊM
+//é€šä¿¡
 BOOL RouletteScr_CommSetSendBuf( ROULETTE_SCRWORK* wk, u16 type, u16 param );
 
 
 //============================================================================================
 //
-//	ƒpƒlƒ‹‚ÌƒLƒƒƒ‰ƒNƒ^AƒXƒNƒŠ[ƒ“ƒe[ƒuƒ‹
+//	ãƒ‘ãƒãƒ«ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 //============================================================================================
 static const u16 roulette_panel_data_tbl[ROULETTE_EV_MAX][3] = {
@@ -124,11 +124,11 @@ static const u16 roulette_panel_data_tbl[ROULETTE_EV_MAX][3] = {
 
 //============================================================================================
 //
-//	ü‰ñ”‚É‚æ‚Á‚ÄA’§í‚ÌŠî–{‚Ìƒ‹[ƒŒƒbƒg‘¬“x‚ğŒˆ‚ß‚é
+//	å‘¨å›æ•°ã«ã‚ˆã£ã¦ã€æŒ‘æˆ¦æ™‚ã®åŸºæœ¬ã®ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€Ÿåº¦ã‚’æ±ºã‚ã‚‹
 //
 //============================================================================================
 static const u8 roulette_basic_spd_tbl[][2] = {
-	//ü‰ñ”	Šî–{‘¬“x
+	//å‘¨å›æ•°	åŸºæœ¬é€Ÿåº¦
 	{ 7,		5 },		//7-
 	{ 4,		4 },		//4-6
 	{ 0,		3 },		//1-3
@@ -138,17 +138,17 @@ static const u8 roulette_basic_spd_tbl[][2] = {
 
 //============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒGƒŠƒAŠm•Û
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ç¢ºä¿
  *
  * @param	none
  *	
- * –‚©‚È‚ç‚¸ RouletteScr_WorkRelease()‚Å—Ìˆæ‚ğŠJ•ú‚·‚é‚±‚Æ
+ * ï¼Šã‹ãªã‚‰ãš RouletteScr_WorkRelease()ã§é ˜åŸŸã‚’é–‹æ”¾ã™ã‚‹ã“ã¨
  */
 //--------------------------------------------------------------
 ROULETTE_SCRWORK* RouletteScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 pos1, u16 pos2, u16 pos3, u16* work )
@@ -159,13 +159,13 @@ ROULETTE_SCRWORK* RouletteScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, 
 	ROULETTEDATA* ca_sv;
 	u8 clear_flag,m_max;
 	u16	i,chg_flg;
-	static ROULETTE_SCRWORK* wk;					//‚ ‚Æ‚ÅŠm”F]]]]]]]]]]]]]]]]]]]]]]]]]
+	static ROULETTE_SCRWORK* wk;					//ã‚ã¨ã§ç¢ºèª]]]]]]]]]]]]]]]]]]]]]]]]]
 	ROULETTESCORE* score_sv;
 
 	wk = sys_AllocMemory( HEAPID_WORLD, sizeof(ROULETTE_SCRWORK) );
 	MI_CpuClear8( wk, sizeof(ROULETTE_SCRWORK) );
 
-	//ƒZ[ƒuƒf[ƒ^æ“¾
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	wk->roulette_savedata	= SaveData_GetRouletteData( savedata );
 	wk->sv				= savedata;
 	wk->heapID			= HEAPID_WORLD;
@@ -177,17 +177,17 @@ ROULETTE_SCRWORK* RouletteScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, 
 	ca_sv = wk->roulette_savedata;
 	score_sv = SaveData_GetRouletteScore( savedata );
 
-	//V‹K‚©AŒp‘±‚©
+	//æ–°è¦ã‹ã€ç¶™ç¶šã‹
 	if( init == 0 ){
 		wk->type	= type;
 		wk->round	= 0;
-		//RouletteScr_InitDataSet(...)‚Ì’†‚ÅAü‰ñ”‚É‚æ‚Á‚ÄŠî–{‘¬“x‚ğİ’è‚µ‚Ä‚¢‚é
+		//RouletteScr_InitDataSet(...)ã®ä¸­ã§ã€å‘¨å›æ•°ã«ã‚ˆã£ã¦åŸºæœ¬é€Ÿåº¦ã‚’è¨­å®šã—ã¦ã„ã‚‹
 		wk->csr_speed_level = CSR_SPEED_LEVEL_DEFAULT;
 		wk->random_flag = 0;
 
-		ROULETTEDATA_Init( ca_sv );	//’†’fƒf[ƒ^‰Šú‰»
+		ROULETTEDATA_Init( ca_sv );	//ä¸­æ–­ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 
-		//WIFI‚Ì‚İ“Áê
+		//WIFIã®ã¿ç‰¹æ®Š
 		if( wk->type == ROULETTE_TYPE_WIFI_MULTI ){
 #if 0
 			clear_flag = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), 
@@ -198,7 +198,7 @@ ROULETTE_SCRWORK* RouletteScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, 
 #endif
 
 		}else{
-			//ƒNƒŠƒA‚µ‚½‚©ƒtƒ‰ƒO‚ğæ“¾
+			//ã‚¯ãƒªã‚¢ã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 			clear_flag = (u8)ROULETTESCORE_GetScoreData(score_sv, ROULETTESCORE_ID_CLEAR_FLAG, 
 														wk->type, 0, NULL );
 		}
@@ -214,12 +214,12 @@ ROULETTE_SCRWORK* RouletteScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, 
 		wk->lap		= (u16)(wk->rensyou / ROULETTE_LAP_ENEMY_MAX);
 		wk->win_cnt	= 0;
 
-		//‘I‘ğ‚µ‚½è‚¿‚ÌˆÊ’u
+		//é¸æŠã—ãŸæ‰‹æŒã¡ã®ä½ç½®
 		wk->mine_poke_pos[0] = pos1;
 		wk->mine_poke_pos[1] = pos2;
 		wk->mine_poke_pos[2] = pos3;
 	}else{
-		//Œ»İ‚ÌƒvƒŒƒCisƒf[ƒ^æ“¾
+		//ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤é€²è¡Œãƒ‡ãƒ¼ã‚¿å–å¾—
 		wk->type = (u8)ROULETTEDATA_GetPlayData( ca_sv, ROULETTEDATA_ID_TYPE, 0, 0, NULL);
 		wk->round = (u8)ROULETTEDATA_GetPlayData( ca_sv, ROULETTEDATA_ID_ROUND, 0, 0, NULL);
 		wk->csr_speed_level = (u8)ROULETTEDATA_GetPlayData( ca_sv, 
@@ -238,31 +238,31 @@ ROULETTE_SCRWORK* RouletteScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, 
 		}
 	}
 
-	//ŠƒAƒCƒeƒ€‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+	//æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ ã‚’ä¿å­˜ã—ã¦ãŠã
 	for( i=0; i < ROULETTE_ENTRY_POKE_MAX ;i++ ){
 		temp_poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(wk->sv), 
 												wk->mine_poke_pos[i] );
 		wk->itemno[i] = PokeParaGet( temp_poke, ID_PARA_item, NULL );
 	}
 
-	//oêƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+	//å‡ºå ´ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	temoti_party = SaveData_GetTemotiPokemon( wk->sv );
-	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_SOLO );		//–¡•û
+	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_SOLO );		//å‘³æ–¹
 	for( i=0; i < m_max; i++ ){
 
 		PokeParty_Add(	wk->p_m_party, 
 						PokeParty_GetMemberPointer(temoti_party,wk->mine_poke_pos[i]) );
 
 		////////////////////////////////////////////////////////////
-		//•Û‘¶‚µ‚Ä‚¨‚¢‚½AHPAPPAƒAƒCƒeƒ€‚È‚Ç‚ğŒ³‚É–ß‚³‚È‚¢‚Æƒ_ƒI
+		//ä¿å­˜ã—ã¦ãŠã„ãŸã€HPã€PPã€ã‚¢ã‚¤ãƒ†ãƒ ãªã©ã‚’å…ƒã«æˆ»ã•ãªã„ã¨ãƒ€ãƒ¡ï¼
 		////////////////////////////////////////////////////////////
 		
-		//ƒAƒCƒeƒ€‚ğŠO‚·
+		//ã‚¢ã‚¤ãƒ†ãƒ ã‚’å¤–ã™
 		temp_poke = PokeParty_GetMemberPointer( wk->p_m_party, i );
 		buf = 0;
 		PokeParaPut( temp_poke, ID_PARA_item, &buf );
 
-		//ƒŒƒxƒ‹’²®
+		//ãƒ¬ãƒ™ãƒ«èª¿æ•´
 		if( PokeParaGet(temp_poke,ID_PARA_level,NULL) > 50 ){
 			exp = PokeLevelExpGet( PokeParaGet(temp_poke,ID_PARA_monsno,NULL), 50 );
 			PokeParaPut( temp_poke, ID_PARA_exp, &exp );
@@ -270,7 +270,7 @@ ROULETTE_SCRWORK* RouletteScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, 
 		}
 	}
 
-	//’n‹…‹V“o˜^
+	//åœ°çƒå„€ç™»éŒ²
 	if( Roulette_CommCheck(wk->type) == TRUE ){
 		FrontierTool_WifiHistory( wk->sv );
 	}
@@ -280,25 +280,25 @@ ROULETTE_SCRWORK* RouletteScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒGƒŠƒA‚ğæ“¾‚µ‚Ä‰Šú‰»‚·‚é
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’å–å¾—ã—ã¦åˆæœŸåŒ–ã™ã‚‹
  *
- * @param	savedata	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	init		‰Šú‰»ƒ‚[ƒh BTWR_PLAY_NEW:‰‚ß‚©‚çABTWR_PLAY_CONTINE:‘±‚«‚©‚ç
+ * @param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	init		åˆæœŸåŒ–ãƒ¢ãƒ¼ãƒ‰ BTWR_PLAY_NEW:åˆã‚ã‹ã‚‰ã€BTWR_PLAY_CONTINE:ç¶šãã‹ã‚‰
  *	
- * –‚©‚È‚ç‚¸ RouletteScr_WorkRelease()‚Å—Ìˆæ‚ğŠJ•ú‚·‚é‚±‚Æ
+ * ï¼Šã‹ãªã‚‰ãš RouletteScr_WorkRelease()ã§é ˜åŸŸã‚’é–‹æ”¾ã™ã‚‹ã“ã¨
  */
 //--------------------------------------------------------------
 void RouletteScr_WorkInit( ROULETTE_SCRWORK* wk, u16 init )
 {
-	//V‹K‚©AŒp‘±‚©
+	//æ–°è¦ã‹ã€ç¶™ç¶šã‹
 	if( init == 0 ){
-		//OS_Printf( "‘O V‹K –â‘è‚Ìwk = %d\n", wk );
+		//OS_Printf( "å‰ æ–°è¦ å•é¡Œã®wk = %d\n", wk );
 		RouletteScr_InitDataSet( wk );
-		//OS_Printf( "Œã V‹K –â‘è‚Ìwk = %d\n", wk );
+		//OS_Printf( "å¾Œ æ–°è¦ å•é¡Œã®wk = %d\n", wk );
 	}else{
-		//OS_Printf( "‘O Œp‘± –â‘è‚Ìwk = %d\n", wk );
+		//OS_Printf( "å‰ ç¶™ç¶š å•é¡Œã®wk = %d\n", wk );
 		RouletteScr_ContinueDataSet( wk );
-		//OS_Printf( "Œã Œp‘± –â‘è‚Ìwk = %d\n", wk );
+		//OS_Printf( "å¾Œ ç¶™ç¶š å•é¡Œã®wk = %d\n", wk );
 	}
 
 	return;
@@ -306,9 +306,9 @@ void RouletteScr_WorkInit( ROULETTE_SCRWORK* wk, u16 init )
 
 //--------------------------------------------------------------
 /**
- * @brief	V‹KFƒgƒŒ[ƒi[Aƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğ¶¬
+ * @brief	æ–°è¦ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆ
  *
- * @param	wk		ROULETTE_SCRWORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void RouletteScr_InitDataSet( ROULETTE_SCRWORK* wk )
@@ -321,21 +321,21 @@ static void RouletteScr_InitDataSet( ROULETTE_SCRWORK* wk )
 	u16 poke_check_tbl[6];	//rental
 	u16 item_check_tbl[6];	//rental
 
-	OS_Printf( "V‹KFƒf[ƒ^‚ğ¶¬\n" );
+	OS_Printf( "æ–°è¦ï¼šãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆ\n" );
 
-	//07.09.25 í‚Éü‰ñ”*2‚ÌƒgƒŒ[ƒi[‚ğæ“¾
-	//ƒVƒ“ƒOƒ‹(0-6)Aƒ}ƒ‹ƒ`‚Ìƒp[ƒgƒi[(7-13)‚Åæ“¾
-	//‚»‚Ìü‚É“oê‚·‚éƒgƒŒ[ƒi[‚Ìindex‚ğ‘S‚Äæ“¾
+	//07.09.25 å¸¸ã«å‘¨å›æ•°*2ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚’å–å¾—
+	//ã‚·ãƒ³ã‚°ãƒ«(0-6)ã€ãƒãƒ«ãƒã®ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼(7-13)ã§å–å¾—
+	//ãã®å‘¨ã«ç™»å ´ã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®indexã‚’å…¨ã¦å–å¾—
 	Roulette_EnemyLapAllTrainerIndexGet(	wk->type, RouletteScr_CommGetLap(wk), wk->tr_index, 
 											ROULETTE_LAP_MULTI_ENEMY_MAX );
 	OS_Printf( "lap = %d\n", RouletteScr_CommGetLap(wk) );
 
-	//ƒfƒoƒbƒNî•ñ
+	//ãƒ‡ãƒãƒƒã‚¯æƒ…å ±
 	for( i=0; i < ROULETTE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		OS_Printf( "tr_index[%d] = %d\n", i, wk->tr_index[i] );
 	}
 
-	//“GƒgƒŒ[ƒi[‚ªo‚·ƒ|ƒPƒ‚ƒ“¶¬
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒå‡ºã™ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ
 	Frontier_EnemyPokeMake(	Roulette_GetEnemyPokeNum(wk->type,ROULETTE_FLAG_TOTAL),
 							wk->tr_index[wk->round], 
 							wk->tr_index[wk->round+ROULETTE_LAP_ENEMY_MAX], 
@@ -352,10 +352,10 @@ static void RouletteScr_InitDataSet( ROULETTE_SCRWORK* wk )
 		OS_Printf( "enemy_personal[%d] = %d\n", i, wk->enemy_personal_rnd[i] );
 	}
 
-	//’ÊM‚Å‘Šè‚Ìü‰ñ”‚ğæ“¾‚µ‚½Œã‚Éˆ—‚·‚é
+	//é€šä¿¡ã§ç›¸æ‰‹ã®å‘¨å›æ•°ã‚’å–å¾—ã—ãŸå¾Œã«å‡¦ç†ã™ã‚‹
 	lap = RouletteScr_CommGetLap( wk );
 
-	//ü‰ñ”‚É‚æ‚Á‚ÄA’§í‚ÌŠî–{‚Ìƒ‹[ƒŒƒbƒg‘¬“x‚ğŒˆ‚ß‚é
+	//å‘¨å›æ•°ã«ã‚ˆã£ã¦ã€æŒ‘æˆ¦æ™‚ã®åŸºæœ¬ã®ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€Ÿåº¦ã‚’æ±ºã‚ã‚‹
 	for( i=0; i < ROULETTE_BASIC_SPD_TBL_MAX ;i++ ){
 		if( lap >= roulette_basic_spd_tbl[i][0] ){
 			wk->csr_speed_level = roulette_basic_spd_tbl[i][1];
@@ -369,9 +369,9 @@ static void RouletteScr_InitDataSet( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œp‘±F•Û‘¶‚µ‚Ä‚¨‚¢‚½ƒf[ƒ^‚ğg‚Á‚ÄB_TOWER_POKEMON‚È‚Ç‚ğ¶¬
+ * @brief	ç¶™ç¶šï¼šä¿å­˜ã—ã¦ãŠã„ãŸãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ã£ã¦B_TOWER_POKEMONãªã©ã‚’ç”Ÿæˆ
  *
- * @param	wk		ROULETTE_SCRWORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void RouletteScr_ContinueDataSet( ROULETTE_SCRWORK* wk )
@@ -384,14 +384,14 @@ static void RouletteScr_ContinueDataSet( ROULETTE_SCRWORK* wk )
 	u8 pow_rnd[ROULETTE_PARTY_POKE_MAX];
 	u16 poke_index[ROULETTE_PARTY_POKE_MAX];
 	u32 personal_rnd[ROULETTE_PARTY_POKE_MAX];
-	OS_Printf( "Œp‘±F•Û‘¶‚µ‚Ä‚¨‚¢‚½ƒf[ƒ^‚ğƒ[ƒh\n" );
+	OS_Printf( "ç¶™ç¶šï¼šä¿å­˜ã—ã¦ãŠã„ãŸãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰\n" );
 
-	//"è‚¿ƒ|ƒPƒ‚ƒ“‚Ìó‘Ô"ƒ[ƒh
+	//"æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹"ãƒ­ãƒ¼ãƒ‰
 	RouletteScr_ContinuePokePara( wk );
 
 	//-----------------------------------------------------------------------------------
 	
-	//•Û‘¶‚µ‚Ä‚¨‚¢‚½ƒgƒŒ[ƒi[‚Ìindexæ“¾
+	//ä¿å­˜ã—ã¦ãŠã„ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®indexå–å¾—
 	for( i=0; i < ROULETTE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		wk->tr_index[i] = (u16)ROULETTEDATA_GetPlayData(	wk->roulette_savedata, 
 														ROULETTEDATA_ID_TR_INDEX, i, 0, NULL );
@@ -400,28 +400,28 @@ static void RouletteScr_ContinueDataSet( ROULETTE_SCRWORK* wk )
 
 	//---------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------
-	//•Û‘¶‚µ‚Ä‚¨‚¢‚½“Gƒ|ƒPƒ‚ƒ“æ“¾
+	//ä¿å­˜ã—ã¦ãŠã„ãŸæ•µãƒã‚±ãƒ¢ãƒ³å–å¾—
 	for( i=0; i < ROULETTE_ENEMY_POKE_MAX ;i++ ){
 
 		poke_index[i] = (u16)ROULETTEDATA_GetPlayData(wk->roulette_savedata, 
 												ROULETTEDATA_ID_ENEMY_POKE_INDEX, i, 0, NULL );
 		//OS_Printf( "poke_index[%d] = %d\n", i, poke_index[i] );
 		
-		//“Gƒ|ƒPƒ‚ƒ“‚ÌƒCƒ“ƒfƒbƒNƒXŠi”[
+		//æ•µãƒã‚±ãƒ¢ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´
 		wk->enemy_poke_index[i] = poke_index[i];
 	}
 
-	//è‚¿ƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É¶¬(personal‚È‚µ)
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ(personalãªã—)
 	Frontier_PokemonParamCreateAll(	bt_poke, poke_index, pow_rnd,
 									NULL, personal_rnd, ROULETTE_ENEMY_POKE_MAX, HEAPID_WORLD,
 									ARC_PL_BTD_PM );
 
 	pp = PokemonParam_AllocWork( HEAPID_WORLD );
 	for( i=0; i < ROULETTE_ENEMY_POKE_MAX ;i++ ){
-		//ƒoƒgƒ‹ƒ^ƒ[—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çPOKEMON_PARAM‚ğ¶¬
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰POKEMON_PARAMã‚’ç”Ÿæˆ
 		Frontier_PokeParaMake( &bt_poke[i], pp, Roulette_GetLevel(wk) );
 		Roulette_PokePartyAdd( wk, wk->p_e_party, pp );
-		OS_Printf( "Œp‘±e_party[%d] monsno = %d\n", i, PokeParaGet(pp,ID_PARA_monsno,NULL) );
+		OS_Printf( "ç¶™ç¶še_party[%d] monsno = %d\n", i, PokeParaGet(pp,ID_PARA_monsno,NULL) );
 
 	}
 	sys_FreeMemoryEz( pp );
@@ -431,9 +431,9 @@ static void RouletteScr_ContinueDataSet( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œp‘±FHPAPPACONDITIONAITEM‚ğƒ[ƒh
+ * @brief	ç¶™ç¶šï¼šHPã€PPã€CONDITIONã€ITEMã‚’ãƒ­ãƒ¼ãƒ‰
  *
- * @param	wk		ROULETTE_SCRWORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void RouletteScr_ContinuePokePara( ROULETTE_SCRWORK* wk )
@@ -445,7 +445,7 @@ static void RouletteScr_ContinuePokePara( ROULETTE_SCRWORK* wk )
 
 	count = PokeParty_GetPokeCount( wk->p_m_party );
 
-	//"è‚¿ƒ|ƒPƒ‚ƒ“‚Ìó‘Ô"ƒ[ƒh
+	//"æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹"ãƒ­ãƒ¼ãƒ‰
 	for( i=0; i < count ;i++ ){
 
 		pp = PokeParty_GetMemberPointer( wk->p_m_party, i );
@@ -460,7 +460,7 @@ static void RouletteScr_ContinuePokePara( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒGƒŠƒA‚ğŠJ•ú‚·‚é
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’é–‹æ”¾ã™ã‚‹
  */
 //--------------------------------------------------------------
 void RouletteScr_WorkRelease( ROULETTE_SCRWORK* wk )
@@ -488,9 +488,9 @@ void RouletteScr_WorkRelease( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‹[ƒŒƒbƒg‰æ–ÊŒÄ‚Ño‚µŒã‚ÌŒ‹‰Êæ“¾
+ * @brief	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆç”»é¢å‘¼ã³å‡ºã—å¾Œã®çµæœå–å¾—
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RouletteScr_GetResult( ROULETTE_SCRWORK* wk, void* roulette_call )
@@ -498,7 +498,7 @@ void RouletteScr_GetResult( ROULETTE_SCRWORK* wk, void* roulette_call )
 	int i;
 	ROULETTE_CALL_WORK* call_wk = roulette_call;
 
-	//Œ‹‰Ê‚ğæ“¾‚·‚é
+	//çµæœã‚’å–å¾—ã™ã‚‹
 	for( i=0; i < ROULETTE_RET_WORK_MAX ;i++ ){
 		wk->ret_work[i] = RouletteCall_GetRetWork( roulette_call, i );
 		OS_Printf( "wk->ret_work[%d] = %d\n", i, wk->ret_work[i] );
@@ -509,12 +509,12 @@ void RouletteScr_GetResult( ROULETTE_SCRWORK* wk, void* roulette_call )
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‘I‘ğ‰æ–Ê‚Å‚ÌŒ‹‰Ê‚ğæ“¾
+ * @brief	ãƒã‚±ãƒ¢ãƒ³é¸æŠç”»é¢ã§ã®çµæœã‚’å–å¾—
  *
- * @param	param	ROULETTE_CALL_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	param	ROULETTE_CALL_WORKã®ãƒã‚¤ãƒ³ã‚¿
  * @param	pos		ret_work[pos](0-5)
  *
- * @return	"Œ‹‰Ê"
+ * @return	"çµæœ"
  */
 //----------------------------------------------------------------------------
 u16 RouletteCall_GetRetWork( void* param, u8 pos )
@@ -552,10 +552,10 @@ void RouletteScr_SetClear( ROULETTE_SCRWORK* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	‹x‚Ş‚Æ‚«‚ÉŒ»İ‚ÌƒvƒŒƒCó‹µ‚ğƒZ[ƒu‚É‘‚«o‚·
+ * @brief	ä¼‘ã‚€ã¨ãã«ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤çŠ¶æ³ã‚’ã‚»ãƒ¼ãƒ–ã«æ›¸ãå‡ºã™
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	mode	FR_MODE_CLEAR="ƒNƒŠƒA",FR_MODE_LOSE="•‰‚¯",FR_MODE_REST="‹x‚Ş"
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	mode	FR_MODE_CLEAR="ã‚¯ãƒªã‚¢",FR_MODE_LOSE="è² ã‘",FR_MODE_REST="ä¼‘ã‚€"
  */
 //--------------------------------------------------------------
 void RouletteScr_SaveRestPlayData( ROULETTE_SCRWORK* wk, u8 mode )
@@ -570,57 +570,57 @@ void RouletteScr_SaveRestPlayData( ROULETTE_SCRWORK* wk, u8 mode )
 	ROULETTEDATA* f_sv = wk->roulette_savedata;
 	ROULETTESCORE* score_sv = SaveData_GetRouletteScore( wk->sv );
 
-	//ƒ^ƒCƒv‚É‚æ‚Á‚Äƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
-	e_max = Roulette_GetEnemyPokeNum( wk->type, ROULETTE_FLAG_TOTAL );	//“G
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
+	e_max = Roulette_GetEnemyPokeNum( wk->type, ROULETTE_FLAG_TOTAL );	//æ•µ
 
-	//"ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`"‘‚«o‚µ
+	//"ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã€wifiãƒãƒ«ãƒ"æ›¸ãå‡ºã—
 	buf8[0] = wk->type;
 	ROULETTEDATA_PutPlayData( wk->roulette_savedata, ROULETTEDATA_ID_TYPE, 0, 0, buf8 );
 	
-	//ƒZ[ƒuƒtƒ‰ƒO‚ğ—LŒøó‘Ô‚ÉƒŠƒZƒbƒg
+	//ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ã‚°ã‚’æœ‰åŠ¹çŠ¶æ…‹ã«ãƒªã‚»ãƒƒãƒˆ
 	ROULETTEDATA_SetSaveFlag( wk->roulette_savedata, TRUE );
 
-	//"ƒ‰ƒEƒ“ƒh”"‘‚«o‚µ(0-6l–Ú‚Ì‰½l–Ú‚©‚ğ‚ ‚í‚ç‚·)
+	//"ãƒ©ã‚¦ãƒ³ãƒ‰æ•°"æ›¸ãå‡ºã—(0-6äººç›®ã®ä½•äººç›®ã‹ã‚’ã‚ã‚ã‚‰ã™)
 	buf8[0] = wk->round;
 	//OS_Printf( "wk->round = %d\n", wk->round );
 	ROULETTEDATA_PutPlayData( wk->roulette_savedata, ROULETTEDATA_ID_ROUND, 0, 0, buf8 );
 
-	//"ƒJ[ƒ\ƒ‹ƒXƒs[ƒhƒŒƒxƒ‹"‘‚«o‚µ
+	//"ã‚«ãƒ¼ã‚½ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ¬ãƒ™ãƒ«"æ›¸ãå‡ºã—
 	buf8[0] = wk->csr_speed_level;
 	//OS_Printf( "wk->csr_speed_level = %d\n", wk->csr_speed_level );
 	ROULETTEDATA_PutPlayData( wk->roulette_savedata, ROULETTEDATA_ID_CSR_SPEED_LEVEL, 0, 0, buf8 );
 
-	//"ƒJ[ƒ\ƒ‹ƒ‰ƒ“ƒ_ƒ€ˆÚ“®ƒtƒ‰ƒO"‘‚«o‚µ
+	//"ã‚«ãƒ¼ã‚½ãƒ«ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 	buf8[0] = wk->random_flag;
 	//OS_Printf( "wk->random_flag = %d\n", wk->random_flag );
 	ROULETTEDATA_PutPlayData( wk->roulette_savedata, ROULETTEDATA_ID_RANDOM_FLAG, 0, 0, buf8 );
 
 #if 0
-	//˜AŸ / 7 = ü‰ñ”
-	//˜AŸ % 7 = ‰½l–Ú‚©
+	//é€£å‹ / 7 = å‘¨å›æ•°
+	//é€£å‹ % 7 = ä½•äººç›®ã‹
 #endif
-	//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+	//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 	OS_Printf( "rensyou = %d\n", wk->rensyou );
 	FrontierRecord_Set(	SaveData_GetFrontier(wk->sv), 
 						RouletteScr_GetWinRecordID(wk->type),
 						Frontier_GetFriendIndex(RouletteScr_GetWinRecordID(wk->type)), wk->rensyou);
 	
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//"‹x‚Ş"ˆÈŠO
+	//"ä¼‘ã‚€"ä»¥å¤–
 	if( mode != FR_MODE_REST ){
 
-		//"Å‘å˜AŸ”"‘‚«o‚µ
+		//"æœ€å¤§é€£å‹æ•°"æ›¸ãå‡ºã—
 		after = FrontierRecord_SetIfLarge(	SaveData_GetFrontier(wk->sv),
 								RouletteScr_GetMaxWinRecordID(wk->type),
 								Frontier_GetFriendIndex(RouletteScr_GetMaxWinRecordID(wk->type)), 
 								wk->rensyou );
 		OS_Printf( "ROULETTE after = %d\n", after  );
 
-		//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+		//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 		buf8[0] = wk->clear_flag;
 		ROULETTESCORE_PutScoreData( score_sv, ROULETTESCORE_ID_CLEAR_FLAG, wk->type, 0, buf8 );
 
-		//WIFI‚Ì‚İ“Áê
+		//WIFIã®ã¿ç‰¹æ®Š
 		if( wk->type == ROULETTE_TYPE_WIFI_MULTI ){
 			FrontierRecord_Set(	SaveData_GetFrontier(wk->sv), 
 					FRID_ROULETTE_MULTI_WIFI_CLEAR_BIT,
@@ -629,19 +629,19 @@ void RouletteScr_SaveRestPlayData( ROULETTE_SCRWORK* wk, u8 mode )
 	}
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 
-	//"ƒgƒŒ[ƒi[ƒCƒ“ƒfƒbƒNƒX"‘‚«o‚µ
+	//"ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"æ›¸ãå‡ºã—
 	for( i=0; i < ROULETTE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		buf16[0] = wk->tr_index[i];
 		ROULETTEDATA_PutPlayData( wk->roulette_savedata, ROULETTEDATA_ID_TR_INDEX, i, 0, buf16 );
 	}
 
-	//"è‚¿ˆÊ’u"‘‚«o‚µ
+	//"æ‰‹æŒã¡ä½ç½®"æ›¸ãå‡ºã—
 	for( i=0; i < ROULETTE_ENTRY_POKE_MAX ;i++ ){
 		buf8[0] = wk->mine_poke_pos[i];
 		ROULETTEDATA_PutPlayData(wk->roulette_savedata, ROULETTEDATA_ID_MINE_POKE_POS, i, 0, buf8 );
 	}
 
-	//"è‚¿ƒ|ƒPƒ‚ƒ“‚Ìó‘Ô"‘‚«o‚µ
+	//"æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹"æ›¸ãå‡ºã—
 	count = PokeParty_GetPokeCount( wk->p_m_party );
 	for( i=0; i < count ;i++ ){
 
@@ -651,15 +651,15 @@ void RouletteScr_SaveRestPlayData( ROULETTE_SCRWORK* wk, u8 mode )
 		ROULETTEDATA_PutPlayData( wk->roulette_savedata, ROULETTEDATA_ID_TEMOTI_ITEM, i, 0, buf16 );
 	}
 
-	//“G
+	//æ•µ
 	count = PokeParty_GetPokeCount( wk->p_e_party );
 	for( i=0; i < count ;i++ ){
 
 		pp = PokeParty_GetMemberPointer( wk->p_e_party, i );
 
 		//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-		//‚±‚±‚ªƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚Å‚Í‚È‚¢I
-		//ƒCƒ“ƒfƒbƒNƒXI
+		//ã“ã“ãŒãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã§ã¯ãªã„ï¼
+		//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼
 		//buf16[0] = PokeParaGet( pp, ID_PARA_monsno, NULL );
 		buf16[0] = wk->enemy_poke_index[i];
 		ROULETTEDATA_PutPlayData(	wk->roulette_savedata, ROULETTEDATA_ID_ENEMY_POKE_INDEX, 
@@ -672,9 +672,9 @@ void RouletteScr_SaveRestPlayData( ROULETTE_SCRWORK* wk, u8 mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒEƒ“ƒh”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+ * @brief	ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 u16	RouletteScr_IncRound( ROULETTE_SCRWORK* wk )
@@ -685,9 +685,9 @@ u16	RouletteScr_IncRound( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒEƒ“ƒh”‚ğæ“¾
+ * @brief	ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’å–å¾—
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 u16	RouletteScr_GetRound( ROULETTE_SCRWORK* wk )
@@ -697,10 +697,10 @@ u16	RouletteScr_GetRound( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘ÎíƒgƒŒ[ƒi[OBJƒR[ƒhæ“¾
+ * @brief	å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼OBJã‚³ãƒ¼ãƒ‰å–å¾—
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	param	0=1l–ÚA1=2l–Ú(“G‚Ìƒp[ƒgƒi|)
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param	0=1äººç›®ã€1=2äººç›®(æ•µã®ãƒ‘ãƒ¼ãƒˆãƒŠâˆ’)
  */
 //--------------------------------------------------------------
 u16 RouletteScr_GetEnemyObjCode( ROULETTE_SCRWORK* wk, u8 param )
@@ -709,27 +709,27 @@ u16 RouletteScr_GetEnemyObjCode( ROULETTE_SCRWORK* wk, u8 param )
 	B_TOWER_TRAINER_ROM_DATA* p_rom_tr;
 	u8 index;
 
-	//æ“¾‚·‚éƒgƒŒ[ƒi[ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	//å–å¾—ã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	index = RouletteScr_GetTrIndex( wk, param );
 
-	//ROM‚©‚çƒgƒŒ[ƒi[ƒf[ƒ^‚ğŠm•Û
+	//ROMã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 	p_rom_tr = Frontier_TrainerDataGet( &bt_trd, wk->tr_index[index], HEAPID_WORLD, ARC_PL_BTD_TR );
 	sys_FreeMemoryEz( p_rom_tr );
 
-	OS_Printf( "1l–ÚA2l–ÚH = %d\n", param );
-	OS_Printf( "“GƒgƒŒ[ƒi[ƒ^ƒCƒv = %d\n", bt_trd.tr_type );
-	OS_Printf( "“GƒgƒŒ[ƒi[OBJƒR[ƒh = %d\n", Frontier_TrType2ObjCode(bt_trd.tr_type) );
+	OS_Printf( "1äººç›®ã€2äººç›®ï¼Ÿ = %d\n", param );
+	OS_Printf( "æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ— = %d\n", bt_trd.tr_type );
+	OS_Printf( "æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼OBJã‚³ãƒ¼ãƒ‰ = %d\n", Frontier_TrType2ObjCode(bt_trd.tr_type) );
 
-	//ƒgƒŒ[ƒi[ƒ^ƒCƒv‚©‚çOBJƒR[ƒh‚ğæ“¾‚µ‚Ä‚­‚é
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã‚‰OBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã—ã¦ãã‚‹
 	return Frontier_TrType2ObjCode( bt_trd.tr_type );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	wk->tr_index[ƒgƒŒ[ƒi[ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾]
+ * @brief	wk->tr_index[ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—]
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	param	0=1l–ÚA1=2l–Ú(“G‚Ìƒp[ƒgƒi|)
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param	0=1äººç›®ã€1=2äººç›®(æ•µã®ãƒ‘ãƒ¼ãƒˆãƒŠâˆ’)
  */
 //--------------------------------------------------------------
 u16 RouletteScr_GetTrIndex( ROULETTE_SCRWORK* wk, u8 param )
@@ -739,9 +739,9 @@ u16 RouletteScr_GetTrIndex( ROULETTE_SCRWORK* wk, u8 param )
 
 //--------------------------------------------------------------
 /**
- * @brief	”sí‚µ‚½‚Ìˆ—
+ * @brief	æ•—æˆ¦ã—ãŸæ™‚ã®å‡¦ç†
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RouletteScr_SetLose( ROULETTE_SCRWORK* wk )
@@ -749,63 +749,63 @@ void RouletteScr_SetLose( ROULETTE_SCRWORK* wk )
 	u16 buf16[4];
 	int i;
 
-	OS_Printf( "\nƒoƒgƒ‹ƒ‹[ƒŒƒbƒgƒf[ƒ^@”síƒZƒbƒg\n" );
+	OS_Printf( "\nãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã€€æ•—æˆ¦ã‚»ãƒƒãƒˆ\n" );
 
-	//Œ»İ‚Ì5˜AŸ‚È‚Ç‚ğ•Û‘¶‚·‚é•K—v‚ª‚ ‚éI
-	RouletteScr_SaveRestPlayData( wk, FR_MODE_LOSE );		//ƒZ[ƒuƒf[ƒ^‚É‘ã“ü
+	//ç¾åœ¨ã®5é€£å‹ãªã©ã‚’ä¿å­˜ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ï¼
+	RouletteScr_SaveRestPlayData( wk, FR_MODE_LOSE );		//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ä»£å…¥
 
-	//V‹K‚©AŒp‘±‚©‚ÍAWK_SCENE_ROULETTE_LOBBY‚ÉŠi”[‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA
-	//‚±‚±‚Åround‚È‚Ç‚ğƒNƒŠƒA‚µ‚È‚­‚Ä‚àA
-	//WK_SCENE_ROULETTE_LOBBY‚ªŒp‘±‚Å‚Í‚È‚¢ó‘Ô‚ÅƒZ[ƒu‚³‚ê‚é‚Ì‚ÅA
-	//ó•t‚É˜b‚µ‚©‚¯‚Ä‚àAV‹K”»’è‚É‚È‚èƒ[ƒN‚ÍƒNƒŠƒA‚³‚ê‚éB
+	//æ–°è¦ã‹ã€ç¶™ç¶šã‹ã¯ã€WK_SCENE_ROULETTE_LOBBYã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã®ã§ã€
+	//ã“ã“ã§roundãªã©ã‚’ã‚¯ãƒªã‚¢ã—ãªãã¦ã‚‚ã€
+	//WK_SCENE_ROULETTE_LOBBYãŒç¶™ç¶šã§ã¯ãªã„çŠ¶æ…‹ã§ã‚»ãƒ¼ãƒ–ã•ã‚Œã‚‹ã®ã§ã€
+	//å—ä»˜ã«è©±ã—ã‹ã‘ã¦ã‚‚ã€æ–°è¦åˆ¤å®šã«ãªã‚Šãƒ¯ãƒ¼ã‚¯ã¯ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹ã€‚
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	7˜AŸ(ƒNƒŠƒA)‚µ‚½‚Ìˆ—
+ * @brief	7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸæ™‚ã®å‡¦ç†
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RouletteScr_SetClear( ROULETTE_SCRWORK* wk )
 {
-	OS_Printf( "\nƒoƒgƒ‹ƒ‹[ƒŒƒbƒgƒf[ƒ^@7˜AŸ(ƒNƒŠƒA)ƒZƒbƒg\n" );
+	OS_Printf( "\nãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã€€7é€£å‹(ã‚¯ãƒªã‚¢)ã‚»ãƒƒãƒˆ\n" );
 	
 	/***********************************************************/
 	//
-	//ƒŒƒR[ƒh‚É‚àƒf[ƒ^‚ğ•Û‚·‚é•K—v‚ª‚ ‚é‚©‚Í•Û—¯
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰ã«ã‚‚ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã¯ä¿ç•™
 	//
 	//
-	//ƒXƒRƒAƒEƒBƒ“ƒhƒE‚ğŠJ‚­‚ÉQÆ‚·‚éƒf[ƒ^‚ªA
-	//ƒŒƒR[ƒh‚Æ‚¢‚¤ì‚èHH‚»‚ê‚Æ‚àA’ÊM‚Å“n‚·ƒf[ƒ^HH
+	//ã‚¹ã‚³ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ãæ™‚ã«å‚ç…§ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒã€
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰ã¨ã„ã†ä½œã‚Šï¼Ÿï¼Ÿãã‚Œã¨ã‚‚ã€é€šä¿¡ã§æ¸¡ã™ãƒ‡ãƒ¼ã‚¿ï¼Ÿï¼Ÿ
 	//
 	/***********************************************************/
 
-	wk->clear_flag = 1;						//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒOON
+	wk->clear_flag = 1;						//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°ON
 
-	//wk->rensyou		= 0;				//Œ»İ‚Ì˜AŸ”
+	//wk->rensyou		= 0;				//ç¾åœ¨ã®é€£å‹æ•°
 	if( wk->lap < ROULETTE_LAP_MAX ){
-		wk->lap++;							//ü‰ñ”‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+		wk->lap++;							//å‘¨å›æ•°ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	}
 
 #if 0
-	//RouletteScr_CommGetLap‚Å‚¸‚ê‚ªo‚È‚¢‚æ‚¤‚ÉƒyƒA‚àXV
+	//RouletteScr_CommGetLapã§ãšã‚ŒãŒå‡ºãªã„ã‚ˆã†ã«ãƒšã‚¢ã‚‚æ›´æ–°
 	if( wk->pair_lap < ROULETTE_LAP_MAX ){
-		wk->pair_lap++;						//ü‰ñ”‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+		wk->pair_lap++;						//å‘¨å›æ•°ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	}
 #endif
 
-	wk->round			= 0;				//¡‰½l–ÚH
-	RouletteScr_SaveRestPlayData( wk, FR_MODE_CLEAR );		//ƒZ[ƒuƒf[ƒ^‚É‘ã“ü
+	wk->round			= 0;				//ä»Šä½•äººç›®ï¼Ÿ
+	RouletteScr_SaveRestPlayData( wk, FR_MODE_CLEAR );		//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ä»£å…¥
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	í“¬‘O‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ * @brief	æˆ¦é—˜å‰ã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RouletteScr_BtlBeforePartySet( ROULETTE_SCRWORK* wk )
@@ -816,9 +816,9 @@ void RouletteScr_BtlBeforePartySet( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ * @brief	ãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RouletteScr_BtlAfterPartySet( ROULETTE_SCRWORK* wk )
@@ -832,17 +832,17 @@ void RouletteScr_BtlAfterPartySet( ROULETTE_SCRWORK* wk )
 	B_TOWER_TRAINER bt_trd;
 	B_TOWER_TRAINER_ROM_DATA* trd;
 
-	//‰Šú‰»	
+	//åˆæœŸåŒ–	
 	for( i=0; i < ROULETTE_TOTAL_POKE_MAX ; i++ ){	
 		check_monsno[i] = 0;
 		check_itemno[i] = 0;
 	}
 
-	//ƒ^ƒCƒv‚É‚æ‚Á‚Äƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
-	e_max = Roulette_GetEnemyPokeNum( wk->type, ROULETTE_FLAG_TOTAL );//“G
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
+	e_max = Roulette_GetEnemyPokeNum( wk->type, ROULETTE_FLAG_TOTAL );//æ•µ
 
 	count = PokeParty_GetPokeCount( wk->p_m_party );
-	for( i=0; i < count ; i++ ){									//è‚¿ƒ|ƒPƒ‚ƒ“
+	for( i=0; i < count ; i++ ){									//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
 		temp_poke = PokeParty_GetMemberPointer( wk->p_m_party, i );
 		check_monsno[i] = PokeParaGet(temp_poke, ID_PARA_monsno, NULL);
 		check_itemno[i] = PokeParaGet(temp_poke, ID_PARA_item, NULL);
@@ -850,30 +850,30 @@ void RouletteScr_BtlAfterPartySet( ROULETTE_SCRWORK* wk )
 	tmp_count = count;
 
 	count = PokeParty_GetPokeCount( wk->p_e_party );
-	for( i=0; i < count ; i++ ){									//“Gƒ|ƒPƒ‚ƒ“
+	for( i=0; i < count ; i++ ){									//æ•µãƒã‚±ãƒ¢ãƒ³
 		temp_poke = PokeParty_GetMemberPointer( wk->p_e_party, i );
 		check_monsno[i+tmp_count] = PokeParaGet(temp_poke, ID_PARA_monsno, NULL);
 		check_itemno[i+tmp_count] = PokeParaGet(temp_poke, ID_PARA_item, NULL);
 	}
 
-	//ROM‚©‚çƒgƒŒ[ƒi[ƒf[ƒ^‚ğŠm•Û
+	//ROMã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 	trd = Frontier_TrainerDataGet( &bt_trd, wk->tr_index[wk->round], HEAPID_WORLD, ARC_PL_BTD_TR );
 
-	SDK_ASSERTMSG( (tmp_count + count) <= ROULETTE_TOTAL_POKE_MAX, "check buf‚Ì—v‘f”‚ª‘«‚è‚È‚¢I");
+	SDK_ASSERTMSG( (tmp_count + count) <= ROULETTE_TOTAL_POKE_MAX, "check bufã®è¦ç´ æ•°ãŒè¶³ã‚Šãªã„ï¼");
 
-	//”í‚èƒ|ƒPAƒAƒCƒeƒ€Aƒf[ƒ^”Aæ“¾‚·‚é”A‘ã“üæ
+	//è¢«ã‚Šãƒã‚±ã€ã‚¢ã‚¤ãƒ†ãƒ ã€ãƒ‡ãƒ¼ã‚¿æ•°ã€å–å¾—ã™ã‚‹æ•°ã€ä»£å…¥å…ˆ
 	Frontier_PokemonIndexCreate(trd, check_monsno, check_itemno, 
-								(tmp_count + count),				//è‚¿A“G‚Ì”
+								(tmp_count + count),				//æ‰‹æŒã¡ã€æ•µã®æ•°
 								e_max, wk->enemy_poke_index, HEAPID_WORLD );
 
 	sys_FreeMemoryEz( trd );
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É¶¬(personal‚È‚µ)
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ(personalãªã—)
 	Frontier_PokemonParamCreateAll(	wk->enemy_poke, wk->enemy_poke_index, 
 									wk->enemy_pow_rnd, NULL, wk->enemy_personal_rnd, 
 									e_max, HEAPID_WORLD, ARC_PL_BTD_PM );
 #else
-	//“GƒgƒŒ[ƒi[‚ªo‚·ƒ|ƒPƒ‚ƒ“¶¬
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒå‡ºã™ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ
 	Frontier_EnemyPokeMake(	Roulette_GetEnemyPokeNum(wk->type,ROULETTE_FLAG_TOTAL),
 							wk->tr_index[wk->round], 
 							wk->tr_index[wk->round+ROULETTE_LAP_ENEMY_MAX], 
@@ -891,7 +891,7 @@ void RouletteScr_BtlAfterPartySet( ROULETTE_SCRWORK* wk )
 	}
 #endif
 
-	//“Gƒp[ƒeƒB‚ÌƒZƒbƒg
+	//æ•µãƒ‘ãƒ¼ãƒ†ã‚£ã®ã‚»ãƒƒãƒˆ
 	Roulette_EnemyPartySet( wk );
 
 	return;
@@ -910,11 +910,11 @@ static const u8 roulette_turn_point_tbl[ROULETTE_POINT_TBL_MAX][2] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹Ÿ—˜Œã‚Ìƒ|ƒCƒ“ƒgŒvZ
+ * @brief	ãƒãƒˆãƒ«å‹åˆ©å¾Œã®ãƒã‚¤ãƒ³ãƒˆè¨ˆç®—
  *
- * @param	wk			ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"ƒ|ƒCƒ“ƒg"
+ * @return	"ãƒã‚¤ãƒ³ãƒˆ"
  */
 //--------------------------------------------------------------
 int RouletteScr_GetBtlWinPoint( ROULETTE_SCRWORK* wk, POKEPARTY* party, POKEPARTY* pair_party, int turn )
@@ -924,25 +924,25 @@ int RouletteScr_GetBtlWinPoint( ROULETTE_SCRWORK* wk, POKEPARTY* party, POKEPART
 	POKEMON_PARAM* pp;
 	int ret;
 
-	OS_Printf( "********************\ní“¬Œã‚Ìƒ|ƒCƒ“ƒgŒvZ\n" );
+	OS_Printf( "********************\næˆ¦é—˜å¾Œã®ãƒã‚¤ãƒ³ãƒˆè¨ˆç®—\n" );
 
 	ret = 0;
 	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_SOLO );
 
-	//•m€Aó‘Ô‚Ìƒ|ƒCƒ“ƒg
+	//ç€•æ­»ã€çŠ¶æ…‹ã®ãƒã‚¤ãƒ³ãƒˆ
 	ret += RouletteScr_GetBtlWinPointSub( wk, party, pair_party, m_max );
 
-	//ƒ^[ƒ“”‚Ìƒ|ƒCƒ“ƒg
+	//ã‚¿ãƒ¼ãƒ³æ•°ã®ãƒã‚¤ãƒ³ãƒˆ
 	for( i=0; i < ROULETTE_POINT_TBL_MAX ;i++ ){
 		if( turn < roulette_turn_point_tbl[i][0] ){
 			ret += roulette_turn_point_tbl[i][1];
-			OS_Printf( "ƒ|ƒCƒ“ƒg = %d\n\n", roulette_turn_point_tbl[i][1] );
+			OS_Printf( "ãƒã‚¤ãƒ³ãƒˆ = %d\n\n", roulette_turn_point_tbl[i][1] );
 			break;
 		}
 	}
-	OS_Printf( "turn” = %d\n", turn );
+	OS_Printf( "turnæ•° = %d\n", turn );
 
-	OS_Printf( "ƒ|ƒCƒ“ƒg‡Œv = %d\n", ret );
+	OS_Printf( "ãƒã‚¤ãƒ³ãƒˆåˆè¨ˆ = %d\n", ret );
 	return ret;
 }
 
@@ -954,7 +954,7 @@ static int RouletteScr_GetBtlWinPointSub( ROULETTE_SCRWORK* wk, POKEPARTY* party
 	int i,ret;
 	POKEMON_PARAM* pp;
 
-	//ƒNƒŠƒA
+	//ã‚¯ãƒªã‚¢
 	ret = 0;
 	tmp_hinsi = 0;
 	tmp_bad_condition = 0;
@@ -970,18 +970,18 @@ static int RouletteScr_GetBtlWinPointSub( ROULETTE_SCRWORK* wk, POKEPARTY* party
 
 		hp = PokeParaGet( pp, ID_PARA_hp, NULL );
 
-		//‹Câ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”
+		//æ°—çµ¶ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
 		if( hp == 0 ){
 			tmp_hinsi++;
 		}
 
-		//ó‘ÔˆÙí‚É‚È‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”
+		//çŠ¶æ…‹ç•°å¸¸ã«ãªã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
 		if( PokeParaGet(pp,ID_PARA_condition,NULL) != 0 ){
 			tmp_bad_condition++;
 		}
 	}
 
-	//’ÊM‚Ì‚ÍƒyƒA‚Ìƒ|ƒPƒ‚ƒ“‚Ìó‘Ô‚àƒ`ƒFƒbƒN‚·‚é
+	//é€šä¿¡ã®æ™‚ã¯ãƒšã‚¢ã®ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹ã‚‚ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	if( Roulette_CommCheck(wk->type) == TRUE ){
 
 		for( i=0; i < m_max; i++ ){
@@ -995,35 +995,35 @@ static int RouletteScr_GetBtlWinPointSub( ROULETTE_SCRWORK* wk, POKEPARTY* party
 
 			hp = PokeParaGet( pp, ID_PARA_hp, NULL );
 
-			//‹Câ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”
+			//æ°—çµ¶ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
 			if( hp == 0 ){
 				tmp_hinsi++;
 			}
 
-			//ó‘ÔˆÙí‚É‚È‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”
+			//çŠ¶æ…‹ç•°å¸¸ã«ãªã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
 			if( PokeParaGet(pp,ID_PARA_condition,NULL) != 0 ){
 				tmp_bad_condition++;
 			}
 		}
 	}
 
-	//ƒ|ƒCƒ“ƒgŒvZ
+	//ãƒã‚¤ãƒ³ãƒˆè¨ˆç®—
 	ret += roulette_bad_condition_point_tbl[tmp_bad_condition];
-	OS_Printf( "ID_BAD_CONDITION‚Ì” = %d\n", tmp_bad_condition );
-	OS_Printf( "ƒ|ƒCƒ“ƒg = %d\n\n", roulette_bad_condition_point_tbl[tmp_bad_condition] );
+	OS_Printf( "ID_BAD_CONDITIONã®æ•° = %d\n", tmp_bad_condition );
+	OS_Printf( "ãƒã‚¤ãƒ³ãƒˆ = %d\n\n", roulette_bad_condition_point_tbl[tmp_bad_condition] );
 
 	ret += roulette_hinsi_point_tbl[tmp_hinsi];
-	OS_Printf( "ID_HINSI‚Ì” = %d\n", tmp_hinsi );
-	OS_Printf( "ƒ|ƒCƒ“ƒg = %d\n\n", roulette_hinsi_point_tbl[tmp_hinsi] );
+	OS_Printf( "ID_HINSIã®æ•° = %d\n", tmp_hinsi );
+	OS_Printf( "ãƒã‚¤ãƒ³ãƒˆ = %d\n\n", roulette_hinsi_point_tbl[tmp_hinsi] );
 
 	return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒlƒ‹‚ğ•ÏX‚·‚é
+ * @brief	ãƒ‘ãƒãƒ«ã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RouletteScr_BGPanelChange( void* p_work, FMAP_PTR fmap )
@@ -1032,21 +1032,21 @@ void RouletteScr_BGPanelChange( void* p_work, FMAP_PTR fmap )
 	ROULETTE_SCRWORK* wk;
 	wk = (ROULETTE_SCRWORK*)p_work;
 
-	OS_Printf( "ƒpƒlƒ‹•ÏXŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚µ‚½I\n" );
+	OS_Printf( "ãƒ‘ãƒãƒ«å¤‰æ›´é–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã—ãŸï¼\n" );
 	OS_Printf( "wk->decide_ev_no = %d\n", wk->decide_ev_no );
 
 	if( wk->decide_ev_no != ROULETTE_EV_NONE ){
 
 		hdl = ArchiveDataHandleOpen( ARC_FRONTIER_BG, HEAPID_FRONTIERMAP );
 		
-		ArcUtil_HDL_BgCharSet(	hdl, roulette_panel_data_tbl[wk->decide_ev_no][0],		//ƒLƒƒƒ‰
+		ArcUtil_HDL_BgCharSet(	hdl, roulette_panel_data_tbl[wk->decide_ev_no][0],		//ã‚­ãƒ£ãƒ©
 								fmap->bgl, FRMAP_FRAME_EFF, 0, 0, TRUE, HEAPID_FRONTIERMAP );
 
-		ArcUtil_HDL_ScrnSet(	hdl, roulette_panel_data_tbl[wk->decide_ev_no][1],		//ƒXƒNƒŠ[ƒ“
+		ArcUtil_HDL_ScrnSet(	hdl, roulette_panel_data_tbl[wk->decide_ev_no][1],		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 								fmap->bgl, FRMAP_FRAME_EFF, 0, 0, 1, HEAPID_FRONTIERMAP );
 
 		{
-			//ƒpƒŒƒbƒgƒf[ƒ^‚ğŠg’£ƒpƒŒƒbƒgVRAM‚É“]‘—
+			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆVRAMã«è»¢é€
 			NNSG2dPaletteData *palData;
 			void *pal_work;
 				
@@ -1054,20 +1054,20 @@ void RouletteScr_BGPanelChange( void* p_work, FMAP_PTR fmap )
 												roulette_panel_data_tbl[wk->decide_ev_no][2],
 												&palData, HEAPID_FRONTIERMAP );
 			DC_FlushRange( palData->pRawData, palData->szByte );
-			GX_BeginLoadBGExtPltt();	   //ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—€”õ
+			GX_BeginLoadBGExtPltt();	   //ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€æº–å‚™
 			GX_LoadBGExtPltt( palData->pRawData, 0x4000, 0x2000 );
-		    GX_EndLoadBGExtPltt();         //ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—Š®—¹
+		    GX_EndLoadBGExtPltt();         //ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€å®Œäº†
 		    sys_FreeMemoryEz( pal_work );
 		}
 
-		//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_ON );		//BG•\¦
-		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );		//BG•\¦
+		//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_ON );		//BGè¡¨ç¤º
+		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );		//BGè¡¨ç¤º
 		GF_BGL_LoadScreenV_Req( fmap->bgl, FRMAP_FRAME_EFF );
 
 		ArchiveDataHandleClose( hdl );
 	}else{
-		//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_OFF );	//BG”ñ•\¦
-		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BG”ñ•\¦
+		//GF_Disp_GX_VisibleControl( FRMAP_FRAME_EFF, VISIBLE_OFF );	//BGéè¡¨ç¤º
+		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BGéè¡¨ç¤º
 	}
 
 	return;
@@ -1075,9 +1075,9 @@ void RouletteScr_BGPanelChange( void* p_work, FMAP_PTR fmap )
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒi‚ğ•ÏX‚·‚é
+ * @brief	èƒŒæ™¯ã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RouletteScr_MainBGChange( void* p_work, FMAP_PTR fmap )
@@ -1086,11 +1086,11 @@ void RouletteScr_MainBGChange( void* p_work, FMAP_PTR fmap )
 	ROULETTE_SCRWORK* wk;
 	wk = (ROULETTE_SCRWORK*)p_work;
 
-	OS_Printf( "”wŒi•ÏXŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚µ‚½I\n" );
+	OS_Printf( "èƒŒæ™¯å¤‰æ›´é–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã—ãŸï¼\n" );
 
 	hdl = ArchiveDataHandleOpen( ARC_FRONTIER_BG, HEAPID_FRONTIERMAP );
 		
-	ArcUtil_HDL_ScrnSet(	hdl, BR_ROOM_MUL_NSCR_BIN,		//ƒXƒNƒŠ[ƒ“
+	ArcUtil_HDL_ScrnSet(	hdl, BR_ROOM_MUL_NSCR_BIN,		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 							fmap->bgl, FRMAP_FRAME_MAP, 0, 0, 1, HEAPID_FRONTIERMAP );
 
 	GF_BGL_LoadScreenV_Req( fmap->bgl, FRMAP_FRAME_MAP );
@@ -1104,7 +1104,7 @@ typedef struct{
 	s16  y;
 }POS;
 
-//–¡•û‘¤‚Ìƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“•\¦ˆÊ’u
+//å‘³æ–¹å´ã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºä½ç½®
 static const POS mine_icon_pos_tbl[] = {
 	{ 33, 20 },
 	{ 39, 43 },
@@ -1112,7 +1112,7 @@ static const POS mine_icon_pos_tbl[] = {
 	{ 46, 89 },
 };
 
-//“G‘¤‚Ìƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“•\¦ˆÊ’u
+//æ•µå´ã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºä½ç½®
 static const POS enemy_icon_pos_tbl[] = {
 	{ 222, 20 },
 	{ 216, 43 },
@@ -1120,15 +1120,15 @@ static const POS enemy_icon_pos_tbl[] = {
 	{ 210, 89 },
 };
 
-#define ITEM_KEEP_OFFSET_X	(8)			//ƒAƒCƒeƒ€‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚Ì•\¦ƒIƒtƒZƒbƒgX
-#define ITEM_KEEP_OFFSET_Y	(4)			//ƒAƒCƒeƒ€‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚Ì•\¦ƒIƒtƒZƒbƒgY
+#define ITEM_KEEP_OFFSET_X	(8)			//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆX
+#define ITEM_KEEP_OFFSET_Y	(4)			//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ 
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	param1	0=–¡•ûA1=‘Šè
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param1	0=å‘³æ–¹ã€1=ç›¸æ‰‹
  */
 //--------------------------------------------------------------
 void RouletteScr_AddPokeIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1 )
@@ -1140,20 +1140,20 @@ void RouletteScr_AddPokeIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1 )
 	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 	e_max = Roulette_GetEnemyPokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 
-	if( param1 == 0 ){		//–¡•û
+	if( param1 == 0 ){		//å‘³æ–¹
 		for( i=0; i < m_max ;i++ ){	
 			pp = PokeParty_GetMemberPointer( wk->p_m_party, i );
 			wk->m_pokeicon[i] = Frontier_PokeIconAdd( fmap, pp, i, 
 												mine_icon_pos_tbl[i].x, mine_icon_pos_tbl[i].y );
-			CLACT_SetAnmFlag( wk->m_pokeicon[i]->act, 0 );		//ƒAƒjƒ’â~
+			CLACT_SetAnmFlag( wk->m_pokeicon[i]->act, 0 );		//ã‚¢ãƒ‹ãƒ¡åœæ­¢
 			//CLACT_SetDrawFlag( wk->m_pokeicon[i]->act, 0 );
 		}
-	}else{					//“G
+	}else{					//æ•µ
 		for( i=0; i < e_max ;i++ ){	
 			pp = PokeParty_GetMemberPointer( wk->p_e_party, i );
 			wk->e_pokeicon[i] = Frontier_PokeIconAdd( fmap, pp, i+m_max,
 												enemy_icon_pos_tbl[i].x, enemy_icon_pos_tbl[i].y );
-			CLACT_SetAnmFlag( wk->e_pokeicon[i]->act, 0 );		//ƒAƒjƒ’â~
+			CLACT_SetAnmFlag( wk->e_pokeicon[i]->act, 0 );		//ã‚¢ãƒ‹ãƒ¡åœæ­¢
 			//CLACT_SetDrawFlag( wk->e_pokeicon[i]->act, 0 );
 		}
 	}
@@ -1163,10 +1163,10 @@ void RouletteScr_AddPokeIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1 )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“íœ
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	param1	0=–¡•ûA1=‘Šè
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param1	0=å‘³æ–¹ã€1=ç›¸æ‰‹
  */
 //--------------------------------------------------------------
 void RouletteScr_DelPokeIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1 )
@@ -1177,11 +1177,11 @@ void RouletteScr_DelPokeIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1 )
 	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 	e_max = Roulette_GetEnemyPokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 
-	if( param1 == 0 ){		//–¡•û
+	if( param1 == 0 ){		//å‘³æ–¹
 		for( i=0; i < m_max ;i++ ){	
 			FSSC_Sub_PokeIconDel(	fmap, wk->m_pokeicon[i], i );
 		}
-	}else{					//“G
+	}else{					//æ•µ
 		for( i=0; i < e_max ;i++ ){	
 			FSSC_Sub_PokeIconDel(	fmap, wk->e_pokeicon[i], i+m_max );
 		}
@@ -1192,11 +1192,11 @@ void RouletteScr_DelPokeIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1 )
 
 //--------------------------------------------------------------
 /**
- * @brief	(–¡•û)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒoƒjƒbƒVƒ…‘€ì
+ * @brief	(å‘³æ–¹)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	param1	0=”ñ•\¦A1=•\¦
- * @param	param2	‰½”Ô–Ú‚©
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param1	0=éè¡¨ç¤ºã€1=è¡¨ç¤º
+ * @param	param2	ä½•ç•ªç›®ã‹
  */
 //--------------------------------------------------------------
 void RouletteScr_MineChgPokeIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1, u16 param2 )
@@ -1205,15 +1205,15 @@ void RouletteScr_MineChgPokeIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16
 
 	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 
-	//•s³‚È’l‚Í‰½‚à‚µ‚È‚¢
+	//ä¸æ­£ãªå€¤ã¯ä½•ã‚‚ã—ãªã„
 	if( param2 >= m_max ){
 		return;
 	}
 
 	if( param1 == 1){
-		CLACT_SetDrawFlag( wk->m_pokeicon[param2]->act, 1 );		//•\¦
+		CLACT_SetDrawFlag( wk->m_pokeicon[param2]->act, 1 );		//è¡¨ç¤º
 	}else{
-		CLACT_SetDrawFlag( wk->m_pokeicon[param2]->act, 0 );		//”ñ•\¦
+		CLACT_SetDrawFlag( wk->m_pokeicon[param2]->act, 0 );		//éè¡¨ç¤º
 	}
 
 	return;
@@ -1221,11 +1221,11 @@ void RouletteScr_MineChgPokeIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16
 
 //--------------------------------------------------------------
 /**
- * @brief	(“G)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒoƒjƒbƒVƒ…‘€ì
+ * @brief	(æ•µ)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	param1	0=”ñ•\¦A1=•\¦
- * @param	param2	‰½”Ô–Ú‚©
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param1	0=éè¡¨ç¤ºã€1=è¡¨ç¤º
+ * @param	param2	ä½•ç•ªç›®ã‹
  */
 //--------------------------------------------------------------
 void RouletteScr_EnemyChgPokeIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1, u16 param2 )
@@ -1234,15 +1234,15 @@ void RouletteScr_EnemyChgPokeIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u1
 
 	e_max = Roulette_GetEnemyPokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 
-	//•s³‚È’l‚Í‰½‚à‚µ‚È‚¢
+	//ä¸æ­£ãªå€¤ã¯ä½•ã‚‚ã—ãªã„
 	if( param2 >= e_max ){
 		return;
 	}
 
 	if( param1 == 1){
-		CLACT_SetDrawFlag( wk->e_pokeicon[param2]->act, 1 );		//•\¦
+		CLACT_SetDrawFlag( wk->e_pokeicon[param2]->act, 1 );		//è¡¨ç¤º
 	}else{
-		CLACT_SetDrawFlag( wk->e_pokeicon[param2]->act, 0 );		//”ñ•\¦
+		CLACT_SetDrawFlag( wk->e_pokeicon[param2]->act, 0 );		//éè¡¨ç¤º
 	}
 
 	return;
@@ -1250,10 +1250,10 @@ void RouletteScr_EnemyChgPokeIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u1
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“’Ç‰Á
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ 
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	param1	0=–¡•ûA1=‘Šè
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param1	0=å‘³æ–¹ã€1=ç›¸æ‰‹
  */
 //--------------------------------------------------------------
 void RouletteScr_AddItemKeepIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1 )
@@ -1265,25 +1265,25 @@ void RouletteScr_AddItemKeepIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param
 	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 	e_max = Roulette_GetEnemyPokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 
-	if( param1 == 0 ){		//–¡•û
+	if( param1 == 0 ){		//å‘³æ–¹
 		for( i=0; i < m_max ;i++ ){	
 			wk->m_itemkeep[i] = Frontier_ItemIconAdd( fmap, 
 										mine_icon_pos_tbl[i].x + ITEM_KEEP_OFFSET_X, 
 										mine_icon_pos_tbl[i].y + ITEM_KEEP_OFFSET_Y );
 
-			//‚Á‚Ä‚¢‚È‚¢‚Í”ñ•\¦
+			//æŒã£ã¦ã„ãªã„æ™‚ã¯éè¡¨ç¤º
 			pp =  PokeParty_GetMemberPointer( wk->p_m_party, i );
 			if( PokeParaGet(pp,ID_PARA_item,NULL) == 0 ){
 				CLACT_SetDrawFlag( wk->m_itemkeep[i]->act, 0 );
 			}
 		}
-	}else{					//“G
+	}else{					//æ•µ
 		for( i=0; i < e_max ;i++ ){	
 			wk->e_itemkeep[i] = Frontier_ItemIconAdd( fmap,
 										enemy_icon_pos_tbl[i].x + ITEM_KEEP_OFFSET_X, 
 										enemy_icon_pos_tbl[i].y + ITEM_KEEP_OFFSET_Y );
 
-			//‚Á‚Ä‚¢‚È‚¢‚Í”ñ•\¦
+			//æŒã£ã¦ã„ãªã„æ™‚ã¯éè¡¨ç¤º
 			pp =  PokeParty_GetMemberPointer( wk->p_e_party, i );
 			if( PokeParaGet(pp,ID_PARA_item,NULL) == 0 ){
 				CLACT_SetDrawFlag( wk->e_itemkeep[i]->act, 0 );
@@ -1296,10 +1296,10 @@ void RouletteScr_AddItemKeepIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“íœ
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	param1	0=–¡•ûA1=‘Šè
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param1	0=å‘³æ–¹ã€1=ç›¸æ‰‹
  */
 //--------------------------------------------------------------
 void RouletteScr_DelItemKeepIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1 )
@@ -1310,11 +1310,11 @@ void RouletteScr_DelItemKeepIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param
 	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 	e_max = Roulette_GetEnemyPokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 
-	if( param1 == 0 ){		//–¡•û
+	if( param1 == 0 ){		//å‘³æ–¹
 		for( i=0; i < m_max ;i++ ){	
 			FSSC_Sub_ItemIconDel(	fmap, wk->m_itemkeep[i] );
 		}
-	}else{					//“G
+	}else{					//æ•µ
 		for( i=0; i < e_max ;i++ ){	
 			FSSC_Sub_ItemIconDel(	fmap, wk->e_itemkeep[i] );
 		}
@@ -1325,12 +1325,12 @@ void RouletteScr_DelItemKeepIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒeƒ€‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“‚ÌƒoƒjƒbƒVƒ…‘€ì
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
  *
- * @param	wk		ROULETTE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	param1	0=–¡•ûA1=‘Šè
- * @param	param2	‰½”Ô–Ú‚©
- * @param	param3	1=•\¦A0=”ñ•\¦
+ * @param	wk		ROULETTE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param1	0=å‘³æ–¹ã€1=ç›¸æ‰‹
+ * @param	param2	ä½•ç•ªç›®ã‹
+ * @param	param3	1=è¡¨ç¤ºã€0=éè¡¨ç¤º
  */
 //--------------------------------------------------------------
 void RouletteScr_ChgItemKeepIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1, u16 param2, u16 param3 )
@@ -1342,9 +1342,9 @@ void RouletteScr_ChgItemKeepIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16
 	m_max = Roulette_GetMinePokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 	e_max = Roulette_GetEnemyPokeNum( wk->type, ROULETTE_FLAG_TOTAL );
 
-	if( param1 == 0 ){		//–¡•û
+	if( param1 == 0 ){		//å‘³æ–¹
 
-		//•s³‚È’l‚Í‰½‚à‚µ‚È‚¢
+		//ä¸æ­£ãªå€¤ã¯ä½•ã‚‚ã—ãªã„
 		if( param2 >= m_max ){
 			return;
 		}
@@ -1352,22 +1352,22 @@ void RouletteScr_ChgItemKeepIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16
 		pp =  PokeParty_GetMemberPointer( wk->p_m_party, param2 );
 		item = PokeParaGet( pp, ID_PARA_item, NULL );
 
-		//•\¦‚³‚¹‚½‚¢
+		//è¡¨ç¤ºã•ã›ãŸã„
 		if( param3 == 1 ){
 			if( item == 0 ){
-				CLACT_SetDrawFlag( wk->m_itemkeep[param2]->act, 0 );		//”ñ•\¦
+				CLACT_SetDrawFlag( wk->m_itemkeep[param2]->act, 0 );		//éè¡¨ç¤º
 			}else{
-				CLACT_SetDrawFlag( wk->m_itemkeep[param2]->act, 1 );		//•\¦
+				CLACT_SetDrawFlag( wk->m_itemkeep[param2]->act, 1 );		//è¡¨ç¤º
 			}
 
-		//”ñ•\¦‚É‚³‚¹‚½‚¢
+		//éè¡¨ç¤ºã«ã•ã›ãŸã„
 		}else{
-			CLACT_SetDrawFlag( wk->m_itemkeep[param2]->act, 0 );			//”ñ•\¦
+			CLACT_SetDrawFlag( wk->m_itemkeep[param2]->act, 0 );			//éè¡¨ç¤º
 		}
 
-	}else{					//“G
+	}else{					//æ•µ
 
-		//•s³‚È’l‚Í‰½‚à‚µ‚È‚¢
+		//ä¸æ­£ãªå€¤ã¯ä½•ã‚‚ã—ãªã„
 		if( param2 >= e_max ){
 			return;
 		}
@@ -1375,17 +1375,17 @@ void RouletteScr_ChgItemKeepIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16
 		pp =  PokeParty_GetMemberPointer( wk->p_e_party, param2 );
 		item = PokeParaGet( pp, ID_PARA_item, NULL );
 
-		//•\¦‚³‚¹‚½‚¢
+		//è¡¨ç¤ºã•ã›ãŸã„
 		if( param3 == 1 ){
 			if( item == 0 ){
-				CLACT_SetDrawFlag( wk->e_itemkeep[param2]->act, 0 );		//”ñ•\¦
+				CLACT_SetDrawFlag( wk->e_itemkeep[param2]->act, 0 );		//éè¡¨ç¤º
 			}else{
-				CLACT_SetDrawFlag( wk->e_itemkeep[param2]->act, 1 );		//•\¦
+				CLACT_SetDrawFlag( wk->e_itemkeep[param2]->act, 1 );		//è¡¨ç¤º
 			}
 
-		//”ñ•\¦‚É‚µ‚½‚¢
+		//éè¡¨ç¤ºã«ã—ãŸã„
 		}else{
-			CLACT_SetDrawFlag( wk->e_itemkeep[param2]->act, 0 );			//”ñ•\¦
+			CLACT_SetDrawFlag( wk->e_itemkeep[param2]->act, 0 );			//éè¡¨ç¤º
 		}
 	}
 
@@ -1394,15 +1394,15 @@ void RouletteScr_ChgItemKeepIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒ‰[ƒpƒŒƒbƒg•ÏX(Šg’£ƒpƒŒƒbƒg—p)
+ *	@brief	ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´(æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆç”¨)
  *
  *	@param	evy		evy
  */
 //-----------------------------------------------------------------------------
 #define ROULETTE_EX_PAL_SIZE		(0x1000)
-#define ROULETTE_WAY_EX_PAL_NUM		(16)				//16–{
-#define ROULETTE_BTL_EX_PAL_NUM		(9)					//9–{
-#define ROULETTE_ROUKA_EX_PAL_NUM	(15)				//15–{
+#define ROULETTE_WAY_EX_PAL_NUM		(16)				//16æœ¬
+#define ROULETTE_BTL_EX_PAL_NUM		(9)					//9æœ¬
+#define ROULETTE_ROUKA_EX_PAL_NUM	(15)				//15æœ¬
 
 void RouletteScr_ResColorChange( u8 evy, u8 flag )
 {
@@ -1412,12 +1412,12 @@ void RouletteScr_ResColorChange( u8 evy, u8 flag )
 	ARCHANDLE *hdl_bg;
 	u16* dest;
 
-	//’Ê˜HA‘Îí•”‰®‚ÅƒpƒŒƒbƒg‚ªˆá‚¤‚Ì‚ÅAƒpƒŒƒbƒgƒf[ƒ^‚Æ"“]‘—ƒTƒCƒY"‚ğ•ª‚¯‚é
+	//é€šè·¯ã€å¯¾æˆ¦éƒ¨å±‹ã§ãƒ‘ãƒ¬ãƒƒãƒˆãŒé•ã†ã®ã§ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã¨"è»¢é€ã‚µã‚¤ã‚º"ã‚’åˆ†ã‘ã‚‹
 	if( flag == 0 ){
 		index = BR_ROUKA_NCLR;
 
 #if 0
-		//(256(16*16)ƒJƒ‰[*16–{) = 0x1000 = 4096 * 2 = 8196 = 0x2000
+		//(256(16*16)ã‚«ãƒ©ãƒ¼*16æœ¬) = 0x1000 = 4096 * 2 = 8196 = 0x2000
 		size  = (ROULETTE_EX_PAL_SIZE * 2);
 #else
 		size  = (ROULETTE_ROUKA_EX_PAL_NUM * 16) * 2;
@@ -1425,11 +1425,11 @@ void RouletteScr_ResColorChange( u8 evy, u8 flag )
 	}else{
 		index = BR_ROOM_NCLR;
 
-		//256F‚ğƒtƒ‹‚Ég‚Á‚Ä‚¢‚È‚¢‚½‚ßB
+		//256è‰²ã‚’ãƒ•ãƒ«ã«ä½¿ã£ã¦ã„ãªã„ãŸã‚ã€‚
 		size  = (ROULETTE_BTL_EX_PAL_NUM * 16) * 2;
 	}
 
-	//ƒf[ƒ^ì¬æ
+	//ãƒ‡ãƒ¼ã‚¿ä½œæˆå…ˆ
 	dest = sys_AllocMemory( HEAPID_FRONTIERMAP, ROULETTE_EX_PAL_SIZE*2 );
 	memset( dest, 0, ROULETTE_EX_PAL_SIZE*2 );
 
@@ -1438,24 +1438,24 @@ void RouletteScr_ResColorChange( u8 evy, u8 flag )
 
 	//OS_Printf( "pal size = %d\n", palData->szByte );			//8192 = 0x2000
 	
-	//256Fx16ƒpƒŒƒbƒg 8k = 8192
+	//256è‰²x16ãƒ‘ãƒ¬ãƒƒãƒˆ 8k = 8192
 	SoftFade( palData->pRawData, dest, ROULETTE_EX_PAL_SIZE, evy, 0x0000 );
 
-	//512byte = 16F x 16
-	//512byte = 256F x 1
-	//8kbyte  = 256F * 16
+	//512byte = 16è‰² x 16
+	//512byte = 256è‰² x 1
+	//8kbyte  = 256è‰² * 16
 
-	//“à•”‚ÅDMA“]‘—‚ğs‚¤‚Ì‚ÅA‘O‚à‚Á‚Ä“]‘—Œ³‚Ìƒf[ƒ^‚ğDC_FlushRange“™‚ğ—p‚¢‚Ä
-	//ƒƒCƒ“ƒƒ‚ƒŠ‚É‘‚«o‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·B
+	//å†…éƒ¨ã§DMAè»¢é€ã‚’è¡Œã†ã®ã§ã€å‰ã‚‚ã£ã¦è»¢é€å…ƒã®ãƒ‡ãƒ¼ã‚¿ã‚’DC_FlushRangeç­‰ã‚’ç”¨ã„ã¦
+	//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªã«æ›¸ãå‡ºã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 	//DC_FlushRange(palData->pRawData, palData->szByte);
 	DC_FlushRange( dest, ROULETTE_EX_PAL_SIZE*2 );
 
-	GX_BeginLoadBGExtPltt();	   // ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—€”õ
+	GX_BeginLoadBGExtPltt();	   // ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€æº–å‚™
 
 	//GX_LoadBGExtPltt(palData->pRawData, 0x6000, ROULETTE_EX_PAL_SIZE*2);
 	GX_LoadBGExtPltt( dest, 0x6000, size );
 
-	GX_EndLoadBGExtPltt();         // ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—Š®—¹
+	GX_EndLoadBGExtPltt();         // ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€å®Œäº†
 
 	ArchiveDataHandleClose( hdl_bg );
 	sys_FreeMemoryEz( dest );
@@ -1466,16 +1466,16 @@ void RouletteScr_ResColorChange( u8 evy, u8 flag )
 
 //==============================================================================================
 //
-//	’ÊM(CommStart)
+//	é€šä¿¡(CommStart)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—MƒEƒFƒCƒg@
+ * @brief	é€ä¿¡ã‚¦ã‚§ã‚¤ãƒˆã€€
  *
- * @param	wk			ROULETTE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	type		‘—Mƒ^ƒCƒv
+ * @param	wk			ROULETTE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type		é€ä¿¡ã‚¿ã‚¤ãƒ—
  *
  * @retval	none
  */
@@ -1517,19 +1517,19 @@ BOOL RouletteScr_CommSetSendBuf( ROULETTE_SCRWORK* wk, u16 type, u16 param )
 
 //==============================================================================================
 //
-//	ƒpƒlƒ‹ƒCƒxƒ“ƒgˆ—
+//	ãƒ‘ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 //
 //==============================================================================================
 
 //==============================================================================
 //
-//	“¹‹ïƒŠƒXƒg(ü‰ñ”‚É‚æ‚Á‚Äg—p‚·‚éƒe[ƒuƒ‹‚ğ‚©‚¦‚é)
+//	é“å…·ãƒªã‚¹ãƒˆ(å‘¨å›æ•°ã«ã‚ˆã£ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‹ãˆã‚‹)
 //
-//	E3(4)•C‘S‚Ä‚É‚½‚¹‚é
-//	E‚·‚Å‚É‰½‚©‚Á‚Ä‚¢‚é‚ÍA‹­§ã‘‚«‚·‚é
+//	ãƒ»3(4)åŒ¹å…¨ã¦ã«æŒãŸã›ã‚‹
+//	ãƒ»ã™ã§ã«ä½•ã‹æŒã£ã¦ã„ã‚‹æ™‚ã¯ã€å¼·åˆ¶ä¸Šæ›¸ãã™ã‚‹
 //
 //==============================================================================
-//ü‰ñ”1-3
+//å‘¨å›æ•°1-3
 static const u16 roulette_item_1_3[] = {
 	ITEM_OUZYANOSIRUSI,
 	ITEM_SENSEINOTUME,
@@ -1547,7 +1547,7 @@ static const u16 roulette_item_1_3[] = {
 };
 #define ROULETTE_ITEM_1_3_MAX	( NELEMS(roulette_item_1_3) )
 
-//ü‰ñ”4-6
+//å‘¨å›æ•°4-6
 static const u16 roulette_item_4_6[] = {
 	ITEM_SIROIHAABU,
 	ITEM_PAWAHURUHAABU,
@@ -1567,7 +1567,7 @@ static const u16 roulette_item_4_6[] = {
 };
 #define ROULETTE_ITEM_4_6_MAX	( NELEMS(roulette_item_4_6) )
 
-//ü‰ñ”7
+//å‘¨å›æ•°7
 static const u16 roulette_item_7[] = {
 	ITEM_KIAINOHATIMAKI,
 	ITEM_KIAINOTASUKI,
@@ -1585,7 +1585,7 @@ static const u16 roulette_item_7[] = {
 };
 #define ROULETTE_ITEM_7_MAX	( NELEMS(roulette_item_7) )
 
-//ƒe[ƒuƒ‹
+//ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u16* roulette_item_tbl[] = {
 	roulette_item_1_3,
 	roulette_item_4_6,
@@ -1596,13 +1596,13 @@ static const u16* roulette_item_tbl[] = {
 
 //==============================================================================
 //
-//	–Ø‚ÌÀƒŠƒXƒg(ü‰ñ”‚É‚æ‚Á‚Äg—p‚·‚éƒe[ƒuƒ‹‚ğ‚©‚¦‚é)
+//	æœ¨ã®å®Ÿãƒªã‚¹ãƒˆ(å‘¨å›æ•°ã«ã‚ˆã£ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‹ãˆã‚‹)
 //
-//	E3(4)•C‘S‚Ä‚É‚½‚¹‚é
-//	E‚·‚Å‚É‰½‚©‚Á‚Ä‚¢‚é‚ÍA‹­§ã‘‚«‚·‚é
+//	ãƒ»3(4)åŒ¹å…¨ã¦ã«æŒãŸã›ã‚‹
+//	ãƒ»ã™ã§ã«ä½•ã‹æŒã£ã¦ã„ã‚‹æ™‚ã¯ã€å¼·åˆ¶ä¸Šæ›¸ãã™ã‚‹
 //
 //==============================================================================
-//ü‰ñ”1-3
+//å‘¨å›æ•°1-3
 static const u16 roulette_seed_1_3[] = {
 	ITEM_KURABONOMI,
 	ITEM_KAGONOMI,
@@ -1616,7 +1616,7 @@ static const u16 roulette_seed_1_3[] = {
 };
 #define ROULETTE_SEED_1_3_MAX	( NELEMS(roulette_seed_1_3) )
 
-//ü‰ñ”4-6
+//å‘¨å›æ•°4-6
 static const u16 roulette_seed_4_6[] = {
 	///////////////////////////////////
 	ITEM_OKKANOMI,
@@ -1643,7 +1643,7 @@ static const u16 roulette_seed_4_6[] = {
 };
 #define ROULETTE_SEED_4_6_MAX	( NELEMS(roulette_seed_4_6) )
 
-//ü‰ñ”7
+//å‘¨å›æ•°7
 static const u16 roulette_seed_7[] = {
 	ITEM_KIINOMI,
 	ITEM_OBONNOMI,
@@ -1659,7 +1659,7 @@ static const u16 roulette_seed_7[] = {
 };
 #define ROULETTE_SEED_7_MAX	( NELEMS(roulette_seed_7) )
 
-//ƒe[ƒuƒ‹
+//ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u16* roulette_seed_tbl[] = {
 	roulette_seed_1_3,
 	roulette_seed_4_6,
@@ -1667,9 +1667,9 @@ static const u16* roulette_seed_tbl[] = {
 };
 #define ROULETTE_SEED_TBL_MAX	( NELEMS(roulette_seed_tbl) )
 
-typedef void (*rouletteFunc)(ROULETTE_SCRWORK* wk,POKEPARTY* party, u8 num);	//ŠÖ”ƒ|ƒCƒ“ƒ^Œ^
+typedef void (*rouletteFunc)(ROULETTE_SCRWORK* wk,POKEPARTY* party, u8 num);	//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å‹
 
-//ƒCƒxƒ“ƒg
+//ã‚¤ãƒ™ãƒ³ãƒˆ
 static void Roulette_EvHpDown( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num );
 static void Roulette_EvDoku( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num );
 static void Roulette_EvMahi( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num );
@@ -1693,7 +1693,7 @@ static void Roulette_EvExBPGet( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 static void Roulette_EvExBtlWin( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num );
 static void Roulette_EvExSuka( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num );
 
-//ƒCƒxƒ“ƒgƒe[ƒuƒ‹
+//ã‚¤ãƒ™ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 static void* ev_func_tbl[] = {
 	Roulette_EvHpDown,
 	Roulette_EvDoku,
@@ -1734,7 +1734,7 @@ static void* ev_func_tbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgÀs
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
  *
  * @param	
  *
@@ -1762,7 +1762,7 @@ void Roulette_EvSet( ROULETTE_SCRWORK* wk, u8 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“GF‚g‚oŒ¸­
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ•µï¼šï¼¨ï¼°æ¸›å°‘
  *
  * @param	
  *
@@ -1775,11 +1775,11 @@ static void Roulette_EvHpDown( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	u32 hpmax,hp;
 	POKEMON_PARAM* poke;
 
-	OS_Printf( "ƒCƒxƒ“ƒgF‚g‚oŒ¸­\n" );
+	OS_Printf( "ã‚¤ãƒ™ãƒ³ãƒˆï¼šï¼¨ï¼°æ¸›å°‘\n" );
 
 	for( i=0; i < num ;i++ ){
 		poke =  PokeParty_GetMemberPointer( party, i );
-		hpmax = PokeParaGet( poke, ID_PARA_hpmax, NULL );		//Å‘åHP
+		hpmax = PokeParaGet( poke, ID_PARA_hpmax, NULL );		//æœ€å¤§HP
 
 		hp = (hpmax * 1.2);
 		hp -= hpmax;		//20%
@@ -1793,7 +1793,7 @@ static void Roulette_EvHpDown( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“GF“Å
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ•µï¼šæ¯’
  *
  * @param	
  *
@@ -1806,7 +1806,7 @@ static void Roulette_EvDoku( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	u32 condition,type1,type2,spe;
 	POKEMON_PARAM* poke;
 
-	OS_Printf( "ƒCƒxƒ“ƒgF“Å\n" );
+	OS_Printf( "ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ¯’\n" );
 
 	ng_count = 0;
 
@@ -1817,7 +1817,7 @@ static void Roulette_EvDoku( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		type2 = PokeParaGet( poke, ID_PARA_type2, NULL );
 		spe	  = PokeParaGet( poke, ID_PARA_speabino, NULL );
 
-		//“ÅA|A–Æ‰u‚Íƒ_ƒI
+		//æ¯’ã€é‹¼ã€å…ç–«ã¯ãƒ€ãƒ¡ï¼
 		if(	(type1 == POISON_TYPE) || (type2 == POISON_TYPE) ||
 			(type1 == METAL_TYPE) || (type2 == METAL_TYPE) || (spe == TOKUSYU_MENEKI) ){
 			ng_count++;
@@ -1829,7 +1829,7 @@ static void Roulette_EvDoku( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		}
 	}	
 
-	//‘S‚Äƒ`ƒFƒbƒN‚µ‚Ä‚¢‚é‚ÍA’N‚à•X‚É‚·‚é‚±‚Æ‚ªo—ˆ‚È‚©‚Á‚½
+	//å…¨ã¦ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ã‚‹æ™‚ã¯ã€èª°ã‚‚æ°·ã«ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã‹ã£ãŸ
 	if( ng_count >= num ){
 		wk->poke_safe_flag = 1;
 	}
@@ -1839,7 +1839,7 @@ static void Roulette_EvDoku( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“GF–ƒáƒ
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ•µï¼šéº»ç—º
  *
  * @param	
  *
@@ -1852,7 +1852,7 @@ static void Roulette_EvMahi( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	u32 condition,type1,type2,spe;
 	POKEMON_PARAM* poke;
 
-	OS_Printf( "ƒCƒxƒ“ƒgF–ƒáƒ\n" );
+	OS_Printf( "ã‚¤ãƒ™ãƒ³ãƒˆï¼šéº»ç—º\n" );
 
 	ng_count = 0;
 
@@ -1863,7 +1863,7 @@ static void Roulette_EvMahi( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		type2 = PokeParaGet( poke, ID_PARA_type2, NULL );
 		spe	  = PokeParaGet( poke, ID_PARA_speabino, NULL );
 
-		//‚¶‚ß‚ñA‚¶‚ã‚¤‚È‚ñ‚Íƒ_ƒI
+		//ã˜ã‚ã‚“ã€ã˜ã‚…ã†ãªã‚“ã¯ãƒ€ãƒ¡ï¼
 		if(	(type1 == JIMEN_TYPE) || (type2 == JIMEN_TYPE) || (spe == TOKUSYU_ZYUUNAN) ){
 			ng_count++;
 		//
@@ -1874,7 +1874,7 @@ static void Roulette_EvMahi( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		}
 	}	
 
-	//‘S‚Äƒ`ƒFƒbƒN‚µ‚Ä‚¢‚é‚ÍA’N‚à•X‚É‚·‚é‚±‚Æ‚ªo—ˆ‚È‚©‚Á‚½
+	//å…¨ã¦ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ã‚‹æ™‚ã¯ã€èª°ã‚‚æ°·ã«ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã‹ã£ãŸ
 	if( ng_count >= num ){
 		wk->poke_safe_flag = 1;
 	}
@@ -1884,7 +1884,7 @@ static void Roulette_EvMahi( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“GF‚â‚¯‚Ç
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ•µï¼šã‚„ã‘ã©
  *
  * @param	
  *
@@ -1897,7 +1897,7 @@ static void Roulette_EvYakedo( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	u32 condition,type1,type2,spe;
 	POKEMON_PARAM* poke;
 
-	OS_Printf( "ƒCƒxƒ“ƒgF‚â‚¯‚Ç\n" );
+	OS_Printf( "ã‚¤ãƒ™ãƒ³ãƒˆï¼šã‚„ã‘ã©\n" );
 
 	ng_count = 0;
 
@@ -1908,7 +1908,7 @@ static void Roulette_EvYakedo( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		type2 = PokeParaGet( poke, ID_PARA_type2, NULL );
 		spe	  = PokeParaGet( poke, ID_PARA_speabino, NULL );
 
-		//‰ŠA‚İ‚¸‚Ìƒx[ƒ‹‚Íƒ_ƒI
+		//ç‚ã€ã¿ãšã®ãƒ™ãƒ¼ãƒ«ã¯ãƒ€ãƒ¡ï¼
 		if(	(type1 == FIRE_TYPE) || (type2 == FIRE_TYPE) || (spe == TOKUSYU_MIZUNOBEERU) ){
 			ng_count++;
 		//
@@ -1919,7 +1919,7 @@ static void Roulette_EvYakedo( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		}
 	}	
 
-	//‘S‚Äƒ`ƒFƒbƒN‚µ‚Ä‚¢‚é‚ÍA’N‚à•X‚É‚·‚é‚±‚Æ‚ªo—ˆ‚È‚©‚Á‚½
+	//å…¨ã¦ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ã‚‹æ™‚ã¯ã€èª°ã‚‚æ°·ã«ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã‹ã£ãŸ
 	if( ng_count >= num ){
 		wk->poke_safe_flag = 1;
 	}
@@ -1929,13 +1929,13 @@ static void Roulette_EvYakedo( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“GF‚Ë‚Ş‚è
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ•µï¼šã­ã‚€ã‚Š
  *
  * @param	
  *
  * @return	none
  *
- * d—l•ÏX‚Å‘ÎÛ‚ª1lŒÅ’è‚Æ‚È‚è‚Ü‚µ‚½B
+ * ä»•æ§˜å¤‰æ›´ã§å¯¾è±¡ãŒ1äººå›ºå®šã¨ãªã‚Šã¾ã—ãŸã€‚
  */
 //--------------------------------------------------------------
 static void Roulette_EvNemuri( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
@@ -1945,20 +1945,20 @@ static void Roulette_EvNemuri( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	u32 condition,spe;
 	POKEMON_PARAM* poke;
 
-	OS_Printf( "ƒCƒxƒ“ƒgF–°‚è\n" );
+	OS_Printf( "ã‚¤ãƒ™ãƒ³ãƒˆï¼šçœ ã‚Š\n" );
 
 	ng_count = 0;
 
-	//ƒ|ƒPƒp[ƒeƒB‚Ì‚Ç‚ÌˆÊ’u‚©‚çƒ`ƒFƒbƒN‚µ‚Ä‚¢‚­‚©‚ğ‘ã“ü
+	//ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ã®ã©ã®ä½ç½®ã‹ã‚‰ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ãã‹ã‚’ä»£å…¥
 	check_pos = ( wk->rand_pos % num );
 
 	for( i=0; i < num ;i++ ){
 		poke =  PokeParty_GetMemberPointer( party, check_pos );
-		//OS_Printf( "ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[ = %d\n", PokeParaGet(poke,ID_PARA_monsno,NULL) );
+		//OS_Printf( "ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ = %d\n", PokeParaGet(poke,ID_PARA_monsno,NULL) );
 
 		spe	  = PokeParaGet( poke, ID_PARA_speabino, NULL );
 
-		//‚Ó‚İ‚ñA‚â‚é‚«‚Íƒ_ƒI
+		//ãµã¿ã‚“ã€ã‚„ã‚‹ãã¯ãƒ€ãƒ¡ï¼
 		if(	(spe == TOKUSYU_HUMIN) || (spe == TOKUSYU_YARUKI) ){
 			ng_count++;
 			check_pos++;
@@ -1968,14 +1968,14 @@ static void Roulette_EvNemuri( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		//
 		}else{
 			//condition = CONDITION_NEMURI;
-			condition = ( gf_rand() % 4 + 2 );		//2-5ƒ^[ƒ“–°‚è‚É‚È‚é
+			condition = ( gf_rand() % 4 + 2 );		//2-5ã‚¿ãƒ¼ãƒ³çœ ã‚Šã«ãªã‚‹
 			PokeParaPut( poke, ID_PARA_condition, &condition );
 			//PokeParaCalc( poke );
 			break;
 		}	
 	}	
 
-	//‘S‚Äƒ`ƒFƒbƒN‚µ‚Ä‚¢‚é‚ÍA’N‚à•X‚É‚·‚é‚±‚Æ‚ªo—ˆ‚È‚©‚Á‚½
+	//å…¨ã¦ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ã‚‹æ™‚ã¯ã€èª°ã‚‚æ°·ã«ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã‹ã£ãŸ
 	if( ng_count >= num ){
 		wk->poke_safe_flag = 1;
 	}
@@ -1985,13 +1985,13 @@ static void Roulette_EvNemuri( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“GF‚±‚¨‚è
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ•µï¼šã“ãŠã‚Š
  *
  * @param	
  *
  * @return	none
  *
- * d—l•ÏX‚Å‘ÎÛ‚ª1lŒÅ’è‚Æ‚È‚è‚Ü‚µ‚½B
+ * ä»•æ§˜å¤‰æ›´ã§å¯¾è±¡ãŒ1äººå›ºå®šã¨ãªã‚Šã¾ã—ãŸã€‚
  */
 //--------------------------------------------------------------
 static void Roulette_EvKoori( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
@@ -2001,11 +2001,11 @@ static void Roulette_EvKoori( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	u32 condition,type1,type2,spe;
 	POKEMON_PARAM* poke;
 
-	OS_Printf( "ƒCƒxƒ“ƒgF•X\n" );
+	OS_Printf( "ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ°·\n" );
 
 	ng_count = 0;
 
-	//ƒ|ƒPƒp[ƒeƒB‚Ì‚Ç‚ÌˆÊ’u‚©‚çƒ`ƒFƒbƒN‚µ‚Ä‚¢‚­‚©‚ğ‘ã“ü
+	//ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ã®ã©ã®ä½ç½®ã‹ã‚‰ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ãã‹ã‚’ä»£å…¥
 	check_pos = ( wk->rand_pos % num );
 
 	for( i=0; i < num ;i++ ){
@@ -2015,7 +2015,7 @@ static void Roulette_EvKoori( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		type2 = PokeParaGet( poke, ID_PARA_type2, NULL );
 		spe	  = PokeParaGet( poke, ID_PARA_speabino, NULL );
 
-		//‚±‚¨‚èAƒ}ƒOƒ}‚Ì‚æ‚ë‚¢‚Íƒ_ƒI
+		//ã“ãŠã‚Šã€ãƒã‚°ãƒã®ã‚ˆã‚ã„ã¯ãƒ€ãƒ¡ï¼
 		if(	(type1 == KOORI_TYPE) || (type2 == KOORI_TYPE) || (spe == TOKUSYU_MAGUMANOYOROI) ){
 			ng_count++;
 			check_pos++;
@@ -2031,7 +2031,7 @@ static void Roulette_EvKoori( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		}	
 	}	
 
-	//‘S‚Äƒ`ƒFƒbƒN‚µ‚Ä‚¢‚é‚ÍA’N‚à•X‚É‚·‚é‚±‚Æ‚ªo—ˆ‚È‚©‚Á‚½
+	//å…¨ã¦ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ã‚‹æ™‚ã¯ã€èª°ã‚‚æ°·ã«ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã‹ã£ãŸ
 	if( ng_count >= num ){
 		wk->poke_safe_flag = 1;
 	}
@@ -2041,7 +2041,7 @@ static void Roulette_EvKoori( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“GF–Ø‚ÌÀƒQƒbƒg
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ•µï¼šæœ¨ã®å®Ÿã‚²ãƒƒãƒˆ
  *
  * @param	
  *
@@ -2055,7 +2055,7 @@ static void Roulette_EvSeedGet( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	u16 item,lap;
 	POKEMON_PARAM* poke;
 
-	OS_Printf( "ƒCƒxƒ“ƒgF–Ø‚ÌÀ\n" );
+	OS_Printf( "ã‚¤ãƒ™ãƒ³ãƒˆï¼šæœ¨ã®å®Ÿ\n" );
 
 	lap = RouletteScr_CommGetLap( wk );
 
@@ -2071,9 +2071,9 @@ static void Roulette_EvSeedGet( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	}
 
 	item = seed_tbl[ (wk->rand_pos % max) ];
-	OS_Printf( "ƒZƒbƒg‚·‚é–Ø‚ÌÀƒiƒ“ƒo[ = %d\n", item );
+	OS_Printf( "ã‚»ãƒƒãƒˆã™ã‚‹æœ¨ã®å®ŸãƒŠãƒ³ãƒãƒ¼ = %d\n", item );
 
-#if 0	//ƒfƒoƒbƒNI
+#if 0	//ãƒ‡ãƒãƒƒã‚¯ï¼
 	item = ITEM_ORENNOMI;
 #endif
 
@@ -2083,14 +2083,14 @@ static void Roulette_EvSeedGet( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		//PokeParaCalc( poke );
 	}	
 
-	//ƒAƒCƒeƒ€‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“‚ÌƒoƒjƒbƒVƒ…ƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥ã‚»ãƒƒãƒˆ
 	//Roulette_ItemKeepVanishSet( wk );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“GFƒAƒCƒeƒ€ƒQƒbƒg
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ•µï¼šã‚¢ã‚¤ãƒ†ãƒ ã‚²ãƒƒãƒˆ
  *
  * @param	
  *
@@ -2104,7 +2104,7 @@ static void Roulette_EvItemGet( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	u16 item,lap;
 	POKEMON_PARAM* poke;
 
-	OS_Printf( "ƒCƒxƒ“ƒgFƒAƒCƒeƒ€\n" );
+	OS_Printf( "ã‚¤ãƒ™ãƒ³ãƒˆï¼šã‚¢ã‚¤ãƒ†ãƒ \n" );
 
 	lap = RouletteScr_CommGetLap( wk );
 
@@ -2120,7 +2120,7 @@ static void Roulette_EvItemGet( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	}
 
 	item = item_tbl[ (wk->rand_pos % max) ];
-	OS_Printf( "ƒZƒbƒg‚·‚éƒAƒCƒeƒ€ƒiƒ“ƒo[ = %d\n", item );
+	OS_Printf( "ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ = %d\n", item );
 
 	for( i=0; i < num ;i++ ){
 		poke =  PokeParty_GetMemberPointer( party, i );
@@ -2128,14 +2128,14 @@ static void Roulette_EvItemGet( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		//PokeParaCalc( poke );
 	}	
 
-	//ƒAƒCƒeƒ€‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“‚ÌƒoƒjƒbƒVƒ…ƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥ã‚»ãƒƒãƒˆ
 	//Roulette_ItemKeepVanishSet( wk );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“GFLVƒAƒbƒv
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šæ•µï¼šLVã‚¢ãƒƒãƒ—
  *
  * @param	
  *
@@ -2148,7 +2148,7 @@ static void Roulette_EvLvUp( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 	u32 exp,level;
 	POKEMON_PARAM* poke;
 
-	OS_Printf( "ƒCƒxƒ“ƒgF‚k‚uƒAƒbƒv\n" );
+	OS_Printf( "ã‚¤ãƒ™ãƒ³ãƒˆï¼šï¼¬ï¼¶ã‚¢ãƒƒãƒ—\n" );
 
 	for( i=0; i < num ;i++ ){
 		poke =  PokeParty_GetMemberPointer( party, i );
@@ -2156,7 +2156,7 @@ static void Roulette_EvLvUp( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 		level+=3;
 
 		if( level > 100 ){
-			OS_Printf( "ƒŒƒxƒ‹‚ª100‚ğ’´‚¦‚Ä‚¢‚éI\n" );
+			OS_Printf( "ãƒ¬ãƒ™ãƒ«ãŒ100ã‚’è¶…ãˆã¦ã„ã‚‹ï¼\n" );
 			GF_ASSERT(0);
 			level = 100;
 		}
@@ -2170,7 +2170,7 @@ static void Roulette_EvLvUp( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFê‚ÉŒø‰ÊF‚Í‚ê
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šå ´ã«åŠ¹æœï¼šã¯ã‚Œ
  *
  * @param	
  *
@@ -2180,14 +2180,14 @@ static void Roulette_EvLvUp( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 static void Roulette_EvPlaceHare( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "‚Í‚ê@ó‘Ô‚Åí“¬‚ÖI\n" );
-	wk->weather = WEATHER_SYS_HIGHSUNNY;			//“ú–{°‚ê
+	OS_Printf( "ã¯ã‚Œã€€çŠ¶æ…‹ã§æˆ¦é—˜ã¸ï¼\n" );
+	wk->weather = WEATHER_SYS_HIGHSUNNY;			//æ—¥æœ¬æ™´ã‚Œ
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFê‚ÉŒø‰ÊF‚ ‚ß
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šå ´ã«åŠ¹æœï¼šã‚ã‚
  *
  * @param	
  *
@@ -2197,14 +2197,14 @@ static void Roulette_EvPlaceHare( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num
 static void Roulette_EvPlaceAme( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "‚ ‚ß@ó‘Ô‚Åí“¬‚ÖI\n" );
-	wk->weather = WEATHER_SYS_RAIN;					//‰J
+	OS_Printf( "ã‚ã‚ã€€çŠ¶æ…‹ã§æˆ¦é—˜ã¸ï¼\n" );
+	wk->weather = WEATHER_SYS_RAIN;					//é›¨
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFê‚ÉŒø‰ÊF‚·‚È‚ ‚ç‚µ
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šå ´ã«åŠ¹æœï¼šã™ãªã‚ã‚‰ã—
  *
  * @param	
  *
@@ -2214,14 +2214,14 @@ static void Roulette_EvPlaceAme( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num 
 static void Roulette_EvPlaceSunaarasi( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "‚·‚È‚ ‚ç‚µ@ó‘Ô‚Åí“¬‚ÖI\n" );
-	wk->weather = WEATHER_SYS_SANDSTORM;			//»—’
+	OS_Printf( "ã™ãªã‚ã‚‰ã—ã€€çŠ¶æ…‹ã§æˆ¦é—˜ã¸ï¼\n" );
+	wk->weather = WEATHER_SYS_SANDSTORM;			//ç ‚åµ
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFê‚ÉŒø‰ÊF‚ ‚ç‚ê
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šå ´ã«åŠ¹æœï¼šã‚ã‚‰ã‚Œ
  *
  * @param	
  *
@@ -2231,14 +2231,14 @@ static void Roulette_EvPlaceSunaarasi( ROULETTE_SCRWORK* wk, POKEPARTY* party, u
 static void Roulette_EvPlaceArare( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "‚ ‚ç‚ê@ó‘Ô‚Åí“¬‚ÖI\n" );
-	wk->weather = WEATHER_SYS_SNOW;					//á
+	OS_Printf( "ã‚ã‚‰ã‚Œã€€çŠ¶æ…‹ã§æˆ¦é—˜ã¸ï¼\n" );
+	wk->weather = WEATHER_SYS_SNOW;					//é›ª
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFê‚ÉŒø‰ÊF‚«‚è
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šå ´ã«åŠ¹æœï¼šãã‚Š
  *
  * @param	
  *
@@ -2248,15 +2248,15 @@ static void Roulette_EvPlaceArare( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 nu
 static void Roulette_EvPlaceKiri( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "‚«‚è@ó‘Ô‚Åí“¬‚ÖI\n" );
-	//wk->weather = WEATHER_SYS_FOGS;					//–¶
-	wk->weather = WEATHER_SYS_MIST1;					//–¶
+	OS_Printf( "ãã‚Šã€€çŠ¶æ…‹ã§æˆ¦é—˜ã¸ï¼\n" );
+	//wk->weather = WEATHER_SYS_FOGS;					//éœ§
+	wk->weather = WEATHER_SYS_MIST1;					//éœ§
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFê‚ÉŒø‰ÊFƒgƒŠƒbƒNƒ‹[ƒ€
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šå ´ã«åŠ¹æœï¼šãƒˆãƒªãƒƒã‚¯ãƒ«ãƒ¼ãƒ 
  *
  * @param	
  *
@@ -2266,14 +2266,14 @@ static void Roulette_EvPlaceKiri( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num
 static void Roulette_EvPlaceTrick( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "ƒgƒŠƒbƒNƒ‹[ƒ€@ó‘Ô‚Åí“¬‚ÖI\n" );
-	wk->weather = WEATHER_SYS_TRICKROOM;			//ƒgƒŠƒbƒNƒ‹[ƒ€
+	OS_Printf( "ãƒˆãƒªãƒƒã‚¯ãƒ«ãƒ¼ãƒ ã€€çŠ¶æ…‹ã§æˆ¦é—˜ã¸ï¼\n" );
+	wk->weather = WEATHER_SYS_TRICKROOM;			//ãƒˆãƒªãƒƒã‚¯ãƒ«ãƒ¼ãƒ 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFê‚ÉŒø‰ÊFƒXƒs[ƒhƒAƒbƒv
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šå ´ã«åŠ¹æœï¼šã‚¹ãƒ”ãƒ¼ãƒ‰ã‚¢ãƒƒãƒ—
  *
  * @param	
  *
@@ -2283,17 +2283,17 @@ static void Roulette_EvPlaceTrick( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 nu
 static void Roulette_EvPlaceSpeedUp( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "ƒXƒs[ƒhƒAƒbƒv\n" );
+	OS_Printf( "ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚¢ãƒƒãƒ—\n" );
 
 	if( wk->csr_speed_level < (CSR_WAIT_TBL_MAX - 1) ){
-		wk->csr_speed_level++;						//ƒJ[ƒ\ƒ‹‚ª“®‚­ƒXƒs[ƒh‚ÌƒŒƒxƒ‹
+		wk->csr_speed_level++;						//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ãã‚¹ãƒ”ãƒ¼ãƒ‰ã®ãƒ¬ãƒ™ãƒ«
 	}
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFê‚ÉŒø‰ÊFƒXƒs[ƒhƒ_ƒEƒ“
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šå ´ã«åŠ¹æœï¼šã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ€ã‚¦ãƒ³
  *
  * @param	
  *
@@ -2303,17 +2303,17 @@ static void Roulette_EvPlaceSpeedUp( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 
 static void Roulette_EvPlaceSpeedDown( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "ƒXƒs[ƒhƒ_ƒEƒ“\n" );
+	OS_Printf( "ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ€ã‚¦ãƒ³\n" );
 
 	if( wk->csr_speed_level > 0 ){
-		wk->csr_speed_level--;			//ƒJ[ƒ\ƒ‹‚ª“®‚­ƒXƒs[ƒh‚ÌƒŒƒxƒ‹
+		wk->csr_speed_level--;			//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ãã‚¹ãƒ”ãƒ¼ãƒ‰ã®ãƒ¬ãƒ™ãƒ«
 	}
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgFê‚ÉŒø‰ÊFƒ‰ƒ“ƒ_ƒ€
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šå ´ã«åŠ¹æœï¼šãƒ©ãƒ³ãƒ€ãƒ 
  *
  * @param	
  *
@@ -2323,15 +2323,15 @@ static void Roulette_EvPlaceSpeedDown( ROULETTE_SCRWORK* wk, POKEPARTY* party, u
 static void Roulette_EvPlaceRandom( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "ƒ‰ƒ“ƒ_ƒ€\n" );
-	//wk->csr_speed_level = CSR_RANDOM_SPEED;		//ƒJ[ƒ\ƒ‹‚ª“®‚­ƒXƒs[ƒh‚ÌƒŒƒxƒ‹
+	OS_Printf( "ãƒ©ãƒ³ãƒ€ãƒ \n" );
+	//wk->csr_speed_level = CSR_RANDOM_SPEED;		//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ãã‚¹ãƒ”ãƒ¼ãƒ‰ã®ãƒ¬ãƒ™ãƒ«
 	wk->random_flag = 1;
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“ÁêFƒ|ƒPƒ‚ƒ“ƒ`ƒFƒ“ƒW
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šç‰¹æ®Šï¼šãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒ³ã‚¸
  *
  * @param	
  *
@@ -2341,14 +2341,14 @@ static void Roulette_EvPlaceRandom( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 n
 static void Roulette_EvExPokeChange( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒ“ƒW@ó‘Ô‚Åí“¬‚ÖI\n" );
+	OS_Printf( "ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€çŠ¶æ…‹ã§æˆ¦é—˜ã¸ï¼\n" );
 	//wk->place_poke_change_flag = 1;
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“ÁêFBPƒQƒbƒg
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šç‰¹æ®Šï¼šBPã‚²ãƒƒãƒˆ
  *
  * @param	
  *
@@ -2359,16 +2359,16 @@ static void Roulette_EvExBPGet( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	u16 add_bp;
 	POKEMON_PARAM* poke;
-	OS_Printf( "BPƒQƒbƒg\n" );
+	OS_Printf( "BPã‚²ãƒƒãƒˆ\n" );
 
-	//ê—p‰æ–Ê‚ğ”²‚¯‚Ä‚©‚çBP‚ğ‘«‚·
+	//å°‚ç”¨ç”»é¢ã‚’æŠœã‘ã¦ã‹ã‚‰BPã‚’è¶³ã™
 	//TowerScoreData_SetBattlePoint( SaveData_GetTowerScoreData(wk->sv), add_bp, BTWR_DATA_add );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“ÁêFí“¬ƒXƒ‹[
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šç‰¹æ®Šï¼šæˆ¦é—˜ã‚¹ãƒ«ãƒ¼
  *
  * @param	
  *
@@ -2378,13 +2378,13 @@ static void Roulette_EvExBPGet( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 static void Roulette_EvExBtlWin( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "í“¬ƒXƒ‹[\n" );
+	OS_Printf( "æˆ¦é—˜ã‚¹ãƒ«ãƒ¼\n" );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgF“ÁêFƒXƒJ
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆï¼šç‰¹æ®Šï¼šã‚¹ã‚«
  *
  * @param	
  *
@@ -2394,17 +2394,17 @@ static void Roulette_EvExBtlWin( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num 
 static void Roulette_EvExSuka( ROULETTE_SCRWORK* wk, POKEPARTY* party, u8 num )
 {
 	POKEMON_PARAM* poke;
-	OS_Printf( "ƒXƒJ\n" );
+	OS_Printf( "ã‚¹ã‚«\n" );
 	return;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ‹[ƒŒƒbƒgƒNƒŠƒA‚É–á‚¦‚éƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğæ“¾
+ * ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚¯ãƒªã‚¢æ™‚ã«è²°ãˆã‚‹ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’å–å¾—
  *
  * @param	wk
  *
- * @return	"–á‚¦‚éƒoƒgƒ‹ƒ|ƒCƒ“ƒg"
+ * @return	"è²°ãˆã‚‹ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆ"
  */
 //--------------------------------------------------------------------------------------------
 u16	RouletteScr_GetAddBtlPoint( ROULETTE_SCRWORK* wk );
@@ -2413,40 +2413,40 @@ u16	RouletteScr_GetAddBtlPoint( ROULETTE_SCRWORK* wk )
 	u8 add_bp;
 	u16 lap;
 	static const u8 bppoint_normal[ROULETTE_LAP_MAX+1] = {0, 
-													2, 2, 2, 2, 4, 4, 5, 6 };//0,1ü`8üˆÈ~
+													2, 2, 2, 2, 4, 4, 5, 6 };//0,1å‘¨ã€œ8å‘¨ä»¥é™
 
 	static const u8 bppoint_multi[ROULETTE_LAP_MAX+1] = {0, 
-													7, 8, 9, 10, 13, 14, 16, 17 };//0,1ü`8üˆÈ~
+													7, 8, 9, 10, 13, 14, 16, 17 };//0,1å‘¨ã€œ8å‘¨ä»¥é™
 
 	//lap = RouletteScr_CommGetLap( wk );
 	lap = wk->lap;
 
-	OS_Printf( "ü‰ñ” = %d\n", lap );
-	OS_Printf( "˜AŸ” = %d\n", wk->rensyou );
+	OS_Printf( "å‘¨å›æ•° = %d\n", lap );
+	OS_Printf( "é€£å‹æ•° = %d\n", wk->rensyou );
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«
 	if( (wk->type == ROULETTE_TYPE_SINGLE) || (wk->type == ROULETTE_TYPE_DOUBLE) ){
 
-		//Å‘åü‰ñ”ƒ`ƒFƒbƒN
+		//æœ€å¤§å‘¨å›æ•°ãƒã‚§ãƒƒã‚¯
 		if( lap >= ROULETTE_LAP_MAX ){
-			add_bp = bppoint_normal[ ROULETTE_LAP_MAX ];		//ƒe[ƒuƒ‹‚ª+1‚µ‚Ä‚¢‚é‚Ì‚Å
+			add_bp = bppoint_normal[ ROULETTE_LAP_MAX ];		//ãƒ†ãƒ¼ãƒ–ãƒ«ãŒ+1ã—ã¦ã„ã‚‹ã®ã§
 		}else{
 			add_bp = bppoint_normal[ lap ];
 		}
 
-	//ƒ}ƒ‹ƒ`AWIFI
+	//ãƒãƒ«ãƒã€WIFI
 	}else{
 
-		//Å‘åü‰ñ”ƒ`ƒFƒbƒN
+		//æœ€å¤§å‘¨å›æ•°ãƒã‚§ãƒƒã‚¯
 		if( lap >= ROULETTE_LAP_MAX ){
-			add_bp = bppoint_multi[ ROULETTE_LAP_MAX ];		//ƒe[ƒuƒ‹‚ª+1‚µ‚Ä‚¢‚é‚Ì‚Å
+			add_bp = bppoint_multi[ ROULETTE_LAP_MAX ];		//ãƒ†ãƒ¼ãƒ–ãƒ«ãŒ+1ã—ã¦ã„ã‚‹ã®ã§
 		}else{
 			add_bp = bppoint_multi[ lap ];
 		}
 
 	}
 
-	//ƒuƒŒ[ƒ“ƒ`ƒFƒbƒN
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ãƒã‚§ãƒƒã‚¯
 	if( wk->type == ROULETTE_TYPE_SINGLE ){
 		if( (wk->rensyou == ROULETTE_LEADER_SET_1ST) || (wk->rensyou == ROULETTE_LEADER_SET_2ND) ){
 			add_bp = 20;
@@ -2458,12 +2458,12 @@ u16	RouletteScr_GetAddBtlPoint( ROULETTE_SCRWORK* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * í“¬Œã‚ÌƒAƒCƒeƒ€ó‘Ô‚ğƒZƒbƒg‚·‚é
+ * æˆ¦é—˜å¾Œã®ã‚¢ã‚¤ãƒ†ãƒ çŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param	btl_party	í“¬‚Åg—p‚µ‚½ƒp[ƒeƒB
- * @param	party		ƒZƒbƒg‚·‚éƒp[ƒeƒB
- * @param	btl_pos		í“¬‚Åg—p‚µ‚½ƒp[ƒeƒB‚ÌˆÊ’u
- * @param	pos			ƒZƒbƒg‚·‚éƒp[ƒeƒB‚ÌˆÊ’u
+ * @param	btl_party	æˆ¦é—˜ã§ä½¿ç”¨ã—ãŸãƒ‘ãƒ¼ãƒ†ã‚£
+ * @param	party		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£
+ * @param	btl_pos		æˆ¦é—˜ã§ä½¿ç”¨ã—ãŸãƒ‘ãƒ¼ãƒ†ã‚£ã®ä½ç½®
+ * @param	pos			ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã®ä½ç½®
  *
  * @return	none
  */
@@ -2475,11 +2475,11 @@ void RouletteScr_BattleAfterItemSet( POKEPARTY* btl_party, POKEPARTY* party, int
 	POKEMON_PARAM* pp;
 	POKEMON_PARAM* btl_pp;
 
-	//ƒoƒgƒ‹‚Åg—p‚µ‚½ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çƒAƒCƒeƒ€‚ğæ“¾
+	//ãƒãƒˆãƒ«ã§ä½¿ç”¨ã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—
 	btl_pp	= PokeParty_GetMemberPointer( btl_party, btl_pos );
 	item	= PokeParaGet( btl_pp, ID_PARA_item, NULL );
 
-	//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	pp =  PokeParty_GetMemberPointer( party, pos );
 	PokeParaPut( pp, ID_PARA_item, &item );
 	//PokeParaCalc( pp );

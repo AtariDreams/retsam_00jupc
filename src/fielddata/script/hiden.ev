@@ -1,6 +1,6 @@
 //====================================================================
 //								hiden
-//							”é“`‹ZƒXƒNƒŠƒvƒg
+//							ç§˜ä¼æŠ€ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 //====================================================================
 
 	.text
@@ -9,17 +9,17 @@
 	.include	"../../../include/msgdata/msg_hiden.h"
 
 
-//BADGE_ID_C04@@// ‚¢‚ ‚¢‚¬‚è
-//BADGE_ID_C07@@// ‚»‚ç‚ğ‚Æ‚Ô
-//BADGE_ID_C05@@// ‚È‚İ‚Ì‚è
-//BADGE_ID_C02@@// ‚©‚¢‚è‚«
-//BADGE_ID_C06@@// ‚«‚è‚Î‚ç‚¢
-//BADGE_ID_C03@@// ‚¢‚í‚­‚¾‚«
-//BADGE_ID_C08@@// ‚½‚«‚Ì‚Ú‚è
-//BADGE_ID_C09@@// ƒƒbƒNƒNƒ‰ƒCƒ€
+//BADGE_ID_C04ã€€ã€€// ã„ã‚ã„ãã‚Š
+//BADGE_ID_C07ã€€ã€€// ãã‚‰ã‚’ã¨ã¶
+//BADGE_ID_C05ã€€ã€€// ãªã¿ã®ã‚Š
+//BADGE_ID_C02ã€€ã€€// ã‹ã„ã‚Šã
+//BADGE_ID_C06ã€€ã€€// ãã‚Šã°ã‚‰ã„
+//BADGE_ID_C03ã€€ã€€// ã„ã‚ãã ã
+//BADGE_ID_C08ã€€ã€€// ãŸãã®ã¼ã‚Š
+//BADGE_ID_C09ã€€ã€€// ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ 
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_hiden_iaigiri
 _EVENT_DATA		ev_hiden_iwakudaki
@@ -38,17 +38,17 @@ _EVENT_DATA		ev_hiden_takinobori_menu
 _EVENT_DATA		ev_hiden_kiribarai_menu
 _EVENT_DATA		ev_hiden_flash_menu
 
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
 //
-/*							‚¢‚ ‚¢‚¬‚è								*/
+/*							ã„ã‚ã„ãã‚Š								*/
 //
 /********************************************************************/
 #define EV_HIDEN_IAIGIRI_OBJDEL_WAIT	(7)
 
-//—mŠÙ‘O‚Ì–Ø‚É˜b‚µ‚©‚¯‚ç‚ê‚éÀ•W(d03r0101)
+//æ´‹é¤¨å‰ã®æœ¨ã«è©±ã—ã‹ã‘ã‚‰ã‚Œã‚‹åº§æ¨™(d03r0101)
 #define IAIGIRI_D03R0101_X1		(73)
 #define IAIGIRI_D03R0101_Y1		(33)
 #define IAIGIRI_D03R0101_X2		(74)
@@ -76,12 +76,12 @@ ev_hiden_iaigiri:
 	_JUMP			ev_hiden_end
 	_END
 
-//”é“`‚í‚´‚à‚Á‚Ä‚¢‚È‚¢ê‡
+//ç§˜ä¼ã‚ã–ã‚‚ã£ã¦ã„ãªã„å ´åˆ
 ev_hiden_iaigiri_ng:
 	_TALKMSG		msg_iai_03
 
 	/*************************************************************************/
-	/*ƒnƒNƒ^ƒC‚ÌX‚Ì—mŠÙ‚Ì‘O‚Å–Ø‚É˜b‚µ‚©‚¯‚½‚©*/
+	/*ãƒã‚¯ã‚¿ã‚¤ã®æ£®ã®æ´‹é¤¨ã®å‰ã§æœ¨ã«è©±ã—ã‹ã‘ãŸã‹*/
 	_GET_NOW_ZONE_ID	SCWK_TEMP0
 	_IFVAL_CALL			SCWK_TEMP0,EQ,ZONE_ID_D03R0101,ev_hiden_iaigiri_d03r0101
 	/*************************************************************************/
@@ -101,7 +101,7 @@ ev_hiden_iaigiri_02:
 
 	_CUTIN			SCWK_TEMP0
 	
-	_HIDENEFF_START 0,SCWK_TEMP1	// SCWK_TEMP1‚É1‚ª“ü‚Á‚½‚çƒGƒtƒFƒNƒgI—¹
+	_HIDENEFF_START 0,SCWK_TEMP1	// SCWK_TEMP1ã«1ãŒå…¥ã£ãŸã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 	_TIME_WAIT		EV_HIDEN_IAIGIRI_OBJDEL_WAIT,SCWK_ANSWER
 
 	_OBJ_DEL		SCWK_TARGET_OBJID
@@ -109,7 +109,7 @@ ev_hiden_iaigiri_02:
 	_GET_NOW_ZONE_ID	SCWK_TEMP0
 	_FNOTE_DATA_MAKE	FNOTE_ID_IAIGIRI,SCWK_TEMP0,0,0,0
 
-ev_hiden_iaigiri_02_eff_end_loop:// ƒGƒtƒFƒNƒg‚ªI‚í‚é‚Ü‚Å‘Ò‚Â
+ev_hiden_iaigiri_02_eff_end_loop:// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚ã‚ã‚‹ã¾ã§å¾…ã¤
 	_TIME_WAIT		1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,0, ev_hiden_iaigiri_02_eff_end_loop
 
@@ -117,7 +117,7 @@ ev_hiden_iaigiri_02_eff_end_loop:// ƒGƒtƒFƒNƒg‚ªI‚í‚é‚Ü‚Å‘Ò‚Â
 	_END
 
 
-//ƒƒjƒ…[‚©‚ç‚Ìu‚¢‚ ‚¢‚¬‚èv”­“®
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã®ã€Œã„ã‚ã„ãã‚Šã€ç™ºå‹•
 ev_hiden_iaigiri_menu:
 	_EVENT_START
 
@@ -127,7 +127,7 @@ ev_hiden_iaigiri_menu:
 
 	_CUTIN			SCWK_PARAM0
 
-	_HIDENEFF_START 0,SCWK_TEMP1	// SCWK_TEMP1‚É1‚ª“ü‚Á‚½‚çƒGƒtƒFƒNƒgI—¹
+	_HIDENEFF_START 0,SCWK_TEMP1	// SCWK_TEMP1ã«1ãŒå…¥ã£ãŸã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 	_TIME_WAIT		EV_HIDEN_IAIGIRI_OBJDEL_WAIT,SCWK_ANSWER
 
 	_OBJ_DEL		SCWK_TARGET_OBJID
@@ -135,7 +135,7 @@ ev_hiden_iaigiri_menu:
 	_GET_NOW_ZONE_ID	SCWK_TEMP0
 	_FNOTE_DATA_MAKE	FNOTE_ID_IAIGIRI,SCWK_TEMP0,0,0,0
 
-ev_hiden_iaigiri_menu_eff_end_loop:// ƒGƒtƒFƒNƒg‚ªI‚í‚é‚Ü‚Å‘Ò‚Â
+ev_hiden_iaigiri_menu_eff_end_loop:// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚ã‚ã‚‹ã¾ã§å¾…ã¤
 	_TIME_WAIT		1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,0, ev_hiden_iaigiri_menu_eff_end_loop
 	_EVENT_END
@@ -143,13 +143,13 @@ ev_hiden_iaigiri_menu_eff_end_loop:// ƒGƒtƒFƒNƒg‚ªI‚í‚é‚Ü‚Å‘Ò‚Â
 
 
 /********************************************************************/
-/*			ƒnƒNƒ^ƒC‚ÌX‚Ì—mŠÙ‚Ì‘O‚Å–Ø‚É˜b‚µ‚©‚¯‚½‚©				*/
+/*			ãƒã‚¯ã‚¿ã‚¤ã®æ£®ã®æ´‹é¤¨ã®å‰ã§æœ¨ã«è©±ã—ã‹ã‘ãŸã‹				*/
 /********************************************************************/
 ev_hiden_iaigiri_d03r0101:
-	/*‚·‚Å‚ÉƒV[ƒ“‚ª•Ï‚í‚Á‚Ä‚¢‚é‚©*/
+	/*ã™ã§ã«ã‚·ãƒ¼ãƒ³ãŒå¤‰ã‚ã£ã¦ã„ã‚‹ã‹*/
 	_IFVAL_JUMP		WK_SCENE_D03R0101_TREE,NE,0,ev_hiden_iaigiri_d03r0101_ret
 
-	/*ƒ‚ƒ~‚Ì˜A‚ê•à‚«’†‚©*/
+	/*ãƒ¢ãƒŸã®é€£ã‚Œæ­©ãä¸­ã‹*/
 	_IFVAL_JUMP		WK_SCENE_D03R0101,NE,1,ev_hiden_iaigiri_d03r0101_ret
 
 	_CALL			ev_hiden_iaigiri_d03r0101_pos_check
@@ -161,7 +161,7 @@ ev_hiden_iaigiri_d03r0101:
 ev_hiden_iaigiri_d03r0101_pos_check:
 	_LDVAL			SCWK_ANSWER,0
 
-	//ålŒö‚ÌˆÊ’uî•ñæ“¾
+	//ä¸»äººå…¬ã®ä½ç½®æƒ…å ±å–å¾—
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,IAIGIRI_D03R0101_X1,ev_hiden_iaigiri_d03r0101_y_check_1
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,IAIGIRI_D03R0101_X2,ev_hiden_iaigiri_d03r0101_y_check_2
@@ -194,14 +194,14 @@ ev_hiden_iaigiri_d03r0101_pos_ok:
 	_LDVAL			SCWK_ANSWER,1
 	_RET
 
-/*RET‚Ì‚İ*/
+/*RETã®ã¿*/
 ev_hiden_iaigiri_d03r0101_ret:
 	_RET
 
 
 /********************************************************************/
 //
-/*							‚¢‚í‚­‚¾‚«								*/
+/*							ã„ã‚ãã ã								*/
 //
 /********************************************************************/
 #define EV_HIDEN_IWAKUDAKI_OBJDEL_WAIT	(10)
@@ -222,7 +222,7 @@ ev_hiden_iwakudaki:
 	_JUMP			ev_hiden_end
 	_END
 
-//”é“`‚í‚´‚à‚Á‚Ä‚¢‚È‚¢ê‡
+//ç§˜ä¼ã‚ã–ã‚‚ã£ã¦ã„ãªã„å ´åˆ
 ev_hiden_iwakudaki_ng:
 	_TALKMSG		msg_iwa_02
 	_LAST_KEYWAIT
@@ -239,7 +239,7 @@ ev_hiden_iwakudaki_02:
 
 	_CUTIN			SCWK_TEMP0
 
-	_HIDENEFF_START 1,SCWK_TEMP1	// SCWK_TEMP1‚É1‚ª“ü‚Á‚½‚çƒGƒtƒFƒNƒgI—¹
+	_HIDENEFF_START 1,SCWK_TEMP1	// SCWK_TEMP1ã«1ãŒå…¥ã£ãŸã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 	_TIME_WAIT		EV_HIDEN_IWAKUDAKI_OBJDEL_WAIT,SCWK_ANSWER
 
 	_OBJ_DEL		SCWK_TARGET_OBJID
@@ -247,7 +247,7 @@ ev_hiden_iwakudaki_02:
 	_GET_NOW_ZONE_ID	SCWK_TEMP0
 	_FNOTE_DATA_MAKE	FNOTE_ID_IWAKUDAKI,SCWK_TEMP0,0,0,0
 
-ev_hiden_iwakudaki_02_eff_end_loop:// ƒGƒtƒFƒNƒg‚ªI‚í‚é‚Ü‚Å‘Ò‚Â
+ev_hiden_iwakudaki_02_eff_end_loop:// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚ã‚ã‚‹ã¾ã§å¾…ã¤
 	_TIME_WAIT		1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,0, ev_hiden_iwakudaki_02_eff_end_loop
 
@@ -255,7 +255,7 @@ ev_hiden_iwakudaki_02_eff_end_loop:// ƒGƒtƒFƒNƒg‚ªI‚í‚é‚Ü‚Å‘Ò‚Â
 	_END
 
 
-//ƒƒjƒ…[‚©‚çu‚¢‚í‚­‚¾‚«v”­“®
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œã„ã‚ãã ãã€ç™ºå‹•
 ev_hiden_iwakudaki_menu:
 	_EVENT_START
 
@@ -265,14 +265,14 @@ ev_hiden_iwakudaki_menu:
 
 	_CUTIN			SCWK_PARAM0
 
-	_HIDENEFF_START 1,SCWK_TEMP1	// SCWK_TEMP1‚É1‚ª“ü‚Á‚½‚çƒGƒtƒFƒNƒgI—¹
+	_HIDENEFF_START 1,SCWK_TEMP1	// SCWK_TEMP1ã«1ãŒå…¥ã£ãŸã‚‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 	_TIME_WAIT		EV_HIDEN_IWAKUDAKI_OBJDEL_WAIT,SCWK_ANSWER
 	_OBJ_DEL		SCWK_TARGET_OBJID
 
 	_GET_NOW_ZONE_ID	SCWK_TEMP0
 	_FNOTE_DATA_MAKE	FNOTE_ID_IWAKUDAKI,SCWK_TEMP0,0,0,0
 
-ev_hiden_iwakudaki_menu_eff_end_loop:// ƒGƒtƒFƒNƒg‚ªI‚í‚é‚Ü‚Å‘Ò‚Â
+ev_hiden_iwakudaki_menu_eff_end_loop:// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚ã‚ã‚‹ã¾ã§å¾…ã¤
 	_TIME_WAIT		1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,0, ev_hiden_iwakudaki_menu_eff_end_loop
 	_EVENT_END
@@ -282,13 +282,13 @@ ev_hiden_iwakudaki_menu_eff_end_loop:// ƒGƒtƒFƒNƒg‚ªI‚í‚é‚Ü‚Å‘Ò‚Â
 
 /********************************************************************/
 //
-/*							‚©‚¢‚è‚«								*/
+/*							ã‹ã„ã‚Šã								*/
 //
 /********************************************************************/
 ev_hiden_kairiki:
 	_TALK_OBJ_START
 
-	_SYS_FLAG_KAIRIKI_GET	SCWK_ANSWER		//‚©‚¢‚è‚«ƒtƒ‰ƒOƒ`ƒFƒbƒN
+	_SYS_FLAG_KAIRIKI_GET	SCWK_ANSWER		//ã‹ã„ã‚Šããƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,TRUE,ev_hiden_kairiki_already
 
 	_CHK_POKE_WAZA_GROUP	SCWK_ANSWER, WAZANO_KAIRIKI
@@ -304,7 +304,7 @@ ev_hiden_kairiki:
 	_JUMP			ev_hiden_end
 	_END
 
-//”é“`‚í‚´‚à‚Á‚Ä‚¢‚È‚¢ê‡
+//ç§˜ä¼ã‚ã–ã‚‚ã£ã¦ã„ãªã„å ´åˆ
 ev_hiden_kairiki_ng:
 	_TALKMSG		msg_kairiki_03
 	_LAST_KEYWAIT
@@ -313,7 +313,7 @@ ev_hiden_kairiki_ng:
 	_END
 
 ev_hiden_kairiki_02:
-	_SYS_FLAG_KAIRIKI_SET			//‚©‚¢‚è‚«ƒtƒ‰ƒOƒZƒbƒg
+	_SYS_FLAG_KAIRIKI_SET			//ã‹ã„ã‚Šããƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	_CHK_POKE_WAZA_GROUP	SCWK_ANSWER, WAZANO_KAIRIKI
 	_LDWK			SCWK_TEMP0,SCWK_ANSWER
 	_NICK_NAME		0,SCWK_ANSWER
@@ -322,7 +322,7 @@ ev_hiden_kairiki_02:
 
 	_CUTIN			SCWK_TEMP0
 
-	_TALK_CLOSE		/* ƒJƒbƒgƒCƒ“‚ÅMSG—pBG‚ªƒNƒŠƒA‚³‚ê‚Ä‚¢‚é‘Îˆ */
+	_TALK_CLOSE		/* ã‚«ãƒƒãƒˆã‚¤ãƒ³ã§MSGç”¨BGãŒã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ã‚‹å¯¾å‡¦ */
 	_TALKMSG		msg_kairiki_06
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -333,7 +333,7 @@ ev_hiden_kairiki_02:
 	_JUMP			ev_hiden_end
 	_END
 
-//‚·‚Å‚É‚©‚¢‚è‚«‚ğ‚Â‚©‚Á‚Ä‚¢‚éê‡
+//ã™ã§ã«ã‹ã„ã‚Šãã‚’ã¤ã‹ã£ã¦ã„ã‚‹å ´åˆ
 ev_hiden_kairiki_already:
 	_TALKMSG		msg_kairiki_04
 	_LAST_KEYWAIT
@@ -341,14 +341,14 @@ ev_hiden_kairiki_already:
 	_JUMP			ev_hiden_end
 	_END
 
-//ƒƒjƒ…[‚©‚çu‚©‚¢‚è‚«v”­“®
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œã‹ã„ã‚Šãã€ç™ºå‹•
 ev_hiden_kairiki_menu:
 	_EVENT_START
 
-	_SYS_FLAG_KAIRIKI_GET	SCWK_ANSWER		//‚©‚¢‚è‚«ƒtƒ‰ƒOƒ`ƒFƒbƒN
+	_SYS_FLAG_KAIRIKI_GET	SCWK_ANSWER		//ã‹ã„ã‚Šããƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,TRUE,ev_hiden_kairiki_already
 
-	_SYS_FLAG_KAIRIKI_SET			//‚©‚¢‚è‚«ƒtƒ‰ƒOƒZƒbƒg
+	_SYS_FLAG_KAIRIKI_SET			//ã‹ã„ã‚Šããƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 
 	_NICK_NAME		0,SCWK_PARAM0
 	_TALKMSG		msg_kairiki_05
@@ -368,7 +368,7 @@ ev_hiden_kairiki_menu:
 
 /********************************************************************/
 //
-/*							•Ç‚Ì‚Ú‚è								*/
+/*							å£ã®ã¼ã‚Š								*/
 //
 /********************************************************************/
 ev_hiden_kabenobori:
@@ -389,7 +389,7 @@ ev_hiden_kabenobori:
 	_JUMP			ev_hiden_end_bg
 	_END
 
-//”é“`‚í‚´‚à‚Á‚Ä‚¢‚È‚¢ê‡
+//ç§˜ä¼ã‚ã–ã‚‚ã£ã¦ã„ãªã„å ´åˆ
 ev_hiden_kabenobori_ng:
 	_TALKMSG		msg_rock_03
 	_LAST_KEYWAIT
@@ -421,7 +421,7 @@ ev_hiden_kabenobori_02:
 	_JUMP			ev_hiden_end_bg
 	_END
 
-//ƒƒjƒ…[‚©‚çuƒƒbƒNƒNƒ‰ƒCƒ€vi‹ŒÌ‚©‚×‚Ì‚Ú‚èj”­“®
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ ã€ï¼ˆæ—§ç§°ã‹ã¹ã®ã¼ã‚Šï¼‰ç™ºå‹•
 ev_hiden_kabenobori_menu:
 	_EVENT_START
 	_NICK_NAME		0,SCWK_PARAM0
@@ -439,7 +439,7 @@ ev_hiden_kabenobori_menu:
 
 /********************************************************************/
 //
-/*								”g‚Ì‚è								*/
+/*								æ³¢ã®ã‚Š								*/
 //
 /********************************************************************/
 ev_hiden_naminori:
@@ -460,7 +460,7 @@ ev_hiden_naminori:
 	_JUMP			ev_hiden_end_bg
 	_END
 
-//”é“`‚í‚´‚à‚Á‚Ä‚¢‚È‚¢ê‡
+//ç§˜ä¼ã‚ã–ã‚‚ã£ã¦ã„ãªã„å ´åˆ
 //ev_hiden_naminori_ng:
 //	_TALKMSG		msg_naminori_03
 //	_LAST_KEYWAIT
@@ -490,7 +490,7 @@ ev_hiden_naminori_02:
 	_JUMP			ev_hiden_end_bg
 	_END
 
-//‚ß‚É‚ã[‚©‚çu‚È‚İ‚Ì‚èv”­“®
+//ã‚ã«ã‚…ãƒ¼ã‹ã‚‰ã€Œãªã¿ã®ã‚Šã€ç™ºå‹•
 ev_hiden_naminori_menu:
 	_EVENT_START
 	_NICK_NAME		0,SCWK_PARAM0
@@ -511,7 +511,7 @@ ev_hiden_naminori_menu:
 
 /********************************************************************/
 //
-/*							‚«‚è‚Í‚ç‚¢(‚«‚è‚Î‚ç‚¢)					*/
+/*							ãã‚Šã¯ã‚‰ã„(ãã‚Šã°ã‚‰ã„)					*/
 //
 /********************************************************************/
 ev_hiden_kiriharai:
@@ -530,7 +530,7 @@ ev_hiden_kiriharai:
 	_JUMP			ev_hiden_end_bg
 	_END
 
-//”é“`‚í‚´‚à‚Á‚Ä‚¢‚È‚¢ê‡
+//ç§˜ä¼ã‚ã–ã‚‚ã£ã¦ã„ãªã„å ´åˆ
 ev_hiden_kiriharai_ng:
 	_TALKMSG		msg_kiri_03
 	_LAST_KEYWAIT
@@ -552,7 +552,7 @@ ev_hiden_kiri_02:
 	_FNOTE_DATA_MAKE	FNOTE_ID_KIRIBARAI,SCWK_TEMP0,0,0,0
 
 	/*************************************************************************/
-	/*ƒƒXƒgƒ^ƒ[‚Å‚«‚è‚Î‚ç‚¢‚ğg—p‚µ‚½‚©*/
+	/*ãƒ­ã‚¹ãƒˆã‚¿ãƒ¯ãƒ¼ã§ãã‚Šã°ã‚‰ã„ã‚’ä½¿ç”¨ã—ãŸã‹*/
 	_GET_NOW_ZONE_ID	SCWK_TEMP0
 	_IFVAL_CALL			SCWK_TEMP0,EQ,ZONE_ID_R209R0105,ev_hiden_kiri_r209r0105
 	/*************************************************************************/
@@ -560,12 +560,12 @@ ev_hiden_kiri_02:
 	_JUMP			ev_hiden_end_bg
 	_END
 
-/*ƒƒXƒgƒ^ƒ[ƒCƒxƒ“ƒg*/
+/*ãƒ­ã‚¹ãƒˆã‚¿ãƒ¯ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆ*/
 ev_hiden_kiri_r209r0105:
 	_FLAG_SET		FE_R209R0105_KIRI_USE
 	_RET
 
-//ƒƒjƒ…[‚©‚ç‚Ìu‚«‚è‚Î‚ç‚¢v”­“®
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã®ã€Œãã‚Šã°ã‚‰ã„ã€ç™ºå‹•
 ev_hiden_kiribarai_menu:
 	_EVENT_START
 	_NICK_NAME		0,SCWK_PARAM0
@@ -582,7 +582,7 @@ ev_hiden_kiribarai_menu:
 	_FNOTE_DATA_MAKE	FNOTE_ID_KIRIBARAI,SCWK_TEMP0,0,0,0
 
 	/*************************************************************************/
-	/*ƒƒXƒgƒ^ƒ[‚Å‚«‚è‚Î‚ç‚¢‚ğg—p‚µ‚½‚©*/
+	/*ãƒ­ã‚¹ãƒˆã‚¿ãƒ¯ãƒ¼ã§ãã‚Šã°ã‚‰ã„ã‚’ä½¿ç”¨ã—ãŸã‹*/
 	_GET_NOW_ZONE_ID	SCWK_TEMP0
 	_IFVAL_CALL			SCWK_TEMP0,EQ,ZONE_ID_R209R0105,ev_hiden_kiri_r209r0105
 	/*************************************************************************/
@@ -591,7 +591,7 @@ ev_hiden_kiribarai_menu:
 
 /********************************************************************/
 //
-//						ƒtƒ‰ƒbƒVƒ…
+//						ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 //
 /********************************************************************/
 ev_hiden_flash_menu:
@@ -610,20 +610,20 @@ ev_hiden_flash_menu:
 
 /********************************************************************/
 //
-//							‹¤’Êˆ—
+//							å…±é€šå‡¦ç†
 //
 /********************************************************************/
-//‹¤’ÊI—¹(OBJ)
+//å…±é€šçµ‚äº†(OBJ)
 ev_hiden_end:
 	_TALK_OBJ_END
 	_END
 
-//‹¤’ÊI—¹(BG)
+//å…±é€šçµ‚äº†(BG)
 ev_hiden_end_bg:
 	_TALK_END
 	_END
 
-//‹¤’ÊI—¹(EVENT)
+//å…±é€šçµ‚äº†(EVENT)
 ev_hiden_end_event:
 	_EVENT_END
 	_END
@@ -631,7 +631,7 @@ ev_hiden_end_event:
 
 /********************************************************************/
 //
-/*							‚½‚«‚Ì‚Ú‚è								*/
+/*							ãŸãã®ã¼ã‚Š								*/
 //
 /********************************************************************/
 ev_hiden_takinobori:
@@ -650,7 +650,7 @@ ev_hiden_takinobori:
 	_JUMP			ev_hiden_end_bg
 	_END
 
-//”é“`‚í‚´‚à‚Á‚Ä‚¢‚È‚¢ê‡
+//ç§˜ä¼ã‚ã–ã‚‚ã£ã¦ã„ãªã„å ´åˆ
 ev_hiden_takinobori_ng:
 	_TALKMSG		msg_taki_03
 	_LAST_KEYWAIT
@@ -674,7 +674,7 @@ ev_hiden_takinobori_02:
 	_JUMP			ev_hiden_end_bg
 	_END
 
-//ƒƒjƒ…[‚©‚çu‚½‚«‚Ì‚Ú‚èv”­“®
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€ŒãŸãã®ã¼ã‚Šã€ç™ºå‹•
 ev_hiden_takinobori_menu:
 	_EVENT_START
 	_NICK_NAME		0,SCWK_PARAM0
@@ -697,7 +697,7 @@ ev_hiden_takinobori_menu:
 
 /********************************************************************/
 //
-/*							‚»‚ç‚ğ‚Æ‚Ô								*/
+/*							ãã‚‰ã‚’ã¨ã¶								*/
 //
 /********************************************************************/
 ev_hiden_sorawotobu:
@@ -707,23 +707,23 @@ ev_hiden_sorawotobu:
 	_CHK_POKE_WAZA_GROUP	SCWK_ANSWER,WAZANO_SORAWOTOBU
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,6,ev_hiden_sorawotobu_ng
 
-	/*g—p*/
+	/*ä½¿ç”¨*/
 	_CHK_POKE_WAZA_GROUP	SCWK_ANSWER,WAZANO_SORAWOTOBU
 	_LDWK			SCWK_TEMP0,SCWK_ANSWER
 	_NICK_NAME		0,SCWK_ANSWER
 	_TALK_KEYWAIT	msg_taki_02
 	_TALK_CLOSE
 
-	/*ƒJƒbƒgƒCƒ“*/
+	/*ã‚«ãƒƒãƒˆã‚¤ãƒ³*/
 	//_CUTIN			SCWK_TEMP0
 
-	/*‚»‚ç‚ğ‚Æ‚Ô*/
+	/*ãã‚‰ã‚’ã¨ã¶*/
 	//_SORAWOTOBU		SCWK_TEMP0
 
 	_JUMP			ev_hiden_end_event
 	_END
 
-//”é“`‚í‚´‚à‚Á‚Ä‚¢‚È‚¢ê‡
+//ç§˜ä¼ã‚ã–ã‚‚ã£ã¦ã„ãªã„å ´åˆ
 ev_hiden_sorawotobu_ng:
 	_JUMP			ev_hiden_end_event
 #endif

@@ -22,14 +22,14 @@
 /*---------------------------------------------------------------------------*
   Name:         WFSi_ArchiveReadCallback
 
-  Description:  q‹@WFSƒA[ƒJƒCƒu‚ÌƒŠ[ƒhƒAƒNƒZƒXƒR[ƒ‹ƒoƒbƒN.
+  Description:  å­æ©ŸWFSã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒªãƒ¼ãƒ‰ã‚¢ã‚¯ã‚»ã‚¹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
-  Arguments:    archive          FSArchive\‘¢‘Ì.
-                buffer           “]‘—æ.
-                offset           “]‘—Œ³.
-                length           “]‘—ƒTƒCƒY.
+  Arguments:    archive          FSArchiveæ§‹é€ ä½“.
+                buffer           è»¢é€å…ˆ.
+                offset           è»¢é€å…ƒ.
+                length           è»¢é€ã‚µã‚¤ã‚º.
 
-  Returns:      ˆ—Œ‹‰Ê.
+  Returns:      å‡¦ç†çµæœ.
  *---------------------------------------------------------------------------*/
 static FSResult WFSi_ArchiveReadCallback(FSArchive *archive, void *buffer, u32 offset, u32 length)
 {
@@ -47,11 +47,11 @@ static FSResult WFSi_ArchiveReadCallback(FSArchive *archive, void *buffer, u32 o
 /*---------------------------------------------------------------------------*
   Name:         WFSi_ArchiveReadDoneCallback
 
-  Description:  q‹@WFSƒA[ƒJƒCƒu‚ÌƒŠ[ƒhŠ®—¹ƒR[ƒ‹ƒoƒbƒN.
+  Description:  å­æ©ŸWFSã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒªãƒ¼ãƒ‰å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
-                succeeded        “Ç‚İ‚İ‚É¬Œ÷‚µ‚½‚çTRUE, ¸”s‚µ‚½‚çFALSE.
-                arg              ƒR[ƒ‹ƒoƒbƒN‚Éw’è‚³‚ê‚½ˆø”.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
+                succeeded        èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ãŸã‚‰TRUE, å¤±æ•—ã—ãŸã‚‰FALSE.
+                arg              ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«æŒ‡å®šã•ã‚ŒãŸå¼•æ•°.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -71,12 +71,12 @@ static void WFSi_ArchiveReadDoneCallback(WFSClientContext *context, BOOL succeed
 /*---------------------------------------------------------------------------*
   Name:         WFSi_RomArchiveProc
 
-  Description:  q‹@ROMƒA[ƒJƒCƒu‚Ìƒ†[ƒUƒvƒƒV[ƒWƒƒ.
+  Description:  å­æ©ŸROMã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£.
 
-  Arguments:    file             FSFile\‘¢‘Ì.
-                command          ƒRƒ}ƒ“ƒh.
+  Arguments:    file             FSFileæ§‹é€ ä½“.
+                command          ã‚³ãƒãƒ³ãƒ‰.
 
-  Returns:      ˆ—Œ‹‰Ê.
+  Returns:      å‡¦ç†çµæœ.
  *---------------------------------------------------------------------------*/
 static FSResult WFSi_RomArchiveProc(FSFile *file, FSCommandType command)
 {
@@ -119,9 +119,9 @@ static FSResult WFSi_RomArchiveProc(FSFile *file, FSCommandType command)
 /*---------------------------------------------------------------------------*
   Name:         WFS_ReplaceRomArchive
 
-  Description:  WFS‚ÌƒA[ƒJƒCƒu‚ğƒ}ƒEƒ“ƒg.
+  Description:  WFSã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ãƒã‚¦ãƒ³ãƒˆ.
 
-  Arguments:    context          WFSClientContext\‘¢‘Ì.
+  Arguments:    context          WFSClientContextæ§‹é€ ä½“.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

@@ -1,11 +1,11 @@
 //===========================================================================
 /**
  * @file	location.c
- * @brief	�}�b�v�ʒu�̏������Ȃ�
+ * @brief	マップ位置の初期化など
  * @date	2006.06.02
  * @author	tamada GAME FREAK inc.
  *
- * debug_init.c --> fieldsys.c --> location.c�ɓƗ�
+ * debug_init.c --> fieldsys.c --> location.cに独立
  */
 //===========================================================================
 
@@ -13,7 +13,7 @@
 
 #include "field/location.h"
 
-#include "mapdefine.h"		//ZONE_ID_�`
+#include "mapdefine.h"		//ZONE_ID_〜
 #include "fieldobj_code.h"	//DIR_DOWN
 
 #include "player.h"
@@ -22,11 +22,11 @@
 //===========================================================================
 //===========================================================================
 //------------------------------------------------------------------
-//	�Q�[���J�n�ʒu�̒�`
+//	ゲーム開始位置の定義
 //------------------------------------------------------------------
 enum {
 	//GAME_START_ZONE = ZONE_ID_T01R0102,
-	GAME_START_ZONE = ZONE_ID_T01R0202,		//06.03.07�ύX
+	GAME_START_ZONE = ZONE_ID_T01R0202,		//06.03.07変更
 	GAME_START_X = 4,
 	GAME_START_Z = 6,
 
@@ -41,7 +41,7 @@ enum {
 
 //------------------------------------------------------------------
 /**
- * @brief	LOCATION�ɏ����X�^�[�g�ʒu���Z�b�g
+ * @brief	LOCATIONに初期スタート位置をセット
  */
 //------------------------------------------------------------------
 void LOCATION_SetFirstPos(LOCATION_WORK * location)
@@ -57,7 +57,7 @@ void LOCATION_SetFirstPos(LOCATION_WORK * location)
 }
 //------------------------------------------------------------------
 /**
- * @brief	EscapeLOCATION�ɏ����X�^�[�g�ʒu���Z�b�g
+ * @brief	EscapeLOCATIONに初期スタート位置をセット
  */
 //------------------------------------------------------------------
 void LOCATION_SetFirstEscapePos(LOCATION_WORK * location)
@@ -74,7 +74,7 @@ void LOCATION_SetFirstEscapePos(LOCATION_WORK * location)
 
 //------------------------------------------------------------------
 /**
- * @brief	���݈ʒu�������X�^�[�g�ʒu�ɃZ�b�g����
+ * @brief	現在位置を初期スタート位置にセットする
  */
 //------------------------------------------------------------------
 void LOCATION_GameInit(SAVEDATA * sv)
@@ -87,7 +87,7 @@ void LOCATION_GameInit(SAVEDATA * sv)
 #ifdef	PM_DEBUG
 //------------------------------------------------------------------
 /**
- * @brief	���݈ʒu���f�o�b�O�p�����J�n�ʒu�ɃZ�b�g����
+ * @brief	現在位置をデバッグ用初期開始位置にセットする
  */
 //------------------------------------------------------------------
 void LOCATION_GameInit_Debug(SAVEDATA * sv)

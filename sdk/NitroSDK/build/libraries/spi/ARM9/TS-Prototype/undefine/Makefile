@@ -13,7 +13,7 @@
 #
 # $Log: Makefile,v $
 # Revision 1.1  2005/05/26 02:48:38  terui
-# V‹K’Ç‰Á
+# æ–°è¦è¿½åŠ 
 #
 # Revision 1.1  2004/08/27 08:49:12  yasu
 # Create libspi.a for all version of TS

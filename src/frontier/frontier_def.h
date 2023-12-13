@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	frontier_def.h
- * @bfief	uƒtƒƒ“ƒeƒBƒAv‹¤’Ê’è‹`
+ * @bfief	ã€Œãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã€å…±é€šå®šç¾©
  * @author	Satoshi Nohara
  * @date	07.07.31
  */
@@ -11,55 +11,55 @@
 
 
 //==============================================================================
-//	ƒfƒoƒbƒN’è‹`
+//	ãƒ‡ãƒãƒƒã‚¯å®šç¾©
 //==============================================================================
-//ƒXƒ^[ƒgƒ{ƒ^ƒ“‚ð‰Ÿ‚·‚ÆA‚`ƒ{ƒ^ƒ“‰Ÿ‚µ‚Á‚Ï‚È‚µó‘Ô‚É‚È‚è‚Ü‚·
-//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‘I‘ð‚ªI—¹‚µ‚½‚çAƒXƒ^[ƒgƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢
-//#define DEBUG_FRONTIER_LOOP					//’è‹`—LŒø‚Å“¯‚¶ƒ‰ƒEƒ“ƒh‚ðƒ‹[ƒv
+//ã‚¹ã‚¿ãƒ¼ãƒˆãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ã€ï¼¡ãƒœã‚¿ãƒ³æŠ¼ã—ã£ã±ãªã—çŠ¶æ…‹ã«ãªã‚Šã¾ã™
+//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆé¸æŠžãŒçµ‚äº†ã—ãŸã‚‰ã€ã‚¹ã‚¿ãƒ¼ãƒˆãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„
+//#define DEBUG_FRONTIER_LOOP					//å®šç¾©æœ‰åŠ¹ã§åŒã˜ãƒ©ã‚¦ãƒ³ãƒ‰ã‚’ãƒ«ãƒ¼ãƒ—
 
 
 //============================================================================================
 //
-//	‘SŽ{Ý@‹¤’Ê’è‹`(enum‹ÖŽ~)
+//	å…¨æ–½è¨­ã€€å…±é€šå®šç¾©(enumç¦æ­¢)
 //
 //============================================================================================
-#define FRONTIER_COMM_PLAYER_NUM		(2)			//’ÊMl”
-#define FRONTIER_COMM_POKE_NUM			(2)			//’ÊMƒ|ƒPƒ‚ƒ“”
+#define FRONTIER_COMM_PLAYER_NUM		(2)			//é€šä¿¡äººæ•°
+#define FRONTIER_COMM_POKE_NUM			(2)			//é€šä¿¡ãƒã‚±ãƒ¢ãƒ³æ•°
 
-#define WIFI_COUNTER_ENTRY_POKE_MAX		(2)			//ŽQ‰Á
+#define WIFI_COUNTER_ENTRY_POKE_MAX		(2)			//å‚åŠ 
 
-//’ÊMƒ^ƒCƒv
+//é€šä¿¡ã‚¿ã‚¤ãƒ—
 #define FRONTIER_COMM_SEL				(0)
 #define FRONTIER_COMM_YAMERU			(1)
 #define FRONTIER_COMM_MONSNO_ITEMNO		(2)
 #define FRONTIER_COMM_STAGE_RECORD_DEL	(4)
 #define FRONTIER_COMM_GAME_CONTINUE		(5)
 
-//Ž{Ýƒ^ƒCƒv
+//æ–½è¨­ã‚¿ã‚¤ãƒ—
 #define FRONTIER_NO_NONE				(0)
 #define FRONTIER_NO_TOWER				(1)
 #define FRONTIER_NO_FACTORY_LV50		(2)
 #define FRONTIER_NO_FACTORY_LV100		(3)
-#define FRONTIER_NO_CASTLE				(4)			//’ˆÓ@ƒLƒƒƒbƒXƒ‹AƒXƒe[ƒW‚Ì‡”Ô
+#define FRONTIER_NO_CASTLE				(4)			//æ³¨æ„ã€€ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€ã‚¹ãƒ†ãƒ¼ã‚¸ã®é †ç•ª
 #define FRONTIER_NO_STAGE				(5)
 #define FRONTIER_NO_ROULETTE			(6)
 #define FRONTIER_NO_YAMERU				(7)
 
-//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgAƒXƒe[ƒ^ƒX
-#define FR_WIFI_POKESEL_PLIST_CALL		(0)				//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
-#define FR_WIFI_POKESEL_PLIST_WAIT		(1)				//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
-#define FR_WIFI_POKESEL_PST_CALL		(2)				//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
-#define FR_WIFI_POKESEL_PST_WAIT		(3)				//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
-#define FR_WIFI_POKESEL_EXIT			(4)				//I—¹
+//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+#define FR_WIFI_POKESEL_PLIST_CALL		(0)				//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
+#define FR_WIFI_POKESEL_PLIST_WAIT		(1)				//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
+#define FR_WIFI_POKESEL_PST_CALL		(2)				//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
+#define FR_WIFI_POKESEL_PST_WAIT		(3)				//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
+#define FR_WIFI_POKESEL_EXIT			(4)				//çµ‚äº†
 
-//ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 #define FR_ENCOUNT_EFF_WIPE				(0)
 #define FR_ENCOUNT_EFF_BOX_D			(1)
 #define FR_ENCOUNT_EFF_BOX_LR			(2)
 #define FR_ENCOUNT_EFF_CLOSE			(3)
 #define FR_ENCOUNT_EFF_ZIGZAG			(4)
 
-//FRWIFI_SCRWORK‚ÌŽæ“¾ƒR[ƒh(wifi_counter.s‚ÅŽg—p)
+//FRWIFI_SCRWORKã®å–å¾—ã‚³ãƒ¼ãƒ‰(wifi_counter.sã§ä½¿ç”¨)
 #define FWIFI_ID_COMM_COMMAND_INITIALIZE	(0)
 #define FWIFI_ID_GET_PAIR_POKELIST_CANCEL	(1)
 #define FWIFI_ID_CHECK_ENTRY				(2)
@@ -75,24 +75,24 @@
 #define FWIFI_ID_GET_CLEAR_FLAG				(12)
 #define FWIFI_ID_POKELIST_SEL_CLEAR			(13)
 
-//‘SŽ{Ý‚Ì‹¤’ÊƒEƒFƒCƒg
+//å…¨æ–½è¨­ã®å…±é€šã‚¦ã‚§ã‚¤ãƒˆ
 #define FRONTIER_COMMON_WAIT				(30)
 
-//ƒgƒŒ[ƒi[AI(src\battle\tr_ai_def.hŽQÆ)
-#define FR_AI_YASEI		(0)														//–ì¶í(Šî–{AI)
-#define FR_AI_BASIC		(AI_THINK_BIT_BASIC)									//Šî–{AI(UŒ‚Œ^AI)
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼AI(src\battle\tr_ai_def.hå‚ç…§)
+#define FR_AI_YASEI		(0)														//é‡Žç”Ÿæˆ¦(åŸºæœ¬AI)
+#define FR_AI_BASIC		(AI_THINK_BIT_BASIC)									//åŸºæœ¬AI(æ”»æ’ƒåž‹AI)
 #define FR_AI_EXPERT	(AI_THINK_BIT_BASIC | AI_THINK_BIT_ATTACK | AI_THINK_BIT_EXPERT)//expertAI
 
-//ƒtƒƒ“ƒeƒBƒA‚ÌƒZ[ƒuƒ‚[ƒh
-#define FR_MODE_CLEAR	(0)					//ƒNƒŠƒA
-#define FR_MODE_LOSE	(1)					//•‰‚¯
-#define FR_MODE_REST	(2)					//‹x‚Þ
+//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®ã‚»ãƒ¼ãƒ–ãƒ¢ãƒ¼ãƒ‰
+#define FR_MODE_CLEAR	(0)					//ã‚¯ãƒªã‚¢
+#define FR_MODE_LOSE	(1)					//è² ã‘
+#define FR_MODE_REST	(2)					//ä¼‘ã‚€
 
 
 //--------------------------------------------------------------------
-//					     ƒuƒŒ[ƒ““oê˜AŸ”
+//					     ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´é€£å‹æ•°
 //
-//ƒ^ƒ[‚ÍAsrc/field/b_tower_fld.c‚É‚ ‚é
+//ã‚¿ãƒ¯ãƒ¼ã¯ã€src/field/b_tower_fld.cã«ã‚ã‚‹
 //--------------------------------------------------------------------
 #define FACTORY_LEADER_SET_1ST		(21)
 #define FACTORY_LEADER_SET_2ND		(49)
@@ -108,20 +108,20 @@
 
 
 //--------------------------------------------------------------------
-//			     ƒuƒŒ[ƒ“‚ÌƒgƒŒ[ƒi[ƒCƒ“ƒfƒbƒNƒX
+//			     ãƒ–ãƒ¬ãƒ¼ãƒ³ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 //--------------------------------------------------------------------
-#define STAGE_LEADER_TR_INDEX_1ST	(307)	//100í–Ú(0ƒIƒŠƒWƒ“)
-#define STAGE_LEADER_TR_INDEX_2ND	(308)	//170í–Ú
+#define STAGE_LEADER_TR_INDEX_1ST	(307)	//100æˆ¦ç›®(0ã‚ªãƒªã‚¸ãƒ³)
+#define STAGE_LEADER_TR_INDEX_2ND	(308)	//170æˆ¦ç›®
 
 
 //--------------------------------------------------------------------
-//			     ƒtƒƒ“ƒeƒBƒA‚Ì‹L”OƒvƒŠƒ“ƒg‚Ì’è‹`
+//			     ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã®å®šç¾©
 //--------------------------------------------------------------------
-#define MEMORY_PRINT_NONE			(0)		//‚È‚É‚à‚È‚µ
-#define MEMORY_PRINT_PUT_1ST		(1)		//1‰ñ–Ú‚ÌƒuƒŒ[ƒ“‚ÉŸ—˜‚µ‚Ä‹L”OƒvƒŠƒ“ƒg‚ð‚ ‚°‚ê‚éó‘Ô
-#define MEMORY_PRINT_PUT_OK_1ST		(2)		//1‰ñ–Ú‚ÌƒuƒŒ[ƒ“‚ÉŸ—˜‚µ‚½‹L”OƒvƒŠƒ“ƒg‚ð‚à‚ç‚Á‚Ä‚¢‚é
-#define MEMORY_PRINT_PUT_2ND		(3)		//2‰ñ–Ú‚ÌƒuƒŒ[ƒ“‚ÉŸ—˜‚µ‚Ä‹L”OƒvƒŠƒ“ƒg‚ð‚ ‚°‚ê‚éó‘Ô
-#define MEMORY_PRINT_PUT_OK_2ND		(4)		//2‰ñ–Ú‚ÌƒuƒŒ[ƒ“‚ÉŸ—˜‚µ‚½‹L”OƒvƒŠƒ“ƒg‚ð‚à‚ç‚Á‚Ä‚¢‚é
+#define MEMORY_PRINT_NONE			(0)		//ãªã«ã‚‚ãªã—
+#define MEMORY_PRINT_PUT_1ST		(1)		//1å›žç›®ã®ãƒ–ãƒ¬ãƒ¼ãƒ³ã«å‹åˆ©ã—ã¦è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’ã‚ã’ã‚Œã‚‹çŠ¶æ…‹
+#define MEMORY_PRINT_PUT_OK_1ST		(2)		//1å›žç›®ã®ãƒ–ãƒ¬ãƒ¼ãƒ³ã«å‹åˆ©ã—ãŸè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’ã‚‚ã‚‰ã£ã¦ã„ã‚‹
+#define MEMORY_PRINT_PUT_2ND		(3)		//2å›žç›®ã®ãƒ–ãƒ¬ãƒ¼ãƒ³ã«å‹åˆ©ã—ã¦è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’ã‚ã’ã‚Œã‚‹çŠ¶æ…‹
+#define MEMORY_PRINT_PUT_OK_2ND		(4)		//2å›žç›®ã®ãƒ–ãƒ¬ãƒ¼ãƒ³ã«å‹åˆ©ã—ãŸè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’ã‚‚ã‚‰ã£ã¦ã„ã‚‹
 
 
 #endif	//__FRONTIER_DEF_H__

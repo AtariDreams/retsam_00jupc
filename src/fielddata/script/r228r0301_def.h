@@ -1,12 +1,12 @@
 #ifndef _R228R0301_DEF_H_
 #define _R228R0301_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R228R0301_OLDMAN1		(1)
 #define	SCRID_R228R0301_BOOKSHELF1		(2)
 #define	SCRID_R228R0301_BOOKSHELF2		(3)
 #define	SCRID_R228R0301_BOOKSHELF3		(4)
 #define	SCRID_R228R0301_BOOKSHELF4		(5)
-#define	SCRID_R228R0301_DATA_MAX		(5)		//最大数
+#define	SCRID_R228R0301_DATA_MAX		(5)		//譛螟ｧ謨ｰ
 
 #endif //_R228R0301_DEF_H_

@@ -1,6 +1,6 @@
 //====================================================================
 //								r212ar0103
-/*		LOCALWORK11Žg—pB‚±‚Ìƒ}ƒbƒv‚Å‚ÍŽg‚í‚È‚¢‚Å				*/
+/*		LOCALWORK11ä½¿ç”¨ã€‚ã“ã®ãƒžãƒƒãƒ—ã§ã¯ä½¿ã‚ãªã„ã§				*/
 //====================================================================
 
 	.text
@@ -11,11 +11,11 @@
 	.include	"../../../include/pl_bugfix.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r212ar0103_flag_change
 _EVENT_DATA		ev_r212ar0103_rich
@@ -36,20 +36,20 @@ ev_r212ar0103_flag_change:
 	_IFVAL_JUMP		LOCALWORK0,LE,5,r212ar0103_policeman_01_del
 	_JUMP							r212ar0103_policeman_01_set
 
-//Œx”õˆõoŒ»
+//è­¦å‚™å“¡å‡ºç¾
 r212ar0103_policeman_01_set:
 	_FLAG_RESET		FV_R212AR0103_POLICEMAN
 	_LDVAL			WK_SCENE_R212AR0101_POLICEMAN,0
 	_END
 
-//Œx”õˆõÁ‹Ž
+//è­¦å‚™å“¡æ¶ˆåŽ»
 r212ar0103_policeman_01_del:
 	_FLAG_SET		FV_R212AR0103_POLICEMAN
 	_LDVAL			WK_SCENE_R212AR0101_POLICEMAN,1
 	_END
 
 /********************************************************************/
-/*						‹àŽ‚¿‚¨‚¶‚³‚ñ								*/
+/*						é‡‘æŒã¡ãŠã˜ã•ã‚“								*/
 /********************************************************************/
 #define R212AR0103_URAYAMA_POS_X		(5)
 #define R212AR0103_URAYAMA_POS_Z		(7)
@@ -57,18 +57,18 @@ r212ar0103_policeman_01_del:
 ev_r212ar0103_rich:
 	_TALK_OBJ_START
 
-	//ƒGƒ“ƒJƒEƒ“ƒg‚ªXV‚µ‚Ä1“úŒo‚Á‚Ä‚¢‚È‚¢
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãŒæ›´æ–°ã—ã¦1æ—¥çµŒã£ã¦ã„ãªã„
 	_IF_FLAGON_JUMP		TMFLG_URANIWA_ENCOUNT,ev_r212ar0103_rich_09
 
-	//Ž·Ž–‚ªo‚½ŒãAŽŸ‚Ì“ú‚ð‚Ü‚½‚¢‚¾‚Æ‚«‚Ì‘Îˆ
+	//åŸ·äº‹ãŒå‡ºãŸå¾Œã€æ¬¡ã®æ—¥ã‚’ã¾ãŸã„ã ã¨ãã®å¯¾å‡¦
 	_IFVAL_JUMP			LOCALWORK11,EQ,1,ev_r212ar0103_rich_09
 
-	/*‘S‘}ŠÓ‚É‚È‚Á‚Ä‚¢‚½‚ç*/
+	/*å…¨å›½å›³é‘‘ã«ãªã£ã¦ã„ãŸã‚‰*/
 	_ZENKOKU_ZUKAN_FLAG	FLAG_MODE_GET,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_r212ar0103_rich_03
 	_JUMP			ev_r212ar0103_rich_01
 
-//}ŠÓ“üŽè‘O
+//å›³é‘‘å…¥æ‰‹å‰
 ev_r212ar0103_rich_01:
 	_TALKMSG		msg_r212ar0103_rich_01
 	_LAST_KEYWAIT
@@ -76,7 +76,7 @@ ev_r212ar0103_rich_01:
 	_TALK_OBJ_END
 	_END
 
-//‚¤‚ç‚â‚Ü‚µ‚¢‚¶‚á‚ë
+//ã†ã‚‰ã‚„ã¾ã—ã„ã˜ã‚ƒã‚
 ev_r212ar0103_rich_03:
 	_TALKMSG		msg_r212ar0103_rich_03
 	_YES_NO_WIN		SCWK_ANSWER
@@ -84,7 +84,7 @@ ev_r212ar0103_rich_03:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r212ar0103_rich_04
 	_END
 
-//‚¢‚¢‚¦
+//ã„ã„ãˆ
 ev_r212ar0103_rich_04:
 	_TALKMSG		msg_r212ar0103_rich_04
 	_LAST_KEYWAIT
@@ -92,7 +92,7 @@ ev_r212ar0103_rich_04:
 	_TALK_OBJ_END
 	_END
 
-//u‚Í‚¢v‘I‘ðˆê‰ñ–Ú
+//ã€Œã¯ã„ã€é¸æŠžä¸€å›žç›®
 ev_r212ar0103_rich_05:
 	_TALKMSG		msg_r212ar0103_rich_05
 	_YES_NO_WIN		SCWK_ANSWER
@@ -100,27 +100,27 @@ ev_r212ar0103_rich_05:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r212ar0103_rich_04
 	_END
 
-//u‚Í‚¢v‘I‘ð‚Q‰ñ–Ú
+//ã€Œã¯ã„ã€é¸æŠžï¼’å›žç›®
 ev_r212ar0103_rich_06:
-	//oŒ»‚·‚éƒ|ƒPƒ‚ƒ“ŽZo&SET
+	//å‡ºç¾ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ç®—å‡º&SET
 	_URAYAMA_ENCOUNT_SET
 
-	//ƒ|ƒPƒ‚ƒ“”Ô†‚ðŽæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚’å–å¾—
 	_URAYAMA_ENCOUNT_NO_CHK		SCWK_PARAM0
 
 	_POKEMON_NAME_EXTRA	0,SCWK_PARAM0,0,0
 	_TALK_KEYWAIT		msg_r212ar0103_rich_06
 
-	//ƒvƒŒƒCƒ„[‚ÌˆÊ’uŽZo
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ç®—å‡º
 	_PLAYER_POS_GET	SCWK_PARAM1,SCWK_PARAM2
 
-	//Ž·Ž–BhIhŒãAƒEƒ‰ƒ„ƒ}Ž‚ÖŒü‚­
+	//åŸ·äº‹ã€‚â€ï¼â€å¾Œã€ã‚¦ãƒ©ãƒ¤ãƒžæ°ã¸å‘ã
 	_OBJ_ANIME		R212AR0103_BUTLER,anime_butler_to_urayama
 	_OBJ_ANIME_WAIT
 
 	_TALKMSG		msg_r212ar0103_butler_01
 
-	//ƒEƒ‰ƒ„ƒ}ŽBhIhŒã‚ÉŽ·Ž–‚ÖŒü‚­
+	//ã‚¦ãƒ©ãƒ¤ãƒžæ°ã€‚â€ï¼â€å¾Œã«åŸ·äº‹ã¸å‘ã
 	_OBJ_ANIME		R212AR0103_RICH,anime_urayama_turn_to_butler
 	_OBJ_ANIME_WAIT
 
@@ -129,24 +129,24 @@ ev_r212ar0103_rich_06:
 	_TALK_KEYWAIT		msg_r212ar0103_butler_02
 	_TALK_CLOSE
 
-	//Ž·Ž–o‚Äs‚­
+	//åŸ·äº‹å‡ºã¦è¡Œã
 	_OBJ_ANIME		R212AR0103_BUTLER,anime_butler_to_exit_l
 	_OBJ_ANIME_WAIT
 
-	//Ž·Ž–Á‹Ž
+	//åŸ·äº‹æ¶ˆåŽ»
 	_OBJ_DEL	R212AR0103_BUTLER
 
-	//Ž·Ž–‚ªo‚½ŒãAŽŸ‚Ì“ú‚ð‚Ü‚½‚¢‚¾‚Æ‚«‚Ì‘Îˆ
+	//åŸ·äº‹ãŒå‡ºãŸå¾Œã€æ¬¡ã®æ—¥ã‚’ã¾ãŸã„ã ã¨ãã®å¯¾å‡¦
 	_LDVAL		LOCALWORK11,1
 
-	//ŽålŒö‚Ì•û‚ÖŒü‚­
+	//ä¸»äººå…¬ã®æ–¹ã¸å‘ã
 	_CALL		r212ar0103_urayama_turn_to_hero
 
 	_FLAG_SET	TMFLG_URANIWA_ENCOUNT
 	_JUMP		ev_r212ar0103_rich_09
 
 ev_r212ar0103_rich_09:
-	//ƒ|ƒPƒ‚ƒ“”Ô†‚ðŽæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚’å–å¾—
 	_URAYAMA_ENCOUNT_NO_CHK		SCWK_PARAM0
 
 	_POKEMON_NAME_EXTRA	0,SCWK_PARAM0,0,0
@@ -158,7 +158,7 @@ ev_r212ar0103_rich_09:
 	_END
 
 
-//ŽålŒö‚Ì•û‚ÖŒü‚­
+//ä¸»äººå…¬ã®æ–¹ã¸å‘ã
 r212ar0103_urayama_turn_to_hero:
 	_IFVAL_JUMP		SCWK_PARAM1,EQ,R212AR0103_URAYAMA_POS_X-1, anm_call_urayama_turn_to_hero_l
 	_IFVAL_JUMP		SCWK_PARAM1,EQ,R212AR0103_URAYAMA_POS_X+1, anm_call_urayama_turn_to_hero_r
@@ -187,14 +187,14 @@ anm_call_urayama_turn_to_hero_d:
 	_RET
 
 //--------------------------------------------------------------------
-//Ž·Ž–BŠî–{‚ÌŒü‚«‚Ö
+//åŸ·äº‹ã€‚åŸºæœ¬ã®å‘ãã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL	anime_butler_normal_dir
 	_ANIME_DATA	AC_DIR_D,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Ž·Ž–BhIhŒãAƒEƒ‰ƒ„ƒ}Ž‚ÖŒü‚­
+//åŸ·äº‹ã€‚â€ï¼â€å¾Œã€ã‚¦ãƒ©ãƒ¤ãƒžæ°ã¸å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anime_butler_to_urayama
 	_ANIME_DATA	AC_MARK_GYOE,1
@@ -203,7 +203,7 @@ _ANIME_LABEL	anime_butler_to_urayama
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒEƒ‰ƒ„ƒ}ŽBhIhŒã‚ÉŽ·Ž–‚ÖŒü‚­
+//ã‚¦ãƒ©ãƒ¤ãƒžæ°ã€‚â€ï¼â€å¾Œã«åŸ·äº‹ã¸å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anime_urayama_turn_to_butler
 	_ANIME_DATA	AC_MARK_GYOE,1
@@ -211,7 +211,7 @@ _ANIME_LABEL	anime_urayama_turn_to_butler
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Ž·Ž–o‚Äs‚­
+//åŸ·äº‹å‡ºã¦è¡Œã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anime_butler_to_exit_l
 	_ANIME_DATA	AC_WALK_D_8F,2
@@ -221,7 +221,7 @@ _ANIME_LABEL	anime_butler_to_exit_l
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö‚Ì•û‚ÖŒü‚­
+//ä¸»äººå…¬ã®æ–¹ã¸å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anime_urayama_turn_to_hero_l
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -241,28 +241,28 @@ _ANIME_LABEL	anime_urayama_turn_to_hero_d
 
 
 /********************************************************************/
-/*								Ž·Ž–								*/
+/*								åŸ·äº‹								*/
 /********************************************************************/
 ev_r212ar0103_butler:
 	_TALK_OBJ_START
 
-	/*‘S‘}ŠÓ‚É‚È‚Á‚Ä‚¢‚½‚ç*/
+	/*å…¨å›½å›³é‘‘ã«ãªã£ã¦ã„ãŸã‚‰*/
 	_ZENKOKU_ZUKAN_FLAG	FLAG_MODE_GET,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_r212ar0103_butler_07_2
 
 	_JUMP				ev_r212ar0103_butler_talk_chk
 
-/*‘S‘}ŠÓ‚É‚È‚Á‚Ä‚¢‚½‚ç*/
+/*å…¨å›½å›³é‘‘ã«ãªã£ã¦ã„ãŸã‚‰*/
 ev_r212ar0103_butler_07_2:
-	//‚·‚Å‚É‰ï˜b‚µ‚Ä‚¢‚½‚ç
+	//ã™ã§ã«ä¼šè©±ã—ã¦ã„ãŸã‚‰
 	_IF_FLAGON_JUMP		FE_R212AR0103_BUTLER_TALK,ev_r212ar0103_butler_talk_chk
 
 	_JUMP				ev_r212ar0103_butler_07
 	_END
 
-//‘S‘}ŠÓ“üŽèŒã‰‚ß‚Ä
+//å…¨å›½å›³é‘‘å…¥æ‰‹å¾Œåˆã‚ã¦
 ev_r212ar0103_butler_07:
-	//ƒ|ƒPƒ‚ƒ“”Ô†‚ðŽæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚’å–å¾—
 	//_URAYAMA_ENCOUNT_NO_CHK		SCWK_PARAM0
 
 	//_POKEMON_NAME_EXTRA	0,SCWK_PARAM0,0,0
@@ -272,7 +272,7 @@ ev_r212ar0103_butler_07:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	//Šî–{‚ÌŒü‚«‚Ö
+	//åŸºæœ¬ã®å‘ãã¸
 	_OBJ_ANIME		R212AR0103_BUTLER,anime_butler_normal_dir
 	_OBJ_ANIME_WAIT
 
@@ -280,12 +280,12 @@ ev_r212ar0103_butler_07:
 	_END
 
 //--------------------------------------------------------------------------
-//ƒNƒŠƒA‘O
+//ã‚¯ãƒªã‚¢å‰
 ev_r212ar0103_butler_talk_chk:
-	//ƒGƒ“ƒJƒEƒ“ƒg‚ªXV‚µ‚Ä1“úŒo‚Á‚Ä‚¢‚È‚¢
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãŒæ›´æ–°ã—ã¦1æ—¥çµŒã£ã¦ã„ãªã„
 	_IF_FLAGON_JUMP		TMFLG_URANIWA_ENCOUNT,ev_r212ar0103_butler_06
 
-	//ƒQ[ƒ€ƒNƒŠƒAƒ`ƒFƒbƒN
+	//ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ãƒã‚§ãƒƒã‚¯
 	_SYS_FLAG_GAME_CLEAR_GET	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r212ar0103_butler_05
 
@@ -295,7 +295,7 @@ ev_r212ar0103_butler_talk_chk:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	//Šî–{‚ÌŒü‚«‚Ö
+	//åŸºæœ¬ã®å‘ãã¸
 	_OBJ_ANIME		R212AR0103_BUTLER,anime_butler_normal_dir
 	_OBJ_ANIME_WAIT
 
@@ -311,7 +311,7 @@ ev_r212ar0103_butler_03_1:
 	_RET
 
 //--------------------------------------------------------------------------
-//ƒNƒŠƒAŒã
+//ã‚¯ãƒªã‚¢å¾Œ
 ev_r212ar0103_butler_05:
 
 	_GET_RND		SCWK_ANSWER,2
@@ -320,7 +320,7 @@ ev_r212ar0103_butler_05:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	//Šî–{‚ÌŒü‚«‚Ö
+	//åŸºæœ¬ã®å‘ãã¸
 	_OBJ_ANIME		R212AR0103_BUTLER,anime_butler_normal_dir
 	_OBJ_ANIME_WAIT
 
@@ -336,9 +336,9 @@ ev_r212ar0103_butler_05_1:
 	_RET
 
 //--------------------------------------------------------------------------
-//ƒGƒ“ƒJƒEƒ“ƒg‚ª•Ï‚í‚Á‚Ä‚©‚ç‚P“úŒo‚Á‚Ä‚¢‚È‚¢
+//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãŒå¤‰ã‚ã£ã¦ã‹ã‚‰ï¼‘æ—¥çµŒã£ã¦ã„ãªã„
 ev_r212ar0103_butler_06:
-	//ƒ|ƒPƒ‚ƒ“”Ô†‚ðŽæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚’å–å¾—
 	_URAYAMA_ENCOUNT_NO_CHK		SCWK_PARAM0
 
 	_POKEMON_NAME_EXTRA	0,SCWK_PARAM0,0,0
@@ -346,7 +346,7 @@ ev_r212ar0103_butler_06:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	//Šî–{‚ÌŒü‚«‚Ö
+	//åŸºæœ¬ã®å‘ãã¸
 	_OBJ_ANIME		R212AR0103_BUTLER,anime_butler_normal_dir
 	_OBJ_ANIME_WAIT
 
@@ -355,7 +355,7 @@ ev_r212ar0103_butler_06:
 
 
 /********************************************************************/
-/*						Œx”õˆõ										*/
+/*						è­¦å‚™å“¡										*/
 /********************************************************************/
 ev_r212ar0103_policeman:
 	_TALK_OBJ_START
@@ -370,21 +370,21 @@ ev_r212ar0103_policeman:
 	_END
 
 //--------------------------------------------------------------------
-//Œx”õˆõ‚ªŒ³‚ÌŒü‚«‚Ö
+//è­¦å‚™å“¡ãŒå…ƒã®å‘ãã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0103_policeman_01_turn
 	_ANIME_DATA	AC_DIR_D,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Œx”õˆõ‚ª“º‘œ‚Ì‚ÌŒü‚«‚Ö
+//è­¦å‚™å“¡ãŒéŠ…åƒã®ã®å‘ãã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0103_policeman_02_turn
 	_ANIME_DATA	AC_DIR_L,1
 	_ANIME_DATA	ACMD_END,0
 
 /********************************************************************/
-/*						POS Œx”õˆõ									*/
+/*						POS è­¦å‚™å“¡									*/
 /********************************************************************/
 pos_r212ar0103_policeman_01:
 	_EVENT_START
@@ -403,7 +403,7 @@ pos_r212ar0103_policeman_01:
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö‚P•à”‰º‚ª‚é
+//ä¸»äººå…¬ï¼‘æ­©æ•°ä¸‹ãŒã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_r212ar0103_hero_back_01_statue_01
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -411,7 +411,7 @@ _ANIME_LABEL anm_r212ar0103_hero_back_01_statue_01
 	_ANIME_DATA	ACMD_END,0
 
 /********************************************************************/
-/*							“º‘œ									*/
+/*							éŠ…åƒ									*/
 /********************************************************************/
 ev_r212ar0103_statue:
 	_EASY_MSG	msg_r212ar0103_statue_01
@@ -419,7 +419,7 @@ ev_r212ar0103_statue:
 
 
 /********************************************************************/
-/*							–{										*/
+/*							æœ¬										*/
 /********************************************************************/
 ev_r212ar0103_books:
 	_TALK_START
@@ -430,23 +430,23 @@ ev_r212ar0103_books:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_r212ar0103_books_01
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_r212ar0103_books_01:
 	_TALK_KEYWAIT	msg_r212ar0103_books_02
 
-	/*‚·‚Å‚Éƒ}ƒiƒtƒB[‚ðŒ©‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«ãƒžãƒŠãƒ•ã‚£ãƒ¼ã‚’è¦‹ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_R212AR0103_POKE_SEE,no_r212ar0103_books_01
 
 #if PL_S0802_080716_FIX
-	/*}ŠÓ‚Éƒ}ƒiƒtƒB[‚ª“o˜^‚³‚ê‚Ä‚¢‚½‚ç*/
+	/*å›³é‘‘ã«ãƒžãƒŠãƒ•ã‚£ãƒ¼ãŒç™»éŒ²ã•ã‚Œã¦ã„ãŸã‚‰*/
 	_GET_POKE_SEE_FLAG	MONSNO_MANAFI,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_r212ar0103_books_01_sub
 #endif
 
-	/*Œ©‚½ƒtƒ‰ƒO‚à’†‚ÅƒZƒbƒg‚³‚ê‚Ä‚¢‚é*/
+	/*è¦‹ãŸãƒ•ãƒ©ã‚°ã‚‚ä¸­ã§ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹*/
 	_POKE_WINDOW_PUT	MONSNO_MANAFI,PM_MALE
 	_AB_KEYWAIT
-	_POKE_WINDOW_DEL		/*ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒEÁ‹Ž*/
+	_POKE_WINDOW_DEL		/*ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆåŽ»*/
 
 	_FLAG_SET		FE_R212AR0103_POKE_SEE
 	_TALK_KEYWAIT	msg_r212ar0103_books_03
@@ -461,7 +461,7 @@ no_r212ar0103_books_01_sub:
 	_END
 #endif
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_r212ar0103_books_01:
 	_PLAYER_NAME	0
 	_TALK_KEYWAIT	msg_r212ar0103_books_04

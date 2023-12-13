@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	d_matsu_res.c
- * @brief	¼“cƒfƒoƒbƒO—pƒtƒ@ƒCƒ‹(í’“•¨)
+ * @brief	æ¾ç”°ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ•ã‚¡ã‚¤ãƒ«(å¸¸é§ç‰©)
  * @author	matsuda
- * @date	2007.04.18(…)
+ * @date	2007.04.18(æ°´)
  */
 //==============================================================================
 
@@ -86,32 +86,32 @@ typedef struct{
 }DEBUG_FSS_WORK;
 
 
-///•—‘DŠ„‚èƒ~ƒjƒQ[ƒ€ŒÄ‚Ño‚µ‚Ég—p‚·‚éƒ[ƒN
+///é¢¨èˆ¹å‰²ã‚ŠãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‘¼ã³å‡ºã—æ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	int main_seq;
 	int debug_mode;
-	int proc_flag;		///<‚Ç‚ÌPROC‚ğŒÄ‚Ño‚·‚©
-	int mode;			///<PROC‚ÉƒIƒvƒVƒ‡ƒ“
+	int proc_flag;		///<ã©ã®PROCã‚’å‘¼ã³å‡ºã™ã‹
+	int mode;			///<PROCã«ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 }DMATSU_EV_BALLOON_WORK;
 
-///•—‘DŠ„‚èƒ~ƒjƒQ[ƒ€ŒÄ‚Ño‚µ‚Ég—p‚·‚éƒ[ƒN
+///é¢¨èˆ¹å‰²ã‚ŠãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‘¼ã³å‡ºã—æ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	int seq;
 	int proc_flag;
 	BALLOON_PROC_WORK *p_work;
-	int mode;			///<PROC‚ÉƒIƒvƒVƒ‡ƒ“
+	int mode;			///<PROCã«ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 }DEBUG_BALLOON_LOCAL;
 
 
 //==============================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
 //==============================================================================
-///1:ƒ[ƒe[ƒVƒ‡ƒ“‚È‚µB@0:ƒ[ƒe[ƒVƒ‡ƒ“‚ ‚è@2:ƒ_ƒ“ƒX‰ñ”§ŒÀ‚È‚µ
+///1:ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ãªã—ã€‚ã€€0:ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‚ã‚Šã€€2:ãƒ€ãƒ³ã‚¹å›æ•°åˆ¶é™ãªã—
 u8 DmatsuWork_DanceRotationOff = 0;
 
 
 //==============================================================================
-//	ŠO•”ƒf[ƒ^
+//	å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 extern const PROC_DATA ContestActinProcData;
 extern const PROC_DATA ContestDanceProcData;
@@ -120,7 +120,7 @@ extern const PROC_DATA ContestResultProcData;
 extern const PROC_DATA IMC_SYS_Proc;
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void Contest_ImageClipInitDataCreate(CONTEST_SYSTEM *consys);
 extern void Contest_ImageClipInitDataFree(CONTEST_SYSTEM *consys);
@@ -129,7 +129,7 @@ extern void Contest_ImageClipInitDataFree(CONTEST_SYSTEM *consys);
 
 //--------------------------------------------------------------
 /**
- * @brief   FSSŒnƒXƒNƒŠƒvƒgƒeƒXƒgÀs
+ * @brief   FSSç³»ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ã‚¹ãƒˆå®Ÿè¡Œ
  *
  * @param   dm		
  *
@@ -191,7 +191,7 @@ static BOOL GMEVENT_Sub_FssTest(GMEVENT_CONTROL * event)
 		sub_work->seq++;
 		break;
 	case 1:
-		//ex_paramì¬
+		//ex_paramä½œæˆ
 		sub_work->ex_param.syswork = NULL;
 		sub_work->ex_param.config = SaveData_GetConfig(fsys->savedata);
 		sub_work->ex_param.savedata = GameSystem_GetSaveData(fsys);
@@ -222,7 +222,7 @@ static BOOL GMEVENT_Sub_FssTest(GMEVENT_CONTROL * event)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DŠ„‚è•GDSƒeƒXƒgFŒÄ‚Ño‚µ
+ * @brief   é¢¨èˆ¹å‰²ã‚Šï¼†GDSãƒ†ã‚¹ãƒˆï¼šå‘¼ã³å‡ºã—
  *
  * @param   dm		
  *
@@ -244,13 +244,13 @@ void DMRes_BalloonStart(FIELDSYS_WORK *fsys, int proc_flag, int mode)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	•—‘DŠ„‚èFƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	é¢¨èˆ¹å‰²ã‚Šï¼šã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  *
- * ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg¨¨ƒtƒB[ƒ‹ƒh•œ‹A‚ğs‚¤B
- * ƒQ[ƒ€ƒI[ƒo[ˆ—‚Ö‚Ì•ªŠò‚à“ü‚éi—\’èj
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆâ†’â†’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°ã‚’è¡Œã†ã€‚
+ * ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼å‡¦ç†ã¸ã®åˆ†å²ã‚‚å…¥ã‚‹ï¼ˆäºˆå®šï¼‰
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_DebugBalloonStart(GMEVENT_CONTROL * event)
@@ -311,7 +311,7 @@ static BOOL GMEVENT_Sub_DebugBalloon(GMEVENT_CONTROL * event)
 		break;
 	case 1:
 		{
-			// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+			// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 			static const PROC_DATA BalloonProcData = {
 				BalloonProc_Init,
 				BalloonProc_Main,
@@ -325,7 +325,7 @@ static BOOL GMEVENT_Sub_DebugBalloon(GMEVENT_CONTROL * event)
 			sub_work->p_work->p_save		= NULL;
 			sub_work->p_work->debug_offline = TRUE;
 			
-			// ƒ~ƒjƒQ[ƒ€‹¤’ÊƒI[ƒo[ƒŒƒC‚ğ“Ç‚İ‚Ş
+			// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’èª­ã¿è¾¼ã‚€
 			Overlay_Load( FS_OVERLAY_ID(minigame_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 			
 			//GameSystem_StartSubProc(fsys, &BalloonProcData, sub_work->p_work);
@@ -365,7 +365,7 @@ static BOOL GMEVENT_Sub_DebugGds(GMEVENT_CONTROL * event)
 	case 1:
 		{
 			GDSPROC_PARAM *param;
-			// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+			// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 			static const PROC_DATA GdsProcData = {
 				GdsMainProc_Init,
 				GdsMainProc_Main,
@@ -408,7 +408,7 @@ static BOOL GMEVENT_Sub_DebugFootprint(GMEVENT_CONTROL * event)
 		break;
 	case 1:
 		{
-			// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+			// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 			static const PROC_DATA FootprintProcData = {
 				FootPrintProc_Init,
 				FootPrintProc_Main,
@@ -444,13 +444,13 @@ static BOOL GMEVENT_Sub_DebugFootprint(GMEVENT_CONTROL * event)
 #if DEBUG_MATSU_CONTEST
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒRƒ“ƒeƒXƒgF‰‰‹Z—Í•”–åƒCƒxƒ“ƒgƒV[ƒPƒ“ƒX
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  *
- * ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg¨¨ƒtƒB[ƒ‹ƒh•œ‹A‚ğs‚¤B
- * ƒQ[ƒ€ƒI[ƒo[ˆ—‚Ö‚Ì•ªŠò‚à“ü‚éi—\’èj
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆâ†’â†’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°ã‚’è¡Œã†ã€‚
+ * ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼å‡¦ç†ã¸ã®åˆ†å²ã‚‚å…¥ã‚‹ï¼ˆäºˆå®šï¼‰
  */
 //-----------------------------------------------------------------------------
 BOOL GMEVENT_DebugConStart(GMEVENT_CONTROL * event)
@@ -502,7 +502,7 @@ static BOOL GMEVENT_Sub_DebugCon(GMEVENT_CONTROL * event)
 		esaw->seq ++;
 		break;
 	case 1:
-		//¦check	“ü‚èŒû‚ª‚±‚±‚µ‚©‚È‚¢‚Ì‚ÅA‚Æ‚è‚ ‚¦‚¸‚±‚±‚ÅƒRƒ“ƒeƒXƒg‘S‘Ìƒq[ƒvì¬
+		//â€»check	å…¥ã‚Šå£ãŒã“ã“ã—ã‹ãªã„ã®ã§ã€ã¨ã‚Šã‚ãˆãšã“ã“ã§ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¨ä½“ãƒ’ãƒ¼ãƒ—ä½œæˆ
 		{
 			POKEMON_PARAM * poke;
 			STRBUF *myname;
@@ -529,14 +529,14 @@ static BOOL GMEVENT_Sub_DebugCon(GMEVENT_CONTROL * event)
 		
 		esaw->seq ++;
 		break;
-	case 2:		//‚»‚ê‚¼‚ê‚Ì•”–å‚ğŒÄ‚Ño‚µ
+	case 2:		//ãã‚Œãã‚Œã®éƒ¨é–€ã‚’å‘¼ã³å‡ºã—
 		switch(esaw->debug_mode){
 		case DEBUG_CON_ACTIN:
 			EventCmd_CallSubProc(event, &ContestActinProcData, esaw->consys);
 			esaw->seq++;
 			break;
 		case DEBUG_CON_VISUAL:
-			//ƒfƒoƒbƒOƒ‚[ƒh‚Å‚Í©•ª‚ÌƒNƒŠƒbƒvƒf[ƒ^‚¾‚¯‚È‚¢‚Ì‚ÅA‚±‚±‚ÅƒZƒbƒg
+			//ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã§ã¯è‡ªåˆ†ã®ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã ã‘ãªã„ã®ã§ã€ã“ã“ã§ã‚»ãƒƒãƒˆ
 			ImcSaveData_SetContestPokeData_Easy(esaw->consys->c_game.imc_data[0], 
 				esaw->consys->c_game.pp[0], -1);
 			ImcSaveData_SetContestBgId(esaw->consys->c_game.imc_data[0], 0);
@@ -550,12 +550,12 @@ static BOOL GMEVENT_Sub_DebugCon(GMEVENT_CONTROL * event)
 			switch(esaw->local_seq){
 			case 0:
 				Contest_ImageClipInitDataCreate(esaw->consys);
-				ContestDebug_ImageClipDebugAccessorySet(esaw->consys);	//ƒfƒoƒbƒOƒf[ƒ^ƒZƒbƒg
+				ContestDebug_ImageClipDebugAccessorySet(esaw->consys);	//ãƒ‡ãƒãƒƒã‚°ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 				EventCmd_CallSubProc(event, &IMC_SYS_Proc, esaw->consys->icpw);
 				esaw->local_seq++;
 				break;
 			case 1:
-				ContestDebug_ImageClipDebugAccessoryFree(esaw->consys);	//ƒfƒoƒbƒOƒf[ƒ^ŠJ•ú
+				ContestDebug_ImageClipDebugAccessoryFree(esaw->consys);	//ãƒ‡ãƒãƒƒã‚°ãƒ‡ãƒ¼ã‚¿é–‹æ”¾
 				Contest_ImageClipInitDataFree(esaw->consys);
 				esaw->local_seq++;
 				break;
@@ -567,7 +567,7 @@ static BOOL GMEVENT_Sub_DebugCon(GMEVENT_CONTROL * event)
 			}
 			break;
 		case DEBUG_CON_DANCE:
-			//ƒfƒoƒbƒOƒ‚[ƒh‚Å‚Í©•ª‚ÌƒNƒŠƒbƒvƒf[ƒ^‚¾‚¯‚È‚¢‚Ì‚ÅA‚±‚±‚ÅƒZƒbƒg
+			//ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã§ã¯è‡ªåˆ†ã®ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã ã‘ãªã„ã®ã§ã€ã“ã“ã§ã‚»ãƒƒãƒˆ
 			ImcSaveData_SetContestPokeData_Easy(esaw->consys->c_game.imc_data[0], 
 				esaw->consys->c_game.pp[0], -1);
 			ImcSaveData_SetContestBgId(esaw->consys->c_game.imc_data[0], 0);
@@ -584,7 +584,7 @@ static BOOL GMEVENT_Sub_DebugCon(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 3:
-		//¦check@oŒû‚ª‚±‚±‚µ‚©‚È‚¢‚Ì‚ÅA‚Æ‚è‚ ‚¦‚¸‚±‚±‚ÅƒRƒ“ƒeƒXƒg‘S‘Ìƒq[ƒv‰ğ•ú
+		//â€»checkã€€å‡ºå£ãŒã“ã“ã—ã‹ãªã„ã®ã§ã€ã¨ã‚Šã‚ãˆãšã“ã“ã§ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¨ä½“ãƒ’ãƒ¼ãƒ—è§£æ”¾
 		Contest_SystemExit(esaw->consys);
 		
 		EventCmd_StartFieldMap(event);
@@ -599,11 +599,11 @@ static BOOL GMEVENT_Sub_DebugCon(GMEVENT_CONTROL * event)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒ[ƒWƒNƒŠƒbƒvƒfƒoƒbƒO—p‚ÉƒAƒNƒZƒTƒŠ[‚ğ‘S‚ÄƒZƒbƒg
+ * @brief   ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒãƒƒã‚°ç”¨ã«ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚’å…¨ã¦ã‚»ãƒƒãƒˆ
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * Contest_ImageClipInitDataCreate‚ÌŠÖ”Œã‚ÉŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢
+ * Contest_ImageClipInitDataCreateã®é–¢æ•°å¾Œã«å‘¼ã³å‡ºã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------
 static void ContestDebug_ImageClipDebugAccessorySet(CONTEST_SYSTEM *consys)
@@ -622,11 +622,11 @@ static void ContestDebug_ImageClipDebugAccessorySet(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—p‚ÉƒZƒbƒg‚µ‚½ƒAƒNƒZƒTƒŠ—Ìˆæ‚ğŠJ•ú
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ã«ã‚»ãƒƒãƒˆã—ãŸã‚¢ã‚¯ã‚»ã‚µãƒªé ˜åŸŸã‚’é–‹æ”¾
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * Contest_ImageClipInitDataFreeŠÖ”‚ğŒÄ‚Ô‚æ‚è‚àæ‚É‚±‚ê‚ÅƒfƒoƒbƒO—Ìˆæ‚Ì‰ğ•ú‚ğ‚µ‚Ä‚­‚¾‚³‚¢
+ * Contest_ImageClipInitDataFreeé–¢æ•°ã‚’å‘¼ã¶ã‚ˆã‚Šã‚‚å…ˆã«ã“ã‚Œã§ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã®è§£æ”¾ã‚’ã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------
 static void ContestDebug_ImageClipDebugAccessoryFree(CONTEST_SYSTEM *consys)

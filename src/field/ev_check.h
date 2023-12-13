@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ev_check.h
- * @brief	ƒCƒxƒ“ƒg”­“®ƒ`ƒFƒbƒNƒVƒXƒeƒ€
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãƒã‚§ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
  * @author	Sousuke Tamada
  * @date	01.03.29
  *
@@ -16,10 +16,10 @@
 
 
 //=========================================================================
-//	’è‹`
+//	å®šç¾©
 //=========================================================================
 
-/* ƒCƒxƒ“ƒgƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg\‘¢‘Ì */
+/* ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ§‹é€ ä½“ */
 typedef struct {
 	u16	TalkCheck:1;
 	u16	StepCheck:1;
@@ -44,21 +44,21 @@ typedef struct {
 
 
 //=========================================================================
-//	ŠÖ”ƒvƒƒgƒ^ƒCƒv
+//	é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //=========================================================================
 
-//ƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN‚ÌƒŠƒNƒGƒXƒgƒZƒbƒg
+//ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚»ãƒƒãƒˆ
 extern void SetRequest( EV_REQUEST * req, FIELDSYS_WORK * repw, u16 trg, u16 cont );
 
-//ƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒNƒƒCƒ“
+//ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
 extern int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw);
-// ’YzŽž‚ÌƒCƒxƒ“ƒg‹N“®ŒŸ¸
+// ç‚­é‰±æ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ¤œæŸ»
 extern BOOL CheckRequestUG( EV_REQUEST * req, FIELDSYS_WORK * repw );
-// ‘ÎíŽž‚ÌƒCƒxƒ“ƒg‹N“®ŒŸ¸
+// å¯¾æˆ¦æ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ¤œæŸ»
 extern BOOL CheckRequestVSRoom( EV_REQUEST * req, FIELDSYS_WORK * repw );
-// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Å‚ÌƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ã®ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯
 extern BOOL CheckRequestUnion(const EV_REQUEST * req, FIELDSYS_WORK * repw);
-//ƒoƒgƒ‹ƒ^ƒ[ê—pƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN
+//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å°‚ç”¨ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯
 extern int CheckRequestBTower(const EV_REQUEST * req, FIELDSYS_WORK * repw);
 
 

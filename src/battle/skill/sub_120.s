@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_120.s
- *@brief	�퓬�V�[�P���X
- *			�͂炾�����V�[�P���X
+ *@brief	戦闘シーケンス
+ *			はらだいこシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.02
  *
@@ -15,25 +15,25 @@
 	.include	"waza_seq_def.h"
 
 SUB_120:
-	//���łɍU���͂�MAX�̎��͂��܂����܂��
+	//すでに攻撃力がMAXの時はうまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_abiritycnt_pow,12,Umakukimaran
-	//HPMAX���擾���Ĕ����ɂ���
+	//HPMAXを取得して半分にする
 	PSP_VALUE_WORK	VAL_GET,SIDE_ATTACK,ID_PSP_hpmax,BUF_PARA_HP_CALC_WORK
 	DAMAGE_DIV		BUF_PARA_HP_CALC_WORK,2
-	//����HP��HPMAX�̔����Ȃ����͂��܂����܂��
+	//現在HPがHPMAXの半分ない時はうまくきまらん
 	IF_PSP_WORK		IF_FLAG_NC,SIDE_ATTACK,ID_PSP_hp,BUF_PARA_HP_CALC_WORK,Umakukimaran
 
 	GOSUB			SUB_SEQ_WAZA_OUT_EFF
 
-	//�U����MAX
+	//攻撃をMAX
 	PSP_VALUE		VAL_SET,SIDE_ATTACK,ID_PSP_abiritycnt_pow,12
-	//HP��HPMAX�̔����ʌ��炷
+	//HPをHPMAXの半分量減らす
 	VALUE			VAL_MUL,BUF_PARA_HP_CALC_WORK,-1
-	//AttackClient��HP����Ώۂ�
+	//AttackClientをHP操作対象に
 	VALUE_WORK		VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_ATTACK_CLIENT
-	//�_���[�W�G�t�F�N�g�œ_�ł��Ȃ��t���O�𗧂Ă�
+	//ダメージエフェクトで点滅しないフラグを立てる
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK
-	//HP�v�Z�T�u���[�`����
+	//HP計算サブルーチンへ
 	GOSUB			SUB_SEQ_HP_CALC
 
 	STATUS_EFFECT	SIDE_ATTACK,STATUS_EFF_UP

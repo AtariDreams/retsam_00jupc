@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndWaveOutStart</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndWaveOutStart</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndWaveOutStart(
@@ -27,7 +27,7 @@
         int <var>pan</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA0MWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -35,43 +35,43 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�g�`�Đ��n���h���ł��B</td>
+<td>波形再生ハンドルです。</td>
 </tr>
 <tr>
 <td><em><strong><code>format</code></strong></em></td>
-<td>�g�`�f�[�^�t�H�[�}�b�g�ł��B</td>
+<td>波形データフォーマットです。</td>
 </tr>
 <tr>
 <td><em><strong><code>dataaddr</code></strong></em></td>
-<td>�g�`�f�[�^�̐擪�A�h���X�ł��B</td>
+<td>波形データの先頭アドレスです。</td>
 </tr>
 <tr>
 <td><em><strong><code>loopFlag</code></strong></em></td>
-<td>���[�v�t���O�ł��B</td>
+<td>ループフラグです。</td>
 </tr>
 <tr>
 <td><em><strong><code>loopStartSample</code></strong></em></td>
-<td>���[�v�J�n�T���v���ʒu�ł��B</td>
+<td>ループ開始サンプル位置です。</td>
 </tr>
 <tr>
 <td><em><strong><code>samples</code></strong></em></td>
-<td>�g�`�f�[�^�̃T���v�����ł��B</td>
+<td>波形データのサンプル数です。</td>
 </tr>
 <tr>
 <td><em><strong><code>sampleRate</code></strong></em></td>
-<td>�g�`�f�[�^�̃T���v�����O���[�g�ł��B�P�ʂ� Hz �ł��B</td>
+<td>波形データのサンプリングレートです。単位は Hz です。</td>
 </tr>
 <tr>
 <td><em><strong><code>volume</code></strong></em></td>
-<td>�{�����[���l�ł��B�l�͈̔͂́A0 �` 127 �ł��B</td>
+<td>ボリューム値です。値の範囲は、0 〜 127 です。</td>
 </tr>
 <tr>
 <td><em><strong><code>speed</code></strong></em></td>
-<td>�Đ��X�s�[�h�ł��B</td>
+<td>再生スピードです。</td>
 </tr>
 <tr>
 <td><em><strong><code>pan</code></strong></em></td>
-<td>�p���i��ʁj�ł��B�l�͈̔͂́A0(��)�` 64(����)�` 127(�E) �ł��B</td>
+<td>パン（定位）です。値の範囲は、0(左)〜 64(中央)〜 127(右) です。</td>
 </tr>
 </tbody>
 </table>
@@ -79,66 +79,66 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAIPWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Đ��ɐ����������ǂ�����Ԃ��܂��B</p>
+      <p>再生に成功したかどうかを返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAPPWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�g�`�f�[�^���Đ����܂��B</p>
+波形データを再生します。</p>
       <p>
-�g�`�Đ��n���h��<em><strong><code>handle</code></strong></em>�ɂ́A<tt class="function"><a href="NNS_SndWaveOutAllocChannel.html">NNS_SndWaveOutAllocChannel</a></tt>�֐��ŁA
-�擾�������̂����܂��B
+波形再生ハンドル<em><strong><code>handle</code></strong></em>には、<tt class="function"><a href="NNS_SndWaveOutAllocChannel.html">NNS_SndWaveOutAllocChannel</a></tt>関数で、
+取得したものを入れます。
 </p>
       <p>
-�g�`�f�[�^�t�H�[�}�b�g<em><strong><code>format</code></strong></em>�́A���L�̒l�Ŏw�肵�܂��B
+波形データフォーマット<em><strong><code>format</code></strong></em>は、下記の値で指定します。
 </p>
-      <div class="table"><a name="IDAHQWT"></a><p class="title"><b>�\ . NNSSndWaveFormat</b></p>
+      <div class="table"><a name="IDAHQWT"></a><p class="title"><b>表 . NNSSndWaveFormat</b></p>
 <table summary="NNSSndWaveFormat" border="1">
 <colgroup><col><col></colgroup>
 <thead>
 <tr>
-<th>���x��</th>
-<th>����</th>
+<th>ラベル</th>
+<th>説明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>NNS_SND_WAVE_FORMAT_PCM8</td>
-<td>8�r�b�gPCM</td>
+<td>8ビットPCM</td>
 </tr>
 <tr>
 <td>NNS_SND_WAVE_FORMAT_PCM16</td>
-<td>16�r�b�gPCM</td>
+<td>16ビットPCM</td>
 </tr>
 </tbody>
 </table>
 </div>
 
       <p>
-�g�`�f�[�^�擪�A�h���X<em><strong><code>dataaddr</code></strong></em>�́A�S�o�C�g�A���C�����g����Ă���K�v������܂��B
+波形データ先頭アドレス<em><strong><code>dataaddr</code></strong></em>は、４バイトアライメントされている必要があります。
 </p>
       <p>
-���[�v�t���O<em><strong><code>loopFlag</code></strong></em>�́A���[�v�Đ����s�����ǂ����̃t���O�ł��B
-<span class="symbol">TRUE</span>���w�肷��ƁA�Ō�̃T���v���܂ōĐ�������A
-���[�v�J�n�T���v��<em><strong><code>loopStartSample</code></strong></em>�̈ʒu����ĂэĐ����ĊJ���܂��B
-�Ȃ��A���[�v�J�n�T���v��<em><strong><code>loopStartSample</code></strong></em>�́A�W�r�b�gPCM�̎��͂S�̔{���A16�r�b�gPCM�̎��͂Q�̔{���łȂ���΂Ȃ�܂���B
+ループフラグ<em><strong><code>loopFlag</code></strong></em>は、ループ再生を行うかどうかのフラグです。
+<span class="symbol">TRUE</span>を指定すると、最後のサンプルまで再生した後、
+ループ開始サンプル<em><strong><code>loopStartSample</code></strong></em>の位置から再び再生を再開します。
+なお、ループ開始サンプル<em><strong><code>loopStartSample</code></strong></em>は、８ビットPCMの時は４の倍数、16ビットPCMの時は２の倍数でなければなりません。
 </p>
       <p>
-�T���v����<em><strong><code>samples</code></strong></em>�́A�W�r�b�gPCM�̎��͂S�̔{���A16�r�b�gPCM�̎��͂Q�̔{���łȂ���΂Ȃ�܂���B
+サンプル数<em><strong><code>samples</code></strong></em>は、８ビットPCMの時は４の倍数、16ビットPCMの時は２の倍数でなければなりません。
 </p>
       <p>
-�Đ��X�s�[�h<em><strong><code>speed</code></strong></em>�́A�Đ����鑬�����w�肵�܂��B
-<em><strong><code>speed</code></strong></em>��32768�{�̑����ōĐ�����܂��B
-�Đ��X�s�[�h�𑬂�����ƁA�Đ����Ԃ��Z���Ȃ�A�Đ�����鉹�̍����������Ȃ�܂��B
+再生スピード<em><strong><code>speed</code></strong></em>は、再生する速さを指定します。
+<em><strong><code>speed</code></strong></em>÷32768倍の速さで再生されます。
+再生スピードを速くすると、再生時間が短くなり、再生される音の高さが高くなります。
 </p>
       
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndWaveOutAllocChannel.html">NNS_SndWaveOutAllocChannel</a></p>
-<h2>����</h2>
-<p>2004/07/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/07/01 初版<br></p>
 </div>
 </body>
 </html>

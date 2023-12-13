@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	worldtrade_deposit.c
- * @bfief	¢ŠEŒğŠ·ƒ|ƒPƒ‚ƒ“—a‚¯‚é‰æ–Êˆ—
+ * @bfief	ä¸–ç•Œäº¤æ›ãƒã‚±ãƒ¢ãƒ³é ã‘ã‚‹ç”»é¢å‡¦ç†
  * @author	Akito Mori
  * @date	06.04.16
  */
@@ -37,7 +37,7 @@
 #include "msgdata/msg_wifi_lobby.h"
 #include "msgdata/msg_wifi_gtc.h"
 
-#include "worldtrade.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "worldtrade.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 #include "../zukanlist/zkn_data/zukan_data.naix"
 #include "application/zukanlist/zkn_sort_akstnhmyrw_idx.h"
 
@@ -47,9 +47,9 @@
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void SubSeq_MessagePrint( WORLDTRADE_WORK *wk, int msgno, int wait, int flag, u16 dat );
 static void BgInit( GF_BGL_INI * ini );
 static void BgExit( GF_BGL_INI * ini );
@@ -136,7 +136,7 @@ static int (*Functable[])( WORLDTRADE_WORK *wk ) = {
 #define BOX_CUROSOR_TRAYNAME_POS	( 31 )
 
 
-// ‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“E‚ ‚¸‚¯‚éƒ|ƒPƒ‚ƒ“î•ñ
+// ã»ã—ã„ãƒã‚±ãƒ¢ãƒ³ãƒ»ã‚ãšã‘ã‚‹ãƒã‚±ãƒ¢ãƒ³æƒ…å ±
 #define INFORMATION_STR_X	(  1 )
 #define INFORMATION_STR_Y	(  4 )
 #define INFORMATION2_STR_X	(  3 )
@@ -166,58 +166,58 @@ static const u16 infomation_bmp_table[6][2]={
 
 };
 
-// ŒŸõƒŒƒxƒ‹w’è—p\‘¢‘Ì
+// æ¤œç´¢ãƒ¬ãƒ™ãƒ«æŒ‡å®šç”¨æ§‹é€ ä½“
 typedef struct{
 	int msg;
 	s16 min;
 	s16 max;
 }WT_LEVEL_TERM;
 
-// ŒŸõƒŒƒxƒ‹”(ÅŒã‚ÍƒLƒƒƒ“ƒZƒ‹‚¾‚¯‚Çj
+// æ¤œç´¢ãƒ¬ãƒ™ãƒ«æ•°(æœ€å¾Œã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã ã‘ã©ï¼‰
 #define LEVEL_SELECT_NUM	(13)
 
-// ŒŸõƒŒƒxƒ‹w’èƒe[ƒuƒ‹F—a‚¯‚é‚Ìƒ}ƒbƒ`ƒ“ƒOğŒw’è
+// æ¤œç´¢ãƒ¬ãƒ™ãƒ«æŒ‡å®šãƒ†ãƒ¼ãƒ–ãƒ«ï¼šé ã‘ã‚‹æ™‚ã®ãƒãƒƒãƒãƒ³ã‚°æ¡ä»¶æŒ‡å®š
 static const WT_LEVEL_TERM level_minmax_table[]={
-	{ msg_gtc_12_001, 0,   0, },	// ‚«‚É‚µ‚È‚¢
-	{ msg_gtc_12_002, 0,   9, },	// ƒŒƒxƒ‹‚P‚O‚İ‚Ü‚ñ
-	{ msg_gtc_12_003,10,   0, },	// ƒŒƒxƒ‹‚P‚OˆÈã
-	{ msg_gtc_12_004,20,   0, },	// ƒŒƒxƒ‹‚Q‚OˆÈã
-	{ msg_gtc_12_005,30,   0, },	// ƒŒƒxƒ‹‚R‚OˆÈã
-	{ msg_gtc_12_006,40,   0, },	// ƒŒƒxƒ‹‚S‚OˆÈã
-	{ msg_gtc_12_007,50,   0, },	// ƒŒƒxƒ‹‚T‚OˆÈã
-	{ msg_gtc_12_008,60,   0, },	// ƒŒƒxƒ‹‚U‚OˆÈã
-	{ msg_gtc_12_009,70,   0, },	// ƒŒƒxƒ‹‚V‚OˆÈã
-	{ msg_gtc_12_010,80,   0, },	// ƒŒƒxƒ‹‚W‚OˆÈã
-	{ msg_gtc_12_011,90,   0, },	// ƒŒƒxƒ‹‚X‚OˆÈã
-	{ msg_gtc_12_012,100,100, },	// ƒŒƒxƒ‹‚P‚O‚O
-    { msg_gtc_12_013, 0,  0, }, // ƒLƒƒƒ“ƒZƒ‹
+	{ msg_gtc_12_001, 0,   0, },	// ãã«ã—ãªã„
+	{ msg_gtc_12_002, 0,   9, },	// ãƒ¬ãƒ™ãƒ«ï¼‘ï¼ã¿ã¾ã‚“
+	{ msg_gtc_12_003,10,   0, },	// ãƒ¬ãƒ™ãƒ«ï¼‘ï¼ä»¥ä¸Š
+	{ msg_gtc_12_004,20,   0, },	// ãƒ¬ãƒ™ãƒ«ï¼’ï¼ä»¥ä¸Š
+	{ msg_gtc_12_005,30,   0, },	// ãƒ¬ãƒ™ãƒ«ï¼“ï¼ä»¥ä¸Š
+	{ msg_gtc_12_006,40,   0, },	// ãƒ¬ãƒ™ãƒ«ï¼”ï¼ä»¥ä¸Š
+	{ msg_gtc_12_007,50,   0, },	// ãƒ¬ãƒ™ãƒ«ï¼•ï¼ä»¥ä¸Š
+	{ msg_gtc_12_008,60,   0, },	// ãƒ¬ãƒ™ãƒ«ï¼–ï¼ä»¥ä¸Š
+	{ msg_gtc_12_009,70,   0, },	// ãƒ¬ãƒ™ãƒ«ï¼—ï¼ä»¥ä¸Š
+	{ msg_gtc_12_010,80,   0, },	// ãƒ¬ãƒ™ãƒ«ï¼˜ï¼ä»¥ä¸Š
+	{ msg_gtc_12_011,90,   0, },	// ãƒ¬ãƒ™ãƒ«ï¼™ï¼ä»¥ä¸Š
+	{ msg_gtc_12_012,100,100, },	// ãƒ¬ãƒ™ãƒ«ï¼‘ï¼ï¼
+    { msg_gtc_12_013, 0,  0, }, // ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 };
 
 
-// ŒŸõƒŒƒxƒ‹w’èƒe[ƒuƒ‹FŒŸõ‚·‚é‚Ìƒ}ƒbƒ`ƒ“ƒOğŒw’è
+// æ¤œç´¢ãƒ¬ãƒ™ãƒ«æŒ‡å®šãƒ†ãƒ¼ãƒ–ãƒ«ï¼šæ¤œç´¢ã™ã‚‹æ™‚ã®ãƒãƒƒãƒãƒ³ã‚°æ¡ä»¶æŒ‡å®š
 static const WT_LEVEL_TERM search_level_minmax_table[]={
-	{ msg_gtc_search_001, 0,   0, },	// ‚«‚É‚µ‚È‚¢
-	{ msg_gtc_search_002, 1,   10, },	// ƒŒƒxƒ‹1‚©‚ç10
-	{ msg_gtc_search_003,11,   20, },	// ƒŒƒxƒ‹11‚©‚ç20
-	{ msg_gtc_search_004,21,   30, },	// ƒŒƒxƒ‹21‚©‚ç30
-	{ msg_gtc_search_005,31,   40, },	// ƒŒƒxƒ‹31‚©‚ç40
-	{ msg_gtc_search_006,41,   50, },	// ƒŒƒxƒ‹41‚©‚ç50
-	{ msg_gtc_search_007,51,   60, },	// ƒŒƒxƒ‹51‚©‚ç60
-	{ msg_gtc_search_008,61,   70, },	// ƒŒƒxƒ‹61‚©‚ç70
-	{ msg_gtc_search_009,71,   80, },	// ƒŒƒxƒ‹71‚©‚ç80
-	{ msg_gtc_search_010,81,   90, },	// ƒŒƒxƒ‹81‚©‚ç90
-	{ msg_gtc_search_011,91,   100, },	// ƒŒƒxƒ‹91‚©‚ç100
-    { msg_gtc_search_012, 0,  0, }, // ƒLƒƒƒ“ƒZƒ‹
+	{ msg_gtc_search_001, 0,   0, },	// ãã«ã—ãªã„
+	{ msg_gtc_search_002, 1,   10, },	// ãƒ¬ãƒ™ãƒ«1ã‹ã‚‰10
+	{ msg_gtc_search_003,11,   20, },	// ãƒ¬ãƒ™ãƒ«11ã‹ã‚‰20
+	{ msg_gtc_search_004,21,   30, },	// ãƒ¬ãƒ™ãƒ«21ã‹ã‚‰30
+	{ msg_gtc_search_005,31,   40, },	// ãƒ¬ãƒ™ãƒ«31ã‹ã‚‰40
+	{ msg_gtc_search_006,41,   50, },	// ãƒ¬ãƒ™ãƒ«41ã‹ã‚‰50
+	{ msg_gtc_search_007,51,   60, },	// ãƒ¬ãƒ™ãƒ«51ã‹ã‚‰60
+	{ msg_gtc_search_008,61,   70, },	// ãƒ¬ãƒ™ãƒ«61ã‹ã‚‰70
+	{ msg_gtc_search_009,71,   80, },	// ãƒ¬ãƒ™ãƒ«71ã‹ã‚‰80
+	{ msg_gtc_search_010,81,   90, },	// ãƒ¬ãƒ™ãƒ«81ã‹ã‚‰90
+	{ msg_gtc_search_011,91,   100, },	// ãƒ¬ãƒ™ãƒ«91ã‹ã‚‰100
+    { msg_gtc_search_012, 0,  0, }, // ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 };
 
-// ŒŸõƒ}ƒbƒ`ƒ“ƒOFŒŸõƒŒƒxƒ‹”(ÅŒã‚ÍƒLƒƒƒ“ƒZƒ‹‚¾‚¯‚Çj
+// æ¤œç´¢ãƒãƒƒãƒãƒ³ã‚°ï¼šæ¤œç´¢ãƒ¬ãƒ™ãƒ«æ•°(æœ€å¾Œã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã ã‘ã©ï¼‰
 #define SEARCH_LEVEL_SELECT_NUM		(NELEMS(search_level_minmax_table))
 
 
 //==============================================================================
 //	
 //==============================================================================
-///‘ŒŸõFŒÜ\‰¹‡ƒŠƒXƒg
+///å›½æ¤œç´¢ï¼šäº”åéŸ³é †ãƒªã‚¹ãƒˆ
 ALIGN4 static const u16 CountryListTbl[] = {
 // MatchComment: add in matching plat US data
 	country001,
@@ -356,12 +356,12 @@ const u32 CountryListTblNum = NELEMS(CountryListTbl);
 
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //==============================================================================
 /**
- * @brief   ¢ŠEŒğŠ·“ü‚èŒû‰æ–Ê‰Šú‰»
+ * @brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢åˆæœŸåŒ–
  *
  * @param   wk		
  * @param   seq		
@@ -371,16 +371,16 @@ const u32 CountryListTblNum = NELEMS(CountryListTbl);
 //==============================================================================
 int WorldTrade_Deposit_Init(WORLDTRADE_WORK *wk, int seq)
 {
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	InitWork( wk );
 	
-	// BGİ’è
+	// BGè¨­å®š
 	BgInit( wk->bgl );
 
-	// BGƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	BgGraphicSet( wk );
 
-	// BMPWINŠm•Û
+	// BMPWINç¢ºä¿
 	BmpWinInit( wk );
 
 //	SetCellActor(wk);
@@ -391,15 +391,15 @@ int WorldTrade_Deposit_Init(WORLDTRADE_WORK *wk, int seq)
 	OS_Printf( "******************** worldtrade_deposit.c [226] M ********************\n" );
 #endif
 
-	// ’ÊMó‘Ô‚ğŠm”F‚µ‚ÄƒAƒCƒRƒ“‚Ì•\¦‚ğ•Ï‚¦‚é
+	// é€šä¿¡çŠ¶æ…‹ã‚’ç¢ºèªã—ã¦ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºã‚’å¤‰ãˆã‚‹
     WorldTrade_WifiIconAdd( wk );
    
-    // ‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“E‚ ‚¸‚¯‚éƒ|ƒPƒ‚ƒ“•`‰æ
+    // ã»ã—ã„ãƒã‚±ãƒ¢ãƒ³ãƒ»ã‚ãšã‘ã‚‹ãƒã‚±ãƒ¢ãƒ³æç”»
 	WodrldTrade_PokeWantPrint( wk->MsgManager, wk->MonsNameManager, 
 				wk->WordSet, &wk->InfoWin[0], 0,DPW_TR_GENDER_NONE,-1);
 	PokeDepositPrint( wk->MsgManager, wk->WordSet, &wk->InfoWin[3], wk->deposit_ppp, &wk->Post );
 
-	OS_TPrintf("}ŠÓ‘” = %d\n",wk->dw->nameSortNum);
+	OS_TPrintf("å›³é‘‘ç·æ•° = %d\n",wk->dw->nameSortNum);
 
 
 	wk->subprocess_seq = SUBSEQ_START;
@@ -410,7 +410,7 @@ int WorldTrade_Deposit_Init(WORLDTRADE_WORK *wk, int seq)
 
 //==============================================================================
 /**
- * @brief   ¢ŠEŒğŠ·“ü‚èŒû‰æ–ÊƒƒCƒ“
+ * @brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  * @param   seq		
@@ -422,7 +422,7 @@ int WorldTrade_Deposit_Main(WORLDTRADE_WORK *wk, int seq)
 {
 	int ret;
 
-	// ’ÊMó‘Ô‚ğŠm”F‚µ‚ÄƒAƒCƒRƒ“‚Ì•\¦‚ğ•Ï‚¦‚é
+	// é€šä¿¡çŠ¶æ…‹ã‚’ç¢ºèªã—ã¦ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºã‚’å¤‰ãˆã‚‹
     WirelessIconEasy_SetLevel(WorldTrade_WifiLinkLevel());
 	
 	ret = (*Functable[wk->subprocess_seq])( wk );
@@ -433,7 +433,7 @@ int WorldTrade_Deposit_Main(WORLDTRADE_WORK *wk, int seq)
 
 //==============================================================================
 /**
- * @brief   ¢ŠEŒğŠ·“ü‚èŒû‰æ–ÊI—¹
+ * @brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -461,7 +461,7 @@ int WorldTrade_Deposit_End(WORLDTRADE_WORK *wk, int seq)
 
 //------------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\¦
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -470,21 +470,21 @@ int WorldTrade_Deposit_End(WORLDTRADE_WORK *wk, int seq)
 //------------------------------------------------------------------
 static void SubSeq_MessagePrint( WORLDTRADE_WORK *wk, int msgno, int wait, int flag, u16 dat )
 {
-	// •¶š—ñæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	STRBUF *tempbuf;
 	
-	// •¶š—ñæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	tempbuf = MSGMAN_AllocString(  wk->MsgManager, msgno );
 
-	// WORDSET“WŠJ
+	// WORDSETå±•é–‹
 	WORDSET_ExpandStr( wk->WordSet, wk->TalkString, tempbuf );
 	
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ æç”»
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, WORLDTRADE_MESFRAME_CHR, WORLDTRADE_MESFRAME_PAL );
 
-	// •¶š—ñ•`‰æŠJn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, wait, NULL);
 
 	STRBUF_Delete(tempbuf);
@@ -494,9 +494,9 @@ static void SubSeq_MessagePrint( WORLDTRADE_WORK *wk, int msgno, int wait, int f
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGİ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -504,7 +504,7 @@ static void SubSeq_MessagePrint( WORLDTRADE_WORK *wk, int msgno, int wait, int f
 static void BgInit( GF_BGL_INI * ini )
 {
 
-	// ƒƒCƒ“‰æ–ÊƒeƒLƒXƒg–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ†ã‚­ã‚¹ãƒˆé¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -515,7 +515,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME0_M );
 	}
 
-	// ƒƒCƒ“‰æ–Êƒƒjƒ…[–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -525,7 +525,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_BGControlSet( ini, GF_BGL_FRAME1_M, &TextBgCntDat, GF_BGL_MODE_TEXT );
 	}
 
-	// ƒƒCƒ“‰æ–Ê”wŒi–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯é¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -537,7 +537,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 
 
-	// ƒTƒu‰æ–Ê•¶š”Å0
+	// ã‚µãƒ–ç”»é¢æ–‡å­—ç‰ˆ0
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -550,7 +550,7 @@ static void BgInit( GF_BGL_INI * ini )
 	}
 
 
-	// ƒTƒu‰æ–Ê”wŒiBG1( ‚±‚Ì–Ê‚Í256F )
+	// ã‚µãƒ–ç”»é¢èƒŒæ™¯BG1( ã“ã®é¢ã¯256è‰² )
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
@@ -569,9 +569,9 @@ static void BgInit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -590,9 +590,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -601,13 +601,13 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 {
 	GF_BGL_INI *bgl = wk->bgl;
 
-	// ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_PalSet(    ARC_WORLDTRADE_GRA, NARC_worldtrade_deposit_nclr, PALTYPE_MAIN_BG, 0, 16*3*2,  HEAPID_WORLDTRADE);
 	
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, WORLDTRADE_TALKFONT_PAL*0x20, HEAPID_WORLDTRADE );
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	TalkWinGraphicSet(	bgl, GF_BGL_FRAME0_M, WORLDTRADE_MESFRAME_CHR, 
 						WORLDTRADE_MESFRAME_PAL,  CONFIG_GetWindowType(wk->param->config), HEAPID_WORLDTRADE );
 
@@ -616,10 +616,10 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 						WORLDTRADE_MENUFRAME_PAL, 0, HEAPID_WORLDTRADE );
 
 
-	// ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_BgCharSet( ARC_WORLDTRADE_GRA, NARC_worldtrade_deposit_lz_ncgr, bgl, GF_BGL_FRAME1_M, 0, 16*5*0x20, 1, HEAPID_WORLDTRADE);
 
-	// ƒƒCƒ“‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_ScrnSet(   ARC_WORLDTRADE_GRA, NARC_worldtrade_deposit_lz_nscr, bgl, GF_BGL_FRAME1_M, 0, 32*24*2, 1, HEAPID_WORLDTRADE);
 
 
@@ -632,7 +632,7 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶šƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -642,20 +642,20 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 static void BmpWinInit( WORLDTRADE_WORK *wk )
 {
 	int i;
-	// ---------- ƒƒCƒ“‰æ–Ê ------------------
+	// ---------- ãƒ¡ã‚¤ãƒ³ç”»é¢ ------------------
 
-	// BG0–ÊBMPWINƒ^ƒCƒgƒ‹ƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG0é¢BMPWINã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->TitleWin, GF_BGL_FRAME0_M,
 	TITLE_TEXT_X, TITLE_TEXT_Y, TITLE_TEXT_SX, TITLE_TEXT_SY, WORLDTRADE_TALKFONT_PAL,  TITLE_MESSAGE_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->TitleWin, 0x0000 );
 	
-	// uƒ|ƒPƒ‚ƒ“‚ğ‚ ‚¸‚¯‚év•`‰æ
+	// ã€Œãƒã‚±ãƒ¢ãƒ³ã‚’ã‚ãšã‘ã‚‹ã€æç”»
 	WorldTrade_TalkPrint( &wk->TitleWin, wk->TitleString, 0, 1, 0, GF_PRINTCOLOR_MAKE(15,14,0) );
 
 
-	// ˆêsƒEƒCƒ“ƒhƒE
+	// ä¸€è¡Œã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		LINE_TEXT_X, LINE_TEXT_Y, LINE_TEXT_SX, LINE_TEXT_SY, 
 		WORLDTRADE_TALKFONT_PAL,  LINE_MESSAGE_OFFSET );
@@ -664,7 +664,7 @@ static void BmpWinInit( WORLDTRADE_WORK *wk )
 //	Enter_MessagePrint( wk, wk->MsgManager, msg_gtc_05_001, MSG_ALLPUT, 0 );
 
 
-	// ‚ ‚¸‚¯‚éƒ|ƒPƒ‚ƒ“E‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“î•ñBMPWINŠm•Û
+	// ã‚ãšã‘ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ»ã»ã—ã„ãƒã‚±ãƒ¢ãƒ³æƒ…å ±BMPWINç¢ºä¿
 	for(i=0;i<6;i++){
 		GF_BGL_BmpWinAdd(wk->bgl, &wk->InfoWin[i], GF_BGL_FRAME0_M,
 			infomation_bmp_table[i][0], infomation_bmp_table[i][1], 
@@ -674,12 +674,12 @@ static void BmpWinInit( WORLDTRADE_WORK *wk )
 		GF_BGL_BmpWinOn(&wk->InfoWin[i]);
 	}
 
-	OS_Printf("WORLDTRADE heapc‚è = %d\n",sys_GetHeapFreeSize( HEAPID_WORLDTRADE ));
+	OS_Printf("WORLDTRADE heapæ®‹ã‚Š = %d\n",sys_GetHeapFreeSize( HEAPID_WORLDTRADE ));
 }	
 
 //------------------------------------------------------------------
 /**
- * @brief   Šm•Û‚µ‚½BMPWIN‚ğ‰ğ•ú
+ * @brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   wk		
  *
@@ -701,7 +701,7 @@ static void BmpWinDelete( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * ¢ŠEŒğŠ·ƒ[ƒN‰Šú‰»
+ * ä¸–ç•Œäº¤æ›ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		WORLDTRADE_WORK*
  *
@@ -712,30 +712,30 @@ static void InitWork( WORLDTRADE_WORK *wk )
 {
 
 
-	// •¶š—ñƒoƒbƒtƒ@ì¬
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->TalkString  = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_WORLDTRADE );
 
-	// ƒ|ƒPƒ‚ƒ“‚ğ‚ ‚¸‚¯‚é
+	// ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚ãšã‘ã‚‹
 	wk->TitleString = MSGMAN_AllocString( wk->MsgManager, msg_gtc_05_001 );
 
-	// ƒ|ƒPƒ‚ƒ“–¼ƒe[ƒuƒ‹ì¬—p‚Ìƒ[ƒNŠm•Û
+	// ãƒã‚±ãƒ¢ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆç”¨ã®ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	wk->dw = sys_AllocMemory(HEAPID_WORLDTRADE, sizeof(DEPOSIT_WORK));
 	MI_CpuClearFast( wk->dw, sizeof(DEPOSIT_WORK) );
 
-	// }ŠÓƒ\[ƒgƒf[ƒ^(‘S‘}ŠÓ‚ÆAƒVƒ“ƒIƒE}ŠÓ‚Ì•ªŠò‚ª•K—v‚¾‚Æ‚¨‚à‚¤j
+	// å›³é‘‘ã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿(å…¨å›½å›³é‘‘ã¨ã€ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã®åˆ†å²ãŒå¿…è¦ã ã¨ãŠã‚‚ã†ï¼‰
 	wk->dw->nameSortTable = WorldTrade_ZukanSortDataGet( HEAPID_WORLDTRADE, 0, &wk->dw->nameSortNum );
 
-	// ƒVƒ“ƒIƒE}ŠÓƒe[ƒuƒ‹
+	// ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒ†ãƒ¼ãƒ–ãƒ«
 	wk->dw->sinouTable    = WorldTrade_SinouZukanDataGet( HEAPID_WORLDTRADE );
 
-	// ƒJ[ƒ\ƒ‹ˆÊ’u‰Šú‰»
+	// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®åˆæœŸåŒ–
 	WorldTrade_SelectListPosInit( &wk->selectListPos );
 }
 
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ[ƒN‰ğ•ú
+ * @brief   ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   wk		
  *
@@ -767,7 +767,7 @@ static void FreeWork( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXƒXƒ^[ƒgˆ—
+ * @brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¹ã‚¿ãƒ¼ãƒˆå‡¦ç†
  *
  * @param   wk		
  *
@@ -781,7 +781,7 @@ static int SubSeq_Start( WORLDTRADE_WORK *wk)
 		SubSeq_MessagePrint( wk, msg_gtc_01_010, 1, 0, 0x0f0f );
 		WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_MAIN );
 
-		// ‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“E‚ ‚¸‚¯‚éƒ|ƒPƒ‚ƒ“•`‰æ
+		// ã»ã—ã„ãƒã‚±ãƒ¢ãƒ³ãƒ»ã‚ãšã‘ã‚‹ãƒã‚±ãƒ¢ãƒ³æç”»
 		
 //		 wk->subprocess_seq = SUBSEQ_MAIN;
 	}
@@ -791,7 +791,7 @@ static int SubSeq_Start( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXƒƒCƒ“
+ * @brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  *
@@ -806,14 +806,14 @@ static int SubSeq_Main( WORLDTRADE_WORK *wk)
 		wk->subprocess_seq = SUBSEQ_END;
 	}
 
-	// ƒAƒCƒEƒGƒI‘I‘ğƒEƒCƒ“ƒhƒEŠm•Û
+	// ã‚¢ã‚¤ã‚¦ã‚¨ã‚ªé¸æŠã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MenuWin[0], GF_BGL_FRAME0_M,
 		SELECT_MENU1_X,		SELECT_MENU1_Y,		SELECT_MENU1_SX, 		SELECT_MENU1_SY, 
 		WORLDTRADE_TALKFONT_PAL,  SELECT_MENU1_OFFSET );
 	GF_BGL_BmpWinDataFill( &wk->MenuWin[0], 0x0000 );
 
 
-	// ƒ|ƒPƒ‚ƒ“–¼‘I‘ğƒEƒCƒ“ƒhƒEŠm•Û
+	// ãƒã‚±ãƒ¢ãƒ³åé¸æŠã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MenuWin[1], GF_BGL_FRAME0_M,
 		SELECT_MENU2_X,		SELECT_MENU2_Y,		SELECT_MENU2_SX, 		SELECT_MENU2_SY, 
 		WORLDTRADE_TALKFONT_PAL,  SELECT_MENU2_OFFSET );
@@ -829,11 +829,11 @@ static int SubSeq_Main( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   num‚Émove‚ğ‘«‚µ,0ˆÈ‰º‚È‚çmax-1‚ÉAmax‚È‚ç0‚É‚µ‚Ä•Ô‚·
+ * @brief   numã«moveã‚’è¶³ã—,0ä»¥ä¸‹ãªã‚‰max-1ã«ã€maxãªã‚‰0ã«ã—ã¦è¿”ã™
  *
- * @param   num		Œ³‚Ì’l
- * @param   max		Å‘å’l
- * @param   move	‘«‚·’li{|‚ ‚èj
+ * @param   num		å…ƒã®å€¤
+ * @param   max		æœ€å¤§å€¤
+ * @param   move	è¶³ã™å€¤ï¼ˆï¼‹âˆ’ã‚ã‚Šï¼‰
  *
  * @retval  int		
  */
@@ -853,7 +853,7 @@ static int RoundWork( int num, int max, int move )
 
 //------------------------------------------------------------------
 /**
- * @brief   “ª•¶š‘I‘ğƒŠƒXƒgì¬
+ * @brief   é ­æ–‡å­—é¸æŠãƒªã‚¹ãƒˆä½œæˆ
  *
  * @param   wk		
  *
@@ -862,7 +862,7 @@ static int RoundWork( int num, int max, int move )
 //------------------------------------------------------------------
 static int SubSeq_HeadWordSelectList( WORLDTRADE_WORK *wk )
 {
-	// “ª•¶š‘I‘ğƒƒjƒ…[ì¬
+	// é ­æ–‡å­—é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
 	wk->BmpListWork = WorldTrade_WordheadBmpListMake( wk, &wk->BmpMenuList, &wk->MenuWin[0], wk->MsgManager );
 	wk->listpos = 0xffff;
 	wk->subprocess_seq = SUBSEQ_HEADWORD_SELECT_WAIT;
@@ -874,7 +874,7 @@ static int SubSeq_HeadWordSelectList( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   “ª•¶š‘I‘ğ‘Ò‚¿
+ * @brief   é ­æ–‡å­—é¸æŠå¾…ã¡
  *
  * @param   wk		
  *
@@ -884,7 +884,7 @@ static int SubSeq_HeadWordSelectList( WORLDTRADE_WORK *wk )
 static int SubSeq_HeadWordSelectWait( WORLDTRADE_WORK *wk )
 {
 	switch(WorldTrade_BmpListMain( wk->BmpListWork, &wk->listpos )){
-    // localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSƒ\[ƒg‘Î‰B
+    // localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSã‚½ãƒ¼ãƒˆå¯¾å¿œã€‚
 	case 1: case 2: case 3: case 4: case 5:	case 6: case 7: case 8: case 9:
     // MatchComment: end of localization change
 		BmpListExit( wk->BmpListWork, &wk->dw->headwordListPos, &wk->dw->headwordPos );
@@ -894,7 +894,7 @@ static int SubSeq_HeadWordSelectWait( WORLDTRADE_WORK *wk )
 
 		break;
 
-	// ƒLƒƒƒ“ƒZƒ‹
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	case BMPMENU_CANCEL:
 		BmpListExit( wk->BmpListWork, &wk->dw->headwordListPos, &wk->dw->headwordPos );
 		BMP_MENULIST_Delete( wk->BmpMenuList );
@@ -915,7 +915,7 @@ static int SubSeq_HeadWordSelectWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“–¼‘O‘I‘ğƒŠƒXƒgì¬
+ * @brief   ãƒã‚±ãƒ¢ãƒ³åå‰é¸æŠãƒªã‚¹ãƒˆä½œæˆ
  *
  * @param   wk		
  *
@@ -924,14 +924,14 @@ static int SubSeq_HeadWordSelectWait( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int SubSeq_PokeNameSelectList( WORLDTRADE_WORK *wk )
 {
-	// ƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgì¬
+	// ãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆä½œæˆ
 	wk->BmpListWork = WorldTrade_PokeNameListMake( wk,
 						&wk->BmpMenuList, &wk->MenuWin[1], 
 						wk->MsgManager, wk->MonsNameManager,wk->dw,
 						wk->param->zukanwork );
 	wk->listpos = 0xffff;
 
-	OS_Printf("in trade }ŠÓƒtƒ‰ƒO = %d\n", ZukanWork_GetZenkokuZukanFlag(wk->param->zukanwork));
+	OS_Printf("in trade å›³é‘‘ãƒ•ãƒ©ã‚° = %d\n", ZukanWork_GetZenkokuZukanFlag(wk->param->zukanwork));
 
 
 	wk->subprocess_seq = SUBSEQ_POKENAME_SELECT_WAIT;
@@ -942,12 +942,12 @@ static int SubSeq_PokeNameSelectList( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‚Ìà•Ê•ª•z‚©‚ç«•Ê‚ÍŒˆ’è‚·‚é‚©H“ü—Í‚ª•K—v‚©H
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã®èª¬åˆ¥åˆ†å¸ƒã‹ã‚‰æ€§åˆ¥ã¯æ±ºå®šã™ã‚‹ã‹ï¼Ÿå…¥åŠ›ãŒå¿…è¦ã‹ï¼Ÿ
  *
  * @param   dtp		
  * @param   sex_selection		
  *
- * @retval  int		0:«•Ê‚Ì“ü—Í‚ª•K—v	1:Œˆ’è‚µ‚Ä‚¢‚é‚Ì‚Å•K—v‚È‚¢
+ * @retval  int		0:æ€§åˆ¥ã®å…¥åŠ›ãŒå¿…è¦	1:æ±ºå®šã—ã¦ã„ã‚‹ã®ã§å¿…è¦ãªã„
  */
 //------------------------------------------------------------------
 int WorldTrade_SexSelectionCheck( Dpw_Tr_PokemonSearchData *dtsd, int sex_selection ) 
@@ -973,7 +973,7 @@ int WorldTrade_SexSelectionCheck( Dpw_Tr_PokemonSearchData *dtsd, int sex_select
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“–¼‘O‘I‘ğ
+ * @brief   ãƒã‚±ãƒ¢ãƒ³åå‰é¸æŠ
  *
  * @param   wk		
  *
@@ -989,7 +989,7 @@ static int SubSeq_PokeNameSelectWait( WORLDTRADE_WORK *wk )
 	case BMPLIST_NULL:
 		break;
 
-	// ƒLƒƒƒ“ƒZƒ‹
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	case BMPMENU_CANCEL:
 		BmpListExit( wk->BmpListWork, &wk->dw->nameListPos, &wk->dw->namePos );
 		BMP_MENULIST_Delete( wk->BmpMenuList );
@@ -1002,7 +1002,7 @@ static int SubSeq_PokeNameSelectWait( WORLDTRADE_WORK *wk )
 		WorldTrade_SelectNameListBackup( &wk->selectListPos, wk->dw->headwordListPos+wk->dw->headwordPos, wk->dw->nameListPos, wk->dw->namePos );
 
 		break;
-	// ‘I‘ğ
+	// é¸æŠ
 	default:
 		BmpListExit( wk->BmpListWork, &wk->dw->nameListPos, &wk->dw->namePos );
 		BMP_MENULIST_Delete( wk->BmpMenuList );
@@ -1013,20 +1013,20 @@ static int SubSeq_PokeNameSelectWait( WORLDTRADE_WORK *wk )
 		wk->Want.characterNo = result;
 		Snd_SePlay(WORLDTRADE_DECIDE_SE);
 
-		// «•Ê•ª•zî•ñæ“¾ 
+		// æ€§åˆ¥åˆ†å¸ƒæƒ…å ±å–å¾— 
 		wk->dw->sex_selection = PokePersonalParaGet(result,ID_PER_sex);
-		// «•Ê‚ÍŒÅ’è‚©HiŒÅ’è‚Ìê‡‚Í«•Ê‚ªWant‚ÉŠi”[‚³‚ê‚éj
+		// æ€§åˆ¥ã¯å›ºå®šã‹ï¼Ÿï¼ˆå›ºå®šã®å ´åˆã¯æ€§åˆ¥ãŒWantã«æ ¼ç´ã•ã‚Œã‚‹ï¼‰
 		if(WorldTrade_SexSelectionCheck( &wk->Want, wk->dw->sex_selection )){
-			// «•Ê‚ÍŒˆ’è‚µ‚Ä‚¢‚é‚Ì‚ÅA“ü—Í‚·‚é•K—v‚ª–³‚¢
+			// æ€§åˆ¥ã¯æ±ºå®šã—ã¦ã„ã‚‹ã®ã§ã€å…¥åŠ›ã™ã‚‹å¿…è¦ãŒç„¡ã„
 			wk->subprocess_seq  = SUBSEQ_LEVEL_SELECT_MES;
 			sex                 = wk->Want.gender;
 		}else{
-			// «•Ê‚ÍŒˆ’è‚µ‚Ä‚¢‚È‚¢‚Ì‚Å“ü—Í‚ª•K—v
+			// æ€§åˆ¥ã¯æ±ºå®šã—ã¦ã„ãªã„ã®ã§å…¥åŠ›ãŒå¿…è¦
 			wk->subprocess_seq  = SUBSEQ_SEX_SELECT_MES;
 			sex = DPW_TR_GENDER_NONE;
 		}
 
-		// –¼‘OŒˆ’è(«•Ê‚ª‚«‚Ü‚é‚±‚Æ‚à‚ ‚éj
+		// åå‰æ±ºå®š(æ€§åˆ¥ãŒãã¾ã‚‹ã“ã¨ã‚‚ã‚ã‚‹ï¼‰
 		WodrldTrade_PokeWantPrint( wk->MsgManager, wk->MonsNameManager, wk->WordSet, 
 							&wk->InfoWin[0], wk->Want.characterNo,sex,-1);
 
@@ -1043,7 +1043,7 @@ static int SubSeq_PokeNameSelectWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   «•Ê‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢ƒƒbƒZ[ƒW
+ * @brief   æ€§åˆ¥ã‚’é¸ã‚“ã§ãã ã•ã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  *
  * @param   wk		
  *
@@ -1052,11 +1052,11 @@ static int SubSeq_PokeNameSelectWait( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int 	SubSeq_SexSelctMessage( WORLDTRADE_WORK *wk )
 {
-	// ƒ|ƒPƒ‚ƒ“‚Ì«•Ê‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢
+	// ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ã‚’é¸ã‚“ã§ãã ã•ã„
 	SubSeq_MessagePrint( wk, msg_gtc_01_011, 1, 0, 0x0f0f );
 	WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_SEX_SELECT_LIST );
 
-	// «•Ê‘I‘ğƒEƒCƒ“ƒhƒEŠm•Û
+	// æ€§åˆ¥é¸æŠã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MenuWin[0], GF_BGL_FRAME0_M,
 		SELECT_MENU3_X,		SELECT_MENU3_Y,		SELECT_MENU3_SX, 		SELECT_MENU3_SY, 
 		WORLDTRADE_TALKFONT_PAL,  SELECT_MENU3_OFFSET );
@@ -1067,7 +1067,7 @@ static int 	SubSeq_SexSelctMessage( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   «•Ê‘I‘ğƒŠƒXƒgì¬E•\¦
+ * @brief   æ€§åˆ¥é¸æŠãƒªã‚¹ãƒˆä½œæˆãƒ»è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1088,7 +1088,7 @@ static int 	SubSeq_SexSelctList( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   «•Ê‘I‘ğƒŠƒXƒg‘I‘ğ‘Ò‚¿
+ * @brief   æ€§åˆ¥é¸æŠãƒªã‚¹ãƒˆé¸æŠå¾…ã¡
  *
  * @param   wk		
  *
@@ -1099,7 +1099,7 @@ static int 	SubSeq_SexSelctWait( WORLDTRADE_WORK *wk )
 {
 	u32 result;
 	switch((result=WorldTrade_BmpListMain( wk->BmpListWork, &wk->listpos ))){
-	// ƒLƒƒƒ“ƒZƒ‹
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	case BMPMENU_CANCEL:
 		BmpListExit( wk->BmpListWork, NULL, NULL );
 		BMP_MENULIST_Delete( wk->BmpMenuList );
@@ -1110,7 +1110,7 @@ static int 	SubSeq_SexSelctWait( WORLDTRADE_WORK *wk )
 
 		wk->subprocess_seq = SUBSEQ_START;
 		break;
-	// ‘I‘ğ
+	// é¸æŠ
 	case PARA_MALE: case PARA_FEMALE: case PARA_UNK: 
 		BmpListExit( wk->BmpListWork, NULL, NULL );
 		BMP_MENULIST_Delete( wk->BmpMenuList );
@@ -1121,7 +1121,7 @@ static int 	SubSeq_SexSelctWait( WORLDTRADE_WORK *wk )
 		wk->Want.gender			= result+1;
 		wk->subprocess_seq  = SUBSEQ_LEVEL_SELECT_MES;
 
-		// «•ÊŒˆ’è
+		// æ€§åˆ¥æ±ºå®š
 		WodrldTrade_PokeWantPrint( wk->MsgManager, wk->MonsNameManager, wk->WordSet, 
 							&wk->InfoWin[0], wk->Want.characterNo,wk->Want.gender,-1);
 
@@ -1134,7 +1134,7 @@ static int 	SubSeq_SexSelctWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒŒƒxƒ‹‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢ƒƒbƒZ[ƒW•\¦
+ * @brief   ãƒ¬ãƒ™ãƒ«ã‚’é¸ã‚“ã§ãã ã•ã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1143,11 +1143,11 @@ static int 	SubSeq_SexSelctWait( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int SubSeq_LevelSelectMessage( WORLDTRADE_WORK *wk )
 {
-	// ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚ğ‚«‚ß‚Ä‚­‚¾‚³‚¢
+	// ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‚’ãã‚ã¦ãã ã•ã„
 	SubSeq_MessagePrint( wk, msg_gtc_01_012, 1, 0, 0x0f0f );
 	WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_LEVEL_SELECT_LIST );
 
-	// «•Ê‘I‘ğƒEƒCƒ“ƒhƒEŠm•Û
+	// æ€§åˆ¥é¸æŠã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MenuWin[0], GF_BGL_FRAME0_M,
 		SELECT_MENU4_X,		SELECT_MENU4_Y,		SELECT_MENU4_SX, 		SELECT_MENU4_SY, 
 		WORLDTRADE_TALKFONT_PAL,  SELECT_MENU4_OFFSET );
@@ -1160,7 +1160,7 @@ static int SubSeq_LevelSelectMessage( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒŒƒxƒ‹‘I‘ğƒŠƒXƒgì¬E•\¦
+ * @brief   ãƒ¬ãƒ™ãƒ«é¸æŠãƒªã‚¹ãƒˆä½œæˆãƒ»è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1169,7 +1169,7 @@ static int SubSeq_LevelSelectMessage( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int SubSeq_LevelSelectList( WORLDTRADE_WORK *wk )
 {
-	// ƒŒƒxƒ‹‘I‘ğƒŠƒXƒgì¬
+	// ãƒ¬ãƒ™ãƒ«é¸æŠãƒªã‚¹ãƒˆä½œæˆ
 	wk->BmpListWork = WorldTrade_LevelListMake(&wk->BmpMenuList, &wk->MenuWin[0], wk->MsgManager,
 		LEVEL_PRINT_TBL_DEPOSIT );
 	wk->listpos = 0xffff;
@@ -1182,7 +1182,7 @@ static int SubSeq_LevelSelectList( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒŒƒxƒ‹‘I‘ğ‘Ò‚¿
+ * @brief   ãƒ¬ãƒ™ãƒ«é¸æŠå¾…ã¡
  *
  * @param   wk		
  *
@@ -1195,7 +1195,7 @@ static int SubSeq_LevelSelectWait( WORLDTRADE_WORK *wk )
 	switch((result=WorldTrade_BmpListMain( wk->BmpListWork, &wk->listpos ))){
 	case BMPLIST_NULL:
 		break;
-	// ƒLƒƒƒ“ƒZƒ‹
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	case BMPMENU_CANCEL:
 	case 12:
 		BmpListExit( wk->BmpListWork, NULL, NULL );
@@ -1205,16 +1205,16 @@ static int SubSeq_LevelSelectWait( WORLDTRADE_WORK *wk )
 		GF_BGL_BmpWinDel( &wk->MenuWin[0] );
 		Snd_SePlay(WORLDTRADE_DECIDE_SE);
 		
-		// ƒ|ƒPƒ‚ƒ“‚Ì«•Ê‚ªŒÅ’è‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚µ‚Ä–ß‚é
+		// ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ãŒå›ºå®šã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦æˆ»ã‚‹
 		if(WorldTrade_SexSelectionCheck( &wk->Want, wk->dw->sex_selection )){
-			// «•Ê‚ÍŒÅ’è–³‚¢‚Ì‚ÅAƒ|ƒPƒ‚ƒ“‘I‘ğ‚Ü‚Å–ß‚é
+			// æ€§åˆ¥ã¯å›ºå®šç„¡ã„ã®ã§ã€ãƒã‚±ãƒ¢ãƒ³é¸æŠã¾ã§æˆ»ã‚‹
 			wk->subprocess_seq = SUBSEQ_START;
 		}else{
-			// «•Ê“ü—Í‚ª•K—v
+			// æ€§åˆ¥å…¥åŠ›ãŒå¿…è¦
 			wk->subprocess_seq = SUBSEQ_SEX_SELECT_MES;
 		}
 		break;
-	// ƒŒƒxƒ‹w’èŒˆ’è
+	// ãƒ¬ãƒ™ãƒ«æŒ‡å®šæ±ºå®š
 	default: 
 		Snd_SePlay(WORLDTRADE_DECIDE_SE);
 		BmpListExit( wk->BmpListWork, NULL, NULL );
@@ -1225,7 +1225,7 @@ static int SubSeq_LevelSelectWait( WORLDTRADE_WORK *wk )
 		WorldTrade_LevelMinMaxSet(&wk->Want, result, LEVEL_PRINT_TBL_DEPOSIT);
 		wk->subprocess_seq  = SUBSEQ_DEPOSITOK_MESSAGE;
 
-		// ƒŒƒxƒ‹w’èŒˆ’è
+		// ãƒ¬ãƒ™ãƒ«æŒ‡å®šæ±ºå®š
 		WodrldTrade_PokeWantPrint( wk->MsgManager, wk->MonsNameManager, wk->WordSet, 
 						&wk->InfoWin[0], wk->Want.characterNo,wk->Want.gender,
 						WorldTrade_LevelTermGet(wk->Want.level_min,wk->Want.level_max,
@@ -1240,7 +1240,7 @@ static int SubSeq_LevelSelectWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚±‚ÌğŒ‚Å‚æ‚¢HƒƒbƒZ[ƒW•\¦
+ * @brief   ã“ã®æ¡ä»¶ã§ã‚ˆã„ï¼Ÿãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1249,7 +1249,7 @@ static int SubSeq_LevelSelectWait( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int SubSeq_DepositOkMessage( WORLDTRADE_WORK *wk )
 {
-	// ‚±‚Ì‚¶‚å‚¤‚¯‚ñ‚Å‚æ‚ë‚µ‚¢‚Å‚·‚©H
+	// ã“ã®ã˜ã‚‡ã†ã‘ã‚“ã§ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ
 	SubSeq_MessagePrint( wk, msg_gtc_01_024, 1, 0, 0x0f0f );
 	WorldTrade_SetNextSeq( wk, SUBSEQ_MES_WAIT, SUBSEQ_DEPOSIT_YESNO );
 	
@@ -1258,7 +1258,7 @@ static int SubSeq_DepositOkMessage( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚±‚ê‚ÅğŒ‚Å‚ ‚¸‚¯‚Ü‚·H‚Í‚¢E‚¢‚¢‚¦
+ * @brief   ã“ã‚Œã§æ¡ä»¶ã§ã‚ãšã‘ã¾ã™ï¼Ÿã¯ã„ãƒ»ã„ã„ãˆ
  *
  * @param   wk		
  *
@@ -1276,7 +1276,7 @@ static int SubSeq_DepositOkYesNo( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚Í‚¢E‚¢‚¢‚¦‘Ò‚¿
+ * @brief   ã¯ã„ãƒ»ã„ã„ãˆå¾…ã¡
  *
  * @param   wk		
  *
@@ -1289,16 +1289,16 @@ static int SubSeq_DepositOkYesNoWait( WORLDTRADE_WORK *wk )
 
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
-			// ‚¢‚¢‚¦¨ƒ|ƒPƒ‚ƒ“‘I‘ğ‚©‚ç‚â‚è’¼‚µ
+			// ã„ã„ãˆâ†’ãƒã‚±ãƒ¢ãƒ³é¸æŠã‹ã‚‰ã‚„ã‚Šç›´ã—
 			WorldTrade_SubProcessChange( wk, WORLDTRADE_MYBOX, MODE_DEPOSIT_SELECT );
 			wk->subprocess_seq  = SUBSEQ_END;
 		}else{
-			// ‚Í‚¢¨ƒ|ƒPƒ‚ƒ“‚ğ‚ ‚¸‚¯‚é
+			// ã¯ã„â†’ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚ãšã‘ã‚‹
 		 	WorldTrade_SubProcessChange( wk, WORLDTRADE_UPLOAD, MODE_UPLOAD );
 			wk->subprocess_seq  = SUBSEQ_END;
 			wk->sub_out_flg = 1;
 
-			// ƒT[ƒo[ƒAƒbƒvƒ[ƒh—p‚Ìƒf[ƒ^‚ğì¬
+			// ã‚µãƒ¼ãƒãƒ¼ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ç”¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 			DepositPokemonDataMake( &wk->UploadPokemonData, wk );
 		}
 	}
@@ -1322,7 +1322,7 @@ static int SubSeq_DepositOkYesNoWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXI—¹ˆ—
+ * @brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚äº†å‡¦ç†
  *
  * @param   wk		
  *
@@ -1331,7 +1331,7 @@ static int SubSeq_DepositOkYesNoWait( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static int SubSeq_End( WORLDTRADE_WORK *wk )
 {
-	// Ú‘±‰æ–Ê‚¾‚Á‚½‚çAã‰º‰æ–Ê‚ÅƒtƒF[ƒh
+	// æ¥ç¶šç”»é¢ã ã£ãŸã‚‰ã€ä¸Šä¸‹ç”»é¢ã§ãƒ•ã‚§ãƒ¼ãƒ‰
 	if(wk->sub_nextprocess==WORLDTRADE_ENTER ){
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, WORLDTRADE_WIPE_SPPED, 1, HEAPID_WORLDTRADE );
 #ifdef GTS_FADE_OSP
@@ -1339,7 +1339,7 @@ static int SubSeq_End( WORLDTRADE_WORK *wk )
 #endif
 		wk->sub_out_flg = 1;
 	}else{
-		// ‘±‚«‚Ì‰æ–Ê‚É‚¢‚­ê‡‚Íã‰æ–Ê‚¾‚¯ƒtƒF[ƒh
+		// ç¶šãã®ç”»é¢ã«ã„ãå ´åˆã¯ä¸Šç”»é¢ã ã‘ãƒ•ã‚§ãƒ¼ãƒ‰
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, WORLDTRADE_WIPE_SPPED, 1, HEAPID_WORLDTRADE );
 #ifdef GTS_FADE_OSP
 		OS_Printf( "******************** worldtrade_deposit.c [1171] M ********************\n" );
@@ -1356,7 +1356,7 @@ static int SubSeq_End( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bI—¹‚ğ‘Ò‚Á‚ÄŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+ * $brief   ä¼šè©±çµ‚äº†ã‚’å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
  *
  * @param   wk		
  *
@@ -1384,7 +1384,7 @@ static int SubSeq_MessageWait( WORLDTRADE_WORK *wk )
 
 
 
-// «•ÊƒAƒCƒRƒ“‚ğ•\¦‚·‚é‚½‚ß‚ÌƒJƒ‰[w’è
+// æ€§åˆ¥ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ã‚«ãƒ©ãƒ¼æŒ‡å®š
 static GF_PRINTCOLOR sex_mark_col[]={
 	GF_PRINTCOLOR_MAKE(5,6,0),
 	GF_PRINTCOLOR_MAKE(3,4,0),
@@ -1408,7 +1408,7 @@ void WorldTrade_PokeNamePrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *nameman, int
 {
 	STRBUF *namebuf;
 
-	// –¼‘O
+	// åå‰
 	if(monsno!=0){
 		namebuf = MSGMAN_AllocString( nameman, monsno );
 		WorldTrade_SysPrint( win, namebuf, 0, y, flag, color );
@@ -1421,12 +1421,12 @@ void WorldTrade_PokeNamePrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *nameman, int
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘–¼•\¦
+ * @brief   å›½åè¡¨ç¤º
  *
  * @param   win		
  * @param   nameman		
- * @param   country_code		‘ƒR[ƒh
- * @param   flag				1‚¾‚ÆƒZƒ“ƒ^ƒŠƒ“ƒOA‚Q‚¾‚Æ‰E‚æ‚¹
+ * @param   country_code		å›½ã‚³ãƒ¼ãƒ‰
+ * @param   flag				1ã ã¨ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã€ï¼’ã ã¨å³ã‚ˆã›
  * @param   y		
  * @param   color		
  *
@@ -1439,13 +1439,13 @@ void WorldTrade_CountryPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *nameman, MSGD
 {
 	STRBUF *namebuf;
 
-	// ‘–¼
+	// å›½å
 	if(country_code!=0){
 		namebuf = MSGMAN_AllocString( nameman, country_code );
 		WorldTrade_SysPrint( win, namebuf, 0, y, flag, color );
 		STRBUF_Delete(namebuf);
 	}
-	else{	//u‚«‚É‚µ‚È‚¢v‚ğ•\¦
+	else{	//ã€Œãã«ã—ãªã„ã€ã‚’è¡¨ç¤º
 		namebuf = MSGMAN_AllocString( msgman, msg_gtc_search_015 );
 		WorldTrade_SysPrint( win, namebuf, 0, y, flag, color );
 		STRBUF_Delete(namebuf);
@@ -1477,7 +1477,7 @@ static GF_PRINTCOLOR GetSexColor( int sex, GF_PRINTCOLOR color )
 	return color;
 }
 
-// «•Ê•¶š—ñ‚Ìƒe[ƒuƒ‹u‚«‚É‚µ‚È‚¢E‰EŠE‚«‚É‚µ‚È‚¢v
+// æ€§åˆ¥æ–‡å­—åˆ—ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã€Œãã«ã—ãªã„ãƒ»â™‚ãƒ»â™€ãƒ»ãã«ã—ãªã„ã€
 const int WorldTrade_SexStringTable[]={
 	msg_gtc_11_001,
 	msg_gtc_11_002,
@@ -1488,12 +1488,12 @@ const int WorldTrade_SexStringTable[]={
 
 //==============================================================================
 /**
- * @brief   «•Ê‚ğ•\¦‚·‚é
+ * @brief   æ€§åˆ¥ã‚’è¡¨ç¤ºã™ã‚‹
  *
  * @param   win		
  * @param   msgman		
  * @param   sex		
- * @param   flag	u‚«‚É‚µ‚È‚¢v‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©
+ * @param   flag	ã€Œãã«ã—ãªã„ã€ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹
  * @param   color	
  *
  * @retval  none		
@@ -1506,12 +1506,12 @@ void WorldTrade_SexPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int sex, 
 	OS_Printf("SEX Print flag = %d, sex = %d\n", flag, sex);
 
 	if(flag==0 && sex==DPW_TR_GENDER_NONE){
-		// «•Ê–³‚µ‚ğ•\¦‚µ‚È‚­‚Ä‚à‚¢‚¢‚Í•\¦‚µ‚È‚¢
+		// æ€§åˆ¥ç„¡ã—ã‚’è¡¨ç¤ºã—ãªãã¦ã‚‚ã„ã„æ™‚ã¯è¡¨ç¤ºã—ãªã„
 		return;
 	}
 	
 	sexbuf = MSGMAN_AllocString( msgman, WorldTrade_SexStringTable[sex]  );
-	// flag‚ª3ˆÈ“à‚Ìê‡‚ÍƒZƒ“ƒ^ƒŠƒ“ƒOw’èEˆÈã‚Ìê‡‚Í‚wÀ•Ww’è
+	// flagãŒ3ä»¥å†…ã®å ´åˆã¯ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°æŒ‡å®šãƒ»ä»¥ä¸Šã®å ´åˆã¯ï¼¸åº§æ¨™æŒ‡å®š
 	if(printflag > 3){
 		WorldTrade_SysPrint( win, sexbuf,   printflag, y, 0, GetSexColor( sex, color ) );
 	}else{
@@ -1522,7 +1522,7 @@ void WorldTrade_SexPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int sex, 
 
 //==============================================================================
 /**
- * @brief   ƒŒƒxƒ‹ğŒ‚Ì•¶š—ñ•`‰æ‚ğs‚¤
+ * @brief   ãƒ¬ãƒ™ãƒ«æ¡ä»¶ã®æ–‡å­—åˆ—æç”»ã‚’è¡Œã†
  *
  * @param   win		
  * @param   msgman		
@@ -1535,7 +1535,7 @@ void WorldTrade_SexPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int sex, 
 //==============================================================================
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/16
-// x À•Ww’è‚Ì‚Å‚«‚é WorldTrade_WantLevelPrint() “¯“™ŠÖ”‚ğ—pˆÓ
+// x åº§æ¨™æŒ‡å®šã®ã§ãã‚‹ WorldTrade_WantLevelPrint() åŒç­‰é–¢æ•°ã‚’ç”¨æ„
 
 void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select, int x )
 {
@@ -1563,7 +1563,7 @@ void WorldTrade_WantLevelPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int
 
 //------------------------------------------------------------------
 /**
- * @brief   ŒğŠ·‚µ‚Ä—~‚µ‚¢ƒ|ƒPƒ‚ƒ“‚ÌğŒ‚ğ•`‰æ‚·‚é
+ * @brief   äº¤æ›ã—ã¦æ¬²ã—ã„ãƒã‚±ãƒ¢ãƒ³ã®æ¡ä»¶ã‚’æç”»ã™ã‚‹
  *
  * @param   MsgManager		
  * @param   MonsNameManager
@@ -1582,28 +1582,28 @@ void WodrldTrade_PokeWantPrint( MSGDATA_MANAGER *MsgManager, MSGDATA_MANAGER *Mo
 	STRBUF *strbuf;
 	int i;
 
-	//u‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“v•`‰æ
+	//ã€Œã»ã—ã„ãƒã‚±ãƒ¢ãƒ³ã€æç”»
 	strbuf = MSGMAN_AllocString( MsgManager, msg_gtc_05_008 );
 	WorldTrade_SysPrint( &win[0], strbuf,    0, 0, 0, GF_PRINTCOLOR_MAKE(15,2,0) );
 
-	// –¼‘OE«•ÊEƒŒƒxƒ‹‚Ì—“‚ÍƒNƒŠƒA‚·‚é
+	// åå‰ãƒ»æ€§åˆ¥ãƒ»ãƒ¬ãƒ™ãƒ«ã®æ¬„ã¯ã‚¯ãƒªã‚¢ã™ã‚‹
 	for(i=1;i<3;i++){
 		GF_BGL_BmpWinDataFill( &win[i], 0x0000 );
 	}
 
-	// –¼‘O
+	// åå‰
 	WorldTrade_PokeNamePrint(&win[1], MonsNameManager, monsno, 0, 0,GF_PRINTCOLOR_MAKE(15,2,0) );
 
-	// «•Ê
+	// æ€§åˆ¥
 	if( sex==DPW_TR_GENDER_MALE || sex==DPW_TR_GENDER_FEMALE ){
-		OS_Printf("«•Ê•`‰æ‚µ‚½ %d\n", sex);
+		OS_Printf("æ€§åˆ¥æç”»ã—ãŸ %d\n", sex);
 		WorldTrade_SexPrint( &win[1], MsgManager, sex, 0, 0, 70, GF_PRINTCOLOR_MAKE(15,2,0) );
 	}else{
-		OS_Printf("«•Ê•`‰æ‚µ‚Ä‚È‚¢ %d\n");
+		OS_Printf("æ€§åˆ¥æç”»ã—ã¦ãªã„ %d\n");
 	
 	}
 
-	// ƒŒƒxƒ‹w’è
+	// ãƒ¬ãƒ™ãƒ«æŒ‡å®š
 	WorldTrade_WantLevelPrint( &win[2], MsgManager, level, 2, 0, GF_PRINTCOLOR_MAKE(15,2,0), LEVEL_PRINT_TBL_DEPOSIT);
 	
 	
@@ -1613,7 +1613,7 @@ void WodrldTrade_PokeWantPrint( MSGDATA_MANAGER *MsgManager, MSGDATA_MANAGER *Mo
 
 //------------------------------------------------------------------
 /**
- * @brief   ŒğŠ·‚µ‚Ä—~‚µ‚¢ƒ|ƒPƒ‚ƒ“‚ÌğŒ‚ğ•`‰æ‚·‚é
+ * @brief   äº¤æ›ã—ã¦æ¬²ã—ã„ãƒã‚±ãƒ¢ãƒ³ã®æ¡ä»¶ã‚’æç”»ã™ã‚‹
  *
  * @param   MsgManager		
  * @param   MonsNameManager
@@ -1632,27 +1632,27 @@ void WodrldTrade_MyPokeWantPrint( MSGDATA_MANAGER *MsgManager, MSGDATA_MANAGER *
 	STRBUF *strbuf;
 	int i;
 
-	//u‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“v•`‰æ
+	//ã€Œã»ã—ã„ãƒã‚±ãƒ¢ãƒ³ã€æç”»
 	strbuf = MSGMAN_AllocString( MsgManager, msg_gtc_05_008 );
 	WorldTrade_SysPrint( &win[0], strbuf,    0, 0, 0, GF_PRINTCOLOR_MAKE(15,2,0) );
 
-	// –¼‘OE«•ÊEƒŒƒxƒ‹‚Ì—“‚ÍƒNƒŠƒA‚·‚é
+	// åå‰ãƒ»æ€§åˆ¥ãƒ»ãƒ¬ãƒ™ãƒ«ã®æ¬„ã¯ã‚¯ãƒªã‚¢ã™ã‚‹
 	for(i=1;i<3;i++){
 		GF_BGL_BmpWinDataFill( &win[i], 0x0000 );
 	}
 
-	// –¼‘O
+	// åå‰
 	WorldTrade_PokeNamePrint(&win[1], MonsNameManager, monsno, 0, 0,GF_PRINTCOLOR_MAKE(15,2,0) );
 
-	// «•Ê
+	// æ€§åˆ¥
 	if( sex==DPW_TR_GENDER_MALE || sex==DPW_TR_GENDER_FEMALE ){
-		OS_Printf("«•Ê•`‰æ‚µ‚½ %d\n", sex);
+		OS_Printf("æ€§åˆ¥æç”»ã—ãŸ %d\n", sex);
 		WorldTrade_SexPrint( &win[1], MsgManager, sex, 0, 0, 70, GF_PRINTCOLOR_MAKE(15,2,0) );
 	}else{
-		OS_Printf("«•Ê•`‰æ‚µ‚Ä‚È‚¢\n");
+		OS_Printf("æ€§åˆ¥æç”»ã—ã¦ãªã„\n");
 	}
 
-	// ƒŒƒxƒ‹w’è
+	// ãƒ¬ãƒ™ãƒ«æŒ‡å®š
 	WorldTrade_WantLevelPrint( &win[2], MsgManager, level, 2, 0, GF_PRINTCOLOR_MAKE(15,2,0), LEVEL_PRINT_TBL_DEPOSIT);
 	
 	
@@ -1662,7 +1662,7 @@ void WodrldTrade_MyPokeWantPrint( MSGDATA_MANAGER *MsgManager, MSGDATA_MANAGER *
 
 //------------------------------------------------------------------
 /**
- * @brief   ¡‚©‚ç—a‚¯‚æ‚¤‚Æ‚·‚éƒ|ƒPƒ‚ƒ“‚Ìî•ñ‚ğ•`‰æ‚·‚é
+ * @brief   ä»Šã‹ã‚‰é ã‘ã‚ˆã†ã¨ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æƒ…å ±ã‚’æç”»ã™ã‚‹
  *
  * @param   MsgManager		
  * @param   WordSet		
@@ -1686,16 +1686,16 @@ static void PokeDepositPrint(
 	
 	OS_TPrintf("deposit_ppp3 = %08x", ppp);
 	
-	// ‚ ‚¸‚¯‚éƒ|ƒPƒ‚ƒ“
+	// ã‚ãšã‘ã‚‹ãƒã‚±ãƒ¢ãƒ³
 
-	// –¼‘OE«•ÊEƒŒƒxƒ‹æ“¾
+	// åå‰ãƒ»æ€§åˆ¥ãƒ»ãƒ¬ãƒ™ãƒ«å–å¾—
 	PokePasoParaGet(ppp, ID_PARA_nickname_buf, namebuf );
 	sex   = PokePasoParaGet( ppp, ID_PARA_sex,   NULL )+1;
 	level = PokePasoLevelCalc(ppp);
 	
 	OS_Printf("sex=%d, level=%d\n",sex, level);
 	
-	// u‚ ‚¸‚¯‚éƒ|ƒPƒ‚ƒ“vE«•ÊƒAƒCƒRƒ“•¶š—ñæ“¾
+	// ã€Œã‚ãšã‘ã‚‹ãƒã‚±ãƒ¢ãƒ³ã€ãƒ»æ€§åˆ¥ã‚¢ã‚¤ã‚³ãƒ³æ–‡å­—åˆ—å–å¾—
 	strbuf = MSGMAN_AllocString( MsgManager, msg_gtc_05_011  );
 	WORDSET_RegisterNumber( WordSet, 3, level, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	levelbuf = MSGDAT_UTIL_AllocExpandString( WordSet, MsgManager, msg_gtc_05_013, HEAPID_WORLDTRADE );
@@ -1703,12 +1703,12 @@ static void PokeDepositPrint(
 		MSGMAN_GetString( MsgManager, WorldTrade_SexStringTable[sex], sexbuf );
 	}
 
-	// •`‰æ‚Ì‘O‚ÉƒNƒŠƒA
+	// æç”»ã®å‰ã«ã‚¯ãƒªã‚¢
 	for(i=0;i<3;i++){
 		GF_BGL_BmpWinDataFill( &win[i], 0x0000 );
 	}
 
-	// •`‰æ
+	// æç”»
 	WorldTrade_SysPrint( &win[0], strbuf,    0, 0, 0, GF_PRINTCOLOR_MAKE(15,2,0) );
 	WorldTrade_SysPrint( &win[1], namebuf,   0, 0, 0, GF_PRINTCOLOR_MAKE(15,2,0) );
 	WorldTrade_SysPrint( &win[2], levelbuf,  0, 0, 2, GF_PRINTCOLOR_MAKE(15,2,0) );
@@ -1730,7 +1730,7 @@ static void PokeDepositPrint(
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚¸‚©‚ñƒ\[ƒgƒf[ƒ^æ“¾i‚ ‚¤‚¢‚¦‚¨‡jB‰ğ•ú‚Í‚¶‚Ô‚ñ‚ÅB
+ * @brief   ãšã‹ã‚“ã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—ï¼ˆã‚ã†ã„ãˆãŠé †ï¼‰ã€‚è§£æ”¾ã¯ã˜ã¶ã‚“ã§ã€‚
  *			
  * @param   heap		
  * @param   idx		
@@ -1744,27 +1744,27 @@ u16* WorldTrade_ZukanSortDataGet( int heap, int idx, int* p_arry_num )
 	u32 size;
 	u16* p_buf;
 	
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	p_buf = ArcUtil_LoadEx( ARC_ZUKAN_DATA, NARC_zukan_data_zkn_sort_aiueo_dat, FALSE, heap, ALLOC_TOP, &size );
 
 	*p_arry_num = size / ZKN_SORTDATA_ONESIZE;
 
 	return p_buf;
 	
-	// ƒ|ƒPƒ‚ƒ“‚Ì–¼‘O‚ğæ“¾‚·‚é
+	// ãƒã‚±ãƒ¢ãƒ³ã®åå‰ã‚’å–å¾—ã™ã‚‹
 	//STRBUF* MSGDAT_UTIL_GetMonsName( u32 monsno, u32 heapID )
 }
 
 //==============================================================================
 /**
- * @brief   ƒVƒ“ƒIƒE}ŠÓƒf[ƒ^‚ğ“Ç‚İ‚Ş			‰ğ•ú‚Í‚¶‚Ô‚ñ‚Å
- *			ƒVƒ“ƒIƒE}ŠÓ‚Ì‡‚ÉŠJ”­NO‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅA
- *			V‚½‚Éƒe[ƒuƒ‹‚ğŠm•Û‚µ‚Äu‚±‚ÌŠJ”­NO‚ÍƒVƒ“ƒIƒE‚©Hv‚Ìì¬‚à‚·‚é
+ * @brief   ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€			è§£æ”¾ã¯ã˜ã¶ã‚“ã§
+ *			ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã®é †ã«é–‹ç™ºNOãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã€
+ *			æ–°ãŸã«ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç¢ºä¿ã—ã¦ã€Œã“ã®é–‹ç™ºNOã¯ã‚·ãƒ³ã‚ªã‚¦ã‹ï¼Ÿã€ã®ä½œæˆã‚‚ã™ã‚‹
  *
  * @param   heap		
  * @param   p_arry_num	MONS_END+1
  *
- * @retval  u16 *		494ŒÂ•ª‚ÌƒVƒ“ƒIƒE}ŠÓ‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ª“ü‚Á‚½ƒe[ƒuƒ‹
+ * @retval  u16 *		494å€‹åˆ†ã®ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ãŒå…¥ã£ãŸãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //==============================================================================
 u8 *WorldTrade_SinouZukanDataGet( int heap  )
@@ -1772,16 +1772,16 @@ u8 *WorldTrade_SinouZukanDataGet( int heap  )
 	u32 size,num,i;
 	u16* p_buf;
 
-	// ƒe[ƒuƒ‹Šm•ÛE‰Šú‰»
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ç¢ºä¿ãƒ»åˆæœŸåŒ–
 	u8 *sinouData = sys_AllocMemory( HEAPID_WORLDTRADE, MONSNO_END+1 );
 	MI_CpuClearFast( sinouData, MONSNO_END+1 );
 
-	// ƒVƒ“ƒIƒE}ŠÓƒe[ƒuƒ‹
+	// ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãƒ†ãƒ¼ãƒ–ãƒ«
 	p_buf = ArcUtil_LoadEx( ARC_ZUKAN_DATA, NARC_zukan_data_zkn_sort_shinoh_dat, FALSE, heap, ALLOC_TOP, &size );
 	
 	num = size / ZKN_SORTDATA_ONESIZE;
 
-	// ƒtƒ‰ƒOƒe[ƒuƒ‹‚Éì‚è’¼‚·
+	// ãƒ•ãƒ©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã«ä½œã‚Šç›´ã™
 	for(i=0;i<num;i++){
 		if(p_buf[i]<MONSNO_END+1){
 			sinouData[p_buf[i]] = 1;
@@ -1797,7 +1797,7 @@ u8 *WorldTrade_SinouZukanDataGet( int heap  )
 
 //==============================================================================
 /**
- * @brief   ƒT[ƒo[‚É‘—M‚·‚éŠî–{î•ñ‚ğŠi”[‚·‚é
+ * @brief   ã‚µãƒ¼ãƒãƒ¼ã«é€ä¿¡ã™ã‚‹åŸºæœ¬æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹
  *
  * @param   dtd		
  * @param   wk		
@@ -1808,38 +1808,38 @@ u8 *WorldTrade_SinouZukanDataGet( int heap  )
 void WorldTrade_PostPokemonBaseDataMake( Dpw_Tr_Data *dtd, WORLDTRADE_WORK *wk )
 {
 	STRCODE *name;
-	// ƒ|ƒPƒ‚ƒ“\‘¢‘Ì‚ğ‘ã“ü
+	// ãƒã‚±ãƒ¢ãƒ³æ§‹é€ ä½“ã‚’ä»£å…¥
 	
 	if(WorldTrade_GetPPorPPP( wk->BoxTrayNo )){
-		//ƒVƒFƒCƒ~‚Ìê‡‚ÍƒtƒHƒ‹ƒ€No‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+		//ã‚·ã‚§ã‚¤ãƒŸã®å ´åˆã¯ãƒ•ã‚©ãƒ«ãƒ Noã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 		PokeParaSheimiFormChange((POKEMON_PARAM*)(wk->deposit_ppp), FORMNO_SHEIMI_NORMAL);
-		// POKEMON_PARAM‚Æ‚µ‚ÄƒRƒs[
+		// POKEMON_PARAMã¨ã—ã¦ã‚³ãƒ”ãƒ¼
 		MI_CpuCopyFast( wk->deposit_ppp, dtd->postData.data,  PokemonParam_GetWorkSize() );
 	}else{
-		//ƒVƒFƒCƒ~‚Ìê‡‚ÍƒtƒHƒ‹ƒ€No‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+		//ã‚·ã‚§ã‚¤ãƒŸã®å ´åˆã¯ãƒ•ã‚©ãƒ«ãƒ Noã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 		PokePasoParaSheimiFormChange(wk->deposit_ppp, FORMNO_SHEIMI_NORMAL);
-		// POKEMON_PASO_PARAM‚È‚Ì‚ÅReplaceŠÖ”‚ÅPOKEMON_PARAM‚É“÷•t‚¯‚·‚é
+		// POKEMON_PASO_PARAMãªã®ã§Replaceé–¢æ•°ã§POKEMON_PARAMã«è‚‰ä»˜ã‘ã™ã‚‹
 		PokeReplace(wk->deposit_ppp,(POKEMON_PARAM *)dtd->postData.data);
 	}
 
-	// ƒgƒŒ[ƒi[–¼ƒRƒs[
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚³ãƒ”ãƒ¼
 	PM_strncpy( dtd->name, MyStatus_GetMyName(wk->param->mystatus), DPW_TR_NAME_SIZE );
 
 	
 	// ID
 	dtd->trainerID   = MyStatus_GetID_Low( wk->param->mystatus );
 
-	// ‘E’nˆæ
+	// å›½ãƒ»åœ°åŸŸ
 	dtd->countryCode = WIFIHISTORY_GetMyNation( wk->param->wifihistory );
 	dtd->localCode   = WIFIHISTORY_GetMyArea( wk->param->wifihistory );
 
-	// Œ©‚½–Ú
+	// è¦‹ãŸç›®
 	dtd->trainerType = MyStatus_GetTrainerView( wk->param->mystatus );
 
-	// «•Ê
+	// æ€§åˆ¥
 	dtd->gender      = MyStatus_GetMySex( wk->param->mystatus );
 
-	// ƒo[ƒWƒ‡ƒ“E‘ƒR[ƒh
+	// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ»å›½ã‚³ãƒ¼ãƒ‰
 	dtd->versionCode = PM_VERSION;
 	dtd->langCode    = PM_LANG;
 	
@@ -1848,7 +1848,7 @@ void WorldTrade_PostPokemonBaseDataMake( Dpw_Tr_Data *dtd, WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‚ğ—a‚¯‚é‚Ì‚É•K—v‚Èƒf[ƒ^‚ğì¬‚·‚é
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚’é ã‘ã‚‹ã®ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
  *
  * @param   dtd		
  * @param   wk		
@@ -1859,10 +1859,10 @@ void WorldTrade_PostPokemonBaseDataMake( Dpw_Tr_Data *dtd, WORLDTRADE_WORK *wk )
 static void DepositPokemonDataMake( Dpw_Tr_Data *dtd, WORLDTRADE_WORK *wk )
 {
 
-	// Šî–{î•ñ‚ğŠi”[iƒ|ƒPƒ‚ƒ“EƒgƒŒ[ƒi[–¼E‘E’nˆæEŒ©‚½–Ú‚È‚Çj
+	// åŸºæœ¬æƒ…å ±ã‚’æ ¼ç´ï¼ˆãƒã‚±ãƒ¢ãƒ³ãƒ»ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åãƒ»å›½ãƒ»åœ°åŸŸãƒ»è¦‹ãŸç›®ãªã©ï¼‰
 	WorldTrade_PostPokemonBaseDataMake( dtd, wk );
 	
-	// ‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“î•ñ‚ğŠi”[
+	// ã»ã—ã„ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ã‚’æ ¼ç´
 	dtd->postSimple = wk->Post;
 	dtd->wantSimple = wk->Want;
 
@@ -1883,43 +1883,43 @@ static void DepositPokemonDataMake( Dpw_Tr_Data *dtd, WORLDTRADE_WORK *wk )
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-// BMPLISTŠÖŒW
+// BMPLISTé–¢ä¿‚
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSƒ\[ƒg‘Î‰B
+// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSã‚½ãƒ¼ãƒˆå¯¾å¿œã€‚
 #define DEPOSIT_HEADWORD_NUM	(  9 )
 // MatchComment: end of localization change
 #define DEPOSIT_Y_NUM			(  6 )
 
-///BMPLIST—p’è‹`
+///BMPLISTç”¨å®šç¾©
 static const BMPLIST_HEADER MenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,					// 
-    DEPOSIT_HEADWORD_NUM,	// ƒŠƒXƒg€–Ú”
-    DEPOSIT_Y_NUM,			// •\¦Å‘å€–Ú”
-    4,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    2,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,			// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
-    NULL,                   // ƒ[ƒN
+    DEPOSIT_HEADWORD_NUM,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    DEPOSIT_Y_NUM,			// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    4,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    2,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,			// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+    NULL,                   // ãƒ¯ãƒ¼ã‚¯
 };
 
 
 
 //==============================================================================
 /**
- * @brief   “ª•¶š‘I‘ğƒƒjƒ…[ì¬
+ * @brief   é ­æ–‡å­—é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ
  *
  * @param  none
  *
@@ -1931,7 +1931,7 @@ BMPLIST_WORK *WorldTrade_WordheadBmpListMake( WORLDTRADE_WORK *wk, BMP_MENULIST_
 	BMPLIST_HEADER list_h;
 	int i;
 
-	// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSƒ\[ƒg‘Î‰B
+	// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSã‚½ãƒ¼ãƒˆå¯¾å¿œã€‚
 	*menulist = BMP_MENULIST_Create( DEPOSIT_HEADWORD_NUM, HEAPID_WORLDTRADE );
     // MatchComment: end of localization change
 
@@ -1944,16 +1944,16 @@ BMPLIST_WORK *WorldTrade_WordheadBmpListMake( WORLDTRADE_WORK *wk, BMP_MENULIST_
     list_h.list  = *menulist;
     list_h.win   = win;
 
-	// ˜g•`‰æ
+	// æ æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_ON, WORLDTRADE_MENUFRAME_CHR, WORLDTRADE_MENUFRAME_PAL );
 
-	// BMPƒƒjƒ…[ŠJn
+	// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‹å§‹
     return BmpListSet(&list_h, wk->dw->headwordListPos, wk->dw->headwordPos, HEAPID_WORLDTRADE);
 
 }
 
-// “ª•¶šƒe[ƒuƒ‹iƒ\[ƒg‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚Ì‰½”Ô–Ú‚ÉuƒAEƒJEƒTcv‚ª“oê‚·‚é‚©H
-// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSƒ\[ƒg‘Î‰B
+// é ­æ–‡å­—ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆã‚½ãƒ¼ãƒˆã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã®ä½•ç•ªç›®ã«ã€Œã‚¢ãƒ»ã‚«ãƒ»ã‚µâ€¦ã€ãŒç™»å ´ã™ã‚‹ã‹ï¼Ÿ
+// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSã‚½ãƒ¼ãƒˆå¯¾å¿œã€‚
 static u16 NameHeadTable[]={
 	ZKN_AKSTNHMYRW_IDX_A,
 	ZKN_AKSTNHMYRW_IDX_K,
@@ -1970,13 +1970,13 @@ static u16 NameHeadTable[]={
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“–¼A‚T‚O‰¹‡ƒ\[ƒgƒŠƒXƒgì¬
+ * @brief   ãƒã‚±ãƒ¢ãƒ³åã€ï¼•ï¼éŸ³é †ã‚½ãƒ¼ãƒˆãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param   menulist	ƒŠƒXƒgƒf[ƒ^i‚±‚±‚É“o˜^‚·‚éj
- * @param   msgman		ƒ|ƒPƒ‚ƒ“–¼ƒƒbƒZ[ƒWƒf[ƒ^
- * @param   table		‚T‚O‰¹‡ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[ƒe[ƒuƒ‹
- * @param   num			ƒ|ƒPƒ‚ƒ“‚Ì‘”
- * @param   select		ƒAƒJƒTƒ^ƒiƒnƒ}ƒ„ƒ‰ƒ‚Ì‚Ç‚ê‚ğ‘I‘ğ‚µ‚½‚©HiƒA: 0`9‚Ü‚Åj
+ * @param   menulist	ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ï¼ˆã“ã“ã«ç™»éŒ²ã™ã‚‹ï¼‰
+ * @param   msgman		ãƒã‚±ãƒ¢ãƒ³åãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+ * @param   table		ï¼•ï¼éŸ³é †ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param   num			ãƒã‚±ãƒ¢ãƒ³ã®ç·æ•°
+ * @param   select		ã‚¢ã‚«ã‚µã‚¿ãƒŠãƒãƒãƒ¤ãƒ©ãƒ¯ã®ã©ã‚Œã‚’é¸æŠã—ãŸã‹ï¼Ÿï¼ˆã‚¢: 0ã€œ9ã¾ã§ï¼‰
  *
  * @retval  int		
  */
@@ -1987,21 +1987,21 @@ static int PokeNameSortListMake( BMP_MENULIST_DATA **menulist, MSGDATA_MANAGER *
 {
 	int i,index,see_count=0;
 	int pokenum = NameHeadTable[select+1]-NameHeadTable[select];
-	int flag    = TRUE;	//ZukanWork_GetZenkokuZukanFlag(zukan); ‘S‘}ŠÓ‚É‚È‚Á‚Ä‚¢‚é‚©‚ÍŠÖŒW‚È‚­‚È‚Á‚½ 2008.06.23(Œ) matsuda
+	int flag    = TRUE;	//ZukanWork_GetZenkokuZukanFlag(zukan); å…¨å›½å›³é‘‘ã«ãªã£ã¦ã„ã‚‹ã‹ã¯é–¢ä¿‚ãªããªã£ãŸ 2008.06.23(æœˆ) matsuda
 
 	OS_TPrintf("select = %d, num = %d\n",select, pokenum);
 	
-	// }ŠÓ‚Æ”ä‚×‚Ä‰½‘ÌŒ©‚Ä‚¢‚é‚©‚ğŠm”F
+	// å›³é‘‘ã¨æ¯”ã¹ã¦ä½•ä½“è¦‹ã¦ã„ã‚‹ã‹ã‚’ç¢ºèª
 	index = NameHeadTable[select];
 	for(i=0;i<pokenum;i++){
-		// ‘S‘}ŠÓ‚©H
+		// å…¨å›½å›³é‘‘ã‹ï¼Ÿ
 		if(flag){
 			if(ZukanWork_GetPokeSeeFlag( zukan, table[index+i] )){
 				OS_Printf(" SeeCheck i = %d, table[index+i] = %d\n", i, table[index+i]);
 				see_count++;
 			}
 		}else{
-			// ƒVƒ“ƒIƒE}ŠÓ‚É‚¢‚é‚±‚Æ‚ğŠm”F‚µ‚½ã‚Å}ŠÓƒ`ƒFƒbƒN
+			// ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã«ã„ã‚‹ã“ã¨ã‚’ç¢ºèªã—ãŸä¸Šã§å›³é‘‘ãƒã‚§ãƒƒã‚¯
 			if(sinou[table[index+i]]){
 				if(ZukanWork_GetPokeSeeFlag( zukan, table[index+i] )){
 					see_count++;
@@ -2011,20 +2011,20 @@ static int PokeNameSortListMake( BMP_MENULIST_DATA **menulist, MSGDATA_MANAGER *
 		}
 	}
 
-	// €–ÚƒŠƒXƒg‚Ìì¬
+	// é …ç›®ãƒªã‚¹ãƒˆã®ä½œæˆ
 	*menulist = BMP_MENULIST_Create( see_count+1, HEAPID_WORLDTRADE );
 
 
-	// ƒ|ƒPƒ‚ƒ“–¼‚Ì“o˜^
+	// ãƒã‚±ãƒ¢ãƒ³åã®ç™»éŒ²
 	for(i=0;i<pokenum;i++){
-		// ‘S‘}ŠÓ‚©H
+		// å…¨å›½å›³é‘‘ã‹ï¼Ÿ
 		if(flag){
 			if(ZukanWork_GetPokeSeeFlag( zukan, table[index+i] )){
 				OS_Printf(" ListAdd i = %d, table[index+i] = %d\n", i, table[index+i]);
 				BMP_MENULIST_AddArchiveString( *menulist, monsnameman, table[index+i], table[index+i] );
 			}
 		}else{
-			// ƒVƒ“ƒIƒE}ŠÓ‚É‚¢‚é‚±‚Æ‚ğŠm”F‚µ‚½ã‚Å}ŠÓƒ`ƒFƒbƒN
+			// ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã«ã„ã‚‹ã“ã¨ã‚’ç¢ºèªã—ãŸä¸Šã§å›³é‘‘ãƒã‚§ãƒƒã‚¯
 			if(sinou[table[index+i]]){
 				if(ZukanWork_GetPokeSeeFlag( zukan, table[index+i] )){
 					BMP_MENULIST_AddArchiveString( *menulist, monsnameman, table[index+i], table[index+i] );
@@ -2032,7 +2032,7 @@ static int PokeNameSortListMake( BMP_MENULIST_DATA **menulist, MSGDATA_MANAGER *
 			}
 		}
 	}
-	// u‚à‚Ç‚év‚ğ“o˜^
+	// ã€Œã‚‚ã©ã‚‹ã€ã‚’ç™»éŒ²
 	BMP_MENULIST_AddArchiveString( *menulist, msgman, msg_gtc_11_004, BMPMENU_CANCEL );
 
 	return see_count+1;
@@ -2041,7 +2041,7 @@ static int PokeNameSortListMake( BMP_MENULIST_DATA **menulist, MSGDATA_MANAGER *
 
 //==============================================================================
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“–¼‘I‘ğƒŠƒXƒgì¬
+ * @brief   ãƒã‚±ãƒ¢ãƒ³åé¸æŠãƒªã‚¹ãƒˆä½œæˆ
  *
  * @param   menulist		
  * @param   win		
@@ -2071,17 +2071,17 @@ BMPLIST_WORK *WorldTrade_PokeNameListMake( WORLDTRADE_WORK *wk, BMP_MENULIST_DAT
     list_h.list  = *menulist;
     list_h.win   = win;
 
-	// ˜g•`‰æ
+	// æ æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_ON, WORLDTRADE_MENUFRAME_CHR, WORLDTRADE_MENUFRAME_PAL );
 
-	// BMPƒƒjƒ…[ŠJn
+	// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‹å§‹
     return BmpListSet(&list_h, wk->selectListPos.name_list[head],
     						   wk->selectListPos.name_pos[head], HEAPID_WORLDTRADE);
 
 }
 
 
-// ‘I‘ğƒŠƒXƒg—p«•ÊƒAƒCƒRƒ“—ñ
+// é¸æŠãƒªã‚¹ãƒˆç”¨æ€§åˆ¥ã‚¢ã‚¤ã‚³ãƒ³åˆ—
 static sex_select_table[][2]={
 	{msg_gtc_11_001, PARA_UNK,},
 	{msg_gtc_11_002, PARA_MALE,},
@@ -2091,7 +2091,7 @@ static sex_select_table[][2]={
 
 //==============================================================================
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“«•Ê‘I‘ğƒŠƒXƒgì¬
+ * @brief   ãƒã‚±ãƒ¢ãƒ³æ€§åˆ¥é¸æŠãƒªã‚¹ãƒˆä½œæˆ
  *
  * @param   menulist		
  * @param   win		
@@ -2115,10 +2115,10 @@ BMPLIST_WORK *WorldTrade_SexSelectListMake( BMP_MENULIST_DATA **menulist, GF_BGL
     list_h.list  = *menulist;
     list_h.win   = win;
 
-	// ˜g•`‰æ
+	// æ æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_ON, WORLDTRADE_MENUFRAME_CHR, WORLDTRADE_MENUFRAME_PAL );
 
-	// BMPƒƒjƒ…[ŠJn
+	// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‹å§‹
     return BmpListSet(&list_h, 0, 0, HEAPID_WORLDTRADE);
 	
 }
@@ -2127,7 +2127,7 @@ BMPLIST_WORK *WorldTrade_SexSelectListMake( BMP_MENULIST_DATA **menulist, GF_BGL
 
 //==============================================================================
 /**
- * @brief   ƒŒƒxƒ‹‘I‘ğƒŠƒXƒgì¬
+ * @brief   ãƒ¬ãƒ™ãƒ«é¸æŠãƒªã‚¹ãƒˆä½œæˆ
  *
  * @param   menulist		
  * @param   win		
@@ -2163,10 +2163,10 @@ BMPLIST_WORK *WorldTrade_LevelListMake(BMP_MENULIST_DATA **menulist, GF_BGL_BMPW
     list_h.list  = *menulist;
     list_h.win   = win;
 
-	// ˜g•`‰æ
+	// æ æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_ON, WORLDTRADE_MENUFRAME_CHR, WORLDTRADE_MENUFRAME_PAL );
 
-	// BMPƒƒjƒ…[ŠJn
+	// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‹å§‹
     return BmpListSet(&list_h, 0, 0, HEAPID_WORLDTRADE);
 
 }
@@ -2174,10 +2174,10 @@ BMPLIST_WORK *WorldTrade_LevelListMake(BMP_MENULIST_DATA **menulist, GF_BGL_BMPW
 
 //==============================================================================
 /**
- * @brief   ƒŒƒxƒ‹w’èğŒ‚ğ‘ã“ü‚·‚é
+ * @brief   ãƒ¬ãƒ™ãƒ«æŒ‡å®šæ¡ä»¶ã‚’ä»£å…¥ã™ã‚‹
  *
- * @param   dtps		ŒŸõğŒ\‘¢‘Ì
- * @param   index		ŒŸõğŒ‚Ì“Y‚¦š
+ * @param   dtps		æ¤œç´¢æ¡ä»¶æ§‹é€ ä½“
+ * @param   index		æ¤œç´¢æ¡ä»¶ã®æ·»ãˆå­—
  * @param   tbl_select	LEVEL_PRINT_TBL_DEPOSIT or LEVEL_PRINT_TBL_SEARCH
  *
  * @retval  none		
@@ -2189,11 +2189,11 @@ void WorldTrade_LevelMinMaxSet( Dpw_Tr_PokemonSearchData *dtps, int index, int t
 
 	if(tbl_select == LEVEL_PRINT_TBL_DEPOSIT){
 		level_tbl = level_minmax_table;
-		GF_ASSERT(index<(LEVEL_SELECT_NUM-1));// ƒŒƒxƒ‹w’è‚Ì”z—ñ‚æ‚èã‚¾‚Á‚½
+		GF_ASSERT(index<(LEVEL_SELECT_NUM-1));// ãƒ¬ãƒ™ãƒ«æŒ‡å®šã®é…åˆ—ã‚ˆã‚Šä¸Šã ã£ãŸ
 	}
 	else{	//LEVEL_PRINT_TBL_SEARCH
 		level_tbl = search_level_minmax_table;
-		GF_ASSERT(index<(SEARCH_LEVEL_SELECT_NUM-1));// ƒŒƒxƒ‹w’è‚Ì”z—ñ‚æ‚èã‚¾‚Á‚½
+		GF_ASSERT(index<(SEARCH_LEVEL_SELECT_NUM-1));// ãƒ¬ãƒ™ãƒ«æŒ‡å®šã®é…åˆ—ã‚ˆã‚Šä¸Šã ã£ãŸ
 	}
 	
 	dtps->level_min = level_tbl[index].min;
@@ -2202,10 +2202,10 @@ void WorldTrade_LevelMinMaxSet( Dpw_Tr_PokemonSearchData *dtps, int index, int t
 
 //==============================================================================
 /**
- * @brief   w’è‚ÌƒŒƒxƒ‹ğŒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+ * @brief   æŒ‡å®šã®ãƒ¬ãƒ™ãƒ«æ¡ä»¶ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- * @param   min		Å’á
- * @param   max		Å‘åƒŒƒxƒ‹
+ * @param   min		æœ€ä½
+ * @param   max		æœ€å¤§ãƒ¬ãƒ™ãƒ«
  * @param   tbl_select	LEVEL_PRINT_TBL_DEPOSIT or LEVEL_PRINT_TBL_SEARCH
  *
  * @retval  int		
@@ -2232,15 +2232,15 @@ int WorldTrade_LevelTermGet( int min, int max, int tbl_select )
 		}
 	}
 
-	// ƒŒƒxƒ‹ğŒ‚ª‡‚í‚È‚©‚Á‚½‚©‚ç‚Æ‚¢‚Á‚ÄASSERT‚É‚·‚é‚ÆAŒãX‚ª•|‚¢‚Ì‚Å
-	// u‚È‚ñ‚Å‚à‚ ‚èv‚É‚µ‚Ä‚¨‚­
+	// ãƒ¬ãƒ™ãƒ«æ¡ä»¶ãŒåˆã‚ãªã‹ã£ãŸã‹ã‚‰ã¨ã„ã£ã¦ASSERTã«ã™ã‚‹ã¨ã€å¾Œã€…ãŒæ€–ã„ã®ã§
+	// ã€Œãªã‚“ã§ã‚‚ã‚ã‚Šã€ã«ã—ã¦ãŠã
 	return 0;
 }
 
 
 //==============================================================================
 /**
- * @brief   ‘‘I‘ğƒŠƒXƒgì¬
+ * @brief   å›½é¸æŠãƒªã‚¹ãƒˆä½œæˆ
  *
  * @param   menulist		
  * @param   win		
@@ -2253,19 +2253,19 @@ BMPLIST_WORK *WorldTrade_CountryListMake(BMP_MENULIST_DATA **menulist, GF_BGL_BM
 {
 	BMPLIST_HEADER list_h;
 	int i;
-	int list_num = NELEMS(CountryListTbl) + 2;	// +2 = ‚«‚É‚µ‚È‚¢@‚à‚Ç‚é
+	int list_num = NELEMS(CountryListTbl) + 2;	// +2 = ãã«ã—ãªã„ã€€ã‚‚ã©ã‚‹
 	
 	*menulist = BMP_MENULIST_Create( list_num, HEAPID_WORLDTRADE );
 
-	//u‚«‚É‚µ‚È‚¢v
+	//ã€Œãã«ã—ãªã„ã€
 	BMP_MENULIST_AddArchiveString( *menulist, NormalMsgManager, msg_gtc_search_015, 0 );
 	
-	//‘–¼“o˜^
+	//å›½åç™»éŒ²
 	for(i=1;i<list_num-1;i++){
 		BMP_MENULIST_AddArchiveString( *menulist, CountryMsgManager, CountryListTbl[i-1], i );
 	}
 
-	//u‚à‚Ç‚év
+	//ã€Œã‚‚ã©ã‚‹ã€
 	BMP_MENULIST_AddArchiveString( *menulist, NormalMsgManager, msg_gtc_search_016, list_num-1 );
 
     list_h       = MenuListHeader;
@@ -2273,20 +2273,20 @@ BMPLIST_WORK *WorldTrade_CountryListMake(BMP_MENULIST_DATA **menulist, GF_BGL_BM
     list_h.list  = *menulist;
     list_h.win   = win;
 
-	// ˜g•`‰æ
+	// æ æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_OFF, WORLDTRADE_MENUFRAME_CHR, WORLDTRADE_MENUFRAME_PAL );
 
-	// BMPƒƒjƒ…[ŠJn
+	// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‹å§‹
     return BmpListSet(&list_h, 0, 0, HEAPID_WORLDTRADE);
 
 }
 
 //==============================================================================
 /**
- * @brief   ‘w’èğŒ‚ğ‘ã“ü‚·‚é
+ * @brief   å›½æŒ‡å®šæ¡ä»¶ã‚’ä»£å…¥ã™ã‚‹
  *
- * @param   dtps			ŒŸõğŒ\‘¢‘Ì
- * @param   country_code	‘ƒR[ƒh
+ * @param   dtps			æ¤œç´¢æ¡ä»¶æ§‹é€ ä½“
+ * @param   country_code	å›½ã‚³ãƒ¼ãƒ‰
  *
  * @retval  none		
  */
@@ -2304,7 +2304,7 @@ void WorldTrade_CountryCodeSet( WORLDTRADE_WORK *wk, int country_code )
 
 //==============================================================================
 /**
- * @brief   Œø‰Ê‰¹‚É‘Î‰‚µ‚½BMPLISTMAINŠÖ”
+ * @brief   åŠ¹æœéŸ³ã«å¯¾å¿œã—ãŸBMPLISTMAINé–¢æ•°
  *
  * @param   lw		
  * @param   posbackup		
@@ -2332,7 +2332,7 @@ u32 WorldTrade_BmpListMain( BMPLIST_WORK * lw, u16 *posbackup )
 
 //==============================================================================
 /**
- * @brief   ‘I‘ğˆÊ’uƒJ[ƒ\ƒ‹î•ñ‚ÌƒNƒŠƒA
+ * @brief   é¸æŠä½ç½®ã‚«ãƒ¼ã‚½ãƒ«æƒ…å ±ã®ã‚¯ãƒªã‚¢
  *
  * @param   slp		
  *
@@ -2357,7 +2357,7 @@ void WorldTrade_SelectListPosInit( SELECT_LIST_POS *slp)
 
 //==============================================================================
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÊ’u•Û‘¶
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä¿å­˜
  *
  * @param   SELECT_LIST_POS		
  * @param   slp		

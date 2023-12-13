@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <imd version="1.6.0">
 
@@ -2147,7 +2147,7 @@
 		format="palette16"
 		color0_mode="color"
 		palette_name="d26_o01a_pl"
-		path="C:/Documents and Settings/lee_hyunjung/ƒfƒXƒNƒgƒbƒv/d26_o01a.tga"
+		path="C:/Documents and Settings/lee_hyunjung/ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—/d26_o01a.tga"
 	>
 		<bitmap size="256">
 			7777 7777 7777 7777 3333 3333 0000 0000
@@ -2188,7 +2188,7 @@
 		width="32" height="32" original_width="32" original_height="32"
 		format="a3i5"
 		palette_name="d26_o01b_pl"
-		path="C:/Documents and Settings/lee_hyunjung/ƒfƒXƒNƒgƒbƒv/d26_o01b.tga"
+		path="C:/Documents and Settings/lee_hyunjung/ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—/d26_o01b.tga"
 	>
 		<bitmap size="512">
 			4040 4040 4040 4040 4040 4040 4040 4040
@@ -7347,7 +7347,7 @@
 	triangle_size="69" quad_size="424"/>
 
 <ex_nns_3dme>
-	<ex_model_info scene_name="ƒfƒtƒHƒ‹ƒgƒV[ƒ“" disp_pos="0.000000 60.000000"/>
+	<ex_model_info scene_name="ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚·ãƒ¼ãƒ³" disp_pos="0.000000 60.000000"/>
 	<ex_tex_image_array size="40">
 		<ex_tex_image index="0" disp_pos="0.000000 0.000000"/>
 		<ex_tex_image index="1" disp_pos="0.000000 0.000000"/>

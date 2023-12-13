@@ -1,13 +1,13 @@
 #ifndef _R212AR0101_DEF_H_
 #define _R212AR0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R212AR0101_FLAG_CHANGE		(1)
 #define	SCRID_R212AR0101_MAID1		(2)
 #define	SCRID_R212AR0101_MAID2		(3)
 #define	SCRID_R212AR0101_MAID3		(4)
 #define	SCRID_R212AR0101_MAID4		(5)
 #define	SCRID_R212AR0101_MAID5		(6)
-#define	SCRID_R212AR0101_DATA_MAX		(6)		//最大数
+#define	SCRID_R212AR0101_DATA_MAX		(6)		//譛螟ｧ謨ｰ
 
 #endif //_R212AR0101_DEF_H_
